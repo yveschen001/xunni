@@ -109,6 +109,30 @@ XunNi/
 
 本專案為私有專案，未經授權不得使用。
 
+## 💾 備份策略
+
+本專案使用**單向備份原則**，只從本地推送到遠程，不會修改本地文件。
+
+### 快速備份
+
+```bash
+# 本地備份（添加文件到暫存區）
+pnpm backup
+
+# 推送到 GitHub
+pnpm backup:push
+```
+
+### 遠程倉庫
+
+**倉庫 URL**：https://github.com/yveschen001/xunni  
+**分支**：main  
+**權限**：私有倉庫
+
+詳細備份指南請參考：[doc/BACKUP_GUIDE.md](./doc/BACKUP_GUIDE.md)
+
+---
+
 ## 📞 聯絡
 
 如有問題，請參考 [doc/README.md](./doc/README.md) 中的常見問題或查看相關文檔。
