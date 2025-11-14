@@ -1,0 +1,99 @@
+# XunNi 專案 Cursor 規則
+
+## 專案概述
+- 專案名稱：XunNi
+- 類型：Telegram Bot（MBTI + 星座心理測驗漂流瓶交友）
+- 運行環境：Cloudflare Workers
+- 資料庫：Cloudflare D1（SQLite）
+- 語言：TypeScript（ESM）
+
+## 開發規範
+
+### 代碼規範
+- 使用 TypeScript 嚴格模式
+- 遵循 DEVELOPMENT_STANDARDS.md 中的規範
+- 使用 camelCase 命名變數和函數
+- 使用 UPPER_SNAKE_CASE 命名常數
+- 使用 PascalCase 命名類別和型別
+
+### 訊息格式
+- **所有 Telegram 訊息使用純文字 + 官方 Emoji**
+- **不使用 HTML 或 Markdown 格式**
+- 使用表情符號增加友好度
+
+### 模組化設計
+- Domain 層：純函數，無副作用
+- Services 層：外部服務封裝
+- Handlers 層：Telegram 指令處理
+- 遵循 MODULE_DESIGN.md 中的設計原則
+
+### 資料庫規範
+- 所有表使用小寫 + 下劃線命名
+- 所有欄位使用小寫 + 下劃線命名
+- 使用遷移腳本管理資料庫變更
+
+### 國際化
+- 所有使用者可見文字使用 i18n 系統
+- 使用 I18N_KEYS 常數，不使用字串字面量
+- 參考 I18N_GUIDE.md
+
+### 測試規範
+- Domain 層：90%+ 覆蓋率
+- Utils：80%+ 覆蓋率
+- Handlers：60%+ 覆蓋率
+- 參考 TESTING.md
+
+## 備份策略
+
+### 單向備份原則
+- 只從本地推送到遠程
+- 禁止使用：git pull, git fetch, git merge, git reset --hard
+- 使用 `pnpm backup` 和 `pnpm backup:push`
+
+### 備份命令
+```bash
+# 本地備份
+pnpm backup
+
+# 推送到 GitHub
+pnpm backup:push
+```
+
+## 重要提醒
+
+### 安全規範
+- 所有 URL 必須通過白名單檢查
+- 匿名轉發不暴露真實 Telegram ID
+- 敏感資訊使用 Cloudflare Secrets
+
+### 不可修改的欄位
+- 性別（gender）：設定後永遠不能修改
+- 生日（birthday）：設定後永遠不能修改
+- 需深度確認（二次確認）
+
+### 年齡限制
+- 未滿 18 歲不允許註冊
+- 必須輸入真實生日驗證
+
+### 訊息格式
+- 純文字 + 官方 Emoji
+- 不使用 HTML/Markdown
+
+## 參考文檔
+
+- SPEC.md：專案規格書
+- DEVELOPMENT_STANDARDS.md：開發規範
+- MODULE_DESIGN.md：模組化設計
+- I18N_GUIDE.md：國際化指南
+- TESTING.md：測試規範
+- DEPLOYMENT.md：部署指南
+- BACKUP_STRATEGY.md：備份策略
+
+## 開發流程
+
+1. 閱讀相關文檔
+2. 實作功能（遵循規範）
+3. 編寫測試
+4. 執行備份（pnpm backup）
+5. 推送到 GitHub（pnpm backup:push）
+
