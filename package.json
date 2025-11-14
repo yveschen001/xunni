@@ -1,0 +1,42 @@
+{
+  "name": "xunni-bot",
+  "version": "1.0.0",
+  "description": "MBTI + 星座心理測驗漂流瓶交友 Bot（匿名聊天）",
+  "type": "module",
+  "main": "src/worker.ts",
+  "scripts": {
+    "dev": "wrangler dev",
+    "deploy": "wrangler deploy",
+    "deploy:staging": "wrangler deploy --env staging",
+    "deploy:production": "wrangler deploy --env production",
+    "test": "vitest",
+    "test:coverage": "vitest --coverage",
+    "backup": "tsx scripts/backup.ts",
+    "backup:push": "tsx scripts/backup-push.ts",
+    "backup:db": "tsx scripts/backup-db.ts",
+    "typecheck": "tsc --noEmit",
+    "lint": "eslint src tests"
+  },
+  "keywords": [
+    "telegram",
+    "bot",
+    "cloudflare",
+    "workers",
+    "d1",
+    "mbti",
+    "漂流瓶"
+  ],
+  "author": "yveschen001",
+  "license": "UNLICENSED",
+  "private": true,
+  "devDependencies": {
+    "@cloudflare/workers-types": "^4.20241106.0",
+    "@types/node": "^20.11.0",
+    "typescript": "^5.3.3",
+    "vitest": "^1.1.0",
+    "wrangler": "^3.19.0",
+    "tsx": "^4.7.0"
+  },
+  "dependencies": {}
+}
+

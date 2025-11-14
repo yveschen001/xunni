@@ -1,0 +1,41 @@
+name = "xunni-bot"
+main = "src/worker.ts"
+compatibility_date = "2025-01-15"
+
+# Development environment
+[env.development]
+name = "xunni-bot-dev"
+
+# Staging environment
+[env.staging]
+name = "xunni-bot-staging"
+
+# Production environment
+[env.production]
+name = "xunni-bot"
+
+# D1 Database (will be configured per environment)
+# [[d1_databases]]
+# binding = "DB"
+# database_name = "xunni-db"
+# database_id = "<D1_DATABASE_ID>"
+
+# KV Namespace (optional)
+# [[kv_namespaces]]
+# binding = "RISK_CACHE"
+# id = "<KV_NAMESPACE_ID>"
+
+# Environment variables (non-sensitive)
+[vars]
+ENVIRONMENT = "development"
+LOG_LEVEL = "debug"
+BROADCAST_BATCH_SIZE = "25"
+BROADCAST_MAX_JOBS = "3"
+
+# Cron triggers
+# [[triggers.crons]]
+# schedule = "0 9 * * 1"  # Every Monday at 9:00 UTC
+
+# Sensitive variables should be set via:
+# wrangler secret put <VAR_NAME> --env <ENV>
+

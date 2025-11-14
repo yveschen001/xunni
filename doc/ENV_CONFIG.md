@@ -1,0 +1,362 @@
+# XunNi 環境配置指南
+
+## 1. 環境變數總覽
+
+### 1.1 環境分類
+
+本專案支援三個環境：
+- **development**: 本地開發環境
+- **staging**: 測試環境（用於預發布測試）
+- **production**: 生產環境
+
+### 1.2 環境變數清單
+
+| 變數名 | 說明 | 必需 | 環境 |
+|--------|------|------|------|
+| `TELEGRAM_BOT_TOKEN` | Telegram Bot Token | ✅ | 全部 |
+| `TELEGRAM_WEBHOOK_SECRET` | Webhook 驗證密鑰 | ✅ | 全部 |
+| `OPENAI_API_KEY` | OpenAI API 金鑰 | ✅ | 全部 |
+| `GIGAPUB_API_KEY` | Gigapub 廣告 API 金鑰 | ⚠️ | staging, production |
+| `GIGAPUB_PLACEMENT_ID` | Gigapub 廣告位置 ID | ⚠️ | staging, production |
+| `HOROSCOPE_SOURCE_URL` | 星座運勢資料來源 URL | ⚠️ | staging, production |
+| `EXTERNAL_API_KEY` | Moonpacket API 驗證金鑰 | ✅ | staging, production |
+| `ENVIRONMENT` | 環境名稱 (dev/staging/prod) | ✅ | 全部 |
+| `LOG_LEVEL` | 日誌級別 (debug/info/warn/error) | ❌ | 全部 |
+| `BROADCAST_BATCH_SIZE` | 廣播批次大小 | ❌ | 全部 |
+| `BROADCAST_MAX_JOBS` | 最大並發廣播任務數 | ❌ | 全部 |
+
+---
+
+## 2. 環境變數配置
+
+### 2.1 開發環境 (development)
+
+#### 2.1.1 `.dev.vars` 檔案（本地開發）
+
+在專案根目錄建立 `.dev.vars`（已加入 `.gitignore`）：
+
+```bash
+# .dev.vars
+ENVIRONMENT=development
+LOG_LEVEL=debug
+
+# Telegram
+TELEGRAM_BOT_TOKEN=123456789:ABCdefGHIjklMNOpqrsTUVwxyz
+TELEGRAM_WEBHOOK_SECRET=dev_webhook_secret_key_here
+
+# OpenAI
+OPENAI_API_KEY=sk-dev-key-here
+
+# Gigapub (可選，開發環境可留空)
+GIGAPUB_API_KEY=
+GIGAPUB_PLACEMENT_ID=
+
+# Horoscope (可選)
+HOROSCOPE_SOURCE_URL=
+
+# External API (開發環境可留空)
+EXTERNAL_API_KEY=dev_api_key_here
+
+# Broadcast Settings
+BROADCAST_BATCH_SIZE=10
+BROADCAST_MAX_JOBS=1
+```
+
+#### 2.1.2 wrangler.toml (development)
+
+```toml
+name = "xunni-bot-dev"
+main = "src/worker.ts"
+compatibility_date = "2025-01-01"
+
+# Development D1 Database
+[[d1_databases]]
+binding = "DB"
+database_name = "xunni-db-dev"
+database_id = "<DEV_D1_DATABASE_ID>"
+
+# Development KV (可選)
+[[kv_namespaces]]
+binding = "RISK_CACHE"
+id = "<DEV_KV_NAMESPACE_ID>"
+
+# 開發環境變數（敏感資訊使用 .dev.vars）
+[vars]
+ENVIRONMENT = "development"
+LOG_LEVEL = "debug"
+BROADCAST_BATCH_SIZE = "10"
+BROADCAST_MAX_JOBS = "1"
+```
+
+### 2.2 測試環境 (staging)
+
+#### 2.2.1 Cloudflare Workers Secrets
+
+使用 `wrangler secret put` 設定敏感變數：
+
+```bash
+# 設定 Telegram Bot Token
+wrangler secret put TELEGRAM_BOT_TOKEN --env staging
+
+# 設定 Webhook Secret
+wrangler secret put TELEGRAM_WEBHOOK_SECRET --env staging
+
+# 設定 OpenAI API Key
+wrangler secret put OPENAI_API_KEY --env staging
+
+# 設定 Gigapub
+wrangler secret put GIGAPUB_API_KEY --env staging
+wrangler secret put GIGAPUB_PLACEMENT_ID --env staging
+
+# 設定 External API Key
+wrangler secret put EXTERNAL_API_KEY --env staging
+
+# 設定 Horoscope Source URL（若非敏感，可放在 vars）
+wrangler secret put HOROSCOPE_SOURCE_URL --env staging
+```
+
+#### 2.2.2 wrangler.toml (staging)
+
+```toml
+[env.staging]
+name = "xunni-bot-staging"
+main = "src/worker.ts"
+compatibility_date = "2025-01-01"
+
+# Staging D1 Database
+[[env.staging.d1_databases]]
+binding = "DB"
+database_name = "xunni-db-staging"
+database_id = "<STAGING_D1_DATABASE_ID>"
+
+# Staging KV
+[[env.staging.kv_namespaces]]
+binding = "RISK_CACHE"
+id = "<STAGING_KV_NAMESPACE_ID>"
+
+# Staging 環境變數（非敏感）
+[env.staging.vars]
+ENVIRONMENT = "staging"
+LOG_LEVEL = "info"
+BROADCAST_BATCH_SIZE = "25"
+BROADCAST_MAX_JOBS = "2"
+
+# Cron Jobs (Staging)
+[[env.staging.triggers.crons]]
+schedule = "0 9 * * 1"  # 每週一 09:00 UTC
+```
+
+### 2.3 生產環境 (production)
+
+#### 2.3.1 Cloudflare Workers Secrets
+
+```bash
+# 設定所有敏感變數（與 staging 類似，但使用 production 環境）
+wrangler secret put TELEGRAM_BOT_TOKEN --env production
+wrangler secret put TELEGRAM_WEBHOOK_SECRET --env production
+wrangler secret put OPENAI_API_KEY --env production
+wrangler secret put GIGAPUB_API_KEY --env production
+wrangler secret put GIGAPUB_PLACEMENT_ID --env production
+wrangler secret put EXTERNAL_API_KEY --env production
+wrangler secret put HOROSCOPE_SOURCE_URL --env production
+```
+
+#### 2.3.2 wrangler.toml (production)
+
+```toml
+[env.production]
+name = "xunni-bot"
+main = "src/worker.ts"
+compatibility_date = "2025-01-01"
+
+# Production D1 Database
+[[env.production.d1_databases]]
+binding = "DB"
+database_name = "xunni-db"
+database_id = "<PROD_D1_DATABASE_ID>"
+
+# Production KV
+[[env.production.kv_namespaces]]
+binding = "RISK_CACHE"
+id = "<PROD_KV_NAMESPACE_ID>"
+
+# Production 環境變數
+[env.production.vars]
+ENVIRONMENT = "production"
+LOG_LEVEL = "warn"
+BROADCAST_BATCH_SIZE = "25"
+BROADCAST_MAX_JOBS = "3"
+
+# Cron Jobs (Production)
+[[env.production.triggers.crons]]
+schedule = "0 9 * * 1"  # 每週一 09:00 UTC
+```
+
+---
+
+## 3. 環境變數驗證
+
+### 3.1 src/config/env.ts
+
+建立統一的環境變數驗證模組：
+
+```typescript
+// src/config/env.ts
+export interface Env {
+  // Cloudflare Bindings
+  DB: D1Database;
+  RISK_CACHE?: KVNamespace;
+  
+  // Environment
+  ENVIRONMENT: 'development' | 'staging' | 'production';
+  LOG_LEVEL?: 'debug' | 'info' | 'warn' | 'error';
+  
+  // Telegram
+  TELEGRAM_BOT_TOKEN: string;
+  TELEGRAM_WEBHOOK_SECRET: string;
+  
+  // OpenAI
+  OPENAI_API_KEY: string;
+  
+  // Gigapub
+  GIGAPUB_API_KEY?: string;
+  GIGAPUB_PLACEMENT_ID?: string;
+  
+  // Horoscope
+  HOROSCOPE_SOURCE_URL?: string;
+  
+  // External API
+  EXTERNAL_API_KEY: string;
+  
+  // Broadcast
+  BROADCAST_BATCH_SIZE?: string;
+  BROADCAST_MAX_JOBS?: string;
+}
+
+/**
+ * 驗證並讀取環境變數
+ * @throws {Error} 當必需變數缺失時
+ */
+export function validateEnv(env: Env): Env {
+  const required: (keyof Env)[] = [
+    'TELEGRAM_BOT_TOKEN',
+    'TELEGRAM_WEBHOOK_SECRET',
+    'OPENAI_API_KEY',
+    'EXTERNAL_API_KEY',
+  ];
+  
+  const missing = required.filter(key => !env[key]);
+  if (missing.length > 0) {
+    throw new Error(`Missing required environment variables: ${missing.join(', ')}`);
+  }
+  
+  // 生產環境必須有 Gigapub 配置
+  if (env.ENVIRONMENT === 'production' && (!env.GIGAPUB_API_KEY || !env.GIGAPUB_PLACEMENT_ID)) {
+    console.warn('Warning: Gigapub configuration missing in production');
+  }
+  
+  return env;
+}
+
+/**
+ * 取得環境變數（帶預設值）
+ */
+export function getEnv(env: Env): Env {
+  return {
+    ...env,
+    ENVIRONMENT: env.ENVIRONMENT || 'development',
+    LOG_LEVEL: env.LOG_LEVEL || 'info',
+    BROADCAST_BATCH_SIZE: env.BROADCAST_BATCH_SIZE || '25',
+    BROADCAST_MAX_JOBS: env.BROADCAST_MAX_JOBS || '3',
+  };
+}
+```
+
+### 3.2 使用範例
+
+```typescript
+// src/worker.ts
+import { validateEnv, getEnv, type Env } from './config/env';
+
+export default {
+  async fetch(request: Request, env: Env): Promise<Response> {
+    try {
+      const validatedEnv = getEnv(validateEnv(env));
+      // 使用 validatedEnv...
+    } catch (error) {
+      return new Response('Configuration error', { status: 500 });
+    }
+  }
+};
+```
+
+---
+
+## 4. 環境切換
+
+### 4.1 本地開發
+
+```bash
+# 使用 .dev.vars 中的變數
+wrangler dev
+```
+
+### 4.2 部署到 Staging
+
+```bash
+# 部署到 staging 環境
+wrangler deploy --env staging
+```
+
+### 4.3 部署到 Production
+
+```bash
+# 部署到 production 環境
+wrangler deploy --env production
+```
+
+---
+
+## 5. 安全最佳實踐
+
+1. **永遠不要將敏感資訊提交到 Git**
+   - 使用 `.dev.vars`（已加入 `.gitignore`）
+   - 使用 `wrangler secret put` 設定 Cloudflare Secrets
+
+2. **不同環境使用不同的 Bot Token**
+   - Development: 測試 Bot
+   - Staging: 預發布 Bot
+   - Production: 正式 Bot
+
+3. **定期輪換 API 金鑰**
+   - 建議每 90 天輪換一次
+
+4. **使用最小權限原則**
+   - 每個環境的資料庫和 KV 命名空間應分離
+
+---
+
+## 6. 環境變數檢查清單
+
+### Development
+- [ ] `.dev.vars` 檔案已建立
+- [ ] `TELEGRAM_BOT_TOKEN` 已設定（測試 Bot）
+- [ ] `TELEGRAM_WEBHOOK_SECRET` 已設定
+- [ ] `OPENAI_API_KEY` 已設定
+- [ ] D1 資料庫已建立並綁定
+
+### Staging
+- [ ] Cloudflare Workers Secrets 已設定
+- [ ] D1 資料庫已建立（staging）
+- [ ] KV 命名空間已建立（staging）
+- [ ] Cron Jobs 已配置
+- [ ] Webhook URL 已設定到測試 Bot
+
+### Production
+- [ ] 所有 Secrets 已設定（production）
+- [ ] D1 資料庫已建立（production）
+- [ ] KV 命名空間已建立（production）
+- [ ] Cron Jobs 已配置
+- [ ] Webhook URL 已設定到正式 Bot
+- [ ] 監控和告警已配置
+

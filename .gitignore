@@ -1,0 +1,63 @@
+# Dependencies
+node_modules/
+package-lock.json
+yarn.lock
+pnpm-lock.yaml
+
+# Build outputs
+dist/
+build/
+.wrangler/
+.output/
+
+# Environment variables
+.env
+.env.local
+.env.*.local
+.dev.vars
+*.env
+
+# Logs
+*.log
+logs/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# Testing
+coverage/
+.nyc_output/
+*.test.js.map
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Backups
+backups/
+*.sql.gz
+*.backup
+
+# Temporary files
+tmp/
+temp/
+*.tmp
+
+# Cloudflare
+.wrangler/
+.dev.vars
+
+# Secrets (never commit)
+secrets/
+*.key
+*.pem
+
