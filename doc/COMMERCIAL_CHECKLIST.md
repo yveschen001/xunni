@@ -318,6 +318,8 @@
 
 ## 10. 多平台審查與 UI Guideline
 
+> **詳細 UI 設計規範請參考**: `@doc/UI_GUIDELINE.md`
+
 ### 10.1 Google Play Material 3
 
 - [ ] **UI 設計規範**

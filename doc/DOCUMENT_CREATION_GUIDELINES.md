@@ -24,7 +24,7 @@
 - ❌ `USER_BLOCKING.md` - 使用者封鎖（內容簡單，應在 SPEC.md 5.10 節）
 - ❌ `USER_RIGHTS.md` - 使用者權利（內容簡單，應在 SPEC.md 5.11 節）
 - ❌ `DATA_RETENTION.md` - 資料保留（應在 SPEC.md 第 7 節）
-- ❌ `AI_MODERATION.md` - AI 審核（應在 SPEC.md 4.3 節）
+- ~~`AI_MODERATION.md`~~ - 已廢棄，內容已整合到 SPEC.md 4.3 節
 
 ---
 

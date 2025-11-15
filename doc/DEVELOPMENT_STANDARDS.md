@@ -439,6 +439,7 @@ chore: 更新依賴版本
 - `@doc/MODULE_DESIGN.md` - 模組化設計
 - `@doc/I18N_GUIDE.md` - 國際化指南
 - `@doc/TESTING.md` - 測試規範
+- `@doc/UI_GUIDELINE.md` - UI 設計指南（Mini App 開發時必讀，包含動畫規範、Loading 狀態、配對動畫等）
 
 ### 外部資源
 

@@ -2001,6 +2001,7 @@ BROADCAST_MAX_JOBS = "3"
 2. **開發規範**: `@doc/DEVELOPMENT_STANDARDS.md` - 代碼風格和命名規範
 3. **模組設計**: `@doc/MODULE_DESIGN.md` - 架構原則和分層設計
 4. **環境配置**: `@doc/ENV_CONFIG.md` - 環境變數配置和開發環境設置（包含**開發前檢查清單**）
+5. **UI 設計指南**: `@doc/UI_GUIDELINE.md` - UI 設計規範、動畫規範和互動體驗標準（Mini App 開發必讀）
 
 完整文檔索引見：`@doc/README.md`
 

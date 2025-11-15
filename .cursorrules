@@ -222,6 +222,7 @@ pnpm deploy:production
 - 開發規範: `@doc/DEVELOPMENT_STANDARDS.md` - 代碼風格、命名規範和**AI 協作流程**
 - 模組設計: `@doc/MODULE_DESIGN.md` - 架構原則和分層設計
 - 國際化指南: `@doc/I18N_GUIDE.md` - i18n 使用方式
+- UI 設計指南: `@doc/UI_GUIDELINE.md` - UI 設計規範、動畫規範和互動體驗標準（Mini App 開發必讀）
 - 測試規範: `@doc/TESTING.md` - 測試策略和覆蓋率目標
 - 部署指南: `@doc/DEPLOYMENT.md` - 部署流程和監控
 - 備份策略: `@doc/BACKUP_STRATEGY.md` - 備份原則和流程

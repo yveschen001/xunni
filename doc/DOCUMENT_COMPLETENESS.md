@@ -23,8 +23,8 @@
 17. **CHAT_HISTORY.md** - 聊天記錄功能 ⭐ 新增
 18. **ROADMAP.md** - 專案路線圖（M1/M2/M3）⭐ 新增
 19. **TRANSLATION_STRATEGY.md** - 翻譯策略設計 ⭐ 新增
-20. **AI_MODERATION.md** - AI 內容審核設計 ⭐ 新增
-21. **DOCUMENT_REVIEW.md** - 文檔審查報告
+20. ~~**AI_MODERATION.md**~~ - 已廢棄，內容已整合到 SPEC.md 4.3 節
+21. ~~**DOCUMENT_REVIEW.md**~~ - 已廢棄，歷史審查報告（不再維護）
 22. **DOCUMENT_COMPLETENESS.md** - 文檔完整性檢查 ⭐ 更新
 23. **README.md** - 文檔索引 ⭐ 更新
 24. **UI_GUIDELINE.md** - UI 設計指南 ⭐ **新增**（動畫規範、Loading 狀態、配對動畫）

@@ -39,14 +39,14 @@
 - ✅ TESTING.md - 測試規範
 - ✅ DEPLOYMENT.md - 部署指南
 - ✅ BACKUP_STRATEGY.md - 備份策略
-- ✅ BACKUP_GUIDE.md - 備份使用指南
+- ~~BACKUP_GUIDE.md~~ - 已廢棄，內容已整合到 BACKUP_STRATEGY.md
 - ✅ ONBOARDING_FLOW.md - 註冊引導流程
 - ✅ USER_STATS.md - 使用者數據統計
 - ✅ PUSH_NOTIFICATIONS.md - 主動推送機制
 - ✅ CHAT_HISTORY.md - 聊天記錄功能
 - ✅ COMMERCIAL_CHECKLIST.md - 商業化檢查清單
 - ✅ DOCUMENT_COMPLETENESS.md - 文檔完整性檢查
-- ✅ DOCUMENT_REVIEW.md - 文檔審查報告
+- ~~DOCUMENT_REVIEW.md~~ - 已廢棄，歷史審查報告（不再維護）
 - ✅ README.md - 文檔索引
 
 ### 2.2 配置文件
@@ -204,8 +204,7 @@ cp .dev.vars.example .dev.vars
 ## 8. 支援
 
 如有問題，請參考：
-- [BACKUP_GUIDE.md](./BACKUP_GUIDE.md) - 備份使用指南
-- [BACKUP_STRATEGY.md](./BACKUP_STRATEGY.md) - 備份策略
+- [BACKUP_STRATEGY.md](./BACKUP_STRATEGY.md) - 備份策略（已整合 BACKUP_GUIDE.md 內容）
 
 ---
 

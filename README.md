@@ -138,7 +138,7 @@ pnpm backup:push
 **分支**：main  
 **權限**：私有倉庫
 
-詳細備份指南請參考：[doc/BACKUP_GUIDE.md](./doc/BACKUP_GUIDE.md)
+詳細備份指南請參考：[doc/BACKUP_STRATEGY.md](./doc/BACKUP_STRATEGY.md)
 
 ---
 
