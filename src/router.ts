@@ -177,6 +177,25 @@ async function routeUpdate(update: TelegramUpdate, env: Env): Promise<void> {
       return;
     }
 
+    // Development commands (⚠️ REMOVE IN PRODUCTION!)
+    if (text === '/dev_reset') {
+      const { handleDevReset } = await import('./telegram/handlers/dev');
+      await handleDevReset(message, env);
+      return;
+    }
+
+    if (text === '/dev_info') {
+      const { handleDevInfo } = await import('./telegram/handlers/dev');
+      await handleDevInfo(message, env);
+      return;
+    }
+
+    if (text === '/dev_skip') {
+      const { handleDevSkip } = await import('./telegram/handlers/dev');
+      await handleDevSkip(message, env);
+      return;
+    }
+
     // Handle conversation messages (only for completed onboarding)
     if (user.onboarding_step === 'completed') {
       await handleMessageForward(message, env);
