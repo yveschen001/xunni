@@ -1595,7 +1595,7 @@ id = "<KV_NAMESPACE_ID>"
 ```
 
 **替代方案**（如果不想新增 KV）：
-- 使用 `stats_cache` 表快取統計結果（見 3.13 節）
+- 使用 `stats_cache` 表快取統計結果（見 3.14 節）
 - 每 5 分鐘更新一次（透過 Cron 任務 `/cron/update_stats_cache`）
 - API 直接查詢快取表，無需即時計算
 
