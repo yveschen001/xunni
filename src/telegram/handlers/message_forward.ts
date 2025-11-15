@@ -162,7 +162,7 @@ export async function handleMessageForward(
     // Forward message to receiver
     await telegram.sendMessage(
       parseInt(receiverId),
-      `💬 來自匿名對話的訊息：\n\n${messageText}\n\n` +
+      `💬 來自匿名對話的訊息：\n\n${finalMessage}${translationNote}\n\n` +
         `━━━━━━━━━━━━━━━━\n` +
         `💡 直接回覆即可繼續對話\n` +
         `⚠️ 不當內容請使用 /report 舉報\n` +

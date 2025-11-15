@@ -165,6 +165,18 @@ async function routeUpdate(update: TelegramUpdate, env: Env): Promise<void> {
       return;
     }
 
+    if (text === '/stats') {
+      const { handleStats } = await import('./telegram/handlers/stats');
+      await handleStats(message, env);
+      return;
+    }
+
+    if (text === '/chats') {
+      const { handleChats } = await import('./telegram/handlers/chats');
+      await handleChats(message, env);
+      return;
+    }
+
     // Handle conversation messages (only for completed onboarding)
     if (user.onboarding_step === 'completed') {
       await handleMessageForward(message, env);
