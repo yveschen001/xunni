@@ -92,29 +92,12 @@ export async function handleLanguageSelection(
       return;
     }
 
-    // Update user language preference and onboarding step
-    await updateUserProfile(db, telegramId, {
-      language_pref: languageCode,
-    });
-    
-    // Update onboarding step to nickname
-    const { updateOnboardingStep } = await import('~/db/queries/users');
-    await updateOnboardingStep(db, telegramId, 'nickname');
-
-    // Answer callback query
-    await telegram.answerCallbackQuery(
-      callbackQuery.id,
-      `✅ 語言已設定為 ${getLanguageDisplay(languageCode)}`
-    );
-
-    // Delete language selection message
-    await telegram.deleteMessage(chatId, callbackQuery.message!.message_id);
-
-    // Check if user exists and has completed onboarding
+    // Check if user exists first
     const user = await findUserByTelegramId(db, telegramId);
 
     if (!user) {
       // This shouldn't happen, but handle it gracefully
+      await telegram.answerCallbackQuery(callbackQuery.id, '❌ 發生錯誤');
       await telegram.sendMessage(
         chatId,
         `❌ 發生錯誤，請重新開始：/start`
@@ -122,16 +105,39 @@ export async function handleLanguageSelection(
       return;
     }
 
-    // Check onboarding status
-    if (user.onboarding_step === 'language_selection') {
-      // New user - start onboarding
+    // Check if this is a new user (still in language_selection step)
+    const isNewUser = user.onboarding_step === 'language_selection';
+
+    // Update user language preference
+    await updateUserProfile(db, telegramId, {
+      language_pref: languageCode,
+    });
+    
+    // Update onboarding step to nickname for new users
+    if (isNewUser) {
+      const { updateOnboardingStep } = await import('~/db/queries/users');
+      await updateOnboardingStep(db, telegramId, 'nickname');
+    }
+
+    // Answer callback query
+    await telegram.answerCallbackQuery(
+      callbackQuery.id,
+      `✅ ${getLanguageDisplay(languageCode)}`
+    );
+
+    // Delete language selection message
+    await telegram.deleteMessage(chatId, callbackQuery.message!.message_id);
+
+    if (isNewUser) {
+      // New user - start onboarding immediately
       await startOnboarding(chatId, telegram, languageCode);
     } else {
       // Existing user - just confirm language change
+      const { createI18n } = await import('~/i18n');
+      const i18n = createI18n(languageCode);
       await telegram.sendMessage(
         chatId,
-        `✅ 語言已更新為 ${getLanguageDisplay(languageCode)}\n\n` +
-          `Language updated to ${getLanguageDisplay(languageCode)}`
+        i18n.t('settings.languageUpdated')
       );
     }
   } catch (error) {

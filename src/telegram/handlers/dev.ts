@@ -43,39 +43,29 @@ export async function handleDevReset(message: TelegramMessage, env: Env): Promis
   const telegramId = message.from!.id.toString();
 
   try {
-    // Delete user data
-    await db.d1.prepare('DELETE FROM conversation_messages WHERE sender_id = ? OR receiver_id = ?')
-      .bind(telegramId, telegramId).run();
-    
-    await db.d1.prepare('DELETE FROM bottle_chat_history WHERE user_a_id = ? OR user_b_id = ?')
-      .bind(telegramId, telegramId).run();
-    
-    await db.d1.prepare('DELETE FROM conversations WHERE user_a_id = ? OR user_b_id = ?')
-      .bind(telegramId, telegramId).run();
-    
-    await db.d1.prepare('DELETE FROM bottles WHERE owner_id = ?')
-      .bind(telegramId).run();
-    
-    await db.d1.prepare('DELETE FROM daily_usage WHERE user_id = ?')
-      .bind(telegramId).run();
-    
-    await db.d1.prepare('DELETE FROM reports WHERE reporter_id = ? OR target_id = ?')
-      .bind(telegramId, telegramId).run();
-    
-    await db.d1.prepare('DELETE FROM bans WHERE user_id = ?')
-      .bind(telegramId).run();
-    
-    await db.d1.prepare('DELETE FROM user_blocks WHERE blocker_id = ? OR blocked_id = ?')
-      .bind(telegramId, telegramId).run();
-    
-    await db.d1.prepare('DELETE FROM mbti_test_progress WHERE telegram_id = ?')
-      .bind(telegramId).run();
-    
-    await db.d1.prepare('DELETE FROM payments WHERE user_id = ?')
-      .bind(telegramId).run();
-    
-    await db.d1.prepare('DELETE FROM users WHERE telegram_id = ?')
-      .bind(telegramId).run();
+    // Delete user data - ignore errors for non-existent tables
+    const tables = [
+      { sql: 'DELETE FROM conversation_messages WHERE sender_id = ? OR receiver_id = ?', params: [telegramId, telegramId] },
+      { sql: 'DELETE FROM bottle_chat_history WHERE user_a_id = ? OR user_b_id = ?', params: [telegramId, telegramId] },
+      { sql: 'DELETE FROM conversations WHERE user_a_id = ? OR user_b_id = ?', params: [telegramId, telegramId] },
+      { sql: 'DELETE FROM bottles WHERE owner_id = ?', params: [telegramId] },
+      { sql: 'DELETE FROM daily_usage WHERE user_id = ?', params: [telegramId] },
+      { sql: 'DELETE FROM reports WHERE reporter_id = ? OR target_id = ?', params: [telegramId, telegramId] },
+      { sql: 'DELETE FROM bans WHERE user_id = ?', params: [telegramId] },
+      { sql: 'DELETE FROM user_blocks WHERE blocker_id = ? OR blocked_id = ?', params: [telegramId, telegramId] },
+      { sql: 'DELETE FROM mbti_test_progress WHERE telegram_id = ?', params: [telegramId] },
+      { sql: 'DELETE FROM payments WHERE user_id = ?', params: [telegramId] },
+      { sql: 'DELETE FROM users WHERE telegram_id = ?', params: [telegramId] },
+    ];
+
+    for (const { sql, params } of tables) {
+      try {
+        await db.d1.prepare(sql).bind(...params).run();
+      } catch (err) {
+        // Ignore table not found errors
+        console.log(`[handleDevReset] Skipping: ${sql.split(' ')[2]}`);
+      }
+    }
 
     await telegram.sendMessage(
       chatId,
