@@ -1841,3 +1841,93 @@ BROADCAST_MAX_JOBS = "3"
 - D1 查詢需優化索引
 - 翻譯 API 調用需控制頻率
 
+### 關鍵規則（必須遵守）
+
+#### 訊息格式
+- **所有 Telegram 訊息使用純文字 + 官方 Emoji**
+- **不使用 HTML 或 Markdown 格式**
+
+#### 不可修改的欄位
+- **性別（gender）**: 設定後永遠不能修改（需二次確認）
+- **生日（birthday）**: 設定後永遠不能修改（需二次確認）
+- **實作位置**: `@src/telegram/handlers/profile.ts` 和 `@src/telegram/handlers/start.ts`
+
+#### 年齡限制
+- 未滿 18 歲不允許註冊
+- 必須輸入真實生日驗證
+- **實作位置**: `@src/domain/user.ts` 和 `@src/telegram/handlers/start.ts`
+
+### 受保護的文件/目錄
+
+**⚠️ 修改前必須謹慎，建議先與維護者確認：**
+
+- `@wrangler.toml` - Cloudflare 配置（部署相關）
+- `@src/db/schema.sql` - 資料庫 Schema（必須通過遷移腳本）
+- `@src/db/migrations/` - 遷移腳本目錄（變更需審核）
+- `@scripts/backup-*.ts` - 備份腳本（備份策略相關）
+- `@doc/SPEC.md` - 核心規格書（重大變更需審核）
+
+**🔒 絕對禁止修改：**
+
+- `.dev.vars` - 包含敏感資訊（在 `.gitignore` 中）
+- `node_modules/` - 依賴包
+- `package-lock.json` / `pnpm-lock.yaml` - 鎖定文件（除非明確要求更新依賴）
+
+### 重要文檔位置
+
+在編輯任何代碼前，必須先閱讀：
+
+1. **專案規格書**: `@doc/SPEC.md` - 本文檔（完整的業務邏輯和資料庫設計）
+2. **開發規範**: `@doc/DEVELOPMENT_STANDARDS.md` - 代碼風格和命名規範
+3. **模組設計**: `@doc/MODULE_DESIGN.md` - 架構原則和分層設計
+4. **環境配置**: `@doc/ENV_CONFIG.md` - 環境變數配置和開發環境設置（包含**開發前檢查清單**）
+
+完整文檔索引見：`@doc/README.md`
+
+### 命令速查
+
+```bash
+# 本地開發
+pnpm dev
+
+# 執行測試
+pnpm test
+
+# 執行 Lint
+pnpm lint
+
+# 本地備份
+pnpm backup
+
+# 推送到 GitHub
+pnpm backup:push
+
+# 部署到 Staging
+pnpm deploy:staging
+
+# 部署到 Production
+pnpm deploy:production
+```
+
+### 故障排除
+
+#### 問題：不知道從哪裡開始
+**解決方案**: 先閱讀 `@doc/SPEC.md` 第 15 節「建議的 Cursor 開發順序」
+
+#### 問題：不確定命名規範
+**解決方案**: 查看 `@doc/DEVELOPMENT_STANDARDS.md` 第 2.2 節
+
+#### 問題：不確定術語使用
+**解決方案**: 查看本文檔附錄「術語表 / Glossary」，嚴格遵守術語定義
+
+#### 問題：不知道如何測試
+**解決方案**: 參考 `@doc/TESTING.md` 和現有測試文件 `@tests/domain/`
+
+#### 問題：不確定架構設計
+**解決方案**: 閱讀 `@doc/MODULE_DESIGN.md` 了解分層設計原則
+
+---
+
+**最後更新**: 2025-01-15  
+**維護者**: 專案團隊
+

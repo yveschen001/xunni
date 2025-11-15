@@ -433,12 +433,12 @@ chore: 更新依賴版本
 
 ### 內部文檔
 
-- `@doc/SPEC.md` - 專案規格書（**必讀**，包含專案概覽和完整規格）
-- `@doc/ENV_CONFIG.md` - 開發環境設置指南
+- `@doc/SPEC.md` - 專案規格書（**必讀**，包含專案概覽、完整規格、**術語表**和**開發前準備**）
+- `@doc/ENV_CONFIG.md` - 開發環境設置指南（包含**開發前檢查清單**和**假資料策略**）
+- `@doc/DEVELOPMENT_STANDARDS.md` - 開發規範（包含**AI 協作流程**）
 - `@doc/MODULE_DESIGN.md` - 模組化設計
 - `@doc/I18N_GUIDE.md` - 國際化指南
 - `@doc/TESTING.md` - 測試規範
-- `@doc/ENV_CONFIG.md` - 環境配置
 
 ### 外部資源
 

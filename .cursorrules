@@ -21,9 +21,9 @@
 ## 第一步：閱讀專案概覽
 
 **在開始任何工作前，必須先閱讀：**
-- `@doc/SPEC.md` - 專案規格書（**必讀**，包含專案概覽、結構和完整業務邏輯）
-- `@doc/ENV_CONFIG.md` - 開發環境設置指南（如何設置本地環境）
-- `@doc/DEVELOPMENT_STANDARDS.md` - 代碼風格和命名規範
+- `@doc/SPEC.md` - 專案規格書（**必讀**，包含專案概覽、結構、完整業務邏輯和**術語表**）
+- `@doc/ENV_CONFIG.md` - 開發環境設置指南（如何設置本地環境，包含**開發前檢查清單**）
+- `@doc/DEVELOPMENT_STANDARDS.md` - 代碼風格和命名規範（包含**AI 協作流程**）
 
 ## 開發規範（必須遵守）
 
@@ -134,17 +134,33 @@ pnpm backup:push
 
 ## 開發流程（必須遵循）
 
-**在編輯任何文件前：**
+**在編輯任何文件前，請確認已完成以下步驟：**
 
-1. **閱讀文檔**: 先閱讀 `@doc/SPEC.md`（包含專案概覽和完整規格）和相關設計文檔
-2. **設置環境**: 參考 `@doc/ENV_CONFIG.md` 設置本地開發環境
-3. **理解業務邏輯**: 確保理解該功能的業務邏輯和資料庫設計（見 `@doc/SPEC.md`）
-4. **遵循規範**: 嚴格遵守 `@doc/DEVELOPMENT_STANDARDS.md` 中的規範
-5. **編寫測試**: Domain 層函數必須先寫測試（`@tests/domain/`）
-6. **執行測試**: 執行 `pnpm test` 確保所有測試通過
-7. **執行 Lint**: 執行 `pnpm lint` 檢查代碼風格
-8. **備份**: 使用 `pnpm backup` 進行本地備份
-9. **推送**: 使用 `pnpm backup:push` 推送到 GitHub
+### 第一步：文檔準備（必須完成）
+
+1. **閱讀專案概覽**: 閱讀 `@doc/SPEC.md` 第 1 節「專案總覽」了解專案概況
+2. **閱讀術語表**: 閱讀 `@doc/SPEC.md` 附錄「術語表 / Glossary」了解核心詞彙定義（**重要**）
+3. **閱讀開發環境設置**: 閱讀 `@doc/ENV_CONFIG.md` 第 1 節「快速開始」和第 3 節「本地開發設置」
+4. **閱讀開發規範**: 閱讀 `@doc/DEVELOPMENT_STANDARDS.md` 了解代碼風格和命名規範
+5. **閱讀 AI 協作流程**: 閱讀 `@doc/DEVELOPMENT_STANDARDS.md` 第 5 節「與 AI 協作流程」
+6. **查看開發前檢查清單**: 查看 `@doc/ENV_CONFIG.md` 第 6 節「開發前檢查清單」確認所有事項已完成
+
+### 第二步：環境驗證（必須完成）
+
+7. **驗證本地環境**: 確認 `pnpm install`、`pnpm dev`、`pnpm test`、`pnpm lint` 都能正常執行
+8. **查看受保護文件**: 閱讀 `@doc/SPEC.md` 附錄「受保護的文件/目錄」，了解哪些文件不能隨意修改
+
+### 第三步：開發流程（必須遵循）
+
+9. **理解業務邏輯**: 確保理解該功能的業務邏輯和資料庫設計（見 `@doc/SPEC.md`）
+10. **遵循規範**: 嚴格遵守 `@doc/DEVELOPMENT_STANDARDS.md` 中的規範和術語定義
+11. **編寫測試**: Domain 層函數必須先寫測試（`@tests/domain/`），目標 90%+ 覆蓋率
+12. **執行測試**: 執行 `pnpm test` 確保所有測試通過
+13. **執行 Lint**: 執行 `pnpm lint` 檢查代碼風格
+14. **檢查術語**: 確認使用的術語符合 `@doc/SPEC.md` 術語表定義
+15. **更新文檔**: 如有資料庫或業務邏輯變更，更新 `@doc/SPEC.md` 相應章節
+16. **備份**: 使用 `pnpm backup` 進行本地備份
+17. **推送**: 使用 `pnpm backup:push` 推送到 GitHub
 
 ## 命令速查
 
@@ -177,15 +193,14 @@ pnpm deploy:production
 
 **重要文件位置：**
 
-- 專案規格（必讀）: `@doc/SPEC.md` - 包含專案概覽、結構和完整規格
-- 開發環境設置: `@doc/ENV_CONFIG.md` - 本地環境設置和環境變數配置
-- 開發規範: `@doc/DEVELOPMENT_STANDARDS.md`
-- 模組設計: `@doc/MODULE_DESIGN.md`
-- 環境配置: `@doc/ENV_CONFIG.md`
-- 國際化指南: `@doc/I18N_GUIDE.md`
-- 測試規範: `@doc/TESTING.md`
-- 部署指南: `@doc/DEPLOYMENT.md`
-- 備份策略: `@doc/BACKUP_STRATEGY.md`
+- 專案規格（必讀）: `@doc/SPEC.md` - 包含專案概覽、結構、完整規格、**術語表**和**開發前準備**
+- 開發環境設置: `@doc/ENV_CONFIG.md` - 本地環境設置、環境變數配置和**開發前檢查清單**
+- 開發規範: `@doc/DEVELOPMENT_STANDARDS.md` - 代碼風格、命名規範和**AI 協作流程**
+- 模組設計: `@doc/MODULE_DESIGN.md` - 架構原則和分層設計
+- 國際化指南: `@doc/I18N_GUIDE.md` - i18n 使用方式
+- 測試規範: `@doc/TESTING.md` - 測試策略和覆蓋率目標
+- 部署指南: `@doc/DEPLOYMENT.md` - 部署流程和監控
+- 備份策略: `@doc/BACKUP_STRATEGY.md` - 備份原則和流程
 
 **完整文檔索引**: `@doc/README.md`
 
@@ -207,12 +222,20 @@ pnpm deploy:production
 
 ### 不確定從哪裡開始？
 **解決方案**: 
-1. 先閱讀 `@doc/SPEC.md` 第 1 節「專案總覽」了解專案概況
-2. 閱讀 `@doc/ENV_CONFIG.md` 設置本地環境
-3. 閱讀 `@doc/SPEC.md` 第 15 節「建議的 Cursor 開發順序」了解開發流程
+1. **閱讀專案概覽**：先閱讀 `@doc/SPEC.md` 第 1 節「專案總覽」了解專案概況
+2. **閱讀術語表**：閱讀 `@doc/SPEC.md` 附錄「術語表 / Glossary」了解核心詞彙定義
+3. **設置環境**：閱讀 `@doc/ENV_CONFIG.md` 設置本地環境（參考第 6 節「開發前檢查清單」）
+4. **了解開發流程**：閱讀 `@doc/SPEC.md` 第 15 節「建議的 Cursor 開發順序」了解開發流程
+5. **了解 AI 協作**：閱讀 `@doc/DEVELOPMENT_STANDARDS.md` 第 5 節「與 AI 協作流程」
 
 ### 不確定命名規範？
 **解決方案**: 查看 `@doc/DEVELOPMENT_STANDARDS.md` 第 2.2 節
+
+### 不確定術語使用？
+**解決方案**: 
+1. 查看 `@doc/SPEC.md` 附錄「術語表 / Glossary」了解標準術語定義
+2. 嚴格遵守術語表中的定義，不要混用 "user"/"member"/"player" 等
+3. 不要使用 "message" 代替 "Bottle" 或 "Conversation Message"
 
 ### 不確定如何測試？
 **解決方案**: 參考 `@doc/TESTING.md` 和現有測試文件 `@tests/domain/`

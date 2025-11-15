@@ -18,10 +18,13 @@ XunNi 是一個結合 MBTI 測驗與星座運勢的匿名漂流瓶交友 Bot，�
 
 ### 環境需求
 
-- Node.js 20+
-- Cloudflare 帳號
-- Telegram Bot Token
-- OpenAI API Key
+- **Node.js**: 22.x（建議使用 [nvm](https://github.com/nvm-sh/nvm) 管理版本）
+- **包管理器**: pnpm 9.x（推薦）或 npm
+- **Cloudflare 帳號**: 需要 API Token
+- **Telegram Bot Token**: 從 [@BotFather](https://t.me/botfather) 取得
+- **OpenAI API Key**: 從 [OpenAI Platform](https://platform.openai.com/) 取得
+
+詳細環境設置請參考 [doc/ENV_CONFIG.md](./doc/ENV_CONFIG.md)
 
 ### 安裝
 
