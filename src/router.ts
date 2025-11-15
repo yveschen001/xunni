@@ -159,6 +159,12 @@ async function routeUpdate(update: TelegramUpdate, env: Env): Promise<void> {
       return;
     }
 
+    if (text === '/vip') {
+      const { handleVip } = await import('./telegram/handlers/vip');
+      await handleVip(message, env);
+      return;
+    }
+
     // Handle conversation messages (only for completed onboarding)
     if (user.onboarding_step === 'completed') {
       await handleMessageForward(message, env);
