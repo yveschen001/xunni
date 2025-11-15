@@ -265,6 +265,12 @@ async function routeUpdate(update: TelegramUpdate, env: Env): Promise<void> {
       return;
     }
 
+    if (data === 'mbti_choice_back') {
+      const { handleMBTIChoiceBack } = await import('./telegram/handlers/onboarding_callback');
+      await handleMBTIChoiceBack(callbackQuery, env);
+      return;
+    }
+
     // MBTI manual selection
     if (data.startsWith('mbti_manual_')) {
       const { handleMBTIManualSelection } = await import('./telegram/handlers/onboarding_callback');

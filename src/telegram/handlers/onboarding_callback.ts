@@ -430,6 +430,56 @@ export async function handleMBTIChoiceSkip(
   }
 }
 
+/**
+ * Handle MBTI choice: back button (from manual selection)
+ */
+export async function handleMBTIChoiceBack(
+  callbackQuery: CallbackQuery,
+  env: Env
+): Promise<void> {
+  const db = createDatabaseClient(env);
+  const telegram = createTelegramService(env);
+  const chatId = callbackQuery.message!.chat.id;
+  const telegramId = callbackQuery.from.id.toString();
+
+  try {
+    // Get user
+    const user = await findUserByTelegramId(db, telegramId);
+    if (!user) {
+      await telegram.answerCallbackQuery(callbackQuery.id, '❌ 用戶不存在');
+      return;
+    }
+
+    // Answer callback
+    await telegram.answerCallbackQuery(callbackQuery.id);
+
+    // Delete manual selection message
+    await telegram.deleteMessage(chatId, callbackQuery.message!.message_id);
+
+    // Show MBTI options again (3 choices)
+    await telegram.sendMessageWithButtons(
+      chatId,
+      `🧠 現在讓我們設定你的 MBTI 性格類型！\n\n` +
+        `這將幫助我們為你找到更合適的聊天對象～\n\n` +
+        `你想要如何設定？`,
+      [
+        [
+          { text: '✍️ 我已經知道我的 MBTI', callback_data: 'mbti_choice_manual' },
+        ],
+        [
+          { text: '📝 進行快速測驗', callback_data: 'mbti_choice_test' },
+        ],
+        [
+          { text: '⏭️ 稍後再說', callback_data: 'mbti_choice_skip' },
+        ],
+      ]
+    );
+  } catch (error) {
+    console.error('[handleMBTIChoiceBack] Error:', error);
+    await telegram.answerCallbackQuery(callbackQuery.id, '❌ 發生錯誤');
+  }
+}
+
 // ============================================================================
 // MBTI Manual Selection
 // ============================================================================
