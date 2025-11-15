@@ -150,11 +150,20 @@ async function routeUpdate(update: TelegramUpdate, env: Env): Promise<void> {
       return;
     }
 
-    // Unknown command
-    await telegram.sendMessage(
-      chatId,
-      `❓ 不認識的指令。\n\n` + `使用 /help 查看可用指令列表。`
-    );
+    // User is in onboarding but sent unrecognized text
+    // Provide friendly guidance instead of "unknown command"
+    const stepMessages: Record<string, string> = {
+      language_selection: '🌍 請點擊上方按鈕選擇你的語言',
+      nickname: '✏️ 請輸入你的暱稱',
+      gender: '👤 請點擊上方按鈕選擇你的性別',
+      birthday: '📅 請輸入你的生日（格式：YYYY-MM-DD，例如：1995-06-15）',
+      mbti: '🧠 請點擊上方按鈕選擇 MBTI 設定方式',
+      anti_fraud: '🛡️ 請點擊上方按鈕確認反詐騙安全事項',
+      terms: '📜 請點擊上方按鈕同意服務條款',
+    };
+
+    const stepMessage = stepMessages[user.onboarding_step] || '請按照提示完成註冊';
+    await telegram.sendMessage(chatId, `💡 ${stepMessage}`);
     return;
   }
 
