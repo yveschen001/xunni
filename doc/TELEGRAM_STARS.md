@@ -10,7 +10,10 @@ XunNi 使用 **Telegram Stars** 作為 VIP 訂閱的支付方式。Telegram Star
 - **週期**: 每月自動續訂（需實作）
 - **權益**: 
   - 每日 30 個漂流瓶（可升級至 100）
-  - 34 種語言自動翻譯
+  - **34 種語言自動翻譯**：
+    - 優先使用 **OpenAI GPT-4o-mini**（高品質翻譯）
+    - 失敗時自動降級到 **Google Translate**（並提示）
+    - 翻譯失敗時發送原文 + 提示
   - 星座/MBTI 篩選
   - 無廣告
 
@@ -64,7 +67,7 @@ export async function createVipInvoiceLink(
   
   const params: InvoiceParams = {
     title: '⭐ XunNi VIP 會員',
-    description: '享受更多漂流瓶、自動翻譯、進階篩選等功能',
+    description: '享受更多漂流瓶、OpenAI 高品質翻譯（34 種語言）、進階篩選等功能',
     payload: `vip_monthly_${userId}_${Date.now()}`,
     currency: 'XTR', // Telegram Stars
     prices: [
@@ -115,7 +118,7 @@ export async function sendVipInvoice(
     body: JSON.stringify({
       chat_id: chatId,
       title: '⭐ XunNi VIP 會員',
-      description: '享受更多漂流瓶、自動翻譯、進階篩選等功能',
+      description: '享受更多漂流瓶、OpenAI 高品質翻譯（34 種語言）、進階篩選等功能',
       payload: `vip_monthly_${userId}_${Date.now()}`,
       provider_token: '', // Stars 支付不需要
       currency: 'XTR',

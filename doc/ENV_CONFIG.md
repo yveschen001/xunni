@@ -20,6 +20,18 @@
 | `GIGAPUB_PLACEMENT_ID` | Gigapub 廣告位置 ID | ⚠️ | staging, production |
 | `HOROSCOPE_SOURCE_URL` | 星座運勢資料來源 URL | ⚠️ | staging, production |
 | `EXTERNAL_API_KEY` | Moonpacket API 驗證金鑰 | ✅ | staging, production |
+| `TELEGRAM_BOT_SECRET` | Telegram Bot Secret（WebApp 驗簽） | ✅ | 全部 |
+| `GOOGLE_TRANSLATE_API_KEY` | Google Translate API 金鑰 | ✅ | 全部 |
+| `GOOGLE_CLIENT_ID` | Google OAuth Client ID | ⚠️ | staging, production |
+| `GOOGLE_CLIENT_SECRET` | Google OAuth Client Secret | ⚠️ | staging, production |
+| `APPLE_CLIENT_ID` | Apple Sign In Client ID | ⚠️ | staging, production |
+| `APPLE_TEAM_ID` | Apple Team ID | ⚠️ | staging, production |
+| `APPLE_KEY_ID` | Apple Key ID | ⚠️ | staging, production |
+| `APPLE_PRIVATE_KEY` | Apple Private Key | ⚠️ | staging, production |
+| `WECHAT_APP_ID` | WeChat App ID | ⚠️ | staging, production |
+| `WECHAT_APP_SECRET` | WeChat App Secret | ⚠️ | staging, production |
+| `LINE_CHANNEL_ID` | Line Channel ID | ⚠️ | staging, production |
+| `LINE_CHANNEL_SECRET` | Line Channel Secret | ⚠️ | staging, production |
 | `ENVIRONMENT` | 環境名稱 (dev/staging/prod) | ✅ | 全部 |
 | `LOG_LEVEL` | 日誌級別 (debug/info/warn/error) | ❌ | 全部 |
 | `BROADCAST_BATCH_SIZE` | 廣播批次大小 | ❌ | 全部 |
@@ -47,6 +59,12 @@ TELEGRAM_WEBHOOK_SECRET=dev_webhook_secret_key_here
 # OpenAI
 OPENAI_API_KEY=sk-dev-key-here
 
+# Google Translate
+GOOGLE_TRANSLATE_API_KEY=dev-google-translate-key-here
+
+# Telegram WebApp
+TELEGRAM_BOT_SECRET=dev_bot_secret_here
+
 # Gigapub (可選，開發環境可留空)
 GIGAPUB_API_KEY=
 GIGAPUB_PLACEMENT_ID=
@@ -56,6 +74,20 @@ HOROSCOPE_SOURCE_URL=
 
 # External API (開發環境可留空)
 EXTERNAL_API_KEY=dev_api_key_here
+
+# OAuth (可選，開發環境可留空)
+GOOGLE_CLIENT_ID=
+GOOGLE_CLIENT_SECRET=
+APPLE_CLIENT_ID=
+APPLE_TEAM_ID=
+APPLE_KEY_ID=
+APPLE_PRIVATE_KEY=
+
+# WeChat / Line (可選，開發環境可留空)
+WECHAT_APP_ID=
+WECHAT_APP_SECRET=
+LINE_CHANNEL_ID=
+LINE_CHANNEL_SECRET=
 
 # Broadcast Settings
 BROADCAST_BATCH_SIZE=10
@@ -113,6 +145,30 @@ wrangler secret put EXTERNAL_API_KEY --env staging
 
 # 設定 Horoscope Source URL（若非敏感，可放在 vars）
 wrangler secret put HOROSCOPE_SOURCE_URL --env staging
+
+# 設定 Telegram Bot Secret（WebApp 驗簽）
+wrangler secret put TELEGRAM_BOT_SECRET --env staging
+
+# 設定 Google Translate API Key
+wrangler secret put GOOGLE_TRANSLATE_API_KEY --env staging
+
+# 設定 Google OAuth（可選）
+wrangler secret put GOOGLE_CLIENT_ID --env staging
+wrangler secret put GOOGLE_CLIENT_SECRET --env staging
+
+# 設定 Apple Sign In（可選）
+wrangler secret put APPLE_CLIENT_ID --env staging
+wrangler secret put APPLE_TEAM_ID --env staging
+wrangler secret put APPLE_KEY_ID --env staging
+wrangler secret put APPLE_PRIVATE_KEY --env staging
+
+# 設定 WeChat（可選）
+wrangler secret put WECHAT_APP_ID --env staging
+wrangler secret put WECHAT_APP_SECRET --env staging
+
+# 設定 Line（可選）
+wrangler secret put LINE_CHANNEL_ID --env staging
+wrangler secret put LINE_CHANNEL_SECRET --env staging
 ```
 
 #### 2.2.2 wrangler.toml (staging)
@@ -218,6 +274,12 @@ export interface Env {
   // OpenAI
   OPENAI_API_KEY: string;
   
+  // Google Translate
+  GOOGLE_TRANSLATE_API_KEY: string;
+  
+  // Telegram WebApp
+  TELEGRAM_BOT_SECRET: string;
+  
   // Gigapub
   GIGAPUB_API_KEY?: string;
   GIGAPUB_PLACEMENT_ID?: string;
@@ -227,6 +289,24 @@ export interface Env {
   
   // External API
   EXTERNAL_API_KEY: string;
+  
+  // Google OAuth
+  GOOGLE_CLIENT_ID?: string;
+  GOOGLE_CLIENT_SECRET?: string;
+  
+  // Apple Sign In
+  APPLE_CLIENT_ID?: string;
+  APPLE_TEAM_ID?: string;
+  APPLE_KEY_ID?: string;
+  APPLE_PRIVATE_KEY?: string;
+  
+  // WeChat
+  WECHAT_APP_ID?: string;
+  WECHAT_APP_SECRET?: string;
+  
+  // Line
+  LINE_CHANNEL_ID?: string;
+  LINE_CHANNEL_SECRET?: string;
   
   // Broadcast
   BROADCAST_BATCH_SIZE?: string;
@@ -241,7 +321,9 @@ export function validateEnv(env: Env): Env {
   const required: (keyof Env)[] = [
     'TELEGRAM_BOT_TOKEN',
     'TELEGRAM_WEBHOOK_SECRET',
+    'TELEGRAM_BOT_SECRET',
     'OPENAI_API_KEY',
+    'GOOGLE_TRANSLATE_API_KEY',
     'EXTERNAL_API_KEY',
   ];
   

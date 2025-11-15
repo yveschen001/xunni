@@ -38,6 +38,35 @@
 - 活躍度分數計算
 - 排名變化趨勢
 
+### 2.5 裂變 KPI
+
+- **邀請統計**：
+  - 成功邀請人數
+  - 邀請轉化率（邀請連結點擊 → 完成註冊）
+  - 邀請來源分析（分享來源：MBTI 測驗、漂流瓶等）
+  - 邀請排行榜（top 10 邀請者）
+
+- **分享統計**：
+  - 分享次數（MBTI 測驗結果、漂流瓶等）
+  - 分享轉化率（分享 → 點擊 → 註冊）
+  - 分享來源分布（測驗結果、漂流瓶、個人資料等）
+  - 分享效果分析（哪種分享轉化率最高）
+
+### 2.6 翻譯使用統計
+
+- **翻譯使用情況**：
+  - 總翻譯次數（成功 + 失敗）
+  - Google Translate 調用次數
+  - OpenAI 調用次數
+  - 降級事件次數（OpenAI → Google）
+  - 翻譯成功率
+
+- **成本統計**（僅管理員可見）：
+  - OpenAI 翻譯成本（tokens / 費用）
+  - Google Translate 翻譯成本（API 調用次數 / 費用）
+  - 平均每次翻譯成本
+  - 降級事件占比
+
 ---
 
 ## 3. 指令設計
@@ -71,6 +100,19 @@
 ├─ 全球排名：前 {percentile}%
 ├─ 活躍度分數：{activityScore}
 └─ [查看排行榜]
+
+🎁 邀請統計
+├─ 成功邀請：{inviteCount} 人
+├─ 邀請轉化率：{inviteConversionRate}%
+├─ 分享次數：{shareCount} 次
+└─ [查看詳細記錄]
+
+🌐 翻譯使用（VIP 專屬）
+├─ 總翻譯次數：{translationCount}
+├─ OpenAI 翻譯：{openaiCount} 次
+├─ Google 翻譯：{googleCount} 次
+├─ 降級事件：{fallbackCount} 次
+└─ 翻譯成功率：{successRate}%
 
 [📈 查看趨勢] [🔄 刷新數據]
 ```
@@ -120,6 +162,17 @@ CREATE TABLE user_statistics (
   -- 活躍度
   activity_score INTEGER DEFAULT 0,
   last_active_at DATETIME,
+  
+  -- 裂變統計
+  successful_invites INTEGER DEFAULT 0,
+  share_count INTEGER DEFAULT 0,
+  invite_conversion_rate REAL DEFAULT 0,
+  
+  -- 翻譯統計（VIP）
+  translation_count INTEGER DEFAULT 0,
+  openai_translation_count INTEGER DEFAULT 0,
+  google_translation_count INTEGER DEFAULT 0,
+  translation_fallback_count INTEGER DEFAULT 0,
   
   -- 時間戳
   updated_at DATETIME,

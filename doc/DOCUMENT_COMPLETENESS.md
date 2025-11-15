@@ -2,27 +2,31 @@
 
 ## 1. 文檔總覽
 
-### ✅ 已完成的文檔（15 個）
+### ✅ 已完成的文檔（25 個）
 
 1. **SPEC.md** - 專案規格書（核心）
 2. **SPEC_V2.md** - 優化版規格書（純文字格式，補充新功能）⭐ 新增
 3. **ONBOARDING_FLOW.md** - 註冊引導流程
 4. **DEVELOPMENT_STANDARDS.md** - 開發規範
-5. **ENV_CONFIG.md** - 環境配置
+5. **ENV_CONFIG.md** - 環境配置 ⭐ 更新（多平台環境變數）
 6. **I18N_GUIDE.md** - 國際化指南
-7. **MODULE_DESIGN.md** - 模組化設計
+7. **MODULE_DESIGN.md** - 模組化設計 ⭐ 更新（account-linker, translation-policy）
 8. **ADMIN_PANEL.md** - 管理後台設計
-9. **TELEGRAM_STARS.md** - Telegram Stars 訂閱
+9. **TELEGRAM_STARS.md** - Telegram Stars 訂閱 ⭐ 更新（翻譯差異說明）
 10. **REFERENCE_CODE.md** - 參考代碼分析
 11. **TESTING.md** - 測試規範
 12. **DEPLOYMENT.md** - 部署指南
 13. **BACKUP_STRATEGY.md** - 備份策略
-14. **COMMERCIAL_CHECKLIST.md** - 商業化檢查清單
-15. **USER_STATS.md** - 使用者數據統計 ⭐ 新增
-16. **PUSH_NOTIFICATIONS.md** - 主動推送機制 ⭐ 新增
+14. **COMMERCIAL_CHECKLIST.md** - 商業化檢查清單 ⭐ 更新（多平台審查）
+15. **USER_STATS.md** - 使用者數據統計 ⭐ 更新（裂變 KPI、翻譯統計）
+16. **PUSH_NOTIFICATIONS.md** - 主動推送機制 ⭐ 更新（測驗分享提醒）
 17. **CHAT_HISTORY.md** - 聊天記錄功能 ⭐ 新增
-18. **DOCUMENT_REVIEW.md** - 文檔審查報告
-19. **README.md** - 文檔索引
+18. **ROADMAP.md** - 專案路線圖（M1/M2/M3）⭐ 新增
+19. **TRANSLATION_STRATEGY.md** - 翻譯策略設計 ⭐ 新增
+20. **AI_MODERATION.md** - AI 內容審核設計 ⭐ 新增
+21. **DOCUMENT_REVIEW.md** - 文檔審查報告
+22. **DOCUMENT_COMPLETENESS.md** - 文檔完整性檢查 ⭐ 更新
+23. **README.md** - 文檔索引 ⭐ 更新
 
 ---
 
@@ -65,6 +69,29 @@
   - 充值記錄列表
   - 關聯 payments 表
 
+- [x] **多平台支援**
+  - Telegram Mini App（initData 驗簽、Deep Link）
+  - WeChat / Line 插件（OAuth 登入）
+  - App Store / Google Play（原生 App）
+  - 統一的 AuthAdapter / NotificationAdapter
+
+- [x] **翻譯策略**
+  - VIP 優先使用 OpenAI，失敗降級到 Google
+  - 免費使用者僅使用 Google
+  - 翻譯成本記錄與監控
+  - 降級事件追蹤
+
+- [x] **AI 內容審核**
+  - OpenAI 內容審核（可選，失敗不阻擋）
+  - 本地規則優先（URL 白名單、敏感詞）
+  - Audit 日誌記錄
+
+- [x] **裂變功能**
+  - 邀請碼生成與分享
+  - 分享來源追蹤（MBTI 測驗、漂流瓶等）
+  - 邀請轉化率統計
+  - 分享 Deep Link（startapp=share_mbti_{resultId}）
+
 ### 2.3 商業化功能 ✅
 
 - [x] 法律合規（條款、隱私權、年齡限制）
@@ -104,8 +131,14 @@
 - [x] **terms_versions** - 條款版本管理
 - [x] **admin_actions** - 管理操作記錄
 - [x] **stats_cache** - 統計快取
+- [x] **ai_moderation_logs** - AI 審核日誌 ⭐ 新增
+- [x] **translation_costs** - 翻譯成本記錄 ⭐ 新增
+- [x] **translation_fallbacks** - 翻譯降級記錄 ⭐ 新增
+- [x] **user_blocks** - 使用者封鎖記錄 ⭐ 新增
+- [x] **account_identities** - 帳號身份綁定 ⭐ 新增
+- [x] **horoscope_sent_logs** - 星座運勢發送記錄 ⭐ 新增
 
-**總計：21 個表**
+**總計：28 個表**
 
 ---
 

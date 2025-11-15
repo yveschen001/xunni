@@ -32,7 +32,11 @@
 - 透過 Telegram Stars 付費訂閱（約 5 USD / 月）
 - 每日 30 個漂流瓶，可透過邀請好友最高升級到 100 個
 - 可指定星座／MBTI 目標篩選
-- 34 種語言自動翻譯對話，且無廣告
+- **34 種語言自動翻譯**：
+  - 優先使用 **OpenAI GPT-4o-mini**（高品質）
+  - 失敗時自動降級到 **Google Translate**（並提示）
+  - 翻譯失敗時發送原文 + 提示
+- 無廣告
 
 #### 所有聊天
 - 只允許文字 + 官方 Emoji
@@ -48,6 +52,31 @@
 - 每週星座運勢推播，召回使用者來丟／撿瓶
 - 對外 HTTP API `/api/eligibility`，給 Moonpacket 紅包系統查資格
 - 上帝 / 天使帳號：可按條件（性別、年齡、星座、語言等）群發訊息（隊列 + 限速）
+- **使用者封鎖功能**：/block（不舉報，只是不想再聊）
+- **避免重複匹配**：排除曾經封鎖/被封鎖/被舉報過的使用者
+- **資料保留策略**：漂流瓶 90 天後軟刪除，聊天記錄最多 3650 筆（每對象）
+- **使用者權利**：/delete_me（刪除帳號，保留安全審計記錄）
+
+#### 互動通道分層與 Mini App 最佳實踐
+
+**架構原則**：
+- **Bot 僅處理通知/Deep Link**：短流程、即時回應、通知推送
+- **長流程改走 WebApp**：註冊引導、個人資料編輯、MBTI 測驗、聊天界面
+
+**Telegram Mini App**：
+- 使用 `initData` 驗簽確保安全性
+- 首屏載入 < 2 秒（性能要求）
+- 支援 `WebApp.share` Deep Link（`startapp=share_mbti_{resultId}`）
+- 統一的 `AuthAdapter` / `NotificationAdapter` 抽象（支援未來擴展 WeChat、Line、App Store）
+
+**多平台支援規劃**：
+- M1: Telegram Mini App（當前階段）
+- M2: WeChat / Line 插件（統一的 AuthAdapter）
+- M3: App Store / Google Play（原生 App）
+
+**詳細設計請參考**：
+- ROADMAP.md（三階段路線圖）
+- MODULE_DESIGN.md（account-linker.ts 設計）
 
 ---
 
@@ -307,14 +336,25 @@ CREATE TABLE horoscope_templates (
 CREATE TABLE payments (
   id INTEGER PRIMARY KEY AUTOINCREMENT,
   user_id TEXT,
-  telegram_payment_id TEXT,
+  telegram_payment_id TEXT UNIQUE,  -- 唯一索引，防止重複支付
   stars_amount INTEGER,
   status TEXT,           -- pending / paid / refunded / failed
   product_code TEXT,     -- 'VIP_MONTHLY'
   created_at DATETIME,
   updated_at DATETIME
 );
+
+CREATE INDEX idx_payments_user_id ON payments(user_id);
+CREATE INDEX idx_payments_status ON payments(status);
+CREATE UNIQUE INDEX idx_payments_telegram_payment_id ON payments(telegram_payment_id);
 ```
+
+**支付邊緣情況處理**：
+- **支付成功但寫 DB 失敗**：使用 telegram_payment_id 唯一索引，重試安全（檢查是否已存在）
+- **使用者重複買 VIP**：從當前 vip_expire_at 往後延 30 天，不是從現在算
+- **退款**：暫不支持自動退款，僅手動處理
+
+詳細設計請參考：TELEGRAM_STARS.md
 
 ### 3.12 broadcast_jobs / broadcast_queue（廣播）
 
@@ -343,6 +383,69 @@ CREATE TABLE broadcast_queue (
   created_at DATETIME,
   sent_at DATETIME
 );
+
+CREATE INDEX idx_broadcast_queue_job_id_status ON broadcast_queue(job_id, status);
+```
+
+**Cron 任務冪等性設計**：
+- **broadcast**：只發送 queue 裡 status='pending' 的項，狀態一旦變成 'sent' 就不再重發
+
+### 3.12.1 ai_moderation_logs（AI 審核日誌）
+
+```sql
+CREATE TABLE ai_moderation_logs (
+  id INTEGER PRIMARY KEY AUTOINCREMENT,
+  user_id TEXT,
+  conversation_id INTEGER,
+  content_summary TEXT,        -- 內容摘要（前 100 字）
+  full_content TEXT,           -- 完整內容（加密或脫敏）
+  moderation_reason TEXT,      -- 審核原因
+  moderation_result TEXT,      -- 'flagged' / 'safe' / 'failed'
+  provider TEXT,               -- 'openai' / null（如果失敗）
+  error_message TEXT,          -- 錯誤訊息（如果失敗）
+  risk_score_added INTEGER,    -- 累加的風險分數
+  created_at DATETIME
+);
+
+CREATE INDEX idx_ai_moderation_logs_user_id ON ai_moderation_logs(user_id);
+CREATE INDEX idx_ai_moderation_logs_conversation_id ON ai_moderation_logs(conversation_id);
+CREATE INDEX idx_ai_moderation_logs_created_at ON ai_moderation_logs(created_at);
+CREATE INDEX idx_ai_moderation_logs_result ON ai_moderation_logs(moderation_result);
+```
+
+### 3.12.2 translation_costs（翻譯成本記錄）
+
+```sql
+CREATE TABLE translation_costs (
+  id INTEGER PRIMARY KEY AUTOINCREMENT,
+  user_id TEXT,
+  provider TEXT,              -- 'openai' / 'google'
+  source_language TEXT,
+  target_language TEXT,
+  cost_amount REAL,           -- 成本（tokens 或 API 調用次數）
+  is_fallback INTEGER DEFAULT 0, -- 是否為降級
+  created_at DATETIME
+);
+
+CREATE INDEX idx_translation_costs_user_id ON translation_costs(user_id);
+CREATE INDEX idx_translation_costs_created_at ON translation_costs(created_at);
+CREATE INDEX idx_translation_costs_provider ON translation_costs(provider);
+```
+
+### 3.12.3 translation_fallbacks（翻譯降級記錄）
+
+```sql
+CREATE TABLE translation_fallbacks (
+  id INTEGER PRIMARY KEY AUTOINCREMENT,
+  user_id TEXT,
+  from_provider TEXT,         -- 失敗的供應商（'openai'）
+  to_provider TEXT,           -- 降級到的供應商（'google'）
+  error_message TEXT,
+  created_at DATETIME
+);
+
+CREATE INDEX idx_translation_fallbacks_user_id ON translation_fallbacks(user_id);
+CREATE INDEX idx_translation_fallbacks_created_at ON translation_fallbacks(created_at);
 ```
 
 ---
@@ -435,6 +538,7 @@ async function recordConversationMessage(user: User, convoId: number, today: str
 - `addRisk(userId, reason)`: 累計 risk_score
 - `applyBan(userId, hours, reason)`: 寫入 bans 表
 - `isBanned(user)`: 依 bans 檢查當前是否處於封禁期
+- `maybeRunAiModeration(text, userId, conversationId, env, db)`: AI 內容審核（可選）
 
 **舉報規則（24 小時內、不同舉報人數）**:
 - 1 人舉報：封禁 1 小時
@@ -443,6 +547,15 @@ async function recordConversationMessage(user: User, convoId: number, today: str
 - 5 人以上：封禁 3 天
 
 `/report` 提交後，系統檢查 24 小時內 unique reporters，計算封禁等級並 `applyBan`。
+
+**AI 審核失敗處理**：
+- 當 OpenAI 掛掉或超額時：
+  - 記錄日誌（包含錯誤類型、使用者 ID、內容摘要）
+  - **不阻擋發言**（不因為 AI 審核失敗而 block 使用者）
+  - 僅依靠本地規則（URL 白名單、敏感詞過濾）
+  - 發送告警（通知管理員）
+- Audit 日誌：記錄被 AI 攔截的內容摘要、reason、user_id、conversation_id
+- 詳細設計請參考：AI_MODERATION.md
 
 ---
 
@@ -569,11 +682,17 @@ async function recordConversationMessage(user: User, convoId: number, today: str
 1. 檢查封禁與 onboarding
 2. 用 `matchBottleForUser(user)` 從 bottles 找符合條件：
    - 符合性別、年齡、反詐條件等
-   - 排除自己丟的瓶子
+   - **排除自己丟的瓶子**
+   - **排除曾經封鎖過的使用者**（blocker_id = user）
+   - **排除曾經被封鎖的使用者**（blocked_id = user）
+   - **排除曾被舉報過的使用者**（24 小時內）
+   - 詳細匹配邏輯請參考：USER_BLOCKING.md
 3. 若找到：
    - 建立 conversations（user 與 bottle.owner 的匿名對話）
+   - 建立 bottle_chat_history 記錄
    - 回覆給使用者瓶子內容 + 提示：
      - 使用 `/report` 舉報不當內容
+     - 使用 `/block` 封鎖不想再聊的使用者
      - 說明這是匿名對話，請遵守安全守則
 4. 若沒找到：
    - 回覆「目前沒有適合你的瓶子，稍後再試」
@@ -583,19 +702,36 @@ async function recordConversationMessage(user: User, convoId: number, today: str
 任何來自 conversations 雙方的訊息，都由 bot 中轉：
 
 1. **驗證**: 對應 conversation_id 是否存在且 status='active'
-2. **僅允許文字 + 官方 emoji**:
+2. **檢查封鎖狀態**：確認接收者未封鎖發送者
+3. **僅允許文字 + 官方 emoji**（不使用 HTML/Markdown）:
    - 非文字 → 回覆「目前僅支援文字與官方表情符號」
-3. **URL 白名單檢查**:
-   - 不在白名單 → 拒絕訊息，提示安全原因，並 `addRisk(URL_BLOCKED)`
-4. **每對象每日訊息數**:
+4. **本地規則檢查**（必須通過）:
+   - **URL 白名單檢查**：不在白名單 → 拒絕訊息，提示安全原因，並 `addRisk(URL_BLOCKED)`
+   - **敏感詞過濾**：包含敏感詞 → 拒絕訊息，累加風險分數
+   - **長度檢查**：超過 1000 字 → 拒絕訊息
+   - **Emoji 驗證**：僅允許官方 Emoji
+5. **AI 審核**（可選，失敗不阻擋）:
+   - 嘗試 OpenAI 內容審核（timeout: 3s）
+   - 失敗時：記錄日誌，**不阻擋發言**，僅依靠本地規則
+   - 成功且標記違規時：根據風險分數決定是否阻擋
+   - 記錄到 ai_moderation_logs（用於人工抽查）
+6. **每對象每日訊息數**:
    - 用 `canSendConversationMessage()` 判斷是否超過 10（免費） / 100（VIP）
    - 超額則提示「今天對這位對象的發言已達上限，明天再聊」
-5. **VIP 翻譯**:
-   - 若對話任一方為 VIP，且已開啟翻譯開關：
-     - 讀取收訊方的 language_pref
-     - 用 OpenAI 翻譯成對方語言
-     - 訊息格式：第一行翻譯後文字；第二行可加小字顯示原文（或用按鈕顯示）
-6. 使用 `recordConversationMessage()` 更新 conversation_daily_usage
+7. **VIP 翻譯**:
+   - 若對話任一方為 VIP：
+     - 優先使用 **OpenAI** 翻譯
+     - 失敗時自動降級到 **Google Translate**
+     - 記錄降級事件（用於監控）
+   - 免費使用者：
+     - 僅使用 **Google Translate**
+   - 翻譯失敗時：發送原文 + 提示「翻譯服務暫時有問題，請先看原文」
+   - 詳細策略請參考：TRANSLATION_STRATEGY.md
+8. **儲存訊息記錄**:
+   - 儲存到 conversation_messages
+   - 限制每個對話對象最多保留 3650 筆訊息
+   - 超過時刪除最舊的，保留最後 100 筆
+9. 使用 `recordConversationMessage()` 更新 conversation_daily_usage
 
 ### 5.6 /report（舉報）
 
