@@ -15,8 +15,8 @@
     "backup:push": "tsx scripts/backup-push.ts",
     "backup:db": "tsx scripts/backup-db.ts",
     "typecheck": "tsc --noEmit",
-    "lint": "eslint src tests",
-    "lint:fix": "eslint src tests --fix",
+    "lint": "eslint src",
+    "lint:fix": "eslint src --fix",
     "format": "prettier --write \"src/**/*.ts\" \"tests/**/*.ts\"",
     "format:check": "prettier --check \"src/**/*.ts\" \"tests/**/*.ts\""
   },

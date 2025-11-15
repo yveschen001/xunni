@@ -6,7 +6,7 @@
  * No side effects, no database calls, easy to test.
  */
 
-import type { User, Gender, Role } from '~/types';
+import type { User, Role } from '~/types';
 
 // ============================================================================
 // Constants

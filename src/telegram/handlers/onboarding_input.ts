@@ -7,7 +7,7 @@
 
 import type { Env, TelegramMessage, User } from '~/types';
 import { createDatabaseClient } from '~/db/client';
-import { findUserByTelegramId, updateUserProfile, updateOnboardingStep, completeOnboarding, updateMBTIResult, updateAntiFraudScore } from '~/db/queries/users';
+import { findUserByTelegramId, updateUserProfile, updateOnboardingStep, updateMBTIResult, updateAntiFraudScore } from '~/db/queries/users';
 import { validateNickname, validateBirthday, calculateAge, calculateZodiacSign, validateMBTI } from '~/domain/user';
 import { createTelegramService } from '~/services/telegram';
 
@@ -113,7 +113,7 @@ async function handleBirthdayInput(
   birthday: string,
   chatId: number,
   telegram: ReturnType<typeof createTelegramService>,
-  db: ReturnType<typeof createDatabaseClient>
+  _db: ReturnType<typeof createDatabaseClient>
 ): Promise<boolean> {
   // Validate birthday
   const validation = validateBirthday(birthday);
@@ -202,7 +202,7 @@ async function handleAntiFraudInput(
   answer: string,
   chatId: number,
   telegram: ReturnType<typeof createTelegramService>,
-  db: ReturnType<typeof createDatabaseClient>
+  _db: ReturnType<typeof createDatabaseClient>
 ): Promise<boolean> {
   // Simple check (in production, this would be a proper quiz)
   if (answer.includes('是') || answer.toLowerCase().includes('yes')) {

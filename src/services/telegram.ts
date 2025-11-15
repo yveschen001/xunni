@@ -183,7 +183,7 @@ export class TelegramService {
         return null;
       }
 
-      const data = await response.json();
+      const data = (await response.json()) as any;
       return data.result;
     } catch (error) {
       console.error('[Telegram] getWebhookInfo error:', error);
@@ -288,7 +288,7 @@ export class TelegramService {
         return null;
       }
 
-      const data = await response.json();
+      const data = (await response.json()) as any;
       return data.result;
     } catch (error) {
       console.error('[Telegram] getUserProfilePhotos error:', error);
@@ -317,7 +317,7 @@ export class TelegramService {
         return null;
       }
 
-      const data = await response.json();
+      const data = (await response.json()) as any;
       const filePath = data.result.file_path;
 
       return `https://api.telegram.org/file/bot${this.botToken}/${filePath}`;

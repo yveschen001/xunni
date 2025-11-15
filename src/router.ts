@@ -167,12 +167,14 @@ async function routeUpdate(update: TelegramUpdate, env: Env): Promise<void> {
   }
 
   // Handle successful payment
-  if (update.message?.successful_payment) {
+  if (update.message && 'successful_payment' in update.message) {
     // TODO: Implement payment success handler
-    console.log('[Router] Payment received:', update.message.successful_payment);
+    // eslint-disable-next-line no-console, @typescript-eslint/no-explicit-any
+    console.log('[Router] Payment received:', (update.message as any).successful_payment);
     return;
   }
 
+  // eslint-disable-next-line no-console
   console.log('[Router] Unhandled update type');
 }
 

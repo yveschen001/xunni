@@ -5,7 +5,7 @@
  * Manages risk scoring, content moderation, and ban logic.
  */
 
-import type { User, RiskCheckResult } from '~/types';
+import type { RiskCheckResult } from '~/types';
 
 // ============================================================================
 // Constants

@@ -5,7 +5,7 @@
  * Handles anonymous message forwarding between conversation participants.
  */
 
-import type { Env, TelegramMessage, User, Conversation } from '~/types';
+import type { Env, TelegramMessage } from '~/types';
 import { createDatabaseClient } from '~/db/client';
 import { findUserByTelegramId } from '~/db/queries/users';
 import {
@@ -120,7 +120,10 @@ export async function handleMessageForward(message: TelegramMessage, env: Env): 
     }
 
     // AI moderation (if enabled)
-    let aiModeration = { flagged: false, categories: [] as string[] };
+    let aiModeration: { flagged: boolean; categories?: string[]; score?: number } = {
+      flagged: false,
+      categories: [],
+    };
     if (env.ENABLE_AI_MODERATION === 'true') {
       try {
         aiModeration = await openai.moderateContent(text);

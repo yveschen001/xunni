@@ -66,18 +66,21 @@ export default {
   /**
    * Handle scheduled events (Cron)
    */
-  async scheduled(event: ScheduledEvent, env: Env): Promise<void> {
+  async scheduled(event: ScheduledEvent, _env: Env): Promise<void> {
+    // eslint-disable-next-line no-console
     console.log('[Worker] Scheduled event:', event.cron);
 
     try {
       // Horoscope push (Every Monday at 9:00 UTC)
       if (event.cron === '0 9 * * 1') {
+        // eslint-disable-next-line no-console
         console.log('[Worker] Running horoscope push...');
         // TODO: Implement horoscope push
       }
 
       // Broadcast queue (Every 5 minutes)
       if (event.cron === '*/5 * * * *') {
+        // eslint-disable-next-line no-console
         console.log('[Worker] Processing broadcast queue...');
         // TODO: Implement broadcast queue processing
       }

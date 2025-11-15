@@ -14,7 +14,6 @@ import { canUseBottleFeatures, isVIP } from '~/domain/user';
 import { canThrowBottle, getDailyThrowLimit, getTodayDate } from '~/domain/usage';
 import {
   validateBottleContent,
-  canSetAdvancedFilters,
   calculateBottleExpiration,
 } from '~/domain/bottle';
 import { createTelegramService } from '~/services/telegram';
@@ -122,9 +121,7 @@ export async function processBottleContent(
   env: Env,
   chatId: number
 ): Promise<void> {
-  const db = createDatabaseClient(env);
   const telegram = createTelegramService(env);
-  const telegramId = user.telegram_id;
 
   try {
     // Validate content

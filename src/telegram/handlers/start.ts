@@ -7,7 +7,7 @@
 
 import type { Env, TelegramMessage, User } from '~/types';
 import { createDatabaseClient } from '~/db/client';
-import { findUserByTelegramId, createUser, updateOnboardingStep } from '~/db/queries/users';
+import { findUserByTelegramId, createUser } from '~/db/queries/users';
 import { generateInviteCode, hasCompletedOnboarding } from '~/domain/user';
 import { createTelegramService } from '~/services/telegram';
 
@@ -95,7 +95,7 @@ async function resumeOnboarding(
   user: User,
   chatId: number,
   telegram: ReturnType<typeof createTelegramService>,
-  db: ReturnType<typeof createDatabaseClient>
+  _db: ReturnType<typeof createDatabaseClient>
 ): Promise<void> {
   const step = user.onboarding_step;
 

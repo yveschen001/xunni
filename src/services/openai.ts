@@ -62,7 +62,7 @@ export class OpenAIService {
         throw new Error(`OpenAI API error: ${response.status}`);
       }
 
-      const data = await response.json();
+      const data = (await response.json()) as any;
       const translatedText = data.choices[0]?.message?.content?.trim();
 
       if (!translatedText) {
@@ -111,7 +111,7 @@ export class OpenAIService {
         throw new Error(`OpenAI API error: ${response.status}`);
       }
 
-      const data = await response.json();
+      const data = (await response.json()) as any;
       const result = data.results[0];
 
       const flaggedCategories: string[] = [];
