@@ -50,7 +50,9 @@
 
 #### 其他功能
 - 每週星座運勢推播，召回使用者來丟／撿瓶
-- 對外 HTTP API `/api/eligibility`，給 Moonpacket 紅包系統查資格
+- 對外 HTTP API：
+  - `/api/eligibility`：給 Moonpacket 紅包系統查資格
+  - `/api/public-stats`：公開營運統計（給行銷頁面使用）
 - 上帝 / 天使帳號：可按條件（性別、年齡、星座、語言等）群發訊息（隊列 + 限速）
 - **使用者封鎖功能**：/block（不舉報，只是不想再聊）
 - **避免重複匹配**：排除曾經封鎖/被封鎖/被舉報過的使用者
@@ -114,6 +116,7 @@ src/
     matching.ts         -- 漂流瓶匹配
     horoscope.ts        -- 星座運勢工具
     eligibility.ts      -- 對外資格查詢
+    public_stats.ts     -- 公開營運統計 API 聚合
   telegram/
     types.ts            -- Telegram Update / Callback 型別
     handlers/
@@ -1304,7 +1307,336 @@ async function checkEligibility(telegramId: string): Promise<{
 
 ---
 
-## 11. 廣告播放（gigapub）
+## 11. 公開統計 API（給行銷頁面）
+
+### 11.1 HTTP 端點
+
+**GET** `/api/public-stats`
+
+**無需認證**：開放匿名存取，但需速率限制
+
+**回應格式**：
+```json
+{
+  "timestamp": "2025-01-15T12:00:00Z",
+  "cumulative": {
+    "total_bottles": 12345,      // 累積總漂流瓶數
+    "total_users": 5678,         // 累積總使用者數
+    "total_messages": 98765,     // 累積總訊息數
+    "total_conversations": 4321  // 累積總對話數
+  },
+  "yesterday": {
+    "bottles": 234,              // 昨日新增漂流瓶數
+    "users": 56,                 // 昨日新增使用者數
+    "messages": 1234,            // 昨日新增訊息數
+    "conversations": 89          // 昨日新增對話數
+  },
+  "active": {
+    "active_users_7d": 1234,     // 最近 7 天活躍使用者數
+    "active_users_30d": 3456     // 最近 30 天活躍使用者數
+  }
+}
+```
+
+### 11.2 資料聚合邏輯
+
+**Domain 層函數**（`src/domain/public_stats.ts`）：
+```typescript
+export interface PublicStats {
+  timestamp: string;
+  cumulative: {
+    total_bottles: number;
+    total_users: number;
+    total_messages: number;
+    total_conversations: number;
+  };
+  yesterday: {
+    bottles: number;
+    users: number;
+    messages: number;
+    conversations: number;
+  };
+  active: {
+    active_users_7d: number;
+    active_users_30d: number;
+  };
+}
+
+/**
+ * 計算公開統計數據
+ */
+export async function getPublicStats(
+  db: D1Database
+): Promise<PublicStats> {
+  const today = new Date().toISOString().split('T')[0];
+  const yesterday = new Date(Date.now() - 24 * 60 * 60 * 1000).toISOString().split('T')[0];
+  const sevenDaysAgo = new Date(Date.now() - 7 * 24 * 60 * 60 * 1000).toISOString().split('T')[0];
+  const thirtyDaysAgo = new Date(Date.now() - 30 * 24 * 60 * 60 * 1000).toISOString().split('T')[0];
+  
+  // 累積數據
+  const totalBottles = await db.prepare(`
+    SELECT COUNT(*) as count
+    FROM bottles
+    WHERE status != 'deleted'
+  `).first();
+  
+  const totalUsers = await db.prepare(`
+    SELECT COUNT(*) as count
+    FROM users
+    WHERE deleted_at IS NULL
+  `).first();
+  
+  const totalMessages = await db.prepare(`
+    SELECT COUNT(*) as count
+    FROM conversation_messages
+  `).first();
+  
+  const totalConversations = await db.prepare(`
+    SELECT COUNT(*) as count
+    FROM conversations
+    WHERE status != 'closed'
+  `).first();
+  
+  // 昨日新增
+  const yesterdayBottles = await db.prepare(`
+    SELECT COUNT(*) as count
+    FROM bottles
+    WHERE DATE(created_at) = ?
+      AND status != 'deleted'
+  `).bind(yesterday).first();
+  
+  const yesterdayUsers = await db.prepare(`
+    SELECT COUNT(*) as count
+    FROM users
+    WHERE DATE(created_at) = ?
+      AND deleted_at IS NULL
+  `).bind(yesterday).first();
+  
+  const yesterdayMessages = await db.prepare(`
+    SELECT COUNT(*) as count
+    FROM conversation_messages
+    WHERE DATE(created_at) = ?
+  `).bind(yesterday).first();
+  
+  const yesterdayConversations = await db.prepare(`
+    SELECT COUNT(*) as count
+    FROM conversations
+    WHERE DATE(created_at) = ?
+      AND status != 'closed'
+  `).bind(yesterday).first();
+  
+  // 活躍使用者（最近 7 天、30 天）
+  const activeUsers7d = await db.prepare(`
+    SELECT COUNT(DISTINCT user_id) as count
+    FROM behavior_logs
+    WHERE DATE(created_at) >= ?
+  `).bind(sevenDaysAgo).first();
+  
+  const activeUsers30d = await db.prepare(`
+    SELECT COUNT(DISTINCT user_id) as count
+    FROM behavior_logs
+    WHERE DATE(created_at) >= ?
+  `).bind(thirtyDaysAgo).first();
+  
+  return {
+    timestamp: new Date().toISOString(),
+    cumulative: {
+      total_bottles: (totalBottles as any).count,
+      total_users: (totalUsers as any).count,
+      total_messages: (totalMessages as any).count,
+      total_conversations: (totalConversations as any).count,
+    },
+    yesterday: {
+      bottles: (yesterdayBottles as any).count,
+      users: (yesterdayUsers as any).count,
+      messages: (yesterdayMessages as any).count,
+      conversations: (yesterdayConversations as any).count,
+    },
+    active: {
+      active_users_7d: (activeUsers7d as any).count,
+      active_users_30d: (activeUsers30d as any).count,
+    },
+  };
+}
+```
+
+### 11.3 快取策略
+
+**快取機制**：
+- 使用 Cloudflare KV 或 D1 表快取統計結果
+- 快取時間：5 分鐘
+- 避免頻繁查詢資料庫，降低負載
+
+**快取實作**：
+```typescript
+// src/api/public-stats.ts
+
+import { getPublicStats } from '../domain/public_stats';
+
+const CACHE_KEY = 'public_stats';
+const CACHE_TTL = 5 * 60; // 5 分鐘
+
+export async function handlePublicStats(
+  request: Request,
+  env: Env
+): Promise<Response> {
+  // 速率限制（使用 Cloudflare Rate Limiting 或自定義邏輯）
+  const clientIP = request.headers.get('CF-Connecting-IP') || 'unknown';
+  if (!await checkRateLimit(clientIP, env)) {
+    return new Response(
+      JSON.stringify({ error: 'Rate limit exceeded' }),
+      { status: 429, headers: { 'Content-Type': 'application/json' } }
+    );
+  }
+  
+  // 檢查快取
+  const cached = await env.STATS_CACHE?.get(CACHE_KEY, { type: 'json' });
+  if (cached) {
+    return new Response(JSON.stringify(cached), {
+      headers: {
+        'Content-Type': 'application/json',
+        'Cache-Control': 'public, max-age=300', // 5 分鐘
+      },
+    });
+  }
+  
+  // 計算統計數據
+  const stats = await getPublicStats(env.DB);
+  
+  // 寫入快取
+  await env.STATS_CACHE?.put(
+    CACHE_KEY,
+    JSON.stringify(stats),
+    { expirationTtl: CACHE_TTL }
+  );
+  
+  return new Response(JSON.stringify(stats), {
+    headers: {
+      'Content-Type': 'application/json',
+      'Cache-Control': 'public, max-age=300',
+    },
+  });
+}
+
+// 速率限制檢查（每 IP 每分鐘最多 10 次請求）
+async function checkRateLimit(
+  clientIP: string,
+  env: Env
+): Promise<boolean> {
+  const key = `rate_limit:public_stats:${clientIP}`;
+  const count = await env.STATS_CACHE?.get(key, { type: 'json' });
+  
+  if (count && count >= 10) {
+    return false;
+  }
+  
+  await env.STATS_CACHE?.put(
+    key,
+    JSON.stringify((count || 0) + 1),
+    { expirationTtl: 60 } // 1 分鐘
+  );
+  
+  return true;
+}
+```
+
+### 11.4 速率限制
+
+**限制規則**：
+- 每 IP 每分鐘最多 10 次請求
+- 超過限制返回 429 狀態碼
+- 使用 Cloudflare KV 記錄請求次數
+
+**CORS 支援**（可選）：
+- 如果行銷頁面在不同域名，需設定 CORS Header
+- `Access-Control-Allow-Origin: *` 或指定域名
+
+### 11.5 資料庫索引優化
+
+為提升查詢性能，需確保以下索引存在：
+```sql
+-- bottles 表
+CREATE INDEX IF NOT EXISTS idx_bottles_created_at ON bottles(created_at);
+CREATE INDEX IF NOT EXISTS idx_bottles_status ON bottles(status);
+
+-- users 表
+CREATE INDEX IF NOT EXISTS idx_users_created_at ON users(created_at);
+CREATE INDEX IF NOT EXISTS idx_users_deleted_at ON users(deleted_at);
+
+-- conversation_messages 表
+CREATE INDEX IF NOT EXISTS idx_conversation_messages_created_at ON conversation_messages(created_at);
+
+-- conversations 表
+CREATE INDEX IF NOT EXISTS idx_conversations_created_at ON conversations(created_at);
+CREATE INDEX IF NOT EXISTS idx_conversations_status ON conversations(status);
+
+-- behavior_logs 表（用於活躍使用者統計）
+CREATE INDEX IF NOT EXISTS idx_behavior_logs_created_at ON behavior_logs(created_at);
+CREATE INDEX IF NOT EXISTS idx_behavior_logs_user_id ON behavior_logs(user_id);
+```
+
+### 11.6 路由實作
+
+**router.ts**：
+```typescript
+// src/router.ts
+
+router.get('/api/public-stats', async (request, env) => {
+  return handlePublicStats(request, env);
+});
+```
+
+**KV 命名空間配置**：
+- 在 `wrangler.toml` 中新增 `STATS_CACHE` KV 命名空間（或使用現有的 `RISK_CACHE`）：
+```toml
+[[kv_namespaces]]
+binding = "STATS_CACHE"
+id = "<KV_NAMESPACE_ID>"
+```
+
+**替代方案**（如果不想新增 KV）：
+- 使用 `stats_cache` 表快取統計結果（見 3.13 節）
+- 每 5 分鐘更新一次（透過 Cron 任務 `/cron/update_stats_cache`）
+- API 直接查詢快取表，無需即時計算
+
+### 11.7 Cron 任務更新快取（可選）
+
+如果使用資料庫快取而非 KV：
+
+```typescript
+// src/telegram/handlers/cron_update_stats_cache.ts
+
+/**
+ * 每 5 分鐘更新公開統計快取
+ */
+export async function handleUpdateStatsCache(
+  env: Env,
+  db: D1Database
+): Promise<void> {
+  const stats = await getPublicStats(db);
+  
+  // 更新快取表
+  await db.prepare(`
+    INSERT INTO stats_cache (cache_key, cache_value, expires_at)
+    VALUES ('public_stats', ?, datetime('now', '+5 minutes'))
+    ON CONFLICT(cache_key) DO UPDATE SET
+      cache_value = excluded.cache_value,
+      expires_at = excluded.expires_at,
+      updated_at = datetime('now')
+  `).bind(JSON.stringify(stats)).run();
+}
+```
+
+**Cron 配置**：
+```toml
+# wrangler.toml
+[[triggers.crons]]
+schedule = "*/5 * * * *"  # 每 5 分鐘
+```
+
+---
+
+## 12. 廣告播放（gigapub）
 
 ### 環境變數
 - `GIGAPUB_API_KEY`
@@ -1319,7 +1651,7 @@ async function checkEligibility(telegramId: string): Promise<{
 
 ---
 
-## 12. 環境變數與 wrangler 設定
+## 13. 環境變數與 wrangler 設定
 
 ### wrangler.toml 範例
 
@@ -1352,7 +1684,7 @@ BROADCAST_MAX_JOBS = "3"
 
 ---
 
-## 13. 測試規範（Vitest）
+## 14. 測試規範（Vitest）
 
 ### 優先針對以下純函數寫單元測試
 
@@ -1371,7 +1703,7 @@ BROADCAST_MAX_JOBS = "3"
 
 ---
 
-## 14. 建議的 Cursor 開發順序
+## 15. 建議的 Cursor 開發順序
 
 ### 階段 1: 基礎架構
 1. **建立 schema**: 根據本規格書的 SQL，生成 `db/schema.sql`
@@ -1394,6 +1726,7 @@ BROADCAST_MAX_JOBS = "3"
 6. **實作 router.ts + worker.ts**:
    - 處理 Telegram webhook
    - `/api/eligibility`
+   - `/api/public-stats`（公開統計 API）
    - `/cron/horoscope`
    - `/cron/broadcast`
 7. **配置 wrangler、初始化 D1、部署，測試與 Moonpacket 串接**

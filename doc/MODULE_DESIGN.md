@@ -85,7 +85,44 @@ export function matchesBottleFilters(bottle: Bottle, user: User): boolean
 export async function checkEligibility(telegramId: string, db: D1Database): Promise<EligibilityResult>
 ```
 
-#### 2.1.5 account-linker.ts - 帳號綁定（預留，M2/M3 階段）
+#### 2.1.5 public_stats.ts - 公開營運統計
+
+**職責**：
+- 聚合公開營運統計數據（累積、昨日新增、活躍使用者）
+- 提供給行銷頁面使用
+
+**函數**：
+```typescript
+export interface PublicStats {
+  timestamp: string;
+  cumulative: {
+    total_bottles: number;
+    total_users: number;
+    total_messages: number;
+    total_conversations: number;
+  };
+  yesterday: {
+    bottles: number;
+    users: number;
+    messages: number;
+    conversations: number;
+  };
+  active: {
+    active_users_7d: number;
+    active_users_30d: number;
+  };
+}
+
+export async function getPublicStats(db: D1Database): Promise<PublicStats>
+```
+
+**特點**：
+- 純函數（無副作用）
+- 易於測試
+- 不依賴外部服務
+- 查詢結果可快取
+
+#### 2.1.6 account-linker.ts - 帳號綁定（預留，M2/M3 階段）
 
 **當前階段（M1）**：
 - 僅使用 Telegram `initData` 驗簽
@@ -97,7 +134,7 @@ export async function checkEligibility(telegramId: string, db: D1Database): Prom
 - 合併同一使用者的多個帳號身份
 - 詳細設計請參考：ROADMAP.md
 
-#### 2.1.6 translation-policy.ts - 翻譯策略
+#### 2.1.7 translation-policy.ts - 翻譯策略
 
 **職責**：
 - 翻譯供應商調度（OpenAI vs Google）
