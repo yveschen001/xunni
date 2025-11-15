@@ -29,16 +29,15 @@ export async function showLanguageSelection(
 ): Promise<void> {
   const telegram = createTelegramService(env);
   const chatId = message.chat.id;
+  
+  // Use i18n for welcome message (bilingual zh-TW + en)
+  const { createI18n } = await import('~/i18n');
+  const i18n = createI18n('zh-TW'); // Default to zh-TW for welcome
 
   // Show welcome message with popular languages
   await telegram.sendMessageWithButtons(
     chatId,
-    `🎉 歡迎來到 XunNi！\n` +
-      `Welcome to XunNi!\n\n` +
-      `XunNi 是一個匿名漂流瓶交友平台，透過 MBTI 和星座幫你找到志同道合的朋友！\n` +
-      `XunNi is an anonymous bottle messaging platform that helps you find like-minded friends through MBTI and zodiac signs!\n\n` +
-      `首先，請選擇你的語言：\n` +
-      `First, please select your language:`,
+    i18n.t('onboarding.welcome'),
     getPopularLanguageButtons()
   );
 }
@@ -50,12 +49,16 @@ export async function showAllLanguages(callbackQuery: CallbackQuery, env: Env): 
   const telegram = createTelegramService(env);
   const chatId = callbackQuery.message!.chat.id;
   const messageId = callbackQuery.message!.message_id;
+  
+  // Use i18n
+  const { createI18n } = await import('~/i18n');
+  const i18n = createI18n('zh-TW');
 
   // Edit message to show all languages
   await telegram.editMessageText(
     chatId,
     messageId,
-    `🌍 選擇你的語言 / Select your language:`,
+    i18n.t('onboarding.languageSelection'),
     {
       reply_markup: {
         inline_keyboard: [
@@ -145,52 +148,19 @@ async function startOnboarding(
   telegram: ReturnType<typeof createTelegramService>,
   languageCode: string
 ): Promise<void> {
-  // Get localized messages (for now, use Chinese as default)
-  // TODO: Implement full i18n system
-  const messages = getOnboardingMessages(languageCode);
+  // Use i18n system
+  const { createI18n } = await import('~/i18n');
+  const i18n = createI18n(languageCode);
 
   await telegram.sendMessage(
     chatId,
-    messages.welcome
+    i18n.t('onboarding.startRegistration')
   );
 
   // Ask for nickname
   await telegram.sendMessage(
     chatId,
-    messages.askNickname
+    i18n.t('onboarding.askNickname')
   );
-}
-
-/**
- * Get onboarding messages by language
- * TODO: Move to proper i18n system
- */
-function getOnboardingMessages(languageCode: string): {
-  welcome: string;
-  askNickname: string;
-} {
-  // For now, support Chinese and English
-  if (languageCode === 'en') {
-    return {
-      welcome:
-        `Great! Let's set up your profile ✨\n\n` +
-        `This will only take 3-5 minutes.\n` +
-        `You can pause anytime and continue later.`,
-      askNickname:
-        `First, what would you like to be called?\n\n` +
-        `Please enter your nickname (display name):`,
-    };
-  }
-
-  // Default to Chinese
-  return {
-    welcome:
-      `太好了！現在讓我們開始設定你的個人資料 ✨\n\n` +
-      `這只需要 3-5 分鐘。\n` +
-      `你可以隨時暫停，稍後繼續。`,
-    askNickname:
-      `首先，你希望別人怎麼稱呼你？\n\n` +
-      `請輸入你的暱稱（顯示名稱）：`,
-  };
 }
 
