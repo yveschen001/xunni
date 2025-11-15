@@ -379,17 +379,6 @@ chore: 更新依賴版本
 
 ---
 
-使用 [Conventional Commits](https://www.conventionalcommits.org/)：
-
-```
-feat: 新增 VIP 翻譯功能
-fix: 修復每日次數計算錯誤
-docs: 更新 API 文檔
-test: 新增 usage.test.ts
-refactor: 重構 matching.ts 匹配邏輯
-chore: 更新依賴版本
-```
-
 ---
 
 ## 5. 與 AI 協作流程（Working with Cursor / AI changes）
