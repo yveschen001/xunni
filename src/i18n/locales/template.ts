@@ -12,7 +12,7 @@ import { translations as zhTW } from './zh-TW';
  * Create a placeholder translation that uses keys + zh-TW fallback
  * This will be replaced with actual translations from external sources
  */
-export function createPlaceholderTranslations(languageCode: string): Translations {
+export function createPlaceholderTranslations(_languageCode: string): Translations {
   // For now, return zh-TW as fallback
   // In future, this will show [key] for untranslated strings
   return zhTW;

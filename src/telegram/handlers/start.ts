@@ -189,4 +189,3 @@ export function extractInviteCode(text: string): string | null {
   const match = text.match(/\/start\s+(invite_[A-Z0-9-]+)/i);
   return match ? match[1] : null;
 }
-
