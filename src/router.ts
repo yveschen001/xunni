@@ -7,6 +7,10 @@
 
 import type { Env, TelegramUpdate } from '~/types';
 import { handleStart } from './telegram/handlers/start';
+import { handleThrow } from './telegram/handlers/throw';
+import { handleCatch } from './telegram/handlers/catch';
+import { handleMessageForward } from './telegram/handlers/message_forward';
+import { handleOnboardingInput } from './telegram/handlers/onboarding_input';
 import { createTelegramService } from './services/telegram';
 
 // ============================================================================
@@ -59,14 +63,12 @@ async function routeUpdate(update: TelegramUpdate, env: Env): Promise<void> {
     }
 
     if (text.startsWith('/throw')) {
-      // TODO: Implement /throw handler
-      await telegram.sendMessage(chatId, '🌊 丟瓶功能開發中...');
+      await handleThrow(message, env);
       return;
     }
 
     if (text.startsWith('/catch')) {
-      // TODO: Implement /catch handler
-      await telegram.sendMessage(chatId, '🎣 撿瓶功能開發中...');
+      await handleCatch(message, env);
       return;
     }
 
@@ -100,10 +102,13 @@ async function routeUpdate(update: TelegramUpdate, env: Env): Promise<void> {
     }
 
     // Handle onboarding input
-    // TODO: Implement onboarding input handler
+    const isOnboardingInput = await handleOnboardingInput(message, env);
+    if (isOnboardingInput) {
+      return;
+    }
 
     // Handle conversation messages
-    // TODO: Implement message forwarding
+    await handleMessageForward(message, env);
 
     // Unknown command
     await telegram.sendMessage(
