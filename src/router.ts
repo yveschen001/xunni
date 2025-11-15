@@ -223,6 +223,19 @@ async function routeUpdate(update: TelegramUpdate, env: Env): Promise<void> {
       return;
     }
 
+    if (data.startsWith('confirm_birthday_')) {
+      const { handleBirthdayConfirmation } = await import('./telegram/handlers/onboarding_callback');
+      const birthday = data.replace('confirm_birthday_', '');
+      await handleBirthdayConfirmation(callbackQuery, birthday, env);
+      return;
+    }
+
+    if (data === 'retry_birthday') {
+      const { handleBirthdayRetry } = await import('./telegram/handlers/onboarding_callback');
+      await handleBirthdayRetry(callbackQuery, env);
+      return;
+    }
+
     if (data === 'agree_terms') {
       const { handleTermsAgreement } = await import('./telegram/handlers/onboarding_callback');
       await handleTermsAgreement(callbackQuery, env);

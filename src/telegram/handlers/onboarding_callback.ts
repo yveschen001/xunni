@@ -147,6 +147,118 @@ export async function handleGenderReselection(
 }
 
 // ============================================================================
+// Birthday Confirmation
+// ============================================================================
+
+export async function handleBirthdayConfirmation(
+  callbackQuery: CallbackQuery,
+  birthday: string,
+  env: Env
+): Promise<void> {
+  const db = createDatabaseClient(env);
+  const telegram = createTelegramService(env);
+  const chatId = callbackQuery.message!.chat.id;
+  const telegramId = callbackQuery.from.id.toString();
+
+  try {
+    // Get user
+    const user = await findUserByTelegramId(db, telegramId);
+    if (!user) {
+      await telegram.answerCallbackQuery(callbackQuery.id, '❌ 用戶不存在');
+      return;
+    }
+
+    // Check if user is in birthday step
+    if (user.onboarding_step !== 'birthday') {
+      await telegram.answerCallbackQuery(callbackQuery.id, '❌ 當前不在生日輸入步驟');
+      return;
+    }
+
+    // Import domain functions
+    const { calculateAge, calculateZodiacSign } = await import('~/domain/user');
+    
+    // Calculate age and zodiac
+    const age = calculateAge(birthday);
+    const zodiacSign = calculateZodiacSign(birthday);
+
+    if (age === null || zodiacSign === null) {
+      await telegram.answerCallbackQuery(callbackQuery.id, '❌ 生日格式錯誤');
+      return;
+    }
+
+    // Check age restriction
+    if (age < 18) {
+      await telegram.answerCallbackQuery(callbackQuery.id);
+      await telegram.editMessageText(
+        chatId,
+        callbackQuery.message!.message_id,
+        `❌ 很抱歉，你必須年滿 18 歲才能使用本服務。\n\n請成年後再來！`
+      );
+      return;
+    }
+
+    // Save birthday, age, and zodiac
+    await updateUserProfile(db, telegramId, {
+      birthday,
+      age,
+      zodiac_sign: zodiacSign,
+    });
+
+    // Move to next step
+    await updateOnboardingStep(db, telegramId, 'mbti');
+
+    // Answer callback
+    await telegram.answerCallbackQuery(callbackQuery.id, '✅ 生日已保存');
+
+    // Delete confirmation message
+    await telegram.deleteMessage(chatId, callbackQuery.message!.message_id);
+
+    // Ask for MBTI
+    await telegram.sendMessage(
+      chatId,
+      `現在讓我們進行 MBTI 性格測驗！\n\n` +
+        `這將幫助我們為你找到更合適的聊天對象～\n\n` +
+        `準備好了嗎？請回答「是」開始測驗。`
+    );
+  } catch (error) {
+    console.error('[handleBirthdayConfirmation] Error:', error);
+    await telegram.answerCallbackQuery(callbackQuery.id, '❌ 發生錯誤');
+  }
+}
+
+// ============================================================================
+// Birthday Retry
+// ============================================================================
+
+export async function handleBirthdayRetry(
+  callbackQuery: CallbackQuery,
+  env: Env
+): Promise<void> {
+  const telegram = createTelegramService(env);
+  const chatId = callbackQuery.message!.chat.id;
+
+  try {
+    // Delete confirmation message
+    await telegram.deleteMessage(chatId, callbackQuery.message!.message_id);
+
+    // Ask for birthday again
+    await telegram.sendMessage(
+      chatId,
+      `請重新輸入你的生日（格式：YYYY-MM-DD）：\n\n` +
+        `例如：1995-06-15\n\n` +
+        `⚠️ 注意：\n` +
+        `• 生日設定後無法修改\n` +
+        `• 必須年滿 18 歲才能使用本服務`
+    );
+
+    await telegram.answerCallbackQuery(callbackQuery.id);
+  } catch (error) {
+    console.error('[handleBirthdayRetry] Error:', error);
+    await telegram.answerCallbackQuery(callbackQuery.id, '❌ 發生錯誤');
+  }
+}
+
+// ============================================================================
 // Terms Agreement
 // ============================================================================
 
