@@ -2,7 +2,7 @@
 
 > 運行在 Cloudflare Workers 的匿名聊天 Telegram Bot
 
-> **⚠️ 重要：AI 代理在開始任何工作前，必須先閱讀 `@PROJECT_OVERVIEW.md`**
+> **⚠️ 重要：AI 代理在開始任何工作前，必須先閱讀 `@doc/SPEC.md`（專案規格書，包含專案概覽和完整規格）**
 
 ## 🌟 專案簡介
 
@@ -50,7 +50,8 @@ wrangler deploy --env production
 ## 📚 文檔
 
 **開始之前，必須先閱讀：**
-- **[PROJECT_OVERVIEW.md](./PROJECT_OVERVIEW.md)** - 專案概覽和結構（**AI 代理必讀**）
+- **[doc/SPEC.md](./doc/SPEC.md)** - 專案規格書（**AI 代理必讀**，包含專案概覽和完整規格）
+- **[doc/ENV_CONFIG.md](./doc/ENV_CONFIG.md)** - 開發環境設置指南（設置本地環境）
 
 完整文檔請查看 [doc/](./doc/) 目錄：
 

@@ -1,6 +1,62 @@
-# XunNi 環境配置指南
+# XunNi 開發環境設置指南
 
-## 1. 環境變數總覽
+> **在閱讀本文檔前，請先閱讀 `@doc/SPEC.md` 了解專案概覽。**
+
+本文檔涵蓋開發環境設置、環境變數配置和本地開發流程。
+
+## 1. 快速開始
+
+### 1.1 環境需求
+
+- **Node.js**: 20+ 版本
+- **包管理器**: pnpm（推薦）或 npm
+- **Cloudflare 帳號**: 需要 API Token
+- **Telegram Bot Token**: 從 [@BotFather](https://t.me/botfather) 取得
+- **OpenAI API Key**: 從 [OpenAI Platform](https://platform.openai.com/) 取得
+
+### 1.2 安裝依賴
+
+```bash
+# 安裝依賴
+pnpm install
+
+# 或使用 npm
+npm install
+```
+
+### 1.3 本地開發
+
+```bash
+# 啟動本地開發伺服器
+pnpm dev
+
+# 或使用 npm
+npm run dev
+```
+
+### 1.4 執行測試
+
+```bash
+# 執行所有測試
+pnpm test
+
+# 或使用 npm
+npm test
+```
+
+### 1.5 執行 Lint
+
+```bash
+# 檢查代碼風格
+pnpm lint
+
+# 或使用 npm
+npm run lint
+```
+
+---
+
+## 2. 環境變數總覽
 
 ### 1.1 環境分類
 

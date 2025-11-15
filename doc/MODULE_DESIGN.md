@@ -1,6 +1,6 @@
 # XunNi 模組化設計指南
 
-> **在閱讀本文檔前，請先閱讀 `@PROJECT_OVERVIEW.md` 和 `@doc/SPEC.md`。**
+> **在閱讀本文檔前，請先閱讀 `@doc/SPEC.md`（包含專案概覽）。**
 
 ## 1. 架構原則
 

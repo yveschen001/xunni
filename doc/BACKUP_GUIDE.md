@@ -1,5 +1,27 @@
 # XunNi 備份使用指南
 
+> **本文檔已合併到 `@doc/BACKUP_STRATEGY.md`，請直接閱讀該文檔。**
+
+**請閱讀**: `@doc/BACKUP_STRATEGY.md` - 完整的備份策略和使用指南
+
+---
+
+## 快速命令參考
+
+```bash
+# 本地備份
+pnpm backup
+
+# 推送到 GitHub
+pnpm backup:push
+```
+
+---
+
+## 原始內容（已遷移至 BACKUP_STRATEGY.md）
+
+以下為原始內容，已整合到 `@doc/BACKUP_STRATEGY.md`：
+
 ## 1. 快速開始
 
 ### 1.1 本地備份

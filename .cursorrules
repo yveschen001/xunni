@@ -1,12 +1,12 @@
 # XunNi 專案 Cursor AI 規則
 
-> **⚠️ 重要：在開始任何編輯前，必須先閱讀 `@PROJECT_OVERVIEW.md`**
+> **⚠️ 重要：在開始任何編輯前，必須先閱讀 `@doc/SPEC.md`**
 
 ## 第一步：閱讀專案概覽
 
 **在開始任何工作前，必須先閱讀：**
-- `@PROJECT_OVERVIEW.md` - 專案概覽和結構（**必讀**）
-- `@doc/SPEC.md` - 完整的業務邏輯和資料庫設計
+- `@doc/SPEC.md` - 專案規格書（**必讀**，包含專案概覽、結構和完整業務邏輯）
+- `@doc/ENV_CONFIG.md` - 開發環境設置指南（如何設置本地環境）
 - `@doc/DEVELOPMENT_STANDARDS.md` - 代碼風格和命名規範
 
 ## 開發規範（必須遵守）
@@ -120,14 +120,15 @@ pnpm backup:push
 
 **在編輯任何文件前：**
 
-1. **閱讀文檔**: 先閱讀 `@PROJECT_OVERVIEW.md` 和相關設計文檔（如 `@doc/SPEC.md`）
-2. **理解業務邏輯**: 確保理解該功能的業務邏輯和資料庫設計
-3. **遵循規範**: 嚴格遵守 `@doc/DEVELOPMENT_STANDARDS.md` 中的規範
-4. **編寫測試**: Domain 層函數必須先寫測試（`@tests/domain/`）
-5. **執行測試**: 執行 `pnpm test` 確保所有測試通過
-6. **執行 Lint**: 執行 `pnpm lint` 檢查代碼風格
-7. **備份**: 使用 `pnpm backup` 進行本地備份
-8. **推送**: 使用 `pnpm backup:push` 推送到 GitHub
+1. **閱讀文檔**: 先閱讀 `@doc/SPEC.md`（包含專案概覽和完整規格）和相關設計文檔
+2. **設置環境**: 參考 `@doc/ENV_CONFIG.md` 設置本地開發環境
+3. **理解業務邏輯**: 確保理解該功能的業務邏輯和資料庫設計（見 `@doc/SPEC.md`）
+4. **遵循規範**: 嚴格遵守 `@doc/DEVELOPMENT_STANDARDS.md` 中的規範
+5. **編寫測試**: Domain 層函數必須先寫測試（`@tests/domain/`）
+6. **執行測試**: 執行 `pnpm test` 確保所有測試通過
+7. **執行 Lint**: 執行 `pnpm lint` 檢查代碼風格
+8. **備份**: 使用 `pnpm backup` 進行本地備份
+9. **推送**: 使用 `pnpm backup:push` 推送到 GitHub
 
 ## 命令速查
 
@@ -160,8 +161,8 @@ pnpm deploy:production
 
 **重要文件位置：**
 
-- 專案概覽: `@PROJECT_OVERVIEW.md`
-- 專案規格: `@doc/SPEC.md`
+- 專案規格（必讀）: `@doc/SPEC.md` - 包含專案概覽、結構和完整規格
+- 開發環境設置: `@doc/ENV_CONFIG.md` - 本地環境設置和環境變數配置
 - 開發規範: `@doc/DEVELOPMENT_STANDARDS.md`
 - 模組設計: `@doc/MODULE_DESIGN.md`
 - 環境配置: `@doc/ENV_CONFIG.md`
@@ -189,7 +190,10 @@ pnpm deploy:production
 ## 故障排除
 
 ### 不確定從哪裡開始？
-**解決方案**: 閱讀 `@doc/SPEC.md` 第 15 節「建議的 Cursor 開發順序」
+**解決方案**: 
+1. 先閱讀 `@doc/SPEC.md` 第 1 節「專案總覽」了解專案概況
+2. 閱讀 `@doc/ENV_CONFIG.md` 設置本地環境
+3. 閱讀 `@doc/SPEC.md` 第 15 節「建議的 Cursor 開發順序」了解開發流程
 
 ### 不確定命名規範？
 **解決方案**: 查看 `@doc/DEVELOPMENT_STANDARDS.md` 第 2.2 節

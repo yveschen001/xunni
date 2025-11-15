@@ -1,6 +1,6 @@
 # XunNi 開發規範
 
-> **在閱讀本文檔前，請先閱讀 `@PROJECT_OVERVIEW.md` 了解專案概覽。**
+> **在閱讀本文檔前，請先閱讀 `@doc/SPEC.md`（包含專案概覽和結構）。**
 
 ## 1. 目錄結構規範
 
@@ -378,8 +378,8 @@ chore: 更新依賴版本
 
 ### 內部文檔
 
-- `@PROJECT_OVERVIEW.md` - 專案概覽（**必讀**）
-- `@doc/SPEC.md` - 專案規格書
+- `@doc/SPEC.md` - 專案規格書（**必讀**，包含專案概覽和完整規格）
+- `@doc/ENV_CONFIG.md` - 開發環境設置指南
 - `@doc/MODULE_DESIGN.md` - 模組化設計
 - `@doc/I18N_GUIDE.md` - 國際化指南
 - `@doc/TESTING.md` - 測試規範

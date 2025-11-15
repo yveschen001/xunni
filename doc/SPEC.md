@@ -1,6 +1,7 @@
-# XunNi 專案規格書
+# XunNi 專案規格書（AI 必讀）
 
-> **在閱讀本文檔前，請先閱讀 `@PROJECT_OVERVIEW.md` 了解專案概覽和結構。**
+> **這是 AI 代理在開始任何工作前必須閱讀的主要文檔。**  
+> 本文檔包含專案概覽、技術棧、專案結構、完整業務邏輯和資料庫設計。
 
 ## 1. 專案總覽
 
@@ -9,7 +10,18 @@
 - **Telegram Bot**: @xunni_bot
 - **類型**: MBTI + 星座心理測驗漂流瓶交友 Bot（匿名聊天）
 
+### 專案定義
+
+**XunNi** 是一個運行在 Cloudflare Workers 上的 Telegram Bot，提供 MBTI + 星座心理測驗漂流瓶匿名交友功能。
+
+- **類型**: Telegram Bot（匿名聊天）
+- **運行環境**: Cloudflare Workers + D1（SQLite）
+- **語言**: TypeScript (ESM)
+- **資料庫**: Cloudflare D1
+- **快取**: Cloudflare KV（可選）
+
 ### 架構目標
+
 - 運行在 **Cloudflare Workers**，搭配 **D1（SQL 資料庫）** + （可選）**KV**
 - 成本極低，可長期運營
 - 所有邏輯集中在一個 Worker 專案，透過 Telegram Webhook、HTTP API、Cron 觸發
@@ -111,37 +123,55 @@ src/
   db/
     schema.sql         -- D1 初始化腳本
     client.ts          -- DB 封裝 (users, bottles, ...)
-  domain/
-    user.ts            -- 使用者邏輯
-    usage.ts            -- 每日漂流瓶 / 對話次數
-    risk.ts             -- 風險分數 / 封禁
-    matching.ts         -- 漂流瓶匹配
-    horoscope.ts        -- 星座運勢工具
-    eligibility.ts      -- 對外資格查詢
-    public_stats.ts     -- 公開營運統計 API 聚合
-  telegram/
-    types.ts            -- Telegram Update / Callback 型別
-    handlers/
-      start.ts
-      profile.ts
-      throw.ts
-      catch.ts
-      msg_forward.ts    -- 對話消息轉發
-      report.ts
-      appeal.ts
-      vip.ts
-      help.ts
-      broadcast.ts      -- 上帝/天使
-      admin.ts          -- 管理員工具
-
-tests/
-  domain/
-    usage.test.ts
-    risk.test.ts
-    matching.test.ts
-    eligibility.test.ts
-
-wrangler.toml
+│   ├── config/                   # 配置模組（@src/config/）
+│   │   ├── env.ts                # 環境變數驗證（@src/config/env.ts）
+│   │   └── constants.ts          # 常量定義（@src/config/constants.ts）
+│   ├── db/                       # 資料庫層（@src/db/）
+│   │   ├── schema.sql            # 資料庫 Schema（@src/db/schema.sql）
+│   │   ├── migrations/           # 遷移腳本（@src/db/migrations/）
+│   │   └── client.ts             # D1 客戶端封裝（@src/db/client.ts）
+│   ├── domain/                   # 業務邏輯層（純函數，無副作用）（@src/domain/）
+│   │   ├── user.ts               # 使用者邏輯（@src/domain/user.ts）
+│   │   ├── usage.ts              # 每日漂流瓶 / 對話次數（@src/domain/usage.ts）
+│   │   ├── risk.ts               # 風險分數 / 封禁（@src/domain/risk.ts）
+│   │   ├── matching.ts           # 漂流瓶匹配（@src/domain/matching.ts）
+│   │   ├── horoscope.ts          # 星座運勢工具（@src/domain/horoscope.ts）
+│   │   ├── eligibility.ts        # 對外資格查詢（@src/domain/eligibility.ts）
+│   │   └── public_stats.ts       # 公開營運統計 API 聚合（@src/domain/public_stats.ts）
+│   ├── telegram/                 # Telegram 相關（@src/telegram/）
+│   │   ├── types.ts              # Telegram Update / Callback 型別（@src/telegram/types.ts）
+│   │   └── handlers/             # 指令處理器（@src/telegram/handlers/）
+│   │       ├── start.ts
+│   │       ├── profile.ts
+│   │       ├── throw.ts
+│   │       ├── catch.ts
+│   │       ├── msg_forward.ts    # 對話消息轉發
+│   │       ├── report.ts
+│   │       ├── appeal.ts
+│   │       ├── vip.ts
+│   │       ├── help.ts
+│   │       ├── broadcast.ts      # 上帝/天使
+│   │       └── admin.ts          # 管理員工具
+│   ├── services/                 # 外部服務整合（@src/services/）
+│   │   └── openai.ts             # OpenAI API（@src/services/openai.ts）
+│   ├── utils/                    # 通用工具（@src/utils/）
+│   │   ├── url-whitelist.ts      # URL 白名單（@src/utils/url-whitelist.ts）
+│   │   └── emoji.ts              # Emoji 處理（@src/utils/emoji.ts）
+│   └── i18n/                     # 國際化（@src/i18n/）
+│       ├── index.ts              # i18n 初始化（@src/i18n/index.ts）
+│       ├── keys.ts               # 翻譯鍵值（@src/i18n/keys.ts）
+│       └── locales/              # 語言包（@src/i18n/locales/）
+├── tests/                        # 測試目錄（@tests/）
+│   └── domain/                   # Domain 層測試（@tests/domain/）
+│       ├── usage.test.ts
+│       ├── risk.test.ts
+│       ├── matching.test.ts
+│       └── eligibility.test.ts
+├── scripts/                      # 腳本目錄（@scripts/）
+├── doc/                          # 文檔目錄（@doc/）
+├── wrangler.toml                 # Cloudflare 配置（@wrangler.toml）
+├── package.json                  # 依賴配置（@package.json）
+└── tsconfig.json                 # TypeScript 配置（@tsconfig.json）
 package.json
 ```
 
