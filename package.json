@@ -16,6 +16,7 @@
     "backup:db": "tsx scripts/backup-db.ts",
     "smoke-test": "tsx scripts/smoke-test.ts",
     "monitor": "tsx scripts/monitor-logs.ts",
+    "reset-db": "tsx scripts/reset-db.ts",
     "typecheck": "tsc --noEmit",
     "lint": "eslint src",
     "lint:fix": "eslint src --fix",
