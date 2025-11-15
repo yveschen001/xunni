@@ -4,6 +4,13 @@ compatibility_date = "2025-01-15"
 node_compat = true
 account_id = "7404fbe7880034e92c7d4a20969e42f5"
 
+# D1 Migrations
+[[d1_databases]]
+binding = "DB"
+database_name = "xunni-db-staging"
+database_id = "7b77ad82-ba26-489f-995f-8256b32379df"
+migrations_dir = "src/db/migrations"
+
 # Default environment variables (non-sensitive)
 [vars]
 ENVIRONMENT = "development"
