@@ -2,31 +2,31 @@
 
 ## 1. 文檔總覽
 
-### ✅ 已完成的文檔（25 個）
+### ✅ 已完成的文檔（23 個）
 
 1. **SPEC.md** - 專案規格書（核心）
 2. **ONBOARDING_FLOW.md** - 註冊引導流程
-4. **DEVELOPMENT_STANDARDS.md** - 開發規範
-5. **ENV_CONFIG.md** - 環境配置 ⭐ 更新（多平台環境變數）
-6. **I18N_GUIDE.md** - 國際化指南
-7. **MODULE_DESIGN.md** - 模組化設計 ⭐ 更新（account-linker, translation-policy）
-8. **ADMIN_PANEL.md** - 管理後台設計
-9. **TELEGRAM_STARS.md** - Telegram Stars 訂閱 ⭐ 更新（翻譯差異說明）
-10. **REFERENCE_CODE.md** - 參考代碼分析
-11. **TESTING.md** - 測試規範
-12. **DEPLOYMENT.md** - 部署指南
-13. **BACKUP_STRATEGY.md** - 備份策略
-14. **COMMERCIAL_CHECKLIST.md** - 商業化檢查清單 ⭐ 更新（多平台審查）
-15. **USER_STATS.md** - 使用者數據統計 ⭐ 更新（裂變 KPI、翻譯統計）
-16. **PUSH_NOTIFICATIONS.md** - 主動推送機制 ⭐ 更新（測驗分享提醒）
-17. **CHAT_HISTORY.md** - 聊天記錄功能 ⭐ 新增
-18. **ROADMAP.md** - 專案路線圖（M1/M2/M3）⭐ 新增
-19. **TRANSLATION_STRATEGY.md** - 翻譯策略設計 ⭐ 新增
-20. ~~**AI_MODERATION.md**~~ - 已廢棄，內容已整合到 SPEC.md 4.3 節
-21. ~~**DOCUMENT_REVIEW.md**~~ - 已廢棄，歷史審查報告（不再維護）
-22. **DOCUMENT_COMPLETENESS.md** - 文檔完整性檢查 ⭐ 更新
-23. **README.md** - 文檔索引 ⭐ 更新
-24. **UI_GUIDELINE.md** - UI 設計指南 ⭐ **新增**（動畫規範、Loading 狀態、配對動畫）
+3. **DEVELOPMENT_STANDARDS.md** - 開發規範
+4. **ENV_CONFIG.md** - 環境配置 ⭐ 更新（多平台環境變數）
+5. **I18N_GUIDE.md** - 國際化指南
+6. **MODULE_DESIGN.md** - 模組化設計 ⭐ 更新（account-linker, translation-policy）
+7. **ADMIN_PANEL.md** - 管理後台設計
+8. **TELEGRAM_STARS.md** - Telegram Stars 訂閱 ⭐ 更新（翻譯差異說明）
+9. **REFERENCE_CODE.md** - 參考代碼分析
+10. **TESTING.md** - 測試規範
+11. **DEPLOYMENT.md** - 部署指南
+12. **BACKUP_STRATEGY.md** - 備份策略
+13. **COMMERCIAL_CHECKLIST.md** - 商業化檢查清單 ⭐ 更新（多平台審查）
+14. **USER_STATS.md** - 使用者數據統計 ⭐ 更新（裂變 KPI、翻譯統計）
+15. **PUSH_NOTIFICATIONS.md** - 主動推送機制 ⭐ 更新（測驗分享提醒）
+16. **CHAT_HISTORY.md** - 聊天記錄功能 ⭐ 新增
+17. **ROADMAP.md** - 專案路線圖（M1/M2/M3）⭐ 新增
+18. **TRANSLATION_STRATEGY.md** - 翻譯策略設計 ⭐ 新增
+19. **DOCUMENT_COMPLETENESS.md** - 文檔完整性檢查 ⭐ 更新
+20. **DOCUMENT_CREATION_GUIDELINES.md** - 文檔創建規範 ⭐ 新增
+21. **README.md** - 文檔索引 ⭐ 更新
+22. **UI_GUIDELINE.md** - UI 設計指南 ⭐ **新增**（動畫規範、Loading 狀態、配對動畫）
+23. **BACKUP_STATUS.md** - 備份狀態記錄
 
 ---
 
