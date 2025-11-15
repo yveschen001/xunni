@@ -10,6 +10,7 @@ import { createDatabaseClient } from '~/db/client';
 import { findUserByTelegramId, createUser } from '~/db/queries/users';
 import { generateInviteCode, hasCompletedOnboarding } from '~/domain/user';
 import { createTelegramService } from '~/services/telegram';
+import { getPopularLanguageButtons } from '~/i18n/languages';
 
 // ============================================================================
 // /start Handler
@@ -100,14 +101,17 @@ async function resumeOnboarding(
   const step = user.onboarding_step;
 
   switch (step) {
-    case 'language_selection':
-      // Show language selection (this should be handled by router, but just in case)
-      await telegram.sendMessage(
+    case 'language_selection': {
+      // Show language selection with buttons
+      const { createI18n } = await import('~/i18n');
+      const i18n = createI18n('zh-TW');
+      await telegram.sendMessageWithButtons(
         chatId,
-        `🌍 請選擇你的語言 / Please select your language\n\n` +
-          `使用 /start 重新開始註冊流程。`
+        i18n.t('onboarding.welcome'),
+        getPopularLanguageButtons()
       );
       break;
+    }
 
     case 'start':
     case 'nickname':
