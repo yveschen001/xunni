@@ -202,7 +202,7 @@ async function handleAntiFraudInput(
   answer: string,
   chatId: number,
   telegram: ReturnType<typeof createTelegramService>,
-  _db: ReturnType<typeof createDatabaseClient>
+  db: ReturnType<typeof createDatabaseClient>
 ): Promise<boolean> {
   // Simple check (in production, this would be a proper quiz)
   if (answer.includes('是') || answer.toLowerCase().includes('yes')) {

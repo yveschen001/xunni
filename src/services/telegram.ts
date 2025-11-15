@@ -107,6 +107,20 @@ export class TelegramService {
   }
 
   /**
+   * Edit message text (alias for editMessage)
+   */
+  async editMessageText(
+    chatId: number | string,
+    messageId: number,
+    text: string,
+    options?: {
+      reply_markup?: unknown;
+    }
+  ): Promise<boolean> {
+    return this.editMessage(chatId, messageId, text, options);
+  }
+
+  /**
    * Answer callback query
    */
   async answerCallbackQuery(
@@ -324,6 +338,35 @@ export class TelegramService {
     } catch (error) {
       console.error('[Telegram] getFile error:', error);
       return null;
+    }
+  }
+
+  /**
+   * Delete a message
+   */
+  async deleteMessage(chatId: number, messageId: number): Promise<boolean> {
+    try {
+      const response = await fetch(`${this.baseURL}/deleteMessage`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          chat_id: chatId,
+          message_id: messageId,
+        }),
+      });
+
+      if (!response.ok) {
+        const error = await response.text();
+        console.error('[Telegram] deleteMessage failed:', error);
+        return false;
+      }
+
+      return true;
+    } catch (error) {
+      console.error('[Telegram] deleteMessage error:', error);
+      return false;
     }
   }
 }

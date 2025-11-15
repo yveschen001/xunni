@@ -11,7 +11,15 @@ import { handleThrow } from './telegram/handlers/throw';
 import { handleCatch } from './telegram/handlers/catch';
 import { handleMessageForward } from './telegram/handlers/message_forward';
 import { handleOnboardingInput } from './telegram/handlers/onboarding_input';
+import {
+  showLanguageSelection,
+  showAllLanguages,
+  handleLanguageSelection,
+} from './telegram/handlers/language_selection';
 import { createTelegramService } from './services/telegram';
+import { createDatabaseClient } from './db/client';
+import { findUserByTelegramId, createUser } from './db/queries/users';
+import { generateInviteCode } from './domain/user';
 
 // ============================================================================
 // Webhook Handler
@@ -48,12 +56,35 @@ export async function handleWebhook(request: Request, env: Env): Promise<Respons
 
 async function routeUpdate(update: TelegramUpdate, env: Env): Promise<void> {
   const telegram = createTelegramService(env);
+  const db = createDatabaseClient(env);
 
   // Handle message
   if (update.message) {
     const message = update.message;
     const text = message.text || '';
     const chatId = message.chat.id;
+    const telegramId = message.from!.id.toString();
+
+    // Check if user exists
+    const user = await findUserByTelegramId(db, telegramId);
+
+    // New user - auto-trigger welcome flow (no /start required)
+    if (!user) {
+      // Create user record
+      await createUser(db, {
+        telegram_id: telegramId,
+        username: message.from!.username,
+        first_name: message.from!.first_name,
+        last_name: message.from!.last_name,
+        language_pref: message.from!.language_code || 'zh-TW',
+        invite_code: generateInviteCode(),
+        onboarding_step: 'language_selection',
+      });
+
+      // Show language selection
+      await showLanguageSelection(message, env);
+      return;
+    }
 
     // Check if user is banned
     // TODO: Implement ban check
@@ -132,6 +163,36 @@ async function routeUpdate(update: TelegramUpdate, env: Env): Promise<void> {
     }
 
     // Route callback queries
+    // Language selection
+    if (data.startsWith('lang_')) {
+      if (data === 'lang_more') {
+        await showAllLanguages(callbackQuery, env);
+        return;
+      }
+      if (data === 'lang_back') {
+        // Show popular languages again
+        const { getPopularLanguageButtons } = await import('~/i18n/languages');
+        await telegram.editMessageText(
+          chatId,
+          callbackQuery.message!.message_id,
+          `🎉 歡迎來到 XunNi！\n` +
+            `Welcome to XunNi!\n\n` +
+            `首先，請選擇你的語言：\n` +
+            `First, please select your language:`,
+          {
+            reply_markup: {
+              inline_keyboard: getPopularLanguageButtons(),
+            },
+          }
+        );
+        await telegram.answerCallbackQuery(callbackQuery.id);
+        return;
+      }
+      const languageCode = data.replace('lang_', '');
+      await handleLanguageSelection(callbackQuery, languageCode, env);
+      return;
+    }
+
     if (data.startsWith('gender_')) {
       // TODO: Implement gender selection handler
       await telegram.answerCallbackQuery(callbackQuery.id, '性別選擇功能開發中...');

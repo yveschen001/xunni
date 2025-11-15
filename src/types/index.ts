@@ -36,6 +36,7 @@ export type Gender = 'male' | 'female';
 export type Role = 'user' | 'group_admin' | 'angel' | 'god';
 export type TrustLevel = 'new' | 'basic' | 'trusted' | 'verified';
 export type OnboardingStep =
+  | 'language_selection'
   | 'start'
   | 'nickname'
   | 'avatar'
@@ -371,6 +372,9 @@ export interface TelegramCallbackQuery {
   message?: TelegramMessage;
   data?: string;
 }
+
+// Alias for convenience
+export type CallbackQuery = TelegramCallbackQuery;
 
 export interface TelegramPreCheckoutQuery {
   id: string;

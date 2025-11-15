@@ -55,14 +55,15 @@ export async function createUser(
     language_pref?: string;
     invite_code: string;
     invited_by?: string;
+    onboarding_step?: string;
   }
 ): Promise<User> {
   const sql = `
     INSERT INTO users (
       telegram_id, username, first_name, last_name,
-      language_pref, invite_code, invited_by
+      language_pref, invite_code, invited_by, onboarding_step
     )
-    VALUES (?, ?, ?, ?, ?, ?, ?)
+    VALUES (?, ?, ?, ?, ?, ?, ?, ?)
     RETURNING *
   `;
 
@@ -74,6 +75,7 @@ export async function createUser(
     data.language_pref || 'zh-TW',
     data.invite_code,
     data.invited_by || null,
+    data.onboarding_step || 'start',
   ]);
 
   if (!result) {
@@ -99,6 +101,7 @@ export async function updateUserProfile(
     bio: string;
     interests: string;
     zodiac_sign: string;
+    language_pref: string;
   }>
 ): Promise<void> {
   const fields: string[] = [];

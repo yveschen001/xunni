@@ -71,7 +71,7 @@ async function sendWebhook(text: string, userId?: number): Promise<{ status: num
     const data = await response.text();
     return { status: response.status, data };
   } catch (error) {
-    throw new Error(`Webhook request failed: ${error}`);
+    throw new Error(`Webhook request failed: ${String(error)}`);
   }
 }
 
@@ -103,7 +103,7 @@ async function testEndpoint(
       status: 'fail',
       message: `❌ Failed: ${error instanceof Error ? error.message : String(error)}`,
       duration,
-      error,
+      error: error instanceof Error ? error : String(error),
     });
   }
 }
@@ -120,7 +120,7 @@ async function testInfrastructure() {
     if (response.status !== 200) {
       throw new Error(`Expected 200, got ${response.status}`);
     }
-    const data = await response.json();
+    const data = (await response.json()) as { status: string };
     if (data.status !== 'ok') {
       throw new Error('Health check failed');
     }
