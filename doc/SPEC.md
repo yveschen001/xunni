@@ -112,17 +112,13 @@
 - **語言**: TypeScript（ESM 模組）
 - **測試**: Vitest（或 Jest）
 
-### 2.2 專案目錄結構
+### 2.2 專案目錄結構（來源文件位置）
 
 ```
-src/
-  worker.ts            -- Cloudflare Worker 入口
-  router.ts            -- HTTP 路由 (Telegram webhook / api / cron)
-  config/
-    env.ts             -- 讀取 & 驗證環境變數
-  db/
-    schema.sql         -- D1 初始化腳本
-    client.ts          -- DB 封裝 (users, bottles, ...)
+XunNi/
+├── src/                          # 源代碼目錄（@src/）
+│   ├── worker.ts                 # Worker 入口點（@src/worker.ts）
+│   ├── router.ts                 # HTTP 路由處理器（@src/router.ts）
 │   ├── config/                   # 配置模組（@src/config/）
 │   │   ├── env.ts                # 環境變數驗證（@src/config/env.ts）
 │   │   └── constants.ts          # 常量定義（@src/config/constants.ts）
@@ -172,7 +168,6 @@ src/
 ├── wrangler.toml                 # Cloudflare 配置（@wrangler.toml）
 ├── package.json                  # 依賴配置（@package.json）
 └── tsconfig.json                 # TypeScript 配置（@tsconfig.json）
-package.json
 ```
 
 ---
