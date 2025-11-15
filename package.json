@@ -15,6 +15,7 @@
     "backup:push": "tsx scripts/backup-push.ts",
     "backup:db": "tsx scripts/backup-db.ts",
     "smoke-test": "tsx scripts/smoke-test.ts",
+    "simulate-user": "tsx scripts/simulate-real-user.ts",
     "monitor": "tsx scripts/monitor-logs.ts",
     "reset-db": "tsx scripts/reset-db.ts",
     "typecheck": "tsc --noEmit",
