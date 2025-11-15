@@ -12,12 +12,14 @@
 
 ### 1. 核心規格
 
-- **[SPEC.md](./SPEC.md)** - 專案規格書
+- **[SPEC.md](./SPEC.md)** - 專案規格書 ⭐ **主要文檔**
   - 產品總覽與核心特性
   - 技術棧與專案結構
   - 資料庫 Schema
   - 業務邏輯詳述
   - 使用流程與 Telegram 指令
+  - 興趣標籤、個人資料卡片查看功能 ⭐ 新增
+  - **注意**：`SPEC_V2.md` 已廢棄，所有內容已整合到 `SPEC.md`
 
 ### 2. 開發規範
 
@@ -114,6 +116,15 @@
   - moonini_bot 訊息轉發機制
   - 翻譯功能實作
   - 匿名聊天實現細節
+
+- **[UI_GUIDELINE.md](./UI_GUIDELINE.md)** - UI 設計指南 ⭐ **新增**
+  - 設計原則與設計系統
+  - 動畫規範（進頁面、換頁、Loading、配對動畫）
+  - 互動反饋（按鈕、表單、Toast）
+  - 性能優化最佳實踐
+  - Telegram Mini App 特定規範
+  - 組件規範與響應式設計
+  - 無障礙設計
 
 - **[COMMERCIAL_CHECKLIST.md](./COMMERCIAL_CHECKLIST.md)** - 商業化檢查清單 ⭐ **更新**
   - 法律合規檢查

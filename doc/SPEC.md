@@ -196,6 +196,11 @@ CREATE TABLE users (
   prefer_gender TEXT,     -- 想認識的性別
   trust_level INTEGER,    -- 反詐測驗結果，>=1 視為通過
 
+  -- 個人資料卡片
+  bio TEXT,               -- 個人簡介（可選，最多 200 字）
+  interests TEXT,         -- JSON array: ['音樂', '旅行', '閱讀', ...]（興趣標籤，最多 10 個）
+  city TEXT,              -- 居住城市（可選，如 '台北', 'Tokyo'）
+
   is_vip INTEGER,         -- 0/1
   vip_expire_at DATETIME,
 
@@ -807,6 +812,12 @@ CREATE INDEX idx_behavior_logs_created_at ON behavior_logs(created_at);
 - 得分 >= 3 分：通過
 - 未達標：友善提示 + 允許重新測驗
 
+#### Step 8.5：個人簡介與居住城市（可選）
+
+- **個人簡介**：輸入一段簡短的自我介紹（最多 200 字）
+- **居住城市**：選擇或輸入居住城市（可選）
+- 可跳過（非必填），後續可在 `/profile` 中編輯
+
 #### Step 9：完成註冊
 
 - 顯示完整個人資料摘要
@@ -820,12 +831,64 @@ CREATE INDEX idx_behavior_logs_created_at ON behavior_logs(created_at);
 
 ### 5.2 /profile（個人資料）
 
-顯示：暱稱、性別、年齡區間、國家、MBTI、星座、語言、邀請碼、是否 VIP、每日漂流瓶上限等。
+顯示：暱稱、頭像、性別、年齡區間、國家、居住城市、MBTI、星座、語言、興趣標籤、個人簡介、邀請碼、是否 VIP、每日漂流瓶上限等。
 
 **編輯限制**：
-- **可編輯**：暱稱、頭像、語言、國家、喜好性向
+- **可編輯**：暱稱、頭像、語言、國家、居住城市、喜好性向、興趣標籤、個人簡介
 - **不可編輯**：性別、生日（永遠不能修改，不顯示編輯按鈕）
 - **管理員特殊權限**：god 角色可修改所有欄位（需記錄操作日誌）
+
+### 5.2.1 /profile_card（查看個人資料卡片）
+
+**功能說明**：
+- 查看自己的完整個人資料卡片
+- 查看對話對象的個人資料卡片（在對話中）
+- 查看匹配對象的個人資料卡片（撿到瓶子後）
+
+**卡片顯示內容**：
+```
+┌─────────────────────────┐
+│  [頭像]                  │
+│  {nickname}              │
+│  {age_range} · {city}    │
+│  {zodiac_sign} · {mbti_type} │
+│                         │
+│  {bio}                  │
+│                         │
+│  興趣標籤：              │
+│  {interest1} {interest2} │
+│  ...                    │
+│                         │
+│  語言：{language_pref}  │
+│  國家：{country}        │
+└─────────────────────────┘
+```
+
+**使用場景**：
+1. **在對話中查看對方資料**：
+   - 在對話界面中點擊「查看資料」按鈕
+   - 顯示對話對象的個人資料卡片
+   - 不顯示真實 Telegram ID（匿名保護）
+
+2. **匹配後查看對方資料**：
+   - 撿到瓶子後，顯示「查看對方資料」按鈕
+   - 顯示瓶子主人的個人資料卡片
+   - 幫助使用者決定是否開始對話
+
+3. **查看自己的資料卡片**：
+   - 使用 `/profile_card` 指令
+   - 顯示自己的完整資料卡片
+   - 可點擊「編輯」進入編輯模式
+
+**隱私保護**：
+- 不顯示真實 Telegram ID
+- 不顯示註冊時間、風險分數等敏感資訊
+- 僅顯示公開的個人資料欄位
+
+**資料庫欄位**：
+- `users.bio`：個人簡介
+- `users.interests`：興趣標籤（JSON array）
+- `users.city`：居住城市
 
 ### 5.3 /throw（丟漂流瓶）
 
@@ -877,22 +940,26 @@ CREATE INDEX idx_behavior_logs_created_at ON behavior_logs(created_at);
 
 1. **驗證**: 對應 conversation_id 是否存在且 status='active'
 2. **檢查封鎖狀態**：確認接收者未封鎖發送者
-3. **僅允許文字 + 官方 emoji**（不使用 HTML/Markdown）:
+3. **對話界面功能**：
+   - 在對話界面中提供「查看對方資料卡片」按鈕
+   - 點擊後顯示對話對象的個人資料卡片（MBTI、星座、居住地區、語言、興趣、簡介等）
+   - 不顯示真實 Telegram ID（匿名保護）
+4. **僅允許文字 + 官方 emoji**（不使用 HTML/Markdown）:
    - 非文字 → 回覆「目前僅支援文字與官方表情符號」
-4. **本地規則檢查**（必須通過）:
+5. **本地規則檢查**（必須通過）:
    - **URL 白名單檢查**：不在白名單 → 拒絕訊息，提示安全原因，並 `addRisk(URL_BLOCKED)`
    - **敏感詞過濾**：包含敏感詞 → 拒絕訊息，累加風險分數
    - **長度檢查**：超過 1000 字 → 拒絕訊息
    - **Emoji 驗證**：僅允許官方 Emoji
-5. **AI 審核**（可選，失敗不阻擋）:
+6. **AI 審核**（可選，失敗不阻擋）:
    - 嘗試 OpenAI 內容審核（timeout: 3s）
    - 失敗時：記錄日誌，**不阻擋發言**，僅依靠本地規則
    - 成功且標記違規時：根據風險分數決定是否阻擋
    - 記錄到 ai_moderation_logs（用於人工抽查）
-6. **每對象每日訊息數**:
+7. **每對象每日訊息數**:
    - 用 `canSendConversationMessage()` 判斷是否超過 10（免費） / 100（VIP）
    - 超額則提示「今天對這位對象的發言已達上限，明天再聊」
-7. **VIP 翻譯**:
+8. **VIP 翻譯**:
    - 若對話任一方為 VIP：
      - 優先使用 **OpenAI** 翻譯
      - 失敗時自動降級到 **Google Translate**
@@ -901,11 +968,11 @@ CREATE INDEX idx_behavior_logs_created_at ON behavior_logs(created_at);
      - 僅使用 **Google Translate**
    - 翻譯失敗時：發送原文 + 提示「翻譯服務暫時有問題，請先看原文」
    - 詳細策略請參考：TRANSLATION_STRATEGY.md
-8. **儲存訊息記錄**:
+9. **儲存訊息記錄**:
    - 儲存到 conversation_messages
    - 限制每個對話對象最多保留 3650 筆訊息
    - 超過時刪除最舊的，保留最後 100 筆
-9. 使用 `recordConversationMessage()` 更新 conversation_daily_usage
+10. 使用 `recordConversationMessage()` 更新 conversation_daily_usage
 
 ### 5.6 /report（舉報）
 

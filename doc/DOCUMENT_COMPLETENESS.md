@@ -4,8 +4,8 @@
 
 ### ✅ 已完成的文檔（25 個）
 
-1. **SPEC.md** - 專案規格書（核心）
-2. **SPEC_V2.md** - 優化版規格書（純文字格式，補充新功能）⭐ 新增
+1. **SPEC.md** - 專案規格書（核心）⭐ **已整合 SPEC_V2.md 內容**
+2. ~~**SPEC_V2.md**~~ - 已廢棄，內容已整合到 SPEC.md
 3. **ONBOARDING_FLOW.md** - 註冊引導流程
 4. **DEVELOPMENT_STANDARDS.md** - 開發規範
 5. **ENV_CONFIG.md** - 環境配置 ⭐ 更新（多平台環境變數）
