@@ -99,6 +99,14 @@ async function routeUpdate(update: TelegramUpdate, env: Env): Promise<void> {
       }
     }
 
+    // Try to handle as conversation message (anonymous chat)
+    if (user.onboarding_step === 'completed') {
+      const isConversationMessage = await handleMessageForward(message, env);
+      if (isConversationMessage) {
+        return;
+      }
+    }
+
     // Route commands
     if (text.startsWith('/start')) {
       await handleStart(message, env);
@@ -276,6 +284,14 @@ async function routeUpdate(update: TelegramUpdate, env: Env): Promise<void> {
       const { handleMBTIManualSelection } = await import('./telegram/handlers/onboarding_callback');
       const mbtiType = data.replace('mbti_manual_', '');
       await handleMBTIManualSelection(callbackQuery, mbtiType, env);
+      return;
+    }
+
+    // Throw bottle target gender selection
+    if (data.startsWith('throw_target_')) {
+      const { handleThrowTargetGender } = await import('./telegram/handlers/throw');
+      const gender = data.replace('throw_target_', '') as 'male' | 'female' | 'any';
+      await handleThrowTargetGender(callbackQuery, gender, env);
       return;
     }
 

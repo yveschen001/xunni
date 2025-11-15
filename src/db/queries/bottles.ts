@@ -1,167 +1,183 @@
 /**
  * Bottle Database Queries
- * Based on @doc/MODULE_DESIGN.md
  */
 
-import type { Bottle } from '~/types';
 import type { DatabaseClient } from '../client';
-
-// ============================================================================
-// Bottle Queries
-// ============================================================================
+import type { Bottle, ThrowBottleInput } from '~/domain/bottle';
+import { calculateBottleExpiration } from '~/domain/bottle';
 
 /**
  * Create a new bottle
  */
 export async function createBottle(
   db: DatabaseClient,
-  data: {
-    owner_telegram_id: string;
-    content: string;
-    target_gender?: string;
-    target_min_age?: number;
-    target_max_age?: number;
-    target_zodiac_filter?: string; // JSON
-    target_mbti_filter?: string; // JSON
-    target_region?: string;
-    require_anti_fraud?: boolean;
-    expires_at: string;
-  }
-): Promise<Bottle> {
-  const sql = `
+  ownerId: string,
+  input: ThrowBottleInput
+): Promise<number> {
+  const expiresAt = calculateBottleExpiration();
+  
+  const result = await db.d1.prepare(`
     INSERT INTO bottles (
-      owner_telegram_id, content, target_gender,
-      target_min_age, target_max_age,
-      target_zodiac_filter, target_mbti_filter,
-      target_region, require_anti_fraud, expires_at
-    )
-    VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
-    RETURNING *
-  `;
+      owner_id,
+      content,
+      mood_tag,
+      created_at,
+      expires_at,
+      status,
+      target_gender,
+      target_age_range,
+      target_region,
+      target_zodiac_filter,
+      target_mbti_filter,
+      language
+    ) VALUES (?, ?, ?, datetime('now'), ?, 'pending', ?, ?, ?, ?, ?, ?)
+  `).bind(
+    ownerId,
+    input.content,
+    input.mood_tag || null,
+    expiresAt,
+    input.target_gender,
+    input.target_age_range || null,
+    input.target_region || null,
+    input.target_zodiac_filter ? JSON.stringify(input.target_zodiac_filter) : null,
+    input.target_mbti_filter ? JSON.stringify(input.target_mbti_filter) : null,
+    input.language || null
+  ).run();
 
-  const result = await db.queryOne<Bottle>(sql, [
-    data.owner_telegram_id,
-    data.content,
-    data.target_gender || null,
-    data.target_min_age || null,
-    data.target_max_age || null,
-    data.target_zodiac_filter || null,
-    data.target_mbti_filter || null,
-    data.target_region || null,
-    data.require_anti_fraud ? 1 : 0,
-    data.expires_at,
-  ]);
-
-  if (!result) {
-    throw new Error('Failed to create bottle');
-  }
-
-  return result;
+  return result.meta.last_row_id as number;
 }
 
 /**
- * Find pending bottles for matching
+ * Find matching bottle for user
  */
-export async function findPendingBottles(db: DatabaseClient, limit = 100): Promise<Bottle[]> {
-  const sql = `
-    SELECT * FROM bottles
-    WHERE status = 'pending'
-      AND expires_at > CURRENT_TIMESTAMP
-      AND deleted_at IS NULL
-    ORDER BY created_at ASC
-    LIMIT ?
-  `;
-
-  return db.query<Bottle>(sql, [limit]);
-}
-
-/**
- * Find bottle by ID
- */
-export async function findBottleById(db: DatabaseClient, id: number): Promise<Bottle | null> {
-  const sql = `
-    SELECT * FROM bottles
-    WHERE id = ?
+export async function findMatchingBottle(
+  db: DatabaseClient,
+  userId: string,
+  userGender: string,
+  userAge: number,
+  userZodiac: string,
+  userMbti: string
+): Promise<Bottle | null> {
+  // Find bottles that:
+  // 1. Are pending
+  // 2. Not expired
+  // 3. Not owned by user
+  // 4. Match target_gender
+  // 5. Not from blocked users
+  // 6. Not from users who blocked this user
+  // 7. Not from users who were reported by this user (within 24h)
+  
+  const result = await db.d1.prepare(`
+    SELECT b.* FROM bottles b
+    WHERE b.status = 'pending'
+      AND datetime(b.expires_at) > datetime('now')
+      AND b.owner_id != ?
+      AND (b.target_gender = ? OR b.target_gender = 'any')
+      AND NOT EXISTS (
+        SELECT 1 FROM user_blocks ub
+        WHERE (ub.blocker_id = ? AND ub.blocked_id = b.owner_id)
+           OR (ub.blocker_id = b.owner_id AND ub.blocked_id = ?)
+      )
+      AND NOT EXISTS (
+        SELECT 1 FROM reports r
+        WHERE r.reporter_id = ?
+          AND r.target_id = b.owner_id
+          AND datetime(r.created_at) > datetime('now', '-24 hours')
+      )
+    ORDER BY RANDOM()
     LIMIT 1
-  `;
+  `).bind(userId, userGender, userId, userId, userId).first();
 
-  return db.queryOne<Bottle>(sql, [id]);
+  return result as Bottle | null;
 }
 
 /**
- * Update bottle status to matched
+ * Update bottle status
  */
-export async function markBottleAsMatched(
+export async function updateBottleStatus(
   db: DatabaseClient,
   bottleId: number,
-  matchedWithTelegramId: string
+  status: 'pending' | 'matched' | 'expired' | 'deleted'
 ): Promise<void> {
-  const sql = `
+  await db.d1.prepare(`
     UPDATE bottles
-    SET status = 'matched',
-        matched_with_telegram_id = ?,
-        matched_at = CURRENT_TIMESTAMP
+    SET status = ?
     WHERE id = ?
-  `;
-
-  await db.execute(sql, [matchedWithTelegramId, bottleId]);
+  `).bind(status, bottleId).run();
 }
 
 /**
- * Mark expired bottles
+ * Get bottle by ID
  */
-export async function markExpiredBottles(db: DatabaseClient): Promise<number> {
-  const sql = `
-    UPDATE bottles
-    SET status = 'expired'
-    WHERE status = 'pending'
-      AND expires_at <= CURRENT_TIMESTAMP
-  `;
+export async function getBottleById(
+  db: DatabaseClient,
+  bottleId: number
+): Promise<Bottle | null> {
+  const result = await db.d1.prepare(`
+    SELECT * FROM bottles WHERE id = ?
+  `).bind(bottleId).first();
 
-  const result = await db.execute(sql);
-  return result.meta.changes;
+  return result as Bottle | null;
 }
 
 /**
- * Soft delete old bottles (90 days)
+ * Get user's daily throw count
  */
-export async function softDeleteOldBottles(db: DatabaseClient, daysAgo = 90): Promise<number> {
-  const sql = `
-    UPDATE bottles
-    SET deleted_at = CURRENT_TIMESTAMP
-    WHERE created_at < datetime('now', '-${daysAgo} days')
-      AND deleted_at IS NULL
-  `;
+export async function getDailyThrowCount(
+  db: DatabaseClient,
+  userId: string
+): Promise<number> {
+  const result = await db.d1.prepare(`
+    SELECT throws_count FROM daily_usage
+    WHERE user_id = ?
+      AND date = date('now')
+  `).bind(userId).first();
 
-  const result = await db.execute(sql);
-  return result.meta.changes;
+  return (result?.throws_count as number) || 0;
 }
 
 /**
- * Get total bottle count
+ * Get user's daily catch count
  */
-export async function getTotalBottleCount(db: DatabaseClient): Promise<number> {
-  const sql = `
-    SELECT COUNT(*) as count
-    FROM bottles
-    WHERE deleted_at IS NULL
-  `;
+export async function getDailyCatchCount(
+  db: DatabaseClient,
+  userId: string
+): Promise<number> {
+  const result = await db.d1.prepare(`
+    SELECT catches_count FROM daily_usage
+    WHERE user_id = ?
+      AND date = date('now')
+  `).bind(userId).first();
 
-  const result = await db.queryOne<{ count: number }>(sql);
-  return result?.count || 0;
+  return (result?.catches_count as number) || 0;
 }
 
 /**
- * Get new bottles count (yesterday)
+ * Increment daily throw count
  */
-export async function getNewBottlesCount(db: DatabaseClient, date: string): Promise<number> {
-  const sql = `
-    SELECT COUNT(*) as count
-    FROM bottles
-    WHERE DATE(created_at) = ?
-  `;
-
-  const result = await db.queryOne<{ count: number }>(sql, [date]);
-  return result?.count || 0;
+export async function incrementDailyThrowCount(
+  db: DatabaseClient,
+  userId: string
+): Promise<void> {
+  await db.d1.prepare(`
+    INSERT INTO daily_usage (user_id, date, throws_count, catches_count)
+    VALUES (?, date('now'), 1, 0)
+    ON CONFLICT(user_id, date) DO UPDATE SET
+      throws_count = throws_count + 1
+  `).bind(userId).run();
 }
 
+/**
+ * Increment daily catch count
+ */
+export async function incrementDailyCatchCount(
+  db: DatabaseClient,
+  userId: string
+): Promise<void> {
+  await db.d1.prepare(`
+    INSERT INTO daily_usage (user_id, date, throws_count, catches_count)
+    VALUES (?, date('now'), 0, 1)
+    ON CONFLICT(user_id, date) DO UPDATE SET
+      catches_count = catches_count + 1
+  `).bind(userId).run();
+}

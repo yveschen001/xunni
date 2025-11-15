@@ -1,27 +1,30 @@
 /**
- * /catch Handler
- * Based on @doc/SPEC.md
- *
- * Handles catching bottles (matching with pending bottles).
+ * Catch Bottle Handler
+ * 
+ * Handles /catch command - catch a random bottle.
  */
 
-import type { Env, TelegramMessage, User, Bottle } from '~/types';
+import type { Env, TelegramMessage, User } from '~/types';
 import { createDatabaseClient } from '~/db/client';
-import { findUserByTelegramId } from '~/db/queries/users';
-import { findPendingBottles, markBottleAsMatched } from '~/db/queries/bottles';
-import { createConversation } from '~/db/queries/conversations';
-import { hasBlocked, isBlockedBy } from '~/db/queries/user_blocks';
-import { hasReported } from '~/db/queries/reports';
-import { hasChatHistory } from '~/db/queries/conversations';
-import { incrementCatchesCount } from '~/db/queries/daily_usage';
-import { canUseBottleFeatures } from '~/domain/user';
-import { getTodayDate } from '~/domain/usage';
-import { rankBottlesForUser, selectBestBottle, checkMatchExclusion } from '~/domain/match';
 import { createTelegramService } from '~/services/telegram';
-
-// ============================================================================
-// /catch Handler
-// ============================================================================
+import { findUserByTelegramId } from '~/db/queries/users';
+import {
+  findMatchingBottle,
+  getDailyCatchCount,
+  incrementDailyCatchCount,
+  updateBottleStatus,
+  getBottleById,
+} from '~/db/queries/bottles';
+import {
+  createConversation,
+  createBottleChatHistory,
+} from '~/db/queries/conversations';
+import {
+  canCatchBottle,
+  getBottleQuota,
+} from '~/domain/bottle';
+import { createI18n } from '~/i18n';
+import { calculateAge, calculateZodiacSign } from '~/domain/user';
 
 export async function handleCatch(message: TelegramMessage, env: Env): Promise<void> {
   const db = createDatabaseClient(env);
@@ -33,144 +36,154 @@ export async function handleCatch(message: TelegramMessage, env: Env): Promise<v
     // Get user
     const user = await findUserByTelegramId(db, telegramId);
     if (!user) {
-      await telegram.sendMessage(chatId, '❌ 請先使用 /start 註冊');
+      await telegram.sendMessage(chatId, '❌ 用戶不存在，請先使用 /start 註冊。');
       return;
     }
 
-    // Check if user can use bottle features
-    if (!canUseBottleFeatures(user)) {
-      if (user.is_banned) {
-        await telegram.sendMessage(
-          chatId,
-          '🚫 你的帳號已被封禁，無法使用此功能。\n\n' + '如有疑問，請使用 /appeal 申訴。'
-        );
-        return;
-      }
+    const i18n = createI18n(user.language_pref || 'zh-TW');
 
+    // Check if user completed onboarding
+    if (user.onboarding_step !== 'completed') {
       await telegram.sendMessage(
         chatId,
-        '❌ 請先完成註冊流程。\n\n' + '使用 /start 繼續完成註冊。'
+        '❌ 請先完成註冊流程才能撿漂流瓶。\n\n使用 /start 繼續註冊。'
       );
       return;
     }
 
+    // Check if user is banned
+    if (user.is_banned) {
+      await telegram.sendMessage(
+        chatId,
+        '❌ 你的帳號已被封禁，無法撿漂流瓶。\n\n如有疑問，請使用 /appeal 申訴。'
+      );
+      return;
+    }
+
+    // Check daily quota
+    const catchesToday = await getDailyCatchCount(db, telegramId);
+    const inviteBonus = 0; // TODO: Calculate from invites table
+    const isVip = !!(user.is_vip && user.vip_expire_at && new Date(user.vip_expire_at) > new Date());
+    
+    if (!canCatchBottle(catchesToday, isVip, inviteBonus)) {
+      const { quota } = getBottleQuota(isVip, inviteBonus);
+      await telegram.sendMessage(
+        chatId,
+        `❌ 今日漂流瓶配額已用完（${catchesToday}/${quota}）\n\n` +
+          `💡 升級 VIP 可獲得更多配額：/vip`
+      );
+      return;
+    }
+
+    // Calculate user info for matching
+    const userAge = user.birthday ? calculateAge(user.birthday) : 0;
+    const userZodiac = user.zodiac_sign || '';
+    const userMbti = user.mbti_result || '';
+
     // Find matching bottle
-    await telegram.sendMessage(chatId, '🔍 正在尋找適合你的漂流瓶...');
+    const bottle = await findMatchingBottle(
+      db,
+      telegramId,
+      user.gender || 'any',
+      userAge,
+      userZodiac,
+      userMbti
+    );
 
-    const matchedBottle = await findMatchingBottle(user, db);
-
-    if (!matchedBottle) {
+    if (!bottle) {
       await telegram.sendMessage(
         chatId,
         '😔 目前沒有適合你的漂流瓶\n\n' +
-          `💡 提示：\n` +
-          `• 稍後再試，可能會有新的瓶子\n` +
-          `• 或者你可以先丟出自己的瓶子：/throw`
+          '💡 提示：\n' +
+          '• 稍後再試\n' +
+          '• 或者自己丟一個瓶子：/throw'
       );
       return;
     }
 
     // Create conversation
-    const conversation = await createConversation(db, {
-      user_a_telegram_id: matchedBottle.owner_telegram_id,
-      user_b_telegram_id: telegramId,
-      bottle_id: matchedBottle.id,
-    });
+    const conversationId = await createConversation(
+      db,
+      bottle.id,
+      bottle.owner_id,
+      telegramId
+    );
 
-    // Mark bottle as matched
-    await markBottleAsMatched(db, matchedBottle.id, telegramId);
+    if (!conversationId) {
+      await telegram.sendMessage(chatId, '❌ 建立對話失敗，請稍後再試。');
+      return;
+    }
 
-    // Increment usage count
-    const today = getTodayDate();
-    await incrementCatchesCount(db, telegramId, today);
+    // Create bottle chat history
+    await createBottleChatHistory(
+      db,
+      bottle.id,
+      conversationId,
+      bottle.owner_id,
+      telegramId,
+      bottle.content
+    );
 
-    // Send message to catcher
-    await telegram.sendMessageWithButtons(
+    // Update bottle status
+    await updateBottleStatus(db, bottle.id, 'matched');
+
+    // Increment daily count
+    await incrementDailyCatchCount(db, telegramId);
+
+    // Get updated quota info
+    const newCatchesCount = catchesToday + 1;
+    const { quota } = getBottleQuota(!!isVip, inviteBonus);
+
+    // Send bottle content to catcher
+    await telegram.sendMessage(
       chatId,
-      `🎉 你撿到了一個漂流瓶！\n\n` +
-        `瓶子內容：\n「${matchedBottle.content}」\n\n` +
-        `💬 現在你可以開始和對方聊天了！\n` +
-        `• 直接發送訊息即可\n` +
-        `• 對話完全匿名\n` +
-        `• 使用 /block 可以結束對話\n` +
-        `• 使用 /report 可以舉報不當內容`,
-      [
-        [{ text: '👤 查看對方資料卡片', callback_data: `profile_card_${conversation.id}` }],
-        [
-          { text: '🚫 封鎖', callback_data: `block_${conversation.id}` },
-          { text: '🚨 舉報', callback_data: `report_${conversation.id}` },
-        ],
-      ]
+      `🍾 你撿到了一個漂流瓶！\n\n` +
+        `━━━━━━━━━━━━━━━━\n` +
+        `${bottle.content}\n` +
+        `━━━━━━━━━━━━━━━━\n\n` +
+        `💬 你可以直接回覆訊息開始聊天\n` +
+        `📊 今日已撿：${newCatchesCount}/${quota}\n\n` +
+        `⚠️ 安全提示：\n` +
+        `• 這是匿名對話，請保護個人隱私\n` +
+        `• 遇到不當內容請使用 /report 舉報\n` +
+        `• 不想再聊可使用 /block 封鎖`
     );
 
-    // Notify bottle owner
-    await telegram.sendMessageWithButtons(
-      parseInt(matchedBottle.owner_telegram_id),
-      `🎉 有人撿到你的漂流瓶了！\n\n` +
-        `瓶子內容：\n「${matchedBottle.content.substring(0, 50)}${matchedBottle.content.length > 50 ? '...' : ''}」\n\n` +
-        `💬 已為你們建立匿名對話，快來開始聊天吧～`,
-      [
-        [{ text: '👤 查看對方資料卡片', callback_data: `profile_card_${conversation.id}` }],
-        [
-          { text: '🚫 封鎖', callback_data: `block_${conversation.id}` },
-          { text: '🚨 舉報', callback_data: `report_${conversation.id}` },
-        ],
-      ]
-    );
+    // Send notification to bottle owner
+    await notifyBottleOwner(bottle.owner_id, env);
   } catch (error) {
     console.error('[handleCatch] Error:', error);
     await telegram.sendMessage(chatId, '❌ 發生錯誤，請稍後再試。');
   }
 }
 
-// ============================================================================
-// Find Matching Bottle
-// ============================================================================
+/**
+ * Notify bottle owner that someone caught their bottle
+ */
+async function notifyBottleOwner(ownerId: string, env: Env): Promise<void> {
+  const db = createDatabaseClient(env);
+  const telegram = createTelegramService(env);
 
-async function findMatchingBottle(
-  user: User,
-  db: ReturnType<typeof createDatabaseClient>
-): Promise<Bottle | null> {
-  // Get pending bottles
-  const pendingBottles = await findPendingBottles(db, 100);
-
-  if (pendingBottles.length === 0) {
-    return null;
-  }
-
-  // Filter bottles with exclusion rules
-  const eligibleBottles: Bottle[] = [];
-
-  for (const bottle of pendingBottles) {
-    const ownerTelegramId = bottle.owner_telegram_id;
-
-    // Check exclusion rules
-    const exclusion = await checkMatchExclusion(
-      user,
-      bottle,
-      {
-        isBottleOwner: user.telegram_id === ownerTelegramId,
-        hasBlockedOwner: await hasBlocked(db, user.telegram_id, ownerTelegramId),
-        isBlockedByOwner: await isBlockedBy(db, user.telegram_id, ownerTelegramId),
-        hasReportedOwner: await hasReported(db, user.telegram_id, ownerTelegramId, 24),
-        isReportedByOwner: await hasReported(db, ownerTelegramId, user.telegram_id, 24),
-        hasChatHistoryWithOwner: await hasChatHistory(db, user.telegram_id, ownerTelegramId),
-      }
-    );
-
-    if (!exclusion.shouldExclude) {
-      eligibleBottles.push(bottle);
+  try {
+    // Get owner info
+    const owner = await findUserByTelegramId(db, ownerId);
+    if (!owner) {
+      return;
     }
+
+    const i18n = createI18n(owner.language_pref || 'zh-TW');
+
+    // TODO: Check push preferences
+
+    // Send notification
+    await telegram.sendMessage(
+      parseInt(ownerId),
+      '🎉 有人撿到你的漂流瓶了！\n\n' +
+        '已為你們建立了匿名對話，快來開始聊天吧～\n\n' +
+        '💬 直接回覆訊息即可開始對話'
+    );
+  } catch (error) {
+    console.error('[notifyBottleOwner] Error:', error);
+    // Don't throw - notification failure shouldn't break the main flow
   }
-
-  if (eligibleBottles.length === 0) {
-    return null;
-  }
-
-  // Rank bottles by match score
-  const rankedBottles = rankBottlesForUser(user, eligibleBottles);
-
-  // Select best bottle
-  return selectBestBottle(rankedBottles);
 }
-

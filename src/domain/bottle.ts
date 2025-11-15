@@ -1,256 +1,115 @@
 /**
  * Bottle Domain Logic
- * Based on @doc/SPEC.md and @doc/MODULE_DESIGN.md
- *
- * Manages bottle creation, matching, and expiration logic.
+ * 
+ * Pure functions for bottle business logic.
  */
 
-import type { Bottle, User, MatchCriteria } from '~/types';
-import { isVIP } from './user';
+export interface Bottle {
+  id: number;
+  owner_id: string;
+  content: string;
+  mood_tag?: string;
+  created_at: string;
+  expires_at: string;
+  status: 'pending' | 'matched' | 'expired' | 'deleted';
+  target_gender: 'male' | 'female' | 'any';
+  target_age_range?: string;
+  target_region?: string;
+  target_zodiac_filter?: string; // JSON array
+  target_mbti_filter?: string;   // JSON array
+  language?: string;
+}
 
-// ============================================================================
-// Constants
-// ============================================================================
-
-export const MAX_BOTTLE_CONTENT_LENGTH = 500;
-export const BOTTLE_EXPIRATION_HOURS = 24;
-
-// ============================================================================
-// Bottle Creation Validation
-// ============================================================================
+export interface ThrowBottleInput {
+  content: string;
+  mood_tag?: string;
+  target_gender: 'male' | 'female' | 'any';
+  target_age_range?: string;
+  target_region?: string;
+  target_zodiac_filter?: string[];
+  target_mbti_filter?: string[];
+  language?: string;
+}
 
 /**
  * Validate bottle content
  */
-export function validateBottleContent(content: string): { valid: boolean; error?: string } {
+export function validateBottleContent(content: string): {
+  valid: boolean;
+  error?: string;
+} {
   if (!content || content.trim().length === 0) {
     return { valid: false, error: 'Bottle content cannot be empty' };
   }
 
-  if (content.length > MAX_BOTTLE_CONTENT_LENGTH) {
-    return {
-      valid: false,
-      error: `Content too long (max ${MAX_BOTTLE_CONTENT_LENGTH} characters)`,
-    };
+  if (content.length > 500) {
+    return { valid: false, error: 'Bottle content too long (max 500 characters)' };
   }
 
   return { valid: true };
 }
 
 /**
- * Check if user can set advanced filters (VIP only)
+ * Check if bottle has expired
  */
-export function canSetAdvancedFilters(user: User): boolean {
-  return isVIP(user);
+export function isBottleExpired(bottle: Bottle): boolean {
+  const now = new Date();
+  const expiresAt = new Date(bottle.expires_at);
+  return now > expiresAt;
 }
 
 /**
- * Validate bottle matching criteria
- */
-export function validateMatchCriteria(
-  user: User,
-  criteria: Partial<MatchCriteria>
-): { valid: boolean; error?: string } {
-  // Free users can only set target gender
-  if (!isVIP(user)) {
-    if (criteria.zodiac_signs || criteria.mbti_types || criteria.min_age || criteria.max_age) {
-      return {
-        valid: false,
-        error: 'Advanced filters (zodiac, MBTI, age) are only available for VIP users',
-      };
-    }
-  }
-
-  // Validate age range
-  if (criteria.min_age !== undefined && criteria.max_age !== undefined) {
-    if (criteria.min_age > criteria.max_age) {
-      return { valid: false, error: 'Minimum age cannot be greater than maximum age' };
-    }
-
-    if (criteria.min_age < 18) {
-      return { valid: false, error: 'Minimum age must be at least 18' };
-    }
-
-    if (criteria.max_age > 120) {
-      return { valid: false, error: 'Maximum age cannot exceed 120' };
-    }
-  }
-
-  return { valid: true };
-}
-
-// ============================================================================
-// Bottle Expiration
-// ============================================================================
-
-/**
- * Calculate bottle expiration time
+ * Calculate bottle expiration time (24 hours from now)
  */
 export function calculateBottleExpiration(): string {
   const now = new Date();
-  now.setHours(now.getHours() + BOTTLE_EXPIRATION_HOURS);
-  return now.toISOString();
+  const expiresAt = new Date(now.getTime() + 24 * 60 * 60 * 1000); // +24 hours
+  return expiresAt.toISOString();
 }
 
 /**
- * Check if bottle is expired
+ * Check if user can throw bottle (quota check)
  */
-export function isBottleExpired(bottle: Bottle): boolean {
-  if (!bottle.expires_at) {
-    return false;
-  }
-
-  const now = new Date();
-  const expiresAt = new Date(bottle.expires_at);
-
-  return now >= expiresAt;
+export function canThrowBottle(
+  throwsToday: number,
+  isVip: boolean,
+  inviteBonus: number
+): boolean {
+  const baseQuota = isVip ? 30 : 3;
+  const maxQuota = isVip ? 100 : 10;
+  const quota = Math.min(baseQuota + inviteBonus, maxQuota);
+  
+  return throwsToday < quota;
 }
 
 /**
- * Check if bottle is still available for matching
+ * Check if user can catch bottle (quota check)
  */
-export function isBottleAvailable(bottle: Bottle): boolean {
-  return bottle.status === 'pending' && !isBottleExpired(bottle);
-}
-
-// ============================================================================
-// Bottle Matching Logic
-// ============================================================================
-
-/**
- * Check if a user matches bottle criteria
- */
-export function doesUserMatchBottle(user: User, bottle: Bottle): boolean {
-  // Check gender match
-  if (bottle.target_gender && user.gender !== bottle.target_gender) {
-    return false;
-  }
-
-  // Check age range
-  if (user.age !== undefined) {
-    if (bottle.target_min_age !== undefined && user.age < bottle.target_min_age) {
-      return false;
-    }
-
-    if (bottle.target_max_age !== undefined && user.age > bottle.target_max_age) {
-      return false;
-    }
-  }
-
-  // Check zodiac filter
-  if (bottle.target_zodiac_filter) {
-    try {
-      const zodiacFilter = JSON.parse(bottle.target_zodiac_filter);
-      if (Array.isArray(zodiacFilter) && zodiacFilter.length > 0) {
-        if (!user.zodiac_sign || !zodiacFilter.includes(user.zodiac_sign)) {
-          return false;
-        }
-      }
-    } catch (e) {
-      // Invalid JSON, ignore filter
-    }
-  }
-
-  // Check MBTI filter
-  if (bottle.target_mbti_filter) {
-    try {
-      const mbtiFilter = JSON.parse(bottle.target_mbti_filter);
-      if (Array.isArray(mbtiFilter) && mbtiFilter.length > 0) {
-        if (!user.mbti_result || !mbtiFilter.includes(user.mbti_result)) {
-          return false;
-        }
-      }
-    } catch (e) {
-      // Invalid JSON, ignore filter
-    }
-  }
-
-  // Check anti-fraud requirement
-  if (bottle.require_anti_fraud && (!user.anti_fraud_completed_at || user.anti_fraud_score < 60)) {
-    return false;
-  }
-
-  return true;
+export function canCatchBottle(
+  catchesToday: number,
+  isVip: boolean,
+  inviteBonus: number
+): boolean {
+  const baseQuota = isVip ? 30 : 3;
+  const maxQuota = isVip ? 100 : 10;
+  const quota = Math.min(baseQuota + inviteBonus, maxQuota);
+  
+  return catchesToday < quota;
 }
 
 /**
- * Calculate match score between user and bottle
- * Higher score = better match
+ * Get bottle quota info
  */
-export function calculateMatchScore(user: User, bottle: Bottle): number {
-  let score = 0;
-
-  // Base score
-  score += 10;
-
-  // Gender match (high priority)
-  if (bottle.target_gender && user.gender === bottle.target_gender) {
-    score += 20;
-  }
-
-  // Age match (medium priority)
-  if (user.age !== undefined) {
-    if (bottle.target_min_age !== undefined && bottle.target_max_age !== undefined) {
-      const midAge = (bottle.target_min_age + bottle.target_max_age) / 2;
-      const ageDiff = Math.abs(user.age - midAge);
-      score += Math.max(0, 15 - ageDiff); // Closer to mid-age = higher score
-    }
-  }
-
-  // Zodiac match (low priority)
-  if (bottle.target_zodiac_filter && user.zodiac_sign) {
-    try {
-      const zodiacFilter = JSON.parse(bottle.target_zodiac_filter);
-      if (Array.isArray(zodiacFilter) && zodiacFilter.includes(user.zodiac_sign)) {
-        score += 10;
-      }
-    } catch (e) {
-      // Invalid JSON, ignore
-    }
-  }
-
-  // MBTI match (low priority)
-  if (bottle.target_mbti_filter && user.mbti_result) {
-    try {
-      const mbtiFilter = JSON.parse(bottle.target_mbti_filter);
-      if (Array.isArray(mbtiFilter) && mbtiFilter.includes(user.mbti_result)) {
-        score += 10;
-      }
-    } catch (e) {
-      // Invalid JSON, ignore
-    }
-  }
-
-  // Anti-fraud bonus
-  if (user.anti_fraud_score >= 80) {
-    score += 5;
-  }
-
-  // Trust level bonus
-  if (user.trust_level === 'verified') {
-    score += 5;
-  } else if (user.trust_level === 'trusted') {
-    score += 3;
-  }
-
-  return score;
+export function getBottleQuota(
+  isVip: boolean,
+  inviteBonus: number
+): {
+  quota: number;
+  maxQuota: number;
+} {
+  const baseQuota = isVip ? 30 : 3;
+  const maxQuota = isVip ? 100 : 10;
+  const quota = Math.min(baseQuota + inviteBonus, maxQuota);
+  
+  return { quota, maxQuota };
 }
-
-// ============================================================================
-// Bottle Status
-// ============================================================================
-
-/**
- * Check if bottle can be matched
- */
-export function canMatchBottle(bottle: Bottle): boolean {
-  return bottle.status === 'pending' && !isBottleExpired(bottle);
-}
-
-/**
- * Check if bottle should be auto-expired
- */
-export function shouldAutoExpireBottle(bottle: Bottle): boolean {
-  return bottle.status === 'pending' && isBottleExpired(bottle);
-}
-
