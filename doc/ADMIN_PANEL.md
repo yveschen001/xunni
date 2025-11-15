@@ -9,7 +9,8 @@
 **架構原則**：
 
 - **沿用 Cloudflare Workers + D1 Database 設定**：所有管理指令實作成 Worker 端的 webhook handler
-- **根據角色權限路由**：根據使用者角色（admin / angel / god）路由到不同的 domain service
+- **根據角色權限路由**：根據使用者角色（user / group_admin / angel / god）路由到不同的 domain service
+- **指令可見性控制**：一般使用者（user）在 `/help` 中看不到任何管理指令
 - **Domain Service 層**：設計 `stats`, `users`, `vip`, `ban`, `broadcast`, `appeal` 等 domain service，負責業務邏輯
 - **Handler 層**：Bot 指令只負責調用 domain service 並格式化 Telegram 訊息回應
 - **功能開關**：使用 `feature_flags` 表維護前端顯示開關，Worker 處理 Mini App 輸出時查詢旗標決定 UI 顯示
@@ -54,16 +55,40 @@
 
 ### 1.2 角色權限
 
-| 功能 | user | admin | angel | god |
-|------|------|-------|-------|-----|
-| 查看運營數據 | ❌ | ✅ | ✅ | ✅ |
-| 手動封禁/解封 | ❌ | ✅ | ✅ | ✅ |
+**角色定義**：
+- **user**（一般使用者）：預設角色，所有新註冊使用者
+- **group_admin**（群組管理員）：預留角色，用於未來支援 Telegram 群組功能（當前 M1 階段不使用）
+- **angel**（平台管理員）：平台運營管理員，可執行大部分管理操作
+- **god**（平台所有者）：最高權限，擁有所有管理權限
+
+**權限對照表**：
+
+| 功能 | user | group_admin | angel | god |
+|------|------|-------------|-------|-----|
+| **一般功能** |
+| 丟瓶/撿瓶 | ✅ | ✅ | ✅ | ✅ |
+| 查看個人資料 | ✅ | ✅ | ✅ | ✅ |
+| VIP 購買 | ✅ | ✅ | ✅ | ✅ |
+| 舉報/封鎖 | ✅ | ✅ | ✅ | ✅ |
+| **管理功能** |
+| 查看運營數據 | ❌ | ❌ | ✅ | ✅ |
+| 手動封禁/解封 | ❌ | ❌ | ✅ | ✅ |
 | 手動升級 VIP | ❌ | ❌ | ✅ | ✅ |
-| 群發訊息 | ❌ | ❌ | ✅ | ✅ |
-| 查看申訴 | ❌ | ✅ | ✅ | ✅ |
-| 審核申訴 | ❌ | ✅ | ✅ | ✅ |
-| 查看所有使用者 | ❌ | ❌ | ❌ | ✅ |
+| 群發訊息（需篩選） | ❌ | ❌ | ✅ | ✅ |
 | 無條件群發 | ❌ | ❌ | ❌ | ✅ |
+| 查看申訴 | ❌ | ❌ | ✅ | ✅ |
+| 審核申訴 | ❌ | ❌ | ✅ | ✅ |
+| 查看所有使用者 | ❌ | ❌ | ❌ | ✅ |
+| **指令可見性** |
+| 一般指令（/start, /throw 等） | ✅ | ✅ | ✅ | ✅ |
+| 管理指令（/admin*） | ❌ | ❌ | ✅ | ✅ |
+| 群發指令（/broadcast） | ❌ | ❌ | ✅ | ✅ |
+
+**重要原則**：
+- **一般使用者（user）**：在 `/help` 指令中**絕對看不到**任何管理指令
+- **平台管理員（angel）**：可以看到管理指令，但某些高權限功能受限
+- **平台所有者（god）**：可以看到所有指令，擁有最高權限
+- **群組管理員（group_admin）**：預留角色，當前不使用，未來可能用於群組管理功能
 
 ---
 
@@ -343,7 +368,7 @@ export async function getAdminStats(
 ```
 
 **權限檢查**：
-- 需要 `admin` / `angel` / `god` 角色
+- 需要 `angel` / `god` 角色（`user` 和 `group_admin` 無權限）
 
 ### 3.2 admin/users.ts - 使用者管理
 
@@ -376,8 +401,8 @@ export async function getUserDetails(
 ```
 
 **權限檢查**：
-- 搜尋：需要 `admin` / `angel` / `god` 角色
-- 查看詳情：需要 `admin` / `angel` / `god` 角色
+- 搜尋：需要 `angel` / `god` 角色（`user` 和 `group_admin` 無權限）
+- 查看詳情：需要 `angel` / `god` 角色（`user` 和 `group_admin` 無權限）
 - 查看所有使用者：僅 `god` 角色
 
 ### 3.3 admin/ban.ts - 封禁管理
@@ -422,8 +447,8 @@ export async function getBanList(
 ```
 
 **權限檢查**：
-- 封禁/解封：需要 `admin` / `angel` / `god` 角色
-- 查詢封禁列表：需要 `admin` / `angel` / `god` 角色
+- 封禁/解封：需要 `angel` / `god` 角色（`user` 和 `group_admin` 無權限）
+- 查詢封禁列表：需要 `angel` / `god` 角色（`user` 和 `group_admin` 無權限）
 
 ### 3.4 admin/vip.ts - VIP 管理
 
@@ -466,8 +491,8 @@ export async function getVipList(
 ```
 
 **權限檢查**：
-- 升級/取消 VIP：僅 `angel` / `god` 角色
-- 查詢 VIP 列表：需要 `admin` / `angel` / `god` 角色
+- 升級/取消 VIP：僅 `angel` / `god` 角色（`user` 和 `group_admin` 無權限）
+- 查詢 VIP 列表：需要 `angel` / `god` 角色（`user` 和 `group_admin` 無權限）
 
 ### 3.5 admin/broadcast.ts - 廣播管理
 
@@ -515,9 +540,9 @@ export async function cancelBroadcast(
 ```
 
 **權限檢查**：
-- 創建廣播：僅 `angel` / `god` 角色
+- 創建廣播：僅 `angel` / `god` 角色（`user` 和 `group_admin` 無權限）
 - 無條件廣播：僅 `god` 角色
-- 查詢/取消廣播：需要 `admin` / `angel` / `god` 角色
+- 查詢/取消廣播：需要 `angel` / `god` 角色（`user` 和 `group_admin` 無權限）
 
 **跨平台支援**：
 - 透過 `NotificationAdapter` 抽象層，確保廣播在不同平台（Telegram / WeChat / Line / Mobile）都能一致生效
@@ -565,7 +590,7 @@ export async function rejectAppeal(
 ```
 
 **權限檢查**：
-- 查詢/審核申訴：需要 `admin` / `angel` / `god` 角色
+- 查詢/審核申訴：需要 `angel` / `god` 角色（`user` 和 `group_admin` 無權限）
 
 ## 4. Handler 實作範例
 
@@ -658,7 +683,7 @@ export async function banUser(
     SELECT role FROM users WHERE telegram_id = ?
   `).bind(adminId).first<{ role: string }>();
   
-  if (!admin || !['admin', 'angel', 'god'].includes(admin.role)) {
+  if (!admin || !['angel', 'god'].includes(admin.role)) {
     return {
       success: false,
       message: '無權限執行此操作',
@@ -804,7 +829,7 @@ export async function handleAdminBan(
 ): Promise<string> {
   // 檢查權限
   const admin = await db.getUser(adminId);
-  if (!admin || !['admin', 'angel', 'god'].includes(admin.role)) {
+  if (!admin || !['angel', 'god'].includes(admin.role)) {
     return '❌ 無權限執行此操作';
   }
   

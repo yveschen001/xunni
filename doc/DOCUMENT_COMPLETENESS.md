@@ -147,7 +147,10 @@
 ### 4.1 使用者指令 ✅
 
 - [x] /start - 註冊引導（10 步）
+- [x] /rules - 遊戲規則說明 ⭐ 新增
+- [x] /help - 指令幫助 ⭐ 更新（完整指令列表）
 - [x] /profile - 個人資料
+- [x] /profile_card - 查看個人資料卡片 ⭐ 新增
 - [x] /throw - 丟漂流瓶
 - [x] /catch - 撿漂流瓶
 - [x] /stats - 我的統計 ⭐ 新增
@@ -158,7 +161,8 @@
 - [x] /report - 舉報
 - [x] /appeal - 申訴
 - [x] /vip - VIP 購買
-- [x] /help - 幫助
+- [x] /block - 封鎖功能 ⭐ 新增
+- [x] /delete_me - 刪除帳號 ⭐ 新增
 
 ### 4.2 管理員指令 ✅
 

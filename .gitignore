@@ -1,34 +1,17 @@
 # Dependencies
 node_modules/
-package-lock.json
-yarn.lock
-pnpm-lock.yaml
+.pnpm-store/
 
 # Build outputs
 dist/
-build/
 .wrangler/
-.output/
+.mf/
 
 # Environment variables
+.dev.vars
 .env
 .env.local
 .env.*.local
-.dev.vars
-*.env
-
-# Logs
-*.log
-logs/
-npm-debug.log*
-yarn-debug.log*
-yarn-error.log*
-pnpm-debug.log*
-
-# Testing
-coverage/
-.nyc_output/
-*.test.js.map
 
 # IDE
 .vscode/
@@ -36,28 +19,40 @@ coverage/
 *.swp
 *.swo
 *~
-.DS_Store
 
 # OS
 .DS_Store
 Thumbs.db
 
-# Backups
-backups/
-*.sql.gz
-*.backup
+# Logs
+*.log
+npm-debug.log*
+pnpm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Testing
+coverage/
+.nyc_output/
 
 # Temporary files
-tmp/
-temp/
 *.tmp
+.cache/
 
-# Cloudflare
-.wrangler/
-.dev.vars
+# Backup files
+*.backup
+*.bak
 
-# Secrets (never commit)
-secrets/
-*.key
+# Database files (local development)
+*.db
+*.sqlite
+*.sqlite3
+
+# Secrets (should never be committed)
 *.pem
+*.key
+*.cert
+secrets/
 
+# TypeScript
+*.tsbuildinfo

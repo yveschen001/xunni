@@ -67,7 +67,7 @@
 - 對外 HTTP API：
   - `/api/eligibility`：給 Moonpacket 紅包系統查資格
   - `/api/public-stats`：公開營運統計（給行銷頁面使用）
-- 上帝 / 天使帳號：可按條件（性別、年齡、星座、語言等）群發訊息（隊列 + 限速）
+- **平台管理員（angel）和平台所有者（god）**：可按條件（性別、年齡、星座、語言等）群發訊息（隊列 + 限速）
 - **使用者封鎖功能**：/block（不舉報，只是不想再聊）
 - **避免重複匹配**：排除曾經封鎖/被封鎖/被舉報過的使用者
 - **資料保留策略**：漂流瓶 90 天後軟刪除，聊天記錄最多 3650 筆（每對象）
@@ -146,8 +146,8 @@ XunNi/
 │   │       ├── appeal.ts
 │   │       ├── vip.ts
 │   │       ├── help.ts
-│   │       ├── broadcast.ts      # 上帝/天使
-│   │       └── admin.ts          # 管理員工具
+│   │       ├── broadcast.ts      # 群發訊息（僅 angel/god）
+│   │       └── admin.ts          # 管理員工具（僅 angel/god）
 │   ├── services/                 # 外部服務整合（@src/services/）
 │   │   └── openai.ts             # OpenAI API（@src/services/openai.ts）
 │   ├── utils/                    # 通用工具（@src/utils/）
@@ -179,7 +179,7 @@ XunNi/
 ```sql
 CREATE TABLE users (
   telegram_id TEXT PRIMARY KEY,
-  role TEXT,              -- user / admin / god / angel
+  role TEXT DEFAULT 'user',  -- user / group_admin / angel / god（預設為 'user'）
   nickname TEXT,
   avatar_url TEXT,        -- 頭像 URL 或 TG file_id 對應的 URL
   avatar_source TEXT,     -- telegram / ai / custom
@@ -836,7 +836,292 @@ CREATE INDEX idx_behavior_logs_created_at ON behavior_logs(created_at);
 - 下次 `/start` 自動從中斷處繼續
 - 支援查看已填寫資料
 
-### 5.2 /profile（個人資料）
+**未完成提醒**：
+- 如果使用者開始 onboarding 但超過 24 小時未完成：
+  - 每 24 小時推送一次提醒
+  - 最多推送 3 次
+  - 超過 7 天不再提醒
+  - 推送內容：「📝 你的註冊還沒完成呢！還差 {remaining_steps} 步就可以開始使用 XunNi 了」
+  - 詳細設計請參考：`@doc/PUSH_NOTIFICATIONS.md` 2.2.5 節
+
+### 5.2 /rules（遊戲規則說明）
+
+**功能**：向使用者展示完整的遊戲規則和功能說明，幫助使用者了解如何使用 XunNi。
+
+**顯示內容**：
+
+```
+📖 XunNi 遊戲規則
+
+🎯 核心玩法
+• 丟漂流瓶：寫下你的想法，等待有緣人撿起
+• 撿漂流瓶：發現有趣的瓶子，開始匿名對話
+• 匿名聊天：透過 Bot 中轉，保護隱私
+
+📦 漂流瓶規則
+• 免費使用者：每日最多 3 個（邀請好友最高 10 個）
+• VIP 使用者：每日 30 個（邀請好友最高 100 個）
+• 瓶子有效期：24 小時
+• 匹配後建立匿名對話
+
+💬 聊天規則
+• 僅允許文字 + 官方 Emoji
+• 禁止發送 URL（除非在白名單中）
+• 免費使用者：每對象每日最多 10 條訊息
+• VIP 使用者：每對象每日最多 100 條訊息
+
+🛡️ 安全規則
+• 必須完成 MBTI 測驗和反詐騙測驗
+• 禁止發送不當內容（會被 AI 審核）
+• 可舉報違規使用者（/report）
+• 可封鎖不想再聊的使用者（/block）
+• 多次違規會被自動封禁
+
+🌐 翻譯功能（VIP 專屬）
+• 34 種語言自動翻譯
+• 優先使用 OpenAI 高品質翻譯
+• 失敗時自動降級到 Google Translate
+
+⚙️ 其他功能
+• /profile：查看個人資料
+• /stats：查看個人統計
+• /settings：推送設定
+• /vip：升級 VIP
+• /appeal：申訴封禁
+
+❓ 需要幫助？
+如有問題，請使用 /help 查看指令列表
+```
+
+**使用場景**：
+- 新使用者完成 onboarding 後，自動推送規則說明
+- 使用者主動查詢規則時使用
+- 在封禁/警告時，引導使用者查看規則
+
+**技術實作**：
+- 使用 i18n 系統，根據使用者的 `language_pref` 顯示對應語言版本
+- 內容使用 `I18N_KEYS.RULES.*` 鍵值
+- 可提供多語言版本（zh-TW、en、ja 等）
+
+### 5.3 /help（指令幫助）
+
+**功能**：根據使用者角色顯示對應的可用指令列表和簡要說明。
+
+**權限分組**：
+
+#### 5.3.1 一般使用者（role = 'user'）
+
+**顯示內容**：
+
+```
+📋 XunNi 指令列表
+
+🎮 核心功能
+/start - 開始使用或繼續註冊
+/throw - 丟漂流瓶
+/catch - 撿漂流瓶
+/profile - 查看個人資料
+/profile_card - 查看個人資料卡片
+
+💬 聊天相關
+/block - 封鎖使用者（不舉報）
+/report - 舉報違規使用者
+
+📊 個人功能
+/stats - 查看個人統計
+/settings - 推送設定
+/history - 查看聊天記錄
+
+💎 VIP 功能
+/vip - 升級 VIP 或查看 VIP 權益
+
+🛡️ 安全功能
+/appeal - 申訴封禁
+
+📖 幫助
+/rules - 查看完整遊戲規則
+/help - 顯示此指令列表
+
+💡 提示
+• 所有指令都支援快捷按鈕
+• 使用 /settings 可自訂推送偏好
+• 遇到問題？使用 /appeal 申訴
+```
+
+**技術實作**：
+- 僅顯示一般使用者可用的指令
+- **不顯示**任何管理指令（`/admin*`、`/broadcast` 等）
+- 使用 i18n 系統，根據使用者的 `language_pref` 顯示
+
+#### 5.3.2 群組管理員（role = 'group_admin'）
+
+**說明**：
+- 此角色為**預留角色**，用於未來支援 Telegram 群組功能
+- 當前階段（M1）為私聊 Bot，此角色暫不使用
+- 如需使用，需在資料庫中手動設定 `users.role = 'group_admin'`
+
+**顯示內容**（預留，當前不顯示）：
+
+```
+📋 XunNi 指令列表（群組管理員）
+
+🎮 核心功能
+[與一般使用者相同]
+
+👥 群組管理功能（預留）
+/admin_group_stats - 查看群組統計
+/admin_group_settings - 群組設定
+
+📖 幫助
+/rules - 查看完整遊戲規則
+/help - 顯示此指令列表
+```
+
+#### 5.3.3 平台管理員（role = 'angel'）
+
+**顯示內容**：
+
+```
+📋 XunNi 指令列表（平台管理員）
+
+🎮 核心功能
+[與一般使用者相同]
+
+🔧 管理功能
+/admin - 管理主選單
+/admin_stats - 運營數據統計
+/admin_user - 使用者管理
+/admin_ban - 封禁管理
+/admin_vip - VIP 管理
+/admin_appeal - 申訴審核
+/broadcast - 群發訊息（需指定篩選條件）
+
+📖 幫助
+/rules - 查看完整遊戲規則
+/help - 顯示此指令列表
+
+⚠️ 注意
+• 群發訊息必須至少指定一項篩選條件
+• 所有管理操作都會記錄到審計日誌
+```
+
+#### 5.3.4 平台所有者（role = 'god'）
+
+**顯示內容**：
+
+```
+📋 XunNi 指令列表（平台所有者）
+
+🎮 核心功能
+[與一般使用者相同]
+
+🔧 管理功能
+/admin - 管理主選單
+/admin_stats - 運營數據統計
+/admin_user - 使用者管理（可查看所有使用者）
+/admin_ban - 封禁管理
+/admin_vip - VIP 管理
+/admin_appeal - 申訴審核
+/broadcast - 群發訊息（可無條件群發）
+
+📖 幫助
+/rules - 查看完整遊戲規則
+/help - 顯示此指令列表
+
+⚠️ 注意
+• 擁有最高權限，可無條件群發訊息
+• 所有管理操作都會記錄到審計日誌
+```
+
+**技術實作**：
+
+```typescript
+// src/telegram/handlers/help.ts
+
+export async function handleHelp(
+  update: TelegramUpdate,
+  env: Env,
+  db: D1Database
+): Promise<void> {
+  const userId = String(update.message.from.id);
+  
+  // 1. 查詢使用者角色
+  const user = await db.prepare(`
+    SELECT role FROM users WHERE telegram_id = ?
+  `).bind(userId).first<{ role: string }>();
+  
+  const role = user?.role || 'user';
+  const language = user?.language_pref || 'zh-TW';
+  
+  // 2. 根據角色決定顯示的指令列表
+  let commands: string[];
+  
+  switch (role) {
+    case 'god':
+      commands = [
+        // 一般使用者指令
+        '/start', '/throw', '/catch', '/profile', '/profile_card',
+        '/block', '/report', '/stats', '/settings', '/history',
+        '/vip', '/appeal', '/rules', '/help',
+        // 管理指令（god 權限）
+        '/admin', '/admin_stats', '/admin_user', '/admin_ban',
+        '/admin_vip', '/admin_appeal', '/broadcast'
+      ];
+      break;
+      
+    case 'angel':
+      commands = [
+        // 一般使用者指令
+        '/start', '/throw', '/catch', '/profile', '/profile_card',
+        '/block', '/report', '/stats', '/settings', '/history',
+        '/vip', '/appeal', '/rules', '/help',
+        // 管理指令（angel 權限）
+        '/admin', '/admin_stats', '/admin_user', '/admin_ban',
+        '/admin_vip', '/admin_appeal', '/broadcast'
+      ];
+      break;
+      
+    case 'group_admin':
+      // 預留，當前不使用
+      commands = [
+        '/start', '/throw', '/catch', '/profile', '/profile_card',
+        '/block', '/report', '/stats', '/settings', '/history',
+        '/vip', '/appeal', '/rules', '/help'
+      ];
+      break;
+      
+    case 'user':
+    default:
+      // 一般使用者：僅顯示一般指令，不顯示管理指令
+      commands = [
+        '/start', '/throw', '/catch', '/profile', '/profile_card',
+        '/block', '/report', '/stats', '/settings', '/history',
+        '/vip', '/appeal', '/rules', '/help'
+      ];
+      break;
+  }
+  
+  // 3. 使用 i18n 格式化訊息
+  const message = formatHelpMessage(role, commands, language);
+  
+  // 4. 發送訊息
+  await sendTelegramMessage(env, userId, message);
+}
+```
+
+**使用場景**：
+- 使用者不確定有哪些指令可用時
+- 在錯誤訊息中引導使用者查看幫助
+- 新使用者完成 onboarding 後自動推送（僅顯示一般使用者指令）
+- 管理員首次使用管理功能時，顯示管理指令列表
+
+**權限檢查原則**：
+- **一般使用者（user）**：絕對看不到任何管理指令
+- **平台管理員（angel）**：可以看到管理指令，但某些高權限功能受限（如無條件群發）
+- **平台所有者（god）**：可以看到所有指令，擁有最高權限
+- **群組管理員（group_admin）**：預留角色，當前不使用
+
+### 5.4 /profile（個人資料）
 
 顯示：暱稱、頭像、性別、年齡區間、國家、居住城市、MBTI、星座、語言、興趣標籤、個人簡介、邀請碼、是否 VIP、每日漂流瓶上限等。
 
@@ -897,7 +1182,7 @@ CREATE INDEX idx_behavior_logs_created_at ON behavior_logs(created_at);
 - `users.interests`：興趣標籤（JSON array）
 - `users.city`：居住城市
 
-### 5.3 /throw（丟漂流瓶）
+### 5.5 /throw（丟漂流瓶）
 
 **流程**:
 
@@ -922,7 +1207,7 @@ CREATE INDEX idx_behavior_logs_created_at ON behavior_logs(created_at);
 4. 建立 bottles 記錄，status='pending'、expires_at = created_at + 24h
 5. daily_usage.throws_count += 1
 
-### 5.4 /catch（撿漂流瓶）
+### 5.6 /catch（撿漂流瓶）
 
 1. 檢查封禁與 onboarding
 2. 用 `matchBottleForUser(user)` 從 bottles 找符合條件：
@@ -938,10 +1223,16 @@ CREATE INDEX idx_behavior_logs_created_at ON behavior_logs(created_at);
      - 使用 `/report` 舉報不當內容
      - 使用 `/block` 封鎖不想再聊的使用者
      - 說明這是匿名對話，請遵守安全守則
+   - **即時推送通知給瓶子主人**：
+     - 告知有人撿到了他的瓶子
+     - 推送內容使用使用者的 `language_pref`（i18n）
+     - 推送內容：「🎉 有人撿到你的漂流瓶了！已為你們建立了匿名對話，快來開始聊天吧～」
+     - 尊重使用者的推送偏好設定（如已關閉對話提醒，則不推送）
+     - 詳細設計請參考：`@doc/PUSH_NOTIFICATIONS.md` 2.2.3 節
 4. 若沒找到：
    - 回覆「目前沒有適合你的瓶子，稍後再試」
 
-### 5.5 對話消息轉發（匿名聊天）
+### 5.7 對話消息轉發（匿名聊天）
 
 任何來自 conversations 雙方的訊息，都由 bot 中轉：
 
@@ -968,7 +1259,7 @@ CREATE INDEX idx_behavior_logs_created_at ON behavior_logs(created_at);
    - 超額則提示「今天對這位對象的發言已達上限，明天再聊」
 8. **VIP 翻譯**:
    - 若對話任一方為 VIP：
-     - 優先使用 **OpenAI** 翻譯
+     - 優先使用 **OpenAI GPT-4o-mini** 翻譯（高品質）
      - 失敗時自動降級到 **Google Translate**
      - 記錄降級事件（用於監控）
    - 免費使用者：
@@ -981,7 +1272,7 @@ CREATE INDEX idx_behavior_logs_created_at ON behavior_logs(created_at);
    - 超過時刪除最舊的，保留最後 100 筆
 10. 使用 `recordConversationMessage()` 更新 conversation_daily_usage
 
-### 5.6 /report（舉報）
+### 5.8 /report（舉報）
 
 1. 每個舉報記錄寫入 reports
 2. 重新計算過去 24 小時內針對 target_id 的 unique reporters 數
@@ -989,14 +1280,14 @@ CREATE INDEX idx_behavior_logs_created_at ON behavior_logs(created_at);
 4. 同時累加 risk_score
 5. 回覆舉報者「已收到舉報，我們會審查」
 
-### 5.7 /appeal（申訴）
+### 5.9 /appeal（申訴）
 
 使用者在被封期間可發 `/appeal`：
 
 1. 輸入申訴內容，寫入 appeals
 2. 管理員可在 `/admin` 介面查看並更新 status
 
-### 5.8 /vip（VIP 購買）
+### 5.10 /vip（VIP 購買）
 
 1. 顯示 VIP 權益與目前狀態（是否有效、到期日）
 2. 若非課中，提供「用 Stars 購買 VIP（月付）」按鈕：
@@ -1005,15 +1296,7 @@ CREATE INDEX idx_behavior_logs_created_at ON behavior_logs(created_at);
    - 寫入一筆 payments
    - 呼叫 `activateVip(userId, 30)`：is_vip=1、vip_expire_at=now+30d
 
-### 5.9 /help
-
-說明：
-- 如何丟瓶 / 撿瓶
-- 舉報／封禁機制
-- 邀請好友獎勵機制
-- VIP 功能
-
-### 5.10 /block（封鎖功能）
+### 5.11 /block（封鎖功能）
 
 **功能說明**：
 - 封鎖當前對話對象
@@ -1038,7 +1321,7 @@ CREATE INDEX idx_behavior_logs_created_at ON behavior_logs(created_at);
 
 **資料庫表**：`user_blocks`（見 3.4.1 節）
 
-### 5.11 /delete_me（刪除帳號）
+### 5.12 /delete_me（刪除帳號）
 
 **功能說明**：
 - 使用者可以要求刪除自己的資料
@@ -1067,9 +1350,19 @@ CREATE INDEX idx_behavior_logs_created_at ON behavior_logs(created_at);
 
 **資料庫欄位**：`users.deleted_at`、`users.anonymized_at`、`users.deletion_requested_at`
 
-### 5.12 /broadcast（上帝 / 天使）
+### 5.13 /broadcast（群發訊息）
 
-僅 role 為 god 或 angel 的使用者可用。
+**權限要求**：僅 `role` 為 `angel` 或 `god` 的使用者可用。
+
+**指令可見性**：
+- **一般使用者（user）**：此指令**不會出現在** `/help` 列表中
+- **群組管理員（group_admin）**：此指令**不會出現在** `/help` 列表中
+- **平台管理員（angel）**：可以看到此指令，但必須至少指定一項篩選條件
+- **平台所有者（god）**：可以看到此指令，可無條件群發
+
+**技術實作**：
+- 在 `handleHelp()` 中根據使用者 `role` 決定是否顯示此指令
+- 在 Domain Service 層進行權限檢查，拒絕未授權訪問
 
 **流程**:
 
@@ -1923,6 +2216,11 @@ BROADCAST_MAX_JOBS = "3"
 在本文檔和整個專案中，以下術語具有特定含義，請嚴格遵守：
 
 - **User（使用者）**：註冊並使用本 Bot 的 Telegram 使用者。每個 User 有唯一的 `telegram_id`。不是 "member"、"player" 或其他術語。
+- **Role（角色）**：使用者的權限角色，分為：
+  - `user`（一般使用者）：預設角色，所有新註冊使用者
+  - `group_admin`（群組管理員）：預留角色，用於未來支援 Telegram 群組功能（當前 M1 階段不使用）
+  - `angel`（平台管理員）：平台運營管理員，可執行大部分管理操作
+  - `god`（平台所有者）：最高權限，擁有所有管理權限
 - **Bottle（漂流瓶）**：使用者丟出的匿名訊息。包含內容、匹配條件（MBTI、年齡、性別等）和狀態（pending/matched/expired/deleted）。
 - **Conversation（對話）**：兩個 User 通過匹配漂流瓶建立的匿名聊天對話。每個對話有唯一的 `conversation_id`，最多保存 3650 筆訊息。
 - **Match（匹配）**：將漂流瓶分配給符合條件的 User 的過程。匹配邏輯需排除已封鎖、被舉報的使用者。
@@ -1935,6 +2233,8 @@ BROADCAST_MAX_JOBS = "3"
 - **Block（封鎖）**：使用者主動封鎖另一個使用者，不想再與其聊天。不屬於舉報機制。
 - **Report（舉報）**：使用者舉報其他使用者的違規行為。多次舉報會觸發自動封禁流程。
 - **Appeal（申訴）**：被封禁的使用者申請解除封禁的流程。
+- **Permission（權限）**：指令和功能的訪問控制。一般使用者（user）無法看到或使用管理指令（`/admin*`、`/broadcast` 等）。
+- **Command Visibility（指令可見性）**：根據使用者角色決定在 `/help` 中顯示哪些指令。一般使用者（user）絕對看不到管理指令。
 
 **使用規範**：
 - 在代碼、註釋和文檔中，統一使用上述術語
