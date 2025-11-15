@@ -4,7 +4,55 @@
 
 管理後台提供給 **god**（上帝）和 **angel**（天使）角色使用，透過 Telegram Bot 指令進行運營管理。
 
-### 1.1 角色權限
+### 1.1 架構設計
+
+**架構原則**：
+
+- **沿用 Cloudflare Workers + D1 Database 設定**：所有管理指令實作成 Worker 端的 webhook handler
+- **根據角色權限路由**：根據使用者角色（admin / angel / god）路由到不同的 domain service
+- **Domain Service 層**：設計 `stats`, `users`, `vip`, `ban`, `broadcast`, `appeal` 等 domain service，負責業務邏輯
+- **Handler 層**：Bot 指令只負責調用 domain service 並格式化 Telegram 訊息回應
+- **功能開關**：使用 `feature_flags` 表維護前端顯示開關，Worker 處理 Mini App 輸出時查詢旗標決定 UI 顯示
+- **跨平台適配**：預留 `NotificationAdapter` 與 `AuthAdapter` 介面，對應 ROADMAP 中 M2/M3 的跨平台擴充，確保後台操作（例如廣播、封禁）可以在多端一致生效
+
+**架構圖**：
+
+```
+┌─────────────────────────────────────┐
+│   Telegram Bot Handlers (API 層)     │
+│   - handleAdminStats()               │
+│   - handleAdminUser()                │
+│   - handleAdminBan()                 │
+│   - handleAdminVip()                 │
+│   - handleAdminBroadcast()           │
+│   - handleAdminAppeal()              │
+├─────────────────────────────────────┤
+│   Domain Services (業務邏輯層)        │
+│   - admin/stats.ts                   │
+│   - admin/users.ts                   │
+│   - admin/vip.ts                     │
+│   - admin/ban.ts                     │
+│   - admin/broadcast.ts               │
+│   - admin/appeal.ts                  │
+├─────────────────────────────────────┤
+│   Database Client (資料層)           │
+│   - D1Database                       │
+├─────────────────────────────────────┤
+│   Adapters (適配層，M2/M3)           │
+│   - NotificationAdapter              │
+│   - AuthAdapter                      │
+└─────────────────────────────────────┘
+```
+
+**設計原則**：
+
+1. **Handler 只負責格式化**：Handler 層只負責解析 Telegram 指令、調用 Domain Service、格式化回應訊息
+2. **Domain Service 負責業務邏輯**：所有業務邏輯（權限檢查、資料查詢、狀態更新）都在 Domain Service 層
+3. **權限檢查在 Domain Service**：權限檢查邏輯統一在 Domain Service 中，Handler 不需要處理
+4. **操作記錄統一**：所有管理操作都通過 Domain Service 記錄到 `admin_actions` 表
+5. **跨平台一致性**：透過 Adapter 抽象層，確保後台操作在不同平台（Telegram / WeChat / Line / Mobile）都能一致生效
+
+### 1.2 角色權限
 
 | 功能 | user | admin | angel | god |
 |------|------|-------|-------|-----|
@@ -245,41 +293,445 @@ VIP 到期: {vip_expire_at || '無'}
 
 ---
 
-## 3. 資料庫擴充
+## 3. Domain Service 設計
 
-### 3.1 admin_actions（管理操作記錄）
+### 3.1 admin/stats.ts - 運營數據統計
 
-```sql
-CREATE TABLE admin_actions (
-  id INTEGER PRIMARY KEY AUTOINCREMENT,
-  admin_id TEXT,              -- 執行操作的管理員
-  action_type TEXT,           -- ban / unban / vip_add / vip_remove / etc.
-  target_user_id TEXT,        -- 目標使用者
-  details_json TEXT,          -- JSON 格式的操作詳情
-  created_at DATETIME
-);
+**職責**：
+- 聚合運營數據（使用者、收入、使用、VIP、邀請）
+- 提供統計查詢介面
 
-CREATE INDEX idx_admin_actions_admin_id ON admin_actions(admin_id);
-CREATE INDEX idx_admin_actions_target_user_id ON admin_actions(target_user_id);
-CREATE INDEX idx_admin_actions_created_at ON admin_actions(created_at);
+**函數**：
+```typescript
+export interface AdminStatsData {
+  users: {
+    total: number;
+    active7d: number;
+    active30d: number;
+    completedOnboarding: number;
+  };
+  revenue: {
+    monthlyRevenue: number; // Stars
+    totalRevenue: number; // Stars
+    activeSubscriptions: number;
+    newSubscriptionsThisMonth: number;
+    refundsThisMonth: number; // Stars
+  };
+  usage: {
+    throwsToday: number;
+    catchesToday: number;
+    activeConversations: number;
+    avgThrowsPerDay: number;
+  };
+  vip: {
+    totalVips: number;
+    activeVips: number;
+    vipConversionRate: number; // %
+    avgVipDuration: number; // days
+  };
+  invites: {
+    totalInvites: number;
+    activatedInvites: number;
+    inviteActivationRate: number; // %
+  };
+}
+
+export async function getAdminStats(
+  db: D1Database,
+  adminId: string
+): Promise<AdminStatsData>
 ```
 
-### 3.2 stats_cache（統計快取）
+**權限檢查**：
+- 需要 `admin` / `angel` / `god` 角色
 
-```sql
-CREATE TABLE stats_cache (
-  cache_key TEXT PRIMARY KEY, -- 如 'daily_stats_2025-01-15'
-  cache_data TEXT,            -- JSON 格式的統計數據
-  expires_at DATETIME,
-  created_at DATETIME
-);
+### 3.2 admin/users.ts - 使用者管理
+
+**職責**：
+- 搜尋使用者（Telegram ID、暱稱、邀請碼）
+- 查詢使用者詳情
+- 更新使用者資訊
+
+**函數**：
+```typescript
+export interface UserSearchResult {
+  telegram_id: string;
+  nickname: string;
+  role: string;
+  is_vip: number;
+  vip_expire_at: string | null;
+  risk_score: number;
+  created_at: string;
+}
+
+export async function searchUsers(
+  db: D1Database,
+  query: string
+): Promise<UserSearchResult[]>
+
+export async function getUserDetails(
+  db: D1Database,
+  userId: string
+): Promise<UserSearchResult | null>
+```
+
+**權限檢查**：
+- 搜尋：需要 `admin` / `angel` / `god` 角色
+- 查看詳情：需要 `admin` / `angel` / `god` 角色
+- 查看所有使用者：僅 `god` 角色
+
+### 3.3 admin/ban.ts - 封禁管理
+
+**職責**：
+- 手動封禁使用者
+- 解封使用者
+- 查詢封禁列表
+
+**函數**：
+```typescript
+export interface BanResult {
+  success: boolean;
+  message: string;
+  banId?: number;
+}
+
+export async function banUser(
+  db: D1Database,
+  adminId: string,
+  targetUserId: string,
+  hours: number,
+  reason: string
+): Promise<BanResult>
+
+export async function unbanUser(
+  db: D1Database,
+  adminId: string,
+  targetUserId: string
+): Promise<BanResult>
+
+export async function getBanList(
+  db: D1Database,
+  adminId: string,
+  limit?: number
+): Promise<Array<{
+  user_id: string;
+  ban_start: string;
+  ban_end: string;
+  reason: string;
+}>>
+```
+
+**權限檢查**：
+- 封禁/解封：需要 `admin` / `angel` / `god` 角色
+- 查詢封禁列表：需要 `admin` / `angel` / `god` 角色
+
+### 3.4 admin/vip.ts - VIP 管理
+
+**職責**：
+- 手動升級 VIP
+- 取消 VIP
+- 查詢 VIP 列表
+
+**函數**：
+```typescript
+export interface VipResult {
+  success: boolean;
+  message: string;
+  newExpireAt?: string;
+}
+
+export async function addVip(
+  db: D1Database,
+  adminId: string,
+  targetUserId: string,
+  days: number
+): Promise<VipResult>
+
+export async function removeVip(
+  db: D1Database,
+  adminId: string,
+  targetUserId: string
+): Promise<VipResult>
+
+export async function getVipList(
+  db: D1Database,
+  adminId: string,
+  filter?: 'all' | 'expiring_soon' | 'expired'
+): Promise<Array<{
+  telegram_id: string;
+  nickname: string;
+  vip_expire_at: string;
+  days_remaining: number;
+}>>
+```
+
+**權限檢查**：
+- 升級/取消 VIP：僅 `angel` / `god` 角色
+- 查詢 VIP 列表：需要 `admin` / `angel` / `god` 角色
+
+### 3.5 admin/broadcast.ts - 廣播管理
+
+**職責**：
+- 創建廣播任務
+- 查詢廣播狀態
+- 取消廣播任務
+
+**函數**：
+```typescript
+export interface BroadcastResult {
+  success: boolean;
+  message: string;
+  jobId?: number;
+}
+
+export async function createBroadcast(
+  db: D1Database,
+  adminId: string,
+  message: string,
+  filters?: {
+    role?: string;
+    isVip?: boolean;
+    country?: string;
+  },
+  notificationAdapter?: NotificationAdapter
+): Promise<BroadcastResult>
+
+export async function getBroadcastStatus(
+  db: D1Database,
+  adminId: string,
+  jobId: number
+): Promise<{
+  status: string;
+  total: number;
+  sent: number;
+  failed: number;
+}>
+
+export async function cancelBroadcast(
+  db: D1Database,
+  adminId: string,
+  jobId: number
+): Promise<BroadcastResult>
+```
+
+**權限檢查**：
+- 創建廣播：僅 `angel` / `god` 角色
+- 無條件廣播：僅 `god` 角色
+- 查詢/取消廣播：需要 `admin` / `angel` / `god` 角色
+
+**跨平台支援**：
+- 透過 `NotificationAdapter` 抽象層，確保廣播在不同平台（Telegram / WeChat / Line / Mobile）都能一致生效
+- `NotificationAdapter` 介面定義見 `doc/MODULE_DESIGN.md` 第 2.5 節
+
+### 3.6 admin/appeal.ts - 申訴審核
+
+**職責**：
+- 查詢待審核申訴
+- 審核申訴（通過/拒絕）
+- 查詢申訴歷史
+
+**函數**：
+```typescript
+export interface AppealResult {
+  success: boolean;
+  message: string;
+}
+
+export async function getPendingAppeals(
+  db: D1Database,
+  adminId: string
+): Promise<Array<{
+  appeal_id: number;
+  user_id: string;
+  nickname: string;
+  ban_start: string;
+  ban_end: string;
+  message: string;
+  created_at: string;
+}>>
+
+export async function approveAppeal(
+  db: D1Database,
+  adminId: string,
+  appealId: number
+): Promise<AppealResult>
+
+export async function rejectAppeal(
+  db: D1Database,
+  adminId: string,
+  appealId: number,
+  reason?: string
+): Promise<AppealResult>
+```
+
+**權限檢查**：
+- 查詢/審核申訴：需要 `admin` / `angel` / `god` 角色
+
+## 4. Handler 實作範例
+
+### 4.1 Handler 只負責格式化
+
+**原則**：Handler 層只負責解析 Telegram 指令、調用 Domain Service、格式化回應訊息
+
+```typescript
+// src/telegram/handlers/admin.ts
+
+import { getAdminStats } from '../../domain/admin/stats';
+import { banUser } from '../../domain/admin/ban';
+import { addVip } from '../../domain/admin/vip';
+
+export async function handleAdminStats(
+  update: TelegramUpdate,
+  env: Env,
+  db: D1Database
+): Promise<void> {
+  const adminId = String(update.message.from.id);
+  
+  // 調用 Domain Service
+  const stats = await getAdminStats(db, adminId);
+  
+  // 格式化 Telegram 訊息
+  const message = formatStatsMessage(stats);
+  
+  // 發送訊息
+  await sendMessage(env, adminId, message);
+}
+
+export async function handleAdminBan(
+  update: TelegramUpdate,
+  env: Env,
+  db: D1Database
+): Promise<void> {
+  const adminId = String(update.message.from.id);
+  const args = update.message.text.split(' ');
+  const targetUserId = args[1];
+  const hours = parseInt(args[2]);
+  const reason = args.slice(3).join(' ');
+  
+  // 調用 Domain Service（權限檢查在 Domain Service 中）
+  const result = await banUser(db, adminId, targetUserId, hours, reason);
+  
+  // 格式化回應
+  const message = result.success
+    ? `✅ ${result.message}`
+    : `❌ ${result.message}`;
+  
+  await sendMessage(env, adminId, message);
+}
+
+function formatStatsMessage(stats: AdminStatsData): string {
+  return `📊 運營數據統計
+
+👥 使用者數據
+├─ 總註冊數：${stats.users.total}
+├─ 活躍使用者（7天）：${stats.users.active7d}
+├─ 活躍使用者（30天）：${stats.users.active30d}
+└─ 完成 Onboarding：${stats.users.completedOnboarding}
+
+💰 收入數據
+├─ 本月收入：${stats.revenue.monthlyRevenue} Stars
+├─ 總收入：${stats.revenue.totalRevenue} Stars
+├─ 當前訂閱數：${stats.revenue.activeSubscriptions}
+├─ 本月新增訂閱：${stats.revenue.newSubscriptionsThisMonth}
+└─ 本月退款：${stats.revenue.refundsThisMonth} Stars
+
+...`;
+}
+```
+
+### 4.2 Domain Service 負責業務邏輯
+
+**原則**：所有業務邏輯（權限檢查、資料查詢、狀態更新）都在 Domain Service 層
+
+```typescript
+// src/domain/admin/ban.ts
+
+export async function banUser(
+  db: D1Database,
+  adminId: string,
+  targetUserId: string,
+  hours: number,
+  reason: string
+): Promise<BanResult> {
+  // 1. 權限檢查
+  const admin = await db.prepare(`
+    SELECT role FROM users WHERE telegram_id = ?
+  `).bind(adminId).first<{ role: string }>();
+  
+  if (!admin || !['admin', 'angel', 'god'].includes(admin.role)) {
+    return {
+      success: false,
+      message: '無權限執行此操作',
+    };
+  }
+  
+  // 2. 執行封禁
+  const banEnd = new Date(Date.now() + hours * 60 * 60 * 1000);
+  await db.prepare(`
+    INSERT INTO bans (user_id, reason, ban_start, ban_end, created_at)
+    VALUES (?, ?, datetime('now'), ?, datetime('now'))
+  `).bind(targetUserId, reason, banEnd.toISOString()).run();
+  
+  // 3. 記錄管理操作
+  await db.prepare(`
+    INSERT INTO admin_actions (admin_id, action_type, target_user_id, details_json, created_at)
+    VALUES (?, 'ban', ?, ?, datetime('now'))
+  `).bind(
+    adminId,
+    targetUserId,
+    JSON.stringify({ hours, reason })
+  ).run();
+  
+  return {
+    success: true,
+    message: `已封禁使用者 ${targetUserId}，時長 ${hours} 小時`,
+  };
+}
+```
+
+## 5. 資料庫擴充
+
+### 5.1 admin_actions（管理操作記錄）
+
+**定義**：見 `doc/SPEC.md` 第 3.16 節
+
+### 5.2 stats_cache（統計快取）
+
+**定義**：見 `doc/SPEC.md` 第 3.14 節
+
+### 5.3 feature_flags（功能開關）
+
+**定義**：見 `doc/SPEC.md` 第 3.15 節
+
+**使用範例**：
+```typescript
+// 查詢功能開關（Mini App 載入時）
+const flags = await db.prepare(`
+  SELECT flag_key, flag_value
+  FROM feature_flags
+  WHERE platform IN ('all', 'telegram')
+    AND flag_value = 1
+`).all<{ flag_key: string; flag_value: number }>();
+
+// 轉換為前端可用的物件
+const featureFlags: Record<string, boolean> = {};
+for (const flag of flags.results) {
+  featureFlags[flag.flag_key] = flag.flag_value === 1;
+}
+
+// 在 Mini App 中使用
+// if (featureFlags.show_vip_badge) {
+//   // 顯示 VIP 徽章
+// }
 ```
 
 ---
 
-## 4. 實作範例
+## 6. 實作範例（舊版，僅供參考）
 
-### 4.1 運營數據查詢
+> **注意**：以下實作範例是舊版設計，新的設計應該遵循「Handler 只負責格式化，Domain Service 負責業務邏輯」的原則。新的實作範例見第 4 節。
+
+### 6.1 運營數據查詢
 
 ```typescript
 // src/domain/stats.ts
@@ -338,7 +790,7 @@ export async function getRefundsThisMonth(
 }
 ```
 
-### 4.2 手動封禁
+### 6.2 手動封禁
 
 ```typescript
 // src/telegram/handlers/admin.ts
@@ -377,7 +829,7 @@ export async function handleAdminBan(
 }
 ```
 
-### 4.3 手動升級 VIP
+### 6.3 手動升級 VIP
 
 ```typescript
 export async function handleAdminVipAdd(
@@ -432,9 +884,9 @@ export async function handleAdminVipAdd(
 
 ---
 
-## 5. 數據導出功能
+## 7. 數據導出功能
 
-### 5.1 匯出 CSV
+### 7.1 匯出 CSV
 
 ```
 /admin_export {type} {format}
@@ -453,7 +905,7 @@ export async function handleAdminVipAdd(
 
 ---
 
-## 6. 安全考量
+## 8. 安全考量
 
 1. **操作記錄**：所有管理操作都記錄在 `admin_actions` 表
 2. **權限檢查**：每次操作前都檢查角色權限

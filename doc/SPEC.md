@@ -251,25 +251,71 @@ CREATE TABLE stats_cache (
 CREATE INDEX idx_stats_cache_expires_at ON stats_cache(expires_at);
 ```
 
+### 3.15 feature_flags（功能開關表）
+
+**用途**：維護前端顯示開關，Worker 在處理 Mini App 輸出時查詢旗標來決定 UI 是否顯示（也方便未來擴平台）
+
+```sql
+CREATE TABLE feature_flags (
+  flag_key TEXT PRIMARY KEY,  -- 如 'show_vip_badge', 'enable_invite_reward', 'show_translation_icon'
+  flag_value INTEGER,         -- 0 = 關閉, 1 = 開啟
+  description TEXT,           -- 功能說明
+  platform TEXT,              -- 'all' / 'telegram' / 'wechat' / 'line' / 'mobile'（預留 M2/M3）
+  updated_at DATETIME,
+  updated_by TEXT             -- 更新者（admin_id 或 'system'）
+);
+
+CREATE INDEX idx_feature_flags_platform ON feature_flags(platform);
+```
+
 **使用場景**：
-- 當不使用 KV 快取時，使用資料庫表快取
-- 每 5 分鐘透過 Cron 任務更新
-- API 直接查詢此表，無需即時計算
+- Mini App 載入時查詢所有 `platform = 'telegram'` 或 `platform = 'all'` 的旗標
+- 根據旗標決定 UI 元素顯示/隱藏
+- 運營人員可透過管理後台動態開關功能
+- 未來擴展到其他平台時，可根據 `platform` 欄位過濾
 
-**查詢邏輯**：
+**範例查詢**：
 ```typescript
-// 查詢快取表
-const cached = await db.prepare(`
-  SELECT cache_value
-  FROM stats_cache
-  WHERE cache_key = 'public_stats'
-    AND expires_at > datetime('now')
-`).first();
+// 查詢 Telegram 平台的功能開關
+const flags = await db.prepare(`
+  SELECT flag_key, flag_value
+  FROM feature_flags
+  WHERE platform IN ('all', 'telegram')
+    AND flag_value = 1
+`).all<{ flag_key: string; flag_value: number }>();
 
-if (cached) {
-  return JSON.parse(cached.cache_value);
+// 轉換為物件
+const featureFlags: Record<string, boolean> = {};
+for (const flag of flags.results) {
+  featureFlags[flag.flag_key] = flag.flag_value === 1;
 }
 ```
+
+### 3.16 admin_actions（管理操作記錄）
+
+**用途**：記錄所有管理後台操作，用於審計和追蹤
+
+```sql
+CREATE TABLE admin_actions (
+  id INTEGER PRIMARY KEY AUTOINCREMENT,
+  admin_id TEXT,              -- 執行操作的管理員 telegram_id
+  action_type TEXT,           -- 'ban' / 'unban' / 'vip_add' / 'vip_remove' / 'broadcast' / 'appeal_approve' / 'appeal_reject' / etc.
+  target_user_id TEXT,        -- 目標使用者 telegram_id（可選）
+  details_json TEXT,          -- JSON 格式的操作詳情
+  created_at DATETIME
+);
+
+CREATE INDEX idx_admin_actions_admin_id ON admin_actions(admin_id);
+CREATE INDEX idx_admin_actions_target_user_id ON admin_actions(target_user_id);
+CREATE INDEX idx_admin_actions_action_type ON admin_actions(action_type);
+CREATE INDEX idx_admin_actions_created_at ON admin_actions(created_at);
+```
+
+**使用場景**：
+- 記錄所有管理後台操作（封禁、解封、VIP 升級、廣播等）
+- 用於審計和追蹤管理員行為
+- 可透過管理後台查詢操作歷史
+- 詳細設計見 `@doc/ADMIN_PANEL.md`
 
 ### 3.2 bottles（漂流瓶）
 
