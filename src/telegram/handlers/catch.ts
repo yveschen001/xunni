@@ -153,7 +153,11 @@ export async function handleCatch(message: TelegramMessage, env: Env): Promise<v
     await notifyBottleOwner(bottle.owner_id, env);
   } catch (error) {
     console.error('[handleCatch] Error:', error);
-    await telegram.sendMessage(chatId, '❌ 發生錯誤，請稍後再試。');
+    console.error('[handleCatch] Error stack:', error instanceof Error ? error.stack : 'No stack');
+    await telegram.sendMessage(
+      chatId,
+      `❌ 發生錯誤，請稍後再試。\n\n錯誤信息：${error instanceof Error ? error.message : String(error)}`
+    );
   }
 }
 

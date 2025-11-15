@@ -129,7 +129,7 @@ export async function getDailyThrowCount(
 ): Promise<number> {
   const result = await db.d1.prepare(`
     SELECT throws_count FROM daily_usage
-    WHERE user_id = ?
+    WHERE telegram_id = ?
       AND date = date('now')
   `).bind(userId).first();
 
@@ -145,7 +145,7 @@ export async function getDailyCatchCount(
 ): Promise<number> {
   const result = await db.d1.prepare(`
     SELECT catches_count FROM daily_usage
-    WHERE user_id = ?
+    WHERE telegram_id = ?
       AND date = date('now')
   `).bind(userId).first();
 
@@ -160,9 +160,9 @@ export async function incrementDailyThrowCount(
   userId: string
 ): Promise<void> {
   await db.d1.prepare(`
-    INSERT INTO daily_usage (user_id, date, throws_count, catches_count)
+    INSERT INTO daily_usage (telegram_id, date, throws_count, catches_count)
     VALUES (?, date('now'), 1, 0)
-    ON CONFLICT(user_id, date) DO UPDATE SET
+    ON CONFLICT(telegram_id, date) DO UPDATE SET
       throws_count = throws_count + 1
   `).bind(userId).run();
 }
@@ -175,9 +175,9 @@ export async function incrementDailyCatchCount(
   userId: string
 ): Promise<void> {
   await db.d1.prepare(`
-    INSERT INTO daily_usage (user_id, date, throws_count, catches_count)
+    INSERT INTO daily_usage (telegram_id, date, throws_count, catches_count)
     VALUES (?, date('now'), 0, 1)
-    ON CONFLICT(user_id, date) DO UPDATE SET
+    ON CONFLICT(telegram_id, date) DO UPDATE SET
       catches_count = catches_count + 1
   `).bind(userId).run();
 }

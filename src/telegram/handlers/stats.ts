@@ -64,7 +64,11 @@ export async function handleStats(message: TelegramMessage, env: Env): Promise<v
     await telegram.sendMessage(chatId, message_text);
   } catch (error) {
     console.error('[handleStats] Error:', error);
-    await telegram.sendMessage(chatId, '❌ 發生錯誤，請稍後再試。');
+    console.error('[handleStats] Error stack:', error instanceof Error ? error.stack : 'No stack');
+    await telegram.sendMessage(
+      chatId,
+      `❌ 發生錯誤，請稍後再試。\n\n錯誤信息：${error instanceof Error ? error.message : String(error)}`
+    );
   }
 }
 

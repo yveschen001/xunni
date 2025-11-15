@@ -28,6 +28,8 @@ export async function handleThrow(message: TelegramMessage, env: Env): Promise<v
   const telegramId = message.from!.id.toString();
 
   try {
+    console.log('[handleThrow] Starting for user:', telegramId);
+    
     // Get user
     const user = await findUserByTelegramId(db, telegramId);
     if (!user) {
@@ -35,6 +37,7 @@ export async function handleThrow(message: TelegramMessage, env: Env): Promise<v
       return;
     }
 
+    console.log('[handleThrow] User found:', user.nickname);
     const i18n = createI18n(user.language_pref || 'zh-TW');
 
     // Check if user completed onboarding
@@ -74,7 +77,11 @@ export async function handleThrow(message: TelegramMessage, env: Env): Promise<v
     await showBottleCreationUI(user, chatId, telegram);
   } catch (error) {
     console.error('[handleThrow] Error:', error);
-    await telegram.sendMessage(chatId, '❌ 發生錯誤，請稍後再試。');
+    console.error('[handleThrow] Error stack:', error instanceof Error ? error.stack : 'No stack');
+    await telegram.sendMessage(
+      chatId, 
+      `❌ 發生錯誤，請稍後再試。\n\n錯誤信息：${error instanceof Error ? error.message : String(error)}`
+    );
   }
 }
 
