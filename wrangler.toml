@@ -2,6 +2,7 @@ name = "xunni-bot"
 main = "src/worker.ts"
 compatibility_date = "2025-01-15"
 node_compat = true
+account_id = "7404fbe7880034e92c7d4a20969e42f5"
 
 # Default environment variables (non-sensitive)
 [vars]
@@ -18,24 +19,22 @@ name = "xunni-bot-staging"
 vars = { ENVIRONMENT = "staging", LOG_LEVEL = "info" }
 
 # Staging D1 Database
-# Run: wrangler d1 create xunni-db-staging
-# Then uncomment and fill in the database_id
-# [[env.staging.d1_databases]]
-# binding = "DB"
-# database_name = "xunni-db-staging"
-# database_id = "<STAGING_D1_DATABASE_ID>"
+[[env.staging.d1_databases]]
+binding = "DB"
+database_name = "xunni-db-staging"
+database_id = "7b77ad82-ba26-489f-995f-8256b32379df"
 
 # Staging KV Namespace (optional)
 # [[env.staging.kv_namespaces]]
 # binding = "RISK_CACHE"
 # id = "<STAGING_KV_NAMESPACE_ID>"
 
-# Staging Cron triggers
-[[env.staging.triggers.crons]]
-cron = "0 9 * * 1"  # Every Monday at 9:00 UTC (Horoscope)
+# Staging Cron triggers (disabled for now, will enable after testing)
+# [[env.staging.triggers.crons]]
+# cron = "0 9 * * 1"  # Every Monday at 9:00 UTC (Horoscope)
 
-[[env.staging.triggers.crons]]
-cron = "*/5 * * * *"  # Every 5 minutes (Broadcast queue)
+# [[env.staging.triggers.crons]]
+# cron = "*/5 * * * *"  # Every 5 minutes (Broadcast queue)
 
 # Production environment
 [env.production]

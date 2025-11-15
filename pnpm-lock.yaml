@@ -39,7 +39,7 @@ importers:
         specifier: ^1.1.0
         version: 1.6.1(@types/node@20.19.25)
       wrangler:
-        specifier: ^3.19.0
+        specifier: ^3.114.15
         version: 3.114.15(@cloudflare/workers-types@4.20251115.0)
 
 packages:
