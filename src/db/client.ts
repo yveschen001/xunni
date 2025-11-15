@@ -15,6 +15,14 @@ export class DatabaseClient {
   constructor(private db: D1Database) {}
 
   /**
+   * Get the underlying D1Database instance
+   * Use this when you need direct D1 API access
+   */
+  get d1(): D1Database {
+    return this.db;
+  }
+
+  /**
    * Execute a query and return all results
    */
   async query<T = unknown>(sql: string, params: unknown[] = []): Promise<T[]> {

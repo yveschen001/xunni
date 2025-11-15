@@ -67,6 +67,7 @@ export interface User {
 
   // MBTI & Tests
   mbti_result?: string;
+  mbti_source?: 'manual' | 'test';
   mbti_completed_at?: string;
   zodiac_sign?: string;
   anti_fraud_score: number;

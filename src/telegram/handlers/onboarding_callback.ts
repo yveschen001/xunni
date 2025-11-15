@@ -213,39 +213,21 @@ export async function handleBirthdayConfirmation(
     // Delete confirmation message
     await telegram.deleteMessage(chatId, callbackQuery.message!.message_id);
 
-    // Show MBTI selection buttons
+    // Show MBTI options: manual / test / skip
     await telegram.sendMessageWithButtons(
       chatId,
-      `🧠 現在讓我們進行 MBTI 性格測驗！\n\n` +
+      `🧠 現在讓我們設定你的 MBTI 性格類型！\n\n` +
         `這將幫助我們為你找到更合適的聊天對象～\n\n` +
-        `請選擇你的 MBTI 類型：`,
+        `你想要如何設定？`,
       [
         [
-          { text: 'INTJ', callback_data: 'mbti_INTJ' },
-          { text: 'INTP', callback_data: 'mbti_INTP' },
-          { text: 'ENTJ', callback_data: 'mbti_ENTJ' },
-          { text: 'ENTP', callback_data: 'mbti_ENTP' },
+          { text: '✍️ 我已經知道我的 MBTI', callback_data: 'mbti_choice_manual' },
         ],
         [
-          { text: 'INFJ', callback_data: 'mbti_INFJ' },
-          { text: 'INFP', callback_data: 'mbti_INFP' },
-          { text: 'ENFJ', callback_data: 'mbti_ENFJ' },
-          { text: 'ENFP', callback_data: 'mbti_ENFP' },
+          { text: '📝 進行快速測驗', callback_data: 'mbti_choice_test' },
         ],
         [
-          { text: 'ISTJ', callback_data: 'mbti_ISTJ' },
-          { text: 'ISFJ', callback_data: 'mbti_ISFJ' },
-          { text: 'ESTJ', callback_data: 'mbti_ESTJ' },
-          { text: 'ESFJ', callback_data: 'mbti_ESFJ' },
-        ],
-        [
-          { text: 'ISTP', callback_data: 'mbti_ISTP' },
-          { text: 'ISFP', callback_data: 'mbti_ISFP' },
-          { text: 'ESTP', callback_data: 'mbti_ESTP' },
-          { text: 'ESFP', callback_data: 'mbti_ESFP' },
-        ],
-        [
-          { text: '❓ 不知道 / 稍後測驗', callback_data: 'mbti_UNKNOWN' },
+          { text: '⏭️ 稍後再說', callback_data: 'mbti_choice_skip' },
         ],
       ]
     );
@@ -288,7 +270,250 @@ export async function handleBirthdayRetry(
 }
 
 // ============================================================================
-// MBTI Selection
+// MBTI Choice (Manual / Test / Skip)
+// ============================================================================
+
+/**
+ * Handle MBTI choice: manual entry
+ */
+export async function handleMBTIChoiceManual(
+  callbackQuery: CallbackQuery,
+  env: Env
+): Promise<void> {
+  const db = createDatabaseClient(env);
+  const telegram = createTelegramService(env);
+  const chatId = callbackQuery.message!.chat.id;
+  const telegramId = callbackQuery.from.id.toString();
+
+  try {
+    // Get user
+    const user = await findUserByTelegramId(db, telegramId);
+    if (!user) {
+      await telegram.answerCallbackQuery(callbackQuery.id, '❌ 用戶不存在');
+      return;
+    }
+
+    // Answer callback
+    await telegram.answerCallbackQuery(callbackQuery.id);
+
+    // Delete choice message
+    await telegram.deleteMessage(chatId, callbackQuery.message!.message_id);
+
+    // Show 16 MBTI type buttons
+    await telegram.sendMessageWithButtons(
+      chatId,
+      `請選擇你的 MBTI 類型：\n\n` +
+        `如果不確定，可以先進行測驗或稍後再設定。`,
+      [
+        [
+          { text: 'INTJ', callback_data: 'mbti_manual_INTJ' },
+          { text: 'INTP', callback_data: 'mbti_manual_INTP' },
+          { text: 'ENTJ', callback_data: 'mbti_manual_ENTJ' },
+          { text: 'ENTP', callback_data: 'mbti_manual_ENTP' },
+        ],
+        [
+          { text: 'INFJ', callback_data: 'mbti_manual_INFJ' },
+          { text: 'INFP', callback_data: 'mbti_manual_INFP' },
+          { text: 'ENFJ', callback_data: 'mbti_manual_ENFJ' },
+          { text: 'ENFP', callback_data: 'mbti_manual_ENFP' },
+        ],
+        [
+          { text: 'ISTJ', callback_data: 'mbti_manual_ISTJ' },
+          { text: 'ISFJ', callback_data: 'mbti_manual_ISFJ' },
+          { text: 'ESTJ', callback_data: 'mbti_manual_ESTJ' },
+          { text: 'ESFJ', callback_data: 'mbti_manual_ESFJ' },
+        ],
+        [
+          { text: 'ISTP', callback_data: 'mbti_manual_ISTP' },
+          { text: 'ISFP', callback_data: 'mbti_manual_ISFP' },
+          { text: 'ESTP', callback_data: 'mbti_manual_ESTP' },
+          { text: 'ESFP', callback_data: 'mbti_manual_ESFP' },
+        ],
+        [
+          { text: '⬅️ 返回', callback_data: 'mbti_choice_back' },
+        ],
+      ]
+    );
+  } catch (error) {
+    console.error('[handleMBTIChoiceManual] Error:', error);
+    await telegram.answerCallbackQuery(callbackQuery.id, '❌ 發生錯誤');
+  }
+}
+
+/**
+ * Handle MBTI choice: take test
+ */
+export async function handleMBTIChoiceTest(
+  callbackQuery: CallbackQuery,
+  env: Env
+): Promise<void> {
+  const db = createDatabaseClient(env);
+  const telegram = createTelegramService(env);
+  const chatId = callbackQuery.message!.chat.id;
+  const telegramId = callbackQuery.from.id.toString();
+
+  try {
+    // Get user
+    const user = await findUserByTelegramId(db, telegramId);
+    if (!user) {
+      await telegram.answerCallbackQuery(callbackQuery.id, '❌ 用戶不存在');
+      return;
+    }
+
+    // Start MBTI test
+    const { startMBTITest } = await import('~/services/mbti_test_service');
+    await startMBTITest(db, telegramId);
+
+    // Answer callback
+    await telegram.answerCallbackQuery(callbackQuery.id, '✅ 開始測驗');
+
+    // Delete choice message
+    await telegram.deleteMessage(chatId, callbackQuery.message!.message_id);
+
+    // Show first question
+    const { showMBTIQuestion } = await import('../handlers/mbti_test');
+    await showMBTIQuestion(chatId, telegram, db, telegramId, 0);
+  } catch (error) {
+    console.error('[handleMBTIChoiceTest] Error:', error);
+    await telegram.answerCallbackQuery(callbackQuery.id, '❌ 發生錯誤');
+  }
+}
+
+/**
+ * Handle MBTI choice: skip
+ */
+export async function handleMBTIChoiceSkip(
+  callbackQuery: CallbackQuery,
+  env: Env
+): Promise<void> {
+  const db = createDatabaseClient(env);
+  const telegram = createTelegramService(env);
+  const chatId = callbackQuery.message!.chat.id;
+  const telegramId = callbackQuery.from.id.toString();
+
+  try {
+    // Get user
+    const user = await findUserByTelegramId(db, telegramId);
+    if (!user) {
+      await telegram.answerCallbackQuery(callbackQuery.id, '❌ 用戶不存在');
+      return;
+    }
+
+    // Move to next step (anti_fraud) without setting MBTI
+    await updateOnboardingStep(db, telegramId, 'anti_fraud');
+
+    // Answer callback
+    await telegram.answerCallbackQuery(callbackQuery.id, '✅ 已跳過');
+
+    // Delete choice message
+    await telegram.deleteMessage(chatId, callbackQuery.message!.message_id);
+
+    // Show anti-fraud test
+    await telegram.sendMessageWithButtons(
+      chatId,
+      `好的，你可以稍後再設定 MBTI。\n\n` +
+        `💡 提示：你可以隨時使用 /mbti 指令來設定或測驗你的 MBTI 類型。\n\n` +
+        `🛡️ 現在進行反詐騙安全確認\n\n` +
+        `為了保護所有使用者的安全，請確認你了解以下事項：\n\n` +
+        `1. 你了解網路交友的安全風險嗎？\n` +
+        `2. 你會保護好自己的個人資訊嗎？\n` +
+        `3. 遇到可疑訊息時，你會提高警覺嗎？\n\n` +
+        `請確認：`,
+      [
+        [{ text: '✅ 是的，我了解並會注意安全', callback_data: 'anti_fraud_yes' }],
+        [{ text: '📚 我想了解更多安全知識', callback_data: 'anti_fraud_learn' }],
+      ]
+    );
+  } catch (error) {
+    console.error('[handleMBTIChoiceSkip] Error:', error);
+    await telegram.answerCallbackQuery(callbackQuery.id, '❌ 發生錯誤');
+  }
+}
+
+// ============================================================================
+// MBTI Manual Selection
+// ============================================================================
+
+export async function handleMBTIManualSelection(
+  callbackQuery: CallbackQuery,
+  mbtiType: string,
+  env: Env
+): Promise<void> {
+  const db = createDatabaseClient(env);
+  const telegram = createTelegramService(env);
+  const chatId = callbackQuery.message!.chat.id;
+  const telegramId = callbackQuery.from.id.toString();
+
+  try {
+    // Get user
+    const user = await findUserByTelegramId(db, telegramId);
+    if (!user) {
+      await telegram.answerCallbackQuery(callbackQuery.id, '❌ 用戶不存在');
+      return;
+    }
+
+    // Validate MBTI type
+    const { validateMBTI } = await import('~/domain/user');
+    const validation = validateMBTI(mbtiType);
+    if (!validation.valid) {
+      await telegram.answerCallbackQuery(callbackQuery.id, '❌ 無效的 MBTI 類型');
+      return;
+    }
+
+    // Save MBTI result with source = 'manual'
+    const now = new Date().toISOString();
+    await db.d1
+      .prepare(
+        `UPDATE users
+         SET mbti_result = ?, mbti_source = 'manual', mbti_completed_at = ?, updated_at = ?
+         WHERE telegram_id = ?`
+      )
+      .bind(mbtiType, now, now, telegramId)
+      .run();
+
+    // Move to next step
+    await updateOnboardingStep(db, telegramId, 'anti_fraud');
+
+    // Answer callback
+    await telegram.answerCallbackQuery(callbackQuery.id, `✅ MBTI 已設定為 ${mbtiType}`);
+
+    // Delete selection message
+    await telegram.deleteMessage(chatId, callbackQuery.message!.message_id);
+
+    // Get MBTI description
+    const { MBTI_DESCRIPTIONS } = await import('~/domain/mbti_test');
+    const description = MBTI_DESCRIPTIONS[mbtiType];
+
+    // Show result and continue to anti-fraud
+    await telegram.sendMessage(
+      chatId,
+      `✅ 你的 MBTI 類型：${mbtiType}\n\n` +
+        `${description?.zh_TW || ''}\n\n` +
+        `💡 你可以隨時使用 /mbti 指令重新測驗或修改。`
+    );
+
+    // Show anti-fraud test
+    await telegram.sendMessageWithButtons(
+      chatId,
+      `🛡️ 最後一步：反詐騙安全確認\n\n` +
+        `為了保護所有使用者的安全，請確認你了解以下事項：\n\n` +
+        `1. 你了解網路交友的安全風險嗎？\n` +
+        `2. 你會保護好自己的個人資訊嗎？\n` +
+        `3. 遇到可疑訊息時，你會提高警覺嗎？\n\n` +
+        `請確認：`,
+      [
+        [{ text: '✅ 是的，我了解並會注意安全', callback_data: 'anti_fraud_yes' }],
+        [{ text: '📚 我想了解更多安全知識', callback_data: 'anti_fraud_learn' }],
+      ]
+    );
+  } catch (error) {
+    console.error('[handleMBTIManualSelection] Error:', error);
+    await telegram.answerCallbackQuery(callbackQuery.id, '❌ 發生錯誤');
+  }
+}
+
+// ============================================================================
+// MBTI Selection (Legacy - kept for backward compatibility)
 // ============================================================================
 
 export async function handleMBTISelection(

@@ -10,6 +10,7 @@ import { handleStart } from './telegram/handlers/start';
 import { handleThrow } from './telegram/handlers/throw';
 import { handleCatch } from './telegram/handlers/catch';
 import { handleMessageForward } from './telegram/handlers/message_forward';
+import { handleMBTI } from './telegram/handlers/mbti';
 import { handleOnboardingInput } from './telegram/handlers/onboarding_input';
 import {
   showLanguageSelection,
@@ -236,6 +237,77 @@ async function routeUpdate(update: TelegramUpdate, env: Env): Promise<void> {
       return;
     }
 
+    // MBTI choice handlers
+    if (data === 'mbti_choice_manual') {
+      const { handleMBTIChoiceManual } = await import('./telegram/handlers/onboarding_callback');
+      await handleMBTIChoiceManual(callbackQuery, env);
+      return;
+    }
+
+    if (data === 'mbti_choice_test') {
+      const { handleMBTIChoiceTest } = await import('./telegram/handlers/onboarding_callback');
+      await handleMBTIChoiceTest(callbackQuery, env);
+      return;
+    }
+
+    if (data === 'mbti_choice_skip') {
+      const { handleMBTIChoiceSkip } = await import('./telegram/handlers/onboarding_callback');
+      await handleMBTIChoiceSkip(callbackQuery, env);
+      return;
+    }
+
+    // MBTI manual selection
+    if (data.startsWith('mbti_manual_')) {
+      const { handleMBTIManualSelection } = await import('./telegram/handlers/onboarding_callback');
+      const mbtiType = data.replace('mbti_manual_', '');
+      await handleMBTIManualSelection(callbackQuery, mbtiType, env);
+      return;
+    }
+
+    // MBTI test answer
+    if (data.startsWith('mbti_answer_')) {
+      const { handleMBTIAnswer } = await import('./telegram/handlers/mbti_test');
+      const parts = data.replace('mbti_answer_', '').split('_');
+      const questionIndex = parseInt(parts[0], 10);
+      const answerIndex = parseInt(parts[1], 10);
+      await handleMBTIAnswer(callbackQuery, questionIndex, answerIndex, env);
+      return;
+    }
+
+    // MBTI menu handlers
+    if (data === 'mbti_menu_test') {
+      const { handleMBTIMenuTest } = await import('./telegram/handlers/mbti');
+      await handleMBTIMenuTest(callbackQuery, env);
+      return;
+    }
+
+    if (data === 'mbti_menu_manual') {
+      const { handleMBTIMenuManual } = await import('./telegram/handlers/mbti');
+      await handleMBTIMenuManual(callbackQuery, env);
+      return;
+    }
+
+    if (data === 'mbti_menu_clear') {
+      const { handleMBTIMenuClear } = await import('./telegram/handlers/mbti');
+      await handleMBTIMenuClear(callbackQuery, env);
+      return;
+    }
+
+    if (data === 'mbti_menu_cancel') {
+      const { handleMBTIMenuCancel } = await import('./telegram/handlers/mbti');
+      await handleMBTIMenuCancel(callbackQuery, env);
+      return;
+    }
+
+    // MBTI set (from /mbti menu)
+    if (data.startsWith('mbti_set_')) {
+      const { handleMBTISet } = await import('./telegram/handlers/mbti');
+      const mbtiType = data.replace('mbti_set_', '');
+      await handleMBTISet(callbackQuery, mbtiType, env);
+      return;
+    }
+
+    // Legacy MBTI selection (kept for backward compatibility)
     if (data.startsWith('mbti_')) {
       const { handleMBTISelection } = await import('./telegram/handlers/onboarding_callback');
       const mbtiType = data.replace('mbti_', '');
