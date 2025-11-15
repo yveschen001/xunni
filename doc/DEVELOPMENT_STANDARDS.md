@@ -1,14 +1,16 @@
 # XunNi 開發規範
 
+> **在閱讀本文檔前，請先閱讀 `@PROJECT_OVERVIEW.md` 了解專案概覽。**
+
 ## 1. 目錄結構規範
 
 ### 1.1 標準目錄結構
 
 ```
 XunNi/
-├── src/                          # 源代碼目錄
-│   ├── worker.ts                 # Cloudflare Worker 入口點
-│   ├── router.ts                 # HTTP 路由處理器
+├── src/                          # 源代碼目錄（@src/）
+│   ├── worker.ts                 # Cloudflare Worker 入口點（@src/worker.ts）
+│   ├── router.ts                 # HTTP 路由處理器（@src/router.ts）
 │   ├── config/                   # 配置模組
 │   │   ├── env.ts                # 環境變數驗證與讀取
 │   │   └── constants.ts           # 常量定義
@@ -189,6 +191,8 @@ export async function fetchUser(id: string): Promise<Result<User, DatabaseError>
 ```
 
 ### 2.2 命名規範
+
+> **所有命名規範必須嚴格遵守，不一致的命名將導致代碼審查失敗。**
 
 #### 2.2.1 變數與函數
 
@@ -372,9 +376,24 @@ chore: 更新依賴版本
 
 ## 5. 參考資源
 
+### 內部文檔
+
+- `@PROJECT_OVERVIEW.md` - 專案概覽（**必讀**）
+- `@doc/SPEC.md` - 專案規格書
+- `@doc/MODULE_DESIGN.md` - 模組化設計
+- `@doc/I18N_GUIDE.md` - 國際化指南
+- `@doc/TESTING.md` - 測試規範
+- `@doc/ENV_CONFIG.md` - 環境配置
+
+### 外部資源
+
 - [TypeScript 官方文檔](https://www.typescriptlang.org/docs/)
 - [Cloudflare Workers 文檔](https://developers.cloudflare.com/workers/)
 - [Telegram Bot API](https://core.telegram.org/bots/api)
 - [Vitest 文檔](https://vitest.dev/)
 - [Conventional Commits](https://www.conventionalcommits.org/)
+
+---
+
+**最後更新**: 2025-01-15
 

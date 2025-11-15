@@ -2,6 +2,8 @@
 
 > 運行在 Cloudflare Workers 的匿名聊天 Telegram Bot
 
+> **⚠️ 重要：AI 代理在開始任何工作前，必須先閱讀 `@PROJECT_OVERVIEW.md`**
+
 ## 🌟 專案簡介
 
 XunNi 是一個結合 MBTI 測驗與星座運勢的匿名漂流瓶交友 Bot，提供：
@@ -46,6 +48,9 @@ wrangler deploy --env production
 ```
 
 ## 📚 文檔
+
+**開始之前，必須先閱讀：**
+- **[PROJECT_OVERVIEW.md](./PROJECT_OVERVIEW.md)** - 專案概覽和結構（**AI 代理必讀**）
 
 完整文檔請查看 [doc/](./doc/) 目錄：
 

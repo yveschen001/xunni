@@ -1,56 +1,111 @@
-# XunNi 專案 Cursor 規則
+# XunNi 專案 Cursor AI 規則
 
-## 專案概述
-- 專案名稱：XunNi
-- 類型：Telegram Bot（MBTI + 星座心理測驗漂流瓶交友）
-- 運行環境：Cloudflare Workers
-- 資料庫：Cloudflare D1（SQLite）
-- 語言：TypeScript（ESM）
+> **⚠️ 重要：在開始任何編輯前，必須先閱讀 `@PROJECT_OVERVIEW.md`**
 
-## 開發規範
+## 第一步：閱讀專案概覽
 
-### 代碼規範
-- 使用 TypeScript 嚴格模式
-- 遵循 DEVELOPMENT_STANDARDS.md 中的規範
-- 使用 camelCase 命名變數和函數
-- 使用 UPPER_SNAKE_CASE 命名常數
-- 使用 PascalCase 命名類別和型別
+**在開始任何工作前，必須先閱讀：**
+- `@PROJECT_OVERVIEW.md` - 專案概覽和結構（**必讀**）
+- `@doc/SPEC.md` - 完整的業務邏輯和資料庫設計
+- `@doc/DEVELOPMENT_STANDARDS.md` - 代碼風格和命名規範
 
-### 訊息格式
+## 開發規範（必須遵守）
+
+### 代碼風格
+
+**必須遵守以下規範（詳見 `@doc/DEVELOPMENT_STANDARDS.md`）：**
+
+- **TypeScript**: 使用嚴格模式（`strict: true`）
+- **命名規範**:
+  - 變數和函數：`camelCase`
+  - 常數：`UPPER_SNAKE_CASE`
+  - 類別和型別：`PascalCase`
+  - 檔案名稱：小寫 + 下劃線（如 `msg_forward.ts`）
+- **模組化**: 遵循 `@doc/MODULE_DESIGN.md` 中的分層設計原則
+
+### Telegram 訊息格式
+
+**⚠️ 嚴格遵守：**
+
 - **所有 Telegram 訊息使用純文字 + 官方 Emoji**
-- **不使用 HTML 或 Markdown 格式**
+- **絕對不使用 HTML 或 Markdown 格式**
 - 使用表情符號增加友好度
 
-### 模組化設計
-- Domain 層：純函數，無副作用
-- Services 層：外部服務封裝
-- Handlers 層：Telegram 指令處理
-- 遵循 MODULE_DESIGN.md 中的設計原則
-
 ### 資料庫規範
-- 所有表使用小寫 + 下劃線命名
-- 所有欄位使用小寫 + 下劃線命名
-- 使用遷移腳本管理資料庫變更
+
+- **表名**: 小寫 + 下劃線（如 `users`, `bottles`）
+- **欄位名**: 小寫 + 下劃線（如 `telegram_id`, `is_vip`）
+- **變更管理**: 必須通過遷移腳本（`@src/db/migrations/`），禁止直接修改 `@src/db/schema.sql`
 
 ### 國際化
-- 所有使用者可見文字使用 i18n 系統
-- 使用 I18N_KEYS 常數，不使用字串字面量
-- 參考 I18N_GUIDE.md
 
-### 測試規範
-- Domain 層：90%+ 覆蓋率
-- Utils：80%+ 覆蓋率
-- Handlers：60%+ 覆蓋率
-- 參考 TESTING.md
+**必須遵守：**
 
-## 備份策略
+- 所有使用者可見文字必須使用 i18n 系統
+- 使用 `I18N_KEYS` 常數（`@src/i18n/keys.ts`），禁止使用字串字面量
+- 參考 `@doc/I18N_GUIDE.md` 了解如何使用
+
+### 測試要求
+
+**在提交代碼前，必須確保測試通過：**
+
+- Domain 層：目標 90%+ 覆蓋率（`@tests/domain/`）
+- Utils：目標 80%+ 覆蓋率（`@tests/utils/`）
+- Handlers：目標 60%+ 覆蓋率（`@tests/telegram/handlers/`）
+
+**測試命令**：`pnpm test`
+
+## 受保護的文件/目錄
+
+**⚠️ 修改前必須謹慎，建議先與維護者確認：**
+
+- `@wrangler.toml` - Cloudflare 配置（部署相關）
+- `@src/db/schema.sql` - 資料庫 Schema（必須通過遷移腳本）
+- `@src/db/migrations/` - 遷移腳本目錄（變更需審核）
+- `@scripts/backup-*.ts` - 備份腳本（備份策略相關）
+- `@doc/SPEC.md` - 核心規格書（重大變更需審核）
+
+**🔒 絕對禁止修改：**
+
+- `.dev.vars` - 包含敏感資訊（在 `.gitignore` 中）
+- `node_modules/` - 依賴包
+- `package-lock.json` / `pnpm-lock.yaml` - 鎖定文件（除非明確要求更新依賴）
+
+## 業務規則（不可違反）
+
+### 不可修改的欄位
+
+- **性別（gender）**: 設定後永遠不能修改（需二次確認）
+- **生日（birthday）**: 設定後永遠不能修改（需二次確認）
+
+**實作位置**: `@src/telegram/handlers/profile.ts` 和 `@src/telegram/handlers/start.ts`
+
+### 年齡限制
+
+- 未滿 18 歲不允許註冊
+- 必須輸入真實生日驗證
+
+**實作位置**: `@src/domain/user.ts` 和 `@src/telegram/handlers/start.ts`
+
+### 安全規範
+
+- 所有 URL 必須通過白名單檢查（`@src/utils/url-whitelist.ts`）
+- 匿名轉發不暴露真實 Telegram ID（`@src/telegram/handlers/msg_forward.ts`）
+- 敏感資訊使用 Cloudflare Secrets（不在代碼中硬編碼）
+
+## 備份策略（必須遵守）
 
 ### 單向備份原則
-- 只從本地推送到遠程
-- 禁止使用：git pull, git fetch, git merge, git reset --hard
-- 使用 `pnpm backup` 和 `pnpm backup:push`
 
-### 備份命令
+**絕對禁止使用以下命令：**
+- `git pull`
+- `git fetch`
+- `git merge`
+- `git reset --hard`
+- `git checkout -f`
+
+**正確做法：**
+
 ```bash
 # 本地備份
 pnpm backup
@@ -59,41 +114,93 @@ pnpm backup
 pnpm backup:push
 ```
 
-## 重要提醒
+**詳細說明**: 參考 `@doc/BACKUP_STRATEGY.md`
 
-### 安全規範
-- 所有 URL 必須通過白名單檢查
-- 匿名轉發不暴露真實 Telegram ID
-- 敏感資訊使用 Cloudflare Secrets
+## 開發流程（必須遵循）
 
-### 不可修改的欄位
-- 性別（gender）：設定後永遠不能修改
-- 生日（birthday）：設定後永遠不能修改
-- 需深度確認（二次確認）
+**在編輯任何文件前：**
 
-### 年齡限制
-- 未滿 18 歲不允許註冊
-- 必須輸入真實生日驗證
+1. **閱讀文檔**: 先閱讀 `@PROJECT_OVERVIEW.md` 和相關設計文檔（如 `@doc/SPEC.md`）
+2. **理解業務邏輯**: 確保理解該功能的業務邏輯和資料庫設計
+3. **遵循規範**: 嚴格遵守 `@doc/DEVELOPMENT_STANDARDS.md` 中的規範
+4. **編寫測試**: Domain 層函數必須先寫測試（`@tests/domain/`）
+5. **執行測試**: 執行 `pnpm test` 確保所有測試通過
+6. **執行 Lint**: 執行 `pnpm lint` 檢查代碼風格
+7. **備份**: 使用 `pnpm backup` 進行本地備份
+8. **推送**: 使用 `pnpm backup:push` 推送到 GitHub
 
-### 訊息格式
-- 純文字 + 官方 Emoji
-- 不使用 HTML/Markdown
+## 命令速查
 
-## 參考文檔
+```bash
+# 本地開發
+pnpm dev
 
-- SPEC.md：專案規格書
-- DEVELOPMENT_STANDARDS.md：開發規範
-- MODULE_DESIGN.md：模組化設計
-- I18N_GUIDE.md：國際化指南
-- TESTING.md：測試規範
-- DEPLOYMENT.md：部署指南
-- BACKUP_STRATEGY.md：備份策略
+# 執行測試
+pnpm test
 
-## 開發流程
+# 執行 Lint
+pnpm lint
 
-1. 閱讀相關文檔
-2. 實作功能（遵循規範）
-3. 編寫測試
-4. 執行備份（pnpm backup）
-5. 推送到 GitHub（pnpm backup:push）
+# 本地備份
+pnpm backup
 
+# 推送到 GitHub
+pnpm backup:push
+
+# 部署到 Staging
+pnpm deploy:staging
+
+# 部署到 Production
+pnpm deploy:production
+```
+
+## 文件路徑規範
+
+**使用 `@` 前綴引用文件路徑（如 `@src/worker.ts`）**
+
+**重要文件位置：**
+
+- 專案概覽: `@PROJECT_OVERVIEW.md`
+- 專案規格: `@doc/SPEC.md`
+- 開發規範: `@doc/DEVELOPMENT_STANDARDS.md`
+- 模組設計: `@doc/MODULE_DESIGN.md`
+- 環境配置: `@doc/ENV_CONFIG.md`
+- 國際化指南: `@doc/I18N_GUIDE.md`
+- 測試規範: `@doc/TESTING.md`
+- 部署指南: `@doc/DEPLOYMENT.md`
+- 備份策略: `@doc/BACKUP_STRATEGY.md`
+
+**完整文檔索引**: `@doc/README.md`
+
+## 架構原則
+
+### 分層設計（詳見 `@doc/MODULE_DESIGN.md`）
+
+- **Domain 層** (`@src/domain/`): 純函數，無副作用，易於測試
+- **Services 層** (`@src/services/`): 外部服務封裝
+- **Handlers 層** (`@src/telegram/handlers/`): Telegram 指令處理
+- **Utils 層** (`@src/utils/`): 通用工具函數
+
+**原則**:
+- Domain 層不依賴外部服務
+- Handlers 層依賴 Domain 層，不直接操作資料庫
+- Services 層獨立，可被多個 Handlers 使用
+
+## 故障排除
+
+### 不確定從哪裡開始？
+**解決方案**: 閱讀 `@doc/SPEC.md` 第 15 節「建議的 Cursor 開發順序」
+
+### 不確定命名規範？
+**解決方案**: 查看 `@doc/DEVELOPMENT_STANDARDS.md` 第 2.2 節
+
+### 不確定如何測試？
+**解決方案**: 參考 `@doc/TESTING.md` 和現有測試文件 `@tests/domain/`
+
+### 不確定架構設計？
+**解決方案**: 閱讀 `@doc/MODULE_DESIGN.md` 了解分層設計原則
+
+---
+
+**最後更新**: 2025-01-15  
+**維護者**: 專案團隊

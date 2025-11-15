@@ -2,7 +2,13 @@
 
 ## 📚 文檔總覽
 
+> **⚠️ 重要：在開始任何編輯前，必須先閱讀 `@PROJECT_OVERVIEW.md`（項目根目錄）**
+
 本目錄包含 XunNi 專案的完整開發規範與指南。請按照以下順序閱讀：
+
+1. **首先閱讀**: `@PROJECT_OVERVIEW.md`（項目根目錄）- 專案概覽和結構
+2. **核心規格**: `@doc/SPEC.md` - 完整的業務邏輯和資料庫設計
+3. **開發規範**: `@doc/DEVELOPMENT_STANDARDS.md` - 代碼風格和命名規範
 
 ### 1. 核心規格
 
@@ -158,9 +164,12 @@
 
 ### 第一步：閱讀核心文檔
 
-1. 閱讀 **[SPEC.md](./SPEC.md)** 了解專案全貌
-2. 閱讀 **[DEVELOPMENT_STANDARDS.md](./DEVELOPMENT_STANDARDS.md)** 了解開發規範
-3. 閱讀 **[ENV_CONFIG.md](./ENV_CONFIG.md)** 了解環境配置
+**必須按照以下順序閱讀：**
+
+1. 閱讀 **`@PROJECT_OVERVIEW.md`**（項目根目錄）了解專案概覽和結構（**必讀**）
+2. 閱讀 **`@doc/SPEC.md`** 了解專案全貌和業務邏輯
+3. 閱讀 **`@doc/DEVELOPMENT_STANDARDS.md`** 了解開發規範
+4. 閱讀 **`@doc/ENV_CONFIG.md`** 了解環境配置
 
 ### 第二步：準備開發環境
 
