@@ -232,29 +232,143 @@ wrangler d1 execute xunni-db --file=./src/db/migrations/002_add_horoscope_opt_in
 
 ---
 
-## 7. 監控與日誌
+## 7. 監控與日誌（運維觀測）
 
 ### 7.1 Cloudflare Analytics
 
 在 Cloudflare Dashboard 查看：
-- 請求數
-- 錯誤率
-- 響應時間
-- Worker 使用量
+- 請求數（總請求數、成功/失敗數）
+- 錯誤率（4xx、5xx 錯誤占比）
+- 響應時間（P50、P95、P99 延遲）
+- Worker 使用量（CPU 時間、請求次數）
 
-### 7.2 日誌
+### 7.2 日誌策略
 
+**日誌等級**：
+- `debug`：開發環境詳細日誌
+- `info`：正常操作日誌（使用者註冊、丟瓶、撿瓶）
+- `warn`：警告日誌（邀請碼異常、翻譯降級）
+- `error`：錯誤日誌（API 失敗、資料庫錯誤）
+
+**日誌格式**：
 ```typescript
-// 在 Worker 中使用 console.log
-console.log('User action:', { userId, action: 'throw_bottle' });
+// src/utils/logger.ts
+export function log(
+  level: 'debug' | 'info' | 'warn' | 'error',
+  message: string,
+  metadata?: Record<string, any>
+): void {
+  const logEntry = {
+    timestamp: new Date().toISOString(),
+    level,
+    message,
+    ...metadata,
+  };
+  
+  console.log(JSON.stringify(logEntry));
+}
 
-// 使用 Cloudflare Logs
-// 在 Dashboard → Workers → Logs 查看
+// 使用範例
+log('info', 'User threw bottle', { userId, bottleId, language });
+log('warn', 'Translation fallback', { userId, from: 'openai', to: 'google' });
+log('error', 'Database query failed', { error: error.message, query });
 ```
+
+**日誌保留策略**：
+- Cloudflare Workers 日誌：保留 7 天（免費版）
+- 重要日誌（錯誤、警告）寫入 `behavior_logs` 表，永久保留
+- 定期匯出日誌到外部儲存（可選，使用 Cloudflare Logpush）
+
+### 7.3 告警機制
+
+**告警條件**：
+- 錯誤率 > 5%（1 小時內）
+- Worker CPU 時間超過配額 80%
+- 翻譯降級次數 > 100/天
+- OpenAI API 失敗率 > 10%（1 小時內）
+- 資料庫查詢失敗率 > 1%（1 小時內）
+
+**告警方式**：
+- Cloudflare Dashboard 通知
+- Slack Webhook（可選）
+- Email 通知（可選）
+
+**實作範例**：
+```typescript
+// src/utils/alert.ts
+export async function sendAlert(
+  env: Env,
+  level: 'warning' | 'critical',
+  message: string,
+  metadata?: Record<string, any>
+): Promise<void> {
+  // 發送到 Slack（如果配置了 SLACK_WEBHOOK_URL）
+  if (env.SLACK_WEBHOOK_URL) {
+    await fetch(env.SLACK_WEBHOOK_URL, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        text: `[${level.toUpperCase()}] ${message}`,
+        attachments: [{ fields: Object.entries(metadata || {}).map(([k, v]) => ({ title: k, value: String(v) })) }],
+      }),
+    });
+  }
+  
+  // 記錄到資料庫
+  await env.DB.prepare(`
+    INSERT INTO alerts (level, message, metadata, created_at)
+    VALUES (?, ?, ?, datetime('now'))
+  `).bind(level, message, JSON.stringify(metadata || {})).run();
+}
+```
+
+### 7.4 性能監控
+
+**關鍵指標**：
+- API 響應時間（P50、P95、P99）
+- 資料庫查詢時間
+- 翻譯 API 響應時間
+- Mini App 載入時間
+
+**監控端點**：
+- `/health`：健康檢查（資料庫連接、API 可用性）
+- `/metrics`：性能指標（可選，使用 Prometheus 格式）
 
 ---
 
-## 8. 回滾策略
+## 8. Mini App 靜態資產部署
+
+### 8.1 Cloudflare Pages 部署
+
+**部署流程**：
+1. 將 Mini App 前端代碼推送到 GitHub
+2. 在 Cloudflare Dashboard 建立 Pages 專案
+3. 連接 GitHub Repository
+4. 設定構建命令：
+   ```bash
+   npm run build
+   ```
+5. 設定輸出目錄：`dist`
+
+**版本號管理**：
+- 在 `package.json` 中維護版本號
+- 每次部署時更新版本號
+- 在 Mini App 中顯示版本號（用於除錯）
+
+**WebApp.share Deep Link**：
+- 確保 Deep Link 正確指向 Bot：`https://t.me/xunni_bot?startapp=...`
+- 測試分享功能是否正常運作
+
+### 8.2 靜態資源 CDN
+
+**CDN 配置**：
+- 使用 Cloudflare Pages 自帶 CDN
+- 設定適當的 Cache-Control Header
+- 啟用 Gzip/Brotli 壓縮
+
+---
+
+## 9. 回滾策略
 
 ### 8.1 版本管理
 
@@ -275,7 +389,7 @@ wrangler d1 execute xunni-db --file=backup.sql
 
 ---
 
-## 9. 健康檢查
+## 10. 健康檢查
 
 ### 9.1 健康檢查端點
 
@@ -307,7 +421,7 @@ router.get('/health', async (request, env) => {
 
 ---
 
-## 10. 部署檢查清單
+## 11. 部署檢查清單
 
 ### Production 部署前
 
@@ -322,7 +436,7 @@ router.get('/health', async (request, env) => {
 
 ---
 
-## 11. 故障排除
+## 12. 故障排除
 
 ### 11.1 常見問題
 
@@ -343,7 +457,7 @@ router.get('/health', async (request, env) => {
 
 ---
 
-## 12. 參考資源
+## 13. 參考資源
 
 - [Cloudflare Workers 文檔](https://developers.cloudflare.com/workers/)
 - [Wrangler CLI 文檔](https://developers.cloudflare.com/workers/wrangler/)

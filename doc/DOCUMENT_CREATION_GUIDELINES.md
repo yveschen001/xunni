@@ -21,8 +21,8 @@
 - `ONBOARDING_FLOW.md` - 註冊流程（10 步流程，內容豐富）
 
 **不應該創建的文檔**（應該合併到 SPEC.md）：
-- ❌ `USER_BLOCKING.md` - 用戶封鎖（內容簡單，應在 SPEC.md 5.10 節）
-- ❌ `USER_RIGHTS.md` - 用戶權利（內容簡單，應在 SPEC.md 5.11 節）
+- ❌ `USER_BLOCKING.md` - 使用者封鎖（內容簡單，應在 SPEC.md 5.10 節）
+- ❌ `USER_RIGHTS.md` - 使用者權利（內容簡單，應在 SPEC.md 5.11 節）
 - ❌ `DATA_RETENTION.md` - 資料保留（應在 SPEC.md 第 7 節）
 - ❌ `AI_MODERATION.md` - AI 審核（應在 SPEC.md 4.3 節）
 

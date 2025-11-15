@@ -64,9 +64,21 @@
 - **長流程改走 WebApp**：註冊引導、個人資料編輯、MBTI 測驗、聊天界面
 
 **Telegram Mini App**（當前階段）：
-- 使用 `initData` 驗簽確保安全性
-- 首屏載入 < 2 秒（性能要求）
+- 使用 `initData` 驗簽確保安全性（見下方「Mini App 安全」章節）
+- 首屏載入 < 2 秒（性能要求，見下方「Mini App 性能優化」章節）
 - 支援 `WebApp.share` Deep Link（`startapp=share_mbti_{resultId}`）
+- 使用 `themeParams` 適配深/淺色主題
+- 使用 `MainButton`/`SecondaryButton` 減少自定義 UI 成本
+
+**Bot Fallback 機制**（當 Mini App 無法使用時）：
+- 提供極簡 Bot 指令維繫存量使用者：
+  - `/start` - 註冊/查看資料
+  - `/throw` - 丟漂流瓶
+  - `/catch` - 撿漂流瓶
+  - `/profile` - 查看個人資料
+  - `/help` - 幫助
+- 當檢測到 Mini App 無法載入時，自動提示使用者使用 Bot 指令
+- Fallback 檢測：嘗試載入 Mini App，失敗時顯示「Mini App 暫時無法使用，請使用指令：/throw、/catch」
 
 **未來擴展預留**（M2/M3，暫不實作）：
 - WeChat / Line 插件
@@ -552,6 +564,62 @@ async function recordConversationMessage(user: User, convoId: number, today: str
 - Audit 日誌：記錄被 AI 攔截的內容摘要、reason、user_id、conversation_id
 - 資料庫表：`ai_moderation_logs`（見 3.12.1 節）
 
+### 4.3.1 風控資料來源與觸發規則
+
+**資料來源**：
+1. **行為日誌**：
+   - 每日丟瓶/撿瓶次數異常（超過正常範圍）
+   - 短時間內大量訊息（疑似機器人）
+   - 頻繁修改個人資料（疑似帳號買賣）
+
+2. **舉報記錄**：
+   - 其他使用者舉報（reports 表）
+   - 24 小時內被舉報次數
+
+3. **設備指紋**（可選，未來擴展）：
+   - IP 地址
+   - User-Agent
+   - 設備識別資訊（Telegram 提供的 client info）
+
+**觸發規則**：
+- **風險分數累積規則**：
+  - URL_BLOCKED：+10 分
+  - SENSITIVE_WORD：+5 分
+  - AI_FLAGGED：+15 分
+  - 被舉報 1 次：+5 分
+  - 被舉報 2 次：+15 分
+  - 被舉報 3 次：+30 分
+  - 被舉報 5 次以上：+50 分（直接封禁）
+
+- **封禁規則**（基於風險分數）：
+  - risk_score >= 50：封禁 3 天
+  - risk_score >= 30：封禁 24 小時
+  - risk_score >= 15：封禁 6 小時
+  - risk_score >= 10：封禁 1 小時
+
+- **自動封禁規則**（基於舉報）：
+  - 24 小時內 1 人舉報：封禁 1 小時
+  - 24 小時內 2 人舉報：封禁 6 小時
+  - 24 小時內 3 人舉報：封禁 24 小時
+  - 24 小時內 5 人以上舉報：封禁 3 天
+
+**行為日誌記錄**：
+```sql
+CREATE TABLE behavior_logs (
+  id INTEGER PRIMARY KEY AUTOINCREMENT,
+  user_id TEXT,
+  action_type TEXT,          -- 'throw_bottle' / 'catch_bottle' / 'send_message' / 'modify_profile'
+  action_data TEXT,          -- JSON：動作相關資料
+  ip_address TEXT,           -- IP 地址（可選）
+  user_agent TEXT,           -- User-Agent（可選）
+  created_at DATETIME
+);
+
+CREATE INDEX idx_behavior_logs_user_id ON behavior_logs(user_id);
+CREATE INDEX idx_behavior_logs_action_type ON behavior_logs(action_type);
+CREATE INDEX idx_behavior_logs_created_at ON behavior_logs(created_at);
+```
+
 ---
 
 ## 5. 使用流程與 Telegram 指令
@@ -850,7 +918,306 @@ async function recordConversationMessage(user: User, convoId: number, today: str
 
 ---
 
-## 7. 外部資格查詢 API（給 Moonpacket）
+## 7. Telegram Mini App 詳細設計
+
+### 7.1 Mini App 性能優化
+
+**首屏載入 < 2 秒策略**：
+
+1. **多語言首屏資源切分**：
+   - 按語言代碼拆分首屏資源（zh-TW、en、ja 等）
+   - 僅載入當前語言的翻譯文件
+   - 預載常用語言包到 CDN
+
+2. **預載 MBTI 題目/結果 JSON**：
+   - MBTI 題目 JSON 預先載入到 Service Worker 快取
+   - MBTI 結果說明 JSON 預載到快取
+   - 避免首屏載入時請求題目資料
+
+3. **Service Worker 快取策略**：
+   - 靜態資源（CSS、JS、圖片）：Cache First
+   - API 資料（MBTI 題目、翻譯文件）：Network First，Fallback to Cache
+   - 快取過期時間：24 小時（MBTI 題目）、1 小時（翻譯文件）
+
+4. **Skeleton UI**：
+   - 首屏顯示 Skeleton 載入狀態
+   - 避免白屏，提升使用者體驗
+   - 使用 Telegram `MainButton` 顯示載入狀態
+
+**實作範例**：
+```typescript
+// src/mini-app/utils/cache.ts
+export class ServiceWorkerCache {
+  static async cacheMBTIQuestions(language: string): Promise<void> {
+    const questions = await fetch(`/api/mbti/questions?lang=${language}`);
+    await caches.open('mbti-cache').then(cache => {
+      cache.put(`/api/mbti/questions?lang=${language}`, questions);
+    });
+  }
+  
+  static async getMBTIQuestions(language: string): Promise<any> {
+    const cache = await caches.open('mbti-cache');
+    const cached = await cache.match(`/api/mbti/questions?lang=${language}`);
+    if (cached) return cached.json();
+    
+    // Network First
+    const response = await fetch(`/api/mbti/questions?lang=${language}`);
+    await cache.put(`/api/mbti/questions?lang=${language}`, response.clone());
+    return response.json();
+  }
+}
+```
+
+### 7.2 Mini App 安全
+
+**initData 驗簽流程**：
+
+1. **接收 initData**：
+   - Telegram Mini App 啟動時，從 `window.Telegram.WebApp.initData` 取得
+   - `initData` 格式：`user=%7B%22id%22%3A123456789%7D&auth_date=1234567890&hash=...`
+
+2. **驗簽步驟**：
+   ```typescript
+   // src/telegram/webapp/validate-initdata.ts
+   
+   import crypto from 'crypto';
+   
+   export function validateInitData(
+     initData: string,
+     botSecret: string
+   ): boolean {
+     const urlParams = new URLSearchParams(initData);
+     const hash = urlParams.get('hash');
+     urlParams.delete('hash');
+     
+     // 按鍵名排序
+     const dataCheckString = Array.from(urlParams.entries())
+       .sort(([a], [b]) => a.localeCompare(b))
+       .map(([key, value]) => `${key}=${value}`)
+       .join('\n');
+     
+     // 計算 HMAC-SHA256
+     const secretKey = crypto
+       .createHmac('sha256', 'WebAppData')
+       .update(botSecret)
+       .digest();
+     
+     const calculatedHash = crypto
+       .createHmac('sha256', secretKey)
+       .update(dataCheckString)
+       .digest('hex');
+     
+     return calculatedHash === hash;
+   }
+   ```
+
+3. **驗證 auth_date**：
+   - 檢查 `auth_date` 是否在 24 小時內
+   - 超過 24 小時需重新驗簽
+
+4. **Token 失效策略**：
+   - `initData` 中的 `auth_date` 超過 24 小時後失效
+   - 失效時提示使用者重新啟動 Mini App
+   - 記錄失效事件（用於安全監控）
+
+**處理 web_app_data**：
+- 當使用者點擊 Mini App 內的按鈕提交資料時，Telegram 會發送 `web_app_data` 到 Bot
+- Bot 需要驗證 `web_app_data` 來源（檢查 user_id、timestamp）
+- 格式：`update.message.web_app_data.data`（JSON 字串）
+
+### 7.3 Mini App 社群實踐
+
+**themeParams 適配**：
+```typescript
+// src/mini-app/utils/theme.ts
+const tg = window.Telegram.WebApp;
+tg.ready();
+
+// 自動適配深/淺色主題
+const theme = tg.themeParams;
+document.documentElement.style.setProperty('--bg-color', theme.bg_color || '#ffffff');
+document.documentElement.style.setProperty('--text-color', theme.text_color || '#000000');
+document.documentElement.style.setProperty('--button-color', theme.button_color || '#3390ec');
+```
+
+**MainButton / SecondaryButton**：
+```typescript
+// 使用 Telegram 原生按鈕，減少自定義 UI
+const tg = window.Telegram.WebApp;
+
+// 主要按鈕（丟瓶子）
+tg.MainButton.setText('📦 丟瓶子');
+tg.MainButton.onClick(() => {
+  // 處理丟瓶子邏輯
+});
+tg.MainButton.show();
+
+// 次要按鈕（查看個人資料）
+tg.SecondaryButton.setText('👤 個人資料');
+tg.SecondaryButton.onClick(() => {
+  // 處理個人資料邏輯
+});
+tg.SecondaryButton.show();
+```
+
+**WebApp.share 分享裂變**：
+```typescript
+// 分享 MBTI 測驗結果
+tg.shareUrl('https://t.me/xunni_bot?startapp=share_mbti_' + resultId, {
+  text: `我的 MBTI 測驗結果是 ${mbtiType}！你也來測測吧～`,
+});
+
+// 分享邀請碼
+tg.shareUrl('https://t.me/xunni_bot?startapp=invite_' + inviteCode, {
+  text: `來 XunNi 一起丟漂流瓶吧！使用我的邀請碼：${inviteCode}`,
+});
+```
+
+---
+
+## 8. 邀請與裂變機制
+
+### 8.1 邀請碼生成
+
+**邀請碼類型**：
+- **永久邀請碼**（每個使用者 1 個）：
+  - 格式：使用者 `telegram_id` 的 Base64 編碼或 8 位字母數字混合
+  - 可無限次使用
+  - 儲存在 `users.invite_code`
+
+**生成邏輯**：
+```typescript
+// src/domain/invite.ts
+export function generateInviteCode(telegramId: string): string {
+  // 使用 telegram_id + salt 生成唯一邀請碼
+  const hash = crypto.createHash('sha256')
+    .update(telegramId + 'INVITE_SALT')
+    .digest('hex');
+  
+  // 取前 8 位，轉換為字母數字混合
+  return base64Encode(hash.substring(0, 8)).substring(0, 8);
+}
+```
+
+### 8.2 邀請驗證流程
+
+**觸發節點**：
+1. 新使用者註冊時檢查 `startapp` 參數：
+   - 如果 `startapp=invite_{code}`，記錄到 `users.invited_by`
+   - 建立 `invites` 記錄（status='pending'）
+
+2. 新使用者完成 MBTI 測驗時：
+   - 檢查是否有 `invited_by`
+   - 如果有，將 `invites.status` 更新為 'activated'
+   - 更新邀請人的 `activated_invites` 計數
+
+3. 新使用者至少丟 1 個瓶子後：
+   - 確認激活條件達成
+   - 發送通知給邀請人：「你的好友已激活邀請！」
+
+**驗證條件**：
+- 完成 onboarding（含 MBTI 測驗）
+- 至少丟過 1 個瓶子
+- 僅計算首次激活（同一邀請碼只能激活 1 次）
+
+### 8.3 邀請數據統計
+
+**統計維度**：
+- 邀請碼點擊次數（有多少人點擊了邀請連結）
+- 邀請碼激活次數（有多少人完成註冊並激活）
+- 邀請轉化率（激活次數 / 點擊次數）
+- 邀請來源分析（MBTI 分享、漂流瓶分享、個人資料分享）
+
+**KPI 指標對照表**：
+
+| 指標 | 定義 | 計算方式 | 用途 |
+|------|------|---------|------|
+| 邀請點擊數 | 點擊邀請連結的人數 | COUNT(DISTINCT invitee_id) WHERE status='pending' | 追蹤邀請傳播範圍 |
+| 邀請激活數 | 完成激活的邀請數 | COUNT(*) WHERE status='activated' | 追蹤邀請效果 |
+| 邀請轉化率 | 激活率 | 激活數 / 點擊數 * 100% | 優化邀請策略 |
+| 分享轉化率 | 分享後註冊率 | 分享連結註冊數 / 分享次數 * 100% | 優化分享策略 |
+| 平均邀請數 | 每位使用者平均邀請人數 | SUM(activated_invites) / COUNT(*) | 追蹤活躍度 |
+
+### 8.4 分享流程設計
+
+**MBTI 測驗結果分享**：
+1. 使用者完成 MBTI 測驗後，顯示「分享結果」按鈕
+2. 點擊後使用 `WebApp.share`：
+   - Deep Link：`startapp=share_mbti_{resultId}`
+   - 分享文案：「我的 MBTI 測驗結果是 {type}！你也來測測吧～」
+   - 預覽圖片：MBTI 結果卡片（含類型、描述）
+
+3. 被分享者點開連結後：
+   - Bot 檢查 `startapp` 參數
+   - 如果是 `share_mbti_{resultId}`：
+     - 顯示：「你的好友邀請你來測 MBTI！快來看看你的性格類型吧～」
+     - 按鈕：「📊 開始測驗」→ 啟動 Mini App 進入 MBTI 測驗
+   - 記錄分享來源到 `referral_sources` 表：
+     - `source_type`: 'mbti_share'
+     - `source_id`: resultId
+     - `shared_by`: 分享者的 telegram_id
+
+**邀請碼分享**：
+1. 使用者在 `/profile` 中點擊「分享邀請碼」
+2. 使用 `WebApp.share`：
+   - Deep Link：`startapp=invite_{inviteCode}`
+   - 分享文案：「來 XunNi 一起丟漂流瓶吧！使用我的邀請碼：{inviteCode}」
+3. 被分享者點開後：
+   - Bot 檢查 `startapp=invite_{code}`
+   - 如果是邀請碼，記錄到 `users.invited_by`
+   - 啟動註冊流程時帶入邀請碼
+
+---
+
+## 9. 資料保留與清理策略
+
+### 9.1 漂流瓶保留策略
+
+**保留期限**：
+- 正常狀態：24 小時（過期後不再被撿起）
+- 軟刪除：90 天後標記為 'deleted'，內容匿名化
+- 硬刪除：365 天後完全刪除（可選）
+
+**清理流程**：
+```
+漂流瓶建立 → 24 小時內可被撿起
+→ 24 小時後 expires_at 過期，status = 'expired'
+→ 90 天後標記為 'deleted'，content 匿名化（保留統計用）
+→ 365 天後完全刪除（可選）
+```
+
+### 9.2 聊天記錄保留策略
+
+**保留限制**：
+- 每個對話對象最多保留 3650 筆訊息
+- 超過 3650 筆時，刪除最舊的訊息（FIFO）
+- 永久保留最後 100 筆訊息（用於上下文）
+
+### 9.3 使用者資料保留策略
+
+**正常使用者**：
+- 個人資料永久保留（除非使用者刪除）
+- 統計資料永久保留
+
+**已刪除使用者**：
+- 標記為 'deleted'
+- 清除個人資料欄位（nickname, avatar_url 等）
+- 保留安全審計記錄（reports, bans, risk_score）
+- 資料脫敏處理
+
+### 9.4 資料清理 Cron 任務
+
+**每日執行一次**：
+- `/cron/cleanup_bottles`：標記 90 天前過期的漂流瓶為 'deleted'，內容匿名化
+- `/cron/cleanup_messages`：清理所有對話的過多訊息（超過 3650 筆）
+
+**資料庫欄位**：
+- `bottles.deleted_at`、`bottles.anonymized_at`
+- `users.deleted_at`、`users.anonymized_at`、`users.deletion_requested_at`
+
+---
+
+## 10. 外部資格查詢 API（給 Moonpacket）
 
 ### HTTP 端點
 
@@ -937,7 +1304,7 @@ async function checkEligibility(telegramId: string): Promise<{
 
 ---
 
-## 8. 廣告播放（gigapub）
+## 11. 廣告播放（gigapub）
 
 ### 環境變數
 - `GIGAPUB_API_KEY`
@@ -952,7 +1319,7 @@ async function checkEligibility(telegramId: string): Promise<{
 
 ---
 
-## 9. 環境變數與 wrangler 設定
+## 12. 環境變數與 wrangler 設定
 
 ### wrangler.toml 範例
 
@@ -985,7 +1352,7 @@ BROADCAST_MAX_JOBS = "3"
 
 ---
 
-## 10. 測試規範（Vitest）
+## 13. 測試規範（Vitest）
 
 ### 優先針對以下純函數寫單元測試
 
@@ -1004,7 +1371,7 @@ BROADCAST_MAX_JOBS = "3"
 
 ---
 
-## 11. 建議的 Cursor 開發順序
+## 14. 建議的 Cursor 開發順序
 
 ### 階段 1: 基礎架構
 1. **建立 schema**: 根據本規格書的 SQL，生成 `db/schema.sql`
