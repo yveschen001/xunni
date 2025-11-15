@@ -208,6 +208,42 @@ CREATE TABLE terms_versions (
 );
 ```
 
+### 3.14 stats_cache（統計快取表，可選）
+
+**用途**：快取公開統計數據，避免每次 API 請求都查詢資料庫
+
+```sql
+CREATE TABLE stats_cache (
+  cache_key TEXT PRIMARY KEY,
+  cache_value TEXT,        -- JSON 字串
+  expires_at DATETIME,
+  created_at DATETIME,
+  updated_at DATETIME
+);
+
+CREATE INDEX idx_stats_cache_expires_at ON stats_cache(expires_at);
+```
+
+**使用場景**：
+- 當不使用 KV 快取時，使用資料庫表快取
+- 每 5 分鐘透過 Cron 任務更新
+- API 直接查詢此表，無需即時計算
+
+**查詢邏輯**：
+```typescript
+// 查詢快取表
+const cached = await db.prepare(`
+  SELECT cache_value
+  FROM stats_cache
+  WHERE cache_key = 'public_stats'
+    AND expires_at > datetime('now')
+`).first();
+
+if (cached) {
+  return JSON.parse(cached.cache_value);
+}
+```
+
 ### 3.2 bottles（漂流瓶）
 
 ```sql
