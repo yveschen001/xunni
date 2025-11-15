@@ -18,6 +18,8 @@
     "simulate-user": "tsx scripts/simulate-real-user.ts",
     "monitor": "tsx scripts/monitor-logs.ts",
     "reset-db": "tsx scripts/reset-db.ts",
+    "seed-fake-users": "tsx scripts/seed-fake-users.ts",
+    "delete-fake-users": "tsx scripts/delete-fake-users.ts",
     "typecheck": "tsc --noEmit",
     "lint": "eslint src",
     "lint:fix": "eslint src --fix",

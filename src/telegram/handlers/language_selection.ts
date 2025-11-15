@@ -130,7 +130,13 @@ export async function handleLanguageSelection(
 
     if (isNewUser) {
       // New user - start onboarding immediately
-      await startOnboarding(chatId, telegram, languageCode);
+      await startOnboarding(
+        chatId, 
+        telegram, 
+        languageCode,
+        callbackQuery.from.username,
+        callbackQuery.from.first_name
+      );
     } else {
       // Existing user - just confirm language change
       const { createI18n } = await import('~/i18n');
@@ -152,7 +158,9 @@ export async function handleLanguageSelection(
 async function startOnboarding(
   chatId: number,
   telegram: ReturnType<typeof createTelegramService>,
-  languageCode: string
+  languageCode: string,
+  telegramUsername?: string,
+  telegramFirstName?: string
 ): Promise<void> {
   // Use i18n system
   const { createI18n } = await import('~/i18n');
@@ -163,10 +171,36 @@ async function startOnboarding(
     i18n.t('onboarding.startRegistration')
   );
 
-  // Ask for nickname
-  await telegram.sendMessage(
-    chatId,
-    i18n.t('onboarding.askNickname')
-  );
+  // Offer nickname options
+  const suggestedNickname = telegramUsername || telegramFirstName || '';
+  
+  if (suggestedNickname) {
+    await telegram.sendMessageWithButtons(
+      chatId,
+      `✏️ 請選擇你的暱稱：\n\n` +
+        `⚠️ 注意：\n` +
+        `• 暱稱長度限制 36 個字\n` +
+        `• 對方最多顯示 18 個字\n` +
+        `• 請勿使用暱稱發送廣告`,
+      [
+        [
+          { text: `✅ 使用 Telegram 暱稱：${suggestedNickname.substring(0, 18)}`, callback_data: `nickname_use_telegram` },
+        ],
+        [
+          { text: '✍️ 自訂暱稱', callback_data: 'nickname_custom' },
+        ],
+      ]
+    );
+  } else {
+    // No Telegram nickname, ask for custom nickname
+    await telegram.sendMessage(
+      chatId,
+      `✏️ 請輸入你的暱稱：\n\n` +
+        `⚠️ 注意：\n` +
+        `• 暱稱長度限制 36 個字\n` +
+        `• 對方最多顯示 18 個字\n` +
+        `• 請勿使用暱稱發送廣告`
+    );
+  }
 }
 

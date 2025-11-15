@@ -13,7 +13,7 @@ import type { User, Role } from '~/types';
 // ============================================================================
 
 export const MIN_AGE = 18;
-export const MAX_NICKNAME_LENGTH = 50;
+export const MAX_NICKNAME_LENGTH = 36; // Max 36 chars, display max 18 chars
 export const MAX_BIO_LENGTH = 500;
 
 export const ZODIAC_SIGNS = [

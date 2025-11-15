@@ -36,12 +36,23 @@ export default {
 
       // API endpoints
       if (url.pathname.startsWith('/api/')) {
+        // Development endpoints (staging only)
+        if (url.pathname === '/api/dev/seed-user' && request.method === 'POST') {
+          const { handleSeedUser } = await import('./api/dev');
+          return await handleSeedUser(request, env);
+        }
+        
+        if (url.pathname === '/api/dev/delete-fake-users' && request.method === 'POST') {
+          const { handleDeleteFakeUsers } = await import('./api/dev');
+          return await handleDeleteFakeUsers(request, env);
+        }
+
         return new Response(
           JSON.stringify({
-            error: 'API endpoints not yet implemented',
+            error: 'API endpoint not found',
           }),
           {
-            status: 501,
+            status: 404,
             headers: { 'Content-Type': 'application/json' },
           }
         );

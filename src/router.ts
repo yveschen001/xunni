@@ -231,6 +231,19 @@ async function routeUpdate(update: TelegramUpdate, env: Env): Promise<void> {
     }
 
     // Route callback queries
+    // Nickname selection
+    if (data === 'nickname_use_telegram') {
+      const { handleNicknameUseTelegram } = await import('./telegram/handlers/nickname_callback');
+      await handleNicknameUseTelegram(callbackQuery, env);
+      return;
+    }
+
+    if (data === 'nickname_custom') {
+      const { handleNicknameCustom } = await import('./telegram/handlers/nickname_callback');
+      await handleNicknameCustom(callbackQuery, env);
+      return;
+    }
+
     // Language selection
     if (data.startsWith('lang_')) {
       if (data === 'lang_more') {
@@ -408,15 +421,56 @@ async function routeUpdate(update: TelegramUpdate, env: Env): Promise<void> {
       return;
     }
 
+    // Quick action buttons after registration
     if (data === 'throw') {
       await telegram.answerCallbackQuery(callbackQuery.id);
-      await telegram.sendMessage(chatId, '🌊 丟瓶功能開發中...');
+      const { handleThrow } = await import('./telegram/handlers/throw');
+      // Convert callback to message format
+      const fakeMessage = {
+        ...callbackQuery.message!,
+        from: callbackQuery.from,
+        text: '/throw',
+      };
+      await handleThrow(fakeMessage as any, env);
       return;
     }
 
     if (data === 'catch') {
       await telegram.answerCallbackQuery(callbackQuery.id);
-      await telegram.sendMessage(chatId, '🎣 撿瓶功能開發中...');
+      const { handleCatch } = await import('./telegram/handlers/catch');
+      // Convert callback to message format
+      const fakeMessage = {
+        ...callbackQuery.message!,
+        from: callbackQuery.from,
+        text: '/catch',
+      };
+      await handleCatch(fakeMessage as any, env);
+      return;
+    }
+
+    if (data === 'profile') {
+      await telegram.answerCallbackQuery(callbackQuery.id);
+      const { handleProfile } = await import('./telegram/handlers/profile');
+      // Convert callback to message format
+      const fakeMessage = {
+        ...callbackQuery.message!,
+        from: callbackQuery.from,
+        text: '/profile',
+      };
+      await handleProfile(fakeMessage as any, env);
+      return;
+    }
+
+    if (data === 'stats') {
+      await telegram.answerCallbackQuery(callbackQuery.id);
+      const { handleStats } = await import('./telegram/handlers/stats');
+      // Convert callback to message format
+      const fakeMessage = {
+        ...callbackQuery.message!,
+        from: callbackQuery.from,
+        text: '/stats',
+      };
+      await handleStats(fakeMessage as any, env);
       return;
     }
 
