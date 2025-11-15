@@ -14,6 +14,8 @@
     "backup": "tsx scripts/backup.ts",
     "backup:push": "tsx scripts/backup-push.ts",
     "backup:db": "tsx scripts/backup-db.ts",
+    "smoke-test": "tsx scripts/smoke-test.ts",
+    "monitor": "tsx scripts/monitor-logs.ts",
     "typecheck": "tsc --noEmit",
     "lint": "eslint src",
     "lint:fix": "eslint src --fix",
