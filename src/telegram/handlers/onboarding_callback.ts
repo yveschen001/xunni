@@ -224,7 +224,7 @@ export async function handleBirthdayConfirmation(
           { text: '✍️ 我已經知道我的 MBTI', callback_data: 'mbti_choice_manual' },
         ],
         [
-          { text: '📝 進行快速測驗', callback_data: 'mbti_choice_test' },
+          { text: '📝 進行快速測驗（12 題，僅供參考）', callback_data: 'mbti_choice_test' },
         ],
         [
           { text: '⏭️ 稍後再說', callback_data: 'mbti_choice_skip' },
@@ -467,7 +467,7 @@ export async function handleMBTIChoiceBack(
           { text: '✍️ 我已經知道我的 MBTI', callback_data: 'mbti_choice_manual' },
         ],
         [
-          { text: '📝 進行快速測驗', callback_data: 'mbti_choice_test' },
+          { text: '📝 進行快速測驗（12 題，僅供參考）', callback_data: 'mbti_choice_test' },
         ],
         [
           { text: '⏭️ 稍後再說', callback_data: 'mbti_choice_skip' },

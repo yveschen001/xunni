@@ -55,10 +55,15 @@ export async function showMBTIQuestion(
   // Add progress indicator
   const progressBar = '▓'.repeat(Math.floor(progress / 10)) + '░'.repeat(10 - Math.floor(progress / 10));
 
+  // Add disclaimer on first question
+  const disclaimer = questionIndex === 0 
+    ? `\n\n💡 這是快速測驗（12 題），結果僅供參考。\n完成註冊後，可使用 /mbti 重新測驗。\n\n` 
+    : `\n\n`;
+
   await telegram.sendMessageWithButtons(
     chatId,
-    `📝 MBTI 測驗 (${questionIndex + 1}/${totalQuestions})\n\n` +
-      `${progressBar} ${progress}%\n\n` +
+    `📝 MBTI 快速測驗 (${questionIndex + 1}/${totalQuestions})\n\n` +
+      `${progressBar} ${progress}%${disclaimer}` +
       `${question.question_zh_TW}`,
     answerButtons
   );
@@ -152,10 +157,14 @@ async function handleTestCompletion(
     // Show result
     await telegram.sendMessage(
       chatId,
-      `🎉 測驗完成！\n\n` +
+      `🎉 快速測驗完成！\n\n` +
         `你的 MBTI 類型是：**${result.type}**\n\n` +
         `${result.description_zh_TW}\n\n` +
-        `💡 你可以隨時使用 /mbti 指令重新測驗或手動修改。`
+        `⚠️ 注意：這是 12 題快速測驗，結果僅供參考。\n\n` +
+        `💡 完成註冊後，你可以：\n` +
+        `• 使用 /mbti 進行更詳細的測驗\n` +
+        `• 手動修改你的 MBTI 類型\n` +
+        `• 未來我們將推出 36 題標準版測驗（Mini App）`
     );
 
     // If in onboarding, continue to next step

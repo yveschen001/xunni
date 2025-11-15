@@ -9,6 +9,11 @@
  * - S/N (Sensing/Intuition)
  * - T/F (Thinking/Feeling)
  * - J/P (Judging/Perceiving)
+ * 
+ * Test Versions:
+ * - Quick (12 questions): For bot onboarding, results are for reference only
+ * - Standard (36 questions): For Mini App, more accurate results (FUTURE)
+ * - Professional (60 questions): For VIP users, comprehensive analysis (FUTURE)
  */
 
 import { MBTI_TYPES } from './user';
@@ -18,6 +23,14 @@ import { MBTI_TYPES } from './user';
 // ============================================================================
 
 export type MBTIDimension = 'EI' | 'SN' | 'TF' | 'JP';
+
+/**
+ * MBTI Test Type
+ * - quick: 12 questions, 2 options per question (Bot onboarding)
+ * - standard: 36 questions, 5 options per question (Mini App) - FUTURE
+ * - professional: 60 questions, 5 options per question (VIP) - FUTURE
+ */
+export type MBTITestType = 'quick' | 'standard' | 'professional';
 
 export interface MBTIQuestion {
   id: number;
@@ -52,14 +65,20 @@ export interface MBTIResult {
 }
 
 // ============================================================================
-// MBTI Test Questions (Simplified 12-question test)
+// MBTI Test Questions (Quick 12-question test)
 // ============================================================================
 
 /**
- * Simplified MBTI test with 12 questions (3 per dimension)
- * This is a quick test suitable for bot conversation flow.
+ * Quick MBTI test with 12 questions (3 per dimension)
+ * This is a simplified test suitable for bot conversation flow.
  * 
- * For a more comprehensive test, expand to 40-60 questions in mini-app.
+ * ⚠️ DISCLAIMER: Results are for reference only. This is not a professional assessment.
+ * 
+ * For more accurate results:
+ * - Standard test (36 questions, 5 options): Planned for Mini App
+ * - Professional test (60 questions, 5 options): Planned for VIP users
+ * 
+ * Industry standard: 60-93 questions with 5-7 options per question
  */
 export const MBTI_QUESTIONS: MBTIQuestion[] = [
   // E/I Questions (1-3)
