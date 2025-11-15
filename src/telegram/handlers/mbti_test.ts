@@ -145,14 +145,19 @@ async function handleTestCompletion(
   telegramId: string
 ): Promise<void> {
   try {
+    console.log('[handleTestCompletion] Starting test completion for user:', telegramId);
+    
     // Complete test and get result
     const result = await completeMBTITest(db, telegramId);
+    console.log('[handleTestCompletion] MBTI result:', result);
 
     // Get user to check if in onboarding
     const user = await findUserByTelegramId(db, telegramId);
     if (!user) {
+      console.error('[handleTestCompletion] User not found:', telegramId);
       throw new Error('User not found');
     }
+    console.log('[handleTestCompletion] User onboarding step:', user.onboarding_step);
 
     // Show result
     await telegram.sendMessage(
@@ -169,6 +174,7 @@ async function handleTestCompletion(
 
     // If in onboarding, continue to next step
     if (user.onboarding_step === 'mbti') {
+      console.log('[handleTestCompletion] User in onboarding, moving to anti_fraud');
       await updateOnboardingStep(db, telegramId, 'anti_fraud');
 
       // Show anti-fraud test
@@ -185,10 +191,17 @@ async function handleTestCompletion(
           [{ text: '📚 我想了解更多安全知識', callback_data: 'anti_fraud_learn' }],
         ]
       );
+    } else {
+      console.log('[handleTestCompletion] User not in onboarding, test completed');
     }
   } catch (error) {
     console.error('[handleTestCompletion] Error:', error);
-    await telegram.sendMessage(chatId, '❌ 計算結果時發生錯誤，請稍後再試。');
+    console.error('[handleTestCompletion] Error stack:', error instanceof Error ? error.stack : 'No stack');
+    await telegram.sendMessage(
+      chatId, 
+      `❌ 計算結果時發生錯誤，請稍後再試。\n\n` +
+        `錯誤信息：${error instanceof Error ? error.message : String(error)}`
+    );
   }
 }
 
