@@ -150,20 +150,40 @@ async function resumeOnboarding(
       break;
 
     case 'mbti':
-      await telegram.sendMessage(
+      // Show MBTI options: manual / test / skip
+      await telegram.sendMessageWithButtons(
         chatId,
-        `現在讓我們進行 MBTI 性格測驗！\n\n` +
+        `🧠 現在讓我們設定你的 MBTI 性格類型！\n\n` +
           `這將幫助我們為你找到更合適的聊天對象～\n\n` +
-          `準備好了嗎？`
+          `你想要如何設定？`,
+        [
+          [
+            { text: '✍️ 我已經知道我的 MBTI', callback_data: 'mbti_choice_manual' },
+          ],
+          [
+            { text: '📝 進行快速測驗', callback_data: 'mbti_choice_test' },
+          ],
+          [
+            { text: '⏭️ 稍後再說', callback_data: 'mbti_choice_skip' },
+          ],
+        ]
       );
       break;
 
     case 'anti_fraud':
-      await telegram.sendMessage(
+      // Show anti-fraud confirmation with buttons
+      await telegram.sendMessageWithButtons(
         chatId,
-        `最後一步：反詐騙測驗\n\n` +
-          `為了保護所有使用者的安全，我們需要確認你了解基本的網路安全知識。\n\n` +
-          `準備好了嗎？`
+        `🛡️ 最後一步：反詐騙安全確認\n\n` +
+          `為了保護所有使用者的安全，請確認你了解以下事項：\n\n` +
+          `1. 你了解網路交友的安全風險嗎？\n` +
+          `2. 你會保護好自己的個人資訊嗎？\n` +
+          `3. 遇到可疑訊息時，你會提高警覺嗎？\n\n` +
+          `請確認：`,
+        [
+          [{ text: '✅ 是的，我了解並會注意安全', callback_data: 'anti_fraud_yes' }],
+          [{ text: '📚 我想了解更多安全知識', callback_data: 'anti_fraud_learn' }],
+        ]
       );
       break;
 
