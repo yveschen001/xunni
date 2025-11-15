@@ -28,7 +28,6 @@
 ### 2.1 文檔（19 個文件）
 
 - ✅ SPEC.md - 專案規格書
-- ~~SPEC_V2.md~~ - 已廢棄，內容已整合到 SPEC.md
 - ✅ DEVELOPMENT_STANDARDS.md - 開發規範
 - ✅ ENV_CONFIG.md - 環境配置
 - ✅ I18N_GUIDE.md - 國際化指南
