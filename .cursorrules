@@ -18,6 +18,29 @@
   2. 然後用自然語言提出變更建議
   3. 最後再應用編輯
 
+## Protected Documentation
+
+The following files are considered **protected**:
+
+- `@doc/SPEC.md`
+- `@doc/ENV_CONFIG.md`
+- `@doc/DEVELOPMENT_STANDARDS.md`
+- `@doc/DEPLOYMENT.md`
+- `@doc/BACKUP_STRATEGY.md`
+
+**Rules for protected docs:**
+
+- **Do NOT modify these files unless the user explicitly says that they MUST be updated.**
+  - Examples of explicit permission:
+    - "MUST update SPEC"
+    - "Please update SPEC accordingly"
+    - "我允許你修改 SPEC / ENV_CONFIG"
+- **If a task might affect these docs:**
+  1. First, summarise which sections would need changes and why.
+  2. Then ask the user for confirmation.
+  3. Only after clear confirmation, apply the minimal necessary edits.
+- **Never create new top-level docs that replace these protected files unless the user explicitly requests a new document.**
+
 ## 第一步：閱讀專案概覽
 
 **在開始任何工作前，必須先閱讀：**
@@ -79,7 +102,8 @@
 - `@src/db/schema.sql` - 資料庫 Schema（必須通過遷移腳本）
 - `@src/db/migrations/` - 遷移腳本目錄（變更需審核）
 - `@scripts/backup-*.ts` - 備份腳本（備份策略相關）
-- `@doc/SPEC.md` - 核心規格書（重大變更需審核）
+
+**注意**：核心受保護文檔（`@doc/SPEC.md`、`@doc/ENV_CONFIG.md` 等）的規則見上方「Protected Documentation」章節。
 
 **🔒 絕對禁止修改：**
 
