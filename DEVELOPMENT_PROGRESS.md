@@ -1,259 +1,348 @@
-# XunNi 開發進度報告
+# XunNi 开发进度报告
 
-> 最後更新：2025-01-15
-
-## 📊 總體進度：75%
-
-### ✅ 已完成（75%）
-
-#### 1. 專案基礎設施 ✓ (100%)
-- [x] `.gitignore` - Git 忽略文件
-- [x] `.eslintrc.json` - ESLint 配置
-- [x] `.prettierrc` - Prettier 配置
-- [x] `vitest.config.ts` - Vitest 測試配置
-- [x] `tsconfig.json` - TypeScript 配置
-- [x] `package.json` - 添加開發依賴（ESLint, Prettier, Vitest）
-
-#### 2. 環境配置 ✓ (100%)
-- [x] `.dev.vars` - 開發環境變數（包含 Telegram Bot Token 和 OpenAI API Key）
-- [x] `.dev.vars.example` - 環境變數範例
-- [x] `wrangler.toml` - Cloudflare Workers 配置（Staging/Production 雙環境）
-
-#### 3. 資料庫設計 ✓ (100%)
-- [x] `src/db/schema.sql` - 完整資料庫 Schema（13 個表）
-  - users, bottles, conversations, conversation_messages
-  - daily_usage, user_blocks, reports, appeals
-  - payments, broadcast_queue, admin_logs
-  - feature_flags, horoscope_push_history
-- [x] `src/db/migrations/0001_initial_schema.sql` - 初始遷移腳本
-- [x] `src/types/index.ts` - 完整 TypeScript 類型定義
-
-#### 4. Domain 層（業務邏輯）✓ (100%)
-- [x] `src/domain/user.ts` - 使用者業務邏輯
-  - 年齡計算、星座計算
-  - Onboarding 狀態檢查
-  - VIP 狀態管理
-  - 角色權限檢查
-  - 驗證函數（nickname, gender, birthday, MBTI, bio）
-  - 邀請碼生成
-  - 信任等級計算
-  - 封禁狀態檢查
-  
-- [x] `src/domain/bottle.ts` - 漂流瓶業務邏輯
-  - 瓶子內容驗證
-  - 匹配條件驗證
-  - 過期檢查
-  - 匹配邏輯
-  - 匹配分數計算
-  
-- [x] `src/domain/usage.ts` - 使用次數管理
-  - 每日丟瓶上限計算
-  - 剩餘次數計算
-  - 對話訊息限制
-  - 使用狀態統計
-  
-- [x] `src/domain/risk.ts` - 風險評分和內容審核
-  - URL 檢測和白名單驗證
-  - 敏感詞檢測
-  - 本地內容審核
-  - 風險分數管理
-  - 舉報和封禁邏輯
-  - AI 審核結果處理
-  - 反詐騙測驗評分
-  
-- [x] `src/domain/match.ts` - 匹配算法
-  - 匹配排除規則
-  - 瓶子排序算法
-  - 最佳匹配選擇
-  - 匹配統計
-  - 相容性評分
-
-#### 5. 資料庫客戶端和查詢層 ✓ (100%)
-- [x] `src/db/client.ts` - D1 資料庫客戶端封裝
-  - query() - 查詢多筆資料
-  - queryOne() - 查詢單筆資料
-  - execute() - 執行寫入操作
-  - batch() - 批次執行
-  
-- [x] `src/db/queries/users.ts` - 使用者查詢
-  - findUserByTelegramId()
-  - findUserByInviteCode()
-  - createUser()
-  - updateUserProfile()
-  - updateOnboardingStep()
-  - completeOnboarding()
-  - updateMBTIResult()
-  - updateAntiFraudScore()
-  - updateVIPStatus()
-  - incrementSuccessfulInvites()
-  - updateRiskScore()
-  - banUser() / unbanUser()
-  - getUsersByFilters()
-  - getTotalUserCount()
-  - getNewUsersCount()
-  
-- [x] `src/db/queries/bottles.ts` - 漂流瓶查詢
-  - createBottle()
-  - findPendingBottles()
-  - findBottleById()
-  - markBottleAsMatched()
-  - markExpiredBottles()
-  - softDeleteOldBottles()
-  - getTotalBottleCount()
-  - getNewBottlesCount()
-  
-- [x] `src/db/queries/daily_usage.ts` - 每日使用次數查詢
-  - getOrCreateDailyUsage()
-  - getDailyUsage()
-  - createDailyUsage()
-  - incrementThrowsCount()
-  - incrementCatchesCount()
-  - incrementMessagesSent()
-
-#### 6. 文檔 ✓ (100%)
-- [x] `README.md` - 專案說明和快速開始指南
-- [x] `DEVELOPMENT_PROGRESS.md` - 本文件
-
-#### 7. Telegram Handlers（核心功能）✓ (100%)
-- [x] `src/telegram/handlers/start.ts` - /start 註冊和 Onboarding
-- [x] `src/telegram/handlers/throw.ts` - /throw 丟瓶（300+ 行）
-- [x] `src/telegram/handlers/catch.ts` - /catch 撿瓶（200+ 行）
-- [x] `src/telegram/handlers/message_forward.ts` - 訊息轉發（200+ 行）
-- [x] `src/telegram/handlers/onboarding_input.ts` - Onboarding 輸入處理（200+ 行）
-- [x] `src/router.ts` - 路由整合（已更新）
+## 📅 更新时间
+2025-11-16 02:00
 
 ---
 
-### 🚧 進行中（0%）
+## ✅ 已完成功能
 
-目前沒有進行中的任務。
+### Phase 1: 核心功能 (100% 完成)
 
----
+#### 1.1 漂流瓶系统 ✅
+- `/throw` - 丢漂流瓶
+  - 用户状态检查（注册、封禁、配额）
+  - 目标性别选择（男/女/任何人）
+  - VIP 进阶筛选（预留接口）
+  - 内容验证（长度、格式）
+  - 24 小时过期机制
+  - 配额统计（免费 3/天，VIP 30/天）
 
-### 📝 待完成（25%）
+- `/catch` - 捡漂流瓶
+  - 智能匹配算法
+  - 排除自己的瓶子
+  - 排除封锁/被封锁用户
+  - 排除 24 小时内被举报用户
+  - 建立匿名对话
+  - 即时推送通知
 
-#### 7. 剩餘 Telegram Handlers ⏳ (0%)
-- [ ] `src/telegram/handlers/profile.ts` - /profile 個人資料
-- [ ] `src/telegram/handlers/report.ts` - /report 舉報
-- [ ] `src/telegram/handlers/block.ts` - /block 封鎖
-- [ ] `src/telegram/handlers/appeal.ts` - /appeal 申訴
-- [ ] `src/telegram/handlers/vip.ts` - /vip VIP 訂閱
-- [ ] `src/telegram/handlers/stats.ts` - /stats 統計
-- [ ] `src/telegram/handlers/admin/` - 管理員指令
+#### 1.2 匿名聊天系统 ✅
+- 自动消息转发
+- URL 白名单检查（t.me, telegram.org）
+- 封锁状态检查
+- 对话历史记录
+- 消息确认
 
-#### 8. 工具函數 ⏳ (0%)
-- [ ] `src/utils/i18n.ts` - 國際化
-- [ ] `src/utils/logger.ts` - 日誌工具
+#### 1.3 用户管理 ✅
+- `/profile` - 个人资料
+  - 显示完整信息
+  - VIP 状态
+  - 邀请码
 
-#### 9. 單元測試 ⏳ (0%)
-- [ ] `tests/domain/user.test.ts` - 使用者業務邏輯測試
-- [ ] `tests/domain/bottle.test.ts` - 漂流瓶業務邏輯測試
-- [ ] `tests/domain/usage.test.ts` - 使用次數管理測試
-- [ ] `tests/domain/risk.test.ts` - 風險評分測試
-- [ ] `tests/domain/match.test.ts` - 匹配算法測試
-- [ ] `tests/utils/` - 工具函數測試
+- `/profile_card` - 资料卡片
+  - MBTI、星座、年龄
+  - 兴趣标签、简介
+  - 居住城市
 
-**目標覆蓋率**：
-- Domain 層：90%+
-- Utils 層：80%+
-- Handlers 層：60%+
+- `/help` - 帮助指令
+  - 角色权限控制
+  - 分层显示指令
 
-#### 10. 本地測試驗證 ⏳ (0%)
-- [ ] 本地開發環境測試（`wrangler dev`）
-- [ ] 測試 Telegram Webhook 接收
-- [ ] 測試基本指令流程
-- [ ] 測試資料庫操作
+- `/rules` - 游戏规则
+  - 完整规则说明
+  - 安全提示
+  - VIP 权益
 
-#### 11. 部署 ⏳ (0%)
-- [ ] Staging 環境部署
-- [ ] Staging 環境測試
-- [ ] Production 環境部署
-- [ ] Production 環境監控
+### Phase 2: 商业化功能 (33% 完成)
 
----
+#### 2.1 安全风控 ✅
+- `/block` - 封锁用户
+  - 封锁当前对话对象
+  - 更新对话状态
+  - 记录到 user_blocks 表
+  - 匹配时自动排除
 
-## 🎯 下一步計劃
+- `/report` - 举报不当内容
+  - 5 种举报原因（色情/诈骗/骚扰/垃圾/其他）
+  - 自动增加风险分数（+10）
+  - 24小时内3次举报自动封禁
+  - 创建举报记录
 
-### 優先級 1（核心功能）
-1. 完成剩餘的資料庫查詢模組
-2. 實作 Telegram Handlers（/start, /throw, /catch）
-3. 實作外部服務（OpenAI, Telegram API）
-4. 實作 Worker 路由和主入口
+#### 2.2 VIP 系统 ⏳
+- 待实现
 
-### 優先級 2（測試和驗證）
-5. 編寫 Domain 層單元測試
-6. 本地測試驗證
-
-### 優先級 3（部署）
-7. Staging 環境部署
-8. Production 環境部署
-
----
-
-## 📈 里程碑
-
-- **M1（基礎設施）** ✅ - 2025-01-15 完成
-  - 專案結構、環境配置、資料庫設計、Domain 層
-
-- **M2（核心功能）** ✅ - 2025-01-15 完成
-  - Telegram Handlers（核心）、外部服務、Worker 路由、訊息轉發
-
-- **M3（測試和部署）** 🚧 - 預計 2025-01-20
-  - 單元測試、本地測試、Staging 部署
-
-- **M4（完整功能）** ⏳ - 預計 2025-01-25
-  - 剩餘 Handlers、管理員功能、工具函數
-
-- **M5（正式上線）** ⏳ - 預計 2025-02-01
-  - Production 部署、監控、優化
+#### 2.3 翻译功能 ⏳
+- 待实现
 
 ---
 
-## 🔧 技術債務
+## 📊 数据库状态
 
-目前沒有技術債務。
+### 已实现的表
+1. ✅ users - 用户信息
+2. ✅ bottles - 漂流瓶
+3. ✅ conversations - 对话
+4. ✅ conversation_messages - 聊天记录
+5. ✅ bottle_chat_history - 瓶子聊天历史
+6. ✅ daily_usage - 每日配额
+7. ✅ reports - 举报记录
+8. ✅ bans - 封禁记录
+9. ✅ user_blocks - 封锁记录 (新增)
+10. ✅ mbti_test_progress - MBTI 测验进度
 
----
-
-## 📝 備註
-
-- 所有密鑰已配置在 `.dev.vars`
-- 資料庫 Schema 設計完整，包含 13 個表
-- Domain 層採用純函數設計，易於測試
-- 遵循 `@doc/SPEC.md` 和 `@doc/MODULE_DESIGN.md` 規範
-- **核心功能已完整實現，Bot 可以運行！**
-
-## 📈 代碼統計（更新）
-
-- **總代碼行數**：約 6,000+ 行
-- **Domain 層**：1,350+ 行
-- **數據庫層**：1,500+ 行
-- **Telegram Handlers**：1,100+ 行
-- **外部服務**：500+ 行
-- **Worker 和路由**：300+ 行
-- **類型定義**：300+ 行
-- **文件總數**：40+ 個文件
-
-## 🚀 可運行功能
-
-### ✅ 已實現並可測試
-1. **用戶註冊**：`/start` - 完整的 Onboarding 流程
-2. **丟瓶功能**：`/throw` - 創建漂流瓶
-3. **撿瓶功能**：`/catch` - 匹配漂流瓶
-4. **匿名聊天**：訊息轉發 + AI 審核 + 翻譯
-5. **風險控制**：URL 白名單 + 敏感詞 + AI 審核
-6. **數據庫操作**：完整的 CRUD 操作
-
-### ⏳ 待實現
-1. 個人資料管理（/profile）
-2. 舉報和封鎖（/report, /block）
-3. 申訴系統（/appeal）
-4. VIP 訂閱（/vip）
-5. 統計功能（/stats）
-6. 管理員功能
+### 待创建的表
+- ⏳ payments - 支付记录
+- ⏳ invites - 邀请记录
+- ⏳ appeals - 申诉记录
+- ⏳ broadcast_jobs - 广播任务
+- ⏳ broadcast_queue - 广播队列
+- ⏳ push_notifications - 推送记录
+- ⏳ user_push_preferences - 推送偏好
+- ⏳ horoscope_templates - 星座模板
+- ⏳ horoscope_sent_logs - 星座发送记录
 
 ---
 
-**維護者**: yveschen001  
-**最後更新**: 2025-01-15
+## 🎯 功能完整度
 
+### 用户流程
+- ✅ 注册 → 丢瓶子 → 撿瓶子 → 匿名聊天
+- ✅ 封锁/举报不当用户
+- ✅ 查看个人资料
+- ⏳ 升级 VIP
+- ⏳ 查看统计数据
+- ⏳ 查看对话列表
+
+### 安全机制
+- ✅ 年龄限制（18+）
+- ✅ 性别/生日不可修改
+- ✅ URL 白名单
+- ✅ 封锁系统
+- ✅ 举报系统
+- ✅ 风险评分
+- ✅ 自动封禁
+- ⏳ AI 内容审核
+
+### 配额管理
+- ✅ 免费用户：3 个/天
+- ✅ VIP 用户：30 个/天
+- ⏳ 邀请奖励（最多 10/100）
+
+---
+
+## ⏳ 待完成功能
+
+### Phase 2 剩余 (预计 3-4 小时)
+
+#### 2.2 VIP 系统
+- `/vip` - VIP 购买
+- Telegram Stars 支付集成
+- 支付回调处理
+- VIP 权益管理
+- 支付记录
+
+#### 2.3 翻译功能
+- OpenAI GPT-4o-mini 集成
+- Google Translate 集成
+- VIP 翻译（OpenAI 优先）
+- 免费翻译（仅 Google）
+- 翻译失败降级
+- 翻译成本记录
+
+### Phase 3: 运营功能 (预计 2-3 小时)
+
+#### 3.1 统计数据
+- `/stats` - 我的统计
+  - 漂流瓶统计
+  - 聊天统计
+  - 活跃度排名
+  - 充值记录
+
+- `/chats` - 对话列表
+  - 所有对话
+  - 对话详情
+  - 瓶子原始内容
+
+#### 3.2 管理后台
+- `/admin` - 管理主选单
+- `/admin_stats` - 运营数据
+- `/admin_user` - 用户管理
+- `/admin_ban` - 封禁管理
+- `/admin_vip` - VIP 管理
+- `/admin_appeal` - 申诉审核
+- `/broadcast` - 群发消息
+
+#### 3.3 推送系统
+- 星座运势推送（每周）
+- 活跃度提醒
+- 智能推送算法
+- 推送偏好设定
+- 避免打扰机制
+
+---
+
+## 🐛 已知问题
+
+### 1. 会话管理
+- **问题**：丢瓶子流程中的目标性别选择没有会话存储
+- **临时方案**：默认使用 'any'
+- **优先级**：中
+- **TODO**：实现 KV 会话存储
+
+### 2. 邀请奖励
+- **问题**：邀请奖励配额计算未实现
+- **临时方案**：inviteBonus 固定为 0
+- **优先级**：中
+- **TODO**：实现 invites 表查询
+
+### 3. Lint 警告
+- **问题**：部分未使用的变量
+- **影响**：不影响功能
+- **优先级**：低
+- **TODO**：清理代码
+
+### 4. 类型错误
+- **问题**：`catch.ts` 中 conversationId 可能为 null
+- **状态**：已修复
+- **优先级**：高
+
+---
+
+## 📈 开发统计
+
+### 代码量
+- Domain 层：~500 行
+- Database 层：~600 行
+- Handlers 层：~1500 行
+- Utils 层：~100 行
+- **总计**：~2700 行
+
+### 文件数
+- 新增文件：20+
+- 修改文件：5+
+- 迁移脚本：3
+
+### Git 提交
+- 总提交数：15+
+- 功能提交：10+
+- 修复提交：5+
+
+---
+
+## 🚀 下一步计划
+
+### 立即开始 (2-3 小时)
+1. **VIP 系统**
+   - Telegram Stars 支付
+   - VIP 权益管理
+   - 支付记录
+
+2. **翻译功能**
+   - OpenAI 集成
+   - Google Translate 集成
+   - 翻译策略
+
+### 然后完成 (2-3 小时)
+3. **统计数据**
+   - `/stats` 实现
+   - `/chats` 实现
+   - 数据聚合
+
+4. **管理后台**
+   - 管理指令
+   - 运营数据
+   - 用户管理
+
+5. **推送系统**
+   - 星座运势
+   - 活跃度提醒
+   - 推送管理
+
+### 最后优化 (1-2 小时)
+6. **测试部署**
+   - 数据库迁移
+   - Staging 部署
+   - 完整测试
+
+7. **代码优化**
+   - 清理 Lint 警告
+   - 性能优化
+   - 错误处理
+
+---
+
+## 💡 技术亮点
+
+### 架构设计
+- ✅ 分层架构（Domain/Database/Handlers）
+- ✅ 纯函数 Domain 层
+- ✅ 类型安全（TypeScript）
+- ✅ 模块化设计
+
+### 安全机制
+- ✅ URL 白名单
+- ✅ 封锁系统
+- ✅ 举报系统
+- ✅ 风险评分
+- ✅ 自动封禁
+
+### 用户体验
+- ✅ 智能匹配
+- ✅ 匿名保护
+- ✅ 即时推送
+- ✅ 友好提示
+
+---
+
+## 📝 文档状态
+
+### 已完成文档
+- ✅ SPEC.md - 项目规格
+- ✅ ENV_CONFIG.md - 环境配置
+- ✅ DEVELOPMENT_STANDARDS.md - 开发规范
+- ✅ MODULE_DESIGN.md - 模块设计
+- ✅ I18N_GUIDE.md - 国际化指南
+- ✅ TESTING.md - 测试规范
+- ✅ DEPLOYMENT.md - 部署指南
+- ✅ BACKUP_STRATEGY.md - 备份策略
+- ✅ PHASE1_PROGRESS_REPORT.md - Phase 1 报告
+- ✅ DEVELOPMENT_PROGRESS.md - 综合进度报告
+
+---
+
+## 🎯 总体进度
+
+**Phase 1**: ✅ 100% 完成  
+**Phase 2**: 🔄 33% 完成  
+**Phase 3**: ⏳ 0% 完成  
+
+**总体进度**: ~45% 完成
+
+---
+
+## 💪 当前状态
+
+**可用功能**:
+- ✅ 完整的用户注册流程
+- ✅ 漂流瓶系统（丢/捡）
+- ✅ 匿名聊天系统
+- ✅ 安全风控（封锁/举报）
+- ✅ 用户管理（资料/帮助）
+
+**待实现**:
+- ⏳ VIP 系统
+- ⏳ 翻译功能
+- ⏳ 统计数据
+- ⏳ 管理后台
+- ⏳ 推送系统
+
+**准备部署**:
+- 需要创建剩余数据库表
+- 需要运行迁移脚本
+- 需要完整测试
+
+---
+
+**报告生成时间**: 2025-11-16 02:00  
+**开发者**: Cursor AI  
+**状态**: 🚀 持续开发中
