@@ -104,8 +104,47 @@ export async function handleMessageForward(
       return true;
     }
 
-    // TODO: Translation for VIP users
-    // For now, just forward the message as-is
+    // Get sender user for translation
+    const sender = await findUserByTelegramId(db, telegramId);
+    if (!sender) {
+      await telegram.sendMessage(chatId, '❌ 發送者資訊錯誤。');
+      return true;
+    }
+
+    // Translate message if needed
+    let finalMessage = messageText;
+    let translationNote = '';
+
+    const senderLanguage = sender.language_pref || 'zh-TW';
+    const receiverLanguage = receiver.language_pref || 'zh-TW';
+
+    if (senderLanguage !== receiverLanguage) {
+      const { translateText } = await import('~/services/translation');
+      const isVip = !!(sender.is_vip || receiver.is_vip);
+
+      try {
+        const result = await translateText(
+          messageText,
+          receiverLanguage,
+          senderLanguage,
+          isVip,
+          env
+        );
+
+        finalMessage = result.text;
+
+        if (result.fallback && isVip) {
+          translationNote = '\n\n💬 翻譯服務暫時有問題，已使用備用翻譯';
+        }
+
+        if (result.error && result.text === messageText) {
+          translationNote = '\n\n⚠️ 翻譯服務暫時無法使用，以下為原文';
+        }
+      } catch (error) {
+        console.error('[Translation error]:', error);
+        translationNote = '\n\n⚠️ 翻譯服務暫時無法使用，以下為原文';
+      }
+    }
 
     // Save message to database
     await saveConversationMessage(

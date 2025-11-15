@@ -10,7 +10,7 @@ import { handleStart } from './telegram/handlers/start';
 import { handleThrow } from './telegram/handlers/throw';
 import { handleCatch } from './telegram/handlers/catch';
 import { handleMessageForward } from './telegram/handlers/message_forward';
-import { handleMBTI } from './telegram/handlers/mbti';
+// import { handleMBTI } from './telegram/handlers/mbti';
 import { handleOnboardingInput } from './telegram/handlers/onboarding_input';
 import {
   showLanguageSelection,
