@@ -200,12 +200,11 @@ async function routeUpdate(update: TelegramUpdate, env: Env): Promise<void> {
     }
 
     if (data.startsWith('gender_')) {
-      const { handleGenderSelection, handleGenderConfirmation, handleGenderReselection } = await import(
-        './telegram/handlers/gender_selection'
-      );
+      const { handleGenderSelection, handleGenderConfirmation, handleGenderReselection } = await import('./telegram/handlers/onboarding_callback');
       
-      if (data === 'gender_reselect') {
-        await handleGenderReselection(callbackQuery, env);
+      if (data === 'gender_male' || data === 'gender_female') {
+        const gender = data.replace('gender_', '') as 'male' | 'female';
+        await handleGenderSelection(callbackQuery, gender, env);
         return;
       }
       
@@ -215,14 +214,18 @@ async function routeUpdate(update: TelegramUpdate, env: Env): Promise<void> {
         return;
       }
       
-      const gender = data.replace('gender_', '') as 'male' | 'female';
-      await handleGenderSelection(callbackQuery, gender, env);
+      if (data === 'gender_reselect') {
+        await handleGenderReselection(callbackQuery, env);
+        return;
+      }
+      
+      await telegram.answerCallbackQuery(callbackQuery.id, '❌ 未知的性別選項');
       return;
     }
 
     if (data === 'agree_terms') {
-      // TODO: Implement terms agreement handler
-      await telegram.answerCallbackQuery(callbackQuery.id, '條款同意功能開發中...');
+      const { handleTermsAgreement } = await import('./telegram/handlers/onboarding_callback');
+      await handleTermsAgreement(callbackQuery, env);
       return;
     }
 
