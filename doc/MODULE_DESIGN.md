@@ -85,68 +85,17 @@ export function matchesBottleFilters(bottle: Bottle, user: User): boolean
 export async function checkEligibility(telegramId: string, db: D1Database): Promise<EligibilityResult>
 ```
 
-#### 2.1.5 account-linker.ts - 帳號綁定
+#### 2.1.5 account-linker.ts - 帳號綁定（預留，M2/M3 階段）
 
-**職責**：
-- 處理多平台帳號綁定（Telegram、Google、Apple、WeChat、Line）
+**當前階段（M1）**：
+- 僅使用 Telegram `initData` 驗簽
+- 無需多平台帳號綁定
+
+**未來擴展（M2/M3）**：
+- 處理多平台帳號綁定（Google、Apple、WeChat、Line）
 - 管理帳號身份（account_identities）
 - 合併同一使用者的多個帳號身份
-
-**函數**：
-```typescript
-export async function linkTelegramAccount(
-  telegramId: string,
-  initData: string,
-  env: Env,
-  db: D1Database
-): Promise<{ userId: string; isNew: boolean }>
-
-export async function linkGoogleAccount(
-  userId: string,
-  googleToken: string,
-  env: Env,
-  db: D1Database
-): Promise<void>
-
-export async function linkAppleAccount(
-  userId: string,
-  appleToken: string,
-  env: Env,
-  db: D1Database
-): Promise<void>
-
-export async function linkWeChatAccount(
-  userId: string,
-  wechatCode: string,
-  env: Env,
-  db: D1Database
-): Promise<void>
-
-export async function linkLineAccount(
-  userId: string,
-  lineCode: string,
-  env: Env,
-  db: D1Database
-): Promise<void>
-
-export async function mergeAccounts(
-  userId: string,
-  identities: AccountIdentity[],
-  db: D1Database
-): Promise<void>
-
-export async function unlinkAccount(
-  userId: string,
-  platform: 'google' | 'apple' | 'wechat' | 'line',
-  db: D1Database
-): Promise<void>
-```
-
-**特點**：
-- 支援 initData 驗簽（Telegram）
-- 支援 OAuth 流程（Google、Apple、WeChat、Line）
-- 支援帳號合併（同一使用者多個平台）
-- 支援帳號解綁（保留主帳號）
+- 詳細設計請參考：ROADMAP.md
 
 #### 2.1.6 translation-policy.ts - 翻譯策略
 

@@ -22,16 +22,16 @@
 | `EXTERNAL_API_KEY` | Moonpacket API 驗證金鑰 | ✅ | staging, production |
 | `TELEGRAM_BOT_SECRET` | Telegram Bot Secret（WebApp 驗簽） | ✅ | 全部 |
 | `GOOGLE_TRANSLATE_API_KEY` | Google Translate API 金鑰 | ✅ | 全部 |
-| `GOOGLE_CLIENT_ID` | Google OAuth Client ID | ⚠️ | staging, production |
-| `GOOGLE_CLIENT_SECRET` | Google OAuth Client Secret | ⚠️ | staging, production |
-| `APPLE_CLIENT_ID` | Apple Sign In Client ID | ⚠️ | staging, production |
-| `APPLE_TEAM_ID` | Apple Team ID | ⚠️ | staging, production |
-| `APPLE_KEY_ID` | Apple Key ID | ⚠️ | staging, production |
-| `APPLE_PRIVATE_KEY` | Apple Private Key | ⚠️ | staging, production |
-| `WECHAT_APP_ID` | WeChat App ID | ⚠️ | staging, production |
-| `WECHAT_APP_SECRET` | WeChat App Secret | ⚠️ | staging, production |
-| `LINE_CHANNEL_ID` | Line Channel ID | ⚠️ | staging, production |
-| `LINE_CHANNEL_SECRET` | Line Channel Secret | ⚠️ | staging, production |
+| `GOOGLE_CLIENT_ID` | Google OAuth Client ID（預留，M2/M3） | ❌ | 暫不需要 |
+| `GOOGLE_CLIENT_SECRET` | Google OAuth Client Secret（預留，M2/M3） | ❌ | 暫不需要 |
+| `APPLE_CLIENT_ID` | Apple Sign In Client ID（預留，M3） | ❌ | 暫不需要 |
+| `APPLE_TEAM_ID` | Apple Team ID（預留，M3） | ❌ | 暫不需要 |
+| `APPLE_KEY_ID` | Apple Key ID（預留，M3） | ❌ | 暫不需要 |
+| `APPLE_PRIVATE_KEY` | Apple Private Key（預留，M3） | ❌ | 暫不需要 |
+| `WECHAT_APP_ID` | WeChat App ID（預留，M2） | ❌ | 暫不需要 |
+| `WECHAT_APP_SECRET` | WeChat App Secret（預留，M2） | ❌ | 暫不需要 |
+| `LINE_CHANNEL_ID` | Line Channel ID（預留，M2） | ❌ | 暫不需要 |
+| `LINE_CHANNEL_SECRET` | Line Channel Secret（預留，M2） | ❌ | 暫不需要 |
 | `ENVIRONMENT` | 環境名稱 (dev/staging/prod) | ✅ | 全部 |
 | `LOG_LEVEL` | 日誌級別 (debug/info/warn/error) | ❌ | 全部 |
 | `BROADCAST_BATCH_SIZE` | 廣播批次大小 | ❌ | 全部 |
@@ -75,19 +75,19 @@ HOROSCOPE_SOURCE_URL=
 # External API (開發環境可留空)
 EXTERNAL_API_KEY=dev_api_key_here
 
-# OAuth (可選，開發環境可留空)
-GOOGLE_CLIENT_ID=
-GOOGLE_CLIENT_SECRET=
-APPLE_CLIENT_ID=
-APPLE_TEAM_ID=
-APPLE_KEY_ID=
-APPLE_PRIVATE_KEY=
+# OAuth (預留，M2/M3 階段才需要)
+# GOOGLE_CLIENT_ID=
+# GOOGLE_CLIENT_SECRET=
+# APPLE_CLIENT_ID=
+# APPLE_TEAM_ID=
+# APPLE_KEY_ID=
+# APPLE_PRIVATE_KEY=
 
-# WeChat / Line (可選，開發環境可留空)
-WECHAT_APP_ID=
-WECHAT_APP_SECRET=
-LINE_CHANNEL_ID=
-LINE_CHANNEL_SECRET=
+# WeChat / Line (預留，M2 階段才需要)
+# WECHAT_APP_ID=
+# WECHAT_APP_SECRET=
+# LINE_CHANNEL_ID=
+# LINE_CHANNEL_SECRET=
 
 # Broadcast Settings
 BROADCAST_BATCH_SIZE=10
@@ -156,19 +156,19 @@ wrangler secret put GOOGLE_TRANSLATE_API_KEY --env staging
 wrangler secret put GOOGLE_CLIENT_ID --env staging
 wrangler secret put GOOGLE_CLIENT_SECRET --env staging
 
-# 設定 Apple Sign In（可選）
-wrangler secret put APPLE_CLIENT_ID --env staging
-wrangler secret put APPLE_TEAM_ID --env staging
-wrangler secret put APPLE_KEY_ID --env staging
-wrangler secret put APPLE_PRIVATE_KEY --env staging
+# 設定 Apple Sign In（預留，M3 階段才需要）
+# wrangler secret put APPLE_CLIENT_ID --env staging
+# wrangler secret put APPLE_TEAM_ID --env staging
+# wrangler secret put APPLE_KEY_ID --env staging
+# wrangler secret put APPLE_PRIVATE_KEY --env staging
 
-# 設定 WeChat（可選）
-wrangler secret put WECHAT_APP_ID --env staging
-wrangler secret put WECHAT_APP_SECRET --env staging
+# 設定 WeChat（預留，M2 階段才需要）
+# wrangler secret put WECHAT_APP_ID --env staging
+# wrangler secret put WECHAT_APP_SECRET --env staging
 
-# 設定 Line（可選）
-wrangler secret put LINE_CHANNEL_ID --env staging
-wrangler secret put LINE_CHANNEL_SECRET --env staging
+# 設定 Line（預留，M2 階段才需要）
+# wrangler secret put LINE_CHANNEL_ID --env staging
+# wrangler secret put LINE_CHANNEL_SECRET --env staging
 ```
 
 #### 2.2.2 wrangler.toml (staging)
@@ -290,21 +290,21 @@ export interface Env {
   // External API
   EXTERNAL_API_KEY: string;
   
-  // Google OAuth
+  // Google OAuth（預留，M2/M3 階段）
   GOOGLE_CLIENT_ID?: string;
   GOOGLE_CLIENT_SECRET?: string;
   
-  // Apple Sign In
+  // Apple Sign In（預留，M3 階段）
   APPLE_CLIENT_ID?: string;
   APPLE_TEAM_ID?: string;
   APPLE_KEY_ID?: string;
   APPLE_PRIVATE_KEY?: string;
   
-  // WeChat
+  // WeChat（預留，M2 階段）
   WECHAT_APP_ID?: string;
   WECHAT_APP_SECRET?: string;
   
-  // Line
+  // Line（預留，M2 階段）
   LINE_CHANNEL_ID?: string;
   LINE_CHANNEL_SECRET?: string;
   

@@ -63,20 +63,15 @@
 - **Bot 僅處理通知/Deep Link**：短流程、即時回應、通知推送
 - **長流程改走 WebApp**：註冊引導、個人資料編輯、MBTI 測驗、聊天界面
 
-**Telegram Mini App**：
+**Telegram Mini App**（當前階段）：
 - 使用 `initData` 驗簽確保安全性
 - 首屏載入 < 2 秒（性能要求）
 - 支援 `WebApp.share` Deep Link（`startapp=share_mbti_{resultId}`）
-- 統一的 `AuthAdapter` / `NotificationAdapter` 抽象（支援未來擴展 WeChat、Line、App Store）
 
-**多平台支援規劃**：
-- M1: Telegram Mini App（當前階段）
-- M2: WeChat / Line 插件（統一的 AuthAdapter）
-- M3: App Store / Google Play（原生 App）
-
-**詳細設計請參考**：
-- ROADMAP.md（三階段路線圖）
-- MODULE_DESIGN.md（account-linker.ts 設計）
+**未來擴展預留**（M2/M3，暫不實作）：
+- WeChat / Line 插件
+- App Store / Google Play 原生 App
+- 詳細規劃請參考：ROADMAP.md
 
 ---
 
@@ -555,7 +550,7 @@ async function recordConversationMessage(user: User, convoId: number, today: str
   - 僅依靠本地規則（URL 白名單、敏感詞過濾）
   - 發送告警（通知管理員）
 - Audit 日誌：記錄被 AI 攔截的內容摘要、reason、user_id、conversation_id
-- 詳細設計請參考：AI_MODERATION.md
+- 資料庫表：`ai_moderation_logs`（見 3.12.1 節）
 
 ---
 
@@ -686,8 +681,7 @@ async function recordConversationMessage(user: User, convoId: number, today: str
    - **排除曾經封鎖過的使用者**（blocker_id = user）
    - **排除曾經被封鎖的使用者**（blocked_id = user）
    - **排除曾被舉報過的使用者**（24 小時內）
-   - 詳細匹配邏輯請參考：USER_BLOCKING.md
-3. 若找到：
+ 3. 若找到：
    - 建立 conversations（user 與 bottle.owner 的匿名對話）
    - 建立 bottle_chat_history 記錄
    - 回覆給使用者瓶子內容 + 提示：
@@ -765,7 +759,61 @@ async function recordConversationMessage(user: User, convoId: number, today: str
 - 邀請好友獎勵機制
 - VIP 功能
 
-### 5.10 /broadcast（上帝 / 天使）
+### 5.10 /block（封鎖功能）
+
+**功能說明**：
+- 封鎖當前對話對象
+- 不涉及舉報（與 `/report` 不同）
+- 封鎖後不再匹配到該使用者
+- 封鎖後該使用者無法再發送訊息
+
+**流程**：
+1. 使用者在對話中發送 `/block`
+2. Bot 顯示確認提示：「確定要封鎖這位使用者嗎？」
+3. 使用者確認封鎖
+4. 建立 `user_blocks` 記錄（blocker_id, blocked_id, conversation_id）
+5. 更新 `conversations` 狀態為 'blocked'（a_blocked=1 或 b_blocked=1）
+6. 通知使用者「已封鎖」
+
+**匹配排除邏輯**：
+- 在 `matchBottleForUser` 中排除：
+  - 已封鎖的使用者（blocker_id = user）
+  - 被封鎖的使用者（blocked_id = user）
+  - 被舉報過的使用者（24 小時內）
+- 資料庫查詢時使用 `user_blocks` 表排除
+
+**資料庫表**：`user_blocks`（見 3.4.1 節）
+
+### 5.11 /delete_me（刪除帳號）
+
+**功能說明**：
+- 使用者可以要求刪除自己的資料
+- 標記使用者為 'deleted'
+- 清除個人資料欄位
+- 保留安全審計記錄（脫敏）
+
+**流程**：
+1. 使用者發送 `/delete_me`
+2. Bot 顯示刪除後果警告（不可逆操作）
+3. 使用者深度確認（輸入「刪除」）
+4. 標記使用者為刪除：
+   - `nickname` → '[已刪除]'
+   - `avatar_url` → NULL
+   - `language_pref` → NULL
+   - `prefer_gender` → NULL
+   - `onboarding_state` → NULL
+   - `deleted_at` = datetime('now')
+5. 保留安全審計記錄（reports, bans, risk_score）
+6. 通知使用者「帳號已刪除」
+
+**資料保留策略**：
+- 個人資料：清除
+- 安全審計記錄：保留（脫敏）
+- 統計資料：保留（不顯示個人資訊）
+
+**資料庫欄位**：`users.deleted_at`、`users.anonymized_at`、`users.deletion_requested_at`
+
+### 5.12 /broadcast（上帝 / 天使）
 
 僅 role 為 god 或 angel 的使用者可用。
 

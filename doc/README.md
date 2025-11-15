@@ -90,11 +90,6 @@
   - 翻譯成本記錄與監控
   - 降級事件追蹤與告警
 
-- **[AI_MODERATION.md](./AI_MODERATION.md)** - AI 內容審核設計 ⭐ **新增**
-  - OpenAI 內容審核（可選，失敗不阻擋）
-  - 本地規則優先（URL 白名單、敏感詞）
-  - Audit 日誌記錄
-  - 失敗處理策略
 
 - **[ADMIN_PANEL.md](./ADMIN_PANEL.md)** - 管理後台設計
   - 角色權限說明
@@ -130,6 +125,12 @@
   - 資料庫完整性檢查（28 個表）
   - 指令完整性檢查
   - 市場產品功能對比
+
+- **[DOCUMENT_CREATION_GUIDELINES.md](./DOCUMENT_CREATION_GUIDELINES.md)** - 文檔創建規範 ⭐ **新增**
+  - 文檔創建原則（優先更新現有文檔）
+  - 是否創建新文檔的決策流程
+  - 文檔引用規範
+  - 文檔維護規範
 
 ### 5. 測試與部署
 
