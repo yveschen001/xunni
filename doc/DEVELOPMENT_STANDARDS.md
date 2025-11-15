@@ -379,8 +379,6 @@ chore: 更新依賴版本
 
 ---
 
----
-
 ## 5. 與 AI 協作流程（Working with Cursor / AI changes）
 
 ### 5.1 非簡單變更的流程
