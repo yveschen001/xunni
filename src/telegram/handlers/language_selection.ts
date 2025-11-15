@@ -89,10 +89,14 @@ export async function handleLanguageSelection(
       return;
     }
 
-    // Update user language preference
+    // Update user language preference and onboarding step
     await updateUserProfile(db, telegramId, {
       language_pref: languageCode,
     });
+    
+    // Update onboarding step to nickname
+    const { updateOnboardingStep } = await import('~/db/queries/users');
+    await updateOnboardingStep(db, telegramId, 'nickname');
 
     // Answer callback query
     await telegram.answerCallbackQuery(

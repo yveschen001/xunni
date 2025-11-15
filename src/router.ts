@@ -89,6 +89,15 @@ async function routeUpdate(update: TelegramUpdate, env: Env): Promise<void> {
     // Check if user is banned
     // TODO: Implement ban check
 
+    // Check if user is in onboarding
+    if (user.onboarding_step !== 'completed') {
+      // Handle onboarding input first
+      const isOnboardingInput = await handleOnboardingInput(message, env);
+      if (isOnboardingInput) {
+        return;
+      }
+    }
+
     // Route commands
     if (text.startsWith('/start')) {
       await handleStart(message, env);
@@ -134,14 +143,11 @@ async function routeUpdate(update: TelegramUpdate, env: Env): Promise<void> {
       return;
     }
 
-    // Handle onboarding input
-    const isOnboardingInput = await handleOnboardingInput(message, env);
-    if (isOnboardingInput) {
+    // Handle conversation messages (only for completed onboarding)
+    if (user.onboarding_step === 'completed') {
+      await handleMessageForward(message, env);
       return;
     }
-
-    // Handle conversation messages
-    await handleMessageForward(message, env);
 
     // Unknown command
     await telegram.sendMessage(
