@@ -3,6 +3,9 @@
  * 
  * ⚠️ WARNING: These commands should be REMOVED in production!
  * Only for development/staging testing.
+ * 
+ * SECURITY: These commands are ONLY available in staging environment.
+ * They will NOT work in production.
  */
 
 import type { Env, TelegramMessage } from '~/types';
@@ -10,14 +13,33 @@ import { createDatabaseClient } from '~/db/client';
 import { createTelegramService } from '~/services/telegram';
 
 /**
+ * Check if dev commands are allowed in current environment
+ */
+function isDevCommandAllowed(env: Env): boolean {
+  const environment = env.ENVIRONMENT || 'development';
+  return environment === 'development' || environment === 'staging';
+}
+
+/**
  * /dev_reset - Reset user data for testing
  * 
  * ⚠️ DEVELOPMENT ONLY - Remove in production!
+ * ⚠️ SECURITY: Only works in staging/development environment
  */
 export async function handleDevReset(message: TelegramMessage, env: Env): Promise<void> {
-  const db = createDatabaseClient(env);
   const telegram = createTelegramService(env);
   const chatId = message.chat.id;
+  
+  // SECURITY CHECK: Only allow in staging/development
+  if (!isDevCommandAllowed(env)) {
+    await telegram.sendMessage(
+      chatId,
+      '❌ 此命令在生產環境中不可用。\n\nThis command is not available in production.'
+    );
+    return;
+  }
+  
+  const db = createDatabaseClient(env);
   const telegramId = message.from!.id.toString();
 
   try {
@@ -72,11 +94,22 @@ export async function handleDevReset(message: TelegramMessage, env: Env): Promis
  * /dev_info - Show development info
  * 
  * ⚠️ DEVELOPMENT ONLY - Remove in production!
+ * ⚠️ SECURITY: Only works in staging/development environment
  */
 export async function handleDevInfo(message: TelegramMessage, env: Env): Promise<void> {
-  const db = createDatabaseClient(env);
   const telegram = createTelegramService(env);
   const chatId = message.chat.id;
+  
+  // SECURITY CHECK: Only allow in staging/development
+  if (!isDevCommandAllowed(env)) {
+    await telegram.sendMessage(
+      chatId,
+      '❌ 此命令在生產環境中不可用。\n\nThis command is not available in production.'
+    );
+    return;
+  }
+  
+  const db = createDatabaseClient(env);
   const telegramId = message.from!.id.toString();
 
   try {
@@ -123,11 +156,22 @@ export async function handleDevInfo(message: TelegramMessage, env: Env): Promise
  * /dev_skip - Skip to completed onboarding (for testing)
  * 
  * ⚠️ DEVELOPMENT ONLY - Remove in production!
+ * ⚠️ SECURITY: Only works in staging/development environment
  */
 export async function handleDevSkip(message: TelegramMessage, env: Env): Promise<void> {
-  const db = createDatabaseClient(env);
   const telegram = createTelegramService(env);
   const chatId = message.chat.id;
+  
+  // SECURITY CHECK: Only allow in staging/development
+  if (!isDevCommandAllowed(env)) {
+    await telegram.sendMessage(
+      chatId,
+      '❌ 此命令在生產環境中不可用。\n\nThis command is not available in production.'
+    );
+    return;
+  }
+  
+  const db = createDatabaseClient(env);
   const telegramId = message.from!.id.toString();
 
   try {
