@@ -100,6 +100,15 @@ async function resumeOnboarding(
   const step = user.onboarding_step;
 
   switch (step) {
+    case 'language_selection':
+      // Show language selection (this should be handled by router, but just in case)
+      await telegram.sendMessage(
+        chatId,
+        `🌍 請選擇你的語言 / Please select your language\n\n` +
+          `使用 /start 重新開始註冊流程。`
+      );
+      break;
+
     case 'start':
     case 'nickname':
       await telegram.sendMessage(chatId, `請告訴我你的暱稱（顯示名稱）：`);
