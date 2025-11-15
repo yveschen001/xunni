@@ -19,11 +19,13 @@ import { createTelegramService } from './services/telegram';
 
 export async function handleWebhook(request: Request, env: Env): Promise<Response> {
   try {
-    // Verify webhook secret
-    const secretToken = request.headers.get('X-Telegram-Bot-Api-Secret-Token');
-    if (secretToken !== env.TELEGRAM_WEBHOOK_SECRET) {
-      console.warn('[Router] Invalid webhook secret');
-      return new Response('Unauthorized', { status: 401 });
+    // Verify webhook secret (if configured)
+    if (env.TELEGRAM_WEBHOOK_SECRET) {
+      const secretToken = request.headers.get('X-Telegram-Bot-Api-Secret-Token');
+      if (secretToken !== env.TELEGRAM_WEBHOOK_SECRET) {
+        console.warn('[Router] Invalid webhook secret');
+        return new Response('Unauthorized', { status: 401 });
+      }
     }
 
     // Parse update
