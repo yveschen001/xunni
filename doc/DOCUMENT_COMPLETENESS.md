@@ -27,6 +27,7 @@
 21. **DOCUMENT_REVIEW.md** - 文檔審查報告
 22. **DOCUMENT_COMPLETENESS.md** - 文檔完整性檢查 ⭐ 更新
 23. **README.md** - 文檔索引 ⭐ 更新
+24. **UI_GUIDELINE.md** - UI 設計指南 ⭐ **新增**（動畫規範、Loading 狀態、配對動畫）
 
 ---
 
@@ -181,6 +182,7 @@
 - [x] 測試規範
 - [x] 部署流程
 - [x] 備份策略
+- [x] UI 設計指南（動畫規範、Loading 狀態、配對動畫）⭐ 新增
 
 ---
 
