@@ -3,10 +3,10 @@
  * Tests various scenarios including edge cases and error handling
  */
 
-const WORKER_URL = 'https://xunni-bot-staging.yves221.workers.dev';
+const COMPREHENSIVE_WORKER_URL = 'https://xunni-bot-staging.yves221.workers.dev';
 
 // Generate unique test user ID
-const TEST_USER_ID = Math.floor(Math.random() * 1000000000);
+const COMPREHENSIVE_TEST_USER_ID = Math.floor(Math.random() * 1000000000);
 
 interface TestResult {
   name: string;
@@ -20,7 +20,7 @@ const results: TestResult[] = [];
  * Send webhook update
  */
 async function sendUpdate(update: any): Promise<Response> {
-  return fetch(`${WORKER_URL}/webhook`, {
+  return fetch(`${COMPREHENSIVE_WORKER_URL}/webhook`, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify(update),
@@ -30,7 +30,7 @@ async function sendUpdate(update: any): Promise<Response> {
 /**
  * Create message update
  */
-function createMessage(text: string, userId: number = TEST_USER_ID): any {
+function createMessage(text: string, userId: number = COMPREHENSIVE_TEST_USER_ID): any {
   return {
     update_id: Math.floor(Math.random() * 1000000),
     message: {
@@ -55,7 +55,7 @@ function createMessage(text: string, userId: number = TEST_USER_ID): any {
 /**
  * Create callback query update
  */
-function createCallback(data: string, userId: number = TEST_USER_ID): any {
+function createCallback(data: string, userId: number = COMPREHENSIVE_TEST_USER_ID): any {
   return {
     update_id: Math.floor(Math.random() * 1000000),
     callback_query: {
@@ -314,8 +314,8 @@ async function testStartAfterCompletion(): Promise<void> {
 async function runTests(): Promise<void> {
   console.log('🧪 Comprehensive Onboarding Test\n');
   console.log('================================================================================');
-  console.log(`Worker URL: ${WORKER_URL}`);
-  console.log(`Test User ID: ${TEST_USER_ID}`);
+  console.log(`Worker URL: ${COMPREHENSIVE_WORKER_URL}`);
+  console.log(`Test User ID: ${COMPREHENSIVE_TEST_USER_ID}`);
   console.log('================================================================================');
 
   // Run all tests sequentially

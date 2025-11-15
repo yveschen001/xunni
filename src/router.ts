@@ -200,8 +200,23 @@ async function routeUpdate(update: TelegramUpdate, env: Env): Promise<void> {
     }
 
     if (data.startsWith('gender_')) {
-      // TODO: Implement gender selection handler
-      await telegram.answerCallbackQuery(callbackQuery.id, '性別選擇功能開發中...');
+      const { handleGenderSelection, handleGenderConfirmation, handleGenderReselection } = await import(
+        './telegram/handlers/gender_selection'
+      );
+      
+      if (data === 'gender_reselect') {
+        await handleGenderReselection(callbackQuery, env);
+        return;
+      }
+      
+      if (data.startsWith('gender_confirm_')) {
+        const gender = data.replace('gender_confirm_', '') as 'male' | 'female';
+        await handleGenderConfirmation(callbackQuery, gender, env);
+        return;
+      }
+      
+      const gender = data.replace('gender_', '') as 'male' | 'female';
+      await handleGenderSelection(callbackQuery, gender, env);
       return;
     }
 

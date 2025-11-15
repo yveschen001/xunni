@@ -97,9 +97,9 @@ export async function handleLanguageSelection(
       language_pref: languageCode,
     });
     
-    // Update onboarding step to nickname
+    // Update onboarding step to gender (skip nickname)
     const { updateOnboardingStep } = await import('~/db/queries/users');
-    await updateOnboardingStep(db, telegramId, 'nickname');
+    await updateOnboardingStep(db, telegramId, 'gender');
 
     // Answer callback query
     await telegram.answerCallbackQuery(
@@ -157,10 +157,16 @@ async function startOnboarding(
     i18n.t('onboarding.startRegistration')
   );
 
-  // Ask for nickname
-  await telegram.sendMessage(
+  // Ask for gender directly (skip nickname for now)
+  await telegram.sendMessageWithButtons(
     chatId,
-    i18n.t('onboarding.askNickname')
+    i18n.t('onboarding.askGender'),
+    [
+      [
+        { text: '👨 男性', callback_data: 'gender_male' },
+        { text: '👩 女性', callback_data: 'gender_female' },
+      ],
+    ]
   );
 }
 
