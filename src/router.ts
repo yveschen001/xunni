@@ -123,32 +123,39 @@ async function routeUpdate(update: TelegramUpdate, env: Env): Promise<void> {
       return;
     }
 
-    if (text.startsWith('/profile')) {
-      // TODO: Implement /profile handler
-      await telegram.sendMessage(chatId, '👤 個人資料功能開發中...');
+    if (text === '/profile') {
+      const { handleProfile } = await import('./telegram/handlers/profile');
+      await handleProfile(message, env);
       return;
     }
 
-    if (text.startsWith('/help')) {
-      // TODO: Implement /help handler
-      await telegram.sendMessage(
-        chatId,
-        `📖 XunNi 指令列表\n\n` +
-          `🎮 核心功能\n` +
-          `/start - 開始使用\n` +
-          `/throw - 丟出漂流瓶\n` +
-          `/catch - 撿起漂流瓶\n` +
-          `/profile - 個人資料\n` +
-          `/stats - 統計資料\n` +
-          `/vip - VIP 訂閱\n\n` +
-          `🛡️ 安全功能\n` +
-          `/block - 封鎖使用者\n` +
-          `/report - 舉報不當內容\n` +
-          `/appeal - 申訴封禁\n\n` +
-          `📖 幫助\n` +
-          `/rules - 查看規則\n` +
-          `/help - 顯示此列表`
-      );
+    if (text === '/profile_card') {
+      const { handleProfileCard } = await import('./telegram/handlers/profile');
+      await handleProfileCard(message, env);
+      return;
+    }
+
+    if (text === '/help') {
+      const { handleHelp } = await import('./telegram/handlers/help');
+      await handleHelp(message, env);
+      return;
+    }
+
+    if (text === '/rules') {
+      const { handleRules } = await import('./telegram/handlers/help');
+      await handleRules(message, env);
+      return;
+    }
+
+    if (text === '/block') {
+      const { handleBlock } = await import('./telegram/handlers/block');
+      await handleBlock(message, env);
+      return;
+    }
+
+    if (text === '/report') {
+      const { handleReport } = await import('./telegram/handlers/report');
+      await handleReport(message, env);
       return;
     }
 
