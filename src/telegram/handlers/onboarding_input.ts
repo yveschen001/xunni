@@ -7,8 +7,8 @@
 
 import type { Env, TelegramMessage, User } from '~/types';
 import { createDatabaseClient } from '~/db/client';
-import { findUserByTelegramId, updateUserProfile, updateOnboardingStep, updateMBTIResult, updateAntiFraudScore } from '~/db/queries/users';
-import { validateNickname, validateBirthday, calculateAge, calculateZodiacSign, validateMBTI } from '~/domain/user';
+import { findUserByTelegramId, updateUserProfile, updateOnboardingStep, updateAntiFraudScore } from '~/db/queries/users';
+import { validateNickname, validateBirthday, calculateAge, calculateZodiacSign } from '~/domain/user';
 import { createTelegramService } from '~/services/telegram';
 
 // ============================================================================
@@ -48,7 +48,9 @@ export async function handleOnboardingInput(
         return await handleBirthdayInput(user, text, chatId, telegram, db);
 
       case 'mbti':
-        return await handleMBTIInput(user, text, chatId, telegram, db);
+        // MBTI is now handled via buttons only, no text input
+        // If user somehow sends text, ignore it
+        return false;
 
       case 'anti_fraud':
         return await handleAntiFraudInput(user, text, chatId, telegram, db);
@@ -151,47 +153,11 @@ async function handleBirthdayInput(
 }
 
 // ============================================================================
-// MBTI Input
+// MBTI Input (REMOVED - now handled via buttons only)
 // ============================================================================
-
-async function handleMBTIInput(
-  user: User,
-  mbti: string,
-  chatId: number,
-  telegram: ReturnType<typeof createTelegramService>,
-  db: ReturnType<typeof createDatabaseClient>
-): Promise<boolean> {
-  // Validate MBTI
-  const validation = validateMBTI(mbti.toUpperCase());
-  if (!validation.valid) {
-    await telegram.sendMessage(
-      chatId,
-      `❌ ${validation.error}\n\n` +
-        `請輸入有效的 MBTI 類型（例如：INTJ, ENFP）：`
-    );
-    return true;
-  }
-
-  // Save MBTI result
-  await updateMBTIResult(db, user.telegram_id, mbti.toUpperCase());
-
-  // Move to next step
-  await updateOnboardingStep(db, user.telegram_id, 'anti_fraud');
-
-  // Show anti-fraud test
-  await telegram.sendMessage(
-    chatId,
-    `✅ MBTI 類型已設定：${mbti.toUpperCase()}\n\n` +
-      `現在進行反詐騙測驗（簡化版）：\n\n` +
-      `請回答「是」或「否」：\n` +
-      `1. 你了解網路交友的安全風險嗎？\n` +
-      `2. 你會保護好自己的個人資訊嗎？\n` +
-      `3. 遇到可疑訊息時，你會提高警覺嗎？\n\n` +
-      `請輸入「是」完成測驗：`
-  );
-
-  return true;
-}
+// MBTI is now handled entirely through button callbacks in onboarding_callback.ts
+// Users select from 3 options: manual entry, take test, or skip
+// No text input is accepted for MBTI during onboarding
 
 // ============================================================================
 // Anti-Fraud Input
