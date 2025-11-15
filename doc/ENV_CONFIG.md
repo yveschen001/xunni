@@ -8,8 +8,27 @@
 
 ### 1.1 環境需求
 
-- **Node.js**: 20+ 版本
-- **包管理器**: pnpm（推薦）或 npm
+**必需工具及版本：**
+
+- **Node.js**: 22.x（建議使用 [nvm](https://github.com/nvm-sh/nvm) 管理版本）
+  ```bash
+  # 使用 nvm 安裝
+  nvm install 22
+  nvm use 22
+  ```
+- **包管理器**: pnpm 9.x（推薦）或 npm
+  ```bash
+  # 安裝 pnpm
+  npm install -g pnpm@9
+  ```
+- **Cloudflare Workers CLI**: wrangler（最新版本）
+  ```bash
+  # 安裝 wrangler
+  npm install -g wrangler
+  ```
+
+**帳號與 API Key：**
+
 - **Cloudflare 帳號**: 需要 API Token
 - **Telegram Bot Token**: 從 [@BotFather](https://t.me/botfather) 取得
 - **OpenAI API Key**: 從 [OpenAI Platform](https://platform.openai.com/) 取得
