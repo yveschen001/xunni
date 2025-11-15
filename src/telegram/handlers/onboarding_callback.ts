@@ -213,12 +213,41 @@ export async function handleBirthdayConfirmation(
     // Delete confirmation message
     await telegram.deleteMessage(chatId, callbackQuery.message!.message_id);
 
-    // Ask for MBTI
-    await telegram.sendMessage(
+    // Show MBTI selection buttons
+    await telegram.sendMessageWithButtons(
       chatId,
-      `現在讓我們進行 MBTI 性格測驗！\n\n` +
+      `🧠 現在讓我們進行 MBTI 性格測驗！\n\n` +
         `這將幫助我們為你找到更合適的聊天對象～\n\n` +
-        `準備好了嗎？請回答「是」開始測驗。`
+        `請選擇你的 MBTI 類型：`,
+      [
+        [
+          { text: 'INTJ', callback_data: 'mbti_INTJ' },
+          { text: 'INTP', callback_data: 'mbti_INTP' },
+          { text: 'ENTJ', callback_data: 'mbti_ENTJ' },
+          { text: 'ENTP', callback_data: 'mbti_ENTP' },
+        ],
+        [
+          { text: 'INFJ', callback_data: 'mbti_INFJ' },
+          { text: 'INFP', callback_data: 'mbti_INFP' },
+          { text: 'ENFJ', callback_data: 'mbti_ENFJ' },
+          { text: 'ENFP', callback_data: 'mbti_ENFP' },
+        ],
+        [
+          { text: 'ISTJ', callback_data: 'mbti_ISTJ' },
+          { text: 'ISFJ', callback_data: 'mbti_ISFJ' },
+          { text: 'ESTJ', callback_data: 'mbti_ESTJ' },
+          { text: 'ESFJ', callback_data: 'mbti_ESFJ' },
+        ],
+        [
+          { text: 'ISTP', callback_data: 'mbti_ISTP' },
+          { text: 'ISFP', callback_data: 'mbti_ISFP' },
+          { text: 'ESTP', callback_data: 'mbti_ESTP' },
+          { text: 'ESFP', callback_data: 'mbti_ESFP' },
+        ],
+        [
+          { text: '❓ 不知道 / 稍後測驗', callback_data: 'mbti_UNKNOWN' },
+        ],
+      ]
     );
   } catch (error) {
     console.error('[handleBirthdayConfirmation] Error:', error);
@@ -254,6 +283,172 @@ export async function handleBirthdayRetry(
     await telegram.answerCallbackQuery(callbackQuery.id);
   } catch (error) {
     console.error('[handleBirthdayRetry] Error:', error);
+    await telegram.answerCallbackQuery(callbackQuery.id, '❌ 發生錯誤');
+  }
+}
+
+// ============================================================================
+// MBTI Selection
+// ============================================================================
+
+export async function handleMBTISelection(
+  callbackQuery: CallbackQuery,
+  mbtiType: string,
+  env: Env
+): Promise<void> {
+  const db = createDatabaseClient(env);
+  const telegram = createTelegramService(env);
+  const chatId = callbackQuery.message!.chat.id;
+  const telegramId = callbackQuery.from.id.toString();
+
+  try {
+    // Get user
+    const user = await findUserByTelegramId(db, telegramId);
+    if (!user) {
+      await telegram.answerCallbackQuery(callbackQuery.id, '❌ 用戶不存在');
+      return;
+    }
+
+    // Check if user is in MBTI step
+    if (user.onboarding_step !== 'mbti') {
+      await telegram.answerCallbackQuery(callbackQuery.id, '❌ 當前不在 MBTI 測驗步驟');
+      return;
+    }
+
+    // Save MBTI result
+    const { updateMBTIResult } = await import('~/db/queries/users');
+    await updateMBTIResult(db, telegramId, mbtiType);
+
+    // Move to next step
+    await updateOnboardingStep(db, telegramId, 'anti_fraud');
+
+    // Answer callback
+    await telegram.answerCallbackQuery(callbackQuery.id, `✅ MBTI 已設定為 ${mbtiType}`);
+
+    // Delete MBTI selection message
+    await telegram.deleteMessage(chatId, callbackQuery.message!.message_id);
+
+    // Show anti-fraud test with buttons
+    await telegram.sendMessageWithButtons(
+      chatId,
+      `✅ MBTI 類型已設定：${mbtiType}\n\n` +
+        `🛡️ 最後一步：反詐騙安全確認\n\n` +
+        `為了保護所有使用者的安全，請確認你了解以下事項：\n\n` +
+        `1. 你了解網路交友的安全風險嗎？\n` +
+        `2. 你會保護好自己的個人資訊嗎？\n` +
+        `3. 遇到可疑訊息時，你會提高警覺嗎？\n\n` +
+        `請確認：`,
+      [
+        [{ text: '✅ 是的，我了解並會注意安全', callback_data: 'anti_fraud_yes' }],
+        [{ text: '📚 我想了解更多安全知識', callback_data: 'anti_fraud_learn' }],
+      ]
+    );
+  } catch (error) {
+    console.error('[handleMBTISelection] Error:', error);
+    await telegram.answerCallbackQuery(callbackQuery.id, '❌ 發生錯誤');
+  }
+}
+
+// ============================================================================
+// Anti-Fraud Confirmation
+// ============================================================================
+
+export async function handleAntiFraudConfirmation(
+  callbackQuery: CallbackQuery,
+  env: Env
+): Promise<void> {
+  const db = createDatabaseClient(env);
+  const telegram = createTelegramService(env);
+  const chatId = callbackQuery.message!.chat.id;
+  const telegramId = callbackQuery.from.id.toString();
+
+  try {
+    // Get user
+    const user = await findUserByTelegramId(db, telegramId);
+    if (!user) {
+      await telegram.answerCallbackQuery(callbackQuery.id, '❌ 用戶不存在');
+      return;
+    }
+
+    // Check if user is in anti_fraud step
+    if (user.onboarding_step !== 'anti_fraud') {
+      await telegram.answerCallbackQuery(callbackQuery.id, '❌ 當前不在反詐騙測驗步驟');
+      return;
+    }
+
+    // Save anti-fraud score
+    const { updateAntiFraudScore } = await import('~/db/queries/users');
+    await updateAntiFraudScore(db, telegramId, 80);
+
+    // Move to next step
+    await updateOnboardingStep(db, telegramId, 'terms');
+
+    // Answer callback
+    await telegram.answerCallbackQuery(callbackQuery.id, '✅ 安全確認完成');
+
+    // Delete anti-fraud message
+    await telegram.deleteMessage(chatId, callbackQuery.message!.message_id);
+
+    // Show terms agreement
+    await telegram.sendMessageWithButtons(
+      chatId,
+      `✅ 反詐騙測驗通過！\n\n` +
+        `📋 最後一步：服務條款\n\n` +
+        `在開始使用前，請閱讀並同意我們的服務條款：\n\n` +
+        `• 隱私權政策：我們如何保護你的個人資料\n` +
+        `• 使用者條款：使用本服務的規範\n\n` +
+        `點擊下方按鈕表示你已閱讀並同意上述條款。`,
+      [
+        [{ text: '✅ 我已閱讀並同意', callback_data: 'agree_terms' }],
+        [{ text: '📋 查看隱私權政策', url: 'https://xunni.example.com/privacy' }],
+        [{ text: '📋 查看使用者條款', url: 'https://xunni.example.com/terms' }],
+      ]
+    );
+  } catch (error) {
+    console.error('[handleAntiFraudConfirmation] Error:', error);
+    await telegram.answerCallbackQuery(callbackQuery.id, '❌ 發生錯誤');
+  }
+}
+
+// ============================================================================
+// Anti-Fraud Learn More
+// ============================================================================
+
+export async function handleAntiFraudLearnMore(
+  callbackQuery: CallbackQuery,
+  env: Env
+): Promise<void> {
+  const telegram = createTelegramService(env);
+  const chatId = callbackQuery.message!.chat.id;
+
+  try {
+    // Show safety tips
+    await telegram.editMessageText(
+      chatId,
+      callbackQuery.message!.message_id,
+      `🛡️ 網路交友安全小貼士\n\n` +
+        `1. 🔒 保護個人資訊\n` +
+        `   • 不要輕易透露真實姓名、地址、電話\n` +
+        `   • 不要分享財務資訊\n\n` +
+        `2. 🚨 識別詐騙訊息\n` +
+        `   • 警惕索要金錢的訊息\n` +
+        `   • 不要點擊可疑連結\n\n` +
+        `3. 🤝 安全交友\n` +
+        `   • 第一次見面選擇公共場所\n` +
+        `   • 告訴朋友你的行程\n\n` +
+        `了解後，請確認：`,
+      {
+        reply_markup: {
+          inline_keyboard: [
+            [{ text: '✅ 我了解了，繼續註冊', callback_data: 'anti_fraud_yes' }],
+          ],
+        },
+      }
+    );
+
+    await telegram.answerCallbackQuery(callbackQuery.id);
+  } catch (error) {
+    console.error('[handleAntiFraudLearnMore] Error:', error);
     await telegram.answerCallbackQuery(callbackQuery.id, '❌ 發生錯誤');
   }
 }

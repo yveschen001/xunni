@@ -236,6 +236,25 @@ async function routeUpdate(update: TelegramUpdate, env: Env): Promise<void> {
       return;
     }
 
+    if (data.startsWith('mbti_')) {
+      const { handleMBTISelection } = await import('./telegram/handlers/onboarding_callback');
+      const mbtiType = data.replace('mbti_', '');
+      await handleMBTISelection(callbackQuery, mbtiType, env);
+      return;
+    }
+
+    if (data === 'anti_fraud_yes') {
+      const { handleAntiFraudConfirmation } = await import('./telegram/handlers/onboarding_callback');
+      await handleAntiFraudConfirmation(callbackQuery, env);
+      return;
+    }
+
+    if (data === 'anti_fraud_learn') {
+      const { handleAntiFraudLearnMore } = await import('./telegram/handlers/onboarding_callback');
+      await handleAntiFraudLearnMore(callbackQuery, env);
+      return;
+    }
+
     if (data === 'agree_terms') {
       const { handleTermsAgreement } = await import('./telegram/handlers/onboarding_callback');
       await handleTermsAgreement(callbackQuery, env);
