@@ -21,6 +21,7 @@
     "seed-fake-users": "tsx scripts/seed-fake-users.ts",
     "delete-fake-users": "tsx scripts/delete-fake-users.ts",
     "test:phase1": "tsx scripts/test-phase1.ts",
+    "test:acceptance": "tsx scripts/self-acceptance-test.ts",
     "typecheck": "tsc --noEmit",
     "lint": "eslint src",
     "lint:fix": "eslint src --fix",
