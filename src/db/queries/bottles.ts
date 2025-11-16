@@ -20,7 +20,6 @@ export async function createBottle(
     INSERT INTO bottles (
       owner_telegram_id,
       content,
-      mood_tag,
       created_at,
       expires_at,
       status,
@@ -30,11 +29,10 @@ export async function createBottle(
       target_zodiac_filter,
       target_mbti_filter,
       language
-    ) VALUES (?, ?, ?, datetime('now'), ?, 'pending', ?, ?, ?, ?, ?, ?)
+    ) VALUES (?, ?, datetime('now'), ?, 'pending', ?, ?, ?, ?, ?, ?)
   `).bind(
     ownerId,
     input.content,
-    input.mood_tag || null,
     expiresAt,
     input.target_gender,
     input.target_age_range || null,

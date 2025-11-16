@@ -8,7 +8,6 @@ export interface Bottle {
   id: number;
   owner_telegram_id: string;
   content: string;
-  mood_tag?: string;
   created_at: string;
   expires_at: string;
   status: 'pending' | 'matched' | 'expired' | 'deleted';
@@ -22,7 +21,6 @@ export interface Bottle {
 
 export interface ThrowBottleInput {
   content: string;
-  mood_tag?: string;
   target_gender: 'male' | 'female' | 'any';
   target_age_range?: string;
   target_region?: string;
