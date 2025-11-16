@@ -23,6 +23,7 @@ import {
   getBottleQuota,
 } from '~/domain/bottle';
 import { calculateAge } from '~/domain/user';
+import { createI18n } from '~/i18n';
 
 export async function handleCatch(message: TelegramMessage, env: Env): Promise<void> {
   const db = createDatabaseClient(env);
