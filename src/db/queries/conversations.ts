@@ -16,16 +16,14 @@ export async function createConversation(
 ): Promise<number> {
   const result = await db.d1.prepare(`
     INSERT INTO conversations (
+      user_a_telegram_id,
+      user_b_telegram_id,
       bottle_id,
-      user_a_id,
-      user_b_id,
-      created_at,
-      last_message_at,
       status,
-      a_blocked,
-      b_blocked
-    ) VALUES (?, ?, ?, datetime('now'), datetime('now'), 'active', 0, 0)
-  `).bind(bottleId, userAId, userBId).run();
+      created_at,
+      last_message_at
+    ) VALUES (?, ?, ?, 'active', datetime('now'), datetime('now'))
+  `).bind(userAId, userBId, bottleId).run();
 
   return result.meta.last_row_id as number;
 }
@@ -39,7 +37,7 @@ export async function getActiveConversation(
 ): Promise<Conversation | null> {
   const result = await db.d1.prepare(`
     SELECT * FROM conversations
-    WHERE (user_a_id = ? OR user_b_id = ?)
+    WHERE (user_a_telegram_id = ? OR user_b_telegram_id = ?)
       AND status = 'active'
     ORDER BY last_message_at DESC
     LIMIT 1
@@ -85,30 +83,28 @@ export async function saveConversationMessage(
   conversationId: number,
   senderId: string,
   receiverId: string,
-  messageText: string,
-  isTranslated: boolean = false,
-  originalLanguage?: string,
-  translatedLanguage?: string
+  originalText: string,
+  translatedText?: string,
+  translationProvider?: string
 ): Promise<number> {
   const result = await db.d1.prepare(`
     INSERT INTO conversation_messages (
       conversation_id,
-      sender_id,
-      receiver_id,
-      message_text,
-      is_translated,
-      original_language,
-      translated_language,
+      sender_telegram_id,
+      receiver_telegram_id,
+      original_text,
+      translated_text,
+      translation_provider,
+      is_blocked_by_ai,
       created_at
-    ) VALUES (?, ?, ?, ?, ?, ?, ?, datetime('now'))
+    ) VALUES (?, ?, ?, ?, ?, ?, 0, datetime('now'))
   `).bind(
     conversationId,
     senderId,
     receiverId,
-    messageText,
-    isTranslated ? 1 : 0,
-    originalLanguage || null,
-    translatedLanguage || null
+    originalText,
+    translatedText || null,
+    translationProvider || null
   ).run();
 
   // Update last_message_at
@@ -132,20 +128,24 @@ export async function createBottleChatHistory(
   userBId: string,
   bottleContent: string
 ): Promise<void> {
-  await db.d1.prepare(`
-    INSERT INTO bottle_chat_history (
-      bottle_id,
-      conversation_id,
-      user_a_id,
-      user_b_id,
-      bottle_content,
-      first_message_at,
-      last_message_at,
-      total_messages,
-      status,
-      created_at
-    ) VALUES (?, ?, ?, ?, ?, datetime('now'), datetime('now'), 0, 'active', datetime('now'))
-  `).bind(bottleId, conversationId, userAId, userBId, bottleContent).run();
+  try {
+    await db.d1.prepare(`
+      INSERT INTO bottle_chat_history (
+        bottle_id,
+        conversation_id,
+        user_a_telegram_id,
+        user_b_telegram_id,
+        bottle_content,
+        first_message_at,
+        last_message_at,
+        total_messages,
+        status,
+        created_at
+      ) VALUES (?, ?, ?, ?, ?, datetime('now'), datetime('now'), 0, 'active', datetime('now'))
+    `).bind(bottleId, conversationId, userAId, userBId, bottleContent).run();
+  } catch (error) {
+    console.error('[createBottleChatHistory] Skipped (table missing?):', error);
+  }
 }
 
 /**
@@ -155,10 +155,14 @@ export async function updateBottleChatHistory(
   db: DatabaseClient,
   conversationId: number
 ): Promise<void> {
-  await db.d1.prepare(`
-    UPDATE bottle_chat_history
-    SET last_message_at = datetime('now'),
-        total_messages = total_messages + 1
-    WHERE conversation_id = ?
-  `).bind(conversationId).run();
+  try {
+    await db.d1.prepare(`
+      UPDATE bottle_chat_history
+      SET last_message_at = datetime('now'),
+          total_messages = total_messages + 1
+      WHERE conversation_id = ?
+    `).bind(conversationId).run();
+  } catch (error) {
+    console.error('[updateBottleChatHistory] Skipped (table missing?):', error);
+  }
 }

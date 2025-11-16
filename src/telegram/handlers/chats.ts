@@ -96,7 +96,7 @@ async function getUserConversations(
       c.created_at
     FROM conversations c
     LEFT JOIN conversation_messages cm ON cm.conversation_id = c.id
-    WHERE c.user_a_id = ? OR c.user_b_id = ?
+    WHERE c.user_a_telegram_id = ? OR c.user_b_telegram_id = ?
     GROUP BY c.id
     ORDER BY MAX(cm.created_at) DESC, c.created_at DESC
     LIMIT 20

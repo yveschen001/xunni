@@ -99,7 +99,7 @@ async function getUserStats(
   const bottlesCaught = await db.d1.prepare(`
     SELECT COUNT(*) as count
     FROM conversations
-    WHERE (user_a_id = ? OR user_b_id = ?)
+    WHERE (user_a_telegram_id = ? OR user_b_telegram_id = ?)
       AND status = 'active'
   `).bind(telegramId, telegramId).first<{ count: number }>();
 
@@ -108,7 +108,7 @@ async function getUserStats(
   const dailyUsage = await db.d1.prepare(`
     SELECT throws_count, catches_count
     FROM daily_usage
-    WHERE user_id = ? AND date = ?
+    WHERE telegram_id = ? AND date = ?
   `).bind(telegramId, today).first<{ throws_count: number; catches_count: number }>();
 
   const user = await db.d1.prepare(`
@@ -124,14 +124,14 @@ async function getUserStats(
   const totalConversations = await db.d1.prepare(`
     SELECT COUNT(*) as count
     FROM conversations
-    WHERE user_a_id = ? OR user_b_id = ?
+    WHERE user_a_telegram_id = ? OR user_b_telegram_id = ?
   `).bind(telegramId, telegramId).first<{ count: number }>();
 
   // Get active conversations
   const activeConversations = await db.d1.prepare(`
     SELECT COUNT(*) as count
     FROM conversations
-    WHERE (user_a_id = ? OR user_b_id = ?)
+    WHERE (user_a_telegram_id = ? OR user_b_telegram_id = ?)
       AND status = 'active'
   `).bind(telegramId, telegramId).first<{ count: number }>();
 

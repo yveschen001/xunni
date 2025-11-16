@@ -45,12 +45,12 @@ export async function handleDevReset(message: TelegramMessage, env: Env): Promis
   try {
     // Delete user data - ignore errors for non-existent tables
     const tables = [
-      { sql: 'DELETE FROM conversation_messages WHERE sender_id = ? OR receiver_id = ?', params: [telegramId, telegramId] },
-      { sql: 'DELETE FROM bottle_chat_history WHERE user_a_id = ? OR user_b_id = ?', params: [telegramId, telegramId] },
-      { sql: 'DELETE FROM conversations WHERE user_a_id = ? OR user_b_id = ?', params: [telegramId, telegramId] },
+      { sql: 'DELETE FROM conversation_messages WHERE sender_telegram_id = ? OR receiver_telegram_id = ?', params: [telegramId, telegramId] },
+      { sql: 'DELETE FROM bottle_chat_history WHERE user_a_telegram_id = ? OR user_b_telegram_id = ?', params: [telegramId, telegramId] },
+      { sql: 'DELETE FROM conversations WHERE user_a_telegram_id = ? OR user_b_telegram_id = ?', params: [telegramId, telegramId] },
       { sql: 'DELETE FROM bottles WHERE owner_telegram_id = ?', params: [telegramId] },
-      { sql: 'DELETE FROM daily_usage WHERE user_id = ?', params: [telegramId] },
-      { sql: 'DELETE FROM reports WHERE reporter_id = ? OR target_id = ?', params: [telegramId, telegramId] },
+      { sql: 'DELETE FROM daily_usage WHERE telegram_id = ?', params: [telegramId] },
+      { sql: 'DELETE FROM reports WHERE reporter_telegram_id = ? OR reported_telegram_id = ?', params: [telegramId, telegramId] },
       { sql: 'DELETE FROM bans WHERE user_id = ?', params: [telegramId] },
       { sql: 'DELETE FROM user_blocks WHERE blocker_telegram_id = ? OR blocked_telegram_id = ?', params: [telegramId, telegramId] },
       { sql: 'DELETE FROM mbti_test_progress WHERE telegram_id = ?', params: [telegramId] },
@@ -116,10 +116,10 @@ export async function handleDevInfo(message: TelegramMessage, env: Env): Promise
     const bottlesCount = await db.d1.prepare('SELECT COUNT(*) as count FROM bottles WHERE owner_telegram_id = ?')
       .bind(telegramId).first<{ count: number }>();
     
-    const conversationsCount = await db.d1.prepare('SELECT COUNT(*) as count FROM conversations WHERE user_a_id = ? OR user_b_id = ?')
+    const conversationsCount = await db.d1.prepare('SELECT COUNT(*) as count FROM conversations WHERE user_a_telegram_id = ? OR user_b_telegram_id = ?')
       .bind(telegramId, telegramId).first<{ count: number }>();
     
-    const messagesCount = await db.d1.prepare('SELECT COUNT(*) as count FROM conversation_messages WHERE sender_id = ?')
+    const messagesCount = await db.d1.prepare('SELECT COUNT(*) as count FROM conversation_messages WHERE sender_telegram_id = ?')
       .bind(telegramId).first<{ count: number }>();
 
     const info = 

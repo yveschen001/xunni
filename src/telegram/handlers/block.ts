@@ -55,9 +55,6 @@ export async function handleBlock(message: TelegramMessage, env: Env): Promise<v
     // Block the user
     await blockUser(db, telegramId, otherUserId);
 
-    // Update conversation status
-    await updateConversationBlockStatus(db, conversation.id, telegramId);
-
     // Close conversation
     await db.d1.prepare(`
       UPDATE conversations
@@ -90,38 +87,5 @@ async function blockUser(
     VALUES (?, ?, datetime('now'))
     ON CONFLICT(blocker_telegram_id, blocked_telegram_id) DO NOTHING
   `).bind(blockerId, blockedId).run();
-}
-
-/**
- * Update conversation block status
- */
-async function updateConversationBlockStatus(
-  db: ReturnType<typeof createDatabaseClient>,
-  conversationId: number,
-  blockerId: string
-): Promise<void> {
-  // Get conversation to determine which user blocked
-  const conversation = await db.d1.prepare(`
-    SELECT * FROM conversations WHERE id = ?
-  `).bind(conversationId).first();
-
-  if (!conversation) {
-    return;
-  }
-
-  // Update appropriate block flag
-  if (conversation.user_a_id === blockerId) {
-    await db.d1.prepare(`
-      UPDATE conversations
-      SET a_blocked = 1
-      WHERE id = ?
-    `).bind(conversationId).run();
-  } else if (conversation.user_b_id === blockerId) {
-    await db.d1.prepare(`
-      UPDATE conversations
-      SET b_blocked = 1
-      WHERE id = ?
-    `).bind(conversationId).run();
-  }
 }
 

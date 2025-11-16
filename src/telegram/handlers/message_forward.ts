@@ -17,7 +17,6 @@ import {
   validateMessageContent,
   getOtherUserId,
   isConversationActive,
-  isUserBlocked,
 } from '~/domain/conversation';
 import { checkUrlWhitelist } from '~/utils/url-whitelist';
 import { createI18n } from '~/i18n';
@@ -56,15 +55,6 @@ export async function handleMessageForward(
       await telegram.sendMessage(
         chatId,
         '❌ 此對話已結束。\n\n使用 /catch 撿新的漂流瓶開始新對話。'
-      );
-      return true;
-    }
-
-    // Check if user is blocked
-    if (isUserBlocked(conversation, telegramId)) {
-      await telegram.sendMessage(
-        chatId,
-        '❌ 對方已封鎖你，無法繼續對話。\n\n使用 /catch 撿新的漂流瓶開始新對話。'
       );
       return true;
     }
@@ -116,6 +106,7 @@ export async function handleMessageForward(
     // Translate message if needed
     let finalMessage = messageText;
     let translationNote = '';
+    let translationProvider: string | undefined;
 
     const senderLanguage = sender.language_pref || 'zh-TW';
     const receiverLanguage = receiver.language_pref || 'zh-TW';
@@ -134,6 +125,7 @@ export async function handleMessageForward(
         );
 
         finalMessage = result.text;
+        translationProvider = result.provider;
 
         if (result.fallback && isVip) {
           translationNote = '\n\n💬 翻譯服務暫時有問題，已使用備用翻譯';
@@ -149,13 +141,15 @@ export async function handleMessageForward(
     }
 
     // Save message to database
+    const translatedUsed = finalMessage !== messageText;
     await saveConversationMessage(
       db,
       conversation.id,
       telegramId,
       receiverId,
       messageText,
-      false // not translated
+      translatedUsed ? finalMessage : undefined,
+      translationProvider
     );
 
     // Update bottle chat history
