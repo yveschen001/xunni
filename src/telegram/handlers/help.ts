@@ -32,6 +32,7 @@ export async function handleHelp(message: TelegramMessage, env: Env): Promise<vo
       `/catch - 撿起漂流瓶\n` +
       `/profile - 查看個人資料\n` +
       `/profile_card - 查看資料卡片\n` +
+      `/edit_profile - 編輯個人資料\n` +
       `/mbti - MBTI 管理\n` +
       `/stats - 我的統計數據\n` +
       `/chats - 我的對話列表\n` +

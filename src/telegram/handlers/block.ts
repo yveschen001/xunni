@@ -86,9 +86,9 @@ async function blockUser(
   blockedId: string
 ): Promise<void> {
   await db.d1.prepare(`
-    INSERT INTO user_blocks (blocker_id, blocked_id, created_at)
+    INSERT INTO user_blocks (blocker_telegram_id, blocked_telegram_id, created_at)
     VALUES (?, ?, datetime('now'))
-    ON CONFLICT(blocker_id, blocked_id) DO NOTHING
+    ON CONFLICT(blocker_telegram_id, blocked_telegram_id) DO NOTHING
   `).bind(blockerId, blockedId).run();
 }
 

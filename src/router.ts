@@ -101,6 +101,13 @@ async function routeUpdate(update: TelegramUpdate, env: Env): Promise<void> {
 
     // Try to handle as conversation message (anonymous chat)
     if (user.onboarding_step === 'completed') {
+      // Try profile edit input first
+      const { handleProfileEditInput } = await import('./telegram/handlers/edit_profile');
+      const isEditingProfile = await handleProfileEditInput(message, env);
+      if (isEditingProfile) {
+        return;
+      }
+
       const isConversationMessage = await handleMessageForward(message, env);
       if (isConversationMessage) {
         return;
@@ -156,6 +163,12 @@ async function routeUpdate(update: TelegramUpdate, env: Env): Promise<void> {
     if (text === '/settings') {
       const { handleSettings } = await import('./telegram/handlers/settings');
       await handleSettings(message, env);
+      return;
+    }
+
+    if (text === '/edit_profile') {
+      const { handleEditProfile } = await import('./telegram/handlers/edit_profile');
+      await handleEditProfile(message, env);
       return;
     }
 
@@ -491,6 +504,38 @@ async function routeUpdate(update: TelegramUpdate, env: Env): Promise<void> {
     if (data === 'conv_cancel') {
       const { handleConversationCancel } = await import('./telegram/handlers/conversation_actions');
       await handleConversationCancel(callbackQuery, env);
+      return;
+    }
+
+    // Edit profile callbacks
+    if (data === 'edit_nickname') {
+      const { handleEditNickname } = await import('./telegram/handlers/edit_profile');
+      await handleEditNickname(callbackQuery, env);
+      return;
+    }
+
+    if (data === 'edit_bio') {
+      const { handleEditBio } = await import('./telegram/handlers/edit_profile');
+      await handleEditBio(callbackQuery, env);
+      return;
+    }
+
+    if (data === 'edit_region') {
+      const { handleEditRegion } = await import('./telegram/handlers/edit_profile');
+      await handleEditRegion(callbackQuery, env);
+      return;
+    }
+
+    if (data === 'edit_interests') {
+      const { handleEditInterests } = await import('./telegram/handlers/edit_profile');
+      await handleEditInterests(callbackQuery, env);
+      return;
+    }
+
+    if (data === 'retake_mbti') {
+      const { handleMBTI } = await import('./telegram/handlers/mbti');
+      await handleMBTI(callbackQuery.message as any, env);
+      await telegram.answerCallbackQuery(callbackQuery.id, '開始 MBTI 測試');
       return;
     }
 

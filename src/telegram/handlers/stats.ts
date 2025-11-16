@@ -92,7 +92,7 @@ async function getUserStats(
   const bottlesThrown = await db.d1.prepare(`
     SELECT COUNT(*) as count
     FROM bottles
-    WHERE owner_id = ?
+    WHERE owner_telegram_id = ?
   `).bind(telegramId).first<{ count: number }>();
 
   // Get bottles caught

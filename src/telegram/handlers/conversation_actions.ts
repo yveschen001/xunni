@@ -269,7 +269,7 @@ export async function handleConversationBlockConfirm(
 
     // Create block record
     await db.d1.prepare(`
-      INSERT INTO user_blocks (blocker_id, blocked_id, conversation_id, created_at)
+      INSERT INTO user_blocks (blocker_telegram_id, blocked_telegram_id, conversation_id, created_at)
       VALUES (?, ?, ?, datetime('now'))
     `).bind(telegramId, otherUserId, conversationId).run();
 

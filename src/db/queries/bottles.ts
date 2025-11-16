@@ -78,8 +78,8 @@ export async function findMatchingBottle(
       AND (b.target_gender = ? OR b.target_gender = 'any')
       AND NOT EXISTS (
         SELECT 1 FROM user_blocks ub
-        WHERE (ub.blocker_id = ? AND ub.blocked_id = b.owner_telegram_id)
-           OR (ub.blocker_id = b.owner_telegram_id AND ub.blocked_id = ?)
+        WHERE (ub.blocker_telegram_id = ? AND ub.blocked_telegram_id = b.owner_telegram_id)
+           OR (ub.blocker_telegram_id = b.owner_telegram_id AND ub.blocked_telegram_id = ?)
       )
       AND NOT EXISTS (
         SELECT 1 FROM reports r

@@ -48,11 +48,11 @@ export async function handleDevReset(message: TelegramMessage, env: Env): Promis
       { sql: 'DELETE FROM conversation_messages WHERE sender_id = ? OR receiver_id = ?', params: [telegramId, telegramId] },
       { sql: 'DELETE FROM bottle_chat_history WHERE user_a_id = ? OR user_b_id = ?', params: [telegramId, telegramId] },
       { sql: 'DELETE FROM conversations WHERE user_a_id = ? OR user_b_id = ?', params: [telegramId, telegramId] },
-      { sql: 'DELETE FROM bottles WHERE owner_id = ?', params: [telegramId] },
+      { sql: 'DELETE FROM bottles WHERE owner_telegram_id = ?', params: [telegramId] },
       { sql: 'DELETE FROM daily_usage WHERE user_id = ?', params: [telegramId] },
       { sql: 'DELETE FROM reports WHERE reporter_id = ? OR target_id = ?', params: [telegramId, telegramId] },
       { sql: 'DELETE FROM bans WHERE user_id = ?', params: [telegramId] },
-      { sql: 'DELETE FROM user_blocks WHERE blocker_id = ? OR blocked_id = ?', params: [telegramId, telegramId] },
+      { sql: 'DELETE FROM user_blocks WHERE blocker_telegram_id = ? OR blocked_telegram_id = ?', params: [telegramId, telegramId] },
       { sql: 'DELETE FROM mbti_test_progress WHERE telegram_id = ?', params: [telegramId] },
       { sql: 'DELETE FROM payments WHERE user_id = ?', params: [telegramId] },
       { sql: 'DELETE FROM users WHERE telegram_id = ?', params: [telegramId] },
@@ -113,7 +113,7 @@ export async function handleDevInfo(message: TelegramMessage, env: Env): Promise
     }
 
     // Get counts
-    const bottlesCount = await db.d1.prepare('SELECT COUNT(*) as count FROM bottles WHERE owner_id = ?')
+    const bottlesCount = await db.d1.prepare('SELECT COUNT(*) as count FROM bottles WHERE owner_telegram_id = ?')
       .bind(telegramId).first<{ count: number }>();
     
     const conversationsCount = await db.d1.prepare('SELECT COUNT(*) as count FROM conversations WHERE user_a_id = ? OR user_b_id = ?')
