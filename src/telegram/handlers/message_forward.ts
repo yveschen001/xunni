@@ -173,9 +173,6 @@ export async function handleMessageForward(
           { text: '🚫 封鎖', callback_data: `conv_block_${conversation.id}` },
           { text: '🚨 舉報', callback_data: `conv_report_${conversation.id}` },
         ],
-        [
-          { text: '❌ 結束對話', callback_data: `conv_end_${conversation.id}` },
-        ],
       ]
     );
 
@@ -186,9 +183,6 @@ export async function handleMessageForward(
       [
         [
           { text: '👤 查看對方資料卡', callback_data: `conv_profile_${conversation.id}` },
-        ],
-        [
-          { text: '❌ 結束對話', callback_data: `conv_end_${conversation.id}` },
         ],
       ]
     );

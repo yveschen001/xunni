@@ -161,94 +161,6 @@ export async function handleConversationReport(
 /**
  * Handle conversation end
  */
-export async function handleConversationEnd(
-  callbackQuery: any,
-  conversationId: number,
-  env: Env
-): Promise<void> {
-  const telegram = createTelegramService(env);
-  const chatId = callbackQuery.message!.chat.id;
-
-  try {
-    await telegram.answerCallbackQuery(callbackQuery.id);
-
-    // Show confirmation
-    await telegram.sendMessageWithButtons(
-      chatId,
-      '❌ **確定要結束這個對話嗎？**\n\n' +
-        '結束後：\n' +
-        '• 雙方都無法再發送訊息\n' +
-        '• 聊天記錄會被保存\n' +
-        '• 可以使用 /catch 開始新對話\n\n' +
-        '💡 如果對方有不當行為，建議使用「舉報」功能。',
-      [
-        [
-          { text: '✅ 確定結束', callback_data: `conv_end_confirm_${conversationId}` },
-          { text: '❌ 取消', callback_data: 'conv_cancel' },
-        ],
-      ]
-    );
-  } catch (error) {
-    console.error('[handleConversationEnd] Error:', error);
-    await telegram.answerCallbackQuery(callbackQuery.id, '❌ 發生錯誤');
-  }
-}
-
-/**
- * Confirm conversation end
- */
-export async function handleConversationEndConfirm(
-  callbackQuery: any,
-  conversationId: number,
-  env: Env
-): Promise<void> {
-  const db = createDatabaseClient(env);
-  const telegram = createTelegramService(env);
-  const chatId = callbackQuery.message!.chat.id;
-  const telegramId = callbackQuery.from.id.toString();
-
-  try {
-    // Get conversation
-    const conversation = await getConversationById(db, conversationId);
-    if (!conversation) {
-      await telegram.answerCallbackQuery(callbackQuery.id, '❌ 對話不存在');
-      return;
-    }
-
-    // End conversation
-    await endConversation(db, conversationId);
-
-    await telegram.answerCallbackQuery(callbackQuery.id, '✅ 對話已結束');
-    await telegram.deleteMessage(chatId, callbackQuery.message!.message_id);
-
-    // Notify both users
-    await telegram.sendMessage(
-      chatId,
-      '✅ **對話已結束**\n\n' +
-        '感謝你的參與！\n\n' +
-        '💡 想要開始新的對話嗎？\n' +
-        '• 使用 /catch 撿起新的漂流瓶\n' +
-        '• 使用 /throw 丟出自己的漂流瓶'
-    );
-
-    // Notify other user
-    const otherUserId = getOtherUserId(conversation, telegramId);
-    if (otherUserId) {
-      await telegram.sendMessage(
-        parseInt(otherUserId),
-        '💬 **對話已結束**\n\n' +
-          '對方結束了這個對話。\n\n' +
-          '💡 想要開始新的對話嗎？\n' +
-          '• 使用 /catch 撿起新的漂流瓶\n' +
-          '• 使用 /throw 丟出自己的漂流瓶'
-      );
-    }
-  } catch (error) {
-    console.error('[handleConversationEndConfirm] Error:', error);
-    await telegram.answerCallbackQuery(callbackQuery.id, '❌ 發生錯誤');
-  }
-}
-
 /**
  * Confirm block
  */
@@ -342,8 +254,8 @@ export async function handleConversationReportConfirm(
     // Create report record
     await db.d1.prepare(`
       INSERT INTO reports (
-        reporter_id,
-        target_id,
+        reporter_telegram_id,
+        reported_telegram_id,
         conversation_id,
         reason,
         status,

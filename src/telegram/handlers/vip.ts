@@ -12,8 +12,16 @@ import { createI18n } from '~/i18n';
 import { handleMenu } from './menu';
 
 // VIP pricing (Telegram Stars)
-const VIP_PRICE_STARS = 150; // ~5 USD
+const DEFAULT_VIP_PRICE_STARS = 150; // ~5 USD
 const VIP_DURATION_DAYS = 30;
+
+function resolveVipPrice(env: Env): number {
+  const value = Number(env.VIP_PRICE_STARS ?? DEFAULT_VIP_PRICE_STARS);
+  if (Number.isFinite(value) && value > 0) {
+    return value;
+  }
+  return DEFAULT_VIP_PRICE_STARS;
+}
 
 export async function handleVip(message: TelegramMessage, env: Env): Promise<void> {
   const db = createDatabaseClient(env);
@@ -30,6 +38,9 @@ export async function handleVip(message: TelegramMessage, env: Env): Promise<voi
     }
 
     const i18n = createI18n(user.language_pref || 'zh-TW');
+    const priceStars = resolveVipPrice(env);
+    const priceNote =
+      priceStars === DEFAULT_VIP_PRICE_STARS ? '（約 5 USD）' : '（Staging 測試價）';
 
     // Check if user completed onboarding
     if (user.onboarding_step !== 'completed') {
@@ -56,7 +67,7 @@ export async function handleVip(message: TelegramMessage, env: Env): Promise<voi
           `• 無廣告體驗\n\n` +
           `💡 想要續訂或升級嗎？`,
         [
-          [{ text: '🔄 續訂 VIP (150 ⭐)', callback_data: 'vip_renew' }],
+          [{ text: `🔄 續訂 VIP (${priceStars} ⭐)`, callback_data: 'vip_renew' }],
           [{ text: '❌ 取消', callback_data: 'vip_cancel' }],
         ]
       );
@@ -64,7 +75,8 @@ export async function handleVip(message: TelegramMessage, env: Env): Promise<voi
       await telegram.sendMessageWithButtons(
         chatId,
         `💎 **升級 VIP 會員**\n\n` +
-          `價格：150 ⭐ Telegram Stars / 月\n\n` +
+          `價格：${priceStars} ⭐ Telegram Stars / 月\n` +
+          `${priceNote}\n\n` +
           `🎁 VIP 權益：\n` +
           `• 每天 30 個漂流瓶配額（邀請好友可增加，最高 100 個/天）\n` +
           `• 可篩選配對對象的 MBTI 和星座類型\n` +
@@ -73,7 +85,7 @@ export async function handleVip(message: TelegramMessage, env: Env): Promise<voi
           `• 無廣告體驗\n\n` +
           `💡 使用 Telegram Stars 安全便捷支付`,
         [
-          [{ text: '💳 購買 VIP (150 ⭐)', callback_data: 'vip_purchase' }],
+          [{ text: `💳 購買 VIP (${priceStars} ⭐)`, callback_data: 'vip_purchase' }],
           [{ text: '❌ 取消', callback_data: 'vip_cancel' }],
         ]
       );
@@ -161,6 +173,7 @@ async function sendVipInvoice(
   isRenewal: boolean,
   env: Env
 ): Promise<void> {
+  const priceStars = resolveVipPrice(env);
   const title = isRenewal ? 'XunNi VIP 續訂' : 'XunNi VIP 訂閱';
   const description = 
     `升級 VIP 會員，享受以下權益：\n` +
@@ -184,7 +197,7 @@ async function sendVipInvoice(
     prices: [
       {
         label: 'VIP 會員 (30 天)',
-        amount: VIP_PRICE_STARS,
+        amount: priceStars,
       },
     ],
   };

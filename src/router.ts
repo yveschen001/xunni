@@ -537,20 +537,6 @@ async function routeUpdate(update: TelegramUpdate, env: Env): Promise<void> {
       return;
     }
 
-    if (data.startsWith('conv_end_confirm_')) {
-      const { handleConversationEndConfirm } = await import('./telegram/handlers/conversation_actions');
-      const conversationId = parseInt(data.replace('conv_end_confirm_', ''), 10);
-      await handleConversationEndConfirm(callbackQuery, conversationId, env);
-      return;
-    }
-
-    if (data.startsWith('conv_end_')) {
-      const { handleConversationEnd } = await import('./telegram/handlers/conversation_actions');
-      const conversationId = parseInt(data.replace('conv_end_', ''), 10);
-      await handleConversationEnd(callbackQuery, conversationId, env);
-      return;
-    }
-
     if (data === 'conv_cancel') {
       const { handleConversationCancel } = await import('./telegram/handlers/conversation_actions');
       await handleConversationCancel(callbackQuery, env);
