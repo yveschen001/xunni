@@ -106,6 +106,7 @@ export async function handleCatch(message: TelegramMessage, env: Env): Promise<v
       bottleOwner?.nickname || bottleOwner?.username
     );
     const ownerLanguage = bottleOwner?.language_pref || '未設定';
+    const ownerMaskedId = maskSensitiveValue(bottle.owner_telegram_id);
 
     // Create conversation
     const conversationId = await createConversation(
@@ -180,6 +181,7 @@ export async function handleCatch(message: TelegramMessage, env: Env): Promise<v
       chatId,
       `🍾 你撿到了一個漂流瓶！\n\n` +
         `📝 暱稱：${ownerNickname}\n` +
+        `🆔 對方代號：#${ownerMaskedId}\n` +
         `🗣️ 語言：${ownerLanguage}\n\n` +
         `━━━━━━━━━━━━━━━━\n` +
         `${bottleContent}${translationNote}\n` +

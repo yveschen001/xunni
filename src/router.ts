@@ -101,6 +101,8 @@ async function routeUpdate(update: TelegramUpdate, env: Env): Promise<void> {
 
     // Try to handle as conversation message (anonymous chat)
     if (user.onboarding_step === 'completed') {
+      const isCommand = text.startsWith('/');
+
       // Try profile edit input first
       const { handleProfileEditInput } = await import('./telegram/handlers/edit_profile');
       const isEditingProfile = await handleProfileEditInput(message, env);
@@ -123,7 +125,7 @@ async function routeUpdate(update: TelegramUpdate, env: Env): Promise<void> {
 
       if (throwSession) {
         // If user sends a command (starts with '/'), treat it as aborting the throw flow
-        if (text.startsWith('/')) {
+        if (isCommand) {
           console.log('[router] Command received during throw flow, clearing session:', {
             userId: user.telegram_id,
             command: text,
@@ -154,9 +156,11 @@ async function routeUpdate(update: TelegramUpdate, env: Env): Promise<void> {
         }
       }
 
-      const isConversationMessage = await handleMessageForward(message, env);
-      if (isConversationMessage) {
-        return;
+      if (!isCommand) {
+        const isConversationMessage = await handleMessageForward(message, env);
+        if (isConversationMessage) {
+          return;
+        }
       }
     }
 
