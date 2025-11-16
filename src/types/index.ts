@@ -18,6 +18,10 @@ export interface Env {
   OPENAI_API_KEY: string;
   OPENAI_MODEL?: string;
   GOOGLE_TRANSLATE_API_KEY?: string;
+  GOOGLE_GEMINI_API_KEY?: string;
+  GEMINI_PROJECT_ID?: string;
+  GEMINI_LOCATION?: string;
+  GEMINI_MODELS?: string;
 
   // Environment variables
   ENVIRONMENT: 'development' | 'staging' | 'production';

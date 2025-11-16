@@ -101,7 +101,7 @@ export async function saveConversationMessage(
       translated_language,
       is_blocked_by_ai,
       created_at
-    ) VALUES (?, ?, ?, ?, ?, ?, 0, datetime('now'))
+    ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, 0, datetime('now'))
   `).bind(
     conversationId,
     senderId,

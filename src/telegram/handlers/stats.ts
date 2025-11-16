@@ -139,7 +139,7 @@ async function getUserStats(
   const totalMessages = await db.d1.prepare(`
     SELECT COUNT(*) as count
     FROM conversation_messages
-    WHERE sender_id = ?
+    WHERE sender_telegram_id = ?
   `).bind(telegramId).first<{ count: number }>();
 
   // Calculate match rate (bottles caught / bottles thrown)

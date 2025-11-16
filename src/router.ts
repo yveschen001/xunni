@@ -180,6 +180,12 @@ async function routeUpdate(update: TelegramUpdate, env: Env): Promise<void> {
       return;
     }
 
+    if (text === '/mbti') {
+      const { handleMBTI } = await import('./telegram/handlers/mbti');
+      await handleMBTI(message, env);
+      return;
+    }
+
     if (text === '/profile') {
       const { handleProfile } = await import('./telegram/handlers/profile');
       await handleProfile(message, env);

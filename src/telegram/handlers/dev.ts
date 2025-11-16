@@ -58,6 +58,11 @@ export async function handleDevReset(message: TelegramMessage, env: Env): Promis
       { sql: 'DELETE FROM users WHERE telegram_id = ?', params: [telegramId] },
     ];
 
+    tables.push(
+      { sql: 'DELETE FROM user_sessions WHERE telegram_id = ?', params: [telegramId] },
+      { sql: 'DELETE FROM bottle_drafts WHERE telegram_id = ?', params: [telegramId] }
+    );
+
     for (const { sql, params } of tables) {
       try {
         await db.d1.prepare(sql).bind(...params).run();

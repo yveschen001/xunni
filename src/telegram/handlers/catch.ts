@@ -143,7 +143,7 @@ export async function handleCatch(message: TelegramMessage, env: Env): Promise<v
 
     // Translate bottle content if needed
     let bottleContent = bottle.content;
-    let translationNote = '';
+    let translationSection = '';
     
     const bottleLanguage = bottle.language || 'zh-TW';
     const catcherLanguage = user.language_pref || 'zh-TW';
@@ -162,29 +162,41 @@ export async function handleCatch(message: TelegramMessage, env: Env): Promise<v
         );
         
         bottleContent = result.text;
-        
+        translationSection =
+          `原文語言：${bottleLanguage}\n` +
+          `翻譯語言：${catcherLanguage}\n` +
+          `原文：${bottle.content}\n` +
+          `翻譯：${bottleContent}\n`;
+
         if (result.fallback && catcherIsVip) {
-          translationNote = '\n\n💬 翻譯服務暫時有問題，已使用備用翻譯';
+          translationSection += '💬 翻譯服務暫時有問題，已使用備援翻譯\n';
         }
         
         if (result.error && result.text === bottle.content) {
-          translationNote = '\n\n⚠️ 翻譯服務暫時無法使用，以下為原文';
+          translationSection += '⚠️ 翻譯服務暫時無法使用，以下為原文\n';
         }
       } catch (error) {
         console.error('[handleCatch] Translation error:', error);
-        translationNote = '\n\n⚠️ 翻譯服務暫時無法使用，以下為原文';
+        translationSection =
+          `原文語言：${bottleLanguage}\n` +
+          `翻譯語言：${catcherLanguage}\n` +
+          `⚠️ 翻譯服務暫時無法使用，以下為原文\n`;
       }
+    } else {
+      translationSection =
+        `ℹ️ 對方使用 ${bottleLanguage}，已直接顯示原文\n`;
     }
-
-    // Send bottle content to catcher
     await telegram.sendMessage(
       chatId,
       `🍾 你撿到了一個漂流瓶！\n\n` +
         `📝 暱稱：${ownerNickname}\n` +
         `🆔 對方代號：#${ownerMaskedId}\n` +
+        `🧠 MBTI：${bottle.mbti_result || '未設定'}\n` +
+        `⭐ 星座：${bottle.zodiac || '未設定'}\n` +
         `🗣️ 語言：${ownerLanguage}\n\n` +
-        `━━━━━━━━━━━━━━━━\n` +
-        `${bottleContent}${translationNote}\n` +
+      `━━━━━━━━━━━━━━━━\n` +
+        `${bottleContent}\n\n` +
+        `${translationSection}` +
         `━━━━━━━━━━━━━━━━\n\n` +
         `💬 你可以直接回覆訊息開始聊天\n` +
         `📊 今日已撿：${newCatchesCount}/${quota}\n\n` +
@@ -195,7 +207,7 @@ export async function handleCatch(message: TelegramMessage, env: Env): Promise<v
     );
 
     // Send notification to bottle owner
-    await notifyBottleOwner(bottle.owner_telegram_id, env);
+    await notifyBottleOwner(bottle.owner_telegram_id, user, env);
   } catch (error) {
     console.error('[handleCatch] Error:', error);
     console.error('[handleCatch] Error stack:', error instanceof Error ? error.stack : 'No stack');
@@ -209,7 +221,7 @@ export async function handleCatch(message: TelegramMessage, env: Env): Promise<v
 /**
  * Notify bottle owner that someone caught their bottle
  */
-async function notifyBottleOwner(ownerId: string, env: Env): Promise<void> {
+async function notifyBottleOwner(ownerId: string, catcher: any, env: Env): Promise<void> {
   const db = createDatabaseClient(env);
   const telegram = createTelegramService(env);
 
@@ -222,14 +234,25 @@ async function notifyBottleOwner(ownerId: string, env: Env): Promise<void> {
 
     const i18n = createI18n(owner.language_pref || 'zh-TW');
 
+    // Format catcher info
+    const catcherNickname = catcher.nickname || '匿名用戶';
+    const catcherMBTI = catcher.mbti_result || '未設定';
+    const catcherZodiac = catcher.zodiac || '未設定';
+    const catcherGender = catcher.gender === 'male' ? '♂️ 男' : catcher.gender === 'female' ? '♀️ 女' : '未設定';
+    const catcherAge = catcher.birthday ? calculateAge(catcher.birthday) : '未知';
+
     // TODO: Check push preferences
 
     // Send notification
     await telegram.sendMessage(
       parseInt(ownerId),
-      '🎉 有人撿到你的漂流瓶了！\n\n' +
-        '已為你們建立了匿名對話，快來開始聊天吧～\n\n' +
-        '💬 直接回覆訊息即可開始對話'
+      `🎉 ${catcherNickname} 撿到你的漂流瓶了！\n\n` +
+        `📝 暱稱：${catcherNickname}\n` +
+        `🧠 MBTI：${catcherMBTI}\n` +
+        `⭐ 星座：${catcherZodiac}\n` +
+        `${catcherGender} | 📅 ${catcherAge}歲\n\n` +
+        `已為你們建立了匿名對話，快來開始聊天吧～\n\n` +
+        `💬 直接回覆訊息即可開始對話`
     );
   } catch (error) {
     console.error('[notifyBottleOwner] Error:', error);

@@ -5,13 +5,14 @@
  */
 
 import type { Env } from '~/types';
+import { translateWithGemini } from '../gemini';
 import { translateWithOpenAI } from './openai';
-import { translateWithGoogle } from './google';
 
 export enum TranslationProvider {
   OPENAI = 'openai',
   GOOGLE = 'google',
   MYMEMORY = 'mymemory',
+  GEMINI = 'gemini',
 }
 
 export interface TranslationResult {
@@ -42,7 +43,7 @@ export async function translateText(
   if (normalizedSource && normalizedSource === normalizedTarget) {
     return {
       text,
-      provider: TranslationProvider.GOOGLE,
+      provider: TranslationProvider.GEMINI,
       sourceLanguage: normalizedSource,
       targetLanguage: normalizedTarget,
       fallback: false,
@@ -50,7 +51,6 @@ export async function translateText(
   }
 
   if (isVip) {
-    // VIP: Try OpenAI first, fallback to Google
     try {
       const result = await translateWithOpenAI(
         text,
@@ -68,69 +68,67 @@ export async function translateText(
         cost: result.cost,
       };
     } catch (error) {
-      console.error('[translateText] OpenAI failed, falling back to Google:', error);
+      console.error('[translateText] OpenAI failed, falling back to Gemini:', error);
 
-      // Fallback to Google
-      try {
-        const result = await translateWithGoogle(
-          text,
-          normalizedTarget,
-          normalizedSource,
-          env
-        );
-
-        return {
-          text: result.text,
-          provider: TranslationProvider.GOOGLE,
-          sourceLanguage: result.sourceLanguage || normalizedSource || 'auto',
-          targetLanguage: normalizedTarget,
-          fallback: true, // Fallback was used
-          error: 'OpenAI translation failed, using Google Translate',
-        };
-      } catch (googleError) {
-        console.error('[translateText] Google also failed:', googleError);
-        
-        // Both failed, return original text
-        return {
-          text,
-          provider: TranslationProvider.GOOGLE,
-          sourceLanguage: normalizedSource || 'auto',
-          targetLanguage: normalizedTarget,
-          fallback: true,
-          error: 'All translation services failed',
-        };
-      }
-    }
-  } else {
-    // Free: Use Google only
-    try {
-      const result = await translateWithGoogle(
+      const geminiResult = await translateWithGemini(
         text,
         normalizedTarget,
         normalizedSource,
         env
       );
 
-      return {
-        text: result.text,
-        provider: TranslationProvider.GOOGLE,
-        sourceLanguage: result.sourceLanguage || normalizedSource || 'auto',
-        targetLanguage: normalizedTarget,
-        fallback: false,
-      };
-    } catch (error) {
-      console.error('[translateText] Google translation failed:', error);
-      
-      // Failed, return original text
+      if (geminiResult.success) {
+        return {
+          text: geminiResult.text,
+          provider: TranslationProvider.GEMINI,
+          sourceLanguage: geminiResult.sourceLanguage || normalizedSource || 'auto',
+          targetLanguage: normalizedTarget,
+          fallback: true,
+          error: geminiResult.error || 'OpenAI translation failed, using Gemini',
+        };
+      }
+
+      console.error('[translateText] Gemini fallback also failed:', geminiResult.error);
       return {
         text,
-        provider: TranslationProvider.GOOGLE,
+        provider: TranslationProvider.GEMINI,
         sourceLanguage: normalizedSource || 'auto',
         targetLanguage: normalizedTarget,
         fallback: true,
-        error: 'Translation service failed',
+        error: 'OpenAI and Gemini translation both failed',
       };
     }
+  }
+
+  try {
+    const geminiResult = await translateWithGemini(
+      text,
+      normalizedTarget,
+      normalizedSource,
+      env
+    );
+
+    if (geminiResult.success) {
+      return {
+        text: geminiResult.text,
+        provider: TranslationProvider.GEMINI,
+        sourceLanguage: geminiResult.sourceLanguage || normalizedSource || 'auto',
+        targetLanguage: normalizedTarget,
+        fallback: false,
+      };
+    }
+
+    throw new Error(geminiResult.error || 'Gemini translation failed');
+  } catch (error) {
+    console.error('[translateText] Gemini translation failed:', error);
+    return {
+      text,
+      provider: TranslationProvider.GEMINI,
+      sourceLanguage: normalizedSource || 'auto',
+      targetLanguage: normalizedTarget,
+      fallback: true,
+      error: error instanceof Error ? error.message : 'Gemini translation failed',
+    };
   }
 }
 

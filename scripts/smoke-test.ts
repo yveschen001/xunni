@@ -272,6 +272,36 @@ async function testPerformance() {
   });
 }
 
+async function testCommandCoverage() {
+  console.log('\n🧪 Testing Full Command Coverage...\n');
+
+  const commands = [
+    '/profile',
+    '/profile_card',
+    '/vip',
+    '/stats',
+    '/menu',
+    '/rules',
+    '/settings',
+    '/edit_profile',
+    '/chats',
+    '/block',
+    '/report',
+    '/dev_info',
+    '/dev_skip',
+    '/dev_reset',
+  ];
+
+  for (const command of commands) {
+    await testEndpoint('Command Coverage', command, async () => {
+      const result = await sendWebhook(command);
+      if (result.status !== 200) {
+        throw new Error(`Expected 200, got ${result.status}`);
+      }
+    });
+  }
+}
+
 // ============================================================================
 // Main Test Runner
 // ============================================================================
@@ -292,6 +322,7 @@ async function runAllTests() {
     await testErrorHandling();
     await testDatabaseConnectivity();
     await testPerformance();
+    await testCommandCoverage();
   } catch (error) {
     console.error('\n❌ Test suite error:', error);
   }

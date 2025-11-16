@@ -20,6 +20,7 @@ import {
 } from '~/domain/conversation';
 import { checkUrlWhitelist } from '~/utils/url-whitelist';
 import { createI18n } from '~/i18n';
+import { maskSensitiveValue } from '~/utils/mask';
 
 /**
  * Handle message forwarding in active conversation
@@ -32,7 +33,8 @@ export async function handleMessageForward(
   const telegram = createTelegramService(env);
   const chatId = message.chat.id;
   const telegramId = message.from!.id.toString();
-  const messageText = message.text || '';
+    const messageText = message.text || '';
+    const replyToId = message.reply_to_message?.message_id;
 
   try {
     // Get user
@@ -55,6 +57,14 @@ export async function handleMessageForward(
       await telegram.sendMessage(
         chatId,
         '❌ 此對話已結束。\n\n使用 /catch 撿新的漂流瓶開始新對話。'
+      );
+      return true;
+    }
+
+    if (!replyToId) {
+      await telegram.sendMessage(
+        chatId,
+        '⚠️ 請在對方訊息下方直接回覆（或使用 /reply + 文字），系統才會送出匿名聊天。'
       );
       return true;
     }
@@ -161,17 +171,26 @@ export async function handleMessageForward(
     // Update bottle chat history
     await updateBottleChatHistory(db, conversation.id);
 
-    // Forward message to receiver with quick action buttons
+    // Forward message to receiver with header info
+    const senderNickname =
+      sender.nickname || sender.username || i18n.t('common.anonymous_user');
+    const maskedSenderNickname = maskSensitiveValue(senderNickname);
+    const senderMbti = sender.mbti_result || i18n.t('common.not_set');
+    const senderZodiac = sender.zodiac_sign || i18n.t('common.not_set');
+    const header =
+      `來自：${maskedSenderNickname}\n` +
+      `MBTI：${senderMbti}\n` +
+      `星座：${senderZodiac}\n\n`;
+
     await telegram.sendMessageWithButtons(
       parseInt(receiverId),
-      `💬 來自匿名對話的訊息：\n\n${finalMessage}${translationNote}`,
+      `💬 來自匿名對話的訊息：\n` +
+        `${header}` +
+        `${finalMessage}${translationNote}\n\n` +
+        `💡 需要封鎖或舉報請直接在此對話回覆 /block 或 /report`,
       [
         [
           { text: '👤 查看資料卡', callback_data: `conv_profile_${conversation.id}` },
-        ],
-        [
-          { text: '🚫 封鎖', callback_data: `conv_block_${conversation.id}` },
-          { text: '🚨 舉報', callback_data: `conv_report_${conversation.id}` },
         ],
       ]
     );
@@ -179,7 +198,7 @@ export async function handleMessageForward(
     // Confirm to sender with quick action buttons
     await telegram.sendMessageWithButtons(
       chatId,
-      '✅ 訊息已發送',
+      '✅ 訊息已發送\n\n💡 需要封鎖或舉報也請直接回覆 /block /report',
       [
         [
           { text: '👤 查看對方資料卡', callback_data: `conv_profile_${conversation.id}` },
