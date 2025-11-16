@@ -1,4 +1,4 @@
-# XunNi 專案 Cursor AI 規則
+image.png# XunNi 專案 Cursor AI 規則
 
 > **⚠️ 重要：在開始任何編輯前，必須先閱讀 `@doc/SPEC.md`**
 
@@ -52,7 +52,7 @@ The following files are considered **protected**:
 
 ### 代碼風格
 
-**必須遵守以下規範（詳見 `@doc/DEVELOPMENT_STANDARDS.md`）：**
+**必須遵守以下規範（詳見 `@doc/DEVELOPMENT_STANDARDS.md` 和 `@doc/CODE_QUALITY_GUIDELINES.md`）：**
 
 - **TypeScript**: 使用嚴格模式（`strict: true`）
 - **命名規範**:
@@ -61,6 +61,11 @@ The following files are considered **protected**:
   - 類別和型別：`PascalCase`
   - 檔案名稱：小寫 + 下劃線（如 `msg_forward.ts`）
 - **模組化**: 遵循 `@doc/MODULE_DESIGN.md` 中的分層設計原則
+- **代碼質量**: 
+  - 刪除所有未使用的導入和變量
+  - 避免使用 `any` 類型
+  - 不使用 `console.log`（只允許 `console.error`）
+  - 未使用但必須存在的參數使用 `_` 前綴
 
 ### Telegram 訊息格式
 
