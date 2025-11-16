@@ -364,6 +364,80 @@ async function routeUpdate(update: TelegramUpdate, env: Env): Promise<void> {
       return;
     }
 
+    // Throw bottle advanced filter
+    if (data === 'throw_advanced') {
+      const { handleThrowAdvanced } = await import('./telegram/handlers/throw_advanced');
+      await handleThrowAdvanced(callbackQuery, env);
+      return;
+    }
+
+    // Filter callbacks
+    if (data === 'filter_mbti') {
+      const { handleFilterMBTI } = await import('./telegram/handlers/throw_advanced');
+      await handleFilterMBTI(callbackQuery, env);
+      return;
+    }
+
+    if (data === 'filter_zodiac') {
+      const { handleFilterZodiac } = await import('./telegram/handlers/throw_advanced');
+      await handleFilterZodiac(callbackQuery, env);
+      return;
+    }
+
+    if (data === 'filter_gender') {
+      const { handleFilterGender } = await import('./telegram/handlers/throw_advanced');
+      await handleFilterGender(callbackQuery, env);
+      return;
+    }
+
+    if (data === 'filter_done') {
+      const { handleFilterDone } = await import('./telegram/handlers/throw_advanced');
+      await handleFilterDone(callbackQuery, env);
+      return;
+    }
+
+    if (data === 'back_to_filter') {
+      const { handleBackToFilter } = await import('./telegram/handlers/throw_advanced');
+      await handleBackToFilter(callbackQuery, env);
+      return;
+    }
+
+    // MBTI filter selection
+    if (data.startsWith('select_mbti_')) {
+      const { handleSelectMBTI } = await import('./telegram/handlers/throw_advanced');
+      const mbtiType = data.replace('select_mbti_', '');
+      await handleSelectMBTI(callbackQuery, mbtiType, env);
+      return;
+    }
+
+    if (data === 'clear_mbti') {
+      const { handleClearMBTI } = await import('./telegram/handlers/throw_advanced');
+      await handleClearMBTI(callbackQuery, env);
+      return;
+    }
+
+    // Zodiac filter selection
+    if (data.startsWith('select_zodiac_')) {
+      const { handleSelectZodiac } = await import('./telegram/handlers/throw_advanced');
+      const zodiacSign = data.replace('select_zodiac_', '');
+      await handleSelectZodiac(callbackQuery, zodiacSign, env);
+      return;
+    }
+
+    if (data === 'clear_zodiac') {
+      const { handleClearZodiac } = await import('./telegram/handlers/throw_advanced');
+      await handleClearZodiac(callbackQuery, env);
+      return;
+    }
+
+    // Gender filter selection
+    if (data.startsWith('set_gender_')) {
+      const { handleSetGender } = await import('./telegram/handlers/throw_advanced');
+      const gender = data.replace('set_gender_', '') as 'male' | 'female' | 'any';
+      await handleSetGender(callbackQuery, gender, env);
+      return;
+    }
+
     // MBTI test answer
     if (data.startsWith('mbti_answer_')) {
       const { handleMBTIAnswer } = await import('./telegram/handlers/mbti_test');

@@ -66,8 +66,11 @@ export async function findMatchingBottle(
   // 5. Not from blocked users
   // 6. Not from users who blocked this user
   // 7. Not from users who were reported by this user (within 24h)
+  // 8. Match MBTI filter (if specified)
+  // 9. Match Zodiac filter (if specified)
   
-  const result = await db.d1.prepare(`
+  // Get all matching bottles (we'll filter MBTI/Zodiac in application layer)
+  const results = await db.d1.prepare(`
     SELECT b.* FROM bottles b
     WHERE b.status = 'pending'
       AND datetime(b.expires_at) > datetime('now')
@@ -85,10 +88,49 @@ export async function findMatchingBottle(
           AND datetime(r.created_at) > datetime('now', '-24 hours')
       )
     ORDER BY RANDOM()
-    LIMIT 1
-  `).bind(userId, userGender, userId, userId, userId).first();
+    LIMIT 50
+  `).bind(userId, userGender, userId, userId, userId).all();
 
-  return result as Bottle | null;
+  if (!results.results || results.results.length === 0) {
+    return null;
+  }
+
+  // Filter by MBTI and Zodiac in application layer
+  const bottles = results.results as Bottle[];
+  const matchingBottles = bottles.filter(bottle => {
+    // Check MBTI filter
+    if (bottle.target_mbti_filter) {
+      try {
+        const mbtiFilter = JSON.parse(bottle.target_mbti_filter);
+        if (Array.isArray(mbtiFilter) && mbtiFilter.length > 0) {
+          if (!mbtiFilter.includes(userMbti)) {
+            return false;
+          }
+        }
+      } catch (error) {
+        console.error('[findMatchingBottle] Failed to parse MBTI filter:', error);
+      }
+    }
+
+    // Check Zodiac filter
+    if (bottle.target_zodiac_filter) {
+      try {
+        const zodiacFilter = JSON.parse(bottle.target_zodiac_filter);
+        if (Array.isArray(zodiacFilter) && zodiacFilter.length > 0) {
+          if (!zodiacFilter.includes(userZodiac)) {
+            return false;
+          }
+        }
+      } catch (error) {
+        console.error('[findMatchingBottle] Failed to parse Zodiac filter:', error);
+      }
+    }
+
+    return true;
+  });
+
+  // Return first matching bottle (already randomized by SQL)
+  return matchingBottles.length > 0 ? matchingBottles[0] : null;
 }
 
 /**

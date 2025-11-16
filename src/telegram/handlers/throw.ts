@@ -224,11 +224,27 @@ export async function processBottleContent(
       return;
     }
 
-    // TODO: Get target_gender from session
-    // For now, use 'any' as default
+    // Get filter settings from session (if any)
+    const { getActiveSession } = await import('~/db/queries/sessions');
+    const { parseSessionData } = await import('~/domain/session');
+    const session = await getActiveSession(db, user.telegram_id, 'throw_bottle');
+    
+    let target_gender: 'male' | 'female' | 'any' = 'any';
+    let target_mbti_filter: string[] = [];
+    let target_zodiac_filter: string[] = [];
+    
+    if (session) {
+      const sessionData = parseSessionData(session);
+      target_gender = sessionData.data?.target_gender || 'any';
+      target_mbti_filter = sessionData.data?.target_mbti || [];
+      target_zodiac_filter = sessionData.data?.target_zodiac || [];
+    }
+
     const bottleInput: ThrowBottleInput = {
       content,
-      target_gender: 'any',
+      target_gender,
+      target_mbti_filter: target_mbti_filter.length > 0 ? target_mbti_filter : undefined,
+      target_zodiac_filter: target_zodiac_filter.length > 0 ? target_zodiac_filter : undefined,
       language: user.language_pref,
     };
 
