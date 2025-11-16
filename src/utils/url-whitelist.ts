@@ -8,6 +8,8 @@ const WHITELISTED_DOMAINS = [
   't.me',
   'telegram.org',
   'telegram.me',
+  'youtube.com',
+  'youtu.be',
 ];
 
 /**

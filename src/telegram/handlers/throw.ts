@@ -246,8 +246,8 @@ export async function processBottleContent(
           `🚫 禁止的網址：\n${urlCheck.blockedUrls?.map(url => `• ${url}`).join('\n')}\n\n` +
           `✅ 只允許以下網址：\n` +
           `• t.me (Telegram)\n` +
-          `• telegram.org\n` +
-          `• telegram.me\n\n` +
+          `• telegram.org / telegram.me\n` +
+          `• youtube.com / youtu.be (YouTube)\n\n` +
           `請移除這些網址後重新輸入。`
       );
       return;

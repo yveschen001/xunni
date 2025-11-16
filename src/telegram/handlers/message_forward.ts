@@ -84,8 +84,10 @@ export async function handleMessageForward(
         '❌ 訊息包含不允許的連結。\n\n' +
           '為了安全，只允許以下網域的連結：\n' +
           '• t.me (Telegram)\n' +
-          '• telegram.org\n\n' +
-          '請移除連結後重新發送。'
+          '• telegram.org\n' +
+          '• youtube.com / youtu.be (YouTube)\n\n' +
+          `🚫 禁止的網址：\n${urlCheck.blockedUrls?.map(url => `• ${url}`).join('\n')}\n\n` +
+          '請移除這些連結後重新發送。'
       );
       return true;
     }
