@@ -438,6 +438,37 @@ async function routeUpdate(update: TelegramUpdate, env: Env): Promise<void> {
       return;
     }
 
+    // Draft callbacks
+    if (data === 'draft_continue') {
+      const { handleDraftContinue } = await import('./telegram/handlers/draft');
+      await handleDraftContinue(callbackQuery, env);
+      return;
+    }
+
+    if (data === 'draft_delete') {
+      const { handleDraftDelete } = await import('./telegram/handlers/draft');
+      await handleDraftDelete(callbackQuery, env);
+      return;
+    }
+
+    if (data === 'draft_new') {
+      const { handleDraftNew } = await import('./telegram/handlers/draft');
+      await handleDraftNew(callbackQuery, env);
+      return;
+    }
+
+    if (data === 'draft_send') {
+      const { handleDraftSend } = await import('./telegram/handlers/draft');
+      await handleDraftSend(callbackQuery, env);
+      return;
+    }
+
+    if (data === 'draft_edit') {
+      const { handleDraftEdit } = await import('./telegram/handlers/draft');
+      await handleDraftEdit(callbackQuery, env);
+      return;
+    }
+
     // MBTI test answer
     if (data.startsWith('mbti_answer_')) {
       const { handleMBTIAnswer } = await import('./telegram/handlers/mbti_test');

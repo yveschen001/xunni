@@ -73,6 +73,35 @@ export async function handleThrow(message: TelegramMessage, env: Env): Promise<v
       return;
     }
 
+    // Check for existing draft
+    const { getDraft } = await import('~/db/queries/drafts');
+    const { getDraftPreview, formatDraftAge } = await import('~/domain/draft');
+    const draft = await getDraft(db, telegramId);
+
+    if (draft) {
+      // Show draft recovery option
+      const preview = getDraftPreview(draft.content);
+      const age = formatDraftAge(draft, user.language_pref || 'zh-TW');
+
+      await telegram.sendMessageWithButtons(
+        chatId,
+        `📝 你有一個未完成的草稿\n\n` +
+          `創建時間：${age}\n` +
+          `內容預覽：${preview}\n\n` +
+          `要繼續編輯這個草稿嗎？`,
+        [
+          [
+            { text: '✅ 繼續編輯', callback_data: 'draft_continue' },
+            { text: '🗑️ 刪除草稿', callback_data: 'draft_delete' },
+          ],
+          [
+            { text: '✍️ 重新開始', callback_data: 'draft_new' },
+          ],
+        ]
+      );
+      return;
+    }
+
     // Show bottle creation UI
     await showBottleCreationUI(user, chatId, telegram);
   } catch (error) {
