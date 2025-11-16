@@ -541,6 +541,26 @@ async function routeUpdate(update: TelegramUpdate, env: Env): Promise<void> {
       return;
     }
 
+    if (data === 'edit_match_pref') {
+      const { handleEditMatchPref } = await import('./telegram/handlers/edit_profile');
+      await handleEditMatchPref(callbackQuery, env);
+      return;
+    }
+
+    if (data.startsWith('match_pref_')) {
+      const { handleMatchPrefSelection } = await import('./telegram/handlers/edit_profile');
+      const preference = data.replace('match_pref_', '') as 'male' | 'female' | 'any';
+      await handleMatchPrefSelection(callbackQuery, preference, env);
+      return;
+    }
+
+    if (data === 'edit_profile_back') {
+      const { handleEditProfile } = await import('./telegram/handlers/edit_profile');
+      await handleEditProfile(callbackQuery.message as any, env);
+      await telegram.answerCallbackQuery(callbackQuery.id);
+      return;
+    }
+
     if (data === 'retake_mbti') {
       const { handleMBTI } = await import('./telegram/handlers/mbti');
       await handleMBTI(callbackQuery.message as any, env);

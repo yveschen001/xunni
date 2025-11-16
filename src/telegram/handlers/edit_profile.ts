@@ -37,6 +37,11 @@ export async function handleEditProfile(message: TelegramMessage, env: Env): Pro
     // Clear any existing session
     await deleteSession(db, telegramId, SESSION_TYPE);
 
+    // Get match preference text
+    const matchPrefText = user.match_preference 
+      ? (user.match_preference === 'male' ? '男生' : user.match_preference === 'female' ? '女生' : '任何人')
+      : (user.gender === 'male' ? '女生（默認）' : '男生（默認）');
+
     // Show profile editing menu
     await telegram.sendMessageWithButtons(
       chatId,
@@ -45,7 +50,8 @@ export async function handleEditProfile(message: TelegramMessage, env: Env): Pro
         `📝 暱稱：${user.nickname}\n` +
         `📖 個人簡介：${user.bio || '未設定'}\n` +
         `🌍 地區：${user.region || '未設定'}\n` +
-        `🏷️ 興趣標籤：${user.interests || '未設定'}\n\n` +
+        `🏷️ 興趣標籤：${user.interests || '未設定'}\n` +
+        `💝 匹配偏好：${matchPrefText}\n\n` +
         `⚠️ **不可修改項目**：\n` +
         `👤 性別：${user.gender === 'male' ? '男' : '女'}\n` +
         `🎂 生日：${user.birthday}\n` +
@@ -58,6 +64,9 @@ export async function handleEditProfile(message: TelegramMessage, env: Env): Pro
         [
           { text: '🌍 編輯地區', callback_data: 'edit_region' },
           { text: '🏷️ 編輯興趣', callback_data: 'edit_interests' },
+        ],
+        [
+          { text: '💝 匹配偏好', callback_data: 'edit_match_pref' },
         ],
         [
           { text: '🧠 重新測試 MBTI', callback_data: 'retake_mbti' },
@@ -161,6 +170,84 @@ export async function handleEditRegion(callbackQuery: TelegramCallbackQuery, env
     );
   } catch (error) {
     console.error('[handleEditRegion] Error:', error);
+    await telegram.answerCallbackQuery(callbackQuery.id, '❌ 發生錯誤');
+  }
+}
+
+/**
+ * Handle edit match preference callback
+ */
+export async function handleEditMatchPref(callbackQuery: TelegramCallbackQuery, env: Env): Promise<void> {
+  const db = createDatabaseClient(env);
+  const telegram = createTelegramService(env);
+  const chatId = callbackQuery.message!.chat.id;
+  const telegramId = callbackQuery.from.id.toString();
+
+  try {
+    await telegram.answerCallbackQuery(callbackQuery.id);
+    await telegram.deleteMessage(chatId, callbackQuery.message!.message_id);
+
+    const user = await findUserByTelegramId(db, telegramId);
+    if (!user) {
+      await telegram.sendMessage(chatId, '❌ 用戶不存在。');
+      return;
+    }
+
+    await telegram.sendMessageWithButtons(
+      chatId,
+      '💝 **設置匹配偏好**\n\n' +
+        '你想在丟漂流瓶時尋找什麼樣的對象？\n\n' +
+        '💡 提示：\n' +
+        '• 默認為異性（男生尋找女生，女生尋找男生）\n' +
+        '• 你可以隨時修改此設置',
+      [
+        [
+          { text: '👨 男生', callback_data: 'match_pref_male' },
+          { text: '👩 女生', callback_data: 'match_pref_female' },
+        ],
+        [
+          { text: '🌈 任何人都可以', callback_data: 'match_pref_any' },
+        ],
+        [
+          { text: '↩️ 返回', callback_data: 'edit_profile_back' },
+        ],
+      ]
+    );
+  } catch (error) {
+    console.error('[handleEditMatchPref] Error:', error);
+    await telegram.answerCallbackQuery(callbackQuery.id, '❌ 發生錯誤');
+  }
+}
+
+/**
+ * Handle match preference selection
+ */
+export async function handleMatchPrefSelection(
+  callbackQuery: TelegramCallbackQuery,
+  preference: 'male' | 'female' | 'any',
+  env: Env
+): Promise<void> {
+  const db = createDatabaseClient(env);
+  const telegram = createTelegramService(env);
+  const chatId = callbackQuery.message!.chat.id;
+  const telegramId = callbackQuery.from.id.toString();
+
+  try {
+    await telegram.answerCallbackQuery(callbackQuery.id, '正在更新...');
+
+    await db.d1.prepare('UPDATE users SET match_preference = ? WHERE telegram_id = ?')
+      .bind(preference, telegramId).run();
+
+    await telegram.deleteMessage(chatId, callbackQuery.message!.message_id);
+
+    const prefText = preference === 'male' ? '男生' : preference === 'female' ? '女生' : '任何人';
+    await telegram.sendMessage(
+      chatId,
+      `✅ 匹配偏好已更新為：${prefText}\n\n` +
+        `💡 下次丟漂流瓶時將自動使用此設置。`
+    );
+  } catch (error) {
+    console.error('[handleMatchPrefSelection] Error:', error);
     await telegram.answerCallbackQuery(callbackQuery.id, '❌ 發生錯誤');
   }
 }

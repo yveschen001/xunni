@@ -21,6 +21,27 @@ import {
 import type { ThrowBottleInput } from '~/domain/bottle';
 import { createI18n } from '~/i18n';
 
+/**
+ * Get target gender based on user's preference
+ * Default: opposite gender (for heterosexual users)
+ */
+function getTargetGender(user: User): 'male' | 'female' | 'any' {
+  // If user has explicitly set a preference, use it
+  if (user.match_preference) {
+    return user.match_preference as 'male' | 'female' | 'any';
+  }
+
+  // Default: opposite gender
+  if (user.gender === 'male') {
+    return 'female';
+  } else if (user.gender === 'female') {
+    return 'male';
+  }
+
+  // Fallback
+  return 'any';
+}
+
 export async function handleThrow(message: TelegramMessage, env: Env): Promise<void> {
   const db = createDatabaseClient(env);
   const telegram = createTelegramService(env);
@@ -102,8 +123,30 @@ export async function handleThrow(message: TelegramMessage, env: Env): Promise<v
       return;
     }
 
-    // Show bottle creation UI
-    await showBottleCreationUI(user, chatId, telegram);
+    // Determine target gender based on user's preference
+    const targetGender = getTargetGender(user);
+
+    // Create session with target gender
+    const { upsertSession } = await import('~/db/queries/sessions');
+    await upsertSession(db, telegramId, 'throw_bottle', {
+      target_gender: targetGender,
+    });
+
+    // Directly ask for bottle content
+    const targetText = targetGender === 'male' ? '男生' : targetGender === 'female' ? '女生' : '任何人';
+    await telegram.sendMessage(
+      chatId,
+      `🍾 丟漂流瓶\n\n` +
+        `尋找對象：${targetText}\n` +
+        `💡 可在 /edit_profile 中修改匹配偏好\n\n` +
+        `📝 請輸入你的漂流瓶內容：\n\n` +
+        `提示：\n` +
+        `• 最短 12 個字符\n` +
+        `• 最多 500 個字符\n` +
+        `• 只允許 Telegram 連結 (t.me)\n` +
+        `• 不要包含個人聯絡方式\n` +
+        `• 友善、尊重的內容更容易被撿到哦～`
+    );
   } catch (error) {
     console.error('[handleThrow] Error:', error);
     console.error('[handleThrow] Error stack:', error instanceof Error ? error.stack : 'No stack');
@@ -114,104 +157,6 @@ export async function handleThrow(message: TelegramMessage, env: Env): Promise<v
   }
 }
 
-/**
- * Show bottle creation UI
- */
-async function showBottleCreationUI(
-  user: User,
-  chatId: number,
-  telegram: ReturnType<typeof createTelegramService>
-): Promise<void> {
-  const i18n = createI18n(user.language_pref || 'zh-TW');
-  const isVip = !!(user.is_vip && user.vip_expire_at && new Date(user.vip_expire_at) > new Date());
-
-  if (isVip) {
-    // VIP: Show advanced options
-    await telegram.sendMessageWithButtons(
-      chatId,
-      '🍾 丟漂流瓶\n\n' +
-        '你想要尋找什麼樣的聊天對象？',
-      [
-        [
-          { text: '👨 男生', callback_data: 'throw_target_male' },
-          { text: '👩 女生', callback_data: 'throw_target_female' },
-        ],
-        [
-          { text: '🌈 任何人都可以', callback_data: 'throw_target_any' },
-        ],
-        [
-          { text: '⚙️ 進階篩選（MBTI/星座）', callback_data: 'throw_advanced' },
-        ],
-      ]
-    );
-  } else {
-    // Free user: Simple gender selection
-    await telegram.sendMessageWithButtons(
-      chatId,
-      '🍾 丟漂流瓶\n\n' +
-        '你想要尋找什麼樣的聊天對象？\n\n' +
-        '💡 升級 VIP 可使用進階篩選（MBTI/星座）：/vip',
-      [
-        [
-          { text: '👨 男生', callback_data: 'throw_target_male' },
-          { text: '👩 女生', callback_data: 'throw_target_female' },
-        ],
-        [
-          { text: '🌈 任何人都可以', callback_data: 'throw_target_any' },
-        ],
-      ]
-    );
-  }
-}
-
-/**
- * Handle target gender selection
- */
-export async function handleThrowTargetGender(
-  callbackQuery: any,
-  gender: 'male' | 'female' | 'any',
-  env: Env
-): Promise<void> {
-  const db = createDatabaseClient(env);
-  const telegram = createTelegramService(env);
-  const chatId = callbackQuery.message!.chat.id;
-  const telegramId = callbackQuery.from.id.toString();
-
-  try {
-    // Get user
-    const user = await findUserByTelegramId(db, telegramId);
-    if (!user) {
-      await telegram.answerCallbackQuery(callbackQuery.id, '❌ 用戶不存在');
-      return;
-    }
-
-    // Answer callback
-    await telegram.answerCallbackQuery(callbackQuery.id, '✅ 已選擇');
-
-    // Delete selection message
-    await telegram.deleteMessage(chatId, callbackQuery.message!.message_id);
-
-    // Store target gender in session
-    const { upsertSession } = await import('~/db/queries/sessions');
-    await upsertSession(db, telegramId, 'throw_bottle', {
-      target_gender: gender,
-    });
-    
-    await telegram.sendMessage(
-      chatId,
-      '📝 請輸入你的漂流瓶內容：\n\n' +
-        '💡 提示：\n' +
-        '• 最短 12 個字符\n' +
-        '• 最多 500 個字符\n' +
-        '• 只允許 Telegram 連結 (t.me)\n' +
-        '• 不要包含個人聯絡方式\n' +
-        '• 友善、尊重的內容更容易被撿到哦～'
-    );
-  } catch (error) {
-    console.error('[handleThrowTargetGender] Error:', error);
-    await telegram.answerCallbackQuery(callbackQuery.id, '❌ 發生錯誤');
-  }
-}
 
 /**
  * Process bottle content (called from message handler)

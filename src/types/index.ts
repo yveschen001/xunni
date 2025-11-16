@@ -64,6 +64,8 @@ export interface User {
   city?: string;
   bio?: string;
   interests?: string; // JSON array
+  region?: string;
+  match_preference?: 'male' | 'female' | 'any'; // Preferred match gender
 
   // MBTI & Tests
   mbti_result?: string;
