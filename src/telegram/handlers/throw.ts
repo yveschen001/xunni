@@ -248,6 +248,19 @@ export async function processBottleContent(
     );
   } catch (error) {
     console.error('[processBottleContent] Error:', error);
-    await telegram.sendMessage(chatId, '❌ 發生錯誤，請稍後再試。');
+    console.error('[processBottleContent] Error details:', {
+      message: error instanceof Error ? error.message : String(error),
+      stack: error instanceof Error ? error.stack : undefined,
+      userId: user.telegram_id,
+      contentLength: content.length,
+    });
+    
+    const errorMsg = error instanceof Error ? error.message : String(error);
+    await telegram.sendMessage(
+      chatId,
+      `❌ 發生錯誤，請稍後再試。\n\n` +
+        `錯誤信息：${errorMsg}\n\n` +
+        `💡 如果問題持續，請聯繫管理員。`
+    );
   }
 }
