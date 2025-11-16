@@ -37,12 +37,12 @@ export async function handleStart(message: TelegramMessage, env: Env): Promise<v
         invite_code: generateInviteCode(),
       });
 
-      // Send welcome message
-      await telegram.sendMessage(
+      const { createI18n } = await import('~/i18n');
+      const i18n = createI18n(user.language_pref || 'zh-TW');
+      await telegram.sendMessageWithButtons(
         chatId,
-        `🎉 歡迎來到 XunNi！\n\n` +
-          `我是你的漂流瓶交友助手，讓我們開始設置你的個人資料吧～\n\n` +
-          `首先，請告訴我你的暱稱（顯示名稱）：`
+        i18n.t('onboarding.welcome'),
+        getPopularLanguageButtons()
       );
 
       return;

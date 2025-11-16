@@ -75,7 +75,7 @@ export async function createUser(
     data.language_pref || 'zh-TW',
     data.invite_code,
     data.invited_by || null,
-    data.onboarding_step || 'start',
+    data.onboarding_step || 'language_selection',
   ]);
 
   if (!result) {
