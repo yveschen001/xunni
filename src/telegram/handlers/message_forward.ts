@@ -159,20 +159,36 @@ export async function handleMessageForward(
     // Update bottle chat history
     await updateBottleChatHistory(db, conversation.id);
 
-    // Forward message to receiver
-    await telegram.sendMessage(
+    // Forward message to receiver with quick action buttons
+    await telegram.sendMessageWithButtons(
       parseInt(receiverId),
-      `💬 來自匿名對話的訊息：\n\n${finalMessage}${translationNote}\n\n` +
-        `━━━━━━━━━━━━━━━━\n` +
-        `💡 直接回覆即可繼續對話\n` +
-        `⚠️ 不當內容請使用 /report 舉報\n` +
-        `🚫 不想再聊可使用 /block 封鎖`
+      `💬 來自匿名對話的訊息：\n\n${finalMessage}${translationNote}`,
+      [
+        [
+          { text: '👤 查看資料卡', callback_data: `conv_profile_${conversation.id}` },
+        ],
+        [
+          { text: '🚫 封鎖', callback_data: `conv_block_${conversation.id}` },
+          { text: '🚨 舉報', callback_data: `conv_report_${conversation.id}` },
+        ],
+        [
+          { text: '❌ 結束對話', callback_data: `conv_end_${conversation.id}` },
+        ],
+      ]
     );
 
-    // Confirm to sender
-    await telegram.sendMessage(
+    // Confirm to sender with quick action buttons
+    await telegram.sendMessageWithButtons(
       chatId,
-      '✅ 訊息已發送'
+      '✅ 訊息已發送',
+      [
+        [
+          { text: '👤 查看對方資料卡', callback_data: `conv_profile_${conversation.id}` },
+        ],
+        [
+          { text: '❌ 結束對話', callback_data: `conv_end_${conversation.id}` },
+        ],
+      ]
     );
 
     return true;

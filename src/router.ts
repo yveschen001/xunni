@@ -438,6 +438,62 @@ async function routeUpdate(update: TelegramUpdate, env: Env): Promise<void> {
       return;
     }
 
+    // Conversation action callbacks
+    if (data.startsWith('conv_profile_')) {
+      const { handleConversationProfile } = await import('./telegram/handlers/conversation_actions');
+      const conversationId = parseInt(data.replace('conv_profile_', ''), 10);
+      await handleConversationProfile(callbackQuery, conversationId, env);
+      return;
+    }
+
+    if (data.startsWith('conv_block_confirm_')) {
+      const { handleConversationBlockConfirm } = await import('./telegram/handlers/conversation_actions');
+      const conversationId = parseInt(data.replace('conv_block_confirm_', ''), 10);
+      await handleConversationBlockConfirm(callbackQuery, conversationId, env);
+      return;
+    }
+
+    if (data.startsWith('conv_block_')) {
+      const { handleConversationBlock } = await import('./telegram/handlers/conversation_actions');
+      const conversationId = parseInt(data.replace('conv_block_', ''), 10);
+      await handleConversationBlock(callbackQuery, conversationId, env);
+      return;
+    }
+
+    if (data.startsWith('conv_report_confirm_')) {
+      const { handleConversationReportConfirm } = await import('./telegram/handlers/conversation_actions');
+      const conversationId = parseInt(data.replace('conv_report_confirm_', ''), 10);
+      await handleConversationReportConfirm(callbackQuery, conversationId, env);
+      return;
+    }
+
+    if (data.startsWith('conv_report_')) {
+      const { handleConversationReport } = await import('./telegram/handlers/conversation_actions');
+      const conversationId = parseInt(data.replace('conv_report_', ''), 10);
+      await handleConversationReport(callbackQuery, conversationId, env);
+      return;
+    }
+
+    if (data.startsWith('conv_end_confirm_')) {
+      const { handleConversationEndConfirm } = await import('./telegram/handlers/conversation_actions');
+      const conversationId = parseInt(data.replace('conv_end_confirm_', ''), 10);
+      await handleConversationEndConfirm(callbackQuery, conversationId, env);
+      return;
+    }
+
+    if (data.startsWith('conv_end_')) {
+      const { handleConversationEnd } = await import('./telegram/handlers/conversation_actions');
+      const conversationId = parseInt(data.replace('conv_end_', ''), 10);
+      await handleConversationEnd(callbackQuery, conversationId, env);
+      return;
+    }
+
+    if (data === 'conv_cancel') {
+      const { handleConversationCancel } = await import('./telegram/handlers/conversation_actions');
+      await handleConversationCancel(callbackQuery, env);
+      return;
+    }
+
     // Draft callbacks
     if (data === 'draft_continue') {
       const { handleDraftContinue } = await import('./telegram/handlers/draft');

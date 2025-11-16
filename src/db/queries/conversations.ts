@@ -63,6 +63,21 @@ export async function getConversationById(
 }
 
 /**
+ * End conversation
+ */
+export async function endConversation(
+  db: DatabaseClient,
+  conversationId: number
+): Promise<void> {
+  await db.d1.prepare(`
+    UPDATE conversations
+    SET status = 'ended',
+        ended_at = datetime('now')
+    WHERE id = ?
+  `).bind(conversationId).run();
+}
+
+/**
  * Save conversation message
  */
 export async function saveConversationMessage(
