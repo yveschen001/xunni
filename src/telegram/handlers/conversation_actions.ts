@@ -10,23 +10,7 @@ import { createTelegramService } from '~/services/telegram';
 import { findUserByTelegramId } from '~/db/queries/users';
 import { getConversationById, endConversation } from '~/db/queries/conversations';
 import { getOtherUserId } from '~/domain/conversation';
-
-const LANGUAGE_NAMES: Record<string, string> = {
-  'zh-TW': '繁體中文',
-  'zh-CN': '簡體中文',
-  en: 'English',
-  ja: '日本語',
-  ko: '한국어',
-  es: 'Español',
-  fr: 'Français',
-  de: 'Deutsch',
-  th: 'ไทย',
-};
-
-function formatLanguage(code?: string): string {
-  if (!code) return '未設定';
-  return LANGUAGE_NAMES[code] || code;
-}
+import { maskSensitiveValue } from '~/utils/mask';
 
 /**
  * Show anonymous profile card
@@ -73,8 +57,8 @@ export async function handleConversationProfile(
       ageRange = `${Math.floor(age / 5) * 5}-${Math.floor(age / 5) * 5 + 4}`;
     }
 
-    const nickname = otherUser.nickname || otherUser.username || '未設定';
-    const languageLabel = formatLanguage(otherUser.language_pref);
+    const nickname = maskSensitiveValue(otherUser.nickname || otherUser.username);
+    const languageLabel = otherUser.language_pref || '未設定';
     const zodiacLabel = otherUser.zodiac_sign || '未設定';
 
     // Build anonymous profile card

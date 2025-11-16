@@ -23,6 +23,7 @@ import {
   getBottleQuota,
 } from '~/domain/bottle';
 import { calculateAge } from '~/domain/user';
+import { maskSensitiveValue } from '~/utils/mask';
 import { createI18n } from '~/i18n';
 
 export async function handleCatch(message: TelegramMessage, env: Env): Promise<void> {
@@ -100,6 +101,12 @@ export async function handleCatch(message: TelegramMessage, env: Env): Promise<v
       return;
     }
 
+    const bottleOwner = await findUserByTelegramId(db, bottle.owner_telegram_id);
+    const ownerNickname = maskSensitiveValue(
+      bottleOwner?.nickname || bottleOwner?.username
+    );
+    const ownerLanguage = bottleOwner?.language_pref || '未設定';
+
     // Create conversation
     const conversationId = await createConversation(
       db,
@@ -172,6 +179,8 @@ export async function handleCatch(message: TelegramMessage, env: Env): Promise<v
     await telegram.sendMessage(
       chatId,
       `🍾 你撿到了一個漂流瓶！\n\n` +
+        `📝 暱稱：${ownerNickname}\n` +
+        `🗣️ 語言：${ownerLanguage}\n\n` +
         `━━━━━━━━━━━━━━━━\n` +
         `${bottleContent}${translationNote}\n` +
         `━━━━━━━━━━━━━━━━\n\n` +
