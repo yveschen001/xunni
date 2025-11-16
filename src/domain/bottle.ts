@@ -6,7 +6,7 @@
 
 export interface Bottle {
   id: number;
-  owner_id: string;
+  owner_telegram_id: string;
   content: string;
   mood_tag?: string;
   created_at: string;

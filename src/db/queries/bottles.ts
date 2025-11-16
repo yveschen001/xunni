@@ -18,7 +18,7 @@ export async function createBottle(
   
   const result = await db.d1.prepare(`
     INSERT INTO bottles (
-      owner_id,
+      owner_telegram_id,
       content,
       mood_tag,
       created_at,
@@ -71,17 +71,17 @@ export async function findMatchingBottle(
     SELECT b.* FROM bottles b
     WHERE b.status = 'pending'
       AND datetime(b.expires_at) > datetime('now')
-      AND b.owner_id != ?
+      AND b.owner_telegram_id != ?
       AND (b.target_gender = ? OR b.target_gender = 'any')
       AND NOT EXISTS (
         SELECT 1 FROM user_blocks ub
-        WHERE (ub.blocker_id = ? AND ub.blocked_id = b.owner_id)
-           OR (ub.blocker_id = b.owner_id AND ub.blocked_id = ?)
+        WHERE (ub.blocker_id = ? AND ub.blocked_id = b.owner_telegram_id)
+           OR (ub.blocker_id = b.owner_telegram_id AND ub.blocked_id = ?)
       )
       AND NOT EXISTS (
         SELECT 1 FROM reports r
         WHERE r.reporter_id = ?
-          AND r.target_id = b.owner_id
+          AND r.target_id = b.owner_telegram_id
           AND datetime(r.created_at) > datetime('now', '-24 hours')
       )
     ORDER BY RANDOM()

@@ -105,7 +105,7 @@ export async function handleCatch(message: TelegramMessage, env: Env): Promise<v
     const conversationId = await createConversation(
       db,
       bottle.id,
-      bottle.owner_id,
+      bottle.owner_telegram_id,
       telegramId
     );
 
@@ -119,7 +119,7 @@ export async function handleCatch(message: TelegramMessage, env: Env): Promise<v
       db,
       bottle.id,
       conversationId,
-      bottle.owner_id,
+      bottle.owner_telegram_id,
       telegramId,
       bottle.content
     );
@@ -150,7 +150,7 @@ export async function handleCatch(message: TelegramMessage, env: Env): Promise<v
     );
 
     // Send notification to bottle owner
-    await notifyBottleOwner(bottle.owner_id, env);
+    await notifyBottleOwner(bottle.owner_telegram_id, env);
   } catch (error) {
     console.error('[handleCatch] Error:', error);
     console.error('[handleCatch] Error stack:', error instanceof Error ? error.stack : 'No stack');
