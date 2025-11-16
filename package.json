@@ -16,6 +16,7 @@
     "backup:db": "tsx scripts/backup-db.ts",
     "smoke-test": "tsx scripts/smoke-test.ts",
     "simulate-user": "tsx scripts/simulate-real-user.ts",
+    "test:bottle-length": "tsx scripts/test-bottle-length.ts",
     "monitor": "tsx scripts/monitor-logs.ts",
     "reset-db": "tsx scripts/reset-db.ts",
     "seed-fake-users": "tsx scripts/seed-fake-users.ts",
