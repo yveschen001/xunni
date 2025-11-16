@@ -191,22 +191,22 @@ export async function handleThrowTargetGender(
     // Delete selection message
     await telegram.deleteMessage(chatId, callbackQuery.message!.message_id);
 
-    // Store target gender in user's session (using a simple approach)
-    // In production, you'd use KV or a session table
-    // For now, we'll ask for content directly
+    // Store target gender in session
+    const { upsertSession } = await import('~/db/queries/sessions');
+    await upsertSession(db, telegramId, 'throw_bottle', {
+      target_gender: gender,
+    });
     
     await telegram.sendMessage(
       chatId,
       '📝 請輸入你的漂流瓶內容：\n\n' +
         '💡 提示：\n' +
-        '• 只能使用文字和官方 Emoji\n' +
-        '• 最多 500 字\n' +
+        '• 最短 12 個字符\n' +
+        '• 最多 500 個字符\n' +
+        '• 只允許 Telegram 連結 (t.me)\n' +
         '• 不要包含個人聯絡方式\n' +
         '• 友善、尊重的內容更容易被撿到哦～'
     );
-
-    // TODO: Store target_gender in session
-    // For now, we'll handle it in the message handler
   } catch (error) {
     console.error('[handleThrowTargetGender] Error:', error);
     await telegram.answerCallbackQuery(callbackQuery.id, '❌ 發生錯誤');
@@ -246,8 +246,8 @@ export async function processBottleContent(
           `🚫 禁止的網址：\n${urlCheck.blockedUrls?.map(url => `• ${url}`).join('\n')}\n\n` +
           `✅ 只允許以下網址：\n` +
           `• t.me (Telegram)\n` +
-          `• telegram.org / telegram.me\n` +
-          `• youtube.com / youtu.be (YouTube)\n\n` +
+          `• telegram.org\n` +
+          `• telegram.me\n\n` +
           `請移除這些網址後重新輸入。`
       );
       return;

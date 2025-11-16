@@ -108,6 +108,15 @@ async function routeUpdate(update: TelegramUpdate, env: Env): Promise<void> {
         return;
       }
 
+      // Try throw bottle content input
+      const { processBottleContent } = await import('./telegram/handlers/throw');
+      const { getActiveSession } = await import('./db/queries/sessions');
+      const throwSession = await getActiveSession(createDatabaseClient(env), user.telegram_id, 'throw_bottle');
+      if (throwSession && message.text) {
+        await processBottleContent(user, message.text, env);
+        return;
+      }
+
       const isConversationMessage = await handleMessageForward(message, env);
       if (isConversationMessage) {
         return;
