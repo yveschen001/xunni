@@ -134,12 +134,47 @@ export async function handleCatch(message: TelegramMessage, env: Env): Promise<v
     const newCatchesCount = catchesToday + 1;
     const { quota } = getBottleQuota(!!isVip, inviteBonus);
 
+    // Translate bottle content if needed
+    let bottleContent = bottle.content;
+    let translationNote = '';
+    
+    const bottleLanguage = bottle.language || 'zh-TW';
+    const catcherLanguage = user.language_pref || 'zh-TW';
+    
+    if (bottleLanguage !== catcherLanguage) {
+      const { translateText } = await import('~/services/translation');
+      const catcherIsVip = !!(user.is_vip && user.vip_expire_at && new Date(user.vip_expire_at) > new Date());
+      
+      try {
+        const result = await translateText(
+          bottle.content,
+          catcherLanguage,
+          bottleLanguage,
+          catcherIsVip,
+          env
+        );
+        
+        bottleContent = result.text;
+        
+        if (result.fallback && catcherIsVip) {
+          translationNote = '\n\n💬 翻譯服務暫時有問題，已使用備用翻譯';
+        }
+        
+        if (result.error && result.text === bottle.content) {
+          translationNote = '\n\n⚠️ 翻譯服務暫時無法使用，以下為原文';
+        }
+      } catch (error) {
+        console.error('[handleCatch] Translation error:', error);
+        translationNote = '\n\n⚠️ 翻譯服務暫時無法使用，以下為原文';
+      }
+    }
+
     // Send bottle content to catcher
     await telegram.sendMessage(
       chatId,
       `🍾 你撿到了一個漂流瓶！\n\n` +
         `━━━━━━━━━━━━━━━━\n` +
-        `${bottle.content}\n` +
+        `${bottleContent}${translationNote}\n` +
         `━━━━━━━━━━━━━━━━\n\n` +
         `💬 你可以直接回覆訊息開始聊天\n` +
         `📊 今日已撿：${newCatchesCount}/${quota}\n\n` +

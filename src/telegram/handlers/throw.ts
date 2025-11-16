@@ -207,6 +207,23 @@ export async function processBottleContent(
       return;
     }
 
+    // Check URL whitelist
+    const { checkUrlWhitelist } = await import('~/utils/url-whitelist');
+    const urlCheck = checkUrlWhitelist(content);
+    if (!urlCheck.allowed) {
+      await telegram.sendMessage(
+        chatId,
+        `❌ 瓶子內容包含不允許的網址\n\n` +
+          `🚫 禁止的網址：\n${urlCheck.blockedUrls?.map(url => `• ${url}`).join('\n')}\n\n` +
+          `✅ 只允許以下網址：\n` +
+          `• t.me (Telegram)\n` +
+          `• telegram.org\n` +
+          `• telegram.me\n\n` +
+          `請移除這些網址後重新輸入。`
+      );
+      return;
+    }
+
     // TODO: Get target_gender from session
     // For now, use 'any' as default
     const bottleInput: ThrowBottleInput = {
