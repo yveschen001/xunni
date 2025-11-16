@@ -8,7 +8,6 @@ import type { Env, TelegramMessage } from '~/types';
 import { createDatabaseClient } from '~/db/client';
 import { createTelegramService } from '~/services/telegram';
 import { findUserByTelegramId } from '~/db/queries/users';
-import { createI18n } from '~/i18n';
 
 export async function handleHelp(message: TelegramMessage, env: Env): Promise<void> {
   const db = createDatabaseClient(env);
@@ -19,7 +18,6 @@ export async function handleHelp(message: TelegramMessage, env: Env): Promise<vo
   try {
     // Get user
     const user = await findUserByTelegramId(db, telegramId);
-    const i18n = createI18n(user?.language_pref || 'zh-TW');
 
     // Check user role for command visibility
     const role = user?.role || 'user';
@@ -86,7 +84,6 @@ export async function handleRules(message: TelegramMessage, env: Env): Promise<v
   try {
     // Get user
     const user = await findUserByTelegramId(db, telegramId);
-    const i18n = createI18n(user?.language_pref || 'zh-TW');
 
     const rulesMessage = 
       `📜 **XunNi 遊戲規則**\n\n` +

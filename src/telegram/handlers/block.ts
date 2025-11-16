@@ -10,7 +10,6 @@ import { createTelegramService } from '~/services/telegram';
 import { findUserByTelegramId } from '~/db/queries/users';
 import { getActiveConversation } from '~/db/queries/conversations';
 import { getOtherUserId } from '~/domain/conversation';
-import { createI18n } from '~/i18n';
 
 export async function handleBlock(message: TelegramMessage, env: Env): Promise<void> {
   const db = createDatabaseClient(env);
@@ -25,8 +24,6 @@ export async function handleBlock(message: TelegramMessage, env: Env): Promise<v
       await telegram.sendMessage(chatId, '❌ 用戶不存在，請先使用 /start 註冊。');
       return;
     }
-
-    const i18n = createI18n(user.language_pref || 'zh-TW');
 
     // Check if user completed onboarding
     if (user.onboarding_step !== 'completed') {

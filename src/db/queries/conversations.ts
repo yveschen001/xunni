@@ -3,7 +3,7 @@
  */
 
 import type { DatabaseClient } from '../client';
-import type { Conversation, ConversationMessage } from '~/domain/conversation';
+import type { Conversation } from '~/domain/conversation';
 
 /**
  * Create a new conversation

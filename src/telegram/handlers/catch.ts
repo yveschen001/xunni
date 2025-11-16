@@ -4,7 +4,7 @@
  * Handles /catch command - catch a random bottle.
  */
 
-import type { Env, TelegramMessage, User } from '~/types';
+import type { Env, TelegramMessage } from '~/types';
 import { createDatabaseClient } from '~/db/client';
 import { createTelegramService } from '~/services/telegram';
 import { findUserByTelegramId } from '~/db/queries/users';
@@ -13,7 +13,6 @@ import {
   getDailyCatchCount,
   incrementDailyCatchCount,
   updateBottleStatus,
-  getBottleById,
 } from '~/db/queries/bottles';
 import {
   createConversation,
@@ -23,8 +22,7 @@ import {
   canCatchBottle,
   getBottleQuota,
 } from '~/domain/bottle';
-import { createI18n } from '~/i18n';
-import { calculateAge, calculateZodiacSign } from '~/domain/user';
+import { calculateAge } from '~/domain/user';
 
 export async function handleCatch(message: TelegramMessage, env: Env): Promise<void> {
   const db = createDatabaseClient(env);

@@ -288,7 +288,7 @@ export const MBTI_DESCRIPTIONS: Record<string, { zh_TW: string; en: string }> = 
 /**
  * Get question by index (0-based)
  */
-export function getQuestion(index: number, language: string = 'zh-TW'): MBTIQuestion | null {
+export function getQuestion(index: number, _language: string = 'zh-TW'): MBTIQuestion | null {
   if (index < 0 || index >= MBTI_QUESTIONS.length) {
     return null;
   }

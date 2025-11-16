@@ -19,7 +19,6 @@ import {
   getQuestion,
   getTotalQuestions,
   getProgressPercentage,
-  MBTI_DESCRIPTIONS,
 } from '~/domain/mbti_test';
 
 // ============================================================================
