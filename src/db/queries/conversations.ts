@@ -85,7 +85,9 @@ export async function saveConversationMessage(
   receiverId: string,
   originalText: string,
   translatedText?: string,
-  translationProvider?: string
+  translationProvider?: string,
+  originalLanguage?: string,
+  targetLanguage?: string
 ): Promise<number> {
   const result = await db.d1.prepare(`
     INSERT INTO conversation_messages (
@@ -95,6 +97,8 @@ export async function saveConversationMessage(
       original_text,
       translated_text,
       translation_provider,
+      original_language,
+      translated_language,
       is_blocked_by_ai,
       created_at
     ) VALUES (?, ?, ?, ?, ?, ?, 0, datetime('now'))
@@ -104,7 +108,9 @@ export async function saveConversationMessage(
     receiverId,
     originalText,
     translatedText || null,
-    translationProvider || null
+    translationProvider || null,
+    originalLanguage || null,
+    targetLanguage || null
   ).run();
 
   // Update last_message_at

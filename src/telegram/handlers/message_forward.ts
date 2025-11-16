@@ -107,6 +107,7 @@ export async function handleMessageForward(
     let finalMessage = messageText;
     let translationNote = '';
     let translationProvider: string | undefined;
+    let usedFallback = false;
 
     const senderLanguage = sender.language_pref || 'zh-TW';
     const receiverLanguage = receiver.language_pref || 'zh-TW';
@@ -126,18 +127,21 @@ export async function handleMessageForward(
 
         finalMessage = result.text;
         translationProvider = result.provider;
-
-        if (result.fallback && isVip) {
-          translationNote = '\n\n💬 翻譯服務暫時有問題，已使用備用翻譯';
-        }
+        usedFallback = !!result.fallback;
 
         if (result.error && result.text === messageText) {
-          translationNote = '\n\n⚠️ 翻譯服務暫時無法使用，以下為原文';
+          translationNote =
+            `\n\n⚠️ 翻譯服務暫時無法使用（原文語言：${senderLanguage}）`;
+        } else if (result.fallback && isVip) {
+          translationNote = '\n\n💬 翻譯服務暫時有問題，已使用備用翻譯';
         }
       } catch (error) {
         console.error('[Translation error]:', error);
-        translationNote = '\n\n⚠️ 翻譯服務暫時無法使用，以下為原文';
+        translationNote =
+          `\n\n⚠️ 翻譯服務暫時無法使用（原文語言：${senderLanguage}）`;
       }
+    } else if (senderLanguage === receiverLanguage) {
+      translationNote = `\n\nℹ️ 對方使用 ${senderLanguage}，已直接顯示原文`;
     }
 
     // Save message to database
@@ -149,7 +153,9 @@ export async function handleMessageForward(
       receiverId,
       messageText,
       translatedUsed ? finalMessage : undefined,
-      translationProvider
+      translationProvider,
+      senderLanguage,
+      receiverLanguage
     );
 
     // Update bottle chat history
