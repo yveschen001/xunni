@@ -147,6 +147,18 @@ async function routeUpdate(update: TelegramUpdate, env: Env): Promise<void> {
       return;
     }
 
+    if (text === '/menu') {
+      const { handleMenu } = await import('./telegram/handlers/menu');
+      await handleMenu(message, env);
+      return;
+    }
+
+    if (text === '/settings') {
+      const { handleSettings } = await import('./telegram/handlers/settings');
+      await handleSettings(message, env);
+      return;
+    }
+
     if (text === '/block') {
       const { handleBlock } = await import('./telegram/handlers/block');
       await handleBlock(message, env);
@@ -471,6 +483,38 @@ async function routeUpdate(update: TelegramUpdate, env: Env): Promise<void> {
         text: '/stats',
       };
       await handleStats(fakeMessage as any, env);
+      return;
+    }
+
+    // Menu callbacks
+    if (data.startsWith('menu_')) {
+      const { handleMenuCallback } = await import('./telegram/handlers/menu');
+      await handleMenuCallback(callbackQuery, env);
+      return;
+    }
+
+    if (data === 'return_to_menu') {
+      const { handleReturnToMenu } = await import('./telegram/handlers/menu');
+      await handleReturnToMenu(callbackQuery, env);
+      return;
+    }
+
+    // Settings callbacks
+    if (data.startsWith('settings_')) {
+      const { handleSettingsCallback } = await import('./telegram/handlers/settings');
+      await handleSettingsCallback(callbackQuery, env);
+      return;
+    }
+
+    if (data.startsWith('set_lang_')) {
+      const { handleLanguageChange } = await import('./telegram/handlers/settings');
+      await handleLanguageChange(callbackQuery, env);
+      return;
+    }
+
+    if (data === 'back_to_settings') {
+      const { handleBackToSettings } = await import('./telegram/handlers/settings');
+      await handleBackToSettings(callbackQuery, env);
       return;
     }
 
