@@ -242,32 +242,40 @@ async function runSimulation() {
     await sendMessage('/profile', '12.查看资料');
     await sleep(1500);
 
+    // 测试 /profile_card
+    await sendMessage('/profile_card', '13.查看资料卡');
+    await sleep(1500);
+
+    // 测试 /mbti 并手动设定类型
+    await sendMessage('/mbti', '14.MBTI 管理');
+    await sleep(1000);
+    await clickButton('mbti_menu_manual', '15.选择 MBTI 手动输入');
+    await sleep(1000);
+    await clickButton('mbti_set_ENFP', '16.设定 MBTI 为 ENFP');
+    await sleep(1500);
+
     // 测试 /throw
-    await sendMessage('/throw', '13.丢漂流瓶-开始');
+    await sendMessage('/throw', '17.丢漂流瓶-开始');
     await sleep(1000);
-    
-    await sendMessage('Hello World! 这是我的第一个漂流瓶！', '14.丢漂流瓶-内容');
-    await sleep(1000);
-    
-    await clickButton('throw_target_any', '15.丢漂流瓶-任意性别');
-    await sleep(2000);
+    await sendMessage('Hello World! 这是我的第一个漂流瓶！', '18.丢漂流瓶-内容');
+    await sleep(1500);
 
     // 测试 /stats
-    await sendMessage('/stats', '16.查看统计');
+    await sendMessage('/stats', '19.查看统计');
     await sleep(1500);
 
     // 测试 /vip
-    await sendMessage('/vip', '17.查看VIP');
+    await sendMessage('/vip', '20.查看VIP');
     await sleep(1500);
 
     // ============================================================
-    // STEP 18: 测试开发工具
+    // STEP 21: 测试开发工具
     // ============================================================
     console.log('\n\n📱 第三部分：开发工具测试');
     console.log('─'.repeat(80));
 
     // 测试 /dev_info
-    await sendMessage('/dev_info', '18.开发工具-查看信息');
+    await sendMessage('/dev_info', '21.开发工具-查看信息');
     await sleep(1500);
 
     console.log('\n\n🎉 所有测试完成！');

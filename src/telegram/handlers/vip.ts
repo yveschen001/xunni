@@ -9,6 +9,7 @@ import { createDatabaseClient } from '~/db/client';
 import { createTelegramService } from '~/services/telegram';
 import { findUserByTelegramId } from '~/db/queries/users';
 import { createI18n } from '~/i18n';
+import { handleMenu } from './menu';
 
 // VIP pricing (Telegram Stars)
 const VIP_PRICE_STARS = 150; // ~5 USD
@@ -63,16 +64,13 @@ export async function handleVip(message: TelegramMessage, env: Env): Promise<voi
       await telegram.sendMessageWithButtons(
         chatId,
         `💎 **升級 VIP 會員**\n\n` +
-          `價格：150 ⭐ Telegram Stars / 月\n` +
-          `（約 5 USD）\n\n` +
+          `價格：150 ⭐ Telegram Stars / 月\n\n` +
           `🎁 VIP 權益：\n` +
-          `• 每天 30 個漂流瓶配額（vs 免費 3 個）\n` +
-          `• 可篩選 MBTI 和星座類型\n` +
+          `• 每天 30 個漂流瓶配額（邀請好友可增加，最高 100 個/天）\n` +
+          `• 可篩選配對對象的 MBTI 和星座類型\n` +
           `• 34 種語言自動翻譯\n` +
-          `  - 優先使用 OpenAI GPT-4o-mini（高品質）\n` +
-          `  - 失敗時自動降級到 Google Translate\n` +
-          `• 無廣告體驗\n` +
-          `• 邀請獎勵最高可達 100 個/天\n\n` +
+          `  - 優先使用 OpenAI GPT 模型翻譯（高品質）\n` +
+          `• 無廣告體驗\n\n` +
           `💡 使用 Telegram Stars 安全便捷支付`,
         [
           [{ text: '💳 購買 VIP (150 ⭐)', callback_data: 'vip_purchase' }],
@@ -150,6 +148,7 @@ export async function handleVipCancel(
 
   await telegram.answerCallbackQuery(callbackQuery.id, '已取消');
   await telegram.deleteMessage(chatId, callbackQuery.message!.message_id);
+  await handleMenu(callbackQuery.message as TelegramMessage, env);
 }
 
 /**
@@ -165,10 +164,10 @@ async function sendVipInvoice(
   const title = isRenewal ? 'XunNi VIP 續訂' : 'XunNi VIP 訂閱';
   const description = 
     `升級 VIP 會員，享受以下權益：\n` +
-    `• 每天 30 個漂流瓶配額\n` +
-    `• 可篩選 MBTI 和星座\n` +
-    `• 34 種語言自動翻譯\n` +
-    `• 無廣告體驗`;
+  `• 每天 30 個漂流瓶配額（最高 100 個/天）\n` +
+  `• 可篩選配對對象的 MBTI 和星座\n` +
+  `• 34 種語言自動翻譯（OpenAI GPT 優先）\n` +
+  `• 無廣告體驗`;
 
   // Create invoice
   const invoice = {
