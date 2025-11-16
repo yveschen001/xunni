@@ -24,22 +24,18 @@ export async function createBottle(
       expires_at,
       status,
       target_gender,
-      target_age_range,
       target_region,
       target_zodiac_filter,
-      target_mbti_filter,
-      language
-    ) VALUES (?, ?, datetime('now'), ?, 'pending', ?, ?, ?, ?, ?, ?)
+      target_mbti_filter
+    ) VALUES (?, ?, datetime('now'), ?, 'pending', ?, ?, ?, ?)
   `).bind(
     ownerId,
     input.content,
     expiresAt,
     input.target_gender,
-    input.target_age_range || null,
     input.target_region || null,
     input.target_zodiac_filter ? JSON.stringify(input.target_zodiac_filter) : null,
-    input.target_mbti_filter ? JSON.stringify(input.target_mbti_filter) : null,
-    input.language || null
+    input.target_mbti_filter ? JSON.stringify(input.target_mbti_filter) : null
   ).run();
 
   return result.meta.last_row_id as number;

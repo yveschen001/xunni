@@ -12,21 +12,21 @@ export interface Bottle {
   expires_at: string;
   status: 'pending' | 'matched' | 'expired' | 'deleted';
   target_gender: 'male' | 'female' | 'any';
-  target_age_range?: string;
+  target_min_age?: number;
+  target_max_age?: number;
   target_region?: string;
   target_zodiac_filter?: string; // JSON array
   target_mbti_filter?: string;   // JSON array
-  language?: string;
 }
 
 export interface ThrowBottleInput {
   content: string;
   target_gender: 'male' | 'female' | 'any';
-  target_age_range?: string;
+  target_min_age?: number;
+  target_max_age?: number;
   target_region?: string;
   target_zodiac_filter?: string[];
   target_mbti_filter?: string[];
-  language?: string;
 }
 
 const MIN_BOTTLE_LENGTH = 12;
