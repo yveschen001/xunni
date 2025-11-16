@@ -111,10 +111,41 @@ async function routeUpdate(update: TelegramUpdate, env: Env): Promise<void> {
       // Try throw bottle content input
       const { processBottleContent } = await import('./telegram/handlers/throw');
       const { getActiveSession } = await import('./db/queries/sessions');
+      const { deleteSession } = await import('./db/queries/sessions');
       const throwSession = await getActiveSession(createDatabaseClient(env), user.telegram_id, 'throw_bottle');
-      if (throwSession && message.text) {
-        await processBottleContent(user, message.text, env);
-        return;
+      
+      console.log('[router] Checking throw session:', {
+        userId: user.telegram_id,
+        hasSession: !!throwSession,
+        hasText: !!message.text,
+        hasPhoto: !!message.photo,
+        messageType: message.text ? 'text' : message.photo ? 'photo' : 'other',
+      });
+      
+      if (throwSession) {
+        // User is in throw bottle flow
+        if (message.text) {
+          // Text message - process as bottle content
+          console.log('[router] Processing bottle content:', {
+            userId: user.telegram_id,
+            contentLength: message.text.length,
+          });
+          await processBottleContent(user, message.text, env);
+          return;
+        } else if (message.photo || message.video || message.document || message.sticker) {
+          // Non-text message - reject
+          console.log('[router] Rejecting non-text message:', {
+            userId: user.telegram_id,
+            messageType: message.photo ? 'photo' : message.video ? 'video' : 'other',
+          });
+          await telegram.sendMessage(
+            message.chat.id,
+            '❌ 漂流瓶只允許文字內容\n\n' +
+              '💡 請輸入文字訊息（最短 12 字符，最多 500 字符）\n\n' +
+              '如果不想繼續，請輸入 /menu 返回主選單'
+          );
+          return;
+        }
       }
 
       const isConversationMessage = await handleMessageForward(message, env);

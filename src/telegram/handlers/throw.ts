@@ -131,6 +131,12 @@ export async function handleThrow(message: TelegramMessage, env: Env): Promise<v
     await upsertSession(db, telegramId, 'throw_bottle', {
       target_gender: targetGender,
     });
+    
+    console.log('[handleThrow] Session created:', {
+      userId: telegramId,
+      sessionType: 'throw_bottle',
+      targetGender,
+    });
 
     // Directly ask for bottle content
     const targetText = targetGender === 'male' ? '男生' : targetGender === 'female' ? '女生' : '任何人';
