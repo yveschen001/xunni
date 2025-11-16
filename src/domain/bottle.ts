@@ -31,6 +31,9 @@ export interface ThrowBottleInput {
   language?: string;
 }
 
+const MIN_BOTTLE_LENGTH = 12;
+const MAX_BOTTLE_LENGTH = 500;
+
 /**
  * Validate bottle content
  */
@@ -39,11 +42,23 @@ export function validateBottleContent(content: string): {
   error?: string;
 } {
   if (!content || content.trim().length === 0) {
-    return { valid: false, error: 'Bottle content cannot be empty' };
+    return { valid: false, error: '瓶子內容不能為空' };
   }
 
-  if (content.length > 500) {
-    return { valid: false, error: 'Bottle content too long (max 500 characters)' };
+  const trimmedContent = content.trim();
+
+  if (trimmedContent.length < MIN_BOTTLE_LENGTH) {
+    return { 
+      valid: false, 
+      error: `瓶子內容太短，至少需要 ${MIN_BOTTLE_LENGTH} 個字符（目前 ${trimmedContent.length} 個字符）` 
+    };
+  }
+
+  if (content.length > MAX_BOTTLE_LENGTH) {
+    return { 
+      valid: false, 
+      error: `瓶子內容太長，最多 ${MAX_BOTTLE_LENGTH} 個字符（目前 ${content.length} 個字符）` 
+    };
   }
 
   return { valid: true };

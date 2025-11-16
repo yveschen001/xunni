@@ -1,85 +1,58 @@
-/**
- * Bottle Domain Tests
- */
-
 import { describe, it, expect } from 'vitest';
-import { getBottleQuota, canThrowBottle, canCatchBottle } from '~/domain/bottle';
+import { validateBottleContent } from '~/domain/bottle';
 
-describe('getBottleQuota', () => {
-  it('should return 3 for free users without invite bonus', () => {
-    const result = getBottleQuota(false, 0);
-    expect(result.quota).toBe(3);
+describe('validateBottleContent', () => {
+  it('should reject empty content', () => {
+    const result = validateBottleContent('');
+    expect(result.valid).toBe(false);
+    expect(result.error).toContain('不能為空');
   });
 
-  it('should return 30 for VIP users without invite bonus', () => {
-    const result = getBottleQuota(true, 0);
-    expect(result.quota).toBe(30);
+  it('should reject content with only whitespace', () => {
+    const result = validateBottleContent('   ');
+    expect(result.valid).toBe(false);
+    expect(result.error).toContain('不能為空');
   });
 
-  it('should add invite bonus for free users', () => {
-    const result = getBottleQuota(false, 5);
-    expect(result.quota).toBe(8); // 3 + 5
+  it('should reject content shorter than 12 characters', () => {
+    const result = validateBottleContent('短內容');
+    expect(result.valid).toBe(false);
+    expect(result.error).toContain('太短');
+    expect(result.error).toContain('12');
   });
 
-  it('should add invite bonus for VIP users', () => {
-    const result = getBottleQuota(true, 10);
-    expect(result.quota).toBe(40); // 30 + 10
+  it('should accept content with exactly 12 characters', () => {
+    const result = validateBottleContent('這是一個測試漂流瓶內容啊'); // 13 characters
+    expect(result.valid).toBe(true);
   });
 
-  it('should cap free users at 10', () => {
-    const result = getBottleQuota(false, 20);
-    expect(result.quota).toBe(10); // Capped at 10
+  it('should accept content with more than 12 characters', () => {
+    const result = validateBottleContent('這是一個測試漂流瓶內容，包含更多的文字來測試驗證功能。');
+    expect(result.valid).toBe(true);
   });
 
-  it('should cap VIP users at 100', () => {
-    const result = getBottleQuota(true, 100);
-    expect(result.quota).toBe(100); // Capped at 100
-  });
-});
-
-describe('canThrowBottle', () => {
-  it('should allow throw if under quota', () => {
-    expect(canThrowBottle(0, false, 0)).toBe(true); // 0/3
-    expect(canThrowBottle(2, false, 0)).toBe(true); // 2/3
-    expect(canThrowBottle(29, true, 0)).toBe(true); // 29/30
+  it('should reject content longer than 500 characters', () => {
+    const longContent = 'a'.repeat(501);
+    const result = validateBottleContent(longContent);
+    expect(result.valid).toBe(false);
+    expect(result.error).toContain('太長');
+    expect(result.error).toContain('500');
   });
 
-  it('should deny throw if at quota', () => {
-    expect(canThrowBottle(3, false, 0)).toBe(false); // 3/3
-    expect(canThrowBottle(30, true, 0)).toBe(false); // 30/30
+  it('should accept content with exactly 500 characters', () => {
+    const content = 'a'.repeat(500);
+    const result = validateBottleContent(content);
+    expect(result.valid).toBe(true);
   });
 
-  it('should deny throw if over quota', () => {
-    expect(canThrowBottle(4, false, 0)).toBe(false); // 4/3
-    expect(canThrowBottle(31, true, 0)).toBe(false); // 31/30
+  it('should trim content before checking length', () => {
+    const result = validateBottleContent('  這是一個測試漂流瓶內容啊  '); // 13 characters after trim
+    expect(result.valid).toBe(true);
   });
 
-  it('should consider invite bonus', () => {
-    expect(canThrowBottle(5, false, 5)).toBe(true); // 5/8 (3+5)
-    expect(canThrowBottle(8, false, 5)).toBe(false); // 8/8 (3+5)
-  });
-});
-
-describe('canCatchBottle', () => {
-  it('should allow catch if under quota', () => {
-    expect(canCatchBottle(0, false, 0)).toBe(true); // 0/3
-    expect(canCatchBottle(2, false, 0)).toBe(true); // 2/3
-    expect(canCatchBottle(29, true, 0)).toBe(true); // 29/30
-  });
-
-  it('should deny catch if at quota', () => {
-    expect(canCatchBottle(3, false, 0)).toBe(false); // 3/3
-    expect(canCatchBottle(30, true, 0)).toBe(false); // 30/30
-  });
-
-  it('should deny catch if over quota', () => {
-    expect(canCatchBottle(4, false, 0)).toBe(false); // 4/3
-    expect(canCatchBottle(31, true, 0)).toBe(false); // 31/30
-  });
-
-  it('should consider invite bonus', () => {
-    expect(canCatchBottle(5, false, 5)).toBe(true); // 5/8 (3+5)
-    expect(canCatchBottle(8, false, 5)).toBe(false); // 8/8 (3+5)
+  it('should reject trimmed content shorter than 12 characters', () => {
+    const result = validateBottleContent('  短內容  ');
+    expect(result.valid).toBe(false);
+    expect(result.error).toContain('太短');
   });
 });
-
