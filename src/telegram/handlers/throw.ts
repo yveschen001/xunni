@@ -140,20 +140,26 @@ export async function handleThrow(message: TelegramMessage, env: Env): Promise<v
 
     // Directly ask for bottle content
     const targetText = targetGender === 'male' ? '男生' : targetGender === 'female' ? '女生' : '任何人';
-    await telegram.sendMessage(
-      chatId,
+    const throwPrompt =
       `🍾 **丟漂流瓶**\n\n` +
-        `🎯 尋找對象：${targetText}\n` +
-        `💡 可在 /edit_profile 中修改匹配偏好\n\n` +
-        `📝 **請輸入你的漂流瓶內容**\n\n` +
-        `✅ **規則**：\n` +
-        `• 最短 12 個字符\n` +
-        `• 最多 500 個字符\n` +
-        `• 只允許 Telegram 連結 (t.me)\n` +
-        `• 不要包含個人聯絡方式\n\n` +
-        `💬 **範例**：\n` +
-        `「你好！我是一個喜歡音樂和電影的人，希望認識志同道合的朋友～」\n\n` +
-        `⚠️ **注意**：YouTube 等外部連結會被拦截`,
+      `🎯 尋找對象：${targetText}\n` +
+      `💡 可在 /edit_profile 中修改匹配偏好\n\n` +
+      `📝 **請輸入你的漂流瓶內容**\n\n` +
+      `✅ **規則**：\n` +
+      `• 最短 12 個字符\n` +
+      `• 最多 500 個字符\n` +
+      `• 只允許 Telegram 連結 (t.me)\n` +
+      `• 不要包含個人聯絡方式\n\n` +
+      `💬 **範例**：\n` +
+      `「你好！我是一個喜歡音樂和電影的人，希望認識志同道合的朋友～」\n\n` +
+      `⚠️ **注意**：YouTube 等外部連結會被拦截`;
+
+    await telegram.sendMessageWithButtons(
+      chatId,
+      throwPrompt,
+      [
+        [{ text: '🏠 返回主選單', callback_data: 'return_to_menu' }],
+      ],
       { parse_mode: 'Markdown' }
     );
   } catch (error) {
