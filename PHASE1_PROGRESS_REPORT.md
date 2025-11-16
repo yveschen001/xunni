@@ -1,212 +1,164 @@
 # Phase 1 开发进度报告
 
-## 📅 日期
-2025-11-16
+## 📊 当前状态
 
-## ✅ 已完成功能
+### ✅ 已完成
 
-### 1. 漂流瓶系统 (`/throw` 和 `/catch`)
+#### Phase 1.1: 会话超时和返回主界面
+- ✅ 创建 `user_sessions` 表（数据库迁移）
+- ✅ 实现 `session` domain 逻辑
+  - 会话类型：`onboarding`, `throw_bottle`, `catch_bottle`, `conversation`
+  - 超时时间：30/10/5/60 分钟
+  - 超时检测和提示消息
+- ✅ 实现 `sessions` 数据库查询
+  - `upsertSession` - 创建或更新会话
+  - `getActiveSession` - 获取活跃会话
+  - `updateSessionActivity` - 更新活动时间
+  - `deleteSession` - 删除会话
+  - `cleanupExpiredSessions` - 清理过期会话（Cron）
 
-#### `/throw` - 丢漂流瓶
-- ✅ 用户状态检查（注册完成、未封禁）
-- ✅ 每日配额检查（免费 3 个，VIP 30 个）
-- ✅ 目标性别选择（男/女/任何人）
-- ✅ VIP 进阶筛选（预留接口）
-- ✅ 瓶子内容验证（长度、格式）
-- ✅ 24 小时过期机制
-- ✅ 配额统计和提示
+#### Phase 1.3: 主界面/菜单系统
+- ✅ 创建 `/menu` 指令
+  - 显示用户状态（VIP、MBTI、星座）
+  - 快捷按钮：
+    - 🌊 丢出漂流瓶
+    - 🎣 捡起漂流瓶
+    - 👤 个人资料
+    - 📊 统计数据
+    - 💬 聊天记录
+    - ⚙️ 设置
+    - 💎 升级 VIP（非 VIP 用户）
+    - ❓ 帮助
+- ✅ 实现 `return_to_menu` 回调
+- ✅ 所有菜单按钮路由到对应的处理器
 
-#### `/catch` - 捡漂流瓶
-- ✅ 用户状态检查
-- ✅ 每日配额检查
-- ✅ 智能匹配算法：
-  - 排除自己的瓶子
-  - 排除封锁过的用户
-  - 排除被封锁的用户
-  - 排除 24 小时内被举报的用户
-  - 匹配目标性别
-- ✅ 建立匿名对话
-- ✅ 创建聊天记录
-- ✅ 即时推送通知给瓶子主人
-- ✅ 安全提示（举报、封锁）
+#### Phase 2.3: 设置功能（提前实现）
+- ✅ 创建 `/settings` 指令
+  - 语言设置（5 种语言）
+    - 🇹🇼 繁体中文
+    - 🇺🇸 English
+    - 🇯🇵 日本语
+    - 🇰🇷 한국어
+    - 🇪🇸 Español
+  - 通知开关
+- ✅ 实现语言切换回调
+- ✅ 实现通知开关回调
+- ✅ 返回设置按钮
 
-### 2. 匿名聊天系统
-
-#### 消息转发
-- ✅ 自动识别活跃对话
-- ✅ 消息内容验证（长度、格式）
-- ✅ URL 白名单检查（只允许 t.me, telegram.org）
-- ✅ 封锁状态检查
-- ✅ 消息记录到数据库
-- ✅ 更新聊天历史
-- ✅ 发送确认给发送者
-
-### 3. 数据库层
-
-#### Domain 层（纯函数）
-- ✅ `src/domain/bottle.ts` - 漂流瓶业务逻辑
-  - 内容验证
-  - 过期时间计算
-  - 配额检查
-  - 配额计算
-
-- ✅ `src/domain/conversation.ts` - 对话业务逻辑
-  - 对话状态检查
-  - 封锁状态检查
-  - 获取对话对象
-  - 消息内容验证
-
-#### Database 查询层
-- ✅ `src/db/queries/bottles.ts` - 漂流瓶查询
-  - 创建瓶子
-  - 查找匹配瓶子（智能算法）
-  - 更新瓶子状态
-  - 获取每日统计
-  - 增加每日计数
-
-- ✅ `src/db/queries/conversations.ts` - 对话查询
-  - 创建对话
-  - 获取活跃对话
-  - 保存消息
-  - 创建聊天历史
-  - 更新聊天历史
-
-### 4. 工具函数
-
-- ✅ `src/utils/url-whitelist.ts` - URL 白名单检查
-  - 提取 URL
-  - 验证域名
-  - 返回被阻止的 URL
-
-### 5. 路由更新
-
-- ✅ 添加 `/throw` 命令路由
-- ✅ 添加 `/catch` 命令路由
-- ✅ 添加消息转发逻辑（自动识别对话）
-- ✅ 添加瓶子目标性别选择回调
+#### Router 更新
+- ✅ 添加 `/menu` 命令路由
+- ✅ 添加 `/settings` 命令路由
+- ✅ 添加 `menu_*` 回调处理
+- ✅ 添加 `settings_*` 回调处理
+- ✅ 添加 `set_lang_*` 回调处理
+- ✅ 添加 `return_to_menu` 回调处理
+- ✅ 添加 `back_to_settings` 回调处理
 
 ---
 
-## 📊 功能覆盖率
+### 🔄 进行中
 
-### 核心流程
-- ✅ 用户注册 → 丢瓶子 → 撿瓶子 → 匿名聊天
-- ✅ 配额管理（免费/VIP）
-- ✅ 安全机制（封锁、举报排除）
-- ✅ 匿名保护
+#### Phase 1.2: VIP 筛选功能
+**状态**: 准备开始实现
 
-### 数据完整性
-- ✅ bottles 表
-- ✅ conversations 表
-- ✅ conversation_messages 表
-- ✅ bottle_chat_history 表
-- ✅ daily_usage 表
-
----
-
-## ⏳ 待完成功能（Phase 1 剩余）
-
-### 1. 基本用户管理
-- ⏳ `/profile` - 查看个人资料
-- ⏳ `/profile_card` - 查看资料卡片
-- ⏳ `/help` - 帮助指令（已有基础版本）
-- ⏳ `/rules` - 规则说明
-
-### 2. 数据库迁移
-- ⏳ 创建 `user_blocks` 表（封锁记录）
-- ⏳ 更新 `bottles` 表 Schema（如需要）
-- ⏳ 更新 `conversations` 表 Schema（如需要）
+**需要实现**:
+1. 在 `/throw` 流程中添加 VIP 筛选界面
+   - 检查用户是否为 VIP
+   - 显示"高级筛选"按钮
+   - MBTI 筛选界面（16 种类型）
+   - 星座筛选界面（12 星座）
+2. 保存筛选条件到 `bottles` 表
+   - `target_mbti_filter` (JSON array)
+   - `target_zodiac_filter` (JSON array)
+3. 更新匹配逻辑
+   - 在 `findMatchingBottle` 中应用筛选条件
+   - 只匹配符合条件的用户
 
 ---
 
-## 🐛 已知问题
+### ⏳ 待完成
 
-### 1. 会话管理
-- **问题**：目前没有会话存储，无法记住用户在丢瓶子流程中选择的目标性别
-- **临时方案**：默认使用 'any'
-- **TODO**：实现 KV 会话存储或使用临时表
+#### Phase 1.4: 测试和验收
+**内容**:
+1. 创建自动化测试脚本
+   - 测试 `/menu` 指令
+   - 测试 `/settings` 指令
+   - 测试会话超时机制
+   - 测试 VIP 筛选功能
+2. 人工验收
+   - 完整流程测试
+   - 边界情况测试
+   - 用户体验测试
+3. 部署到 Staging
+4. 生成验收报告
 
-### 2. 邀请奖励
-- **问题**：邀请奖励配额计算未实现
-- **临时方案**：inviteBonus 固定为 0
-- **TODO**：从 `invites` 表查询并计算
+---
 
-### 3. Lint 警告
-- **问题**：部分未使用的变量和导入
-- **影响**：不影响功能，但需要清理
-- **TODO**：移除未使用的导入和变量
+## 📝 技术细节
+
+### 数据库变更
+```sql
+-- 新增表
+CREATE TABLE user_sessions (
+  id INTEGER PRIMARY KEY AUTOINCREMENT,
+  telegram_id TEXT NOT NULL,
+  session_type TEXT NOT NULL,
+  session_data TEXT,
+  last_activity_at TEXT NOT NULL,
+  expires_at TEXT NOT NULL,
+  created_at TEXT NOT NULL,
+  FOREIGN KEY (telegram_id) REFERENCES users(telegram_id)
+);
+```
+
+### 新增文件
+- `src/db/migrations/0006_add_user_sessions.sql` - 数据库迁移
+- `src/domain/session.ts` - 会话 domain 逻辑
+- `src/db/queries/sessions.ts` - 会话数据库查询
+- `src/telegram/handlers/menu.ts` - 主菜单处理器
+- `src/telegram/handlers/settings.ts` - 设置处理器
+
+### 修改文件
+- `src/router.ts` - 添加新的命令和回调路由
 
 ---
 
 ## 🚀 下一步计划
 
-### Phase 1 完成（预计 1-2 小时）
-1. ✅ 修复 Lint 警告
-2. ✅ 实现 `/profile` 和 `/help`
-3. ✅ 创建数据库迁移脚本
-4. ✅ 部署到 Staging
-5. ✅ 完整功能测试
+### 立即执行（Phase 1.2）
+1. 实现 VIP 筛选界面
+   - 修改 `throw.ts` 添加筛选流程
+   - 创建 MBTI 筛选回调处理器
+   - 创建星座筛选回调处理器
+2. 更新匹配逻辑
+   - 修改 `findMatchingBottle` 查询
+   - 添加 MBTI/星座过滤条件
+3. 测试 VIP 筛选功能
 
-### Phase 2 开始（预计 3-4 小时）
-1. VIP 系统 (`/vip` + Telegram Stars)
-2. 翻译功能 (OpenAI/Google)
-3. 安全风控 (`/report` + `/block`)
-
-### Phase 3 开始（预计 2-3 小时）
-1. 统计数据 (`/stats` + `/chats`)
-2. 管理后台 (`/admin` 系列)
-3. 推送系统（星座运势）
-
----
-
-## 📝 技术债务
-
-1. **会话管理**：需要实现 KV 存储或临时表
-2. **错误处理**：需要更完善的错误处理和日志
-3. **测试**：需要添加自动化测试
-4. **性能优化**：数据库查询可以优化（添加索引）
-5. **代码清理**：移除未使用的导入和变量
+### 后续执行（Phase 1.4）
+1. 创建综合测试脚本
+2. 执行自动化测试
+3. 人工验收
+4. 生成验收报告
 
 ---
 
-## 🎯 当前状态
+## 💡 用户体验改进
 
-**Phase 1 进度**: ~70% 完成
+### 已实现
+- ✅ 主菜单提供清晰的导航
+- ✅ 所有功能都有快捷按钮
+- ✅ 返回主菜单按钮随处可用
+- ✅ 设置界面简洁直观
+- ✅ 语言切换即时生效
 
-**可用功能**:
-- ✅ 用户注册
-- ✅ 丢漂流瓶
-- ✅ 捡漂流瓶
-- ✅ 匿名聊天
-- ✅ 配额管理
-- ✅ 安全机制
-
-**待测试**:
-- 需要部署到 Staging
-- 需要完整的端到端测试
-- 需要验证数据库操作
+### 待实现
+- ⏳ VIP 用户可以精确筛选匹配对象
+- ⏳ 会话超时自动提示
+- ⏳ 草稿保存避免内容丢失
 
 ---
 
-## 💡 建议
-
-1. **立即完成 Phase 1 剩余功能**
-   - 实现 `/profile` 和 `/help`
-   - 创建必要的数据库迁移
-   - 部署并测试
-
-2. **然后开始 Phase 2**
-   - VIP 系统是商业化关键
-   - 翻译功能是 VIP 核心价值
-   - 安全风控是用户信任基础
-
-3. **最后完成 Phase 3**
-   - 统计和管理是运营工具
-   - 推送系统是用户留存关键
-
----
-
-**报告时间**: 2025-11-16 01:30
-**开发者**: Cursor AI
-**状态**: ✅ Phase 1 核心功能已完成，等待部署测试
-
+**生成时间**: 2025-01-16  
+**版本**: Phase 1 - 70% 完成  
+**下一个里程碑**: Phase 1.2 VIP 筛选功能
