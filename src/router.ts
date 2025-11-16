@@ -110,31 +110,37 @@ async function routeUpdate(update: TelegramUpdate, env: Env): Promise<void> {
 
       // Try throw bottle content input
       const { processBottleContent } = await import('./telegram/handlers/throw');
-      const { getActiveSession } = await import('./db/queries/sessions');
-      const { deleteSession } = await import('./db/queries/sessions');
-      const throwSession = await getActiveSession(createDatabaseClient(env), user.telegram_id, 'throw_bottle');
-      
+      const { getActiveSession, deleteSession } = await import('./db/queries/sessions');
+      const throwSession = await getActiveSession(db, user.telegram_id, 'throw_bottle');
+
       console.log('[router] Checking throw session:', {
         userId: user.telegram_id,
         hasSession: !!throwSession,
-        hasText: !!message.text,
+        hasText: !!text,
         hasPhoto: !!message.photo,
-        messageType: message.text ? 'text' : message.photo ? 'photo' : 'other',
+        messageType: text ? 'text' : message.photo ? 'photo' : 'other',
       });
-      
+
       if (throwSession) {
-        // User is in throw bottle flow
-        if (message.text) {
+        // If user sends a command (starts with '/'), treat it as aborting the throw flow
+        if (text.startsWith('/')) {
+          console.log('[router] Command received during throw flow, clearing session:', {
+            userId: user.telegram_id,
+            command: text,
+          });
+          await deleteSession(db, user.telegram_id, 'throw_bottle');
+          // Do NOT return here – let command routing below handle it
+        } else if (text) {
           // Text message - process as bottle content
           console.log('[router] Processing bottle content:', {
             userId: user.telegram_id,
-            contentLength: message.text.length,
+            contentLength: text.length,
           });
-          await processBottleContent(user, message.text, env);
+          await processBottleContent(user, text, env);
           return;
         } else if (message.photo || message.video || message.document || message.sticker) {
           // Non-text message - reject
-          console.log('[router] Rejecting non-text message:', {
+          console.log('[router] Rejecting non-text message during throw flow:', {
             userId: user.telegram_id,
             messageType: message.photo ? 'photo' : message.video ? 'video' : 'other',
           });
