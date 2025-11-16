@@ -863,10 +863,12 @@ CREATE INDEX idx_behavior_logs_created_at ON behavior_logs(created_at);
 • VIP 使用者：每日 30 個（邀請好友最高 100 個）
 • 瓶子有效期：24 小時
 • 匹配後建立匿名對話
+• 瓶子內容：最短 12 字符，最多 500 字符
+• 匹配偏好：默認異性（可在個人資料中修改）
 
 💬 聊天規則
 • 僅允許文字 + 官方 Emoji
-• 禁止發送 URL（除非在白名單中）
+• 禁止發送 URL（除非在白名單中：t.me, telegram.org, telegram.me）
 • 免費使用者：每對象每日最多 10 條訊息
 • VIP 使用者：每對象每日最多 100 條訊息
 
@@ -1188,11 +1190,22 @@ export async function handleHelp(
 
 1. 檢查：`isBanned(user)`，未完成 onboarding 則拒絕
 2. 讀取 daily_usage，使用 `canThrowBottle()` 判斷是否還有 quota
+3. **自動確定匹配對象**：
+   - 優先使用 `users.match_preference`（如果已設定）
+   - 默認為異性：男生 → 女生，女生 → 男生
+   - 顯示當前匹配對象，提示可在 `/edit_profile` 中修改
+4. **直接進入內容輸入**（不再每次詢問對象）
+
+**內容驗證規則**:
+- **最短長度**：12 個字符
+- **最長長度**：500 個字符
+- **URL 白名單**：只允許 `t.me`, `telegram.org`, `telegram.me`
+- **禁止內容**：個人聯絡方式、外部連結（YouTube 等）
 
 **一般 vs VIP 行為**:
 
 **一般使用者**:
-- 必須設定 target_gender（從 /start 的喜好性向帶入，或丟瓶時再選）
+- 使用默認匹配偏好（異性）
 - 不可設定星座 / MBTI / 年齡 / 地區 篩選 → 對應欄位留空
 - 顯示廣告：
   - 呼叫 `fetchAd(env)`（gigapub），並同時展示「升級 VIP」按鈕
@@ -1203,9 +1216,9 @@ export async function handleHelp(
 - 可額外選擇目標年齡區間 / 地區（選配）
 - 不顯示廣告
 
-3. 使用者輸入瓶子內容（文字 + 官方 emoji，檢查長度上限）
-4. 建立 bottles 記錄，status='pending'、expires_at = created_at + 24h
-5. daily_usage.throws_count += 1
+5. 建立 bottles 記錄，status='pending'、expires_at = created_at + 24h
+6. daily_usage.throws_count += 1
+7. **成功反饋**：顯示瓶子 ID、今日配額使用情況、24 小時有效期提示
 
 ### 5.6 /catch（撿漂流瓶）
 
