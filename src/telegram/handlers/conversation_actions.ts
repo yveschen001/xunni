@@ -11,6 +11,23 @@ import { findUserByTelegramId } from '~/db/queries/users';
 import { getConversationById, endConversation } from '~/db/queries/conversations';
 import { getOtherUserId } from '~/domain/conversation';
 
+const LANGUAGE_NAMES: Record<string, string> = {
+  'zh-TW': '繁體中文',
+  'zh-CN': '簡體中文',
+  en: 'English',
+  ja: '日本語',
+  ko: '한국어',
+  es: 'Español',
+  fr: 'Français',
+  de: 'Deutsch',
+  th: 'ไทย',
+};
+
+function formatLanguage(code?: string): string {
+  if (!code) return '未設定';
+  return LANGUAGE_NAMES[code] || code;
+}
+
 /**
  * Show anonymous profile card
  */
@@ -49,15 +66,24 @@ export async function handleConversationProfile(
     await telegram.answerCallbackQuery(callbackQuery.id);
 
     // Calculate age
-    const birthDate = new Date(otherUser.birthday);
-    const age = Math.floor((Date.now() - birthDate.getTime()) / (365.25 * 24 * 60 * 60 * 1000));
-    const ageRange = `${Math.floor(age / 5) * 5}-${Math.floor(age / 5) * 5 + 4}`;
+    const birthDate = otherUser.birthday ? new Date(otherUser.birthday) : null;
+    let ageRange = '未設定';
+    if (birthDate && !Number.isNaN(birthDate.getTime())) {
+      const age = Math.floor((Date.now() - birthDate.getTime()) / (365.25 * 24 * 60 * 60 * 1000));
+      ageRange = `${Math.floor(age / 5) * 5}-${Math.floor(age / 5) * 5 + 4}`;
+    }
+
+    const nickname = otherUser.nickname || otherUser.username || '未設定';
+    const languageLabel = formatLanguage(otherUser.language_pref);
+    const zodiacLabel = otherUser.zodiac_sign || '未設定';
 
     // Build anonymous profile card
     let profileMessage = '👤 **對方的資料卡**\n\n';
     profileMessage += `━━━━━━━━━━━━━━━━\n`;
-    profileMessage += `🧠 MBTI：${otherUser.mbti || '未設定'}\n`;
-    profileMessage += `⭐ 星座：${otherUser.zodiac || '未設定'}\n`;
+    profileMessage += `📝 暱稱：${nickname}\n`;
+    profileMessage += `🗣️ 語言：${languageLabel}\n`;
+    profileMessage += `🧠 MBTI：${otherUser.mbti_result || '未設定'}\n`;
+    profileMessage += `⭐ 星座：${zodiacLabel}\n`;
     profileMessage += `👤 性別：${otherUser.gender === 'male' ? '男' : otherUser.gender === 'female' ? '女' : '未設定'}\n`;
     profileMessage += `🎂 年齡範圍：${ageRange} 歲\n`;
     
