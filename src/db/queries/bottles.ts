@@ -77,8 +77,8 @@ export async function findMatchingBottle(
       )
       AND NOT EXISTS (
         SELECT 1 FROM reports r
-        WHERE r.reporter_id = ?
-          AND r.target_id = b.owner_telegram_id
+        WHERE r.reporter_telegram_id = ?
+          AND r.reported_telegram_id = b.owner_telegram_id
           AND datetime(r.created_at) > datetime('now', '-24 hours')
       )
     ORDER BY RANDOM()
