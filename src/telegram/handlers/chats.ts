@@ -1,13 +1,16 @@
 /**
  * Chats Handler
  * 
- * Handles /chats command - List user conversations.
+ * Handles /chats command - List user conversations with identifiers.
  */
 
 import type { Env, TelegramMessage } from '~/types';
 import { createDatabaseClient } from '~/db/client';
 import { createTelegramService } from '~/services/telegram';
 import { findUserByTelegramId } from '~/db/queries/users';
+import { getOrCreateIdentifier } from '~/db/queries/conversation_identifiers';
+import { formatIdentifier } from '~/domain/conversation_identifier';
+import { maskNickname } from '~/domain/invite';
 
 export async function handleChats(message: TelegramMessage, env: Env): Promise<void> {
   const db = createDatabaseClient(env);
@@ -32,40 +35,52 @@ export async function handleChats(message: TelegramMessage, env: Env): Promise<v
       return;
     }
 
-    // Get conversations
-    const conversations = await getUserConversations(db, telegramId);
+    // Get conversations with partner info
+    const conversations = await getUserConversationsWithPartners(db, telegramId);
 
     if (conversations.length === 0) {
       await telegram.sendMessage(
         chatId,
         `💬 **我的對話**\n\n` +
           `目前沒有任何對話。\n\n` +
-          `使用 /catch 撿漂流瓶開始聊天吧！`
+          `使用 /catch 撿漂流瓶開始聊天吧！\n\n` +
+          `🏠 返回主選單：/menu`
       );
       return;
     }
 
     // Format conversations list
-    let messageText = `💬 **我的對話** (${conversations.length})\n\n`;
+    let messageText = `💬 **我的對話列表** (${conversations.length})\n\n`;
 
     for (const conv of conversations) {
+      // Get or create identifier for this conversation
+      const partnerTelegramId = conv.user_a_telegram_id === telegramId 
+        ? conv.user_b_telegram_id 
+        : conv.user_a_telegram_id;
+      
+      const identifier = await getOrCreateIdentifier(db, telegramId, partnerTelegramId);
+      const formattedId = formatIdentifier(identifier);
+      
+      // Get partner info
+      const partner = await findUserByTelegramId(db, partnerTelegramId);
+      const partnerNickname = partner ? maskNickname(partner.nickname) : '未知用戶';
+      
       const statusEmoji = conv.status === 'active' ? '✅' : '⏸️';
       const lastMessageTime = conv.last_message_at 
         ? formatRelativeTime(new Date(conv.last_message_at))
         : '無訊息';
 
       messageText += 
-        `${statusEmoji} **對話 #${conv.id}**\n` +
-        `• 狀態：${getStatusText(conv.status)}\n` +
-        `• 訊息數：${conv.message_count}\n` +
-        `• 最後訊息：${lastMessageTime}\n` +
-        `• 開始時間：${new Date(conv.created_at).toLocaleDateString('zh-TW')}\n\n`;
+        `${statusEmoji} **${partnerNickname}** ${formattedId}\n` +
+        `• 訊息數：${conv.message_count} 則\n` +
+        `• 最後訊息：${lastMessageTime}\n\n`;
     }
 
     messageText += 
       `━━━━━━━━━━━━━━━━\n` +
-      `💡 直接回覆訊息即可繼續對話\n` +
-      `🔍 使用 /stats 查看詳細統計`;
+      `💡 點擊對方訊息的「回覆」按鈕即可繼續對話\n` +
+      `📊 使用 /stats 查看詳細統計\n` +
+      `🏠 返回主選單：/menu`;
 
     await telegram.sendMessage(chatId, messageText);
   } catch (error) {
@@ -75,13 +90,15 @@ export async function handleChats(message: TelegramMessage, env: Env): Promise<v
 }
 
 /**
- * Get user conversations
+ * Get user conversations with partner info
  */
-async function getUserConversations(
+async function getUserConversationsWithPartners(
   db: ReturnType<typeof createDatabaseClient>,
   telegramId: string
 ): Promise<Array<{
   id: number;
+  user_a_telegram_id: string;
+  user_b_telegram_id: string;
   status: string;
   message_count: number;
   last_message_at: string | null;
@@ -90,6 +107,8 @@ async function getUserConversations(
   const result = await db.d1.prepare(`
     SELECT 
       c.id,
+      c.user_a_telegram_id,
+      c.user_b_telegram_id,
       c.status,
       COUNT(cm.id) as message_count,
       MAX(cm.created_at) as last_message_at,
@@ -103,22 +122,6 @@ async function getUserConversations(
   `).bind(telegramId, telegramId).all();
 
   return result.results as any[];
-}
-
-/**
- * Get status text
- */
-function getStatusText(status: string): string {
-  switch (status) {
-    case 'active':
-      return '進行中';
-    case 'ended':
-      return '已結束';
-    case 'blocked':
-      return '已封鎖';
-    default:
-      return status;
-  }
 }
 
 /**
