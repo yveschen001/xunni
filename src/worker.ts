@@ -83,17 +83,20 @@ export default {
 
     try {
       // Horoscope push (Every Monday at 9:00 UTC)
-      if (event.cron === '0 9 * * 1') {
+      // Daily stats (Every day at 00:05 UTC)
+      if (event.cron === '5 0 * * *') {
         // eslint-disable-next-line no-console
-        console.log('[Worker] Running horoscope push...');
-        // TODO: Implement horoscope push
+        console.log('[Worker] Generating daily stats...');
+        const { generateDailyStats } = await import('./services/stats');
+        await generateDailyStats(env);
       }
 
       // Broadcast queue (Every 5 minutes)
       if (event.cron === '*/5 * * * *') {
         // eslint-disable-next-line no-console
         console.log('[Worker] Processing broadcast queue...');
-        // TODO: Implement broadcast queue processing
+        const { processBroadcastQueue } = await import('./services/broadcast');
+        await processBroadcastQueue(env);
       }
     } catch (error) {
       console.error('[Worker] Scheduled event error:', error);

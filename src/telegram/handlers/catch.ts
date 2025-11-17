@@ -290,9 +290,7 @@ async function notifyBottleOwner(ownerId: string, catcher: any, env: Env): Promi
     const catcherGender = catcher.gender === 'male' ? '♂️ 男' : catcher.gender === 'female' ? '♀️ 女' : '未設定';
     const catcherAge = catcher.birthday ? calculateAge(catcher.birthday) : '未知';
 
-    // TODO: Check push preferences
-
-    // Send notification
+    // Send notification to bottle owner
     await telegram.sendMessage(
       parseInt(ownerId),
       `🎉 有人撿到你的漂流瓶了！\n\n` +

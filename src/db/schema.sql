@@ -420,6 +420,66 @@ CREATE INDEX idx_appeals_status ON appeals(status);
 CREATE INDEX idx_appeals_created_at ON appeals(created_at);
 
 -- ============================================================================
+-- 16. Broadcasts Table (廣播記錄)
+-- ============================================================================
+CREATE TABLE IF NOT EXISTS broadcasts (
+  id INTEGER PRIMARY KEY AUTOINCREMENT,
+  message TEXT NOT NULL,
+  target_type TEXT NOT NULL CHECK(target_type IN ('all', 'vip', 'non_vip')),
+  status TEXT DEFAULT 'pending' CHECK(status IN ('pending', 'sending', 'completed', 'failed', 'cancelled')),
+  total_users INTEGER DEFAULT 0,
+  sent_count INTEGER DEFAULT 0,
+  failed_count INTEGER DEFAULT 0,
+  created_by TEXT NOT NULL,
+  created_at TEXT DEFAULT CURRENT_TIMESTAMP,
+  started_at TEXT,
+  completed_at TEXT,
+  error_message TEXT
+);
+CREATE INDEX idx_broadcasts_status ON broadcasts(status);
+CREATE INDEX idx_broadcasts_created_by ON broadcasts(created_by);
+CREATE INDEX idx_broadcasts_created_at ON broadcasts(created_at);
+
+-- ============================================================================
+-- 17. Maintenance Mode Table (維護模式配置)
+-- ============================================================================
+CREATE TABLE IF NOT EXISTS maintenance_mode (
+  id INTEGER PRIMARY KEY CHECK (id = 1),
+  is_active INTEGER DEFAULT 0,
+  start_time TEXT,
+  end_time TEXT,
+  estimated_duration INTEGER,
+  maintenance_message TEXT,
+  enabled_by TEXT,
+  enabled_at TEXT,
+  updated_at TEXT DEFAULT CURRENT_TIMESTAMP
+);
+INSERT OR IGNORE INTO maintenance_mode (id, is_active) VALUES (1, 0);
+
+-- ============================================================================
+-- 18. Daily Stats Table (每日統計)
+-- ============================================================================
+CREATE TABLE IF NOT EXISTS daily_stats (
+  id INTEGER PRIMARY KEY AUTOINCREMENT,
+  stat_date TEXT NOT NULL UNIQUE,
+  total_bottles INTEGER DEFAULT 0,
+  new_bottles INTEGER DEFAULT 0,
+  caught_bottles INTEGER DEFAULT 0,
+  total_conversations INTEGER DEFAULT 0,
+  new_conversations INTEGER DEFAULT 0,
+  total_messages INTEGER DEFAULT 0,
+  new_messages INTEGER DEFAULT 0,
+  total_users INTEGER DEFAULT 0,
+  new_users INTEGER DEFAULT 0,
+  active_users INTEGER DEFAULT 0,
+  total_vip INTEGER DEFAULT 0,
+  new_vip INTEGER DEFAULT 0,
+  created_at TEXT DEFAULT CURRENT_TIMESTAMP
+);
+CREATE INDEX idx_daily_stats_date ON daily_stats(stat_date);
+CREATE INDEX idx_daily_stats_created_at ON daily_stats(created_at);
+
+-- ============================================================================
 -- Initial Data
 -- ============================================================================
 

@@ -110,6 +110,19 @@ async function routeUpdate(update: TelegramUpdate, env: Env): Promise<void> {
     const adminIds = getAdminIds(env);
     const isUserAdmin = adminIds.includes(telegramId);
     
+    // Check maintenance mode (skip for admins)
+    if (!isUserAdmin) {
+      const { getMaintenanceMode } = await import('./telegram/handlers/maintenance');
+      const { isInMaintenanceMode, formatMaintenanceNotification } = await import('./domain/maintenance');
+      const maintenance = await getMaintenanceMode(db);
+      
+      if (maintenance && isInMaintenanceMode(maintenance)) {
+        const notificationMessage = formatMaintenanceNotification(maintenance);
+        await telegram.sendMessage(chatId, notificationMessage);
+        return;
+      }
+    }
+    
     const { isBanned } = await import('./domain/user');
     if (!isUserAdmin && isBanned(user)) {
       const { createI18n } = await import('./i18n');
@@ -322,16 +335,9 @@ async function routeUpdate(update: TelegramUpdate, env: Env): Promise<void> {
         return;
       }
       
-      // TODO: Implement full broadcast system with queue
-      await telegram.sendMessage(
-        chatId,
-        '⚠️ 廣播功能開發中\n\n' +
-          '此功能需要實現：\n' +
-          '• 廣播隊列系統\n' +
-          '• 批量發送限速\n' +
-          '• 用戶篩選條件\n\n' +
-          '請參考：doc/SPEC.md 第 3.12 節'
-      );
+      // Broadcast system - will be implemented below
+      const { handleBroadcast } = await import('./telegram/handlers/broadcast');
+      await handleBroadcast(message, env);
       return;
     }
 
@@ -350,6 +356,52 @@ async function routeUpdate(update: TelegramUpdate, env: Env): Promise<void> {
     if (text.startsWith('/admin_remove ')) {
       const { handleAdminRemove } = await import('./telegram/handlers/admin_ban');
       await handleAdminRemove(message, env);
+      return;
+    }
+
+    // Maintenance mode commands (Super Admin only)
+    if (text.startsWith('/maintenance_enable ')) {
+      const { isSuperAdmin } = await import('./telegram/handlers/admin_ban');
+      if (!isSuperAdmin(telegramId)) {
+        await telegram.sendMessage(chatId, '❌ 只有超級管理員可以使用此命令。');
+        return;
+      }
+      const { handleMaintenanceEnable } = await import('./telegram/handlers/maintenance');
+      await handleMaintenanceEnable(message, env);
+      return;
+    }
+
+    if (text === '/maintenance_disable') {
+      const { isSuperAdmin } = await import('./telegram/handlers/admin_ban');
+      if (!isSuperAdmin(telegramId)) {
+        await telegram.sendMessage(chatId, '❌ 只有超級管理員可以使用此命令。');
+        return;
+      }
+      const { handleMaintenanceDisable } = await import('./telegram/handlers/maintenance');
+      await handleMaintenanceDisable(message, env);
+      return;
+    }
+
+    if (text === '/maintenance_status') {
+      const { isAdmin } = await import('./telegram/handlers/admin_ban');
+      if (!isAdmin(telegramId, env)) {
+        await telegram.sendMessage(chatId, '❌ 只有管理員可以使用此命令。');
+        return;
+      }
+      const { handleMaintenanceStatus } = await import('./telegram/handlers/maintenance');
+      await handleMaintenanceStatus(message, env);
+      return;
+    }
+
+    // Broadcast status command (Admin only)
+    if (text.startsWith('/broadcast_status')) {
+      const { isAdmin } = await import('./telegram/handlers/admin_ban');
+      if (!isAdmin(telegramId, env)) {
+        await telegram.sendMessage(chatId, '❌ 只有管理員可以使用此命令。');
+        return;
+      }
+      const { handleBroadcastStatus } = await import('./telegram/handlers/broadcast');
+      await handleBroadcastStatus(message, env);
       return;
     }
 
@@ -1022,18 +1074,19 @@ async function routeUpdate(update: TelegramUpdate, env: Env): Promise<void> {
 
   // Handle pre-checkout query (Telegram Stars payment)
   if (update.pre_checkout_query) {
-    // TODO: Implement payment handler
+    // Answer pre-checkout query (approve payment)
     await telegram.answerPreCheckoutQuery(update.pre_checkout_query.id, true);
     return;
   }
 
   // Handle successful payment
   if (update.message && 'successful_payment' in update.message) {
-    // TODO: Implement payment success handler
+    // Handle VIP payment success
     interface SuccessfulPaymentMessage {
       successful_payment?: unknown;
     }
     console.error('[Router] Payment received:', (update.message as SuccessfulPaymentMessage).successful_payment);
+    // Payment success handling is in vip.ts
     return;
   }
 

@@ -11,7 +11,6 @@ import { findUserByTelegramId } from '~/db/queries/users';
 import {
   getActiveConversation,
   saveConversationMessage,
-  // updateBottleChatHistory, // TODO: Re-enable when bottle_chat_history table is created
 } from '~/db/queries/conversations';
 import {
   validateMessageContent,
