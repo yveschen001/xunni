@@ -119,7 +119,7 @@ export async function handleAdminBan(message: TelegramMessage, env: Env): Promis
 
     // Create ban record
     await db.d1.prepare(`
-      INSERT INTO bans (user_id, reason, banned_by, banned_at, banned_until, is_active)
+      INSERT INTO bans (user_id, reason, banned_by, ban_start, ban_end, is_active)
       VALUES (?, ?, ?, datetime('now'), ?, 1)
     `).bind(
       targetUserId,
@@ -350,7 +350,7 @@ export async function handleAdminFreeze(message: TelegramMessage, env: Env): Pro
 
     // Create ban record
     await db.d1.prepare(`
-      INSERT INTO bans (user_id, reason, banned_by, banned_at, banned_until, is_active)
+      INSERT INTO bans (user_id, reason, banned_by, ban_start, ban_end, is_active)
       VALUES (?, ?, ?, datetime('now'), ?, 1)
     `).bind(
       targetUserId,
