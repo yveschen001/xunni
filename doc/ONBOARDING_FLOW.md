@@ -13,15 +13,39 @@
 以下欄位**一旦設定，永遠不能修改**：
 - **性別** (`gender`)
 - **生日** (`birthday`) - 用於計算年齡和星座
+- **血型** (`blood_type`) - 用於配對篩選（VIP 功能）
 
 ### 2.2 年齡限制
 
-- **未滿 18 歲**：不允許註冊，提示「請成年後再來」
-- **年齡驗證**：必須輸入真實生日，系統計算年齡
+- **未滿 18 歲**：不允許註冊，提示「很抱歉，你必須年滿 18 歲才能使用本服務。請成年後再來！」
+- **年齡驗證**：
+  - 必須輸入真實生日（格式：YYYY-MM-DD）
+  - 系統自動計算年齡：`當前年份 - 出生年份`
+  - 如果未滿 18 歲，立即終止註冊流程
+  - 生日設定後永遠不能修改
 
-### 2.3 中斷恢復機制
+### 2.3 暱稱規則
 
-- 使用 `onboarding_state` 欄位記錄當前步驟
+- **長度限制**：2-20 個字符
+- **內容限制**：
+  - ❌ 不允許包含網址（http://, https://, www., .com, .net 等）
+  - ❌ 不允許包含特殊符號（僅允許中文、英文、數字、空格、emoji）
+  - ✅ 允許使用 emoji
+- **唯一性**：暱稱可以重複（不強制唯一）
+- **修改**：註冊後可以修改暱稱（但仍需遵守規則）
+
+### 2.4 隱私保護（暱稱擾亂）
+
+在邀請通知等場景中，需要保護用戶隱私：
+- **原則**：顯示部分暱稱 + 部分遮蔽
+- **規則**：
+  - 2 字以下：顯示第 1 字 + `**`（例：`王` → `王**`）
+  - 3 字：顯示第 1 字 + `**`（例：`張小明` → `張**`）
+  - 4 字以上：顯示前 3 字 + `***`（例：`Alexander` → `Ale***`）
+
+### 2.5 中斷恢復機制
+
+- 使用 `onboarding_step` 欄位記錄當前步驟
 - 使用者中斷後，下次 `/start` 從中斷處繼續
 - 支援查看已完成的步驟
 
@@ -34,6 +58,7 @@
 ```sql
 -- 新增到 users 表
 ALTER TABLE users ADD COLUMN birthday DATE;              -- 生日（用於計算年齡和星座）
+ALTER TABLE users ADD COLUMN blood_type TEXT;            -- 血型：A, B, O, AB, unknown
 ALTER TABLE users ADD COLUMN onboarding_state TEXT;     -- JSON: { step: 3, data: {...} }
 ALTER TABLE users ADD COLUMN onboarding_started_at DATETIME;
 ALTER TABLE users ADD COLUMN onboarding_completed_at DATETIME;
@@ -42,6 +67,11 @@ ALTER TABLE users ADD COLUMN privacy_accepted INTEGER DEFAULT 0; -- 是否接受
 ALTER TABLE users ADD COLUMN terms_accepted_at DATETIME;
 ALTER TABLE users ADD COLUMN privacy_accepted_at DATETIME;
 ```
+
+**血型說明**：
+- 可選值：`A`, `B`, `O`, `AB`, `unknown`（不願透露）
+- 設定後永遠不能修改
+- VIP 用戶可以在丟瓶子時篩選特定血型
 
 ### 3.2 onboarding_state JSON 結構
 
@@ -65,7 +95,22 @@ interface OnboardingState {
 
 ---
 
-## 4. 完整註冊流程（10 步）
+## 4. 完整註冊流程（11 步）
+
+**流程總覽**：
+1. Step 0：歡迎與條款同意
+2. Step 1：暱稱 & 頭像
+3. Step 2：主要使用語言
+4. Step 3：性別（深度確認）
+5. Step 4：生日與年齡驗證（18歲限制）
+6. **Step 5：血型（深度確認）** ⭐ 新增
+7. Step 6：國家
+8. Step 7：喜好性向（目標對象）
+9. Step 8：MBTI 測驗
+10. Step 9：反詐騙測驗
+11. Step 10：完成註冊
+
+---
 
 ### Step 0：歡迎與條款同意
 
@@ -104,6 +149,11 @@ Bot: 太好了！讓我們開始設定你的個人資料吧 🎨
 
 首先，給自己取一個有趣的暱稱吧～
 （這是你給別人的第一印象，要好好想哦～）
+
+📝 暱稱規則：
+• 長度：2-20 個字符
+• 不允許包含網址
+• 可以使用 emoji 😊
 ```
 
 **流程**：
@@ -113,6 +163,41 @@ Bot: 太好了！讓我們開始設定你的個人資料吧 🎨
    - 點擊建議暱稱
    - 輸入自訂暱稱
    - 使用預設值
+
+**暱稱驗證**：
+```typescript
+function validateNickname(nickname: string): { valid: boolean; error?: string } {
+  // 1. 長度檢查
+  if (nickname.length < 2 || nickname.length > 20) {
+    return { valid: false, error: '暱稱長度必須在 2-20 個字符之間' };
+  }
+  
+  // 2. 網址檢查
+  const urlPatterns = [
+    /https?:\/\//i,           // http:// or https://
+    /www\./i,                 // www.
+    /\.com|\.net|\.org|\.tw/i // common TLDs
+  ];
+  
+  for (const pattern of urlPatterns) {
+    if (pattern.test(nickname)) {
+      return { valid: false, error: '暱稱不能包含網址' };
+    }
+  }
+  
+  // 3. 特殊符號檢查（允許中文、英文、數字、空格、emoji）
+  // 這裡可以根據需要調整
+  
+  return { valid: true };
+}
+```
+
+**錯誤提示**：
+```
+Bot: ❌ 暱稱不符合規則：{error}
+
+請重新輸入一個暱稱～
+```
 
 **頭像設定**：
 ```
@@ -241,7 +326,50 @@ Bot: 你的生日是：{birthday}
 
 ---
 
-### Step 5：國家
+### Step 5：血型（深度確認）
+
+**智能對話**：
+```
+Bot: 🩸 請選擇你的血型
+
+⚠️ 重要提醒：
+血型設定後將**永遠不能修改**，請仔細選擇！
+
+💡 血型會用於：
+- VIP 用戶可以篩選特定血型的配對對象
+- 增加配對的趣味性
+```
+
+**選項**：
+- [🅰️ A 型]
+- [🅱️ B 型]
+- [🅾️ O 型]
+- [🆎 AB 型]
+- [❓ 不願透露]
+
+**深度確認**（選擇後）：
+```
+Bot: 你選擇了「{blood_type}」
+
+⚠️ 再次確認：
+血型設定後將**永遠不能修改**！
+
+請確認：
+[✅ 確認，這就是我的血型]
+[❌ 重新選擇]
+```
+
+**最終確認**：
+- 點擊「確認」後，寫入 `blood_type` 欄位
+- 記錄確認時間
+- 如果點擊「重新選擇」，回到選項
+
+**保存**：
+- 確認後寫入 `blood_type`（A, B, O, AB, unknown）
+
+---
+
+### Step 6：國家
 
 **智能對話**：
 ```
@@ -254,7 +382,7 @@ Bot: 🌏 你來自哪個國家/地區？
 
 ---
 
-### Step 6：喜好性向（目標對象）
+### Step 7：喜好性向（目標對象）
 
 **智能對話**：
 ```
@@ -271,7 +399,7 @@ Bot: 💕 你想認識什麼性別的朋友？
 
 ---
 
-### Step 7：MBTI 測驗
+### Step 8：MBTI 測驗
 
 **智能對話**：
 ```
@@ -303,7 +431,7 @@ Bot: 🧠 讓我們來做個 MBTI 測驗吧！
 
 ---
 
-### Step 8：反詐騙測驗
+### Step 9：反詐騙測驗
 
 **智能對話**：
 ```
@@ -333,7 +461,7 @@ Bot: 🛡️ 最後一步！讓我們做個簡單的安全測驗
 
 ---
 
-### Step 9：完成註冊
+### Step 10：完成註冊
 
 **智能對話**：
 ```

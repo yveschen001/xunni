@@ -4,7 +4,7 @@
  * Handles /menu command - Main menu with quick action buttons.
  */
 
-import type { Env, TelegramMessage } from '~/types';
+import type { Env, TelegramMessage, CallbackQuery } from '~/types';
 import { createDatabaseClient } from '~/db/client';
 import { createTelegramService } from '~/services/telegram';
 import { findUserByTelegramId } from '~/db/queries/users';
@@ -60,8 +60,12 @@ export async function handleMenu(message: TelegramMessage, env: Env): Promise<vo
         { text: '📊 統計數據', callback_data: 'menu_stats' },
       ],
       [
+        { text: '🎁 邀請好友', callback_data: 'menu_invite' },
         { text: '💬 聊天記錄', callback_data: 'menu_chats' },
+      ],
+      [
         { text: '⚙️ 設定', callback_data: 'menu_settings' },
+        { text: '❓ 幫助', callback_data: 'menu_help' },
       ],
     ];
 
@@ -71,11 +75,6 @@ export async function handleMenu(message: TelegramMessage, env: Env): Promise<vo
         { text: '💎 升級 VIP', callback_data: 'menu_vip' },
       ]);
     }
-
-    // Add help button
-    buttons.push([
-      { text: '❓ 幫助', callback_data: 'menu_help' },
-    ]);
 
     await telegram.sendMessageWithButtons(chatId, menuMessage, buttons);
   } catch (error) {
@@ -88,7 +87,7 @@ export async function handleMenu(message: TelegramMessage, env: Env): Promise<vo
  * Handle menu button callbacks
  */
 export async function handleMenuCallback(
-  callbackQuery: any,
+  callbackQuery: CallbackQuery,
   env: Env
 ): Promise<void> {
   const telegram = createTelegramService(env);
@@ -110,53 +109,101 @@ export async function handleMenuCallback(
     };
 
     switch (data) {
-      case 'menu_throw':
+      case 'menu_throw': {
         fakeMessage.text = '/throw';
         const { handleThrow } = await import('./throw');
-        await handleThrow(fakeMessage as any, env);
+        await handleThrow(fakeMessage, env);
         break;
+      }
 
-      case 'menu_catch':
+      case 'menu_catch': {
         fakeMessage.text = '/catch';
         const { handleCatch } = await import('./catch');
-        await handleCatch(fakeMessage as any, env);
+        await handleCatch(fakeMessage, env);
         break;
+      }
 
-      case 'menu_profile':
+      case 'menu_profile': {
         fakeMessage.text = '/profile';
         const { handleProfile } = await import('./profile');
-        await handleProfile(fakeMessage as any, env);
+        await handleProfile(fakeMessage, env);
         break;
+      }
 
-      case 'menu_stats':
+      case 'menu_stats': {
         fakeMessage.text = '/stats';
         const { handleStats } = await import('./stats');
-        await handleStats(fakeMessage as any, env);
+        await handleStats(fakeMessage, env);
         break;
+      }
 
-      case 'menu_chats':
+      case 'menu_invite': {
+        // Get user's invite code and show share options
+        const db = createDatabaseClient(env);
+        const telegramId = callbackQuery.from.id.toString();
+        const { findUserByTelegramId } = await import('~/db/queries/users');
+        const user = await findUserByTelegramId(db, telegramId);
+        
+        if (!user || !user.invite_code) {
+          await telegram.sendMessage(chatId, '❌ 無法獲取邀請碼');
+          break;
+        }
+
+        const inviteCode = user.invite_code;
+        const botUsername = env.ENVIRONMENT === 'production' ? 'xunni_bot' : 'xunni_dev_bot';
+        const shareUrl = `https://t.me/share/url?url=https://t.me/${botUsername}?start=invite_${inviteCode}&text=來 XunNi 一起丟漂流瓶吧！🍾 使用我的邀請碼加入，我們都能獲得更多配額！`;
+
+        await telegram.sendMessageWithButtons(
+          chatId,
+          `🎁 **邀請好友**\n\n` +
+            `📋 你的邀請碼：\`${inviteCode}\`\n\n` +
+            `💡 點擊下方按鈕分享給好友：\n` +
+            `• 好友使用你的邀請碼註冊\n` +
+            `• 好友丟出第一個瓶子後激活\n` +
+            `• 你們都獲得每日配額 +1\n\n` +
+            `📊 查看邀請統計：/profile`,
+          [
+            [
+              { text: '📤 分享邀請碼', url: shareUrl },
+            ],
+            [
+              { text: '📊 查看邀請統計', callback_data: 'menu_profile' },
+            ],
+            [
+              { text: '🏠 返回主選單', callback_data: 'return_to_menu' },
+            ],
+          ]
+        );
+        break;
+      }
+
+      case 'menu_chats': {
         fakeMessage.text = '/chats';
         const { handleChats } = await import('./chats');
-        await handleChats(fakeMessage as any, env);
+        await handleChats(fakeMessage, env);
         break;
+      }
 
-      case 'menu_settings':
+      case 'menu_settings': {
         fakeMessage.text = '/settings';
         const { handleSettings } = await import('./settings');
-        await handleSettings(fakeMessage as any, env);
+        await handleSettings(fakeMessage, env);
         break;
+      }
 
-      case 'menu_vip':
+      case 'menu_vip': {
         fakeMessage.text = '/vip';
         const { handleVip } = await import('./vip');
-        await handleVip(fakeMessage as any, env);
+        await handleVip(fakeMessage, env);
         break;
+      }
 
-      case 'menu_help':
+      case 'menu_help': {
         fakeMessage.text = '/help';
         const { handleHelp } = await import('./help');
-        await handleHelp(fakeMessage as any, env);
+        await handleHelp(fakeMessage, env);
         break;
+      }
 
       default:
         await telegram.sendMessage(chatId, '❌ 未知的選項');
@@ -188,7 +235,7 @@ export async function showReturnToMenuButton(
  * Handle "Return to Menu" callback
  */
 export async function handleReturnToMenu(
-  callbackQuery: any,
+  callbackQuery: CallbackQuery,
   env: Env
 ): Promise<void> {
   const telegram = createTelegramService(env);

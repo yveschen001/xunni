@@ -16,15 +16,14 @@ import {
 } from '~/db/queries/bottles';
 import {
   createConversation,
-  createBottleChatHistory,
+  // createBottleChatHistory, // TODO: Re-enable when bottle_chat_history table is created
 } from '~/db/queries/conversations';
 import {
   canCatchBottle,
   getBottleQuota,
 } from '~/domain/bottle';
 import { calculateAge } from '~/domain/user';
-import { maskSensitiveValue } from '~/utils/mask';
-import { createI18n } from '~/i18n';
+import { maskNickname } from '~/domain/invite';
 
 export async function handleCatch(message: TelegramMessage, env: Env): Promise<void> {
   const db = createDatabaseClient(env);
@@ -39,8 +38,6 @@ export async function handleCatch(message: TelegramMessage, env: Env): Promise<v
       await telegram.sendMessage(chatId, '❌ 用戶不存在，請先使用 /start 註冊。');
       return;
     }
-
-    const i18n = createI18n(user.language_pref || 'zh-TW');
 
     // Check if user completed onboarding
     if (user.onboarding_step !== 'completed') {
@@ -62,7 +59,7 @@ export async function handleCatch(message: TelegramMessage, env: Env): Promise<v
 
     // Check daily quota
     const catchesToday = await getDailyCatchCount(db, telegramId);
-    const inviteBonus = 0; // TODO: Calculate from invites table
+    const inviteBonus = user.successful_invites || 0;
     const isVip = !!(user.is_vip && user.vip_expire_at && new Date(user.vip_expire_at) > new Date());
     
     if (!canCatchBottle(catchesToday, isVip, inviteBonus)) {
@@ -79,6 +76,7 @@ export async function handleCatch(message: TelegramMessage, env: Env): Promise<v
     const userAge = user.birthday ? calculateAge(user.birthday) : 0;
     const userZodiac = user.zodiac_sign || '';
     const userMbti = user.mbti_result || '';
+    const userBloodType = user.blood_type || null;
 
     // Find matching bottle
     const bottle = await findMatchingBottle(
@@ -87,7 +85,8 @@ export async function handleCatch(message: TelegramMessage, env: Env): Promise<v
       user.gender || 'any',
       userAge,
       userZodiac,
-      userMbti
+      userMbti,
+      userBloodType
     );
 
     if (!bottle) {
@@ -102,11 +101,16 @@ export async function handleCatch(message: TelegramMessage, env: Env): Promise<v
     }
 
     const bottleOwner = await findUserByTelegramId(db, bottle.owner_telegram_id);
-    const ownerNickname = maskSensitiveValue(
-      bottleOwner?.nickname || bottleOwner?.username
+    const { maskNickname } = await import('~/domain/invite');
+    const ownerMaskedNickname = maskNickname(
+      bottleOwner?.nickname || bottleOwner?.username || '匿名'
     );
-    const ownerLanguage = bottleOwner?.language_pref || '未設定';
-    const ownerMaskedId = maskSensitiveValue(bottle.owner_telegram_id);
+    
+    // Get language display name
+    const { getLanguageDisplay } = await import('~/i18n/languages');
+    const ownerLanguage = bottleOwner?.language_pref 
+      ? getLanguageDisplay(bottleOwner.language_pref)
+      : '未設定';
 
     // Create conversation
     const conversationId = await createConversation(
@@ -121,18 +125,59 @@ export async function handleCatch(message: TelegramMessage, env: Env): Promise<v
       return;
     }
 
-    // Create bottle chat history
-    await createBottleChatHistory(
-      db,
-      bottle.id,
-      conversationId,
-      bottle.owner_telegram_id,
-      telegramId,
-      bottle.content
-    );
-
     // Update bottle status
     await updateBottleStatus(db, bottle.id, 'matched');
+    
+    // Initialize conversation history for both users
+    const { getOrCreateIdentifier } = await import('~/db/queries/conversation_identifiers');
+    const { updateConversationHistory } = await import('~/services/conversation_history');
+    
+    const catcherIdentifier = await getOrCreateIdentifier(db, telegramId, bottle.owner_telegram_id, conversationId);
+    const ownerIdentifier = await getOrCreateIdentifier(db, bottle.owner_telegram_id, telegramId, conversationId);
+    
+    const bottleTime = new Date(bottle.created_at);
+    
+    // Prepare partner info (use already masked nickname)
+    const ownerPartnerInfo = {
+      maskedNickname: ownerMaskedNickname,
+      mbti: bottleOwner?.mbti_result || '未設定',
+      bloodType: bottleOwner?.blood_type || '未設定',
+      zodiac: bottleOwner?.zodiac_sign || '未設定'
+    };
+    
+    const catcherNickname = user.nickname || user.username || '匿名用戶';
+    const catcherPartnerInfo = {
+      maskedNickname: maskNickname(catcherNickname),
+      mbti: user.mbti_result || '未設定',
+      bloodType: user.blood_type || '未設定',
+      zodiac: user.zodiac_sign || '未設定'
+    };
+    
+    // Initialize catcher's history (received the bottle message) - show owner's info
+    await updateConversationHistory(
+      db,
+      env,
+      conversationId,
+      telegramId,
+      catcherIdentifier,
+      bottle.content,
+      bottleTime,
+      'received',
+      ownerPartnerInfo
+    );
+    
+    // Initialize owner's history (sent the bottle message) - show catcher's info
+    await updateConversationHistory(
+      db,
+      env,
+      conversationId,
+      bottle.owner_telegram_id,
+      ownerIdentifier,
+      bottle.content,
+      bottleTime,
+      'sent',
+      catcherPartnerInfo
+    );
 
     // Increment daily count
     await incrementDailyCatchCount(db, telegramId);
@@ -152,6 +197,10 @@ export async function handleCatch(message: TelegramMessage, env: Env): Promise<v
       const { translateText } = await import('~/services/translation');
       const catcherIsVip = !!(user.is_vip && user.vip_expire_at && new Date(user.vip_expire_at) > new Date());
       
+      // Get language display names
+      const bottleLangDisplay = getLanguageDisplay(bottleLanguage);
+      const catcherLangDisplay = getLanguageDisplay(catcherLanguage);
+      
       try {
         const result = await translateText(
           bottle.content,
@@ -163,8 +212,8 @@ export async function handleCatch(message: TelegramMessage, env: Env): Promise<v
         
         bottleContent = result.text;
         translationSection =
-          `原文語言：${bottleLanguage}\n` +
-          `翻譯語言：${catcherLanguage}\n` +
+          `原文語言：${bottleLangDisplay}\n` +
+          `翻譯語言：${catcherLangDisplay}\n` +
           `原文：${bottle.content}\n` +
           `翻譯：${bottleContent}\n`;
 
@@ -177,33 +226,35 @@ export async function handleCatch(message: TelegramMessage, env: Env): Promise<v
         }
       } catch (error) {
         console.error('[handleCatch] Translation error:', error);
+        const bottleLangDisplay = getLanguageDisplay(bottleLanguage);
+        const catcherLangDisplay = getLanguageDisplay(catcherLanguage);
         translationSection =
-          `原文語言：${bottleLanguage}\n` +
-          `翻譯語言：${catcherLanguage}\n` +
+          `原文語言：${bottleLangDisplay}\n` +
+          `翻譯語言：${catcherLangDisplay}\n` +
           `⚠️ 翻譯服務暫時無法使用，以下為原文\n`;
       }
     } else {
-      translationSection =
-        `ℹ️ 對方使用 ${bottleLanguage}，已直接顯示原文\n`;
+      // Same language, no translation needed - don't show any message
+      translationSection = '';
     }
     await telegram.sendMessage(
       chatId,
       `🍾 你撿到了一個漂流瓶！\n\n` +
-        `📝 暱稱：${ownerNickname}\n` +
-        `🆔 對方代號：#${ownerMaskedId}\n` +
+        `📝 暱稱：${ownerMaskedNickname}\n` +
         `🧠 MBTI：${bottle.mbti_result || '未設定'}\n` +
-        `⭐ 星座：${bottle.zodiac || '未設定'}\n` +
+        `⭐ 星座：${bottle.zodiac || 'Virgo'}\n` +
         `🗣️ 語言：${ownerLanguage}\n\n` +
       `━━━━━━━━━━━━━━━━\n` +
         `${bottleContent}\n\n` +
         `${translationSection}` +
         `━━━━━━━━━━━━━━━━\n\n` +
-        `💬 你可以直接回覆訊息開始聊天\n` +
+        `💬 直接按 /reply 回覆訊息聊天\n` +
         `📊 今日已撿：${newCatchesCount}/${quota}\n\n` +
         `⚠️ 安全提示：\n` +
         `• 這是匿名對話，請保護個人隱私\n` +
         `• 遇到不當內容請使用 /report 舉報\n` +
-        `• 不想再聊可使用 /block 封鎖`
+        `• 不想再聊可使用 /block 封鎖\n\n` +
+        `🏠 返回主選單：/menu`
     );
 
     // Send notification to bottle owner
@@ -232,12 +283,10 @@ async function notifyBottleOwner(ownerId: string, catcher: any, env: Env): Promi
       return;
     }
 
-    const i18n = createI18n(owner.language_pref || 'zh-TW');
-
     // Format catcher info
-    const catcherNickname = catcher.nickname || '匿名用戶';
+    const catcherNickname = maskNickname(catcher.nickname || catcher.username || '匿名用戶');
     const catcherMBTI = catcher.mbti_result || '未設定';
-    const catcherZodiac = catcher.zodiac || '未設定';
+    const catcherZodiac = catcher.zodiac_sign || 'Virgo';
     const catcherGender = catcher.gender === 'male' ? '♂️ 男' : catcher.gender === 'female' ? '♀️ 女' : '未設定';
     const catcherAge = catcher.birthday ? calculateAge(catcher.birthday) : '未知';
 
@@ -246,7 +295,7 @@ async function notifyBottleOwner(ownerId: string, catcher: any, env: Env): Promi
     // Send notification
     await telegram.sendMessage(
       parseInt(ownerId),
-      `🎉 ${catcherNickname} 撿到你的漂流瓶了！\n\n` +
+      `🎉 有人撿到你的漂流瓶了！\n\n` +
         `📝 暱稱：${catcherNickname}\n` +
         `🧠 MBTI：${catcherMBTI}\n` +
         `⭐ 星座：${catcherZodiac}\n` +

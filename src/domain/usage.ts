@@ -25,7 +25,8 @@ export const BOTTLES_PER_INVITE = 1;
 
 // Conversation limits
 export const MAX_MESSAGES_PER_CONVERSATION = 3650;
-export const MAX_DAILY_MESSAGES_PER_CONVERSATION = 100;
+export const FREE_DAILY_MESSAGES_PER_CONVERSATION = 10; // Free users: 10 messages per day per conversation
+export const VIP_DAILY_MESSAGES_PER_CONVERSATION = 100; // VIP users: 100 messages per day per conversation
 
 // ============================================================================
 // Daily Bottle Limits
@@ -69,9 +70,17 @@ export function getRemainingThrows(user: User, usage: DailyUsage | null): number
 // ============================================================================
 
 /**
+ * Get daily message limit for a conversation based on user VIP status
+ */
+export function getConversationDailyLimit(user: User): number {
+  return isVIP(user) ? VIP_DAILY_MESSAGES_PER_CONVERSATION : FREE_DAILY_MESSAGES_PER_CONVERSATION;
+}
+
+/**
  * Check if user can send a message in a conversation
  */
 export function canSendConversationMessage(
+  user: User,
   messageCount: number,
   todayMessageCount: number
 ): boolean {
@@ -80,8 +89,9 @@ export function canSendConversationMessage(
     return false;
   }
 
-  // Check daily message limit per conversation
-  if (todayMessageCount >= MAX_DAILY_MESSAGES_PER_CONVERSATION) {
+  // Check daily message limit per conversation (VIP-aware)
+  const dailyLimit = getConversationDailyLimit(user);
+  if (todayMessageCount >= dailyLimit) {
     return false;
   }
 
@@ -92,15 +102,17 @@ export function canSendConversationMessage(
  * Get remaining messages for a conversation
  */
 export function getRemainingMessages(
+  user: User,
   messageCount: number,
   todayMessageCount: number
 ): {
   total: number;
   today: number;
 } {
+  const dailyLimit = getConversationDailyLimit(user);
   return {
     total: Math.max(0, MAX_MESSAGES_PER_CONVERSATION - messageCount),
-    today: Math.max(0, MAX_DAILY_MESSAGES_PER_CONVERSATION - todayMessageCount),
+    today: Math.max(0, dailyLimit - todayMessageCount),
   };
 }
 

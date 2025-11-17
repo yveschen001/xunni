@@ -134,6 +134,59 @@ export const translations: Translations = {
     expired: '⚠️ Your VIP has expired.\n\nClick below to renew:',
   },
 
+  invite: {
+    inviterSuccess:
+      '🎉 Invitation Success!\n\n' +
+      'Your friend {nickname} has completed registration and activation!\n\n' +
+      '🎁 Reward: Daily bottle quota +1\n' +
+      '📊 Total invites: {count}\n' +
+      '🎯 {userType} user limit: {maxInvites}\n' +
+      '📦 Current daily quota: {quota}',
+    
+    inviteeSuccess:
+      '🎊 Congratulations on activation!\n\n' +
+      'You and your inviter both received rewards:\n' +
+      '• Daily bottle quota +1\n\n' +
+      '💡 Invite more friends to get more quota!\n' +
+      'View your invite code → /profile',
+    
+    limitWarning:
+      '⚠️ Invite quota almost full\n\n' +
+      'You have invited {count} people, only 1 slot left!\n\n' +
+      '💎 Upgrade to VIP to unlock:\n' +
+      '• Invite limit: 10 → 100 people\n' +
+      '• Daily quota: 13 → 130 bottles\n' +
+      '• More exclusive benefits\n\n' +
+      'Upgrade now → /vip',
+    
+    limitReached:
+      '🎊 Congratulations! Invite quota full\n\n' +
+      'You have invited {count} people and received maximum free rewards!\n\n' +
+      '💎 Want to unlock more invites?\n' +
+      'Upgrade to VIP to invite up to 100 people\n\n' +
+      'Upgrade now → /vip',
+    
+    codeAccepted:
+      '✅ Used invite code from {inviterName}\n\n' +
+      'After completing registration, you both will receive rewards!',
+    
+    codeInvalid: '❌ Invalid invite code, please check and try again',
+    
+    selfInviteError: '❌ Cannot use your own invite code',
+    
+    upgradePrompt: '💡 Want unlimited invites? Upgrade to VIP to unlock 100 people limit!',
+    
+    stats: {
+      title: '📊 Invite Statistics',
+      totalInvites: 'Total Invites',
+      activatedInvites: 'Activated',
+      pendingInvites: 'Pending',
+      conversionRate: 'Conversion Rate',
+      yourInviteCode: 'Your Invite Code',
+      shareButton: 'Share Invite Code',
+    },
+  },
+
   errors: {
     generic: '❌ An error occurred. Please try again later.\n\nIf the problem persists, please contact support.',
     notRegistered: '❌ You haven\'t registered yet.\n\nPlease complete registration: /start',

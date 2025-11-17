@@ -8,7 +8,6 @@ import type { Env, TelegramMessage, PreCheckoutQuery, SuccessfulPayment } from '
 import { createDatabaseClient } from '~/db/client';
 import { createTelegramService } from '~/services/telegram';
 import { findUserByTelegramId } from '~/db/queries/users';
-import { createI18n } from '~/i18n';
 import { handleMenu } from './menu';
 
 // VIP pricing (Telegram Stars)
@@ -37,7 +36,6 @@ export async function handleVip(message: TelegramMessage, env: Env): Promise<voi
       return;
     }
 
-    const i18n = createI18n(user.language_pref || 'zh-TW');
     const priceStars = resolveVipPrice(env);
     const priceNote =
       priceStars === DEFAULT_VIP_PRICE_STARS ? '（約 5 USD）' : '（Staging 測試價）';
@@ -65,7 +63,8 @@ export async function handleVip(message: TelegramMessage, env: Env): Promise<voi
           `• 可篩選 MBTI 和星座\n` +
           `• 34 種語言自動翻譯（OpenAI 優先）\n` +
           `• 無廣告體驗\n\n` +
-          `💡 想要續訂或升級嗎？`,
+          `💡 想要續訂或升級嗎？\n\n` +
+          `🏠 返回主選單：/menu`,
         [
           [{ text: `🔄 續訂 VIP (${priceStars} ⭐)`, callback_data: 'vip_renew' }],
           [{ text: '❌ 取消', callback_data: 'vip_cancel' }],
@@ -83,7 +82,8 @@ export async function handleVip(message: TelegramMessage, env: Env): Promise<voi
           `• 34 種語言自動翻譯\n` +
           `  - 優先使用 OpenAI GPT 模型翻譯（高品質）\n` +
           `• 無廣告體驗\n\n` +
-          `💡 使用 Telegram Stars 安全便捷支付`,
+          `💡 使用 Telegram Stars 安全便捷支付\n\n` +
+          `🏠 返回主選單：/menu`,
         [
           [{ text: `💳 購買 VIP (${priceStars} ⭐)`, callback_data: 'vip_purchase' }],
           [{ text: '❌ 取消', callback_data: 'vip_cancel' }],

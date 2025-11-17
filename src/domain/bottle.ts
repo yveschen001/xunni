@@ -27,6 +27,7 @@ export interface ThrowBottleInput {
   target_region?: string;
   target_zodiac_filter?: string[];
   target_mbti_filter?: string[];
+  target_blood_type_filter?: string | null;
 }
 
 const MIN_BOTTLE_LENGTH = 12;

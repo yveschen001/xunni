@@ -54,19 +54,30 @@ wrangler deploy --env production
 
 **開始之前，必須先閱讀：**
 - **[doc/SPEC.md](./doc/SPEC.md)** - 專案規格書（**AI 代理必讀**，包含專案概覽和完整規格）
+- **[CURRENT_STATUS.md](./CURRENT_STATUS.md)** - 當前專案狀態和待開發功能
 - **[doc/ENV_CONFIG.md](./doc/ENV_CONFIG.md)** - 開發環境設置指南（設置本地環境）
 
-完整文檔請查看 [doc/](./doc/) 目錄：
+### 核心文檔
+- [專案規格書](./doc/SPEC.md) - 完整業務規格和資料庫設計
+- [開發規範](./doc/DEVELOPMENT_STANDARDS.md) - 代碼風格和安全開發流程
+- [環境配置](./doc/ENV_CONFIG.md) - 本地環境設置和開發前檢查清單
 
-- [專案規格書](./doc/SPEC.md)
-- [開發規範](./doc/DEVELOPMENT_STANDARDS.md)
-- [環境配置](./doc/ENV_CONFIG.md)
-- [國際化指南](./doc/I18N_GUIDE.md)
-- [管理後台設計](./doc/ADMIN_PANEL.md)
-- [Telegram Stars 訂閱](./doc/TELEGRAM_STARS.md)
-- [測試規範](./doc/TESTING.md)
-- [部署指南](./doc/DEPLOYMENT.md)
-- [備份策略](./doc/BACKUP_STRATEGY.md)
+### 功能文檔
+- [國際化指南](./doc/I18N_GUIDE.md) - 多語言支援
+- [邀請系統設計](./doc/INVITE_SYSTEM_DESIGN.md) - 邀請裂變機制
+- [註冊流程](./doc/ONBOARDING_FLOW.md) - 用戶註冊流程
+
+### 待開發功能
+- [血型功能計劃](./doc/BLOOD_TYPE_FEATURE_PLAN.md) - 血型註冊和配對
+- [MBTI 36 題測試](./doc/MBTI_36_QUESTIONS_PLAN.md) - 完整性格測試
+- [聊天記錄標識](./doc/CHAT_HISTORY_IDENTIFIER_PLAN.md) - 對話對象標識
+- [待開發功能總結](./PENDING_FEATURES_SUMMARY.md) - 所有待開發功能概覽
+
+### 運維文檔
+- [測試規範](./doc/TESTING.md) - 單元測試和集成測試
+- [部署指南](./doc/DEPLOYMENT.md) - Staging 和 Production 部署
+- [備份策略](./doc/BACKUP_STRATEGY.md) - 單向備份原則
+- [Hotfix 日誌](./doc/HOTFIX_LOG.md) - 緊急修復記錄
 
 ## 🏗️ 專案結構
 
@@ -149,5 +160,24 @@ pnpm backup:push
 ---
 
 **版本**: 1.0.0  
-**最後更新**: 2025-01-15
+**最後更新**: 2025-01-16
+
+---
+
+## 📊 當前狀態
+
+### ✅ 已完成功能
+- 用戶註冊和 MBTI 測試
+- 漂流瓶系統（丟瓶、撿瓶、回覆）
+- VIP 訂閱（Telegram Stars）
+- 邀請裂變系統
+- 多語言翻譯（34 種語言）
+- 風險控制和舉報系統
+
+### 🚧 待開發功能（高優先級）
+1. **血型功能**（4-6 小時）- 註冊、編輯、VIP 配對
+2. **MBTI 36 題測試**（6-8 小時）- 完整性格測試
+3. **聊天記錄對象標識**（3-4 小時）- #A, #B, #C 標識
+
+詳細請查看：[CURRENT_STATUS.md](./CURRENT_STATUS.md) 和 [PENDING_FEATURES_SUMMARY.md](./PENDING_FEATURES_SUMMARY.md)
 

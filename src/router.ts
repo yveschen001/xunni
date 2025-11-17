@@ -39,7 +39,7 @@ export async function handleWebhook(request: Request, env: Env): Promise<Respons
 
     // Parse update
     const update: TelegramUpdate = await request.json();
-    console.log('[Router] Received update:', update.update_id);
+    console.error('[Router] Received update:', update.update_id);
 
     // Route update to appropriate handler
     await routeUpdate(update, env);
@@ -110,12 +110,19 @@ async function routeUpdate(update: TelegramUpdate, env: Env): Promise<void> {
         return;
       }
 
+      // Try conversation message (priority over throw bottle)
+      const { handleMessageForward } = await import('./telegram/handlers/message_forward');
+      const isConversationMessage = await handleMessageForward(message, env);
+      if (isConversationMessage) {
+        return;
+      }
+
       // Try throw bottle content input
       const { processBottleContent } = await import('./telegram/handlers/throw');
       const { getActiveSession, deleteSession } = await import('./db/queries/sessions');
       const throwSession = await getActiveSession(db, user.telegram_id, 'throw_bottle');
 
-      console.log('[router] Checking throw session:', {
+      console.error('[router] Checking throw session:', {
         userId: user.telegram_id,
         hasSession: !!throwSession,
         hasText: !!text,
@@ -126,7 +133,7 @@ async function routeUpdate(update: TelegramUpdate, env: Env): Promise<void> {
       if (throwSession) {
         // If user sends a command (starts with '/'), treat it as aborting the throw flow
         if (isCommand) {
-          console.log('[router] Command received during throw flow, clearing session:', {
+          console.error('[router] Command received during throw flow, clearing session:', {
             userId: user.telegram_id,
             command: text,
           });
@@ -134,7 +141,7 @@ async function routeUpdate(update: TelegramUpdate, env: Env): Promise<void> {
           // Do NOT return here – let command routing below handle it
         } else if (text) {
           // Text message - process as bottle content
-          console.log('[router] Processing bottle content:', {
+          console.error('[router] Processing bottle content:', {
             userId: user.telegram_id,
             contentLength: text.length,
           });
@@ -142,7 +149,7 @@ async function routeUpdate(update: TelegramUpdate, env: Env): Promise<void> {
           return;
         } else if (message.photo || message.video || message.document || message.sticker) {
           // Non-text message - reject
-          console.log('[router] Rejecting non-text message during throw flow:', {
+          console.error('[router] Rejecting non-text message during throw flow:', {
             userId: user.telegram_id,
             messageType: message.photo ? 'photo' : message.video ? 'video' : 'other',
           });
@@ -152,13 +159,6 @@ async function routeUpdate(update: TelegramUpdate, env: Env): Promise<void> {
               '💡 請輸入文字訊息（最短 12 字符，最多 500 字符）\n\n' +
               '如果不想繼續，請輸入 /menu 返回主選單'
           );
-          return;
-        }
-      }
-
-      if (!isCommand) {
-        const isConversationMessage = await handleMessageForward(message, env);
-        if (isConversationMessage) {
           return;
         }
       }
@@ -258,6 +258,12 @@ async function routeUpdate(update: TelegramUpdate, env: Env): Promise<void> {
       return;
     }
 
+    if (text.startsWith('/history')) {
+      const { handleHistory } = await import('./telegram/handlers/history');
+      await handleHistory(message, env);
+      return;
+    }
+
     // Development commands (⚠️ REMOVE IN PRODUCTION!)
     if (text === '/dev_reset') {
       const { handleDevReset } = await import('./telegram/handlers/dev');
@@ -274,6 +280,12 @@ async function routeUpdate(update: TelegramUpdate, env: Env): Promise<void> {
     if (text === '/dev_skip') {
       const { handleDevSkip } = await import('./telegram/handlers/dev');
       await handleDevSkip(message, env);
+      return;
+    }
+
+    if (text === '/dev_restart') {
+      const { handleDevRestart } = await import('./telegram/handlers/dev');
+      await handleDevRestart(message, env);
       return;
     }
 
@@ -392,6 +404,14 @@ async function routeUpdate(update: TelegramUpdate, env: Env): Promise<void> {
       return;
     }
 
+    // Blood type selection handlers
+    if (data.startsWith('blood_type_')) {
+      const { handleBloodTypeSelection } = await import('./telegram/handlers/onboarding_callback');
+      const bloodTypeValue = data.replace('blood_type_', '');
+      await handleBloodTypeSelection(callbackQuery, bloodTypeValue, env);
+      return;
+    }
+
     // MBTI choice handlers
     if (data === 'mbti_choice_manual') {
       const { handleMBTIChoiceManual } = await import('./telegram/handlers/onboarding_callback');
@@ -453,6 +473,12 @@ async function routeUpdate(update: TelegramUpdate, env: Env): Promise<void> {
       return;
     }
 
+    if (data === 'filter_blood_type') {
+      const { handleFilterBloodType } = await import('./telegram/handlers/throw_advanced');
+      await handleFilterBloodType(callbackQuery, env);
+      return;
+    }
+
     if (data === 'filter_gender') {
       const { handleFilterGender } = await import('./telegram/handlers/throw_advanced');
       await handleFilterGender(callbackQuery, env);
@@ -496,6 +522,14 @@ async function routeUpdate(update: TelegramUpdate, env: Env): Promise<void> {
     if (data === 'clear_zodiac') {
       const { handleClearZodiac } = await import('./telegram/handlers/throw_advanced');
       await handleClearZodiac(callbackQuery, env);
+      return;
+    }
+
+    // Blood type filter selection
+    if (data.startsWith('blood_type_')) {
+      const { handleBloodTypeSelect } = await import('./telegram/handlers/throw_advanced');
+      const bloodType = data.replace('blood_type_', '');
+      await handleBloodTypeSelect(callbackQuery, bloodType, env);
       return;
     }
 
@@ -574,6 +608,19 @@ async function routeUpdate(update: TelegramUpdate, env: Env): Promise<void> {
       return;
     }
 
+    if (data === 'edit_blood_type') {
+      const { handleEditBloodType } = await import('./telegram/handlers/edit_profile');
+      await handleEditBloodType(callbackQuery, env);
+      return;
+    }
+
+    if (data.startsWith('edit_blood_type_')) {
+      const { handleEditBloodTypeSelection } = await import('./telegram/handlers/edit_profile');
+      const bloodTypeValue = data.replace('edit_blood_type_', '');
+      await handleEditBloodTypeSelection(callbackQuery, bloodTypeValue, env);
+      return;
+    }
+
     if (data === 'edit_match_pref') {
       const { handleEditMatchPref } = await import('./telegram/handlers/edit_profile');
       await handleEditMatchPref(callbackQuery, env);
@@ -587,10 +634,9 @@ async function routeUpdate(update: TelegramUpdate, env: Env): Promise<void> {
       return;
     }
 
-    if (data === 'edit_profile_back') {
-      const { handleEditProfile } = await import('./telegram/handlers/edit_profile');
-      await handleEditProfile(callbackQuery.message as any, env);
-      await telegram.answerCallbackQuery(callbackQuery.id);
+    if (data === 'edit_profile_menu' || data === 'edit_profile_back') {
+      const { handleEditProfileCallback } = await import('./telegram/handlers/edit_profile');
+      await handleEditProfileCallback(callbackQuery, env);
       return;
     }
 
@@ -801,12 +847,13 @@ async function routeUpdate(update: TelegramUpdate, env: Env): Promise<void> {
   // Handle successful payment
   if (update.message && 'successful_payment' in update.message) {
     // TODO: Implement payment success handler
-    // eslint-disable-next-line no-console, @typescript-eslint/no-explicit-any
-    console.log('[Router] Payment received:', (update.message as any).successful_payment);
+    interface SuccessfulPaymentMessage {
+      successful_payment?: unknown;
+    }
+    console.error('[Router] Payment received:', (update.message as SuccessfulPaymentMessage).successful_payment);
     return;
   }
 
-  // eslint-disable-next-line no-console
-  console.log('[Router] Unhandled update type');
+  console.error('[Router] Unhandled update type');
 }
 

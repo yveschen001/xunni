@@ -19,7 +19,12 @@ import {
   getBottleQuota,
 } from '~/domain/bottle';
 import type { ThrowBottleInput } from '~/domain/bottle';
-import { createI18n } from '~/i18n';
+import { canActivateInvite } from '~/domain/invite';
+import {
+  isInviteActivated,
+  activateInvite,
+  incrementSuccessfulInvites,
+} from '~/db/queries/invites';
 
 /**
  * Get target gender based on user's preference
@@ -49,7 +54,7 @@ export async function handleThrow(message: TelegramMessage, env: Env): Promise<v
   const telegramId = message.from!.id.toString();
 
   try {
-    console.log('[handleThrow] Starting for user:', telegramId);
+    console.error('[handleThrow] Starting for user:', telegramId);
     
     // Get user
     const user = await findUserByTelegramId(db, telegramId);
@@ -58,8 +63,7 @@ export async function handleThrow(message: TelegramMessage, env: Env): Promise<v
       return;
     }
 
-    console.log('[handleThrow] User found:', user.nickname);
-    const i18n = createI18n(user.language_pref || 'zh-TW');
+    console.error('[handleThrow] User found:', user.nickname);
 
     // Check if user completed onboarding
     if (user.onboarding_step !== 'completed') {
@@ -132,7 +136,7 @@ export async function handleThrow(message: TelegramMessage, env: Env): Promise<v
       target_gender: targetGender,
     });
     
-    console.log('[handleThrow] Session created:', {
+    console.error('[handleThrow] Session created:', {
       userId: telegramId,
       sessionType: 'throw_bottle',
       targetGender,
@@ -164,7 +168,8 @@ export async function handleThrow(message: TelegramMessage, env: Env): Promise<v
     );
   } catch (error) {
     console.error('[handleThrow] Error:', error);
-    console.error('[handleThrow] Error stack:', error instanceof Error ? error.stack : 'No stack');
+    const errorStack = error instanceof Error ? error.stack : 'No stack';
+    console.error('[handleThrow] Error stack:', errorStack);
     await telegram.sendMessage(
       chatId, 
       `❌ 發生錯誤，請稍後再試。\n\n錯誤信息：${error instanceof Error ? error.message : String(error)}`
@@ -221,12 +226,14 @@ export async function processBottleContent(
     let target_gender: 'male' | 'female' | 'any' = 'any';
     let target_mbti_filter: string[] = [];
     let target_zodiac_filter: string[] = [];
+    let target_blood_type_filter: string | null = null;
     
     if (session) {
       const sessionData = parseSessionData(session);
       target_gender = sessionData.data?.target_gender || 'any';
       target_mbti_filter = sessionData.data?.target_mbti || [];
       target_zodiac_filter = sessionData.data?.target_zodiac || [];
+      target_blood_type_filter = sessionData.data?.target_blood_type || null;
     }
 
     const bottleInput: ThrowBottleInput = {
@@ -234,6 +241,7 @@ export async function processBottleContent(
       target_gender,
       target_mbti_filter: target_mbti_filter.length > 0 ? target_mbti_filter : undefined,
       target_zodiac_filter: target_zodiac_filter.length > 0 ? target_zodiac_filter : undefined,
+      target_blood_type_filter: target_blood_type_filter && target_blood_type_filter !== 'any' ? target_blood_type_filter : null,
       language: user.language_pref,
     };
 
@@ -243,9 +251,25 @@ export async function processBottleContent(
     // Increment daily count
     await incrementDailyThrowCount(db, user.telegram_id);
 
+    // Check and activate invite (first bottle thrown)
+    const hasThrown = true; // User just threw a bottle
+    if (canActivateInvite(user, hasThrown)) {
+      const alreadyActivated = await isInviteActivated(db, user.telegram_id);
+      
+      if (!alreadyActivated) {
+        // Activate invite
+        await activateInvite(db, user.telegram_id);
+        await incrementSuccessfulInvites(db, user.invited_by!);
+        
+        // Send notification (will be implemented in next step)
+        const { handleInviteActivation } = await import('./invite_activation');
+        await handleInviteActivation(db, telegram, user);
+      }
+    }
+
     // Get updated quota info
     const throwsToday = await getDailyThrowCount(db, user.telegram_id);
-    const inviteBonus = 0; // TODO: Calculate from invites
+    const inviteBonus = user.successful_invites || 0;
     const isVip = !!(user.is_vip && user.vip_expire_at && new Date(user.vip_expire_at) > new Date());
     const { quota } = getBottleQuota(isVip, inviteBonus);
 

@@ -137,6 +137,68 @@ export const translations: Translations = {
     expired: '⚠️ 你的 VIP 已過期。\n\n點擊下方按鈕續訂：',
   },
 
+  invite: {
+    // 邀請激活通知（邀請人）
+    inviterSuccess:
+      '🎉 邀請成功！\n\n' +
+      '你的好友 {nickname} 已完成註冊並激活！\n\n' +
+      '🎁 獎勵：每日漂流瓶配額 +1\n' +
+      '📊 已邀請：{count} 人\n' +
+      '🎯 {userType}用戶上限：{maxInvites} 人\n' +
+      '📦 當前每日配額：{quota} 個',
+    
+    // 邀請激活通知（被邀請人）
+    inviteeSuccess:
+      '🎊 恭喜完成激活！\n\n' +
+      '你和邀請人都獲得了獎勵：\n' +
+      '• 每日漂流瓶配額 +1\n\n' +
+      '💡 邀請更多好友，獲得更多配額！\n' +
+      '查看你的邀請碼 → /profile',
+    
+    // 邀請上限提醒（倒數第二個）
+    limitWarning:
+      '⚠️ 邀請名額即將用完\n\n' +
+      '你已成功邀請 {count} 人，還剩最後 1 個名額！\n\n' +
+      '💎 升級 VIP 可解鎖：\n' +
+      '• 邀請上限：10 → 100 人\n' +
+      '• 每日配額：13 → 130 個瓶子\n' +
+      '• 更多專屬權益\n\n' +
+      '立即升級 → /vip',
+    
+    // 邀請上限已滿
+    limitReached:
+      '🎊 恭喜！邀請名額已滿\n\n' +
+      '你已成功邀請 {count} 人，獲得最大免費獎勵！\n\n' +
+      '💎 想要解鎖更多邀請？\n' +
+      '升級 VIP 可邀請最多 100 人\n\n' +
+      '立即升級 → /vip',
+    
+    // 註冊時使用邀請碼
+    codeAccepted:
+      '✅ 已使用 {inviterName} 的邀請碼\n\n' +
+      '完成註冊後，你們都將獲得獎勵！',
+    
+    // 邀請碼無效
+    codeInvalid: '❌ 邀請碼無效，請檢查後重試',
+    
+    // 不能自我邀請
+    selfInviteError: '❌ 不能使用自己的邀請碼',
+    
+    // VIP 升級提示
+    upgradePrompt: '💡 想要無限邀請？升級 VIP 可解鎖 100 人上限！',
+    
+    // 邀請統計
+    stats: {
+      title: '📊 邀請統計',
+      totalInvites: '總邀請數',
+      activatedInvites: '已激活',
+      pendingInvites: '待激活',
+      conversionRate: '轉化率',
+      yourInviteCode: '你的邀請碼',
+      shareButton: '分享邀請碼',
+    },
+  },
+
   errors: {
     generic: '❌ 發生錯誤，請稍後再試。\n\n如果問題持續，請聯繫管理員。',
     notRegistered: '❌ 你還沒有註冊。\n\n請先完成註冊：/start',

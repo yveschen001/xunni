@@ -49,7 +49,15 @@ export async function translateWithGoogle(
       throw new Error(`Google Translate API error: ${response.status} - ${error}`);
     }
 
-    const data = await response.json() as any;
+    interface GoogleTranslateResponse {
+      data?: {
+        translations?: Array<{
+          translatedText?: string;
+          detectedSourceLanguage?: string;
+        }>;
+      };
+    }
+    const data = await response.json() as GoogleTranslateResponse;
     const translatedText = data.data?.translations?.[0]?.translatedText;
     const detectedSourceLanguage = data.data?.translations?.[0]?.detectedSourceLanguage;
 
@@ -94,7 +102,12 @@ async function translateWithMyMemory(
       throw new Error(`MyMemory API error: ${response.status}`);
     }
 
-    const data = await response.json() as any;
+    interface MyMemoryResponse {
+      responseData?: {
+        translatedText?: string;
+      };
+    }
+    const data = await response.json() as MyMemoryResponse;
     const translatedText = data.responseData?.translatedText;
 
     if (!translatedText) {

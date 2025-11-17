@@ -8,7 +8,6 @@ import type { Env, TelegramMessage } from '~/types';
 import { createDatabaseClient } from '~/db/client';
 import { createTelegramService } from '~/services/telegram';
 import { findUserByTelegramId } from '~/db/queries/users';
-import { createI18n } from '~/i18n';
 
 export async function handleStats(message: TelegramMessage, env: Env): Promise<void> {
   const db = createDatabaseClient(env);
@@ -59,7 +58,8 @@ export async function handleStats(message: TelegramMessage, env: Env): Promise<v
       `📅 **註冊時間**：${new Date(user.created_at).toLocaleDateString('zh-TW')}\n` +
       `🎂 **年齡**：${calculateAge(user.birthday!)} 歲\n` +
       `🔮 **星座**：${user.zodiac_sign}\n` +
-      `🧠 **MBTI**：${user.mbti_result || '未設定'}`;
+      `🧠 **MBTI**：${user.mbti_result || '未設定'}\n\n` +
+      `🏠 返回主選單：/menu`;
 
     await telegram.sendMessage(chatId, message_text);
   } catch (error) {
@@ -142,15 +142,17 @@ async function getUserStats(
     WHERE sender_telegram_id = ?
   `).bind(telegramId).first<{ count: number }>();
 
-  // Calculate match rate (bottles caught / bottles thrown)
+  // Calculate match rate (conversations / bottles thrown)
+  // Match rate = percentage of thrown bottles that led to conversations
   const thrown = bottlesThrown?.count || 0;
   const caught = bottlesCaught?.count || 0;
-  const matchRate = thrown > 0 ? Math.round((caught / thrown) * 100) : 0;
-
-  // Calculate reply rate (messages sent / conversations)
-  const messages = totalMessages?.count || 0;
   const conversations = totalConversations?.count || 0;
-  const replyRate = conversations > 0 ? Math.round((messages / conversations) * 10) : 0;
+  const matchRate = thrown > 0 ? Math.min(100, Math.round((conversations / thrown) * 100)) : 0;
+
+  // Calculate reply rate (messages per conversation average)
+  // Reply rate = average messages per conversation (capped at 100%)
+  const messages = totalMessages?.count || 0;
+  const replyRate = conversations > 0 ? Math.min(100, Math.round((messages / conversations) * 10)) : 0;
 
   return {
     bottlesThrown: thrown,
@@ -159,8 +161,8 @@ async function getUserStats(
     totalConversations: conversations,
     activeConversations: activeConversations?.count || 0,
     totalMessages: messages,
-    matchRate,
-    replyRate: Math.min(100, replyRate), // Cap at 100%
+    matchRate, // Capped at 100%
+    replyRate, // Capped at 100%
   };
 }
 

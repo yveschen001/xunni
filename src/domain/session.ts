@@ -4,7 +4,7 @@
  * Pure functions for session management, timeout, and state handling.
  */
 
-export type SessionType = 'onboarding' | 'throw_bottle' | 'catch_bottle' | 'conversation';
+export type SessionType = 'onboarding' | 'throw_bottle' | 'catch_bottle' | 'conversation' | 'edit_profile';
 
 export interface UserSession {
   id: number;
@@ -18,7 +18,7 @@ export interface UserSession {
 
 export interface SessionData {
   step?: string;
-  data?: Record<string, any>;
+  data?: Record<string, unknown>;
 }
 
 // Session timeout durations (in minutes)
@@ -27,6 +27,7 @@ export const SESSION_TIMEOUT = {
   throw_bottle: 10, // 10 minutes for throwing bottle
   catch_bottle: 5, // 5 minutes for catching bottle
   conversation: 60, // 60 minutes for active conversation
+  edit_profile: 10, // 10 minutes for editing profile
 } as const;
 
 /**

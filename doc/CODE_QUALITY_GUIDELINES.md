@@ -48,27 +48,92 @@ export function getQuestion(index: number, _language: string = 'zh-TW'): MBTIQue
 
 **规则**: 避免使用 `any` 类型，除非绝对必要。
 
-**❌ 错误示例**:
+#### 2.1 常见错误和修复方法
+
+**❌ 错误 1: API 响应使用 `any`**
+```typescript
+const data = (await response.json()) as any;
+const result = data.choices[0]?.message?.content;
+```
+
+**✅ 正确做法: 定义响应接口**
+```typescript
+interface OpenAIResponse {
+  choices?: Array<{
+    message?: {
+      content?: string;
+    };
+  }>;
+}
+const data = (await response.json()) as OpenAIResponse;
+const result = data.choices?.[0]?.message?.content;
+```
+
+**❌ 错误 2: 回调参数使用 `any`**
 ```typescript
 export async function handleCallback(callbackQuery: any, env: Env): Promise<void> {
-  // any 类型失去了类型安全
+  // ...
 }
 ```
 
-**✅ 正确示例**:
+**✅ 正确做法: 使用已定义的类型**
 ```typescript
-import type { TelegramCallbackQuery } from '~/types';
+import type { CallbackQuery } from '~/types';
 
-export async function handleCallback(callbackQuery: TelegramCallbackQuery, env: Env): Promise<void> {
-  // 使用具体类型
+export async function handleCallback(callbackQuery: CallbackQuery, env: Env): Promise<void> {
+  // ...
 }
 ```
 
-**例外情况**: 在处理外部 API 响应时，可以临时使用 `any`，但应尽快转换为具体类型：
+**❌ 错误 3: Record 使用 `any`**
 ```typescript
-const response = await fetch(url);
-const data = await response.json() as any; // 临时使用
-const typedData: SpecificType = validateAndTransform(data); // 立即转换
+export interface SessionData {
+  step?: string;
+  data?: Record<string, any>;
+}
+```
+
+**✅ 正确做法: 使用 `unknown` 或具体类型**
+```typescript
+export interface SessionData {
+  step?: string;
+  data?: Record<string, unknown>;
+}
+```
+
+**❌ 错误 4: 类型断言使用 `any`**
+```typescript
+if (!MBTI_TYPES.includes(mbti as any)) {
+  return { valid: false, error: 'Invalid MBTI type' };
+}
+```
+
+**✅ 正确做法: 使用类型索引**
+```typescript
+if (!MBTI_TYPES.includes(mbti as (typeof MBTI_TYPES)[number])) {
+  return { valid: false, error: 'Invalid MBTI type' };
+}
+```
+
+#### 2.2 Switch Case 中的变量声明
+
+**❌ 错误: 直接在 case 中声明变量**
+```typescript
+switch (action) {
+  case 'action1':
+    const result = await doSomething(); // ESLint 错误
+    break;
+}
+```
+
+**✅ 正确: 使用代码块**
+```typescript
+switch (action) {
+  case 'action1': {
+    const result = await doSomething();
+    break;
+  }
+}
 ```
 
 ---

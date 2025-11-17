@@ -282,7 +282,7 @@ export function validateBirthday(birthday: string): { valid: boolean; error?: st
  * Validate MBTI result
  */
 export function validateMBTI(mbti: string): { valid: boolean; error?: string } {
-  if (!MBTI_TYPES.includes(mbti as any)) {
+  if (!MBTI_TYPES.includes(mbti as (typeof MBTI_TYPES)[number])) {
     return { valid: false, error: 'Invalid MBTI type' };
   }
 

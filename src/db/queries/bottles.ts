@@ -26,8 +26,9 @@ export async function createBottle(
       target_gender,
       target_region,
       target_zodiac_filter,
-      target_mbti_filter
-    ) VALUES (?, ?, datetime('now'), ?, 'pending', ?, ?, ?, ?)
+      target_mbti_filter,
+      target_blood_type_filter
+    ) VALUES (?, ?, datetime('now'), ?, 'pending', ?, ?, ?, ?, ?)
   `).bind(
     ownerId,
     input.content,
@@ -35,7 +36,8 @@ export async function createBottle(
     input.target_gender,
     input.target_region || null,
     input.target_zodiac_filter ? JSON.stringify(input.target_zodiac_filter) : null,
-    input.target_mbti_filter ? JSON.stringify(input.target_mbti_filter) : null
+    input.target_mbti_filter ? JSON.stringify(input.target_mbti_filter) : null,
+    input.target_blood_type_filter || null
   ).run();
 
   return result.meta.last_row_id as number;
@@ -50,7 +52,8 @@ export async function findMatchingBottle(
   userGender: string,
   userAge: number,
   userZodiac: string,
-  userMbti: string
+  userMbti: string,
+  userBloodType?: string | null
 ): Promise<Bottle | null> {
   // Find bottles that:
   // 1. Are pending
@@ -117,6 +120,18 @@ export async function findMatchingBottle(
         }
       } catch (error) {
         console.error('[findMatchingBottle] Failed to parse Zodiac filter:', error);
+      }
+    }
+
+    // Check Blood Type filter
+    if (bottle.target_blood_type_filter && bottle.target_blood_type_filter !== 'any') {
+      // If bottle has blood type filter and user has no blood type, skip
+      if (!userBloodType) {
+        return false;
+      }
+      // Check if user's blood type matches the filter
+      if (bottle.target_blood_type_filter !== userBloodType) {
+        return false;
       }
     }
 

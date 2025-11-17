@@ -9,6 +9,8 @@ import type { Env, TelegramMessage, User } from '~/types';
 import { createDatabaseClient } from '~/db/client';
 import { findUserByTelegramId, createUser } from '~/db/queries/users';
 import { generateInviteCode, hasCompletedOnboarding } from '~/domain/user';
+import { extractInviteCode, validateInviteCode } from '~/domain/invite';
+import { createInvite } from '~/db/queries/invites';
 import { createTelegramService } from '~/services/telegram';
 import { getPopularLanguageButtons } from '~/i18n/languages';
 
@@ -23,6 +25,33 @@ export async function handleStart(message: TelegramMessage, env: Env): Promise<v
   const telegramId = message.from!.id.toString();
 
   try {
+    // Extract invite code from /start command
+    const inviteCode = extractInviteCode(message.text || '');
+    let inviterTelegramId: string | null = null;
+
+    // Validate and process invite code
+    if (inviteCode) {
+      if (validateInviteCode(inviteCode)) {
+        // Find inviter by invite code
+        const inviter = await db.d1
+          .prepare('SELECT telegram_id, nickname FROM users WHERE invite_code = ?')
+          .bind(inviteCode)
+          .first<{ telegram_id: string; nickname: string }>();
+
+        if (inviter) {
+          // Prevent self-invitation
+          if (inviter.telegram_id !== telegramId) {
+            inviterTelegramId = inviter.telegram_id;
+          } else {
+            const { createI18n } = await import('~/i18n');
+            const i18n = createI18n('zh-TW');
+            await telegram.sendMessage(chatId, i18n.t('invite.selfInviteError'));
+            return;
+          }
+        }
+      }
+    }
+
     // Check if user exists
     let user = await findUserByTelegramId(db, telegramId);
 
@@ -35,7 +64,24 @@ export async function handleStart(message: TelegramMessage, env: Env): Promise<v
         last_name: message.from!.last_name,
         language_pref: message.from!.language_code || 'zh-TW',
         invite_code: generateInviteCode(),
+        invited_by: inviterTelegramId,
       });
+
+      // Create invite record if invited
+      if (inviterTelegramId) {
+        await createInvite(db, inviterTelegramId, telegramId, inviteCode!);
+
+        // Notify new user about invite
+        const inviter = await findUserByTelegramId(db, inviterTelegramId);
+        if (inviter) {
+          const { createI18n } = await import('~/i18n');
+          const i18n = createI18n(user.language_pref || 'zh-TW');
+          await telegram.sendMessage(
+            chatId,
+            i18n.t('invite.codeAccepted', { inviterName: inviter.nickname || '好友' })
+          );
+        }
+      }
 
       const { createI18n } = await import('~/i18n');
       const i18n = createI18n(user.language_pref || 'zh-TW');
@@ -148,6 +194,32 @@ async function resumeOnboarding(
           `• 必須年滿 18 歲才能使用本服務`
       );
       break;
+
+    case 'blood_type': {
+      const { getBloodTypeOptions } = await import('~/domain/blood_type');
+      const options = getBloodTypeOptions();
+      
+      await telegram.sendMessageWithButtons(
+        chatId,
+        `🩸 **請選擇你的血型**\n\n` +
+          `💡 填寫血型可用於未來的血型配對功能（VIP 專屬）\n\n` +
+          `請選擇你的血型：`,
+        [
+          [
+            { text: options[0].display, callback_data: 'blood_type_A' },
+            { text: options[1].display, callback_data: 'blood_type_B' },
+          ],
+          [
+            { text: options[2].display, callback_data: 'blood_type_AB' },
+            { text: options[3].display, callback_data: 'blood_type_O' },
+          ],
+          [
+            { text: options[4].display, callback_data: 'blood_type_skip' },
+          ],
+        ]
+      );
+      break;
+    }
 
     case 'mbti':
       // Show MBTI options: manual / test / skip

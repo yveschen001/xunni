@@ -204,13 +204,89 @@ export async function handleBirthdayConfirmation(
       zodiac_sign: zodiacSign,
     });
 
-    // Move to next step
-    await updateOnboardingStep(db, telegramId, 'mbti');
+    // Move to next step: blood_type
+    await updateOnboardingStep(db, telegramId, 'blood_type');
 
     // Answer callback
     await telegram.answerCallbackQuery(callbackQuery.id, '✅ 生日已保存');
 
     // Delete confirmation message
+    await telegram.deleteMessage(chatId, callbackQuery.message!.message_id);
+
+    // Show blood type selection
+    const { getBloodTypeOptions } = await import('~/domain/blood_type');
+    const options = getBloodTypeOptions();
+    
+    await telegram.sendMessageWithButtons(
+      chatId,
+      `🩸 **請選擇你的血型**\n\n` +
+        `💡 填寫血型可用於未來的血型配對功能（VIP 專屬）\n\n` +
+        `請選擇你的血型：`,
+      [
+        [
+          { text: options[0].display, callback_data: 'blood_type_A' },
+          { text: options[1].display, callback_data: 'blood_type_B' },
+        ],
+        [
+          { text: options[2].display, callback_data: 'blood_type_AB' },
+          { text: options[3].display, callback_data: 'blood_type_O' },
+        ],
+        [
+          { text: options[4].display, callback_data: 'blood_type_skip' },
+        ],
+      ]
+    );
+  } catch (error) {
+    console.error('[handleBirthdayConfirm] Error:', error);
+    await telegram.answerCallbackQuery(callbackQuery.id, '❌ 發生錯誤');
+  }
+}
+
+// ============================================================================
+// Blood Type Selection
+// ============================================================================
+
+export async function handleBloodTypeSelection(
+  callbackQuery: CallbackQuery,
+  bloodTypeValue: string,
+  env: Env
+): Promise<void> {
+  const db = createDatabaseClient(env);
+  const telegram = createTelegramService(env);
+  const chatId = callbackQuery.message!.chat.id;
+  const telegramId = callbackQuery.from.id.toString();
+
+  try {
+    // Get user
+    const user = await findUserByTelegramId(db, telegramId);
+    if (!user) {
+      await telegram.answerCallbackQuery(callbackQuery.id, '❌ 用戶不存在');
+      return;
+    }
+
+    // Check if user is in blood_type step
+    if (user.onboarding_step !== 'blood_type') {
+      await telegram.answerCallbackQuery(callbackQuery.id, '❌ 當前不在血型選擇步驟');
+      return;
+    }
+
+    // Parse blood type (skip means null)
+    const bloodType = bloodTypeValue === 'skip' ? null : bloodTypeValue;
+
+    // Save blood type
+    await updateUserProfile(db, telegramId, {
+      blood_type: bloodType,
+    });
+
+    // Move to next step: mbti
+    await updateOnboardingStep(db, telegramId, 'mbti');
+
+    // Answer callback
+    const { getBloodTypeDisplay } = await import('~/domain/blood_type');
+    const displayText = bloodType ? `✅ 血型已設定為 ${getBloodTypeDisplay(bloodType as any)}` : '✅ 已跳過血型設定';
+    await telegram.answerCallbackQuery(callbackQuery.id, displayText);
+
+    // Delete blood type message
     await telegram.deleteMessage(chatId, callbackQuery.message!.message_id);
 
     // Show MBTI options: manual / test / skip

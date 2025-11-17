@@ -41,12 +41,40 @@ The following files are considered **protected**:
   3. Only after clear confirmation, apply the minimal necessary edits.
 - **Never create new top-level docs that replace these protected files unless the user explicitly requests a new document.**
 
+## ⚠️ 安全開發原則（Critical: Prevent Breaking Changes）
+
+**在修改任何代碼前，必須遵守以下原則：**
+
+### 部署前檢查清單（必須完成）
+1. ✅ **確認 remote 資料庫 schema 最新** - 檢查 migration 是否已執行
+2. ✅ **執行 `pnpm lint`** - 確保 0 錯誤
+3. ✅ **執行 `pnpm test`** - 確保所有測試通過
+4. ✅ **核對 SPEC.md** - 確認完整需求（如：34 種語言）
+5. ✅ **執行完整 Smoke Test** - 測試所有核心功能
+6. ✅ **檢查 UI 顯示** - 暱稱擾碼、統計數據、按鈕提示
+
+### 常見錯誤預防
+- ❌ **資料庫 Migration 未在 Remote 執行** → 部署前確認表存在
+- ❌ **使用錯誤的工具函數** → 暱稱擾碼統一使用 `maskNickname`
+- ❌ **計算邏輯錯誤** → 百分比必須加 `Math.min(100, ...)`
+- ❌ **語言映射不完整** → 確認支援 34 種語言
+- ❌ **Smoke Test 不完整** → 每次新增功能都要更新測試
+
+### 安全修改流程
+1. **理解現有實現** - 閱讀代碼、查看 SPEC.md、查看測試
+2. **規劃變更** - 列出範圍、確認依賴、規劃測試
+3. **執行變更** - 一次只改一個地方、保持一致性
+4. **驗證變更** - 執行測試、Smoke Test、手動測試
+5. **更新文檔** - 更新 SPEC.md、相關文檔、CHANGELOG
+
+**詳細規範請參考：`@doc/DEVELOPMENT_STANDARDS.md` 第 6 節**
+
 ## 第一步：閱讀專案概覽
 
 **在開始任何工作前，必須先閱讀：**
 - `@doc/SPEC.md` - 專案規格書（**必讀**，包含專案概覽、結構、完整業務邏輯和**術語表**）
 - `@doc/ENV_CONFIG.md` - 開發環境設置指南（如何設置本地環境，包含**開發前檢查清單**）
-- `@doc/DEVELOPMENT_STANDARDS.md` - 代碼風格和命名規範（包含**AI 協作流程**）
+- `@doc/DEVELOPMENT_STANDARDS.md` - 代碼風格和命名規範（包含**AI 協作流程**和**安全開發流程**）
 
 ## 開發規範（必須遵守）
 

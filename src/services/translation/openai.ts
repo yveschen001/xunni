@@ -26,10 +26,34 @@ export async function translateWithOpenAI(
     throw new Error('OPENAI_API_KEY not configured');
   }
 
+  // Build language map for better localization (34 languages)
+  const languageMap: Record<string, string> = {
+    'zh-TW': 'Traditional Chinese (Taiwan)', 'zh-CN': 'Simplified Chinese', 'en': 'English',
+    'ja': 'Japanese', 'ko': 'Korean', 'th': 'Thai', 'vi': 'Vietnamese', 'id': 'Indonesian',
+    'ms': 'Malay', 'tl': 'Filipino', 'es': 'Spanish', 'pt': 'Portuguese', 'fr': 'French',
+    'de': 'German', 'it': 'Italian', 'ru': 'Russian', 'ar': 'Arabic', 'hi': 'Hindi',
+    'bn': 'Bengali', 'tr': 'Turkish', 'pl': 'Polish', 'uk': 'Ukrainian', 'nl': 'Dutch',
+    'sv': 'Swedish', 'no': 'Norwegian', 'da': 'Danish', 'fi': 'Finnish', 'cs': 'Czech',
+    'el': 'Greek', 'he': 'Hebrew', 'fa': 'Persian', 'ur': 'Urdu', 'sw': 'Swahili', 'ro': 'Romanian',
+  };
+
+  const targetLangName = languageMap[targetLanguage] || targetLanguage;
+  const sourceLangName = sourceLanguage ? languageMap[sourceLanguage] || sourceLanguage : 'the source language';
+
   // Build prompt
-  const prompt = sourceLanguage
-    ? `Translate the following text from ${sourceLanguage} to ${targetLanguage}. Only return the translated text, nothing else:\n\n${text}`
-    : `Translate the following text to ${targetLanguage}. Only return the translated text, nothing else:\n\n${text}`;
+  const prompt = `Translate the following text from ${sourceLangName} to ${targetLangName}.
+
+CRITICAL RULES:
+1. Return ONLY the translated text
+2. Do NOT add any explanations, notes, or comments
+3. Do NOT explain translation choices or provide alternatives
+4. Do NOT add context, clarifications, or meta-commentary
+5. Use natural, localized expressions appropriate for ${targetLangName}
+6. Preserve the original tone and style
+7. If the text contains internet slang or informal expressions, translate them to equivalent natural expressions in ${targetLangName}
+
+Text to translate:
+${text}`;
 
   try {
     const response = await fetch('https://api.openai.com/v1/chat/completions', {
@@ -43,7 +67,7 @@ export async function translateWithOpenAI(
         messages: [
           {
             role: 'system',
-            content: 'You are a professional translator. Translate the text accurately and naturally.',
+            content: 'You are a professional translator. Your task is to translate text accurately and naturally. Return ONLY the translated text without any explanations, notes, or meta-commentary.',
           },
           {
             role: 'user',
@@ -61,8 +85,18 @@ export async function translateWithOpenAI(
       throw new Error(`OpenAI API error: ${response.status} - ${error}`);
     }
 
-    const data = await response.json() as any;
-    const translatedText = data.choices[0]?.message?.content?.trim();
+    interface OpenAITranslationResponse {
+      choices?: Array<{
+        message?: {
+          content?: string;
+        };
+      }>;
+      usage?: {
+        total_tokens?: number;
+      };
+    }
+    const data = await response.json() as OpenAITranslationResponse;
+    const translatedText = data.choices?.[0]?.message?.content?.trim();
     
     if (!translatedText) {
       throw new Error('Empty translation result from OpenAI');
@@ -123,7 +157,14 @@ export async function detectLanguage(
       throw new Error(`OpenAI API error: ${response.status}`);
     }
 
-    const data = await response.json() as any;
+    interface LanguageDetectionResponse {
+      choices?: Array<{
+        message?: {
+          content?: string;
+        };
+      }>;
+    }
+    const data = await response.json() as LanguageDetectionResponse;
     const languageCode = data.choices[0]?.message?.content?.trim().toLowerCase();
     
     return languageCode || 'en';

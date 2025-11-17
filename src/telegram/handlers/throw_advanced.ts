@@ -4,13 +4,12 @@
  * Handles VIP advanced filtering (MBTI/Zodiac) for bottle throwing.
  */
 
-import type { Env, User } from '~/types';
+import type { Env } from '~/types';
 import { createDatabaseClient } from '~/db/client';
 import { createTelegramService } from '~/services/telegram';
 import { findUserByTelegramId } from '~/db/queries/users';
 import { upsertSession, getActiveSession, updateSessionData } from '~/db/queries/sessions';
-import { parseSessionData, serializeSessionData } from '~/domain/session';
-import type { SessionData } from '~/domain/session';
+import { parseSessionData } from '~/domain/session';
 
 // MBTI types
 const MBTI_TYPES = [
@@ -85,16 +84,18 @@ export async function handleThrowAdvanced(
         target_gender: 'any',
         target_mbti: [],
         target_zodiac: [],
+        target_blood_type: 'any',
       },
     });
 
     // Show advanced filter menu
     await telegram.sendMessageWithButtons(
       chatId,
-      '⚙️ **進階篩選**\n\n' +
+      '⚙️ **進階篩選（VIP 專屬）**\n\n' +
         '選擇你想要篩選的條件：\n\n' +
         '• MBTI：篩選特定性格類型\n' +
         '• 星座：篩選特定星座\n' +
+        '• 血型：篩選特定血型\n' +
         '• 性別：篩選性別\n\n' +
         '💡 可以組合多個條件',
       [
@@ -103,6 +104,9 @@ export async function handleThrowAdvanced(
         ],
         [
           { text: '⭐ 星座篩選', callback_data: 'filter_zodiac' },
+        ],
+        [
+          { text: '🩸 血型篩選', callback_data: 'filter_blood_type' },
         ],
         [
           { text: '👤 性別篩選', callback_data: 'filter_gender' },
@@ -190,7 +194,6 @@ export async function handleSelectMBTI(
 ): Promise<void> {
   const db = createDatabaseClient(env);
   const telegram = createTelegramService(env);
-  const chatId = callbackQuery.message!.chat.id;
   const telegramId = callbackQuery.from.id.toString();
 
   try {
@@ -301,7 +304,6 @@ export async function handleSelectZodiac(
 ): Promise<void> {
   const db = createDatabaseClient(env);
   const telegram = createTelegramService(env);
-  const chatId = callbackQuery.message!.chat.id;
   const telegramId = callbackQuery.from.id.toString();
 
   try {
@@ -407,7 +409,6 @@ export async function handleSetGender(
 ): Promise<void> {
   const db = createDatabaseClient(env);
   const telegram = createTelegramService(env);
-  const chatId = callbackQuery.message!.chat.id;
   const telegramId = callbackQuery.from.id.toString();
 
   try {
@@ -621,6 +622,109 @@ export async function handleClearZodiac(
     await handleFilterZodiac(callbackQuery, env);
   } catch (error) {
     console.error('[handleClearZodiac] Error:', error);
+    await telegram.answerCallbackQuery(callbackQuery.id, '❌ 發生錯誤');
+  }
+}
+
+/**
+ * Show blood type filter selection
+ */
+export async function handleFilterBloodType(
+  callbackQuery: any,
+  env: Env
+): Promise<void> {
+  const db = createDatabaseClient(env);
+  const telegram = createTelegramService(env);
+  const chatId = callbackQuery.message!.chat.id;
+  const telegramId = callbackQuery.from.id.toString();
+
+  try {
+    const session = await getActiveSession(db, telegramId, 'throw_bottle');
+    if (!session) {
+      await telegram.answerCallbackQuery(callbackQuery.id, '❌ 會話已過期');
+      return;
+    }
+
+    await telegram.answerCallbackQuery(callbackQuery.id);
+    await telegram.deleteMessage(chatId, callbackQuery.message!.message_id);
+
+    const sessionData = parseSessionData(session);
+    const currentBloodType = sessionData.data?.target_blood_type || 'any';
+
+    const bloodTypeDisplay: Record<string, string> = {
+      any: '任何血型',
+      A: '🩸 A 型',
+      B: '🩸 B 型',
+      AB: '🩸 AB 型',
+      O: '🩸 O 型',
+    };
+
+    await telegram.sendMessageWithButtons(
+      chatId,
+      '🩸 **血型篩選**\n\n' +
+        `當前選擇：${bloodTypeDisplay[currentBloodType]}\n\n` +
+        '選擇你想要配對的血型：',
+      [
+        [
+          { text: '🩸 A 型', callback_data: 'blood_type_A' },
+          { text: '🩸 B 型', callback_data: 'blood_type_B' },
+        ],
+        [
+          { text: '🩸 AB 型', callback_data: 'blood_type_AB' },
+          { text: '🩸 O 型', callback_data: 'blood_type_O' },
+        ],
+        [
+          { text: '🌈 任何血型', callback_data: 'blood_type_any' },
+        ],
+        [
+          { text: '↩️ 返回篩選選單', callback_data: 'throw_advanced' },
+        ],
+      ]
+    );
+  } catch (error) {
+    console.error('[handleFilterBloodType] Error:', error);
+    await telegram.answerCallbackQuery(callbackQuery.id, '❌ 發生錯誤');
+  }
+}
+
+/**
+ * Handle blood type selection
+ */
+export async function handleBloodTypeSelect(
+  callbackQuery: any,
+  bloodType: string,
+  env: Env
+): Promise<void> {
+  const db = createDatabaseClient(env);
+  const telegram = createTelegramService(env);
+  const telegramId = callbackQuery.from.id.toString();
+
+  try {
+    const session = await getActiveSession(db, telegramId, 'throw_bottle');
+    if (!session) {
+      await telegram.answerCallbackQuery(callbackQuery.id, '❌ 會話已過期');
+      return;
+    }
+
+    const sessionData = parseSessionData(session);
+    sessionData.data = {
+      ...sessionData.data,
+      target_blood_type: bloodType,
+    };
+    await updateSessionData(db, session.id, sessionData);
+
+    const bloodTypeDisplay: Record<string, string> = {
+      any: '任何血型',
+      A: '🩸 A 型',
+      B: '🩸 B 型',
+      AB: '🩸 AB 型',
+      O: '🩸 O 型',
+    };
+
+    await telegram.answerCallbackQuery(callbackQuery.id, `✅ 已選擇 ${bloodTypeDisplay[bloodType]}`);
+    await handleFilterBloodType(callbackQuery, env);
+  } catch (error) {
+    console.error('[handleBloodTypeSelect] Error:', error);
     await telegram.answerCallbackQuery(callbackQuery.id, '❌ 發生錯誤');
   }
 }

@@ -429,13 +429,248 @@ chore: 更新依賴版本
 
 ---
 
-## 6. 參考資源
+## 6. 安全開發與防止改壞（Critical: Prevent Breaking Changes）
+
+### 6.1 部署前必須檢查清單（Deployment Checklist）
+
+**在部署到 Staging 或 Production 前，必須完成以下所有檢查：**
+
+#### 資料庫檢查
+- [ ] **確認 remote 資料庫 schema 是否最新**
+  - 檢查所有 migration 是否已在 remote 執行
+  - 執行 `npx wrangler d1 execute <db-name> --command="SELECT name FROM sqlite_master WHERE type='table';" --remote` 確認表存在
+  - 特別檢查新增的表和欄位
+
+#### 代碼檢查
+- [ ] **執行 `pnpm lint`** - 確保 0 錯誤，警告數量未增加
+- [ ] **執行 `pnpm test`** - 確保所有測試通過
+- [ ] **檢查是否使用了正確的工具函數**
+  - 例如：暱稱擾碼使用 `maskNickname` 而不是 `maskSensitiveValue`
+  - 確認函數名稱和用途一致
+
+#### 業務邏輯檢查
+- [ ] **確認計算邏輯符合業務定義**
+  - 百分比數據必須在 0-100% 之間
+  - 匹配成功率 = `(對話數 / 丟出瓶子數) * 100`，上限 100%
+  - 所有比率計算都要加上 `Math.min(100, ...)` 限制
+- [ ] **核對 SPEC.md 確認完整需求**
+  - 例如：確認支援 34 種語言，不是 20 種
+  - 確認欄位定義（如 `zh-TW` 應該是 "Traditional Chinese (Taiwan)"）
+
+#### 功能完整性檢查
+- [ ] **執行完整的 Smoke Test**
+  - 測試所有核心命令（`/start`, `/profile`, `/throw`, `/catch`, `/stats` 等）
+  - 測試對話流程（發送訊息、查看資料卡片）
+  - 測試新增功能的完整流程
+- [ ] **檢查 UI 顯示**
+  - 暱稱擾碼格式正確（`張小明` → `張**`，不是 `****`）
+  - 統計數據合理（百分比 0-100%）
+  - 按鈕和提示文字正確顯示
+
+#### 文檔檢查
+- [ ] **確認 SPEC.md 已更新**（如有業務邏輯或資料庫變更）
+- [ ] **確認相關文檔已同步更新**
+
+### 6.2 常見錯誤與預防（Common Mistakes & Prevention）
+
+#### 錯誤 1：資料庫 Migration 未在 Remote 執行
+**症狀：** 部署後出現 `no such table` 或 `no such column` 錯誤
+
+**預防措施：**
+1. Migration 寫完後，立即在 remote 執行：
+   ```bash
+   npx wrangler d1 execute <db-name> --file=src/db/migrations/XXXX.sql --env staging --remote
+   ```
+2. 部署前確認表存在：
+   ```bash
+   npx wrangler d1 execute <db-name> --command="SELECT name FROM sqlite_master WHERE type='table';" --env staging --remote
+   ```
+3. 在部署檢查清單中加入此項
+
+**修復方法：**
+- 手動執行 migration SQL
+- 或使用 `--command` 直接執行 CREATE TABLE
+
+#### 錯誤 2：使用了錯誤的工具函數
+**症狀：** 暱稱顯示為 `****` 而不是 `張**`
+
+**預防措施：**
+1. 統一使用 `maskNickname` 函數處理暱稱擾碼
+2. 代碼審查時檢查函數名稱和用途是否一致
+3. 添加單元測試驗證擾碼格式
+
+**修復方法：**
+```typescript
+// 錯誤
+import { maskSensitiveValue } from '~/utils/mask';
+const nickname = maskSensitiveValue(user.nickname);
+
+// 正確
+import { maskNickname } from '~/domain/invite';
+const nickname = maskNickname(user.nickname || '匿名');
+```
+
+#### 錯誤 3：計算邏輯錯誤導致數據超出合理範圍
+**症狀：** 匹配成功率顯示 200%
+
+**預防措施：**
+1. 所有百分比計算都要加上 `Math.min(100, ...)` 限制
+2. 確認計算邏輯符合業務定義
+3. 添加單元測試驗證數據範圍
+
+**修復方法：**
+```typescript
+// 錯誤：可能超過 100%
+const matchRate = thrown > 0 ? Math.round((caught / thrown) * 100) : 0;
+
+// 正確：限制在 100% 以內
+const matchRate = thrown > 0 ? Math.min(100, Math.round((conversations / thrown) * 100)) : 0;
+```
+
+#### 錯誤 4：語言映射不完整
+**症狀：** 部分語言無法正確翻譯或顯示
+
+**預防措施：**
+1. 修改前先查看 SPEC.md 確認完整需求（34 種語言）
+2. 確保所有語言服務使用相同的語言列表
+3. 添加測試驗證所有語言都有映射
+
+**檢查位置：**
+- `src/i18n/languages.ts` - 語言列表（應該有 34 種）
+- `src/services/gemini.ts` - Gemini 翻譯語言映射
+- `src/services/translation/openai.ts` - OpenAI 翻譯語言映射
+
+#### 錯誤 5：Smoke Test 不完整
+**症狀：** 部署後才發現功能損壞
+
+**預防措施：**
+1. Smoke Test 必須覆蓋所有核心功能
+2. 每次新增功能都要更新 Smoke Test
+3. 部署前必須執行完整的 Smoke Test
+
+**Smoke Test 必須包含：**
+- [ ] 所有核心命令（`/start`, `/profile`, `/throw`, `/catch`, `/stats`, `/vip`, `/menu`）
+- [ ] 對話流程（發送訊息、查看資料卡片、回覆）
+- [ ] 邀請流程（生成邀請碼、使用邀請碼、激活邀請）
+- [ ] 統計數據合理性（百分比 0-100%）
+- [ ] UI 顯示正確性（暱稱擾碼、按鈕、提示）
+
+### 6.3 修改代碼的安全流程（Safe Code Modification Process）
+
+**遵循以下流程，避免改壞已有功能：**
+
+#### Step 1: 理解現有實現
+1. **閱讀相關代碼**
+   - 找出所有相關文件
+   - 理解現有邏輯和數據流
+2. **查看 SPEC.md**
+   - 確認業務規則和定義
+   - 檢查術語表確保理解正確
+3. **查看測試**
+   - 了解現有測試覆蓋了什麼
+   - 確認預期行為
+
+#### Step 2: 規劃變更
+1. **列出變更範圍**
+   - 需要修改哪些文件
+   - 會影響哪些功能
+2. **確認依賴關係**
+   - 哪些函數會調用這個函數
+   - 修改後會影響哪些地方
+3. **規劃測試**
+   - 需要新增哪些測試
+   - 需要更新哪些測試
+
+#### Step 3: 執行變更
+1. **一次只改一個地方**
+   - 避免同時修改多個文件
+   - 每次修改後立即測試
+2. **保持一致性**
+   - 如果修改了函數簽名，確保所有調用處都更新
+   - 如果修改了資料庫 schema，確保所有查詢都更新
+3. **添加註釋**
+   - 解釋為什麼這樣修改
+   - 標註業務邏輯的關鍵點
+
+#### Step 4: 驗證變更
+1. **執行測試**
+   ```bash
+   pnpm test        # 單元測試
+   pnpm lint        # 代碼檢查
+   ```
+2. **執行 Smoke Test**
+   ```bash
+   npx tsx scripts/smoke-test.ts
+   ```
+3. **手動測試**
+   - 測試修改的功能
+   - 測試相關的功能（確保沒有改壞）
+
+#### Step 5: 更新文檔
+1. **更新 SPEC.md**（如有業務邏輯或資料庫變更）
+2. **更新相關文檔**（ENV_CONFIG.md, TESTING.md 等）
+3. **記錄變更**（CHANGELOG.md）
+
+### 6.4 代碼審查重點（Code Review Checklist）
+
+**在提交代碼前，自我審查以下項目：**
+
+#### 功能正確性
+- [ ] 業務邏輯符合 SPEC.md 定義
+- [ ] 計算公式正確（特別是百分比、比率）
+- [ ] 數據範圍合理（百分比 0-100%）
+- [ ] 錯誤處理完整
+
+#### 代碼品質
+- [ ] 使用正確的工具函數
+- [ ] 函數命名清晰，用途明確
+- [ ] 沒有重複代碼
+- [ ] 沒有 `console.log`（只允許 `console.error`）
+- [ ] 沒有 `any` 類型（除非必要）
+
+#### 測試覆蓋
+- [ ] 新功能有單元測試
+- [ ] 修改的功能測試已更新
+- [ ] Smoke Test 已更新（如需要）
+- [ ] 所有測試通過
+
+#### 文檔同步
+- [ ] SPEC.md 已更新（如需要）
+- [ ] 相關文檔已更新
+- [ ] 註釋清晰，解釋了關鍵邏輯
+
+### 6.5 緊急修復流程（Hotfix Process）
+
+**如果發現 Production 有嚴重問題，遵循以下流程：**
+
+1. **立即回滾**（如果可能）
+   ```bash
+   # 回滾到上一個版本
+   npx wrangler rollback --env production
+   ```
+
+2. **在 Staging 修復並測試**
+   - 不要直接在 Production 修復
+   - 在 Staging 完整測試後再部署
+
+3. **記錄問題和修復**
+   - 在 `doc/HOTFIX_LOG.md` 記錄問題
+   - 分析根本原因
+   - 更新預防措施到本文檔
+
+4. **更新檢查清單**
+   - 將新的檢查項目加入部署檢查清單
+   - 更新 Smoke Test 覆蓋此問題
+
+---
+
+## 7. 參考資源
 
 ### 內部文檔
 
 - `@doc/SPEC.md` - 專案規格書（**必讀**，包含專案概覽、完整規格、**術語表**和**開發前準備**）
 - `@doc/ENV_CONFIG.md` - 開發環境設置指南（包含**開發前檢查清單**和**假資料策略**）
-- `@doc/DEVELOPMENT_STANDARDS.md` - 開發規範（包含**AI 協作流程**）
+- `@doc/DEVELOPMENT_STANDARDS.md` - 開發規範（包含**AI 協作流程**和**安全開發流程**）
 - `@doc/MODULE_DESIGN.md` - 模組化設計
 - `@doc/I18N_GUIDE.md` - 國際化指南
 - `@doc/TESTING.md` - 測試規範

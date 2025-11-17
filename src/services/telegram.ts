@@ -54,6 +54,47 @@ export class TelegramService {
   }
 
   /**
+   * Send a message and return the message details including message_id
+   */
+  async sendMessageAndGetId(chatId: number | string, text: string, options?: {
+    reply_markup?: unknown;
+    parse_mode?: 'Markdown' | 'HTML';
+  }): Promise<{ message_id: number; ok: boolean }> {
+    try {
+      const response = await fetch(`${this.baseURL}/sendMessage`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          chat_id: chatId,
+          text,
+          ...options,
+        }),
+      });
+
+      if (!response.ok) {
+        const error = await response.text();
+        console.error('[Telegram] sendMessageAndGetId failed:', error);
+        throw new Error(`Failed to send message: ${error}`);
+      }
+
+      const data = await response.json();
+      if (!data.ok || !data.result?.message_id) {
+        throw new Error('Invalid response from Telegram API');
+      }
+
+      return { 
+        message_id: data.result.message_id,
+        ok: true
+      };
+    } catch (error) {
+      console.error('[Telegram] sendMessageAndGetId error:', error);
+      throw error;
+    }
+  }
+
+  /**
    * Send a message with inline keyboard
    */
   async sendMessageWithButtons(
@@ -62,6 +103,21 @@ export class TelegramService {
     buttons: Array<Array<{ text: string; callback_data?: string; url?: string }>>
   ): Promise<boolean> {
     return this.sendMessage(chatId, text, {
+      reply_markup: {
+        inline_keyboard: buttons,
+      },
+    });
+  }
+
+  /**
+   * Send a message with inline keyboard and return message_id
+   */
+  async sendMessageWithButtonsAndGetId(
+    chatId: number | string,
+    text: string,
+    buttons: Array<Array<{ text: string; callback_data?: string; url?: string }>>
+  ): Promise<{ message_id: number; ok: boolean }> {
+    return this.sendMessageAndGetId(chatId, text, {
       reply_markup: {
         inline_keyboard: buttons,
       },
@@ -197,7 +253,10 @@ export class TelegramService {
         return null;
       }
 
-      const data = (await response.json()) as any;
+      interface TelegramApiResponse {
+        result?: unknown;
+      }
+      const data = (await response.json()) as TelegramApiResponse;
       return data.result;
     } catch (error) {
       console.error('[Telegram] getWebhookInfo error:', error);
@@ -302,7 +361,10 @@ export class TelegramService {
         return null;
       }
 
-      const data = (await response.json()) as any;
+      interface UserProfilePhotosResponse {
+        result?: unknown;
+      }
+      const data = (await response.json()) as UserProfilePhotosResponse;
       return data.result;
     } catch (error) {
       console.error('[Telegram] getUserProfilePhotos error:', error);
@@ -331,8 +393,13 @@ export class TelegramService {
         return null;
       }
 
-      const data = (await response.json()) as any;
-      const filePath = data.result.file_path;
+      interface GetFileResponse {
+        result?: {
+          file_path?: string;
+        };
+      }
+      const data = (await response.json()) as GetFileResponse;
+      const filePath = data.result?.file_path;
 
       return `https://api.telegram.org/file/bot${this.botToken}/${filePath}`;
     } catch (error) {

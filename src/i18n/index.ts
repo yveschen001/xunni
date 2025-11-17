@@ -54,14 +54,14 @@ export function t(
   
   // Get translation by nested key (e.g., "onboarding.welcome")
   const keys = key.split('.');
-  let value: any = translations;
+  let value: Record<string, unknown> | string = translations;
   
   for (const k of keys) {
     if (value && typeof value === 'object' && k in value) {
-      value = value[k];
+      value = (value as Record<string, unknown>)[k] as Record<string, unknown> | string;
     } else {
       // Key not found, return key itself for debugging
-      console.warn(`[i18n] Translation key not found: ${key} for language: ${languageCode}`);
+      console.error(`[i18n] Translation key not found: ${key} for language: ${languageCode}`);
       return `[${key}]`;
     }
   }
@@ -96,7 +96,7 @@ export async function loadExternalTranslations(
   source: 'csv' | 'google-sheets',
   url: string
 ): Promise<void> {
-  console.log(`[i18n] Loading translations for ${languageCode} from ${source}: ${url}`);
+  console.error(`[i18n] Loading translations for ${languageCode} from ${source}: ${url}`);
   // TODO: Implement CSV/Google Sheets import
   throw new Error('External translations not yet implemented');
 }

@@ -4,14 +4,14 @@
  * Handles anonymous message forwarding between conversation participants.
  */
 
-import type { Env, TelegramMessage, User } from '~/types';
+import type { Env, TelegramMessage } from '~/types';
 import { createDatabaseClient } from '~/db/client';
 import { createTelegramService } from '~/services/telegram';
 import { findUserByTelegramId } from '~/db/queries/users';
 import {
   getActiveConversation,
   saveConversationMessage,
-  updateBottleChatHistory,
+  // updateBottleChatHistory, // TODO: Re-enable when bottle_chat_history table is created
 } from '~/db/queries/conversations';
 import {
   validateMessageContent,
@@ -19,8 +19,8 @@ import {
   isConversationActive,
 } from '~/domain/conversation';
 import { checkUrlWhitelist } from '~/utils/url-whitelist';
-import { createI18n } from '~/i18n';
-import { maskSensitiveValue } from '~/utils/mask';
+import { getOrCreateIdentifier } from '~/db/queries/conversation_identifiers';
+import { formatIdentifier } from '~/domain/conversation_identifier';
 
 /**
  * Handle message forwarding in active conversation
@@ -37,19 +37,47 @@ export async function handleMessageForward(
     const replyToId = message.reply_to_message?.message_id;
 
   try {
+    // If it's a command, let router handle it
+    if (messageText.startsWith('/')) {
+      return false;
+    }
+
     // Get user
     const user = await findUserByTelegramId(db, telegramId);
     if (!user) {
       return false;
     }
 
-    const i18n = createI18n(user.language_pref || 'zh-TW');
-
     // Get active conversation
     const conversation = await getActiveConversation(db, telegramId);
     if (!conversation) {
       // No active conversation
       return false;
+    }
+    
+    // Check for duplicate message (防止重複處理)
+    // Use message_id as deduplication key
+    const messageId = message.message_id;
+    const recentMessage = await db.d1
+      .prepare(
+        `SELECT id FROM conversation_messages 
+         WHERE conversation_id = ? 
+         AND sender_telegram_id = ? 
+         AND created_at > datetime('now', '-10 seconds')
+         ORDER BY created_at DESC 
+         LIMIT 1`
+      )
+      .bind(conversation.id, telegramId)
+      .first<{ id: number }>();
+    
+    // If we just processed a message from this user in the last 10 seconds, skip
+    if (recentMessage) {
+      console.error('[handleMessageForward] Skipping duplicate message:', {
+        messageId,
+        conversationId: conversation.id,
+        telegramId
+      });
+      return true; // Return true to prevent further processing
     }
 
     // Check if conversation is active
@@ -92,6 +120,35 @@ export async function handleMessageForward(
       return true;
     }
 
+    // Check daily message quota
+    const { getConversationDailyLimit, getTodayDate } = await import('~/domain/usage');
+    const today = getTodayDate();
+    
+    // Count today's messages from this user in this conversation
+    const todayMessageCount = await db.d1
+      .prepare(
+        `SELECT COUNT(*) as count FROM conversation_messages 
+         WHERE conversation_id = ? 
+         AND sender_telegram_id = ? 
+         AND DATE(created_at) = DATE(?)`
+      )
+      .bind(conversation.id, telegramId, today)
+      .first<{ count: number }>();
+
+    const dailyLimit = getConversationDailyLimit(user);
+    const usedToday = todayMessageCount?.count || 0;
+
+    if (usedToday >= dailyLimit) {
+      await telegram.sendMessage(
+        chatId,
+        `❌ 今日對話訊息配額已用完（${usedToday}/${dailyLimit}）\n\n` +
+          (user.is_vip 
+            ? '💡 VIP 用戶每日可發送 100 則訊息。'
+            : '💡 升級 VIP 可獲得更多配額（100 則/天）：/vip')
+      );
+      return true;
+    }
+
     // Get receiver ID
     const receiverId = getOtherUserId(conversation, telegramId);
     if (!receiverId) {
@@ -115,9 +172,7 @@ export async function handleMessageForward(
 
     // Translate message if needed
     let finalMessage = messageText;
-    let translationNote = '';
     let translationProvider: string | undefined;
-    let usedFallback = false;
 
     const senderLanguage = sender.language_pref || 'zh-TW';
     const receiverLanguage = receiver.language_pref || 'zh-TW';
@@ -137,21 +192,10 @@ export async function handleMessageForward(
 
         finalMessage = result.text;
         translationProvider = result.provider;
-        usedFallback = !!result.fallback;
-
-        if (result.error && result.text === messageText) {
-          translationNote =
-            `\n\n⚠️ 翻譯服務暫時無法使用（原文語言：${senderLanguage}）`;
-        } else if (result.fallback && isVip) {
-          translationNote = '\n\n💬 翻譯服務暫時有問題，已使用備用翻譯';
-        }
       } catch (error) {
         console.error('[Translation error]:', error);
-        translationNote =
-          `\n\n⚠️ 翻譯服務暫時無法使用（原文語言：${senderLanguage}）`;
+        // Translation failed, use original message
       }
-    } else if (senderLanguage === receiverLanguage) {
-      translationNote = `\n\nℹ️ 對方使用 ${senderLanguage}，已直接顯示原文`;
     }
 
     // Save message to database
@@ -168,42 +212,83 @@ export async function handleMessageForward(
       receiverLanguage
     );
 
-    // Update bottle chat history
-    await updateBottleChatHistory(db, conversation.id);
+    // Get or create identifiers for both users
+    const receiverIdentifier = await getOrCreateIdentifier(db, receiverId, telegramId, conversation.id);
+    const senderIdentifier = await getOrCreateIdentifier(db, telegramId, receiverId, conversation.id);
 
-    // Forward message to receiver with header info
-    const senderNickname =
-      sender.nickname || sender.username || i18n.t('common.anonymous_user');
-    const maskedSenderNickname = maskSensitiveValue(senderNickname);
-    const senderMbti = sender.mbti_result || i18n.t('common.not_set');
-    const senderZodiac = sender.zodiac_sign || i18n.t('common.not_set');
-    const header =
-      `來自：${maskedSenderNickname}\n` +
-      `MBTI：${senderMbti}\n` +
-      `星座：${senderZodiac}\n\n`;
+    // Prepare partner info for history posts
+    const { maskNickname } = await import('~/domain/invite');
+    
+    // For sender's history: partner is receiver
+    const receiverNickname = receiver.nickname || receiver.username || '匿名用戶';
+    const receiverPartnerInfo = {
+      maskedNickname: maskNickname(receiverNickname),
+      mbti: receiver.mbti_result || '未設定',
+      bloodType: receiver.blood_type || '未設定',
+      zodiac: receiver.zodiac_sign || '未設定'
+    };
+    
+    // For receiver's history: partner is sender
+    const senderNickname = sender.nickname || sender.username || '匿名用戶';
+    const senderPartnerInfo = {
+      maskedNickname: maskNickname(senderNickname),
+      mbti: sender.mbti_result || '未設定',
+      bloodType: sender.blood_type || '未設定',
+      zodiac: sender.zodiac_sign || '未設定'
+    };
 
-    await telegram.sendMessageWithButtons(
-      parseInt(receiverId),
-      `💬 來自匿名對話的訊息：\n` +
-        `${header}` +
-        `${finalMessage}${translationNote}\n\n` +
-        `💡 需要封鎖或舉報請直接在此對話回覆 /block 或 /report`,
-      [
-        [
-          { text: '👤 查看資料卡', callback_data: `conv_profile_${conversation.id}` },
-        ],
-      ]
+    // Update conversation history posts
+    const messageTime = new Date();
+    const { updateConversationHistory, updateNewMessagePost } = await import('~/services/conversation_history');
+    
+    // Update sender's history (sent message) - show receiver's info
+    await updateConversationHistory(
+      db,
+      env,
+      conversation.id,
+      telegramId,
+      senderIdentifier,
+      messageText,
+      messageTime,
+      'sent',
+      receiverPartnerInfo
+    );
+    
+    // Update receiver's history (received message) - show sender's info
+    await updateConversationHistory(
+      db,
+      env,
+      conversation.id,
+      receiverId,
+      receiverIdentifier,
+      finalMessage,
+      messageTime,
+      'received',
+      senderPartnerInfo
+    );
+    
+    // Update receiver's new message post - show sender's info
+    await updateNewMessagePost(
+      db,
+      env,
+      conversation.id,
+      receiverId,
+      receiverIdentifier,
+      finalMessage,
+      messageTime,
+      senderPartnerInfo
     );
 
-    // Confirm to sender with quick action buttons
-    await telegram.sendMessageWithButtons(
+    // Note: Message forwarding is now handled by conversation history system
+    // The receiver will get:
+    // 1. History post (updated with all messages)
+    // 2. New message post (showing latest message)
+    
+    // Confirm to sender with receiver's identifier
+    await telegram.sendMessage(
       chatId,
-      '✅ 訊息已發送\n\n💡 需要封鎖或舉報也請直接回覆 /block /report',
-      [
-        [
-          { text: '👤 查看對方資料卡', callback_data: `conv_profile_${conversation.id}` },
-        ],
-      ]
+      `✅ 訊息已發送給 ${formatIdentifier(receiverIdentifier)}\n\n` +
+        `📊 今日已發送：${usedToday + 1}/${dailyLimit} 則`
     );
 
     return true;

@@ -62,8 +62,15 @@ export class OpenAIService {
         throw new Error(`OpenAI API error: ${response.status}`);
       }
 
-      const data = (await response.json()) as any;
-      const translatedText = data.choices[0]?.message?.content?.trim();
+      interface OpenAIResponse {
+        choices?: Array<{
+          message?: {
+            content?: string;
+          };
+        }>;
+      }
+      const data = (await response.json()) as OpenAIResponse;
+      const translatedText = data.choices?.[0]?.message?.content?.trim();
 
       if (!translatedText) {
         throw new Error('No translation returned');
@@ -111,8 +118,14 @@ export class OpenAIService {
         throw new Error(`OpenAI API error: ${response.status}`);
       }
 
-      const data = (await response.json()) as any;
-      const result = data.results[0];
+      interface ModerationResponse {
+        results?: Array<{
+          flagged?: boolean;
+          categories?: Record<string, boolean>;
+        }>;
+      }
+      const data = (await response.json()) as ModerationResponse;
+      const result = data.results?.[0];
 
       const flaggedCategories: string[] = [];
       if (result.categories) {

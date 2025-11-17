@@ -335,7 +335,7 @@ export function calculateMBTIResult(answers: number[]): MBTIResult {
     (scores.JP >= 0 ? 'J' : 'P');
 
   // Validate type
-  if (!MBTI_TYPES.includes(type as any)) {
+  if (!MBTI_TYPES.includes(type as (typeof MBTI_TYPES)[number])) {
     throw new Error(`Invalid MBTI type calculated: ${type}`);
   }
 

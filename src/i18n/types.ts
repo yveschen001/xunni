@@ -104,6 +104,27 @@ export interface Translations {
     expired: string;
   };
 
+  // Invite
+  invite: {
+    inviterSuccess: string;
+    inviteeSuccess: string;
+    limitWarning: string;
+    limitReached: string;
+    codeAccepted: string;
+    codeInvalid: string;
+    selfInviteError: string;
+    upgradePrompt: string;
+    stats: {
+      title: string;
+      totalInvites: string;
+      activatedInvites: string;
+      pendingInvites: string;
+      conversionRate: string;
+      yourInviteCode: string;
+      shareButton: string;
+    };
+  };
+
   // Errors
   errors: {
     generic: string;

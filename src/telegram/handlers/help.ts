@@ -77,15 +77,10 @@ export async function handleHelp(message: TelegramMessage, env: Env): Promise<vo
 }
 
 export async function handleRules(message: TelegramMessage, env: Env): Promise<void> {
-  const db = createDatabaseClient(env);
   const telegram = createTelegramService(env);
   const chatId = message.chat.id;
-  const telegramId = message.from!.id.toString();
 
   try {
-    // Get user
-    const user = await findUserByTelegramId(db, telegramId);
-
     const rulesMessage = 
       `📜 **XunNi 遊戲規則**\n\n` +
       `🍾 **漂流瓶系統**\n` +

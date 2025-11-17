@@ -25,7 +25,7 @@ const results: TestResult[] = [];
 let totalTests = 0;
 let passedTests = 0;
 let failedTests = 0;
-let skippedTests = 0;
+const skippedTests = 0;
 
 // ============================================================================
 // Test Utilities
@@ -290,6 +290,7 @@ async function testCommandCoverage() {
     '/dev_info',
     '/dev_skip',
     '/dev_reset',
+    '/dev_restart',
   ];
 
   for (const command of commands) {
@@ -300,6 +301,301 @@ async function testCommandCoverage() {
       }
     });
   }
+}
+
+// ============================================================================
+// Dev Commands Tests
+// ============================================================================
+
+async function testDevCommands() {
+  console.log('\n🔧 Testing Dev Commands...\n');
+
+  const testUserId = Math.floor(Math.random() * 1000000) + 100000000;
+
+  await testEndpoint('Dev Commands', '/dev_reset - Clear user data', async () => {
+    const result = await sendWebhook('/dev_reset', testUserId);
+    if (result.status !== 200) {
+      throw new Error(`Expected 200, got ${result.status}`);
+    }
+    // Should contain "開發模式：數據已重置" without Markdown
+    if (result.data.includes('**')) {
+      throw new Error('Response contains Markdown formatting (should be plain text)');
+    }
+  });
+
+  await testEndpoint('Dev Commands', '/dev_skip - Quick setup', async () => {
+    const result = await sendWebhook('/dev_skip', testUserId);
+    if (result.status !== 200) {
+      throw new Error(`Expected 200, got ${result.status}`);
+    }
+    // Should contain "開發模式：跳過註冊" without Markdown
+    if (result.data.includes('**')) {
+      throw new Error('Response contains Markdown formatting (should be plain text)');
+    }
+  });
+
+  await testEndpoint('Dev Commands', '/dev_info - User info', async () => {
+    const result = await sendWebhook('/dev_info', testUserId);
+    if (result.status !== 200) {
+      throw new Error(`Expected 200, got ${result.status}`);
+    }
+    // Should contain user info without Markdown
+    if (result.data.includes('**') || result.data.includes('`')) {
+      throw new Error('Response contains Markdown formatting (should be plain text)');
+    }
+  });
+
+  await testEndpoint('Dev Commands', '/start after /dev_reset - Re-registration', async () => {
+    const newUserId = Math.floor(Math.random() * 1000000) + 200000000;
+    
+    // Reset user
+    await sendWebhook('/dev_reset', newUserId);
+    
+    // Try /start - should trigger language selection
+    const result = await sendWebhook('/start', newUserId);
+    if (result.status !== 200) {
+      throw new Error(`Expected 200, got ${result.status}`);
+    }
+  });
+
+  await testEndpoint('Dev Commands', '/dev_restart - Reset and auto start onboarding', async () => {
+    const newUserId = Math.floor(Math.random() * 1000000) + 250000000;
+    
+    // First create a user
+    await sendWebhook('/dev_skip', newUserId);
+    
+    // Then restart - should clear data and show language selection
+    const result = await sendWebhook('/dev_restart', newUserId);
+    if (result.status !== 200) {
+      throw new Error(`Expected 200, got ${result.status}`);
+    }
+    // Should automatically show language selection without needing /start
+  });
+}
+
+// ============================================================================
+// Message Quota Tests
+// ============================================================================
+
+async function testMessageQuota() {
+  console.log('\n💬 Testing Message Quota System...\n');
+
+  const userA = Math.floor(Math.random() * 1000000) + 300000000;
+  const userB = Math.floor(Math.random() * 1000000) + 400000000;
+
+  await testEndpoint('Message Quota', 'Setup users', async () => {
+    // Setup both users
+    await sendWebhook('/dev_reset', userA);
+    await sendWebhook('/dev_skip', userA);
+    await sendWebhook('/dev_reset', userB);
+    await sendWebhook('/dev_skip', userB);
+  });
+
+  await testEndpoint('Message Quota', 'Throw and catch bottle', async () => {
+    // User A throws bottle
+    await sendWebhook('/throw', userA);
+    await sendWebhook('Hello, this is a test message for bottle', userA);
+    
+    // User B catches bottle
+    const result = await sendWebhook('/catch', userB);
+    if (result.status !== 200) {
+      throw new Error(`Expected 200, got ${result.status}`);
+    }
+  });
+
+  await testEndpoint('Message Quota', 'Send conversation message', async () => {
+    // User B replies
+    const result = await sendWebhook('Test reply message', userB);
+    if (result.status !== 200) {
+      throw new Error(`Expected 200, got ${result.status}`);
+    }
+    // Should not contain "getTodayString is not a function" error
+    if (result.data.includes('getTodayString')) {
+      throw new Error('getTodayString function name error detected');
+    }
+  });
+
+  await testEndpoint('Message Quota', 'Quota check logic', async () => {
+    // This test verifies that quota checking doesn't crash
+    // Actual quota limits would be tested in integration tests
+    const result = await sendWebhook('Another test message', userB);
+    if (result.status !== 200) {
+      throw new Error(`Expected 200, got ${result.status}`);
+    }
+  });
+}
+
+// ============================================================================
+// Conversation Identifier Tests
+// ============================================================================
+
+async function testConversationIdentifiers() {
+  console.log('\n🔖 Testing Conversation Identifiers...\n');
+
+  const userA = Math.floor(Math.random() * 1000000) + 500000000;
+  const userB = Math.floor(Math.random() * 1000000) + 600000000;
+
+  await testEndpoint('Conversation Identifiers', 'Setup and create conversation', async () => {
+    // Setup users
+    await sendWebhook('/dev_reset', userA);
+    await sendWebhook('/dev_skip', userA);
+    await sendWebhook('/dev_reset', userB);
+    await sendWebhook('/dev_skip', userB);
+    
+    // Create conversation
+    await sendWebhook('/throw', userA);
+    await sendWebhook('Test bottle for identifier check', userA);
+    await sendWebhook('/catch', userB);
+  });
+
+  await testEndpoint('Conversation Identifiers', 'Identifier format validation', async () => {
+    // Send a message to generate identifier
+    const result = await sendWebhook('Test message for identifier', userB);
+    if (result.status !== 200) {
+      throw new Error(`Expected 200, got ${result.status}`);
+    }
+    // Identifier should be in format #MMDDHHHH (e.g., #0117ABCD)
+    // This would be validated in the actual message content
+    // For smoke test, we just verify no errors
+  });
+}
+
+// ============================================================================
+// Invite System Tests
+// ============================================================================
+
+async function testInviteSystem() {
+  console.log('\n🎁 Testing Invite System...\n');
+
+  // Test 1: Invite code in /start command
+  await testEndpoint('Invite System', 'Extract invite code from /start', async () => {
+    const inviterUserId = Math.floor(Math.random() * 1000000) + 200000000;
+    const inviteeUserId = Math.floor(Math.random() * 1000000) + 300000000;
+    
+    // Create inviter first
+    await sendWebhook('/start', inviterUserId);
+    
+    // Simulate invitee using invite code
+    // Note: In real test, we would get the actual invite code from inviter's profile
+    const fakeInviteCode = 'XUNNI-TEST1234';
+    const response = await sendWebhook(`/start invite_${fakeInviteCode}`, inviteeUserId);
+    
+    if (response.status !== 200) {
+      throw new Error(`Expected 200, got ${response.status}`);
+    }
+  });
+
+  // Test 2: Prevent self-invitation
+  await testEndpoint('Invite System', 'Prevent self-invitation', async () => {
+    const userId = Math.floor(Math.random() * 1000000) + 400000000;
+    
+    // User tries to use their own invite code
+    const response = await sendWebhook('/start invite_XUNNI-SELF1234', userId);
+    
+    if (response.status !== 200) {
+      throw new Error(`Expected 200, got ${response.status}`);
+    }
+    
+    // Should receive error message about self-invitation
+    // (actual validation would check response content)
+  });
+
+  // Test 3: Invalid invite code format
+  await testEndpoint('Invite System', 'Handle invalid invite code format', async () => {
+    const userId = Math.floor(Math.random() * 1000000) + 500000000;
+    
+    // Try with invalid format
+    const response = await sendWebhook('/start invite_invalid', userId);
+    
+    if (response.status !== 200) {
+      throw new Error(`Expected 200, got ${response.status}`);
+    }
+    
+    // Should proceed with normal registration (ignore invalid code)
+  });
+
+  // Test 4: Profile shows invite statistics
+  await testEndpoint('Invite System', 'Profile shows invite statistics', async () => {
+    const userId = Math.floor(Math.random() * 1000000) + 600000000;
+    
+    // Create user and complete onboarding
+    await sendWebhook('/start', userId);
+    
+    // Check profile (after onboarding would be complete)
+    const response = await sendWebhook('/profile', userId);
+    
+    if (response.status !== 200) {
+      throw new Error(`Expected 200, got ${response.status}`);
+    }
+    
+    // Profile should contain invite code and statistics
+    // (actual validation would check for invite code format in response)
+  });
+
+  // Test 5: Invite activation after first bottle throw
+  await testEndpoint('Invite System', 'Invite activation mechanism', async () => {
+    const inviterUserId = Math.floor(Math.random() * 1000000) + 700000000;
+    const inviteeUserId = Math.floor(Math.random() * 1000000) + 800000000;
+    
+    // This test would require:
+    // 1. Inviter completes registration
+    // 2. Invitee uses invite code
+    // 3. Invitee completes onboarding
+    // 4. Invitee throws first bottle
+    // 5. Check that invite is activated and both users notified
+    
+    // For smoke test, we just verify the endpoints respond
+    await sendWebhook('/start', inviterUserId);
+    await sendWebhook('/start', inviteeUserId);
+    
+    // Verification would happen in integration tests
+  });
+
+  // Test 6: Daily quota calculation with invite bonus
+  await testEndpoint('Invite System', 'Daily quota includes invite bonus', async () => {
+    const userId = Math.floor(Math.random() * 1000000) + 900000000;
+    
+    await sendWebhook('/start', userId);
+    
+    // After user has successful invites, quota should increase
+    // This would be verified by checking /stats or throw/catch limits
+    const response = await sendWebhook('/stats', userId);
+    
+    if (response.status !== 200) {
+      throw new Error(`Expected 200, got ${response.status}`);
+    }
+  });
+
+  // Test 7: Invite limit warning for free users
+  await testEndpoint('Invite System', 'Invite limit warning system', async () => {
+    const userId = Math.floor(Math.random() * 1000000) + 1000000000;
+    
+    await sendWebhook('/start', userId);
+    
+    // User approaching invite limit should see warning
+    // This would be tested in integration tests with actual invite data
+    const response = await sendWebhook('/profile', userId);
+    
+    if (response.status !== 200) {
+      throw new Error(`Expected 200, got ${response.status}`);
+    }
+  });
+
+  // Test 8: Share invite code button
+  await testEndpoint('Invite System', 'Share invite code functionality', async () => {
+    const userId = Math.floor(Math.random() * 1000000) + 1100000000;
+    
+    await sendWebhook('/start', userId);
+    
+    // Profile should have share button
+    const response = await sendWebhook('/profile', userId);
+    
+    if (response.status !== 200) {
+      throw new Error(`Expected 200, got ${response.status}`);
+    }
+    
+    // Response should contain share button with invite link
+  });
 }
 
 // ============================================================================
@@ -319,6 +615,10 @@ async function runAllTests() {
     await testInfrastructure();
     await testUserCommands();
     await testOnboarding();
+    await testDevCommands();
+    await testMessageQuota();
+    await testConversationIdentifiers();
+    await testInviteSystem();
     await testErrorHandling();
     await testDatabaseConnectivity();
     await testPerformance();
@@ -339,7 +639,6 @@ async function runAllTests() {
   for (const category of categories) {
     const categoryResults = results.filter(r => r.category === category);
     const passed = categoryResults.filter(r => r.status === 'pass').length;
-    const failed = categoryResults.filter(r => r.status === 'fail').length;
     
     console.log(`\n${category}:`);
     categoryResults.forEach(result => {

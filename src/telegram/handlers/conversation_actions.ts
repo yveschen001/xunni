@@ -10,7 +10,7 @@ import { createTelegramService } from '~/services/telegram';
 import { findUserByTelegramId } from '~/db/queries/users';
 import { getConversationById, endConversation } from '~/db/queries/conversations';
 import { getOtherUserId } from '~/domain/conversation';
-import { maskSensitiveValue } from '~/utils/mask';
+import { maskNickname } from '~/domain/invite';
 
 /**
  * Show anonymous profile card
@@ -57,9 +57,13 @@ export async function handleConversationProfile(
       ageRange = `${Math.floor(age / 5) * 5}-${Math.floor(age / 5) * 5 + 4}`;
     }
 
-    const nickname = maskSensitiveValue(otherUser.nickname || otherUser.username);
+    const nickname = maskNickname(otherUser.nickname || otherUser.username || '匿名');
     const languageLabel = otherUser.language_pref || '未設定';
-    const zodiacLabel = otherUser.zodiac_sign || '未設定';
+    const zodiacLabel = otherUser.zodiac_sign || 'Virgo';
+
+    // Get blood type display
+    const { getBloodTypeDisplay } = await import('~/domain/blood_type');
+    const bloodTypeText = getBloodTypeDisplay(otherUser.blood_type as any);
 
     // Build anonymous profile card
     let profileMessage = '👤 **對方的資料卡**\n\n';
@@ -68,6 +72,7 @@ export async function handleConversationProfile(
     profileMessage += `🗣️ 語言：${languageLabel}\n`;
     profileMessage += `🧠 MBTI：${otherUser.mbti_result || '未設定'}\n`;
     profileMessage += `⭐ 星座：${zodiacLabel}\n`;
+    profileMessage += `🩸 血型：${bloodTypeText}\n`;
     profileMessage += `👤 性別：${otherUser.gender === 'male' ? '男' : otherUser.gender === 'female' ? '女' : '未設定'}\n`;
     profileMessage += `🎂 年齡範圍：${ageRange} 歲\n`;
     
@@ -75,8 +80,19 @@ export async function handleConversationProfile(
       profileMessage += `🌍 地區：${otherUser.region}\n`;
     }
     
+    if (otherUser.interests) {
+      profileMessage += `🏷️ 興趣：${otherUser.interests}\n`;
+    }
+    
+    if (otherUser.bio) {
+      profileMessage += `📖 簡介：${otherUser.bio}\n`;
+    }
+    
     profileMessage += `━━━━━━━━━━━━━━━━\n\n`;
-    profileMessage += `💡 這是匿名資料卡，不會顯示對方的真實身份資訊。`;
+    profileMessage += `💡 這是匿名資料卡，不會顯示對方的真實身份資訊。\n\n`;
+    profileMessage += `💬 直接按 /reply 回覆訊息聊天\n`;
+    profileMessage += `✏️ 編輯個人資料：/edit_profile\n`;
+    profileMessage += `🏠 返回主選單：/menu`;
 
     await telegram.sendMessage(chatId, profileMessage);
   } catch (error) {
