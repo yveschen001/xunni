@@ -226,8 +226,20 @@ export function validateNickname(nickname: string): { valid: boolean; error?: st
     return { valid: false, error: 'Nickname cannot be empty' };
   }
 
-  if (nickname.length > MAX_NICKNAME_LENGTH) {
-    return { valid: false, error: `Nickname too long (max ${MAX_NICKNAME_LENGTH} characters)` };
+  // Check minimum length (at least 2 characters for editing, 4 for registration)
+  if (nickname.trim().length < 2) {
+    return { valid: false, error: 'Nickname too short (min 2 characters)' };
+  }
+
+  // Check maximum length
+  if (nickname.length > 20) {
+    return { valid: false, error: 'Nickname too long (max 20 characters)' };
+  }
+
+  // Check for URLs
+  const urlPattern = /(https?:\/\/|www\.|\.com|\.net|\.org|\.tw|\.cn)/i;
+  if (urlPattern.test(nickname)) {
+    return { valid: false, error: 'Nickname cannot contain URLs' };
   }
 
   return { valid: true };
@@ -293,8 +305,14 @@ export function validateMBTI(mbti: string): { valid: boolean; error?: string } {
  * Validate bio
  */
 export function validateBio(bio: string): { valid: boolean; error?: string } {
-  if (bio.length > MAX_BIO_LENGTH) {
-    return { valid: false, error: `Bio too long (max ${MAX_BIO_LENGTH} characters)` };
+  // Allow empty bio
+  if (!bio) {
+    return { valid: true };
+  }
+
+  // Check maximum length (200 characters for bio)
+  if (bio.length > 200) {
+    return { valid: false, error: 'Bio too long (max 200 characters)' };
   }
 
   return { valid: true };
