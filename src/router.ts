@@ -627,7 +627,7 @@ async function routeUpdate(update: TelegramUpdate, env: Env): Promise<void> {
       return;
     }
 
-    if (data === 'edit_profile_menu' || data === 'edit_profile_back') {
+    if (data === 'edit_profile_menu' || data === 'edit_profile_back' || data === 'edit_profile_callback') {
       const { handleEditProfileCallback } = await import('./telegram/handlers/edit_profile');
       await handleEditProfileCallback(callbackQuery, env);
       return;
