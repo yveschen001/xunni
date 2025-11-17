@@ -328,10 +328,18 @@ export async function handleMatchPrefSelection(
     await telegram.deleteMessage(chatId, callbackQuery.message!.message_id);
 
     const prefText = preference === 'male' ? '男生' : preference === 'female' ? '女生' : '任何人';
-    await telegram.sendMessage(
+    await telegram.sendMessageWithButtons(
       chatId,
       `✅ 匹配偏好已更新為：${prefText}\n\n` +
-        `💡 下次丟漂流瓶時將自動使用此設置。`
+        `💡 下次丟漂流瓶時將自動使用此設置。`,
+      [
+        [
+          { text: '✏️ 繼續編輯資料', callback_data: 'edit_profile_callback' },
+        ],
+        [
+          { text: '🏠 返回主選單', callback_data: 'return_to_menu' },
+        ],
+      ]
     );
   } catch (error) {
     console.error('[handleMatchPrefSelection] Error:', error);
@@ -445,10 +453,18 @@ export async function handleEditBloodTypeSelection(
     await telegram.answerCallbackQuery(callbackQuery.id, displayText);
     await telegram.deleteMessage(chatId, callbackQuery.message!.message_id);
 
-    // Show success message
-    await telegram.sendMessage(
+    // Show success message with buttons
+    await telegram.sendMessageWithButtons(
       chatId,
-      displayText + '\n\n使用 /profile 查看更新後的個人資料\n🏠 返回主選單：/menu'
+      displayText,
+      [
+        [
+          { text: '✏️ 繼續編輯資料', callback_data: 'edit_profile_callback' },
+        ],
+        [
+          { text: '🏠 返回主選單', callback_data: 'return_to_menu' },
+        ],
+      ]
     );
   } catch (error) {
     console.error('[handleEditBloodTypeSelection] Error:', error);
@@ -501,12 +517,28 @@ export async function handleProfileEditInput(message: TelegramMessage, env: Env)
       case 'nickname': {
         // Validate nickname length (4-36 characters)
         if (text.length < 4) {
-          await telegram.sendMessage(chatId, '❌ 暱稱太短，至少需要 4 個字符。\n\n請重新輸入：');
+          await telegram.sendMessageWithButtons(
+            chatId,
+            '❌ 暱稱太短，至少需要 4 個字符。\n\n請重新輸入或取消編輯：',
+            [
+              [
+                { text: '❌ 取消編輯', callback_data: 'edit_profile_callback' },
+              ],
+            ]
+          );
           return true;
         }
         
         if (text.length > 36) {
-          await telegram.sendMessage(chatId, '❌ 暱稱太長，請輸入不超過 36 個字符的暱稱。\n\n請重新輸入：');
+          await telegram.sendMessageWithButtons(
+            chatId,
+            '❌ 暱稱太長，請輸入不超過 36 個字符的暱稱。\n\n請重新輸入或取消編輯：',
+            [
+              [
+                { text: '❌ 取消編輯', callback_data: 'edit_profile_callback' },
+              ],
+            ]
+          );
           return true;
         }
 
@@ -514,11 +546,16 @@ export async function handleProfileEditInput(message: TelegramMessage, env: Env)
         const { checkUrlWhitelist } = await import('~/utils/url-whitelist');
         const urlCheck = checkUrlWhitelist(text);
         if (!urlCheck.allowed) {
-          await telegram.sendMessage(
+          await telegram.sendMessageWithButtons(
             chatId,
             '❌ 暱稱不能包含網址連結\n\n' +
             '💡 請輸入一個簡單的暱稱，不要包含 http:// 或 https:// 等連結。\n\n' +
-            '請重新輸入：'
+            '請重新輸入或取消編輯：',
+            [
+              [
+                { text: '❌ 取消編輯', callback_data: 'edit_profile_callback' },
+              ],
+            ]
           );
           return true;
         }
@@ -588,7 +625,15 @@ export async function handleProfileEditInput(message: TelegramMessage, env: Env)
 
       case 'bio': {
         if (text.length > 200) {
-          await telegram.sendMessage(chatId, '❌ 個人簡介太長，請輸入不超過 200 個字符。');
+          await telegram.sendMessageWithButtons(
+            chatId,
+            '❌ 個人簡介太長，請輸入不超過 200 個字符。\n\n請重新輸入或取消編輯：',
+            [
+              [
+                { text: '❌ 取消編輯', callback_data: 'edit_profile_callback' },
+              ],
+            ]
+          );
           return true;
         }
 
@@ -596,7 +641,7 @@ export async function handleProfileEditInput(message: TelegramMessage, env: Env)
         const { checkUrlWhitelist } = await import('~/utils/url-whitelist');
         const urlCheck = checkUrlWhitelist(text);
         if (!urlCheck.allowed) {
-          await telegram.sendMessage(
+          await telegram.sendMessageWithButtons(
             chatId,
             '❌ 個人簡介包含不允許的連結。\n\n' +
               '為了安全，只允許以下網域的連結：\n' +
@@ -604,7 +649,12 @@ export async function handleProfileEditInput(message: TelegramMessage, env: Env)
               '• telegram.org\n' +
               '• telegram.me\n\n' +
               `🚫 禁止的網址：\n${urlCheck.blockedUrls?.map(url => `• ${url}`).join('\n')}\n\n` +
-              '請移除這些連結後重新輸入。'
+              '請移除這些連結後重新輸入或取消編輯：',
+            [
+              [
+                { text: '❌ 取消編輯', callback_data: 'edit_profile_callback' },
+              ],
+            ]
           );
           return true;
         }
@@ -613,13 +663,32 @@ export async function handleProfileEditInput(message: TelegramMessage, env: Env)
           .bind(text, telegramId).run();
 
         await deleteSession(db, telegramId, SESSION_TYPE);
-        await telegram.sendMessage(chatId, `✅ 個人簡介已更新！\n\n${text}`);
+        await telegram.sendMessageWithButtons(
+          chatId,
+          `✅ 個人簡介已更新！\n\n${text}`,
+          [
+            [
+              { text: '✏️ 繼續編輯資料', callback_data: 'edit_profile_callback' },
+            ],
+            [
+              { text: '🏠 返回主選單', callback_data: 'return_to_menu' },
+            ],
+          ]
+        );
         return true;
       }
 
       case 'region': {
         if (text.length > 50) {
-          await telegram.sendMessage(chatId, '❌ 地區名稱太長，請輸入不超過 50 個字符。');
+          await telegram.sendMessageWithButtons(
+            chatId,
+            '❌ 地區名稱太長，請輸入不超過 50 個字符。\n\n請重新輸入或取消編輯：',
+            [
+              [
+                { text: '❌ 取消編輯', callback_data: 'edit_profile_callback' },
+              ],
+            ]
+          );
           return true;
         }
 
@@ -627,7 +696,18 @@ export async function handleProfileEditInput(message: TelegramMessage, env: Env)
           .bind(text, telegramId).run();
 
         await deleteSession(db, telegramId, SESSION_TYPE);
-        await telegram.sendMessage(chatId, `✅ 地區已更新為：${text}`);
+        await telegram.sendMessageWithButtons(
+          chatId,
+          `✅ 地區已更新為：${text}`,
+          [
+            [
+              { text: '✏️ 繼續編輯資料', callback_data: 'edit_profile_callback' },
+            ],
+            [
+              { text: '🏠 返回主選單', callback_data: 'return_to_menu' },
+            ],
+          ]
+        );
         return true;
       }
 
@@ -635,12 +715,28 @@ export async function handleProfileEditInput(message: TelegramMessage, env: Env)
         const interests = text.split(',').map(i => i.trim()).filter(i => i.length > 0);
         
         if (interests.length > 5) {
-          await telegram.sendMessage(chatId, '❌ 最多只能設定 5 個興趣標籤。');
+          await telegram.sendMessageWithButtons(
+            chatId,
+            '❌ 最多只能設定 5 個興趣標籤。\n\n請重新輸入或取消編輯：',
+            [
+              [
+                { text: '❌ 取消編輯', callback_data: 'edit_profile_callback' },
+              ],
+            ]
+          );
           return true;
         }
 
         if (interests.some(i => i.length > 20)) {
-          await telegram.sendMessage(chatId, '❌ 每個標籤最多 20 個字符。');
+          await telegram.sendMessageWithButtons(
+            chatId,
+            '❌ 每個標籤最多 20 個字符。\n\n請重新輸入或取消編輯：',
+            [
+              [
+                { text: '❌ 取消編輯', callback_data: 'edit_profile_callback' },
+              ],
+            ]
+          );
           return true;
         }
 
@@ -649,7 +745,18 @@ export async function handleProfileEditInput(message: TelegramMessage, env: Env)
           .bind(interestsStr, telegramId).run();
 
         await deleteSession(db, telegramId, SESSION_TYPE);
-        await telegram.sendMessage(chatId, `✅ 興趣標籤已更新：\n\n${interestsStr}`);
+        await telegram.sendMessageWithButtons(
+          chatId,
+          `✅ 興趣標籤已更新：\n\n${interestsStr}`,
+          [
+            [
+              { text: '✏️ 繼續編輯資料', callback_data: 'edit_profile_callback' },
+            ],
+            [
+              { text: '🏠 返回主選單', callback_data: 'return_to_menu' },
+            ],
+          ]
+        );
         return true;
       }
 
