@@ -181,7 +181,7 @@ export async function handleEditNickname(callbackQuery: TelegramCallbackQuery, e
 
     // Create session
     console.error('[handleEditNickname] Creating session for user:', telegramId);
-    await upsertSession(db, telegramId, SESSION_TYPE, { editing: 'nickname' });
+    await upsertSession(db, telegramId, SESSION_TYPE, { data: { editing: 'nickname' } });
     console.error('[handleEditNickname] Session created successfully');
 
     await telegram.sendMessage(
@@ -214,7 +214,7 @@ export async function handleEditBio(callbackQuery: TelegramCallbackQuery, env: E
     await telegram.deleteMessage(chatId, callbackQuery.message!.message_id);
 
     // Create session
-    await upsertSession(db, telegramId, SESSION_TYPE, { editing: 'bio' });
+    await upsertSession(db, telegramId, SESSION_TYPE, { data: { editing: 'bio' } });
 
     await telegram.sendMessage(
       chatId,
@@ -245,7 +245,7 @@ export async function handleEditRegion(callbackQuery: TelegramCallbackQuery, env
     await telegram.deleteMessage(chatId, callbackQuery.message!.message_id);
 
     // Create session
-    await upsertSession(db, telegramId, SESSION_TYPE, { editing: 'region' });
+    await upsertSession(db, telegramId, SESSION_TYPE, { data: { editing: 'region' } });
 
     await telegram.sendMessage(
       chatId,
@@ -353,7 +353,7 @@ export async function handleEditInterests(callbackQuery: TelegramCallbackQuery, 
     await telegram.deleteMessage(chatId, callbackQuery.message!.message_id);
 
     // Create session
-    await upsertSession(db, telegramId, SESSION_TYPE, { editing: 'interests' });
+    await upsertSession(db, telegramId, SESSION_TYPE, { data: { editing: 'interests' } });
 
     await telegram.sendMessage(
       chatId,
