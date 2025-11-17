@@ -712,7 +712,7 @@ async function routeUpdate(update: TelegramUpdate, env: Env): Promise<void> {
       return;
     }
 
-    if (data === 'mbti_menu_cancel') {
+    if (data === 'mbti_menu_cancel' || data === 'mbti_menu_from_completion') {
       const { handleMBTIMenuCancel } = await import('./telegram/handlers/mbti');
       await handleMBTIMenuCancel(callbackQuery, env);
       return;

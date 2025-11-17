@@ -157,6 +157,10 @@ async function handleTestCompletion(
   try {
     console.log('[handleTestCompletion] Starting test completion for user:', telegramId);
     
+    // Get test progress to determine version
+    const testProgress = await getMBTITestProgress(db, telegramId);
+    const version = testProgress?.test_version || 'quick';
+    
     // Complete test and get result
     const result = await completeMBTITest(db, telegramId);
     console.log('[handleTestCompletion] MBTI result:', result);
@@ -169,17 +173,39 @@ async function handleTestCompletion(
     }
     console.log('[handleTestCompletion] User onboarding step:', user.onboarding_step);
 
+    // Determine completion message based on version
+    const testTitle = version === 'full' ? '完整測驗' : '快速測驗';
+    const testInfo = version === 'full' ? '36 題' : '12 題';
+    const accuracy = version === 'full' ? '結果更準確' : '結果僅供參考';
+    
     // Show result
-    await telegram.sendMessage(
-      chatId,
-      `🎉 快速測驗完成！\n\n` +
-        `你的 MBTI 類型是：**${result.type}**\n\n` +
-        `${result.description_zh_TW}\n\n` +
-        `⚠️ 注意：這是 12 題快速測驗，結果僅供參考。\n\n` +
-        `💡 完成註冊後，你可以：\n` +
-        `• 進行更詳細的測驗\n` +
-        `• 手動修改你的 MBTI 類型`
-    );
+    const completionMessage = 
+      `🎉 ${testTitle}完成！\n\n` +
+      `你的 MBTI 類型是：**${result.type}**\n\n` +
+      `${result.description_zh_TW}\n\n` +
+      `⚠️ 注意：這是 ${testInfo}${testTitle}，${accuracy}。\n\n` +
+      `💡 完成註冊後，你可以：\n` +
+      `• 進行更詳細的測驗\n` +
+      `• 手動修改你的 MBTI 類型`;
+
+    // If in onboarding, show message only (no buttons)
+    if (user.onboarding_step === 'mbti') {
+      await telegram.sendMessage(chatId, completionMessage);
+    } else {
+      // If not in onboarding, show buttons to navigate
+      await telegram.sendMessageWithButtons(
+        chatId,
+        completionMessage,
+        [
+          [
+            { text: '🧠 MBTI 選單', callback_data: 'mbti_menu_from_completion' },
+          ],
+          [
+            { text: '🏠 返回主選單', callback_data: 'return_to_menu' },
+          ],
+        ]
+      );
+    }
 
     // If in onboarding, continue to next step
     if (user.onboarding_step === 'mbti') {

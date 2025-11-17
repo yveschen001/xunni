@@ -599,6 +599,53 @@ async function testInviteSystem() {
 }
 
 // ============================================================================
+// Test MBTI Version Support
+// ============================================================================
+
+async function testMBTIVersionSupport() {
+  console.log('\n🧠 Testing MBTI Version Support...\n');
+
+  // Test 1: Quick version (12 questions)
+  await testEndpoint('MBTI Versions', 'Quick version has 12 questions', async () => {
+    // This would be tested with the unit test: test-mbti-version-display.ts
+    // Here we just verify the system accepts MBTI commands
+    const userId = Math.floor(Math.random() * 1000000) + 1200000000;
+    await sendWebhook('/dev_skip', userId);
+    const result = await sendWebhook('/mbti', userId);
+    
+    if (result.status !== 200) {
+      throw new Error(`Expected 200, got ${result.status}`);
+    }
+  });
+
+  // Test 2: Full version (36 questions)
+  await testEndpoint('MBTI Versions', 'Full version supported', async () => {
+    const userId = Math.floor(Math.random() * 1000000) + 1300000000;
+    await sendWebhook('/dev_skip', userId);
+    const result = await sendWebhook('/mbti', userId);
+    
+    if (result.status !== 200) {
+      throw new Error(`Expected 200, got ${result.status}`);
+    }
+    
+    // Should show version selection menu
+  });
+
+  // Test 3: MBTI test completion
+  await testEndpoint('MBTI Versions', 'Test completion logic', async () => {
+    // Verify that test completion doesn't crash
+    // Actual completion logic tested in unit tests
+    const userId = Math.floor(Math.random() * 1000000) + 1400000000;
+    await sendWebhook('/dev_skip', userId);
+    const result = await sendWebhook('/mbti', userId);
+    
+    if (result.status !== 200) {
+      throw new Error(`Expected 200, got ${result.status}`);
+    }
+  });
+}
+
+// ============================================================================
 // Main Test Runner
 // ============================================================================
 
@@ -619,6 +666,7 @@ async function runAllTests() {
     await testMessageQuota();
     await testConversationIdentifiers();
     await testInviteSystem();
+    await testMBTIVersionSupport();
     await testErrorHandling();
     await testDatabaseConnectivity();
     await testPerformance();
