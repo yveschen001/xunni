@@ -319,6 +319,24 @@ async function routeUpdate(update: TelegramUpdate, env: Env): Promise<void> {
       return;
     }
 
+    if (text === '/admin_list') {
+      const { handleAdminList } = await import('./telegram/handlers/admin_ban');
+      await handleAdminList(message, env);
+      return;
+    }
+
+    if (text.startsWith('/admin_add ')) {
+      const { handleAdminAdd } = await import('./telegram/handlers/admin_ban');
+      await handleAdminAdd(message, env);
+      return;
+    }
+
+    if (text.startsWith('/admin_remove ')) {
+      const { handleAdminRemove } = await import('./telegram/handlers/admin_ban');
+      await handleAdminRemove(message, env);
+      return;
+    }
+
     if (text === '/profile') {
       const { handleProfile } = await import('./telegram/handlers/profile');
       await handleProfile(message, env);

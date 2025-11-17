@@ -62,15 +62,13 @@ export async function handleHelp(message: TelegramMessage, env: Env): Promise<vo
     if (isUserSuperAdmin) {
       helpMessage += 
         `\n\n🔱 **超級管理員功能**\n` +
+        `/admin_list - 查看管理員列表\n` +
+        `/admin_add <user_id> - 添加管理員\n` +
+        `/admin_remove <user_id> - 移除管理員\n` +
         `/broadcast - 群發訊息\n` +
         `/dev_info - 系統信息\n` +
-        `/dev_reset - 重置帳號（測試用）\n` +
-        `💡 配置管理：修改 wrangler.toml`;
+        `/dev_reset - 重置帳號（測試用）`;
     }
-
-    helpMessage += 
-      `\n\n━━━━━━━━━━━━━━━━\n` +
-      `💡 提示：直接發送訊息即可在對話中聊天`;
 
     await telegram.sendMessage(chatId, helpMessage);
   } catch (error) {

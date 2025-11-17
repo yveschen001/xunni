@@ -415,6 +415,207 @@ export async function handleAdminFreeze(message: TelegramMessage, env: Env): Pro
 }
 
 /**
+ * Handle /admin_list command - List all admins (Super Admin only)
+ */
+export async function handleAdminList(message: TelegramMessage, env: Env): Promise<void> {
+  const telegram = createTelegramService(env);
+  const db = createDatabaseClient(env.DB);
+  const chatId = message.chat.id;
+  const telegramId = message.from!.id.toString();
+
+  try {
+    // Check super admin permission
+    if (!isSuperAdmin(telegramId)) {
+      await telegram.sendMessage(chatId, '❌ 只有超級管理員可以使用此命令。');
+      return;
+    }
+
+    const adminIds = getAdminIds(env);
+    
+    // Get admin info from database
+    const adminInfos = [];
+    for (const adminId of adminIds) {
+      const admin = await findUserByTelegramId(db, adminId);
+      const isSuperAdminFlag = isSuperAdmin(adminId);
+      adminInfos.push({
+        id: adminId,
+        nickname: admin?.nickname || '未註冊',
+        username: admin?.username || '-',
+        role: isSuperAdminFlag ? '🔱 超級管理員' : '👮 普通管理員'
+      });
+    }
+
+    let listMessage = `👥 **管理員列表**\n\n`;
+    listMessage += `總數：${adminInfos.length} 位\n\n`;
+    
+    for (const info of adminInfos) {
+      listMessage += `${info.role}\n`;
+      listMessage += `• ID: \`${info.id}\`\n`;
+      listMessage += `• 暱稱: ${info.nickname}\n`;
+      listMessage += `• 用戶名: @${info.username}\n\n`;
+    }
+
+    listMessage += `━━━━━━━━━━━━━━━━\n`;
+    listMessage += `💡 使用 /admin_add 添加管理員\n`;
+    listMessage += `💡 使用 /admin_remove 移除管理員`;
+
+    await telegram.sendMessage(chatId, listMessage);
+  } catch (error) {
+    console.error('[handleAdminList] Error:', error);
+    await telegram.sendMessage(chatId, '❌ 發生錯誤，請稍後再試。');
+  }
+}
+
+/**
+ * Handle /admin_add command - Add an admin (Super Admin only)
+ */
+export async function handleAdminAdd(message: TelegramMessage, env: Env): Promise<void> {
+  const telegram = createTelegramService(env);
+  const db = createDatabaseClient(env.DB);
+  const chatId = message.chat.id;
+  const telegramId = message.from!.id.toString();
+
+  try {
+    // Check super admin permission
+    if (!isSuperAdmin(telegramId)) {
+      await telegram.sendMessage(chatId, '❌ 只有超級管理員可以使用此命令。');
+      return;
+    }
+
+    // Parse command
+    const text = message.text || '';
+    const parts = text.split(' ').filter(p => p.length > 0);
+    
+    if (parts.length < 2) {
+      await telegram.sendMessage(
+        chatId,
+        '❌ 使用方法錯誤\n\n' +
+          '**正確格式：**\n' +
+          '`/admin_add <user_id>`\n\n' +
+          '**示例：**\n' +
+          '`/admin_add 123456789` - 添加為普通管理員\n\n' +
+          '💡 使用 /admin_list 查看當前管理員列表'
+      );
+      return;
+    }
+
+    const targetUserId = parts[1];
+
+    // Check if already super admin
+    if (isSuperAdmin(targetUserId)) {
+      await telegram.sendMessage(chatId, '❌ 此用戶已經是超級管理員，無需添加。');
+      return;
+    }
+
+    // Check if already in admin list
+    const currentAdminIds = getAdminIds(env);
+    if (currentAdminIds.includes(targetUserId)) {
+      await telegram.sendMessage(chatId, '❌ 此用戶已經是管理員。');
+      return;
+    }
+
+    // Check if user exists
+    const targetUser = await findUserByTelegramId(db, targetUserId);
+    if (!targetUser) {
+      await telegram.sendMessage(chatId, '❌ 用戶不存在或未註冊。');
+      return;
+    }
+
+    await telegram.sendMessage(
+      chatId,
+      `⚠️ **注意**\n\n` +
+        `此命令需要手動修改配置文件。\n\n` +
+        `**步驟：**\n` +
+        `1. 編輯 \`wrangler.toml\`\n` +
+        `2. 找到 \`ADMIN_USER_IDS\` 變數\n` +
+        `3. 添加用戶 ID：\`${targetUserId}\`\n` +
+        `4. 格式：\`ADMIN_USER_IDS = "ID1,ID2,${targetUserId}"\`\n` +
+        `5. 重新部署：\`pnpm deploy:staging\`\n\n` +
+        `**用戶資訊：**\n` +
+        `• ID: \`${targetUserId}\`\n` +
+        `• 暱稱: ${targetUser.nickname || '未設定'}\n` +
+        `• 用戶名: @${targetUser.username || '-'}\n\n` +
+        `💡 或在 Cloudflare Dashboard 中修改環境變數`
+    );
+  } catch (error) {
+    console.error('[handleAdminAdd] Error:', error);
+    await telegram.sendMessage(chatId, '❌ 發生錯誤，請稍後再試。');
+  }
+}
+
+/**
+ * Handle /admin_remove command - Remove an admin (Super Admin only)
+ */
+export async function handleAdminRemove(message: TelegramMessage, env: Env): Promise<void> {
+  const telegram = createTelegramService(env);
+  const db = createDatabaseClient(env.DB);
+  const chatId = message.chat.id;
+  const telegramId = message.from!.id.toString();
+
+  try {
+    // Check super admin permission
+    if (!isSuperAdmin(telegramId)) {
+      await telegram.sendMessage(chatId, '❌ 只有超級管理員可以使用此命令。');
+      return;
+    }
+
+    // Parse command
+    const text = message.text || '';
+    const parts = text.split(' ').filter(p => p.length > 0);
+    
+    if (parts.length < 2) {
+      await telegram.sendMessage(
+        chatId,
+        '❌ 使用方法錯誤\n\n' +
+          '**正確格式：**\n' +
+          '`/admin_remove <user_id>`\n\n' +
+          '**示例：**\n' +
+          '`/admin_remove 123456789` - 移除普通管理員\n\n' +
+          '💡 使用 /admin_list 查看當前管理員列表'
+      );
+      return;
+    }
+
+    const targetUserId = parts[1];
+
+    // Cannot remove super admin
+    if (isSuperAdmin(targetUserId)) {
+      await telegram.sendMessage(chatId, '❌ 無法移除超級管理員。');
+      return;
+    }
+
+    // Check if in admin list
+    const currentAdminIds = getAdminIds(env);
+    if (!currentAdminIds.includes(targetUserId)) {
+      await telegram.sendMessage(chatId, '❌ 此用戶不是管理員。');
+      return;
+    }
+
+    // Get user info
+    const targetUser = await findUserByTelegramId(db, targetUserId);
+
+    await telegram.sendMessage(
+      chatId,
+      `⚠️ **注意**\n\n` +
+        `此命令需要手動修改配置文件。\n\n` +
+        `**步驟：**\n` +
+        `1. 編輯 \`wrangler.toml\`\n` +
+        `2. 找到 \`ADMIN_USER_IDS\` 變數\n` +
+        `3. 移除用戶 ID：\`${targetUserId}\`\n` +
+        `4. 重新部署：\`pnpm deploy:staging\`\n\n` +
+        `**用戶資訊：**\n` +
+        `• ID: \`${targetUserId}\`\n` +
+        `• 暱稱: ${targetUser?.nickname || '未設定'}\n` +
+        `• 用戶名: @${targetUser?.username || '-'}\n\n` +
+        `💡 或在 Cloudflare Dashboard 中修改環境變數`
+    );
+  } catch (error) {
+    console.error('[handleAdminRemove] Error:', error);
+    await telegram.sendMessage(chatId, '❌ 發生錯誤，請稍後再試。');
+  }
+}
+
+/**
  * Handle /admin_bans command - View ban history
  */
 export async function handleAdminBans(message: TelegramMessage, env: Env): Promise<void> {
