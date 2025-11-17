@@ -60,38 +60,83 @@ async function sendWebhook(text: string, userId?: number): Promise<{ status: num
   const update = createTelegramUpdate(text, userId);
   
   try {
+    const controller = new AbortController();
+    const timeoutId = setTimeout(() => controller.abort(), 10000); // 10s timeout per request
+
     const response = await fetch(`${WORKER_URL}/webhook`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify(update),
+      signal: controller.signal,
     });
 
+    clearTimeout(timeoutId);
     const data = await response.text();
     return { status: response.status, data };
   } catch (error) {
+    if (error instanceof Error && error.name === 'AbortError') {
+      throw new Error('Request timeout (10s)');
+    }
     throw new Error(`Webhook request failed: ${String(error)}`);
+  }
+}
+
+async function withTimeout<T>(
+  promise: Promise<T>,
+  timeoutMs: number,
+  errorMessage: string
+): Promise<T> {
+  let timeoutId: NodeJS.Timeout;
+  
+  const timeoutPromise = new Promise<never>((_, reject) => {
+    timeoutId = setTimeout(() => {
+      reject(new Error(errorMessage));
+    }, timeoutMs);
+  });
+
+  try {
+    const result = await Promise.race([promise, timeoutPromise]);
+    clearTimeout(timeoutId!);
+    return result;
+  } catch (error) {
+    clearTimeout(timeoutId!);
+    throw error;
   }
 }
 
 async function testEndpoint(
   category: string,
   name: string,
-  testFn: () => Promise<void>
+  testFn: () => Promise<void>,
+  timeoutMs: number = 30000 // 30s default timeout per test
 ): Promise<void> {
   totalTests++;
   const startTime = Date.now();
 
   try {
-    await testFn();
+    await withTimeout(
+      testFn(),
+      timeoutMs,
+      `Test timeout after ${timeoutMs}ms`
+    );
     const duration = Date.now() - startTime;
     passedTests++;
+    
+    // Color code based on duration
+    let durationDisplay = `${duration}ms`;
+    if (duration > 10000) {
+      durationDisplay = `⚠️ ${duration}ms (slow)`;
+    } else if (duration > 5000) {
+      durationDisplay = `🐢 ${duration}ms`;
+    }
+    
     results.push({
       category,
       name,
       status: 'pass',
-      message: `✅ Passed in ${duration}ms`,
+      message: `✅ Passed in ${durationDisplay}`,
       duration,
     });
   } catch (error) {
@@ -872,36 +917,72 @@ async function testConversationHistoryPosts() {
 // Main Test Runner
 // ============================================================================
 
+async function runTestSuite(
+  name: string,
+  testFn: () => Promise<void>,
+  timeoutMs: number = 60000 // 60s per test suite
+): Promise<void> {
+  const startTime = Date.now();
+  console.log(`\n⏳ Running: ${name}...`);
+  
+  try {
+    await withTimeout(
+      testFn(),
+      timeoutMs,
+      `Test suite "${name}" timeout after ${timeoutMs}ms`
+    );
+    const duration = Date.now() - startTime;
+    console.log(`✅ ${name} completed in ${duration}ms`);
+  } catch (error) {
+    const duration = Date.now() - startTime;
+    console.error(`❌ ${name} failed after ${duration}ms:`, error instanceof Error ? error.message : String(error));
+    throw error; // Re-throw to mark suite as failed
+  }
+}
+
 async function runAllTests() {
   console.log('🚀 XunNi Bot - Comprehensive Smoke Test\n');
   console.log('=' .repeat(80));
   console.log(`Worker URL: ${WORKER_URL}`);
   console.log(`Test User ID: ${TEST_USER_ID}`);
+  console.log(`⏱️  Request Timeout: 10s per request`);
+  console.log(`⏱️  Test Timeout: 30s per test`);
+  console.log(`⏱️  Suite Timeout: 60s per suite`);
+  console.log(`⏱️  Total Timeout: 10 minutes`);
   console.log('=' .repeat(80));
 
   const startTime = Date.now();
+  const TOTAL_TIMEOUT = 10 * 60 * 1000; // 10 minutes total
 
   try {
-    await testInfrastructure();
-    await testUserCommands();
-    await testOnboarding();
-    await testDevCommands();
-    await testMessageQuota();
-    await testConversationIdentifiers();
-    await testInviteSystem();
-    await testMBTIVersionSupport();
-    await testEditProfileFeatures();
-    await testBloodTypeFeatures();
-    await testConversationHistoryPosts();
-    await testErrorHandling();
-    await testDatabaseConnectivity();
-    await testPerformance();
-    await testCommandCoverage();
+    await withTimeout(
+      (async () => {
+        await runTestSuite('Infrastructure', testInfrastructure);
+        await runTestSuite('User Commands', testUserCommands);
+        await runTestSuite('Onboarding', testOnboarding);
+        await runTestSuite('Dev Commands', testDevCommands);
+        await runTestSuite('Message Quota', testMessageQuota);
+        await runTestSuite('Conversation Identifiers', testConversationIdentifiers);
+        await runTestSuite('Invite System', testInviteSystem);
+        await runTestSuite('MBTI Version Support', testMBTIVersionSupport);
+        await runTestSuite('Edit Profile Features', testEditProfileFeatures);
+        await runTestSuite('Blood Type Features', testBloodTypeFeatures);
+        await runTestSuite('Conversation History Posts', testConversationHistoryPosts);
+        await runTestSuite('Error Handling', testErrorHandling);
+        await runTestSuite('Database Connectivity', testDatabaseConnectivity);
+        await runTestSuite('Performance', testPerformance);
+        await runTestSuite('Command Coverage', testCommandCoverage);
+      })(),
+      TOTAL_TIMEOUT,
+      `Total test suite timeout after ${TOTAL_TIMEOUT}ms (10 minutes)`
+    );
   } catch (error) {
-    console.error('\n❌ Test suite error:', error);
+    console.error('\n❌ Test suite error:', error instanceof Error ? error.message : String(error));
   }
 
   const totalDuration = Date.now() - startTime;
+  const totalMinutes = Math.floor(totalDuration / 60000);
+  const totalSeconds = Math.floor((totalDuration % 60000) / 1000);
 
   // Print Summary
   console.log('\n' + '='.repeat(80));
@@ -931,8 +1012,27 @@ async function runAllTests() {
   console.log(`   ✅ Passed: ${passedTests}`);
   console.log(`   ❌ Failed: ${failedTests}`);
   console.log(`   ⏭️  Skipped: ${skippedTests}`);
-  console.log(`   ⏱️  Duration: ${totalDuration}ms`);
+  
+  // Format duration
+  let durationDisplay = '';
+  if (totalMinutes > 0) {
+    durationDisplay = `${totalMinutes}m ${totalSeconds}s`;
+  } else {
+    durationDisplay = `${totalSeconds}s`;
+  }
+  console.log(`   ⏱️  Duration: ${durationDisplay} (${totalDuration}ms)`);
   console.log(`   📊 Success Rate: ${((passedTests / totalTests) * 100).toFixed(1)}%\n`);
+
+  // Show slow tests
+  const slowTests = results.filter(r => r.duration && r.duration > 5000);
+  if (slowTests.length > 0) {
+    console.log('🐢 Slow Tests (>5s):');
+    slowTests.forEach(test => {
+      const seconds = ((test.duration || 0) / 1000).toFixed(2);
+      console.log(`   ${test.category} - ${test.name}: ${seconds}s`);
+    });
+    console.log('');
+  }
 
   // Exit code
   if (failedTests > 0) {
