@@ -283,11 +283,12 @@ export async function handleAdminList(message: TelegramMessage, env: Env): Promi
   const db = createDatabaseClient(env.DB);
   const chatId = message.chat.id;
   const telegramId = message.from!.id.toString();
+  const i18n = createI18n('zh-TW'); // Admin language
 
   try {
     // Check super admin permission
     if (!isSuperAdmin(telegramId)) {
-      await telegram.sendMessage(chatId, '❌ 只有超級管理員可以使用此命令。');
+      await telegram.sendMessage(chatId, i18n.t('admin.onlySuperAdmin'));
       return;
     }
 
@@ -300,30 +301,29 @@ export async function handleAdminList(message: TelegramMessage, env: Env): Promi
       const isSuperAdminFlag = isSuperAdmin(adminId);
       adminInfos.push({
         id: adminId,
-        nickname: admin?.nickname || '未註冊',
+        nickname: admin?.nickname || i18n.t('admin.listNotRegistered'),
         username: admin?.username || '-',
-        role: isSuperAdminFlag ? '🔱 超級管理員' : '👮 普通管理員'
+        role: isSuperAdminFlag ? i18n.t('admin.listRoleSuperAdmin') : i18n.t('admin.listRoleAdmin')
       });
     }
 
-    let listMessage = `👥 **管理員列表**\n\n`;
-    listMessage += `總數：${adminInfos.length} 位\n\n`;
+    let listMessage = i18n.t('admin.listTitle') + `\n\n`;
+    listMessage += i18n.t('admin.listTotal', { count: adminInfos.length }) + `\n\n`;
     
     for (const info of adminInfos) {
       listMessage += `${info.role}\n`;
-      listMessage += `• ID: \`${info.id}\`\n`;
-      listMessage += `• 暱稱: ${info.nickname}\n`;
-      listMessage += `• 用戶名: @${info.username}\n\n`;
+      listMessage += i18n.t('admin.listId', { id: info.id }) + `\n`;
+      listMessage += i18n.t('admin.listNickname', { nickname: info.nickname }) + `\n`;
+      listMessage += i18n.t('admin.listUsername', { username: info.username }) + `\n\n`;
     }
 
     listMessage += `━━━━━━━━━━━━━━━━\n`;
-    listMessage += `💡 使用 /admin_add 添加管理員\n`;
-    listMessage += `💡 使用 /admin_remove 移除管理員`;
+    listMessage += i18n.t('admin.listFooter');
 
     await telegram.sendMessage(chatId, listMessage);
   } catch (error) {
     console.error('[handleAdminList] Error:', error);
-    await telegram.sendMessage(chatId, '❌ 發生錯誤，請稍後再試。');
+    await telegram.sendMessage(chatId, i18n.t('admin.error'));
   }
 }
 
