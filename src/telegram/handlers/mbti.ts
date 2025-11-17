@@ -61,15 +61,8 @@ export async function handleMBTI(message: TelegramMessage, env: Env): Promise<vo
         [
           { text: '✍️ 手動輸入 MBTI', callback_data: 'mbti_menu_manual' },
         ],
-        ...(user.mbti_result
-          ? [
-              [
-                { text: '🗑️ 清除 MBTI', callback_data: 'mbti_menu_clear' },
-              ],
-            ]
-          : []),
         [
-          { text: '❌ 取消', callback_data: 'mbti_menu_cancel' },
+          { text: '↩️ 返回編輯資料', callback_data: 'edit_profile_callback' },
         ],
       ]
     );
