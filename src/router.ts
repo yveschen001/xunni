@@ -76,21 +76,32 @@ async function routeUpdate(update: TelegramUpdate, env: Env): Promise<void> {
     const user = await findUserByTelegramId(db, telegramId);
 
     // New user - auto-trigger welcome flow (no /start required)
+    // BUT: if it's a /start command with invite code, let the start handler process it
     if (!user) {
-      // Create user record
-      await createUser(db, {
-        telegram_id: telegramId,
-        username: message.from!.username,
-        first_name: message.from!.first_name,
-        last_name: message.from!.last_name,
-        language_pref: message.from!.language_code || 'zh-TW',
-        invite_code: generateInviteCode(),
-        onboarding_step: 'language_selection',
-      });
+      const isStartCommand = text.startsWith('/start');
+      const hasInviteCode = text.includes('invite_');
+      
+      // If it's /start with invite code, let the start handler process it
+      if (isStartCommand && hasInviteCode) {
+        console.error('[Router] New user with invite code, delegating to /start handler');
+        // Don't create user here, let /start handler do it with invite info
+        // Fall through to command routing below
+      } else {
+        // Create user record for non-invite scenarios
+        await createUser(db, {
+          telegram_id: telegramId,
+          username: message.from!.username,
+          first_name: message.from!.first_name,
+          last_name: message.from!.last_name,
+          language_pref: message.from!.language_code || 'zh-TW',
+          invite_code: generateInviteCode(),
+          onboarding_step: 'language_selection',
+        });
 
-      // Show language selection
-      await showLanguageSelection(message, env);
-      return;
+        // Show language selection
+        await showLanguageSelection(message, env);
+        return;
+      }
     }
 
     // Check if user is banned
