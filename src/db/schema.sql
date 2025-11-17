@@ -387,6 +387,7 @@ CREATE TABLE IF NOT EXISTS bans (
   risk_snapshot INTEGER DEFAULT 0,
   ban_start TEXT NOT NULL,
   ban_end TEXT,  -- NULL = permanent ban
+  banned_by TEXT,  -- Admin's telegram_id who banned the user
   created_at TEXT DEFAULT CURRENT_TIMESTAMP,
   
   FOREIGN KEY (user_id) REFERENCES users(telegram_id)
@@ -395,6 +396,7 @@ CREATE TABLE IF NOT EXISTS bans (
 CREATE INDEX idx_bans_user_id ON bans(user_id);
 CREATE INDEX idx_bans_ban_end ON bans(ban_end);
 CREATE INDEX idx_bans_created_at ON bans(created_at);
+CREATE INDEX idx_bans_banned_by ON bans(banned_by);
 
 -- ============================================================================
 -- 15. Appeals Table (申訴記錄)
