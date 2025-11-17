@@ -33,7 +33,7 @@ XunNi Bot 有兩種管理員角色：
 ## 🔑 如何獲取你的 Telegram ID
 
 ### 方法 1：使用 Bot 命令（推薦）
-1. 在 Telegram 中打開 @xunni_dev_bot（Staging）或 @xunni_bot（Production）
+1. 在 Telegram 中打開 @xunni_dev_bot（Staging）或 @xunnibot（Production）
 2. 發送 `/dev_info` 命令
 3. Bot 會返回你的 Telegram ID
 

@@ -12,7 +12,7 @@ describe('checkUrlWhitelist', () => {
   });
 
   it('should allow t.me links', () => {
-    const result = checkUrlWhitelist('Check this: https://t.me/xunni_bot');
+    const result = checkUrlWhitelist('Check this: https://t.me/xunnibot');
     expect(result.allowed).toBe(true);
   });
 

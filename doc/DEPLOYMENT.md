@@ -356,7 +356,7 @@ export async function sendAlert(
 - 在 Mini App 中顯示版本號（用於除錯）
 
 **WebApp.share Deep Link**：
-- 確保 Deep Link 正確指向 Bot：`https://t.me/xunni_bot?startapp=...`
+- 確保 Deep Link 正確指向 Bot：`https://t.me/xunnibot?startapp=...`（生產環境）或 `https://t.me/xunni_dev_bot?startapp=...`（測試環境）
 - 測試分享功能是否正常運作
 
 ### 8.2 靜態資源 CDN

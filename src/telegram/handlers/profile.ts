@@ -81,7 +81,7 @@ export async function handleProfile(message: TelegramMessage, env: Env): Promise
       `• 使用 /stats 查看統計數據\n\n` +
       `🏠 返回主選單：/menu`;
 
-    const botUsername = env.ENVIRONMENT === 'production' ? 'xunni_bot' : 'xunni_dev_bot';
+    const botUsername = env.ENVIRONMENT === 'production' ? 'xunnibot' : 'xunni_dev_bot';
     const shareUrl = `https://t.me/share/url?url=https://t.me/${botUsername}?start=invite_${inviteCode}&text=來 XunNi 一起丟漂流瓶吧！🍾 使用我的邀請碼：${inviteCode}`;
 
     await telegram.sendMessageWithButtons(

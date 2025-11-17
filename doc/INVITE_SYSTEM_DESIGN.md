@@ -46,7 +46,7 @@
 **支持格式**:
 ```
 1. 命令格式：/start invite_XUNNI-ABC123
-2. Deep Link：https://t.me/xunni_bot?start=invite_XUNNI-ABC123
+2. Deep Link：https://t.me/xunnibot?start=invite_XUNNI-ABC123（生產環境）或 https://t.me/xunni_dev_bot?start=invite_XUNNI-ABC123（測試環境）
 ```
 
 **處理流程**:

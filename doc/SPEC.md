@@ -7,7 +7,7 @@
 
 ### 產品資訊
 - **產品名稱**: XunNi
-- **Telegram Bot**: @xunni_bot
+- **Telegram Bot**: @xunnibot（生產環境）/ @xunni_dev_bot（測試環境）
 - **類型**: MBTI + 星座心理測驗漂流瓶交友 Bot（匿名聊天）
 
 ### 專案定義
@@ -1574,12 +1574,12 @@ tg.SecondaryButton.show();
 **WebApp.share 分享裂變**：
 ```typescript
 // 分享 MBTI 測驗結果
-tg.shareUrl('https://t.me/xunni_bot?startapp=share_mbti_' + resultId, {
+tg.shareUrl('https://t.me/xunnibot?startapp=share_mbti_' + resultId, {
   text: `我的 MBTI 測驗結果是 ${mbtiType}！你也來測測吧～`,
 });
 
 // 分享邀請碼
-tg.shareUrl('https://t.me/xunni_bot?startapp=invite_' + inviteCode, {
+tg.shareUrl('https://t.me/xunnibot?startapp=invite_' + inviteCode, {
   text: `來 XunNi 一起丟漂流瓶吧！使用我的邀請碼：${inviteCode}`,
 });
 ```

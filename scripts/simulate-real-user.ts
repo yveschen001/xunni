@@ -115,7 +115,7 @@ async function clickButton(callbackData: string, step: string): Promise<any> {
               id: 123456789,
               is_bot: true,
               first_name: 'XunNi Bot',
-              username: 'xunni_bot',
+              username: 'xunnibot',
             },
             chat: {
               id: TEST_USER_ID,

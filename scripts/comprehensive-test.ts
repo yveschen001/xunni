@@ -72,7 +72,7 @@ function createCallback(data: string, userId: number = COMPREHENSIVE_TEST_USER_I
           id: 123456789,
           is_bot: true,
           first_name: 'XunNi Bot',
-          username: 'xunni_bot',
+          username: 'xunnibot',
         },
         chat: {
           id: userId,

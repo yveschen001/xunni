@@ -150,7 +150,7 @@ export async function handleMenuCallback(
         }
 
         const inviteCode = user.invite_code;
-        const botUsername = env.ENVIRONMENT === 'production' ? 'xunni_bot' : 'xunni_dev_bot';
+        const botUsername = env.ENVIRONMENT === 'production' ? 'xunnibot' : 'xunni_dev_bot';
         const shareUrl = `https://t.me/share/url?url=https://t.me/${botUsername}?start=invite_${inviteCode}&text=來 XunNi 一起丟漂流瓶吧！🍾 使用我的邀請碼加入，我們都能獲得更多配額！`;
 
         await telegram.sendMessageWithButtons(
