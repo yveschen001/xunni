@@ -5,25 +5,21 @@
  */
 
 import type { Env, TelegramMessage } from '~/types';
-import { createDatabaseClient } from '~/db/client';
 import { createTelegramService } from '~/services/telegram';
-import { findUserByTelegramId } from '~/db/queries/users';
 
 export async function handleHelp(message: TelegramMessage, env: Env): Promise<void> {
-  const db = createDatabaseClient(env.DB);
   const telegram = createTelegramService(env);
   const chatId = message.chat.id;
   const telegramId = message.from!.id.toString();
 
   try {
-    // Get user
-    const user = await findUserByTelegramId(db, telegramId);
+    // Check user role using new admin system
+    const { getAdminIds, isSuperAdmin } = await import('./admin_ban');
+    const adminIds = getAdminIds(env);
+    const isUserSuperAdmin = isSuperAdmin(telegramId);
+    const isUserAdmin = adminIds.includes(telegramId);
 
-    // Check user role for command visibility
-    const role = user?.role || 'user';
-    const isAdmin = role === 'group_admin' || role === 'angel' || role === 'god';
-    const isGodOrAngel = role === 'angel' || role === 'god';
-
+    // Base commands for all users
     let helpMessage = 
       `📖 **XunNi 指令列表**\n\n` +
       `🎮 **核心功能**\n` +
@@ -41,29 +37,32 @@ export async function handleHelp(message: TelegramMessage, env: Env): Promise<vo
       `🛡️ **安全功能**\n` +
       `/block - 封鎖使用者\n` +
       `/report - 舉報不當內容\n` +
-      `/appeal - 申訴封禁\n\n` +
+      `/appeal - 申訴封禁\n` +
+      `/appeal_status - 查詢申訴狀態\n\n` +
       `📖 **幫助**\n` +
       `/rules - 查看遊戲規則\n` +
       `/help - 顯示此列表\n` +
       `/settings - 推送設定`;
 
-    // Add admin commands if user is admin
-    if (isAdmin) {
+    // Add admin commands (for both regular admin and super admin)
+    if (isUserAdmin) {
       helpMessage += 
-        `\n\n👮 **管理功能**\n` +
-        `/admin - 管理主選單\n` +
-        `/admin_stats - 運營數據\n` +
-        `/admin_user - 使用者管理\n` +
-        `/admin_ban - 封禁管理\n` +
-        `/admin_vip - VIP 管理\n` +
-        `/admin_appeal - 申訴審核`;
+        `\n\n👮 **管理員功能**\n` +
+        `/admin_appeals - 查看待審核申訴\n` +
+        `/admin_bans - 查看封禁記錄\n` +
+        `/admin_bans <user_id> - 查看用戶封禁歷史\n` +
+        `/admin_approve <id> [備註] - 批准申訴\n` +
+        `/admin_reject <id> [備註] - 拒絕申訴`;
     }
 
-    // Add god/angel commands
-    if (isGodOrAngel) {
+    // Add super admin commands (only for super admin)
+    if (isUserSuperAdmin) {
       helpMessage += 
-        `\n\n👼 **平台管理**\n` +
-        `/broadcast - 群發訊息`;
+        `\n\n🔱 **超級管理員功能**\n` +
+        `/broadcast - 群發訊息\n` +
+        `/dev_info - 系統信息\n` +
+        `/dev_reset - 重置帳號（測試用）\n` +
+        `💡 配置管理：修改 wrangler.toml`;
     }
 
     helpMessage += 
