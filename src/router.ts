@@ -634,9 +634,8 @@ async function routeUpdate(update: TelegramUpdate, env: Env): Promise<void> {
     }
 
     if (data === 'retake_mbti') {
-      const { handleMBTI } = await import('./telegram/handlers/mbti');
-      await handleMBTI(callbackQuery.message as any, env);
-      await telegram.answerCallbackQuery(callbackQuery.id, '開始 MBTI 測試');
+      const { handleMBTIMenuTest } = await import('./telegram/handlers/mbti');
+      await handleMBTIMenuTest(callbackQuery, env);
       return;
     }
 
