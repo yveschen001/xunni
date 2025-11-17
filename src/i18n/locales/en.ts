@@ -303,5 +303,88 @@ export const translations: Translations = {
       '❌ Appeal reason too long\n\n' +
       'Please keep your explanation under 500 characters.',
   },
+
+  // Admin system
+  admin: {
+    // Permission errors
+    onlySuperAdmin: '❌ Only super admins can use this command.',
+    onlyAdmin: '❌ Only admins can use this command.',
+    cannotBanAdmin: '❌ Cannot ban admin accounts.',
+    
+    // Admin list
+    listTitle: '👥 **Admin List**',
+    listTotal: 'Total: {count} admin(s)',
+    listRoleSuperAdmin: '🔱 Super Admin',
+    listRoleAdmin: '👮 Admin',
+    listId: '• ID: `{id}`',
+    listNickname: '• Nickname: {nickname}',
+    listUsername: '• Username: @{username}',
+    listNotRegistered: 'Not registered',
+    listFooter: '💡 Use /admin_add to add admins\n💡 Use /admin_remove to remove admins',
+    
+    // Admin add
+    addUsageError: '❌ Usage error\n\n**Correct format:**\n`/admin_add <user_id>`\n\n**Example:**\n`/admin_add 123456789` - Add as regular admin\n\n💡 Use /admin_list to view current admin list',
+    addAlreadySuperAdmin: '❌ This user is already a super admin.',
+    addAlreadyAdmin: '❌ This user is already an admin.',
+    addUserNotFound: '❌ User not found or not registered.',
+    addInstructions: '⚠️ **Notice**\n\nThis command requires manual configuration file modification.\n\n**Steps:**\n1. Edit `wrangler.toml`\n2. Find `ADMIN_USER_IDS` variable\n3. Add user ID: `{userId}`\n4. Format: `ADMIN_USER_IDS = "ID1,ID2,{userId}"`\n5. Redeploy: `pnpm deploy:staging`\n\n**User Info:**\n• ID: `{userId}`\n• Nickname: {nickname}\n• Username: @{username}\n\n💡 Or modify environment variables in Cloudflare Dashboard',
+    
+    // Admin remove
+    removeUsageError: '❌ Usage error\n\n**Correct format:**\n`/admin_remove <user_id>`\n\n**Example:**\n`/admin_remove 123456789` - Remove regular admin\n\n💡 Use /admin_list to view current admin list',
+    removeCannotRemoveSuperAdmin: '❌ Cannot remove super admin.',
+    removeNotAdmin: '❌ This user is not an admin.',
+    removeInstructions: '⚠️ **Notice**\n\nThis command requires manual configuration file modification.\n\n**Steps:**\n1. Edit `wrangler.toml`\n2. Find `ADMIN_USER_IDS` variable\n3. Remove user ID: `{userId}`\n4. Redeploy: `pnpm deploy:staging`\n\n**User Info:**\n• ID: `{userId}`\n• Nickname: {nickname}\n• Username: @{username}\n\n💡 Or modify environment variables in Cloudflare Dashboard',
+    
+    // Admin ban
+    banUsageError: '❌ Usage error\n\n**Correct format:**\n`/admin_ban <user_id> [hours|permanent]`\n\n**Examples:**\n`/admin_ban 123456789` - Ban for 1 hour (default)\n`/admin_ban 123456789 24` - Ban for 24 hours\n`/admin_ban 123456789 permanent` - Permanent ban',
+    banUserNotFound: '❌ User not found.',
+    banSuccess: '✅ User banned\n\n• User ID: `{userId}`\n• Nickname: {nickname}\n• Duration: {duration}\n• Unban time: {unbanTime}',
+    banSuccessPermanent: '✅ User banned\n\n• User ID: `{userId}`\n• Nickname: {nickname}\n• Duration: Permanent',
+    
+    // Admin unban
+    unbanUsageError: '❌ Usage error\n\n**Correct format:**\n`/admin_unban <user_id>`\n\n**Example:**\n`/admin_unban 123456789`',
+    unbanUserNotFound: '❌ User not found.',
+    unbanNotBanned: '❌ This user is not banned.',
+    unbanSuccess: '✅ User unbanned\n\n• User ID: `{userId}`\n• Nickname: {nickname}\n\nUnban notification sent to user.',
+    
+    // Admin freeze
+    freezeUsageError: '❌ Usage error\n\n**Correct format:**\n`/admin_freeze <user_id> <hours>`\n\n**Examples:**\n`/admin_freeze 123456789 48` - Freeze for 48 hours\n`/admin_freeze 123456789 168` - Freeze for 7 days',
+    freezeUserNotFound: '❌ User not found.',
+    freezeSuccess: '✅ User frozen\n\n• User ID: `{userId}`\n• Nickname: {nickname}\n• Duration: {duration}\n• Unfreeze time: {unbanTime}',
+    
+    // Admin bans
+    bansTitle: '📋 Ban Records',
+    bansUserHistory: '📋 User Ban History',
+    bansUserId: 'User ID: `{userId}`',
+    bansNickname: 'Nickname: {nickname}',
+    bansTotalCount: 'Ban count: {count}',
+    bansCurrentStatus: 'Current status: {status}',
+    bansStatusBanned: 'Banned',
+    bansStatusNormal: 'Normal',
+    bansNoRecords: '❌ No ban records found.',
+    bansRecordItem: '**Ban #{id}**\n• Time: {time}\n• Reason: {reason}\n• Duration: {duration}\n• Status: {status}',
+    bansStatusActive: 'Active',
+    bansStatusInactive: 'Inactive',
+    
+    // Admin appeals
+    appealsTitle: '📋 Pending Appeals',
+    appealsNoRecords: '✅ No pending appeals.',
+    appealsRecordItem: '**Appeal #{id}**\n• User: {nickname} (`{userId}`)\n• Submitted: {time}\n• Reason: {reason}\n\nUse /admin_approve {id} to approve\nUse /admin_reject {id} to reject',
+    
+    // Admin approve
+    approveUsageError: '❌ Usage error\n\n**Correct format:**\n`/admin_approve <appeal_id> [notes]`\n\n**Examples:**\n`/admin_approve 1` - Approve appeal\n`/admin_approve 1 Confirmed as false positive` - Approve with notes',
+    approveNotFound: '❌ Appeal not found.',
+    approveAlreadyReviewed: '❌ This appeal has already been reviewed.',
+    approveSuccess: '✅ Appeal approved\n\n• Appeal ID: #{id}\n• User: {nickname} (`{userId}`)\n• Review notes: {notes}\n\nUser has been unbanned and notified.',
+    
+    // Admin reject
+    rejectUsageError: '❌ Usage error\n\n**Correct format:**\n`/admin_reject <appeal_id> [notes]`\n\n**Examples:**\n`/admin_reject 1` - Reject appeal\n`/admin_reject 1 Violation confirmed` - Reject with notes',
+    rejectNotFound: '❌ Appeal not found.',
+    rejectAlreadyReviewed: '❌ This appeal has already been reviewed.',
+    rejectSuccess: '✅ Appeal rejected\n\n• Appeal ID: #{id}\n• User: {nickname} (`{userId}`)\n• Review notes: {notes}\n\nUser has been notified.',
+    
+    // Common
+    error: '❌ An error occurred. Please try again later.',
+  },
 };
 
