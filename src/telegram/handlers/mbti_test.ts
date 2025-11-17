@@ -166,9 +166,8 @@ async function handleTestCompletion(
         `${result.description_zh_TW}\n\n` +
         `⚠️ 注意：這是 12 題快速測驗，結果僅供參考。\n\n` +
         `💡 完成註冊後，你可以：\n` +
-        `• 使用 /mbti 進行更詳細的測驗\n` +
-        `• 手動修改你的 MBTI 類型\n` +
-        `• 未來我們將推出 36 題標準版測驗（Mini App）`
+        `• 進行更詳細的測驗\n` +
+        `• 手動修改你的 MBTI 類型`
     );
 
     // If in onboarding, continue to next step
