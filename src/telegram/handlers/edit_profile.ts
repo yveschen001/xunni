@@ -476,6 +476,13 @@ export async function handleProfileEditInput(message: TelegramMessage, env: Env)
       return false; // Not in edit mode
     }
 
+    // If user sends a command, clear the session and let router handle it
+    if (text.startsWith('/')) {
+      console.error('[handleProfileEditInput] Command detected, clearing session:', text);
+      await deleteSession(db, telegramId, SESSION_TYPE);
+      return false; // Let router handle the command
+    }
+
     const sessionData = parseSessionData(session);
     const editing = sessionData.data?.editing;
     console.error('[handleProfileEditInput] Editing type:', editing);
