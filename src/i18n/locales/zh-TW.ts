@@ -18,6 +18,7 @@ export const translations: Translations = {
     error: '錯誤',
     success: '成功',
     loading: '載入中...',
+    notSet: '未設定',
   },
 
   onboarding: {
@@ -227,6 +228,13 @@ export const translations: Translations = {
       '我們的系統偵測到你的帳號存在嚴重違規行為，經過 AI 安全審核後，你的帳號已被停用。\n\n' +
       '📖 請查看社群規範了解詳情：/rules\n\n' +
       '💡 如果你認為這是誤判，歡迎使用 /appeal 提出申訴，我們會由人工審核你的情況。',
+    
+    // 解封通知
+    unbanNotification:
+      '✅ **封禁已解除**\n\n' +
+      '管理員已解除你的帳號限制。\n\n' +
+      '你現在可以正常使用所有功能了。\n\n' +
+      '💡 請遵守社群規範，避免再次被封禁。',
     
     // 封禁檢查（臨時封禁）- 友善版本
     bannedTemporary:

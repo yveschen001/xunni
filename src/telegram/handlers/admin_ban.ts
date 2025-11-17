@@ -56,11 +56,12 @@ export async function handleAdminBan(message: TelegramMessage, env: Env): Promis
   const db = createDatabaseClient(env.DB);
   const chatId = message.chat.id;
   const telegramId = message.from!.id.toString();
+  const i18n = createI18n('zh-TW'); // Admin language, will be improved later
 
   try {
     // Check admin permission
     if (!isAdmin(telegramId, env)) {
-      await telegram.sendMessage(chatId, '❌ 你沒有權限使用此命令。');
+      await telegram.sendMessage(chatId, i18n.t('admin.onlyAdmin'));
       return;
     }
 
@@ -69,16 +70,7 @@ export async function handleAdminBan(message: TelegramMessage, env: Env): Promis
     const parts = text.split(' ').filter(p => p.length > 0);
     
     if (parts.length < 2) {
-      await telegram.sendMessage(
-        chatId,
-        '❌ 使用方法錯誤\n\n' +
-          '**正確格式：**\n' +
-          '`/admin_ban <user_id> [hours|permanent]`\n\n' +
-          '**示例：**\n' +
-          '`/admin_ban 123456789` - 封禁 1 小時\n' +
-          '`/admin_ban 123456789 24` - 封禁 24 小時\n' +
-          '`/admin_ban 123456789 permanent` - 永久封禁'
-      );
+      await telegram.sendMessage(chatId, i18n.t('admin.banUsageError'));
       return;
     }
 
@@ -88,14 +80,14 @@ export async function handleAdminBan(message: TelegramMessage, env: Env): Promis
     // Check if target is admin
     const adminIds = getAdminIds(env);
     if (adminIds.includes(targetUserId)) {
-      await telegram.sendMessage(chatId, '❌ 無法封禁管理員帳號。');
+      await telegram.sendMessage(chatId, i18n.t('admin.cannotBanAdmin'));
       return;
     }
 
     // Check if user exists
     const targetUser = await findUserByTelegramId(db, targetUserId);
     if (!targetUser) {
-      await telegram.sendMessage(chatId, '❌ 用戶不存在。');
+      await telegram.sendMessage(chatId, i18n.t('admin.banUserNotFound'));
       return;
     }
 
@@ -174,18 +166,29 @@ export async function handleAdminBan(message: TelegramMessage, env: Env): Promis
     }
 
     // Confirm to admin
-    await telegram.sendMessage(
-      chatId,
-      `✅ **已封禁用戶**\n\n` +
-        `用戶 ID：\`${targetUserId}\`\n` +
-        `暱稱：${targetUser.nickname || '未設定'}\n` +
-        `封禁時長：${durationText}\n` +
-        `${bannedUntil ? `解封時間：${new Date(bannedUntil).toLocaleString('zh-TW')}` : ''}\n\n` +
-        `💡 用戶可以使用 /appeal 申訴`
-    );
+    if (bannedUntil) {
+      const unbanTime = new Date(bannedUntil).toLocaleString('zh-TW');
+      await telegram.sendMessage(
+        chatId,
+        i18n.t('admin.banSuccess', {
+          userId: targetUserId,
+          nickname: targetUser.nickname || i18n.t('common.notSet'),
+          duration: durationText,
+          unbanTime,
+        })
+      );
+    } else {
+      await telegram.sendMessage(
+        chatId,
+        i18n.t('admin.banSuccessPermanent', {
+          userId: targetUserId,
+          nickname: targetUser.nickname || i18n.t('common.notSet'),
+        })
+      );
+    }
   } catch (error) {
     console.error('[handleAdminBan] Error:', error);
-    await telegram.sendMessage(chatId, '❌ 發生錯誤，請稍後再試。');
+    await telegram.sendMessage(chatId, i18n.t('admin.error'));
   }
 }
 
@@ -198,11 +201,12 @@ export async function handleAdminUnban(message: TelegramMessage, env: Env): Prom
   const db = createDatabaseClient(env.DB);
   const chatId = message.chat.id;
   const telegramId = message.from!.id.toString();
+  const i18n = createI18n('zh-TW'); // Admin language
 
   try {
     // Check admin permission
     if (!isAdmin(telegramId, env)) {
-      await telegram.sendMessage(chatId, '❌ 你沒有權限使用此命令。');
+      await telegram.sendMessage(chatId, i18n.t('admin.onlyAdmin'));
       return;
     }
 
@@ -211,14 +215,7 @@ export async function handleAdminUnban(message: TelegramMessage, env: Env): Prom
     const parts = text.split(' ').filter(p => p.length > 0);
     
     if (parts.length < 2) {
-      await telegram.sendMessage(
-        chatId,
-        '❌ 使用方法錯誤\n\n' +
-          '**正確格式：**\n' +
-          '`/admin_unban <user_id>`\n\n' +
-          '**示例：**\n' +
-          '`/admin_unban 123456789` - 解除封禁'
-      );
+      await telegram.sendMessage(chatId, i18n.t('admin.unbanUsageError'));
       return;
     }
 
@@ -227,13 +224,13 @@ export async function handleAdminUnban(message: TelegramMessage, env: Env): Prom
     // Check if user exists
     const targetUser = await findUserByTelegramId(db, targetUserId);
     if (!targetUser) {
-      await telegram.sendMessage(chatId, '❌ 用戶不存在。');
+      await telegram.sendMessage(chatId, i18n.t('admin.unbanUserNotFound'));
       return;
     }
 
     // Check if user is banned
     if (!targetUser.is_banned) {
-      await telegram.sendMessage(chatId, '❌ 此用戶未被封禁。');
+      await telegram.sendMessage(chatId, i18n.t('admin.unbanNotBanned'));
       return;
     }
 
@@ -255,15 +252,8 @@ export async function handleAdminUnban(message: TelegramMessage, env: Env): Prom
     `).bind(targetUserId).run();
 
     // Send notification to unbanned user
-    const unbanMessage = targetUser.language_pref === 'en'
-      ? '✅ **Ban Lifted**\n\n' +
-        'Your account restrictions have been removed by an administrator.\n\n' +
-        'You can now use all features normally.\n\n' +
-        '💡 Please follow community guidelines to avoid future restrictions.'
-      : '✅ **封禁已解除**\n\n' +
-        '管理員已解除你的帳號限制。\n\n' +
-        '你現在可以正常使用所有功能了。\n\n' +
-        '💡 請遵守社群規範，避免再次被封禁。';
+    const userI18n = createI18n(targetUser.language_pref || 'zh-TW');
+    const unbanMessage = userI18n.t('ban.unbanNotification');
 
     try {
       await telegram.sendMessage(parseInt(targetUserId), unbanMessage);
@@ -274,14 +264,14 @@ export async function handleAdminUnban(message: TelegramMessage, env: Env): Prom
     // Confirm to admin
     await telegram.sendMessage(
       chatId,
-      `✅ **已解除封禁**\n\n` +
-        `用戶 ID：\`${targetUserId}\`\n` +
-        `暱稱：${targetUser.nickname || '未設定'}\n\n` +
-        `💡 用戶已收到解封通知`
+      i18n.t('admin.unbanSuccess', {
+        userId: targetUserId,
+        nickname: targetUser.nickname || i18n.t('common.notSet'),
+      })
     );
   } catch (error) {
     console.error('[handleAdminUnban] Error:', error);
-    await telegram.sendMessage(chatId, '❌ 發生錯誤，請稍後再試。');
+    await telegram.sendMessage(chatId, i18n.t('admin.error'));
   }
 }
 

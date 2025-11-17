@@ -16,6 +16,7 @@ export interface Translations {
     error: string;
     success: string;
     loading: string;
+    notSet: string;
   };
 
   // Onboarding
@@ -138,6 +139,7 @@ export interface Translations {
   ban: {
     temporaryBan: string;
     permanentBan: string;
+    unbanNotification: string;
     bannedTemporary: string;
     bannedPermanent: string;
   };

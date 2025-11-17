@@ -18,6 +18,7 @@ export const translations: Translations = {
     error: 'Error',
     success: 'Success',
     loading: 'Loading...',
+    notSet: 'Not set',
   },
 
   onboarding: {
@@ -215,6 +216,13 @@ export const translations: Translations = {
       'Our system has detected serious violations on your account. After AI security review, your account has been suspended.\n\n' +
       '📖 Please review our community guidelines: /rules\n\n' +
       '💡 If you believe this is a mistake, you can appeal using /appeal and a human moderator will review your case.',
+    
+    // Unban notification
+    unbanNotification:
+      '✅ **Ban Lifted**\n\n' +
+      'An administrator has removed your account restrictions.\n\n' +
+      'You can now use all features normally.\n\n' +
+      '💡 Please follow community guidelines to avoid future restrictions.',
     
     // Ban check (temporary) - Friendly version
     bannedTemporary:
