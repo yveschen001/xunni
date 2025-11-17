@@ -115,8 +115,9 @@ export async function handleReportReason(
 
     // Check if user should be auto-banned (e.g., 3+ reports in 24h)
     const recentReports = await getRecentReportCount(db, otherUserId);
-    if (recentReports >= 3) {
-      await autoBanUser(db, otherUserId, 'Multiple reports');
+    if (recentReports >= 1) {
+      // Auto-ban based on report count
+      await autoBanUser(db, telegram, otherUserId, '多次被舉報 / Multiple reports', recentReports);
     }
 
     // Answer callback
@@ -202,32 +203,98 @@ async function getRecentReportCount(
 }
 
 /**
- * Auto-ban user
+ * Auto-ban user with proper ban duration and notification
  */
 async function autoBanUser(
   db: ReturnType<typeof createDatabaseClient>,
+  telegram: ReturnType<typeof createTelegramService>,
   userId: string,
-  reason: string
+  reason: string,
+  reportCount: number
 ): Promise<void> {
-  // Update user status
-  await db.d1.prepare(`
-    UPDATE users
-    SET is_banned = 1
-    WHERE telegram_id = ?
-  `).bind(userId).run();
+  // Calculate ban duration based on report count
+  let banHours: number;
+  if (reportCount === 1) {
+    banHours = 1;
+  } else if (reportCount === 2) {
+    banHours = 6;
+  } else if (reportCount === 3) {
+    banHours = 24;
+  } else {
+    banHours = 72; // 3 days for 5+ reports
+  }
 
-  // Create ban record (24 hours)
-  await db.d1.prepare(`
-    INSERT INTO bans (user_id, reason, risk_snapshot, ban_start, ban_end, created_at)
-    SELECT 
-      telegram_id,
-      ?,
-      risk_score,
-      datetime('now'),
-      datetime('now', '+24 hours'),
-      datetime('now')
-    FROM users
-    WHERE telegram_id = ?
-  `).bind(reason, userId).run();
+  const now = new Date();
+  const banStart = now.toISOString();
+  const banEnd = new Date(now.getTime() + banHours * 60 * 60 * 1000).toISOString();
+
+  // Get user info for notification
+  const user = await db.d1
+    .prepare('SELECT telegram_id, language_pref, risk_score, ban_count FROM users WHERE telegram_id = ?')
+    .bind(userId)
+    .first<{ telegram_id: string; language_pref: string; risk_score: number; ban_count: number }>();
+
+  if (!user) {
+    console.error('[autoBanUser] User not found:', userId);
+    return;
+  }
+
+  // Update user status
+  await db.d1
+    .prepare(`
+      UPDATE users
+      SET is_banned = 1,
+          ban_reason = ?,
+          banned_at = ?,
+          banned_until = ?,
+          ban_count = ban_count + 1,
+          updated_at = ?
+      WHERE telegram_id = ?
+    `)
+    .bind(reason, banStart, banEnd, now.toISOString(), userId)
+    .run();
+
+  // Create ban record
+  await db.d1
+    .prepare(`
+      INSERT INTO bans (user_id, reason, risk_snapshot, ban_start, ban_end, created_at)
+      VALUES (?, ?, ?, ?, ?, ?)
+    `)
+    .bind(userId, reason, user.risk_score, banStart, banEnd, now.toISOString())
+    .run();
+
+  // Send ban notification
+  const { createI18n } = await import('~/i18n');
+  const i18n = createI18n(user.language_pref || 'zh-TW');
+
+  const bannedUntil = new Date(banEnd);
+  const unbanTime = bannedUntil.toLocaleString(user.language_pref === 'en' ? 'en-US' : 'zh-TW', {
+    year: 'numeric',
+    month: '2-digit',
+    day: '2-digit',
+    hour: '2-digit',
+    minute: '2-digit',
+    timeZone: user.language_pref === 'en' ? 'UTC' : 'Asia/Taipei',
+  });
+
+  let duration: string;
+  if (banHours < 24) {
+    duration = `${banHours} ${user.language_pref === 'en' ? 'hours' : '小時'}`;
+  } else {
+    const days = Math.floor(banHours / 24);
+    duration = `${days} ${user.language_pref === 'en' ? 'days' : '天'}`;
+  }
+
+  const message = i18n.t('ban.temporaryBan', {
+    reason,
+    duration,
+    unbanTime,
+  });
+
+  try {
+    await telegram.sendMessage(userId, message);
+  } catch (error) {
+    console.error('[autoBanUser] Failed to send ban notification:', error);
+  }
 }
 

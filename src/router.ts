@@ -106,7 +106,51 @@ async function routeUpdate(update: TelegramUpdate, env: Env): Promise<void> {
     }
 
     // Check if user is banned
-    // TODO: Implement ban check
+    const { isBanned } = await import('./domain/user');
+    if (isBanned(user)) {
+      const { createI18n } = await import('./i18n');
+      const i18n = createI18n(user.language_pref || 'zh-TW');
+      
+      let message: string;
+      const reason = user.ban_reason || '違規行為';
+      
+      if (user.banned_until) {
+        // Temporary ban
+        const bannedUntil = new Date(user.banned_until);
+        const now = new Date();
+        const msLeft = bannedUntil.getTime() - now.getTime();
+        const hoursLeft = Math.ceil(msLeft / (1000 * 60 * 60));
+        const daysLeft = Math.floor(hoursLeft / 24);
+        
+        let timeLeft: string;
+        if (daysLeft > 0) {
+          timeLeft = `${daysLeft} 天 ${hoursLeft % 24} 小時`;
+        } else {
+          timeLeft = `${hoursLeft} 小時`;
+        }
+        
+        const unbanTime = bannedUntil.toLocaleString('zh-TW', {
+          year: 'numeric',
+          month: '2-digit',
+          day: '2-digit',
+          hour: '2-digit',
+          minute: '2-digit',
+          timeZone: 'Asia/Taipei',
+        });
+        
+        message = i18n.t('ban.bannedTemporary', {
+          reason,
+          timeLeft,
+          unbanTime,
+        });
+      } else {
+        // Permanent ban
+        message = i18n.t('ban.bannedPermanent', { reason });
+      }
+      
+      await telegram.sendMessage(chatId, message);
+      return;
+    }
 
     // Check if user is in onboarding
     if (user.onboarding_step !== 'completed') {

@@ -198,5 +198,38 @@ export const translations: Translations = {
     invalidInput: '❌ Invalid input format. Please try again.',
     networkError: '❌ Network error. Please try again later.',
   },
+
+  ban: {
+    // Ban notification (temporary)
+    temporaryBan:
+      '🚫 Your account has been banned\n\n' +
+      '📋 Reason: {reason}\n' +
+      '⏰ Duration: {duration}\n' +
+      '🔓 Unban time: {unbanTime}\n\n' +
+      'You cannot use any features during the ban period.\n\n' +
+      '💡 If you have questions, use /appeal to appeal',
+    
+    // Ban notification (permanent)
+    permanentBan:
+      '🚫 Your account has been permanently banned\n\n' +
+      '📋 Reason: {reason}\n' +
+      '⚠️ This is a permanent ban and cannot be automatically lifted\n\n' +
+      '💡 If you have questions, use /appeal to appeal',
+    
+    // Ban check (temporary)
+    bannedTemporary:
+      '🚫 Your account is currently banned\n\n' +
+      '📋 Reason: {reason}\n' +
+      '⏰ Time left: {timeLeft}\n' +
+      '🔓 Unban time: {unbanTime}\n\n' +
+      '💡 If you have questions, use /appeal to appeal',
+    
+    // Ban check (permanent)
+    bannedPermanent:
+      '🚫 Your account has been permanently banned\n\n' +
+      '📋 Reason: {reason}\n' +
+      '⚠️ This is a permanent ban\n\n' +
+      '💡 If you have questions, use /appeal to appeal',
+  },
 };
 

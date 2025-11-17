@@ -210,5 +210,38 @@ export const translations: Translations = {
     invalidInput: '❌ 輸入格式錯誤，請重新輸入。',
     networkError: '❌ 網路錯誤，請稍後再試。',
   },
+
+  ban: {
+    // 封禁通知（臨時封禁）
+    temporaryBan:
+      '🚫 你的帳號已被封禁\n\n' +
+      '📋 封禁原因：{reason}\n' +
+      '⏰ 封禁時長：{duration}\n' +
+      '🔓 解封時間：{unbanTime}\n\n' +
+      '在封禁期間，你無法使用任何功能。\n\n' +
+      '💡 如有疑問，請使用 /appeal 申訴',
+    
+    // 封禁通知（永久封禁）
+    permanentBan:
+      '🚫 你的帳號已被永久封禁\n\n' +
+      '📋 封禁原因：{reason}\n' +
+      '⚠️ 這是永久封禁，無法自動解除\n\n' +
+      '💡 如有疑問，請使用 /appeal 申訴',
+    
+    // 封禁檢查（臨時封禁）
+    bannedTemporary:
+      '🚫 你的帳號目前被封禁中\n\n' +
+      '📋 封禁原因：{reason}\n' +
+      '⏰ 剩餘時間：{timeLeft}\n' +
+      '🔓 解封時間：{unbanTime}\n\n' +
+      '💡 如有疑問，請使用 /appeal 申訴',
+    
+    // 封禁檢查（永久封禁）
+    bannedPermanent:
+      '🚫 你的帳號已被永久封禁\n\n' +
+      '📋 封禁原因：{reason}\n' +
+      '⚠️ 這是永久封禁\n\n' +
+      '💡 如有疑問，請使用 /appeal 申訴',
+  },
 };
 

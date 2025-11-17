@@ -133,5 +133,13 @@ export interface Translations {
     invalidInput: string;
     networkError: string;
   };
+
+  // Ban
+  ban: {
+    temporaryBan: string;
+    permanentBan: string;
+    bannedTemporary: string;
+    bannedPermanent: string;
+  };
 }
 
