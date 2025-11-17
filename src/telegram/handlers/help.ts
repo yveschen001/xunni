@@ -48,9 +48,8 @@ export async function handleHelp(message: TelegramMessage, env: Env): Promise<vo
     if (isUserAdmin) {
       helpMessage += 
         `\n\n👮 **管理員功能**\n` +
-        `/admin_ban <user_id> [hours] - 封禁用戶\n` +
+        `/admin_ban <user_id> [hours|permanent] - 封禁用戶\n` +
         `/admin_unban <user_id> - 解除封禁\n` +
-        `/admin_freeze <user_id> <hours> - 暫時凍結\n` +
         `/admin_bans - 查看封禁記錄\n` +
         `/admin_bans <user_id> - 查看用戶封禁歷史\n` +
         `/admin_appeals - 查看待審核申訴\n` +

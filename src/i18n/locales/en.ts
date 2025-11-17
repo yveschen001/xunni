@@ -347,10 +347,6 @@ export const translations: Translations = {
     unbanNotBanned: '❌ This user is not banned.',
     unbanSuccess: '✅ User unbanned\n\n• User ID: `{userId}`\n• Nickname: {nickname}\n\nUnban notification sent to user.',
     
-    // Admin freeze
-    freezeUsageError: '❌ Usage error\n\n**Correct format:**\n`/admin_freeze <user_id> <hours>`\n\n**Examples:**\n`/admin_freeze 123456789 48` - Freeze for 48 hours\n`/admin_freeze 123456789 168` - Freeze for 7 days',
-    freezeUserNotFound: '❌ User not found.',
-    freezeSuccess: '✅ User frozen\n\n• User ID: `{userId}`\n• Nickname: {nickname}\n• Duration: {duration}\n• Unfreeze time: {unbanTime}',
     
     // Admin bans
     bansTitle: '📋 Ban Records',

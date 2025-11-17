@@ -359,10 +359,6 @@ export const translations: Translations = {
     unbanNotBanned: '❌ 此用戶未被封禁。',
     unbanSuccess: '✅ 已解除封禁\n\n• 用戶 ID: `{userId}`\n• 暱稱: {nickname}\n\n已發送解封通知給用戶。',
     
-    // Admin freeze
-    freezeUsageError: '❌ 使用方法錯誤\n\n**正確格式：**\n`/admin_freeze <user_id> <hours>`\n\n**示例：**\n`/admin_freeze 123456789 48` - 凍結 48 小時\n`/admin_freeze 123456789 168` - 凍結 7 天',
-    freezeUserNotFound: '❌ 用戶不存在。',
-    freezeSuccess: '✅ 已凍結用戶\n\n• 用戶 ID: `{userId}`\n• 暱稱: {nickname}\n• 凍結時長: {duration}\n• 解凍時間: {unbanTime}',
     
     // Admin bans
     bansTitle: '📋 封禁記錄',

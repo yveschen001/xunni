@@ -199,10 +199,6 @@ export interface Translations {
     unbanNotBanned: string;
     unbanSuccess: string;
     
-    // Admin freeze
-    freezeUsageError: string;
-    freezeUserNotFound: string;
-    freezeSuccess: string;
     
     // Admin bans
     bansTitle: string;
