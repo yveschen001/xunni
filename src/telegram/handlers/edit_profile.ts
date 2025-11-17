@@ -506,7 +506,7 @@ export async function handleProfileEditInput(message: TelegramMessage, env: Env)
         // Check for URLs in nickname
         const { checkUrlWhitelist } = await import('~/utils/url-whitelist');
         const urlCheck = checkUrlWhitelist(text);
-        if (!urlCheck.isValid) {
+        if (!urlCheck.allowed) {
           await telegram.sendMessage(
             chatId,
             '❌ 暱稱不能包含網址連結\n\n' +
