@@ -133,6 +133,18 @@ async function handleBirthdayInput(
     return true;
   }
 
+  // Check age restriction (must be 18 or older)
+  if (age < 18) {
+    await telegram.sendMessage(
+      chatId,
+      `❌ 很抱歉，你必須年滿 18 歲才能使用本服務。\n\n` +
+        `你的年齡：${age} 歲\n` +
+        `請成年後再來！\n\n` +
+        `如果你認為這是錯誤，請檢查你的生日格式是否正確（YYYY-MM-DD）。`
+    );
+    return true;
+  }
+
   // Confirm birthday (second confirmation)
   await telegram.sendMessageWithButtons(
     chatId,
