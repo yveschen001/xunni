@@ -148,6 +148,43 @@ export async function handleStart(message: TelegramMessage, env: Env): Promise<v
         ]
       );
     } else {
+      // User exists but hasn't completed onboarding
+      // If they have an invite code and haven't been invited yet, update their invite info
+      if (inviterTelegramId && !user.invited_by) {
+        console.error('[handleStart] Updating incomplete user with invite:', {
+          telegramId,
+          inviterTelegramId,
+          currentOnboardingStep: user.onboarding_step,
+        });
+
+        // Update user's invited_by
+        await db.d1
+          .prepare('UPDATE users SET invited_by = ? WHERE telegram_id = ?')
+          .bind(inviterTelegramId, telegramId)
+          .run();
+
+        // Create invite record
+        await createInvite(db, inviterTelegramId, telegramId, inviteCode!);
+        console.error('[handleStart] Invite record created for incomplete user');
+
+        // Notify user about invite
+        const inviter = await findUserByTelegramId(db, inviterTelegramId);
+        if (inviter) {
+          const { createI18n } = await import('~/i18n');
+          const i18n = createI18n(user.language_pref || 'zh-TW');
+          await telegram.sendMessage(
+            chatId,
+            i18n.t('invite.codeAccepted', { inviterName: inviter.nickname || '好友' })
+          );
+        }
+
+        // Refresh user data
+        user = await findUserByTelegramId(db, telegramId);
+        if (!user) {
+          throw new Error('User not found after update');
+        }
+      }
+
       // Resume onboarding
       await resumeOnboarding(user, chatId, telegram, db);
     }
