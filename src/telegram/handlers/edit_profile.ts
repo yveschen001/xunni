@@ -53,7 +53,7 @@ export async function handleEditProfile(message: TelegramMessage, env: Env): Pro
         `請選擇要編輯的項目：\n\n` +
         `📝 暱稱：${user.nickname}\n` +
         `📖 個人簡介：${user.bio || '未設定'}\n` +
-        `🌍 地區：${user.region || '未設定'}\n` +
+        `🌍 地區：${user.city || '未設定'}\n` +
         `🏷️ 興趣標籤：${user.interests || '未設定'}\n` +
         `💝 匹配偏好：${matchPrefText}\n` +
         `🩸 血型：${bloodTypeText}\n\n` +
@@ -131,7 +131,7 @@ export async function handleEditProfileCallback(callbackQuery: TelegramCallbackQ
         `請選擇要編輯的項目：\n\n` +
         `📝 暱稱：${user.nickname}\n` +
         `📖 個人簡介：${user.bio || '未設定'}\n` +
-        `🌍 地區：${user.region || '未設定'}\n` +
+        `🌍 地區：${user.city || '未設定'}\n` +
         `🏷️ 興趣標籤：${user.interests || '未設定'}\n` +
         `💝 匹配偏好：${matchPrefText}\n` +
         `🩸 血型：${bloodTypeText}\n\n` +
@@ -547,7 +547,7 @@ export async function handleProfileEditInput(message: TelegramMessage, env: Env)
             `✏️ **編輯個人資料**\n\n` +
             `📝 暱稱：${updatedUser.nickname}\n` +
             `📖 個人簡介：${updatedUser.bio || '未設定'}\n` +
-            `🌍 地區：${updatedUser.region || '未設定'}\n` +
+            `🌍 地區：${updatedUser.city || '未設定'}\n` +
             `🏷️ 興趣標籤：${updatedUser.interests || '未設定'}\n` +
             `💝 匹配偏好：${matchPrefText}\n` +
             `🩸 血型：${bloodTypeText}\n\n` +
@@ -616,7 +616,7 @@ export async function handleProfileEditInput(message: TelegramMessage, env: Env)
           return true;
         }
 
-        await db.d1.prepare('UPDATE users SET region = ? WHERE telegram_id = ?')
+        await db.d1.prepare('UPDATE users SET city = ? WHERE telegram_id = ?')
           .bind(text, telegramId).run();
 
         await deleteSession(db, telegramId, SESSION_TYPE);

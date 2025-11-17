@@ -76,8 +76,8 @@ export async function handleConversationProfile(
     profileMessage += `👤 性別：${otherUser.gender === 'male' ? '男' : otherUser.gender === 'female' ? '女' : '未設定'}\n`;
     profileMessage += `🎂 年齡範圍：${ageRange} 歲\n`;
     
-    if (otherUser.region) {
-      profileMessage += `🌍 地區：${otherUser.region}\n`;
+    if (otherUser.city) {
+      profileMessage += `🌍 地區：${otherUser.city}\n`;
     }
     
     if (otherUser.interests) {
