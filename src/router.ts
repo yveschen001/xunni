@@ -9,7 +9,6 @@ import type { Env, TelegramUpdate } from '~/types';
 import { handleStart } from './telegram/handlers/start';
 import { handleThrow } from './telegram/handlers/throw';
 import { handleCatch } from './telegram/handlers/catch';
-import { handleMessageForward } from './telegram/handlers/message_forward';
 // import { handleMBTI } from './telegram/handlers/mbti';
 import { handleOnboardingInput } from './telegram/handlers/onboarding_input';
 import {
@@ -286,12 +285,6 @@ async function routeUpdate(update: TelegramUpdate, env: Env): Promise<void> {
     if (text === '/dev_restart') {
       const { handleDevRestart } = await import('./telegram/handlers/dev');
       await handleDevRestart(message, env);
-      return;
-    }
-
-    // Handle conversation messages (only for completed onboarding)
-    if (user.onboarding_step === 'completed') {
-      await handleMessageForward(message, env);
       return;
     }
 
