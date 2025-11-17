@@ -85,7 +85,8 @@ async function routeUpdate(update: TelegramUpdate, env: Env): Promise<void> {
       if (isStartCommand && hasInviteCode) {
         console.error('[Router] New user with invite code, delegating to /start handler');
         // Don't create user here, let /start handler do it with invite info
-        // Fall through to command routing below
+        await handleStart(message, env);
+        return;
       } else {
         // Create user record for non-invite scenarios
         await createUser(db, {
