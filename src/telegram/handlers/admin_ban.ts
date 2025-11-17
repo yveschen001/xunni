@@ -10,14 +10,41 @@ import { createDatabaseClient } from '~/db/client';
 import { createI18n } from '~/i18n';
 import { findUserByTelegramId } from '~/db/queries/users';
 
-// Admin user IDs (should be moved to env vars in production)
-const ADMIN_IDS = ['396943893']; // Replace with actual admin IDs
+// Super Admin (God) - Has all permissions including config management
+const SUPER_ADMIN_ID = '396943893';
 
 /**
- * Check if user is admin
+ * Get regular admin user IDs from environment
+ * Format: comma-separated list of Telegram IDs
+ * Example: "123456789,987654321"
+ * Note: Super admin (396943893) is always included automatically
  */
-function isAdmin(telegramId: string): boolean {
-  return ADMIN_IDS.includes(telegramId);
+export function getAdminIds(env: Env): string[] {
+  const adminIdsStr = env.ADMIN_USER_IDS || '';
+  const regularAdmins = adminIdsStr
+    .split(',')
+    .map(id => id.trim())
+    .filter(id => id.length > 0 && id !== SUPER_ADMIN_ID);
+  
+  // Always include super admin
+  return [SUPER_ADMIN_ID, ...regularAdmins];
+}
+
+/**
+ * Check if user is super admin (God)
+ * Super admin has all permissions including config management
+ */
+export function isSuperAdmin(telegramId: string): boolean {
+  return telegramId === SUPER_ADMIN_ID;
+}
+
+/**
+ * Check if user is admin (regular admin or super admin)
+ * Admins can handle appeals and bans
+ */
+function isAdmin(telegramId: string, env: Env): boolean {
+  const adminIds = getAdminIds(env);
+  return adminIds.includes(telegramId);
 }
 
 /**
@@ -30,7 +57,7 @@ export async function handleAdminBans(message: TelegramMessage, env: Env): Promi
   const telegramId = message.from!.id.toString();
 
   // Check admin permission
-  if (!isAdmin(telegramId)) {
+  if (!isAdmin(telegramId, env)) {
     await telegram.sendMessage(chatId, '❌ 你沒有權限使用此命令。');
     return;
   }
@@ -179,7 +206,7 @@ export async function handleAdminAppeals(message: TelegramMessage, env: Env): Pr
   const telegramId = message.from!.id.toString();
 
   // Check admin permission
-  if (!isAdmin(telegramId)) {
+  if (!isAdmin(telegramId, env)) {
     await telegram.sendMessage(chatId, '❌ 你沒有權限使用此命令。');
     return;
   }
@@ -245,7 +272,7 @@ export async function handleAdminApprove(message: TelegramMessage, env: Env): Pr
   const telegramId = message.from!.id.toString();
 
   // Check admin permission
-  if (!isAdmin(telegramId)) {
+  if (!isAdmin(telegramId, env)) {
     await telegram.sendMessage(chatId, '❌ 你沒有權限使用此命令。');
     return;
   }
@@ -327,7 +354,7 @@ export async function handleAdminReject(message: TelegramMessage, env: Env): Pro
   const telegramId = message.from!.id.toString();
 
   // Check admin permission
-  if (!isAdmin(telegramId)) {
+  if (!isAdmin(telegramId, env)) {
     await telegram.sendMessage(chatId, '❌ 你沒有權限使用此命令。');
     return;
   }

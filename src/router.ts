@@ -105,9 +105,13 @@ async function routeUpdate(update: TelegramUpdate, env: Env): Promise<void> {
       }
     }
 
-    // Check if user is banned
+    // Check if user is banned (skip for admins)
+    const { getAdminIds } = await import('./telegram/handlers/admin_ban');
+    const adminIds = getAdminIds(env);
+    const isUserAdmin = adminIds.includes(telegramId);
+    
     const { isBanned } = await import('./domain/user');
-    if (isBanned(user)) {
+    if (!isUserAdmin && isBanned(user)) {
       const { createI18n } = await import('./i18n');
       const i18n = createI18n(user.language_pref || 'zh-TW');
       

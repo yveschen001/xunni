@@ -117,7 +117,7 @@ export async function handleReportReason(
     const recentReports = await getRecentReportCount(db, otherUserId);
     if (recentReports >= 1) {
       // Auto-ban based on report count
-      await autoBanUser(db, telegram, otherUserId, '多次被舉報 / Multiple reports', recentReports);
+      await autoBanUser(db, telegram, otherUserId, '多次被舉報 / Multiple reports', recentReports, env);
     }
 
     // Answer callback
@@ -210,8 +210,17 @@ async function autoBanUser(
   telegram: ReturnType<typeof createTelegramService>,
   userId: string,
   reason: string,
-  reportCount: number
+  reportCount: number,
+  env: Env
 ): Promise<void> {
+  // Check if user is admin - admins cannot be banned
+  const { getAdminIds } = await import('./admin_ban');
+  const adminIds = getAdminIds(env);
+  if (adminIds.includes(userId)) {
+    console.error('[autoBanUser] Cannot ban admin user:', userId);
+    return;
+  }
+
   // Calculate ban duration based on report count
   let banHours: number;
   if (reportCount === 1) {

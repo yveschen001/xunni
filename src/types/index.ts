@@ -30,6 +30,7 @@ export interface Env {
   BROADCAST_MAX_JOBS: string;
   ENABLE_AI_MODERATION: string;
   ENABLE_TRANSLATION: string;
+  ADMIN_USER_IDS?: string; // Comma-separated list of admin Telegram IDs
 }
 
 // ============================================================================
