@@ -5,8 +5,6 @@
  * Provides a thin wrapper around Cloudflare D1 with error handling and logging.
  */
 
-import type { Env } from '~/types';
-
 // ============================================================================
 // Database Client
 // ============================================================================
@@ -93,9 +91,9 @@ export class DatabaseClient {
 // ============================================================================
 
 /**
- * Create a database client from environment
+ * Create a database client from D1Database
  */
-export function createDatabaseClient(env: Env): DatabaseClient {
-  return new DatabaseClient(env.DB);
+export function createDatabaseClient(db: D1Database): DatabaseClient {
+  return new DatabaseClient(db);
 }
 

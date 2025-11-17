@@ -19,7 +19,7 @@ import { getPopularLanguageButtons } from '~/i18n/languages';
 // ============================================================================
 
 export async function handleStart(message: TelegramMessage, env: Env): Promise<void> {
-  const db = createDatabaseClient(env);
+  const db = createDatabaseClient(env.DB);
   const telegram = createTelegramService(env);
   const chatId = message.chat.id;
   const telegramId = message.from!.id.toString();

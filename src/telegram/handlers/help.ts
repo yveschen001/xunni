@@ -10,7 +10,7 @@ import { createTelegramService } from '~/services/telegram';
 import { findUserByTelegramId } from '~/db/queries/users';
 
 export async function handleHelp(message: TelegramMessage, env: Env): Promise<void> {
-  const db = createDatabaseClient(env);
+  const db = createDatabaseClient(env.DB);
   const telegram = createTelegramService(env);
   const chatId = message.chat.id;
   const telegramId = message.from!.id.toString();

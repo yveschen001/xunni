@@ -16,7 +16,7 @@ import { MBTI_DESCRIPTIONS } from '~/domain/mbti_test';
 // ============================================================================
 
 export async function handleMBTI(message: TelegramMessage, env: Env): Promise<void> {
-  const db = createDatabaseClient(env);
+  const db = createDatabaseClient(env.DB);
   const telegram = createTelegramService(env);
   const chatId = message.chat.id;
   const telegramId = message.from!.id.toString();
@@ -130,7 +130,7 @@ export async function handleMBTITestQuick(
   callbackQuery: any,
   env: Env
 ): Promise<void> {
-  const db = createDatabaseClient(env);
+  const db = createDatabaseClient(env.DB);
   const telegram = createTelegramService(env);
   const chatId = callbackQuery.message!.chat.id;
   const telegramId = callbackQuery.from.id.toString();
@@ -162,7 +162,7 @@ export async function handleMBTITestFull(
   callbackQuery: any,
   env: Env
 ): Promise<void> {
-  const db = createDatabaseClient(env);
+  const db = createDatabaseClient(env.DB);
   const telegram = createTelegramService(env);
   const chatId = callbackQuery.message!.chat.id;
   const telegramId = callbackQuery.from.id.toString();
@@ -251,7 +251,7 @@ export async function handleMBTIMenuClear(
   callbackQuery: any,
   env: Env
 ): Promise<void> {
-  const db = createDatabaseClient(env);
+  const db = createDatabaseClient(env.DB);
   const telegram = createTelegramService(env);
   const chatId = callbackQuery.message!.chat.id;
   const telegramId = callbackQuery.from.id.toString();
@@ -316,7 +316,7 @@ export async function handleMBTISet(
   mbtiType: string,
   env: Env
 ): Promise<void> {
-  const db = createDatabaseClient(env);
+  const db = createDatabaseClient(env.DB);
   const telegram = createTelegramService(env);
   const chatId = callbackQuery.message!.chat.id;
   const telegramId = callbackQuery.from.id.toString();

@@ -29,7 +29,7 @@ export async function handleMessageForward(
   message: TelegramMessage,
   env: Env
 ): Promise<boolean> {
-  const db = createDatabaseClient(env);
+  const db = createDatabaseClient(env.DB);
   const telegram = createTelegramService(env);
   const chatId = message.chat.id;
   const telegramId = message.from!.id.toString();

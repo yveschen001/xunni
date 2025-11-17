@@ -17,7 +17,7 @@ export async function handleGenderSelection(
   gender: 'male' | 'female',
   env: Env
 ): Promise<void> {
-  const db = createDatabaseClient(env);
+  const db = createDatabaseClient(env.DB);
   const telegram = createTelegramService(env);
   const chatId = callbackQuery.message!.chat.id;
   const telegramId = callbackQuery.from.id.toString();
@@ -70,7 +70,7 @@ export async function handleGenderConfirmation(
   gender: 'male' | 'female',
   env: Env
 ): Promise<void> {
-  const db = createDatabaseClient(env);
+  const db = createDatabaseClient(env.DB);
   const telegram = createTelegramService(env);
   const chatId = callbackQuery.message!.chat.id;
   const telegramId = callbackQuery.from.id.toString();
@@ -155,7 +155,7 @@ export async function handleBirthdayConfirmation(
   birthday: string,
   env: Env
 ): Promise<void> {
-  const db = createDatabaseClient(env);
+  const db = createDatabaseClient(env.DB);
   const telegram = createTelegramService(env);
   const chatId = callbackQuery.message!.chat.id;
   const telegramId = callbackQuery.from.id.toString();
@@ -251,7 +251,7 @@ export async function handleBloodTypeSelection(
   bloodTypeValue: string,
   env: Env
 ): Promise<void> {
-  const db = createDatabaseClient(env);
+  const db = createDatabaseClient(env.DB);
   const telegram = createTelegramService(env);
   const chatId = callbackQuery.message!.chat.id;
   const telegramId = callbackQuery.from.id.toString();
@@ -356,7 +356,7 @@ export async function handleMBTIChoiceManual(
   callbackQuery: CallbackQuery,
   env: Env
 ): Promise<void> {
-  const db = createDatabaseClient(env);
+  const db = createDatabaseClient(env.DB);
   const telegram = createTelegramService(env);
   const chatId = callbackQuery.message!.chat.id;
   const telegramId = callbackQuery.from.id.toString();
@@ -423,7 +423,7 @@ export async function handleMBTIChoiceTest(
   callbackQuery: CallbackQuery,
   env: Env
 ): Promise<void> {
-  const db = createDatabaseClient(env);
+  const db = createDatabaseClient(env.DB);
   const telegram = createTelegramService(env);
   const chatId = callbackQuery.message!.chat.id;
   const telegramId = callbackQuery.from.id.toString();
@@ -462,7 +462,7 @@ export async function handleMBTIChoiceSkip(
   callbackQuery: CallbackQuery,
   env: Env
 ): Promise<void> {
-  const db = createDatabaseClient(env);
+  const db = createDatabaseClient(env.DB);
   const telegram = createTelegramService(env);
   const chatId = callbackQuery.message!.chat.id;
   const telegramId = callbackQuery.from.id.toString();
@@ -513,7 +513,7 @@ export async function handleMBTIChoiceBack(
   callbackQuery: CallbackQuery,
   env: Env
 ): Promise<void> {
-  const db = createDatabaseClient(env);
+  const db = createDatabaseClient(env.DB);
   const telegram = createTelegramService(env);
   const chatId = callbackQuery.message!.chat.id;
   const telegramId = callbackQuery.from.id.toString();
@@ -565,7 +565,7 @@ export async function handleMBTIManualSelection(
   mbtiType: string,
   env: Env
 ): Promise<void> {
-  const db = createDatabaseClient(env);
+  const db = createDatabaseClient(env.DB);
   const telegram = createTelegramService(env);
   const chatId = callbackQuery.message!.chat.id;
   const telegramId = callbackQuery.from.id.toString();
@@ -647,7 +647,7 @@ export async function handleMBTISelection(
   mbtiType: string,
   env: Env
 ): Promise<void> {
-  const db = createDatabaseClient(env);
+  const db = createDatabaseClient(env.DB);
   const telegram = createTelegramService(env);
   const chatId = callbackQuery.message!.chat.id;
   const telegramId = callbackQuery.from.id.toString();
@@ -708,7 +708,7 @@ export async function handleAntiFraudConfirmation(
   callbackQuery: CallbackQuery,
   env: Env
 ): Promise<void> {
-  const db = createDatabaseClient(env);
+  const db = createDatabaseClient(env.DB);
   const telegram = createTelegramService(env);
   const chatId = callbackQuery.message!.chat.id;
   const telegramId = callbackQuery.from.id.toString();
@@ -812,7 +812,7 @@ export async function handleTermsAgreement(
   callbackQuery: CallbackQuery,
   env: Env
 ): Promise<void> {
-  const db = createDatabaseClient(env);
+  const db = createDatabaseClient(env.DB);
   const telegram = createTelegramService(env);
   const chatId = callbackQuery.message!.chat.id;
   const telegramId = callbackQuery.from.id.toString();

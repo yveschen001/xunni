@@ -12,7 +12,7 @@ import { getActiveConversation } from '~/db/queries/conversations';
 import { getOtherUserId } from '~/domain/conversation';
 
 export async function handleBlock(message: TelegramMessage, env: Env): Promise<void> {
-  const db = createDatabaseClient(env);
+  const db = createDatabaseClient(env.DB);
   const telegram = createTelegramService(env);
   const chatId = message.chat.id;
   const telegramId = message.from!.id.toString();

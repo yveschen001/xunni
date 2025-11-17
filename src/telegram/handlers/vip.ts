@@ -23,7 +23,7 @@ function resolveVipPrice(env: Env): number {
 }
 
 export async function handleVip(message: TelegramMessage, env: Env): Promise<void> {
-  const db = createDatabaseClient(env);
+  const db = createDatabaseClient(env.DB);
   const telegram = createTelegramService(env);
   const chatId = message.chat.id;
   const telegramId = message.from!.id.toString();
@@ -260,7 +260,7 @@ export async function handleSuccessfulPayment(
   payment: SuccessfulPayment,
   env: Env
 ): Promise<void> {
-  const db = createDatabaseClient(env);
+  const db = createDatabaseClient(env.DB);
   const telegram = createTelegramService(env);
   const chatId = message.chat.id;
   const telegramId = message.from!.id.toString();

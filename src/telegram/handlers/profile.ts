@@ -13,7 +13,7 @@ import { getInviteStats } from '~/db/queries/invites';
 import { calculateDailyQuota, getInviteLimit } from '~/domain/invite';
 
 export async function handleProfile(message: TelegramMessage, env: Env): Promise<void> {
-  const db = createDatabaseClient(env);
+  const db = createDatabaseClient(env.DB);
   const telegram = createTelegramService(env);
   const chatId = message.chat.id;
   const telegramId = message.from!.id.toString();
@@ -106,7 +106,7 @@ export async function handleProfile(message: TelegramMessage, env: Env): Promise
  * Handle /profile_card command - show profile card
  */
 export async function handleProfileCard(message: TelegramMessage, env: Env): Promise<void> {
-  const db = createDatabaseClient(env);
+  const db = createDatabaseClient(env.DB);
   const telegram = createTelegramService(env);
   const chatId = message.chat.id;
   const telegramId = message.from!.id.toString();

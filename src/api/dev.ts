@@ -30,7 +30,7 @@ export async function handleSeedUser(request: Request, env: Env): Promise<Respon
 
   try {
     const user = await request.json() as any;
-    const db = createDatabaseClient(env);
+    const db = createDatabaseClient(env.DB);
 
     // Insert fake user
     const now = new Date().toISOString();
@@ -109,7 +109,7 @@ export async function handleDeleteFakeUsers(request: Request, env: Env): Promise
   }
 
   try {
-    const db = createDatabaseClient(env);
+    const db = createDatabaseClient(env.DB);
 
     // Delete fake users (telegram_id starting with 9999999)
     const result = await db.d1

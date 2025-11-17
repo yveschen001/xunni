@@ -48,7 +48,7 @@ function getTargetGender(user: User): 'male' | 'female' | 'any' {
 }
 
 export async function handleThrow(message: TelegramMessage, env: Env): Promise<void> {
-  const db = createDatabaseClient(env);
+  const db = createDatabaseClient(env.DB);
   const telegram = createTelegramService(env);
   const chatId = message.chat.id;
   const telegramId = message.from!.id.toString();
@@ -186,7 +186,7 @@ export async function processBottleContent(
   content: string,
   env: Env
 ): Promise<void> {
-  const db = createDatabaseClient(env);
+  const db = createDatabaseClient(env.DB);
   const telegram = createTelegramService(env);
   const chatId = parseInt(user.telegram_id);
 

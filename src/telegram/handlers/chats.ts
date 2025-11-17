@@ -13,7 +13,7 @@ import { formatIdentifier } from '~/domain/conversation_identifier';
 import { maskNickname } from '~/domain/invite';
 
 export async function handleChats(message: TelegramMessage, env: Env): Promise<void> {
-  const db = createDatabaseClient(env);
+  const db = createDatabaseClient(env.DB);
   const telegram = createTelegramService(env);
   const chatId = message.chat.id;
   const telegramId = message.from!.id.toString();

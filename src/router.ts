@@ -56,7 +56,7 @@ export async function handleWebhook(request: Request, env: Env): Promise<Respons
 
 async function routeUpdate(update: TelegramUpdate, env: Env): Promise<void> {
   const telegram = createTelegramService(env);
-  const db = createDatabaseClient(env);
+  const db = createDatabaseClient(env.DB);
 
   // Handle message
   if (update.message) {

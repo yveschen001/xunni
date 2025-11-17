@@ -13,7 +13,7 @@ import { findUserByTelegramId } from '~/db/queries/users';
  * Show main menu
  */
 export async function handleMenu(message: TelegramMessage, env: Env): Promise<void> {
-  const db = createDatabaseClient(env);
+  const db = createDatabaseClient(env.DB);
   const telegram = createTelegramService(env);
   const chatId = message.chat.id;
   const telegramId = message.from!.id.toString();
@@ -139,7 +139,7 @@ export async function handleMenuCallback(
 
       case 'menu_invite': {
         // Get user's invite code and show share options
-        const db = createDatabaseClient(env);
+        const db = createDatabaseClient(env.DB);
         const telegramId = callbackQuery.from.id.toString();
         const { findUserByTelegramId } = await import('~/db/queries/users');
         const user = await findUserByTelegramId(db, telegramId);

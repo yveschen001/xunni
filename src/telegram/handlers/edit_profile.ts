@@ -17,7 +17,7 @@ const SESSION_TYPE = 'edit_profile';
  * Handle /edit_profile command - show profile editing menu
  */
 export async function handleEditProfile(message: TelegramMessage, env: Env): Promise<void> {
-  const db = createDatabaseClient(env);
+  const db = createDatabaseClient(env.DB);
   const telegram = createTelegramService(env);
   const chatId = message.chat.id;
   const telegramId = message.from!.id.toString();
@@ -92,7 +92,7 @@ export async function handleEditProfile(message: TelegramMessage, env: Env): Pro
  * Handle edit profile callback - show profile editing menu from callback
  */
 export async function handleEditProfileCallback(callbackQuery: TelegramCallbackQuery, env: Env): Promise<void> {
-  const db = createDatabaseClient(env);
+  const db = createDatabaseClient(env.DB);
   const telegram = createTelegramService(env);
   const chatId = callbackQuery.message!.chat.id;
   const telegramId = callbackQuery.from.id.toString();
@@ -170,7 +170,7 @@ export async function handleEditProfileCallback(callbackQuery: TelegramCallbackQ
  * Handle edit nickname callback
  */
 export async function handleEditNickname(callbackQuery: TelegramCallbackQuery, env: Env): Promise<void> {
-  const db = createDatabaseClient(env);
+  const db = createDatabaseClient(env.DB);
   const telegram = createTelegramService(env);
   const chatId = callbackQuery.message!.chat.id;
   const telegramId = callbackQuery.from.id.toString();
@@ -204,7 +204,7 @@ export async function handleEditNickname(callbackQuery: TelegramCallbackQuery, e
  * Handle edit bio callback
  */
 export async function handleEditBio(callbackQuery: TelegramCallbackQuery, env: Env): Promise<void> {
-  const db = createDatabaseClient(env);
+  const db = createDatabaseClient(env.DB);
   const telegram = createTelegramService(env);
   const chatId = callbackQuery.message!.chat.id;
   const telegramId = callbackQuery.from.id.toString();
@@ -235,7 +235,7 @@ export async function handleEditBio(callbackQuery: TelegramCallbackQuery, env: E
  * Handle edit region callback
  */
 export async function handleEditRegion(callbackQuery: TelegramCallbackQuery, env: Env): Promise<void> {
-  const db = createDatabaseClient(env);
+  const db = createDatabaseClient(env.DB);
   const telegram = createTelegramService(env);
   const chatId = callbackQuery.message!.chat.id;
   const telegramId = callbackQuery.from.id.toString();
@@ -265,7 +265,7 @@ export async function handleEditRegion(callbackQuery: TelegramCallbackQuery, env
  * Handle edit match preference callback
  */
 export async function handleEditMatchPref(callbackQuery: TelegramCallbackQuery, env: Env): Promise<void> {
-  const db = createDatabaseClient(env);
+  const db = createDatabaseClient(env.DB);
   const telegram = createTelegramService(env);
   const chatId = callbackQuery.message!.chat.id;
   const telegramId = callbackQuery.from.id.toString();
@@ -314,7 +314,7 @@ export async function handleMatchPrefSelection(
   preference: 'male' | 'female' | 'any',
   env: Env
 ): Promise<void> {
-  const db = createDatabaseClient(env);
+  const db = createDatabaseClient(env.DB);
   const telegram = createTelegramService(env);
   const chatId = callbackQuery.message!.chat.id;
   const telegramId = callbackQuery.from.id.toString();
@@ -351,7 +351,7 @@ export async function handleMatchPrefSelection(
  * Handle edit interests callback
  */
 export async function handleEditInterests(callbackQuery: TelegramCallbackQuery, env: Env): Promise<void> {
-  const db = createDatabaseClient(env);
+  const db = createDatabaseClient(env.DB);
   const telegram = createTelegramService(env);
   const chatId = callbackQuery.message!.chat.id;
   const telegramId = callbackQuery.from.id.toString();
@@ -429,7 +429,7 @@ export async function handleEditBloodTypeSelection(
   bloodTypeValue: string,
   env: Env
 ): Promise<void> {
-  const db = createDatabaseClient(env);
+  const db = createDatabaseClient(env.DB);
   const telegram = createTelegramService(env);
   const chatId = callbackQuery.message!.chat.id;
   const telegramId = callbackQuery.from.id.toString();
@@ -476,7 +476,7 @@ export async function handleEditBloodTypeSelection(
  * Handle profile edit text input
  */
 export async function handleProfileEditInput(message: TelegramMessage, env: Env): Promise<boolean> {
-  const db = createDatabaseClient(env);
+  const db = createDatabaseClient(env.DB);
   const telegram = createTelegramService(env);
   const chatId = message.chat.id;
   const telegramId = message.from!.id.toString();

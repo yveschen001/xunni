@@ -39,7 +39,7 @@ export async function handleDevReset(message: TelegramMessage, env: Env): Promis
     return;
   }
   
-  const db = createDatabaseClient(env);
+  const db = createDatabaseClient(env.DB);
   const telegramId = message.from!.id.toString();
 
   try {
@@ -117,7 +117,7 @@ export async function handleDevInfo(message: TelegramMessage, env: Env): Promise
     return;
   }
   
-  const db = createDatabaseClient(env);
+  const db = createDatabaseClient(env.DB);
   const telegramId = message.from!.id.toString();
 
   try {
@@ -196,7 +196,7 @@ export async function handleDevRestart(message: TelegramMessage, env: Env): Prom
     return;
   }
   
-  const db = createDatabaseClient(env);
+  const db = createDatabaseClient(env.DB);
   const telegramId = message.from!.id.toString();
 
   try {
@@ -283,7 +283,7 @@ export async function handleDevSkip(message: TelegramMessage, env: Env): Promise
     return;
   }
   
-  const db = createDatabaseClient(env);
+  const db = createDatabaseClient(env.DB);
   const telegramId = message.from!.id.toString();
 
   try {

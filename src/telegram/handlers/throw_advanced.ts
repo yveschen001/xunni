@@ -48,7 +48,7 @@ export async function handleThrowAdvanced(
   callbackQuery: any,
   env: Env
 ): Promise<void> {
-  const db = createDatabaseClient(env);
+  const db = createDatabaseClient(env.DB);
   const telegram = createTelegramService(env);
   const chatId = callbackQuery.message!.chat.id;
   const telegramId = callbackQuery.from.id.toString();
@@ -132,7 +132,7 @@ export async function handleFilterMBTI(
   callbackQuery: any,
   env: Env
 ): Promise<void> {
-  const db = createDatabaseClient(env);
+  const db = createDatabaseClient(env.DB);
   const telegram = createTelegramService(env);
   const chatId = callbackQuery.message!.chat.id;
   const telegramId = callbackQuery.from.id.toString();
@@ -192,7 +192,7 @@ export async function handleSelectMBTI(
   mbtiType: string,
   env: Env
 ): Promise<void> {
-  const db = createDatabaseClient(env);
+  const db = createDatabaseClient(env.DB);
   const telegram = createTelegramService(env);
   const telegramId = callbackQuery.from.id.toString();
 
@@ -242,7 +242,7 @@ export async function handleFilterZodiac(
   callbackQuery: any,
   env: Env
 ): Promise<void> {
-  const db = createDatabaseClient(env);
+  const db = createDatabaseClient(env.DB);
   const telegram = createTelegramService(env);
   const chatId = callbackQuery.message!.chat.id;
   const telegramId = callbackQuery.from.id.toString();
@@ -302,7 +302,7 @@ export async function handleSelectZodiac(
   zodiacSign: string,
   env: Env
 ): Promise<void> {
-  const db = createDatabaseClient(env);
+  const db = createDatabaseClient(env.DB);
   const telegram = createTelegramService(env);
   const telegramId = callbackQuery.from.id.toString();
 
@@ -352,7 +352,7 @@ export async function handleFilterGender(
   callbackQuery: any,
   env: Env
 ): Promise<void> {
-  const db = createDatabaseClient(env);
+  const db = createDatabaseClient(env.DB);
   const telegram = createTelegramService(env);
   const chatId = callbackQuery.message!.chat.id;
   const telegramId = callbackQuery.from.id.toString();
@@ -407,7 +407,7 @@ export async function handleSetGender(
   gender: 'male' | 'female' | 'any',
   env: Env
 ): Promise<void> {
-  const db = createDatabaseClient(env);
+  const db = createDatabaseClient(env.DB);
   const telegram = createTelegramService(env);
   const telegramId = callbackQuery.from.id.toString();
 
@@ -446,7 +446,7 @@ export async function handleBackToFilter(
   callbackQuery: any,
   env: Env
 ): Promise<void> {
-  const db = createDatabaseClient(env);
+  const db = createDatabaseClient(env.DB);
   const telegram = createTelegramService(env);
   const chatId = callbackQuery.message!.chat.id;
   const telegramId = callbackQuery.from.id.toString();
@@ -511,7 +511,7 @@ export async function handleFilterDone(
   callbackQuery: any,
   env: Env
 ): Promise<void> {
-  const db = createDatabaseClient(env);
+  const db = createDatabaseClient(env.DB);
   const telegram = createTelegramService(env);
   const chatId = callbackQuery.message!.chat.id;
   const telegramId = callbackQuery.from.id.toString();
@@ -567,7 +567,7 @@ export async function handleClearMBTI(
   callbackQuery: any,
   env: Env
 ): Promise<void> {
-  const db = createDatabaseClient(env);
+  const db = createDatabaseClient(env.DB);
   const telegram = createTelegramService(env);
   const telegramId = callbackQuery.from.id.toString();
 
@@ -600,7 +600,7 @@ export async function handleClearZodiac(
   callbackQuery: any,
   env: Env
 ): Promise<void> {
-  const db = createDatabaseClient(env);
+  const db = createDatabaseClient(env.DB);
   const telegram = createTelegramService(env);
   const telegramId = callbackQuery.from.id.toString();
 
@@ -633,7 +633,7 @@ export async function handleFilterBloodType(
   callbackQuery: any,
   env: Env
 ): Promise<void> {
-  const db = createDatabaseClient(env);
+  const db = createDatabaseClient(env.DB);
   const telegram = createTelegramService(env);
   const chatId = callbackQuery.message!.chat.id;
   const telegramId = callbackQuery.from.id.toString();
@@ -695,7 +695,7 @@ export async function handleBloodTypeSelect(
   bloodType: string,
   env: Env
 ): Promise<void> {
-  const db = createDatabaseClient(env);
+  const db = createDatabaseClient(env.DB);
   const telegram = createTelegramService(env);
   const telegramId = callbackQuery.from.id.toString();
 

@@ -26,7 +26,7 @@ import { calculateAge } from '~/domain/user';
 import { maskNickname } from '~/domain/invite';
 
 export async function handleCatch(message: TelegramMessage, env: Env): Promise<void> {
-  const db = createDatabaseClient(env);
+  const db = createDatabaseClient(env.DB);
   const telegram = createTelegramService(env);
   const chatId = message.chat.id;
   const telegramId = message.from!.id.toString();
@@ -273,7 +273,7 @@ export async function handleCatch(message: TelegramMessage, env: Env): Promise<v
  * Notify bottle owner that someone caught their bottle
  */
 async function notifyBottleOwner(ownerId: string, catcher: any, env: Env): Promise<void> {
-  const db = createDatabaseClient(env);
+  const db = createDatabaseClient(env.DB);
   const telegram = createTelegramService(env);
 
   try {
