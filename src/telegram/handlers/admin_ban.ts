@@ -24,7 +24,7 @@ function isAdmin(telegramId: string): boolean {
  * Handle /admin_bans command - View ban history
  */
 export async function handleAdminBans(message: TelegramMessage, env: Env): Promise<void> {
-  const telegram = createTelegramService(env.TELEGRAM_BOT_TOKEN);
+  const telegram = createTelegramService(env);
   const db = createDatabaseClient(env.DB);
   const chatId = message.chat.id.toString();
   const telegramId = message.from!.id.toString();
@@ -173,7 +173,7 @@ export async function handleAdminBans(message: TelegramMessage, env: Env): Promi
  * Handle /admin_appeals command - View and manage appeals
  */
 export async function handleAdminAppeals(message: TelegramMessage, env: Env): Promise<void> {
-  const telegram = createTelegramService(env.TELEGRAM_BOT_TOKEN);
+  const telegram = createTelegramService(env);
   const db = createDatabaseClient(env.DB);
   const chatId = message.chat.id.toString();
   const telegramId = message.from!.id.toString();
@@ -239,7 +239,7 @@ export async function handleAdminAppeals(message: TelegramMessage, env: Env): Pr
  * Handle /admin_approve command - Approve an appeal
  */
 export async function handleAdminApprove(message: TelegramMessage, env: Env): Promise<void> {
-  const telegram = createTelegramService(env.TELEGRAM_BOT_TOKEN);
+  const telegram = createTelegramService(env);
   const db = createDatabaseClient(env.DB);
   const chatId = message.chat.id.toString();
   const telegramId = message.from!.id.toString();
@@ -321,7 +321,7 @@ export async function handleAdminApprove(message: TelegramMessage, env: Env): Pr
  * Handle /admin_reject command - Reject an appeal
  */
 export async function handleAdminReject(message: TelegramMessage, env: Env): Promise<void> {
-  const telegram = createTelegramService(env.TELEGRAM_BOT_TOKEN);
+  const telegram = createTelegramService(env);
   const db = createDatabaseClient(env.DB);
   const chatId = message.chat.id.toString();
   const telegramId = message.from!.id.toString();

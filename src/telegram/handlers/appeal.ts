@@ -15,7 +15,7 @@ import { findUserByTelegramId } from '~/db/queries/users';
  * Handle /appeal command
  */
 export async function handleAppeal(message: TelegramMessage, env: Env): Promise<void> {
-  const telegram = createTelegramService(env.TELEGRAM_BOT_TOKEN);
+  const telegram = createTelegramService(env);
   const db = createDatabaseClient(env.DB);
   const chatId = message.chat.id.toString();
   const telegramId = message.from!.id.toString();
@@ -88,7 +88,7 @@ export async function handleAppealReasonInput(
   message: TelegramMessage,
   env: Env
 ): Promise<void> {
-  const telegram = createTelegramService(env.TELEGRAM_BOT_TOKEN);
+  const telegram = createTelegramService(env);
   const db = createDatabaseClient(env.DB);
   const chatId = message.chat.id.toString();
   const telegramId = message.from!.id.toString();
@@ -160,7 +160,7 @@ export async function handleAppealReasonInput(
  * Handle /appeal_status command
  */
 export async function handleAppealStatus(message: TelegramMessage, env: Env): Promise<void> {
-  const telegram = createTelegramService(env.TELEGRAM_BOT_TOKEN);
+  const telegram = createTelegramService(env);
   const db = createDatabaseClient(env.DB);
   const chatId = message.chat.id.toString();
   const telegramId = message.from!.id.toString();
