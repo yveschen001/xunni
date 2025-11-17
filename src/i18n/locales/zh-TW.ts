@@ -315,5 +315,88 @@ export const translations: Translations = {
       '❌ 申訴理由太長\n\n' +
       '請將說明控制在 500 字以內。',
   },
+
+  // Admin system (管理員系統)
+  admin: {
+    // Permission errors
+    onlySuperAdmin: '❌ 只有超級管理員可以使用此命令。',
+    onlyAdmin: '❌ 只有管理員可以使用此命令。',
+    cannotBanAdmin: '❌ 無法封禁管理員帳號。',
+    
+    // Admin list
+    listTitle: '👥 **管理員列表**',
+    listTotal: '總數：{count} 位',
+    listRoleSuperAdmin: '🔱 超級管理員',
+    listRoleAdmin: '👮 普通管理員',
+    listId: '• ID: `{id}`',
+    listNickname: '• 暱稱: {nickname}',
+    listUsername: '• 用戶名: @{username}',
+    listNotRegistered: '未註冊',
+    listFooter: '💡 使用 /admin_add 添加管理員\n💡 使用 /admin_remove 移除管理員',
+    
+    // Admin add
+    addUsageError: '❌ 使用方法錯誤\n\n**正確格式：**\n`/admin_add <user_id>`\n\n**示例：**\n`/admin_add 123456789` - 添加為普通管理員\n\n💡 使用 /admin_list 查看當前管理員列表',
+    addAlreadySuperAdmin: '❌ 此用戶已經是超級管理員，無需添加。',
+    addAlreadyAdmin: '❌ 此用戶已經是管理員。',
+    addUserNotFound: '❌ 用戶不存在或未註冊。',
+    addInstructions: '⚠️ **注意**\n\n此命令需要手動修改配置文件。\n\n**步驟：**\n1. 編輯 `wrangler.toml`\n2. 找到 `ADMIN_USER_IDS` 變數\n3. 添加用戶 ID：`{userId}`\n4. 格式：`ADMIN_USER_IDS = "ID1,ID2,{userId}"`\n5. 重新部署：`pnpm deploy:staging`\n\n**用戶資訊：**\n• ID: `{userId}`\n• 暱稱: {nickname}\n• 用戶名: @{username}\n\n💡 或在 Cloudflare Dashboard 中修改環境變數',
+    
+    // Admin remove
+    removeUsageError: '❌ 使用方法錯誤\n\n**正確格式：**\n`/admin_remove <user_id>`\n\n**示例：**\n`/admin_remove 123456789` - 移除普通管理員\n\n💡 使用 /admin_list 查看當前管理員列表',
+    removeCannotRemoveSuperAdmin: '❌ 無法移除超級管理員。',
+    removeNotAdmin: '❌ 此用戶不是管理員。',
+    removeInstructions: '⚠️ **注意**\n\n此命令需要手動修改配置文件。\n\n**步驟：**\n1. 編輯 `wrangler.toml`\n2. 找到 `ADMIN_USER_IDS` 變數\n3. 移除用戶 ID：`{userId}`\n4. 重新部署：`pnpm deploy:staging`\n\n**用戶資訊：**\n• ID: `{userId}`\n• 暱稱: {nickname}\n• 用戶名: @{username}\n\n💡 或在 Cloudflare Dashboard 中修改環境變數',
+    
+    // Admin ban
+    banUsageError: '❌ 使用方法錯誤\n\n**正確格式：**\n`/admin_ban <user_id> [hours|permanent]`\n\n**示例：**\n`/admin_ban 123456789` - 封禁 1 小時（默認）\n`/admin_ban 123456789 24` - 封禁 24 小時\n`/admin_ban 123456789 permanent` - 永久封禁',
+    banUserNotFound: '❌ 用戶不存在。',
+    banSuccess: '✅ 已封禁用戶\n\n• 用戶 ID: `{userId}`\n• 暱稱: {nickname}\n• 封禁時長: {duration}\n• 解封時間: {unbanTime}',
+    banSuccessPermanent: '✅ 已封禁用戶\n\n• 用戶 ID: `{userId}`\n• 暱稱: {nickname}\n• 封禁時長: 永久',
+    
+    // Admin unban
+    unbanUsageError: '❌ 使用方法錯誤\n\n**正確格式：**\n`/admin_unban <user_id>`\n\n**示例：**\n`/admin_unban 123456789`',
+    unbanUserNotFound: '❌ 用戶不存在。',
+    unbanNotBanned: '❌ 此用戶未被封禁。',
+    unbanSuccess: '✅ 已解除封禁\n\n• 用戶 ID: `{userId}`\n• 暱稱: {nickname}\n\n已發送解封通知給用戶。',
+    
+    // Admin freeze
+    freezeUsageError: '❌ 使用方法錯誤\n\n**正確格式：**\n`/admin_freeze <user_id> <hours>`\n\n**示例：**\n`/admin_freeze 123456789 48` - 凍結 48 小時\n`/admin_freeze 123456789 168` - 凍結 7 天',
+    freezeUserNotFound: '❌ 用戶不存在。',
+    freezeSuccess: '✅ 已凍結用戶\n\n• 用戶 ID: `{userId}`\n• 暱稱: {nickname}\n• 凍結時長: {duration}\n• 解凍時間: {unbanTime}',
+    
+    // Admin bans
+    bansTitle: '📋 封禁記錄',
+    bansUserHistory: '📋 用戶封禁歷史',
+    bansUserId: '用戶 ID: `{userId}`',
+    bansNickname: '暱稱: {nickname}',
+    bansTotalCount: '封禁次數: {count}',
+    bansCurrentStatus: '當前狀態: {status}',
+    bansStatusBanned: '已封禁',
+    bansStatusNormal: '正常',
+    bansNoRecords: '❌ 沒有找到封禁記錄。',
+    bansRecordItem: '**封禁 #{id}**\n• 時間: {time}\n• 原因: {reason}\n• 時長: {duration}\n• 狀態: {status}',
+    bansStatusActive: '生效中',
+    bansStatusInactive: '已失效',
+    
+    // Admin appeals
+    appealsTitle: '📋 待審核申訴',
+    appealsNoRecords: '✅ 目前沒有待審核的申訴。',
+    appealsRecordItem: '**申訴 #{id}**\n• 用戶: {nickname} (`{userId}`)\n• 提交時間: {time}\n• 理由: {reason}\n\n使用 /admin_approve {id} 批准\n使用 /admin_reject {id} 拒絕',
+    
+    // Admin approve
+    approveUsageError: '❌ 使用方法錯誤\n\n**正確格式：**\n`/admin_approve <appeal_id> [備註]`\n\n**示例：**\n`/admin_approve 1` - 批准申訴\n`/admin_approve 1 經審核確認為誤判` - 批准並添加備註',
+    approveNotFound: '❌ 找不到此申訴記錄。',
+    approveAlreadyReviewed: '❌ 此申訴已經被審核過了。',
+    approveSuccess: '✅ 已批准申訴\n\n• 申訴 ID: #{id}\n• 用戶: {nickname} (`{userId}`)\n• 審核備註: {notes}\n\n已自動解除封禁並通知用戶。',
+    
+    // Admin reject
+    rejectUsageError: '❌ 使用方法錯誤\n\n**正確格式：**\n`/admin_reject <appeal_id> [備註]`\n\n**示例：**\n`/admin_reject 1` - 拒絕申訴\n`/admin_reject 1 確認違規行為屬實` - 拒絕並添加備註',
+    rejectNotFound: '❌ 找不到此申訴記錄。',
+    rejectAlreadyReviewed: '❌ 此申訴已經被審核過了。',
+    rejectSuccess: '✅ 已拒絕申訴\n\n• 申訴 ID: #{id}\n• 用戶: {nickname} (`{userId}`)\n• 審核備註: {notes}\n\n已通知用戶。',
+    
+    // Common
+    error: '❌ 發生錯誤，請稍後再試。',
+  },
 };
 
