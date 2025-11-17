@@ -315,11 +315,5 @@ async function resumeOnboarding(
 // Helper Functions
 // ============================================================================
 
-/**
- * Extract invite code from /start command
- * Format: /start invite_XXXXXX
- */
-export function extractInviteCode(text: string): string | null {
-  const match = text.match(/\/start\s+(invite_[A-Z0-9-]+)/i);
-  return match ? match[1] : null;
-}
+// Note: extractInviteCode and validateInviteCode are imported from ~/domain/invite
+// Do not redefine them here to avoid conflicts
