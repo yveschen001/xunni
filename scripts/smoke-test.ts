@@ -838,9 +838,10 @@ async function testConversationHistoryPosts() {
   await testEndpoint('History Posts', 'Build history content', async () => {
     const { buildHistoryPostContent } = await import('../src/domain/conversation_history');
     
+    // Messages should be pre-formatted strings
     const messages = [
-      { sender: 'user', content: '你好', timestamp: '05:30' },
-      { sender: 'partner', content: '你好呀', timestamp: '05:31' },
+      '[05:30] 你：你好',
+      '[05:31] 對方：你好呀',
     ];
 
     const partnerInfo = {
@@ -851,10 +852,10 @@ async function testConversationHistoryPosts() {
     };
 
     const content = buildHistoryPostContent(
-      'conversation123',
-      '#1117ABCD',
-      messages,
-      1,
+      '1117ABCD',    // identifier (without #)
+      1,             // postNumber
+      messages,      // pre-formatted message strings
+      2,             // totalMessages
       partnerInfo
     );
 
@@ -887,8 +888,9 @@ async function testConversationHistoryPosts() {
     if (messages.length !== 2) {
       throw new Error(`Expected 2 messages, got ${messages.length}`);
     }
-    if (messages[0].content !== '你好') {
-      throw new Error(`First message incorrect: ${messages[0].content}`);
+    // extractMessages returns full formatted strings, not just content
+    if (!messages[0].includes('你好')) {
+      throw new Error(`First message incorrect: ${messages[0]}`);
     }
   });
 
