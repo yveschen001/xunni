@@ -84,9 +84,56 @@ export async function handleMBTI(message: TelegramMessage, env: Env): Promise<vo
 // ============================================================================
 
 /**
- * Handle "Take test" from /mbti menu
+ * Handle "Take test" from /mbti menu - Show version selection
  */
 export async function handleMBTIMenuTest(
+  callbackQuery: any,
+  env: Env
+): Promise<void> {
+  const telegram = createTelegramService(env);
+  const chatId = callbackQuery.message!.chat.id;
+
+  try {
+    // Answer callback
+    await telegram.answerCallbackQuery(callbackQuery.id);
+
+    // Delete menu message
+    await telegram.deleteMessage(chatId, callbackQuery.message!.message_id);
+
+    // Show version selection
+    await telegram.sendMessageWithButtons(
+      chatId,
+      `🧠 **選擇 MBTI 測驗版本**\n\n` +
+        `📋 **快速版（12 題）**\n` +
+        `⏱️ 約 2-3 分鐘\n` +
+        `✅ 快速了解基本性格類型\n\n` +
+        `📚 **完整版（36 題）**\n` +
+        `⏱️ 約 5-8 分鐘\n` +
+        `✅ 更準確的性格分析\n` +
+        `✅ 推薦用於重新測試\n\n` +
+        `請選擇測驗版本：`,
+      [
+        [
+          { text: '📋 快速版（12 題）', callback_data: 'mbti_test_quick' },
+        ],
+        [
+          { text: '📚 完整版（36 題）', callback_data: 'mbti_test_full' },
+        ],
+        [
+          { text: '↩️ 返回', callback_data: 'mbti_menu_cancel' },
+        ],
+      ]
+    );
+  } catch (error) {
+    console.error('[handleMBTIMenuTest] Error:', error);
+    await telegram.answerCallbackQuery(callbackQuery.id, '❌ 發生錯誤');
+  }
+}
+
+/**
+ * Handle MBTI test version selection - Quick (12 questions)
+ */
+export async function handleMBTITestQuick(
   callbackQuery: any,
   env: Env
 ): Promise<void> {
@@ -96,12 +143,12 @@ export async function handleMBTIMenuTest(
   const telegramId = callbackQuery.from.id.toString();
 
   try {
-    // Start MBTI test
+    // Start MBTI test (quick version)
     const { startMBTITest } = await import('~/services/mbti_test_service');
-    await startMBTITest(db, telegramId);
+    await startMBTITest(db, telegramId, 'quick');
 
     // Answer callback
-    await telegram.answerCallbackQuery(callbackQuery.id, '✅ 開始測驗');
+    await telegram.answerCallbackQuery(callbackQuery.id, '✅ 開始快速版測驗');
 
     // Delete menu message
     await telegram.deleteMessage(chatId, callbackQuery.message!.message_id);
@@ -110,7 +157,39 @@ export async function handleMBTIMenuTest(
     const { showMBTIQuestion } = await import('./mbti_test');
     await showMBTIQuestion(chatId, telegram, db, telegramId, 0);
   } catch (error) {
-    console.error('[handleMBTIMenuTest] Error:', error);
+    console.error('[handleMBTITestQuick] Error:', error);
+    await telegram.answerCallbackQuery(callbackQuery.id, '❌ 發生錯誤');
+  }
+}
+
+/**
+ * Handle MBTI test version selection - Full (36 questions)
+ */
+export async function handleMBTITestFull(
+  callbackQuery: any,
+  env: Env
+): Promise<void> {
+  const db = createDatabaseClient(env);
+  const telegram = createTelegramService(env);
+  const chatId = callbackQuery.message!.chat.id;
+  const telegramId = callbackQuery.from.id.toString();
+
+  try {
+    // Start MBTI test (full version)
+    const { startMBTITest } = await import('~/services/mbti_test_service');
+    await startMBTITest(db, telegramId, 'full');
+
+    // Answer callback
+    await telegram.answerCallbackQuery(callbackQuery.id, '✅ 開始完整版測驗');
+
+    // Delete menu message
+    await telegram.deleteMessage(chatId, callbackQuery.message!.message_id);
+
+    // Show first question
+    const { showMBTIQuestion } = await import('./mbti_test');
+    await showMBTIQuestion(chatId, telegram, db, telegramId, 0);
+  } catch (error) {
+    console.error('[handleMBTITestFull] Error:', error);
     await telegram.answerCallbackQuery(callbackQuery.id, '❌ 發生錯誤');
   }
 }

@@ -695,6 +695,19 @@ async function routeUpdate(update: TelegramUpdate, env: Env): Promise<void> {
       return;
     }
 
+    // MBTI test version selection
+    if (data === 'mbti_test_quick') {
+      const { handleMBTITestQuick } = await import('./telegram/handlers/mbti');
+      await handleMBTITestQuick(callbackQuery, env);
+      return;
+    }
+
+    if (data === 'mbti_test_full') {
+      const { handleMBTITestFull } = await import('./telegram/handlers/mbti');
+      await handleMBTITestFull(callbackQuery, env);
+      return;
+    }
+
     if (data === 'mbti_menu_manual') {
       const { handleMBTIMenuManual } = await import('./telegram/handlers/mbti');
       await handleMBTIMenuManual(callbackQuery, env);

@@ -7,17 +7,20 @@
 
 import type { MBTITestProgress } from '~/domain/mbti_test';
 import type { DatabaseClient } from '~/db/client';
-import { calculateMBTIResult, getTotalQuestions } from '~/domain/mbti_test';
+import { calculateMBTIResult, getTotalQuestionsByVersion } from '~/domain/mbti_test';
 
 // ============================================================================
 // Types
 // ============================================================================
+
+export type MBTITestVersion = 'quick' | 'full';
 
 export interface MBTITestState {
   telegram_id: string;
   current_question: number;
   answers: number[];
   total_questions: number;
+  test_version: MBTITestVersion;
   started_at: string;
   updated_at: string;
 }
@@ -28,10 +31,12 @@ export interface MBTITestState {
 
 /**
  * Start a new MBTI test for a user
+ * @param version Test version ('quick' or 'full'), defaults to 'quick'
  */
 export async function startMBTITest(
   db: DatabaseClient,
-  telegramId: string
+  telegramId: string,
+  version: MBTITestVersion = 'quick'
 ): Promise<MBTITestState> {
   // Delete any existing progress
   await db.d1
@@ -43,17 +48,18 @@ export async function startMBTITest(
   const now = new Date().toISOString();
   await db.d1
     .prepare(
-      `INSERT INTO mbti_test_progress (telegram_id, current_question, answers, started_at, updated_at)
-       VALUES (?, 0, '[]', ?, ?)`
+      `INSERT INTO mbti_test_progress (telegram_id, current_question, answers, test_version, started_at, updated_at)
+       VALUES (?, 0, '[]', ?, ?, ?)`
     )
-    .bind(telegramId, now, now)
+    .bind(telegramId, version, now, now)
     .run();
 
   return {
     telegram_id: telegramId,
     current_question: 0,
     answers: [],
-    total_questions: getTotalQuestions(),
+    total_questions: getTotalQuestionsByVersion(version),
+    test_version: version,
     started_at: now,
     updated_at: now,
   };
@@ -69,17 +75,21 @@ export async function getMBTITestProgress(
   const result = await db.d1
     .prepare('SELECT * FROM mbti_test_progress WHERE telegram_id = ? LIMIT 1')
     .bind(telegramId)
-    .first<MBTITestProgress>();
+    .first<MBTITestProgress & { test_version?: string }>();
 
   if (!result) {
     return null;
   }
 
+  // Default to 'quick' for backward compatibility (old records without test_version)
+  const testVersion = (result.test_version || 'quick') as MBTITestVersion;
+
   return {
     telegram_id: result.telegram_id,
     current_question: result.current_question,
     answers: JSON.parse(result.answers) as number[],
-    total_questions: getTotalQuestions(),
+    total_questions: getTotalQuestionsByVersion(testVersion),
+    test_version: testVersion,
     started_at: result.started_at,
     updated_at: result.updated_at,
   };
@@ -118,7 +128,8 @@ export async function saveAnswerAndAdvance(
     telegram_id: telegramId,
     current_question: nextQuestion,
     answers,
-    total_questions: getTotalQuestions(),
+    total_questions: progress.total_questions,
+    test_version: progress.test_version,
     started_at: progress.started_at,
     updated_at: now,
   };
@@ -137,12 +148,12 @@ export async function completeMBTITest(
     throw new Error('No test in progress');
   }
 
-  if (progress.answers.length !== getTotalQuestions()) {
+  if (progress.answers.length !== progress.total_questions) {
     throw new Error('Test not completed');
   }
 
-  // Calculate result
-  const result = calculateMBTIResult(progress.answers);
+  // Calculate result (auto-detect version based on answer length)
+  const result = calculateMBTIResult(progress.answers, progress.test_version);
 
   // Save to user profile
   const now = new Date().toISOString();
