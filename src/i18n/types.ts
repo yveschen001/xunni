@@ -141,5 +141,19 @@ export interface Translations {
     bannedTemporary: string;
     bannedPermanent: string;
   };
+
+  // Appeal
+  appeal: {
+    prompt: string;
+    submitted: string;
+    alreadyExists: string;
+    approved: string;
+    rejected: string;
+    status: string;
+    noAppeal: string;
+    notBanned: string;
+    reasonTooShort: string;
+    reasonTooLong: string;
+  };
 }
 

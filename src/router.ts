@@ -171,7 +171,14 @@ async function routeUpdate(update: TelegramUpdate, env: Env): Promise<void> {
     if (user.onboarding_step === 'completed') {
       const isCommand = text.startsWith('/');
 
-      // Try profile edit input first
+      // Try appeal reason input first
+      if (user.session_state === 'awaiting_appeal_reason') {
+        const { handleAppealReasonInput } = await import('./telegram/handlers/appeal');
+        await handleAppealReasonInput(message, env);
+        return;
+      }
+
+      // Try profile edit input
       const { handleProfileEditInput } = await import('./telegram/handlers/edit_profile');
       const isEditingProfile = await handleProfileEditInput(message, env);
       if (isEditingProfile) {
@@ -251,6 +258,42 @@ async function routeUpdate(update: TelegramUpdate, env: Env): Promise<void> {
     if (text === '/mbti') {
       const { handleMBTI } = await import('./telegram/handlers/mbti');
       await handleMBTI(message, env);
+      return;
+    }
+
+    if (text === '/appeal') {
+      const { handleAppeal } = await import('./telegram/handlers/appeal');
+      await handleAppeal(message, env);
+      return;
+    }
+
+    if (text === '/appeal_status') {
+      const { handleAppealStatus } = await import('./telegram/handlers/appeal');
+      await handleAppealStatus(message, env);
+      return;
+    }
+
+    if (text.startsWith('/admin_bans')) {
+      const { handleAdminBans } = await import('./telegram/handlers/admin_ban');
+      await handleAdminBans(message, env);
+      return;
+    }
+
+    if (text.startsWith('/admin_appeals')) {
+      const { handleAdminAppeals } = await import('./telegram/handlers/admin_ban');
+      await handleAdminAppeals(message, env);
+      return;
+    }
+
+    if (text.startsWith('/admin_approve')) {
+      const { handleAdminApprove } = await import('./telegram/handlers/admin_ban');
+      await handleAdminApprove(message, env);
+      return;
+    }
+
+    if (text.startsWith('/admin_reject')) {
+      const { handleAdminReject } = await import('./telegram/handlers/admin_ban');
+      await handleAdminReject(message, env);
       return;
     }
 

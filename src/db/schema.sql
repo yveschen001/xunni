@@ -397,6 +397,25 @@ CREATE INDEX idx_bans_ban_end ON bans(ban_end);
 CREATE INDEX idx_bans_created_at ON bans(created_at);
 
 -- ============================================================================
+-- 15. Appeals Table (申訴記錄)
+-- ============================================================================
+CREATE TABLE IF NOT EXISTS appeals (
+  id INTEGER PRIMARY KEY AUTOINCREMENT,
+  user_id TEXT NOT NULL,
+  ban_id INTEGER,
+  reason TEXT NOT NULL,
+  status TEXT DEFAULT 'pending',
+  reviewed_by TEXT,
+  review_notes TEXT,
+  created_at TEXT DEFAULT CURRENT_TIMESTAMP,
+  reviewed_at TEXT
+);
+
+CREATE INDEX idx_appeals_user_id ON appeals(user_id);
+CREATE INDEX idx_appeals_status ON appeals(status);
+CREATE INDEX idx_appeals_created_at ON appeals(created_at);
+
+-- ============================================================================
 -- Initial Data
 -- ============================================================================
 

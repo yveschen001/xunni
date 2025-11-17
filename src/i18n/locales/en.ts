@@ -232,5 +232,76 @@ export const translations: Translations = {
       '📖 Please review our community guidelines: /rules\n' +
       '💡 If you have questions, you can appeal using /appeal',
   },
+
+  // Appeal system
+  appeal: {
+    // Appeal submission prompt
+    prompt:
+      '📝 Appeal Explanation\n\n' +
+      'Please briefly explain why you believe this is a mistake. Our team will review your appeal as soon as possible.\n\n' +
+      '💡 Tips:\n' +
+      '• Be honest about the situation\n' +
+      '• Provide relevant evidence or explanation\n' +
+      '• Be polite and respectful\n\n' +
+      'Please enter your appeal reason:',
+    
+    // Appeal submitted
+    submitted:
+      '✅ Appeal Submitted\n\n' +
+      'Thank you for your appeal. Our team will review your case within 24-48 hours.\n\n' +
+      'Appeal ID: #{appealId}\n' +
+      'Submitted: {time}\n\n' +
+      '💡 You can check your appeal status with /appeal_status',
+    
+    // Appeal already exists
+    alreadyExists:
+      '⚠️ You have already submitted an appeal\n\n' +
+      'Appeal ID: #{appealId}\n' +
+      'Status: {status}\n' +
+      'Submitted: {time}\n\n' +
+      'Please wait patiently for the review result.',
+    
+    // Appeal approved
+    approved:
+      '🎉 Appeal Approved\n\n' +
+      'After review, we believe this was indeed a mistake. Your account restrictions have been lifted and you can use all features normally.\n\n' +
+      'Thank you for your understanding and cooperation!',
+    
+    // Appeal rejected
+    rejected:
+      '❌ Appeal Denied\n\n' +
+      'After careful review, we confirm the original decision was correct.\n\n' +
+      'Review notes: {notes}\n\n' +
+      'Please follow community guidelines to avoid similar situations in the future.',
+    
+    // Appeal status
+    status:
+      '📋 Appeal Status\n\n' +
+      'Appeal ID: #{appealId}\n' +
+      'Status: {status}\n' +
+      'Submitted: {createdAt}\n' +
+      '{reviewInfo}\n\n' +
+      '💡 We will process your appeal as soon as possible',
+    
+    // No appeal found
+    noAppeal:
+      '❌ No appeal found\n\n' +
+      'If your account is restricted, you can submit an appeal using /appeal.',
+    
+    // Not banned
+    notBanned:
+      '✅ Your account status is normal\n\n' +
+      'There are currently no restrictions, you can use all features normally.',
+    
+    // Reason too short
+    reasonTooShort:
+      '❌ Appeal reason too short\n\n' +
+      'Please provide at least 10 characters to help us better understand the situation.',
+    
+    // Reason too long
+    reasonTooLong:
+      '❌ Appeal reason too long\n\n' +
+      'Please keep your explanation under 500 characters.',
+  },
 };
 
