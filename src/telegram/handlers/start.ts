@@ -29,9 +29,19 @@ export async function handleStart(message: TelegramMessage, env: Env): Promise<v
     const inviteCode = extractInviteCode(message.text || '');
     let inviterTelegramId: string | null = null;
 
+    console.error('[handleStart] Processing:', {
+      telegramId,
+      messageText: message.text,
+      extractedInviteCode: inviteCode,
+    });
+
     // Validate and process invite code
     if (inviteCode) {
+      console.error('[handleStart] Invite code found:', inviteCode);
+      
       if (validateInviteCode(inviteCode)) {
+        console.error('[handleStart] Invite code valid, looking for inviter');
+        
         // Find inviter by invite code
         const inviter = await db.d1
           .prepare('SELECT telegram_id, nickname FROM users WHERE invite_code = ?')
@@ -39,17 +49,27 @@ export async function handleStart(message: TelegramMessage, env: Env): Promise<v
           .first<{ telegram_id: string; nickname: string }>();
 
         if (inviter) {
+          console.error('[handleStart] Inviter found:', inviter.telegram_id);
+          
           // Prevent self-invitation
           if (inviter.telegram_id !== telegramId) {
             inviterTelegramId = inviter.telegram_id;
+            console.error('[handleStart] Valid invitation, inviter:', inviterTelegramId);
           } else {
+            console.error('[handleStart] Self-invitation detected');
             const { createI18n } = await import('~/i18n');
             const i18n = createI18n('zh-TW');
             await telegram.sendMessage(chatId, i18n.t('invite.selfInviteError'));
             return;
           }
+        } else {
+          console.error('[handleStart] Inviter not found for code:', inviteCode);
         }
+      } else {
+        console.error('[handleStart] Invalid invite code format:', inviteCode);
       }
+    } else {
+      console.error('[handleStart] No invite code in message');
     }
 
     // Check if user exists
@@ -69,7 +89,14 @@ export async function handleStart(message: TelegramMessage, env: Env): Promise<v
 
       // Create invite record if invited
       if (inviterTelegramId) {
+        console.error('[handleStart] Creating invite record:', {
+          inviterTelegramId,
+          inviteeTelegramId: telegramId,
+          inviteCode,
+        });
+        
         await createInvite(db, inviterTelegramId, telegramId, inviteCode!);
+        console.error('[handleStart] Invite record created successfully');
 
         // Notify new user about invite
         const inviter = await findUserByTelegramId(db, inviterTelegramId);
@@ -81,6 +108,8 @@ export async function handleStart(message: TelegramMessage, env: Env): Promise<v
             i18n.t('invite.codeAccepted', { inviterName: inviter.nickname || '好友' })
           );
         }
+      } else {
+        console.error('[handleStart] No inviter, skipping invite record creation');
       }
 
       const { createI18n } = await import('~/i18n');

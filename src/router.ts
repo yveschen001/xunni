@@ -65,6 +65,13 @@ async function routeUpdate(update: TelegramUpdate, env: Env): Promise<void> {
     const chatId = message.chat.id;
     const telegramId = message.from!.id.toString();
 
+    // Log message details for debugging
+    console.error('[Router] Message details:', {
+      telegramId,
+      text: text.substring(0, 100), // Log first 100 chars
+      hasInviteCode: text.includes('invite_'),
+    });
+
     // Check if user exists
     const user = await findUserByTelegramId(db, telegramId);
 
