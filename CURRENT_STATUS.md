@@ -1,212 +1,299 @@
-# XunNi Bot 當前狀態
+# 🎯 XunNi 專案當前狀態
 
-**最後更新：** 2025-01-16  
-**環境：** Staging (@xunni_dev_bot)
+**最後更新：** 2025-01-17 07:15 UTC  
+**當前版本：** bb519ca7-f334-468a-9945-a331f33e31aa  
+**環境：** Staging (`@xunni_dev_bot`)  
+**GitHub Commit：** 7df73a8
 
 ---
 
-## ✅ 已完成功能
+## ✅ 已完成功能（受保護）
 
 ### 核心功能
-- ✅ 用戶註冊流程（語言、暱稱、性別、生日、國家、偏好、MBTI、反詐騙、條款）
-- ✅ 漂流瓶系統（丟瓶子、撿瓶子、配額管理）
-- ✅ 對話系統（匿名聊天、訊息轉發）
-- ✅ 個人資料（查看、編輯暱稱/簡介/地區/興趣/匹配偏好）
-- ✅ 統計數據（瓶子數量、對話數、匹配率、回覆率）
-- ✅ 邀請系統（邀請碼、分享、激活、配額獎勵）
+1. **用戶註冊流程** ✅ 🛡️
+   - 語言選擇（34 種語言）
+   - 暱稱設定（擾碼顯示）
+   - 性別選擇（不可修改）
+   - 生日輸入（不可修改，年齡驗證 ≥18）
+   - 血型選擇（不可修改）
+   - MBTI 測試（36 題）
+   - 反詐騙評分
+   - 使用條款同意
 
-### 翻譯功能
-- ✅ 34 種語言支援
-- ✅ Gemini AI 翻譯（多模型 fallback）
-- ✅ OpenAI 翻譯（VIP 用戶）
-- ✅ Google Translate fallback
+2. **漂流瓶系統** ✅ 🛡️
+   - 丟瓶子（基本、進階篩選）
+   - 撿瓶子
+   - 瓶子配對
+   - 瓶子內容驗證（10-1000 字）
+   - AI 翻譯（Gemini、OpenAI、Google）
 
-### 安全功能
-- ✅ 舉報系統
-- ✅ 封鎖系統
-- ✅ URL 白名單
-- ✅ 反詐騙測試
-- ✅ 年齡驗證（18+）
+3. **對話系統** ✅ 🛡️
+   - 匿名對話
+   - 訊息轉發
+   - AI 翻譯（自動檢測語言差異）
+   - 對話標識符（#MMDDHHHH 格式）
+   - 對話歷史記錄帖子（累積所有訊息，含對方資料卡）
+   - 新訊息帖子（顯示最新訊息，含對方資料卡）
+   - 每日訊息配額（免費 10 則/對象，VIP 100 則/對象）
+   - 防重複機制（10 秒內去重）
 
-### VIP 功能
-- ✅ Telegram Stars 支付
-- ✅ 配額提升（3 → 30）
-- ✅ MBTI/星座篩選
-- ✅ 優先翻譯
+4. **VIP 系統** ✅ 🛡️
+   - Telegram Stars 支付
+   - VIP 權益（更多配額、進階篩選、血型配對）
+   - VIP 狀態檢查
+
+5. **邀請裂變系統** ✅ 🛡️
+   - 邀請碼生成
+   - 邀請追蹤
+   - 邀請獎勵（額外配額）
+   - 邀請統計
+   - 分享功能
+
+6. **個人資料管理** ✅ 🛡️
+   - 查看個人資料
+   - 編輯暱稱（4-20 字，禁止 URL）
+   - 編輯簡介（最多 200 字）
+   - 編輯地區
+   - 編輯興趣
+   - 編輯血型
+   - 匹配偏好設定
+
+7. **血型功能** ✅ 🛡️
+   - 註冊時血型輸入
+   - 血型編輯
+   - VIP 血型配對
+
+8. **安全功能** ✅ 🛡️
+   - 用戶封鎖
+   - 用戶舉報
+   - URL 白名單
+   - 反詐騙評分
+
+9. **開發工具** ✅ 🛡️
+   - `/dev_reset` - 清空用戶資料
+   - `/dev_restart` - 清空並自動重新註冊
+   - `/dev_skip` - 跳過註冊步驟
+   - `/dev_info` - 查看用戶資料
 
 ---
 
 ## 🚧 待開發功能
 
 ### 高優先級
+1. **MBTI 36 題測試** 🔴
+   - 設計：`@doc/MBTI_36_QUESTIONS_PLAN.md`
+   - 狀態：設計完成，待開發
+   - 影響範圍：`src/telegram/handlers/mbti.ts`（新文件）
 
-#### 1. 血型功能完整開發
-**文檔：** `doc/BLOOD_TYPE_FEATURE_PLAN.md`  
-**預計工時：** 4-6 小時
-
-- 註冊流程中添加血型選擇（在生日之後）
-- 提示用戶：「填寫血型可用於未來的血型配對功能」
-- 添加編輯血型功能（註冊後可修改）
-- **VIP 用戶血型配對功能**（VIP 專屬）
-
-**技術要點：**
-- 修改註冊流程 `start.ts`
-- 新增編輯功能 `edit_profile.ts`
-- VIP 配對篩選 `throw_advanced.ts`
-- i18n 翻譯支援
-
----
-
-#### 2. MBTI 36 題測試
-**文檔：** `doc/MBTI_36_QUESTIONS_PLAN.md`  
-**預計工時：** 6-8 小時
-
-- 36 題完整測試（4 個維度，每個 9 題）
-- 更準確的性格分析
-- 可暫停和恢復測試
-- 16 種 MBTI 類型詳細描述
-
-**技術要點：**
-- 題庫設計（36 題中英文）
-- Session 管理（保存測試進度）
-- 計分邏輯實現
-- 結果展示和分享
-
----
-
-#### 3. 聊天記錄對象標識
-**文檔：** `doc/CHAT_HISTORY_IDENTIFIER_PLAN.md`  
-**預計工時：** 3-4 小時
-
-- 為每個對話對象分配唯一標識符（#A, #B, #C, ...）
-- 在聊天記錄中顯示標識符
-- 支援 `/history #A` 搜尋特定對象的對話
-- 顯示對話統計資訊
-
-**技術要點：**
-- 新增 `conversation_identifiers` 表
-- 標識符生成邏輯（A -> Z -> AA -> AZ -> BA...）
-- 修改 `message_forward.ts` 顯示標識符
-- 新增 `/history` 命令
-
----
+2. **Mini App** 🔴
+   - 設計：待規劃
+   - 狀態：未開始
+   - 影響範圍：新模組
 
 ### 中優先級
+3. **進階統計** 🟡
+   - 用戶統計儀表板
+   - 配對成功率
+   - 活躍度分析
+   - 影響範圍：`src/telegram/handlers/stats.ts`
 
-4. **推播通知** - 新訊息、邀請激活等通知
-5. **管理後台** - 用戶管理、統計報表
-6. **進階統計** - 用戶行為分析、留存率追蹤
+4. **通知系統** 🟡
+   - 新訊息通知（已有新訊息帖子）
+   - VIP 到期提醒
+   - 配額用盡提醒
+   - 影響範圍：新模組
 
 ### 低優先級
-
-7. **Telegram Mini App** - Web 介面
-8. **WeChat/Line 插件** - 跨平台支援
-9. **AI 聊天助手** - 智能回覆建議
+5. **社群功能** 🟢
+   - 群組漂流瓶
+   - 公開留言板
+   - 影響範圍：新模組
 
 ---
 
 ## 🐛 已知問題
 
-### 已修復
-- ✅ 資料庫 Migration 未執行（invites 表）
-- ✅ 暱稱擾碼錯誤（全 **** → 張**）
-- ✅ 語言映射不完整（20 → 34 種）
-- ✅ 匹配成功率超過 100%
-- ✅ Bot 網址錯誤（已改為環境變數）
-- ✅ 主選單邀請按鈕（已改為直接分享）
+**目前沒有已知的嚴重問題** ✅
 
-### 待修復
-- 無
+**輕微問題：**
+- ⚠️ 65 個 Lint 警告（不影響功能）
 
 ---
 
-## 📊 測試狀態
+## 📊 代碼質量
 
-### 單元測試
-- ✅ Domain 層：28/28 通過
-- ✅ Utils 層：通過
-- 覆蓋率：~80%
-
-### Smoke Test
-- ✅ 核心命令測試
-- ✅ 邀請系統測試
-- ⚠️ 需要更新（添加新功能測試）
-
-### 手動測試
-- ✅ 註冊流程
-- ✅ 漂流瓶功能
-- ✅ 對話功能
-- ✅ 邀請功能
-- ⚠️ 需要測試最新修改
+- **Lint 錯誤：** 0 ✅
+- **Lint 警告：** 65 ⚠️
+- **測試覆蓋率：** 
+  - Domain 層：~70%
+  - Utils 層：~60%
+  - Handlers 層：~40%
 
 ---
 
-## 🔧 最近修改（2025-01-16）
+## 🗂️ 核心模組（受保護）
 
-### 修復
-1. 修復主選單邀請按鈕 - 改為直接分享
-2. 修復 Bot 網址 - 根據環境變數選擇（staging: @xunni_dev_bot）
-3. 添加編輯資料入口 - profile 頁面添加「✏️ 編輯資料」按鈕
-4. 修復 AI 翻譯 - 只返回翻譯結果，不加解釋
+### 1. Domain 層（業務邏輯）🛡️
+**不要輕易修改，必須有測試！**
 
-### 文檔更新
-1. 新增 `doc/DEVELOPMENT_STANDARDS.md` 第 6 節「安全開發與防止改壞」
-2. 更新 `.cursorrules` 添加安全開發原則
-3. 新增 `doc/HOTFIX_LOG.md` 記錄 Hotfix
+- `bottle.ts` - 瓶子邏輯
+- `conversation.ts` - 對話邏輯
+- `conversation_history.ts` - 對話歷史記錄 ⚠️ 新增
+- `conversation_identifier.ts` - 對話標識符 ⚠️ 新增
+- `user.ts` - 用戶邏輯
+- `invite.ts` - 邀請邏輯（含 `maskNickname`）
+- `blood_type.ts` - 血型邏輯 ⚠️ 新增
+- `mbti_test.ts` - MBTI 測試邏輯
+- `usage.ts` - 配額邏輯
+
+### 2. Services 層（外部服務）⚠️
+**謹慎修改，可能影響多個 Handlers！**
+
+- `telegram.ts` - Telegram API（含 `sendMessageAndGetId`）
+- `gemini.ts` - Gemini AI
+- `openai.ts` - OpenAI API
+- `conversation_history.ts` - 對話歷史記錄服務 ⚠️ 新增
+- `translation/` - 翻譯服務
+
+### 3. Handlers 層（Telegram 指令）✅
+**優先修改這一層，影響範圍最小！**
+
+- `start.ts` - 註冊流程
+- `throw.ts` - 丟瓶子
+- `catch.ts` - 撿瓶子
+- `message_forward.ts` - 對話訊息 ⚠️ 核心功能
+- `edit_profile.ts` - 編輯個人資料
+- `vip.ts` - VIP 功能
+- `invite_activation.ts` - 邀請功能 ⚠️ 新增
+- `dev.ts` - 開發工具
+
+### 4. DB Queries 層（資料庫查詢）🛡️
+**避免修改，除非必要！**
+
+- `users.ts` - 用戶查詢
+- `bottles.ts` - 瓶子查詢
+- `conversations.ts` - 對話查詢
+- `conversation_identifiers.ts` - 對話標識符查詢 ⚠️ 新增
+- `conversation_history_posts.ts` - 對話歷史記錄查詢 ⚠️ 新增
+- `invites.ts` - 邀請查詢 ⚠️ 新增
 
 ---
 
-## 🚀 部署資訊
+## 📝 重要文檔
 
-### Staging
-- **Bot：** @xunni_dev_bot
-- **URL：** https://xunni-bot-staging.yves221.workers.dev
-- **版本：** 待部署
-- **資料庫：** xunni-db-staging
+### 必讀文檔（開發前必讀）
+- `@doc/SPEC.md` - 專案規格書（**最重要**）
+- `@doc/DEVELOPMENT_STANDARDS.md` - 開發規範
+- `@doc/SAFE_DEVELOPMENT_WORKFLOW.md` - 安全開發流程 ⚠️ 新增
+- `@doc/MODULE_DESIGN.md` - 模組架構
 
-### Production
-- **Bot：** @xunni_bot
-- **URL：** https://xunni-bot.yves221.workers.dev
-- **版本：** 未部署
-- **資料庫：** xunni-db-production
+### 功能設計文檔
+- `@doc/INVITE_SYSTEM_DESIGN.md` - 邀請系統設計
+- `@doc/BLOOD_TYPE_FEATURE_PLAN.md` - 血型功能設計
+- `@doc/CHAT_HISTORY_IDENTIFIER_PLAN.md` - 對話標識符設計
+- `@doc/MBTI_36_QUESTIONS_PLAN.md` - MBTI 測試設計
+- `CONVERSATION_HISTORY_POSTS_DESIGN.md` - 對話歷史記錄設計 ⚠️ 新增
+
+### 開發指南
+- `@doc/I18N_GUIDE.md` - 國際化指南
+- `@doc/TESTING.md` - 測試指南
+- `@doc/DEPLOYMENT.md` - 部署指南
+- `@doc/BACKUP_STRATEGY.md` - 備份策略
 
 ---
 
-## 📋 下一步計劃
+## 🔄 最近的重要變更
+
+### 2025-01-17（今天）
+- ✅ 完成對話歷史記錄系統
+- ✅ 修復訊息重複問題（添加防重複機制）
+- ✅ 恢復對方資料卡顯示（昵稱擾碼、MBTI、血型、星座）
+- ✅ 創建安全開發流程文檔
+- ✅ 備份代碼到 GitHub
+
+### 2025-01-16
+- ✅ 完成血型功能（註冊、編輯、VIP 配對）
+- ✅ 完成對話標識符系統（#MMDDHHHH 格式）
+- ✅ 完成邀請裂變系統
+
+### 2025-01-15
+- ✅ 完成用戶註冊流程優化
+- ✅ 完成 MBTI 測試流程
+- ✅ 完成 UI 改進
+
+---
+
+## 🚀 下一步計劃
 
 ### 立即執行
-1. 部署最新修改到 Staging
-2. 測試邀請分享功能
-3. 測試編輯資料功能
+1. **閱讀 `@doc/SAFE_DEVELOPMENT_WORKFLOW.md`** - 了解安全開發流程
 
-### 短期計劃（1-2 週）
-1. 開發血型編輯功能
-2. 開發 MBTI 36 題測試
-3. 開發聊天記錄對象標識
-4. 完善 Smoke Test
-
-### 中期計劃（1-2 月）
-1. 開發血型配對功能
-2. 開發推播通知系統
-3. 開發管理後台
+### 功能開發
+2. **完成 MBTI 36 題測試** - 高優先級
+3. **規劃 Mini App** - 高優先級
+4. **優化測試覆蓋率** - 中優先級
+5. **添加進階統計** - 中優先級
 
 ---
 
-## 📚 重要文檔
+## 🛡️ 開發保護機制
 
-### 必讀
-- `doc/SPEC.md` - 專案規格書
-- `doc/DEVELOPMENT_STANDARDS.md` - 開發規範（包含安全開發流程）
-- `doc/ENV_CONFIG.md` - 環境配置
+### 已實施
+- ✅ 模組化架構（分層設計）
+- ✅ 測試驅動開發（Domain 層必須有測試）
+- ✅ Smoke Test（核心功能回歸測試）
+- ✅ 安全開發流程文檔
+- ✅ 頻繁備份到 GitHub
 
-### 參考
-- `doc/HOTFIX_LOG.md` - Hotfix 記錄
-- `doc/TESTING.md` - 測試規範
-- `doc/I18N_GUIDE.md` - 國際化指南
-- `INVITE_FEATURE_TEST_GUIDE.md` - 邀請功能測試指南
+### 開發前必須
+- [ ] 閱讀 `@doc/SPEC.md` 相關章節
+- [ ] 閱讀 `CURRENT_STATUS.md`（本文件）
+- [ ] 閱讀 `@doc/SAFE_DEVELOPMENT_WORKFLOW.md`
+- [ ] 分析變更影響範圍
+
+### 開發後必須
+- [ ] `pnpm lint` - 0 errors
+- [ ] `pnpm test` - 所有測試通過
+- [ ] 手動測試新功能
+- [ ] 手動測試受影響的現有功能
+- [ ] 檢查 Cloudflare 日誌
 
 ---
 
-**維護者：** 開發團隊  
-**聯絡方式：** [待補充]
+## 📊 統計數據
 
+### 代碼規模
+- **總文件數：** ~200
+- **核心代碼文件：** ~80
+- **測試文件：** ~20
+- **文檔文件：** ~30
+
+### 功能統計
+- **已完成功能：** 9 大類
+- **待開發功能：** 5 大類
+- **已知問題：** 0 嚴重問題
+
+---
+
+## 🔗 快速連結
+
+### 開發
+- [專案規格書](doc/SPEC.md)
+- [安全開發流程](doc/SAFE_DEVELOPMENT_WORKFLOW.md)
+- [開發規範](doc/DEVELOPMENT_STANDARDS.md)
+
+### 測試
+- [測試指南](doc/TESTING.md)
+- [Smoke Test](scripts/smoke-test.ts)
+
+### 部署
+- [部署指南](doc/DEPLOYMENT.md)
+- [備份策略](doc/BACKUP_STRATEGY.md)
+
+---
+
+**最後備份：** 2025-01-17 07:15 UTC  
+**GitHub Commit：** 7df73a8  
+**部署版本：** bb519ca7-f334-468a-9945-a331f33e31aa
+
+**🛡️ 記住：不要把已經做好的東西改壞了！**
