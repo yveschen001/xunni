@@ -324,13 +324,13 @@ export function validateBio(bio: string): { valid: boolean; error?: string } {
 
 /**
  * Generate a unique invite code
- * Format: XUNNI-XXXXXX (6 random alphanumeric characters)
+ * Format: XUNNI-XXXXXXXX (8 random alphanumeric characters)
  */
 export function generateInviteCode(): string {
   const chars = 'ABCDEFGHJKLMNPQRSTUVWXYZ23456789'; // Exclude confusing chars (0, O, I, 1)
   let code = 'XUNNI-';
 
-  for (let i = 0; i < 6; i++) {
+  for (let i = 0; i < 8; i++) {
     code += chars.charAt(Math.floor(Math.random() * chars.length));
   }
 

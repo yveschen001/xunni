@@ -61,12 +61,13 @@ export function extractInviteCode(text: string): string | null {
  * @returns true if valid
  * 
  * @example
- * validateInviteCode('XUNNI-ABC123') // true
+ * validateInviteCode('XUNNI-ABC12345') // true (8 chars)
+ * validateInviteCode('XUNNI-ABC123') // true (6 chars, legacy)
  * validateInviteCode('invalid') // false
  */
 export function validateInviteCode(code: string): boolean {
-  // Format: XUNNI-XXXXXXXX (8 alphanumeric characters)
-  return /^XUNNI-[A-Z0-9]{8}$/.test(code);
+  // Format: XUNNI-XXXXXXXX (6-8 alphanumeric characters for backward compatibility)
+  return /^XUNNI-[A-Z0-9]{6,8}$/.test(code);
 }
 
 /**
