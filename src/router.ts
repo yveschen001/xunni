@@ -277,6 +277,24 @@ async function routeUpdate(update: TelegramUpdate, env: Env): Promise<void> {
       return;
     }
 
+    if (text.startsWith('/admin_ban ')) {
+      const { handleAdminBan } = await import('./telegram/handlers/admin_ban');
+      await handleAdminBan(message, env);
+      return;
+    }
+
+    if (text.startsWith('/admin_unban ')) {
+      const { handleAdminUnban } = await import('./telegram/handlers/admin_ban');
+      await handleAdminUnban(message, env);
+      return;
+    }
+
+    if (text.startsWith('/admin_freeze ')) {
+      const { handleAdminFreeze } = await import('./telegram/handlers/admin_ban');
+      await handleAdminFreeze(message, env);
+      return;
+    }
+
     if (text.startsWith('/admin_bans')) {
       const { handleAdminBans } = await import('./telegram/handlers/admin_ban');
       await handleAdminBans(message, env);

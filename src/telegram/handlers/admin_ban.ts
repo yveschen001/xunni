@@ -48,6 +48,373 @@ function isAdmin(telegramId: string, env: Env): boolean {
 }
 
 /**
+ * Handle /admin_ban command - Ban a user
+ * Usage: /admin_ban <user_id> [hours|permanent]
+ */
+export async function handleAdminBan(message: TelegramMessage, env: Env): Promise<void> {
+  const telegram = createTelegramService(env);
+  const db = createDatabaseClient(env.DB);
+  const chatId = message.chat.id;
+  const telegramId = message.from!.id.toString();
+
+  try {
+    // Check admin permission
+    if (!isAdmin(telegramId, env)) {
+      await telegram.sendMessage(chatId, '❌ 你沒有權限使用此命令。');
+      return;
+    }
+
+    // Parse command
+    const text = message.text || '';
+    const parts = text.split(' ').filter(p => p.length > 0);
+    
+    if (parts.length < 2) {
+      await telegram.sendMessage(
+        chatId,
+        '❌ 使用方法錯誤\n\n' +
+          '**正確格式：**\n' +
+          '`/admin_ban <user_id> [hours|permanent]`\n\n' +
+          '**示例：**\n' +
+          '`/admin_ban 123456789` - 封禁 1 小時\n' +
+          '`/admin_ban 123456789 24` - 封禁 24 小時\n' +
+          '`/admin_ban 123456789 permanent` - 永久封禁'
+      );
+      return;
+    }
+
+    const targetUserId = parts[1];
+    const durationArg = parts[2] || '1';
+
+    // Check if target is admin
+    const adminIds = getAdminIds(env);
+    if (adminIds.includes(targetUserId)) {
+      await telegram.sendMessage(chatId, '❌ 無法封禁管理員帳號。');
+      return;
+    }
+
+    // Check if user exists
+    const targetUser = await findUserByTelegramId(db, targetUserId);
+    if (!targetUser) {
+      await telegram.sendMessage(chatId, '❌ 用戶不存在。');
+      return;
+    }
+
+    // Calculate ban duration
+    let bannedUntil: string | null = null;
+    let durationText: string;
+
+    if (durationArg.toLowerCase() === 'permanent') {
+      bannedUntil = null;
+      durationText = '永久';
+    } else {
+      const hours = parseInt(durationArg);
+      if (isNaN(hours) || hours <= 0) {
+        await telegram.sendMessage(chatId, '❌ 時長必須是正整數或 "permanent"。');
+        return;
+      }
+      const now = new Date();
+      bannedUntil = new Date(now.getTime() + hours * 60 * 60 * 1000).toISOString();
+      durationText = `${hours} 小時`;
+    }
+
+    // Create ban record
+    await db.d1.prepare(`
+      INSERT INTO bans (user_id, reason, banned_by, banned_at, banned_until, is_active)
+      VALUES (?, ?, ?, datetime('now'), ?, 1)
+    `).bind(
+      targetUserId,
+      `管理員封禁 / Admin ban`,
+      telegramId,
+      bannedUntil
+    ).run();
+
+    // Update user status
+    await db.d1.prepare(`
+      UPDATE users
+      SET is_banned = 1,
+          ban_reason = ?,
+          banned_at = datetime('now'),
+          banned_until = ?,
+          ban_count = ban_count + 1
+      WHERE telegram_id = ?
+    `).bind(
+      `管理員封禁 / Admin ban`,
+      bannedUntil,
+      targetUserId
+    ).run();
+
+    // Send notification to banned user
+    const i18n = createI18n(targetUser.language_pref || 'zh-TW');
+    let banMessage: string;
+
+    if (bannedUntil) {
+      const unbanTime = new Date(bannedUntil).toLocaleString(
+        targetUser.language_pref === 'en' ? 'en-US' : 'zh-TW',
+        {
+          year: 'numeric',
+          month: '2-digit',
+          day: '2-digit',
+          hour: '2-digit',
+          minute: '2-digit',
+          timeZone: targetUser.language_pref === 'en' ? 'UTC' : 'Asia/Taipei',
+        }
+      );
+      banMessage = i18n.t('ban.temporaryBan', {
+        unbanTime,
+        duration: durationText,
+      });
+    } else {
+      banMessage = i18n.t('ban.permanentBan', {});
+    }
+
+    try {
+      await telegram.sendMessage(parseInt(targetUserId), banMessage);
+    } catch (error) {
+      console.error('[handleAdminBan] Failed to notify user:', error);
+    }
+
+    // Confirm to admin
+    await telegram.sendMessage(
+      chatId,
+      `✅ **已封禁用戶**\n\n` +
+        `用戶 ID：\`${targetUserId}\`\n` +
+        `暱稱：${targetUser.nickname || '未設定'}\n` +
+        `封禁時長：${durationText}\n` +
+        `${bannedUntil ? `解封時間：${new Date(bannedUntil).toLocaleString('zh-TW')}` : ''}\n\n` +
+        `💡 用戶可以使用 /appeal 申訴`
+    );
+  } catch (error) {
+    console.error('[handleAdminBan] Error:', error);
+    await telegram.sendMessage(chatId, '❌ 發生錯誤，請稍後再試。');
+  }
+}
+
+/**
+ * Handle /admin_unban command - Unban a user
+ * Usage: /admin_unban <user_id>
+ */
+export async function handleAdminUnban(message: TelegramMessage, env: Env): Promise<void> {
+  const telegram = createTelegramService(env);
+  const db = createDatabaseClient(env.DB);
+  const chatId = message.chat.id;
+  const telegramId = message.from!.id.toString();
+
+  try {
+    // Check admin permission
+    if (!isAdmin(telegramId, env)) {
+      await telegram.sendMessage(chatId, '❌ 你沒有權限使用此命令。');
+      return;
+    }
+
+    // Parse command
+    const text = message.text || '';
+    const parts = text.split(' ').filter(p => p.length > 0);
+    
+    if (parts.length < 2) {
+      await telegram.sendMessage(
+        chatId,
+        '❌ 使用方法錯誤\n\n' +
+          '**正確格式：**\n' +
+          '`/admin_unban <user_id>`\n\n' +
+          '**示例：**\n' +
+          '`/admin_unban 123456789` - 解除封禁'
+      );
+      return;
+    }
+
+    const targetUserId = parts[1];
+
+    // Check if user exists
+    const targetUser = await findUserByTelegramId(db, targetUserId);
+    if (!targetUser) {
+      await telegram.sendMessage(chatId, '❌ 用戶不存在。');
+      return;
+    }
+
+    // Check if user is banned
+    if (!targetUser.is_banned) {
+      await telegram.sendMessage(chatId, '❌ 此用戶未被封禁。');
+      return;
+    }
+
+    // Unban user
+    await db.d1.prepare(`
+      UPDATE users
+      SET is_banned = 0,
+          ban_reason = NULL,
+          banned_at = NULL,
+          banned_until = NULL
+      WHERE telegram_id = ?
+    `).bind(targetUserId).run();
+
+    // Mark all active bans as inactive
+    await db.d1.prepare(`
+      UPDATE bans
+      SET is_active = 0
+      WHERE user_id = ? AND is_active = 1
+    `).bind(targetUserId).run();
+
+    // Send notification to unbanned user
+    const unbanMessage = targetUser.language_pref === 'en'
+      ? '✅ **Ban Lifted**\n\n' +
+        'Your account restrictions have been removed by an administrator.\n\n' +
+        'You can now use all features normally.\n\n' +
+        '💡 Please follow community guidelines to avoid future restrictions.'
+      : '✅ **封禁已解除**\n\n' +
+        '管理員已解除你的帳號限制。\n\n' +
+        '你現在可以正常使用所有功能了。\n\n' +
+        '💡 請遵守社群規範，避免再次被封禁。';
+
+    try {
+      await telegram.sendMessage(parseInt(targetUserId), unbanMessage);
+    } catch (error) {
+      console.error('[handleAdminUnban] Failed to notify user:', error);
+    }
+
+    // Confirm to admin
+    await telegram.sendMessage(
+      chatId,
+      `✅ **已解除封禁**\n\n` +
+        `用戶 ID：\`${targetUserId}\`\n` +
+        `暱稱：${targetUser.nickname || '未設定'}\n\n` +
+        `💡 用戶已收到解封通知`
+    );
+  } catch (error) {
+    console.error('[handleAdminUnban] Error:', error);
+    await telegram.sendMessage(chatId, '❌ 發生錯誤，請稍後再試。');
+  }
+}
+
+/**
+ * Handle /admin_freeze command - Temporarily freeze a user (alias for ban)
+ * Usage: /admin_freeze <user_id> <hours>
+ */
+export async function handleAdminFreeze(message: TelegramMessage, env: Env): Promise<void> {
+  const telegram = createTelegramService(env);
+  const db = createDatabaseClient(env.DB);
+  const chatId = message.chat.id;
+  const telegramId = message.from!.id.toString();
+
+  try {
+    // Check admin permission
+    if (!isAdmin(telegramId, env)) {
+      await telegram.sendMessage(chatId, '❌ 你沒有權限使用此命令。');
+      return;
+    }
+
+    // Parse command
+    const text = message.text || '';
+    const parts = text.split(' ').filter(p => p.length > 0);
+    
+    if (parts.length < 3) {
+      await telegram.sendMessage(
+        chatId,
+        '❌ 使用方法錯誤\n\n' +
+          '**正確格式：**\n' +
+          '`/admin_freeze <user_id> <hours>`\n\n' +
+          '**示例：**\n' +
+          '`/admin_freeze 123456789 24` - 凍結 24 小時\n' +
+          '`/admin_freeze 123456789 168` - 凍結 7 天'
+      );
+      return;
+    }
+
+    const targetUserId = parts[1];
+    const hours = parseInt(parts[2]);
+
+    if (isNaN(hours) || hours <= 0) {
+      await telegram.sendMessage(chatId, '❌ 時長必須是正整數。');
+      return;
+    }
+
+    // Check if target is admin
+    const adminIds = getAdminIds(env);
+    if (adminIds.includes(targetUserId)) {
+      await telegram.sendMessage(chatId, '❌ 無法凍結管理員帳號。');
+      return;
+    }
+
+    // Check if user exists
+    const targetUser = await findUserByTelegramId(db, targetUserId);
+    if (!targetUser) {
+      await telegram.sendMessage(chatId, '❌ 用戶不存在。');
+      return;
+    }
+
+    // Calculate freeze duration
+    const now = new Date();
+    const frozenUntil = new Date(now.getTime() + hours * 60 * 60 * 1000).toISOString();
+    const durationText = hours >= 24 
+      ? `${Math.floor(hours / 24)} 天 ${hours % 24} 小時`
+      : `${hours} 小時`;
+
+    // Create ban record
+    await db.d1.prepare(`
+      INSERT INTO bans (user_id, reason, banned_by, banned_at, banned_until, is_active)
+      VALUES (?, ?, ?, datetime('now'), ?, 1)
+    `).bind(
+      targetUserId,
+      `管理員凍結 / Admin freeze`,
+      telegramId,
+      frozenUntil
+    ).run();
+
+    // Update user status
+    await db.d1.prepare(`
+      UPDATE users
+      SET is_banned = 1,
+          ban_reason = ?,
+          banned_at = datetime('now'),
+          banned_until = ?,
+          ban_count = ban_count + 1
+      WHERE telegram_id = ?
+    `).bind(
+      `管理員凍結 / Admin freeze`,
+      frozenUntil,
+      targetUserId
+    ).run();
+
+    // Send notification to frozen user
+    const i18n = createI18n(targetUser.language_pref || 'zh-TW');
+    const unbanTime = new Date(frozenUntil).toLocaleString(
+      targetUser.language_pref === 'en' ? 'en-US' : 'zh-TW',
+      {
+        year: 'numeric',
+        month: '2-digit',
+        day: '2-digit',
+        hour: '2-digit',
+        minute: '2-digit',
+        timeZone: targetUser.language_pref === 'en' ? 'UTC' : 'Asia/Taipei',
+      }
+    );
+    const freezeMessage = i18n.t('ban.temporaryBan', {
+      unbanTime,
+      duration: durationText,
+    });
+
+    try {
+      await telegram.sendMessage(parseInt(targetUserId), freezeMessage);
+    } catch (error) {
+      console.error('[handleAdminFreeze] Failed to notify user:', error);
+    }
+
+    // Confirm to admin
+    await telegram.sendMessage(
+      chatId,
+      `❄️ **已凍結用戶**\n\n` +
+        `用戶 ID：\`${targetUserId}\`\n` +
+        `暱稱：${targetUser.nickname || '未設定'}\n` +
+        `凍結時長：${durationText}\n` +
+        `解凍時間：${new Date(frozenUntil).toLocaleString('zh-TW')}\n\n` +
+        `💡 用戶可以使用 /appeal 申訴`
+    );
+  } catch (error) {
+    console.error('[handleAdminFreeze] Error:', error);
+    await telegram.sendMessage(chatId, '❌ 發生錯誤，請稍後再試。');
+  }
+}
+
+/**
  * Handle /admin_bans command - View ban history
  */
 export async function handleAdminBans(message: TelegramMessage, env: Env): Promise<void> {
