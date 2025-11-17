@@ -146,8 +146,12 @@ export const translations: Translations = {
     inviteeSuccess:
       '🎊 Congratulations on activation!\n\n' +
       'You and your inviter both received rewards:\n' +
-      '• Daily bottle quota +1\n\n' +
-      '💡 Invite more friends to get more quota!\n' +
+      '• Your inviter\'s daily quota +1 ✅\n' +
+      '• You can now use XunNi! ✅\n\n' +
+      '💡 Want more quota?\n' +
+      'Invite your friends to join XunNi!\n' +
+      'Each successful invite = +1 daily quota\n' +
+      '(Max 10 invites = 13 bottles/day)\n\n' +
       'View your invite code → /profile',
     
     limitWarning:
