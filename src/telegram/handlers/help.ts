@@ -28,6 +28,7 @@ export async function handleHelp(message: TelegramMessage, env: Env): Promise<vo
       `📖 **XunNi 指令列表**\n\n` +
       `🎮 **核心功能**\n` +
       `/start - 開始使用 / 繼續註冊\n` +
+      `/menu - 主選單\n` +
       `/throw - 丟出漂流瓶\n` +
       `/catch - 撿起漂流瓶\n` +
       `/profile - 查看個人資料\n` +
