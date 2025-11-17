@@ -112,7 +112,6 @@ async function routeUpdate(update: TelegramUpdate, env: Env): Promise<void> {
       const i18n = createI18n(user.language_pref || 'zh-TW');
       
       let message: string;
-      const reason = user.ban_reason || '違規行為';
       
       if (user.banned_until) {
         // Temporary ban
@@ -124,28 +123,35 @@ async function routeUpdate(update: TelegramUpdate, env: Env): Promise<void> {
         
         let timeLeft: string;
         if (daysLeft > 0) {
-          timeLeft = `${daysLeft} 天 ${hoursLeft % 24} 小時`;
+          const hours = hoursLeft % 24;
+          timeLeft = user.language_pref === 'en' 
+            ? `${daysLeft} day${daysLeft > 1 ? 's' : ''} ${hours} hour${hours !== 1 ? 's' : ''}`
+            : `${daysLeft} 天 ${hours} 小時`;
         } else {
-          timeLeft = `${hoursLeft} 小時`;
+          timeLeft = user.language_pref === 'en'
+            ? `${hoursLeft} hour${hoursLeft !== 1 ? 's' : ''}`
+            : `${hoursLeft} 小時`;
         }
         
-        const unbanTime = bannedUntil.toLocaleString('zh-TW', {
-          year: 'numeric',
-          month: '2-digit',
-          day: '2-digit',
-          hour: '2-digit',
-          minute: '2-digit',
-          timeZone: 'Asia/Taipei',
-        });
+        const unbanTime = bannedUntil.toLocaleString(
+          user.language_pref === 'en' ? 'en-US' : 'zh-TW',
+          {
+            year: 'numeric',
+            month: '2-digit',
+            day: '2-digit',
+            hour: '2-digit',
+            minute: '2-digit',
+            timeZone: user.language_pref === 'en' ? 'UTC' : 'Asia/Taipei',
+          }
+        );
         
         message = i18n.t('ban.bannedTemporary', {
-          reason,
           timeLeft,
           unbanTime,
         });
       } else {
         // Permanent ban
-        message = i18n.t('ban.bannedPermanent', { reason });
+        message = i18n.t('ban.bannedPermanent', {});
       }
       
       await telegram.sendMessage(chatId, message);

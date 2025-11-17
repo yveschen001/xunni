@@ -200,36 +200,37 @@ export const translations: Translations = {
   },
 
   ban: {
-    // Ban notification (temporary)
+    // Ban notification (temporary) - Friendly version
     temporaryBan:
-      '🚫 Your account has been banned\n\n' +
-      '📋 Reason: {reason}\n' +
-      '⏰ Duration: {duration}\n' +
-      '🔓 Unban time: {unbanTime}\n\n' +
-      'You cannot use any features during the ban period.\n\n' +
-      '💡 If you have questions, use /appeal to appeal',
+      '⚠️ Account Security Notice\n\n' +
+      'Our system has detected unusual activity on your account. To protect our community, your account is temporarily unavailable.\n\n' +
+      '⏰ Expected recovery time: {unbanTime}\n' +
+      '🕐 Suspension duration: approximately {duration}\n\n' +
+      '📖 Please review our community guidelines: /rules\n\n' +
+      '💡 If you believe this is a mistake, you can appeal using /appeal and we will review your case.',
     
-    // Ban notification (permanent)
+    // Ban notification (permanent) - Friendly version
     permanentBan:
-      '🚫 Your account has been permanently banned\n\n' +
-      '📋 Reason: {reason}\n' +
-      '⚠️ This is a permanent ban and cannot be automatically lifted\n\n' +
-      '💡 If you have questions, use /appeal to appeal',
+      '⚠️ Account Security Notice\n\n' +
+      'Our system has detected serious violations on your account. After AI security review, your account has been suspended.\n\n' +
+      '📖 Please review our community guidelines: /rules\n\n' +
+      '💡 If you believe this is a mistake, you can appeal using /appeal and a human moderator will review your case.',
     
-    // Ban check (temporary)
+    // Ban check (temporary) - Friendly version
     bannedTemporary:
-      '🚫 Your account is currently banned\n\n' +
-      '📋 Reason: {reason}\n' +
-      '⏰ Time left: {timeLeft}\n' +
-      '🔓 Unban time: {unbanTime}\n\n' +
-      '💡 If you have questions, use /appeal to appeal',
+      '⚠️ Account Temporarily Unavailable\n\n' +
+      'Your account is currently suspended, possibly due to unusual activity detected by our system.\n\n' +
+      '⏰ Expected recovery time: {unbanTime}\n' +
+      '🕐 Time remaining: approximately {timeLeft}\n\n' +
+      '📖 Please review our community guidelines: /rules\n' +
+      '💡 If you have questions, you can appeal using /appeal',
     
-    // Ban check (permanent)
+    // Ban check (permanent) - Friendly version
     bannedPermanent:
-      '🚫 Your account has been permanently banned\n\n' +
-      '📋 Reason: {reason}\n' +
-      '⚠️ This is a permanent ban\n\n' +
-      '💡 If you have questions, use /appeal to appeal',
+      '⚠️ Account Suspended\n\n' +
+      'Your account has been suspended for violating community guidelines.\n\n' +
+      '📖 Please review our community guidelines: /rules\n' +
+      '💡 If you have questions, you can appeal using /appeal',
   },
 };
 

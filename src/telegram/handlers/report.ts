@@ -286,7 +286,6 @@ async function autoBanUser(
   }
 
   const message = i18n.t('ban.temporaryBan', {
-    reason,
     duration,
     unbanTime,
   });
