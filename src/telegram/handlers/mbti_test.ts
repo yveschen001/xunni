@@ -16,9 +16,8 @@ import {
   completeMBTITest,
 } from '~/services/mbti_test_service';
 import {
-  getQuestion,
-  getTotalQuestions,
-  getProgressPercentage,
+  getMBTIQuestions,
+  getTotalQuestionsByVersion,
 } from '~/domain/mbti_test';
 
 // ============================================================================
@@ -35,13 +34,19 @@ export async function showMBTIQuestion(
   telegramId: string,
   questionIndex: number
 ): Promise<void> {
-  const question = getQuestion(questionIndex, 'zh-TW');
+  // Get test progress to determine version
+  const testProgress = await getMBTITestProgress(db, telegramId);
+  const version = testProgress?.test_version || 'quick';
+  
+  // Get questions for the version
+  const questions = getMBTIQuestions(version);
+  const question = questions[questionIndex];
   if (!question) {
     throw new Error(`Invalid question index: ${questionIndex}`);
   }
 
-  const progress = getProgressPercentage(questionIndex);
-  const totalQuestions = getTotalQuestions();
+  const totalQuestions = getTotalQuestionsByVersion(version);
+  const progress = Math.round((questionIndex / totalQuestions) * 100);
 
   // Build answer buttons
   const answerButtons = question.options.map((option, index) => [
@@ -54,14 +59,20 @@ export async function showMBTIQuestion(
   // Add progress indicator
   const progressBar = '▓'.repeat(Math.floor(progress / 10)) + '░'.repeat(10 - Math.floor(progress / 10));
 
+  // Determine test title and disclaimer based on version
+  const testTitle = version === 'full' ? 'MBTI 完整測驗' : 'MBTI 快速測驗';
+  const testInfo = version === 'full' ? '36 題' : '12 題';
+  
   // Add disclaimer on first question
   const disclaimer = questionIndex === 0 
-    ? `\n\n💡 這是快速測驗（12 題），結果僅供參考。\n完成註冊後，可使用 /mbti 重新測驗。\n\n` 
+    ? (version === 'full' 
+        ? `\n\n💡 這是完整測驗（${testInfo}），結果更準確。\n完成註冊後，可使用 /mbti 重新測驗。\n\n`
+        : `\n\n💡 這是快速測驗（${testInfo}），結果僅供參考。\n完成註冊後，可使用 /mbti 重新測驗。\n\n`)
     : `\n\n`;
 
   await telegram.sendMessageWithButtons(
     chatId,
-    `📝 MBTI 快速測驗 (${questionIndex + 1}/${totalQuestions})\n\n` +
+    `📝 ${testTitle} (${questionIndex + 1}/${totalQuestions})\n\n` +
       `${progressBar} ${progress}%${disclaimer}` +
       `${question.question_zh_TW}`,
     answerButtons
