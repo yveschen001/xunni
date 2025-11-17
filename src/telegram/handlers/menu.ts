@@ -45,8 +45,8 @@ export async function handleMenu(message: TelegramMessage, env: Env): Promise<vo
       `👋 嗨，${user.nickname}！\n\n` +
       `📊 你的狀態：\n` +
       `• 等級：${isVip ? 'VIP 會員 💎' : '免費會員'}\n` +
-      `• MBTI：${user.mbti || '未設定'}\n` +
-      `• 星座：${user.zodiac || '未設定'}\n\n` +
+      `• MBTI：${user.mbti_result || '未設定'}\n` +
+      `• 星座：${user.zodiac_sign || '未設定'}\n\n` +
       `💡 選擇你想要的功能：`;
 
     // Build menu buttons
