@@ -314,6 +314,27 @@ async function routeUpdate(update: TelegramUpdate, env: Env): Promise<void> {
       return;
     }
 
+    if (text.startsWith('/broadcast ')) {
+      // Check super admin permission
+      const { isSuperAdmin } = await import('./telegram/handlers/admin_ban');
+      if (!isSuperAdmin(telegramId)) {
+        await telegram.sendMessage(chatId, '❌ 只有超級管理員可以使用此命令。');
+        return;
+      }
+      
+      // TODO: Implement full broadcast system with queue
+      await telegram.sendMessage(
+        chatId,
+        '⚠️ 廣播功能開發中\n\n' +
+          '此功能需要實現：\n' +
+          '• 廣播隊列系統\n' +
+          '• 批量發送限速\n' +
+          '• 用戶篩選條件\n\n' +
+          '請參考：doc/SPEC.md 第 3.12 節'
+      );
+      return;
+    }
+
     if (text === '/admin_list') {
       const { handleAdminList } = await import('./telegram/handlers/admin_ban');
       await handleAdminList(message, env);
@@ -437,18 +458,28 @@ async function routeUpdate(update: TelegramUpdate, env: Env): Promise<void> {
 
     // User is in onboarding but sent unrecognized text
     // Provide friendly guidance instead of "unknown command"
-    const stepMessages: Record<string, string> = {
-      language_selection: '🌍 請點擊上方按鈕選擇你的語言',
-      nickname: '✏️ 請輸入你的暱稱',
-      gender: '👤 請點擊上方按鈕選擇你的性別',
-      birthday: '📅 請輸入你的生日（格式：YYYY-MM-DD，例如：1995-06-15）',
-      mbti: '🧠 請點擊上方按鈕選擇 MBTI 設定方式',
-      anti_fraud: '🛡️ 請點擊上方按鈕確認反詐騙安全事項',
-      terms: '📜 請點擊上方按鈕同意服務條款',
-    };
+    if (user.onboarding_step !== 'completed') {
+      const stepMessages: Record<string, string> = {
+        language_selection: '🌍 請點擊上方按鈕選擇你的語言',
+        nickname: '✏️ 請輸入你的暱稱',
+        gender: '👤 請點擊上方按鈕選擇你的性別',
+        birthday: '📅 請輸入你的生日（格式：YYYY-MM-DD，例如：1995-06-15）',
+        mbti: '🧠 請點擊上方按鈕選擇 MBTI 設定方式',
+        anti_fraud: '🛡️ 請點擊上方按鈕確認反詐騙安全事項',
+        terms: '📜 請點擊上方按鈕同意服務條款',
+      };
 
-    const stepMessage = stepMessages[user.onboarding_step] || '請按照提示完成註冊';
-    await telegram.sendMessage(chatId, `💡 ${stepMessage}`);
+      const stepMessage = stepMessages[user.onboarding_step] || '請按照提示完成註冊';
+      await telegram.sendMessage(chatId, `💡 ${stepMessage}`);
+      return;
+    }
+
+    // Unknown command for completed users
+    await telegram.sendMessage(
+      chatId,
+      '❓ 未知命令\n\n' +
+        '請使用 /help 查看可用命令列表。'
+    );
     return;
   }
 
