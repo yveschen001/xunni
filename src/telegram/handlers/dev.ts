@@ -140,17 +140,34 @@ export async function handleDevInfo(message: TelegramMessage, env: Env): Promise
     const messagesCount = await db.d1.prepare('SELECT COUNT(*) as count FROM conversation_messages WHERE sender_telegram_id = ?')
       .bind(telegramId).first<{ count: number }>();
 
+    // Get invite info
+    const inviteStats = await db.d1.prepare(
+      `SELECT 
+        COUNT(*) as total,
+        SUM(CASE WHEN status = 'activated' THEN 1 ELSE 0 END) as activated,
+        SUM(CASE WHEN status = 'pending' THEN 1 ELSE 0 END) as pending
+       FROM invites
+       WHERE inviter_telegram_id = ?`
+    ).bind(telegramId).first<{ total: number; activated: number; pending: number }>();
+
     const info = 
       '🔧 開發模式：用戶信息\n\n' +
       `Telegram ID: ${user.telegram_id}\n` +
       `昵稱: ${user.nickname || '未設置'}\n` +
       `註冊步驟: ${user.onboarding_step}\n` +
       `VIP: ${user.is_vip ? '是' : '否'}\n` +
-      `語言: ${user.language_pref}\n\n` +
+      `語言: ${user.language_pref}\n` +
+      `邀請碼: ${user.invite_code || '未生成'}\n` +
+      `被誰邀請: ${user.invited_by || '無'}\n\n` +
       `統計:\n` +
       `• 漂流瓶: ${bottlesCount?.count || 0}\n` +
       `• 對話: ${conversationsCount?.count || 0}\n` +
       `• 訊息: ${messagesCount?.count || 0}\n\n` +
+      `邀請統計:\n` +
+      `• successful_invites: ${user.successful_invites || 0}\n` +
+      `• 邀請記錄總數: ${inviteStats?.total || 0}\n` +
+      `• 已激活: ${inviteStats?.activated || 0}\n` +
+      `• 待激活: ${inviteStats?.pending || 0}\n\n` +
       `⚠️ 此功能僅在 Staging 環境可用。`;
 
     await telegram.sendMessage(chatId, info);
