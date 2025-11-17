@@ -645,6 +645,229 @@ async function testMBTIVersionSupport() {
   });
 }
 
+async function testEditProfileFeatures() {
+  console.log('\n✏️ Testing Edit Profile Features...\n');
+
+  const userId = Math.floor(Math.random() * 1000000) + 1500000000;
+
+  // Setup user
+  await testEndpoint('Edit Profile', 'Setup user', async () => {
+    await sendWebhook('/dev_skip', userId);
+  });
+
+  // Test 1: Edit profile command
+  await testEndpoint('Edit Profile', '/edit_profile command', async () => {
+    const result = await sendWebhook('/edit_profile', userId);
+    if (result.status !== 200) {
+      throw new Error(`Expected 200, got ${result.status}`);
+    }
+  });
+
+  // Test 2: Nickname validation (domain logic)
+  await testEndpoint('Edit Profile', 'Nickname validation', async () => {
+    const { validateNickname } = await import('../src/domain/user');
+    
+    // Valid nickname
+    const validResult = validateNickname('測試暱稱');
+    if (!validResult.valid) {
+      throw new Error('Valid nickname rejected');
+    }
+
+    // URL rejection
+    const urlResult = validateNickname('測試 https://test.com');
+    if (urlResult.valid) {
+      throw new Error('URL in nickname not rejected');
+    }
+
+    // Length check
+    const shortResult = validateNickname('短');
+    if (shortResult.valid) {
+      throw new Error('Short nickname not rejected');
+    }
+  });
+
+  // Test 3: Bio validation
+  await testEndpoint('Edit Profile', 'Bio validation', async () => {
+    const { validateBio } = await import('../src/domain/user');
+    
+    // Valid bio
+    const validResult = validateBio('這是我的個人簡介');
+    if (!validResult.valid) {
+      throw new Error('Valid bio rejected');
+    }
+
+    // Empty bio allowed
+    const emptyResult = validateBio('');
+    if (!emptyResult.valid) {
+      throw new Error('Empty bio not allowed');
+    }
+
+    // Length check
+    const longBio = 'a'.repeat(201);
+    const longResult = validateBio(longBio);
+    if (longResult.valid) {
+      throw new Error('Long bio not rejected');
+    }
+  });
+
+  // Test 4: Blood type editing
+  await testEndpoint('Edit Profile', 'Blood type editing', async () => {
+    const { getBloodTypeOptions, getBloodTypeDisplay } = await import('../src/domain/blood_type');
+    
+    // Check options
+    const options = getBloodTypeOptions();
+    if (options.length !== 5) {
+      throw new Error(`Expected 5 blood type options, got ${options.length}`);
+    }
+
+    // Check display
+    const displayA = getBloodTypeDisplay('A');
+    if (displayA !== '🩸 A 型') {
+      throw new Error(`Blood type display incorrect: ${displayA}`);
+    }
+  });
+
+  // Test 5: MBTI retake available
+  await testEndpoint('Edit Profile', 'MBTI retake', async () => {
+    const result = await sendWebhook('/mbti', userId);
+    if (result.status !== 200) {
+      throw new Error(`Expected 200, got ${result.status}`);
+    }
+  });
+}
+
+async function testBloodTypeFeatures() {
+  console.log('\n🩸 Testing Blood Type Features...\n');
+
+  const userId = Math.floor(Math.random() * 1000000) + 1800000000;
+
+  // Setup user
+  await testEndpoint('Blood Type', 'Setup user', async () => {
+    await sendWebhook('/dev_skip', userId);
+  });
+
+  // Test 1: Blood type in profile
+  await testEndpoint('Blood Type', 'Profile shows blood type', async () => {
+    const result = await sendWebhook('/profile', userId);
+    if (result.status !== 200) {
+      throw new Error(`Expected 200, got ${result.status}`);
+    }
+  });
+
+  // Test 2: Blood type options
+  await testEndpoint('Blood Type', 'Blood type options', async () => {
+    const { getBloodTypeOptions } = await import('../src/domain/blood_type');
+    const options = getBloodTypeOptions();
+    
+    const expectedOptions = ['A', 'B', 'AB', 'O', null];
+    if (options.length !== expectedOptions.length) {
+      throw new Error(`Expected ${expectedOptions.length} options, got ${options.length}`);
+    }
+  });
+
+  // Test 3: Blood type display
+  await testEndpoint('Blood Type', 'Blood type display', async () => {
+    const { getBloodTypeDisplay } = await import('../src/domain/blood_type');
+    
+    const tests = [
+      { input: 'A', expected: '🩸 A 型' },
+      { input: 'B', expected: '🩸 B 型' },
+      { input: 'AB', expected: '🩸 AB 型' },
+      { input: 'O', expected: '🩸 O 型' },
+      { input: null, expected: '未設定' },
+    ];
+
+    for (const test of tests) {
+      const result = getBloodTypeDisplay(test.input as any);
+      if (result !== test.expected) {
+        throw new Error(`Expected "${test.expected}", got "${result}"`);
+      }
+    }
+  });
+}
+
+async function testConversationHistoryPosts() {
+  console.log('\n📜 Testing Conversation History Posts...\n');
+
+  // Test 1: Domain logic - build history content
+  await testEndpoint('History Posts', 'Build history content', async () => {
+    const { buildHistoryPostContent } = await import('../src/domain/conversation_history');
+    
+    const messages = [
+      { sender: 'user', content: '你好', timestamp: '05:30' },
+      { sender: 'partner', content: '你好呀', timestamp: '05:31' },
+    ];
+
+    const partnerInfo = {
+      maskedNickname: '張**',
+      mbti: 'ENTP',
+      bloodType: 'A',
+      zodiac: 'Virgo',
+    };
+
+    const content = buildHistoryPostContent(
+      'conversation123',
+      '#1117ABCD',
+      messages,
+      1,
+      partnerInfo
+    );
+
+    if (!content.includes('張**')) {
+      throw new Error('Partner nickname not in content');
+    }
+    if (!content.includes('ENTP')) {
+      throw new Error('MBTI not in content');
+    }
+    if (!content.includes('你好')) {
+      throw new Error('Messages not in content');
+    }
+  });
+
+  // Test 2: Domain logic - extract messages
+  await testEndpoint('History Posts', 'Extract messages', async () => {
+    const { extractMessages } = await import('../src/domain/conversation_history');
+    
+    const content = `💬 與 #1117ABCD 的對話記錄（第 1 頁）
+
+━━━━━━━━━━━━━━━━
+
+[05:30] 你：你好
+[05:31] 對方：你好呀
+
+━━━━━━━━━━━━━━━━`;
+
+    const messages = extractMessages(content);
+    
+    if (messages.length !== 2) {
+      throw new Error(`Expected 2 messages, got ${messages.length}`);
+    }
+    if (messages[0].content !== '你好') {
+      throw new Error(`First message incorrect: ${messages[0].content}`);
+    }
+  });
+
+  // Test 3: Check required files exist
+  await testEndpoint('History Posts', 'Required files exist', async () => {
+    const fs = await import('fs');
+    const path = await import('path');
+    
+    const requiredFiles = [
+      'src/db/migrations/0015_add_conversation_history_posts.sql',
+      'src/db/queries/conversation_history_posts.ts',
+      'src/domain/conversation_history.ts',
+      'src/services/conversation_history.ts',
+    ];
+    
+    for (const file of requiredFiles) {
+      const filePath = path.join(process.cwd(), file);
+      if (!fs.existsSync(filePath)) {
+        throw new Error(`Required file missing: ${file}`);
+      }
+    }
+  });
+}
+
 // ============================================================================
 // Main Test Runner
 // ============================================================================
@@ -667,6 +890,9 @@ async function runAllTests() {
     await testConversationIdentifiers();
     await testInviteSystem();
     await testMBTIVersionSupport();
+    await testEditProfileFeatures();
+    await testBloodTypeFeatures();
+    await testConversationHistoryPosts();
     await testErrorHandling();
     await testDatabaseConnectivity();
     await testPerformance();
