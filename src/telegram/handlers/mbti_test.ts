@@ -128,7 +128,7 @@ export async function handleMBTIAnswer(
     await telegram.deleteMessage(chatId, callbackQuery.message!.message_id);
 
     // Check if test is complete
-    if (newProgress.current_question >= getTotalQuestions()) {
+    if (newProgress.current_question >= newProgress.total_questions) {
       // Test complete - calculate result
       await handleTestCompletion(chatId, telegram, db, telegramId);
     } else {
