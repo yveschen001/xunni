@@ -444,6 +444,43 @@ export class TelegramService {
       return false;
     }
   }
+
+  /**
+   * Get chat member information
+   */
+  async getChatMember(
+    chatId: string | number,
+    userId: string | number
+  ): Promise<{ status: string; user?: { id: number; is_bot: boolean; first_name: string } }> {
+    try {
+      const response = await fetch(`${this.baseURL}/getChatMember`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          chat_id: chatId,
+          user_id: userId,
+        }),
+      });
+
+      if (!response.ok) {
+        const error = await response.text();
+        console.error('[Telegram] getChatMember failed:', error);
+        throw new Error(`Failed to get chat member: ${error}`);
+      }
+
+      const data = await response.json();
+      if (!data.ok || !data.result) {
+        throw new Error('Invalid response from Telegram API');
+      }
+
+      return data.result;
+    } catch (error) {
+      console.error('[Telegram] getChatMember error:', error);
+      throw error;
+    }
+  }
 }
 
 // ============================================================================

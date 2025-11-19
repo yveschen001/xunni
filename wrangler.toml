@@ -43,7 +43,7 @@ ENABLE_ANALYTICS = "true"
 AD_PROVIDER_STRATEGY = "priority"
 AD_REWARD_SECRET = "NOGD2InZ/VuIhZPSiajhwdmIc/PKHnijE/VSUKxzspM="
 # Official Channel ID for task verification
-OFFICIAL_CHANNEL_ID = ""  # Set via: wrangler secret put OFFICIAL_CHANNEL_ID --env staging
+OFFICIAL_CHANNEL_ID = "-1003260293651"
 
 # Staging D1 Database
 [[env.staging.d1_databases]]
@@ -64,7 +64,20 @@ migrations_dir = "src/db/migrations"
 # Production environment
 [env.production]
 name = "xunni-bot"
-vars = { ENVIRONMENT = "production", LOG_LEVEL = "warn" }
+
+[env.production.vars]
+ENVIRONMENT = "production"
+LOG_LEVEL = "warn"
+# Super Admin Configuration
+SUPER_ADMIN_USER_ID = "396943893"
+ADMIN_USER_IDS = ""
+# Ad System Configuration
+PUBLIC_URL = "https://xunni-bot.yves221.workers.dev"
+ENABLE_ANALYTICS = "true"
+AD_PROVIDER_STRATEGY = "priority"
+AD_REWARD_SECRET = "NOGD2InZ/VuIhZPSiajhwdmIc/PKHnijE/VSUKxzspM="
+# Official Channel ID for task verification
+OFFICIAL_CHANNEL_ID = "-1003260293651"
 
 # Production D1 Database
 # Run: wrangler d1 create xunni-db-production

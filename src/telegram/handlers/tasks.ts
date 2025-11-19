@@ -226,7 +226,7 @@ export async function checkAndCompleteTask(
     await completeUserTask(db, user.telegram_id, taskId);
     
     // Get task details
-    const task = await getTaskById(db.d1, taskId);
+    const task = await getTaskById(db, taskId);
     if (!task) {
       console.error(`[checkAndCompleteTask] Task not found: ${taskId}`);
       return false;
@@ -257,7 +257,7 @@ export async function getNextIncompleteTask(
 ): Promise<Task | null> {
   try {
     // Get all tasks ordered by sort_order
-    const allTasks = await getAllTasks(db.d1);
+    const allTasks = await getAllTasks(db);
     
     // Get user's completed tasks
     const userTasks = await getAllUserTasks(db, user.telegram_id);
@@ -328,58 +328,88 @@ export async function handleNextTaskCallback(
 
     switch (taskId) {
       case 'task_interests':
+        // Directly open interests editor
+        {
+          const { handleEditInterests } = await import('./edit_profile');
+          const fakeCallback = {
+            id: callbackQuery.id,
+            from: callbackQuery.from,
+            message: callbackQuery.message,
+            data: 'edit_interests',
+          };
+          await handleEditInterests(fakeCallback, env);
+        }
+        break;
+
       case 'task_bio':
+        // Directly open bio editor
+        {
+          const { handleEditBio } = await import('./edit_profile');
+          const fakeCallback = {
+            id: callbackQuery.id,
+            from: callbackQuery.from,
+            message: callbackQuery.message,
+            data: 'edit_bio',
+          };
+          await handleEditBio(fakeCallback, env);
+        }
+        break;
+
       case 'task_city':
-        // Open edit profile
-        fakeMessage.text = '/edit_profile';
-        const { handleEditProfile } = await import('./edit_profile');
-        await handleEditProfile(fakeMessage, env);
+        // Directly open region editor
+        {
+          const { handleEditRegion } = await import('./edit_profile');
+          const fakeCallback = {
+            id: callbackQuery.id,
+            from: callbackQuery.from,
+            message: callbackQuery.message,
+            data: 'edit_region',
+          };
+          await handleEditRegion(fakeCallback, env);
+        }
         break;
 
       case 'task_join_channel':
-        // Show channel link
+        // Directly open channel link with claim button
         await telegram.sendMessageWithButtons(
           chatId,
           '📢 **加入官方頻道**\n\n' +
             '點擊下方按鈕加入 XunNi 官方頻道，獲取最新消息和活動！\n\n' +
-            '加入後系統會自動檢測並發放獎勵 🎁',
+            '加入後點擊「我已加入」按鈕領取獎勵 🎁',
           [
             [{ text: '📢 加入官方頻道', url: 'https://t.me/xunnichannel' }],
+            [{ text: '✅ 我已加入，領取獎勵', callback_data: 'verify_channel_join' }],
             [{ text: '🏠 返回主選單', callback_data: 'return_to_menu' }],
           ]
         );
         break;
 
       case 'task_first_bottle':
-        // Start throw flow
+        // Directly start throw flow
         fakeMessage.text = '/throw';
         const { handleThrow } = await import('./throw');
         await handleThrow(fakeMessage, env);
         break;
 
       case 'task_first_catch':
-        // Start catch flow
+        // Directly start catch flow
         fakeMessage.text = '/catch';
         const { handleCatch } = await import('./catch');
         await handleCatch(fakeMessage, env);
         break;
 
       case 'task_first_conversation':
-        // Show tip
-        await telegram.sendMessageWithButtons(
-          chatId,
-          '💬 **開始第一次對話**\n\n' +
-            '要開始對話，請先：\n' +
-            '1. 撿起一個漂流瓶 (/catch)\n' +
-            '2. 長按對方的訊息\n' +
-            '3. 選擇「回覆」\n' +
-            '4. 發送你的訊息\n\n' +
-            '💡 對話是完全匿名的，放心聊天吧！',
-          [
-            [{ text: '🎣 撿起漂流瓶', callback_data: 'menu_catch' }],
-            [{ text: '🏠 返回主選單', callback_data: 'return_to_menu' }],
-          ]
-        );
+        // Directly start catch flow (to enable conversation)
+        fakeMessage.text = '/catch';
+        const { handleCatch: handleCatchForConversation } = await import('./catch');
+        await handleCatchForConversation(fakeMessage, env);
+        break;
+
+      case 'task_invite_progress':
+        // Directly show invite code
+        fakeMessage.text = '/invite';
+        const { handleInvite } = await import('./invite');
+        await handleInvite(fakeMessage, env);
         break;
 
       default:
@@ -400,5 +430,20 @@ function calculateDailyQuota(user: User): number {
   const maxInvites = user.is_vip ? 100 : 10;
   const actualInvites = Math.min(user.successful_invites || 0, maxInvites);
   return baseQuota + actualInvites;
+}
+
+/**
+ * Calculate task bonus for today
+ * Export this function for use in other handlers
+ */
+export async function calculateTaskBonus(
+  db: ReturnType<typeof createDatabaseClient>,
+  userId: string
+): Promise<number> {
+  const { getTasksCompletedToday } = await import('~/db/queries/user_tasks');
+  const { calculateTodayTaskRewards } = await import('~/domain/task');
+  
+  const completedTasks = await getTasksCompletedToday(db, userId);
+  return calculateTodayTaskRewards(completedTasks);
 }
 

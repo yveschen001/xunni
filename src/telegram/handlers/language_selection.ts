@@ -125,9 +125,7 @@ export async function handleLanguageSelection(
       );
     } else {
       // Existing user - just confirm language change
-      const { createI18n } = await import('~/i18n');
-      const i18n = createI18n(languageCode);
-      await telegram.sendMessage(chatId, i18n.t('settings.languageUpdated'));
+      await telegram.sendMessage(chatId, `✅ 語言已更新為：${getLanguageDisplay(languageCode)}`);
     }
   } catch (error) {
     console.error('[handleLanguageSelection] Error:', error);

@@ -85,18 +85,31 @@ export async function handleThrow(message: TelegramMessage, env: Env): Promise<v
 
     // Check daily quota
     const throwsToday = await getDailyThrowCount(db, telegramId);
-    const inviteBonus = 0; // TODO: Calculate from invites table
+    const inviteBonus = user.successful_invites || 0;
     const isVip = !!(
       user.is_vip &&
       user.vip_expire_at &&
       new Date(user.vip_expire_at) > new Date()
     );
+    
+    // Calculate task bonus
+    const { calculateTaskBonus } = await import('./tasks');
+    const taskBonus = await calculateTaskBonus(db, telegramId);
 
-    if (!canThrowBottle(throwsToday, isVip, inviteBonus)) {
-      const { quota } = getBottleQuota(isVip, inviteBonus);
+    if (!canThrowBottle(throwsToday, isVip, inviteBonus, taskBonus)) {
+      // Calculate permanent quota (base + invite)
+      const baseQuota = isVip ? 30 : 3;
+      const maxQuota = isVip ? 100 : 10;
+      const permanentQuota = Math.min(baseQuota + inviteBonus, maxQuota);
+      
+      // Format quota display
+      const quotaDisplay = taskBonus > 0 
+        ? `${throwsToday}/${permanentQuota}+${taskBonus}`
+        : `${throwsToday}/${permanentQuota}`;
+      
       await telegram.sendMessage(
         chatId,
-        `❌ 今日漂流瓶配額已用完（${throwsToday}/${quota}）\n\n` +
+        `❌ 今日漂流瓶配額已用完（${quotaDisplay}）\n\n` +
           `💡 升級 VIP 可獲得更多配額：/vip`
       );
       return;
@@ -285,14 +298,25 @@ export async function processBottleContent(user: User, content: string, env: Env
       user.vip_expire_at &&
       new Date(user.vip_expire_at) > new Date()
     );
-    const { quota } = getBottleQuota(isVip, inviteBonus);
+    const { calculateTaskBonus } = await import('./tasks');
+    const taskBonus = await calculateTaskBonus(db, user.telegram_id);
+    
+    // Calculate permanent quota (base + invite)
+    const baseQuota = isVip ? 30 : 3;
+    const maxQuota = isVip ? 100 : 10;
+    const permanentQuota = Math.min(baseQuota + inviteBonus, maxQuota);
+    
+    // Format quota display
+    const quotaDisplay = taskBonus > 0 
+      ? `${throwsToday}/${permanentQuota}+${taskBonus}`
+      : `${throwsToday}/${permanentQuota}`;
 
     // Send success message
     await telegram.sendMessage(
       chatId,
       `🎉 漂流瓶已丟出！\n\n` +
         `瓶子 ID：#${bottleId}\n` +
-        `今日已丟：${throwsToday}/${quota}\n\n` +
+        `今日已丟：${quotaDisplay}\n\n` +
         `💡 你的瓶子將在 24 小時內等待有緣人撿起～\n\n` +
         `想要撿別人的瓶子嗎？使用 /catch`
     );

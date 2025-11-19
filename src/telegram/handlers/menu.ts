@@ -47,6 +47,7 @@ export async function handleMenu(message: TelegramMessage, env: Env): Promise<vo
     // Get next incomplete task
     const { getNextIncompleteTask } = await import('./tasks');
     const nextTask = await getNextIncompleteTask(db, user);
+    console.error('[handleMenu] Next task:', nextTask ? nextTask.id : 'null');
 
     // Build menu message
     let menuMessage =

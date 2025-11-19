@@ -85,6 +85,75 @@ async function isUserInChannel(
 }
 
 /**
+ * Handle verify channel join (immediate check when user clicks "I've joined")
+ */
+export async function handleVerifyChannelJoin(
+  callbackQuery: { id: string; from: { id: number }; message?: { chat: { id: number }; message_id: number } },
+  env: Env
+): Promise<void> {
+  const telegram = createTelegramService(env);
+  const db = createDatabaseClient(env.DB);
+  const userId = callbackQuery.from.id.toString();
+  const chatId = callbackQuery.message?.chat.id;
+  const messageId = callbackQuery.message?.message_id;
+  
+  const channelId = env.OFFICIAL_CHANNEL_ID;
+  if (!channelId) {
+    await telegram.answerCallbackQuery(
+      callbackQuery.id,
+      '❌ 頻道配置錯誤'
+    );
+    return;
+  }
+  
+  try {
+    // Check if user is in channel
+    const isInChannel = await isUserInChannel(telegram, channelId, userId);
+    
+    if (!isInChannel) {
+      await telegram.answerCallbackQuery(
+        callbackQuery.id,
+        '❌ 未檢測到你加入頻道，請先加入後再試'
+      );
+      return;
+    }
+    
+    // User is in channel, complete task immediately
+    const { completeTask } = await import('~/db/queries/user_tasks');
+    await completeTask(db, userId, 'task_join_channel');
+    
+    await telegram.answerCallbackQuery(
+      callbackQuery.id,
+      '✅ 獎勵已發放！+1 瓶子'
+    );
+    
+    // Update message
+    if (chatId && messageId) {
+      await telegram.editMessageText(
+        chatId,
+        messageId,
+        '🎉 恭喜完成任務：加入官方頻道！\n\n' +
+        '獎勵：+1 瓶子（已追加到今天的額度）\n\n' +
+        '💡 使用 /tasks 查看更多任務'
+      );
+    } else {
+      await telegram.sendMessage(
+        parseInt(userId),
+        '🎉 恭喜完成任務：加入官方頻道！\n\n' +
+        '獎勵：+1 瓶子（已追加到今天的額度）\n\n' +
+        '💡 使用 /tasks 查看更多任務'
+      );
+    }
+  } catch (error) {
+    console.error('[handleVerifyChannelJoin] Error:', error);
+    await telegram.answerCallbackQuery(
+      callbackQuery.id,
+      '❌ 驗證失敗，請稍後再試'
+    );
+  }
+}
+
+/**
  * Handle claim task reward callback
  */
 export async function handleClaimTaskReward(

@@ -105,6 +105,21 @@ export default {
           return await handleDeleteFakeUsers(request, env);
         }
 
+        // Test channel membership check
+        if (url.pathname === '/api/test/check-channel' && request.method === 'POST') {
+          const { checkChannelMembership } = await import('./services/channel_membership_check');
+          await checkChannelMembership(env);
+          return new Response(
+            JSON.stringify({
+              success: true,
+              message: 'Channel membership check triggered',
+            }),
+            {
+              headers: { 'Content-Type': 'application/json' },
+            }
+          );
+        }
+
         return new Response(
           JSON.stringify({
             error: 'API endpoint not found',

@@ -70,12 +70,25 @@ export async function handleCatch(message: TelegramMessage, env: Env): Promise<v
       user.vip_expire_at &&
       new Date(user.vip_expire_at) > new Date()
     );
+    
+    // Calculate task bonus
+    const { calculateTaskBonus } = await import('./tasks');
+    const taskBonus = await calculateTaskBonus(db, telegramId);
 
-    if (!canCatchBottle(catchesToday, isVip, inviteBonus)) {
-      const { quota } = getBottleQuota(isVip, inviteBonus);
+    if (!canCatchBottle(catchesToday, isVip, inviteBonus, taskBonus)) {
+      // Calculate permanent quota (base + invite)
+      const baseQuota = isVip ? 30 : 3;
+      const maxQuota = isVip ? 100 : 10;
+      const permanentQuota = Math.min(baseQuota + inviteBonus, maxQuota);
+      
+      // Format quota display
+      const quotaDisplay = taskBonus > 0 
+        ? `${catchesToday}/${permanentQuota}+${taskBonus}`
+        : `${catchesToday}/${permanentQuota}`;
+      
       await telegram.sendMessage(
         chatId,
-        `❌ 今日漂流瓶配額已用完（${catchesToday}/${quota}）\n\n` +
+        `❌ 今日漂流瓶配額已用完（${quotaDisplay}）\n\n` +
           `💡 升級 VIP 可獲得更多配額：/vip`
       );
       return;

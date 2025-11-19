@@ -775,6 +775,13 @@ export async function routeUpdate(update: TelegramUpdate, env: Env): Promise<voi
       return;
     }
 
+    // Verify channel join (immediate check)
+    if (data === 'verify_channel_join') {
+      const { handleVerifyChannelJoin } = await import('~/services/channel_membership_check');
+      await handleVerifyChannelJoin(callbackQuery, env);
+      return;
+    }
+
     // Task claim callbacks
     if (data.startsWith('claim_task_')) {
       const { handleClaimTaskReward } = await import('~/services/channel_membership_check');

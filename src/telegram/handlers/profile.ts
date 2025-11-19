@@ -57,9 +57,14 @@ export async function handleProfile(message: TelegramMessage, env: Env): Promise
 
     // Get invite statistics
     const inviteStats = await getInviteStats(db, telegramId);
-    const dailyQuota = calculateDailyQuota(user);
+    const permanentQuota = calculateDailyQuota(user);
     const inviteLimit = getInviteLimit(user);
     const successfulInvites = user.successful_invites || 0;
+    
+    // Calculate task bonus
+    const { calculateTaskBonus } = await import('./tasks');
+    const taskBonus = await calculateTaskBonus(db, telegramId);
+    const totalQuota = permanentQuota + taskBonus;
 
     const profileMessage =
       `👤 **個人資料**\n\n` +
@@ -77,8 +82,9 @@ export async function handleProfile(message: TelegramMessage, env: Env): Promise
       `✅ 已激活邀請：${successfulInvites} / ${inviteLimit} 人\n` +
       `⏳ 待激活邀請：${inviteStats.pending} 人\n` +
       `📈 轉化率：${inviteStats.conversionRate}%\n` +
-      `📦 當前每日配額：${dailyQuota} 個瓶子\n\n` +
-      `💡 每成功邀請 1 人，每日配額 +1\n` +
+      `📦 當前每日配額：${taskBonus > 0 ? `${permanentQuota}+${taskBonus}` : permanentQuota} 個瓶子\n\n` +
+      `💡 每成功邀請 1 人，每日配額永久 +1\n` +
+      `💡 完成任務可獲得當日額外配額（使用 /tasks 查看）\n` +
       `${!user.is_vip && successfulInvites >= inviteLimit ? '⚠️ 已達免費用戶邀請上限，升級 VIP 可解鎖 100 人上限！' : ''}\n\n` +
       `━━━━━━━━━━━━━━━━\n\n` +
       `💡 提示：\n` +

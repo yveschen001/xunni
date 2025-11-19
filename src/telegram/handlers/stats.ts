@@ -38,7 +38,7 @@ export async function handleStats(message: TelegramMessage, env: Env): Promise<v
       `🍾 **漂流瓶**\n` +
       `• 丟出：${stats.bottlesThrown} 個\n` +
       `• 撿到：${stats.bottlesCaught} 個\n` +
-      `• 今日配額：${stats.todayQuota.remaining}/${stats.todayQuota.total}\n\n` +
+      `• 今日配額：${stats.todayQuota.display}\n\n` +
       `💬 **對話**\n` +
       `• 總對話數：${stats.totalConversations}\n` +
       `• 活躍對話：${stats.activeConversations}\n` +
@@ -78,7 +78,7 @@ async function getUserStats(
 ): Promise<{
   bottlesThrown: number;
   bottlesCaught: number;
-  todayQuota: { total: number; remaining: number };
+  todayQuota: { display: string };
   totalConversations: number;
   activeConversations: number;
   totalMessages: number;
@@ -126,16 +126,32 @@ async function getUserStats(
   const user = await db.d1
     .prepare(
       `
-    SELECT is_vip FROM users WHERE telegram_id = ?
+    SELECT is_vip, vip_expire_at, successful_invites FROM users WHERE telegram_id = ?
   `
     )
     .bind(telegramId)
-    .first<{ is_vip: number }>();
+    .first<{ is_vip: number; vip_expire_at: string | null; successful_invites: number }>();
 
-  const isVip = !!user?.is_vip;
-  const quota = isVip ? 30 : 3;
+  const isVip = !!(user?.is_vip && user.vip_expire_at && new Date(user.vip_expire_at) > new Date());
+  const inviteBonus = user?.successful_invites || 0;
+  
+  // Calculate task bonus
+  const { calculateTaskBonus } = await import('./tasks');
+  const taskBonus = await calculateTaskBonus(db, telegramId);
+  
+  // Calculate permanent quota (base + invite)
+  const baseQuota = isVip ? 30 : 3;
+  const maxQuota = isVip ? 100 : 10;
+  const permanentQuota = Math.min(baseQuota + inviteBonus, maxQuota);
+  const totalQuota = permanentQuota + taskBonus;
+  
   const used = dailyUsage?.throws_count || 0;
-  const remaining = Math.max(0, quota - used);
+  const remaining = Math.max(0, totalQuota - used);
+  
+  // Format quota display (used/permanent+task)
+  const quotaDisplay = taskBonus > 0 
+    ? `${used}/${permanentQuota}+${taskBonus} (剩餘 ${remaining})`
+    : `${used}/${permanentQuota} (剩餘 ${remaining})`;
 
   // Get total conversations
   const totalConversations = await db.d1
@@ -190,7 +206,7 @@ async function getUserStats(
   return {
     bottlesThrown: thrown,
     bottlesCaught: caught,
-    todayQuota: { total: quota, remaining },
+    todayQuota: { display: quotaDisplay },
     totalConversations: conversations,
     activeConversations: activeConversations?.count || 0,
     totalMessages: messages,
