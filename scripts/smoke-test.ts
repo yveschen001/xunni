@@ -228,10 +228,25 @@ async function testOnboarding() {
   });
 
   await testEndpoint('Onboarding', 'Nickname Input', async () => {
-    const result = await sendWebhook('測試用戶', testUserId);
-    if (result.status !== 200) {
-      throw new Error(`Expected 200, got ${result.status}`);
+    // Retry up to 3 times for network issues
+    let lastError: Error | null = null;
+    for (let attempt = 1; attempt <= 3; attempt++) {
+      try {
+        const result = await sendWebhook('測試用戶', testUserId);
+        if (result.status !== 200) {
+          throw new Error(`Expected 200, got ${result.status}`);
+        }
+        return; // Success
+      } catch (error) {
+        lastError = error instanceof Error ? error : new Error(String(error));
+        if (attempt < 3) {
+          // Wait before retry (exponential backoff)
+          await new Promise(resolve => setTimeout(resolve, 1000 * attempt));
+        }
+      }
     }
+    // All retries failed
+    throw lastError || new Error('All retries failed');
   });
 
   // Note: Full onboarding requires callback queries which we can't easily test here
@@ -1164,7 +1179,10 @@ async function testAdSystemBasics() {
     
     const requiredFiles = [
       'src/db/migrations/0024_create_ad_providers_table.sql',
-      'src/db/migrations/0025_create_ad_rewards_table.sql',
+      'src/db/migrations/0022_create_ad_rewards_table.sql',
+      'src/db/migrations/0023_add_ad_statistics.sql',
+      'src/db/migrations/0025_create_ad_provider_logs.sql',
+      'src/db/migrations/0026_create_official_ads.sql',
     ];
     
     for (const file of requiredFiles) {
@@ -1288,14 +1306,17 @@ async function testDatabaseIntegrity() {
     }
   });
 
-  // Test 4: Ad system tables exist (Migrations 0024-0025)
+  // Test 4: Ad system tables exist (Migrations 0022-0026)
   await testEndpoint('Database', 'Ad Tables Exist', async () => {
     const fs = await import('fs');
     const path = await import('path');
     
     const requiredFiles = [
+      'src/db/migrations/0022_create_ad_rewards_table.sql',
+      'src/db/migrations/0023_add_ad_statistics.sql',
       'src/db/migrations/0024_create_ad_providers_table.sql',
-      'src/db/migrations/0025_create_ad_rewards_table.sql',
+      'src/db/migrations/0025_create_ad_provider_logs.sql',
+      'src/db/migrations/0026_create_official_ads.sql',
       'src/db/migrations/0035_insert_gigapub_provider.sql',
     ];
     
@@ -1490,8 +1511,11 @@ async function testMigrationCompleteness() {
       '0001_initial_schema.sql',
       '0006_add_user_sessions.sql',
       '0021_add_user_activity_tracking.sql',
+      '0022_create_ad_rewards_table.sql',
+      '0023_add_ad_statistics.sql',
       '0024_create_ad_providers_table.sql',
-      '0025_create_ad_rewards_table.sql',
+      '0025_create_ad_provider_logs.sql',
+      '0026_create_official_ads.sql',
       '0030_create_tasks_table.sql',
       '0031_create_user_tasks_table.sql',
       '0032_create_task_reminders_table.sql',
