@@ -1410,7 +1410,7 @@ export async function routeUpdate(update: TelegramUpdate, env: Env): Promise<voi
   if (update.message && 'successful_payment' in update.message) {
     console.error('[Router] Payment received, processing...');
     const { handleSuccessfulPayment } = await import('./telegram/handlers/vip');
-    await handleSuccessfulPayment(update.message, env);
+    await handleSuccessfulPayment(update.message, update.message.successful_payment, env);
     return;
   }
 
