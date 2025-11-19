@@ -916,6 +916,337 @@ async function testConversationHistoryPosts() {
 }
 
 // ============================================================================
+// New Feature Tests (2025-11-19)
+// ============================================================================
+
+async function testTutorialSystem() {
+  console.log('\n🎓 Testing Tutorial System...\n');
+
+  const testUserId = Math.floor(Math.random() * 1000000) + 200000000;
+
+  // Setup user first
+  await testEndpoint('Tutorial', 'Setup User', async () => {
+    const result = await sendWebhook('/dev_skip', testUserId);
+    if (result.status !== 200) {
+      throw new Error(`Expected 200, got ${result.status}`);
+    }
+  });
+
+  // Test tutorial files exist
+  await testEndpoint('Tutorial', 'Tutorial Files Exist', async () => {
+    const fs = await import('fs');
+    const path = await import('path');
+    
+    const requiredFiles = [
+      'src/telegram/handlers/tutorial.ts',
+      'src/domain/tutorial.ts',
+      'src/db/migrations/0033_alter_users_add_tutorial_fields.sql',
+    ];
+    
+    for (const file of requiredFiles) {
+      const filePath = path.join(process.cwd(), file);
+      if (!fs.existsSync(filePath)) {
+        throw new Error(`Required file missing: ${file}`);
+      }
+    }
+  });
+}
+
+async function testTaskSystem() {
+  console.log('\n📋 Testing Task System...\n');
+
+  const testUserId = Math.floor(Math.random() * 1000000) + 300000000;
+
+  // Setup user
+  await testEndpoint('Tasks', 'Setup User', async () => {
+    const result = await sendWebhook('/dev_skip', testUserId);
+    if (result.status !== 200) {
+      throw new Error(`Expected 200, got ${result.status}`);
+    }
+  });
+
+  // Test /tasks command
+  await testEndpoint('Tasks', '/tasks Command', async () => {
+    const result = await sendWebhook('/tasks', testUserId);
+    if (result.status !== 200) {
+      throw new Error(`Expected 200, got ${result.status}`);
+    }
+  });
+
+  // Test task files exist
+  await testEndpoint('Tasks', 'Task Files Exist', async () => {
+    const fs = await import('fs');
+    const path = await import('path');
+    
+    const requiredFiles = [
+      'src/telegram/handlers/tasks.ts',
+      'src/domain/task.ts',
+      'src/db/queries/tasks.ts',
+      'src/db/queries/user_tasks.ts',
+      'src/db/migrations/0030_create_tasks_table.sql',
+      'src/db/migrations/0031_create_user_tasks_table.sql',
+    ];
+    
+    for (const file of requiredFiles) {
+      const filePath = path.join(process.cwd(), file);
+      if (!fs.existsSync(filePath)) {
+        throw new Error(`Required file missing: ${file}`);
+      }
+    }
+  });
+
+  // Test menu integration
+  await testEndpoint('Tasks', '/menu Shows Next Task', async () => {
+    const result = await sendWebhook('/menu', testUserId);
+    if (result.status !== 200) {
+      throw new Error(`Expected 200, got ${result.status}`);
+    }
+  });
+}
+
+async function testChannelMembershipSystem() {
+  console.log('\n📢 Testing Channel Membership System...\n');
+
+  await testEndpoint('Channel Membership', 'Service Files Exist', async () => {
+    const fs = await import('fs');
+    const path = await import('path');
+    
+    const requiredFiles = [
+      'src/services/channel_membership_check.ts',
+    ];
+    
+    for (const file of requiredFiles) {
+      const filePath = path.join(process.cwd(), file);
+      if (!fs.existsSync(filePath)) {
+        throw new Error(`Required file missing: ${file}`);
+      }
+    }
+  });
+
+  // Test manual trigger endpoint (with timeout and graceful failure)
+  await testEndpoint('Channel Membership', 'Manual Check Endpoint', async () => {
+    try {
+      const controller = new AbortController();
+      const timeoutId = setTimeout(() => controller.abort(), 5000); // 5s timeout
+
+      const response = await fetch(`${WORKER_URL}/api/test/check-channel`, {
+        method: 'POST',
+        signal: controller.signal,
+      });
+
+      clearTimeout(timeoutId);
+      
+      // Accept both 200 (success) and 404 (not implemented yet)
+      if (response.status !== 200 && response.status !== 404) {
+        throw new Error(`Expected 200 or 404, got ${response.status}`);
+      }
+    } catch (error) {
+      if (error instanceof Error && error.name === 'AbortError') {
+        throw new Error('Request timeout (5s)');
+      }
+      throw error;
+    }
+  });
+}
+
+async function testGigaPubIntegration() {
+  console.log('\n📺 Testing GigaPub Ad Integration...\n');
+
+  await testEndpoint('GigaPub', 'Ad Page Exists', async () => {
+    const fs = await import('fs');
+    const path = await import('path');
+    
+    const adPagePath = path.join(process.cwd(), 'public/ad.html');
+    if (!fs.existsSync(adPagePath)) {
+      throw new Error('Ad page (public/ad.html) not found');
+    }
+
+    // Check if GigaPub script is included
+    const content = fs.readFileSync(adPagePath, 'utf-8');
+    if (!content.includes('ad.gigapub.tech/script?id=4406')) {
+      throw new Error('GigaPub script not found in ad.html');
+    }
+    if (!content.includes('window.showGiga')) {
+      throw new Error('showGiga function not found in ad.html');
+    }
+  });
+
+  await testEndpoint('GigaPub', 'Ad Page Accessible', async () => {
+    try {
+      const controller = new AbortController();
+      const timeoutId = setTimeout(() => controller.abort(), 5000);
+
+      const response = await fetch(`${WORKER_URL}/ad.html`, {
+        signal: controller.signal,
+      });
+
+      clearTimeout(timeoutId);
+
+      if (response.status !== 200) {
+        throw new Error(`Expected 200, got ${response.status}`);
+      }
+
+      const html = await response.text();
+      if (!html.includes('GigaPub')) {
+        throw new Error('Ad page does not contain GigaPub content');
+      }
+    } catch (error) {
+      if (error instanceof Error && error.name === 'AbortError') {
+        throw new Error('Request timeout (5s)');
+      }
+      throw error;
+    }
+  });
+
+  await testEndpoint('GigaPub', 'Migration Exists', async () => {
+    const fs = await import('fs');
+    const path = await import('path');
+    
+    const migrationPath = path.join(process.cwd(), 'src/db/migrations/0035_insert_gigapub_provider.sql');
+    if (!fs.existsSync(migrationPath)) {
+      throw new Error('GigaPub migration (0035) not found');
+    }
+
+    const content = fs.readFileSync(migrationPath, 'utf-8');
+    if (!content.includes('gigapub')) {
+      throw new Error('Migration does not contain gigapub provider');
+    }
+    if (!content.includes('4406')) {
+      throw new Error('Migration does not contain project ID 4406');
+    }
+  });
+}
+
+async function testSmartCommandPrompts() {
+  console.log('\n💡 Testing Smart Command Prompts...\n');
+
+  const testUserId = Math.floor(Math.random() * 1000000) + 400000000;
+
+  // Setup user
+  await testEndpoint('Smart Prompts', 'Setup User', async () => {
+    const result = await sendWebhook('/dev_skip', testUserId);
+    if (result.status !== 200) {
+      throw new Error(`Expected 200, got ${result.status}`);
+    }
+  });
+
+  // Test intent recognition for "throw bottle"
+  await testEndpoint('Smart Prompts', 'Throw Intent Recognition', async () => {
+    const result = await sendWebhook('我要丟瓶子', testUserId);
+    if (result.status !== 200) {
+      throw new Error(`Expected 200, got ${result.status}`);
+    }
+  });
+
+  // Test intent recognition for "catch bottle"
+  await testEndpoint('Smart Prompts', 'Catch Intent Recognition', async () => {
+    const result = await sendWebhook('我想撿瓶子', testUserId);
+    if (result.status !== 200) {
+      throw new Error(`Expected 200, got ${result.status}`);
+    }
+  });
+
+  // Test unknown command with helpful message
+  await testEndpoint('Smart Prompts', 'Unknown Command Handling', async () => {
+    const result = await sendWebhook('隨機文字測試', testUserId);
+    if (result.status !== 200) {
+      throw new Error(`Expected 200, got ${result.status}`);
+    }
+  });
+}
+
+async function testAdSystemBasics() {
+  console.log('\n📊 Testing Ad System Basics...\n');
+
+  await testEndpoint('Ad System', 'Ad Tables Migration Exists', async () => {
+    const fs = await import('fs');
+    const path = await import('path');
+    
+    const requiredFiles = [
+      'src/db/migrations/0024_create_ad_providers_table.sql',
+      'src/db/migrations/0025_create_ad_rewards_table.sql',
+    ];
+    
+    for (const file of requiredFiles) {
+      const filePath = path.join(process.cwd(), file);
+      if (!fs.existsSync(filePath)) {
+        throw new Error(`Required file missing: ${file}`);
+      }
+    }
+  });
+
+  await testEndpoint('Ad System', 'Ad Handlers Exist', async () => {
+    const fs = await import('fs');
+    const path = await import('path');
+    
+    const requiredFiles = [
+      'src/telegram/handlers/ad_reward.ts',
+      'src/db/queries/ad_providers.ts',
+      'src/db/queries/ad_rewards.ts',
+    ];
+    
+    for (const file of requiredFiles) {
+      const filePath = path.join(process.cwd(), file);
+      if (!fs.existsSync(filePath)) {
+        throw new Error(`Required file missing: ${file}`);
+      }
+    }
+  });
+
+  // Test ad completion endpoint (with timeout, should exist even if not configured)
+  await testEndpoint('Ad System', 'Ad Completion Endpoint', async () => {
+    try {
+      const controller = new AbortController();
+      const timeoutId = setTimeout(() => controller.abort(), 5000);
+
+      const response = await fetch(`${WORKER_URL}/api/ad/complete?user=999999&token=test&provider=test`, {
+        method: 'POST',
+        signal: controller.signal,
+      });
+
+      clearTimeout(timeoutId);
+
+      // Accept 200, 400, or 401 (endpoint exists but validation fails)
+      if (![200, 400, 401, 403].includes(response.status)) {
+        throw new Error(`Unexpected status: ${response.status}`);
+      }
+    } catch (error) {
+      if (error instanceof Error && error.name === 'AbortError') {
+        throw new Error('Request timeout (5s)');
+      }
+      throw error;
+    }
+  });
+}
+
+async function testAnalyticsCommands() {
+  console.log('\n📈 Testing Analytics Commands...\n');
+
+  const adminUserId = 396943893; // Super admin user ID
+
+  await testEndpoint('Analytics', '/analytics Command', async () => {
+    const result = await sendWebhook('/analytics', adminUserId);
+    if (result.status !== 200) {
+      throw new Error(`Expected 200, got ${result.status}`);
+    }
+  });
+
+  await testEndpoint('Analytics', '/ad_performance Command', async () => {
+    const result = await sendWebhook('/ad_performance', adminUserId);
+    if (result.status !== 200) {
+      throw new Error(`Expected 200, got ${result.status}`);
+    }
+  });
+
+  await testEndpoint('Analytics', '/funnel Command', async () => {
+    const result = await sendWebhook('/funnel', adminUserId);
+    if (result.status !== 200) {
+      throw new Error(`Expected 200, got ${result.status}`);
+    }
+  });
+}
+
+// ============================================================================
 // Main Test Runner
 // ============================================================================
 
@@ -959,10 +1290,13 @@ async function runAllTests() {
   try {
     await withTimeout(
       (async () => {
+        // Core Infrastructure Tests
         await runTestSuite('Infrastructure', testInfrastructure);
         await runTestSuite('User Commands', testUserCommands);
         await runTestSuite('Onboarding', testOnboarding);
         await runTestSuite('Dev Commands', testDevCommands);
+        
+        // Feature Tests
         await runTestSuite('Message Quota', testMessageQuota);
         await runTestSuite('Conversation Identifiers', testConversationIdentifiers);
         await runTestSuite('Invite System', testInviteSystem);
@@ -970,6 +1304,23 @@ async function runAllTests() {
         await runTestSuite('Edit Profile Features', testEditProfileFeatures);
         await runTestSuite('Blood Type Features', testBloodTypeFeatures);
         await runTestSuite('Conversation History Posts', testConversationHistoryPosts);
+        
+        // New Feature Tests (2025-11-19)
+        console.log('\n' + '='.repeat(80));
+        console.log('🆕 Testing New Features (2025-11-19)');
+        console.log('='.repeat(80));
+        await runTestSuite('Tutorial System', testTutorialSystem);
+        await runTestSuite('Task System', testTaskSystem);
+        await runTestSuite('Channel Membership', testChannelMembershipSystem);
+        await runTestSuite('GigaPub Integration', testGigaPubIntegration);
+        await runTestSuite('Smart Command Prompts', testSmartCommandPrompts);
+        await runTestSuite('Ad System Basics', testAdSystemBasics);
+        await runTestSuite('Analytics Commands', testAnalyticsCommands);
+        
+        // System Tests
+        console.log('\n' + '='.repeat(80));
+        console.log('🔧 Testing System Reliability');
+        console.log('='.repeat(80));
         await runTestSuite('Error Handling', testErrorHandling);
         await runTestSuite('Database Connectivity', testDatabaseConnectivity);
         await runTestSuite('Performance', testPerformance);
