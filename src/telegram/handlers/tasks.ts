@@ -249,6 +249,149 @@ export async function checkAndCompleteTask(
 }
 
 /**
+ * Get next incomplete task for user (按順序)
+ */
+export async function getNextIncompleteTask(
+  db: ReturnType<typeof createDatabaseClient>,
+  user: User
+): Promise<Task | null> {
+  try {
+    // Get all tasks ordered by sort_order
+    const allTasks = await getAllTasks(db.d1);
+    
+    // Get user's completed tasks
+    const userTasks = await getAllUserTasks(db, user.telegram_id);
+    const completedTaskIds = new Set(
+      userTasks.filter(ut => ut.status === 'completed').map(ut => ut.task_id)
+    );
+    
+    // Find first incomplete task (excluding invite task as it's continuous)
+    for (const task of allTasks) {
+      // Skip invite task (it's continuous)
+      if (task.id === 'task_invite_progress') {
+        continue;
+      }
+      
+      // Skip join channel task if already pending claim
+      if (task.id === 'task_join_channel') {
+        const userTask = userTasks.find(ut => ut.task_id === task.id);
+        if (userTask?.status === 'pending_claim') {
+          continue; // Already detected, waiting for claim
+        }
+      }
+      
+      // Check if task is completed
+      if (!completedTaskIds.has(task.id)) {
+        return task;
+      }
+    }
+    
+    return null; // All tasks completed
+  } catch (error) {
+    console.error('[getNextIncompleteTask] Error:', error);
+    return null;
+  }
+}
+
+/**
+ * Handle next task button callback
+ */
+export async function handleNextTaskCallback(
+  callbackQuery: { id: string; from: { id: number }; message?: { chat: { id: number }; message_id: number }; data?: string },
+  env: Env
+): Promise<void> {
+  const telegram = createTelegramService(env);
+  const db = createDatabaseClient(env.DB);
+  const chatId = callbackQuery.message?.chat.id;
+  const messageId = callbackQuery.message?.message_id;
+  const telegramId = callbackQuery.from.id.toString();
+  const taskId = callbackQuery.data?.replace('next_task_', '');
+
+  if (!chatId || !messageId || !taskId) {
+    await telegram.answerCallbackQuery(callbackQuery.id, '❌ 無效的請求');
+    return;
+  }
+
+  try {
+    // Answer callback
+    await telegram.answerCallbackQuery(callbackQuery.id);
+
+    // Delete menu message
+    await telegram.deleteMessage(chatId, messageId);
+
+    // Route to appropriate action based on task ID
+    const fakeMessage = {
+      chat: { id: chatId },
+      from: { id: callbackQuery.from.id },
+      text: '',
+    } as TelegramMessage;
+
+    switch (taskId) {
+      case 'task_interests':
+      case 'task_bio':
+      case 'task_city':
+        // Open edit profile
+        fakeMessage.text = '/edit_profile';
+        const { handleEditProfile } = await import('./edit_profile');
+        await handleEditProfile(fakeMessage, env);
+        break;
+
+      case 'task_join_channel':
+        // Show channel link
+        await telegram.sendMessageWithButtons(
+          chatId,
+          '📢 **加入官方頻道**\n\n' +
+            '點擊下方按鈕加入 XunNi 官方頻道，獲取最新消息和活動！\n\n' +
+            '加入後系統會自動檢測並發放獎勵 🎁',
+          [
+            [{ text: '📢 加入官方頻道', url: 'https://t.me/xunnichannel' }],
+            [{ text: '🏠 返回主選單', callback_data: 'return_to_menu' }],
+          ]
+        );
+        break;
+
+      case 'task_first_bottle':
+        // Start throw flow
+        fakeMessage.text = '/throw';
+        const { handleThrow } = await import('./throw');
+        await handleThrow(fakeMessage, env);
+        break;
+
+      case 'task_first_catch':
+        // Start catch flow
+        fakeMessage.text = '/catch';
+        const { handleCatch } = await import('./catch');
+        await handleCatch(fakeMessage, env);
+        break;
+
+      case 'task_first_conversation':
+        // Show tip
+        await telegram.sendMessageWithButtons(
+          chatId,
+          '💬 **開始第一次對話**\n\n' +
+            '要開始對話，請先：\n' +
+            '1. 撿起一個漂流瓶 (/catch)\n' +
+            '2. 長按對方的訊息\n' +
+            '3. 選擇「回覆」\n' +
+            '4. 發送你的訊息\n\n' +
+            '💡 對話是完全匿名的，放心聊天吧！',
+          [
+            [{ text: '🎣 撿起漂流瓶', callback_data: 'menu_catch' }],
+            [{ text: '🏠 返回主選單', callback_data: 'return_to_menu' }],
+          ]
+        );
+        break;
+
+      default:
+        await telegram.sendMessage(chatId, '❌ 未知的任務類型');
+    }
+  } catch (error) {
+    console.error('[handleNextTaskCallback] Error:', error);
+    await telegram.answerCallbackQuery(callbackQuery.id, '❌ 操作失敗');
+  }
+}
+
+/**
  * Helper functions
  */
 

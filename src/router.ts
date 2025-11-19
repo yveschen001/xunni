@@ -783,6 +783,13 @@ export async function routeUpdate(update: TelegramUpdate, env: Env): Promise<voi
       return;
     }
 
+    // Next task callbacks
+    if (data.startsWith('next_task_')) {
+      const { handleNextTaskCallback } = await import('./telegram/handlers/tasks');
+      await handleNextTaskCallback(callbackQuery, env);
+      return;
+    }
+
     // Throw bottle target gender selection
     if (data.startsWith('throw_target_')) {
       const { handleThrowTargetGender } = await import('./telegram/handlers/throw');

@@ -44,15 +44,25 @@ export async function handleMenu(message: TelegramMessage, env: Env): Promise<vo
     const isVip = user.is_vip && user.vip_expire_at && new Date(user.vip_expire_at) > new Date();
     const vipBadge = isVip ? '💎' : '';
 
+    // Get next incomplete task
+    const { getNextIncompleteTask } = await import('./tasks');
+    const nextTask = await getNextIncompleteTask(db, user);
+
     // Build menu message
-    const menuMessage =
+    let menuMessage =
       `🏠 **主選單** ${vipBadge}\n\n` +
       `👋 嗨，${user.nickname}！\n\n` +
       `📊 你的狀態：\n` +
       `• 等級：${isVip ? 'VIP 會員 💎' : '免費會員'}\n` +
       `• MBTI：${user.mbti_result || '未設定'}\n` +
-      `• 星座：${user.zodiac_sign || '未設定'}\n\n` +
-      `💡 選擇你想要的功能：`;
+      `• 星座：${user.zodiac_sign || '未設定'}\n\n`;
+
+    // Add next task reminder if exists
+    if (nextTask) {
+      menuMessage += `🎯 **下一個任務**\n⏳ ${nextTask.name} (+${nextTask.reward_amount} 瓶子)\n💡 ${nextTask.description}\n\n`;
+    }
+
+    menuMessage += `💡 選擇你想要的功能：`;
 
     // Build menu buttons
     const buttons = [
@@ -73,6 +83,11 @@ export async function handleMenu(message: TelegramMessage, env: Env): Promise<vo
         { text: '❓ 幫助', callback_data: 'menu_help' },
       ],
     ];
+
+    // Add next task button if exists
+    if (nextTask) {
+      buttons.unshift([{ text: `✨ ${nextTask.name}`, callback_data: `next_task_${nextTask.id}` }]);
+    }
 
     // Add VIP button for non-VIP users
     if (!isVip) {
