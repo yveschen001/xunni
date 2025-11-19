@@ -58,6 +58,15 @@ export async function routeUpdate(update: TelegramUpdate, env: Env): Promise<voi
   const telegram = createTelegramService(env);
   const db = createDatabaseClient(env.DB);
 
+  // Handle successful payment FIRST (before other message processing)
+  if (update.message && 'successful_payment' in update.message) {
+    console.error('[Router] Payment received, processing...');
+    console.error('[Router] Payment data:', JSON.stringify(update.message.successful_payment));
+    const { handleSuccessfulPayment } = await import('./telegram/handlers/vip');
+    await handleSuccessfulPayment(update.message, update.message.successful_payment, env);
+    return;
+  }
+
   // Handle message
   if (update.message) {
     const message = update.message;
@@ -1406,13 +1415,13 @@ export async function routeUpdate(update: TelegramUpdate, env: Env): Promise<voi
     return;
   }
 
-  // Handle successful payment
-  if (update.message && 'successful_payment' in update.message) {
-    console.error('[Router] Payment received, processing...');
-    const { handleSuccessfulPayment } = await import('./telegram/handlers/vip');
-    await handleSuccessfulPayment(update.message, update.message.successful_payment, env);
-    return;
-  }
+  // Debug: Log update structure
+  console.error('[Router] Update structure:', {
+    hasMessage: !!update.message,
+    hasCallbackQuery: !!update.callback_query,
+    hasPreCheckoutQuery: !!update.pre_checkout_query,
+    messageKeys: update.message ? Object.keys(update.message) : [],
+  });
 
   console.error('[Router] Unhandled update type');
 }
