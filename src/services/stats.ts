@@ -7,10 +7,7 @@ import type { Env } from '~/types';
 import { createDatabaseClient } from '~/db/client';
 import { createTelegramService } from '~/services/telegram';
 import type { DailyStats } from '~/domain/stats';
-import {
-  formatDailyStatsReport,
-  getYesterdayDateString,
-} from '~/domain/stats';
+import { formatDailyStatsReport, getYesterdayDateString } from '~/domain/stats';
 
 /**
  * Generate daily statistics
@@ -266,4 +263,3 @@ function getPreviousDate(date: string): string {
   d.setDate(d.getDate() - 1);
   return d.toISOString().split('T')[0];
 }
-

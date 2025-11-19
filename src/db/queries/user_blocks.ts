@@ -48,10 +48,7 @@ export async function hasBlocked(
       AND blocked_telegram_id = ?
   `;
 
-  const result = await db.queryOne<{ count: number }>(sql, [
-    blockerTelegramId,
-    blockedTelegramId,
-  ]);
+  const result = await db.queryOne<{ count: number }>(sql, [blockerTelegramId, blockedTelegramId]);
 
   return (result?.count || 0) > 0;
 }
@@ -103,7 +100,10 @@ export async function removeUserBlock(
 /**
  * Get block count for a user (how many users they blocked)
  */
-export async function getBlockCount(db: DatabaseClient, blockerTelegramId: string): Promise<number> {
+export async function getBlockCount(
+  db: DatabaseClient,
+  blockerTelegramId: string
+): Promise<number> {
   const sql = `
     SELECT COUNT(*) as count
     FROM user_blocks
@@ -113,4 +113,3 @@ export async function getBlockCount(db: DatabaseClient, blockerTelegramId: strin
   const result = await db.queryOne<{ count: number }>(sql, [blockerTelegramId]);
   return result?.count || 0;
 }
-

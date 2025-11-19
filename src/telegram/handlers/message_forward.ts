@@ -1,6 +1,6 @@
 /**
  * Message Forward Handler
- * 
+ *
  * Handles anonymous message forwarding between conversation participants.
  */
 
@@ -8,10 +8,7 @@ import type { Env, TelegramMessage } from '~/types';
 import { createDatabaseClient } from '~/db/client';
 import { createTelegramService } from '~/services/telegram';
 import { findUserByTelegramId } from '~/db/queries/users';
-import {
-  getActiveConversation,
-  saveConversationMessage,
-} from '~/db/queries/conversations';
+import { getActiveConversation, saveConversationMessage } from '~/db/queries/conversations';
 import {
   validateMessageContent,
   getOtherUserId,
@@ -24,20 +21,26 @@ import { formatIdentifier } from '~/domain/conversation_identifier';
 /**
  * Handle message forwarding in active conversation
  */
-export async function handleMessageForward(
-  message: TelegramMessage,
-  env: Env
-): Promise<boolean> {
+export async function handleMessageForward(message: TelegramMessage, env: Env): Promise<boolean> {
   const db = createDatabaseClient(env.DB);
   const telegram = createTelegramService(env);
   const chatId = message.chat.id;
   const telegramId = message.from!.id.toString();
-    const messageText = message.text || '';
-    const replyToId = message.reply_to_message?.message_id;
+  const messageText = message.text || '';
+  const replyToId = message.reply_to_message?.message_id;
 
   try {
+    // ✨ NEW: Update user activity (non-blocking)
+    try {
+      const { updateUserActivity } = await import('~/services/user_activity');
+      await updateUserActivity(db, telegramId);
+    } catch (activityError) {
+      console.error('[handleMessageForward] Failed to update user activity:', activityError);
+    }
+
     // If it's a command, let router handle it
     if (messageText.startsWith('/')) {
+      console.error('[handleMessageForward] Command detected, returning false:', messageText);
       return false;
     }
 
@@ -53,7 +56,7 @@ export async function handleMessageForward(
       // No active conversation
       return false;
     }
-    
+
     // Check for duplicate message (防止重複處理)
     // Use message_id as deduplication key
     const messageId = message.message_id;
@@ -68,13 +71,13 @@ export async function handleMessageForward(
       )
       .bind(conversation.id, telegramId)
       .first<{ id: number }>();
-    
+
     // If we just processed a message from this user in the last 10 seconds, skip
     if (recentMessage) {
       console.error('[handleMessageForward] Skipping duplicate message:', {
         messageId,
         conversationId: conversation.id,
-        telegramId
+        telegramId,
       });
       return true; // Return true to prevent further processing
     }
@@ -113,7 +116,7 @@ export async function handleMessageForward(
           '• t.me (Telegram)\n' +
           '• telegram.org\n' +
           '• telegram.me\n\n' +
-          `🚫 禁止的網址：\n${urlCheck.blockedUrls?.map(url => `• ${url}`).join('\n')}\n\n` +
+          `🚫 禁止的網址：\n${urlCheck.blockedUrls?.map((url) => `• ${url}`).join('\n')}\n\n` +
           '請移除這些連結後重新發送。'
       );
       return true;
@@ -122,7 +125,7 @@ export async function handleMessageForward(
     // Check daily message quota
     const { getConversationDailyLimit, getTodayDate } = await import('~/domain/usage');
     const today = getTodayDate();
-    
+
     // Count today's messages from this user in this conversation
     const todayMessageCount = await db.d1
       .prepare(
@@ -141,7 +144,7 @@ export async function handleMessageForward(
       await telegram.sendMessage(
         chatId,
         `❌ 今日對話訊息配額已用完（${usedToday}/${dailyLimit}）\n\n` +
-          (user.is_vip 
+          (user.is_vip
             ? '💡 VIP 用戶每日可發送 100 則訊息。'
             : '💡 升級 VIP 可獲得更多配額（100 則/天）：/vip')
       );
@@ -212,34 +215,46 @@ export async function handleMessageForward(
     );
 
     // Get or create identifiers for both users
-    const receiverIdentifier = await getOrCreateIdentifier(db, receiverId, telegramId, conversation.id);
-    const senderIdentifier = await getOrCreateIdentifier(db, telegramId, receiverId, conversation.id);
+    const receiverIdentifier = await getOrCreateIdentifier(
+      db,
+      receiverId,
+      telegramId,
+      conversation.id
+    );
+    const senderIdentifier = await getOrCreateIdentifier(
+      db,
+      telegramId,
+      receiverId,
+      conversation.id
+    );
 
     // Prepare partner info for history posts
     const { maskNickname } = await import('~/domain/invite');
-    
+
     // For sender's history: partner is receiver
     const receiverNickname = receiver.nickname || receiver.username || '匿名用戶';
     const receiverPartnerInfo = {
       maskedNickname: maskNickname(receiverNickname),
       mbti: receiver.mbti_result || '未設定',
       bloodType: receiver.blood_type || '未設定',
-      zodiac: receiver.zodiac_sign || '未設定'
+      zodiac: receiver.zodiac_sign || '未設定',
     };
-    
+
     // For receiver's history: partner is sender
     const senderNickname = sender.nickname || sender.username || '匿名用戶';
     const senderPartnerInfo = {
       maskedNickname: maskNickname(senderNickname),
       mbti: sender.mbti_result || '未設定',
       bloodType: sender.blood_type || '未設定',
-      zodiac: sender.zodiac_sign || '未設定'
+      zodiac: sender.zodiac_sign || '未設定',
     };
 
     // Update conversation history posts
     const messageTime = new Date();
-    const { updateConversationHistory, updateNewMessagePost } = await import('~/services/conversation_history');
-    
+    const { updateConversationHistory, updateNewMessagePost } = await import(
+      '~/services/conversation_history'
+    );
+
     // Update sender's history (sent message) - show receiver's info
     await updateConversationHistory(
       db,
@@ -252,7 +267,7 @@ export async function handleMessageForward(
       'sent',
       receiverPartnerInfo
     );
-    
+
     // Update receiver's history (received message) - show sender's info
     await updateConversationHistory(
       db,
@@ -265,7 +280,7 @@ export async function handleMessageForward(
       'received',
       senderPartnerInfo
     );
-    
+
     // Update receiver's new message post - show sender's info
     await updateNewMessagePost(
       db,
@@ -282,7 +297,7 @@ export async function handleMessageForward(
     // The receiver will get:
     // 1. History post (updated with all messages)
     // 2. New message post (showing latest message)
-    
+
     // Confirm to sender with receiver's identifier
     await telegram.sendMessage(
       chatId,

@@ -233,6 +233,25 @@ export async function incrementSuccessfulInvites(
 }
 
 /**
+ * Grant permanent quota to user
+ * Used for official ad rewards and special promotions
+ */
+export async function grantPermanentQuota(
+  db: DatabaseClient,
+  telegramId: string,
+  quotaAmount: number
+): Promise<void> {
+  const sql = `
+    UPDATE users
+    SET permanent_quota = COALESCE(permanent_quota, 0) + ?,
+        updated_at = CURRENT_TIMESTAMP
+    WHERE telegram_id = ?
+  `;
+
+  await db.execute(sql, [quotaAmount, telegramId]);
+}
+
+/**
  * Update risk score
  */
 export async function updateRiskScore(
@@ -373,4 +392,3 @@ export async function getNewUsersCount(db: DatabaseClient, date: string): Promis
   const result = await db.queryOne<{ count: number }>(sql, [date]);
   return result?.count || 0;
 }
-

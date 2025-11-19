@@ -1,6 +1,6 @@
 /**
  * Ban System Automated Test
- * 
+ *
  * Tests:
  * 1. User ban status check
  * 2. Ban notification (temporary)
@@ -19,7 +19,7 @@ describe('Ban System', () => {
       const user: Partial<User> = {
         is_banned: 0,
       };
-      
+
       expect(isBanned(user as User)).toBe(false);
     });
 
@@ -28,7 +28,7 @@ describe('Ban System', () => {
         is_banned: 1,
         banned_until: null,
       };
-      
+
       expect(isBanned(user as User)).toBe(true);
     });
 
@@ -38,7 +38,7 @@ describe('Ban System', () => {
         is_banned: 1,
         banned_until: futureDate.toISOString(),
       };
-      
+
       expect(isBanned(user as User)).toBe(true);
     });
 
@@ -48,7 +48,7 @@ describe('Ban System', () => {
         is_banned: 1,
         banned_until: pastDate.toISOString(),
       };
-      
+
       expect(isBanned(user as User)).toBe(false);
     });
   });
@@ -106,12 +106,12 @@ describe('Ban System', () => {
   describe('Ban notification messages', () => {
     it('should not include specific reason in friendly ban message', () => {
       const friendlyMessage = '⚠️ 帳號安全提醒\n\n我們的系統偵測到你的帳號存在異常行為';
-      
+
       // Should not contain specific reasons
       expect(friendlyMessage).not.toContain('多次被舉報');
       expect(friendlyMessage).not.toContain('違規');
       expect(friendlyMessage).not.toContain('Multiple reports');
-      
+
       // Should contain friendly language
       expect(friendlyMessage).toContain('異常行為');
       expect(friendlyMessage).toContain('系統偵測');
@@ -119,17 +119,16 @@ describe('Ban System', () => {
 
     it('should include appeal option', () => {
       const friendlyMessage = '💡 如果你認為這是誤判，歡迎使用 /appeal 提出申訴';
-      
+
       expect(friendlyMessage).toContain('/appeal');
       expect(friendlyMessage).toContain('申訴');
     });
 
     it('should include community guidelines reference', () => {
       const friendlyMessage = '📖 在此期間，請查看我們的社群規範：/rules';
-      
+
       expect(friendlyMessage).toContain('/rules');
       expect(friendlyMessage).toContain('社群規範');
     });
   });
 });
-

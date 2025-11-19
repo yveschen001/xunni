@@ -1,6 +1,6 @@
 /**
  * Edit Profile Handler
- * 
+ *
  * Handles profile editing functionality
  */
 
@@ -38,9 +38,15 @@ export async function handleEditProfile(message: TelegramMessage, env: Env): Pro
     await deleteSession(db, telegramId, SESSION_TYPE);
 
     // Get match preference text
-    const matchPrefText = user.match_preference 
-      ? (user.match_preference === 'male' ? '男生' : user.match_preference === 'female' ? '女生' : '任何人')
-      : (user.gender === 'male' ? '女生（默認）' : '男生（默認）');
+    const matchPrefText = user.match_preference
+      ? user.match_preference === 'male'
+        ? '男生'
+        : user.match_preference === 'female'
+          ? '女生'
+          : '任何人'
+      : user.gender === 'male'
+        ? '女生（默認）'
+        : '男生（默認）';
 
     // Get blood type display
     const { getBloodTypeDisplay } = await import('~/domain/blood_type');
@@ -74,12 +80,8 @@ export async function handleEditProfile(message: TelegramMessage, env: Env): Pro
           { text: '💝 匹配偏好', callback_data: 'edit_match_pref' },
           { text: '🩸 編輯血型', callback_data: 'edit_blood_type' },
         ],
-        [
-          { text: '🧠 重新測試 MBTI', callback_data: 'retake_mbti' },
-        ],
-        [
-          { text: '↩️ 返回', callback_data: 'return_to_menu' },
-        ],
+        [{ text: '🧠 重新測試 MBTI', callback_data: 'retake_mbti' }],
+        [{ text: '↩️ 返回', callback_data: 'return_to_menu' }],
       ]
     );
   } catch (error) {
@@ -91,7 +93,10 @@ export async function handleEditProfile(message: TelegramMessage, env: Env): Pro
 /**
  * Handle edit profile callback - show profile editing menu from callback
  */
-export async function handleEditProfileCallback(callbackQuery: TelegramCallbackQuery, env: Env): Promise<void> {
+export async function handleEditProfileCallback(
+  callbackQuery: TelegramCallbackQuery,
+  env: Env
+): Promise<void> {
   const db = createDatabaseClient(env.DB);
   const telegram = createTelegramService(env);
   const chatId = callbackQuery.message!.chat.id;
@@ -116,9 +121,15 @@ export async function handleEditProfileCallback(callbackQuery: TelegramCallbackQ
     await deleteSession(db, telegramId, SESSION_TYPE);
 
     // Get match preference text
-    const matchPrefText = user.match_preference 
-      ? (user.match_preference === 'male' ? '男生' : user.match_preference === 'female' ? '女生' : '任何人')
-      : (user.gender === 'male' ? '女生（默認）' : '男生（默認）');
+    const matchPrefText = user.match_preference
+      ? user.match_preference === 'male'
+        ? '男生'
+        : user.match_preference === 'female'
+          ? '女生'
+          : '任何人'
+      : user.gender === 'male'
+        ? '女生（默認）'
+        : '男生（默認）';
 
     // Get blood type display
     const { getBloodTypeDisplay } = await import('~/domain/blood_type');
@@ -152,12 +163,8 @@ export async function handleEditProfileCallback(callbackQuery: TelegramCallbackQ
           { text: '💝 匹配偏好', callback_data: 'edit_match_pref' },
           { text: '🩸 編輯血型', callback_data: 'edit_blood_type' },
         ],
-        [
-          { text: '🧠 重新測試 MBTI', callback_data: 'retake_mbti' },
-        ],
-        [
-          { text: '↩️ 返回', callback_data: 'return_to_menu' },
-        ],
+        [{ text: '🧠 重新測試 MBTI', callback_data: 'retake_mbti' }],
+        [{ text: '↩️ 返回', callback_data: 'return_to_menu' }],
       ]
     );
   } catch (error) {
@@ -169,7 +176,10 @@ export async function handleEditProfileCallback(callbackQuery: TelegramCallbackQ
 /**
  * Handle edit nickname callback
  */
-export async function handleEditNickname(callbackQuery: TelegramCallbackQuery, env: Env): Promise<void> {
+export async function handleEditNickname(
+  callbackQuery: TelegramCallbackQuery,
+  env: Env
+): Promise<void> {
   const db = createDatabaseClient(env.DB);
   const telegram = createTelegramService(env);
   const chatId = callbackQuery.message!.chat.id;
@@ -234,7 +244,10 @@ export async function handleEditBio(callbackQuery: TelegramCallbackQuery, env: E
 /**
  * Handle edit region callback
  */
-export async function handleEditRegion(callbackQuery: TelegramCallbackQuery, env: Env): Promise<void> {
+export async function handleEditRegion(
+  callbackQuery: TelegramCallbackQuery,
+  env: Env
+): Promise<void> {
   const db = createDatabaseClient(env.DB);
   const telegram = createTelegramService(env);
   const chatId = callbackQuery.message!.chat.id;
@@ -264,7 +277,10 @@ export async function handleEditRegion(callbackQuery: TelegramCallbackQuery, env
 /**
  * Handle edit match preference callback
  */
-export async function handleEditMatchPref(callbackQuery: TelegramCallbackQuery, env: Env): Promise<void> {
+export async function handleEditMatchPref(
+  callbackQuery: TelegramCallbackQuery,
+  env: Env
+): Promise<void> {
   const db = createDatabaseClient(env.DB);
   const telegram = createTelegramService(env);
   const chatId = callbackQuery.message!.chat.id;
@@ -292,12 +308,8 @@ export async function handleEditMatchPref(callbackQuery: TelegramCallbackQuery, 
           { text: '👨 男生', callback_data: 'match_pref_male' },
           { text: '👩 女生', callback_data: 'match_pref_female' },
         ],
-        [
-          { text: '🌈 任何人都可以', callback_data: 'match_pref_any' },
-        ],
-        [
-          { text: '↩️ 返回', callback_data: 'edit_profile_back' },
-        ],
+        [{ text: '🌈 任何人都可以', callback_data: 'match_pref_any' }],
+        [{ text: '↩️ 返回', callback_data: 'edit_profile_back' }],
       ]
     );
   } catch (error) {
@@ -322,23 +334,20 @@ export async function handleMatchPrefSelection(
   try {
     await telegram.answerCallbackQuery(callbackQuery.id, '正在更新...');
 
-    await db.d1.prepare('UPDATE users SET match_preference = ? WHERE telegram_id = ?')
-      .bind(preference, telegramId).run();
+    await db.d1
+      .prepare('UPDATE users SET match_preference = ? WHERE telegram_id = ?')
+      .bind(preference, telegramId)
+      .run();
 
     await telegram.deleteMessage(chatId, callbackQuery.message!.message_id);
 
     const prefText = preference === 'male' ? '男生' : preference === 'female' ? '女生' : '任何人';
     await telegram.sendMessageWithButtons(
       chatId,
-      `✅ 匹配偏好已更新為：${prefText}\n\n` +
-        `💡 下次丟漂流瓶時將自動使用此設置。`,
+      `✅ 匹配偏好已更新為：${prefText}\n\n` + `💡 下次丟漂流瓶時將自動使用此設置。`,
       [
-        [
-          { text: '✏️ 繼續編輯資料', callback_data: 'edit_profile_callback' },
-        ],
-        [
-          { text: '🏠 返回主選單', callback_data: 'return_to_menu' },
-        ],
+        [{ text: '✏️ 繼續編輯資料', callback_data: 'edit_profile_callback' }],
+        [{ text: '🏠 返回主選單', callback_data: 'return_to_menu' }],
       ]
     );
   } catch (error) {
@@ -350,7 +359,10 @@ export async function handleMatchPrefSelection(
 /**
  * Handle edit interests callback
  */
-export async function handleEditInterests(callbackQuery: TelegramCallbackQuery, env: Env): Promise<void> {
+export async function handleEditInterests(
+  callbackQuery: TelegramCallbackQuery,
+  env: Env
+): Promise<void> {
   const db = createDatabaseClient(env.DB);
   const telegram = createTelegramService(env);
   const chatId = callbackQuery.message!.chat.id;
@@ -381,7 +393,10 @@ export async function handleEditInterests(callbackQuery: TelegramCallbackQuery, 
 /**
  * Handle edit blood type callback
  */
-export async function handleEditBloodType(callbackQuery: TelegramCallbackQuery, env: Env): Promise<void> {
+export async function handleEditBloodType(
+  callbackQuery: TelegramCallbackQuery,
+  env: Env
+): Promise<void> {
   const telegram = createTelegramService(env);
   const chatId = callbackQuery.message!.chat.id;
 
@@ -395,9 +410,7 @@ export async function handleEditBloodType(callbackQuery: TelegramCallbackQuery, 
 
     await telegram.sendMessageWithButtons(
       chatId,
-      `🩸 **編輯血型**\n\n` +
-        `💡 血型可用於 VIP 血型配對功能\n\n` +
-        `請選擇你的血型：`,
+      `🩸 **編輯血型**\n\n` + `💡 血型可用於 VIP 血型配對功能\n\n` + `請選擇你的血型：`,
       [
         [
           { text: options[0].display, callback_data: 'edit_blood_type_A' },
@@ -407,12 +420,8 @@ export async function handleEditBloodType(callbackQuery: TelegramCallbackQuery, 
           { text: options[2].display, callback_data: 'edit_blood_type_AB' },
           { text: options[3].display, callback_data: 'edit_blood_type_O' },
         ],
-        [
-          { text: options[4].display, callback_data: 'edit_blood_type_skip' },
-        ],
-        [
-          { text: '↩️ 返回', callback_data: 'edit_profile' },
-        ],
+        [{ text: options[4].display, callback_data: 'edit_blood_type_skip' }],
+        [{ text: '↩️ 返回', callback_data: 'edit_profile' }],
       ]
     );
   } catch (error) {
@@ -454,18 +463,10 @@ export async function handleEditBloodTypeSelection(
     await telegram.deleteMessage(chatId, callbackQuery.message!.message_id);
 
     // Show success message with buttons
-    await telegram.sendMessageWithButtons(
-      chatId,
-      displayText,
-      [
-        [
-          { text: '✏️ 繼續編輯資料', callback_data: 'edit_profile_callback' },
-        ],
-        [
-          { text: '🏠 返回主選單', callback_data: 'return_to_menu' },
-        ],
-      ]
-    );
+    await telegram.sendMessageWithButtons(chatId, displayText, [
+      [{ text: '✏️ 繼續編輯資料', callback_data: 'edit_profile_callback' }],
+      [{ text: '🏠 返回主選單', callback_data: 'return_to_menu' }],
+    ]);
   } catch (error) {
     console.error('[handleEditBloodTypeSelection] Error:', error);
     await telegram.answerCallbackQuery(callbackQuery.id, '❌ 發生錯誤');
@@ -487,7 +488,7 @@ export async function handleProfileEditInput(message: TelegramMessage, env: Env)
     console.error('[handleProfileEditInput] Checking session for user:', telegramId);
     const session = await getActiveSession(db, telegramId, SESSION_TYPE);
     console.error('[handleProfileEditInput] Session found:', !!session);
-    
+
     if (!session) {
       return false; // Not in edit mode
     }
@@ -520,24 +521,16 @@ export async function handleProfileEditInput(message: TelegramMessage, env: Env)
           await telegram.sendMessageWithButtons(
             chatId,
             '❌ 暱稱太短，至少需要 4 個字符。\n\n請重新輸入或取消編輯：',
-            [
-              [
-                { text: '❌ 取消編輯', callback_data: 'edit_profile_callback' },
-              ],
-            ]
+            [[{ text: '❌ 取消編輯', callback_data: 'edit_profile_callback' }]]
           );
           return true;
         }
-        
+
         if (text.length > 36) {
           await telegram.sendMessageWithButtons(
             chatId,
             '❌ 暱稱太長，請輸入不超過 36 個字符的暱稱。\n\n請重新輸入或取消編輯：',
-            [
-              [
-                { text: '❌ 取消編輯', callback_data: 'edit_profile_callback' },
-              ],
-            ]
+            [[{ text: '❌ 取消編輯', callback_data: 'edit_profile_callback' }]]
           );
           return true;
         }
@@ -549,20 +542,18 @@ export async function handleProfileEditInput(message: TelegramMessage, env: Env)
           await telegram.sendMessageWithButtons(
             chatId,
             '❌ 暱稱不能包含網址連結\n\n' +
-            '💡 請輸入一個簡單的暱稱，不要包含 http:// 或 https:// 等連結。\n\n' +
-            '請重新輸入或取消編輯：',
-            [
-              [
-                { text: '❌ 取消編輯', callback_data: 'edit_profile_callback' },
-              ],
-            ]
+              '💡 請輸入一個簡單的暱稱，不要包含 http:// 或 https:// 等連結。\n\n' +
+              '請重新輸入或取消編輯：',
+            [[{ text: '❌ 取消編輯', callback_data: 'edit_profile_callback' }]]
           );
           return true;
         }
 
         // Update nickname
-        await db.d1.prepare('UPDATE users SET nickname = ? WHERE telegram_id = ?')
-          .bind(text, telegramId).run();
+        await db.d1
+          .prepare('UPDATE users SET nickname = ? WHERE telegram_id = ?')
+          .bind(text, telegramId)
+          .run();
 
         // Delete session
         await deleteSession(db, telegramId, SESSION_TYPE);
@@ -575,9 +566,15 @@ export async function handleProfileEditInput(message: TelegramMessage, env: Env)
         }
 
         // Get match preference text
-        const matchPrefText = updatedUser.match_preference 
-          ? (updatedUser.match_preference === 'male' ? '男生' : updatedUser.match_preference === 'female' ? '女生' : '任何人')
-          : (updatedUser.gender === 'male' ? '女生（默認）' : '男生（默認）');
+        const matchPrefText = updatedUser.match_preference
+          ? updatedUser.match_preference === 'male'
+            ? '男生'
+            : updatedUser.match_preference === 'female'
+              ? '女生'
+              : '任何人'
+          : updatedUser.gender === 'male'
+            ? '女生（默認）'
+            : '男生（默認）';
 
         // Get blood type display
         const { getBloodTypeDisplay } = await import('~/domain/blood_type');
@@ -612,12 +609,8 @@ export async function handleProfileEditInput(message: TelegramMessage, env: Env)
               { text: '💝 匹配偏好', callback_data: 'edit_match_pref' },
               { text: '🩸 編輯血型', callback_data: 'edit_blood_type' },
             ],
-            [
-              { text: '🧠 重新測試 MBTI', callback_data: 'retake_mbti' },
-            ],
-            [
-              { text: '🏠 返回主選單', callback_data: 'return_to_menu' },
-            ],
+            [{ text: '🧠 重新測試 MBTI', callback_data: 'retake_mbti' }],
+            [{ text: '🏠 返回主選單', callback_data: 'return_to_menu' }],
           ]
         );
         return true;
@@ -628,11 +621,7 @@ export async function handleProfileEditInput(message: TelegramMessage, env: Env)
           await telegram.sendMessageWithButtons(
             chatId,
             '❌ 個人簡介太長，請輸入不超過 200 個字符。\n\n請重新輸入或取消編輯：',
-            [
-              [
-                { text: '❌ 取消編輯', callback_data: 'edit_profile_callback' },
-              ],
-            ]
+            [[{ text: '❌ 取消編輯', callback_data: 'edit_profile_callback' }]]
           );
           return true;
         }
@@ -648,33 +637,23 @@ export async function handleProfileEditInput(message: TelegramMessage, env: Env)
               '• t.me (Telegram)\n' +
               '• telegram.org\n' +
               '• telegram.me\n\n' +
-              `🚫 禁止的網址：\n${urlCheck.blockedUrls?.map(url => `• ${url}`).join('\n')}\n\n` +
+              `🚫 禁止的網址：\n${urlCheck.blockedUrls?.map((url) => `• ${url}`).join('\n')}\n\n` +
               '請移除這些連結後重新輸入或取消編輯：',
-            [
-              [
-                { text: '❌ 取消編輯', callback_data: 'edit_profile_callback' },
-              ],
-            ]
+            [[{ text: '❌ 取消編輯', callback_data: 'edit_profile_callback' }]]
           );
           return true;
         }
 
-        await db.d1.prepare('UPDATE users SET bio = ? WHERE telegram_id = ?')
-          .bind(text, telegramId).run();
+        await db.d1
+          .prepare('UPDATE users SET bio = ? WHERE telegram_id = ?')
+          .bind(text, telegramId)
+          .run();
 
         await deleteSession(db, telegramId, SESSION_TYPE);
-        await telegram.sendMessageWithButtons(
-          chatId,
-          `✅ 個人簡介已更新！\n\n${text}`,
-          [
-            [
-              { text: '✏️ 繼續編輯資料', callback_data: 'edit_profile_callback' },
-            ],
-            [
-              { text: '🏠 返回主選單', callback_data: 'return_to_menu' },
-            ],
-          ]
-        );
+        await telegram.sendMessageWithButtons(chatId, `✅ 個人簡介已更新！\n\n${text}`, [
+          [{ text: '✏️ 繼續編輯資料', callback_data: 'edit_profile_callback' }],
+          [{ text: '🏠 返回主選單', callback_data: 'return_to_menu' }],
+        ]);
         return true;
       }
 
@@ -683,80 +662,59 @@ export async function handleProfileEditInput(message: TelegramMessage, env: Env)
           await telegram.sendMessageWithButtons(
             chatId,
             '❌ 地區名稱太長，請輸入不超過 50 個字符。\n\n請重新輸入或取消編輯：',
-            [
-              [
-                { text: '❌ 取消編輯', callback_data: 'edit_profile_callback' },
-              ],
-            ]
+            [[{ text: '❌ 取消編輯', callback_data: 'edit_profile_callback' }]]
           );
           return true;
         }
 
-        await db.d1.prepare('UPDATE users SET city = ? WHERE telegram_id = ?')
-          .bind(text, telegramId).run();
+        await db.d1
+          .prepare('UPDATE users SET city = ? WHERE telegram_id = ?')
+          .bind(text, telegramId)
+          .run();
 
         await deleteSession(db, telegramId, SESSION_TYPE);
-        await telegram.sendMessageWithButtons(
-          chatId,
-          `✅ 地區已更新為：${text}`,
-          [
-            [
-              { text: '✏️ 繼續編輯資料', callback_data: 'edit_profile_callback' },
-            ],
-            [
-              { text: '🏠 返回主選單', callback_data: 'return_to_menu' },
-            ],
-          ]
-        );
+        await telegram.sendMessageWithButtons(chatId, `✅ 地區已更新為：${text}`, [
+          [{ text: '✏️ 繼續編輯資料', callback_data: 'edit_profile_callback' }],
+          [{ text: '🏠 返回主選單', callback_data: 'return_to_menu' }],
+        ]);
         return true;
       }
 
       case 'interests': {
-        const interests = text.split(',').map(i => i.trim()).filter(i => i.length > 0);
-        
+        const interests = text
+          .split(',')
+          .map((i) => i.trim())
+          .filter((i) => i.length > 0);
+
         if (interests.length > 5) {
           await telegram.sendMessageWithButtons(
             chatId,
             '❌ 最多只能設定 5 個興趣標籤。\n\n請重新輸入或取消編輯：',
-            [
-              [
-                { text: '❌ 取消編輯', callback_data: 'edit_profile_callback' },
-              ],
-            ]
+            [[{ text: '❌ 取消編輯', callback_data: 'edit_profile_callback' }]]
           );
           return true;
         }
 
-        if (interests.some(i => i.length > 20)) {
+        if (interests.some((i) => i.length > 20)) {
           await telegram.sendMessageWithButtons(
             chatId,
             '❌ 每個標籤最多 20 個字符。\n\n請重新輸入或取消編輯：',
-            [
-              [
-                { text: '❌ 取消編輯', callback_data: 'edit_profile_callback' },
-              ],
-            ]
+            [[{ text: '❌ 取消編輯', callback_data: 'edit_profile_callback' }]]
           );
           return true;
         }
 
         const interestsStr = interests.join(', ');
-        await db.d1.prepare('UPDATE users SET interests = ? WHERE telegram_id = ?')
-          .bind(interestsStr, telegramId).run();
+        await db.d1
+          .prepare('UPDATE users SET interests = ? WHERE telegram_id = ?')
+          .bind(interestsStr, telegramId)
+          .run();
 
         await deleteSession(db, telegramId, SESSION_TYPE);
-        await telegram.sendMessageWithButtons(
-          chatId,
-          `✅ 興趣標籤已更新：\n\n${interestsStr}`,
-          [
-            [
-              { text: '✏️ 繼續編輯資料', callback_data: 'edit_profile_callback' },
-            ],
-            [
-              { text: '🏠 返回主選單', callback_data: 'return_to_menu' },
-            ],
-          ]
-        );
+        await telegram.sendMessageWithButtons(chatId, `✅ 興趣標籤已更新：\n\n${interestsStr}`, [
+          [{ text: '✏️ 繼續編輯資料', callback_data: 'edit_profile_callback' }],
+          [{ text: '🏠 返回主選單', callback_data: 'return_to_menu' }],
+        ]);
         return true;
       }
 
@@ -768,4 +726,3 @@ export async function handleProfileEditInput(message: TelegramMessage, env: Env)
     return false;
   }
 }
-

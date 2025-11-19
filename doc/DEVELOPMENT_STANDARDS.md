@@ -442,8 +442,17 @@ chore: 更新依賴版本
   - 特別檢查新增的表和欄位
 
 #### 代碼檢查
+- [ ] **執行 `pnpm format`** - 自動格式化代碼，確保縮進和格式一致
 - [ ] **執行 `pnpm lint`** - 確保 0 錯誤，警告數量未增加
 - [ ] **執行 `pnpm test`** - 確保所有測試通過
+- [ ] **執行 Schema 一致性檢查** - 確保代碼中使用的欄位存在於資料庫中
+  ```bash
+  # 檢查是否使用了不存在的欄位
+  grep -r "\.is_super_admin" src/telegram/handlers/
+  grep -r "\.is_admin" src/telegram/handlers/ | grep -v "function isAdmin"
+  ```
+  - 正確：使用 `user.role === 'god'` 檢查超級管理員
+  - 錯誤：使用 `user.is_super_admin`（欄位不存在）
 - [ ] **檢查是否使用了正確的工具函數**
   - 例如：暱稱擾碼使用 `maskNickname` 而不是 `maskSensitiveValue`
   - 確認函數名稱和用途一致
@@ -470,6 +479,34 @@ chore: 更新依賴版本
 #### 文檔檢查
 - [ ] **確認 SPEC.md 已更新**（如有業務邏輯或資料庫變更）
 - [ ] **確認相關文檔已同步更新**
+
+#### 新功能檢查（New Feature Checklist）
+**如果新增了命令或功能，必須完成以下檢查：**
+
+- [ ] **路由配置**
+  - 在 `src/router.ts` 中註冊新命令
+  - 檢查權限控制（一般用戶/管理員/超級管理員）
+  - 測試命令是否正確路由到處理器
+
+- [ ] **命令文檔更新**
+  - 更新 `src/telegram/handlers/help.ts` 中的 `/help` 命令
+  - 更新 `src/telegram/handlers/help.ts` 中的 `/rules` 命令（如需要）
+  - 確保不同角色看到正確的命令列表
+
+- [ ] **Smoke Test 更新**
+  - 在 `SMOKE_TEST_COVERAGE_REPORT.md` 中添加新功能測試項
+  - 更新 `scripts/e2e-test.sh` 添加路由檢查
+  - 確保新命令在測試覆蓋範圍內
+
+- [ ] **i18n 翻譯**
+  - 添加新的翻譯 key 到 `src/i18n/keys.ts`
+  - 更新所有語言的翻譯文件
+  - 測試不同語言下的顯示
+
+- [ ] **部署後驗證**
+  - 真實測試所有新命令
+  - 檢查 Worker 日誌無錯誤
+  - 測試不同角色的權限
 
 ### 6.2 常見錯誤與預防（Common Mistakes & Prevention）
 

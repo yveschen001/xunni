@@ -1,6 +1,6 @@
 /**
  * Invite Activation Handler
- * 
+ *
  * Handles invite activation notifications
  */
 
@@ -55,16 +55,16 @@ async function sendInviterNotification(
   invitee: User
 ): Promise<void> {
   const i18n = createI18n(inviter.language_pref || 'zh-TW');
-  
+
   // Mask invitee nickname for privacy
   const maskedNickname = maskNickname(invitee.nickname || '新用戶');
-  
+
   // Calculate current stats
   const currentInvites = inviter.successful_invites || 0;
   const maxInvites = getInviteLimit(inviter);
   const newQuota = calculateDailyQuota(inviter);
   const userType = inviter.is_vip ? 'VIP ' : '免費';
-  
+
   // Build message
   let message = i18n.t('invite.inviterSuccess', {
     nickname: maskedNickname,
@@ -73,34 +73,34 @@ async function sendInviterNotification(
     maxInvites: maxInvites.toString(),
     quota: newQuota.toString(),
   });
-  
+
   // Add invite limit warning if needed
   if (shouldShowInviteLimitWarning(inviter)) {
-    message += '\n\n' + i18n.t('invite.limitWarning', {
-      count: currentInvites.toString(),
-    });
+    message +=
+      '\n\n' +
+      i18n.t('invite.limitWarning', {
+        count: currentInvites.toString(),
+      });
   } else if (hasReachedInviteLimit(inviter)) {
-    message += '\n\n' + i18n.t('invite.limitReached', {
-      count: currentInvites.toString(),
-    });
+    message +=
+      '\n\n' +
+      i18n.t('invite.limitReached', {
+        count: currentInvites.toString(),
+      });
   } else if (!inviter.is_vip) {
     message += '\n\n' + i18n.t('invite.upgradePrompt');
   }
-  
+
   await telegram.sendMessage(inviter.telegram_id, message);
 }
 
 /**
  * Send notification to invitee
  */
-async function sendInviteeNotification(
-  telegram: TelegramService,
-  invitee: User
-): Promise<void> {
+async function sendInviteeNotification(telegram: TelegramService, invitee: User): Promise<void> {
   const i18n = createI18n(invitee.language_pref || 'zh-TW');
-  
+
   const message = i18n.t('invite.inviteeSuccess');
-  
+
   await telegram.sendMessage(invitee.telegram_id, message);
 }
-

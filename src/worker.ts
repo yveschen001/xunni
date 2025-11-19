@@ -5,6 +5,7 @@
 
 import type { Env } from '~/types';
 import { handleWebhook } from './router';
+import { serveLegalDocument } from './legal/documents';
 
 export default {
   /**
@@ -17,6 +18,23 @@ export default {
       // Webhook endpoint
       if (url.pathname === '/webhook' && request.method === 'POST') {
         return await handleWebhook(request, env);
+      }
+
+      // Legal documents (static HTML files)
+      if (url.pathname === '/privacy.html') {
+        return serveLegalDocument('privacy');
+      }
+      if (url.pathname === '/terms.html') {
+        return serveLegalDocument('terms');
+      }
+      if (url.pathname === '/community.html') {
+        return serveLegalDocument('community');
+      }
+
+      // Ad pages (static HTML files)
+      if (url.pathname === '/ad.html' || url.pathname === '/ad-test.html') {
+        const { serveAdPage } = await import('./services/ad_pages');
+        return serveAdPage(url.pathname);
       }
 
       // Health check
@@ -36,12 +54,52 @@ export default {
 
       // API endpoints
       if (url.pathname.startsWith('/api/')) {
+        // Ad completion callback
+        if (url.pathname === '/api/ad/complete' && request.method === 'POST') {
+          const { handleAdComplete } = await import('./telegram/handlers/ad_reward');
+          const userId = url.searchParams.get('user');
+          const token = url.searchParams.get('token');
+          const provider = url.searchParams.get('provider');
+
+          if (!userId || !token || !provider) {
+            return new Response(JSON.stringify({ success: false, message: 'Missing parameters' }), {
+              status: 400,
+              headers: { 'Content-Type': 'application/json' },
+            });
+          }
+
+          const result = await handleAdComplete(userId, token, provider, env);
+          return new Response(JSON.stringify(result), {
+            headers: { 'Content-Type': 'application/json' },
+          });
+        }
+
+        // Ad error callback
+        if (url.pathname === '/api/ad/error' && request.method === 'POST') {
+          const { handleAdError } = await import('./telegram/handlers/ad_reward');
+          const userId = url.searchParams.get('user');
+          const provider = url.searchParams.get('provider');
+          const error = url.searchParams.get('error');
+
+          if (!userId || !provider || !error) {
+            return new Response(JSON.stringify({ success: false, message: 'Missing parameters' }), {
+              status: 400,
+              headers: { 'Content-Type': 'application/json' },
+            });
+          }
+
+          await handleAdError(userId, provider, error, env);
+          return new Response(JSON.stringify({ success: true }), {
+            headers: { 'Content-Type': 'application/json' },
+          });
+        }
+
         // Development endpoints (staging only)
         if (url.pathname === '/api/dev/seed-user' && request.method === 'POST') {
           const { handleSeedUser } = await import('./api/dev');
           return await handleSeedUser(request, env);
         }
-        
+
         if (url.pathname === '/api/dev/delete-fake-users' && request.method === 'POST') {
           const { handleDeleteFakeUsers } = await import('./api/dev');
           return await handleDeleteFakeUsers(request, env);
@@ -91,6 +149,14 @@ export default {
         await generateDailyStats(env);
       }
 
+      // Daily reports to super admins (Every day at 09:00 UTC = 17:00 Taipei)
+      if (event.cron === '0 9 * * *') {
+        // eslint-disable-next-line no-console
+        console.log('[Worker] Sending daily reports to super admins...');
+        const { sendDailyReportsToSuperAdmins } = await import('./services/daily_reports');
+        await sendDailyReportsToSuperAdmins(env);
+      }
+
       // Broadcast queue (Every 5 minutes)
       if (event.cron === '*/5 * * * *') {
         // eslint-disable-next-line no-console
@@ -98,9 +164,16 @@ export default {
         const { processBroadcastQueue } = await import('./services/broadcast');
         await processBroadcastQueue(env);
       }
+
+      // Check and auto-disable expired maintenance mode (Every minute)
+      if (event.cron === '*/5 * * * *') {
+        // eslint-disable-next-line no-console
+        console.log('[Worker] Checking maintenance mode...');
+        const { checkAndDisableExpiredMaintenance } = await import('./services/maintenance');
+        await checkAndDisableExpiredMaintenance(env);
+      }
     } catch (error) {
       console.error('[Worker] Scheduled event error:', error);
     }
   },
 };
-

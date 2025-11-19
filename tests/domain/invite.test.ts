@@ -23,7 +23,7 @@ describe('Invite Domain Logic', () => {
         is_vip: false,
         successful_invites: 5,
       } as User;
-      
+
       expect(calculateDailyQuota(user)).toBe(8); // 3 + 5
     });
 
@@ -32,7 +32,7 @@ describe('Invite Domain Logic', () => {
         is_vip: false,
         successful_invites: 15,
       } as User;
-      
+
       expect(calculateDailyQuota(user)).toBe(13); // 3 + 10 (max)
     });
 
@@ -41,7 +41,7 @@ describe('Invite Domain Logic', () => {
         is_vip: true,
         successful_invites: 50,
       } as User;
-      
+
       expect(calculateDailyQuota(user)).toBe(80); // 30 + 50
     });
 
@@ -50,7 +50,7 @@ describe('Invite Domain Logic', () => {
         is_vip: true,
         successful_invites: 120,
       } as User;
-      
+
       expect(calculateDailyQuota(user)).toBe(130); // 30 + 100 (max)
     });
 
@@ -59,7 +59,7 @@ describe('Invite Domain Logic', () => {
         is_vip: false,
         successful_invites: 0,
       } as User;
-      
+
       expect(calculateDailyQuota(user)).toBe(3); // 3 + 0
     });
 
@@ -67,7 +67,7 @@ describe('Invite Domain Logic', () => {
       const user = {
         is_vip: false,
       } as User;
-      
+
       expect(calculateDailyQuota(user)).toBe(3); // 3 + 0
     });
   });
@@ -159,7 +159,7 @@ describe('Invite Domain Logic', () => {
         is_vip: false,
         successful_invites: 9,
       } as User;
-      
+
       expect(shouldShowInviteLimitWarning(user)).toBe(true);
     });
 
@@ -168,7 +168,7 @@ describe('Invite Domain Logic', () => {
         is_vip: false,
         successful_invites: 10,
       } as User;
-      
+
       expect(shouldShowInviteLimitWarning(user)).toBe(false);
     });
 
@@ -177,7 +177,7 @@ describe('Invite Domain Logic', () => {
         is_vip: true,
         successful_invites: 99,
       } as User;
-      
+
       expect(shouldShowInviteLimitWarning(user)).toBe(false);
     });
   });
@@ -188,7 +188,7 @@ describe('Invite Domain Logic', () => {
         is_vip: false,
         successful_invites: 10,
       } as User;
-      
+
       expect(hasReachedInviteLimit(user)).toBe(true);
     });
 
@@ -197,7 +197,7 @@ describe('Invite Domain Logic', () => {
         is_vip: false,
         successful_invites: 9,
       } as User;
-      
+
       expect(hasReachedInviteLimit(user)).toBe(false);
     });
 
@@ -206,7 +206,7 @@ describe('Invite Domain Logic', () => {
         is_vip: true,
         successful_invites: 100,
       } as User;
-      
+
       expect(hasReachedInviteLimit(user)).toBe(true);
     });
 
@@ -215,7 +215,7 @@ describe('Invite Domain Logic', () => {
         is_vip: true,
         successful_invites: 99,
       } as User;
-      
+
       expect(hasReachedInviteLimit(user)).toBe(false);
     });
   });
@@ -226,7 +226,7 @@ describe('Invite Domain Logic', () => {
         onboarding_step: 'completed',
         invited_by: '123456',
       } as User;
-      
+
       expect(canActivateInvite(user, true)).toBe(true);
     });
 
@@ -235,7 +235,7 @@ describe('Invite Domain Logic', () => {
         onboarding_step: 'mbti',
         invited_by: '123456',
       } as User;
-      
+
       expect(canActivateInvite(user, true)).toBe(false);
     });
 
@@ -244,7 +244,7 @@ describe('Invite Domain Logic', () => {
         onboarding_step: 'completed',
         invited_by: '123456',
       } as User;
-      
+
       expect(canActivateInvite(user, false)).toBe(false);
     });
 
@@ -253,7 +253,7 @@ describe('Invite Domain Logic', () => {
         onboarding_step: 'completed',
         invited_by: null,
       } as User;
-      
+
       expect(canActivateInvite(user, true)).toBe(false);
     });
   });
@@ -287,4 +287,3 @@ describe('Invite Domain Logic', () => {
     });
   });
 });
-

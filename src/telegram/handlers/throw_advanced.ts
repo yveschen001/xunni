@@ -1,6 +1,6 @@
 /**
  * Throw Bottle Advanced Filter Handler
- * 
+ *
  * Handles VIP advanced filtering (MBTI/Zodiac) for bottle throwing.
  */
 
@@ -13,17 +13,38 @@ import { parseSessionData } from '~/domain/session';
 
 // MBTI types
 const MBTI_TYPES = [
-  'INTJ', 'INTP', 'ENTJ', 'ENTP',
-  'INFJ', 'INFP', 'ENFJ', 'ENFP',
-  'ISTJ', 'ISFJ', 'ESTJ', 'ESFJ',
-  'ISTP', 'ISFP', 'ESTP', 'ESFP',
+  'INTJ',
+  'INTP',
+  'ENTJ',
+  'ENTP',
+  'INFJ',
+  'INFP',
+  'ENFJ',
+  'ENFP',
+  'ISTJ',
+  'ISFJ',
+  'ESTJ',
+  'ESFJ',
+  'ISTP',
+  'ISFP',
+  'ESTP',
+  'ESFP',
 ];
 
 // Zodiac signs
 const ZODIAC_SIGNS = [
-  'aries', 'taurus', 'gemini', 'cancer',
-  'leo', 'virgo', 'libra', 'scorpio',
-  'sagittarius', 'capricorn', 'aquarius', 'pisces',
+  'aries',
+  'taurus',
+  'gemini',
+  'cancer',
+  'leo',
+  'virgo',
+  'libra',
+  'scorpio',
+  'sagittarius',
+  'capricorn',
+  'aquarius',
+  'pisces',
 ];
 
 const ZODIAC_NAMES: Record<string, string> = {
@@ -44,10 +65,7 @@ const ZODIAC_NAMES: Record<string, string> = {
 /**
  * Show advanced filter menu
  */
-export async function handleThrowAdvanced(
-  callbackQuery: any,
-  env: Env
-): Promise<void> {
+export async function handleThrowAdvanced(callbackQuery: any, env: Env): Promise<void> {
   const db = createDatabaseClient(env.DB);
   const telegram = createTelegramService(env);
   const chatId = callbackQuery.message!.chat.id;
@@ -62,12 +80,13 @@ export async function handleThrowAdvanced(
     }
 
     // Check VIP status
-    const isVip = !!(user.is_vip && user.vip_expire_at && new Date(user.vip_expire_at) > new Date());
+    const isVip = !!(
+      user.is_vip &&
+      user.vip_expire_at &&
+      new Date(user.vip_expire_at) > new Date()
+    );
     if (!isVip) {
-      await telegram.answerCallbackQuery(
-        callbackQuery.id,
-        '❌ 此功能僅限 VIP 會員使用'
-      );
+      await telegram.answerCallbackQuery(callbackQuery.id, '❌ 此功能僅限 VIP 會員使用');
       return;
     }
 
@@ -99,24 +118,12 @@ export async function handleThrowAdvanced(
         '• 性別：篩選性別\n\n' +
         '💡 可以組合多個條件',
       [
-        [
-          { text: '🧠 MBTI 篩選', callback_data: 'filter_mbti' },
-        ],
-        [
-          { text: '⭐ 星座篩選', callback_data: 'filter_zodiac' },
-        ],
-        [
-          { text: '🩸 血型篩選', callback_data: 'filter_blood_type' },
-        ],
-        [
-          { text: '👤 性別篩選', callback_data: 'filter_gender' },
-        ],
-        [
-          { text: '✅ 完成篩選，輸入內容', callback_data: 'filter_done' },
-        ],
-        [
-          { text: '🏠 返回主選單', callback_data: 'return_to_menu' },
-        ],
+        [{ text: '🧠 MBTI 篩選', callback_data: 'filter_mbti' }],
+        [{ text: '⭐ 星座篩選', callback_data: 'filter_zodiac' }],
+        [{ text: '🩸 血型篩選', callback_data: 'filter_blood_type' }],
+        [{ text: '👤 性別篩選', callback_data: 'filter_gender' }],
+        [{ text: '✅ 完成篩選，輸入內容', callback_data: 'filter_done' }],
+        [{ text: '🏠 返回主選單', callback_data: 'return_to_menu' }],
       ]
     );
   } catch (error) {
@@ -128,10 +135,7 @@ export async function handleThrowAdvanced(
 /**
  * Show MBTI filter selection
  */
-export async function handleFilterMBTI(
-  callbackQuery: any,
-  env: Env
-): Promise<void> {
+export async function handleFilterMBTI(callbackQuery: any, env: Env): Promise<void> {
   const db = createDatabaseClient(env.DB);
   const telegram = createTelegramService(env);
   const chatId = callbackQuery.message!.chat.id;
@@ -153,7 +157,7 @@ export async function handleFilterMBTI(
     // Build MBTI selection buttons (4x4 grid)
     const mbtiButtons: any[][] = [];
     for (let i = 0; i < MBTI_TYPES.length; i += 4) {
-      const row = MBTI_TYPES.slice(i, i + 4).map(mbti => ({
+      const row = MBTI_TYPES.slice(i, i + 4).map((mbti) => ({
         text: selectedMBTI.includes(mbti) ? `✅ ${mbti}` : mbti,
         callback_data: `select_mbti_${mbti}`,
       }));
@@ -238,10 +242,7 @@ export async function handleSelectMBTI(
 /**
  * Show Zodiac filter selection
  */
-export async function handleFilterZodiac(
-  callbackQuery: any,
-  env: Env
-): Promise<void> {
+export async function handleFilterZodiac(callbackQuery: any, env: Env): Promise<void> {
   const db = createDatabaseClient(env.DB);
   const telegram = createTelegramService(env);
   const chatId = callbackQuery.message!.chat.id;
@@ -263,7 +264,7 @@ export async function handleFilterZodiac(
     // Build Zodiac selection buttons (3x4 grid)
     const zodiacButtons: any[][] = [];
     for (let i = 0; i < ZODIAC_SIGNS.length; i += 3) {
-      const row = ZODIAC_SIGNS.slice(i, i + 3).map(zodiac => ({
+      const row = ZODIAC_SIGNS.slice(i, i + 3).map((zodiac) => ({
         text: selectedZodiac.includes(zodiac) ? `✅ ${ZODIAC_NAMES[zodiac]}` : ZODIAC_NAMES[zodiac],
         callback_data: `select_zodiac_${zodiac}`,
       }));
@@ -280,7 +281,7 @@ export async function handleFilterZodiac(
       chatId,
       callbackQuery.message!.message_id,
       '⭐ **星座篩選**\n\n' +
-        `已選擇：${selectedZodiac.length > 0 ? selectedZodiac.map(z => ZODIAC_NAMES[z]).join(', ') : '無'}\n\n` +
+        `已選擇：${selectedZodiac.length > 0 ? selectedZodiac.map((z) => ZODIAC_NAMES[z]).join(', ') : '無'}\n\n` +
         '💡 點擊選擇或取消星座：',
       {
         reply_markup: {
@@ -348,10 +349,7 @@ export async function handleSelectZodiac(
 /**
  * Handle filter gender selection
  */
-export async function handleFilterGender(
-  callbackQuery: any,
-  env: Env
-): Promise<void> {
+export async function handleFilterGender(callbackQuery: any, env: Env): Promise<void> {
   const db = createDatabaseClient(env.DB);
   const telegram = createTelegramService(env);
   const chatId = callbackQuery.message!.chat.id;
@@ -380,15 +378,22 @@ export async function handleFilterGender(
         reply_markup: {
           inline_keyboard: [
             [
-              { text: currentGender === 'male' ? '✅ 👨 男生' : '👨 男生', callback_data: 'set_gender_male' },
-              { text: currentGender === 'female' ? '✅ 👩 女生' : '👩 女生', callback_data: 'set_gender_female' },
+              {
+                text: currentGender === 'male' ? '✅ 👨 男生' : '👨 男生',
+                callback_data: 'set_gender_male',
+              },
+              {
+                text: currentGender === 'female' ? '✅ 👩 女生' : '👩 女生',
+                callback_data: 'set_gender_female',
+              },
             ],
             [
-              { text: currentGender === 'any' ? '✅ 🌈 任何人' : '🌈 任何人', callback_data: 'set_gender_any' },
+              {
+                text: currentGender === 'any' ? '✅ 🌈 任何人' : '🌈 任何人',
+                callback_data: 'set_gender_any',
+              },
             ],
-            [
-              { text: '⬅️ 返回', callback_data: 'back_to_filter' },
-            ],
+            [{ text: '⬅️ 返回', callback_data: 'back_to_filter' }],
           ],
         },
       }
@@ -442,10 +447,7 @@ export async function handleSetGender(
 /**
  * Handle back to filter menu
  */
-export async function handleBackToFilter(
-  callbackQuery: any,
-  env: Env
-): Promise<void> {
+export async function handleBackToFilter(callbackQuery: any, env: Env): Promise<void> {
   const db = createDatabaseClient(env.DB);
   const telegram = createTelegramService(env);
   const chatId = callbackQuery.message!.chat.id;
@@ -470,7 +472,7 @@ export async function handleBackToFilter(
     let summary = '當前篩選條件：\n\n';
     summary += `• 性別：${selectedGender === 'male' ? '👨 男生' : selectedGender === 'female' ? '👩 女生' : '🌈 任何人'}\n`;
     summary += `• MBTI：${selectedMBTI.length > 0 ? selectedMBTI.join(', ') : '無限制'}\n`;
-    summary += `• 星座：${selectedZodiac.length > 0 ? selectedZodiac.map(z => ZODIAC_NAMES[z]).join(', ') : '無限制'}\n`;
+    summary += `• 星座：${selectedZodiac.length > 0 ? selectedZodiac.map((z) => ZODIAC_NAMES[z]).join(', ') : '無限制'}\n`;
 
     await telegram.editMessageText(
       chatId,
@@ -479,21 +481,11 @@ export async function handleBackToFilter(
       {
         reply_markup: {
           inline_keyboard: [
-            [
-              { text: '🧠 MBTI 篩選', callback_data: 'filter_mbti' },
-            ],
-            [
-              { text: '⭐ 星座篩選', callback_data: 'filter_zodiac' },
-            ],
-            [
-              { text: '👤 性別篩選', callback_data: 'filter_gender' },
-            ],
-            [
-              { text: '✅ 完成篩選，輸入內容', callback_data: 'filter_done' },
-            ],
-            [
-              { text: '🏠 返回主選單', callback_data: 'return_to_menu' },
-            ],
+            [{ text: '🧠 MBTI 篩選', callback_data: 'filter_mbti' }],
+            [{ text: '⭐ 星座篩選', callback_data: 'filter_zodiac' }],
+            [{ text: '👤 性別篩選', callback_data: 'filter_gender' }],
+            [{ text: '✅ 完成篩選，輸入內容', callback_data: 'filter_done' }],
+            [{ text: '🏠 返回主選單', callback_data: 'return_to_menu' }],
           ],
         },
       }
@@ -507,10 +499,7 @@ export async function handleBackToFilter(
 /**
  * Handle filter done - proceed to content input
  */
-export async function handleFilterDone(
-  callbackQuery: any,
-  env: Env
-): Promise<void> {
+export async function handleFilterDone(callbackQuery: any, env: Env): Promise<void> {
   const db = createDatabaseClient(env.DB);
   const telegram = createTelegramService(env);
   const chatId = callbackQuery.message!.chat.id;
@@ -538,11 +527,12 @@ export async function handleFilterDone(
     let summary = '✅ 篩選條件已設定：\n\n';
     summary += `• 性別：${selectedGender === 'male' ? '👨 男生' : selectedGender === 'female' ? '👩 女生' : '🌈 任何人'}\n`;
     summary += `• MBTI：${selectedMBTI.length > 0 ? selectedMBTI.join(', ') : '無限制'}\n`;
-    summary += `• 星座：${selectedZodiac.length > 0 ? selectedZodiac.map(z => ZODIAC_NAMES[z]).join(', ') : '無限制'}\n`;
+    summary += `• 星座：${selectedZodiac.length > 0 ? selectedZodiac.map((z) => ZODIAC_NAMES[z]).join(', ') : '無限制'}\n`;
 
     await telegram.sendMessage(
       chatId,
-      summary + '\n\n' +
+      summary +
+        '\n\n' +
         '📝 請輸入你的漂流瓶內容：\n\n' +
         '💡 提示：\n' +
         '• 只能使用文字和官方 Emoji\n' +
@@ -563,10 +553,7 @@ export async function handleFilterDone(
 /**
  * Clear MBTI selection
  */
-export async function handleClearMBTI(
-  callbackQuery: any,
-  env: Env
-): Promise<void> {
+export async function handleClearMBTI(callbackQuery: any, env: Env): Promise<void> {
   const db = createDatabaseClient(env.DB);
   const telegram = createTelegramService(env);
   const telegramId = callbackQuery.from.id.toString();
@@ -596,10 +583,7 @@ export async function handleClearMBTI(
 /**
  * Clear Zodiac selection
  */
-export async function handleClearZodiac(
-  callbackQuery: any,
-  env: Env
-): Promise<void> {
+export async function handleClearZodiac(callbackQuery: any, env: Env): Promise<void> {
   const db = createDatabaseClient(env.DB);
   const telegram = createTelegramService(env);
   const telegramId = callbackQuery.from.id.toString();
@@ -629,10 +613,7 @@ export async function handleClearZodiac(
 /**
  * Show blood type filter selection
  */
-export async function handleFilterBloodType(
-  callbackQuery: any,
-  env: Env
-): Promise<void> {
+export async function handleFilterBloodType(callbackQuery: any, env: Env): Promise<void> {
   const db = createDatabaseClient(env.DB);
   const telegram = createTelegramService(env);
   const chatId = callbackQuery.message!.chat.id;
@@ -673,12 +654,8 @@ export async function handleFilterBloodType(
           { text: '🩸 AB 型', callback_data: 'blood_type_AB' },
           { text: '🩸 O 型', callback_data: 'blood_type_O' },
         ],
-        [
-          { text: '🌈 任何血型', callback_data: 'blood_type_any' },
-        ],
-        [
-          { text: '↩️ 返回篩選選單', callback_data: 'throw_advanced' },
-        ],
+        [{ text: '🌈 任何血型', callback_data: 'blood_type_any' }],
+        [{ text: '↩️ 返回篩選選單', callback_data: 'throw_advanced' }],
       ]
     );
   } catch (error) {
@@ -721,11 +698,13 @@ export async function handleBloodTypeSelect(
       O: '🩸 O 型',
     };
 
-    await telegram.answerCallbackQuery(callbackQuery.id, `✅ 已選擇 ${bloodTypeDisplay[bloodType]}`);
+    await telegram.answerCallbackQuery(
+      callbackQuery.id,
+      `✅ 已選擇 ${bloodTypeDisplay[bloodType]}`
+    );
     await handleFilterBloodType(callbackQuery, env);
   } catch (error) {
     console.error('[handleBloodTypeSelect] Error:', error);
     await telegram.answerCallbackQuery(callbackQuery.id, '❌ 發生錯誤');
   }
 }
-

@@ -1,6 +1,6 @@
 /**
  * Report Handler
- * 
+ *
  * Handles /report command - report inappropriate content.
  */
 
@@ -8,7 +8,6 @@ import type { Env, TelegramMessage } from '~/types';
 import { createDatabaseClient } from '~/db/client';
 import { createTelegramService } from '~/services/telegram';
 import { findUserByTelegramId } from '~/db/queries/users';
-import { getActiveConversation } from '~/db/queries/conversations';
 import { getOtherUserId } from '~/domain/conversation';
 
 export async function handleReport(message: TelegramMessage, env: Env): Promise<void> {
@@ -27,21 +26,55 @@ export async function handleReport(message: TelegramMessage, env: Env): Promise<
 
     // Check if user completed onboarding
     if (user.onboarding_step !== 'completed') {
+      await telegram.sendMessage(chatId, '❌ 請先完成註冊流程。\n\n使用 /start 繼續註冊。');
+      return;
+    }
+
+    // ✨ NEW: Check if user replied to a message
+    if (!message.reply_to_message) {
       await telegram.sendMessage(
         chatId,
-        '❌ 請先完成註冊流程。\n\n使用 /start 繼續註冊。'
+        '❌ 請長按你要舉報的訊息後回覆指令\n\n' +
+          '**操作步驟：**\n' +
+          '1️⃣ 長按對方的訊息\n' +
+          '2️⃣ 選擇「回覆」\n' +
+          '3️⃣ 輸入 /report\n\n' +
+          '💡 這樣可以準確指定要舉報的對象。'
       );
       return;
     }
 
-    // Get active conversation
-    const conversation = await getActiveConversation(db, telegramId);
-    if (!conversation) {
+    // ✨ NEW: Extract conversation identifier from replied message
+    const replyText = message.reply_to_message.text || '';
+    const conversationMatch = replyText.match(/#([A-Z0-9]+)/);
+
+    if (!conversationMatch) {
       await telegram.sendMessage(
         chatId,
-        '❌ 你目前沒有活躍的對話。\n\n' +
-          '💡 使用 /catch 撿漂流瓶開始新對話。'
+        '❌ 無法識別對話對象\n\n' + '請確保回覆的是對方發送的訊息（帶有 # 標識符）。'
       );
+      return;
+    }
+
+    const conversationIdentifier = conversationMatch[1];
+
+    // Find conversation by identifier
+    const conversation = await db.d1
+      .prepare(
+        `
+        SELECT * FROM conversations
+        WHERE (user1_id = ? OR user2_id = ?)
+          AND conversation_identifier = ?
+          AND status IN ('active', 'paused')
+        ORDER BY updated_at DESC
+        LIMIT 1
+      `
+      )
+      .bind(telegramId, telegramId, conversationIdentifier)
+      .first<any>();
+
+    if (!conversation) {
+      await telegram.sendMessage(chatId, '❌ 找不到此對話\n\n' + '對話可能已結束或不存在。');
       return;
     }
 
@@ -52,11 +85,19 @@ export async function handleReport(message: TelegramMessage, env: Env): Promise<
       return;
     }
 
+    // Store conversation info in session for callback
+    const { getSession, setSession } = await import('~/services/session');
+    const session = await getSession(db, telegramId);
+    await setSession(db, telegramId, {
+      ...session,
+      report_conversation_id: conversation.id,
+      report_conversation_identifier: conversationIdentifier,
+    });
+
     // Show report reasons
     await telegram.sendMessageWithButtons(
       chatId,
-      '🚨 **舉報不當內容**\n\n' +
-        '請選擇舉報原因：',
+      `🚨 **舉報不當內容** (#${conversationIdentifier})\n\n` + '請選擇舉報原因：',
       [
         [{ text: '🔞 色情內容', callback_data: 'report_reason_nsfw' }],
         [{ text: '💰 詐騙 / 釣魚', callback_data: 'report_reason_scam' }],
@@ -93,10 +134,27 @@ export async function handleReportReason(
       return;
     }
 
-    // Get active conversation
-    const conversation = await getActiveConversation(db, telegramId);
+    // ✨ NEW: Get conversation info from session
+    const { getSession, clearSession } = await import('~/services/session');
+    const session = await getSession(db, telegramId);
+
+    if (!session?.report_conversation_id) {
+      await telegram.answerCallbackQuery(callbackQuery.id, '❌ 會話已過期，請重新操作');
+      await telegram.deleteMessage(chatId, callbackQuery.message!.message_id);
+      return;
+    }
+
+    const conversationId = session.report_conversation_id;
+    const conversationIdentifier = session.report_conversation_identifier || '';
+
+    // Get conversation
+    const conversation = await db.d1
+      .prepare('SELECT * FROM conversations WHERE id = ?')
+      .bind(conversationId)
+      .first<any>();
+
     if (!conversation) {
-      await telegram.answerCallbackQuery(callbackQuery.id, '❌ 沒有活躍對話');
+      await telegram.answerCallbackQuery(callbackQuery.id, '❌ 對話不存在');
       return;
     }
 
@@ -117,8 +175,18 @@ export async function handleReportReason(
     const recentReports = await getRecentReportCount(db, otherUserId);
     if (recentReports >= 1) {
       // Auto-ban based on report count
-      await autoBanUser(db, telegram, otherUserId, '多次被舉報 / Multiple reports', recentReports, env);
+      await autoBanUser(
+        db,
+        telegram,
+        otherUserId,
+        '多次被舉報 / Multiple reports',
+        recentReports,
+        env
+      );
     }
+
+    // Clear session
+    await clearSession(db, telegramId);
 
     // Answer callback
     await telegram.answerCallbackQuery(callbackQuery.id, '✅ 舉報已提交');
@@ -129,10 +197,10 @@ export async function handleReportReason(
     // Send confirmation
     await telegram.sendMessage(
       chatId,
-      '✅ **舉報已提交**\n\n' +
+      `✅ **舉報已提交** (#${conversationIdentifier})\n\n` +
         '感謝你的舉報，我們會盡快審核。\n\n' +
         '💡 提示：\n' +
-        '• 使用 /block 封鎖此使用者\n' +
+        '• 長按對方訊息回覆 /block 可封鎖此使用者\n' +
         '• 使用 /catch 撿新的漂流瓶'
     );
   } catch (error) {
@@ -144,10 +212,7 @@ export async function handleReportReason(
 /**
  * Handle report cancel
  */
-export async function handleReportCancel(
-  callbackQuery: any,
-  env: Env
-): Promise<void> {
+export async function handleReportCancel(callbackQuery: any, env: Env): Promise<void> {
   const telegram = createTelegramService(env);
   const chatId = callbackQuery.message!.chat.id;
 
@@ -165,10 +230,15 @@ async function createReport(
   conversationId: number,
   reason: string
 ): Promise<void> {
-  await db.d1.prepare(`
+  await db.d1
+    .prepare(
+      `
     INSERT INTO reports (reporter_id, target_id, conversation_id, reason, created_at)
     VALUES (?, ?, ?, ?, datetime('now'))
-  `).bind(reporterId, targetId, conversationId, reason).run();
+  `
+    )
+    .bind(reporterId, targetId, conversationId, reason)
+    .run();
 }
 
 /**
@@ -178,11 +248,16 @@ async function incrementRiskScore(
   db: ReturnType<typeof createDatabaseClient>,
   userId: string
 ): Promise<void> {
-  await db.d1.prepare(`
+  await db.d1
+    .prepare(
+      `
     UPDATE users
     SET risk_score = risk_score + 10
     WHERE telegram_id = ?
-  `).bind(userId).run();
+  `
+    )
+    .bind(userId)
+    .run();
 }
 
 /**
@@ -192,12 +267,17 @@ async function getRecentReportCount(
   db: ReturnType<typeof createDatabaseClient>,
   userId: string
 ): Promise<number> {
-  const result = await db.d1.prepare(`
+  const result = await db.d1
+    .prepare(
+      `
     SELECT COUNT(*) as count
     FROM reports
     WHERE target_id = ?
       AND datetime(created_at) > datetime('now', '-24 hours')
-  `).bind(userId).first();
+  `
+    )
+    .bind(userId)
+    .first();
 
   return (result?.count as number) || 0;
 }
@@ -239,7 +319,9 @@ async function autoBanUser(
 
   // Get user info for notification
   const user = await db.d1
-    .prepare('SELECT telegram_id, language_pref, risk_score, ban_count FROM users WHERE telegram_id = ?')
+    .prepare(
+      'SELECT telegram_id, language_pref, risk_score, ban_count FROM users WHERE telegram_id = ?'
+    )
     .bind(userId)
     .first<{ telegram_id: string; language_pref: string; risk_score: number; ban_count: number }>();
 
@@ -250,7 +332,8 @@ async function autoBanUser(
 
   // Update user status
   await db.d1
-    .prepare(`
+    .prepare(
+      `
       UPDATE users
       SET is_banned = 1,
           ban_reason = ?,
@@ -259,16 +342,19 @@ async function autoBanUser(
           ban_count = ban_count + 1,
           updated_at = ?
       WHERE telegram_id = ?
-    `)
+    `
+    )
     .bind(reason, banStart, banEnd, now.toISOString(), userId)
     .run();
 
   // Create ban record
   await db.d1
-    .prepare(`
+    .prepare(
+      `
       INSERT INTO bans (user_id, reason, risk_snapshot, ban_start, ban_end, created_at)
       VALUES (?, ?, ?, ?, ?, ?)
-    `)
+    `
+    )
     .bind(userId, reason, user.risk_score, banStart, banEnd, now.toISOString())
     .run();
 
@@ -305,4 +391,3 @@ async function autoBanUser(
     console.error('[autoBanUser] Failed to send ban notification:', error);
   }
 }
-

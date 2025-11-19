@@ -164,7 +164,7 @@ export interface Translations {
     onlySuperAdmin: string;
     onlyAdmin: string;
     cannotBanAdmin: string;
-    
+
     // Admin list
     listTitle: string;
     listTotal: string;
@@ -175,33 +175,32 @@ export interface Translations {
     listUsername: string;
     listNotRegistered: string;
     listFooter: string;
-    
+
     // Admin add
     addUsageError: string;
     addAlreadySuperAdmin: string;
     addAlreadyAdmin: string;
     addUserNotFound: string;
     addInstructions: string;
-    
+
     // Admin remove
     removeUsageError: string;
     removeCannotRemoveSuperAdmin: string;
     removeNotAdmin: string;
     removeInstructions: string;
-    
+
     // Admin ban
     banUsageError: string;
     banUserNotFound: string;
     banSuccess: string;
     banSuccessPermanent: string;
-    
+
     // Admin unban
     unbanUsageError: string;
     unbanUserNotFound: string;
     unbanNotBanned: string;
     unbanSuccess: string;
-    
-    
+
     // Admin bans
     bansTitle: string;
     bansUserHistory: string;
@@ -215,26 +214,25 @@ export interface Translations {
     bansRecordItem: string;
     bansStatusActive: string;
     bansStatusInactive: string;
-    
+
     // Admin appeals
     appealsTitle: string;
     appealsNoRecords: string;
     appealsRecordItem: string;
-    
+
     // Admin approve
     approveUsageError: string;
     approveNotFound: string;
     approveAlreadyReviewed: string;
     approveSuccess: string;
-    
+
     // Admin reject
     rejectUsageError: string;
     rejectNotFound: string;
     rejectAlreadyReviewed: string;
     rejectSuccess: string;
-    
+
     // Common
     error: string;
   };
 }
-

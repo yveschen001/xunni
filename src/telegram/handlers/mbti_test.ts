@@ -1,6 +1,6 @@
 /**
  * MBTI Test Handler
- * 
+ *
  * Handles conversational MBTI test flow in bot.
  * Questions are asked one by one with button options.
  */
@@ -15,10 +15,7 @@ import {
   saveAnswerAndAdvance,
   completeMBTITest,
 } from '~/services/mbti_test_service';
-import {
-  getMBTIQuestions,
-  getTotalQuestionsByVersion,
-} from '~/domain/mbti_test';
+import { getMBTIQuestions, getTotalQuestionsByVersion } from '~/domain/mbti_test';
 
 // ============================================================================
 // Show MBTI Question
@@ -37,7 +34,7 @@ export async function showMBTIQuestion(
   // Get test progress to determine version
   const testProgress = await getMBTITestProgress(db, telegramId);
   const version = testProgress?.test_version || 'quick';
-  
+
   // Get questions for the version
   const questions = getMBTIQuestions(version);
   const question = questions[questionIndex];
@@ -57,18 +54,20 @@ export async function showMBTIQuestion(
   ]);
 
   // Add progress indicator
-  const progressBar = '▓'.repeat(Math.floor(progress / 10)) + '░'.repeat(10 - Math.floor(progress / 10));
+  const progressBar =
+    '▓'.repeat(Math.floor(progress / 10)) + '░'.repeat(10 - Math.floor(progress / 10));
 
   // Determine test title and disclaimer based on version
   const testTitle = version === 'full' ? 'MBTI 完整測驗' : 'MBTI 快速測驗';
   const testInfo = version === 'full' ? '36 題' : '12 題';
-  
+
   // Add disclaimer on first question
-  const disclaimer = questionIndex === 0 
-    ? (version === 'full' 
+  const disclaimer =
+    questionIndex === 0
+      ? version === 'full'
         ? `\n\n💡 這是完整測驗（${testInfo}），結果更準確。\n完成註冊後，可使用 /mbti 重新測驗。\n\n`
-        : `\n\n💡 這是快速測驗（${testInfo}），結果僅供參考。\n完成註冊後，可使用 /mbti 重新測驗。\n\n`)
-    : `\n\n`;
+        : `\n\n💡 這是快速測驗（${testInfo}），結果僅供參考。\n完成註冊後，可使用 /mbti 重新測驗。\n\n`
+      : `\n\n`;
 
   await telegram.sendMessageWithButtons(
     chatId,
@@ -156,11 +155,11 @@ async function handleTestCompletion(
 ): Promise<void> {
   try {
     console.log('[handleTestCompletion] Starting test completion for user:', telegramId);
-    
+
     // Get test progress to determine version
     const testProgress = await getMBTITestProgress(db, telegramId);
     const version = testProgress?.test_version || 'quick';
-    
+
     // Complete test and get result
     const result = await completeMBTITest(db, telegramId);
     console.log('[handleTestCompletion] MBTI result:', result);
@@ -177,9 +176,9 @@ async function handleTestCompletion(
     const testTitle = version === 'full' ? '完整測驗' : '快速測驗';
     const testInfo = version === 'full' ? '36 題' : '12 題';
     const accuracy = version === 'full' ? '結果更準確' : '結果僅供參考';
-    
+
     // Show result
-    const completionMessage = 
+    const completionMessage =
       `🎉 ${testTitle}完成！\n\n` +
       `你的 MBTI 類型是：**${result.type}**\n\n` +
       `${result.description_zh_TW}\n\n` +
@@ -193,18 +192,10 @@ async function handleTestCompletion(
       await telegram.sendMessage(chatId, completionMessage);
     } else {
       // If not in onboarding, show buttons to navigate
-      await telegram.sendMessageWithButtons(
-        chatId,
-        completionMessage,
-        [
-          [
-            { text: '🧠 MBTI 選單', callback_data: 'mbti_menu_from_completion' },
-          ],
-          [
-            { text: '🏠 返回主選單', callback_data: 'return_to_menu' },
-          ],
-        ]
-      );
+      await telegram.sendMessageWithButtons(chatId, completionMessage, [
+        [{ text: '🧠 MBTI 選單', callback_data: 'mbti_menu_from_completion' }],
+        [{ text: '🏠 返回主選單', callback_data: 'return_to_menu' }],
+      ]);
     }
 
     // If in onboarding, continue to next step
@@ -231,12 +222,14 @@ async function handleTestCompletion(
     }
   } catch (error) {
     console.error('[handleTestCompletion] Error:', error);
-    console.error('[handleTestCompletion] Error stack:', error instanceof Error ? error.stack : 'No stack');
+    console.error(
+      '[handleTestCompletion] Error stack:',
+      error instanceof Error ? error.stack : 'No stack'
+    );
     await telegram.sendMessage(
-      chatId, 
+      chatId,
       `❌ 計算結果時發生錯誤，請稍後再試。\n\n` +
         `錯誤信息：${error instanceof Error ? error.message : String(error)}`
     );
   }
 }
-

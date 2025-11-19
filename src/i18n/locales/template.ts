@@ -1,7 +1,7 @@
 /**
  * Language Template
  * Use this as a template for new language translations
- * 
+ *
  * TODO: Replace with actual translations from CSV/Google Sheets
  */
 
@@ -37,4 +37,3 @@ export const hi = createPlaceholderTranslations('hi');
 export const bn = createPlaceholderTranslations('bn');
 export const tr = createPlaceholderTranslations('tr');
 export const zhCN = createPlaceholderTranslations('zh-CN');
-

@@ -1,12 +1,12 @@
 /**
  * i18n System
  * Based on @doc/I18N_GUIDE.md
- * 
+ *
  * Currently supports:
  * - zh-TW (Traditional Chinese) - Complete
  * - en (English) - Complete
  * - Other languages - Use key + zh-TW fallback
- * 
+ *
  * Future: Import translations from CSV/Google Sheets
  */
 
@@ -51,11 +51,11 @@ export function t(
   params?: Record<string, string | number>
 ): string {
   const translations = getTranslations(languageCode);
-  
+
   // Get translation by nested key (e.g., "onboarding.welcome")
   const keys = key.split('.');
   let value: Record<string, unknown> | string = translations;
-  
+
   for (const k of keys) {
     if (value && typeof value === 'object' && k in value) {
       value = (value as Record<string, unknown>)[k] as Record<string, unknown> | string;
@@ -81,8 +81,7 @@ export function t(
  */
 export function createI18n(languageCode: string) {
   return {
-    t: (key: string, params?: Record<string, string | number>) => 
-      t(languageCode, key, params),
+    t: (key: string, params?: Record<string, string | number>) => t(languageCode, key, params),
     translations: getTranslations(languageCode),
   };
 }
@@ -109,4 +108,3 @@ export function exportTranslationsToCSV(): string {
   // TODO: Implement CSV export
   throw new Error('CSV export not yet implemented');
 }
-

@@ -18,10 +18,7 @@ export function isConversationActive(conversation: Conversation): boolean {
 /**
  * Get the other user in conversation
  */
-export function getOtherUserId(
-  conversation: Conversation,
-  userId: string
-): string | null {
+export function getOtherUserId(conversation: Conversation, userId: string): string | null {
   if (conversation.user_a_telegram_id === userId) {
     return conversation.user_b_telegram_id;
   }
@@ -48,4 +45,3 @@ export function validateMessageContent(content: string): {
 
   return { valid: true };
 }
-

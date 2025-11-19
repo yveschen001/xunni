@@ -193,4 +193,3 @@ export async function getTotalReportCount(db: DatabaseClient): Promise<number> {
   const result = await db.queryOne<{ count: number }>(sql);
   return result?.count || 0;
 }
-

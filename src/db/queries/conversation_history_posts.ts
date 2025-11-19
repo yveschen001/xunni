@@ -1,6 +1,6 @@
 /**
  * Conversation History Posts Queries
- * 
+ *
  * Manages history posts and new message posts for conversations
  */
 
@@ -171,7 +171,7 @@ export async function upsertNewMessagePost(
   messageTime: Date
 ): Promise<void> {
   const timeStr = messageTime.toISOString();
-  
+
   await db.d1
     .prepare(
       `INSERT INTO conversation_new_message_posts 
@@ -204,4 +204,3 @@ export async function deleteNewMessagePost(
     .bind(conversationId, userTelegramId)
     .run();
 }
-

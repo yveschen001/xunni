@@ -1,6 +1,6 @@
 /**
  * VIP Handler
- * 
+ *
  * Handles /vip command - VIP subscription via Telegram Stars.
  */
 
@@ -29,6 +29,14 @@ export async function handleVip(message: TelegramMessage, env: Env): Promise<voi
   const telegramId = message.from!.id.toString();
 
   try {
+    // ✨ NEW: Update user activity (non-blocking)
+    try {
+      const { updateUserActivity } = await import('~/services/user_activity');
+      await updateUserActivity(db, telegramId);
+    } catch (activityError) {
+      console.error('[handleVip] Failed to update user activity:', activityError);
+    }
+
     // Get user
     const user = await findUserByTelegramId(db, telegramId);
     if (!user) {
@@ -42,16 +50,13 @@ export async function handleVip(message: TelegramMessage, env: Env): Promise<voi
 
     // Check if user completed onboarding
     if (user.onboarding_step !== 'completed') {
-      await telegram.sendMessage(
-        chatId,
-        '❌ 請先完成註冊流程。\n\n使用 /start 繼續註冊。'
-      );
+      await telegram.sendMessage(chatId, '❌ 請先完成註冊流程。\n\n使用 /start 繼續註冊。');
       return;
     }
 
     // Check current VIP status
     const isVip = user.is_vip && user.vip_expire_at && new Date(user.vip_expire_at) > new Date();
-    
+
     if (isVip) {
       const expireDate = new Date(user.vip_expire_at!).toLocaleDateString('zh-TW');
       await telegram.sendMessageWithButtons(
@@ -99,10 +104,7 @@ export async function handleVip(message: TelegramMessage, env: Env): Promise<voi
 /**
  * Handle VIP purchase callback
  */
-export async function handleVipPurchase(
-  callbackQuery: any,
-  env: Env
-): Promise<void> {
+export async function handleVipPurchase(callbackQuery: any, env: Env): Promise<void> {
   const telegram = createTelegramService(env);
   const chatId = callbackQuery.message!.chat.id;
   const telegramId = callbackQuery.from.id.toString();
@@ -125,10 +127,7 @@ export async function handleVipPurchase(
 /**
  * Handle VIP renew callback
  */
-export async function handleVipRenew(
-  callbackQuery: any,
-  env: Env
-): Promise<void> {
+export async function handleVipRenew(callbackQuery: any, env: Env): Promise<void> {
   const telegram = createTelegramService(env);
   const chatId = callbackQuery.message!.chat.id;
   const telegramId = callbackQuery.from.id.toString();
@@ -151,10 +150,7 @@ export async function handleVipRenew(
 /**
  * Handle VIP cancel callback
  */
-export async function handleVipCancel(
-  callbackQuery: any,
-  env: Env
-): Promise<void> {
+export async function handleVipCancel(callbackQuery: any, env: Env): Promise<void> {
   const telegram = createTelegramService(env);
   const chatId = callbackQuery.message!.chat.id;
 
@@ -175,12 +171,12 @@ async function sendVipInvoice(
 ): Promise<void> {
   const priceStars = resolveVipPrice(env);
   const title = isRenewal ? 'XunNi VIP 續訂' : 'XunNi VIP 訂閱';
-  const description = 
+  const description =
     `升級 VIP 會員，享受以下權益：\n` +
-  `• 每天 30 個漂流瓶配額（最高 100 個/天）\n` +
-  `• 可篩選配對對象的 MBTI 和星座\n` +
-  `• 34 種語言自動翻譯（OpenAI GPT 優先）\n` +
-  `• 無廣告體驗`;
+    `• 每天 30 個漂流瓶配額（最高 100 個/天）\n` +
+    `• 可篩選配對對象的 MBTI 和星座\n` +
+    `• 34 種語言自動翻譯（OpenAI GPT 優先）\n` +
+    `• 無廣告體驗`;
 
   // Create invoice
   const invoice = {
@@ -229,14 +225,10 @@ export async function handlePreCheckout(
   try {
     // Parse payload
     const payload = JSON.parse(preCheckoutQuery.invoice_payload);
-    
+
     // Validate payload
     if (payload.type !== 'vip_subscription') {
-      await telegram.answerPreCheckoutQuery(
-        preCheckoutQuery.id,
-        false,
-        '❌ 無效的支付類型'
-      );
+      await telegram.answerPreCheckoutQuery(preCheckoutQuery.id, false, '❌ 無效的支付類型');
       return;
     }
 
@@ -268,7 +260,7 @@ export async function handleSuccessfulPayment(
   try {
     // Parse payload
     const payload = JSON.parse(payment.invoice_payload);
-    
+
     // Get user
     const user = await findUserByTelegramId(db, telegramId);
     if (!user) {
@@ -278,21 +270,29 @@ export async function handleSuccessfulPayment(
 
     // Calculate VIP expiration
     const now = new Date();
-    const currentExpire = user.vip_expire_at && new Date(user.vip_expire_at) > now
-      ? new Date(user.vip_expire_at)
-      : now;
-    const newExpire = new Date(currentExpire.getTime() + payload.duration_days * 24 * 60 * 60 * 1000);
+    const currentExpire =
+      user.vip_expire_at && new Date(user.vip_expire_at) > now ? new Date(user.vip_expire_at) : now;
+    const newExpire = new Date(
+      currentExpire.getTime() + payload.duration_days * 24 * 60 * 60 * 1000
+    );
 
     // Update user VIP status
-    await db.d1.prepare(`
+    await db.d1
+      .prepare(
+        `
       UPDATE users
       SET is_vip = 1,
           vip_expire_at = ?
       WHERE telegram_id = ?
-    `).bind(newExpire.toISOString(), telegramId).run();
+    `
+      )
+      .bind(newExpire.toISOString(), telegramId)
+      .run();
 
     // Create payment record
-    await db.d1.prepare(`
+    await db.d1
+      .prepare(
+        `
       INSERT INTO payments (
         user_id,
         telegram_payment_id,
@@ -302,13 +302,16 @@ export async function handleSuccessfulPayment(
         payload,
         created_at
       ) VALUES (?, ?, ?, ?, 'completed', ?, datetime('now'))
-    `).bind(
-      telegramId,
-      payment.telegram_payment_charge_id,
-      VIP_PRICE_STARS,
-      'XTR',
-      payment.invoice_payload
-    ).run();
+    `
+      )
+      .bind(
+        telegramId,
+        payment.telegram_payment_charge_id,
+        VIP_PRICE_STARS,
+        'XTR',
+        payment.invoice_payload
+      )
+      .run();
 
     // Send confirmation
     await telegram.sendMessage(
@@ -327,8 +330,7 @@ export async function handleSuccessfulPayment(
     console.error('[handleSuccessfulPayment] Error:', error);
     await telegram.sendMessage(
       chatId,
-      '❌ 處理支付時發生錯誤，請聯繫客服。\n\n' +
-        `支付 ID：${payment.telegram_payment_charge_id}`
+      '❌ 處理支付時發生錯誤，請聯繫客服。\n\n' + `支付 ID：${payment.telegram_payment_charge_id}`
     );
   }
 }

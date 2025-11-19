@@ -62,6 +62,12 @@ CREATE TABLE IF NOT EXISTS users (
   anonymized_at TEXT,
   deletion_requested_at TEXT,
   
+  -- Activity tracking (for smart broadcasting)
+  last_active_at TEXT DEFAULT CURRENT_TIMESTAMP,
+  bot_status TEXT DEFAULT 'active' CHECK(bot_status IN ('active', 'blocked', 'deleted', 'deactivated', 'invalid')),
+  bot_status_updated_at TEXT,
+  failed_delivery_count INTEGER DEFAULT 0,
+  
   -- Timestamps
   created_at TEXT DEFAULT CURRENT_TIMESTAMP,
   updated_at TEXT DEFAULT CURRENT_TIMESTAMP
@@ -71,6 +77,9 @@ CREATE INDEX idx_users_telegram_id ON users(telegram_id);
 CREATE INDEX idx_users_invite_code ON users(invite_code);
 CREATE INDEX idx_users_invited_by ON users(invited_by);
 CREATE INDEX idx_users_is_banned ON users(is_banned);
+CREATE INDEX idx_users_bot_status ON users(bot_status);
+CREATE INDEX idx_users_last_active ON users(last_active_at);
+CREATE INDEX idx_users_activity_status ON users(last_active_at, bot_status);
 CREATE INDEX idx_users_role ON users(role);
 CREATE INDEX idx_users_deleted_at ON users(deleted_at);
 
@@ -430,6 +439,9 @@ CREATE TABLE IF NOT EXISTS broadcasts (
   total_users INTEGER DEFAULT 0,
   sent_count INTEGER DEFAULT 0,
   failed_count INTEGER DEFAULT 0,
+  blocked_count INTEGER DEFAULT 0,
+  deleted_count INTEGER DEFAULT 0,
+  invalid_count INTEGER DEFAULT 0,
   created_by TEXT NOT NULL,
   created_at TEXT DEFAULT CURRENT_TIMESTAMP,
   started_at TEXT,

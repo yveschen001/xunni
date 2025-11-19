@@ -14,7 +14,9 @@ export async function createConversation(
   userAId: string,
   userBId: string
 ): Promise<number> {
-  const result = await db.d1.prepare(`
+  const result = await db.d1
+    .prepare(
+      `
     INSERT INTO conversations (
       user_a_telegram_id,
       user_b_telegram_id,
@@ -23,7 +25,10 @@ export async function createConversation(
       created_at,
       last_message_at
     ) VALUES (?, ?, ?, 'active', datetime('now'), datetime('now'))
-  `).bind(userAId, userBId, bottleId).run();
+  `
+    )
+    .bind(userAId, userBId, bottleId)
+    .run();
 
   return result.meta.last_row_id as number;
 }
@@ -35,13 +40,18 @@ export async function getActiveConversation(
   db: DatabaseClient,
   userId: string
 ): Promise<Conversation | null> {
-  const result = await db.d1.prepare(`
+  const result = await db.d1
+    .prepare(
+      `
     SELECT * FROM conversations
     WHERE (user_a_telegram_id = ? OR user_b_telegram_id = ?)
       AND status = 'active'
     ORDER BY last_message_at DESC
     LIMIT 1
-  `).bind(userId, userId).first();
+  `
+    )
+    .bind(userId, userId)
+    .first();
 
   return result as Conversation | null;
 }
@@ -53,9 +63,14 @@ export async function getConversationById(
   db: DatabaseClient,
   conversationId: number
 ): Promise<Conversation | null> {
-  const result = await db.d1.prepare(`
+  const result = await db.d1
+    .prepare(
+      `
     SELECT * FROM conversations WHERE id = ?
-  `).bind(conversationId).first();
+  `
+    )
+    .bind(conversationId)
+    .first();
 
   return result as Conversation | null;
 }
@@ -63,16 +78,18 @@ export async function getConversationById(
 /**
  * End conversation
  */
-export async function endConversation(
-  db: DatabaseClient,
-  conversationId: number
-): Promise<void> {
-  await db.d1.prepare(`
+export async function endConversation(db: DatabaseClient, conversationId: number): Promise<void> {
+  await db.d1
+    .prepare(
+      `
     UPDATE conversations
     SET status = 'ended',
         ended_at = datetime('now')
     WHERE id = ?
-  `).bind(conversationId).run();
+  `
+    )
+    .bind(conversationId)
+    .run();
 }
 
 /**
@@ -89,7 +106,9 @@ export async function saveConversationMessage(
   originalLanguage?: string,
   targetLanguage?: string
 ): Promise<number> {
-  const result = await db.d1.prepare(`
+  const result = await db.d1
+    .prepare(
+      `
     INSERT INTO conversation_messages (
       conversation_id,
       sender_telegram_id,
@@ -102,23 +121,31 @@ export async function saveConversationMessage(
       is_blocked_by_ai,
       created_at
     ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, 0, datetime('now'))
-  `).bind(
-    conversationId,
-    senderId,
-    receiverId,
-    originalText,
-    translatedText || null,
-    translationProvider || null,
-    originalLanguage || null,
-    targetLanguage || null
-  ).run();
+  `
+    )
+    .bind(
+      conversationId,
+      senderId,
+      receiverId,
+      originalText,
+      translatedText || null,
+      translationProvider || null,
+      originalLanguage || null,
+      targetLanguage || null
+    )
+    .run();
 
   // Update last_message_at
-  await db.d1.prepare(`
+  await db.d1
+    .prepare(
+      `
     UPDATE conversations
     SET last_message_at = datetime('now')
     WHERE id = ?
-  `).bind(conversationId).run();
+  `
+    )
+    .bind(conversationId)
+    .run();
 
   return result.meta.last_row_id as number;
 }
@@ -135,7 +162,9 @@ export async function createBottleChatHistory(
   bottleContent: string
 ): Promise<void> {
   try {
-    await db.d1.prepare(`
+    await db.d1
+      .prepare(
+        `
       INSERT INTO bottle_chat_history (
         bottle_id,
         conversation_id,
@@ -148,7 +177,10 @@ export async function createBottleChatHistory(
         status,
         created_at
       ) VALUES (?, ?, ?, ?, ?, datetime('now'), datetime('now'), 0, 'active', datetime('now'))
-    `).bind(bottleId, conversationId, userAId, userBId, bottleContent).run();
+    `
+      )
+      .bind(bottleId, conversationId, userAId, userBId, bottleContent)
+      .run();
   } catch (error) {
     console.error('[createBottleChatHistory] Skipped (table missing?):', error);
   }
@@ -162,12 +194,17 @@ export async function updateBottleChatHistory(
   conversationId: number
 ): Promise<void> {
   try {
-    await db.d1.prepare(`
+    await db.d1
+      .prepare(
+        `
       UPDATE bottle_chat_history
       SET last_message_at = datetime('now'),
           total_messages = total_messages + 1
       WHERE conversation_id = ?
-    `).bind(conversationId).run();
+    `
+      )
+      .bind(conversationId)
+      .run();
   } catch (error) {
     console.error('[updateBottleChatHistory] Skipped (table missing?):', error);
   }

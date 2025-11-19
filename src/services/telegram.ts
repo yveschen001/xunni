@@ -23,10 +23,14 @@ export class TelegramService {
   /**
    * Send a text message
    */
-  async sendMessage(chatId: number | string, text: string, options?: {
-    reply_markup?: unknown;
-    parse_mode?: 'Markdown' | 'HTML';
-  }): Promise<boolean> {
+  async sendMessage(
+    chatId: number | string,
+    text: string,
+    options?: {
+      reply_markup?: unknown;
+      parse_mode?: 'Markdown' | 'HTML';
+    }
+  ): Promise<boolean> {
     try {
       const response = await fetch(`${this.baseURL}/sendMessage`, {
         method: 'POST',
@@ -56,10 +60,14 @@ export class TelegramService {
   /**
    * Send a message and return the message details including message_id
    */
-  async sendMessageAndGetId(chatId: number | string, text: string, options?: {
-    reply_markup?: unknown;
-    parse_mode?: 'Markdown' | 'HTML';
-  }): Promise<{ message_id: number; ok: boolean }> {
+  async sendMessageAndGetId(
+    chatId: number | string,
+    text: string,
+    options?: {
+      reply_markup?: unknown;
+      parse_mode?: 'Markdown' | 'HTML';
+    }
+  ): Promise<{ message_id: number; ok: boolean }> {
     try {
       const response = await fetch(`${this.baseURL}/sendMessage`, {
         method: 'POST',
@@ -84,9 +92,9 @@ export class TelegramService {
         throw new Error('Invalid response from Telegram API');
       }
 
-      return { 
+      return {
         message_id: data.result.message_id,
-        ok: true
+        ok: true,
       };
     } catch (error) {
       console.error('[Telegram] sendMessageAndGetId error:', error);
@@ -448,4 +456,3 @@ export class TelegramService {
 export function createTelegramService(env: Env): TelegramService {
   return new TelegramService(env);
 }
-

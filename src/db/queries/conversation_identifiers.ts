@@ -1,6 +1,6 @@
 /**
  * Conversation Identifiers Database Queries
- * 
+ *
  * Database operations for managing conversation partner identifiers.
  */
 
@@ -26,7 +26,7 @@ export interface ConversationWithIdentifier {
 
 /**
  * Get or create an identifier for a conversation partner
- * 
+ *
  * @param db - Database client
  * @param userTelegramId - User's Telegram ID
  * @param partnerTelegramId - Partner's Telegram ID
@@ -46,20 +46,22 @@ export async function getOrCreateIdentifier(
     )
     .bind(userTelegramId, partnerTelegramId)
     .first<{ identifier: string }>();
-  
+
   if (existing) {
     return existing.identifier;
   }
-  
+
   // 2. Generate new identifier
   const { results: allIdentifiers } = await db.d1
-    .prepare('SELECT identifier FROM conversation_identifiers WHERE user_telegram_id = ? ORDER BY identifier')
+    .prepare(
+      'SELECT identifier FROM conversation_identifiers WHERE user_telegram_id = ? ORDER BY identifier'
+    )
     .bind(userTelegramId)
     .all<{ identifier: string }>();
-  
-  const currentIdentifiers = allIdentifiers.map(r => r.identifier);
+
+  const currentIdentifiers = allIdentifiers.map((r) => r.identifier);
   const newIdentifier = generateNextIdentifier(currentIdentifiers);
-  
+
   // 3. Save to database
   await db.d1
     .prepare(
@@ -67,13 +69,13 @@ export async function getOrCreateIdentifier(
     )
     .bind(userTelegramId, partnerTelegramId, newIdentifier, conversationId)
     .run();
-  
+
   return newIdentifier;
 }
 
 /**
  * Get identifier by partner Telegram ID
- * 
+ *
  * @param db - Database client
  * @param userTelegramId - User's Telegram ID
  * @param partnerTelegramId - Partner's Telegram ID
@@ -90,13 +92,13 @@ export async function getIdentifierByPartner(
     )
     .bind(userTelegramId, partnerTelegramId)
     .first<{ identifier: string }>();
-  
+
   return result?.identifier || null;
 }
 
 /**
  * Get partner Telegram ID by identifier
- * 
+ *
  * @param db - Database client
  * @param userTelegramId - User's Telegram ID
  * @param identifier - Identifier (e.g., 'A', 'B')
@@ -113,13 +115,13 @@ export async function getPartnerByIdentifier(
     )
     .bind(userTelegramId, identifier.toUpperCase())
     .first<{ partner_telegram_id: string }>();
-  
+
   return result?.partner_telegram_id || null;
 }
 
 /**
  * Get all conversations with identifiers for a user
- * 
+ *
  * @param db - Database client
  * @param userTelegramId - User's Telegram ID
  * @returns Array of conversations with identifiers and statistics
@@ -155,18 +157,18 @@ export async function getAllConversationsWithIdentifiers(
     GROUP BY ci.identifier, ci.partner_telegram_id
     ORDER BY last_message_time DESC
   `;
-  
+
   const { results } = await db.d1
     .prepare(query)
     .bind(userTelegramId, userTelegramId, userTelegramId, userTelegramId, userTelegramId)
     .all<ConversationWithIdentifier>();
-  
+
   return results || [];
 }
 
 /**
  * Get conversation messages between user and partner
- * 
+ *
  * @param db - Database client
  * @param userTelegramId - User's Telegram ID
  * @param partnerTelegramId - Partner's Telegram ID
@@ -178,12 +180,14 @@ export async function getConversationMessages(
   userTelegramId: string,
   partnerTelegramId: string,
   limit: number = 50
-): Promise<Array<{
-  id: number;
-  sender_telegram_id: string;
-  content: string;
-  created_at: string;
-}>> {
+): Promise<
+  Array<{
+    id: number;
+    sender_telegram_id: string;
+    content: string;
+    created_at: string;
+  }>
+> {
   const query = `
     SELECT cm.id, cm.sender_telegram_id, cm.content, cm.created_at
     FROM conversation_messages cm
@@ -195,12 +199,12 @@ export async function getConversationMessages(
     ORDER BY cm.created_at DESC
     LIMIT ?
   `;
-  
+
   const { results } = await db.d1
     .prepare(query)
     .bind(userTelegramId, partnerTelegramId, userTelegramId, partnerTelegramId, limit)
     .all();
-  
+
   return (results || []).reverse() as Array<{
     id: number;
     sender_telegram_id: string;
@@ -211,7 +215,7 @@ export async function getConversationMessages(
 
 /**
  * Get conversation statistics
- * 
+ *
  * @param db - Database client
  * @param userTelegramId - User's Telegram ID
  * @param partnerTelegramId - Partner's Telegram ID
@@ -242,10 +246,17 @@ export async function getConversationStats(
       OR (c.user2_telegram_id = ? AND c.user1_telegram_id = ?)
     )
   `;
-  
+
   const result = await db.d1
     .prepare(query)
-    .bind(userTelegramId, partnerTelegramId, userTelegramId, partnerTelegramId, userTelegramId, partnerTelegramId)
+    .bind(
+      userTelegramId,
+      partnerTelegramId,
+      userTelegramId,
+      partnerTelegramId,
+      userTelegramId,
+      partnerTelegramId
+    )
     .first<{
       total_messages: number;
       user_messages: number;
@@ -253,13 +264,14 @@ export async function getConversationStats(
       first_message_time: string | null;
       last_message_time: string | null;
     }>();
-  
-  return result || {
-    total_messages: 0,
-    user_messages: 0,
-    partner_messages: 0,
-    first_message_time: null,
-    last_message_time: null,
-  };
-}
 
+  return (
+    result || {
+      total_messages: 0,
+      user_messages: 0,
+      partner_messages: 0,
+      first_message_time: null,
+      last_message_time: null,
+    }
+  );
+}

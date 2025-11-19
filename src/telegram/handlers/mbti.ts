@@ -1,6 +1,6 @@
 /**
  * /mbti Command Handler
- * 
+ *
  * Allows users to view, set, or retake their MBTI test.
  * Can be used both during onboarding and after registration.
  */
@@ -35,7 +35,12 @@ export async function handleMBTI(message: TelegramMessage, env: Env): Promise<vo
     if (user.mbti_result) {
       // User has MBTI set
       const description = MBTI_DESCRIPTIONS[user.mbti_result];
-      const sourceText = user.mbti_source === 'manual' ? '手動輸入' : user.mbti_source === 'test' ? '測驗結果' : '未知';
+      const sourceText =
+        user.mbti_source === 'manual'
+          ? '手動輸入'
+          : user.mbti_source === 'test'
+            ? '測驗結果'
+            : '未知';
 
       statusMessage +=
         `當前 MBTI：**${user.mbti_result}**\n` +
@@ -51,21 +56,11 @@ export async function handleMBTI(message: TelegramMessage, env: Env): Promise<vo
     }
 
     // Show options
-    await telegram.sendMessageWithButtons(
-      chatId,
-      statusMessage,
-      [
-        [
-          { text: '📝 重新進行測驗', callback_data: 'mbti_menu_test' },
-        ],
-        [
-          { text: '✍️ 手動輸入 MBTI', callback_data: 'mbti_menu_manual' },
-        ],
-        [
-          { text: '↩️ 返回編輯資料', callback_data: 'edit_profile_callback' },
-        ],
-      ]
-    );
+    await telegram.sendMessageWithButtons(chatId, statusMessage, [
+      [{ text: '📝 重新進行測驗', callback_data: 'mbti_menu_test' }],
+      [{ text: '✍️ 手動輸入 MBTI', callback_data: 'mbti_menu_manual' }],
+      [{ text: '↩️ 返回編輯資料', callback_data: 'edit_profile_callback' }],
+    ]);
   } catch (error) {
     console.error('[handleMBTI] Error:', error);
     await telegram.sendMessage(chatId, '❌ 發生錯誤，請稍後再試。');
@@ -79,10 +74,7 @@ export async function handleMBTI(message: TelegramMessage, env: Env): Promise<vo
 /**
  * Handle "Take test" from /mbti menu - Show version selection
  */
-export async function handleMBTIMenuTest(
-  callbackQuery: any,
-  env: Env
-): Promise<void> {
+export async function handleMBTIMenuTest(callbackQuery: any, env: Env): Promise<void> {
   const telegram = createTelegramService(env);
   const chatId = callbackQuery.message!.chat.id;
 
@@ -106,15 +98,9 @@ export async function handleMBTIMenuTest(
         `✅ 推薦用於重新測試\n\n` +
         `請選擇測驗版本：`,
       [
-        [
-          { text: '📋 快速版（12 題）', callback_data: 'mbti_test_quick' },
-        ],
-        [
-          { text: '📚 完整版（36 題）', callback_data: 'mbti_test_full' },
-        ],
-        [
-          { text: '↩️ 返回', callback_data: 'mbti_menu_cancel' },
-        ],
+        [{ text: '📋 快速版（12 題）', callback_data: 'mbti_test_quick' }],
+        [{ text: '📚 完整版（36 題）', callback_data: 'mbti_test_full' }],
+        [{ text: '↩️ 返回', callback_data: 'mbti_menu_cancel' }],
       ]
     );
   } catch (error) {
@@ -126,10 +112,7 @@ export async function handleMBTIMenuTest(
 /**
  * Handle MBTI test version selection - Quick (12 questions)
  */
-export async function handleMBTITestQuick(
-  callbackQuery: any,
-  env: Env
-): Promise<void> {
+export async function handleMBTITestQuick(callbackQuery: any, env: Env): Promise<void> {
   const db = createDatabaseClient(env.DB);
   const telegram = createTelegramService(env);
   const chatId = callbackQuery.message!.chat.id;
@@ -158,10 +141,7 @@ export async function handleMBTITestQuick(
 /**
  * Handle MBTI test version selection - Full (36 questions)
  */
-export async function handleMBTITestFull(
-  callbackQuery: any,
-  env: Env
-): Promise<void> {
+export async function handleMBTITestFull(callbackQuery: any, env: Env): Promise<void> {
   const db = createDatabaseClient(env.DB);
   const telegram = createTelegramService(env);
   const chatId = callbackQuery.message!.chat.id;
@@ -190,10 +170,7 @@ export async function handleMBTITestFull(
 /**
  * Handle "Manual entry" from /mbti menu
  */
-export async function handleMBTIMenuManual(
-  callbackQuery: any,
-  env: Env
-): Promise<void> {
+export async function handleMBTIMenuManual(callbackQuery: any, env: Env): Promise<void> {
   const telegram = createTelegramService(env);
   const chatId = callbackQuery.message!.chat.id;
 
@@ -205,39 +182,33 @@ export async function handleMBTIMenuManual(
     await telegram.deleteMessage(chatId, callbackQuery.message!.message_id);
 
     // Show 16 MBTI type buttons
-    await telegram.sendMessageWithButtons(
-      chatId,
-      `請選擇你的 MBTI 類型：`,
+    await telegram.sendMessageWithButtons(chatId, `請選擇你的 MBTI 類型：`, [
       [
-        [
-          { text: 'INTJ', callback_data: 'mbti_set_INTJ' },
-          { text: 'INTP', callback_data: 'mbti_set_INTP' },
-          { text: 'ENTJ', callback_data: 'mbti_set_ENTJ' },
-          { text: 'ENTP', callback_data: 'mbti_set_ENTP' },
-        ],
-        [
-          { text: 'INFJ', callback_data: 'mbti_set_INFJ' },
-          { text: 'INFP', callback_data: 'mbti_set_INFP' },
-          { text: 'ENFJ', callback_data: 'mbti_set_ENFJ' },
-          { text: 'ENFP', callback_data: 'mbti_set_ENFP' },
-        ],
-        [
-          { text: 'ISTJ', callback_data: 'mbti_set_ISTJ' },
-          { text: 'ISFJ', callback_data: 'mbti_set_ISFJ' },
-          { text: 'ESTJ', callback_data: 'mbti_set_ESTJ' },
-          { text: 'ESFJ', callback_data: 'mbti_set_ESFJ' },
-        ],
-        [
-          { text: 'ISTP', callback_data: 'mbti_set_ISTP' },
-          { text: 'ISFP', callback_data: 'mbti_set_ISFP' },
-          { text: 'ESTP', callback_data: 'mbti_set_ESTP' },
-          { text: 'ESFP', callback_data: 'mbti_set_ESFP' },
-        ],
-        [
-          { text: '❌ 取消', callback_data: 'mbti_menu_cancel' },
-        ],
-      ]
-    );
+        { text: 'INTJ', callback_data: 'mbti_set_INTJ' },
+        { text: 'INTP', callback_data: 'mbti_set_INTP' },
+        { text: 'ENTJ', callback_data: 'mbti_set_ENTJ' },
+        { text: 'ENTP', callback_data: 'mbti_set_ENTP' },
+      ],
+      [
+        { text: 'INFJ', callback_data: 'mbti_set_INFJ' },
+        { text: 'INFP', callback_data: 'mbti_set_INFP' },
+        { text: 'ENFJ', callback_data: 'mbti_set_ENFJ' },
+        { text: 'ENFP', callback_data: 'mbti_set_ENFP' },
+      ],
+      [
+        { text: 'ISTJ', callback_data: 'mbti_set_ISTJ' },
+        { text: 'ISFJ', callback_data: 'mbti_set_ISFJ' },
+        { text: 'ESTJ', callback_data: 'mbti_set_ESTJ' },
+        { text: 'ESFJ', callback_data: 'mbti_set_ESFJ' },
+      ],
+      [
+        { text: 'ISTP', callback_data: 'mbti_set_ISTP' },
+        { text: 'ISFP', callback_data: 'mbti_set_ISFP' },
+        { text: 'ESTP', callback_data: 'mbti_set_ESTP' },
+        { text: 'ESFP', callback_data: 'mbti_set_ESFP' },
+      ],
+      [{ text: '❌ 取消', callback_data: 'mbti_menu_cancel' }],
+    ]);
   } catch (error) {
     console.error('[handleMBTIMenuManual] Error:', error);
     await telegram.answerCallbackQuery(callbackQuery.id, '❌ 發生錯誤');
@@ -247,10 +218,7 @@ export async function handleMBTIMenuManual(
 /**
  * Handle "Clear MBTI" from /mbti menu
  */
-export async function handleMBTIMenuClear(
-  callbackQuery: any,
-  env: Env
-): Promise<void> {
+export async function handleMBTIMenuClear(callbackQuery: any, env: Env): Promise<void> {
   const db = createDatabaseClient(env.DB);
   const telegram = createTelegramService(env);
   const chatId = callbackQuery.message!.chat.id;
@@ -277,8 +245,7 @@ export async function handleMBTIMenuClear(
     // Confirm
     await telegram.sendMessage(
       chatId,
-      `✅ 你的 MBTI 類型已清除。\n\n` +
-        `你可以隨時使用 /mbti 指令重新設定。`
+      `✅ 你的 MBTI 類型已清除。\n\n` + `你可以隨時使用 /mbti 指令重新設定。`
     );
   } catch (error) {
     console.error('[handleMBTIMenuClear] Error:', error);
@@ -289,10 +256,7 @@ export async function handleMBTIMenuClear(
 /**
  * Handle "Cancel" from /mbti menu
  */
-export async function handleMBTIMenuCancel(
-  callbackQuery: any,
-  env: Env
-): Promise<void> {
+export async function handleMBTIMenuCancel(callbackQuery: any, env: Env): Promise<void> {
   const telegram = createTelegramService(env);
   const chatId = callbackQuery.message!.chat.id;
 
@@ -311,11 +275,7 @@ export async function handleMBTIMenuCancel(
 /**
  * Handle MBTI type selection from /mbti menu
  */
-export async function handleMBTISet(
-  callbackQuery: any,
-  mbtiType: string,
-  env: Env
-): Promise<void> {
+export async function handleMBTISet(callbackQuery: any, mbtiType: string, env: Env): Promise<void> {
   const db = createDatabaseClient(env.DB);
   const telegram = createTelegramService(env);
   const chatId = callbackQuery.message!.chat.id;
@@ -362,4 +322,3 @@ export async function handleMBTISet(
     await telegram.answerCallbackQuery(callbackQuery.id, '❌ 發生錯誤');
   }
 }
-

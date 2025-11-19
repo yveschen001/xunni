@@ -51,10 +51,7 @@ export async function findInviteByInvitee(
 /**
  * Activate an invite
  */
-export async function activateInvite(
-  db: DatabaseClient,
-  inviteeTelegramId: string
-): Promise<void> {
+export async function activateInvite(db: DatabaseClient, inviteeTelegramId: string): Promise<void> {
   await db.d1
     .prepare(
       `UPDATE invites 
@@ -110,8 +107,7 @@ export async function getInviteStats(
     return { total: 0, activated: 0, pending: 0, conversionRate: 0 };
   }
 
-  const conversionRate =
-    result.total > 0 ? Math.round((result.activated / result.total) * 100) : 0;
+  const conversionRate = result.total > 0 ? Math.round((result.activated / result.total) * 100) : 0;
 
   return {
     total: result.total || 0,
@@ -158,4 +154,3 @@ export async function getAllInvitesForUser(
 
   return result.results || [];
 }
-

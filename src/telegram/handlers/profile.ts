@@ -1,6 +1,6 @@
 /**
  * Profile Handler
- * 
+ *
  * Handles /profile command - view and edit user profile.
  */
 
@@ -19,6 +19,14 @@ export async function handleProfile(message: TelegramMessage, env: Env): Promise
   const telegramId = message.from!.id.toString();
 
   try {
+    // ✨ NEW: Update user activity (non-blocking)
+    try {
+      const { updateUserActivity } = await import('~/services/user_activity');
+      await updateUserActivity(db, telegramId);
+    } catch (activityError) {
+      console.error('[handleProfile] Failed to update user activity:', activityError);
+    }
+
     // Get user
     const user = await findUserByTelegramId(db, telegramId);
     if (!user) {
@@ -28,10 +36,7 @@ export async function handleProfile(message: TelegramMessage, env: Env): Promise
 
     // Check if user completed onboarding
     if (user.onboarding_step !== 'completed') {
-      await telegram.sendMessage(
-        chatId,
-        '❌ 請先完成註冊流程。\n\n使用 /start 繼續註冊。'
-      );
+      await telegram.sendMessage(chatId, '❌ 請先完成註冊流程。\n\n使用 /start 繼續註冊。');
       return;
     }
 
@@ -39,13 +44,15 @@ export async function handleProfile(message: TelegramMessage, env: Env): Promise
     const age = user.birthday ? calculateAge(user.birthday) : '未設定';
     const gender = user.gender === 'male' ? '男' : user.gender === 'female' ? '女' : '未設定';
     const mbti = user.mbti_result || '未設定';
-    const mbtiSource = user.mbti_source === 'manual' ? '手動輸入' : user.mbti_source === 'test' ? '測驗結果' : '';
+    const mbtiSource =
+      user.mbti_source === 'manual' ? '手動輸入' : user.mbti_source === 'test' ? '測驗結果' : '';
     const zodiac = user.zodiac_sign || 'Virgo';
     const { getBloodTypeDisplay } = await import('~/domain/blood_type');
     const bloodType = getBloodTypeDisplay(user.blood_type as any);
-    const vipStatus = user.is_vip && user.vip_expire_at && new Date(user.vip_expire_at) > new Date()
-      ? `✨ VIP（到期：${new Date(user.vip_expire_at).toLocaleDateString('zh-TW')}）`
-      : '一般用戶';
+    const vipStatus =
+      user.is_vip && user.vip_expire_at && new Date(user.vip_expire_at) > new Date()
+        ? `✨ VIP（到期：${new Date(user.vip_expire_at).toLocaleDateString('zh-TW')}）`
+        : '一般用戶';
     const inviteCode = user.invite_code || '未設定';
 
     // Get invite statistics
@@ -54,7 +61,7 @@ export async function handleProfile(message: TelegramMessage, env: Env): Promise
     const inviteLimit = getInviteLimit(user);
     const successfulInvites = user.successful_invites || 0;
 
-    const profileMessage = 
+    const profileMessage =
       `👤 **個人資料**\n\n` +
       `📛 暱稱：${user.nickname || '未設定'}\n` +
       `🎂 年齡：${age}\n` +
@@ -84,18 +91,10 @@ export async function handleProfile(message: TelegramMessage, env: Env): Promise
     const botUsername = env.ENVIRONMENT === 'production' ? 'xunnibot' : 'xunni_dev_bot';
     const shareUrl = `https://t.me/share/url?url=https://t.me/${botUsername}?start=invite_${inviteCode}&text=來 XunNi 一起丟漂流瓶吧！🍾 使用我的邀請碼：${inviteCode}`;
 
-    await telegram.sendMessageWithButtons(
-      chatId,
-      profileMessage,
-      [
-        [
-          { text: '📤 分享邀請碼', url: shareUrl },
-        ],
-        [
-          { text: '✏️ 編輯資料', callback_data: 'edit_profile_menu' },
-        ],
-      ]
-    );
+    await telegram.sendMessageWithButtons(chatId, profileMessage, [
+      [{ text: '📤 分享邀請碼', url: shareUrl }],
+      [{ text: '✏️ 編輯資料', callback_data: 'edit_profile_menu' }],
+    ]);
   } catch (error) {
     console.error('[handleProfile] Error:', error);
     await telegram.sendMessage(chatId, '❌ 發生錯誤，請稍後再試。');
@@ -121,10 +120,7 @@ export async function handleProfileCard(message: TelegramMessage, env: Env): Pro
 
     // Check if user completed onboarding
     if (user.onboarding_step !== 'completed') {
-      await telegram.sendMessage(
-        chatId,
-        '❌ 請先完成註冊流程。\n\n使用 /start 繼續註冊。'
-      );
+      await telegram.sendMessage(chatId, '❌ 請先完成註冊流程。\n\n使用 /start 繼續註冊。');
       return;
     }
 
@@ -137,7 +133,7 @@ export async function handleProfileCard(message: TelegramMessage, env: Env): Pro
     const bio = user.bio || '這個人很神秘，什麼都沒有留下～';
     const city = user.city || '未設定';
 
-    const cardMessage = 
+    const cardMessage =
       `┌─────────────────────────┐\n` +
       `│   📇 個人資料卡片       │\n` +
       `└─────────────────────────┘\n\n` +
@@ -158,4 +154,3 @@ export async function handleProfileCard(message: TelegramMessage, env: Env): Pro
     await telegram.sendMessage(chatId, '❌ 發生錯誤，請稍後再試。');
   }
 }
-

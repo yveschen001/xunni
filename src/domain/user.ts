@@ -409,4 +409,3 @@ export function calculateBanDuration(banCount: number): number | null {
   if (banCount === 3) return 30; // 1 month
   return null; // Permanent ban
 }
-

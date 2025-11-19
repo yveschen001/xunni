@@ -7,6 +7,7 @@ import type { Env, CallbackQuery } from '~/types';
 import { createDatabaseClient } from '~/db/client';
 import { findUserByTelegramId, updateUserProfile, updateOnboardingStep } from '~/db/queries/users';
 import { createTelegramService } from '~/services/telegram';
+import { LEGAL_URLS } from '~/config/legal_urls';
 
 // ============================================================================
 // Gender Selection
@@ -176,7 +177,7 @@ export async function handleBirthdayConfirmation(
 
     // Import domain functions
     const { calculateAge, calculateZodiacSign } = await import('~/domain/user');
-    
+
     // Calculate age and zodiac
     const age = calculateAge(birthday);
     const zodiacSign = calculateZodiacSign(birthday);
@@ -216,7 +217,7 @@ export async function handleBirthdayConfirmation(
     // Show blood type selection
     const { getBloodTypeOptions } = await import('~/domain/blood_type');
     const options = getBloodTypeOptions();
-    
+
     await telegram.sendMessageWithButtons(
       chatId,
       `🩸 **請選擇你的血型**\n\n` +
@@ -231,9 +232,7 @@ export async function handleBirthdayConfirmation(
           { text: options[2].display, callback_data: 'blood_type_AB' },
           { text: options[3].display, callback_data: 'blood_type_O' },
         ],
-        [
-          { text: options[4].display, callback_data: 'blood_type_skip' },
-        ],
+        [{ text: options[4].display, callback_data: 'blood_type_skip' }],
       ]
     );
   } catch (error) {
@@ -283,7 +282,9 @@ export async function handleBloodTypeSelection(
 
     // Answer callback
     const { getBloodTypeDisplay } = await import('~/domain/blood_type');
-    const displayText = bloodType ? `✅ 血型已設定為 ${getBloodTypeDisplay(bloodType as any)}` : '✅ 已跳過血型設定';
+    const displayText = bloodType
+      ? `✅ 血型已設定為 ${getBloodTypeDisplay(bloodType as any)}`
+      : '✅ 已跳過血型設定';
     await telegram.answerCallbackQuery(callbackQuery.id, displayText);
 
     // Delete blood type message
@@ -296,15 +297,9 @@ export async function handleBloodTypeSelection(
         `這將幫助我們為你找到更合適的聊天對象～\n\n` +
         `你想要如何設定？`,
       [
-        [
-          { text: '✍️ 我已經知道我的 MBTI', callback_data: 'mbti_choice_manual' },
-        ],
-        [
-          { text: '📝 進行快速測驗（12 題，僅供參考）', callback_data: 'mbti_choice_test' },
-        ],
-        [
-          { text: '⏭️ 稍後再說', callback_data: 'mbti_choice_skip' },
-        ],
+        [{ text: '✍️ 我已經知道我的 MBTI', callback_data: 'mbti_choice_manual' }],
+        [{ text: '📝 進行快速測驗（12 題，僅供參考）', callback_data: 'mbti_choice_test' }],
+        [{ text: '⏭️ 稍後再說', callback_data: 'mbti_choice_skip' }],
       ]
     );
   } catch (error) {
@@ -317,10 +312,7 @@ export async function handleBloodTypeSelection(
 // Birthday Retry
 // ============================================================================
 
-export async function handleBirthdayRetry(
-  callbackQuery: CallbackQuery,
-  env: Env
-): Promise<void> {
+export async function handleBirthdayRetry(callbackQuery: CallbackQuery, env: Env): Promise<void> {
   const telegram = createTelegramService(env);
   const chatId = callbackQuery.message!.chat.id;
 
@@ -378,8 +370,7 @@ export async function handleMBTIChoiceManual(
     // Show 16 MBTI type buttons
     await telegram.sendMessageWithButtons(
       chatId,
-      `請選擇你的 MBTI 類型：\n\n` +
-        `如果不確定，可以先進行測驗或稍後再設定。`,
+      `請選擇你的 MBTI 類型：\n\n` + `如果不確定，可以先進行測驗或稍後再設定。`,
       [
         [
           { text: 'INTJ', callback_data: 'mbti_manual_INTJ' },
@@ -405,9 +396,7 @@ export async function handleMBTIChoiceManual(
           { text: 'ESTP', callback_data: 'mbti_manual_ESTP' },
           { text: 'ESFP', callback_data: 'mbti_manual_ESFP' },
         ],
-        [
-          { text: '⬅️ 返回', callback_data: 'mbti_choice_back' },
-        ],
+        [{ text: '⬅️ 返回', callback_data: 'mbti_choice_back' }],
       ]
     );
   } catch (error) {
@@ -419,10 +408,7 @@ export async function handleMBTIChoiceManual(
 /**
  * Handle MBTI choice: take test
  */
-export async function handleMBTIChoiceTest(
-  callbackQuery: CallbackQuery,
-  env: Env
-): Promise<void> {
+export async function handleMBTIChoiceTest(callbackQuery: CallbackQuery, env: Env): Promise<void> {
   const db = createDatabaseClient(env.DB);
   const telegram = createTelegramService(env);
   const chatId = callbackQuery.message!.chat.id;
@@ -458,10 +444,7 @@ export async function handleMBTIChoiceTest(
 /**
  * Handle MBTI choice: skip
  */
-export async function handleMBTIChoiceSkip(
-  callbackQuery: CallbackQuery,
-  env: Env
-): Promise<void> {
+export async function handleMBTIChoiceSkip(callbackQuery: CallbackQuery, env: Env): Promise<void> {
   const db = createDatabaseClient(env.DB);
   const telegram = createTelegramService(env);
   const chatId = callbackQuery.message!.chat.id;
@@ -509,10 +492,7 @@ export async function handleMBTIChoiceSkip(
 /**
  * Handle MBTI choice: back button (from manual selection)
  */
-export async function handleMBTIChoiceBack(
-  callbackQuery: CallbackQuery,
-  env: Env
-): Promise<void> {
+export async function handleMBTIChoiceBack(callbackQuery: CallbackQuery, env: Env): Promise<void> {
   const db = createDatabaseClient(env.DB);
   const telegram = createTelegramService(env);
   const chatId = callbackQuery.message!.chat.id;
@@ -539,15 +519,9 @@ export async function handleMBTIChoiceBack(
         `這將幫助我們為你找到更合適的聊天對象～\n\n` +
         `你想要如何設定？`,
       [
-        [
-          { text: '✍️ 我已經知道我的 MBTI', callback_data: 'mbti_choice_manual' },
-        ],
-        [
-          { text: '📝 進行快速測驗（12 題，僅供參考）', callback_data: 'mbti_choice_test' },
-        ],
-        [
-          { text: '⏭️ 稍後再說', callback_data: 'mbti_choice_skip' },
-        ],
+        [{ text: '✍️ 我已經知道我的 MBTI', callback_data: 'mbti_choice_manual' }],
+        [{ text: '📝 進行快速測驗（12 題，僅供參考）', callback_data: 'mbti_choice_test' }],
+        [{ text: '⏭️ 稍後再說', callback_data: 'mbti_choice_skip' }],
       ]
     );
   } catch (error) {
@@ -748,11 +722,12 @@ export async function handleAntiFraudConfirmation(
         `在開始使用前，請閱讀並同意我們的服務條款：\n\n` +
         `• 隱私權政策：我們如何保護你的個人資料\n` +
         `• 使用者條款：使用本服務的規範\n\n` +
+        `📋 Legal documents are provided in English only.\n\n` +
         `點擊下方按鈕表示你已閱讀並同意上述條款。`,
       [
         [{ text: '✅ 我已閱讀並同意', callback_data: 'agree_terms' }],
-        [{ text: '📋 查看隱私權政策', url: 'https://xunni.example.com/privacy' }],
-        [{ text: '📋 查看使用者條款', url: 'https://xunni.example.com/terms' }],
+        [{ text: '📋 View Privacy Policy', url: LEGAL_URLS.PRIVACY_POLICY }],
+        [{ text: '📋 View Terms of Service', url: LEGAL_URLS.TERMS_OF_SERVICE }],
       ]
     );
   } catch (error) {
@@ -790,9 +765,7 @@ export async function handleAntiFraudLearnMore(
         `了解後，請確認：`,
       {
         reply_markup: {
-          inline_keyboard: [
-            [{ text: '✅ 我了解了，繼續註冊', callback_data: 'anti_fraud_yes' }],
-          ],
+          inline_keyboard: [[{ text: '✅ 我了解了，繼續註冊', callback_data: 'anti_fraud_yes' }]],
         },
       }
     );
@@ -808,10 +781,7 @@ export async function handleAntiFraudLearnMore(
 // Terms Agreement
 // ============================================================================
 
-export async function handleTermsAgreement(
-  callbackQuery: CallbackQuery,
-  env: Env
-): Promise<void> {
+export async function handleTermsAgreement(callbackQuery: CallbackQuery, env: Env): Promise<void> {
   const db = createDatabaseClient(env.DB);
   const telegram = createTelegramService(env);
   const chatId = callbackQuery.message!.chat.id;
@@ -874,4 +844,3 @@ export async function handleTermsAgreement(
     await telegram.answerCallbackQuery(callbackQuery.id, '❌ 發生錯誤');
   }
 }
-

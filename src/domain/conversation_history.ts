@@ -1,6 +1,6 @@
 /**
  * Conversation History Domain Logic
- * 
+ *
  * Pure functions for managing conversation history posts
  */
 
@@ -57,7 +57,7 @@ export function buildHistoryPostContent(
   }
 ): string {
   let content = `💬 與 #${identifier} 的對話記錄（第 ${postNumber} 頁）\n\n`;
-  
+
   // Add partner info at the top if provided
   if (partnerInfo) {
     content += `👤 對方資料：\n`;
@@ -66,18 +66,18 @@ export function buildHistoryPostContent(
     content += `🩸 血型：${partnerInfo.bloodType}\n`;
     content += `⭐ 星座：${partnerInfo.zodiac}\n\n`;
   }
-  
+
   content += `━━━━━━━━━━━━━━━━\n\n`;
-  
+
   content += messages.join('\n') + '\n\n';
-  
+
   content += `━━━━━━━━━━━━━━━━\n\n`;
   content += `💡 這是對話的歷史記錄\n`;
   content += `📊 總訊息數：${totalMessages} 則\n`;
   content += `📅 最後更新：${formatDateTime(new Date())}\n\n`;
-  
+
   content += `💬 直接按 /reply 回覆訊息聊天\n`;
-  
+
   return content;
 }
 
@@ -97,9 +97,9 @@ export function buildNewMessagePostContent(
   }
 ): string {
   const timeStr = formatTime(messageTime);
-  
+
   let content = `💬 來自 #${identifier} 的新訊息：\n\n`;
-  
+
   // Add partner info
   if (partnerInfo) {
     content += `👤 對方資料：\n`;
@@ -108,13 +108,13 @@ export function buildNewMessagePostContent(
     content += `🩸 血型：${partnerInfo.bloodType}\n`;
     content += `⭐ 星座：${partnerInfo.zodiac}\n\n`;
   }
-  
+
   content += `[${timeStr}] 對方：\n${messageContent}\n\n`;
   content += `━━━━━━━━━━━━━━━━\n\n`;
   content += `💬 直接按 /reply 回覆訊息聊天\n`;
   content += `📜 查看歷史記錄：#${identifier}\n`;
   content += `🏠 返回主選單：/menu`;
-  
+
   return content;
 }
 
@@ -133,7 +133,7 @@ export function extractMessages(content: string): string[] {
   const lines = content.split('\n');
   const messages: string[] = [];
   let inMessageSection = false;
-  
+
   for (const line of lines) {
     if (line.includes('━━━━━━━━━━━━━━━━')) {
       if (!inMessageSection) {
@@ -143,12 +143,11 @@ export function extractMessages(content: string): string[] {
         break;
       }
     }
-    
+
     if (inMessageSection && line.trim()) {
       messages.push(line);
     }
   }
-  
+
   return messages;
 }
-

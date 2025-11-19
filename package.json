@@ -6,6 +6,8 @@
   "main": "src/worker.ts",
   "scripts": {
     "dev": "wrangler dev",
+    "dev:polling": "tsx scripts/load-env-and-run.ts",
+    "dev:inspector": "wrangler dev --inspector",
     "deploy": "wrangler deploy",
     "deploy:staging": "wrangler deploy --env staging",
     "deploy:production": "wrangler deploy --env production",
@@ -25,6 +27,7 @@
     "test:phase1": "tsx scripts/test-phase1.ts",
     "test:phase2": "tsx scripts/test-phase2-complete.ts",
     "test:acceptance": "tsx scripts/self-acceptance-test.ts",
+    "test:new-features": "tsx scripts/test-new-features.ts",
     "typecheck": "tsc --noEmit",
     "lint": "eslint src",
     "lint:fix": "eslint src --fix",

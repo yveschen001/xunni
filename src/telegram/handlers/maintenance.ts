@@ -138,10 +138,7 @@ export async function handleMaintenanceDisable(message: TelegramMessage, env: En
     await createBroadcast(env, recoveryMessage, 'all', message.from!.id.toString());
 
     // Confirm to admin
-    await telegram.sendMessage(
-      chatId,
-      `✅ 維護模式已關閉\n\n` + `恢復通知已廣播給所有用戶。`
-    );
+    await telegram.sendMessage(chatId, `✅ 維護模式已關閉\n\n` + `恢復通知已廣播給所有用戶。`);
   } catch (error) {
     console.error('[handleMaintenanceDisable] Error:', error);
     await telegram.sendMessage(chatId, '❌ 關閉維護模式失敗。');
@@ -177,9 +174,7 @@ export async function handleMaintenanceStatus(message: TelegramMessage, env: Env
 export async function getMaintenanceMode(
   db: ReturnType<typeof createDatabaseClient>
 ): Promise<MaintenanceMode | null> {
-  const result = await db.d1
-    .prepare(`SELECT * FROM maintenance_mode WHERE id = 1`)
-    .first<any>();
+  const result = await db.d1.prepare(`SELECT * FROM maintenance_mode WHERE id = 1`).first<any>();
 
   if (!result) return null;
 
@@ -195,4 +190,3 @@ export async function getMaintenanceMode(
     updatedAt: result.updated_at,
   };
 }
-

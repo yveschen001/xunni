@@ -23,4 +23,3 @@ export function maskSensitiveValue(
 
   return `${visiblePart}${maskChar.repeat(actualMask)}`;
 }
-

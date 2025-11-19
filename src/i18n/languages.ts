@@ -11,7 +11,12 @@ export interface Language {
 }
 
 export const SUPPORTED_LANGUAGES: Language[] = [
-  { code: 'zh-TW', name: 'Traditional Chinese (Taiwan)', nativeName: '繁體中文（臺灣）', flag: '🇹🇼' },
+  {
+    code: 'zh-TW',
+    name: 'Traditional Chinese (Taiwan)',
+    nativeName: '繁體中文（臺灣）',
+    flag: '🇹🇼',
+  },
   { code: 'zh-CN', name: 'Simplified Chinese', nativeName: '简体中文', flag: '🇨🇳' },
   { code: 'en', name: 'English', nativeName: 'English', flag: '🇺🇸' },
   { code: 'ja', name: 'Japanese', nativeName: '日本語', flag: '🇯🇵' },
@@ -76,17 +81,17 @@ export function isValidLanguage(code: string): boolean {
  */
 export function getLanguageButtons(): Array<Array<{ text: string; callback_data: string }>> {
   const buttons: Array<Array<{ text: string; callback_data: string }>> = [];
-  
+
   // Group languages in rows of 2
   for (let i = 0; i < SUPPORTED_LANGUAGES.length; i += 2) {
     const row = [];
-    
+
     const lang1 = SUPPORTED_LANGUAGES[i];
     row.push({
       text: `${lang1.flag} ${lang1.nativeName}`,
       callback_data: `lang_${lang1.code}`,
     });
-    
+
     if (i + 1 < SUPPORTED_LANGUAGES.length) {
       const lang2 = SUPPORTED_LANGUAGES[i + 1];
       row.push({
@@ -94,10 +99,10 @@ export function getLanguageButtons(): Array<Array<{ text: string; callback_data:
         callback_data: `lang_${lang2.code}`,
       });
     }
-    
+
     buttons.push(row);
   }
-  
+
   return buttons;
 }
 
@@ -107,10 +112,10 @@ export function getLanguageButtons(): Array<Array<{ text: string; callback_data:
 export function getPopularLanguageButtons(): Array<Array<{ text: string; callback_data: string }>> {
   const popularLanguages = ['zh-TW', 'en', 'ja', 'ko', 'th', 'vi'];
   const buttons: Array<Array<{ text: string; callback_data: string }>> = [];
-  
+
   for (let i = 0; i < popularLanguages.length; i += 2) {
     const row = [];
-    
+
     const lang1 = getLanguage(popularLanguages[i]);
     if (lang1) {
       row.push({
@@ -118,7 +123,7 @@ export function getPopularLanguageButtons(): Array<Array<{ text: string; callbac
         callback_data: `lang_${lang1.code}`,
       });
     }
-    
+
     if (i + 1 < popularLanguages.length) {
       const lang2 = getLanguage(popularLanguages[i + 1]);
       if (lang2) {
@@ -128,15 +133,12 @@ export function getPopularLanguageButtons(): Array<Array<{ text: string; callbac
         });
       }
     }
-    
+
     buttons.push(row);
   }
-  
+
   // Add "More languages" button
-  buttons.push([
-    { text: '🌍 更多語言 / More Languages', callback_data: 'lang_more' },
-  ]);
-  
+  buttons.push([{ text: '🌍 更多語言 / More Languages', callback_data: 'lang_more' }]);
+
   return buttons;
 }
-

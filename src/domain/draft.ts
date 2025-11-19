@@ -1,6 +1,6 @@
 /**
  * Draft Domain Logic
- * 
+ *
  * Pure functions for bottle draft management.
  */
 
@@ -47,7 +47,7 @@ export function getDraftAgeHours(draft: BottleDraft): number {
  */
 export function formatDraftAge(draft: BottleDraft, language: string = 'zh-TW'): string {
   const hours = getDraftAgeHours(draft);
-  
+
   if (language === 'zh-TW') {
     if (hours < 1) {
       return '剛剛';
@@ -77,4 +77,3 @@ export function getDraftPreview(content: string): string {
   }
   return content.substring(0, 50) + '...';
 }
-

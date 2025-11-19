@@ -1,6 +1,6 @@
 /**
  * Bottle Domain Logic
- * 
+ *
  * Pure functions for bottle business logic.
  */
 
@@ -16,7 +16,7 @@ export interface Bottle {
   target_max_age?: number;
   target_region?: string;
   target_zodiac_filter?: string; // JSON array
-  target_mbti_filter?: string;   // JSON array
+  target_mbti_filter?: string; // JSON array
 }
 
 export interface ThrowBottleInput {
@@ -47,16 +47,16 @@ export function validateBottleContent(content: string): {
   const trimmedContent = content.trim();
 
   if (trimmedContent.length < MIN_BOTTLE_LENGTH) {
-    return { 
-      valid: false, 
-      error: `瓶子內容太短，至少需要 ${MIN_BOTTLE_LENGTH} 個字符（目前 ${trimmedContent.length} 個字符）` 
+    return {
+      valid: false,
+      error: `瓶子內容太短，至少需要 ${MIN_BOTTLE_LENGTH} 個字符（目前 ${trimmedContent.length} 個字符）`,
     };
   }
 
   if (content.length > MAX_BOTTLE_LENGTH) {
-    return { 
-      valid: false, 
-      error: `瓶子內容太長，最多 ${MAX_BOTTLE_LENGTH} 個字符（目前 ${content.length} 個字符）` 
+    return {
+      valid: false,
+      error: `瓶子內容太長，最多 ${MAX_BOTTLE_LENGTH} 個字符（目前 ${content.length} 個字符）`,
     };
   }
 
@@ -84,30 +84,22 @@ export function calculateBottleExpiration(): string {
 /**
  * Check if user can throw bottle (quota check)
  */
-export function canThrowBottle(
-  throwsToday: number,
-  isVip: boolean,
-  inviteBonus: number
-): boolean {
+export function canThrowBottle(throwsToday: number, isVip: boolean, inviteBonus: number): boolean {
   const baseQuota = isVip ? 30 : 3;
   const maxQuota = isVip ? 100 : 10;
   const quota = Math.min(baseQuota + inviteBonus, maxQuota);
-  
+
   return throwsToday < quota;
 }
 
 /**
  * Check if user can catch bottle (quota check)
  */
-export function canCatchBottle(
-  catchesToday: number,
-  isVip: boolean,
-  inviteBonus: number
-): boolean {
+export function canCatchBottle(catchesToday: number, isVip: boolean, inviteBonus: number): boolean {
   const baseQuota = isVip ? 30 : 3;
   const maxQuota = isVip ? 100 : 10;
   const quota = Math.min(baseQuota + inviteBonus, maxQuota);
-  
+
   return catchesToday < quota;
 }
 
@@ -124,6 +116,6 @@ export function getBottleQuota(
   const baseQuota = isVip ? 30 : 3;
   const maxQuota = isVip ? 100 : 10;
   const quota = Math.min(baseQuota + inviteBonus, maxQuota);
-  
+
   return { quota, maxQuota };
 }

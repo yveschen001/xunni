@@ -15,8 +15,10 @@ export async function createBottle(
   input: ThrowBottleInput
 ): Promise<number> {
   const expiresAt = calculateBottleExpiration();
-  
-  const result = await db.d1.prepare(`
+
+  const result = await db.d1
+    .prepare(
+      `
     INSERT INTO bottles (
       owner_telegram_id,
       content,
@@ -29,16 +31,19 @@ export async function createBottle(
       target_mbti_filter,
       target_blood_type_filter
     ) VALUES (?, ?, datetime('now'), ?, 'pending', ?, ?, ?, ?, ?)
-  `).bind(
-    ownerId,
-    input.content,
-    expiresAt,
-    input.target_gender,
-    input.target_region || null,
-    input.target_zodiac_filter ? JSON.stringify(input.target_zodiac_filter) : null,
-    input.target_mbti_filter ? JSON.stringify(input.target_mbti_filter) : null,
-    input.target_blood_type_filter || null
-  ).run();
+  `
+    )
+    .bind(
+      ownerId,
+      input.content,
+      expiresAt,
+      input.target_gender,
+      input.target_region || null,
+      input.target_zodiac_filter ? JSON.stringify(input.target_zodiac_filter) : null,
+      input.target_mbti_filter ? JSON.stringify(input.target_mbti_filter) : null,
+      input.target_blood_type_filter || null
+    )
+    .run();
 
   return result.meta.last_row_id as number;
 }
@@ -65,9 +70,11 @@ export async function findMatchingBottle(
   // 7. Not from users who were reported by this user (within 24h)
   // 8. Match MBTI filter (if specified)
   // 9. Match Zodiac filter (if specified)
-  
+
   // Get all matching bottles (we'll filter MBTI/Zodiac in application layer)
-  const results = await db.d1.prepare(`
+  const results = await db.d1
+    .prepare(
+      `
     SELECT b.* FROM bottles b
     WHERE b.status = 'pending'
       AND datetime(b.expires_at) > datetime('now')
@@ -86,7 +93,10 @@ export async function findMatchingBottle(
       )
     ORDER BY RANDOM()
     LIMIT 50
-  `).bind(userId, userGender, userId, userId, userId).all();
+  `
+    )
+    .bind(userId, userGender, userId, userId, userId)
+    .all();
 
   if (!results.results || results.results.length === 0) {
     return null;
@@ -94,7 +104,7 @@ export async function findMatchingBottle(
 
   // Filter by MBTI and Zodiac in application layer
   const bottles = results.results as Bottle[];
-  const matchingBottles = bottles.filter(bottle => {
+  const matchingBottles = bottles.filter((bottle) => {
     // Check MBTI filter
     if (bottle.target_mbti_filter) {
       try {
@@ -150,23 +160,30 @@ export async function updateBottleStatus(
   bottleId: number,
   status: 'pending' | 'matched' | 'expired' | 'deleted'
 ): Promise<void> {
-  await db.d1.prepare(`
+  await db.d1
+    .prepare(
+      `
     UPDATE bottles
     SET status = ?
     WHERE id = ?
-  `).bind(status, bottleId).run();
+  `
+    )
+    .bind(status, bottleId)
+    .run();
 }
 
 /**
  * Get bottle by ID
  */
-export async function getBottleById(
-  db: DatabaseClient,
-  bottleId: number
-): Promise<Bottle | null> {
-  const result = await db.d1.prepare(`
+export async function getBottleById(db: DatabaseClient, bottleId: number): Promise<Bottle | null> {
+  const result = await db.d1
+    .prepare(
+      `
     SELECT * FROM bottles WHERE id = ?
-  `).bind(bottleId).first();
+  `
+    )
+    .bind(bottleId)
+    .first();
 
   return result as Bottle | null;
 }
@@ -174,15 +191,17 @@ export async function getBottleById(
 /**
  * Get user's daily throw count
  */
-export async function getDailyThrowCount(
-  db: DatabaseClient,
-  userId: string
-): Promise<number> {
-  const result = await db.d1.prepare(`
+export async function getDailyThrowCount(db: DatabaseClient, userId: string): Promise<number> {
+  const result = await db.d1
+    .prepare(
+      `
     SELECT throws_count FROM daily_usage
     WHERE telegram_id = ?
       AND date = date('now')
-  `).bind(userId).first();
+  `
+    )
+    .bind(userId)
+    .first();
 
   return (result?.throws_count as number) || 0;
 }
@@ -190,15 +209,17 @@ export async function getDailyThrowCount(
 /**
  * Get user's daily catch count
  */
-export async function getDailyCatchCount(
-  db: DatabaseClient,
-  userId: string
-): Promise<number> {
-  const result = await db.d1.prepare(`
+export async function getDailyCatchCount(db: DatabaseClient, userId: string): Promise<number> {
+  const result = await db.d1
+    .prepare(
+      `
     SELECT catches_count FROM daily_usage
     WHERE telegram_id = ?
       AND date = date('now')
-  `).bind(userId).first();
+  `
+    )
+    .bind(userId)
+    .first();
 
   return (result?.catches_count as number) || 0;
 }
@@ -206,29 +227,33 @@ export async function getDailyCatchCount(
 /**
  * Increment daily throw count
  */
-export async function incrementDailyThrowCount(
-  db: DatabaseClient,
-  userId: string
-): Promise<void> {
-  await db.d1.prepare(`
+export async function incrementDailyThrowCount(db: DatabaseClient, userId: string): Promise<void> {
+  await db.d1
+    .prepare(
+      `
     INSERT INTO daily_usage (telegram_id, date, throws_count, catches_count)
     VALUES (?, date('now'), 1, 0)
     ON CONFLICT(telegram_id, date) DO UPDATE SET
       throws_count = throws_count + 1
-  `).bind(userId).run();
+  `
+    )
+    .bind(userId)
+    .run();
 }
 
 /**
  * Increment daily catch count
  */
-export async function incrementDailyCatchCount(
-  db: DatabaseClient,
-  userId: string
-): Promise<void> {
-  await db.d1.prepare(`
+export async function incrementDailyCatchCount(db: DatabaseClient, userId: string): Promise<void> {
+  await db.d1
+    .prepare(
+      `
     INSERT INTO daily_usage (telegram_id, date, throws_count, catches_count)
     VALUES (?, date('now'), 0, 1)
     ON CONFLICT(telegram_id, date) DO UPDATE SET
       catches_count = catches_count + 1
-  `).bind(userId).run();
+  `
+    )
+    .bind(userId)
+    .run();
 }

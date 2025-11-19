@@ -1,6 +1,6 @@
 /**
  * Conversation Actions Handler
- * 
+ *
  * Handles quick actions during conversations (profile view, block, report, end).
  */
 
@@ -75,19 +75,19 @@ export async function handleConversationProfile(
     profileMessage += `🩸 血型：${bloodTypeText}\n`;
     profileMessage += `👤 性別：${otherUser.gender === 'male' ? '男' : otherUser.gender === 'female' ? '女' : '未設定'}\n`;
     profileMessage += `🎂 年齡範圍：${ageRange} 歲\n`;
-    
+
     if (otherUser.city) {
       profileMessage += `🌍 地區：${otherUser.city}\n`;
     }
-    
+
     if (otherUser.interests) {
       profileMessage += `🏷️ 興趣：${otherUser.interests}\n`;
     }
-    
+
     if (otherUser.bio) {
       profileMessage += `📖 簡介：${otherUser.bio}\n`;
     }
-    
+
     profileMessage += `━━━━━━━━━━━━━━━━\n\n`;
     profileMessage += `💡 這是匿名資料卡，不會顯示對方的真實身份資訊。\n\n`;
     profileMessage += `💬 直接按 /reply 回覆訊息聊天\n`;
@@ -206,10 +206,15 @@ export async function handleConversationBlockConfirm(
     }
 
     // Create block record
-    await db.d1.prepare(`
+    await db.d1
+      .prepare(
+        `
       INSERT INTO user_blocks (blocker_telegram_id, blocked_telegram_id, conversation_id, created_at)
       VALUES (?, ?, ?, datetime('now'))
-    `).bind(telegramId, otherUserId, conversationId).run();
+    `
+      )
+      .bind(telegramId, otherUserId, conversationId)
+      .run();
 
     // End conversation
     await endConversation(db, conversationId);
@@ -268,7 +273,9 @@ export async function handleConversationReportConfirm(
     }
 
     // Create report record
-    await db.d1.prepare(`
+    await db.d1
+      .prepare(
+        `
       INSERT INTO reports (
         reporter_telegram_id,
         reported_telegram_id,
@@ -277,7 +284,10 @@ export async function handleConversationReportConfirm(
         status,
         created_at
       ) VALUES (?, ?, ?, ?, 'pending', datetime('now'))
-    `).bind(telegramId, otherUserId, conversationId, 'inappropriate_content').run();
+    `
+      )
+      .bind(telegramId, otherUserId, conversationId, 'inappropriate_content')
+      .run();
 
     // End conversation
     await endConversation(db, conversationId);
@@ -310,10 +320,7 @@ export async function handleConversationReportConfirm(
 /**
  * Cancel action
  */
-export async function handleConversationCancel(
-  callbackQuery: any,
-  env: Env
-): Promise<void> {
+export async function handleConversationCancel(callbackQuery: any, env: Env): Promise<void> {
   const telegram = createTelegramService(env);
   const chatId = callbackQuery.message!.chat.id;
 
@@ -325,4 +332,3 @@ export async function handleConversationCancel(
     await telegram.answerCallbackQuery(callbackQuery.id, '❌ 發生錯誤');
   }
 }
-

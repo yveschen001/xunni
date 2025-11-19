@@ -1,6 +1,6 @@
 /**
  * Draft Handler
- * 
+ *
  * Handles draft-related callbacks.
  */
 
@@ -13,10 +13,7 @@ import { getDraft, deleteDraft, deleteUserDrafts } from '~/db/queries/drafts';
 /**
  * Handle draft continue
  */
-export async function handleDraftContinue(
-  callbackQuery: any,
-  env: Env
-): Promise<void> {
+export async function handleDraftContinue(callbackQuery: any, env: Env): Promise<void> {
   const db = createDatabaseClient(env.DB);
   const telegram = createTelegramService(env);
   const chatId = callbackQuery.message!.chat.id;
@@ -46,19 +43,13 @@ export async function handleDraftContinue(
     );
 
     // Show send draft button
-    await telegram.sendMessageWithButtons(
-      chatId,
-      '要直接發送這個草稿嗎？',
+    await telegram.sendMessageWithButtons(chatId, '要直接發送這個草稿嗎？', [
       [
-        [
-          { text: '✅ 發送草稿', callback_data: 'draft_send' },
-          { text: '✏️ 修改內容', callback_data: 'draft_edit' },
-        ],
-        [
-          { text: '🗑️ 刪除草稿', callback_data: 'draft_delete' },
-        ],
-      ]
-    );
+        { text: '✅ 發送草稿', callback_data: 'draft_send' },
+        { text: '✏️ 修改內容', callback_data: 'draft_edit' },
+      ],
+      [{ text: '🗑️ 刪除草稿', callback_data: 'draft_delete' }],
+    ]);
   } catch (error) {
     console.error('[handleDraftContinue] Error:', error);
     await telegram.answerCallbackQuery(callbackQuery.id, '❌ 發生錯誤');
@@ -68,10 +59,7 @@ export async function handleDraftContinue(
 /**
  * Handle draft delete
  */
-export async function handleDraftDelete(
-  callbackQuery: any,
-  env: Env
-): Promise<void> {
+export async function handleDraftDelete(callbackQuery: any, env: Env): Promise<void> {
   const db = createDatabaseClient(env.DB);
   const telegram = createTelegramService(env);
   const chatId = callbackQuery.message!.chat.id;
@@ -91,25 +79,21 @@ export async function handleDraftDelete(
       return;
     }
 
-    const isVip = !!(user.is_vip && user.vip_expire_at && new Date(user.vip_expire_at) > new Date());
+    const isVip = !!(
+      user.is_vip &&
+      user.vip_expire_at &&
+      new Date(user.vip_expire_at) > new Date()
+    );
 
     if (isVip) {
-      await telegram.sendMessageWithButtons(
-        chatId,
-        '🍾 丟漂流瓶\n\n你想要尋找什麼樣的聊天對象？',
+      await telegram.sendMessageWithButtons(chatId, '🍾 丟漂流瓶\n\n你想要尋找什麼樣的聊天對象？', [
         [
-          [
-            { text: '👨 男生', callback_data: 'throw_target_male' },
-            { text: '👩 女生', callback_data: 'throw_target_female' },
-          ],
-          [
-            { text: '🌈 任何人都可以', callback_data: 'throw_target_any' },
-          ],
-          [
-            { text: '⚙️ 進階篩選（MBTI/星座）', callback_data: 'throw_advanced' },
-          ],
-        ]
-      );
+          { text: '👨 男生', callback_data: 'throw_target_male' },
+          { text: '👩 女生', callback_data: 'throw_target_female' },
+        ],
+        [{ text: '🌈 任何人都可以', callback_data: 'throw_target_any' }],
+        [{ text: '⚙️ 進階篩選（MBTI/星座）', callback_data: 'throw_advanced' }],
+      ]);
     } else {
       await telegram.sendMessageWithButtons(
         chatId,
@@ -121,9 +105,7 @@ export async function handleDraftDelete(
             { text: '👨 男生', callback_data: 'throw_target_male' },
             { text: '👩 女生', callback_data: 'throw_target_female' },
           ],
-          [
-            { text: '🌈 任何人都可以', callback_data: 'throw_target_any' },
-          ],
+          [{ text: '🌈 任何人都可以', callback_data: 'throw_target_any' }],
         ]
       );
     }
@@ -136,10 +118,7 @@ export async function handleDraftDelete(
 /**
  * Handle draft new (start fresh)
  */
-export async function handleDraftNew(
-  callbackQuery: any,
-  env: Env
-): Promise<void> {
+export async function handleDraftNew(callbackQuery: any, env: Env): Promise<void> {
   const db = createDatabaseClient(env.DB);
   const telegram = createTelegramService(env);
   const chatId = callbackQuery.message!.chat.id;
@@ -159,25 +138,21 @@ export async function handleDraftNew(
       return;
     }
 
-    const isVip = !!(user.is_vip && user.vip_expire_at && new Date(user.vip_expire_at) > new Date());
+    const isVip = !!(
+      user.is_vip &&
+      user.vip_expire_at &&
+      new Date(user.vip_expire_at) > new Date()
+    );
 
     if (isVip) {
-      await telegram.sendMessageWithButtons(
-        chatId,
-        '🍾 丟漂流瓶\n\n你想要尋找什麼樣的聊天對象？',
+      await telegram.sendMessageWithButtons(chatId, '🍾 丟漂流瓶\n\n你想要尋找什麼樣的聊天對象？', [
         [
-          [
-            { text: '👨 男生', callback_data: 'throw_target_male' },
-            { text: '👩 女生', callback_data: 'throw_target_female' },
-          ],
-          [
-            { text: '🌈 任何人都可以', callback_data: 'throw_target_any' },
-          ],
-          [
-            { text: '⚙️ 進階篩選（MBTI/星座）', callback_data: 'throw_advanced' },
-          ],
-        ]
-      );
+          { text: '👨 男生', callback_data: 'throw_target_male' },
+          { text: '👩 女生', callback_data: 'throw_target_female' },
+        ],
+        [{ text: '🌈 任何人都可以', callback_data: 'throw_target_any' }],
+        [{ text: '⚙️ 進階篩選（MBTI/星座）', callback_data: 'throw_advanced' }],
+      ]);
     } else {
       await telegram.sendMessageWithButtons(
         chatId,
@@ -189,9 +164,7 @@ export async function handleDraftNew(
             { text: '👨 男生', callback_data: 'throw_target_male' },
             { text: '👩 女生', callback_data: 'throw_target_female' },
           ],
-          [
-            { text: '🌈 任何人都可以', callback_data: 'throw_target_any' },
-          ],
+          [{ text: '🌈 任何人都可以', callback_data: 'throw_target_any' }],
         ]
       );
     }
@@ -204,10 +177,7 @@ export async function handleDraftNew(
 /**
  * Handle draft send
  */
-export async function handleDraftSend(
-  callbackQuery: any,
-  env: Env
-): Promise<void> {
+export async function handleDraftSend(callbackQuery: any, env: Env): Promise<void> {
   const db = createDatabaseClient(env.DB);
   const telegram = createTelegramService(env);
   const chatId = callbackQuery.message!.chat.id;
@@ -246,10 +216,7 @@ export async function handleDraftSend(
 /**
  * Handle draft edit
  */
-export async function handleDraftEdit(
-  callbackQuery: any,
-  env: Env
-): Promise<void> {
+export async function handleDraftEdit(callbackQuery: any, env: Env): Promise<void> {
   const telegram = createTelegramService(env);
   const chatId = callbackQuery.message!.chat.id;
 
@@ -271,4 +238,3 @@ export async function handleDraftEdit(
     await telegram.answerCallbackQuery(callbackQuery.id, '❌ 發生錯誤');
   }
 }
-

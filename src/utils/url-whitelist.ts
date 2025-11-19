@@ -1,14 +1,10 @@
 /**
  * URL Whitelist Checker
- * 
+ *
  * Only allow URLs from whitelisted domains for security.
  */
 
-const WHITELISTED_DOMAINS = [
-  't.me',
-  'telegram.org',
-  'telegram.me',
-];
+const WHITELISTED_DOMAINS = ['t.me', 'telegram.org', 'telegram.me'];
 
 /**
  * Extract URLs from text
@@ -25,9 +21,9 @@ function isWhitelistedUrl(url: string): boolean {
   try {
     const urlObj = new URL(url);
     const hostname = urlObj.hostname.toLowerCase();
-    
-    return WHITELISTED_DOMAINS.some(domain => 
-      hostname === domain || hostname.endsWith(`.${domain}`)
+
+    return WHITELISTED_DOMAINS.some(
+      (domain) => hostname === domain || hostname.endsWith(`.${domain}`)
     );
   } catch {
     return false;
@@ -42,20 +38,19 @@ export function checkUrlWhitelist(text: string): {
   blockedUrls?: string[];
 } {
   const urls = extractUrls(text);
-  
+
   if (urls.length === 0) {
     return { allowed: true };
   }
-  
-  const blockedUrls = urls.filter(url => !isWhitelistedUrl(url));
-  
+
+  const blockedUrls = urls.filter((url) => !isWhitelistedUrl(url));
+
   if (blockedUrls.length > 0) {
     return {
       allowed: false,
       blockedUrls,
     };
   }
-  
+
   return { allowed: true };
 }
-

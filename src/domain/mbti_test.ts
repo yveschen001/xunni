@@ -1,15 +1,15 @@
 /**
  * MBTI Test Domain Logic
- * 
+ *
  * Provides conversational MBTI test questions, scoring, and result calculation.
  * This module is platform-agnostic and can be used by bot, mini-app, or other channels.
- * 
+ *
  * Based on simplified MBTI dimensions:
  * - E/I (Extraversion/Introversion)
  * - S/N (Sensing/Intuition)
  * - T/F (Thinking/Feeling)
  * - J/P (Judging/Perceiving)
- * 
+ *
  * Test Versions:
  * - Quick (12 questions): For bot onboarding, results are for reference only
  * - Standard (36 questions): For Mini App, more accurate results (FUTURE)
@@ -40,25 +40,25 @@ export interface MBTIQuestion {
   options: {
     text_zh_TW: string;
     text_en: string;
-    score: number;  // Positive for first letter (E/S/T/J), negative for second (I/N/F/P)
+    score: number; // Positive for first letter (E/S/T/J), negative for second (I/N/F/P)
   }[];
 }
 
 export interface MBTITestProgress {
   telegram_id: string;
   current_question: number;
-  answers: string;  // JSON string of number array
+  answers: string; // JSON string of number array
   started_at: string;
   updated_at: string;
 }
 
 export interface MBTIResult {
-  type: string;  // e.g., "INTJ"
+  type: string; // e.g., "INTJ"
   dimensions: {
-    EI: number;  // Positive = E, Negative = I
-    SN: number;  // Positive = S, Negative = N
-    TF: number;  // Positive = T, Negative = F
-    JP: number;  // Positive = J, Negative = P
+    EI: number; // Positive = E, Negative = I
+    SN: number; // Positive = S, Negative = N
+    TF: number; // Positive = T, Negative = F
+    JP: number; // Positive = J, Negative = P
   };
   description_zh_TW: string;
   description_en: string;
@@ -71,13 +71,13 @@ export interface MBTIResult {
 /**
  * Quick MBTI test with 12 questions (3 per dimension)
  * This is a simplified test suitable for bot conversation flow.
- * 
+ *
  * ⚠️ DISCLAIMER: Results are for reference only. This is not a professional assessment.
- * 
+ *
  * For more accurate results:
  * - Standard test (36 questions): Available for retake
  * - Professional test (60 questions, 5 options): Planned for VIP users
- * 
+ *
  * Industry standard: 60-93 questions with 5-7 options per question
  */
 export const MBTI_QUESTIONS_QUICK: MBTIQuestion[] = [
@@ -324,7 +324,9 @@ export function calculateMBTIResult(answers: number[], version?: 'quick' | 'full
   }
 
   if (answers.length !== questions.length) {
-    throw new Error(`Invalid answers length for ${version || 'auto-detected'} version: expected ${questions.length}, got ${answers.length}`);
+    throw new Error(
+      `Invalid answers length for ${version || 'auto-detected'} version: expected ${questions.length}, got ${answers.length}`
+    );
   }
 
   // Initialize dimension scores
@@ -378,7 +380,10 @@ export function isValidAnswer(questionIndex: number, answerIndex: number): boole
 /**
  * Get progress percentage
  */
-export function getProgressPercentage(currentQuestion: number, totalQuestions: number = MBTI_QUESTIONS.length): number {
+export function getProgressPercentage(
+  currentQuestion: number,
+  totalQuestions: number = MBTI_QUESTIONS.length
+): number {
   return Math.round((currentQuestion / totalQuestions) * 100);
 }
 
@@ -395,7 +400,7 @@ export const MBTI_QUESTIONS = MBTI_QUESTIONS_QUICK;
 /**
  * Full MBTI test with 36 questions (9 per dimension)
  * More comprehensive test for retake functionality
- * 
+ *
  * ⚠️ DISCLAIMER: Results are for reference only. This is not a professional assessment.
  */
 export const MBTI_QUESTIONS_FULL: MBTIQuestion[] = [
@@ -781,4 +786,3 @@ export function getMBTIQuestions(version: 'quick' | 'full' = 'quick'): MBTIQuest
 export function getTotalQuestionsByVersion(version: 'quick' | 'full' = 'quick'): number {
   return getMBTIQuestions(version).length;
 }
-

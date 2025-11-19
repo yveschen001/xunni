@@ -108,7 +108,7 @@ describe('Blood Type Domain Functions', () => {
 
     it('should include all blood types', () => {
       const options = getBloodTypeOptions();
-      const values = options.map(opt => opt.value);
+      const values = options.map((opt) => opt.value);
       expect(values).toContain('A');
       expect(values).toContain('B');
       expect(values).toContain('AB');
@@ -118,7 +118,7 @@ describe('Blood Type Domain Functions', () => {
 
     it('should have display names for all options', () => {
       const options = getBloodTypeOptions();
-      options.forEach(opt => {
+      options.forEach((opt) => {
         expect(opt.display).toBeTruthy();
         expect(typeof opt.display).toBe('string');
       });
@@ -126,10 +126,9 @@ describe('Blood Type Domain Functions', () => {
 
     it('should have emoji in display names', () => {
       const options = getBloodTypeOptions();
-      options.forEach(opt => {
+      options.forEach((opt) => {
         expect(opt.display).toMatch(/[🩸❓]/);
       });
     });
   });
 });
-

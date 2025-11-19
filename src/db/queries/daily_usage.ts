@@ -128,4 +128,3 @@ export async function incrementMessagesSent(
 
   await db.execute(sql, [telegramId, date]);
 }
-

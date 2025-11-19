@@ -31,7 +31,7 @@ export async function handleNicknameUseTelegram(
 
     // Get Telegram nickname
     const nickname = callbackQuery.from.username || callbackQuery.from.first_name || '';
-    
+
     if (!nickname) {
       await telegram.answerCallbackQuery(callbackQuery.id, '❌ 無法獲取 Telegram 暱稱');
       return;
@@ -81,10 +81,7 @@ export async function handleNicknameUseTelegram(
 /**
  * Handle custom nickname
  */
-export async function handleNicknameCustom(
-  callbackQuery: CallbackQuery,
-  env: Env
-): Promise<void> {
+export async function handleNicknameCustom(callbackQuery: CallbackQuery, env: Env): Promise<void> {
   const telegram = createTelegramService(env);
   const chatId = callbackQuery.message!.chat.id;
 
@@ -109,4 +106,3 @@ export async function handleNicknameCustom(
     await telegram.answerCallbackQuery(callbackQuery.id, '❌ 發生錯誤');
   }
 }
-

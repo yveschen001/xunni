@@ -77,25 +77,25 @@ export function calculateBroadcastProgress(broadcast: Broadcast): {
  */
 export function formatBroadcastStatus(broadcast: Broadcast): string {
   const progress = calculateBroadcastProgress(broadcast);
-  
+
   let message = `📊 廣播狀態\n\n`;
   message += `ID: ${broadcast.id}\n`;
   message += `狀態: ${progress.status}\n`;
   message += `目標: ${getBroadcastTargetName(broadcast.targetType)}\n`;
   message += `進度: ${broadcast.sentCount}/${broadcast.totalUsers} (${progress.percentage}%)\n`;
-  
+
   if (broadcast.failedCount > 0) {
     message += `失敗: ${broadcast.failedCount}\n`;
   }
-  
+
   if (broadcast.startedAt) {
     message += `開始時間: ${new Date(broadcast.startedAt).toLocaleString('zh-TW')}\n`;
   }
-  
+
   if (broadcast.completedAt) {
     message += `完成時間: ${new Date(broadcast.completedAt).toLocaleString('zh-TW')}\n`;
   }
-  
+
   if (broadcast.errorMessage) {
     message += `\n錯誤: ${broadcast.errorMessage}`;
   }
@@ -128,16 +128,55 @@ export function canCancelBroadcast(broadcast: Broadcast): boolean {
 
 /**
  * Calculate batch size for rate limiting
+ * 
+ * 根據用戶數量動態調整延遲：
+ * - 1-25 用戶：立即發送（0ms 延遲）
+ * - 26-100 用戶：500ms 延遲
+ * - 101+ 用戶：1000ms 延遲
  */
 export function calculateBatchSize(totalUsers: number): {
   batchSize: number;
   batchCount: number;
   delayMs: number;
 } {
-  const batchSize = 25; // Telegram rate limit
+  const batchSize = 25; // Telegram rate limit: 30 messages/second
   const batchCount = Math.ceil(totalUsers / batchSize);
-  const delayMs = 1000; // 1 second between batches
+  
+  // 動態調整延遲時間
+  let delayMs: number;
+  if (totalUsers <= 25) {
+    // 單批次，立即發送
+    delayMs = 0;
+  } else if (totalUsers <= 100) {
+    // 小規模廣播，500ms 延遲
+    delayMs = 500;
+  } else {
+    // 大規模廣播，1000ms 延遲（更安全）
+    delayMs = 1000;
+  }
 
   return { batchSize, batchCount, delayMs };
 }
 
+/**
+ * 估算廣播完成時間
+ * 
+ * @param totalUsers 總用戶數
+ * @returns 預估時間描述
+ */
+export function estimateBroadcastTime(totalUsers: number): string {
+  const { batchSize, batchCount, delayMs } = calculateBatchSize(totalUsers);
+  
+  // 計算總時間（秒）
+  // 每批次發送時間約 1 秒 + 批次間延遲
+  const totalSeconds = batchCount + ((batchCount - 1) * delayMs) / 1000;
+  
+  if (totalUsers <= 25) {
+    return '立即發送（約 1-2 秒）';
+  } else if (totalSeconds < 60) {
+    return `約 ${Math.ceil(totalSeconds)} 秒`;
+  } else {
+    const minutes = Math.ceil(totalSeconds / 60);
+    return `約 ${minutes} 分鐘`;
+  }
+}

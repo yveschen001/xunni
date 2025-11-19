@@ -1,6 +1,6 @@
 /**
  * Conversation History Service
- * 
+ *
  * Manages history posts and new message posts for conversations
  */
 
@@ -42,37 +42,37 @@ export async function updateConversationHistory(
   }
 ): Promise<void> {
   const telegram = createTelegramService(env);
-  
+
   console.error('[updateConversationHistory] Starting:', {
     conversationId,
     userTelegramId,
     identifier,
     direction,
-    messageLength: messageContent.length
+    messageLength: messageContent.length,
   });
-  
+
   try {
     // Get latest history post
     const latestPost = await getLatestHistoryPost(db, conversationId, userTelegramId);
-    console.error('[updateConversationHistory] Latest post:', latestPost ? `Post #${latestPost.post_number}` : 'None');
-    
+    console.error(
+      '[updateConversationHistory] Latest post:',
+      latestPost ? `Post #${latestPost.post_number}` : 'None'
+    );
+
     // Format new message entry
     const newMessageEntry = formatMessageEntry(messageTime, direction, messageContent);
     console.error('[updateConversationHistory] New entry:', newMessageEntry);
-    
+
     if (!latestPost) {
       // No history post exists, create first one
       const messages = [newMessageEntry];
       const content = buildHistoryPostContent(identifier, 1, messages, 1, partnerInfo);
-      
+
       // Send history post to user
       console.error('[updateConversationHistory] Creating first history post');
-      const sentMessage = await telegram.sendMessageAndGetId(
-        parseInt(userTelegramId),
-        content
-      );
+      const sentMessage = await telegram.sendMessageAndGetId(parseInt(userTelegramId), content);
       console.error('[updateConversationHistory] History post sent:', sentMessage.message_id);
-      
+
       // Save to database
       await createHistoryPost(
         db,
@@ -92,8 +92,14 @@ export async function updateConversationHistory(
         // Create new history post
         const messages = [newMessageEntry];
         const newPostNumber = latestPost.post_number + 1;
-        const content = buildHistoryPostContent(identifier, newPostNumber, messages, latestPost.message_count + 1, partnerInfo);
-        
+        const content = buildHistoryPostContent(
+          identifier,
+          newPostNumber,
+          messages,
+          latestPost.message_count + 1,
+          partnerInfo
+        );
+
         // Update old post to add "continue to next page" hint
         const oldContent = latestPost.content + `\n📜 繼續查看：#${identifier}-H${newPostNumber}`;
         await telegram.editMessageText(
@@ -101,14 +107,17 @@ export async function updateConversationHistory(
           latestPost.telegram_message_id,
           oldContent
         );
-        await updateHistoryPost(db, latestPost.id, oldContent, oldContent.length, latestPost.message_count);
-        
-        // Send new history post
-        const sentMessage = await telegram.sendMessageAndGetId(
-          parseInt(userTelegramId),
-          content
+        await updateHistoryPost(
+          db,
+          latestPost.id,
+          oldContent,
+          oldContent.length,
+          latestPost.message_count
         );
-        
+
+        // Send new history post
+        const sentMessage = await telegram.sendMessageAndGetId(parseInt(userTelegramId), content);
+
         // Save to database
         await createHistoryPost(
           db,
@@ -125,19 +134,36 @@ export async function updateConversationHistory(
         // Update existing post
         console.error('[updateConversationHistory] Updating existing post');
         const messages = extractMessages(latestPost.content);
-        console.error('[updateConversationHistory] Extracted messages:', messages.length, 'messages');
-        console.error('[updateConversationHistory] Extracted messages content:', JSON.stringify(messages));
+        console.error(
+          '[updateConversationHistory] Extracted messages:',
+          messages.length,
+          'messages'
+        );
+        console.error(
+          '[updateConversationHistory] Extracted messages content:',
+          JSON.stringify(messages)
+        );
         console.error('[updateConversationHistory] Old content length:', latestPost.content.length);
         console.error('[updateConversationHistory] New message entry:', newMessageEntry);
-        
+
         messages.push(newMessageEntry);
-        console.error('[updateConversationHistory] After adding new message:', messages.length, 'messages');
+        console.error(
+          '[updateConversationHistory] After adding new message:',
+          messages.length,
+          'messages'
+        );
         console.error('[updateConversationHistory] All messages:', JSON.stringify(messages));
-        
+
         const newMessageCount = latestPost.message_count + 1;
-        const content = buildHistoryPostContent(identifier, latestPost.post_number, messages, newMessageCount, partnerInfo);
+        const content = buildHistoryPostContent(
+          identifier,
+          latestPost.post_number,
+          messages,
+          newMessageCount,
+          partnerInfo
+        );
         console.error('[updateConversationHistory] New content length:', content.length);
-        
+
         // Edit Telegram message
         await telegram.editMessageText(
           parseInt(userTelegramId),
@@ -145,7 +171,7 @@ export async function updateConversationHistory(
           content
         );
         console.error('[updateConversationHistory] Telegram message edited');
-        
+
         // Update database
         await updateHistoryPost(db, latestPost.id, content, content.length, newMessageCount);
         console.error('[updateConversationHistory] Database updated');
@@ -158,7 +184,7 @@ export async function updateConversationHistory(
       stack: error instanceof Error ? error.stack : undefined,
       conversationId,
       userTelegramId,
-      identifier
+      identifier,
     });
     // Don't throw - history post failure shouldn't break the main flow
   }
@@ -183,11 +209,11 @@ export async function updateNewMessagePost(
   }
 ): Promise<void> {
   const telegram = createTelegramService(env);
-  
+
   try {
     // Get existing new message post
     const existingPost = await getNewMessagePost(db, conversationId, userTelegramId);
-    
+
     // Delete old message if exists
     if (existingPost) {
       try {
@@ -197,19 +223,23 @@ export async function updateNewMessagePost(
         // Continue anyway
       }
     }
-    
+
     // Build new message content
-    const content = buildNewMessagePostContent(identifier, messageContent, messageTime, conversationId, partnerInfo);
-    
+    const content = buildNewMessagePostContent(
+      identifier,
+      messageContent,
+      messageTime,
+      conversationId,
+      partnerInfo
+    );
+
     // Send new message with button
     const sentMessage = await telegram.sendMessageWithButtonsAndGetId(
       parseInt(userTelegramId),
       content,
-      [
-        [{ text: '👤 查看對方資料卡', callback_data: `conv_profile_${conversationId}` }],
-      ]
+      [[{ text: '👤 查看對方資料卡', callback_data: `conv_profile_${conversationId}` }]]
     );
-    
+
     // Save to database
     await upsertNewMessagePost(
       db,
@@ -225,4 +255,3 @@ export async function updateNewMessagePost(
     // Don't throw - new message post failure shouldn't break the main flow
   }
 }
-

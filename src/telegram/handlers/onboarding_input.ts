@@ -7,18 +7,26 @@
 
 import type { Env, TelegramMessage, User } from '~/types';
 import { createDatabaseClient } from '~/db/client';
-import { findUserByTelegramId, updateUserProfile, updateOnboardingStep, updateAntiFraudScore } from '~/db/queries/users';
-import { validateNickname, validateBirthday, calculateAge, calculateZodiacSign } from '~/domain/user';
+import {
+  findUserByTelegramId,
+  updateUserProfile,
+  updateOnboardingStep,
+  updateAntiFraudScore,
+} from '~/db/queries/users';
+import {
+  validateNickname,
+  validateBirthday,
+  calculateAge,
+  calculateZodiacSign,
+} from '~/domain/user';
 import { createTelegramService } from '~/services/telegram';
+import { LEGAL_URLS } from '~/config/legal_urls';
 
 // ============================================================================
 // Onboarding Input Handler
 // ============================================================================
 
-export async function handleOnboardingInput(
-  message: TelegramMessage,
-  env: Env
-): Promise<boolean> {
+export async function handleOnboardingInput(message: TelegramMessage, env: Env): Promise<boolean> {
   const db = createDatabaseClient(env.DB);
   const telegram = createTelegramService(env);
   const chatId = message.chat.id;
@@ -120,7 +128,10 @@ async function handleBirthdayInput(
   // Validate birthday
   const validation = validateBirthday(birthday);
   if (!validation.valid) {
-    await telegram.sendMessage(chatId, `❌ ${validation.error}\n\n請重新輸入生日（格式：YYYY-MM-DD）：`);
+    await telegram.sendMessage(
+      chatId,
+      `❌ ${validation.error}\n\n請重新輸入生日（格式：YYYY-MM-DD）：`
+    );
     return true;
   }
 
@@ -197,11 +208,12 @@ async function handleAntiFraudInput(
         `最後一步：請閱讀並同意我們的服務條款\n\n` +
         `📋 隱私權政策\n` +
         `📋 使用者條款\n\n` +
+        `📋 Legal documents are provided in English only.\n\n` +
         `點擊下方按鈕表示你已閱讀並同意上述條款。`,
       [
         [{ text: '✅ 我已閱讀並同意', callback_data: 'agree_terms' }],
-        [{ text: '📋 查看隱私權政策', url: 'https://xunni.example.com/privacy' }],
-        [{ text: '📋 查看使用者條款', url: 'https://xunni.example.com/terms' }],
+        [{ text: '📋 View Privacy Policy', url: LEGAL_URLS.PRIVACY_POLICY }],
+        [{ text: '📋 View Terms of Service', url: LEGAL_URLS.TERMS_OF_SERVICE }],
       ]
     );
 
@@ -217,4 +229,3 @@ async function handleAntiFraudInput(
 
   return true;
 }
-

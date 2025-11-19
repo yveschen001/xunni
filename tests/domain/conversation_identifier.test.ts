@@ -153,4 +153,3 @@ describe('Conversation Identifier Domain Functions', () => {
     });
   });
 });
-

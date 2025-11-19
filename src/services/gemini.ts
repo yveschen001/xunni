@@ -27,7 +27,9 @@ export async function translateWithGemini(
 
   const prompt = buildGeminiPrompt(text, targetLanguage, sourceLanguage);
   const modelList =
-    env.GEMINI_MODELS?.split(',').map(model => model.trim()).filter(Boolean) || DEFAULT_GEMINI_MODELS;
+    env.GEMINI_MODELS?.split(',')
+      .map((model) => model.trim())
+      .filter(Boolean) || DEFAULT_GEMINI_MODELS;
 
   let lastError: Error | string | null = null;
 
@@ -68,9 +70,11 @@ export async function translateWithGemini(
 
       interface GeminiResponse {
         candidates?: Array<{
-          content?: {
-            parts?: Array<{ text?: string }>;
-          } | string;
+          content?:
+            | {
+                parts?: Array<{ text?: string }>;
+              }
+            | string;
         }>;
       }
 
@@ -82,7 +86,10 @@ export async function translateWithGemini(
         (typeof candidate?.content?.parts?.[0]?.text === 'string' &&
           candidate.content.parts[0].text.trim()) ||
         (Array.isArray(candidate?.content?.parts)
-          ? candidate.content.parts.map((part: { text?: string }) => part.text || '').join(' ').trim()
+          ? candidate.content.parts
+            .map((part: { text?: string }) => part.text || '')
+            .join(' ')
+            .trim()
           : '') ||
         (typeof candidate?.content === 'string' && candidate.content.trim()) ||
         '';
@@ -114,17 +121,46 @@ export async function translateWithGemini(
 
 function buildGeminiPrompt(text: string, targetLanguage: string, sourceLanguage?: string): string {
   const languageMap: Record<string, string> = {
-    'zh-TW': 'Traditional Chinese (Taiwan)', 'zh-CN': 'Simplified Chinese', 'en': 'English',
-    'ja': 'Japanese', 'ko': 'Korean', 'th': 'Thai', 'vi': 'Vietnamese', 'id': 'Indonesian',
-    'ms': 'Malay', 'tl': 'Filipino', 'es': 'Spanish', 'pt': 'Portuguese', 'fr': 'French',
-    'de': 'German', 'it': 'Italian', 'ru': 'Russian', 'ar': 'Arabic', 'hi': 'Hindi',
-    'bn': 'Bengali', 'tr': 'Turkish', 'pl': 'Polish', 'uk': 'Ukrainian', 'nl': 'Dutch',
-    'sv': 'Swedish', 'no': 'Norwegian', 'da': 'Danish', 'fi': 'Finnish', 'cs': 'Czech',
-    'el': 'Greek', 'he': 'Hebrew', 'fa': 'Persian', 'ur': 'Urdu', 'sw': 'Swahili', 'ro': 'Romanian',
+    'zh-TW': 'Traditional Chinese (Taiwan)',
+    'zh-CN': 'Simplified Chinese',
+    en: 'English',
+    ja: 'Japanese',
+    ko: 'Korean',
+    th: 'Thai',
+    vi: 'Vietnamese',
+    id: 'Indonesian',
+    ms: 'Malay',
+    tl: 'Filipino',
+    es: 'Spanish',
+    pt: 'Portuguese',
+    fr: 'French',
+    de: 'German',
+    it: 'Italian',
+    ru: 'Russian',
+    ar: 'Arabic',
+    hi: 'Hindi',
+    bn: 'Bengali',
+    tr: 'Turkish',
+    pl: 'Polish',
+    uk: 'Ukrainian',
+    nl: 'Dutch',
+    sv: 'Swedish',
+    no: 'Norwegian',
+    da: 'Danish',
+    fi: 'Finnish',
+    cs: 'Czech',
+    el: 'Greek',
+    he: 'Hebrew',
+    fa: 'Persian',
+    ur: 'Urdu',
+    sw: 'Swahili',
+    ro: 'Romanian',
   };
 
   const targetLangName = languageMap[targetLanguage] || targetLanguage;
-  const sourceLangName = sourceLanguage ? languageMap[sourceLanguage] || sourceLanguage : 'the source language';
+  const sourceLangName = sourceLanguage
+    ? languageMap[sourceLanguage] || sourceLanguage
+    : 'the source language';
 
   return `You are a professional translator. Translate the following text from ${sourceLangName} to ${targetLangName}.
 
@@ -140,4 +176,3 @@ CRITICAL RULES:
 Text to translate:
 ${text}`;
 }
-

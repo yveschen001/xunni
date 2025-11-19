@@ -1,6 +1,6 @@
 /**
  * Stats Handler
- * 
+ *
  * Handles /stats command - User statistics.
  */
 
@@ -25,10 +25,7 @@ export async function handleStats(message: TelegramMessage, env: Env): Promise<v
 
     // Check if user completed onboarding
     if (user.onboarding_step !== 'completed') {
-      await telegram.sendMessage(
-        chatId,
-        '❌ 請先完成註冊流程。\n\n使用 /start 繼續註冊。'
-      );
+      await telegram.sendMessage(chatId, '❌ 請先完成註冊流程。\n\n使用 /start 繼續註冊。');
       return;
     }
 
@@ -36,7 +33,7 @@ export async function handleStats(message: TelegramMessage, env: Env): Promise<v
     const stats = await getUserStats(db, telegramId);
 
     // Format message
-    const message_text = 
+    const message_text =
       `📊 **我的統計數據**\n\n` +
       `🍾 **漂流瓶**\n` +
       `• 丟出：${stats.bottlesThrown} 個\n` +
@@ -51,7 +48,7 @@ export async function handleStats(message: TelegramMessage, env: Env): Promise<v
       `• 平均回覆率：${stats.replyRate}%\n\n` +
       `⭐ **VIP 狀態**\n` +
       `• ${user.is_vip ? `✅ VIP 會員` : `❌ 免費用戶`}\n` +
-      (user.is_vip && user.vip_expire_at 
+      (user.is_vip && user.vip_expire_at
         ? `• 到期時間：${new Date(user.vip_expire_at).toLocaleDateString('zh-TW')}\n`
         : '') +
       `\n` +
@@ -89,31 +86,51 @@ async function getUserStats(
   replyRate: number;
 }> {
   // Get bottles thrown
-  const bottlesThrown = await db.d1.prepare(`
+  const bottlesThrown = await db.d1
+    .prepare(
+      `
     SELECT COUNT(*) as count
     FROM bottles
     WHERE owner_telegram_id = ?
-  `).bind(telegramId).first<{ count: number }>();
+  `
+    )
+    .bind(telegramId)
+    .first<{ count: number }>();
 
   // Get bottles caught
-  const bottlesCaught = await db.d1.prepare(`
+  const bottlesCaught = await db.d1
+    .prepare(
+      `
     SELECT COUNT(*) as count
     FROM conversations
     WHERE (user_a_telegram_id = ? OR user_b_telegram_id = ?)
       AND status = 'active'
-  `).bind(telegramId, telegramId).first<{ count: number }>();
+  `
+    )
+    .bind(telegramId, telegramId)
+    .first<{ count: number }>();
 
   // Get today's quota
   const today = new Date().toISOString().split('T')[0];
-  const dailyUsage = await db.d1.prepare(`
+  const dailyUsage = await db.d1
+    .prepare(
+      `
     SELECT throws_count, catches_count
     FROM daily_usage
     WHERE telegram_id = ? AND date = ?
-  `).bind(telegramId, today).first<{ throws_count: number; catches_count: number }>();
+  `
+    )
+    .bind(telegramId, today)
+    .first<{ throws_count: number; catches_count: number }>();
 
-  const user = await db.d1.prepare(`
+  const user = await db.d1
+    .prepare(
+      `
     SELECT is_vip FROM users WHERE telegram_id = ?
-  `).bind(telegramId).first<{ is_vip: number }>();
+  `
+    )
+    .bind(telegramId)
+    .first<{ is_vip: number }>();
 
   const isVip = !!user?.is_vip;
   const quota = isVip ? 30 : 3;
@@ -121,26 +138,41 @@ async function getUserStats(
   const remaining = Math.max(0, quota - used);
 
   // Get total conversations
-  const totalConversations = await db.d1.prepare(`
+  const totalConversations = await db.d1
+    .prepare(
+      `
     SELECT COUNT(*) as count
     FROM conversations
     WHERE user_a_telegram_id = ? OR user_b_telegram_id = ?
-  `).bind(telegramId, telegramId).first<{ count: number }>();
+  `
+    )
+    .bind(telegramId, telegramId)
+    .first<{ count: number }>();
 
   // Get active conversations
-  const activeConversations = await db.d1.prepare(`
+  const activeConversations = await db.d1
+    .prepare(
+      `
     SELECT COUNT(*) as count
     FROM conversations
     WHERE (user_a_telegram_id = ? OR user_b_telegram_id = ?)
       AND status = 'active'
-  `).bind(telegramId, telegramId).first<{ count: number }>();
+  `
+    )
+    .bind(telegramId, telegramId)
+    .first<{ count: number }>();
 
   // Get total messages
-  const totalMessages = await db.d1.prepare(`
+  const totalMessages = await db.d1
+    .prepare(
+      `
     SELECT COUNT(*) as count
     FROM conversation_messages
     WHERE sender_telegram_id = ?
-  `).bind(telegramId).first<{ count: number }>();
+  `
+    )
+    .bind(telegramId)
+    .first<{ count: number }>();
 
   // Calculate match rate (conversations / bottles thrown)
   // Match rate = percentage of thrown bottles that led to conversations
@@ -152,7 +184,8 @@ async function getUserStats(
   // Calculate reply rate (messages per conversation average)
   // Reply rate = average messages per conversation (capped at 100%)
   const messages = totalMessages?.count || 0;
-  const replyRate = conversations > 0 ? Math.min(100, Math.round((messages / conversations) * 10)) : 0;
+  const replyRate =
+    conversations > 0 ? Math.min(100, Math.round((messages / conversations) * 10)) : 0;
 
   return {
     bottlesThrown: thrown,
@@ -174,11 +207,10 @@ function calculateAge(birthday: string): number {
   const today = new Date();
   let age = today.getFullYear() - birthDate.getFullYear();
   const monthDiff = today.getMonth() - birthDate.getMonth();
-  
+
   if (monthDiff < 0 || (monthDiff === 0 && today.getDate() < birthDate.getDate())) {
     age--;
   }
-  
+
   return age;
 }
-

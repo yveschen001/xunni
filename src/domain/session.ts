@@ -1,10 +1,15 @@
 /**
  * Session Domain Logic
- * 
+ *
  * Pure functions for session management, timeout, and state handling.
  */
 
-export type SessionType = 'onboarding' | 'throw_bottle' | 'catch_bottle' | 'conversation' | 'edit_profile';
+export type SessionType =
+  | 'onboarding'
+  | 'throw_bottle'
+  | 'catch_bottle'
+  | 'conversation'
+  | 'edit_profile';
 
 export interface UserSession {
   id: number;
@@ -63,7 +68,7 @@ export function parseSessionData(session: UserSession): SessionData {
   if (!session.session_data) {
     return {};
   }
-  
+
   try {
     return JSON.parse(session.session_data);
   } catch (error) {
@@ -86,22 +91,22 @@ export function getTimeoutMessage(sessionType: SessionType, language: string = '
   const messages: Record<SessionType, Record<string, string>> = {
     onboarding: {
       'zh-TW': '⏰ 註冊流程已超時\n\n請使用 /start 重新開始註冊。',
-      'en': '⏰ Registration timeout\n\nPlease use /start to restart.',
+      en: '⏰ Registration timeout\n\nPlease use /start to restart.',
     },
     throw_bottle: {
       'zh-TW': '⏰ 丟瓶流程已超時\n\n請使用 /throw 重新開始。',
-      'en': '⏰ Throw bottle timeout\n\nPlease use /throw to restart.',
+      en: '⏰ Throw bottle timeout\n\nPlease use /throw to restart.',
     },
     catch_bottle: {
       'zh-TW': '⏰ 撿瓶流程已超時\n\n請使用 /catch 重新開始。',
-      'en': '⏰ Catch bottle timeout\n\nPlease use /catch to restart.',
+      en: '⏰ Catch bottle timeout\n\nPlease use /catch to restart.',
     },
     conversation: {
       'zh-TW': '⏰ 對話已超時\n\n對方可能已離開。使用 /catch 撿新的瓶子吧！',
-      'en': '⏰ Conversation timeout\n\nThe other person may have left. Use /catch to find a new bottle!',
+      en: '⏰ Conversation timeout\n\nThe other person may have left. Use /catch to find a new bottle!',
     },
   };
-  
+
   return messages[sessionType][language] || messages[sessionType]['zh-TW'];
 }
 
@@ -112,22 +117,21 @@ export function getSessionTypeName(sessionType: SessionType, language: string = 
   const names: Record<SessionType, Record<string, string>> = {
     onboarding: {
       'zh-TW': '註冊流程',
-      'en': 'Registration',
+      en: 'Registration',
     },
     throw_bottle: {
       'zh-TW': '丟瓶流程',
-      'en': 'Throw Bottle',
+      en: 'Throw Bottle',
     },
     catch_bottle: {
       'zh-TW': '撿瓶流程',
-      'en': 'Catch Bottle',
+      en: 'Catch Bottle',
     },
     conversation: {
       'zh-TW': '對話',
-      'en': 'Conversation',
+      en: 'Conversation',
     },
   };
-  
+
   return names[sessionType][language] || names[sessionType]['zh-TW'];
 }
-

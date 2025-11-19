@@ -23,9 +23,9 @@ export function getAdminIds(env: Env): string[] {
   const adminIdsStr = env.ADMIN_USER_IDS || '';
   const regularAdmins = adminIdsStr
     .split(',')
-    .map(id => id.trim())
-    .filter(id => id.length > 0 && id !== SUPER_ADMIN_ID);
-  
+    .map((id) => id.trim())
+    .filter((id) => id.length > 0 && id !== SUPER_ADMIN_ID);
+
   // Always include super admin
   return [SUPER_ADMIN_ID, ...regularAdmins];
 }
@@ -39,10 +39,18 @@ export function isSuperAdmin(telegramId: string): boolean {
 }
 
 /**
+ * Get super admin IDs
+ * Returns array with the super admin ID
+ */
+export function getSuperAdminIds(_env: Env): string[] {
+  return [SUPER_ADMIN_ID];
+}
+
+/**
  * Check if user is admin (regular admin or super admin)
  * Admins can handle appeals and bans
  */
-function isAdmin(telegramId: string, env: Env): boolean {
+export function isAdmin(telegramId: string, env: Env): boolean {
   const adminIds = getAdminIds(env);
   return adminIds.includes(telegramId);
 }
@@ -67,8 +75,8 @@ export async function handleAdminBan(message: TelegramMessage, env: Env): Promis
 
     // Parse command
     const text = message.text || '';
-    const parts = text.split(' ').filter(p => p.length > 0);
-    
+    const parts = text.split(' ').filter((p) => p.length > 0);
+
     if (parts.length < 2) {
       await telegram.sendMessage(chatId, i18n.t('admin.banUsageError'));
       return;
@@ -110,18 +118,20 @@ export async function handleAdminBan(message: TelegramMessage, env: Env): Promis
     }
 
     // Create ban record
-    await db.d1.prepare(`
+    await db.d1
+      .prepare(
+        `
       INSERT INTO bans (user_id, reason, banned_by, ban_start, ban_end, is_active)
       VALUES (?, ?, ?, datetime('now'), ?, 1)
-    `).bind(
-      targetUserId,
-      `管理員封禁 / Admin ban`,
-      telegramId,
-      bannedUntil
-    ).run();
+    `
+      )
+      .bind(targetUserId, `管理員封禁 / Admin ban`, telegramId, bannedUntil)
+      .run();
 
     // Update user status
-    await db.d1.prepare(`
+    await db.d1
+      .prepare(
+        `
       UPDATE users
       SET is_banned = 1,
           ban_reason = ?,
@@ -129,11 +139,10 @@ export async function handleAdminBan(message: TelegramMessage, env: Env): Promis
           banned_until = ?,
           ban_count = ban_count + 1
       WHERE telegram_id = ?
-    `).bind(
-      `管理員封禁 / Admin ban`,
-      bannedUntil,
-      targetUserId
-    ).run();
+    `
+      )
+      .bind(`管理員封禁 / Admin ban`, bannedUntil, targetUserId)
+      .run();
 
     // Send notification to banned user
     const i18n = createI18n(targetUser.language_pref || 'zh-TW');
@@ -212,8 +221,8 @@ export async function handleAdminUnban(message: TelegramMessage, env: Env): Prom
 
     // Parse command
     const text = message.text || '';
-    const parts = text.split(' ').filter(p => p.length > 0);
-    
+    const parts = text.split(' ').filter((p) => p.length > 0);
+
     if (parts.length < 2) {
       await telegram.sendMessage(chatId, i18n.t('admin.unbanUsageError'));
       return;
@@ -235,21 +244,31 @@ export async function handleAdminUnban(message: TelegramMessage, env: Env): Prom
     }
 
     // Unban user
-    await db.d1.prepare(`
+    await db.d1
+      .prepare(
+        `
       UPDATE users
       SET is_banned = 0,
           ban_reason = NULL,
           banned_at = NULL,
           banned_until = NULL
       WHERE telegram_id = ?
-    `).bind(targetUserId).run();
+    `
+      )
+      .bind(targetUserId)
+      .run();
 
     // Mark all active bans as inactive
-    await db.d1.prepare(`
+    await db.d1
+      .prepare(
+        `
       UPDATE bans
       SET is_active = 0
       WHERE user_id = ? AND is_active = 1
-    `).bind(targetUserId).run();
+    `
+      )
+      .bind(targetUserId)
+      .run();
 
     // Send notification to unbanned user
     const userI18n = createI18n(targetUser.language_pref || 'zh-TW');
@@ -293,7 +312,7 @@ export async function handleAdminList(message: TelegramMessage, env: Env): Promi
     }
 
     const adminIds = getAdminIds(env);
-    
+
     // Get admin info from database
     const adminInfos = [];
     for (const adminId of adminIds) {
@@ -303,13 +322,13 @@ export async function handleAdminList(message: TelegramMessage, env: Env): Promi
         id: adminId,
         nickname: admin?.nickname || i18n.t('admin.listNotRegistered'),
         username: admin?.username || '-',
-        role: isSuperAdminFlag ? i18n.t('admin.listRoleSuperAdmin') : i18n.t('admin.listRoleAdmin')
+        role: isSuperAdminFlag ? i18n.t('admin.listRoleSuperAdmin') : i18n.t('admin.listRoleAdmin'),
       });
     }
 
     let listMessage = i18n.t('admin.listTitle') + `\n\n`;
     listMessage += i18n.t('admin.listTotal', { count: adminInfos.length }) + `\n\n`;
-    
+
     for (const info of adminInfos) {
       listMessage += `${info.role}\n`;
       listMessage += i18n.t('admin.listId', { id: info.id }) + `\n`;
@@ -345,8 +364,8 @@ export async function handleAdminAdd(message: TelegramMessage, env: Env): Promis
 
     // Parse command
     const text = message.text || '';
-    const parts = text.split(' ').filter(p => p.length > 0);
-    
+    const parts = text.split(' ').filter((p) => p.length > 0);
+
     if (parts.length < 2) {
       await telegram.sendMessage(
         chatId,
@@ -422,8 +441,8 @@ export async function handleAdminRemove(message: TelegramMessage, env: Env): Pro
 
     // Parse command
     const text = message.text || '';
-    const parts = text.split(' ').filter(p => p.length > 0);
-    
+    const parts = text.split(' ').filter((p) => p.length > 0);
+
     if (parts.length < 2) {
       await telegram.sendMessage(
         chatId,
@@ -541,13 +560,13 @@ export async function handleAdminBans(message: TelegramMessage, env: Env): Promi
 
       const banEnd = ban.ban_end
         ? new Date(ban.ban_end).toLocaleString('zh-TW', {
-            year: 'numeric',
-            month: '2-digit',
-            day: '2-digit',
-            hour: '2-digit',
-            minute: '2-digit',
-            timeZone: 'Asia/Taipei',
-          })
+          year: 'numeric',
+          month: '2-digit',
+          day: '2-digit',
+          hour: '2-digit',
+          minute: '2-digit',
+          timeZone: 'Asia/Taipei',
+        })
         : '永久';
 
       message +=
@@ -604,13 +623,13 @@ export async function handleAdminBans(message: TelegramMessage, env: Env): Promi
 
     const banEnd = ban.ban_end
       ? new Date(ban.ban_end).toLocaleString('zh-TW', {
-          year: 'numeric',
-          month: '2-digit',
-          day: '2-digit',
-          hour: '2-digit',
-          minute: '2-digit',
-          timeZone: 'Asia/Taipei',
-        })
+        year: 'numeric',
+        month: '2-digit',
+        day: '2-digit',
+        hour: '2-digit',
+        minute: '2-digit',
+        timeZone: 'Asia/Taipei',
+      })
       : '永久';
 
     responseText +=
@@ -712,7 +731,10 @@ export async function handleAdminApprove(message: TelegramMessage, env: Env): Pr
   const notes = parts.slice(2).join(' ') || '申訴已批准';
 
   if (!appealId) {
-    await telegram.sendMessage(chatId, '❌ 請提供申訴 ID\n\n用法: /admin_approve <appeal_id> [備註]');
+    await telegram.sendMessage(
+      chatId,
+      '❌ 請提供申訴 ID\n\n用法: /admin_approve <appeal_id> [備註]'
+    );
     return;
   }
 
@@ -794,7 +816,10 @@ export async function handleAdminReject(message: TelegramMessage, env: Env): Pro
   const notes = parts.slice(2).join(' ') || '申訴被拒絕';
 
   if (!appealId) {
-    await telegram.sendMessage(chatId, '❌ 請提供申訴 ID\n\n用法: /admin_reject <appeal_id> [備註]');
+    await telegram.sendMessage(
+      chatId,
+      '❌ 請提供申訴 ID\n\n用法: /admin_reject <appeal_id> [備註]'
+    );
     return;
   }
 
@@ -841,4 +866,3 @@ export async function handleAdminReject(message: TelegramMessage, env: Env): Pro
 
   await telegram.sendMessage(chatId, `✅ 申訴 ${appealId} 已拒絕`);
 }
-

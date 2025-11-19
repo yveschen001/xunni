@@ -54,7 +54,7 @@ export async function handleWebhook(request: Request, env: Env): Promise<Respons
 // Update Router
 // ============================================================================
 
-async function routeUpdate(update: TelegramUpdate, env: Env): Promise<void> {
+export async function routeUpdate(update: TelegramUpdate, env: Env): Promise<void> {
   const telegram = createTelegramService(env);
   const db = createDatabaseClient(env.DB);
 
@@ -80,7 +80,7 @@ async function routeUpdate(update: TelegramUpdate, env: Env): Promise<void> {
     if (!user) {
       const isStartCommand = text.startsWith('/start');
       const hasInviteCode = text.includes('invite_');
-      
+
       // If it's /start with invite code, let the start handler process it
       if (isStartCommand && hasInviteCode) {
         console.error('[Router] New user with invite code, delegating to /start handler');
@@ -109,27 +109,29 @@ async function routeUpdate(update: TelegramUpdate, env: Env): Promise<void> {
     const { getAdminIds } = await import('./telegram/handlers/admin_ban');
     const adminIds = getAdminIds(env);
     const isUserAdmin = adminIds.includes(telegramId);
-    
+
     // Check maintenance mode (skip for admins)
     if (!isUserAdmin) {
       const { getMaintenanceMode } = await import('./telegram/handlers/maintenance');
-      const { isInMaintenanceMode, formatMaintenanceNotification } = await import('./domain/maintenance');
+      const { isInMaintenanceMode, formatMaintenanceNotification } = await import(
+        './domain/maintenance'
+      );
       const maintenance = await getMaintenanceMode(db);
-      
+
       if (maintenance && isInMaintenanceMode(maintenance)) {
         const notificationMessage = formatMaintenanceNotification(maintenance);
         await telegram.sendMessage(chatId, notificationMessage);
         return;
       }
     }
-    
+
     const { isBanned } = await import('./domain/user');
     if (!isUserAdmin && isBanned(user)) {
       const { createI18n } = await import('./i18n');
       const i18n = createI18n(user.language_pref || 'zh-TW');
-      
+
       let message: string;
-      
+
       if (user.banned_until) {
         // Temporary ban
         const bannedUntil = new Date(user.banned_until);
@@ -137,19 +139,21 @@ async function routeUpdate(update: TelegramUpdate, env: Env): Promise<void> {
         const msLeft = bannedUntil.getTime() - now.getTime();
         const hoursLeft = Math.ceil(msLeft / (1000 * 60 * 60));
         const daysLeft = Math.floor(hoursLeft / 24);
-        
+
         let timeLeft: string;
         if (daysLeft > 0) {
           const hours = hoursLeft % 24;
-          timeLeft = user.language_pref === 'en' 
-            ? `${daysLeft} day${daysLeft > 1 ? 's' : ''} ${hours} hour${hours !== 1 ? 's' : ''}`
-            : `${daysLeft} 天 ${hours} 小時`;
+          timeLeft =
+            user.language_pref === 'en'
+              ? `${daysLeft} day${daysLeft > 1 ? 's' : ''} ${hours} hour${hours !== 1 ? 's' : ''}`
+              : `${daysLeft} 天 ${hours} 小時`;
         } else {
-          timeLeft = user.language_pref === 'en'
-            ? `${hoursLeft} hour${hoursLeft !== 1 ? 's' : ''}`
-            : `${hoursLeft} 小時`;
+          timeLeft =
+            user.language_pref === 'en'
+              ? `${hoursLeft} hour${hoursLeft !== 1 ? 's' : ''}`
+              : `${hoursLeft} 小時`;
         }
-        
+
         const unbanTime = bannedUntil.toLocaleString(
           user.language_pref === 'en' ? 'en-US' : 'zh-TW',
           {
@@ -161,7 +165,7 @@ async function routeUpdate(update: TelegramUpdate, env: Env): Promise<void> {
             timeZone: user.language_pref === 'en' ? 'UTC' : 'Asia/Taipei',
           }
         );
-        
+
         message = i18n.t('ban.bannedTemporary', {
           timeLeft,
           unbanTime,
@@ -170,7 +174,7 @@ async function routeUpdate(update: TelegramUpdate, env: Env): Promise<void> {
         // Permanent ban
         message = i18n.t('ban.bannedPermanent', {});
       }
-      
+
       await telegram.sendMessage(chatId, message);
       return;
     }
@@ -257,6 +261,8 @@ async function routeUpdate(update: TelegramUpdate, env: Env): Promise<void> {
     }
 
     // Route commands
+    console.error('[router] Starting command routing, text:', text);
+
     if (text.startsWith('/start')) {
       await handleStart(message, env);
       return;
@@ -302,7 +308,6 @@ async function routeUpdate(update: TelegramUpdate, env: Env): Promise<void> {
       return;
     }
 
-
     if (text.startsWith('/admin_bans')) {
       const { handleAdminBans } = await import('./telegram/handlers/admin_ban');
       await handleAdminBans(message, env);
@@ -334,7 +339,7 @@ async function routeUpdate(update: TelegramUpdate, env: Env): Promise<void> {
         await telegram.sendMessage(chatId, '❌ 只有超級管理員可以使用此命令。');
         return;
       }
-      
+
       // Broadcast system - will be implemented below
       const { handleBroadcast } = await import('./telegram/handlers/broadcast');
       await handleBroadcast(message, env);
@@ -383,8 +388,8 @@ async function routeUpdate(update: TelegramUpdate, env: Env): Promise<void> {
     }
 
     if (text === '/maintenance_status') {
-      const { isAdmin } = await import('./telegram/handlers/admin_ban');
-      if (!isAdmin(telegramId, env)) {
+      const adminBanModule = await import('./telegram/handlers/admin_ban');
+      if (!adminBanModule.isAdmin(telegramId, env)) {
         await telegram.sendMessage(chatId, '❌ 只有管理員可以使用此命令。');
         return;
       }
@@ -393,13 +398,102 @@ async function routeUpdate(update: TelegramUpdate, env: Env): Promise<void> {
       return;
     }
 
-    // Broadcast status command (Admin only)
-    if (text.startsWith('/broadcast_status')) {
-      const { isAdmin } = await import('./telegram/handlers/admin_ban');
-      if (!isAdmin(telegramId, env)) {
+    // Analytics commands (Super Admin only)
+    if (text === '/analytics') {
+      const { isSuperAdmin } = await import('./telegram/handlers/admin_ban');
+      if (!isSuperAdmin(telegramId)) {
+        await telegram.sendMessage(chatId, '❌ 只有超級管理員可以使用此命令。');
+        return;
+      }
+      const { handleAnalytics } = await import('./telegram/handlers/admin_analytics');
+      await handleAnalytics(message, env);
+      return;
+    }
+
+    if (text === '/ad_performance') {
+      const { isSuperAdmin } = await import('./telegram/handlers/admin_ban');
+      if (!isSuperAdmin(telegramId)) {
+        await telegram.sendMessage(chatId, '❌ 只有超級管理員可以使用此命令。');
+        return;
+      }
+      const { handleAdPerformance } = await import('./telegram/handlers/admin_analytics');
+      await handleAdPerformance(message, env);
+      return;
+    }
+
+    if (text === '/funnel') {
+      const { isSuperAdmin } = await import('./telegram/handlers/admin_ban');
+      if (!isSuperAdmin(telegramId)) {
+        await telegram.sendMessage(chatId, '❌ 只有超級管理員可以使用此命令。');
+        return;
+      }
+      const { handleVIPFunnel } = await import('./telegram/handlers/admin_analytics');
+      await handleVIPFunnel(message, env);
+      return;
+    }
+
+    // Test daily reports command (Super Admin only)
+    if (text === '/test_daily_reports') {
+      const { isSuperAdmin } = await import('./telegram/handlers/admin_ban');
+      if (!isSuperAdmin(telegramId)) {
+        await telegram.sendMessage(chatId, '❌ 只有超級管理員可以使用此命令。');
+        return;
+      }
+      const { handleTestDailyReports } = await import('./telegram/handlers/admin_analytics');
+      await handleTestDailyReports(message, env);
+      return;
+    }
+
+    // Broadcast process command (Admin only) - Manual trigger
+    if (text === '/broadcast_process') {
+      const adminBanModule = await import('./telegram/handlers/admin_ban');
+      if (!adminBanModule.isAdmin(telegramId, env)) {
         await telegram.sendMessage(chatId, '❌ 只有管理員可以使用此命令。');
         return;
       }
+      const { handleBroadcastProcess } = await import('./telegram/handlers/broadcast');
+      await handleBroadcastProcess(message, env);
+      return;
+    }
+
+    // Broadcast cancel command (Admin only)
+    if (text.startsWith('/broadcast_cancel ')) {
+      const adminBanModule = await import('./telegram/handlers/admin_ban');
+      if (!adminBanModule.isAdmin(telegramId, env)) {
+        await telegram.sendMessage(chatId, '❌ 只有管理員可以使用此命令。');
+        return;
+      }
+      const { handleBroadcastCancel } = await import('./telegram/handlers/broadcast');
+      await handleBroadcastCancel(message, env);
+      return;
+    }
+
+    // Broadcast cleanup command (Admin only)
+    if (text.startsWith('/broadcast_cleanup')) {
+      const adminBanModule = await import('./telegram/handlers/admin_ban');
+      if (!adminBanModule.isAdmin(telegramId, env)) {
+        await telegram.sendMessage(chatId, '❌ 只有管理員可以使用此命令。');
+        return;
+      }
+      const { handleBroadcastCleanup } = await import('./telegram/handlers/broadcast');
+      await handleBroadcastCleanup(message, env);
+      return;
+    }
+
+    // Broadcast status command (Admin only)
+    if (text.startsWith('/broadcast_status')) {
+      console.error('[Router] /broadcast_status command received');
+      const adminBanModule = await import('./telegram/handlers/admin_ban');
+      const isUserAdmin = adminBanModule.isAdmin(telegramId, env);
+      console.error('[Router] isAdmin check result:', isUserAdmin);
+
+      if (!isUserAdmin) {
+        console.error('[Router] User is not admin, sending error message');
+        await telegram.sendMessage(chatId, '❌ 只有管理員可以使用此命令。');
+        return;
+      }
+
+      console.error('[Router] User is admin, calling handleBroadcastStatus');
       const { handleBroadcastStatus } = await import('./telegram/handlers/broadcast');
       await handleBroadcastStatus(message, env);
       return;
@@ -527,11 +621,7 @@ async function routeUpdate(update: TelegramUpdate, env: Env): Promise<void> {
     }
 
     // Unknown command for completed users
-    await telegram.sendMessage(
-      chatId,
-      '❓ 未知命令\n\n' +
-        '請使用 /help 查看可用命令列表。'
-    );
+    await telegram.sendMessage(chatId, '❓ 未知命令\n\n' + '請使用 /help 查看可用命令列表。');
     return;
   }
 
@@ -591,31 +681,34 @@ async function routeUpdate(update: TelegramUpdate, env: Env): Promise<void> {
     }
 
     if (data.startsWith('gender_')) {
-      const { handleGenderSelection, handleGenderConfirmation, handleGenderReselection } = await import('./telegram/handlers/onboarding_callback');
-      
+      const { handleGenderSelection, handleGenderConfirmation, handleGenderReselection } =
+        await import('./telegram/handlers/onboarding_callback');
+
       if (data === 'gender_male' || data === 'gender_female') {
         const gender = data.replace('gender_', '') as 'male' | 'female';
         await handleGenderSelection(callbackQuery, gender, env);
         return;
       }
-      
+
       if (data.startsWith('gender_confirm_')) {
         const gender = data.replace('gender_confirm_', '') as 'male' | 'female';
         await handleGenderConfirmation(callbackQuery, gender, env);
         return;
       }
-      
+
       if (data === 'gender_reselect') {
         await handleGenderReselection(callbackQuery, env);
         return;
       }
-      
+
       await telegram.answerCallbackQuery(callbackQuery.id, '❌ 未知的性別選項');
       return;
     }
 
     if (data.startsWith('confirm_birthday_')) {
-      const { handleBirthdayConfirmation } = await import('./telegram/handlers/onboarding_callback');
+      const { handleBirthdayConfirmation } = await import(
+        './telegram/handlers/onboarding_callback'
+      );
       const birthday = data.replace('confirm_birthday_', '');
       await handleBirthdayConfirmation(callbackQuery, birthday, env);
       return;
@@ -764,16 +857,48 @@ async function routeUpdate(update: TelegramUpdate, env: Env): Promise<void> {
       return;
     }
 
+    // Ad reward callbacks
+    if (data === 'watch_ad') {
+      const { handleWatchAd } = await import('./telegram/handlers/ad_reward');
+      await handleWatchAd(callbackQuery, env);
+      return;
+    }
+
+    // Official ad callbacks
+    if (data === 'view_official_ad') {
+      const { handleViewOfficialAds } = await import('./telegram/handlers/official_ad');
+      await handleViewOfficialAds(callbackQuery, env);
+      return;
+    }
+
+    if (data.startsWith('claim_ad_')) {
+      const { handleClaimAd } = await import('./telegram/handlers/official_ad');
+      const adId = parseInt(data.replace('claim_ad_', ''), 10);
+      await handleClaimAd(callbackQuery, adId, env);
+      return;
+    }
+
+    if (data.startsWith('verify_ad_')) {
+      const { handleVerifyAd } = await import('./telegram/handlers/official_ad');
+      const adId = parseInt(data.replace('verify_ad_', ''), 10);
+      await handleVerifyAd(callbackQuery, adId, env);
+      return;
+    }
+
     // Conversation action callbacks
     if (data.startsWith('conv_profile_')) {
-      const { handleConversationProfile } = await import('./telegram/handlers/conversation_actions');
+      const { handleConversationProfile } = await import(
+        './telegram/handlers/conversation_actions'
+      );
       const conversationId = parseInt(data.replace('conv_profile_', ''), 10);
       await handleConversationProfile(callbackQuery, conversationId, env);
       return;
     }
 
     if (data.startsWith('conv_block_confirm_')) {
-      const { handleConversationBlockConfirm } = await import('./telegram/handlers/conversation_actions');
+      const { handleConversationBlockConfirm } = await import(
+        './telegram/handlers/conversation_actions'
+      );
       const conversationId = parseInt(data.replace('conv_block_confirm_', ''), 10);
       await handleConversationBlockConfirm(callbackQuery, conversationId, env);
       return;
@@ -787,7 +912,9 @@ async function routeUpdate(update: TelegramUpdate, env: Env): Promise<void> {
     }
 
     if (data.startsWith('conv_report_confirm_')) {
-      const { handleConversationReportConfirm } = await import('./telegram/handlers/conversation_actions');
+      const { handleConversationReportConfirm } = await import(
+        './telegram/handlers/conversation_actions'
+      );
       const conversationId = parseInt(data.replace('conv_report_confirm_', ''), 10);
       await handleConversationReportConfirm(callbackQuery, conversationId, env);
       return;
@@ -857,7 +984,11 @@ async function routeUpdate(update: TelegramUpdate, env: Env): Promise<void> {
       return;
     }
 
-    if (data === 'edit_profile_menu' || data === 'edit_profile_back' || data === 'edit_profile_callback') {
+    if (
+      data === 'edit_profile_menu' ||
+      data === 'edit_profile_back' ||
+      data === 'edit_profile_callback'
+    ) {
       const { handleEditProfileCallback } = await import('./telegram/handlers/edit_profile');
       await handleEditProfileCallback(callbackQuery, env);
       return;
@@ -965,7 +1096,9 @@ async function routeUpdate(update: TelegramUpdate, env: Env): Promise<void> {
     }
 
     if (data === 'anti_fraud_yes') {
-      const { handleAntiFraudConfirmation } = await import('./telegram/handlers/onboarding_callback');
+      const { handleAntiFraudConfirmation } = await import(
+        './telegram/handlers/onboarding_callback'
+      );
       await handleAntiFraudConfirmation(callbackQuery, env);
       return;
     }
@@ -1085,11 +1218,13 @@ async function routeUpdate(update: TelegramUpdate, env: Env): Promise<void> {
     interface SuccessfulPaymentMessage {
       successful_payment?: unknown;
     }
-    console.error('[Router] Payment received:', (update.message as SuccessfulPaymentMessage).successful_payment);
+    console.error(
+      '[Router] Payment received:',
+      (update.message as SuccessfulPaymentMessage).successful_payment
+    );
     // Payment success handling is in vip.ts
     return;
   }
 
   console.error('[Router] Unhandled update type');
 }
-

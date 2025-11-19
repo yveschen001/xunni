@@ -93,7 +93,10 @@ export function formatDailyStatsReport(stats: DailyStats, previousStats?: DailyS
 /**
  * Calculate growth rate
  */
-export function calculateGrowthRate(current: number, previous: number): {
+export function calculateGrowthRate(
+  current: number,
+  previous: number
+): {
   rate: number;
   rateText: string;
 } {
@@ -143,4 +146,3 @@ export function validateStatsData(stats: Partial<DailyStats>): {
 
   return { valid: true };
 }
-

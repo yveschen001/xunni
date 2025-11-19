@@ -457,10 +457,132 @@ router.get('/health', async (request, env) => {
 
 ---
 
-## 13. 參考資源
+## 13. 常見部署問題和解決方案
+
+### 13.1 Migration 衝突問題
+
+**問題**: `no such column: telegram_id`
+
+**原因**: 
+- 不同 Migration 創建了同名但結構不同的表
+- 例如：`user_sessions` 表被覆蓋，欄位名從 `telegram_id` 變成 `user_id`
+
+**解決方案**:
+```sql
+-- 1. 檢查表結構
+PRAGMA table_info(user_sessions);
+
+-- 2. 如果欄位不正確，刪除並重建
+DROP TABLE IF EXISTS user_sessions;
+
+-- 3. 重新執行正確的 Migration
+wrangler d1 execute DB --env staging --remote --file=./src/db/migrations/0006_add_user_sessions.sql
+```
+
+**預防措施**:
+- Migration 前檢查表名是否衝突
+- 驗證欄位名一致性
+- 測試所有相關查詢
+
+### 13.2 靜態文件 404 問題
+
+**問題**: 靜態 HTML 文件返回 404
+
+**原因**: Worker 沒有配置靜態文件路由
+
+**解決方案**:
+```typescript
+// src/worker.ts
+if (url.pathname === '/ad.html' || url.pathname === '/ad-test.html') {
+  const { serveAdPage } = await import('./services/ad_pages');
+  return serveAdPage(url.pathname);
+}
+```
+
+**預防措施**:
+- 部署後測試所有靜態文件路徑
+- 使用 `curl -I` 檢查 HTTP 狀態碼
+
+### 13.3 部署後驗證清單
+
+**必須執行的驗證步驟**:
+
+```bash
+# 1. 健康檢查
+curl https://your-worker.workers.dev/health
+
+# 2. Webhook 驗證
+curl "https://api.telegram.org/bot<TOKEN>/getWebhookInfo"
+
+# 3. 數據庫 Schema 檢查
+wrangler d1 execute DB --env staging --remote \
+  --command "SELECT name FROM sqlite_master WHERE type='table';"
+
+# 4. 靜態文件檢查
+curl -I https://your-worker.workers.dev/ad-test.html
+
+# 5. 真實用戶測試
+# 在 Telegram 中發送 /start 並檢查 Worker 日誌
+wrangler tail --env staging
+```
+
+### 13.4 端到端測試腳本
+
+創建 `scripts/e2e-test.sh` 進行自動化測試：
+
+```bash
+#!/bin/bash
+# 測試 Worker 健康、Webhook、數據庫、API 端點
+# 詳見項目中的 scripts/e2e-test.sh
+```
+
+**使用方式**:
+```bash
+chmod +x scripts/e2e-test.sh
+./scripts/e2e-test.sh
+```
+
+---
+
+## 14. 部署最佳實踐
+
+### 14.1 部署前檢查
+
+- [ ] 所有 Lint 檢查通過 (`pnpm lint`)
+- [ ] 所有測試通過 (`pnpm test`)
+- [ ] Migration 衝突檢查
+- [ ] 路由配置檢查
+- [ ] 環境變數檢查
+
+### 14.2 部署後驗證
+
+- [ ] Worker 健康檢查
+- [ ] Webhook 配置正確
+- [ ] 數據庫 Schema 正確
+- [ ] 靜態文件可訪問
+- [ ] API 端點可訪問
+- [ ] 真實用戶流程測試
+- [ ] Worker 日誌無錯誤
+
+### 14.3 問題修復流程
+
+1. **發現問題**: 檢查 Worker 日誌
+2. **定位原因**: 查看錯誤堆棧
+3. **本地修復**: 在本地環境測試修復
+4. **部署修復**: 部署到 Staging
+5. **驗證修復**: 執行端到端測試
+6. **記錄問題**: 更新文檔
+
+---
+
+## 15. 參考資源
 
 - [Cloudflare Workers 文檔](https://developers.cloudflare.com/workers/)
 - [Wrangler CLI 文檔](https://developers.cloudflare.com/workers/wrangler/)
 - [D1 資料庫文檔](https://developers.cloudflare.com/d1/)
 - [Telegram Bot API](https://core.telegram.org/bots/api)
 
+---
+
+**最後更新**: 2025-01-18  
+**維護者**: XunNi Team

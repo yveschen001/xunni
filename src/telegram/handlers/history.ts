@@ -1,6 +1,6 @@
 /**
  * History Handler
- * 
+ *
  * Handles /history command - View conversation history with identifiers.
  */
 
@@ -20,10 +20,7 @@ import { createI18n } from '~/i18n';
 /**
  * Handle /history command
  */
-export async function handleHistory(
-  message: TelegramMessage,
-  env: Env
-): Promise<void> {
+export async function handleHistory(message: TelegramMessage, env: Env): Promise<void> {
   const db = createDatabaseClient(env.DB);
   const telegram = createTelegramService(env);
   const chatId = message.chat.id;
@@ -41,10 +38,7 @@ export async function handleHistory(
 
     // Check if user completed onboarding
     if (user.onboarding_step !== 'completed') {
-      await telegram.sendMessage(
-        chatId,
-        '❌ 請先完成註冊流程。\n\n使用 /start 繼續註冊。'
-      );
+      await telegram.sendMessage(chatId, '❌ 請先完成註冊流程。\n\n使用 /start 繼續註冊。');
       return;
     }
 
@@ -80,9 +74,7 @@ async function showAllConversations(
   if (conversations.length === 0) {
     await telegram.sendMessage(
       chatId,
-      '💬 你還沒有任何對話記錄\n\n' +
-        '快去丟瓶子認識新朋友吧！ /throw\n\n' +
-        '🏠 返回主選單：/menu'
+      '💬 你還沒有任何對話記錄\n\n' + '快去丟瓶子認識新朋友吧！ /throw\n\n' + '🏠 返回主選單：/menu'
     );
     return;
   }
@@ -91,9 +83,10 @@ async function showAllConversations(
 
   for (const conv of conversations) {
     const preview = conv.last_message_preview
-      ? conv.last_message_preview.substring(0, 30) + (conv.last_message_preview.length > 30 ? '...' : '')
+      ? conv.last_message_preview.substring(0, 30) +
+        (conv.last_message_preview.length > 30 ? '...' : '')
       : '(無訊息)';
-    
+
     message += `📨 ${formatIdentifier(conv.identifier)} 的對話（${conv.message_count} 則訊息）\n`;
     message += `最後訊息：${preview}\n`;
     message += `時間：${formatDate(conv.last_message_time)}\n\n`;
@@ -140,7 +133,7 @@ async function showConversationByIdentifier(
   message += `• 總訊息數：${stats.total_messages} 則\n`;
   message += `• 你發送：${stats.user_messages} 則\n`;
   message += `• 對方發送：${stats.partner_messages} 則\n`;
-  
+
   if (stats.first_message_time) {
     message += `• 對話開始：${formatDate(stats.first_message_time)}\n`;
   }
@@ -164,14 +157,10 @@ async function showConversationByIdentifier(
   message += `💬 繼續對話：/reply\n`;
   message += `🏠 返回主選單：/menu`;
 
-  await telegram.sendMessageWithButtons(
-    chatId,
-    message,
-    [
-      [{ text: '💬 繼續對話', callback_data: 'menu_chats' }],
-      [{ text: '🏠 返回主選單', callback_data: 'menu' }],
-    ]
-  );
+  await telegram.sendMessageWithButtons(chatId, message, [
+    [{ text: '💬 繼續對話', callback_data: 'menu_chats' }],
+    [{ text: '🏠 返回主選單', callback_data: 'menu' }],
+  ]);
 }
 
 /**
@@ -214,4 +203,3 @@ function formatTime(dateString: string): string {
     minute: '2-digit',
   });
 }
-

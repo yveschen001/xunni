@@ -11,6 +11,7 @@ export interface Env {
   // Bindings
   DB: D1Database;
   RISK_CACHE?: KVNamespace;
+  ASSETS?: Fetcher;
 
   // Secrets
   TELEGRAM_BOT_TOKEN: string;
@@ -459,4 +460,3 @@ export interface EligibilityResponse {
     zodiac_sign?: string;
   };
 }
-

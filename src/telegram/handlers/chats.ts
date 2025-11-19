@@ -1,6 +1,6 @@
 /**
  * Chats Handler
- * 
+ *
  * Handles /chats command - List user conversations with identifiers.
  */
 
@@ -28,10 +28,7 @@ export async function handleChats(message: TelegramMessage, env: Env): Promise<v
 
     // Check if user completed onboarding
     if (user.onboarding_step !== 'completed') {
-      await telegram.sendMessage(
-        chatId,
-        '❌ 請先完成註冊流程。\n\n使用 /start 繼續註冊。'
-      );
+      await telegram.sendMessage(chatId, '❌ 請先完成註冊流程。\n\n使用 /start 繼續註冊。');
       return;
     }
 
@@ -54,29 +51,28 @@ export async function handleChats(message: TelegramMessage, env: Env): Promise<v
 
     for (const conv of conversations) {
       // Get or create identifier for this conversation
-      const partnerTelegramId = conv.user_a_telegram_id === telegramId 
-        ? conv.user_b_telegram_id 
-        : conv.user_a_telegram_id;
-      
+      const partnerTelegramId =
+        conv.user_a_telegram_id === telegramId ? conv.user_b_telegram_id : conv.user_a_telegram_id;
+
       const identifier = await getOrCreateIdentifier(db, telegramId, partnerTelegramId);
       const formattedId = formatIdentifier(identifier);
-      
+
       // Get partner info
       const partner = await findUserByTelegramId(db, partnerTelegramId);
       const partnerNickname = partner ? maskNickname(partner.nickname) : '未知用戶';
-      
+
       const statusEmoji = conv.status === 'active' ? '✅' : '⏸️';
-      const lastMessageTime = conv.last_message_at 
+      const lastMessageTime = conv.last_message_at
         ? formatRelativeTime(new Date(conv.last_message_at))
         : '無訊息';
 
-      messageText += 
+      messageText +=
         `${statusEmoji} **${partnerNickname}** ${formattedId}\n` +
         `• 訊息數：${conv.message_count} 則\n` +
         `• 最後訊息：${lastMessageTime}\n\n`;
     }
 
-    messageText += 
+    messageText +=
       `━━━━━━━━━━━━━━━━\n` +
       `💡 點擊對方訊息的「回覆」按鈕即可繼續對話\n` +
       `📊 使用 /stats 查看詳細統計\n` +
@@ -95,16 +91,20 @@ export async function handleChats(message: TelegramMessage, env: Env): Promise<v
 async function getUserConversationsWithPartners(
   db: ReturnType<typeof createDatabaseClient>,
   telegramId: string
-): Promise<Array<{
-  id: number;
-  user_a_telegram_id: string;
-  user_b_telegram_id: string;
-  status: string;
-  message_count: number;
-  last_message_at: string | null;
-  created_at: string;
-}>> {
-  const result = await db.d1.prepare(`
+): Promise<
+  Array<{
+    id: number;
+    user_a_telegram_id: string;
+    user_b_telegram_id: string;
+    status: string;
+    message_count: number;
+    last_message_at: string | null;
+    created_at: string;
+  }>
+> {
+  const result = await db.d1
+    .prepare(
+      `
     SELECT 
       c.id,
       c.user_a_telegram_id,
@@ -119,7 +119,10 @@ async function getUserConversationsWithPartners(
     GROUP BY c.id
     ORDER BY MAX(cm.created_at) DESC, c.created_at DESC
     LIMIT 20
-  `).bind(telegramId, telegramId).all();
+  `
+    )
+    .bind(telegramId, telegramId)
+    .all();
 
   return result.results as any[];
 }
@@ -146,4 +149,3 @@ function formatRelativeTime(date: Date): string {
     return date.toLocaleDateString('zh-TW');
   }
 }
-

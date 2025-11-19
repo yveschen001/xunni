@@ -68,4 +68,3 @@ describe('validateMBTI', () => {
 });
 
 // isVipActive is not exported from user.ts, skip these tests for now
-

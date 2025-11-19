@@ -150,7 +150,10 @@ export function getUsagePercentage(current: number, limit: number): number {
 /**
  * Get usage status message
  */
-export function getUsageStatus(user: User, usage: DailyUsage | null): {
+export function getUsageStatus(
+  user: User,
+  usage: DailyUsage | null
+): {
   limit: number;
   used: number;
   remaining: number;
@@ -171,4 +174,3 @@ export function getUsageStatus(user: User, usage: DailyUsage | null): {
     canThrow,
   };
 }
-

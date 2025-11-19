@@ -1,6 +1,6 @@
 /**
  * Appeal System Automated Test
- * 
+ *
  * Tests:
  * 1. Appeal creation
  * 2. Appeal status check
@@ -33,7 +33,7 @@ describe('Appeal System', () => {
   describe('Appeal status', () => {
     it('should have valid status values', () => {
       const validStatuses = ['pending', 'approved', 'rejected'];
-      
+
       expect(validStatuses).toContain('pending');
       expect(validStatuses).toContain('approved');
       expect(validStatuses).toContain('rejected');
@@ -68,7 +68,7 @@ describe('Appeal System', () => {
     it('should prevent duplicate pending appeals', () => {
       // Simulate checking for existing pending appeal
       const existingAppeal = { id: 1, status: 'pending' };
-      
+
       expect(existingAppeal.status).toBe('pending');
       // User should not be able to create another appeal
     });
@@ -76,7 +76,7 @@ describe('Appeal System', () => {
     it('should allow new appeal after previous one is reviewed', () => {
       // Simulate checking for existing appeal
       const existingAppeal = { id: 1, status: 'approved' };
-      
+
       expect(existingAppeal.status).not.toBe('pending');
       // User can create a new appeal
     });
@@ -96,11 +96,11 @@ describe('Appeal System', () => {
   describe('Appeal messages', () => {
     it('should not reveal specific ban reason in friendly message', () => {
       const friendlyMessage = '⚠️ 帳號安全提醒\n\n我們的系統偵測到你的帳號存在異常行為';
-      
+
       // Should not contain specific reasons
       expect(friendlyMessage).not.toContain('多次被舉報');
       expect(friendlyMessage).not.toContain('違規');
-      
+
       // Should contain friendly language
       expect(friendlyMessage).toContain('異常行為');
       expect(friendlyMessage).toContain('系統偵測');
@@ -108,10 +108,9 @@ describe('Appeal System', () => {
 
     it('should include appeal option in ban message', () => {
       const banMessage = '💡 如果你認為這是誤判，歡迎使用 /appeal 提出申訴';
-      
+
       expect(banMessage).toContain('/appeal');
       expect(banMessage).toContain('申訴');
     });
   });
 });
-

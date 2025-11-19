@@ -180,9 +180,7 @@ export function shouldAutoBan(riskScore: number): boolean {
 /**
  * Get risk level from score
  */
-export function getRiskLevel(
-  riskScore: number
-): 'safe' | 'low' | 'medium' | 'high' | 'critical' {
+export function getRiskLevel(riskScore: number): 'safe' | 'low' | 'medium' | 'high' | 'critical' {
   if (riskScore === 0) return 'safe';
   if (riskScore < RISK_SCORE_LOW) return 'low';
   if (riskScore < RISK_SCORE_MEDIUM) return 'medium';
@@ -301,4 +299,3 @@ export function calculateAntiFraudScore(answers: Record<string, string>): number
 export function isAntiFraudPassing(score: number): boolean {
   return score >= 60;
 }
-

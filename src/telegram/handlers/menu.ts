@@ -1,6 +1,6 @@
 /**
  * Menu Handler
- * 
+ *
  * Handles /menu command - Main menu with quick action buttons.
  */
 
@@ -19,6 +19,14 @@ export async function handleMenu(message: TelegramMessage, env: Env): Promise<vo
   const telegramId = message.from!.id.toString();
 
   try {
+    // ✨ NEW: Update user activity (non-blocking)
+    try {
+      const { updateUserActivity } = await import('~/services/user_activity');
+      await updateUserActivity(db, telegramId);
+    } catch (activityError) {
+      console.error('[handleMenu] Failed to update user activity:', activityError);
+    }
+
     // Get user
     const user = await findUserByTelegramId(db, telegramId);
     if (!user) {
@@ -28,10 +36,7 @@ export async function handleMenu(message: TelegramMessage, env: Env): Promise<vo
 
     // Check if user completed onboarding
     if (user.onboarding_step !== 'completed') {
-      await telegram.sendMessage(
-        chatId,
-        '❌ 請先完成註冊流程。\n\n使用 /start 繼續註冊。'
-      );
+      await telegram.sendMessage(chatId, '❌ 請先完成註冊流程。\n\n使用 /start 繼續註冊。');
       return;
     }
 
@@ -40,7 +45,7 @@ export async function handleMenu(message: TelegramMessage, env: Env): Promise<vo
     const vipBadge = isVip ? '💎' : '';
 
     // Build menu message
-    const menuMessage = 
+    const menuMessage =
       `🏠 **主選單** ${vipBadge}\n\n` +
       `👋 嗨，${user.nickname}！\n\n` +
       `📊 你的狀態：\n` +
@@ -71,9 +76,7 @@ export async function handleMenu(message: TelegramMessage, env: Env): Promise<vo
 
     // Add VIP button for non-VIP users
     if (!isVip) {
-      buttons.push([
-        { text: '💎 升級 VIP', callback_data: 'menu_vip' },
-      ]);
+      buttons.push([{ text: '💎 升級 VIP', callback_data: 'menu_vip' }]);
     }
 
     await telegram.sendMessageWithButtons(chatId, menuMessage, buttons);
@@ -86,10 +89,7 @@ export async function handleMenu(message: TelegramMessage, env: Env): Promise<vo
 /**
  * Handle menu button callbacks
  */
-export async function handleMenuCallback(
-  callbackQuery: CallbackQuery,
-  env: Env
-): Promise<void> {
+export async function handleMenuCallback(callbackQuery: CallbackQuery, env: Env): Promise<void> {
   const telegram = createTelegramService(env);
   const chatId = callbackQuery.message!.chat.id;
   const data = callbackQuery.data;
@@ -143,7 +143,7 @@ export async function handleMenuCallback(
         const telegramId = callbackQuery.from.id.toString();
         const { findUserByTelegramId } = await import('~/db/queries/users');
         const user = await findUserByTelegramId(db, telegramId);
-        
+
         if (!user || !user.invite_code) {
           await telegram.sendMessage(chatId, '❌ 無法獲取邀請碼');
           break;
@@ -163,15 +163,9 @@ export async function handleMenuCallback(
             `• 你們都獲得每日配額 +1\n\n` +
             `📊 查看邀請統計：/profile`,
           [
-            [
-              { text: '📤 分享邀請碼', url: shareUrl },
-            ],
-            [
-              { text: '📊 查看邀請統計', callback_data: 'menu_profile' },
-            ],
-            [
-              { text: '🏠 返回主選單', callback_data: 'return_to_menu' },
-            ],
+            [{ text: '📤 分享邀請碼', url: shareUrl }],
+            [{ text: '📊 查看邀請統計', callback_data: 'menu_profile' }],
+            [{ text: '🏠 返回主選單', callback_data: 'return_to_menu' }],
           ]
         );
         break;
@@ -222,22 +216,15 @@ export async function showReturnToMenuButton(
   chatId: number,
   message: string
 ): Promise<void> {
-  await telegram.sendMessageWithButtons(
-    chatId,
-    message,
-    [
-      [{ text: '🏠 返回主選單', callback_data: 'return_to_menu' }],
-    ]
-  );
+  await telegram.sendMessageWithButtons(chatId, message, [
+    [{ text: '🏠 返回主選單', callback_data: 'return_to_menu' }],
+  ]);
 }
 
 /**
  * Handle "Return to Menu" callback
  */
-export async function handleReturnToMenu(
-  callbackQuery: CallbackQuery,
-  env: Env
-): Promise<void> {
+export async function handleReturnToMenu(callbackQuery: CallbackQuery, env: Env): Promise<void> {
   const telegram = createTelegramService(env);
   const chatId = callbackQuery.message!.chat.id;
 
@@ -260,4 +247,3 @@ export async function handleReturnToMenu(
     await telegram.answerCallbackQuery(callbackQuery.id, '❌ 發生錯誤');
   }
 }
-

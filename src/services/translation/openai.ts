@@ -1,6 +1,6 @@
 /**
  * OpenAI Translation Service
- * 
+ *
  * High-quality translation for VIP users using GPT-4o-mini.
  */
 
@@ -28,17 +28,46 @@ export async function translateWithOpenAI(
 
   // Build language map for better localization (34 languages)
   const languageMap: Record<string, string> = {
-    'zh-TW': 'Traditional Chinese (Taiwan)', 'zh-CN': 'Simplified Chinese', 'en': 'English',
-    'ja': 'Japanese', 'ko': 'Korean', 'th': 'Thai', 'vi': 'Vietnamese', 'id': 'Indonesian',
-    'ms': 'Malay', 'tl': 'Filipino', 'es': 'Spanish', 'pt': 'Portuguese', 'fr': 'French',
-    'de': 'German', 'it': 'Italian', 'ru': 'Russian', 'ar': 'Arabic', 'hi': 'Hindi',
-    'bn': 'Bengali', 'tr': 'Turkish', 'pl': 'Polish', 'uk': 'Ukrainian', 'nl': 'Dutch',
-    'sv': 'Swedish', 'no': 'Norwegian', 'da': 'Danish', 'fi': 'Finnish', 'cs': 'Czech',
-    'el': 'Greek', 'he': 'Hebrew', 'fa': 'Persian', 'ur': 'Urdu', 'sw': 'Swahili', 'ro': 'Romanian',
+    'zh-TW': 'Traditional Chinese (Taiwan)',
+    'zh-CN': 'Simplified Chinese',
+    en: 'English',
+    ja: 'Japanese',
+    ko: 'Korean',
+    th: 'Thai',
+    vi: 'Vietnamese',
+    id: 'Indonesian',
+    ms: 'Malay',
+    tl: 'Filipino',
+    es: 'Spanish',
+    pt: 'Portuguese',
+    fr: 'French',
+    de: 'German',
+    it: 'Italian',
+    ru: 'Russian',
+    ar: 'Arabic',
+    hi: 'Hindi',
+    bn: 'Bengali',
+    tr: 'Turkish',
+    pl: 'Polish',
+    uk: 'Ukrainian',
+    nl: 'Dutch',
+    sv: 'Swedish',
+    no: 'Norwegian',
+    da: 'Danish',
+    fi: 'Finnish',
+    cs: 'Czech',
+    el: 'Greek',
+    he: 'Hebrew',
+    fa: 'Persian',
+    ur: 'Urdu',
+    sw: 'Swahili',
+    ro: 'Romanian',
   };
 
   const targetLangName = languageMap[targetLanguage] || targetLanguage;
-  const sourceLangName = sourceLanguage ? languageMap[sourceLanguage] || sourceLanguage : 'the source language';
+  const sourceLangName = sourceLanguage
+    ? languageMap[sourceLanguage] || sourceLanguage
+    : 'the source language';
 
   // Build prompt
   const prompt = `Translate the following text from ${sourceLangName} to ${targetLangName}.
@@ -60,14 +89,15 @@ ${text}`;
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
-        'Authorization': `Bearer ${apiKey}`,
+        Authorization: `Bearer ${apiKey}`,
       },
       body: JSON.stringify({
         model: 'gpt-4o-mini',
         messages: [
           {
             role: 'system',
-            content: 'You are a professional translator. Your task is to translate text accurately and naturally. Return ONLY the translated text without any explanations, notes, or meta-commentary.',
+            content:
+              'You are a professional translator. Your task is to translate text accurately and naturally. Return ONLY the translated text without any explanations, notes, or meta-commentary.',
           },
           {
             role: 'user',
@@ -95,9 +125,9 @@ ${text}`;
         total_tokens?: number;
       };
     }
-    const data = await response.json() as OpenAITranslationResponse;
+    const data = (await response.json()) as OpenAITranslationResponse;
     const translatedText = data.choices?.[0]?.message?.content?.trim();
-    
+
     if (!translatedText) {
       throw new Error('Empty translation result from OpenAI');
     }
@@ -119,10 +149,7 @@ ${text}`;
 /**
  * Detect language using OpenAI (optional)
  */
-export async function detectLanguage(
-  text: string,
-  env: Env
-): Promise<string> {
+export async function detectLanguage(text: string, env: Env): Promise<string> {
   const apiKey = env.OPENAI_API_KEY;
   if (!apiKey) {
     throw new Error('OPENAI_API_KEY not configured');
@@ -133,14 +160,15 @@ export async function detectLanguage(
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
-        'Authorization': `Bearer ${apiKey}`,
+        Authorization: `Bearer ${apiKey}`,
       },
       body: JSON.stringify({
         model: 'gpt-4o-mini',
         messages: [
           {
             role: 'system',
-            content: 'You are a language detector. Return only the ISO 639-1 language code (e.g., "en", "zh", "ja").',
+            content:
+              'You are a language detector. Return only the ISO 639-1 language code (e.g., "en", "zh", "ja").',
           },
           {
             role: 'user',
@@ -164,13 +192,12 @@ export async function detectLanguage(
         };
       }>;
     }
-    const data = await response.json() as LanguageDetectionResponse;
+    const data = (await response.json()) as LanguageDetectionResponse;
     const languageCode = data.choices[0]?.message?.content?.trim().toLowerCase();
-    
+
     return languageCode || 'en';
   } catch (error) {
     console.error('[detectLanguage] Error:', error);
     return 'en'; // Default to English
   }
 }
-

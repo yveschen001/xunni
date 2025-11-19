@@ -32,4 +32,3 @@ describe('checkUrlWhitelist', () => {
     expect(result.allowed).toBe(false);
   });
 });
-

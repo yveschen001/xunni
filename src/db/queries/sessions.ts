@@ -17,15 +17,22 @@ export async function upsertSession(
 ): Promise<void> {
   const expiresAt = calculateSessionExpiration(sessionType);
   const now = new Date().toISOString();
-  
+
   // Delete existing sessions of the same type
-  await db.d1.prepare(`
+  await db.d1
+    .prepare(
+      `
     DELETE FROM user_sessions
     WHERE telegram_id = ? AND session_type = ?
-  `).bind(telegramId, sessionType).run();
-  
+  `
+    )
+    .bind(telegramId, sessionType)
+    .run();
+
   // Insert new session
-  await db.d1.prepare(`
+  await db.d1
+    .prepare(
+      `
     INSERT INTO user_sessions (
       telegram_id,
       session_type,
@@ -34,14 +41,17 @@ export async function upsertSession(
       expires_at,
       created_at
     ) VALUES (?, ?, ?, ?, ?, ?)
-  `).bind(
-    telegramId,
-    sessionType,
-    sessionData ? serializeSessionData(sessionData) : null,
-    now,
-    expiresAt.toISOString(),
-    now
-  ).run();
+  `
+    )
+    .bind(
+      telegramId,
+      sessionType,
+      sessionData ? serializeSessionData(sessionData) : null,
+      now,
+      expiresAt.toISOString(),
+      now
+    )
+    .run();
 }
 
 /**
@@ -52,15 +62,20 @@ export async function getActiveSession(
   telegramId: string,
   sessionType: SessionType
 ): Promise<UserSession | null> {
-  const result = await db.d1.prepare(`
+  const result = await db.d1
+    .prepare(
+      `
     SELECT * FROM user_sessions
     WHERE telegram_id = ?
       AND session_type = ?
       AND datetime(expires_at) > datetime('now')
     ORDER BY created_at DESC
     LIMIT 1
-  `).bind(telegramId, sessionType).first();
-  
+  `
+    )
+    .bind(telegramId, sessionType)
+    .first();
+
   return result as UserSession | null;
 }
 
@@ -74,13 +89,18 @@ export async function updateSessionActivity(
 ): Promise<void> {
   const expiresAt = calculateSessionExpiration(sessionType);
   const now = new Date().toISOString();
-  
-  await db.d1.prepare(`
+
+  await db.d1
+    .prepare(
+      `
     UPDATE user_sessions
     SET last_activity_at = ?,
         expires_at = ?
     WHERE id = ?
-  `).bind(now, expiresAt.toISOString(), sessionId).run();
+  `
+    )
+    .bind(now, expiresAt.toISOString(), sessionId)
+    .run();
 }
 
 /**
@@ -91,50 +111,60 @@ export async function updateSessionData(
   sessionId: number,
   sessionData: SessionData
 ): Promise<void> {
-  await db.d1.prepare(`
+  await db.d1
+    .prepare(
+      `
     UPDATE user_sessions
     SET session_data = ?
     WHERE id = ?
-  `).bind(serializeSessionData(sessionData), sessionId).run();
+  `
+    )
+    .bind(serializeSessionData(sessionData), sessionId)
+    .run();
 }
 
 /**
  * Delete session
  */
-export async function deleteSession(
-  db: DatabaseClient,
-  sessionId: number
-): Promise<void> {
-  await db.d1.prepare(`
+export async function deleteSession(db: DatabaseClient, sessionId: number): Promise<void> {
+  await db.d1
+    .prepare(
+      `
     DELETE FROM user_sessions
     WHERE id = ?
-  `).bind(sessionId).run();
+  `
+    )
+    .bind(sessionId)
+    .run();
 }
 
 /**
  * Delete all sessions for user
  */
-export async function deleteUserSessions(
-  db: DatabaseClient,
-  telegramId: string
-): Promise<void> {
-  await db.d1.prepare(`
+export async function deleteUserSessions(db: DatabaseClient, telegramId: string): Promise<void> {
+  await db.d1
+    .prepare(
+      `
     DELETE FROM user_sessions
     WHERE telegram_id = ?
-  `).bind(telegramId).run();
+  `
+    )
+    .bind(telegramId)
+    .run();
 }
 
 /**
  * Clean up expired sessions (for cron job)
  */
-export async function cleanupExpiredSessions(
-  db: DatabaseClient
-): Promise<number> {
-  const result = await db.d1.prepare(`
+export async function cleanupExpiredSessions(db: DatabaseClient): Promise<number> {
+  const result = await db.d1
+    .prepare(
+      `
     DELETE FROM user_sessions
     WHERE datetime(expires_at) < datetime('now')
-  `).run();
-  
+  `
+    )
+    .run();
+
   return result.meta.changes || 0;
 }
-

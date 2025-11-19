@@ -17,11 +17,23 @@ export async function createBroadcast(
   message: string,
   targetType: 'all' | 'vip' | 'non_vip',
   createdBy: string
-): Promise<number> {
+): Promise<{ broadcastId: number; totalUsers: number }> {
   const db = createDatabaseClient(env.DB);
 
   // Get target user IDs
   const userIds = await getTargetUserIds(db, targetType);
+
+  // ⚠️ SAFETY CHECK: Prevent large broadcasts with current implementation
+  // Current system is NOT designed for large-scale broadcasts
+  // See BROADCAST_SYSTEM_REDESIGN.md for proper implementation
+  const MAX_SAFE_USERS = 100;
+  if (userIds.length > MAX_SAFE_USERS) {
+    throw new Error(
+      `❌ 當前廣播系統僅支持 ${MAX_SAFE_USERS} 個用戶以內的廣播。\n\n` +
+        `目標用戶數：${userIds.length}\n\n` +
+        `大規模廣播需要升級系統架構，請參考 BROADCAST_SYSTEM_REDESIGN.md`
+    );
+  }
 
   // Create broadcast record
   const result = await db.d1
@@ -36,12 +48,26 @@ export async function createBroadcast(
   const broadcastId = result?.id || 0;
   console.log(`[createBroadcast] Created broadcast ${broadcastId} for ${userIds.length} users`);
 
-  // Start sending in background
-  processBroadcast(env, broadcastId).catch((error) => {
+  // ✨ IMMEDIATE PROCESSING: Process broadcast synchronously
+  // This ensures messages are sent before the Worker terminates
+  // For small broadcasts (≤100 users), this is fast enough
+  try {
+    await processBroadcast(env, broadcastId);
+  } catch (error) {
     console.error(`[createBroadcast] Error processing broadcast ${broadcastId}:`, error);
-  });
+    // Update status to failed
+    await updateBroadcastStatus(
+      db,
+      broadcastId,
+      'failed',
+      undefined,
+      new Date().toISOString(),
+      error instanceof Error ? error.message : String(error)
+    );
+    throw error;
+  }
 
-  return broadcastId;
+  return { broadcastId, totalUsers: userIds.length };
 }
 
 /**
@@ -58,8 +84,10 @@ async function processBroadcast(env: Env, broadcastId: number): Promise<void> {
       throw new Error(`Broadcast ${broadcastId} not found`);
     }
 
-    if (broadcast.status !== 'pending') {
-      console.log(`[processBroadcast] Broadcast ${broadcastId} already processed`);
+    // Allow retry for 'sending' status (in case of previous failure)
+    // Skip only 'completed', 'failed', or 'cancelled'
+    if (broadcast.status === 'completed' || broadcast.status === 'failed' || broadcast.status === 'cancelled') {
+      console.log(`[processBroadcast] Broadcast ${broadcastId} already in final state: ${broadcast.status}`);
       return;
     }
 
@@ -74,6 +102,10 @@ async function processBroadcast(env: Env, broadcastId: number): Promise<void> {
 
     let sentCount = 0;
     let failedCount = 0;
+    // ✨ NEW: Detailed error statistics
+    let blockedCount = 0;
+    let deletedCount = 0;
+    let invalidCount = 0;
 
     // Send in batches
     for (let i = 0; i < userIds.length; i += batchSize) {
@@ -87,7 +119,26 @@ async function processBroadcast(env: Env, broadcastId: number): Promise<void> {
             sentCount++;
           } catch (error) {
             console.error(`[processBroadcast] Failed to send to ${userId}:`, error);
-            failedCount++;
+
+            // ✨ NEW: Handle error and classify (non-blocking)
+            try {
+              const { handleBroadcastError } = await import('./telegram_error_handler');
+              const { errorType } = await handleBroadcastError(db, userId, error);
+
+              if (errorType === 'blocked') {
+                blockedCount++;
+              } else if (errorType === 'deleted') {
+                deletedCount++;
+              } else if (errorType === 'invalid') {
+                invalidCount++;
+              } else {
+                failedCount++;
+              }
+            } catch (handlerError) {
+              // If error handler fails, fall back to original behavior
+              console.error(`[processBroadcast] Error handler failed:`, handlerError);
+              failedCount++;
+            }
           }
         })
       );
@@ -102,16 +153,13 @@ async function processBroadcast(env: Env, broadcastId: number): Promise<void> {
     }
 
     // Mark as completed
-    await updateBroadcastStatus(
-      db,
-      broadcastId,
-      'completed',
-      undefined,
-      new Date().toISOString()
-    );
+    await updateBroadcastStatus(db, broadcastId, 'completed', undefined, new Date().toISOString());
 
+    // ✨ NEW: Detailed completion log
     console.log(
-      `[processBroadcast] Completed broadcast ${broadcastId}: ${sentCount} sent, ${failedCount} failed`
+      `[processBroadcast] Completed broadcast ${broadcastId}: ` +
+        `${sentCount} sent, ${failedCount} failed ` +
+        `(blocked: ${blockedCount}, deleted: ${deletedCount}, invalid: ${invalidCount})`
     );
   } catch (error) {
     console.error(`[processBroadcast] Error:`, error);
@@ -133,17 +181,24 @@ export async function processBroadcastQueue(env: Env): Promise<void> {
   const db = createDatabaseClient(env.DB);
 
   try {
-    // Get pending broadcasts
+    // Get pending or stuck 'sending' broadcasts (older than 5 minutes)
     const broadcasts = await db.d1
-      .prepare(`SELECT id FROM broadcasts WHERE status = 'pending' LIMIT 1`)
+      .prepare(
+        `SELECT id FROM broadcasts 
+         WHERE status = 'pending' 
+            OR (status = 'sending' AND started_at < datetime('now', '-5 minutes'))
+         ORDER BY created_at ASC
+         LIMIT 1`
+      )
       .all<{ id: number }>();
 
     if (!broadcasts.results || broadcasts.results.length === 0) {
       return;
     }
 
-    // Process first pending broadcast
+    // Process first pending/stuck broadcast
     const broadcastId = broadcasts.results[0].id;
+    console.log(`[processBroadcastQueue] Processing broadcast ${broadcastId}`);
     await processBroadcast(env, broadcastId);
   } catch (error) {
     console.error('[processBroadcastQueue] Error:', error);
@@ -187,16 +242,30 @@ async function getTargetUserIds(
   db: ReturnType<typeof createDatabaseClient>,
   targetType: 'all' | 'vip' | 'non_vip'
 ): Promise<string[]> {
-  let query = `SELECT telegram_id FROM users WHERE onboarding_step = 'completed'`;
+  // ✨ SMART FILTERING: Only include active users from last 30 days
+  let query = `
+    SELECT telegram_id 
+    FROM users 
+    WHERE onboarding_step = 'completed'
+      AND deleted_at IS NULL
+      AND bot_status = 'active'
+      AND last_active_at >= datetime('now', '-30 days')
+  `;
 
   if (targetType === 'vip') {
-    query += ` AND is_vip = 1`;
+    query += ` AND is_vip = 1 AND vip_expires_at > datetime('now')`;
   } else if (targetType === 'non_vip') {
-    query += ` AND is_vip = 0`;
+    query += ` AND (is_vip = 0 OR vip_expires_at <= datetime('now'))`;
   }
 
   const result = await db.d1.prepare(query).all<{ telegram_id: string }>();
-  return result.results?.map((r) => r.telegram_id) || [];
+  const userIds = result.results?.map((r) => r.telegram_id) || [];
+
+  console.log(
+    `[getTargetUserIds] Found ${userIds.length} active users for ${targetType} broadcast`
+  );
+
+  return userIds;
 }
 
 /**
@@ -257,4 +326,3 @@ async function updateBroadcastProgress(
 function sleep(ms: number): Promise<void> {
   return new Promise((resolve) => setTimeout(resolve, ms));
 }
-

@@ -23,13 +23,10 @@ import {
 /**
  * Show language selection for first-time users
  */
-export async function showLanguageSelection(
-  message: TelegramMessage,
-  env: Env
-): Promise<void> {
+export async function showLanguageSelection(message: TelegramMessage, env: Env): Promise<void> {
   const telegram = createTelegramService(env);
   const chatId = message.chat.id;
-  
+
   // Use i18n for welcome message (bilingual zh-TW + en)
   const { createI18n } = await import('~/i18n');
   const i18n = createI18n('zh-TW'); // Default to zh-TW for welcome
@@ -49,25 +46,20 @@ export async function showAllLanguages(callbackQuery: CallbackQuery, env: Env): 
   const telegram = createTelegramService(env);
   const chatId = callbackQuery.message!.chat.id;
   const messageId = callbackQuery.message!.message_id;
-  
+
   // Use i18n
   const { createI18n } = await import('~/i18n');
   const i18n = createI18n('zh-TW');
 
   // Edit message to show all languages
-  await telegram.editMessageText(
-    chatId,
-    messageId,
-    i18n.t('onboarding.languageSelection'),
-    {
-      reply_markup: {
-        inline_keyboard: [
-          ...getLanguageButtons(),
-          [{ text: '⬅️ 返回 / Back', callback_data: 'lang_back' }],
-        ],
-      },
-    }
-  );
+  await telegram.editMessageText(chatId, messageId, i18n.t('onboarding.languageSelection'), {
+    reply_markup: {
+      inline_keyboard: [
+        ...getLanguageButtons(),
+        [{ text: '⬅️ 返回 / Back', callback_data: 'lang_back' }],
+      ],
+    },
+  });
 
   await telegram.answerCallbackQuery(callbackQuery.id);
 }
@@ -98,10 +90,7 @@ export async function handleLanguageSelection(
     if (!user) {
       // This shouldn't happen, but handle it gracefully
       await telegram.answerCallbackQuery(callbackQuery.id, '❌ 發生錯誤');
-      await telegram.sendMessage(
-        chatId,
-        `❌ 發生錯誤，請重新開始：/start`
-      );
+      await telegram.sendMessage(chatId, `❌ 發生錯誤，請重新開始：/start`);
       return;
     }
 
@@ -112,7 +101,7 @@ export async function handleLanguageSelection(
     await updateUserProfile(db, telegramId, {
       language_pref: languageCode,
     });
-    
+
     // Update onboarding step to nickname for new users
     if (isNewUser) {
       const { updateOnboardingStep } = await import('~/db/queries/users');
@@ -120,10 +109,7 @@ export async function handleLanguageSelection(
     }
 
     // Answer callback query
-    await telegram.answerCallbackQuery(
-      callbackQuery.id,
-      `✅ ${getLanguageDisplay(languageCode)}`
-    );
+    await telegram.answerCallbackQuery(callbackQuery.id, `✅ ${getLanguageDisplay(languageCode)}`);
 
     // Delete language selection message
     await telegram.deleteMessage(chatId, callbackQuery.message!.message_id);
@@ -131,8 +117,8 @@ export async function handleLanguageSelection(
     if (isNewUser) {
       // New user - start onboarding immediately
       await startOnboarding(
-        chatId, 
-        telegram, 
+        chatId,
+        telegram,
         languageCode,
         callbackQuery.from.username,
         callbackQuery.from.first_name
@@ -141,10 +127,7 @@ export async function handleLanguageSelection(
       // Existing user - just confirm language change
       const { createI18n } = await import('~/i18n');
       const i18n = createI18n(languageCode);
-      await telegram.sendMessage(
-        chatId,
-        i18n.t('settings.languageUpdated')
-      );
+      await telegram.sendMessage(chatId, i18n.t('settings.languageUpdated'));
     }
   } catch (error) {
     console.error('[handleLanguageSelection] Error:', error);
@@ -166,14 +149,11 @@ async function startOnboarding(
   const { createI18n } = await import('~/i18n');
   const i18n = createI18n(languageCode);
 
-  await telegram.sendMessage(
-    chatId,
-    i18n.t('onboarding.startRegistration')
-  );
+  await telegram.sendMessage(chatId, i18n.t('onboarding.startRegistration'));
 
   // Offer nickname options
   const suggestedNickname = telegramUsername || telegramFirstName || '';
-  
+
   if (suggestedNickname) {
     await telegram.sendMessageWithButtons(
       chatId,
@@ -184,11 +164,12 @@ async function startOnboarding(
         `• 請勿使用暱稱發送廣告`,
       [
         [
-          { text: `✅ 使用 Telegram 暱稱：${suggestedNickname.substring(0, 18)}`, callback_data: `nickname_use_telegram` },
+          {
+            text: `✅ 使用 Telegram 暱稱：${suggestedNickname.substring(0, 18)}`,
+            callback_data: `nickname_use_telegram`,
+          },
         ],
-        [
-          { text: '✍️ 自訂暱稱', callback_data: 'nickname_custom' },
-        ],
+        [{ text: '✍️ 自訂暱稱', callback_data: 'nickname_custom' }],
       ]
     );
   } else {
@@ -203,4 +184,3 @@ async function startOnboarding(
     );
   }
 }
-

@@ -1,6 +1,6 @@
 /**
  * MBTI Test Service
- * 
+ *
  * Manages MBTI test progress state in database.
  * Provides functions to start, resume, save answers, and complete tests.
  */
@@ -182,10 +182,7 @@ export async function completeMBTITest(
 /**
  * Cancel/delete test progress
  */
-export async function cancelMBTITest(
-  db: DatabaseClient,
-  telegramId: string
-): Promise<void> {
+export async function cancelMBTITest(db: DatabaseClient, telegramId: string): Promise<void> {
   await db.d1
     .prepare('DELETE FROM mbti_test_progress WHERE telegram_id = ?')
     .bind(telegramId)
@@ -195,11 +192,7 @@ export async function cancelMBTITest(
 /**
  * Check if user has test in progress
  */
-export async function hasTestInProgress(
-  db: DatabaseClient,
-  telegramId: string
-): Promise<boolean> {
+export async function hasTestInProgress(db: DatabaseClient, telegramId: string): Promise<boolean> {
   const progress = await getMBTITestProgress(db, telegramId);
   return progress !== null;
 }
-

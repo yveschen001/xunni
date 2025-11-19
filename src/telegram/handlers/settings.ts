@@ -1,6 +1,6 @@
 /**
  * Settings Handler
- * 
+ *
  * Handles /settings command - User settings (language, notifications, etc.).
  */
 
@@ -19,6 +19,14 @@ export async function handleSettings(message: TelegramMessage, env: Env): Promis
   const telegramId = message.from!.id.toString();
 
   try {
+    // ✨ NEW: Update user activity (non-blocking)
+    try {
+      const { updateUserActivity } = await import('~/services/user_activity');
+      await updateUserActivity(db, telegramId);
+    } catch (activityError) {
+      console.error('[handleSettings] Failed to update user activity:', activityError);
+    }
+
     // Get user
     const user = await findUserByTelegramId(db, telegramId);
     if (!user) {
@@ -28,16 +36,13 @@ export async function handleSettings(message: TelegramMessage, env: Env): Promis
 
     // Check if user completed onboarding
     if (user.onboarding_step !== 'completed') {
-      await telegram.sendMessage(
-        chatId,
-        '❌ 請先完成註冊流程。\n\n使用 /start 繼續註冊。'
-      );
+      await telegram.sendMessage(chatId, '❌ 請先完成註冊流程。\n\n使用 /start 繼續註冊。');
       return;
     }
 
     // Build settings message
     const languageName = await getLanguageName(user.language_pref || 'zh-TW');
-    const settingsMessage = 
+    const settingsMessage =
       `⚙️ **設定**\n\n` +
       `當前設定：\n` +
       `• 語言：${languageName} 🇹🇼\n\n` +
@@ -45,12 +50,8 @@ export async function handleSettings(message: TelegramMessage, env: Env): Promis
 
     // Build settings buttons
     const buttons = [
-      [
-        { text: '🌐 變更語言', callback_data: 'settings_language' },
-      ],
-      [
-        { text: '🏠 返回主選單', callback_data: 'return_to_menu' },
-      ],
+      [{ text: '🌐 變更語言', callback_data: 'settings_language' }],
+      [{ text: '🏠 返回主選單', callback_data: 'return_to_menu' }],
     ];
 
     await telegram.sendMessageWithButtons(chatId, settingsMessage, buttons);
@@ -63,10 +64,7 @@ export async function handleSettings(message: TelegramMessage, env: Env): Promis
 /**
  * Handle settings callbacks
  */
-export async function handleSettingsCallback(
-  callbackQuery: any,
-  env: Env
-): Promise<void> {
+export async function handleSettingsCallback(callbackQuery: any, env: Env): Promise<void> {
   const _db = createDatabaseClient(env.DB);
   const telegram = createTelegramService(env);
   const chatId = callbackQuery.message!.chat.id;
@@ -79,15 +77,12 @@ export async function handleSettingsCallback(
       const { getLanguageButtons } = await import('~/i18n/languages');
       await telegram.answerCallbackQuery(callbackQuery.id);
       await telegram.deleteMessage(chatId, callbackQuery.message!.message_id);
-      
+
       // Show all languages
       await telegram.sendMessageWithButtons(
         chatId,
         '🌐 **選擇語言 / Choose Language**\n\n請選擇你的偏好語言：',
-        [
-          ...getLanguageButtons(),
-          [{ text: '🏠 返回設定', callback_data: 'back_to_settings' }],
-        ]
+        [...getLanguageButtons(), [{ text: '🏠 返回設定', callback_data: 'back_to_settings' }]]
       );
     }
   } catch (error) {
@@ -99,10 +94,7 @@ export async function handleSettingsCallback(
 /**
  * Handle language change callback
  */
-export async function handleLanguageChange(
-  callbackQuery: any,
-  env: Env
-): Promise<void> {
+export async function handleLanguageChange(callbackQuery: any, env: Env): Promise<void> {
   const db = createDatabaseClient(env.DB);
   const telegram = createTelegramService(env);
   const chatId = callbackQuery.message!.chat.id;
@@ -114,17 +106,19 @@ export async function handleLanguageChange(
     const languageCode = data.replace('set_lang_', '');
 
     // Update user language
-    await db.d1.prepare(`
+    await db.d1
+      .prepare(
+        `
       UPDATE users
       SET language_pref = ?
       WHERE telegram_id = ?
-    `).bind(languageCode, telegramId).run();
+    `
+      )
+      .bind(languageCode, telegramId)
+      .run();
 
     const newLanguageName = await getLanguageName(languageCode);
-    await telegram.answerCallbackQuery(
-      callbackQuery.id,
-      `✅ 語言已變更為 ${newLanguageName}`
-    );
+    await telegram.answerCallbackQuery(callbackQuery.id, `✅ 語言已變更為 ${newLanguageName}`);
 
     // Refresh settings menu
     await telegram.deleteMessage(chatId, callbackQuery.message!.message_id);
@@ -143,10 +137,7 @@ export async function handleLanguageChange(
 /**
  * Handle back to settings callback
  */
-export async function handleBackToSettings(
-  callbackQuery: any,
-  env: Env
-): Promise<void> {
+export async function handleBackToSettings(callbackQuery: any, env: Env): Promise<void> {
   const telegram = createTelegramService(env);
   const chatId = callbackQuery.message!.chat.id;
 
@@ -173,4 +164,3 @@ async function getLanguageName(languageCode: string): Promise<string> {
   const { getLanguageDisplay } = await import('~/i18n/languages');
   return getLanguageDisplay(languageCode);
 }
-

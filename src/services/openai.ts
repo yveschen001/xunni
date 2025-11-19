@@ -177,4 +177,3 @@ export class OpenAIService {
 export function createOpenAIService(env: Env): OpenAIService {
   return new OpenAIService(env);
 }
-

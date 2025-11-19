@@ -1,6 +1,6 @@
 /**
  * Throw Bottle Handler
- * 
+ *
  * Handles /throw command - create and throw a bottle.
  */
 
@@ -8,16 +8,8 @@ import type { Env, TelegramMessage, User } from '~/types';
 import { createDatabaseClient } from '~/db/client';
 import { createTelegramService } from '~/services/telegram';
 import { findUserByTelegramId } from '~/db/queries/users';
-import {
-  createBottle,
-  getDailyThrowCount,
-  incrementDailyThrowCount,
-} from '~/db/queries/bottles';
-import {
-  validateBottleContent,
-  canThrowBottle,
-  getBottleQuota,
-} from '~/domain/bottle';
+import { createBottle, getDailyThrowCount, incrementDailyThrowCount } from '~/db/queries/bottles';
+import { validateBottleContent, canThrowBottle, getBottleQuota } from '~/domain/bottle';
 import type { ThrowBottleInput } from '~/domain/bottle';
 import { canActivateInvite } from '~/domain/invite';
 import {
@@ -54,8 +46,16 @@ export async function handleThrow(message: TelegramMessage, env: Env): Promise<v
   const telegramId = message.from!.id.toString();
 
   try {
+    // ✨ NEW: Update user activity (non-blocking)
+    try {
+      const { updateUserActivity } = await import('~/services/user_activity');
+      await updateUserActivity(db, telegramId);
+    } catch (activityError) {
+      console.error('[handleThrow] Failed to update user activity:', activityError);
+    }
+
     console.error('[handleThrow] Starting for user:', telegramId);
-    
+
     // Get user
     const user = await findUserByTelegramId(db, telegramId);
     if (!user) {
@@ -86,8 +86,12 @@ export async function handleThrow(message: TelegramMessage, env: Env): Promise<v
     // Check daily quota
     const throwsToday = await getDailyThrowCount(db, telegramId);
     const inviteBonus = 0; // TODO: Calculate from invites table
-    const isVip = !!(user.is_vip && user.vip_expire_at && new Date(user.vip_expire_at) > new Date());
-    
+    const isVip = !!(
+      user.is_vip &&
+      user.vip_expire_at &&
+      new Date(user.vip_expire_at) > new Date()
+    );
+
     if (!canThrowBottle(throwsToday, isVip, inviteBonus)) {
       const { quota } = getBottleQuota(isVip, inviteBonus);
       await telegram.sendMessage(
@@ -119,9 +123,7 @@ export async function handleThrow(message: TelegramMessage, env: Env): Promise<v
             { text: '✅ 繼續編輯', callback_data: 'draft_continue' },
             { text: '🗑️ 刪除草稿', callback_data: 'draft_delete' },
           ],
-          [
-            { text: '✍️ 重新開始', callback_data: 'draft_new' },
-          ],
+          [{ text: '✍️ 重新開始', callback_data: 'draft_new' }],
         ]
       );
       return;
@@ -135,7 +137,7 @@ export async function handleThrow(message: TelegramMessage, env: Env): Promise<v
     await upsertSession(db, telegramId, 'throw_bottle', {
       target_gender: targetGender,
     });
-    
+
     console.error('[handleThrow] Session created:', {
       userId: telegramId,
       sessionType: 'throw_bottle',
@@ -143,7 +145,8 @@ export async function handleThrow(message: TelegramMessage, env: Env): Promise<v
     });
 
     // Directly ask for bottle content
-    const targetText = targetGender === 'male' ? '男生' : targetGender === 'female' ? '女生' : '任何人';
+    const targetText =
+      targetGender === 'male' ? '男生' : targetGender === 'female' ? '女生' : '任何人';
     const throwPrompt =
       `🍾 **丟漂流瓶**\n\n` +
       `🎯 尋找對象：${targetText}\n` +
@@ -161,9 +164,7 @@ export async function handleThrow(message: TelegramMessage, env: Env): Promise<v
     await telegram.sendMessageWithButtons(
       chatId,
       throwPrompt,
-      [
-        [{ text: '🏠 返回主選單', callback_data: 'return_to_menu' }],
-      ],
+      [[{ text: '🏠 返回主選單', callback_data: 'return_to_menu' }]],
       { parse_mode: 'Markdown' }
     );
   } catch (error) {
@@ -171,21 +172,16 @@ export async function handleThrow(message: TelegramMessage, env: Env): Promise<v
     const errorStack = error instanceof Error ? error.stack : 'No stack';
     console.error('[handleThrow] Error stack:', errorStack);
     await telegram.sendMessage(
-      chatId, 
+      chatId,
       `❌ 發生錯誤，請稍後再試。\n\n錯誤信息：${error instanceof Error ? error.message : String(error)}`
     );
   }
 }
 
-
 /**
  * Process bottle content (called from message handler)
  */
-export async function processBottleContent(
-  user: User,
-  content: string,
-  env: Env
-): Promise<void> {
+export async function processBottleContent(user: User, content: string, env: Env): Promise<void> {
   const db = createDatabaseClient(env.DB);
   const telegram = createTelegramService(env);
   const chatId = parseInt(user.telegram_id);
@@ -194,10 +190,7 @@ export async function processBottleContent(
     // Validate content
     const validation = validateBottleContent(content);
     if (!validation.valid) {
-      await telegram.sendMessage(
-        chatId,
-        `❌ ${validation.error}\n\n請重新輸入瓶子內容。`
-      );
+      await telegram.sendMessage(chatId, `❌ ${validation.error}\n\n請重新輸入瓶子內容。`);
       return;
     }
 
@@ -208,7 +201,7 @@ export async function processBottleContent(
       await telegram.sendMessage(
         chatId,
         `❌ 瓶子內容包含不允許的網址\n\n` +
-          `🚫 禁止的網址：\n${urlCheck.blockedUrls?.map(url => `• ${url}`).join('\n')}\n\n` +
+          `🚫 禁止的網址：\n${urlCheck.blockedUrls?.map((url) => `• ${url}`).join('\n')}\n\n` +
           `✅ 只允許以下網址：\n` +
           `• t.me (Telegram)\n` +
           `• telegram.org\n` +
@@ -222,12 +215,12 @@ export async function processBottleContent(
     const { getActiveSession } = await import('~/db/queries/sessions');
     const { parseSessionData } = await import('~/domain/session');
     const session = await getActiveSession(db, user.telegram_id, 'throw_bottle');
-    
+
     let target_gender: 'male' | 'female' | 'any' = 'any';
     let target_mbti_filter: string[] = [];
     let target_zodiac_filter: string[] = [];
     let target_blood_type_filter: string | null = null;
-    
+
     if (session) {
       const sessionData = parseSessionData(session);
       target_gender = sessionData.data?.target_gender || 'any';
@@ -241,7 +234,10 @@ export async function processBottleContent(
       target_gender,
       target_mbti_filter: target_mbti_filter.length > 0 ? target_mbti_filter : undefined,
       target_zodiac_filter: target_zodiac_filter.length > 0 ? target_zodiac_filter : undefined,
-      target_blood_type_filter: target_blood_type_filter && target_blood_type_filter !== 'any' ? target_blood_type_filter : null,
+      target_blood_type_filter:
+        target_blood_type_filter && target_blood_type_filter !== 'any'
+          ? target_blood_type_filter
+          : null,
       language: user.language_pref,
     };
 
@@ -255,12 +251,12 @@ export async function processBottleContent(
     const hasThrown = true; // User just threw a bottle
     if (canActivateInvite(user, hasThrown)) {
       const alreadyActivated = await isInviteActivated(db, user.telegram_id);
-      
+
       if (!alreadyActivated) {
         // Activate invite
         await activateInvite(db, user.telegram_id);
         await incrementSuccessfulInvites(db, user.invited_by!);
-        
+
         // Send notification (will be implemented in next step)
         const { handleInviteActivation } = await import('./invite_activation');
         await handleInviteActivation(db, telegram, user);
@@ -270,7 +266,11 @@ export async function processBottleContent(
     // Get updated quota info
     const throwsToday = await getDailyThrowCount(db, user.telegram_id);
     const inviteBonus = user.successful_invites || 0;
-    const isVip = !!(user.is_vip && user.vip_expire_at && new Date(user.vip_expire_at) > new Date());
+    const isVip = !!(
+      user.is_vip &&
+      user.vip_expire_at &&
+      new Date(user.vip_expire_at) > new Date()
+    );
     const { quota } = getBottleQuota(isVip, inviteBonus);
 
     // Send success message
@@ -290,7 +290,7 @@ export async function processBottleContent(
       userId: user.telegram_id,
       contentLength: content.length,
     });
-    
+
     const errorMsg = error instanceof Error ? error.message : String(error);
     await telegram.sendMessage(
       chatId,

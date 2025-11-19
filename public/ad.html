@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>觀看廣告 - XunNi</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 600px;
+      background: white;
+      border-radius: 20px;
+      box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+      overflow: hidden;
+    }
+
+    .header {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: white;
+      padding: 20px;
+      text-align: center;
+    }
+
+    .header h1 {
+      font-size: 24px;
+      margin-bottom: 8px;
+    }
+
+    .header p {
+      font-size: 14px;
+      opacity: 0.9;
+    }
+
+    .ad-container {
+      padding: 20px;
+      min-height: 400px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .loading {
+      text-align: center;
+    }
+
+    .loading-spinner {
+      width: 50px;
+      height: 50px;
+      border: 4px solid #f3f3f3;
+      border-top: 4px solid #667eea;
+      border-radius: 50%;
+      animation: spin 1s linear infinite;
+      margin: 0 auto 20px;
+    }
+
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+
+    .loading p {
+      color: #666;
+      font-size: 16px;
+    }
+
+    .error {
+      text-align: center;
+      color: #e74c3c;
+    }
+
+    .error-icon {
+      font-size: 48px;
+      margin-bottom: 16px;
+    }
+
+    .error h2 {
+      font-size: 20px;
+      margin-bottom: 12px;
+    }
+
+    .error p {
+      color: #666;
+      margin-bottom: 20px;
+    }
+
+    .success {
+      text-align: center;
+      color: #27ae60;
+    }
+
+    .success-icon {
+      font-size: 64px;
+      margin-bottom: 16px;
+    }
+
+    .success h2 {
+      font-size: 24px;
+      margin-bottom: 12px;
+    }
+
+    .success p {
+      color: #666;
+      margin-bottom: 8px;
+    }
+
+    .btn {
+      display: inline-block;
+      padding: 12px 32px;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: white;
+      text-decoration: none;
+      border-radius: 25px;
+      font-size: 16px;
+      font-weight: 600;
+      margin-top: 20px;
+      cursor: pointer;
+      border: none;
+      transition: transform 0.2s;
+    }
+
+    .btn:hover {
+      transform: translateY(-2px);
+    }
+
+    .btn:active {
+      transform: translateY(0);
+    }
+
+    .progress-bar {
+      width: 100%;
+      height: 6px;
+      background: #f0f0f0;
+      border-radius: 3px;
+      overflow: hidden;
+      margin-top: 20px;
+    }
+
+    .progress-fill {
+      height: 100%;
+      background: linear-gradient(90deg, #667eea 0%, #764ba2 100%);
+      width: 0%;
+      transition: width 0.3s ease;
+    }
+
+    .ad-placeholder {
+      width: 100%;
+      min-height: 300px;
+      background: #f5f5f5;
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 20px;
+    }
+
+    .countdown {
+      font-size: 18px;
+      color: #667eea;
+      font-weight: 600;
+      margin-top: 16px;
+    }
+
+    .footer {
+      padding: 16px;
+      text-align: center;
+      color: #999;
+      font-size: 12px;
+      border-top: 1px solid #f0f0f0;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="header">
+      <h1>📺 觀看廣告</h1>
+      <p>完成觀看可獲得 +1 個額度</p>
+    </div>
+
+    <div class="ad-container" id="adContainer">
+      <div class="loading">
+        <div class="loading-spinner"></div>
+        <p>正在加載廣告...</p>
+      </div>
+    </div>
+
+    <div class="footer">
+      <p>XunNi - 讓世界聽見你的聲音</p>
+    </div>
+  </div>
+
+  <script>
+    // Get URL parameters
+    const urlParams = new URLSearchParams(window.location.search);
+    const provider = urlParams.get('provider');
+    const token = urlParams.get('token');
+    const userId = urlParams.get('user');
+
+    // Configuration
+    const API_BASE_URL = window.location.origin;
+    const AD_DURATION = 15; // seconds
+
+    // State
+    let adStartTime = null;
+    let adCompleted = false;
+
+    // ========================================================================
+    // Main Flow
+    // ========================================================================
+
+    async function init() {
+      try {
+        // Validate parameters
+        if (!provider || !token || !userId) {
+          showError('無效的參數', '請從 Telegram Bot 重新開始');
+          return;
+        }
+
+        // Load ad provider script
+        await loadAdProvider(provider);
+
+        // Start ad
+        await startAd(provider);
+
+      } catch (error) {
+        console.error('Init error:', error);
+        showError('廣告加載失敗', error.message || '請稍後再試');
+        reportError(error.message || 'Unknown error');
+      }
+    }
+
+    // ========================================================================
+    // Ad Provider Integration
+    // ========================================================================
+
+    async function loadAdProvider(providerName) {
+      // For now, we'll use a mock ad system
+      // In production, load actual provider scripts here
+      
+      switch (providerName) {
+        case 'gigapub':
+          // await loadScript('https://cdn.gigapub.com/sdk/v1/gigapub.js');
+          break;
+        case 'google_adsense':
+          // await loadScript('https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js');
+          break;
+        case 'unity_ads':
+          // await loadScript('https://cdn.unityads.unity3d.com/webview/2.0/unity-ads.js');
+          break;
+        default:
+          // Mock provider for testing
+          break;
+      }
+    }
+
+    async function startAd(providerName) {
+      adStartTime = Date.now();
+
+      // Show ad placeholder with countdown
+      showAdPlaceholder();
+
+      // Simulate ad playback
+      simulateAdPlayback();
+    }
+
+    function showAdPlaceholder() {
+      const container = document.getElementById('adContainer');
+      container.innerHTML = `
+        <div class="ad-placeholder">
+          <div style="text-align: center;">
+            <div style="font-size: 48px; margin-bottom: 16px;">📺</div>
+            <p style="font-size: 18px; color: #666; margin-bottom: 8px;">廣告播放中...</p>
+            <p class="countdown" id="countdown">剩餘時間: ${AD_DURATION} 秒</p>
+          </div>
+        </div>
+        <div class="progress-bar">
+          <div class="progress-fill" id="progressFill"></div>
+        </div>
+      `;
+
+      // Start countdown
+      startCountdown();
+    }
+
+    function startCountdown() {
+      let remaining = AD_DURATION;
+      const countdownEl = document.getElementById('countdown');
+      const progressFill = document.getElementById('progressFill');
+
+      const interval = setInterval(() => {
+        remaining--;
+        
+        if (countdownEl) {
+          countdownEl.textContent = `剩餘時間: ${remaining} 秒`;
+        }
+
+        if (progressFill) {
+          const progress = ((AD_DURATION - remaining) / AD_DURATION) * 100;
+          progressFill.style.width = `${progress}%`;
+        }
+
+        if (remaining <= 0) {
+          clearInterval(interval);
+          onAdComplete();
+        }
+      }, 1000);
+    }
+
+    function simulateAdPlayback() {
+      // In production, this would integrate with actual ad provider
+      // For now, we just wait for the countdown
+    }
+
+    // ========================================================================
+    // Ad Completion
+    // ========================================================================
+
+    async function onAdComplete() {
+      if (adCompleted) {
+        return;
+      }
+
+      adCompleted = true;
+
+      try {
+        // Report completion to server
+        const response = await fetch(`${API_BASE_URL}/api/ad/complete?user=${userId}&token=${token}&provider=${provider}`, {
+          method: 'POST',
+        });
+
+        const data = await response.json();
+
+        if (data.success) {
+          showSuccess();
+        } else {
+          showError('完成失敗', data.message || '請稍後再試');
+        }
+
+      } catch (error) {
+        console.error('Completion error:', error);
+        showError('完成失敗', '網絡錯誤，請稍後再試');
+      }
+    }
+
+    // ========================================================================
+    // UI Updates
+    // ========================================================================
+
+    function showSuccess() {
+      const container = document.getElementById('adContainer');
+      container.innerHTML = `
+        <div class="success">
+          <div class="success-icon">🎉</div>
+          <h2>觀看完成！</h2>
+          <p>恭喜你獲得 <strong>+1 個額度</strong></p>
+          <p style="margin-top: 16px; color: #999;">請返回 Telegram 繼續使用</p>
+          <button class="btn" onclick="window.close()">關閉頁面</button>
+        </div>
+      `;
+    }
+
+    function showError(title, message) {
+      const container = document.getElementById('adContainer');
+      container.innerHTML = `
+        <div class="error">
+          <div class="error-icon">❌</div>
+          <h2>${title}</h2>
+          <p>${message}</p>
+          <button class="btn" onclick="window.close()">關閉頁面</button>
+        </div>
+      `;
+    }
+
+    async function reportError(errorMessage) {
+      try {
+        await fetch(`${API_BASE_URL}/api/ad/error?user=${userId}&provider=${provider}&error=${encodeURIComponent(errorMessage)}`, {
+          method: 'POST',
+        });
+      } catch (error) {
+        console.error('Error reporting error:', error);
+      }
+    }
+
+    // ========================================================================
+    // Utility Functions
+    // ========================================================================
+
+    function loadScript(src) {
+      return new Promise((resolve, reject) => {
+        const script = document.createElement('script');
+        script.src = src;
+        script.onload = resolve;
+        script.onerror = () => reject(new Error(`Failed to load script: ${src}`));
+        document.head.appendChild(script);
+      });
+    }
+
+    // ========================================================================
+    // Initialize
+    // ========================================================================
+
+    // Start when page loads
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', init);
+    } else {
+      init();
+    }
+
+    // Prevent accidental page close during ad
+    window.addEventListener('beforeunload', (e) => {
+      if (!adCompleted && adStartTime) {
+        e.preventDefault();
+        e.returnValue = '';
+        return '';
+      }
+    });
+  </script>
+</body>
+</html>
+

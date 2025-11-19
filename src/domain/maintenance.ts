@@ -58,28 +58,28 @@ export function calculateRemainingTime(maintenance: MaintenanceMode): {
  */
 export function formatMaintenanceNotification(maintenance: MaintenanceMode): string {
   const remaining = calculateRemainingTime(maintenance);
-  
+
   let message = '🛠️ 系統維護通知\n\n';
-  
+
   if (maintenance.maintenanceMessage) {
     message += `${maintenance.maintenanceMessage}\n\n`;
   } else {
     message += '系統正在進行維護，暫時無法使用。\n\n';
   }
-  
+
   if (maintenance.startTime) {
     message += `開始時間：${new Date(maintenance.startTime).toLocaleString('zh-TW')}\n`;
   }
-  
+
   if (maintenance.endTime) {
     message += `預計完成：${new Date(maintenance.endTime).toLocaleString('zh-TW')}\n`;
     message += `剩餘時間：${remaining.remainingText}\n`;
   } else if (maintenance.estimatedDuration) {
     message += `預計時長：${maintenance.estimatedDuration} 分鐘\n`;
   }
-  
+
   message += '\n感謝您的耐心等待！';
-  
+
   return message;
 }
 
@@ -88,25 +88,25 @@ export function formatMaintenanceNotification(maintenance: MaintenanceMode): str
  */
 export function formatMaintenanceStatus(maintenance: MaintenanceMode): string {
   let message = '🛠️ 維護模式狀態\n\n';
-  
+
   message += `狀態：${maintenance.isActive ? '✅ 維護中' : '❌ 未啟用'}\n`;
-  
+
   if (maintenance.isActive) {
     if (maintenance.startTime) {
       message += `開始時間：${new Date(maintenance.startTime).toLocaleString('zh-TW')}\n`;
     }
-    
+
     if (maintenance.endTime) {
       const remaining = calculateRemainingTime(maintenance);
       message += `預計完成：${new Date(maintenance.endTime).toLocaleString('zh-TW')}\n`;
       message += `剩餘時間：${remaining.remainingText}\n`;
     }
-    
+
     if (maintenance.enabledBy) {
       message += `啟用者：${maintenance.enabledBy}\n`;
     }
   }
-  
+
   return message;
 }
 
@@ -117,14 +117,16 @@ export function validateMaintenanceDuration(duration: number): {
   valid: boolean;
   error?: string;
 } {
-  if (duration <= 0) {
-    return { valid: false, error: '維護時長必須大於 0' };
+  // Minimum: 5 minutes (to allow time for cron job to check)
+  if (duration < 5) {
+    return { valid: false, error: '維護時長最少 5 分鐘' };
   }
-  
-  if (duration > 1440) { // 24 hours
+
+  // Maximum: 24 hours
+  if (duration > 1440) {
     return { valid: false, error: '維護時長不能超過 24 小時（1440 分鐘）' };
   }
-  
+
   return { valid: true };
 }
 
@@ -136,4 +138,3 @@ export function calculateEndTime(startTime: Date, durationMinutes: number): Date
   endTime.setMinutes(endTime.getMinutes() + durationMinutes);
   return endTime;
 }
-

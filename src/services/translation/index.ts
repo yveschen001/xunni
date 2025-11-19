@@ -1,6 +1,6 @@
 /**
  * Translation Service
- * 
+ *
  * Unified translation service with VIP/Free tier support.
  */
 
@@ -52,12 +52,7 @@ export async function translateText(
 
   if (isVip) {
     try {
-      const result = await translateWithOpenAI(
-        text,
-        normalizedTarget,
-        normalizedSource,
-        env
-      );
+      const result = await translateWithOpenAI(text, normalizedTarget, normalizedSource, env);
 
       return {
         text: result.text,
@@ -70,12 +65,7 @@ export async function translateText(
     } catch (error) {
       console.error('[translateText] OpenAI failed, falling back to Gemini:', error);
 
-      const geminiResult = await translateWithGemini(
-        text,
-        normalizedTarget,
-        normalizedSource,
-        env
-      );
+      const geminiResult = await translateWithGemini(text, normalizedTarget, normalizedSource, env);
 
       if (geminiResult.success) {
         return {
@@ -101,12 +91,7 @@ export async function translateText(
   }
 
   try {
-    const geminiResult = await translateWithGemini(
-      text,
-      normalizedTarget,
-      normalizedSource,
-      env
-    );
+    const geminiResult = await translateWithGemini(text, normalizedTarget, normalizedSource, env);
 
     if (geminiResult.success) {
       return {
@@ -134,7 +119,7 @@ export async function translateText(
 
 /**
  * Normalize language code to ISO 639-1 format
- * 
+ *
  * Examples:
  * - zh-TW -> zh
  * - en-US -> en
@@ -143,7 +128,7 @@ export async function translateText(
 function normalizeLanguageCode(code: string): string {
   // Extract base language code (before hyphen)
   const baseCode = code.split('-')[0].toLowerCase();
-  
+
   // Special cases
   if (baseCode === 'zh') {
     // Keep zh-TW and zh-CN distinction
@@ -175,4 +160,3 @@ export function needsTranslation(
 
   return normalizedSource !== normalizedTarget;
 }
-

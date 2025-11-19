@@ -1,6 +1,6 @@
 /**
  * Google Translate Service
- * 
+ *
  * Free translation for all users, fallback for VIP users.
  */
 
@@ -13,7 +13,7 @@ export interface GoogleTranslationResult {
 
 /**
  * Translate text using Google Translate API
- * 
+ *
  * Note: This is a simplified implementation using Google Cloud Translation API.
  * You need to set up GOOGLE_TRANSLATE_API_KEY in your environment.
  */
@@ -24,7 +24,7 @@ export async function translateWithGoogle(
   env: Env
 ): Promise<GoogleTranslationResult> {
   const apiKey = env.GOOGLE_TRANSLATE_API_KEY;
-  
+
   // If no API key, use a free alternative (MyMemory API)
   if (!apiKey) {
     return await translateWithMyMemory(text, targetLanguage, sourceLanguage);
@@ -57,7 +57,7 @@ export async function translateWithGoogle(
         }>;
       };
     }
-    const data = await response.json() as GoogleTranslateResponse;
+    const data = (await response.json()) as GoogleTranslateResponse;
     const translatedText = data.data?.translations?.[0]?.translatedText;
     const detectedSourceLanguage = data.data?.translations?.[0]?.detectedSourceLanguage;
 
@@ -77,7 +77,7 @@ export async function translateWithGoogle(
 
 /**
  * Fallback: Use MyMemory Translation API (free, no API key required)
- * 
+ *
  * Limitations:
  * - 5000 chars/day limit per IP
  * - Lower quality than Google Translate
@@ -107,7 +107,7 @@ async function translateWithMyMemory(
         translatedText?: string;
       };
     }
-    const data = await response.json() as MyMemoryResponse;
+    const data = (await response.json()) as MyMemoryResponse;
     const translatedText = data.responseData?.translatedText;
 
     if (!translatedText) {
@@ -123,4 +123,3 @@ async function translateWithMyMemory(
     throw error;
   }
 }
-

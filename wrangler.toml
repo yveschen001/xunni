@@ -37,24 +37,27 @@ GEMINI_MODELS = "gemini-2.0-flash-exp,gemini-2.5-flash-lite"
 GEMINI_API_VERSION = "v1beta"
 OPENAI_MODEL = "gpt-4o-mini"
 ADMIN_USER_IDS = ""  # Regular admins (comma-separated). Super admin 396943893 is always included
+# Ad System Configuration
+PUBLIC_URL = "https://xunni-bot-staging.yves221.workers.dev"
+ENABLE_ANALYTICS = "true"
+AD_PROVIDER_STRATEGY = "priority"
+AD_REWARD_SECRET = "NOGD2InZ/VuIhZPSiajhwdmIc/PKHnijE/VSUKxzspM="
 
 # Staging D1 Database
 [[env.staging.d1_databases]]
 binding = "DB"
 database_name = "xunni-db-staging"
 database_id = "7b77ad82-ba26-489f-995f-8256b32379df"
+migrations_dir = "src/db/migrations"
 
 # Staging KV Namespace (optional)
 # [[env.staging.kv_namespaces]]
 # binding = "RISK_CACHE"
 # id = "<STAGING_KV_NAMESPACE_ID>"
 
-# Staging Cron triggers (disabled for now, will enable after testing)
+# Staging Cron triggers (not needed - broadcasts are processed synchronously)
 # [[env.staging.triggers.crons]]
-# cron = "0 9 * * 1"  # Every Monday at 9:00 UTC (Horoscope)
-
-# [[env.staging.triggers.crons]]
-# cron = "*/5 * * * *"  # Every 5 minutes (Broadcast queue)
+# cron = "*/5 * * * *"  # Every 5 minutes (Broadcast queue and Daily stats)
 
 # Production environment
 [env.production]
@@ -77,6 +80,12 @@ vars = { ENVIRONMENT = "production", LOG_LEVEL = "warn" }
 # Production Cron triggers
 [[env.production.triggers.crons]]
 cron = "0 9 * * 1"  # Every Monday at 9:00 UTC (Horoscope)
+
+[[env.production.triggers.crons]]
+cron = "0 9 * * *"  # Every day at 09:00 UTC = 17:00 Taipei (Daily reports to super admins)
+
+[[env.production.triggers.crons]]
+cron = "5 0 * * *"  # Every day at 00:05 UTC (Daily stats generation)
 
 [[env.production.triggers.crons]]
 cron = "*/5 * * * *"  # Every 5 minutes (Broadcast queue)

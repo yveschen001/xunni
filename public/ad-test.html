@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>測試廣告 - XunNi</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 600px;
+      background: white;
+      border-radius: 20px;
+      box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+      padding: 30px;
+      text-align: center;
+    }
+
+    .test-badge {
+      display: inline-block;
+      background: #ff9800;
+      color: white;
+      padding: 8px 16px;
+      border-radius: 20px;
+      font-size: 14px;
+      font-weight: bold;
+      margin-bottom: 20px;
+    }
+
+    h1 {
+      font-size: 28px;
+      color: #333;
+      margin-bottom: 10px;
+    }
+
+    .subtitle {
+      color: #666;
+      font-size: 16px;
+      margin-bottom: 30px;
+    }
+
+    #ad-container {
+      width: 100%;
+      height: 280px;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      border-radius: 12px;
+      margin-bottom: 20px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      color: white;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .ad-placeholder {
+      font-size: 18px;
+      font-weight: bold;
+      margin-bottom: 10px;
+    }
+
+    .ad-info {
+      font-size: 14px;
+      opacity: 0.9;
+    }
+
+    #countdown {
+      font-size: 48px;
+      font-weight: bold;
+      color: #4CAF50;
+      margin: 20px 0;
+    }
+
+    #progress-bar-container {
+      width: 100%;
+      height: 8px;
+      background: #e0e0e0;
+      border-radius: 4px;
+      overflow: hidden;
+      margin-bottom: 20px;
+    }
+
+    #progress-bar {
+      height: 100%;
+      width: 0%;
+      background: linear-gradient(90deg, #4CAF50, #8BC34A);
+      border-radius: 4px;
+      transition: width 0.3s ease;
+    }
+
+    #status {
+      font-size: 16px;
+      color: #666;
+      margin-bottom: 20px;
+      min-height: 24px;
+    }
+
+    button {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: white;
+      border: none;
+      padding: 15px 40px;
+      border-radius: 25px;
+      font-size: 18px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+    }
+
+    button:hover:not(:disabled) {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(102, 126, 234, 0.6);
+    }
+
+    button:disabled {
+      background: #ccc;
+      cursor: not-allowed;
+      box-shadow: none;
+    }
+
+    .message {
+      margin-top: 20px;
+      padding: 15px;
+      border-radius: 8px;
+      font-size: 16px;
+    }
+
+    .message.success {
+      background: #e8f5e9;
+      color: #2e7d32;
+      border: 1px solid #4caf50;
+    }
+
+    .message.error {
+      background: #ffebee;
+      color: #c62828;
+      border: 1px solid #f44336;
+    }
+
+    .debug-info {
+      margin-top: 20px;
+      padding: 15px;
+      background: #f5f5f5;
+      border-radius: 8px;
+      text-align: left;
+      font-family: monospace;
+      font-size: 12px;
+      color: #666;
+    }
+
+    .debug-info h3 {
+      font-size: 14px;
+      margin-bottom: 10px;
+      color: #333;
+    }
+
+    .debug-info p {
+      margin: 5px 0;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="test-badge">🧪 測試模式</div>
+    <h1>XunNi 廣告系統測試</h1>
+    <p class="subtitle">這是測試廣告，不會消耗真實預算</p>
+
+    <div id="ad-container">
+      <div class="ad-placeholder">📺 測試廣告播放中...</div>
+      <div class="ad-info">這是一個 15 秒的測試廣告</div>
+    </div>
+
+    <div id="countdown">15</div>
+    <div id="progress-bar-container">
+      <div id="progress-bar"></div>
+    </div>
+    <div id="status">請觀看完整廣告以獲得獎勵</div>
+
+    <button id="completeButton" disabled>完成觀看</button>
+
+    <div id="message"></div>
+
+    <div class="debug-info">
+      <h3>🔍 調試信息</h3>
+      <p><strong>User ID:</strong> <span id="debug-user">-</span></p>
+      <p><strong>Token:</strong> <span id="debug-token">-</span></p>
+      <p><strong>Provider:</strong> <span id="debug-provider">-</span></p>
+      <p><strong>狀態:</strong> <span id="debug-status">初始化中...</span></p>
+    </div>
+  </div>
+
+  <script>
+    // 獲取 URL 參數
+    const urlParams = new URLSearchParams(window.location.search);
+    const userId = urlParams.get('user');
+    const token = urlParams.get('token');
+    const provider = urlParams.get('provider') || 'gigapub_test';
+    const adRewardId = urlParams.get('ad_reward_id');
+
+    // 更新調試信息
+    document.getElementById('debug-user').textContent = userId || '未提供';
+    document.getElementById('debug-token').textContent = token ? token.substring(0, 20) + '...' : '未提供';
+    document.getElementById('debug-provider').textContent = provider;
+
+    const countdownElement = document.getElementById('countdown');
+    const progressBar = document.getElementById('progress-bar');
+    const statusElement = document.getElementById('status');
+    const completeButton = document.getElementById('completeButton');
+    const messageElement = document.getElementById('message');
+    const debugStatus = document.getElementById('debug-status');
+
+    const AD_DURATION = 15; // 秒
+    let timeLeft = AD_DURATION;
+    let countdownInterval;
+
+    // 檢查參數
+    if (!userId || !token) {
+      showError('缺少必要參數（user 或 token）');
+      debugStatus.textContent = '錯誤：缺少參數';
+      return;
+    }
+
+    // 開始倒計時
+    function startCountdown() {
+      debugStatus.textContent = '廣告播放中...';
+      statusElement.textContent = `請觀看完整廣告（${timeLeft} 秒）`;
+
+      countdownInterval = setInterval(() => {
+        timeLeft--;
+        const progress = ((AD_DURATION - timeLeft) / AD_DURATION) * 100;
+        
+        countdownElement.textContent = timeLeft;
+        progressBar.style.width = `${progress}%`;
+
+        if (timeLeft > 0) {
+          statusElement.textContent = `請觀看完整廣告（${timeLeft} 秒）`;
+        } else {
+          clearInterval(countdownInterval);
+          countdownElement.textContent = '✓';
+          countdownElement.style.color = '#4CAF50';
+          statusElement.textContent = '觀看完成！點擊下方按鈕領取獎勵';
+          completeButton.disabled = false;
+          debugStatus.textContent = '廣告播放完成';
+        }
+      }, 1000);
+    }
+
+    // 顯示錯誤
+    function showError(message) {
+      messageElement.className = 'message error';
+      messageElement.textContent = '❌ ' + message;
+      messageElement.style.display = 'block';
+    }
+
+    // 顯示成功
+    function showSuccess(message) {
+      messageElement.className = 'message success';
+      messageElement.textContent = '✅ ' + message;
+      messageElement.style.display = 'block';
+    }
+
+    // 完成按鈕點擊
+    completeButton.addEventListener('click', async () => {
+      completeButton.disabled = true;
+      statusElement.textContent = '正在領取獎勵...';
+      debugStatus.textContent = '發送完成請求...';
+
+      try {
+        const apiUrl = `/api/ad/complete?user=${userId}&token=${token}&provider=${provider}`;
+        
+        debugStatus.textContent = `請求: ${apiUrl}`;
+        
+        const response = await fetch(apiUrl, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+        });
+
+        const result = await response.json();
+        debugStatus.textContent = `響應: ${JSON.stringify(result)}`;
+
+        if (result.success) {
+          showSuccess('獎勵已成功發放！您獲得了 +1 個額度');
+          statusElement.textContent = '✓ 完成！您可以關閉此頁面';
+          
+          // 如果是 Telegram Mini App，自動關閉
+          if (window.Telegram && window.Telegram.WebApp) {
+            setTimeout(() => {
+              window.Telegram.WebApp.close();
+            }, 2000);
+          }
+        } else {
+          showError(result.message || '領取失敗');
+          statusElement.textContent = '領取失敗，請重試';
+          completeButton.disabled = false;
+        }
+      } catch (error) {
+        console.error('Error:', error);
+        showError('網路錯誤：' + error.message);
+        statusElement.textContent = '網路錯誤，請重試';
+        debugStatus.textContent = `錯誤: ${error.message}`;
+        completeButton.disabled = false;
+      }
+    });
+
+    // 開始測試
+    setTimeout(() => {
+      startCountdown();
+    }, 1000);
+
+    // 防止意外關閉
+    window.addEventListener('beforeunload', (event) => {
+      if (timeLeft > 0) {
+        event.preventDefault();
+        event.returnValue = '廣告尚未播放完成，確定要離開嗎？';
+      }
+    });
+  </script>
+</body>
+</html>
+

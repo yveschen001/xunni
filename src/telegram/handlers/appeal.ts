@@ -84,10 +84,7 @@ export async function handleAppeal(message: TelegramMessage, env: Env): Promise<
 /**
  * Handle appeal reason input
  */
-export async function handleAppealReasonInput(
-  message: TelegramMessage,
-  env: Env
-): Promise<void> {
+export async function handleAppealReasonInput(message: TelegramMessage, env: Env): Promise<void> {
   const telegram = createTelegramService(env);
   const db = createDatabaseClient(env.DB);
   const chatId = message.chat.id.toString();
@@ -252,4 +249,3 @@ export async function handleAppealStatus(message: TelegramMessage, env: Env): Pr
     })
   );
 }
-

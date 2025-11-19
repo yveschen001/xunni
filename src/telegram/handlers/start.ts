@@ -13,6 +13,7 @@ import { extractInviteCode, validateInviteCode } from '~/domain/invite';
 import { createInvite } from '~/db/queries/invites';
 import { createTelegramService } from '~/services/telegram';
 import { getPopularLanguageButtons } from '~/i18n/languages';
+import { LEGAL_URLS } from '~/config/legal_urls';
 
 // ============================================================================
 // /start Handler
@@ -25,6 +26,14 @@ export async function handleStart(message: TelegramMessage, env: Env): Promise<v
   const telegramId = message.from!.id.toString();
 
   try {
+    // ✨ NEW: Update user activity (non-blocking)
+    try {
+      const { updateUserActivity } = await import('~/services/user_activity');
+      await updateUserActivity(db, telegramId);
+    } catch (activityError) {
+      console.error('[handleStart] Failed to update user activity:', activityError);
+    }
+
     // Extract invite code from /start command
     const inviteCode = extractInviteCode(message.text || '');
     let inviterTelegramId: string | null = null;
@@ -38,10 +47,10 @@ export async function handleStart(message: TelegramMessage, env: Env): Promise<v
     // Validate and process invite code
     if (inviteCode) {
       console.error('[handleStart] Invite code found:', inviteCode);
-      
+
       if (validateInviteCode(inviteCode)) {
         console.error('[handleStart] Invite code valid, looking for inviter');
-        
+
         // Find inviter by invite code
         const inviter = await db.d1
           .prepare('SELECT telegram_id, nickname FROM users WHERE invite_code = ?')
@@ -50,7 +59,7 @@ export async function handleStart(message: TelegramMessage, env: Env): Promise<v
 
         if (inviter) {
           console.error('[handleStart] Inviter found:', inviter.telegram_id);
-          
+
           // Prevent self-invitation
           if (inviter.telegram_id !== telegramId) {
             inviterTelegramId = inviter.telegram_id;
@@ -94,7 +103,7 @@ export async function handleStart(message: TelegramMessage, env: Env): Promise<v
           inviteeTelegramId: telegramId,
           inviteCode,
         });
-        
+
         await createInvite(db, inviterTelegramId, telegramId, inviteCode!);
         console.error('[handleStart] Invite record created successfully');
 
@@ -190,10 +199,7 @@ export async function handleStart(message: TelegramMessage, env: Env): Promise<v
     }
   } catch (error) {
     console.error('[handleStart] Error:', error);
-    await telegram.sendMessage(
-      chatId,
-      '❌ 發生錯誤，請稍後再試。\n\n如果問題持續，請聯繫管理員。'
-    );
+    await telegram.sendMessage(chatId, '❌ 發生錯誤，請稍後再試。\n\n如果問題持續，請聯繫管理員。');
   }
 }
 
@@ -264,7 +270,7 @@ async function resumeOnboarding(
     case 'blood_type': {
       const { getBloodTypeOptions } = await import('~/domain/blood_type');
       const options = getBloodTypeOptions();
-      
+
       await telegram.sendMessageWithButtons(
         chatId,
         `🩸 **請選擇你的血型**\n\n` +
@@ -279,9 +285,7 @@ async function resumeOnboarding(
             { text: options[2].display, callback_data: 'blood_type_AB' },
             { text: options[3].display, callback_data: 'blood_type_O' },
           ],
-          [
-            { text: options[4].display, callback_data: 'blood_type_skip' },
-          ],
+          [{ text: options[4].display, callback_data: 'blood_type_skip' }],
         ]
       );
       break;
@@ -295,15 +299,9 @@ async function resumeOnboarding(
           `這將幫助我們為你找到更合適的聊天對象～\n\n` +
           `你想要如何設定？`,
         [
-          [
-            { text: '✍️ 我已經知道我的 MBTI', callback_data: 'mbti_choice_manual' },
-          ],
-          [
-            { text: '📝 進行快速測驗', callback_data: 'mbti_choice_test' },
-          ],
-          [
-            { text: '⏭️ 稍後再說', callback_data: 'mbti_choice_skip' },
-          ],
+          [{ text: '✍️ 我已經知道我的 MBTI', callback_data: 'mbti_choice_manual' }],
+          [{ text: '📝 進行快速測驗', callback_data: 'mbti_choice_test' }],
+          [{ text: '⏭️ 稍後再說', callback_data: 'mbti_choice_skip' }],
         ]
       );
       break;
@@ -331,20 +329,18 @@ async function resumeOnboarding(
         `在開始使用前，請閱讀並同意我們的服務條款：\n\n` +
           `📋 隱私權政策\n` +
           `📋 使用者條款\n\n` +
+          `📋 Legal documents are provided in English only.\n\n` +
           `點擊下方按鈕表示你已閱讀並同意上述條款。`,
         [
           [{ text: '✅ 我已閱讀並同意', callback_data: 'agree_terms' }],
-          [{ text: '📋 查看隱私權政策', url: 'https://xunni.example.com/privacy' }],
-          [{ text: '📋 查看使用者條款', url: 'https://xunni.example.com/terms' }],
+          [{ text: '📋 View Privacy Policy', url: LEGAL_URLS.PRIVACY_POLICY }],
+          [{ text: '📋 View Terms of Service', url: LEGAL_URLS.TERMS_OF_SERVICE }],
         ]
       );
       break;
 
     default:
-      await telegram.sendMessage(
-        chatId,
-        `❌ 註冊流程出現問題，請重新開始：/start`
-      );
+      await telegram.sendMessage(chatId, `❌ 註冊流程出現問題，請重新開始：/start`);
   }
 }
 

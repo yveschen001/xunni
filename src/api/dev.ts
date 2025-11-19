@@ -1,6 +1,6 @@
 /**
  * Development API Endpoints
- * 
+ *
  * ⚠️ WARNING: These endpoints are for STAGING/DEVELOPMENT ONLY!
  * They should be disabled in production.
  */
@@ -29,7 +29,7 @@ export async function handleSeedUser(request: Request, env: Env): Promise<Respon
   }
 
   try {
-    const user = await request.json() as any;
+    const user = (await request.json()) as any;
     const db = createDatabaseClient(env.DB);
 
     // Insert fake user
@@ -77,13 +77,10 @@ export async function handleSeedUser(request: Request, env: Env): Promise<Respon
       )
       .run();
 
-    return new Response(
-      JSON.stringify({ success: true, telegram_id: user.telegram_id }),
-      {
-        status: 200,
-        headers: { 'Content-Type': 'application/json' },
-      }
-    );
+    return new Response(JSON.stringify({ success: true, telegram_id: user.telegram_id }), {
+      status: 200,
+      headers: { 'Content-Type': 'application/json' },
+    });
   } catch (error) {
     console.error('[handleSeedUser] Error:', error);
     return new Response(
@@ -112,14 +109,12 @@ export async function handleDeleteFakeUsers(request: Request, env: Env): Promise
     const db = createDatabaseClient(env.DB);
 
     // Delete fake users (telegram_id starting with 9999999)
-    const result = await db.d1
-      .prepare(`DELETE FROM users WHERE telegram_id LIKE '9999999%'`)
-      .run();
+    const result = await db.d1.prepare(`DELETE FROM users WHERE telegram_id LIKE '9999999%'`).run();
 
     return new Response(
-      JSON.stringify({ 
-        success: true, 
-        deleted: result.meta?.changes || 0 
+      JSON.stringify({
+        success: true,
+        deleted: result.meta?.changes || 0,
       }),
       {
         status: 200,
@@ -137,4 +132,3 @@ export async function handleDeleteFakeUsers(request: Request, env: Env): Promise
     );
   }
 }
-

@@ -25,7 +25,10 @@ export class DatabaseClient {
    */
   async query<T = unknown>(sql: string, params: unknown[] = []): Promise<T[]> {
     try {
-      const result = await this.db.prepare(sql).bind(...params).all<T>();
+      const result = await this.db
+        .prepare(sql)
+        .bind(...params)
+        .all<T>();
 
       if (!result.success) {
         throw new Error(`Database query failed: ${result.error}`);
@@ -43,7 +46,10 @@ export class DatabaseClient {
    */
   async queryOne<T = unknown>(sql: string, params: unknown[] = []): Promise<T | null> {
     try {
-      const result = await this.db.prepare(sql).bind(...params).first<T>();
+      const result = await this.db
+        .prepare(sql)
+        .bind(...params)
+        .first<T>();
       return result || null;
     } catch (error) {
       console.error('[DB] QueryOne error:', { sql, params, error });
@@ -56,7 +62,10 @@ export class DatabaseClient {
    */
   async execute(sql: string, params: unknown[] = []): Promise<D1Result> {
     try {
-      const result = await this.db.prepare(sql).bind(...params).run();
+      const result = await this.db
+        .prepare(sql)
+        .bind(...params)
+        .run();
 
       if (!result.success) {
         throw new Error(`Database execute failed: ${result.error}`);
@@ -96,4 +105,3 @@ export class DatabaseClient {
 export function createDatabaseClient(db: D1Database): DatabaseClient {
   return new DatabaseClient(db);
 }
-
