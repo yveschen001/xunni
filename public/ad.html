@@ -206,6 +206,9 @@
     </div>
   </div>
 
+  <!-- GigaPub Ad Script -->
+  <script src="https://ad.gigapub.tech/script?id=4406"></script>
+
   <script>
     // Get URL parameters
     const urlParams = new URLSearchParams(window.location.search);
@@ -251,33 +254,59 @@
     // ========================================================================
 
     async function loadAdProvider(providerName) {
-      // For now, we'll use a mock ad system
-      // In production, load actual provider scripts here
-      
-      switch (providerName) {
-        case 'gigapub':
-          // await loadScript('https://cdn.gigapub.com/sdk/v1/gigapub.js');
-          break;
-        case 'google_adsense':
-          // await loadScript('https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js');
-          break;
-        case 'unity_ads':
-          // await loadScript('https://cdn.unityads.unity3d.com/webview/2.0/unity-ads.js');
-          break;
-        default:
-          // Mock provider for testing
-          break;
+      // GigaPub script is already loaded in HTML
+      // Wait for it to be ready
+      if (providerName === 'gigapub') {
+        // Wait for window.showGiga to be available
+        let attempts = 0;
+        while (!window.showGiga && attempts < 50) {
+          await new Promise(resolve => setTimeout(resolve, 100));
+          attempts++;
+        }
+        
+        if (!window.showGiga) {
+          throw new Error('GigaPub SDK 加載失敗');
+        }
       }
     }
 
     async function startAd(providerName) {
       adStartTime = Date.now();
 
-      // Show ad placeholder with countdown
-      showAdPlaceholder();
+      if (providerName === 'gigapub') {
+        // Use real GigaPub ad
+        await startGigaPubAd();
+      } else {
+        // Fallback to mock ad for testing
+        showAdPlaceholder();
+        simulateAdPlayback();
+      }
+    }
 
-      // Simulate ad playback
-      simulateAdPlayback();
+    async function startGigaPubAd() {
+      try {
+        // Show loading state
+        const container = document.getElementById('adContainer');
+        container.innerHTML = `
+          <div class="loading">
+            <div class="loading-spinner"></div>
+            <p>正在加載 GigaPub 廣告...</p>
+          </div>
+        `;
+
+        // Call GigaPub showGiga()
+        await window.showGiga();
+
+        // Ad completed successfully
+        onAdComplete();
+
+      } catch (error) {
+        console.error('GigaPub ad error:', error);
+        
+        // If GigaPub fails, show error
+        showError('廣告加載失敗', error.message || '請稍後再試');
+        reportError(`GigaPub error: ${error.message || 'Unknown'}`);
+      }
     }
 
     function showAdPlaceholder() {
