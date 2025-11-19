@@ -648,8 +648,60 @@ export async function routeUpdate(update: TelegramUpdate, env: Env): Promise<voi
       return;
     }
 
-    // Unknown command for completed users
-    await telegram.sendMessage(chatId, '❓ 未知命令\n\n' + '請使用 /help 查看可用命令列表。');
+    // Unknown command for completed users - provide smart suggestions
+    const lowerText = text.toLowerCase();
+    
+    // Check if user is trying to throw a bottle
+    if (lowerText.includes('丟') || lowerText.includes('瓶子') || lowerText.includes('漂流瓶')) {
+      await telegram.sendMessage(
+        chatId,
+        '💡 **想要丟出漂流瓶？**\n\n' +
+          '請先使用 `/throw` 命令啟動丟瓶子流程，然後再輸入您的漂流瓶內容。\n\n' +
+          '或者點擊下方按鈕：',
+        {
+          reply_markup: {
+            inline_keyboard: [
+              [{ text: '🌊 丟出漂流瓶', callback_data: 'throw' }],
+              [{ text: '🎣 撿起漂流瓶', callback_data: 'catch' }],
+              [{ text: '🏠 主選單', callback_data: 'return_to_menu' }],
+            ],
+          },
+        }
+      );
+      return;
+    }
+    
+    // Check if user is trying to catch a bottle
+    if (lowerText.includes('撿') || lowerText.includes('看') || lowerText.includes('catch')) {
+      await telegram.sendMessage(
+        chatId,
+        '💡 **想要撿起漂流瓶？**\n\n' +
+          '請使用 `/catch` 命令來撿起別人的漂流瓶。\n\n' +
+          '或者點擊下方按鈕：',
+        {
+          reply_markup: {
+            inline_keyboard: [
+              [{ text: '🎣 撿起漂流瓶', callback_data: 'catch' }],
+              [{ text: '🌊 丟出漂流瓶', callback_data: 'throw' }],
+              [{ text: '🏠 主選單', callback_data: 'return_to_menu' }],
+            ],
+          },
+        }
+      );
+      return;
+    }
+    
+    // Default unknown command
+    await telegram.sendMessage(
+      chatId,
+      '❓ 未知命令\n\n' +
+        '請使用 /help 查看可用命令列表。\n\n' +
+        '💡 **常用命令**：\n' +
+        '• /throw - 丟出漂流瓶\n' +
+        '• /catch - 撿起漂流瓶\n' +
+        '• /menu - 主選單\n' +
+        '• /tasks - 任務中心'
+    );
     return;
   }
 
