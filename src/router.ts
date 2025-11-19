@@ -1352,7 +1352,32 @@ export async function routeUpdate(update: TelegramUpdate, env: Env): Promise<voi
       return;
     }
 
+    // VIP renewal callback
+    if (data === 'vip_renew') {
+      // Redirect to /vip command
+      const mockMessage = {
+        ...callbackQuery.message!,
+        from: callbackQuery.from,
+        text: '/vip',
+      };
+      const { handleVip } = await import('./telegram/handlers/vip');
+      await handleVip(mockMessage as any, env);
+      await telegram.answerCallbackQuery(callbackQuery.id, '正在處理續費...');
+      return;
+    }
+
+    // VIP cancel reminder callback
+    if (data === 'vip_cancel_reminder') {
+      await telegram.answerCallbackQuery(callbackQuery.id, '已取消提醒');
+      await telegram.sendMessage(
+        callbackQuery.message!.chat.id,
+        '✅ 已取消提醒\n\n你可以隨時使用 /vip 命令續費。'
+      );
+      return;
+    }
+
     // Unknown callback
+    console.error('[Router] Unknown callback data:', data);
     await telegram.answerCallbackQuery(callbackQuery.id, '未知的操作');
     return;
   }
