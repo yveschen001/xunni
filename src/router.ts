@@ -260,6 +260,28 @@ export async function routeUpdate(update: TelegramUpdate, env: Env): Promise<voi
       }
     }
 
+    // Check if user is at tutorial final page but hasn't clicked any button
+    if (
+      user.tutorial_step === 'start_using' &&
+      user.tutorial_completed === 0 &&
+      !text.startsWith('/')
+    ) {
+      console.error('[router] User at tutorial final page but sent message instead of clicking button');
+      await telegram.sendMessage(
+        message.chat.id,
+        '💡 **提示**：請點擊上方的按鈕來開始使用\n\n' +
+          '• 🌊 丟出漂流瓶 - 分享你的心情\n' +
+          '• 🎣 撿起漂流瓶 - 看看別人的故事\n' +
+          '• 📋 查看任務 - 完成任務獲得額外瓶子\n\n' +
+          '或直接使用命令：\n' +
+          '• /throw - 丟出漂流瓶\n' +
+          '• /catch - 撿起漂流瓶\n' +
+          '• /tasks - 任務中心\n' +
+          '• /menu - 主選單'
+      );
+      return;
+    }
+
     // Route commands
     console.error('[router] Starting command routing, text:', text);
 
