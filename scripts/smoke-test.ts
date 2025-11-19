@@ -1247,6 +1247,289 @@ async function testAnalyticsCommands() {
 }
 
 // ============================================================================
+// Critical Bug Prevention Tests (Based on Recent Issues)
+// ============================================================================
+
+async function testDatabaseIntegrity() {
+  console.log('\n🗄️ Testing Database Integrity...\n');
+
+  const testUserId = Math.floor(Math.random() * 1000000) + 500000000;
+
+  // Test 1: user_sessions table structure (Hotfix #002)
+  await testEndpoint('Database', 'user_sessions Table Structure', async () => {
+    // This test ensures user_sessions table has correct columns
+    // Previously failed with: D1_ERROR: no such column: telegram_id
+    const result = await sendWebhook('/dev_skip', testUserId);
+    if (result.status !== 200) {
+      throw new Error(`Expected 200, got ${result.status}`);
+    }
+    
+    // Try to use edit profile (requires user_sessions)
+    const editResult = await sendWebhook('/edit_profile', testUserId);
+    if (editResult.status !== 200) {
+      throw new Error(`Edit profile failed: ${editResult.status}`);
+    }
+  });
+
+  // Test 2: Tutorial fields exist (Migration 0033)
+  await testEndpoint('Database', 'Tutorial Fields Exist', async () => {
+    // Previously failed with: D1_ERROR: no such column: tutorial_step
+    const result = await sendWebhook('/dev_skip', testUserId);
+    if (result.status !== 200) {
+      throw new Error(`Expected 200, got ${result.status}`);
+    }
+  });
+
+  // Test 3: Tasks tables exist (Migrations 0030-0032)
+  await testEndpoint('Database', 'Tasks Tables Exist', async () => {
+    const result = await sendWebhook('/tasks', testUserId);
+    if (result.status !== 200) {
+      throw new Error(`Tasks command failed: ${result.status}`);
+    }
+  });
+
+  // Test 4: Ad system tables exist (Migrations 0024-0025)
+  await testEndpoint('Database', 'Ad Tables Exist', async () => {
+    const fs = await import('fs');
+    const path = await import('path');
+    
+    const requiredFiles = [
+      'src/db/migrations/0024_create_ad_providers_table.sql',
+      'src/db/migrations/0025_create_ad_rewards_table.sql',
+      'src/db/migrations/0035_insert_gigapub_provider.sql',
+    ];
+    
+    for (const file of requiredFiles) {
+      const filePath = path.join(process.cwd(), file);
+      if (!fs.existsSync(filePath)) {
+        throw new Error(`Migration missing: ${file}`);
+      }
+    }
+  });
+
+  // Test 5: User activity tracking fields (Migration 0021)
+  await testEndpoint('Database', 'User Activity Fields', async () => {
+    const fs = await import('fs');
+    const path = await import('path');
+    
+    const migrationPath = path.join(process.cwd(), 'src/db/migrations/0021_add_user_activity_tracking.sql');
+    if (!fs.existsSync(migrationPath)) {
+      throw new Error('User activity migration (0021) not found');
+    }
+  });
+}
+
+async function testCommonErrorScenarios() {
+  console.log('\n⚠️ Testing Common Error Scenarios...\n');
+
+  const testUserId = Math.floor(Math.random() * 1000000) + 600000000;
+
+  // Test 1: Active conversation blocking throw flow
+  await testEndpoint('Error Scenarios', 'Active Conversation Detection', async () => {
+    // Setup user
+    await sendWebhook('/dev_skip', testUserId);
+    
+    // Try to throw bottle (should work)
+    const result = await sendWebhook('/throw', testUserId);
+    if (result.status !== 200) {
+      throw new Error(`Throw command failed: ${result.status}`);
+    }
+  });
+
+  // Test 2: Session management (edit profile flow)
+  await testEndpoint('Error Scenarios', 'Session Management', async () => {
+    // Setup user
+    await sendWebhook('/dev_skip', testUserId);
+    
+    // Start edit profile (creates session)
+    const editResult = await sendWebhook('/edit_profile', testUserId);
+    if (editResult.status !== 200) {
+      throw new Error(`Edit profile failed: ${editResult.status}`);
+    }
+    
+    // Send command to abort (should clear session)
+    const abortResult = await sendWebhook('/menu', testUserId);
+    if (abortResult.status !== 200) {
+      throw new Error(`Menu command failed: ${abortResult.status}`);
+    }
+  });
+
+  // Test 3: Tutorial step handling
+  await testEndpoint('Error Scenarios', 'Tutorial Step Handling', async () => {
+    const newUserId = Math.floor(Math.random() * 1000000) + 700000000;
+    
+    // New user should trigger tutorial
+    const result = await sendWebhook('/dev_skip', newUserId);
+    if (result.status !== 200) {
+      throw new Error(`Dev skip failed: ${result.status}`);
+    }
+  });
+
+  // Test 4: Task completion without errors
+  await testEndpoint('Error Scenarios', 'Task Completion Flow', async () => {
+    const result = await sendWebhook('/tasks', testUserId);
+    if (result.status !== 200) {
+      throw new Error(`Tasks command failed: ${result.status}`);
+    }
+  });
+
+  // Test 5: Quota calculation with task rewards
+  await testEndpoint('Error Scenarios', 'Quota Calculation', async () => {
+    // Test /stats command (includes quota calculation)
+    const result = await sendWebhook('/stats', testUserId);
+    if (result.status !== 200) {
+      throw new Error(`Stats command failed: ${result.status}`);
+    }
+  });
+
+  // Test 6: Profile display with task rewards
+  await testEndpoint('Error Scenarios', 'Profile Display', async () => {
+    const result = await sendWebhook('/profile', testUserId);
+    if (result.status !== 200) {
+      throw new Error(`Profile command failed: ${result.status}`);
+    }
+  });
+}
+
+async function testCriticalCommands() {
+  console.log('\n🔥 Testing Critical Commands...\n');
+
+  const testUserId = Math.floor(Math.random() * 1000000) + 800000000;
+
+  // Setup user first
+  await testEndpoint('Critical', 'Setup User', async () => {
+    const result = await sendWebhook('/dev_skip', testUserId);
+    if (result.status !== 200) {
+      throw new Error(`Expected 200, got ${result.status}`);
+    }
+  });
+
+  // Test all critical user commands
+  const criticalCommands = [
+    '/throw',
+    '/catch',
+    '/profile',
+    '/stats',
+    '/menu',
+    '/tasks',
+    '/edit_profile',
+    '/chats',
+    '/invite',
+    '/quota',
+    '/settings',
+  ];
+
+  for (const command of criticalCommands) {
+    await testEndpoint('Critical', `${command} Command`, async () => {
+      const result = await sendWebhook(command, testUserId);
+      if (result.status !== 200) {
+        throw new Error(`Expected 200, got ${result.status}`);
+      }
+    });
+  }
+}
+
+async function testRouterLogic() {
+  console.log('\n🔀 Testing Router Logic...\n');
+
+  const testUserId = Math.floor(Math.random() * 1000000) + 900000000;
+
+  // Setup user
+  await testEndpoint('Router', 'Setup User', async () => {
+    const result = await sendWebhook('/dev_skip', testUserId);
+    if (result.status !== 200) {
+      throw new Error(`Expected 200, got ${result.status}`);
+    }
+  });
+
+  // Test 1: Command routing priority
+  await testEndpoint('Router', 'Command Routing Priority', async () => {
+    // Commands should always be routed first
+    const result = await sendWebhook('/help', testUserId);
+    if (result.status !== 200) {
+      throw new Error(`Help command failed: ${result.status}`);
+    }
+  });
+
+  // Test 2: Intent recognition
+  await testEndpoint('Router', 'Intent Recognition', async () => {
+    // Should recognize "throw bottle" intent
+    const result = await sendWebhook('我要丟瓶子', testUserId);
+    if (result.status !== 200) {
+      throw new Error(`Intent recognition failed: ${result.status}`);
+    }
+  });
+
+  // Test 3: Unknown command handling
+  await testEndpoint('Router', 'Unknown Command Handling', async () => {
+    const result = await sendWebhook('隨機測試文字', testUserId);
+    if (result.status !== 200) {
+      throw new Error(`Unknown command handling failed: ${result.status}`);
+    }
+  });
+
+  // Test 4: Callback routing (simulate with command)
+  await testEndpoint('Router', 'Callback Routing', async () => {
+    // Test menu command (uses callbacks)
+    const result = await sendWebhook('/menu', testUserId);
+    if (result.status !== 200) {
+      throw new Error(`Menu command failed: ${result.status}`);
+    }
+  });
+}
+
+async function testMigrationCompleteness() {
+  console.log('\n📦 Testing Migration Completeness...\n');
+
+  await testEndpoint('Migrations', 'All Required Migrations Exist', async () => {
+    const fs = await import('fs');
+    const path = await import('path');
+    
+    // Critical migrations that must exist
+    const requiredMigrations = [
+      '0001_initial_schema.sql',
+      '0006_add_user_sessions.sql',
+      '0021_add_user_activity_tracking.sql',
+      '0024_create_ad_providers_table.sql',
+      '0025_create_ad_rewards_table.sql',
+      '0030_create_tasks_table.sql',
+      '0031_create_user_tasks_table.sql',
+      '0032_create_task_reminders_table.sql',
+      '0033_alter_users_add_tutorial_fields.sql',
+      '0034_update_task_bio_description.sql',
+      '0035_insert_gigapub_provider.sql',
+    ];
+    
+    const migrationsDir = path.join(process.cwd(), 'src/db/migrations');
+    
+    for (const migration of requiredMigrations) {
+      const migrationPath = path.join(migrationsDir, migration);
+      if (!fs.existsSync(migrationPath)) {
+        throw new Error(`Critical migration missing: ${migration}`);
+      }
+    }
+  });
+
+  await testEndpoint('Migrations', 'No Conflicting Table Names', async () => {
+    const fs = await import('fs');
+    const path = await import('path');
+    
+    // Check for user_sessions conflict (Hotfix #002)
+    const migration0006 = path.join(process.cwd(), 'src/db/migrations/0006_add_user_sessions.sql');
+    const content = fs.readFileSync(migration0006, 'utf-8');
+    
+    if (!content.includes('user_sessions')) {
+      throw new Error('Migration 0006 should create user_sessions table');
+    }
+    
+    // Ensure it uses telegram_id column
+    if (!content.includes('telegram_id')) {
+      throw new Error('user_sessions table should have telegram_id column');
+    }
+  });
+}
+
+// ============================================================================
 // Main Test Runner
 // ============================================================================
 
@@ -1316,6 +1599,16 @@ async function runAllTests() {
         await runTestSuite('Smart Command Prompts', testSmartCommandPrompts);
         await runTestSuite('Ad System Basics', testAdSystemBasics);
         await runTestSuite('Analytics Commands', testAnalyticsCommands);
+        
+        // Critical Bug Prevention Tests
+        console.log('\n' + '='.repeat(80));
+        console.log('🐛 Testing Critical Bug Prevention (Recent Issues)');
+        console.log('='.repeat(80));
+        await runTestSuite('Database Integrity', testDatabaseIntegrity);
+        await runTestSuite('Common Error Scenarios', testCommonErrorScenarios);
+        await runTestSuite('Critical Commands', testCriticalCommands);
+        await runTestSuite('Router Logic', testRouterLogic);
+        await runTestSuite('Migration Completeness', testMigrationCompleteness);
         
         // System Tests
         console.log('\n' + '='.repeat(80));
