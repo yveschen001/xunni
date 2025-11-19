@@ -47,8 +47,8 @@ export async function handleStats(message: TelegramMessage, env: Env): Promise<v
       `• 匹配成功率：${stats.matchRate}%\n` +
       `• 平均回覆率：${stats.replyRate}%\n\n` +
       `⭐ **VIP 狀態**\n` +
-      `• ${user.is_vip ? `✅ VIP 會員` : `❌ 免費用戶`}\n` +
-      (user.is_vip && user.vip_expire_at
+      `• ${user.is_vip && user.vip_expire_at && new Date(user.vip_expire_at) > new Date() ? `VIP 會員 💎` : `免費會員`}\n` +
+      (user.is_vip && user.vip_expire_at && new Date(user.vip_expire_at) > new Date()
         ? `• 到期時間：${new Date(user.vip_expire_at).toLocaleDateString('zh-TW')}\n`
         : '') +
       `\n` +

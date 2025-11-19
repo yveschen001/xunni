@@ -51,8 +51,8 @@ export async function handleProfile(message: TelegramMessage, env: Env): Promise
     const bloodType = getBloodTypeDisplay(user.blood_type as any);
     const vipStatus =
       user.is_vip && user.vip_expire_at && new Date(user.vip_expire_at) > new Date()
-        ? `✨ VIP（到期：${new Date(user.vip_expire_at).toLocaleDateString('zh-TW')}）`
-        : '一般用戶';
+        ? `VIP 會員（到期：${new Date(user.vip_expire_at).toLocaleDateString('zh-TW')}）`
+        : '免費會員';
     const inviteCode = user.invite_code || '未設定';
 
     // Get invite statistics
