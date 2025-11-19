@@ -251,7 +251,7 @@ export async function processBottleContent(user: User, content: string, env: Env
     try {
       const { checkAndCompleteTask } = await import('./tasks');
       const bottleCount = await db.d1
-        .prepare(`SELECT COUNT(*) as count FROM bottles WHERE owner_id = ?`)
+        .prepare(`SELECT COUNT(*) as count FROM bottles WHERE owner_telegram_id = ?`)
         .bind(user.telegram_id)
         .first<{ count: number }>();
       await checkAndCompleteTask(db, telegram, user, 'task_first_bottle', {

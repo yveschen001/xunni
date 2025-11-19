@@ -196,32 +196,49 @@ export async function checkAndCompleteTask(
   }
 ): Promise<boolean> {
   try {
+    console.error(`[checkAndCompleteTask] Checking task: ${taskId} for user: ${user.telegram_id}`);
+    
     // Check if task is already completed
     const userTask = await getUserTask(db, user.telegram_id, taskId);
+    console.error(`[checkAndCompleteTask] User task status: ${userTask?.status || 'not_found'}`);
+    
     if (userTask?.status === 'completed') {
+      console.error(`[checkAndCompleteTask] Task already completed`);
       return false;
     }
     
     // Check if task is completed
-    if (!isTaskCompleted(taskId, user, additionalData)) {
+    const completed = isTaskCompleted(taskId, user, additionalData);
+    console.error(`[checkAndCompleteTask] Task completion check result: ${completed}`, {
+      taskId,
+      userBio: user.bio?.length || 0,
+      userInterests: user.interests?.length || 0,
+      userCity: user.city?.length || 0,
+      additionalData,
+    });
+    
+    if (!completed) {
       return false;
     }
     
     // Complete task
+    console.error(`[checkAndCompleteTask] Completing task: ${taskId}`);
     await completeUserTask(db, user.telegram_id, taskId);
     
     // Get task details
-    const task = await getTaskById(db, taskId);
+    const task = await getTaskById(db.d1, taskId);
     if (!task) {
+      console.error(`[checkAndCompleteTask] Task not found: ${taskId}`);
       return false;
     }
     
     // Send completion message
+    console.error(`[checkAndCompleteTask] Sending completion message for task: ${task.name}`);
     await telegram.sendMessage(
       parseInt(user.telegram_id),
       `🎉 恭喜完成任務「${task.name}」！\n\n` +
       `獎勵：+${task.reward_amount} 瓶子（${task.reward_type === 'daily' ? '當天有效' : '永久有效'}）\n\n` +
-      `[📋 查看任務中心] → /tasks`
+      `💡 使用 /tasks 查看任務中心`
     );
     
     return true;

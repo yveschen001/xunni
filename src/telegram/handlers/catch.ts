@@ -205,7 +205,7 @@ export async function handleCatch(message: TelegramMessage, env: Env): Promise<v
     try {
       const { checkAndCompleteTask } = await import('./tasks');
       const catchCount = await db.d1
-        .prepare(`SELECT COUNT(*) as count FROM bottles WHERE catcher_id = ?`)
+        .prepare(`SELECT COUNT(*) as count FROM bottles WHERE matched_with_telegram_id = ? AND status = 'matched'`)
         .bind(telegramId)
         .first<{ count: number }>();
       await checkAndCompleteTask(db, telegram, user, 'task_first_catch', {
