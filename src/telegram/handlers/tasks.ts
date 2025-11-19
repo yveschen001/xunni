@@ -55,18 +55,14 @@ export async function handleTasks(message: TelegramMessage, env: Env): Promise<v
         return userTask?.status === 'completed';
       }).length;
       
+      message_text += `👤 **個人資料任務** (${completedCount}/${profileTasks.length})\n`;
       message_text += `━━━━━━━━━━━━━━━━\n`;
-      message_text += `👤 **個人資料任務**（${completedCount}/${profileTasks.length} 已完成）\n`;
-      message_text += `━━━━━━━━━━━━━━━━\n\n`;
       
       for (const task of profileTasks) {
         const userTask = userTaskMap.get(task.id);
         const completed = userTask?.status === 'completed';
         const icon = completed ? '✅' : '⏳';
         message_text += `${icon} ${task.name} (+${task.reward_amount} 瓶子)\n`;
-        if (!completed) {
-          message_text += `   ${task.description}\n`;
-        }
       }
       message_text += '\n';
     }
@@ -78,18 +74,16 @@ export async function handleTasks(message: TelegramMessage, env: Env): Promise<v
         return userTask?.status === 'completed';
       }).length;
       
+      message_text += `📱 **社交媒體任務** (${completedCount}/${socialTasks.length})\n`;
       message_text += `━━━━━━━━━━━━━━━━\n`;
-      message_text += `📱 **社交媒體任務**（${completedCount}/${socialTasks.length} 已完成）\n`;
-      message_text += `━━━━━━━━━━━━━━━━\n\n`;
       
       for (const task of socialTasks) {
         const userTask = userTaskMap.get(task.id);
         const completed = userTask?.status === 'completed';
-        const icon = completed ? '✅' : '⏳';
-        message_text += `${icon} ${task.name} (+${task.reward_amount} 瓶子)\n`;
-        if (!completed) {
-          message_text += `   ${task.description}\n`;
-        }
+        const pending = userTask?.status === 'pending_claim';
+        const icon = completed ? '✅' : pending ? '🎁' : '⏳';
+        const status = completed ? '' : pending ? '(待領取)' : '';
+        message_text += `${icon} ${task.name} ${status} (+${task.reward_amount} 瓶子)\n`;
       }
       message_text += '\n';
     }
@@ -101,21 +95,14 @@ export async function handleTasks(message: TelegramMessage, env: Env): Promise<v
         return userTask?.status === 'completed';
       }).length;
       
+      message_text += `🎯 **行為任務** (${completedCount}/${actionTasks.length})\n`;
       message_text += `━━━━━━━━━━━━━━━━\n`;
-      message_text += `🎯 **行為任務**（${completedCount}/${actionTasks.length} 已完成）\n`;
-      message_text += `━━━━━━━━━━━━━━━━\n\n`;
       
       for (const task of actionTasks) {
         const userTask = userTaskMap.get(task.id);
         const completed = userTask?.status === 'completed';
         const icon = completed ? '✅' : '⏳';
         message_text += `${icon} ${task.name} (+${task.reward_amount} 瓶子)\n`;
-        if (!completed) {
-          message_text += `   ${task.description}\n`;
-        }
-        if (task.id === 'task_first_conversation' && !completed) {
-          message_text += `   💡 長按訊息 → 選擇「回覆」\n`;
-        }
       }
       message_text += '\n';
     }
@@ -124,11 +111,10 @@ export async function handleTasks(message: TelegramMessage, env: Env): Promise<v
     if (inviteTasks.length > 0) {
       const inviteProgress = getInviteTaskProgress(user);
       
+      message_text += `👥 **邀請任務** (持續進行中)\n`;
       message_text += `━━━━━━━━━━━━━━━━\n`;
-      message_text += `👥 **邀請任務**（持續進行中）\n`;
-      message_text += `━━━━━━━━━━━━━━━━\n\n`;
       
-      message_text += `🔄 邀請好友 (${inviteProgress.current}/${inviteProgress.max} 已完成)\n`;
+      message_text += `🔄 邀請好友 (${inviteProgress.current}/${inviteProgress.max})\n`;
       message_text += `   每邀請 1 人 → 每日額度永久 +1\n`;
       message_text += `   當前每日配額：${calculateDailyQuota(user)} 個\n`;
       message_text += '\n';
@@ -144,15 +130,51 @@ export async function handleTasks(message: TelegramMessage, env: Env): Promise<v
     const todayTaskRewards = await getTasksCompletedToday(db, telegramId);
     const todayRewardCount = calculateTodayTaskRewards(todayTaskRewards);
     
+    message_text += `📊 **總進度**\n`;
     message_text += `━━━━━━━━━━━━━━━━\n`;
-    message_text += `📊 總進度：\n`;
     message_text += `• 一次性任務：${oneTimeCompleted}/${oneTimeTotal} 已完成\n`;
     message_text += `• 邀請任務：${inviteProgress.current}/${inviteProgress.max} 進行中\n\n`;
-    message_text += `🎁 已獲得：\n`;
+    message_text += `🎁 **已獲得**\n`;
     message_text += `• 一次性獎勵：${todayRewardCount} 個瓶子（當天有效）\n`;
     message_text += `• 永久獎勵：${inviteProgress.current} 個瓶子（每天發放）\n`;
     
-    await telegram.sendMessage(chatId, message_text);
+    // Build inline keyboard
+    const keyboard = [];
+    
+    // Row 1: Profile tasks
+    const profileRow = [];
+    if (profileTasks.some(t => !userTaskMap.get(t.id) || userTaskMap.get(t.id)?.status !== 'completed')) {
+      profileRow.push({ text: '✏️ 編輯個人資料', callback_data: 'edit_profile' });
+    }
+    if (profileRow.length > 0) keyboard.push(profileRow);
+    
+    // Row 2: Social tasks
+    const socialRow = [];
+    const joinChannelTask = userTaskMap.get('task_join_channel');
+    if (!joinChannelTask || joinChannelTask.status === 'available') {
+      socialRow.push({ text: '📢 加入官方頻道', url: 'https://t.me/xunnichannel' });
+    } else if (joinChannelTask.status === 'pending_claim') {
+      socialRow.push({ text: '🎁 領取獎勵', callback_data: 'claim_task_task_join_channel' });
+    }
+    if (socialRow.length > 0) keyboard.push(socialRow);
+    
+    // Row 3: Action tasks
+    const actionRow = [];
+    if (actionTasks.some(t => !userTaskMap.get(t.id) || userTaskMap.get(t.id)?.status !== 'completed')) {
+      actionRow.push({ text: '🌊 丟出漂流瓶', callback_data: 'throw' });
+      actionRow.push({ text: '🎣 撿起漂流瓶', callback_data: 'catch' });
+    }
+    if (actionRow.length > 0) keyboard.push(actionRow);
+    
+    // Row 4: Invite task
+    if (!inviteProgress.isCompleted) {
+      keyboard.push([{ text: '👥 查看邀請碼', callback_data: 'profile' }]);
+    }
+    
+    // Row 5: Return to menu
+    keyboard.push([{ text: '↩️ 返回主選單', callback_data: 'return_to_menu' }]);
+    
+    await telegram.sendMessageWithButtons(chatId, message_text, keyboard);
   } catch (error) {
     console.error('[handleTasks] Error:', error);
     await telegram.sendMessage(chatId, '❌ 查看任務中心時發生錯誤，請稍後再試。');
