@@ -42,7 +42,7 @@ export function isTaskCompleted(taskId: string, user: User, additionalData?: {
       return !!user.interests && user.interests.length > 0;
     
     case 'task_bio':
-      return !!user.bio && user.bio.length >= 20;
+      return !!user.bio && user.bio.length > 0;
     
     case 'task_city':
       return !!user.city && user.city.length > 0;
