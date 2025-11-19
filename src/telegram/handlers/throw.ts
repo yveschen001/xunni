@@ -247,6 +247,20 @@ export async function processBottleContent(user: User, content: string, env: Env
     // Increment daily count
     await incrementDailyThrowCount(db, user.telegram_id);
 
+    // Check and complete "first bottle" task
+    try {
+      const { checkAndCompleteTask } = await import('./tasks');
+      const bottleCount = await db.d1
+        .prepare(`SELECT COUNT(*) as count FROM bottles WHERE owner_id = ?`)
+        .bind(user.telegram_id)
+        .first<{ count: number }>();
+      await checkAndCompleteTask(db, telegram, user, 'task_first_bottle', {
+        bottleCount: bottleCount?.count || 0,
+      });
+    } catch (taskError) {
+      console.error('[handleThrow] Task check error:', taskError);
+    }
+
     // Check and activate invite (first bottle thrown)
     const hasThrown = true; // User just threw a bottle
     if (canActivateInvite(user, hasThrown)) {

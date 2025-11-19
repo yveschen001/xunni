@@ -649,6 +649,17 @@ export async function handleProfileEditInput(message: TelegramMessage, env: Env)
           .bind(text, telegramId)
           .run();
 
+        // Check and complete "bio" task
+        try {
+          const updatedUser = await findUserByTelegramId(db, telegramId);
+          if (updatedUser) {
+            const { checkAndCompleteTask } = await import('./tasks');
+            await checkAndCompleteTask(db, telegram, updatedUser, 'task_bio');
+          }
+        } catch (taskError) {
+          console.error('[handleProfileEditInput] Task check error:', taskError);
+        }
+
         await deleteSession(db, telegramId, SESSION_TYPE);
         await telegram.sendMessageWithButtons(chatId, `✅ 個人簡介已更新！\n\n${text}`, [
           [{ text: '✏️ 繼續編輯資料', callback_data: 'edit_profile_callback' }],
@@ -671,6 +682,17 @@ export async function handleProfileEditInput(message: TelegramMessage, env: Env)
           .prepare('UPDATE users SET city = ? WHERE telegram_id = ?')
           .bind(text, telegramId)
           .run();
+
+        // Check and complete "city" task
+        try {
+          const updatedUser = await findUserByTelegramId(db, telegramId);
+          if (updatedUser) {
+            const { checkAndCompleteTask } = await import('./tasks');
+            await checkAndCompleteTask(db, telegram, updatedUser, 'task_city');
+          }
+        } catch (taskError) {
+          console.error('[handleProfileEditInput] Task check error:', taskError);
+        }
 
         await deleteSession(db, telegramId, SESSION_TYPE);
         await telegram.sendMessageWithButtons(chatId, `✅ 地區已更新為：${text}`, [
@@ -709,6 +731,17 @@ export async function handleProfileEditInput(message: TelegramMessage, env: Env)
           .prepare('UPDATE users SET interests = ? WHERE telegram_id = ?')
           .bind(interestsStr, telegramId)
           .run();
+
+        // Check and complete "interests" task
+        try {
+          const updatedUser = await findUserByTelegramId(db, telegramId);
+          if (updatedUser) {
+            const { checkAndCompleteTask } = await import('./tasks');
+            await checkAndCompleteTask(db, telegram, updatedUser, 'task_interests');
+          }
+        } catch (taskError) {
+          console.error('[handleProfileEditInput] Task check error:', taskError);
+        }
 
         await deleteSession(db, telegramId, SESSION_TYPE);
         await telegram.sendMessageWithButtons(chatId, `✅ 興趣標籤已更新：\n\n${interestsStr}`, [

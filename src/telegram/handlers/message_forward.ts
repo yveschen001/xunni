@@ -214,6 +214,24 @@ export async function handleMessageForward(message: TelegramMessage, env: Env): 
       receiverLanguage
     );
 
+    // Check and complete "first conversation" task
+    try {
+      const { checkAndCompleteTask } = await import('./tasks');
+      const conversationCount = await db.d1
+        .prepare(
+          `SELECT COUNT(DISTINCT conversation_id) as count 
+           FROM conversation_messages 
+           WHERE sender_id = ?`
+        )
+        .bind(telegramId)
+        .first<{ count: number }>();
+      await checkAndCompleteTask(db, telegram, user, 'task_first_conversation', {
+        conversationCount: conversationCount?.count || 0,
+      });
+    } catch (taskError) {
+      console.error('[handleMessageForward] Task check error:', taskError);
+    }
+
     // Get or create identifiers for both users
     const receiverIdentifier = await getOrCreateIdentifier(
       db,

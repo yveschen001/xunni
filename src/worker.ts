@@ -172,6 +172,14 @@ export default {
         const { checkAndDisableExpiredMaintenance } = await import('./services/maintenance');
         await checkAndDisableExpiredMaintenance(env);
       }
+
+      // Check channel membership (Every hour)
+      if (event.cron === '0 * * * *') {
+        // eslint-disable-next-line no-console
+        console.log('[Worker] Checking channel membership...');
+        const { checkChannelMembership } = await import('./services/channel_membership_check');
+        await checkChannelMembership(env);
+      }
     } catch (error) {
       console.error('[Worker] Scheduled event error:', error);
     }

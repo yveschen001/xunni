@@ -184,13 +184,11 @@ export async function handleTestDailyReports(message: TelegramMessage, env: Env)
       return;
     }
 
-    await telegram.sendMessage(chatId, '⏳ 正在生成並發送每日報表...');
-
-    // Send daily reports
+    // Send daily reports (no "processing" message, reports will be sent directly)
     const { sendDailyReportsToSuperAdmins } = await import('~/services/daily_reports');
     await sendDailyReportsToSuperAdmins(env);
 
-    await telegram.sendMessage(chatId, '✅ 每日報表已發送！');
+    // No confirmation message - reports speak for themselves
   } catch (error) {
     console.error('[handleTestDailyReports] Error:', error);
     await telegram.sendMessage(

@@ -201,6 +201,20 @@ export async function handleCatch(message: TelegramMessage, env: Env): Promise<v
     // Increment daily count
     await incrementDailyCatchCount(db, telegramId);
 
+    // Check and complete "first catch" task
+    try {
+      const { checkAndCompleteTask } = await import('./tasks');
+      const catchCount = await db.d1
+        .prepare(`SELECT COUNT(*) as count FROM bottles WHERE catcher_id = ?`)
+        .bind(telegramId)
+        .first<{ count: number }>();
+      await checkAndCompleteTask(db, telegram, user, 'task_first_catch', {
+        catchCount: catchCount?.count || 0,
+      });
+    } catch (taskError) {
+      console.error('[handleCatch] Task check error:', taskError);
+    }
+
     // Get updated quota info
     const newCatchesCount = catchesToday + 1;
     const { quota } = getBottleQuota(!!isVip, inviteBonus);

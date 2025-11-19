@@ -42,6 +42,8 @@ PUBLIC_URL = "https://xunni-bot-staging.yves221.workers.dev"
 ENABLE_ANALYTICS = "true"
 AD_PROVIDER_STRATEGY = "priority"
 AD_REWARD_SECRET = "NOGD2InZ/VuIhZPSiajhwdmIc/PKHnijE/VSUKxzspM="
+# Official Channel ID for task verification
+OFFICIAL_CHANNEL_ID = ""  # Set via: wrangler secret put OFFICIAL_CHANNEL_ID --env staging
 
 # Staging D1 Database
 [[env.staging.d1_databases]]
@@ -55,9 +57,9 @@ migrations_dir = "src/db/migrations"
 # binding = "RISK_CACHE"
 # id = "<STAGING_KV_NAMESPACE_ID>"
 
-# Staging Cron triggers (not needed - broadcasts are processed synchronously)
+# Staging Cron triggers (temporarily disabled due to API issue)
 # [[env.staging.triggers.crons]]
-# cron = "*/5 * * * *"  # Every 5 minutes (Broadcast queue and Daily stats)
+# cron = "0 * * * *"  # Every hour (Channel membership check)
 
 # Production environment
 [env.production]
@@ -89,6 +91,9 @@ cron = "5 0 * * *"  # Every day at 00:05 UTC (Daily stats generation)
 
 [[env.production.triggers.crons]]
 cron = "*/5 * * * *"  # Every 5 minutes (Broadcast queue)
+
+[[env.production.triggers.crons]]
+cron = "0 * * * *"  # Every hour (Channel membership check)
 
 # Sensitive variables should be set via:
 # wrangler secret put TELEGRAM_BOT_TOKEN --env staging

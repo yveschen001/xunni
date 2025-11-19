@@ -817,28 +817,39 @@ export async function handleTermsAgreement(callbackQuery: CallbackQuery, env: En
       return;
     }
 
-    // Show completion message
-    await telegram.sendMessageWithButtons(
-      chatId,
-      `🎉 恭喜！你已經完成所有設定！\n\n` +
-        `你的個人資料：\n` +
-        `• 暱稱：${updatedUser.nickname}\n` +
-        `• 性別：${updatedUser.gender === 'male' ? '男性' : '女性'}\n` +
-        `• 年齡：${updatedUser.age} 歲\n` +
-        `• 星座：${updatedUser.zodiac_sign}\n` +
-        `• MBTI：${updatedUser.mbti_result}\n\n` +
-        `現在你可以開始使用 XunNi 了！`,
-      [
+    // Check if tutorial should auto-trigger
+    const { shouldAutoTriggerTutorial } = await import('~/domain/tutorial');
+    if (shouldAutoTriggerTutorial(true, updatedUser.tutorial_completed === 1)) {
+      // Auto-trigger tutorial
+      const { startTutorial } = await import('./tutorial');
+      await startTutorial(
+        { chat: { id: chatId }, from: { id: parseInt(telegramId) } } as TelegramMessage,
+        env
+      );
+    } else {
+      // Show completion message
+      await telegram.sendMessageWithButtons(
+        chatId,
+        `🎉 恭喜！你已經完成所有設定！\n\n` +
+          `你的個人資料：\n` +
+          `• 暱稱：${updatedUser.nickname}\n` +
+          `• 性別：${updatedUser.gender === 'male' ? '男性' : '女性'}\n` +
+          `• 年齡：${updatedUser.age} 歲\n` +
+          `• 星座：${updatedUser.zodiac_sign}\n` +
+          `• MBTI：${updatedUser.mbti_result}\n\n` +
+          `現在你可以開始使用 XunNi 了！`,
         [
-          { text: '🌊 丟出漂流瓶', callback_data: 'throw' },
-          { text: '🎣 撿起漂流瓶', callback_data: 'catch' },
-        ],
-        [
-          { text: '👤 個人資料', callback_data: 'profile' },
-          { text: '📊 統計', callback_data: 'stats' },
-        ],
-      ]
-    );
+          [
+            { text: '🌊 丟出漂流瓶', callback_data: 'throw' },
+            { text: '🎣 撿起漂流瓶', callback_data: 'catch' },
+          ],
+          [
+            { text: '👤 個人資料', callback_data: 'profile' },
+            { text: '📊 統計', callback_data: 'stats' },
+          ],
+        ]
+      );
+    }
   } catch (error) {
     console.error('[handleTermsAgreement] Error:', error);
     await telegram.answerCallbackQuery(callbackQuery.id, '❌ 發生錯誤');

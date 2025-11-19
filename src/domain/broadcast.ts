@@ -165,7 +165,7 @@ export function calculateBatchSize(totalUsers: number): {
  * @returns 預估時間描述
  */
 export function estimateBroadcastTime(totalUsers: number): string {
-  const { batchSize, batchCount, delayMs } = calculateBatchSize(totalUsers);
+  const { batchCount, delayMs } = calculateBatchSize(totalUsers);
   
   // 計算總時間（秒）
   // 每批次發送時間約 1 秒 + 批次間延遲

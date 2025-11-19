@@ -517,6 +517,12 @@ export async function routeUpdate(update: TelegramUpdate, env: Env): Promise<voi
       return;
     }
 
+    if (text === '/tasks') {
+      const { handleTasks } = await import('./telegram/handlers/tasks');
+      await handleTasks(message, env);
+      return;
+    }
+
     if (text === '/rules') {
       const { handleRules } = await import('./telegram/handlers/help');
       await handleRules(message, env);
@@ -758,6 +764,22 @@ export async function routeUpdate(update: TelegramUpdate, env: Env): Promise<voi
       const { handleMBTIManualSelection } = await import('./telegram/handlers/onboarding_callback');
       const mbtiType = data.replace('mbti_manual_', '');
       await handleMBTIManualSelection(callbackQuery, mbtiType, env);
+      return;
+    }
+
+    // Tutorial callbacks
+    if (data.startsWith('tutorial_')) {
+      const { handleTutorialCallback } = await import('./telegram/handlers/tutorial');
+      const action = data; // Pass full action string
+      await handleTutorialCallback(callbackQuery, action, env);
+      return;
+    }
+
+    // Task claim callbacks
+    if (data.startsWith('claim_task_')) {
+      const { handleClaimTaskReward } = await import('~/services/channel_membership_check');
+      const taskId = data.replace('claim_', '');
+      await handleClaimTaskReward(callbackQuery, taskId, env);
       return;
     }
 
