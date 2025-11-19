@@ -34,13 +34,23 @@ export async function sendDailyReportsToSuperAdmins(env: Env): Promise<void> {
     console.log(`[sendDailyReportsToSuperAdmins] Sending reports to ${superAdminIds.length} super admins`);
 
     // Generate reports
-    const { generateDailyAnalyticsReport } = await import('./analytics_reports');
-    const { generateAdPerformanceReport } = await import('./analytics_reports');
-    const { generateVIPFunnelReport } = await import('./analytics_reports');
+    const {
+      generateDailyReport,
+      formatDailyReport,
+      generateAdPerformanceReport,
+      formatAdPerformanceReport,
+      generateVIPFunnelReport,
+      formatVIPFunnelReport,
+    } = await import('./analytics_reports');
 
-    const dailyReport = await generateDailyAnalyticsReport(db, 'today');
-    const adReport = await generateAdPerformanceReport(db, 'today');
-    const funnelReport = await generateVIPFunnelReport(db, 'today');
+    const dailyReportData = await generateDailyReport(db.d1, 'today');
+    const dailyReport = formatDailyReport(dailyReportData);
+
+    const adReportData = await generateAdPerformanceReport(db.d1, 'today');
+    const adReport = formatAdPerformanceReport(adReportData);
+
+    const funnelReportData = await generateVIPFunnelReport(db.d1, 'today');
+    const funnelReport = formatVIPFunnelReport(funnelReportData);
 
     // Send to each super admin
     for (const adminId of superAdminIds) {
