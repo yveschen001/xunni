@@ -1408,15 +1408,9 @@ export async function routeUpdate(update: TelegramUpdate, env: Env): Promise<voi
 
   // Handle successful payment
   if (update.message && 'successful_payment' in update.message) {
-    // Handle VIP payment success
-    interface SuccessfulPaymentMessage {
-      successful_payment?: unknown;
-    }
-    console.error(
-      '[Router] Payment received:',
-      (update.message as SuccessfulPaymentMessage).successful_payment
-    );
-    // Payment success handling is in vip.ts
+    console.error('[Router] Payment received, processing...');
+    const { handleSuccessfulPayment } = await import('./telegram/handlers/vip');
+    await handleSuccessfulPayment(update.message, env);
     return;
   }
 
