@@ -195,6 +195,14 @@ export default {
         const { checkChannelMembership } = await import('./services/channel_membership_check');
         await checkChannelMembership(env);
       }
+
+      // Check VIP expirations (Every day at 10:00 UTC = 18:00 Taipei)
+      if (event.cron === '0 10 * * *') {
+        // eslint-disable-next-line no-console
+        console.log('[Worker] Checking VIP expirations...');
+        const { checkVipExpirations } = await import('./services/vip_subscription');
+        await checkVipExpirations(env);
+      }
     } catch (error) {
       console.error('[Worker] Scheduled event error:', error);
     }

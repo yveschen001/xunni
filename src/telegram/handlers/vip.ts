@@ -9,6 +9,8 @@ import { createDatabaseClient } from '~/db/client';
 import { createTelegramService } from '~/services/telegram';
 import { findUserByTelegramId } from '~/db/queries/users';
 import { handleMenu } from './menu';
+import { notifySuperAdmin } from '~/services/admin_notification';
+import { createOrUpdateSubscription } from '~/services/vip_subscription';
 
 // VIP pricing (Telegram Stars)
 const DEFAULT_VIP_PRICE_STARS = 150; // ~5 USD
@@ -276,6 +278,9 @@ export async function handleSuccessfulPayment(
       currentExpire.getTime() + payload.duration_days * 24 * 60 * 60 * 1000
     );
 
+    const priceStars = resolveVipPrice(env);
+    const isRenewal = user.is_vip && user.vip_expire_at && new Date(user.vip_expire_at) > now;
+    
     // Update user VIP status
     await db.d1
       .prepare(
@@ -300,18 +305,28 @@ export async function handleSuccessfulPayment(
         currency,
         status,
         payload,
+        payment_type,
         created_at
-      ) VALUES (?, ?, ?, ?, 'completed', ?, datetime('now'))
+      ) VALUES (?, ?, ?, ?, 'completed', ?, ?, datetime('now'))
     `
       )
       .bind(
         telegramId,
         payment.telegram_payment_charge_id,
-        VIP_PRICE_STARS,
+        priceStars,
         'XTR',
-        payment.invoice_payload
+        payment.invoice_payload,
+        isRenewal ? 'renewal' : 'initial'
       )
       .run();
+
+    // Create or update subscription record
+    await createOrUpdateSubscription(
+      db,
+      telegramId,
+      newExpire,
+      payment.telegram_payment_charge_id
+    );
 
     // Send confirmation
     await telegram.sendMessage(
@@ -326,6 +341,13 @@ export async function handleSuccessfulPayment(
         `• 無廣告體驗\n\n` +
         `💡 立即開始使用：/throw`
     );
+    
+    // Notify super admin
+    await notifySuperAdmin(env, isRenewal ? 'vip_renewed' : 'vip_purchased', {
+      user_id: telegramId,
+      amount_stars: priceStars,
+      expire_date: newExpire.toISOString(),
+    });
   } catch (error) {
     console.error('[handleSuccessfulPayment] Error:', error);
     await telegram.sendMessage(

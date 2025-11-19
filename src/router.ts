@@ -199,6 +199,16 @@ export async function routeUpdate(update: TelegramUpdate, env: Env): Promise<voi
         return;
       }
 
+      // Try VIP refund reason input
+      const { getActiveSession: getSession } = await import('./db/queries/sessions');
+      const refundSession = await getSession(db, user.telegram_id, 'vip_refund_reason');
+      if (refundSession) {
+        const sessionData = JSON.parse(refundSession.data);
+        const { handleVipRefundReasonInput } = await import('./telegram/handlers/vip_refund');
+        await handleVipRefundReasonInput(message, sessionData, env);
+        return;
+      }
+
       // Try profile edit input
       const { handleProfileEditInput } = await import('./telegram/handlers/edit_profile');
       const isEditingProfile = await handleProfileEditInput(message, env);
@@ -584,6 +594,38 @@ export async function routeUpdate(update: TelegramUpdate, env: Env): Promise<voi
     if (text === '/vip') {
       const { handleVip } = await import('./telegram/handlers/vip');
       await handleVip(message, env);
+      return;
+    }
+
+    if (text === '/vip_refund') {
+      const { handleVipRefund } = await import('./telegram/handlers/vip_refund');
+      await handleVipRefund(message, env);
+      return;
+    }
+
+    if (text === '/admin_refunds') {
+      const { handleAdminRefunds } = await import('./telegram/handlers/vip_refund');
+      await handleAdminRefunds(message, env);
+      return;
+    }
+
+    if (text.startsWith('/admin_approve_refund ')) {
+      const requestId = text.split(' ')[1];
+      if (requestId) {
+        const { handleAdminApproveRefund } = await import('./telegram/handlers/vip_refund');
+        await handleAdminApproveRefund(message, requestId, env);
+      }
+      return;
+    }
+
+    if (text.startsWith('/admin_reject_refund ')) {
+      const parts = text.split(' ');
+      const requestId = parts[1];
+      const reason = parts.slice(2).join(' ');
+      if (requestId && reason) {
+        const { handleAdminRejectRefund } = await import('./telegram/handlers/vip_refund');
+        await handleAdminRejectRefund(message, requestId, reason, env);
+      }
       return;
     }
 

@@ -1264,6 +1264,84 @@ async function testAnalyticsCommands() {
   });
 }
 
+async function testVipSystem() {
+  console.log('\n💎 Testing VIP System...\n');
+
+  const testUserId = Math.floor(Math.random() * 1000000) + 1000000000;
+
+  // Setup user
+  await testEndpoint('VIP', 'Setup User', async () => {
+    const result = await sendWebhook('/dev_skip', testUserId);
+    if (result.status !== 200) {
+      throw new Error(`Expected 200, got ${result.status}`);
+    }
+  });
+
+  // Test /vip command
+  await testEndpoint('VIP', '/vip Command', async () => {
+    const result = await sendWebhook('/vip', testUserId);
+    if (result.status !== 200) {
+      throw new Error(`Expected 200, got ${result.status}`);
+    }
+  });
+
+  // Test /vip_refund command
+  await testEndpoint('VIP', '/vip_refund Command', async () => {
+    const result = await sendWebhook('/vip_refund', testUserId);
+    if (result.status !== 200) {
+      throw new Error(`Expected 200, got ${result.status}`);
+    }
+  });
+
+  // Test admin refund commands (super admin only)
+  const adminUserId = 396943893;
+  
+  await testEndpoint('VIP', '/admin_refunds Command', async () => {
+    const result = await sendWebhook('/admin_refunds', adminUserId);
+    if (result.status !== 200) {
+      throw new Error(`Expected 200, got ${result.status}`);
+    }
+  });
+
+  // Test VIP-related migrations exist
+  await testEndpoint('VIP', 'VIP Migrations Exist', async () => {
+    const fs = await import('fs');
+    const path = await import('path');
+    
+    const requiredFiles = [
+      'src/db/migrations/0036_create_vip_subscriptions.sql',
+      'src/db/migrations/0037_create_refund_requests.sql',
+      'src/db/migrations/0038_alter_payments_add_refund_fields.sql',
+    ];
+    
+    for (const file of requiredFiles) {
+      const filePath = path.join(process.cwd(), file);
+      if (!fs.existsSync(filePath)) {
+        throw new Error(`Required file missing: ${file}`);
+      }
+    }
+  });
+
+  // Test VIP service files exist
+  await testEndpoint('VIP', 'VIP Service Files Exist', async () => {
+    const fs = await import('fs');
+    const path = await import('path');
+    
+    const requiredFiles = [
+      'src/services/vip_subscription.ts',
+      'src/services/admin_notification.ts',
+      'src/telegram/handlers/vip_refund.ts',
+    ];
+    
+    for (const file of requiredFiles) {
+      const filePath = path.join(process.cwd(), file);
+      if (!fs.existsSync(filePath)) {
+        throw new Error(`Required file missing: ${file}`);
+      }
+    }
+  });
+}
+
 // ============================================================================
 // Critical Bug Prevention Tests (Based on Recent Issues)
 // ============================================================================
@@ -1623,6 +1701,7 @@ async function runAllTests() {
         await runTestSuite('Smart Command Prompts', testSmartCommandPrompts);
         await runTestSuite('Ad System Basics', testAdSystemBasics);
         await runTestSuite('Analytics Commands', testAnalyticsCommands);
+        await runTestSuite('VIP System', testVipSystem);
         
         // Critical Bug Prevention Tests
         console.log('\n' + '='.repeat(80));

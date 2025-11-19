@@ -60,6 +60,12 @@ migrations_dir = "src/db/migrations"
 # Staging Cron triggers (temporarily disabled due to API issue)
 # [[env.staging.triggers.crons]]
 # cron = "0 * * * *"  # Every hour (Channel membership check)
+# 
+# [[env.staging.triggers.crons]]
+# cron = "0 10 * * *"  # Every day at 10:00 UTC = 18:00 Taipei (VIP expiration check)
+# 
+# [[env.staging.triggers.crons]]
+# cron = "0 9 * * *"  # Every day at 09:00 UTC = 17:00 Taipei (Daily reports)
 
 # Production environment
 [env.production]
@@ -98,6 +104,12 @@ cron = "0 9 * * 1"  # Every Monday at 9:00 UTC (Horoscope)
 
 [[env.production.triggers.crons]]
 cron = "0 9 * * *"  # Every day at 09:00 UTC = 17:00 Taipei (Daily reports to super admins)
+
+[[env.production.triggers.crons]]
+cron = "0 10 * * *"  # Every day at 10:00 UTC = 18:00 Taipei (VIP expiration check)
+
+[[env.production.triggers.crons]]
+cron = "0 * * * *"  # Every hour (Channel membership check)
 
 [[env.production.triggers.crons]]
 cron = "5 0 * * *"  # Every day at 00:05 UTC (Daily stats generation)
