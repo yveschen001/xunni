@@ -1352,6 +1352,23 @@ export async function routeUpdate(update: TelegramUpdate, env: Env): Promise<voi
       return;
     }
 
+    // VIP purchase callback
+    if (data === 'vip_purchase') {
+      const { handleVipPurchase } = await import('./telegram/handlers/vip');
+      await handleVipPurchase(callbackQuery, env);
+      return;
+    }
+
+    // VIP cancel callback
+    if (data === 'vip_cancel') {
+      await telegram.answerCallbackQuery(callbackQuery.id, '已取消');
+      await telegram.sendMessage(
+        callbackQuery.message!.chat.id,
+        '✅ 已取消購買\n\n你可以隨時使用 /vip 命令查看 VIP 權益。'
+      );
+      return;
+    }
+
     // VIP renewal callback
     if (data === 'vip_renew') {
       // Redirect to /vip command

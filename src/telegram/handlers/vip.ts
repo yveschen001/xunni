@@ -4,7 +4,7 @@
  * Handles /vip command - VIP subscription via Telegram Stars.
  */
 
-import type { Env, TelegramMessage, PreCheckoutQuery, SuccessfulPayment } from '~/types';
+import type { Env, TelegramMessage, PreCheckoutQuery, SuccessfulPayment, CallbackQuery } from '~/types';
 import { createDatabaseClient } from '~/db/client';
 import { createTelegramService } from '~/services/telegram';
 import { findUserByTelegramId } from '~/db/queries/users';
