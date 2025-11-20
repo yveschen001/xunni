@@ -113,7 +113,7 @@ export async function handleThrow(message: TelegramMessage, env: Env): Promise<v
         const { getNextIncompleteTask } = await import('./tasks');
         const { getQuotaExhaustedMessage, getQuotaExhaustedButtons } = await import('~/domain/ad_prompt');
 
-        const adReward = await getTodayAdReward(db, telegramId);
+        const adReward = await getTodayAdReward(db.d1, telegramId);
         const nextTask = await getNextIncompleteTask(db, user);
 
         const context = {
@@ -440,7 +440,7 @@ export async function processBottleContent(user: User, content: string, env: Env
       const { getNextIncompleteTask } = await import('./tasks');
       const { getAdPrompt } = await import('~/domain/ad_prompt');
 
-      const adReward = await getTodayAdReward(db, user.telegram_id);
+      const adReward = await getTodayAdReward(db.d1, user.telegram_id);
       const nextTask = await getNextIncompleteTask(db, user);
 
       const prompt = getAdPrompt({

@@ -92,7 +92,7 @@ export async function handleCatch(message: TelegramMessage, env: Env): Promise<v
         const { getNextIncompleteTask } = await import('./tasks');
         const { getQuotaExhaustedMessage, getQuotaExhaustedButtons } = await import('~/domain/ad_prompt');
 
-        const adReward = await getTodayAdReward(db, telegramId);
+        const adReward = await getTodayAdReward(db.d1, telegramId);
         const nextTask = await getNextIncompleteTask(db, user);
 
         const context = {
@@ -367,7 +367,7 @@ export async function handleCatch(message: TelegramMessage, env: Env): Promise<v
       const { getNextIncompleteTask } = await import('./tasks');
       const { getAdPrompt } = await import('~/domain/ad_prompt');
 
-      const adReward = await getTodayAdReward(db, telegramId);
+      const adReward = await getTodayAdReward(db.d1, telegramId);
       const nextTask = await getNextIncompleteTask(db, user);
 
       const prompt = getAdPrompt({

@@ -83,7 +83,7 @@ export async function handleWatchAd(callbackQuery: CallbackQuery, env: Env): Pro
     }
 
     // Get today's ad reward
-    const adReward = await getTodayAdReward(db, telegramId);
+    const adReward = await getTodayAdReward(db.d1, telegramId);
 
     // Check if can watch more ads
     const checkResult = canWatchAd(adReward, user.is_vip);
@@ -231,7 +231,7 @@ export async function handleAdComplete(
     }
 
     // Get today's ad reward
-    const adReward = await getTodayAdReward(db, telegramId);
+    const adReward = await getTodayAdReward(db.d1, telegramId);
 
     // Process ad completion
     const result = processAdCompletion(adReward, user.is_vip);
@@ -420,7 +420,7 @@ export async function getAdRewardStatusMessage(telegramId: string, env: Env): Pr
       return '❌ 用戶不存在';
     }
 
-    const adReward = await getTodayAdReward(db, telegramId);
+    const adReward = await getTodayAdReward(db.d1, telegramId);
     return formatAdRewardStatus(adReward, user.is_vip);
   } catch (error) {
     console.error('[getAdRewardStatusMessage] Error:', error);
