@@ -218,14 +218,7 @@ export async function routeUpdate(update: TelegramUpdate, env: Env): Promise<voi
         return;
       }
 
-      // Try profile edit input
-      const { handleProfileEditInput } = await import('./telegram/handlers/edit_profile');
-      const isEditingProfile = await handleProfileEditInput(message, env);
-      if (isEditingProfile) {
-        return;
-      }
-
-      // Try throw bottle content input (PRIORITY: check session-based flows first!)
+      // Try throw bottle content input (HIGHEST PRIORITY: most recent user action!)
       const { processBottleContent } = await import('./telegram/handlers/throw');
       const { getActiveSession, deleteSession } = await import('./db/queries/sessions');
       const throwSession = await getActiveSession(db, user.telegram_id, 'throw_bottle');
@@ -269,6 +262,13 @@ export async function routeUpdate(update: TelegramUpdate, env: Env): Promise<voi
           );
           return;
         }
+      }
+
+      // Try profile edit input (lower priority than throw bottle)
+      const { handleProfileEditInput } = await import('./telegram/handlers/edit_profile');
+      const isEditingProfile = await handleProfileEditInput(message, env);
+      if (isEditingProfile) {
+        return;
       }
 
       // Try conversation message (only if not in throw flow)
