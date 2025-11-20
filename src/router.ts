@@ -218,7 +218,15 @@ export async function routeUpdate(update: TelegramUpdate, env: Env): Promise<voi
         return;
       }
 
-      // Try throw bottle content input (HIGHEST PRIORITY: most recent user action!)
+      // Try conversation message (HIGHEST PRIORITY: explicit user action via reply!)
+      // If user uses Telegram's "reply" feature, this is the clearest intent
+      const { handleMessageForward } = await import('./telegram/handlers/message_forward');
+      const isConversationMessage = await handleMessageForward(message, env);
+      if (isConversationMessage) {
+        return;
+      }
+
+      // Try throw bottle content input (session-based, but lower priority than explicit reply)
       const { processBottleContent } = await import('./telegram/handlers/throw');
       const { getActiveSession, deleteSession } = await import('./db/queries/sessions');
       const throwSession = await getActiveSession(db, user.telegram_id, 'throw_bottle');
@@ -264,17 +272,10 @@ export async function routeUpdate(update: TelegramUpdate, env: Env): Promise<voi
         }
       }
 
-      // Try profile edit input (lower priority than throw bottle)
+      // Try profile edit input (lowest priority)
       const { handleProfileEditInput } = await import('./telegram/handlers/edit_profile');
       const isEditingProfile = await handleProfileEditInput(message, env);
       if (isEditingProfile) {
-        return;
-      }
-
-      // Try conversation message (only if not in throw flow)
-      const { handleMessageForward } = await import('./telegram/handlers/message_forward');
-      const isConversationMessage = await handleMessageForward(message, env);
-      if (isConversationMessage) {
         return;
       }
     }
