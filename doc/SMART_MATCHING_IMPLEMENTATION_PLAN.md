@@ -1,5 +1,12 @@
 # 智能配對系統實現計劃
 
+> **核心改動**：
+> - 從「每日自動推送」改為「即時配對」
+> - 丟瓶子時：主動為其找 1 小時內活躍的合適用戶，一對一配對
+> - 撿瓶子時：優先智能配對 > 隨機配對 > 無瓶子
+> - 年齡區間匹配權重提升至 15%
+> - 避免競爭條件，一個瓶子只配對給一個用戶
+
 ## 階段 1：數據庫準備（第 1-2 天）
 
 ### 1.1 Migration 腳本
@@ -8,11 +15,17 @@
 -- 0040_add_matching_fields.sql
 -- 為用戶表添加配對相關欄位
 ALTER TABLE users ADD COLUMN last_active_at TEXT DEFAULT CURRENT_TIMESTAMP;
-ALTER TABLE users ADD COLUMN matching_enabled INTEGER DEFAULT 1;
-ALTER TABLE users ADD COLUMN matching_preferences TEXT; -- JSON: 配對偏好
 
 CREATE INDEX idx_users_last_active ON users(last_active_at);
-CREATE INDEX idx_users_matching_enabled ON users(matching_enabled);
+
+-- 為瓶子表添加配對狀態
+ALTER TABLE bottles ADD COLUMN match_status TEXT DEFAULT 'pending'; 
+-- 'pending': 剛丟出，等待配對
+-- 'matched': 已配對給特定用戶
+-- 'active': 進入公共池，等待撿取
+-- 'caught': 已被撿走
+
+CREATE INDEX idx_bottles_match_status ON bottles(match_status);
 ```
 
 ```sql
@@ -20,21 +33,22 @@ CREATE INDEX idx_users_matching_enabled ON users(matching_enabled);
 -- 配對歷史記錄表
 CREATE TABLE IF NOT EXISTS matching_history (
   id INTEGER PRIMARY KEY AUTOINCREMENT,
-  user_id TEXT NOT NULL,
   bottle_id INTEGER NOT NULL,
+  matched_user_id TEXT NOT NULL, -- 被配對的用戶
   match_score REAL NOT NULL,
   score_breakdown TEXT, -- JSON: 各維度分數詳情
-  is_accepted INTEGER DEFAULT 0,
+  match_type TEXT NOT NULL, -- 'active': 主動配對, 'passive': 被動撿取
   is_replied INTEGER DEFAULT 0,
-  feedback_type TEXT, -- 'like', 'dislike', 'block', NULL
+  replied_at TEXT,
   created_at TEXT DEFAULT CURRENT_TIMESTAMP,
-  FOREIGN KEY (user_id) REFERENCES users(telegram_id),
+  FOREIGN KEY (matched_user_id) REFERENCES users(telegram_id),
   FOREIGN KEY (bottle_id) REFERENCES bottles(id)
 );
 
-CREATE INDEX idx_matching_history_user ON matching_history(user_id);
+CREATE INDEX idx_matching_history_user ON matching_history(matched_user_id);
 CREATE INDEX idx_matching_history_bottle ON matching_history(bottle_id);
 CREATE INDEX idx_matching_history_score ON matching_history(match_score DESC);
+CREATE INDEX idx_matching_history_type ON matching_history(match_type);
 ```
 
 ```sql
@@ -254,21 +268,38 @@ export function calculateBloodTypeScore(
 }
 
 /**
- * 年齡配對分數計算
+ * 年齡區間配對分數計算
  */
-export function calculateAgeScore(
+export function calculateAgeRangeScore(
   userBirthday: string,
   bottleBirthday: string
 ): number {
   const userAge = calculateAge(userBirthday);
   const bottleAge = calculateAge(bottleBirthday);
-  const ageDiff = Math.abs(userAge - bottleAge);
   
-  if (ageDiff <= 2) return 100;
-  if (ageDiff <= 5) return 90;
-  if (ageDiff <= 8) return 70;
-  if (ageDiff <= 12) return 50;
-  return 30;
+  const userRange = getAgeRange(userAge);
+  const bottleRange = getAgeRange(bottleAge);
+  
+  // 同年齡區間
+  if (userRange === bottleRange) return 100;
+  
+  // 相鄰區間
+  const ranges = ['18-22', '23-28', '29-35', '36-45', '46+'];
+  const userIndex = ranges.indexOf(userRange);
+  const bottleIndex = ranges.indexOf(bottleRange);
+  const rangeDiff = Math.abs(userIndex - bottleIndex);
+  
+  if (rangeDiff === 1) return 70; // 相鄰區間
+  if (rangeDiff === 2) return 40; // 跨1個區間
+  return 20; // 跨2+個區間
+}
+
+function getAgeRange(age: number): string {
+  if (age >= 18 && age <= 22) return '18-22';
+  if (age >= 23 && age <= 28) return '23-28';
+  if (age >= 29 && age <= 35) return '29-35';
+  if (age >= 36 && age <= 45) return '36-45';
+  return '46+';
 }
 
 function calculateAge(birthday: string): number {
@@ -283,17 +314,39 @@ function calculateAge(birthday: string): number {
 }
 
 /**
- * 活躍度加分計算
+ * 年齡差距加分計算
  */
-export function calculateActivityBonus(lastActiveAt: string): number {
+export function calculateAgeDifferenceBonus(
+  userBirthday: string,
+  bottleBirthday: string
+): number {
+  const userAge = calculateAge(userBirthday);
+  const bottleAge = calculateAge(bottleBirthday);
+  const ageDiff = Math.abs(userAge - bottleAge);
+  
+  if (ageDiff <= 3) return 5; // 非常接近
+  if (ageDiff <= 6) return 2; // 接近
+  return 0;
+}
+
+/**
+ * 活躍度檢查（主動配對必要條件）
+ */
+export function isActiveWithin1Hour(lastActiveAt: string): boolean {
   const now = new Date();
   const lastActive = new Date(lastActiveAt);
   const hoursDiff = (now.getTime() - lastActive.getTime()) / (1000 * 60 * 60);
   
-  if (hoursDiff < 0.1) return 30; // 當前在線（6分鐘內）
-  if (hoursDiff <= 1) return 20; // 1小時內
-  if (hoursDiff <= 24) return 10; // 24小時內
-  if (hoursDiff <= 72) return 5; // 3天內
+  return hoursDiff <= 1;
+}
+
+/**
+ * 活躍度加分計算
+ */
+export function calculateActivityBonus(lastActiveAt: string): number {
+  if (isActiveWithin1Hour(lastActiveAt)) {
+    return 20; // 1小時內活躍
+  }
   return 0;
 }
 
@@ -304,9 +357,10 @@ export interface MatchScoreBreakdown {
   language: number;
   mbti: number;
   zodiac: number;
+  ageRange: number;
   bloodType: number;
-  age: number;
-  activity: number;
+  activityBonus: number;
+  ageDifferenceBonus: number;
   total: number;
 }
 
@@ -330,25 +384,28 @@ export function calculateTotalMatchScore(
   const languageScore = calculateLanguageScore(user.language, bottle.language);
   const mbtiScore = calculateMBTIScore(user.mbti_result, bottle.mbti_result);
   const zodiacScore = calculateZodiacScore(user.zodiac, bottle.zodiac);
+  const ageRangeScore = calculateAgeRangeScore(user.birthday, bottle.owner_birthday);
   const bloodTypeScore = calculateBloodTypeScore(user.blood_type, bottle.blood_type);
-  const ageScore = calculateAgeScore(user.birthday, bottle.owner_birthday);
   const activityBonus = calculateActivityBonus(user.last_active_at);
+  const ageDifferenceBonus = calculateAgeDifferenceBonus(user.birthday, bottle.owner_birthday);
   
   const total =
-    languageScore * 0.4 +
+    languageScore * 0.35 +
     mbtiScore * 0.25 +
     zodiacScore * 0.15 +
+    ageRangeScore * 0.15 +
     bloodTypeScore * 0.1 +
-    ageScore * 0.1 +
-    activityBonus;
+    activityBonus +
+    ageDifferenceBonus;
   
   return {
     language: languageScore,
     mbti: mbtiScore,
     zodiac: zodiacScore,
+    ageRange: ageRangeScore,
     bloodType: bloodTypeScore,
-    age: ageScore,
-    activity: activityBonus,
+    activityBonus,
+    ageDifferenceBonus,
     total: Math.round(total * 10) / 10, // 保留1位小數
   };
 }
@@ -414,17 +471,91 @@ describe('Matching Score Calculation', () => {
 
 ```typescript
 import type { D1Database } from '@cloudflare/workers-types';
-import { calculateTotalMatchScore } from '~/domain/matching_score';
+import { calculateTotalMatchScore, isActiveWithin1Hour } from '~/domain/matching_score';
 
 /**
- * 為單個用戶找到最佳配對瓶子
+ * 主動配對：當用戶丟瓶子時，立即為其找到最合適的活躍用戶
  */
-export async function findBestMatchForUser(
+export async function findActiveMatchForBottle(
+  db: D1Database,
+  bottleId: number
+): Promise<{
+  user: any;
+  score: any;
+} | null> {
+  // 1. 獲取瓶子信息
+  const bottle = await db
+    .prepare(`
+      SELECT b.*, u.birthday as owner_birthday
+      FROM bottles b
+      JOIN users u ON b.owner_id = u.telegram_id
+      WHERE b.id = ?
+    `)
+    .bind(bottleId)
+    .first();
+  
+  if (!bottle) return null;
+  
+  // 2. 查找候選用戶（必須 1 小時內活躍）
+  const candidates = await db
+    .prepare(`
+      SELECT *
+      FROM users
+      WHERE telegram_id != ?
+        AND is_banned = 0
+        AND last_active_at > datetime('now', '-1 hour')
+      LIMIT 100
+    `)
+    .bind(bottle.owner_id)
+    .all();
+  
+  if (!candidates.results || candidates.results.length === 0) {
+    return null;
+  }
+  
+  // 3. 計算每個候選的配對分數
+  const scoredCandidates = candidates.results.map((user: any) => {
+    const score = calculateTotalMatchScore(
+      {
+        language: user.language,
+        mbti_result: user.mbti_result,
+        zodiac: user.zodiac,
+        blood_type: user.blood_type,
+        birthday: user.birthday,
+        last_active_at: user.last_active_at,
+      },
+      {
+        language: bottle.language,
+        mbti_result: bottle.mbti_result,
+        zodiac: bottle.zodiac,
+        blood_type: bottle.blood_type,
+        owner_birthday: bottle.owner_birthday,
+      }
+    );
+    
+    return { user, score };
+  });
+  
+  // 4. 排序並選擇前5名
+  scoredCandidates.sort((a, b) => b.score.total - a.score.total);
+  const topCandidates = scoredCandidates.slice(0, 5);
+  
+  // 5. 從前5名中隨機選擇1個（避免總是同一人）
+  const selected = topCandidates[Math.floor(Math.random() * topCandidates.length)];
+  
+  return selected;
+}
+
+/**
+ * 被動配對：當用戶撿瓶子時，優先推薦高分配對
+ */
+export async function findSmartBottleForUser(
   db: D1Database,
   userId: string
 ): Promise<{
   bottle: any;
   score: any;
+  matchType: 'smart' | 'random';
 } | null> {
   // 1. 獲取用戶信息
   const user = await db
@@ -434,21 +565,20 @@ export async function findBestMatchForUser(
   
   if (!user) return null;
   
-  // 2. 查找候選瓶子
+  // 2. 查找候選瓶子（只查找公共池中的瓶子）
   const candidates = await db
     .prepare(`
-      SELECT b.*, u.birthday as owner_birthday, u.last_active_at as owner_last_active
+      SELECT b.*, u.birthday as owner_birthday
       FROM bottles b
       JOIN users u ON b.owner_id = u.telegram_id
-      WHERE b.status = 'active'
+      WHERE b.match_status = 'active'
         AND b.owner_id != ?
         AND b.id NOT IN (
           SELECT bottle_id FROM catches WHERE catcher_id = ?
         )
-        AND u.last_active_at > datetime('now', '-30 days')
         AND u.is_banned = 0
       ORDER BY b.created_at DESC
-      LIMIT 100
+      LIMIT 50
     `)
     .bind(userId, userId)
     .all();
@@ -480,101 +610,62 @@ export async function findBestMatchForUser(
     return { bottle, score };
   });
   
-  // 4. 排序並選擇前10名
+  // 4. 排序
   scoredCandidates.sort((a, b) => b.score.total - a.score.total);
-  const topCandidates = scoredCandidates.slice(0, 10);
   
-  // 5. 從前10名中隨機選擇1個（避免總是同一人）
-  const selected = topCandidates[Math.floor(Math.random() * topCandidates.length)];
-  
-  return selected;
-}
-
-/**
- * 每日自動配對任務
- */
-export async function performDailyMatching(env: any): Promise<void> {
-  const db = env.DB;
-  
-  // 1. 獲取所有啟用配對的活躍用戶
-  const users = await db
-    .prepare(`
-      SELECT telegram_id
-      FROM users
-      WHERE matching_enabled = 1
-        AND is_banned = 0
-        AND last_active_at > datetime('now', '-7 days')
-    `)
-    .all();
-  
-  if (!users.results) return;
-  
-  console.log(`[Daily Matching] Processing ${users.results.length} users`);
-  
-  // 2. 為每個用戶找到最佳配對
-  for (const user of users.results) {
-    try {
-      const match = await findBestMatchForUser(db, user.telegram_id);
-      
-      if (match) {
-        // 3. 記錄配對歷史
-        await db
-          .prepare(`
-            INSERT INTO matching_history (user_id, bottle_id, match_score, score_breakdown)
-            VALUES (?, ?, ?, ?)
-          `)
-          .bind(
-            user.telegram_id,
-            match.bottle.id,
-            match.score.total,
-            JSON.stringify(match.score)
-          )
-          .run();
-        
-        // 4. 發送通知
-        await sendMatchNotification(env, user.telegram_id, match);
-      }
-    } catch (error) {
-      console.error(`[Daily Matching] Error for user ${user.telegram_id}:`, error);
-    }
+  // 5. 如果有高分配對（> 70），返回智能配對
+  if (scoredCandidates[0].score.total > 70) {
+    return {
+      ...scoredCandidates[0],
+      matchType: 'smart',
+    };
   }
   
-  console.log('[Daily Matching] Completed');
+  // 6. 否則隨機選擇
+  const randomIndex = Math.floor(Math.random() * scoredCandidates.length);
+  return {
+    ...scoredCandidates[randomIndex],
+    matchType: 'random',
+  };
 }
 
 /**
- * 發送配對通知
+ * 發送主動配對通知
  */
-async function sendMatchNotification(
+export async function sendActiveMatchNotification(
   env: any,
   userId: string,
-  match: { bottle: any; score: any }
+  bottle: any,
+  score: any
 ): Promise<void> {
   const { TelegramService } = await import('./telegram');
   const telegram = new TelegramService(env.TELEGRAM_BOT_TOKEN);
   
   const { maskNickname } = await import('~/utils/privacy');
-  const maskedNickname = maskNickname(match.bottle.owner_nickname || '匿名');
+  const maskedNickname = maskNickname(bottle.owner_nickname || '匿名');
   
   // 計算匹配度百分比
-  const matchPercentage = Math.min(100, Math.round(match.score.total));
+  const matchPercentage = Math.min(100, Math.round(score.total));
   
   // 構建匹配特徵列表
   const features = [];
-  if (match.score.language >= 70) features.push('語言相同 ✓');
-  if (match.score.mbti >= 80) features.push('MBTI 最佳配對 ✓');
-  if (match.score.zodiac >= 80) features.push('星座高度相容 ✓');
-  if (match.score.age >= 90) features.push('年齡相近 ✓');
+  if (score.language >= 70) features.push('語言相同 ✓');
+  if (score.mbti >= 80) features.push('MBTI 最佳配對 ✓');
+  if (score.zodiac >= 80) features.push('星座高度相容 ✓');
+  if (score.ageRange >= 80) features.push('年齡區間相同 ✓');
   
   const message =
-    `🎁 為你推薦了一個漂流瓶！\n\n` +
+    `🎁 有人為你送來了一個漂流瓶！\n\n` +
     `📝 暱稱：${maskedNickname}\n` +
-    `🧠 MBTI：${match.bottle.mbti_result || '未設定'}\n` +
-    `⭐ 星座：${match.bottle.zodiac || '未設定'}\n` +
+    `🧠 MBTI：${bottle.mbti_result || '未設定'}\n` +
+    `⭐ 星座：${bottle.zodiac || '未設定'}\n` +
     `💝 匹配度：${matchPercentage}%\n\n` +
     `💡 這個瓶子和你非常合拍！\n` +
     (features.length > 0 ? `${features.map(f => `• ${f}`).join('\n')}\n\n` : '') +
-    `使用 /catch 查看瓶子內容`;
+    `━━━━━━━━━━━━━━━━\n` +
+    `${bottle.content}\n` +
+    `━━━━━━━━━━━━━━━━\n\n` +
+    `💬 直接按 /reply 回覆訊息聊天`;
   
   await telegram.sendMessage(userId, message);
 }
@@ -584,69 +675,126 @@ async function sendMatchNotification(
 
 ## 階段 4：Handler 層實現（第 9-10 天）
 
-### 4.1 配對設置命令
+### 4.1 丟瓶子 Handler 修改
 
-**文件**：`src/telegram/handlers/matching_settings.ts`
+**文件**：`src/telegram/handlers/throw.ts`
 
 ```typescript
-/**
- * /matching_settings - 配對設置
- */
-export async function handleMatchingSettings(
-  message: TelegramMessage,
-  env: any
-): Promise<void> {
-  // 實現配對設置界面
-  // - 啟用/禁用自動配對
-  // - 選擇參與的維度
-  // - 查看配對統計
+// 在用戶成功丟出瓶子後，立即嘗試主動配對
+
+// 1. 創建瓶子，狀態為 'pending'
+const bottleId = await createBottle(db, userId, content, 'pending');
+
+// 2. 嘗試主動配對
+const { findActiveMatchForBottle, sendActiveMatchNotification } = 
+  await import('~/services/smart_matching');
+
+const match = await findActiveMatchForBottle(db, bottleId);
+
+if (match) {
+  // 3. 找到合適的活躍用戶
+  // 更新瓶子狀態為 'matched'
+  await db
+    .prepare('UPDATE bottles SET match_status = ? WHERE id = ?')
+    .bind('matched', bottleId)
+    .run();
+  
+  // 4. 記錄配對歷史
+  await db
+    .prepare(`
+      INSERT INTO matching_history 
+      (bottle_id, matched_user_id, match_score, score_breakdown, match_type)
+      VALUES (?, ?, ?, ?, ?)
+    `)
+    .bind(
+      bottleId,
+      match.user.telegram_id,
+      match.score.total,
+      JSON.stringify(match.score),
+      'active'
+    )
+    .run();
+  
+  // 5. 發送通知給配對用戶
+  await sendActiveMatchNotification(env, match.user.telegram_id, bottle, match.score);
+  
+  // 6. 告訴丟瓶子的用戶
+  await telegram.sendMessage(
+    chatId,
+    `🎉 漂流瓶已丟出並成功配對！\n\n` +
+    `💝 匹配度：${Math.round(match.score.total)}%\n` +
+    `⏰ 已推送給在線用戶\n\n` +
+    `💡 對方很可能很快就會回覆你～`
+  );
+} else {
+  // 7. 無合適用戶，進入公共池
+  await db
+    .prepare('UPDATE bottles SET match_status = ? WHERE id = ?')
+    .bind('active', bottleId)
+    .run();
+  
+  await telegram.sendMessage(
+    chatId,
+    `🎉 漂流瓶已丟出！\n\n` +
+    `瓶子 ID：#${bottleId}\n\n` +
+    `💡 你的瓶子已進入公共池，等待有緣人撿起～`
+  );
+}
+```
+
+### 4.2 撿瓶子 Handler 修改
+
+**文件**：`src/telegram/handlers/catch.ts`
+
+```typescript
+// 在用戶執行 /catch 時，優先智能配對
+
+const { findSmartBottleForUser } = await import('~/services/smart_matching');
+
+// 1. 嘗試智能配對
+const match = await findSmartBottleForUser(db, userId);
+
+if (!match) {
+  // 無瓶子
+  await telegram.sendMessage(chatId, '暫時沒有瓶子，請稍後再試～');
+  return;
 }
 
-/**
- * /matching_stats - 配對統計
- */
-export async function handleMatchingStats(
-  message: TelegramMessage,
-  env: any
-): Promise<void> {
-  // 顯示配對統計
-  // - 平均配對分數
-  // - 最高配對分數
-  // - 配對成功率
+// 2. 顯示匹配類型
+if (match.matchType === 'smart') {
+  const matchPercentage = Math.min(100, Math.round(match.score.total));
+  await telegram.sendMessage(
+    chatId,
+    `🎁 為你智能推薦了一個高匹配度的瓶子！\n💝 匹配度：${matchPercentage}%\n\n`
+  );
 }
+
+// 3. 記錄配對歷史
+await db
+  .prepare(`
+    INSERT INTO matching_history 
+    (bottle_id, matched_user_id, match_score, score_breakdown, match_type)
+    VALUES (?, ?, ?, ?, ?)
+  `)
+  .bind(
+    match.bottle.id,
+    userId,
+    match.score.total,
+    JSON.stringify(match.score),
+    'passive'
+  )
+  .run();
+
+// 4. 繼續原有的撿瓶子流程...
 ```
 
 ---
 
-## 階段 5：Cron Job 集成（第 11 天）
-
-### 5.1 Wrangler 配置
-
-```toml
-# wrangler.toml
-
-[triggers]
-crons = [
-  "0 10 * * *",  # Daily reports at 10:00 UTC
-  "0 2 * * *",   # Daily matching at 02:00 UTC (10:00 Asia/Taipei)
-]
-```
-
-### 5.2 Worker 集成
-
-```typescript
-// src/worker.ts
-
-if (event.cron === '0 2 * * *') {
-  const { performDailyMatching } = await import('./services/smart_matching');
-  await performDailyMatching(env);
-  return new Response('Daily matching completed', { status: 200 });
-}
-```
+## 階段 5：測試與優化（第 10-12 天）
 
 ---
 
-## 階段 6：測試與優化（第 12-14 天）
+## 階段 6：測試與優化（第 13-14 天）
 
 ### 6.1 Smoke Test 擴展
 
@@ -657,18 +805,36 @@ async function testSmartMatching() {
   console.log('\n🧪 Testing Smart Matching System...');
   
   // 1. 測試配對分數計算
-  // 2. 測試候選篩選
-  // 3. 測試配對通知
-  // 4. 測試配對設置
+  testMatchScoreCalculation();
+  
+  // 2. 測試主動配對流程
+  testActiveMatching();
+  
+  // 3. 測試被動配對流程
+  testPassiveMatching();
+  
+  // 4. 測試活躍度檢查
+  testActivityCheck();
+  
+  // 5. 測試年齡區間計算
+  testAgeRangeCalculation();
 }
 ```
 
 ### 6.2 性能測試
 
-- 測試 100 用戶配對時間
-- 測試 1000 瓶子篩選時間
-- 優化 SQL 查詢
-- 添加必要索引
+- 測試主動配對時間（< 500ms）
+- 測試被動配對時間（< 300ms）
+- 優化 SQL 查詢（添加索引）
+- 測試並發配對（避免競爭條件）
+
+### 6.3 競爭條件測試
+
+```typescript
+// 測試兩個用戶同時撿同一個瓶子
+// 確保只有一個成功
+// 另一個獲得下一個瓶子
+```
 
 ---
 
@@ -676,41 +842,66 @@ async function testSmartMatching() {
 
 ### 7.1 用戶文檔
 
-- 配對系統使用指南
-- 配對算法說明
+- 智能配對系統說明
+- 配對算法透明度
 - 隱私聲明
 
 ### 7.2 部署檢查清單
 
 - [ ] 執行所有 migrations
 - [ ] 運行 smoke tests
-- [ ] 檢查 Cron Job 配置
+- [ ] 測試主動配對流程
+- [ ] 測試被動配對流程
+- [ ] 測試競爭條件
 - [ ] 部署到 Staging
 - [ ] 手動測試
 - [ ] 部署到 Production
-- [ ] 監控配對執行
+- [ ] 監控配對成功率
 
 ---
 
 ## 預期成果
 
 ### 功能指標
-- ✅ 每日自動為活躍用戶推薦 1 個瓶子
+- ✅ 主動配對成功率 > 60%（1小時內活躍用戶）
+- ✅ 被動配對智能推薦率 > 40%（分數 > 70）
 - ✅ 配對分數準確率 > 85%
 - ✅ 通知發送成功率 > 95%
 
 ### 性能指標
-- ✅ 單用戶配對時間 < 500ms
-- ✅ 每日配對任務完成時間 < 5 分鐘（1000 用戶）
+- ✅ 主動配對時間 < 500ms
+- ✅ 被動配對時間 < 300ms
+- ✅ 無競爭條件錯誤
 
 ### 用戶體驗指標
-- ✅ 配對接受率 > 30%
-- ✅ 對話開啟率 > 50%
+- ✅ 主動配對回覆率 > 50%（1小時內）
+- ✅ 被動配對回覆率 > 30%
 - ✅ 用戶滿意度 > 4/5
 
 ---
 
+## 核心改進總結
+
+### 從「每日推送」到「即時配對」
+- **之前**：每天定時為所有用戶推薦瓶子
+- **現在**：丟瓶子時立即配對，撿瓶子時智能推薦
+
+### 從「多人搶瓶」到「一對一配對」
+- **之前**：多人可能看到同一個瓶子，產生競爭
+- **現在**：主動配對直接推送，避免競爭條件
+
+### 從「年齡差距」到「年齡區間」
+- **之前**：只看年齡差距（10%權重）
+- **現在**：優先看年齡區間（15%權重），輔助看年齡差距
+
+### 從「24小時活躍」到「1小時活躍」
+- **之前**：24小時內活躍即可
+- **現在**：主動配對必須1小時內活躍
+
+---
+
 **總開發時間**：15 天  
-**優先級**：中高  
-**風險等級**：中
+**優先級**：高  
+**風險等級**：中  
+**狀態**：設計完成，待開發
 
