@@ -247,18 +247,20 @@ export function isProviderHealthy(provider: AdProvider): boolean {
     return true;
   }
 
-  // Check completion rate
-  if (provider.total_views > 0) {
+  // Check completion rate (only if we have enough data)
+  if (provider.total_views >= 10) {
     const completionRate = provider.total_completions / provider.total_views;
     if (completionRate < AD_PROVIDER_CONSTANTS.MIN_COMPLETION_RATE) {
       return false;
     }
   }
 
-  // Check error rate
-  const errorRate = provider.total_errors / provider.total_requests;
-  if (errorRate > 0.5) {
-    return false;
+  // Check error rate (only if we have enough data)
+  if (provider.total_requests >= 10) {
+    const errorRate = provider.total_errors / provider.total_requests;
+    if (errorRate > 0.5) {
+      return false;
+    }
   }
 
   return true;

@@ -733,6 +733,12 @@ export async function routeUpdate(update: TelegramUpdate, env: Env): Promise<voi
     const data = callbackQuery.data || '';
     const chatId = callbackQuery.message?.chat.id;
 
+    console.error('[Router] Callback query received:', {
+      data,
+      userId: callbackQuery.from.id,
+      chatId,
+    });
+
     if (!chatId) {
       await telegram.answerCallbackQuery(callbackQuery.id, '錯誤：無法獲取聊天 ID');
       return;
