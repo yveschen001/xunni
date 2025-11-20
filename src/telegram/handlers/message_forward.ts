@@ -92,6 +92,11 @@ export async function handleMessageForward(message: TelegramMessage, env: Env): 
     }
 
     if (!replyToId) {
+      // If message is too short (< 5 chars), ignore it (likely emoji or random text)
+      if (messageText.length < 5) {
+        return false; // Let other handlers process it or ignore it
+      }
+      
       await telegram.sendMessage(
         chatId,
         '💡 請長按你要回復的消息，在出現的選單中選擇「回覆」後，在聊天框中輸入回復內容。'
