@@ -1402,6 +1402,35 @@ export async function routeUpdate(update: TelegramUpdate, env: Env): Promise<voi
       return;
     }
 
+    // ✨ NEW: Smart matching callbacks
+    if (data.startsWith('open_bottle_')) {
+      const bottleId = parseInt(data.replace('open_bottle_', ''));
+      await telegram.answerCallbackQuery(callbackQuery.id, '正在打開瓶子...');
+      
+      // Simulate /catch command for this specific bottle
+      const mockMessage: TelegramMessage = {
+        message_id: callbackQuery.message!.message_id,
+        from: callbackQuery.from,
+        chat: callbackQuery.message!.chat,
+        date: Math.floor(Date.now() / 1000),
+        text: `/catch ${bottleId}`,
+      };
+      
+      const { handleCatch } = await import('./telegram/handlers/catch');
+      await handleCatch(mockMessage, env);
+      return;
+    }
+
+    if (data === 'dismiss_bottle') {
+      await telegram.answerCallbackQuery(callbackQuery.id, '已忽略');
+      await telegram.editMessageText(
+        chatId,
+        callbackQuery.message!.message_id,
+        '✅ 已忽略這個瓶子\n\n你可以隨時使用 /catch 撿其他瓶子。'
+      );
+      return;
+    }
+
     // Unknown callback
     console.error('[Router] Unknown callback data:', data);
     await telegram.answerCallbackQuery(callbackQuery.id, '未知的操作');

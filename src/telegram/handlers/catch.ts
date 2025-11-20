@@ -127,16 +127,38 @@ export async function handleCatch(message: TelegramMessage, env: Env): Promise<v
     const userMbti = user.mbti_result || '';
     const userBloodType = user.blood_type || null;
 
-    // Find matching bottle
-    const bottle = await findMatchingBottle(
-      db,
-      telegramId,
-      user.gender || 'any',
-      userAge,
-      userZodiac,
-      userMbti,
-      userBloodType
-    );
+    // ✨ NEW: Try smart matching first (non-breaking, falls back to existing logic)
+    let bottle: any = null;
+    let matchScore: number | null = null;
+    let matchType: 'smart' | 'random' = 'random';
+    
+    try {
+      const { findSmartBottleForUser } = await import('~/services/smart_matching');
+      const smartMatch = await findSmartBottleForUser(db.d1, telegramId);
+      
+      if (smartMatch && smartMatch.bottle) {
+        bottle = smartMatch.bottle;
+        matchScore = smartMatch.score.total;
+        matchType = smartMatch.matchType;
+        
+        console.log(`[Smart Matching] User ${telegramId} got ${matchType} match with score ${matchScore}`);
+      }
+    } catch (smartMatchError) {
+      console.error('[Smart Matching] Error, falling back to random:', smartMatchError);
+    }
+    
+    // Fallback to existing random matching if smart matching didn't find anything
+    if (!bottle) {
+      bottle = await findMatchingBottle(
+        db,
+        telegramId,
+        user.gender || 'any',
+        userAge,
+        userZodiac,
+        userMbti,
+        userBloodType
+      );
+    }
 
     if (!bottle) {
       await telegram.sendMessage(
@@ -314,9 +336,15 @@ export async function handleCatch(message: TelegramMessage, env: Env): Promise<v
       // Same language, no translation needed - don't show any message
       translationSection = '';
     }
+    // ✨ NEW: Add smart matching score if applicable
+    const matchScoreSection = matchScore && matchType === 'smart'
+      ? `💫 配對度：${Math.round(matchScore)}分 (智能配對)\n\n`
+      : '';
+    
     // Build message
     const catchMessage =
       `🍾 你撿到了一個漂流瓶！\n\n` +
+      matchScoreSection +
       `📝 暱稱：${ownerMaskedNickname}\n` +
       `🧠 MBTI：${bottle.mbti_result || '未設定'}\n` +
       `⭐ 星座：${bottle.zodiac || 'Virgo'}\n` +

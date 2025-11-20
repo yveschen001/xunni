@@ -287,6 +287,68 @@ export async function processBottleContent(user: User, content: string, env: Env
     // Increment daily count
     await incrementDailyThrowCount(db, user.telegram_id);
 
+    // ✨ NEW: Try smart matching (non-blocking, won't affect existing flow)
+    try {
+      const { findActiveMatchForBottle } = await import('~/services/smart_matching');
+      const matchResult = await findActiveMatchForBottle(db.d1, bottleId);
+      
+      if (matchResult && matchResult.user) {
+        // Found a match! Update bottle status and send notification
+        await db.d1
+          .prepare(`UPDATE bottles SET match_status = 'matched' WHERE id = ?`)
+          .bind(bottleId)
+          .run();
+        
+        // Record matching history
+        await db.d1
+          .prepare(`
+            INSERT INTO matching_history 
+            (bottle_id, matched_user_id, match_score, score_breakdown, match_type)
+            VALUES (?, ?, ?, ?, ?)
+          `)
+          .bind(
+            bottleId,
+            matchResult.user.telegram_id,
+            matchResult.score.total,
+            JSON.stringify(matchResult.score),
+            'active'
+          )
+          .run();
+        
+        // Send notification to matched user
+        const matchedChatId = parseInt(matchResult.user.telegram_id);
+        await telegram.sendMessageWithButtons(
+          matchedChatId,
+          `🎁 有人為你丟了一個漂流瓶！\n\n` +
+            `💫 配對度：${Math.round(matchResult.score.total)}分\n\n` +
+            `想要打開看看嗎？`,
+          [
+            [
+              { text: '✅ 打開瓶子', callback_data: `open_bottle_${bottleId}` },
+              { text: '❌ 暫時不看', callback_data: 'dismiss_bottle' },
+            ],
+          ]
+        );
+        
+        console.log(`[Smart Matching] Bottle ${bottleId} matched to user ${matchResult.user.telegram_id} with score ${matchResult.score.total}`);
+      } else {
+        // No match found, bottle enters public pool
+        await db.d1
+          .prepare(`UPDATE bottles SET match_status = 'active' WHERE id = ?`)
+          .bind(bottleId)
+          .run();
+        
+        console.log(`[Smart Matching] Bottle ${bottleId} enters public pool (no active match found)`);
+      }
+    } catch (matchError) {
+      console.error('[Smart Matching] Error:', matchError);
+      // Fallback: bottle enters public pool
+      await db.d1
+        .prepare(`UPDATE bottles SET match_status = 'active' WHERE id = ?`)
+        .bind(bottleId)
+        .run();
+    }
+
     // Check and complete "first bottle" task
     try {
       const { checkAndCompleteTask } = await import('./tasks');
