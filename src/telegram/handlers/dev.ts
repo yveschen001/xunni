@@ -104,17 +104,37 @@ export async function handleDevReset(message: TelegramMessage, env: Env): Promis
       { sql: 'DELETE FROM users WHERE telegram_id = ?', params: [telegramId] },
     ];
 
+    console.error('[handleDevReset] Starting data deletion...');
     for (const { sql, params } of tables) {
       try {
-        await db.d1
+        const result = await db.d1
           .prepare(sql)
           .bind(...params)
           .run();
+        console.error(`[handleDevReset] Deleted from ${sql.split(' ')[2]}: ${result.meta?.changes || 0} rows`);
       } catch (err) {
         // Ignore table not found errors
-        console.log(`[handleDevReset] Skipping: ${sql.split(' ')[2]}`);
+        console.error(`[handleDevReset] Skipping table: ${sql.split(' ')[2]}`, err);
       }
     }
+
+    console.error('[handleDevReset] Data deletion complete, verifying user deletion...');
+    
+    // Verify user is deleted
+    const existingUser = await db.d1
+      .prepare('SELECT telegram_id FROM users WHERE telegram_id = ?')
+      .bind(telegramId)
+      .first();
+    
+    if (existingUser) {
+      console.error('[handleDevReset] User still exists after deletion, force deleting...');
+      await db.d1
+        .prepare('DELETE FROM users WHERE telegram_id = ?')
+        .bind(telegramId)
+        .run();
+    }
+    
+    console.error('[handleDevReset] Reset complete');
 
     await telegram.sendMessage(
       chatId,
@@ -311,17 +331,37 @@ export async function handleDevRestart(message: TelegramMessage, env: Env): Prom
     console.error('[handleDevRestart] Starting data deletion...');
     for (const { sql, params } of tables) {
       try {
-        await db.d1
+        const result = await db.d1
           .prepare(sql)
           .bind(...params)
           .run();
+        console.error(`[handleDevRestart] Deleted from ${sql.split(' ')[2]}: ${result.meta?.changes || 0} rows`);
       } catch (err) {
         // Ignore table not found errors
         console.error(`[handleDevRestart] Skipping table: ${sql.split(' ')[2]}`, err);
       }
     }
 
-    console.error('[handleDevRestart] Data deletion complete, creating new user...');
+    console.error('[handleDevRestart] Data deletion complete, verifying user deletion...');
+    
+    // Verify user is deleted
+    const existingUser = await db.d1
+      .prepare('SELECT telegram_id FROM users WHERE telegram_id = ?')
+      .bind(telegramId)
+      .first();
+    
+    if (existingUser) {
+      console.error('[handleDevRestart] User still exists after deletion, force deleting...');
+      await db.d1
+        .prepare('DELETE FROM users WHERE telegram_id = ?')
+        .bind(telegramId)
+        .run();
+      
+      // Wait a bit to ensure deletion is committed
+      await new Promise(resolve => setTimeout(resolve, 100));
+    }
+    
+    console.error('[handleDevRestart] Creating new user...');
     
     // Create user record with language_selection step
     const { generateInviteCode } = await import('~/domain/user');
