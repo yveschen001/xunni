@@ -131,9 +131,9 @@ export async function handleDevReset(message: TelegramMessage, env: Env): Promis
 
     console.error('[handleDevReset] Starting data deletion...');
     
-    // Disable foreign key checks temporarily
-    await db.d1.exec('PRAGMA foreign_keys = OFF');
-    console.error('[handleDevReset] Foreign key checks disabled');
+    // Delete in multiple passes to handle foreign key constraints
+    // Pass 1: Try to delete all tables (some may fail due to FK constraints)
+    const failedTables: Array<{ sql: string; params: any[] }> = [];
     
     for (const { sql, params } of tables) {
       try {
@@ -142,15 +142,35 @@ export async function handleDevReset(message: TelegramMessage, env: Env): Promis
           .bind(...params)
           .run();
         console.error(`[handleDevReset] Deleted from ${sql.split(' ')[2]}: ${result.meta?.changes || 0} rows`);
-      } catch (err) {
-        // Ignore table not found errors
-        console.error(`[handleDevReset] Skipping table: ${sql.split(' ')[2]}`, err);
+      } catch (err: any) {
+        const errorMsg = err?.message || String(err);
+        // If it's a foreign key constraint error, save for retry
+        if (errorMsg.includes('FOREIGN KEY') || errorMsg.includes('constraint')) {
+          console.error(`[handleDevReset] FK constraint, will retry: ${sql.split(' ')[2]}`, errorMsg);
+          failedTables.push({ sql, params });
+        } else {
+          // Other errors (table not found, etc.) - just log and continue
+          console.error(`[handleDevReset] Skipping table: ${sql.split(' ')[2]}`, errorMsg);
+        }
       }
     }
     
-    // Re-enable foreign key checks
-    await db.d1.exec('PRAGMA foreign_keys = ON');
-    console.error('[handleDevReset] Foreign key checks re-enabled');
+    // Pass 2: Retry failed tables (parent tables should be deleted now)
+    if (failedTables.length > 0) {
+      console.error(`[handleDevReset] Retrying ${failedTables.length} tables...`);
+      for (const { sql, params } of failedTables) {
+        try {
+          const result = await db.d1
+            .prepare(sql)
+            .bind(...params)
+            .run();
+          console.error(`[handleDevReset] Retry success: ${sql.split(' ')[2]}: ${result.meta?.changes || 0} rows`);
+        } catch (err: any) {
+          console.error(`[handleDevReset] Retry failed: ${sql.split(' ')[2]}`, err?.message || String(err));
+          // Continue anyway - some tables may not exist or have no data
+        }
+      }
+    }
 
     console.error('[handleDevReset] Data deletion complete, verifying user deletion...');
     
@@ -383,9 +403,9 @@ export async function handleDevRestart(message: TelegramMessage, env: Env): Prom
 
     console.error('[handleDevRestart] Starting data deletion...');
     
-    // Disable foreign key checks temporarily
-    await db.d1.exec('PRAGMA foreign_keys = OFF');
-    console.error('[handleDevRestart] Foreign key checks disabled');
+    // Delete in multiple passes to handle foreign key constraints
+    // Pass 1: Try to delete all tables (some may fail due to FK constraints)
+    const failedTables: Array<{ sql: string; params: any[] }> = [];
     
     for (const { sql, params } of tables) {
       try {
@@ -394,15 +414,35 @@ export async function handleDevRestart(message: TelegramMessage, env: Env): Prom
           .bind(...params)
           .run();
         console.error(`[handleDevRestart] Deleted from ${sql.split(' ')[2]}: ${result.meta?.changes || 0} rows`);
-      } catch (err) {
-        // Ignore table not found errors
-        console.error(`[handleDevRestart] Skipping table: ${sql.split(' ')[2]}`, err);
+      } catch (err: any) {
+        const errorMsg = err?.message || String(err);
+        // If it's a foreign key constraint error, save for retry
+        if (errorMsg.includes('FOREIGN KEY') || errorMsg.includes('constraint')) {
+          console.error(`[handleDevRestart] FK constraint, will retry: ${sql.split(' ')[2]}`, errorMsg);
+          failedTables.push({ sql, params });
+        } else {
+          // Other errors (table not found, etc.) - just log and continue
+          console.error(`[handleDevRestart] Skipping table: ${sql.split(' ')[2]}`, errorMsg);
+        }
       }
     }
     
-    // Re-enable foreign key checks
-    await db.d1.exec('PRAGMA foreign_keys = ON');
-    console.error('[handleDevRestart] Foreign key checks re-enabled');
+    // Pass 2: Retry failed tables (parent tables should be deleted now)
+    if (failedTables.length > 0) {
+      console.error(`[handleDevRestart] Retrying ${failedTables.length} tables...`);
+      for (const { sql, params } of failedTables) {
+        try {
+          const result = await db.d1
+            .prepare(sql)
+            .bind(...params)
+            .run();
+          console.error(`[handleDevRestart] Retry success: ${sql.split(' ')[2]}: ${result.meta?.changes || 0} rows`);
+        } catch (err: any) {
+          console.error(`[handleDevRestart] Retry failed: ${sql.split(' ')[2]}`, err?.message || String(err));
+          // Continue anyway - some tables may not exist or have no data
+        }
+      }
+    }
 
     console.error('[handleDevRestart] Data deletion complete, verifying user deletion...');
     
