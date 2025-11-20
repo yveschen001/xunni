@@ -84,10 +84,10 @@ export function calculateBottleExpiration(): string {
 /**
  * Check if user can throw bottle (quota check)
  */
-export function canThrowBottle(throwsToday: number, isVip: boolean, inviteBonus: number, taskBonus: number = 0): boolean {
+export function canThrowBottle(throwsToday: number, isVip: boolean, inviteBonus: number, taskBonus: number = 0, adBonus: number = 0): boolean {
   const baseQuota = isVip ? 30 : 3;
   const maxQuota = isVip ? 100 : 10;
-  const quota = Math.min(baseQuota + inviteBonus, maxQuota) + taskBonus;
+  const quota = Math.min(baseQuota + inviteBonus, maxQuota) + taskBonus + adBonus;
 
   return throwsToday < quota;
 }
@@ -95,10 +95,10 @@ export function canThrowBottle(throwsToday: number, isVip: boolean, inviteBonus:
 /**
  * Check if user can catch bottle (quota check)
  */
-export function canCatchBottle(catchesToday: number, isVip: boolean, inviteBonus: number, taskBonus: number = 0): boolean {
+export function canCatchBottle(catchesToday: number, isVip: boolean, inviteBonus: number, taskBonus: number = 0, adBonus: number = 0): boolean {
   const baseQuota = isVip ? 30 : 3;
   const maxQuota = isVip ? 100 : 10;
-  const quota = Math.min(baseQuota + inviteBonus, maxQuota) + taskBonus;
+  const quota = Math.min(baseQuota + inviteBonus, maxQuota) + taskBonus + adBonus;
 
   return catchesToday < quota;
 }
@@ -109,14 +109,15 @@ export function canCatchBottle(catchesToday: number, isVip: boolean, inviteBonus
 export function getBottleQuota(
   isVip: boolean,
   inviteBonus: number,
-  taskBonus: number = 0
+  taskBonus: number = 0,
+  adBonus: number = 0
 ): {
   quota: number;
   maxQuota: number;
 } {
   const baseQuota = isVip ? 30 : 3;
   const maxQuota = isVip ? 100 : 10;
-  const quota = Math.min(baseQuota + inviteBonus, maxQuota) + taskBonus;
+  const quota = Math.min(baseQuota + inviteBonus, maxQuota) + taskBonus + adBonus;
 
   return { quota, maxQuota };
 }

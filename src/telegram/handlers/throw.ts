@@ -96,24 +96,31 @@ export async function handleThrow(message: TelegramMessage, env: Env): Promise<v
     const { calculateTaskBonus } = await import('./tasks');
     const taskBonus = await calculateTaskBonus(db, telegramId);
 
-    if (!canThrowBottle(throwsToday, isVip, inviteBonus, taskBonus)) {
+    // Get ad reward info
+    const { getTodayAdReward } = await import('~/db/queries/ad_rewards');
+    const adReward = await getTodayAdReward(db.d1, telegramId);
+    const adBonus = adReward?.quota_earned || 0;
+
+    if (!canThrowBottle(throwsToday, isVip, inviteBonus, taskBonus, adBonus)) {
+
       // Calculate permanent quota (base + invite)
       const baseQuota = isVip ? 30 : 3;
       const maxQuota = isVip ? 100 : 10;
       const permanentQuota = Math.min(baseQuota + inviteBonus, maxQuota);
       
+      // Calculate temporary bonus (task + ad)
+      const temporaryBonus = taskBonus + adBonus;
+      
       // Format quota display
-      const quotaDisplay = taskBonus > 0 
-        ? `${throwsToday}/${permanentQuota}+${taskBonus}`
+      const quotaDisplay = temporaryBonus > 0 
+        ? `${throwsToday}/${permanentQuota}+${temporaryBonus}`
         : `${throwsToday}/${permanentQuota}`;
       
       // Get smart buttons based on ad/task availability
       if (!isVip) {
-        const { getTodayAdReward } = await import('~/db/queries/ad_rewards');
         const { getNextIncompleteTask } = await import('./tasks');
         const { getQuotaExhaustedMessage, getQuotaExhaustedButtons } = await import('~/domain/ad_prompt');
 
-        const adReward = await getTodayAdReward(db.d1, telegramId);
         const nextTask = await getNextIncompleteTask(db, user);
 
         const context = {
@@ -416,14 +423,22 @@ export async function processBottleContent(user: User, content: string, env: Env
     const { calculateTaskBonus } = await import('./tasks');
     const taskBonus = await calculateTaskBonus(db, user.telegram_id);
     
+    // Get ad reward info
+    const { getTodayAdReward } = await import('~/db/queries/ad_rewards');
+    const adRewardInfo = await getTodayAdReward(db.d1, user.telegram_id);
+    const adBonus = adRewardInfo?.quota_earned || 0;
+    
     // Calculate permanent quota (base + invite)
     const baseQuota = isVip ? 30 : 3;
     const maxQuota = isVip ? 100 : 10;
     const permanentQuota = Math.min(baseQuota + inviteBonus, maxQuota);
     
+    // Calculate temporary bonus (task + ad)
+    const temporaryBonus = taskBonus + adBonus;
+    
     // Format quota display
-    const quotaDisplay = taskBonus > 0 
-      ? `${throwsToday}/${permanentQuota}+${taskBonus}`
+    const quotaDisplay = temporaryBonus > 0 
+      ? `${throwsToday}/${permanentQuota}+${temporaryBonus}`
       : `${throwsToday}/${permanentQuota}`;
 
     // Send success message
@@ -436,16 +451,14 @@ export async function processBottleContent(user: User, content: string, env: Env
 
     // Determine what button to show (ad/task/vip) for non-VIP users
     if (!isVip) {
-      const { getTodayAdReward } = await import('~/db/queries/ad_rewards');
       const { getNextIncompleteTask } = await import('./tasks');
       const { getAdPrompt } = await import('~/domain/ad_prompt');
 
-      const adReward = await getTodayAdReward(db.d1, user.telegram_id);
       const nextTask = await getNextIncompleteTask(db, user);
 
       const prompt = getAdPrompt({
         user,
-        ads_watched_today: adReward?.ads_watched || 0,
+        ads_watched_today: adRewardInfo?.ads_watched || 0,
         has_incomplete_tasks: !!nextTask,
         next_task_name: nextTask?.name,
         next_task_id: nextTask?.id,

@@ -75,24 +75,30 @@ export async function handleCatch(message: TelegramMessage, env: Env): Promise<v
     const { calculateTaskBonus } = await import('./tasks');
     const taskBonus = await calculateTaskBonus(db, telegramId);
 
-    if (!canCatchBottle(catchesToday, isVip, inviteBonus, taskBonus)) {
+    // Get ad reward info
+    const { getTodayAdReward } = await import('~/db/queries/ad_rewards');
+    const adReward = await getTodayAdReward(db.d1, telegramId);
+    const adBonus = adReward?.quota_earned || 0;
+
+    if (!canCatchBottle(catchesToday, isVip, inviteBonus, taskBonus, adBonus)) {
       // Calculate permanent quota (base + invite)
       const baseQuota = isVip ? 30 : 3;
       const maxQuota = isVip ? 100 : 10;
       const permanentQuota = Math.min(baseQuota + inviteBonus, maxQuota);
       
+      // Calculate temporary bonus (task + ad)
+      const temporaryBonus = taskBonus + adBonus;
+      
       // Format quota display
-      const quotaDisplay = taskBonus > 0 
-        ? `${catchesToday}/${permanentQuota}+${taskBonus}`
+      const quotaDisplay = temporaryBonus > 0 
+        ? `${catchesToday}/${permanentQuota}+${temporaryBonus}`
         : `${catchesToday}/${permanentQuota}`;
 
       // Get smart buttons based on ad/task availability
       if (!isVip) {
-        const { getTodayAdReward } = await import('~/db/queries/ad_rewards');
         const { getNextIncompleteTask } = await import('./tasks');
         const { getQuotaExhaustedMessage, getQuotaExhaustedButtons } = await import('~/domain/ad_prompt');
 
-        const adReward = await getTodayAdReward(db.d1, telegramId);
         const nextTask = await getNextIncompleteTask(db, user);
 
         const context = {
@@ -279,7 +285,7 @@ export async function handleCatch(message: TelegramMessage, env: Env): Promise<v
 
     // Get updated quota info
     const newCatchesCount = catchesToday + 1;
-    const { quota } = getBottleQuota(!!isVip, inviteBonus);
+    const { quota } = getBottleQuota(!!isVip, inviteBonus, taskBonus, adBonus);
 
     // Translate bottle content if needed
     let bottleContent = bottle.content;
@@ -363,11 +369,9 @@ export async function handleCatch(message: TelegramMessage, env: Env): Promise<v
 
     // Determine what button to show (ad/task/vip) for non-VIP users
     if (!isVip) {
-      const { getTodayAdReward } = await import('~/db/queries/ad_rewards');
       const { getNextIncompleteTask } = await import('./tasks');
       const { getAdPrompt } = await import('~/domain/ad_prompt');
 
-      const adReward = await getTodayAdReward(db.d1, telegramId);
       const nextTask = await getNextIncompleteTask(db, user);
 
       const prompt = getAdPrompt({
