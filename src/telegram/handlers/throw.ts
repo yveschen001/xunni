@@ -318,16 +318,9 @@ export async function processBottleContent(user: User, content: string, env: Env
         // Send notification to matched user (一對一配對，直接推送)
         const matchedChatId = parseInt(matchResult.user.telegram_id);
         
-        // 獲取瓶子內容和擾碼暱稱
-        const bottleOwner = await db.d1
-          .prepare('SELECT nickname, username, mbti_result, zodiac_sign FROM users WHERE telegram_id = ?')
-          .bind(bottle.owner_telegram_id)
-          .first();
-        
+        // 獲取擾碼暱稱
         const { maskNickname } = await import('~/domain/invite');
-        const ownerMaskedNickname = maskNickname(
-          bottleOwner?.nickname || bottleOwner?.username || '匿名'
-        );
+        const ownerMaskedNickname = maskNickname(user.nickname || user.username || '匿名');
         
         // 計算匹配度百分比
         const matchPercentage = Math.min(100, Math.round(matchResult.score.total));
@@ -344,20 +337,20 @@ export async function processBottleContent(user: User, content: string, env: Env
           : '';
         
         // 獲取瓶子內容前 12 字作為預覽
-        const contentPreview = bottle.content.length > 12 
-          ? bottle.content.substring(0, 12) + '...'
-          : bottle.content;
+        const contentPreview = content.length > 12 
+          ? content.substring(0, 12) + '...'
+          : content;
         
         await telegram.sendMessage(
           matchedChatId,
           `🍾 ${contentPreview} 📨🌊\n\n` +
             `📝 暱稱：${ownerMaskedNickname}\n` +
-            `🧠 MBTI：${bottleOwner?.mbti_result || '未設定'}\n` +
-            `⭐ 星座：${bottleOwner?.zodiac_sign || '未設定'}\n` +
+            `🧠 MBTI：${user.mbti_result || '未設定'}\n` +
+            `⭐ 星座：${user.zodiac_sign || '未設定'}\n` +
             `💝 匹配度：${matchPercentage}%\n` +
             highlightsText +
             `\n━━━━━━━━━━━━━━━━\n` +
-            `${bottle.content}\n` +
+            `${content}\n` +
             `━━━━━━━━━━━━━━━━\n\n` +
             `💬 直接按 /reply 回覆訊息開始聊天\n` +
             `📊 使用 /chats 查看所有對話`
