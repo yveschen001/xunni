@@ -256,7 +256,7 @@
     async function loadAdProvider(providerName) {
       // GigaPub script is already loaded in HTML
       // Wait for it to be ready
-      if (providerName === 'gigapub') {
+      if (providerName === 'gigapub' || providerName === 'gigapub_test') {
         // Wait for window.showGiga to be available
         let attempts = 0;
         while (!window.showGiga && attempts < 50) {
@@ -273,7 +273,7 @@
     async function startAd(providerName) {
       adStartTime = Date.now();
 
-      if (providerName === 'gigapub') {
+      if (providerName === 'gigapub' || providerName === 'gigapub_test') {
         // Use real GigaPub ad
         await startGigaPubAd();
       } else {
