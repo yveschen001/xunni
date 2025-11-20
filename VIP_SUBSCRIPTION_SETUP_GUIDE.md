@@ -42,15 +42,64 @@ Bad Request: SUBSCRIPTION_EXPORT_MISSING
 - 用於用戶數據導出（GDPR 要求）
 - 當用戶請求導出訂閱數據時，Telegram 會調用此 URL
 
-**建議的 URL**：
+**✅ 已實現的 URL**：
+
+**Staging 環境**：
 ```
 https://xunni-bot-staging.yves221.workers.dev/subscription-export
 ```
 
-**實現要求**：
-- 接收 POST 請求
-- 包含用戶訂閱數據
-- 返回 JSON 格式
+**Production 環境**：
+```
+https://xunni-bot.yves221.workers.dev/subscription-export
+```
+
+**實現詳情**：
+- ✅ 接收 POST 請求
+- ✅ 驗證 user_id 參數
+- ✅ 返回用戶的訂閱記錄
+- ✅ 返回用戶的支付記錄
+- ✅ JSON 格式響應
+- ✅ 錯誤處理和日誌
+
+**請求格式**：
+```json
+{
+  "user_id": "396943893"
+}
+```
+
+**響應格式**：
+```json
+{
+  "ok": true,
+  "result": {
+    "user_id": "396943893",
+    "subscriptions": [
+      {
+        "id": 1,
+        "start_date": "2025-11-20T00:00:00Z",
+        "expire_date": "2025-12-20T00:00:00Z",
+        "status": "active",
+        "is_auto_renew": true,
+        "created_at": "2025-11-20T00:00:00Z"
+      }
+    ],
+    "payments": [
+      {
+        "id": 1,
+        "telegram_payment_id": "xxx",
+        "amount_stars": 1,
+        "currency": "XTR",
+        "status": "completed",
+        "payment_type": "initial",
+        "is_recurring": false,
+        "created_at": "2025-11-20T00:00:00Z"
+      }
+    ]
+  }
+}
+```
 
 #### 4. 更新配置並部署
 
@@ -118,13 +167,15 @@ pnpm deploy:production
    - 已添加到 `worker.ts`
    - 每小時執行過期檢查
 
-### ⏸️ 待完成（需要 BotFather 設置後）
+### ✅ 已完成（等待 BotFather 設置）
 1. **Subscription Export Endpoint**
-   - 實現 `/subscription-export` API
-   - 返回用戶訂閱數據
-   - GDPR 合規
+   - ✅ 實現 `/subscription-export` API
+   - ✅ 返回用戶訂閱數據
+   - ✅ GDPR 合規
+   - ✅ 錯誤處理和日誌
 
-2. **測試自動續費**
+### ⏸️ 待完成（需要 BotFather 設置後）
+1. **測試自動續費**
    - 模擬 `is_recurring = true` 的 webhook
    - 驗證自動延長 VIP 時間
 

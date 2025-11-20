@@ -52,6 +52,12 @@ export default {
         );
       }
 
+      // Subscription export endpoint (GDPR compliance)
+      if (url.pathname === '/subscription-export' && request.method === 'POST') {
+        const { handleSubscriptionExport } = await import('./api/subscription_export');
+        return await handleSubscriptionExport(request, env);
+      }
+
       // API endpoints
       if (url.pathname.startsWith('/api/')) {
         // Ad completion callback
