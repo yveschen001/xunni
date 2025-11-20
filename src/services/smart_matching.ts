@@ -27,20 +27,20 @@ export const MATCHING_CONFIG = {
       {
         name: 'tier1_same_language',
         limit: 200,
-        timeWindow: '-1 hour',
-        minThreshold: 100,
+        timeWindow: '-2 hours',  // 放寬到 2 小時（原 1 小時）
+        minThreshold: 60,        // 降低到 60 分（原 100 分，太嚴格）
       },
       {
         name: 'tier2_adjacent_age',
         limit: 150,
-        timeWindow: '-2 hours',
-        minThreshold: 150,
+        timeWindow: '-4 hours',  // 放寬到 4 小時（原 2 小時）
+        minThreshold: 50,        // 降低到 50 分（原 150 分，錯誤設置）
       },
       {
         name: 'tier3_all_active',
         limit: 100,
-        timeWindow: '-3 hours',
-        minThreshold: 0,
+        timeWindow: '-6 hours',  // 放寬到 6 小時（原 3 小時）
+        minThreshold: 0,         // 無最低分要求
       },
     ],
     topCandidates: 10,
@@ -51,20 +51,20 @@ export const MATCHING_CONFIG = {
       {
         name: 'tier1_same_language',
         limit: 100,
-        minThreshold: 50,
+        minThreshold: 50,        // 保持 50 分
       },
       {
         name: 'tier2_adjacent_age',
         limit: 50,
-        minThreshold: 80,
+        minThreshold: 40,        // 降低到 40 分（原 80 分，太嚴格）
       },
       {
         name: 'tier3_all_bottles',
         limit: 50,
-        minThreshold: 0,
+        minThreshold: 0,         // 無最低分要求
       },
     ],
-    smartMatchThreshold: 70,
+    smartMatchThreshold: 60,     // 降低到 60 分（原 70 分）
     maxTotalBottles: 200,
   },
 };
