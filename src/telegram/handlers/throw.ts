@@ -343,9 +343,14 @@ export async function processBottleContent(user: User, content: string, env: Env
           ? `\n💡 這個瓶子和你非常合拍！\n${highlights.join('\n')}\n`
           : '';
         
+        // 獲取瓶子內容前 12 字作為預覽
+        const contentPreview = bottle.content.length > 12 
+          ? bottle.content.substring(0, 12) + '...'
+          : bottle.content;
+        
         await telegram.sendMessage(
           matchedChatId,
-          `🎁 有人為你送來了一個漂流瓶！\n\n` +
+          `🍾 ${contentPreview} 📨🌊\n\n` +
             `📝 暱稱：${ownerMaskedNickname}\n` +
             `🧠 MBTI：${bottleOwner?.mbti_result || '未設定'}\n` +
             `⭐ 星座：${bottleOwner?.zodiac_sign || '未設定'}\n` +
