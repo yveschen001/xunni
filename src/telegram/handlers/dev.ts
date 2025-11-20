@@ -67,14 +67,21 @@ export async function handleDevReset(message: TelegramMessage, env: Env): Promis
         sql: 'DELETE FROM bottle_chat_history WHERE user_a_telegram_id = ? OR user_b_telegram_id = ?',
         params: [telegramId, telegramId],
       },
+
+      // Level 1: 最深層的子表（依賴其他子表）
+      { sql: 'DELETE FROM refund_requests WHERE telegram_id = ?', params: [telegramId] },
       
-      // Smart matching history (depends on bottles)
+      // Level 2: 依賴 bottles 和 conversations 的表
       {
         sql: 'DELETE FROM matching_history WHERE matched_user_id = ?',
         params: [telegramId],
       },
 
-      // 2. 刪除對話和漂流瓶
+      // Level 3: 父表 (conversations, bottles)
+      {
+        sql: 'DELETE FROM conversation_identifiers WHERE user_telegram_id = ? OR partner_telegram_id = ?',
+        params: [telegramId, telegramId],
+      },
       {
         sql: 'DELETE FROM conversations WHERE user_a_telegram_id = ? OR user_b_telegram_id = ?',
         params: [telegramId, telegramId],
@@ -84,13 +91,11 @@ export async function handleDevReset(message: TelegramMessage, env: Env): Promis
         params: [telegramId, telegramId],
       },
 
-      // 3. 刪除邀請相關數據
+      // Level 4: 其他用戶相關數據
       {
         sql: 'DELETE FROM invites WHERE inviter_telegram_id = ? OR invitee_telegram_id = ?',
         params: [telegramId, telegramId],
       },
-
-      // 4. 刪除用戶相關數據
       { sql: 'DELETE FROM daily_usage WHERE telegram_id = ?', params: [telegramId] },
       {
         sql: 'DELETE FROM reports WHERE reporter_telegram_id = ? OR reported_telegram_id = ?',
@@ -117,11 +122,10 @@ export async function handleDevReset(message: TelegramMessage, env: Env): Promis
       { sql: 'DELETE FROM user_tasks WHERE telegram_id = ?', params: [telegramId] },
       { sql: 'DELETE FROM task_reminders WHERE telegram_id = ?', params: [telegramId] },
       
-      // VIP subscriptions
+      // VIP subscriptions (after refund_requests)
       { sql: 'DELETE FROM vip_subscriptions WHERE telegram_id = ?', params: [telegramId] },
-      { sql: 'DELETE FROM refund_requests WHERE telegram_id = ?', params: [telegramId] },
 
-      // 5. 最後刪除用戶本身
+      // Level 5: 最後刪除用戶本身
       { sql: 'DELETE FROM users WHERE telegram_id = ?', params: [telegramId] },
     ];
 
@@ -289,15 +293,18 @@ export async function handleDevRestart(message: TelegramMessage, env: Env): Prom
 
   try {
     // Delete user data - use same logic as /dev_reset
-    // 按照外鍵依賴順序刪除
+    // 按照外鍵依賴順序刪除（從最深的子表到父表）
     const tables = [
-      // 1. 先刪除依賴其他表的數據
+      // Level 1: 最深層的子表（依賴其他子表）
+      { sql: 'DELETE FROM refund_requests WHERE telegram_id = ?', params: [telegramId] },
+      
+      // Level 2: 依賴 bottles 和 conversations 的表
       {
-        sql: 'DELETE FROM conversation_messages WHERE sender_telegram_id = ? OR receiver_telegram_id = ?',
-        params: [telegramId, telegramId],
+        sql: 'DELETE FROM matching_history WHERE matched_user_id = ?',
+        params: [telegramId],
       },
       {
-        sql: 'DELETE FROM conversation_identifiers WHERE user_telegram_id = ? OR partner_telegram_id = ?',
+        sql: 'DELETE FROM conversation_messages WHERE sender_telegram_id = ? OR receiver_telegram_id = ?',
         params: [telegramId, telegramId],
       },
       {
@@ -312,14 +319,12 @@ export async function handleDevRestart(message: TelegramMessage, env: Env): Prom
         sql: 'DELETE FROM bottle_chat_history WHERE user_a_telegram_id = ? OR user_b_telegram_id = ?',
         params: [telegramId, telegramId],
       },
-      
-      // Smart matching history (depends on bottles)
-      {
-        sql: 'DELETE FROM matching_history WHERE matched_user_id = ?',
-        params: [telegramId],
-      },
 
-      // 2. 刪除對話和漂流瓶
+      // Level 3: 父表 (conversations, bottles)
+      {
+        sql: 'DELETE FROM conversation_identifiers WHERE user_telegram_id = ? OR partner_telegram_id = ?',
+        params: [telegramId, telegramId],
+      },
       {
         sql: 'DELETE FROM conversations WHERE user_a_telegram_id = ? OR user_b_telegram_id = ?',
         params: [telegramId, telegramId],
@@ -329,13 +334,11 @@ export async function handleDevRestart(message: TelegramMessage, env: Env): Prom
         params: [telegramId, telegramId],
       },
 
-      // 3. 刪除邀請相關數據
+      // Level 4: 其他用戶相關數據
       {
         sql: 'DELETE FROM invites WHERE inviter_telegram_id = ? OR invitee_telegram_id = ?',
         params: [telegramId, telegramId],
       },
-
-      // 4. 刪除用戶相關數據
       { sql: 'DELETE FROM daily_usage WHERE telegram_id = ?', params: [telegramId] },
       {
         sql: 'DELETE FROM reports WHERE reporter_telegram_id = ? OR reported_telegram_id = ?',
@@ -362,11 +365,10 @@ export async function handleDevRestart(message: TelegramMessage, env: Env): Prom
       { sql: 'DELETE FROM user_tasks WHERE telegram_id = ?', params: [telegramId] },
       { sql: 'DELETE FROM task_reminders WHERE telegram_id = ?', params: [telegramId] },
       
-      // VIP subscriptions
+      // VIP subscriptions (after refund_requests)
       { sql: 'DELETE FROM vip_subscriptions WHERE telegram_id = ?', params: [telegramId] },
-      { sql: 'DELETE FROM refund_requests WHERE telegram_id = ?', params: [telegramId] },
 
-      // 5. 最後刪除用戶本身
+      // Level 5: 最後刪除用戶本身
       { sql: 'DELETE FROM users WHERE telegram_id = ?', params: [telegramId] },
     ];
 
