@@ -1258,15 +1258,21 @@ async function testAdSystemBasics() {
   console.log('     ');
   console.log('     📺 Third-Party Video Ads (GigaPub):');
   console.log('     ─────────────────────────────────────');
-  console.log('     Trigger: User clicks "📺 觀看廣告" button');
-  console.log('     Location: /settings or quota exhausted prompt');
+  console.log('     Trigger: Smart button after catching/throwing bottles');
+  console.log('     Location: After /catch or /throw success, quota exhausted prompt');
+  console.log('     Priority Logic:');
+  console.log('       1. Show "📺 看廣告" if < 20 ads watched today');
+  console.log('       2. Show "✨ Task" if ads exhausted but tasks incomplete');
+  console.log('       3. Show "💎 升級 VIP" if both ads and tasks done');
+  console.log('       4. Show nothing if user is VIP');
   console.log('     Flow:');
-  console.log('       1. User clicks watch ad button');
-  console.log('       2. System checks: VIP status, daily limit (20/day)');
-  console.log('       3. Opens ad page with GigaPub video');
-  console.log('       4. User watches ad (30-60 seconds)');
-  console.log('       5. Callback to /api/ad/complete');
-  console.log('       6. Grant +1 daily quota');
+  console.log('       1. User catches/throws bottle successfully');
+  console.log('       2. System checks: VIP status, ads watched (X/20), tasks');
+  console.log('       3. Shows appropriate button based on priority');
+  console.log('       4. Opens ad page with GigaPub video');
+  console.log('       5. User watches ad (30-60 seconds)');
+  console.log('       6. Callback to /api/ad/complete');
+  console.log('       7. Grant +1 daily quota');
   console.log('     ');
   console.log('     📢 Official Text Ads (Channel/Group):');
   console.log('     ─────────────────────────────────────');
@@ -1280,6 +1286,20 @@ async function testAdSystemBasics() {
   console.log('       5. System verifies (if required)');
   console.log('       6. Grant permanent quota (one-time)');
   console.log('     ');
+  console.log('     🎯 Smart Button Priority (Non-VIP Users):');
+  console.log('     ─────────────────────────────────────');
+  console.log('     After catching/throwing bottles:');
+  console.log('       Priority 1: 📺 看廣告 (X/20) - if ads available');
+  console.log('       Priority 2: ✨ Task Name - if tasks incomplete');
+  console.log('       Priority 3: 💎 升級 VIP - if ads & tasks done');
+  console.log('       Priority 4: No button - if user is VIP');
+  console.log('     ');
+  console.log('     When quota exhausted:');
+  console.log('       Shows multiple buttons based on availability:');
+  console.log('       • 📺 看廣告 (X/20) - if < 20 ads watched');
+  console.log('       • ✨ Task Name - if tasks incomplete');
+  console.log('       • 💎 升級 VIP - always shown');
+  console.log('     ');
   console.log('     ⚠️  Limitations:');
   console.log('     • Cannot automate video ad playback (requires user interaction)');
   console.log('     • Cannot verify channel membership without real user');
@@ -1290,6 +1310,7 @@ async function testAdSystemBasics() {
   console.log('     • Database tables and migrations');
   console.log('     • Handler files and imports');
   console.log('     • Token generation and validation logic');
+  console.log('     • Smart button priority logic (domain/ad_prompt.ts)');
   console.log('     ');
 }
 

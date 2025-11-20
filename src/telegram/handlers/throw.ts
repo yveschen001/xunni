@@ -107,31 +107,37 @@ export async function handleThrow(message: TelegramMessage, env: Env): Promise<v
         ? `${throwsToday}/${permanentQuota}+${taskBonus}`
         : `${throwsToday}/${permanentQuota}`;
       
-      const quotaMessage =
-        `❌ 今日漂流瓶配額已用完（${quotaDisplay}）\n\n` +
-        `💡 獲得更多配額的方式：\n` +
-        `• 📺 觀看廣告（每天最多 20 次）\n` +
-        `• 🎁 邀請好友（每人 +1 配額）\n` +
-        `• 💎 升級 VIP（每天 30 個配額）`;
-
-      // Add ad button for non-VIP users
+      // Get smart buttons based on ad/task availability
       if (!isVip) {
-        await telegram.sendMessageWithButtons(chatId, quotaMessage, [
-          [
-            {
-              text: '📺 看廣告獲取更多瓶子 🎁',
-              callback_data: 'watch_ad',
-            },
-          ],
-          [
-            {
-              text: '💎 升級 VIP',
-              callback_data: 'menu_vip',
-            },
-          ],
-        ]);
+        const { getTodayAdReward } = await import('~/db/queries/ad_rewards');
+        const { getNextIncompleteTask } = await import('./tasks');
+        const { getQuotaExhaustedMessage, getQuotaExhaustedButtons } = await import('~/domain/ad_prompt');
+
+        const adReward = await getTodayAdReward(db, telegramId);
+        const nextTask = await getNextIncompleteTask(db, user);
+
+        const context = {
+          user,
+          ads_watched_today: adReward?.ads_watched || 0,
+          has_incomplete_tasks: !!nextTask,
+          next_task_name: nextTask?.name,
+          next_task_id: nextTask?.id,
+        };
+
+        const quotaMessage = getQuotaExhaustedMessage(quotaDisplay, context);
+        const buttons = getQuotaExhaustedButtons(context);
+
+        if (buttons.length > 0) {
+          await telegram.sendMessageWithButtons(chatId, quotaMessage, buttons);
+        } else {
+          await telegram.sendMessage(chatId, quotaMessage);
+        }
       } else {
-        await telegram.sendMessage(chatId, quotaMessage);
+        await telegram.sendMessage(
+          chatId,
+          `❌ 今日漂流瓶配額已用完（${quotaDisplay}）\n\n` +
+            `💡 明天再來丟更多瓶子吧！`
+        );
       }
       return;
     }
@@ -335,21 +341,40 @@ export async function processBottleContent(user: User, content: string, env: Env
     // Send success message
     const successMessage =
       `🎉 漂流瓶已丟出！\n\n` +
-      `瓶子 ID：#${bottleId}\n` +
+      `瓶子 ID：#${bottleId}\n\n` +
       `今日已丟：${quotaDisplay}\n\n` +
       `💡 你的瓶子將在 24 小時內等待有緣人撿起～\n\n` +
       `想要撿別人的瓶子嗎？使用 /catch`;
 
-    // Add ad button for non-VIP users
+    // Determine what button to show (ad/task/vip) for non-VIP users
     if (!isVip) {
-      await telegram.sendMessageWithButtons(chatId, successMessage, [
-        [
-          {
-            text: '📺 看廣告獲取更多瓶子 🎁',
-            callback_data: 'watch_ad',
-          },
-        ],
-      ]);
+      const { getTodayAdReward } = await import('~/db/queries/ad_rewards');
+      const { getNextIncompleteTask } = await import('./tasks');
+      const { getAdPrompt } = await import('~/domain/ad_prompt');
+
+      const adReward = await getTodayAdReward(db, user.telegram_id);
+      const nextTask = await getNextIncompleteTask(db, user);
+
+      const prompt = getAdPrompt({
+        user,
+        ads_watched_today: adReward?.ads_watched || 0,
+        has_incomplete_tasks: !!nextTask,
+        next_task_name: nextTask?.name,
+        next_task_id: nextTask?.id,
+      });
+
+      if (prompt.show_button) {
+        await telegram.sendMessageWithButtons(chatId, successMessage, [
+          [
+            {
+              text: prompt.button_text,
+              callback_data: prompt.button_callback,
+            },
+          ],
+        ]);
+      } else {
+        await telegram.sendMessage(chatId, successMessage);
+      }
     } else {
       await telegram.sendMessage(chatId, successMessage);
     }
