@@ -294,14 +294,31 @@
           </div>
         `;
 
-        // Call GigaPub showGiga()
-        await window.showGiga();
+        console.log('[GigaPub] Starting ad playback...');
+        console.log('[GigaPub] window.showGiga available:', !!window.showGiga);
+
+        // Call GigaPub showGiga() and wait for completion
+        const startTime = Date.now();
+        const result = await window.showGiga();
+        const duration = Date.now() - startTime;
+
+        console.log('[GigaPub] Ad completed:', {
+          result,
+          duration: `${duration}ms`,
+          durationSeconds: `${(duration / 1000).toFixed(2)}s`
+        });
+
+        // Check if ad actually played (should take at least a few seconds)
+        if (duration < 2000) {
+          console.warn('[GigaPub] Ad completed too quickly, might not have played');
+          throw new Error('廣告加載失敗或沒有可用的廣告');
+        }
 
         // Ad completed successfully
         onAdComplete();
 
       } catch (error) {
-        console.error('GigaPub ad error:', error);
+        console.error('[GigaPub] Ad error:', error);
         
         // If GigaPub fails, show error
         showError('廣告加載失敗', error.message || '請稍後再試');
