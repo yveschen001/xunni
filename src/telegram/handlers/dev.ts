@@ -130,6 +130,11 @@ export async function handleDevReset(message: TelegramMessage, env: Env): Promis
     ];
 
     console.error('[handleDevReset] Starting data deletion...');
+    
+    // Disable foreign key checks temporarily
+    await db.d1.exec('PRAGMA foreign_keys = OFF');
+    console.error('[handleDevReset] Foreign key checks disabled');
+    
     for (const { sql, params } of tables) {
       try {
         const result = await db.d1
@@ -142,6 +147,10 @@ export async function handleDevReset(message: TelegramMessage, env: Env): Promis
         console.error(`[handleDevReset] Skipping table: ${sql.split(' ')[2]}`, err);
       }
     }
+    
+    // Re-enable foreign key checks
+    await db.d1.exec('PRAGMA foreign_keys = ON');
+    console.error('[handleDevReset] Foreign key checks re-enabled');
 
     console.error('[handleDevReset] Data deletion complete, verifying user deletion...');
     
@@ -373,6 +382,11 @@ export async function handleDevRestart(message: TelegramMessage, env: Env): Prom
     ];
 
     console.error('[handleDevRestart] Starting data deletion...');
+    
+    // Disable foreign key checks temporarily
+    await db.d1.exec('PRAGMA foreign_keys = OFF');
+    console.error('[handleDevRestart] Foreign key checks disabled');
+    
     for (const { sql, params } of tables) {
       try {
         const result = await db.d1
@@ -385,6 +399,10 @@ export async function handleDevRestart(message: TelegramMessage, env: Env): Prom
         console.error(`[handleDevRestart] Skipping table: ${sql.split(' ')[2]}`, err);
       }
     }
+    
+    // Re-enable foreign key checks
+    await db.d1.exec('PRAGMA foreign_keys = ON');
+    console.error('[handleDevRestart] Foreign key checks re-enabled');
 
     console.error('[handleDevRestart] Data deletion complete, verifying user deletion...');
     
