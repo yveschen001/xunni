@@ -1763,11 +1763,14 @@ async function testSmartMatchingSystem() {
     }
   });
 
-  await testEndpoint('Smart Matching', 'Router callbacks', async () => {
+  await testEndpoint('Smart Matching', 'Direct push notification', async () => {
     const fs = await import('fs');
-    const content = fs.readFileSync('src/router.ts', 'utf-8');
-    if (!content.includes('open_bottle_')) {
-      throw new Error('open_bottle callback not found');
+    const content = fs.readFileSync('src/telegram/handlers/throw.ts', 'utf-8');
+    if (!content.includes('有人為你送來了一個漂流瓶')) {
+      throw new Error('Direct push notification not found');
+    }
+    if (content.includes('dismiss_bottle')) {
+      throw new Error('Should not have dismiss_bottle button (one-to-one matching)');
     }
   });
 

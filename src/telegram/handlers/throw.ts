@@ -315,19 +315,47 @@ export async function processBottleContent(user: User, content: string, env: Env
           )
           .run();
         
-        // Send notification to matched user
+        // Send notification to matched user (一對一配對，直接推送)
         const matchedChatId = parseInt(matchResult.user.telegram_id);
-        await telegram.sendMessageWithButtons(
+        
+        // 獲取瓶子內容和擾碼暱稱
+        const bottleOwner = await db.d1
+          .prepare('SELECT nickname, username, mbti_result, zodiac_sign FROM users WHERE telegram_id = ?')
+          .bind(bottle.owner_telegram_id)
+          .first();
+        
+        const { maskNickname } = await import('~/domain/invite');
+        const ownerMaskedNickname = maskNickname(
+          bottleOwner?.nickname || bottleOwner?.username || '匿名'
+        );
+        
+        // 計算匹配度百分比
+        const matchPercentage = Math.min(100, Math.round(matchResult.score.total));
+        
+        // 構建匹配亮點
+        const highlights: string[] = [];
+        if (matchResult.score.language >= 85) highlights.push('• 語言相同 ✓');
+        if (matchResult.score.mbti >= 80) highlights.push('• MBTI 高度配對 ✓');
+        if (matchResult.score.zodiac >= 80) highlights.push('• 星座高度相容 ✓');
+        if (matchResult.score.ageRange >= 70) highlights.push('• 年齡區間相近 ✓');
+        
+        const highlightsText = highlights.length > 0 
+          ? `\n💡 這個瓶子和你非常合拍！\n${highlights.join('\n')}\n`
+          : '';
+        
+        await telegram.sendMessage(
           matchedChatId,
-          `🎁 有人為你丟了一個漂流瓶！\n\n` +
-            `💫 配對度：${Math.round(matchResult.score.total)}分\n\n` +
-            `想要打開看看嗎？`,
-          [
-            [
-              { text: '✅ 打開瓶子', callback_data: `open_bottle_${bottleId}` },
-              { text: '❌ 暫時不看', callback_data: 'dismiss_bottle' },
-            ],
-          ]
+          `🎁 有人為你送來了一個漂流瓶！\n\n` +
+            `📝 暱稱：${ownerMaskedNickname}\n` +
+            `🧠 MBTI：${bottleOwner?.mbti_result || '未設定'}\n` +
+            `⭐ 星座：${bottleOwner?.zodiac_sign || '未設定'}\n` +
+            `💝 匹配度：${matchPercentage}%\n` +
+            highlightsText +
+            `\n━━━━━━━━━━━━━━━━\n` +
+            `${bottle.content}\n` +
+            `━━━━━━━━━━━━━━━━\n\n` +
+            `💬 直接按 /reply 回覆訊息開始聊天\n` +
+            `📊 使用 /chats 查看所有對話`
         );
         
         console.log(`[Smart Matching] Bottle ${bottleId} matched to user ${matchResult.user.telegram_id} with score ${matchResult.score.total}`);
