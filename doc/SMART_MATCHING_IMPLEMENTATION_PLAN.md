@@ -488,23 +488,53 @@ import type { D1Database } from '@cloudflare/workers-types';
 import { calculateTotalMatchScore, isActiveWithin1Hour } from '~/domain/matching_score';
 
 /**
- * 配對配置參數（性能優化）
+ * 配對配置參數（分層查詢優化）
  */
 const MATCHING_CONFIG = {
   activeMatching: {
-    maxCandidates: 100,        // 最多查詢 100 個候選用戶
-    topCandidates: 5,          // 從前 5 名中隨機選擇
-    activeWindowMinutes: 60,   // 1 小時內活躍
+    layers: [
+      {
+        name: 'tier1_same_language',
+        limit: 200,                      // 第 1 層：200 個同語言用戶
+        timeWindow: '-1 hour',
+        minThreshold: 100,               // 達到 100 個就停止
+      },
+      {
+        name: 'tier2_adjacent_age',
+        limit: 150,                      // 第 2 層：150 個相鄰年齡區間用戶
+        timeWindow: '-2 hours',
+        minThreshold: 150,               // 達到 150 個就停止
+      },
+      {
+        name: 'tier3_all_active',
+        limit: 100,                      // 第 3 層：100 個所有活躍用戶
+        timeWindow: '-3 hours',
+        minThreshold: 0,                 // 最後一層，不設閾值
+      },
+    ],
+    topCandidates: 10,                   // 從前 10 名中隨機選擇（樣本更多）
+    maxTotalCandidates: 450,             // 最多查詢 450 個（200+150+100）
   },
   passiveMatching: {
-    maxBottles: 50,            // 最多查詢 50 個瓶子
-    smartMatchThreshold: 70,   // 智能推薦閾值
-  },
-  preFiltering: {
-    languageEnabled: true,     // 啟用語言預過濾
-    ageRangeEnabled: true,     // 啟用年齡區間預過濾
-    minLanguageScore: 30,      // 語言分數最低 30
-    minAgeRangeScore: 40,      // 年齡區間分數最低 40
+    layers: [
+      {
+        name: 'tier1_same_language',
+        limit: 100,                      // 第 1 層：100 個同語言瓶子
+        minThreshold: 50,                // 達到 50 個就停止
+      },
+      {
+        name: 'tier2_adjacent_age',
+        limit: 50,                       // 第 2 層：50 個相鄰年齡區間瓶子
+        minThreshold: 80,                // 達到 80 個就停止
+      },
+      {
+        name: 'tier3_all_bottles',
+        limit: 50,                       // 第 3 層：50 個所有瓶子
+        minThreshold: 0,                 // 最後一層，不設閾值
+      },
+    ],
+    smartMatchThreshold: 70,             // 智能推薦閾值
+    maxTotalBottles: 200,                // 最多查詢 200 個（100+50+50）
   },
 };
 
@@ -534,28 +564,87 @@ export async function findActiveMatchForBottle(
   
   if (!bottle) return null;
   
-  // 2. 查找候選用戶（必須 1 小時內活躍）
-  // 性能優化：LIMIT 100，使用索引，只查詢需要的欄位
-  const candidates = await db
+  // 2. 分層查找候選用戶
+  const allCandidates: User[] = [];
+  
+  // 第 1 層：優先查找同語言用戶（1 小時內，200 個）
+  const tier1 = await db
     .prepare(`
       SELECT 
-        telegram_id,
-        language,
-        mbti_result,
-        zodiac,
-        blood_type,
-        birthday,
-        last_active_at,
-        is_vip
+        telegram_id, language, mbti_result, zodiac, 
+        blood_type, birthday, last_active_at, is_vip
       FROM users
       WHERE telegram_id != ?
         AND is_banned = 0
+        AND language = ?
         AND last_active_at > datetime('now', '-1 hour')
       ORDER BY last_active_at DESC
       LIMIT ?
     `)
-    .bind(bottle.owner_id, MATCHING_CONFIG.activeMatching.maxCandidates)
+    .bind(bottle.owner_id, bottle.owner_language, MATCHING_CONFIG.activeMatching.layers[0].limit)
     .all();
+  
+  allCandidates.push(...(tier1.results as User[]));
+  
+  // 如果第 1 層已經有足夠候選（> 100），直接返回
+  if (allCandidates.length >= MATCHING_CONFIG.activeMatching.layers[0].minThreshold) {
+    console.log(`[Layered Query] Tier 1 sufficient: ${allCandidates.length} candidates`);
+  } else {
+    // 第 2 層：查找相鄰年齡區間用戶（2 小時內，150 個）
+    const ownerAgeRange = getAgeRange(calculateAge(bottle.owner_birthday));
+    const adjacentRanges = getAdjacentAgeRanges(ownerAgeRange);
+    
+    const tier2 = await db
+      .prepare(`
+        SELECT 
+          telegram_id, language, mbti_result, zodiac, 
+          blood_type, birthday, last_active_at, is_vip
+        FROM users
+        WHERE telegram_id != ?
+          AND is_banned = 0
+          AND age_range IN (?, ?, ?)
+          AND last_active_at > datetime('now', '-2 hours')
+          AND telegram_id NOT IN (${allCandidates.map(() => '?').join(',') || 'NULL'})
+        ORDER BY last_active_at DESC
+        LIMIT ?
+      `)
+      .bind(
+        bottle.owner_id,
+        ...adjacentRanges,
+        ...allCandidates.map(u => u.telegram_id),
+        MATCHING_CONFIG.activeMatching.layers[1].limit
+      )
+      .all();
+    
+    allCandidates.push(...(tier2.results as User[]));
+    
+    // 如果第 2 層仍不足，查找第 3 層
+    if (allCandidates.length < MATCHING_CONFIG.activeMatching.layers[1].minThreshold) {
+      const tier3 = await db
+        .prepare(`
+          SELECT 
+            telegram_id, language, mbti_result, zodiac, 
+            blood_type, birthday, last_active_at, is_vip
+          FROM users
+          WHERE telegram_id != ?
+            AND is_banned = 0
+            AND last_active_at > datetime('now', '-3 hours')
+            AND telegram_id NOT IN (${allCandidates.map(() => '?').join(',') || 'NULL'})
+          ORDER BY last_active_at DESC
+          LIMIT ?
+        `)
+        .bind(
+          bottle.owner_id,
+          ...allCandidates.map(u => u.telegram_id),
+          MATCHING_CONFIG.activeMatching.layers[2].limit
+        )
+        .all();
+      
+      allCandidates.push(...(tier3.results as User[]));
+    }
+  }
+  
+  const candidates = { results: allCandidates };
   
   if (!candidates.results || candidates.results.length === 0) {
     return null;
