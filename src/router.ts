@@ -225,14 +225,7 @@ export async function routeUpdate(update: TelegramUpdate, env: Env): Promise<voi
         return;
       }
 
-      // Try conversation message (priority over throw bottle)
-      const { handleMessageForward } = await import('./telegram/handlers/message_forward');
-      const isConversationMessage = await handleMessageForward(message, env);
-      if (isConversationMessage) {
-        return;
-      }
-
-      // Try throw bottle content input
+      // Try throw bottle content input (PRIORITY: check session-based flows first!)
       const { processBottleContent } = await import('./telegram/handlers/throw');
       const { getActiveSession, deleteSession } = await import('./db/queries/sessions');
       const throwSession = await getActiveSession(db, user.telegram_id, 'throw_bottle');
@@ -276,6 +269,13 @@ export async function routeUpdate(update: TelegramUpdate, env: Env): Promise<voi
           );
           return;
         }
+      }
+
+      // Try conversation message (only if not in throw flow)
+      const { handleMessageForward } = await import('./telegram/handlers/message_forward');
+      const isConversationMessage = await handleMessageForward(message, env);
+      if (isConversationMessage) {
+        return;
       }
     }
 
