@@ -69,7 +69,7 @@ export async function handleDevReset(message: TelegramMessage, env: Env): Promis
       },
 
       // Level 1: 最深層的子表（依賴其他子表）
-      { sql: 'DELETE FROM refund_requests WHERE telegram_id = ?', params: [telegramId] },
+      { sql: 'DELETE FROM refund_requests WHERE user_id = ?', params: [telegramId] },
       
       // Level 2: 依賴 bottles 和 conversations 的表
       {
@@ -101,7 +101,7 @@ export async function handleDevReset(message: TelegramMessage, env: Env): Promis
         sql: 'DELETE FROM reports WHERE reporter_telegram_id = ? OR reported_telegram_id = ?',
         params: [telegramId, telegramId],
       },
-      { sql: 'DELETE FROM bans WHERE telegram_id = ?', params: [telegramId] },
+      { sql: 'DELETE FROM bans WHERE user_id = ?', params: [telegramId] },
       {
         sql: 'DELETE FROM user_blocks WHERE blocker_telegram_id = ? OR blocked_telegram_id = ?',
         params: [telegramId, telegramId],
@@ -114,16 +114,16 @@ export async function handleDevReset(message: TelegramMessage, env: Env): Promis
       // Ad rewards and analytics
       { sql: 'DELETE FROM ad_rewards WHERE telegram_id = ?', params: [telegramId] },
       { sql: 'DELETE FROM ad_provider_logs WHERE telegram_id = ?', params: [telegramId] },
-      { sql: 'DELETE FROM analytics_events WHERE telegram_id = ?', params: [telegramId] },
-      { sql: 'DELETE FROM funnel_events WHERE telegram_id = ?', params: [telegramId] },
-      { sql: 'DELETE FROM daily_user_summary WHERE telegram_id = ?', params: [telegramId] },
+      { sql: 'DELETE FROM analytics_events WHERE user_id = ?', params: [telegramId] },
+      { sql: 'DELETE FROM funnel_events WHERE user_id = ?', params: [telegramId] },
+      { sql: 'DELETE FROM daily_user_summary WHERE user_id = ?', params: [telegramId] },
       
       // Tasks
-      { sql: 'DELETE FROM user_tasks WHERE telegram_id = ?', params: [telegramId] },
-      { sql: 'DELETE FROM task_reminders WHERE telegram_id = ?', params: [telegramId] },
+      { sql: 'DELETE FROM user_tasks WHERE user_id = ?', params: [telegramId] },
+      { sql: 'DELETE FROM task_reminders WHERE user_id = ?', params: [telegramId] },
       
       // VIP subscriptions (after refund_requests)
-      { sql: 'DELETE FROM vip_subscriptions WHERE telegram_id = ?', params: [telegramId] },
+      { sql: 'DELETE FROM vip_subscriptions WHERE user_id = ?', params: [telegramId] },
 
       // Level 5: 最後刪除用戶本身
       { sql: 'DELETE FROM users WHERE telegram_id = ?', params: [telegramId] },
@@ -325,7 +325,7 @@ export async function handleDevRestart(message: TelegramMessage, env: Env): Prom
     // 按照外鍵依賴順序刪除（從最深的子表到父表）
     const tables = [
       // Level 1: 最深層的子表（依賴其他子表）
-      { sql: 'DELETE FROM refund_requests WHERE telegram_id = ?', params: [telegramId] },
+      { sql: 'DELETE FROM refund_requests WHERE user_id = ?', params: [telegramId] },
       
       // Level 2: 依賴 bottles 和 conversations 的表
       {
@@ -343,10 +343,6 @@ export async function handleDevRestart(message: TelegramMessage, env: Env): Prom
       {
         sql: 'DELETE FROM conversation_new_message_posts WHERE user_telegram_id = ?',
         params: [telegramId],
-      },
-      {
-        sql: 'DELETE FROM bottle_chat_history WHERE user_a_telegram_id = ? OR user_b_telegram_id = ?',
-        params: [telegramId, telegramId],
       },
 
       // Level 3: 父表 (conversations, bottles)
@@ -373,7 +369,7 @@ export async function handleDevRestart(message: TelegramMessage, env: Env): Prom
         sql: 'DELETE FROM reports WHERE reporter_telegram_id = ? OR reported_telegram_id = ?',
         params: [telegramId, telegramId],
       },
-      { sql: 'DELETE FROM bans WHERE telegram_id = ?', params: [telegramId] },
+      { sql: 'DELETE FROM bans WHERE user_id = ?', params: [telegramId] },
       {
         sql: 'DELETE FROM user_blocks WHERE blocker_telegram_id = ? OR blocked_telegram_id = ?',
         params: [telegramId, telegramId],
@@ -386,16 +382,16 @@ export async function handleDevRestart(message: TelegramMessage, env: Env): Prom
       // Ad rewards and analytics
       { sql: 'DELETE FROM ad_rewards WHERE telegram_id = ?', params: [telegramId] },
       { sql: 'DELETE FROM ad_provider_logs WHERE telegram_id = ?', params: [telegramId] },
-      { sql: 'DELETE FROM analytics_events WHERE telegram_id = ?', params: [telegramId] },
-      { sql: 'DELETE FROM funnel_events WHERE telegram_id = ?', params: [telegramId] },
-      { sql: 'DELETE FROM daily_user_summary WHERE telegram_id = ?', params: [telegramId] },
+      { sql: 'DELETE FROM analytics_events WHERE user_id = ?', params: [telegramId] },
+      { sql: 'DELETE FROM funnel_events WHERE user_id = ?', params: [telegramId] },
+      { sql: 'DELETE FROM daily_user_summary WHERE user_id = ?', params: [telegramId] },
       
       // Tasks
-      { sql: 'DELETE FROM user_tasks WHERE telegram_id = ?', params: [telegramId] },
-      { sql: 'DELETE FROM task_reminders WHERE telegram_id = ?', params: [telegramId] },
+      { sql: 'DELETE FROM user_tasks WHERE user_id = ?', params: [telegramId] },
+      { sql: 'DELETE FROM task_reminders WHERE user_id = ?', params: [telegramId] },
       
       // VIP subscriptions (after refund_requests)
-      { sql: 'DELETE FROM vip_subscriptions WHERE telegram_id = ?', params: [telegramId] },
+      { sql: 'DELETE FROM vip_subscriptions WHERE user_id = ?', params: [telegramId] },
 
       // Level 5: 最後刪除用戶本身
       { sql: 'DELETE FROM users WHERE telegram_id = ?', params: [telegramId] },
