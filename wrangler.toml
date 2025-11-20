@@ -44,6 +44,8 @@ AD_PROVIDER_STRATEGY = "priority"
 AD_REWARD_SECRET = "NOGD2InZ/VuIhZPSiajhwdmIc/PKHnijE/VSUKxzspM="
 # Official Channel ID for task verification
 OFFICIAL_CHANNEL_ID = "-1003260293651"
+# VIP Subscription (requires BotFather setup - set to "true" after enabling in @BotFather)
+ENABLE_VIP_SUBSCRIPTION = "false"
 
 # Staging D1 Database
 [[env.staging.d1_databases]]
@@ -84,6 +86,8 @@ AD_PROVIDER_STRATEGY = "priority"
 AD_REWARD_SECRET = "NOGD2InZ/VuIhZPSiajhwdmIc/PKHnijE/VSUKxzspM="
 # Official Channel ID for task verification
 OFFICIAL_CHANNEL_ID = "-1003260293651"
+# VIP Subscription (requires BotFather setup - set to "true" after enabling in @BotFather)
+ENABLE_VIP_SUBSCRIPTION = "false"
 
 # Production D1 Database
 # Run: wrangler d1 create xunni-db-production

@@ -172,20 +172,29 @@ async function sendVipInvoice(
   env: Env
 ): Promise<void> {
   const priceStars = resolveVipPrice(env);
-  const title = 'XunNi VIP 訂閱（月費）';
-  const description =
-    `訂閱 XunNi VIP 會員，每月自動續費！\n\n` +
-    `• 每天 30 個漂流瓶配額（最高 100 個/天）\n` +
-    `• 可篩選配對對象的 MBTI 和星座\n` +
-    `• 34 種語言自動翻譯（OpenAI GPT 優先）\n` +
-    `• 無廣告體驗\n\n` +
-    `💡 可隨時在 Telegram 設定中取消訂閱`;
+  
+  // Check if subscription is enabled (requires BotFather setup)
+  const enableSubscription = env.ENABLE_VIP_SUBSCRIPTION === 'true';
+  
+  const title = enableSubscription 
+    ? 'XunNi VIP 訂閱（月費）'
+    : isRenewal ? 'XunNi VIP 續訂' : 'XunNi VIP 購買';
+    
+  const description = enableSubscription
+    ? `訂閱 XunNi VIP 會員，每月自動續費！\n\n` +
+      `• 每天 30 個漂流瓶配額（最高 100 個/天）\n` +
+      `• 可篩選配對對象的 MBTI 和星座\n` +
+      `• 34 種語言自動翻譯（OpenAI GPT 優先）\n` +
+      `• 無廣告體驗\n\n` +
+      `💡 可隨時在 Telegram 設定中取消訂閱`
+    : `升級 VIP 會員，享受以下權益：\n` +
+      `• 每天 30 個漂流瓶配額（最高 100 個/天）\n` +
+      `• 可篩選配對對象的 MBTI 和星座\n` +
+      `• 34 種語言自動翻譯（OpenAI GPT 優先）\n` +
+      `• 無廣告體驗`;
 
-  // 30 days = 2592000 seconds
-  const SUBSCRIPTION_PERIOD_30_DAYS = 30 * 24 * 60 * 60;
-
-  // Create invoice with subscription
-  const invoice = {
+  // Create invoice
+  const invoice: any = {
     chat_id: chatId,
     title,
     description,
@@ -194,20 +203,27 @@ async function sendVipInvoice(
       type: 'vip_subscription',
       duration_days: VIP_DURATION_DAYS,
       is_renewal: isRenewal,
-      is_subscription: true,
+      is_subscription: enableSubscription,
     }),
     provider_token: '', // Empty for Telegram Stars
     currency: 'XTR', // Telegram Stars
     prices: [
       {
-        label: 'VIP 訂閱',
+        label: enableSubscription ? 'VIP 訂閱' : 'VIP 會員 (30 天)',
         amount: priceStars,
       },
     ],
-    subscription_period: SUBSCRIPTION_PERIOD_30_DAYS, // Enable auto-subscription
   };
+  
+  // Add subscription_period only if enabled
+  if (enableSubscription) {
+    const SUBSCRIPTION_PERIOD_30_DAYS = 30 * 24 * 60 * 60;
+    invoice.subscription_period = SUBSCRIPTION_PERIOD_30_DAYS;
+  }
 
   // Send invoice via Telegram API
+  console.error('[sendVipInvoice] Sending invoice:', JSON.stringify(invoice, null, 2));
+  
   const response = await fetch(
     `https://api.telegram.org/bot${env.TELEGRAM_BOT_TOKEN}/sendInvoice`,
     {
@@ -217,8 +233,11 @@ async function sendVipInvoice(
     }
   );
 
+  const result = await response.json();
+  console.error('[sendVipInvoice] Telegram API response:', JSON.stringify(result, null, 2));
+
   if (!response.ok) {
-    throw new Error('Failed to send invoice');
+    throw new Error(`Failed to send invoice: ${JSON.stringify(result)}`);
   }
 }
 
