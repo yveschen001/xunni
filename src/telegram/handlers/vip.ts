@@ -329,31 +329,25 @@ export async function handleSuccessfulPayment(
       .bind(newExpire.toISOString(), telegramId)
       .run();
 
-    // Create payment record with is_recurring flag
+    // Create payment record
+    // Note: Using 'telegram_id' and 'amount' fields (exist in all schemas)
     await db.d1
       .prepare(
         `
       INSERT INTO payments (
-        user_id,
+        telegram_id,
         telegram_payment_id,
-        amount_stars,
+        amount,
         currency,
-        status,
-        payload,
-        payment_type,
-        is_recurring,
-        created_at
-      ) VALUES (?, ?, ?, ?, 'completed', ?, ?, ?, datetime('now'))
+        status
+      ) VALUES (?, ?, ?, ?, 'completed')
     `
       )
       .bind(
         telegramId,
         payment.telegram_payment_charge_id,
         priceStars,
-        'XTR',
-        payment.invoice_payload,
-        isRecurring ? 'auto_renewal' : (isRenewal ? 'renewal' : 'initial'),
-        isRecurring ? 1 : 0
+        'XTR'
       )
       .run();
 
