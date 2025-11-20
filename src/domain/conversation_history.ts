@@ -54,6 +54,7 @@ export function buildHistoryPostContent(
     mbti: string;
     bloodType: string;
     zodiac: string;
+    matchScore?: number;
   }
 ): string {
   let content = `💬 與 #${identifier} 的對話記錄（第 ${postNumber} 頁）\n\n`;
@@ -64,7 +65,11 @@ export function buildHistoryPostContent(
     content += `📝 暱稱：${partnerInfo.maskedNickname}\n`;
     content += `🧠 MBTI：${partnerInfo.mbti}\n`;
     content += `🩸 血型：${partnerInfo.bloodType}\n`;
-    content += `⭐ 星座：${partnerInfo.zodiac}\n\n`;
+    content += `⭐ 星座：${partnerInfo.zodiac}\n`;
+    if (partnerInfo.matchScore) {
+      content += `💫 配對度：${Math.round(partnerInfo.matchScore)}分\n`;
+    }
+    content += `\n`;
   }
 
   content += `━━━━━━━━━━━━━━━━\n\n`;
@@ -94,6 +99,7 @@ export function buildNewMessagePostContent(
     mbti: string;
     bloodType: string;
     zodiac: string;
+    matchScore?: number;
   }
 ): string {
   const timeStr = formatTime(messageTime);
@@ -106,7 +112,11 @@ export function buildNewMessagePostContent(
     content += `📝 暱稱：${partnerInfo.maskedNickname}\n`;
     content += `🧠 MBTI：${partnerInfo.mbti}\n`;
     content += `🩸 血型：${partnerInfo.bloodType}\n`;
-    content += `⭐ 星座：${partnerInfo.zodiac}\n\n`;
+    content += `⭐ 星座：${partnerInfo.zodiac}\n`;
+    if (partnerInfo.matchScore) {
+      content += `💫 配對度：${Math.round(partnerInfo.matchScore)}分\n`;
+    }
+    content += `\n`;
   }
 
   content += `[${timeStr}] 對方：\n${messageContent}\n\n`;

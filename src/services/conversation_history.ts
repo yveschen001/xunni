@@ -39,6 +39,7 @@ export async function updateConversationHistory(
     mbti: string;
     bloodType: string;
     zodiac: string;
+    matchScore?: number;
   }
 ): Promise<void> {
   const telegram = createTelegramService(env);
@@ -206,6 +207,7 @@ export async function updateNewMessagePost(
     mbti: string;
     bloodType: string;
     zodiac: string;
+    matchScore?: number;
   }
 ): Promise<void> {
   const telegram = createTelegramService(env);
