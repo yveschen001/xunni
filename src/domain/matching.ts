@@ -31,6 +31,7 @@ export interface UserMatchData {
   birthday: string;
   last_active_at: string;
   is_vip: number;
+  gender?: string; // 用於性別過濾
 }
 
 export interface BottleMatchData {

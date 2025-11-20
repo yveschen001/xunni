@@ -98,7 +98,8 @@ export async function findActiveMatchForBottle(
       SELECT 
         b.*,
         u.birthday as owner_birthday,
-        u.language_pref as owner_language
+        u.language_pref as owner_language,
+        u.gender as owner_gender
       FROM bottles b
       JOIN users u ON b.owner_telegram_id = u.telegram_id
       WHERE b.id = ?
@@ -108,19 +109,28 @@ export async function findActiveMatchForBottle(
   
   if (!bottle) return null;
   
+  // 確定目標性別過濾條件
+  const targetGender = bottle.target_gender || 'any';
+  const genderFilter = targetGender === 'any' 
+    ? '' 
+    : `AND gender = '${targetGender}'`;
+  
+  console.log(`[Smart Matching] Bottle ${bottleId} looking for gender: ${targetGender}`);
+  
   const allCandidates: UserMatchData[] = [];
   
-  // 2. 第 1 層：優先查找同語言用戶（1 小時內，200 個）
+  // 2. 第 1 層：優先查找同語言用戶（2 小時內，200 個）
   const tier1 = await db
     .prepare(`
       SELECT 
         telegram_id, language_pref as language, mbti_result, zodiac_sign as zodiac,
-        blood_type, birthday, last_active_at, is_vip
+        blood_type, birthday, last_active_at, is_vip, gender
       FROM users
       WHERE telegram_id != ?
         AND is_banned = 0
         AND language_pref = ?
         AND last_active_at > datetime('now', '${MATCHING_CONFIG.activeMatching.layers[0].timeWindow}')
+        ${genderFilter}
       ORDER BY last_active_at DESC
       LIMIT ?
     `)
@@ -137,7 +147,7 @@ export async function findActiveMatchForBottle(
   
   // 如果第 1 層已經有足夠候選（> 100），直接進行配對
   if (allCandidates.length < MATCHING_CONFIG.activeMatching.layers[0].minThreshold) {
-    // 3. 第 2 層：查找相鄰年齡區間用戶（2 小時內，150 個）
+    // 3. 第 2 層：查找相鄰年齡區間用戶（4 小時內，150 個）
     const ownerAgeRange = getAgeRange(bottle.owner_birthday);
     const adjacentRanges = getAdjacentAgeRanges(ownerAgeRange);
     
@@ -148,13 +158,14 @@ export async function findActiveMatchForBottle(
       .prepare(`
         SELECT 
           telegram_id, language_pref as language, mbti_result, zodiac_sign as zodiac,
-          blood_type, birthday, last_active_at, is_vip
+          blood_type, birthday, last_active_at, is_vip, gender
         FROM users
         WHERE telegram_id != ?
           AND is_banned = 0
           AND age_range IN (?, ?, ?)
           AND last_active_at > datetime('now', '${MATCHING_CONFIG.activeMatching.layers[1].timeWindow}')
           AND telegram_id NOT IN (${placeholders})
+          ${genderFilter}
         ORDER BY last_active_at DESC
         LIMIT ?
       `)
@@ -179,12 +190,13 @@ export async function findActiveMatchForBottle(
         .prepare(`
           SELECT 
             telegram_id, language_pref as language, mbti_result, zodiac_sign as zodiac,
-            blood_type, birthday, last_active_at, is_vip
+            blood_type, birthday, last_active_at, is_vip, gender
           FROM users
           WHERE telegram_id != ?
             AND is_banned = 0
             AND last_active_at > datetime('now', '${MATCHING_CONFIG.activeMatching.layers[2].timeWindow}')
             AND telegram_id NOT IN (${placeholders2})
+            ${genderFilter}
           ORDER BY last_active_at DESC
           LIMIT ?
         `)
@@ -259,6 +271,12 @@ export async function findSmartBottleForUser(
   
   if (!user) return null;
   
+  // 性別過濾：瓶子的 target_gender 必須是 'any' 或匹配用戶性別
+  const userGender = user.gender || 'any';
+  const genderFilter = `AND (b.target_gender = 'any' OR b.target_gender = '${userGender}')`;
+  
+  console.log(`[Smart Matching] User ${userId} (gender: ${userGender}) looking for bottles`);
+  
   const allBottles: any[] = [];
   
   // 2. 第 1 層：優先查找同語言瓶子（100 個）
@@ -266,7 +284,7 @@ export async function findSmartBottleForUser(
     .prepare(`
       SELECT 
         b.id, b.content, b.owner_telegram_id as owner_id, b.language_pref as language,
-        b.mbti_result, b.zodiac_sign as zodiac, b.blood_type, b.created_at,
+        b.mbti_result, b.zodiac_sign as zodiac, b.blood_type, b.created_at, b.target_gender,
         u.birthday as owner_birthday, u.nickname as owner_nickname
       FROM bottles b
       JOIN users u ON b.owner_telegram_id = u.telegram_id
@@ -277,6 +295,7 @@ export async function findSmartBottleForUser(
           SELECT bottle_id FROM catches WHERE catcher_telegram_id = ?
         )
         AND u.is_banned = 0
+        ${genderFilter}
       ORDER BY b.created_at DESC
       LIMIT ?
     `)
@@ -304,7 +323,7 @@ export async function findSmartBottleForUser(
       .prepare(`
         SELECT 
           b.id, b.content, b.owner_telegram_id as owner_id, b.language_pref as language,
-          b.mbti_result, b.zodiac_sign as zodiac, b.blood_type, b.created_at,
+          b.mbti_result, b.zodiac_sign as zodiac, b.blood_type, b.created_at, b.target_gender,
           u.birthday as owner_birthday, u.nickname as owner_nickname
         FROM bottles b
         JOIN users u ON b.owner_telegram_id = u.telegram_id
@@ -316,6 +335,7 @@ export async function findSmartBottleForUser(
           )
           AND b.id NOT IN (${placeholders})
           AND u.is_banned = 0
+          ${genderFilter}
         ORDER BY b.created_at DESC
         LIMIT ?
       `)
@@ -341,7 +361,7 @@ export async function findSmartBottleForUser(
         .prepare(`
           SELECT 
             b.id, b.content, b.owner_telegram_id as owner_id, b.language_pref as language,
-            b.mbti_result, b.zodiac_sign as zodiac, b.blood_type, b.created_at,
+            b.mbti_result, b.zodiac_sign as zodiac, b.blood_type, b.created_at, b.target_gender,
             u.birthday as owner_birthday, u.nickname as owner_nickname
           FROM bottles b
           JOIN users u ON b.owner_telegram_id = u.telegram_id
@@ -352,6 +372,7 @@ export async function findSmartBottleForUser(
             )
             AND b.id NOT IN (${placeholders2})
             AND u.is_banned = 0
+            ${genderFilter}
           ORDER BY b.created_at DESC
           LIMIT ?
         `)
