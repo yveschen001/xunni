@@ -48,6 +48,9 @@ AD_REWARD_SECRET = "NOGD2InZ/VuIhZPSiajhwdmIc/PKHnijE/VSUKxzspM="
 OFFICIAL_CHANNEL_ID = "-1003260293651"
 # VIP Subscription (requires BotFather setup - set to "true" after enabling in @BotFather)
 ENABLE_VIP_SUBSCRIPTION = "false"
+# Smart Matching Configuration
+ENABLE_SMART_MATCHING = "true"
+SMART_MATCHING_THRESHOLD = "70"  # Minimum score for smart recommendation
 
 # Staging D1 Database
 [[env.staging.d1_databases]]
@@ -90,6 +93,9 @@ AD_REWARD_SECRET = "NOGD2InZ/VuIhZPSiajhwdmIc/PKHnijE/VSUKxzspM="
 OFFICIAL_CHANNEL_ID = "-1003260293651"
 # VIP Subscription (requires BotFather setup - set to "true" after enabling in @BotFather)
 ENABLE_VIP_SUBSCRIPTION = "false"
+# Smart Matching Configuration
+ENABLE_SMART_MATCHING = "true"
+SMART_MATCHING_THRESHOLD = "70"  # Minimum score for smart recommendation
 
 # Production D1 Database
 # Run: wrangler d1 create xunni-db-production

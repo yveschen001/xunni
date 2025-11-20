@@ -1708,6 +1708,118 @@ async function testRouterLogic() {
   });
 }
 
+async function testSmartMatchingSystem() {
+  console.log('\n🎯 Testing Smart Matching System...\n');
+
+  await testEndpoint('Smart Matching', 'Migration 0040 exists', async () => {
+    const fs = await import('fs');
+    if (!fs.existsSync('src/db/migrations/0040_add_smart_matching_fields.sql')) {
+      throw new Error('Missing migration 0040');
+    }
+  });
+
+  await testEndpoint('Smart Matching', 'Migration 0041 exists', async () => {
+    const fs = await import('fs');
+    if (!fs.existsSync('src/db/migrations/0041_create_matching_history.sql')) {
+      throw new Error('Missing migration 0041');
+    }
+  });
+
+  await testEndpoint('Smart Matching', 'Domain layer exists', async () => {
+    const fs = await import('fs');
+    if (!fs.existsSync('src/domain/matching.ts')) {
+      throw new Error('Missing domain/matching.ts');
+    }
+  });
+
+  await testEndpoint('Smart Matching', 'Service layer exists', async () => {
+    const fs = await import('fs');
+    if (!fs.existsSync('src/services/smart_matching.ts')) {
+      throw new Error('Missing services/smart_matching.ts');
+    }
+  });
+
+  await testEndpoint('Smart Matching', 'Configuration exists', async () => {
+    const fs = await import('fs');
+    const wranglerContent = fs.readFileSync('wrangler.toml', 'utf-8');
+    if (!wranglerContent.includes('ENABLE_SMART_MATCHING')) {
+      throw new Error('ENABLE_SMART_MATCHING not found');
+    }
+  });
+
+  await testEndpoint('Smart Matching', 'Throw handler integration', async () => {
+    const fs = await import('fs');
+    const content = fs.readFileSync('src/telegram/handlers/throw.ts', 'utf-8');
+    if (!content.includes('findActiveMatchForBottle')) {
+      throw new Error('Smart matching not integrated');
+    }
+  });
+
+  await testEndpoint('Smart Matching', 'Catch handler integration', async () => {
+    const fs = await import('fs');
+    const content = fs.readFileSync('src/telegram/handlers/catch.ts', 'utf-8');
+    if (!content.includes('findSmartBottleForUser')) {
+      throw new Error('Smart matching not integrated');
+    }
+  });
+
+  await testEndpoint('Smart Matching', 'Router callbacks', async () => {
+    const fs = await import('fs');
+    const content = fs.readFileSync('src/router.ts', 'utf-8');
+    if (!content.includes('open_bottle_')) {
+      throw new Error('open_bottle callback not found');
+    }
+  });
+
+  await testEndpoint('Smart Matching', 'Age range calculation', async () => {
+    const matching = await import('../src/domain/matching.js');
+    const ageRange = matching.getAgeRange('2000-01-01');
+    if (!ageRange) {
+      throw new Error('Age range calculation failed');
+    }
+  });
+
+  await testEndpoint('Smart Matching', 'Language score calculation', async () => {
+    const matching = await import('../src/domain/matching.js');
+    const score = matching.calculateLanguageScore('zh-TW', 'zh-TW', false);
+    if (score !== 100) {
+      throw new Error(`Expected 100, got ${score}`);
+    }
+  });
+
+  await testEndpoint('Smart Matching', 'MBTI score calculation', async () => {
+    const matching = await import('../src/domain/matching.js');
+    const score = matching.calculateMBTIScore('INTJ', 'ENFP');
+    if (score !== 100) {
+      throw new Error(`Expected 100, got ${score}`);
+    }
+  });
+
+  await testEndpoint('Smart Matching', 'Total match score', async () => {
+    const matching = await import('../src/domain/matching.js');
+    const user = {
+      language: 'zh-TW',
+      mbti_result: 'INTJ',
+      zodiac: 'Aries',
+      blood_type: 'A',
+      birthday: '2000-01-01',
+      last_active_at: new Date().toISOString(),
+      is_vip: 0,
+    };
+    const bottle = {
+      language: 'zh-TW',
+      mbti_result: 'ENFP',
+      zodiac: 'Leo',
+      blood_type: 'O',
+      owner_birthday: '2001-01-01',
+    };
+    const score = matching.calculateTotalMatchScore(user, bottle);
+    if (!score || typeof score.total !== 'number') {
+      throw new Error('Score calculation failed');
+    }
+  });
+}
+
 async function testMigrationCompleteness() {
   console.log('\n📦 Testing Migration Completeness...\n');
 
@@ -1833,6 +1945,7 @@ async function runAllTests() {
         await runTestSuite('Ad System Basics', testAdSystemBasics);
         await runTestSuite('Analytics Commands', testAnalyticsCommands);
         await runTestSuite('VIP System', testVipSystem);
+        await runTestSuite('Smart Matching System', testSmartMatchingSystem);
         
         // Critical Bug Prevention Tests
         console.log('\n' + '='.repeat(80));
