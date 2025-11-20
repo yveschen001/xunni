@@ -179,23 +179,17 @@ export async function handleThrow(message: TelegramMessage, env: Env): Promise<v
     // Determine target gender based on user's preference
     const targetGender = getTargetGender(user);
 
-    // Create session with target gender
-    const { upsertSession } = await import('~/db/queries/sessions');
-    await upsertSession(db, telegramId, 'throw_bottle', {
-      target_gender: targetGender,
-    });
-
-    console.error('[handleThrow] Session created:', {
+    // No longer create session - use reply mechanism instead
+    console.error('[handleThrow] Showing throw prompt (reply-based):', {
       userId: telegramId,
-      sessionType: 'throw_bottle',
       targetGender,
     });
 
-    // Directly ask for bottle content
+    // Show prompt with #THROW tag for reply detection
     const targetText =
       targetGender === 'male' ? '男生' : targetGender === 'female' ? '女生' : '任何人';
     const throwPrompt =
-      `🍾 **丟漂流瓶**\n\n` +
+      `🍾 **丟漂流瓶** #THROW\n\n` +
       `🎯 尋找對象：${targetText}\n` +
       `💡 可在 /edit_profile 中修改匹配偏好\n\n` +
       `📝 **請輸入你的漂流瓶內容**\n\n` +
@@ -206,7 +200,8 @@ export async function handleThrow(message: TelegramMessage, env: Env): Promise<v
       `• 不要包含個人聯絡方式\n\n` +
       `💬 **範例**：\n` +
       `「你好！我是一個喜歡音樂和電影的人，希望認識志同道合的朋友～」\n\n` +
-      `⚠️ **注意**：YouTube 等外部連結會被拦截`;
+      `⚠️ **注意**：YouTube 等外部連結會被拦截\n\n` +
+      `💡 **請長按此訊息，選擇「回覆」後輸入內容**`;
 
     await telegram.sendMessageWithButtons(
       chatId,

@@ -218,56 +218,26 @@ export async function routeUpdate(update: TelegramUpdate, env: Env): Promise<voi
         return;
       }
 
-      // Try conversation message (HIGHEST PRIORITY: explicit user action via reply!)
-      // If user uses Telegram's "reply" feature, this is the clearest intent
-      const { handleMessageForward } = await import('./telegram/handlers/message_forward');
-      const isConversationMessage = await handleMessageForward(message, env);
-      if (isConversationMessage) {
-        return;
-      }
-
-      // Try throw bottle content input (session-based, but lower priority than explicit reply)
-      const { processBottleContent } = await import('./telegram/handlers/throw');
-      const { getActiveSession, deleteSession } = await import('./db/queries/sessions');
-      const throwSession = await getActiveSession(db, user.telegram_id, 'throw_bottle');
-
-      console.error('[router] Checking throw session:', {
-        userId: user.telegram_id,
-        hasSession: !!throwSession,
-        hasText: !!text,
-        hasPhoto: !!message.photo,
-        messageType: text ? 'text' : message.photo ? 'photo' : 'other',
-      });
-
-      if (throwSession) {
-        // If user sends a command (starts with '/'), treat it as aborting the throw flow
-        if (isCommand) {
-          console.error('[router] Command received during throw flow, clearing session:', {
-            userId: user.telegram_id,
-            command: text,
-          });
-          await deleteSession(db, user.telegram_id, 'throw_bottle');
-          // Do NOT return here – let command routing below handle it
-        } else if (text) {
-          // Text message - process as bottle content
-          console.error('[router] Processing bottle content:', {
+      // Check if user is replying to a message (HIGHEST PRIORITY: explicit user action!)
+      if (message.reply_to_message && text) {
+        const replyToText = message.reply_to_message.text || '';
+        
+        // Check if replying to throw bottle prompt (#THROW tag)
+        if (replyToText.includes('#THROW')) {
+          console.error('[router] Detected reply to throw bottle prompt:', {
             userId: user.telegram_id,
             contentLength: text.length,
           });
+          
+          const { processBottleContent } = await import('./telegram/handlers/throw');
           await processBottleContent(user, text, env);
           return;
-        } else if (message.photo || message.video || message.document || message.sticker) {
-          // Non-text message - reject
-          console.error('[router] Rejecting non-text message during throw flow:', {
-            userId: user.telegram_id,
-            messageType: message.photo ? 'photo' : message.video ? 'video' : 'other',
-          });
-          await telegram.sendMessage(
-            message.chat.id,
-            '❌ 漂流瓶只允許文字內容\n\n' +
-              '💡 請輸入文字訊息（最短 12 字符，最多 500 字符）\n\n' +
-              '如果不想繼續，請輸入 /menu 返回主選單'
-          );
+        }
+        
+        // Otherwise, check if it's a conversation reply
+        const { handleMessageForward } = await import('./telegram/handlers/message_forward');
+        const isConversationMessage = await handleMessageForward(message, env);
+        if (isConversationMessage) {
           return;
         }
       }
