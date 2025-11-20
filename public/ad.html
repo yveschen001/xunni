@@ -291,30 +291,48 @@
           <div class="loading">
             <div class="loading-spinner"></div>
             <p>正在加載 GigaPub 廣告...</p>
+            <p style="font-size: 12px; color: #999; margin-top: 10px;">請耐心等待廣告加載完成</p>
           </div>
         `;
 
         console.log('[GigaPub] Starting ad playback...');
         console.log('[GigaPub] window.showGiga available:', !!window.showGiga);
+        console.log('[GigaPub] Time:', new Date().toISOString());
 
         // Call GigaPub showGiga() and wait for completion
         const startTime = Date.now();
+        
+        // GigaPub showGiga() returns a Promise that resolves when ad completes
+        // According to GigaPub docs, this should wait for user interaction
         const result = await window.showGiga();
+        
         const duration = Date.now() - startTime;
+        const durationSeconds = (duration / 1000).toFixed(2);
 
         console.log('[GigaPub] Ad completed:', {
           result,
           duration: `${duration}ms`,
-          durationSeconds: `${(duration / 1000).toFixed(2)}s`
+          durationSeconds: `${durationSeconds}s`,
+          timestamp: new Date().toISOString()
         });
 
-        // Check if ad actually played (should take at least a few seconds)
-        if (duration < 2000) {
-          console.warn('[GigaPub] Ad completed too quickly, might not have played');
-          throw new Error('廣告加載失敗或沒有可用的廣告');
+        // Check if ad actually played
+        // GigaPub video ads typically take 5-30 seconds
+        // If it completes in < 3 seconds, something is wrong
+        if (duration < 3000) {
+          console.warn('[GigaPub] Ad completed suspiciously fast:', {
+            duration: `${duration}ms`,
+            result
+          });
+          
+          // Show warning but still count as completed
+          // (GigaPub might not have ads available, but that's not user's fault)
+          showWarningAndComplete(durationSeconds);
+          return;
         }
 
-        // Ad completed successfully
+        // Normal completion (ad played for reasonable duration)
+        console.log('[GigaPub] Ad played successfully for', durationSeconds, 'seconds');
         onAdComplete();
 
       } catch (error) {
@@ -324,6 +342,24 @@
         showError('廣告加載失敗', error.message || '請稍後再試');
         reportError(`GigaPub error: ${error.message || 'Unknown'}`);
       }
+    }
+
+    function showWarningAndComplete(duration) {
+      const container = document.getElementById('adContainer');
+      container.innerHTML = `
+        <div class="loading">
+          <div style="font-size: 48px; margin-bottom: 16px;">⚠️</div>
+          <p style="color: #f39c12; font-size: 16px; margin-bottom: 12px;">廣告播放時間較短</p>
+          <p style="color: #666; font-size: 14px;">播放時長：${duration} 秒</p>
+          <p style="color: #666; font-size: 14px; margin-top: 8px;">可能是廣告庫存不足</p>
+          <p style="color: #666; font-size: 14px; margin-top: 16px;">正在為您計算獎勵...</p>
+        </div>
+      `;
+      
+      // Wait a bit then complete anyway
+      setTimeout(() => {
+        onAdComplete();
+      }, 2000);
     }
 
     function showAdPlaceholder() {
