@@ -127,7 +127,8 @@ export async function handleDevReset(message: TelegramMessage, env: Env): Promis
     );
   } catch (error) {
     console.error('[handleDevReset] Error:', error);
-    await telegram.sendMessage(chatId, '❌ 重置失敗，請稍後再試。');
+    const errorMessage = error instanceof Error ? error.message : String(error);
+    await telegram.sendMessage(chatId, `❌ 重置失敗：${errorMessage}\n\n請稍後再試。`);
   }
 }
 
@@ -307,6 +308,7 @@ export async function handleDevRestart(message: TelegramMessage, env: Env): Prom
       { sql: 'DELETE FROM users WHERE telegram_id = ?', params: [telegramId] },
     ];
 
+    console.error('[handleDevRestart] Starting data deletion...');
     for (const { sql, params } of tables) {
       try {
         await db.d1
@@ -315,13 +317,18 @@ export async function handleDevRestart(message: TelegramMessage, env: Env): Prom
           .run();
       } catch (err) {
         // Ignore table not found errors
-        console.log(`[handleDevRestart] Skipping: ${sql.split(' ')[2]}`);
+        console.error(`[handleDevRestart] Skipping table: ${sql.split(' ')[2]}`, err);
       }
     }
 
+    console.error('[handleDevRestart] Data deletion complete, creating new user...');
+    
     // Create user record with language_selection step
     const { generateInviteCode } = await import('~/domain/user');
     const { createUser } = await import('~/db/queries/users');
+
+    const newInviteCode = generateInviteCode();
+    console.error('[handleDevRestart] Generated invite code:', newInviteCode);
 
     await createUser(db, {
       telegram_id: telegramId,
@@ -329,16 +336,21 @@ export async function handleDevRestart(message: TelegramMessage, env: Env): Prom
       first_name: message.from!.first_name,
       last_name: message.from!.last_name,
       language_pref: message.from!.language_code || 'zh-TW',
-      invite_code: generateInviteCode(),
+      invite_code: newInviteCode,
       onboarding_step: 'language_selection',
     });
 
+    console.error('[handleDevRestart] User created, showing language selection...');
+    
     // Show language selection (start onboarding)
     const { showLanguageSelection } = await import('./language_selection');
     await showLanguageSelection(message, env);
+    
+    console.error('[handleDevRestart] Language selection shown successfully');
   } catch (error) {
     console.error('[handleDevRestart] Error:', error);
-    await telegram.sendMessage(chatId, '❌ 重置失敗，請稍後再試。');
+    const errorMessage = error instanceof Error ? error.message : String(error);
+    await telegram.sendMessage(chatId, `❌ 重置失敗：${errorMessage}\n\n請稍後再試。`);
   }
 }
 

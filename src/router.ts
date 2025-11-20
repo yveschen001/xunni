@@ -713,6 +713,30 @@ export async function routeUpdate(update: TelegramUpdate, env: Env): Promise<voi
       return;
     }
     
+    // Check if user has an active throw_bottle session (waiting for bottle content)
+    // If so, remind them to use "Reply" feature
+    const { getActiveSession } = await import('./db/queries/sessions');
+    const throwSession = await getActiveSession(db, user.telegram_id, 'throw_bottle');
+    
+    if (throwSession) {
+      console.error('[router] User has throw_bottle session but sent direct message:', {
+        userId: user.telegram_id,
+        messageLength: text.length,
+      });
+      
+      await telegram.sendMessage(
+        chatId,
+        '💡 **請長按此訊息，選擇「回覆」後輸入內容**\n\n' +
+          '📝 你正在丟漂流瓶流程中，請：\n' +
+          '1️⃣ 長按上方帶有 **#THROW** 標籤的訊息\n' +
+          '2️⃣ 選擇「回覆」\n' +
+          '3️⃣ 輸入你的瓶子內容\n\n' +
+          '⚠️ 直接發送訊息無法識別，必須使用「回覆」功能\n\n' +
+          '🔄 或者重新開始：/throw'
+      );
+      return;
+    }
+    
     // Default unknown command
     await telegram.sendMessage(
       chatId,
