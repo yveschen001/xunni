@@ -38,7 +38,7 @@ export async function handleAdProviders(message: TelegramMessage, env: Env): Pro
 
   try {
     // Get all providers (including disabled)
-    const providers = await getAllAdProviders(db, false);
+    const providers = await getAllAdProviders(db.d1, false);
 
     if (providers.length === 0) {
       await telegram.sendMessage(

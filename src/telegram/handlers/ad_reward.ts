@@ -96,7 +96,7 @@ export async function handleWatchAd(callbackQuery: CallbackQuery, env: Env): Pro
     }
 
     // Get ad providers
-    const providers = await getAllAdProviders(db, true);
+    const providers = await getAllAdProviders(db.d1, true);
     if (providers.length === 0) {
       await telegram.answerCallbackQuery(callbackQuery.id, {
         text: '❌ 暫無可用的廣告提供商',
@@ -118,13 +118,13 @@ export async function handleWatchAd(callbackQuery: CallbackQuery, env: Env): Pro
     }
 
     // Increment ad view count
-    await incrementAdView(db, telegramId, getTodayDateString());
+    await incrementAdView(db.d1, telegramId, getTodayDateString());
 
     // Record ad view in provider stats
-    await recordAdSuccess(db, selection.provider.provider_name);
+    await recordAdSuccess(db.d1, selection.provider.provider_name);
 
     // Log ad view
-    await createAdProviderLog(db, {
+    await createAdProviderLog(db.d1, {
       telegram_id: telegramId,
       provider_name: selection.provider.provider_name,
       request_type: 'view',
@@ -244,13 +244,13 @@ export async function handleAdComplete(
     }
 
     // Increment ad completion count
-    const updated = await incrementAdCompletion(db, telegramId, getTodayDateString());
+    const updated = await incrementAdCompletion(db.d1, telegramId, getTodayDateString());
 
     // Record completion in provider stats
-    await recordAdCompletion(db, providerName);
+    await recordAdCompletion(db.d1, providerName);
 
     // Log ad completion
-    await createAdProviderLog(db, {
+    await createAdProviderLog(db.d1, {
       telegram_id: telegramId,
       provider_name: providerName,
       request_type: 'completion',
@@ -279,10 +279,10 @@ ${result.remaining_ads > 0 ? '💡 繼續觀看廣告可獲得更多額度！' :
     console.error('[handleAdComplete] Error:', error);
 
     // Record error in provider stats
-    await recordAdError(db, providerName, (error as Error).message);
+    await recordAdError(db.d1, providerName, (error as Error).message);
 
     // Log error
-    await createAdProviderLog(db, {
+    await createAdProviderLog(db.d1, {
       telegram_id: telegramId,
       provider_name: providerName,
       request_type: 'completion',
@@ -317,10 +317,10 @@ export async function handleAdError(
 
   try {
     // Record error in provider stats
-    await recordAdError(db, providerName, errorMessage);
+    await recordAdError(db.d1, providerName, errorMessage);
 
     // Log error
-    await createAdProviderLog(db, {
+    await createAdProviderLog(db.d1, {
       telegram_id: telegramId,
       provider_name: providerName,
       request_type: 'view',
