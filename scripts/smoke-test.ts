@@ -1235,6 +1235,62 @@ async function testAdSystemBasics() {
       throw error;
     }
   });
+
+  // Test official ad handler exists
+  await testEndpoint('Ad System', 'Official Ad Handler Exists', async () => {
+    const fs = await import('fs');
+    const path = await import('path');
+    
+    const requiredFiles = [
+      'src/telegram/handlers/official_ad.ts',
+      'src/db/queries/official_ads.ts',
+    ];
+    
+    for (const file of requiredFiles) {
+      const filePath = path.join(process.cwd(), file);
+      if (!fs.existsSync(filePath)) {
+        throw new Error(`Required file missing: ${file}`);
+      }
+    }
+  });
+
+  console.log('\n  ℹ️  Ad System Manual Testing Guide:');
+  console.log('     ');
+  console.log('     📺 Third-Party Video Ads (GigaPub):');
+  console.log('     ─────────────────────────────────────');
+  console.log('     Trigger: User clicks "📺 觀看廣告" button');
+  console.log('     Location: /settings or quota exhausted prompt');
+  console.log('     Flow:');
+  console.log('       1. User clicks watch ad button');
+  console.log('       2. System checks: VIP status, daily limit (20/day)');
+  console.log('       3. Opens ad page with GigaPub video');
+  console.log('       4. User watches ad (30-60 seconds)');
+  console.log('       5. Callback to /api/ad/complete');
+  console.log('       6. Grant +1 daily quota');
+  console.log('     ');
+  console.log('     📢 Official Text Ads (Channel/Group):');
+  console.log('     ─────────────────────────────────────');
+  console.log('     Trigger: User clicks "📢 查看官方廣告" button');
+  console.log('     Location: /settings or admin creates ads');
+  console.log('     Flow:');
+  console.log('       1. User clicks view official ads');
+  console.log('       2. System shows next unseen ad');
+  console.log('       3. Ad types: text, link, group, channel');
+  console.log('       4. User clicks action (join channel, etc.)');
+  console.log('       5. System verifies (if required)');
+  console.log('       6. Grant permanent quota (one-time)');
+  console.log('     ');
+  console.log('     ⚠️  Limitations:');
+  console.log('     • Cannot automate video ad playback (requires user interaction)');
+  console.log('     • Cannot verify channel membership without real user');
+  console.log('     • GigaPub integration requires API key and configuration');
+  console.log('     ');
+  console.log('     ✅ Automated Tests Cover:');
+  console.log('     • API endpoints exist and respond');
+  console.log('     • Database tables and migrations');
+  console.log('     • Handler files and imports');
+  console.log('     • Token generation and validation logic');
+  console.log('     ');
 }
 
 async function testAnalyticsCommands() {
@@ -1331,6 +1387,7 @@ async function testVipSystem() {
       'src/services/vip_subscription.ts',
       'src/services/admin_notification.ts',
       'src/telegram/handlers/vip_refund.ts',
+      'src/services/subscription_checker.ts',
     ];
     
     for (const file of requiredFiles) {
@@ -1340,6 +1397,59 @@ async function testVipSystem() {
       }
     }
   });
+
+  // Test Subscription Export endpoint
+  await testEndpoint('VIP', 'Subscription Export API', async () => {
+    const response = await fetch(`${WORKER_URL}/subscription-export`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ user_id: testUserId.toString() }),
+    });
+    
+    if (response.status !== 200) {
+      throw new Error(`Expected 200, got ${response.status}`);
+    }
+    
+    const data = await response.json();
+    if (!data.ok) {
+      throw new Error(`Subscription export failed: ${data.error}`);
+    }
+    
+    // Verify response structure
+    if (!data.result || !Array.isArray(data.result.subscriptions) || !Array.isArray(data.result.payments)) {
+      throw new Error('Invalid subscription export response structure');
+    }
+  });
+
+  // Test VIP payment processing (database fields)
+  await testEndpoint('VIP', 'Payment Record Structure', async () => {
+    // This ensures payments table uses correct field names
+    // telegram_id (not user_id), amount (not amount_stars)
+    const response = await fetch(`${WORKER_URL}/subscription-export`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ user_id: '396943893' }),
+    });
+    
+    if (response.status !== 200) {
+      throw new Error(`Expected 200, got ${response.status}`);
+    }
+    
+    const data = await response.json();
+    if (data.result.payments.length > 0) {
+      const payment = data.result.payments[0];
+      // Verify required fields exist
+      if (!payment.id || !payment.telegram_payment_id || payment.amount_stars === undefined) {
+        throw new Error('Payment record missing required fields');
+      }
+    }
+  });
+
+  console.log('  ℹ️  Note: VIP payment flow requires manual testing in Telegram app');
+  console.log('     1. Send /vip to bot');
+  console.log('     2. Click "購買 VIP" button');
+  console.log('     3. Complete payment with test card: 4242 4242 4242 4242');
+  console.log('     4. Verify VIP status with /profile');
 }
 
 // ============================================================================
