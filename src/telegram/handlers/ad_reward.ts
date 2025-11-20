@@ -159,8 +159,8 @@ export async function handleWatchAd(callbackQuery: CallbackQuery, env: Env): Pro
           ],
           [
             {
-              text: '❌ 取消',
-              callback_data: 'cancel',
+              text: '🏠 返回主選單',
+              callback_data: 'return_to_menu',
             },
           ],
         ],
