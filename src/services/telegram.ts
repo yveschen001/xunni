@@ -281,23 +281,31 @@ export class TelegramService {
     description: string,
     payload: string,
     currency: string,
-    prices: Array<{ label: string; amount: number }>
+    prices: Array<{ label: string; amount: number }>,
+    subscriptionPeriod?: number // Optional: subscription period in seconds (e.g., 2592000 for 30 days)
   ): Promise<boolean> {
     try {
+      const body: any = {
+        chat_id: chatId,
+        title,
+        description,
+        payload,
+        provider_token: '', // Empty for Telegram Stars
+        currency,
+        prices,
+      };
+
+      // Add subscription_period if provided (for recurring payments)
+      if (subscriptionPeriod) {
+        body.subscription_period = subscriptionPeriod;
+      }
+
       const response = await fetch(`${this.baseURL}/sendInvoice`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({
-          chat_id: chatId,
-          title,
-          description,
-          payload,
-          provider_token: '', // Empty for Telegram Stars
-          currency,
-          prices,
-        }),
+        body: JSON.stringify(body),
       });
 
       if (!response.ok) {

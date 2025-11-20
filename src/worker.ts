@@ -203,6 +203,14 @@ export default {
         const { checkVipExpirations } = await import('./services/vip_subscription');
         await checkVipExpirations(env);
       }
+
+      // Check expired subscriptions (Every hour)
+      if (event.cron === '0 * * * *') {
+        // eslint-disable-next-line no-console
+        console.log('[Worker] Checking expired subscriptions...');
+        const { checkExpiredSubscriptions } = await import('./services/subscription_checker');
+        await checkExpiredSubscriptions(env);
+      }
     } catch (error) {
       console.error('[Worker] Scheduled event error:', error);
     }

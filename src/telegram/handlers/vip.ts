@@ -172,15 +172,19 @@ async function sendVipInvoice(
   env: Env
 ): Promise<void> {
   const priceStars = resolveVipPrice(env);
-  const title = isRenewal ? 'XunNi VIP 續訂' : 'XunNi VIP 訂閱';
+  const title = 'XunNi VIP 訂閱（月費）';
   const description =
-    `升級 VIP 會員，享受以下權益：\n` +
+    `訂閱 XunNi VIP 會員，每月自動續費！\n\n` +
     `• 每天 30 個漂流瓶配額（最高 100 個/天）\n` +
     `• 可篩選配對對象的 MBTI 和星座\n` +
     `• 34 種語言自動翻譯（OpenAI GPT 優先）\n` +
-    `• 無廣告體驗`;
+    `• 無廣告體驗\n\n` +
+    `💡 可隨時在 Telegram 設定中取消訂閱`;
 
-  // Create invoice
+  // 30 days = 2592000 seconds
+  const SUBSCRIPTION_PERIOD_30_DAYS = 30 * 24 * 60 * 60;
+
+  // Create invoice with subscription
   const invoice = {
     chat_id: chatId,
     title,
@@ -190,14 +194,17 @@ async function sendVipInvoice(
       type: 'vip_subscription',
       duration_days: VIP_DURATION_DAYS,
       is_renewal: isRenewal,
+      is_subscription: true,
     }),
+    provider_token: '', // Empty for Telegram Stars
     currency: 'XTR', // Telegram Stars
     prices: [
       {
-        label: 'VIP 會員 (30 天)',
+        label: 'VIP 訂閱',
         amount: priceStars,
       },
     ],
+    subscription_period: SUBSCRIPTION_PERIOD_30_DAYS, // Enable auto-subscription
   };
 
   // Send invoice via Telegram API
@@ -262,6 +269,15 @@ export async function handleSuccessfulPayment(
   try {
     // Parse payload
     const payload = JSON.parse(payment.invoice_payload);
+    
+    // Check if this is an auto-renewal (recurring payment)
+    const isRecurring = (payment as any).is_recurring === true;
+    
+    console.error('[handleSuccessfulPayment] Payment details:', {
+      isRecurring,
+      isSubscription: payload.is_subscription,
+      telegramId,
+    });
 
     // Get user
     const user = await findUserByTelegramId(db, telegramId);
@@ -294,7 +310,7 @@ export async function handleSuccessfulPayment(
       .bind(newExpire.toISOString(), telegramId)
       .run();
 
-    // Create payment record
+    // Create payment record with is_recurring flag
     await db.d1
       .prepare(
         `
@@ -306,8 +322,9 @@ export async function handleSuccessfulPayment(
         status,
         payload,
         payment_type,
+        is_recurring,
         created_at
-      ) VALUES (?, ?, ?, ?, 'completed', ?, ?, datetime('now'))
+      ) VALUES (?, ?, ?, ?, 'completed', ?, ?, ?, datetime('now'))
     `
       )
       .bind(
@@ -316,7 +333,8 @@ export async function handleSuccessfulPayment(
         priceStars,
         'XTR',
         payment.invoice_payload,
-        isRenewal ? 'renewal' : 'initial'
+        isRecurring ? 'auto_renewal' : (isRenewal ? 'renewal' : 'initial'),
+        isRecurring ? 1 : 0
       )
       .run();
 
@@ -328,10 +346,18 @@ export async function handleSuccessfulPayment(
       payment.telegram_payment_charge_id
     );
 
-    // Send confirmation
-    await telegram.sendMessage(
-      chatId,
-      `🎉 **支付成功！**\n\n` +
+    // Send confirmation message
+    const confirmMessage = isRecurring
+      ? `🎉 **自動續費成功！**\n\n` +
+        `你的 VIP 訂閱已自動續費！\n` +
+        `新到期時間：${newExpire.toLocaleDateString('zh-TW')}\n\n` +
+        `✨ VIP 權益持續啟用：\n` +
+        `• 每天 30 個漂流瓶配額\n` +
+        `• 可篩選 MBTI 和星座\n` +
+        `• 34 種語言自動翻譯\n` +
+        `• 無廣告體驗\n\n` +
+        `💡 如需取消訂閱，請前往 Telegram 設定 > 訂閱管理`
+      : `🎉 **訂閱成功！**\n\n` +
         `你已成為 VIP 會員！\n` +
         `到期時間：${newExpire.toLocaleDateString('zh-TW')}\n\n` +
         `✨ VIP 權益已啟用：\n` +
@@ -339,14 +365,19 @@ export async function handleSuccessfulPayment(
         `• 可篩選 MBTI 和星座\n` +
         `• 34 種語言自動翻譯\n` +
         `• 無廣告體驗\n\n` +
-        `💡 立即開始使用：/throw`
-    );
+        `🔄 **自動續費**：每月自動扣款，無需手動續費\n` +
+        `💡 如需取消訂閱，請前往 Telegram 設定 > 訂閱管理\n\n` +
+        `🚀 立即開始使用：/throw`;
+
+    await telegram.sendMessage(chatId, confirmMessage);
     
     // Notify super admin
-    await notifySuperAdmin(env, isRenewal ? 'vip_renewed' : 'vip_purchased', {
+    const notificationType = isRecurring ? 'vip_auto_renewed' : (isRenewal ? 'vip_renewed' : 'vip_purchased');
+    await notifySuperAdmin(env, notificationType as any, {
       user_id: telegramId,
       amount_stars: priceStars,
       expire_date: newExpire.toISOString(),
+      is_recurring: isRecurring,
     });
   } catch (error) {
     console.error('[handleSuccessfulPayment] Error:', error);
