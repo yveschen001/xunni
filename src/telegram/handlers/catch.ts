@@ -86,11 +86,32 @@ export async function handleCatch(message: TelegramMessage, env: Env): Promise<v
         ? `${catchesToday}/${permanentQuota}+${taskBonus}`
         : `${catchesToday}/${permanentQuota}`;
       
-      await telegram.sendMessage(
-        chatId,
+      const quotaMessage =
         `❌ 今日漂流瓶配額已用完（${quotaDisplay}）\n\n` +
-          `💡 升級 VIP 可獲得更多配額：/vip`
-      );
+        `💡 獲得更多配額的方式：\n` +
+        `• 📺 觀看廣告（每天最多 20 次）\n` +
+        `• 🎁 邀請好友（每人 +1 配額）\n` +
+        `• 💎 升級 VIP（每天 30 個配額）`;
+
+      // Add ad button for non-VIP users
+      if (!isVip) {
+        await telegram.sendMessageWithButtons(chatId, quotaMessage, [
+          [
+            {
+              text: '📺 看廣告獲取更多瓶子 🎁',
+              callback_data: 'watch_ad',
+            },
+          ],
+          [
+            {
+              text: '💎 升級 VIP',
+              callback_data: 'menu_vip',
+            },
+          ],
+        ]);
+      } else {
+        await telegram.sendMessage(chatId, quotaMessage);
+      }
       return;
     }
 
@@ -287,25 +308,38 @@ export async function handleCatch(message: TelegramMessage, env: Env): Promise<v
       // Same language, no translation needed - don't show any message
       translationSection = '';
     }
-    await telegram.sendMessage(
-      chatId,
+    // Build message
+    const catchMessage =
       `🍾 你撿到了一個漂流瓶！\n\n` +
-        `📝 暱稱：${ownerMaskedNickname}\n` +
-        `🧠 MBTI：${bottle.mbti_result || '未設定'}\n` +
-        `⭐ 星座：${bottle.zodiac || 'Virgo'}\n` +
-        `🗣️ 語言：${ownerLanguage}\n\n` +
-        `━━━━━━━━━━━━━━━━\n` +
-        `${bottleContent}\n\n` +
-        `${translationSection}` +
-        `━━━━━━━━━━━━━━━━\n\n` +
-        `💬 直接按 /reply 回覆訊息聊天\n` +
-        `📊 今日已撿：${newCatchesCount}/${quota}\n\n` +
-        `⚠️ 安全提示：\n` +
-        `• 這是匿名對話，請保護個人隱私\n` +
-        `• 遇到不當內容請使用 /report 舉報\n` +
-        `• 不想再聊可使用 /block 封鎖\n\n` +
-        `🏠 返回主選單：/menu`
-    );
+      `📝 暱稱：${ownerMaskedNickname}\n` +
+      `🧠 MBTI：${bottle.mbti_result || '未設定'}\n` +
+      `⭐ 星座：${bottle.zodiac || 'Virgo'}\n` +
+      `🗣️ 語言：${ownerLanguage}\n\n` +
+      `━━━━━━━━━━━━━━━━\n` +
+      `${bottleContent}\n\n` +
+      `${translationSection}` +
+      `━━━━━━━━━━━━━━━━\n\n` +
+      `💬 直接按 /reply 回覆訊息聊天\n` +
+      `📊 今日已撿：${newCatchesCount}/${quota}\n\n` +
+      `⚠️ 安全提示：\n` +
+      `• 這是匿名對話，請保護個人隱私\n` +
+      `• 遇到不當內容請使用 /report 舉報\n` +
+      `• 不想再聊可使用 /block 封鎖\n\n` +
+      `🏠 返回主選單：/menu`;
+
+    // Add ad button for non-VIP users
+    if (!isVip) {
+      await telegram.sendMessageWithButtons(chatId, catchMessage, [
+        [
+          {
+            text: '📺 看廣告獲取更多瓶子 🎁',
+            callback_data: 'watch_ad',
+          },
+        ],
+      ]);
+    } else {
+      await telegram.sendMessage(chatId, catchMessage);
+    }
 
     // Send notification to bottle owner
     await notifyBottleOwner(bottle.owner_telegram_id, user, env);

@@ -107,11 +107,32 @@ export async function handleThrow(message: TelegramMessage, env: Env): Promise<v
         ? `${throwsToday}/${permanentQuota}+${taskBonus}`
         : `${throwsToday}/${permanentQuota}`;
       
-      await telegram.sendMessage(
-        chatId,
+      const quotaMessage =
         `❌ 今日漂流瓶配額已用完（${quotaDisplay}）\n\n` +
-          `💡 升級 VIP 可獲得更多配額：/vip`
-      );
+        `💡 獲得更多配額的方式：\n` +
+        `• 📺 觀看廣告（每天最多 20 次）\n` +
+        `• 🎁 邀請好友（每人 +1 配額）\n` +
+        `• 💎 升級 VIP（每天 30 個配額）`;
+
+      // Add ad button for non-VIP users
+      if (!isVip) {
+        await telegram.sendMessageWithButtons(chatId, quotaMessage, [
+          [
+            {
+              text: '📺 看廣告獲取更多瓶子 🎁',
+              callback_data: 'watch_ad',
+            },
+          ],
+          [
+            {
+              text: '💎 升級 VIP',
+              callback_data: 'menu_vip',
+            },
+          ],
+        ]);
+      } else {
+        await telegram.sendMessage(chatId, quotaMessage);
+      }
       return;
     }
 
@@ -312,14 +333,26 @@ export async function processBottleContent(user: User, content: string, env: Env
       : `${throwsToday}/${permanentQuota}`;
 
     // Send success message
-    await telegram.sendMessage(
-      chatId,
+    const successMessage =
       `🎉 漂流瓶已丟出！\n\n` +
-        `瓶子 ID：#${bottleId}\n` +
-        `今日已丟：${quotaDisplay}\n\n` +
-        `💡 你的瓶子將在 24 小時內等待有緣人撿起～\n\n` +
-        `想要撿別人的瓶子嗎？使用 /catch`
-    );
+      `瓶子 ID：#${bottleId}\n` +
+      `今日已丟：${quotaDisplay}\n\n` +
+      `💡 你的瓶子將在 24 小時內等待有緣人撿起～\n\n` +
+      `想要撿別人的瓶子嗎？使用 /catch`;
+
+    // Add ad button for non-VIP users
+    if (!isVip) {
+      await telegram.sendMessageWithButtons(chatId, successMessage, [
+        [
+          {
+            text: '📺 看廣告獲取更多瓶子 🎁',
+            callback_data: 'watch_ad',
+          },
+        ],
+      ]);
+    } else {
+      await telegram.sendMessage(chatId, successMessage);
+    }
   } catch (error) {
     console.error('[processBottleContent] Error:', error);
     console.error('[processBottleContent] Error details:', {
