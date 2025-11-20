@@ -67,6 +67,12 @@ export async function handleDevReset(message: TelegramMessage, env: Env): Promis
         sql: 'DELETE FROM bottle_chat_history WHERE user_a_telegram_id = ? OR user_b_telegram_id = ?',
         params: [telegramId, telegramId],
       },
+      
+      // Smart matching history (depends on bottles)
+      {
+        sql: 'DELETE FROM matching_history WHERE matched_user_id = ?',
+        params: [telegramId],
+      },
 
       // 2. 刪除對話和漂流瓶
       {
@@ -99,6 +105,21 @@ export async function handleDevReset(message: TelegramMessage, env: Env): Promis
       { sql: 'DELETE FROM payments WHERE telegram_id = ?', params: [telegramId] },
       { sql: 'DELETE FROM user_sessions WHERE telegram_id = ?', params: [telegramId] },
       { sql: 'DELETE FROM bottle_drafts WHERE telegram_id = ?', params: [telegramId] },
+      
+      // Ad rewards and analytics
+      { sql: 'DELETE FROM ad_rewards WHERE telegram_id = ?', params: [telegramId] },
+      { sql: 'DELETE FROM ad_provider_logs WHERE telegram_id = ?', params: [telegramId] },
+      { sql: 'DELETE FROM analytics_events WHERE telegram_id = ?', params: [telegramId] },
+      { sql: 'DELETE FROM funnel_events WHERE telegram_id = ?', params: [telegramId] },
+      { sql: 'DELETE FROM daily_user_summary WHERE telegram_id = ?', params: [telegramId] },
+      
+      // Tasks
+      { sql: 'DELETE FROM user_tasks WHERE telegram_id = ?', params: [telegramId] },
+      { sql: 'DELETE FROM task_reminders WHERE telegram_id = ?', params: [telegramId] },
+      
+      // VIP subscriptions
+      { sql: 'DELETE FROM vip_subscriptions WHERE telegram_id = ?', params: [telegramId] },
+      { sql: 'DELETE FROM refund_requests WHERE telegram_id = ?', params: [telegramId] },
 
       // 5. 最後刪除用戶本身
       { sql: 'DELETE FROM users WHERE telegram_id = ?', params: [telegramId] },
@@ -291,6 +312,12 @@ export async function handleDevRestart(message: TelegramMessage, env: Env): Prom
         sql: 'DELETE FROM bottle_chat_history WHERE user_a_telegram_id = ? OR user_b_telegram_id = ?',
         params: [telegramId, telegramId],
       },
+      
+      // Smart matching history (depends on bottles)
+      {
+        sql: 'DELETE FROM matching_history WHERE matched_user_id = ?',
+        params: [telegramId],
+      },
 
       // 2. 刪除對話和漂流瓶
       {
@@ -323,6 +350,21 @@ export async function handleDevRestart(message: TelegramMessage, env: Env): Prom
       { sql: 'DELETE FROM payments WHERE telegram_id = ?', params: [telegramId] },
       { sql: 'DELETE FROM user_sessions WHERE telegram_id = ?', params: [telegramId] },
       { sql: 'DELETE FROM bottle_drafts WHERE telegram_id = ?', params: [telegramId] },
+      
+      // Ad rewards and analytics
+      { sql: 'DELETE FROM ad_rewards WHERE telegram_id = ?', params: [telegramId] },
+      { sql: 'DELETE FROM ad_provider_logs WHERE telegram_id = ?', params: [telegramId] },
+      { sql: 'DELETE FROM analytics_events WHERE telegram_id = ?', params: [telegramId] },
+      { sql: 'DELETE FROM funnel_events WHERE telegram_id = ?', params: [telegramId] },
+      { sql: 'DELETE FROM daily_user_summary WHERE telegram_id = ?', params: [telegramId] },
+      
+      // Tasks
+      { sql: 'DELETE FROM user_tasks WHERE telegram_id = ?', params: [telegramId] },
+      { sql: 'DELETE FROM task_reminders WHERE telegram_id = ?', params: [telegramId] },
+      
+      // VIP subscriptions
+      { sql: 'DELETE FROM vip_subscriptions WHERE telegram_id = ?', params: [telegramId] },
+      { sql: 'DELETE FROM refund_requests WHERE telegram_id = ?', params: [telegramId] },
 
       // 5. 最後刪除用戶本身
       { sql: 'DELETE FROM users WHERE telegram_id = ?', params: [telegramId] },
