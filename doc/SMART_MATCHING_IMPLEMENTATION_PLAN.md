@@ -15,8 +15,17 @@
 -- 0040_add_matching_fields.sql
 -- 為用戶表添加配對相關欄位
 ALTER TABLE users ADD COLUMN last_active_at TEXT DEFAULT CURRENT_TIMESTAMP;
+ALTER TABLE users ADD COLUMN age_range TEXT; -- 冗餘欄位，用於性能優化
 
-CREATE INDEX idx_users_last_active ON users(last_active_at);
+-- 性能優化索引（關鍵！）
+CREATE INDEX IF NOT EXISTS idx_users_active_status 
+ON users(last_active_at DESC, is_banned);
+
+CREATE INDEX IF NOT EXISTS idx_users_language 
+ON users(language);
+
+CREATE INDEX IF NOT EXISTS idx_users_age_range 
+ON users(age_range);
 
 -- 為瓶子表添加配對狀態
 ALTER TABLE bottles ADD COLUMN match_status TEXT DEFAULT 'pending'; 
@@ -25,7 +34,12 @@ ALTER TABLE bottles ADD COLUMN match_status TEXT DEFAULT 'pending';
 -- 'active': 進入公共池，等待撿取
 -- 'caught': 已被撿走
 
-CREATE INDEX idx_bottles_match_status ON bottles(match_status);
+-- 性能優化索引
+CREATE INDEX IF NOT EXISTS idx_bottles_match_status_created 
+ON bottles(match_status, created_at DESC);
+
+CREATE INDEX IF NOT EXISTS idx_bottles_status_owner 
+ON bottles(match_status, owner_id);
 ```
 
 ```sql
@@ -474,6 +488,27 @@ import type { D1Database } from '@cloudflare/workers-types';
 import { calculateTotalMatchScore, isActiveWithin1Hour } from '~/domain/matching_score';
 
 /**
+ * 配對配置參數（性能優化）
+ */
+const MATCHING_CONFIG = {
+  activeMatching: {
+    maxCandidates: 100,        // 最多查詢 100 個候選用戶
+    topCandidates: 5,          // 從前 5 名中隨機選擇
+    activeWindowMinutes: 60,   // 1 小時內活躍
+  },
+  passiveMatching: {
+    maxBottles: 50,            // 最多查詢 50 個瓶子
+    smartMatchThreshold: 70,   // 智能推薦閾值
+  },
+  preFiltering: {
+    languageEnabled: true,     // 啟用語言預過濾
+    ageRangeEnabled: true,     // 啟用年齡區間預過濾
+    minLanguageScore: 30,      // 語言分數最低 30
+    minAgeRangeScore: 40,      // 年齡區間分數最低 40
+  },
+};
+
+/**
  * 主動配對：當用戶丟瓶子時，立即為其找到最合適的活躍用戶
  */
 export async function findActiveMatchForBottle(
@@ -483,10 +518,13 @@ export async function findActiveMatchForBottle(
   user: any;
   score: any;
 } | null> {
-  // 1. 獲取瓶子信息
+  // 1. 獲取瓶子信息（JOIN 優化，一次查詢）
   const bottle = await db
     .prepare(`
-      SELECT b.*, u.birthday as owner_birthday
+      SELECT 
+        b.*,
+        u.birthday as owner_birthday,
+        u.language as owner_language
       FROM bottles b
       JOIN users u ON b.owner_id = u.telegram_id
       WHERE b.id = ?
@@ -497,16 +535,26 @@ export async function findActiveMatchForBottle(
   if (!bottle) return null;
   
   // 2. 查找候選用戶（必須 1 小時內活躍）
+  // 性能優化：LIMIT 100，使用索引，只查詢需要的欄位
   const candidates = await db
     .prepare(`
-      SELECT *
+      SELECT 
+        telegram_id,
+        language,
+        mbti_result,
+        zodiac,
+        blood_type,
+        birthday,
+        last_active_at,
+        is_vip
       FROM users
       WHERE telegram_id != ?
         AND is_banned = 0
         AND last_active_at > datetime('now', '-1 hour')
-      LIMIT 100
+      ORDER BY last_active_at DESC
+      LIMIT ?
     `)
-    .bind(bottle.owner_id)
+    .bind(bottle.owner_id, MATCHING_CONFIG.activeMatching.maxCandidates)
     .all();
   
   if (!candidates.results || candidates.results.length === 0) {
@@ -536,11 +584,18 @@ export async function findActiveMatchForBottle(
     return { user, score };
   });
   
-  // 4. 排序並選擇前5名
-  scoredCandidates.sort((a, b) => b.score.total - a.score.total);
-  const topCandidates = scoredCandidates.slice(0, 5);
+  // 4. 過濾掉分數太低的候選（提前終止優化）
+  const validCandidates = scoredCandidates.filter(c => c.score !== null);
   
-  // 5. 從前5名中隨機選擇1個（避免總是同一人）
+  if (validCandidates.length === 0) {
+    return null;
+  }
+  
+  // 5. 排序並選擇前 5 名
+  validCandidates.sort((a, b) => b.score!.total - a.score!.total);
+  const topCandidates = validCandidates.slice(0, MATCHING_CONFIG.activeMatching.topCandidates);
+  
+  // 6. 從前 5 名中隨機選擇 1 個（避免總是同一人）
   const selected = topCandidates[Math.floor(Math.random() * topCandidates.length)];
   
   return selected;
@@ -566,9 +621,20 @@ export async function findSmartBottleForUser(
   if (!user) return null;
   
   // 2. 查找候選瓶子（只查找公共池中的瓶子）
+  // 性能優化：LIMIT 50，使用索引，只查詢需要的欄位
   const candidates = await db
     .prepare(`
-      SELECT b.*, u.birthday as owner_birthday
+      SELECT 
+        b.id,
+        b.content,
+        b.owner_id,
+        b.language,
+        b.mbti_result,
+        b.zodiac,
+        b.blood_type,
+        b.created_at,
+        u.birthday as owner_birthday,
+        u.nickname as owner_nickname
       FROM bottles b
       JOIN users u ON b.owner_id = u.telegram_id
       WHERE b.match_status = 'active'
@@ -578,9 +644,9 @@ export async function findSmartBottleForUser(
         )
         AND u.is_banned = 0
       ORDER BY b.created_at DESC
-      LIMIT 50
+      LIMIT ?
     `)
-    .bind(userId, userId)
+    .bind(userId, userId, MATCHING_CONFIG.passiveMatching.maxBottles)
     .all();
   
   if (!candidates.results || candidates.results.length === 0) {
@@ -613,8 +679,8 @@ export async function findSmartBottleForUser(
   // 4. 排序
   scoredCandidates.sort((a, b) => b.score.total - a.score.total);
   
-  // 5. 如果有高分配對（> 70），返回智能配對
-  if (scoredCandidates[0].score.total > 70) {
+  // 5. 如果有高分配對（> 閾值），返回智能配對
+  if (scoredCandidates[0].score.total > MATCHING_CONFIG.passiveMatching.smartMatchThreshold) {
     return {
       ...scoredCandidates[0],
       matchType: 'smart',
@@ -627,6 +693,35 @@ export async function findSmartBottleForUser(
     ...scoredCandidates[randomIndex],
     matchType: 'random',
   };
+}
+
+/**
+ * 性能監控包裝器
+ */
+async function trackPerformance<T>(
+  operation: string,
+  fn: () => Promise<T>,
+  context?: any
+): Promise<T> {
+  const start = Date.now();
+  
+  try {
+    const result = await fn();
+    const duration = Date.now() - start;
+    
+    console.log(`[Performance] ${operation}: ${duration}ms`, context);
+    
+    // 如果超過閾值，記錄警告
+    if (duration > 500) {
+      console.warn(`[Performance] Slow operation: ${operation} took ${duration}ms`);
+    }
+    
+    return result;
+  } catch (error) {
+    const duration = Date.now() - start;
+    console.error(`[Performance] ${operation} failed after ${duration}ms:`, error);
+    throw error;
+  }
 }
 
 /**
