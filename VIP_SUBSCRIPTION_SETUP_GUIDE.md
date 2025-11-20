@@ -20,23 +20,42 @@ Bad Request: SUBSCRIPTION_EXPORT_MISSING
 
 ### 啟用訂閱功能的步驟
 
-#### 1. 聯繫 @BotFather
+#### 1. 連接支付提供商（必須先完成）
+
+在 @BotFather 中：
 ```
 1. 打開 Telegram，搜索 @BotFather
 2. 發送 /mybots
 3. 選擇您的 Bot
 4. 選擇 Bot Settings
 5. 選擇 Payments
+6. 選擇一個支付提供商（例如 Stripe）
+7. 完成提供商的連接設置
 ```
 
-#### 2. 啟用訂閱功能
+#### 2. 申請訂閱功能（需要聯繫 Telegram）
+
+**重要**：`subscription_period` 功能可能需要特殊申請。
+
+聯繫 **@BotSupport** 並說明：
 ```
-1. 在 Payments 設置中找到 "Subscriptions"
-2. 啟用訂閱功能
-3. 設置 Subscription Export URL（用於 GDPR 合規）
+Hello,
+
+I'm trying to implement recurring subscriptions using the subscription_period 
+parameter in sendInvoice, but I'm getting a "SUBSCRIPTION_EXPORT_MISSING" error.
+
+Bot: @your_bot_username
+Error: Bad Request: SUBSCRIPTION_EXPORT_MISSING
+
+I have already implemented the Subscription Export endpoint:
+https://xunni-bot-staging.yves221.workers.dev/subscription-export
+
+Could you please guide me on how to enable subscription features for my bot?
+
+Thank you!
 ```
 
-#### 3. 設置 Subscription Export URL
+#### 3. 提供 Subscription Export URL
 
 **什麼是 Subscription Export URL？**
 - 用於用戶數據導出（GDPR 要求）
@@ -222,10 +241,40 @@ pnpm deploy:production
 ## 🚀 下一步
 
 1. ✅ **當前**：一次性購買功能已可用
-2. ⏸️ **等待**：向 @BotFather 申請訂閱權限
-3. 🔧 **實現**：Subscription Export Endpoint
-4. ✅ **啟用**：設置 `ENABLE_VIP_SUBSCRIPTION = "true"`
-5. 🧪 **測試**：驗證自動訂閱功能
+2. ✅ **已完成**：Subscription Export Endpoint 已實現
+3. ⏸️ **待申請**：聯繫 @BotSupport 申請訂閱功能
+4. ⏸️ **待確認**：等待 Telegram 啟用訂閱權限
+5. ✅ **準備就緒**：設置 `ENABLE_VIP_SUBSCRIPTION = "true"`
+6. 🧪 **最後測試**：驗證自動訂閱功能
+
+## 📞 聯繫 Telegram 支持
+
+如果您想啟用訂閱功能，請聯繫 **@BotSupport**：
+
+**消息範本**：
+```
+Hello,
+
+I'm trying to implement recurring subscriptions for my Telegram bot using 
+the subscription_period parameter in sendInvoice API.
+
+Bot Username: @your_bot_username
+Current Error: Bad Request: SUBSCRIPTION_EXPORT_MISSING
+
+I have already implemented the required Subscription Export endpoint for 
+GDPR compliance:
+
+Staging: https://xunni-bot-staging.yves221.workers.dev/subscription-export
+Production: https://xunni-bot.yves221.workers.dev/subscription-export
+
+The endpoint accepts POST requests with user_id and returns subscription 
+and payment data in JSON format.
+
+Could you please guide me on how to enable subscription features and 
+register the Subscription Export URL for my bot?
+
+Thank you for your assistance!
+```
 
 ---
 
