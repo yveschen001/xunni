@@ -592,7 +592,59 @@ const matchRate = thrown > 0 ? Math.min(100, Math.round((conversations / thrown)
 - [ ] 統計數據合理性（百分比 0-100%）
 - [ ] UI 顯示正確性（暱稱擾碼、按鈕、提示）
 
-#### 錯誤 6：誤刪 Session 邏輯導致狀態追蹤失效
+#### 錯誤 6：Telegram sendPhoto 使用 parse_mode 導致解析錯誤
+**症狀：** `Bad Request: can't parse entities: Can't find end of the entity starting at byte offset XXX`
+
+**根本原因：**
+- 在 `sendPhoto` 的 `caption` 中使用了 `parse_mode: 'Markdown'`
+- 但 caption 文字中的 Markdown 符號（如 `**`、`_`、`[`）沒有正確配對
+- Telegram 無法解析這些不完整的 Markdown 標記
+
+**預防措施：**
+1. **避免在 caption 中使用 `parse_mode`**，除非確定文字完全符合 Markdown 格式
+2. 如果文字中有特殊符號（`**`、`_`、`[`、`]`、`(`、`)`），要麼：
+   - 不使用 `parse_mode`（推薦）
+   - 或正確轉義所有特殊符號
+3. 優先使用純文字 + Emoji，避免複雜的格式化
+
+**錯誤示例：**
+```typescript
+// ❌ 錯誤：caption 中有不配對的 ** 符號
+await telegram.sendPhoto(chatId, photoUrl, {
+  caption: '👤 **對方的資料卡**\n\n📝 暱稱：張**\n',
+  parse_mode: 'Markdown'  // 會導致解析錯誤！
+});
+```
+
+**正確做法：**
+```typescript
+// ✅ 方案 1：不使用 parse_mode（推薦）
+await telegram.sendPhoto(chatId, photoUrl, {
+  caption: '👤 **對方的資料卡**\n\n📝 暱稱：張**\n'
+  // 不使用 parse_mode，** 符號作為普通文字顯示
+});
+
+// ✅ 方案 2：使用純文字 + Emoji
+await telegram.sendPhoto(chatId, photoUrl, {
+  caption: '👤 對方的資料卡\n\n📝 暱稱：張**\n'
+});
+
+// ✅ 方案 3：正確轉義（複雜，不推薦）
+await telegram.sendPhoto(chatId, photoUrl, {
+  caption: '👤 \\*\\*對方的資料卡\\*\\*\n\n📝 暱稱：張\\*\\*\n',
+  parse_mode: 'Markdown'
+});
+```
+
+**檢查位置：**
+- 所有使用 `sendPhoto`、`sendMessage`、`editMessageText` 的地方
+- 特別注意帶有用戶輸入內容的 caption/text
+
+**相關案例：**
+- `src/telegram/handlers/conversation_actions.ts` - 資料卡頭像顯示
+- `src/services/conversation_history.ts` - 對話歷史帖子
+
+#### 錯誤 7：誤刪 Session 邏輯導致狀態追蹤失效
 **症狀：** 用戶操作無法正確識別，系統無法記住用戶正在進行的操作
 
 **為什麼需要 Session？**
