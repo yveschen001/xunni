@@ -24,9 +24,9 @@
 完成基本資料 → 觸發「確認國家」任務
   ↓
 用戶選擇：
-  - ✅ 正確 → 確認，獲得 10 金幣
-  - ❌ 不正確 → 選擇正確國家，獲得 10 金幣
-  - 🌍 聯合國旗 → 不透露國家，獲得 10 金幣
+  - ✅ 正確 → 確認，獲得 +1 瓶子
+  - ❌ 不正確 → 選擇正確國家，獲得 +1 瓶子
+  - 🌍 聯合國旗 → 不透露國家，獲得 +1 瓶子
   ↓
 資料卡顯示確認後的國旗
 ```
@@ -49,7 +49,7 @@
 - ✅ **準確度高**：通過任務讓用戶確認/修正
 - ✅ **用戶友好**：所有人都有國旗（默認或確認後）
 - ✅ **隱私保護**：可選擇聯合國旗（不透露國家）
-- ✅ **激勵機制**：確認國家獲得金幣獎勵
+- ✅ **激勵機制**：確認國家獲得瓶子獎勵
 - ✅ **符合 GDPR**：不收集 IP，用戶可控
 
 ### **解決的問題**
@@ -124,13 +124,13 @@ export const MISSION_DEFINITIONS = [
   // ... 現有任務 ...
   
   {
-    id: 'confirm_country',
-    type: 'profile_setup',
-    title: '🌍 確認你的國家/地區',
+    id: 'task_confirm_country',
+    category: 'profile',
+    name: '🌍 確認你的國家/地區',
     description: '讓其他用戶更了解你',
-    reward_coins: 10,
-    reward_bottles: 0,
-    order: 4,  // 在「完善資料」之後
+    reward_amount: 1,          // 獎勵 1 個瓶子
+    reward_type: 'daily',      // 當天有效（一次性追加）
+    sort_order: 4,             // 在「設定地區」之後
   },
 ];
 ```
@@ -176,7 +176,7 @@ export async function showCountryConfirmation(
     `${currentFlag} **${currentCountry}**\n\n` +
     `這正確嗎？\n\n` +
     `💡 這將顯示在你的資料卡上，讓其他用戶更了解你。\n` +
-    `💰 確認後可獲得 10 金幣獎勵！`;
+    `🎉 確認後可獲得 +1 瓶子獎勵！`;
   
   await telegram.sendMessageWithButtons(chatId, message, [
     [
@@ -215,13 +215,13 @@ export async function handleCountryConfirm(
       .run();
     
     // 完成任務，獲得獎勵
-    await completeMission(db, telegramId, 'confirm_country');
+    await completeUserTask(db, telegramId, 'task_confirm_country');
     
-    await telegram.answerCallbackQuery(callbackQuery.id, '✅ 已確認！獲得 10 金幣');
+    await telegram.answerCallbackQuery(callbackQuery.id, '✅ 已確認！獲得 1 個瓶子');
     await telegram.deleteMessage(chatId, callbackQuery.message!.message_id);
     await telegram.sendMessage(
       chatId,
-      '✅ **國家已確認！**\n\n💰 獲得 10 金幣獎勵\n\n繼續探索更多功能吧！'
+      '✅ **國家已確認！**\n\n🎉 獲得 +1 瓶子（當天有效）\n\n繼續探索更多功能吧！'
     );
   } else if (action === 'un') {
     // 使用聯合國旗
@@ -236,13 +236,13 @@ export async function handleCountryConfirm(
       .bind(telegramId)
       .run();
     
-    await completeMission(db, telegramId, 'confirm_country');
+    await completeUserTask(db, telegramId, 'task_confirm_country');
     
     await telegram.answerCallbackQuery(callbackQuery.id, '✅ 已設置為聯合國旗');
     await telegram.deleteMessage(chatId, callbackQuery.message!.message_id);
     await telegram.sendMessage(
       chatId,
-      '🇺🇳 **已設置為聯合國旗**\n\n💰 獲得 10 金幣獎勵'
+      '🇺🇳 **已設置為聯合國旗**\n\n🎉 獲得 +1 瓶子（當天有效）'
     );
   }
 }
@@ -329,7 +329,7 @@ export async function handleCountrySet(
     .run();
   
   // 完成任務
-  await completeMission(db, telegramId, 'confirm_country');
+  await completeUserTask(db, telegramId, 'task_confirm_country');
   
   const flag = getCountryFlagEmoji(countryCode);
   const countryName = getCountryName(countryCode);
@@ -338,7 +338,7 @@ export async function handleCountrySet(
   await telegram.deleteMessage(chatId, callbackQuery.message!.message_id);
   await telegram.sendMessage(
     chatId,
-    `${flag} **已設置為 ${countryName}**\n\n💰 獲得 10 金幣獎勵`
+    `${flag} **已設置為 ${countryName}**\n\n🎉 獲得 +1 瓶子（當天有效）`
   );
 }
 ```
@@ -439,7 +439,7 @@ export function formatNicknameWithFlag(
    [🇺🇳 使用聯合國旗]
 
 3. 點擊「✅ 正確」
-4. ✅ 已確認！獲得 10 金幣
+4. ✅ 已確認！獲得 +1 瓶子
 5. 資料卡顯示：🇹🇼 張**
 ```
 
@@ -471,7 +471,7 @@ export function formatNicknameWithFlag(
    ...
 
 5. 選擇「🇨🇳 中國」
-6. 🇨🇳 已設置為中國！獲得 10 金幣
+6. 🇨🇳 已設置為中國！獲得 +1 瓶子
 7. 資料卡顯示：🇨🇳 李**
 ```
 
@@ -494,7 +494,7 @@ export function formatNicknameWithFlag(
    [🇺🇳 使用聯合國旗]
 
 3. 點擊「🇺🇳 使用聯合國旗」
-4. 🇺🇳 已設置為聯合國旗！獲得 10 金幣
+4. 🇺🇳 已設置為聯合國旗！獲得 +1 瓶子
 5. 資料卡顯示：🇺🇳 田中**
 ```
 
@@ -641,7 +641,7 @@ describe('Country Flag - Hybrid Approach', () => {
 - ✅ **高準確度**：用戶主動確認
 - ✅ **用戶友好**：所有人都有國旗
 - ✅ **隱私保護**：可選擇聯合國旗
-- ✅ **激勵機制**：確認獲得金幣
+- ✅ **激勵機制**：確認獲得瓶子
 
 ### **實施難度**
 - ⭐⭐⭐☆☆（中等）
