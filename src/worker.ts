@@ -262,6 +262,14 @@ export default {
         // eslint-disable-next-line no-console
         console.log(`[Worker] Avatar batch update completed: ${result.updated} updated, ${result.failed} failed`);
       }
+
+      // Send birthday greetings (Every day at 01:00 UTC = 09:00 Taipei)
+      if (event.cron === '0 1 * * *') {
+        // eslint-disable-next-line no-console
+        console.log('[Worker] Sending birthday greetings...');
+        const { handleBirthdayGreetings } = await import('./cron/birthday_greetings');
+        await handleBirthdayGreetings(env);
+      }
     } catch (error) {
       console.error('[Worker] Scheduled event error:', error);
     }

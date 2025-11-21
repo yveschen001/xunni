@@ -135,6 +135,9 @@ cron = "0 * * * *"  # Every hour (Channel membership check)
 [[env.production.triggers.crons]]
 cron = "0 3 * * *"  # Every day at 03:00 UTC = 11:00 Taipei (Avatar cache batch update)
 
+[[env.production.triggers.crons]]
+cron = "0 1 * * *"  # Every day at 01:00 UTC = 09:00 Taipei (Birthday greetings)
+
 # Sensitive variables should be set via:
 # wrangler secret put TELEGRAM_BOT_TOKEN --env staging
 # wrangler secret put TELEGRAM_BOT_TOKEN --env production
