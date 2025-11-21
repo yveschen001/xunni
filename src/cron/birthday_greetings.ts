@@ -1,112 +1,273 @@
 /**
  * Birthday Greetings Cron Job
- * Automatically sends birthday greetings to users on their birthday
+ * Automatically sends personalized birthday greetings to users on their birthday
  * 
- * Schedule: Runs daily at 09:00 UTC (17:00 Taiwan Time)
+ * Schedule: Runs daily at 01:00 UTC (09:00 Taiwan Time)
+ * 
+ * Features:
+ * - Personalized messages with user's nickname and zodiac
+ * - Gender-aware suggestions (他/她)
+ * - Prevents duplicate sends (tracks sent greetings)
+ * - Respects Telegram rate limits (25 messages/batch, 1s delay)
+ * - Skips blocked/deleted users (bot_status filtering)
  * 
  * 參考文檔：doc/BROADCAST_SYSTEM_DESIGN.md 第 12 節
  */
 
 import type { Env } from '~/types';
-import { createFilteredBroadcast } from '~/services/broadcast';
+import { createDatabaseClient } from '~/db/client';
+import { createTelegramService } from '~/services/telegram';
+import { getFilteredUserIds } from '~/services/broadcast';
+import { calculateBatchSize } from '~/domain/broadcast';
 
 /**
- * Birthday greeting message template
- * 
- * Note: This is a simple template. In production, you might want to:
- * - Use i18n for multi-language support
- * - Personalize with user's nickname
- * - Add special birthday offers or rewards
+ * System admin ID for birthday greetings
  */
-const BIRTHDAY_MESSAGE = `🎂 **生日快樂！**
+const SYSTEM_ADMIN_ID = 'system_birthday_bot';
+
+/**
+ * Zodiac signs in Chinese
+ */
+const ZODIAC_MAP: Record<string, string> = {
+  'Aries': '白羊座',
+  'Taurus': '金牛座',
+  'Gemini': '雙子座',
+  'Cancer': '巨蟹座',
+  'Leo': '獅子座',
+  'Virgo': '處女座',
+  'Libra': '天秤座',
+  'Scorpio': '天蠍座',
+  'Sagittarius': '射手座',
+  'Capricorn': '摩羯座',
+  'Aquarius': '水瓶座',
+  'Pisces': '雙魚座'
+};
+
+/**
+ * Generate personalized birthday message
+ * 
+ * @param nickname - User's nickname
+ * @param zodiac - User's zodiac sign
+ * @param gender - User's gender (for pronoun selection)
+ * @returns Personalized birthday message
+ */
+function generateBirthdayMessage(
+  nickname: string,
+  zodiac: string | null,
+  gender: string
+): string {
+  // Determine pronoun based on gender
+  const pronoun = gender === 'female' ? '她' : '他';
+  
+  // Get Chinese zodiac name
+  const zodiacChinese = zodiac && ZODIAC_MAP[zodiac] ? ZODIAC_MAP[zodiac] : '';
+  const zodiacText = zodiacChinese ? `${zodiacChinese}的` : '';
+  
+  return `🎂 **生日快樂，${nickname}！**
 
 今天是你的特別日子！
-祝你生日快樂，願你的每一天都充滿陽光和歡笑！
+${zodiacText}你，在這個美好的日子裡，
+願你的每一天都充滿陽光和歡笑！
 
 🎁 **生日驚喜**
 作為生日禮物，我們為你準備了特別的祝福！
+
+💌 **給自己的禮物**
+不如丟個漂流瓶給遠方的${pronoun}，
+祝自己生日快樂，也許會收到意外的驚喜哦！
 
 願你在 XunNi 找到更多有趣的靈魂，
 遇見更多美好的緣分！
 
 再次祝你生日快樂！🎉`;
+}
 
 /**
- * System admin ID for birthday greetings
- * This is used as the "created_by" field in broadcasts
+ * Check if birthday greeting was already sent today
+ * 
+ * @param db - Database client
+ * @param telegramId - User's telegram ID
+ * @returns True if already sent today
  */
-const SYSTEM_ADMIN_ID = 'system_birthday_bot';
+async function wasGreetingSentToday(
+  db: ReturnType<typeof createDatabaseClient>,
+  telegramId: string
+): Promise<boolean> {
+  const result = await db.d1
+    .prepare(
+      `SELECT id FROM birthday_greetings_log
+       WHERE telegram_id = ?
+         AND sent_at >= date('now')
+       LIMIT 1`
+    )
+    .bind(telegramId)
+    .first<{ id: number }>();
+  
+  return result !== null;
+}
+
+/**
+ * Record that birthday greeting was sent
+ * 
+ * @param db - Database client
+ * @param telegramId - User's telegram ID
+ */
+async function recordGreetingSent(
+  db: ReturnType<typeof createDatabaseClient>,
+  telegramId: string
+): Promise<void> {
+  await db.d1
+    .prepare(
+      `INSERT INTO birthday_greetings_log (telegram_id, sent_at)
+       VALUES (?, CURRENT_TIMESTAMP)`
+    )
+    .bind(telegramId)
+    .run();
+}
 
 /**
  * Handle birthday greetings cron job
  * 
  * This function:
- * 1. Uses the broadcast filter system to find users with birthdays today
- * 2. Sends birthday greetings using createFilteredBroadcast
- * 3. Logs the results
+ * 1. Finds users with birthdays today (using filter system)
+ * 2. Fetches user details (nickname, zodiac, gender)
+ * 3. Generates personalized messages
+ * 4. Sends messages in batches (respecting Telegram rate limits)
+ * 5. Tracks sent greetings to prevent duplicates
+ * 6. Handles errors gracefully
  * 
  * @param env - Cloudflare environment
  */
 export async function handleBirthdayGreetings(env: Env): Promise<void> {
   console.log('[BirthdayGreetings] Starting birthday greetings cron job...');
 
+  const db = createDatabaseClient(env.DB);
+  const telegram = createTelegramService(env);
+
   try {
-    // Create filtered broadcast for birthday users
-    // The filter system will automatically match users whose birthday is today
-    const { broadcastId, totalUsers } = await createFilteredBroadcast(
-      env,
-      BIRTHDAY_MESSAGE,
-      { is_birthday: true }, // Filter: users with birthday today
-      SYSTEM_ADMIN_ID
-    );
+    // Get users with birthdays today
+    // This automatically filters for:
+    // - bot_status = 'active' (no blocked/deleted users)
+    // - deleted_at IS NULL
+    // - onboarding_step = 'completed'
+    // - last_active_at >= datetime('now', '-30 days')
+    const userIds = await getFilteredUserIds(db, { is_birthday: true });
+
+    if (userIds.length === 0) {
+      console.log('[BirthdayGreetings] No users with birthdays today.');
+      return;
+    }
+
+    console.log(`[BirthdayGreetings] Found ${userIds.length} users with birthdays today.`);
+
+    // Fetch user details
+    const users = await db.d1
+      .prepare(
+        `SELECT telegram_id, nickname, zodiac, gender
+         FROM users
+         WHERE telegram_id IN (${userIds.map(() => '?').join(', ')})`
+      )
+      .bind(...userIds)
+      .all<{
+        telegram_id: string;
+        nickname: string;
+        zodiac: string | null;
+        gender: string;
+      }>();
+
+    if (!users.results || users.results.length === 0) {
+      console.log('[BirthdayGreetings] No user details found.');
+      return;
+    }
+
+    // Filter out users who already received greeting today
+    const usersToSend = [];
+    for (const user of users.results) {
+      const alreadySent = await wasGreetingSentToday(db, user.telegram_id);
+      if (!alreadySent) {
+        usersToSend.push(user);
+      } else {
+        console.log(`[BirthdayGreetings] Skipping ${user.telegram_id} - already sent today`);
+      }
+    }
+
+    if (usersToSend.length === 0) {
+      console.log('[BirthdayGreetings] All greetings already sent today.');
+      return;
+    }
+
+    console.log(`[BirthdayGreetings] Sending greetings to ${usersToSend.length} users...`);
+
+    // Calculate batch size (respects Telegram rate limits)
+    const { batchSize, delayMs } = calculateBatchSize(usersToSend.length);
+
+    let sentCount = 0;
+    let failedCount = 0;
+
+    // Send in batches
+    for (let i = 0; i < usersToSend.length; i += batchSize) {
+      const batch = usersToSend.slice(i, i + batchSize);
+
+      // Send to each user in batch (parallel)
+      await Promise.all(
+        batch.map(async (user) => {
+          try {
+            // Generate personalized message
+            const message = generateBirthdayMessage(
+              user.nickname,
+              user.zodiac,
+              user.gender
+            );
+
+            // Send message
+            await telegram.sendMessage(parseInt(user.telegram_id), message);
+
+            // Record that greeting was sent
+            await recordGreetingSent(db, user.telegram_id);
+
+            sentCount++;
+            console.log(`[BirthdayGreetings] Sent to ${user.telegram_id} (${user.nickname})`);
+          } catch (error) {
+            console.error(
+              `[BirthdayGreetings] Failed to send to ${user.telegram_id}:`,
+              error
+            );
+
+            // Handle Telegram errors (blocked/deleted users)
+            try {
+              const { handleBroadcastError } = await import(
+                '../services/telegram_error_handler'
+              );
+              await handleBroadcastError(db, user.telegram_id, error);
+            } catch (handlerError) {
+              console.error('[BirthdayGreetings] Error handler failed:', handlerError);
+            }
+
+            failedCount++;
+          }
+        })
+      );
+
+      // Delay between batches (except last batch)
+      if (i + batchSize < usersToSend.length) {
+        await sleep(delayMs);
+      }
+    }
 
     console.log(
-      `[BirthdayGreetings] Birthday greetings broadcast created: ` +
-        `ID=${broadcastId}, Users=${totalUsers}`
+      `[BirthdayGreetings] Completed: ${sentCount} sent, ${failedCount} failed`
     );
-
-    // If no users have birthdays today, log it
-    if (totalUsers === 0) {
-      console.log('[BirthdayGreetings] No users with birthdays today.');
-    } else {
-      console.log(`[BirthdayGreetings] Sent birthday greetings to ${totalUsers} users.`);
-    }
   } catch (error) {
     console.error('[BirthdayGreetings] Error sending birthday greetings:', error);
-    
     // Don't throw error - we don't want to fail the entire cron job
-    // Just log it and continue
   }
 
   console.log('[BirthdayGreetings] Birthday greetings cron job completed.');
 }
 
 /**
- * Optional: Send birthday greetings with custom message
- * 
- * This can be used for special occasions or testing
- * 
- * @param env - Cloudflare environment
- * @param customMessage - Custom birthday message
+ * Sleep utility
  */
-export async function sendCustomBirthdayGreetings(
-  env: Env,
-  customMessage: string
-): Promise<{ broadcastId: number; totalUsers: number }> {
-  console.log('[BirthdayGreetings] Sending custom birthday greetings...');
-
-  const result = await createFilteredBroadcast(
-    env,
-    customMessage,
-    { is_birthday: true },
-    SYSTEM_ADMIN_ID
-  );
-
-  console.log(
-    `[BirthdayGreetings] Custom birthday greetings sent: ` +
-      `ID=${result.broadcastId}, Users=${result.totalUsers}`
-  );
-
-  return result;
+function sleep(ms: number): Promise<void> {
+  return new Promise((resolve) => setTimeout(resolve, ms));
 }
-
