@@ -221,7 +221,8 @@ async function sendMatchNotifications(
         `💬 對話標識符：${conversationIdentifier}\n` +
         `📝 瓶子內容：${bottle.content.substring(0, 50)}${bottle.content.length > 50 ? '...' : ''}\n\n` +
         `💡 這是你的第 1 個配對，還有 2 個槽位等待中\n\n` +
-        `使用 /chats 查看所有對話`
+        `使用 /chats 查看所有對話\n\n` +
+        `💬 **請長按此訊息，選擇「回覆」後輸入內容和對方開始聊天**`
     );
   } catch (error) {
     console.error('[VipTripleBottle] Failed to notify bottle owner:', error);
@@ -240,7 +241,7 @@ async function sendMatchNotifications(
         `系統為你找到了 ${maskedOwnerNickname} 的瓶子！\n\n` +
         `💬 對話標識符：${conversationIdentifier}\n` +
         `📝 瓶子內容：${bottle.content}\n\n` +
-        `💡 回覆此訊息開始對話`
+        `💬 **請長按此訊息，選擇「回覆」後輸入內容和對方開始聊天**`
     );
   } catch (error) {
     console.error('[VipTripleBottle] Failed to notify matcher:', error);

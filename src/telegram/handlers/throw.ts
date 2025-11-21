@@ -583,8 +583,8 @@ export async function processBottleContent(user: User, content: string, env: Env
           `• 槽位 3：公共池（等待撿起）\n\n` +
           `💡 你可能會收到 **最多 3 個對話**！\n` +
           `📊 今日已丟：${quotaDisplay}\n\n` +
-          `🚀 **立即開始聊天：**\n` +
-          `使用 /chats 查看所有對話，或直接回覆對方的訊息`;
+          `使用 /chats 查看所有對話\n\n` +
+          `💬 **請長按此訊息，選擇「回覆」後輸入內容和對方開始聊天**`;
       } else {
         // 智能配對未成功，3 個槽位都進入公共池
         successMessage =
