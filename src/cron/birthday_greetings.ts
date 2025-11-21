@@ -26,6 +26,12 @@ import { calculateBatchSize } from '~/domain/broadcast';
 const SYSTEM_ADMIN_ID = 'system_birthday_bot';
 
 /**
+ * Maximum birthday greetings per day
+ * 限制每天最多發送數量，避免隊列過長
+ */
+const MAX_BIRTHDAY_GREETINGS_PER_DAY = 10000;
+
+/**
  * Zodiac signs in Chinese
  */
 const ZODIAC_MAP: Record<string, string> = {
@@ -80,6 +86,43 @@ ${zodiacText}你，在這個美好的日子裡，
 遇見更多美好的緣分！
 
 再次祝你生日快樂！🎉`;
+}
+
+/**
+ * Prioritize users for birthday greetings
+ * 優先級：VIP > 活躍用戶 > 老用戶
+ * 
+ * @param db - Database client
+ * @param userIds - User IDs to prioritize
+ * @returns Prioritized user IDs
+ */
+async function prioritizeUsers(
+  db: ReturnType<typeof createDatabaseClient>,
+  userIds: string[]
+): Promise<string[]> {
+  if (userIds.length <= MAX_BIRTHDAY_GREETINGS_PER_DAY) {
+    return userIds; // 不需要過濾
+  }
+
+  console.log(
+    `[BirthdayGreetings] Too many users (${userIds.length}), prioritizing to ${MAX_BIRTHDAY_GREETINGS_PER_DAY}...`
+  );
+
+  const users = await db.d1
+    .prepare(
+      `SELECT telegram_id
+       FROM users
+       WHERE telegram_id IN (${userIds.map(() => '?').join(', ')})
+       ORDER BY 
+         is_vip DESC,                    -- VIP 優先
+         last_active_at DESC,            -- 活躍用戶優先
+         created_at ASC                  -- 老用戶優先
+       LIMIT ?`
+    )
+    .bind(...userIds, MAX_BIRTHDAY_GREETINGS_PER_DAY)
+    .all<{ telegram_id: string }>();
+
+  return users.results?.map((u) => u.telegram_id) || [];
 }
 
 /**
@@ -160,6 +203,14 @@ export async function handleBirthdayGreetings(env: Env): Promise<void> {
 
     console.log(`[BirthdayGreetings] Found ${userIds.length} users with birthdays today.`);
 
+    // Prioritize users if too many
+    if (userIds.length > MAX_BIRTHDAY_GREETINGS_PER_DAY) {
+      userIds = await prioritizeUsers(db, userIds);
+      console.log(
+        `[BirthdayGreetings] Prioritized to ${userIds.length} users (VIP > Active > Old)`
+      );
+    }
+
     // Fetch user details
     const users = await db.d1
       .prepare(
@@ -198,8 +249,8 @@ export async function handleBirthdayGreetings(env: Env): Promise<void> {
 
     console.log(`[BirthdayGreetings] Sending greetings to ${usersToSend.length} users...`);
 
-    // Calculate batch size (respects Telegram rate limits)
-    const { batchSize, delayMs } = calculateBatchSize(usersToSend.length);
+    // Calculate batch size (使用低優先級，不影響瓶子推送)
+    const { batchSize, delayMs } = calculateBatchSize(usersToSend.length, 'low');
 
     let sentCount = 0;
     let failedCount = 0;
