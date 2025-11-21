@@ -481,16 +481,224 @@ if (data.startsWith('country_set_')) {
 7. [ ] 創建 `src/telegram/handlers/country_selection.ts`
 8. [ ] 修改 `src/router.ts` - 添加路由
 
-### **Phase 3：UI 集成**
-9. [ ] 修改資料卡顯示（`src/telegram/handlers/conversation_actions.ts`）
-10. [ ] 修改對話歷史（`src/services/conversation_history.ts`）
-11. [ ] 修改統計頁面（`src/telegram/handlers/stats.ts`）
+### **Phase 3：UI 集成（所有顯示個人信息的地方）**
+
+#### **9. 自己的個人資料**
+- [ ] `src/telegram/handlers/profile.ts` - `/profile` 命令
+  - 在個人資料中顯示國旗
+  - 格式：`🇹🇼 張三` 或 `🇺🇳 匿名`
+
+#### **10. 自己的資料卡片**
+- [ ] `src/telegram/handlers/profile.ts` - `/profile_card` 命令
+  - 在資料卡片頂部顯示國旗
+  - 格式：`👤 🇹🇼 張三`
+
+#### **11. 對方的資料卡片（對話中）**
+- [ ] `src/telegram/handlers/conversation_actions.ts` - `handleConversationProfile`
+  - 在對方資料卡中顯示國旗
+  - 格式：`📝 暱稱：🇹🇼 張**`（擾碼）
+  - **已完成頭像顯示，需添加國旗**
+
+#### **12. 對話歷史帖子**
+- [ ] `src/services/conversation_history.ts` - `updateConversationHistory`
+  - 在歷史帖子中顯示對方國旗
+  - 格式：`💬 與 🇯🇵 田中** 的對話記錄`
+  - **已完成頭像顯示，需添加國旗**
+
+#### **13. 邀請通知**
+- [ ] `src/telegram/handlers/invite_activation.ts` - `sendInviterNotification`
+  - 邀請成功通知中顯示被邀請人國旗
+  - 格式：`您的朋友 🇺🇸 John** 已完成註冊`
+
+#### **14. 任務中心（可選）**
+- [ ] `src/telegram/handlers/tasks.ts` - `/tasks` 命令
+  - 如果顯示邀請的用戶列表，添加國旗
+  - 格式：`1. 🇹🇼 張** (已激活)`
 
 ### **Phase 4：測試和部署**
-12. [ ] 執行 Migration（staging）
-13. [ ] 測試任務完成流程
-14. [ ] 測試國旗顯示
-15. [ ] Production 部署
+15. [ ] 執行 Migration（staging）
+16. [ ] 測試任務完成流程
+17. [ ] 測試所有顯示位置的國旗
+18. [ ] Production 部署
+
+---
+
+## 🎨 UI 集成詳細實施
+
+### **1. 自己的個人資料（`/profile`）**
+
+**文件**：`src/telegram/handlers/profile.ts`
+
+**修改位置**：`handleProfile` 函數
+
+```typescript
+import { formatNicknameWithFlag } from '~/utils/country_flag';
+
+// 在構建個人資料訊息時
+const displayNickname = formatNicknameWithFlag(
+  user.nickname || '匿名用戶',
+  user.country_code
+);
+
+// 修改訊息內容
+let profileMessage = `👤 **個人資料**\n\n`;
+profileMessage += `━━━━━━━━━━━━━━━━\n`;
+profileMessage += `📝 暱稱：${displayNickname}\n`;  // 🆕 添加國旗
+profileMessage += `🎂 年齡：${age} 歲\n`;
+// ... 其他內容
+```
+
+---
+
+### **2. 自己的資料卡片（`/profile_card`）**
+
+**文件**：`src/telegram/handlers/profile.ts`
+
+**修改位置**：`handleProfileCard` 函數
+
+```typescript
+import { formatNicknameWithFlag } from '~/utils/country_flag';
+
+// 在構建資料卡片時
+const displayNickname = formatNicknameWithFlag(
+  user.nickname || '匿名用戶',
+  user.country_code
+);
+
+const cardMessage =
+  `┌─────────────────────────┐\n` +
+  `│   📇 個人資料卡片       │\n` +
+  `└─────────────────────────┘\n\n` +
+  `👤 ${displayNickname}\n` +  // 🆕 添加國旗
+  `${gender} • ${age} 歲 • ${city}\n\n` +
+  // ... 其他內容
+```
+
+---
+
+### **3. 對方的資料卡片（對話中）**
+
+**文件**：`src/telegram/handlers/conversation_actions.ts`
+
+**修改位置**：`handleConversationProfile` 函數
+
+```typescript
+import { formatNicknameWithFlag } from '~/utils/country_flag';
+import { maskNickname } from '~/domain/invite';
+
+// 在構建對方資料卡時
+const maskedNickname = maskNickname(otherUser.nickname || '匿名');
+const displayNickname = formatNicknameWithFlag(
+  maskedNickname,
+  otherUser.country_code
+);
+
+// 修改訊息內容
+let profileMessage = '👤 **對方的資料卡**\n\n';
+profileMessage += `━━━━━━━━━━━━━━━━\n`;
+profileMessage += `📝 暱稱：${displayNickname}\n`;  // 🆕 添加國旗
+profileMessage += `🗣️ 語言：${languageLabel}\n`;
+// ... 其他內容
+```
+
+---
+
+### **4. 對話歷史帖子**
+
+**文件**：`src/services/conversation_history.ts`
+
+**修改位置**：`updateConversationHistory` 函數
+
+```typescript
+import { formatNicknameWithFlag } from '~/utils/country_flag';
+import { maskNickname } from '~/domain/invite';
+
+// 在構建歷史帖子標題時
+const maskedNickname = maskNickname(partner.nickname || '匿名');
+const displayNickname = formatNicknameWithFlag(
+  maskedNickname,
+  partner.country_code
+);
+
+// 修改標題
+const title = `💬 與 ${displayNickname} 的對話記錄`;  // 🆕 添加國旗
+```
+
+---
+
+### **5. 邀請通知**
+
+**文件**：`src/telegram/handlers/invite_activation.ts`
+
+**修改位置**：`sendInviterNotification` 函數
+
+```typescript
+import { formatNicknameWithFlag } from '~/utils/country_flag';
+import { maskNickname } from '~/domain/invite';
+
+// 在發送邀請成功通知時
+const maskedNickname = maskNickname(invitee.nickname || '匿名');
+const displayNickname = formatNicknameWithFlag(
+  maskedNickname,
+  invitee.country_code
+);
+
+// 修改通知內容
+const message = 
+  `🎉 邀請成功！\n\n` +
+  `您的朋友 ${displayNickname} 已完成註冊並激活！\n\n` +  // 🆕 添加國旗
+  `🎁 獎勵：每日瓶子配額 +1\n` +
+  // ... 其他內容
+```
+
+---
+
+### **6. 任務中心（可選）**
+
+**文件**：`src/telegram/handlers/tasks.ts`
+
+**說明**：目前任務中心不顯示邀請的用戶列表，只顯示統計數字。如果未來需要顯示邀請列表，再添加國旗。
+
+**暫時不需要修改**
+
+---
+
+## 📝 工具函數使用示例
+
+### **基本用法**
+
+```typescript
+import { formatNicknameWithFlag } from '~/utils/country_flag';
+
+// 示例 1：顯示自己的暱稱
+const myNickname = formatNicknameWithFlag('張三', 'TW');
+// 結果：🇹🇼 張三
+
+// 示例 2：顯示對方的暱稱（擾碼）
+import { maskNickname } from '~/domain/invite';
+const maskedNickname = maskNickname('李四');
+const displayNickname = formatNicknameWithFlag(maskedNickname, 'CN');
+// 結果：🇨🇳 李**
+
+// 示例 3：沒有國旗時使用聯合國旗
+const unknownNickname = formatNicknameWithFlag('匿名', null);
+// 結果：🇺🇳 匿名
+```
+
+### **結合現有邏輯**
+
+```typescript
+// 在任何顯示暱稱的地方，只需要添加一行
+// 之前：
+const nickname = user.nickname || '匿名';
+
+// 之後：
+import { formatNicknameWithFlag } from '~/utils/country_flag';
+const nickname = formatNicknameWithFlag(
+  user.nickname || '匿名',
+  user.country_code
+);
+```
 
 ---
 
