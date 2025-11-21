@@ -130,16 +130,32 @@ export function canCancelBroadcast(broadcast: Broadcast): boolean {
 /**
  * Calculate batch size for rate limiting
  * 
- * 根據用戶數量動態調整延遲：
+ * 支援優先級：
+ * - high: 瓶子通知（25 msg/batch, 動態延遲）- 保持原有邏輯
+ * - low: 廣播/生日祝福（10 msg/batch, 2s 延遲）- 不影響瓶子推送
+ * 
+ * 根據用戶數量動態調整延遲（僅 high priority）：
  * - 1-25 用戶：立即發送（0ms 延遲）
  * - 26-100 用戶：500ms 延遲
  * - 101+ 用戶：1000ms 延遲
  */
-export function calculateBatchSize(totalUsers: number): {
+export function calculateBatchSize(
+  totalUsers: number,
+  priority: 'high' | 'low' = 'high'
+): {
   batchSize: number;
   batchCount: number;
   delayMs: number;
 } {
+  // 低優先級：廣播、生日祝福（不影響瓶子推送）
+  if (priority === 'low') {
+    const batchSize = 10; // 降低批次大小
+    const batchCount = Math.ceil(totalUsers / batchSize);
+    const delayMs = 2000; // 增加延遲（5 msg/sec）
+    return { batchSize, batchCount, delayMs };
+  }
+  
+  // 高優先級：瓶子通知（保持原有邏輯）
   const batchSize = 25; // Telegram rate limit: 30 messages/second
   const batchCount = Math.ceil(totalUsers / batchSize);
   
@@ -163,16 +179,20 @@ export function calculateBatchSize(totalUsers: number): {
  * 估算廣播完成時間
  * 
  * @param totalUsers 總用戶數
+ * @param priority 優先級（high: 瓶子通知, low: 廣播）
  * @returns 預估時間描述
  */
-export function estimateBroadcastTime(totalUsers: number): string {
-  const { batchCount, delayMs } = calculateBatchSize(totalUsers);
+export function estimateBroadcastTime(
+  totalUsers: number,
+  priority: 'high' | 'low' = 'high'
+): string {
+  const { batchCount, delayMs } = calculateBatchSize(totalUsers, priority);
   
   // 計算總時間（秒）
   // 每批次發送時間約 1 秒 + 批次間延遲
   const totalSeconds = batchCount + ((batchCount - 1) * delayMs) / 1000;
   
-  if (totalUsers <= 25) {
+  if (totalUsers <= 25 && priority === 'high') {
     return '立即發送（約 1-2 秒）';
   } else if (totalSeconds < 60) {
     return `約 ${Math.ceil(totalSeconds)} 秒`;
