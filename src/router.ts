@@ -199,7 +199,7 @@ export async function routeUpdate(update: TelegramUpdate, env: Env): Promise<voi
 
     // Try to handle as conversation message (anonymous chat)
     if (user.onboarding_step === 'completed') {
-      const isCommand = text.startsWith('/');
+      const _isCommand = text.startsWith('/');
 
       // Try appeal reason input first
       if (user.session_state === 'awaiting_appeal_reason') {
