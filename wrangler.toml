@@ -136,7 +136,13 @@ cron = "0 * * * *"  # Every hour (Channel membership check)
 cron = "0 3 * * *"  # Every day at 03:00 UTC = 11:00 Taipei (Avatar cache batch update)
 
 [[env.production.triggers.crons]]
-cron = "0 1 * * *"  # Every day at 01:00 UTC = 09:00 Taipei (Birthday greetings)
+cron = "30 2 * * *"  # Every day at 02:30 UTC = 10:30 Taipei (Birthday greetings - 錯峰發送)
+
+[[env.production.triggers.crons]]
+cron = "30 10 * * *"  # Every day at 10:30 UTC = 18:30 Taipei (Birthday greetings - 覆蓋時區)
+
+[[env.production.triggers.crons]]
+cron = "30 18 * * *"  # Every day at 18:30 UTC = 02:30 Taipei (Birthday greetings - 覆蓋時區)
 
 # Sensitive variables should be set via:
 # wrangler secret put TELEGRAM_BOT_TOKEN --env staging
