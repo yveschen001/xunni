@@ -12,7 +12,8 @@ import { calculateBottleExpiration } from '~/domain/bottle';
 export async function createBottle(
   db: DatabaseClient,
   ownerId: string,
-  input: ThrowBottleInput
+  input: ThrowBottleInput,
+  isVipTriple: boolean = false
 ): Promise<number> {
   const expiresAt = calculateBottleExpiration();
 
@@ -29,8 +30,9 @@ export async function createBottle(
       target_region,
       target_zodiac_filter,
       target_mbti_filter,
-      target_blood_type_filter
-    ) VALUES (?, ?, datetime('now'), ?, 'pending', ?, ?, ?, ?, ?)
+      target_blood_type_filter,
+      is_vip_triple
+    ) VALUES (?, ?, datetime('now'), ?, 'pending', ?, ?, ?, ?, ?, ?)
   `
     )
     .bind(
@@ -41,7 +43,8 @@ export async function createBottle(
       input.target_region || null,
       input.target_zodiac_filter ? JSON.stringify(input.target_zodiac_filter) : null,
       input.target_mbti_filter ? JSON.stringify(input.target_mbti_filter) : null,
-      input.target_blood_type_filter || null
+      input.target_blood_type_filter || null,
+      isVipTriple ? 1 : 0
     )
     .run();
 
@@ -72,14 +75,31 @@ export async function findMatchingBottle(
   // 9. Match Zodiac filter (if specified)
 
   // Get all matching bottles (we'll filter MBTI/Zodiac in application layer)
+  // 🆕 Support VIP triple bottles: check for available slots
   const results = await db.d1
     .prepare(
       `
-    SELECT b.* FROM bottles b
-    WHERE b.status = 'pending'
+    SELECT DISTINCT b.* FROM bottles b
+    WHERE (
+      -- 普通瓶子：status = 'pending'
+      (b.is_vip_triple = 0 AND b.status = 'pending')
+      OR
+      -- VIP 三倍瓶子：至少有 1 個槽位 status = 'pending'
+      (b.is_vip_triple = 1 AND EXISTS (
+        SELECT 1 FROM bottle_match_slots s
+        WHERE s.bottle_id = b.id 
+          AND s.status = 'pending'
+      ))
+    )
       AND datetime(b.expires_at) > datetime('now')
       AND b.owner_telegram_id != ?
       AND (b.target_gender = ? OR b.target_gender = 'any')
+      -- 🆕 排除已經配對過的用戶（檢查所有槽位）
+      AND NOT EXISTS (
+        SELECT 1 FROM bottle_match_slots s2
+        WHERE s2.bottle_id = b.id
+          AND s2.matched_with_telegram_id = ?
+      )
       AND NOT EXISTS (
         SELECT 1 FROM user_blocks ub
         WHERE (ub.blocker_telegram_id = ? AND ub.blocked_telegram_id = b.owner_telegram_id)
@@ -95,7 +115,7 @@ export async function findMatchingBottle(
     LIMIT 50
   `
     )
-    .bind(userId, userGender, userId, userId, userId)
+    .bind(userId, userGender, userId, userId, userId, userId)
     .all();
 
   if (!results.results || results.results.length === 0) {

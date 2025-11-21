@@ -202,8 +202,42 @@ export async function handleCatch(message: TelegramMessage, env: Env): Promise<v
       return;
     }
 
-    // Update bottle status
-    await updateBottleStatus(db, bottle.id, 'matched');
+    // 🆕 Handle VIP triple bottle slots
+    if (bottle.is_vip_triple) {
+      const {
+        getFirstAvailableSlot,
+        updateSlotMatched,
+        getRemainingSlots,
+      } = await import('~/db/queries/bottle_match_slots');
+
+      // 找到第一個可用槽位
+      const availableSlot = await getFirstAvailableSlot(db, bottle.id);
+
+      if (!availableSlot) {
+        // 所有槽位都已配對
+        await telegram.sendMessage(chatId, '❌ 這個瓶子已經被其他人撿走了，請試試其他瓶子！');
+        return;
+      }
+
+      // 更新槽位狀態
+      await updateSlotMatched(db, availableSlot.id, telegramId, conversationId);
+      console.error(
+        `[handleCatch] VIP triple bottle slot matched: bottle=${bottle.id}, slot=${availableSlot.id}`
+      );
+
+      // 檢查是否所有槽位都已配對
+      const remainingSlots = await getRemainingSlots(db, bottle.id);
+      if (remainingSlots === 0) {
+        // 所有槽位都已配對，更新瓶子狀態
+        await updateBottleStatus(db, bottle.id, 'matched');
+        console.error(`[handleCatch] All slots matched for bottle ${bottle.id}`);
+      } else {
+        console.error(`[handleCatch] ${remainingSlots} slots remaining for bottle ${bottle.id}`);
+      }
+    } else {
+      // 普通瓶子（現有邏輯）
+      await updateBottleStatus(db, bottle.id, 'matched');
+    }
 
     // Initialize conversation history for both users
     const { getOrCreateIdentifier } = await import('~/db/queries/conversation_identifiers');

@@ -32,6 +32,37 @@ export async function handleStats(message: TelegramMessage, env: Env): Promise<v
     // Get statistics
     const stats = await getUserStats(db, telegramId);
 
+    // 🆕 Check if user is VIP
+    const isVip = !!(
+      user.is_vip &&
+      user.vip_expire_at &&
+      new Date(user.vip_expire_at) > new Date()
+    );
+
+    // 🆕 Get VIP triple bottle stats if user is VIP
+    let vipStatsText = '';
+    if (isVip) {
+      const { getVipTripleBottleStats } = await import('~/db/queries/bottle_match_slots');
+      const vipStats = await getVipTripleBottleStats(db, telegramId, 30);
+
+      if (vipStats.throws > 0) {
+        const avgMatches =
+          vipStats.throws > 0 ? (vipStats.matchedSlots / vipStats.throws).toFixed(1) : '0.0';
+        const matchRate =
+          vipStats.totalSlots > 0
+            ? ((vipStats.matchedSlots / vipStats.totalSlots) * 100).toFixed(1)
+            : '0.0';
+
+        vipStatsText =
+          `\n💎 **VIP 三倍瓶子統計**（近 30 天）\n` +
+          `• 丟出次數：${vipStats.throws}\n` +
+          `• 總配對槽位：${vipStats.totalSlots}\n` +
+          `• 成功配對：${vipStats.matchedSlots}\n` +
+          `• 配對率：${matchRate}%\n` +
+          `• 平均每次配對：${avgMatches} 個對象\n`;
+      }
+    }
+
     // Format message
     const message_text =
       `📊 **我的統計數據**\n\n` +
@@ -47,10 +78,9 @@ export async function handleStats(message: TelegramMessage, env: Env): Promise<v
       `• 匹配成功率：${stats.matchRate}%\n` +
       `• 平均回覆率：${stats.replyRate}%\n\n` +
       `⭐ **VIP 狀態**\n` +
-      `• ${user.is_vip && user.vip_expire_at && new Date(user.vip_expire_at) > new Date() ? `VIP 會員 💎` : `免費會員`}\n` +
-      (user.is_vip && user.vip_expire_at && new Date(user.vip_expire_at) > new Date()
-        ? `• 到期時間：${new Date(user.vip_expire_at).toLocaleDateString('zh-TW')}\n`
-        : '') +
+      `• ${isVip ? `VIP 會員 💎` : `免費會員`}\n` +
+      (isVip ? `• 到期時間：${new Date(user.vip_expire_at!).toLocaleDateString('zh-TW')}\n` : '') +
+      vipStatsText +
       `\n` +
       `📅 **註冊時間**：${new Date(user.created_at).toLocaleDateString('zh-TW')}\n` +
       `🎂 **年齡**：${calculateAge(user.birthday!)} 歲\n` +

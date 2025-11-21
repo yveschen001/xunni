@@ -130,9 +130,11 @@ export const translations: Translations = {
     title: '⭐ VIP 訂閱',
     benefits:
       '🎁 VIP 權益：\n' +
+      '• 🆕 三倍曝光機會（1 次丟瓶 = 3 個對象）\n' +
+      '• 解鎖對方清晰頭像\n' +
       '• 每日 30 個漂流瓶（免費 3 個）\n' +
-      '• 可指定星座／MBTI 篩選\n' +
-      '• 34 種語言自動翻譯\n' +
+      '• 可指定星座／MBTI／血型篩選\n' +
+      '• 34 種語言自動翻譯（OpenAI 優先）\n' +
       '• 無廣告',
     price: '💰 價格：5 USD / 月',
     subscribe: '訂閱 VIP',

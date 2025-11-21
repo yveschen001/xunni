@@ -130,9 +130,11 @@ export const translations: Translations = {
     title: '⭐ VIP Subscription',
     benefits:
       '🎁 VIP Benefits:\n' +
+      '• 🆕 3x Exposure (1 throw = 3 matches)\n' +
+      '• Unlock clear avatars\n' +
       '• 30 bottles per day (Free: 3)\n' +
-      '• Filter by zodiac/MBTI\n' +
-      '• Auto-translation in 34 languages\n' +
+      '• Filter by zodiac/MBTI/blood type\n' +
+      '• Auto-translation in 34 languages (OpenAI)\n' +
       '• Ad-free',
     price: '💰 Price: 5 USD / month',
     subscribe: 'Subscribe to VIP',

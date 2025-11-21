@@ -140,10 +140,20 @@ export async function handleThrow(message: TelegramMessage, env: Env): Promise<v
           await telegram.sendMessage(chatId, quotaMessage);
         }
       } else {
+        // 🆕 更新配額用完提示
         await telegram.sendMessage(
           chatId,
           `❌ 今日漂流瓶配額已用完（${quotaDisplay}）\n\n` +
-            `💡 明天再來丟更多瓶子吧！`
+            `📊 免費用戶：3 個/天\n` +
+            `💎 VIP 用戶：30 個/天（三倍曝光）\n\n` +
+            `🎁 邀請好友可增加配額：\n` +
+            `• 免費用戶：最多 +7 個\n` +
+            `• VIP 用戶：最多 +70 個\n\n` +
+            `💡 升級 VIP 獲得：\n` +
+            `• 🆕 三倍曝光機會（1 次 = 3 個對象）\n` +
+            `• 更多配額（30 個/天）\n` +
+            `• 進階篩選和翻譯\n\n` +
+            `使用 /vip 立即升級`
         );
       }
       return;
@@ -288,8 +298,25 @@ export async function processBottleContent(user: User, content: string, env: Env
       language: user.language_pref,
     };
 
-    // Create bottle
-    const bottleId = await createBottle(db, user.telegram_id, bottleInput);
+    // 🆕 Check if user is VIP
+    const isVip = !!(
+      user.is_vip &&
+      user.vip_expire_at &&
+      new Date(user.vip_expire_at) > new Date()
+    );
+
+    // 🆕 Create bottle (VIP triple or regular)
+    let bottleId: number;
+    if (isVip) {
+      // VIP 用戶：創建三倍瓶子
+      const { createVipTripleBottle } = await import('~/domain/vip_triple_bottle');
+      bottleId = await createVipTripleBottle(db, user, bottleInput, env);
+      console.error('[handleThrow] VIP triple bottle created:', bottleId);
+    } else {
+      // 免費用戶：創建普通瓶子
+      bottleId = await createBottle(db, user.telegram_id, bottleInput, false);
+      console.error('[handleThrow] Regular bottle created:', bottleId);
+    }
 
     // Increment daily count
     await incrementDailyThrowCount(db, user.telegram_id);
@@ -460,13 +487,30 @@ export async function processBottleContent(user: User, content: string, env: Env
     const { clearSession } = await import('~/db/queries/sessions');
     await clearSession(db, user.telegram_id, 'throw_bottle');
 
-    // Send success message
-    const successMessage =
-      `🎉 漂流瓶已丟出！\n\n` +
-      `瓶子 ID：#${bottleId}\n\n` +
-      `今日已丟：${quotaDisplay}\n\n` +
-      `💡 你的瓶子將在 24 小時內等待有緣人撿起～\n\n` +
-      `想要撿別人的瓶子嗎？使用 /catch`;
+    // 🆕 Send success message (different for VIP and free users)
+    let successMessage: string;
+    if (isVip) {
+      // VIP 用戶成功訊息
+      successMessage =
+        `✨ **VIP 特權啟動！**\n\n` +
+        `🎯 你的瓶子已發送給 **3 個對象**：\n` +
+        `• 1 個智能配對對象（已配對）\n` +
+        `• 2 個公共池對象（等待中）\n\n` +
+        `💬 你可能會收到 **最多 3 個對話**！\n` +
+        `📊 今日已丟：${quotaDisplay}\n\n` +
+        `💡 提示：每個對話都是獨立的，可以同時進行\n\n` +
+        `使用 /chats 查看所有對話`;
+    } else {
+      // 免費用戶成功訊息（加上 VIP 提示）
+      successMessage =
+        `🎉 漂流瓶已丟出！\n\n` +
+        `瓶子 ID：#${bottleId}\n\n` +
+        `🌊 等待有緣人撿起...\n` +
+        `📊 今日已丟：${quotaDisplay}\n\n` +
+        `💎 **升級 VIP 可獲得三倍曝光機會！**\n` +
+        `一次丟瓶子 = 3 個對象，大幅提升配對成功率\n\n` +
+        `使用 /vip 了解更多`;
+    }
 
     // Determine what button to show (ad/task/vip) for non-VIP users
     if (!isVip) {

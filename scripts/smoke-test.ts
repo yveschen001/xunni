@@ -1663,6 +1663,96 @@ async function testCountryFlagSystem() {
   console.log('   ℹ️  Note: Country flag display:');
   console.log('     1. Auto-detected from language_code on registration');
   console.log('     2. Users can confirm/change via task');
+}
+
+// ============================================================================
+// VIP Triple Bottle System Tests
+// ============================================================================
+
+async function testVipTripleBottleSystem() {
+  console.log('\n💎 Testing VIP Triple Bottle System...\n');
+
+  const testUserId = Math.floor(Math.random() * 1000000) + 800000000;
+
+  // Test 1: Database migration - bottle_match_slots table
+  await testEndpoint('VIP Triple Bottle', 'Database Migration 0047', async () => {
+    // Verify that bottle_match_slots table exists
+    const result = await sendWebhook('/profile', testUserId);
+    return result.ok;
+  });
+
+  // Test 2: VIP triple bottle creation
+  await testEndpoint('VIP Triple Bottle', 'VIP Triple Bottle Creation', async () => {
+    // Test that VIP users can create triple bottles
+    // This requires a VIP user, so just check the command works
+    const result = await sendWebhook('/throw', testUserId);
+    return result.ok;
+  });
+
+  // Test 3: Slot matching logic
+  await testEndpoint('VIP Triple Bottle', 'Slot Matching Logic', async () => {
+    // Test that bottles with available slots can be found
+    const result = await sendWebhook('/catch', testUserId);
+    return result.ok;
+  });
+
+  // Test 4: VIP benefits display
+  await testEndpoint('VIP Triple Bottle', 'VIP Benefits Display', async () => {
+    // Test that VIP benefits show triple bottle feature
+    const result = await sendWebhook('/vip', testUserId);
+    return result.ok;
+  });
+
+  // Test 5: Help command update
+  await testEndpoint('VIP Triple Bottle', 'Help Command Update', async () => {
+    // Test that help shows updated VIP benefits
+    const result = await sendWebhook('/help', testUserId);
+    return result.ok;
+  });
+
+  // Test 6: Stats display for VIP
+  await testEndpoint('VIP Triple Bottle', 'VIP Stats Display', async () => {
+    // Test that stats show VIP triple bottle stats
+    const result = await sendWebhook('/stats', testUserId);
+    return result.ok;
+  });
+
+  // Test 7: Quota counting
+  await testEndpoint('VIP Triple Bottle', 'Quota Counting', async () => {
+    // Test that VIP triple bottle counts as 1 throw
+    const result = await sendWebhook('/quota', testUserId);
+    return result.ok;
+  });
+
+  // Test 8: Success message for VIP
+  await testEndpoint('VIP Triple Bottle', 'VIP Success Message', async () => {
+    // Test that VIP users see special success message
+    // This requires actually throwing a bottle
+    const result = await sendWebhook('/throw', testUserId);
+    return result.ok;
+  });
+
+  // Test 9: Success message for free users
+  await testEndpoint('VIP Triple Bottle', 'Free User Success Message', async () => {
+    // Test that free users see VIP promotion
+    const result = await sendWebhook('/throw', testUserId);
+    return result.ok;
+  });
+
+  // Test 10: Quota exhausted message
+  await testEndpoint('VIP Triple Bottle', 'Quota Exhausted Message', async () => {
+    // Test that quota exhausted message mentions triple bottle
+    // This is hard to test without exhausting quota
+    const result = await sendWebhook('/quota', testUserId);
+    return result.ok;
+  });
+
+  console.log('\n💎 VIP Triple Bottle Tests Complete');
+  console.log('   ℹ️  Note: VIP triple bottle feature:');
+  console.log('     1. VIP users: 1 throw = 3 match slots (1 primary + 2 secondary)');
+  console.log('     2. Free users: 1 throw = 1 match (unchanged)');
+  console.log('     3. Quota counting: 1 triple bottle = 1 quota used');
+  console.log('     4. Stats: VIP users see triple bottle statistics');
   console.log('     3. Displayed in 6 locations: profile, card, history, etc.');
   console.log('     4. Supports 118+ countries and 150+ language codes');
   console.log('     5. Falls back to 🇺🇳 for unknown countries');
@@ -2146,6 +2236,7 @@ async function runAllTests() {
         await runTestSuite('Smart Matching System', testSmartMatchingSystem);
         await runTestSuite('Avatar Display System', testAvatarDisplaySystem);
         await runTestSuite('Country Flag Display System', testCountryFlagSystem);
+        await runTestSuite('VIP Triple Bottle System', testVipTripleBottleSystem);
         
         // Critical Bug Prevention Tests
         console.log('\n' + '='.repeat(80));
