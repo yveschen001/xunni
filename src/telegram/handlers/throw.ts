@@ -242,6 +242,7 @@ export async function processBottleContent(user: User, content: string, env: Env
   const db = createDatabaseClient(env.DB);
   const telegram = createTelegramService(env);
   const chatId = parseInt(user.telegram_id);
+  let statusMsg: { message_id: number } | null = null;
 
   try {
     // Validate content
@@ -305,17 +306,61 @@ export async function processBottleContent(user: User, content: string, env: Env
       new Date(user.vip_expire_at) > new Date()
     );
 
+    // 🎨 UX: 階段 1 - 立即反饋（< 1 秒）
+    const startTime = Date.now();
+    statusMsg = await telegram.sendMessage(
+      chatId,
+      isVip
+        ? `🌊 **正在丟出你的漂流瓶...**\n\n` +
+          `✨ VIP 特權啟動中\n` +
+          `🎯 正在為你尋找 3 個最佳配對對象\n\n` +
+          `⏳ 預計 3-5 秒完成`
+        : `🌊 **正在丟出你的漂流瓶...**\n\n` +
+          `🎯 正在為你尋找最佳配對對象\n\n` +
+          `⏳ 預計 2-3 秒完成`
+    );
+
     // 🆕 Create bottle (VIP triple or regular)
     let bottleId: number;
+    let vipMatchInfo: { matched: boolean; conversationId?: number; conversationIdentifier?: string; matcherNickname?: string } | null = null;
     if (isVip) {
       // VIP 用戶：創建三倍瓶子
       const { createVipTripleBottle } = await import('~/domain/vip_triple_bottle');
-      bottleId = await createVipTripleBottle(db, user, bottleInput, env);
-      console.error('[handleThrow] VIP triple bottle created:', bottleId);
+      const result = await createVipTripleBottle(db, user, bottleInput, env);
+      bottleId = result.bottleId;
+      vipMatchInfo = result.primaryMatch;
+      console.error('[handleThrow] VIP triple bottle created:', bottleId, 'Primary match:', vipMatchInfo.matched);
     } else {
       // 免費用戶：創建普通瓶子
       bottleId = await createBottle(db, user.telegram_id, bottleInput, false);
       console.error('[handleThrow] Regular bottle created:', bottleId);
+    }
+
+    // 🎨 UX: 階段 2 - 創建瓶子完成（約 2 秒後）
+    const elapsed1 = Date.now() - startTime;
+    if (elapsed1 < 2000) {
+      await new Promise((resolve) => setTimeout(resolve, 2000 - elapsed1));
+    }
+    if (statusMsg) {
+      try {
+        await telegram.editMessageText(
+          chatId,
+          statusMsg.message_id,
+        isVip
+          ? `🌊 **正在丟出你的漂流瓶...**\n\n` +
+            `✅ 瓶子已創建\n` +
+            `✨ VIP 特權啟動中\n` +
+            `🎯 正在為你尋找 3 個最佳配對對象\n\n` +
+            `⏳ 預計 2-3 秒完成`
+          : `🌊 **正在丟出你的漂流瓶...**\n\n` +
+            `✅ 瓶子已創建\n` +
+            `🎯 正在為你尋找最佳配對對象\n\n` +
+            `⏳ 預計 1-2 秒完成`
+        );
+      } catch (editError) {
+        // 如果編輯失敗（訊息被刪除等），忽略錯誤，繼續執行
+        console.error('[handleThrow] Failed to update progress:', editError);
+      }
     }
 
     // Increment daily count
@@ -324,6 +369,26 @@ export async function processBottleContent(user: User, content: string, env: Env
     // ✨ NEW: Try smart matching (non-blocking, won't affect existing flow)
     // 🆕 Skip smart matching for VIP triple bottles (already handled in createVipTripleBottle)
     if (!isVip) {
+      // 🎨 UX: 階段 3 - 智能匹配進行中（約 4 秒後）
+      const elapsed2 = Date.now() - startTime;
+      if (elapsed2 < 4000) {
+        await new Promise((resolve) => setTimeout(resolve, 4000 - elapsed2));
+      }
+      if (statusMsg) {
+        try {
+          await telegram.editMessageText(
+            chatId,
+            statusMsg.message_id,
+          `🌊 **正在丟出你的漂流瓶...**\n\n` +
+            `✅ 瓶子已創建\n` +
+            `🔍 正在智能匹配最佳對象...\n\n` +
+            `💡 這可能需要幾秒鐘，我們正在為你找到最合適的人`
+          );
+        } catch (editError) {
+          console.error('[handleThrow] Failed to update progress:', editError);
+        }
+      }
+
       try {
         const { findActiveMatchForBottle } = await import('~/services/smart_matching');
         const matchResult = await findActiveMatchForBottle(db.d1, bottleId);
@@ -486,19 +551,47 @@ export async function processBottleContent(user: User, content: string, env: Env
     const { clearSession } = await import('~/db/queries/sessions');
     await clearSession(db, user.telegram_id, 'throw_bottle');
 
+    // 🎨 UX: 階段 4 - 完成，刪除進度訊息
+    if (statusMsg) {
+      try {
+        await telegram.deleteMessage(chatId, statusMsg.message_id);
+      } catch (deleteError) {
+        // 如果刪除失敗（訊息已被刪除等），忽略錯誤，繼續執行
+        console.error('[handleThrow] Failed to delete progress message:', deleteError);
+      }
+    }
+
     // 🆕 Send success message (different for VIP and free users)
     let successMessage: string;
     if (isVip) {
       // VIP 用戶成功訊息
-      successMessage =
-        `✨ **VIP 特權啟動！**\n\n` +
-        `🎯 你的瓶子已發送給 **3 個對象**：\n` +
-        `• 1 個智能配對對象（已配對）\n` +
-        `• 2 個公共池對象（等待中）\n\n` +
-        `💬 你可能會收到 **最多 3 個對話**！\n` +
-        `📊 今日已丟：${quotaDisplay}\n\n` +
-        `💡 提示：每個對話都是獨立的，可以同時進行\n\n` +
-        `使用 /chats 查看所有對話`;
+      if (vipMatchInfo && vipMatchInfo.matched) {
+        // 有智能配對成功
+        successMessage =
+          `✨ **VIP 特權啟動！智能配對成功！**\n\n` +
+          `🎯 **第 1 個配對已完成：**\n` +
+          `👤 對方：${vipMatchInfo.matcherNickname}\n` +
+          `💬 對話標識符：${vipMatchInfo.conversationIdentifier}\n\n` +
+          `📨 **另外 2 個槽位等待中：**\n` +
+          `• 槽位 2：公共池（等待撿起）\n` +
+          `• 槽位 3：公共池（等待撿起）\n\n` +
+          `💡 你可能會收到 **最多 3 個對話**！\n` +
+          `📊 今日已丟：${quotaDisplay}\n\n` +
+          `🚀 **立即開始聊天：**\n` +
+          `使用 /chats 查看所有對話，或直接回覆對方的訊息`;
+      } else {
+        // 智能配對未成功，3 個槽位都進入公共池
+        successMessage =
+          `✨ **VIP 特權啟動！**\n\n` +
+          `🎯 你的瓶子已發送給 **3 個對象**：\n` +
+          `• 槽位 1：公共池（等待撿起）\n` +
+          `• 槽位 2：公共池（等待撿起）\n` +
+          `• 槽位 3：公共池（等待撿起）\n\n` +
+          `💬 你可能會收到 **最多 3 個對話**！\n` +
+          `📊 今日已丟：${quotaDisplay}\n\n` +
+          `💡 提示：每個對話都是獨立的，可以同時進行\n\n` +
+          `使用 /chats 查看所有對話`;
+      }
     } else {
       // 免費用戶成功訊息（加上 VIP 提示）
       successMessage =
@@ -550,12 +643,21 @@ export async function processBottleContent(user: User, content: string, env: Env
       contentLength: content.length,
     });
 
+    // 🎨 UX: 錯誤時也要刪除進度訊息
+    if (statusMsg) {
+      try {
+        await telegram.deleteMessage(chatId, statusMsg.message_id);
+      } catch (deleteError) {
+        console.error('[processBottleContent] Failed to delete progress message:', deleteError);
+      }
+    }
+
     const errorMsg = error instanceof Error ? error.message : String(error);
     await telegram.sendMessage(
       chatId,
-      `❌ 發生錯誤，請稍後再試。\n\n` +
-        `錯誤信息：${errorMsg}\n\n` +
-        `💡 如果問題持續，請聯繫管理員。`
+      `😔 **抱歉，處理時遇到了一些問題**\n\n` +
+        `💡 請稍後再試，或使用 /help 聯繫我們\n\n` +
+        `🔄 重新嘗試：/throw`
     );
   }
 }

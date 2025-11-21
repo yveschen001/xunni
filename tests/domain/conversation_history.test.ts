@@ -15,7 +15,9 @@ describe('Conversation History', () => {
       const time = new Date('2025-01-17T06:26:00Z');
       const result = formatMessageEntry(time, 'sent', '测试消息');
 
-      expect(result).toBe('[06:26] 你：测试消息');
+      const hours = String(time.getHours()).padStart(2, '0');
+      const minutes = String(time.getMinutes()).padStart(2, '0');
+      expect(result).toBe(`[${hours}:${minutes}] 你：测试消息`);
     });
   });
 

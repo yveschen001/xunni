@@ -3,59 +3,77 @@
  */
 
 import { describe, it, expect } from 'vitest';
-import { getProcessedAvatarUrl, getDefaultAvatarUrl } from '~/services/avatar';
+import {
+  generateBlurredAvatarUrl,
+  getDefaultAvatarUrl,
+  getDisplayAvatarUrl,
+  isAvatarCacheExpired,
+} from '~/services/avatar';
+import type { Env } from '~/types';
 
 describe('Avatar Service', () => {
-  describe('getProcessedAvatarUrl', () => {
-    const testUrl = 'https://api.telegram.org/file/bot123/photos/file_0.jpg';
+  const mockEnv = {
+    PUBLIC_URL: 'https://example.com',
+  } as Env;
 
-    it('should return original URL for VIP users', () => {
-      const result = getProcessedAvatarUrl(testUrl, true);
-      expect(result).toBe(testUrl);
-    });
+  describe('generateBlurredAvatarUrl', () => {
+    it('should return blur proxy URL with original encoded', () => {
+      const originalUrl = 'https://cdn.telegram.org/file.jpg';
+      const result = generateBlurredAvatarUrl(originalUrl, mockEnv);
 
-    it('should return blurred URL for free users', () => {
-      const result = getProcessedAvatarUrl(testUrl, false);
-      expect(result).toContain('images.weserv.nl');
-      expect(result).toContain('blur=20');
-      expect(result).toContain(encodeURIComponent(testUrl));
-    });
-
-    it('should include proper image dimensions in blur URL', () => {
-      const result = getProcessedAvatarUrl(testUrl, false);
-      expect(result).toContain('w=400');
-      expect(result).toContain('h=400');
-      expect(result).toContain('fit=cover');
+      expect(result).toBe(
+        `${mockEnv.PUBLIC_URL}/api/avatar/blur?url=${encodeURIComponent(originalUrl)}`
+      );
     });
   });
 
   describe('getDefaultAvatarUrl', () => {
-    it('should return a data URL', () => {
-      const result = getDefaultAvatarUrl();
-      expect(result).toMatch(/^data:image\/svg\+xml;base64,/);
+    it('should return gender-specific assets', () => {
+      expect(getDefaultAvatarUrl(mockEnv, 'male')).toBe(
+        `${mockEnv.PUBLIC_URL}/assets/default-avatar-male.png`
+      );
+      expect(getDefaultAvatarUrl(mockEnv, 'female')).toBe(
+        `${mockEnv.PUBLIC_URL}/assets/default-avatar-female.png`
+      );
+      expect(getDefaultAvatarUrl(mockEnv)).toBe(
+        `${mockEnv.PUBLIC_URL}/assets/default-avatar-neutral.png`
+      );
+    });
+  });
+
+  describe('getDisplayAvatarUrl', () => {
+    const originalUrl = 'https://cdn.telegram.org/photo.jpg';
+
+    it('should return default avatar when no original URL', () => {
+      const result = getDisplayAvatarUrl(null, false, mockEnv, 'male');
+      expect(result).toBe(`${mockEnv.PUBLIC_URL}/assets/default-avatar-male.png`);
     });
 
-    it('should return a valid base64 encoded SVG', () => {
-      const result = getDefaultAvatarUrl();
-      const base64Part = result.replace('data:image/svg+xml;base64,', '');
-      
-      // Should be valid base64
-      expect(() => {
-        const decoded = Buffer.from(base64Part, 'base64').toString('utf-8');
-        expect(decoded).toContain('<svg');
-        expect(decoded).toContain('</svg>');
-      }).not.toThrow();
+    it('should return original URL for VIP users', () => {
+      const result = getDisplayAvatarUrl(originalUrl, true, mockEnv);
+      expect(result).toBe(originalUrl);
     });
 
-    it('should contain user icon elements', () => {
-      const result = getDefaultAvatarUrl();
-      const base64Part = result.replace('data:image/svg+xml;base64,', '');
-      const decoded = Buffer.from(base64Part, 'base64').toString('utf-8');
-      
-      // Should have circle (head) and ellipse (body)
-      expect(decoded).toContain('<circle');
-      expect(decoded).toContain('<ellipse');
+    it('should return blurred URL for free users', () => {
+      const result = getDisplayAvatarUrl(originalUrl, false, mockEnv);
+      expect(result).toContain('/api/avatar/blur?url=');
+      expect(result).toContain(encodeURIComponent(originalUrl));
+    });
+  });
+
+  describe('isAvatarCacheExpired', () => {
+    it('should return true for missing updatedAt', () => {
+      expect(isAvatarCacheExpired(null)).toBe(true);
+    });
+
+    it('should return false for recent cache', () => {
+      const recent = new Date(Date.now() - 60 * 60 * 1000).toISOString(); // 1 hour ago
+      expect(isAvatarCacheExpired(recent)).toBe(false);
+    });
+
+    it('should return true for cache older than 7 days', () => {
+      const old = new Date(Date.now() - 8 * 24 * 60 * 60 * 1000).toISOString(); // 8 days ago
+      expect(isAvatarCacheExpired(old)).toBe(true);
     });
   });
 });
-

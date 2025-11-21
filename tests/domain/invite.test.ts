@@ -139,7 +139,8 @@ describe('Invite Domain Logic', () => {
 
     it('should handle empty string', () => {
       expect(maskNickname('')).toBe('新用戶******');
-      expect(maskNickname('').length).toBe(10);
+      // 「新用戶」為 3 個中文字 + 6 個 * = 9 個字元
+      expect(maskNickname('').length).toBe('新用戶******'.length);
     });
 
     it('should mask long names (show 6 + 4 stars)', () => {
