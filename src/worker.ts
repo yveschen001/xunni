@@ -66,6 +66,26 @@ export default {
           return await handleAvatarBlur(request, env);
         }
         
+        // Ad start callback
+        if (url.pathname === '/api/ad/start' && request.method === 'POST') {
+          const { handleAdStart } = await import('./telegram/handlers/ad_reward');
+          const userId = url.searchParams.get('user');
+          const token = url.searchParams.get('token');
+          const provider = url.searchParams.get('provider');
+
+          if (!userId || !token || !provider) {
+            return new Response(JSON.stringify({ success: false, message: 'Missing parameters' }), {
+              status: 400,
+              headers: { 'Content-Type': 'application/json' },
+            });
+          }
+
+          const result = await handleAdStart(userId, token, provider, env);
+          return new Response(JSON.stringify(result), {
+            headers: { 'Content-Type': 'application/json' },
+          });
+        }
+
         // Ad completion callback
         if (url.pathname === '/api/ad/complete' && request.method === 'POST') {
           const { handleAdComplete } = await import('./telegram/handlers/ad_reward');
@@ -90,17 +110,18 @@ export default {
         if (url.pathname === '/api/ad/error' && request.method === 'POST') {
           const { handleAdError } = await import('./telegram/handlers/ad_reward');
           const userId = url.searchParams.get('user');
+          const token = url.searchParams.get('token');
           const provider = url.searchParams.get('provider');
           const error = url.searchParams.get('error');
 
-          if (!userId || !provider || !error) {
+          if (!userId || !token || !provider || !error) {
             return new Response(JSON.stringify({ success: false, message: 'Missing parameters' }), {
               status: 400,
               headers: { 'Content-Type': 'application/json' },
             });
           }
 
-          await handleAdError(userId, provider, error, env);
+          await handleAdError(userId, token, provider, error, env);
           return new Response(JSON.stringify({ success: true }), {
             headers: { 'Content-Type': 'application/json' },
           });

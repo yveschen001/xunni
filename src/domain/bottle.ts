@@ -4,6 +4,8 @@
  * Pure functions for bottle business logic.
  */
 
+import { performLocalModeration } from '~/domain/risk';
+
 export interface Bottle {
   id: number;
   owner_telegram_id: string;
@@ -74,7 +76,6 @@ export function validateBottleContent(content: string): {
   }
 
   // Sensitive word detection (本地敏感词检测)
-  const { performLocalModeration } = require('~/domain/risk');
   const moderationResult = performLocalModeration(content);
   
   if (!moderationResult.is_safe) {

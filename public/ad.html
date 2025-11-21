@@ -144,6 +144,11 @@
       transform: translateY(0);
     }
 
+    .btn-secondary {
+      background: #f0f0f0;
+      color: #333;
+    }
+
     .progress-bar {
       width: 100%;
       height: 6px;
@@ -206,8 +211,28 @@
     </div>
   </div>
 
-  <!-- GigaPub Ad Script -->
-  <script src="https://ad.gigapub.tech/script?id=4406"></script>
+  <!-- GigaPub Enhanced Reliability Script -->
+  <script data-project-id="4406">
+    !function(){
+      var s=document.currentScript,p=s.getAttribute('data-project-id')||'4406';
+      var d=['https://ad.gigapub.tech','https://ru-ad.gigapub.tech'],i=0,t,sc;
+      function l(){
+        sc=document.createElement('script');
+        sc.async=true;
+        sc.src=d[i]+'/script?id='+p;
+        clearTimeout(t);
+        t=setTimeout(function(){
+          sc.onload=sc.onerror=null;
+          sc.src='';
+          if(++i<d.length)l();
+        },15000);
+        sc.onload=function(){clearTimeout(t)};
+        sc.onerror=function(){clearTimeout(t);if(++i<d.length)l()};
+        document.head.appendChild(sc);
+      }
+      l();
+    }();
+  </script>
 
   <script>
     // Get URL parameters
@@ -219,10 +244,14 @@
     // Configuration
     const API_BASE_URL = window.location.origin;
     const AD_DURATION = 15; // seconds
+    const MIN_REQUIRED_SECONDS = 10; // minimum playback seconds required
 
     // State
     let adStartTime = null;
     let adCompleted = false;
+    let playbackDurationMs = null;
+    let countdownInterval = null;
+    let isSubmittingCompletion = false;
 
     // ========================================================================
     // Main Flow
@@ -233,6 +262,11 @@
         // Validate parameters
         if (!provider || !token || !userId) {
           showError('無效的參數', '請從 Telegram Bot 重新開始');
+          return;
+        }
+
+        const startOk = await notifyAdStart();
+        if (!startOk) {
           return;
         }
 
@@ -252,6 +286,27 @@
     // ========================================================================
     // Ad Provider Integration
     // ========================================================================
+
+    async function notifyAdStart() {
+      try {
+        const response = await fetch(
+          `${API_BASE_URL}/api/ad/start?user=${userId}&token=${token}&provider=${provider}`,
+          { method: 'POST' }
+        );
+        const data = await response.json();
+        if (!data.success) {
+          showError('無法開始廣告', data.message || '請返回 Telegram 重新開始');
+          await reportError(data.message || 'start_failed');
+          return false;
+        }
+        return true;
+      } catch (error) {
+        console.error('Start error:', error);
+        showError('無法開始廣告', '連線失敗，請稍後再試');
+        await reportError(error.message || 'start_network_error');
+        return false;
+      }
+    }
 
     async function loadAdProvider(providerName) {
       // GigaPub script is already loaded in HTML
@@ -316,24 +371,21 @@
           timestamp: new Date().toISOString()
         });
 
-        // Check if ad actually played
-        // GigaPub video ads typically take 5-30 seconds
-        // If it completes in < 3 seconds, something is wrong
-        if (duration < 3000) {
+        playbackDurationMs = duration;
+
+        // Check if ad actually played long enough
+        if (duration < MIN_REQUIRED_SECONDS * 1000) {
           console.warn('[GigaPub] Ad completed suspiciously fast:', {
             duration: `${duration}ms`,
             result
           });
-          
-          // Show warning but still count as completed
-          // (GigaPub might not have ads available, but that's not user's fault)
-          showWarningAndComplete(durationSeconds);
+          showShortPlaybackWarning(durationSeconds);
           return;
         }
 
         // Normal completion (ad played for reasonable duration)
         console.log('[GigaPub] Ad played successfully for', durationSeconds, 'seconds');
-        onAdComplete();
+        showCompletionPrompt(durationSeconds);
 
       } catch (error) {
         console.error('[GigaPub] Ad error:', error);
@@ -344,7 +396,7 @@
       }
     }
 
-    function showWarningAndComplete(duration) {
+    function showShortPlaybackWarning(duration) {
       const container = document.getElementById('adContainer');
       container.innerHTML = `
         <div class="loading">
@@ -352,14 +404,18 @@
           <p style="color: #f39c12; font-size: 16px; margin-bottom: 12px;">廣告播放時間較短</p>
           <p style="color: #666; font-size: 14px;">播放時長：${duration} 秒</p>
           <p style="color: #666; font-size: 14px; margin-top: 8px;">可能是廣告庫存不足</p>
-          <p style="color: #666; font-size: 14px; margin-top: 16px;">正在為您計算獎勵...</p>
+          <p style="color: #666; font-size: 14px; margin-top: 16px;">請確認是否完整觀看</p>
+          <button class="btn" id="confirmShortAd">✅ 我確實看完</button>
+          <button class="btn btn-secondary" id="replayShortAd" style="margin-left: 8px;">重新播放</button>
         </div>
       `;
-      
-      // Wait a bit then complete anyway
-      setTimeout(() => {
-        onAdComplete();
-      }, 2000);
+
+      document.getElementById('confirmShortAd')?.addEventListener('click', () => {
+        showCompletionPrompt(duration);
+      });
+      document.getElementById('replayShortAd')?.addEventListener('click', () => {
+        window.location.reload();
+      });
     }
 
     function showAdPlaceholder() {
@@ -386,7 +442,11 @@
       const countdownEl = document.getElementById('countdown');
       const progressFill = document.getElementById('progressFill');
 
-      const interval = setInterval(() => {
+      if (countdownInterval) {
+        clearInterval(countdownInterval);
+      }
+
+      countdownInterval = setInterval(() => {
         remaining--;
         
         if (countdownEl) {
@@ -399,8 +459,10 @@
         }
 
         if (remaining <= 0) {
-          clearInterval(interval);
-          onAdComplete();
+          clearInterval(countdownInterval);
+          countdownInterval = null;
+          playbackDurationMs = AD_DURATION * 1000;
+          showCompletionPrompt(AD_DURATION);
         }
       }, 1000);
     }
@@ -410,16 +472,47 @@
       // For now, we just wait for the countdown
     }
 
+    function showCompletionPrompt(durationSeconds) {
+      const container = document.getElementById('adContainer');
+      container.innerHTML = `
+        <div class="success">
+          <div class="success-icon">✅</div>
+          <h2>請確認廣告已完整觀看</h2>
+          <p>播放時長：約 ${durationSeconds} 秒</p>
+          <p style="color: #666; font-size: 14px; margin-top: 8px;">點擊下方按鈕領取獎勵</p>
+          <button class="btn" id="completeAdButton">✅ 我已完整觀看</button>
+          <button class="btn btn-secondary" id="replayAdButton" style="margin-left: 8px;">🔁 重新播放</button>
+        </div>
+      `;
+
+      document.getElementById('completeAdButton')?.addEventListener('click', confirmCompletion);
+      document.getElementById('replayAdButton')?.addEventListener('click', () => {
+        window.location.reload();
+      });
+    }
+
+    function confirmCompletion() {
+      if (adCompleted || isSubmittingCompletion) {
+        return;
+      }
+      const button = document.getElementById('completeAdButton');
+      if (button) {
+        button.textContent = '⌛ 傳送中...';
+        button.setAttribute('disabled', 'true');
+      }
+      onAdComplete();
+    }
+
     // ========================================================================
     // Ad Completion
     // ========================================================================
 
     async function onAdComplete() {
-      if (adCompleted) {
+      if (adCompleted || isSubmittingCompletion) {
         return;
       }
 
-      adCompleted = true;
+      isSubmittingCompletion = true;
 
       try {
         // Report completion to server
@@ -430,14 +523,19 @@
         const data = await response.json();
 
         if (data.success) {
+          adCompleted = true;
           showSuccess();
         } else {
+          isSubmittingCompletion = false;
           showError('完成失敗', data.message || '請稍後再試');
+          await reportError(data.message || 'completion_failed');
         }
 
       } catch (error) {
         console.error('Completion error:', error);
         showError('完成失敗', '網絡錯誤，請稍後再試');
+        isSubmittingCompletion = false;
+        await reportError(error.message || 'completion_network_error');
       }
     }
 
@@ -472,7 +570,7 @@
 
     async function reportError(errorMessage) {
       try {
-        await fetch(`${API_BASE_URL}/api/ad/error?user=${userId}&provider=${provider}&error=${encodeURIComponent(errorMessage)}`, {
+        await fetch(`${API_BASE_URL}/api/ad/error?user=${userId}&token=${token}&provider=${provider}&error=${encodeURIComponent(errorMessage)}`, {
           method: 'POST',
         });
       } catch (error) {

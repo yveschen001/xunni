@@ -158,6 +158,36 @@ export async function trackAdCompletion(
 }
 
 /**
+ * Track ad failure/error
+ */
+export async function trackAdFailure(
+  env: Env,
+  userId: string,
+  providerName: string,
+  errorMessage: string
+): Promise<void> {
+  if (!env.ENABLE_ANALYTICS) return;
+
+  try {
+    const db = createDatabaseClient(env.DB);
+    const analytics = createAnalyticsService(db.d1, env);
+
+    await analytics.trackEvent({
+      event_type: AdEvent.AD_ERROR,
+      user_id: userId,
+      ad_provider: providerName,
+      ad_type: 'third_party',
+      event_data: {
+        error_message: errorMessage,
+      },
+    });
+
+  } catch (error) {
+    console.error('[trackAdFailure] Error:', error);
+  }
+}
+
+/**
  * Track official ad impression
  */
 export async function trackOfficialAdImpression(

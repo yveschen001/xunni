@@ -335,15 +335,98 @@ const bonus = Math.min(invites, 70);
 
 ---
 
-## 3. 資料庫規範
+## 3. Telegram API 使用規範
 
-### 3.1 命名規範
+> **⚠️ 重要**：這是反覆出現錯誤的高風險區域，請務必遵守以下規則
+
+### 3.1 Markdown Parse Mode 使用規則
+
+**黃金規則**：
+> **使用者內容 + parse_mode = 💥 潛在錯誤**
+
+#### ✅ 可以使用 `parse_mode` 的情況
+
+**只有系統生成的固定文字**，不包含任何使用者輸入：
+
+```typescript
+// ✅ 安全：純系統訊息
+await telegram.sendMessage(chatId, 
+  '🎉 *恭喜你完成註冊！*\n\n使用 /help 查看指令',
+  { parse_mode: 'Markdown' }
+);
+```
+
+#### ❌ 絕對不可使用 `parse_mode` 的情況
+
+**包含任何使用者輸入的內容**（暱稱、簡介、興趣、城市等）：
+
+```typescript
+// ❌ 危險：包含使用者暱稱
+await telegram.sendMessage(chatId, 
+  `你好，*${user.nickname}*！`,  // user.nickname 可能包含 _ * [ ] 等特殊字符
+  { parse_mode: 'Markdown' }  // 💥 會導致 "Can't parse entities" 錯誤
+);
+
+// ✅ 安全：不使用 parse_mode
+await telegram.sendMessage(chatId, 
+  `你好，${user.nickname}！`
+);
+```
+
+#### 常見錯誤案例
+
+**錯誤 #1**：以為 emoji 需要 Markdown
+```typescript
+// ❌ 錯誤：emoji 不需要 Markdown
+await telegram.sendMessage(chatId, 
+  `🇹🇼 ${user.nickname}`,
+  { parse_mode: 'Markdown' }  // 不需要！emoji 是 Unicode 字符
+);
+
+// ✅ 正確
+await telegram.sendMessage(chatId, 
+  `🇹🇼 ${user.nickname}`
+);
+```
+
+**錯誤 #2**：照片 caption 包含使用者內容
+```typescript
+// ❌ 危險
+await telegram.sendPhoto(chatId, photoUrl, {
+  caption: `📝 暱稱：${user.nickname}\n📖 簡介：${user.bio}`,
+  parse_mode: 'Markdown'  // 💥 如果 bio 包含特殊字符就會失敗
+});
+
+// ✅ 安全
+await telegram.sendPhoto(chatId, photoUrl, {
+  caption: `📝 暱稱：${user.nickname}\n📖 簡介：${user.bio}`
+});
+```
+
+### 3.2 檢查清單
+
+在發送任何 Telegram 訊息前：
+
+- [ ] 訊息是否包含使用者輸入的內容？
+- [ ] 如果包含使用者內容，是否**沒有**使用 `parse_mode`？
+- [ ] 如果使用 `parse_mode`，是否確保訊息中**只有**系統固定文字？
+- [ ] 是否誤以為 emoji 需要 Markdown？（不需要！）
+
+### 3.3 相關文檔
+
+詳細說明請參考：`@doc/TELEGRAM_API_SAFETY_GUIDE.md`
+
+---
+
+## 4. 資料庫規範
+
+### 4.1 命名規範
 
 - **表名**：小寫，複數形式（如 `users`, `bottles`, `conversations`）
 - **欄位名**：小寫 + 下劃線（如 `telegram_id`, `is_vip`, `vip_expire_at`）
 - **索引名**：`idx_表名_欄位名`（如 `idx_users_telegram_id`）
 
-### 3.2 遷移腳本
+### 4.2 遷移腳本
 
 所有資料庫變更必須通過遷移腳本：
 
@@ -359,7 +442,7 @@ ALTER TABLE users ADD COLUMN horoscope_opt_in INTEGER DEFAULT 0;
 
 ---
 
-## 4. Git 提交規範
+## 5. Git 提交規範
 
 使用 [Conventional Commits](https://www.conventionalcommits.org/)：
 
@@ -375,13 +458,13 @@ chore: 更新依賴版本
 **提交前檢查**：
 - 執行 `pnpm test` 確保測試通過
 - 執行 `pnpm lint` 確保代碼風格正確
-- 檢查是否有文檔需要更新（見 5.3 節）
+- 檢查是否有文檔需要更新（見 6.3 節）
 
 ---
 
-## 5. 與 AI 協作流程（Working with Cursor / AI changes）
+## 6. 與 AI 協作流程（Working with Cursor / AI changes）
 
-### 5.1 非簡單變更的流程
+### 6.1 非簡單變更的流程
 
 **對於任何非簡單的變更（例如修改業務邏輯、資料庫結構、核心功能），請遵循以下流程：**
 
@@ -403,7 +486,7 @@ chore: 更新依賴版本
    - 執行 `pnpm lint` 確保代碼風格正確
    - 如有資料庫變更，檢查並更新 `@doc/SPEC.md`
 
-### 5.2 變更後的檢查
+### 6.2 變更後的檢查
 
 **變更完成後，必須執行：**
 
@@ -413,7 +496,7 @@ chore: 更新依賴版本
 - ✅ 如有業務邏輯變更，檢查 `@doc/SPEC.md` 相關章節並更新
 - ✅ 如有新功能，檢查術語表並添加新術語定義（如需要）
 
-### 5.3 文檔更新原則
+### 6.3 文檔更新原則
 
 **變更代碼時，同步更新文檔：**
 
@@ -429,9 +512,9 @@ chore: 更新依賴版本
 
 ---
 
-## 6. 安全開發與防止改壞（Critical: Prevent Breaking Changes）
+## 7. 安全開發與防止改壞（Critical: Prevent Breaking Changes）
 
-### 6.1 部署前必須檢查清單（Deployment Checklist）
+### 7.1 部署前必須檢查清單（Deployment Checklist）
 
 **在部署到 Staging 或 Production 前，必須完成以下所有檢查：**
 
@@ -508,7 +591,7 @@ chore: 更新依賴版本
   - 檢查 Worker 日誌無錯誤
   - 測試不同角色的權限
 
-### 6.2 常見錯誤與預防（Common Mistakes & Prevention）
+### 7.2 常見錯誤與預防（Common Mistakes & Prevention）
 
 #### 錯誤 1：資料庫 Migration 未在 Remote 執行
 **症狀：** 部署後出現 `no such table` 或 `no such column` 錯誤
@@ -931,7 +1014,7 @@ END
 WHERE birthday IS NOT NULL;
 ```
 
-### 6.3 修改代碼的安全流程（Safe Code Modification Process）
+### 7.3 修改代碼的安全流程（Safe Code Modification Process）
 
 **遵循以下流程，避免改壞已有功能：**
 
@@ -987,7 +1070,7 @@ WHERE birthday IS NOT NULL;
 2. **更新相關文檔**（ENV_CONFIG.md, TESTING.md 等）
 3. **記錄變更**（CHANGELOG.md）
 
-### 6.4 代碼審查重點（Code Review Checklist）
+### 7.4 代碼審查重點（Code Review Checklist）
 
 **在提交代碼前，自我審查以下項目：**
 
@@ -1015,7 +1098,7 @@ WHERE birthday IS NOT NULL;
 - [ ] 相關文檔已更新
 - [ ] 註釋清晰，解釋了關鍵邏輯
 
-### 6.5 緊急修復流程（Hotfix Process）
+### 7.5 緊急修復流程（Hotfix Process）
 
 **如果發現 Production 有嚴重問題，遵循以下流程：**
 
@@ -1040,7 +1123,7 @@ WHERE birthday IS NOT NULL;
 
 ---
 
-## 7. 參考資源
+## 8. 參考資源
 
 ### 內部文檔
 

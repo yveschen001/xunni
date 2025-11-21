@@ -23,12 +23,22 @@ import {
   createAdProviderLog,
 } from '~/db/queries/ad_providers';
 import {
+  createAdSession,
+  getActiveSessionByUser,
+  getSessionByToken,
+  markSessionStarted,
+  markSessionCompleted,
+  markSessionFailed,
+} from '~/db/queries/ad_sessions';
+import {
+  AD_REWARD_CONSTANTS,
   canWatchAd,
   processAdCompletion,
   formatAdRewardStatus,
   getTodayDateString,
 } from '~/domain/ad_reward';
 import { selectAdProvider, type AdProviderStrategy } from '~/domain/ad_provider';
+import { trackAdCompletion, trackAdFailure, trackAdImpression } from '~/services/tracking_helper';
 // import { I18N_KEYS } from '~/i18n/keys';
 // import { getTranslation } from '~/i18n';
 
@@ -82,7 +92,17 @@ export async function handleWatchAd(callbackQuery: CallbackQuery, env: Env): Pro
       return;
     }
 
-    // Get today's ad reward
+    // Check if there is any pending session
+    const activeSession = await getActiveSessionByUser(db.d1, telegramId);
+    if (activeSession) {
+      await telegram.answerCallbackQuery(callbackQuery.id, {
+        text: '⚠️ 請先完成上一支廣告，再開始新的廣告',
+        show_alert: true,
+      });
+      return;
+    }
+
+    // Get today's ad reward (for remaining count display)
     const adReward = await getTodayAdReward(db.d1, telegramId);
 
     // Check if can watch more ads
@@ -117,28 +137,17 @@ export async function handleWatchAd(callbackQuery: CallbackQuery, env: Env): Pro
       return;
     }
 
-    // Increment ad view count
-    await incrementAdView(db.d1, telegramId, getTodayDateString());
-
-    // Record ad view in provider stats
-    await recordAdSuccess(db.d1, selection.provider.provider_name);
-
-    // Log ad view
-    await createAdProviderLog(db.d1, {
-      telegram_id: telegramId,
-      provider_name: selection.provider.provider_name,
-      request_type: 'view',
-      status: 'success',
-    });
-
     // Generate ad token
     const token = generateAdToken(telegramId);
+
+    // Create ad session (pending)
+    await createAdSession(db.d1, telegramId, selection.provider.provider_name, token);
 
     // Build ad page URL
     const adPageUrl = `${env.PUBLIC_URL}/ad.html?provider=${selection.provider.provider_name}&token=${token}&user=${telegramId}`;
 
     // Send message with ad link
-    const remainingAds = checkResult.remaining_ads - 1;
+    const remainingAds = checkResult.remaining_ads;
     const message = `
 📺 **觀看廣告獲得額度**
 
@@ -180,6 +189,73 @@ export async function handleWatchAd(callbackQuery: CallbackQuery, env: Env): Pro
 }
 
 // ============================================================================
+// Handle Ad Start Callback
+// ============================================================================
+
+/**
+ * Handle ad start callback - mark session as playing and track impression
+ *
+ * URL: /api/ad/start?user={telegramId}&token={token}&provider={providerName}
+ */
+export async function handleAdStart(
+  telegramId: string,
+  token: string,
+  providerName: string,
+  env: Env
+): Promise<{ success: boolean; message: string }> {
+  const db = createDatabaseClient(env.DB);
+
+  try {
+    if (!verifyAdToken(token, telegramId)) {
+      return { success: false, message: 'Invalid or expired token' };
+    }
+
+    const session = await getSessionByToken(db.d1, token);
+    if (!session || session.telegram_id !== telegramId) {
+      return { success: false, message: 'Session not found' };
+    }
+
+    if (session.status === 'completed') {
+      return { success: false, message: 'Ad already completed' };
+    }
+
+    if (session.status === 'failed') {
+      return { success: false, message: 'Ad session already failed, please restart' };
+    }
+
+    let shouldTrackView = false;
+    if (session.status === 'pending') {
+      await markSessionStarted(db.d1, session.id);
+      shouldTrackView = true;
+    }
+
+    if (shouldTrackView) {
+      // Increment ad view count (ensures record exists)
+      const updatedReward = await incrementAdView(db.d1, telegramId, getTodayDateString());
+
+      // Record provider stats/log
+      await recordAdSuccess(db.d1, providerName);
+      await createAdProviderLog(db.d1, {
+        telegram_id: telegramId,
+        provider_name: providerName,
+        request_type: 'view',
+        status: 'success',
+      });
+
+      // Track analytics
+      const remainingAds =
+        AD_REWARD_CONSTANTS.MAX_ADS_PER_DAY - (updatedReward.ad_views || 0);
+      await trackAdImpression(env, telegramId, providerName, Math.max(remainingAds, 0));
+    }
+
+    return { success: true, message: 'Ad started' };
+  } catch (error) {
+    console.error('[handleAdStart] Error:', error);
+    return { success: false, message: 'Internal server error' };
+  }
+}
+
+// ============================================================================
 // Handle Ad Completion Callback
 // ============================================================================
 
@@ -203,6 +279,7 @@ export async function handleAdComplete(
 ): Promise<{ success: boolean; message: string }> {
   const db = createDatabaseClient(env.DB);
   const telegram = createTelegramService(env);
+  let session: Awaited<ReturnType<typeof getSessionByToken>> = null;
 
   try {
     // Verify token
@@ -230,6 +307,36 @@ export async function handleAdComplete(
       };
     }
 
+    // Get ad session
+    session = await getSessionByToken(db.d1, token);
+    if (!session || session.telegram_id !== telegramId) {
+      return {
+        success: false,
+        message: 'Ad session not found, please restart',
+      };
+    }
+
+    if (session.status === 'pending') {
+      return {
+        success: false,
+        message: 'Ad has not started yet',
+      };
+    }
+
+    if (session.status === 'completed') {
+      return {
+        success: false,
+        message: 'Ad already completed',
+      };
+    }
+
+    if (session.status === 'failed') {
+      return {
+        success: false,
+        message: 'Ad session failed, please restart',
+      };
+    }
+
     // Get today's ad reward
     const adReward = await getTodayAdReward(db.d1, telegramId);
 
@@ -243,8 +350,18 @@ export async function handleAdComplete(
       };
     }
 
+    const today = getTodayDateString();
+
     // Increment ad completion count
-    const updated = await incrementAdCompletion(db.d1, telegramId, getTodayDateString());
+    const updated = await incrementAdCompletion(db.d1, telegramId, today);
+
+    // Mark session completed with duration
+    let durationMs: number | null = null;
+    if (session.started_at) {
+      const startTs = new Date(session.started_at).getTime();
+      durationMs = Date.now() - startTs;
+    }
+    await markSessionCompleted(db.d1, session.id, durationMs);
 
     // Record completion in provider stats
     await recordAdCompletion(db.d1, providerName);
@@ -256,6 +373,9 @@ export async function handleAdComplete(
       request_type: 'completion',
       status: 'success',
     });
+
+    // Track analytics
+    await trackAdCompletion(env, telegramId, providerName, updated.ads_watched);
 
     // Send notification to user
     const notificationMessage = `
@@ -290,6 +410,10 @@ ${result.remaining_ads > 0 ? '💡 繼續觀看廣告可獲得更多額度！' :
       error_message: (error as Error).message,
     });
 
+    if (session && session.status !== 'completed' && session.status !== 'failed') {
+      await markSessionFailed(db.d1, session.id, (error as Error).message || 'unknown_error');
+    }
+
     return {
       success: false,
       message: 'Internal server error',
@@ -308,6 +432,7 @@ ${result.remaining_ads > 0 ? '💡 繼續觀看廣告可獲得更多額度！' :
  */
 export async function handleAdError(
   telegramId: string,
+  token: string,
   providerName: string,
   errorMessage: string,
   env: Env
@@ -316,6 +441,11 @@ export async function handleAdError(
   const telegram = createTelegramService(env);
 
   try {
+    const session = await getSessionByToken(db.d1, token);
+    if (session && session.status !== 'completed' && session.status !== 'failed') {
+      await markSessionFailed(db.d1, session.id, errorMessage);
+    }
+
     // Record error in provider stats
     await recordAdError(db.d1, providerName, errorMessage);
 
@@ -327,6 +457,8 @@ export async function handleAdError(
       status: 'error',
       error_message: errorMessage,
     });
+
+    await trackAdFailure(env, telegramId, providerName, errorMessage);
 
     // Send notification to user
     await telegram.sendMessage(
