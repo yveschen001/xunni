@@ -592,6 +592,147 @@ const matchRate = thrown > 0 ? Math.min(100, Math.round((conversations / thrown)
 - [ ] 統計數據合理性（百分比 0-100%）
 - [ ] UI 顯示正確性（暱稱擾碼、按鈕、提示）
 
+#### 錯誤 6：誤刪 Session 邏輯導致狀態追蹤失效
+**症狀：** 用戶操作無法正確識別，系統無法記住用戶正在進行的操作
+
+**為什麼需要 Session？**
+1. **存儲配置信息**：`target_gender`、`target_mbti_filter`、`target_zodiac_filter` 等用戶選擇
+2. **追蹤用戶狀態**：知道用戶正在進行什麼操作（丟瓶子、編輯資料、回覆訊息等）
+3. **防止操作衝突**：確保不會誤判用戶輸入的意圖
+4. **支持多步驟流程**：允許用戶在多個步驟中完成複雜操作
+
+**⚠️ 絕對不要刪除以下 Session 相關邏輯：**
+
+```typescript
+// ❌ 錯誤：刪除 session 創建邏輯
+// 這會導致無法追蹤用戶狀態！
+export async function handleThrow(message: TelegramMessage, env: Env): Promise<void> {
+  // ... 省略前面的代碼 ...
+  
+  // ❌ 錯誤：沒有創建 session
+  await telegram.sendMessage(chatId, '請輸入瓶子內容');
+}
+
+// ✅ 正確：必須創建 session
+export async function handleThrow(message: TelegramMessage, env: Env): Promise<void> {
+  // ... 省略前面的代碼 ...
+  
+  const targetGender = getTargetGender(user);
+  
+  // ✅ 必須創建 session 來存儲配置和狀態
+  const { createSession } = await import('~/db/queries/sessions');
+  await createSession(db, telegramId, 'throw_bottle', {
+    target_gender: targetGender,
+  });
+  
+  await telegram.sendMessage(chatId, '請輸入瓶子內容 #THROW');
+}
+```
+
+```typescript
+// ❌ 錯誤：刪除 router 中的 session 檢查
+// 這會導致無法提示用戶正確操作！
+export async function routeUpdate(update: TelegramUpdate, env: Env): Promise<void> {
+  // ... 省略前面的代碼 ...
+  
+  // ❌ 錯誤：沒有檢查 session
+  await telegram.sendMessage(chatId, '未知命令');
+}
+
+// ✅ 正確：必須檢查 session
+export async function routeUpdate(update: TelegramUpdate, env: Env): Promise<void> {
+  // ... 省略前面的代碼 ...
+  
+  // ✅ 必須檢查 throw_bottle session
+  const { getActiveSession } = await import('./db/queries/sessions');
+  const throwSession = await getActiveSession(db, user.telegram_id, 'throw_bottle');
+  
+  if (throwSession) {
+    // 提示用戶使用正確的操作方式
+    await telegram.sendMessage(
+      chatId,
+      '❓ 要丟漂流瓶？\n\n' +
+        '請長按上一則訊息，或本訊息，\n' +
+        '選單上選擇「回覆」後，\n' +
+        '輸入要發送的漂流瓶內容\n\n' +
+        '#THROW'
+    );
+    return;
+  }
+  
+  // 其他未知命令處理...
+}
+```
+
+```typescript
+// ❌ 錯誤：刪除 processBottleContent 中的 session 讀取
+// 這會導致無法獲取用戶的配置信息！
+export async function processBottleContent(user: User, content: string, env: Env): Promise<void> {
+  // ❌ 錯誤：沒有讀取 session
+  const target_gender = 'any'; // 硬編碼，無法使用用戶選擇
+}
+
+// ✅ 正確：必須從 session 讀取配置
+export async function processBottleContent(user: User, content: string, env: Env): Promise<void> {
+  // ✅ 必須讀取 session 獲取用戶配置
+  const { getActiveSession } = await import('~/db/queries/sessions');
+  const { parseSessionData } = await import('~/domain/session');
+  const session = await getActiveSession(db, user.telegram_id, 'throw_bottle');
+  
+  let target_gender: 'male' | 'female' | 'any' = 'any';
+  let target_mbti_filter: string[] = [];
+  let target_zodiac_filter: string[] = [];
+  
+  if (session) {
+    const sessionData = parseSessionData(session);
+    target_gender = sessionData.data?.target_gender || 'any';
+    target_mbti_filter = sessionData.data?.target_mbti || [];
+    target_zodiac_filter = sessionData.data?.target_zodiac || [];
+  }
+  
+  // 使用這些配置創建瓶子...
+}
+```
+
+```typescript
+// ❌ 錯誤：忘記清除 session
+// 這會導致用戶下次操作時還處於舊狀態！
+export async function processBottleContent(user: User, content: string, env: Env): Promise<void> {
+  // ... 創建瓶子 ...
+  
+  // ❌ 錯誤：沒有清除 session
+  await telegram.sendMessage(chatId, '瓶子已丟出！');
+}
+
+// ✅ 正確：操作完成後必須清除 session
+export async function processBottleContent(user: User, content: string, env: Env): Promise<void> {
+  // ... 創建瓶子 ...
+  
+  // ✅ 必須清除 session
+  const { clearSession } = await import('~/db/queries/sessions');
+  await clearSession(db, user.telegram_id, 'throw_bottle');
+  
+  await telegram.sendMessage(chatId, '瓶子已丟出！');
+}
+```
+
+**完整的 Session 生命週期：**
+1. **創建 Session**：在 `handleThrow` 等命令處理器中創建
+2. **檢查 Session**：在 `router.ts` 中檢查用戶狀態，提供正確提示
+3. **讀取 Session**：在 `processBottleContent` 等處理函數中讀取配置
+4. **清除 Session**：操作完成後立即清除，避免狀態殘留
+
+**預防措施：**
+1. ✅ 修改代碼前先搜索 `createSession`、`getActiveSession`、`clearSession`
+2. ✅ 確認這些調用是否必要（通常都是必要的！）
+3. ✅ 不要因為「簡化代碼」而刪除 session 邏輯
+4. ✅ 如果不確定，先詢問或查看 Git 歷史記錄
+
+**修復方法：**
+- 恢復 Git 歷史中的 session 相關代碼
+- 參考 `src/telegram/handlers/throw.ts` 的完整實現
+- 參考 `src/router.ts` 中的 session 檢查邏輯
+
 ### 6.3 修改代碼的安全流程（Safe Code Modification Process）
 
 **遵循以下流程，避免改壞已有功能：**
