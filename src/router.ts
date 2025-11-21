@@ -344,6 +344,20 @@ export async function routeUpdate(update: TelegramUpdate, env: Env): Promise<voi
       return;
     }
 
+    if (text.startsWith('/broadcast_filter ')) {
+      // Check super admin permission
+      const { isSuperAdmin } = await import('./telegram/handlers/admin_ban');
+      if (!isSuperAdmin(telegramId)) {
+        await telegram.sendMessage(chatId, '❌ 只有超級管理員可以使用此命令。');
+        return;
+      }
+
+      // Filtered broadcast system
+      const { handleBroadcastFilter } = await import('./telegram/handlers/broadcast');
+      await handleBroadcastFilter(message, env);
+      return;
+    }
+
     if (text.startsWith('/broadcast ')) {
       // Check super admin permission
       const { isSuperAdmin } = await import('./telegram/handlers/admin_ban');

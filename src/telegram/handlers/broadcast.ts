@@ -7,7 +7,8 @@ import type { Env, TelegramMessage } from '~/types';
 import { createDatabaseClient } from '~/db/client';
 import { createTelegramService } from '~/services/telegram';
 import { validateBroadcastMessage, formatBroadcastStatus } from '~/domain/broadcast';
-import { createBroadcast, getBroadcast } from '~/services/broadcast';
+import { createBroadcast, getBroadcast, createFilteredBroadcast } from '~/services/broadcast';
+import { parseFilters, validateFilters, formatFiltersDescription } from '~/domain/broadcast_filters';
 
 /**
  * Handle /broadcast command
@@ -474,6 +475,123 @@ export async function handleBroadcastCleanup(message: TelegramMessage, env: Env)
     await telegram.sendMessage(
       chatId,
       `❌ 清理廣播失敗：${error instanceof Error ? error.message : String(error)}`
+    );
+  }
+}
+
+/**
+ * Handle /broadcast_filter command
+ * Usage: /broadcast_filter <filters> <message>
+ * 
+ * Example: /broadcast_filter gender=female,age=18-25,country=TW 大家好！
+ * 
+ * Supported filters:
+ * - gender: male | female | other
+ * - zodiac: Aries | Taurus | ... (12 zodiacs)
+ * - country: TW | US | ... (ISO 3166-1 alpha-2)
+ * - age: min-max (e.g., 18-25)
+ * - mbti: INTJ | ENFP | ... (16 types)
+ * - vip: true | false
+ */
+export async function handleBroadcastFilter(message: TelegramMessage, env: Env): Promise<void> {
+  const telegram = createTelegramService(env);
+  const chatId = message.chat.id;
+  const text = message.text || '';
+
+  try {
+    // Parse command: /broadcast_filter <filters> <message>
+    const parts = text.split(' ');
+    if (parts.length < 3) {
+      await telegram.sendMessage(
+        chatId,
+        '❌ 使用方法錯誤\n\n' +
+          '**正確格式：**\n' +
+          `/broadcast_filter <過濾器> <訊息內容>\n\n` +
+          '**過濾器格式：**\n' +
+          `• gender=male|female|other\n` +
+          `• zodiac=Aries|Taurus|...\n` +
+          `• country=TW|US|JP|...\n` +
+          `• age=18-25\n` +
+          `• mbti=INTJ|ENFP|...\n` +
+          `• vip=true|false\n\n` +
+          '**示例：**\n' +
+          `/broadcast_filter gender=female,age=18-25,country=TW 大家好！\n` +
+          `/broadcast_filter vip=true,mbti=INTJ VIP 專屬活動通知\n` +
+          `/broadcast_filter zodiac=Scorpio 天蠍座專屬訊息`
+      );
+      return;
+    }
+
+    // Extract filters and message
+    const filtersStr = parts[1];
+    const broadcastMessage = text.substring(text.indexOf(parts[2]));
+
+    // Parse filters
+    let filters;
+    try {
+      filters = parseFilters(filtersStr);
+    } catch (error) {
+      await telegram.sendMessage(
+        chatId,
+        `❌ 過濾器格式錯誤\n\n${error instanceof Error ? error.message : String(error)}\n\n` +
+          `請使用 /broadcast_filter 查看正確格式。`
+      );
+      return;
+    }
+
+    // Validate filters
+    const filterValidation = validateFilters(filters);
+    if (!filterValidation.valid) {
+      await telegram.sendMessage(chatId, `❌ ${filterValidation.error}`);
+      return;
+    }
+
+    // Validate message
+    const messageValidation = validateBroadcastMessage(broadcastMessage);
+    if (!messageValidation.valid) {
+      await telegram.sendMessage(chatId, `❌ ${messageValidation.error}`);
+      return;
+    }
+
+    // Format filters description for confirmation
+    const filtersDesc = formatFiltersDescription(filters);
+
+    // Send confirmation
+    await telegram.sendMessage(
+      chatId,
+      `🔍 **廣播過濾器確認**\n\n` +
+        `**過濾條件：**\n${filtersDesc}\n\n` +
+        `**訊息內容：**\n${broadcastMessage}\n\n` +
+        `正在查詢符合條件的用戶...`
+    );
+
+    // Create filtered broadcast
+    const { broadcastId, totalUsers } = await createFilteredBroadcast(
+      env,
+      broadcastMessage,
+      filters,
+      message.from!.id.toString()
+    );
+
+    // Calculate estimated time
+    const { estimateBroadcastTime } = await import('~/domain/broadcast');
+    const estimatedTime = estimateBroadcastTime(totalUsers);
+
+    // Confirm to admin
+    await telegram.sendMessage(
+      chatId,
+      `✅ 過濾廣播已創建\n\n` +
+        `ID: ${broadcastId}\n` +
+        `過濾條件: ${filtersDesc}\n` +
+        `符合用戶數: ${totalUsers} 人\n` +
+        `預計時間: ${estimatedTime}\n\n` +
+        `廣播將在後台發送，使用 /broadcast_status ${broadcastId} 查看進度。`
+    );
+  } catch (error) {
+    console.error('[handleBroadcastFilter] Error:', error);
+    await telegram.sendMessage(
+      chatId,
+      `❌ 創建過濾廣播失敗\n\n${error instanceof Error ? error.message : String(error)}`
     );
   }
 }
