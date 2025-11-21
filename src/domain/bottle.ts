@@ -30,8 +30,8 @@ export interface ThrowBottleInput {
   target_blood_type_filter?: string | null;
 }
 
-const MIN_BOTTLE_LENGTH = 12;
-const MAX_BOTTLE_LENGTH = 500;
+const MIN_BOTTLE_LENGTH = 5;
+const MAX_BOTTLE_LENGTH = 250;
 
 /**
  * Validate bottle content
@@ -57,6 +57,15 @@ export function validateBottleContent(content: string): {
     return {
       valid: false,
       error: `瓶子內容太長，最多 ${MAX_BOTTLE_LENGTH} 個字符（目前 ${content.length} 個字符）`,
+    };
+  }
+
+  // 检查是否包含链接（禁止所有链接）
+  const urlPattern = /https?:\/\/|www\.|t\.me|telegram\.me|\.com|\.net|\.org|\.io|\.co/i;
+  if (urlPattern.test(content)) {
+    return {
+      valid: false,
+      error: '瓶子內容不允許包含任何連結',
     };
   }
 

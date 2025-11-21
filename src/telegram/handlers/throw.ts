@@ -209,13 +209,12 @@ export async function handleThrow(message: TelegramMessage, env: Env): Promise<v
       `💡 可在 /edit_profile 中修改匹配偏好\n\n` +
       `📝 **請輸入你的漂流瓶內容**\n\n` +
       `✅ **規則**：\n` +
-      `• 最短 12 個字符\n` +
-      `• 最多 500 個字符\n` +
-      `• 只允許 Telegram 連結 (t.me)\n` +
+      `• 最短 5 個字符\n` +
+      `• 最多 250 個字符\n` +
+      `• 不允許連結、圖片、多媒體\n` +
       `• 不要包含個人聯絡方式\n\n` +
       `💬 **範例**：\n` +
       `「你好！我是一個喜歡音樂和電影的人，希望認識志同道合的朋友～」\n\n` +
-      `⚠️ **注意**：YouTube 等外部連結會被拦截\n\n` +
       `💡 **請長按此訊息，選擇「回覆」後輸入內容**`;
 
     await telegram.sendMessageWithButtons(
@@ -252,19 +251,15 @@ export async function processBottleContent(user: User, content: string, env: Env
       return;
     }
 
-    // Check URL whitelist
+    // Check URL whitelist (should be caught by validateBottleContent, but double-check)
     const { checkUrlWhitelist } = await import('~/utils/url-whitelist');
     const urlCheck = checkUrlWhitelist(content);
     if (!urlCheck.allowed) {
       await telegram.sendMessage(
         chatId,
-        `❌ 瓶子內容包含不允許的網址\n\n` +
-          `🚫 禁止的網址：\n${urlCheck.blockedUrls?.map((url) => `• ${url}`).join('\n')}\n\n` +
-          `✅ 只允許以下網址：\n` +
-          `• t.me (Telegram)\n` +
-          `• telegram.org\n` +
-          `• telegram.me\n\n` +
-          `請移除這些網址後重新輸入。`
+        `❌ 瓶子內容不允許包含任何連結\n\n` +
+          `🚫 檢測到的連結：\n${urlCheck.blockedUrls?.map((url) => `• ${url}`).join('\n')}\n\n` +
+          `請移除所有連結後重新輸入。`
       );
       return;
     }
