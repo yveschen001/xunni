@@ -457,11 +457,7 @@ export async function processBottleContent(user: User, content: string, env: Env
     // Get updated quota info
     const throwsToday = await getDailyThrowCount(db, user.telegram_id);
     const inviteBonus = user.successful_invites || 0;
-    const isVip = !!(
-      user.is_vip &&
-      user.vip_expire_at &&
-      new Date(user.vip_expire_at) > new Date()
-    );
+    // isVip already declared above
     const { calculateTaskBonus } = await import('./tasks');
     const taskBonus = await calculateTaskBonus(db, user.telegram_id);
     
