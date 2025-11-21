@@ -195,7 +195,7 @@ export async function handleBirthdayGreetings(env: Env): Promise<void> {
     // - deleted_at IS NULL
     // - onboarding_step = 'completed'
     // - last_active_at >= datetime('now', '-30 days')
-    const userIds = await getFilteredUserIds(db, { is_birthday: true });
+    let userIds = await getFilteredUserIds(db, { is_birthday: true });
 
     if (userIds.length === 0) {
       console.log('[BirthdayGreetings] No users with birthdays today.');
