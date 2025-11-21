@@ -237,12 +237,39 @@ pnpm backup
 # 推送到 GitHub
 pnpm backup:push
 
+# ⚠️ 部署前必須執行檢查（強制）
+./scripts/pre-deploy-check.sh staging
+./scripts/pre-deploy-check.sh production
+
 # 部署到 Staging
 pnpm deploy:staging
 
 # 部署到 Production
 pnpm deploy:production
 ```
+
+## ⚠️ 部署前強制檢查
+
+**在執行任何部署前，必須先執行**：
+
+```bash
+./scripts/pre-deploy-check.sh staging
+```
+
+**此腳本會強制檢查**：
+1. Migration 是否已執行
+2. Lint 是否通過
+3. 測試是否通過
+4. 變更內容是否已檢查
+5. **功能是否已實際測試**（最重要！）
+6. Cloudflare Logs 是否已確認無錯誤
+
+**詳細說明**：`@doc/DEPLOYMENT_CHECKLIST.md`
+
+**絕對禁止**：
+- ❌ 沒有實際測試就說「已測試好了」
+- ❌ 跳過任何檢查項目
+- ❌ 部署前不執行 migration
 
 ## 文件路徑規範
 
