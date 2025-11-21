@@ -104,8 +104,12 @@ export async function refreshAllConversationHistoryPosts(
         const messages = extractMessages(post.content);
         
         // Rebuild content with partner info
+        const { formatNicknameWithFlag } = await import('~/utils/country_flag');
         const partnerInfo = {
-          maskedNickname: maskNickname(partner.nickname || partner.username || '匿名'),
+          maskedNickname: formatNicknameWithFlag(
+            maskNickname(partner.nickname || partner.username || '匿名'),
+            partner.country_code
+          ),
           mbti: partner.mbti_result || '未設定',
           bloodType: partner.blood_type || '未設定',
           zodiac: partner.zodiac_sign || '未設定',

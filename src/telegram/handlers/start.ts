@@ -86,12 +86,18 @@ export async function handleStart(message: TelegramMessage, env: Env): Promise<v
 
     if (!user) {
       // New user - create account
+      // Get default country code from language
+      const { getCountryCodeFromLanguage } = await import('~/utils/country_flag');
+      const languageCode = message.from!.language_code || null;
+      const countryCode = getCountryCodeFromLanguage(languageCode) || 'UN';
+      
       user = await createUser(db, {
         telegram_id: telegramId,
         username: message.from!.username,
         first_name: message.from!.first_name,
         last_name: message.from!.last_name,
-        language_pref: message.from!.language_code || 'zh-TW',
+        language_pref: languageCode || 'zh-TW',
+        country_code: countryCode,
         invite_code: generateInviteCode(),
         invited_by: inviterTelegramId,
       });

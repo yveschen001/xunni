@@ -47,6 +47,9 @@ export function isTaskCompleted(taskId: string, user: User, additionalData?: {
     case 'task_city':
       return !!user.city && user.city.length > 0;
     
+    case 'task_confirm_country':
+      return !!user.country_code;
+    
     case 'task_first_bottle':
       return (additionalData?.bottleCount || 0) > 0;
     

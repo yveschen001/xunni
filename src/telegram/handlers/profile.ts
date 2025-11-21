@@ -54,6 +54,13 @@ export async function handleProfile(message: TelegramMessage, env: Env): Promise
         ? `VIP 會員（到期：${new Date(user.vip_expire_at).toLocaleDateString('zh-TW')}）`
         : '免費會員';
     const inviteCode = user.invite_code || '未設定';
+    
+    // Format nickname with country flag
+    const { formatNicknameWithFlag } = await import('~/utils/country_flag');
+    const displayNickname = formatNicknameWithFlag(
+      user.nickname || '未設定',
+      user.country_code
+    );
 
     // Get invite statistics
     const inviteStats = await getInviteStats(db, telegramId);
@@ -68,7 +75,7 @@ export async function handleProfile(message: TelegramMessage, env: Env): Promise
 
     const profileMessage =
       `👤 **個人資料**\n\n` +
-      `📛 暱稱：${user.nickname || '未設定'}\n` +
+      `📛 暱稱：${displayNickname}\n` +
       `🎂 年齡：${age}\n` +
       `👤 性別：${gender}\n` +
       `🩸 血型：${bloodType}\n` +
@@ -138,12 +145,19 @@ export async function handleProfileCard(message: TelegramMessage, env: Env): Pro
     const interests = user.interests ? JSON.parse(user.interests as string).join(', ') : '未設定';
     const bio = user.bio || '這個人很神秘，什麼都沒有留下～';
     const city = user.city || '未設定';
+    
+    // Format nickname with country flag
+    const { formatNicknameWithFlag } = await import('~/utils/country_flag');
+    const displayNickname = formatNicknameWithFlag(
+      user.nickname || '匿名用戶',
+      user.country_code
+    );
 
     const cardMessage =
       `┌─────────────────────────┐\n` +
       `│   📇 個人資料卡片       │\n` +
       `└─────────────────────────┘\n\n` +
-      `👤 ${user.nickname || '匿名用戶'}\n` +
+      `👤 ${displayNickname}\n` +
       `${gender} • ${age} 歲 • ${city}\n\n` +
       `🧠 MBTI：${mbti}\n` +
       `⭐ 星座：${zodiac}\n` +

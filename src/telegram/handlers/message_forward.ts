@@ -256,9 +256,13 @@ export async function handleMessageForward(message: TelegramMessage, env: Env): 
 
     // For sender's history: partner is receiver
     const receiverNickname = receiver.nickname || receiver.username || '匿名用戶';
+    const { formatNicknameWithFlag } = await import('~/utils/country_flag');
     const receiverPartnerInfo = {
       partnerTelegramId: receiverId,
-      maskedNickname: maskNickname(receiverNickname),
+      maskedNickname: formatNicknameWithFlag(
+        maskNickname(receiverNickname),
+        receiver.country_code
+      ),
       mbti: receiver.mbti_result || '未設定',
       bloodType: receiver.blood_type || '未設定',
       zodiac: receiver.zodiac_sign || '未設定',
@@ -268,7 +272,10 @@ export async function handleMessageForward(message: TelegramMessage, env: Env): 
     const senderNickname = sender.nickname || sender.username || '匿名用戶';
     const senderPartnerInfo = {
       partnerTelegramId: telegramId,
-      maskedNickname: maskNickname(senderNickname),
+      maskedNickname: formatNicknameWithFlag(
+        maskNickname(senderNickname),
+        sender.country_code
+      ),
       mbti: sender.mbti_result || '未設定',
       bloodType: sender.blood_type || '未設定',
       zodiac: sender.zodiac_sign || '未設定',

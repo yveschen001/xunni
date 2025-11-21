@@ -235,9 +235,13 @@ export async function handleCatch(message: TelegramMessage, env: Env): Promise<v
     };
 
     const catcherNickname = user.nickname || user.username || '匿名用戶';
+    const { formatNicknameWithFlag } = await import('~/utils/country_flag');
     const catcherPartnerInfo = {
       partnerTelegramId: telegramId,
-      maskedNickname: maskNickname(catcherNickname),
+      maskedNickname: formatNicknameWithFlag(
+        maskNickname(catcherNickname),
+        user.country_code
+      ),
       mbti: user.mbti_result || '未設定',
       bloodType: user.blood_type || '未設定',
       zodiac: user.zodiac_sign || '未設定',

@@ -1193,6 +1193,27 @@ export async function routeUpdate(update: TelegramUpdate, env: Env): Promise<voi
       return;
     }
 
+    // Country confirmation callbacks
+    if (data === 'country_confirm_yes') {
+      const { handleCountryConfirmYes } = await import('./telegram/handlers/country_confirmation');
+      await handleCountryConfirmYes(callbackQuery, env);
+      return;
+    }
+
+    if (data === 'country_select') {
+      const { showCountrySelection } = await import('./telegram/handlers/country_selection');
+      await showCountrySelection(callbackQuery.message!.chat.id, env);
+      await telegram.answerCallbackQuery(callbackQuery.id);
+      return;
+    }
+
+    if (data.startsWith('country_set_')) {
+      const countryCode = data.replace('country_set_', '');
+      const { handleCountrySet } = await import('./telegram/handlers/country_confirmation');
+      await handleCountrySet(callbackQuery, countryCode, env);
+      return;
+    }
+
     // Draft callbacks
     if (data === 'draft_continue') {
       const { handleDraftContinue } = await import('./telegram/handlers/draft');

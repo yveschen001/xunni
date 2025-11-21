@@ -84,10 +84,14 @@ export async function handleConversationProfile(
     const { getBloodTypeDisplay } = await import('~/domain/blood_type');
     const bloodTypeText = getBloodTypeDisplay(otherUser.blood_type as any);
 
+    // Format nickname with country flag
+    const { formatNicknameWithFlag } = await import('~/utils/country_flag');
+    const displayNickname = formatNicknameWithFlag(nickname, otherUser.country_code);
+    
     // Build anonymous profile card
     let profileMessage = '👤 **對方的資料卡**\n\n';
     profileMessage += `━━━━━━━━━━━━━━━━\n`;
-    profileMessage += `📝 暱稱：${nickname}\n`;
+    profileMessage += `📝 暱稱：${displayNickname}\n`;
     profileMessage += `🗣️ 語言：${languageLabel}\n`;
     profileMessage += `🧠 MBTI：${otherUser.mbti_result || '未設定'}\n`;
     profileMessage += `⭐ 星座：${zodiacLabel}\n`;

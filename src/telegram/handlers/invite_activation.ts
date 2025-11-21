@@ -56,8 +56,12 @@ async function sendInviterNotification(
 ): Promise<void> {
   const i18n = createI18n(inviter.language_pref || 'zh-TW');
 
-  // Mask invitee nickname for privacy
-  const maskedNickname = maskNickname(invitee.nickname || '新用戶');
+  // Mask invitee nickname for privacy and add country flag
+  const { formatNicknameWithFlag } = await import('~/utils/country_flag');
+  const displayNickname = formatNicknameWithFlag(
+    maskNickname(invitee.nickname || '新用戶'),
+    invitee.country_code
+  );
 
   // Calculate current stats
   const currentInvites = inviter.successful_invites || 0;
@@ -67,7 +71,7 @@ async function sendInviterNotification(
 
   // Build message
   let message = i18n.t('invite.inviterSuccess', {
-    nickname: maskedNickname,
+    nickname: displayNickname,
     count: currentInvites.toString(),
     userType,
     maxInvites: maxInvites.toString(),
