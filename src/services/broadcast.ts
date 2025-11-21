@@ -173,8 +173,8 @@ async function processBroadcast(env: Env, broadcastId: number): Promise<void> {
       userIds = await getTargetUserIds(db, broadcast.targetType as 'all' | 'vip' | 'non_vip');
     }
 
-    // Calculate batches
-    const { batchSize, delayMs } = calculateBatchSize(userIds.length);
+    // Calculate batches (使用低優先級，不影響瓶子推送)
+    const { batchSize, delayMs } = calculateBatchSize(userIds.length, 'low');
 
     let sentCount = 0;
     let failedCount = 0;
