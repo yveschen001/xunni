@@ -48,6 +48,25 @@ export async function handleConversationProfile(
     }
 
     await telegram.answerCallbackQuery(callbackQuery.id);
+    
+    // Get viewer's VIP status
+    const viewer = await findUserByTelegramId(db, telegramId);
+    const isVip = !!(
+      viewer?.is_vip &&
+      viewer.vip_expire_at &&
+      new Date(viewer.vip_expire_at) > new Date()
+    );
+    
+    // Get partner's avatar URL (clear for VIP, blurred for free users)
+    const { getAvatarUrlWithCache } = await import('~/services/avatar');
+    const partnerAvatarUrl = await getAvatarUrlWithCache(
+      db,
+      env,
+      otherUserId,
+      isVip,  // VIP gets original, free users get blurred
+      otherUser.gender || undefined,
+      false  // Don't force refresh
+    );
 
     // Calculate age
     const birthDate = otherUser.birthday ? new Date(otherUser.birthday) : null;
@@ -90,11 +109,33 @@ export async function handleConversationProfile(
 
     profileMessage += `━━━━━━━━━━━━━━━━\n\n`;
     profileMessage += `💡 這是匿名資料卡，不會顯示對方的真實身份資訊。\n\n`;
+    
+    // Add VIP hint for free users
+    if (!isVip) {
+      profileMessage += `🔒 升級 VIP 解鎖對方清晰頭像\n`;
+      profileMessage += `💎 使用 /vip 了解更多\n\n`;
+    }
+    
     profileMessage += `💬 直接按 /reply 回覆訊息聊天\n`;
     profileMessage += `✏️ 編輯個人資料：/edit_profile\n`;
     profileMessage += `🏠 返回主選單：/menu`;
 
-    await telegram.sendMessage(chatId, profileMessage);
+    // Send with avatar if available
+    if (partnerAvatarUrl && !partnerAvatarUrl.includes('default-avatar')) {
+      try {
+        await telegram.sendPhoto(chatId, partnerAvatarUrl, {
+          caption: profileMessage,
+          parse_mode: 'Markdown'
+        });
+      } catch (photoError) {
+        console.error('[handleConversationProfile] Failed to send photo, falling back to text:', photoError);
+        // Fallback to text message
+        await telegram.sendMessage(chatId, profileMessage);
+      }
+    } else {
+      // No avatar, send as text
+      await telegram.sendMessage(chatId, profileMessage);
+    }
   } catch (error) {
     console.error('[handleConversationProfile] Error:', error);
     await telegram.answerCallbackQuery(callbackQuery.id, '❌ 發生錯誤');
