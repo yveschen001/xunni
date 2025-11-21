@@ -15,7 +15,9 @@ export async function updateUserActivity(
   telegramId: string
 ): Promise<void> {
   try {
-    await db.d1
+    console.log(`[updateUserActivity] Updating activity for user ${telegramId}`);
+    
+    const result = await db.d1
       .prepare(
         `UPDATE users 
          SET last_active_at = CURRENT_TIMESTAMP,
@@ -25,6 +27,8 @@ export async function updateUserActivity(
       )
       .bind(telegramId)
       .run();
+    
+    console.log(`[updateUserActivity] Updated ${result.meta?.changes || 0} rows for user ${telegramId}`);
   } catch (error) {
     console.error('[updateUserActivity] Error:', error);
     // Don't throw - activity tracking is non-critical
