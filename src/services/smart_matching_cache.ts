@@ -28,9 +28,9 @@ const CACHE_CONFIG = {
   // 缓存时间：10 分钟（减少写入次数）
   TTL_SECONDS: 600,
   
-  // 最小用户数阈值：只有用户数 > 50 时才启用缓存
-  // 这样可以避免在测试阶段产生不必要的写入
-  MIN_USERS_FOR_CACHE: 50,
+  // 最小用户数阈值：设为 0，始终启用缓存（用户要求）
+  // 即使只有 1 个用户也会缓存，完全在免费额度内
+  MIN_USERS_FOR_CACHE: 0,
   
   // 缓存的用户数据字段（只缓存必要字段，减少存储空间）
   CACHED_FIELDS: [
@@ -112,8 +112,8 @@ export async function getActiveUsersWithCache(
   // 2. 从数据库查询活跃用户
   const users = await queryActiveUsersFromDB(db);
 
-  // 3. 条件缓存：只在用户数 > 50 时才写入缓存
-  if (kv && users.length >= CACHE_CONFIG.MIN_USERS_FOR_CACHE) {
+  // 3. 写入缓存（始终启用，完全在免费额度内）
+  if (kv && users.length > 0) {
     try {
       const cacheData: CachedData = {
         users,
@@ -138,8 +138,8 @@ export async function getActiveUsersWithCache(
       console.error('[SmartMatchingCache] ⚠️ Cache write error (non-blocking):', cacheError);
       // 非阻塞：缓存写入失败不影响主流程
     }
-  } else if (users.length < CACHE_CONFIG.MIN_USERS_FOR_CACHE) {
-    console.error('[SmartMatchingCache] ⏭️ Skip cache - User count too low:', users.length);
+  } else if (users.length === 0) {
+    console.error('[SmartMatchingCache] ⏭️ Skip cache - No active users');
   }
 
   return users;

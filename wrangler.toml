@@ -59,10 +59,10 @@ database_name = "xunni-db-staging"
 database_id = "7b77ad82-ba26-489f-995f-8256b32379df"
 migrations_dir = "src/db/migrations"
 
-# Staging KV Namespace (optional)
-# [[env.staging.kv_namespaces]]
-# binding = "RISK_CACHE"
-# id = "<STAGING_KV_NAMESPACE_ID>"
+# Staging KV Namespace for caching (free tier)
+[[env.staging.kv_namespaces]]
+binding = "CACHE"
+id = "8222fd298f254b498b7842d03e5d2a4d"
 
 # Staging Cron triggers (temporarily disabled due to API issue)
 # [[env.staging.triggers.crons]]
@@ -105,10 +105,10 @@ SMART_MATCHING_THRESHOLD = "70"  # Minimum score for smart recommendation
 # database_name = "xunni-db-production"
 # database_id = "<PRODUCTION_D1_DATABASE_ID>"
 
-# Production KV Namespace (optional)
-# [[env.production.kv_namespaces]]
-# binding = "RISK_CACHE"
-# id = "<PRODUCTION_KV_NAMESPACE_ID>"
+# Production KV Namespace for caching (free tier)
+[[env.production.kv_namespaces]]
+binding = "CACHE"
+id = "0a6b866ecab6428691f462178473f94f"
 
 # Production Cron triggers
 [[env.production.triggers.crons]]
