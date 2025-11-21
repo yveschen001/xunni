@@ -128,8 +128,8 @@ export async function handleConversationProfile(
     if (partnerAvatarUrl && !partnerAvatarUrl.includes('default-avatar')) {
       try {
         await telegram.sendPhoto(chatId, partnerAvatarUrl, {
-          caption: profileMessage
-          // Note: No parse_mode to avoid Markdown parsing errors
+          caption: profileMessage,
+          parse_mode: 'Markdown'  // Enable Markdown to show bold text and emojis properly
         });
       } catch (photoError) {
         console.error('[handleConversationProfile] Failed to send photo, falling back to text:', photoError);
