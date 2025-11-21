@@ -35,10 +35,12 @@ const MAX_BOTTLE_LENGTH = 250;
 
 /**
  * Validate bottle content
+ * Includes length check, URL check, and sensitive word detection
  */
 export function validateBottleContent(content: string): {
   valid: boolean;
   error?: string;
+  riskScore?: number;
 } {
   if (!content || content.trim().length === 0) {
     return { valid: false, error: '瓶子內容不能為空' };
@@ -46,6 +48,7 @@ export function validateBottleContent(content: string): {
 
   const trimmedContent = content.trim();
 
+  // Length check
   if (trimmedContent.length < MIN_BOTTLE_LENGTH) {
     return {
       valid: false,
@@ -60,16 +63,29 @@ export function validateBottleContent(content: string): {
     };
   }
 
-  // 检查是否包含链接（禁止所有链接）
+  // URL check (禁止所有链接)
   const urlPattern = /https?:\/\/|www\.|t\.me|telegram\.me|\.com|\.net|\.org|\.io|\.co/i;
   if (urlPattern.test(content)) {
     return {
       valid: false,
       error: '瓶子內容不允許包含任何連結',
+      riskScore: 10, // URL risk score
     };
   }
 
-  return { valid: true };
+  // Sensitive word detection (本地敏感词检测)
+  const { performLocalModeration } = require('~/domain/risk');
+  const moderationResult = performLocalModeration(content);
+  
+  if (!moderationResult.is_safe) {
+    return {
+      valid: false,
+      error: '瓶子內容包含不適當的內容，請修改後重新提交',
+      riskScore: moderationResult.risk_score,
+    };
+  }
+
+  return { valid: true, riskScore: 0 };
 }
 
 /**

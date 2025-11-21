@@ -244,14 +244,44 @@ export async function processBottleContent(user: User, content: string, env: Env
   let statusMsg: { message_id: number } | null = null;
 
   try {
-    // Validate content
+    // Step 1: Basic validation (length, links, sensitive words)
     const validation = validateBottleContent(content);
     if (!validation.valid) {
-      await telegram.sendMessage(chatId, `❌ ${validation.error}\n\n請重新輸入瓶子內容。`);
+      // Record risk score if validation failed due to inappropriate content
+      if (validation.riskScore && validation.riskScore > 0) {
+        await recordRiskScore(db, user.telegram_id, validation.riskScore);
+      }
+      
+      await telegram.sendMessage(chatId, `❌ ${validation.error}`);
       return;
     }
 
-    // Check URL whitelist (should be caught by validateBottleContent, but double-check)
+    // Step 2: AI moderation (optional, controlled by environment variable)
+    if (env.ENABLE_AI_MODERATION === 'true') {
+      try {
+        const { createOpenAIService } = await import('~/services/openai');
+        const openai = createOpenAIService(env);
+        
+        const aiResult = await openai.moderateContent(content);
+        
+        if (aiResult.flagged) {
+          // AI detected inappropriate content
+          const riskScore = 20; // AI detection risk score
+          await recordRiskScore(db, user.telegram_id, riskScore);
+          
+          await telegram.sendMessage(
+            chatId,
+            '❌ 瓶子內容包含不適當的內容，請修改後重新提交'
+          );
+          return;
+        }
+      } catch (aiError) {
+        // AI moderation failed, don't block (avoid false positives)
+        console.error('[AI Moderation] Error:', aiError);
+      }
+    }
+
+    // Step 3: URL whitelist check (backup check, should be caught by validateBottleContent)
     const { checkUrlWhitelist } = await import('~/utils/url-whitelist');
     const urlCheck = checkUrlWhitelist(content);
     if (!urlCheck.allowed) {
@@ -660,5 +690,43 @@ export async function processBottleContent(user: User, content: string, env: Env
         `💡 請稍後再試，或使用 /help 聯繫我們\n\n` +
         `🔄 重新嘗試：/throw`
     );
+  }
+}
+
+/**
+ * Record risk score for user
+ * Updates user's risk score and checks for auto-ban
+ */
+async function recordRiskScore(
+  db: DatabaseClient,
+  telegramId: string,
+  riskScore: number
+): Promise<void> {
+  try {
+    // Update user risk score
+    const { addRiskScore, shouldAutoBan } = await import('~/domain/risk');
+    const { findUserByTelegramId } = await import('~/db/queries/users');
+    
+    const user = await findUserByTelegramId(db, telegramId);
+    if (!user) return;
+    
+    const newRiskScore = addRiskScore(user.risk_score, riskScore);
+    
+    // Update database
+    await db.d1
+      .prepare('UPDATE users SET risk_score = ? WHERE telegram_id = ?')
+      .bind(newRiskScore, telegramId)
+      .run();
+    
+    // Check if auto-ban is needed
+    if (shouldAutoBan(newRiskScore)) {
+      const { banUser } = await import('~/db/queries/users');
+      await banUser(db, telegramId, 'Auto-ban: High risk score', 24); // 24 hours
+      
+      console.error(`[Risk] User ${telegramId} auto-banned. Risk score: ${newRiskScore}`);
+    }
+  } catch (error) {
+    console.error('[recordRiskScore] Error:', error);
+    // Error doesn't affect main flow
   }
 }
