@@ -65,6 +65,9 @@ export interface User {
   // Profile
   nickname?: string;
   avatar_url?: string;
+  avatar_blurred_url?: string; // Cached blurred avatar URL for free users
+  avatar_file_id?: string; // Telegram file_id for smart avatar update detection
+  avatar_updated_at?: string; // Last time avatar was updated
   gender?: Gender;
   birthday?: string; // YYYY-MM-DD
   age?: number;
@@ -73,12 +76,14 @@ export interface User {
   interests?: string; // JSON array
   region?: string;
   match_preference?: 'male' | 'female' | 'any'; // Preferred match gender
+  country_code?: string; // ISO 3166-1 alpha-2 country code for flag display
 
   // MBTI & Tests
   mbti_result?: string;
   mbti_source?: 'manual' | 'test';
   mbti_completed_at?: string;
   zodiac_sign?: string;
+  blood_type?: string; // Blood type (A, B, AB, O)
   anti_fraud_score: number;
   anti_fraud_completed_at?: string;
 
@@ -117,6 +122,7 @@ export interface User {
   // Timestamps
   created_at: string;
   updated_at: string;
+  last_active_at?: string; // Last time user was active
 }
 
 // ============================================================================

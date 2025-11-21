@@ -192,7 +192,7 @@ async function sendMatchNotifications(
   bottleId: number,
   bottleOwner: User,
   matcher: User,
-  conversationId: number
+  _conversationId: number
 ): Promise<void> {
   const telegram = createTelegramService(env);
   const { getBottleById } = await import('~/db/queries/bottles');
@@ -207,14 +207,21 @@ async function sendMatchNotifications(
   const identifier = generateNextIdentifier();
   const conversationIdentifier = formatIdentifier(identifier);
 
-  // 通知瓶子主人
-  try {
-    const maskedMatcherNickname = formatNicknameWithFlag(
-      maskNickname(matcher.nickname || '匿名'),
-      matcher.country_code
-    );
+  // 🚀 性能優化：並行發送通知（節省 1s）
+  // 準備通知內容
+  const maskedMatcherNickname = formatNicknameWithFlag(
+    maskNickname(matcher.nickname || '匿名'),
+    matcher.country_code
+  );
+  const maskedOwnerNickname = formatNicknameWithFlag(
+    maskNickname(bottleOwner.nickname || '匿名'),
+    bottleOwner.country_code
+  );
 
-    await telegram.sendMessage(
+  // 並行發送兩個通知
+  await Promise.allSettled([
+    // 通知瓶子主人
+    telegram.sendMessage(
       parseInt(bottleOwner.telegram_id),
       `🎯 **VIP 智能配對成功！**\n\n` +
         `你的瓶子已被 ${maskedMatcherNickname} 撿起！\n\n` +
@@ -223,28 +230,21 @@ async function sendMatchNotifications(
         `💡 這是你的第 1 個配對，還有 2 個槽位等待中\n\n` +
         `使用 /chats 查看所有對話\n\n` +
         `💬 **請長按此訊息，選擇「回覆」後輸入內容和對方開始聊天**`
-    );
-  } catch (error) {
-    console.error('[VipTripleBottle] Failed to notify bottle owner:', error);
-  }
-
-  // 通知撿瓶子的人
-  try {
-    const maskedOwnerNickname = formatNicknameWithFlag(
-      maskNickname(bottleOwner.nickname || '匿名'),
-      bottleOwner.country_code
-    );
-
-    await telegram.sendMessage(
+    ).catch(error => {
+      console.error('[VipTripleBottle] Failed to notify bottle owner:', error);
+    }),
+    
+    // 通知撿瓶子的人
+    telegram.sendMessage(
       parseInt(matcher.telegram_id),
       `🎉 **智能配對成功！**\n\n` +
         `系統為你找到了 ${maskedOwnerNickname} 的瓶子！\n\n` +
         `💬 對話標識符：${conversationIdentifier}\n` +
         `📝 瓶子內容：${bottle.content}\n\n` +
         `💬 **請長按此訊息，選擇「回覆」後輸入內容和對方開始聊天**`
-    );
-  } catch (error) {
-    console.error('[VipTripleBottle] Failed to notify matcher:', error);
-  }
+    ).catch(error => {
+      console.error('[VipTripleBottle] Failed to notify matcher:', error);
+    })
+  ]);
 }
 
