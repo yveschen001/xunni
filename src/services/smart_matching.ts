@@ -145,6 +145,8 @@ export async function findActiveMatchForBottle(
     allCandidates.push(...(tier1.results as UserMatchData[]));
   }
   
+  console.log(`[Smart Matching] Tier 1 (same language, 2h) found ${tier1.results?.length || 0} candidates`);
+  
   // 如果第 1 層已經有足夠候選（> 100），直接進行配對
   if (allCandidates.length < MATCHING_CONFIG.activeMatching.layers[0].minThreshold) {
     // 3. 第 2 層：查找相鄰年齡區間用戶（4 小時內，150 個）
@@ -181,6 +183,8 @@ export async function findActiveMatchForBottle(
       allCandidates.push(...(tier2.results as UserMatchData[]));
     }
     
+    console.log(`[Smart Matching] Tier 2 (adjacent age, 4h) found ${tier2.results?.length || 0} candidates`);
+    
     // 如果第 2 層仍不足，查找第 3 層
     if (allCandidates.length < MATCHING_CONFIG.activeMatching.layers[1].minThreshold) {
       const existingIds2 = allCandidates.map(u => u.telegram_id);
@@ -210,10 +214,15 @@ export async function findActiveMatchForBottle(
       if (tier3.results) {
         allCandidates.push(...(tier3.results as UserMatchData[]));
       }
+      
+      console.log(`[Smart Matching] Tier 3 (all active, 6h) found ${tier3.results?.length || 0} candidates`);
     }
   }
   
+  console.log(`[Smart Matching] Total candidates found: ${allCandidates.length}`);
+  
   if (allCandidates.length === 0) {
+    console.log(`[Smart Matching] No active users found in last 6 hours`);
     return null;
   }
   
@@ -241,8 +250,12 @@ export async function findActiveMatchForBottle(
   scoredCandidates.sort((a, b) => b.score.total - a.score.total);
   const topCandidates = scoredCandidates.slice(0, MATCHING_CONFIG.activeMatching.topCandidates);
   
+  console.log(`[Smart Matching] Top candidate scores: ${topCandidates.slice(0, 3).map(c => c.score.total.toFixed(1)).join(', ')}`);
+  
   // 6. 從前 10 名中隨機選擇 1 個
   const selected = topCandidates[Math.floor(Math.random() * topCandidates.length)];
+  
+  console.log(`[Smart Matching] Selected user ${selected.user.telegram_id} with score ${selected.score.total.toFixed(1)}`);
   
   return {
     user: selected.user,
@@ -311,6 +324,8 @@ export async function findSmartBottleForUser(
     allBottles.push(...tier1.results);
   }
   
+  console.log(`[Smart Matching] Passive Tier 1 (same language) found ${tier1.results?.length || 0} bottles`);
+  
   // 如果第 1 層不足，查找第 2 層
   if (allBottles.length < MATCHING_CONFIG.passiveMatching.layers[0].minThreshold) {
     const userAgeRange = getAgeRange(user.birthday);
@@ -352,6 +367,8 @@ export async function findSmartBottleForUser(
       allBottles.push(...tier2.results);
     }
     
+    console.log(`[Smart Matching] Passive Tier 2 (adjacent age) found ${tier2.results?.length || 0} bottles`);
+    
     // 如果第 2 層仍不足，查找第 3 層
     if (allBottles.length < MATCHING_CONFIG.passiveMatching.layers[1].minThreshold) {
       const existingIds2 = allBottles.map(b => b.id);
@@ -387,10 +404,15 @@ export async function findSmartBottleForUser(
       if (tier3.results) {
         allBottles.push(...tier3.results);
       }
+      
+      console.log(`[Smart Matching] Passive Tier 3 (all bottles) found ${tier3.results?.length || 0} bottles`);
     }
   }
   
+  console.log(`[Smart Matching] Total bottles found: ${allBottles.length}`);
+  
   if (allBottles.length === 0) {
+    console.log(`[Smart Matching] No available bottles found`);
     return null;
   }
   
@@ -420,7 +442,10 @@ export async function findSmartBottleForUser(
   scoredBottles.sort((a, b) => b.score.total - a.score.total);
   
   // 5. 如果有高分配對（> 閾值），返回智能配對
+  console.log(`[Smart Matching] Best bottle score: ${scoredBottles[0].score.total.toFixed(1)} (threshold: ${MATCHING_CONFIG.passiveMatching.smartMatchThreshold})`);
+  
   if (scoredBottles[0].score.total > MATCHING_CONFIG.passiveMatching.smartMatchThreshold) {
+    console.log(`[Smart Matching] Smart match! Bottle ${scoredBottles[0].bottle.id} with score ${scoredBottles[0].score.total.toFixed(1)}`);
     return {
       bottle: scoredBottles[0].bottle,
       score: scoredBottles[0].score,
@@ -430,6 +455,7 @@ export async function findSmartBottleForUser(
   
   // 6. 否則隨機選擇
   const randomIndex = Math.floor(Math.random() * scoredBottles.length);
+  console.log(`[Smart Matching] Random match! Bottle ${scoredBottles[randomIndex].bottle.id} with score ${scoredBottles[randomIndex].score.total.toFixed(1)}`);
   return {
     bottle: scoredBottles[randomIndex].bottle,
     score: scoredBottles[randomIndex].score,
