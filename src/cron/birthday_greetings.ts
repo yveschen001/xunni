@@ -22,8 +22,9 @@ import { calculateBatchSize } from '~/domain/broadcast';
 
 /**
  * System admin ID for birthday greetings
+ * (Currently unused, reserved for future broadcast integration)
  */
-const SYSTEM_ADMIN_ID = 'system_birthday_bot';
+const _SYSTEM_ADMIN_ID = 'system_birthday_bot';
 
 /**
  * Maximum birthday greetings per day
