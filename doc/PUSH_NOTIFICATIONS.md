@@ -1,5 +1,9 @@
 # XunNi 主動推送與召回機制
 
+> **最後更新**：2025-11-21  
+> **版本**：v2.0（整合廣播系統）  
+> **總覽文檔**：[`doc/PUSH_SYSTEM_MASTER.md`](./PUSH_SYSTEM_MASTER.md)
+
 ## 1. 概述
 
 設計智能的主動推送機制，在合適的時機提醒使用者，提高活躍度，同時避免打擾使用者。
@@ -9,6 +13,11 @@
 - 根據使用者的 `users.language_pref` 設定推送語言
 - 推送內容使用 `@src/i18n/keys.ts` 中定義的鍵值
 - 實作範例：`t(user.language_pref, I18N_KEYS.PUSH.MATCH_SUCCESS)`
+
+**與廣播系統的整合**：
+- 💡 本系統可**復用廣播系統的 Filter 引擎**（`getFilteredUserIds`）
+- 💡 本系統可**復用廣播系統的發送器**（`processBroadcast`）
+- 💡 詳見 [`doc/BROADCAST_SYSTEM_DESIGN.md`](./BROADCAST_SYSTEM_DESIGN.md) 第 12 章
 
 ---
 
