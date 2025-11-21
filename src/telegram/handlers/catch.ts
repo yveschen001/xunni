@@ -226,6 +226,7 @@ export async function handleCatch(message: TelegramMessage, env: Env): Promise<v
 
     // Prepare partner info (use already masked nickname)
     const ownerPartnerInfo = {
+      partnerTelegramId: bottle.owner_telegram_id,
       maskedNickname: ownerMaskedNickname,
       mbti: bottleOwner?.mbti_result || '未設定',
       bloodType: bottleOwner?.blood_type || '未設定',
@@ -235,6 +236,7 @@ export async function handleCatch(message: TelegramMessage, env: Env): Promise<v
 
     const catcherNickname = user.nickname || user.username || '匿名用戶';
     const catcherPartnerInfo = {
+      partnerTelegramId: telegramId,
       maskedNickname: maskNickname(catcherNickname),
       mbti: user.mbti_result || '未設定',
       bloodType: user.blood_type || '未設定',

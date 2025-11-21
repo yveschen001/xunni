@@ -55,7 +55,8 @@ export function buildHistoryPostContent(
     bloodType: string;
     zodiac: string;
     matchScore?: number;
-  }
+  },
+  isVip?: boolean
 ): string {
   let content = `💬 與 #${identifier} 的對話記錄（第 ${postNumber} 頁）\n\n`;
 
@@ -82,6 +83,12 @@ export function buildHistoryPostContent(
   content += `📅 最後更新：${formatDateTime(new Date())}\n\n`;
 
   content += `💬 直接按 /reply 回覆訊息聊天\n`;
+  
+  // Add VIP upgrade hint for free users
+  if (isVip === false) {
+    content += `\n🔒 升級 VIP 解鎖對方清晰頭像\n`;
+    content += `💎 使用 /vip 了解更多`;
+  }
 
   return content;
 }

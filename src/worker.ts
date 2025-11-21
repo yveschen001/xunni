@@ -60,6 +60,12 @@ export default {
 
       // API endpoints
       if (url.pathname.startsWith('/api/')) {
+        // Avatar blur proxy
+        if (url.pathname === '/api/avatar/blur' && request.method === 'GET') {
+          const { handleAvatarBlur } = await import('./api/avatar_blur');
+          return await handleAvatarBlur(request, env);
+        }
+        
         // Ad completion callback
         if (url.pathname === '/api/ad/complete' && request.method === 'POST') {
           const { handleAdComplete } = await import('./telegram/handlers/ad_reward');
@@ -98,6 +104,12 @@ export default {
           return new Response(JSON.stringify({ success: true }), {
             headers: { 'Content-Type': 'application/json' },
           });
+        }
+
+        // Avatar blur endpoint
+        if (url.pathname === '/api/avatar/blur' && request.method === 'GET') {
+          const { handleAvatarBlur } = await import('./api/avatar_blur');
+          return await handleAvatarBlur(request);
         }
 
         // Development endpoints (staging only)
@@ -216,6 +228,18 @@ export default {
         console.log('[Worker] Checking expired subscriptions...');
         const { checkExpiredSubscriptions } = await import('./services/subscription_checker');
         await checkExpiredSubscriptions(env);
+      }
+
+      // Batch update expired avatar caches (Every day at 03:00 UTC = 11:00 Taipei)
+      if (event.cron === '0 3 * * *') {
+        // eslint-disable-next-line no-console
+        console.log('[Worker] Batch updating expired avatars...');
+        const { createDatabaseClient } = await import('./db/client');
+        const db = createDatabaseClient(env);
+        const { batchUpdateExpiredAvatars } = await import('./services/avatar_background_update');
+        const result = await batchUpdateExpiredAvatars(db, env);
+        // eslint-disable-next-line no-console
+        console.log(`[Worker] Avatar batch update completed: ${result.updated} updated, ${result.failed} failed`);
       }
     } catch (error) {
       console.error('[Worker] Scheduled event error:', error);

@@ -66,6 +66,7 @@ export async function handleVip(message: TelegramMessage, env: Env): Promise<voi
         `✨ **你已經是 VIP 會員**\n\n` +
           `到期時間：${expireDate}\n\n` +
           `🎁 VIP 權益：\n` +
+          `• 解鎖對方清晰頭像 🆕\n` +
           `• 每天 30 個漂流瓶配額\n` +
           `• 可篩選 MBTI 和星座\n` +
           `• 34 種語言自動翻譯（OpenAI 優先）\n` +
@@ -84,6 +85,7 @@ export async function handleVip(message: TelegramMessage, env: Env): Promise<voi
           `價格：${priceStars} ⭐ Telegram Stars / 月\n` +
           `${priceNote}\n\n` +
           `🎁 VIP 權益：\n` +
+          `• 解鎖對方清晰頭像 🆕\n` +
           `• 每天 30 個漂流瓶配額（邀請好友可增加，最高 100 個/天）\n` +
           `• 可篩選配對對象的 MBTI 和星座類型\n` +
           `• 34 種語言自動翻譯\n` +
@@ -182,12 +184,14 @@ async function sendVipInvoice(
     
   const description = enableSubscription
     ? `訂閱 XunNi VIP 會員，每月自動續費！\n\n` +
+      `• 解鎖對方清晰頭像 🆕\n` +
       `• 每天 30 個漂流瓶配額（最高 100 個/天）\n` +
       `• 可篩選配對對象的 MBTI 和星座\n` +
       `• 34 種語言自動翻譯（OpenAI GPT 優先）\n` +
       `• 無廣告體驗\n\n` +
       `💡 可隨時在 Telegram 設定中取消訂閱`
     : `升級 VIP 會員，享受以下權益：\n` +
+      `• 解鎖對方清晰頭像 🆕\n` +
       `• 每天 30 個漂流瓶配額（最高 100 個/天）\n` +
       `• 可篩選配對對象的 MBTI 和星座\n` +
       `• 34 種語言自動翻譯（OpenAI GPT 優先）\n` +
@@ -365,6 +369,7 @@ export async function handleSuccessfulPayment(
         `你的 VIP 訂閱已自動續費！\n` +
         `新到期時間：${newExpire.toLocaleDateString('zh-TW')}\n\n` +
         `✨ VIP 權益持續啟用：\n` +
+        `• 解鎖對方清晰頭像\n` +
         `• 每天 30 個漂流瓶配額\n` +
         `• 可篩選 MBTI 和星座\n` +
         `• 34 種語言自動翻譯\n` +
@@ -374,6 +379,7 @@ export async function handleSuccessfulPayment(
         `你已成為 VIP 會員！\n` +
         `到期時間：${newExpire.toLocaleDateString('zh-TW')}\n\n` +
         `✨ VIP 權益已啟用：\n` +
+        `• 解鎖對方清晰頭像\n` +
         `• 每天 30 個漂流瓶配額\n` +
         `• 可篩選 MBTI 和星座\n` +
         `• 34 種語言自動翻譯\n` +
@@ -383,6 +389,21 @@ export async function handleSuccessfulPayment(
         `🚀 立即開始使用：/throw`;
 
     await telegram.sendMessage(chatId, confirmMessage);
+    
+    // Refresh conversation history posts to show clear avatars
+    if (!isRenewal) {
+      // Only refresh on first purchase, not on renewals
+      console.error('[handleSuccessfulPayment] Refreshing conversation history for new VIP:', telegramId);
+      const { refreshConversationHistoryInBackground } = await import('~/services/refresh_conversation_history');
+      refreshConversationHistoryInBackground(db, env, telegramId);
+      
+      // Notify user that history is being refreshed
+      await telegram.sendMessage(
+        chatId,
+        '🔄 正在更新您的對話歷史，清晰頭像即將顯示...\n\n' +
+        '這可能需要幾秒鐘時間，請稍候。'
+      );
+    }
     
     // Notify super admin
     const notificationType = isRecurring ? 'vip_auto_renewed' : (isRenewal ? 'vip_renewed' : 'vip_purchased');

@@ -257,6 +257,7 @@ export async function handleMessageForward(message: TelegramMessage, env: Env): 
     // For sender's history: partner is receiver
     const receiverNickname = receiver.nickname || receiver.username || '匿名用戶';
     const receiverPartnerInfo = {
+      partnerTelegramId: receiverId,
       maskedNickname: maskNickname(receiverNickname),
       mbti: receiver.mbti_result || '未設定',
       bloodType: receiver.blood_type || '未設定',
@@ -266,6 +267,7 @@ export async function handleMessageForward(message: TelegramMessage, env: Env): 
     // For receiver's history: partner is sender
     const senderNickname = sender.nickname || sender.username || '匿名用戶';
     const senderPartnerInfo = {
+      partnerTelegramId: telegramId,
       maskedNickname: maskNickname(senderNickname),
       mbti: sender.mbti_result || '未設定',
       bloodType: sender.blood_type || '未設定',

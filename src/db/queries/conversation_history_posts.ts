@@ -17,6 +17,8 @@ export interface HistoryPost {
   char_count: number;
   message_count: number;
   is_latest: boolean;
+  partner_avatar_url: string | null;
+  created_with_vip_status: number;
   created_at: string;
   updated_at: string;
 }
@@ -65,7 +67,9 @@ export async function createHistoryPost(
   telegramMessageId: number,
   content: string,
   charCount: number,
-  messageCount: number
+  messageCount: number,
+  partnerAvatarUrl?: string | null,
+  createdWithVipStatus?: boolean
 ): Promise<number> {
   // Set all existing posts for this conversation to not latest
   await db.d1
@@ -81,8 +85,8 @@ export async function createHistoryPost(
   const result = await db.d1
     .prepare(
       `INSERT INTO conversation_history_posts 
-       (conversation_id, user_telegram_id, identifier, post_number, telegram_message_id, content, char_count, message_count, is_latest) 
-       VALUES (?, ?, ?, ?, ?, ?, ?, ?, 1)`
+       (conversation_id, user_telegram_id, identifier, post_number, telegram_message_id, content, char_count, message_count, is_latest, partner_avatar_url, created_with_vip_status) 
+       VALUES (?, ?, ?, ?, ?, ?, ?, ?, 1, ?, ?)`
     )
     .bind(
       conversationId,
@@ -92,7 +96,9 @@ export async function createHistoryPost(
       telegramMessageId,
       content,
       charCount,
-      messageCount
+      messageCount,
+      partnerAvatarUrl || null,
+      createdWithVipStatus ? 1 : 0
     )
     .run();
 

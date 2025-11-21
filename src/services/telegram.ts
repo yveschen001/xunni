@@ -489,6 +489,133 @@ export class TelegramService {
       throw error;
     }
   }
+
+  /**
+   * Get user profile photos
+   */
+  async getUserProfilePhotos(
+    userId: string,
+    options?: { offset?: number; limit?: number }
+  ): Promise<{
+    total_count: number;
+    photos: Array<Array<{ file_id: string; file_unique_id: string; width: number; height: number; file_size?: number }>>;
+  }> {
+    try {
+      const response = await fetch(`${this.baseURL}/getUserProfilePhotos`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          user_id: userId,
+          offset: options?.offset || 0,
+          limit: options?.limit || 1,
+        }),
+      });
+
+      if (!response.ok) {
+        const error = await response.text();
+        console.error('[Telegram] getUserProfilePhotos failed:', error);
+        throw new Error(`Failed to get user profile photos: ${error}`);
+      }
+
+      const data = await response.json();
+      if (!data.ok || !data.result) {
+        throw new Error('Invalid response from Telegram API');
+      }
+
+      return data.result;
+    } catch (error) {
+      console.error('[Telegram] getUserProfilePhotos error:', error);
+      throw error;
+    }
+  }
+
+  /**
+   * Get file information
+   */
+  async getFile(fileId: string): Promise<{ file_id: string; file_unique_id: string; file_size?: number; file_path?: string }> {
+    try {
+      const response = await fetch(`${this.baseURL}/getFile`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          file_id: fileId,
+        }),
+      });
+
+      if (!response.ok) {
+        const error = await response.text();
+        console.error('[Telegram] getFile failed:', error);
+        throw new Error(`Failed to get file: ${error}`);
+      }
+
+      const data = await response.json();
+      if (!data.ok || !data.result) {
+        throw new Error('Invalid response from Telegram API');
+      }
+
+      return data.result;
+    } catch (error) {
+      console.error('[Telegram] getFile error:', error);
+      throw error;
+    }
+  }
+
+  /**
+   * Get full file URL from file path
+   */
+  getFileUrl(filePath: string): string {
+    return `https://api.telegram.org/file/bot${this.botToken}/${filePath}`;
+  }
+
+  /**
+   * Send photo message
+   */
+  async sendPhoto(
+    chatId: number | string,
+    photo: string,
+    options?: {
+      caption?: string;
+      parse_mode?: 'Markdown' | 'HTML';
+      reply_markup?: unknown;
+    }
+  ): Promise<{ message_id: number; ok: boolean }> {
+    try {
+      const response = await fetch(`${this.baseURL}/sendPhoto`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          chat_id: chatId,
+          photo,
+          ...options,
+        }),
+      });
+
+      if (!response.ok) {
+        const error = await response.text();
+        console.error('[Telegram] sendPhoto failed:', error);
+        throw new Error(`Failed to send photo: ${error}`);
+      }
+
+      const data = await response.json();
+      if (!data.ok || !data.result?.message_id) {
+        throw new Error('Invalid response from Telegram API');
+      }
+
+      return {
+        message_id: data.result.message_id,
+        ok: true,
+      };
+    } catch (error) {
+      console.error('[Telegram] sendPhoto error:', error);
+      throw error;
+    }
+  }
 }
 
 // ============================================================================

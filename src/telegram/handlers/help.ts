@@ -33,6 +33,7 @@ export async function handleHelp(message: TelegramMessage, env: Env): Promise<vo
       `/profile - 查看個人資料\n` +
       `/profile_card - 查看資料卡片\n` +
       `/edit_profile - 編輯個人資料\n` +
+      `/refresh_avatar - 刷新頭像緩存\n` +
       `/mbti - MBTI 管理\n` +
       `/stats - 我的統計數據\n\n` +
       `🎁 **額度與 VIP**\n` +
@@ -141,6 +142,7 @@ export async function handleRules(message: TelegramMessage, env: Env): Promise<v
       `• 禁止詐騙、釣魚\n` +
       `• 違規將被封禁\n\n` +
       `💎 **VIP 權益**\n` +
+      `• 解鎖對方清晰頭像 🆕\n` +
       `• 每天 30 個漂流瓶配額\n` +
       `• 可篩選 MBTI 和星座\n` +
       `• 34 種語言自動翻譯\n` +

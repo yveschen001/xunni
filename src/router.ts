@@ -364,6 +364,25 @@ export async function routeUpdate(update: TelegramUpdate, env: Env): Promise<voi
       return;
     }
 
+    if (text === '/admin_refresh_vip_avatars') {
+      const { handleAdminRefreshVipAvatars } = await import('./telegram/handlers/admin_refresh_vip_avatars');
+      await handleAdminRefreshVipAvatars(db, env, chatId, user.telegram_id);
+      return;
+    }
+
+    if (text === '/admin_diagnose_avatar' || text.startsWith('/admin_diagnose_avatar ')) {
+      const { handleAdminDiagnoseAvatar } = await import('./telegram/handlers/admin_diagnose_avatar');
+      const targetUserId = text.split(' ')[1];
+      await handleAdminDiagnoseAvatar(db, env, chatId, user.telegram_id, targetUserId);
+      return;
+    }
+
+    if (text === '/admin_test_refresh') {
+      const { handleAdminTestRefresh } = await import('./telegram/handlers/admin_test_refresh');
+      await handleAdminTestRefresh(db, env, chatId, user.telegram_id);
+      return;
+    }
+
     if (text.startsWith('/admin_add ')) {
       const { handleAdminAdd } = await import('./telegram/handlers/admin_ban');
       await handleAdminAdd(message, env);
@@ -520,6 +539,12 @@ export async function routeUpdate(update: TelegramUpdate, env: Env): Promise<voi
     if (text === '/profile_card') {
       const { handleProfileCard } = await import('./telegram/handlers/profile');
       await handleProfileCard(message, env);
+      return;
+    }
+
+    if (text === '/refresh_avatar') {
+      const { handleRefreshAvatar } = await import('./telegram/handlers/refresh_avatar');
+      await handleRefreshAvatar(db, env, chatId, user.telegram_id);
       return;
     }
 
