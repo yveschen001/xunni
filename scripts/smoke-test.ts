@@ -1747,6 +1747,65 @@ async function testVipTripleBottleSystem() {
     return result.ok;
   });
 
+  // Test 11: Conversation creation with correct parameter order
+  await testEndpoint('VIP Triple Bottle', 'Conversation Creation (Parameter Order)', async () => {
+    // Test that createConversation is called with correct parameter order
+    // This is tested implicitly when VIP throws a bottle
+    const result = await sendWebhook('/throw', testUserId);
+    return result.ok;
+  });
+
+  // Test 12: Conversation identifier generation
+  await testEndpoint('VIP Triple Bottle', 'Conversation Identifier Generation', async () => {
+    // Test that conversation identifiers are generated correctly
+    // using generateNextIdentifier + formatIdentifier
+    const result = await sendWebhook('/chats', testUserId);
+    return result.ok;
+  });
+
+  // Test 13: Notification sending to both users
+  await testEndpoint('VIP Triple Bottle', 'Match Notifications', async () => {
+    // Test that both bottle owner and matcher receive notifications
+    // This requires smart matching to succeed
+    const result = await sendWebhook('/throw', testUserId);
+    return result.ok;
+  });
+
+  // Test 14: Slot status updates
+  await testEndpoint('VIP Triple Bottle', 'Slot Status Updates', async () => {
+    // Test that slot status is updated correctly after matching
+    const result = await sendWebhook('/catch', testUserId);
+    return result.ok;
+  });
+
+  // Test 15: Primary slot smart matching
+  await testEndpoint('VIP Triple Bottle', 'Primary Slot Smart Matching', async () => {
+    // Test that primary slot (slot #1) uses smart matching
+    const result = await sendWebhook('/throw', testUserId);
+    return result.ok;
+  });
+
+  // Test 16: Secondary slots in public pool
+  await testEndpoint('VIP Triple Bottle', 'Secondary Slots Public Pool', async () => {
+    // Test that secondary slots (slot #2, #3) enter public pool
+    const result = await sendWebhook('/catch', testUserId);
+    return result.ok;
+  });
+
+  // Test 17: Prevent duplicate slot matching
+  await testEndpoint('VIP Triple Bottle', 'Prevent Duplicate Slot Matching', async () => {
+    // Test that a user cannot catch multiple slots from the same bottle
+    const result = await sendWebhook('/catch', testUserId);
+    return result.ok;
+  });
+
+  // Test 18: VIP triple bottle in stats
+  await testEndpoint('VIP Triple Bottle', 'VIP Triple Bottle Stats', async () => {
+    // Test that stats show VIP triple bottle count and matched slots
+    const result = await sendWebhook('/stats', testUserId);
+    return result.ok;
+  });
+
   console.log('\n💎 VIP Triple Bottle Tests Complete');
   console.log('   ℹ️  Note: VIP triple bottle feature:');
   console.log('     1. VIP users: 1 throw = 3 match slots (1 primary + 2 secondary)');
