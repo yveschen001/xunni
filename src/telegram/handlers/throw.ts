@@ -322,9 +322,11 @@ export async function processBottleContent(user: User, content: string, env: Env
     await incrementDailyThrowCount(db, user.telegram_id);
 
     // ✨ NEW: Try smart matching (non-blocking, won't affect existing flow)
-    try {
-      const { findActiveMatchForBottle } = await import('~/services/smart_matching');
-      const matchResult = await findActiveMatchForBottle(db.d1, bottleId);
+    // 🆕 Skip smart matching for VIP triple bottles (already handled in createVipTripleBottle)
+    if (!isVip) {
+      try {
+        const { findActiveMatchForBottle } = await import('~/services/smart_matching');
+        const matchResult = await findActiveMatchForBottle(db.d1, bottleId);
       
       if (matchResult && matchResult.user) {
         // Found a match! Update bottle status and send notification
@@ -415,14 +417,15 @@ export async function processBottleContent(user: User, content: string, env: Env
         
         console.log(`[Smart Matching] Bottle ${bottleId} enters public pool (no active match found)`);
       }
-    } catch (matchError) {
-      console.error('[Smart Matching] Error:', matchError);
-      // Fallback: bottle enters public pool
-      await db.d1
-        .prepare(`UPDATE bottles SET match_status = 'active' WHERE id = ?`)
-        .bind(bottleId)
-        .run();
-    }
+      } catch (matchError) {
+        console.error('[Smart Matching] Error:', matchError);
+        // Fallback: bottle enters public pool
+        await db.d1
+          .prepare(`UPDATE bottles SET match_status = 'active' WHERE id = ?`)
+          .bind(bottleId)
+          .run();
+      }
+    } // End of if (!isVip)
 
     // Check and complete "first bottle" task
     try {
