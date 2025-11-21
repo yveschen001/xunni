@@ -9,7 +9,7 @@ import { createDatabaseClient } from '~/db/client';
 import { createTelegramService } from '~/services/telegram';
 import { findUserByTelegramId } from '~/db/queries/users';
 import { createBottle, getDailyThrowCount, incrementDailyThrowCount } from '~/db/queries/bottles';
-import { validateBottleContent, canThrowBottle, getBottleQuota } from '~/domain/bottle';
+import { validateBottleContent, canThrowBottle } from '~/domain/bottle';
 import type { ThrowBottleInput } from '~/domain/bottle';
 import { canActivateInvite } from '~/domain/invite';
 import {
@@ -308,17 +308,23 @@ export async function processBottleContent(user: User, content: string, env: Env
 
     // 🎨 UX: 階段 1 - 立即反饋（< 1 秒）
     const startTime = Date.now();
-    statusMsg = await telegram.sendMessage(
-      chatId,
-      isVip
-        ? `🌊 **正在丟出你的漂流瓶...**\n\n` +
-          `✨ VIP 特權啟動中\n` +
-          `🎯 正在為你尋找 3 個最佳配對對象\n\n` +
-          `⏳ 預計 3-5 秒完成`
-        : `🌊 **正在丟出你的漂流瓶...**\n\n` +
-          `🎯 正在為你尋找最佳配對對象\n\n` +
-          `⏳ 預計 2-3 秒完成`
-    );
+    try {
+      statusMsg = await telegram.sendMessage(
+        chatId,
+        isVip
+          ? `🌊 **正在丟出你的漂流瓶...**\n\n` +
+            `✨ VIP 特權啟動中\n` +
+            `🎯 正在為你尋找 3 個最佳配對對象\n\n` +
+            `⏳ 預計 3-5 秒完成`
+          : `🌊 **正在丟出你的漂流瓶...**\n\n` +
+            `🎯 正在為你尋找最佳配對對象\n\n` +
+            `⏳ 預計 2-3 秒完成`
+      );
+    } catch (sendError) {
+      console.error('[handleThrow] Failed to send initial progress message:', sendError);
+      // 如果發送失敗，設為 null，後續會跳過進度更新
+      statusMsg = null;
+    }
 
     // 🆕 Create bottle (VIP triple or regular)
     let bottleId: number;
@@ -341,25 +347,25 @@ export async function processBottleContent(user: User, content: string, env: Env
     if (elapsed1 < 2000) {
       await new Promise((resolve) => setTimeout(resolve, 2000 - elapsed1));
     }
-    if (statusMsg) {
+    if (statusMsg && statusMsg.message_id) {
       try {
         await telegram.editMessageText(
           chatId,
           statusMsg.message_id,
-        isVip
-          ? `🌊 **正在丟出你的漂流瓶...**\n\n` +
+          isVip
+            ? `🌊 **正在丟出你的漂流瓶...**\n\n` +
             `✅ 瓶子已創建\n` +
             `✨ VIP 特權啟動中\n` +
             `🎯 正在為你尋找 3 個最佳配對對象\n\n` +
             `⏳ 預計 2-3 秒完成`
-          : `🌊 **正在丟出你的漂流瓶...**\n\n` +
+            : `🌊 **正在丟出你的漂流瓶...**\n\n` +
             `✅ 瓶子已創建\n` +
             `🎯 正在為你尋找最佳配對對象\n\n` +
             `⏳ 預計 1-2 秒完成`
         );
       } catch (editError) {
         // 如果編輯失敗（訊息被刪除等），忽略錯誤，繼續執行
-        console.error('[handleThrow] Failed to update progress:', editError);
+        console.error('[handleThrow] Failed to update progress (stage 2):', editError);
       }
     }
 
@@ -374,18 +380,18 @@ export async function processBottleContent(user: User, content: string, env: Env
       if (elapsed2 < 4000) {
         await new Promise((resolve) => setTimeout(resolve, 4000 - elapsed2));
       }
-      if (statusMsg) {
+      if (statusMsg && statusMsg.message_id) {
         try {
           await telegram.editMessageText(
             chatId,
             statusMsg.message_id,
-          `🌊 **正在丟出你的漂流瓶...**\n\n` +
+            `🌊 **正在丟出你的漂流瓶...**\n\n` +
             `✅ 瓶子已創建\n` +
             `🔍 正在智能匹配最佳對象...\n\n` +
             `💡 這可能需要幾秒鐘，我們正在為你找到最合適的人`
           );
         } catch (editError) {
-          console.error('[handleThrow] Failed to update progress:', editError);
+          console.error('[handleThrow] Failed to update progress (stage 3):', editError);
         }
       }
 
@@ -393,59 +399,59 @@ export async function processBottleContent(user: User, content: string, env: Env
         const { findActiveMatchForBottle } = await import('~/services/smart_matching');
         const matchResult = await findActiveMatchForBottle(db.d1, bottleId);
       
-      if (matchResult && matchResult.user) {
+        if (matchResult && matchResult.user) {
         // Found a match! Update bottle status and send notification
-        await db.d1
-          .prepare(`UPDATE bottles SET match_status = 'matched' WHERE id = ?`)
-          .bind(bottleId)
-          .run();
+          await db.d1
+            .prepare(`UPDATE bottles SET match_status = 'matched' WHERE id = ?`)
+            .bind(bottleId)
+            .run();
         
-        // Record matching history
-        await db.d1
-          .prepare(`
+          // Record matching history
+          await db.d1
+            .prepare(`
             INSERT INTO matching_history 
             (bottle_id, matched_user_id, match_score, score_breakdown, match_type)
             VALUES (?, ?, ?, ?, ?)
           `)
-          .bind(
-            bottleId,
-            matchResult.user.telegram_id,
-            matchResult.score.total,
-            JSON.stringify(matchResult.score),
-            'active'
-          )
-          .run();
+            .bind(
+              bottleId,
+              matchResult.user.telegram_id,
+              matchResult.score.total,
+              JSON.stringify(matchResult.score),
+              'active'
+            )
+            .run();
         
-        // Send notification to matched user (一對一配對，直接推送)
-        const matchedChatId = parseInt(matchResult.user.telegram_id);
+          // Send notification to matched user (一對一配對，直接推送)
+          const matchedChatId = parseInt(matchResult.user.telegram_id);
         
-        // 獲取擾碼暱稱
-        const { maskNickname } = await import('~/domain/invite');
-        const ownerMaskedNickname = maskNickname(user.nickname || user.username || '匿名');
+          // 獲取擾碼暱稱
+          const { maskNickname } = await import('~/domain/invite');
+          const ownerMaskedNickname = maskNickname(user.nickname || user.username || '匿名');
         
-        // 計算匹配度百分比
-        const matchPercentage = Math.min(100, Math.round(matchResult.score.total));
+          // 計算匹配度百分比
+          const matchPercentage = Math.min(100, Math.round(matchResult.score.total));
         
-        // 構建匹配亮點
-        const highlights: string[] = [];
-        if (matchResult.score.language >= 85) highlights.push('• 語言相同 ✓');
-        if (matchResult.score.mbti >= 80) highlights.push('• MBTI 高度配對 ✓');
-        if (matchResult.score.zodiac >= 80) highlights.push('• 星座高度相容 ✓');
-        if (matchResult.score.ageRange >= 70) highlights.push('• 年齡區間相近 ✓');
+          // 構建匹配亮點
+          const highlights: string[] = [];
+          if (matchResult.score.language >= 85) highlights.push('• 語言相同 ✓');
+          if (matchResult.score.mbti >= 80) highlights.push('• MBTI 高度配對 ✓');
+          if (matchResult.score.zodiac >= 80) highlights.push('• 星座高度相容 ✓');
+          if (matchResult.score.ageRange >= 70) highlights.push('• 年齡區間相近 ✓');
         
-        const highlightsText = highlights.length > 0 
-          ? `\n💡 這個瓶子和你非常合拍！\n${highlights.join('\n')}\n`
-          : '';
+          const highlightsText = highlights.length > 0 
+            ? `\n💡 這個瓶子和你非常合拍！\n${highlights.join('\n')}\n`
+            : '';
         
-        // 獲取瓶子內容前 12 字作為預覽
-        const contentPreview = content.length > 12 
-          ? content.substring(0, 12) + '...'
-          : content;
+          // 獲取瓶子內容前 12 字作為預覽
+          const contentPreview = content.length > 12 
+            ? content.substring(0, 12) + '...'
+            : content;
         
-        // 發送通知給接收者
-        await telegram.sendMessage(
-          matchedChatId,
-          `🍾 ${contentPreview} 📨🌊\n\n` +
+          // 發送通知給接收者
+          await telegram.sendMessage(
+            matchedChatId,
+            `🍾 ${contentPreview} 📨🌊\n\n` +
             `📝 暱稱：${ownerMaskedNickname}\n` +
             `🧠 MBTI：${user.mbti_result || '未設定'}\n` +
             `⭐ 星座：${user.zodiac_sign || '未設定'}\n` +
@@ -456,13 +462,13 @@ export async function processBottleContent(user: User, content: string, env: Env
             `━━━━━━━━━━━━━━━━\n\n` +
             `💬 直接按 /reply 回覆訊息開始聊天\n` +
             `📊 使用 /chats 查看所有對話`
-        );
+          );
         
-        // 發送通知給丟瓶子的人
-        const matchedUserMaskedNickname = maskNickname(matchResult.user.nickname || matchResult.user.username || '匿名');
-        await telegram.sendMessage(
-          chatId,
-          `🎯 你的漂流瓶已被配對成功！\n\n` +
+          // 發送通知給丟瓶子的人
+          const matchedUserMaskedNickname = maskNickname(matchResult.user.nickname || matchResult.user.username || '匿名');
+          await telegram.sendMessage(
+            chatId,
+            `🎯 你的漂流瓶已被配對成功！\n\n` +
             `📝 對方暱稱：${matchedUserMaskedNickname}\n` +
             `🧠 MBTI：${matchResult.user.mbti_result || '未設定'}\n` +
             `⭐ 星座：${matchResult.user.zodiac || '未設定'}\n` +
@@ -470,18 +476,18 @@ export async function processBottleContent(user: User, content: string, env: Env
             highlightsText +
             `\n💬 等待對方回覆中...\n` +
             `📊 使用 /chats 查看所有對話`
-        );
+          );
         
-        console.log(`[Smart Matching] Bottle ${bottleId} matched to user ${matchResult.user.telegram_id} with score ${matchResult.score.total}`);
-      } else {
+          console.log(`[Smart Matching] Bottle ${bottleId} matched to user ${matchResult.user.telegram_id} with score ${matchResult.score.total}`);
+        } else {
         // No match found, bottle enters public pool
-        await db.d1
-          .prepare(`UPDATE bottles SET match_status = 'active' WHERE id = ?`)
-          .bind(bottleId)
-          .run();
+          await db.d1
+            .prepare(`UPDATE bottles SET match_status = 'active' WHERE id = ?`)
+            .bind(bottleId)
+            .run();
         
-        console.log(`[Smart Matching] Bottle ${bottleId} enters public pool (no active match found)`);
-      }
+          console.log(`[Smart Matching] Bottle ${bottleId} enters public pool (no active match found)`);
+        }
       } catch (matchError) {
         console.error('[Smart Matching] Error:', matchError);
         // Fallback: bottle enters public pool
@@ -552,7 +558,7 @@ export async function processBottleContent(user: User, content: string, env: Env
     await clearSession(db, user.telegram_id, 'throw_bottle');
 
     // 🎨 UX: 階段 4 - 完成，刪除進度訊息
-    if (statusMsg) {
+    if (statusMsg && statusMsg.message_id) {
       try {
         await telegram.deleteMessage(chatId, statusMsg.message_id);
       } catch (deleteError) {
@@ -652,7 +658,7 @@ export async function processBottleContent(user: User, content: string, env: Env
       }
     }
 
-    const errorMsg = error instanceof Error ? error.message : String(error);
+    const _errorMsg = error instanceof Error ? error.message : String(error);
     await telegram.sendMessage(
       chatId,
       `😔 **抱歉，處理時遇到了一些問題**\n\n` +

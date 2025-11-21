@@ -87,10 +87,15 @@ export interface MatchResult {
 /**
  * 主動配對：當用戶丟瓶子時，立即為其找到最合適的活躍用戶
  * 使用分層查詢策略，優先查找高匹配度用戶
+ * 
+ * @param db - D1 Database
+ * @param bottleId - Bottle ID
+ * @param kv - (Optional) KV Namespace for caching (成本優化)
  */
 export async function findActiveMatchForBottle(
   db: D1Database,
-  bottleId: number
+  bottleId: number,
+  _kv?: import('@cloudflare/workers-types').KVNamespace
 ): Promise<MatchResult | null> {
   // 1. 獲取瓶子信息（JOIN 優化，一次查詢）
   const bottle = await db

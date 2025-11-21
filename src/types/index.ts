@@ -11,6 +11,7 @@ export interface Env {
   // Bindings
   DB: D1Database;
   RISK_CACHE?: KVNamespace;
+  CACHE?: KVNamespace; // 🚀 智能匹配缓存（成本优化，可选）
   ASSETS?: Fetcher;
 
   // Secrets

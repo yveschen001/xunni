@@ -18,26 +18,43 @@ export interface BottleMatchSlot {
 }
 
 /**
- * Create match slots for a bottle
+ * Create match slots for a bottle (批量插入优化版)
  */
 export async function createMatchSlots(
   db: DatabaseClient,
   bottleId: number,
   slotCount: number
 ): Promise<void> {
-  for (let i = 1; i <= slotCount; i++) {
+  // 🚀 優化：批量插入，從 3 次 INSERT 減少到 1 次
+  // 為 VIP 三倍瓶子固定創建 3 個槽位：1 個 primary + 2 個 secondary
+  if (slotCount === 3) {
     await db.d1
       .prepare(
         `INSERT INTO bottle_match_slots 
-         (bottle_id, slot_role, slot_index, status)
-         VALUES (?, ?, ?, 'pending')`
+         (bottle_id, slot_role, slot_index, status, created_at)
+         VALUES 
+           (?, 'primary', 1, 'pending', datetime('now')),
+           (?, 'secondary', 2, 'pending', datetime('now')),
+           (?, 'secondary', 3, 'pending', datetime('now'))`
       )
-      .bind(
-        bottleId,
-        i === 1 ? 'primary' : 'secondary', // 第 1 個是主動，其他是被動
-        i
-      )
+      .bind(bottleId, bottleId, bottleId)
       .run();
+  } else {
+    // 兼容其他 slotCount（雖然目前只用 3）
+    for (let i = 1; i <= slotCount; i++) {
+      await db.d1
+        .prepare(
+          `INSERT INTO bottle_match_slots 
+           (bottle_id, slot_role, slot_index, status)
+           VALUES (?, ?, ?, 'pending')`
+        )
+        .bind(
+          bottleId,
+          i === 1 ? 'primary' : 'secondary',
+          i
+        )
+        .run();
+    }
   }
 }
 
