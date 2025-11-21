@@ -6,7 +6,7 @@
 export interface Broadcast {
   id: number;
   message: string;
-  targetType: 'all' | 'vip' | 'non_vip';
+  targetType: 'all' | 'vip' | 'non_vip' | 'filtered';
   status: 'pending' | 'sending' | 'completed' | 'failed' | 'cancelled';
   totalUsers: number;
   sentCount: number;
@@ -16,10 +16,11 @@ export interface Broadcast {
   startedAt?: string;
   completedAt?: string;
   errorMessage?: string;
+  filterJson?: string; // JSON string of BroadcastFilters
 }
 
 export interface BroadcastTarget {
-  type: 'all' | 'vip' | 'non_vip';
+  type: 'all' | 'vip' | 'non_vip' | 'filtered';
   userIds: string[];
 }
 
