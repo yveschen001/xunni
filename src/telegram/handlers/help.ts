@@ -89,7 +89,10 @@ export async function handleHelp(message: TelegramMessage, env: Env): Promise<vo
         `**廣播發送**\n` +
         `/broadcast <訊息> - 群發給所有用戶\n` +
         `/broadcast_vip <訊息> - 群發給 VIP 用戶\n` +
-        `/broadcast_non_vip <訊息> - 群發給非 VIP 用戶\n\n` +
+        `/broadcast_non_vip <訊息> - 群發給非 VIP 用戶\n` +
+        `/broadcast_filter <過濾器> <訊息> - 精準廣播\n` +
+        `  範例：/broadcast_filter gender=male,age=18-25 測試訊息\n` +
+        `  支援：gender, age, zodiac, country, mbti, vip, is_birthday\n\n` +
         `**數據分析**\n` +
         `/analytics - 每日運營報表\n` +
         `/ad_performance - 廣告效果報表\n` +
