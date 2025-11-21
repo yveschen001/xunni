@@ -36,6 +36,61 @@ XunNi 廣播系統是一個**超級管理員專用**的訊息推送工具，用�
 - ✅ **安全限制**：目前限制 ≤100 用戶（避免系統過載）
 - ✅ **智能過濾**：只推送給 30 天內活躍用戶
 - ✅ **動態過濾接口**：支援自動化任務調用（New）
+- ⚠️ **Telegram 合規**：自動排除已封鎖/刪除 Bot 的用戶（**關鍵安全機制**）
+
+### 1.3 ⚠️ Telegram 政策與安全規範
+
+**重要**：向已封鎖 Bot 的用戶發送訊息違反 Telegram 政策，可能導致 Bot 被限制或封禁。
+
+#### 1.3.1 用戶狀態管理
+
+我們使用 `users.bot_status` 欄位追蹤用戶與 Bot 的互動狀態：
+
+| 狀態 | 說明 | 是否可發送 | 如何產生 |
+|------|------|-----------|---------|
+| `active` | 正常用戶 | ✅ 可以 | 預設狀態 |
+| `blocked` | 用戶已封鎖 Bot | ❌ **禁止** | Telegram 返回 403 錯誤 |
+| `deleted` | 用戶帳號已刪除 | ❌ **禁止** | Telegram 返回 400 "user not found" |
+| `deactivated` | 用戶帳號已停用 | ❌ **禁止** | Telegram 返回 400 "deactivated" |
+| `invalid` | 無效用戶 ID | ❌ **禁止** | Telegram 返回其他無效錯誤 |
+
+#### 1.3.2 自動錯誤處理機制
+
+**實現位置**：`src/services/telegram_error_handler.ts`
+
+當廣播發送失敗時，系統會：
+1. 解析 Telegram API 錯誤碼和描述
+2. 自動標記用戶的 `bot_status`
+3. 記錄 `bot_status_updated_at` 時間戳
+4. 增加 `failed_delivery_count` 計數器
+
+**範例**：
+```typescript
+// 用戶封鎖 Bot 後，Telegram 返回：
+// { error_code: 403, description: "Forbidden: bot was blocked by the user" }
+
+// 系統自動執行：
+UPDATE users 
+SET bot_status = 'blocked',
+    bot_status_updated_at = CURRENT_TIMESTAMP,
+    failed_delivery_count = failed_delivery_count + 1
+WHERE telegram_id = ?
+```
+
+#### 1.3.3 廣播查詢的強制過濾
+
+**所有廣播查詢都必須包含以下條件**：
+
+```sql
+WHERE bot_status = 'active'      -- ⚠️ 關鍵：只查詢正常用戶
+  AND deleted_at IS NULL         -- 排除已刪除帳號
+  AND onboarding_step = 'completed'  -- 排除未完成註冊
+```
+
+**違反此規範的後果**：
+- ❌ 向已封鎖用戶發送 → Telegram 可能限制 Bot
+- ❌ 向已刪除用戶發送 → 浪費 API 配額
+- ❌ 累積過多失敗 → 影響 Bot 信譽評分
 
 ### 1.3 權限控制
 

@@ -19,6 +19,13 @@
 - 💡 本系統可**復用廣播系統的發送器**（`processBroadcast`）
 - 💡 詳見 [`doc/BROADCAST_SYSTEM_DESIGN.md`](./BROADCAST_SYSTEM_DESIGN.md) 第 12 章
 
+**⚠️ Telegram 政策與安全規範**：
+- ❌ **絕對禁止**向 `bot_status != 'active'` 的用戶發送訊息
+- ❌ **絕對禁止**向已封鎖 Bot 的用戶（`bot_status = 'blocked'`）發送
+- ❌ **絕對禁止**向已刪除帳號（`deleted_at IS NOT NULL`）發送
+- ✅ 系統已內建自動過濾機制（`telegram_error_handler.ts`）
+- ⚠️ 違反此規範可能導致 Bot 被 Telegram 限制或封禁
+
 ---
 
 ## 2. 推送策略
