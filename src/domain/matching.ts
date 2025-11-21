@@ -24,6 +24,9 @@ export interface MatchScoreBreakdown {
 }
 
 export interface UserMatchData {
+  telegram_id: string;
+  nickname: string | null;
+  username: string | null;
   language: string;
   mbti_result: string | null;
   zodiac: string | null;

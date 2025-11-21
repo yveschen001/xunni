@@ -123,7 +123,7 @@ export async function findActiveMatchForBottle(
   const tier1 = await db
     .prepare(`
       SELECT 
-        telegram_id, language_pref as language, mbti_result, zodiac_sign as zodiac,
+        telegram_id, nickname, username, language_pref as language, mbti_result, zodiac_sign as zodiac,
         blood_type, birthday, last_active_at, is_vip, gender
       FROM users
       WHERE telegram_id != ?
@@ -154,19 +154,23 @@ export async function findActiveMatchForBottle(
     const adjacentRanges = getAdjacentAgeRanges(ownerAgeRange);
     
     const existingIds = allCandidates.map(u => u.telegram_id);
-    const placeholders = existingIds.length > 0 ? existingIds.map(() => '?').join(',') : 'NULL';
+    
+    // 構建排除條件（如果有已存在的 ID）
+    const excludeClause = existingIds.length > 0 
+      ? `AND telegram_id NOT IN (${existingIds.map(() => '?').join(',')})` 
+      : '';
     
     const tier2 = await db
       .prepare(`
         SELECT 
-          telegram_id, language_pref as language, mbti_result, zodiac_sign as zodiac,
+          telegram_id, nickname, username, language_pref as language, mbti_result, zodiac_sign as zodiac,
           blood_type, birthday, last_active_at, is_vip, gender
         FROM users
         WHERE telegram_id != ?
           AND is_banned = 0
           AND age_range IN (?, ?, ?)
           AND last_active_at > datetime('now', '${MATCHING_CONFIG.activeMatching.layers[1].timeWindow}')
-          AND telegram_id NOT IN (${placeholders})
+          ${excludeClause}
           ${genderFilter}
         ORDER BY last_active_at DESC
         LIMIT ?
@@ -188,18 +192,22 @@ export async function findActiveMatchForBottle(
     // 如果第 2 層仍不足，查找第 3 層
     if (allCandidates.length < MATCHING_CONFIG.activeMatching.layers[1].minThreshold) {
       const existingIds2 = allCandidates.map(u => u.telegram_id);
-      const placeholders2 = existingIds2.length > 0 ? existingIds2.map(() => '?').join(',') : 'NULL';
+      
+      // 構建排除條件（如果有已存在的 ID）
+      const excludeClause = existingIds2.length > 0 
+        ? `AND telegram_id NOT IN (${existingIds2.map(() => '?').join(',')})` 
+        : '';
       
       const tier3 = await db
         .prepare(`
           SELECT 
-            telegram_id, language_pref as language, mbti_result, zodiac_sign as zodiac,
+            telegram_id, nickname, username, language_pref as language, mbti_result, zodiac_sign as zodiac,
             blood_type, birthday, last_active_at, is_vip, gender
           FROM users
           WHERE telegram_id != ?
             AND is_banned = 0
             AND last_active_at > datetime('now', '${MATCHING_CONFIG.activeMatching.layers[2].timeWindow}')
-            AND telegram_id NOT IN (${placeholders2})
+            ${excludeClause}
             ${genderFilter}
           ORDER BY last_active_at DESC
           LIMIT ?

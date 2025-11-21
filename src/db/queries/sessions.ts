@@ -139,6 +139,25 @@ export async function deleteSession(db: DatabaseClient, sessionId: number): Prom
 }
 
 /**
+ * Clear session by type (alias for deleting all sessions of a type)
+ */
+export async function clearSession(
+  db: DatabaseClient,
+  telegramId: string,
+  sessionType: SessionType
+): Promise<void> {
+  await db.d1
+    .prepare(
+      `
+    DELETE FROM user_sessions
+    WHERE telegram_id = ? AND session_type = ?
+  `
+    )
+    .bind(telegramId, sessionType)
+    .run();
+}
+
+/**
  * Delete all sessions for user
  */
 export async function deleteUserSessions(db: DatabaseClient, telegramId: string): Promise<void> {

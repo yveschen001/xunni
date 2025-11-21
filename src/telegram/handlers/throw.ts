@@ -179,8 +179,13 @@ export async function handleThrow(message: TelegramMessage, env: Env): Promise<v
     // Determine target gender based on user's preference
     const targetGender = getTargetGender(user);
 
-    // No longer create session - use reply mechanism instead
-    console.error('[handleThrow] Showing throw prompt (reply-based):', {
+    // Create session to store target gender and track user state
+    const { upsertSession } = await import('~/db/queries/sessions');
+    await upsertSession(db, telegramId, 'throw_bottle', {
+      target_gender: targetGender,
+    });
+
+    console.error('[handleThrow] Created throw_bottle session:', {
       userId: telegramId,
       targetGender,
     });
@@ -343,6 +348,7 @@ export async function processBottleContent(user: User, content: string, env: Env
           ? content.substring(0, 12) + '...'
           : content;
         
+        // 發送通知給接收者
         await telegram.sendMessage(
           matchedChatId,
           `🍾 ${contentPreview} 📨🌊\n\n` +
@@ -355,6 +361,20 @@ export async function processBottleContent(user: User, content: string, env: Env
             `${content}\n` +
             `━━━━━━━━━━━━━━━━\n\n` +
             `💬 直接按 /reply 回覆訊息開始聊天\n` +
+            `📊 使用 /chats 查看所有對話`
+        );
+        
+        // 發送通知給丟瓶子的人
+        const matchedUserMaskedNickname = maskNickname(matchResult.user.nickname || matchResult.user.username || '匿名');
+        await telegram.sendMessage(
+          chatId,
+          `🎯 你的漂流瓶已被配對成功！\n\n` +
+            `📝 對方暱稱：${matchedUserMaskedNickname}\n` +
+            `🧠 MBTI：${matchResult.user.mbti_result || '未設定'}\n` +
+            `⭐ 星座：${matchResult.user.zodiac || '未設定'}\n` +
+            `💝 匹配度：${matchPercentage}%\n` +
+            highlightsText +
+            `\n💬 等待對方回覆中...\n` +
             `📊 使用 /chats 查看所有對話`
         );
         
@@ -435,6 +455,10 @@ export async function processBottleContent(user: User, content: string, env: Env
     const quotaDisplay = temporaryBonus > 0 
       ? `${throwsToday}/${permanentQuota}+${temporaryBonus}`
       : `${throwsToday}/${permanentQuota}`;
+
+    // Clear throw_bottle session (bottle successfully created)
+    const { clearSession } = await import('~/db/queries/sessions');
+    await clearSession(db, user.telegram_id, 'throw_bottle');
 
     // Send success message
     const successMessage =

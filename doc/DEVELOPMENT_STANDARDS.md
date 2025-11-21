@@ -733,6 +733,152 @@ export async function processBottleContent(user: User, content: string, env: Env
 - 參考 `src/telegram/handlers/throw.ts` 的完整實現
 - 參考 `src/router.ts` 中的 session 檢查邏輯
 
+#### 錯誤 7：SQL 查詢缺少必要欄位導致數據不完整
+**症狀：** 配對通知中顯示「匿名*********」或其他數據缺失
+
+**為什麼會發生？**
+在編寫 SQL 查詢時，只選取了用於計算的欄位，忽略了顯示所需的欄位。
+
+**⚠️ 常見缺失欄位：**
+
+```typescript
+// ❌ 錯誤：只選取計算所需欄位，缺少 nickname 和 username
+const users = await db
+  .prepare(`
+    SELECT 
+      telegram_id, language_pref, mbti_result, zodiac_sign,
+      blood_type, birthday, last_active_at, is_vip, gender
+    FROM users
+    WHERE ...
+  `)
+  .all();
+
+// 使用時會出錯
+const nickname = maskNickname(user.nickname || user.username || '匿名');
+// ❌ user.nickname 和 user.username 都是 undefined！
+
+// ✅ 正確：選取所有需要的欄位
+const users = await db
+  .prepare(`
+    SELECT 
+      telegram_id, nickname, username,  -- ← 添加這些欄位
+      language_pref, mbti_result, zodiac_sign,
+      blood_type, birthday, last_active_at, is_vip, gender
+    FROM users
+    WHERE ...
+  `)
+  .all();
+```
+
+**檢查清單：**
+1. ✅ **計算欄位**：用於邏輯判斷的欄位（如 `mbti_result`, `zodiac_sign`）
+2. ✅ **顯示欄位**：用於 UI 顯示的欄位（如 `nickname`, `username`）
+3. ✅ **識別欄位**：用於唯一標識的欄位（如 `telegram_id`, `id`）
+4. ✅ **關聯欄位**：用於關聯其他表的欄位（如外鍵）
+
+**預防措施：**
+1. 在編寫查詢前，先列出所有使用該數據的地方
+2. 檢查每個使用點需要哪些欄位
+3. 確保 TypeScript 類型定義包含所有欄位
+4. 添加單元測試驗證數據完整性
+
+**修復方法：**
+```typescript
+// 1. 檢查類型定義
+export interface UserMatchData {
+  telegram_id: string;
+  nickname: string | null;      // ← 確保包含
+  username: string | null;       // ← 確保包含
+  language: string;
+  mbti_result: string | null;
+  // ... 其他欄位
+}
+
+// 2. 更新 SQL 查詢
+SELECT 
+  telegram_id, nickname, username,  -- ← 添加缺失欄位
+  language_pref as language, 
+  mbti_result, zodiac_sign as zodiac,
+  blood_type, birthday, last_active_at, is_vip, gender
+FROM users
+WHERE ...
+```
+
+**常見影響範圍：**
+- `src/services/smart_matching.ts` - Smart Matching 查詢
+- `src/db/queries/bottles.ts` - 瓶子查詢
+- `src/db/queries/conversations.ts` - 對話查詢
+- 任何需要顯示用戶信息的查詢
+
+#### 錯誤 8：SQL NOT IN (NULL) 導致查詢失敗
+**症狀：** 查詢返回 0 結果，即使數據庫中有符合條件的記錄
+
+**為什麼會發生？**
+在 SQL 中，`NOT IN (NULL)` 會導致所有行都被過濾掉，因為 `NULL` 的比較結果是 `UNKNOWN`。
+
+**⚠️ 錯誤示例：**
+
+```typescript
+// ❌ 錯誤：當 existingIds 為空時，placeholders 變成 'NULL'
+const existingIds = allCandidates.map(u => u.telegram_id);  // 可能為 []
+const placeholders = existingIds.length > 0 
+  ? existingIds.map(() => '?').join(',') 
+  : 'NULL';  // ❌ 錯誤！
+
+const query = `
+  SELECT * FROM users
+  WHERE telegram_id NOT IN (${placeholders})  -- ← NOT IN (NULL) 會過濾掉所有行
+`;
+
+// ✅ 正確：只在有值時添加 NOT IN 條件
+const existingIds = allCandidates.map(u => u.telegram_id);
+const excludeClause = existingIds.length > 0 
+  ? `AND telegram_id NOT IN (${existingIds.map(() => '?').join(',')})` 
+  : '';  // ← 空字符串，不添加條件
+
+const query = `
+  SELECT * FROM users
+  WHERE telegram_id != ?
+    ${excludeClause}  -- ← 只在有值時添加
+`;
+```
+
+**預防措施：**
+1. 在構建動態 SQL 時，先檢查數組是否為空
+2. 使用條件字符串而不是硬編碼 `NULL`
+3. 添加日誌記錄查詢條件和結果數量
+4. 手動測試空數組情況
+
+**修復方法：**
+- 檢查所有使用 `NOT IN` 的查詢
+- 確保在數組為空時不添加 `NOT IN` 條件
+- 參考 `src/services/smart_matching.ts` 的修復實現
+
+#### 錯誤 9：age_range 未初始化導致查詢失敗
+**症狀：** Smart Matching 找不到候選用戶，即使有活躍用戶
+
+**為什麼會發生？**
+`age_range` 欄位在用戶註冊時未自動計算，導致查詢條件 `WHERE age_range IN (...)` 無法匹配。
+
+**預防措施：**
+1. 確保所有計算欄位在創建記錄時自動填充
+2. 添加數據庫遷移腳本來填充現有記錄
+3. 定期檢查關鍵欄位是否有 `NULL` 值
+
+**修復方法：**
+```sql
+-- 手動更新現有用戶的 age_range
+UPDATE users 
+SET age_range = CASE 
+  WHEN (CAST(strftime('%Y', 'now') AS INTEGER) - CAST(strftime('%Y', birthday) AS INTEGER)) BETWEEN 18 AND 24 THEN '18-24'
+  WHEN (CAST(strftime('%Y', 'now') AS INTEGER) - CAST(strftime('%Y', birthday) AS INTEGER)) BETWEEN 25 AND 29 THEN '25-29'
+  WHEN (CAST(strftime('%Y', 'now') AS INTEGER) - CAST(strftime('%Y', birthday) AS INTEGER)) BETWEEN 30 AND 34 THEN '30-34'
+  WHEN (CAST(strftime('%Y', 'now') AS INTEGER) - CAST(strftime('%Y', birthday) AS INTEGER)) BETWEEN 35 AND 39 THEN '35-39'
+  WHEN (CAST(strftime('%Y', 'now') AS INTEGER) - CAST(strftime('%Y', birthday) AS INTEGER)) >= 40 THEN '40+'
+END
+WHERE birthday IS NOT NULL;
+```
+
 ### 6.3 修改代碼的安全流程（Safe Code Modification Process）
 
 **遵循以下流程，避免改壞已有功能：**

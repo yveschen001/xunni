@@ -678,8 +678,10 @@ export async function routeUpdate(update: TelegramUpdate, env: Env): Promise<voi
       await telegram.sendMessage(
         chatId,
         '💡 **想要丟出漂流瓶？**\n\n' +
-          '請先使用 `/throw` 命令啟動丟瓶子流程，然後再輸入您的漂流瓶內容。\n\n' +
-          '或者點擊下方按鈕：',
+          '請先使用 `/throw` 命令啟動丟瓶子流程，\n' +
+          '然後再長按該訊息，選單中選擇「回覆」後，\n' +
+          '輸入您的漂流瓶內容。\n\n' +
+          '或者點擊下方按鈕啟動丟瓶子流程：',
         {
           reply_markup: {
             inline_keyboard: [
@@ -714,7 +716,7 @@ export async function routeUpdate(update: TelegramUpdate, env: Env): Promise<voi
     }
     
     // Check if user has an active throw_bottle session (waiting for bottle content)
-    // If so, remind them to use "Reply" feature
+    // If so, remind them to use "Reply" feature and send a message they can reply to
     const { getActiveSession } = await import('./db/queries/sessions');
     const throwSession = await getActiveSession(db, user.telegram_id, 'throw_bottle');
     
@@ -724,15 +726,19 @@ export async function routeUpdate(update: TelegramUpdate, env: Env): Promise<voi
         messageLength: text.length,
       });
       
+      // Send a prompt message that user can reply to
       await telegram.sendMessage(
         chatId,
-        '💡 **請長按此訊息，選擇「回覆」後輸入內容**\n\n' +
-          '📝 你正在丟漂流瓶流程中，請：\n' +
-          '1️⃣ 長按上方帶有 **#THROW** 標籤的訊息\n' +
-          '2️⃣ 選擇「回覆」\n' +
-          '3️⃣ 輸入你的瓶子內容\n\n' +
-          '⚠️ 直接發送訊息無法識別，必須使用「回覆」功能\n\n' +
-          '🔄 或者重新開始：/throw'
+        '❓ 要丟漂流瓶？\n\n' +
+          '請長按上一則訊息，或本訊息，\n' +
+          '選單上選擇「回覆」後，\n' +
+          '輸入要發送的漂流瓶內容\n\n' +
+          '💡 **常用命令**：\n' +
+          '• /throw - 丟出漂流瓶\n' +
+          '• /catch - 撿起漂流瓶\n' +
+          '• /menu - 主選單\n' +
+          '• /tasks - 任務中心\n\n' +
+          '#THROW'
       );
       return;
     }
