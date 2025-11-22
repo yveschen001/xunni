@@ -172,7 +172,7 @@ export async function handleTasks(message: TelegramMessage, env: Env): Promise<v
     }
     
     // Row 5: Return to menu
-    keyboard.push([{ text: '↩️ 返回主選單', callback_data: 'return_to_menu' }]);
+    keyboard.push([{ text: '🏠 返回主選單', callback_data: 'return_to_menu' }]);
     
     await telegram.sendMessageWithButtons(chatId, message_text, keyboard);
   } catch (error) {

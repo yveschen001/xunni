@@ -245,8 +245,8 @@ export async function handleReturnToMenu(callbackQuery: CallbackQuery, env: Env)
   const chatId = callbackQuery.message!.chat.id;
 
   try {
-    // Answer callback
-    await telegram.answerCallbackQuery(callbackQuery.id);
+    // Answer callback with immediate feedback
+    await telegram.answerCallbackQuery(callbackQuery.id, '✅ 正在加載...');
 
     // Delete current message
     await telegram.deleteMessage(chatId, callbackQuery.message!.message_id);
