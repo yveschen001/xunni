@@ -30,13 +30,18 @@ export async function handleMenu(message: TelegramMessage, env: Env): Promise<vo
     // Get user
     const user = await findUserByTelegramId(db, telegramId);
     if (!user) {
-      await telegram.sendMessage(chatId, '⚠️ 用戶不存在，請先使用 /start 註冊。');
+      const { createI18n } = await import('~/i18n');
+      const i18n = createI18n('zh-TW');
+      await telegram.sendMessage(chatId, i18n.t('menu.userNotFound'));
       return;
     }
 
+    const { createI18n } = await import('~/i18n');
+    const i18n = createI18n(user.language_pref || 'zh-TW');
+
     // Check if user completed onboarding
     if (user.onboarding_step !== 'completed') {
-      await telegram.sendMessage(chatId, '⚠️ 請先完成註冊流程。\n\n使用 /start 繼續註冊。');
+      await telegram.sendMessage(chatId, i18n.t('menu.notRegistered'));
       return;
     }
 
@@ -51,37 +56,41 @@ export async function handleMenu(message: TelegramMessage, env: Env): Promise<vo
 
     // Build menu message
     let menuMessage =
-      `🏠 **主選單** ${vipBadge}\n\n` +
-      `👋 嗨，${user.nickname}！\n\n` +
-      `📊 你的狀態：\n` +
-      `• 等級：${isVip ? 'VIP 會員 💎' : '免費會員'}\n` +
-      `• MBTI：${user.mbti_result || '未設定'}\n` +
-      `• 星座：${user.zodiac_sign || '未設定'}\n\n`;
+      `${i18n.t('menu.title')} ${vipBadge}\n\n` +
+      `${i18n.t('menu.greeting', { nickname: user.nickname })}\n\n` +
+      `${i18n.t('menu.yourStatus')}\n` +
+      `• ${isVip ? i18n.t('menu.levelVip') : i18n.t('menu.levelFree')}\n` +
+      `${i18n.t('menu.mbtiLabel', { mbti: user.mbti_result || i18n.t('menu.notSet') })}\n` +
+      `${i18n.t('menu.zodiacLabel', { zodiac: user.zodiac_sign || i18n.t('menu.notSet') })}\n\n`;
 
     // Add next task reminder if exists
     if (nextTask) {
-      menuMessage += `🎯 **下一個任務**\n⏳ ${nextTask.name} (+${nextTask.reward_amount} 瓶子)\n💡 ${nextTask.description}\n\n`;
+      menuMessage += i18n.t('menu.nextTask', { 
+        taskName: nextTask.name, 
+        reward: nextTask.reward_amount, 
+        description: nextTask.description 
+      }) + '\n\n';
     }
 
-    menuMessage += `💡 選擇你想要的功能：`;
+    menuMessage += i18n.t('menu.selectFeature');
 
     // Build menu buttons
     const buttons = [
       [
-        { text: '🌊 丟出漂流瓶', callback_data: 'menu_throw' },
-        { text: '🎣 撿起漂流瓶', callback_data: 'menu_catch' },
+        { text: i18n.t('menu.buttonThrow'), callback_data: 'menu_throw' },
+        { text: i18n.t('menu.buttonCatch'), callback_data: 'menu_catch' },
       ],
       [
-        { text: '👤 個人資料', callback_data: 'menu_profile' },
-        { text: '📊 統計數據', callback_data: 'menu_stats' },
+        { text: i18n.t('menu.buttonProfile'), callback_data: 'menu_profile' },
+        { text: i18n.t('menu.buttonStats'), callback_data: 'menu_stats' },
       ],
       [
-        { text: '🎁 邀請好友', callback_data: 'menu_invite' },
-        { text: '💬 聊天記錄', callback_data: 'menu_chats' },
+        { text: i18n.t('menu.buttonInvite'), callback_data: 'menu_invite' },
+        { text: i18n.t('menu.buttonChats'), callback_data: 'menu_chats' },
       ],
       [
-        { text: '⚙️ 設定', callback_data: 'menu_settings' },
-        { text: '❓ 幫助', callback_data: 'menu_help' },
+        { text: i18n.t('menu.buttonSettings'), callback_data: 'menu_settings' },
+        { text: i18n.t('menu.buttonHelp'), callback_data: 'menu_help' },
       ],
     ];
 
@@ -92,13 +101,15 @@ export async function handleMenu(message: TelegramMessage, env: Env): Promise<vo
 
     // Add VIP button for non-VIP users
     if (!isVip) {
-      buttons.push([{ text: '💎 升級 VIP', callback_data: 'menu_vip' }]);
+      buttons.push([{ text: i18n.t('menu.buttonVip'), callback_data: 'menu_vip' }]);
     }
 
     await telegram.sendMessageWithButtons(chatId, menuMessage, buttons);
   } catch (error) {
     console.error('[handleMenu] Error:', error);
-    await telegram.sendMessage(chatId, '❌ 系統發生錯誤，請稍後再試。');
+    const { createI18n } = await import('~/i18n');
+    const i18n = createI18n('zh-TW');
+    await telegram.sendMessage(chatId, i18n.t('common.systemError'));
   }
 }
 

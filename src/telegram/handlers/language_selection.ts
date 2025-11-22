@@ -78,9 +78,13 @@ export async function handleLanguageSelection(
   const telegramId = callbackQuery.from.id.toString();
 
   try {
+    // Use i18n system
+    const { createI18n } = await import('~/i18n');
+    
     // Validate language code
     if (!isValidLanguage(languageCode)) {
-      await telegram.answerCallbackQuery(callbackQuery.id, '❌ 無效的語言代碼');
+      const i18n = createI18n('zh-TW');
+      await telegram.answerCallbackQuery(callbackQuery.id, i18n.t('onboarding.langInvalidCode'));
       return;
     }
 
@@ -89,8 +93,9 @@ export async function handleLanguageSelection(
 
     if (!user) {
       // This shouldn't happen, but handle it gracefully
-      await telegram.answerCallbackQuery(callbackQuery.id, '❌ 發生錯誤');
-      await telegram.sendMessage(chatId, `❌ 發生錯誤，請重新開始：/start`);
+      const i18n = createI18n('zh-TW');
+      await telegram.answerCallbackQuery(callbackQuery.id, i18n.t('onboarding.langError'));
+      await telegram.sendMessage(chatId, i18n.t('onboarding.langErrorRestart'));
       return;
     }
 
@@ -124,12 +129,16 @@ export async function handleLanguageSelection(
         callbackQuery.from.first_name
       );
     } else {
-      // Existing user - just confirm language change
-      await telegram.sendMessage(chatId, `✅ 語言已更新為：${getLanguageDisplay(languageCode)}`);
+      // Existing user - just confirm language change with NEW language
+      const { createI18n } = await import('~/i18n');
+      const i18n = createI18n(languageCode);
+      await telegram.sendMessage(chatId, i18n.t('onboarding.langUpdated', { language: getLanguageDisplay(languageCode) }));
     }
   } catch (error) {
     console.error('[handleLanguageSelection] Error:', error);
-    await telegram.answerCallbackQuery(callbackQuery.id, '❌ 發生錯誤，請稍後再試');
+    const { createI18n } = await import('~/i18n');
+    const i18n = createI18n('zh-TW');
+    await telegram.answerCallbackQuery(callbackQuery.id, i18n.t('onboarding.langUpdateError'));
   }
 }
 
