@@ -267,8 +267,9 @@ export async function routeUpdate(update: TelegramUpdate, env: Env): Promise<voi
         // 3. "💬 來自 #IDENTIFIER 的新訊息" (New message notification)
         let conversationIdentifier: string | undefined;
         
-        if (replyToText.includes('💬 回覆 #')) {
-          const match = replyToText.match(/💬 回覆 #([A-Z0-9]+)：/);
+        if (replyToText.includes('💬 回覆')) {
+          // Support both old format (💬 回覆 #ID：) and new format (💬 回覆對話 ID)
+          const match = replyToText.match(/💬 回覆(?:對話)?\s*#?([A-Z0-9]+)[：]?/);
           if (match) {
             conversationIdentifier = match[1];
             console.error('[router] Detected reply to ForceReply prompt:', {

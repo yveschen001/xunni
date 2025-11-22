@@ -477,7 +477,7 @@ export async function handleConversationReplyButton(
       },
       body: JSON.stringify({
         chat_id: chatId,
-        text: `💬 回覆 #${conversationIdentifier}：`,
+        text: `💬 回覆對話 ${conversationIdentifier}`,
         reply_markup: {
           force_reply: true,
           selective: true,
