@@ -354,6 +354,15 @@ export interface TelegramMessage {
   date: number;
   text?: string;
   entities?: TelegramMessageEntity[];
+  photo?: Array<{ file_id: string; file_unique_id: string; width: number; height: number; file_size?: number }>;
+  document?: { file_id: string; file_unique_id: string; file_name?: string; mime_type?: string; file_size?: number };
+  video?: { file_id: string; file_unique_id: string; width: number; height: number; duration: number; file_size?: number };
+  audio?: { file_id: string; file_unique_id: string; duration: number; file_size?: number };
+  voice?: { file_id: string; file_unique_id: string; duration: number; file_size?: number };
+  video_note?: { file_id: string; file_unique_id: string; length: number; duration: number; file_size?: number };
+  sticker?: { file_id: string; file_unique_id: string; width: number; height: number; is_animated: boolean; is_video: boolean };
+  animation?: { file_id: string; file_unique_id: string; width: number; height: number; duration: number; file_size?: number };
+  reply_to_message?: TelegramMessage;
 }
 
 export interface TelegramUser {

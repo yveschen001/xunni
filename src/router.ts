@@ -74,6 +74,31 @@ export async function routeUpdate(update: TelegramUpdate, env: Env): Promise<voi
     const chatId = message.chat.id;
     const telegramId = message.from!.id.toString();
 
+    // Check if message contains media (photo, document, video, etc.)
+    // These are not allowed in conversations
+    if (message.photo || message.document || message.video || message.audio || 
+        message.voice || message.video_note || message.sticker || message.animation) {
+      // Get user to check if they're in a conversation
+      const user = await findUserByTelegramId(db, telegramId);
+      if (user && user.onboarding_step === 'completed') {
+        // Check if user has active conversation
+        const { getActiveConversation } = await import('~/db/queries/conversations');
+        const conversation = await getActiveConversation(db, telegramId);
+        if (conversation) {
+          // User is in a conversation, reject media
+          await telegram.sendMessage(
+            chatId,
+            '⚠️ **不允許發送圖片、影片或多媒體**\n\n' +
+            '💡 為了保護隱私和安全，對話中只允許純文字訊息。\n\n' +
+            '請使用文字訊息與對方交流。'
+          );
+          return;
+        }
+      }
+      // If not in conversation, ignore media messages (let other handlers process or ignore)
+      return;
+    }
+
     // Log message details for debugging
     console.error('[Router] Message details:', {
       telegramId,

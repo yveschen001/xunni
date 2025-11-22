@@ -28,12 +28,25 @@ export async function handleMessageForward(
 ): Promise<boolean> {
   const db = createDatabaseClient(env.DB);
   const telegram = createTelegramService(env);
-  const chatId = message.chat.id;
-  const telegramId = message.from!.id.toString();
-  const messageText = message.text || '';
-  const replyToId = message.reply_to_message?.message_id;
+    const chatId = message.chat.id;
+    const telegramId = message.from!.id.toString();
+    const messageText = message.text || '';
+    const replyToId = message.reply_to_message?.message_id;
 
   try {
+    // Check if message contains media (photo, document, video, etc.)
+    // These are not allowed in conversations
+    if (message.photo || message.document || message.video || message.audio || 
+        message.voice || message.video_note || message.sticker || message.animation) {
+      await telegram.sendMessage(
+        chatId,
+        '⚠️ **不允許發送圖片、影片或多媒體**\n\n' +
+        '💡 為了保護隱私和安全，對話中只允許純文字訊息。\n\n' +
+        '請使用文字訊息與對方交流。'
+      );
+      return true; // Handled, stop processing
+    }
+
     // ✨ NEW: Update user activity (non-blocking)
     try {
       const { updateUserActivity } = await import('~/services/user_activity');
