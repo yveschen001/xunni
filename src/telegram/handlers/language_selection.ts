@@ -111,8 +111,12 @@ export async function handleLanguageSelection(
       await updateOnboardingStep(db, telegramId, 'nickname');
     }
 
-    // Answer callback query
-    await telegram.answerCallbackQuery(callbackQuery.id, `✅ ${getLanguageDisplay(languageCode)}`);
+    // Answer callback query (use newly selected language)
+    const newI18n = createI18n(languageCode);
+    await telegram.answerCallbackQuery(
+      callbackQuery.id,
+      `${newI18n.t('common.success')} ${getLanguageDisplay(languageCode)}`
+    );
 
     // Delete language selection message
     await telegram.deleteMessage(chatId, callbackQuery.message!.message_id);
