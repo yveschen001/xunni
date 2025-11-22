@@ -202,7 +202,8 @@ export async function handleEditNickname(
         '• 最少 4 個字符，最多 36 個字符\n' +
         '• 顯示時最多 18 個字符\n' +
         '• 不能包含網址連結\n' +
-        '• 避免廣告或不當內容'
+        '• 避免廣告或不當內容\n\n' +
+        '💡 輸入 /menu 可隨時返回主選單'
     );
   } catch (error) {
     console.error('[handleEditNickname] Error:', error);
@@ -233,7 +234,8 @@ export async function handleEditBio(callbackQuery: TelegramCallbackQuery, env: E
         '💡 提示：\n' +
         '• 最多 200 個字符\n' +
         '• 介紹你的興趣、性格或想說的話\n' +
-        '• 避免包含聯絡方式'
+        '• 避免包含聯絡方式\n\n' +
+        '💡 輸入 /menu 可隨時返回主選單'
     );
   } catch (error) {
     console.error('[handleEditBio] Error:', error);
@@ -266,7 +268,8 @@ export async function handleEditRegion(
         '請輸入你的地區：\n\n' +
         '💡 提示：\n' +
         '• 例如：台北、香港、東京\n' +
-        '• 最多 50 個字符'
+        '• 最多 50 個字符\n\n' +
+        '💡 輸入 /menu 可隨時返回主選單'
     );
   } catch (error) {
     console.error('[handleEditRegion] Error:', error);
@@ -382,7 +385,8 @@ export async function handleEditInterests(
         '💡 提示：\n' +
         '• 例如：音樂, 電影, 旅行, 美食\n' +
         '• 最多 5 個標籤\n' +
-        '• 每個標籤最多 20 個字符'
+        '• 每個標籤最多 20 個字符\n\n' +
+        '💡 輸入 /menu 可隨時返回主選單'
     );
   } catch (error) {
     console.error('[handleEditInterests] Error:', error);
