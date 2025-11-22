@@ -97,6 +97,34 @@ export async function updateConversationHistory(
     const newMessageEntry = formatMessageEntry(messageTime, direction, messageContent);
     console.error('[updateConversationHistory] New entry:', newMessageEntry);
 
+    // Build buttons
+    const buttons = [
+      [{ text: '💬 回覆訊息', callback_data: `conv_reply_${identifier}` }],
+      [{ text: '📊 查看所有對話', callback_data: 'chats' }],
+    ];
+
+    // Add ad/task button for non-VIP users
+    if (!isVip && viewer) {
+      const { getNextIncompleteTask } = await import('../telegram/handlers/tasks');
+      const { getAdPrompt } = await import('~/domain/ad_prompt');
+      const { getTodayAdReward } = await import('~/db/queries/ad_rewards');
+      
+      const nextTask = await getNextIncompleteTask(db, viewer);
+      const adReward = await getTodayAdReward(db.d1, userTelegramId);
+      
+      const prompt = getAdPrompt({
+        user: viewer,
+        ads_watched_today: adReward?.ads_watched || 0,
+        has_incomplete_tasks: !!nextTask,
+        next_task_name: nextTask?.name,
+        next_task_id: nextTask?.id,
+      });
+      
+      if (prompt.show_button) {
+        buttons.push([{ text: prompt.button_text, callback_data: prompt.button_callback }]);
+      }
+    }
+
     if (!latestPost) {
       // No history post exists, create first one with avatar
       const messages = [newMessageEntry];
@@ -111,17 +139,20 @@ export async function updateConversationHistory(
         try {
           sentMessage = await telegram.sendPhoto(parseInt(userTelegramId), partnerAvatarUrl, {
             caption: content,
-            parse_mode: 'Markdown'
+            parse_mode: 'Markdown',
+            reply_markup: {
+              inline_keyboard: buttons
+            }
           });
           console.error('[updateConversationHistory] History post with photo sent:', sentMessage.message_id);
         } catch (photoError) {
           console.error('[updateConversationHistory] Failed to send photo, falling back to text:', photoError);
           // Fallback to text message
-          sentMessage = await telegram.sendMessageAndGetId(parseInt(userTelegramId), content);
+          sentMessage = await telegram.sendMessageWithButtonsAndGetId(parseInt(userTelegramId), content, buttons);
         }
       } else {
         // Send as text message
-        sentMessage = await telegram.sendMessageAndGetId(parseInt(userTelegramId), content);
+        sentMessage = await telegram.sendMessageWithButtonsAndGetId(parseInt(userTelegramId), content, buttons);
         console.error('[updateConversationHistory] History post sent:', sentMessage.message_id);
       }
 
@@ -308,12 +339,36 @@ export async function updateConversationHistory(
           console.error('[updateConversationHistory] New content length:', content.length);
 
           // Edit Telegram message
-          await telegram.editMessageText(
-            parseInt(userTelegramId),
-            latestPost.telegram_message_id,
-            content
-          );
-          console.error('[updateConversationHistory] Telegram message edited');
+          try {
+            if (latestPost.partner_avatar_url && !latestPost.partner_avatar_url.startsWith('data:')) {
+              // It's a photo message, update caption
+              await telegram.editMessageCaption(
+                parseInt(userTelegramId),
+                latestPost.telegram_message_id,
+                content,
+                {
+                  reply_markup: {
+                    inline_keyboard: buttons
+                  }
+                }
+              );
+            } else {
+              // It's a text message, update text
+              await telegram.editMessageText(
+                parseInt(userTelegramId),
+                latestPost.telegram_message_id,
+                content,
+                {
+                  reply_markup: {
+                    inline_keyboard: buttons
+                  }
+                }
+              );
+            }
+            console.error('[updateConversationHistory] Telegram message edited');
+          } catch (editError) {
+            console.error('[updateConversationHistory] Failed to edit message:', editError);
+          }
 
           // Update database
           await updateHistoryPost(db, latestPost.id, content, content.length, newMessageCount);

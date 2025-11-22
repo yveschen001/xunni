@@ -251,7 +251,7 @@ export async function handleMessageForward(
         .prepare(
           `SELECT COUNT(DISTINCT conversation_id) as count 
            FROM conversation_messages 
-           WHERE sender_id = ?`
+           WHERE sender_telegram_id = ?`
         )
         .bind(telegramId)
         .first<{ count: number }>();

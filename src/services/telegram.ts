@@ -185,6 +185,46 @@ export class TelegramService {
   }
 
   /**
+   * Edit message caption (for photos/videos)
+   */
+  async editMessageCaption(
+    chatId: number | string,
+    messageId: number,
+    caption: string,
+    options?: {
+      reply_markup?: unknown;
+      parse_mode?: 'Markdown' | 'HTML';
+    }
+  ): Promise<boolean> {
+    try {
+      const response = await fetch(`${this.baseURL}/editMessageCaption`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          chat_id: chatId,
+          message_id: messageId,
+          caption,
+          parse_mode: options?.parse_mode || 'Markdown',
+          ...options,
+        }),
+      });
+
+      if (!response.ok) {
+        const error = await response.text();
+        console.error('[Telegram] editMessageCaption failed:', error);
+        return false;
+      }
+
+      return true;
+    } catch (error) {
+      console.error('[Telegram] editMessageCaption error:', error);
+      return false;
+    }
+  }
+
+  /**
    * Answer callback query
    */
   async answerCallbackQuery(
