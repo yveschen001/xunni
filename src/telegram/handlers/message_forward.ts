@@ -21,7 +21,11 @@ import { formatIdentifier } from '~/domain/conversation_identifier';
 /**
  * Handle message forwarding in active conversation
  */
-export async function handleMessageForward(message: TelegramMessage, env: Env): Promise<boolean> {
+export async function handleMessageForward(
+  message: TelegramMessage, 
+  env: Env,
+  targetConversationIdentifier?: string
+): Promise<boolean> {
   const db = createDatabaseClient(env.DB);
   const telegram = createTelegramService(env);
   const chatId = message.chat.id;
@@ -50,8 +54,29 @@ export async function handleMessageForward(message: TelegramMessage, env: Env): 
       return false;
     }
 
-    // Get active conversation
-    const conversation = await getActiveConversation(db, telegramId);
+    // Get conversation
+    let conversation;
+    if (targetConversationIdentifier) {
+      // Find conversation by identifier
+      conversation = await db.d1
+        .prepare(
+          `SELECT c.* 
+           FROM conversations c
+           INNER JOIN conversation_identifiers ci ON ci.conversation_id = c.id
+           WHERE ci.identifier = ? AND ci.user_telegram_id = ?`
+        )
+        .bind(targetConversationIdentifier, telegramId)
+        .first();
+        
+      if (!conversation) {
+        await telegram.sendMessage(chatId, '⚠️ 找不到指定的對話，可能已結束或過期。');
+        return true; // Handled, stop processing
+      }
+    } else {
+      // Get active conversation (default behavior)
+      conversation = await getActiveConversation(db, telegramId);
+    }
+
     if (!conversation) {
       // No active conversation
       return false;

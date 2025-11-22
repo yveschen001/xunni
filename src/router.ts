@@ -247,9 +247,9 @@ export async function routeUpdate(update: TelegramUpdate, env: Env): Promise<voi
             });
             
             // Process as conversation message
-            // The handleMessageForward will use the active conversation
+            // The handleMessageForward will use the specified conversation identifier
             const { handleMessageForward } = await import('./telegram/handlers/message_forward');
-            const isConversationMessage = await handleMessageForward(message, env);
+            const isConversationMessage = await handleMessageForward(message, env, conversationIdentifier);
             if (isConversationMessage) {
               return;
             }
@@ -258,6 +258,7 @@ export async function routeUpdate(update: TelegramUpdate, env: Env): Promise<voi
         
         // Otherwise, check if it's a conversation reply (long-press method)
         const { handleMessageForward } = await import('./telegram/handlers/message_forward');
+        // No identifier provided, will use getActiveConversation
         const isConversationMessage = await handleMessageForward(message, env);
         if (isConversationMessage) {
           return;
