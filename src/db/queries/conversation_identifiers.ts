@@ -141,16 +141,16 @@ export async function getAllConversationsWithIdentifiers(
         FROM conversation_messages 
         WHERE conversation_id IN (
           SELECT id FROM conversations 
-          WHERE (user1_telegram_id = ? AND user2_telegram_id = ci.partner_telegram_id)
-             OR (user2_telegram_id = ? AND user1_telegram_id = ci.partner_telegram_id)
+          WHERE (user_a_telegram_id = ? AND user_b_telegram_id = ci.partner_telegram_id)
+             OR (user_b_telegram_id = ? AND user_a_telegram_id = ci.partner_telegram_id)
         )
         ORDER BY created_at DESC 
         LIMIT 1
       ) as last_message_preview
     FROM conversation_identifiers ci
     LEFT JOIN conversations c ON (
-      (c.user1_telegram_id = ? AND c.user2_telegram_id = ci.partner_telegram_id)
-      OR (c.user2_telegram_id = ? AND c.user1_telegram_id = ci.partner_telegram_id)
+      (c.user_a_telegram_id = ? AND c.user_b_telegram_id = ci.partner_telegram_id)
+      OR (c.user_b_telegram_id = ? AND c.user_a_telegram_id = ci.partner_telegram_id)
     )
     LEFT JOIN conversation_messages cm ON cm.conversation_id = c.id
     WHERE ci.user_telegram_id = ?
@@ -193,8 +193,8 @@ export async function getConversationMessages(
     FROM conversation_messages cm
     JOIN conversations c ON cm.conversation_id = c.id
     WHERE (
-      (c.user1_telegram_id = ? AND c.user2_telegram_id = ?)
-      OR (c.user2_telegram_id = ? AND c.user1_telegram_id = ?)
+      (c.user_a_telegram_id = ? AND c.user_b_telegram_id = ?)
+      OR (c.user_b_telegram_id = ? AND c.user_a_telegram_id = ?)
     )
     ORDER BY cm.created_at DESC
     LIMIT ?
@@ -242,8 +242,8 @@ export async function getConversationStats(
     FROM conversation_messages cm
     JOIN conversations c ON cm.conversation_id = c.id
     WHERE (
-      (c.user1_telegram_id = ? AND c.user2_telegram_id = ?)
-      OR (c.user2_telegram_id = ? AND c.user1_telegram_id = ?)
+      (c.user_a_telegram_id = ? AND c.user_b_telegram_id = ?)
+      OR (c.user_b_telegram_id = ? AND c.user_a_telegram_id = ?)
     )
   `;
 

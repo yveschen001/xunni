@@ -260,31 +260,48 @@ export async function routeUpdate(update: TelegramUpdate, env: Env): Promise<voi
           return;
         }
         
-        // Check if replying to conversation reply prompt (💬 回覆 #IDENTIFIER：)
+        // Check if replying to conversation-related messages
+        // Try to extract conversation identifier from various message formats:
+        // 1. "💬 回覆 #IDENTIFIER：" (ForceReply button)
+        // 2. "💬 與 #IDENTIFIER 的對話記錄" (History post)
+        // 3. "💬 來自 #IDENTIFIER 的新訊息" (New message notification)
+        let conversationIdentifier: string | undefined;
+        
         if (replyToText.includes('💬 回覆 #')) {
           const match = replyToText.match(/💬 回覆 #([A-Z0-9]+)：/);
           if (match) {
-            const conversationIdentifier = match[1];
-            console.error('[router] Detected reply to conversation prompt:', {
+            conversationIdentifier = match[1];
+            console.error('[router] Detected reply to ForceReply prompt:', {
               userId: user.telegram_id,
               conversationIdentifier,
               method: 'button',
             });
-            
-            // Process as conversation message
-            // The handleMessageForward will use the specified conversation identifier
-            const { handleMessageForward } = await import('./telegram/handlers/message_forward');
-            const isConversationMessage = await handleMessageForward(message, env, conversationIdentifier);
-            if (isConversationMessage) {
-              return;
-            }
+          }
+        } else if (replyToText.includes('💬 與 #')) {
+          const match = replyToText.match(/💬 與 #([A-Z0-9]+) 的對話記錄/);
+          if (match) {
+            conversationIdentifier = match[1];
+            console.error('[router] Detected reply to history post:', {
+              userId: user.telegram_id,
+              conversationIdentifier,
+              method: 'long-press',
+            });
+          }
+        } else if (replyToText.includes('💬 來自 #')) {
+          const match = replyToText.match(/💬 來自 #([A-Z0-9]+) 的新訊息/);
+          if (match) {
+            conversationIdentifier = match[1];
+            console.error('[router] Detected reply to new message notification:', {
+              userId: user.telegram_id,
+              conversationIdentifier,
+              method: 'long-press',
+            });
           }
         }
         
-        // Otherwise, check if it's a conversation reply (long-press method)
+        // Process as conversation message
         const { handleMessageForward } = await import('./telegram/handlers/message_forward');
-        // No identifier provided, will use getActiveConversation
-        const isConversationMessage = await handleMessageForward(message, env);
+        const isConversationMessage = await handleMessageForward(message, env, conversationIdentifier);
         if (isConversationMessage) {
           return;
         }

@@ -91,8 +91,8 @@ export async function handleMessageForward(
         .prepare(
           `SELECT c.* 
            FROM conversations c
-           WHERE ((c.user1_telegram_id = ? AND c.user2_telegram_id = ?)
-              OR (c.user2_telegram_id = ? AND c.user1_telegram_id = ?))
+           WHERE ((c.user_a_telegram_id = ? AND c.user_b_telegram_id = ?)
+              OR (c.user_b_telegram_id = ? AND c.user_a_telegram_id = ?))
            AND c.status = 'active'
            ORDER BY c.created_at DESC
            LIMIT 1`
@@ -446,8 +446,8 @@ export async function handleConversationReplyButton(
       .prepare(
         `SELECT c.* 
          FROM conversations c
-         WHERE ((c.user1_telegram_id = ? AND c.user2_telegram_id = ?)
-            OR (c.user2_telegram_id = ? AND c.user1_telegram_id = ?))
+         WHERE ((c.user_a_telegram_id = ? AND c.user_b_telegram_id = ?)
+            OR (c.user_b_telegram_id = ? AND c.user_a_telegram_id = ?))
          AND c.status = 'active'
          ORDER BY c.created_at DESC
          LIMIT 1`

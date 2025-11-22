@@ -317,7 +317,7 @@ export async function findSmartBottleForUser(
         AND b.owner_telegram_id != ?
         AND b.language_pref = ?
         AND b.id NOT IN (
-          SELECT bottle_id FROM catches WHERE catcher_telegram_id = ?
+          SELECT bottle_id FROM conversations WHERE user_a_telegram_id = ? OR user_b_telegram_id = ?
         )
         AND u.is_banned = 0
         ${genderFilter}
@@ -327,6 +327,7 @@ export async function findSmartBottleForUser(
     .bind(
       userId,
       user.language_pref,
+      userId,
       userId,
       MATCHING_CONFIG.passiveMatching.layers[0].limit
     )
@@ -358,7 +359,7 @@ export async function findSmartBottleForUser(
           AND b.owner_telegram_id != ?
           AND u.age_range IN (?, ?, ?)
           AND b.id NOT IN (
-            SELECT bottle_id FROM catches WHERE catcher_telegram_id = ?
+            SELECT bottle_id FROM conversations WHERE user_a_telegram_id = ? OR user_b_telegram_id = ?
           )
           AND b.id NOT IN (${placeholders})
           AND u.is_banned = 0
@@ -369,6 +370,7 @@ export async function findSmartBottleForUser(
       .bind(
         userId,
         ...adjacentRanges,
+        userId,
         userId,
         ...existingIds,
         MATCHING_CONFIG.passiveMatching.layers[1].limit
@@ -397,7 +399,7 @@ export async function findSmartBottleForUser(
           WHERE b.match_status = 'active'
             AND b.owner_telegram_id != ?
             AND b.id NOT IN (
-              SELECT bottle_id FROM catches WHERE catcher_telegram_id = ?
+              SELECT bottle_id FROM conversations WHERE user_a_telegram_id = ? OR user_b_telegram_id = ?
             )
             AND b.id NOT IN (${placeholders2})
             AND u.is_banned = 0
@@ -406,6 +408,7 @@ export async function findSmartBottleForUser(
           LIMIT ?
         `)
         .bind(
+          userId,
           userId,
           userId,
           ...existingIds2,

@@ -393,22 +393,22 @@ export async function handleCatch(message: TelegramMessage, env: Env): Promise<v
     // First find the conversation
     const conversationInfo = await db.d1
       .prepare(
-        `SELECT c.id, c.user1_telegram_id, c.user2_telegram_id
+        `SELECT c.id, c.user_a_telegram_id, c.user_b_telegram_id
          FROM conversations c
-         WHERE (c.user1_telegram_id = ? OR c.user2_telegram_id = ?)
+         WHERE (c.user_a_telegram_id = ? OR c.user_b_telegram_id = ?)
          AND c.status = 'active'
          ORDER BY c.created_at DESC
          LIMIT 1`
       )
       .bind(user.telegram_id, user.telegram_id)
-      .first<{ id: number; user1_telegram_id: string; user2_telegram_id: string }>();
+      .first<{ id: number; user_a_telegram_id: string; user_b_telegram_id: string }>();
       
     let conversationIdentifier: string | undefined;
     if (conversationInfo) {
       // Get partner_telegram_id
-      const partnerId = conversationInfo.user1_telegram_id === user.telegram_id 
-        ? conversationInfo.user2_telegram_id 
-        : conversationInfo.user1_telegram_id;
+      const partnerId = conversationInfo.user_a_telegram_id === user.telegram_id 
+        ? conversationInfo.user_b_telegram_id 
+        : conversationInfo.user_a_telegram_id;
       
       // Get identifier from conversation_identifiers
       const identifierResult = await db.d1
@@ -528,22 +528,22 @@ async function notifyBottleOwner(ownerId: string, catcher: any, env: Env): Promi
     // First find the conversation
     const conversationInfo = await db.d1
       .prepare(
-        `SELECT c.id, c.user1_telegram_id, c.user2_telegram_id
+        `SELECT c.id, c.user_a_telegram_id, c.user_b_telegram_id
          FROM conversations c
-         WHERE (c.user1_telegram_id = ? OR c.user2_telegram_id = ?)
+         WHERE (c.user_a_telegram_id = ? OR c.user_b_telegram_id = ?)
          AND c.status = 'active'
          ORDER BY c.created_at DESC
          LIMIT 1`
       )
       .bind(ownerId, ownerId)
-      .first<{ id: number; user1_telegram_id: string; user2_telegram_id: string }>();
+      .first<{ id: number; user_a_telegram_id: string; user_b_telegram_id: string }>();
       
     let conversationIdentifier: string | undefined;
     if (conversationInfo) {
       // Get partner_telegram_id (catcher)
-      const partnerId = conversationInfo.user1_telegram_id === ownerId 
-        ? conversationInfo.user2_telegram_id 
-        : conversationInfo.user1_telegram_id;
+      const partnerId = conversationInfo.user_a_telegram_id === ownerId 
+        ? conversationInfo.user_b_telegram_id 
+        : conversationInfo.user_a_telegram_id;
       
       // Get identifier from conversation_identifiers
       const identifierResult = await db.d1
