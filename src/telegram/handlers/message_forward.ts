@@ -107,7 +107,7 @@ export async function handleMessageForward(message: TelegramMessage, env: Env): 
     // Validate message content
     const validation = validateMessageContent(messageText);
     if (!validation.valid) {
-      await telegram.sendMessage(chatId, `❌ ${validation.error}`);
+      await telegram.sendMessage(chatId, `⚠️ ${validation.error}`);
       return true;
     }
 
@@ -116,13 +116,13 @@ export async function handleMessageForward(message: TelegramMessage, env: Env): 
     if (!urlCheck.allowed) {
       await telegram.sendMessage(
         chatId,
-        '❌ 訊息包含不允許的連結。\n\n' +
+        '⚠️ **訊息包含不允許的連結**\n\n' +
           '為了安全，只允許以下網域的連結：\n' +
           '• t.me (Telegram)\n' +
           '• telegram.org\n' +
           '• telegram.me\n\n' +
           `🚫 禁止的網址：\n${urlCheck.blockedUrls?.map((url) => `• ${url}`).join('\n')}\n\n` +
-          '請移除這些連結後重新發送。'
+          '💡 請移除這些連結後重新發送。'
       );
       return true;
     }

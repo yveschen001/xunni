@@ -4,7 +4,7 @@
  * Handles /throw command - create and throw a bottle.
  */
 
-import type { Env, TelegramMessage, User } from '~/types';
+import type { Env, TelegramMessage, TelegramCallbackQuery, User } from '~/types';
 import { createDatabaseClient } from '~/db/client';
 import { createTelegramService } from '~/services/telegram';
 import { findUserByTelegramId } from '~/db/queries/users';
@@ -59,18 +59,21 @@ export async function handleThrow(message: TelegramMessage, env: Env): Promise<v
     // Get user
     const user = await findUserByTelegramId(db, telegramId);
     if (!user) {
-      await telegram.sendMessage(chatId, '❌ 用戶不存在，請先使用 /start 註冊。');
+      // Fallback for unknown user language
+      const { createI18n } = await import('~/i18n');
+      const i18n = createI18n('zh-TW');
+      await telegram.sendMessage(chatId, i18n.t('common.userNotFound'));
       return;
     }
+
+    const { createI18n } = await import('~/i18n');
+    const i18n = createI18n(user.language_pref || 'zh-TW');
 
     console.error('[handleThrow] User found:', user.nickname);
 
     // Check if user completed onboarding
     if (user.onboarding_step !== 'completed') {
-      await telegram.sendMessage(
-        chatId,
-        '❌ 請先完成註冊流程才能丟漂流瓶。\n\n使用 /start 繼續註冊。'
-      );
+      await telegram.sendMessage(chatId, i18n.t('common.notRegistered'));
       return;
     }
 
@@ -78,7 +81,7 @@ export async function handleThrow(message: TelegramMessage, env: Env): Promise<v
     if (user.is_banned) {
       await telegram.sendMessage(
         chatId,
-        '❌ 你的帳號已被封禁，無法丟漂流瓶。\n\n如有疑問，請使用 /appeal 申訴。'
+        i18n.t('errors.banned', { reason: '違規行為' }) // Generic reason if not available
       );
       return;
     }
@@ -215,22 +218,89 @@ export async function handleThrow(message: TelegramMessage, env: Env): Promise<v
       `• 不要包含個人聯絡方式\n\n` +
       `💬 **範例**：\n` +
       `「你好！我是一個喜歡音樂和電影的人，希望認識志同道合的朋友～」\n\n` +
-      `💡 **請長按此訊息，選擇「回覆」後輸入內容**`;
+      `💡 **兩種輸入方式**：\n` +
+      `1️⃣ 點擊下方「🍾 丟漂流瓶」按鈕\n` +
+      `2️⃣ 長按此訊息，選擇「回覆」後輸入內容`;
 
     await telegram.sendMessageWithButtons(
       chatId,
       throwPrompt,
-      [[{ text: '🏠 返回主選單', callback_data: 'return_to_menu' }]],
+      [
+        [{ text: '🍾 丟漂流瓶', callback_data: 'throw_input' }],
+        [{ text: '🏠 返回主選單', callback_data: 'return_to_menu' }],
+      ],
       { parse_mode: 'Markdown' }
     );
   } catch (error) {
     console.error('[handleThrow] Error:', error);
     const errorStack = error instanceof Error ? error.stack : 'No stack';
     console.error('[handleThrow] Error stack:', errorStack);
+    
+    // Fallback i18n if user not found yet
+    const { createI18n } = await import('~/i18n');
+    const i18n = createI18n('zh-TW'); // Default to TW if we crashed before user load
+    
     await telegram.sendMessage(
       chatId,
-      `❌ 發生錯誤，請稍後再試。\n\n錯誤信息：${error instanceof Error ? error.message : String(error)}`
+      i18n.t('errors.generic') + `\n\nError: ${error instanceof Error ? error.message : String(error)}`
     );
+  }
+}
+
+/**
+ * Handle "丟漂流瓶" button click - use ForceReply to prompt user input
+ */
+export async function handleThrowInputButton(
+  callbackQuery: TelegramCallbackQuery,
+  env: Env
+): Promise<void> {
+  const db = createDatabaseClient(env.DB);
+  const telegram = createTelegramService(env);
+  const chatId = callbackQuery.message!.chat.id;
+  const telegramId = callbackQuery.from.id.toString();
+
+  try {
+    // Get user
+    const user = await findUserByTelegramId(db, telegramId);
+    if (!user) {
+      await telegram.answerCallbackQuery(callbackQuery.id, '⚠️ 用戶不存在');
+      return;
+    }
+
+    // Check if user has active throw_bottle session
+    const { getActiveSession } = await import('~/db/queries/sessions');
+    const session = await getActiveSession(db, telegramId, 'throw_bottle');
+    
+    if (!session) {
+      await telegram.answerCallbackQuery(callbackQuery.id, '⚠️ 會話已過期，請重新開始：/throw');
+      return;
+    }
+
+    // Answer callback query first
+    await telegram.answerCallbackQuery(callbackQuery.id, '💡 請在下方輸入框輸入內容');
+
+    // Send a message with ForceReply to prompt user input
+    const response = await fetch(`https://api.telegram.org/bot${env.TELEGRAM_BOT_TOKEN}/sendMessage`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        chat_id: chatId,
+        text: '📝 請輸入你的漂流瓶內容：',
+        reply_markup: {
+          force_reply: true,
+          selective: true,
+        },
+      }),
+    });
+
+    if (!response.ok) {
+      console.error('[handleThrowInputButton] Failed to send ForceReply message:', await response.text());
+    }
+  } catch (error) {
+    console.error('[handleThrowInputButton] Error:', error);
+    await telegram.answerCallbackQuery(callbackQuery.id, '❌ 系統發生錯誤');
   }
 }
 
@@ -243,6 +313,9 @@ export async function processBottleContent(user: User, content: string, env: Env
   const chatId = parseInt(user.telegram_id);
   let statusMsg: { message_id: number } | null = null;
 
+  const { createI18n } = await import('~/i18n');
+  const i18n = createI18n(user.language_pref || 'zh-TW');
+
   try {
     // Step 1: Basic validation (length, links, sensitive words)
     const validation = validateBottleContent(content);
@@ -252,7 +325,11 @@ export async function processBottleContent(user: User, content: string, env: Env
         await recordRiskScore(db, user.telegram_id, validation.riskScore);
       }
       
-      await telegram.sendMessage(chatId, `❌ ${validation.error}`);
+      // 🎨 UX: 友善的錯誤提示
+      await telegram.sendMessage(
+        chatId,
+        i18n.t('bottle.throw.validationFailed', { error: validation.error || 'Unknown error' })
+      );
       return;
     }
 
@@ -271,7 +348,7 @@ export async function processBottleContent(user: User, content: string, env: Env
           
           await telegram.sendMessage(
             chatId,
-            '❌ 瓶子內容包含不適當的內容，請修改後重新提交'
+            i18n.t('bottle.throw.aiModerationFailed')
           );
           return;
         }
@@ -287,9 +364,7 @@ export async function processBottleContent(user: User, content: string, env: Env
     if (!urlCheck.allowed) {
       await telegram.sendMessage(
         chatId,
-        `❌ 瓶子內容不允許包含任何連結\n\n` +
-          `🚫 檢測到的連結：\n${urlCheck.blockedUrls?.map((url) => `• ${url}`).join('\n')}\n\n` +
-          `請移除所有連結後重新輸入。`
+        i18n.t('bottle.throw.urlNotAllowed', { urls: urlCheck.blockedUrls?.map((url) => `• ${url}`).join('\n') })
       );
       return;
     }
@@ -337,11 +412,11 @@ export async function processBottleContent(user: User, content: string, env: Env
       statusMsg = await telegram.sendMessage(
         chatId,
         isVip
-          ? `🌊 **正在丟出你的漂流瓶...**\n\n` +
+          ? `🍾 **正在丟出你的漂流瓶...**\n\n` +
             `✨ VIP 特權啟動中\n` +
             `🎯 正在為你尋找 3 個最佳配對對象\n\n` +
             `⏳ 預計 3-5 秒完成`
-          : `🌊 **正在丟出你的漂流瓶...**\n\n` +
+          : `🍾 **正在丟出你的漂流瓶...**\n\n` +
             `🎯 正在為你尋找最佳配對對象\n\n` +
             `⏳ 預計 2-3 秒完成`
       );
@@ -378,12 +453,12 @@ export async function processBottleContent(user: User, content: string, env: Env
           chatId,
           statusMsg.message_id,
           isVip
-            ? `🌊 **正在丟出你的漂流瓶...**\n\n` +
+            ? `🍾 **正在丟出你的漂流瓶...**\n\n` +
             `✅ 瓶子已創建\n` +
             `✨ VIP 特權啟動中\n` +
             `🎯 正在為你尋找 3 個最佳配對對象\n\n` +
             `⏳ 預計 2-3 秒完成`
-            : `🌊 **正在丟出你的漂流瓶...**\n\n` +
+            : `🍾 **正在丟出你的漂流瓶...**\n\n` +
             `✅ 瓶子已創建\n` +
             `🎯 正在為你尋找最佳配對對象\n\n` +
             `⏳ 預計 1-2 秒完成`
@@ -410,7 +485,7 @@ export async function processBottleContent(user: User, content: string, env: Env
           await telegram.editMessageText(
             chatId,
             statusMsg.message_id,
-            `🌊 **正在丟出你的漂流瓶...**\n\n` +
+            `🍾 **正在丟出你的漂流瓶...**\n\n` +
             `✅ 瓶子已創建\n` +
             `🔍 正在智能匹配最佳對象...\n\n` +
             `💡 這可能需要幾秒鐘，我們正在為你找到最合適的人`
@@ -626,7 +701,7 @@ export async function processBottleContent(user: User, content: string, env: Env
     } else {
       // 免費用戶成功訊息（加上 VIP 提示）
       successMessage =
-        `🎉 漂流瓶已丟出！\n\n` +
+        `🍾 漂流瓶已丟出！\n\n` +
         `瓶子 ID：#${bottleId}\n\n` +
         `🌊 等待有緣人撿起...\n` +
         `📊 今日已丟：${quotaDisplay}\n\n` +
@@ -686,9 +761,7 @@ export async function processBottleContent(user: User, content: string, env: Env
     const _errorMsg = error instanceof Error ? error.message : String(error);
     await telegram.sendMessage(
       chatId,
-      `😔 **抱歉，處理時遇到了一些問題**\n\n` +
-        `💡 請稍後再試，或使用 /help 聯繫我們\n\n` +
-        `🔄 重新嘗試：/throw`
+      i18n.t('errors.processError')
     );
   }
 }

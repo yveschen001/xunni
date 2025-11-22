@@ -22,13 +22,13 @@ export async function handleChats(message: TelegramMessage, env: Env): Promise<v
     // Get user
     const user = await findUserByTelegramId(db, telegramId);
     if (!user) {
-      await telegram.sendMessage(chatId, '❌ 用戶不存在，請先使用 /start 註冊。');
+      await telegram.sendMessage(chatId, '⚠️ 用戶不存在，請先使用 /start 註冊。');
       return;
     }
 
     // Check if user completed onboarding
     if (user.onboarding_step !== 'completed') {
-      await telegram.sendMessage(chatId, '❌ 請先完成註冊流程。\n\n使用 /start 繼續註冊。');
+      await telegram.sendMessage(chatId, '⚠️ 請先完成註冊流程。\n\n使用 /start 繼續註冊。');
       return;
     }
 
@@ -81,7 +81,7 @@ export async function handleChats(message: TelegramMessage, env: Env): Promise<v
     await telegram.sendMessage(chatId, messageText);
   } catch (error) {
     console.error('[handleChats] Error:', error);
-    await telegram.sendMessage(chatId, '❌ 發生錯誤，請稍後再試。');
+    await telegram.sendMessage(chatId, '❌ 系統發生錯誤，請稍後再試。');
   }
 }
 

@@ -100,20 +100,20 @@ export async function handleMBTIAnswer(
     // Get user
     const user = await findUserByTelegramId(db, telegramId);
     if (!user) {
-      await telegram.answerCallbackQuery(callbackQuery.id, '❌ 用戶不存在');
+      await telegram.answerCallbackQuery(callbackQuery.id, '⚠️ 用戶不存在');
       return;
     }
 
     // Verify test is in progress
     const progress = await getMBTITestProgress(db, telegramId);
     if (!progress) {
-      await telegram.answerCallbackQuery(callbackQuery.id, '❌ 測驗已結束或不存在');
+      await telegram.answerCallbackQuery(callbackQuery.id, '⚠️ 測驗已結束或不存在');
       return;
     }
 
     // Verify question index matches current progress
     if (questionIndex !== progress.current_question) {
-      await telegram.answerCallbackQuery(callbackQuery.id, '❌ 問題順序錯誤');
+      await telegram.answerCallbackQuery(callbackQuery.id, '⚠️ 問題順序錯誤');
       return;
     }
 
@@ -136,7 +136,7 @@ export async function handleMBTIAnswer(
     }
   } catch (error) {
     console.error('[handleMBTIAnswer] Error:', error);
-    await telegram.answerCallbackQuery(callbackQuery.id, '❌ 發生錯誤');
+    await telegram.answerCallbackQuery(callbackQuery.id, '❌ 系統發生錯誤');
   }
 }
 
@@ -228,7 +228,7 @@ async function handleTestCompletion(
     );
     await telegram.sendMessage(
       chatId,
-      `❌ 計算結果時發生錯誤，請稍後再試。\n\n` +
+      `❌ 計算結果時系統發生錯誤，請稍後再試。\n\n` +
         `錯誤信息：${error instanceof Error ? error.message : String(error)}`
     );
   }

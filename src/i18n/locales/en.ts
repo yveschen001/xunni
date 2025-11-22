@@ -19,6 +19,11 @@ export const translations: Translations = {
     success: 'Success',
     loading: 'Loading...',
     notSet: 'Not set',
+    systemError: '❌ An error occurred. Please try again later.',
+    userNotFound: '⚠️ User not found. Please register with /start first.',
+    notRegistered: '⚠️ Please complete registration first.\n\nUse /start to continue.',
+    invalidRequest: '⚠️ Invalid request',
+    unknownTask: '⚠️ Unknown task type',
   },
 
   onboarding: {
@@ -104,6 +109,12 @@ export const translations: Translations = {
       success: '✅ Bottle thrown!',
       limitReached:
         "❌ You've used all your bottles for today.\n\nFree users: 3/day, VIP users: 30/day.",
+      validationFailed:
+        '⚠️ **Content Check Failed**\n\n{error}\n\n💡 Please revise and try again. We want to maintain a friendly environment 🛡️',
+      aiModerationFailed:
+        '⚠️ **Content Moderation Failed**\n\nOur system detected potential inappropriate content. To maintain community safety, please adjust your wording.\n\n🛡️ We are committed to creating a safe and friendly space',
+      urlNotAllowed:
+        '⚠️ **Security Alert: No External Links**\n\nTo protect user safety, bottles cannot contain links.\n\n🚫 Detected links:\n{urls}\n\n💡 Please remove links and try again',
     },
     catch: {
       title: '🎣 Catch Bottle',
@@ -200,8 +211,9 @@ export const translations: Translations = {
   },
 
   errors: {
-    generic:
-      '❌ An error occurred. Please try again later.\n\nIf the problem persists, please contact support.',
+    generic: '❌ An error occurred. Please try again later.',
+    processError:
+      '😔 **Sorry, something went wrong**\n\n💡 Please try again later, or use /help to contact us\n\n🔄 Retry: /throw',
     notRegistered: "❌ You haven't registered yet.\n\nPlease complete registration: /start",
     banned:
       '❌ Your account has been banned.\n\nReason: {reason}\n\nIf you have questions, use /appeal to appeal.',

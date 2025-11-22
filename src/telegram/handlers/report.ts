@@ -20,13 +20,13 @@ export async function handleReport(message: TelegramMessage, env: Env): Promise<
     // Get user
     const user = await findUserByTelegramId(db, telegramId);
     if (!user) {
-      await telegram.sendMessage(chatId, '❌ 用戶不存在，請先使用 /start 註冊。');
+      await telegram.sendMessage(chatId, '⚠️ 用戶不存在，請先使用 /start 註冊。');
       return;
     }
 
     // Check if user completed onboarding
     if (user.onboarding_step !== 'completed') {
-      await telegram.sendMessage(chatId, '❌ 請先完成註冊流程。\n\n使用 /start 繼續註冊。');
+      await telegram.sendMessage(chatId, '⚠️ 請先完成註冊流程。\n\n使用 /start 繼續註冊。');
       return;
     }
 
@@ -34,7 +34,7 @@ export async function handleReport(message: TelegramMessage, env: Env): Promise<
     if (!message.reply_to_message) {
       await telegram.sendMessage(
         chatId,
-        '❌ 請長按你要舉報的訊息後回覆指令\n\n' +
+        '⚠️ 請長按你要舉報的訊息後回覆指令\n\n' +
           '**操作步驟：**\n' +
           '1️⃣ 長按對方的訊息\n' +
           '2️⃣ 選擇「回覆」\n' +
@@ -51,7 +51,7 @@ export async function handleReport(message: TelegramMessage, env: Env): Promise<
     if (!conversationMatch) {
       await telegram.sendMessage(
         chatId,
-        '❌ 無法識別對話對象\n\n' + '請確保回覆的是對方發送的訊息（帶有 # 標識符）。'
+        '⚠️ 無法識別對話對象\n\n' + '請確保回覆的是對方發送的訊息（帶有 # 標識符）。'
       );
       return;
     }
@@ -74,14 +74,14 @@ export async function handleReport(message: TelegramMessage, env: Env): Promise<
       .first<any>();
 
     if (!conversation) {
-      await telegram.sendMessage(chatId, '❌ 找不到此對話\n\n' + '對話可能已結束或不存在。');
+      await telegram.sendMessage(chatId, '⚠️ 找不到此對話\n\n' + '對話可能已結束或不存在。');
       return;
     }
 
     // Get the other user
     const otherUserId = getOtherUserId(conversation, telegramId);
     if (!otherUserId) {
-      await telegram.sendMessage(chatId, '❌ 對話資訊錯誤。');
+      await telegram.sendMessage(chatId, '⚠️ 對話資訊錯誤。');
       return;
     }
 
@@ -109,7 +109,7 @@ export async function handleReport(message: TelegramMessage, env: Env): Promise<
     );
   } catch (error) {
     console.error('[handleReport] Error:', error);
-    await telegram.sendMessage(chatId, '❌ 發生錯誤，請稍後再試。');
+    await telegram.sendMessage(chatId, '❌ 系統發生錯誤，請稍後再試。');
   }
 }
 
@@ -130,7 +130,7 @@ export async function handleReportReason(
     // Get user
     const user = await findUserByTelegramId(db, telegramId);
     if (!user) {
-      await telegram.answerCallbackQuery(callbackQuery.id, '❌ 用戶不存在');
+      await telegram.answerCallbackQuery(callbackQuery.id, '⚠️ 用戶不存在');
       return;
     }
 
@@ -139,7 +139,7 @@ export async function handleReportReason(
     const session = await getSession(db, telegramId);
 
     if (!session?.report_conversation_id) {
-      await telegram.answerCallbackQuery(callbackQuery.id, '❌ 會話已過期，請重新操作');
+      await telegram.answerCallbackQuery(callbackQuery.id, '⚠️ 會話已過期，請重新操作');
       await telegram.deleteMessage(chatId, callbackQuery.message!.message_id);
       return;
     }
@@ -154,14 +154,14 @@ export async function handleReportReason(
       .first<any>();
 
     if (!conversation) {
-      await telegram.answerCallbackQuery(callbackQuery.id, '❌ 對話不存在');
+      await telegram.answerCallbackQuery(callbackQuery.id, '⚠️ 對話不存在');
       return;
     }
 
     // Get the other user
     const otherUserId = getOtherUserId(conversation, telegramId);
     if (!otherUserId) {
-      await telegram.answerCallbackQuery(callbackQuery.id, '❌ 對話資訊錯誤');
+      await telegram.answerCallbackQuery(callbackQuery.id, '⚠️ 對話資訊錯誤');
       return;
     }
 
@@ -205,7 +205,7 @@ export async function handleReportReason(
     );
   } catch (error) {
     console.error('[handleReportReason] Error:', error);
-    await telegram.answerCallbackQuery(callbackQuery.id, '❌ 發生錯誤');
+    await telegram.answerCallbackQuery(callbackQuery.id, '❌ 系統發生錯誤');
   }
 }
 

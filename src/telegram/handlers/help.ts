@@ -113,7 +113,7 @@ export async function handleHelp(message: TelegramMessage, env: Env): Promise<vo
     await telegram.sendMessage(chatId, helpMessage);
   } catch (error) {
     console.error('[handleHelp] Error:', error);
-    await telegram.sendMessage(chatId, '❌ 發生錯誤，請稍後再試。');
+    await telegram.sendMessage(chatId, '❌ 系統發生錯誤，請稍後再試。');
   }
 }
 
@@ -161,6 +161,6 @@ export async function handleRules(message: TelegramMessage, env: Env): Promise<v
     await telegram.sendMessage(chatId, rulesMessage);
   } catch (error) {
     console.error('[handleRules] Error:', error);
-    await telegram.sendMessage(chatId, '❌ 發生錯誤，請稍後再試。');
+    await telegram.sendMessage(chatId, '❌ 系統發生錯誤，請稍後再試。');
   }
 }

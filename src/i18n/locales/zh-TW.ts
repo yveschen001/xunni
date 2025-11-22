@@ -19,6 +19,11 @@ export const translations: Translations = {
     success: '成功',
     loading: '載入中...',
     notSet: '未設定',
+    systemError: '❌ 系統發生錯誤，請稍後再試。',
+    userNotFound: '⚠️ 用戶不存在，請先使用 /start 註冊。',
+    notRegistered: '⚠️ 請先完成註冊流程。\n\n使用 /start 繼續註冊。',
+    invalidRequest: '⚠️ 無效的請求',
+    unknownTask: '⚠️ 未知的任務類型',
   },
 
   onboarding: {
@@ -104,6 +109,12 @@ export const translations: Translations = {
       askContent: '請輸入你想說的話：',
       success: '✅ 漂流瓶已丟出！',
       limitReached: '❌ 你今天的漂流瓶已用完。\n\n免費用戶每天 3 個，VIP 用戶每天 30 個。',
+      validationFailed:
+        '⚠️ **內容未通過檢查**\n\n{error}\n\n💡 請修改後再試，我們希望保持一個友善的交流環境 🛡️',
+      aiModerationFailed:
+        '⚠️ **內容未能通過審核**\n\n系統偵測到潛在的不當內容。為了維護社區安全，請調整您的措辭。\n\n🛡️ 我們致力於打造安全友善的交友空間',
+      urlNotAllowed:
+        '⚠️ **安全提醒：不允許外部連結**\n\n為了保護用戶安全，漂流瓶內容不能包含連結。\n\n🚫 檢測到的連結：\n{urls}\n\n💡 請移除連結後重新發送',
     },
     catch: {
       title: '🎣 撿起漂流瓶',
@@ -207,7 +218,9 @@ export const translations: Translations = {
   },
 
   errors: {
-    generic: '❌ 發生錯誤，請稍後再試。\n\n如果問題持續，請聯繫管理員。',
+    generic: '❌ 系統發生錯誤，請稍後再試。',
+    processError:
+      '😔 **抱歉，處理時遇到了一些問題**\n\n💡 請稍後再試，或使用 /help 聯繫我們\n\n🔄 重新嘗試：/throw',
     notRegistered: '❌ 你還沒有註冊。\n\n請先完成註冊：/start',
     banned: '❌ 你的帳號已被封禁。\n\n原因：{reason}\n\n如有疑問，請使用 /appeal 申訴。',
     invalidInput: '❌ 輸入格式錯誤，請重新輸入。',

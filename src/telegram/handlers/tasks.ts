@@ -28,7 +28,7 @@ export async function handleTasks(message: TelegramMessage, env: Env): Promise<v
   try {
     const user = await findUserByTelegramId(db, telegramId);
     if (!user) {
-      await telegram.sendMessage(chatId, '❌ 找不到用戶資料，請先使用 /start 註冊。');
+      await telegram.sendMessage(chatId, '⚠️ 找不到用戶資料，請先使用 /start 註冊。');
       return;
     }
     
@@ -177,7 +177,7 @@ export async function handleTasks(message: TelegramMessage, env: Env): Promise<v
     await telegram.sendMessageWithButtons(chatId, message_text, keyboard);
   } catch (error) {
     console.error('[handleTasks] Error:', error);
-    await telegram.sendMessage(chatId, '❌ 查看任務中心時發生錯誤，請稍後再試。');
+    await telegram.sendMessage(chatId, '❌ 查看任務中心時系統發生錯誤，請稍後再試。');
   }
 }
 
@@ -308,7 +308,7 @@ export async function handleNextTaskCallback(
   const taskId = callbackQuery.data?.replace('next_task_', '');
 
   if (!chatId || !messageId || !taskId) {
-    await telegram.answerCallbackQuery(callbackQuery.id, '❌ 無效的請求');
+    await telegram.answerCallbackQuery(callbackQuery.id, '⚠️ 無效的請求');
     return;
   }
 
@@ -415,11 +415,11 @@ export async function handleNextTaskCallback(
       }
 
       default:
-        await telegram.sendMessage(chatId, '❌ 未知的任務類型');
+        await telegram.sendMessage(chatId, '⚠️ 未知的任務類型');
     }
   } catch (error) {
     console.error('[handleNextTaskCallback] Error:', error);
-    await telegram.answerCallbackQuery(callbackQuery.id, '❌ 操作失敗');
+    await telegram.answerCallbackQuery(callbackQuery.id, '❌ 系統發生錯誤');
   }
 }
 

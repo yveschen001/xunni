@@ -4,7 +4,7 @@
  * Handles /vip command - VIP subscription via Telegram Stars.
  */
 
-import type { Env, TelegramMessage, PreCheckoutQuery, SuccessfulPayment, CallbackQuery } from '~/types';
+import type { Env, TelegramMessage, PreCheckoutQuery, SuccessfulPayment } from '~/types';
 import { createDatabaseClient } from '~/db/client';
 import { createTelegramService } from '~/services/telegram';
 import { findUserByTelegramId } from '~/db/queries/users';
@@ -42,7 +42,7 @@ export async function handleVip(message: TelegramMessage, env: Env): Promise<voi
     // Get user
     const user = await findUserByTelegramId(db, telegramId);
     if (!user) {
-      await telegram.sendMessage(chatId, '❌ 用戶不存在，請先使用 /start 註冊。');
+      await telegram.sendMessage(chatId, '⚠️ 用戶不存在，請先使用 /start 註冊。');
       return;
     }
 
@@ -52,7 +52,7 @@ export async function handleVip(message: TelegramMessage, env: Env): Promise<voi
 
     // Check if user completed onboarding
     if (user.onboarding_step !== 'completed') {
-      await telegram.sendMessage(chatId, '❌ 請先完成註冊流程。\n\n使用 /start 繼續註冊。');
+      await telegram.sendMessage(chatId, '⚠️ 請先完成註冊流程。\n\n使用 /start 繼續註冊。');
       return;
     }
 
@@ -106,7 +106,7 @@ export async function handleVip(message: TelegramMessage, env: Env): Promise<voi
     }
   } catch (error) {
     console.error('[handleVip] Error:', error);
-    await telegram.sendMessage(chatId, '❌ 發生錯誤，請稍後再試。');
+    await telegram.sendMessage(chatId, '❌ 系統發生錯誤，請稍後再試。');
   }
 }
 
@@ -129,7 +129,7 @@ export async function handleVipPurchase(callbackQuery: any, env: Env): Promise<v
     await sendVipInvoice(telegram, chatId, telegramId, false, env);
   } catch (error) {
     console.error('[handleVipPurchase] Error:', error);
-    await telegram.answerCallbackQuery(callbackQuery.id, '❌ 發生錯誤');
+    await telegram.answerCallbackQuery(callbackQuery.id, '❌ 系統發生錯誤');
   }
 }
 
@@ -152,7 +152,7 @@ export async function handleVipRenew(callbackQuery: any, env: Env): Promise<void
     await sendVipInvoice(telegram, chatId, telegramId, true, env);
   } catch (error) {
     console.error('[handleVipRenew] Error:', error);
-    await telegram.answerCallbackQuery(callbackQuery.id, '❌ 發生錯誤');
+    await telegram.answerCallbackQuery(callbackQuery.id, '❌ 系統發生錯誤');
   }
 }
 
@@ -265,7 +265,7 @@ export async function handlePreCheckout(
 
     // Validate payload
     if (payload.type !== 'vip_subscription') {
-      await telegram.answerPreCheckoutQuery(preCheckoutQuery.id, false, '❌ 無效的支付類型');
+      await telegram.answerPreCheckoutQuery(preCheckoutQuery.id, false, '⚠️ 無效的支付類型');
       return;
     }
 
@@ -276,7 +276,7 @@ export async function handlePreCheckout(
     await telegram.answerPreCheckoutQuery(
       preCheckoutQuery.id,
       false,
-      '❌ 支付驗證失敗，請稍後再試'
+      '⚠️ 支付驗證失敗，請稍後再試'
     );
   }
 }
@@ -310,7 +310,7 @@ export async function handleSuccessfulPayment(
     // Get user
     const user = await findUserByTelegramId(db, telegramId);
     if (!user) {
-      await telegram.sendMessage(chatId, '❌ 用戶不存在');
+      await telegram.sendMessage(chatId, '⚠️ 用戶不存在');
       return;
     }
 
@@ -422,7 +422,7 @@ export async function handleSuccessfulPayment(
     console.error('[handleSuccessfulPayment] Error:', error);
     await telegram.sendMessage(
       chatId,
-      '❌ 處理支付時發生錯誤，請聯繫客服。\n\n' + `支付 ID：${payment.telegram_payment_charge_id}`
+      '❌ 處理支付時系統發生錯誤，請聯繫客服。\n\n' + `支付 ID：${payment.telegram_payment_charge_id}`
     );
   }
 }

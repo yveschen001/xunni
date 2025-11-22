@@ -30,13 +30,13 @@ export async function handleMenu(message: TelegramMessage, env: Env): Promise<vo
     // Get user
     const user = await findUserByTelegramId(db, telegramId);
     if (!user) {
-      await telegram.sendMessage(chatId, '❌ 用戶不存在，請先使用 /start 註冊。');
+      await telegram.sendMessage(chatId, '⚠️ 用戶不存在，請先使用 /start 註冊。');
       return;
     }
 
     // Check if user completed onboarding
     if (user.onboarding_step !== 'completed') {
-      await telegram.sendMessage(chatId, '❌ 請先完成註冊流程。\n\n使用 /start 繼續註冊。');
+      await telegram.sendMessage(chatId, '⚠️ 請先完成註冊流程。\n\n使用 /start 繼續註冊。');
       return;
     }
 
@@ -98,7 +98,7 @@ export async function handleMenu(message: TelegramMessage, env: Env): Promise<vo
     await telegram.sendMessageWithButtons(chatId, menuMessage, buttons);
   } catch (error) {
     console.error('[handleMenu] Error:', error);
-    await telegram.sendMessage(chatId, '❌ 發生錯誤，請稍後再試。');
+    await telegram.sendMessage(chatId, '❌ 系統發生錯誤，請稍後再試。');
   }
 }
 
@@ -161,7 +161,7 @@ export async function handleMenuCallback(callbackQuery: CallbackQuery, env: Env)
         const user = await findUserByTelegramId(db, telegramId);
 
         if (!user || !user.invite_code) {
-          await telegram.sendMessage(chatId, '❌ 無法獲取邀請碼');
+          await telegram.sendMessage(chatId, '⚠️ 無法獲取邀請碼');
           break;
         }
 
@@ -216,11 +216,11 @@ export async function handleMenuCallback(callbackQuery: CallbackQuery, env: Env)
       }
 
       default:
-        await telegram.sendMessage(chatId, '❌ 未知的選項');
+        await telegram.sendMessage(chatId, '⚠️ 未知的選項');
     }
   } catch (error) {
     console.error('[handleMenuCallback] Error:', error);
-    await telegram.answerCallbackQuery(callbackQuery.id, '❌ 發生錯誤');
+    await telegram.answerCallbackQuery(callbackQuery.id, '❌ 系統發生錯誤');
   }
 }
 
@@ -260,6 +260,6 @@ export async function handleReturnToMenu(callbackQuery: CallbackQuery, env: Env)
     await handleMenu(fakeMessage as any, env);
   } catch (error) {
     console.error('[handleReturnToMenu] Error:', error);
-    await telegram.answerCallbackQuery(callbackQuery.id, '❌ 發生錯誤');
+    await telegram.answerCallbackQuery(callbackQuery.id, '❌ 系統發生錯誤');
   }
 }

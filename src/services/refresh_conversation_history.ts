@@ -7,7 +7,6 @@
 import type { Env } from '~/types';
 import type { DatabaseClient } from '~/db/client';
 import { createTelegramService } from './telegram';
-import { getAvatarUrlWithCache } from './avatar';
 import { buildHistoryPostContent } from '~/domain/conversation_history';
 import { maskNickname } from '~/domain/invite';
 

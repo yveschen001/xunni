@@ -391,7 +391,7 @@ export async function handleCatch(message: TelegramMessage, env: Env): Promise<v
     
     // Build message
     const catchMessage =
-      `🍾 你撿到了一個漂流瓶！\n\n` +
+      `🧴 你撿到了一個漂流瓶！\n\n` +
       matchScoreSection +
       `📝 暱稱：${ownerMaskedNickname}\n` +
       `🧠 MBTI：${bottle.mbti_result || '未設定'}\n` +
@@ -477,7 +477,7 @@ async function notifyBottleOwner(ownerId: string, catcher: any, env: Env): Promi
     // Send notification to bottle owner
     await telegram.sendMessage(
       parseInt(ownerId),
-      `🎉 有人撿到你的漂流瓶了！\n\n` +
+      `🎣 有人撿到你的漂流瓶了！\n\n` +
         `📝 暱稱：${catcherNickname}\n` +
         `🧠 MBTI：${catcherMBTI}\n` +
         `⭐ 星座：${catcherZodiac}\n` +

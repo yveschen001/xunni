@@ -205,7 +205,10 @@ export async function handleStart(message: TelegramMessage, env: Env): Promise<v
     }
   } catch (error) {
     console.error('[handleStart] Error:', error);
-    await telegram.sendMessage(chatId, '❌ 發生錯誤，請稍後再試。\n\n如果問題持續，請聯繫管理員。');
+    await telegram.sendMessage(
+      chatId,
+      '❌ 系統發生錯誤，請稍後再試。\n\n如果問題持續，請聯繫管理員。'
+    );
   }
 }
 
@@ -346,7 +349,7 @@ async function resumeOnboarding(
       break;
 
     default:
-      await telegram.sendMessage(chatId, `❌ 註冊流程出現問題，請重新開始：/start`);
+      await telegram.sendMessage(chatId, `⚠️ 註冊流程出現問題，請重新開始：/start`);
   }
 }
 

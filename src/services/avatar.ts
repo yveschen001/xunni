@@ -200,7 +200,7 @@ export async function fetchAndCacheAvatar(
   db: DatabaseClient,
   env: Env,
   userId: string,
-  gender?: string
+  _gender?: string
 ): Promise<{ originalUrl: string | null; blurredUrl: string | null }> {
   // 1. Get avatar from Telegram
   const { url: originalUrl, fileId } = await getUserAvatarInfo(env, userId);

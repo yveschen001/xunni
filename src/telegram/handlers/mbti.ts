@@ -25,7 +25,7 @@ export async function handleMBTI(message: TelegramMessage, env: Env): Promise<vo
     // Get user
     const user = await findUserByTelegramId(db, telegramId);
     if (!user) {
-      await telegram.sendMessage(chatId, '❌ 用戶不存在，請先使用 /start 註冊。');
+      await telegram.sendMessage(chatId, '⚠️ 用戶不存在，請先使用 /start 註冊。');
       return;
     }
 
@@ -63,7 +63,7 @@ export async function handleMBTI(message: TelegramMessage, env: Env): Promise<vo
     ]);
   } catch (error) {
     console.error('[handleMBTI] Error:', error);
-    await telegram.sendMessage(chatId, '❌ 發生錯誤，請稍後再試。');
+    await telegram.sendMessage(chatId, '❌ 系統發生錯誤，請稍後再試。');
   }
 }
 
@@ -105,7 +105,7 @@ export async function handleMBTIMenuTest(callbackQuery: any, env: Env): Promise<
     );
   } catch (error) {
     console.error('[handleMBTIMenuTest] Error:', error);
-    await telegram.answerCallbackQuery(callbackQuery.id, '❌ 發生錯誤');
+    await telegram.answerCallbackQuery(callbackQuery.id, '❌ 系統發生錯誤');
   }
 }
 
@@ -134,7 +134,7 @@ export async function handleMBTITestQuick(callbackQuery: any, env: Env): Promise
     await showMBTIQuestion(chatId, telegram, db, telegramId, 0);
   } catch (error) {
     console.error('[handleMBTITestQuick] Error:', error);
-    await telegram.answerCallbackQuery(callbackQuery.id, '❌ 發生錯誤');
+    await telegram.answerCallbackQuery(callbackQuery.id, '❌ 系統發生錯誤');
   }
 }
 
@@ -163,7 +163,7 @@ export async function handleMBTITestFull(callbackQuery: any, env: Env): Promise<
     await showMBTIQuestion(chatId, telegram, db, telegramId, 0);
   } catch (error) {
     console.error('[handleMBTITestFull] Error:', error);
-    await telegram.answerCallbackQuery(callbackQuery.id, '❌ 發生錯誤');
+    await telegram.answerCallbackQuery(callbackQuery.id, '❌ 系統發生錯誤');
   }
 }
 
@@ -211,7 +211,7 @@ export async function handleMBTIMenuManual(callbackQuery: any, env: Env): Promis
     ]);
   } catch (error) {
     console.error('[handleMBTIMenuManual] Error:', error);
-    await telegram.answerCallbackQuery(callbackQuery.id, '❌ 發生錯誤');
+    await telegram.answerCallbackQuery(callbackQuery.id, '❌ 系統發生錯誤');
   }
 }
 
@@ -249,7 +249,7 @@ export async function handleMBTIMenuClear(callbackQuery: any, env: Env): Promise
     );
   } catch (error) {
     console.error('[handleMBTIMenuClear] Error:', error);
-    await telegram.answerCallbackQuery(callbackQuery.id, '❌ 發生錯誤');
+    await telegram.answerCallbackQuery(callbackQuery.id, '❌ 系統發生錯誤');
   }
 }
 
@@ -268,7 +268,7 @@ export async function handleMBTIMenuCancel(callbackQuery: any, env: Env): Promis
     await telegram.deleteMessage(chatId, callbackQuery.message!.message_id);
   } catch (error) {
     console.error('[handleMBTIMenuCancel] Error:', error);
-    await telegram.answerCallbackQuery(callbackQuery.id, '❌ 發生錯誤');
+    await telegram.answerCallbackQuery(callbackQuery.id, '❌ 系統發生錯誤');
   }
 }
 
@@ -286,7 +286,7 @@ export async function handleMBTISet(callbackQuery: any, mbtiType: string, env: E
     const { validateMBTI } = await import('~/domain/user');
     const validation = validateMBTI(mbtiType);
     if (!validation.valid) {
-      await telegram.answerCallbackQuery(callbackQuery.id, '❌ 無效的 MBTI 類型');
+      await telegram.answerCallbackQuery(callbackQuery.id, '⚠️ 無效的 MBTI 類型');
       return;
     }
 
@@ -319,6 +319,6 @@ export async function handleMBTISet(callbackQuery: any, mbtiType: string, env: E
     );
   } catch (error) {
     console.error('[handleMBTISet] Error:', error);
-    await telegram.answerCallbackQuery(callbackQuery.id, '❌ 發生錯誤');
+    await telegram.answerCallbackQuery(callbackQuery.id, '❌ 系統發生錯誤');
   }
 }

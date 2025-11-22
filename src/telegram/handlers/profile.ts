@@ -30,13 +30,13 @@ export async function handleProfile(message: TelegramMessage, env: Env): Promise
     // Get user
     const user = await findUserByTelegramId(db, telegramId);
     if (!user) {
-      await telegram.sendMessage(chatId, '❌ 用戶不存在，請先使用 /start 註冊。');
+      await telegram.sendMessage(chatId, '⚠️ 用戶不存在，請先使用 /start 註冊。');
       return;
     }
 
     // Check if user completed onboarding
     if (user.onboarding_step !== 'completed') {
-      await telegram.sendMessage(chatId, '❌ 請先完成註冊流程。\n\n使用 /start 繼續註冊。');
+      await telegram.sendMessage(chatId, '⚠️ 請先完成註冊流程。\n\n使用 /start 繼續註冊。');
       return;
     }
 
@@ -71,7 +71,7 @@ export async function handleProfile(message: TelegramMessage, env: Env): Promise
     // Calculate task bonus
     const { calculateTaskBonus } = await import('./tasks');
     const taskBonus = await calculateTaskBonus(db, telegramId);
-    const totalQuota = permanentQuota + taskBonus;
+    // const totalQuota = permanentQuota + taskBonus;
 
     const profileMessage =
       `👤 **個人資料**\n\n` +
@@ -106,11 +106,11 @@ export async function handleProfile(message: TelegramMessage, env: Env): Promise
 
     await telegram.sendMessageWithButtons(chatId, profileMessage, [
       [{ text: '📤 分享邀請碼', url: shareUrl }],
-      [{ text: '✏️ 編輯資料', callback_data: 'edit_profile_menu' }],
+      [{ text: '📝 編輯資料', callback_data: 'edit_profile_menu' }],
     ]);
   } catch (error) {
     console.error('[handleProfile] Error:', error);
-    await telegram.sendMessage(chatId, '❌ 發生錯誤，請稍後再試。');
+    await telegram.sendMessage(chatId, '❌ 系統發生錯誤，請稍後再試。');
   }
 }
 
@@ -127,13 +127,13 @@ export async function handleProfileCard(message: TelegramMessage, env: Env): Pro
     // Get user
     const user = await findUserByTelegramId(db, telegramId);
     if (!user) {
-      await telegram.sendMessage(chatId, '❌ 用戶不存在，請先使用 /start 註冊。');
+      await telegram.sendMessage(chatId, '⚠️ 用戶不存在，請先使用 /start 註冊。');
       return;
     }
 
     // Check if user completed onboarding
     if (user.onboarding_step !== 'completed') {
-      await telegram.sendMessage(chatId, '❌ 請先完成註冊流程。\n\n使用 /start 繼續註冊。');
+      await telegram.sendMessage(chatId, '⚠️ 請先完成註冊流程。\n\n使用 /start 繼續註冊。');
       return;
     }
 
@@ -171,6 +171,6 @@ export async function handleProfileCard(message: TelegramMessage, env: Env): Pro
     await telegram.sendMessage(chatId, cardMessage);
   } catch (error) {
     console.error('[handleProfileCard] Error:', error);
-    await telegram.sendMessage(chatId, '❌ 發生錯誤，請稍後再試。');
+    await telegram.sendMessage(chatId, '❌ 系統發生錯誤，請稍後再試。');
   }
 }

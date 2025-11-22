@@ -11,7 +11,6 @@ import {
   calculateTotalMatchScore,
   getAgeRange,
   getAdjacentAgeRanges,
-  isActiveWithin1Hour,
   type UserMatchData,
   type BottleMatchData,
   type MatchScoreBreakdown,

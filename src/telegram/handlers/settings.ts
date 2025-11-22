@@ -30,13 +30,13 @@ export async function handleSettings(message: TelegramMessage, env: Env): Promis
     // Get user
     const user = await findUserByTelegramId(db, telegramId);
     if (!user) {
-      await telegram.sendMessage(chatId, '❌ 用戶不存在，請先使用 /start 註冊。');
+      await telegram.sendMessage(chatId, '⚠️ 用戶不存在，請先使用 /start 註冊。');
       return;
     }
 
     // Check if user completed onboarding
     if (user.onboarding_step !== 'completed') {
-      await telegram.sendMessage(chatId, '❌ 請先完成註冊流程。\n\n使用 /start 繼續註冊。');
+      await telegram.sendMessage(chatId, '⚠️ 請先完成註冊流程。\n\n使用 /start 繼續註冊。');
       return;
     }
 
@@ -57,7 +57,7 @@ export async function handleSettings(message: TelegramMessage, env: Env): Promis
     await telegram.sendMessageWithButtons(chatId, settingsMessage, buttons);
   } catch (error) {
     console.error('[handleSettings] Error:', error);
-    await telegram.sendMessage(chatId, '❌ 發生錯誤，請稍後再試。');
+    await telegram.sendMessage(chatId, '❌ 系統發生錯誤，請稍後再試。');
   }
 }
 
@@ -87,7 +87,7 @@ export async function handleSettingsCallback(callbackQuery: any, env: Env): Prom
     }
   } catch (error) {
     console.error('[handleSettingsCallback] Error:', error);
-    await telegram.answerCallbackQuery(callbackQuery.id, '❌ 發生錯誤');
+    await telegram.answerCallbackQuery(callbackQuery.id, '❌ 系統發生錯誤');
   }
 }
 
@@ -130,7 +130,7 @@ export async function handleLanguageChange(callbackQuery: any, env: Env): Promis
     await handleSettings(fakeMessage as any, env);
   } catch (error) {
     console.error('[handleLanguageChange] Error:', error);
-    await telegram.answerCallbackQuery(callbackQuery.id, '❌ 發生錯誤');
+    await telegram.answerCallbackQuery(callbackQuery.id, '❌ 系統發生錯誤');
   }
 }
 
@@ -153,7 +153,7 @@ export async function handleBackToSettings(callbackQuery: any, env: Env): Promis
     await handleSettings(fakeMessage as any, env);
   } catch (error) {
     console.error('[handleBackToSettings] Error:', error);
-    await telegram.answerCallbackQuery(callbackQuery.id, '❌ 發生錯誤');
+    await telegram.answerCallbackQuery(callbackQuery.id, '❌ 系統發生錯誤');
   }
 }
 

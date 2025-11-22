@@ -222,11 +222,12 @@ export async function routeUpdate(update: TelegramUpdate, env: Env): Promise<voi
       if (message.reply_to_message && text) {
         const replyToText = message.reply_to_message.text || '';
         
-        // Check if replying to throw bottle prompt (#THROW tag)
-        if (replyToText.includes('#THROW')) {
+        // Check if replying to throw bottle prompt (#THROW tag or ForceReply prompt)
+        if (replyToText.includes('#THROW') || replyToText.includes('📝 請輸入你的漂流瓶內容：')) {
           console.error('[router] Detected reply to throw bottle prompt:', {
             userId: user.telegram_id,
             contentLength: text.length,
+            method: replyToText.includes('#THROW') ? 'long-press' : 'button',
           });
           
           const { processBottleContent } = await import('./telegram/handlers/throw');
@@ -1354,6 +1355,12 @@ export async function routeUpdate(update: TelegramUpdate, env: Env): Promise<voi
         text: '/throw',
       };
       await handleThrow(fakeMessage as any, env);
+      return;
+    }
+
+    if (data === 'throw_input') {
+      const { handleThrowInputButton } = await import('./telegram/handlers/throw');
+      await handleThrowInputButton(callbackQuery, env);
       return;
     }
 
