@@ -29,35 +29,45 @@ export async function handleSettings(message: TelegramMessage, env: Env): Promis
 
     // Get user
     const user = await findUserByTelegramId(db, telegramId);
+    
+    // Use i18n
+    const { createI18n } = await import('~/i18n');
+    const i18n = createI18n(user?.language_pref || 'zh-TW');
+    
     if (!user) {
-      await telegram.sendMessage(chatId, '⚠️ 用戶不存在，請先使用 /start 註冊。');
+      await telegram.sendMessage(chatId, i18n.t('common.userNotFound'));
       return;
     }
 
     // Check if user completed onboarding
     if (user.onboarding_step !== 'completed') {
-      await telegram.sendMessage(chatId, '⚠️ 請先完成註冊流程。\n\n使用 /start 繼續註冊。');
+      await telegram.sendMessage(chatId, i18n.t('common.notRegistered'));
       return;
     }
 
     // Build settings message
     const languageName = await getLanguageName(user.language_pref || 'zh-TW');
     const settingsMessage =
-      `⚙️ **設定**\n\n` +
-      `當前設定：\n` +
-      `• 語言：${languageName} 🇹🇼\n\n` +
-      `💡 選擇你想要修改的設定：`;
+      i18n.t('settings.title') +
+      i18n.t('settings.currentSettings') +
+      i18n.t('settings.languageLabel', { language: `${languageName} 🇹🇼` }) +
+      i18n.t('settings.selectOption');
 
     // Build settings buttons
     const buttons = [
-      [{ text: '🌐 變更語言', callback_data: 'settings_language' }],
-      [{ text: '🏠 返回主選單', callback_data: 'return_to_menu' }],
+      [{ text: i18n.t('settings.changeLanguage'), callback_data: 'settings_language' }],
+      [{ text: i18n.t('settings.returnToMenu'), callback_data: 'return_to_menu' }],
     ];
 
     await telegram.sendMessageWithButtons(chatId, settingsMessage, buttons);
   } catch (error) {
     console.error('[handleSettings] Error:', error);
-    await telegram.sendMessage(chatId, '❌ 系統發生錯誤，請稍後再試。');
+    const { createI18n } = await import('~/i18n');
+    const { findUserByTelegramId } = await import('~/db/queries/users');
+    const db = createDatabaseClient(env.DB);
+    const user = await findUserByTelegramId(db, message.from!.id.toString());
+    const errorI18n = createI18n(user?.language_pref || 'zh-TW');
+    await telegram.sendMessage(chatId, errorI18n.t('errors.systemErrorRetry'));
   }
 }
 
@@ -84,7 +94,7 @@ export async function handleSettingsCallback(callbackQuery: any, env: Env): Prom
       await telegram.sendMessageWithButtons(
         chatId,
         i18n.t('onboarding.languageSelection'),
-        [...getLanguageButtons(i18n, 0), [{ text: i18n.t('common.back'), callback_data: 'back_to_settings' }]]
+        [...getLanguageButtons(i18n, 0), [{ text: i18n.t('settings.back'), callback_data: 'back_to_settings' }]]
       );
     }
   } catch (error) {
@@ -121,8 +131,13 @@ export async function handleLanguageChange(callbackQuery: any, env: Env): Promis
       .bind(languageCode, telegramId)
       .run();
 
+    const { createI18n } = await import('~/i18n');
+    const newI18n = createI18n(languageCode);
     const newLanguageName = await getLanguageName(languageCode);
-    await telegram.answerCallbackQuery(callbackQuery.id, `✅ 語言已變更為 ${newLanguageName}`);
+    await telegram.answerCallbackQuery(
+      callbackQuery.id,
+      newI18n.t('settings.languageUpdated', { language: newLanguageName })
+    );
 
     // Refresh settings menu
     await telegram.deleteMessage(chatId, callbackQuery.message!.message_id);
@@ -134,7 +149,11 @@ export async function handleLanguageChange(callbackQuery: any, env: Env): Promis
     await handleSettings(fakeMessage as any, env);
   } catch (error) {
     console.error('[handleLanguageChange] Error:', error);
-    await telegram.answerCallbackQuery(callbackQuery.id, '❌ 系統發生錯誤');
+    const { createI18n } = await import('~/i18n');
+    const { findUserByTelegramId } = await import('~/db/queries/users');
+    const user = await findUserByTelegramId(db, telegramId);
+    const errorI18n = createI18n(user?.language_pref || 'zh-TW');
+    await telegram.answerCallbackQuery(callbackQuery.id, errorI18n.t('errors.systemErrorRetry'));
   }
 }
 
@@ -157,7 +176,12 @@ export async function handleBackToSettings(callbackQuery: any, env: Env): Promis
     await handleSettings(fakeMessage as any, env);
   } catch (error) {
     console.error('[handleBackToSettings] Error:', error);
-    await telegram.answerCallbackQuery(callbackQuery.id, '❌ 系統發生錯誤');
+    const { createI18n } = await import('~/i18n');
+    const { findUserByTelegramId } = await import('~/db/queries/users');
+    const db = createDatabaseClient(env.DB);
+    const user = await findUserByTelegramId(db, callbackQuery.from.id.toString());
+    const errorI18n = createI18n(user?.language_pref || 'zh-TW');
+    await telegram.answerCallbackQuery(callbackQuery.id, errorI18n.t('errors.systemErrorRetry'));
   }
 }
 
