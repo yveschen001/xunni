@@ -389,6 +389,22 @@ export async function handleCatch(message: TelegramMessage, env: Env): Promise<v
       ? `💫 配對度：${Math.round(matchScore)}分 (智能配對)\n\n`
       : '';
     
+    // Get conversation identifier for reply button
+    const conversation = await db.d1
+      .prepare(
+        `SELECT c.id, ci.identifier 
+         FROM conversations c
+         LEFT JOIN conversation_identifiers ci ON ci.conversation_id = c.id AND ci.user_telegram_id = ?
+         WHERE (c.user1_telegram_id = ? OR c.user2_telegram_id = ?)
+         AND c.status = 'active'
+         ORDER BY c.created_at DESC
+         LIMIT 1`
+      )
+      .bind(user.telegram_id, user.telegram_id, user.telegram_id)
+      .first<{ id: number; identifier: string }>();
+
+    const conversationIdentifier = conversation?.identifier;
+
     // Build message
     const catchMessage =
       `🧴 你撿到了一個漂流瓶！\n\n` +
@@ -401,7 +417,9 @@ export async function handleCatch(message: TelegramMessage, env: Env): Promise<v
       `${bottleContent}\n\n` +
       `${translationSection}` +
       `━━━━━━━━━━━━━━━━\n\n` +
-      `💬 直接按 /reply 回覆訊息聊天\n` +
+      `💡 **兩種回覆方式**：\n` +
+      `1️⃣ 點擊下方「💬 回覆訊息」按鈕\n` +
+      `2️⃣ 長按此訊息，選擇「回覆」後輸入內容\n\n` +
       `📊 今日已撿：${newCatchesCount}/${quota}\n\n` +
       `⚠️ 安全提示：\n` +
       `• 這是匿名對話，請保護個人隱私\n` +
@@ -409,8 +427,9 @@ export async function handleCatch(message: TelegramMessage, env: Env): Promise<v
       `• 不想再聊可使用 /block 封鎖\n\n` +
       `🏠 返回主選單：/menu`;
 
-    // Determine what button to show (ad/task/vip) for non-VIP users
+    // Build buttons based on VIP status
     if (!isVip) {
+      // Non-VIP: Reply button + Ad/Task button
       const { getNextIncompleteTask } = await import('./tasks');
       const { getAdPrompt } = await import('~/domain/ad_prompt');
 
@@ -424,20 +443,33 @@ export async function handleCatch(message: TelegramMessage, env: Env): Promise<v
         next_task_id: nextTask?.id,
       });
 
+      const buttons = [];
+      
+      // Always add reply button if conversation identifier exists
+      if (conversationIdentifier) {
+        buttons.push([{ text: '💬 回覆訊息', callback_data: `conv_reply_${conversationIdentifier}` }]);
+      }
+      
+      // Add ad/task button if available
       if (prompt.show_button) {
-        await telegram.sendMessageWithButtons(chatId, catchMessage, [
-          [
-            {
-              text: prompt.button_text,
-              callback_data: prompt.button_callback,
-            },
-          ],
-        ]);
+        buttons.push([{ text: prompt.button_text, callback_data: prompt.button_callback }]);
+      }
+      
+      if (buttons.length > 0) {
+        await telegram.sendMessageWithButtons(chatId, catchMessage, buttons);
       } else {
         await telegram.sendMessage(chatId, catchMessage);
       }
     } else {
-      await telegram.sendMessage(chatId, catchMessage);
+      // VIP: Reply button + View all chats button
+      if (conversationIdentifier) {
+        await telegram.sendMessageWithButtons(chatId, catchMessage, [
+          [{ text: '💬 回覆訊息', callback_data: `conv_reply_${conversationIdentifier}` }],
+          [{ text: '📊 查看所有對話', callback_data: 'chats' }],
+        ]);
+      } else {
+        await telegram.sendMessage(chatId, catchMessage);
+      }
     }
 
     // Send notification to bottle owner

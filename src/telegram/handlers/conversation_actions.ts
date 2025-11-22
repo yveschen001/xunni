@@ -120,25 +120,56 @@ export async function handleConversationProfile(
       profileMessage += `💎 使用 /vip 了解更多\n\n`;
     }
     
-    profileMessage += `💬 直接按 /reply 回覆訊息聊天\n`;
+    profileMessage += `💡 **兩種回覆方式**：\n`;
+    profileMessage += `1️⃣ 點擊下方「💬 回覆訊息」按鈕\n`;
+    profileMessage += `2️⃣ 長按此訊息，選擇「回覆」後輸入內容\n\n`;
     profileMessage += `✏️ 編輯個人資料：/edit_profile\n`;
     profileMessage += `🏠 返回主選單：/menu`;
 
-    // Send with avatar if available
+    // Build buttons
+    const buttons = [
+      [{ text: '💬 回覆訊息', callback_data: `conv_reply_${identifier}` }],
+    ];
+    
+    // Add ad/task button for non-VIP users
+    if (!isVip) {
+      const { getNextIncompleteTask } = await import('./tasks');
+      const { getAdPrompt } = await import('~/domain/ad_prompt');
+      const { getTodayAdReward } = await import('~/db/queries/ad_rewards');
+      
+      const nextTask = await getNextIncompleteTask(db, user);
+      const adReward = await getTodayAdReward(db.d1, user.telegram_id);
+      
+      const prompt = getAdPrompt({
+        user,
+        ads_watched_today: adReward?.ads_watched || 0,
+        has_incomplete_tasks: !!nextTask,
+        next_task_name: nextTask?.name,
+        next_task_id: nextTask?.id,
+      });
+      
+      if (prompt.show_button) {
+        buttons.push([{ text: prompt.button_text, callback_data: prompt.button_callback }]);
+      }
+    }
+
+    // Send with avatar and buttons if available
     if (partnerAvatarUrl && !partnerAvatarUrl.includes('default-avatar')) {
       try {
         await telegram.sendPhoto(chatId, partnerAvatarUrl, {
-          caption: profileMessage
-          // Note: No parse_mode to avoid Markdown parsing errors from user-generated content
+          caption: profileMessage,
+          reply_markup: {
+            inline_keyboard: buttons,
+          },
         });
       } catch (photoError) {
         console.error('[handleConversationProfile] Failed to send photo, falling back to text:', photoError);
-        // Fallback to text message
-        await telegram.sendMessage(chatId, profileMessage);
+        // Fallback to text message with buttons
+        await telegram.sendMessageWithButtons(chatId, profileMessage, buttons);
       }
     } else {
-      // No avatar, send as text
-      await telegram.sendMessage(chatId, profileMessage);
+      // No avatar, send as text with buttons
+      await telegram.sendMessageWithButtons(chatId, profileMessage, buttons);
     }
   } catch (error) {
     console.error('[handleConversationProfile] Error:', error);

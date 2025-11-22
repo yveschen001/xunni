@@ -378,11 +378,44 @@ export async function updateNewMessagePost(
       partnerInfo
     );
 
-    // Send new message with button
+    // Get user to check VIP status for button display
+    const { findUserByTelegramId } = await import('~/db/queries/users');
+    const user = await findUserByTelegramId(db, userTelegramId);
+    const isVip = !!(user?.is_vip && user?.vip_expire_at && new Date(user.vip_expire_at) > new Date());
+
+    // Build buttons based on VIP status
+    const buttons = [
+      [{ text: '💬 回覆訊息', callback_data: `conv_reply_${identifier}` }],
+      [{ text: '👤 查看對方資料卡', callback_data: `conv_profile_${conversationId}` }],
+    ];
+
+    // Add ad/task button for non-VIP users
+    if (!isVip && user) {
+      const { getNextIncompleteTask } = await import('../telegram/handlers/tasks');
+      const { getAdPrompt } = await import('~/domain/ad_prompt');
+      const { getTodayAdReward } = await import('~/db/queries/ad_rewards');
+      
+      const nextTask = await getNextIncompleteTask(db, user);
+      const adReward = await getTodayAdReward(db.d1, userTelegramId);
+      
+      const prompt = getAdPrompt({
+        user,
+        ads_watched_today: adReward?.ads_watched || 0,
+        has_incomplete_tasks: !!nextTask,
+        next_task_name: nextTask?.name,
+        next_task_id: nextTask?.id,
+      });
+      
+      if (prompt.show_button) {
+        buttons.push([{ text: prompt.button_text, callback_data: prompt.button_callback }]);
+      }
+    }
+
+    // Send new message with buttons
     const sentMessage = await telegram.sendMessageWithButtonsAndGetId(
       parseInt(userTelegramId),
       content,
-      [[{ text: '👤 查看對方資料卡', callback_data: `conv_profile_${conversationId}` }]]
+      buttons
     );
 
     // Save to database
