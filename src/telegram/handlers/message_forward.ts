@@ -28,10 +28,10 @@ export async function handleMessageForward(
 ): Promise<boolean> {
   const db = createDatabaseClient(env.DB);
   const telegram = createTelegramService(env);
-    const chatId = message.chat.id;
-    const telegramId = message.from!.id.toString();
-    const messageText = message.text || '';
-    const replyToId = message.reply_to_message?.message_id;
+  const chatId = message.chat.id;
+  const telegramId = message.from!.id.toString();
+  const messageText = message.text || '';
+  const replyToId = message.reply_to_message?.message_id;
 
   try {
     // Check if message contains media (photo, document, video, etc.)

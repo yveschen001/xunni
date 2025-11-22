@@ -54,7 +54,7 @@ export async function handleChats(message: TelegramMessage, env: Env): Promise<v
       const partnerTelegramId =
         conv.user_a_telegram_id === telegramId ? conv.user_b_telegram_id : conv.user_a_telegram_id;
 
-      const identifier = await getOrCreateIdentifier(db, telegramId, partnerTelegramId);
+      const identifier = await getOrCreateIdentifier(db, telegramId, partnerTelegramId, conv.id);
       const formattedId = formatIdentifier(identifier);
 
       // Get partner info
