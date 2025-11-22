@@ -902,16 +902,37 @@ export async function routeUpdate(update: TelegramUpdate, env: Env): Promise<voi
       if (data === 'lang_back') {
         // Show popular languages again
         const { getPopularLanguageButtons } = await import('~/i18n/languages');
+        const { createI18n } = await import('./i18n');
+        const i18n = createI18n('zh-TW'); // Default for welcome message
         await telegram.editMessageText(
           chatId,
           callbackQuery.message!.message_id,
-          `🎉 歡迎來到 XunNi！\n` +
-            `Welcome to XunNi!\n\n` +
-            `首先，請選擇你的語言：\n` +
-            `First, please select your language:`,
+          i18n.t('onboarding.welcome'),
           {
             reply_markup: {
-              inline_keyboard: getPopularLanguageButtons(),
+              inline_keyboard: getPopularLanguageButtons(i18n),
+            },
+          }
+        );
+        await telegram.answerCallbackQuery(callbackQuery.id);
+        return;
+      }
+      if (data.startsWith('lang_page_')) {
+        // Handle pagination for language selection
+        const page = parseInt(data.replace('lang_page_', ''), 10);
+        const { getLanguageButtons } = await import('~/i18n/languages');
+        const { createI18n } = await import('./i18n');
+        const i18n = createI18n('zh-TW');
+        await telegram.editMessageText(
+          chatId,
+          callbackQuery.message!.message_id,
+          i18n.t('onboarding.languageSelection'),
+          {
+            reply_markup: {
+              inline_keyboard: [
+                ...getLanguageButtons(i18n, page),
+                [{ text: i18n.t('common.back'), callback_data: 'lang_back' }],
+              ],
             },
           }
         );

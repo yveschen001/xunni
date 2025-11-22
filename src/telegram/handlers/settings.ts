@@ -79,15 +79,19 @@ export async function handleSettingsCallback(callbackQuery: any, env: Env): Prom
       await telegram.deleteMessage(chatId, callbackQuery.message!.message_id);
 
       // Show all languages
+      const { createI18n } = await import('~/i18n');
+      const i18n = createI18n(user.language_pref || 'zh-TW');
       await telegram.sendMessageWithButtons(
         chatId,
-        '🌐 **選擇語言 / Choose Language**\n\n請選擇你的偏好語言：',
-        [...getLanguageButtons(), [{ text: '🏠 返回設定', callback_data: 'back_to_settings' }]]
+        i18n.t('onboarding.languageSelection'),
+        [...getLanguageButtons(i18n, 0), [{ text: i18n.t('common.back'), callback_data: 'back_to_settings' }]]
       );
     }
   } catch (error) {
     console.error('[handleSettingsCallback] Error:', error);
-    await telegram.answerCallbackQuery(callbackQuery.id, '❌ 系統發生錯誤');
+    const { createI18n } = await import('~/i18n');
+    const errorI18n = createI18n(user.language_pref || 'zh-TW');
+    await telegram.answerCallbackQuery(callbackQuery.id, errorI18n.t('errors.systemErrorRetry'));
   }
 }
 

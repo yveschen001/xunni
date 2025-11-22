@@ -132,7 +132,7 @@ export async function handleStart(message: TelegramMessage, env: Env): Promise<v
       await telegram.sendMessageWithButtons(
         chatId,
         i18n.t('onboarding.welcome'),
-        getPopularLanguageButtons()
+        getPopularLanguageButtons(i18n)
       );
 
       return;
@@ -235,7 +235,7 @@ async function resumeOnboarding(
       await telegram.sendMessageWithButtons(
         chatId,
         i18n.t('onboarding.welcome'),
-        getPopularLanguageButtons()
+        getPopularLanguageButtons(i18n)
       );
       break;
     }

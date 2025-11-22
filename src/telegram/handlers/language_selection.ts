@@ -35,7 +35,7 @@ export async function showLanguageSelection(message: TelegramMessage, env: Env):
   await telegram.sendMessageWithButtons(
     chatId,
     i18n.t('onboarding.welcome'),
-    getPopularLanguageButtons()
+    getPopularLanguageButtons(i18n)
   );
 }
 
@@ -51,12 +51,12 @@ export async function showAllLanguages(callbackQuery: CallbackQuery, env: Env): 
   const { createI18n } = await import('~/i18n');
   const i18n = createI18n('zh-TW');
 
-  // Edit message to show all languages
+  // Edit message to show all languages (page 0)
   await telegram.editMessageText(chatId, messageId, i18n.t('onboarding.languageSelection'), {
     reply_markup: {
       inline_keyboard: [
-        ...getLanguageButtons(),
-        [{ text: '⬅️ 返回 / Back', callback_data: 'lang_back' }],
+        ...getLanguageButtons(i18n, 0),
+        [{ text: i18n.t('common.back'), callback_data: 'lang_back' }],
       ],
     },
   });
@@ -77,20 +77,23 @@ export async function handleLanguageSelection(
   const chatId = callbackQuery.message!.chat.id;
   const telegramId = callbackQuery.from.id.toString();
 
+  // Get user's current language for error messages
+  const { createI18n } = await import('~/i18n');
+  const user = await findUserByTelegramId(db, telegramId);
+  const currentI18n = createI18n(user?.language_pref || 'zh-TW');
+
   try {
     // Validate language code
     if (!isValidLanguage(languageCode)) {
-      await telegram.answerCallbackQuery(callbackQuery.id, '❌ 無效的語言代碼');
+      await telegram.answerCallbackQuery(callbackQuery.id, currentI18n.t('errors.invalidLanguageCode'));
       return;
     }
 
     // Check if user exists first
-    const user = await findUserByTelegramId(db, telegramId);
-
     if (!user) {
       // This shouldn't happen, but handle it gracefully
-      await telegram.answerCallbackQuery(callbackQuery.id, '❌ 發生錯誤');
-      await telegram.sendMessage(chatId, `❌ 發生錯誤，請重新開始：/start`);
+      await telegram.answerCallbackQuery(callbackQuery.id, currentI18n.t('errors.systemError'));
+      await telegram.sendMessage(chatId, currentI18n.t('errors.systemErrorRestart'));
       return;
     }
 
@@ -125,11 +128,17 @@ export async function handleLanguageSelection(
       );
     } else {
       // Existing user - just confirm language change
-      await telegram.sendMessage(chatId, `✅ 語言已更新為：${getLanguageDisplay(languageCode)}`);
+      // Use the newly selected language for confirmation message
+      const newI18n = createI18n(languageCode);
+      await telegram.sendMessage(
+        chatId,
+        newI18n.t('settings.languageUpdated', { language: getLanguageDisplay(languageCode) })
+      );
     }
   } catch (error) {
     console.error('[handleLanguageSelection] Error:', error);
-    await telegram.answerCallbackQuery(callbackQuery.id, '❌ 發生錯誤，請稍後再試');
+    const errorI18n = createI18n(user?.language_pref || 'zh-TW');
+    await telegram.answerCallbackQuery(callbackQuery.id, errorI18n.t('errors.systemErrorRetry'));
   }
 }
 
@@ -153,32 +162,35 @@ async function startOnboarding(
   const suggestedNickname = telegramUsername || telegramFirstName || '';
 
   if (suggestedNickname) {
+    const nicknameMessage =
+      i18n.t('common.nickname7') +
+      i18n.t('warnings.warning.short4') +
+      i18n.t('common.nickname5') +
+      i18n.t('common.text79') +
+      i18n.t('common.nickname11');
+    
     await telegram.sendMessageWithButtons(
       chatId,
-      `✏️ 請選擇你的暱稱：\n\n` +
-        `⚠️ 注意：\n` +
-        `• 暱稱長度限制 36 個字\n` +
-        `• 對方最多顯示 18 個字\n` +
-        `• 請勿使用暱稱發送廣告`,
+      nicknameMessage,
       [
         [
           {
-            text: `✅ 使用 Telegram 暱稱：${suggestedNickname.substring(0, 18)}`,
+            text: i18n.t('onboarding.useTelegramNickname', { nickname: suggestedNickname.substring(0, 18) }),
             callback_data: `nickname_use_telegram`,
           },
         ],
-        [{ text: '✍️ 自訂暱稱', callback_data: 'nickname_custom' }],
+        [{ text: i18n.t('onboarding.customNickname'), callback_data: 'nickname_custom' }],
       ]
     );
   } else {
     // No Telegram nickname, ask for custom nickname
-    await telegram.sendMessage(
-      chatId,
-      `✏️ 請輸入你的暱稱：\n\n` +
-        `⚠️ 注意：\n` +
-        `• 暱稱長度限制 36 個字\n` +
-        `• 對方最多顯示 18 個字\n` +
-        `• 請勿使用暱稱發送廣告`
-    );
+    const nicknameMessage =
+      i18n.t('common.nickname8') +
+      i18n.t('warnings.warning.short4') +
+      i18n.t('common.nickname5') +
+      i18n.t('common.text79') +
+      i18n.t('common.nickname11');
+    
+    await telegram.sendMessage(chatId, nicknameMessage);
   }
 }

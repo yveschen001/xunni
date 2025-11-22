@@ -78,12 +78,23 @@ export function isValidLanguage(code: string): boolean {
 
 /**
  * Get language buttons for Telegram inline keyboard
+ * Supports pagination to avoid exceeding Telegram's 8-row limit
+ * 
+ * @param i18n - Optional i18n instance for button text (e.g., "Back" button)
+ * @param page - Page number (0-based, 14 languages per page)
  */
-export function getLanguageButtons(): Array<Array<{ text: string; callback_data: string }>> {
+export function getLanguageButtons(
+  i18n?: { t: (key: string) => string },
+  page: number = 0
+): Array<Array<{ text: string; callback_data: string }>> {
+  const LANGUAGES_PER_PAGE = 14; // 7 rows (2 languages per row) to stay under 8-row limit
+  const start = page * LANGUAGES_PER_PAGE;
+  const end = Math.min(start + LANGUAGES_PER_PAGE, SUPPORTED_LANGUAGES.length);
+  
   const buttons: Array<Array<{ text: string; callback_data: string }>> = [];
 
   // Group languages in rows of 2
-  for (let i = 0; i < SUPPORTED_LANGUAGES.length; i += 2) {
+  for (let i = start; i < end; i += 2) {
     const row = [];
 
     const lang1 = SUPPORTED_LANGUAGES[i];
@@ -92,7 +103,7 @@ export function getLanguageButtons(): Array<Array<{ text: string; callback_data:
       callback_data: `lang_${lang1.code}`,
     });
 
-    if (i + 1 < SUPPORTED_LANGUAGES.length) {
+    if (i + 1 < end) {
       const lang2 = SUPPORTED_LANGUAGES[i + 1];
       row.push({
         text: `${lang2.flag} ${lang2.nativeName}`,
@@ -103,13 +114,31 @@ export function getLanguageButtons(): Array<Array<{ text: string; callback_data:
     buttons.push(row);
   }
 
+  // Add pagination buttons if needed
+  const navRow: Array<{ text: string; callback_data: string }> = [];
+  if (page > 0) {
+    const prevText = i18n?.t('common.prev') || '⬅️ 上一页';
+    navRow.push({ text: prevText, callback_data: `lang_page_${page - 1}` });
+  }
+  if (end < SUPPORTED_LANGUAGES.length) {
+    const nextText = i18n?.t('common.next') || '下一页 ➡️';
+    navRow.push({ text: nextText, callback_data: `lang_page_${page + 1}` });
+  }
+  if (navRow.length > 0) {
+    buttons.push(navRow);
+  }
+
   return buttons;
 }
 
 /**
  * Get top 6 popular languages for quick selection
+ * 
+ * @param i18n - Optional i18n instance for "More languages" button text
  */
-export function getPopularLanguageButtons(): Array<Array<{ text: string; callback_data: string }>> {
+export function getPopularLanguageButtons(
+  i18n?: { t: (key: string) => string }
+): Array<Array<{ text: string; callback_data: string }>> {
   const popularLanguages = ['zh-TW', 'en', 'ja', 'ko', 'th', 'vi'];
   const buttons: Array<Array<{ text: string; callback_data: string }>> = [];
 
@@ -138,7 +167,8 @@ export function getPopularLanguageButtons(): Array<Array<{ text: string; callbac
   }
 
   // Add "More languages" button
-  buttons.push([{ text: '🌍 更多語言 / More Languages', callback_data: 'lang_more' }]);
+  const moreText = i18n?.t('onboarding.moreLanguages') || '🌍 更多語言 / More Languages';
+  buttons.push([{ text: moreText, callback_data: 'lang_more' }]);
 
   return buttons;
 }
