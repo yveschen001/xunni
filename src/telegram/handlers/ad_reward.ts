@@ -109,7 +109,7 @@ export async function handleWatchAd(callbackQuery: CallbackQuery, env: Env): Pro
     const checkResult = canWatchAd(adReward, user.is_vip);
     if (!checkResult.can_watch) {
       await telegram.answerCallbackQuery(callbackQuery.id, {
-        text: checkResult.reason || '❌ 無法觀看更多廣告',
+        text: checkResult.reason || '⚠️ 無法觀看更多廣告',
         show_alert: true,
       });
       return;
@@ -119,7 +119,7 @@ export async function handleWatchAd(callbackQuery: CallbackQuery, env: Env): Pro
     const providers = await getAllAdProviders(db.d1, true);
     if (providers.length === 0) {
       await telegram.answerCallbackQuery(callbackQuery.id, {
-        text: '❌ 暫無可用的廣告提供商',
+        text: '⚠️ 暫無可用的廣告提供商',
         show_alert: true,
       });
       return;
@@ -131,7 +131,7 @@ export async function handleWatchAd(callbackQuery: CallbackQuery, env: Env): Pro
 
     if (!selection) {
       await telegram.answerCallbackQuery(callbackQuery.id, {
-        text: '❌ 無法選擇廣告提供商',
+        text: '⚠️ 無法選擇廣告提供商',
         show_alert: true,
       });
       return;

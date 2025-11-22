@@ -301,10 +301,10 @@ export async function handleNextTaskCallback(
   env: Env
 ): Promise<void> {
   const telegram = createTelegramService(env);
-  const db = createDatabaseClient(env.DB);
+  // const db = createDatabaseClient(env.DB);
   const chatId = callbackQuery.message?.chat.id;
   const messageId = callbackQuery.message?.message_id;
-  const telegramId = callbackQuery.from.id.toString();
+  // const telegramId = callbackQuery.from.id.toString();
   const taskId = callbackQuery.data?.replace('next_task_', '');
 
   if (!chatId || !messageId || !taskId) {
@@ -327,49 +327,46 @@ export async function handleNextTaskCallback(
     } as TelegramMessage;
 
     switch (taskId) {
-      case 'task_interests':
+      case 'task_interests': {
         // Directly open interests editor
-        {
-          const { handleEditInterests } = await import('./edit_profile');
-          const fakeCallback = {
-            id: callbackQuery.id,
-            from: callbackQuery.from,
-            message: callbackQuery.message,
-            data: 'edit_interests',
-          };
-          await handleEditInterests(fakeCallback, env);
-        }
+        const { handleEditInterests } = await import('./edit_profile');
+        const fakeCallback = {
+          id: callbackQuery.id,
+          from: callbackQuery.from,
+          message: callbackQuery.message,
+          data: 'edit_interests',
+        };
+        await handleEditInterests(fakeCallback, env);
         break;
+      }
 
-      case 'task_bio':
+      case 'task_bio': {
         // Directly open bio editor
-        {
-          const { handleEditBio } = await import('./edit_profile');
-          const fakeCallback = {
-            id: callbackQuery.id,
-            from: callbackQuery.from,
-            message: callbackQuery.message,
-            data: 'edit_bio',
-          };
-          await handleEditBio(fakeCallback, env);
-        }
+        const { handleEditBio } = await import('./edit_profile');
+        const fakeCallback = {
+          id: callbackQuery.id,
+          from: callbackQuery.from,
+          message: callbackQuery.message,
+          data: 'edit_bio',
+        };
+        await handleEditBio(fakeCallback, env);
         break;
+      }
 
-      case 'task_city':
+      case 'task_city': {
         // Directly open region editor
-        {
-          const { handleEditRegion } = await import('./edit_profile');
-          const fakeCallback = {
-            id: callbackQuery.id,
-            from: callbackQuery.from,
-            message: callbackQuery.message,
-            data: 'edit_region',
-          };
-          await handleEditRegion(fakeCallback, env);
-        }
+        const { handleEditRegion } = await import('./edit_profile');
+        const fakeCallback = {
+          id: callbackQuery.id,
+          from: callbackQuery.from,
+          message: callbackQuery.message,
+          data: 'edit_region',
+        };
+        await handleEditRegion(fakeCallback, env);
         break;
+      }
 
-      case 'task_join_channel':
+      case 'task_join_channel': {
         // Directly open channel link with claim button
         await telegram.sendMessageWithButtons(
           chatId,
@@ -383,34 +380,39 @@ export async function handleNextTaskCallback(
           ]
         );
         break;
+      }
 
-      case 'task_first_bottle':
+      case 'task_first_bottle': {
         // Directly start throw flow
         fakeMessage.text = '/throw';
         const { handleThrow } = await import('./throw');
         await handleThrow(fakeMessage, env);
         break;
+      }
 
-      case 'task_first_catch':
+      case 'task_first_catch': {
         // Directly start catch flow
         fakeMessage.text = '/catch';
         const { handleCatch } = await import('./catch');
         await handleCatch(fakeMessage, env);
         break;
+      }
 
-      case 'task_first_conversation':
+      case 'task_first_conversation': {
         // Directly start catch flow (to enable conversation)
         fakeMessage.text = '/catch';
         const { handleCatch: handleCatchForConversation } = await import('./catch');
         await handleCatchForConversation(fakeMessage, env);
         break;
+      }
 
-      case 'task_invite_progress':
+      case 'task_invite_progress': {
         // Directly show invite code
         fakeMessage.text = '/invite';
         const { handleInvite } = await import('./invite');
         await handleInvite(fakeMessage, env);
         break;
+      }
 
       default:
         await telegram.sendMessage(chatId, '❌ 未知的任務類型');

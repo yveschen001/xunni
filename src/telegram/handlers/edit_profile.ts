@@ -30,7 +30,7 @@ export async function handleEditProfile(message: TelegramMessage, env: Env): Pro
     }
 
     if (user.onboarding_step !== 'completed') {
-      await telegram.sendMessage(chatId, '❌ 請先完成註冊流程。\n\n使用 /start 繼續註冊。');
+      await telegram.sendMessage(chatId, '⚠️ 請先完成註冊流程。\n\n使用 /start 繼續註冊。');
       return;
     }
 
@@ -110,7 +110,7 @@ export async function handleEditProfileCallback(
     }
 
     if (user.onboarding_step !== 'completed') {
-      await telegram.answerCallbackQuery(callbackQuery.id, '❌ 請先完成註冊流程');
+      await telegram.answerCallbackQuery(callbackQuery.id, '⚠️ 請先完成註冊流程');
       return;
     }
 

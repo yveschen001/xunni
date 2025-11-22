@@ -33,7 +33,7 @@ export async function handleGenderSelection(
 
     // Check if user is in gender selection step
     if (user.onboarding_step !== 'gender') {
-      await telegram.answerCallbackQuery(callbackQuery.id, '❌ 當前不在性別選擇步驟');
+      await telegram.answerCallbackQuery(callbackQuery.id, '⚠️ 當前不在性別選擇步驟');
       return;
     }
 
@@ -171,7 +171,7 @@ export async function handleBirthdayConfirmation(
 
     // Check if user is in birthday step
     if (user.onboarding_step !== 'birthday') {
-      await telegram.answerCallbackQuery(callbackQuery.id, '❌ 當前不在生日輸入步驟');
+      await telegram.answerCallbackQuery(callbackQuery.id, '⚠️ 當前不在生日輸入步驟');
       return;
     }
 
@@ -265,7 +265,7 @@ export async function handleBloodTypeSelection(
 
     // Check if user is in blood_type step
     if (user.onboarding_step !== 'blood_type') {
-      await telegram.answerCallbackQuery(callbackQuery.id, '❌ 當前不在血型選擇步驟');
+      await telegram.answerCallbackQuery(callbackQuery.id, '⚠️ 當前不在血型選擇步驟');
       return;
     }
 
@@ -636,7 +636,7 @@ export async function handleMBTISelection(
 
     // Check if user is in MBTI step
     if (user.onboarding_step !== 'mbti') {
-      await telegram.answerCallbackQuery(callbackQuery.id, '❌ 當前不在 MBTI 測驗步驟');
+      await telegram.answerCallbackQuery(callbackQuery.id, '⚠️ 當前不在 MBTI 測驗步驟');
       return;
     }
 
@@ -697,7 +697,7 @@ export async function handleAntiFraudConfirmation(
 
     // Check if user is in anti_fraud step
     if (user.onboarding_step !== 'anti_fraud') {
-      await telegram.answerCallbackQuery(callbackQuery.id, '❌ 當前不在反詐騙測驗步驟');
+      await telegram.answerCallbackQuery(callbackQuery.id, '⚠️ 當前不在反詐騙測驗步驟');
       return;
     }
 
@@ -797,7 +797,7 @@ export async function handleTermsAgreement(callbackQuery: CallbackQuery, env: En
 
     // Check if user is in terms step
     if (user.onboarding_step !== 'terms') {
-      await telegram.answerCallbackQuery(callbackQuery.id, '❌ 當前不在服務條款步驟');
+      await telegram.answerCallbackQuery(callbackQuery.id, '⚠️ 當前不在服務條款步驟');
       return;
     }
 

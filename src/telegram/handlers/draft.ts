@@ -26,7 +26,7 @@ export async function handleDraftContinue(callbackQuery: any, env: Env): Promise
     // Get draft
     const draft = await getDraft(db, telegramId);
     if (!draft) {
-      await telegram.sendMessage(chatId, '❌ 草稿不存在或已過期');
+      await telegram.sendMessage(chatId, '⚠️ 草稿不存在或已過期');
       return;
     }
 
@@ -187,7 +187,7 @@ export async function handleDraftSend(callbackQuery: any, env: Env): Promise<voi
     // Get draft
     const draft = await getDraft(db, telegramId);
     if (!draft) {
-      await telegram.answerCallbackQuery(callbackQuery.id, '❌ 草稿不存在或已過期');
+      await telegram.answerCallbackQuery(callbackQuery.id, '⚠️ 草稿不存在或已過期');
       return;
     }
 

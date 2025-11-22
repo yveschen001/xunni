@@ -86,7 +86,7 @@ export async function handleThrowAdvanced(callbackQuery: any, env: Env): Promise
       new Date(user.vip_expire_at) > new Date()
     );
     if (!isVip) {
-      await telegram.answerCallbackQuery(callbackQuery.id, '❌ 此功能僅限 VIP 會員使用');
+      await telegram.answerCallbackQuery(callbackQuery.id, '⚠️ 此功能僅限 VIP 會員使用');
       return;
     }
 
@@ -147,7 +147,7 @@ export async function handleFilterMBTI(callbackQuery: any, env: Env): Promise<vo
     // Get current session
     const session = await getActiveSession(db, telegramId, 'throw_bottle');
     if (!session) {
-      await telegram.sendMessage(chatId, '❌ 會話已過期，請重新開始：/throw');
+      await telegram.sendMessage(chatId, '⚠️ 會話已過期，請重新開始：/throw');
       return;
     }
 
@@ -204,7 +204,7 @@ export async function handleSelectMBTI(
     // Get current session
     const session = await getActiveSession(db, telegramId, 'throw_bottle');
     if (!session) {
-      await telegram.answerCallbackQuery(callbackQuery.id, '❌ 會話已過期');
+      await telegram.answerCallbackQuery(callbackQuery.id, '⚠️ 會話已過期，請重新開始');
       return;
     }
 
@@ -254,7 +254,7 @@ export async function handleFilterZodiac(callbackQuery: any, env: Env): Promise<
     // Get current session
     const session = await getActiveSession(db, telegramId, 'throw_bottle');
     if (!session) {
-      await telegram.sendMessage(chatId, '❌ 會話已過期，請重新開始：/throw');
+      await telegram.sendMessage(chatId, '⚠️ 會話已過期，請重新開始：/throw');
       return;
     }
 
@@ -311,7 +311,7 @@ export async function handleSelectZodiac(
     // Get current session
     const session = await getActiveSession(db, telegramId, 'throw_bottle');
     if (!session) {
-      await telegram.answerCallbackQuery(callbackQuery.id, '❌ 會話已過期');
+      await telegram.answerCallbackQuery(callbackQuery.id, '⚠️ 會話已過期，請重新開始');
       return;
     }
 
@@ -361,7 +361,7 @@ export async function handleFilterGender(callbackQuery: any, env: Env): Promise<
     // Get current session
     const session = await getActiveSession(db, telegramId, 'throw_bottle');
     if (!session) {
-      await telegram.sendMessage(chatId, '❌ 會話已過期，請重新開始：/throw');
+      await telegram.sendMessage(chatId, '⚠️ 會話已過期，請重新開始：/throw');
       return;
     }
 
@@ -420,7 +420,7 @@ export async function handleSetGender(
     // Get current session
     const session = await getActiveSession(db, telegramId, 'throw_bottle');
     if (!session) {
-      await telegram.answerCallbackQuery(callbackQuery.id, '❌ 會話已過期');
+      await telegram.answerCallbackQuery(callbackQuery.id, '⚠️ 會話已過期，請重新開始');
       return;
     }
 
@@ -459,7 +459,7 @@ export async function handleBackToFilter(callbackQuery: any, env: Env): Promise<
     // Get current session
     const session = await getActiveSession(db, telegramId, 'throw_bottle');
     if (!session) {
-      await telegram.sendMessage(chatId, '❌ 會話已過期，請重新開始：/throw');
+      await telegram.sendMessage(chatId, '⚠️ 會話已過期，請重新開始：/throw');
       return;
     }
 
@@ -514,7 +514,7 @@ export async function handleFilterDone(callbackQuery: any, env: Env): Promise<vo
     // Get current session
     const session = await getActiveSession(db, telegramId, 'throw_bottle');
     if (!session) {
-      await telegram.sendMessage(chatId, '❌ 會話已過期，請重新開始：/throw');
+      await telegram.sendMessage(chatId, '⚠️ 會話已過期，請重新開始：/throw');
       return;
     }
 
@@ -562,7 +562,7 @@ export async function handleClearMBTI(callbackQuery: any, env: Env): Promise<voi
   try {
     const session = await getActiveSession(db, telegramId, 'throw_bottle');
     if (!session) {
-      await telegram.answerCallbackQuery(callbackQuery.id, '❌ 會話已過期');
+      await telegram.answerCallbackQuery(callbackQuery.id, '⚠️ 會話已過期，請重新開始');
       return;
     }
 
@@ -592,7 +592,7 @@ export async function handleClearZodiac(callbackQuery: any, env: Env): Promise<v
   try {
     const session = await getActiveSession(db, telegramId, 'throw_bottle');
     if (!session) {
-      await telegram.answerCallbackQuery(callbackQuery.id, '❌ 會話已過期');
+      await telegram.answerCallbackQuery(callbackQuery.id, '⚠️ 會話已過期，請重新開始');
       return;
     }
 
@@ -623,7 +623,7 @@ export async function handleFilterBloodType(callbackQuery: any, env: Env): Promi
   try {
     const session = await getActiveSession(db, telegramId, 'throw_bottle');
     if (!session) {
-      await telegram.answerCallbackQuery(callbackQuery.id, '❌ 會話已過期');
+      await telegram.answerCallbackQuery(callbackQuery.id, '⚠️ 會話已過期，請重新開始');
       return;
     }
 
@@ -680,7 +680,7 @@ export async function handleBloodTypeSelect(
   try {
     const session = await getActiveSession(db, telegramId, 'throw_bottle');
     if (!session) {
-      await telegram.answerCallbackQuery(callbackQuery.id, '❌ 會話已過期');
+      await telegram.answerCallbackQuery(callbackQuery.id, '⚠️ 會話已過期，請重新開始');
       return;
     }
 
