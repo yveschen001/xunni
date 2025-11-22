@@ -5056,6 +5056,302 @@
     "line": 64
   },
   {
+    "original": "未設置",
+    "key": "common.short158",
+    "category": "common",
+    "confidence": 0.8,
+    "file": "src/telegram/handlers/dev.ts",
+    "line": 277
+  },
+  {
+    "original": "未生成",
+    "key": "common.short159",
+    "category": "common",
+    "confidence": 0.8,
+    "file": "src/telegram/handlers/dev.ts",
+    "line": 281
+  },
+  {
+    "original": "測試用戶",
+    "key": "common.short160",
+    "category": "common",
+    "confidence": 0.8,
+    "file": "src/telegram/handlers/dev.ts",
+    "line": 543
+  },
+  {
+    "original": "測試用戶",
+    "key": "common.short161",
+    "category": "common",
+    "confidence": 0.8,
+    "file": "src/telegram/handlers/dev.ts",
+    "line": 556
+  },
+  {
+    "original": "未設定",
+    "key": "common.settings12",
+    "category": "common",
+    "confidence": 0.8,
+    "file": "src/telegram/handlers/edit_profile.ts",
+    "line": 61
+  },
+  {
+    "original": "未設定",
+    "key": "common.settings13",
+    "category": "common",
+    "confidence": 0.8,
+    "file": "src/telegram/handlers/edit_profile.ts",
+    "line": 62
+  },
+  {
+    "original": "未設定",
+    "key": "common.settings14",
+    "category": "common",
+    "confidence": 0.8,
+    "file": "src/telegram/handlers/edit_profile.ts",
+    "line": 63
+  },
+  {
+    "original": "未設定",
+    "key": "common.settings15",
+    "category": "common",
+    "confidence": 0.8,
+    "file": "src/telegram/handlers/edit_profile.ts",
+    "line": 69
+  },
+  {
+    "original": "未設定",
+    "key": "common.settings16",
+    "category": "common",
+    "confidence": 0.8,
+    "file": "src/telegram/handlers/edit_profile.ts",
+    "line": 144
+  },
+  {
+    "original": "未設定",
+    "key": "common.settings17",
+    "category": "common",
+    "confidence": 0.8,
+    "file": "src/telegram/handlers/edit_profile.ts",
+    "line": 145
+  },
+  {
+    "original": "未設定",
+    "key": "common.settings18",
+    "category": "common",
+    "confidence": 0.8,
+    "file": "src/telegram/handlers/edit_profile.ts",
+    "line": 146
+  },
+  {
+    "original": "未設定",
+    "key": "common.settings19",
+    "category": "common",
+    "confidence": 0.8,
+    "file": "src/telegram/handlers/edit_profile.ts",
+    "line": 152
+  },
+  {
+    "original": "未設定",
+    "key": "common.settings20",
+    "category": "common",
+    "confidence": 0.8,
+    "file": "src/telegram/handlers/edit_profile.ts",
+    "line": 594
+  },
+  {
+    "original": "未設定",
+    "key": "common.settings21",
+    "category": "common",
+    "confidence": 0.8,
+    "file": "src/telegram/handlers/edit_profile.ts",
+    "line": 595
+  },
+  {
+    "original": "未設定",
+    "key": "common.settings22",
+    "category": "common",
+    "confidence": 0.8,
+    "file": "src/telegram/handlers/edit_profile.ts",
+    "line": 596
+  },
+  {
+    "original": "未設定",
+    "key": "common.settings23",
+    "category": "common",
+    "confidence": 0.8,
+    "file": "src/telegram/handlers/edit_profile.ts",
+    "line": 602
+  },
+  {
+    "original": "結果更準確",
+    "key": "common.short162",
+    "category": "common",
+    "confidence": 0.8,
+    "file": "src/telegram/handlers/mbti_test.ts",
+    "line": 178
+  },
+  {
+    "original": "未設定",
+    "key": "common.settings24",
+    "category": "common",
+    "confidence": 0.8,
+    "file": "src/telegram/handlers/message_forward.ts",
+    "line": 323
+  },
+  {
+    "original": "未設定",
+    "key": "common.settings25",
+    "category": "common",
+    "confidence": 0.8,
+    "file": "src/telegram/handlers/message_forward.ts",
+    "line": 324
+  },
+  {
+    "original": "未設定",
+    "key": "common.settings26",
+    "category": "common",
+    "confidence": 0.8,
+    "file": "src/telegram/handlers/message_forward.ts",
+    "line": 325
+  },
+  {
+    "original": "未設定",
+    "key": "common.settings27",
+    "category": "common",
+    "confidence": 0.8,
+    "file": "src/telegram/handlers/message_forward.ts",
+    "line": 336
+  },
+  {
+    "original": "未設定",
+    "key": "common.settings28",
+    "category": "common",
+    "confidence": 0.8,
+    "file": "src/telegram/handlers/message_forward.ts",
+    "line": 337
+  },
+  {
+    "original": "未設定",
+    "key": "common.settings29",
+    "category": "common",
+    "confidence": 0.8,
+    "file": "src/telegram/handlers/message_forward.ts",
+    "line": 338
+  },
+  {
+    "original": "💡 還有更多官方廣告可以觀看！",
+    "key": "common.ad9",
+    "category": "common",
+    "confidence": 0.8,
+    "file": "src/telegram/handlers/official_ad.ts",
+    "line": 275
+  },
+  {
+    "original": "需要關注",
+    "key": "common.short163",
+    "category": "common",
+    "confidence": 0.8,
+    "file": "src/domain/ad_provider.ts",
+    "line": 435
+  },
+  {
+    "original": "未設定",
+    "key": "common.settings30",
+    "category": "common",
+    "confidence": 0.8,
+    "file": "src/domain/blood_type.ts",
+    "line": 32
+  },
+  {
+    "original": "加入群組",
+    "key": "common.short164",
+    "category": "common",
+    "confidence": 0.8,
+    "file": "src/domain/official_ad.ts",
+    "line": 346
+  },
+  {
+    "original": "查看詳情",
+    "key": "common.short165",
+    "category": "common",
+    "confidence": 0.8,
+    "file": "src/domain/official_ad.ts",
+    "line": 350
+  },
+  {
+    "original": "丟瓶流程",
+    "key": "common.throw2",
+    "category": "common",
+    "confidence": 0.8,
+    "file": "src/domain/session.ts",
+    "line": 123
+  },
+  {
+    "original": "撿瓶流程",
+    "key": "common.catch4",
+    "category": "common",
+    "confidence": 0.8,
+    "file": "src/domain/session.ts",
+    "line": 127
+  },
+  {
+    "original": "未設定",
+    "key": "common.settings31",
+    "category": "common",
+    "confidence": 0.8,
+    "file": "src/services/refresh_conversation_history.ts",
+    "line": 112
+  },
+  {
+    "original": "未設定",
+    "key": "common.settings32",
+    "category": "common",
+    "confidence": 0.8,
+    "file": "src/services/refresh_conversation_history.ts",
+    "line": 113
+  },
+  {
+    "original": "未設定",
+    "key": "common.settings33",
+    "category": "common",
+    "confidence": 0.8,
+    "file": "src/services/refresh_conversation_history.ts",
+    "line": 114
+  },
+  {
+    "original": "未設定",
+    "key": "common.settings34",
+    "category": "common",
+    "confidence": 0.8,
+    "file": "src/utils/mask.ts",
+    "line": 12
+  },
+  {
+    "original": "未設定",
+    "key": "common.settings35",
+    "category": "common",
+    "confidence": 0.8,
+    "file": "src/utils/mask.ts",
+    "line": 17
+  },
+  {
+    "original": "📋 法律文檔僅提供英文版本。",
+    "key": "common.text149",
+    "category": "common",
+    "confidence": 0.8,
+    "file": "src/config/legal_urls.ts",
+    "line": 59
+  },
+  {
+    "original": "📋 法的文書は英語版のみ提供されています。",
+    "key": "common.text150",
+    "category": "common",
+    "confidence": 0.8,
+    "file": "src/config/legal_urls.ts",
+    "line": 60
+  },
+  {
     "original": "${statusEmoji} **${provider.provider_display_name}**\n${healthEmoji} 健康狀態: ${health.is_healthy ? '良好' : '需要關注'}\n📊 完成率: ${stats.completion_rate}%\n❌ 錯誤率: ${stats.error_rate}%\n📈 總請求: ${stats.total_requests}\n✅ 總完成: ${stats.total_completions}\n💡 建議: ${health.recommendation}",
     "key": "errors.message",
     "category": "errors",
@@ -7776,6 +8072,118 @@
     "line": 55
   },
   {
+    "original": "• `/ad_provider_enable <id>` - 啟用\\n",
+    "key": "admin.message35",
+    "category": "admin",
+    "confidence": 0.8,
+    "file": "src/telegram/handlers/admin_ad_config.ts",
+    "line": 74
+  },
+  {
+    "original": "• `/ad_provider_disable <id>` - 停用\\n",
+    "key": "admin.message36",
+    "category": "admin",
+    "confidence": 0.8,
+    "file": "src/telegram/handlers/admin_ad_config.ts",
+    "line": 75
+  },
+  {
+    "original": "• `/ad_provider_priority <id> <priority>` - 設置優先級",
+    "key": "admin.message37",
+    "category": "admin",
+    "confidence": 0.8,
+    "file": "src/telegram/handlers/admin_ad_config.ts",
+    "line": 76
+  },
+  {
+    "original": "• `/official_ad_enable <id>` - 啟用\\n",
+    "key": "admin.message38",
+    "category": "admin",
+    "confidence": 0.8,
+    "file": "src/telegram/handlers/admin_ad_config.ts",
+    "line": 266
+  },
+  {
+    "original": "• `/official_ad_disable <id>` - 停用\\n",
+    "key": "admin.message39",
+    "category": "admin",
+    "confidence": 0.8,
+    "file": "src/telegram/handlers/admin_ad_config.ts",
+    "line": 267
+  },
+  {
+    "original": "• `/ad_stats <id>` - 查看詳細統計",
+    "key": "admin.stats2",
+    "category": "admin",
+    "confidence": 0.8,
+    "file": "src/telegram/handlers/admin_ad_config.ts",
+    "line": 268
+  },
+  {
+    "original": "`/admin_add 123456789` - 添加為普通管理員\\n\\n",
+    "key": "admin.admin5",
+    "category": "admin",
+    "confidence": 0.8,
+    "file": "src/telegram/handlers/admin_ban.ts",
+    "line": 376
+  },
+  {
+    "original": "未設定",
+    "key": "admin.settings4",
+    "category": "admin",
+    "confidence": 0.8,
+    "file": "src/telegram/handlers/admin_ban.ts",
+    "line": 416
+  },
+  {
+    "original": "`/admin_remove 123456789` - 移除普通管理員\\n\\n",
+    "key": "admin.admin6",
+    "category": "admin",
+    "confidence": 0.8,
+    "file": "src/telegram/handlers/admin_ban.ts",
+    "line": 453
+  },
+  {
+    "original": "未設定",
+    "key": "admin.settings5",
+    "category": "admin",
+    "confidence": 0.8,
+    "file": "src/telegram/handlers/admin_ban.ts",
+    "line": 488
+  },
+  {
+    "original": "未設定",
+    "key": "admin.settings6",
+    "category": "admin",
+    "confidence": 0.8,
+    "file": "src/telegram/handlers/admin_diagnose_avatar.ts",
+    "line": 96
+  },
+  {
+    "original": "✅ 是",
+    "key": "success.success.short9",
+    "category": "success",
+    "confidence": 0.8,
+    "file": "src/telegram/handlers/admin_diagnose_avatar.ts",
+    "line": 98
+  },
+  {
+    "original": "❌ 否",
+    "key": "errors.error.short8",
+    "category": "errors",
+    "confidence": 0.8,
+    "file": "src/telegram/handlers/admin_diagnose_avatar.ts",
+    "line": 98
+  },
+  {
+    "original": "• 更新時間：${new Date(post.updated_at).toLocaleString('zh-TW', { month: '2-digit', day: '2-digit', hour:",
+    "key": "admin.message40",
+    "category": "admin",
+    "confidence": 0.8,
+    "file": "src/telegram/handlers/admin_diagnose_avatar.ts",
+    "line": 124
+  },
+  {
     "original": "https://t.me/share/url?url=https://t.me/${botUsername}?start=invite_${inviteCode}&text=來 XunNi 一起丟漂流瓶吧！🍾 使用我的邀請碼加入，我們都能獲得更多配額！",
     "key": "menu.message",
     "category": "menu",
@@ -7921,7 +8329,7 @@
   },
   {
     "original": "✅ 正在加載...",
-    "key": "success.success.short9",
+    "key": "success.success.short10",
     "category": "success",
     "confidence": 0.8,
     "file": "src/telegram/handlers/menu.ts",
@@ -7942,6 +8350,46 @@
     "confidence": 0.8,
     "file": "src/telegram/handlers/menu.ts",
     "line": 219
+  },
+  {
+    "original": "VIP 會員 💎",
+    "key": "menu.vip2",
+    "category": "menu",
+    "confidence": 0.8,
+    "file": "src/telegram/handlers/menu.ts",
+    "line": 57
+  },
+  {
+    "original": "免費會員",
+    "key": "menu.short",
+    "category": "menu",
+    "confidence": 0.8,
+    "file": "src/telegram/handlers/menu.ts",
+    "line": 57
+  },
+  {
+    "original": "未設定",
+    "key": "menu.settings3",
+    "category": "menu",
+    "confidence": 0.8,
+    "file": "src/telegram/handlers/menu.ts",
+    "line": 58
+  },
+  {
+    "original": "未設定",
+    "key": "menu.settings4",
+    "category": "menu",
+    "confidence": 0.8,
+    "file": "src/telegram/handlers/menu.ts",
+    "line": 59
+  },
+  {
+    "original": "https://t.me/share/url?url=https://t.me/${botUsername}?start=invite_${inviteCode}&text=來 XunNi 一起丟漂流",
+    "key": "menu.message2",
+    "category": "menu",
+    "confidence": 0.8,
+    "file": "src/telegram/handlers/menu.ts",
+    "line": 170
   },
   {
     "original": "https://t.me/share/url?url=https://t.me/${botUsername}?start=invite_${inviteCode}&text=來 XunNi 一起丟漂流瓶吧！🍾 使用我的邀請碼：${inviteCode}",
@@ -8190,6 +8638,94 @@
     "confidence": 0.8,
     "file": "src/telegram/handlers/profile.ts",
     "line": 107
+  },
+  {
+    "original": "未設定",
+    "key": "profile.settings",
+    "category": "profile",
+    "confidence": 0.8,
+    "file": "src/telegram/handlers/profile.ts",
+    "line": 44
+  },
+  {
+    "original": "未設定",
+    "key": "profile.settings2",
+    "category": "profile",
+    "confidence": 0.8,
+    "file": "src/telegram/handlers/profile.ts",
+    "line": 45
+  },
+  {
+    "original": "未設定",
+    "key": "profile.settings3",
+    "category": "profile",
+    "confidence": 0.8,
+    "file": "src/telegram/handlers/profile.ts",
+    "line": 46
+  },
+  {
+    "original": "免費會員",
+    "key": "profile.short2",
+    "category": "profile",
+    "confidence": 0.8,
+    "file": "src/telegram/handlers/profile.ts",
+    "line": 55
+  },
+  {
+    "original": "未設定",
+    "key": "profile.settings4",
+    "category": "profile",
+    "confidence": 0.8,
+    "file": "src/telegram/handlers/profile.ts",
+    "line": 56
+  },
+  {
+    "original": "未設定",
+    "key": "profile.settings5",
+    "category": "profile",
+    "confidence": 0.8,
+    "file": "src/telegram/handlers/profile.ts",
+    "line": 61
+  },
+  {
+    "original": "⚠️ 已達免費用戶邀請上限，升級 VIP 可解鎖 100 人上限！",
+    "key": "warnings.warning.vip",
+    "category": "warnings",
+    "confidence": 0.8,
+    "file": "src/telegram/handlers/profile.ts",
+    "line": 95
+  },
+  {
+    "original": "https://t.me/share/url?url=https://t.me/${botUsername}?start=invite_${inviteCode}&text=來 XunNi 一起丟漂流",
+    "key": "profile.message7",
+    "category": "profile",
+    "confidence": 0.8,
+    "file": "src/telegram/handlers/profile.ts",
+    "line": 105
+  },
+  {
+    "original": "未設定",
+    "key": "profile.settings6",
+    "category": "profile",
+    "confidence": 0.8,
+    "file": "src/telegram/handlers/profile.ts",
+    "line": 143
+  },
+  {
+    "original": "未設定",
+    "key": "profile.settings7",
+    "category": "profile",
+    "confidence": 0.8,
+    "file": "src/telegram/handlers/profile.ts",
+    "line": 145
+  },
+  {
+    "original": "未設定",
+    "key": "profile.settings8",
+    "category": "profile",
+    "confidence": 0.8,
+    "file": "src/telegram/handlers/profile.ts",
+    "line": 147
   },
   {
     "original": "• 星座：${selectedZodiac.length > 0 ? selectedZodiac.map((z) => ZODIAC_NAMES[z]).join(', ') : '無限制'}\\n",
@@ -8737,7 +9273,7 @@
   },
   {
     "original": "⚠️ 此功能僅限 VIP 會員使用",
-    "key": "warnings.warning.vip",
+    "key": "warnings.warning.vip2",
     "category": "warnings",
     "confidence": 0.8,
     "file": "src/telegram/handlers/throw_advanced.ts",
@@ -9137,7 +9673,7 @@
   },
   {
     "original": "✅ 🌈 任何人",
-    "key": "success.success.short10",
+    "key": "success.success.short11",
     "category": "success",
     "confidence": 0.8,
     "file": "src/telegram/handlers/throw_advanced.ts",
@@ -9177,7 +9713,7 @@
   },
   {
     "original": "✅ 👨 男生",
-    "key": "success.success.short11",
+    "key": "success.success.short12",
     "category": "success",
     "confidence": 0.8,
     "file": "src/telegram/handlers/throw_advanced.ts",
@@ -9185,7 +9721,7 @@
   },
   {
     "original": "✅ 👩 女生",
-    "key": "success.success.short12",
+    "key": "success.success.short13",
     "category": "success",
     "confidence": 0.8,
     "file": "src/telegram/handlers/throw_advanced.ts",
@@ -9209,7 +9745,7 @@
   },
   {
     "original": "✅ 繼續編輯",
-    "key": "success.success.short13",
+    "key": "success.success.short14",
     "category": "success",
     "confidence": 0.8,
     "file": "src/telegram/handlers/throw.ts",
@@ -9366,6 +9902,70 @@
     "confidence": 0.8,
     "file": "src/telegram/handlers/throw.ts",
     "line": 82
+  },
+  {
+    "original": "未設定",
+    "key": "bottle.throw.settings5",
+    "category": "bottle.throw",
+    "confidence": 0.8,
+    "file": "src/telegram/handlers/throw.ts",
+    "line": 556
+  },
+  {
+    "original": "未設定",
+    "key": "bottle.throw.settings6",
+    "category": "bottle.throw",
+    "confidence": 0.8,
+    "file": "src/telegram/handlers/throw.ts",
+    "line": 557
+  },
+  {
+    "original": "未設定",
+    "key": "bottle.throw.settings7",
+    "category": "bottle.throw",
+    "confidence": 0.8,
+    "file": "src/telegram/handlers/throw.ts",
+    "line": 573
+  },
+  {
+    "original": "未設定",
+    "key": "bottle.throw.settings8",
+    "category": "bottle.throw",
+    "confidence": 0.8,
+    "file": "src/telegram/handlers/throw.ts",
+    "line": 574
+  },
+  {
+    "original": "無限制",
+    "key": "bottle.throw.short20",
+    "category": "bottle.throw",
+    "confidence": 0.8,
+    "file": "src/telegram/handlers/throw_advanced.ts",
+    "line": 474
+  },
+  {
+    "original": "無限制",
+    "key": "bottle.throw.short21",
+    "category": "bottle.throw",
+    "confidence": 0.8,
+    "file": "src/telegram/handlers/throw_advanced.ts",
+    "line": 475
+  },
+  {
+    "original": "無限制",
+    "key": "bottle.throw.short22",
+    "category": "bottle.throw",
+    "confidence": 0.8,
+    "file": "src/telegram/handlers/throw_advanced.ts",
+    "line": 529
+  },
+  {
+    "original": "無限制",
+    "key": "bottle.throw.short23",
+    "category": "bottle.throw",
+    "confidence": 0.8,
+    "file": "src/telegram/handlers/throw_advanced.ts",
+    "line": 530
   },
   {
     "original": "👤 性別：${otherUser.gender === 'male' ? '男' : otherUser.gender === 'female' ? '女' : '未設定'}\\n",
@@ -9905,7 +10505,7 @@
   },
   {
     "original": "❌ 發生錯誤",
-    "key": "errors.error.short8",
+    "key": "errors.error.short9",
     "category": "errors",
     "confidence": 0.8,
     "file": "src/telegram/handlers/conversation_actions.ts",
@@ -9921,7 +10521,7 @@
   },
   {
     "original": "✅ 確定封鎖",
-    "key": "success.success.short14",
+    "key": "success.success.short15",
     "category": "success",
     "confidence": 0.8,
     "file": "src/telegram/handlers/conversation_actions.ts",
@@ -9945,7 +10545,7 @@
   },
   {
     "original": "✅ 已封鎖",
-    "key": "success.success.short15",
+    "key": "success.success.short16",
     "category": "success",
     "confidence": 0.8,
     "file": "src/telegram/handlers/conversation_actions.ts",
@@ -9982,6 +10582,38 @@
     "confidence": 0.8,
     "file": "src/telegram/handlers/chats.ts",
     "line": 141
+  },
+  {
+    "original": "未設定",
+    "key": "conversation.settings2",
+    "category": "conversation",
+    "confidence": 0.8,
+    "file": "src/telegram/handlers/conversation_actions.ts",
+    "line": 73
+  },
+  {
+    "original": "未設定",
+    "key": "conversation.settings3",
+    "category": "conversation",
+    "confidence": 0.8,
+    "file": "src/telegram/handlers/conversation_actions.ts",
+    "line": 80
+  },
+  {
+    "original": "未設定",
+    "key": "conversation.settings4",
+    "category": "conversation",
+    "confidence": 0.8,
+    "file": "src/telegram/handlers/conversation_actions.ts",
+    "line": 96
+  },
+  {
+    "original": "未設定",
+    "key": "conversation.settings5",
+    "category": "conversation",
+    "confidence": 0.8,
+    "file": "src/telegram/handlers/conversation_actions.ts",
+    "line": 99
   },
   {
     "original": "📝 瓶子內容：${bottle.content.substring(0, 50)}${bottle.content.length > 50 ? '...' : ''}\\n\\n",
@@ -10489,7 +11121,7 @@
   },
   {
     "original": "⚠️ **VIP 今天到期**\\n\\n",
-    "key": "warnings.warning.vip2",
+    "key": "warnings.warning.vip3",
     "category": "warnings",
     "confidence": 0.8,
     "file": "src/services/vip_subscription.ts",
@@ -10889,7 +11521,7 @@
   },
   {
     "original": "❌ 權限不足",
-    "key": "errors.error.short9",
+    "key": "errors.error.short10",
     "category": "errors",
     "confidence": 0.8,
     "file": "src/telegram/handlers/vip_refund.ts",
@@ -10897,7 +11529,7 @@
   },
   {
     "original": "❌ 稍後再說",
-    "key": "errors.error.short10",
+    "key": "errors.error.short11",
     "category": "errors",
     "confidence": 0.8,
     "file": "src/services/vip_subscription.ts",
@@ -11512,6 +12144,86 @@
     "line": 524
   },
   {
+    "original": "未設定",
+    "key": "bottle.catch.settings2",
+    "category": "bottle.catch",
+    "confidence": 0.8,
+    "file": "src/telegram/handlers/catch.ts",
+    "line": 190
+  },
+  {
+    "original": "未設定",
+    "key": "bottle.catch.settings3",
+    "category": "bottle.catch",
+    "confidence": 0.8,
+    "file": "src/telegram/handlers/catch.ts",
+    "line": 265
+  },
+  {
+    "original": "未設定",
+    "key": "bottle.catch.settings4",
+    "category": "bottle.catch",
+    "confidence": 0.8,
+    "file": "src/telegram/handlers/catch.ts",
+    "line": 266
+  },
+  {
+    "original": "未設定",
+    "key": "bottle.catch.settings5",
+    "category": "bottle.catch",
+    "confidence": 0.8,
+    "file": "src/telegram/handlers/catch.ts",
+    "line": 267
+  },
+  {
+    "original": "未設定",
+    "key": "bottle.catch.settings6",
+    "category": "bottle.catch",
+    "confidence": 0.8,
+    "file": "src/telegram/handlers/catch.ts",
+    "line": 279
+  },
+  {
+    "original": "未設定",
+    "key": "bottle.catch.settings7",
+    "category": "bottle.catch",
+    "confidence": 0.8,
+    "file": "src/telegram/handlers/catch.ts",
+    "line": 280
+  },
+  {
+    "original": "未設定",
+    "key": "bottle.catch.settings8",
+    "category": "bottle.catch",
+    "confidence": 0.8,
+    "file": "src/telegram/handlers/catch.ts",
+    "line": 281
+  },
+  {
+    "original": "未設定",
+    "key": "bottle.catch.settings9",
+    "category": "bottle.catch",
+    "confidence": 0.8,
+    "file": "src/telegram/handlers/catch.ts",
+    "line": 431
+  },
+  {
+    "original": "未設定",
+    "key": "bottle.catch.settings10",
+    "category": "bottle.catch",
+    "confidence": 0.8,
+    "file": "src/telegram/handlers/catch.ts",
+    "line": 521
+  },
+  {
+    "original": "未設定",
+    "key": "bottle.catch.settings11",
+    "category": "bottle.catch",
+    "confidence": 0.8,
+    "file": "src/telegram/handlers/catch.ts",
+    "line": 524
+  },
+  {
     "original": "📅 **註冊時間**：${new Date(user.created_at).toLocaleDateString('zh-TW')}\\n",
     "key": "stats.register",
     "category": "stats",
@@ -11878,6 +12590,30 @@
     "confidence": 0.8,
     "file": "src/domain/stats.ts",
     "line": 138
+  },
+  {
+    "original": "VIP 會員 💎",
+    "key": "stats.vip3",
+    "category": "stats",
+    "confidence": 0.8,
+    "file": "src/telegram/handlers/stats.ts",
+    "line": 81
+  },
+  {
+    "original": "免費會員",
+    "key": "stats.short",
+    "category": "stats",
+    "confidence": 0.8,
+    "file": "src/telegram/handlers/stats.ts",
+    "line": 81
+  },
+  {
+    "original": "未設定",
+    "key": "stats.settings2",
+    "category": "stats",
+    "confidence": 0.8,
+    "file": "src/telegram/handlers/stats.ts",
+    "line": 88
   },
   {
     "original": "• 性別：${updatedUser.gender === 'male' ? '男性' : '女性'}\\n",
@@ -12513,7 +13249,7 @@
   },
   {
     "original": "✅ 我已閱讀並同意",
-    "key": "success.success.short16",
+    "key": "success.success.short17",
     "category": "success",
     "confidence": 0.8,
     "file": "src/telegram/handlers/onboarding_callback.ts",
@@ -12593,7 +13329,7 @@
   },
   {
     "original": "❌ 重新選擇",
-    "key": "errors.error.short11",
+    "key": "errors.error.short12",
     "category": "errors",
     "confidence": 0.8,
     "file": "src/telegram/handlers/onboarding_callback.ts",
@@ -12609,7 +13345,7 @@
   },
   {
     "original": "❌ 重新輸入",
-    "key": "errors.error.short12",
+    "key": "errors.error.short13",
     "category": "errors",
     "confidence": 0.8,
     "file": "src/telegram/handlers/onboarding_input.ts",
@@ -12625,7 +13361,7 @@
   },
   {
     "original": "✅ 已跳過",
-    "key": "success.success.short17",
+    "key": "success.success.short18",
     "category": "success",
     "confidence": 0.8,
     "file": "src/telegram/handlers/onboarding_callback.ts",
@@ -14097,7 +14833,7 @@
   },
   {
     "original": "✅ 領取獎勵",
-    "key": "success.success.short18",
+    "key": "success.success.short19",
     "category": "success",
     "confidence": 0.8,
     "file": "src/telegram/handlers/official_ad.ts",
@@ -14121,7 +14857,7 @@
   },
   {
     "original": "❌ 關閉",
-    "key": "errors.error.short13",
+    "key": "errors.error.short14",
     "category": "errors",
     "confidence": 0.8,
     "file": "src/telegram/handlers/official_ad.ts",
@@ -14134,5 +14870,645 @@
     "confidence": 0.8,
     "file": "src/telegram/handlers/tutorial.ts",
     "line": 120
+  },
+  {
+    "original": "💡 繼續觀看廣告可獲得更多額度！",
+    "key": "ad.ad",
+    "category": "ad",
+    "confidence": 0.8,
+    "file": "src/telegram/handlers/ad_reward.ts",
+    "line": 389
+  },
+  {
+    "original": "✅ 今日廣告已達上限",
+    "key": "success.success.ad7",
+    "category": "success",
+    "confidence": 0.8,
+    "file": "src/telegram/handlers/ad_reward.ts",
+    "line": 389
+  },
+  {
+    "original": "待處理",
+    "key": "broadcast.short",
+    "category": "broadcast",
+    "confidence": 0.8,
+    "file": "src/telegram/handlers/broadcast.ts",
+    "line": 215
+  },
+  {
+    "original": "管理員手動取消",
+    "key": "broadcast.admin",
+    "category": "broadcast",
+    "confidence": 0.8,
+    "file": "src/telegram/handlers/broadcast.ts",
+    "line": 286
+  },
+  {
+    "original": "管理員手動清理（廣播卡住）",
+    "key": "broadcast.admin2",
+    "category": "broadcast",
+    "confidence": 0.8,
+    "file": "src/telegram/handlers/broadcast.ts",
+    "line": 460
+  },
+  {
+    "original": "等待中",
+    "key": "broadcast.short2",
+    "category": "broadcast",
+    "confidence": 0.8,
+    "file": "src/domain/broadcast.ts",
+    "line": 70
+  },
+  {
+    "original": "✅ 維護中",
+    "key": "success.success.short20",
+    "category": "success",
+    "confidence": 0.8,
+    "file": "src/domain/maintenance.ts",
+    "line": 92
+  },
+  {
+    "original": "❌ 未啟用",
+    "key": "errors.error.short15",
+    "category": "errors",
+    "confidence": 0.8,
+    "file": "src/domain/maintenance.ts",
+    "line": 92
+  },
+  {
+    "original": "意大利",
+    "key": "countries.short",
+    "category": "countries",
+    "confidence": 0.8,
+    "file": "src/utils/country_flag.ts",
+    "line": 219
+  },
+  {
+    "original": "西班牙",
+    "key": "countries.short2",
+    "category": "countries",
+    "confidence": 0.8,
+    "file": "src/utils/country_flag.ts",
+    "line": 220
+  },
+  {
+    "original": "葡萄牙",
+    "key": "countries.short3",
+    "category": "countries",
+    "confidence": 0.8,
+    "file": "src/utils/country_flag.ts",
+    "line": 221
+  },
+  {
+    "original": "墨西哥",
+    "key": "countries.short4",
+    "category": "countries",
+    "confidence": 0.8,
+    "file": "src/utils/country_flag.ts",
+    "line": 223
+  },
+  {
+    "original": "阿根廷",
+    "key": "countries.short5",
+    "category": "countries",
+    "confidence": 0.8,
+    "file": "src/utils/country_flag.ts",
+    "line": 224
+  },
+  {
+    "original": "哥倫比亞",
+    "key": "countries.short6",
+    "category": "countries",
+    "confidence": 0.8,
+    "file": "src/utils/country_flag.ts",
+    "line": 226
+  },
+  {
+    "original": "俄羅斯",
+    "key": "countries.short7",
+    "category": "countries",
+    "confidence": 0.8,
+    "file": "src/utils/country_flag.ts",
+    "line": 227
+  },
+  {
+    "original": "烏克蘭",
+    "key": "countries.short8",
+    "category": "countries",
+    "confidence": 0.8,
+    "file": "src/utils/country_flag.ts",
+    "line": 228
+  },
+  {
+    "original": "土耳其",
+    "key": "countries.short9",
+    "category": "countries",
+    "confidence": 0.8,
+    "file": "src/utils/country_flag.ts",
+    "line": 230
+  },
+  {
+    "original": "沙特阿拉伯",
+    "key": "countries.short10",
+    "category": "countries",
+    "confidence": 0.8,
+    "file": "src/utils/country_flag.ts",
+    "line": 231
+  },
+  {
+    "original": "阿聯酋",
+    "key": "countries.short11",
+    "category": "countries",
+    "confidence": 0.8,
+    "file": "src/utils/country_flag.ts",
+    "line": 232
+  },
+  {
+    "original": "菲律賓",
+    "key": "countries.short12",
+    "category": "countries",
+    "confidence": 0.8,
+    "file": "src/utils/country_flag.ts",
+    "line": 238
+  },
+  {
+    "original": "巴基斯坦",
+    "key": "countries.short13",
+    "category": "countries",
+    "confidence": 0.8,
+    "file": "src/utils/country_flag.ts",
+    "line": 240
+  },
+  {
+    "original": "孟加拉",
+    "key": "countries.short14",
+    "category": "countries",
+    "confidence": 0.8,
+    "file": "src/utils/country_flag.ts",
+    "line": 241
+  },
+  {
+    "original": "以色列",
+    "key": "countries.short15",
+    "category": "countries",
+    "confidence": 0.8,
+    "file": "src/utils/country_flag.ts",
+    "line": 246
+  },
+  {
+    "original": "伊拉克",
+    "key": "countries.short16",
+    "category": "countries",
+    "confidence": 0.8,
+    "file": "src/utils/country_flag.ts",
+    "line": 248
+  },
+  {
+    "original": "奧地利",
+    "key": "countries.short17",
+    "category": "countries",
+    "confidence": 0.8,
+    "file": "src/utils/country_flag.ts",
+    "line": 249
+  },
+  {
+    "original": "比利時",
+    "key": "countries.short18",
+    "category": "countries",
+    "confidence": 0.8,
+    "file": "src/utils/country_flag.ts",
+    "line": 250
+  },
+  {
+    "original": "愛爾蘭",
+    "key": "countries.short19",
+    "category": "countries",
+    "confidence": 0.8,
+    "file": "src/utils/country_flag.ts",
+    "line": 259
+  },
+  {
+    "original": "羅馬尼亞",
+    "key": "countries.short20",
+    "category": "countries",
+    "confidence": 0.8,
+    "file": "src/utils/country_flag.ts",
+    "line": 260
+  },
+  {
+    "original": "匈牙利",
+    "key": "countries.short21",
+    "category": "countries",
+    "confidence": 0.8,
+    "file": "src/utils/country_flag.ts",
+    "line": 261
+  },
+  {
+    "original": "保加利亞",
+    "key": "countries.short22",
+    "category": "countries",
+    "confidence": 0.8,
+    "file": "src/utils/country_flag.ts",
+    "line": 262
+  },
+  {
+    "original": "斯洛伐克",
+    "key": "countries.short23",
+    "category": "countries",
+    "confidence": 0.8,
+    "file": "src/utils/country_flag.ts",
+    "line": 263
+  },
+  {
+    "original": "克羅地亞",
+    "key": "countries.short24",
+    "category": "countries",
+    "confidence": 0.8,
+    "file": "src/utils/country_flag.ts",
+    "line": 264
+  },
+  {
+    "original": "塞爾維亞",
+    "key": "countries.short25",
+    "category": "countries",
+    "confidence": 0.8,
+    "file": "src/utils/country_flag.ts",
+    "line": 265
+  },
+  {
+    "original": "斯洛維尼亞",
+    "key": "countries.short26",
+    "category": "countries",
+    "confidence": 0.8,
+    "file": "src/utils/country_flag.ts",
+    "line": 266
+  },
+  {
+    "original": "立陶宛",
+    "key": "countries.short27",
+    "category": "countries",
+    "confidence": 0.8,
+    "file": "src/utils/country_flag.ts",
+    "line": 267
+  },
+  {
+    "original": "拉脫維亞",
+    "key": "countries.short28",
+    "category": "countries",
+    "confidence": 0.8,
+    "file": "src/utils/country_flag.ts",
+    "line": 268
+  },
+  {
+    "original": "愛沙尼亞",
+    "key": "countries.short29",
+    "category": "countries",
+    "confidence": 0.8,
+    "file": "src/utils/country_flag.ts",
+    "line": 269
+  },
+  {
+    "original": "馬爾他",
+    "key": "countries.short30",
+    "category": "countries",
+    "confidence": 0.8,
+    "file": "src/utils/country_flag.ts",
+    "line": 271
+  },
+  {
+    "original": "阿爾巴尼亞",
+    "key": "countries.short31",
+    "category": "countries",
+    "confidence": 0.8,
+    "file": "src/utils/country_flag.ts",
+    "line": 272
+  },
+  {
+    "original": "北馬其頓",
+    "key": "countries.short32",
+    "category": "countries",
+    "confidence": 0.8,
+    "file": "src/utils/country_flag.ts",
+    "line": 273
+  },
+  {
+    "original": "波斯尼亞",
+    "key": "countries.short33",
+    "category": "countries",
+    "confidence": 0.8,
+    "file": "src/utils/country_flag.ts",
+    "line": 274
+  },
+  {
+    "original": "喬治亞",
+    "key": "countries.short34",
+    "category": "countries",
+    "confidence": 0.8,
+    "file": "src/utils/country_flag.ts",
+    "line": 275
+  },
+  {
+    "original": "亞美尼亞",
+    "key": "countries.short35",
+    "category": "countries",
+    "confidence": 0.8,
+    "file": "src/utils/country_flag.ts",
+    "line": 276
+  },
+  {
+    "original": "亞塞拜然",
+    "key": "countries.short36",
+    "category": "countries",
+    "confidence": 0.8,
+    "file": "src/utils/country_flag.ts",
+    "line": 277
+  },
+  {
+    "original": "哈薩克",
+    "key": "countries.short37",
+    "category": "countries",
+    "confidence": 0.8,
+    "file": "src/utils/country_flag.ts",
+    "line": 278
+  },
+  {
+    "original": "烏茲別克",
+    "key": "countries.short38",
+    "category": "countries",
+    "confidence": 0.8,
+    "file": "src/utils/country_flag.ts",
+    "line": 279
+  },
+  {
+    "original": "尼泊爾",
+    "key": "countries.short39",
+    "category": "countries",
+    "confidence": 0.8,
+    "file": "src/utils/country_flag.ts",
+    "line": 281
+  },
+  {
+    "original": "斯里蘭卡",
+    "key": "countries.short40",
+    "category": "countries",
+    "confidence": 0.8,
+    "file": "src/utils/country_flag.ts",
+    "line": 282
+  },
+  {
+    "original": "柬埔寨",
+    "key": "countries.short41",
+    "category": "countries",
+    "confidence": 0.8,
+    "file": "src/utils/country_flag.ts",
+    "line": 284
+  },
+  {
+    "original": "坦尚尼亞",
+    "key": "countries.short42",
+    "category": "countries",
+    "confidence": 0.8,
+    "file": "src/utils/country_flag.ts",
+    "line": 287
+  },
+  {
+    "original": "衣索比亞",
+    "key": "countries.short43",
+    "category": "countries",
+    "confidence": 0.8,
+    "file": "src/utils/country_flag.ts",
+    "line": 288
+  },
+  {
+    "original": "奈及利亞",
+    "key": "countries.short44",
+    "category": "countries",
+    "confidence": 0.8,
+    "file": "src/utils/country_flag.ts",
+    "line": 289
+  },
+  {
+    "original": "辛巴威",
+    "key": "countries.short45",
+    "category": "countries",
+    "confidence": 0.8,
+    "file": "src/utils/country_flag.ts",
+    "line": 291
+  },
+  {
+    "original": "烏干達",
+    "key": "countries.short46",
+    "category": "countries",
+    "confidence": 0.8,
+    "file": "src/utils/country_flag.ts",
+    "line": 292
+  },
+  {
+    "original": "盧安達",
+    "key": "countries.short47",
+    "category": "countries",
+    "confidence": 0.8,
+    "file": "src/utils/country_flag.ts",
+    "line": 293
+  },
+  {
+    "original": "塞內加爾",
+    "key": "countries.short48",
+    "category": "countries",
+    "confidence": 0.8,
+    "file": "src/utils/country_flag.ts",
+    "line": 294
+  },
+  {
+    "original": "象牙海岸",
+    "key": "countries.short49",
+    "category": "countries",
+    "confidence": 0.8,
+    "file": "src/utils/country_flag.ts",
+    "line": 295
+  },
+  {
+    "original": "喀麥隆",
+    "key": "countries.short50",
+    "category": "countries",
+    "confidence": 0.8,
+    "file": "src/utils/country_flag.ts",
+    "line": 296
+  },
+  {
+    "original": "摩洛哥",
+    "key": "countries.short51",
+    "category": "countries",
+    "confidence": 0.8,
+    "file": "src/utils/country_flag.ts",
+    "line": 297
+  },
+  {
+    "original": "阿爾及利亞",
+    "key": "countries.short52",
+    "category": "countries",
+    "confidence": 0.8,
+    "file": "src/utils/country_flag.ts",
+    "line": 298
+  },
+  {
+    "original": "突尼西亞",
+    "key": "countries.short53",
+    "category": "countries",
+    "confidence": 0.8,
+    "file": "src/utils/country_flag.ts",
+    "line": 299
+  },
+  {
+    "original": "利比亞",
+    "key": "countries.short54",
+    "category": "countries",
+    "confidence": 0.8,
+    "file": "src/utils/country_flag.ts",
+    "line": 300
+  },
+  {
+    "original": "黎巴嫩",
+    "key": "countries.short55",
+    "category": "countries",
+    "confidence": 0.8,
+    "file": "src/utils/country_flag.ts",
+    "line": 303
+  },
+  {
+    "original": "敘利亞",
+    "key": "countries.short56",
+    "category": "countries",
+    "confidence": 0.8,
+    "file": "src/utils/country_flag.ts",
+    "line": 304
+  },
+  {
+    "original": "科威特",
+    "key": "countries.short57",
+    "category": "countries",
+    "confidence": 0.8,
+    "file": "src/utils/country_flag.ts",
+    "line": 307
+  },
+  {
+    "original": "委內瑞拉",
+    "key": "countries.short58",
+    "category": "countries",
+    "confidence": 0.8,
+    "file": "src/utils/country_flag.ts",
+    "line": 311
+  },
+  {
+    "original": "厄瓜多",
+    "key": "countries.short59",
+    "category": "countries",
+    "confidence": 0.8,
+    "file": "src/utils/country_flag.ts",
+    "line": 312
+  },
+  {
+    "original": "玻利維亞",
+    "key": "countries.short60",
+    "category": "countries",
+    "confidence": 0.8,
+    "file": "src/utils/country_flag.ts",
+    "line": 313
+  },
+  {
+    "original": "巴拉圭",
+    "key": "countries.short61",
+    "category": "countries",
+    "confidence": 0.8,
+    "file": "src/utils/country_flag.ts",
+    "line": 314
+  },
+  {
+    "original": "烏拉圭",
+    "key": "countries.short62",
+    "category": "countries",
+    "confidence": 0.8,
+    "file": "src/utils/country_flag.ts",
+    "line": 315
+  },
+  {
+    "original": "哥斯大黎加",
+    "key": "countries.short63",
+    "category": "countries",
+    "confidence": 0.8,
+    "file": "src/utils/country_flag.ts",
+    "line": 316
+  },
+  {
+    "original": "巴拿馬",
+    "key": "countries.short64",
+    "category": "countries",
+    "confidence": 0.8,
+    "file": "src/utils/country_flag.ts",
+    "line": 317
+  },
+  {
+    "original": "瓜地馬拉",
+    "key": "countries.short65",
+    "category": "countries",
+    "confidence": 0.8,
+    "file": "src/utils/country_flag.ts",
+    "line": 318
+  },
+  {
+    "original": "宏都拉斯",
+    "key": "countries.short66",
+    "category": "countries",
+    "confidence": 0.8,
+    "file": "src/utils/country_flag.ts",
+    "line": 319
+  },
+  {
+    "original": "薩爾瓦多",
+    "key": "countries.short67",
+    "category": "countries",
+    "confidence": 0.8,
+    "file": "src/utils/country_flag.ts",
+    "line": 320
+  },
+  {
+    "original": "尼加拉瓜",
+    "key": "countries.short68",
+    "category": "countries",
+    "confidence": 0.8,
+    "file": "src/utils/country_flag.ts",
+    "line": 321
+  },
+  {
+    "original": "多明尼加",
+    "key": "countries.short69",
+    "category": "countries",
+    "confidence": 0.8,
+    "file": "src/utils/country_flag.ts",
+    "line": 323
+  },
+  {
+    "original": "牙買加",
+    "key": "countries.short70",
+    "category": "countries",
+    "confidence": 0.8,
+    "file": "src/utils/country_flag.ts",
+    "line": 324
+  },
+  {
+    "original": "千里達",
+    "key": "countries.short71",
+    "category": "countries",
+    "confidence": 0.8,
+    "file": "src/utils/country_flag.ts",
+    "line": 325
+  },
+  {
+    "original": "巴貝多",
+    "key": "countries.short72",
+    "category": "countries",
+    "confidence": 0.8,
+    "file": "src/utils/country_flag.ts",
+    "line": 326
   }
 ]

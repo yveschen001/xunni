@@ -2,7 +2,7 @@
   "meta": {
     "extractedAt": "2025-11-22T16:27:29.755Z",
     "totalFiles": 177,
-    "totalContent": 1773,
+    "totalContent": 1945,
     "scannedDirs": [
       "src/telegram/handlers",
       "src/domain",
@@ -24,7 +24,9 @@
     "maxSegmentLength": 500,
     "mergedAt": "2025-11-22T16:30:27.980Z",
     "missedStringsAdded": 56,
-    "finalMergeAt": "2025-11-22T16:31:07.697Z"
+    "finalMergeAt": "2025-11-22T16:31:07.697Z",
+    "supplementedAt": "2025-11-22T23:22:27.040Z",
+    "supplementedCount": 172
   },
   "content": [
     {
@@ -15999,6 +16001,1554 @@
       "context": "remaining",
       "category": "common",
       "length": 2
+    },
+    {
+      "text": "💡 繼續觀看廣告可獲得更多額度！",
+      "file": "src/telegram/handlers/ad_reward.ts",
+      "line": 389,
+      "type": "message",
+      "context": "supplemented",
+      "category": "ad",
+      "length": 17
+    },
+    {
+      "text": "✅ 今日廣告已達上限",
+      "file": "src/telegram/handlers/ad_reward.ts",
+      "line": 389,
+      "type": "message",
+      "context": "supplemented",
+      "category": "ad",
+      "length": 10
+    },
+    {
+      "text": "• `/ad_provider_enable <id>` - 啟用\\n",
+      "file": "src/telegram/handlers/admin_ad_config.ts",
+      "line": 74,
+      "type": "message",
+      "context": "supplemented",
+      "category": "admin",
+      "length": 35
+    },
+    {
+      "text": "• `/ad_provider_disable <id>` - 停用\\n",
+      "file": "src/telegram/handlers/admin_ad_config.ts",
+      "line": 75,
+      "type": "message",
+      "context": "supplemented",
+      "category": "admin",
+      "length": 36
+    },
+    {
+      "text": "• `/ad_provider_priority <id> <priority>` - 設置優先級",
+      "file": "src/telegram/handlers/admin_ad_config.ts",
+      "line": 76,
+      "type": "message",
+      "context": "supplemented",
+      "category": "admin",
+      "length": 49
+    },
+    {
+      "text": "• `/official_ad_enable <id>` - 啟用\\n",
+      "file": "src/telegram/handlers/admin_ad_config.ts",
+      "line": 266,
+      "type": "message",
+      "context": "supplemented",
+      "category": "admin",
+      "length": 35
+    },
+    {
+      "text": "• `/official_ad_disable <id>` - 停用\\n",
+      "file": "src/telegram/handlers/admin_ad_config.ts",
+      "line": 267,
+      "type": "message",
+      "context": "supplemented",
+      "category": "admin",
+      "length": 36
+    },
+    {
+      "text": "• `/ad_stats <id>` - 查看詳細統計",
+      "file": "src/telegram/handlers/admin_ad_config.ts",
+      "line": 268,
+      "type": "message",
+      "context": "supplemented",
+      "category": "admin",
+      "length": 27
+    },
+    {
+      "text": "`/admin_add 123456789` - 添加為普通管理員\\n\\n",
+      "file": "src/telegram/handlers/admin_ban.ts",
+      "line": 376,
+      "type": "message",
+      "context": "supplemented",
+      "category": "admin",
+      "length": 37
+    },
+    {
+      "text": "未設定",
+      "file": "src/telegram/handlers/admin_ban.ts",
+      "line": 416,
+      "type": "label",
+      "context": "supplemented",
+      "category": "admin",
+      "length": 3
+    },
+    {
+      "text": "`/admin_remove 123456789` - 移除普通管理員\\n\\n",
+      "file": "src/telegram/handlers/admin_ban.ts",
+      "line": 453,
+      "type": "message",
+      "context": "supplemented",
+      "category": "admin",
+      "length": 39
+    },
+    {
+      "text": "未設定",
+      "file": "src/telegram/handlers/admin_ban.ts",
+      "line": 488,
+      "type": "label",
+      "context": "supplemented",
+      "category": "admin",
+      "length": 3
+    },
+    {
+      "text": "未設定",
+      "file": "src/telegram/handlers/admin_diagnose_avatar.ts",
+      "line": 96,
+      "type": "label",
+      "context": "supplemented",
+      "category": "admin",
+      "length": 3
+    },
+    {
+      "text": "✅ 是",
+      "file": "src/telegram/handlers/admin_diagnose_avatar.ts",
+      "line": 98,
+      "type": "label",
+      "context": "supplemented",
+      "category": "admin",
+      "length": 3
+    },
+    {
+      "text": "❌ 否",
+      "file": "src/telegram/handlers/admin_diagnose_avatar.ts",
+      "line": 98,
+      "type": "label",
+      "context": "supplemented",
+      "category": "admin",
+      "length": 3
+    },
+    {
+      "text": "• 更新時間：${new Date(post.updated_at).toLocaleString('zh-TW', { month: '2-digit', day: '2-digit', hour:",
+      "file": "src/telegram/handlers/admin_diagnose_avatar.ts",
+      "line": 124,
+      "type": "template",
+      "context": "supplemented",
+      "category": "admin",
+      "length": 100
+    },
+    {
+      "text": "待處理",
+      "file": "src/telegram/handlers/broadcast.ts",
+      "line": 215,
+      "type": "label",
+      "context": "supplemented",
+      "category": "broadcast",
+      "length": 3
+    },
+    {
+      "text": "管理員手動取消",
+      "file": "src/telegram/handlers/broadcast.ts",
+      "line": 286,
+      "type": "label",
+      "context": "supplemented",
+      "category": "broadcast",
+      "length": 7
+    },
+    {
+      "text": "管理員手動清理（廣播卡住）",
+      "file": "src/telegram/handlers/broadcast.ts",
+      "line": 460,
+      "type": "message",
+      "context": "supplemented",
+      "category": "broadcast",
+      "length": 13
+    },
+    {
+      "text": "未設定",
+      "file": "src/telegram/handlers/catch.ts",
+      "line": 190,
+      "type": "label",
+      "context": "supplemented",
+      "category": "bottle.catch",
+      "length": 3
+    },
+    {
+      "text": "未設定",
+      "file": "src/telegram/handlers/catch.ts",
+      "line": 265,
+      "type": "label",
+      "context": "supplemented",
+      "category": "bottle.catch",
+      "length": 3
+    },
+    {
+      "text": "未設定",
+      "file": "src/telegram/handlers/catch.ts",
+      "line": 266,
+      "type": "label",
+      "context": "supplemented",
+      "category": "bottle.catch",
+      "length": 3
+    },
+    {
+      "text": "未設定",
+      "file": "src/telegram/handlers/catch.ts",
+      "line": 267,
+      "type": "label",
+      "context": "supplemented",
+      "category": "bottle.catch",
+      "length": 3
+    },
+    {
+      "text": "未設定",
+      "file": "src/telegram/handlers/catch.ts",
+      "line": 279,
+      "type": "label",
+      "context": "supplemented",
+      "category": "bottle.catch",
+      "length": 3
+    },
+    {
+      "text": "未設定",
+      "file": "src/telegram/handlers/catch.ts",
+      "line": 280,
+      "type": "label",
+      "context": "supplemented",
+      "category": "bottle.catch",
+      "length": 3
+    },
+    {
+      "text": "未設定",
+      "file": "src/telegram/handlers/catch.ts",
+      "line": 281,
+      "type": "label",
+      "context": "supplemented",
+      "category": "bottle.catch",
+      "length": 3
+    },
+    {
+      "text": "未設定",
+      "file": "src/telegram/handlers/catch.ts",
+      "line": 431,
+      "type": "label",
+      "context": "supplemented",
+      "category": "bottle.catch",
+      "length": 3
+    },
+    {
+      "text": "未設定",
+      "file": "src/telegram/handlers/catch.ts",
+      "line": 521,
+      "type": "label",
+      "context": "supplemented",
+      "category": "bottle.catch",
+      "length": 3
+    },
+    {
+      "text": "未設定",
+      "file": "src/telegram/handlers/catch.ts",
+      "line": 524,
+      "type": "label",
+      "context": "supplemented",
+      "category": "bottle.catch",
+      "length": 3
+    },
+    {
+      "text": "未設定",
+      "file": "src/telegram/handlers/conversation_actions.ts",
+      "line": 73,
+      "type": "label",
+      "context": "supplemented",
+      "category": "conversation",
+      "length": 3
+    },
+    {
+      "text": "未設定",
+      "file": "src/telegram/handlers/conversation_actions.ts",
+      "line": 80,
+      "type": "label",
+      "context": "supplemented",
+      "category": "conversation",
+      "length": 3
+    },
+    {
+      "text": "未設定",
+      "file": "src/telegram/handlers/conversation_actions.ts",
+      "line": 96,
+      "type": "label",
+      "context": "supplemented",
+      "category": "conversation",
+      "length": 3
+    },
+    {
+      "text": "未設定",
+      "file": "src/telegram/handlers/conversation_actions.ts",
+      "line": 99,
+      "type": "label",
+      "context": "supplemented",
+      "category": "conversation",
+      "length": 3
+    },
+    {
+      "text": "未設置",
+      "file": "src/telegram/handlers/dev.ts",
+      "line": 277,
+      "type": "label",
+      "context": "supplemented",
+      "category": "common",
+      "length": 3
+    },
+    {
+      "text": "未生成",
+      "file": "src/telegram/handlers/dev.ts",
+      "line": 281,
+      "type": "label",
+      "context": "supplemented",
+      "category": "common",
+      "length": 3
+    },
+    {
+      "text": "測試用戶",
+      "file": "src/telegram/handlers/dev.ts",
+      "line": 543,
+      "type": "label",
+      "context": "supplemented",
+      "category": "common",
+      "length": 4
+    },
+    {
+      "text": "測試用戶",
+      "file": "src/telegram/handlers/dev.ts",
+      "line": 556,
+      "type": "label",
+      "context": "supplemented",
+      "category": "common",
+      "length": 4
+    },
+    {
+      "text": "未設定",
+      "file": "src/telegram/handlers/edit_profile.ts",
+      "line": 61,
+      "type": "label",
+      "context": "supplemented",
+      "category": "common",
+      "length": 3
+    },
+    {
+      "text": "未設定",
+      "file": "src/telegram/handlers/edit_profile.ts",
+      "line": 62,
+      "type": "label",
+      "context": "supplemented",
+      "category": "common",
+      "length": 3
+    },
+    {
+      "text": "未設定",
+      "file": "src/telegram/handlers/edit_profile.ts",
+      "line": 63,
+      "type": "label",
+      "context": "supplemented",
+      "category": "common",
+      "length": 3
+    },
+    {
+      "text": "未設定",
+      "file": "src/telegram/handlers/edit_profile.ts",
+      "line": 69,
+      "type": "label",
+      "context": "supplemented",
+      "category": "common",
+      "length": 3
+    },
+    {
+      "text": "未設定",
+      "file": "src/telegram/handlers/edit_profile.ts",
+      "line": 144,
+      "type": "label",
+      "context": "supplemented",
+      "category": "common",
+      "length": 3
+    },
+    {
+      "text": "未設定",
+      "file": "src/telegram/handlers/edit_profile.ts",
+      "line": 145,
+      "type": "label",
+      "context": "supplemented",
+      "category": "common",
+      "length": 3
+    },
+    {
+      "text": "未設定",
+      "file": "src/telegram/handlers/edit_profile.ts",
+      "line": 146,
+      "type": "label",
+      "context": "supplemented",
+      "category": "common",
+      "length": 3
+    },
+    {
+      "text": "未設定",
+      "file": "src/telegram/handlers/edit_profile.ts",
+      "line": 152,
+      "type": "label",
+      "context": "supplemented",
+      "category": "common",
+      "length": 3
+    },
+    {
+      "text": "未設定",
+      "file": "src/telegram/handlers/edit_profile.ts",
+      "line": 594,
+      "type": "label",
+      "context": "supplemented",
+      "category": "common",
+      "length": 3
+    },
+    {
+      "text": "未設定",
+      "file": "src/telegram/handlers/edit_profile.ts",
+      "line": 595,
+      "type": "label",
+      "context": "supplemented",
+      "category": "common",
+      "length": 3
+    },
+    {
+      "text": "未設定",
+      "file": "src/telegram/handlers/edit_profile.ts",
+      "line": 596,
+      "type": "label",
+      "context": "supplemented",
+      "category": "common",
+      "length": 3
+    },
+    {
+      "text": "未設定",
+      "file": "src/telegram/handlers/edit_profile.ts",
+      "line": 602,
+      "type": "label",
+      "context": "supplemented",
+      "category": "common",
+      "length": 3
+    },
+    {
+      "text": "結果更準確",
+      "file": "src/telegram/handlers/mbti_test.ts",
+      "line": 178,
+      "type": "label",
+      "context": "supplemented",
+      "category": "common",
+      "length": 5
+    },
+    {
+      "text": "VIP 會員 💎",
+      "file": "src/telegram/handlers/menu.ts",
+      "line": 57,
+      "type": "label",
+      "context": "supplemented",
+      "category": "menu",
+      "length": 9
+    },
+    {
+      "text": "免費會員",
+      "file": "src/telegram/handlers/menu.ts",
+      "line": 57,
+      "type": "label",
+      "context": "supplemented",
+      "category": "menu",
+      "length": 4
+    },
+    {
+      "text": "未設定",
+      "file": "src/telegram/handlers/menu.ts",
+      "line": 58,
+      "type": "label",
+      "context": "supplemented",
+      "category": "menu",
+      "length": 3
+    },
+    {
+      "text": "未設定",
+      "file": "src/telegram/handlers/menu.ts",
+      "line": 59,
+      "type": "label",
+      "context": "supplemented",
+      "category": "menu",
+      "length": 3
+    },
+    {
+      "text": "https://t.me/share/url?url=https://t.me/${botUsername}?start=invite_${inviteCode}&text=來 XunNi 一起丟漂流",
+      "file": "src/telegram/handlers/menu.ts",
+      "line": 170,
+      "type": "template",
+      "context": "supplemented",
+      "category": "menu",
+      "length": 100
+    },
+    {
+      "text": "未設定",
+      "file": "src/telegram/handlers/message_forward.ts",
+      "line": 323,
+      "type": "label",
+      "context": "supplemented",
+      "category": "common",
+      "length": 3
+    },
+    {
+      "text": "未設定",
+      "file": "src/telegram/handlers/message_forward.ts",
+      "line": 324,
+      "type": "label",
+      "context": "supplemented",
+      "category": "common",
+      "length": 3
+    },
+    {
+      "text": "未設定",
+      "file": "src/telegram/handlers/message_forward.ts",
+      "line": 325,
+      "type": "label",
+      "context": "supplemented",
+      "category": "common",
+      "length": 3
+    },
+    {
+      "text": "未設定",
+      "file": "src/telegram/handlers/message_forward.ts",
+      "line": 336,
+      "type": "label",
+      "context": "supplemented",
+      "category": "common",
+      "length": 3
+    },
+    {
+      "text": "未設定",
+      "file": "src/telegram/handlers/message_forward.ts",
+      "line": 337,
+      "type": "label",
+      "context": "supplemented",
+      "category": "common",
+      "length": 3
+    },
+    {
+      "text": "未設定",
+      "file": "src/telegram/handlers/message_forward.ts",
+      "line": 338,
+      "type": "label",
+      "context": "supplemented",
+      "category": "common",
+      "length": 3
+    },
+    {
+      "text": "💡 還有更多官方廣告可以觀看！",
+      "file": "src/telegram/handlers/official_ad.ts",
+      "line": 275,
+      "type": "message",
+      "context": "supplemented",
+      "category": "common",
+      "length": 16
+    },
+    {
+      "text": "未設定",
+      "file": "src/telegram/handlers/profile.ts",
+      "line": 44,
+      "type": "label",
+      "context": "supplemented",
+      "category": "profile",
+      "length": 3
+    },
+    {
+      "text": "未設定",
+      "file": "src/telegram/handlers/profile.ts",
+      "line": 45,
+      "type": "label",
+      "context": "supplemented",
+      "category": "profile",
+      "length": 3
+    },
+    {
+      "text": "未設定",
+      "file": "src/telegram/handlers/profile.ts",
+      "line": 46,
+      "type": "label",
+      "context": "supplemented",
+      "category": "profile",
+      "length": 3
+    },
+    {
+      "text": "免費會員",
+      "file": "src/telegram/handlers/profile.ts",
+      "line": 55,
+      "type": "label",
+      "context": "supplemented",
+      "category": "profile",
+      "length": 4
+    },
+    {
+      "text": "未設定",
+      "file": "src/telegram/handlers/profile.ts",
+      "line": 56,
+      "type": "label",
+      "context": "supplemented",
+      "category": "profile",
+      "length": 3
+    },
+    {
+      "text": "未設定",
+      "file": "src/telegram/handlers/profile.ts",
+      "line": 61,
+      "type": "label",
+      "context": "supplemented",
+      "category": "profile",
+      "length": 3
+    },
+    {
+      "text": "⚠️ 已達免費用戶邀請上限，升級 VIP 可解鎖 100 人上限！",
+      "file": "src/telegram/handlers/profile.ts",
+      "line": 95,
+      "type": "message",
+      "context": "supplemented",
+      "category": "profile",
+      "length": 33
+    },
+    {
+      "text": "https://t.me/share/url?url=https://t.me/${botUsername}?start=invite_${inviteCode}&text=來 XunNi 一起丟漂流",
+      "file": "src/telegram/handlers/profile.ts",
+      "line": 105,
+      "type": "template",
+      "context": "supplemented",
+      "category": "profile",
+      "length": 100
+    },
+    {
+      "text": "未設定",
+      "file": "src/telegram/handlers/profile.ts",
+      "line": 143,
+      "type": "label",
+      "context": "supplemented",
+      "category": "profile",
+      "length": 3
+    },
+    {
+      "text": "未設定",
+      "file": "src/telegram/handlers/profile.ts",
+      "line": 145,
+      "type": "label",
+      "context": "supplemented",
+      "category": "profile",
+      "length": 3
+    },
+    {
+      "text": "未設定",
+      "file": "src/telegram/handlers/profile.ts",
+      "line": 147,
+      "type": "label",
+      "context": "supplemented",
+      "category": "profile",
+      "length": 3
+    },
+    {
+      "text": "VIP 會員 💎",
+      "file": "src/telegram/handlers/stats.ts",
+      "line": 81,
+      "type": "label",
+      "context": "supplemented",
+      "category": "stats",
+      "length": 9
+    },
+    {
+      "text": "免費會員",
+      "file": "src/telegram/handlers/stats.ts",
+      "line": 81,
+      "type": "label",
+      "context": "supplemented",
+      "category": "stats",
+      "length": 4
+    },
+    {
+      "text": "未設定",
+      "file": "src/telegram/handlers/stats.ts",
+      "line": 88,
+      "type": "label",
+      "context": "supplemented",
+      "category": "stats",
+      "length": 3
+    },
+    {
+      "text": "未設定",
+      "file": "src/telegram/handlers/throw.ts",
+      "line": 556,
+      "type": "label",
+      "context": "supplemented",
+      "category": "bottle.throw",
+      "length": 3
+    },
+    {
+      "text": "未設定",
+      "file": "src/telegram/handlers/throw.ts",
+      "line": 557,
+      "type": "label",
+      "context": "supplemented",
+      "category": "bottle.throw",
+      "length": 3
+    },
+    {
+      "text": "未設定",
+      "file": "src/telegram/handlers/throw.ts",
+      "line": 573,
+      "type": "label",
+      "context": "supplemented",
+      "category": "bottle.throw",
+      "length": 3
+    },
+    {
+      "text": "未設定",
+      "file": "src/telegram/handlers/throw.ts",
+      "line": 574,
+      "type": "label",
+      "context": "supplemented",
+      "category": "bottle.throw",
+      "length": 3
+    },
+    {
+      "text": "無限制",
+      "file": "src/telegram/handlers/throw_advanced.ts",
+      "line": 474,
+      "type": "label",
+      "context": "supplemented",
+      "category": "bottle.throw",
+      "length": 3
+    },
+    {
+      "text": "無限制",
+      "file": "src/telegram/handlers/throw_advanced.ts",
+      "line": 475,
+      "type": "label",
+      "context": "supplemented",
+      "category": "bottle.throw",
+      "length": 3
+    },
+    {
+      "text": "無限制",
+      "file": "src/telegram/handlers/throw_advanced.ts",
+      "line": 529,
+      "type": "label",
+      "context": "supplemented",
+      "category": "bottle.throw",
+      "length": 3
+    },
+    {
+      "text": "無限制",
+      "file": "src/telegram/handlers/throw_advanced.ts",
+      "line": 530,
+      "type": "label",
+      "context": "supplemented",
+      "category": "bottle.throw",
+      "length": 3
+    },
+    {
+      "text": "需要關注",
+      "file": "src/domain/ad_provider.ts",
+      "line": 435,
+      "type": "label",
+      "context": "supplemented",
+      "category": "common",
+      "length": 4
+    },
+    {
+      "text": "未設定",
+      "file": "src/domain/blood_type.ts",
+      "line": 32,
+      "type": "label",
+      "context": "supplemented",
+      "category": "common",
+      "length": 3
+    },
+    {
+      "text": "等待中",
+      "file": "src/domain/broadcast.ts",
+      "line": 70,
+      "type": "label",
+      "context": "supplemented",
+      "category": "broadcast",
+      "length": 3
+    },
+    {
+      "text": "✅ 維護中",
+      "file": "src/domain/maintenance.ts",
+      "line": 92,
+      "type": "label",
+      "context": "supplemented",
+      "category": "maintenance",
+      "length": 5
+    },
+    {
+      "text": "❌ 未啟用",
+      "file": "src/domain/maintenance.ts",
+      "line": 92,
+      "type": "label",
+      "context": "supplemented",
+      "category": "maintenance",
+      "length": 5
+    },
+    {
+      "text": "加入群組",
+      "file": "src/domain/official_ad.ts",
+      "line": 346,
+      "type": "label",
+      "context": "supplemented",
+      "category": "common",
+      "length": 4
+    },
+    {
+      "text": "查看詳情",
+      "file": "src/domain/official_ad.ts",
+      "line": 350,
+      "type": "label",
+      "context": "supplemented",
+      "category": "common",
+      "length": 4
+    },
+    {
+      "text": "丟瓶流程",
+      "file": "src/domain/session.ts",
+      "line": 123,
+      "type": "label",
+      "context": "supplemented",
+      "category": "common",
+      "length": 4
+    },
+    {
+      "text": "撿瓶流程",
+      "file": "src/domain/session.ts",
+      "line": 127,
+      "type": "label",
+      "context": "supplemented",
+      "category": "common",
+      "length": 4
+    },
+    {
+      "text": "未設定",
+      "file": "src/services/refresh_conversation_history.ts",
+      "line": 112,
+      "type": "label",
+      "context": "supplemented",
+      "category": "common",
+      "length": 3
+    },
+    {
+      "text": "未設定",
+      "file": "src/services/refresh_conversation_history.ts",
+      "line": 113,
+      "type": "label",
+      "context": "supplemented",
+      "category": "common",
+      "length": 3
+    },
+    {
+      "text": "未設定",
+      "file": "src/services/refresh_conversation_history.ts",
+      "line": 114,
+      "type": "label",
+      "context": "supplemented",
+      "category": "common",
+      "length": 3
+    },
+    {
+      "text": "意大利",
+      "file": "src/utils/country_flag.ts",
+      "line": 219,
+      "type": "data",
+      "context": "supplemented",
+      "category": "countries",
+      "length": 3
+    },
+    {
+      "text": "西班牙",
+      "file": "src/utils/country_flag.ts",
+      "line": 220,
+      "type": "data",
+      "context": "supplemented",
+      "category": "countries",
+      "length": 3
+    },
+    {
+      "text": "葡萄牙",
+      "file": "src/utils/country_flag.ts",
+      "line": 221,
+      "type": "data",
+      "context": "supplemented",
+      "category": "countries",
+      "length": 3
+    },
+    {
+      "text": "墨西哥",
+      "file": "src/utils/country_flag.ts",
+      "line": 223,
+      "type": "data",
+      "context": "supplemented",
+      "category": "countries",
+      "length": 3
+    },
+    {
+      "text": "阿根廷",
+      "file": "src/utils/country_flag.ts",
+      "line": 224,
+      "type": "data",
+      "context": "supplemented",
+      "category": "countries",
+      "length": 3
+    },
+    {
+      "text": "哥倫比亞",
+      "file": "src/utils/country_flag.ts",
+      "line": 226,
+      "type": "data",
+      "context": "supplemented",
+      "category": "countries",
+      "length": 4
+    },
+    {
+      "text": "俄羅斯",
+      "file": "src/utils/country_flag.ts",
+      "line": 227,
+      "type": "data",
+      "context": "supplemented",
+      "category": "countries",
+      "length": 3
+    },
+    {
+      "text": "烏克蘭",
+      "file": "src/utils/country_flag.ts",
+      "line": 228,
+      "type": "data",
+      "context": "supplemented",
+      "category": "countries",
+      "length": 3
+    },
+    {
+      "text": "土耳其",
+      "file": "src/utils/country_flag.ts",
+      "line": 230,
+      "type": "data",
+      "context": "supplemented",
+      "category": "countries",
+      "length": 3
+    },
+    {
+      "text": "沙特阿拉伯",
+      "file": "src/utils/country_flag.ts",
+      "line": 231,
+      "type": "data",
+      "context": "supplemented",
+      "category": "countries",
+      "length": 5
+    },
+    {
+      "text": "阿聯酋",
+      "file": "src/utils/country_flag.ts",
+      "line": 232,
+      "type": "data",
+      "context": "supplemented",
+      "category": "countries",
+      "length": 3
+    },
+    {
+      "text": "菲律賓",
+      "file": "src/utils/country_flag.ts",
+      "line": 238,
+      "type": "data",
+      "context": "supplemented",
+      "category": "countries",
+      "length": 3
+    },
+    {
+      "text": "巴基斯坦",
+      "file": "src/utils/country_flag.ts",
+      "line": 240,
+      "type": "data",
+      "context": "supplemented",
+      "category": "countries",
+      "length": 4
+    },
+    {
+      "text": "孟加拉",
+      "file": "src/utils/country_flag.ts",
+      "line": 241,
+      "type": "data",
+      "context": "supplemented",
+      "category": "countries",
+      "length": 3
+    },
+    {
+      "text": "以色列",
+      "file": "src/utils/country_flag.ts",
+      "line": 246,
+      "type": "data",
+      "context": "supplemented",
+      "category": "countries",
+      "length": 3
+    },
+    {
+      "text": "伊拉克",
+      "file": "src/utils/country_flag.ts",
+      "line": 248,
+      "type": "data",
+      "context": "supplemented",
+      "category": "countries",
+      "length": 3
+    },
+    {
+      "text": "奧地利",
+      "file": "src/utils/country_flag.ts",
+      "line": 249,
+      "type": "data",
+      "context": "supplemented",
+      "category": "countries",
+      "length": 3
+    },
+    {
+      "text": "比利時",
+      "file": "src/utils/country_flag.ts",
+      "line": 250,
+      "type": "data",
+      "context": "supplemented",
+      "category": "countries",
+      "length": 3
+    },
+    {
+      "text": "愛爾蘭",
+      "file": "src/utils/country_flag.ts",
+      "line": 259,
+      "type": "data",
+      "context": "supplemented",
+      "category": "countries",
+      "length": 3
+    },
+    {
+      "text": "羅馬尼亞",
+      "file": "src/utils/country_flag.ts",
+      "line": 260,
+      "type": "data",
+      "context": "supplemented",
+      "category": "countries",
+      "length": 4
+    },
+    {
+      "text": "匈牙利",
+      "file": "src/utils/country_flag.ts",
+      "line": 261,
+      "type": "data",
+      "context": "supplemented",
+      "category": "countries",
+      "length": 3
+    },
+    {
+      "text": "保加利亞",
+      "file": "src/utils/country_flag.ts",
+      "line": 262,
+      "type": "data",
+      "context": "supplemented",
+      "category": "countries",
+      "length": 4
+    },
+    {
+      "text": "斯洛伐克",
+      "file": "src/utils/country_flag.ts",
+      "line": 263,
+      "type": "data",
+      "context": "supplemented",
+      "category": "countries",
+      "length": 4
+    },
+    {
+      "text": "克羅地亞",
+      "file": "src/utils/country_flag.ts",
+      "line": 264,
+      "type": "data",
+      "context": "supplemented",
+      "category": "countries",
+      "length": 4
+    },
+    {
+      "text": "塞爾維亞",
+      "file": "src/utils/country_flag.ts",
+      "line": 265,
+      "type": "data",
+      "context": "supplemented",
+      "category": "countries",
+      "length": 4
+    },
+    {
+      "text": "斯洛維尼亞",
+      "file": "src/utils/country_flag.ts",
+      "line": 266,
+      "type": "data",
+      "context": "supplemented",
+      "category": "countries",
+      "length": 5
+    },
+    {
+      "text": "立陶宛",
+      "file": "src/utils/country_flag.ts",
+      "line": 267,
+      "type": "data",
+      "context": "supplemented",
+      "category": "countries",
+      "length": 3
+    },
+    {
+      "text": "拉脫維亞",
+      "file": "src/utils/country_flag.ts",
+      "line": 268,
+      "type": "data",
+      "context": "supplemented",
+      "category": "countries",
+      "length": 4
+    },
+    {
+      "text": "愛沙尼亞",
+      "file": "src/utils/country_flag.ts",
+      "line": 269,
+      "type": "data",
+      "context": "supplemented",
+      "category": "countries",
+      "length": 4
+    },
+    {
+      "text": "馬爾他",
+      "file": "src/utils/country_flag.ts",
+      "line": 271,
+      "type": "data",
+      "context": "supplemented",
+      "category": "countries",
+      "length": 3
+    },
+    {
+      "text": "阿爾巴尼亞",
+      "file": "src/utils/country_flag.ts",
+      "line": 272,
+      "type": "data",
+      "context": "supplemented",
+      "category": "countries",
+      "length": 5
+    },
+    {
+      "text": "北馬其頓",
+      "file": "src/utils/country_flag.ts",
+      "line": 273,
+      "type": "data",
+      "context": "supplemented",
+      "category": "countries",
+      "length": 4
+    },
+    {
+      "text": "波斯尼亞",
+      "file": "src/utils/country_flag.ts",
+      "line": 274,
+      "type": "data",
+      "context": "supplemented",
+      "category": "countries",
+      "length": 4
+    },
+    {
+      "text": "喬治亞",
+      "file": "src/utils/country_flag.ts",
+      "line": 275,
+      "type": "data",
+      "context": "supplemented",
+      "category": "countries",
+      "length": 3
+    },
+    {
+      "text": "亞美尼亞",
+      "file": "src/utils/country_flag.ts",
+      "line": 276,
+      "type": "data",
+      "context": "supplemented",
+      "category": "countries",
+      "length": 4
+    },
+    {
+      "text": "亞塞拜然",
+      "file": "src/utils/country_flag.ts",
+      "line": 277,
+      "type": "data",
+      "context": "supplemented",
+      "category": "countries",
+      "length": 4
+    },
+    {
+      "text": "哈薩克",
+      "file": "src/utils/country_flag.ts",
+      "line": 278,
+      "type": "data",
+      "context": "supplemented",
+      "category": "countries",
+      "length": 3
+    },
+    {
+      "text": "烏茲別克",
+      "file": "src/utils/country_flag.ts",
+      "line": 279,
+      "type": "data",
+      "context": "supplemented",
+      "category": "countries",
+      "length": 4
+    },
+    {
+      "text": "尼泊爾",
+      "file": "src/utils/country_flag.ts",
+      "line": 281,
+      "type": "data",
+      "context": "supplemented",
+      "category": "countries",
+      "length": 3
+    },
+    {
+      "text": "斯里蘭卡",
+      "file": "src/utils/country_flag.ts",
+      "line": 282,
+      "type": "data",
+      "context": "supplemented",
+      "category": "countries",
+      "length": 4
+    },
+    {
+      "text": "柬埔寨",
+      "file": "src/utils/country_flag.ts",
+      "line": 284,
+      "type": "data",
+      "context": "supplemented",
+      "category": "countries",
+      "length": 3
+    },
+    {
+      "text": "坦尚尼亞",
+      "file": "src/utils/country_flag.ts",
+      "line": 287,
+      "type": "data",
+      "context": "supplemented",
+      "category": "countries",
+      "length": 4
+    },
+    {
+      "text": "衣索比亞",
+      "file": "src/utils/country_flag.ts",
+      "line": 288,
+      "type": "data",
+      "context": "supplemented",
+      "category": "countries",
+      "length": 4
+    },
+    {
+      "text": "奈及利亞",
+      "file": "src/utils/country_flag.ts",
+      "line": 289,
+      "type": "data",
+      "context": "supplemented",
+      "category": "countries",
+      "length": 4
+    },
+    {
+      "text": "辛巴威",
+      "file": "src/utils/country_flag.ts",
+      "line": 291,
+      "type": "data",
+      "context": "supplemented",
+      "category": "countries",
+      "length": 3
+    },
+    {
+      "text": "烏干達",
+      "file": "src/utils/country_flag.ts",
+      "line": 292,
+      "type": "data",
+      "context": "supplemented",
+      "category": "countries",
+      "length": 3
+    },
+    {
+      "text": "盧安達",
+      "file": "src/utils/country_flag.ts",
+      "line": 293,
+      "type": "data",
+      "context": "supplemented",
+      "category": "countries",
+      "length": 3
+    },
+    {
+      "text": "塞內加爾",
+      "file": "src/utils/country_flag.ts",
+      "line": 294,
+      "type": "data",
+      "context": "supplemented",
+      "category": "countries",
+      "length": 4
+    },
+    {
+      "text": "象牙海岸",
+      "file": "src/utils/country_flag.ts",
+      "line": 295,
+      "type": "data",
+      "context": "supplemented",
+      "category": "countries",
+      "length": 4
+    },
+    {
+      "text": "喀麥隆",
+      "file": "src/utils/country_flag.ts",
+      "line": 296,
+      "type": "data",
+      "context": "supplemented",
+      "category": "countries",
+      "length": 3
+    },
+    {
+      "text": "摩洛哥",
+      "file": "src/utils/country_flag.ts",
+      "line": 297,
+      "type": "data",
+      "context": "supplemented",
+      "category": "countries",
+      "length": 3
+    },
+    {
+      "text": "阿爾及利亞",
+      "file": "src/utils/country_flag.ts",
+      "line": 298,
+      "type": "data",
+      "context": "supplemented",
+      "category": "countries",
+      "length": 5
+    },
+    {
+      "text": "突尼西亞",
+      "file": "src/utils/country_flag.ts",
+      "line": 299,
+      "type": "data",
+      "context": "supplemented",
+      "category": "countries",
+      "length": 4
+    },
+    {
+      "text": "利比亞",
+      "file": "src/utils/country_flag.ts",
+      "line": 300,
+      "type": "data",
+      "context": "supplemented",
+      "category": "countries",
+      "length": 3
+    },
+    {
+      "text": "黎巴嫩",
+      "file": "src/utils/country_flag.ts",
+      "line": 303,
+      "type": "data",
+      "context": "supplemented",
+      "category": "countries",
+      "length": 3
+    },
+    {
+      "text": "敘利亞",
+      "file": "src/utils/country_flag.ts",
+      "line": 304,
+      "type": "data",
+      "context": "supplemented",
+      "category": "countries",
+      "length": 3
+    },
+    {
+      "text": "科威特",
+      "file": "src/utils/country_flag.ts",
+      "line": 307,
+      "type": "data",
+      "context": "supplemented",
+      "category": "countries",
+      "length": 3
+    },
+    {
+      "text": "委內瑞拉",
+      "file": "src/utils/country_flag.ts",
+      "line": 311,
+      "type": "data",
+      "context": "supplemented",
+      "category": "countries",
+      "length": 4
+    },
+    {
+      "text": "厄瓜多",
+      "file": "src/utils/country_flag.ts",
+      "line": 312,
+      "type": "data",
+      "context": "supplemented",
+      "category": "countries",
+      "length": 3
+    },
+    {
+      "text": "玻利維亞",
+      "file": "src/utils/country_flag.ts",
+      "line": 313,
+      "type": "data",
+      "context": "supplemented",
+      "category": "countries",
+      "length": 4
+    },
+    {
+      "text": "巴拉圭",
+      "file": "src/utils/country_flag.ts",
+      "line": 314,
+      "type": "data",
+      "context": "supplemented",
+      "category": "countries",
+      "length": 3
+    },
+    {
+      "text": "烏拉圭",
+      "file": "src/utils/country_flag.ts",
+      "line": 315,
+      "type": "data",
+      "context": "supplemented",
+      "category": "countries",
+      "length": 3
+    },
+    {
+      "text": "哥斯大黎加",
+      "file": "src/utils/country_flag.ts",
+      "line": 316,
+      "type": "data",
+      "context": "supplemented",
+      "category": "countries",
+      "length": 5
+    },
+    {
+      "text": "巴拿馬",
+      "file": "src/utils/country_flag.ts",
+      "line": 317,
+      "type": "data",
+      "context": "supplemented",
+      "category": "countries",
+      "length": 3
+    },
+    {
+      "text": "瓜地馬拉",
+      "file": "src/utils/country_flag.ts",
+      "line": 318,
+      "type": "data",
+      "context": "supplemented",
+      "category": "countries",
+      "length": 4
+    },
+    {
+      "text": "宏都拉斯",
+      "file": "src/utils/country_flag.ts",
+      "line": 319,
+      "type": "data",
+      "context": "supplemented",
+      "category": "countries",
+      "length": 4
+    },
+    {
+      "text": "薩爾瓦多",
+      "file": "src/utils/country_flag.ts",
+      "line": 320,
+      "type": "data",
+      "context": "supplemented",
+      "category": "countries",
+      "length": 4
+    },
+    {
+      "text": "尼加拉瓜",
+      "file": "src/utils/country_flag.ts",
+      "line": 321,
+      "type": "data",
+      "context": "supplemented",
+      "category": "countries",
+      "length": 4
+    },
+    {
+      "text": "多明尼加",
+      "file": "src/utils/country_flag.ts",
+      "line": 323,
+      "type": "data",
+      "context": "supplemented",
+      "category": "countries",
+      "length": 4
+    },
+    {
+      "text": "牙買加",
+      "file": "src/utils/country_flag.ts",
+      "line": 324,
+      "type": "data",
+      "context": "supplemented",
+      "category": "countries",
+      "length": 3
+    },
+    {
+      "text": "千里達",
+      "file": "src/utils/country_flag.ts",
+      "line": 325,
+      "type": "data",
+      "context": "supplemented",
+      "category": "countries",
+      "length": 3
+    },
+    {
+      "text": "巴貝多",
+      "file": "src/utils/country_flag.ts",
+      "line": 326,
+      "type": "data",
+      "context": "supplemented",
+      "category": "countries",
+      "length": 3
+    },
+    {
+      "text": "未設定",
+      "file": "src/utils/mask.ts",
+      "line": 12,
+      "type": "label",
+      "context": "supplemented",
+      "category": "common",
+      "length": 3
+    },
+    {
+      "text": "未設定",
+      "file": "src/utils/mask.ts",
+      "line": 17,
+      "type": "label",
+      "context": "supplemented",
+      "category": "common",
+      "length": 3
+    },
+    {
+      "text": "📋 法律文檔僅提供英文版本。",
+      "file": "src/config/legal_urls.ts",
+      "line": 59,
+      "type": "message",
+      "context": "supplemented",
+      "category": "common",
+      "length": 15
+    },
+    {
+      "text": "📋 法的文書は英語版のみ提供されています。",
+      "file": "src/config/legal_urls.ts",
+      "line": 60,
+      "type": "message",
+      "context": "supplemented",
+      "category": "common",
+      "length": 22
     }
   ],
   "files": [

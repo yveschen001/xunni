@@ -1,0 +1,1049 @@
+{
+  "summary": {
+    "total": 172,
+    "critical": 18,
+    "important": 60,
+    "minor": 91,
+    "internal": 3
+  },
+  "critical": [
+    {
+      "file": "src/telegram/handlers/ad_reward.ts",
+      "line": 389,
+      "text": "✅ 今日廣告已達上限",
+      "context": "${result.remaining_ads > 0 ? '💡 繼續觀看廣告可獲得更多額度！' : '✅ 今日廣告已達上限'}"
+    },
+    {
+      "file": "src/telegram/handlers/admin_ad_config.ts",
+      "line": 74,
+      "text": "• `/ad_provider_enable <id>` - 啟用\\n",
+      "context": "message_text += '• `/ad_provider_enable <id>` - 啟用\\n';"
+    },
+    {
+      "file": "src/telegram/handlers/admin_ad_config.ts",
+      "line": 75,
+      "text": "• `/ad_provider_disable <id>` - 停用\\n",
+      "context": "message_text += '• `/ad_provider_disable <id>` - 停用\\n';"
+    },
+    {
+      "file": "src/telegram/handlers/admin_ad_config.ts",
+      "line": 76,
+      "text": "• `/ad_provider_priority <id> <priority>` - 設置優先級",
+      "context": "message_text += '• `/ad_provider_priority <id> <priority>` - 設置優先級';"
+    },
+    {
+      "file": "src/telegram/handlers/admin_ad_config.ts",
+      "line": 266,
+      "text": "• `/official_ad_enable <id>` - 啟用\\n",
+      "context": "message_text += '• `/official_ad_enable <id>` - 啟用\\n';"
+    },
+    {
+      "file": "src/telegram/handlers/admin_ad_config.ts",
+      "line": 267,
+      "text": "• `/official_ad_disable <id>` - 停用\\n",
+      "context": "message_text += '• `/official_ad_disable <id>` - 停用\\n';"
+    },
+    {
+      "file": "src/telegram/handlers/admin_ad_config.ts",
+      "line": 268,
+      "text": "• `/ad_stats <id>` - 查看詳細統計",
+      "context": "message_text += '• `/ad_stats <id>` - 查看詳細統計';"
+    },
+    {
+      "file": "src/telegram/handlers/admin_ban.ts",
+      "line": 376,
+      "text": "`/admin_add 123456789` - 添加為普通管理員\\n\\n",
+      "context": "'`/admin_add 123456789` - 添加為普通管理員\\n\\n' +"
+    },
+    {
+      "file": "src/telegram/handlers/admin_ban.ts",
+      "line": 453,
+      "text": "`/admin_remove 123456789` - 移除普通管理員\\n\\n",
+      "context": "'`/admin_remove 123456789` - 移除普通管理員\\n\\n' +"
+    },
+    {
+      "file": "src/telegram/handlers/admin_diagnose_avatar.ts",
+      "line": 98,
+      "text": "✅ 是",
+      "context": "message += `• VIP 狀態：${isVip ? '✅ 是' : '❌ 否'}\\n`;"
+    },
+    {
+      "file": "src/telegram/handlers/admin_diagnose_avatar.ts",
+      "line": 98,
+      "text": "❌ 否",
+      "context": "message += `• VIP 狀態：${isVip ? '✅ 是' : '❌ 否'}\\n`;"
+    },
+    {
+      "file": "src/telegram/handlers/admin_diagnose_avatar.ts",
+      "line": 124,
+      "text": "• 更新時間：${new Date(post.updated_at).toLocaleString('zh-TW', { month: '2-digit', day: '2-digit', hour:",
+      "context": "message += `  • 更新時間：${new Date(post.updated_at).toLocaleString('zh-TW', { month"
+    },
+    {
+      "file": "src/telegram/handlers/menu.ts",
+      "line": 170,
+      "text": "https://t.me/share/url?url=https://t.me/${botUsername}?start=invite_${inviteCode}&text=來 XunNi 一起丟漂流",
+      "context": "const shareUrl = `https://t.me/share/url?url=https://t.me/${botUsername}?start=i"
+    },
+    {
+      "file": "src/telegram/handlers/profile.ts",
+      "line": 95,
+      "text": "⚠️ 已達免費用戶邀請上限，升級 VIP 可解鎖 100 人上限！",
+      "context": "`${!user.is_vip && successfulInvites >= inviteLimit ? '⚠️ 已達免費用戶邀請上限，升級 VIP 可解鎖 "
+    },
+    {
+      "file": "src/telegram/handlers/profile.ts",
+      "line": 105,
+      "text": "https://t.me/share/url?url=https://t.me/${botUsername}?start=invite_${inviteCode}&text=來 XunNi 一起丟漂流",
+      "context": "const shareUrl = `https://t.me/share/url?url=https://t.me/${botUsername}?start=i"
+    },
+    {
+      "file": "src/domain/maintenance.ts",
+      "line": 92,
+      "text": "✅ 維護中",
+      "context": "message += `狀態：${maintenance.isActive ? '✅ 維護中' : '❌ 未啟用'}\\n`;"
+    },
+    {
+      "file": "src/domain/maintenance.ts",
+      "line": 92,
+      "text": "❌ 未啟用",
+      "context": "message += `狀態：${maintenance.isActive ? '✅ 維護中' : '❌ 未啟用'}\\n`;"
+    },
+    {
+      "file": "src/config/legal_urls.ts",
+      "line": 60,
+      "text": "📋 法的文書は英語版のみ提供されています。",
+      "context": "ja: '📋 法的文書は英語版のみ提供されています。',"
+    }
+  ],
+  "important": [
+    {
+      "file": "src/telegram/handlers/ad_reward.ts",
+      "line": 389,
+      "text": "💡 繼續觀看廣告可獲得更多額度！",
+      "context": "${result.remaining_ads > 0 ? '💡 繼續觀看廣告可獲得更多額度！' : '✅ 今日廣告已達上限'}"
+    },
+    {
+      "file": "src/telegram/handlers/admin_ban.ts",
+      "line": 416,
+      "text": "未設定",
+      "context": "`• 暱稱: ${targetUser.nickname || '未設定'}\\n` +"
+    },
+    {
+      "file": "src/telegram/handlers/admin_ban.ts",
+      "line": 488,
+      "text": "未設定",
+      "context": "`• 暱稱: ${targetUser?.nickname || '未設定'}\\n` +"
+    },
+    {
+      "file": "src/telegram/handlers/admin_diagnose_avatar.ts",
+      "line": 96,
+      "text": "未設定",
+      "context": "message += `• 暱稱：${user.nickname || '未設定'}\\n`;"
+    },
+    {
+      "file": "src/telegram/handlers/broadcast.ts",
+      "line": 460,
+      "text": "管理員手動清理（廣播卡住）",
+      "context": "error_message = '管理員手動清理（廣播卡住）'"
+    },
+    {
+      "file": "src/telegram/handlers/catch.ts",
+      "line": 190,
+      "text": "未設定",
+      "context": ": '未設定';"
+    },
+    {
+      "file": "src/telegram/handlers/catch.ts",
+      "line": 265,
+      "text": "未設定",
+      "context": "mbti: bottleOwner?.mbti_result || '未設定',"
+    },
+    {
+      "file": "src/telegram/handlers/catch.ts",
+      "line": 266,
+      "text": "未設定",
+      "context": "bloodType: bottleOwner?.blood_type || '未設定',"
+    },
+    {
+      "file": "src/telegram/handlers/catch.ts",
+      "line": 267,
+      "text": "未設定",
+      "context": "zodiac: bottleOwner?.zodiac_sign || '未設定',"
+    },
+    {
+      "file": "src/telegram/handlers/catch.ts",
+      "line": 279,
+      "text": "未設定",
+      "context": "mbti: user.mbti_result || '未設定',"
+    },
+    {
+      "file": "src/telegram/handlers/catch.ts",
+      "line": 280,
+      "text": "未設定",
+      "context": "bloodType: user.blood_type || '未設定',"
+    },
+    {
+      "file": "src/telegram/handlers/catch.ts",
+      "line": 281,
+      "text": "未設定",
+      "context": "zodiac: user.zodiac_sign || '未設定',"
+    },
+    {
+      "file": "src/telegram/handlers/catch.ts",
+      "line": 431,
+      "text": "未設定",
+      "context": "`🧠 MBTI：${bottle.mbti_result || '未設定'}\\n` +"
+    },
+    {
+      "file": "src/telegram/handlers/catch.ts",
+      "line": 521,
+      "text": "未設定",
+      "context": "const catcherMBTI = catcher.mbti_result || '未設定';"
+    },
+    {
+      "file": "src/telegram/handlers/catch.ts",
+      "line": 524,
+      "text": "未設定",
+      "context": "catcher.gender === 'male' ? '♂️ 男' : catcher.gender === 'female' ? '♀️ 女' : '未設定"
+    },
+    {
+      "file": "src/telegram/handlers/conversation_actions.ts",
+      "line": 73,
+      "text": "未設定",
+      "context": "let ageRange = '未設定';"
+    },
+    {
+      "file": "src/telegram/handlers/conversation_actions.ts",
+      "line": 80,
+      "text": "未設定",
+      "context": "const languageLabel = otherUser.language_pref || '未設定';"
+    },
+    {
+      "file": "src/telegram/handlers/conversation_actions.ts",
+      "line": 96,
+      "text": "未設定",
+      "context": "profileMessage += `🧠 MBTI：${otherUser.mbti_result || '未設定'}\\n`;"
+    },
+    {
+      "file": "src/telegram/handlers/conversation_actions.ts",
+      "line": 99,
+      "text": "未設定",
+      "context": "profileMessage += `👤 性別：${otherUser.gender === 'male' ? '男' : otherUser.gender "
+    },
+    {
+      "file": "src/telegram/handlers/edit_profile.ts",
+      "line": 61,
+      "text": "未設定",
+      "context": "`📖 個人簡介：${user.bio || '未設定'}\\n` +"
+    },
+    {
+      "file": "src/telegram/handlers/edit_profile.ts",
+      "line": 62,
+      "text": "未設定",
+      "context": "`🌍 地區：${user.city || '未設定'}\\n` +"
+    },
+    {
+      "file": "src/telegram/handlers/edit_profile.ts",
+      "line": 63,
+      "text": "未設定",
+      "context": "`🏷️ 興趣標籤：${user.interests || '未設定'}\\n` +"
+    },
+    {
+      "file": "src/telegram/handlers/edit_profile.ts",
+      "line": 69,
+      "text": "未設定",
+      "context": "`🧠 MBTI：${user.mbti_result || '未設定'}（可重新測試）`,"
+    },
+    {
+      "file": "src/telegram/handlers/edit_profile.ts",
+      "line": 144,
+      "text": "未設定",
+      "context": "`📖 個人簡介：${user.bio || '未設定'}\\n` +"
+    },
+    {
+      "file": "src/telegram/handlers/edit_profile.ts",
+      "line": 145,
+      "text": "未設定",
+      "context": "`🌍 地區：${user.city || '未設定'}\\n` +"
+    },
+    {
+      "file": "src/telegram/handlers/edit_profile.ts",
+      "line": 146,
+      "text": "未設定",
+      "context": "`🏷️ 興趣標籤：${user.interests || '未設定'}\\n` +"
+    },
+    {
+      "file": "src/telegram/handlers/edit_profile.ts",
+      "line": 152,
+      "text": "未設定",
+      "context": "`🧠 MBTI：${user.mbti_result || '未設定'}（可重新測試）`,"
+    },
+    {
+      "file": "src/telegram/handlers/edit_profile.ts",
+      "line": 594,
+      "text": "未設定",
+      "context": "`📖 個人簡介：${updatedUser.bio || '未設定'}\\n` +"
+    },
+    {
+      "file": "src/telegram/handlers/edit_profile.ts",
+      "line": 595,
+      "text": "未設定",
+      "context": "`🌍 地區：${updatedUser.city || '未設定'}\\n` +"
+    },
+    {
+      "file": "src/telegram/handlers/edit_profile.ts",
+      "line": 596,
+      "text": "未設定",
+      "context": "`🏷️ 興趣標籤：${updatedUser.interests || '未設定'}\\n` +"
+    },
+    {
+      "file": "src/telegram/handlers/edit_profile.ts",
+      "line": 602,
+      "text": "未設定",
+      "context": "`🧠 MBTI：${updatedUser.mbti_result || '未設定'}（可重新測試）`,"
+    },
+    {
+      "file": "src/telegram/handlers/menu.ts",
+      "line": 58,
+      "text": "未設定",
+      "context": "`• MBTI：${user.mbti_result || '未設定'}\\n` +"
+    },
+    {
+      "file": "src/telegram/handlers/menu.ts",
+      "line": 59,
+      "text": "未設定",
+      "context": "`• 星座：${user.zodiac_sign || '未設定'}\\n\\n`;"
+    },
+    {
+      "file": "src/telegram/handlers/message_forward.ts",
+      "line": 323,
+      "text": "未設定",
+      "context": "mbti: receiver.mbti_result || '未設定',"
+    },
+    {
+      "file": "src/telegram/handlers/message_forward.ts",
+      "line": 324,
+      "text": "未設定",
+      "context": "bloodType: receiver.blood_type || '未設定',"
+    },
+    {
+      "file": "src/telegram/handlers/message_forward.ts",
+      "line": 325,
+      "text": "未設定",
+      "context": "zodiac: receiver.zodiac_sign || '未設定',"
+    },
+    {
+      "file": "src/telegram/handlers/message_forward.ts",
+      "line": 336,
+      "text": "未設定",
+      "context": "mbti: sender.mbti_result || '未設定',"
+    },
+    {
+      "file": "src/telegram/handlers/message_forward.ts",
+      "line": 337,
+      "text": "未設定",
+      "context": "bloodType: sender.blood_type || '未設定',"
+    },
+    {
+      "file": "src/telegram/handlers/message_forward.ts",
+      "line": 338,
+      "text": "未設定",
+      "context": "zodiac: sender.zodiac_sign || '未設定',"
+    },
+    {
+      "file": "src/telegram/handlers/official_ad.ts",
+      "line": 275,
+      "text": "💡 還有更多官方廣告可以觀看！",
+      "context": "${availableAds.length > 0 ? '💡 還有更多官方廣告可以觀看！' : '✅ 你已經看過所有官方廣告了'}"
+    },
+    {
+      "file": "src/telegram/handlers/profile.ts",
+      "line": 44,
+      "text": "未設定",
+      "context": "const age = user.birthday ? calculateAge(user.birthday) : '未設定';"
+    },
+    {
+      "file": "src/telegram/handlers/profile.ts",
+      "line": 45,
+      "text": "未設定",
+      "context": "const gender = user.gender === 'male' ? '男' : user.gender === 'female' ? '女' : '"
+    },
+    {
+      "file": "src/telegram/handlers/profile.ts",
+      "line": 46,
+      "text": "未設定",
+      "context": "const mbti = user.mbti_result || '未設定';"
+    },
+    {
+      "file": "src/telegram/handlers/profile.ts",
+      "line": 56,
+      "text": "未設定",
+      "context": "const inviteCode = user.invite_code || '未設定';"
+    },
+    {
+      "file": "src/telegram/handlers/profile.ts",
+      "line": 61,
+      "text": "未設定",
+      "context": "user.nickname || '未設定',"
+    },
+    {
+      "file": "src/telegram/handlers/profile.ts",
+      "line": 143,
+      "text": "未設定",
+      "context": "const mbti = user.mbti_result || '未設定';"
+    },
+    {
+      "file": "src/telegram/handlers/profile.ts",
+      "line": 145,
+      "text": "未設定",
+      "context": "const interests = user.interests ? JSON.parse(user.interests as string).join(', "
+    },
+    {
+      "file": "src/telegram/handlers/profile.ts",
+      "line": 147,
+      "text": "未設定",
+      "context": "const city = user.city || '未設定';"
+    },
+    {
+      "file": "src/telegram/handlers/stats.ts",
+      "line": 88,
+      "text": "未設定",
+      "context": "`🧠 **MBTI**：${user.mbti_result || '未設定'}\\n\\n` +"
+    },
+    {
+      "file": "src/telegram/handlers/throw.ts",
+      "line": 556,
+      "text": "未設定",
+      "context": "`🧠 MBTI：${user.mbti_result || '未設定'}\\n` +"
+    },
+    {
+      "file": "src/telegram/handlers/throw.ts",
+      "line": 557,
+      "text": "未設定",
+      "context": "`⭐ 星座：${user.zodiac_sign || '未設定'}\\n` +"
+    },
+    {
+      "file": "src/telegram/handlers/throw.ts",
+      "line": 573,
+      "text": "未設定",
+      "context": "`🧠 MBTI：${matchResult.user.mbti_result || '未設定'}\\n` +"
+    },
+    {
+      "file": "src/telegram/handlers/throw.ts",
+      "line": 574,
+      "text": "未設定",
+      "context": "`⭐ 星座：${matchResult.user.zodiac || '未設定'}\\n` +"
+    },
+    {
+      "file": "src/domain/blood_type.ts",
+      "line": 32,
+      "text": "未設定",
+      "context": "return '未設定';"
+    },
+    {
+      "file": "src/services/refresh_conversation_history.ts",
+      "line": 112,
+      "text": "未設定",
+      "context": "mbti: partner.mbti_result || '未設定',"
+    },
+    {
+      "file": "src/services/refresh_conversation_history.ts",
+      "line": 113,
+      "text": "未設定",
+      "context": "bloodType: partner.blood_type || '未設定',"
+    },
+    {
+      "file": "src/services/refresh_conversation_history.ts",
+      "line": 114,
+      "text": "未設定",
+      "context": "zodiac: partner.zodiac_sign || '未設定',"
+    },
+    {
+      "file": "src/utils/mask.ts",
+      "line": 12,
+      "text": "未設定",
+      "context": "return '未設定';"
+    },
+    {
+      "file": "src/utils/mask.ts",
+      "line": 17,
+      "text": "未設定",
+      "context": "return '未設定';"
+    },
+    {
+      "file": "src/config/legal_urls.ts",
+      "line": 59,
+      "text": "📋 法律文檔僅提供英文版本。",
+      "context": "zh: '📋 法律文檔僅提供英文版本。',"
+    }
+  ],
+  "minor": [
+    {
+      "file": "src/telegram/handlers/broadcast.ts",
+      "line": 215,
+      "text": "待處理",
+      "context": "const statusText = broadcast.status === 'pending' ? '待處理' : '卡住（重試中）';"
+    },
+    {
+      "file": "src/telegram/handlers/dev.ts",
+      "line": 277,
+      "text": "未設置",
+      "context": "`昵稱: ${user.nickname || '未設置'}\\n` +"
+    },
+    {
+      "file": "src/telegram/handlers/dev.ts",
+      "line": 281,
+      "text": "未生成",
+      "context": "`邀請碼: ${user.invite_code || '未生成'}\\n` +"
+    },
+    {
+      "file": "src/telegram/handlers/dev.ts",
+      "line": 543,
+      "text": "測試用戶",
+      "context": "nickname = '測試用戶',"
+    },
+    {
+      "file": "src/telegram/handlers/dev.ts",
+      "line": 556,
+      "text": "測試用戶",
+      "context": "'測試用戶',"
+    },
+    {
+      "file": "src/telegram/handlers/mbti_test.ts",
+      "line": 178,
+      "text": "結果更準確",
+      "context": "const accuracy = version === 'full' ? '結果更準確' : '結果僅供參考';"
+    },
+    {
+      "file": "src/telegram/handlers/menu.ts",
+      "line": 57,
+      "text": "免費會員",
+      "context": "`• 等級：${isVip ? 'VIP 會員 💎' : '免費會員'}\\n` +"
+    },
+    {
+      "file": "src/telegram/handlers/profile.ts",
+      "line": 55,
+      "text": "免費會員",
+      "context": ": '免費會員';"
+    },
+    {
+      "file": "src/telegram/handlers/stats.ts",
+      "line": 81,
+      "text": "免費會員",
+      "context": "`• ${isVip ? `VIP 會員 💎` : `免費會員`}\\n` +"
+    },
+    {
+      "file": "src/telegram/handlers/throw_advanced.ts",
+      "line": 474,
+      "text": "無限制",
+      "context": "summary += `• MBTI：${selectedMBTI.length > 0 ? selectedMBTI.join(', ') : '無限制'}\\"
+    },
+    {
+      "file": "src/telegram/handlers/throw_advanced.ts",
+      "line": 475,
+      "text": "無限制",
+      "context": "summary += `• 星座：${selectedZodiac.length > 0 ? selectedZodiac.map((z) => ZODIAC_"
+    },
+    {
+      "file": "src/telegram/handlers/throw_advanced.ts",
+      "line": 529,
+      "text": "無限制",
+      "context": "summary += `• MBTI：${selectedMBTI.length > 0 ? selectedMBTI.join(', ') : '無限制'}\\"
+    },
+    {
+      "file": "src/telegram/handlers/throw_advanced.ts",
+      "line": 530,
+      "text": "無限制",
+      "context": "summary += `• 星座：${selectedZodiac.length > 0 ? selectedZodiac.map((z) => ZODIAC_"
+    },
+    {
+      "file": "src/domain/ad_provider.ts",
+      "line": 435,
+      "text": "需要關注",
+      "context": "${healthEmoji} 健康狀態: ${health.is_healthy ? '良好' : '需要關注'}"
+    },
+    {
+      "file": "src/domain/broadcast.ts",
+      "line": 70,
+      "text": "等待中",
+      "context": "status = '等待中';"
+    },
+    {
+      "file": "src/domain/official_ad.ts",
+      "line": 346,
+      "text": "加入群組",
+      "context": "return '加入群組';"
+    },
+    {
+      "file": "src/domain/official_ad.ts",
+      "line": 350,
+      "text": "查看詳情",
+      "context": "return '查看詳情';"
+    },
+    {
+      "file": "src/domain/session.ts",
+      "line": 123,
+      "text": "丟瓶流程",
+      "context": "'zh-TW': '丟瓶流程',"
+    },
+    {
+      "file": "src/domain/session.ts",
+      "line": 127,
+      "text": "撿瓶流程",
+      "context": "'zh-TW': '撿瓶流程',"
+    },
+    {
+      "file": "src/utils/country_flag.ts",
+      "line": 219,
+      "text": "意大利",
+      "context": "'IT': '意大利',"
+    },
+    {
+      "file": "src/utils/country_flag.ts",
+      "line": 220,
+      "text": "西班牙",
+      "context": "'ES': '西班牙',"
+    },
+    {
+      "file": "src/utils/country_flag.ts",
+      "line": 221,
+      "text": "葡萄牙",
+      "context": "'PT': '葡萄牙',"
+    },
+    {
+      "file": "src/utils/country_flag.ts",
+      "line": 223,
+      "text": "墨西哥",
+      "context": "'MX': '墨西哥',"
+    },
+    {
+      "file": "src/utils/country_flag.ts",
+      "line": 224,
+      "text": "阿根廷",
+      "context": "'AR': '阿根廷',"
+    },
+    {
+      "file": "src/utils/country_flag.ts",
+      "line": 226,
+      "text": "哥倫比亞",
+      "context": "'CO': '哥倫比亞',"
+    },
+    {
+      "file": "src/utils/country_flag.ts",
+      "line": 227,
+      "text": "俄羅斯",
+      "context": "'RU': '俄羅斯',"
+    },
+    {
+      "file": "src/utils/country_flag.ts",
+      "line": 228,
+      "text": "烏克蘭",
+      "context": "'UA': '烏克蘭',"
+    },
+    {
+      "file": "src/utils/country_flag.ts",
+      "line": 230,
+      "text": "土耳其",
+      "context": "'TR': '土耳其',"
+    },
+    {
+      "file": "src/utils/country_flag.ts",
+      "line": 231,
+      "text": "沙特阿拉伯",
+      "context": "'SA': '沙特阿拉伯',"
+    },
+    {
+      "file": "src/utils/country_flag.ts",
+      "line": 232,
+      "text": "阿聯酋",
+      "context": "'AE': '阿聯酋',"
+    },
+    {
+      "file": "src/utils/country_flag.ts",
+      "line": 238,
+      "text": "菲律賓",
+      "context": "'PH': '菲律賓',"
+    },
+    {
+      "file": "src/utils/country_flag.ts",
+      "line": 240,
+      "text": "巴基斯坦",
+      "context": "'PK': '巴基斯坦',"
+    },
+    {
+      "file": "src/utils/country_flag.ts",
+      "line": 241,
+      "text": "孟加拉",
+      "context": "'BD': '孟加拉',"
+    },
+    {
+      "file": "src/utils/country_flag.ts",
+      "line": 246,
+      "text": "以色列",
+      "context": "'IL': '以色列',"
+    },
+    {
+      "file": "src/utils/country_flag.ts",
+      "line": 248,
+      "text": "伊拉克",
+      "context": "'IQ': '伊拉克',"
+    },
+    {
+      "file": "src/utils/country_flag.ts",
+      "line": 249,
+      "text": "奧地利",
+      "context": "'AT': '奧地利',"
+    },
+    {
+      "file": "src/utils/country_flag.ts",
+      "line": 250,
+      "text": "比利時",
+      "context": "'BE': '比利時',"
+    },
+    {
+      "file": "src/utils/country_flag.ts",
+      "line": 259,
+      "text": "愛爾蘭",
+      "context": "'IE': '愛爾蘭',"
+    },
+    {
+      "file": "src/utils/country_flag.ts",
+      "line": 260,
+      "text": "羅馬尼亞",
+      "context": "'RO': '羅馬尼亞',"
+    },
+    {
+      "file": "src/utils/country_flag.ts",
+      "line": 261,
+      "text": "匈牙利",
+      "context": "'HU': '匈牙利',"
+    },
+    {
+      "file": "src/utils/country_flag.ts",
+      "line": 262,
+      "text": "保加利亞",
+      "context": "'BG': '保加利亞',"
+    },
+    {
+      "file": "src/utils/country_flag.ts",
+      "line": 263,
+      "text": "斯洛伐克",
+      "context": "'SK': '斯洛伐克',"
+    },
+    {
+      "file": "src/utils/country_flag.ts",
+      "line": 264,
+      "text": "克羅地亞",
+      "context": "'HR': '克羅地亞',"
+    },
+    {
+      "file": "src/utils/country_flag.ts",
+      "line": 265,
+      "text": "塞爾維亞",
+      "context": "'RS': '塞爾維亞',"
+    },
+    {
+      "file": "src/utils/country_flag.ts",
+      "line": 266,
+      "text": "斯洛維尼亞",
+      "context": "'SI': '斯洛維尼亞',"
+    },
+    {
+      "file": "src/utils/country_flag.ts",
+      "line": 267,
+      "text": "立陶宛",
+      "context": "'LT': '立陶宛',"
+    },
+    {
+      "file": "src/utils/country_flag.ts",
+      "line": 268,
+      "text": "拉脫維亞",
+      "context": "'LV': '拉脫維亞',"
+    },
+    {
+      "file": "src/utils/country_flag.ts",
+      "line": 269,
+      "text": "愛沙尼亞",
+      "context": "'EE': '愛沙尼亞',"
+    },
+    {
+      "file": "src/utils/country_flag.ts",
+      "line": 271,
+      "text": "馬爾他",
+      "context": "'MT': '馬爾他',"
+    },
+    {
+      "file": "src/utils/country_flag.ts",
+      "line": 272,
+      "text": "阿爾巴尼亞",
+      "context": "'AL': '阿爾巴尼亞',"
+    },
+    {
+      "file": "src/utils/country_flag.ts",
+      "line": 273,
+      "text": "北馬其頓",
+      "context": "'MK': '北馬其頓',"
+    },
+    {
+      "file": "src/utils/country_flag.ts",
+      "line": 274,
+      "text": "波斯尼亞",
+      "context": "'BA': '波斯尼亞',"
+    },
+    {
+      "file": "src/utils/country_flag.ts",
+      "line": 275,
+      "text": "喬治亞",
+      "context": "'GE': '喬治亞',"
+    },
+    {
+      "file": "src/utils/country_flag.ts",
+      "line": 276,
+      "text": "亞美尼亞",
+      "context": "'AM': '亞美尼亞',"
+    },
+    {
+      "file": "src/utils/country_flag.ts",
+      "line": 277,
+      "text": "亞塞拜然",
+      "context": "'AZ': '亞塞拜然',"
+    },
+    {
+      "file": "src/utils/country_flag.ts",
+      "line": 278,
+      "text": "哈薩克",
+      "context": "'KZ': '哈薩克',"
+    },
+    {
+      "file": "src/utils/country_flag.ts",
+      "line": 279,
+      "text": "烏茲別克",
+      "context": "'UZ': '烏茲別克',"
+    },
+    {
+      "file": "src/utils/country_flag.ts",
+      "line": 281,
+      "text": "尼泊爾",
+      "context": "'NP': '尼泊爾',"
+    },
+    {
+      "file": "src/utils/country_flag.ts",
+      "line": 282,
+      "text": "斯里蘭卡",
+      "context": "'LK': '斯里蘭卡',"
+    },
+    {
+      "file": "src/utils/country_flag.ts",
+      "line": 284,
+      "text": "柬埔寨",
+      "context": "'KH': '柬埔寨',"
+    },
+    {
+      "file": "src/utils/country_flag.ts",
+      "line": 287,
+      "text": "坦尚尼亞",
+      "context": "'TZ': '坦尚尼亞',"
+    },
+    {
+      "file": "src/utils/country_flag.ts",
+      "line": 288,
+      "text": "衣索比亞",
+      "context": "'ET': '衣索比亞',"
+    },
+    {
+      "file": "src/utils/country_flag.ts",
+      "line": 289,
+      "text": "奈及利亞",
+      "context": "'NG': '奈及利亞',"
+    },
+    {
+      "file": "src/utils/country_flag.ts",
+      "line": 291,
+      "text": "辛巴威",
+      "context": "'ZW': '辛巴威',"
+    },
+    {
+      "file": "src/utils/country_flag.ts",
+      "line": 292,
+      "text": "烏干達",
+      "context": "'UG': '烏干達',"
+    },
+    {
+      "file": "src/utils/country_flag.ts",
+      "line": 293,
+      "text": "盧安達",
+      "context": "'RW': '盧安達',"
+    },
+    {
+      "file": "src/utils/country_flag.ts",
+      "line": 294,
+      "text": "塞內加爾",
+      "context": "'SN': '塞內加爾',"
+    },
+    {
+      "file": "src/utils/country_flag.ts",
+      "line": 295,
+      "text": "象牙海岸",
+      "context": "'CI': '象牙海岸',"
+    },
+    {
+      "file": "src/utils/country_flag.ts",
+      "line": 296,
+      "text": "喀麥隆",
+      "context": "'CM': '喀麥隆',"
+    },
+    {
+      "file": "src/utils/country_flag.ts",
+      "line": 297,
+      "text": "摩洛哥",
+      "context": "'MA': '摩洛哥',"
+    },
+    {
+      "file": "src/utils/country_flag.ts",
+      "line": 298,
+      "text": "阿爾及利亞",
+      "context": "'DZ': '阿爾及利亞',"
+    },
+    {
+      "file": "src/utils/country_flag.ts",
+      "line": 299,
+      "text": "突尼西亞",
+      "context": "'TN': '突尼西亞',"
+    },
+    {
+      "file": "src/utils/country_flag.ts",
+      "line": 300,
+      "text": "利比亞",
+      "context": "'LY': '利比亞',"
+    },
+    {
+      "file": "src/utils/country_flag.ts",
+      "line": 303,
+      "text": "黎巴嫩",
+      "context": "'LB': '黎巴嫩',"
+    },
+    {
+      "file": "src/utils/country_flag.ts",
+      "line": 304,
+      "text": "敘利亞",
+      "context": "'SY': '敘利亞',"
+    },
+    {
+      "file": "src/utils/country_flag.ts",
+      "line": 307,
+      "text": "科威特",
+      "context": "'KW': '科威特',"
+    },
+    {
+      "file": "src/utils/country_flag.ts",
+      "line": 311,
+      "text": "委內瑞拉",
+      "context": "'VE': '委內瑞拉',"
+    },
+    {
+      "file": "src/utils/country_flag.ts",
+      "line": 312,
+      "text": "厄瓜多",
+      "context": "'EC': '厄瓜多',"
+    },
+    {
+      "file": "src/utils/country_flag.ts",
+      "line": 313,
+      "text": "玻利維亞",
+      "context": "'BO': '玻利維亞',"
+    },
+    {
+      "file": "src/utils/country_flag.ts",
+      "line": 314,
+      "text": "巴拉圭",
+      "context": "'PY': '巴拉圭',"
+    },
+    {
+      "file": "src/utils/country_flag.ts",
+      "line": 315,
+      "text": "烏拉圭",
+      "context": "'UY': '烏拉圭',"
+    },
+    {
+      "file": "src/utils/country_flag.ts",
+      "line": 316,
+      "text": "哥斯大黎加",
+      "context": "'CR': '哥斯大黎加',"
+    },
+    {
+      "file": "src/utils/country_flag.ts",
+      "line": 317,
+      "text": "巴拿馬",
+      "context": "'PA': '巴拿馬',"
+    },
+    {
+      "file": "src/utils/country_flag.ts",
+      "line": 318,
+      "text": "瓜地馬拉",
+      "context": "'GT': '瓜地馬拉',"
+    },
+    {
+      "file": "src/utils/country_flag.ts",
+      "line": 319,
+      "text": "宏都拉斯",
+      "context": "'HN': '宏都拉斯',"
+    },
+    {
+      "file": "src/utils/country_flag.ts",
+      "line": 320,
+      "text": "薩爾瓦多",
+      "context": "'SV': '薩爾瓦多',"
+    },
+    {
+      "file": "src/utils/country_flag.ts",
+      "line": 321,
+      "text": "尼加拉瓜",
+      "context": "'NI': '尼加拉瓜',"
+    },
+    {
+      "file": "src/utils/country_flag.ts",
+      "line": 323,
+      "text": "多明尼加",
+      "context": "'DO': '多明尼加',"
+    },
+    {
+      "file": "src/utils/country_flag.ts",
+      "line": 324,
+      "text": "牙買加",
+      "context": "'JM': '牙買加',"
+    },
+    {
+      "file": "src/utils/country_flag.ts",
+      "line": 325,
+      "text": "千里達",
+      "context": "'TT': '千里達',"
+    },
+    {
+      "file": "src/utils/country_flag.ts",
+      "line": 326,
+      "text": "巴貝多",
+      "context": "'BB': '巴貝多',"
+    }
+  ],
+  "internal": [
+    {
+      "file": "src/telegram/handlers/broadcast.ts",
+      "line": 286,
+      "text": "管理員手動取消",
+      "context": "error_message = '管理員手動取消'"
+    },
+    {
+      "file": "src/telegram/handlers/menu.ts",
+      "line": 57,
+      "text": "VIP 會員 💎",
+      "context": "`• 等級：${isVip ? 'VIP 會員 💎' : '免費會員'}\\n` +"
+    },
+    {
+      "file": "src/telegram/handlers/stats.ts",
+      "line": 81,
+      "text": "VIP 會員 💎",
+      "context": "`• ${isVip ? `VIP 會員 💎` : `免費會員`}\\n` +"
+    }
+  ]
+}
