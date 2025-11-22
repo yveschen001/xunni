@@ -235,7 +235,28 @@ export async function routeUpdate(update: TelegramUpdate, env: Env): Promise<voi
           return;
         }
         
-        // Otherwise, check if it's a conversation reply
+        // Check if replying to conversation reply prompt (💬 回覆 #IDENTIFIER：)
+        if (replyToText.includes('💬 回覆 #')) {
+          const match = replyToText.match(/💬 回覆 #([A-Z0-9]+)：/);
+          if (match) {
+            const conversationIdentifier = match[1];
+            console.error('[router] Detected reply to conversation prompt:', {
+              userId: user.telegram_id,
+              conversationIdentifier,
+              method: 'button',
+            });
+            
+            // Process as conversation message
+            // The handleMessageForward will use the active conversation
+            const { handleMessageForward } = await import('./telegram/handlers/message_forward');
+            const isConversationMessage = await handleMessageForward(message, env);
+            if (isConversationMessage) {
+              return;
+            }
+          }
+        }
+        
+        // Otherwise, check if it's a conversation reply (long-press method)
         const { handleMessageForward } = await import('./telegram/handlers/message_forward');
         const isConversationMessage = await handleMessageForward(message, env);
         if (isConversationMessage) {
@@ -1361,6 +1382,14 @@ export async function routeUpdate(update: TelegramUpdate, env: Env): Promise<voi
     if (data === 'throw_input') {
       const { handleThrowInputButton } = await import('./telegram/handlers/throw');
       await handleThrowInputButton(callbackQuery, env);
+      return;
+    }
+
+    // Handle conversation reply button
+    if (data.startsWith('conv_reply_')) {
+      const conversationIdentifier = data.replace('conv_reply_', '');
+      const { handleConversationReplyButton } = await import('./telegram/handlers/message_forward');
+      await handleConversationReplyButton(callbackQuery, conversationIdentifier, env);
       return;
     }
 

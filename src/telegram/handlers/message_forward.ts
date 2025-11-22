@@ -4,7 +4,7 @@
  * Handles anonymous message forwarding between conversation participants.
  */
 
-import type { Env, TelegramMessage } from '~/types';
+import type { Env, TelegramMessage, TelegramCallbackQuery } from '~/types';
 import { createDatabaseClient } from '~/db/client';
 import { createTelegramService } from '~/services/telegram';
 import { findUserByTelegramId } from '~/db/queries/users';
@@ -341,5 +341,80 @@ export async function handleMessageForward(message: TelegramMessage, env: Env): 
   } catch (error) {
     console.error('[handleMessageForward] Error:', error);
     return false;
+  }
+}
+
+/**
+ * Handle conversation reply button click
+ *
+ * When user clicks "💬 回覆訊息" button, send a ForceReply message
+ * to prompt them to input their reply.
+ */
+export async function handleConversationReplyButton(
+  callbackQuery: TelegramCallbackQuery,
+  conversationIdentifier: string,
+  env: Env
+): Promise<void> {
+  const db = createDatabaseClient(env.DB);
+  const telegram = createTelegramService(env);
+  const chatId = callbackQuery.message!.chat.id;
+  const telegramId = callbackQuery.from.id.toString();
+
+  try {
+    // Get user
+    const user = await findUserByTelegramId(db, telegramId);
+    if (!user) {
+      await telegram.answerCallbackQuery(callbackQuery.id, '⚠️ 用戶不存在');
+      return;
+    }
+
+    // Get conversation by identifier
+    const conversation = await db.d1
+      .prepare(
+        `SELECT c.* 
+         FROM conversations c
+         INNER JOIN conversation_identifiers ci ON ci.conversation_id = c.id
+         WHERE ci.identifier = ? AND ci.user_telegram_id = ?`
+      )
+      .bind(conversationIdentifier, telegramId)
+      .first();
+
+    if (!conversation) {
+      await telegram.answerCallbackQuery(callbackQuery.id, '⚠️ 對話不存在或已結束');
+      return;
+    }
+
+    // Check if conversation is active
+    if (conversation.status !== 'active') {
+      await telegram.answerCallbackQuery(callbackQuery.id, '⚠️ 此對話已結束');
+      return;
+    }
+
+    // Answer callback query
+    await telegram.answerCallbackQuery(callbackQuery.id, '💡 請在下方輸入框輸入內容');
+
+    // Send ForceReply message with conversation identifier
+    const response = await fetch(`https://api.telegram.org/bot${env.TELEGRAM_BOT_TOKEN}/sendMessage`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        chat_id: chatId,
+        text: `💬 回覆 #${conversationIdentifier}：`,
+        reply_markup: {
+          force_reply: true,
+          selective: true,
+        },
+      }),
+    });
+
+    if (!response.ok) {
+      const error = await response.text();
+      console.error('[handleConversationReplyButton] Failed to send ForceReply:', error);
+    }
+  } catch (error) {
+    console.error('[handleConversationReplyButton] Error:', error);
+    await telegram.answerCallbackQuery(callbackQuery.id, '❌ 系統發生錯誤');
   }
 }

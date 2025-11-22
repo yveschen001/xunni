@@ -474,17 +474,47 @@ async function notifyBottleOwner(ownerId: string, catcher: any, env: Env): Promi
       catcher.gender === 'male' ? '♂️ 男' : catcher.gender === 'female' ? '♀️ 女' : '未設定';
     const catcherAge = catcher.birthday ? calculateAge(catcher.birthday) : '未知';
 
-    // Send notification to bottle owner
-    await telegram.sendMessage(
-      parseInt(ownerId),
+    // Get conversation identifier for this conversation
+    const conversation = await db.d1
+      .prepare(
+        `SELECT c.id, ci.identifier 
+         FROM conversations c
+         LEFT JOIN conversation_identifiers ci ON ci.conversation_id = c.id AND ci.user_telegram_id = ?
+         WHERE (c.user1_telegram_id = ? OR c.user2_telegram_id = ?)
+         AND c.status = 'active'
+         ORDER BY c.created_at DESC
+         LIMIT 1`
+      )
+      .bind(ownerId, ownerId, ownerId)
+      .first<{ id: number; identifier: string }>();
+
+    const conversationIdentifier = conversation?.identifier;
+
+    const notificationMessage =
       `🎣 有人撿到你的漂流瓶了！\n\n` +
-        `📝 暱稱：${catcherNickname}\n` +
-        `🧠 MBTI：${catcherMBTI}\n` +
-        `⭐ 星座：${catcherZodiac}\n` +
-        `${catcherGender} | 📅 ${catcherAge}歲\n\n` +
-        `已為你們建立了匿名對話，快來開始聊天吧～\n\n` +
-        `💬 直接回覆訊息即可開始對話`
-    );
+      `📝 暱稱：${catcherNickname}\n` +
+      `🧠 MBTI：${catcherMBTI}\n` +
+      `⭐ 星座：${catcherZodiac}\n` +
+      `${catcherGender} | 📅 ${catcherAge}歲\n\n` +
+      `已為你們建立了匿名對話，快來開始聊天吧～\n\n` +
+      `💡 **兩種回覆方式**：\n` +
+      `1️⃣ 點擊下方「💬 回覆訊息」按鈕\n` +
+      `2️⃣ 長按此訊息，選擇「回覆」後輸入內容`;
+
+    // Send notification with button if identifier exists
+    if (conversationIdentifier) {
+      await telegram.sendMessageWithButtons(
+        parseInt(ownerId),
+        notificationMessage,
+        [
+          [{ text: '💬 回覆訊息', callback_data: `conv_reply_${conversationIdentifier}` }],
+          [{ text: '📊 查看所有對話', callback_data: 'chats' }],
+        ]
+      );
+    } else {
+      // Fallback: send without button if identifier not found
+      await telegram.sendMessage(parseInt(ownerId), notificationMessage);
+    }
   } catch (error) {
     console.error('[notifyBottleOwner] Error:', error);
     // Don't throw - notification failure shouldn't break the main flow

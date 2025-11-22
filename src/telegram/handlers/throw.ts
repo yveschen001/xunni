@@ -669,10 +669,13 @@ export async function processBottleContent(user: User, content: string, env: Env
 
     // 🆕 Send success message (different for VIP and free users)
     let successMessage: string;
+    let conversationIdentifier: string | undefined;
+    
     if (isVip) {
       // VIP 用戶成功訊息
       if (vipMatchInfo && vipMatchInfo.matched) {
         // 有智能配對成功
+        conversationIdentifier = vipMatchInfo.conversationIdentifier;
         successMessage =
           `✨ **VIP 特權啟動！智能配對成功！**\n\n` +
           `🎯 **第 1 個配對已完成：**\n` +
@@ -684,7 +687,9 @@ export async function processBottleContent(user: User, content: string, env: Env
           `💡 你可能會收到 **最多 3 個對話**！\n` +
           `📊 今日已丟：${quotaDisplay}\n\n` +
           `使用 /chats 查看所有對話\n\n` +
-          `💬 **請長按此訊息，選擇「回覆」後輸入內容和對方開始聊天**`;
+          `💡 **兩種回覆方式**：\n` +
+          `1️⃣ 點擊下方「💬 回覆訊息」按鈕\n` +
+          `2️⃣ 長按此訊息，選擇「回覆」後輸入內容`;
       } else {
         // 智能配對未成功，3 個槽位都進入公共池
         successMessage =
@@ -738,7 +743,15 @@ export async function processBottleContent(user: User, content: string, env: Env
         await telegram.sendMessage(chatId, successMessage);
       }
     } else {
-      await telegram.sendMessage(chatId, successMessage);
+      // VIP 用戶：如果有對話標識符，顯示回覆按鈕
+      if (conversationIdentifier) {
+        await telegram.sendMessageWithButtons(chatId, successMessage, [
+          [{ text: '💬 回覆訊息', callback_data: `conv_reply_${conversationIdentifier}` }],
+          [{ text: '📊 查看所有對話', callback_data: 'chats' }],
+        ]);
+      } else {
+        await telegram.sendMessage(chatId, successMessage);
+      }
     }
   } catch (error) {
     console.error('[processBottleContent] Error:', error);
