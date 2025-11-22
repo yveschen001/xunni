@@ -1,0 +1,988 @@
+{
+  "summary": {
+    "totalFiles": 177,
+    "extractedCount": 1707,
+    "missedCount": 81,
+    "coverageRate": "95.47%"
+  },
+  "missedStrings": [
+    {
+      "text": "📦 當前每日配額：${taskBonus > 0 ?",
+      "file": "src/telegram/handlers/profile.ts",
+      "line": 92,
+      "reason": "template_string"
+    },
+    {
+      "text": "✅ 啟用",
+      "file": "src/telegram/handlers/admin_ad_config.ts",
+      "line": 56,
+      "reason": "too_short"
+    },
+    {
+      "text": "✅ 啟用",
+      "file": "src/telegram/handlers/admin_ad_config.ts",
+      "line": 246,
+      "reason": "too_short"
+    },
+    {
+      "text": "匿名用戶",
+      "file": "src/telegram/handlers/catch.ts",
+      "line": 271,
+      "reason": "too_short"
+    },
+    {
+      "text": "匿名用戶",
+      "file": "src/telegram/handlers/catch.ts",
+      "line": 520,
+      "reason": "too_short"
+    },
+    {
+      "text": "♂️ 男",
+      "file": "src/telegram/handlers/catch.ts",
+      "line": 524,
+      "reason": "too_short"
+    },
+    {
+      "text": "♀️ 女",
+      "file": "src/telegram/handlers/catch.ts",
+      "line": 524,
+      "reason": "too_short"
+    },
+    {
+      "text": "未知用戶",
+      "file": "src/telegram/handlers/chats.ts",
+      "line": 62,
+      "reason": "too_short"
+    },
+    {
+      "text": "測驗結果",
+      "file": "src/telegram/handlers/mbti.ts",
+      "line": 42,
+      "reason": "too_short"
+    },
+    {
+      "text": "匿名用戶",
+      "file": "src/telegram/handlers/message_forward.ts",
+      "line": 315,
+      "reason": "too_short"
+    },
+    {
+      "text": "匿名用戶",
+      "file": "src/telegram/handlers/message_forward.ts",
+      "line": 329,
+      "reason": "too_short"
+    },
+    {
+      "text": "測驗結果",
+      "file": "src/telegram/handlers/profile.ts",
+      "line": 48,
+      "reason": "too_short"
+    },
+    {
+      "text": "♂️ 男",
+      "file": "src/telegram/handlers/profile.ts",
+      "line": 142,
+      "reason": "too_short"
+    },
+    {
+      "text": "♀️ 女",
+      "file": "src/telegram/handlers/profile.ts",
+      "line": 142,
+      "reason": "too_short"
+    },
+    {
+      "text": "匿名用戶",
+      "file": "src/telegram/handlers/profile.ts",
+      "line": 152,
+      "reason": "too_short"
+    },
+    {
+      "text": "其他性別",
+      "file": "src/domain/broadcast_filters.ts",
+      "line": 189,
+      "reason": "too_short"
+    },
+    {
+      "text": "當天生日",
+      "file": "src/domain/broadcast_filters.ts",
+      "line": 229,
+      "reason": "too_short"
+    },
+    {
+      "text": "即將完成",
+      "file": "src/domain/maintenance.ts",
+      "line": 44,
+      "reason": "too_short"
+    },
+    {
+      "text": "先聽後說",
+      "file": "src/domain/mbti_test.ts",
+      "line": 445,
+      "reason": "too_short"
+    },
+    {
+      "text": "小而親密",
+      "file": "src/domain/mbti_test.ts",
+      "line": 465,
+      "reason": "too_short"
+    },
+    {
+      "text": "團隊合作",
+      "file": "src/domain/mbti_test.ts",
+      "line": 474,
+      "reason": "too_short"
+    },
+    {
+      "text": "獨立工作",
+      "file": "src/domain/mbti_test.ts",
+      "line": 475,
+      "reason": "too_short"
+    },
+    {
+      "text": "邊說邊想",
+      "file": "src/domain/mbti_test.ts",
+      "line": 484,
+      "reason": "too_short"
+    },
+    {
+      "text": "獨自消化",
+      "file": "src/domain/mbti_test.ts",
+      "line": 495,
+      "reason": "too_short"
+    },
+    {
+      "text": "實際應用",
+      "file": "src/domain/mbti_test.ts",
+      "line": 566,
+      "reason": "too_short"
+    },
+    {
+      "text": "創新想法",
+      "file": "src/domain/mbti_test.ts",
+      "line": 567,
+      "reason": "too_short"
+    },
+    {
+      "text": "新的嘗試",
+      "file": "src/domain/mbti_test.ts",
+      "line": 577,
+      "reason": "too_short"
+    },
+    {
+      "text": "是否合理",
+      "file": "src/domain/mbti_test.ts",
+      "line": 628,
+      "reason": "too_short"
+    },
+    {
+      "text": "是否有益",
+      "file": "src/domain/mbti_test.ts",
+      "line": 629,
+      "reason": "too_short"
+    },
+    {
+      "text": "堅持原則",
+      "file": "src/domain/mbti_test.ts",
+      "line": 648,
+      "reason": "too_short"
+    },
+    {
+      "text": "維持關係",
+      "file": "src/domain/mbti_test.ts",
+      "line": 649,
+      "reason": "too_short"
+    },
+    {
+      "text": "公正果斷",
+      "file": "src/domain/mbti_test.ts",
+      "line": 678,
+      "reason": "too_short"
+    },
+    {
+      "text": "體貼關懷",
+      "file": "src/domain/mbti_test.ts",
+      "line": 679,
+      "reason": "too_short"
+    },
+    {
+      "text": "整齊有序",
+      "file": "src/domain/mbti_test.ts",
+      "line": 720,
+      "reason": "too_short"
+    },
+    {
+      "text": "隨性自在",
+      "file": "src/domain/mbti_test.ts",
+      "line": 721,
+      "reason": "too_short"
+    },
+    {
+      "text": "盡早完成",
+      "file": "src/domain/mbti_test.ts",
+      "line": 730,
+      "reason": "too_short"
+    },
+    {
+      "text": "快速決定",
+      "file": "src/domain/mbti_test.ts",
+      "line": 750,
+      "reason": "too_short"
+    },
+    {
+      "text": "感到不安",
+      "file": "src/domain/mbti_test.ts",
+      "line": 770,
+      "reason": "too_short"
+    },
+    {
+      "text": "感到興奮",
+      "file": "src/domain/mbti_test.ts",
+      "line": 771,
+      "reason": "too_short"
+    },
+    {
+      "text": "訪問鏈接",
+      "file": "src/domain/official_ad.ts",
+      "line": 344,
+      "reason": "too_short"
+    },
+    {
+      "text": "訂閱頻道",
+      "file": "src/domain/official_ad.ts",
+      "line": 348,
+      "reason": "too_short"
+    },
+    {
+      "text": "銀行帳號",
+      "file": "src/domain/risk.ts",
+      "line": 33,
+      "reason": "too_short"
+    },
+    {
+      "text": "用戶：\\",
+      "file": "src/services/admin_notification.ts",
+      "line": 55,
+      "reason": "too_short"
+    },
+    {
+      "text": "用戶：\\",
+      "file": "src/services/admin_notification.ts",
+      "line": 62,
+      "reason": "too_short"
+    },
+    {
+      "text": "用戶：\\",
+      "file": "src/services/admin_notification.ts",
+      "line": 69,
+      "reason": "too_short"
+    },
+    {
+      "text": "用戶：\\",
+      "file": "src/services/admin_notification.ts",
+      "line": 76,
+      "reason": "too_short"
+    },
+    {
+      "text": "用戶：\\",
+      "file": "src/services/admin_notification.ts",
+      "line": 84,
+      "reason": "too_short"
+    },
+    {
+      "text": "用戶：\\",
+      "file": "src/services/admin_notification.ts",
+      "line": 91,
+      "reason": "too_short"
+    },
+    {
+      "text": "購買成功",
+      "file": "src/services/analytics_reports.ts",
+      "line": 396,
+      "reason": "too_short"
+    },
+    {
+      "text": "設定地區",
+      "file": "src/db/migrations/0030_create_tasks_table.sql",
+      "line": 27,
+      "reason": "too_short"
+    },
+    {
+      "text": "備註：",
+      "file": "src/telegram/handlers/appeal.ts",
+      "line": 238,
+      "reason": "too_short"
+    },
+    {
+      "text": "發送中",
+      "file": "src/domain/broadcast.ts",
+      "line": 64,
+      "reason": "too_short"
+    },
+    {
+      "text": "信用卡",
+      "file": "src/domain/risk.ts",
+      "line": 33,
+      "reason": "too_short"
+    },
+    {
+      "text": "比特币",
+      "file": "src/domain/risk.ts",
+      "line": 34,
+      "reason": "too_short"
+    },
+    {
+      "text": "加微信",
+      "file": "src/domain/risk.ts",
+      "line": 43,
+      "reason": "too_short"
+    },
+    {
+      "text": "加qq",
+      "file": "src/domain/risk.ts",
+      "line": 43,
+      "reason": "too_short"
+    },
+    {
+      "text": "手机号",
+      "file": "src/domain/risk.ts",
+      "line": 44,
+      "reason": "too_short"
+    },
+    {
+      "text": "联系我",
+      "file": "src/domain/risk.ts",
+      "line": 44,
+      "reason": "too_short"
+    },
+    {
+      "text": "一夜情",
+      "file": "src/domain/risk.ts",
+      "line": 52,
+      "reason": "too_short"
+    },
+    {
+      "text": "性服务",
+      "file": "src/domain/risk.ts",
+      "line": 52,
+      "reason": "too_short"
+    },
+    {
+      "text": "剛剛",
+      "file": "src/telegram/handlers/chats.ts",
+      "line": 141,
+      "reason": "too_short"
+    },
+    {
+      "text": "剛剛",
+      "file": "src/telegram/handlers/history.ts",
+      "line": 178,
+      "reason": "too_short"
+    },
+    {
+      "text": "剛剛",
+      "file": "src/domain/draft.ts",
+      "line": 53,
+      "reason": "too_short"
+    },
+    {
+      "text": "騙錢",
+      "file": "src/domain/risk.ts",
+      "line": 32,
+      "reason": "too_short"
+    },
+    {
+      "text": "投資",
+      "file": "src/domain/risk.ts",
+      "line": 32,
+      "reason": "too_short"
+    },
+    {
+      "text": "賺錢",
+      "file": "src/domain/risk.ts",
+      "line": 32,
+      "reason": "too_short"
+    },
+    {
+      "text": "匯款",
+      "file": "src/domain/risk.ts",
+      "line": 32,
+      "reason": "too_short"
+    },
+    {
+      "text": "轉帳",
+      "file": "src/domain/risk.ts",
+      "line": 32,
+      "reason": "too_short"
+    },
+    {
+      "text": "密碼",
+      "file": "src/domain/risk.ts",
+      "line": 33,
+      "reason": "too_short"
+    },
+    {
+      "text": "传销",
+      "file": "src/domain/risk.ts",
+      "line": 33,
+      "reason": "too_short"
+    },
+    {
+      "text": "金融",
+      "file": "src/domain/risk.ts",
+      "line": 33,
+      "reason": "too_short"
+    },
+    {
+      "text": "理财",
+      "file": "src/domain/risk.ts",
+      "line": 34,
+      "reason": "too_short"
+    },
+    {
+      "text": "股票",
+      "file": "src/domain/risk.ts",
+      "line": 34,
+      "reason": "too_short"
+    },
+    {
+      "text": "期货",
+      "file": "src/domain/risk.ts",
+      "line": 34,
+      "reason": "too_short"
+    },
+    {
+      "text": "外汇",
+      "file": "src/domain/risk.ts",
+      "line": 34,
+      "reason": "too_short"
+    },
+    {
+      "text": "电话",
+      "file": "src/domain/risk.ts",
+      "line": 44,
+      "reason": "too_short"
+    },
+    {
+      "text": "约炮",
+      "file": "src/domain/risk.ts",
+      "line": 52,
+      "reason": "too_short"
+    },
+    {
+      "text": "援交",
+      "file": "src/domain/risk.ts",
+      "line": 52,
+      "reason": "too_short"
+    },
+    {
+      "text": "自杀",
+      "file": "src/domain/risk.ts",
+      "line": 64,
+      "reason": "too_short"
+    },
+    {
+      "text": "跳楼",
+      "file": "src/domain/risk.ts",
+      "line": 64,
+      "reason": "too_short"
+    },
+    {
+      "text": "暴力",
+      "file": "src/domain/risk.ts",
+      "line": 64,
+      "reason": "too_short"
+    }
+  ],
+  "byReason": {
+    "too_short": [
+      {
+        "text": "✅ 啟用",
+        "file": "src/telegram/handlers/admin_ad_config.ts",
+        "line": 56,
+        "reason": "too_short"
+      },
+      {
+        "text": "✅ 啟用",
+        "file": "src/telegram/handlers/admin_ad_config.ts",
+        "line": 246,
+        "reason": "too_short"
+      },
+      {
+        "text": "備註：",
+        "file": "src/telegram/handlers/appeal.ts",
+        "line": 238,
+        "reason": "too_short"
+      },
+      {
+        "text": "匿名用戶",
+        "file": "src/telegram/handlers/catch.ts",
+        "line": 271,
+        "reason": "too_short"
+      },
+      {
+        "text": "匿名用戶",
+        "file": "src/telegram/handlers/catch.ts",
+        "line": 520,
+        "reason": "too_short"
+      },
+      {
+        "text": "♂️ 男",
+        "file": "src/telegram/handlers/catch.ts",
+        "line": 524,
+        "reason": "too_short"
+      },
+      {
+        "text": "♀️ 女",
+        "file": "src/telegram/handlers/catch.ts",
+        "line": 524,
+        "reason": "too_short"
+      },
+      {
+        "text": "未知用戶",
+        "file": "src/telegram/handlers/chats.ts",
+        "line": 62,
+        "reason": "too_short"
+      },
+      {
+        "text": "剛剛",
+        "file": "src/telegram/handlers/chats.ts",
+        "line": 141,
+        "reason": "too_short"
+      },
+      {
+        "text": "剛剛",
+        "file": "src/telegram/handlers/history.ts",
+        "line": 178,
+        "reason": "too_short"
+      },
+      {
+        "text": "測驗結果",
+        "file": "src/telegram/handlers/mbti.ts",
+        "line": 42,
+        "reason": "too_short"
+      },
+      {
+        "text": "匿名用戶",
+        "file": "src/telegram/handlers/message_forward.ts",
+        "line": 315,
+        "reason": "too_short"
+      },
+      {
+        "text": "匿名用戶",
+        "file": "src/telegram/handlers/message_forward.ts",
+        "line": 329,
+        "reason": "too_short"
+      },
+      {
+        "text": "測驗結果",
+        "file": "src/telegram/handlers/profile.ts",
+        "line": 48,
+        "reason": "too_short"
+      },
+      {
+        "text": "♂️ 男",
+        "file": "src/telegram/handlers/profile.ts",
+        "line": 142,
+        "reason": "too_short"
+      },
+      {
+        "text": "♀️ 女",
+        "file": "src/telegram/handlers/profile.ts",
+        "line": 142,
+        "reason": "too_short"
+      },
+      {
+        "text": "匿名用戶",
+        "file": "src/telegram/handlers/profile.ts",
+        "line": 152,
+        "reason": "too_short"
+      },
+      {
+        "text": "發送中",
+        "file": "src/domain/broadcast.ts",
+        "line": 64,
+        "reason": "too_short"
+      },
+      {
+        "text": "其他性別",
+        "file": "src/domain/broadcast_filters.ts",
+        "line": 189,
+        "reason": "too_short"
+      },
+      {
+        "text": "當天生日",
+        "file": "src/domain/broadcast_filters.ts",
+        "line": 229,
+        "reason": "too_short"
+      },
+      {
+        "text": "剛剛",
+        "file": "src/domain/draft.ts",
+        "line": 53,
+        "reason": "too_short"
+      },
+      {
+        "text": "即將完成",
+        "file": "src/domain/maintenance.ts",
+        "line": 44,
+        "reason": "too_short"
+      },
+      {
+        "text": "先聽後說",
+        "file": "src/domain/mbti_test.ts",
+        "line": 445,
+        "reason": "too_short"
+      },
+      {
+        "text": "小而親密",
+        "file": "src/domain/mbti_test.ts",
+        "line": 465,
+        "reason": "too_short"
+      },
+      {
+        "text": "團隊合作",
+        "file": "src/domain/mbti_test.ts",
+        "line": 474,
+        "reason": "too_short"
+      },
+      {
+        "text": "獨立工作",
+        "file": "src/domain/mbti_test.ts",
+        "line": 475,
+        "reason": "too_short"
+      },
+      {
+        "text": "邊說邊想",
+        "file": "src/domain/mbti_test.ts",
+        "line": 484,
+        "reason": "too_short"
+      },
+      {
+        "text": "獨自消化",
+        "file": "src/domain/mbti_test.ts",
+        "line": 495,
+        "reason": "too_short"
+      },
+      {
+        "text": "實際應用",
+        "file": "src/domain/mbti_test.ts",
+        "line": 566,
+        "reason": "too_short"
+      },
+      {
+        "text": "創新想法",
+        "file": "src/domain/mbti_test.ts",
+        "line": 567,
+        "reason": "too_short"
+      },
+      {
+        "text": "新的嘗試",
+        "file": "src/domain/mbti_test.ts",
+        "line": 577,
+        "reason": "too_short"
+      },
+      {
+        "text": "是否合理",
+        "file": "src/domain/mbti_test.ts",
+        "line": 628,
+        "reason": "too_short"
+      },
+      {
+        "text": "是否有益",
+        "file": "src/domain/mbti_test.ts",
+        "line": 629,
+        "reason": "too_short"
+      },
+      {
+        "text": "堅持原則",
+        "file": "src/domain/mbti_test.ts",
+        "line": 648,
+        "reason": "too_short"
+      },
+      {
+        "text": "維持關係",
+        "file": "src/domain/mbti_test.ts",
+        "line": 649,
+        "reason": "too_short"
+      },
+      {
+        "text": "公正果斷",
+        "file": "src/domain/mbti_test.ts",
+        "line": 678,
+        "reason": "too_short"
+      },
+      {
+        "text": "體貼關懷",
+        "file": "src/domain/mbti_test.ts",
+        "line": 679,
+        "reason": "too_short"
+      },
+      {
+        "text": "整齊有序",
+        "file": "src/domain/mbti_test.ts",
+        "line": 720,
+        "reason": "too_short"
+      },
+      {
+        "text": "隨性自在",
+        "file": "src/domain/mbti_test.ts",
+        "line": 721,
+        "reason": "too_short"
+      },
+      {
+        "text": "盡早完成",
+        "file": "src/domain/mbti_test.ts",
+        "line": 730,
+        "reason": "too_short"
+      },
+      {
+        "text": "快速決定",
+        "file": "src/domain/mbti_test.ts",
+        "line": 750,
+        "reason": "too_short"
+      },
+      {
+        "text": "感到不安",
+        "file": "src/domain/mbti_test.ts",
+        "line": 770,
+        "reason": "too_short"
+      },
+      {
+        "text": "感到興奮",
+        "file": "src/domain/mbti_test.ts",
+        "line": 771,
+        "reason": "too_short"
+      },
+      {
+        "text": "訪問鏈接",
+        "file": "src/domain/official_ad.ts",
+        "line": 344,
+        "reason": "too_short"
+      },
+      {
+        "text": "訂閱頻道",
+        "file": "src/domain/official_ad.ts",
+        "line": 348,
+        "reason": "too_short"
+      },
+      {
+        "text": "騙錢",
+        "file": "src/domain/risk.ts",
+        "line": 32,
+        "reason": "too_short"
+      },
+      {
+        "text": "投資",
+        "file": "src/domain/risk.ts",
+        "line": 32,
+        "reason": "too_short"
+      },
+      {
+        "text": "賺錢",
+        "file": "src/domain/risk.ts",
+        "line": 32,
+        "reason": "too_short"
+      },
+      {
+        "text": "匯款",
+        "file": "src/domain/risk.ts",
+        "line": 32,
+        "reason": "too_short"
+      },
+      {
+        "text": "轉帳",
+        "file": "src/domain/risk.ts",
+        "line": 32,
+        "reason": "too_short"
+      },
+      {
+        "text": "銀行帳號",
+        "file": "src/domain/risk.ts",
+        "line": 33,
+        "reason": "too_short"
+      },
+      {
+        "text": "信用卡",
+        "file": "src/domain/risk.ts",
+        "line": 33,
+        "reason": "too_short"
+      },
+      {
+        "text": "密碼",
+        "file": "src/domain/risk.ts",
+        "line": 33,
+        "reason": "too_short"
+      },
+      {
+        "text": "传销",
+        "file": "src/domain/risk.ts",
+        "line": 33,
+        "reason": "too_short"
+      },
+      {
+        "text": "金融",
+        "file": "src/domain/risk.ts",
+        "line": 33,
+        "reason": "too_short"
+      },
+      {
+        "text": "理财",
+        "file": "src/domain/risk.ts",
+        "line": 34,
+        "reason": "too_short"
+      },
+      {
+        "text": "股票",
+        "file": "src/domain/risk.ts",
+        "line": 34,
+        "reason": "too_short"
+      },
+      {
+        "text": "期货",
+        "file": "src/domain/risk.ts",
+        "line": 34,
+        "reason": "too_short"
+      },
+      {
+        "text": "外汇",
+        "file": "src/domain/risk.ts",
+        "line": 34,
+        "reason": "too_short"
+      },
+      {
+        "text": "比特币",
+        "file": "src/domain/risk.ts",
+        "line": 34,
+        "reason": "too_short"
+      },
+      {
+        "text": "加微信",
+        "file": "src/domain/risk.ts",
+        "line": 43,
+        "reason": "too_short"
+      },
+      {
+        "text": "加qq",
+        "file": "src/domain/risk.ts",
+        "line": 43,
+        "reason": "too_short"
+      },
+      {
+        "text": "手机号",
+        "file": "src/domain/risk.ts",
+        "line": 44,
+        "reason": "too_short"
+      },
+      {
+        "text": "电话",
+        "file": "src/domain/risk.ts",
+        "line": 44,
+        "reason": "too_short"
+      },
+      {
+        "text": "联系我",
+        "file": "src/domain/risk.ts",
+        "line": 44,
+        "reason": "too_short"
+      },
+      {
+        "text": "约炮",
+        "file": "src/domain/risk.ts",
+        "line": 52,
+        "reason": "too_short"
+      },
+      {
+        "text": "一夜情",
+        "file": "src/domain/risk.ts",
+        "line": 52,
+        "reason": "too_short"
+      },
+      {
+        "text": "性服务",
+        "file": "src/domain/risk.ts",
+        "line": 52,
+        "reason": "too_short"
+      },
+      {
+        "text": "援交",
+        "file": "src/domain/risk.ts",
+        "line": 52,
+        "reason": "too_short"
+      },
+      {
+        "text": "自杀",
+        "file": "src/domain/risk.ts",
+        "line": 64,
+        "reason": "too_short"
+      },
+      {
+        "text": "跳楼",
+        "file": "src/domain/risk.ts",
+        "line": 64,
+        "reason": "too_short"
+      },
+      {
+        "text": "暴力",
+        "file": "src/domain/risk.ts",
+        "line": 64,
+        "reason": "too_short"
+      },
+      {
+        "text": "用戶：\\",
+        "file": "src/services/admin_notification.ts",
+        "line": 55,
+        "reason": "too_short"
+      },
+      {
+        "text": "用戶：\\",
+        "file": "src/services/admin_notification.ts",
+        "line": 62,
+        "reason": "too_short"
+      },
+      {
+        "text": "用戶：\\",
+        "file": "src/services/admin_notification.ts",
+        "line": 69,
+        "reason": "too_short"
+      },
+      {
+        "text": "用戶：\\",
+        "file": "src/services/admin_notification.ts",
+        "line": 76,
+        "reason": "too_short"
+      },
+      {
+        "text": "用戶：\\",
+        "file": "src/services/admin_notification.ts",
+        "line": 84,
+        "reason": "too_short"
+      },
+      {
+        "text": "用戶：\\",
+        "file": "src/services/admin_notification.ts",
+        "line": 91,
+        "reason": "too_short"
+      },
+      {
+        "text": "購買成功",
+        "file": "src/services/analytics_reports.ts",
+        "line": 396,
+        "reason": "too_short"
+      },
+      {
+        "text": "設定地區",
+        "file": "src/db/migrations/0030_create_tasks_table.sql",
+        "line": 27,
+        "reason": "too_short"
+      }
+    ],
+    "template_string": [
+      {
+        "text": "📦 當前每日配額：${taskBonus > 0 ?",
+        "file": "src/telegram/handlers/profile.ts",
+        "line": 92,
+        "reason": "template_string"
+      }
+    ]
+  }
+}

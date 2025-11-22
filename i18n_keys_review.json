@@ -1,0 +1,1118 @@
+{
+  "summary": {
+    "total": 1773,
+    "duplicates": 196,
+    "generic": 911,
+    "sqlQueries": 6
+  },
+  "duplicates": [
+    {
+      "key": "common.short",
+      "count": 157,
+      "examples": [
+        {
+          "text": "💡 你可以：\\n",
+          "file": "src/telegram/handlers/draft.ts",
+          "line": 34
+        },
+        {
+          "text": "🌈 任何人都可以",
+          "file": "src/telegram/handlers/draft.ts",
+          "line": 89
+        },
+        {
+          "text": "✏️ 繼續編輯資料",
+          "file": "src/telegram/handlers/edit_profile.ts",
+          "line": 348
+        }
+      ]
+    },
+    {
+      "key": "common.text",
+      "count": 148,
+      "examples": [
+        {
+          "text": "目標：${broadcast.target_type}\\n",
+          "file": "src/telegram/handlers/broadcast.ts",
+          "line": 220
+        },
+        {
+          "text": "請使用 /broadcast_filter 查看正確格式。",
+          "file": "src/telegram/handlers/broadcast.ts",
+          "line": 534
+        },
+        {
+          "text": "**過濾條件：**\\n${filtersDesc}\\n\\n",
+          "file": "src/telegram/handlers/broadcast.ts",
+          "line": 560
+        }
+      ]
+    },
+    {
+      "key": "common.message",
+      "count": 83,
+      "examples": [
+        {
+          "text": "AND (b.target_gender = ? OR b.target_gender = 'any')\n      -- 🆕 排除已經配對過的用戶（檢查所有槽位）\n      AND NOT EX",
+          "file": "src/db/queries/bottles.ts",
+          "line": 81
+        },
+        {
+          "text": "INSERT INTO users (\n        telegram_id,\n        username,\n        first_name,\n        nickname,\n   ",
+          "file": "src/telegram/handlers/dev.ts",
+          "line": 525
+        },
+        {
+          "text": "SELECT DISTINCT b.* FROM bottles b\n    WHERE (\n      -- 普通瓶子：status = 'pending'\n      (b.is_vip_trip",
+          "file": "src/db/queries/bottles.ts",
+          "line": 81
+        }
+      ]
+    },
+    {
+      "key": "admin.text",
+      "count": 52,
+      "examples": [
+        {
+          "text": "• 優先級: ${provider.priority}\\n",
+          "file": "src/telegram/handlers/admin_ad_config.ts",
+          "line": 62
+        },
+        {
+          "text": "• 獎勵: ${ad.quota_reward} 額度\\n",
+          "file": "src/telegram/handlers/admin_ad_config.ts",
+          "line": 258
+        },
+        {
+          "text": "/official_ad_disable <ad_id>",
+          "file": "src/telegram/handlers/admin_ad_config.ts",
+          "line": 333
+        }
+      ]
+    },
+    {
+      "key": "errors.error.failed",
+      "count": 41,
+      "examples": [
+        {
+          "text": "❌ **廣告加載失敗**\n\n很抱歉，廣告無法正常播放。\n\n💡 **可能的原因：**\n• 網絡連接不穩定\n• 廣告提供商暫時不可用\n• 瀏覽器不支持\n\n🔄 **建議：**\n• 檢查網絡連接\n• 稍後",
+          "file": "src/telegram/handlers/ad_reward.ts",
+          "line": 464
+        },
+        {
+          "text": "❌ 創建過濾廣播失敗\\n\\n${error instanceof Error ? error.message : String(error)}",
+          "file": "src/telegram/handlers/broadcast.ts",
+          "line": 592
+        },
+        {
+          "text": "❌ 處理廣播隊列失敗：${error instanceof Error ? error.message : String(error)}",
+          "file": "src/telegram/handlers/broadcast.ts",
+          "line": 236
+        }
+      ]
+    },
+    {
+      "key": "common.bottle",
+      "count": 34,
+      "examples": [
+        {
+          "text": "瓶子內容太短，至少需要 ${MIN_BOTTLE_LENGTH} 個字符（目前 ${trimmedContent.length} 個字符）",
+          "file": "src/domain/bottle.ts",
+          "line": 57
+        },
+        {
+          "text": "瓶子內容太長，最多 ${MAX_BOTTLE_LENGTH} 個字符（目前 ${content.length} 個字符）",
+          "file": "src/domain/bottle.ts",
+          "line": 64
+        },
+        {
+          "text": "• 漂流瓶: ${bottlesCount?.count || 0}\\n",
+          "file": "src/telegram/handlers/dev.ts",
+          "line": 284
+        }
+      ]
+    },
+    {
+      "key": "admin.message",
+      "count": 34,
+      "examples": [
+        {
+          "text": "• 更新時間：${new Date(post.updated_at).toLocaleString('zh-TW', { month: '2-digit', day: '2-digit', hour:",
+          "file": "src/telegram/handlers/admin_diagnose_avatar.ts",
+          "line": 124
+        },
+        {
+          "text": "• 更新時間：${avatarInfo.avatar_updated_at ? new Date(avatarInfo.avatar_updated_at).toLocaleString('zh-TW",
+          "file": "src/telegram/handlers/admin_diagnose_avatar.ts",
+          "line": 109
+        },
+        {
+          "text": "• ${username}: ${detail.postsUpdated} 更新, ${detail.postsFailed} 失敗\\n",
+          "file": "src/telegram/handlers/admin_refresh_vip_avatars.ts",
+          "line": 93
+        }
+      ]
+    },
+    {
+      "key": "help.text",
+      "count": 34,
+      "examples": [
+        {
+          "text": "/maintenance_status - 查看維護狀態",
+          "file": "src/telegram/handlers/help.ts",
+          "line": 77
+        },
+        {
+          "text": "/refresh_avatar - 刷新頭像緩存\\n",
+          "file": "src/telegram/handlers/help.ts",
+          "line": 36
+        },
+        {
+          "text": "• 只發給女性：gender=female\\n",
+          "file": "src/telegram/handlers/help.ts",
+          "line": 94
+        }
+      ]
+    },
+    {
+      "key": "success.success.text",
+      "count": 30,
+      "examples": [
+        {
+          "text": "✅ 已設置為 ${flag} ${countryName}",
+          "file": "src/telegram/handlers/country_confirmation.ts",
+          "line": 124
+        },
+        {
+          "text": "✅ 興趣標籤已更新：\\n\\n${interestsStr}",
+          "file": "src/telegram/handlers/edit_profile.ts",
+          "line": 751
+        },
+        {
+          "text": "✅ 匹配偏好已更新為：${prefText}\\n\\n",
+          "file": "src/telegram/handlers/edit_profile.ts",
+          "line": 348
+        }
+      ]
+    },
+    {
+      "key": "vip.text",
+      "count": 30,
+      "examples": [
+        {
+          "text": "- 優先使用 OpenAI GPT 模型翻譯（高品質）\\n",
+          "file": "src/telegram/handlers/vip.ts",
+          "line": 84
+        },
+        {
+          "text": "• 34 種語言自動翻譯（OpenAI GPT 優先）\\n",
+          "file": "src/telegram/handlers/vip.ts",
+          "line": 195
+        },
+        {
+          "text": "金額：${request.amount_stars} ⭐",
+          "file": "src/telegram/handlers/vip_refund.ts",
+          "line": 338
+        }
+      ]
+    },
+    {
+      "key": "errors.error.text",
+      "count": 25,
+      "examples": [
+        {
+          "text": "❌ 計算結果時系統發生錯誤，請稍後再試。\\n\\n",
+          "file": "src/telegram/handlers/mbti_test.ts",
+          "line": 229
+        },
+        {
+          "text": "❌ 個人簡介包含不允許的連結。\\n\\n",
+          "file": "src/telegram/handlers/edit_profile.ts",
+          "line": 637
+        },
+        {
+          "text": "❌ 未檢測到你加入頻道，請先加入後再試",
+          "file": "src/services/channel_membership_check.ts",
+          "line": 114
+        }
+      ]
+    },
+    {
+      "key": "vip.vip",
+      "count": 25,
+      "examples": [
+        {
+          "text": "你的 VIP 會員已於 ${new Date(sub.expire_date).toLocaleDateString('zh-TW')} 到期。\\n\\n",
+          "file": "src/services/vip_subscription.ts",
+          "line": 169
+        },
+        {
+          "text": "你的 VIP 會員已於 ${new Date(sub.expire_date).toLocaleDateString(",
+          "file": "src/services/vip_subscription.ts",
+          "line": 166
+        },
+        {
+          "text": "你的 VIP 會員將在 ${daysLeft} 天後到期。\\n\\n",
+          "file": "src/services/vip_subscription.ts",
+          "line": 80
+        }
+      ]
+    },
+    {
+      "key": "bottle.throw.text",
+      "count": 24,
+      "examples": [
+        {
+          "text": "💝 匹配度：${matchPercentage}%\\n",
+          "file": "src/telegram/handlers/throw.ts",
+          "line": 552
+        },
+        {
+          "text": "• 🆕 三倍曝光機會（1 次 = 3 個對象）\\n",
+          "file": "src/telegram/handlers/throw.ts",
+          "line": 147
+        },
+        {
+          "text": "💡 這可能需要幾秒鐘，我們正在為你找到最合適的人",
+          "file": "src/telegram/handlers/throw.ts",
+          "line": 485
+        }
+      ]
+    },
+    {
+      "key": "buttons.short",
+      "count": 22,
+      "examples": [
+        {
+          "text": "🇲🇾 馬來西亞",
+          "file": "src/telegram/handlers/country_selection.ts",
+          "line": 42
+        },
+        {
+          "text": "🇺🇳 聯合國旗",
+          "file": "src/telegram/handlers/country_selection.ts",
+          "line": 51
+        },
+        {
+          "text": "📢 加入官方頻道",
+          "file": "src/telegram/handlers/tasks.ts",
+          "line": 155
+        }
+      ]
+    },
+    {
+      "key": "onboarding.text",
+      "count": 21,
+      "examples": [
+        {
+          "text": "confirm_birthday_${birthday}",
+          "file": "src/telegram/handlers/onboarding_input.ts",
+          "line": 169
+        },
+        {
+          "text": "💡 你可以隨時使用 /mbti 指令重新測驗或修改。",
+          "file": "src/telegram/handlers/onboarding_callback.ts",
+          "line": 588
+        },
+        {
+          "text": "gender_confirm_${gender}",
+          "file": "src/telegram/handlers/onboarding_callback.ts",
+          "line": 52
+        }
+      ]
+    },
+    {
+      "key": "bottle.throw.short",
+      "count": 19,
+      "examples": [
+        {
+          "text": "• 語言相同 ✓",
+          "file": "src/telegram/handlers/throw.ts",
+          "line": 537
+        },
+        {
+          "text": "🩸 AB 型",
+          "file": "src/telegram/handlers/throw_advanced.ts",
+          "line": 640
+        },
+        {
+          "text": "🌈 任何人",
+          "file": "src/telegram/handlers/throw_advanced.ts",
+          "line": 371
+        }
+      ]
+    },
+    {
+      "key": "conversation.text",
+      "count": 19,
+      "examples": [
+        {
+          "text": "💡 這是匿名資料卡，不會顯示對方的真實身份資訊。\\n\\n",
+          "file": "src/telegram/handlers/conversation_actions.ts",
+          "line": 115
+        },
+        {
+          "text": "📜 查看歷史記錄：#${identifier}\\n",
+          "file": "src/domain/conversation_history.ts",
+          "line": 132
+        },
+        {
+          "text": "🗣️ 語言：${languageLabel}\\n",
+          "file": "src/telegram/handlers/conversation_actions.ts",
+          "line": 95
+        }
+      ]
+    },
+    {
+      "key": "common.conversation",
+      "count": 18,
+      "examples": [
+        {
+          "text": "📨 ${formatIdentifier(conv.identifier)} 的對話（${conv.message_count} 則訊息）\\n",
+          "file": "src/telegram/handlers/history.ts",
+          "line": 90
+        },
+        {
+          "text": "💬 **與 ${formatIdentifier(identifier)} 的對話**\\n\\n",
+          "file": "src/telegram/handlers/history.ts",
+          "line": 131
+        },
+        {
+          "text": "• 對話開始：${formatDate(stats.first_message_time)}\\n",
+          "file": "src/telegram/handlers/history.ts",
+          "line": 138
+        }
+      ]
+    },
+    {
+      "key": "success.success.short",
+      "count": 18,
+      "examples": [
+        {
+          "text": "✅ 正在發送...",
+          "file": "src/telegram/handlers/draft.ts",
+          "line": 194
+        },
+        {
+          "text": "✅ 繼續編輯草稿",
+          "file": "src/telegram/handlers/draft.ts",
+          "line": 23
+        },
+        {
+          "text": "✅ 草稿已刪除",
+          "file": "src/telegram/handlers/draft.ts",
+          "line": 72
+        }
+      ]
+    },
+    {
+      "key": "common.vip",
+      "count": 17,
+      "examples": [
+        {
+          "text": "你的 VIP 訂閱已於 ${new Date(user.vip_expire_at).toLocaleDateString('zh-TW')} 到期。\\n\\n",
+          "file": "src/services/subscription_checker.ts",
+          "line": 73
+        },
+        {
+          "text": "你的 VIP 訂閱已於 ${new Date(user.vip_expire_at).toLocaleDateString(",
+          "file": "src/services/subscription_checker.ts",
+          "line": 70
+        },
+        {
+          "text": "/broadcast_filter vip=true,mbti=INTJ VIP 專屬活動通知\\n",
+          "file": "src/telegram/handlers/broadcast.ts",
+          "line": 505
+        }
+      ]
+    },
+    {
+      "key": "common.broadcast",
+      "count": 15,
+      "examples": [
+        {
+          "text": "廣播將在後台發送，使用 /broadcast_status ${broadcastId} 查看進度。",
+          "file": "src/telegram/handlers/broadcast.ts",
+          "line": 60
+        },
+        {
+          "text": "大規模廣播需要升級系統架構，請參考 BROADCAST_SYSTEM_REDESIGN.md",
+          "file": "src/services/broadcast.ts",
+          "line": 41
+        },
+        {
+          "text": "使用 /broadcast_status 查看所有廣播記錄。",
+          "file": "src/telegram/handlers/broadcast.ts",
+          "line": 203
+        }
+      ]
+    },
+    {
+      "key": "conversation.message",
+      "count": 14,
+      "examples": [
+        {
+          "text": "💫 配對度：${Math.round(partnerInfo.matchScore)}分\\n",
+          "file": "src/domain/conversation_history.ts",
+          "line": 71
+        },
+        {
+          "text": "\\n📜 繼續查看：#${identifier}-H${newPostNumber}",
+          "file": "src/services/conversation_history.ts",
+          "line": 190
+        },
+        {
+          "text": "📅 最後更新：${formatDateTime(new Date())}\\n\\n",
+          "file": "src/domain/conversation_history.ts",
+          "line": 83
+        }
+      ]
+    },
+    {
+      "key": "vip.message",
+      "count": 14,
+      "examples": [
+        {
+          "text": "到期時間：${new Date(sub.expire_date).toLocaleDateString('zh-TW')}\\n\\n",
+          "file": "src/services/vip_subscription.ts",
+          "line": 81
+        },
+        {
+          "text": "申請時間：${new Date(req.requested_at).toLocaleString('zh-TW')}\\n",
+          "file": "src/telegram/handlers/vip_refund.ts",
+          "line": 226
+        },
+        {
+          "text": "新到期時間：${newExpire.toLocaleDateString('zh-TW')}\\n\\n",
+          "file": "src/telegram/handlers/vip.ts",
+          "line": 375
+        }
+      ]
+    },
+    {
+      "key": "common.mbti",
+      "count": 13,
+      "examples": [
+        {
+          "text": "無效的 MBTI 類型：${trimmedValue}（必須是以下之一：${VALID_MBTI.join(', ')}）",
+          "file": "src/domain/broadcast_filters.ts",
+          "line": 131
+        },
+        {
+          "text": "你的 MBTI 類型是：**${result.type}**\\n\\n",
+          "file": "src/telegram/handlers/mbti_test.ts",
+          "line": 183
+        },
+        {
+          "text": "當前 MBTI：**${user.mbti_result}**\\n",
+          "file": "src/telegram/handlers/mbti.ts",
+          "line": 46
+        }
+      ]
+    },
+    {
+      "key": "common.nickname",
+      "count": 13,
+      "examples": [
+        {
+          "text": "💡 請輸入一個簡單的暱稱，不要包含 http:// 或 https:// 等連結。\\n\\n",
+          "file": "src/telegram/handlers/edit_profile.ts",
+          "line": 546
+        },
+        {
+          "text": "很好！你的暱稱是：${truncatedNickname}\\n\\n",
+          "file": "src/telegram/handlers/nickname_callback.ts",
+          "line": 63
+        },
+        {
+          "text": "📝 暱稱：${updatedUser.nickname}\\n",
+          "file": "src/telegram/handlers/edit_profile.ts",
+          "line": 588
+        }
+      ]
+    },
+    {
+      "key": "errors.error.short",
+      "count": 13,
+      "examples": [
+        {
+          "text": "❌ 無效的語言代碼",
+          "file": "src/telegram/handlers/language_selection.ts",
+          "line": 83
+        },
+        {
+          "text": "❌ 找不到用戶資料",
+          "file": "src/telegram/handlers/tutorial.ts",
+          "line": 58
+        },
+        {
+          "text": "❌ 未知的教學步驟",
+          "file": "src/telegram/handlers/tutorial.ts",
+          "line": 183
+        }
+      ]
+    },
+    {
+      "key": "warnings.warning.text",
+      "count": 12,
+      "examples": [
+        {
+          "text": "⚠️ **注意**\\n\\n",
+          "file": "src/telegram/handlers/admin_ban.ts",
+          "line": 404
+        },
+        {
+          "text": "⚠️ 無效的支付類型",
+          "file": "src/telegram/handlers/vip.ts",
+          "line": 268
+        },
+        {
+          "text": "⚠️ 翻譯服務暫時無法使用，以下為原文\\n",
+          "file": "src/telegram/handlers/catch.ts",
+          "line": 372
+        }
+      ]
+    },
+    {
+      "key": "admin.short",
+      "count": 12,
+      "examples": [
+        {
+          "text": "**範例：**\\n",
+          "file": "src/telegram/handlers/admin_ad_config.ts",
+          "line": 180
+        },
+        {
+          "text": "**示例：**\\n",
+          "file": "src/telegram/handlers/admin_ban.ts",
+          "line": 370
+        },
+        {
+          "text": "**步驟：**\\n",
+          "file": "src/telegram/handlers/admin_ban.ts",
+          "line": 404
+        }
+      ]
+    },
+    {
+      "key": "common.settings",
+      "count": 11,
+      "examples": [
+        {
+          "text": "🧠 MBTI：${updatedUser.mbti_result || '未設定'}（可重新測試）",
+          "file": "src/telegram/handlers/edit_profile.ts",
+          "line": 602
+        },
+        {
+          "text": "🏷️ 興趣標籤：${updatedUser.interests || '未設定'}\\n",
+          "file": "src/telegram/handlers/edit_profile.ts",
+          "line": 596
+        },
+        {
+          "text": "🧠 MBTI：${user.mbti_result || '未設定'}（可重新測試）",
+          "file": "src/telegram/handlers/edit_profile.ts",
+          "line": 69
+        }
+      ]
+    },
+    {
+      "key": "bottle.throw.bottle",
+      "count": 11,
+      "examples": [
+        {
+          "text": "\\n💡 這個瓶子和你非常合拍！\\n${highlights.join('\\n')}\\n",
+          "file": "src/telegram/handlers/throw.ts",
+          "line": 543
+        },
+        {
+          "text": "🎯 你的瓶子已發送給 **3 個對象**：\\n",
+          "file": "src/telegram/handlers/throw.ts",
+          "line": 697
+        },
+        {
+          "text": "🍾 **正在丟出你的漂流瓶...**\\n\\n",
+          "file": "src/telegram/handlers/throw.ts",
+          "line": 412
+        }
+      ]
+    },
+    {
+      "key": "conversation.conversation",
+      "count": 11,
+      "examples": [
+        {
+          "text": "💬 與 #${identifier} 的對話記錄（第 ${postNumber} 頁）\\n\\n",
+          "file": "src/domain/conversation_history.ts",
+          "line": 61
+        },
+        {
+          "text": "💬 **我的對話列表** (${conversations.length})\\n\\n",
+          "file": "src/telegram/handlers/chats.ts",
+          "line": 50
+        },
+        {
+          "text": "💡 點擊對方訊息的「回覆」按鈕即可繼續對話\\n",
+          "file": "src/telegram/handlers/chats.ts",
+          "line": 77
+        }
+      ]
+    },
+    {
+      "key": "common.start",
+      "count": 10,
+      "examples": [
+        {
+          "text": "開始時間：${new Date(maintenance.startTime).toLocaleString('zh-TW')}\\n",
+          "file": "src/domain/maintenance.ts",
+          "line": 71
+        },
+        {
+          "text": "開始時間: ${new Date(broadcast.startedAt).toLocaleString('zh-TW')}\\n",
+          "file": "src/domain/broadcast.ts",
+          "line": 93
+        },
+        {
+          "text": "開始：${startTime.toLocaleString('zh-TW')}\\n",
+          "file": "src/telegram/handlers/maintenance.ts",
+          "line": 102
+        }
+      ]
+    },
+    {
+      "key": "common.register",
+      "count": 10,
+      "examples": [
+        {
+          "text": "\\n\\n💡 這是快速測驗（${testInfo}），結果僅供參考。\\n完成註冊後，可使用 /mbti 重新測驗。\\n\\n",
+          "file": "src/telegram/handlers/mbti_test.ts",
+          "line": 69
+        },
+        {
+          "text": "\\n\\n💡 這是完整測驗（${testInfo}），結果更準確。\\n完成註冊後，可使用 /mbti 重新測驗。\\n\\n",
+          "file": "src/telegram/handlers/mbti_test.ts",
+          "line": 68
+        },
+        {
+          "text": "註冊步驟: ${user.onboarding_step}\\n",
+          "file": "src/telegram/handlers/dev.ts",
+          "line": 278
+        }
+      ]
+    },
+    {
+      "key": "warnings.warning.conversation",
+      "count": 10,
+      "examples": [
+        {
+          "text": "⚠️ 對話資訊錯誤。",
+          "file": "src/telegram/handlers/block.ts",
+          "line": 84
+        },
+        {
+          "text": "⚠️ 對話資訊錯誤",
+          "file": "src/telegram/handlers/report.ts",
+          "line": 164
+        },
+        {
+          "text": "⚠️ 此用戶沒有對話歷史帖子\\n",
+          "file": "src/telegram/handlers/admin_diagnose_avatar.ts",
+          "line": 138
+        }
+      ]
+    },
+    {
+      "key": "stats.message",
+      "count": 10,
+      "examples": [
+        {
+          "text": "• 到期時間：${new Date(user.vip_expire_at!).toLocaleDateString('zh-TW')}\\n",
+          "file": "src/telegram/handlers/stats.ts",
+          "line": 82
+        },
+        {
+          "text": "${used}/${permanentQuota}+${taskBonus} (剩餘 ${remaining})",
+          "file": "src/telegram/handlers/stats.ts",
+          "line": 183
+        },
+        {
+          "text": "報告生成時間：${new Date().toLocaleString('zh-TW')}",
+          "file": "src/domain/stats.ts",
+          "line": 88
+        }
+      ]
+    },
+    {
+      "key": "stats.text",
+      "count": 10,
+      "examples": [
+        {
+          "text": "• 平均每次配對：${avgMatches} 個對象\\n",
+          "file": "src/telegram/handlers/stats.ts",
+          "line": 62
+        },
+        {
+          "text": "• 昨日新增：${stats.newBottles}\\n",
+          "file": "src/domain/stats.ts",
+          "line": 47
+        },
+        {
+          "text": "• 總數：${stats.totalBottles}",
+          "file": "src/domain/stats.ts",
+          "line": 41
+        }
+      ]
+    },
+    {
+      "key": "errors.error.cancel",
+      "count": 9,
+      "examples": [
+        {
+          "text": "❌ 暱稱太長，請輸入不超過 36 個字符的暱稱。\\n\\n請重新輸入或取消編輯：",
+          "file": "src/telegram/handlers/edit_profile.ts",
+          "line": 534
+        },
+        {
+          "text": "❌ 個人簡介太長，請輸入不超過 200 個字符。\\n\\n請重新輸入或取消編輯：",
+          "file": "src/telegram/handlers/edit_profile.ts",
+          "line": 625
+        },
+        {
+          "text": "❌ 地區名稱太長，請輸入不超過 50 個字符。\\n\\n請重新輸入或取消編輯：",
+          "file": "src/telegram/handlers/edit_profile.ts",
+          "line": 677
+        }
+      ]
+    },
+    {
+      "key": "admin.vip",
+      "count": 9,
+      "examples": [
+        {
+          "text": "• VIP 到期：${new Date(user.vip_expire_at).toLocaleString('zh-TW')}\\n",
+          "file": "src/telegram/handlers/admin_diagnose_avatar.ts",
+          "line": 101
+        },
+        {
+          "text": "• 創建時 VIP：${post.created_with_vip_status ? '✅' : '❌'}\\n",
+          "file": "src/telegram/handlers/admin_diagnose_avatar.ts",
+          "line": 122
+        },
+        {
+          "text": "• VIP 狀態：${isVip ? '✅ 是' : '❌ 否'}\\n",
+          "file": "src/telegram/handlers/admin_diagnose_avatar.ts",
+          "line": 98
+        }
+      ]
+    },
+    {
+      "key": "help.bottle",
+      "count": 9,
+      "examples": [
+        {
+          "text": "• 完成任務：獲得額外瓶子（使用 /tasks 查看）\\n",
+          "file": "src/telegram/handlers/help.ts",
+          "line": 140
+        },
+        {
+          "text": "/tasks - 任務中心（完成任務獲得額外瓶子）\\n",
+          "file": "src/telegram/handlers/help.ts",
+          "line": 41
+        },
+        {
+          "text": "• 每天可以丟出和撿起有限數量的漂流瓶\\n",
+          "file": "src/telegram/handlers/help.ts",
+          "line": 128
+        }
+      ]
+    },
+    {
+      "key": "common.complete",
+      "count": 8,
+      "examples": [
+        {
+          "text": "🎉 **廣告觀看完成！**\n\n✅ 獲得 **+1 個額度**\n📊 今日已觀看：**${updated.ads_watched}/20** 次\n🎁 今日已獲得：**${updated.quota_",
+          "file": "src/telegram/handlers/ad_reward.ts",
+          "line": 381
+        },
+        {
+          "text": "📺 **觀看廣告獲得額度**\n\n🎁 完成觀看可獲得 **+1 個額度**\n📊 今日剩餘：**${remainingAds}/20** 次\n\n👇 點擊下方按鈕開始觀看",
+          "file": "src/telegram/handlers/ad_reward.ts",
+          "line": 151
+        },
+        {
+          "text": "完成時間: ${new Date(broadcast.completedAt).toLocaleString('zh-TW')}\\n",
+          "file": "src/domain/broadcast.ts",
+          "line": 97
+        }
+      ]
+    },
+    {
+      "key": "common.ad",
+      "count": 8,
+      "examples": [
+        {
+          "text": "📺 今日廣告：${adsWatched}/${AD_REWARD_CONSTANTS.MAX_ADS_PER_DAY} | 已獲得 ${quotaEarned} 個額度 | 剩餘 ${remaini",
+          "file": "src/domain/ad_reward.ts",
+          "line": 264
+        },
+        {
+          "text": "📺 今日廣告：${adsWatched}/${AD_REWARD_CONSTANTS.MAX_ADS_PER_DAY} ✅ 已達上限 | 已獲得 ${quotaEarned} 個額度",
+          "file": "src/domain/ad_reward.ts",
+          "line": 261
+        },
+        {
+          "text": "📺 今日廣告：0/${AD_REWARD_CONSTANTS.MAX_ADS_PER_DAY} | 已獲得 0 個額度",
+          "file": "src/domain/ad_reward.ts",
+          "line": 253
+        }
+      ]
+    },
+    {
+      "key": "success.success.message",
+      "count": 8,
+      "examples": [
+        {
+          "text": "✅ 訊息已發送給 ${formatIdentifier(receiverIdentifier)}\\n\\n",
+          "file": "src/telegram/handlers/message_forward.ts",
+          "line": 391
+        },
+        {
+          "text": "✅ 語言已更新為：${getLanguageDisplay(languageCode)}",
+          "file": "src/telegram/handlers/language_selection.ts",
+          "line": 128
+        },
+        {
+          "text": "✅ 已封鎖此使用者 (#${conversationIdentifier})\\n\\n",
+          "file": "src/telegram/handlers/block.ts",
+          "line": 103
+        }
+      ]
+    },
+    {
+      "key": "bottle.throw.message",
+      "count": 8,
+      "examples": [
+        {
+          "text": "已選擇：${selectedZodiac.length > 0 ? selectedZodiac.map((z) => ZODIAC_NAMES[z]).join(', ') : '無'}\\n\\n",
+          "file": "src/telegram/handlers/throw_advanced.ts",
+          "line": 284
+        },
+        {
+          "text": "當前選擇：${currentGender === 'male' ? '👨 男生' : currentGender === 'female' ? '👩 女生' : '🌈 任何人'}\\n\\n",
+          "file": "src/telegram/handlers/throw_advanced.ts",
+          "line": 375
+        },
+        {
+          "text": "已選擇：${selectedZodiac.length > 0 ? selectedZodiac.map((z) => ZODIAC_NAMES[z]).join(",
+          "file": "src/telegram/handlers/throw_advanced.ts",
+          "line": 280
+        }
+      ]
+    },
+    {
+      "key": "bottle.catch.text",
+      "count": 8,
+      "examples": [
+        {
+          "text": "翻譯語言：${catcherLangDisplay}\\n",
+          "file": "src/telegram/handlers/catch.ts",
+          "line": 363
+        },
+        {
+          "text": "原文語言：${bottleLangDisplay}\\n",
+          "file": "src/telegram/handlers/catch.ts",
+          "line": 362
+        },
+        {
+          "text": "🗣️ 語言：${ownerLanguage}\\n\\n",
+          "file": "src/telegram/handlers/catch.ts",
+          "line": 433
+        }
+      ]
+    },
+    {
+      "key": "help.message",
+      "count": 8,
+      "examples": [
+        {
+          "text": "/maintenance_enable <分鐘> <訊息> - 啟用維護模式\\n",
+          "file": "src/telegram/handlers/help.ts",
+          "line": 105
+        },
+        {
+          "text": "/broadcast_non_vip <訊息> - 群發給非 VIP 用戶\\n",
+          "file": "src/telegram/handlers/help.ts",
+          "line": 92
+        },
+        {
+          "text": "• 18-25歲女性：gender=female,age=18-25\\n",
+          "file": "src/telegram/handlers/help.ts",
+          "line": 96
+        }
+      ]
+    },
+    {
+      "key": "common.gender",
+      "count": 7,
+      "examples": [
+        {
+          "text": "👤 性別：${updatedUser.gender === 'male' ? '男' : '女'}\\n",
+          "file": "src/telegram/handlers/edit_profile.ts",
+          "line": 600
+        },
+        {
+          "text": "無效的性別值：${trimmedValue}（必須是 male, female 或 other）",
+          "file": "src/domain/broadcast_filters.ts",
+          "line": 80
+        },
+        {
+          "text": "👤 性別：${user.gender === 'male' ? '男' : '女'}\\n",
+          "file": "src/telegram/handlers/edit_profile.ts",
+          "line": 67
+        }
+      ]
+    },
+    {
+      "key": "common.confirm",
+      "count": 7,
+      "examples": [
+        {
+          "text": "為了保護所有使用者的安全，請確認你了解以下事項：\\n\\n",
+          "file": "src/telegram/handlers/mbti_test.ts",
+          "line": 207
+        },
+        {
+          "text": "🌍 **確認你的國家/地區**\\n\\n",
+          "file": "src/telegram/handlers/country_confirmation.ts",
+          "line": 27
+        },
+        {
+          "text": "🛡️ 最後一步：反詐騙安全確認\\n\\n",
+          "file": "src/telegram/handlers/mbti_test.ts",
+          "line": 207
+        }
+      ]
+    },
+    {
+      "key": "errors.error.admin",
+      "count": 7,
+      "examples": [
+        {
+          "text": "❌ 系統發生錯誤，請稍後再試。\\n\\n如果問題持續，請聯繫管理員。",
+          "file": "src/telegram/handlers/start.ts",
+          "line": 208
+        },
+        {
+          "text": "❌ **權限不足**\\n\\n此命令僅限超級管理員使用。",
+          "file": "src/telegram/handlers/admin_diagnose_avatar.ts",
+          "line": 27
+        },
+        {
+          "text": "❌ 此用戶已經是超級管理員，無需添加。",
+          "file": "src/telegram/handlers/admin_ban.ts",
+          "line": 386
+        }
+      ]
+    },
+    {
+      "key": "errors.error.userNotFound",
+      "count": 7,
+      "examples": [
+        {
+          "text": "❌ 用戶不存在，請先使用 /start 註冊。",
+          "file": "src/telegram/handlers/appeal.ts",
+          "line": 26
+        },
+        {
+          "text": "❌ 用戶不存在，請先註冊",
+          "file": "src/telegram/handlers/refresh_avatar.ts",
+          "line": 33
+        },
+        {
+          "text": "❌ 對方用戶不存在。",
+          "file": "src/telegram/handlers/message_forward.ts",
+          "line": 226
+        }
+      ]
+    },
+    {
+      "key": "success.success.complete",
+      "count": 7,
+      "examples": [
+        {
+          "text": "✅ 廣播隊列處理完成\\n\\n",
+          "file": "src/telegram/handlers/broadcast.ts",
+          "line": 203
+        },
+        {
+          "text": "✅ 系統維護已完成\\n\\n",
+          "file": "src/telegram/handlers/maintenance.ts",
+          "line": 134
+        },
+        {
+          "text": "✅ 教學已完成！",
+          "file": "src/telegram/handlers/tutorial.ts",
+          "line": 162
+        }
+      ]
+    }
+  ],
+  "sqlQueries": [
+    {
+      "key": "common.message",
+      "file": "src/db/queries/bottles.ts",
+      "line": 81,
+      "text": "AND (b.target_gender = ? OR b.target_gender = 'any')\n      -- 🆕 排除已經配對過的用戶（檢查所有槽位）\n      AND NOT EXISTS (\n        SELECT 1 FROM bottle_match_slots s2\n        WHERE s2.bottle_id = b.id\n          AND s"
+    },
+    {
+      "key": "common.message",
+      "file": "src/telegram/handlers/dev.ts",
+      "line": 525,
+      "text": "INSERT INTO users (\n        telegram_id,\n        username,\n        first_name,\n        nickname,\n        gender,\n        birthday,\n        age,\n        zodiac_sign,\n        language_pref,\n        invi"
+    },
+    {
+      "key": "common.message",
+      "file": "src/db/queries/bottles.ts",
+      "line": 81,
+      "text": "SELECT DISTINCT b.* FROM bottles b\n    WHERE (\n      -- 普通瓶子：status = 'pending'\n      (b.is_vip_triple = 0 AND b.status = 'pending')\n      OR\n      -- VIP 三倍瓶子：至少有 1 個槽位 status = 'pending'\n      (b.is"
+    },
+    {
+      "key": "common.message",
+      "file": "src/db/queries/bottles.ts",
+      "line": 81,
+      "text": "AND NOT EXISTS (\n        SELECT 1 FROM reports r\n        WHERE r.reporter_telegram_id = ?\n          AND r.reported_telegram_id = b.owner_telegram_id\n          AND datetime(r.created_at) > datetime('no"
+    },
+    {
+      "key": "common.message",
+      "file": "src/telegram/handlers/broadcast.ts",
+      "line": 457,
+      "text": "UPDATE broadcasts \n         SET status = 'failed', \n             completed_at = CURRENT_TIMESTAMP,\n             error_message = '管理員手動清理（廣播卡住）'\n         WHERE id IN (${ids.map(() => '?').join(', ')})"
+    },
+    {
+      "key": "common.message",
+      "file": "src/telegram/handlers/broadcast.ts",
+      "line": 283,
+      "text": "UPDATE broadcasts \n         SET status = 'cancelled', \n             completed_at = CURRENT_TIMESTAMP,\n             error_message = '管理員手動取消'\n         WHERE id = ?"
+    }
+  ],
+  "recommendations": [
+    {
+      "issue": "重复的 keys",
+      "severity": "high",
+      "count": 196,
+      "action": "需要为每个重复的 key 添加唯一后缀"
+    },
+    {
+      "issue": "SQL 查询被提取",
+      "severity": "critical",
+      "count": 6,
+      "action": "这些应该从提取结果中移除"
+    },
+    {
+      "issue": "通用 keys",
+      "severity": "medium",
+      "count": 911,
+      "action": "建议使用更具描述性的名称"
+    }
+  ]
+}
