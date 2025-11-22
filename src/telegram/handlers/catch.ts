@@ -390,20 +390,38 @@ export async function handleCatch(message: TelegramMessage, env: Env): Promise<v
       : '';
     
     // Get conversation identifier for reply button
-    const conversation = await db.d1
+    // First find the conversation
+    const conversationInfo = await db.d1
       .prepare(
-        `SELECT c.id, ci.identifier 
+        `SELECT c.id, c.user1_telegram_id, c.user2_telegram_id
          FROM conversations c
-         LEFT JOIN conversation_identifiers ci ON ci.conversation_id = c.id AND ci.user_telegram_id = ?
          WHERE (c.user1_telegram_id = ? OR c.user2_telegram_id = ?)
          AND c.status = 'active'
          ORDER BY c.created_at DESC
          LIMIT 1`
       )
-      .bind(user.telegram_id, user.telegram_id, user.telegram_id)
-      .first<{ id: number; identifier: string }>();
-
-    const conversationIdentifier = conversation?.identifier;
+      .bind(user.telegram_id, user.telegram_id)
+      .first<{ id: number; user1_telegram_id: string; user2_telegram_id: string }>();
+      
+    let conversationIdentifier: string | undefined;
+    if (conversationInfo) {
+      // Get partner_telegram_id
+      const partnerId = conversationInfo.user1_telegram_id === user.telegram_id 
+        ? conversationInfo.user2_telegram_id 
+        : conversationInfo.user1_telegram_id;
+      
+      // Get identifier from conversation_identifiers
+      const identifierResult = await db.d1
+        .prepare(
+          `SELECT identifier 
+           FROM conversation_identifiers 
+           WHERE user_telegram_id = ? AND partner_telegram_id = ?`
+        )
+        .bind(user.telegram_id, partnerId)
+        .first<{ identifier: string }>();
+        
+      conversationIdentifier = identifierResult?.identifier;
+    }
 
     // Build message
     const catchMessage =
@@ -507,20 +525,38 @@ async function notifyBottleOwner(ownerId: string, catcher: any, env: Env): Promi
     const catcherAge = catcher.birthday ? calculateAge(catcher.birthday) : '未知';
 
     // Get conversation identifier for this conversation
-    const conversation = await db.d1
+    // First find the conversation
+    const conversationInfo = await db.d1
       .prepare(
-        `SELECT c.id, ci.identifier 
+        `SELECT c.id, c.user1_telegram_id, c.user2_telegram_id
          FROM conversations c
-         LEFT JOIN conversation_identifiers ci ON ci.conversation_id = c.id AND ci.user_telegram_id = ?
          WHERE (c.user1_telegram_id = ? OR c.user2_telegram_id = ?)
          AND c.status = 'active'
          ORDER BY c.created_at DESC
          LIMIT 1`
       )
-      .bind(ownerId, ownerId, ownerId)
-      .first<{ id: number; identifier: string }>();
-
-    const conversationIdentifier = conversation?.identifier;
+      .bind(ownerId, ownerId)
+      .first<{ id: number; user1_telegram_id: string; user2_telegram_id: string }>();
+      
+    let conversationIdentifier: string | undefined;
+    if (conversationInfo) {
+      // Get partner_telegram_id (catcher)
+      const partnerId = conversationInfo.user1_telegram_id === ownerId 
+        ? conversationInfo.user2_telegram_id 
+        : conversationInfo.user1_telegram_id;
+      
+      // Get identifier from conversation_identifiers
+      const identifierResult = await db.d1
+        .prepare(
+          `SELECT identifier 
+           FROM conversation_identifiers 
+           WHERE user_telegram_id = ? AND partner_telegram_id = ?`
+        )
+        .bind(ownerId, partnerId)
+        .first<{ identifier: string }>();
+        
+      conversationIdentifier = identifierResult?.identifier;
+    }
 
     const notificationMessage =
       `🎣 有人撿到你的漂流瓶了！\n\n` +

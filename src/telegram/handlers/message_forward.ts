@@ -71,14 +71,33 @@ export async function handleMessageForward(
     let conversation;
     if (targetConversationIdentifier) {
       // Find conversation by identifier
+      // First, get partner_telegram_id from conversation_identifiers
+      const identifierInfo = await db.d1
+        .prepare(
+          `SELECT partner_telegram_id 
+           FROM conversation_identifiers 
+           WHERE identifier = ? AND user_telegram_id = ?`
+        )
+        .bind(targetConversationIdentifier, telegramId)
+        .first<{ partner_telegram_id: string }>();
+        
+      if (!identifierInfo) {
+        await telegram.sendMessage(chatId, '⚠️ 找不到指定的對話，可能已結束或過期。');
+        return true; // Handled, stop processing
+      }
+      
+      // Then find the conversation between user and partner
       conversation = await db.d1
         .prepare(
           `SELECT c.* 
            FROM conversations c
-           INNER JOIN conversation_identifiers ci ON ci.conversation_id = c.id
-           WHERE ci.identifier = ? AND ci.user_telegram_id = ?`
+           WHERE ((c.user1_telegram_id = ? AND c.user2_telegram_id = ?)
+              OR (c.user2_telegram_id = ? AND c.user1_telegram_id = ?))
+           AND c.status = 'active'
+           ORDER BY c.created_at DESC
+           LIMIT 1`
         )
-        .bind(targetConversationIdentifier, telegramId)
+        .bind(telegramId, identifierInfo.partner_telegram_id, telegramId, identifierInfo.partner_telegram_id)
         .first();
         
       if (!conversation) {
@@ -407,14 +426,33 @@ export async function handleConversationReplyButton(
     }
 
     // Get conversation by identifier
+    // First, get partner_telegram_id from conversation_identifiers
+    const identifierInfo = await db.d1
+      .prepare(
+        `SELECT partner_telegram_id 
+         FROM conversation_identifiers 
+         WHERE identifier = ? AND user_telegram_id = ?`
+      )
+      .bind(conversationIdentifier, telegramId)
+      .first<{ partner_telegram_id: string }>();
+      
+    if (!identifierInfo) {
+      await telegram.answerCallbackQuery(callbackQuery.id, '⚠️ 對話不存在或已結束');
+      return;
+    }
+    
+    // Then find the conversation between user and partner
     const conversation = await db.d1
       .prepare(
         `SELECT c.* 
          FROM conversations c
-         INNER JOIN conversation_identifiers ci ON ci.conversation_id = c.id
-         WHERE ci.identifier = ? AND ci.user_telegram_id = ?`
+         WHERE ((c.user1_telegram_id = ? AND c.user2_telegram_id = ?)
+            OR (c.user2_telegram_id = ? AND c.user1_telegram_id = ?))
+         AND c.status = 'active'
+         ORDER BY c.created_at DESC
+         LIMIT 1`
       )
-      .bind(conversationIdentifier, telegramId)
+      .bind(telegramId, identifierInfo.partner_telegram_id, telegramId, identifierInfo.partner_telegram_id)
       .first();
 
     if (!conversation) {

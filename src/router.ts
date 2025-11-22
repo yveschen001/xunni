@@ -1432,6 +1432,19 @@ export async function routeUpdate(update: TelegramUpdate, env: Env): Promise<voi
       return;
     }
 
+    if (data === 'chats') {
+      await telegram.answerCallbackQuery(callbackQuery.id);
+      const { handleChats } = await import('./telegram/handlers/chats');
+      // Convert callback to message format
+      const fakeMessage = {
+        ...callbackQuery.message!,
+        from: callbackQuery.from,
+        text: '/chats',
+      };
+      await handleChats(fakeMessage as any, env);
+      return;
+    }
+
     if (data === 'profile') {
       await telegram.answerCallbackQuery(callbackQuery.id);
       const { handleProfile } = await import('./telegram/handlers/profile');
