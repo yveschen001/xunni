@@ -135,6 +135,10 @@ async function main() {
     currentProgress.phase = 'backup';
     saveProgress(currentProgress);
     
+    // 保存当前分支
+    const currentBranch = execSync('git branch --show-current', { encoding: 'utf-8' }).trim();
+    log(`当前分支: ${currentBranch}`);
+    
     const timestamp = new Date().toISOString().replace(/[:.]/g, '-').slice(0, -5);
     const backupName = `before-replacement-${timestamp}`;
     
@@ -144,6 +148,19 @@ async function main() {
       currentProgress.skipped.push('backup');
       log('⏭️  跳过备份步骤\n');
     } else {
+      // 确保切换回原分支
+      try {
+        execSync(`git checkout ${currentBranch}`, { stdio: 'pipe', encoding: 'utf-8' });
+        log(`✅ 已切换回原分支: ${currentBranch}`);
+      } catch (error: any) {
+        log(`⚠️  切换回原分支失败: ${error.message}`);
+        // 尝试再次切换
+        try {
+          execSync(`git checkout ${currentBranch}`, { stdio: 'pipe', encoding: 'utf-8' });
+        } catch {
+          log('❌ 无法切换回原分支，请手动切换');
+        }
+      }
       currentProgress.completed.push('backup');
       log('✅ 备份完成\n');
     }
