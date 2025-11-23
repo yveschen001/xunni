@@ -61,17 +61,35 @@ async function main() {
 
   // Phase B: 检查必要文件
   log('📋 Phase B: 检查必要文件...');
-  const requiredFiles = [
+  
+  // 尝试多个可能的文件名
+  const mappingFiles = [
     'i18n_keys_mapping_fixed.json',
-    'i18n_complete_final.json',
+    'i18n_keys_mapping.json',
   ];
   
-  const missingFiles = requiredFiles.filter(f => !fs.existsSync(f));
-  if (missingFiles.length > 0) {
-    log(`❌ 缺少必要文件: ${missingFiles.join(', ')}`);
+  const extractionFiles = [
+    'i18n_complete_final.json',
+    'i18n_complete_final_with_status.json',
+  ];
+  
+  const mappingFile = mappingFiles.find(f => fs.existsSync(f));
+  const extractionFile = extractionFiles.find(f => fs.existsSync(f));
+  
+  if (!mappingFile) {
+    log(`❌ 找不到映射文件: ${mappingFiles.join(', ')}`);
     log('请先完成提取工作');
     process.exit(1);
   }
+  
+  if (!extractionFile) {
+    log(`⚠️  找不到提取结果文件: ${extractionFiles.join(', ')}`);
+    log('（可选，用于生成 locale 文件）');
+  } else {
+    log(`✅ 找到提取结果文件: ${extractionFile}`);
+  }
+  
+  log(`✅ 找到映射文件: ${mappingFile}`);
   log('✅ 必要文件检查通过\n');
 
   // Phase C: 执行替换

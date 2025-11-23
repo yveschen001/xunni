@@ -3,15 +3,17 @@
  * Based on @doc/I18N_GUIDE.md
  *
  * Currently supports:
- * - zh-TW (Traditional Chinese) - Complete
- * - en (English) - Complete
+ * - zh-TW (Traditional Chinese) - 100% Complete
+ * - zh-CN (Simplified Chinese) - 100% Complete
+ * - en (English) - 100% Complete
+ * - ar (Arabic) - 100% Complete (RTL supported)
  * - Other languages - Use key + zh-TW fallback
- *
- * Future: Import translations from CSV/Google Sheets
  */
 
 import { translations as zhTW } from './locales/zh-TW';
+import { translations as zhCN } from './locales/zh-CN';
 import { translations as en } from './locales/en';
+import { translations as ar } from './locales/ar';
 import type { Translations } from './types';
 
 // Translation cache
@@ -19,7 +21,9 @@ const translationCache: Map<string, Translations> = new Map();
 
 // Load translations
 translationCache.set('zh-TW', zhTW);
+translationCache.set('zh-CN', zhCN);
 translationCache.set('en', en);
+translationCache.set('ar', ar);
 
 /**
  * Get translations for a language

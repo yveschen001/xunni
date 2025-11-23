@@ -83,17 +83,31 @@ export async function handleLanguageSelection(
   const currentI18n = createI18n(user?.language_pref || 'zh-TW');
 
   try {
+    // Use i18n system
+    const { createI18n } = await import('~/i18n');
+    
     // Validate language code
     if (!isValidLanguage(languageCode)) {
+<<<<<<< HEAD
       await telegram.answerCallbackQuery(callbackQuery.id, currentI18n.t('errors.invalidLanguageCode'));
+=======
+      const i18n = createI18n('zh-TW');
+      await telegram.answerCallbackQuery(callbackQuery.id, i18n.t('onboarding.langInvalidCode'));
+>>>>>>> main
       return;
     }
 
     // Check if user exists first
     if (!user) {
       // This shouldn't happen, but handle it gracefully
+<<<<<<< HEAD
       await telegram.answerCallbackQuery(callbackQuery.id, currentI18n.t('errors.systemError'));
       await telegram.sendMessage(chatId, currentI18n.t('errors.systemErrorRestart'));
+=======
+      const i18n = createI18n('zh-TW');
+      await telegram.answerCallbackQuery(callbackQuery.id, i18n.t('onboarding.langError'));
+      await telegram.sendMessage(chatId, i18n.t('onboarding.langErrorRestart'));
+>>>>>>> main
       return;
     }
 
@@ -131,6 +145,7 @@ export async function handleLanguageSelection(
         callbackQuery.from.first_name
       );
     } else {
+<<<<<<< HEAD
       // Existing user - just confirm language change
       // Use the newly selected language for confirmation message
       const newI18n = createI18n(languageCode);
@@ -143,6 +158,18 @@ export async function handleLanguageSelection(
     console.error('[handleLanguageSelection] Error:', error);
     const errorI18n = createI18n(user?.language_pref || 'zh-TW');
     await telegram.answerCallbackQuery(callbackQuery.id, errorI18n.t('errors.systemErrorRetry'));
+=======
+      // Existing user - just confirm language change with NEW language
+      const { createI18n } = await import('~/i18n');
+      const i18n = createI18n(languageCode);
+      await telegram.sendMessage(chatId, i18n.t('onboarding.langUpdated', { language: getLanguageDisplay(languageCode) }));
+    }
+  } catch (error) {
+    console.error('[handleLanguageSelection] Error:', error);
+    const { createI18n } = await import('~/i18n');
+    const i18n = createI18n('zh-TW');
+    await telegram.answerCallbackQuery(callbackQuery.id, i18n.t('onboarding.langUpdateError'));
+>>>>>>> main
   }
 }
 
