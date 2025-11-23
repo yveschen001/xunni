@@ -150,9 +150,36 @@ function replaceInFile(filePath: string, mappings: Map<string, string>): { repla
       }
     }
 
-    // 写回文件
+    // 写回文件（先验证语法）
     if (replaced > 0) {
-      fs.writeFileSync(filePath, newContent, 'utf-8');
+      // 验证新代码的语法
+      try {
+        const testSourceFile = ts.createSourceFile(
+          filePath,
+          newContent,
+          ts.ScriptTarget.Latest,
+          true
+        );
+        
+        // 检查是否有语法错误
+        const diagnostics = ts.getPreEmitDiagnostics(
+          ts.createProgram([testSourceFile.fileName], {
+            target: ts.ScriptTarget.Latest,
+            module: ts.ModuleKind.ESNext,
+          })
+        );
+        
+        if (diagnostics.length > 0) {
+          errors.push(`${filePath}: 替换后语法错误: ${diagnostics.map(d => d.messageText).join(', ')}`);
+          return { replaced: 0, errors };
+        }
+        
+        // 语法正确，写回文件
+        fs.writeFileSync(filePath, newContent, 'utf-8');
+      } catch (error) {
+        errors.push(`${filePath}: 验证失败: ${error}`);
+        return { replaced: 0, errors };
+      }
     }
 
   } catch (error) {
