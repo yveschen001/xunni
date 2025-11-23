@@ -74,37 +74,39 @@ async function main() {
   }
   log('✅ 必要文件检查通过\n');
 
-  // Phase C: 执行替换（这里需要实现实际的替换逻辑）
+  // Phase C: 执行替换
   log('🔄 Phase C: 执行代码替换...');
-  log('⚠️  注意：完整的 AST 替换工具需要开发');
-  log('当前将使用简化版本进行替换\n');
   
-  log('请确认是否继续执行替换？(y/n)');
+  if (!fs.existsSync('scripts/ast-replace-i18n.ts')) {
+    log('❌ 找不到替换脚本: scripts/ast-replace-i18n.ts');
+    log('请先确保替换脚本存在');
+    process.exit(1);
+  }
+
+  log('⚠️  重要：替换前请确认：');
+  log('  1. 已创建备份');
+  log('  2. 当前工作区干净（没有未提交的更改）');
+  log('  3. 可以随时回滚');
+  log('\n是否继续执行替换？(y/n)');
   const confirmReplace = await question('> ');
   if (confirmReplace.toLowerCase() !== 'y') {
     log('❌ 用户取消替换');
     process.exit(0);
   }
 
-  // 这里应该调用实际的替换脚本
-  // 暂时先检查是否有替换脚本
-  if (fs.existsSync('scripts/ast-replace-i18n.ts')) {
-    log('执行 AST 替换工具...');
-    exec('npx tsx scripts/ast-replace-i18n.ts');
-  } else {
-    log('⚠️  AST 替换工具尚未开发');
-    log('需要先开发 scripts/ast-replace-i18n.ts');
-    log('是否现在开发？(y/n)');
-    const develop = await question('> ');
-    if (develop.toLowerCase() === 'y') {
-      // 这里可以调用开发脚本的工具
-      log('开发 AST 替换工具...');
-      // TODO: 实现 AST 替换工具开发
-    } else {
-      log('❌ 需要先开发替换工具才能继续');
+  log('执行 AST 替换工具...');
+  const replaceResult = exec('npx tsx scripts/ast-replace-i18n.ts', { stdio: 'pipe' });
+  if (!replaceResult) {
+    log('❌ 替换执行失败');
+    log('💡 可以回滚: git checkout backup-before-replacement-*');
+    log('是否继续？(y/n)');
+    const continueOnReplaceError = await question('> ');
+    if (continueOnReplaceError.toLowerCase() !== 'y') {
+      log('❌ 用户取消');
       process.exit(1);
     }
   }
+  log('✅ 替换完成\n');
 
   // Phase D: 测试验证
   log('\n🧪 Phase D: 测试验证...');
