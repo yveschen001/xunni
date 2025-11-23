@@ -753,6 +753,211 @@ ${newCode}
 
 ---
 
+## 🚀 执行顺序建议（推荐流程）
+
+### 推荐顺序：先替换，再翻译，再测试
+
+**理由**：
+1. ✅ 替换后代码已经使用 `i18n.t()`，导入翻译后立即生效
+2. ✅ 可以先测试替换是否正确（使用 zh-TW 翻译）
+3. ✅ 导入英文翻译后，可以立即测试中英文切换
+4. ✅ 如果替换有问题，可以回滚，翻译工作不会白费（CSV 文件还在）
+
+### 详细执行步骤
+
+#### Step 1: 安全备份（5 分钟）✅ 必须
+
+```bash
+# 1. 创建备份分支
+git checkout -b backup-before-i18n-replacement-$(date +%Y%m%d)
+git push origin backup-before-i18n-replacement-$(date +%Y%m%d)
+
+# 2. 本地备份
+pnpm backup
+
+# 3. 推送到 GitHub
+pnpm backup:push
+
+# 4. 回到主分支
+git checkout main
+```
+
+**检查清单**：
+- [ ] 备份分支已创建
+- [ ] 本地备份已完成
+- [ ] 已推送到 GitHub
+- [ ] 可以随时回滚
+
+#### Step 2: 执行代码替换（2 小时）
+
+**按照 Phase 1-8 执行替换**：
+1. 开发 AST 替换工具
+2. 执行替换（74 个文件）
+3. 生成 `zh-TW.ts` locale 文件
+4. 更新 `types.ts`
+5. 测试验证
+
+**检查清单**：
+- [ ] 所有硬编码已替换为 `i18n.t()`
+- [ ] `zh-TW.ts` 已生成（包含所有翻译）
+- [ ] `types.ts` 已更新
+- [ ] `pnpm lint` 通过
+- [ ] `pnpm typecheck` 通过
+- [ ] `pnpm test` 通过
+- [ ] `pnpm check:i18n` 显示 0 个硬编码（或只有允许的）
+
+#### Step 3: 测试中文版本（10 分钟）
+
+**验证替换是否正确**：
+```bash
+# 1. 启动开发服务器
+pnpm dev
+
+# 2. 测试核心功能（使用中文）
+# - 启动流程
+# - 主菜单
+# - 丢瓶子
+# - 捡瓶子
+# - 个人资料
+# - 设置
+```
+
+**检查清单**：
+- [ ] 所有功能正常（中文显示）
+- [ ] 没有错误消息
+- [ ] 没有崩溃
+- [ ] UI 显示正常
+
+**如果测试失败**：
+```bash
+# 立即回滚
+git checkout backup-before-i18n-replacement-*
+# 或
+git reset --hard HEAD~1
+```
+
+#### Step 4: 导入英文翻译（5 分钟）
+
+**从 CSV 导入英文翻译**：
+```bash
+# 1. 确认 CSV 文件存在
+ls -lh i18n_for_translation.csv
+
+# 2. 导入英文翻译
+npx tsx scripts/i18n-import-selected-languages.ts en
+
+# 或使用通用导入脚本
+npx tsx scripts/i18n-import-from-csv.ts i18n_for_translation.csv en
+```
+
+**检查清单**：
+- [ ] `src/i18n/locales/en.ts` 已更新
+- [ ] 所有 keys 都有英文翻译
+- [ ] 没有缺失的翻译
+
+#### Step 5: 测试中英文切换（15 分钟）
+
+**验证语言切换功能**：
+```bash
+# 1. 启动开发服务器
+pnpm dev
+
+# 2. 测试语言切换
+# - 新用户：选择英文
+# - 老用户：在设置中切换语言
+# - 验证所有页面都显示英文
+```
+
+**测试场景**：
+- [ ] 新用户选择英文 → 所有消息都是英文
+- [ ] 老用户切换语言 → 立即生效
+- [ ] 主菜单 → 英文
+- [ ] 丢瓶子 → 英文
+- [ ] 捡瓶子 → 英文
+- [ ] 个人资料 → 英文
+- [ ] 设置 → 英文
+- [ ] 错误消息 → 英文
+
+**如果测试失败**：
+```bash
+# 回滚到 Step 2 之后的状态（替换完成，但只有中文）
+git checkout backup-after-replacement-zh-TW-only
+```
+
+#### Step 6: 如果测试通过，翻译其他语言（可选）
+
+**如果中英文切换测试通过**：
+1. 翻译其他 32 种语言
+2. 导入所有语言翻译
+3. 测试所有语言切换
+
+---
+
+## 🔄 回滚策略
+
+### 回滚点 1: 替换后（Step 2 之后）
+
+**如果替换有问题**：
+```bash
+# 回滚到替换前
+git checkout backup-before-i18n-replacement-*
+```
+
+### 回滚点 2: 导入英文后（Step 4 之后）
+
+**如果英文翻译有问题**：
+```bash
+# 回滚到只有中文的状态
+git checkout backup-after-replacement-zh-TW-only
+```
+
+### 回滚点 3: 测试失败（Step 5 之后）
+
+**如果中英文切换有问题**：
+```bash
+# 回滚到导入英文前的状态
+git checkout backup-after-replacement-zh-TW-only
+```
+
+---
+
+## 📋 完整执行计划
+
+### Phase A: 准备与备份（5 分钟）
+- [ ] 创建备份分支
+- [ ] 本地备份
+- [ ] 推送到 GitHub
+
+### Phase B: 代码替换（2 小时）
+- [ ] 开发 AST 替换工具
+- [ ] 执行替换（74 个文件）
+- [ ] 生成 `zh-TW.ts`
+- [ ] 更新 `types.ts`
+- [ ] 测试验证
+- [ ] **创建备份点**：`backup-after-replacement-zh-TW-only`
+
+### Phase C: 测试中文版本（10 分钟）
+- [ ] 启动开发服务器
+- [ ] 测试所有核心功能
+- [ ] 验证中文显示正常
+
+### Phase D: 导入英文翻译（5 分钟）
+- [ ] 确认 CSV 文件存在
+- [ ] 导入英文翻译
+- [ ] 验证导入成功
+
+### Phase E: 测试中英文切换（15 分钟）
+- [ ] 测试新用户选择英文
+- [ ] 测试老用户切换语言
+- [ ] 验证所有页面都显示英文
+
+### Phase F: 如果测试通过，翻译其他语言（可选）
+- [ ] 翻译其他 32 种语言
+- [ ] 导入所有语言翻译
+- [ ] 测试所有语言切换
+
+---
+
 ## 🚀 准备开始
 
 **确认清单**：
