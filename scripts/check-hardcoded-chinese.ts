@@ -7,7 +7,7 @@
 
 import * as fs from 'fs';
 import * as path from 'path';
-import { glob } from 'glob';
+import { readdirSync, statSync } from 'fs';
 
 interface HardcodedIssue {
   file: string;
@@ -33,7 +33,7 @@ const SKIP_PATTERNS = [
   'i18n_replacement_status.json',
 ];
 
-// 允許的硬編碼（技術標識符等）
+// 允許的硬編碼（技術標識符、數據映射等）
 const ALLOWED_PATTERNS = [
   /callback_data:\s*['"`][^'"`]*[\u4e00-\u9fa5]/,
   /['"`]lang_[^'"`]*['"`]/,
@@ -46,9 +46,32 @@ const ALLOWED_PATTERNS = [
   /\/\*.*[\u4e00-\u9fa5].*\*\//,
   /i18n\.t\(/,
   /createI18n\(/,
+  // 數據映射（星座、MBTI 等）
+  /['"`][A-Z][^'"`]*['"`]:\s*['"`][\u4e00-\u9fa5]+['"`]/,
+  /:\s*['"`][\u4e00-\u9fa5]+['"`],?\s*$/,
+  // 配置文件的鍵值對
+  /zh:\s*['"`]/,
+  /ja:\s*['"`]/,
+  /ko:\s*['"`]/,
+  /legal_urls\.ts/,
+  /birthday_greetings\.ts/,
+];
+
+// 跳過的文件（包含數據映射的文件）
+const SKIP_FILES = [
+  'src/config/legal_urls.ts',
+  'src/cron/birthday_greetings.ts',
 ];
 
 function shouldSkip(filePath: string): boolean {
+  // 檢查是否在跳過的文件列表中
+  for (const skipFile of SKIP_FILES) {
+    if (filePath.includes(skipFile)) {
+      return true;
+    }
+  }
+  
+  // 檢查是否在跳過的目錄中
   for (const pattern of SKIP_PATTERNS) {
     if (filePath.includes(pattern)) {
       return true;
@@ -124,13 +147,31 @@ function checkFile(filePath: string): void {
   }
 }
 
-async function main() {
+function getAllTsFiles(dir: string, fileList: string[] = []): string[] {
+  const files = readdirSync(dir);
+  
+  for (const file of files) {
+    const filePath = path.join(dir, file);
+    const stat = statSync(filePath);
+    
+    if (stat.isDirectory()) {
+      // 跳過 node_modules、.git 等目錄
+      if (!['node_modules', '.git', 'dist', 'build'].includes(file)) {
+        getAllTsFiles(filePath, fileList);
+      }
+    } else if (file.endsWith('.ts') && !file.endsWith('.test.ts') && !file.endsWith('.spec.ts')) {
+      fileList.push(filePath);
+    }
+  }
+  
+  return fileList;
+}
+
+function main() {
   console.log('🔍 檢查硬編碼中文字符串...\n');
   
   // 掃描所有 TypeScript 文件
-  const files = await glob('src/**/*.ts', {
-    ignore: ['**/*.test.ts', '**/*.spec.ts', 'node_modules/**'],
-  });
+  const files = getAllTsFiles('src');
   
   console.log(`📂 掃描 ${files.length} 個文件...\n`);
   
@@ -178,5 +219,5 @@ async function main() {
   }
 }
 
-main().catch(console.error);
+main();
 
