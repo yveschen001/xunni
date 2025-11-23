@@ -1087,6 +1087,15 @@ WHERE birthday IS NOT NULL;
 - [ ] 沒有 `console.log`（只允許 `console.error`）
 - [ ] 沒有 `any` 類型（除非必要）
 
+#### i18n 規範（⚠️ 必須檢查）
+- [ ] **所有用戶可見文字都使用 `i18n.t()`**（禁止硬編碼中文）
+- [ ] 已添加 `import { createI18n } from '~/i18n'`
+- [ ] 已初始化 `const i18n = createI18n(user.language_pref || 'zh-TW')`
+- [ ] 所有 `sendMessage`、`editMessageText` 等調用都使用 `i18n.t()`
+- [ ] 所有按鈕文字都使用 `i18n.t()`
+- [ ] 所有錯誤消息都使用 `i18n.t()`
+- [ ] **沒有硬編碼的中文字符串**（除了技術標識符、callback_data 等）
+
 #### 測試覆蓋
 - [ ] 新功能有單元測試
 - [ ] 修改的功能測試已更新
