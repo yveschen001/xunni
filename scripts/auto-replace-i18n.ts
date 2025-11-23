@@ -218,31 +218,52 @@ async function main() {
     log('⏭️  跳过替换（已完成）\n');
   }
 
-  // Phase D: 测试验证
+  // Phase D: 测试验证和自动修复
   if (!currentProgress.completed.includes('test')) {
-    log('\n🧪 Phase D: 测试验证...');
+    log('\n🧪 Phase D: 测试验证和自动修复...');
     currentProgress.phase = 'test';
     saveProgress(currentProgress);
     
-    log('执行 lint 检查（最多 5 分钟超时）...');
+    // Step 1: 自动修复 lint 错误
+    log('🤖 Step 1: 自动修复 lint 错误...');
+    if (!execWithRetry('pnpm lint:fix', MAX_RETRIES)) {
+      log('⚠️  自动修复失败，继续检查...');
+    } else {
+      log('✅ 自动修复完成');
+    }
+    
+    // Step 2: 格式化代码
+    log('🤖 Step 2: 格式化代码...');
+    if (!execWithRetry('pnpm format', MAX_RETRIES)) {
+      log('⚠️  格式化失败，继续检查...');
+    } else {
+      log('✅ 格式化完成');
+    }
+    
+    // Step 3: Lint 检查
+    log('📋 Step 3: 执行 lint 检查（最多 5 分钟超时）...');
     if (!execWithRetry('pnpm lint', MAX_RETRIES)) {
-      log('❌ Lint 检查失败，自动跳过并继续...');
+      log('❌ Lint 检查失败，已尝试自动修复');
+      log('💡 如果仍有错误，请手动修复');
       currentProgress.skipped.push('lint');
-      log('⏭️  跳过 lint 检查\n');
     } else {
       currentProgress.completed.push('lint');
+      log('✅ Lint 检查通过');
     }
 
-    log('执行类型检查（最多 5 分钟超时）...');
+    // Step 4: 类型检查
+    log('📋 Step 4: 执行类型检查（最多 5 分钟超时）...');
     if (!execWithRetry('pnpm typecheck', MAX_RETRIES)) {
-      log('❌ 类型检查失败，自动跳过并继续...');
+      log('❌ 类型检查失败');
+      log('💡 请检查类型错误并手动修复');
       currentProgress.skipped.push('typecheck');
-      log('⏭️  跳过类型检查\n');
     } else {
       currentProgress.completed.push('typecheck');
+      log('✅ 类型检查通过');
     }
 
-    log('检查硬编码（最多 5 分钟超时）...');
+    // Step 5: 检查硬编码
+    log('📋 Step 5: 检查硬编码（最多 5 分钟超时）...');
     execWithRetry('pnpm check:i18n', 1); // 硬编码检查只执行一次，不重试
     
     currentProgress.completed.push('test');
@@ -260,17 +281,33 @@ async function main() {
   exec(`./scripts/create-backup-point.sh ${backupAfterName}`);
   log('✅ 备份点已创建\n');
 
-  // Phase F: 跳过用户测试（全自动模式）
-  log('🎯 Phase F: 跳过用户测试（全自动模式）...');
-  log('🤖 全自动模式：自动跳过手动测试步骤');
-  log('💡 建议稍后手动测试以下功能：');
-  log('  - 启动流程');
-  log('  - 主菜单');
-  log('  - 丢瓶子');
-  log('  - 捡瓶子');
-  log('  - 个人资料');
-  log('  - 设置');
-  log('✅ 继续执行...\n');
+  // Phase F: 自动功能测试（全自动模式）
+  log('🎯 Phase F: 自动功能测试（全自动模式）...');
+  
+  if (!currentProgress.completed.includes('smoke-test')) {
+    log('🤖 执行 Smoke Test（自动测试所有功能）...');
+    log('⚠️  注意：Smoke Test 需要连接到 staging 环境');
+    log('如果测试失败，可能是环境问题，不影响替换流程');
+    
+    if (execWithRetry('pnpm smoke-test', 1)) { // 只执行一次，不重试
+      currentProgress.completed.push('smoke-test');
+      log('✅ Smoke Test 通过');
+    } else {
+      log('⚠️  Smoke Test 失败（可能是环境问题）');
+      log('💡 建议稍后手动测试以下功能：');
+      log('  - 启动流程');
+      log('  - 主菜单');
+      log('  - 丢瓶子');
+      log('  - 捡瓶子');
+      log('  - 个人资料');
+      log('  - 设置');
+      currentProgress.skipped.push('smoke-test');
+    }
+  } else {
+    log('⏭️  跳过 Smoke Test（已完成）');
+  }
+  
+  log('✅ 功能测试完成\n');
 
   // Phase G: 导入英文翻译
   log('🌍 Phase G: 导入英文翻译...');
