@@ -32,7 +32,9 @@
     "lint": "eslint src",
     "lint:fix": "eslint src --fix",
     "format": "prettier --write \"src/**/*.ts\" \"tests/**/*.ts\"",
-    "format:check": "prettier --check \"src/**/*.ts\" \"tests/**/*.ts\""
+    "format:check": "prettier --check \"src/**/*.ts\" \"tests/**/*.ts\"",
+    "i18n:auto-replace": "tsx scripts/auto-replace-i18n.ts",
+    "check:i18n": "tsx scripts/check-hardcoded-chinese.ts"
   },
   "keywords": [
     "telegram",
