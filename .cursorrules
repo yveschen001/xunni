@@ -75,6 +75,7 @@ The following files are considered **protected**:
 - `@doc/SPEC.md` - 專案規格書（**必讀**，包含專案概覽、結構、完整業務邏輯和**術語表**）
 - `@doc/ENV_CONFIG.md` - 開發環境設置指南（如何設置本地環境，包含**開發前檢查清單**）
 - `@doc/DEVELOPMENT_STANDARDS.md` - 代碼風格和命名規範（包含**AI 協作流程**和**安全開發流程**）
+- `@doc/I18N_EXTRACTION_AND_REPLACEMENT_STANDARDS.md` - **i18n 提取與替換規範**（**進行 i18n 相關工作前必讀**）
 
 ## 開發規範（必須遵守）
 
