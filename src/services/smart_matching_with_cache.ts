@@ -1,11 +1,11 @@
 /**
  * Smart Matching with Cache Wrapper
- * 
+ *
  * 🎯 设计理念：
  * - 不修改现有的 smart_matching.ts 代码（避免破坏现有功能）
  * - 提供一个包装函数，在外层添加缓存逻辑
  * - 完全向后兼容：如果 KV 不可用，自动降级到原始实现
- * 
+ *
  * 💰 成本优化：
  * - 只在 VIP 用户丢瓶子时使用缓存（减少缓存使用）
  * - 缓存全局活跃用户池（所有 VIP 用户共享）
@@ -17,7 +17,7 @@ import type { MatchResult } from './smart_matching';
 
 /**
  * 带缓存的智能匹配（仅用于 VIP 用户）
- * 
+ *
  * @param db - D1 Database
  * @param bottleId - Bottle ID
  * @param kv - KV Namespace (optional)
@@ -33,7 +33,7 @@ export async function findActiveMatchForBottleWithCache(
     try {
       const { getActiveUsersWithCache } = await import('./smart_matching_cache');
       // 预热缓存（不阻塞主流程）
-      getActiveUsersWithCache(db, kv).catch(err => {
+      getActiveUsersWithCache(db, kv).catch((err) => {
         console.error('[SmartMatchingWithCache] Cache preheat error (non-blocking):', err);
       });
     } catch (error) {
@@ -85,4 +85,3 @@ export async function clearSmartMatchingCache(kv?: KVNamespace): Promise<boolean
     return false;
   }
 }
-

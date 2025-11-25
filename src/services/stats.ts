@@ -213,8 +213,10 @@ async function sendStatsToAdmins(env: Env, stats: DailyStats): Promise<void> {
   const previousDate = getPreviousDate(stats.statDate);
   const previousStats = await getDailyStats(db, previousDate);
 
-  // Format report
-  const report = formatDailyStatsReport(stats, previousStats || undefined);
+  // Format report (use zh-TW for admin reports)
+  const { createI18n } = await import('~/i18n');
+  const i18n = createI18n('zh-TW');
+  const report = formatDailyStatsReport(stats, previousStats || undefined, i18n);
 
   // Get admin IDs
   const { getAdminIds } = await import('../telegram/handlers/admin_ban');

@@ -29,11 +29,11 @@ export async function handleSettings(message: TelegramMessage, env: Env): Promis
 
     // Get user
     const user = await findUserByTelegramId(db, telegramId);
-    
+
     // Use i18n
     const { createI18n } = await import('~/i18n');
     const i18n = createI18n(user?.language_pref || 'zh-TW');
-    
+
     if (!user) {
       await telegram.sendMessage(chatId, i18n.t('common.userNotFound'));
       return;
@@ -48,9 +48,10 @@ export async function handleSettings(message: TelegramMessage, env: Env): Promis
     // Build settings message
     const languageName = await getLanguageName(user.language_pref || 'zh-TW');
     const settingsMessage =
-      i18n.t('settings.title') +
       i18n.t('settings.currentSettings') +
-      i18n.t('settings.languageLabel', { language: `${languageName} 🇹🇼` }) +
+      '\n\n' +
+      i18n.t('settings.languageLabel', { language: languageName }) +
+      '\n\n' +
       i18n.t('settings.selectOption');
 
     // Build settings buttons
@@ -75,13 +76,18 @@ export async function handleSettings(message: TelegramMessage, env: Env): Promis
  * Handle settings callbacks
  */
 export async function handleSettingsCallback(callbackQuery: any, env: Env): Promise<void> {
-  const _db = createDatabaseClient(env.DB);
+  const db = createDatabaseClient(env.DB);
   const telegram = createTelegramService(env);
   const chatId = callbackQuery.message!.chat.id;
-  const _telegramId = callbackQuery.from.id.toString();
+  const telegramId = callbackQuery.from.id.toString();
   const data = callbackQuery.data;
 
   try {
+    // Get user first
+    const user = await findUserByTelegramId(db, telegramId);
+    const { createI18n } = await import('~/i18n');
+    const i18n = createI18n(user?.language_pref || 'zh-TW');
+
     if (data === 'settings_language') {
       // Show language selection with all 34 languages
       const { getLanguageButtons } = await import('~/i18n/languages');
@@ -89,18 +95,17 @@ export async function handleSettingsCallback(callbackQuery: any, env: Env): Prom
       await telegram.deleteMessage(chatId, callbackQuery.message!.message_id);
 
       // Show all languages
-      const { createI18n } = await import('~/i18n');
-      const i18n = createI18n(user.language_pref || 'zh-TW');
-      await telegram.sendMessageWithButtons(
-        chatId,
-        i18n.t('onboarding.languageSelection'),
-        [...getLanguageButtons(i18n, 0), [{ text: i18n.t('settings.back'), callback_data: 'back_to_settings' }]]
-      );
+      await telegram.sendMessageWithButtons(chatId, i18n.t('onboarding.languageSelection'), [
+        ...getLanguageButtons(i18n, 0),
+        [{ text: i18n.t('settings.back'), callback_data: 'back_to_settings' }],
+      ]);
     }
   } catch (error) {
     console.error('[handleSettingsCallback] Error:', error);
     const { createI18n } = await import('~/i18n');
-    const errorI18n = createI18n(user.language_pref || 'zh-TW');
+    const { findUserByTelegramId } = await import('~/db/queries/users');
+    const user = await findUserByTelegramId(db, telegramId);
+    const errorI18n = createI18n(user?.language_pref || 'zh-TW');
     await telegram.answerCallbackQuery(callbackQuery.id, errorI18n.t('errors.systemErrorRetry'));
   }
 }
@@ -131,6 +136,11 @@ export async function handleLanguageChange(callbackQuery: any, env: Env): Promis
       .bind(languageCode, telegramId)
       .run();
 
+    // Debug: Verify language was saved
+    const { findUserByTelegramId } = await import('~/db/queries/users');
+    const updatedUser = await findUserByTelegramId(db, telegramId);
+    console.error('[handleLanguageChange] Updated user language_pref:', updatedUser?.language_pref);
+
     const { createI18n } = await import('~/i18n');
     const newI18n = createI18n(languageCode);
     const newLanguageName = await getLanguageName(languageCode);
@@ -139,14 +149,32 @@ export async function handleLanguageChange(callbackQuery: any, env: Env): Promis
       newI18n.t('settings.languageUpdated', { language: newLanguageName })
     );
 
-    // Refresh settings menu
+    // Delete language selection message
     await telegram.deleteMessage(chatId, callbackQuery.message!.message_id);
+
+    // Send confirmation message
+    const confirmMessage = newI18n.t('settings.languageUpdated', { language: newLanguageName });
+    const sentMessage = await telegram.sendMessage(chatId, confirmMessage);
+
+    // Wait 2 seconds, then automatically return to menu
+    await new Promise(resolve => setTimeout(resolve, 2000));
+
+    // Delete confirmation message and show menu
+    try {
+      await telegram.deleteMessage(chatId, sentMessage.message_id);
+    } catch (error) {
+      // Ignore if message already deleted
+      console.error('[handleLanguageChange] Failed to delete confirmation message:', error);
+    }
+
+    // Return to main menu
+    const { handleMenu } = await import('./menu');
     const fakeMessage = {
       ...callbackQuery.message!,
       from: callbackQuery.from,
-      text: '/settings',
+      text: '/menu',
     };
-    await handleSettings(fakeMessage as any, env);
+    await handleMenu(fakeMessage as any, env);
   } catch (error) {
     console.error('[handleLanguageChange] Error:', error);
     const { createI18n } = await import('~/i18n');

@@ -76,17 +76,22 @@ export async function handleWatchAd(callbackQuery: CallbackQuery, env: Env): Pro
     // Get user
     const user = await findUserByTelegramId(db, telegramId);
     if (!user) {
+      const { createI18n } = await import('~/i18n');
+      const i18n = createI18n('zh-TW');
       await telegram.answerCallbackQuery(callbackQuery.id, {
-        text: '❌ 用戶不存在',
+        text: i18n.t('errors.userNotFound'),
         show_alert: true,
       });
       return;
     }
 
+    const { createI18n } = await import('~/i18n');
+    const i18n = createI18n(user.language_pref || 'zh-TW');
+
     // Check if VIP
     if (user.is_vip) {
       await telegram.answerCallbackQuery(callbackQuery.id, {
-        text: '💎 VIP 用戶無需觀看廣告',
+        text: i18n.t('adReward.vipNoAds'),
         show_alert: true,
       });
       return;
@@ -96,7 +101,7 @@ export async function handleWatchAd(callbackQuery: CallbackQuery, env: Env): Pro
     const activeSession = await getActiveSessionByUser(db.d1, telegramId);
     if (activeSession) {
       await telegram.answerCallbackQuery(callbackQuery.id, {
-        text: '⚠️ 請先完成上一支廣告，再開始新的廣告',
+        text: i18n.t('adReward.pendingAd'),
         show_alert: true,
       });
       return;
@@ -106,10 +111,10 @@ export async function handleWatchAd(callbackQuery: CallbackQuery, env: Env): Pro
     const adReward = await getTodayAdReward(db.d1, telegramId);
 
     // Check if can watch more ads
-    const checkResult = canWatchAd(adReward, user.is_vip);
+    const checkResult = canWatchAd(adReward, user.is_vip, i18n);
     if (!checkResult.can_watch) {
       await telegram.answerCallbackQuery(callbackQuery.id, {
-        text: checkResult.reason || '⚠️ 無法觀看更多廣告',
+        text: checkResult.reason || i18n.t('adReward.cannotWatchMore'),
         show_alert: true,
       });
       return;
@@ -119,7 +124,7 @@ export async function handleWatchAd(callbackQuery: CallbackQuery, env: Env): Pro
     const providers = await getAllAdProviders(db.d1, true);
     if (providers.length === 0) {
       await telegram.answerCallbackQuery(callbackQuery.id, {
-        text: '⚠️ 暫無可用的廣告提供商',
+        text: i18n.t('adReward.noProviders'),
         show_alert: true,
       });
       return;
@@ -131,7 +136,7 @@ export async function handleWatchAd(callbackQuery: CallbackQuery, env: Env): Pro
 
     if (!selection) {
       await telegram.answerCallbackQuery(callbackQuery.id, {
-        text: '⚠️ 無法選擇廣告提供商',
+        text: i18n.t('adReward.cannotSelectProvider'),
         show_alert: true,
       });
       return;
@@ -148,27 +153,23 @@ export async function handleWatchAd(callbackQuery: CallbackQuery, env: Env): Pro
 
     // Send message with ad link
     const remainingAds = checkResult.remaining_ads;
-    const message = `
-📺 **觀看廣告獲得額度**
-
-🎁 完成觀看可獲得 **+1 個額度**
-📊 今日剩餘：**${remainingAds}/20** 次
-
-👇 點擊下方按鈕開始觀看
-    `.trim();
+    const message = i18n.t('adReward.watchAdTitle') + '\n\n' +
+      i18n.t('adReward.watchAdReward') + '\n' +
+      i18n.t('adReward.watchAdRemaining', { remaining: remainingAds }) + '\n\n' +
+      i18n.t('adReward.watchAdClickButton');
 
     await telegram.sendMessage(chatId, message, {
       reply_markup: {
         inline_keyboard: [
           [
             {
-              text: '📺 開始觀看廣告',
+              text: i18n.t('adReward.startWatchButton'),
               url: adPageUrl,
             },
           ],
           [
             {
-              text: '🏠 返回主選單',
+              text: i18n.t('common.backToMainMenu'),
               callback_data: 'return_to_menu',
             },
           ],
@@ -177,12 +178,14 @@ export async function handleWatchAd(callbackQuery: CallbackQuery, env: Env): Pro
     });
 
     await telegram.answerCallbackQuery(callbackQuery.id, {
-      text: '✅ 請點擊按鈕開始觀看',
+      text: i18n.t('adReward.clickButtonHint'),
     });
   } catch (error) {
     console.error('[handleWatchAd] Error:', error);
+    const { createI18n } = await import('~/i18n');
+    const errorI18n = createI18n('zh-TW'); // Fallback for error
     await telegram.answerCallbackQuery(callbackQuery.id, {
-      text: '❌ 發生錯誤，請稍後再試',
+      text: errorI18n.t('errors.systemErrorRetry'),
       show_alert: true,
     });
   }
@@ -243,8 +246,7 @@ export async function handleAdStart(
       });
 
       // Track analytics
-      const remainingAds =
-        AD_REWARD_CONSTANTS.MAX_ADS_PER_DAY - (updatedReward.ad_views || 0);
+      const remainingAds = AD_REWARD_CONSTANTS.MAX_ADS_PER_DAY - (updatedReward.ad_views || 0);
       await trackAdImpression(env, telegramId, providerName, Math.max(remainingAds, 0));
     }
 
@@ -341,7 +343,9 @@ export async function handleAdComplete(
     const adReward = await getTodayAdReward(db.d1, telegramId);
 
     // Process ad completion
-    const result = processAdCompletion(adReward, user.is_vip);
+    const { createI18n } = await import('~/i18n');
+    const i18n = createI18n(user.language_pref || 'zh-TW');
+    const result = processAdCompletion(adReward, user.is_vip, i18n);
 
     if (!result.success) {
       return {
@@ -378,16 +382,12 @@ export async function handleAdComplete(
     await trackAdCompletion(env, telegramId, providerName, updated.ads_watched);
 
     // Send notification to user
-    const notificationMessage = `
-🎉 **廣告觀看完成！**
-
-✅ 獲得 **+1 個額度**
-📊 今日已觀看：**${updated.ads_watched}/20** 次
-🎁 今日已獲得：**${updated.quota_earned}** 個額度
-📈 剩餘次數：**${result.remaining_ads}** 次
-
-${result.remaining_ads > 0 ? '💡 繼續觀看廣告可獲得更多額度！' : '✅ 今日廣告已達上限'}
-    `.trim();
+    const notificationMessage = i18n.t('adReward.completedTitle') + '\n\n' +
+      i18n.t('adReward.completedReward') + '\n' +
+      i18n.t('adReward.completedWatched', { watched: updated.ads_watched }) + '\n' +
+      i18n.t('adReward.completedEarned', { earned: updated.quota_earned }) + '\n' +
+      i18n.t('adReward.completedRemaining', { remaining: result.remaining_ads }) + '\n\n' +
+      (result.remaining_ads > 0 ? i18n.t('adReward.continueWatching') : i18n.t('adReward.dailyLimitReached'));
 
     await telegram.sendMessage(user.telegram_id, notificationMessage);
 
@@ -461,24 +461,13 @@ export async function handleAdError(
     await trackAdFailure(env, telegramId, providerName, errorMessage);
 
     // Send notification to user
-    await telegram.sendMessage(
-      telegramId,
-      `
-❌ **廣告加載失敗**
-
-很抱歉，廣告無法正常播放。
-
-💡 **可能的原因：**
-• 網絡連接不穩定
-• 廣告提供商暫時不可用
-• 瀏覽器不支持
-
-🔄 **建議：**
-• 檢查網絡連接
-• 稍後再試
-• 或使用其他方式獲得額度（邀請朋友）
-    `.trim()
-    );
+    const { createI18n } = await import('~/i18n');
+    const { findUserByTelegramId } = await import('~/db/queries/users');
+    const db = createDatabaseClient(env.DB);
+    const user = await findUserByTelegramId(db, telegramId);
+    const i18n = createI18n(user?.language_pref || 'zh-TW');
+    
+    await telegram.sendMessage(telegramId, i18n.t('ad.failed'));
   } catch (error) {
     console.error('[handleAdError] Error:', error);
   }
@@ -549,13 +538,19 @@ export async function getAdRewardStatusMessage(telegramId: string, env: Env): Pr
   try {
     const user = await findUserByTelegramId(db, telegramId);
     if (!user) {
-      return '❌ 用戶不存在';
+      const { createI18n } = await import('~/i18n');
+      const i18n = createI18n('zh-TW');
+      return i18n.t('errors.userNotFound');
     }
 
+    const { createI18n } = await import('~/i18n');
+    const i18n = createI18n(user.language_pref || 'zh-TW');
     const adReward = await getTodayAdReward(db.d1, telegramId);
-    return formatAdRewardStatus(adReward, user.is_vip);
+    return formatAdRewardStatus(adReward, user.is_vip, i18n);
   } catch (error) {
     console.error('[getAdRewardStatusMessage] Error:', error);
-    return '❌ 獲取廣告狀態失敗';
+    const { createI18n } = await import('~/i18n');
+    const errorI18n = createI18n('zh-TW'); // Fallback for error
+    return errorI18n.t('adReward.getStatusFailed');
   }
 }

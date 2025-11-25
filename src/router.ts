@@ -76,8 +76,16 @@ export async function routeUpdate(update: TelegramUpdate, env: Env): Promise<voi
 
     // Check if message contains media (photo, document, video, etc.)
     // These are not allowed in conversations
-    if (message.photo || message.document || message.video || message.audio || 
-        message.voice || message.video_note || message.sticker || message.animation) {
+    if (
+      message.photo ||
+      message.document ||
+      message.video ||
+      message.audio ||
+      message.voice ||
+      message.video_note ||
+      message.sticker ||
+      message.animation
+    ) {
       // Get user to check if they're in a conversation
       const user = await findUserByTelegramId(db, telegramId);
       if (user && user.onboarding_step === 'completed') {
@@ -86,11 +94,11 @@ export async function routeUpdate(update: TelegramUpdate, env: Env): Promise<voi
         const conversation = await getActiveConversation(db, telegramId);
         if (conversation) {
           // User is in a conversation, reject media
+          const { createI18n } = await import('./i18n');
+          const i18n = createI18n(user.language_pref || 'zh-TW');
           await telegram.sendMessage(
             chatId,
-            '⚠️ **不允許發送圖片、影片或多媒體**\n\n' +
-            '💡 為了保護隱私和安全，對話中只允許純文字訊息。\n\n' +
-            '請使用文字訊息與對方交流。'
+            i18n.t('warning.text8')
           );
           return;
         }
@@ -177,15 +185,9 @@ export async function routeUpdate(update: TelegramUpdate, env: Env): Promise<voi
         let timeLeft: string;
         if (daysLeft > 0) {
           const hours = hoursLeft % 24;
-          timeLeft =
-            user.language_pref === 'en'
-              ? `${daysLeft} day${daysLeft > 1 ? 's' : ''} ${hours} hour${hours !== 1 ? 's' : ''}`
-              : `${daysLeft} 天 ${hours} 小時`;
+          timeLeft = i18n.t('common.timeLeftDaysHours', { days: daysLeft, hours });
         } else {
-          timeLeft =
-            user.language_pref === 'en'
-              ? `${hoursLeft} hour${hoursLeft !== 1 ? 's' : ''}`
-              : `${hoursLeft} 小時`;
+          timeLeft = i18n.t('common.timeLeftHours', { hours: hoursLeft });
         }
 
         const unbanTime = bannedUntil.toLocaleString(
@@ -246,28 +248,31 @@ export async function routeUpdate(update: TelegramUpdate, env: Env): Promise<voi
       // Check if user is replying to a message (HIGHEST PRIORITY: explicit user action!)
       if (message.reply_to_message && text) {
         const replyToText = message.reply_to_message.text || '';
-        
+
         // Check if replying to throw bottle prompt (#THROW tag or ForceReply prompt)
-        if (replyToText.includes('#THROW') || replyToText.includes('📝 請輸入你的漂流瓶內容：')) {
+        const { createI18n } = await import('~/i18n');
+        const routerI18n = createI18n(user.language_pref || 'zh-TW');
+        
+        if (replyToText.includes('#THROW') || replyToText.includes(routerI18n.t('router.throwPrompt'))) {
           console.error('[router] Detected reply to throw bottle prompt:', {
             userId: user.telegram_id,
             contentLength: text.length,
             method: replyToText.includes('#THROW') ? 'long-press' : 'button',
           });
-          
+
           const { processBottleContent } = await import('./telegram/handlers/throw');
           await processBottleContent(user, text, env);
           return;
         }
-        
+
         // Check if replying to conversation-related messages
         // Try to extract conversation identifier from various message formats:
         // 1. "💬 回覆 #IDENTIFIER：" (ForceReply button)
         // 2. "💬 與 #IDENTIFIER 的對話記錄" (History post)
         // 3. "💬 來自 #IDENTIFIER 的新訊息" (New message notification)
         let conversationIdentifier: string | undefined;
-        
-        if (replyToText.includes('💬 回覆')) {
+
+        if (replyToText.includes(routerI18n.t('router.replyPrompt'))) {
           // Support both old format (💬 回覆 #ID：) and new format (💬 回覆對話 ID)
           const match = replyToText.match(/💬 回覆(?:對話)?\s*#?([A-Z0-9]+)[：]?/);
           if (match) {
@@ -278,8 +283,13 @@ export async function routeUpdate(update: TelegramUpdate, env: Env): Promise<voi
               method: 'button',
             });
           }
-        } else if (replyToText.includes('💬 與 #')) {
-          const match = replyToText.match(/💬 與 #([A-Z0-9]+) 的對話記錄/);
+        } else if (replyToText.includes(routerI18n.t('conversation.historyPost'))) {
+          const historyPostPattern = new RegExp(
+            routerI18n.t('conversation.historyPost').replace(/[.*+?^${}()|[\]\\]/g, '\\$&') +
+              '([A-Z0-9]+)' +
+              routerI18n.t('conversation.historyPostSuffix').replace(/[.*+?^${}()|[\]\\]/g, '\\$&')
+          );
+          const match = replyToText.match(historyPostPattern);
           if (match) {
             conversationIdentifier = match[1];
             console.error('[router] Detected reply to history post:', {
@@ -288,8 +298,13 @@ export async function routeUpdate(update: TelegramUpdate, env: Env): Promise<voi
               method: 'long-press',
             });
           }
-        } else if (replyToText.includes('💬 來自 #')) {
-          const match = replyToText.match(/💬 來自 #([A-Z0-9]+) 的新訊息/);
+        } else if (replyToText.includes(routerI18n.t('conversation.newMessageNotification'))) {
+          const newMessagePattern = new RegExp(
+            routerI18n.t('conversation.newMessageNotification').replace(/[.*+?^${}()|[\]\\]/g, '\\$&') +
+              '([A-Z0-9]+)' +
+              routerI18n.t('conversation.newMessageNotificationSuffix').replace(/[.*+?^${}()|[\]\\]/g, '\\$&')
+          );
+          const match = replyToText.match(newMessagePattern);
           if (match) {
             conversationIdentifier = match[1];
             console.error('[router] Detected reply to new message notification:', {
@@ -299,10 +314,14 @@ export async function routeUpdate(update: TelegramUpdate, env: Env): Promise<voi
             });
           }
         }
-        
+
         // Process as conversation message
         const { handleMessageForward } = await import('./telegram/handlers/message_forward');
-        const isConversationMessage = await handleMessageForward(message, env, conversationIdentifier);
+        const isConversationMessage = await handleMessageForward(
+          message,
+          env,
+          conversationIdentifier
+        );
         if (isConversationMessage) {
           return;
         }
@@ -322,18 +341,22 @@ export async function routeUpdate(update: TelegramUpdate, env: Env): Promise<voi
       user.tutorial_completed === 0 &&
       !text.startsWith('/')
     ) {
-      console.error('[router] User at tutorial final page but sent message instead of clicking button');
+      console.error(
+        '[router] User at tutorial final page but sent message instead of clicking button'
+      );
+      const { createI18n } = await import('./i18n');
+      const i18n = createI18n(user.language_pref || 'zh-TW');
       await telegram.sendMessage(
         message.chat.id,
-        '💡 **提示**：請點擊上方的按鈕來開始使用\n\n' +
-          '• 🌊 丟出漂流瓶 - 分享你的心情\n' +
-          '• 🎣 撿起漂流瓶 - 看看別人的故事\n' +
-          '• 📋 查看任務 - 完成任務獲得額外瓶子\n\n' +
-          '或直接使用命令：\n' +
-          '• /throw - 丟出漂流瓶\n' +
-          '• /catch - 撿起漂流瓶\n' +
-          '• /tasks - 任務中心\n' +
-          '• /menu - 主選單'
+        i18n.t('tutorial.clickButtonHint') + '\n\n' +
+          i18n.t('tutorial.throwBottleDesc') + '\n' +
+          i18n.t('tutorial.catchBottleDesc') + '\n' +
+          i18n.t('tutorial.completeTasksForBottles') + '\n\n' +
+          i18n.t('tutorial.availableCommands') + '：\n' +
+          i18n.t('tutorial.commandThrow') + '\n' +
+          i18n.t('tutorial.commandCatch') + '\n' +
+          i18n.t('tutorial.commandTasks') + '\n' +
+          i18n.t('tutorial.commandMenu')
       );
       return;
     }
@@ -414,7 +437,9 @@ export async function routeUpdate(update: TelegramUpdate, env: Env): Promise<voi
       // Check super admin permission
       const { isSuperAdmin } = await import('./telegram/handlers/admin_ban');
       if (!isSuperAdmin(telegramId)) {
-        await telegram.sendMessage(chatId, '❌ 只有超級管理員可以使用此命令。');
+        const { createI18n } = await import('./i18n');
+        const i18n = createI18n(user?.language_pref || 'zh-TW');
+        await telegram.sendMessage(chatId, i18n.t('error.admin4'));
         return;
       }
 
@@ -428,7 +453,9 @@ export async function routeUpdate(update: TelegramUpdate, env: Env): Promise<voi
       // Check super admin permission
       const { isSuperAdmin } = await import('./telegram/handlers/admin_ban');
       if (!isSuperAdmin(telegramId)) {
-        await telegram.sendMessage(chatId, '❌ 只有超級管理員可以使用此命令。');
+        const { createI18n } = await import('./i18n');
+        const i18n = createI18n(user?.language_pref || 'zh-TW');
+        await telegram.sendMessage(chatId, i18n.t('error.admin4'));
         return;
       }
 
@@ -445,13 +472,17 @@ export async function routeUpdate(update: TelegramUpdate, env: Env): Promise<voi
     }
 
     if (text === '/admin_refresh_vip_avatars') {
-      const { handleAdminRefreshVipAvatars } = await import('./telegram/handlers/admin_refresh_vip_avatars');
+      const { handleAdminRefreshVipAvatars } = await import(
+        './telegram/handlers/admin_refresh_vip_avatars'
+      );
       await handleAdminRefreshVipAvatars(db, env, chatId, user.telegram_id);
       return;
     }
 
     if (text === '/admin_diagnose_avatar' || text.startsWith('/admin_diagnose_avatar ')) {
-      const { handleAdminDiagnoseAvatar } = await import('./telegram/handlers/admin_diagnose_avatar');
+      const { handleAdminDiagnoseAvatar } = await import(
+        './telegram/handlers/admin_diagnose_avatar'
+      );
       const targetUserId = text.split(' ')[1];
       await handleAdminDiagnoseAvatar(db, env, chatId, user.telegram_id, targetUserId);
       return;
@@ -479,7 +510,9 @@ export async function routeUpdate(update: TelegramUpdate, env: Env): Promise<voi
     if (text.startsWith('/maintenance_enable ')) {
       const { isSuperAdmin } = await import('./telegram/handlers/admin_ban');
       if (!isSuperAdmin(telegramId)) {
-        await telegram.sendMessage(chatId, '❌ 只有超級管理員可以使用此命令。');
+        const { createI18n } = await import('./i18n');
+        const i18n = createI18n(user?.language_pref || 'zh-TW');
+        await telegram.sendMessage(chatId, i18n.t('error.admin4'));
         return;
       }
       const { handleMaintenanceEnable } = await import('./telegram/handlers/maintenance');
@@ -490,7 +523,9 @@ export async function routeUpdate(update: TelegramUpdate, env: Env): Promise<voi
     if (text === '/maintenance_disable') {
       const { isSuperAdmin } = await import('./telegram/handlers/admin_ban');
       if (!isSuperAdmin(telegramId)) {
-        await telegram.sendMessage(chatId, '❌ 只有超級管理員可以使用此命令。');
+        const { createI18n } = await import('./i18n');
+        const i18n = createI18n(user?.language_pref || 'zh-TW');
+        await telegram.sendMessage(chatId, i18n.t('error.admin4'));
         return;
       }
       const { handleMaintenanceDisable } = await import('./telegram/handlers/maintenance');
@@ -501,7 +536,9 @@ export async function routeUpdate(update: TelegramUpdate, env: Env): Promise<voi
     if (text === '/maintenance_status') {
       const adminBanModule = await import('./telegram/handlers/admin_ban');
       if (!adminBanModule.isAdmin(telegramId, env)) {
-        await telegram.sendMessage(chatId, '❌ 只有管理員可以使用此命令。');
+        const { createI18n } = await import('./i18n');
+        const i18n = createI18n('zh-TW'); // Admin messages default to zh-TW
+        await telegram.sendMessage(chatId, i18n.t('admin.onlyAdmin'));
         return;
       }
       const { handleMaintenanceStatus } = await import('./telegram/handlers/maintenance');
@@ -512,8 +549,11 @@ export async function routeUpdate(update: TelegramUpdate, env: Env): Promise<voi
     // Analytics commands (Super Admin only)
     if (text === '/analytics') {
       const { isSuperAdmin } = await import('./telegram/handlers/admin_ban');
+      const user = await findUserByTelegramId(db, telegramId);
+      const { createI18n } = await import('./i18n');
+      const i18n = createI18n(user?.language_pref || 'zh-TW');
       if (!isSuperAdmin(telegramId)) {
-        await telegram.sendMessage(chatId, '❌ 只有超級管理員可以使用此命令。');
+        await telegram.sendMessage(chatId, i18n.t('admin.onlySuperAdmin'));
         return;
       }
       const { handleAnalytics } = await import('./telegram/handlers/admin_analytics');
@@ -523,8 +563,11 @@ export async function routeUpdate(update: TelegramUpdate, env: Env): Promise<voi
 
     if (text === '/ad_performance') {
       const { isSuperAdmin } = await import('./telegram/handlers/admin_ban');
+      const user = await findUserByTelegramId(db, telegramId);
+      const { createI18n } = await import('./i18n');
+      const i18n = createI18n(user?.language_pref || 'zh-TW');
       if (!isSuperAdmin(telegramId)) {
-        await telegram.sendMessage(chatId, '❌ 只有超級管理員可以使用此命令。');
+        await telegram.sendMessage(chatId, i18n.t('admin.onlySuperAdmin'));
         return;
       }
       const { handleAdPerformance } = await import('./telegram/handlers/admin_analytics');
@@ -534,8 +577,11 @@ export async function routeUpdate(update: TelegramUpdate, env: Env): Promise<voi
 
     if (text === '/funnel') {
       const { isSuperAdmin } = await import('./telegram/handlers/admin_ban');
+      const user = await findUserByTelegramId(db, telegramId);
+      const { createI18n } = await import('./i18n');
+      const i18n = createI18n(user?.language_pref || 'zh-TW');
       if (!isSuperAdmin(telegramId)) {
-        await telegram.sendMessage(chatId, '❌ 只有超級管理員可以使用此命令。');
+        await telegram.sendMessage(chatId, i18n.t('admin.onlySuperAdmin'));
         return;
       }
       const { handleVIPFunnel } = await import('./telegram/handlers/admin_analytics');
@@ -546,8 +592,11 @@ export async function routeUpdate(update: TelegramUpdate, env: Env): Promise<voi
     // Test daily reports command (Super Admin only)
     if (text === '/test_daily_reports') {
       const { isSuperAdmin } = await import('./telegram/handlers/admin_ban');
+      const user = await findUserByTelegramId(db, telegramId);
+      const { createI18n } = await import('./i18n');
+      const i18n = createI18n(user?.language_pref || 'zh-TW');
       if (!isSuperAdmin(telegramId)) {
-        await telegram.sendMessage(chatId, '❌ 只有超級管理員可以使用此命令。');
+        await telegram.sendMessage(chatId, i18n.t('admin.onlySuperAdmin'));
         return;
       }
       const { handleTestDailyReports } = await import('./telegram/handlers/admin_analytics');
@@ -558,8 +607,11 @@ export async function routeUpdate(update: TelegramUpdate, env: Env): Promise<voi
     // Broadcast process command (Admin only) - Manual trigger
     if (text === '/broadcast_process') {
       const adminBanModule = await import('./telegram/handlers/admin_ban');
+      const user = await findUserByTelegramId(db, telegramId);
+      const { createI18n } = await import('./i18n');
+      const i18n = createI18n(user?.language_pref || 'zh-TW');
       if (!adminBanModule.isAdmin(telegramId, env)) {
-        await telegram.sendMessage(chatId, '❌ 只有管理員可以使用此命令。');
+        await telegram.sendMessage(chatId, i18n.t('admin.onlyAdmin'));
         return;
       }
       const { handleBroadcastProcess } = await import('./telegram/handlers/broadcast');
@@ -570,8 +622,11 @@ export async function routeUpdate(update: TelegramUpdate, env: Env): Promise<voi
     // Broadcast cancel command (Admin only)
     if (text.startsWith('/broadcast_cancel ')) {
       const adminBanModule = await import('./telegram/handlers/admin_ban');
+      const user = await findUserByTelegramId(db, telegramId);
+      const { createI18n } = await import('./i18n');
+      const i18n = createI18n(user?.language_pref || 'zh-TW');
       if (!adminBanModule.isAdmin(telegramId, env)) {
-        await telegram.sendMessage(chatId, '❌ 只有管理員可以使用此命令。');
+        await telegram.sendMessage(chatId, i18n.t('admin.onlyAdmin'));
         return;
       }
       const { handleBroadcastCancel } = await import('./telegram/handlers/broadcast');
@@ -582,8 +637,11 @@ export async function routeUpdate(update: TelegramUpdate, env: Env): Promise<voi
     // Broadcast cleanup command (Admin only)
     if (text.startsWith('/broadcast_cleanup')) {
       const adminBanModule = await import('./telegram/handlers/admin_ban');
+      const user = await findUserByTelegramId(db, telegramId);
+      const { createI18n } = await import('./i18n');
+      const i18n = createI18n(user?.language_pref || 'zh-TW');
       if (!adminBanModule.isAdmin(telegramId, env)) {
-        await telegram.sendMessage(chatId, '❌ 只有管理員可以使用此命令。');
+        await telegram.sendMessage(chatId, i18n.t('admin.onlyAdmin'));
         return;
       }
       const { handleBroadcastCleanup } = await import('./telegram/handlers/broadcast');
@@ -600,7 +658,10 @@ export async function routeUpdate(update: TelegramUpdate, env: Env): Promise<voi
 
       if (!isUserAdmin) {
         console.error('[Router] User is not admin, sending error message');
-        await telegram.sendMessage(chatId, '❌ 只有管理員可以使用此命令。');
+        const user = await findUserByTelegramId(db, telegramId);
+        const { createI18n } = await import('./i18n');
+        const i18n = createI18n(user?.language_pref || 'zh-TW');
+        await telegram.sendMessage(chatId, i18n.t('admin.ban.noPermission'));
         return;
       }
 
@@ -760,104 +821,96 @@ export async function routeUpdate(update: TelegramUpdate, env: Env): Promise<voi
     // User is in onboarding but sent unrecognized text
     // Provide friendly guidance instead of "unknown command"
     if (user.onboarding_step !== 'completed') {
+      const { createI18n } = await import('./i18n');
+      const i18n = createI18n(user.language_pref || 'zh-TW');
       const stepMessages: Record<string, string> = {
-        language_selection: '🌍 請點擊上方按鈕選擇你的語言',
-        nickname: '✏️ 請輸入你的暱稱',
-        gender: '👤 請點擊上方按鈕選擇你的性別',
-        birthday: '📅 請輸入你的生日（格式：YYYY-MM-DD，例如：1995-06-15）',
-        mbti: '🧠 請點擊上方按鈕選擇 MBTI 設定方式',
-        anti_fraud: '🛡️ 請點擊上方按鈕確認反詐騙安全事項',
-        terms: '📜 請點擊上方按鈕同意服務條款',
+        language_selection: i18n.t('onboarding.stepLanguageSelection'),
+        nickname: i18n.t('onboarding.stepNickname'),
+        gender: i18n.t('onboarding.stepGender'),
+        birthday: i18n.t('onboarding.stepBirthday'),
+        mbti: i18n.t('onboarding.stepMbti'),
+        anti_fraud: i18n.t('onboarding.stepAntiFraud'),
+        terms: i18n.t('onboarding.stepTerms'),
       };
 
-      const stepMessage = stepMessages[user.onboarding_step] || '請按照提示完成註冊';
+      const stepMessage = stepMessages[user.onboarding_step] || i18n.t('onboarding.stepDefault');
       await telegram.sendMessage(chatId, `💡 ${stepMessage}`);
       return;
     }
 
     // Unknown command for completed users - provide smart suggestions
     const lowerText = text.toLowerCase();
-    
+
     // Check if user is trying to throw a bottle
-    if (lowerText.includes('丟') || lowerText.includes('瓶子') || lowerText.includes('漂流瓶')) {
+    // Note: These are keyword matches for smart suggestions, not display strings
+    // They match user input in any language to provide helpful suggestions
+    if (lowerText.includes('丟') || lowerText.includes('瓶子') || lowerText.includes('漂流瓶') || 
+        lowerText.includes('throw') || lowerText.includes('bottle') || lowerText.includes('drift')) {
+      const { createI18n } = await import('./i18n');
+      const i18n = createI18n(user.language_pref || 'zh-TW');
       await telegram.sendMessage(
         chatId,
-        '💡 **想要丟出漂流瓶？**\n\n' +
-          '請先使用 `/throw` 命令啟動丟瓶子流程，\n' +
-          '然後再長按該訊息，選單中選擇「回覆」後，\n' +
-          '輸入您的漂流瓶內容。\n\n' +
-          '或者點擊下方按鈕啟動丟瓶子流程：',
+        i18n.t('common.bottle13'),
         {
           reply_markup: {
             inline_keyboard: [
-              [{ text: '🌊 丟出漂流瓶', callback_data: 'throw' }],
-              [{ text: '🎣 撿起漂流瓶', callback_data: 'catch' }],
-              [{ text: '🏠 主選單', callback_data: 'return_to_menu' }],
+              [{ text: i18n.t('buttons.bottle3'), callback_data: 'throw' }],
+              [{ text: i18n.t('buttons.bottle4'), callback_data: 'catch' }],
+              [{ text: i18n.t('common.back3'), callback_data: 'return_to_menu' }],
             ],
           },
         }
       );
       return;
     }
-    
+
     // Check if user is trying to catch a bottle
     if (lowerText.includes('撿') || lowerText.includes('看') || lowerText.includes('catch')) {
+      const { createI18n } = await import('./i18n');
+      const i18n = createI18n(user.language_pref || 'zh-TW');
       await telegram.sendMessage(
         chatId,
-        '💡 **想要撿起漂流瓶？**\n\n' +
-          '請使用 `/catch` 命令來撿起別人的漂流瓶。\n\n' +
-          '或者點擊下方按鈕：',
+        i18n.t('common.bottle9'),
         {
           reply_markup: {
             inline_keyboard: [
-              [{ text: '🎣 撿起漂流瓶', callback_data: 'catch' }],
-              [{ text: '🌊 丟出漂流瓶', callback_data: 'throw' }],
-              [{ text: '🏠 主選單', callback_data: 'return_to_menu' }],
+              [{ text: i18n.t('buttons.bottle4'), callback_data: 'catch' }],
+              [{ text: i18n.t('buttons.bottle3'), callback_data: 'throw' }],
+              [{ text: i18n.t('common.back3'), callback_data: 'return_to_menu' }],
             ],
           },
         }
       );
       return;
     }
-    
+
     // Check if user has an active throw_bottle session (waiting for bottle content)
     // If so, remind them to use "Reply" feature and send a message they can reply to
     const { getActiveSession } = await import('./db/queries/sessions');
     const throwSession = await getActiveSession(db, user.telegram_id, 'throw_bottle');
-    
+
     if (throwSession) {
       console.error('[router] User has throw_bottle session but sent direct message:', {
         userId: user.telegram_id,
         messageLength: text.length,
       });
-      
+
       // Send a prompt message that user can reply to
+      const { createI18n } = await import('./i18n');
+      const i18n = createI18n(user.language_pref || 'zh-TW');
       await telegram.sendMessage(
         chatId,
-        '❓ 要丟漂流瓶？\n\n' +
-          '請長按上一則訊息，或本訊息，\n' +
-          '選單上選擇「回覆」後，\n' +
-          '輸入要發送的漂流瓶內容\n\n' +
-          '💡 **常用命令**：\n' +
-          '• /throw - 丟出漂流瓶\n' +
-          '• /catch - 撿起漂流瓶\n' +
-          '• /menu - 主選單\n' +
-          '• /tasks - 任務中心\n\n' +
-          '#THROW'
+        i18n.t('router.suggestThrow')
       );
       return;
     }
-    
+
     // Default unknown command
+    const { createI18n } = await import('./i18n');
+    const i18n = createI18n(user.language_pref || 'zh-TW');
     await telegram.sendMessage(
       chatId,
-      '❓ 未知命令\n\n' +
-        '請使用 /help 查看可用命令列表。\n\n' +
-        '💡 **常用命令**：\n' +
-        '• /throw - 丟出漂流瓶\n' +
-        '• /catch - 撿起漂流瓶\n' +
-        '• /menu - 主選單\n' +
-        '• /tasks - 任務中心'
+      i18n.t('router.suggestMenu')
     );
     return;
   }
@@ -872,11 +925,21 @@ export async function routeUpdate(update: TelegramUpdate, env: Env): Promise<voi
       data,
       userId: callbackQuery.from.id,
       chatId,
+      messageId: callbackQuery.message?.message_id,
+      fullCallback: JSON.stringify(callbackQuery),
     });
 
     if (!chatId) {
       await telegram.answerCallbackQuery(callbackQuery.id, '錯誤：無法獲取聊天 ID');
       return;
+    }
+
+    // IMPORTANT: Answer callback immediately to prevent UI blocking
+    // Individual handlers will also answer, but this ensures immediate feedback
+    try {
+      await telegram.answerCallbackQuery(callbackQuery.id);
+    } catch (e) {
+      // Ignore if already answered
     }
 
     // Route callback queries
@@ -903,7 +966,9 @@ export async function routeUpdate(update: TelegramUpdate, env: Env): Promise<voi
         // Show popular languages again
         const { getPopularLanguageButtons } = await import('~/i18n/languages');
         const { createI18n } = await import('./i18n');
-        const i18n = createI18n('zh-TW'); // Default for welcome message
+        const { findUserByTelegramId } = await import('./db/queries/users');
+        const user = await findUserByTelegramId(db, callbackQuery.from.id.toString());
+        const i18n = createI18n(user?.language_pref || 'zh-TW');
         await telegram.editMessageText(
           chatId,
           callbackQuery.message!.message_id,
@@ -922,7 +987,9 @@ export async function routeUpdate(update: TelegramUpdate, env: Env): Promise<voi
         const page = parseInt(data.replace('lang_page_', ''), 10);
         const { getLanguageButtons } = await import('~/i18n/languages');
         const { createI18n } = await import('./i18n');
-        const i18n = createI18n('zh-TW');
+        const { findUserByTelegramId } = await import('./db/queries/users');
+        const user = await findUserByTelegramId(db, callbackQuery.from.id.toString());
+        const i18n = createI18n(user?.language_pref || 'zh-TW');
         await telegram.editMessageText(
           chatId,
           callbackQuery.message!.message_id,
@@ -965,7 +1032,11 @@ export async function routeUpdate(update: TelegramUpdate, env: Env): Promise<voi
         return;
       }
 
-      await telegram.answerCallbackQuery(callbackQuery.id, '❌ 未知的性別選項');
+      const { createI18n } = await import('./i18n');
+      const { findUserByTelegramId } = await import('./db/queries/users');
+      const user = await findUserByTelegramId(db, callbackQuery.from.id.toString());
+      const i18n = createI18n(user?.language_pref || 'zh-TW');
+      await telegram.answerCallbackQuery(callbackQuery.id, i18n.t('common.unknownOption'));
       return;
     }
 
@@ -1050,6 +1121,7 @@ export async function routeUpdate(update: TelegramUpdate, env: Env): Promise<voi
 
     // Next task callbacks
     if (data.startsWith('next_task_')) {
+      console.error('[Router] Routing next_task callback:', data);
       const { handleNextTaskCallback } = await import('./telegram/handlers/tasks');
       await handleNextTaskCallback(callbackQuery, env);
       return;
@@ -1227,20 +1299,29 @@ export async function routeUpdate(update: TelegramUpdate, env: Env): Promise<voi
       return;
     }
 
+    if (data === 'report_cancel') {
+      const { handleReportCancel } = await import('./telegram/handlers/report');
+      await handleReportCancel(callbackQuery, env);
+      return;
+    }
+
     // Edit profile callbacks
     if (data === 'edit_nickname') {
+      console.error('[Router] Routing to handleEditNickname');
       const { handleEditNickname } = await import('./telegram/handlers/edit_profile');
       await handleEditNickname(callbackQuery, env);
       return;
     }
 
     if (data === 'edit_bio') {
+      console.error('[Router] Routing to handleEditBio');
       const { handleEditBio } = await import('./telegram/handlers/edit_profile');
       await handleEditBio(callbackQuery, env);
       return;
     }
 
     if (data === 'edit_region') {
+      console.error('[Router] Routing to handleEditRegion');
       const { handleEditRegion } = await import('./telegram/handlers/edit_profile');
       await handleEditRegion(callbackQuery, env);
       return;
@@ -1303,7 +1384,7 @@ export async function routeUpdate(update: TelegramUpdate, env: Env): Promise<voi
 
     if (data === 'country_select') {
       const { showCountrySelection } = await import('./telegram/handlers/country_selection');
-      await showCountrySelection(callbackQuery.message!.chat.id, env);
+      await showCountrySelection(callbackQuery.message!.chat.id, env, callbackQuery.from.id.toString());
       await telegram.answerCallbackQuery(callbackQuery.id);
       return;
     }
@@ -1480,7 +1561,32 @@ export async function routeUpdate(update: TelegramUpdate, env: Env): Promise<voi
         from: callbackQuery.from,
         text: '/chats',
       };
-      await handleChats(fakeMessage as any, env);
+      await handleChats(fakeMessage as any, env, 0);
+      return;
+    }
+
+    // Handle pagination for chats
+    if (data.startsWith('chats_page_')) {
+      await telegram.answerCallbackQuery(callbackQuery.id);
+      const { handleChats } = await import('./telegram/handlers/chats');
+      const page = parseInt(data.replace('chats_page_', ''), 10);
+      if (isNaN(page) || page < 0) {
+        // Invalid page, go to first page
+        const fakeMessage = {
+          ...callbackQuery.message!,
+          from: callbackQuery.from,
+          text: '/chats',
+        };
+        await handleChats(fakeMessage as any, env, 0);
+        return;
+      }
+      // Convert callback to message format
+      const fakeMessage = {
+        ...callbackQuery.message!,
+        from: callbackQuery.from,
+        text: '/chats',
+      };
+      await handleChats(fakeMessage as any, env, page);
       return;
     }
 
@@ -1551,10 +1657,14 @@ export async function routeUpdate(update: TelegramUpdate, env: Env): Promise<voi
 
     // VIP cancel callback
     if (data === 'vip_cancel') {
-      await telegram.answerCallbackQuery(callbackQuery.id, '已取消');
+      const db = createDatabaseClient(env.DB);
+      const user = await findUserByTelegramId(db, callbackQuery.from.id.toString());
+      const { createI18n } = await import('./i18n');
+      const i18n = createI18n(user?.language_pref || 'zh-TW');
+      await telegram.answerCallbackQuery(callbackQuery.id, i18n.t('common.cancel'));
       await telegram.sendMessage(
         callbackQuery.message!.chat.id,
-        '✅ 已取消購買\n\n你可以隨時使用 /vip 命令查看 VIP 權益。'
+        i18n.t('vip.purchaseCancelled') + '\n\n' + i18n.t('vip.viewVipCommand')
       );
       return;
     }
@@ -1569,16 +1679,24 @@ export async function routeUpdate(update: TelegramUpdate, env: Env): Promise<voi
       };
       const { handleVip } = await import('./telegram/handlers/vip');
       await handleVip(mockMessage as any, env);
-      await telegram.answerCallbackQuery(callbackQuery.id, '正在處理續費...');
+      const { createI18n } = await import('./i18n');
+      const { findUserByTelegramId } = await import('./db/queries/users');
+      const user = await findUserByTelegramId(db, callbackQuery.from.id.toString());
+      const i18n = createI18n(user?.language_pref || 'zh-TW');
+      await telegram.answerCallbackQuery(callbackQuery.id, i18n.t('vip.renewalProcessing'));
       return;
     }
 
     // VIP cancel reminder callback
     if (data === 'vip_cancel_reminder') {
-      await telegram.answerCallbackQuery(callbackQuery.id, '已取消提醒');
+      const { createI18n } = await import('./i18n');
+      const { findUserByTelegramId } = await import('./db/queries/users');
+      const user = await findUserByTelegramId(db, callbackQuery.from.id.toString());
+      const i18n = createI18n(user?.language_pref || 'zh-TW');
+      await telegram.answerCallbackQuery(callbackQuery.id, i18n.t('vip.reminderCancelled'));
       await telegram.sendMessage(
         callbackQuery.message!.chat.id,
-        '✅ 已取消提醒\n\n你可以隨時使用 /vip 命令續費。'
+        i18n.t('vip.reminderCancelled') + '\n\n' + i18n.t('vip.viewVipCommand')
       );
       return;
     }

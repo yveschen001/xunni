@@ -1,6 +1,6 @@
 /**
  * Avatar Service
- * 
+ *
  * Handles fetching, caching, and processing user avatars from Telegram
  */
 
@@ -31,45 +31,45 @@ export async function getUserAvatarInfo(
 ): Promise<{ url: string | null; fileId: string | null }> {
   try {
     const botToken = env.TELEGRAM_BOT_TOKEN;
-    
+
     // 1. Get user profile photos
     const photosResponse = await fetch(
       `https://api.telegram.org/bot${botToken}/getUserProfilePhotos?user_id=${userId}&limit=1`
     );
-    
+
     if (!photosResponse.ok) {
       return { url: null, fileId: null };
     }
-    
+
     const photosData = await photosResponse.json();
-    
+
     if (!photosData.ok || photosData.result.total_count === 0) {
       return { url: null, fileId: null };
     }
-    
+
     // 2. Get the largest size photo
     const photo = photosData.result.photos[0];
     const largestPhoto = photo[photo.length - 1]; // Last one is the largest
     const fileId = largestPhoto.file_id;
-    
+
     // 3. Get file path
     const fileResponse = await fetch(
       `https://api.telegram.org/bot${botToken}/getFile?file_id=${fileId}`
     );
-    
+
     if (!fileResponse.ok) {
       return { url: null, fileId: null };
     }
-    
+
     const fileData = await fileResponse.json();
-    
+
     if (!fileData.ok) {
       return { url: null, fileId: null };
     }
-    
+
     // 4. Construct URL
     const photoUrl = `https://api.telegram.org/file/bot${botToken}/${fileData.result.file_path}`;
-    
+
     return { url: photoUrl, fileId };
   } catch (error) {
     console.error('[Avatar] Error fetching avatar:', error);
@@ -103,11 +103,11 @@ export function getDefaultAvatarUrl(env: Env, gender?: string): string {
  */
 export function isAvatarCacheExpired(updatedAt: string | null): boolean {
   if (!updatedAt) return true;
-  
+
   const lastUpdate = new Date(updatedAt).getTime();
   const now = Date.now();
-  
-  return (now - lastUpdate) > AVATAR_CACHE_DURATION;
+
+  return now - lastUpdate > AVATAR_CACHE_DURATION;
 }
 
 /**
@@ -120,17 +120,17 @@ export async function checkAvatarChanged(
 ): Promise<boolean> {
   try {
     const { fileId } = await getUserAvatarInfo(env, userId);
-    
+
     // If user deleted avatar
     if (!fileId && cachedFileId) {
       return true;
     }
-    
+
     // If user added avatar
     if (fileId && !cachedFileId) {
       return true;
     }
-    
+
     // Compare file_id
     return fileId !== cachedFileId;
   } catch (error) {
@@ -182,14 +182,14 @@ export async function getUserAvatarCache(
       avatar_blurred_url: string | null;
       avatar_updated_at: string | null;
     }>();
-  
+
   if (!result) return null;
-  
+
   return {
     fileId: result.avatar_file_id,
     originalUrl: result.avatar_original_url,
     blurredUrl: result.avatar_blurred_url,
-    updatedAt: result.avatar_updated_at
+    updatedAt: result.avatar_updated_at,
   };
 }
 
@@ -204,19 +204,19 @@ export async function fetchAndCacheAvatar(
 ): Promise<{ originalUrl: string | null; blurredUrl: string | null }> {
   // 1. Get avatar from Telegram
   const { url: originalUrl, fileId } = await getUserAvatarInfo(env, userId);
-  
+
   if (!originalUrl) {
     // No avatar, cache this state
     await updateUserAvatarCache(db, userId, null, null, null);
     return { originalUrl: null, blurredUrl: null };
   }
-  
+
   // 2. Generate blurred URL
   const blurredUrl = generateBlurredAvatarUrl(originalUrl, env);
-  
+
   // 3. Cache in database
   await updateUserAvatarCache(db, userId, fileId, originalUrl, blurredUrl);
-  
+
   return { originalUrl, blurredUrl };
 }
 
@@ -234,44 +234,58 @@ export async function getAvatarUrlWithCache(
 ): Promise<string> {
   // 1. Get cache from database
   const cache = await getUserAvatarCache(db, userId);
-  
+
   // 2. Check if we need to update
   const needsUpdate =
-    forceRefresh ||                                           // Force refresh
-    !cache ||                                                 // No cache
-    !cache.updatedAt ||                                       // Never updated
-    isAvatarCacheExpired(cache.updatedAt) ||                  // Cache expired (7 days)
-    await checkAvatarChanged(env, userId, cache.fileId);      // Avatar changed
-  
+    forceRefresh || // Force refresh
+    !cache || // No cache
+    !cache.updatedAt || // Never updated
+    isAvatarCacheExpired(cache.updatedAt) || // Cache expired (7 days)
+    (await checkAvatarChanged(env, userId, cache.fileId)); // Avatar changed
+
   if (needsUpdate) {
     console.error('[Avatar] Updating cache for user:', userId, 'Reason:', {
       forceRefresh,
       noCache: !cache,
-      expired: cache ? isAvatarCacheExpired(cache.updatedAt) : false
+      expired: cache ? isAvatarCacheExpired(cache.updatedAt) : false,
     });
-    
+
     // 3. Fetch and cache new avatar
     const { originalUrl, blurredUrl } = await fetchAndCacheAvatar(db, env, userId, gender);
-    
+
     // 4. Return appropriate URL
     if (!originalUrl) {
       console.error('[Avatar] No original URL, returning default. VIP:', isVip);
       return getDefaultAvatarUrl(env, gender);
     }
-    
-    const resultUrl = isVip ? originalUrl : (blurredUrl || originalUrl);
-    console.error('[Avatar] Returning URL. VIP:', isVip, 'IsOriginal:', resultUrl === originalUrl, 'URL:', resultUrl.substring(0, 100));
+
+    const resultUrl = isVip ? originalUrl : blurredUrl || originalUrl;
+    console.error(
+      '[Avatar] Returning URL. VIP:',
+      isVip,
+      'IsOriginal:',
+      resultUrl === originalUrl,
+      'URL:',
+      resultUrl.substring(0, 100)
+    );
     return resultUrl;
   }
-  
+
   // 5. Use cached avatar
   if (!cache.originalUrl) {
     console.error('[Avatar] No cached original URL, returning default. VIP:', isVip);
     return getDefaultAvatarUrl(env, gender);
   }
-  
-  const resultUrl = isVip ? cache.originalUrl : (cache.blurredUrl || cache.originalUrl);
-  console.error('[Avatar] Using cached URL. VIP:', isVip, 'IsOriginal:', resultUrl === cache.originalUrl, 'URL:', resultUrl.substring(0, 100));
+
+  const resultUrl = isVip ? cache.originalUrl : cache.blurredUrl || cache.originalUrl;
+  console.error(
+    '[Avatar] Using cached URL. VIP:',
+    isVip,
+    'IsOriginal:',
+    resultUrl === cache.originalUrl,
+    'URL:',
+    resultUrl.substring(0, 100)
+  );
   return resultUrl;
 }
 
@@ -289,12 +303,12 @@ export function getDisplayAvatarUrl(
     // Return default avatar URL based on gender
     return getDefaultAvatarUrl(env, gender);
   }
-  
+
   if (isVip) {
     // VIP users see clear avatar
     return originalUrl;
   }
-  
+
   // Free users see blurred avatar
   return generateBlurredAvatarUrl(originalUrl, env);
 }
@@ -310,9 +324,9 @@ export async function getAvatarInfo(
 ): Promise<AvatarInfo> {
   const { url: originalUrl } = await getUserAvatarInfo(env, userId);
   const displayUrl = getDisplayAvatarUrl(originalUrl, isVip, env, gender);
-  
+
   return {
     url: displayUrl,
-    hasAvatar: originalUrl !== null
+    hasAvatar: originalUrl !== null,
   };
 }

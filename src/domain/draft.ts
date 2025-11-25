@@ -45,26 +45,26 @@ export function getDraftAgeHours(draft: BottleDraft): number {
 /**
  * Format draft age for display
  */
-export function formatDraftAge(draft: BottleDraft, language: string = 'zh-TW'): string {
+export function formatDraftAge(draft: BottleDraft, i18n?: any): string {
   const hours = getDraftAgeHours(draft);
 
-  if (language === 'zh-TW') {
+  if (i18n) {
     if (hours < 1) {
-      return '剛剛';
+      return i18n.t('draft.age.justNow');
     } else if (hours < 24) {
-      return `${Math.floor(hours)} 小時前`;
+      return i18n.t('draft.age.hoursAgo', { hours: Math.floor(hours) });
     } else {
-      return `${Math.floor(hours / 24)} 天前`;
+      return i18n.t('draft.age.daysAgo', { days: Math.floor(hours / 24) });
     }
+  }
+
+  // Fallback to default Chinese (向后兼容)
+  if (hours < 1) {
+    return '剛剛';
+  } else if (hours < 24) {
+    return `${Math.floor(hours)} 小時前`;
   } else {
-    // English
-    if (hours < 1) {
-      return 'Just now';
-    } else if (hours < 24) {
-      return `${Math.floor(hours)} hours ago`;
-    } else {
-      return `${Math.floor(hours / 24)} days ago`;
-    }
+    return `${Math.floor(hours / 24)} 天前`;
   }
 }
 

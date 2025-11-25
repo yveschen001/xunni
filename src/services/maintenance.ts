@@ -59,10 +59,13 @@ export async function checkAndDisableExpiredMaintenance(env: Env): Promise<void>
       .run();
 
     // Broadcast recovery notification to all users
+    // System messages use Chinese by default, but we'll use i18n for consistency
+    const { createI18n } = await import('~/i18n');
+    const i18n = createI18n('zh-TW'); // Default to Chinese for system messages
     const recoveryMessage =
-      '✅ 系統維護已完成\n\n' +
-      '服務已恢復正常，感謝您的耐心等待！\n\n' +
-      '現在可以正常使用所有功能了。';
+      i18n.t('maintenance.completed') + '\n\n' +
+      i18n.t('maintenance.serviceRestored') + '\n\n' +
+      i18n.t('maintenance.allFeaturesAvailable');
 
     // Use system as the sender
     await createBroadcast(env, recoveryMessage, 'all', 'system');

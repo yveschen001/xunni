@@ -9,7 +9,7 @@ import type { Env, TelegramMessage } from '~/types';
 import { createDatabaseClient } from '~/db/client';
 import { findUserByTelegramId } from '~/db/queries/users';
 import { createTelegramService } from '~/services/telegram';
-import { MBTI_DESCRIPTIONS } from '~/domain/mbti_test';
+import { createI18n } from '~/i18n';
 
 // ============================================================================
 // /mbti Command Handler
@@ -25,45 +25,54 @@ export async function handleMBTI(message: TelegramMessage, env: Env): Promise<vo
     // Get user
     const user = await findUserByTelegramId(db, telegramId);
     if (!user) {
-      await telegram.sendMessage(chatId, '⚠️ 用戶不存在，請先使用 /start 註冊。');
+      const i18n = createI18n('zh-TW');
+      await telegram.sendMessage(chatId, i18n.t('warnings.userNotFound'));
       return;
     }
 
+    const i18n = createI18n(user.language_pref || 'zh-TW');
+
     // Build status message
-    let statusMessage = '🧠 **MBTI 性格類型管理**\n\n';
+    let statusMessage = i18n.t('common.mbti5') + '\n\n';
 
     if (user.mbti_result) {
       // User has MBTI set
-      const description = MBTI_DESCRIPTIONS[user.mbti_result];
+      const descriptionKey = `mbti.description.${user.mbti_result}`;
+      const description = i18n.t(descriptionKey as any);
       const sourceText =
         user.mbti_source === 'manual'
-          ? '手動輸入'
+          ? i18n.t('common.mbti10').replace('✍️ 手動輸入 MBTI', '手動輸入')
           : user.mbti_source === 'test'
-            ? '測驗結果'
-            : '未知';
+            ? i18n.t('common.short106')
+            : i18n.t('catch.unknown');
 
       statusMessage +=
-        `當前 MBTI：**${user.mbti_result}**\n` +
-        `來源：${sourceText}\n\n` +
-        `${description?.zh_TW || ''}\n\n` +
-        `你可以：`;
+        i18n.t('common.mbti3', { user: { mbti_result: user.mbti_result } }) +
+        '\n' +
+        i18n.t('common.text43', { sourceText }) +
+        '\n\n' +
+        `${description}\n\n` +
+        i18n.t('common.short58');
     } else {
       // User has no MBTI set
       statusMessage +=
-        `你還沒有設定 MBTI 類型。\n\n` +
-        `MBTI 性格測驗可以幫助我們為你找到更合適的聊天對象～\n\n` +
-        `你想要如何設定？`;
+        i18n.t('common.settings10') +
+        '\n\n' +
+        i18n.t('common.help') +
+        '\n\n' +
+        i18n.t('common.settings7');
     }
 
     // Show options
     await telegram.sendMessageWithButtons(chatId, statusMessage, [
-      [{ text: '📝 重新進行測驗', callback_data: 'mbti_menu_test' }],
-      [{ text: '✍️ 手動輸入 MBTI', callback_data: 'mbti_menu_manual' }],
-      [{ text: '↩️ 返回編輯資料', callback_data: 'edit_profile_callback' }],
+      [{ text: i18n.t('common.mbti9'), callback_data: 'mbti_menu_test' }],
+      [{ text: i18n.t('common.mbti10'), callback_data: 'mbti_menu_manual' }],
+      [{ text: i18n.t('common.back2'), callback_data: 'edit_profile_callback' }],
     ]);
   } catch (error) {
     console.error('[handleMBTI] Error:', error);
-    await telegram.sendMessage(chatId, '❌ 系統發生錯誤，請稍後再試。');
+    const errorI18n = createI18n('zh-TW');
+    await telegram.sendMessage(chatId, errorI18n.t('errors.systemErrorRetry'));
   }
 }
 
@@ -75,10 +84,15 @@ export async function handleMBTI(message: TelegramMessage, env: Env): Promise<vo
  * Handle "Take test" from /mbti menu - Show version selection
  */
 export async function handleMBTIMenuTest(callbackQuery: any, env: Env): Promise<void> {
+  const db = createDatabaseClient(env.DB);
   const telegram = createTelegramService(env);
   const chatId = callbackQuery.message!.chat.id;
+  const telegramId = callbackQuery.from.id.toString();
 
   try {
+    const user = await findUserByTelegramId(db, telegramId);
+    const i18n = createI18n(user?.language_pref || 'zh-TW');
+
     // Answer callback
     await telegram.answerCallbackQuery(callbackQuery.id);
 
@@ -88,24 +102,33 @@ export async function handleMBTIMenuTest(callbackQuery: any, env: Env): Promise<
     // Show version selection
     await telegram.sendMessageWithButtons(
       chatId,
-      `🧠 **選擇 MBTI 測驗版本**\n\n` +
-        `📋 **快速版（12 題）**\n` +
-        `⏱️ 約 2-3 分鐘\n` +
-        `✅ 快速了解基本性格類型\n\n` +
-        `📚 **完整版（36 題）**\n` +
-        `⏱️ 約 5-8 分鐘\n` +
-        `✅ 更準確的性格分析\n` +
-        `✅ 推薦用於重新測試\n\n` +
-        `請選擇測驗版本：`,
+      i18n.t('common.mbti4') +
+        '\n\n' +
+        i18n.t('common.text61') +
+        '\n' +
+        i18n.t('common.text106') +
+        '\n' +
+        i18n.t('success.text7') +
+        '\n\n' +
+        i18n.t('common.text62') +
+        '\n' +
+        i18n.t('common.text107') +
+        '\n' +
+        i18n.t('success.text13') +
+        '\n' +
+        i18n.t('success.text9') +
+        '\n\n' +
+        i18n.t('common.short21'),
       [
-        [{ text: '📋 快速版（12 題）', callback_data: 'mbti_test_quick' }],
-        [{ text: '📚 完整版（36 題）', callback_data: 'mbti_test_full' }],
-        [{ text: '↩️ 返回', callback_data: 'mbti_menu_cancel' }],
+        [{ text: i18n.t('common.text117'), callback_data: 'mbti_test_quick' }],
+        [{ text: i18n.t('common.text118'), callback_data: 'mbti_test_full' }],
+        [{ text: i18n.t('buttons.back'), callback_data: 'mbti_menu_cancel' }],
       ]
     );
   } catch (error) {
     console.error('[handleMBTIMenuTest] Error:', error);
-    await telegram.answerCallbackQuery(callbackQuery.id, '❌ 系統發生錯誤');
+    const errorI18n = createI18n('zh-TW');
+    await telegram.answerCallbackQuery(callbackQuery.id, errorI18n.t('errors.error.short4'));
   }
 }
 
@@ -123,8 +146,11 @@ export async function handleMBTITestQuick(callbackQuery: any, env: Env): Promise
     const { startMBTITest } = await import('~/services/mbti_test_service');
     await startMBTITest(db, telegramId, 'quick');
 
+    const user = await findUserByTelegramId(db, telegramId);
+    const i18n = createI18n(user?.language_pref || 'zh-TW');
+
     // Answer callback
-    await telegram.answerCallbackQuery(callbackQuery.id, '✅ 開始快速版測驗');
+    await telegram.answerCallbackQuery(callbackQuery.id, i18n.t('success.start2'));
 
     // Delete menu message
     await telegram.deleteMessage(chatId, callbackQuery.message!.message_id);
@@ -134,7 +160,8 @@ export async function handleMBTITestQuick(callbackQuery: any, env: Env): Promise
     await showMBTIQuestion(chatId, telegram, db, telegramId, 0);
   } catch (error) {
     console.error('[handleMBTITestQuick] Error:', error);
-    await telegram.answerCallbackQuery(callbackQuery.id, '❌ 系統發生錯誤');
+    const errorI18n = createI18n('zh-TW');
+    await telegram.answerCallbackQuery(callbackQuery.id, errorI18n.t('errors.error.short4'));
   }
 }
 
@@ -152,8 +179,11 @@ export async function handleMBTITestFull(callbackQuery: any, env: Env): Promise<
     const { startMBTITest } = await import('~/services/mbti_test_service');
     await startMBTITest(db, telegramId, 'full');
 
+    const user = await findUserByTelegramId(db, telegramId);
+    const i18n = createI18n(user?.language_pref || 'zh-TW');
+
     // Answer callback
-    await telegram.answerCallbackQuery(callbackQuery.id, '✅ 開始完整版測驗');
+    await telegram.answerCallbackQuery(callbackQuery.id, i18n.t('success.start3'));
 
     // Delete menu message
     await telegram.deleteMessage(chatId, callbackQuery.message!.message_id);
@@ -163,7 +193,8 @@ export async function handleMBTITestFull(callbackQuery: any, env: Env): Promise<
     await showMBTIQuestion(chatId, telegram, db, telegramId, 0);
   } catch (error) {
     console.error('[handleMBTITestFull] Error:', error);
-    await telegram.answerCallbackQuery(callbackQuery.id, '❌ 系統發生錯誤');
+    const errorI18n = createI18n('zh-TW');
+    await telegram.answerCallbackQuery(callbackQuery.id, errorI18n.t('errors.error.short4'));
   }
 }
 
@@ -171,10 +202,15 @@ export async function handleMBTITestFull(callbackQuery: any, env: Env): Promise<
  * Handle "Manual entry" from /mbti menu
  */
 export async function handleMBTIMenuManual(callbackQuery: any, env: Env): Promise<void> {
+  const db = createDatabaseClient(env.DB);
   const telegram = createTelegramService(env);
   const chatId = callbackQuery.message!.chat.id;
+  const telegramId = callbackQuery.from.id.toString();
 
   try {
+    const user = await findUserByTelegramId(db, telegramId);
+    const i18n = createI18n(user?.language_pref || 'zh-TW');
+
     // Answer callback
     await telegram.answerCallbackQuery(callbackQuery.id);
 
@@ -182,7 +218,7 @@ export async function handleMBTIMenuManual(callbackQuery: any, env: Env): Promis
     await telegram.deleteMessage(chatId, callbackQuery.message!.message_id);
 
     // Show 16 MBTI type buttons
-    await telegram.sendMessageWithButtons(chatId, `請選擇你的 MBTI 類型：`, [
+    await telegram.sendMessageWithButtons(chatId, i18n.t('common.mbti8'), [
       [
         { text: 'INTJ', callback_data: 'mbti_set_INTJ' },
         { text: 'INTP', callback_data: 'mbti_set_INTP' },
@@ -207,11 +243,12 @@ export async function handleMBTIMenuManual(callbackQuery: any, env: Env): Promis
         { text: 'ESTP', callback_data: 'mbti_set_ESTP' },
         { text: 'ESFP', callback_data: 'mbti_set_ESFP' },
       ],
-      [{ text: '❌ 取消', callback_data: 'mbti_menu_cancel' }],
+      [{ text: i18n.t('errors.error.cancel9'), callback_data: 'mbti_menu_cancel' }],
     ]);
   } catch (error) {
     console.error('[handleMBTIMenuManual] Error:', error);
-    await telegram.answerCallbackQuery(callbackQuery.id, '❌ 系統發生錯誤');
+    const errorI18n = createI18n('zh-TW');
+    await telegram.answerCallbackQuery(callbackQuery.id, errorI18n.t('errors.error.short4'));
   }
 }
 
@@ -236,8 +273,11 @@ export async function handleMBTIMenuClear(callbackQuery: any, env: Env): Promise
       .bind(now, telegramId)
       .run();
 
+    const user = await findUserByTelegramId(db, telegramId);
+    const i18n = createI18n(user?.language_pref || 'zh-TW');
+
     // Answer callback
-    await telegram.answerCallbackQuery(callbackQuery.id, '✅ MBTI 已清除');
+    await telegram.answerCallbackQuery(callbackQuery.id, i18n.t('success.mbti3'));
 
     // Delete menu message
     await telegram.deleteMessage(chatId, callbackQuery.message!.message_id);
@@ -245,11 +285,14 @@ export async function handleMBTIMenuClear(callbackQuery: any, env: Env): Promise
     // Confirm
     await telegram.sendMessage(
       chatId,
-      `✅ 你的 MBTI 類型已清除。\n\n` + `你可以隨時使用 /mbti 指令重新設定。`
+      i18n.t('success.mbti2') +
+        '\n\n' +
+        i18n.t('common.settings9')
     );
   } catch (error) {
     console.error('[handleMBTIMenuClear] Error:', error);
-    await telegram.answerCallbackQuery(callbackQuery.id, '❌ 系統發生錯誤');
+    const errorI18n = createI18n('zh-TW');
+    await telegram.answerCallbackQuery(callbackQuery.id, errorI18n.t('errors.error.short4'));
   }
 }
 
@@ -261,14 +304,23 @@ export async function handleMBTIMenuCancel(callbackQuery: any, env: Env): Promis
   const chatId = callbackQuery.message!.chat.id;
 
   try {
+    const db = createDatabaseClient(env.DB);
+    const telegramId = callbackQuery.from.id.toString();
+    const user = await findUserByTelegramId(db, telegramId);
+    const i18n = createI18n(user?.language_pref || 'zh-TW');
+
     // Answer callback
-    await telegram.answerCallbackQuery(callbackQuery.id, '已取消');
+    await telegram.answerCallbackQuery(callbackQuery.id, i18n.t('errors.error.cancel9'));
 
     // Delete menu message
     await telegram.deleteMessage(chatId, callbackQuery.message!.message_id);
+
+    // Return to MBTI menu (not just delete, but show the menu again)
+    await handleMBTI({ chat: { id: chatId }, from: callbackQuery.from, text: '/mbti' } as any, env);
   } catch (error) {
     console.error('[handleMBTIMenuCancel] Error:', error);
-    await telegram.answerCallbackQuery(callbackQuery.id, '❌ 系統發生錯誤');
+    const errorI18n = createI18n('zh-TW');
+    await telegram.answerCallbackQuery(callbackQuery.id, errorI18n.t('errors.error.short4'));
   }
 }
 
@@ -282,11 +334,14 @@ export async function handleMBTISet(callbackQuery: any, mbtiType: string, env: E
   const telegramId = callbackQuery.from.id.toString();
 
   try {
+    const user = await findUserByTelegramId(db, telegramId);
+    const i18n = createI18n(user?.language_pref || 'zh-TW');
+
     // Validate MBTI type
     const { validateMBTI } = await import('~/domain/user');
     const validation = validateMBTI(mbtiType);
     if (!validation.valid) {
-      await telegram.answerCallbackQuery(callbackQuery.id, '⚠️ 無效的 MBTI 類型');
+      await telegram.answerCallbackQuery(callbackQuery.id, i18n.t('errors.error.mbti'));
       return;
     }
 
@@ -302,23 +357,26 @@ export async function handleMBTISet(callbackQuery: any, mbtiType: string, env: E
       .run();
 
     // Answer callback
-    await telegram.answerCallbackQuery(callbackQuery.id, `✅ MBTI 已設定為 ${mbtiType}`);
+    await telegram.answerCallbackQuery(callbackQuery.id, i18n.t('success.settings', { mbtiType }));
 
     // Delete selection message
     await telegram.deleteMessage(chatId, callbackQuery.message!.message_id);
 
-    // Get MBTI description
-    const description = MBTI_DESCRIPTIONS[mbtiType];
+    // Get MBTI description from i18n
+    const descriptionKey = `mbti.description.${mbtiType}`;
+    const description = i18n.t(descriptionKey as any);
 
     // Show result
     await telegram.sendMessage(
       chatId,
-      `✅ 你的 MBTI 類型已更新為：**${mbtiType}**\n\n` +
-        `${description?.zh_TW || ''}\n\n` +
-        `你可以隨時使用 /mbti 指令重新設定。`
+      i18n.t('success.mbti', { mbtiType }) +
+        '\n\n' +
+        `${description}\n\n` +
+        i18n.t('common.settings9')
     );
   } catch (error) {
     console.error('[handleMBTISet] Error:', error);
-    await telegram.answerCallbackQuery(callbackQuery.id, '❌ 系統發生錯誤');
+    const errorI18n = createI18n('zh-TW');
+    await telegram.answerCallbackQuery(callbackQuery.id, errorI18n.t('errors.error.short4'));
   }
 }

@@ -12,13 +12,13 @@ import type { BroadcastFilters } from '~/domain/broadcast_filters';
 
 /**
  * Create a new filtered broadcast
- * 
+ *
  * @param env - Cloudflare environment
  * @param message - Broadcast message
  * @param filters - Custom filters (gender, zodiac, country, age, mbti, vip, is_birthday)
  * @param createdBy - Telegram ID of creator
  * @returns Broadcast ID and total users
- * 
+ *
  * ⚠️ SAFETY: Enforces same limits as createBroadcast (MAX_SAFE_USERS = 100)
  */
 export async function createFilteredBroadcast(
@@ -35,10 +35,12 @@ export async function createFilteredBroadcast(
   // ⚠️ SAFETY CHECK: Prevent large broadcasts
   const MAX_SAFE_USERS = 100;
   if (userIds.length > MAX_SAFE_USERS) {
+    // Admin error message (typically in Chinese)
+    const { createI18n } = await import('~/i18n');
+    const i18n = createI18n('zh-TW');
     throw new Error(
-      `❌ 當前廣播系統僅支持 ${MAX_SAFE_USERS} 個用戶以內的廣播。\n\n` +
-        `目標用戶數：${userIds.length}\n\n` +
-        `大規模廣播需要升級系統架構，請參考 BROADCAST_SYSTEM_REDESIGN.md`
+      i18n.t('broadcast.maxUsersExceeded', { max: MAX_SAFE_USERS, current: userIds.length }) + '\n\n' +
+        i18n.t('broadcast.upgradeRequired')
     );
   }
 
@@ -96,10 +98,12 @@ export async function createBroadcast(
   // See BROADCAST_SYSTEM_REDESIGN.md for proper implementation
   const MAX_SAFE_USERS = 100;
   if (userIds.length > MAX_SAFE_USERS) {
+    // Admin error message (typically in Chinese)
+    const { createI18n } = await import('~/i18n');
+    const i18n = createI18n('zh-TW');
     throw new Error(
-      `❌ 當前廣播系統僅支持 ${MAX_SAFE_USERS} 個用戶以內的廣播。\n\n` +
-        `目標用戶數：${userIds.length}\n\n` +
-        `大規模廣播需要升級系統架構，請參考 BROADCAST_SYSTEM_REDESIGN.md`
+      i18n.t('broadcast.maxUsersExceeded', { max: MAX_SAFE_USERS, current: userIds.length }) + '\n\n' +
+        i18n.t('broadcast.upgradeRequired')
     );
   }
 
@@ -154,8 +158,14 @@ async function processBroadcast(env: Env, broadcastId: number): Promise<void> {
 
     // Allow retry for 'sending' status (in case of previous failure)
     // Skip only 'completed', 'failed', or 'cancelled'
-    if (broadcast.status === 'completed' || broadcast.status === 'failed' || broadcast.status === 'cancelled') {
-      console.log(`[processBroadcast] Broadcast ${broadcastId} already in final state: ${broadcast.status}`);
+    if (
+      broadcast.status === 'completed' ||
+      broadcast.status === 'failed' ||
+      broadcast.status === 'cancelled'
+    ) {
+      console.log(
+        `[processBroadcast] Broadcast ${broadcastId} already in final state: ${broadcast.status}`
+      );
       return;
     }
 
@@ -347,11 +357,11 @@ async function getTargetUserIds(
 
 /**
  * Get filtered user IDs based on custom filters
- * 
+ *
  * @param db - Database client
  * @param filters - Broadcast filters (gender, zodiac, country, age, mbti, vip, is_birthday)
  * @returns Array of telegram IDs
- * 
+ *
  * ⚠️ SAFETY: Always includes mandatory filters:
  * - onboarding_step = 'completed'
  * - deleted_at IS NULL
@@ -400,7 +410,7 @@ export async function getFilteredUserIds(
     const currentYear = new Date().getFullYear();
     const maxBirthYear = currentYear - filters.age.min; // Youngest (min age)
     const minBirthYear = currentYear - filters.age.max; // Oldest (max age)
-    
+
     query += ` AND CAST(strftime('%Y', birthday) AS INTEGER) BETWEEN ? AND ?`;
     params.push(minBirthYear, maxBirthYear);
   }
@@ -429,7 +439,10 @@ export async function getFilteredUserIds(
   }
 
   // Execute query
-  const result = await db.d1.prepare(query).bind(...params).all<{ telegram_id: string }>();
+  const result = await db.d1
+    .prepare(query)
+    .bind(...params)
+    .all<{ telegram_id: string }>();
   const userIds = result.results?.map((r) => r.telegram_id) || [];
 
   console.log(

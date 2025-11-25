@@ -57,14 +57,34 @@ export function t(
   const translations = getTranslations(languageCode);
 
   // Get translation by nested key (e.g., "onboarding.welcome")
+  // Handle keys with dots in property names (e.g., "tasks.name.city" -> tasks['name.city'])
   const keys = key.split('.');
   let value: Record<string, unknown> | string = translations;
 
-  for (const k of keys) {
-    if (value && typeof value === 'object' && k in value) {
-      value = (value as Record<string, unknown>)[k] as Record<string, unknown> | string;
+  for (let i = 0; i < keys.length; i++) {
+    const k = keys[i];
+    if (value && typeof value === 'object') {
+      // First try direct property access
+      if (k in value) {
+        value = (value as Record<string, unknown>)[k] as Record<string, unknown> | string;
+      } else if (i < keys.length - 1) {
+        // If not found and there are more keys, try combining with next key (for keys like 'name.city')
+        const combinedKey = `${k}.${keys[i + 1]}`;
+        if (combinedKey in value) {
+          value = (value as Record<string, unknown>)[combinedKey] as Record<string, unknown> | string;
+          i++; // Skip next key since we already used it
+        } else {
+          // Key not found
+          console.error(`[i18n] Translation key not found: ${key} for language: ${languageCode} (failed at: ${k})`);
+          return `[${key}]`;
+        }
+      } else {
+        // Key not found
+        console.error(`[i18n] Translation key not found: ${key} for language: ${languageCode} (failed at: ${k})`);
+        return `[${key}]`;
+      }
     } else {
-      // Key not found, return key itself for debugging
+      // Key not found
       console.error(`[i18n] Translation key not found: ${key} for language: ${languageCode}`);
       return `[${key}]`;
     }
@@ -72,9 +92,32 @@ export function t(
 
   // Replace parameters
   if (typeof value === 'string' && params) {
-    return value.replace(/\{(\w+)\}/g, (match, paramKey) => {
+    // Support both {variable} and ${variable} formats
+    // Also support nested object access like ${updatedUser.nickname}
+    let result = value;
+    
+    // Replace ${variable} format (template string style)
+    // Note: In template strings, \${} is escaped to ${} (literal), so we need to match both \${} and ${}
+    result = result.replace(/(?:\\\$\{|\$\{)([^}]+)\}/g, (match, expr) => {
+      // Handle nested object access (e.g., updatedUser.nickname)
+      const keys = expr.trim().split('.');
+      let value: any = params;
+      for (const key of keys) {
+        if (value && typeof value === 'object' && key in value) {
+          value = value[key];
+        } else {
+          return match; // Return original if path not found
+        }
+      }
+      return String(value ?? match);
+    });
+    
+    // Replace {variable} format (simple style)
+    result = result.replace(/\{(\w+)\}/g, (match, paramKey) => {
       return paramKey in params ? String(params[paramKey]) : match;
     });
+    
+    return result;
   }
 
   return typeof value === 'string' ? value : `[${key}]`;

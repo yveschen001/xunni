@@ -181,7 +181,6 @@ export async function trackAdFailure(
         error_message: errorMessage,
       },
     });
-
   } catch (error) {
     console.error('[trackAdFailure] Error:', error);
   }

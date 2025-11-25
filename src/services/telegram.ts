@@ -538,7 +538,15 @@ export class TelegramService {
     options?: { offset?: number; limit?: number }
   ): Promise<{
     total_count: number;
-    photos: Array<Array<{ file_id: string; file_unique_id: string; width: number; height: number; file_size?: number }>>;
+    photos: Array<
+      Array<{
+        file_id: string;
+        file_unique_id: string;
+        width: number;
+        height: number;
+        file_size?: number;
+      }>
+    >;
   }> {
     try {
       const response = await fetch(`${this.baseURL}/getUserProfilePhotos`, {
@@ -574,7 +582,9 @@ export class TelegramService {
   /**
    * Get file information
    */
-  async getFile(fileId: string): Promise<{ file_id: string; file_unique_id: string; file_size?: number; file_path?: string }> {
+  async getFile(
+    fileId: string
+  ): Promise<{ file_id: string; file_unique_id: string; file_size?: number; file_path?: string }> {
     try {
       const response = await fetch(`${this.baseURL}/getFile`, {
         method: 'POST',

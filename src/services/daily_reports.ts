@@ -1,6 +1,6 @@
 /**
  * Daily Reports Service
- * 
+ *
  * Purpose:
  *   Send daily analytics reports to super admins
  *   - Daily analytics report
@@ -37,7 +37,9 @@ export async function sendDailyReportsToSuperAdmins(env: Env): Promise<void> {
     }
 
     // eslint-disable-next-line no-console
-    console.log(`[sendDailyReportsToSuperAdmins] Sending reports to ${superAdminIds.length} super admins`);
+    console.log(
+      `[sendDailyReportsToSuperAdmins] Sending reports to ${superAdminIds.length} super admins`
+    );
 
     // Get today's date in YYYY-MM-DD format
     const today = new Date();
@@ -57,22 +59,27 @@ export async function sendDailyReportsToSuperAdmins(env: Env): Promise<void> {
     } = await import('./analytics_reports');
 
     const dailyReportData = await generateDailyReport(db.d1, dateStr);
-    const dailyReport = formatDailyReport(dailyReportData);
+    const { createI18n } = await import('~/i18n');
+    const i18n = createI18n('zh-TW'); // Admin reports use Chinese
+    const dailyReport = formatDailyReport(dailyReportData, i18n);
 
     const adReportData = await generateAdPerformanceReport(db.d1, dateStr, dateStr);
-    const adReport = formatAdPerformanceReport(adReportData);
+    const adReport = formatAdPerformanceReport(adReportData, i18n);
 
     const funnelReportData = await generateVIPFunnelReport(db.d1, dateStr, dateStr);
-    const funnelReport = formatVIPFunnelReport(funnelReportData);
+    const funnelReport = formatVIPFunnelReport(funnelReportData, i18n);
 
     // Send to each super admin
+    // Admin reports typically use Chinese (admin's language)
+    // (i18n already created above)
+
     for (const adminId of superAdminIds) {
       try {
         // Send header
         await telegram.sendMessage(
           parseInt(adminId),
-          `📊 **每日數據分析報表**\n` +
-            `時間：${new Date().toLocaleString('zh-TW', { timeZone: 'Asia/Taipei' })}\n` +
+          i18n.t('dailyReports.header') + '\n' +
+            i18n.t('dailyReports.time', { time: new Date().toLocaleString('zh-TW', { timeZone: 'Asia/Taipei' }) }) + '\n' +
             `━━━━━━━━━━━━━━━━`
         );
 
@@ -111,4 +118,3 @@ export async function sendDailyReportsToSuperAdmins(env: Env): Promise<void> {
 function sleep(ms: number): Promise<void> {
   return new Promise((resolve) => setTimeout(resolve, ms));
 }
-

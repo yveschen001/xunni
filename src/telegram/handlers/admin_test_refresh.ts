@@ -1,12 +1,13 @@
 /**
  * Admin Test Refresh Handler
- * 
+ *
  * Test refresh for a specific user
  */
 
 import type { Env } from '~/types';
 import type { DatabaseClient } from '~/db/client';
 import { createTelegramService } from '~/services/telegram';
+import { createI18n } from '~/i18n';
 import { refreshAllConversationHistoryPosts } from '~/services/refresh_conversation_history';
 
 /**
@@ -19,44 +20,39 @@ export async function handleAdminTestRefresh(
   telegramId: string
 ): Promise<void> {
   const telegram = createTelegramService(env);
-  
+
   try {
+    const i18n = createI18n('zh-TW'); // Admin commands use Chinese
     // Check if user is super admin
     const superAdminId = env.SUPER_ADMIN_USER_ID;
     if (telegramId !== superAdminId) {
-      await telegram.sendMessage(
-        chatId,
-        '❌ **權限不足**\n\n此命令僅限超級管理員使用。'
-      );
+      await telegram.sendMessage(chatId, i18n.t('admin.insufficientPermission'));
       return;
     }
-    
-    await telegram.sendMessage(chatId, '🔄 開始刷新您的對話歷史...');
-    
+
+    await telegram.sendMessage(chatId, i18n.t('admin.refresh.startingRefresh'));
+
     console.error('[AdminTestRefresh] Starting refresh for user:', telegramId);
-    
+
     const result = await refreshAllConversationHistoryPosts(db, env, telegramId);
-    
+
     console.error('[AdminTestRefresh] Refresh completed:', result);
-    
+
     await telegram.sendMessage(
       chatId,
-      `✅ **刷新完成**\n\n` +
-      `• 更新：${result.updated} 個帖子\n` +
-      `• 失敗：${result.failed} 個帖子\n\n` +
-      `請檢查對話歷史是否已更新為清晰頭像。`,
+      i18n.t('admin.refresh.complete') + '\n\n' +
+        i18n.t('admin.refresh.updated', { count: result.updated }) + '\n' +
+        i18n.t('admin.refresh.failed', { count: result.failed }) + '\n\n' +
+        i18n.t('admin.refresh.checkHint'),
       {
-        parse_mode: 'Markdown'
+        parse_mode: 'Markdown',
       }
     );
-    
   } catch (error) {
     console.error('[AdminTestRefresh] Error:', error);
     await telegram.sendMessage(
       chatId,
-      '❌ **刷新失敗**\n\n' +
-      `錯誤：${error instanceof Error ? error.message : String(error)}`
+      i18n.t('admin.refresh.failed') + '\n\n' + i18n.t('admin.refresh.error', { error: error instanceof Error ? error.message : String(error) })
     );
   }
 }
-

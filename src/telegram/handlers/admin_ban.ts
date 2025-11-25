@@ -100,21 +100,23 @@ export async function handleAdminBan(message: TelegramMessage, env: Env): Promis
     }
 
     // Calculate ban duration
+    const { createI18n } = await import('~/i18n');
+    const i18n = createI18n('zh-TW'); // Admin commands use Chinese
     let bannedUntil: string | null = null;
     let durationText: string;
 
     if (durationArg.toLowerCase() === 'permanent') {
       bannedUntil = null;
-      durationText = '永久';
+      durationText = i18n.t('admin.ban.permanent');
     } else {
       const hours = parseInt(durationArg);
       if (isNaN(hours) || hours <= 0) {
-        await telegram.sendMessage(chatId, '❌ 時長必須是正整數或 "permanent"。');
+        await telegram.sendMessage(chatId, i18n.t('admin.ban.durationMustBePositive'));
         return;
       }
       const now = new Date();
       bannedUntil = new Date(now.getTime() + hours * 60 * 60 * 1000).toISOString();
-      durationText = `${hours} 小時`;
+      durationText = i18n.t('admin.ban.durationHours', { hours });
     }
 
     // Create ban record
@@ -125,7 +127,7 @@ export async function handleAdminBan(message: TelegramMessage, env: Env): Promis
       VALUES (?, ?, ?, datetime('now'), ?, 1)
     `
       )
-      .bind(targetUserId, `管理員封禁 / Admin ban`, telegramId, bannedUntil)
+      .bind(targetUserId, i18n.t('admin.ban.reason'), telegramId, bannedUntil)
       .run();
 
     // Update user status
@@ -141,11 +143,11 @@ export async function handleAdminBan(message: TelegramMessage, env: Env): Promis
       WHERE telegram_id = ?
     `
       )
-      .bind(`管理員封禁 / Admin ban`, bannedUntil, targetUserId)
+      .bind(i18n.t('admin.ban.reason'), bannedUntil, targetUserId)
       .run();
 
-    // Send notification to banned user
-    const i18n = createI18n(targetUser.language_pref || 'zh-TW');
+    // Send notification to banned user (use target user's language)
+    const targetUserI18n = createI18n(targetUser.language_pref || 'zh-TW');
     let banMessage: string;
 
     if (bannedUntil) {
@@ -160,12 +162,12 @@ export async function handleAdminBan(message: TelegramMessage, env: Env): Promis
           timeZone: targetUser.language_pref === 'en' ? 'UTC' : 'Asia/Taipei',
         }
       );
-      banMessage = i18n.t('ban.temporaryBan', {
+      banMessage = targetUserI18n.t('ban.temporaryBan', {
         unbanTime,
         duration: durationText,
       });
     } else {
-      banMessage = i18n.t('ban.permanentBan', {});
+      banMessage = targetUserI18n.t('ban.permanentBan', {});
     }
 
     try {
@@ -356,9 +358,10 @@ export async function handleAdminAdd(message: TelegramMessage, env: Env): Promis
   const telegramId = message.from!.id.toString();
 
   try {
+    const i18n = createI18n('zh-TW');
     // Check super admin permission
     if (!isSuperAdmin(telegramId)) {
-      await telegram.sendMessage(chatId, '❌ 只有超級管理員可以使用此命令。');
+      await telegram.sendMessage(chatId, i18n.t('admin.analytics.onlySuperAdmin'));
       return;
     }
 
@@ -369,12 +372,12 @@ export async function handleAdminAdd(message: TelegramMessage, env: Env): Promis
     if (parts.length < 2) {
       await telegram.sendMessage(
         chatId,
-        '❌ 使用方法錯誤\n\n' +
-          '**正確格式：**\n' +
-          '`/admin_add <user_id>`\n\n' +
-          '**示例：**\n' +
-          '`/admin_add 123456789` - 添加為普通管理員\n\n' +
-          '💡 使用 /admin_list 查看當前管理員列表'
+        i18n.t('admin.addUsageError') +
+          i18n.t('admin.adConfig.correctFormat') + '\n' +
+          i18n.t('admin.addCommand') +
+          i18n.t('admin.adConfig.example') + '\n' +
+          i18n.t('admin.addExample') +
+          i18n.t('admin.admin')
       );
       return;
     }
@@ -383,43 +386,35 @@ export async function handleAdminAdd(message: TelegramMessage, env: Env): Promis
 
     // Check if already super admin
     if (isSuperAdmin(targetUserId)) {
-      await telegram.sendMessage(chatId, '❌ 此用戶已經是超級管理員，無需添加。');
+      await telegram.sendMessage(chatId, i18n.t('admin.addAlreadySuperAdmin'));
       return;
     }
 
     // Check if already in admin list
     const currentAdminIds = getAdminIds(env);
     if (currentAdminIds.includes(targetUserId)) {
-      await telegram.sendMessage(chatId, '❌ 此用戶已經是管理員。');
+      await telegram.sendMessage(chatId, i18n.t('admin.addAlreadyAdmin'));
       return;
     }
 
     // Check if user exists
     const targetUser = await findUserByTelegramId(db, targetUserId);
     if (!targetUser) {
-      await telegram.sendMessage(chatId, '❌ 用戶不存在或未註冊。');
+      await telegram.sendMessage(chatId, i18n.t('admin.addUserNotFound'));
       return;
     }
 
     await telegram.sendMessage(
       chatId,
-      `⚠️ **注意**\n\n` +
-        `此命令需要手動修改配置文件。\n\n` +
-        `**步驟：**\n` +
-        `1. 編輯 \`wrangler.toml\`\n` +
-        `2. 找到 \`ADMIN_USER_IDS\` 變數\n` +
-        `3. 添加用戶 ID：\`${targetUserId}\`\n` +
-        `4. 格式：\`ADMIN_USER_IDS = "ID1,ID2,${targetUserId}"\`\n` +
-        `5. 重新部署：\`pnpm deploy:staging\`\n\n` +
-        `**用戶資訊：**\n` +
-        `• ID: \`${targetUserId}\`\n` +
-        `• 暱稱: ${targetUser.nickname || '未設定'}\n` +
-        `• 用戶名: @${targetUser.username || '-'}\n\n` +
-        `💡 或在 Cloudflare Dashboard 中修改環境變數`
+      i18n.t('admin.addInstructions', {
+        userId: targetUserId,
+        nickname: targetUser.nickname || i18n.t('common.notSet'),
+        username: targetUser.username || '-',
+      })
     );
   } catch (error) {
     console.error('[handleAdminAdd] Error:', error);
-    await telegram.sendMessage(chatId, '❌ 發生錯誤，請稍後再試。');
+    await telegram.sendMessage(chatId, i18n.t('admin.operationFailed'));
   }
 }
 
@@ -433,9 +428,10 @@ export async function handleAdminRemove(message: TelegramMessage, env: Env): Pro
   const telegramId = message.from!.id.toString();
 
   try {
+    const i18n = createI18n('zh-TW');
     // Check super admin permission
     if (!isSuperAdmin(telegramId)) {
-      await telegram.sendMessage(chatId, '❌ 只有超級管理員可以使用此命令。');
+      await telegram.sendMessage(chatId, i18n.t('admin.analytics.onlySuperAdmin'));
       return;
     }
 
@@ -446,12 +442,12 @@ export async function handleAdminRemove(message: TelegramMessage, env: Env): Pro
     if (parts.length < 2) {
       await telegram.sendMessage(
         chatId,
-        '❌ 使用方法錯誤\n\n' +
-          '**正確格式：**\n' +
-          '`/admin_remove <user_id>`\n\n' +
-          '**示例：**\n' +
-          '`/admin_remove 123456789` - 移除普通管理員\n\n' +
-          '💡 使用 /admin_list 查看當前管理員列表'
+        i18n.t('admin.removeUsageError') +
+          i18n.t('admin.adConfig.correctFormat') + '\n' +
+          i18n.t('admin.removeCommand') +
+          i18n.t('admin.adConfig.example') + '\n' +
+          i18n.t('admin.removeExample') +
+          i18n.t('admin.admin')
       );
       return;
     }
@@ -460,14 +456,16 @@ export async function handleAdminRemove(message: TelegramMessage, env: Env): Pro
 
     // Cannot remove super admin
     if (isSuperAdmin(targetUserId)) {
-      await telegram.sendMessage(chatId, '❌ 無法移除超級管理員。');
+      await telegram.sendMessage(chatId, i18n.t('admin.removeCannotRemoveSuperAdmin'));
       return;
     }
 
     // Check if in admin list
     const currentAdminIds = getAdminIds(env);
     if (!currentAdminIds.includes(targetUserId)) {
-      await telegram.sendMessage(chatId, '❌ 此用戶不是管理員。');
+      const { createI18n } = await import('~/i18n');
+      const i18n = createI18n('zh-TW'); // Admin messages default to zh-TW
+      await telegram.sendMessage(chatId, i18n.t('admin.ban.notAdmin'));
       return;
     }
 
@@ -476,22 +474,15 @@ export async function handleAdminRemove(message: TelegramMessage, env: Env): Pro
 
     await telegram.sendMessage(
       chatId,
-      `⚠️ **注意**\n\n` +
-        `此命令需要手動修改配置文件。\n\n` +
-        `**步驟：**\n` +
-        `1. 編輯 \`wrangler.toml\`\n` +
-        `2. 找到 \`ADMIN_USER_IDS\` 變數\n` +
-        `3. 移除用戶 ID：\`${targetUserId}\`\n` +
-        `4. 重新部署：\`pnpm deploy:staging\`\n\n` +
-        `**用戶資訊：**\n` +
-        `• ID: \`${targetUserId}\`\n` +
-        `• 暱稱: ${targetUser?.nickname || '未設定'}\n` +
-        `• 用戶名: @${targetUser?.username || '-'}\n\n` +
-        `💡 或在 Cloudflare Dashboard 中修改環境變數`
+      i18n.t('admin.removeInstructions', {
+        userId: targetUserId,
+        nickname: targetUser?.nickname || i18n.t('common.notSet'),
+        username: targetUser?.username || '-',
+      })
     );
   } catch (error) {
     console.error('[handleAdminRemove] Error:', error);
-    await telegram.sendMessage(chatId, '❌ 發生錯誤，請稍後再試。');
+    await telegram.sendMessage(chatId, i18n.t('admin.operationFailed'));
   }
 }
 
@@ -505,15 +496,17 @@ export async function handleAdminBans(message: TelegramMessage, env: Env): Promi
   const telegramId = message.from!.id.toString();
 
   // Check admin permission
+  const user = await findUserByTelegramId(db, telegramId);
+  const i18n = createI18n(user?.language_pref || 'zh-TW');
+  
   if (!isAdmin(telegramId, env)) {
-    await telegram.sendMessage(chatId, '❌ 你沒有權限使用此命令。');
+    await telegram.sendMessage(chatId, i18n.t('admin.noPermission'));
     return;
   }
 
   // Get user
-  const user = await findUserByTelegramId(db, telegramId);
   if (!user) {
-    await telegram.sendMessage(chatId, '❌ 用戶不存在。');
+    await telegram.sendMessage(chatId, i18n.t('admin.userNotFound'));
     return;
   }
 
@@ -542,12 +535,12 @@ export async function handleAdminBans(message: TelegramMessage, env: Env): Promi
         nickname: string | null;
       }>();
 
+    // Use existing i18n from function scope
     if (!recentBans.results || recentBans.results.length === 0) {
-      await telegram.sendMessage(chatId, '📊 目前沒有封禁記錄');
+      await telegram.sendMessage(chatId, i18n.t('admin.ban.noBanRecordsList'));
       return;
     }
-
-    let message = '📊 最近 10 條封禁記錄\n\n';
+    let message = i18n.t('admin.ban.recentBans') + '\n\n';
     for (const ban of recentBans.results) {
       const banStart = new Date(ban.ban_start).toLocaleString('zh-TW', {
         year: 'numeric',
@@ -567,17 +560,17 @@ export async function handleAdminBans(message: TelegramMessage, env: Env): Promi
           minute: '2-digit',
           timeZone: 'Asia/Taipei',
         })
-        : '永久';
+        : i18n.t('admin.ban.permanent');
 
       message +=
-        `ID: ${ban.id}\n` +
-        `用戶: ${ban.nickname || ban.user_id}\n` +
-        `原因: ${ban.reason}\n` +
-        `開始: ${banStart}\n` +
-        `結束: ${banEnd}\n\n`;
+        i18n.t('admin.ban.banId', { id: ban.id }) + '\n' +
+        i18n.t('admin.ban.banUser', { user: ban.nickname || ban.user_id }) + '\n' +
+        i18n.t('admin.ban.banReason', { reason: ban.reason }) + '\n' +
+        i18n.t('admin.ban.banStart', { start: banStart }) + '\n' +
+        i18n.t('admin.ban.banEnd', { end: banEnd }) + '\n\n';
     }
 
-    message += '💡 使用 /admin_bans <user_id> 查看特定用戶的封禁歷史';
+    message += i18n.t('admin.ban.viewHistory');
 
     await telegram.sendMessage(chatId, message);
     return;
@@ -601,15 +594,16 @@ export async function handleAdminBans(message: TelegramMessage, env: Env): Promi
       created_at: string;
     }>();
 
+  // Use existing i18n from function scope
   if (!userBans.results || userBans.results.length === 0) {
-    await telegram.sendMessage(chatId, `❌ 用戶 ${targetUserId} 沒有封禁記錄`);
+    await telegram.sendMessage(chatId, i18n.t('admin.ban.noBanRecords', { userId: targetUserId }));
     return;
   }
 
   const targetUser = await findUserByTelegramId(db, targetUserId);
-  let responseText = `📊 用戶封禁歷史\n\n`;
-  responseText += `用戶: ${targetUser?.nickname || targetUserId}\n`;
-  responseText += `總封禁次數: ${userBans.results.length}\n\n`;
+  let responseText = i18n.t('admin.ban.userBanHistory') + '\n\n';
+  responseText += i18n.t('admin.ban.user', { user: targetUser?.nickname || targetUserId }) + '\n';
+  responseText += i18n.t('admin.ban.totalBans', { count: userBans.results.length }) + '\n\n';
 
   for (const ban of userBans.results) {
     const banStart = new Date(ban.ban_start).toLocaleString('zh-TW', {
@@ -630,15 +624,15 @@ export async function handleAdminBans(message: TelegramMessage, env: Env): Promi
         minute: '2-digit',
         timeZone: 'Asia/Taipei',
       })
-      : '永久';
+      : i18n.t('admin.ban.permanent');
 
     responseText +=
       `━━━━━━━━━━━━━━━━\n` +
-      `ID: ${ban.id}\n` +
-      `原因: ${ban.reason}\n` +
-      `風險分數: ${ban.risk_snapshot}\n` +
-      `開始: ${banStart}\n` +
-      `結束: ${banEnd}\n\n`;
+      i18n.t('admin.ban.banId', { id: ban.id }) + '\n' +
+      i18n.t('admin.ban.banReason', { reason: ban.reason }) + '\n' +
+      i18n.t('admin.ban.riskScore', { score: ban.risk_snapshot }) + '\n' +
+      i18n.t('admin.ban.banStart', { start: banStart }) + '\n' +
+      i18n.t('admin.ban.banEnd', { end: banEnd }) + '\n\n';
   }
 
   await telegram.sendMessage(chatId, responseText);
@@ -654,8 +648,11 @@ export async function handleAdminAppeals(message: TelegramMessage, env: Env): Pr
   const telegramId = message.from!.id.toString();
 
   // Check admin permission
+  const user = await findUserByTelegramId(db, telegramId);
+  const i18n = createI18n(user?.language_pref || 'zh-TW');
+  
   if (!isAdmin(telegramId, env)) {
-    await telegram.sendMessage(chatId, '❌ 你沒有權限使用此命令。');
+    await telegram.sendMessage(chatId, i18n.t('admin.noPermission'));
     return;
   }
 
@@ -678,12 +675,13 @@ export async function handleAdminAppeals(message: TelegramMessage, env: Env): Pr
       nickname: string | null;
     }>();
 
+  // Use existing i18n from function scope (already declared at line 652)
+  
   if (!pendingAppeals.results || pendingAppeals.results.length === 0) {
-    await telegram.sendMessage(chatId, '✅ 目前沒有待審核的申訴');
+    await telegram.sendMessage(chatId, i18n.t('admin.ban.noAppeals'));
     return;
   }
-
-  let responseText = '📋 待審核申訴列表\n\n';
+  let responseText = i18n.t('admin.ban.appealList');
   for (const appeal of pendingAppeals.results) {
     const createdAt = new Date(appeal.created_at).toLocaleString('zh-TW', {
       year: 'numeric',
@@ -696,16 +694,15 @@ export async function handleAdminAppeals(message: TelegramMessage, env: Env): Pr
 
     responseText +=
       `━━━━━━━━━━━━━━━━\n` +
-      `申訴 ID: ${appeal.id}\n` +
-      `用戶: ${appeal.nickname || appeal.user_id}\n` +
-      `理由: ${appeal.reason}\n` +
-      `提交時間: ${createdAt}\n\n`;
+      i18n.t('admin.ban.appealId', { id: appeal.id }) +
+      i18n.t('admin.ban.appealUser', { user: appeal.nickname || appeal.user_id }) +
+      i18n.t('admin.ban.appealReason', { reason: appeal.reason }) +
+      i18n.t('admin.ban.appealSubmittedAt', { time: createdAt });
   }
 
   responseText +=
-    '💡 使用以下命令審核申訴：\n' +
-    '/admin_approve <appeal_id> [備註]\n' +
-    '/admin_reject <appeal_id> [備註]';
+    i18n.t('admin.appealReviewHint') +
+    i18n.t('admin.appealReviewCommands');
 
   await telegram.sendMessage(chatId, responseText);
 }
@@ -721,19 +718,23 @@ export async function handleAdminApprove(message: TelegramMessage, env: Env): Pr
 
   // Check admin permission
   if (!isAdmin(telegramId, env)) {
-    await telegram.sendMessage(chatId, '❌ 你沒有權限使用此命令。');
+    const { createI18n } = await import('~/i18n');
+    const i18n = createI18n('zh-TW'); // Admin messages default to zh-TW
+    await telegram.sendMessage(chatId, i18n.t('admin.ban.noPermission'));
     return;
   }
 
   // Parse command
   const parts = message.text?.split(' ') || [];
   const appealId = parts[1];
-  const notes = parts.slice(2).join(' ') || '申訴已批准';
+  const { createI18n } = await import('~/i18n');
+  const i18n = createI18n('zh-TW'); // Admin messages default to zh-TW
+  const notes = parts.slice(2).join(' ') || i18n.t('admin.ban.appealApproved');
 
   if (!appealId) {
     await telegram.sendMessage(
       chatId,
-      '❌ 請提供申訴 ID\n\n用法: /admin_approve <appeal_id> [備註]'
+      i18n.t('admin.ban.provideAppealId') + i18n.t('admin.ban.usageApprove')
     );
     return;
   }
@@ -745,12 +746,12 @@ export async function handleAdminApprove(message: TelegramMessage, env: Env): Pr
     .first<{ user_id: string; status: string }>();
 
   if (!appeal) {
-    await telegram.sendMessage(chatId, `❌ 找不到申訴 ID: ${appealId}`);
+    await telegram.sendMessage(chatId, i18n.t('admin.ban.appealNotFound', { id: appealId }));
     return;
   }
 
   if (appeal.status !== 'pending') {
-    await telegram.sendMessage(chatId, `❌ 申訴 ${appealId} 已經被審核過了`);
+    await telegram.sendMessage(chatId, i18n.t('admin.ban.appealAlreadyReviewed', { id: appealId }));
     return;
   }
 
@@ -792,7 +793,7 @@ export async function handleAdminApprove(message: TelegramMessage, env: Env): Pr
     }
   }
 
-  await telegram.sendMessage(chatId, `✅ 申訴 ${appealId} 已批准，用戶已解封`);
+  await telegram.sendMessage(chatId, i18n.t('admin.ban.appealApprovedUnbanned', { id: appealId }));
 }
 
 /**
@@ -806,19 +807,23 @@ export async function handleAdminReject(message: TelegramMessage, env: Env): Pro
 
   // Check admin permission
   if (!isAdmin(telegramId, env)) {
-    await telegram.sendMessage(chatId, '❌ 你沒有權限使用此命令。');
+    const { createI18n } = await import('~/i18n');
+    const i18n = createI18n('zh-TW'); // Admin messages default to zh-TW
+    await telegram.sendMessage(chatId, i18n.t('admin.ban.noPermission'));
     return;
   }
 
   // Parse command
   const parts = message.text?.split(' ') || [];
   const appealId = parts[1];
-  const notes = parts.slice(2).join(' ') || '申訴被拒絕';
+  const { createI18n } = await import('~/i18n');
+  const i18n = createI18n('zh-TW'); // Admin messages default to zh-TW
+  const notes = parts.slice(2).join(' ') || i18n.t('admin.ban.appealRejected');
 
   if (!appealId) {
     await telegram.sendMessage(
       chatId,
-      '❌ 請提供申訴 ID\n\n用法: /admin_reject <appeal_id> [備註]'
+      i18n.t('admin.ban.provideAppealId') + i18n.t('admin.ban.usageReject')
     );
     return;
   }
@@ -830,12 +835,12 @@ export async function handleAdminReject(message: TelegramMessage, env: Env): Pro
     .first<{ user_id: string; status: string }>();
 
   if (!appeal) {
-    await telegram.sendMessage(chatId, `❌ 找不到申訴 ID: ${appealId}`);
+    await telegram.sendMessage(chatId, i18n.t('admin.ban.appealNotFound', { id: appealId }));
     return;
   }
 
   if (appeal.status !== 'pending') {
-    await telegram.sendMessage(chatId, `❌ 申訴 ${appealId} 已經被審核過了`);
+    await telegram.sendMessage(chatId, i18n.t('admin.ban.appealAlreadyReviewed', { id: appealId }));
     return;
   }
 
@@ -864,5 +869,5 @@ export async function handleAdminReject(message: TelegramMessage, env: Env): Pro
     }
   }
 
-  await telegram.sendMessage(chatId, `✅ 申訴 ${appealId} 已拒絕`);
+  await telegram.sendMessage(chatId, i18n.t('admin.ban.appealRejectedMessage', { id: appealId }));
 }

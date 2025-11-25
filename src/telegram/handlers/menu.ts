@@ -8,6 +8,7 @@ import type { Env, TelegramMessage, CallbackQuery } from '~/types';
 import { createDatabaseClient } from '~/db/client';
 import { createTelegramService } from '~/services/telegram';
 import { findUserByTelegramId } from '~/db/queries/users';
+import { createI18n } from '~/i18n';
 
 /**
  * Show main menu
@@ -57,19 +58,54 @@ export async function handleMenu(message: TelegramMessage, env: Env): Promise<vo
     // Build menu message
     let menuMessage =
       `${i18n.t('menu.title')} ${vipBadge}\n\n` +
-      `${i18n.t('menu.greeting', { nickname: user.nickname })}\n\n` +
+      `${i18n.t('menu.text2', { user: { nickname: user.nickname } })}\n\n` +
       `${i18n.t('menu.yourStatus')}\n` +
       `• ${isVip ? i18n.t('menu.levelVip') : i18n.t('menu.levelFree')}\n` +
-      `${i18n.t('menu.mbtiLabel', { mbti: user.mbti_result || i18n.t('menu.notSet') })}\n` +
-      `${i18n.t('menu.zodiacLabel', { zodiac: user.zodiac_sign || i18n.t('menu.notSet') })}\n\n`;
+      `${i18n.t('menu.settings', { user: { mbti_result: user.mbti_result || i18n.t('menu.notSet') } })}\n` +
+      `${i18n.t('menu.settings2', { user: { zodiac_sign: user.zodiac_sign || i18n.t('menu.notSet') } })}\n\n`;
 
     // Add next task reminder if exists
     if (nextTask) {
-      menuMessage += i18n.t('menu.nextTask', { 
-        taskName: nextTask.name, 
-        reward: nextTask.reward_amount, 
-        description: nextTask.description 
-      }) + '\n\n';
+      // Get task name: use i18n key based on task ID, or fallback to database name
+      let taskName: string;
+      const taskI18nKey = `tasks.name.${nextTask.id.replace('task_', '')}`;
+      const translatedName = i18n.t(taskI18nKey as any);
+      if (translatedName && !translatedName.startsWith('[') && !translatedName.endsWith(']')) {
+        // Valid translation found
+        taskName = translatedName;
+      } else if (nextTask.name.startsWith('tasks.name.')) {
+        // Database already has i18n key
+        const keyPart = nextTask.name.replace('tasks.name.', '');
+        taskName = i18n.t(`tasks.name.${keyPart}` as any) || nextTask.name;
+      } else {
+        // Fallback to database name (backward compatibility)
+        taskName = nextTask.name;
+      }
+      
+      // Get task description: use i18n key based on task ID, or fallback to database description
+      let taskDescription: string;
+      const descI18nKey = `tasks.description.${nextTask.id.replace('task_', '')}`;
+      const translatedDesc = i18n.t(descI18nKey as any);
+      if (translatedDesc && !translatedDesc.startsWith('[') && !translatedDesc.endsWith(']')) {
+        // Valid translation found
+        taskDescription = translatedDesc;
+      } else if (nextTask.description.startsWith('tasks.description.')) {
+        // Database already has i18n key
+        const keyPart = nextTask.description.replace('tasks.description.', '');
+        taskDescription = i18n.t(`tasks.description.${keyPart}` as any) || nextTask.description;
+      } else {
+        // Fallback to database description (backward compatibility)
+        taskDescription = nextTask.description;
+      }
+      
+      menuMessage +=
+        i18n.t('menu.task', {
+          nextTask: {
+            name: taskName,
+            reward_amount: nextTask.reward_amount,
+            description: taskDescription,
+          },
+        }) + '\n\n';
     }
 
     menuMessage += i18n.t('menu.selectFeature');
@@ -96,7 +132,30 @@ export async function handleMenu(message: TelegramMessage, env: Env): Promise<vo
 
     // Add next task button if exists
     if (nextTask) {
-      buttons.unshift([{ text: `✨ ${nextTask.name}`, callback_data: `next_task_${nextTask.id}` }]);
+      // Get task name: use i18n key based on task ID, or fallback to database name
+      let taskName: string;
+      const taskI18nKey = `tasks.name.${nextTask.id.replace('task_', '')}`;
+      const translatedName = i18n.t(taskI18nKey as any);
+      if (translatedName && !translatedName.startsWith('[') && !translatedName.endsWith(']')) {
+        // Valid translation found
+        taskName = translatedName;
+      } else if (nextTask.name.startsWith('tasks.name.')) {
+        // Database already has i18n key
+        const keyPart = nextTask.name.replace('tasks.name.', '');
+        taskName = i18n.t(`tasks.name.${keyPart}` as any) || nextTask.name;
+      } else {
+        // Fallback to database name (backward compatibility)
+        taskName = nextTask.name;
+      }
+      const callbackData = `next_task_${nextTask.id}`;
+      console.error('[handleMenu] Adding next task button:', {
+        taskId: nextTask.id,
+        taskName,
+        callbackData,
+        originalName: nextTask.name,
+        taskI18nKey,
+      });
+      buttons.unshift([{ text: `✨ ${taskName}`, callback_data: callbackData }]);
     }
 
     // Add VIP button for non-VIP users
@@ -118,10 +177,21 @@ export async function handleMenu(message: TelegramMessage, env: Env): Promise<vo
  */
 export async function handleMenuCallback(callbackQuery: CallbackQuery, env: Env): Promise<void> {
   const telegram = createTelegramService(env);
+  const db = createDatabaseClient(env.DB);
   const chatId = callbackQuery.message!.chat.id;
+  const telegramId = callbackQuery.from.id.toString();
   const data = callbackQuery.data;
 
+  // Get user language
+  const { createI18n } = await import('~/i18n');
+  const { findUserByTelegramId } = await import('~/db/queries/users');
+  const user = await findUserByTelegramId(db, telegramId);
+  const i18n = createI18n(user?.language_pref || 'zh-TW');
+
   try {
+    // Debug: Log callback data
+    console.error('[handleMenuCallback] Received callback:', data);
+    
     // Answer callback
     await telegram.answerCallbackQuery(callbackQuery.id);
 
@@ -166,33 +236,29 @@ export async function handleMenuCallback(callbackQuery: CallbackQuery, env: Env)
 
       case 'menu_invite': {
         // Get user's invite code and show share options
-        const db = createDatabaseClient(env.DB);
-        const telegramId = callbackQuery.from.id.toString();
-        const { findUserByTelegramId } = await import('~/db/queries/users');
-        const user = await findUserByTelegramId(db, telegramId);
-
         if (!user || !user.invite_code) {
-          await telegram.sendMessage(chatId, '⚠️ 無法獲取邀請碼');
+          await telegram.sendMessage(chatId, i18n.t('warning.invite'));
           break;
         }
 
         const inviteCode = user.invite_code;
         const botUsername = env.ENVIRONMENT === 'production' ? 'xunnibot' : 'xunni_dev_bot';
-        const shareUrl = `https://t.me/share/url?url=https://t.me/${botUsername}?start=invite_${inviteCode}&text=來 XunNi 一起丟漂流瓶吧！🍾 使用我的邀請碼加入，我們都能獲得更多配額！`;
+        const shareText = i18n.t('menu.message', { botUsername, inviteCode });
+        const shareUrl = `https://t.me/share/url?url=https://t.me/${botUsername}?start=invite_${inviteCode}&text=${encodeURIComponent(shareText)}`;
 
         await telegram.sendMessageWithButtons(
           chatId,
-          `🎁 **邀請好友**\n\n` +
-            `📋 你的邀請碼：\`${inviteCode}\`\n\n` +
-            `💡 點擊下方按鈕分享給好友：\n` +
-            `• 好友使用你的邀請碼註冊\n` +
-            `• 好友丟出第一個瓶子後激活\n` +
-            `• 你們都獲得每日配額 +1\n\n` +
-            `📊 查看邀請統計：/profile`,
+          i18n.t('menu.invite') + '\n\n' +
+            i18n.t('menu.invite2', { inviteCode }) + '\n\n' +
+            i18n.t('menu.text3') + '\n' +
+            i18n.t('menu.register') + '\n' +
+            i18n.t('menu.bottle') + '\n' +
+            i18n.t('menu.quota') + '\n\n' +
+            i18n.t('menu.stats'),
           [
-            [{ text: '📤 分享邀請碼', url: shareUrl }],
-            [{ text: '📊 查看邀請統計', callback_data: 'menu_profile' }],
-            [{ text: '🏠 返回主選單', callback_data: 'return_to_menu' }],
+            [{ text: i18n.t('menu.invite3'), url: shareUrl }],
+            [{ text: i18n.t('menu.stats2'), callback_data: 'menu_profile' }],
+            [{ text: i18n.t('common.back3'), callback_data: 'return_to_menu' }],
           ]
         );
         break;
@@ -206,9 +272,14 @@ export async function handleMenuCallback(callbackQuery: CallbackQuery, env: Env)
       }
 
       case 'menu_settings': {
-        fakeMessage.text = '/settings';
-        const { handleSettings } = await import('./settings');
-        await handleSettings(fakeMessage, env);
+        try {
+          fakeMessage.text = '/settings';
+          const { handleSettings } = await import('./settings');
+          await handleSettings(fakeMessage, env);
+        } catch (error) {
+          console.error('[handleMenuCallback] Error in menu_settings:', error);
+          await telegram.sendMessage(chatId, i18n.t('errors.systemErrorRetry'));
+        }
         break;
       }
 
@@ -227,11 +298,11 @@ export async function handleMenuCallback(callbackQuery: CallbackQuery, env: Env)
       }
 
       default:
-        await telegram.sendMessage(chatId, '⚠️ 未知的選項');
+        await telegram.sendMessage(chatId, i18n.t('common.unknownOption'));
     }
   } catch (error) {
     console.error('[handleMenuCallback] Error:', error);
-    await telegram.answerCallbackQuery(callbackQuery.id, '❌ 系統發生錯誤');
+    await telegram.answerCallbackQuery(callbackQuery.id, i18n.t('error.text6'));
   }
 }
 
@@ -241,10 +312,13 @@ export async function handleMenuCallback(callbackQuery: CallbackQuery, env: Env)
 export async function showReturnToMenuButton(
   telegram: ReturnType<typeof createTelegramService>,
   chatId: number,
-  message: string
+  message: string,
+  languagePref: string = 'zh-TW'
 ): Promise<void> {
+  const { createI18n } = await import('~/i18n');
+  const i18n = createI18n(languagePref);
   await telegram.sendMessageWithButtons(chatId, message, [
-    [{ text: '🏠 返回主選單', callback_data: 'return_to_menu' }],
+    [{ text: i18n.t('common.back3'), callback_data: 'return_to_menu' }],
   ]);
 }
 
@@ -257,7 +331,11 @@ export async function handleReturnToMenu(callbackQuery: CallbackQuery, env: Env)
 
   try {
     // Answer callback with immediate feedback
-    await telegram.answerCallbackQuery(callbackQuery.id, '✅ 正在加載...');
+    const db = createDatabaseClient(env.DB);
+    const telegramId = callbackQuery.from.id.toString();
+    const user = await findUserByTelegramId(db, telegramId);
+    const i18n = createI18n(user?.language_pref || 'zh-TW');
+    await telegram.answerCallbackQuery(callbackQuery.id, i18n.t('common.loading'));
 
     // Delete current message
     await telegram.deleteMessage(chatId, callbackQuery.message!.message_id);
@@ -271,6 +349,10 @@ export async function handleReturnToMenu(callbackQuery: CallbackQuery, env: Env)
     await handleMenu(fakeMessage as any, env);
   } catch (error) {
     console.error('[handleReturnToMenu] Error:', error);
-    await telegram.answerCallbackQuery(callbackQuery.id, '❌ 系統發生錯誤');
+    const db = createDatabaseClient(env.DB);
+    const telegramId = callbackQuery.from.id.toString();
+    const user = await findUserByTelegramId(db, telegramId);
+    const i18n = createI18n(user?.language_pref || 'zh-TW');
+    await telegram.answerCallbackQuery(callbackQuery.id, i18n.t('common.systemError'));
   }
 }

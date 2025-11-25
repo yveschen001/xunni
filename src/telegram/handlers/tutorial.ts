@@ -8,6 +8,7 @@ import { createTelegramService } from '~/services/telegram';
 import { createDatabaseClient } from '~/db/client';
 import { findUserByTelegramId } from '~/db/queries/users';
 import { getNextTutorialStep, type TutorialStep } from '~/domain/tutorial';
+import { createI18n } from '~/i18n';
 
 /**
  * Start tutorial
@@ -17,25 +18,28 @@ export async function startTutorial(message: TelegramMessage, env: Env): Promise
   const db = createDatabaseClient(env.DB);
   const chatId = message.chat.id;
   const telegramId = message.from!.id.toString();
-  
+
   try {
     const user = await findUserByTelegramId(db, telegramId);
+    const i18n = createI18n(user?.language_pref || 'zh-TW');
     if (!user) {
-      await telegram.sendMessage(chatId, '❌ 找不到用戶資料，請先使用 /start 註冊。');
+      await telegram.sendMessage(chatId, i18n.t('errors.userNotFoundRegister'));
       return;
     }
-    
+
     // Set tutorial step to welcome
     await db.d1
       .prepare('UPDATE users SET tutorial_step = ? WHERE telegram_id = ?')
       .bind('welcome', telegramId)
       .run();
-    
+
     // Show welcome page
-    await showWelcomePage(chatId, telegram, db, telegramId);
+    await showWelcomePage(chatId, telegram, db, telegramId, i18n);
   } catch (error) {
     console.error('[startTutorial] Error:', error);
-    await telegram.sendMessage(chatId, '❌ 啟動教學時發生錯誤，請稍後再試。');
+    const user = await findUserByTelegramId(db, telegramId);
+    const errorI18n = createI18n(user?.language_pref || 'zh-TW');
+    await telegram.sendMessage(chatId, errorI18n.t('error.text5'));
   }
 }
 
@@ -51,44 +55,54 @@ export async function handleTutorialCallback(
   const db = createDatabaseClient(env.DB);
   const chatId = callbackQuery.message!.chat.id;
   const telegramId = callbackQuery.from.id.toString();
-  
+
   try {
     const user = await findUserByTelegramId(db, telegramId);
+    const i18n = createI18n(user?.language_pref || 'zh-TW');
     if (!user) {
-      await telegram.answerCallbackQuery(callbackQuery.id, '❌ 找不到用戶資料');
+      await telegram.answerCallbackQuery(callbackQuery.id, i18n.t('error.userNotFound4'));
       return;
     }
-    
+
     switch (action) {
       case 'tutorial_next':
-        await handleTutorialNext(chatId, telegram, db, telegramId, user.tutorial_step as TutorialStep);
+        await handleTutorialNext(
+          chatId,
+          telegram,
+          db,
+          telegramId,
+          user.tutorial_step as TutorialStep,
+          i18n
+        );
         break;
-      
+
       case 'tutorial_skip':
-        await handleTutorialSkip(chatId, telegram, db, telegramId);
+        await handleTutorialSkip(chatId, telegram, db, telegramId, i18n);
         break;
-      
+
       case 'tutorial_throw':
-        await handleTutorialThrow(chatId, telegram, db, telegramId, env);
+        await handleTutorialThrow(chatId, telegram, db, telegramId, env, i18n);
         break;
-      
+
       case 'tutorial_catch':
-        await handleTutorialCatch(chatId, telegram, db, telegramId, env);
+        await handleTutorialCatch(chatId, telegram, db, telegramId, env, i18n);
         break;
-      
+
       case 'tutorial_view_tasks':
-        await handleTutorialViewTasks(chatId, telegram, db, telegramId, env);
+        await handleTutorialViewTasks(chatId, telegram, db, telegramId, env, i18n);
         break;
-      
+
       default:
-        await telegram.answerCallbackQuery(callbackQuery.id, '❌ 未知操作');
+        await telegram.answerCallbackQuery(callbackQuery.id, i18n.t('errors.unknownAction'));
         return;
     }
-    
+
     await telegram.answerCallbackQuery(callbackQuery.id);
   } catch (error) {
     console.error('[handleTutorialCallback] Error:', error);
-    await telegram.answerCallbackQuery(callbackQuery.id, '❌ 操作失敗');
+    const user = await findUserByTelegramId(db, telegramId);
+    const errorI18n = createI18n(user?.language_pref || 'zh-TW');
+    await telegram.answerCallbackQuery(callbackQuery.id, errorI18n.t('errors.operationFailed'));
   }
 }
 
@@ -99,27 +113,32 @@ async function showWelcomePage(
   chatId: number,
   telegram: ReturnType<typeof createTelegramService>,
   _db: ReturnType<typeof createDatabaseClient>,
-  _telegramId: string
+  _telegramId: string,
+  i18n: ReturnType<typeof createI18n>
 ): Promise<void> {
   const message =
-    '🎉 恭喜完成註冊！\n\n' +
-    '🌊 **XunNi 是什麼？**\n' +
-    '匿名漂流瓶交友平台，透過 MBTI 和星座幫你找到志同道合的朋友\n\n' +
-    '📦 **丟出漂流瓶**\n' +
-    '寫下你的心情或想法，系統會幫你找到合適的人\n\n' +
-    '🎣 **撿起漂流瓶**\n' +
-    '看看別人的漂流瓶，有興趣就回覆開始聊天\n\n' +
-    '💬 **如何成為朋友？**\n' +
-    '你撿瓶回覆 → 對方也回覆 → 開始匿名聊天';
-  
-  await telegram.sendMessageWithButtons(
-    chatId,
-    message,
-    [
-      [{ text: '開始使用 →', callback_data: 'tutorial_next' }],
-      [{ text: '跳過', callback_data: 'tutorial_skip' }],
-    ]
-  );
+    i18n.t('tutorial.welcome') +
+    '\n\n' +
+    i18n.t('tutorial.whatIsXunNi') +
+    '\n' +
+    i18n.t('tutorial.whatIsXunNiDesc') +
+    '\n\n' +
+    i18n.t('tutorial.throwBottle') +
+    '\n' +
+    i18n.t('tutorial.throwBottleDesc') +
+    '\n\n' +
+    i18n.t('tutorial.catchBottle') +
+    '\n' +
+    i18n.t('tutorial.catchBottleDesc') +
+    '\n\n' +
+    i18n.t('tutorial.howToBecomeFriends') +
+    '\n' +
+    i18n.t('tutorial.howToBecomeFriendsDesc');
+
+  await telegram.sendMessageWithButtons(chatId, message, [
+    [{ text: i18n.t('tutorial.startUsing'), callback_data: 'tutorial_next' }],
+    [{ text: i18n.t('tutorial.skip'), callback_data: 'tutorial_skip' }],
+  ]);
 }
 
 /**
@@ -127,23 +146,18 @@ async function showWelcomePage(
  */
 async function showStartUsingPage(
   chatId: number,
-  telegram: ReturnType<typeof createTelegramService>
+  telegram: ReturnType<typeof createTelegramService>,
+  i18n: ReturnType<typeof createI18n>
 ): Promise<void> {
-  const message =
-    '🎉 **準備好了！開始交朋友吧～**\n\n' +
-    '💡 完成任務可獲得額外瓶子';
-  
-  await telegram.sendMessageWithButtons(
-    chatId,
-    message,
+  const message = i18n.t('tutorial.readyToStart') + '\n\n' + i18n.t('tutorial.completeTasksForBottles');
+
+  await telegram.sendMessageWithButtons(chatId, message, [
     [
-      [
-        { text: '🌊 丟出漂流瓶', callback_data: 'tutorial_throw' },
-        { text: '🎣 撿起漂流瓶', callback_data: 'tutorial_catch' },
-      ],
-      [{ text: '📋 查看任務', callback_data: 'tutorial_view_tasks' }],
-    ]
-  );
+      { text: i18n.t('buttons.bottle3'), callback_data: 'tutorial_throw' },
+      { text: i18n.t('buttons.bottle4'), callback_data: 'tutorial_catch' },
+    ],
+    [{ text: i18n.t('tutorial.viewTasks'), callback_data: 'tutorial_view_tasks' }],
+  ]);
 }
 
 /**
@@ -154,33 +168,34 @@ async function handleTutorialNext(
   telegram: ReturnType<typeof createTelegramService>,
   db: ReturnType<typeof createDatabaseClient>,
   telegramId: string,
-  currentStep: TutorialStep
+  currentStep: TutorialStep,
+  i18n: ReturnType<typeof createI18n>
 ): Promise<void> {
   const nextStep = getNextTutorialStep(currentStep);
-  
+
   if (!nextStep) {
-    await telegram.sendMessage(chatId, '✅ 教學已完成！');
+    await telegram.sendMessage(chatId, i18n.t('tutorial.completed'));
     return;
   }
-  
+
   // Update tutorial step
   await db.d1
     .prepare('UPDATE users SET tutorial_step = ? WHERE telegram_id = ?')
     .bind(nextStep, telegramId)
     .run();
-  
+
   // Show next page
   switch (nextStep) {
     case 'start_using':
-      await showStartUsingPage(chatId, telegram);
+      await showStartUsingPage(chatId, telegram, i18n);
       break;
-    
+
     case 'completed':
-      await completeTutorial(chatId, telegram, db, telegramId);
+      await completeTutorial(chatId, telegram, db, telegramId, i18n);
       break;
-    
+
     default:
-      await telegram.sendMessage(chatId, '❌ 未知的教學步驟');
+      await telegram.sendMessage(chatId, i18n.t('tutorial.unknownStep'));
   }
 }
 
@@ -191,17 +206,23 @@ async function handleTutorialSkip(
   chatId: number,
   telegram: ReturnType<typeof createTelegramService>,
   db: ReturnType<typeof createDatabaseClient>,
-  telegramId: string
+  telegramId: string,
+  i18n: ReturnType<typeof createI18n>
 ): Promise<void> {
-  await completeTutorial(chatId, telegram, db, telegramId);
+  await completeTutorial(chatId, telegram, db, telegramId, i18n);
   await telegram.sendMessage(
     chatId,
-    '✅ 已跳過教學\n\n' +
-    '你可以隨時使用以下命令：\n' +
-    '• /throw - 丟出漂流瓶\n' +
-    '• /catch - 撿起漂流瓶\n' +
-    '• /tasks - 查看任務中心\n' +
-    '• /help - 查看幫助'
+    i18n.t('tutorial.skipped') +
+      '\n\n' +
+      i18n.t('tutorial.availableCommands') +
+      '\n' +
+      i18n.t('tutorial.commandThrow') +
+      '\n' +
+      i18n.t('tutorial.commandCatch') +
+      '\n' +
+      i18n.t('tutorial.commandTasks') +
+      '\n' +
+      i18n.t('tutorial.commandHelp')
   );
 }
 
@@ -213,21 +234,22 @@ async function handleTutorialThrow(
   telegram: ReturnType<typeof createTelegramService>,
   db: ReturnType<typeof createDatabaseClient>,
   telegramId: string,
-  env: Env
+  env: Env,
+  i18n: ReturnType<typeof createI18n>
 ): Promise<void> {
   // Complete tutorial first
-  await completeTutorial(chatId, telegram, db, telegramId);
-  
+  await completeTutorial(chatId, telegram, db, telegramId, i18n);
+
   // Import and call handleThrow to start the throw flow
   const { handleThrow } = await import('./throw');
-  
+
   // Create a mock message object for handleThrow
   const mockMessage = {
     chat: { id: chatId },
     from: { id: parseInt(telegramId) },
     text: '/throw',
   } as TelegramMessage;
-  
+
   // Start throw flow
   await handleThrow(mockMessage, env);
 }
@@ -240,21 +262,22 @@ async function handleTutorialCatch(
   telegram: ReturnType<typeof createTelegramService>,
   db: ReturnType<typeof createDatabaseClient>,
   telegramId: string,
-  env: Env
+  env: Env,
+  i18n: ReturnType<typeof createI18n>
 ): Promise<void> {
   // Complete tutorial first
-  await completeTutorial(chatId, telegram, db, telegramId);
-  
+  await completeTutorial(chatId, telegram, db, telegramId, i18n);
+
   // Import and call handleCatch to start the catch flow
   const { handleCatch } = await import('./catch');
-  
+
   // Create a mock message object for handleCatch
   const mockMessage = {
     chat: { id: chatId },
     from: { id: parseInt(telegramId) },
     text: '/catch',
   } as TelegramMessage;
-  
+
   // Start catch flow
   await handleCatch(mockMessage, env);
 }
@@ -267,21 +290,22 @@ async function handleTutorialViewTasks(
   telegram: ReturnType<typeof createTelegramService>,
   db: ReturnType<typeof createDatabaseClient>,
   telegramId: string,
-  env: Env
+  env: Env,
+  i18n: ReturnType<typeof createI18n>
 ): Promise<void> {
   // Complete tutorial first
-  await completeTutorial(chatId, telegram, db, telegramId);
-  
+  await completeTutorial(chatId, telegram, db, telegramId, i18n);
+
   // Import and call handleTasks to show tasks
   const { handleTasks } = await import('./tasks');
-  
+
   // Create a mock message object for handleTasks
   const mockMessage = {
     chat: { id: chatId },
     from: { id: parseInt(telegramId) },
     text: '/tasks',
   } as TelegramMessage;
-  
+
   // Show tasks
   await handleTasks(mockMessage, env);
 }
@@ -293,10 +317,11 @@ async function completeTutorial(
   _chatId: number,
   _telegram: ReturnType<typeof createTelegramService>,
   db: ReturnType<typeof createDatabaseClient>,
-  telegramId: string
+  telegramId: string,
+  _i18n: ReturnType<typeof createI18n>
 ): Promise<void> {
   const now = new Date().toISOString();
-  
+
   await db.d1
     .prepare(
       'UPDATE users SET tutorial_step = ?, tutorial_completed = ?, tutorial_completed_at = ? WHERE telegram_id = ?'
@@ -304,4 +329,3 @@ async function completeTutorial(
     .bind('completed', 1, now, telegramId)
     .run();
 }
-

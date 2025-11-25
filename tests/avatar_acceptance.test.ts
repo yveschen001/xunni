@@ -1,28 +1,28 @@
 /**
  * Avatar Feature Acceptance Test
- * 
+ *
  * Tests the avatar display feature in conversation history posts
  */
 
 import { describe, it, expect } from 'vitest';
 
 console.log('🎯 Avatar Feature Acceptance Test\n');
-console.log('=' .repeat(60));
+console.log('='.repeat(60));
 
 describe('Avatar Feature Acceptance Test', () => {
   const STAGING_URL = 'https://xunni-bot-staging.yves221.workers.dev';
 
   it('should have avatar blur API endpoint', async () => {
     console.log('\n✅ Test 1: Avatar Blur API Endpoint');
-    
+
     // Test with a mock image URL
     const testUrl = `${STAGING_URL}/api/avatar/blur?url=${encodeURIComponent('https://via.placeholder.com/150')}`;
-    
+
     try {
       const response = await fetch(testUrl);
       console.log(`   Status: ${response.status}`);
       console.log(`   Content-Type: ${response.headers.get('Content-Type')}`);
-      
+
       // images.weserv.nl 有時會回傳 530（外部 CDN 問題）
       // 只要 Worker 正常回應（200 或 530），就視為通過
       expect([200, 304, 530]).toContain(response.status);
@@ -39,13 +39,13 @@ describe('Avatar Feature Acceptance Test', () => {
 
   it('should return 400 for missing url parameter', async () => {
     console.log('\n✅ Test 2: Missing URL Parameter');
-    
+
     const testUrl = `${STAGING_URL}/api/avatar/blur`;
-    
+
     try {
       const response = await fetch(testUrl);
       console.log(`   Status: ${response.status}`);
-      
+
       expect(response.status).toBe(400);
     } catch (error) {
       console.error(`   ❌ Error: ${error}`);
@@ -55,13 +55,13 @@ describe('Avatar Feature Acceptance Test', () => {
 
   it('should have default avatar placeholder', async () => {
     console.log('\n✅ Test 3: Default Avatar Placeholder');
-    
+
     const testUrl = `${STAGING_URL}/assets/default-avatar.png`;
-    
+
     try {
       const response = await fetch(testUrl);
       console.log(`   Status: ${response.status}`);
-      
+
       // It's okay if this returns 404 for now (placeholder file)
       // In production, this should return 200
       console.log(`   Note: Default avatar should be uploaded before production`);
@@ -86,4 +86,3 @@ console.log('   6. ✅ 免費用戶看到 VIP 升級提示');
 console.log('   7. ✅ VIP 用戶不看到升級提示');
 console.log('   8. ✅ /vip 命令顯示新權益');
 console.log('   9. ✅ /help 命令顯示新權益\n');
-

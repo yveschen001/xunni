@@ -3,23 +3,23 @@
  * Handles tutorial flow and state transitions
  */
 
-export type TutorialStep = 
-  | 'not_started'     // Not started
-  | 'welcome'         // Welcome page
-  | 'start_using'     // Start using
-  | 'completed';      // Completed
+export type TutorialStep =
+  | 'not_started' // Not started
+  | 'welcome' // Welcome page
+  | 'start_using' // Start using
+  | 'completed'; // Completed
 
 /**
  * Get next tutorial step
  */
 export function getNextTutorialStep(currentStep: TutorialStep): TutorialStep | null {
   const transitions: Record<TutorialStep, TutorialStep | null> = {
-    'not_started': 'welcome',
-    'welcome': 'start_using',
-    'start_using': 'completed',
-    'completed': null,
+    not_started: 'welcome',
+    welcome: 'start_using',
+    start_using: 'completed',
+    completed: null,
   };
-  
+
   return transitions[currentStep];
 }
 
@@ -39,4 +39,3 @@ export function shouldAutoTriggerTutorial(
 ): boolean {
   return onboardingCompleted && !tutorialCompleted;
 }
-

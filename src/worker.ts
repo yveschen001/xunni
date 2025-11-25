@@ -65,7 +65,7 @@ export default {
           const { handleAvatarBlur } = await import('./api/avatar_blur');
           return await handleAvatarBlur(request, env);
         }
-        
+
         // Ad start callback
         if (url.pathname === '/api/ad/start' && request.method === 'POST') {
           const { handleAdStart } = await import('./telegram/handlers/ad_reward');
@@ -260,7 +260,9 @@ export default {
         const { batchUpdateExpiredAvatars } = await import('./services/avatar_background_update');
         const result = await batchUpdateExpiredAvatars(db, env);
         // eslint-disable-next-line no-console
-        console.log(`[Worker] Avatar batch update completed: ${result.updated} updated, ${result.failed} failed`);
+        console.log(
+          `[Worker] Avatar batch update completed: ${result.updated} updated, ${result.failed} failed`
+        );
       }
 
       // Send birthday greetings (Every day at 01:00 UTC = 09:00 Taipei)

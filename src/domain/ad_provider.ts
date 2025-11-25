@@ -421,18 +421,23 @@ export function compareProvidersByPerformance(providers: AdProvider[]): AdProvid
  * Format provider status for display
  *
  * @param provider - Provider
+ * @param i18n - Optional i18n instance for translation
  * @returns Formatted status string
  */
-export function formatProviderStatus(provider: AdProvider): string {
+export function formatProviderStatus(provider: AdProvider, i18n?: any): string {
   const stats = calculateProviderStats(provider);
   const health = getProviderHealth(provider);
 
   const statusEmoji = provider.is_enabled ? '✅' : '❌';
   const healthEmoji = health.is_healthy ? '💚' : '⚠️';
 
+  const healthStatus = health.is_healthy
+    ? (i18n?.t('adProvider.health.good') || '良好')
+    : (i18n?.t('adProvider.health.needsAttention') || '需要關注');
+
   return `
 ${statusEmoji} **${provider.provider_display_name}**
-${healthEmoji} 健康狀態: ${health.is_healthy ? '良好' : '需要關注'}
+${healthEmoji} 健康狀態: ${healthStatus}
 📊 完成率: ${stats.completion_rate}%
 ❌ 錯誤率: ${stats.error_rate}%
 📈 總請求: ${stats.total_requests}

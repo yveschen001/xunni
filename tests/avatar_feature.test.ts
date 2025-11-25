@@ -1,15 +1,15 @@
 /**
  * Avatar Feature Tests
- * 
+ *
  * Tests for avatar display feature with caching in conversation history posts
  */
 
 import { describe, it, expect, beforeEach } from 'vitest';
-import { 
-  getDisplayAvatarUrl, 
-  getDefaultAvatarUrl, 
+import {
+  getDisplayAvatarUrl,
+  getDefaultAvatarUrl,
   isAvatarCacheExpired,
-  generateBlurredAvatarUrl 
+  generateBlurredAvatarUrl,
 } from '~/services/avatar';
 
 describe('Avatar Feature', () => {
@@ -60,13 +60,13 @@ describe('Avatar Feature', () => {
     it('should generate valid blur proxy URL', () => {
       const originalUrl = 'https://api.telegram.org/file/bot123/photo.jpg';
       const result = getDisplayAvatarUrl(originalUrl, false, mockEnv);
-      
+
       // Should be a valid URL
       expect(() => new URL(result)).not.toThrow();
-      
+
       // Should contain blur endpoint
       expect(result).toContain('/api/avatar/blur');
-      
+
       // Should have url parameter
       const url = new URL(result);
       expect(url.searchParams.get('url')).toBe(originalUrl);
@@ -83,7 +83,7 @@ describe('Avatar Feature', () => {
       const freeMaleResult = getDisplayAvatarUrl(null, false, mockEnv, 'male');
       const vipFemaleResult = getDisplayAvatarUrl(null, true, mockEnv, 'female');
       const freeFemaleResult = getDisplayAvatarUrl(null, false, mockEnv, 'female');
-      
+
       expect(vipMaleResult).toBe('https://test.example.com/assets/default-avatar-male.png');
       expect(freeMaleResult).toBe('https://test.example.com/assets/default-avatar-male.png');
       expect(vipFemaleResult).toBe('https://test.example.com/assets/default-avatar-female.png');
@@ -122,7 +122,7 @@ describe('Avatar Cache Management', () => {
     it('should generate correct blur proxy URL', () => {
       const originalUrl = 'https://api.telegram.org/file/bot123/photo.jpg';
       const result = generateBlurredAvatarUrl(originalUrl, mockEnv);
-      
+
       expect(result).toContain('/api/avatar/blur?url=');
       expect(result).toContain(encodeURIComponent(originalUrl));
     });
@@ -150,7 +150,7 @@ describe('Conversation History with Avatar', () => {
   describe('buildHistoryPostContent with VIP status', () => {
     it('should include VIP upgrade hint for free users', async () => {
       const { buildHistoryPostContent } = await import('~/domain/conversation_history');
-      
+
       const content = buildHistoryPostContent(
         'TEST123',
         1,
@@ -161,18 +161,18 @@ describe('Conversation History with Avatar', () => {
           mbti: 'INTJ',
           bloodType: 'A',
           zodiac: '白羊座',
-          matchScore: 85
+          matchScore: 85,
         },
         false // Free user
       );
-      
+
       expect(content).toContain('🔒 升級 VIP 解鎖對方清晰頭像');
       expect(content).toContain('💎 使用 /vip 了解更多');
     });
 
     it('should NOT include VIP upgrade hint for VIP users', async () => {
       const { buildHistoryPostContent } = await import('~/domain/conversation_history');
-      
+
       const content = buildHistoryPostContent(
         'TEST123',
         1,
@@ -183,18 +183,18 @@ describe('Conversation History with Avatar', () => {
           mbti: 'INTJ',
           bloodType: 'A',
           zodiac: '白羊座',
-          matchScore: 85
+          matchScore: 85,
         },
         true // VIP user
       );
-      
+
       expect(content).not.toContain('🔒 升級 VIP 解鎖對方清晰頭像');
       expect(content).not.toContain('💎 使用 /vip 了解更多');
     });
 
     it('should include partner info and match score', async () => {
       const { buildHistoryPostContent } = await import('~/domain/conversation_history');
-      
+
       const content = buildHistoryPostContent(
         'TEST123',
         1,
@@ -205,11 +205,11 @@ describe('Conversation History with Avatar', () => {
           mbti: 'INTJ',
           bloodType: 'A',
           zodiac: '白羊座',
-          matchScore: 85
+          matchScore: 85,
         },
         false
       );
-      
+
       expect(content).toContain('👤 對方資料：');
       expect(content).toContain('📝 暱稱：匿名***');
       expect(content).toContain('🧠 MBTI：INTJ');
@@ -219,4 +219,3 @@ describe('Conversation History with Avatar', () => {
     });
   });
 });
-

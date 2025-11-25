@@ -1,0 +1,2196 @@
+{
+  "timestamp": "2025-11-24T11:27:25.090Z",
+  "stats": {
+    "totalKeys": 3741,
+    "updatedKeys": 3741,
+    "newKeys": 0,
+    "skippedKeys": 0,
+    "errors": [
+      {
+        "key": "admin.message13",
+        "language": "zh-CN",
+        "error": "已自动移除 JavaScript 表达式（如 || 'zh-TW'），默认值应在代码中处理",
+        "fixed": true,
+        "original": "• 用户名: @\\${targetUser?.username || '-'}\\n\\n",
+        "fixedValue": "• 用户名: @\\${targetUser?.username}\\n\\n"
+      },
+      {
+        "key": "admin.message13",
+        "language": "en",
+        "error": "已自动移除 JavaScript 表达式（如 || 'zh-TW'），默认值应在代码中处理",
+        "fixed": true,
+        "original": "• Username: @\\${targetUser?.username || '-'}\\n\\n",
+        "fixedValue": "• Username: @\\${targetUser?.username}\\n\\n"
+      },
+      {
+        "key": "admin.message13",
+        "language": "ar",
+        "error": "已自动移除 JavaScript 表达式（如 || 'zh-TW'），默认值应在代码中处理",
+        "fixed": true,
+        "original": "• اسم المستخدم: @\\${targetUser?.username || '-'}\\n\\n",
+        "fixedValue": "• اسم المستخدم: @\\${targetUser?.username}\\n\\n"
+      },
+      {
+        "key": "admin.message16",
+        "language": "zh-CN",
+        "error": "已自动移除 JavaScript 表达式（如 || 'zh-TW'），默认值应在代码中处理",
+        "fixed": true,
+        "original": "• 用户名: @\\${targetUser.username || '-'}\\n\\n",
+        "fixedValue": "• 用户名: @\\${targetUser.username}\\n\\n"
+      },
+      {
+        "key": "admin.message16",
+        "language": "en",
+        "error": "已自动移除 JavaScript 表达式（如 || 'zh-TW'），默认值应在代码中处理",
+        "fixed": true,
+        "original": "• Username: @\\${targetUser.username || '-'}\\n\\n",
+        "fixedValue": "• Username: @\\${targetUser.username}\\n\\n"
+      },
+      {
+        "key": "admin.message16",
+        "language": "ar",
+        "error": "已自动移除 JavaScript 表达式（如 || 'zh-TW'），默认值应在代码中处理",
+        "fixed": true,
+        "original": "• اسم المستخدم: @\\${targetUser.username || '-'}\\n\\n",
+        "fixedValue": "• اسم المستخدم: @\\${targetUser.username}\\n\\n"
+      },
+      {
+        "key": "admin.message32",
+        "language": "zh-CN",
+        "error": "已自动移除 JavaScript 表达式（如 || 'zh-TW'），默认值应在代码中处理",
+        "fixed": true,
+        "original": "• 用户名：@\\${user.username || '无'}\\n {user.username || '無'} ${user.username || '無'}",
+        "fixedValue": "• 用户名：@\\${user.username}\\n {user.username || '無'} ${user.username}"
+      },
+      {
+        "key": "admin.message32",
+        "language": "en",
+        "error": "已自动移除 JavaScript 表达式（如 || 'zh-TW'），默认值应在代码中处理",
+        "fixed": true,
+        "original": "• Username: @\\${user.username || 'None'}\\n {user.username || '無'} ${user.username || '無'}",
+        "fixedValue": "• Username: @\\${user.username}\\n {user.username || '無'} ${user.username}"
+      },
+      {
+        "key": "admin.message32",
+        "language": "ar",
+        "error": "已自动移除 JavaScript 表达式（如 || 'zh-TW'），默认值应在代码中处理",
+        "fixed": true,
+        "original": "• اسم المستخدم: @\\${user.username || 'لا شيء'}\\n {user.username || '無'} ${user.username || '無'}",
+        "fixedValue": "• اسم المستخدم: @\\${user.username}\\n {user.username || '無'} ${user.username}"
+      },
+      {
+        "key": "admin.settings",
+        "language": "zh-CN",
+        "error": "已自动移除 JavaScript 表达式（如 || 'zh-TW'），默认值应在代码中处理",
+        "fixed": true,
+        "original": "• 昵称: \\${targetUser?.nickname || '未设定'}\\n {targetUser?.nickname || '未設定'} ${targetUser?.nickname || '未設定'}",
+        "fixedValue": "• 昵称: \\${targetUser?.nickname}\\n {targetUser?.nickname || '未設定'} ${targetUser?.nickname}"
+      },
+      {
+        "key": "admin.settings",
+        "language": "en",
+        "error": "已自动移除 JavaScript 表达式（如 || 'zh-TW'），默认值应在代码中处理",
+        "fixed": true,
+        "original": "• Nickname: \\${targetUser?.nickname || 'Not Set'}\\n {targetUser?.nickname || '未設定'} ${targetUser?.nickname || '未設定'}",
+        "fixedValue": "• Nickname: \\${targetUser?.nickname}\\n {targetUser?.nickname || '未設定'} ${targetUser?.nickname}"
+      },
+      {
+        "key": "admin.settings",
+        "language": "ar",
+        "error": "已自动移除 JavaScript 表达式（如 || 'zh-TW'），默认值应在代码中处理",
+        "fixed": true,
+        "original": "• الاسم المستعار: \\${targetUser?.nickname || 'غير محدد'}\\n {targetUser?.nickname || '未設定'} ${targetUser?.nickname || '未設定'}",
+        "fixedValue": "• الاسم المستعار: \\${targetUser?.nickname}\\n {targetUser?.nickname || '未設定'} ${targetUser?.nickname}"
+      },
+      {
+        "key": "admin.settings2",
+        "language": "zh-CN",
+        "error": "已自动移除 JavaScript 表达式（如 || 'zh-TW'），默认值应在代码中处理",
+        "fixed": true,
+        "original": "• 昵称: \\${targetUser.nickname || '未设定'}\\n {targetUser.nickname || '未設定'} ${targetUser.nickname || '未設定'}",
+        "fixedValue": "• 昵称: \\${targetUser.nickname}\\n {targetUser.nickname || '未設定'} ${targetUser.nickname}"
+      },
+      {
+        "key": "admin.settings2",
+        "language": "en",
+        "error": "已自动移除 JavaScript 表达式（如 || 'zh-TW'），默认值应在代码中处理",
+        "fixed": true,
+        "original": "• Nickname: \\${targetUser.nickname || 'Not Set'}\\n {targetUser.nickname || '未設定'} ${targetUser.nickname || '未設定'}",
+        "fixedValue": "• Nickname: \\${targetUser.nickname}\\n {targetUser.nickname || '未設定'} ${targetUser.nickname}"
+      },
+      {
+        "key": "admin.settings2",
+        "language": "ar",
+        "error": "已自动移除 JavaScript 表达式（如 || 'zh-TW'），默认值应在代码中处理",
+        "fixed": true,
+        "original": "• الاسم المستعار: \\${targetUser.nickname || 'غير محدد'}\\n {targetUser.nickname || '未設定'} ${targetUser.nickname || '未設定'}",
+        "fixedValue": "• الاسم المستعار: \\${targetUser.nickname}\\n {targetUser.nickname || '未設定'} ${targetUser.nickname}"
+      },
+      {
+        "key": "admin.settings3",
+        "language": "zh-CN",
+        "error": "已自动移除 JavaScript 表达式（如 || 'zh-TW'），默认值应在代码中处理",
+        "fixed": true,
+        "original": "• 昵称：\\${user.nickname || '未设定'}\\n {user.nickname || '未設定'} ${user.nickname || '未設定'}",
+        "fixedValue": "• 昵称：\\${user.nickname}\\n {user.nickname || '未設定'} ${user.nickname}"
+      },
+      {
+        "key": "admin.settings3",
+        "language": "en",
+        "error": "已自动移除 JavaScript 表达式（如 || 'zh-TW'），默认值应在代码中处理",
+        "fixed": true,
+        "original": "• Nickname: \\${user.nickname || 'Not Set'}\\n {user.nickname || '未設定'} ${user.nickname || '未設定'}",
+        "fixedValue": "• Nickname: \\${user.nickname}\\n {user.nickname || '未設定'} ${user.nickname}"
+      },
+      {
+        "key": "admin.settings3",
+        "language": "ar",
+        "error": "已自动移除 JavaScript 表达式（如 || 'zh-TW'），默认值应在代码中处理",
+        "fixed": true,
+        "original": "• الاسم المستعار: \\${user.nickname || 'غير محدد'}\\n {user.nickname || '未設定'} ${user.nickname || '未設定'}",
+        "fixedValue": "• الاسم المستعار: \\${user.nickname}\\n {user.nickname || '未設定'} ${user.nickname}"
+      },
+      {
+        "key": "analytics.ad",
+        "language": "ar",
+        "error": "变量数量不匹配: 源语言有 9 个，翻译有 10 个",
+        "fixed": false,
+        "original": "{officialImpressions} {officialClicks} {officialCtr} {officialRewardsGranted} {vipPageViews} {vipPurchaseIntents} {vipConversions} {vipConversionRate} {vipRevenue} ${vipRevenue}"
+      },
+      {
+        "key": "bottle.catch.settings",
+        "language": "zh-CN",
+        "error": "已自动移除 JavaScript 表达式（如 || 'zh-TW'），默认值应在代码中处理",
+        "fixed": true,
+        "original": "🧠 MBTI：\\\\${bottle.mbti_result || '未设定'}\\n {bottle.mbti_result || '未設定'} ${bottle.mbti_result || '未設定'}",
+        "fixedValue": "🧠 MBTI：\\\\${bottle.mbti_result}\\n {bottle.mbti_result || '未設定'} ${bottle.mbti_result}"
+      },
+      {
+        "key": "bottle.catch.settings",
+        "language": "en",
+        "error": "已自动移除 JavaScript 表达式（如 || 'zh-TW'），默认值应在代码中处理",
+        "fixed": true,
+        "original": "🧠 MBTI: \\${bottle.mbti_result || 'Not set'}\\n {bottle.mbti_result || '未設定'} ${bottle.mbti_result || '未設定'}",
+        "fixedValue": "🧠 MBTI: \\${bottle.mbti_result}\\n {bottle.mbti_result || '未設定'} ${bottle.mbti_result}"
+      },
+      {
+        "key": "bottle.catch.settings",
+        "language": "ar",
+        "error": "已自动移除 JavaScript 表达式（如 || 'zh-TW'），默认值应在代码中处理",
+        "fixed": true,
+        "original": "🧠 MBTI: \\${bottle.mbti_result || 'غير محدد'}\\n {bottle.mbti_result || '未設定'} ${bottle.mbti_result || '未設定'}",
+        "fixedValue": "🧠 MBTI: \\${bottle.mbti_result}\\n {bottle.mbti_result || '未設定'} ${bottle.mbti_result}"
+      },
+      {
+        "key": "bottle.catch.zodiac",
+        "language": "zh-CN",
+        "error": "已自动移除 JavaScript 表达式（如 || 'zh-TW'），默认值应在代码中处理",
+        "fixed": true,
+        "original": "⭐ 星座：\\\\${bottle.zodiac || 'Virgo'}\\n",
+        "fixedValue": "⭐ 星座：\\\\${bottle.zodiac}\\n"
+      },
+      {
+        "key": "bottle.catch.zodiac",
+        "language": "en",
+        "error": "已自动移除 JavaScript 表达式（如 || 'zh-TW'），默认值应在代码中处理",
+        "fixed": true,
+        "original": "⭐ Zodiac: \\\\${bottle.zodiac || 'Virgo'}\\n",
+        "fixedValue": "⭐ Zodiac: \\\\${bottle.zodiac}\\n"
+      },
+      {
+        "key": "bottle.catch.zodiac",
+        "language": "ar",
+        "error": "已自动移除 JavaScript 表达式（如 || 'zh-TW'），默认值应在代码中处理",
+        "fixed": true,
+        "original": "⭐ برج: \\\\${bottle.zodiac || 'عذراء'}\\n {bottle.zodiac || 'Virgo'} ${bottle.zodiac || 'Virgo'}",
+        "fixedValue": "⭐ برج: \\\\${bottle.zodiac}\\n {bottle.zodiac || 'Virgo'} ${bottle.zodiac}"
+      },
+      {
+        "key": "bottle.throw.settings",
+        "language": "zh-CN",
+        "error": "已自动移除 JavaScript 表达式（如 || 'zh-TW'），默认值应在代码中处理",
+        "fixed": true,
+        "original": "🧠 MBTI：\\\\${matchResult.user.mbti_result || '未设定'}\\n {matchResult.user.mbti_result || '未設定'} ${matchResult.user.mbti_result || '未設定'}",
+        "fixedValue": "🧠 MBTI：\\\\${matchResult.user.mbti_result}\\n {matchResult.user.mbti_result || '未設定'} ${matchResult.user.mbti_result}"
+      },
+      {
+        "key": "bottle.throw.settings",
+        "language": "en",
+        "error": "已自动移除 JavaScript 表达式（如 || 'zh-TW'），默认值应在代码中处理",
+        "fixed": true,
+        "original": "🧠 MBTI: \\\\${matchResult.user.mbti_result || 'Not Set'}\\n {matchResult.user.mbti_result || '未設定'} ${matchResult.user.mbti_result || '未設定'}",
+        "fixedValue": "🧠 MBTI: \\\\${matchResult.user.mbti_result}\\n {matchResult.user.mbti_result || '未設定'} ${matchResult.user.mbti_result}"
+      },
+      {
+        "key": "bottle.throw.settings",
+        "language": "ar",
+        "error": "已自动移除 JavaScript 表达式（如 || 'zh-TW'），默认值应在代码中处理",
+        "fixed": true,
+        "original": "🧠 MBTI: \\\\${matchResult.user.mbti_result || 'غير محدد'}\\n {matchResult.user.mbti_result || '未設定'} ${matchResult.user.mbti_result || '未設定'}",
+        "fixedValue": "🧠 MBTI: \\\\${matchResult.user.mbti_result}\\n {matchResult.user.mbti_result || '未設定'} ${matchResult.user.mbti_result}"
+      },
+      {
+        "key": "bottle.throw.settings2",
+        "language": "zh-CN",
+        "error": "已自动移除 JavaScript 表达式（如 || 'zh-TW'），默认值应在代码中处理",
+        "fixed": true,
+        "original": "⭐ 星座：\\\\${matchResult.user.zodiac || '未设定'}\\n {matchResult.user.zodiac || '未設定'} ${matchResult.user.zodiac || '未設定'}",
+        "fixedValue": "⭐ 星座：\\\\${matchResult.user.zodiac}\\n {matchResult.user.zodiac || '未設定'} ${matchResult.user.zodiac}"
+      },
+      {
+        "key": "bottle.throw.settings2",
+        "language": "en",
+        "error": "已自动移除 JavaScript 表达式（如 || 'zh-TW'），默认值应在代码中处理",
+        "fixed": true,
+        "original": "⭐ Zodiac: \\\\${matchResult.user.zodiac || 'Not Set'}\\n {matchResult.user.zodiac || '未設定'} ${matchResult.user.zodiac || '未設定'}",
+        "fixedValue": "⭐ Zodiac: \\\\${matchResult.user.zodiac}\\n {matchResult.user.zodiac || '未設定'} ${matchResult.user.zodiac}"
+      },
+      {
+        "key": "bottle.throw.settings2",
+        "language": "ar",
+        "error": "已自动移除 JavaScript 表达式（如 || 'zh-TW'），默认值应在代码中处理",
+        "fixed": true,
+        "original": "⭐ الأبراج: \\\\${matchResult.user.zodiac || 'غير محدد'}\\n {matchResult.user.zodiac || '未設定'} ${matchResult.user.zodiac || '未設定'}",
+        "fixedValue": "⭐ الأبراج: \\\\${matchResult.user.zodiac}\\n {matchResult.user.zodiac || '未設定'} ${matchResult.user.zodiac}"
+      },
+      {
+        "key": "bottle.throw.settings3",
+        "language": "zh-CN",
+        "error": "已自动移除 JavaScript 表达式（如 || 'zh-TW'），默认值应在代码中处理",
+        "fixed": true,
+        "original": "🧠 MBTI：\\\\${user.mbti_result || '未设定'}\\n {user.mbti_result || '未設定'} ${user.mbti_result || '未設定'}",
+        "fixedValue": "🧠 MBTI：\\\\${user.mbti_result}\\n {user.mbti_result || '未設定'} ${user.mbti_result}"
+      },
+      {
+        "key": "bottle.throw.settings3",
+        "language": "en",
+        "error": "已自动移除 JavaScript 表达式（如 || 'zh-TW'），默认值应在代码中处理",
+        "fixed": true,
+        "original": "🧠 MBTI: \\${user.mbti_result || 'Not set'}\\n {user.mbti_result || '未設定'} ${user.mbti_result || '未設定'}",
+        "fixedValue": "🧠 MBTI: \\${user.mbti_result}\\n {user.mbti_result || '未設定'} ${user.mbti_result}"
+      },
+      {
+        "key": "bottle.throw.settings3",
+        "language": "ar",
+        "error": "已自动移除 JavaScript 表达式（如 || 'zh-TW'），默认值应在代码中处理",
+        "fixed": true,
+        "original": "🧠 MBTI: \\${user.mbti_result || 'لم يتم تعيينه'}\\n {user.mbti_result || '未設定'} ${user.mbti_result || '未設定'}",
+        "fixedValue": "🧠 MBTI: \\${user.mbti_result}\\n {user.mbti_result || '未設定'} ${user.mbti_result}"
+      },
+      {
+        "key": "bottle.throw.settings4",
+        "language": "zh-CN",
+        "error": "已自动移除 JavaScript 表达式（如 || 'zh-TW'），默认值应在代码中处理",
+        "fixed": true,
+        "original": "⭐ 星座：\\\\${user.zodiac_sign || '未设定'}\\n {user.zodiac_sign || '未設定'} ${user.zodiac_sign || '未設定'}",
+        "fixedValue": "⭐ 星座：\\\\${user.zodiac_sign}\\n {user.zodiac_sign || '未設定'} ${user.zodiac_sign}"
+      },
+      {
+        "key": "bottle.throw.settings4",
+        "language": "en",
+        "error": "已自动移除 JavaScript 表达式（如 || 'zh-TW'），默认值应在代码中处理",
+        "fixed": true,
+        "original": "⭐ Zodiac: \\${user.zodiac_sign || 'Not set'}\\n {user.zodiac_sign || '未設定'} ${user.zodiac_sign || '未設定'}",
+        "fixedValue": "⭐ Zodiac: \\${user.zodiac_sign}\\n {user.zodiac_sign || '未設定'} ${user.zodiac_sign}"
+      },
+      {
+        "key": "bottle.throw.settings4",
+        "language": "ar",
+        "error": "已自动移除 JavaScript 表达式（如 || 'zh-TW'），默认值应在代码中处理",
+        "fixed": true,
+        "original": "⭐ برج: \\${user.zodiac_sign || 'لم يتم تعيينه'}\\n {user.zodiac_sign || '未設定'} ${user.zodiac_sign || '未設定'}",
+        "fixedValue": "⭐ برج: \\${user.zodiac_sign}\\n {user.zodiac_sign || '未設定'} ${user.zodiac_sign}"
+      },
+      {
+        "key": "common.complete",
+        "language": "en",
+        "error": "变量数量不匹配: 源语言有 0 个，翻译有 1 个; 模板变量数量不匹配: 源语言有 0 个，翻译有 1 个",
+        "fixed": false,
+        "original": "📺 **Watch ads to earn quotas**\\n\\n🎁 Completing the watch earns **+1 quota**\\n📊 Remaining today: **\\${remainingAds}/20** times\\n\\n👇 Click the button below to start watching {updated.ads_watched} {updated.quota_earned} {result.remaining_ads} {result.remaining_ads > 0 ? '💡 繼續觀看廣告可獲得更多額度！' : '✅ 今日廣告已達上限'} ${updated.ads_watched} ${updated.quota_earned} ${result.remaining_ads} ${result.remaining_ads > 0 ? '💡 繼續觀看廣告可獲得更多額度！' : '✅ 今日廣告已達上限'}"
+      },
+      {
+        "key": "common.complete",
+        "language": "ar",
+        "error": "变量数量不匹配: 源语言有 0 个，翻译有 1 个; 模板变量数量不匹配: 源语言有 0 个，翻译有 1 个",
+        "fixed": false,
+        "original": "📺 **اكسب حصصًا من خلال مشاهدة الإعلانات**\\n\\n🎁 إكمال المشاهدة يكسب **+1 حصة**\\n📊 المتبقي اليوم: **\\${remainingAds}/20** مرة\\n\\n👇 اضغط على الزر أدناه لبدء المشاهدة {updated.ads_watched} {updated.quota_earned} {result.remaining_ads} {result.remaining_ads > 0 ? '💡 繼續觀看廣告可獲得更多額度！' : '✅ 今日廣告已達上限'} ${updated.ads_watched} ${updated.quota_earned} ${result.remaining_ads} ${result.remaining_ads > 0 ? '💡 繼續觀看廣告可獲得更多額度！' : '✅ 今日廣告已達上限'}"
+      },
+      {
+        "key": "common.complete2",
+        "language": "en",
+        "error": "变量数量不匹配: 源语言有 1 个，翻译有 2 个",
+        "fixed": false,
+        "original": "Completion time: \\${new Date(broadcast.completedAt).toLocaleString('zh-TW')}\\n {remainingAds} ${remainingAds}"
+      },
+      {
+        "key": "common.complete2",
+        "language": "ar",
+        "error": "变量数量不匹配: 源语言有 1 个，翻译有 2 个",
+        "fixed": false,
+        "original": "وقت الانتهاء: \\${new Date(broadcast.completedAt).toLocaleString('zh-TW')}\\n {remainingAds} ${remainingAds}"
+      },
+      {
+        "key": "common.invite2",
+        "language": "zh-CN",
+        "error": "已自动移除 JavaScript 表达式（如 || 'zh-TW'），默认值应在代码中处理",
+        "fixed": true,
+        "original": "邀请码: \\${user.invite_code || '未生成'}\\n",
+        "fixedValue": "邀请码: \\${user.invite_code}\\n"
+      },
+      {
+        "key": "common.invite2",
+        "language": "en",
+        "error": "已自动移除 JavaScript 表达式（如 || 'zh-TW'），默认值应在代码中处理",
+        "fixed": true,
+        "original": "Invite code: \\${user.invite_code || 'Not generated'}\\n {user.invite_code || '未生成'} ${user.invite_code || '未生成'}",
+        "fixedValue": "Invite code: \\${user.invite_code}\\n {user.invite_code || '未生成'} ${user.invite_code}"
+      },
+      {
+        "key": "common.invite2",
+        "language": "ar",
+        "error": "已自动移除 JavaScript 表达式（如 || 'zh-TW'），默认值应在代码中处理",
+        "fixed": true,
+        "original": "رمز الدعوة: \\${user.invite_code || 'لم يتم إنشاؤه'}\\n {user.invite_code || '未生成'} ${user.invite_code || '未生成'}",
+        "fixedValue": "رمز الدعوة: \\${user.invite_code}\\n {user.invite_code || '未生成'} ${user.invite_code}"
+      },
+      {
+        "key": "common.invite3",
+        "language": "zh-CN",
+        "error": "已自动移除 JavaScript 表达式（如 || 'zh-TW'），默认值应在代码中处理",
+        "fixed": true,
+        "original": "被谁邀请: \\${user.invited_by || '无'}\\n\\n {user.invited_by || '無'} ${user.invited_by || '無'}",
+        "fixedValue": "被谁邀请: \\${user.invited_by}\\n\\n {user.invited_by || '無'} ${user.invited_by}"
+      },
+      {
+        "key": "common.invite3",
+        "language": "en",
+        "error": "已自动移除 JavaScript 表达式（如 || 'zh-TW'），默认值应在代码中处理",
+        "fixed": true,
+        "original": "Invited by: \\${user.invited_by || 'None'}\\n\\n {user.invited_by || '無'} ${user.invited_by || '無'}",
+        "fixedValue": "Invited by: \\${user.invited_by}\\n\\n {user.invited_by || '無'} ${user.invited_by}"
+      },
+      {
+        "key": "common.invite3",
+        "language": "ar",
+        "error": "已自动移除 JavaScript 表达式（如 || 'zh-TW'），默认值应在代码中处理",
+        "fixed": true,
+        "original": "تمت الدعوة بواسطة: \\${user.invited_by || 'لا شيء'}\\n\\n {user.invited_by || '無'} ${user.invited_by || '無'}",
+        "fixedValue": "تمت الدعوة بواسطة: \\${user.invited_by}\\n\\n {user.invited_by || '無'} ${user.invited_by}"
+      },
+      {
+        "key": "common.message46",
+        "language": "zh-CN",
+        "error": "已自动移除 JavaScript 表达式（如 || 'zh-TW'），默认值应在代码中处理",
+        "fixed": true,
+        "original": "昵称: \\${user.nickname || '未设置'}\\n {user.nickname || '未設置'} ${user.nickname || '未設置'}",
+        "fixedValue": "昵称: \\${user.nickname}\\n {user.nickname || '未設置'} ${user.nickname}"
+      },
+      {
+        "key": "common.message46",
+        "language": "en",
+        "error": "已自动移除 JavaScript 表达式（如 || 'zh-TW'），默认值应在代码中处理",
+        "fixed": true,
+        "original": "Nickname: \\${user.nickname || 'Not set'}\\n {user.nickname || '未設置'} ${user.nickname || '未設置'}",
+        "fixedValue": "Nickname: \\${user.nickname}\\n {user.nickname || '未設置'} ${user.nickname}"
+      },
+      {
+        "key": "common.message46",
+        "language": "ar",
+        "error": "已自动移除 JavaScript 表达式（如 || 'zh-TW'），默认值应在代码中处理",
+        "fixed": true,
+        "original": "اللقب: \\${user.nickname || 'غير محدد'}\\n {user.nickname || '未設置'} ${user.nickname || '未設置'}",
+        "fixedValue": "اللقب: \\${user.nickname}\\n {user.nickname || '未設置'} ${user.nickname}"
+      },
+      {
+        "key": "common.settings",
+        "language": "zh-CN",
+        "error": "已自动移除 JavaScript 表达式（如 || 'zh-TW'），默认值应在代码中处理",
+        "fixed": true,
+        "original": "🧠 MBTI：\\${updatedUser.mbti_result || '未设定'}（可重新测试） {updatedUser.mbti_result || '未設定'} ${updatedUser.mbti_result || '未設定'}",
+        "fixedValue": "🧠 MBTI：\\${updatedUser.mbti_result}（可重新测试） {updatedUser.mbti_result || '未設定'} ${updatedUser.mbti_result}"
+      },
+      {
+        "key": "common.settings",
+        "language": "en",
+        "error": "已自动移除 JavaScript 表达式（如 || 'zh-TW'），默认值应在代码中处理",
+        "fixed": true,
+        "original": "🧠 MBTI: \\${updatedUser.mbti_result || 'Not set'} (can retest) {updatedUser.mbti_result || '未設定'} ${updatedUser.mbti_result || '未設定'}",
+        "fixedValue": "🧠 MBTI: \\${updatedUser.mbti_result} (can retest) {updatedUser.mbti_result || '未設定'} ${updatedUser.mbti_result}"
+      },
+      {
+        "key": "common.settings",
+        "language": "ar",
+        "error": "已自动移除 JavaScript 表达式（如 || 'zh-TW'），默认值应在代码中处理",
+        "fixed": true,
+        "original": "🧠 MBTI: \\${updatedUser.mbti_result || 'غير محدد'} (يمكن إعادة الاختبار) {updatedUser.mbti_result || '未設定'} ${updatedUser.mbti_result || '未設定'}",
+        "fixedValue": "🧠 MBTI: \\${updatedUser.mbti_result} (يمكن إعادة الاختبار) {updatedUser.mbti_result || '未設定'} ${updatedUser.mbti_result}"
+      },
+      {
+        "key": "common.settings2",
+        "language": "zh-CN",
+        "error": "已自动移除 JavaScript 表达式（如 || 'zh-TW'），默认值应在代码中处理",
+        "fixed": true,
+        "original": "🏷️ 兴趣标签：\\${updatedUser.interests || '未设定'}\\n {updatedUser.interests || '未設定'} ${updatedUser.interests || '未設定'}",
+        "fixedValue": "🏷️ 兴趣标签：\\${updatedUser.interests}\\n {updatedUser.interests || '未設定'} ${updatedUser.interests}"
+      },
+      {
+        "key": "common.settings2",
+        "language": "en",
+        "error": "已自动移除 JavaScript 表达式（如 || 'zh-TW'），默认值应在代码中处理",
+        "fixed": true,
+        "original": "🏷️ Interest Tags: \\${updatedUser.interests || 'Not Set'}\\n {updatedUser.interests || '未設定'} ${updatedUser.interests || '未設定'}",
+        "fixedValue": "🏷️ Interest Tags: \\${updatedUser.interests}\\n {updatedUser.interests || '未設定'} ${updatedUser.interests}"
+      },
+      {
+        "key": "common.settings2",
+        "language": "ar",
+        "error": "已自动移除 JavaScript 表达式（如 || 'zh-TW'），默认值应在代码中处理",
+        "fixed": true,
+        "original": "🏷️ علامات الاهتمام:\\${updatedUser.interests || 'لم يتم تعيينها'}\\n {updatedUser.interests || '未設定'} ${updatedUser.interests || '未設定'}",
+        "fixedValue": "🏷️ علامات الاهتمام:\\${updatedUser.interests}\\n {updatedUser.interests || '未設定'} ${updatedUser.interests}"
+      },
+      {
+        "key": "common.settings3",
+        "language": "zh-CN",
+        "error": "已自动移除 JavaScript 表达式（如 || 'zh-TW'），默认值应在代码中处理",
+        "fixed": true,
+        "original": "🧠 MBTI：\\${user.mbti_result || '未设定'}（可重新测试） {user.mbti_result || '未設定'} ${user.mbti_result || '未設定'}",
+        "fixedValue": "🧠 MBTI：\\${user.mbti_result}（可重新测试） {user.mbti_result || '未設定'} ${user.mbti_result}"
+      },
+      {
+        "key": "common.settings3",
+        "language": "en",
+        "error": "已自动移除 JavaScript 表达式（如 || 'zh-TW'），默认值应在代码中处理",
+        "fixed": true,
+        "original": "🧠 MBTI: \\${user.mbti_result || 'Not Set'} (Retake Test) {user.mbti_result || '未設定'} ${user.mbti_result || '未設定'}",
+        "fixedValue": "🧠 MBTI: \\${user.mbti_result} (Retake Test) {user.mbti_result || '未設定'} ${user.mbti_result}"
+      },
+      {
+        "key": "common.settings3",
+        "language": "ar",
+        "error": "已自动移除 JavaScript 表达式（如 || 'zh-TW'），默认值应在代码中处理",
+        "fixed": true,
+        "original": "🧠 MBTI: \\${user.mbti_result || 'لم يتم تعيينه'} (إعادة اختبار متاحة) {user.mbti_result || '未設定'} ${user.mbti_result || '未設定'}",
+        "fixedValue": "🧠 MBTI: \\${user.mbti_result} (إعادة اختبار متاحة) {user.mbti_result || '未設定'} ${user.mbti_result}"
+      },
+      {
+        "key": "common.settings4",
+        "language": "zh-CN",
+        "error": "已自动移除 JavaScript 表达式（如 || 'zh-TW'），默认值应在代码中处理",
+        "fixed": true,
+        "original": "🏷️ 兴趣标签：\\${user.interests || '未设定'}\\n {user.interests || '未設定'} ${user.interests || '未設定'}",
+        "fixedValue": "🏷️ 兴趣标签：\\${user.interests}\\n {user.interests || '未設定'} ${user.interests}"
+      },
+      {
+        "key": "common.settings4",
+        "language": "en",
+        "error": "已自动移除 JavaScript 表达式（如 || 'zh-TW'），默认值应在代码中处理",
+        "fixed": true,
+        "original": "🏷️ Interest Tags: \\${user.interests || 'Not Set'}\\n {user.interests || '未設定'} ${user.interests || '未設定'}",
+        "fixedValue": "🏷️ Interest Tags: \\${user.interests}\\n {user.interests || '未設定'} ${user.interests}"
+      },
+      {
+        "key": "common.settings4",
+        "language": "ar",
+        "error": "已自动移除 JavaScript 表达式（如 || 'zh-TW'），默认值应在代码中处理",
+        "fixed": true,
+        "original": "🏷️ علامات الاهتمام: \\${user.interests || 'لم يتم تعيينه'}\\n {user.interests || '未設定'} ${user.interests || '未設定'}",
+        "fixedValue": "🏷️ علامات الاهتمام: \\${user.interests}\\n {user.interests || '未設定'} ${user.interests}"
+      },
+      {
+        "key": "common.settings5",
+        "language": "zh-CN",
+        "error": "已自动移除 JavaScript 表达式（如 || 'zh-TW'），默认值应在代码中处理",
+        "fixed": true,
+        "original": "📖 个人简介：\\${updatedUser.bio || '未设定'}\\n {updatedUser.bio || '未設定'} ${updatedUser.bio || '未設定'}",
+        "fixedValue": "📖 个人简介：\\${updatedUser.bio}\\n {updatedUser.bio || '未設定'} ${updatedUser.bio}"
+      },
+      {
+        "key": "common.settings5",
+        "language": "en",
+        "error": "已自动移除 JavaScript 表达式（如 || 'zh-TW'），默认值应在代码中处理",
+        "fixed": true,
+        "original": "📖 Personal Bio: \\${updatedUser.bio || 'Not Set'}\\n {updatedUser.bio || '未設定'} ${updatedUser.bio || '未設定'}",
+        "fixedValue": "📖 Personal Bio: \\${updatedUser.bio}\\n {updatedUser.bio || '未設定'} ${updatedUser.bio}"
+      },
+      {
+        "key": "common.settings5",
+        "language": "ar",
+        "error": "已自动移除 JavaScript 表达式（如 || 'zh-TW'），默认值应在代码中处理",
+        "fixed": true,
+        "original": "📖 السيرة الذاتية الشخصية: \\${updatedUser.bio || 'لم يتم تعيينه'}\\n {updatedUser.bio || '未設定'} ${updatedUser.bio || '未設定'}",
+        "fixedValue": "📖 السيرة الذاتية الشخصية: \\${updatedUser.bio}\\n {updatedUser.bio || '未設定'} ${updatedUser.bio}"
+      },
+      {
+        "key": "common.settings6",
+        "language": "zh-CN",
+        "error": "已自动移除 JavaScript 表达式（如 || 'zh-TW'），默认值应在代码中处理",
+        "fixed": true,
+        "original": "🌍 地区：\\${updatedUser.city || '未设定'}\\n {updatedUser.city || '未設定'} ${updatedUser.city || '未設定'}",
+        "fixedValue": "🌍 地区：\\${updatedUser.city}\\n {updatedUser.city || '未設定'} ${updatedUser.city}"
+      },
+      {
+        "key": "common.settings6",
+        "language": "en",
+        "error": "已自动移除 JavaScript 表达式（如 || 'zh-TW'），默认值应在代码中处理",
+        "fixed": true,
+        "original": "🌍 Location: \\${updatedUser.city || 'Not Set'}\\n {updatedUser.city || '未設定'} ${updatedUser.city || '未設定'}",
+        "fixedValue": "🌍 Location: \\${updatedUser.city}\\n {updatedUser.city || '未設定'} ${updatedUser.city}"
+      },
+      {
+        "key": "common.settings6",
+        "language": "ar",
+        "error": "已自动移除 JavaScript 表达式（如 || 'zh-TW'），默认值应在代码中处理",
+        "fixed": true,
+        "original": "🌍 المنطقة: \\${updatedUser.city || 'لم يتم تعيينه'}\\n {updatedUser.city || '未設定'} ${updatedUser.city || '未設定'}",
+        "fixedValue": "🌍 المنطقة: \\${updatedUser.city}\\n {updatedUser.city || '未設定'} ${updatedUser.city}"
+      },
+      {
+        "key": "common.settings7",
+        "language": "zh-CN",
+        "error": "已自动移除 JavaScript 表达式（如 || 'zh-TW'），默认值应在代码中处理",
+        "fixed": true,
+        "original": "📖 个人简介：\\${user.bio || '未设定'}\\n {user.bio || '未設定'} ${user.bio || '未設定'}",
+        "fixedValue": "📖 个人简介：\\${user.bio}\\n {user.bio || '未設定'} ${user.bio}"
+      },
+      {
+        "key": "common.settings7",
+        "language": "en",
+        "error": "已自动移除 JavaScript 表达式（如 || 'zh-TW'），默认值应在代码中处理",
+        "fixed": true,
+        "original": "📖 Personal Bio: \\${user.bio || 'Not Set'}\\n {user.bio || '未設定'} ${user.bio || '未設定'}",
+        "fixedValue": "📖 Personal Bio: \\${user.bio}\\n {user.bio || '未設定'} ${user.bio}"
+      },
+      {
+        "key": "common.settings7",
+        "language": "ar",
+        "error": "已自动移除 JavaScript 表达式（如 || 'zh-TW'），默认值应在代码中处理",
+        "fixed": true,
+        "original": "📖 السيرة الذاتية الشخصية: \\${user.bio || 'لم يتم تعيينه'}\\n {user.bio || '未設定'} ${user.bio || '未設定'}",
+        "fixedValue": "📖 السيرة الذاتية الشخصية: \\${user.bio}\\n {user.bio || '未設定'} ${user.bio}"
+      },
+      {
+        "key": "common.settings8",
+        "language": "zh-CN",
+        "error": "已自动移除 JavaScript 表达式（如 || 'zh-TW'），默认值应在代码中处理",
+        "fixed": true,
+        "original": "🌍 地区：\\${user.city || '未设定'}\\n {user.city || '未設定'} ${user.city || '未設定'}",
+        "fixedValue": "🌍 地区：\\${user.city}\\n {user.city || '未設定'} ${user.city}"
+      },
+      {
+        "key": "common.settings8",
+        "language": "en",
+        "error": "已自动移除 JavaScript 表达式（如 || 'zh-TW'），默认值应在代码中处理",
+        "fixed": true,
+        "original": "🌍 Location: \\${user.city || 'Not Set'}\\n {user.city || '未設定'} ${user.city || '未設定'}",
+        "fixedValue": "🌍 Location: \\${user.city}\\n {user.city || '未設定'} ${user.city}"
+      },
+      {
+        "key": "common.settings8",
+        "language": "ar",
+        "error": "已自动移除 JavaScript 表达式（如 || 'zh-TW'），默认值应在代码中处理",
+        "fixed": true,
+        "original": "🌍 المنطقة: \\${user.city || 'لم يتم تعيينه'}\\n {user.city || '未設定'} ${user.city || '未設定'}",
+        "fixedValue": "🌍 المنطقة: \\${user.city}\\n {user.city || '未設定'} ${user.city}"
+      },
+      {
+        "key": "common.start9",
+        "language": "ar",
+        "error": "变量数量不匹配: 源语言有 0 个，翻译有 1 个",
+        "fixed": false,
+        "original": "💡 استخدم /ad_stats {id} لعرض الإحصائيات التفصيلية"
+      },
+      {
+        "key": "conversation.settings",
+        "language": "zh-CN",
+        "error": "已自动移除 JavaScript 表达式（如 || 'zh-TW'），默认值应在代码中处理",
+        "fixed": true,
+        "original": "🧠 MBTI：\\${otherUser.mbti_result || '未设定'}\\n {otherUser.mbti_result || '未設定'} ${otherUser.mbti_result || '未設定'}",
+        "fixedValue": "🧠 MBTI：\\${otherUser.mbti_result}\\n {otherUser.mbti_result || '未設定'} ${otherUser.mbti_result}"
+      },
+      {
+        "key": "conversation.settings",
+        "language": "en",
+        "error": "已自动移除 JavaScript 表达式（如 || 'zh-TW'），默认值应在代码中处理",
+        "fixed": true,
+        "original": "🧠 MBTI：\\${otherUser.mbti_result || 'Not Set'}\\n {otherUser.mbti_result || '未設定'} ${otherUser.mbti_result || '未設定'}",
+        "fixedValue": "🧠 MBTI：\\${otherUser.mbti_result}\\n {otherUser.mbti_result || '未設定'} ${otherUser.mbti_result}"
+      },
+      {
+        "key": "conversation.settings",
+        "language": "ar",
+        "error": "已自动移除 JavaScript 表达式（如 || 'zh-TW'），默认值应在代码中处理",
+        "fixed": true,
+        "original": "🧠 MBTI: \\${otherUser.mbti_result || 'غير محدد'}\\n {otherUser.mbti_result || '未設定'} ${otherUser.mbti_result || '未設定'}",
+        "fixedValue": "🧠 MBTI: \\${otherUser.mbti_result}\\n {otherUser.mbti_result || '未設定'} ${otherUser.mbti_result}"
+      },
+      {
+        "key": "errors.error.appeal3",
+        "language": "en",
+        "error": "变量数量不匹配: 源语言有 1 个，翻译有 2 个",
+        "fixed": false,
+        "original": "{appealId} ${appealId}"
+      },
+      {
+        "key": "errors.error.appeal3",
+        "language": "ar",
+        "error": "变量数量不匹配: 源语言有 1 个，翻译有 2 个",
+        "fixed": false,
+        "original": "{appealId} ${appealId}"
+      },
+      {
+        "key": "errors.error.appeal4",
+        "language": "en",
+        "error": "变量数量不匹配: 源语言有 1 个，翻译有 2 个",
+        "fixed": false,
+        "original": "{appealId} ${appealId}"
+      },
+      {
+        "key": "errors.error.appeal4",
+        "language": "ar",
+        "error": "变量数量不匹配: 源语言有 1 个，翻译有 2 个",
+        "fixed": false,
+        "original": "{appealId} ${appealId}"
+      },
+      {
+        "key": "errors.error.ban",
+        "language": "en",
+        "error": "变量数量不匹配: 源语言有 1 个，翻译有 2 个",
+        "fixed": false,
+        "original": "{targetUserId} ${targetUserId}"
+      },
+      {
+        "key": "errors.error.ban",
+        "language": "ar",
+        "error": "变量数量不匹配: 源语言有 1 个，翻译有 2 个",
+        "fixed": false,
+        "original": "{targetUserId} ${targetUserId}"
+      },
+      {
+        "key": "errors.error.broadcast",
+        "language": "ar",
+        "error": "变量数量不匹配: 源语言有 1 个，翻译有 2 个",
+        "fixed": false,
+        "original": "❌ نظام البث الحالي يدعم فقط البث لغاية \\\\$MAX_SAFE_USERS مستخدمين.\\n\\n {MAX_SAFE_USERS} ${MAX_SAFE_USERS}"
+      },
+      {
+        "key": "errors.error.cancel8",
+        "language": "ar",
+        "error": "变量数量不匹配: 源语言有 1 个，翻译有 2 个",
+        "fixed": false,
+        "original": "❌ تم الإلغاء \\\\$mbtiType {mbtiType} ${mbtiType}"
+      },
+      {
+        "key": "menu.message",
+        "language": "zh-CN",
+        "error": "变量数量不匹配: 源语言有 2 个，翻译有 4 个; 模板变量数量不匹配: 源语言有 2 个，翻译有 4 个",
+        "fixed": false,
+        "original": "https://t.me/share/url?url=https://t.me/\\${botUsername}?start=invite_\\${inviteCode}&text=来 XunNi 一起丢漂流瓶吧！ 🍾 使用我的邀请码加入，我们都能获得更多配额！ https://t.me/share/url?url=https://t.me/\\${botUsername}?start=invite_\\${inviteCode}&text=來"
+      },
+      {
+        "key": "menu.message",
+        "language": "en",
+        "error": "变量数量不匹配: 源语言有 2 个，翻译有 4 个; 模板变量数量不匹配: 源语言有 2 个，翻译有 4 个",
+        "fixed": false,
+        "original": "https://t.me/share/url?url=https://t.me/\\${botUsername}?start=invite_\\${inviteCode}&text=Come to XunNi and throw message bottles together!🍾 Use my invite code to join, and we can all get more quotas! https://t.me/share/url?url=https://t.me/\\${botUsername}?start=invite_\\${inviteCode}&text=來"
+      },
+      {
+        "key": "menu.message",
+        "language": "ar",
+        "error": "变量数量不匹配: 源语言有 2 个，翻译有 4 个; 模板变量数量不匹配: 源语言有 2 个，翻译有 4 个",
+        "fixed": false,
+        "original": "https://t.me/share/url?url=https://t.me/\\${botUsername}?start=invite_\\${inviteCode}&text=تعال إلى XunNi وأرسل زجاجات الرسائل معًا!🍾 انضم باستخدام رمز الدعوة الخاص بي وسنحصل على مزيد من الحصص! https://t.me/share/url?url=https://t.me/\\${botUsername}?start=invite_\\${inviteCode}&text=來"
+      },
+      {
+        "key": "menu.message2",
+        "language": "zh-CN",
+        "error": "变量数量不匹配: 源语言有 2 个，翻译有 4 个; 模板变量数量不匹配: 源语言有 2 个，翻译有 4 个",
+        "fixed": false,
+        "original": "https://t.me/share/url?url=https://t.me/\\${botUsername}?start=invite_\\${inviteCode}&text=来 XunNi 一起丢漂流 https://t.me/share/url?url=https://t.me/\\${botUsername}?start=invite_\\${inviteCode}&text=來"
+      },
+      {
+        "key": "menu.message2",
+        "language": "en",
+        "error": "变量数量不匹配: 源语言有 2 个，翻译有 4 个; 模板变量数量不匹配: 源语言有 2 个，翻译有 4 个",
+        "fixed": false,
+        "original": "https://t.me/share/url?url=https://t.me/\\${botUsername}?start=invite_\\${inviteCode}&text=Come to XunNi and throw message bottles together https://t.me/share/url?url=https://t.me/\\${botUsername}?start=invite_\\${inviteCode}&text=來"
+      },
+      {
+        "key": "menu.message2",
+        "language": "ar",
+        "error": "变量数量不匹配: 源语言有 2 个，翻译有 4 个; 模板变量数量不匹配: 源语言有 2 个，翻译有 4 个",
+        "fixed": false,
+        "original": "https://t.me/share/url?url=https://t.me/\\${botUsername}?start=invite_\\${inviteCode}&text=تعال إلى XunNi وأرسل زجاجات الرسائل معًا https://t.me/share/url?url=https://t.me/\\${botUsername}?start=invite_\\${inviteCode}&text=來"
+      },
+      {
+        "key": "menu.settings",
+        "language": "zh-CN",
+        "error": "已自动移除 JavaScript 表达式（如 || 'zh-TW'），默认值应在代码中处理",
+        "fixed": true,
+        "original": "• MBTI：\\${user.mbti_result || '未设定'}\\n {user.mbti_result || '未設定'} ${user.mbti_result || '未設定'}",
+        "fixedValue": "• MBTI：\\${user.mbti_result}\\n {user.mbti_result || '未設定'} ${user.mbti_result}"
+      },
+      {
+        "key": "menu.settings",
+        "language": "en",
+        "error": "已自动移除 JavaScript 表达式（如 || 'zh-TW'），默认值应在代码中处理",
+        "fixed": true,
+        "original": "• MBTI：\\${user.mbti_result || 'Not Set'}\\n {user.mbti_result || '未設定'} ${user.mbti_result || '未設定'}",
+        "fixedValue": "• MBTI：\\${user.mbti_result}\\n {user.mbti_result || '未設定'} ${user.mbti_result}"
+      },
+      {
+        "key": "menu.settings",
+        "language": "ar",
+        "error": "已自动移除 JavaScript 表达式（如 || 'zh-TW'），默认值应在代码中处理",
+        "fixed": true,
+        "original": "• MBTI: \\${user.mbti_result || 'غير محدد'}\\n {user.mbti_result || '未設定'} ${user.mbti_result || '未設定'}",
+        "fixedValue": "• MBTI: \\${user.mbti_result}\\n {user.mbti_result || '未設定'} ${user.mbti_result}"
+      },
+      {
+        "key": "menu.settings2",
+        "language": "zh-CN",
+        "error": "已自动移除 JavaScript 表达式（如 || 'zh-TW'），默认值应在代码中处理",
+        "fixed": true,
+        "original": "• 星座：\\${user.zodiac_sign || '未设定'}\\n\\n {user.zodiac_sign || '未設定'} ${user.zodiac_sign || '未設定'}",
+        "fixedValue": "• 星座：\\${user.zodiac_sign}\\n\\n {user.zodiac_sign || '未設定'} ${user.zodiac_sign}"
+      },
+      {
+        "key": "menu.settings2",
+        "language": "en",
+        "error": "已自动移除 JavaScript 表达式（如 || 'zh-TW'），默认值应在代码中处理",
+        "fixed": true,
+        "original": "• Zodiac Sign：\\${user.zodiac_sign || 'Not Set'}\\n\\n {user.zodiac_sign || '未設定'} ${user.zodiac_sign || '未設定'}",
+        "fixedValue": "• Zodiac Sign：\\${user.zodiac_sign}\\n\\n {user.zodiac_sign || '未設定'} ${user.zodiac_sign}"
+      },
+      {
+        "key": "menu.settings2",
+        "language": "ar",
+        "error": "已自动移除 JavaScript 表达式（如 || 'zh-TW'），默认值应在代码中处理",
+        "fixed": true,
+        "original": "• برج: \\${user.zodiac_sign || 'غير محدد'}\\n\\n {user.zodiac_sign || '未設定'} ${user.zodiac_sign || '未設定'}",
+        "fixedValue": "• برج: \\${user.zodiac_sign}\\n\\n {user.zodiac_sign || '未設定'} ${user.zodiac_sign}"
+      },
+      {
+        "key": "profile.message",
+        "language": "zh-CN",
+        "error": "变量数量不匹配: 源语言有 3 个，翻译有 5 个; 模板变量数量不匹配: 源语言有 3 个，翻译有 5 个",
+        "fixed": false,
+        "original": "https://t.me/share/url?url=https://t.me/\\${botUsername}?start=invite_\\${inviteCode}&text=来 XunNi 一起丢漂流瓶吧！ 🍾 使用我的邀请码：\\${inviteCode} https://t.me/share/url?url=https://t.me/\\${botUsername}?start=invite_\\${inviteCode}&text=來"
+      },
+      {
+        "key": "profile.message",
+        "language": "en",
+        "error": "变量数量不匹配: 源语言有 3 个，翻译有 5 个; 模板变量数量不匹配: 源语言有 3 个，翻译有 5 个",
+        "fixed": false,
+        "original": "https://t.me/share/url?url=https://t.me/\\${botUsername}?start=invite_\\${inviteCode}&text=Let's throw message bottles together on XunNi! 🍾 Use my invitation code: \\${inviteCode} https://t.me/share/url?url=https://t.me/\\${botUsername}?start=invite_\\${inviteCode}&text=來"
+      },
+      {
+        "key": "profile.message",
+        "language": "ar",
+        "error": "变量数量不匹配: 源语言有 3 个，翻译有 5 个; 模板变量数量不匹配: 源语言有 3 个，翻译有 5 个",
+        "fixed": false,
+        "original": "https://t.me/share/url?url=https://t.me/\\${botUsername}?start=invite_\\${inviteCode}&text=تعال إلى XunNi وارمِ زجاجة رسائل معًا!🍾 استخدم رمز الدعوة الخاص بي: \\${inviteCode} https://t.me/share/url?url=https://t.me/\\${botUsername}?start=invite_\\${inviteCode}&text=來"
+      },
+      {
+        "key": "profile.message3",
+        "language": "zh-CN",
+        "error": "已自动移除 JavaScript 表达式（如 || 'zh-TW'），默认值应在代码中处理",
+        "fixed": true,
+        "original": "🌍 语言：\\${user.language_pref || 'zh-TW'}\\n\\n",
+        "fixedValue": "🌍 语言：\\${user.language_pref}\\n\\n"
+      },
+      {
+        "key": "profile.message3",
+        "language": "en",
+        "error": "已自动移除 JavaScript 表达式（如 || 'zh-TW'），默认值应在代码中处理",
+        "fixed": true,
+        "original": "🌍 Language: \\${user.language_pref || 'zh-TW'}\\n\\n",
+        "fixedValue": "🌍 Language: \\${user.language_pref}\\n\\n"
+      },
+      {
+        "key": "profile.message3",
+        "language": "ar",
+        "error": "已自动移除 JavaScript 表达式（如 || 'zh-TW'），默认值应在代码中处理",
+        "fixed": true,
+        "original": "🌍 اللغة: \\${user.language_pref || 'en'}\\n\\n {user.language_pref || 'zh-TW'} ${user.language_pref || 'zh-TW'}",
+        "fixedValue": "🌍 اللغة: \\${user.language_pref}\\n\\n {user.language_pref || 'zh-TW'} ${user.language_pref}"
+      },
+      {
+        "key": "profile.message4",
+        "language": "zh-CN",
+        "error": "已自动移除 JavaScript 表达式（如 || 'zh-TW'），默认值应在代码中处理",
+        "fixed": true,
+        "original": "🌍 语言：\\${user.language_pref || 'zh-TW'}\\n",
+        "fixedValue": "🌍 语言：\\${user.language_pref}\\n"
+      },
+      {
+        "key": "profile.message4",
+        "language": "en",
+        "error": "已自动移除 JavaScript 表达式（如 || 'zh-TW'），默认值应在代码中处理",
+        "fixed": true,
+        "original": "🌍 Language: \\${user.language_pref || 'zh-TW'}\\n",
+        "fixedValue": "🌍 Language: \\${user.language_pref}\\n"
+      },
+      {
+        "key": "profile.message4",
+        "language": "ar",
+        "error": "已自动移除 JavaScript 表达式（如 || 'zh-TW'），默认值应在代码中处理",
+        "fixed": true,
+        "original": "🌍 اللغة: \\${user.language_pref || 'en'}\\n {user.language_pref || 'zh-TW'} ${user.language_pref || 'zh-TW'}",
+        "fixedValue": "🌍 اللغة: \\${user.language_pref}\\n {user.language_pref || 'zh-TW'} ${user.language_pref}"
+      },
+      {
+        "key": "profile.message7",
+        "language": "zh-CN",
+        "error": "变量数量不匹配: 源语言有 2 个，翻译有 4 个; 模板变量数量不匹配: 源语言有 2 个，翻译有 4 个",
+        "fixed": false,
+        "original": "https://t.me/share/url?url=https://t.me/\\${botUsername}?start=invite_\\${inviteCode}&text=来 XunNi 一起丢漂流 https://t.me/share/url?url=https://t.me/\\${botUsername}?start=invite_\\${inviteCode}&text=來"
+      },
+      {
+        "key": "profile.message7",
+        "language": "en",
+        "error": "变量数量不匹配: 源语言有 2 个，翻译有 4 个; 模板变量数量不匹配: 源语言有 2 个，翻译有 4 个",
+        "fixed": false,
+        "original": "https://t.me/share/url?url=https://t.me/\\${botUsername}?start=invite_\\${inviteCode}&text=Let's throw message bottles together on XunNi https://t.me/share/url?url=https://t.me/\\${botUsername}?start=invite_\\${inviteCode}&text=來"
+      },
+      {
+        "key": "profile.message7",
+        "language": "ar",
+        "error": "变量数量不匹配: 源语言有 2 个，翻译有 4 个; 模板变量数量不匹配: 源语言有 2 个，翻译有 4 个",
+        "fixed": false,
+        "original": "https://t.me/share/url?url=https://t.me/\\${botUsername}?start=invite_\\${inviteCode}&text=تعال إلى XunNi وارمِ زجاجة رسائل معًا https://t.me/share/url?url=https://t.me/\\${botUsername}?start=invite_\\${inviteCode}&text=來"
+      },
+      {
+        "key": "stats.settings",
+        "language": "zh-CN",
+        "error": "已自动移除 JavaScript 表达式（如 || 'zh-TW'），默认值应在代码中处理",
+        "fixed": true,
+        "original": "🧠 **MBTI**：\\${user.mbti_result || '未设定'}\\n\\n {user.mbti_result || '未設定'} ${user.mbti_result || '未設定'}",
+        "fixedValue": "🧠 **MBTI**：\\${user.mbti_result}\\n\\n {user.mbti_result || '未設定'} ${user.mbti_result}"
+      },
+      {
+        "key": "stats.settings",
+        "language": "en",
+        "error": "已自动移除 JavaScript 表达式（如 || 'zh-TW'），默认值应在代码中处理",
+        "fixed": true,
+        "original": "🧠 **MBTI**: \\${user.mbti_result || 'Not set'}\\n\\n {user.mbti_result || '未設定'} ${user.mbti_result || '未設定'}",
+        "fixedValue": "🧠 **MBTI**: \\${user.mbti_result}\\n\\n {user.mbti_result || '未設定'} ${user.mbti_result}"
+      },
+      {
+        "key": "stats.settings",
+        "language": "ar",
+        "error": "已自动移除 JavaScript 表达式（如 || 'zh-TW'），默认值应在代码中处理",
+        "fixed": true,
+        "original": "🧠 **MBTI**: \\${user.mbti_result || 'غير محدد'}\\n\\n {user.mbti_result || '未設定'} ${user.mbti_result || '未設定'}",
+        "fixedValue": "🧠 **MBTI**: \\${user.mbti_result}\\n\\n {user.mbti_result || '未設定'} ${user.mbti_result}"
+      },
+      {
+        "key": "adminNotification.time",
+        "language": "en",
+        "error": "变量数量不匹配: 源语言有 1 个，翻译有 2 个",
+        "fixed": false,
+        "original": "Time: $\\{time} ${time}"
+      },
+      {
+        "key": "catch.settings",
+        "language": "zh-CN",
+        "error": "已自动移除 JavaScript 表达式（如 || 'zh-TW'），默认值应在代码中处理",
+        "fixed": true,
+        "original": "🧠 MBTI：\\${bottle.mbti_result || '未设定'}\\n {bottle.mbti_result || '未設定'} ${bottle.mbti_result || '未設定'}",
+        "fixedValue": "🧠 MBTI：\\${bottle.mbti_result}\\n {bottle.mbti_result || '未設定'} ${bottle.mbti_result}"
+      },
+      {
+        "key": "catch.settings",
+        "language": "en",
+        "error": "已自动移除 JavaScript 表达式（如 || 'zh-TW'），默认值应在代码中处理",
+        "fixed": true,
+        "original": "🧠 MBTI: \\${bottle.mbti_result || 'Not Set'}\\n {bottle.mbti_result || '未設定'} ${bottle.mbti_result || '未設定'}",
+        "fixedValue": "🧠 MBTI: \\${bottle.mbti_result}\\n {bottle.mbti_result || '未設定'} ${bottle.mbti_result}"
+      },
+      {
+        "key": "catch.settings",
+        "language": "ar",
+        "error": "已自动移除 JavaScript 表达式（如 || 'zh-TW'），默认值应在代码中处理",
+        "fixed": true,
+        "original": "🧠 MBTI: \\${bottle.mbti_result || 'لم يتم تعيينه'}\\n {bottle.mbti_result || '未設定'} ${bottle.mbti_result || '未設定'}",
+        "fixedValue": "🧠 MBTI: \\${bottle.mbti_result}\\n {bottle.mbti_result || '未設定'} ${bottle.mbti_result}"
+      },
+      {
+        "key": "throw.settings",
+        "language": "zh-CN",
+        "error": "已自动移除 JavaScript 表达式（如 || 'zh-TW'），默认值应在代码中处理",
+        "fixed": true,
+        "original": "🧠 MBTI：\\${matchResult.user.mbti_result || '未设定'}\\n {matchResult.user.mbti_result || '未設定'} ${matchResult.user.mbti_result || '未設定'}",
+        "fixedValue": "🧠 MBTI：\\${matchResult.user.mbti_result}\\n {matchResult.user.mbti_result || '未設定'} ${matchResult.user.mbti_result}"
+      },
+      {
+        "key": "throw.settings",
+        "language": "en",
+        "error": "已自动移除 JavaScript 表达式（如 || 'zh-TW'），默认值应在代码中处理",
+        "fixed": true,
+        "original": "🧠 MBTI: \\${matchResult.user.mbti_result || 'Not Set'}\\n {matchResult.user.mbti_result || '未設定'} ${matchResult.user.mbti_result || '未設定'}",
+        "fixedValue": "🧠 MBTI: \\${matchResult.user.mbti_result}\\n {matchResult.user.mbti_result || '未設定'} ${matchResult.user.mbti_result}"
+      },
+      {
+        "key": "throw.settings",
+        "language": "ar",
+        "error": "已自动移除 JavaScript 表达式（如 || 'zh-TW'），默认值应在代码中处理",
+        "fixed": true,
+        "original": "🧠 MBTI: \\${matchResult.user.mbti_result || 'غير محدد'}\\n {matchResult.user.mbti_result || '未設定'} ${matchResult.user.mbti_result || '未設定'}",
+        "fixedValue": "🧠 MBTI: \\${matchResult.user.mbti_result}\\n {matchResult.user.mbti_result || '未設定'} ${matchResult.user.mbti_result}"
+      },
+      {
+        "key": "throw.settings2",
+        "language": "zh-CN",
+        "error": "已自动移除 JavaScript 表达式（如 || 'zh-TW'），默认值应在代码中处理",
+        "fixed": true,
+        "original": "⭐ 星座：\\${matchResult.user.zodiac || '未设定'}\\n {matchResult.user.zodiac || '未設定'} ${matchResult.user.zodiac || '未設定'}",
+        "fixedValue": "⭐ 星座：\\${matchResult.user.zodiac}\\n {matchResult.user.zodiac || '未設定'} ${matchResult.user.zodiac}"
+      },
+      {
+        "key": "throw.settings2",
+        "language": "en",
+        "error": "已自动移除 JavaScript 表达式（如 || 'zh-TW'），默认值应在代码中处理",
+        "fixed": true,
+        "original": "⭐ Zodiac: \\${matchResult.user.zodiac || 'Not Set'}\\n {matchResult.user.zodiac || '未設定'} ${matchResult.user.zodiac || '未設定'}",
+        "fixedValue": "⭐ Zodiac: \\${matchResult.user.zodiac}\\n {matchResult.user.zodiac || '未設定'} ${matchResult.user.zodiac}"
+      },
+      {
+        "key": "throw.settings2",
+        "language": "ar",
+        "error": "已自动移除 JavaScript 表达式（如 || 'zh-TW'），默认值应在代码中处理",
+        "fixed": true,
+        "original": "⭐ برج: \\${matchResult.user.zodiac || 'غير محدد'}\\n {matchResult.user.zodiac || '未設定'} ${matchResult.user.zodiac || '未設定'}",
+        "fixedValue": "⭐ برج: \\${matchResult.user.zodiac}\\n {matchResult.user.zodiac || '未設定'} ${matchResult.user.zodiac}"
+      },
+      {
+        "key": "throw.settings3",
+        "language": "zh-CN",
+        "error": "已自动移除 JavaScript 表达式（如 || 'zh-TW'），默认值应在代码中处理",
+        "fixed": true,
+        "original": "🧠 MBTI：\\${user.mbti_result || '未设定'}\\n {user.mbti_result || '未設定'} ${user.mbti_result || '未設定'}",
+        "fixedValue": "🧠 MBTI：\\${user.mbti_result}\\n {user.mbti_result || '未設定'} ${user.mbti_result}"
+      },
+      {
+        "key": "throw.settings3",
+        "language": "en",
+        "error": "已自动移除 JavaScript 表达式（如 || 'zh-TW'），默认值应在代码中处理",
+        "fixed": true,
+        "original": "🧠 MBTI: \\${user.mbti_result || 'Not Set'}\\n {user.mbti_result || '未設定'} ${user.mbti_result || '未設定'}",
+        "fixedValue": "🧠 MBTI: \\${user.mbti_result}\\n {user.mbti_result || '未設定'} ${user.mbti_result}"
+      },
+      {
+        "key": "throw.settings3",
+        "language": "ar",
+        "error": "已自动移除 JavaScript 表达式（如 || 'zh-TW'），默认值应在代码中处理",
+        "fixed": true,
+        "original": "🧠 MBTI: \\${user.mbti_result || 'غير محدد'}\\n {user.mbti_result || '未設定'} ${user.mbti_result || '未設定'}",
+        "fixedValue": "🧠 MBTI: \\${user.mbti_result}\\n {user.mbti_result || '未設定'} ${user.mbti_result}"
+      },
+      {
+        "key": "throw.settings4",
+        "language": "zh-CN",
+        "error": "已自动移除 JavaScript 表达式（如 || 'zh-TW'），默认值应在代码中处理",
+        "fixed": true,
+        "original": "⭐ 星座：\\${user.zodiac_sign || '未设定'}\\n {user.zodiac_sign || '未設定'} ${user.zodiac_sign || '未設定'}",
+        "fixedValue": "⭐ 星座：\\${user.zodiac_sign}\\n {user.zodiac_sign || '未設定'} ${user.zodiac_sign}"
+      },
+      {
+        "key": "throw.settings4",
+        "language": "en",
+        "error": "已自动移除 JavaScript 表达式（如 || 'zh-TW'），默认值应在代码中处理",
+        "fixed": true,
+        "original": "⭐ Zodiac: \\${user.zodiac_sign || 'Not Set'}\\n {user.zodiac_sign || '未設定'} ${user.zodiac_sign || '未設定'}",
+        "fixedValue": "⭐ Zodiac: \\${user.zodiac_sign}\\n {user.zodiac_sign || '未設定'} ${user.zodiac_sign}"
+      },
+      {
+        "key": "throw.settings4",
+        "language": "ar",
+        "error": "已自动移除 JavaScript 表达式（如 || 'zh-TW'），默认值应在代码中处理",
+        "fixed": true,
+        "original": "⭐ برج: \\${user.zodiac_sign || 'غير محدد'}\\n {user.zodiac_sign || '未設定'} ${user.zodiac_sign || '未設定'}",
+        "fixedValue": "⭐ برج: \\${user.zodiac_sign}\\n {user.zodiac_sign || '未設定'} ${user.zodiac_sign}"
+      }
+    ],
+    "fixedErrors": 102,
+    "languagesProgress": {
+      "zh-TW": {
+        "total": 0,
+        "translated": 0,
+        "percentage": 0
+      },
+      "zh-CN": {
+        "total": 3741,
+        "translated": 3741,
+        "percentage": 100
+      },
+      "en": {
+        "total": 3741,
+        "translated": 3741,
+        "percentage": 100
+      },
+      "ja": {
+        "total": 5,
+        "translated": 5,
+        "percentage": 100
+      },
+      "ko": {
+        "total": 5,
+        "translated": 5,
+        "percentage": 100
+      },
+      "th": {
+        "total": 0,
+        "translated": 0,
+        "percentage": 0
+      },
+      "vi": {
+        "total": 0,
+        "translated": 0,
+        "percentage": 0
+      },
+      "id": {
+        "total": 0,
+        "translated": 0,
+        "percentage": 0
+      },
+      "ms": {
+        "total": 0,
+        "translated": 0,
+        "percentage": 0
+      },
+      "tl": {
+        "total": 0,
+        "translated": 0,
+        "percentage": 0
+      },
+      "es": {
+        "total": 0,
+        "translated": 0,
+        "percentage": 0
+      },
+      "pt": {
+        "total": 0,
+        "translated": 0,
+        "percentage": 0
+      },
+      "fr": {
+        "total": 0,
+        "translated": 0,
+        "percentage": 0
+      },
+      "de": {
+        "total": 0,
+        "translated": 0,
+        "percentage": 0
+      },
+      "it": {
+        "total": 0,
+        "translated": 0,
+        "percentage": 0
+      },
+      "ru": {
+        "total": 0,
+        "translated": 0,
+        "percentage": 0
+      },
+      "ar": {
+        "total": 3731,
+        "translated": 3731,
+        "percentage": 100
+      },
+      "hi": {
+        "total": 0,
+        "translated": 0,
+        "percentage": 0
+      },
+      "bn": {
+        "total": 0,
+        "translated": 0,
+        "percentage": 0
+      },
+      "tr": {
+        "total": 0,
+        "translated": 0,
+        "percentage": 0
+      },
+      "pl": {
+        "total": 0,
+        "translated": 0,
+        "percentage": 0
+      },
+      "uk": {
+        "total": 0,
+        "translated": 0,
+        "percentage": 0
+      },
+      "nl": {
+        "total": 0,
+        "translated": 0,
+        "percentage": 0
+      },
+      "sv": {
+        "total": 0,
+        "translated": 0,
+        "percentage": 0
+      },
+      "no": {
+        "total": 0,
+        "translated": 0,
+        "percentage": 0
+      },
+      "da": {
+        "total": 0,
+        "translated": 0,
+        "percentage": 0
+      },
+      "fi": {
+        "total": 0,
+        "translated": 0,
+        "percentage": 0
+      },
+      "cs": {
+        "total": 0,
+        "translated": 0,
+        "percentage": 0
+      },
+      "el": {
+        "total": 0,
+        "translated": 0,
+        "percentage": 0
+      },
+      "he": {
+        "total": 0,
+        "translated": 0,
+        "percentage": 0
+      },
+      "fa": {
+        "total": 0,
+        "translated": 0,
+        "percentage": 0
+      },
+      "ur": {
+        "total": 0,
+        "translated": 0,
+        "percentage": 0
+      },
+      "sw": {
+        "total": 0,
+        "translated": 0,
+        "percentage": 0
+      },
+      "ro": {
+        "total": 0,
+        "translated": 0,
+        "percentage": 0
+      }
+    }
+  },
+  "errors": [
+    {
+      "key": "admin.message13",
+      "language": "zh-CN",
+      "error": "已自动移除 JavaScript 表达式（如 || 'zh-TW'），默认值应在代码中处理",
+      "fixed": true,
+      "original": "• 用户名: @\\${targetUser?.username || '-'}\\n\\n",
+      "fixedValue": "• 用户名: @\\${targetUser?.username}\\n\\n"
+    },
+    {
+      "key": "admin.message13",
+      "language": "en",
+      "error": "已自动移除 JavaScript 表达式（如 || 'zh-TW'），默认值应在代码中处理",
+      "fixed": true,
+      "original": "• Username: @\\${targetUser?.username || '-'}\\n\\n",
+      "fixedValue": "• Username: @\\${targetUser?.username}\\n\\n"
+    },
+    {
+      "key": "admin.message13",
+      "language": "ar",
+      "error": "已自动移除 JavaScript 表达式（如 || 'zh-TW'），默认值应在代码中处理",
+      "fixed": true,
+      "original": "• اسم المستخدم: @\\${targetUser?.username || '-'}\\n\\n",
+      "fixedValue": "• اسم المستخدم: @\\${targetUser?.username}\\n\\n"
+    },
+    {
+      "key": "admin.message16",
+      "language": "zh-CN",
+      "error": "已自动移除 JavaScript 表达式（如 || 'zh-TW'），默认值应在代码中处理",
+      "fixed": true,
+      "original": "• 用户名: @\\${targetUser.username || '-'}\\n\\n",
+      "fixedValue": "• 用户名: @\\${targetUser.username}\\n\\n"
+    },
+    {
+      "key": "admin.message16",
+      "language": "en",
+      "error": "已自动移除 JavaScript 表达式（如 || 'zh-TW'），默认值应在代码中处理",
+      "fixed": true,
+      "original": "• Username: @\\${targetUser.username || '-'}\\n\\n",
+      "fixedValue": "• Username: @\\${targetUser.username}\\n\\n"
+    },
+    {
+      "key": "admin.message16",
+      "language": "ar",
+      "error": "已自动移除 JavaScript 表达式（如 || 'zh-TW'），默认值应在代码中处理",
+      "fixed": true,
+      "original": "• اسم المستخدم: @\\${targetUser.username || '-'}\\n\\n",
+      "fixedValue": "• اسم المستخدم: @\\${targetUser.username}\\n\\n"
+    },
+    {
+      "key": "admin.message32",
+      "language": "zh-CN",
+      "error": "已自动移除 JavaScript 表达式（如 || 'zh-TW'），默认值应在代码中处理",
+      "fixed": true,
+      "original": "• 用户名：@\\${user.username || '无'}\\n {user.username || '無'} ${user.username || '無'}",
+      "fixedValue": "• 用户名：@\\${user.username}\\n {user.username || '無'} ${user.username}"
+    },
+    {
+      "key": "admin.message32",
+      "language": "en",
+      "error": "已自动移除 JavaScript 表达式（如 || 'zh-TW'），默认值应在代码中处理",
+      "fixed": true,
+      "original": "• Username: @\\${user.username || 'None'}\\n {user.username || '無'} ${user.username || '無'}",
+      "fixedValue": "• Username: @\\${user.username}\\n {user.username || '無'} ${user.username}"
+    },
+    {
+      "key": "admin.message32",
+      "language": "ar",
+      "error": "已自动移除 JavaScript 表达式（如 || 'zh-TW'），默认值应在代码中处理",
+      "fixed": true,
+      "original": "• اسم المستخدم: @\\${user.username || 'لا شيء'}\\n {user.username || '無'} ${user.username || '無'}",
+      "fixedValue": "• اسم المستخدم: @\\${user.username}\\n {user.username || '無'} ${user.username}"
+    },
+    {
+      "key": "admin.settings",
+      "language": "zh-CN",
+      "error": "已自动移除 JavaScript 表达式（如 || 'zh-TW'），默认值应在代码中处理",
+      "fixed": true,
+      "original": "• 昵称: \\${targetUser?.nickname || '未设定'}\\n {targetUser?.nickname || '未設定'} ${targetUser?.nickname || '未設定'}",
+      "fixedValue": "• 昵称: \\${targetUser?.nickname}\\n {targetUser?.nickname || '未設定'} ${targetUser?.nickname}"
+    },
+    {
+      "key": "admin.settings",
+      "language": "en",
+      "error": "已自动移除 JavaScript 表达式（如 || 'zh-TW'），默认值应在代码中处理",
+      "fixed": true,
+      "original": "• Nickname: \\${targetUser?.nickname || 'Not Set'}\\n {targetUser?.nickname || '未設定'} ${targetUser?.nickname || '未設定'}",
+      "fixedValue": "• Nickname: \\${targetUser?.nickname}\\n {targetUser?.nickname || '未設定'} ${targetUser?.nickname}"
+    },
+    {
+      "key": "admin.settings",
+      "language": "ar",
+      "error": "已自动移除 JavaScript 表达式（如 || 'zh-TW'），默认值应在代码中处理",
+      "fixed": true,
+      "original": "• الاسم المستعار: \\${targetUser?.nickname || 'غير محدد'}\\n {targetUser?.nickname || '未設定'} ${targetUser?.nickname || '未設定'}",
+      "fixedValue": "• الاسم المستعار: \\${targetUser?.nickname}\\n {targetUser?.nickname || '未設定'} ${targetUser?.nickname}"
+    },
+    {
+      "key": "admin.settings2",
+      "language": "zh-CN",
+      "error": "已自动移除 JavaScript 表达式（如 || 'zh-TW'），默认值应在代码中处理",
+      "fixed": true,
+      "original": "• 昵称: \\${targetUser.nickname || '未设定'}\\n {targetUser.nickname || '未設定'} ${targetUser.nickname || '未設定'}",
+      "fixedValue": "• 昵称: \\${targetUser.nickname}\\n {targetUser.nickname || '未設定'} ${targetUser.nickname}"
+    },
+    {
+      "key": "admin.settings2",
+      "language": "en",
+      "error": "已自动移除 JavaScript 表达式（如 || 'zh-TW'），默认值应在代码中处理",
+      "fixed": true,
+      "original": "• Nickname: \\${targetUser.nickname || 'Not Set'}\\n {targetUser.nickname || '未設定'} ${targetUser.nickname || '未設定'}",
+      "fixedValue": "• Nickname: \\${targetUser.nickname}\\n {targetUser.nickname || '未設定'} ${targetUser.nickname}"
+    },
+    {
+      "key": "admin.settings2",
+      "language": "ar",
+      "error": "已自动移除 JavaScript 表达式（如 || 'zh-TW'），默认值应在代码中处理",
+      "fixed": true,
+      "original": "• الاسم المستعار: \\${targetUser.nickname || 'غير محدد'}\\n {targetUser.nickname || '未設定'} ${targetUser.nickname || '未設定'}",
+      "fixedValue": "• الاسم المستعار: \\${targetUser.nickname}\\n {targetUser.nickname || '未設定'} ${targetUser.nickname}"
+    },
+    {
+      "key": "admin.settings3",
+      "language": "zh-CN",
+      "error": "已自动移除 JavaScript 表达式（如 || 'zh-TW'），默认值应在代码中处理",
+      "fixed": true,
+      "original": "• 昵称：\\${user.nickname || '未设定'}\\n {user.nickname || '未設定'} ${user.nickname || '未設定'}",
+      "fixedValue": "• 昵称：\\${user.nickname}\\n {user.nickname || '未設定'} ${user.nickname}"
+    },
+    {
+      "key": "admin.settings3",
+      "language": "en",
+      "error": "已自动移除 JavaScript 表达式（如 || 'zh-TW'），默认值应在代码中处理",
+      "fixed": true,
+      "original": "• Nickname: \\${user.nickname || 'Not Set'}\\n {user.nickname || '未設定'} ${user.nickname || '未設定'}",
+      "fixedValue": "• Nickname: \\${user.nickname}\\n {user.nickname || '未設定'} ${user.nickname}"
+    },
+    {
+      "key": "admin.settings3",
+      "language": "ar",
+      "error": "已自动移除 JavaScript 表达式（如 || 'zh-TW'），默认值应在代码中处理",
+      "fixed": true,
+      "original": "• الاسم المستعار: \\${user.nickname || 'غير محدد'}\\n {user.nickname || '未設定'} ${user.nickname || '未設定'}",
+      "fixedValue": "• الاسم المستعار: \\${user.nickname}\\n {user.nickname || '未設定'} ${user.nickname}"
+    },
+    {
+      "key": "analytics.ad",
+      "language": "ar",
+      "error": "变量数量不匹配: 源语言有 9 个，翻译有 10 个",
+      "fixed": false,
+      "original": "{officialImpressions} {officialClicks} {officialCtr} {officialRewardsGranted} {vipPageViews} {vipPurchaseIntents} {vipConversions} {vipConversionRate} {vipRevenue} ${vipRevenue}"
+    },
+    {
+      "key": "bottle.catch.settings",
+      "language": "zh-CN",
+      "error": "已自动移除 JavaScript 表达式（如 || 'zh-TW'），默认值应在代码中处理",
+      "fixed": true,
+      "original": "🧠 MBTI：\\\\${bottle.mbti_result || '未设定'}\\n {bottle.mbti_result || '未設定'} ${bottle.mbti_result || '未設定'}",
+      "fixedValue": "🧠 MBTI：\\\\${bottle.mbti_result}\\n {bottle.mbti_result || '未設定'} ${bottle.mbti_result}"
+    },
+    {
+      "key": "bottle.catch.settings",
+      "language": "en",
+      "error": "已自动移除 JavaScript 表达式（如 || 'zh-TW'），默认值应在代码中处理",
+      "fixed": true,
+      "original": "🧠 MBTI: \\${bottle.mbti_result || 'Not set'}\\n {bottle.mbti_result || '未設定'} ${bottle.mbti_result || '未設定'}",
+      "fixedValue": "🧠 MBTI: \\${bottle.mbti_result}\\n {bottle.mbti_result || '未設定'} ${bottle.mbti_result}"
+    },
+    {
+      "key": "bottle.catch.settings",
+      "language": "ar",
+      "error": "已自动移除 JavaScript 表达式（如 || 'zh-TW'），默认值应在代码中处理",
+      "fixed": true,
+      "original": "🧠 MBTI: \\${bottle.mbti_result || 'غير محدد'}\\n {bottle.mbti_result || '未設定'} ${bottle.mbti_result || '未設定'}",
+      "fixedValue": "🧠 MBTI: \\${bottle.mbti_result}\\n {bottle.mbti_result || '未設定'} ${bottle.mbti_result}"
+    },
+    {
+      "key": "bottle.catch.zodiac",
+      "language": "zh-CN",
+      "error": "已自动移除 JavaScript 表达式（如 || 'zh-TW'），默认值应在代码中处理",
+      "fixed": true,
+      "original": "⭐ 星座：\\\\${bottle.zodiac || 'Virgo'}\\n",
+      "fixedValue": "⭐ 星座：\\\\${bottle.zodiac}\\n"
+    },
+    {
+      "key": "bottle.catch.zodiac",
+      "language": "en",
+      "error": "已自动移除 JavaScript 表达式（如 || 'zh-TW'），默认值应在代码中处理",
+      "fixed": true,
+      "original": "⭐ Zodiac: \\\\${bottle.zodiac || 'Virgo'}\\n",
+      "fixedValue": "⭐ Zodiac: \\\\${bottle.zodiac}\\n"
+    },
+    {
+      "key": "bottle.catch.zodiac",
+      "language": "ar",
+      "error": "已自动移除 JavaScript 表达式（如 || 'zh-TW'），默认值应在代码中处理",
+      "fixed": true,
+      "original": "⭐ برج: \\\\${bottle.zodiac || 'عذراء'}\\n {bottle.zodiac || 'Virgo'} ${bottle.zodiac || 'Virgo'}",
+      "fixedValue": "⭐ برج: \\\\${bottle.zodiac}\\n {bottle.zodiac || 'Virgo'} ${bottle.zodiac}"
+    },
+    {
+      "key": "bottle.throw.settings",
+      "language": "zh-CN",
+      "error": "已自动移除 JavaScript 表达式（如 || 'zh-TW'），默认值应在代码中处理",
+      "fixed": true,
+      "original": "🧠 MBTI：\\\\${matchResult.user.mbti_result || '未设定'}\\n {matchResult.user.mbti_result || '未設定'} ${matchResult.user.mbti_result || '未設定'}",
+      "fixedValue": "🧠 MBTI：\\\\${matchResult.user.mbti_result}\\n {matchResult.user.mbti_result || '未設定'} ${matchResult.user.mbti_result}"
+    },
+    {
+      "key": "bottle.throw.settings",
+      "language": "en",
+      "error": "已自动移除 JavaScript 表达式（如 || 'zh-TW'），默认值应在代码中处理",
+      "fixed": true,
+      "original": "🧠 MBTI: \\\\${matchResult.user.mbti_result || 'Not Set'}\\n {matchResult.user.mbti_result || '未設定'} ${matchResult.user.mbti_result || '未設定'}",
+      "fixedValue": "🧠 MBTI: \\\\${matchResult.user.mbti_result}\\n {matchResult.user.mbti_result || '未設定'} ${matchResult.user.mbti_result}"
+    },
+    {
+      "key": "bottle.throw.settings",
+      "language": "ar",
+      "error": "已自动移除 JavaScript 表达式（如 || 'zh-TW'），默认值应在代码中处理",
+      "fixed": true,
+      "original": "🧠 MBTI: \\\\${matchResult.user.mbti_result || 'غير محدد'}\\n {matchResult.user.mbti_result || '未設定'} ${matchResult.user.mbti_result || '未設定'}",
+      "fixedValue": "🧠 MBTI: \\\\${matchResult.user.mbti_result}\\n {matchResult.user.mbti_result || '未設定'} ${matchResult.user.mbti_result}"
+    },
+    {
+      "key": "bottle.throw.settings2",
+      "language": "zh-CN",
+      "error": "已自动移除 JavaScript 表达式（如 || 'zh-TW'），默认值应在代码中处理",
+      "fixed": true,
+      "original": "⭐ 星座：\\\\${matchResult.user.zodiac || '未设定'}\\n {matchResult.user.zodiac || '未設定'} ${matchResult.user.zodiac || '未設定'}",
+      "fixedValue": "⭐ 星座：\\\\${matchResult.user.zodiac}\\n {matchResult.user.zodiac || '未設定'} ${matchResult.user.zodiac}"
+    },
+    {
+      "key": "bottle.throw.settings2",
+      "language": "en",
+      "error": "已自动移除 JavaScript 表达式（如 || 'zh-TW'），默认值应在代码中处理",
+      "fixed": true,
+      "original": "⭐ Zodiac: \\\\${matchResult.user.zodiac || 'Not Set'}\\n {matchResult.user.zodiac || '未設定'} ${matchResult.user.zodiac || '未設定'}",
+      "fixedValue": "⭐ Zodiac: \\\\${matchResult.user.zodiac}\\n {matchResult.user.zodiac || '未設定'} ${matchResult.user.zodiac}"
+    },
+    {
+      "key": "bottle.throw.settings2",
+      "language": "ar",
+      "error": "已自动移除 JavaScript 表达式（如 || 'zh-TW'），默认值应在代码中处理",
+      "fixed": true,
+      "original": "⭐ الأبراج: \\\\${matchResult.user.zodiac || 'غير محدد'}\\n {matchResult.user.zodiac || '未設定'} ${matchResult.user.zodiac || '未設定'}",
+      "fixedValue": "⭐ الأبراج: \\\\${matchResult.user.zodiac}\\n {matchResult.user.zodiac || '未設定'} ${matchResult.user.zodiac}"
+    },
+    {
+      "key": "bottle.throw.settings3",
+      "language": "zh-CN",
+      "error": "已自动移除 JavaScript 表达式（如 || 'zh-TW'），默认值应在代码中处理",
+      "fixed": true,
+      "original": "🧠 MBTI：\\\\${user.mbti_result || '未设定'}\\n {user.mbti_result || '未設定'} ${user.mbti_result || '未設定'}",
+      "fixedValue": "🧠 MBTI：\\\\${user.mbti_result}\\n {user.mbti_result || '未設定'} ${user.mbti_result}"
+    },
+    {
+      "key": "bottle.throw.settings3",
+      "language": "en",
+      "error": "已自动移除 JavaScript 表达式（如 || 'zh-TW'），默认值应在代码中处理",
+      "fixed": true,
+      "original": "🧠 MBTI: \\${user.mbti_result || 'Not set'}\\n {user.mbti_result || '未設定'} ${user.mbti_result || '未設定'}",
+      "fixedValue": "🧠 MBTI: \\${user.mbti_result}\\n {user.mbti_result || '未設定'} ${user.mbti_result}"
+    },
+    {
+      "key": "bottle.throw.settings3",
+      "language": "ar",
+      "error": "已自动移除 JavaScript 表达式（如 || 'zh-TW'），默认值应在代码中处理",
+      "fixed": true,
+      "original": "🧠 MBTI: \\${user.mbti_result || 'لم يتم تعيينه'}\\n {user.mbti_result || '未設定'} ${user.mbti_result || '未設定'}",
+      "fixedValue": "🧠 MBTI: \\${user.mbti_result}\\n {user.mbti_result || '未設定'} ${user.mbti_result}"
+    },
+    {
+      "key": "bottle.throw.settings4",
+      "language": "zh-CN",
+      "error": "已自动移除 JavaScript 表达式（如 || 'zh-TW'），默认值应在代码中处理",
+      "fixed": true,
+      "original": "⭐ 星座：\\\\${user.zodiac_sign || '未设定'}\\n {user.zodiac_sign || '未設定'} ${user.zodiac_sign || '未設定'}",
+      "fixedValue": "⭐ 星座：\\\\${user.zodiac_sign}\\n {user.zodiac_sign || '未設定'} ${user.zodiac_sign}"
+    },
+    {
+      "key": "bottle.throw.settings4",
+      "language": "en",
+      "error": "已自动移除 JavaScript 表达式（如 || 'zh-TW'），默认值应在代码中处理",
+      "fixed": true,
+      "original": "⭐ Zodiac: \\${user.zodiac_sign || 'Not set'}\\n {user.zodiac_sign || '未設定'} ${user.zodiac_sign || '未設定'}",
+      "fixedValue": "⭐ Zodiac: \\${user.zodiac_sign}\\n {user.zodiac_sign || '未設定'} ${user.zodiac_sign}"
+    },
+    {
+      "key": "bottle.throw.settings4",
+      "language": "ar",
+      "error": "已自动移除 JavaScript 表达式（如 || 'zh-TW'），默认值应在代码中处理",
+      "fixed": true,
+      "original": "⭐ برج: \\${user.zodiac_sign || 'لم يتم تعيينه'}\\n {user.zodiac_sign || '未設定'} ${user.zodiac_sign || '未設定'}",
+      "fixedValue": "⭐ برج: \\${user.zodiac_sign}\\n {user.zodiac_sign || '未設定'} ${user.zodiac_sign}"
+    },
+    {
+      "key": "common.complete",
+      "language": "en",
+      "error": "变量数量不匹配: 源语言有 0 个，翻译有 1 个; 模板变量数量不匹配: 源语言有 0 个，翻译有 1 个",
+      "fixed": false,
+      "original": "📺 **Watch ads to earn quotas**\\n\\n🎁 Completing the watch earns **+1 quota**\\n📊 Remaining today: **\\${remainingAds}/20** times\\n\\n👇 Click the button below to start watching {updated.ads_watched} {updated.quota_earned} {result.remaining_ads} {result.remaining_ads > 0 ? '💡 繼續觀看廣告可獲得更多額度！' : '✅ 今日廣告已達上限'} ${updated.ads_watched} ${updated.quota_earned} ${result.remaining_ads} ${result.remaining_ads > 0 ? '💡 繼續觀看廣告可獲得更多額度！' : '✅ 今日廣告已達上限'}"
+    },
+    {
+      "key": "common.complete",
+      "language": "ar",
+      "error": "变量数量不匹配: 源语言有 0 个，翻译有 1 个; 模板变量数量不匹配: 源语言有 0 个，翻译有 1 个",
+      "fixed": false,
+      "original": "📺 **اكسب حصصًا من خلال مشاهدة الإعلانات**\\n\\n🎁 إكمال المشاهدة يكسب **+1 حصة**\\n📊 المتبقي اليوم: **\\${remainingAds}/20** مرة\\n\\n👇 اضغط على الزر أدناه لبدء المشاهدة {updated.ads_watched} {updated.quota_earned} {result.remaining_ads} {result.remaining_ads > 0 ? '💡 繼續觀看廣告可獲得更多額度！' : '✅ 今日廣告已達上限'} ${updated.ads_watched} ${updated.quota_earned} ${result.remaining_ads} ${result.remaining_ads > 0 ? '💡 繼續觀看廣告可獲得更多額度！' : '✅ 今日廣告已達上限'}"
+    },
+    {
+      "key": "common.complete2",
+      "language": "en",
+      "error": "变量数量不匹配: 源语言有 1 个，翻译有 2 个",
+      "fixed": false,
+      "original": "Completion time: \\${new Date(broadcast.completedAt).toLocaleString('zh-TW')}\\n {remainingAds} ${remainingAds}"
+    },
+    {
+      "key": "common.complete2",
+      "language": "ar",
+      "error": "变量数量不匹配: 源语言有 1 个，翻译有 2 个",
+      "fixed": false,
+      "original": "وقت الانتهاء: \\${new Date(broadcast.completedAt).toLocaleString('zh-TW')}\\n {remainingAds} ${remainingAds}"
+    },
+    {
+      "key": "common.invite2",
+      "language": "zh-CN",
+      "error": "已自动移除 JavaScript 表达式（如 || 'zh-TW'），默认值应在代码中处理",
+      "fixed": true,
+      "original": "邀请码: \\${user.invite_code || '未生成'}\\n",
+      "fixedValue": "邀请码: \\${user.invite_code}\\n"
+    },
+    {
+      "key": "common.invite2",
+      "language": "en",
+      "error": "已自动移除 JavaScript 表达式（如 || 'zh-TW'），默认值应在代码中处理",
+      "fixed": true,
+      "original": "Invite code: \\${user.invite_code || 'Not generated'}\\n {user.invite_code || '未生成'} ${user.invite_code || '未生成'}",
+      "fixedValue": "Invite code: \\${user.invite_code}\\n {user.invite_code || '未生成'} ${user.invite_code}"
+    },
+    {
+      "key": "common.invite2",
+      "language": "ar",
+      "error": "已自动移除 JavaScript 表达式（如 || 'zh-TW'），默认值应在代码中处理",
+      "fixed": true,
+      "original": "رمز الدعوة: \\${user.invite_code || 'لم يتم إنشاؤه'}\\n {user.invite_code || '未生成'} ${user.invite_code || '未生成'}",
+      "fixedValue": "رمز الدعوة: \\${user.invite_code}\\n {user.invite_code || '未生成'} ${user.invite_code}"
+    },
+    {
+      "key": "common.invite3",
+      "language": "zh-CN",
+      "error": "已自动移除 JavaScript 表达式（如 || 'zh-TW'），默认值应在代码中处理",
+      "fixed": true,
+      "original": "被谁邀请: \\${user.invited_by || '无'}\\n\\n {user.invited_by || '無'} ${user.invited_by || '無'}",
+      "fixedValue": "被谁邀请: \\${user.invited_by}\\n\\n {user.invited_by || '無'} ${user.invited_by}"
+    },
+    {
+      "key": "common.invite3",
+      "language": "en",
+      "error": "已自动移除 JavaScript 表达式（如 || 'zh-TW'），默认值应在代码中处理",
+      "fixed": true,
+      "original": "Invited by: \\${user.invited_by || 'None'}\\n\\n {user.invited_by || '無'} ${user.invited_by || '無'}",
+      "fixedValue": "Invited by: \\${user.invited_by}\\n\\n {user.invited_by || '無'} ${user.invited_by}"
+    },
+    {
+      "key": "common.invite3",
+      "language": "ar",
+      "error": "已自动移除 JavaScript 表达式（如 || 'zh-TW'），默认值应在代码中处理",
+      "fixed": true,
+      "original": "تمت الدعوة بواسطة: \\${user.invited_by || 'لا شيء'}\\n\\n {user.invited_by || '無'} ${user.invited_by || '無'}",
+      "fixedValue": "تمت الدعوة بواسطة: \\${user.invited_by}\\n\\n {user.invited_by || '無'} ${user.invited_by}"
+    },
+    {
+      "key": "common.message46",
+      "language": "zh-CN",
+      "error": "已自动移除 JavaScript 表达式（如 || 'zh-TW'），默认值应在代码中处理",
+      "fixed": true,
+      "original": "昵称: \\${user.nickname || '未设置'}\\n {user.nickname || '未設置'} ${user.nickname || '未設置'}",
+      "fixedValue": "昵称: \\${user.nickname}\\n {user.nickname || '未設置'} ${user.nickname}"
+    },
+    {
+      "key": "common.message46",
+      "language": "en",
+      "error": "已自动移除 JavaScript 表达式（如 || 'zh-TW'），默认值应在代码中处理",
+      "fixed": true,
+      "original": "Nickname: \\${user.nickname || 'Not set'}\\n {user.nickname || '未設置'} ${user.nickname || '未設置'}",
+      "fixedValue": "Nickname: \\${user.nickname}\\n {user.nickname || '未設置'} ${user.nickname}"
+    },
+    {
+      "key": "common.message46",
+      "language": "ar",
+      "error": "已自动移除 JavaScript 表达式（如 || 'zh-TW'），默认值应在代码中处理",
+      "fixed": true,
+      "original": "اللقب: \\${user.nickname || 'غير محدد'}\\n {user.nickname || '未設置'} ${user.nickname || '未設置'}",
+      "fixedValue": "اللقب: \\${user.nickname}\\n {user.nickname || '未設置'} ${user.nickname}"
+    },
+    {
+      "key": "common.settings",
+      "language": "zh-CN",
+      "error": "已自动移除 JavaScript 表达式（如 || 'zh-TW'），默认值应在代码中处理",
+      "fixed": true,
+      "original": "🧠 MBTI：\\${updatedUser.mbti_result || '未设定'}（可重新测试） {updatedUser.mbti_result || '未設定'} ${updatedUser.mbti_result || '未設定'}",
+      "fixedValue": "🧠 MBTI：\\${updatedUser.mbti_result}（可重新测试） {updatedUser.mbti_result || '未設定'} ${updatedUser.mbti_result}"
+    },
+    {
+      "key": "common.settings",
+      "language": "en",
+      "error": "已自动移除 JavaScript 表达式（如 || 'zh-TW'），默认值应在代码中处理",
+      "fixed": true,
+      "original": "🧠 MBTI: \\${updatedUser.mbti_result || 'Not set'} (can retest) {updatedUser.mbti_result || '未設定'} ${updatedUser.mbti_result || '未設定'}",
+      "fixedValue": "🧠 MBTI: \\${updatedUser.mbti_result} (can retest) {updatedUser.mbti_result || '未設定'} ${updatedUser.mbti_result}"
+    },
+    {
+      "key": "common.settings",
+      "language": "ar",
+      "error": "已自动移除 JavaScript 表达式（如 || 'zh-TW'），默认值应在代码中处理",
+      "fixed": true,
+      "original": "🧠 MBTI: \\${updatedUser.mbti_result || 'غير محدد'} (يمكن إعادة الاختبار) {updatedUser.mbti_result || '未設定'} ${updatedUser.mbti_result || '未設定'}",
+      "fixedValue": "🧠 MBTI: \\${updatedUser.mbti_result} (يمكن إعادة الاختبار) {updatedUser.mbti_result || '未設定'} ${updatedUser.mbti_result}"
+    },
+    {
+      "key": "common.settings2",
+      "language": "zh-CN",
+      "error": "已自动移除 JavaScript 表达式（如 || 'zh-TW'），默认值应在代码中处理",
+      "fixed": true,
+      "original": "🏷️ 兴趣标签：\\${updatedUser.interests || '未设定'}\\n {updatedUser.interests || '未設定'} ${updatedUser.interests || '未設定'}",
+      "fixedValue": "🏷️ 兴趣标签：\\${updatedUser.interests}\\n {updatedUser.interests || '未設定'} ${updatedUser.interests}"
+    },
+    {
+      "key": "common.settings2",
+      "language": "en",
+      "error": "已自动移除 JavaScript 表达式（如 || 'zh-TW'），默认值应在代码中处理",
+      "fixed": true,
+      "original": "🏷️ Interest Tags: \\${updatedUser.interests || 'Not Set'}\\n {updatedUser.interests || '未設定'} ${updatedUser.interests || '未設定'}",
+      "fixedValue": "🏷️ Interest Tags: \\${updatedUser.interests}\\n {updatedUser.interests || '未設定'} ${updatedUser.interests}"
+    },
+    {
+      "key": "common.settings2",
+      "language": "ar",
+      "error": "已自动移除 JavaScript 表达式（如 || 'zh-TW'），默认值应在代码中处理",
+      "fixed": true,
+      "original": "🏷️ علامات الاهتمام:\\${updatedUser.interests || 'لم يتم تعيينها'}\\n {updatedUser.interests || '未設定'} ${updatedUser.interests || '未設定'}",
+      "fixedValue": "🏷️ علامات الاهتمام:\\${updatedUser.interests}\\n {updatedUser.interests || '未設定'} ${updatedUser.interests}"
+    },
+    {
+      "key": "common.settings3",
+      "language": "zh-CN",
+      "error": "已自动移除 JavaScript 表达式（如 || 'zh-TW'），默认值应在代码中处理",
+      "fixed": true,
+      "original": "🧠 MBTI：\\${user.mbti_result || '未设定'}（可重新测试） {user.mbti_result || '未設定'} ${user.mbti_result || '未設定'}",
+      "fixedValue": "🧠 MBTI：\\${user.mbti_result}（可重新测试） {user.mbti_result || '未設定'} ${user.mbti_result}"
+    },
+    {
+      "key": "common.settings3",
+      "language": "en",
+      "error": "已自动移除 JavaScript 表达式（如 || 'zh-TW'），默认值应在代码中处理",
+      "fixed": true,
+      "original": "🧠 MBTI: \\${user.mbti_result || 'Not Set'} (Retake Test) {user.mbti_result || '未設定'} ${user.mbti_result || '未設定'}",
+      "fixedValue": "🧠 MBTI: \\${user.mbti_result} (Retake Test) {user.mbti_result || '未設定'} ${user.mbti_result}"
+    },
+    {
+      "key": "common.settings3",
+      "language": "ar",
+      "error": "已自动移除 JavaScript 表达式（如 || 'zh-TW'），默认值应在代码中处理",
+      "fixed": true,
+      "original": "🧠 MBTI: \\${user.mbti_result || 'لم يتم تعيينه'} (إعادة اختبار متاحة) {user.mbti_result || '未設定'} ${user.mbti_result || '未設定'}",
+      "fixedValue": "🧠 MBTI: \\${user.mbti_result} (إعادة اختبار متاحة) {user.mbti_result || '未設定'} ${user.mbti_result}"
+    },
+    {
+      "key": "common.settings4",
+      "language": "zh-CN",
+      "error": "已自动移除 JavaScript 表达式（如 || 'zh-TW'），默认值应在代码中处理",
+      "fixed": true,
+      "original": "🏷️ 兴趣标签：\\${user.interests || '未设定'}\\n {user.interests || '未設定'} ${user.interests || '未設定'}",
+      "fixedValue": "🏷️ 兴趣标签：\\${user.interests}\\n {user.interests || '未設定'} ${user.interests}"
+    },
+    {
+      "key": "common.settings4",
+      "language": "en",
+      "error": "已自动移除 JavaScript 表达式（如 || 'zh-TW'），默认值应在代码中处理",
+      "fixed": true,
+      "original": "🏷️ Interest Tags: \\${user.interests || 'Not Set'}\\n {user.interests || '未設定'} ${user.interests || '未設定'}",
+      "fixedValue": "🏷️ Interest Tags: \\${user.interests}\\n {user.interests || '未設定'} ${user.interests}"
+    },
+    {
+      "key": "common.settings4",
+      "language": "ar",
+      "error": "已自动移除 JavaScript 表达式（如 || 'zh-TW'），默认值应在代码中处理",
+      "fixed": true,
+      "original": "🏷️ علامات الاهتمام: \\${user.interests || 'لم يتم تعيينه'}\\n {user.interests || '未設定'} ${user.interests || '未設定'}",
+      "fixedValue": "🏷️ علامات الاهتمام: \\${user.interests}\\n {user.interests || '未設定'} ${user.interests}"
+    },
+    {
+      "key": "common.settings5",
+      "language": "zh-CN",
+      "error": "已自动移除 JavaScript 表达式（如 || 'zh-TW'），默认值应在代码中处理",
+      "fixed": true,
+      "original": "📖 个人简介：\\${updatedUser.bio || '未设定'}\\n {updatedUser.bio || '未設定'} ${updatedUser.bio || '未設定'}",
+      "fixedValue": "📖 个人简介：\\${updatedUser.bio}\\n {updatedUser.bio || '未設定'} ${updatedUser.bio}"
+    },
+    {
+      "key": "common.settings5",
+      "language": "en",
+      "error": "已自动移除 JavaScript 表达式（如 || 'zh-TW'），默认值应在代码中处理",
+      "fixed": true,
+      "original": "📖 Personal Bio: \\${updatedUser.bio || 'Not Set'}\\n {updatedUser.bio || '未設定'} ${updatedUser.bio || '未設定'}",
+      "fixedValue": "📖 Personal Bio: \\${updatedUser.bio}\\n {updatedUser.bio || '未設定'} ${updatedUser.bio}"
+    },
+    {
+      "key": "common.settings5",
+      "language": "ar",
+      "error": "已自动移除 JavaScript 表达式（如 || 'zh-TW'），默认值应在代码中处理",
+      "fixed": true,
+      "original": "📖 السيرة الذاتية الشخصية: \\${updatedUser.bio || 'لم يتم تعيينه'}\\n {updatedUser.bio || '未設定'} ${updatedUser.bio || '未設定'}",
+      "fixedValue": "📖 السيرة الذاتية الشخصية: \\${updatedUser.bio}\\n {updatedUser.bio || '未設定'} ${updatedUser.bio}"
+    },
+    {
+      "key": "common.settings6",
+      "language": "zh-CN",
+      "error": "已自动移除 JavaScript 表达式（如 || 'zh-TW'），默认值应在代码中处理",
+      "fixed": true,
+      "original": "🌍 地区：\\${updatedUser.city || '未设定'}\\n {updatedUser.city || '未設定'} ${updatedUser.city || '未設定'}",
+      "fixedValue": "🌍 地区：\\${updatedUser.city}\\n {updatedUser.city || '未設定'} ${updatedUser.city}"
+    },
+    {
+      "key": "common.settings6",
+      "language": "en",
+      "error": "已自动移除 JavaScript 表达式（如 || 'zh-TW'），默认值应在代码中处理",
+      "fixed": true,
+      "original": "🌍 Location: \\${updatedUser.city || 'Not Set'}\\n {updatedUser.city || '未設定'} ${updatedUser.city || '未設定'}",
+      "fixedValue": "🌍 Location: \\${updatedUser.city}\\n {updatedUser.city || '未設定'} ${updatedUser.city}"
+    },
+    {
+      "key": "common.settings6",
+      "language": "ar",
+      "error": "已自动移除 JavaScript 表达式（如 || 'zh-TW'），默认值应在代码中处理",
+      "fixed": true,
+      "original": "🌍 المنطقة: \\${updatedUser.city || 'لم يتم تعيينه'}\\n {updatedUser.city || '未設定'} ${updatedUser.city || '未設定'}",
+      "fixedValue": "🌍 المنطقة: \\${updatedUser.city}\\n {updatedUser.city || '未設定'} ${updatedUser.city}"
+    },
+    {
+      "key": "common.settings7",
+      "language": "zh-CN",
+      "error": "已自动移除 JavaScript 表达式（如 || 'zh-TW'），默认值应在代码中处理",
+      "fixed": true,
+      "original": "📖 个人简介：\\${user.bio || '未设定'}\\n {user.bio || '未設定'} ${user.bio || '未設定'}",
+      "fixedValue": "📖 个人简介：\\${user.bio}\\n {user.bio || '未設定'} ${user.bio}"
+    },
+    {
+      "key": "common.settings7",
+      "language": "en",
+      "error": "已自动移除 JavaScript 表达式（如 || 'zh-TW'），默认值应在代码中处理",
+      "fixed": true,
+      "original": "📖 Personal Bio: \\${user.bio || 'Not Set'}\\n {user.bio || '未設定'} ${user.bio || '未設定'}",
+      "fixedValue": "📖 Personal Bio: \\${user.bio}\\n {user.bio || '未設定'} ${user.bio}"
+    },
+    {
+      "key": "common.settings7",
+      "language": "ar",
+      "error": "已自动移除 JavaScript 表达式（如 || 'zh-TW'），默认值应在代码中处理",
+      "fixed": true,
+      "original": "📖 السيرة الذاتية الشخصية: \\${user.bio || 'لم يتم تعيينه'}\\n {user.bio || '未設定'} ${user.bio || '未設定'}",
+      "fixedValue": "📖 السيرة الذاتية الشخصية: \\${user.bio}\\n {user.bio || '未設定'} ${user.bio}"
+    },
+    {
+      "key": "common.settings8",
+      "language": "zh-CN",
+      "error": "已自动移除 JavaScript 表达式（如 || 'zh-TW'），默认值应在代码中处理",
+      "fixed": true,
+      "original": "🌍 地区：\\${user.city || '未设定'}\\n {user.city || '未設定'} ${user.city || '未設定'}",
+      "fixedValue": "🌍 地区：\\${user.city}\\n {user.city || '未設定'} ${user.city}"
+    },
+    {
+      "key": "common.settings8",
+      "language": "en",
+      "error": "已自动移除 JavaScript 表达式（如 || 'zh-TW'），默认值应在代码中处理",
+      "fixed": true,
+      "original": "🌍 Location: \\${user.city || 'Not Set'}\\n {user.city || '未設定'} ${user.city || '未設定'}",
+      "fixedValue": "🌍 Location: \\${user.city}\\n {user.city || '未設定'} ${user.city}"
+    },
+    {
+      "key": "common.settings8",
+      "language": "ar",
+      "error": "已自动移除 JavaScript 表达式（如 || 'zh-TW'），默认值应在代码中处理",
+      "fixed": true,
+      "original": "🌍 المنطقة: \\${user.city || 'لم يتم تعيينه'}\\n {user.city || '未設定'} ${user.city || '未設定'}",
+      "fixedValue": "🌍 المنطقة: \\${user.city}\\n {user.city || '未設定'} ${user.city}"
+    },
+    {
+      "key": "common.start9",
+      "language": "ar",
+      "error": "变量数量不匹配: 源语言有 0 个，翻译有 1 个",
+      "fixed": false,
+      "original": "💡 استخدم /ad_stats {id} لعرض الإحصائيات التفصيلية"
+    },
+    {
+      "key": "conversation.settings",
+      "language": "zh-CN",
+      "error": "已自动移除 JavaScript 表达式（如 || 'zh-TW'），默认值应在代码中处理",
+      "fixed": true,
+      "original": "🧠 MBTI：\\${otherUser.mbti_result || '未设定'}\\n {otherUser.mbti_result || '未設定'} ${otherUser.mbti_result || '未設定'}",
+      "fixedValue": "🧠 MBTI：\\${otherUser.mbti_result}\\n {otherUser.mbti_result || '未設定'} ${otherUser.mbti_result}"
+    },
+    {
+      "key": "conversation.settings",
+      "language": "en",
+      "error": "已自动移除 JavaScript 表达式（如 || 'zh-TW'），默认值应在代码中处理",
+      "fixed": true,
+      "original": "🧠 MBTI：\\${otherUser.mbti_result || 'Not Set'}\\n {otherUser.mbti_result || '未設定'} ${otherUser.mbti_result || '未設定'}",
+      "fixedValue": "🧠 MBTI：\\${otherUser.mbti_result}\\n {otherUser.mbti_result || '未設定'} ${otherUser.mbti_result}"
+    },
+    {
+      "key": "conversation.settings",
+      "language": "ar",
+      "error": "已自动移除 JavaScript 表达式（如 || 'zh-TW'），默认值应在代码中处理",
+      "fixed": true,
+      "original": "🧠 MBTI: \\${otherUser.mbti_result || 'غير محدد'}\\n {otherUser.mbti_result || '未設定'} ${otherUser.mbti_result || '未設定'}",
+      "fixedValue": "🧠 MBTI: \\${otherUser.mbti_result}\\n {otherUser.mbti_result || '未設定'} ${otherUser.mbti_result}"
+    },
+    {
+      "key": "errors.error.appeal3",
+      "language": "en",
+      "error": "变量数量不匹配: 源语言有 1 个，翻译有 2 个",
+      "fixed": false,
+      "original": "{appealId} ${appealId}"
+    },
+    {
+      "key": "errors.error.appeal3",
+      "language": "ar",
+      "error": "变量数量不匹配: 源语言有 1 个，翻译有 2 个",
+      "fixed": false,
+      "original": "{appealId} ${appealId}"
+    },
+    {
+      "key": "errors.error.appeal4",
+      "language": "en",
+      "error": "变量数量不匹配: 源语言有 1 个，翻译有 2 个",
+      "fixed": false,
+      "original": "{appealId} ${appealId}"
+    },
+    {
+      "key": "errors.error.appeal4",
+      "language": "ar",
+      "error": "变量数量不匹配: 源语言有 1 个，翻译有 2 个",
+      "fixed": false,
+      "original": "{appealId} ${appealId}"
+    },
+    {
+      "key": "errors.error.ban",
+      "language": "en",
+      "error": "变量数量不匹配: 源语言有 1 个，翻译有 2 个",
+      "fixed": false,
+      "original": "{targetUserId} ${targetUserId}"
+    },
+    {
+      "key": "errors.error.ban",
+      "language": "ar",
+      "error": "变量数量不匹配: 源语言有 1 个，翻译有 2 个",
+      "fixed": false,
+      "original": "{targetUserId} ${targetUserId}"
+    },
+    {
+      "key": "errors.error.broadcast",
+      "language": "ar",
+      "error": "变量数量不匹配: 源语言有 1 个，翻译有 2 个",
+      "fixed": false,
+      "original": "❌ نظام البث الحالي يدعم فقط البث لغاية \\\\$MAX_SAFE_USERS مستخدمين.\\n\\n {MAX_SAFE_USERS} ${MAX_SAFE_USERS}"
+    },
+    {
+      "key": "errors.error.cancel8",
+      "language": "ar",
+      "error": "变量数量不匹配: 源语言有 1 个，翻译有 2 个",
+      "fixed": false,
+      "original": "❌ تم الإلغاء \\\\$mbtiType {mbtiType} ${mbtiType}"
+    },
+    {
+      "key": "menu.message",
+      "language": "zh-CN",
+      "error": "变量数量不匹配: 源语言有 2 个，翻译有 4 个; 模板变量数量不匹配: 源语言有 2 个，翻译有 4 个",
+      "fixed": false,
+      "original": "https://t.me/share/url?url=https://t.me/\\${botUsername}?start=invite_\\${inviteCode}&text=来 XunNi 一起丢漂流瓶吧！ 🍾 使用我的邀请码加入，我们都能获得更多配额！ https://t.me/share/url?url=https://t.me/\\${botUsername}?start=invite_\\${inviteCode}&text=來"
+    },
+    {
+      "key": "menu.message",
+      "language": "en",
+      "error": "变量数量不匹配: 源语言有 2 个，翻译有 4 个; 模板变量数量不匹配: 源语言有 2 个，翻译有 4 个",
+      "fixed": false,
+      "original": "https://t.me/share/url?url=https://t.me/\\${botUsername}?start=invite_\\${inviteCode}&text=Come to XunNi and throw message bottles together!🍾 Use my invite code to join, and we can all get more quotas! https://t.me/share/url?url=https://t.me/\\${botUsername}?start=invite_\\${inviteCode}&text=來"
+    },
+    {
+      "key": "menu.message",
+      "language": "ar",
+      "error": "变量数量不匹配: 源语言有 2 个，翻译有 4 个; 模板变量数量不匹配: 源语言有 2 个，翻译有 4 个",
+      "fixed": false,
+      "original": "https://t.me/share/url?url=https://t.me/\\${botUsername}?start=invite_\\${inviteCode}&text=تعال إلى XunNi وأرسل زجاجات الرسائل معًا!🍾 انضم باستخدام رمز الدعوة الخاص بي وسنحصل على مزيد من الحصص! https://t.me/share/url?url=https://t.me/\\${botUsername}?start=invite_\\${inviteCode}&text=來"
+    },
+    {
+      "key": "menu.message2",
+      "language": "zh-CN",
+      "error": "变量数量不匹配: 源语言有 2 个，翻译有 4 个; 模板变量数量不匹配: 源语言有 2 个，翻译有 4 个",
+      "fixed": false,
+      "original": "https://t.me/share/url?url=https://t.me/\\${botUsername}?start=invite_\\${inviteCode}&text=来 XunNi 一起丢漂流 https://t.me/share/url?url=https://t.me/\\${botUsername}?start=invite_\\${inviteCode}&text=來"
+    },
+    {
+      "key": "menu.message2",
+      "language": "en",
+      "error": "变量数量不匹配: 源语言有 2 个，翻译有 4 个; 模板变量数量不匹配: 源语言有 2 个，翻译有 4 个",
+      "fixed": false,
+      "original": "https://t.me/share/url?url=https://t.me/\\${botUsername}?start=invite_\\${inviteCode}&text=Come to XunNi and throw message bottles together https://t.me/share/url?url=https://t.me/\\${botUsername}?start=invite_\\${inviteCode}&text=來"
+    },
+    {
+      "key": "menu.message2",
+      "language": "ar",
+      "error": "变量数量不匹配: 源语言有 2 个，翻译有 4 个; 模板变量数量不匹配: 源语言有 2 个，翻译有 4 个",
+      "fixed": false,
+      "original": "https://t.me/share/url?url=https://t.me/\\${botUsername}?start=invite_\\${inviteCode}&text=تعال إلى XunNi وأرسل زجاجات الرسائل معًا https://t.me/share/url?url=https://t.me/\\${botUsername}?start=invite_\\${inviteCode}&text=來"
+    },
+    {
+      "key": "menu.settings",
+      "language": "zh-CN",
+      "error": "已自动移除 JavaScript 表达式（如 || 'zh-TW'），默认值应在代码中处理",
+      "fixed": true,
+      "original": "• MBTI：\\${user.mbti_result || '未设定'}\\n {user.mbti_result || '未設定'} ${user.mbti_result || '未設定'}",
+      "fixedValue": "• MBTI：\\${user.mbti_result}\\n {user.mbti_result || '未設定'} ${user.mbti_result}"
+    },
+    {
+      "key": "menu.settings",
+      "language": "en",
+      "error": "已自动移除 JavaScript 表达式（如 || 'zh-TW'），默认值应在代码中处理",
+      "fixed": true,
+      "original": "• MBTI：\\${user.mbti_result || 'Not Set'}\\n {user.mbti_result || '未設定'} ${user.mbti_result || '未設定'}",
+      "fixedValue": "• MBTI：\\${user.mbti_result}\\n {user.mbti_result || '未設定'} ${user.mbti_result}"
+    },
+    {
+      "key": "menu.settings",
+      "language": "ar",
+      "error": "已自动移除 JavaScript 表达式（如 || 'zh-TW'），默认值应在代码中处理",
+      "fixed": true,
+      "original": "• MBTI: \\${user.mbti_result || 'غير محدد'}\\n {user.mbti_result || '未設定'} ${user.mbti_result || '未設定'}",
+      "fixedValue": "• MBTI: \\${user.mbti_result}\\n {user.mbti_result || '未設定'} ${user.mbti_result}"
+    },
+    {
+      "key": "menu.settings2",
+      "language": "zh-CN",
+      "error": "已自动移除 JavaScript 表达式（如 || 'zh-TW'），默认值应在代码中处理",
+      "fixed": true,
+      "original": "• 星座：\\${user.zodiac_sign || '未设定'}\\n\\n {user.zodiac_sign || '未設定'} ${user.zodiac_sign || '未設定'}",
+      "fixedValue": "• 星座：\\${user.zodiac_sign}\\n\\n {user.zodiac_sign || '未設定'} ${user.zodiac_sign}"
+    },
+    {
+      "key": "menu.settings2",
+      "language": "en",
+      "error": "已自动移除 JavaScript 表达式（如 || 'zh-TW'），默认值应在代码中处理",
+      "fixed": true,
+      "original": "• Zodiac Sign：\\${user.zodiac_sign || 'Not Set'}\\n\\n {user.zodiac_sign || '未設定'} ${user.zodiac_sign || '未設定'}",
+      "fixedValue": "• Zodiac Sign：\\${user.zodiac_sign}\\n\\n {user.zodiac_sign || '未設定'} ${user.zodiac_sign}"
+    },
+    {
+      "key": "menu.settings2",
+      "language": "ar",
+      "error": "已自动移除 JavaScript 表达式（如 || 'zh-TW'），默认值应在代码中处理",
+      "fixed": true,
+      "original": "• برج: \\${user.zodiac_sign || 'غير محدد'}\\n\\n {user.zodiac_sign || '未設定'} ${user.zodiac_sign || '未設定'}",
+      "fixedValue": "• برج: \\${user.zodiac_sign}\\n\\n {user.zodiac_sign || '未設定'} ${user.zodiac_sign}"
+    },
+    {
+      "key": "profile.message",
+      "language": "zh-CN",
+      "error": "变量数量不匹配: 源语言有 3 个，翻译有 5 个; 模板变量数量不匹配: 源语言有 3 个，翻译有 5 个",
+      "fixed": false,
+      "original": "https://t.me/share/url?url=https://t.me/\\${botUsername}?start=invite_\\${inviteCode}&text=来 XunNi 一起丢漂流瓶吧！ 🍾 使用我的邀请码：\\${inviteCode} https://t.me/share/url?url=https://t.me/\\${botUsername}?start=invite_\\${inviteCode}&text=來"
+    },
+    {
+      "key": "profile.message",
+      "language": "en",
+      "error": "变量数量不匹配: 源语言有 3 个，翻译有 5 个; 模板变量数量不匹配: 源语言有 3 个，翻译有 5 个",
+      "fixed": false,
+      "original": "https://t.me/share/url?url=https://t.me/\\${botUsername}?start=invite_\\${inviteCode}&text=Let's throw message bottles together on XunNi! 🍾 Use my invitation code: \\${inviteCode} https://t.me/share/url?url=https://t.me/\\${botUsername}?start=invite_\\${inviteCode}&text=來"
+    },
+    {
+      "key": "profile.message",
+      "language": "ar",
+      "error": "变量数量不匹配: 源语言有 3 个，翻译有 5 个; 模板变量数量不匹配: 源语言有 3 个，翻译有 5 个",
+      "fixed": false,
+      "original": "https://t.me/share/url?url=https://t.me/\\${botUsername}?start=invite_\\${inviteCode}&text=تعال إلى XunNi وارمِ زجاجة رسائل معًا!🍾 استخدم رمز الدعوة الخاص بي: \\${inviteCode} https://t.me/share/url?url=https://t.me/\\${botUsername}?start=invite_\\${inviteCode}&text=來"
+    },
+    {
+      "key": "profile.message3",
+      "language": "zh-CN",
+      "error": "已自动移除 JavaScript 表达式（如 || 'zh-TW'），默认值应在代码中处理",
+      "fixed": true,
+      "original": "🌍 语言：\\${user.language_pref || 'zh-TW'}\\n\\n",
+      "fixedValue": "🌍 语言：\\${user.language_pref}\\n\\n"
+    },
+    {
+      "key": "profile.message3",
+      "language": "en",
+      "error": "已自动移除 JavaScript 表达式（如 || 'zh-TW'），默认值应在代码中处理",
+      "fixed": true,
+      "original": "🌍 Language: \\${user.language_pref || 'zh-TW'}\\n\\n",
+      "fixedValue": "🌍 Language: \\${user.language_pref}\\n\\n"
+    },
+    {
+      "key": "profile.message3",
+      "language": "ar",
+      "error": "已自动移除 JavaScript 表达式（如 || 'zh-TW'），默认值应在代码中处理",
+      "fixed": true,
+      "original": "🌍 اللغة: \\${user.language_pref || 'en'}\\n\\n {user.language_pref || 'zh-TW'} ${user.language_pref || 'zh-TW'}",
+      "fixedValue": "🌍 اللغة: \\${user.language_pref}\\n\\n {user.language_pref || 'zh-TW'} ${user.language_pref}"
+    },
+    {
+      "key": "profile.message4",
+      "language": "zh-CN",
+      "error": "已自动移除 JavaScript 表达式（如 || 'zh-TW'），默认值应在代码中处理",
+      "fixed": true,
+      "original": "🌍 语言：\\${user.language_pref || 'zh-TW'}\\n",
+      "fixedValue": "🌍 语言：\\${user.language_pref}\\n"
+    },
+    {
+      "key": "profile.message4",
+      "language": "en",
+      "error": "已自动移除 JavaScript 表达式（如 || 'zh-TW'），默认值应在代码中处理",
+      "fixed": true,
+      "original": "🌍 Language: \\${user.language_pref || 'zh-TW'}\\n",
+      "fixedValue": "🌍 Language: \\${user.language_pref}\\n"
+    },
+    {
+      "key": "profile.message4",
+      "language": "ar",
+      "error": "已自动移除 JavaScript 表达式（如 || 'zh-TW'），默认值应在代码中处理",
+      "fixed": true,
+      "original": "🌍 اللغة: \\${user.language_pref || 'en'}\\n {user.language_pref || 'zh-TW'} ${user.language_pref || 'zh-TW'}",
+      "fixedValue": "🌍 اللغة: \\${user.language_pref}\\n {user.language_pref || 'zh-TW'} ${user.language_pref}"
+    },
+    {
+      "key": "profile.message7",
+      "language": "zh-CN",
+      "error": "变量数量不匹配: 源语言有 2 个，翻译有 4 个; 模板变量数量不匹配: 源语言有 2 个，翻译有 4 个",
+      "fixed": false,
+      "original": "https://t.me/share/url?url=https://t.me/\\${botUsername}?start=invite_\\${inviteCode}&text=来 XunNi 一起丢漂流 https://t.me/share/url?url=https://t.me/\\${botUsername}?start=invite_\\${inviteCode}&text=來"
+    },
+    {
+      "key": "profile.message7",
+      "language": "en",
+      "error": "变量数量不匹配: 源语言有 2 个，翻译有 4 个; 模板变量数量不匹配: 源语言有 2 个，翻译有 4 个",
+      "fixed": false,
+      "original": "https://t.me/share/url?url=https://t.me/\\${botUsername}?start=invite_\\${inviteCode}&text=Let's throw message bottles together on XunNi https://t.me/share/url?url=https://t.me/\\${botUsername}?start=invite_\\${inviteCode}&text=來"
+    },
+    {
+      "key": "profile.message7",
+      "language": "ar",
+      "error": "变量数量不匹配: 源语言有 2 个，翻译有 4 个; 模板变量数量不匹配: 源语言有 2 个，翻译有 4 个",
+      "fixed": false,
+      "original": "https://t.me/share/url?url=https://t.me/\\${botUsername}?start=invite_\\${inviteCode}&text=تعال إلى XunNi وارمِ زجاجة رسائل معًا https://t.me/share/url?url=https://t.me/\\${botUsername}?start=invite_\\${inviteCode}&text=來"
+    },
+    {
+      "key": "stats.settings",
+      "language": "zh-CN",
+      "error": "已自动移除 JavaScript 表达式（如 || 'zh-TW'），默认值应在代码中处理",
+      "fixed": true,
+      "original": "🧠 **MBTI**：\\${user.mbti_result || '未设定'}\\n\\n {user.mbti_result || '未設定'} ${user.mbti_result || '未設定'}",
+      "fixedValue": "🧠 **MBTI**：\\${user.mbti_result}\\n\\n {user.mbti_result || '未設定'} ${user.mbti_result}"
+    },
+    {
+      "key": "stats.settings",
+      "language": "en",
+      "error": "已自动移除 JavaScript 表达式（如 || 'zh-TW'），默认值应在代码中处理",
+      "fixed": true,
+      "original": "🧠 **MBTI**: \\${user.mbti_result || 'Not set'}\\n\\n {user.mbti_result || '未設定'} ${user.mbti_result || '未設定'}",
+      "fixedValue": "🧠 **MBTI**: \\${user.mbti_result}\\n\\n {user.mbti_result || '未設定'} ${user.mbti_result}"
+    },
+    {
+      "key": "stats.settings",
+      "language": "ar",
+      "error": "已自动移除 JavaScript 表达式（如 || 'zh-TW'），默认值应在代码中处理",
+      "fixed": true,
+      "original": "🧠 **MBTI**: \\${user.mbti_result || 'غير محدد'}\\n\\n {user.mbti_result || '未設定'} ${user.mbti_result || '未設定'}",
+      "fixedValue": "🧠 **MBTI**: \\${user.mbti_result}\\n\\n {user.mbti_result || '未設定'} ${user.mbti_result}"
+    },
+    {
+      "key": "adminNotification.time",
+      "language": "en",
+      "error": "变量数量不匹配: 源语言有 1 个，翻译有 2 个",
+      "fixed": false,
+      "original": "Time: $\\{time} ${time}"
+    },
+    {
+      "key": "catch.settings",
+      "language": "zh-CN",
+      "error": "已自动移除 JavaScript 表达式（如 || 'zh-TW'），默认值应在代码中处理",
+      "fixed": true,
+      "original": "🧠 MBTI：\\${bottle.mbti_result || '未设定'}\\n {bottle.mbti_result || '未設定'} ${bottle.mbti_result || '未設定'}",
+      "fixedValue": "🧠 MBTI：\\${bottle.mbti_result}\\n {bottle.mbti_result || '未設定'} ${bottle.mbti_result}"
+    },
+    {
+      "key": "catch.settings",
+      "language": "en",
+      "error": "已自动移除 JavaScript 表达式（如 || 'zh-TW'），默认值应在代码中处理",
+      "fixed": true,
+      "original": "🧠 MBTI: \\${bottle.mbti_result || 'Not Set'}\\n {bottle.mbti_result || '未設定'} ${bottle.mbti_result || '未設定'}",
+      "fixedValue": "🧠 MBTI: \\${bottle.mbti_result}\\n {bottle.mbti_result || '未設定'} ${bottle.mbti_result}"
+    },
+    {
+      "key": "catch.settings",
+      "language": "ar",
+      "error": "已自动移除 JavaScript 表达式（如 || 'zh-TW'），默认值应在代码中处理",
+      "fixed": true,
+      "original": "🧠 MBTI: \\${bottle.mbti_result || 'لم يتم تعيينه'}\\n {bottle.mbti_result || '未設定'} ${bottle.mbti_result || '未設定'}",
+      "fixedValue": "🧠 MBTI: \\${bottle.mbti_result}\\n {bottle.mbti_result || '未設定'} ${bottle.mbti_result}"
+    },
+    {
+      "key": "throw.settings",
+      "language": "zh-CN",
+      "error": "已自动移除 JavaScript 表达式（如 || 'zh-TW'），默认值应在代码中处理",
+      "fixed": true,
+      "original": "🧠 MBTI：\\${matchResult.user.mbti_result || '未设定'}\\n {matchResult.user.mbti_result || '未設定'} ${matchResult.user.mbti_result || '未設定'}",
+      "fixedValue": "🧠 MBTI：\\${matchResult.user.mbti_result}\\n {matchResult.user.mbti_result || '未設定'} ${matchResult.user.mbti_result}"
+    },
+    {
+      "key": "throw.settings",
+      "language": "en",
+      "error": "已自动移除 JavaScript 表达式（如 || 'zh-TW'），默认值应在代码中处理",
+      "fixed": true,
+      "original": "🧠 MBTI: \\${matchResult.user.mbti_result || 'Not Set'}\\n {matchResult.user.mbti_result || '未設定'} ${matchResult.user.mbti_result || '未設定'}",
+      "fixedValue": "🧠 MBTI: \\${matchResult.user.mbti_result}\\n {matchResult.user.mbti_result || '未設定'} ${matchResult.user.mbti_result}"
+    },
+    {
+      "key": "throw.settings",
+      "language": "ar",
+      "error": "已自动移除 JavaScript 表达式（如 || 'zh-TW'），默认值应在代码中处理",
+      "fixed": true,
+      "original": "🧠 MBTI: \\${matchResult.user.mbti_result || 'غير محدد'}\\n {matchResult.user.mbti_result || '未設定'} ${matchResult.user.mbti_result || '未設定'}",
+      "fixedValue": "🧠 MBTI: \\${matchResult.user.mbti_result}\\n {matchResult.user.mbti_result || '未設定'} ${matchResult.user.mbti_result}"
+    },
+    {
+      "key": "throw.settings2",
+      "language": "zh-CN",
+      "error": "已自动移除 JavaScript 表达式（如 || 'zh-TW'），默认值应在代码中处理",
+      "fixed": true,
+      "original": "⭐ 星座：\\${matchResult.user.zodiac || '未设定'}\\n {matchResult.user.zodiac || '未設定'} ${matchResult.user.zodiac || '未設定'}",
+      "fixedValue": "⭐ 星座：\\${matchResult.user.zodiac}\\n {matchResult.user.zodiac || '未設定'} ${matchResult.user.zodiac}"
+    },
+    {
+      "key": "throw.settings2",
+      "language": "en",
+      "error": "已自动移除 JavaScript 表达式（如 || 'zh-TW'），默认值应在代码中处理",
+      "fixed": true,
+      "original": "⭐ Zodiac: \\${matchResult.user.zodiac || 'Not Set'}\\n {matchResult.user.zodiac || '未設定'} ${matchResult.user.zodiac || '未設定'}",
+      "fixedValue": "⭐ Zodiac: \\${matchResult.user.zodiac}\\n {matchResult.user.zodiac || '未設定'} ${matchResult.user.zodiac}"
+    },
+    {
+      "key": "throw.settings2",
+      "language": "ar",
+      "error": "已自动移除 JavaScript 表达式（如 || 'zh-TW'），默认值应在代码中处理",
+      "fixed": true,
+      "original": "⭐ برج: \\${matchResult.user.zodiac || 'غير محدد'}\\n {matchResult.user.zodiac || '未設定'} ${matchResult.user.zodiac || '未設定'}",
+      "fixedValue": "⭐ برج: \\${matchResult.user.zodiac}\\n {matchResult.user.zodiac || '未設定'} ${matchResult.user.zodiac}"
+    },
+    {
+      "key": "throw.settings3",
+      "language": "zh-CN",
+      "error": "已自动移除 JavaScript 表达式（如 || 'zh-TW'），默认值应在代码中处理",
+      "fixed": true,
+      "original": "🧠 MBTI：\\${user.mbti_result || '未设定'}\\n {user.mbti_result || '未設定'} ${user.mbti_result || '未設定'}",
+      "fixedValue": "🧠 MBTI：\\${user.mbti_result}\\n {user.mbti_result || '未設定'} ${user.mbti_result}"
+    },
+    {
+      "key": "throw.settings3",
+      "language": "en",
+      "error": "已自动移除 JavaScript 表达式（如 || 'zh-TW'），默认值应在代码中处理",
+      "fixed": true,
+      "original": "🧠 MBTI: \\${user.mbti_result || 'Not Set'}\\n {user.mbti_result || '未設定'} ${user.mbti_result || '未設定'}",
+      "fixedValue": "🧠 MBTI: \\${user.mbti_result}\\n {user.mbti_result || '未設定'} ${user.mbti_result}"
+    },
+    {
+      "key": "throw.settings3",
+      "language": "ar",
+      "error": "已自动移除 JavaScript 表达式（如 || 'zh-TW'），默认值应在代码中处理",
+      "fixed": true,
+      "original": "🧠 MBTI: \\${user.mbti_result || 'غير محدد'}\\n {user.mbti_result || '未設定'} ${user.mbti_result || '未設定'}",
+      "fixedValue": "🧠 MBTI: \\${user.mbti_result}\\n {user.mbti_result || '未設定'} ${user.mbti_result}"
+    },
+    {
+      "key": "throw.settings4",
+      "language": "zh-CN",
+      "error": "已自动移除 JavaScript 表达式（如 || 'zh-TW'），默认值应在代码中处理",
+      "fixed": true,
+      "original": "⭐ 星座：\\${user.zodiac_sign || '未设定'}\\n {user.zodiac_sign || '未設定'} ${user.zodiac_sign || '未設定'}",
+      "fixedValue": "⭐ 星座：\\${user.zodiac_sign}\\n {user.zodiac_sign || '未設定'} ${user.zodiac_sign}"
+    },
+    {
+      "key": "throw.settings4",
+      "language": "en",
+      "error": "已自动移除 JavaScript 表达式（如 || 'zh-TW'），默认值应在代码中处理",
+      "fixed": true,
+      "original": "⭐ Zodiac: \\${user.zodiac_sign || 'Not Set'}\\n {user.zodiac_sign || '未設定'} ${user.zodiac_sign || '未設定'}",
+      "fixedValue": "⭐ Zodiac: \\${user.zodiac_sign}\\n {user.zodiac_sign || '未設定'} ${user.zodiac_sign}"
+    },
+    {
+      "key": "throw.settings4",
+      "language": "ar",
+      "error": "已自动移除 JavaScript 表达式（如 || 'zh-TW'），默认值应在代码中处理",
+      "fixed": true,
+      "original": "⭐ برج: \\${user.zodiac_sign || 'غير محدد'}\\n {user.zodiac_sign || '未設定'} ${user.zodiac_sign || '未設定'}",
+      "fixedValue": "⭐ برج: \\${user.zodiac_sign}\\n {user.zodiac_sign || '未設定'} ${user.zodiac_sign}"
+    }
+  ]
+}

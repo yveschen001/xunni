@@ -1,6 +1,6 @@
 /**
  * Admin VIP Avatar Refresh Service
- * 
+ *
  * Batch refresh conversation history posts for recently upgraded VIP users
  */
 
@@ -33,7 +33,7 @@ export async function refreshRecentVipAvatars(
   }>;
 }> {
   console.error('[AdminRefreshVIP] Starting batch refresh for recent VIP users');
-  
+
   const results = {
     totalUsers: 0,
     successUsers: 0,
@@ -47,12 +47,12 @@ export async function refreshRecentVipAvatars(
       postsFailed: number;
     }>,
   };
-  
+
   try {
     // Get users who upgraded to VIP in the last N days
     const cutoffDate = new Date();
     cutoffDate.setDate(cutoffDate.getDate() - daysBack);
-    
+
     const recentVipUsers = await db.d1
       .prepare(
         `SELECT DISTINCT u.telegram_id, u.username, u.is_vip, u.vip_expire_at
@@ -73,45 +73,44 @@ export async function refreshRecentVipAvatars(
         is_vip: number;
         vip_expire_at: string;
       }>();
-    
+
     if (!recentVipUsers.results || recentVipUsers.results.length === 0) {
       console.error('[AdminRefreshVIP] No VIP users with outdated history posts found');
       return results;
     }
-    
+
     results.totalUsers = recentVipUsers.results.length;
-    console.error(`[AdminRefreshVIP] Found ${results.totalUsers} VIP users with outdated history posts`);
-    
+    console.error(
+      `[AdminRefreshVIP] Found ${results.totalUsers} VIP users with outdated history posts`
+    );
+
     // Refresh each user's conversation history
     for (const user of recentVipUsers.results) {
       try {
-        console.error(`[AdminRefreshVIP] Refreshing user: ${user.telegram_id} (@${user.username || 'unknown'})`);
-        
-        const refreshResult = await refreshAllConversationHistoryPosts(
-          db,
-          env,
-          user.telegram_id
+        console.error(
+          `[AdminRefreshVIP] Refreshing user: ${user.telegram_id} (@${user.username || 'unknown'})`
         );
-        
+
+        const refreshResult = await refreshAllConversationHistoryPosts(db, env, user.telegram_id);
+
         results.details.push({
           userId: user.telegram_id,
           username: user.username,
           postsUpdated: refreshResult.updated,
           postsFailed: refreshResult.failed,
         });
-        
+
         results.totalPostsUpdated += refreshResult.updated;
         results.totalPostsFailed += refreshResult.failed;
-        
+
         if (refreshResult.updated > 0) {
           results.successUsers++;
         } else {
           results.failedUsers++;
         }
-        
+
         // Small delay to avoid rate limiting
-        await new Promise(resolve => setTimeout(resolve, 200));
-        
+        await new Promise((resolve) => setTimeout(resolve, 200));
       } catch (error) {
         console.error(`[AdminRefreshVIP] Failed to refresh user ${user.telegram_id}:`, error);
         results.failedUsers++;
@@ -123,10 +122,9 @@ export async function refreshRecentVipAvatars(
         });
       }
     }
-    
+
     console.error('[AdminRefreshVIP] Batch refresh completed:', results);
     return results;
-    
   } catch (error) {
     console.error('[AdminRefreshVIP] Error:', error);
     throw error;
@@ -136,9 +134,7 @@ export async function refreshRecentVipAvatars(
 /**
  * Get statistics about VIP users with outdated history posts
  */
-export async function getVipAvatarRefreshStats(
-  db: DatabaseClient
-): Promise<{
+export async function getVipAvatarRefreshStats(db: DatabaseClient): Promise<{
   totalVipUsers: number;
   usersNeedingRefresh: number;
   totalOutdatedPosts: number;
@@ -152,7 +148,7 @@ export async function getVipAvatarRefreshStats(
          WHERE is_vip = 1 AND vip_expire_at > datetime('now')`
       )
       .first<{ count: number }>();
-    
+
     // Count VIP users with outdated history posts
     const needsRefreshResult = await db.d1
       .prepare(
@@ -168,7 +164,7 @@ export async function getVipAvatarRefreshStats(
            )`
       )
       .first<{ count: number }>();
-    
+
     // Count total outdated posts
     const outdatedPostsResult = await db.d1
       .prepare(
@@ -181,7 +177,7 @@ export async function getVipAvatarRefreshStats(
            AND chp.is_latest = 1`
       )
       .first<{ count: number }>();
-    
+
     return {
       totalVipUsers: totalVipResult?.count || 0,
       usersNeedingRefresh: needsRefreshResult?.count || 0,
@@ -196,4 +192,3 @@ export async function getVipAvatarRefreshStats(
     };
   }
 }
-

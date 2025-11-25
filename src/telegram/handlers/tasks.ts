@@ -24,160 +24,185 @@ export async function handleTasks(message: TelegramMessage, env: Env): Promise<v
   const db = createDatabaseClient(env.DB);
   const chatId = message.chat.id;
   const telegramId = message.from!.id.toString();
-  
+
   try {
     const user = await findUserByTelegramId(db, telegramId);
     if (!user) {
-      await telegram.sendMessage(chatId, '⚠️ 找不到用戶資料，請先使用 /start 註冊。');
+      const { createI18n } = await import('~/i18n');
+      const i18n = createI18n('zh-TW');
+      await telegram.sendMessage(chatId, i18n.t('errors.userNotFound'));
       return;
     }
-    
+
+    // Get i18n
+    const { createI18n } = await import('~/i18n');
+    const i18n = createI18n(user.language_pref || 'zh-TW');
+
     // Get all tasks
     const allTasks = await getAllTasks(db);
-    
+
     // Get user task progress
     const userTasks = await getAllUserTasks(db, telegramId);
-    const userTaskMap = new Map(userTasks.map(ut => [ut.task_id, ut]));
-    
+    const userTaskMap = new Map(userTasks.map((ut) => [ut.task_id, ut]));
+
     // Build task center message
-    let message_text = '📋 **任務中心**\n\n完成任務獲得額外瓶子！\n\n';
-    
+    let message_text = i18n.t('tasks.bottle6');
+
     // Group tasks by category
-    const profileTasks = allTasks.filter(t => t.category === 'profile');
-    const socialTasks = allTasks.filter(t => t.category === 'social');
-    const actionTasks = allTasks.filter(t => t.category === 'action');
-    const inviteTasks = allTasks.filter(t => t.category === 'invite');
-    
+    const profileTasks = allTasks.filter((t) => t.category === 'profile');
+    const socialTasks = allTasks.filter((t) => t.category === 'social');
+    const actionTasks = allTasks.filter((t) => t.category === 'action');
+    const inviteTasks = allTasks.filter((t) => t.category === 'invite');
+
     // Profile tasks
     if (profileTasks.length > 0) {
-      const completedCount = profileTasks.filter(t => {
+      const completedCount = profileTasks.filter((t) => {
         const userTask = userTaskMap.get(t.id);
         return userTask?.status === 'completed';
       }).length;
-      
-      message_text += `👤 **個人資料任務** (${completedCount}/${profileTasks.length})\n`;
+
+      message_text += i18n.t('tasks.profile', { completedCount, profileTasks: profileTasks.length });
       message_text += `━━━━━━━━━━━━━━━━\n`;
-      
+
       for (const task of profileTasks) {
         const userTask = userTaskMap.get(task.id);
         const completed = userTask?.status === 'completed';
         const icon = completed ? '✅' : '⏳';
-        message_text += `${icon} ${task.name} (+${task.reward_amount} 瓶子)\n`;
+        // Use i18n if task.name is a key, otherwise use task.name directly (backward compatibility)
+        const taskName = task.name.startsWith('tasks.name.') ? i18n.t(task.name) : task.name;
+        message_text += i18n.t('tasks.bottle3', { icon, task: { name: taskName, reward_amount: task.reward_amount } });
       }
       message_text += '\n';
     }
-    
+
     // Social tasks
     if (socialTasks.length > 0) {
-      const completedCount = socialTasks.filter(t => {
+      const completedCount = socialTasks.filter((t) => {
         const userTask = userTaskMap.get(t.id);
         return userTask?.status === 'completed';
       }).length;
-      
-      message_text += `📱 **社交媒體任務** (${completedCount}/${socialTasks.length})\n`;
+
+      message_text += i18n.t('tasks.task2', { completedCount, socialTasks: socialTasks.length });
       message_text += `━━━━━━━━━━━━━━━━\n`;
-      
+
       for (const task of socialTasks) {
         const userTask = userTaskMap.get(task.id);
         const completed = userTask?.status === 'completed';
         const pending = userTask?.status === 'pending_claim';
         const icon = completed ? '✅' : pending ? '🎁' : '⏳';
-        const status = completed ? '' : pending ? '(待領取)' : '';
-        message_text += `${icon} ${task.name} ${status} (+${task.reward_amount} 瓶子)\n`;
+        const status = completed ? '' : pending ? i18n.t('tasks.short') : '';
+        const taskName = task.name.startsWith('tasks.name.') ? i18n.t(task.name) : task.name;
+        message_text += i18n.t('tasks.message', { icon, task: { name: taskName, reward_amount: task.reward_amount }, status });
       }
       message_text += '\n';
     }
-    
+
     // Action tasks
     if (actionTasks.length > 0) {
-      const completedCount = actionTasks.filter(t => {
+      const completedCount = actionTasks.filter((t) => {
         const userTask = userTaskMap.get(t.id);
         return userTask?.status === 'completed';
       }).length;
-      
-      message_text += `🎯 **行為任務** (${completedCount}/${actionTasks.length})\n`;
+
+      message_text += i18n.t('tasks.task3', { completedCount, actionTasks: actionTasks.length });
       message_text += `━━━━━━━━━━━━━━━━\n`;
-      
+
       for (const task of actionTasks) {
         const userTask = userTaskMap.get(task.id);
         const completed = userTask?.status === 'completed';
         const icon = completed ? '✅' : '⏳';
-        message_text += `${icon} ${task.name} (+${task.reward_amount} 瓶子)\n`;
+        const taskName = task.name.startsWith('tasks.name.') ? i18n.t(task.name) : task.name;
+        message_text += i18n.t('tasks.bottle3', { icon, task: { name: taskName, reward_amount: task.reward_amount } });
       }
       message_text += '\n';
     }
-    
+
     // Invite tasks
     if (inviteTasks.length > 0) {
       const inviteProgress = getInviteTaskProgress(user);
-      
-      message_text += `👥 **邀請任務** (持續進行中)\n`;
+
+      message_text += i18n.t('tasks.task6');
       message_text += `━━━━━━━━━━━━━━━━\n`;
-      
-      message_text += `🔄 邀請好友 (${inviteProgress.current}/${inviteProgress.max})\n`;
-      message_text += `   每邀請 1 人 → 每日額度永久 +1\n`;
-      message_text += `   當前每日配額：${calculateDailyQuota(user)} 個\n`;
+
+      message_text += i18n.t('tasks.invite', { inviteProgress });
+      message_text += i18n.t('tasks.invite2');
+      const dailyQuota = calculateDailyQuota(user);
+      message_text += i18n.t('tasks.quota', { calculateDailyQuota: dailyQuota });
       message_text += '\n';
     }
-    
+
     // Summary
-    const oneTimeCompleted = profileTasks.filter(t => userTaskMap.get(t.id)?.status === 'completed').length +
-                             socialTasks.filter(t => userTaskMap.get(t.id)?.status === 'completed').length +
-                             actionTasks.filter(t => userTaskMap.get(t.id)?.status === 'completed').length;
+    const oneTimeCompleted =
+      profileTasks.filter((t) => userTaskMap.get(t.id)?.status === 'completed').length +
+      socialTasks.filter((t) => userTaskMap.get(t.id)?.status === 'completed').length +
+      actionTasks.filter((t) => userTaskMap.get(t.id)?.status === 'completed').length;
     const oneTimeTotal = profileTasks.length + socialTasks.length + actionTasks.length;
     const inviteProgress = getInviteTaskProgress(user);
-    
+
     const todayTaskRewards = await getTasksCompletedToday(db, telegramId);
     const todayRewardCount = calculateTodayTaskRewards(todayTaskRewards);
-    
-    message_text += `📊 **總進度**\n`;
+
+    message_text += i18n.t('tasks.text3');
     message_text += `━━━━━━━━━━━━━━━━\n`;
-    message_text += `• 一次性任務：${oneTimeCompleted}/${oneTimeTotal} 已完成\n`;
-    message_text += `• 邀請任務：${inviteProgress.current}/${inviteProgress.max} 進行中\n\n`;
-    message_text += `🎁 **已獲得**\n`;
-    message_text += `• 一次性獎勵：${todayRewardCount} 個瓶子（當天有效）\n`;
-    message_text += `• 永久獎勵：${inviteProgress.current} 個瓶子（每天發放）\n`;
-    
+    message_text += i18n.t('tasks.task4', { oneTimeCompleted, oneTimeTotal });
+    message_text += i18n.t('tasks.task', { inviteProgress });
+    message_text += '\n';
+    message_text += i18n.t('tasks.text4');
+    message_text += i18n.t('tasks.bottle5', { todayRewardCount });
+    message_text += i18n.t('tasks.bottle4', { inviteProgress });
+
     // Build inline keyboard
     const keyboard = [];
-    
+
     // Row 1: Profile tasks
     const profileRow = [];
-    if (profileTasks.some(t => !userTaskMap.get(t.id) || userTaskMap.get(t.id)?.status !== 'completed')) {
-      profileRow.push({ text: '✏️ 編輯個人資料', callback_data: 'edit_profile' });
+    if (
+      profileTasks.some(
+        (t) => !userTaskMap.get(t.id) || userTaskMap.get(t.id)?.status !== 'completed'
+      )
+    ) {
+      profileRow.push({ text: i18n.t('buttons.profile'), callback_data: 'edit_profile' });
     }
     if (profileRow.length > 0) keyboard.push(profileRow);
-    
+
     // Row 2: Social tasks
     const socialRow = [];
     const joinChannelTask = userTaskMap.get('task_join_channel');
     if (!joinChannelTask || joinChannelTask.status === 'available') {
-      socialRow.push({ text: '📢 加入官方頻道', url: 'https://t.me/xunnichannel' });
+      socialRow.push({ text: i18n.t('buttons.short3'), url: 'https://t.me/xunnichannel' });
     } else if (joinChannelTask.status === 'pending_claim') {
-      socialRow.push({ text: '🎁 領取獎勵', callback_data: 'claim_task_task_join_channel' });
+      socialRow.push({ text: i18n.t('buttons.short20'), callback_data: 'claim_task_task_join_channel' });
     }
     if (socialRow.length > 0) keyboard.push(socialRow);
-    
+
     // Row 3: Action tasks
     const actionRow = [];
-    if (actionTasks.some(t => !userTaskMap.get(t.id) || userTaskMap.get(t.id)?.status !== 'completed')) {
-      actionRow.push({ text: '🌊 丟出漂流瓶', callback_data: 'throw' });
-      actionRow.push({ text: '🎣 撿起漂流瓶', callback_data: 'catch' });
+    if (
+      actionTasks.some(
+        (t) => !userTaskMap.get(t.id) || userTaskMap.get(t.id)?.status !== 'completed'
+      )
+    ) {
+      actionRow.push({ text: i18n.t('buttons.bottle3'), callback_data: 'throw' });
+      actionRow.push({ text: i18n.t('buttons.bottle4'), callback_data: 'catch' });
     }
     if (actionRow.length > 0) keyboard.push(actionRow);
-    
+
     // Row 4: Invite task
     if (!inviteProgress.isCompleted) {
-      keyboard.push([{ text: '👥 查看邀請碼', callback_data: 'profile' }]);
+      keyboard.push([{ text: i18n.t('buttons.invite'), callback_data: 'profile' }]);
     }
-    
+
     // Row 5: Return to menu
-    keyboard.push([{ text: '🏠 返回主選單', callback_data: 'return_to_menu' }]);
-    
+    keyboard.push([{ text: i18n.t('common.back3'), callback_data: 'return_to_menu' }]);
+
     await telegram.sendMessageWithButtons(chatId, message_text, keyboard);
   } catch (error) {
     console.error('[handleTasks] Error:', error);
-    await telegram.sendMessage(chatId, '❌ 查看任務中心時系統發生錯誤，請稍後再試。');
+    const { createI18n } = await import('~/i18n');
+    const { findUserByTelegramId } = await import('~/db/queries/users');
+    const user = await findUserByTelegramId(db, telegramId);
+    const i18n = createI18n(user?.language_pref || 'zh-TW');
+    await telegram.sendMessage(chatId, i18n.t('errors.systemErrorRetry'));
   }
 }
 
@@ -197,16 +222,16 @@ export async function checkAndCompleteTask(
 ): Promise<boolean> {
   try {
     console.error(`[checkAndCompleteTask] Checking task: ${taskId} for user: ${user.telegram_id}`);
-    
+
     // Check if task is already completed
     const userTask = await getUserTask(db, user.telegram_id, taskId);
     console.error(`[checkAndCompleteTask] User task status: ${userTask?.status || 'not_found'}`);
-    
+
     if (userTask?.status === 'completed') {
       console.error(`[checkAndCompleteTask] Task already completed`);
       return false;
     }
-    
+
     // Check if task is completed
     const completed = isTaskCompleted(taskId, user, additionalData);
     console.error(`[checkAndCompleteTask] Task completion check result: ${completed}`, {
@@ -216,31 +241,35 @@ export async function checkAndCompleteTask(
       userCity: user.city?.length || 0,
       additionalData,
     });
-    
+
     if (!completed) {
       return false;
     }
-    
+
     // Complete task
     console.error(`[checkAndCompleteTask] Completing task: ${taskId}`);
     await completeUserTask(db, user.telegram_id, taskId);
-    
+
     // Get task details
     const task = await getTaskById(db, taskId);
     if (!task) {
       console.error(`[checkAndCompleteTask] Task not found: ${taskId}`);
       return false;
     }
-    
+
     // Send completion message
-    console.error(`[checkAndCompleteTask] Sending completion message for task: ${task.name}`);
+    const { createI18n } = await import('~/i18n');
+    const i18n = createI18n(user.language_pref || 'zh-TW');
+    const taskName = task.name.startsWith('tasks.name.') ? i18n.t(task.name) : task.name;
+    const rewardTypeText = task.reward_type === 'daily' ? i18n.t('tasks.short2') : i18n.t('tasks.short3');
+    console.error(`[checkAndCompleteTask] Sending completion message for task: ${taskName}`);
     await telegram.sendMessage(
       parseInt(user.telegram_id),
-      `🎉 恭喜完成任務「${task.name}」！\n\n` +
-      `獎勵：+${task.reward_amount} 瓶子（${task.reward_type === 'daily' ? '當天有效' : '永久有效'}）\n\n` +
-      `💡 使用 /tasks 查看任務中心`
+      i18n.t('tasks.task5', { task: { name: taskName } }) + '\n\n' +
+        i18n.t('tasks.bottle', { task: { reward_amount: task.reward_amount }, rewardTypeText }) + '\n\n' +
+        i18n.t('tasks.task7')
     );
-    
+
     return true;
   } catch (error) {
     console.error('[checkAndCompleteTask] Error:', error);
@@ -258,34 +287,34 @@ export async function getNextIncompleteTask(
   try {
     // Get all tasks ordered by sort_order
     const allTasks = await getAllTasks(db);
-    
+
     // Get user's completed tasks
     const userTasks = await getAllUserTasks(db, user.telegram_id);
     const completedTaskIds = new Set(
-      userTasks.filter(ut => ut.status === 'completed').map(ut => ut.task_id)
+      userTasks.filter((ut) => ut.status === 'completed').map((ut) => ut.task_id)
     );
-    
+
     // Find first incomplete task (excluding invite task as it's continuous)
     for (const task of allTasks) {
       // Skip invite task (it's continuous)
       if (task.id === 'task_invite_progress') {
         continue;
       }
-      
+
       // Skip join channel task if already pending claim
       if (task.id === 'task_join_channel') {
-        const userTask = userTasks.find(ut => ut.task_id === task.id);
+        const userTask = userTasks.find((ut) => ut.task_id === task.id);
         if (userTask?.status === 'pending_claim') {
           continue; // Already detected, waiting for claim
         }
       }
-      
+
       // Check if task is completed
       if (!completedTaskIds.has(task.id)) {
         return task;
       }
     }
-    
+
     return null; // All tasks completed
   } catch (error) {
     console.error('[getNextIncompleteTask] Error:', error);
@@ -297,18 +326,34 @@ export async function getNextIncompleteTask(
  * Handle next task button callback
  */
 export async function handleNextTaskCallback(
-  callbackQuery: { id: string; from: { id: number }; message?: { chat: { id: number }; message_id: number }; data?: string },
+  callbackQuery: {
+    id: string;
+    from: { id: number };
+    message?: { chat: { id: number }; message_id: number };
+    data?: string;
+  },
   env: Env
 ): Promise<void> {
   const telegram = createTelegramService(env);
-  // const db = createDatabaseClient(env.DB);
+  const db = createDatabaseClient(env.DB);
   const chatId = callbackQuery.message?.chat.id;
   const messageId = callbackQuery.message?.message_id;
-  // const telegramId = callbackQuery.from.id.toString();
+  const telegramId = callbackQuery.from.id.toString();
   const taskId = callbackQuery.data?.replace('next_task_', '');
 
+  // Debug: Log callback data
+  console.error('[handleNextTaskCallback] Received callback:', callbackQuery.data);
+  console.error('[handleNextTaskCallback] Extracted taskId:', taskId);
+
+  // Get user language
+  const { createI18n } = await import('~/i18n');
+  const { findUserByTelegramId } = await import('~/db/queries/users');
+  const user = await findUserByTelegramId(db, telegramId);
+  const i18n = createI18n(user?.language_pref || 'zh-TW');
+
   if (!chatId || !messageId || !taskId) {
-    await telegram.answerCallbackQuery(callbackQuery.id, '⚠️ 無效的請求');
+    console.error('[handleNextTaskCallback] Missing required data:', { chatId, messageId, taskId });
+    await telegram.answerCallbackQuery(callbackQuery.id, i18n.t('errors.invalidRequest'));
     return;
   }
 
@@ -368,15 +413,20 @@ export async function handleNextTaskCallback(
 
       case 'task_join_channel': {
         // Directly open channel link with claim button
+        const { createI18n } = await import('~/i18n');
+        const { findUserByTelegramId } = await import('~/db/queries/users');
+        const db = createDatabaseClient(env.DB);
+        const user = await findUserByTelegramId(db, callbackQuery.from.id.toString());
+        const i18n = createI18n(user?.language_pref || 'zh-TW');
         await telegram.sendMessageWithButtons(
           chatId,
-          '📢 **加入官方頻道**\n\n' +
-            '點擊下方按鈕加入 XunNi 官方頻道，獲取最新消息和活動！\n\n' +
-            '加入後點擊「我已加入」按鈕領取獎勵 🎁',
+          i18n.t('tasks.text2') + '\n\n' +
+            i18n.t('tasks.message2') + '\n\n' +
+            i18n.t('tasks.text'),
           [
-            [{ text: '📢 加入官方頻道', url: 'https://t.me/xunnichannel' }],
-            [{ text: '✅ 我已加入，領取獎勵', callback_data: 'verify_channel_join' }],
-            [{ text: '🏠 返回主選單', callback_data: 'return_to_menu' }],
+            [{ text: i18n.t('buttons.short3'), url: 'https://t.me/xunnichannel' }],
+            [{ text: i18n.t('buttons.short20'), callback_data: 'verify_channel_join' }],
+            [{ text: i18n.t('common.back3'), callback_data: 'return_to_menu' }],
           ]
         );
         break;
@@ -415,11 +465,21 @@ export async function handleNextTaskCallback(
       }
 
       default:
-        await telegram.sendMessage(chatId, '⚠️ 未知的任務類型');
+        const { createI18n } = await import('~/i18n');
+        const { findUserByTelegramId } = await import('~/db/queries/users');
+        const db = createDatabaseClient(env.DB);
+        const user = await findUserByTelegramId(db, callbackQuery.from.id.toString());
+        const i18n = createI18n(user?.language_pref || 'zh-TW');
+        await telegram.sendMessage(chatId, i18n.t('errors.invalidRequest'));
     }
   } catch (error) {
     console.error('[handleNextTaskCallback] Error:', error);
-    await telegram.answerCallbackQuery(callbackQuery.id, '❌ 系統發生錯誤');
+    const { createI18n } = await import('~/i18n');
+    const { findUserByTelegramId } = await import('~/db/queries/users');
+    const db = createDatabaseClient(env.DB);
+    const user = await findUserByTelegramId(db, callbackQuery.from.id.toString());
+    const i18n = createI18n(user?.language_pref || 'zh-TW');
+    await telegram.answerCallbackQuery(callbackQuery.id, i18n.t('errors.systemErrorRetry'));
   }
 }
 
@@ -444,8 +504,7 @@ export async function calculateTaskBonus(
 ): Promise<number> {
   const { getTasksCompletedToday } = await import('~/db/queries/user_tasks');
   const { calculateTodayTaskRewards } = await import('~/domain/task');
-  
+
   const completedTasks = await getTasksCompletedToday(db, userId);
   return calculateTodayTaskRewards(completedTasks);
 }
-

@@ -47,20 +47,11 @@ const ZODIAC_SIGNS = [
   'pisces',
 ];
 
-const ZODIAC_NAMES: Record<string, string> = {
-  aries: '♈ 白羊座',
-  taurus: '♉ 金牛座',
-  gemini: '♊ 雙子座',
-  cancer: '♋ 巨蟹座',
-  leo: '♌ 獅子座',
-  virgo: '♍ 處女座',
-  libra: '♎ 天秤座',
-  scorpio: '♏ 天蠍座',
-  sagittarius: '♐ 射手座',
-  capricorn: '♑ 摩羯座',
-  aquarius: '♒ 水瓶座',
-  pisces: '♓ 雙魚座',
-};
+// Zodiac names will be translated using i18n
+function getZodiacName(zodiac: string, i18n: any): string {
+  const zodiacKey = `zodiac.${zodiac}`;
+  return i18n.t(zodiacKey);
+}
 
 /**
  * Show advanced filter menu
@@ -75,7 +66,9 @@ export async function handleThrowAdvanced(callbackQuery: any, env: Env): Promise
     // Get user
     const user = await findUserByTelegramId(db, telegramId);
     if (!user) {
-      await telegram.answerCallbackQuery(callbackQuery.id, '❌ 用戶不存在');
+      const { createI18n } = await import('~/i18n');
+      const i18n = createI18n('zh-TW');
+      await telegram.answerCallbackQuery(callbackQuery.id, i18n.t('error.userNotFound4'));
       return;
     }
 
@@ -86,7 +79,9 @@ export async function handleThrowAdvanced(callbackQuery: any, env: Env): Promise
       new Date(user.vip_expire_at) > new Date()
     );
     if (!isVip) {
-      await telegram.answerCallbackQuery(callbackQuery.id, '⚠️ 此功能僅限 VIP 會員使用');
+      const { createI18n } = await import('~/i18n');
+      const i18n = createI18n(user.language_pref || 'zh-TW');
+      await telegram.answerCallbackQuery(callbackQuery.id, i18n.t('warning.vip2'));
       return;
     }
 
@@ -108,27 +103,37 @@ export async function handleThrowAdvanced(callbackQuery: any, env: Env): Promise
     });
 
     // Show advanced filter menu
+    const { createI18n } = await import('~/i18n');
+    const i18n = createI18n(user.language_pref || 'zh-TW');
     await telegram.sendMessageWithButtons(
       chatId,
-      '⚙️ **進階篩選（VIP 專屬）**\n\n' +
-        '選擇你想要篩選的條件：\n\n' +
-        '• MBTI：篩選特定性格類型\n' +
-        '• 星座：篩選特定星座\n' +
-        '• 血型：篩選特定血型\n' +
-        '• 性別：篩選性別\n\n' +
-        '💡 可以組合多個條件',
+      i18n.t('throw.vip3') +
+        '\n\n' +
+        i18n.t('throw.text16') +
+        '\n\n' +
+        i18n.t('throw.mbti5') +
+        '\n' +
+        i18n.t('throw.zodiac5') +
+        '\n' +
+        i18n.t('throw.bloodType2') +
+        '\n' +
+        i18n.t('throw.gender3') +
+        '\n\n' +
+        i18n.t('throw.text23'),
       [
-        [{ text: '🧠 MBTI 篩選', callback_data: 'filter_mbti' }],
-        [{ text: '⭐ 星座篩選', callback_data: 'filter_zodiac' }],
-        [{ text: '🩸 血型篩選', callback_data: 'filter_blood_type' }],
-        [{ text: '👤 性別篩選', callback_data: 'filter_gender' }],
-        [{ text: '✅ 完成篩選，輸入內容', callback_data: 'filter_done' }],
-        [{ text: '🏠 返回主選單', callback_data: 'return_to_menu' }],
+        [{ text: i18n.t('throw.mbti7'), callback_data: 'filter_mbti' }],
+        [{ text: i18n.t('throw.zodiac7'), callback_data: 'filter_zodiac' }],
+        [{ text: i18n.t('throw.bloodType4'), callback_data: 'filter_blood_type' }],
+        [{ text: i18n.t('throw.gender5'), callback_data: 'filter_gender' }],
+        [{ text: i18n.t('success.complete6'), callback_data: 'filter_done' }],
+        [{ text: i18n.t('buttons.back'), callback_data: 'throw' }],
       ]
     );
   } catch (error) {
     console.error('[handleThrowAdvanced] Error:', error);
-    await telegram.answerCallbackQuery(callbackQuery.id, '❌ 發生錯誤');
+    const { createI18n } = await import('~/i18n');
+    const i18n = createI18n('zh-TW');
+    await telegram.answerCallbackQuery(callbackQuery.id, i18n.t('errors.systemError'));
   }
 }
 
@@ -144,10 +149,22 @@ export async function handleFilterMBTI(callbackQuery: any, env: Env): Promise<vo
   try {
     await telegram.answerCallbackQuery(callbackQuery.id);
 
+    // Get user
+    const user = await findUserByTelegramId(db, telegramId);
+    if (!user) {
+      const { createI18n } = await import('~/i18n');
+      const i18n = createI18n('zh-TW');
+      await telegram.sendMessage(chatId, i18n.t('errors.userNotFoundRegister'));
+      return;
+    }
+
+    const { createI18n } = await import('~/i18n');
+    const i18n = createI18n(user.language_pref || 'zh-TW');
+
     // Get current session
     const session = await getActiveSession(db, telegramId, 'throw_bottle');
     if (!session) {
-      await telegram.sendMessage(chatId, '⚠️ 會話已過期，請重新開始：/throw');
+      await telegram.sendMessage(chatId, i18n.t('errors.sessionExpired'));
       return;
     }
 
@@ -166,16 +183,18 @@ export async function handleFilterMBTI(callbackQuery: any, env: Env): Promise<vo
 
     // Add control buttons
     mbtiButtons.push([
-      { text: '🔄 清除選擇', callback_data: 'clear_mbti' },
-      { text: '⬅️ 返回', callback_data: 'back_to_filter' },
+      { text: i18n.t('buttons.short21'), callback_data: 'clear_mbti' },
+      { text: i18n.t('buttons.back'), callback_data: 'back_to_filter' },
     ]);
 
     await telegram.editMessageText(
       chatId,
       callbackQuery.message!.message_id,
-      '🧠 **MBTI 篩選**\n\n' +
-        `已選擇：${selectedMBTI.length > 0 ? selectedMBTI.join(', ') : '無'}\n\n` +
-        '💡 點擊選擇或取消 MBTI 類型：',
+      i18n.t('throw.mbti4') +
+        '\n\n' +
+        i18n.t('throw.selected', { selected: selectedMBTI.length > 0 ? selectedMBTI.join(', ') : i18n.t('common.none') }) +
+        '\n\n' +
+        i18n.t('throw.cancel'),
       {
         reply_markup: {
           inline_keyboard: mbtiButtons,
@@ -184,7 +203,9 @@ export async function handleFilterMBTI(callbackQuery: any, env: Env): Promise<vo
     );
   } catch (error) {
     console.error('[handleFilterMBTI] Error:', error);
-    await telegram.answerCallbackQuery(callbackQuery.id, '❌ 發生錯誤');
+    const { createI18n } = await import('~/i18n');
+    const i18n = createI18n('zh-TW');
+    await telegram.answerCallbackQuery(callbackQuery.id, i18n.t('errors.systemError'));
   }
 }
 
@@ -201,10 +222,22 @@ export async function handleSelectMBTI(
   const telegramId = callbackQuery.from.id.toString();
 
   try {
+    // Get user
+    const user = await findUserByTelegramId(db, telegramId);
+    if (!user) {
+      const { createI18n } = await import('~/i18n');
+      const i18n = createI18n('zh-TW');
+      await telegram.answerCallbackQuery(callbackQuery.id, i18n.t('errors.userNotFound'));
+      return;
+    }
+
+    const { createI18n } = await import('~/i18n');
+    const i18n = createI18n(user.language_pref || 'zh-TW');
+
     // Get current session
     const session = await getActiveSession(db, telegramId, 'throw_bottle');
     if (!session) {
-      await telegram.answerCallbackQuery(callbackQuery.id, '⚠️ 會話已過期，請重新開始');
+      await telegram.answerCallbackQuery(callbackQuery.id, i18n.t('errors.sessionExpired'));
       return;
     }
 
@@ -228,14 +261,16 @@ export async function handleSelectMBTI(
 
     await telegram.answerCallbackQuery(
       callbackQuery.id,
-      index > -1 ? `❌ 已取消 ${mbtiType}` : `✅ 已選擇 ${mbtiType}`
+      index > -1 ? i18n.t('error.cancel8', { mbtiType }) : i18n.t('success.text18', { mbtiType })
     );
 
     // Refresh MBTI selection UI
     await handleFilterMBTI(callbackQuery, env);
   } catch (error) {
     console.error('[handleSelectMBTI] Error:', error);
-    await telegram.answerCallbackQuery(callbackQuery.id, '❌ 發生錯誤');
+    const { createI18n } = await import('~/i18n');
+    const i18n = createI18n('zh-TW');
+    await telegram.answerCallbackQuery(callbackQuery.id, i18n.t('errors.systemError'));
   }
 }
 
@@ -251,10 +286,22 @@ export async function handleFilterZodiac(callbackQuery: any, env: Env): Promise<
   try {
     await telegram.answerCallbackQuery(callbackQuery.id);
 
+    // Get user
+    const user = await findUserByTelegramId(db, telegramId);
+    if (!user) {
+      const { createI18n } = await import('~/i18n');
+      const i18n = createI18n('zh-TW');
+      await telegram.sendMessage(chatId, i18n.t('errors.userNotFoundRegister'));
+      return;
+    }
+
+    const { createI18n } = await import('~/i18n');
+    const i18n = createI18n(user.language_pref || 'zh-TW');
+
     // Get current session
     const session = await getActiveSession(db, telegramId, 'throw_bottle');
     if (!session) {
-      await telegram.sendMessage(chatId, '⚠️ 會話已過期，請重新開始：/throw');
+      await telegram.sendMessage(chatId, i18n.t('errors.sessionExpired'));
       return;
     }
 
@@ -265,7 +312,7 @@ export async function handleFilterZodiac(callbackQuery: any, env: Env): Promise<
     const zodiacButtons: any[][] = [];
     for (let i = 0; i < ZODIAC_SIGNS.length; i += 3) {
       const row = ZODIAC_SIGNS.slice(i, i + 3).map((zodiac) => ({
-        text: selectedZodiac.includes(zodiac) ? `✅ ${ZODIAC_NAMES[zodiac]}` : ZODIAC_NAMES[zodiac],
+        text: selectedZodiac.includes(zodiac) ? `✅ ${getZodiacName(zodiac, i18n)}` : getZodiacName(zodiac, i18n),
         callback_data: `select_zodiac_${zodiac}`,
       }));
       zodiacButtons.push(row);
@@ -273,16 +320,18 @@ export async function handleFilterZodiac(callbackQuery: any, env: Env): Promise<
 
     // Add control buttons
     zodiacButtons.push([
-      { text: '🔄 清除選擇', callback_data: 'clear_zodiac' },
-      { text: '⬅️ 返回', callback_data: 'back_to_filter' },
+      { text: i18n.t('buttons.short21'), callback_data: 'clear_zodiac' },
+      { text: i18n.t('buttons.back'), callback_data: 'back_to_filter' },
     ]);
 
     await telegram.editMessageText(
       chatId,
       callbackQuery.message!.message_id,
-      '⭐ **星座篩選**\n\n' +
-        `已選擇：${selectedZodiac.length > 0 ? selectedZodiac.map((z) => ZODIAC_NAMES[z]).join(', ') : '無'}\n\n` +
-        '💡 點擊選擇或取消星座：',
+      i18n.t('throw.zodiac4') +
+        '\n\n' +
+        i18n.t('throw.selected', { selected: selectedZodiac.length > 0 ? selectedZodiac.map((z) => getZodiacName(z, i18n)).join(', ') : i18n.t('common.none') }) +
+        '\n\n' +
+        i18n.t('throw.cancel2'),
       {
         reply_markup: {
           inline_keyboard: zodiacButtons,
@@ -291,7 +340,9 @@ export async function handleFilterZodiac(callbackQuery: any, env: Env): Promise<
     );
   } catch (error) {
     console.error('[handleFilterZodiac] Error:', error);
-    await telegram.answerCallbackQuery(callbackQuery.id, '❌ 發生錯誤');
+    const { createI18n } = await import('~/i18n');
+    const i18n = createI18n('zh-TW');
+    await telegram.answerCallbackQuery(callbackQuery.id, i18n.t('errors.systemError'));
   }
 }
 
@@ -308,10 +359,22 @@ export async function handleSelectZodiac(
   const telegramId = callbackQuery.from.id.toString();
 
   try {
+    // Get user
+    const user = await findUserByTelegramId(db, telegramId);
+    if (!user) {
+      const { createI18n } = await import('~/i18n');
+      const i18n = createI18n('zh-TW');
+      await telegram.answerCallbackQuery(callbackQuery.id, i18n.t('errors.userNotFound'));
+      return;
+    }
+
+    const { createI18n } = await import('~/i18n');
+    const i18n = createI18n(user.language_pref || 'zh-TW');
+
     // Get current session
     const session = await getActiveSession(db, telegramId, 'throw_bottle');
     if (!session) {
-      await telegram.answerCallbackQuery(callbackQuery.id, '⚠️ 會話已過期，請重新開始');
+      await telegram.answerCallbackQuery(callbackQuery.id, i18n.t('errors.sessionExpired'));
       return;
     }
 
@@ -333,16 +396,21 @@ export async function handleSelectZodiac(
     };
     await updateSessionData(db, session.id, sessionData);
 
+    const zodiacName = getZodiacName(zodiacSign, i18n);
     await telegram.answerCallbackQuery(
       callbackQuery.id,
-      index > -1 ? `❌ 已取消 ${ZODIAC_NAMES[zodiacSign]}` : `✅ 已選擇 ${ZODIAC_NAMES[zodiacSign]}`
+      index > -1
+        ? i18n.t('common.cancelled', { item: zodiacName })
+        : i18n.t('common.selected', { selected: zodiacName })
     );
 
     // Refresh Zodiac selection UI
     await handleFilterZodiac(callbackQuery, env);
   } catch (error) {
     console.error('[handleSelectZodiac] Error:', error);
-    await telegram.answerCallbackQuery(callbackQuery.id, '❌ 發生錯誤');
+    const { createI18n } = await import('~/i18n');
+    const i18n = createI18n('zh-TW');
+    await telegram.answerCallbackQuery(callbackQuery.id, i18n.t('errors.systemError'));
   }
 }
 
@@ -358,49 +426,70 @@ export async function handleFilterGender(callbackQuery: any, env: Env): Promise<
   try {
     await telegram.answerCallbackQuery(callbackQuery.id);
 
+    // Get user
+    const user = await findUserByTelegramId(db, telegramId);
+    if (!user) {
+      const { createI18n } = await import('~/i18n');
+      const i18n = createI18n('zh-TW');
+      await telegram.sendMessage(chatId, i18n.t('errors.userNotFoundRegister'));
+      return;
+    }
+
+    const { createI18n } = await import('~/i18n');
+    const i18n = createI18n(user.language_pref || 'zh-TW');
+
     // Get current session
     const session = await getActiveSession(db, telegramId, 'throw_bottle');
     if (!session) {
-      await telegram.sendMessage(chatId, '⚠️ 會話已過期，請重新開始：/throw');
+      await telegram.sendMessage(chatId, i18n.t('errors.sessionExpired'));
       return;
     }
 
     const sessionData = parseSessionData(session);
     const currentGender = sessionData.data?.target_gender || 'any';
 
+    const genderText = currentGender === 'male' ? i18n.t('onboarding.gender.male') : currentGender === 'female' ? i18n.t('onboarding.gender.female') : '🌈 任何人';
+    const maleText = currentGender === 'male' ? `✅ ${i18n.t('onboarding.gender.male')}` : i18n.t('onboarding.gender.male');
+    const femaleText = currentGender === 'female' ? `✅ ${i18n.t('onboarding.gender.female')}` : i18n.t('onboarding.gender.female');
+    const anyText = currentGender === 'any' ? `✅ ${i18n.t('throw.short3')}` : i18n.t('throw.short3');
+
     await telegram.editMessageText(
       chatId,
       callbackQuery.message!.message_id,
-      '👤 **性別篩選**\n\n' +
-        `當前選擇：${currentGender === 'male' ? '👨 男生' : currentGender === 'female' ? '👩 女生' : '🌈 任何人'}\n\n` +
-        '💡 選擇你想要的性別：',
+      i18n.t('throw.gender2') +
+        '\n\n' +
+        i18n.t('throw.currentSelection', { genderText }) +
+        '\n\n' +
+        i18n.t('throw.gender4'),
       {
         reply_markup: {
           inline_keyboard: [
             [
               {
-                text: currentGender === 'male' ? '✅ 👨 男生' : '👨 男生',
+                text: maleText,
                 callback_data: 'set_gender_male',
               },
               {
-                text: currentGender === 'female' ? '✅ 👩 女生' : '👩 女生',
+                text: femaleText,
                 callback_data: 'set_gender_female',
               },
             ],
             [
               {
-                text: currentGender === 'any' ? '✅ 🌈 任何人' : '🌈 任何人',
+                text: anyText,
                 callback_data: 'set_gender_any',
               },
             ],
-            [{ text: '⬅️ 返回', callback_data: 'back_to_filter' }],
+            [{ text: i18n.t('buttons.back'), callback_data: 'back_to_filter' }],
           ],
         },
       }
     );
   } catch (error) {
     console.error('[handleFilterGender] Error:', error);
-    await telegram.answerCallbackQuery(callbackQuery.id, '❌ 發生錯誤');
+    const { createI18n } = await import('~/i18n');
+    const i18n = createI18n('zh-TW');
+    await telegram.answerCallbackQuery(callbackQuery.id, i18n.t('errors.systemError'));
   }
 }
 
@@ -417,10 +506,22 @@ export async function handleSetGender(
   const telegramId = callbackQuery.from.id.toString();
 
   try {
+    // Get user
+    const user = await findUserByTelegramId(db, telegramId);
+    if (!user) {
+      const { createI18n } = await import('~/i18n');
+      const i18n = createI18n('zh-TW');
+      await telegram.answerCallbackQuery(callbackQuery.id, i18n.t('errors.userNotFound'));
+      return;
+    }
+
+    const { createI18n } = await import('~/i18n');
+    const i18n = createI18n(user.language_pref || 'zh-TW');
+
     // Get current session
     const session = await getActiveSession(db, telegramId, 'throw_bottle');
     if (!session) {
-      await telegram.answerCallbackQuery(callbackQuery.id, '⚠️ 會話已過期，請重新開始');
+      await telegram.answerCallbackQuery(callbackQuery.id, i18n.t('errors.sessionExpired'));
       return;
     }
 
@@ -433,14 +534,16 @@ export async function handleSetGender(
 
     await telegram.answerCallbackQuery(
       callbackQuery.id,
-      `✅ 已選擇 ${gender === 'male' ? '男生' : gender === 'female' ? '女生' : '任何人'}`
+      i18n.t('success.message5', { gender: gender === 'male' ? 'male' : gender === 'female' ? 'female' : 'any' })
     );
 
     // Refresh gender selection UI
     await handleFilterGender(callbackQuery, env);
   } catch (error) {
     console.error('[handleSetGender] Error:', error);
-    await telegram.answerCallbackQuery(callbackQuery.id, '❌ 發生錯誤');
+    const { createI18n } = await import('~/i18n');
+    const i18n = createI18n('zh-TW');
+    await telegram.answerCallbackQuery(callbackQuery.id, i18n.t('errors.systemError'));
   }
 }
 
@@ -456,10 +559,22 @@ export async function handleBackToFilter(callbackQuery: any, env: Env): Promise<
   try {
     await telegram.answerCallbackQuery(callbackQuery.id);
 
+    // Get user
+    const user = await findUserByTelegramId(db, telegramId);
+    if (!user) {
+      const { createI18n } = await import('~/i18n');
+      const i18n = createI18n('zh-TW');
+      await telegram.sendMessage(chatId, i18n.t('errors.userNotFoundRegister'));
+      return;
+    }
+
+    const { createI18n } = await import('~/i18n');
+    const i18n = createI18n(user.language_pref || 'zh-TW');
+
     // Get current session
     const session = await getActiveSession(db, telegramId, 'throw_bottle');
     if (!session) {
-      await telegram.sendMessage(chatId, '⚠️ 會話已過期，請重新開始：/throw');
+      await telegram.sendMessage(chatId, i18n.t('errors.sessionExpired'));
       return;
     }
 
@@ -469,30 +584,40 @@ export async function handleBackToFilter(callbackQuery: any, env: Env): Promise<
     const selectedGender = sessionData.data?.target_gender || 'any';
 
     // Show filter summary
-    let summary = '當前篩選條件：\n\n';
-    summary += `• 性別：${selectedGender === 'male' ? '👨 男生' : selectedGender === 'female' ? '👩 女生' : '🌈 任何人'}\n`;
-    summary += `• MBTI：${selectedMBTI.length > 0 ? selectedMBTI.join(', ') : '無限制'}\n`;
-    summary += `• 星座：${selectedZodiac.length > 0 ? selectedZodiac.map((z) => ZODIAC_NAMES[z]).join(', ') : '無限制'}\n`;
+    const genderText = selectedGender === 'male' ? i18n.t('onboarding.gender.male') : selectedGender === 'female' ? i18n.t('onboarding.gender.female') : '🌈 任何人';
+    const mbtiText = selectedMBTI.length > 0 ? selectedMBTI.join(', ') : i18n.t('throw.unlimited');
+    const zodiacText = selectedZodiac.length > 0 ? selectedZodiac.map((z) => getZodiacName(z, i18n)).join(', ') : i18n.t('throw.unlimited');
+    const summary = i18n.t('throw.text24') +
+      '\n\n' +
+      i18n.t('throw.genderLabel', { gender: genderText }) +
+      i18n.t('throw.mbtiLabel', { mbti: mbtiText }) +
+      i18n.t('throw.zodiacLabel', { zodiac: zodiacText });
 
     await telegram.editMessageText(
       chatId,
       callbackQuery.message!.message_id,
-      `⚙️ **進階篩選**\n\n${summary}\n💡 繼續調整或完成篩選：`,
+      i18n.t('throw.vip3') +
+        '\n\n' +
+        summary +
+        '\n' +
+        i18n.t('throw.text23'),
       {
         reply_markup: {
           inline_keyboard: [
-            [{ text: '🧠 MBTI 篩選', callback_data: 'filter_mbti' }],
-            [{ text: '⭐ 星座篩選', callback_data: 'filter_zodiac' }],
-            [{ text: '👤 性別篩選', callback_data: 'filter_gender' }],
-            [{ text: '✅ 完成篩選，輸入內容', callback_data: 'filter_done' }],
-            [{ text: '🏠 返回主選單', callback_data: 'return_to_menu' }],
+            [{ text: i18n.t('throw.mbti7'), callback_data: 'filter_mbti' }],
+            [{ text: i18n.t('throw.zodiac7'), callback_data: 'filter_zodiac' }],
+            [{ text: i18n.t('throw.gender5'), callback_data: 'filter_gender' }],
+            [{ text: i18n.t('success.complete6'), callback_data: 'filter_done' }],
+            [{ text: i18n.t('buttons.back'), callback_data: 'throw' }],
           ],
         },
       }
     );
   } catch (error) {
     console.error('[handleBackToFilter] Error:', error);
-    await telegram.answerCallbackQuery(callbackQuery.id, '❌ 發生錯誤');
+    const { createI18n } = await import('~/i18n');
+    const i18n = createI18n('zh-TW');
+    await telegram.answerCallbackQuery(callbackQuery.id, i18n.t('errors.systemError'));
   }
 }
 
@@ -506,7 +631,19 @@ export async function handleFilterDone(callbackQuery: any, env: Env): Promise<vo
   const telegramId = callbackQuery.from.id.toString();
 
   try {
-    await telegram.answerCallbackQuery(callbackQuery.id, '✅ 篩選完成');
+    // Get user
+    const user = await findUserByTelegramId(db, telegramId);
+    if (!user) {
+      const { createI18n } = await import('~/i18n');
+      const i18n = createI18n('zh-TW');
+      await telegram.answerCallbackQuery(callbackQuery.id, i18n.t('errors.userNotFound'));
+      return;
+    }
+
+    const { createI18n } = await import('~/i18n');
+    const i18n = createI18n(user.language_pref || 'zh-TW');
+
+    await telegram.answerCallbackQuery(callbackQuery.id, i18n.t('success.complete7'));
 
     // Delete filter menu
     await telegram.deleteMessage(chatId, callbackQuery.message!.message_id);
@@ -514,7 +651,7 @@ export async function handleFilterDone(callbackQuery: any, env: Env): Promise<vo
     // Get current session
     const session = await getActiveSession(db, telegramId, 'throw_bottle');
     if (!session) {
-      await telegram.sendMessage(chatId, '⚠️ 會話已過期，請重新開始：/throw');
+      await telegram.sendMessage(chatId, i18n.t('errors.sessionExpired'));
       return;
     }
 
@@ -524,22 +661,30 @@ export async function handleFilterDone(callbackQuery: any, env: Env): Promise<vo
     const selectedGender = sessionData.data?.target_gender || 'any';
 
     // Show filter summary and ask for content
-    let summary = '✅ 篩選條件已設定：\n\n';
-    summary += `• 性別：${selectedGender === 'male' ? '👨 男生' : selectedGender === 'female' ? '👩 女生' : '🌈 任何人'}\n`;
-    summary += `• MBTI：${selectedMBTI.length > 0 ? selectedMBTI.join(', ') : '無限制'}\n`;
-    summary += `• 星座：${selectedZodiac.length > 0 ? selectedZodiac.map((z) => ZODIAC_NAMES[z]).join(', ') : '無限制'}\n`;
+    const genderText = selectedGender === 'male' ? i18n.t('onboarding.gender.male') : selectedGender === 'female' ? i18n.t('onboarding.gender.female') : '🌈 任何人';
+    const mbtiText = selectedMBTI.length > 0 ? selectedMBTI.join(', ') : i18n.t('throw.unlimited');
+    const zodiacText = selectedZodiac.length > 0 ? selectedZodiac.map((z) => getZodiacName(z, i18n)).join(', ') : i18n.t('throw.unlimited');
+    const summary = i18n.t('success.settings3') +
+      i18n.t('throw.genderLabel', { gender: genderText }) +
+      i18n.t('throw.mbtiLabel', { mbti: mbtiText }) +
+      i18n.t('throw.zodiacLabel', { zodiac: zodiacText });
 
     await telegram.sendMessage(
       chatId,
       summary +
         '\n\n' +
-        '📝 請輸入你的漂流瓶內容：\n\n' +
-        '💡 提示：\n' +
-        '• 最短 5 個字符\n' +
-        '• 最多 250 個字符\n' +
-        '• 不允許連結、圖片、多媒體\n' +
-        '• 不要包含個人聯絡方式\n' +
-        '• 友善、尊重的內容更容易被撿到哦～'
+        i18n.t('throw.bottle6') +
+        '\n\n' +
+        i18n.t('throw.tips') +
+        i18n.t('common.text112') +
+        '\n' +
+        i18n.t('common.text93') +
+        '\n' +
+        i18n.t('common.text77') +
+        '\n' +
+        i18n.t('throw.text13') +
+        '\n' +
+        i18n.t('throw.friendlyContent')
     );
 
     // Update session step
@@ -547,7 +692,9 @@ export async function handleFilterDone(callbackQuery: any, env: Env): Promise<vo
     await updateSessionData(db, session.id, sessionData);
   } catch (error) {
     console.error('[handleFilterDone] Error:', error);
-    await telegram.answerCallbackQuery(callbackQuery.id, '❌ 發生錯誤');
+    const { createI18n } = await import('~/i18n');
+    const i18n = createI18n('zh-TW');
+    await telegram.answerCallbackQuery(callbackQuery.id, i18n.t('errors.systemError'));
   }
 }
 
@@ -560,9 +707,21 @@ export async function handleClearMBTI(callbackQuery: any, env: Env): Promise<voi
   const telegramId = callbackQuery.from.id.toString();
 
   try {
+    // Get user
+    const user = await findUserByTelegramId(db, telegramId);
+    if (!user) {
+      const { createI18n } = await import('~/i18n');
+      const i18n = createI18n('zh-TW');
+      await telegram.answerCallbackQuery(callbackQuery.id, i18n.t('errors.userNotFound'));
+      return;
+    }
+
+    const { createI18n } = await import('~/i18n');
+    const i18n = createI18n(user.language_pref || 'zh-TW');
+
     const session = await getActiveSession(db, telegramId, 'throw_bottle');
     if (!session) {
-      await telegram.answerCallbackQuery(callbackQuery.id, '⚠️ 會話已過期，請重新開始');
+      await telegram.answerCallbackQuery(callbackQuery.id, i18n.t('errors.sessionExpired'));
       return;
     }
 
@@ -573,11 +732,13 @@ export async function handleClearMBTI(callbackQuery: any, env: Env): Promise<voi
     };
     await updateSessionData(db, session.id, sessionData);
 
-    await telegram.answerCallbackQuery(callbackQuery.id, '✅ 已清除 MBTI 選擇');
+    await telegram.answerCallbackQuery(callbackQuery.id, i18n.t('success.mbti4'));
     await handleFilterMBTI(callbackQuery, env);
   } catch (error) {
     console.error('[handleClearMBTI] Error:', error);
-    await telegram.answerCallbackQuery(callbackQuery.id, '❌ 發生錯誤');
+    const { createI18n } = await import('~/i18n');
+    const i18n = createI18n('zh-TW');
+    await telegram.answerCallbackQuery(callbackQuery.id, i18n.t('errors.systemError'));
   }
 }
 
@@ -590,9 +751,21 @@ export async function handleClearZodiac(callbackQuery: any, env: Env): Promise<v
   const telegramId = callbackQuery.from.id.toString();
 
   try {
+    // Get user
+    const user = await findUserByTelegramId(db, telegramId);
+    if (!user) {
+      const { createI18n } = await import('~/i18n');
+      const i18n = createI18n('zh-TW');
+      await telegram.answerCallbackQuery(callbackQuery.id, i18n.t('errors.userNotFound'));
+      return;
+    }
+
+    const { createI18n } = await import('~/i18n');
+    const i18n = createI18n(user.language_pref || 'zh-TW');
+
     const session = await getActiveSession(db, telegramId, 'throw_bottle');
     if (!session) {
-      await telegram.answerCallbackQuery(callbackQuery.id, '⚠️ 會話已過期，請重新開始');
+      await telegram.answerCallbackQuery(callbackQuery.id, i18n.t('errors.sessionExpired'));
       return;
     }
 
@@ -603,11 +776,13 @@ export async function handleClearZodiac(callbackQuery: any, env: Env): Promise<v
     };
     await updateSessionData(db, session.id, sessionData);
 
-    await telegram.answerCallbackQuery(callbackQuery.id, '✅ 已清除星座選擇');
+    await telegram.answerCallbackQuery(callbackQuery.id, i18n.t('success.zodiac'));
     await handleFilterZodiac(callbackQuery, env);
   } catch (error) {
     console.error('[handleClearZodiac] Error:', error);
-    await telegram.answerCallbackQuery(callbackQuery.id, '❌ 發生錯誤');
+    const { createI18n } = await import('~/i18n');
+    const i18n = createI18n('zh-TW');
+    await telegram.answerCallbackQuery(callbackQuery.id, i18n.t('errors.systemError'));
   }
 }
 
@@ -621,9 +796,21 @@ export async function handleFilterBloodType(callbackQuery: any, env: Env): Promi
   const telegramId = callbackQuery.from.id.toString();
 
   try {
+    // Get user
+    const user = await findUserByTelegramId(db, telegramId);
+    if (!user) {
+      const { createI18n } = await import('~/i18n');
+      const i18n = createI18n('zh-TW');
+      await telegram.answerCallbackQuery(callbackQuery.id, i18n.t('errors.userNotFound'));
+      return;
+    }
+
+    const { createI18n } = await import('~/i18n');
+    const i18n = createI18n(user.language_pref || 'zh-TW');
+
     const session = await getActiveSession(db, telegramId, 'throw_bottle');
     if (!session) {
-      await telegram.answerCallbackQuery(callbackQuery.id, '⚠️ 會話已過期，請重新開始');
+      await telegram.answerCallbackQuery(callbackQuery.id, i18n.t('errors.sessionExpired'));
       return;
     }
 
@@ -633,35 +820,33 @@ export async function handleFilterBloodType(callbackQuery: any, env: Env): Promi
     const sessionData = parseSessionData(session);
     const currentBloodType = sessionData.data?.target_blood_type || 'any';
 
-    const bloodTypeDisplay: Record<string, string> = {
-      any: '任何血型',
-      A: '🩸 A 型',
-      B: '🩸 B 型',
-      AB: '🩸 AB 型',
-      O: '🩸 O 型',
-    };
+    const bloodTypeText = currentBloodType === 'any' ? i18n.t('throw.bloodType5') : `🩸 ${currentBloodType} 型`;
 
     await telegram.sendMessageWithButtons(
       chatId,
-      '🩸 **血型篩選**\n\n' +
-        `當前選擇：${bloodTypeDisplay[currentBloodType]}\n\n` +
-        '選擇你想要配對的血型：',
+      i18n.t('throw.bloodType4') +
+        '\n\n' +
+        i18n.t('throw.currentSelection', { selection: bloodTypeText }) +
+        '\n\n' +
+        i18n.t('throw.bloodType5'),
       [
         [
-          { text: '🩸 A 型', callback_data: 'blood_type_A' },
-          { text: '🩸 B 型', callback_data: 'blood_type_B' },
+          { text: i18n.t('common.bloodTypeA'), callback_data: 'blood_type_A' },
+          { text: i18n.t('common.bloodTypeB'), callback_data: 'blood_type_B' },
         ],
         [
-          { text: '🩸 AB 型', callback_data: 'blood_type_AB' },
-          { text: '🩸 O 型', callback_data: 'blood_type_O' },
+          { text: i18n.t('common.bloodTypeAB'), callback_data: 'blood_type_AB' },
+          { text: i18n.t('common.bloodTypeO'), callback_data: 'blood_type_O' },
         ],
-        [{ text: '🌈 任何血型', callback_data: 'blood_type_any' }],
-        [{ text: '↩️ 返回篩選選單', callback_data: 'throw_advanced' }],
+        [{ text: i18n.t('throw.bloodType5'), callback_data: 'blood_type_any' }],
+        [{ text: i18n.t('buttons.back'), callback_data: 'throw_advanced' }],
       ]
     );
   } catch (error) {
     console.error('[handleFilterBloodType] Error:', error);
-    await telegram.answerCallbackQuery(callbackQuery.id, '❌ 發生錯誤');
+    const { createI18n } = await import('~/i18n');
+    const i18n = createI18n('zh-TW');
+    await telegram.answerCallbackQuery(callbackQuery.id, i18n.t('errors.systemError'));
   }
 }
 
@@ -678,9 +863,21 @@ export async function handleBloodTypeSelect(
   const telegramId = callbackQuery.from.id.toString();
 
   try {
+    // Get user
+    const user = await findUserByTelegramId(db, telegramId);
+    if (!user) {
+      const { createI18n } = await import('~/i18n');
+      const i18n = createI18n('zh-TW');
+      await telegram.answerCallbackQuery(callbackQuery.id, i18n.t('errors.userNotFound'));
+      return;
+    }
+
+    const { createI18n } = await import('~/i18n');
+    const i18n = createI18n(user.language_pref || 'zh-TW');
+
     const session = await getActiveSession(db, telegramId, 'throw_bottle');
     if (!session) {
-      await telegram.answerCallbackQuery(callbackQuery.id, '⚠️ 會話已過期，請重新開始');
+      await telegram.answerCallbackQuery(callbackQuery.id, i18n.t('errors.sessionExpired'));
       return;
     }
 
@@ -691,21 +888,17 @@ export async function handleBloodTypeSelect(
     };
     await updateSessionData(db, session.id, sessionData);
 
-    const bloodTypeDisplay: Record<string, string> = {
-      any: '任何血型',
-      A: '🩸 A 型',
-      B: '🩸 B 型',
-      AB: '🩸 AB 型',
-      O: '🩸 O 型',
-    };
+    const bloodTypeText = bloodType === 'any' ? i18n.t('throw.bloodType5') : `🩸 ${bloodType} 型`;
 
     await telegram.answerCallbackQuery(
       callbackQuery.id,
-      `✅ 已選擇 ${bloodTypeDisplay[bloodType]}`
+      i18n.t('common.selected', { selected: bloodTypeText })
     );
     await handleFilterBloodType(callbackQuery, env);
   } catch (error) {
     console.error('[handleBloodTypeSelect] Error:', error);
-    await telegram.answerCallbackQuery(callbackQuery.id, '❌ 發生錯誤');
+    const { createI18n } = await import('~/i18n');
+    const i18n = createI18n('zh-TW');
+    await telegram.answerCallbackQuery(callbackQuery.id, i18n.t('errors.systemError'));
   }
 }

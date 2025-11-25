@@ -21,6 +21,7 @@ import {
 } from '~/domain/user';
 import { createTelegramService } from '~/services/telegram';
 import { LEGAL_URLS } from '~/config/legal_urls';
+import { createI18n } from '~/i18n';
 
 // ============================================================================
 // Onboarding Input Handler
@@ -68,7 +69,9 @@ export async function handleOnboardingInput(message: TelegramMessage, env: Env):
     }
   } catch (error) {
     console.error('[handleOnboardingInput] Error:', error);
-    await telegram.sendMessage(chatId, '❌ 發生錯誤，請重新輸入。');
+    const user = await findUserByTelegramId(db, telegramId);
+    const i18n = createI18n(user?.language_pref || 'zh-TW');
+    await telegram.sendMessage(chatId, i18n.t('onboarding.errorRetry'));
     return true;
   }
 }
@@ -87,7 +90,8 @@ async function handleNicknameInput(
   // Validate nickname
   const validation = validateNickname(nickname);
   if (!validation.valid) {
-    await telegram.sendMessage(chatId, `❌ ${validation.error}\n\n請重新輸入暱稱：`);
+    const i18n = createI18n(user.language_pref || 'zh-TW');
+    await telegram.sendMessage(chatId, i18n.t('onboarding.nicknameError', { error: validation.error }));
     return true;
   }
 
@@ -98,15 +102,16 @@ async function handleNicknameInput(
   await updateOnboardingStep(db, user.telegram_id, 'gender');
 
   // Show gender selection
+  const i18n = createI18n(user.language_pref || 'zh-TW');
   await telegram.sendMessageWithButtons(
     chatId,
-    `很好！你的暱稱是：${nickname}\n\n` +
-      `現在請選擇你的性別：\n\n` +
-      `⚠️ 注意：性別設定後無法修改，請謹慎選擇！`,
+    i18n.t('onboarding.nicknameGood', { nickname }) +
+      i18n.t('onboarding.nowSelectGender') +
+      i18n.t('onboarding.genderWarning'),
     [
       [
-        { text: '👨 男性', callback_data: 'gender_male' },
-        { text: '👩 女性', callback_data: 'gender_female' },
+        { text: i18n.t('onboarding.genderMale'), callback_data: 'gender_male' },
+        { text: i18n.t('onboarding.genderFemale'), callback_data: 'gender_female' },
       ],
     ]
   );
@@ -125,12 +130,15 @@ async function handleBirthdayInput(
   telegram: ReturnType<typeof createTelegramService>,
   _db: ReturnType<typeof createDatabaseClient>
 ): Promise<boolean> {
+  const i18n = createI18n(user.language_pref || 'zh-TW');
+  
   // Validate birthday
   const validation = validateBirthday(birthday);
   if (!validation.valid) {
     await telegram.sendMessage(
       chatId,
-      `❌ ${validation.error}\n\n請重新輸入生日（格式：YYYY-MM-DD）：`
+      i18n.t('onboarding.birthdayError', { error: validation.error }) +
+      i18n.t('onboarding.birthdayRetry')
     );
     return true;
   }
@@ -140,7 +148,7 @@ async function handleBirthdayInput(
   const zodiacSign = calculateZodiacSign(birthday);
 
   if (age === null || zodiacSign === null) {
-    await telegram.sendMessage(chatId, `❌ 生日格式錯誤\n\n請重新輸入（格式：YYYY-MM-DD）：`);
+    await telegram.sendMessage(chatId, i18n.t('onboarding.birthdayFormatError'));
     return true;
   }
 
@@ -148,10 +156,10 @@ async function handleBirthdayInput(
   if (age < 18) {
     await telegram.sendMessage(
       chatId,
-      `❌ 很抱歉，你必須年滿 18 歲才能使用本服務。\n\n` +
-        `你的年齡：${age} 歲\n` +
-        `請成年後再來！\n\n` +
-        `如果你認為這是錯誤，請檢查你的生日格式是否正確（YYYY-MM-DD）。`
+      i18n.t('onboarding.ageRestriction') +
+        i18n.t('onboarding.yourAge', { age }) +
+        i18n.t('onboarding.pleaseComeBack') +
+        i18n.t('onboarding.birthdayCheck')
     );
     return true;
   }
@@ -159,15 +167,15 @@ async function handleBirthdayInput(
   // Confirm birthday (second confirmation)
   await telegram.sendMessageWithButtons(
     chatId,
-    `⚠️ 請確認你的生日資訊：\n\n` +
-      `生日：${birthday}\n` +
-      `年齡：${age} 歲\n` +
-      `星座：${zodiacSign}\n\n` +
-      `⚠️ 生日設定後無法修改，請確認無誤！`,
+    i18n.t('onboarding.confirmBirthday') +
+      i18n.t('onboarding.birthday', { birthday }) +
+      i18n.t('onboarding.age', { age }) +
+      i18n.t('onboarding.zodiac', { zodiac: zodiacSign }) +
+      i18n.t('onboarding.birthdayWarning'),
     [
       [
-        { text: '✅ 確認', callback_data: `confirm_birthday_${birthday}` },
-        { text: '❌ 重新輸入', callback_data: 'retry_birthday' },
+        { text: i18n.t('onboarding.confirm'), callback_data: `confirm_birthday_${birthday}` },
+        { text: i18n.t('onboarding.retry'), callback_data: 'retry_birthday' },
       ],
     ]
   );
@@ -202,29 +210,31 @@ async function handleAntiFraudInput(
     await updateOnboardingStep(db, user.telegram_id, 'terms');
 
     // Show terms agreement
+    const i18n = createI18n(user.language_pref || 'zh-TW');
     await telegram.sendMessageWithButtons(
       chatId,
-      `✅ 反詐騙測驗通過！\n\n` +
-        `最後一步：請閱讀並同意我們的服務條款\n\n` +
-        `📋 隱私權政策\n` +
-        `📋 使用者條款\n\n` +
-        `📋 Legal documents are provided in English only.\n\n` +
-        `點擊下方按鈕表示你已閱讀並同意上述條款。`,
+      i18n.t('onboarding.antiFraudPassed') +
+        i18n.t('onboarding.lastStep') +
+        i18n.t('onboarding.privacyPolicy') +
+        i18n.t('onboarding.termsOfService') +
+        i18n.t('onboarding.legalDocuments') +
+        i18n.t('onboarding.agreeTerms'),
       [
-        [{ text: '✅ 我已閱讀並同意', callback_data: 'agree_terms' }],
-        [{ text: '📋 View Privacy Policy', url: LEGAL_URLS.PRIVACY_POLICY }],
-        [{ text: '📋 View Terms of Service', url: LEGAL_URLS.TERMS_OF_SERVICE }],
+        [{ text: i18n.t('onboarding.iHaveRead'), callback_data: 'agree_terms' }],
+        [{ text: i18n.t('onboarding.viewPrivacyPolicy'), url: LEGAL_URLS.PRIVACY_POLICY }],
+        [{ text: i18n.t('onboarding.viewTermsOfService'), url: LEGAL_URLS.TERMS_OF_SERVICE }],
       ]
     );
 
     return true;
   }
 
+  const i18n = createI18n(user.language_pref || 'zh-TW');
   await telegram.sendMessage(
     chatId,
-    `❌ 請認真回答問題\n\n` +
-      `為了保護所有使用者的安全，請確認你了解網路交友的風險。\n\n` +
-      `請輸入「是」完成測驗：`
+    i18n.t('onboarding.pleaseAnswer') +
+      i18n.t('onboarding.understandRisks') +
+      i18n.t('onboarding.enterYes')
   );
 
   return true;

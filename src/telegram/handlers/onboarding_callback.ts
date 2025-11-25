@@ -8,6 +8,7 @@ import { createDatabaseClient } from '~/db/client';
 import { findUserByTelegramId, updateUserProfile, updateOnboardingStep } from '~/db/queries/users';
 import { createTelegramService } from '~/services/telegram';
 import { LEGAL_URLS } from '~/config/legal_urls';
+import { createI18n } from '~/i18n';
 
 // ============================================================================
 // Gender Selection
@@ -27,13 +28,16 @@ export async function handleGenderSelection(
     // Get user
     const user = await findUserByTelegramId(db, telegramId);
     if (!user) {
-      await telegram.answerCallbackQuery(callbackQuery.id, '❌ 用戶不存在');
+      const errorI18n = createI18n('zh-TW');
+      await telegram.answerCallbackQuery(callbackQuery.id, errorI18n.t('errors.userNotFound4'));
       return;
     }
 
+    const i18n = createI18n(user.language_pref || 'zh-TW');
+
     // Check if user is in gender selection step
     if (user.onboarding_step !== 'gender') {
-      await telegram.answerCallbackQuery(callbackQuery.id, '⚠️ 當前不在性別選擇步驟');
+      await telegram.answerCallbackQuery(callbackQuery.id, i18n.t('warnings.gender'));
       return;
     }
 
@@ -42,15 +46,17 @@ export async function handleGenderSelection(
     await telegram.editMessageText(
       chatId,
       callbackQuery.message!.message_id,
-      `✅ 你選擇了：${gender === 'male' ? '👨 男性' : '👩 女性'}\n\n` +
-        `⚠️ 再次提醒：性別設定後將**永遠不能修改**！\n\n` +
-        `請確認：`,
+      i18n.t('success.message8', { gender }) +
+        '\n\n' +
+        i18n.t('warnings.settings') +
+        '\n\n' +
+        i18n.t('common.confirm7'),
       {
         reply_markup: {
           inline_keyboard: [
             [
-              { text: '✅ 確認', callback_data: `gender_confirm_${gender}` },
-              { text: '❌ 重新選擇', callback_data: 'gender_reselect' },
+              { text: i18n.t('success.confirm3'), callback_data: `gender_confirm_${gender}` },
+              { text: i18n.t('errors.error.short12'), callback_data: 'gender_reselect' },
             ],
           ],
         },
@@ -58,7 +64,8 @@ export async function handleGenderSelection(
     );
   } catch (error) {
     console.error('[handleGenderSelection] Error:', error);
-    await telegram.answerCallbackQuery(callbackQuery.id, '❌ 發生錯誤');
+    const errorI18n = createI18n('zh-TW');
+    await telegram.answerCallbackQuery(callbackQuery.id, errorI18n.t('errors.error.short9'));
   }
 }
 
@@ -80,9 +87,12 @@ export async function handleGenderConfirmation(
     // Get user
     const user = await findUserByTelegramId(db, telegramId);
     if (!user) {
-      await telegram.answerCallbackQuery(callbackQuery.id, '❌ 用戶不存在');
+      const errorI18n = createI18n('zh-TW');
+      await telegram.answerCallbackQuery(callbackQuery.id, errorI18n.t('errors.userNotFound4'));
       return;
     }
+
+    const i18n = createI18n(user.language_pref || 'zh-TW');
 
     // Save gender
     await updateUserProfile(db, telegramId, { gender });
@@ -91,7 +101,7 @@ export async function handleGenderConfirmation(
     await updateOnboardingStep(db, telegramId, 'birthday');
 
     // Answer callback
-    await telegram.answerCallbackQuery(callbackQuery.id, '✅ 性別已保存');
+    await telegram.answerCallbackQuery(callbackQuery.id, i18n.t('success.gender'));
 
     // Delete confirmation message
     await telegram.deleteMessage(chatId, callbackQuery.message!.message_id);
@@ -99,15 +109,20 @@ export async function handleGenderConfirmation(
     // Ask for birthday
     await telegram.sendMessage(
       chatId,
-      `請輸入你的生日（格式：YYYY-MM-DD）：\n\n` +
-        `例如：1995-06-15\n\n` +
-        `⚠️ 注意：\n` +
-        `• 生日設定後無法修改\n` +
-        `• 必須年滿 18 歲才能使用本服務`
+      i18n.t('common.birthday3') +
+        '\n\n' +
+        i18n.t('common.text10') +
+        '\n\n' +
+        i18n.t('warnings.birthday') +
+        '\n' +
+        i18n.t('common.settings6') +
+        '\n' +
+        i18n.t('common.text9')
     );
   } catch (error) {
     console.error('[handleGenderConfirmation] Error:', error);
-    await telegram.answerCallbackQuery(callbackQuery.id, '❌ 發生錯誤');
+    const errorI18n = createI18n('zh-TW');
+    await telegram.answerCallbackQuery(callbackQuery.id, errorI18n.t('errors.error.short9'));
   }
 }
 
@@ -123,17 +138,24 @@ export async function handleGenderReselection(
   const chatId = callbackQuery.message!.chat.id;
 
   try {
+    const db = createDatabaseClient(env.DB);
+    const telegramId = callbackQuery.from.id.toString();
+    const user = await findUserByTelegramId(db, telegramId);
+    const i18n = createI18n(user?.language_pref || 'zh-TW');
+
     // Show gender selection again
     await telegram.editMessageText(
       chatId,
       callbackQuery.message!.message_id,
-      `請選擇你的性別：\n\n` + `⚠️ 注意：性別設定後無法修改，請謹慎選擇！`,
+      i18n.t('common.gender3') +
+        '\n\n' +
+        i18n.t('warnings.settings'),
       {
         reply_markup: {
           inline_keyboard: [
             [
-              { text: '👨 男性', callback_data: 'gender_male' },
-              { text: '👩 女性', callback_data: 'gender_female' },
+              { text: i18n.t('common.short86'), callback_data: 'gender_male' },
+              { text: i18n.t('common.short87'), callback_data: 'gender_female' },
             ],
           ],
         },
@@ -143,7 +165,8 @@ export async function handleGenderReselection(
     await telegram.answerCallbackQuery(callbackQuery.id);
   } catch (error) {
     console.error('[handleGenderReselection] Error:', error);
-    await telegram.answerCallbackQuery(callbackQuery.id, '❌ 發生錯誤');
+    const errorI18n = createI18n('zh-TW');
+    await telegram.answerCallbackQuery(callbackQuery.id, errorI18n.t('errors.error.short9'));
   }
 }
 
@@ -165,13 +188,16 @@ export async function handleBirthdayConfirmation(
     // Get user
     const user = await findUserByTelegramId(db, telegramId);
     if (!user) {
-      await telegram.answerCallbackQuery(callbackQuery.id, '❌ 用戶不存在');
+      const errorI18n = createI18n('zh-TW');
+      await telegram.answerCallbackQuery(callbackQuery.id, errorI18n.t('errors.userNotFound4'));
       return;
     }
 
+    const i18n = createI18n(user.language_pref || 'zh-TW');
+
     // Check if user is in birthday step
     if (user.onboarding_step !== 'birthday') {
-      await telegram.answerCallbackQuery(callbackQuery.id, '⚠️ 當前不在生日輸入步驟');
+      await telegram.answerCallbackQuery(callbackQuery.id, i18n.t('warnings.birthday'));
       return;
     }
 
@@ -183,7 +209,7 @@ export async function handleBirthdayConfirmation(
     const zodiacSign = calculateZodiacSign(birthday);
 
     if (age === null || zodiacSign === null) {
-      await telegram.answerCallbackQuery(callbackQuery.id, '❌ 生日格式錯誤');
+      await telegram.answerCallbackQuery(callbackQuery.id, i18n.t('errors.error.birthday3'));
       return;
     }
 
@@ -193,7 +219,9 @@ export async function handleBirthdayConfirmation(
       await telegram.editMessageText(
         chatId,
         callbackQuery.message!.message_id,
-        `❌ 很抱歉，你必須年滿 18 歲才能使用本服務。\n\n請成年後再來！`
+        i18n.t('errors.error.text23') +
+          '\n\n' +
+          i18n.t('common.text20')
       );
       return;
     }
@@ -209,7 +237,7 @@ export async function handleBirthdayConfirmation(
     await updateOnboardingStep(db, telegramId, 'blood_type');
 
     // Answer callback
-    await telegram.answerCallbackQuery(callbackQuery.id, '✅ 生日已保存');
+    await telegram.answerCallbackQuery(callbackQuery.id, i18n.t('success.birthday'));
 
     // Delete confirmation message
     await telegram.deleteMessage(chatId, callbackQuery.message!.message_id);
@@ -220,9 +248,11 @@ export async function handleBirthdayConfirmation(
 
     await telegram.sendMessageWithButtons(
       chatId,
-      `🩸 **請選擇你的血型**\n\n` +
-        `💡 填寫血型可用於未來的血型配對功能（VIP 專屬）\n\n` +
-        `請選擇你的血型：`,
+      i18n.t('common.bloodType') +
+        '\n\n' +
+        i18n.t('common.vip') +
+        '\n\n' +
+        i18n.t('common.bloodType3'),
       [
         [
           { text: options[0].display, callback_data: 'blood_type_A' },
@@ -237,7 +267,8 @@ export async function handleBirthdayConfirmation(
     );
   } catch (error) {
     console.error('[handleBirthdayConfirm] Error:', error);
-    await telegram.answerCallbackQuery(callbackQuery.id, '❌ 發生錯誤');
+    const errorI18n = createI18n('zh-TW');
+    await telegram.answerCallbackQuery(callbackQuery.id, errorI18n.t('errors.error.short9'));
   }
 }
 
@@ -259,13 +290,16 @@ export async function handleBloodTypeSelection(
     // Get user
     const user = await findUserByTelegramId(db, telegramId);
     if (!user) {
-      await telegram.answerCallbackQuery(callbackQuery.id, '❌ 用戶不存在');
+      const errorI18n = createI18n('zh-TW');
+      await telegram.answerCallbackQuery(callbackQuery.id, errorI18n.t('errors.userNotFound4'));
       return;
     }
 
+    const i18n = createI18n(user.language_pref || 'zh-TW');
+
     // Check if user is in blood_type step
     if (user.onboarding_step !== 'blood_type') {
-      await telegram.answerCallbackQuery(callbackQuery.id, '⚠️ 當前不在血型選擇步驟');
+      await telegram.answerCallbackQuery(callbackQuery.id, i18n.t('warnings.bloodType'));
       return;
     }
 
@@ -283,8 +317,8 @@ export async function handleBloodTypeSelection(
     // Answer callback
     const { getBloodTypeDisplay } = await import('~/domain/blood_type');
     const displayText = bloodType
-      ? `✅ 血型已設定為 ${getBloodTypeDisplay(bloodType as any)}`
-      : '✅ 已跳過血型設定';
+      ? i18n.t('success.settings4', { getBloodTypeDisplay: () => getBloodTypeDisplay(bloodType as any) }).replace(/\$\{getBloodTypeDisplay\(bloodType as any\)\}/, getBloodTypeDisplay(bloodType as any))
+      : i18n.t('success.settings6');
     await telegram.answerCallbackQuery(callbackQuery.id, displayText);
 
     // Delete blood type message
@@ -293,18 +327,21 @@ export async function handleBloodTypeSelection(
     // Show MBTI options: manual / test / skip
     await telegram.sendMessageWithButtons(
       chatId,
-      `🧠 現在讓我們設定你的 MBTI 性格類型！\n\n` +
-        `這將幫助我們為你找到更合適的聊天對象～\n\n` +
-        `你想要如何設定？`,
+      i18n.t('common.settings2') +
+        '\n\n' +
+        i18n.t('common.help') +
+        '\n\n' +
+        i18n.t('common.settings7'),
       [
-        [{ text: '✍️ 我已經知道我的 MBTI', callback_data: 'mbti_choice_manual' }],
-        [{ text: '📝 進行快速測驗（12 題，僅供參考）', callback_data: 'mbti_choice_test' }],
-        [{ text: '⏭️ 稍後再說', callback_data: 'mbti_choice_skip' }],
+        [{ text: i18n.t('common.mbti2'), callback_data: 'mbti_choice_manual' }],
+        [{ text: i18n.t('common.text5'), callback_data: 'mbti_choice_test' }],
+        [{ text: i18n.t('common.short'), callback_data: 'mbti_choice_skip' }],
       ]
     );
   } catch (error) {
     console.error('[handleBirthdayConfirmation] Error:', error);
-    await telegram.answerCallbackQuery(callbackQuery.id, '❌ 發生錯誤');
+    const errorI18n = createI18n('zh-TW');
+    await telegram.answerCallbackQuery(callbackQuery.id, errorI18n.t('errors.error.short9'));
   }
 }
 
@@ -313,27 +350,37 @@ export async function handleBloodTypeSelection(
 // ============================================================================
 
 export async function handleBirthdayRetry(callbackQuery: CallbackQuery, env: Env): Promise<void> {
+  const db = createDatabaseClient(env.DB);
   const telegram = createTelegramService(env);
   const chatId = callbackQuery.message!.chat.id;
+  const telegramId = callbackQuery.from.id.toString();
 
   try {
+    const user = await findUserByTelegramId(db, telegramId);
+    const i18n = createI18n(user?.language_pref || 'zh-TW');
+
     // Delete confirmation message
     await telegram.deleteMessage(chatId, callbackQuery.message!.message_id);
 
     // Ask for birthday again
     await telegram.sendMessage(
       chatId,
-      `請重新輸入你的生日（格式：YYYY-MM-DD）：\n\n` +
-        `例如：1995-06-15\n\n` +
-        `⚠️ 注意：\n` +
-        `• 生日設定後無法修改\n` +
-        `• 必須年滿 18 歲才能使用本服務`
+      i18n.t('common.birthday2') +
+        '\n\n' +
+        i18n.t('common.text10') +
+        '\n\n' +
+        i18n.t('warnings.birthday') +
+        '\n' +
+        i18n.t('common.settings6') +
+        '\n' +
+        i18n.t('common.text9')
     );
 
     await telegram.answerCallbackQuery(callbackQuery.id);
   } catch (error) {
     console.error('[handleBirthdayRetry] Error:', error);
-    await telegram.answerCallbackQuery(callbackQuery.id, '❌ 發生錯誤');
+    const errorI18n = createI18n('zh-TW');
+    await telegram.answerCallbackQuery(callbackQuery.id, errorI18n.t('errors.error.short9'));
   }
 }
 
@@ -357,9 +404,12 @@ export async function handleMBTIChoiceManual(
     // Get user
     const user = await findUserByTelegramId(db, telegramId);
     if (!user) {
-      await telegram.answerCallbackQuery(callbackQuery.id, '❌ 用戶不存在');
+      const errorI18n = createI18n('zh-TW');
+      await telegram.answerCallbackQuery(callbackQuery.id, errorI18n.t('errors.userNotFound4'));
       return;
     }
+
+    const i18n = createI18n(user.language_pref || 'zh-TW');
 
     // Answer callback
     await telegram.answerCallbackQuery(callbackQuery.id);
@@ -370,7 +420,9 @@ export async function handleMBTIChoiceManual(
     // Show 16 MBTI type buttons
     await telegram.sendMessageWithButtons(
       chatId,
-      `請選擇你的 MBTI 類型：\n\n` + `如果不確定，可以先進行測驗或稍後再設定。`,
+      i18n.t('common.mbti8') +
+        '\n\n' +
+        i18n.t('common.settings4'),
       [
         [
           { text: 'INTJ', callback_data: 'mbti_manual_INTJ' },
@@ -396,12 +448,13 @@ export async function handleMBTIChoiceManual(
           { text: 'ESTP', callback_data: 'mbti_manual_ESTP' },
           { text: 'ESFP', callback_data: 'mbti_manual_ESFP' },
         ],
-        [{ text: '⬅️ 返回', callback_data: 'mbti_choice_back' }],
+        [{ text: i18n.t('buttons.back'), callback_data: 'mbti_choice_back' }],
       ]
     );
   } catch (error) {
     console.error('[handleMBTIChoiceManual] Error:', error);
-    await telegram.answerCallbackQuery(callbackQuery.id, '❌ 發生錯誤');
+    const errorI18n = createI18n('zh-TW');
+    await telegram.answerCallbackQuery(callbackQuery.id, errorI18n.t('errors.error.short9'));
   }
 }
 
@@ -418,16 +471,19 @@ export async function handleMBTIChoiceTest(callbackQuery: CallbackQuery, env: En
     // Get user
     const user = await findUserByTelegramId(db, telegramId);
     if (!user) {
-      await telegram.answerCallbackQuery(callbackQuery.id, '❌ 用戶不存在');
+      const errorI18n = createI18n('zh-TW');
+      await telegram.answerCallbackQuery(callbackQuery.id, errorI18n.t('errors.userNotFound4'));
       return;
     }
+
+    const i18n = createI18n(user.language_pref || 'zh-TW');
 
     // Start MBTI test
     const { startMBTITest } = await import('~/services/mbti_test_service');
     await startMBTITest(db, telegramId);
 
     // Answer callback
-    await telegram.answerCallbackQuery(callbackQuery.id, '✅ 開始測驗');
+    await telegram.answerCallbackQuery(callbackQuery.id, i18n.t('success.start4'));
 
     // Delete choice message
     await telegram.deleteMessage(chatId, callbackQuery.message!.message_id);
@@ -437,7 +493,8 @@ export async function handleMBTIChoiceTest(callbackQuery: CallbackQuery, env: En
     await showMBTIQuestion(chatId, telegram, db, telegramId, 0);
   } catch (error) {
     console.error('[handleMBTIChoiceTest] Error:', error);
-    await telegram.answerCallbackQuery(callbackQuery.id, '❌ 發生錯誤');
+    const errorI18n = createI18n('zh-TW');
+    await telegram.answerCallbackQuery(callbackQuery.id, errorI18n.t('errors.error.short9'));
   }
 }
 
@@ -454,15 +511,18 @@ export async function handleMBTIChoiceSkip(callbackQuery: CallbackQuery, env: En
     // Get user
     const user = await findUserByTelegramId(db, telegramId);
     if (!user) {
-      await telegram.answerCallbackQuery(callbackQuery.id, '❌ 用戶不存在');
+      const errorI18n = createI18n('zh-TW');
+      await telegram.answerCallbackQuery(callbackQuery.id, errorI18n.t('errors.userNotFound4'));
       return;
     }
+
+    const i18n = createI18n(user.language_pref || 'zh-TW');
 
     // Move to next step (anti_fraud) without setting MBTI
     await updateOnboardingStep(db, telegramId, 'anti_fraud');
 
     // Answer callback
-    await telegram.answerCallbackQuery(callbackQuery.id, '✅ 已跳過');
+    await telegram.answerCallbackQuery(callbackQuery.id, i18n.t('success.short18'));
 
     // Delete choice message
     await telegram.deleteMessage(chatId, callbackQuery.message!.message_id);
@@ -470,22 +530,30 @@ export async function handleMBTIChoiceSkip(callbackQuery: CallbackQuery, env: En
     // Show anti-fraud test
     await telegram.sendMessageWithButtons(
       chatId,
-      `好的，你可以稍後再設定 MBTI。\n\n` +
-        `💡 提示：你可以隨時使用 /mbti 指令來設定或測驗你的 MBTI 類型。\n\n` +
-        `🛡️ 現在進行反詐騙安全確認\n\n` +
-        `為了保護所有使用者的安全，請確認你了解以下事項：\n\n` +
-        `1. 你了解網路交友的安全風險嗎？\n` +
-        `2. 你會保護好自己的個人資訊嗎？\n` +
-        `3. 遇到可疑訊息時，你會提高警覺嗎？\n\n` +
-        `請確認：`,
+      i18n.t('common.settings3') +
+        '\n\n' +
+        i18n.t('common.settings') +
+        '\n\n' +
+        i18n.t('common.confirm2') +
+        '\n\n' +
+        i18n.t('common.confirm') +
+        '\n\n' +
+        i18n.t('common.text49') +
+        '\n' +
+        i18n.t('common.text50') +
+        '\n' +
+        i18n.t('common.message66') +
+        '\n\n' +
+        i18n.t('common.confirm7'),
       [
-        [{ text: '✅ 是的，我了解並會注意安全', callback_data: 'anti_fraud_yes' }],
-        [{ text: '📚 我想了解更多安全知識', callback_data: 'anti_fraud_learn' }],
+        [{ text: i18n.t('success.text10'), callback_data: 'anti_fraud_yes' }],
+        [{ text: i18n.t('common.text108'), callback_data: 'anti_fraud_learn' }],
       ]
     );
   } catch (error) {
     console.error('[handleMBTIChoiceSkip] Error:', error);
-    await telegram.answerCallbackQuery(callbackQuery.id, '❌ 發生錯誤');
+    const errorI18n = createI18n('zh-TW');
+    await telegram.answerCallbackQuery(callbackQuery.id, errorI18n.t('errors.error.short9'));
   }
 }
 
@@ -502,9 +570,12 @@ export async function handleMBTIChoiceBack(callbackQuery: CallbackQuery, env: En
     // Get user
     const user = await findUserByTelegramId(db, telegramId);
     if (!user) {
-      await telegram.answerCallbackQuery(callbackQuery.id, '❌ 用戶不存在');
+      const errorI18n = createI18n('zh-TW');
+      await telegram.answerCallbackQuery(callbackQuery.id, errorI18n.t('errors.userNotFound4'));
       return;
     }
+
+    const i18n = createI18n(user.language_pref || 'zh-TW');
 
     // Answer callback
     await telegram.answerCallbackQuery(callbackQuery.id);
@@ -515,18 +586,21 @@ export async function handleMBTIChoiceBack(callbackQuery: CallbackQuery, env: En
     // Show MBTI options again (3 choices)
     await telegram.sendMessageWithButtons(
       chatId,
-      `🧠 現在讓我們設定你的 MBTI 性格類型！\n\n` +
-        `這將幫助我們為你找到更合適的聊天對象～\n\n` +
-        `你想要如何設定？`,
+      i18n.t('common.settings2') +
+        '\n\n' +
+        i18n.t('common.help') +
+        '\n\n' +
+        i18n.t('common.settings7'),
       [
-        [{ text: '✍️ 我已經知道我的 MBTI', callback_data: 'mbti_choice_manual' }],
-        [{ text: '📝 進行快速測驗（12 題，僅供參考）', callback_data: 'mbti_choice_test' }],
-        [{ text: '⏭️ 稍後再說', callback_data: 'mbti_choice_skip' }],
+        [{ text: i18n.t('common.mbti2'), callback_data: 'mbti_choice_manual' }],
+        [{ text: i18n.t('common.text5'), callback_data: 'mbti_choice_test' }],
+        [{ text: i18n.t('common.short'), callback_data: 'mbti_choice_skip' }],
       ]
     );
   } catch (error) {
     console.error('[handleMBTIChoiceBack] Error:', error);
-    await telegram.answerCallbackQuery(callbackQuery.id, '❌ 發生錯誤');
+    const errorI18n = createI18n('zh-TW');
+    await telegram.answerCallbackQuery(callbackQuery.id, errorI18n.t('errors.error.short9'));
   }
 }
 
@@ -548,15 +622,18 @@ export async function handleMBTIManualSelection(
     // Get user
     const user = await findUserByTelegramId(db, telegramId);
     if (!user) {
-      await telegram.answerCallbackQuery(callbackQuery.id, '❌ 用戶不存在');
+      const errorI18n = createI18n('zh-TW');
+      await telegram.answerCallbackQuery(callbackQuery.id, errorI18n.t('errors.userNotFound4'));
       return;
     }
+
+    const i18n = createI18n(user.language_pref || 'zh-TW');
 
     // Validate MBTI type
     const { validateMBTI } = await import('~/domain/user');
     const validation = validateMBTI(mbtiType);
     if (!validation.valid) {
-      await telegram.answerCallbackQuery(callbackQuery.id, '❌ 無效的 MBTI 類型');
+      await telegram.answerCallbackQuery(callbackQuery.id, i18n.t('errors.error.mbti'));
       return;
     }
 
@@ -575,40 +652,47 @@ export async function handleMBTIManualSelection(
     await updateOnboardingStep(db, telegramId, 'anti_fraud');
 
     // Answer callback
-    await telegram.answerCallbackQuery(callbackQuery.id, `✅ MBTI 已設定為 ${mbtiType}`);
+    await telegram.answerCallbackQuery(callbackQuery.id, i18n.t('success.settings', { mbtiType }));
 
     // Delete selection message
     await telegram.deleteMessage(chatId, callbackQuery.message!.message_id);
 
-    // Get MBTI description
-    const { MBTI_DESCRIPTIONS } = await import('~/domain/mbti_test');
-    const description = MBTI_DESCRIPTIONS[mbtiType];
+    // Get MBTI description from i18n
+    const descriptionKey = `mbti.description.${mbtiType}`;
+    const description = i18n.t(descriptionKey as any);
 
     // Show result and continue to anti-fraud
     await telegram.sendMessage(
       chatId,
-      `✅ 你的 MBTI 類型：${mbtiType}\n\n` +
-        `${description?.zh_TW || ''}\n\n` +
-        `💡 你可以隨時使用 /mbti 指令重新測驗或修改。`
+      i18n.t('success.mbti', { mbtiType }) +
+        '\n\n' +
+        `${description}\n\n` +
+        i18n.t('common.text2')
     );
 
     // Show anti-fraud test
     await telegram.sendMessageWithButtons(
       chatId,
-      `🛡️ 最後一步：反詐騙安全確認\n\n` +
-        `為了保護所有使用者的安全，請確認你了解以下事項：\n\n` +
-        `1. 你了解網路交友的安全風險嗎？\n` +
-        `2. 你會保護好自己的個人資訊嗎？\n` +
-        `3. 遇到可疑訊息時，你會提高警覺嗎？\n\n` +
-        `請確認：`,
+      i18n.t('common.confirm3') +
+        '\n\n' +
+        i18n.t('common.confirm') +
+        '\n\n' +
+        i18n.t('common.text49') +
+        '\n' +
+        i18n.t('common.text50') +
+        '\n' +
+        i18n.t('common.message66') +
+        '\n\n' +
+        i18n.t('common.confirm7'),
       [
-        [{ text: '✅ 是的，我了解並會注意安全', callback_data: 'anti_fraud_yes' }],
-        [{ text: '📚 我想了解更多安全知識', callback_data: 'anti_fraud_learn' }],
+        [{ text: i18n.t('success.text10'), callback_data: 'anti_fraud_yes' }],
+        [{ text: i18n.t('common.text108'), callback_data: 'anti_fraud_learn' }],
       ]
     );
   } catch (error) {
     console.error('[handleMBTIManualSelection] Error:', error);
-    await telegram.answerCallbackQuery(callbackQuery.id, '❌ 發生錯誤');
+    const errorI18n = createI18n('zh-TW');
+    await telegram.answerCallbackQuery(callbackQuery.id, errorI18n.t('errors.error.short9'));
   }
 }
 
@@ -630,13 +714,16 @@ export async function handleMBTISelection(
     // Get user
     const user = await findUserByTelegramId(db, telegramId);
     if (!user) {
-      await telegram.answerCallbackQuery(callbackQuery.id, '❌ 用戶不存在');
+      const errorI18n = createI18n('zh-TW');
+      await telegram.answerCallbackQuery(callbackQuery.id, errorI18n.t('errors.userNotFound4'));
       return;
     }
 
+    const i18n = createI18n(user.language_pref || 'zh-TW');
+
     // Check if user is in MBTI step
     if (user.onboarding_step !== 'mbti') {
-      await telegram.answerCallbackQuery(callbackQuery.id, '⚠️ 當前不在 MBTI 測驗步驟');
+      await telegram.answerCallbackQuery(callbackQuery.id, i18n.t('warnings.mbti'));
       return;
     }
 
@@ -648,7 +735,7 @@ export async function handleMBTISelection(
     await updateOnboardingStep(db, telegramId, 'anti_fraud');
 
     // Answer callback
-    await telegram.answerCallbackQuery(callbackQuery.id, `✅ MBTI 已設定為 ${mbtiType}`);
+    await telegram.answerCallbackQuery(callbackQuery.id, i18n.t('success.settings', { mbtiType }));
 
     // Delete MBTI selection message
     await telegram.deleteMessage(chatId, callbackQuery.message!.message_id);
@@ -656,21 +743,28 @@ export async function handleMBTISelection(
     // Show anti-fraud test with buttons
     await telegram.sendMessageWithButtons(
       chatId,
-      `✅ MBTI 類型已設定：${mbtiType}\n\n` +
-        `🛡️ 最後一步：反詐騙安全確認\n\n` +
-        `為了保護所有使用者的安全，請確認你了解以下事項：\n\n` +
-        `1. 你了解網路交友的安全風險嗎？\n` +
-        `2. 你會保護好自己的個人資訊嗎？\n` +
-        `3. 遇到可疑訊息時，你會提高警覺嗎？\n\n` +
-        `請確認：`,
+      i18n.t('success.mbti', { mbtiType }) +
+        '\n\n' +
+        i18n.t('common.confirm3') +
+        '\n\n' +
+        i18n.t('common.confirm') +
+        '\n\n' +
+        i18n.t('common.text49') +
+        '\n' +
+        i18n.t('common.text50') +
+        '\n' +
+        i18n.t('common.message66') +
+        '\n\n' +
+        i18n.t('common.confirm7'),
       [
-        [{ text: '✅ 是的，我了解並會注意安全', callback_data: 'anti_fraud_yes' }],
-        [{ text: '📚 我想了解更多安全知識', callback_data: 'anti_fraud_learn' }],
+        [{ text: i18n.t('success.text10'), callback_data: 'anti_fraud_yes' }],
+        [{ text: i18n.t('common.text108'), callback_data: 'anti_fraud_learn' }],
       ]
     );
   } catch (error) {
     console.error('[handleMBTISelection] Error:', error);
-    await telegram.answerCallbackQuery(callbackQuery.id, '❌ 發生錯誤');
+    const errorI18n = createI18n('zh-TW');
+    await telegram.answerCallbackQuery(callbackQuery.id, errorI18n.t('errors.error.short9'));
   }
 }
 
@@ -691,13 +785,16 @@ export async function handleAntiFraudConfirmation(
     // Get user
     const user = await findUserByTelegramId(db, telegramId);
     if (!user) {
-      await telegram.answerCallbackQuery(callbackQuery.id, '❌ 用戶不存在');
+      const errorI18n = createI18n('zh-TW');
+      await telegram.answerCallbackQuery(callbackQuery.id, errorI18n.t('errors.userNotFound4'));
       return;
     }
 
+    const i18n = createI18n(user.language_pref || 'zh-TW');
+
     // Check if user is in anti_fraud step
     if (user.onboarding_step !== 'anti_fraud') {
-      await telegram.answerCallbackQuery(callbackQuery.id, '⚠️ 當前不在反詐騙測驗步驟');
+      await telegram.answerCallbackQuery(callbackQuery.id, i18n.t('warnings.text5'));
       return;
     }
 
@@ -709,7 +806,7 @@ export async function handleAntiFraudConfirmation(
     await updateOnboardingStep(db, telegramId, 'terms');
 
     // Answer callback
-    await telegram.answerCallbackQuery(callbackQuery.id, '✅ 安全確認完成');
+    await telegram.answerCallbackQuery(callbackQuery.id, i18n.t('success.confirm2'));
 
     // Delete anti-fraud message
     await telegram.deleteMessage(chatId, callbackQuery.message!.message_id);
@@ -717,22 +814,28 @@ export async function handleAntiFraudConfirmation(
     // Show terms agreement
     await telegram.sendMessageWithButtons(
       chatId,
-      `✅ 反詐騙測驗通過！\n\n` +
-        `📋 最後一步：服務條款\n\n` +
-        `在開始使用前，請閱讀並同意我們的服務條款：\n\n` +
-        `• 隱私權政策：我們如何保護你的個人資料\n` +
-        `• 使用者條款：使用本服務的規範\n\n` +
-        `📋 Legal documents are provided in English only.\n\n` +
-        `點擊下方按鈕表示你已閱讀並同意上述條款。`,
+      i18n.t('success.text29') +
+        '\n\n' +
+        i18n.t('common.text12') +
+        '\n\n' +
+        i18n.t('common.start') +
+        '\n\n' +
+        i18n.t('common.profile') +
+        '\n' +
+        i18n.t('common.text6') +
+        '\n\n' +
+        '📋 Legal documents are provided in English only.\n\n' +
+        i18n.t('common.text7'),
       [
-        [{ text: '✅ 我已閱讀並同意', callback_data: 'agree_terms' }],
+        [{ text: i18n.t('success.short17'), callback_data: 'agree_terms' }],
         [{ text: '📋 View Privacy Policy', url: LEGAL_URLS.PRIVACY_POLICY }],
         [{ text: '📋 View Terms of Service', url: LEGAL_URLS.TERMS_OF_SERVICE }],
       ]
     );
   } catch (error) {
     console.error('[handleAntiFraudConfirmation] Error:', error);
-    await telegram.answerCallbackQuery(callbackQuery.id, '❌ 發生錯誤');
+    const errorI18n = createI18n('zh-TW');
+    await telegram.answerCallbackQuery(callbackQuery.id, errorI18n.t('errors.error.short9'));
   }
 }
 
@@ -744,28 +847,43 @@ export async function handleAntiFraudLearnMore(
   callbackQuery: CallbackQuery,
   env: Env
 ): Promise<void> {
+  const db = createDatabaseClient(env.DB);
   const telegram = createTelegramService(env);
   const chatId = callbackQuery.message!.chat.id;
+  const telegramId = callbackQuery.from.id.toString();
 
   try {
+    const user = await findUserByTelegramId(db, telegramId);
+    const i18n = createI18n(user?.language_pref || 'zh-TW');
+
     // Show safety tips
     await telegram.editMessageText(
       chatId,
       callbackQuery.message!.message_id,
-      `🛡️ 網路交友安全小貼士\n\n` +
-        `1. 🔒 保護個人資訊\n` +
-        `   • 不要輕易透露真實姓名、地址、電話\n` +
-        `   • 不要分享財務資訊\n\n` +
-        `2. 🚨 識別詐騙訊息\n` +
-        `   • 警惕索要金錢的訊息\n` +
-        `   • 不要點擊可疑連結\n\n` +
-        `3. 🤝 安全交友\n` +
-        `   • 第一次見面選擇公共場所\n` +
-        `   • 告訴朋友你的行程\n\n` +
-        `了解後，請確認：`,
+      i18n.t('common.text11') +
+        '\n\n' +
+        i18n.t('common.text14') +
+        '\n' +
+        i18n.t('common.text8') +
+        '\n' +
+        i18n.t('common.text15') +
+        '\n\n' +
+        i18n.t('common.message') +
+        '\n' +
+        i18n.t('common.message2') +
+        '\n' +
+        i18n.t('common.text16') +
+        '\n\n' +
+        i18n.t('common.text18') +
+        '\n' +
+        i18n.t('common.text13') +
+        '\n' +
+        i18n.t('common.text17') +
+        '\n\n' +
+        i18n.t('common.confirm3'),
       {
         reply_markup: {
-          inline_keyboard: [[{ text: '✅ 我了解了，繼續註冊', callback_data: 'anti_fraud_yes' }]],
+          inline_keyboard: [[{ text: i18n.t('success.register2'), callback_data: 'anti_fraud_yes' }]],
         },
       }
     );
@@ -773,7 +891,8 @@ export async function handleAntiFraudLearnMore(
     await telegram.answerCallbackQuery(callbackQuery.id);
   } catch (error) {
     console.error('[handleAntiFraudLearnMore] Error:', error);
-    await telegram.answerCallbackQuery(callbackQuery.id, '❌ 發生錯誤');
+    const errorI18n = createI18n('zh-TW');
+    await telegram.answerCallbackQuery(callbackQuery.id, errorI18n.t('errors.error.short9'));
   }
 }
 
@@ -791,13 +910,16 @@ export async function handleTermsAgreement(callbackQuery: CallbackQuery, env: En
     // Get user
     const user = await findUserByTelegramId(db, telegramId);
     if (!user) {
-      await telegram.answerCallbackQuery(callbackQuery.id, '❌ 用戶不存在');
+      const errorI18n = createI18n('zh-TW');
+      await telegram.answerCallbackQuery(callbackQuery.id, errorI18n.t('errors.userNotFound4'));
       return;
     }
 
+    const i18n = createI18n(user.language_pref || 'zh-TW');
+
     // Check if user is in terms step
     if (user.onboarding_step !== 'terms') {
-      await telegram.answerCallbackQuery(callbackQuery.id, '⚠️ 當前不在服務條款步驟');
+      await telegram.answerCallbackQuery(callbackQuery.id, i18n.t('warnings.text6'));
       return;
     }
 
@@ -805,7 +927,7 @@ export async function handleTermsAgreement(callbackQuery: CallbackQuery, env: En
     await updateOnboardingStep(db, telegramId, 'completed');
 
     // Answer callback
-    await telegram.answerCallbackQuery(callbackQuery.id, '✅ 註冊完成！');
+    await telegram.answerCallbackQuery(callbackQuery.id, i18n.t('success.register3'));
 
     // Delete terms message
     await telegram.deleteMessage(chatId, callbackQuery.message!.message_id);
@@ -813,9 +935,11 @@ export async function handleTermsAgreement(callbackQuery: CallbackQuery, env: En
     // Get updated user profile
     const updatedUser = await findUserByTelegramId(db, telegramId);
     if (!updatedUser) {
-      await telegram.sendMessage(chatId, '❌ 發生錯誤');
+      await telegram.sendMessage(chatId, i18n.t('errors.error.short9'));
       return;
     }
+
+    const updatedI18n = createI18n(updatedUser.language_pref || 'zh-TW');
 
     // Check if tutorial should auto-trigger
     const { shouldAutoTriggerTutorial } = await import('~/domain/tutorial');
@@ -830,28 +954,36 @@ export async function handleTermsAgreement(callbackQuery: CallbackQuery, env: En
       // Show completion message
       await telegram.sendMessageWithButtons(
         chatId,
-        `🎉 恭喜！你已經完成所有設定！\n\n` +
-          `你的個人資料：\n` +
-          `• 暱稱：${updatedUser.nickname}\n` +
-          `• 性別：${updatedUser.gender === 'male' ? '男性' : '女性'}\n` +
-          `• 年齡：${updatedUser.age} 歲\n` +
-          `• 星座：${updatedUser.zodiac_sign}\n` +
-          `• MBTI：${updatedUser.mbti_result}\n\n` +
-          `現在你可以開始使用 XunNi 了！`,
+        updatedI18n.t('common.settings5') +
+          '\n\n' +
+          updatedI18n.t('common.profile2') +
+          '\n' +
+          updatedI18n.t('common.nickname3', { updatedUser: { nickname: updatedUser.nickname } }) +
+          '\n' +
+          updatedI18n.t('common.gender', { updatedUser: { gender: updatedUser.gender } }) +
+          '\n' +
+          updatedI18n.t('onboarding.age', { updatedUser: { age: updatedUser.age } }) +
+          '\n' +
+          updatedI18n.t('onboarding.zodiac', { updatedUser: { zodiac_sign: updatedUser.zodiac_sign } }) +
+          '\n' +
+          updatedI18n.t('common.mbti3', { user: { mbti_result: updatedUser.mbti_result } }) +
+          '\n\n' +
+          updatedI18n.t('common.start2'),
         [
           [
-            { text: '🌊 丟出漂流瓶', callback_data: 'throw' },
-            { text: '🎣 撿起漂流瓶', callback_data: 'catch' },
+            { text: updatedI18n.t('buttons.bottle3'), callback_data: 'throw' },
+            { text: updatedI18n.t('buttons.bottle4'), callback_data: 'catch' },
           ],
           [
-            { text: '👤 個人資料', callback_data: 'profile' },
-            { text: '📊 統計', callback_data: 'stats' },
+            { text: updatedI18n.t('buttons.profile2'), callback_data: 'profile' },
+            { text: updatedI18n.t('buttons.stats'), callback_data: 'stats' },
           ],
         ]
       );
     }
   } catch (error) {
     console.error('[handleTermsAgreement] Error:', error);
-    await telegram.answerCallbackQuery(callbackQuery.id, '❌ 發生錯誤');
+    const errorI18n = createI18n('zh-TW');
+    await telegram.answerCallbackQuery(callbackQuery.id, errorI18n.t('errors.error.short9'));
   }
 }

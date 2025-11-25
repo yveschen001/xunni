@@ -1094,6 +1094,11 @@ WHERE birthday IS NOT NULL;
 - [ ] 所有 `sendMessage`、`editMessageText` 等調用都使用 `i18n.t()`
 - [ ] 所有按鈕文字都使用 `i18n.t()`
 - [ ] 所有錯誤消息都使用 `i18n.t()`
+- [ ] **⚠️ i18n 同步（必須執行）**：
+  - [ ] 新增或修改 i18n key 後，執行 `pnpm i18n:sync` 同步到所有語言
+  - [ ] 執行 `pnpm i18n:check` 檢查是否有問題
+  - [ ] 執行 `pnpm i18n:fix-templates` 修復模板字符串問題
+  - [ ] 確認所有 34 種語言都有對應的 key（或占位符）
 - [ ] **沒有硬編碼的中文字符串**（除了技術標識符、callback_data 等）
 
 #### 測試覆蓋

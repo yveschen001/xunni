@@ -51,9 +51,58 @@ else
   echo "✅ Migration 已確認執行"
 fi
 
-# 檢查 2: Lint
+# 檢查 2: i18n Keys 驗證
 echo ""
-echo "📋 檢查 2/6: 執行 Lint..."
+echo "📋 檢查 2/8: 驗證 i18n Keys 是否存在..."
+if pnpm tsx scripts/verify_i18n_keys.ts > /dev/null 2>&1; then
+  echo "✅ 所有 i18n keys 都存在"
+else
+  echo "❌ i18n keys 驗證失敗，請修復後再部署"
+  echo ""
+  echo "執行詳細檢查："
+  pnpm tsx scripts/verify_i18n_keys.ts
+  exit 1
+fi
+
+# 檢查 2.5: i18n 同步檢查（⚠️ 必須）
+echo ""
+echo "📋 檢查 2.5/8: 檢查 i18n 同步狀態..."
+echo "⚠️  重要：所有 i18n key 必須同步到所有 34 種語言"
+echo ""
+read -p "❓ 您是否已執行 'pnpm i18n:sync' 同步所有語言？(y/n) " -n 1 -r
+echo
+if [[ ! $REPLY =~ ^[Yy]$ ]]; then
+  echo ""
+  echo "❌ 請先同步 i18n keys！"
+  echo ""
+  echo "執行步驟："
+  echo "  1. pnpm i18n:check          # 檢查問題"
+  echo "  2. pnpm i18n:sync           # 同步缺失的 key"
+  echo "  3. pnpm i18n:fix-templates  # 修復模板字符串問題"
+  echo "  4. pnpm i18n:check          # 再次檢查確認"
+  echo ""
+  exit 1
+fi
+
+# 執行快速檢查
+if pnpm i18n:check 2>&1 | grep -q "Missing keys: 0"; then
+  echo "✅ i18n 同步檢查通過"
+else
+  echo "⚠️  發現 i18n 問題，但允許繼續（請確認已處理）"
+  echo ""
+  read -p "❓ 您是否已處理所有 i18n 問題？(y/n) " -n 1 -r
+  echo
+  if [[ ! $REPLY =~ ^[Yy]$ ]]; then
+    echo ""
+    echo "❌ 請先處理 i18n 問題！"
+    echo "執行：pnpm i18n:check 查看詳細問題"
+    exit 1
+  fi
+fi
+
+# 檢查 3: Lint
+echo ""
+echo "📋 檢查 3/8: 執行 Lint..."
 if pnpm lint > /dev/null 2>&1; then
   echo "✅ Lint 通過"
 else
@@ -62,9 +111,9 @@ else
   exit 1
 fi
 
-# 檢查 3: 測試
+# 檢查 4: 測試
 echo ""
-echo "📋 檢查 3/6: 執行測試..."
+echo "📋 檢查 4/8: 執行測試..."
 read -p "❓ 是否要執行單元測試？(建議執行) (y/n) " -n 1 -r
 echo
 if [[ $REPLY =~ ^[Yy]$ ]]; then
@@ -79,9 +128,9 @@ else
   echo "⚠️  跳過測試（不建議）"
 fi
 
-# 檢查 4: 確認變更內容
+# 檢查 5: 確認變更內容
 echo ""
-echo "📋 檢查 4/6: 確認變更內容..."
+echo "📋 檢查 5/8: 確認變更內容..."
 echo ""
 echo "本次變更的文件："
 git diff --name-only HEAD~1 HEAD | head -20
@@ -94,9 +143,9 @@ if [[ ! $REPLY =~ ^[Yy]$ ]]; then
 fi
 echo "✅ 變更內容已確認"
 
-# 檢查 5: 功能測試確認
+# 檢查 6: 功能測試確認
 echo ""
-echo "📋 檢查 5/6: 功能測試確認..."
+echo "📋 檢查 6/8: 功能測試確認..."
 echo ""
 echo "⚠️  重要：您必須實際測試過以下功能："
 echo ""
@@ -127,9 +176,9 @@ if [[ ! $REPLY =~ ^[Yy]$ ]]; then
 fi
 echo "✅ 功能測試已完成"
 
-# 檢查 6: Cloudflare Logs 確認
+# 檢查 7: Cloudflare Logs 確認
 echo ""
-echo "📋 檢查 6/6: Cloudflare Logs 確認..."
+echo "📋 檢查 7/8: Cloudflare Logs 確認..."
 echo ""
 read -p "❓ 您是否已查看 Cloudflare Logs 確認無錯誤？(y/n) " -n 1 -r
 echo

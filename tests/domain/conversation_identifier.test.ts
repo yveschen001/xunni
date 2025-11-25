@@ -13,7 +13,7 @@ describe('Conversation Identifier Domain Functions', () => {
       expect(identifier).toMatch(/^\d{4}[A-Z]{4}$/);
     });
 
-    it('should include today\'s month and day', () => {
+    it("should include today's month and day", () => {
       const identifier = generateNextIdentifier();
       const now = new Date();
       const month = String(now.getMonth() + 1).padStart(2, '0');

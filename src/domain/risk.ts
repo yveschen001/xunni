@@ -29,41 +29,90 @@ export const RISK_INCREMENT_MULTIPLE_REPORTS = 50;
 // 1. Scam & Financial (诈骗金融类)
 const SCAM_WORDS = [
   // 中文
-  '詐騙', '騙錢', '投資', '賺錢', '匯款', '轉帳',
-  '銀行帳號', '信用卡', '密碼', '传销', '金融',
-  '理财', '股票', '期货', '外汇', '比特币',
+  '詐騙',
+  '騙錢',
+  '投資',
+  '賺錢',
+  '匯款',
+  '轉帳',
+  '銀行帳號',
+  '信用卡',
+  '密碼',
+  '传销',
+  '金融',
+  '理财',
+  '股票',
+  '期货',
+  '外汇',
+  '比特币',
   // 英文
-  'password', 'scam', 'fraud', 'bitcoin', 'crypto',
-  'investment', 'money', 'transfer', 'bank account',
+  'password',
+  'scam',
+  'fraud',
+  'bitcoin',
+  'crypto',
+  'investment',
+  'money',
+  'transfer',
+  'bank account',
 ];
 
 // 2. Contact Information (联系方式类)
 const CONTACT_WORDS = [
   // 中文
-  '加line', '加微信', '加qq', 'line:', 'wechat:', 'qq:',
-  '手机号', '电话', '联系我',
+  '加line',
+  '加微信',
+  '加qq',
+  'line:',
+  'wechat:',
+  'qq:',
+  '手机号',
+  '电话',
+  '联系我',
   // 英文
-  'whatsapp', 'telegram', 'phone', 'email', 'contact me',
+  'whatsapp',
+  'telegram',
+  'phone',
+  'email',
+  'contact me',
 ];
 
 // 3. Sexual Content (色情低俗类)
 const SEXUAL_WORDS = [
   // 中文
-  '约炮', '一夜情', '性服务', '援交', '色情',
+  '约炮',
+  '一夜情',
+  '性服务',
+  '援交',
+  '色情',
   // 英文
-  'sex', 'porn', 'xxx', 'nude', 'hookup',
+  'sex',
+  'porn',
+  'xxx',
+  'nude',
+  'hookup',
   // 日文
-  'エロ', 'セックス',
+  'エロ',
+  'セックス',
   // 韩文
-  '섹스', '야동',
+  '섹스',
+  '야동',
 ];
 
 // 4. Violence & Threats (暴力威胁类)
 const VIOLENCE_WORDS = [
   // 中文
-  '杀', '死', '自杀', '跳楼', '暴力',
+  '杀',
+  '死',
+  '自杀',
+  '跳楼',
+  '暴力',
   // 英文
-  'kill', 'die', 'suicide', 'murder', 'violence',
+  'kill',
+  'die',
+  'suicide',
+  'murder',
+  'violence',
 ];
 
 // Combined sensitive words list
@@ -79,12 +128,12 @@ export const SENSITIVE_WORDS = [
  */
 export function getSensitiveWordRiskScore(word: string): number {
   const lowerWord = word.toLowerCase();
-  
-  if (VIOLENCE_WORDS.some(w => w.toLowerCase() === lowerWord)) return 30;
-  if (SEXUAL_WORDS.some(w => w.toLowerCase() === lowerWord)) return 25;
-  if (SCAM_WORDS.some(w => w.toLowerCase() === lowerWord)) return 20;
-  if (CONTACT_WORDS.some(w => w.toLowerCase() === lowerWord)) return 15;
-  
+
+  if (VIOLENCE_WORDS.some((w) => w.toLowerCase() === lowerWord)) return 30;
+  if (SEXUAL_WORDS.some((w) => w.toLowerCase() === lowerWord)) return 25;
+  if (SCAM_WORDS.some((w) => w.toLowerCase() === lowerWord)) return 20;
+  if (CONTACT_WORDS.some((w) => w.toLowerCase() === lowerWord)) return 15;
+
   return 15; // Default
 }
 
@@ -152,8 +201,8 @@ export function containsBlockedURL(text: string): boolean {
  * Check if text contains sensitive words
  * Returns found words and calculated risk score
  */
-export function containsSensitiveWords(text: string): { 
-  found: boolean; 
+export function containsSensitiveWords(text: string): {
+  found: boolean;
   words: string[];
   riskScore: number;
 } {
@@ -183,7 +232,7 @@ export function containsSensitiveWords(text: string): {
  * Perform local content moderation (before AI check)
  * Returns risk check result
  */
-export function performLocalModeration(text: string): RiskCheckResult {
+export function performLocalModeration(text: string, i18n?: any): RiskCheckResult {
   const reasons: string[] = [];
   let riskScore = 0;
   let shouldBlock = false;
@@ -191,7 +240,7 @@ export function performLocalModeration(text: string): RiskCheckResult {
   // Check for sensitive words (using category-based risk scoring)
   const sensitiveCheck = containsSensitiveWords(text);
   if (sensitiveCheck.found) {
-    reasons.push('包含敏感詞彙');
+    reasons.push(i18n?.t('risk.containsSensitiveWords') || '包含敏感詞彙');
     riskScore += sensitiveCheck.riskScore;
     shouldBlock = true; // Always block sensitive words
   }

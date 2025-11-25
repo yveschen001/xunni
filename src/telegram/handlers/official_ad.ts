@@ -15,6 +15,7 @@ import type { Env, CallbackQuery } from '~/types';
 import { createDatabaseClient } from '~/db/client';
 import { createTelegramService } from '~/services/telegram';
 import { findUserByTelegramId } from '~/db/queries/users';
+import { createI18n } from '~/i18n';
 import {
   getActiveOfficialAds,
   getOfficialAdById,
@@ -65,9 +66,11 @@ export async function handleViewOfficialAds(callbackQuery: CallbackQuery, env: E
   try {
     // Get user
     const user = await findUserByTelegramId(db, telegramId);
+    const i18n = createI18n(user?.language_pref || 'zh-TW');
+    
     if (!user) {
       await telegram.answerCallbackQuery(callbackQuery.id, {
-        text: '❌ 用戶不存在',
+        text: i18n.t('officialAd.userNotFound'),
         show_alert: true,
       });
       return;
@@ -84,7 +87,7 @@ export async function handleViewOfficialAds(callbackQuery: CallbackQuery, env: E
 
     if (availableAds.length === 0) {
       await telegram.answerCallbackQuery(callbackQuery.id, {
-        text: '✅ 你已經看過所有官方廣告了！',
+        text: i18n.t('officialAd.allAdsViewed'),
         show_alert: true,
       });
       return;
@@ -95,7 +98,7 @@ export async function handleViewOfficialAds(callbackQuery: CallbackQuery, env: E
 
     if (!ad) {
       await telegram.answerCallbackQuery(callbackQuery.id, {
-        text: '❌ 暫無可用的廣告',
+        text: i18n.t('officialAd.noAdsAvailable'),
         show_alert: true,
       });
       return;
@@ -108,7 +111,7 @@ export async function handleViewOfficialAds(callbackQuery: CallbackQuery, env: E
     await incrementAdViewCount(db, ad.id);
 
     // Format ad message
-    const message = formatAdMessage(ad);
+    const message = formatAdMessage(ad, i18n);
 
     // Build inline keyboard
     const buttons: any[] = [];
@@ -117,14 +120,14 @@ export async function handleViewOfficialAds(callbackQuery: CallbackQuery, env: E
     if (ad.ad_type === 'text') {
       buttons.push([
         {
-          text: formatAdButtonText(ad),
+          text: formatAdButtonText(ad, i18n),
           callback_data: `claim_ad_${ad.id}`,
         },
       ]);
     } else if (ad.url) {
       buttons.push([
         {
-          text: formatAdButtonText(ad),
+          text: formatAdButtonText(ad, i18n),
           url: ad.url,
         },
       ]);
@@ -133,14 +136,14 @@ export async function handleViewOfficialAds(callbackQuery: CallbackQuery, env: E
       if (ad.requires_verification) {
         buttons.push([
           {
-            text: formatVerificationButtonText(),
+            text: formatVerificationButtonText(i18n),
             callback_data: `verify_ad_${ad.id}`,
           },
         ]);
       } else {
         buttons.push([
           {
-            text: '✅ 領取獎勵',
+            text: i18n.t('officialAd.claimRewardButton'),
             callback_data: `claim_ad_${ad.id}`,
           },
         ]);
@@ -151,7 +154,7 @@ export async function handleViewOfficialAds(callbackQuery: CallbackQuery, env: E
     if (availableAds.length > 1) {
       buttons.push([
         {
-          text: '➡️ 下一個廣告',
+          text: i18n.t('officialAd.nextAd'),
           callback_data: 'view_official_ad',
         },
       ]);
@@ -160,7 +163,7 @@ export async function handleViewOfficialAds(callbackQuery: CallbackQuery, env: E
     // Cancel button
     buttons.push([
       {
-        text: '❌ 關閉',
+        text: i18n.t('common.close'),
         callback_data: 'cancel',
       },
     ]);
@@ -174,8 +177,10 @@ export async function handleViewOfficialAds(callbackQuery: CallbackQuery, env: E
     await telegram.answerCallbackQuery(callbackQuery.id);
   } catch (error) {
     console.error('[handleViewOfficialAds] Error:', error);
+    const user = await findUserByTelegramId(db, telegramId);
+    const i18n = createI18n(user?.language_pref || 'zh-TW');
     await telegram.answerCallbackQuery(callbackQuery.id, {
-      text: '❌ 發生錯誤，請稍後再試',
+      text: i18n.t('officialAd.errorRetry'),
       show_alert: true,
     });
   }
@@ -213,7 +218,7 @@ export async function handleClaimAd(
     const user = await findUserByTelegramId(db, telegramId);
     if (!user) {
       await telegram.answerCallbackQuery(callbackQuery.id, {
-        text: '❌ 用戶不存在',
+        text: i18n.t('officialAd.userNotFound'),
         show_alert: true,
       });
       return;
@@ -223,7 +228,7 @@ export async function handleClaimAd(
     const ad = await getOfficialAdById(db, adId);
     if (!ad) {
       await telegram.answerCallbackQuery(callbackQuery.id, {
-        text: '❌ 廣告不存在',
+        text: i18n.t('officialAd.adNotFound'),
         show_alert: true,
       });
       return;
@@ -235,7 +240,7 @@ export async function handleClaimAd(
 
     if (!eligibility.is_eligible) {
       await telegram.answerCallbackQuery(callbackQuery.id, {
-        text: eligibility.reason || '❌ 無法領取此廣告',
+        text: eligibility.reason || i18n.t('officialAd.cannotClaim'),
         show_alert: true,
       });
       return;
@@ -262,28 +267,24 @@ export async function handleClaimAd(
     await markRewardGranted(db, telegramId, adId);
 
     // Send success message
-    const successMessage = `
-🎉 **獎勵領取成功！**
-
-✅ 獲得 **+${ad.reward_quota} 個永久額度**
-💎 這些額度不會過期，可以永久使用！
-
-📊 **你的額度：**
-• 基礎額度：${user.is_vip ? '無限' : '10'}/天
-• 永久額度：+${ad.reward_quota}
-
-${availableAds.length > 0 ? '💡 還有更多官方廣告可以觀看！' : '✅ 你已經看過所有官方廣告了'}
-    `.trim();
+    const baseQuota = user.is_vip ? i18n.t('officialAd.unlimited') : '10';
+    const successMessage = 
+      i18n.t('officialAd.claimRewardSuccess', { quota: ad.reward_quota }) + '\n\n' +
+      i18n.t('officialAd.rewardPermanent') + '\n\n' +
+      i18n.t('officialAd.quotaInfo', { baseQuota, permanentQuota: ad.reward_quota }) + '\n\n' +
+      (availableAds.length > 0 ? i18n.t('officialAd.moreAdsAvailable') : i18n.t('officialAd.allAdsViewed'));
 
     await telegram.sendMessage(chatId, successMessage);
 
     await telegram.answerCallbackQuery(callbackQuery.id, {
-      text: `✅ 獲得 +${ad.reward_quota} 個永久額度！`,
+      text: i18n.t('officialAd.claimReward', { quota: ad.reward_quota }),
     });
   } catch (error) {
     console.error('[handleClaimAd] Error:', error);
+    const user = await findUserByTelegramId(db, telegramId);
+    const i18n = createI18n(user?.language_pref || 'zh-TW');
     await telegram.answerCallbackQuery(callbackQuery.id, {
-      text: '❌ 發生錯誤，請稍後再試',
+      text: i18n.t('officialAd.errorRetry'),
       show_alert: true,
     });
   }
@@ -319,9 +320,11 @@ export async function handleVerifyAd(
   try {
     // Get user
     const user = await findUserByTelegramId(db, telegramId);
+    const i18n = createI18n(user?.language_pref || 'zh-TW');
+    
     if (!user) {
       await telegram.answerCallbackQuery(callbackQuery.id, {
-        text: '❌ 用戶不存在',
+        text: i18n.t('common.userNotFound'),
         show_alert: true,
       });
       return;
@@ -331,7 +334,7 @@ export async function handleVerifyAd(
     const ad = await getOfficialAdById(db, adId);
     if (!ad) {
       await telegram.answerCallbackQuery(callbackQuery.id, {
-        text: '❌ 廣告不存在',
+        text: i18n.t('officialAd.adNotFound'),
         show_alert: true,
       });
       return;
@@ -340,7 +343,7 @@ export async function handleVerifyAd(
     // Check if requires verification
     if (!ad.requires_verification) {
       await telegram.answerCallbackQuery(callbackQuery.id, {
-        text: '❌ 此廣告不需要驗證',
+        text: i18n.t('officialAd.noVerificationRequired'),
         show_alert: true,
       });
       return;
@@ -386,31 +389,24 @@ export async function handleVerifyAd(
     await markRewardGranted(db, telegramId, adId);
 
     // Send success message
-    const successMessage = `
-🎉 **驗證成功！**
-
-✅ 獲得 **+${ad.reward_quota} 個永久額度**
-💎 感謝你加入我們的社群！
-
-📊 **你的額度：**
-• 基礎額度：${user.is_vip ? '無限' : '10'}/天
-• 永久額度：+${ad.reward_quota}
-
-💡 在社群中你可以：
-• 與其他用戶交流
-• 獲得最新功能更新
-• 參與活動獲得更多獎勵
-    `.trim();
+    const baseQuota = user.is_vip ? i18n.t('officialAd.unlimited') : '10';
+    const successMessage = 
+      i18n.t('officialAd.verifySuccess', { quota: ad.reward_quota }) + '\n\n' +
+      i18n.t('officialAd.communityThanks') + '\n\n' +
+      i18n.t('officialAd.quotaInfo', { baseQuota, permanentQuota: ad.reward_quota }) + '\n\n' +
+      i18n.t('officialAd.communityBenefits');
 
     await telegram.sendMessage(chatId, successMessage);
 
     await telegram.answerCallbackQuery(callbackQuery.id, {
-      text: `✅ 驗證成功！獲得 +${ad.reward_quota} 個永久額度！`,
+      text: i18n.t('officialAd.verifySuccess', { quota: ad.reward_quota }),
     });
   } catch (error) {
     console.error('[handleVerifyAd] Error:', error);
+    const user = await findUserByTelegramId(db, telegramId);
+    const i18n = createI18n(user?.language_pref || 'zh-TW');
     await telegram.answerCallbackQuery(callbackQuery.id, {
-      text: '❌ 發生錯誤，請稍後再試',
+      text: i18n.t('officialAd.errorRetry'),
       show_alert: true,
     });
   }
@@ -435,8 +431,10 @@ export async function handleAdStats(message: any, adId: number | null, env: Env)
   try {
     // Check if user is admin
     const user = await findUserByTelegramId(db, telegramId);
+    const i18n = createI18n(user?.language_pref || 'zh-TW');
+    
     if (!user || !user.is_super_admin) {
-      await telegram.sendMessage(chatId, '❌ 你沒有權限查看廣告統計');
+      await telegram.sendMessage(chatId, i18n.t('officialAd.statsNoPermission'));
       return;
     }
 
@@ -444,12 +442,12 @@ export async function handleAdStats(message: any, adId: number | null, env: Env)
       // Show stats for specific ad
       const ad = await getOfficialAdById(db, adId);
       if (!ad) {
-        await telegram.sendMessage(chatId, '❌ 廣告不存在');
+        await telegram.sendMessage(chatId, i18n.t('officialAd.statsAdNotFound'));
         return;
       }
 
       const stats = await getAdStatistics(db, adId);
-      const message = formatAdStats(ad, stats);
+      const message = formatAdStats(ad, stats, i18n);
 
       await telegram.sendMessage(chatId, message);
     } else {
@@ -457,25 +455,33 @@ export async function handleAdStats(message: any, adId: number | null, env: Env)
       const allAds = await getActiveOfficialAds(db);
 
       if (allAds.length === 0) {
-        await telegram.sendMessage(chatId, '📊 暫無官方廣告');
+        await telegram.sendMessage(chatId, i18n.t('officialAd.statsNoAds'));
         return;
       }
 
-      let message = '📊 **官方廣告統計**\n\n';
+      let message = i18n.t('officialAd.statsTitle');
 
       for (const ad of allAds) {
         const stats = await getAdStatistics(db, ad.id);
         message += `**${ad.title}** (ID: ${ad.id})\n`;
-        message += `• 展示：${stats.total_views} | 點擊：${stats.total_clicks} (${stats.ctr}%)\n`;
-        message += `• 獎勵：${stats.total_rewards}\n\n`;
+        message += i18n.t('officialAd.statsSummary', {
+          views: stats.total_views,
+          clicks: stats.total_clicks,
+          ctr: stats.ctr,
+        });
+        message += i18n.t('officialAd.statsRewardSummary', {
+          rewards: stats.total_rewards,
+        });
       }
 
-      message += '💡 使用 /ad_stats {id} 查看詳細統計';
+      message += i18n.t('officialAd.statsHint', { id: '{id}' });
 
       await telegram.sendMessage(chatId, message);
     }
   } catch (error) {
     console.error('[handleAdStats] Error:', error);
-    await telegram.sendMessage(chatId, '❌ 獲取統計數據失敗');
+    const user = await findUserByTelegramId(db, telegramId);
+    const i18n = createI18n(user?.language_pref || 'zh-TW');
+    await telegram.sendMessage(chatId, i18n.t('error.failed16'));
   }
 }

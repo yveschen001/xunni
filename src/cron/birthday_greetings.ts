@@ -1,16 +1,16 @@
 /**
  * Birthday Greetings Cron Job
  * Automatically sends personalized birthday greetings to users on their birthday
- * 
+ *
  * Schedule: Runs daily at 01:00 UTC (09:00 Taiwan Time)
- * 
+ *
  * Features:
  * - Personalized messages with user's nickname and zodiac
  * - Gender-aware suggestions (他/她)
  * - Prevents duplicate sends (tracks sent greetings)
  * - Respects Telegram rate limits (25 messages/batch, 1s delay)
  * - Skips blocked/deleted users (bot_status filtering)
- * 
+ *
  * 參考文檔：doc/BROADCAST_SYSTEM_DESIGN.md 第 12 節
  */
 
@@ -36,40 +36,36 @@ const MAX_BIRTHDAY_GREETINGS_PER_DAY = 10000;
  * Zodiac signs in Chinese
  */
 const ZODIAC_MAP: Record<string, string> = {
-  'Aries': '白羊座',
-  'Taurus': '金牛座',
-  'Gemini': '雙子座',
-  'Cancer': '巨蟹座',
-  'Leo': '獅子座',
-  'Virgo': '處女座',
-  'Libra': '天秤座',
-  'Scorpio': '天蠍座',
-  'Sagittarius': '射手座',
-  'Capricorn': '摩羯座',
-  'Aquarius': '水瓶座',
-  'Pisces': '雙魚座'
+  Aries: '白羊座',
+  Taurus: '金牛座',
+  Gemini: '雙子座',
+  Cancer: '巨蟹座',
+  Leo: '獅子座',
+  Virgo: '處女座',
+  Libra: '天秤座',
+  Scorpio: '天蠍座',
+  Sagittarius: '射手座',
+  Capricorn: '摩羯座',
+  Aquarius: '水瓶座',
+  Pisces: '雙魚座',
 };
 
 /**
  * Generate personalized birthday message
- * 
+ *
  * @param nickname - User's nickname
  * @param zodiac - User's zodiac sign
  * @param gender - User's gender (for pronoun selection)
  * @returns Personalized birthday message
  */
-function generateBirthdayMessage(
-  nickname: string,
-  zodiac: string | null,
-  gender: string
-): string {
+function generateBirthdayMessage(nickname: string, zodiac: string | null, gender: string): string {
   // Determine pronoun based on gender
   const pronoun = gender === 'female' ? '她' : '他';
-  
+
   // Get Chinese zodiac name
   const zodiacChinese = zodiac && ZODIAC_MAP[zodiac] ? ZODIAC_MAP[zodiac] : '';
   const zodiacText = zodiacChinese ? `${zodiacChinese}的` : '';
-  
+
   return `🎂 **生日快樂，${nickname}！**
 
 今天是你的特別日子！
@@ -92,7 +88,7 @@ ${zodiacText}你，在這個美好的日子裡，
 /**
  * Prioritize users for birthday greetings
  * 優先級：VIP > 活躍用戶 > 老用戶
- * 
+ *
  * @param db - Database client
  * @param userIds - User IDs to prioritize
  * @returns Prioritized user IDs
@@ -128,7 +124,7 @@ async function prioritizeUsers(
 
 /**
  * Check if birthday greeting was already sent today
- * 
+ *
  * @param db - Database client
  * @param telegramId - User's telegram ID
  * @returns True if already sent today
@@ -146,13 +142,13 @@ async function wasGreetingSentToday(
     )
     .bind(telegramId)
     .first<{ id: number }>();
-  
+
   return result !== null;
 }
 
 /**
  * Record that birthday greeting was sent
- * 
+ *
  * @param db - Database client
  * @param telegramId - User's telegram ID
  */
@@ -171,7 +167,7 @@ async function recordGreetingSent(
 
 /**
  * Handle birthday greetings cron job
- * 
+ *
  * This function:
  * 1. Finds users with birthdays today (using filter system)
  * 2. Fetches user details (nickname, zodiac, gender)
@@ -179,7 +175,7 @@ async function recordGreetingSent(
  * 4. Sends messages in batches (respecting Telegram rate limits)
  * 5. Tracks sent greetings to prevent duplicates
  * 6. Handles errors gracefully
- * 
+ *
  * @param env - Cloudflare environment
  */
 export async function handleBirthdayGreetings(env: Env): Promise<void> {
@@ -265,11 +261,7 @@ export async function handleBirthdayGreetings(env: Env): Promise<void> {
         batch.map(async (user) => {
           try {
             // Generate personalized message
-            const message = generateBirthdayMessage(
-              user.nickname,
-              user.zodiac,
-              user.gender
-            );
+            const message = generateBirthdayMessage(user.nickname, user.zodiac, user.gender);
 
             // Send message
             await telegram.sendMessage(parseInt(user.telegram_id), message);
@@ -280,16 +272,11 @@ export async function handleBirthdayGreetings(env: Env): Promise<void> {
             sentCount++;
             console.log(`[BirthdayGreetings] Sent to ${user.telegram_id} (${user.nickname})`);
           } catch (error) {
-            console.error(
-              `[BirthdayGreetings] Failed to send to ${user.telegram_id}:`,
-              error
-            );
+            console.error(`[BirthdayGreetings] Failed to send to ${user.telegram_id}:`, error);
 
             // Handle Telegram errors (blocked/deleted users)
             try {
-              const { handleBroadcastError } = await import(
-                '../services/telegram_error_handler'
-              );
+              const { handleBroadcastError } = await import('../services/telegram_error_handler');
               await handleBroadcastError(db, user.telegram_id, error);
             } catch (handlerError) {
               console.error('[BirthdayGreetings] Error handler failed:', handlerError);
@@ -306,9 +293,7 @@ export async function handleBirthdayGreetings(env: Env): Promise<void> {
       }
     }
 
-    console.log(
-      `[BirthdayGreetings] Completed: ${sentCount} sent, ${failedCount} failed`
-    );
+    console.log(`[BirthdayGreetings] Completed: ${sentCount} sent, ${failedCount} failed`);
   } catch (error) {
     console.error('[BirthdayGreetings] Error sending birthday greetings:', error);
     // Don't throw error - we don't want to fail the entire cron job

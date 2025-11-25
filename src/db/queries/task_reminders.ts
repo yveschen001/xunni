@@ -15,21 +15,21 @@ export async function getLastTaskReminder(
   let query = `SELECT reminded_at
                FROM task_reminders
                WHERE user_id = ?`;
-  
+
   const params: string[] = [userId];
-  
+
   if (scenario) {
     query += ` AND scenario = ?`;
     params.push(scenario);
   }
-  
+
   query += ` ORDER BY reminded_at DESC LIMIT 1`;
-  
+
   const result = await db.d1
     .prepare(query)
     .bind(...params)
     .first<{ reminded_at: string }>();
-  
+
   return result?.reminded_at || null;
 }
 
@@ -42,7 +42,7 @@ export async function recordTaskReminder(
   scenario: string
 ): Promise<void> {
   const now = new Date().toISOString();
-  
+
   await db.d1
     .prepare(
       `INSERT INTO task_reminders (user_id, reminded_at, scenario)
@@ -61,7 +61,7 @@ export async function wasRemindedToday(
   scenario: string
 ): Promise<boolean> {
   const today = new Date().toISOString().split('T')[0];
-  
+
   const result = await db.d1
     .prepare(
       `SELECT COUNT(*) as count
@@ -72,7 +72,6 @@ export async function wasRemindedToday(
     )
     .bind(userId, scenario, today)
     .first<{ count: number }>();
-  
+
   return (result?.count || 0) > 0;
 }
-

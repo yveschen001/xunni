@@ -134,10 +134,28 @@ export async function handleLanguageSelection(
       // Existing user - just confirm language change
       // Use the newly selected language for confirmation message
       const confirmI18n = createI18n(languageCode);
-      await telegram.sendMessage(
-        chatId,
-        confirmI18n.t('settings.languageUpdated', { language: getLanguageDisplay(languageCode) })
-      );
+      const confirmMessage = confirmI18n.t('settings.languageUpdated', { language: getLanguageDisplay(languageCode) });
+      const sentMessage = await telegram.sendMessage(chatId, confirmMessage);
+
+      // Wait 2 seconds, then automatically return to menu
+      await new Promise(resolve => setTimeout(resolve, 2000));
+
+      // Delete confirmation message and show menu
+      try {
+        await telegram.deleteMessage(chatId, sentMessage.message_id);
+      } catch (error) {
+        // Ignore if message already deleted
+        console.error('[handleLanguageSelection] Failed to delete confirmation message:', error);
+      }
+
+      // Return to main menu
+      const { handleMenu } = await import('./menu');
+      const fakeMessage = {
+        ...callbackQuery.message!,
+        from: callbackQuery.from,
+        text: '/menu',
+      };
+      await handleMenu(fakeMessage as any, env);
     }
   } catch (error) {
     console.error('[handleLanguageSelection] Error:', error);

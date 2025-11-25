@@ -90,7 +90,7 @@ export async function handleStart(message: TelegramMessage, env: Env): Promise<v
       const { getCountryCodeFromLanguage } = await import('~/utils/country_flag');
       const languageCode = message.from!.language_code || null;
       const countryCode = getCountryCodeFromLanguage(languageCode) || 'UN';
-      
+
       user = await createUser(db, {
         telegram_id: telegramId,
         username: message.from!.username,
@@ -120,7 +120,7 @@ export async function handleStart(message: TelegramMessage, env: Env): Promise<v
           const i18n = createI18n(user.language_pref || 'zh-TW');
           await telegram.sendMessage(
             chatId,
-            i18n.t('invite.codeAccepted', { inviterName: inviter.nickname || '好友' })
+            i18n.t('invite.codeAccepted', { inviterName: inviter.nickname || i18n.t('common.short2') })
           );
         }
       } else {
@@ -141,24 +141,33 @@ export async function handleStart(message: TelegramMessage, env: Env): Promise<v
     // Existing user
     if (hasCompletedOnboarding(user)) {
       // Already completed onboarding
+      const { createI18n } = await import('~/i18n');
+      const i18n = createI18n(user.language_pref || 'zh-TW');
       await telegram.sendMessageWithButtons(
         chatId,
-        `👋 歡迎回來，${user.nickname}！\n\n` +
-          `你可以：\n` +
-          `🌊 丟出漂流瓶 - /throw\n` +
-          `🎣 撿起漂流瓶 - /catch\n` +
-          `👤 查看個人資料 - /profile\n` +
-          `📊 查看統計 - /stats\n` +
-          `⭐ 升級 VIP - /vip\n` +
-          `❓ 查看幫助 - /help`,
+        i18n.t('common.text5', { user: { nickname: user.nickname } }) +
+          '\n\n' +
+          i18n.t('common.text4') +
+          '\n' +
+          i18n.t('buttons.bottle3') +
+          ' - /throw\n' +
+          i18n.t('buttons.bottle4') +
+          ' - /catch\n' +
+          i18n.t('buttons.profile2') +
+          ' - /profile\n' +
+          i18n.t('buttons.stats') +
+          ' - /stats\n' +
+          i18n.t('buttons.vip') +
+          ' - /vip\n' +
+          i18n.t('help.help2'),
         [
           [
-            { text: '🌊 丟出漂流瓶', callback_data: 'throw' },
-            { text: '🎣 撿起漂流瓶', callback_data: 'catch' },
+            { text: i18n.t('buttons.bottle3'), callback_data: 'throw' },
+            { text: i18n.t('buttons.bottle4'), callback_data: 'catch' },
           ],
           [
-            { text: '👤 個人資料', callback_data: 'profile' },
-            { text: '📊 統計', callback_data: 'stats' },
+            { text: i18n.t('buttons.profile2'), callback_data: 'profile' },
+            { text: i18n.t('buttons.stats'), callback_data: 'stats' },
           ],
         ]
       );
@@ -189,7 +198,7 @@ export async function handleStart(message: TelegramMessage, env: Env): Promise<v
           const i18n = createI18n(user.language_pref || 'zh-TW');
           await telegram.sendMessage(
             chatId,
-            i18n.t('invite.codeAccepted', { inviterName: inviter.nickname || '好友' })
+            i18n.t('invite.codeAccepted', { inviterName: inviter.nickname || i18n.t('common.short2') })
           );
         }
 
@@ -205,10 +214,9 @@ export async function handleStart(message: TelegramMessage, env: Env): Promise<v
     }
   } catch (error) {
     console.error('[handleStart] Error:', error);
-    await telegram.sendMessage(
-      chatId,
-      '❌ 系統發生錯誤，請稍後再試。\n\n如果問題持續，請聯繫管理員。'
-    );
+    const { createI18n } = await import('~/i18n');
+    const errorI18n = createI18n('zh-TW');
+    await telegram.sendMessage(chatId, errorI18n.t('errors.systemErrorRetry'));
   }
 }
 
@@ -231,7 +239,7 @@ async function resumeOnboarding(
     case 'language_selection': {
       // Show language selection with buttons
       const { createI18n } = await import('~/i18n');
-      const i18n = createI18n('zh-TW');
+      const i18n = createI18n(user.language_pref || 'zh-TW');
       await telegram.sendMessageWithButtons(
         chatId,
         i18n.t('onboarding.welcome'),
@@ -241,50 +249,63 @@ async function resumeOnboarding(
     }
 
     case 'start':
-    case 'nickname':
-      await telegram.sendMessage(chatId, `請告訴我你的暱稱（顯示名稱）：`);
+    case 'nickname': {
+      const { createI18n } = await import('~/i18n');
+      const i18n = createI18n(user.language_pref || 'zh-TW');
+      await telegram.sendMessage(chatId, i18n.t('edit_profile.nickname'));
       break;
+    }
 
-    case 'avatar':
-      await telegram.sendMessage(
-        chatId,
-        `很好！現在請上傳你的頭像照片：\n\n` + `（你也可以稍後在個人資料中設置）`
-      );
+    case 'avatar': {
+      const { createI18n } = await import('~/i18n');
+      const i18n = createI18n(user.language_pref || 'zh-TW');
+      await telegram.sendMessage(chatId, i18n.t('common.text51') + '\n\n' + i18n.t('common.text63'));
       break;
+    }
 
-    case 'gender':
+    case 'gender': {
+      const { createI18n } = await import('~/i18n');
+      const i18n = createI18n(user.language_pref || 'zh-TW');
       await telegram.sendMessageWithButtons(
         chatId,
-        `請選擇你的性別：\n\n` + `⚠️ 注意：性別設定後無法修改，請謹慎選擇！`,
+        i18n.t('onboarding.gender3') + '\n\n' + i18n.t('warnings.gender'),
         [
           [
-            { text: '👨 男性', callback_data: 'gender_male' },
-            { text: '👩 女性', callback_data: 'gender_female' },
+            { text: i18n.t('onboarding.gender.male'), callback_data: 'gender_male' },
+            { text: i18n.t('onboarding.gender.female'), callback_data: 'gender_female' },
           ],
         ]
       );
       break;
+    }
 
-    case 'birthday':
+    case 'birthday': {
+      const { createI18n } = await import('~/i18n');
+      const i18n = createI18n(user.language_pref || 'zh-TW');
       await telegram.sendMessage(
         chatId,
-        `請輸入你的生日（格式：YYYY-MM-DD）：\n\n` +
-          `例如：1995-06-15\n\n` +
-          `⚠️ 注意：\n` +
-          `• 生日設定後無法修改\n` +
-          `• 必須年滿 18 歲才能使用本服務`
+        i18n.t('onboarding.birthday3') +
+          '\n\n' +
+          i18n.t('onboarding.text10') +
+          '\n\n' +
+          i18n.t('warnings.birthday') +
+          '\n' +
+          i18n.t('onboarding.settings6') +
+          '\n' +
+          i18n.t('onboarding.text9')
       );
       break;
+    }
 
     case 'blood_type': {
       const { getBloodTypeOptions } = await import('~/domain/blood_type');
       const options = getBloodTypeOptions();
+      const { createI18n } = await import('~/i18n');
+      const i18n = createI18n(user.language_pref || 'zh-TW');
 
       await telegram.sendMessageWithButtons(
         chatId,
-        `🩸 **請選擇你的血型**\n\n` +
-          `💡 填寫血型可用於未來的血型配對功能（VIP 專屬）\n\n` +
-          `請選擇你的血型：`,
+        i18n.t('onboarding.bloodType') + '\n\n' + i18n.t('onboarding.vip') + '\n\n' + i18n.t('onboarding.bloodType.select'),
         [
           [
             { text: options[0].display, callback_data: 'blood_type_A' },
@@ -300,56 +321,76 @@ async function resumeOnboarding(
       break;
     }
 
-    case 'mbti':
+    case 'mbti': {
       // Show MBTI options: manual / test / skip
+      const { createI18n } = await import('~/i18n');
+      const i18n = createI18n(user.language_pref || 'zh-TW');
       await telegram.sendMessageWithButtons(
         chatId,
-        `🧠 現在讓我們設定你的 MBTI 性格類型！\n\n` +
-          `這將幫助我們為你找到更合適的聊天對象～\n\n` +
-          `你想要如何設定？`,
+        i18n.t('onboarding.settings2') + '\n\n' + i18n.t('onboarding.help') + '\n\n' + i18n.t('onboarding.settings7'),
         [
-          [{ text: '✍️ 我已經知道我的 MBTI', callback_data: 'mbti_choice_manual' }],
-          [{ text: '📝 進行快速測驗', callback_data: 'mbti_choice_test' }],
-          [{ text: '⏭️ 稍後再說', callback_data: 'mbti_choice_skip' }],
+          [{ text: i18n.t('onboarding.mbti2'), callback_data: 'mbti_choice_manual' }],
+          [{ text: i18n.t('onboarding.text5'), callback_data: 'mbti_choice_test' }],
+          [{ text: i18n.t('onboarding.short'), callback_data: 'mbti_choice_skip' }],
         ]
       );
       break;
+    }
 
-    case 'anti_fraud':
+    case 'anti_fraud': {
       // Show anti-fraud confirmation with buttons
+      const { createI18n } = await import('~/i18n');
+      const i18n = createI18n(user.language_pref || 'zh-TW');
       await telegram.sendMessageWithButtons(
         chatId,
-        `🛡️ 最後一步：反詐騙安全確認\n\n` +
-          `為了保護所有使用者的安全，請確認你了解以下事項：\n\n` +
-          `1. 你了解網路交友的安全風險嗎？\n` +
-          `2. 你會保護好自己的個人資訊嗎？\n` +
-          `3. 遇到可疑訊息時，你會提高警覺嗎？\n\n` +
-          `請確認：`,
+        i18n.t('onboarding.confirm2') +
+          '\n\n' +
+          i18n.t('onboarding.confirm') +
+          '\n' +
+          i18n.t('onboarding.antiFraud.question1') +
+          '\n' +
+          i18n.t('onboarding.antiFraud.question2') +
+          '\n' +
+          i18n.t('onboarding.antiFraud.question3') +
+          '\n\n' +
+          i18n.t('onboarding.confirm3'),
         [
-          [{ text: '✅ 是的，我了解並會注意安全', callback_data: 'anti_fraud_yes' }],
-          [{ text: '📚 我想了解更多安全知識', callback_data: 'anti_fraud_learn' }],
+          [{ text: i18n.t('onboarding.antiFraud.confirm_button'), callback_data: 'anti_fraud_yes' }],
+          [{ text: i18n.t('onboarding.antiFraud.learn_button'), callback_data: 'anti_fraud_learn' }],
         ]
       );
       break;
+    }
 
-    case 'terms':
+    case 'terms': {
+      const { createI18n } = await import('~/i18n');
+      const i18n = createI18n(user.language_pref || 'zh-TW');
       await telegram.sendMessageWithButtons(
         chatId,
-        `在開始使用前，請閱讀並同意我們的服務條款：\n\n` +
-          `📋 隱私權政策\n` +
-          `📋 使用者條款\n\n` +
-          `📋 Legal documents are provided in English only.\n\n` +
-          `點擊下方按鈕表示你已閱讀並同意上述條款。`,
+        i18n.t('onboarding.start') +
+          '\n\n' +
+          i18n.t('onboarding.text21') +
+          '\n' +
+          i18n.t('onboarding.text19') +
+          '\n\n' +
+          i18n.t('onboarding.terms.english_only_note') +
+          '\n\n' +
+          i18n.t('onboarding.text7'),
         [
-          [{ text: '✅ 我已閱讀並同意', callback_data: 'agree_terms' }],
-          [{ text: '📋 View Privacy Policy', url: LEGAL_URLS.PRIVACY_POLICY }],
-          [{ text: '📋 View Terms of Service', url: LEGAL_URLS.TERMS_OF_SERVICE }],
+          [{ text: i18n.t('onboarding.terms.agree_button'), callback_data: 'agree_terms' }],
+          [{ text: i18n.t('onboarding.terms.privacy_policy_button'), url: LEGAL_URLS.PRIVACY_POLICY }],
+          [{ text: i18n.t('onboarding.terms.terms_of_service_button'), url: LEGAL_URLS.TERMS_OF_SERVICE }],
         ]
       );
       break;
+    }
 
-    default:
-      await telegram.sendMessage(chatId, `⚠️ 註冊流程出現問題，請重新開始：/start`);
+    default: {
+      const { createI18n } = await import('~/i18n');
+      const i18n = createI18n(user.language_pref || 'zh-TW');
+      await telegram.sendMessage(chatId, i18n.t('errors.error.short9') + '\n\n' + i18n.t('onboarding.start2') + '\n\n' + '/start');
+      break;
+    }
   }
 }
 

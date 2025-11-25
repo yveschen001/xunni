@@ -48,11 +48,7 @@ export async function createMatchSlots(
            (bottle_id, slot_role, slot_index, status)
            VALUES (?, ?, ?, 'pending')`
         )
-        .bind(
-          bottleId,
-          i === 1 ? 'primary' : 'secondary',
-          i
-        )
+        .bind(bottleId, i === 1 ? 'primary' : 'secondary', i)
         .run();
     }
   }
@@ -103,10 +99,7 @@ export async function getFirstAvailableSlot(
 /**
  * Get remaining slots count for a bottle
  */
-export async function getRemainingSlots(
-  db: DatabaseClient,
-  bottleId: number
-): Promise<number> {
+export async function getRemainingSlots(db: DatabaseClient, bottleId: number): Promise<number> {
   const result = await db.d1
     .prepare(
       `SELECT COUNT(*) as count
@@ -218,4 +211,3 @@ export async function getVipTripleBottleStats(
     pendingSlots: (result?.pending_slots as number) || 0,
   };
 }
-

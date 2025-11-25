@@ -148,7 +148,7 @@ export async function generateDailyReport(db: D1Database, date: string): Promise
 /**
  * Format daily report for Telegram
  */
-export function formatDailyReport(report: DailyReport): string {
+export function formatDailyReport(report: DailyReport, i18n?: any): string {
   // 檢查是否有任何活動
   const hasActivity =
     report.user_metrics.dau > 0 ||
@@ -156,74 +156,43 @@ export function formatDailyReport(report: DailyReport): string {
     report.ad_metrics.official.impressions > 0 ||
     report.content_metrics.bottles_thrown > 0;
 
-  if (!hasActivity) {
-    return `
-📊 **每日運營報表**
-📅 日期：${report.date}
-
-⚠️ **今日還沒有數據**
-
-這可能是因為：
-• 系統剛部署，還沒有用戶活動
-• 今天還沒有用戶使用 Bot
-• 數據追蹤功能尚未啟用
-
-💡 **數據何時會出現？**
-• 需要用戶執行以下任一操作：
-  - 發送 /start 註冊
-  - 丟瓶子或撿瓶子
-  - 觀看廣告
-  - 購買 VIP
-
-• 建議等待用戶開始使用後再查看
-• 或者在測試環境中模擬用戶行為
-    `.trim();
+  if (!i18n) {
+    const { createI18n } = require('~/i18n');
+    i18n = createI18n('zh-TW');
   }
 
-  return `
-📊 **每日運營報表**
-📅 日期：${report.date}
+  if (!hasActivity) {
+    return i18n.t('analytics.message2', { date: report.date });
+  }
 
-**👥 用戶數據**
-• 新增用戶：${report.user_metrics.new_users} 人
-• 活躍用戶（DAU）：${report.user_metrics.dau} 人
-• 留存率（D1）：${report.user_metrics.d1_retention.toFixed(1)}%
-• 平均使用時長：${report.user_metrics.avg_session_duration.toFixed(1)} 分鐘
-
-**📺 廣告數據**
-• 第三方廣告：
-  - 展示：${report.ad_metrics.third_party.impressions} 次
-  - 完成：${report.ad_metrics.third_party.completions} 次
-  - 完成率：${report.ad_metrics.third_party.completion_rate.toFixed(1)}%
-  - 獎勵發放：${report.ad_metrics.third_party.rewards_granted} 個額度
-
-• 官方廣告：
-  - 展示：${report.ad_metrics.official.impressions} 次
-  - 點擊：${report.ad_metrics.official.clicks} 次
-  - CTR：${report.ad_metrics.official.ctr.toFixed(1)}%
-  - 獎勵發放：${report.ad_metrics.official.rewards_granted} 個額度
-
-**💎 VIP 數據**
-• VIP 頁面訪問：${report.vip_metrics.page_views} 次
-• 購買意向：${report.vip_metrics.purchase_intents} 次
-• 成功轉化：${report.vip_metrics.conversions} 次
-• 轉化率：${report.vip_metrics.conversion_rate.toFixed(1)}%
-• 收入：$${report.vip_metrics.revenue.toFixed(2)}
-
-**📲 邀請數據**
-• 發起邀請：${report.invite_metrics.initiated} 次
-• 接受邀請：${report.invite_metrics.accepted} 次
-• 激活邀請：${report.invite_metrics.activated} 次
-• 轉化率：${report.invite_metrics.conversion_rate.toFixed(1)}%
-
-**💬 內容互動**
-• 丟瓶子：${report.content_metrics.bottles_thrown} 個
-• 撿瓶子：${report.content_metrics.bottles_caught} 個
-• 新對話：${report.content_metrics.conversations_started} 個
-• 平均對話輪次：${report.content_metrics.avg_conversation_rounds.toFixed(1)}
-
-💡 詳細數據：/analytics
-  `.trim();
+  return i18n.t('analytics.message', {
+    date: report.date,
+    newUsers: report.user_metrics.new_users,
+    dau: report.user_metrics.dau,
+    d1Retention: report.user_metrics.d1_retention.toFixed(1),
+    avgSessionDuration: report.user_metrics.avg_session_duration.toFixed(1),
+    thirdPartyImpressions: report.ad_metrics.third_party.impressions,
+    thirdPartyCompletions: report.ad_metrics.third_party.completions,
+    thirdPartyCompletionRate: report.ad_metrics.third_party.completion_rate.toFixed(1),
+    thirdPartyRewardsGranted: report.ad_metrics.third_party.rewards_granted,
+    officialImpressions: report.ad_metrics.official.impressions,
+    officialClicks: report.ad_metrics.official.clicks,
+    officialCtr: report.ad_metrics.official.ctr.toFixed(1),
+    officialRewardsGranted: report.ad_metrics.official.rewards_granted,
+    vipPageViews: report.vip_metrics.page_views,
+    vipPurchaseIntents: report.vip_metrics.purchase_intents,
+    vipConversions: report.vip_metrics.conversions,
+    vipConversionRate: report.vip_metrics.conversion_rate.toFixed(1),
+    vipRevenue: report.vip_metrics.revenue.toFixed(2),
+    inviteInitiated: report.invite_metrics.initiated,
+    inviteAccepted: report.invite_metrics.accepted,
+    inviteActivated: report.invite_metrics.activated,
+    inviteConversionRate: report.invite_metrics.conversion_rate.toFixed(1),
+    bottlesThrown: report.content_metrics.bottles_thrown,
+    bottlesCaught: report.content_metrics.bottles_caught,
+    conversationsStarted: report.content_metrics.conversations_started,
+    avgConversationRounds: report.content_metrics.avg_conversation_rounds.toFixed(1),
+  });
 }
 
 // ============================================================================
@@ -268,61 +237,46 @@ export async function generateAdPerformanceReport(
 /**
  * Format ad performance report for Telegram
  */
-export function formatAdPerformanceReport(report: AdPerformanceReport): string {
+export function formatAdPerformanceReport(report: AdPerformanceReport, i18n?: any): string {
   // 檢查是否有廣告數據
   const hasAdData =
     report.third_party.total_impressions > 0 ||
     report.official.total_impressions > 0 ||
     (report.provider_comparison && report.provider_comparison.length > 0);
 
-  if (!hasAdData) {
-    return `
-📊 **廣告效果報表**
-📅 期間：${report.period.start} ~ ${report.period.end}
-
-⚠️ **目前還沒有廣告數據**
-
-這可能是因為：
-• 廣告提供商尚未配置
-• 還沒有用戶觀看廣告
-• 選定的時間範圍內沒有廣告活動
-
-💡 **數據何時會出現？**
-• 需要完成以下配置：
-  1. 配置廣告提供商（GigaPub 等）
-  2. 創建官方廣告
-  3. 用戶開始觀看廣告
-
-• 建議先配置廣告提供商
-• 然後等待用戶開始使用廣告功能
-    `.trim();
+  if (!i18n) {
+    const { createI18n } = require('~/i18n');
+    i18n = createI18n('zh-TW');
   }
 
-  let message = `
-📊 **廣告效果報表**
-📅 期間：${report.period.start} ~ ${report.period.end}
+  if (!hasAdData) {
+    return i18n.t('analytics.ad3', {
+      start: report.period.start,
+      end: report.period.end,
+    });
+  }
 
-**📺 第三方廣告**
-• 總展示：${report.third_party.total_impressions} 次
-• 總完成：${report.third_party.total_completions} 次
-• 完成率：${report.third_party.completion_rate.toFixed(1)}%
-• 總獎勵：${report.third_party.total_rewards} 個額度
+  let message = i18n.t('analytics.ad2', {
+    start: report.period.start,
+    end: report.period.end,
+    thirdPartyImpressions: report.third_party.total_impressions,
+    thirdPartyCompletions: report.third_party.total_completions,
+    thirdPartyCompletionRate: report.third_party.completion_rate.toFixed(1),
+    thirdPartyRewardsGranted: report.third_party.total_rewards,
+    officialImpressions: report.official.total_impressions,
+    officialClicks: report.official.total_clicks,
+    officialCtr: report.official.ctr.toFixed(1),
+    officialRewardsGranted: report.official.total_rewards,
+  });
 
-**📢 官方廣告**
-• 總展示：${report.official.total_impressions} 次
-• 總點擊：${report.official.total_clicks} 次
-• CTR：${report.official.ctr.toFixed(1)}%
-• 總獎勵：${report.official.total_rewards} 個額度
-
-**🏆 提供商對比**
-  `.trim();
+  message += `\n\n${i18n.t('analytics.providerComparisonTitle')}`;
 
   for (const provider of report.provider_comparison) {
     message += `\n\n**${provider.provider_display_name}**`;
-    message += `\n• 請求：${provider.total_requests} 次`;
-    message += `\n• 完成：${provider.total_completions} 次`;
-    message += `\n• 完成率：${provider.completion_rate.toFixed(1)}%`;
-    message += `\n• 錯誤率：${provider.error_rate.toFixed(1)}%`;
+    message += i18n.t('analytics.message6', { requests: provider.total_requests });
+    message += i18n.t('analytics.complete2', { completions: provider.total_completions });
+    message += i18n.t('analytics.complete', { rate: provider.completion_rate.toFixed(1) });
+    message += i18n.t('analytics.message5', { rate: provider.error_rate.toFixed(1) });
   }
 
   return message;
@@ -381,29 +335,29 @@ export function formatVIPFunnelReport(report: any): string {
     `.trim();
   }
 
-  let message = `
-📊 **VIP 轉化漏斗**
-📅 期間：${report.period.start} ~ ${report.period.end}
+  let message = i18n.t('analytics.vip2', {
+    start: report.period.start,
+    end: report.period.end,
+  });
 
-**🎯 轉化步驟**
-  `.trim();
+  message += `\n\n${i18n.t('analytics.conversionStepsTitle')}`;
 
   const stepNames: Record<string, string> = {
-    awareness: '認知（看到 VIP 提示）',
-    interest: '興趣（點擊查看 VIP）',
-    consideration: '考慮（查看 VIP 詳情）',
-    purchase_intent: '購買意向（點擊購買）',
-    purchase_success: '購買成功',
+    awareness: i18n.t('analytics.vip3'),
+    interest: i18n.t('analytics.vip5'),
+    consideration: i18n.t('analytics.vip4'),
+    purchase_intent: i18n.t('analytics.text2'),
+    purchase_success: i18n.t('analytics.purchaseSuccess'),
   };
 
   for (const step of report.funnel_steps) {
     const stepName = stepNames[step.step] || step.step;
     message += `\n\n**${step.step_order}. ${stepName}**`;
-    message += `\n• 用戶數：${step.user_count}`;
-    message += `\n• 轉化率：${step.conversion_rate.toFixed(1)}%`;
+    message += i18n.t('analytics.text', { userCount: step.user_count });
+    message += i18n.t('analytics.message4', { rate: step.conversion_rate.toFixed(1) });
   }
 
-  message += `\n\n**📈 總轉化率：${report.overall_conversion_rate.toFixed(1)}%**`;
+  message += i18n.t('analytics.message3', { rate: report.overall_conversion_rate.toFixed(1) });
 
   return message;
 }

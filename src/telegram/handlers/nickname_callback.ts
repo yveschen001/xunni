@@ -8,6 +8,7 @@ import { createDatabaseClient } from '~/db/client';
 import { findUserByTelegramId, updateUserProfile, updateOnboardingStep } from '~/db/queries/users';
 import { createTelegramService } from '~/services/telegram';
 import { validateNickname } from '~/domain/user';
+import { createI18n } from '~/i18n';
 
 /**
  * Handle using Telegram nickname
@@ -24,8 +25,10 @@ export async function handleNicknameUseTelegram(
   try {
     // Get user
     const user = await findUserByTelegramId(db, telegramId);
+    const i18n = createI18n(user?.language_pref || 'zh-TW');
+    
     if (!user) {
-      await telegram.answerCallbackQuery(callbackQuery.id, '❌ 用戶不存在');
+      await telegram.answerCallbackQuery(callbackQuery.id, i18n.t('nickname.userNotFound'));
       return;
     }
 
@@ -33,7 +36,7 @@ export async function handleNicknameUseTelegram(
     const nickname = callbackQuery.from.username || callbackQuery.from.first_name || '';
 
     if (!nickname) {
-      await telegram.answerCallbackQuery(callbackQuery.id, '❌ 無法獲取 Telegram 暱稱');
+      await telegram.answerCallbackQuery(callbackQuery.id, i18n.t('nickname.cannotGetNickname'));
       return;
     }
 
@@ -43,7 +46,7 @@ export async function handleNicknameUseTelegram(
     // Validate nickname
     const validation = validateNickname(truncatedNickname);
     if (!validation.valid) {
-      await telegram.answerCallbackQuery(callbackQuery.id, `❌ ${validation.error}`);
+      await telegram.answerCallbackQuery(callbackQuery.id, i18n.t('error.nickname3', { error: validation.error }));
       return;
     }
 
@@ -54,7 +57,7 @@ export async function handleNicknameUseTelegram(
     await updateOnboardingStep(db, telegramId, 'gender');
 
     // Answer callback
-    await telegram.answerCallbackQuery(callbackQuery.id, '✅ 暱稱已設定');
+    await telegram.answerCallbackQuery(callbackQuery.id, i18n.t('nickname.nicknameSet'));
 
     // Delete nickname selection message
     await telegram.deleteMessage(chatId, callbackQuery.message!.message_id);
@@ -62,19 +65,20 @@ export async function handleNicknameUseTelegram(
     // Show gender selection
     await telegram.sendMessageWithButtons(
       chatId,
-      `很好！你的暱稱是：${truncatedNickname}\n\n` +
-        `現在請選擇你的性別：\n\n` +
-        `⚠️ 注意：性別設定後無法修改，請謹慎選擇！`,
+      i18n.t('nickname.genderSelection', { nickname: truncatedNickname }) +
+        i18n.t('nickname.genderHint'),
       [
         [
-          { text: '👨 男性', callback_data: 'gender_male' },
-          { text: '👩 女性', callback_data: 'gender_female' },
+          { text: `👨 ${i18n.t('gender.male')}`, callback_data: 'gender_male' },
+          { text: `👩 ${i18n.t('gender.female')}`, callback_data: 'gender_female' },
         ],
       ]
     );
   } catch (error) {
     console.error('[handleNicknameUseTelegram] Error:', error);
-    await telegram.answerCallbackQuery(callbackQuery.id, '❌ 發生錯誤');
+    const user = await findUserByTelegramId(db, telegramId);
+    const i18n = createI18n(user?.language_pref || 'zh-TW');
+    await telegram.answerCallbackQuery(callbackQuery.id, i18n.t('common.operationFailed'));
   }
 }
 
@@ -86,6 +90,11 @@ export async function handleNicknameCustom(callbackQuery: CallbackQuery, env: En
   const chatId = callbackQuery.message!.chat.id;
 
   try {
+    const db = createDatabaseClient(env.DB);
+    const telegramId = callbackQuery.from.id.toString();
+    const user = await findUserByTelegramId(db, telegramId);
+    const i18n = createI18n(user?.language_pref || 'zh-TW');
+    
     // Answer callback
     await telegram.answerCallbackQuery(callbackQuery.id);
 
@@ -95,14 +104,15 @@ export async function handleNicknameCustom(callbackQuery: CallbackQuery, env: En
     // Ask for custom nickname
     await telegram.sendMessage(
       chatId,
-      `✏️ 請輸入你的暱稱：\n\n` +
-        `⚠️ 注意：\n` +
-        `• 暱稱長度限制 36 個字\n` +
-        `• 對方最多顯示 18 個字\n` +
-        `• 請勿使用暱稱發送廣告`
+      i18n.t('nickname.customPrompt') +
+        i18n.t('nickname.customHint')
     );
   } catch (error) {
     console.error('[handleNicknameCustom] Error:', error);
-    await telegram.answerCallbackQuery(callbackQuery.id, '❌ 發生錯誤');
+    const db = createDatabaseClient(env.DB);
+    const telegramId = callbackQuery.from.id.toString();
+    const user = await findUserByTelegramId(db, telegramId);
+    const i18n = createI18n(user?.language_pref || 'zh-TW');
+    await telegram.answerCallbackQuery(callbackQuery.id, i18n.t('common.operationFailed'));
   }
 }

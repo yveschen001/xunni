@@ -88,9 +88,9 @@ export function validateInviteCode(code: string): boolean {
  * maskNickname('Alexander') // 'Alexan****' (6 + 4 stars = 10)
  * maskNickname('VeryLongName') // 'VeryLo****' (6 + 4 stars = 10)
  */
-export function maskNickname(nickname: string): string {
+export function maskNickname(nickname: string, i18n?: any): string {
   if (!nickname || nickname.length === 0) {
-    return '新用戶******'; // 10 chars total
+    return i18n?.t('common.newUser') + '******' || '新用戶******'; // 10 chars total
   }
 
   const TARGET_LENGTH = 10;

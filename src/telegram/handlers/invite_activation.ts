@@ -59,7 +59,7 @@ async function sendInviterNotification(
   // Mask invitee nickname for privacy and add country flag
   const { formatNicknameWithFlag } = await import('~/utils/country_flag');
   const displayNickname = formatNicknameWithFlag(
-    maskNickname(invitee.nickname || '新用戶'),
+    maskNickname(invitee.nickname || i18n.t('common.newUser')),
     invitee.country_code
   );
 
@@ -67,7 +67,7 @@ async function sendInviterNotification(
   const currentInvites = inviter.successful_invites || 0;
   const maxInvites = getInviteLimit(inviter);
   const newQuota = calculateDailyQuota(inviter);
-  const userType = inviter.is_vip ? 'VIP ' : '免費';
+  const userType = inviter.is_vip ? 'VIP ' : i18n.t('common.free');
 
   // Build message
   let message = i18n.t('invite.inviterSuccess', {

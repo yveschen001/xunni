@@ -11,6 +11,8 @@ export interface Translations {
     confirm: string;
     back: string;
     next: string;
+    prev: string;
+    pageInfo: string;
     skip: string;
     done: string;
     error: string;

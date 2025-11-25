@@ -79,7 +79,7 @@ export function isValidLanguage(code: string): boolean {
 /**
  * Get language buttons for Telegram inline keyboard
  * Supports pagination to avoid exceeding Telegram's 8-row limit
- * 
+ *
  * @param i18n - Optional i18n instance for button text (e.g., "Back" button)
  * @param page - Page number (0-based, 14 languages per page)
  */
@@ -90,7 +90,7 @@ export function getLanguageButtons(
   const LANGUAGES_PER_PAGE = 14; // 7 rows (2 languages per row) to stay under 8-row limit
   const start = page * LANGUAGES_PER_PAGE;
   const end = Math.min(start + LANGUAGES_PER_PAGE, SUPPORTED_LANGUAGES.length);
-  
+
   const buttons: Array<Array<{ text: string; callback_data: string }>> = [];
 
   // Group languages in rows of 2
@@ -133,12 +133,12 @@ export function getLanguageButtons(
 
 /**
  * Get top 6 popular languages for quick selection
- * 
+ *
  * @param i18n - Optional i18n instance for "More languages" button text
  */
-export function getPopularLanguageButtons(
-  i18n?: { t: (key: string) => string }
-): Array<Array<{ text: string; callback_data: string }>> {
+export function getPopularLanguageButtons(i18n?: {
+  t: (key: string) => string;
+}): Array<Array<{ text: string; callback_data: string }>> {
   const popularLanguages = ['zh-TW', 'en', 'ja', 'ko', 'th', 'vi'];
   const buttons: Array<Array<{ text: string; callback_data: string }>> = [];
 

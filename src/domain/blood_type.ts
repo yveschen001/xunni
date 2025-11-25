@@ -25,21 +25,23 @@ export function isValidBloodType(bloodType: string): bloodType is BloodType {
  * Get blood type display name with emoji
  *
  * @param bloodType - Blood type
+ * @param i18n - Optional i18n instance for translation
  * @returns Display name with emoji
  */
-export function getBloodTypeDisplay(bloodType: BloodType | null): string {
+export function getBloodTypeDisplay(bloodType: BloodType | null, i18n?: any): string {
   if (!bloodType) {
-    return '未設定';
+    return i18n?.t('common.notSet') || '未設定';
   }
 
-  const displays: Record<BloodType, string> = {
-    A: '🩸 A 型',
-    B: '🩸 B 型',
-    AB: '🩸 AB 型',
-    O: '🩸 O 型',
+  const i18nKey = `common.bloodType${bloodType}`;
+  const defaultDisplays: Record<BloodType, string> = {
+    A: i18n?.t('common.bloodTypeA') || '🩸 A 型',
+    B: i18n?.t('common.bloodTypeB') || '🩸 B 型',
+    AB: i18n?.t('common.bloodTypeAB') || '🩸 AB 型',
+    O: i18n?.t('common.bloodTypeO') || '🩸 O 型',
   };
 
-  return displays[bloodType];
+  return i18n?.t(i18nKey) || defaultDisplays[bloodType];
 }
 
 /**
@@ -75,14 +77,22 @@ export function parseBloodType(input: string): BloodType | null {
 /**
  * Get blood type options for display
  *
+ * @param i18n - Optional i18n instance for translation
  * @returns Array of blood type options with display names
  */
-export function getBloodTypeOptions(): Array<{ value: BloodType | null; display: string }> {
+export function getBloodTypeOptions(i18n?: any): Array<{ value: BloodType | null; display: string }> {
+  const getDisplay = (value: BloodType | null) => {
+    if (value === null) {
+      return i18n?.t('common.uncertain') || '❓ 不確定';
+    }
+    return getBloodTypeDisplay(value, i18n);
+  };
+
   return [
-    { value: 'A', display: '🩸 A 型' },
-    { value: 'B', display: '🩸 B 型' },
-    { value: 'AB', display: '🩸 AB 型' },
-    { value: 'O', display: '🩸 O 型' },
-    { value: null, display: '❓ 不確定' },
+    { value: 'A', display: getDisplay('A') },
+    { value: 'B', display: getDisplay('B') },
+    { value: 'AB', display: getDisplay('AB') },
+    { value: 'O', display: getDisplay('O') },
+    { value: null, display: getDisplay(null) },
   ];
 }

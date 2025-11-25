@@ -54,6 +54,12 @@
   - 語言包結構
   - 使用範例
 
+- **[I18N_SYNC_GUIDE.md](./I18N_SYNC_GUIDE.md)** - i18n 同步指南 ⭐ **新增**
+  - 自動同步工具使用說明
+  - 檢查和修復 i18n 問題
+  - 推薦工作流程
+  - 常見問題解答
+
 ### 4. 功能實作
 
 - **[ONBOARDING_FLOW.md](./ONBOARDING_FLOW.md)** - 註冊引導流程

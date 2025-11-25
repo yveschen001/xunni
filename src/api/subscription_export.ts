@@ -1,9 +1,9 @@
 /**
  * Subscription Export API
- * 
+ *
  * GDPR Compliance: Allows users to export their subscription data
  * Required by Telegram for subscription_period feature
- * 
+ *
  * Endpoint: POST /subscription-export
  */
 
@@ -40,21 +40,18 @@ export interface SubscriptionExportResponse {
 
 /**
  * Handle subscription export request
- * 
+ *
  * This endpoint is called by Telegram when a user requests to export their data
  * as part of GDPR compliance.
  */
-export async function handleSubscriptionExport(
-  request: Request,
-  env: Env
-): Promise<Response> {
+export async function handleSubscriptionExport(request: Request, env: Env): Promise<Response> {
   try {
     // Verify request method
     if (request.method !== 'POST') {
-      return new Response(
-        JSON.stringify({ ok: false, error: 'Method not allowed' }),
-        { status: 405, headers: { 'Content-Type': 'application/json' } }
-      );
+      return new Response(JSON.stringify({ ok: false, error: 'Method not allowed' }), {
+        status: 405,
+        headers: { 'Content-Type': 'application/json' },
+      });
     }
 
     // Parse request body
@@ -62,10 +59,10 @@ export async function handleSubscriptionExport(
     const userId = body.user_id;
 
     if (!userId) {
-      return new Response(
-        JSON.stringify({ ok: false, error: 'Missing user_id' }),
-        { status: 400, headers: { 'Content-Type': 'application/json' } }
-      );
+      return new Response(JSON.stringify({ ok: false, error: 'Missing user_id' }), {
+        status: 400,
+        headers: { 'Content-Type': 'application/json' },
+      });
     }
 
     console.error('[SubscriptionExport] Request for user:', userId);
@@ -133,8 +130,14 @@ export async function handleSubscriptionExport(
     });
   } catch (error) {
     console.error('[SubscriptionExport] Error:', error);
-    console.error('[SubscriptionExport] Error stack:', error instanceof Error ? error.stack : 'No stack');
-    console.error('[SubscriptionExport] Error message:', error instanceof Error ? error.message : String(error));
+    console.error(
+      '[SubscriptionExport] Error stack:',
+      error instanceof Error ? error.stack : 'No stack'
+    );
+    console.error(
+      '[SubscriptionExport] Error message:',
+      error instanceof Error ? error.message : String(error)
+    );
     return new Response(
       JSON.stringify({
         ok: false,
@@ -145,4 +148,3 @@ export async function handleSubscriptionExport(
     );
   }
 }
-

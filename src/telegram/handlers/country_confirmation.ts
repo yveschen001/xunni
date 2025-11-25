@@ -1,6 +1,6 @@
 /**
  * Country Confirmation Handler
- * 
+ *
  * Handles country confirmation dialog and user selection
  */
 
@@ -10,76 +10,68 @@ import { createDatabaseClient } from '~/db/client';
 import { getCountryFlagEmoji, getCountryName } from '~/utils/country_flag';
 import { checkAndCompleteTask } from './tasks';
 import { findUserByTelegramId } from '~/db/queries/users';
+import { createI18n } from '~/i18n';
 
 /**
  * Show country confirmation dialog
  */
-export async function showCountryConfirmation(
-  chatId: number,
-  user: User,
-  env: Env
-): Promise<void> {
+export async function showCountryConfirmation(chatId: number, user: User, env: Env): Promise<void> {
   const telegram = createTelegramService(env);
+  const i18n = createI18n(user.language_pref || 'zh-TW');
   const currentFlag = getCountryFlagEmoji(user.country_code || 'UN');
   const currentCountry = getCountryName(user.country_code || 'UN');
-  
-  const message = 
-    `🌍 **確認你的國家/地區**\n\n` +
-    `我們根據你的語言設置，推測你來自：\n` +
+
+  const message =
+    i18n.t('country.confirmTitle') +
+    i18n.t('country.confirmDetected') +
     `${currentFlag} **${currentCountry}**\n\n` +
-    `這正確嗎？\n\n` +
-    `💡 這將顯示在你的資料卡上，讓其他用戶更了解你。\n` +
-    `🎉 確認後可獲得 +1 瓶子獎勵！`;
-  
+    i18n.t('country.confirmQuestion') +
+    i18n.t('country.confirmHint') +
+    i18n.t('country.confirmReward');
+
   await telegram.sendMessageWithButtons(chatId, message, [
     [
-      { text: '✅ 正確', callback_data: 'country_confirm_yes' },
-      { text: '❌ 不正確', callback_data: 'country_select' },
+      { text: i18n.t('country.confirmButton'), callback_data: 'country_confirm_yes' },
+      { text: i18n.t('country.notCorrectButton'), callback_data: 'country_select' },
     ],
-    [
-      { text: '🇺🇳 使用聯合國旗', callback_data: 'country_set_UN' },
-    ],
+    [{ text: i18n.t('country.useUnFlagButton'), callback_data: 'country_set_UN' }],
   ]);
 }
 
 /**
  * Handle country confirmation (user confirms current country)
  */
-export async function handleCountryConfirmYes(
-  callbackQuery: any,
-  env: Env
-): Promise<void> {
+export async function handleCountryConfirmYes(callbackQuery: any, env: Env): Promise<void> {
   const db = createDatabaseClient(env.DB);
   const telegram = createTelegramService(env);
   const telegramId = callbackQuery.from.id.toString();
   const chatId = callbackQuery.message!.chat.id;
-  
+
   try {
     // Get user
     const user = await findUserByTelegramId(db, telegramId);
+    const i18n = createI18n(user?.language_pref || 'zh-TW');
+    
     if (!user) {
-      await telegram.answerCallbackQuery(callbackQuery.id, '❌ 用戶不存在');
+      await telegram.answerCallbackQuery(callbackQuery.id, i18n.t('errors.userNotFound'));
       return;
     }
-    
+
     // Use existing checkAndCompleteTask function
     // country_code already has value, so isTaskCompleted will return true
-    const completed = await checkAndCompleteTask(
-      db,
-      telegram,
-      user,
-      'task_confirm_country'
-    );
-    
+    const completed = await checkAndCompleteTask(db, telegram, user, 'task_confirm_country');
+
     if (completed) {
-      await telegram.answerCallbackQuery(callbackQuery.id, '✅ 已確認！');
+      await telegram.answerCallbackQuery(callbackQuery.id, i18n.t('country.confirmed'));
       await telegram.deleteMessage(chatId, callbackQuery.message!.message_id);
     } else {
-      await telegram.answerCallbackQuery(callbackQuery.id, '❌ 確認失敗');
+      await telegram.answerCallbackQuery(callbackQuery.id, i18n.t('country.confirmFailed'));
     }
   } catch (error) {
     console.error('[handleCountryConfirmYes] Error:', error);
-    await telegram.answerCallbackQuery(callbackQuery.id, '❌ 發生錯誤');
+    const user = await findUserByTelegramId(db, callbackQuery.from.id.toString());
+    const i18n = createI18n(user?.language_pref || 'zh-TW');
+    await telegram.answerCallbackQuery(callbackQuery.id, i18n.t('errors.operationFailed'));
   }
 }
 
@@ -95,40 +87,45 @@ export async function handleCountrySet(
   const telegram = createTelegramService(env);
   const telegramId = callbackQuery.from.id.toString();
   const chatId = callbackQuery.message!.chat.id;
-  
+
   try {
+    // Get user first for i18n
+    const user = await findUserByTelegramId(db, telegramId);
+    const i18n = createI18n(user?.language_pref || 'zh-TW');
+    
+    if (!user) {
+      await telegram.answerCallbackQuery(callbackQuery.id, i18n.t('errors.userNotFound'));
+      return;
+    }
+
     // Update country_code
     await db.d1
       .prepare(`UPDATE users SET country_code = ? WHERE telegram_id = ?`)
       .bind(countryCode, telegramId)
       .run();
-    
+
     // Get updated user
-    const user = await findUserByTelegramId(db, telegramId);
-    if (!user) {
-      await telegram.answerCallbackQuery(callbackQuery.id, '❌ 用戶不存在');
+    const updatedUser = await findUserByTelegramId(db, telegramId);
+    if (!updatedUser) {
+      await telegram.answerCallbackQuery(callbackQuery.id, i18n.t('errors.userNotFound'));
       return;
     }
-    
+
     // Use existing checkAndCompleteTask function
-    const completed = await checkAndCompleteTask(
-      db,
-      telegram,
-      user,
-      'task_confirm_country'
-    );
-    
+    const completed = await checkAndCompleteTask(db, telegram, updatedUser, 'task_confirm_country');
+
     if (completed) {
       const flag = getCountryFlagEmoji(countryCode);
       const countryName = getCountryName(countryCode);
-      await telegram.answerCallbackQuery(callbackQuery.id, `✅ 已設置為 ${flag} ${countryName}`);
+      await telegram.answerCallbackQuery(callbackQuery.id, i18n.t('country.setTo', { flag, country: countryName }));
       await telegram.deleteMessage(chatId, callbackQuery.message!.message_id);
     } else {
-      await telegram.answerCallbackQuery(callbackQuery.id, '❌ 設置失敗');
+      await telegram.answerCallbackQuery(callbackQuery.id, i18n.t('country.setFailed'));
     }
   } catch (error) {
     console.error('[handleCountrySet] Error:', error);
-    await telegram.answerCallbackQuery(callbackQuery.id, '❌ 發生錯誤');
+    const user = await findUserByTelegramId(db, callbackQuery.from.id.toString());
+    const i18n = createI18n(user?.language_pref || 'zh-TW');
+    await telegram.answerCallbackQuery(callbackQuery.id, i18n.t('errors.operationFailed'));
   }
 }
-

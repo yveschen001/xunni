@@ -40,10 +40,11 @@ export async function handleAnalytics(message: any, env: Env): Promise<void> {
   const telegramId = message.from.id.toString();
 
   try {
+    const i18n = createI18n('zh-TW'); // Admin commands use Chinese
     // Check if user is super admin (role = 'god')
     const user = await findUserByTelegramId(db, telegramId);
     if (!user || user.role !== 'god') {
-      await telegram.sendMessage(chatId, '❌ 你沒有權限查看分析數據');
+      await telegram.sendMessage(chatId, i18n.t('admin.analytics.noPermission'));
       return;
     }
 
@@ -52,12 +53,13 @@ export async function handleAnalytics(message: any, env: Env): Promise<void> {
 
     // Generate report
     const report = await generateDailyReport(db.d1, today);
-    const message_text = formatDailyReport(report);
+    const message_text = formatDailyReport(report, i18n);
 
     await telegram.sendMessage(chatId, message_text);
   } catch (error) {
     console.error('[handleAnalytics] Error:', error);
-    await telegram.sendMessage(chatId, '❌ 獲取分析數據失敗');
+    const i18n = createI18n('zh-TW');
+    await telegram.sendMessage(chatId, i18n.t('admin.analytics.getDataFailed'));
   }
 }
 
@@ -81,7 +83,8 @@ export async function handleAdPerformance(message: any, env: Env): Promise<void>
     // Check if user is super admin (role = 'god')
     const user = await findUserByTelegramId(db, telegramId);
     if (!user || user.role !== 'god') {
-      await telegram.sendMessage(chatId, '❌ 你沒有權限查看廣告數據');
+      const i18n = createI18n('zh-TW');
+      await telegram.sendMessage(chatId, i18n.t('admin.analytics.noPermissionAd'));
       return;
     }
 
@@ -95,12 +98,15 @@ export async function handleAdPerformance(message: any, env: Env): Promise<void>
 
     // Generate report
     const report = await generateAdPerformanceReport(db.d1, startDateStr, endDateStr);
-    const message_text = formatAdPerformanceReport(report);
+    // (user already fetched above)
+    const i18n = createI18n(user?.language_pref || 'zh-TW');
+    const message_text = formatAdPerformanceReport(report, i18n);
 
     await telegram.sendMessage(chatId, message_text);
   } catch (error) {
     console.error('[handleAdPerformance] Error:', error);
-    await telegram.sendMessage(chatId, '❌ 獲取廣告數據失敗');
+    const i18n = createI18n('zh-TW');
+    await telegram.sendMessage(chatId, i18n.t('admin.analytics.getAdDataFailed'));
   }
 }
 
@@ -126,13 +132,14 @@ export async function handleVIPFunnel(message: any, env: Env): Promise<void> {
     // Check if user is super admin (role = 'god')
     const user = await findUserByTelegramId(db, telegramId);
     console.error('[handleVIPFunnel] User role:', user?.role);
-    
+
     if (!user || user.role !== 'god') {
       console.error('[handleVIPFunnel] Permission denied for user:', telegramId);
-      await telegram.sendMessage(chatId, '❌ 你沒有權限查看 VIP 數據');
+      const i18n = createI18n('zh-TW');
+      await telegram.sendMessage(chatId, i18n.t('admin.analytics.noPermissionVip'));
       return;
     }
-    
+
     console.error('[handleVIPFunnel] Permission check passed');
 
     // Get date range (last 30 days)
@@ -149,15 +156,17 @@ export async function handleVIPFunnel(message: any, env: Env): Promise<void> {
     console.error('[handleVIPFunnel] Generating report...');
     const report = await generateVIPFunnelReport(db.d1, startDateStr, endDateStr);
     console.error('[handleVIPFunnel] Report generated:', report);
-    
-    const message_text = formatVIPFunnelReport(report);
+
+    const i18n = createI18n(user?.language_pref || 'zh-TW');
+    const message_text = formatVIPFunnelReport(report, i18n);
     console.error('[handleVIPFunnel] Message formatted, length:', message_text.length);
 
     await telegram.sendMessage(chatId, message_text);
     console.error('[handleVIPFunnel] Message sent successfully');
   } catch (error) {
     console.error('[handleVIPFunnel] Error:', error);
-    await telegram.sendMessage(chatId, '❌ 獲取 VIP 漏斗數據失敗');
+    const i18n = createI18n('zh-TW');
+    await telegram.sendMessage(chatId, i18n.t('admin.analytics.getVipDataFailed'));
   }
 }
 
@@ -167,7 +176,7 @@ export async function handleVIPFunnel(message: any, env: Env): Promise<void> {
 
 /**
  * Handle /test_daily_reports command
- * 
+ *
  * Manually trigger daily reports sending (for testing)
  * Super admin only
  */
@@ -180,7 +189,8 @@ export async function handleTestDailyReports(message: TelegramMessage, env: Env)
     // Check super admin permission
     const { isSuperAdmin } = await import('./admin_ban');
     if (!isSuperAdmin(telegramId)) {
-      await telegram.sendMessage(chatId, '❌ 只有超級管理員可以使用此命令。');
+      const i18n = createI18n('zh-TW');
+      await telegram.sendMessage(chatId, i18n.t('admin.analytics.onlySuperAdmin'));
       return;
     }
 
@@ -191,9 +201,10 @@ export async function handleTestDailyReports(message: TelegramMessage, env: Env)
     // No confirmation message - reports speak for themselves
   } catch (error) {
     console.error('[handleTestDailyReports] Error:', error);
+    const i18n = createI18n('zh-TW');
     await telegram.sendMessage(
       chatId,
-      `❌ 發送每日報表失敗：${error instanceof Error ? error.message : String(error)}`
+      i18n.t('admin.analytics.sendReportFailed', { error: error instanceof Error ? error.message : String(error) })
     );
   }
 }

@@ -32,38 +32,42 @@ export interface UserTask {
 /**
  * Check if task is completed based on user data
  */
-export function isTaskCompleted(taskId: string, user: User, additionalData?: {
-  bottleCount?: number;
-  catchCount?: number;
-  conversationCount?: number;
-}): boolean {
+export function isTaskCompleted(
+  taskId: string,
+  user: User,
+  additionalData?: {
+    bottleCount?: number;
+    catchCount?: number;
+    conversationCount?: number;
+  }
+): boolean {
   switch (taskId) {
     case 'task_interests':
       return !!user.interests && user.interests.length > 0;
-    
+
     case 'task_bio':
       return !!user.bio && user.bio.length > 0;
-    
+
     case 'task_city':
       return !!user.city && user.city.length > 0;
-    
+
     case 'task_confirm_country':
       return !!user.country_code;
-    
+
     case 'task_first_bottle':
       return (additionalData?.bottleCount || 0) > 0;
-    
+
     case 'task_first_catch':
       return (additionalData?.catchCount || 0) > 0;
-    
+
     case 'task_first_conversation':
       return (additionalData?.conversationCount || 0) > 0;
-    
+
     // Join channel and invite tasks are checked separately
     case 'task_join_channel':
     case 'task_invite_progress':
       return false;
-    
+
     default:
       return false;
   }
@@ -74,14 +78,12 @@ export function isTaskCompleted(taskId: string, user: User, additionalData?: {
  */
 export function calculateTodayTaskRewards(completedTasks: UserTask[]): number {
   const today = new Date().toISOString().split('T')[0];
-  
-  return completedTasks
-    .filter(task => {
-      if (!task.completed_at) return false;
-      const completedDate = task.completed_at.split('T')[0];
-      return completedDate === today && task.reward_claimed;
-    })
-    .length; // Each task gives 1 bottle
+
+  return completedTasks.filter((task) => {
+    if (!task.completed_at) return false;
+    const completedDate = task.completed_at.split('T')[0];
+    return completedDate === today && task.reward_claimed;
+  }).length; // Each task gives 1 bottle
 }
 
 /**
@@ -95,7 +97,7 @@ export function getInviteTaskProgress(user: User): {
   const current = user.successful_invites || 0;
   const max = user.is_vip ? 100 : 10;
   const isCompleted = current >= max;
-  
+
   return { current, max, isCompleted };
 }
 
@@ -108,10 +110,9 @@ export function shouldShowTaskReminder(
 ): boolean {
   if (!taskRemindersEnabled) return false;
   if (!lastReminderDate) return true;
-  
+
   const today = new Date().toISOString().split('T')[0];
   const lastDate = lastReminderDate.split('T')[0];
-  
+
   return lastDate !== today;
 }
-

@@ -29,16 +29,16 @@ export async function handleHistory(message: TelegramMessage, env: Env): Promise
   try {
     // Get user
     const user = await findUserByTelegramId(db, telegramId);
+    const i18n = createI18n(user?.language_pref || 'zh-TW');
+    
     if (!user) {
-      await telegram.sendMessage(chatId, '❌ 用戶不存在，請先使用 /start 註冊。');
+      await telegram.sendMessage(chatId, i18n.t('errors.userNotFoundRegister'));
       return;
     }
 
-    const i18n = createI18n(user.language_pref || 'zh-TW');
-
     // Check if user completed onboarding
     if (user.onboarding_step !== 'completed') {
-      await telegram.sendMessage(chatId, '❌ 請先完成註冊流程。\n\n使用 /start 繼續註冊。');
+      await telegram.sendMessage(chatId, i18n.t('errors.completeOnboarding'));
       return;
     }
 
@@ -55,7 +55,9 @@ export async function handleHistory(message: TelegramMessage, env: Env): Promise
     }
   } catch (error) {
     console.error('[handleHistory] Error:', error);
-    await telegram.sendMessage(chatId, '❌ 發生錯誤，請稍後再試。');
+    const user = await findUserByTelegramId(db, telegramId);
+    const i18n = createI18n(user?.language_pref || 'zh-TW');
+    await telegram.sendMessage(chatId, i18n.t('history.errorRetry'));
   }
 }
 
@@ -69,31 +71,33 @@ async function showAllConversations(
   telegramId: string,
   _i18n: ReturnType<typeof createI18n>
 ): Promise<void> {
+  const user = await findUserByTelegramId(db, telegramId);
+  const i18n = createI18n(user?.language_pref || 'zh-TW');
   const conversations = await getAllConversationsWithIdentifiers(db, telegramId);
 
   if (conversations.length === 0) {
-    await telegram.sendMessage(
-      chatId,
-      '💬 你還沒有任何對話記錄\n\n' + '快去丟瓶子認識新朋友吧！ /throw\n\n' + '🏠 返回主選單：/menu'
-    );
+    await telegram.sendMessage(chatId, i18n.t('history.noHistory'));
     return;
   }
 
-  let message = '💬 **你的聊天記錄**\n\n';
+  let message = i18n.t('history.chatHistory');
 
   for (const conv of conversations) {
     const preview = conv.last_message_preview
       ? conv.last_message_preview.substring(0, 30) +
         (conv.last_message_preview.length > 30 ? '...' : '')
-      : '(無訊息)';
+      : i18n.t('history.noMessages');
 
-    message += `📨 ${formatIdentifier(conv.identifier)} 的對話（${conv.message_count} 則訊息）\n`;
-    message += `最後訊息：${preview}\n`;
-    message += `時間：${formatDate(conv.last_message_time)}\n\n`;
+    message += i18n.t('history.conversationTitle', {
+      identifier: formatIdentifier(conv.identifier),
+      count: conv.message_count,
+    });
+    message += i18n.t('history.lastMessage', { preview });
+    message += i18n.t('history.time', { time: formatDate(conv.last_message_time, user?.language_pref || 'zh-TW') });
   }
 
-  message += `💡 使用 /history ${formatIdentifier(conversations[0].identifier)} 查看完整對話\n\n`;
-  message += `🏠 返回主選單：/menu`;
+  message += i18n.t('history.viewFull', { identifier: formatIdentifier(conversations[0].identifier) });
+  message += i18n.t('history.returnToMenu');
 
   await telegram.sendMessage(chatId, message);
 }
@@ -113,11 +117,11 @@ async function showConversationByIdentifier(
   const partnerTelegramId = await getPartnerByIdentifier(db, telegramId, identifier);
 
   if (!partnerTelegramId) {
+    const user = await findUserByTelegramId(db, telegramId);
+    const i18n = createI18n(user?.language_pref || 'zh-TW');
     await telegram.sendMessage(
       chatId,
-      `❌ 找不到標識符 ${formatIdentifier(identifier)} 的對話\n\n` +
-        '使用 /history 查看所有對話\n\n' +
-        '🏠 返回主選單：/menu'
+      i18n.t('history.conversationNotFound', { identifier: formatIdentifier(identifier) })
     );
     return;
   }
@@ -128,45 +132,49 @@ async function showConversationByIdentifier(
   // Get conversation messages (last 10)
   const messages = await getConversationMessages(db, telegramId, partnerTelegramId, 10);
 
-  let message = `💬 **與 ${formatIdentifier(identifier)} 的對話**\n\n`;
-  message += `📊 **統計：**\n`;
-  message += `• 總訊息數：${stats.total_messages} 則\n`;
-  message += `• 你發送：${stats.user_messages} 則\n`;
-  message += `• 對方發送：${stats.partner_messages} 則\n`;
+  const user = await findUserByTelegramId(db, telegramId);
+  const i18n = createI18n(user?.language_pref || 'zh-TW');
+  
+  let message = i18n.t('history.conversationWith', { identifier: formatIdentifier(identifier) });
+  message += i18n.t('history.stats');
+  message += i18n.t('history.totalMessages', { total: stats.total_messages });
+  message += i18n.t('history.userMessages', { count: stats.user_messages });
+  message += i18n.t('history.partnerMessages', { count: stats.partner_messages });
 
   if (stats.first_message_time) {
-    message += `• 對話開始：${formatDate(stats.first_message_time)}\n`;
+    message += i18n.t('history.conversationStart', { time: formatDate(stats.first_message_time, user?.language_pref || 'zh-TW') });
   }
   if (stats.last_message_time) {
-    message += `• 最後訊息：${formatDate(stats.last_message_time)}\n`;
+    message += i18n.t('history.conversationEnd', { time: formatDate(stats.last_message_time, user?.language_pref || 'zh-TW') });
   }
 
-  message += `\n📨 **最近對話：**\n\n`;
+  message += i18n.t('history.recentMessages');
 
   if (messages.length === 0) {
-    message += '(尚無訊息)\n\n';
+    message += i18n.t('history.noMessages');
   } else {
     for (const msg of messages) {
-      const time = formatTime(msg.created_at);
-      const sender = msg.sender_telegram_id === telegramId ? '你' : formatIdentifier(identifier);
+      const time = formatTime(msg.created_at, user?.language_pref || 'zh-TW');
+      const sender = msg.sender_telegram_id === telegramId ? i18n.t('history.you') : formatIdentifier(identifier);
       const content = msg.content.substring(0, 50) + (msg.content.length > 50 ? '...' : '');
-      message += `📨 ${time}\n${sender}：${content}\n\n`;
+      message += i18n.t('history.messageTime', { time });
+      message += i18n.t('history.messageSender', { sender, content });
     }
   }
 
-  message += `💬 繼續對話：/reply\n`;
-  message += `🏠 返回主選單：/menu`;
+  message += i18n.t('history.continueConversation');
+  message += i18n.t('history.returnToMenu');
 
   await telegram.sendMessageWithButtons(chatId, message, [
-    [{ text: '💬 繼續對話', callback_data: 'menu_chats' }],
-    [{ text: '🏠 返回主選單', callback_data: 'menu' }],
+    [{ text: i18n.t('history.continueChatButton'), callback_data: 'menu_chats' }],
+    [{ text: i18n.t('history.returnToMenuButton'), callback_data: 'menu' }],
   ]);
 }
 
 /**
  * Format date for display
  */
-function formatDate(dateString: string): string {
+function formatDate(dateString: string, locale: string = 'zh-TW'): string {
   const date = new Date(dateString);
   const now = new Date();
   const diffMs = now.getTime() - date.getTime();
@@ -174,16 +182,30 @@ function formatDate(dateString: string): string {
   const diffHours = Math.floor(diffMs / 3600000);
   const diffDays = Math.floor(diffMs / 86400000);
 
+  // Use i18n keys for relative time
+  if (i18n) {
+    if (diffMins < 1) {
+      return i18n.t('history.justNow');
+    } else if (diffMins < 60) {
+      return i18n.t('history.minutesAgo', { minutes: diffMins });
+    } else if (diffHours < 24) {
+      return i18n.t('history.hoursAgo', { hours: diffHours });
+    } else if (diffDays < 7) {
+      return i18n.t('history.daysAgo', { days: diffDays });
+    }
+  }
+  
+  // Fallback to locale-aware formatting (should rarely be used as i18n should always be provided)
   if (diffMins < 1) {
-    return '剛剛';
+    return locale === 'zh-TW' ? '剛剛' : 'just now'; // Fallback only, should use i18n.t('history.justNow')
   } else if (diffMins < 60) {
-    return `${diffMins} 分鐘前`;
+    return locale === 'zh-TW' ? `${diffMins} 分鐘前` : `${diffMins} min ago`; // Fallback only, should use i18n.t('history.minutesAgo')
   } else if (diffHours < 24) {
-    return `${diffHours} 小時前`;
+    return locale === 'zh-TW' ? `${diffHours} 小時前` : `${diffHours} hr ago`; // Fallback only, should use i18n.t('history.hoursAgo')
   } else if (diffDays < 7) {
-    return `${diffDays} 天前`;
+    return locale === 'zh-TW' ? `${diffDays} 天前` : `${diffDays} days ago`; // Fallback only, should use i18n.t('history.daysAgo')
   } else {
-    return date.toLocaleDateString('zh-TW', {
+    return date.toLocaleDateString(locale, {
       year: 'numeric',
       month: '2-digit',
       day: '2-digit',
@@ -194,9 +216,9 @@ function formatDate(dateString: string): string {
 /**
  * Format time for display
  */
-function formatTime(dateString: string): string {
+function formatTime(dateString: string, locale: string = 'zh-TW'): string {
   const date = new Date(dateString);
-  return date.toLocaleString('zh-TW', {
+  return date.toLocaleString(locale, {
     month: '2-digit',
     day: '2-digit',
     hour: '2-digit',

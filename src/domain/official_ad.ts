@@ -139,12 +139,12 @@ export function getAvailableAds(allAds: OfficialAd[], viewedAdIds: number[]): Of
  * @param hasViewedAd - Whether user has viewed this ad
  * @returns Eligibility result
  */
-export function checkAdEligibility(ad: OfficialAd, hasViewedAd: boolean): OfficialAdEligibility {
+export function checkAdEligibility(ad: OfficialAd, hasViewedAd: boolean, i18n?: any): OfficialAdEligibility {
   // Check if already viewed
   if (hasViewedAd) {
     return {
       is_eligible: false,
-      reason: 'You have already viewed this ad',
+      reason: i18n?.t('officialAd.alreadyViewed') || 'You have already viewed this ad',
     };
   }
 
@@ -296,14 +296,14 @@ export function calculateTotalQuotaEarned(adViews: OfficialAdView[]): number {
  * @param ad - Official ad
  * @returns Formatted message
  */
-export function formatAdMessage(ad: OfficialAd): string {
+export function formatAdMessage(ad: OfficialAd, i18n?: any): string {
   const typeEmoji = getAdTypeEmoji(ad.ad_type);
-  const rewardText = `🎁 獎勵：+${ad.reward_quota} 個永久額度`;
+  const rewardText = i18n?.t('officialAd.reward', { quota: ad.reward_quota }) || `🎁 獎勵：+${ad.reward_quota} 個永久額度`;
 
   let message = `${typeEmoji} **${ad.title}**\n\n${ad.content}\n\n${rewardText}`;
 
   if (ad.requires_verification) {
-    message += '\n\n✅ 需要驗證：加入群組/頻道後點擊「驗證」按鈕';
+    message += i18n?.t('officialAd.requiresVerification') || '\n\n✅ 需要驗證：加入群組/頻道後點擊「驗證」按鈕';
   }
 
   return message;
@@ -336,18 +336,18 @@ export function getAdTypeEmoji(adType: OfficialAdType): string {
  * @param ad - Official ad
  * @returns Button text
  */
-export function formatAdButtonText(ad: OfficialAd): string {
+export function formatAdButtonText(ad: OfficialAd, i18n?: any): string {
   switch (ad.ad_type) {
     case 'text':
-      return '領取獎勵';
+      return i18n?.t('officialAd.buttonClaimReward') || '領取獎勵';
     case 'link':
-      return '訪問鏈接';
+      return i18n?.t('officialAd.buttonVisitLink') || '訪問鏈接';
     case 'group':
-      return '加入群組';
+      return i18n?.t('officialAd.buttonJoinGroup') || '加入群組';
     case 'channel':
-      return '訂閱頻道';
+      return i18n?.t('officialAd.buttonSubscribeChannel') || '訂閱頻道';
     default:
-      return '查看詳情';
+      return i18n?.t('officialAd.buttonViewDetails') || '查看詳情';
   }
 }
 
@@ -356,8 +356,8 @@ export function formatAdButtonText(ad: OfficialAd): string {
  *
  * @returns Button text
  */
-export function formatVerificationButtonText(): string {
-  return '✅ 驗證並領取';
+export function formatVerificationButtonText(i18n?: any): string {
+  return i18n?.t('officialAd.buttonVerifyAndClaim') || '✅ 驗證並領取';
 }
 
 // ============================================================================
@@ -487,28 +487,29 @@ export function calculateAdStats(ad: OfficialAd, views: OfficialAdView[]) {
  * @param stats - Ad statistics
  * @returns Formatted stats string
  */
-export function formatAdStats(ad: OfficialAd, stats: ReturnType<typeof calculateAdStats>): string {
+export function formatAdStats(ad: OfficialAd, stats: ReturnType<typeof calculateAdStats>, i18n?: any): string {
   const typeEmoji = getAdTypeEmoji(ad.ad_type);
   const statusEmoji = ad.is_enabled ? '✅' : '❌';
+  const statusText = ad.is_enabled 
+    ? (i18n?.t('officialAd.statusEnabled') || '啟用')
+    : (i18n?.t('officialAd.statusDisabled') || '停用');
 
+  const statsTitle = i18n?.t('stats.title') || '📊 **統計數據**';
   let message = `
 ${typeEmoji} **${ad.title}**
-${statusEmoji} 狀態: ${ad.is_enabled ? '啟用' : '停用'}
+${statusEmoji} 狀態: ${statusText}
 
-📊 **統計數據**
-• 展示次數: ${stats.total_views}
-• 點擊次數: ${stats.total_clicks}
-• 點擊率 (CTR): ${stats.ctr}%
-  `.trim();
+${statsTitle}
+${i18n?.t('officialAd.statsViews', { count: stats.total_views }) || `• 展示次數: ${stats.total_views}\n`}${i18n?.t('officialAd.statsClicks', { count: stats.total_clicks }) || `• 點擊次數: ${stats.total_clicks}\n`}${i18n?.t('officialAd.statsCtr', { rate: stats.ctr }) || `• 點擊率 (CTR): ${stats.ctr}%\n`}  `.trim();
 
   if (ad.requires_verification) {
-    message += `\n• 驗證次數: ${stats.total_verified}\n• 驗證率: ${stats.verification_rate}%`;
+    message += `\n${i18n?.t('officialAd.statsVerificationCount', { count: stats.total_verified }) || `• 驗證次數: ${stats.total_verified}\n`}${i18n?.t('officialAd.statsVerificationRate', { rate: stats.verification_rate }) || `• 驗證率: ${stats.verification_rate}%\n`}`;
   }
 
-  message += `\n• 獎勵發放: ${stats.total_rewards}\n• 獎勵率: ${stats.reward_rate}%`;
+  message += `\n${i18n?.t('officialAd.statsRewardGranted', { count: stats.total_rewards }) || `• 獎勵發放: ${stats.total_rewards}\n`}${i18n?.t('officialAd.statsRewardRate', { rate: stats.reward_rate }) || `• 獎勵率: ${stats.reward_rate}%\n`}`;
 
   if (ad.max_views) {
-    message += `\n• 剩餘展示: ${ad.max_views - ad.current_views}/${ad.max_views}`;
+    message += `\n${i18n?.t('officialAd.statsRemainingViews', { remaining: ad.max_views - ad.current_views, total: ad.max_views }) || `• 剩餘展示: ${ad.max_views - ad.current_views}/${ad.max_views}\n`}`;
   }
 
   return message;

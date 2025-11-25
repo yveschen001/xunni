@@ -8,7 +8,7 @@ import {
   parseFilters,
   validateFilters,
   formatFiltersDescription,
-  type BroadcastFilters
+  type BroadcastFilters,
 } from '~/domain/broadcast_filters';
 
 describe('Broadcast Filters', () => {
@@ -46,11 +46,21 @@ describe('Broadcast Filters', () => {
 
       it('should parse all valid zodiacs', () => {
         const zodiacs = [
-          'Aries', 'Taurus', 'Gemini', 'Cancer', 'Leo', 'Virgo',
-          'Libra', 'Scorpio', 'Sagittarius', 'Capricorn', 'Aquarius', 'Pisces'
+          'Aries',
+          'Taurus',
+          'Gemini',
+          'Cancer',
+          'Leo',
+          'Virgo',
+          'Libra',
+          'Scorpio',
+          'Sagittarius',
+          'Capricorn',
+          'Aquarius',
+          'Pisces',
         ];
-        
-        zodiacs.forEach(zodiac => {
+
+        zodiacs.forEach((zodiac) => {
           const filters = parseFilters(`zodiac=${zodiac}`);
           expect(filters.zodiac).toBe(zodiac);
         });
@@ -77,8 +87,8 @@ describe('Broadcast Filters', () => {
 
       it('should parse common country codes', () => {
         const countries = ['TW', 'US', 'JP', 'KR', 'CN', 'HK', 'SG'];
-        
-        countries.forEach(country => {
+
+        countries.forEach((country) => {
           const filters = parseFilters(`country=${country}`);
           expect(filters.country).toBe(country);
         });
@@ -96,9 +106,9 @@ describe('Broadcast Filters', () => {
           { input: 'age=18-25', expected: { min: 18, max: 25 } },
           { input: 'age=26-35', expected: { min: 26, max: 35 } },
           { input: 'age=36-45', expected: { min: 36, max: 45 } },
-          { input: 'age=46-99', expected: { min: 46, max: 99 } }
+          { input: 'age=46-99', expected: { min: 46, max: 99 } },
         ];
-        
+
         ranges.forEach(({ input, expected }) => {
           const filters = parseFilters(input);
           expect(filters.age).toEqual(expected);
@@ -139,13 +149,25 @@ describe('Broadcast Filters', () => {
 
       it('should parse all valid MBTI types', () => {
         const mbtiTypes = [
-          'INTJ', 'INTP', 'ENTJ', 'ENTP',
-          'INFJ', 'INFP', 'ENFJ', 'ENFP',
-          'ISTJ', 'ISFJ', 'ESTJ', 'ESFJ',
-          'ISTP', 'ISFP', 'ESTP', 'ESFP'
+          'INTJ',
+          'INTP',
+          'ENTJ',
+          'ENTP',
+          'INFJ',
+          'INFP',
+          'ENFJ',
+          'ENFP',
+          'ISTJ',
+          'ISFJ',
+          'ESTJ',
+          'ESFJ',
+          'ISTP',
+          'ISFP',
+          'ESTP',
+          'ESFP',
         ];
-        
-        mbtiTypes.forEach(mbti => {
+
+        mbtiTypes.forEach((mbti) => {
           const filters = parseFilters(`mbti=${mbti}`);
           expect(filters.mbti).toBe(mbti);
         });
@@ -197,19 +219,21 @@ describe('Broadcast Filters', () => {
         expect(filters).toEqual({
           gender: 'female',
           age: { min: 18, max: 25 },
-          country: 'TW'
+          country: 'TW',
         });
       });
 
       it('should parse all filter types combined', () => {
-        const filters = parseFilters('gender=female,zodiac=Scorpio,country=TW,age=18-25,mbti=INTJ,vip=true');
+        const filters = parseFilters(
+          'gender=female,zodiac=Scorpio,country=TW,age=18-25,mbti=INTJ,vip=true'
+        );
         expect(filters).toEqual({
           gender: 'female',
           zodiac: 'Scorpio',
           country: 'TW',
           age: { min: 18, max: 25 },
           mbti: 'INTJ',
-          vip: true
+          vip: true,
         });
       });
 
@@ -217,7 +241,7 @@ describe('Broadcast Filters', () => {
         const filters = parseFilters(' gender = female , age = 18-25 ');
         expect(filters).toEqual({
           gender: 'female',
-          age: { min: 18, max: 25 }
+          age: { min: 18, max: 25 },
         });
       });
     });
@@ -253,7 +277,7 @@ describe('Broadcast Filters', () => {
     it('should validate multiple filters', () => {
       const result = validateFilters({
         gender: 'female',
-        age: { min: 18, max: 25 }
+        age: { min: 18, max: 25 },
       });
       expect(result.valid).toBe(true);
     });
@@ -282,20 +306,20 @@ describe('Broadcast Filters', () => {
 
     it('should format all zodiacs in Chinese', () => {
       const zodiacMap: Record<string, string> = {
-        'Aries': '白羊座',
-        'Taurus': '金牛座',
-        'Gemini': '雙子座',
-        'Cancer': '巨蟹座',
-        'Leo': '獅子座',
-        'Virgo': '處女座',
-        'Libra': '天秤座',
-        'Scorpio': '天蠍座',
-        'Sagittarius': '射手座',
-        'Capricorn': '摩羯座',
-        'Aquarius': '水瓶座',
-        'Pisces': '雙魚座'
+        Aries: '白羊座',
+        Taurus: '金牛座',
+        Gemini: '雙子座',
+        Cancer: '巨蟹座',
+        Leo: '獅子座',
+        Virgo: '處女座',
+        Libra: '天秤座',
+        Scorpio: '天蠍座',
+        Sagittarius: '射手座',
+        Capricorn: '摩羯座',
+        Aquarius: '水瓶座',
+        Pisces: '雙魚座',
       };
-      
+
       Object.entries(zodiacMap).forEach(([english, chinese]) => {
         const desc = formatFiltersDescription({ zodiac: english });
         expect(desc).toBe(chinese);
@@ -336,7 +360,7 @@ describe('Broadcast Filters', () => {
       const desc = formatFiltersDescription({
         gender: 'female',
         age: { min: 18, max: 25 },
-        country: 'TW'
+        country: 'TW',
       });
       // 順序可能不同，檢查包含所有元素
       expect(desc).toContain('女性');
@@ -352,7 +376,7 @@ describe('Broadcast Filters', () => {
         country: 'TW',
         age: { min: 18, max: 25 },
         mbti: 'INTJ',
-        vip: true
+        vip: true,
       });
       expect(desc).toBe('女性、天蠍座、國家：TW、年齡：18-25 歲、MBTI：INTJ、VIP 用戶');
     });
@@ -363,4 +387,3 @@ describe('Broadcast Filters', () => {
     });
   });
 });
-

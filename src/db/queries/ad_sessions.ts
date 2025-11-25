@@ -62,10 +62,7 @@ export async function getActiveSessionByUser(
 /**
  * Get session by token
  */
-export async function getSessionByToken(
-  db: D1Database,
-  token: string
-): Promise<AdSession | null> {
+export async function getSessionByToken(db: D1Database, token: string): Promise<AdSession | null> {
   const result = await db
     .prepare(`SELECT * FROM ad_sessions WHERE token = ? LIMIT 1`)
     .bind(token)
@@ -130,4 +127,3 @@ export async function markSessionFailed(
     .bind(errorMessage, sessionId)
     .run();
 }
-

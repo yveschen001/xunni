@@ -22,7 +22,7 @@ import { formatIdentifier } from '~/domain/conversation_identifier';
  * Handle message forwarding in active conversation
  */
 export async function handleMessageForward(
-  message: TelegramMessage, 
+  message: TelegramMessage,
   env: Env,
   targetConversationIdentifier?: string
 ): Promise<boolean> {
@@ -34,16 +34,24 @@ export async function handleMessageForward(
   const replyToId = message.reply_to_message?.message_id;
 
   try {
+    // Get user for i18n
+    const user = await findUserByTelegramId(db, telegramId);
+    const { createI18n } = await import('~/i18n');
+    const i18n = createI18n(user?.language_pref || 'zh-TW');
+
     // Check if message contains media (photo, document, video, etc.)
     // These are not allowed in conversations
-    if (message.photo || message.document || message.video || message.audio || 
-        message.voice || message.video_note || message.sticker || message.animation) {
-      await telegram.sendMessage(
-        chatId,
-        '⚠️ **不允許發送圖片、影片或多媒體**\n\n' +
-        '💡 為了保護隱私和安全，對話中只允許純文字訊息。\n\n' +
-        '請使用文字訊息與對方交流。'
-      );
+    if (
+      message.photo ||
+      message.document ||
+      message.video ||
+      message.audio ||
+      message.voice ||
+      message.video_note ||
+      message.sticker ||
+      message.animation
+    ) {
+      await telegram.sendMessage(chatId, i18n.t('conversation.mediaRestriction'));
       return true; // Handled, stop processing
     }
 
@@ -61,8 +69,7 @@ export async function handleMessageForward(
       return false;
     }
 
-    // Get user
-    const user = await findUserByTelegramId(db, telegramId);
+    // User already fetched above for i18n
     if (!user) {
       return false;
     }
@@ -80,12 +87,12 @@ export async function handleMessageForward(
         )
         .bind(targetConversationIdentifier, telegramId)
         .first<{ partner_telegram_id: string }>();
-        
+
       if (!identifierInfo) {
-        await telegram.sendMessage(chatId, '⚠️ 找不到指定的對話，可能已結束或過期。');
+        await telegram.sendMessage(chatId, i18n.t('warning.conversation4'));
         return true; // Handled, stop processing
       }
-      
+
       // Then find the conversation between user and partner
       conversation = await db.d1
         .prepare(
@@ -97,11 +104,16 @@ export async function handleMessageForward(
            ORDER BY c.created_at DESC
            LIMIT 1`
         )
-        .bind(telegramId, identifierInfo.partner_telegram_id, telegramId, identifierInfo.partner_telegram_id)
+        .bind(
+          telegramId,
+          identifierInfo.partner_telegram_id,
+          telegramId,
+          identifierInfo.partner_telegram_id
+        )
         .first();
-        
+
       if (!conversation) {
-        await telegram.sendMessage(chatId, '⚠️ 找不到指定的對話，可能已結束或過期。');
+        await telegram.sendMessage(chatId, i18n.t('warning.conversation4'));
         return true; // Handled, stop processing
       }
     } else {
@@ -143,7 +155,7 @@ export async function handleMessageForward(
     if (!isConversationActive(conversation)) {
       await telegram.sendMessage(
         chatId,
-        '❌ 此對話已結束。\n\n使用 /catch 撿新的漂流瓶開始新對話。'
+        i18n.t('conversation.conversationEnded')
       );
       return true;
     }
@@ -153,11 +165,8 @@ export async function handleMessageForward(
       if (messageText.length < 5) {
         return false; // Let other handlers process it or ignore it
       }
-      
-      await telegram.sendMessage(
-        chatId,
-        '💡 請長按你要回復的消息，在出現的選單中選擇「回覆」後，在聊天框中輸入回復內容。'
-      );
+
+      await telegram.sendMessage(chatId, i18n.t('messageForward.replyHint'));
       return true;
     }
 
@@ -171,15 +180,13 @@ export async function handleMessageForward(
     // Check for URLs (whitelist only)
     const urlCheck = checkUrlWhitelist(messageText);
     if (!urlCheck.allowed) {
+      const blockedUrlsText = urlCheck.blockedUrls?.map((url) => `• ${url}`).join('\n') || '';
       await telegram.sendMessage(
         chatId,
-        '⚠️ **訊息包含不允許的連結**\n\n' +
-          '為了安全，只允許以下網域的連結：\n' +
-          '• t.me (Telegram)\n' +
-          '• telegram.org\n' +
-          '• telegram.me\n\n' +
-          `🚫 禁止的網址：\n${urlCheck.blockedUrls?.map((url) => `• ${url}`).join('\n')}\n\n` +
-          '💡 請移除這些連結後重新發送。'
+        i18n.t('messageForward.urlNotAllowed') +
+          i18n.t('messageForward.urlNotAllowedDesc') +
+          i18n.t('messageForward.blockedUrls', { urls: blockedUrlsText }) +
+          i18n.t('messageForward.removeLinks')
       );
       return true;
     }
@@ -205,10 +212,10 @@ export async function handleMessageForward(
     if (usedToday >= dailyLimit) {
       await telegram.sendMessage(
         chatId,
-        `❌ 今日對話訊息配額已用完（${usedToday}/${dailyLimit}）\n\n` +
+        i18n.t('messageForward.quotaExceeded', { used: usedToday, limit: dailyLimit }) +
           (user.is_vip
-            ? '💡 VIP 用戶每日可發送 100 則訊息。'
-            : '💡 升級 VIP 可獲得更多配額（100 則/天）：/vip')
+            ? i18n.t('messageForward.vipDailyLimit')
+            : i18n.t('messageForward.upgradeVip'))
       );
       return true;
     }
@@ -216,21 +223,21 @@ export async function handleMessageForward(
     // Get receiver ID
     const receiverId = getOtherUserId(conversation, telegramId);
     if (!receiverId) {
-      await telegram.sendMessage(chatId, '❌ 對話資訊錯誤。');
+      await telegram.sendMessage(chatId, i18n.t('conversation.conversationInfoError'));
       return true;
     }
 
     // Get receiver info
     const receiver = await findUserByTelegramId(db, receiverId);
     if (!receiver) {
-      await telegram.sendMessage(chatId, '❌ 對方用戶不存在。');
+      await telegram.sendMessage(chatId, i18n.t('onboarding.otherUserNotFound'));
       return true;
     }
 
     // Get sender user for translation
     const sender = await findUserByTelegramId(db, telegramId);
     if (!sender) {
-      await telegram.sendMessage(chatId, '❌ 發送者資訊錯誤。');
+      await telegram.sendMessage(chatId, i18n.t('onboarding.senderInfoError'));
       return true;
     }
 
@@ -312,30 +319,24 @@ export async function handleMessageForward(
     const { maskNickname } = await import('~/domain/invite');
 
     // For sender's history: partner is receiver
-    const receiverNickname = receiver.nickname || receiver.username || '匿名用戶';
+    const receiverNickname = receiver.nickname || receiver.username || i18n.t('common.anonymousUser');
     const { formatNicknameWithFlag } = await import('~/utils/country_flag');
     const receiverPartnerInfo = {
       partnerTelegramId: receiverId,
-      maskedNickname: formatNicknameWithFlag(
-        maskNickname(receiverNickname),
-        receiver.country_code
-      ),
-      mbti: receiver.mbti_result || '未設定',
-      bloodType: receiver.blood_type || '未設定',
-      zodiac: receiver.zodiac_sign || '未設定',
+      maskedNickname: formatNicknameWithFlag(maskNickname(receiverNickname), receiver.country_code),
+      mbti: receiver.mbti_result || i18n.t('common.notSet'),
+      bloodType: receiver.blood_type || i18n.t('common.notSet'),
+      zodiac: receiver.zodiac_sign || 'Virgo',
     };
 
     // For receiver's history: partner is sender
-    const senderNickname = sender.nickname || sender.username || '匿名用戶';
+    const senderNickname = sender.nickname || sender.username || i18n.t('common.anonymousUser');
     const senderPartnerInfo = {
       partnerTelegramId: telegramId,
-      maskedNickname: formatNicknameWithFlag(
-        maskNickname(senderNickname),
-        sender.country_code
-      ),
-      mbti: sender.mbti_result || '未設定',
-      bloodType: sender.blood_type || '未設定',
-      zodiac: sender.zodiac_sign || '未設定',
+      maskedNickname: formatNicknameWithFlag(maskNickname(senderNickname), sender.country_code),
+      mbti: sender.mbti_result || i18n.t('common.notSet'),
+      bloodType: sender.blood_type || i18n.t('common.notSet'),
+      zodiac: sender.zodiac_sign || 'Virgo',
     };
 
     // Update conversation history posts
@@ -390,8 +391,8 @@ export async function handleMessageForward(
     // Confirm to sender with receiver's identifier
     await telegram.sendMessage(
       chatId,
-      `✅ 訊息已發送給 ${formatIdentifier(receiverIdentifier)}\n\n` +
-        `📊 今日已發送：${usedToday + 1}/${dailyLimit} 則`
+      i18n.t('messageForward.messageSent', { identifier: formatIdentifier(receiverIdentifier) }) +
+        i18n.t('messageForward.dailyQuota', { used: usedToday + 1, limit: dailyLimit })
     );
 
     return true;
@@ -420,8 +421,11 @@ export async function handleConversationReplyButton(
   try {
     // Get user
     const user = await findUserByTelegramId(db, telegramId);
+    const { createI18n } = await import('~/i18n');
+    const i18n = createI18n(user?.language_pref || 'zh-TW');
+    
     if (!user) {
-      await telegram.answerCallbackQuery(callbackQuery.id, '⚠️ 用戶不存在');
+      await telegram.answerCallbackQuery(callbackQuery.id, i18n.t('errors.userNotFoundRegister'));
       return;
     }
 
@@ -435,12 +439,12 @@ export async function handleConversationReplyButton(
       )
       .bind(conversationIdentifier, telegramId)
       .first<{ partner_telegram_id: string }>();
-      
+
     if (!identifierInfo) {
-      await telegram.answerCallbackQuery(callbackQuery.id, '⚠️ 對話不存在或已結束');
+      await telegram.answerCallbackQuery(callbackQuery.id, i18n.t('conversation.conversationEnded'));
       return;
     }
-    
+
     // Then find the conversation between user and partner
     const conversation = await db.d1
       .prepare(
@@ -452,38 +456,46 @@ export async function handleConversationReplyButton(
          ORDER BY c.created_at DESC
          LIMIT 1`
       )
-      .bind(telegramId, identifierInfo.partner_telegram_id, telegramId, identifierInfo.partner_telegram_id)
+      .bind(
+        telegramId,
+        identifierInfo.partner_telegram_id,
+        telegramId,
+        identifierInfo.partner_telegram_id
+      )
       .first();
 
     if (!conversation) {
-      await telegram.answerCallbackQuery(callbackQuery.id, '⚠️ 對話不存在或已結束');
+      await telegram.answerCallbackQuery(callbackQuery.id, i18n.t('conversation.conversationEnded'));
       return;
     }
 
     // Check if conversation is active
     if (conversation.status !== 'active') {
-      await telegram.answerCallbackQuery(callbackQuery.id, '⚠️ 此對話已結束');
+      await telegram.answerCallbackQuery(callbackQuery.id, i18n.t('conversation.conversationEnded'));
       return;
     }
 
     // Answer callback query
-    await telegram.answerCallbackQuery(callbackQuery.id, '💡 請在下方輸入框輸入內容');
+    await telegram.answerCallbackQuery(callbackQuery.id, i18n.t('conversation.replyHint'));
 
     // Send ForceReply message with conversation identifier
-    const response = await fetch(`https://api.telegram.org/bot${env.TELEGRAM_BOT_TOKEN}/sendMessage`, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        chat_id: chatId,
-        text: `💬 回覆對話 ${conversationIdentifier}`,
-        reply_markup: {
-          force_reply: true,
-          selective: true,
+    const response = await fetch(
+      `https://api.telegram.org/bot${env.TELEGRAM_BOT_TOKEN}/sendMessage`,
+      {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
         },
-      }),
-    });
+        body: JSON.stringify({
+          chat_id: chatId,
+          text: i18n.t('conversation.replyConversation', { identifier: conversationIdentifier }),
+          reply_markup: {
+            force_reply: true,
+            selective: true,
+          },
+        }),
+      }
+    );
 
     if (!response.ok) {
       const error = await response.text();
@@ -491,6 +503,6 @@ export async function handleConversationReplyButton(
     }
   } catch (error) {
     console.error('[handleConversationReplyButton] Error:', error);
-    await telegram.answerCallbackQuery(callbackQuery.id, '❌ 系統發生錯誤');
+    await telegram.answerCallbackQuery(callbackQuery.id, i18n.t('errors.systemError'));
   }
 }

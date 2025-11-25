@@ -8,7 +8,13 @@ import { createDatabaseClient } from '~/db/client';
 import { createTelegramService } from '~/services/telegram';
 import { validateBroadcastMessage, formatBroadcastStatus } from '~/domain/broadcast';
 import { createBroadcast, getBroadcast, createFilteredBroadcast } from '~/services/broadcast';
-import { parseFilters, validateFilters, formatFiltersDescription } from '~/domain/broadcast_filters';
+import {
+  parseFilters,
+  validateFilters,
+  formatFiltersDescription,
+} from '~/domain/broadcast_filters';
+import { findUserByTelegramId } from '~/db/queries/users';
+import { createI18n } from '~/i18n';
 
 /**
  * Handle /broadcast command
@@ -16,20 +22,25 @@ import { parseFilters, validateFilters, formatFiltersDescription } from '~/domai
  */
 export async function handleBroadcast(message: TelegramMessage, env: Env): Promise<void> {
   const telegram = createTelegramService(env);
+  const db = createDatabaseClient(env.DB);
   const chatId = message.chat.id;
+  const telegramId = message.from!.id.toString();
   const text = message.text || '';
 
   try {
     // Parse message
     const parts = text.split(' ');
     if (parts.length < 2) {
+      const user = await findUserByTelegramId(db, telegramId);
+      const i18n = createI18n(user?.language_pref || 'zh-TW');
+      
       await telegram.sendMessage(
         chatId,
-        '❌ 使用方法錯誤\n\n' +
-          '**正確格式：**\n' +
-          `/broadcast <訊息內容>\n\n` +
-          '**示例：**\n' +
-          `/broadcast 系統將於今晚 22:00 進行維護`
+        i18n.t('broadcast.usageError') +
+          i18n.t('broadcast.correctFormat') +
+          `/broadcast <${i18n.t('broadcast.messageContent')}>\n\n` +
+          i18n.t('broadcast.example') +
+          `/broadcast ${i18n.t('broadcast.exampleMessage')}`
       );
       return;
     }
@@ -40,6 +51,8 @@ export async function handleBroadcast(message: TelegramMessage, env: Env): Promi
     // Validate message
     const validation = validateBroadcastMessage(broadcastMessage);
     if (!validation.valid) {
+      const user = await findUserByTelegramId(db, telegramId);
+      const i18n = createI18n(user?.language_pref || 'zh-TW');
       await telegram.sendMessage(chatId, `❌ ${validation.error}`);
       return;
     }
@@ -57,18 +70,22 @@ export async function handleBroadcast(message: TelegramMessage, env: Env): Promi
     const estimatedTime = estimateBroadcastTime(totalUsers);
 
     // Confirm to admin
+    const user = await findUserByTelegramId(db, telegramId);
+    const i18n = createI18n(user?.language_pref || 'zh-TW');
     await telegram.sendMessage(
       chatId,
-      `✅ 廣播已創建\n\n` +
-        `ID: ${broadcastId}\n` +
-        `目標: 所有用戶\n` +
-        `用戶數: ${totalUsers} 人\n` +
-        `預計時間: ${estimatedTime}\n\n` +
-        `廣播將在後台發送，使用 /broadcast_status ${broadcastId} 查看進度。`
+      i18n.t('broadcast.created') +
+        i18n.t('broadcast.id', { id: broadcastId }) +
+        i18n.t('broadcast.target', { target: i18n.t('broadcast.targetAll') }) +
+        i18n.t('broadcast.userCount', { count: totalUsers }) +
+        i18n.t('broadcast.estimatedTime', { time: estimatedTime }) +
+        i18n.t('broadcast.sendingInBackground', { id: broadcastId })
     );
   } catch (error) {
     console.error('[handleBroadcast] Error:', error);
-    await telegram.sendMessage(chatId, '❌ 創建廣播失敗，請稍後再試。');
+    const user = await findUserByTelegramId(db, telegramId);
+    const i18n = createI18n(user?.language_pref || 'zh-TW');
+    await telegram.sendMessage(chatId, i18n.t('broadcast.createFailed'));
   }
 }
 
@@ -78,15 +95,21 @@ export async function handleBroadcast(message: TelegramMessage, env: Env): Promi
  */
 export async function handleBroadcastVip(message: TelegramMessage, env: Env): Promise<void> {
   const telegram = createTelegramService(env);
+  const db = createDatabaseClient(env.DB);
   const chatId = message.chat.id;
+  const telegramId = message.from!.id.toString();
   const text = message.text || '';
 
   try {
     const parts = text.split(' ');
     if (parts.length < 2) {
+      const user = await findUserByTelegramId(db, telegramId);
+      const i18n = createI18n(user?.language_pref || 'zh-TW');
       await telegram.sendMessage(
         chatId,
-        '❌ 使用方法錯誤\n\n' + '**正確格式：**\n' + `/broadcast_vip <訊息內容>`
+        i18n.t('broadcast.usageError') +
+          i18n.t('broadcast.correctFormat') +
+          `/broadcast_vip <${i18n.t('broadcast.messageContent')}>`
       );
       return;
     }
@@ -95,6 +118,8 @@ export async function handleBroadcastVip(message: TelegramMessage, env: Env): Pr
     const validation = validateBroadcastMessage(broadcastMessage);
 
     if (!validation.valid) {
+      const user = await findUserByTelegramId(db, telegramId);
+      const i18n = createI18n(user?.language_pref || 'zh-TW');
       await telegram.sendMessage(chatId, `❌ ${validation.error}`);
       return;
     }
@@ -109,18 +134,22 @@ export async function handleBroadcastVip(message: TelegramMessage, env: Env): Pr
     const { estimateBroadcastTime } = await import('~/domain/broadcast');
     const estimatedTime = estimateBroadcastTime(totalUsers);
 
+    const user = await findUserByTelegramId(db, telegramId);
+    const i18n = createI18n(user?.language_pref || 'zh-TW');
     await telegram.sendMessage(
       chatId,
-      `✅ 廣播已創建\n\n` +
-        `ID: ${broadcastId}\n` +
-        `目標: VIP 用戶\n` +
-        `用戶數: ${totalUsers} 人\n` +
-        `預計時間: ${estimatedTime}\n\n` +
-        `使用 /broadcast_status ${broadcastId} 查看進度。`
+      i18n.t('broadcast.created') +
+        i18n.t('broadcast.id', { id: broadcastId }) +
+        i18n.t('broadcast.target', { target: i18n.t('broadcast.targetVip') }) +
+        i18n.t('broadcast.userCount', { count: totalUsers }) +
+        i18n.t('broadcast.estimatedTime', { time: estimatedTime }) +
+        i18n.t('broadcast.sendingInBackground', { id: broadcastId })
     );
   } catch (error) {
     console.error('[handleBroadcastVip] Error:', error);
-    await telegram.sendMessage(chatId, '❌ 創建廣播失敗。');
+    const user = await findUserByTelegramId(db, telegramId);
+    const i18n = createI18n(user?.language_pref || 'zh-TW');
+    await telegram.sendMessage(chatId, i18n.t('broadcast.createFailedShort'));
   }
 }
 
@@ -130,15 +159,21 @@ export async function handleBroadcastVip(message: TelegramMessage, env: Env): Pr
  */
 export async function handleBroadcastNonVip(message: TelegramMessage, env: Env): Promise<void> {
   const telegram = createTelegramService(env);
+  const db = createDatabaseClient(env.DB);
   const chatId = message.chat.id;
+  const telegramId = message.from!.id.toString();
   const text = message.text || '';
 
   try {
     const parts = text.split(' ');
     if (parts.length < 2) {
+      const user = await findUserByTelegramId(db, telegramId);
+      const i18n = createI18n(user?.language_pref || 'zh-TW');
       await telegram.sendMessage(
         chatId,
-        '❌ 使用方法錯誤\n\n' + '**正確格式：**\n' + `/broadcast_non_vip <訊息內容>`
+        i18n.t('broadcast.usageError') +
+          i18n.t('broadcast.correctFormat') +
+          `/broadcast_non_vip <${i18n.t('broadcast.messageContent')}>`
       );
       return;
     }
@@ -147,6 +182,8 @@ export async function handleBroadcastNonVip(message: TelegramMessage, env: Env):
     const validation = validateBroadcastMessage(broadcastMessage);
 
     if (!validation.valid) {
+      const user = await findUserByTelegramId(db, telegramId);
+      const i18n = createI18n(user?.language_pref || 'zh-TW');
       await telegram.sendMessage(chatId, `❌ ${validation.error}`);
       return;
     }
@@ -161,18 +198,22 @@ export async function handleBroadcastNonVip(message: TelegramMessage, env: Env):
     const { estimateBroadcastTime } = await import('~/domain/broadcast');
     const estimatedTime = estimateBroadcastTime(totalUsers);
 
+    const user = await findUserByTelegramId(db, telegramId);
+    const i18n = createI18n(user?.language_pref || 'zh-TW');
     await telegram.sendMessage(
       chatId,
-      `✅ 廣播已創建\n\n` +
-        `ID: ${broadcastId}\n` +
-        `目標: 非 VIP 用戶\n` +
-        `用戶數: ${totalUsers} 人\n` +
-        `預計時間: ${estimatedTime}\n\n` +
-        `使用 /broadcast_status ${broadcastId} 查看進度。`
+      i18n.t('broadcast.created') +
+        i18n.t('broadcast.id', { id: broadcastId }) +
+        i18n.t('broadcast.target', { target: i18n.t('broadcast.targetNonVip') }) +
+        i18n.t('broadcast.userCount', { count: totalUsers }) +
+        i18n.t('broadcast.estimatedTime', { time: estimatedTime }) +
+        i18n.t('broadcast.sendingInBackground', { id: broadcastId })
     );
   } catch (error) {
     console.error('[handleBroadcastNonVip] Error:', error);
-    await telegram.sendMessage(chatId, '❌ 創建廣播失敗。');
+    const user = await findUserByTelegramId(db, telegramId);
+    const i18n = createI18n(user?.language_pref || 'zh-TW');
+    await telegram.sendMessage(chatId, i18n.t('broadcast.createFailedShort'));
   }
 }
 
@@ -184,6 +225,7 @@ export async function handleBroadcastProcess(message: TelegramMessage, env: Env)
   const telegram = createTelegramService(env);
   const chatId = message.chat.id;
   const db = createDatabaseClient(env.DB);
+  const telegramId = message.from!.id.toString();
 
   try {
     console.error('[handleBroadcastProcess] Manually triggering broadcast queue processing');
@@ -197,14 +239,23 @@ export async function handleBroadcastProcess(message: TelegramMessage, env: Env)
             OR (status = 'sending' AND started_at < datetime('now', '-5 minutes'))
          ORDER BY created_at ASC`
       )
-      .all<{ id: number; target_type: string; total_users: number; status: string; started_at: string | null }>();
+      .all<{
+        id: number;
+        target_type: string;
+        total_users: number;
+        status: string;
+        started_at: string | null;
+      }>();
+
+    const user = await findUserByTelegramId(db, telegramId);
+    const i18n = createI18n(user?.language_pref || 'zh-TW');
 
     if (!pendingBroadcasts.results || pendingBroadcasts.results.length === 0) {
       await telegram.sendMessage(
         chatId,
-        '✅ 廣播隊列處理完成\n\n' +
-          '目前沒有待處理或卡住的廣播。\n\n' +
-          '使用 /broadcast_status 查看所有廣播記錄。'
+        i18n.t('broadcast.queueProcessed') +
+          i18n.t('broadcast.noPendingBroadcasts') +
+          i18n.t('broadcast.viewAllRecords')
       );
       return;
     }
@@ -212,20 +263,20 @@ export async function handleBroadcastProcess(message: TelegramMessage, env: Env)
     // Show which broadcasts will be processed
     const broadcast = pendingBroadcasts.results[0];
     const statusEmoji = broadcast.status === 'pending' ? '⏳' : '🔄';
-    const statusText = broadcast.status === 'pending' ? '待處理' : '卡住（重試中）';
-    
-    let message = `${statusEmoji} 廣播隊列處理已觸發\n\n`;
-    message += `正在處理廣播 #${broadcast.id}\n`;
-    message += `狀態：${statusText}\n`;
-    message += `目標：${broadcast.target_type}\n`;
-    message += `用戶數：${broadcast.total_users} 人\n`;
-    
+    const statusText = broadcast.status === 'pending' ? i18n.t('broadcast.statusPending') : i18n.t('broadcast.statusStuck');
+
+    let message = i18n.t('broadcast.queueTriggered', { emoji: statusEmoji });
+    message += i18n.t('broadcast.processingBroadcast', { id: broadcast.id });
+    message += i18n.t('broadcast.status', { status: statusText });
+    message += i18n.t('broadcast.targetType', { type: broadcast.target_type });
+    message += i18n.t('broadcast.userCount2', { count: broadcast.total_users });
+
     if (pendingBroadcasts.results.length > 1) {
-      message += `\n隊列中還有 ${pendingBroadcasts.results.length - 1} 個廣播待處理\n`;
+      message += i18n.t('broadcast.queueRemaining', { count: pendingBroadcasts.results.length - 1 });
     }
-    
-    message += `\n請稍後使用 /broadcast_status 查看進度。`;
-    
+
+    message += i18n.t('broadcast.checkProgressLater');
+
     await telegram.sendMessage(chatId, message);
 
     // Import and call the broadcast queue processor
@@ -233,9 +284,11 @@ export async function handleBroadcastProcess(message: TelegramMessage, env: Env)
     await processBroadcastQueue(env);
   } catch (error) {
     console.error('[handleBroadcastProcess] Error:', error);
+    const user = await findUserByTelegramId(db, telegramId);
+    const i18n = createI18n(user?.language_pref || 'zh-TW');
     await telegram.sendMessage(
       chatId,
-      `❌ 處理廣播隊列失敗：${error instanceof Error ? error.message : String(error)}`
+      i18n.t('broadcast.processQueueFailed', { error: error instanceof Error ? error.message : String(error) })
     );
   }
 }
@@ -248,32 +301,40 @@ export async function handleBroadcastCancel(message: TelegramMessage, env: Env):
   const telegram = createTelegramService(env);
   const db = createDatabaseClient(env.DB);
   const chatId = message.chat.id;
+  const telegramId = message.from!.id.toString();
   const text = message.text || '';
 
   try {
     const parts = text.split(' ');
     if (parts.length < 2) {
+      const user = await findUserByTelegramId(db, telegramId);
+      const i18n = createI18n(user?.language_pref || 'zh-TW');
       await telegram.sendMessage(
         chatId,
-        '❌ 使用方法錯誤\n\n' +
-          '**正確格式：**\n' +
-          '/broadcast_cancel <廣播ID>\n\n' +
-          '**示例：**\n' +
-          '/broadcast_cancel 1'
+        i18n.t('broadcast.cancelUsageError') +
+          i18n.t('broadcast.cancelCorrectFormat') +
+          i18n.t('broadcast.cancelCommand') +
+          i18n.t('broadcast.cancelExample') +
+          i18n.t('broadcast.cancelExampleCommand')
       );
       return;
     }
 
     const broadcastId = parseInt(parts[1]);
     if (isNaN(broadcastId)) {
-      await telegram.sendMessage(chatId, '❌ 廣播 ID 必須是數字');
+      const user = await findUserByTelegramId(db, telegramId);
+      const i18n = createI18n(user?.language_pref || 'zh-TW');
+      await telegram.sendMessage(chatId, i18n.t('broadcast.idMustBeNumber'));
       return;
     }
 
     // Check if broadcast exists
     const broadcast = await getBroadcast(db, broadcastId);
+    const user = await findUserByTelegramId(db, telegramId);
+    const i18n = createI18n(user?.language_pref || 'zh-TW');
+    
     if (!broadcast) {
-      await telegram.sendMessage(chatId, '❌ 找不到該廣播記錄');
+      await telegram.sendMessage(chatId, i18n.t('broadcast.broadcastNotFound'));
       return;
     }
 
@@ -283,24 +344,25 @@ export async function handleBroadcastCancel(message: TelegramMessage, env: Env):
         `UPDATE broadcasts 
          SET status = 'cancelled', 
              completed_at = CURRENT_TIMESTAMP,
-             error_message = '管理員手動取消'
+             error_message = ?
          WHERE id = ?`
       )
-      .bind(broadcastId)
+      .bind(i18n.t('broadcast.admin'), broadcastId)
       .run();
-
     await telegram.sendMessage(
       chatId,
-      `✅ 廣播已取消\n\n` +
-        `ID: ${broadcastId}\n` +
-        `狀態: 已取消\n\n` +
-        `使用 /broadcast_status 查看更新後的狀態。`
+      i18n.t('broadcast.cancelled') +
+        i18n.t('broadcast.cancelledId', { id: broadcastId }) +
+        i18n.t('broadcast.cancelledStatus') +
+        i18n.t('broadcast.viewUpdatedStatus')
     );
   } catch (error) {
     console.error('[handleBroadcastCancel] Error:', error);
+    const user = await findUserByTelegramId(db, telegramId);
+    const i18n = createI18n(user?.language_pref || 'zh-TW');
     await telegram.sendMessage(
       chatId,
-      `❌ 取消廣播失敗：${error instanceof Error ? error.message : String(error)}`
+      i18n.t('broadcast.cancelFailed', { error: error instanceof Error ? error.message : String(error) })
     );
   }
 }
@@ -320,6 +382,10 @@ export async function handleBroadcastStatus(message: TelegramMessage, env: Env):
     console.error('[handleBroadcastStatus] Parsing command:', text);
     const parts = text.split(' ');
 
+    const telegramId = message.from!.id.toString();
+    const user = await findUserByTelegramId(db, telegramId);
+    const i18n = createI18n(user?.language_pref || 'zh-TW');
+
     if (parts.length < 2) {
       console.error('[handleBroadcastStatus] No broadcast ID provided, showing recent broadcasts');
       // Show recent broadcasts
@@ -334,20 +400,20 @@ export async function handleBroadcastStatus(message: TelegramMessage, env: Env):
       console.error('[handleBroadcastStatus] Found broadcasts:', broadcasts.results?.length || 0);
 
       if (!broadcasts.results || broadcasts.results.length === 0) {
-        await telegram.sendMessage(chatId, '📊 目前沒有廣播記錄');
+        await telegram.sendMessage(chatId, i18n.t('broadcast.noRecords'));
         return;
       }
 
-      let responseMessage = '📊 最近 5 條廣播記錄\n\n';
+      let responseMessage = i18n.t('broadcast.recentRecords');
       for (const b of broadcasts.results) {
-        responseMessage += `ID: ${b.id}\n`;
-        responseMessage += `狀態: ${b.status}\n`;
-        responseMessage += `目標: ${b.target_type}\n`;
-        responseMessage += `進度: ${b.sent_count}/${b.total_users}\n`;
-        responseMessage += `時間: ${new Date(b.created_at).toLocaleString('zh-TW')}\n\n`;
+        responseMessage += i18n.t('broadcast.recordId', { id: b.id });
+        responseMessage += i18n.t('broadcast.recordStatus', { status: b.status });
+        responseMessage += i18n.t('broadcast.recordTarget', { type: b.target_type });
+        responseMessage += i18n.t('broadcast.recordProgress', { sent: b.sent_count, total: b.total_users });
+        responseMessage += i18n.t('broadcast.recordTime', { time: new Date(b.created_at).toLocaleString(i18n.language) });
       }
 
-      responseMessage += '💡 使用 /broadcast_status <id> 查看詳細信息';
+      responseMessage += i18n.t('broadcast.viewDetailsHint');
       console.error('[handleBroadcastStatus] Sending response');
       await telegram.sendMessage(chatId, responseMessage);
       return;
@@ -357,7 +423,7 @@ export async function handleBroadcastStatus(message: TelegramMessage, env: Env):
     console.error('[handleBroadcastStatus] Parsing broadcast ID');
     const broadcastId = parseInt(parts[1]);
     if (isNaN(broadcastId)) {
-      await telegram.sendMessage(chatId, '❌ 廣播 ID 必須是數字');
+      await telegram.sendMessage(chatId, i18n.t('broadcast.idMustBeNumber'));
       return;
     }
 
@@ -365,7 +431,7 @@ export async function handleBroadcastStatus(message: TelegramMessage, env: Env):
     const broadcast = await getBroadcast(db, broadcastId);
     if (!broadcast) {
       console.error('[handleBroadcastStatus] Broadcast not found');
-      await telegram.sendMessage(chatId, '❌ 找不到該廣播記錄');
+      await telegram.sendMessage(chatId, i18n.t('broadcast.broadcastNotFound'));
       return;
     }
 
@@ -376,9 +442,12 @@ export async function handleBroadcastStatus(message: TelegramMessage, env: Env):
     console.error('[handleBroadcastStatus] Done');
   } catch (error) {
     console.error('[handleBroadcastStatus] Error:', error);
+    const telegramId = message.from!.id.toString();
+    const user = await findUserByTelegramId(db, telegramId);
+    const i18n = createI18n(user?.language_pref || 'zh-TW');
     await telegram.sendMessage(
       chatId,
-      `❌ 查詢廣播狀態失敗：${error instanceof Error ? error.message : String(error)}`
+      i18n.t('broadcast.queryStatusFailed', { error: error instanceof Error ? error.message : String(error) })
     );
   }
 }
@@ -392,6 +461,7 @@ export async function handleBroadcastCleanup(message: TelegramMessage, env: Env)
   const telegram = createTelegramService(env);
   const db = createDatabaseClient(env.DB);
   const chatId = message.chat.id;
+  const telegramId = message.from!.id.toString();
 
   try {
     // Find stuck broadcasts (sending with 0 progress or old sending status)
@@ -412,11 +482,11 @@ export async function handleBroadcastCleanup(message: TelegramMessage, env: Env)
         started_at: string;
       }>();
 
+    const user = await findUserByTelegramId(db, telegramId);
+    const i18n = createI18n(user?.language_pref || 'zh-TW');
+
     if (!stuckBroadcasts.results || stuckBroadcasts.results.length === 0) {
-      await telegram.sendMessage(
-        chatId,
-        '✅ 沒有需要清理的廣播\n\n' + '所有廣播狀態正常。'
-      );
+      await telegram.sendMessage(chatId, i18n.t('broadcast.noStuckBroadcasts') + i18n.t('broadcast.allBroadcastsNormal'));
       return;
     }
 
@@ -426,25 +496,25 @@ export async function handleBroadcastCleanup(message: TelegramMessage, env: Env)
 
     if (!isConfirmed) {
       // Show stuck broadcasts and ask for confirmation
-      let message_text = `⚠️ 發現 ${stuckBroadcasts.results.length} 個卡住的廣播\n\n`;
+      let message_text = i18n.t('broadcast.foundStuckBroadcasts', { count: stuckBroadcasts.results.length });
 
       for (const broadcast of stuckBroadcasts.results) {
         const messagePreview =
           broadcast.message.length > 30
             ? broadcast.message.substring(0, 30) + '...'
             : broadcast.message;
-        message_text += `**ID: ${broadcast.id}**\n`;
-        message_text += `訊息: ${messagePreview}\n`;
-        message_text += `目標: ${broadcast.target_type}\n`;
-        message_text += `進度: ${broadcast.sent_count}/${broadcast.total_users}\n`;
-        message_text += `開始時間: ${broadcast.started_at}\n\n`;
+        message_text += i18n.t('broadcast.stuckBroadcastId', { id: broadcast.id });
+        message_text += i18n.t('broadcast.stuckBroadcastMessage', { message: messagePreview });
+        message_text += i18n.t('broadcast.stuckBroadcastTarget', { type: broadcast.target_type });
+        message_text += i18n.t('broadcast.stuckBroadcastProgress', { sent: broadcast.sent_count, total: broadcast.total_users });
+        message_text += i18n.t('broadcast.stuckBroadcastStartTime', { time: broadcast.started_at });
       }
 
-      message_text += '━━━━━━━━━━━━━━━━\n';
-      message_text += '這些廣播將被標記為「失敗」狀態\n';
-      message_text += '不會再被自動處理或重新發送\n\n';
-      message_text += '**確認清理？**\n';
-      message_text += '使用 `/broadcast_cleanup confirm` 確認';
+      message_text += i18n.t('broadcast.stuckBroadcastDivider');
+      message_text += i18n.t('broadcast.stuckBroadcastWillMarkFailed');
+      message_text += i18n.t('broadcast.stuckBroadcastNoRetry');
+      message_text += i18n.t('broadcast.stuckBroadcastConfirm');
+      message_text += i18n.t('broadcast.stuckBroadcastConfirmCommand');
 
       await telegram.sendMessage(chatId, message_text);
       return;
@@ -457,24 +527,26 @@ export async function handleBroadcastCleanup(message: TelegramMessage, env: Env)
         `UPDATE broadcasts 
          SET status = 'failed', 
              completed_at = CURRENT_TIMESTAMP,
-             error_message = '管理員手動清理（廣播卡住）'
+             error_message = ?
          WHERE id IN (${ids.map(() => '?').join(', ')})`
       )
-      .bind(...ids)
+      .bind(i18n.t('broadcast.admin2'), ...ids)
       .run();
 
     await telegram.sendMessage(
       chatId,
-      `✅ 已清理 ${ids.length} 個卡住的廣播\n\n` +
-        `廣播 ID: ${ids.join(', ')}\n\n` +
-        `這些廣播已標記為「失敗」狀態\n` +
-        `使用 /broadcast_status 查看更新後的記錄。`
+      i18n.t('broadcast.cleanupSuccess', { count: ids.length }) +
+        i18n.t('broadcast.cleanupIds', { ids: ids.join(', ') }) +
+        i18n.t('broadcast.cleanupMarkedFailed') +
+        i18n.t('broadcast.cleanupViewStatus')
     );
   } catch (error) {
     console.error('[handleBroadcastCleanup] Error:', error);
+    const user = await findUserByTelegramId(db, telegramId);
+    const i18n = createI18n(user?.language_pref || 'zh-TW');
     await telegram.sendMessage(
       chatId,
-      `❌ 清理廣播失敗：${error instanceof Error ? error.message : String(error)}`
+      i18n.t('broadcast.cleanupFailed', { error: error instanceof Error ? error.message : String(error) })
     );
   }
 }
@@ -482,9 +554,9 @@ export async function handleBroadcastCleanup(message: TelegramMessage, env: Env)
 /**
  * Handle /broadcast_filter command
  * Usage: /broadcast_filter <filters> <message>
- * 
+ *
  * Example: /broadcast_filter gender=female,age=18-25,country=TW 大家好！
- * 
+ *
  * Supported filters:
  * - gender: male | female | other
  * - zodiac: Aries | Taurus | ... (12 zodiacs)
@@ -495,29 +567,33 @@ export async function handleBroadcastCleanup(message: TelegramMessage, env: Env)
  */
 export async function handleBroadcastFilter(message: TelegramMessage, env: Env): Promise<void> {
   const telegram = createTelegramService(env);
+  const db = createDatabaseClient(env.DB);
   const chatId = message.chat.id;
+  const telegramId = message.from!.id.toString();
   const text = message.text || '';
 
   try {
     // Parse command: /broadcast_filter <filters> <message>
     const parts = text.split(' ');
     if (parts.length < 3) {
+      const user = await findUserByTelegramId(db, telegramId);
+      const i18n = createI18n(user?.language_pref || 'zh-TW');
       await telegram.sendMessage(
         chatId,
-        '❌ 使用方法錯誤\n\n' +
-          '**正確格式：**\n' +
-          `/broadcast_filter <過濾器> <訊息內容>\n\n` +
-          '**過濾器格式：**\n' +
-          `• gender=male|female|other\n` +
-          `• zodiac=Aries|Taurus|...\n` +
-          `• country=TW|US|JP|...\n` +
-          `• age=18-25\n` +
-          `• mbti=INTJ|ENFP|...\n` +
-          `• vip=true|false\n\n` +
-          '**示例：**\n' +
-          `/broadcast_filter gender=female,age=18-25,country=TW 大家好！\n` +
-          `/broadcast_filter vip=true,mbti=INTJ VIP 專屬活動通知\n` +
-          `/broadcast_filter zodiac=Scorpio 天蠍座專屬訊息`
+        i18n.t('broadcast.filterUsageError') +
+          i18n.t('broadcast.filterCorrectFormat') +
+          i18n.t('broadcast.filterCommand') +
+          i18n.t('broadcast.filterFormat') +
+          i18n.t('broadcast.filterGender') +
+          i18n.t('broadcast.filterZodiac') +
+          i18n.t('broadcast.filterCountry') +
+          i18n.t('broadcast.filterAge') +
+          i18n.t('broadcast.filterMbti') +
+          i18n.t('broadcast.filterVip') +
+          i18n.t('broadcast.filterExamples') +
+          i18n.t('broadcast.filterExample1') +
+          i18n.t('broadcast.filterExample2') +
+          i18n.t('broadcast.filterExample3')
       );
       return;
     }
@@ -529,18 +605,24 @@ export async function handleBroadcastFilter(message: TelegramMessage, env: Env):
     // Parse filters
     let filters;
     try {
-      filters = parseFilters(filtersStr);
+      const user = await findUserByTelegramId(db, telegramId);
+      const i18n = createI18n(user?.language_pref || 'zh-TW');
+      filters = parseFilters(filtersStr, i18n);
     } catch (error) {
+      const user = await findUserByTelegramId(db, telegramId);
+      const i18n = createI18n(user?.language_pref || 'zh-TW');
       await telegram.sendMessage(
         chatId,
-        `❌ 過濾器格式錯誤\n\n${error instanceof Error ? error.message : String(error)}\n\n` +
-          `請使用 /broadcast_filter 查看正確格式。`
+        i18n.t('broadcast.filterFormatError', { error: error instanceof Error ? error.message : String(error) }) +
+          i18n.t('broadcast.filterViewFormat')
       );
       return;
     }
 
     // Validate filters
-    const filterValidation = validateFilters(filters);
+    const user = await findUserByTelegramId(db, telegramId);
+    const i18n = createI18n(user?.language_pref || 'zh-TW');
+    const filterValidation = validateFilters(filters, i18n);
     if (!filterValidation.valid) {
       await telegram.sendMessage(chatId, `❌ ${filterValidation.error}`);
       return;
@@ -554,15 +636,16 @@ export async function handleBroadcastFilter(message: TelegramMessage, env: Env):
     }
 
     // Format filters description for confirmation
-    const filtersDesc = formatFiltersDescription(filters);
+    const filtersDesc = formatFiltersDescription(filters, i18n);
 
     // Send confirmation
+    // (user and i18n already fetched above)
     await telegram.sendMessage(
       chatId,
-      `🔍 **廣播過濾器確認**\n\n` +
-        `**過濾條件：**\n${filtersDesc}\n\n` +
-        `**訊息內容：**\n${broadcastMessage}\n\n` +
-        `正在查詢符合條件的用戶...`
+      i18n.t('broadcast.filterConfirmTitle') +
+        i18n.t('broadcast.filterConfirmConditions', { conditions: filtersDesc }) +
+        i18n.t('broadcast.filterConfirmMessage', { message: broadcastMessage }) +
+        i18n.t('broadcast.filterQueryingUsers')
     );
 
     // Create filtered broadcast
@@ -580,18 +663,20 @@ export async function handleBroadcastFilter(message: TelegramMessage, env: Env):
     // Confirm to admin
     await telegram.sendMessage(
       chatId,
-      `✅ 過濾廣播已創建\n\n` +
-        `ID: ${broadcastId}\n` +
-        `過濾條件: ${filtersDesc}\n` +
-        `符合用戶數: ${totalUsers} 人\n` +
-        `預計時間: ${estimatedTime}\n\n` +
-        `廣播將在後台發送，使用 /broadcast_status ${broadcastId} 查看進度。`
+      i18n.t('broadcast.filterCreated') +
+        i18n.t('broadcast.filterCreatedId', { id: broadcastId }) +
+        i18n.t('broadcast.filterCreatedConditions', { conditions: filtersDesc }) +
+        i18n.t('broadcast.filterCreatedUserCount', { count: totalUsers }) +
+        i18n.t('broadcast.filterCreatedEstimatedTime', { time: estimatedTime }) +
+        i18n.t('broadcast.filterCreatedSending', { id: broadcastId })
     );
   } catch (error) {
     console.error('[handleBroadcastFilter] Error:', error);
+    const user = await findUserByTelegramId(db, telegramId);
+    const i18n = createI18n(user?.language_pref || 'zh-TW');
     await telegram.sendMessage(
       chatId,
-      `❌ 創建過濾廣播失敗\n\n${error instanceof Error ? error.message : String(error)}`
+      i18n.t('broadcast.filterCreateFailed', { error: error instanceof Error ? error.message : String(error) })
     );
   }
 }

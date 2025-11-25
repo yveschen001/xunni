@@ -62,17 +62,17 @@ export async function updateConversationHistory(
       viewer.vip_expire_at &&
       new Date(viewer.vip_expire_at) > new Date()
     );
-    
+
     // Get partner's avatar URL (only for first message) with smart caching
     let partnerAvatarUrl: string | null = null;
-    
+
     if (partnerInfo?.partnerTelegramId) {
       const { getAvatarUrlWithCache } = await import('~/services/avatar');
-      
+
       // Get partner's user info to determine gender
       const partner = await findUserByTelegramId(db, partnerInfo.partnerTelegramId);
       const partnerGender = partner?.gender || undefined;
-      
+
       // Get avatar with smart caching (automatically handles updates)
       partnerAvatarUrl = await getAvatarUrlWithCache(
         db,
@@ -80,12 +80,19 @@ export async function updateConversationHistory(
         partnerInfo.partnerTelegramId,
         isVip,
         partnerGender,
-        false  // Don't force refresh
+        false // Don't force refresh
       );
-      
-      console.error('[updateConversationHistory] Partner avatar:', partnerAvatarUrl, 'VIP:', isVip, 'Gender:', partnerGender);
+
+      console.error(
+        '[updateConversationHistory] Partner avatar:',
+        partnerAvatarUrl,
+        'VIP:',
+        isVip,
+        'Gender:',
+        partnerGender
+      );
     }
-    
+
     // Get latest history post
     const latestPost = await getLatestHistoryPost(db, conversationId, userTelegramId);
     console.error(
@@ -93,14 +100,18 @@ export async function updateConversationHistory(
       latestPost ? `Post #${latestPost.post_number}` : 'None'
     );
 
+    // Get user for i18n (viewer already fetched above)
+    const { createI18n } = await import('~/i18n');
+    const i18n = createI18n(viewer?.language_pref || 'zh-TW');
+
     // Format new message entry
-    const newMessageEntry = formatMessageEntry(messageTime, direction, messageContent);
+    const newMessageEntry = formatMessageEntry(messageTime, direction, messageContent, i18n);
     console.error('[updateConversationHistory] New entry:', newMessageEntry);
 
     // Build buttons
     const buttons = [
-      [{ text: '💬 回覆訊息', callback_data: `conv_reply_${identifier}` }],
-      [{ text: '📊 查看所有對話', callback_data: 'chats' }],
+      [{ text: i18n.t('conversationHistory.replyButton'), callback_data: `conv_reply_${identifier}` }],
+      [{ text: i18n.t('conversationHistory.viewAllConversations'), callback_data: 'chats' }],
     ];
 
     // Add ad/task button for non-VIP users
@@ -108,18 +119,21 @@ export async function updateConversationHistory(
       const { getNextIncompleteTask } = await import('../telegram/handlers/tasks');
       const { getAdPrompt } = await import('~/domain/ad_prompt');
       const { getTodayAdReward } = await import('~/db/queries/ad_rewards');
-      
+
       const nextTask = await getNextIncompleteTask(db, viewer);
       const adReward = await getTodayAdReward(db.d1, userTelegramId);
-      
-      const prompt = getAdPrompt({
-        user: viewer,
-        ads_watched_today: adReward?.ads_watched || 0,
-        has_incomplete_tasks: !!nextTask,
-        next_task_name: nextTask?.name,
-        next_task_id: nextTask?.id,
-      });
-      
+
+      const prompt = getAdPrompt(
+        {
+          user: viewer,
+          ads_watched_today: adReward?.ads_watched || 0,
+          has_incomplete_tasks: !!nextTask,
+          next_task_name: nextTask?.name,
+          next_task_id: nextTask?.id,
+        },
+        i18n
+      );
+
       if (prompt.show_button) {
         buttons.push([{ text: prompt.button_text, callback_data: prompt.button_callback }]);
       }
@@ -128,12 +142,12 @@ export async function updateConversationHistory(
     if (!latestPost) {
       // No history post exists, create first one with avatar
       const messages = [newMessageEntry];
-      const content = buildHistoryPostContent(identifier, 1, messages, 1, partnerInfo, isVip);
+      const content = buildHistoryPostContent(identifier, 1, messages, 1, partnerInfo, isVip, i18n);
 
       // Send history post to user (with photo if avatar available)
       console.error('[updateConversationHistory] Creating first history post');
       let sentMessage;
-      
+
       if (partnerAvatarUrl && !partnerAvatarUrl.startsWith('data:')) {
         // Send as photo message
         try {
@@ -141,18 +155,32 @@ export async function updateConversationHistory(
             caption: content,
             parse_mode: 'Markdown',
             reply_markup: {
-              inline_keyboard: buttons
-            }
+              inline_keyboard: buttons,
+            },
           });
-          console.error('[updateConversationHistory] History post with photo sent:', sentMessage.message_id);
+          console.error(
+            '[updateConversationHistory] History post with photo sent:',
+            sentMessage.message_id
+          );
         } catch (photoError) {
-          console.error('[updateConversationHistory] Failed to send photo, falling back to text:', photoError);
+          console.error(
+            '[updateConversationHistory] Failed to send photo, falling back to text:',
+            photoError
+          );
           // Fallback to text message
-          sentMessage = await telegram.sendMessageWithButtonsAndGetId(parseInt(userTelegramId), content, buttons);
+          sentMessage = await telegram.sendMessageWithButtonsAndGetId(
+            parseInt(userTelegramId),
+            content,
+            buttons
+          );
         }
       } else {
         // Send as text message
-        sentMessage = await telegram.sendMessageWithButtonsAndGetId(parseInt(userTelegramId), content, buttons);
+        sentMessage = await telegram.sendMessageWithButtonsAndGetId(
+          parseInt(userTelegramId),
+          content,
+          buttons
+        );
         console.error('[updateConversationHistory] History post sent:', sentMessage.message_id);
       }
 
@@ -183,11 +211,12 @@ export async function updateConversationHistory(
           messages,
           latestPost.message_count + 1,
           partnerInfo,
-          isVip
+          isVip,
+          i18n
         );
 
         // Update old post to add "continue to next page" hint
-        const oldContent = latestPost.content + `\n📜 繼續查看：#${identifier}-H${newPostNumber}`;
+        const oldContent = latestPost.content + '\n' + i18n.t('conversationHistory.continueView', { identifier, postNumber: newPostNumber });
         await telegram.editMessageText(
           parseInt(userTelegramId),
           latestPost.telegram_message_id,
@@ -221,63 +250,69 @@ export async function updateConversationHistory(
       } else {
         // Check if VIP status has changed since post creation
         const vipStatusChanged = (latestPost.created_with_vip_status === 1) !== isVip;
-        
+
         if (vipStatusChanged) {
-          console.error('[updateConversationHistory] VIP status changed! Refreshing post with new avatar...');
-          
+          console.error(
+            '[updateConversationHistory] VIP status changed! Refreshing post with new avatar...'
+          );
+
           // VIP status changed - need to refresh the post with new avatar
           const messages = extractMessages(latestPost.content);
           messages.push(newMessageEntry);
           const newMessageCount = latestPost.message_count + 1;
-          
+
           // Get fresh avatar with new VIP status
           if (partnerInfo?.partnerTelegramId) {
             const { getAvatarUrlWithCache } = await import('~/services/avatar');
             const partner = await findUserByTelegramId(db, partnerInfo.partnerTelegramId);
             const partnerGender = partner?.gender || undefined;
-            
+
             partnerAvatarUrl = await getAvatarUrlWithCache(
               db,
               env,
               partnerInfo.partnerTelegramId,
               isVip,
               partnerGender,
-              true  // Force refresh to get new avatar
+              true // Force refresh to get new avatar
             );
           }
-          
+
           const content = buildHistoryPostContent(
             identifier,
             latestPost.post_number,
             messages,
             newMessageCount,
             partnerInfo,
-            isVip
+            isVip,
+            i18n
           );
-          
+
           // Delete old message and send new one with updated avatar
           try {
             await telegram.deleteMessage(parseInt(userTelegramId), latestPost.telegram_message_id);
           } catch (deleteError) {
             console.error('[updateConversationHistory] Failed to delete old message:', deleteError);
           }
-          
+
           // Send new message with updated avatar
           let sentMessage;
           if (partnerAvatarUrl && !partnerAvatarUrl.startsWith('data:')) {
             try {
               sentMessage = await telegram.sendPhoto(parseInt(userTelegramId), partnerAvatarUrl, {
                 caption: content,
-                parse_mode: 'Markdown'
+                parse_mode: 'Markdown',
               });
             } catch (photoError) {
-              console.error('[updateConversationHistory] Failed to send photo, falling back to text:', photoError);
+              console.error(
+                '[updateConversationHistory] Failed to send photo, falling back to text:',
+                photoError
+              );
               sentMessage = await telegram.sendMessageAndGetId(parseInt(userTelegramId), content);
             }
           } else {
             sentMessage = await telegram.sendMessageAndGetId(parseInt(userTelegramId), content);
           }
-          
+
           // Update database with new message ID and VIP status
           await db.d1
             .prepare(
@@ -301,11 +336,13 @@ export async function updateConversationHistory(
               latestPost.id
             )
             .run();
-          
+
           console.error('[updateConversationHistory] Post refreshed with new VIP status');
         } else {
           // VIP status unchanged - normal update
-          console.error('[updateConversationHistory] Updating existing post (VIP status unchanged)');
+          console.error(
+            '[updateConversationHistory] Updating existing post (VIP status unchanged)'
+          );
           const messages = extractMessages(latestPost.content);
           console.error(
             '[updateConversationHistory] Extracted messages:',
@@ -316,7 +353,10 @@ export async function updateConversationHistory(
             '[updateConversationHistory] Extracted messages content:',
             JSON.stringify(messages)
           );
-          console.error('[updateConversationHistory] Old content length:', latestPost.content.length);
+          console.error(
+            '[updateConversationHistory] Old content length:',
+            latestPost.content.length
+          );
           console.error('[updateConversationHistory] New message entry:', newMessageEntry);
 
           messages.push(newMessageEntry);
@@ -334,13 +374,17 @@ export async function updateConversationHistory(
             messages,
             newMessageCount,
             partnerInfo,
-            isVip
+            isVip,
+            i18n
           );
           console.error('[updateConversationHistory] New content length:', content.length);
 
           // Edit Telegram message
           try {
-            if (latestPost.partner_avatar_url && !latestPost.partner_avatar_url.startsWith('data:')) {
+            if (
+              latestPost.partner_avatar_url &&
+              !latestPost.partner_avatar_url.startsWith('data:')
+            ) {
               // It's a photo message, update caption
               await telegram.editMessageCaption(
                 parseInt(userTelegramId),
@@ -348,8 +392,8 @@ export async function updateConversationHistory(
                 content,
                 {
                   reply_markup: {
-                    inline_keyboard: buttons
-                  }
+                    inline_keyboard: buttons,
+                  },
                 }
               );
             } else {
@@ -360,8 +404,8 @@ export async function updateConversationHistory(
                 content,
                 {
                   reply_markup: {
-                    inline_keyboard: buttons
-                  }
+                    inline_keyboard: buttons,
+                  },
                 }
               );
             }
@@ -424,24 +468,31 @@ export async function updateNewMessagePost(
       }
     }
 
+    // Get user for i18n and VIP status
+    const { findUserByTelegramId } = await import('~/db/queries/users');
+    const { createI18n } = await import('~/i18n');
+    const user = await findUserByTelegramId(db, userTelegramId);
+    const i18n = createI18n(user?.language_pref || 'zh-TW');
+    const isVip = !!(
+      user?.is_vip &&
+      user?.vip_expire_at &&
+      new Date(user.vip_expire_at) > new Date()
+    );
+
     // Build new message content
     const content = buildNewMessagePostContent(
       identifier,
       messageContent,
       messageTime,
       conversationId,
-      partnerInfo
+      partnerInfo,
+      i18n
     );
-
-    // Get user to check VIP status for button display
-    const { findUserByTelegramId } = await import('~/db/queries/users');
-    const user = await findUserByTelegramId(db, userTelegramId);
-    const isVip = !!(user?.is_vip && user?.vip_expire_at && new Date(user.vip_expire_at) > new Date());
 
     // Build buttons based on VIP status
     const buttons = [
-      [{ text: '💬 回覆訊息', callback_data: `conv_reply_${identifier}` }],
-      [{ text: '👤 查看對方資料卡', callback_data: `conv_profile_${conversationId}` }],
+      [{ text: i18n.t('conversationHistory.replyButton'), callback_data: `conv_reply_${identifier}` }],
+      [{ text: i18n.t('conversationHistory.viewProfileCard'), callback_data: `conv_profile_${conversationId}` }],
     ];
 
     // Add ad/task button for non-VIP users
@@ -449,18 +500,21 @@ export async function updateNewMessagePost(
       const { getNextIncompleteTask } = await import('../telegram/handlers/tasks');
       const { getAdPrompt } = await import('~/domain/ad_prompt');
       const { getTodayAdReward } = await import('~/db/queries/ad_rewards');
-      
+
       const nextTask = await getNextIncompleteTask(db, user);
       const adReward = await getTodayAdReward(db.d1, userTelegramId);
-      
-      const prompt = getAdPrompt({
-        user,
-        ads_watched_today: adReward?.ads_watched || 0,
-        has_incomplete_tasks: !!nextTask,
-        next_task_name: nextTask?.name,
-        next_task_id: nextTask?.id,
-      });
-      
+
+      const prompt = getAdPrompt(
+        {
+          user,
+          ads_watched_today: adReward?.ads_watched || 0,
+          has_incomplete_tasks: !!nextTask,
+          next_task_name: nextTask?.name,
+          next_task_id: nextTask?.id,
+        },
+        i18n
+      );
+
       if (prompt.show_button) {
         buttons.push([{ text: prompt.button_text, callback_data: prompt.button_callback }]);
       }

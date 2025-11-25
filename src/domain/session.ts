@@ -87,51 +87,31 @@ export function serializeSessionData(data: SessionData): string {
 /**
  * Get user-friendly timeout message
  */
-export function getTimeoutMessage(sessionType: SessionType, language: string = 'zh-TW'): string {
-  const messages: Record<SessionType, Record<string, string>> = {
-    onboarding: {
-      'zh-TW': '⏰ 註冊流程已超時\n\n請使用 /start 重新開始註冊。',
-      en: '⏰ Registration timeout\n\nPlease use /start to restart.',
-    },
-    throw_bottle: {
-      'zh-TW': '⏰ 丟瓶流程已超時\n\n請使用 /throw 重新開始。',
-      en: '⏰ Throw bottle timeout\n\nPlease use /throw to restart.',
-    },
-    catch_bottle: {
-      'zh-TW': '⏰ 撿瓶流程已超時\n\n請使用 /catch 重新開始。',
-      en: '⏰ Catch bottle timeout\n\nPlease use /catch to restart.',
-    },
-    conversation: {
-      'zh-TW': '⏰ 對話已超時\n\n對方可能已離開。使用 /catch 撿新的瓶子吧！',
-      en: '⏰ Conversation timeout\n\nThe other person may have left. Use /catch to find a new bottle!',
-    },
+import type { createI18n } from '~/i18n';
+
+export function getTimeoutMessage(sessionType: SessionType, i18n?: ReturnType<typeof createI18n>): string {
+  const messages: Record<SessionType, string> = {
+    onboarding: i18n?.t('session.timeoutOnboarding') || '⏰ 註冊流程已超時\n\n請使用 /start 重新開始註冊。',
+    throw_bottle: i18n?.t('session.timeoutThrowBottle') || '⏰ 丟瓶流程已超時\n\n請使用 /throw 重新開始。',
+    catch_bottle: i18n?.t('session.timeoutCatchBottle') || '⏰ 撿瓶流程已超時\n\n請使用 /catch 重新開始。',
+    conversation: i18n?.t('session.timeoutConversation') || '⏰ 對話已超時\n\n對方可能已離開。使用 /catch 撿新的瓶子吧！',
+    edit_profile: i18n?.t('session.timeoutEditProfile') || '⏰ 編輯資料流程已超時\n\n請重新開始編輯。',
   };
 
-  return messages[sessionType][language] || messages[sessionType]['zh-TW'];
+  return messages[sessionType];
 }
 
 /**
  * Get session type display name
  */
-export function getSessionTypeName(sessionType: SessionType, language: string = 'zh-TW'): string {
-  const names: Record<SessionType, Record<string, string>> = {
-    onboarding: {
-      'zh-TW': '註冊流程',
-      en: 'Registration',
-    },
-    throw_bottle: {
-      'zh-TW': '丟瓶流程',
-      en: 'Throw Bottle',
-    },
-    catch_bottle: {
-      'zh-TW': '撿瓶流程',
-      en: 'Catch Bottle',
-    },
-    conversation: {
-      'zh-TW': '對話',
-      en: 'Conversation',
-    },
+export function getSessionTypeName(sessionType: SessionType, i18n?: ReturnType<typeof createI18n>): string {
+  const names: Record<SessionType, string> = {
+    onboarding: i18n?.t('session.typeOnboarding') || '註冊流程',
+    throw_bottle: i18n?.t('session.typeThrowBottle') || '丟瓶流程',
+    catch_bottle: i18n?.t('session.typeCatchBottle') || '撿瓶流程',
+    conversation: i18n?.t('session.typeConversation') || '對話',
+    edit_profile: i18n?.t('session.typeEditProfile') || '編輯資料',
   };
 
-  return names[sessionType][language] || names[sessionType]['zh-TW'];
+  return names[sessionType];
 }

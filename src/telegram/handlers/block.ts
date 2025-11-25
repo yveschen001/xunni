@@ -9,6 +9,7 @@ import { createDatabaseClient } from '~/db/client';
 import { createTelegramService } from '~/services/telegram';
 import { findUserByTelegramId } from '~/db/queries/users';
 import { getOtherUserId } from '~/domain/conversation';
+import { createI18n } from '~/i18n';
 
 export async function handleBlock(message: TelegramMessage, env: Env): Promise<void> {
   const db = createDatabaseClient(env.DB);
@@ -20,13 +21,16 @@ export async function handleBlock(message: TelegramMessage, env: Env): Promise<v
     // Get user
     const user = await findUserByTelegramId(db, telegramId);
     if (!user) {
-      await telegram.sendMessage(chatId, '⚠️ 用戶不存在，請先使用 /start 註冊。');
+      const i18n = createI18n('zh-TW');
+      await telegram.sendMessage(chatId, i18n.t('errors.userNotFoundRegister'));
       return;
     }
 
+    const i18n = createI18n(user.language_pref || 'zh-TW');
+
     // Check if user completed onboarding
     if (user.onboarding_step !== 'completed') {
-      await telegram.sendMessage(chatId, '⚠️ 請先完成註冊流程。\n\n使用 /start 繼續註冊。');
+      await telegram.sendMessage(chatId, i18n.t('errors.completeOnboarding'));
       return;
     }
 
@@ -34,12 +38,12 @@ export async function handleBlock(message: TelegramMessage, env: Env): Promise<v
     if (!message.reply_to_message) {
       await telegram.sendMessage(
         chatId,
-        '⚠️ 請長按你要封鎖的訊息後回覆指令\n\n' +
-          '**操作步驟：**\n' +
-          '1️⃣ 長按對方的訊息\n' +
-          '2️⃣ 選擇「回覆」\n' +
-          '3️⃣ 輸入 /block\n\n' +
-          '💡 這樣可以準確指定要封鎖的對象。'
+        i18n.t('block.replyRequired') + '\n\n' +
+          i18n.t('block.steps') + '\n' +
+          i18n.t('block.step1') + '\n' +
+          i18n.t('block.step2') + '\n' +
+          i18n.t('block.step3') + '\n\n' +
+          i18n.t('block.hint')
       );
       return;
     }
@@ -51,7 +55,7 @@ export async function handleBlock(message: TelegramMessage, env: Env): Promise<v
     if (!conversationMatch) {
       await telegram.sendMessage(
         chatId,
-        '⚠️ 無法識別對話對象\n\n' + '請確保回覆的是對方發送的訊息（帶有 # 標識符）。'
+        i18n.t('block.cannotIdentify') + '\n\n' + i18n.t('block.ensureReply')
       );
       return;
     }
@@ -74,14 +78,14 @@ export async function handleBlock(message: TelegramMessage, env: Env): Promise<v
       .first<any>();
 
     if (!conversation) {
-      await telegram.sendMessage(chatId, '⚠️ 找不到此對話\n\n' + '對話可能已結束或不存在。');
+      await telegram.sendMessage(chatId, i18n.t('block.conversationNotFound') + '\n\n' + i18n.t('block.conversationMayEnded'));
       return;
     }
 
     // Get the other user
     const otherUserId = getOtherUserId(conversation, telegramId);
     if (!otherUserId) {
-      await telegram.sendMessage(chatId, '⚠️ 對話資訊錯誤。');
+      await telegram.sendMessage(chatId, i18n.t('block.conversationInfoError'));
       return;
     }
 
@@ -102,13 +106,14 @@ export async function handleBlock(message: TelegramMessage, env: Env): Promise<v
 
     await telegram.sendMessage(
       chatId,
-      `✅ 已封鎖此使用者 (#${conversationIdentifier})\n\n` +
-        '你們將不會再被匹配到對方的漂流瓶。\n\n' +
-        '💡 使用 /catch 撿新的漂流瓶開始新對話。'
+      i18n.t('block.success', { identifier: conversationIdentifier }) + '\n\n' +
+        i18n.t('block.willNotMatch') + '\n\n' +
+        i18n.t('block.catchNewBottle')
     );
   } catch (error) {
     console.error('[handleBlock] Error:', error);
-    await telegram.sendMessage(chatId, '❌ 系統發生錯誤，請稍後再試。');
+    const errorI18n = createI18n('zh-TW');
+    await telegram.sendMessage(chatId, errorI18n.t('errors.systemErrorRetry'));
   }
 }
 

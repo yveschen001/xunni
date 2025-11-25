@@ -13,6 +13,13 @@ export async function handleHelp(message: TelegramMessage, env: Env): Promise<vo
   const telegramId = message.from!.id.toString();
 
   try {
+    // Get user and i18n
+    const { createDatabaseClient } = await import('~/db/client');
+    const { findUserByTelegramId } = await import('~/db/queries/users');
+    const db = createDatabaseClient(env.DB);
+    const user = await findUserByTelegramId(db, telegramId);
+    const { createI18n } = await import('~/i18n');
+    const i18n = createI18n(user?.language_pref || 'zh-TW');
     // Check user role using new admin system
     const { getAdminIds, isSuperAdmin } = await import('./admin_ban');
     const adminIds = getAdminIds(env);
@@ -21,146 +28,158 @@ export async function handleHelp(message: TelegramMessage, env: Env): Promise<vo
 
     // Base commands for all users
     let helpMessage =
-      `📖 **XunNi 指令列表**\n\n` +
+      i18n.t('help.text10') +
       `━━━━━━━━━━━━━━━━\n` +
-      `🎮 **核心功能**\n` +
-      `/start - 開始使用 / 繼續註冊\n` +
-      `/menu - 主選單\n` +
-      `/throw - 丟出漂流瓶\n` +
-      `/catch - 撿起漂流瓶\n` +
-      `/chats - 我的對話列表\n\n` +
-      `👤 **個人資料**\n` +
-      `/profile - 查看個人資料\n` +
-      `/profile_card - 查看資料卡片\n` +
-      `/edit_profile - 編輯個人資料\n` +
-      `/refresh_avatar - 刷新頭像緩存\n` +
-      `/mbti - MBTI 管理\n` +
-      `/stats - 我的統計數據\n\n` +
-      `🎁 **額度與 VIP**\n` +
-      `/quota - 查看額度狀態\n` +
-      `/tasks - 任務中心（完成任務獲得額外瓶子）\n` +
-      `/invite - 邀請好友獲得額度\n` +
-      `/vip - VIP 訂閱\n` +
-      `• 觀看廣告獲得額度（額度用完時顯示）\n` +
-      `• 查看官方廣告獲得永久額度\n\n` +
-      `🛡️ **安全與申訴**\n` +
-      `/block - 封鎖使用者\n` +
-      `/report - 舉報不當內容\n` +
-      `/appeal - 申訴封禁\n` +
-      `/appeal_status - 查詢申訴狀態\n\n` +
-      `📖 **幫助與設定**\n` +
-      `/help - 顯示此列表\n` +
-      `/rules - 查看遊戲規則\n` +
-      `/settings - 推送設定`;
+      i18n.t('help.text24') +
+      i18n.t('help.register') +
+      i18n.t('help.text25') +
+      i18n.t('help.bottle7') +
+      i18n.t('help.bottle8') +
+      i18n.t('help.conversation') +
+      i18n.t('help.profile3') +
+      i18n.t('help.profile2') +
+      i18n.t('help.text5') +
+      i18n.t('help.profile') +
+      i18n.t('help.text2') +
+      i18n.t('help.mbti2') +
+      i18n.t('help.stats') +
+      i18n.t('help.vip4') +
+      i18n.t('help.text16') +
+      i18n.t('help.bottle2') +
+      i18n.t('help.invite2') +
+      i18n.t('help.vip5') +
+      i18n.t('help.ad3') +
+      i18n.t('help.ad4') +
+      i18n.t('help.appeal5') +
+      i18n.t('help.text18') +
+      i18n.t('help.report') +
+      i18n.t('help.ban5') +
+      i18n.t('help.appeal3') +
+      i18n.t('help.settings2') +
+      i18n.t('help.text19') +
+      i18n.t('help.text17') +
+      i18n.t('help.settings');
 
     // Add admin commands (for both regular admin and super admin)
     if (isUserAdmin) {
       helpMessage +=
         `\n\n━━━━━━━━━━━━━━━━\n` +
-        `👮 **管理員功能**\n\n` +
-        `**用戶管理**\n` +
-        `/admin_ban <user_id> [hours|permanent] - 封禁用戶\n` +
-        `/admin_unban <user_id> - 解除封禁\n` +
-        `/admin_bans - 查看封禁記錄\n` +
-        `/admin_bans <user_id> - 查看用戶封禁歷史\n\n` +
-        `**申訴審核**\n` +
-        `/admin_appeals - 查看待審核申訴\n` +
-        `/admin_approve <id> [備註] - 批准申訴\n` +
-        `/admin_reject <id> [備註] - 拒絕申訴\n\n` +
-        `**廣播監控**\n` +
-        `/broadcast_status - 查看廣播列表\n` +
-        `/broadcast_status <id> - 查看廣播詳情\n` +
-        `/broadcast_process - 手動處理廣播隊列\n` +
-        `/broadcast_cleanup - 清理卡住的廣播\n` +
-        `/broadcast_cancel <id> - 取消廣播\n\n` +
-        `**系統維護**\n` +
-        `/maintenance_status - 查看維護狀態`;
+        i18n.t('help.admin5') +
+        i18n.t('help.text31') +
+        i18n.t('help.ban') +
+        i18n.t('help.ban3') +
+        i18n.t('help.ban4') +
+        i18n.t('help.ban2') +
+        i18n.t('help.appeal6') +
+        i18n.t('help.appeal4') +
+        i18n.t('help.appeal2') +
+        i18n.t('help.appeal') +
+        i18n.t('help.broadcast5') +
+        i18n.t('help.broadcast4') +
+        i18n.t('help.broadcast') +
+        i18n.t('help.broadcast2') +
+        i18n.t('help.broadcast3') +
+        i18n.t('help.cancel') +
+        i18n.t('help.text32') +
+        i18n.t('help.text');
     }
 
     // Add super admin commands (only for super admin)
     if (isUserSuperAdmin) {
       helpMessage +=
         `\n\n━━━━━━━━━━━━━━━━\n` +
-        `🔱 **超級管理員功能**\n\n` +
-        `**管理員管理**\n` +
-        `/admin_list - 查看管理員列表\n` +
-        `/admin_add <user_id> - 添加管理員\n` +
-        `/admin_remove <user_id> - 移除管理員\n\n` +
-        `**廣播發送**\n` +
-        `/broadcast <訊息> - 群發給所有用戶\n` +
-        `/broadcast_vip <訊息> - 群發給 VIP 用戶\n` +
-        `/broadcast_non_vip <訊息> - 群發給非 VIP 用戶\n` +
-        `/broadcast_filter <過濾器> <訊息> - 精準廣播\n` +
-        `  • 只發給女性：gender=female\n` +
-        `  • 只發給男性：gender=male\n` +
-        `  • 18-25歲女性：gender=female,age=18-25\n` +
-        `  • 台灣的VIP：country=TW,vip=true\n` +
-        `  • 今天生日：is_birthday=true\n\n` +
-        `**數據分析**\n` +
-        `/analytics - 每日運營報表\n` +
-        `/ad_performance - 廣告效果報表\n` +
-        `/funnel - VIP 轉化漏斗\n\n` +
-        `**系統維護**\n` +
-        `/maintenance_status - 查看維護狀態\n` +
-        `/maintenance_enable <分鐘> <訊息> - 啟用維護模式\n` +
-        `/maintenance_disable - 關閉維護模式\n\n` +
-        `**開發工具**\n` +
-        `/dev_info - 系統信息\n` +
-        `/dev_reset - 重置帳號（測試用）\n` +
-        `/dev_restart - 完全重置帳號`;
+        i18n.t('help.admin4') +
+        i18n.t('help.admin6') +
+        i18n.t('help.admin3') +
+        i18n.t('help.admin2') +
+        i18n.t('help.admin') +
+        i18n.t('help.broadcast6') +
+        i18n.t('help.message8') +
+        i18n.t('help.message5') +
+        i18n.t('help.message2') +
+        i18n.t('help.message4') +
+        i18n.t('help.text3') +
+        i18n.t('help.text7') +
+        i18n.t('help.message3') +
+        i18n.t('help.vip') +
+        i18n.t('help.birthday') +
+        i18n.t('help.text33') +
+        i18n.t('help.text11') +
+        i18n.t('help.ad2') +
+        i18n.t('help.vip3') +
+        i18n.t('help.text32') +
+        i18n.t('help.text') +
+        i18n.t('help.message') +
+        i18n.t('help.message6') +
+        i18n.t('help.text34') +
+        i18n.t('help.text15') +
+        i18n.t('help.text6') +
+        i18n.t('help.text12');
     }
 
     await telegram.sendMessage(chatId, helpMessage);
   } catch (error) {
     console.error('[handleHelp] Error:', error);
-    await telegram.sendMessage(chatId, '❌ 系統發生錯誤，請稍後再試。');
+    const errorI18n = createI18n('zh-TW');
+    await telegram.sendMessage(chatId, errorI18n.t('errors.systemErrorRetry'));
   }
 }
 
 export async function handleRules(message: TelegramMessage, env: Env): Promise<void> {
   const telegram = createTelegramService(env);
   const chatId = message.chat.id;
+  const telegramId = message.from!.id.toString();
 
   try {
+    // Get user and i18n
+    const { createDatabaseClient } = await import('~/db/client');
+    const { findUserByTelegramId } = await import('~/db/queries/users');
+    const db = createDatabaseClient(env.DB);
+    const user = await findUserByTelegramId(db, telegramId);
+    const { createI18n } = await import('~/i18n');
+    const i18n = createI18n(user?.language_pref || 'zh-TW');
+
     const rulesMessage =
-      `📜 **XunNi 遊戲規則**\n\n` +
-      `🍾 **漂流瓶系統**\n` +
-      `• 每天可以丟出和撿起有限數量的漂流瓶\n` +
-      `• 免費用戶：每天 3 個瓶子\n` +
-      `• VIP 用戶：每天 30 個瓶子\n` +
-      `• 邀請好友可增加配額（最多 10/100）\n` +
-      `• 瓶子在 24 小時內有效\n\n` +
-      `💬 **匿名聊天**\n` +
-      `• 所有對話都是匿名的\n` +
-      `• 只能發送文字和官方 Emoji\n` +
-      `• 不要分享個人聯絡方式\n` +
-      `• 尊重對方，友善交流\n\n` +
-      `🎁 **額度獲取方式**\n` +
-      `• 每日免費額度：3 個（VIP：30 個）\n` +
-      `• 完成任務：獲得額外瓶子（使用 /tasks 查看）\n` +
-      `• 邀請好友：每人 +1 額度（最多 10/100）\n` +
-      `• 觀看廣告：每次 +1 額度（每日最多 20 次）\n` +
-      `• 官方廣告：永久額度獎勵\n` +
-      `• 使用 /quota 查看額度狀態\n\n` +
-      `🛡️ **安全規則**\n` +
-      `• 禁止發送不當內容\n` +
-      `• 禁止騷擾、辱罵他人\n` +
-      `• 禁止詐騙、釣魚\n` +
-      `• 違規將被封禁\n\n` +
-      `💎 **VIP 權益**\n` +
-      `• 🆕 三倍曝光機會（1 次丟瓶 = 3 個對象）\n` +
-      `  └ 大幅提升配對成功率\n` +
-      `• 解鎖對方清晰頭像\n` +
-      `• 每天 30 個漂流瓶配額\n` +
-      `• 可篩選 MBTI、星座、血型\n` +
-      `• 34 種語言自動翻譯（OpenAI 優先）\n` +
-      `• 無廣告體驗\n\n` +
+      i18n.t('help.text13') +
+      i18n.t('help.bottle9') +
+      i18n.t('help.bottle3') +
+      i18n.t('help.bottle6') +
+      i18n.t('help.bottle4') +
+      i18n.t('help.quota') +
+      i18n.t('help.bottle5') +
+      i18n.t('help.text26') +
+      i18n.t('help.conversation2') +
+      i18n.t('help.text14') +
+      i18n.t('help.text22') +
+      i18n.t('help.text20') +
+      i18n.t('help.text21') +
+      i18n.t('help.vip2') +
+      i18n.t('help.bottle') +
+      i18n.t('help.invite') +
+      i18n.t('help.ad') +
+      i18n.t('help.ad5') +
+      i18n.t('help.text9') +
+      i18n.t('help.text23') +
+      i18n.t('help.text28') +
+      i18n.t('help.text27') +
+      i18n.t('help.text30') +
+      i18n.t('help.ban6') +
+      i18n.t('help.vip6') +
+      i18n.t('help.throw') +
+      i18n.t('help.success') +
+      i18n.t('help.text29') +
+      i18n.t('help.quota2') +
+      i18n.t('help.mbti') +
+      i18n.t('help.text4') +
+      i18n.t('help.ad6') +
       `━━━━━━━━━━━━━━━━\n` +
-      `💡 遇到問題？使用 /help 查看指令列表`;
+      i18n.t('help.text8');
 
     await telegram.sendMessage(chatId, rulesMessage);
   } catch (error) {
     console.error('[handleRules] Error:', error);
-    await telegram.sendMessage(chatId, '❌ 系統發生錯誤，請稍後再試。');
+    const { createI18n } = await import('~/i18n');
+    const errorI18n = createI18n('zh-TW');
+    await telegram.sendMessage(chatId, errorI18n.t('errors.systemErrorRetry'));
   }
 }

@@ -9,6 +9,7 @@ import { createDatabaseClient } from '~/db/client';
 import { createTelegramService } from '~/services/telegram';
 import { findUserByTelegramId } from '~/db/queries/users';
 import { getDraft, deleteDraft, deleteUserDrafts } from '~/db/queries/drafts';
+import { createI18n } from '~/i18n';
 
 /**
  * Handle draft continue
@@ -20,39 +21,41 @@ export async function handleDraftContinue(callbackQuery: any, env: Env): Promise
   const telegramId = callbackQuery.from.id.toString();
 
   try {
-    await telegram.answerCallbackQuery(callbackQuery.id, '✅ 繼續編輯草稿');
+    const user = await findUserByTelegramId(db, telegramId);
+    const i18n = createI18n(user?.language_pref || 'zh-TW');
+    
+    await telegram.answerCallbackQuery(callbackQuery.id, i18n.t('draft.continueEditing'));
     await telegram.deleteMessage(chatId, callbackQuery.message!.message_id);
 
     // Get draft
     const draft = await getDraft(db, telegramId);
     if (!draft) {
-      await telegram.sendMessage(chatId, '⚠️ 草稿不存在或已過期');
+      await telegram.sendMessage(chatId, i18n.t('draft.notFound'));
       return;
     }
 
     // Show draft content for editing
     await telegram.sendMessage(
       chatId,
-      `📝 **草稿內容**\n\n` +
+      i18n.t('draft.contentTitle') +
         `${draft.content}\n\n` +
         `━━━━━━━━━━━━━━━━\n\n` +
-        `💡 你可以：\n` +
-        `• 直接輸入新內容來替換草稿\n` +
-        `• 使用 /throw 重新開始\n` +
-        `• 發送草稿內容來丟出漂流瓶`
+        i18n.t('draft.contentHint')
     );
 
     // Show send draft button
-    await telegram.sendMessageWithButtons(chatId, '要直接發送這個草稿嗎？', [
+    await telegram.sendMessageWithButtons(chatId, i18n.t('draft.sendQuestion'), [
       [
-        { text: '✅ 發送草稿', callback_data: 'draft_send' },
-        { text: '✏️ 修改內容', callback_data: 'draft_edit' },
+        { text: i18n.t('draft.sendButton'), callback_data: 'draft_send' },
+        { text: i18n.t('draft.editButton'), callback_data: 'draft_edit' },
       ],
-      [{ text: '🗑️ 刪除草稿', callback_data: 'draft_delete' }],
+      [{ text: i18n.t('draft.deleteButton'), callback_data: 'draft_delete' }],
     ]);
   } catch (error) {
     console.error('[handleDraftContinue] Error:', error);
-    await telegram.answerCallbackQuery(callbackQuery.id, '❌ 發生錯誤');
+    const user = await findUserByTelegramId(db, telegramId);
+    const i18n = createI18n(user?.language_pref || 'zh-TW');
+    await telegram.answerCallbackQuery(callbackQuery.id, i18n.t('errors.operationFailed'));
   }
 }
 
@@ -66,18 +69,19 @@ export async function handleDraftDelete(callbackQuery: any, env: Env): Promise<v
   const telegramId = callbackQuery.from.id.toString();
 
   try {
+    const user = await findUserByTelegramId(db, telegramId);
+    const i18n = createI18n(user?.language_pref || 'zh-TW');
+    
+    if (!user) {
+      await telegram.answerCallbackQuery(callbackQuery.id, i18n.t('errors.userNotFound'));
+      return;
+    }
+
     // Delete draft
     await deleteUserDrafts(db, telegramId);
 
-    await telegram.answerCallbackQuery(callbackQuery.id, '✅ 草稿已刪除');
+    await telegram.answerCallbackQuery(callbackQuery.id, i18n.t('draft.deleted'));
     await telegram.deleteMessage(chatId, callbackQuery.message!.message_id);
-
-    // Show bottle creation UI
-    const user = await findUserByTelegramId(db, telegramId);
-    if (!user) {
-      await telegram.sendMessage(chatId, '❌ 用戶不存在');
-      return;
-    }
 
     const isVip = !!(
       user.is_vip &&
@@ -86,32 +90,32 @@ export async function handleDraftDelete(callbackQuery: any, env: Env): Promise<v
     );
 
     if (isVip) {
-      await telegram.sendMessageWithButtons(chatId, '🍾 丟漂流瓶\n\n你想要尋找什麼樣的聊天對象？', [
+      await telegram.sendMessageWithButtons(chatId, i18n.t('draft.throwBottle'), [
         [
-          { text: '👨 男生', callback_data: 'throw_target_male' },
-          { text: '👩 女生', callback_data: 'throw_target_female' },
+          { text: i18n.t('buttons.targetMale'), callback_data: 'throw_target_male' },
+          { text: i18n.t('buttons.targetFemale'), callback_data: 'throw_target_female' },
         ],
-        [{ text: '🌈 任何人都可以', callback_data: 'throw_target_any' }],
-        [{ text: '⚙️ 進階篩選（MBTI/星座）', callback_data: 'throw_advanced' }],
+        [{ text: i18n.t('buttons.targetAny'), callback_data: 'throw_target_any' }],
+        [{ text: i18n.t('buttons.targetAdvanced'), callback_data: 'throw_advanced' }],
       ]);
     } else {
       await telegram.sendMessageWithButtons(
         chatId,
-        '🍾 丟漂流瓶\n\n' +
-          '你想要尋找什麼樣的聊天對象？\n\n' +
-          '💡 升級 VIP 可使用進階篩選（MBTI/星座）：/vip',
+        i18n.t('draft.throwBottle') + '\n\n' +
+          i18n.t('draft.targetGender') +
+          i18n.t('draft.targetGenderHint'),
         [
           [
-            { text: '👨 男生', callback_data: 'throw_target_male' },
-            { text: '👩 女生', callback_data: 'throw_target_female' },
+            { text: i18n.t('buttons.targetMale'), callback_data: 'throw_target_male' },
+            { text: i18n.t('buttons.targetFemale'), callback_data: 'throw_target_female' },
           ],
-          [{ text: '🌈 任何人都可以', callback_data: 'throw_target_any' }],
+          [{ text: i18n.t('buttons.targetAny'), callback_data: 'throw_target_any' }],
         ]
       );
     }
   } catch (error) {
     console.error('[handleDraftDelete] Error:', error);
-    await telegram.answerCallbackQuery(callbackQuery.id, '❌ 發生錯誤');
+    await telegram.answerCallbackQuery(callbackQuery.id, i18n.t('common.operationFailed'));
   }
 }
 
@@ -128,15 +132,16 @@ export async function handleDraftNew(callbackQuery: any, env: Env): Promise<void
     // Delete existing draft
     await deleteUserDrafts(db, telegramId);
 
-    await telegram.answerCallbackQuery(callbackQuery.id, '✅ 開始新的漂流瓶');
-    await telegram.deleteMessage(chatId, callbackQuery.message!.message_id);
-
-    // Show bottle creation UI
     const user = await findUserByTelegramId(db, telegramId);
+    const i18n = createI18n(user?.language_pref || 'zh-TW');
+    
     if (!user) {
-      await telegram.sendMessage(chatId, '❌ 用戶不存在');
+      await telegram.answerCallbackQuery(callbackQuery.id, i18n.t('errors.userNotFound'));
       return;
     }
+
+    await telegram.answerCallbackQuery(callbackQuery.id, i18n.t('draft.newBottle'));
+    await telegram.deleteMessage(chatId, callbackQuery.message!.message_id);
 
     const isVip = !!(
       user.is_vip &&
@@ -145,32 +150,34 @@ export async function handleDraftNew(callbackQuery: any, env: Env): Promise<void
     );
 
     if (isVip) {
-      await telegram.sendMessageWithButtons(chatId, '🍾 丟漂流瓶\n\n你想要尋找什麼樣的聊天對象？', [
+      await telegram.sendMessageWithButtons(chatId, i18n.t('draft.throwBottle'), [
         [
-          { text: '👨 男生', callback_data: 'throw_target_male' },
-          { text: '👩 女生', callback_data: 'throw_target_female' },
+          { text: i18n.t('buttons.targetMale'), callback_data: 'throw_target_male' },
+          { text: i18n.t('buttons.targetFemale'), callback_data: 'throw_target_female' },
         ],
-        [{ text: '🌈 任何人都可以', callback_data: 'throw_target_any' }],
-        [{ text: '⚙️ 進階篩選（MBTI/星座）', callback_data: 'throw_advanced' }],
+        [{ text: i18n.t('buttons.targetAny'), callback_data: 'throw_target_any' }],
+        [{ text: i18n.t('buttons.targetAdvanced'), callback_data: 'throw_advanced' }],
       ]);
     } else {
       await telegram.sendMessageWithButtons(
         chatId,
-        '🍾 丟漂流瓶\n\n' +
-          '你想要尋找什麼樣的聊天對象？\n\n' +
-          '💡 升級 VIP 可使用進階篩選（MBTI/星座）：/vip',
+        i18n.t('draft.throwBottle') + '\n\n' +
+          i18n.t('draft.targetGender') +
+          i18n.t('draft.targetGenderHint'),
         [
           [
-            { text: '👨 男生', callback_data: 'throw_target_male' },
-            { text: '👩 女生', callback_data: 'throw_target_female' },
+            { text: i18n.t('buttons.targetMale'), callback_data: 'throw_target_male' },
+            { text: i18n.t('buttons.targetFemale'), callback_data: 'throw_target_female' },
           ],
-          [{ text: '🌈 任何人都可以', callback_data: 'throw_target_any' }],
+          [{ text: i18n.t('buttons.targetAny'), callback_data: 'throw_target_any' }],
         ]
       );
     }
   } catch (error) {
     console.error('[handleDraftNew] Error:', error);
-    await telegram.answerCallbackQuery(callbackQuery.id, '❌ 發生錯誤');
+    const user = await findUserByTelegramId(db, telegramId);
+    const i18n = createI18n(user?.language_pref || 'zh-TW');
+    await telegram.answerCallbackQuery(callbackQuery.id, i18n.t('common.operationFailed'));
   }
 }
 
@@ -184,22 +191,23 @@ export async function handleDraftSend(callbackQuery: any, env: Env): Promise<voi
   const telegramId = callbackQuery.from.id.toString();
 
   try {
+    const user = await findUserByTelegramId(db, telegramId);
+    const i18n = createI18n(user?.language_pref || 'zh-TW');
+    
+    if (!user) {
+      await telegram.answerCallbackQuery(callbackQuery.id, i18n.t('errors.userNotFound'));
+      return;
+    }
+
     // Get draft
     const draft = await getDraft(db, telegramId);
     if (!draft) {
-      await telegram.answerCallbackQuery(callbackQuery.id, '⚠️ 草稿不存在或已過期');
+      await telegram.answerCallbackQuery(callbackQuery.id, i18n.t('draft.notFound'));
       return;
     }
 
-    await telegram.answerCallbackQuery(callbackQuery.id, '✅ 正在發送...');
+    await telegram.answerCallbackQuery(callbackQuery.id, i18n.t('draft.sending'));
     await telegram.deleteMessage(chatId, callbackQuery.message!.message_id);
-
-    // Process bottle content using draft
-    const user = await findUserByTelegramId(db, telegramId);
-    if (!user) {
-      await telegram.sendMessage(chatId, '❌ 用戶不存在');
-      return;
-    }
 
     // Import and call processBottleContent
     const { processBottleContent } = await import('./throw');
@@ -209,7 +217,9 @@ export async function handleDraftSend(callbackQuery: any, env: Env): Promise<voi
     await deleteDraft(db, draft.id);
   } catch (error) {
     console.error('[handleDraftSend] Error:', error);
-    await telegram.answerCallbackQuery(callbackQuery.id, '❌ 發生錯誤');
+    const user = await findUserByTelegramId(db, telegramId);
+    const i18n = createI18n(user?.language_pref || 'zh-TW');
+    await telegram.answerCallbackQuery(callbackQuery.id, i18n.t('common.operationFailed'));
   }
 }
 
@@ -221,21 +231,21 @@ export async function handleDraftEdit(callbackQuery: any, env: Env): Promise<voi
   const chatId = callbackQuery.message!.chat.id;
 
   try {
-    await telegram.answerCallbackQuery(callbackQuery.id, '✏️ 請輸入新的內容');
+    const db = createDatabaseClient(env.DB);
+    const telegramId = callbackQuery.from.id.toString();
+    const user = await findUserByTelegramId(db, telegramId);
+    const i18n = createI18n(user?.language_pref || 'zh-TW');
+    
+    await telegram.answerCallbackQuery(callbackQuery.id, i18n.t('draft.editPrompt'));
     await telegram.deleteMessage(chatId, callbackQuery.message!.message_id);
 
-    await telegram.sendMessage(
-      chatId,
-      '✏️ 請輸入新的漂流瓶內容：\n\n' +
-        '💡 提示：\n' +
-        '• 最短 5 個字符\n' +
-        '• 最多 250 個字符\n' +
-        '• 不允許連結、圖片、多媒體\n' +
-        '• 不要包含個人聯絡方式\n' +
-        '• 友善、尊重的內容更容易被撿到哦～'
-    );
+    await telegram.sendMessage(chatId, i18n.t('draft.editInput'));
   } catch (error) {
     console.error('[handleDraftEdit] Error:', error);
-    await telegram.answerCallbackQuery(callbackQuery.id, '❌ 發生錯誤');
+    const db = createDatabaseClient(env.DB);
+    const telegramId = callbackQuery.from.id.toString();
+    const user = await findUserByTelegramId(db, telegramId);
+    const i18n = createI18n(user?.language_pref || 'zh-TW');
+    await telegram.answerCallbackQuery(callbackQuery.id, i18n.t('errors.operationFailed'));
   }
 }

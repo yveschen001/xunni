@@ -99,4 +99,3 @@ describe('VIP Triple Bottle Integration', () => {
     expect(true).toBe(true);
   });
 });
-

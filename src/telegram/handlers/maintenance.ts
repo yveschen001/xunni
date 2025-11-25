@@ -14,6 +14,8 @@ import {
   type MaintenanceMode,
 } from '~/domain/maintenance';
 import { createBroadcast } from '~/services/broadcast';
+import { findUserByTelegramId } from '~/db/queries/users';
+import { createI18n } from '~/i18n';
 
 /**
  * Handle /maintenance_enable command
@@ -26,15 +28,17 @@ export async function handleMaintenanceEnable(message: TelegramMessage, env: Env
   const text = message.text || '';
 
   try {
+    const telegramId = message.from!.id.toString();
+    const user = await findUserByTelegramId(db, telegramId);
+    const i18n = createI18n(user?.language_pref || 'zh-TW');
+    
     const parts = text.split(' ');
     if (parts.length < 2) {
       await telegram.sendMessage(
         chatId,
-        '❌ 使用方法錯誤\n\n' +
-          '**正確格式：**\n' +
-          `/maintenance_enable <時長(分鐘)> [維護訊息]\n\n` +
-          '**示例：**\n' +
-          `/maintenance_enable 60 系統升級維護`
+        i18n.t('maintenance.usageError') + '\n\n' +
+          i18n.t('maintenance.correctFormat') + '\n' +
+          i18n.t('maintenance.example')
       );
       return;
     }
@@ -42,7 +46,7 @@ export async function handleMaintenanceEnable(message: TelegramMessage, env: Env
     // Parse duration
     const duration = parseInt(parts[1]);
     if (isNaN(duration)) {
-      await telegram.sendMessage(chatId, '❌ 時長必須是數字（分鐘）');
+      await telegram.sendMessage(chatId, i18n.t('maintenance.durationMustBeNumber'));
       return;
     }
 
@@ -97,16 +101,18 @@ export async function handleMaintenanceEnable(message: TelegramMessage, env: Env
     // Confirm to admin
     await telegram.sendMessage(
       chatId,
-      `✅ 維護模式已啟用\n\n` +
-        `時長：${duration} 分鐘\n` +
-        `開始：${startTime.toLocaleString('zh-TW')}\n` +
-        `結束：${endTime.toLocaleString('zh-TW')}\n\n` +
-        `維護通知已廣播給所有用戶。\n` +
-        `一般用戶將無法使用服務，只有管理員可以登入。`
+      i18n.t('maintenance.enableSuccess', {
+        duration,
+        startTime: startTime.toLocaleString(user?.language_pref || 'zh-TW'),
+        endTime: endTime.toLocaleString(user?.language_pref || 'zh-TW'),
+      })
     );
   } catch (error) {
     console.error('[handleMaintenanceEnable] Error:', error);
-    await telegram.sendMessage(chatId, '❌ 啟用維護模式失敗。');
+    const telegramId = message.from!.id.toString();
+    const user = await findUserByTelegramId(db, telegramId);
+    const i18n = createI18n(user?.language_pref || 'zh-TW');
+    await telegram.sendMessage(chatId, i18n.t('maintenance.enableFailed'));
   }
 }
 
@@ -129,19 +135,27 @@ export async function handleMaintenanceDisable(message: TelegramMessage, env: En
       )
       .run();
 
+    // Get user for i18n
+    const telegramId = message.from!.id.toString();
+    const user = await findUserByTelegramId(db, telegramId);
+    const i18n = createI18n(user?.language_pref || 'zh-TW');
+
     // Broadcast recovery notification
     const recoveryMessage =
-      '✅ 系統維護已完成\n\n' +
-      '服務已恢復正常，感謝您的耐心等待！\n\n' +
-      '現在可以正常使用所有功能了。';
+      i18n.t('maintenance.completed') + '\n\n' +
+      i18n.t('maintenance.serviceRestored') + '\n\n' +
+      i18n.t('maintenance.allFeaturesAvailable');
 
-    await createBroadcast(env, recoveryMessage, 'all', message.from!.id.toString());
+    await createBroadcast(env, recoveryMessage, 'all', telegramId);
 
     // Confirm to admin
-    await telegram.sendMessage(chatId, `✅ 維護模式已關閉\n\n` + `恢復通知已廣播給所有用戶。`);
+    await telegram.sendMessage(chatId, i18n.t('maintenance.disableSuccess'));
   } catch (error) {
     console.error('[handleMaintenanceDisable] Error:', error);
-    await telegram.sendMessage(chatId, '❌ 關閉維護模式失敗。');
+    const telegramId = message.from!.id.toString();
+    const user = await findUserByTelegramId(db, telegramId);
+    const i18n = createI18n(user?.language_pref || 'zh-TW');
+    await telegram.sendMessage(chatId, i18n.t('maintenance.disableFailed'));
   }
 }
 
@@ -154,17 +168,24 @@ export async function handleMaintenanceStatus(message: TelegramMessage, env: Env
   const chatId = message.chat.id;
 
   try {
+    const telegramId = message.from!.id.toString();
+    const user = await findUserByTelegramId(db, telegramId);
+    const i18n = createI18n(user?.language_pref || 'zh-TW');
+    
     const maintenance = await getMaintenanceMode(db);
     if (!maintenance) {
-      await telegram.sendMessage(chatId, '❌ 無法獲取維護模式狀態');
+      await telegram.sendMessage(chatId, i18n.t('maintenance.statusFailed'));
       return;
     }
 
-    const statusMessage = formatMaintenanceStatus(maintenance);
+    const statusMessage = formatMaintenanceStatus(maintenance, i18n);
     await telegram.sendMessage(chatId, statusMessage);
   } catch (error) {
     console.error('[handleMaintenanceStatus] Error:', error);
-    await telegram.sendMessage(chatId, '❌ 查詢維護模式狀態失敗。');
+    const telegramId = message.from!.id.toString();
+    const user = await findUserByTelegramId(db, telegramId);
+    const i18n = createI18n(user?.language_pref || 'zh-TW');
+    await telegram.sendMessage(chatId, i18n.t('error.failed10'));
   }
 }
 

@@ -23,7 +23,8 @@ export async function handleAppeal(message: TelegramMessage, env: Env): Promise<
   // Get user
   const user = await findUserByTelegramId(db, telegramId);
   if (!user) {
-    await telegram.sendMessage(chatId, '❌ 用戶不存在，請先使用 /start 註冊。');
+    const i18n = createI18n('zh-TW');
+    await telegram.sendMessage(chatId, i18n.t('errors.userNotFoundRegister'));
     return;
   }
 
@@ -64,7 +65,7 @@ export async function handleAppeal(message: TelegramMessage, env: Env): Promise<
       chatId,
       i18n.t('appeal.alreadyExists', {
         appealId: existingAppeal.id.toString(),
-        status: '待審核',
+        status: i18n.t('appeal.statusPending'),
         time: createdAt,
       })
     );
@@ -94,7 +95,8 @@ export async function handleAppealReasonInput(message: TelegramMessage, env: Env
   // Get user
   const user = await findUserByTelegramId(db, telegramId);
   if (!user) {
-    await telegram.sendMessage(chatId, '❌ 用戶不存在，請先使用 /start 註冊。');
+    const i18n = createI18n('zh-TW');
+    await telegram.sendMessage(chatId, i18n.t('errors.userNotFoundRegister'));
     return;
   }
 
@@ -165,7 +167,8 @@ export async function handleAppealStatus(message: TelegramMessage, env: Env): Pr
   // Get user
   const user = await findUserByTelegramId(db, telegramId);
   if (!user) {
-    await telegram.sendMessage(chatId, '❌ 用戶不存在，請先使用 /start 註冊。');
+    const i18n = createI18n('zh-TW');
+    await telegram.sendMessage(chatId, i18n.t('errors.userNotFoundRegister'));
     return;
   }
 
@@ -197,11 +200,11 @@ export async function handleAppealStatus(message: TelegramMessage, env: Env): Pr
   // Format status
   let statusText = '';
   if (appeal.status === 'pending') {
-    statusText = user.language_pref === 'en' ? 'Pending Review' : '待審核';
+    statusText = i18n.t('appeal.statusPending');
   } else if (appeal.status === 'approved') {
-    statusText = user.language_pref === 'en' ? 'Approved' : '已批准';
+    statusText = i18n.t('appeal.statusApproved');
   } else if (appeal.status === 'rejected') {
-    statusText = user.language_pref === 'en' ? 'Rejected' : '已拒絕';
+    statusText = i18n.t('appeal.statusRejected');
   }
 
   // Format dates
@@ -231,11 +234,10 @@ export async function handleAppealStatus(message: TelegramMessage, env: Env): Pr
       }
     );
     reviewInfo =
-      (user.language_pref === 'en' ? 'Reviewed: ' : '審核時間：') +
-      reviewedAt +
+      i18n.t('appeal.reviewedAt') + reviewedAt +
       '\n' +
       (appeal.review_notes
-        ? (user.language_pref === 'en' ? 'Notes: ' : '備註：') + appeal.review_notes
+        ? i18n.t('appeal.notes') + appeal.review_notes
         : '');
   }
 

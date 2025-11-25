@@ -1,6 +1,6 @@
 /**
  * Avatar Background Update Service
- * 
+ *
  * Handles batch updating of expired avatar caches
  */
 
@@ -17,10 +17,10 @@ export async function batchUpdateExpiredAvatars(
   env: Env
 ): Promise<{ updated: number; failed: number }> {
   console.log('[AvatarBatchUpdate] Starting batch update...');
-  
+
   let updated = 0;
   let failed = 0;
-  
+
   try {
     // Find users with expired avatar cache (older than 7 days)
     const expiredUsers = await db.d1
@@ -37,14 +37,14 @@ export async function batchUpdateExpiredAvatars(
         is_vip: number;
         vip_expire_at: string | null;
       }>();
-    
+
     if (!expiredUsers.results || expiredUsers.results.length === 0) {
       console.log('[AvatarBatchUpdate] No expired avatars found');
       return { updated: 0, failed: 0 };
     }
-    
+
     console.log(`[AvatarBatchUpdate] Found ${expiredUsers.results.length} expired avatars`);
-    
+
     // Update each user's avatar
     for (const user of expiredUsers.results) {
       try {
@@ -54,7 +54,7 @@ export async function batchUpdateExpiredAvatars(
           user.vip_expire_at &&
           new Date(user.vip_expire_at) > new Date()
         );
-        
+
         // Update avatar cache
         await getAvatarUrlWithCache(
           db,
@@ -62,16 +62,19 @@ export async function batchUpdateExpiredAvatars(
           user.telegram_id,
           isVip,
           user.gender || undefined,
-          false  // Don't force refresh, let smart detection handle it
+          false // Don't force refresh, let smart detection handle it
         );
-        
+
         updated++;
       } catch (error) {
-        console.error(`[AvatarBatchUpdate] Failed to update avatar for user ${user.telegram_id}:`, error);
+        console.error(
+          `[AvatarBatchUpdate] Failed to update avatar for user ${user.telegram_id}:`,
+          error
+        );
         failed++;
       }
     }
-    
+
     console.log(`[AvatarBatchUpdate] Completed: ${updated} updated, ${failed} failed`);
     return { updated, failed };
   } catch (error) {
@@ -95,8 +98,7 @@ export async function updateAvatarInBackground(
     .then(() => {
       console.log(`[AvatarBgUpdate] Successfully updated avatar for user ${userId}`);
     })
-    .catch(error => {
+    .catch((error) => {
       console.error(`[AvatarBgUpdate] Failed to update avatar for user ${userId}:`, error);
     });
 }
-

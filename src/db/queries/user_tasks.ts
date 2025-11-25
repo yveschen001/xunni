@@ -21,17 +21,14 @@ export async function getUserTask(
     )
     .bind(userId, taskId)
     .first<UserTask>();
-  
+
   return result;
 }
 
 /**
  * Get all user tasks
  */
-export async function getAllUserTasks(
-  db: DatabaseClient,
-  userId: string
-): Promise<UserTask[]> {
+export async function getAllUserTasks(db: DatabaseClient, userId: string): Promise<UserTask[]> {
   const result = await db.d1
     .prepare(
       `SELECT id, user_id, task_id, status, completed_at, reward_claimed
@@ -41,7 +38,7 @@ export async function getAllUserTasks(
     )
     .bind(userId)
     .all<UserTask>();
-  
+
   return result.results || [];
 }
 
@@ -57,7 +54,7 @@ export async function upsertUserTask(
 ): Promise<void> {
   const now = new Date().toISOString();
   const completedAt = status === 'completed' ? now : null;
-  
+
   await db.d1
     .prepare(
       `INSERT INTO user_tasks (user_id, task_id, status, completed_at, reward_claimed, updated_at)
@@ -97,10 +94,7 @@ export async function completeTask(
 /**
  * Get incomplete tasks for user
  */
-export async function getIncompleteTasks(
-  db: DatabaseClient,
-  userId: string
-): Promise<string[]> {
+export async function getIncompleteTasks(db: DatabaseClient, userId: string): Promise<string[]> {
   const result = await db.d1
     .prepare(
       `SELECT task_id
@@ -109,8 +103,8 @@ export async function getIncompleteTasks(
     )
     .bind(userId)
     .all<{ task_id: string }>();
-  
-  return (result.results || []).map(r => r.task_id);
+
+  return (result.results || []).map((r) => r.task_id);
 }
 
 /**
@@ -121,7 +115,7 @@ export async function getTasksCompletedToday(
   userId: string
 ): Promise<UserTask[]> {
   const today = new Date().toISOString().split('T')[0];
-  
+
   const result = await db.d1
     .prepare(
       `SELECT id, user_id, task_id, status, completed_at, reward_claimed
@@ -133,7 +127,7 @@ export async function getTasksCompletedToday(
     )
     .bind(userId, today)
     .all<UserTask>();
-  
+
   return result.results || [];
 }
 
@@ -154,7 +148,6 @@ export async function getUsersWithIncompleteTask(
     )
     .bind(taskId)
     .all<{ telegram_id: string }>();
-  
+
   return result.results || [];
 }
-

@@ -17,7 +17,7 @@ export async function getAllTasks(db: DatabaseClient): Promise<Task[]> {
        ORDER BY sort_order ASC`
     )
     .all<Task>();
-  
+
   return result.results || [];
 }
 
@@ -33,17 +33,14 @@ export async function getTaskById(db: DatabaseClient, taskId: string): Promise<T
     )
     .bind(taskId)
     .first<Task>();
-  
+
   return result;
 }
 
 /**
  * Get tasks by category
  */
-export async function getTasksByCategory(
-  db: DatabaseClient,
-  category: string
-): Promise<Task[]> {
+export async function getTasksByCategory(db: DatabaseClient, category: string): Promise<Task[]> {
   const result = await db.d1
     .prepare(
       `SELECT id, category, name, description, reward_amount, reward_type, sort_order, is_enabled
@@ -53,7 +50,6 @@ export async function getTasksByCategory(
     )
     .bind(category)
     .all<Task>();
-  
+
   return result.results || [];
 }
-

@@ -84,13 +84,18 @@ async function matchPrimarySlot(
     const { findUserByTelegramId } = await import('~/db/queries/users');
     console.error('[VipTripleBottle] Verifying matched user exists in database...');
     const matchedUser = await findUserByTelegramId(db, matchResult.user.telegram_id);
-    
+
     if (!matchedUser) {
-      console.error('[VipTripleBottle] ❌ Matched user NOT FOUND in database:', matchResult.user.telegram_id);
-      console.error('[VipTripleBottle] This user was returned by smart matching but does not exist in users table');
+      console.error(
+        '[VipTripleBottle] ❌ Matched user NOT FOUND in database:',
+        matchResult.user.telegram_id
+      );
+      console.error(
+        '[VipTripleBottle] This user was returned by smart matching but does not exist in users table'
+      );
       return { matched: false };
     }
-    
+
     console.error('[VipTripleBottle] ✅ Matched user verified:', {
       telegram_id: matchedUser.telegram_id,
       nickname: matchedUser.nickname,
@@ -110,7 +115,7 @@ async function matchPrimarySlot(
       matcher: matchedUser.telegram_id,
       bottleId,
     });
-    
+
     // 注意：createConversation 的參數順序是 (db, bottleId, userAId, userBId)
     const conversationId = await createConversation(
       db,
@@ -118,13 +123,15 @@ async function matchPrimarySlot(
       bottleOwner.telegram_id,
       matchedUser.telegram_id
     );
-    
+
     // 驗證對話創建成功
     if (!conversationId) {
-      console.error('[VipTripleBottle] ❌ Failed to create conversation - conversationId is null/undefined');
+      console.error(
+        '[VipTripleBottle] ❌ Failed to create conversation - conversationId is null/undefined'
+      );
       return { matched: false };
     }
-    
+
     console.error('[VipTripleBottle] ✅ Conversation created successfully:', conversationId);
 
     // 更新槽位狀態
@@ -133,7 +140,7 @@ async function matchPrimarySlot(
       matchedWithTelegramId: matchedUser.telegram_id,
       conversationId,
     });
-    
+
     try {
       await updateSlotMatched(db, slot.id, matchedUser.telegram_id, conversationId);
       console.error('[VipTripleBottle] ✅ Slot #1 matched successfully');
@@ -150,9 +157,13 @@ async function matchPrimarySlot(
       return { matched: false };
     }
 
+    // 獲取用戶語言偏好並創建 i18n 實例（用於通知和 fallback）
+    const { createI18n } = await import('~/i18n');
+    const i18n = createI18n(bottleOwner.language_pref || 'zh-TW');
+
     // 發送通知給雙方
     try {
-      await sendMatchNotifications(db, env, bottleId, bottleOwner, matchedUser, conversationId);
+      await sendMatchNotifications(db, env, bottleId, bottleOwner, matchedUser, conversationId, i18n);
       console.error('[VipTripleBottle] Notifications sent successfully');
     } catch (notifyError) {
       console.error('[VipTripleBottle] Failed to send notifications:', notifyError);
@@ -160,7 +171,9 @@ async function matchPrimarySlot(
     }
 
     // 返回配對信息
-    const { generateNextIdentifier, formatIdentifier } = await import('~/domain/conversation_identifier');
+    const { generateNextIdentifier, formatIdentifier } = await import(
+      '~/domain/conversation_identifier'
+    );
     const { maskNickname } = await import('~/domain/invite');
     const { formatNicknameWithFlag } = await import('~/utils/country_flag');
 
@@ -173,7 +186,7 @@ async function matchPrimarySlot(
       conversationId,
       conversationIdentifier: formattedIdentifier,
       matcherNickname: formatNicknameWithFlag(
-        maskNickname(matchedUser.nickname || '匿名'),
+        maskNickname(matchedUser.nickname || i18n.t('common.anonymousUser')),
         matchedUser.country_code
       ),
     };
@@ -192,11 +205,14 @@ async function sendMatchNotifications(
   bottleId: number,
   bottleOwner: User,
   matcher: User,
-  _conversationId: number
+  _conversationId: number,
+  i18n?: any
 ): Promise<void> {
   const telegram = createTelegramService(env);
   const { getBottleById } = await import('~/db/queries/bottles');
-  const { generateNextIdentifier, formatIdentifier } = await import('~/domain/conversation_identifier');
+  const { generateNextIdentifier, formatIdentifier } = await import(
+    '~/domain/conversation_identifier'
+  );
   const { maskNickname } = await import('~/domain/invite');
   const { formatNicknameWithFlag } = await import('~/utils/country_flag');
 
@@ -209,42 +225,49 @@ async function sendMatchNotifications(
 
   // 🚀 性能優化：並行發送通知（節省 1s）
   // 準備通知內容
+  const anonymousUser = i18n?.t('common.anonymousUser') || '匿名';
   const maskedMatcherNickname = formatNicknameWithFlag(
-    maskNickname(matcher.nickname || '匿名'),
+    maskNickname(matcher.nickname || anonymousUser),
     matcher.country_code
   );
   const maskedOwnerNickname = formatNicknameWithFlag(
-    maskNickname(bottleOwner.nickname || '匿名'),
+    maskNickname(bottleOwner.nickname || anonymousUser),
     bottleOwner.country_code
   );
+
+  // 準備瓶子內容（截斷前 50 字符）
+  const bottleContentPreview = bottle.content.substring(0, 50) + (bottle.content.length > 50 ? '...' : '');
 
   // 並行發送兩個通知
   await Promise.allSettled([
     // 通知瓶子主人
-    telegram.sendMessage(
-      parseInt(bottleOwner.telegram_id),
-      `🎯 **VIP 智能配對成功！**\n\n` +
-        `你的瓶子已被 ${maskedMatcherNickname} 撿起！\n\n` +
-        `💬 對話標識符：${conversationIdentifier}\n` +
-        `📝 瓶子內容：${bottle.content.substring(0, 50)}${bottle.content.length > 50 ? '...' : ''}\n\n` +
-        `💡 這是你的第 1 個配對，還有 2 個槽位等待中\n\n` +
-        `使用 /chats 查看所有對話\n\n` +
-        `💬 **請長按此訊息，選擇「回覆」後輸入內容和對方開始聊天**`
-    ).catch(error => {
-      console.error('[VipTripleBottle] Failed to notify bottle owner:', error);
-    }),
-    
+    telegram
+      .sendMessage(
+        parseInt(bottleOwner.telegram_id),
+        (i18n?.t('vipTripleBottle.matchSuccess') || '🎯 **VIP 智能配對成功！**\n\n') +
+          (i18n?.t('vipTripleBottle.bottlePicked', { maskedMatcherNickname }) || `你的瓶子已被 ${maskedMatcherNickname} 撿起！\n\n`) +
+          (i18n?.t('vipTripleBottle.conversationIdentifier', { conversationIdentifier }) || `💬 對話標識符：${conversationIdentifier}\n`) +
+          (i18n?.t('vipTripleBottle.bottleContent', { content: bottleContentPreview }) || `📝 瓶子內容：${bottleContentPreview}\n\n`) +
+          (i18n?.t('vipTripleBottle.firstMatch') || `💡 這是你的第 1 個配對，還有 2 個槽位等待中\n\n`) +
+          (i18n?.t('vipTripleBottle.viewChats') || `使用 /chats 查看所有對話\n\n`) +
+          (i18n?.t('vipTripleBottle.replyHint') || `💬 **請長按此訊息，選擇「回覆」後輸入內容和對方開始聊天**`)
+      )
+      .catch((error) => {
+        console.error('[VipTripleBottle] Failed to notify bottle owner:', error);
+      }),
+
     // 通知撿瓶子的人
-    telegram.sendMessage(
-      parseInt(matcher.telegram_id),
-      `🎉 **智能配對成功！**\n\n` +
-        `系統為你找到了 ${maskedOwnerNickname} 的瓶子！\n\n` +
-        `💬 對話標識符：${conversationIdentifier}\n` +
-        `📝 瓶子內容：${bottle.content}\n\n` +
-        `💬 **請長按此訊息，選擇「回覆」後輸入內容和對方開始聊天**`
-    ).catch(error => {
-      console.error('[VipTripleBottle] Failed to notify matcher:', error);
-    })
+    telegram
+      .sendMessage(
+        parseInt(matcher.telegram_id),
+        (i18n?.t('vipTripleBottle.smartMatch') || '🎉 **智能配對成功！**\n\n') +
+          (i18n?.t('vipTripleBottle.foundBottle', { maskedOwnerNickname }) || `系統為你找到了 ${maskedOwnerNickname} 的瓶子！\n\n`) +
+          (i18n?.t('vipTripleBottle.conversationIdentifier', { conversationIdentifier }) || `💬 對話標識符：${conversationIdentifier}\n`) +
+          (i18n?.t('vipTripleBottle.bottleContent', { content: bottle.content }) || `📝 瓶子內容：${bottle.content}\n\n`) +
+          (i18n?.t('vipTripleBottle.replyHint') || `💬 **請長按此訊息，選擇「回覆」後輸入內容和對方開始聊天**`)
+      )
+      .catch((error) => {
+        console.error('[VipTripleBottle] Failed to notify matcher:', error);
+      }),
   ]);
 }
-

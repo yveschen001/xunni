@@ -9,6 +9,7 @@ import { createDatabaseClient } from '~/db/client';
 import { createTelegramService } from '~/services/telegram';
 import { findUserByTelegramId } from '~/db/queries/users';
 import { getOtherUserId } from '~/domain/conversation';
+import { createI18n } from '~/i18n';
 
 export async function handleReport(message: TelegramMessage, env: Env): Promise<void> {
   const db = createDatabaseClient(env.DB);
@@ -19,14 +20,16 @@ export async function handleReport(message: TelegramMessage, env: Env): Promise<
   try {
     // Get user
     const user = await findUserByTelegramId(db, telegramId);
+    const i18n = createI18n(user?.language_pref || 'zh-TW');
+    
     if (!user) {
-      await telegram.sendMessage(chatId, '⚠️ 用戶不存在，請先使用 /start 註冊。');
+      await telegram.sendMessage(chatId, i18n.t('report.userNotFound'));
       return;
     }
 
     // Check if user completed onboarding
     if (user.onboarding_step !== 'completed') {
-      await telegram.sendMessage(chatId, '⚠️ 請先完成註冊流程。\n\n使用 /start 繼續註冊。');
+      await telegram.sendMessage(chatId, i18n.t('report.completeOnboarding'));
       return;
     }
 
@@ -34,12 +37,12 @@ export async function handleReport(message: TelegramMessage, env: Env): Promise<
     if (!message.reply_to_message) {
       await telegram.sendMessage(
         chatId,
-        '⚠️ 請長按你要舉報的訊息後回覆指令\n\n' +
-          '**操作步驟：**\n' +
-          '1️⃣ 長按對方的訊息\n' +
-          '2️⃣ 選擇「回覆」\n' +
-          '3️⃣ 輸入 /report\n\n' +
-          '💡 這樣可以準確指定要舉報的對象。'
+        i18n.t('report.replyRequired') +
+          i18n.t('report.steps') +
+          i18n.t('report.step1') +
+          i18n.t('report.step2') +
+          i18n.t('report.step3') +
+          i18n.t('report.hint')
       );
       return;
     }
@@ -51,7 +54,7 @@ export async function handleReport(message: TelegramMessage, env: Env): Promise<
     if (!conversationMatch) {
       await telegram.sendMessage(
         chatId,
-        '⚠️ 無法識別對話對象\n\n' + '請確保回覆的是對方發送的訊息（帶有 # 標識符）。'
+        i18n.t('report.cannotIdentify') + i18n.t('report.ensureReply')
       );
       return;
     }
@@ -74,14 +77,14 @@ export async function handleReport(message: TelegramMessage, env: Env): Promise<
       .first<any>();
 
     if (!conversation) {
-      await telegram.sendMessage(chatId, '⚠️ 找不到此對話\n\n' + '對話可能已結束或不存在。');
+      await telegram.sendMessage(chatId, i18n.t('report.conversationNotFound'));
       return;
     }
 
     // Get the other user
     const otherUserId = getOtherUserId(conversation, telegramId);
     if (!otherUserId) {
-      await telegram.sendMessage(chatId, '⚠️ 對話資訊錯誤。');
+      await telegram.sendMessage(chatId, i18n.t('report.conversationInfoError'));
       return;
     }
 
@@ -97,19 +100,22 @@ export async function handleReport(message: TelegramMessage, env: Env): Promise<
     // Show report reasons
     await telegram.sendMessageWithButtons(
       chatId,
-      `🚨 **舉報不當內容** (#${conversationIdentifier})\n\n` + '請選擇舉報原因：',
+      i18n.t('report.title', { identifier: conversationIdentifier }) +
+        i18n.t('report.selectReason'),
       [
-        [{ text: '🔞 色情內容', callback_data: 'report_reason_nsfw' }],
-        [{ text: '💰 詐騙 / 釣魚', callback_data: 'report_reason_scam' }],
-        [{ text: '😡 騷擾 / 辱罵', callback_data: 'report_reason_harassment' }],
-        [{ text: '📢 垃圾廣告', callback_data: 'report_reason_spam' }],
-        [{ text: '⚠️ 其他違規', callback_data: 'report_reason_other' }],
-        [{ text: '❌ 取消', callback_data: 'report_cancel' }],
+        [{ text: i18n.t('report.reasonNsfw'), callback_data: 'report_reason_nsfw' }],
+        [{ text: i18n.t('report.reasonScam'), callback_data: 'report_reason_scam' }],
+        [{ text: i18n.t('report.reasonHarassment'), callback_data: 'report_reason_harassment' }],
+        [{ text: i18n.t('report.reasonSpam'), callback_data: 'report_reason_spam' }],
+        [{ text: i18n.t('report.reasonOther'), callback_data: 'report_reason_other' }],
+        [{ text: i18n.t('report.cancel'), callback_data: 'report_cancel' }],
       ]
     );
   } catch (error) {
     console.error('[handleReport] Error:', error);
-    await telegram.sendMessage(chatId, '❌ 系統發生錯誤，請稍後再試。');
+    const user = await findUserByTelegramId(db, telegramId);
+    const i18n = createI18n(user?.language_pref || 'zh-TW');
+    await telegram.sendMessage(chatId, i18n.t('error.text6'));
   }
 }
 
@@ -129,8 +135,10 @@ export async function handleReportReason(
   try {
     // Get user
     const user = await findUserByTelegramId(db, telegramId);
+    const i18n = createI18n(user?.language_pref || 'zh-TW');
+    
     if (!user) {
-      await telegram.answerCallbackQuery(callbackQuery.id, '⚠️ 用戶不存在');
+      await telegram.answerCallbackQuery(callbackQuery.id, i18n.t('warning.userNotFound2'));
       return;
     }
 
@@ -139,7 +147,7 @@ export async function handleReportReason(
     const session = await getSession(db, telegramId);
 
     if (!session?.report_conversation_id) {
-      await telegram.answerCallbackQuery(callbackQuery.id, '⚠️ 會話已過期，請重新操作');
+      await telegram.answerCallbackQuery(callbackQuery.id, i18n.t('report.sessionExpired'));
       await telegram.deleteMessage(chatId, callbackQuery.message!.message_id);
       return;
     }
@@ -154,14 +162,14 @@ export async function handleReportReason(
       .first<any>();
 
     if (!conversation) {
-      await telegram.answerCallbackQuery(callbackQuery.id, '⚠️ 對話不存在');
+      await telegram.answerCallbackQuery(callbackQuery.id, i18n.t('report.conversationNotExists'));
       return;
     }
 
     // Get the other user
     const otherUserId = getOtherUserId(conversation, telegramId);
     if (!otherUserId) {
-      await telegram.answerCallbackQuery(callbackQuery.id, '⚠️ 對話資訊錯誤');
+      await telegram.answerCallbackQuery(callbackQuery.id, i18n.t('report.conversationInfoError2'));
       return;
     }
 
@@ -179,7 +187,7 @@ export async function handleReportReason(
         db,
         telegram,
         otherUserId,
-        '多次被舉報 / Multiple reports',
+        i18n.t('report.multipleReports'),
         recentReports,
         env
       );
@@ -189,7 +197,7 @@ export async function handleReportReason(
     await clearSession(db, telegramId);
 
     // Answer callback
-    await telegram.answerCallbackQuery(callbackQuery.id, '✅ 舉報已提交');
+    await telegram.answerCallbackQuery(callbackQuery.id, i18n.t('success.reportSubmitted'));
 
     // Delete report menu
     await telegram.deleteMessage(chatId, callbackQuery.message!.message_id);
@@ -197,15 +205,17 @@ export async function handleReportReason(
     // Send confirmation
     await telegram.sendMessage(
       chatId,
-      `✅ **舉報已提交** (#${conversationIdentifier})\n\n` +
-        '感謝你的舉報，我們會盡快審核。\n\n' +
-        '💡 提示：\n' +
-        '• 長按對方訊息回覆 /block 可封鎖此使用者\n' +
-        '• 使用 /catch 撿新的漂流瓶'
+      i18n.t('report.submitted', { identifier: conversationIdentifier }) +
+        i18n.t('report.thanks') +
+        i18n.t('report.tips') +
+        i18n.t('report.blockHint') +
+        i18n.t('report.catchHint')
     );
   } catch (error) {
     console.error('[handleReportReason] Error:', error);
-    await telegram.answerCallbackQuery(callbackQuery.id, '❌ 系統發生錯誤');
+    const user = await findUserByTelegramId(db, telegramId);
+    const i18n = createI18n(user?.language_pref || 'zh-TW');
+    await telegram.answerCallbackQuery(callbackQuery.id, i18n.t('report.systemError'));
   }
 }
 
@@ -214,9 +224,14 @@ export async function handleReportReason(
  */
 export async function handleReportCancel(callbackQuery: any, env: Env): Promise<void> {
   const telegram = createTelegramService(env);
+  const db = createDatabaseClient(env.DB);
   const chatId = callbackQuery.message!.chat.id;
+  const telegramId = callbackQuery.from.id.toString();
+  
+  const user = await findUserByTelegramId(db, telegramId);
+  const i18n = createI18n(user?.language_pref || 'zh-TW');
 
-  await telegram.answerCallbackQuery(callbackQuery.id, '已取消');
+  await telegram.answerCallbackQuery(callbackQuery.id, i18n.t('report.cancelled'));
   await telegram.deleteMessage(chatId, callbackQuery.message!.message_id);
 }
 
@@ -374,13 +389,13 @@ async function autoBanUser(
 
   let duration: string;
   if (banHours < 24) {
-    duration = `${banHours} ${user.language_pref === 'en' ? 'hours' : '小時'}`;
+    duration = i18n.t('admin.ban.durationHours', { hours: banHours });
   } else {
     const days = Math.floor(banHours / 24);
-    duration = `${days} ${user.language_pref === 'en' ? 'days' : '天'}`;
+    duration = i18n.t('admin.ban.durationDays', { days });
   }
 
-  const message = i18n.t('ban.temporaryBan', {
+  const message = i18n.t('admin.ban.temporaryBan', {
     duration,
     unbanTime,
   });

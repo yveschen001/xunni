@@ -11,6 +11,8 @@
 import type { Env, TelegramMessage } from '~/types';
 import { createDatabaseClient } from '~/db/client';
 import { createTelegramService } from '~/services/telegram';
+import { findUserByTelegramId } from '~/db/queries/users';
+import { createI18n } from '~/i18n';
 
 /**
  * Check if dev commands are allowed in current environment
@@ -32,15 +34,17 @@ export async function handleDevReset(message: TelegramMessage, env: Env): Promis
 
   // SECURITY CHECK: Only allow in staging/development
   if (!isDevCommandAllowed(env)) {
-    await telegram.sendMessage(
-      chatId,
-      '❌ 此命令在生產環境中不可用。\n\nThis command is not available in production.'
-    );
+    const { createI18n } = await import('~/i18n');
+    const i18n = createI18n('zh-TW'); // Dev messages default to zh-TW
+    await telegram.sendMessage(chatId, i18n.t('dev.notAvailableInProduction'));
     return;
   }
 
   const db = createDatabaseClient(env.DB);
   const telegramId = message.from!.id.toString();
+  const user = await findUserByTelegramId(db, telegramId);
+  const { createI18n } = await import('~/i18n');
+  const i18n = createI18n(user?.language_pref || 'zh-TW');
 
   try {
     // Delete user data - ignore errors for non-existent tables
@@ -70,7 +74,7 @@ export async function handleDevReset(message: TelegramMessage, env: Env): Promis
 
       // Level 1: 最深層的子表（依賴其他子表）
       { sql: 'DELETE FROM refund_requests WHERE user_id = ?', params: [telegramId] },
-      
+
       // Level 2: 依賴 bottles 和 conversations 的表
       {
         sql: 'DELETE FROM matching_history WHERE matched_user_id = ?',
@@ -110,18 +114,18 @@ export async function handleDevReset(message: TelegramMessage, env: Env): Promis
       { sql: 'DELETE FROM payments WHERE telegram_id = ?', params: [telegramId] },
       { sql: 'DELETE FROM user_sessions WHERE telegram_id = ?', params: [telegramId] },
       { sql: 'DELETE FROM bottle_drafts WHERE telegram_id = ?', params: [telegramId] },
-      
+
       // Ad rewards and analytics
       { sql: 'DELETE FROM ad_rewards WHERE telegram_id = ?', params: [telegramId] },
       { sql: 'DELETE FROM ad_provider_logs WHERE telegram_id = ?', params: [telegramId] },
       { sql: 'DELETE FROM analytics_events WHERE user_id = ?', params: [telegramId] },
       { sql: 'DELETE FROM funnel_events WHERE user_id = ?', params: [telegramId] },
       { sql: 'DELETE FROM daily_user_summary WHERE user_id = ?', params: [telegramId] },
-      
+
       // Tasks
       { sql: 'DELETE FROM user_tasks WHERE user_id = ?', params: [telegramId] },
       { sql: 'DELETE FROM task_reminders WHERE user_id = ?', params: [telegramId] },
-      
+
       // VIP subscriptions (after refund_requests)
       { sql: 'DELETE FROM vip_subscriptions WHERE user_id = ?', params: [telegramId] },
 
@@ -130,23 +134,28 @@ export async function handleDevReset(message: TelegramMessage, env: Env): Promis
     ];
 
     console.error('[handleDevReset] Starting data deletion...');
-    
+
     // Delete in multiple passes to handle foreign key constraints
     // Pass 1: Try to delete all tables (some may fail due to FK constraints)
     const failedTables: Array<{ sql: string; params: any[] }> = [];
-    
+
     for (const { sql, params } of tables) {
       try {
         const result = await db.d1
           .prepare(sql)
           .bind(...params)
           .run();
-        console.error(`[handleDevReset] Deleted from ${sql.split(' ')[2]}: ${result.meta?.changes || 0} rows`);
+        console.error(
+          `[handleDevReset] Deleted from ${sql.split(' ')[2]}: ${result.meta?.changes || 0} rows`
+        );
       } catch (err: any) {
         const errorMsg = err?.message || String(err);
         // If it's a foreign key constraint error, save for retry
         if (errorMsg.includes('FOREIGN KEY') || errorMsg.includes('constraint')) {
-          console.error(`[handleDevReset] FK constraint, will retry: ${sql.split(' ')[2]}`, errorMsg);
+          console.error(
+            `[handleDevReset] FK constraint, will retry: ${sql.split(' ')[2]}`,
+            errorMsg
+          );
           failedTables.push({ sql, params });
         } else {
           // Other errors (table not found, etc.) - just log and continue
@@ -154,7 +163,7 @@ export async function handleDevReset(message: TelegramMessage, env: Env): Promis
         }
       }
     }
-    
+
     // Pass 2: Retry failed tables (parent tables should be deleted now)
     if (failedTables.length > 0) {
       console.error(`[handleDevReset] Retrying ${failedTables.length} tables...`);
@@ -164,45 +173,42 @@ export async function handleDevReset(message: TelegramMessage, env: Env): Promis
             .prepare(sql)
             .bind(...params)
             .run();
-          console.error(`[handleDevReset] Retry success: ${sql.split(' ')[2]}: ${result.meta?.changes || 0} rows`);
+          console.error(
+            `[handleDevReset] Retry success: ${sql.split(' ')[2]}: ${result.meta?.changes || 0} rows`
+          );
         } catch (err: any) {
-          console.error(`[handleDevReset] Retry failed: ${sql.split(' ')[2]}`, err?.message || String(err));
+          console.error(
+            `[handleDevReset] Retry failed: ${sql.split(' ')[2]}`,
+            err?.message || String(err)
+          );
           // Continue anyway - some tables may not exist or have no data
         }
       }
     }
 
     console.error('[handleDevReset] Data deletion complete, verifying user deletion...');
-    
+
     // Verify user is deleted
     const existingUser = await db.d1
       .prepare('SELECT telegram_id FROM users WHERE telegram_id = ?')
       .bind(telegramId)
       .first();
-    
+
     if (existingUser) {
       console.error('[handleDevReset] User still exists after deletion, force deleting...');
-      await db.d1
-        .prepare('DELETE FROM users WHERE telegram_id = ?')
-        .bind(telegramId)
-        .run();
+      await db.d1.prepare('DELETE FROM users WHERE telegram_id = ?').bind(telegramId).run();
     }
-    
+
     console.error('[handleDevReset] Reset complete');
 
-    await telegram.sendMessage(
-      chatId,
-      '✅ 開發模式：數據已重置\n\n' +
-        '你的所有數據已被刪除。\n\n' +
-        '💡 現在可以重新開始測試註冊流程。\n\n' +
-        '🔄 重新註冊：/start\n' +
-        '或使用：/dev_restart（自動開始註冊）\n\n' +
-        '⚠️ 注意：此功能僅在 Staging 環境可用。'
-    );
+    const user = await findUserByTelegramId(db, telegramId);
+    const i18n = createI18n(user?.language_pref || 'zh-TW');
+    
+    await telegram.sendMessage(chatId, i18n.t('dev.dataReset'));
   } catch (error) {
     console.error('[handleDevReset] Error:', error);
     const errorMessage = error instanceof Error ? error.message : String(error);
-    await telegram.sendMessage(chatId, `❌ 重置失敗：${errorMessage}\n\n請稍後再試。`);
+    await telegram.sendMessage(chatId, i18n.t('dev.resetFailed', { error: errorMessage }));
   }
 }
 
@@ -217,16 +223,16 @@ export async function handleDevInfo(message: TelegramMessage, env: Env): Promise
   const chatId = message.chat.id;
 
   // SECURITY CHECK: Only allow in staging/development
-  if (!isDevCommandAllowed(env)) {
-    await telegram.sendMessage(
-      chatId,
-      '❌ 此命令在生產環境中不可用。\n\nThis command is not available in production.'
-    );
-    return;
-  }
-
   const db = createDatabaseClient(env.DB);
   const telegramId = message.from!.id.toString();
+  const tempUser = await findUserByTelegramId(db, telegramId);
+  const { createI18n } = await import('~/i18n');
+  const i18n = createI18n(tempUser?.language_pref || 'zh-TW');
+  
+  if (!isDevCommandAllowed(env)) {
+    await telegram.sendMessage(chatId, i18n.t('dev.notAvailableInProduction'));
+    return;
+  }
 
   try {
     // Get user info
@@ -236,7 +242,7 @@ export async function handleDevInfo(message: TelegramMessage, env: Env): Promise
       .first();
 
     if (!user) {
-      await telegram.sendMessage(chatId, '❌ 用戶不存在');
+      await telegram.sendMessage(chatId, i18n.t('dev.userNotFound'));
       return;
     }
 
@@ -272,29 +278,29 @@ export async function handleDevInfo(message: TelegramMessage, env: Env): Promise
       .first<{ total: number; activated: number; pending: number }>();
 
     const info =
-      '🔧 開發模式：用戶信息\n\n' +
-      `Telegram ID: ${user.telegram_id}\n` +
-      `昵稱: ${user.nickname || '未設置'}\n` +
-      `註冊步驟: ${user.onboarding_step}\n` +
-      `VIP: ${user.is_vip ? '是' : '否'}\n` +
-      `語言: ${user.language_pref}\n` +
-      `邀請碼: ${user.invite_code || '未生成'}\n` +
-      `被誰邀請: ${user.invited_by || '無'}\n\n` +
-      `統計:\n` +
-      `• 漂流瓶: ${bottlesCount?.count || 0}\n` +
-      `• 對話: ${conversationsCount?.count || 0}\n` +
-      `• 訊息: ${messagesCount?.count || 0}\n\n` +
-      `邀請統計:\n` +
-      `• successful_invites: ${user.successful_invites || 0}\n` +
-      `• 邀請記錄總數: ${inviteStats?.total || 0}\n` +
-      `• 已激活: ${inviteStats?.activated || 0}\n` +
-      `• 待激活: ${inviteStats?.pending || 0}\n\n` +
-      `⚠️ 此功能僅在 Staging 環境可用。`;
+      i18n.t('dev.userInfo') +
+      i18n.t('dev.telegramId', { id: user.telegram_id }) +
+      i18n.t('dev.nickname', { nickname: user.nickname || i18n.t('dev.notSet') }) +
+      i18n.t('dev.onboardingStep', { step: user.onboarding_step }) +
+      i18n.t('dev.vip', { status: user.is_vip ? i18n.t('dev.yes') : i18n.t('dev.no') }) +
+      i18n.t('dev.language', { lang: user.language_pref }) +
+      i18n.t('dev.inviteCode', { code: user.invite_code || i18n.t('dev.notGenerated') }) +
+      i18n.t('dev.invitedBy', { invitedBy: user.invited_by || i18n.t('dev.none') }) +
+      i18n.t('dev.stats') +
+      i18n.t('dev.bottles', { count: bottlesCount?.count || 0 }) +
+      i18n.t('dev.conversations', { count: conversationsCount?.count || 0 }) +
+      i18n.t('dev.messages', { count: messagesCount?.count || 0 }) +
+      i18n.t('dev.inviteStats') +
+      i18n.t('dev.successfulInvites', { count: user.successful_invites || 0 }) +
+      i18n.t('dev.inviteTotal', { count: inviteStats?.total || 0 }) +
+      i18n.t('dev.inviteActivated', { count: inviteStats?.activated || 0 }) +
+      i18n.t('dev.invitePending', { count: inviteStats?.pending || 0 }) +
+      i18n.t('dev.stagingOnly');
 
     await telegram.sendMessage(chatId, info);
   } catch (error) {
     console.error('[handleDevInfo] Error:', error);
-    await telegram.sendMessage(chatId, '❌ 獲取信息失敗');
+    await telegram.sendMessage(chatId, i18n.t('dev.getUserInfoFailed'));
   }
 }
 
@@ -310,10 +316,9 @@ export async function handleDevRestart(message: TelegramMessage, env: Env): Prom
 
   // SECURITY CHECK: Only allow in staging/development
   if (!isDevCommandAllowed(env)) {
-    await telegram.sendMessage(
-      chatId,
-      '❌ 此命令在生產環境中不可用。\n\nThis command is not available in production.'
-    );
+    const { createI18n } = await import('~/i18n');
+    const i18n = createI18n('zh-TW'); // Dev messages default to zh-TW
+    await telegram.sendMessage(chatId, i18n.t('dev.notAvailableInProduction'));
     return;
   }
 
@@ -326,7 +331,7 @@ export async function handleDevRestart(message: TelegramMessage, env: Env): Prom
     const tables = [
       // Level 1: 最深層的子表（依賴其他子表）
       { sql: 'DELETE FROM refund_requests WHERE user_id = ?', params: [telegramId] },
-      
+
       // Level 2: 依賴 bottles 和 conversations 的表
       {
         sql: 'DELETE FROM matching_history WHERE matched_user_id = ?',
@@ -378,18 +383,18 @@ export async function handleDevRestart(message: TelegramMessage, env: Env): Prom
       { sql: 'DELETE FROM payments WHERE telegram_id = ?', params: [telegramId] },
       { sql: 'DELETE FROM user_sessions WHERE telegram_id = ?', params: [telegramId] },
       { sql: 'DELETE FROM bottle_drafts WHERE telegram_id = ?', params: [telegramId] },
-      
+
       // Ad rewards and analytics
       { sql: 'DELETE FROM ad_rewards WHERE telegram_id = ?', params: [telegramId] },
       { sql: 'DELETE FROM ad_provider_logs WHERE telegram_id = ?', params: [telegramId] },
       { sql: 'DELETE FROM analytics_events WHERE user_id = ?', params: [telegramId] },
       { sql: 'DELETE FROM funnel_events WHERE user_id = ?', params: [telegramId] },
       { sql: 'DELETE FROM daily_user_summary WHERE user_id = ?', params: [telegramId] },
-      
+
       // Tasks
       { sql: 'DELETE FROM user_tasks WHERE user_id = ?', params: [telegramId] },
       { sql: 'DELETE FROM task_reminders WHERE user_id = ?', params: [telegramId] },
-      
+
       // VIP subscriptions (after refund_requests)
       { sql: 'DELETE FROM vip_subscriptions WHERE user_id = ?', params: [telegramId] },
 
@@ -398,23 +403,28 @@ export async function handleDevRestart(message: TelegramMessage, env: Env): Prom
     ];
 
     console.error('[handleDevRestart] Starting data deletion...');
-    
+
     // Delete in multiple passes to handle foreign key constraints
     // Pass 1: Try to delete all tables (some may fail due to FK constraints)
     const failedTables: Array<{ sql: string; params: any[] }> = [];
-    
+
     for (const { sql, params } of tables) {
       try {
         const result = await db.d1
           .prepare(sql)
           .bind(...params)
           .run();
-        console.error(`[handleDevRestart] Deleted from ${sql.split(' ')[2]}: ${result.meta?.changes || 0} rows`);
+        console.error(
+          `[handleDevRestart] Deleted from ${sql.split(' ')[2]}: ${result.meta?.changes || 0} rows`
+        );
       } catch (err: any) {
         const errorMsg = err?.message || String(err);
         // If it's a foreign key constraint error, save for retry
         if (errorMsg.includes('FOREIGN KEY') || errorMsg.includes('constraint')) {
-          console.error(`[handleDevRestart] FK constraint, will retry: ${sql.split(' ')[2]}`, errorMsg);
+          console.error(
+            `[handleDevRestart] FK constraint, will retry: ${sql.split(' ')[2]}`,
+            errorMsg
+          );
           failedTables.push({ sql, params });
         } else {
           // Other errors (table not found, etc.) - just log and continue
@@ -422,7 +432,7 @@ export async function handleDevRestart(message: TelegramMessage, env: Env): Prom
         }
       }
     }
-    
+
     // Pass 2: Retry failed tables (parent tables should be deleted now)
     if (failedTables.length > 0) {
       console.error(`[handleDevRestart] Retrying ${failedTables.length} tables...`);
@@ -432,35 +442,37 @@ export async function handleDevRestart(message: TelegramMessage, env: Env): Prom
             .prepare(sql)
             .bind(...params)
             .run();
-          console.error(`[handleDevRestart] Retry success: ${sql.split(' ')[2]}: ${result.meta?.changes || 0} rows`);
+          console.error(
+            `[handleDevRestart] Retry success: ${sql.split(' ')[2]}: ${result.meta?.changes || 0} rows`
+          );
         } catch (err: any) {
-          console.error(`[handleDevRestart] Retry failed: ${sql.split(' ')[2]}`, err?.message || String(err));
+          console.error(
+            `[handleDevRestart] Retry failed: ${sql.split(' ')[2]}`,
+            err?.message || String(err)
+          );
           // Continue anyway - some tables may not exist or have no data
         }
       }
     }
 
     console.error('[handleDevRestart] Data deletion complete, verifying user deletion...');
-    
+
     // Verify user is deleted
     const existingUser = await db.d1
       .prepare('SELECT telegram_id FROM users WHERE telegram_id = ?')
       .bind(telegramId)
       .first();
-    
+
     if (existingUser) {
       console.error('[handleDevRestart] User still exists after deletion, force deleting...');
-      await db.d1
-        .prepare('DELETE FROM users WHERE telegram_id = ?')
-        .bind(telegramId)
-        .run();
-      
+      await db.d1.prepare('DELETE FROM users WHERE telegram_id = ?').bind(telegramId).run();
+
       // Wait a bit to ensure deletion is committed
-      await new Promise(resolve => setTimeout(resolve, 100));
+      await new Promise((resolve) => setTimeout(resolve, 100));
     }
-    
+
     console.error('[handleDevRestart] Creating new user...');
-    
+
     // Create user record with language_selection step
     const { generateInviteCode } = await import('~/domain/user');
     const { createUser } = await import('~/db/queries/users');
@@ -479,16 +491,18 @@ export async function handleDevRestart(message: TelegramMessage, env: Env): Prom
     });
 
     console.error('[handleDevRestart] User created, showing language selection...');
-    
+
     // Show language selection (start onboarding)
     const { showLanguageSelection } = await import('./language_selection');
     await showLanguageSelection(message, env);
-    
+
     console.error('[handleDevRestart] Language selection shown successfully');
   } catch (error) {
     console.error('[handleDevRestart] Error:', error);
     const errorMessage = error instanceof Error ? error.message : String(error);
-    await telegram.sendMessage(chatId, `❌ 重置失敗：${errorMessage}\n\n請稍後再試。`);
+    const { createI18n } = await import('~/i18n');
+    const i18n = createI18n('zh-TW'); // Dev messages default to zh-TW
+    await telegram.sendMessage(chatId, i18n.t('dev.resetFailed', { error: errorMessage }));
   }
 }
 
@@ -504,20 +518,24 @@ export async function handleDevSkip(message: TelegramMessage, env: Env): Promise
 
   // SECURITY CHECK: Only allow in staging/development
   if (!isDevCommandAllowed(env)) {
-    await telegram.sendMessage(
-      chatId,
-      '❌ 此命令在生產環境中不可用。\n\nThis command is not available in production.'
-    );
+    const { createI18n } = await import('~/i18n');
+    const i18n = createI18n('zh-TW'); // Dev messages default to zh-TW
+    await telegram.sendMessage(chatId, i18n.t('dev.notAvailableInProduction'));
     return;
   }
 
   const db = createDatabaseClient(env.DB);
   const telegramId = message.from!.id.toString();
 
+  const { createI18n } = await import('~/i18n');
+  const i18n = createI18n('zh-TW'); // Dev messages default to zh-TW
+
   try {
     // Generate invite code
     const { generateInviteCode } = await import('~/domain/user');
     const inviteCode = generateInviteCode();
+
+    const testUserNickname = i18n.t('dev.testUser');
 
     // Create or update user with completed onboarding
     await db.d1
@@ -540,7 +558,7 @@ export async function handleDevSkip(message: TelegramMessage, env: Env): Promise
       ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
       ON CONFLICT(telegram_id) DO UPDATE SET
         onboarding_step = 'completed',
-        nickname = '測試用戶',
+        nickname = ?,
         gender = 'male',
         birthday = '2000-01-01',
         age = 25,
@@ -553,7 +571,7 @@ export async function handleDevSkip(message: TelegramMessage, env: Env): Promise
         telegramId,
         message.from!.username || '',
         message.from!.first_name || '',
-        '測試用戶',
+        testUserNickname,
         'male',
         '2000-01-01',
         25,
@@ -562,22 +580,23 @@ export async function handleDevSkip(message: TelegramMessage, env: Env): Promise
         inviteCode,
         'completed',
         100,
-        1
+        1,
+        testUserNickname
       )
       .run();
 
     await telegram.sendMessage(
       chatId,
-      '✅ 開發模式：跳過註冊\n\n' +
-        '已自動完成註冊流程。\n\n' +
-        '💡 現在可以直接測試核心功能：\n' +
-        '• /throw - 丟漂流瓶\n' +
-        '• /catch - 撿漂流瓶\n' +
-        '• /stats - 查看統計\n\n' +
-        '⚠️ 此功能僅在 Staging 環境可用。'
+      i18n.t('dev.skipRegistration') +
+        i18n.t('dev.autoCompleted') +
+        i18n.t('dev.testCoreFeatures') +
+        i18n.t('dev.throwCommand') +
+        i18n.t('dev.catchCommand') +
+        i18n.t('dev.statsCommand') +
+        i18n.t('dev.stagingOnly')
     );
   } catch (error) {
     console.error('[handleDevSkip] Error:', error);
-    await telegram.sendMessage(chatId, '❌ 跳過失敗');
+    await telegram.sendMessage(chatId, i18n.t('dev.skipFailed'));
   }
 }

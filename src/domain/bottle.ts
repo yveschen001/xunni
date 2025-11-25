@@ -41,11 +41,17 @@ const MAX_BOTTLE_LENGTH = 250;
  */
 export function validateBottleContent(content: string): {
   valid: boolean;
-  error?: string;
+  error?: string; // 保留，向后兼容
+  errorCode?: string; // 新增，用于 i18n
+  errorParams?: Record<string, any>; // 新增，用于 i18n 参数
   riskScore?: number;
 } {
   if (!content || content.trim().length === 0) {
-    return { valid: false, error: '瓶子內容不能為空' };
+    return {
+      valid: false,
+      error: '瓶子內容不能為空', // 保留，向后兼容
+      errorCode: 'bottle.empty', // 新增
+    };
   }
 
   const trimmedContent = content.trim();
@@ -54,14 +60,18 @@ export function validateBottleContent(content: string): {
   if (trimmedContent.length < MIN_BOTTLE_LENGTH) {
     return {
       valid: false,
-      error: `瓶子內容太短，至少需要 ${MIN_BOTTLE_LENGTH} 個字符（目前 ${trimmedContent.length} 個字符）`,
+      error: `瓶子內容太短，至少需要 ${MIN_BOTTLE_LENGTH} 個字符（目前 ${trimmedContent.length} 個字符）`, // 保留
+      errorCode: 'bottle.tooShort', // 新增
+      errorParams: { min: MIN_BOTTLE_LENGTH, current: trimmedContent.length }, // 新增
     };
   }
 
   if (content.length > MAX_BOTTLE_LENGTH) {
     return {
       valid: false,
-      error: `瓶子內容太長，最多 ${MAX_BOTTLE_LENGTH} 個字符（目前 ${content.length} 個字符）`,
+      error: `瓶子內容太長，最多 ${MAX_BOTTLE_LENGTH} 個字符（目前 ${content.length} 個字符）`, // 保留
+      errorCode: 'bottle.tooLong', // 新增
+      errorParams: { max: MAX_BOTTLE_LENGTH, current: content.length }, // 新增
     };
   }
 
@@ -70,18 +80,20 @@ export function validateBottleContent(content: string): {
   if (urlPattern.test(content)) {
     return {
       valid: false,
-      error: '瓶子內容不允許包含任何連結',
+      error: '瓶子內容不允許包含任何連結', // 保留
+      errorCode: 'bottle.containsUrl', // 新增
       riskScore: 10, // URL risk score
     };
   }
 
   // Sensitive word detection (本地敏感词检测)
   const moderationResult = performLocalModeration(content);
-  
+
   if (!moderationResult.is_safe) {
     return {
       valid: false,
-      error: '瓶子內容包含不適當的內容，請修改後重新提交',
+      error: '瓶子內容包含不適當的內容，請修改後重新提交', // 保留
+      errorCode: 'bottle.inappropriate', // 新增
       riskScore: moderationResult.risk_score,
     };
   }
@@ -110,7 +122,13 @@ export function calculateBottleExpiration(): string {
 /**
  * Check if user can throw bottle (quota check)
  */
-export function canThrowBottle(throwsToday: number, isVip: boolean, inviteBonus: number, taskBonus: number = 0, adBonus: number = 0): boolean {
+export function canThrowBottle(
+  throwsToday: number,
+  isVip: boolean,
+  inviteBonus: number,
+  taskBonus: number = 0,
+  adBonus: number = 0
+): boolean {
   const baseQuota = isVip ? 30 : 3;
   const maxQuota = isVip ? 100 : 10;
   const quota = Math.min(baseQuota + inviteBonus, maxQuota) + taskBonus + adBonus;
@@ -121,7 +139,13 @@ export function canThrowBottle(throwsToday: number, isVip: boolean, inviteBonus:
 /**
  * Check if user can catch bottle (quota check)
  */
-export function canCatchBottle(catchesToday: number, isVip: boolean, inviteBonus: number, taskBonus: number = 0, adBonus: number = 0): boolean {
+export function canCatchBottle(
+  catchesToday: number,
+  isVip: boolean,
+  inviteBonus: number,
+  taskBonus: number = 0,
+  adBonus: number = 0
+): boolean {
   const baseQuota = isVip ? 30 : 3;
   const maxQuota = isVip ? 100 : 10;
   const quota = Math.min(baseQuota + inviteBonus, maxQuota) + taskBonus + adBonus;
