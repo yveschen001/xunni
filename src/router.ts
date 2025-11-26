@@ -743,6 +743,12 @@ export async function routeUpdate(update: TelegramUpdate, env: Env): Promise<voi
       return;
     }
 
+    if (text === '/payments') {
+      const { handlePayments } = await import('./telegram/handlers/payments');
+      await handlePayments(message, env);
+      return;
+    }
+
     if (text === '/vip_refund') {
       const { handleVipRefund } = await import('./telegram/handlers/vip_refund');
       await handleVipRefund(message, env);
@@ -1652,6 +1658,31 @@ export async function routeUpdate(update: TelegramUpdate, env: Env): Promise<voi
     if (data === 'vip_purchase') {
       const { handleVipPurchase } = await import('./telegram/handlers/vip');
       await handleVipPurchase(callbackQuery, env);
+      return;
+    }
+
+    // VIP menu callback (return to VIP main menu)
+    if (data === 'vip_menu') {
+      // Create a fake message object to reuse handleVip
+      const fakeMessage = {
+        ...callbackQuery.message!,
+        from: callbackQuery.from,
+        text: '/vip',
+      };
+      const { handleVip } = await import('./telegram/handlers/vip');
+      await handleVip(fakeMessage as any, env);
+      // Delete the previous message to clean up UI (optional, but handleVip sends new message)
+      // Actually handleVip sends a NEW message. 
+      // If we want to replace, we should modify handleVip or just delete old one here.
+      // Let's delete old one to keep chat clean.
+      await telegram.deleteMessage(chatId, callbackQuery.message!.message_id);
+      return;
+    }
+
+    // Payment history pagination
+    if (data.startsWith('payments_page_')) {
+      const { handlePaymentsCallback } = await import('./telegram/handlers/payments');
+      await handlePaymentsCallback(callbackQuery, env);
       return;
     }
 

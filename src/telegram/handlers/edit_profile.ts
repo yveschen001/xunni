@@ -86,7 +86,7 @@ export async function handleEditProfile(message: TelegramMessage, env: Env): Pro
         '\n\n' +
         i18n.t('common.text27') +
         '\n' +
-        i18n.t('common.gender', { updatedUser: { gender: genderDisplay } }) +
+        i18n.t('common.gender', { gender: genderDisplay }) +
         '\n' +
         i18n.t('common.birthday', { updatedUser: { birthday: user.birthday } }) +
         '\n' +
@@ -193,7 +193,7 @@ export async function handleEditProfileCallback(
         '\n\n' +
         i18n.t('common.text27') +
         '\n' +
-        i18n.t('common.gender', { updatedUser: { gender: genderDisplay } }) +
+        i18n.t('common.gender', { gender: genderDisplay }) +
         '\n' +
         i18n.t('common.birthday', { updatedUser: { birthday: user.birthday } }) +
         '\n' +
@@ -748,7 +748,7 @@ export async function handleProfileEditInput(message: TelegramMessage, env: Env)
             '\n' +
             updatedI18n.t('common.settings5', { updatedUser: { bio: bioDisplay } }) +
             '\n' +
-            updatedI18n.t('common.settings7', { user: { city: cityDisplay } }) +
+            updatedI18n.t('common.settings6', { updatedUser: { city: cityDisplay } }) +
             '\n' +
             updatedI18n.t('common.settings2', { updatedUser: { interests: interestsDisplay } }) +
             '\n' +
@@ -758,7 +758,7 @@ export async function handleProfileEditInput(message: TelegramMessage, env: Env)
             '\n\n' +
             updatedI18n.t('common.text27') +
             '\n' +
-            updatedI18n.t('common.gender', { updatedUser: { gender: genderDisplay } }) +
+            updatedI18n.t('common.gender', { gender: genderDisplay }) +
             '\n' +
             updatedI18n.t('common.birthday', { updatedUser: { birthday: updatedUser.birthday } }) +
             '\n' +
@@ -799,6 +799,7 @@ export async function handleProfileEditInput(message: TelegramMessage, env: Env)
         const { checkUrlWhitelist } = await import('~/utils/url-whitelist');
         const urlCheck = checkUrlWhitelist(text);
         if (!urlCheck.allowed) {
+          const blockedUrls = urlCheck.blockedUrls?.map((url) => `• ${url}`).join('\n') || '';
           await telegram.sendMessageWithButtons(
             chatId,
             i18n.t('errors.error.text2') +
@@ -808,9 +809,8 @@ export async function handleProfileEditInput(message: TelegramMessage, env: Env)
               '• t.me (Telegram)\n' +
               '• telegram.org\n' +
               '• telegram.me\n\n' +
-              i18n.t('common.message18') +
-              '\n' +
-              `${urlCheck.blockedUrls?.map((url) => `• ${url}`).join('\n')}\n\n` +
+              i18n.t('common.message18', { blockedUrls }) +
+              '\n\n' +
               i18n.t('common.cancel'),
             [[{ text: i18n.t('errors.error.cancel6'), callback_data: 'edit_profile_callback' }]]
           );
@@ -834,7 +834,7 @@ export async function handleProfileEditInput(message: TelegramMessage, env: Env)
         }
 
         await deleteSession(db, telegramId, SESSION_TYPE);
-        await telegram.sendMessageWithButtons(chatId, i18n.t('success.text4') + '\n\n' + text, [
+        await telegram.sendMessageWithButtons(chatId, i18n.t('success.text4', { text }), [
           [{ text: i18n.t('common.short3'), callback_data: 'edit_profile_callback' }],
           [{ text: i18n.t('common.back3'), callback_data: 'return_to_menu' }],
         ]);

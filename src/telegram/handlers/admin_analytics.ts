@@ -53,7 +53,7 @@ export async function handleAnalytics(message: any, env: Env): Promise<void> {
 
     // Generate report
     const report = await generateDailyReport(db.d1, today);
-    const message_text = formatDailyReport(report, i18n);
+    const message_text = await formatDailyReport(report, i18n);
 
     await telegram.sendMessage(chatId, message_text);
   } catch (error) {
@@ -100,7 +100,7 @@ export async function handleAdPerformance(message: any, env: Env): Promise<void>
     const report = await generateAdPerformanceReport(db.d1, startDateStr, endDateStr);
     // (user already fetched above)
     const i18n = createI18n(user?.language_pref || 'zh-TW');
-    const message_text = formatAdPerformanceReport(report, i18n);
+    const message_text = await formatAdPerformanceReport(report, i18n);
 
     await telegram.sendMessage(chatId, message_text);
   } catch (error) {

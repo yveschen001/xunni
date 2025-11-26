@@ -464,13 +464,14 @@ export async function handleNextTaskCallback(
         break;
       }
 
-      default:
+      default: {
         const { createI18n } = await import('~/i18n');
         const { findUserByTelegramId } = await import('~/db/queries/users');
         const db = createDatabaseClient(env.DB);
         const user = await findUserByTelegramId(db, callbackQuery.from.id.toString());
         const i18n = createI18n(user?.language_pref || 'zh-TW');
         await telegram.sendMessage(chatId, i18n.t('errors.invalidRequest'));
+      }
     }
   } catch (error) {
     console.error('[handleNextTaskCallback] Error:', error);

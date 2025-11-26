@@ -168,13 +168,14 @@ async function handleBirthdayInput(
   await telegram.sendMessageWithButtons(
     chatId,
     i18n.t('onboarding.confirmBirthday') +
-      i18n.t('onboarding.birthday', { birthday }) +
-      i18n.t('onboarding.age', { age }) +
-      i18n.t('onboarding.zodiac', { zodiac: zodiacSign }) +
+      `\n生日：${birthday}\n` +
+      i18n.t('onboarding.age', { updatedUser: { age } }) +
+      i18n.t('onboarding.zodiac', { updatedUser: { zodiac_sign: zodiacSign } }) +
+      '\n\n' +
       i18n.t('onboarding.birthdayWarning'),
     [
       [
-        { text: i18n.t('onboarding.confirm'), callback_data: `confirm_birthday_${birthday}` },
+        { text: i18n.t('success.confirm3'), callback_data: `confirm_birthday_${birthday}` },
         { text: i18n.t('onboarding.retry'), callback_data: 'retry_birthday' },
       ],
     ]
@@ -213,16 +214,19 @@ async function handleAntiFraudInput(
     const i18n = createI18n(user.language_pref || 'zh-TW');
     await telegram.sendMessageWithButtons(
       chatId,
-      i18n.t('onboarding.antiFraudPassed') +
-        i18n.t('onboarding.lastStep') +
-        i18n.t('onboarding.privacyPolicy') +
-        i18n.t('onboarding.termsOfService') +
-        i18n.t('onboarding.legalDocuments') +
-        i18n.t('onboarding.agreeTerms'),
+      i18n.t('onboarding.start') +
+        '\n\n' +
+        i18n.t('onboarding.text21') +
+        '\n' +
+        i18n.t('onboarding.text19') +
+        '\n\n' +
+        i18n.t('onboarding.terms.english_only_note') +
+        '\n\n' +
+        i18n.t('onboarding.text7'),
       [
-        [{ text: i18n.t('onboarding.iHaveRead'), callback_data: 'agree_terms' }],
-        [{ text: i18n.t('onboarding.viewPrivacyPolicy'), url: LEGAL_URLS.PRIVACY_POLICY }],
-        [{ text: i18n.t('onboarding.viewTermsOfService'), url: LEGAL_URLS.TERMS_OF_SERVICE }],
+        [{ text: i18n.t('onboarding.terms.agree_button'), callback_data: 'agree_terms' }],
+        [{ text: i18n.t('onboarding.terms.privacy_policy_button'), url: LEGAL_URLS.PRIVACY_POLICY }],
+        [{ text: i18n.t('onboarding.terms.terms_of_service_button'), url: LEGAL_URLS.TERMS_OF_SERVICE }],
       ]
     );
 

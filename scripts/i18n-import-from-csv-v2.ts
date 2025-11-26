@@ -54,19 +54,57 @@ function generateLocaleFile(language: string, translations: any): string {
     
     content += `  ${namespace}: {\n`;
     
-    // Sort keys
-    const keyNames = Object.keys(keys).sort();
-    for (let j = 0; j < keyNames.length; j++) {
-      const key = keyNames[j];
+    // Group keys by nested namespace (e.g., "quick.question1" -> quick: { question1: ... })
+    const nested: Record<string, Record<string, string>> = {};
+    const flat: Record<string, string> = {};
+    
+    for (const key of Object.keys(keys)) {
       const value = keys[key];
+      const keyParts = key.split('.');
       
-      // Escape value
+      if (keyParts.length > 1) {
+        // Nested key (e.g., "quick.question1")
+        const nestedNs = keyParts[0];
+        const nestedKey = keyParts.slice(1).join('.');
+        
+        if (!nested[nestedNs]) {
+          nested[nestedNs] = {};
+        }
+        nested[nestedNs][nestedKey] = value;
+      } else {
+        // Flat key (e.g., "yes")
+        flat[key] = value;
+      }
+    }
+    
+    // Write flat keys first
+    const flatKeys = Object.keys(flat).sort();
+    for (let j = 0; j < flatKeys.length; j++) {
+      const key = flatKeys[j];
+      const value = flat[key];
       const escapedValue = escapeString(value);
-      
-      // Quote key if needed
       const quotedKey = /[.-]/.test(key) ? `'${key}'` : key;
-      
       content += `    ${quotedKey}: \`${escapedValue}\`,\n`;
+    }
+    
+    // Write nested namespaces
+    const nestedNamespaces = Object.keys(nested).sort();
+    for (let j = 0; j < nestedNamespaces.length; j++) {
+      const nestedNs = nestedNamespaces[j];
+      const nestedKeys = nested[nestedNs];
+      
+      content += `    ${nestedNs}: {\n`;
+      
+      const nestedKeyNames = Object.keys(nestedKeys).sort();
+      for (let k = 0; k < nestedKeyNames.length; k++) {
+        const nestedKey = nestedKeyNames[k];
+        const value = nestedKeys[nestedKey];
+        const escapedValue = escapeString(value);
+        const quotedKey = /[.-]/.test(nestedKey) ? `'${nestedKey}'` : nestedKey;
+        content += `      ${quotedKey}: \`${escapedValue}\`,\n`;
+      }
+      
+      content += `    },\n`;
     }
     
     content += `  },\n`;
@@ -81,6 +119,20 @@ async function main() {
   console.log('📥 Reading CSV file...');
   
   const csvPath = join(process.cwd(), 'i18n_for_translation.csv');
+  
+  // 🛡️ 保护机制：在导入前检查关键 key
+  try {
+    const { checkCriticalKeys } = await import('./protect-csv-keys.js');
+    const protection = checkCriticalKeys(csvPath);
+    if (!protection.passed) {
+      console.error('\n❌ 关键 key 检查失败！导入已取消。');
+      console.error('请先恢复缺失的关键 key 后再导入。');
+      process.exit(1);
+    }
+  } catch (e) {
+    console.warn('⚠️  无法运行保护检查，继续导入...');
+  }
+  
   const csvContent = readFileSync(csvPath, 'utf-8');
   
   console.log('📊 Parsing CSV...');
@@ -106,7 +158,8 @@ async function main() {
     
     if (!fullKey) continue;
     
-    // Parse namespace and key from fullKey (e.g., "common.yes" -> namespace: "common", key: "yes")
+    // Parse namespace and key from fullKey
+    // Support nested namespaces: "mbti.quick.question1" -> namespace: "mbti", nested: "quick", key: "question1"
     const parts = fullKey.split('.');
     if (parts.length < 2) {
       console.warn(`⚠️  Skipping invalid key: ${fullKey}`);

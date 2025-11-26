@@ -7,8 +7,7 @@ import type { Translations } from '../types';
 export const translations: Translations = {
   ad: {
     ad: `💡 继续观看广告可获得更多额度！ （已修正）`,
-    bottle: `[需要翻译]`,
-    bottle2: `[需要翻译]`,
+    failed: `❌ 廣告載入失敗，請稍後再試`,
   },
   adPrompt: {
     completeTask: `• ✨ 完成任务（获得永久配额）`,
@@ -21,8 +20,10 @@ export const translations: Translations = {
     waysToGetMore: `💡 获得更多配额的方式：`,
   },
   adProvider: {
-    'health.good': `良好`,
-    'health.needsAttention': `需要关注`,
+    health: {
+      good: `良好`,
+      needsAttention: `需要关注`,
+    },
   },
   adReward: {
     adCompleted: `广告完成！获得 +\${quota} 个配额`,
@@ -59,51 +60,6 @@ export const translations: Translations = {
     ad5: `📢 **官方广告列表**
 
 `,
-    'adConfig.adIdMustBeNumber': `❌ 广告 ID 必须是数字`,
-    'adConfig.addOfficialAdScript': `请使用资料库脚本添加官方广告：`,
-    'adConfig.addProviderScript': `请使用资料库脚本添加广告提供商：`,
-    'adConfig.clicks': `• 点击: \${count} 次`,
-    'adConfig.correctFormat': `**正确格式：**`,
-    'adConfig.disableCommand': `• \`/ad_provider_disable \` - 停用 \`/ad_provider_disable <id>\``,
-    'adConfig.disableFailed': `❌ 停用广告提供商失败`,
-    'adConfig.disableOfficialAdCommand': `• \`/official_ad_disable \` - 停用 \`/official_ad_disable <id>\``,
-    'adConfig.disableOfficialAdFailed': `❌ 停用官方广告失败`,
-    'adConfig.disabled': `❌ 停用`,
-    'adConfig.enableCommand': `• \`/ad_provider_enable \` - 启用 \`/ad_provider_enable <id>\``,
-    'adConfig.enableFailed': `❌ 启用广告提供商失败`,
-    'adConfig.enableOfficialAdCommand': `• \`/official_ad_enable \` - 启用 \`/official_ad_enable <id>\``,
-    'adConfig.enableOfficialAdFailed': `❌ 启用官方广告失败`,
-    'adConfig.enabled': `✅ 启用`,
-    'adConfig.example': `**范例：**`,
-    'adConfig.getListFailed': `❌ 获取广告提供商列表失败`,
-    'adConfig.getOfficialAdListFailed': `❌ 获取官方广告列表失败`,
-    'adConfig.id': `• ID: \${id}`,
-    'adConfig.impressions': `• 展示: \${count} 次`,
-    'adConfig.managementCommands': `**管理命令：**`,
-    'adConfig.noOfficialAds': `⚠️ 目前没有官方广告`,
-    'adConfig.noProviders': `⚠️ 目前没有配置任何广告提供商`,
-    'adConfig.officialAdDisabled': `✅ 已停用官方广告 #\${id}`,
-    'adConfig.officialAdEnabled': `✅ 已启用官方广告 #\${id}`,
-    'adConfig.officialAdList': `📢 **官方广告列表**`,
-    'adConfig.priority': `• 优先级: \${priority}`,
-    'adConfig.priorityCommand': `• \`/ad_provider_priority \` - 设置优先级 \`/ad_provider_priority <id> <priority>\``,
-    'adConfig.priorityMustBeNonNegative': `❌ 优先级必须是非负整数`,
-    'adConfig.prioritySet': `✅ 已设置广告提供商优先级`,
-    'adConfig.priorityValue': `优先级：\${priority}`,
-    'adConfig.provider': `提供商：\${name}`,
-    'adConfig.providerDisabled': `✅ 已停用广告提供商：\${name}`,
-    'adConfig.providerEnabled': `✅ 已启用广告提供商：\${name}`,
-    'adConfig.providerList': `📺 **广告提供商列表**`,
-    'adConfig.reward': `• 奖励: \${reward} 额度`,
-    'adConfig.setPriorityFailed': `❌ 设置优先级失败`,
-    'adConfig.status': `• 状态: \${status}`,
-    'adConfig.testMode': `• 🧪 测试模式`,
-    'adConfig.type': `• 类型: \${type}`,
-    'adConfig.usageError': `❌ 使用方法错误`,
-    'adConfig.viewAllOfficialAds': `使用 /official_ads 查看所有广告`,
-    'adConfig.viewAllProviders': `使用 /ad_providers 查看所有提供商`,
-    'adConfig.viewStatsCommand': `• \`/ad_stats \` - 查看详细统计 \`/ad_stats <id>\``,
-    'adConfig.weight': `• 权重: \${weight}`,
     addAlreadyAdmin: `❌ 此用户已经是管理员。`,
     addAlreadySuperAdmin: `❌ 此用户已经是超级管理员，无需添加。`,
     addCommand: `\`/admin_add <user_id>\`
@@ -147,15 +103,6 @@ export const translations: Translations = {
     admin6: `\`/admin_remove 123456789\` - 移除普通管理员
 
 `,
-    'analytics.getAdDataFailed': `❌ 获取广告数据失败`,
-    'analytics.getDataFailed': `❌ 获取分析数据失败`,
-    'analytics.getVipDataFailed': `❌ 获取 VIP 漏斗数据失败`,
-    'analytics.noPermission': `❌ 你没有权限查看分析数据`,
-    'analytics.noPermissionAd': `❌ 你没有权限查看广告数据`,
-    'analytics.noPermissionVip': `❌ 你没有权限查看 VIP 数据`,
-    'analytics.onlySuperAdmin': `❌ 只有超级管理员可以使用此命令。`,
-    'analytics.sendReportFailed': `❌ 发送每日报表失败：\${error}`,
-    'analytics.userNotFound': `❌ 用户不存在：\${userId}`,
     appeal: `申诉 ID: \${appeal.id}
 `,
     appeal2: `💡 使用以下命令审核申诉：
@@ -196,58 +143,6 @@ export const translations: Translations = {
 
 `,
     ban: `💡 使用 /admin_bans <user_id> 查看特定用户的封禁历史`,
-    'ban.appealAlreadyReviewed': `❌ 申诉 {id} 已经被审核过了`,
-    'ban.appealApproved': `申诉已批准`,
-    'ban.appealApprovedUnbanned': `✅ 申诉 {id} 已批准，用户已解封`,
-    'ban.appealId': `申诉 ID: {id}
-`,
-    'ban.appealList': `📋 待审核申诉列表
-
-`,
-    'ban.appealNotFound': `❌ 找不到申诉 ID: {id}`,
-    'ban.appealReason': `理由: {reason}
-`,
-    'ban.appealRejected': `申诉被拒绝`,
-    'ban.appealRejectedMessage': `✅ 申诉 {id} 已拒绝`,
-    'ban.appealSubmittedAt': `提交时间: {time}
-
-`,
-    'ban.appealUser': `用户: {user}
-`,
-    'ban.banEnd': `结束: \${end}`,
-    'ban.banId': `ID: \${id}`,
-    'ban.banReason': `原因: \${reason}`,
-    'ban.banStart': `开始: \${start}`,
-    'ban.banUser': `用户: \${user}`,
-    'ban.durationDays': `{days} 天`,
-    'ban.durationHours': `{hours} 小时`,
-    'ban.durationMustBePositive': `❌ 时长必须是正整数或 "permanent"。`,
-    'ban.noAppeals': `✅ 目前没有待审核的申诉`,
-    'ban.noBanRecords': `❌ 用户 \${userId} 没有封禁记录`,
-    'ban.noBanRecordsList': `📊 目前没有封禁记录`,
-    'ban.noPermission': `❌ 你没有权限使用此命令。`,
-    'ban.notAdmin': `❌ 此用户不是管理员。`,
-    'ban.permanent': `永久`,
-    'ban.provideAppealId': `❌ 请提供申诉 ID
-
-`,
-    'ban.reason': `管理员封禁 / Admin ban`,
-    'ban.recentBans': `📊 最近 10 条封禁记录`,
-    'ban.riskScore': `风险分数: \${score}`,
-    'ban.temporaryBan': `🚫 你已被暂时封禁
-
-封禁时长：{duration}
-解封时间：{unbanTime}
-
-封禁原因：多次被举报
-
-如有疑问，请使用 /appeal 提出申诉。`,
-    'ban.totalBans': `总封禁次数: \${count}`,
-    'ban.usageApprove': `用法: /admin_approve <appeal_id> [备注]`,
-    'ban.usageReject': `用法: /admin_reject <appeal_id> [备注]`,
-    'ban.user': `用户: \${user}`,
-    'ban.userBanHistory': `📊 用户封禁历史`,
-    'ban.viewHistory': `💡 使用 /admin_bans <user_id> 查看特定用户的封禁历史`,
     ban2: `总封禁次数: \${userBans.results.length}
 
 `,
@@ -258,6 +153,11 @@ export const translations: Translations = {
 
 `,
     ban5: `📊 目前没有封禁记录`,
+    banSuccess: `✅ 已封禁用戶 {userId} ({nickname})
+
+封禁時長：{duration}
+解封時間：{unbanTime}`,
+    banSuccessPermanent: `✅ 已永久封禁用戶 {userId} ({nickname})`,
     banUsageError: `使用方式错误`,
     banUserNotFound: `用户不存在`,
     cannotBanAdmin: `无法封禁管理员`,
@@ -271,42 +171,6 @@ export const translations: Translations = {
     conversation5: `🔄 开始刷新您的对话历史...`,
     conversation6: `• 无对话历史帖子
 `,
-    'diagnose.allUpToDateFree': `✅ 所有帖子都是最新的（免费用户状态正确）`,
-    'diagnose.allUpToDateVip': `✅ 所有帖子都是最新的（VIP 状态正确）`,
-    'diagnose.analysis': `🔎 **分析：**`,
-    'diagnose.avatarCache': `📸 **头像缓存：**`,
-    'diagnose.blurredUrl': `• 模糊 URL：\${status}`,
-    'diagnose.createdWithVip': `• 创建时 VIP：\${status}`,
-    'diagnose.error': `错误：\${error}`,
-    'diagnose.failed': `❌ **诊断失败**`,
-    'diagnose.fileId': `• File ID：\${fileId}...`,
-    'diagnose.hasAvatar': `• 有头像：\${status}`,
-    'diagnose.historyPosts': `💬 **对话历史帖子：**`,
-    'diagnose.historyPostsHint': `💡 对话历史帖子只在有新消息时创建`,
-    'diagnose.isLatest': `• 最新：\${status}`,
-    'diagnose.morePosts': `...还有 \${count} 个帖子`,
-    'diagnose.nickname': `• 昵称：\${nickname}`,
-    'diagnose.no': `❌ 否`,
-    'diagnose.noCache': `• 无缓存`,
-    'diagnose.noHistoryPosts': `• 无对话历史帖子`,
-    'diagnose.noHistoryPostsWarning': `⚠️ 此用户没有对话历史帖子`,
-    'diagnose.none': `无`,
-    'diagnose.originalUrl': `• 原始 URL：\${status}`,
-    'diagnose.outdatedPostsFound': `⚠️ 发现 \${count} 个过时帖子需要刷新`,
-    'diagnose.postId': `• ID：\${id}`,
-    'diagnose.postTitle': `📝 **帖子 #\${identifier}-H\${postNumber}**`,
-    'diagnose.postUpdatedAt': `• 更新时间：\${date}`,
-    'diagnose.refreshHint': `💡 使用 /admin_refresh_vip_avatars 批量刷新`,
-    'diagnose.title': `🔍 **头像诊断报告**`,
-    'diagnose.totalPosts': `• 总数：\${count}`,
-    'diagnose.unknown': `未知`,
-    'diagnose.updatedAt': `• 更新时间：\${date}`,
-    'diagnose.userId': `• ID：\${userId}`,
-    'diagnose.userInfo': `👤 **用户信息：**`,
-    'diagnose.username': `• 用户名：@\${username}`,
-    'diagnose.vipExpire': `• VIP 到期：\${date}`,
-    'diagnose.vipStatus': `• VIP 状态：\${status}`,
-    'diagnose.yes': `✅ 是`,
     end: `结束: \${banEnd}
 
 `,
@@ -323,10 +187,14 @@ export const translations: Translations = {
 
 此命令仅限超级管理员使用。`,
     listFooter: `---`,
+    listId: `ID：{id}`,
+    listNickname: `暱稱：{nickname}`,
     listNotRegistered: `未注册`,
     listRoleAdmin: `管理员`,
     listRoleSuperAdmin: `超级管理员`,
     listTitle: `管理员列表`,
+    listTotal: `總數：{total}`,
+    listUsername: `用戶名：{username}`,
     message: `• 更新时间：\${new Date(post.updated_at).toLocaleString('zh-TW', { month: '2-digit', day: '2-digit', hour: '2-digit', minute: '2-digit' })}
 
 `,
@@ -409,33 +277,6 @@ export const translations: Translations = {
     onlyAdmin: `❌ 只有管理员可以使用此命令。`,
     onlySuperAdmin: `❌ 只有超级管理员可以使用此命令。`,
     operationFailed: `❌ 发生错误，请稍后再试。`,
-    'refresh.allUpToDate': `所有 VIP 用户的对话历史都是最新的！`,
-    'refresh.batchComplete': `✅ **批量刷新完成**`,
-    'refresh.checkHint': `请检查对话历史是否已更新为清晰头像。`,
-    'refresh.complete': `✅ **刷新完成**`,
-    'refresh.details': `📝 **详细结果：**`,
-    'refresh.duration': `⏱️ **耗时：** \${duration} 秒`,
-    'refresh.error': `错误：\${error}`,
-    'refresh.errorOccurred': `处理过程中发生错误，请查看日志。`,
-    'refresh.failed': `❌ **刷新失败**`,
-    'refresh.failedPosts': `• 失败帖子：\${count}`,
-    'refresh.failedUsers': `• 失败：\${count}`,
-    'refresh.moreUsers': `
-...还有 \${count} 个用户`,
-    'refresh.noRefreshNeeded': `✅ **无需刷新**`,
-    'refresh.outdatedPosts': `• 过时帖子：\${count}`,
-    'refresh.processedUsers': `• 处理用户：\${count}`,
-    'refresh.processing': `⏳ 正在处理，请稍候...`,
-    'refresh.startingBatchRefresh': `🔄 **开始批量刷新 VIP 头像**`,
-    'refresh.startingRefresh': `🔄 开始刷新您的对话历史...`,
-    'refresh.stats': `📊 **统计：**`,
-    'refresh.successUsers': `• 成功：\${count}`,
-    'refresh.summary': `📊 **总结：**`,
-    'refresh.totalVipUsers': `• 总 VIP 用户：\${count}`,
-    'refresh.updated': `• 更新：\${count} 个帖子`,
-    'refresh.updatedPosts': `• 更新帖子：\${count}`,
-    'refresh.userDetail': `• \${username}: \${updated} 更新, \${failed} 失败`,
-    'refresh.usersNeedingRefresh': `• 需要刷新：\${count}`,
     removeCannotRemoveSuperAdmin: `❌ 无法移除超级管理员。`,
     removeCommand: `\`/admin_remove <user_id>\`
 
@@ -467,9 +308,9 @@ export const translations: Translations = {
     settings: `• 昵称: \${targetUser?.nickname}
  {targetUser?.nickname || '未設定'} \${targetUser?.nickname}`,
     settings2: `• 昵称: \${targetUser.nickname}
- `,
+ {targetUser.nickname || '未設定'} \${targetUser.nickname}`,
     settings3: `• 昵称：\${user.nickname}
- `,
+ {user.nickname || '未設定'} \${user.nickname}`,
     settings4: `未设定`,
     settings5: `未设定`,
     settings6: `未设定`,
@@ -597,6 +438,7 @@ export const translations: Translations = {
 `,
     text9: `/official_ad_enable <ad_id>`,
     unbanNotBanned: `用户未被封禁`,
+    unbanSuccess: `✅ 已解封用戶 {userId}`,
     unbanUsageError: `解封使用方式错误`,
     unbanUserNotFound: `解封用户不存在`,
     userNotFound: `❌ 用户不存在。`,
@@ -623,6 +465,185 @@ export const translations: Translations = {
     vip9: `🔄 **VIP 续费**
 
 `,
+    adConfig: {
+      adIdMustBeNumber: `❌ 广告 ID 必须是数字`,
+      addOfficialAdScript: `请使用资料库脚本添加官方广告：`,
+      addProviderScript: `请使用资料库脚本添加广告提供商：`,
+      clicks: `• 点击: \${count} 次`,
+      correctFormat: `**正确格式：**`,
+      disableCommand: `• \`/ad_provider_disable \` - 停用 \`/ad_provider_disable <id>\``,
+      disableFailed: `❌ 停用广告提供商失败`,
+      disableOfficialAdCommand: `• \`/official_ad_disable \` - 停用 \`/official_ad_disable <id>\``,
+      disableOfficialAdFailed: `❌ 停用官方广告失败`,
+      disabled: `❌ 停用`,
+      enableCommand: `• \`/ad_provider_enable \` - 启用 \`/ad_provider_enable <id>\``,
+      enableFailed: `❌ 启用广告提供商失败`,
+      enableOfficialAdCommand: `• \`/official_ad_enable \` - 启用 \`/official_ad_enable <id>\``,
+      enableOfficialAdFailed: `❌ 启用官方广告失败`,
+      enabled: `✅ 启用`,
+      example: `**范例：**`,
+      getListFailed: `❌ 获取广告提供商列表失败`,
+      getOfficialAdListFailed: `❌ 获取官方广告列表失败`,
+      id: `• ID: \${id}`,
+      impressions: `• 展示: \${count} 次`,
+      managementCommands: `**管理命令：**`,
+      noOfficialAds: `⚠️ 目前没有官方广告`,
+      noProviders: `⚠️ 目前没有配置任何广告提供商`,
+      officialAdDisabled: `✅ 已停用官方广告 #\${id}`,
+      officialAdEnabled: `✅ 已启用官方广告 #\${id}`,
+      officialAdList: `📢 **官方广告列表**`,
+      priority: `• 优先级: \${priority}`,
+      priorityCommand: `• \`/ad_provider_priority \` - 设置优先级 \`/ad_provider_priority <id> <priority>\``,
+      priorityMustBeNonNegative: `❌ 优先级必须是非负整数`,
+      prioritySet: `✅ 已设置广告提供商优先级`,
+      priorityValue: `优先级：\${priority}`,
+      provider: `提供商：\${name}`,
+      providerDisabled: `✅ 已停用广告提供商：\${name}`,
+      providerEnabled: `✅ 已启用广告提供商：\${name}`,
+      providerList: `📺 **广告提供商列表**`,
+      reward: `• 奖励: \${reward} 额度`,
+      setPriorityFailed: `❌ 设置优先级失败`,
+      status: `• 状态: \${status}`,
+      testMode: `• 🧪 测试模式`,
+      type: `• 类型: \${type}`,
+      usageError: `❌ 使用方法错误`,
+      viewAllOfficialAds: `使用 /official_ads 查看所有广告`,
+      viewAllProviders: `使用 /ad_providers 查看所有提供商`,
+      viewStatsCommand: `• \`/ad_stats \` - 查看详细统计 \`/ad_stats <id>\``,
+      weight: `• 权重: \${weight}`,
+    },
+    analytics: {
+      getAdDataFailed: `❌ 获取广告数据失败`,
+      getDataFailed: `❌ 获取分析数据失败`,
+      getVipDataFailed: `❌ 获取 VIP 漏斗数据失败`,
+      noPermission: `❌ 你没有权限查看分析数据`,
+      noPermissionAd: `❌ 你没有权限查看广告数据`,
+      noPermissionVip: `❌ 你没有权限查看 VIP 数据`,
+      onlySuperAdmin: `❌ 只有超级管理员可以使用此命令。`,
+      sendReportFailed: `❌ 发送每日报表失败：\${error}`,
+      userNotFound: `❌ 用户不存在：\${userId}`,
+    },
+    ban: {
+      appealAlreadyReviewed: `❌ 申诉 {id} 已经被审核过了`,
+      appealApproved: `申诉已批准`,
+      appealApprovedUnbanned: `✅ 申诉 {id} 已批准，用户已解封`,
+      appealId: `申诉 ID: {id}
+`,
+      appealList: `📋 待审核申诉列表
+
+`,
+      appealNotFound: `❌ 找不到申诉 ID: {id}`,
+      appealReason: `理由: {reason}
+`,
+      appealRejected: `申诉被拒绝`,
+      appealRejectedMessage: `✅ 申诉 {id} 已拒绝`,
+      appealSubmittedAt: `提交时间: {time}
+
+`,
+      appealUser: `用户: {user}
+`,
+      banEnd: `结束: \${end}`,
+      banId: `ID: \${id}`,
+      banReason: `原因: \${reason}`,
+      banStart: `开始: \${start}`,
+      banUser: `用户: \${user}`,
+      durationDays: `{days} 天`,
+      durationHours: `{hours} 小时`,
+      durationMustBePositive: `❌ 时长必须是正整数或 "permanent"。`,
+      noAppeals: `✅ 目前没有待审核的申诉`,
+      noBanRecords: `❌ 用户 \${userId} 没有封禁记录`,
+      noBanRecordsList: `📊 目前没有封禁记录`,
+      noPermission: `❌ 你没有权限使用此命令。`,
+      notAdmin: `❌ 此用户不是管理员。`,
+      permanent: `永久`,
+      provideAppealId: `❌ 请提供申诉 ID
+
+`,
+      reason: `管理员封禁 / Admin ban`,
+      recentBans: `📊 最近 10 条封禁记录`,
+      riskScore: `风险分数: \${score}`,
+      temporaryBan: `🚫 你已被暂时封禁
+
+封禁时长：{duration}
+解封时间：{unbanTime}
+
+封禁原因：多次被举报
+
+如有疑问，请使用 /appeal 提出申诉。`,
+      totalBans: `总封禁次数: \${count}`,
+      usageApprove: `用法: /admin_approve <appeal_id> [备注]`,
+      usageReject: `用法: /admin_reject <appeal_id> [备注]`,
+      user: `用户: \${user}`,
+      userBanHistory: `📊 用户封禁历史`,
+      viewHistory: `💡 使用 /admin_bans <user_id> 查看特定用户的封禁历史`,
+    },
+    diagnose: {
+      allUpToDateFree: `✅ 所有帖子都是最新的（免费用户状态正确）`,
+      allUpToDateVip: `✅ 所有帖子都是最新的（VIP 状态正确）`,
+      analysis: `🔎 **分析：**`,
+      avatarCache: `📸 **头像缓存：**`,
+      blurredUrl: `• 模糊 URL：\${status}`,
+      createdWithVip: `• 创建时 VIP：\${status}`,
+      error: `错误：\${error}`,
+      failed: `❌ **诊断失败**`,
+      fileId: `• File ID：\${fileId}...`,
+      hasAvatar: `• 有头像：\${status}`,
+      historyPosts: `💬 **对话历史帖子：**`,
+      historyPostsHint: `💡 对话历史帖子只在有新消息时创建`,
+      isLatest: `• 最新：\${status}`,
+      morePosts: `...还有 \${count} 个帖子`,
+      nickname: `• 昵称：\${nickname}`,
+      no: `❌ 否`,
+      noCache: `• 无缓存`,
+      noHistoryPosts: `• 无对话历史帖子`,
+      noHistoryPostsWarning: `⚠️ 此用户没有对话历史帖子`,
+      none: `无`,
+      originalUrl: `• 原始 URL：\${status}`,
+      outdatedPostsFound: `⚠️ 发现 \${count} 个过时帖子需要刷新`,
+      postId: `• ID：\${id}`,
+      postTitle: `📝 **帖子 #\${identifier}-H\${postNumber}**`,
+      postUpdatedAt: `• 更新时间：\${date}`,
+      refreshHint: `💡 使用 /admin_refresh_vip_avatars 批量刷新`,
+      title: `🔍 **头像诊断报告**`,
+      totalPosts: `• 总数：\${count}`,
+      unknown: `未知`,
+      updatedAt: `• 更新时间：\${date}`,
+      userId: `• ID：\${userId}`,
+      userInfo: `👤 **用户信息：**`,
+      username: `• 用户名：@\${username}`,
+      vipExpire: `• VIP 到期：\${date}`,
+      vipStatus: `• VIP 状态：\${status}`,
+      yes: `✅ 是`,
+    },
+    refresh: {
+      allUpToDate: `所有 VIP 用户的对话历史都是最新的！`,
+      batchComplete: `✅ **批量刷新完成**`,
+      checkHint: `请检查对话历史是否已更新为清晰头像。`,
+      complete: `✅ **刷新完成**`,
+      details: `📝 **详细结果：**`,
+      duration: `⏱️ **耗时：** \${duration} 秒`,
+      error: `错误：\${error}`,
+      errorOccurred: `处理过程中发生错误，请查看日志。`,
+      failed: `❌ **刷新失败**`,
+      failedPosts: `• 失败帖子：\${count}`,
+      failedUsers: `• 失败：\${count}`,
+      moreUsers: `
+...还有 \${count} 个用户`,
+      noRefreshNeeded: `✅ **无需刷新**`,
+      outdatedPosts: `• 过时帖子：\${count}`,
+      processedUsers: `• 处理用户：\${count}`,
+      processing: `⏳ 正在处理，请稍候...`,
+      startingBatchRefresh: `🔄 **开始批量刷新 VIP 头像**`,
+      startingRefresh: `🔄 开始刷新您的对话历史...`,
+      stats: `📊 **统计：**`,
+      successUsers: `• 成功：\${count}`,
+      summary: `📊 **总结：**`,
+      totalVipUsers: `• 总 VIP 用户：\${count}`,
+      updated: `• 更新：\${count} 个帖子`,
+      updatedPosts: `• 更新帖子：\${count}`,
+      userDetail: `• \${username}: \${updated} 更新, \${failed} 失败`,
+      usersNeedingRefresh: `• 需要刷新：\${count}`,
+    },
   },
   adminNotification: {
     amount: `金额：\${stars} ⭐`,
@@ -661,7 +682,7 @@ export const translations: Translations = {
 • 购买意向：{vipPurchaseIntents} 次
 • 成功转化：{vipConversions} 次
 • 转化率：{vipConversionRate}%
-• 收入：\\\\\\\\\\\${vipRevenue}`,
+• 收入：\${vipRevenue}`,
     ad2: `📊 **广告效果报表**
 📅 期间：{start} ~ {end}
 
@@ -793,6 +814,8 @@ export const translations: Translations = {
 提交时间：\${time}
 
 请耐心等待管理员审核。`,
+    approved: `✅ 你的申訴已通過，帳號已解封`,
+    noAppeal: `你目前沒有待審核的申訴`,
     notBanned: `✅ 你的帐号未被封禁，无需申诉。`,
     notFound: `❌ 找不到你的申诉记录。`,
     notes: `备注：`,
@@ -803,14 +826,13 @@ export const translations: Translations = {
 💡 请详细描述你的情况，这有助于管理员更快地处理你的申诉。`,
     reasonTooLong: `❌ 申诉原因太长，请控制在 500 字以内。`,
     reasonTooShort: `❌ 申诉原因太短，请至少输入 10 个字。`,
+    rejected: `❌ 你的申訴已被拒絕`,
     reviewedAt: `审核时间：`,
     status: `📋 **申诉状态**
 
 申诉编号：#\${appealId}
 状态：\${status}
-提交时间：\${createdAt}\${reviewInfo ? '
-
-' + reviewInfo : ''}`,
+提交时间：\${createdAt}\${reviewInfo}`,
     statusApproved: `已批准`,
     statusPending: `待审核`,
     statusRejected: `已拒绝`,
@@ -841,387 +863,391 @@ export const translations: Translations = {
   bottle: {
     bottle13: `瓶子内容`,
     cancelled: `❌ 已取消 \${zodiac}`,
-    'catch.anonymousUser': `匿名用户`,
-    'catch.back': `🏠 返回主选单：/menu`,
-    'catch.banned': `❌ 你的帐号已被封禁，无法捡漂流瓶。 
-
-如有疑问，请使用 /appeal 申诉。`,
-    'catch.block': `• 不想再聊可使用 /block 封锁
-`,
-    'catch.bottle': `😔 目前没有适合你的漂流瓶
-
-`,
-    'catch.bottle2': `• 或者自己丢一个瓶子：/throw`,
-    'catch.bottle3': `🎣 有人捡到你的漂流瓶了！ 
-
-`,
-    'catch.bottle4': `🧴 你捡到了一个漂流瓶！ 
-
-`,
-    'catch.bottle5': `💡 明天再来捡更多瓶子吧！`,
-    'catch.bottleTaken': `❌ 这个瓶子已经被其他人捡走了，请试试其他瓶子！`,
-    'catch.catch': `📊 今日已捡：\\\${newCatchesCount}/\\\${quota}
-
-`,
-    'catch.conversation': `已为你们建立了匿名对话，快来开始聊天吧～
-
-`,
-    'catch.conversation2': `• 这是匿名对话，请保护个人隐私
-`,
-    'catch.conversation3': `📊 查看所有对话`,
-    'catch.language': `🗣️ 语言：\\\${language}
-
-`,
-    'catch.mbti': `🧠 MBTI：\\\${mbti}
-`,
-    'catch.message': `💫 配对度：\\\${Math.round(matchScore)}分 (智能配对)
-
-`,
-    'catch.message2': `\\\${catcherGender} | 📅 \\\${catcherAge}岁
-
-`,
-    'catch.message3': `conv_reply_\\\${conversationIdentifier}`,
-    'catch.message4': `2️⃣ 长按此讯息，选择「回覆」后输入内容
-
-`,
-    'catch.message5': `1️⃣ 点击下方「💬 回覆讯息」按钮
-`,
-    'catch.message6': `2️⃣ 长按此讯息，选择「回覆」后输入内容`,
-    'catch.nickname': `📝 昵称：\\\${ownerMaskedNickname}
-`,
-    'catch.nickname2': `📝 昵称：\\\${catcherNickname}
-`,
-    'catch.notRegistered': `❌ 请先完成注册流程才能捡漂流瓶。 
-
-使用 /start 继续注册。`,
-    'catch.originalContent': `原文：{content}`,
-    'catch.originalLanguage': `原文语言：{language}`,
-    'catch.quotaExhausted': `❌ 今日漂流瓶配额已用完（\\\${quotaDisplay}）`,
-    'catch.replyButton': `💬 回覆讯息`,
-    'catch.replyMethods': `💡 **两种回覆方式**：
-`,
-    'catch.report': `• 遇到不当内容请使用 /report 举报
-`,
-    'catch.safetyTips': `⚠️ 安全提示：
-`,
-    'catch.settings': `🧠 MBTI：\\\${bottle.mbti_result}
- `,
-    'catch.settings10': `未设定`,
-    'catch.settings11': `未设定`,
-    'catch.settings2': `未设定`,
-    'catch.settings3': `未设定`,
-    'catch.settings4': `未设定`,
-    'catch.settings5': `未设定`,
-    'catch.settings6': `未设定`,
-    'catch.settings7': `未设定`,
-    'catch.settings8': `未设定`,
-    'catch.settings9': `未设定`,
-    'catch.short': `💡 提示：
-`,
-    'catch.short2': `• 稍后再试
-`,
-    'catch.short3': `匿名用户`,
-    'catch.short4': `♂️ 男`,
-    'catch.short5': `♀️ 女`,
-    'catch.text': `翻译语言：\\\${catcherLangDisplay}
-`,
-    'catch.text2': `原文语言：\\\${bottleLangDisplay}
-`,
-    'catch.text3': `🗣️ 语言：\\\${ownerLanguage}
-
-`,
-    'catch.text4': `• 不想再聊可使用 /block 封锁
-
-`,
-    'catch.text5': `原文：\\\${bottle.content}
-`,
-    'catch.text6': `💬 翻译服务暂时有问题，已使用备援翻译
-`,
-    'catch.text7': `翻译：\\\${bottleContent}
-`,
-    'catch.text8': `💡 **两种回覆方式**：
-`,
-    'catch.translatedContent': `翻译：{content}`,
-    'catch.translatedLanguage': `翻译语言：{language}`,
-    'catch.translationServiceFallback': `💬 翻译服务暂时有问题，已使用备援翻译`,
-    'catch.translationServiceUnavailable': `⚠️ 翻译服务暂时无法使用，以下为原文`,
-    'catch.unknown': `未知`,
-    'catch.zodiac': `⭐ 星座：\\\${bottle.zodiac}
-`,
-    'catch.zodiac2': `⭐ 星座：\\\${catcherZodiac}
-`,
     containsUrl: `瓶子内容不允许包含任何连结`,
     empty: `瓶子内容不能为空`,
     friendlyContent: `• 友善、尊重的内容更容易被捡到哦～`,
     inappropriate: `瓶子内容包含不适当的内容，请修改后重新提交`,
     selected: `已选择：\${selected}`,
     selectedItem: `✅ 已选择 \${zodiac}`,
-    'throw.age': `• 年龄区间相近 ✓`,
-    'throw.aiModerationFailed': `AI 内容审核失败`,
-    'throw.back': `↩️ 返回筛选选单`,
-    'throw.bloodType': `🩸 **血型筛选**
-
-`,
-    'throw.bloodType2': `• 血型：筛选特定血型
-`,
-    'throw.bloodType3': `选择你想要配对的血型：`,
-    'throw.bloodType4': `🩸 血型筛选`,
-    'throw.bloodType5': `🌈 任何血型`,
-    'throw.bottle': `
-💡 这个瓶子和你非常合拍！ 
-\\\${highlights.join('
-')}
-`,
-    'throw.bottle10': `🍾 漂流瓶已丢出！ 
-
-`,
-    'throw.bottle11': `🍾 丢漂流瓶`,
-    'throw.bottle2': `🎯 你的瓶子已发送给 **3 个对象**：
-`,
-    'throw.bottle3': `🍾 **正在丢出你的漂流瓶...**
-
-`,
-    'throw.bottle4': `🍾 **丢漂流瓶** #THROW
-
-`,
-    'throw.bottle5': `瓶子 ID：#\\\${bottleId}
-
-`,
-    'throw.bottle6': `📝 **请输入你的漂流瓶内容**
-
-`,
-    'throw.bottle7': `1️⃣ 点击下方「🍾 丢漂流瓶」按钮
-`,
-    'throw.bottle8': `📝 请输入你的漂流瓶内容：
-
-`,
-    'throw.bottle9': `📝 请输入你的漂流瓶内容：`,
-    'throw.cancel': `💡 点击选择或取消 MBTI 类型：`,
-    'throw.cancel2': `💡 点击选择或取消星座：`,
-    'throw.catch': `• 槽位 3：公共池（等待捡起）
-
-`,
-    'throw.catch2': `• 槽位 2：公共池（等待捡起）
-`,
-    'throw.catch3': `• 槽位 1：公共池（等待捡起）
-`,
-    'throw.catch4': `🌊 等待有缘人捡起...
-`,
-    'throw.complete': `⚙️ **进阶筛选**
-
-\\\${summary}
-💡 继续调整或完成筛选：`,
-    'throw.complete2': `🎯 **第 1 个配对已完成：**
-`,
-    'throw.complete3': `📝 你有一个未完成的草稿
-
-`,
-    'throw.complete4': `⏳ 预计 3-5 秒完成`,
-    'throw.complete5': `⏳ 预计 2-3 秒完成`,
-    'throw.complete6': `⏳ 预计 1-2 秒完成`,
-    'throw.conversation': `💬 对话标识符：\\\${vipMatchInfo.conversationIdentifier}
-
-`,
-    'throw.conversation2': `💡 提示：每个对话都是独立的，可以同时进行
-
-`,
-    'throw.conversation3': `💡 你可能会收到 **最多 3 个对话**！ 
-`,
-    'throw.conversation4': `💬 你可能会收到 **最多 3 个对话**！ 
-`,
-    'throw.conversation5': `使用 /chats 查看所有对话
-
-`,
-    'throw.conversation6': `📊 使用 /chats 查看所有对话`,
-    'throw.conversation7': `使用 /chats 查看所有对话`,
-    'throw.currentSelection': `当前选择：{genderText}`,
-    'throw.gender': `• 性别：\\\${selectedGender}
-`,
-    'throw.gender2': `👤 **性别筛选**
-
-`,
-    'throw.gender3': `• 性别：筛选性别
-
-`,
-    'throw.gender4': `💡 选择你想要的性别：`,
-    'throw.gender5': `👤 性别筛选`,
-    'throw.genderLabel': `• 性别：{gender}
-`,
-    'throw.mbti': `• MBTI：\\\${selectedMBTI.length > 0 ? selectedMBTI.join(', ') : '无限制'}
- {selectedMBTI.length > 0 ? selectedMBTI.join(', ') : '無限制'} \${selectedMBTI.length > 0 ? selectedMBTI.join(', ') : '無限制'}`,
-    'throw.mbti2': `已选择：\\\${selectedMBTI.length > 0 ? selectedMBTI.join(', ') : '无'}
-
- {selectedMBTI.length > 0 ? selectedMBTI.join(', ') : '無'} \${selectedMBTI.length > 0 ? selectedMBTI.join(', ') : '無'}`,
-    'throw.mbti3': `已选择：\\\${selectedMBTI.length > 0 ? selectedMBTI.join(`,
-    'throw.mbti4': `🧠 **MBTI 筛选**
-
-`,
-    'throw.mbti5': `• MBTI：筛选特定性格类型
-`,
-    'throw.mbti6': `• MBTI 高度配对 ✓`,
-    'throw.mbti7': `🧠 MBTI 筛选`,
-    'throw.mbtiLabel': `• MBTI：{mbti}
-`,
-    'throw.message': `已选择：\\\${selectedZodiac.length > 0 ? selectedZodiac.map((z) => ZODIAC_NAMES[z]).join(', ') : '无'}
-
-`,
-    'throw.message2': `当前选择：\\\${currentGender}
-
-`,
-    'throw.message3': `已选择：\\\${selectedZodiac.length > 0 ? selectedZodiac.map((z) => ZODIAC_NAMES[z]).join(`,
-    'throw.message4': `当前选择：\\\${bloodTypeDisplay[currentBloodType]}
-
-`,
-    'throw.message5': `👤 对方：\\\${vipMatchInfo.matcherNickname}
-`,
-    'throw.message6': `「你好！我是一个喜欢音乐和电影的人，希望认识志同道合的朋友～」
-
-`,
-    'throw.message7': `💡 可在 /edit_profile 中修改匹配偏好
-
-`,
-    'throw.message8': `💬 直接按 /reply 回覆讯息开始聊天
-`,
-    'throw.nickname': `📝 对方昵称：\\\${matchedUserMaskedNickname}
-`,
-    'throw.quota': `• 更多配额（30 个/天）
-`,
-    'throw.quota2': `🎁 邀请好友可增加配额：
-`,
-    'throw.settings': `🧠 MBTI：\\\${matchResult.user.mbti_result}
- `,
-    'throw.settings2': `⭐ 星座：\\\${matchResult.user.zodiac}
- `,
-    'throw.settings3': `🧠 MBTI：\\\${user.mbti_result}
- `,
-    'throw.settings4': `⭐ 星座：\\\${user.zodiac_sign}
- `,
-    'throw.settings5': `未设定`,
-    'throw.settings6': `未设定`,
-    'throw.settings7': `未设定`,
-    'throw.settings8': `未设定`,
-    'throw.short': `• 语言相同 ✓`,
-    'throw.short10': `♋ 巨蟹座`,
-    'throw.short11': `♌ 狮子座`,
-    'throw.short12': `♍ 处女座`,
-    'throw.short13': `♎ 天秤座`,
-    'throw.short14': `♏ 天蝎座`,
-    'throw.short15': `♐ 射手座`,
-    'throw.short16': `♑ 摩羯座`,
-    'throw.short17': `♒ 水瓶座`,
-    'throw.short18': `♓ 双鱼座`,
-    'throw.short19': `违规行为`,
-    'throw.short2': `🩸 AB 型`,
-    'throw.short20': `无限制`,
-    'throw.short21': `无限制`,
-    'throw.short22': `无限制`,
-    'throw.short23': `无限制`,
-    'throw.short3': `🌈 任何人`,
-    'throw.short4': `🩸 A 型`,
-    'throw.short5': `🩸 B 型`,
-    'throw.short6': `🩸 O 型`,
-    'throw.short7': `♈ 白羊座`,
-    'throw.short8': `♉ 金牛座`,
-    'throw.short9': `♊ 双子座`,
-    'throw.start': `✍️ 重新开始`,
-    'throw.success': `一次丢瓶子 = 3 个对象，大幅提升配对成功率
-
-`,
-    'throw.success2': `✨ **VIP 特权启动！智能配对成功！ **
-
-`,
-    'throw.success3': `🎯 你的漂流瓶已被配对成功！ 
-
-`,
-    'throw.text': `💝 匹配度：\\\${matchPercentage}%
-`,
-    'throw.text10': `🎯 正在为你寻找最佳配对对象
-
-`,
-    'throw.text11': `
-💬 等待对方回覆中...
-`,
-    'throw.text12': `• 免费用户：最多 +7 个
-`,
-    'throw.text13': `• 不要包含个人联络方式
-
-`,
-    'throw.text14': `💡 **两种输入方式**：
-`,
-    'throw.text15': `📊 免费用户：3 个/天
-`,
-    'throw.text16': `选择你想要筛选的条件：
-
-`,
-    'throw.text17': `• 进阶筛选和翻译
-
-`,
-    'throw.text18': `创建时间：\\\${age}
-`,
-    'throw.text19': `使用 /vip 立即升级`,
-    'throw.text2': `• 🆕 三倍曝光机会（1 次 = 3 个对象）
-`,
-    'throw.text20': `💬 **范例**：
-`,
-    'throw.text21': `使用 /vip 了解更多`,
-    'throw.text22': `要继续编辑这个草稿吗？`,
-    'throw.text23': `💡 可以组合多个条件`,
-    'throw.text24': `当前筛选条件：
-
-`,
-    'throw.text3': `💡 这可能需要几秒钟，我们正在为你找到最合适的人`,
-    'throw.text4': `当前选择：\\\${currentGender ===`,
-    'throw.text5': `🎯 寻找对象：\\\${targetText}
-`,
-    'throw.text6': `🎯 正在为你寻找 3 个最佳配对对象
-
-`,
-    'throw.text7': `📨 **另外 2 个槽位等待中：**
-`,
-    'throw.text8': `🔍 正在智能匹配最佳对象...
-
-`,
-    'throw.text9': `内容预览：\\\${preview}
-
-`,
-    'throw.throw': `📊 今日已丢：\\\${quotaDisplay}
-
-`,
-    'throw.unlimited': `无限制`,
-    'throw.vip': `💎 VIP 用户：30 个/天（三倍曝光）
-
-`,
-    'throw.vip2': `💎 **升级 VIP 可获得三倍曝光机会！ **
-`,
-    'throw.vip3': `⚙️ **进阶筛选（VIP 专属）**
-
-`,
-    'throw.vip4': `• VIP 用户：最多 +70 个
-
-`,
-    'throw.vip5': `✨ **VIP 特权启动！ **
-
-`,
-    'throw.vip6': `💡 升级 VIP 获得：
-`,
-    'throw.vip7': `✨ VIP 特权启动中
-`,
-    'throw.zodiac': `• 星座：\\\${selectedZodiac.length > 0 ? selectedZodiac.map((z) => ZODIAC_NAMES[z]).join(', ') : '无限制'}
-`,
-    'throw.zodiac2': `⭐ 星座：\\\${matchResult.user.zodiac ||`,
-    'throw.zodiac3': `⭐ 星座：\\\${user.zodiac_sign ||`,
-    'throw.zodiac4': `⭐ **星座筛选**
-
-`,
-    'throw.zodiac5': `• 星座：筛选特定星座
-`,
-    'throw.zodiac6': `• 星座高度相容 ✓`,
-    'throw.zodiac7': `⭐ 星座筛选`,
-    'throw.zodiacLabel': `• 星座：{zodiac}
-`,
     tips: `💡 提示：`,
     tooLong: `瓶子内容太长，最多 \${max} 个字符（目前 \${current} 个字符）`,
     tooShort: `瓶子内容太短，至少需要 \${min} 个字符（目前 \${current} 个字符）`,
+    catch: {
+      anonymousUser: `匿名用户`,
+      back: `🏠 返回主选单：/menu`,
+      banned: `❌ 你的帐号已被封禁，无法捡漂流瓶。 
+
+如有疑问，请使用 /appeal 申诉。`,
+      block: `• 不想再聊可使用 /block 封锁
+`,
+      bottle: `😔 目前没有适合你的漂流瓶
+
+`,
+      bottle2: `• 或者自己丢一个瓶子：/throw`,
+      bottle3: `🎣 有人捡到你的漂流瓶了！ 
+
+`,
+      bottle4: `🧴 你捡到了一个漂流瓶！ 
+
+`,
+      bottle5: `💡 明天再来捡更多瓶子吧！`,
+      bottleTaken: `❌ 这个瓶子已经被其他人捡走了，请试试其他瓶子！`,
+      catch: `📊 今日已捡：\\\${newCatchesCount}/\\\${quota}
+
+`,
+      conversation: `已为你们建立了匿名对话，快来开始聊天吧～
+
+`,
+      conversation2: `• 这是匿名对话，请保护个人隐私
+`,
+      conversation3: `📊 查看所有对话`,
+      language: `🗣️ 语言：\\\${language}
+
+`,
+      mbti: `🧠 MBTI：\\\${mbti}
+`,
+      message: `💫 配对度：\\\${score}分 (智能配对)
+
+`,
+      message2: `\\\${catcherGender} | 📅 \\\${catcherAge}岁
+
+`,
+      message3: `conv_reply_\\\${conversationIdentifier}`,
+      message4: `2️⃣ 长按此讯息，选择「回覆」后输入内容
+
+`,
+      message5: `1️⃣ 点击下方「💬 回覆讯息」按钮
+`,
+      message6: `2️⃣ 长按此讯息，选择「回覆」后输入内容`,
+      nickname: `📝 昵称：\\\${ownerMaskedNickname}
+`,
+      nickname2: `📝 昵称：\\\${catcherNickname}
+`,
+      notRegistered: `❌ 请先完成注册流程才能捡漂流瓶。 
+
+使用 /start 继续注册。`,
+      originalContent: `原文：{content}`,
+      originalLanguage: `原文语言：{language}`,
+      quotaExhausted: `❌ 今日漂流瓶配额已用完（\\\${quotaDisplay}）`,
+      replyButton: `💬 回覆讯息`,
+      replyMethods: `💡 **两种回覆方式**：
+`,
+      report: `• 遇到不当内容请使用 /report 举报
+`,
+      safetyTips: `⚠️ 安全提示：
+`,
+      settings: `🧠 MBTI：\${mbti}
+`,
+      settings10: `未设定`,
+      settings11: `未设定`,
+      settings2: `未设定`,
+      settings3: `未设定`,
+      settings4: `未设定`,
+      settings5: `未设定`,
+      settings6: `未设定`,
+      settings7: `未设定`,
+      settings8: `未设定`,
+      settings9: `未设定`,
+      short: `💡 提示：
+`,
+      short2: `• 稍后再试
+`,
+      short3: `匿名用户`,
+      short4: `♂️ 男`,
+      short5: `♀️ 女`,
+      text: `翻译语言：\\\${catcherLangDisplay}
+`,
+      text2: `原文语言：\\\${bottleLangDisplay}
+`,
+      text3: `🗣️ 语言：\\\${ownerLanguage}
+
+`,
+      text4: `• 不想再聊可使用 /block 封锁
+
+`,
+      text5: `原文：\\\${bottle.content}
+`,
+      text6: `💬 翻译服务暂时有问题，已使用备援翻译
+`,
+      text7: `翻译：\\\${bottleContent}
+`,
+      text8: `💡 **两种回覆方式**：
+`,
+      translatedContent: `翻译：{content}`,
+      translatedLanguage: `翻译语言：{language}`,
+      translationServiceFallback: `💬 翻译服务暂时有问题，已使用备援翻译`,
+      translationServiceUnavailable: `⚠️ 翻译服务暂时无法使用，以下为原文`,
+      unknown: `未知`,
+      zodiac: `⭐ 星座：\\\${bottle.zodiac}
+`,
+      zodiac2: `⭐ 星座：\\\${catcherZodiac}
+`,
+    },
+    throw: {
+      age: `• 年龄区间相近 ✓`,
+      aiModerationFailed: `AI 内容审核失败`,
+      back: `↩️ 返回筛选选单`,
+      bloodType: `🩸 **血型筛选**
+
+`,
+      bloodType2: `• 血型：筛选特定血型
+`,
+      bloodType3: `选择你想要配对的血型：`,
+      bloodType4: `🩸 血型筛选`,
+      bloodType5: `🌈 任何血型`,
+      bottle: `
+💡 这个瓶子和你非常合拍！ 
+\\
+`,
+      bottle10: `🍾 漂流瓶已丢出！ 
+
+`,
+      bottle11: `🍾 丢漂流瓶`,
+      bottle2: `🎯 你的瓶子已发送给 **3 个对象**：
+`,
+      bottle3: `🍾 **正在丢出你的漂流瓶...**
+
+`,
+      bottle4: `🍾 **丢漂流瓶** #THROW
+
+`,
+      bottle5: `瓶子 ID：#\\\${bottleId}
+
+`,
+      bottle6: `📝 **请输入你的漂流瓶内容**
+
+`,
+      bottle7: `1️⃣ 点击下方「🍾 丢漂流瓶」按钮
+`,
+      bottle8: `📝 请输入你的漂流瓶内容：
+
+`,
+      bottle9: `📝 请输入你的漂流瓶内容：`,
+      cancel: `💡 点击选择或取消 MBTI 类型：`,
+      cancel2: `💡 点击选择或取消星座：`,
+      catch: `• 槽位 3：公共池（等待捡起）
+
+`,
+      catch2: `• 槽位 2：公共池（等待捡起）
+`,
+      catch3: `• 槽位 1：公共池（等待捡起）
+`,
+      catch4: `🌊 等待有缘人捡起...
+`,
+      complete: `⚙️ **进阶筛选**
+
+\\\${summary}
+💡 继续调整或完成筛选：`,
+      complete2: `🎯 **第 1 个配对已完成：**
+`,
+      complete3: `📝 你有一个未完成的草稿
+
+`,
+      complete4: `⏳ 预计 3-5 秒完成`,
+      complete5: `⏳ 预计 2-3 秒完成`,
+      complete6: `⏳ 预计 1-2 秒完成`,
+      conversation: `💬 对话标识符：\\\${vipMatchInfo.conversationIdentifier}
+
+`,
+      conversation2: `💡 提示：每个对话都是独立的，可以同时进行
+
+`,
+      conversation3: `💡 你可能会收到 **最多 3 个对话**！ 
+`,
+      conversation4: `💬 你可能会收到 **最多 3 个对话**！ 
+`,
+      conversation5: `使用 /chats 查看所有对话
+
+`,
+      conversation6: `📊 使用 /chats 查看所有对话`,
+      conversation7: `使用 /chats 查看所有对话`,
+      currentSelection: `当前选择：{genderText}`,
+      gender: `• 性别：\\\${selectedGender === 'male' ? '👨 男生' : selectedGender === 'female' ? '👩 女生' : '🌈 任何人'}
+`,
+      gender2: `👤 **性别筛选**
+
+`,
+      gender3: `• 性别：筛选性别
+
+`,
+      gender4: `💡 选择你想要的性别：`,
+      gender5: `👤 性别筛选`,
+      genderLabel: `• 性别：{gender}
+`,
+      mbti: `• MBTI：\\\${selectedMBTI.length > 0 ? selectedMBTI.join(', ') : '无限制'}
+ {selectedMBTI.length > 0 ? selectedMBTI.join(', ') : '無限制'} \${selectedMBTI.length > 0 ? selectedMBTI.join(', ') : '無限制'}`,
+      mbti2: `已选择：\\\${selectedMBTI.length > 0 ? selectedMBTI.join(', ') : '无'}
+
+ {selectedMBTI.length > 0 ? selectedMBTI.join(', ') : '無'} \${selectedMBTI.length > 0 ? selectedMBTI.join(', ') : '無'}`,
+      mbti3: `已选择：\\\${selectedMBTI.length > 0 ? selectedMBTI.join(`,
+      mbti4: `🧠 **MBTI 筛选**
+
+`,
+      mbti5: `• MBTI：筛选特定性格类型
+`,
+      mbti6: `• MBTI 高度配对 ✓`,
+      mbti7: `🧠 MBTI 筛选`,
+      mbtiLabel: `• MBTI：{mbti}
+`,
+      message: `已选择：\\\${selectedZodiac.length > 0 ? selectedZodiac.map((z) => ZODIAC_NAMES[z]).join(', ') : '无'}
+
+`,
+      message2: `当前选择：\\\${currentGender === 'male' ? '👨 男生' : currentGender === 'female' ? '👩 女生' : '🌈 任何人'}
+
+`,
+      message3: `已选择：\\\${selectedZodiac.length > 0 ? selectedZodiac.map((z) => ZODIAC_NAMES[z]).join(`,
+      message4: `当前选择：\\\${bloodTypeDisplay[currentBloodType]}
+
+`,
+      message5: `👤 对方：\\\${vipMatchInfo.matcherNickname}
+`,
+      message6: `「你好！我是一个喜欢音乐和电影的人，希望认识志同道合的朋友～」
+
+`,
+      message7: `💡 可在 /edit_profile 中修改匹配偏好
+
+`,
+      message8: `💬 直接按 /reply 回覆讯息开始聊天
+`,
+      nickname: `📝 对方昵称：\\\${matchedUserMaskedNickname}
+`,
+      quota: `• 更多配额（30 个/天）
+`,
+      quota2: `🎁 邀请好友可增加配额：
+`,
+      settings: `🧠 MBTI：\\\${mbti}
+ \${mbti}`,
+      settings2: `⭐ 星座：\\\${zodiac}
+ \${zodiac}`,
+      settings3: `🧠 MBTI：\\\${mbti}
+ \${mbti}`,
+      settings4: `⭐ 星座：\\\${zodiac}
+ \${zodiac}`,
+      settings5: `未设定`,
+      settings6: `未设定`,
+      settings7: `未设定`,
+      settings8: `未设定`,
+      short: `• 语言相同 ✓`,
+      short10: `♋ 巨蟹座`,
+      short11: `♌ 狮子座`,
+      short12: `♍ 处女座`,
+      short13: `♎ 天秤座`,
+      short14: `♏ 天蝎座`,
+      short15: `♐ 射手座`,
+      short16: `♑ 摩羯座`,
+      short17: `♒ 水瓶座`,
+      short18: `♓ 双鱼座`,
+      short19: `违规行为`,
+      short2: `🩸 AB 型`,
+      short20: `无限制`,
+      short21: `无限制`,
+      short22: `无限制`,
+      short23: `无限制`,
+      short3: `🌈 任何人`,
+      short4: `🩸 A 型`,
+      short5: `🩸 B 型`,
+      short6: `🩸 O 型`,
+      short7: `♈ 白羊座`,
+      short8: `♉ 金牛座`,
+      short9: `♊ 双子座`,
+      start: `✍️ 重新开始`,
+      success: `一次丢瓶子 = 3 个对象，大幅提升配对成功率
+
+`,
+      success2: `✨ **VIP 特权启动！智能配对成功！ **
+
+`,
+      success3: `🎯 你的漂流瓶已被配对成功！ 
+
+`,
+      text: `💝 匹配度：\\\${matchPercentage}%
+`,
+      text10: `🎯 正在为你寻找最佳配对对象
+
+`,
+      text11: `
+💬 等待对方回覆中...
+`,
+      text12: `• 免费用户：最多 +7 个
+`,
+      text13: `• 不要包含个人联络方式
+
+`,
+      text14: `💡 **两种输入方式**：
+`,
+      text15: `📊 免费用户：3 个/天
+`,
+      text16: `选择你想要筛选的条件：
+
+`,
+      text17: `• 进阶筛选和翻译
+
+`,
+      text18: `创建时间：\\\${age}
+`,
+      text19: `使用 /vip 立即升级`,
+      text2: `• 🆕 三倍曝光机会（1 次 = 3 个对象）
+`,
+      text20: `💬 **范例**：
+`,
+      text21: `使用 /vip 了解更多`,
+      text22: `要继续编辑这个草稿吗？`,
+      text23: `💡 可以组合多个条件`,
+      text24: `当前筛选条件：
+
+`,
+      text3: `💡 这可能需要几秒钟，我们正在为你找到最合适的人`,
+      text4: `当前选择：\\\${currentGender ===`,
+      text5: `🎯 寻找对象：\\\${targetText}
+`,
+      text6: `🎯 正在为你寻找 3 个最佳配对对象
+
+`,
+      text7: `📨 **另外 2 个槽位等待中：**
+`,
+      text8: `🔍 正在智能匹配最佳对象...
+
+`,
+      text9: `内容预览：\\\${preview}
+
+`,
+      throw: `📊 今日已丢：\\\${quotaDisplay}
+
+`,
+      unlimited: `无限制`,
+      urlNotAllowed: `❌ 訊息包含不被允許的網址`,
+      vip: `💎 VIP 用户：30 个/天（三倍曝光）
+
+`,
+      vip2: `💎 **升级 VIP 可获得三倍曝光机会！ **
+`,
+      vip3: `⚙️ **进阶筛选（VIP 专属）**
+
+`,
+      vip4: `• VIP 用户：最多 +70 个
+
+`,
+      vip5: `✨ **VIP 特权启动！ **
+
+`,
+      vip6: `💡 升级 VIP 获得：
+`,
+      vip7: `✨ VIP 特权启动中
+`,
+      zodiac: `• 星座：\\\${selectedZodiac.length > 0 ? selectedZodiac.map((z) => ZODIAC_NAMES[z]).join(', ') : '无限制'}
+`,
+      zodiac2: `⭐ 星座：\\\${matchResult.user.zodiac ||`,
+      zodiac3: `⭐ 星座：\\\${user.zodiac_sign ||`,
+      zodiac4: `⭐ **星座筛选**
+
+`,
+      zodiac5: `• 星座：筛选特定星座
+`,
+      zodiac6: `• 星座高度相容 ✓`,
+      zodiac7: `⭐ 星座筛选`,
+      zodiacLabel: `• 星座：{zodiac}
+`,
+    },
   },
   broadcast: {
     admin: `管理员手动取消`,
@@ -1271,9 +1297,6 @@ export const translations: Translations = {
 `,
     empty: `广播讯息不能为空`,
     error: `错误: {error}`,
-    'estimate.immediate': `立即发送（约 1-2 秒）`,
-    'estimate.minutes': `约 \\\${minutes} 分钟`,
-    'estimate.seconds': `约 \\\${seconds} 秒`,
     estimatedTime: `预计时间: {time}
 
 `,
@@ -1282,37 +1305,6 @@ export const translations: Translations = {
     exampleMessage: `系统将于今晚 22:00 进行维护`,
     failed: `失败: {count}
 `,
-    'filter.age': `年龄：{min}-{max} 岁`,
-    'filter.atLeastOneRequired': `至少需要一个过滤器`,
-    'filter.birthdayToday': `当天生日`,
-    'filter.country': `国家：{country}`,
-    'filter.genderFemale': `女性`,
-    'filter.genderMale': `男性`,
-    'filter.genderOther': `其他性别`,
-    'filter.invalidAgeFormat': `无效的年龄范围：{value}（格式必须是 min-max，如 18-25）`,
-    'filter.invalidAgeMinMax': `无效的年龄范围：{value}（最小年龄不能大于最大年龄）`,
-    'filter.invalidAgeRange': `无效的年龄范围：{value}（年龄必须在 18-99 之间）`,
-    'filter.invalidCountry': `无效的国家代码：{value}（必须是 2 个大写字母，如 TW, US, JP）`,
-    'filter.invalidFormat': `无效的过滤器格式：{pair}`,
-    'filter.invalidGender': `无效的性别值：{value}（必须是 male, female 或 other）`,
-    'filter.invalidMbti': `无效的 MBTI 类型：{value}（必须是以下之一：{mbtis}）`,
-    'filter.invalidZodiac': `无效的星座：{value}（必须是以下之一：{zodiacs}）`,
-    'filter.mbti': `MBTI：{mbti}`,
-    'filter.nonVipUsers': `非 VIP 用户`,
-    'filter.unknownFilter': `未知的过滤器：{key}`,
-    'filter.vipUsers': `VIP 用户`,
-    'filter.zodiacAquarius': `水瓶座`,
-    'filter.zodiacAries': `白羊座`,
-    'filter.zodiacCancer': `巨蟹座`,
-    'filter.zodiacCapricorn': `摩羯座`,
-    'filter.zodiacGemini': `双子座`,
-    'filter.zodiacLeo': `狮子座`,
-    'filter.zodiacLibra': `天秤座`,
-    'filter.zodiacPisces': `双鱼座`,
-    'filter.zodiacSagittarius': `射手座`,
-    'filter.zodiacScorpio': `天蝎座`,
-    'filter.zodiacTaurus': `金牛座`,
-    'filter.zodiacVirgo': `处女座`,
     filterAge: `• age=18-25
 `,
     filterCommand: `/broadcast_filter 
@@ -1428,13 +1420,8 @@ export const translations: Translations = {
     short2: `等待中`,
     startedAt: `开始时间: {time}
 `,
-    status: `状态：{status}
+    statusLabel: `状态：{status}
 `,
-    'status.cancelled': `已取消`,
-    'status.completed': `已完成`,
-    'status.failed': `失败`,
-    'status.pending': `等待中`,
-    'status.sending': `发送中`,
     statusPending: `待处理`,
     statusStuck: `卡住（重试中）`,
     statusTitle: `📊 广播状态`,
@@ -1459,13 +1446,9 @@ export const translations: Translations = {
 `,
     stuckBroadcastWillMarkFailed: `这些广播将被标记为「失败」状态
 `,
-    target: `目标: {target}
-`,
-    'target.all': `所有用户`,
-    'target.nonVip': `非 VIP 用户`,
-    'target.unknown': `未知`,
-    'target.vip': `VIP 用户`,
     targetAll: `所有用户`,
+    targetLabel: `目标: {target}
+`,
     targetNonVip: `非 VIP 用户`,
     targetType: `目标：{type}
 `,
@@ -1482,10 +1465,62 @@ export const translations: Translations = {
     viewAllRecords: `使用 /broadcast_status 查看所有广播记录。`,
     viewDetailsHint: `💡 使用 /broadcast_status 查看详细信息`,
     viewUpdatedStatus: `使用 /broadcast_status 查看更新后的状态。`,
+    estimate: {
+      immediate: `立即发送（约 1-2 秒）`,
+      minutes: `约 \\\${minutes} 分钟`,
+      seconds: `约 \\\${seconds} 秒`,
+    },
+    filter: {
+      age: `年龄：{min}-{max} 岁`,
+      atLeastOneRequired: `至少需要一个过滤器`,
+      birthdayToday: `当天生日`,
+      country: `国家：{country}`,
+      genderFemale: `女性`,
+      genderMale: `男性`,
+      genderOther: `其他性别`,
+      invalidAgeFormat: `无效的年龄范围：{value}（格式必须是 min-max，如 18-25）`,
+      invalidAgeMinMax: `无效的年龄范围：{value}（最小年龄不能大于最大年龄）`,
+      invalidAgeRange: `无效的年龄范围：{value}（年龄必须在 18-99 之间）`,
+      invalidCountry: `无效的国家代码：{value}（必须是 2 个大写字母，如 TW, US, JP）`,
+      invalidFormat: `无效的过滤器格式：{pair}`,
+      invalidGender: `无效的性别值：{value}（必须是 male, female 或 other）`,
+      invalidMbti: `无效的 MBTI 类型：{value}（必须是以下之一：{mbtis}）`,
+      invalidZodiac: `无效的星座：{value}（必须是以下之一：{zodiacs}）`,
+      mbti: `MBTI：{mbti}`,
+      nonVipUsers: `非 VIP 用户`,
+      unknownFilter: `未知的过滤器：{key}`,
+      vipUsers: `VIP 用户`,
+      zodiacAquarius: `水瓶座`,
+      zodiacAries: `白羊座`,
+      zodiacCancer: `巨蟹座`,
+      zodiacCapricorn: `摩羯座`,
+      zodiacGemini: `双子座`,
+      zodiacLeo: `狮子座`,
+      zodiacLibra: `天秤座`,
+      zodiacPisces: `双鱼座`,
+      zodiacSagittarius: `射手座`,
+      zodiacScorpio: `天蝎座`,
+      zodiacTaurus: `金牛座`,
+      zodiacVirgo: `处女座`,
+    },
+    status: {
+      cancelled: `已取消`,
+      completed: `已完成`,
+      failed: `失败`,
+      pending: `等待中`,
+      sending: `发送中`,
+    },
+    target: {
+      all: `所有用户`,
+      nonVip: `非 VIP 用户`,
+      unknown: `未知`,
+      vip: `VIP 用户`,
+    },
   },
   buttons: {
     ad: `➡️ 下一个广告`,
     back: `⬅️ 返回 / Back`,
+    backToVip: `💎 返回 VIP 选单`,
     bottle: `📺 看广告获取更多瓶子 🎁 (\${remaining}/20)`,
     bottle2: `💎 升级 VIP 获得更多瓶子`,
     bottle3: `🌊 丢出漂流瓶`,
@@ -1528,6 +1563,7 @@ export const translations: Translations = {
     targetFemale: `👩 女生`,
     targetMale: `👨 男生`,
     text: `👤 查看对方资料卡`,
+    viewPayments: `💰 订阅记录`,
     vip: `💎 升级 VIP`,
   },
   catch: {
@@ -1565,7 +1601,7 @@ export const translations: Translations = {
 `,
     mbti: `🧠 MBTI：\${mbti}
 `,
-    message: `💫 配对度：\${Math.round(matchScore)}分 (智能配对)
+    message: `💫 配对度：\${score}分 (智能配对)
 
 `,
     message2: `\${catcherGender} | 📅 \${catcherAge}岁
@@ -1595,8 +1631,8 @@ export const translations: Translations = {
 `,
     safetyTips: `⚠️ 安全提示：
 `,
-    settings: `🧠 MBTI：\${bottle.mbti_result}
- `,
+    settings: `🧠 MBTI：\${mbti}
+`,
     settings10: `未设定`,
     settings11: `未设定`,
     settings2: `未设定`,
@@ -1681,8 +1717,6 @@ export const translations: Translations = {
     back: `💡 输入 /menu 可随时返回主选单`,
     back2: `↩️ 返回编辑资料`,
     back3: `🏠 返回主选单`,
-    prev: `⬅️ 上一页`,
-    next: `下一页 ➡️`,
     back4: `↩️ 返回`,
     backToMainMenu: `返回主选单`,
     birthday: `🎂 生日：\${updatedUser.birthday}
@@ -1898,10 +1932,13 @@ export const translations: Translations = {
     end: `结束：\${endTime.toLocaleString('zh-TW')}
 
 `,
-    end2: `结束：\${endTime.toLocaleString}
+    end2: `结束：\${endTime.toLocaleString(`,
+    female: `女`,
+    free: `免费`,
+    gender: `👤 性别：\${gender}
 `,
     gender2: `无效的性别值：\${trimmedValue}（必须是 male, female 或 other）`,
-    gender3: `👤 性别：\${user.gender}
+    gender3: `👤 性别：\${gender}
 `,
     gender4: `👤 性别：\${updatedUser.gender ===`,
     gender5: `👤 性别：\${user.gender ===`,
@@ -1932,7 +1969,7 @@ export const translations: Translations = {
     mbti2: `你的 MBTI 类型是：**\${result.type}**
 
 `,
-    mbti3: `当前 MBTI：**\${user.mbti_result}**
+    mbti3: `当前 MBTI：**\${mbti}**
 `,
     mbti4: `🧠 **选择 MBTI 测验版本**
 
@@ -1945,15 +1982,15 @@ export const translations: Translations = {
     mbti8: `请选择你的 MBTI 类型：`,
     mbti9: `🧠 重新测试 MBTI`,
     message: `\${typeEmoji} **\${ad.title}**
-\${statusEmoji} 状态: \${ad.is_enabled ? '启用' : '停用'}
+\${statusEmoji} 状态: \${status}
 
 📊 **统计数据**
 • 展示次数: \${stats.total_views}
 • 点击次数: \${stats.total_clicks}
-• 点击率 (CTR): \${stats.ctr}% {ad.is_enabled ? '啟用' : '停用'} \${ad.is_enabled ? '啟用' : '停用'}`,
+• 点击率 (CTR): \${stats.ctr}% {ad.is_enabled ? '啟用' : '停用'} \${status}`,
     message10: `/broadcast_filter gender=female,age=18-25,country=TW 大家好！ 
 `,
-    message11: `\${banHours} \${user.language_pref} {user.language_pref === 'en' ? 'hours' : '小時'} \${user.language_pref}`,
+    message11: `\${banHours} \${user.language_pref === 'en' ? 'hours' : '小时'} {user.language_pref === 'en' ? 'hours' : '小時'} \${user.language_pref === 'en' ? 'hours' : '小時'}`,
     message12: `时间: \${new Date(b.created_at).toLocaleString('zh-TW')}
 
 `,
@@ -1962,7 +1999,7 @@ export const translations: Translations = {
 `,
     message14: `进度: \${broadcast.sent_count}/\${broadcast.total_users}
 `,
-    message15: `\${days} \${user.language_pref}`,
+    message15: `\${days} \${user.language_pref === 'en' ? 'days' : '天'}`,
     message16: `目标: \${getBroadcastTargetName(broadcast.targetType)}
 `,
     message17: `状态：\${maintenance.isActive ? '✅ 维护中' : '❌ 未启用'}
@@ -2030,7 +2067,7 @@ export const translations: Translations = {
     message45: `
 请稍后使用 /broadcast_status 查看进度。`,
     message46: `昵称: \${user.nickname}
- `,
+ {user.nickname || '未設置'} \${user.nickname}`,
     message47: `• 奖励：\${stats.total_rewards}
 
 `,
@@ -2090,6 +2127,7 @@ export const translations: Translations = {
     message9: `
 • 剩余展示: \${ad.max_views - ad.current_views}/\${ad.max_views}`,
     newUser: `新用户`,
+    next: `下一頁`,
     nickname: `💡 请输入一个简单的昵称，不要包含 http:// 或 https:// 等连结。 
 
 `,
@@ -2123,6 +2161,8 @@ export const translations: Translations = {
     notRegistered: `未注册`,
     notSet: `未设定`,
     operationFailed: `❌ 发生错误`,
+    pageInfo: `第 {current} / {total} 頁`,
+    prev: `上一頁`,
     profile: `👤 查看个人资料 - /profile
 `,
     profile2: `✏️ **编辑个人资料**
@@ -2175,7 +2215,7 @@ export const translations: Translations = {
     report3: `💡 这样可以准确指定要举报的对象。`,
     report4: `请选择举报原因：`,
     selected: `已选择`,
-    settings: `🧠 MBTI：\${updatedUser.mbti_result}（可重新测试）`,
+    settings: `🧠 MBTI：\${updatedUser.mbti_result}（可重新测试） {updatedUser.mbti_result || '未設定'} \${updatedUser.mbti_result}`,
     settings10: `你还没有设定 MBTI 类型。 
 
 `,
@@ -2189,7 +2229,7 @@ export const translations: Translations = {
     settings18: `未设定`,
     settings19: `未设定`,
     settings2: `🏷️ 兴趣标签：\${updatedUser.interests}
- `,
+ {updatedUser.interests || '未設定'} \${updatedUser.interests}`,
     settings20: `未设定`,
     settings21: `未设定`,
     settings22: `未设定`,
@@ -2200,7 +2240,7 @@ export const translations: Translations = {
     settings27: `未设定`,
     settings28: `未设定`,
     settings29: `未设定`,
-    settings3: `🧠 MBTI：\${user.mbti_result}（可重新测试） `,
+    settings3: `🧠 MBTI：\${mbti}（可重新测试） \${mbti}`,
     settings30: `未设定`,
     settings31: `未设定`,
     settings32: `未设定`,
@@ -2208,15 +2248,15 @@ export const translations: Translations = {
     settings34: `未设定`,
     settings35: `未设定`,
     settings4: `🏷️ 兴趣标签：\${user.interests}
- `,
+ {user.interests || '未設定'} \${user.interests}`,
     settings5: `📖 个人简介：\${updatedUser.bio}
-`,
+ {updatedUser.bio || '未設定'} \${updatedUser.bio}`,
     settings6: `🌍 地区：\${updatedUser.city}
- `,
+ {updatedUser.city || '未設定'} \${updatedUser.city}`,
     settings7: `📖 个人简介：\${user.bio}
-`,
+ {user.bio || '未設定'} \${user.bio}`,
     settings8: `🌍 地区：\${user.city}
- `,
+ {user.city || '未設定'} \${user.city}`,
     settings9: `你可以随时使用 /mbti 指令重新设定。`,
     short: `💡 你可以：
 `,
@@ -2449,7 +2489,7 @@ export const translations: Translations = {
 `,
     text108: `📚 我想了解更多安全知识`,
     text109: `立即发送（约 1-2 秒）`,
-    text11: `\${Math.floor(hours / 24)} 天前`,
+    text11: `\${daysAgo} 天前`,
     text110: `2️⃣ 选择「回覆」
 `,
     text111: `**过滤器格式：**
@@ -2537,7 +2577,7 @@ export const translations: Translations = {
 `,
     text28: `状态: \${progress.status}
 `,
-    text29: `\${Math.floor(hours)} 小时前`,
+    text29: `\${daysAgo} 小时前`,
     text3: `**过滤条件：**
 \${filtersDesc}
 
@@ -2708,7 +2748,7 @@ export const translations: Translations = {
     unknownOption: `⚠️ 未知的选项`,
     unlimited: `无限制`,
     userNotFound: `❌ 用户不存在`,
-    vip: `你的 VIP 订阅已于 \${new Date(user.vip_expire_at).toLocaleDateString('zh-TW')} 到期。 
+    vip: `你的 VIP 订阅已于 \${expireDate} 到期。 
 
 `,
     vip10: `😢 **VIP 订阅已到期**
@@ -2824,14 +2864,14 @@ export const translations: Translations = {
 💡 想要开始新的对话吗？ 
 • 使用 /catch 捡起新的漂流瓶`,
     endedTitle: `💬 **对话已结束**`,
-    gender: `👤 性别：\${otherUser.gender}
+    gender: `👤 性别：\${gender}
 `,
     mediaRestriction: `⚠️ **不允许发送图片、影片或多媒体**
 
 💡 为了保护隐私和安全，对话中只允许纯文字讯息。 
 
 请使用文字讯息与对方交流。`,
-    message: `💫 配对度：\${Math.round(partnerInfo.matchScore)}分
+    message: `💫 配对度：\${score}分
 `,
     message10: `conv_profile_\${conversationId}`,
     message11: `• 最后讯息：\${lastMessageTime}
@@ -2912,7 +2952,7 @@ export const translations: Translations = {
     reported: `✅ 已举报`,
     separator: `━━━━━━━━━━━━━━━━`,
     settings: `🧠 MBTI：\${otherUser.mbti_result}
- `,
+ {otherUser.mbti_result || '未設定'} \${otherUser.mbti_result}`,
     settings2: `未设定`,
     settings3: `未设定`,
     settings4: `未设定`,
@@ -3249,9 +3289,6 @@ This command is not available in production.`,
     yes: `是`,
   },
   draft: {
-    'age.daysAgo': `\\\${days} 天前`,
-    'age.hoursAgo': `\\\${hours} 小时前`,
-    'age.justNow': `刚刚`,
     contentHint: `💡 你可以：
 • 直接输入新内容来替换草稿
 • 使用 /throw 重新开始
@@ -3284,9 +3321,14 @@ This command is not available in production.`,
     throwBottle: `🍾 丢漂流瓶
 
 你想要寻找什么样的聊天对象？`,
+    age: {
+      daysAgo: `\\\${days} 天前`,
+      hoursAgo: `\\\${hours} 小时前`,
+      justNow: `刚刚`,
+    },
   },
   edit_profile: {
-    nickname: `👤 昵称：\\\\\\\\\\\\\\\${ownerMaskedNickname}`,
+    nickname: `👤 昵称：\${ownerMaskedNickname}`,
     short19: `✏️ 编辑个人资料`,
   },
   error: {
@@ -3541,260 +3583,14 @@ This command is not available in production.`,
     vip2: `❌ 你不是 VIP 用户，无法申请退款。`,
   },
   errors: {
+    banned: `❌ 你的帳號已被封禁
+
+原因：{reason}`,
     channelConfigError: `❌ 频道配置错误`,
     claimRewardFailed: `❌ 领取奖励失败`,
     completeOnboarding: `⚠️ 请先完成注册流程。`,
     conversationInfoError: `❌ 对话资讯错误。`,
     conversationNotFound: `❌ 找不到此对话`,
-    'error.ad': `❌ 此广告不需要验证`,
-    'error.ad2': `❌ 暂无可用的广告`,
-    'error.ad3': `❌ 无法领取此广告`,
-    'error.ad4': `❌ 广告不存在`,
-    'error.ad5': `❌ 广告 ID 必须是数字`,
-    'error.ad6': `❌ 你没有权限查看广告数据`,
-    'error.admin': `❌ 系统发生错误，请稍后再试。 
-
-如果问题持续，请联系管理员。`,
-    'error.admin2': `❌ **权限不足**
-
-此命令仅限超级管理员使用。`,
-    'error.admin3': `❌ 此用户已经是超级管理员，无需添加。`,
-    'error.admin4': `❌ 只有超级管理员可以使用此命令。`,
-    'error.admin5': `❌ 此用户已经是管理员。`,
-    'error.admin6': `❌ 无法移除超级管理员。`,
-    'error.admin7': `❌ 此用户不是管理员。`,
-    'error.appeal': `❌ 请提供申诉 ID
-
-用法: /admin_approve <appeal_id> [备注]`,
-    'error.appeal2': `❌ 请提供申诉 ID
-
-用法: /admin_reject <appeal_id> [备注]`,
-    'error.appeal3': `❌ 申诉 \\\${appealId} 已经被审核过了`,
-    'error.appeal4': `❌ 找不到申诉 ID: \\\${appealId}`,
-    'error.ban': `❌ 用户 \\\${targetUserId} 没有封禁记录`,
-    'error.birthday': `❌ \\\${validation.error}
-
-请重新输入生日（格式：YYYY-MM-DD）：`,
-    'error.birthday2': `❌ 生日格式错误
-
-请重新输入（格式：YYYY-MM-DD）：`,
-    'error.birthday3': `❌ 生日格式错误`,
-    'error.bottle': `❌ 此对话已结束。 
-
-使用 /catch 捡新的漂流瓶开始新对话。`,
-    'error.bottle2': `❌ 你的帐号已被封禁，无法捡漂流瓶。 
-
-如有疑问，请使用 /appeal 申诉。`,
-    'error.bottle3': `❌ 这个瓶子已经被其他人捡走了，请试试其他瓶子！`,
-    'error.broadcast': `❌ 当前广播系统仅支持 \\\${MAX_SAFE_USERS} 个用户以内的广播。 
-
-`,
-    'error.broadcast2': `❌ 广播 ID 必须是数字`,
-    'error.broadcast3': `❌ 找不到该广播记录`,
-    'error.cancel': `❌ 昵称太长，请输入不超过 36 个字符的昵称。 
-
-请重新输入或取消编辑：`,
-    'error.cancel2': `❌ 个人简介太长，请输入不超过 200 个字符。 
-
-请重新输入或取消编辑：`,
-    'error.cancel3': `❌ 地区名称太长，请输入不超过 50 个字符。 
-
-请重新输入或取消编辑：`,
-    'error.cancel4': `❌ 昵称太短，至少需要 4 个字符。 
-
-请重新输入或取消编辑：`,
-    'error.cancel5': `❌ 每个标签最多 20 个字符。 
-
-请重新输入或取消编辑：`,
-    'error.cancel6': `❌ 取消编辑`,
-    'error.cancel7': `❌ 已取消 \\\${ZODIAC_NAMES[zodiacSign]}`,
-    'error.cancel8': `❌ 已取消 \\\${mbtiType}`,
-    'error.cancel9': `❌ 取消`,
-    'error.conversation': `❌ 找不到标识符 \\\${formatIdentifier(identifier)} 的对话
-
-`,
-    'error.conversation2': `❌ 对话资讯错误。`,
-    'error.conversation3': `❌ 对话资讯错误`,
-    'error.conversation4': `❌ 对话不存在`,
-    'error.conversationInfoError': `❌ 对话资讯错误`,
-    'error.conversationNotFound': `❌ 对话不存在`,
-    'error.failed': `❌ **广告加载失败**
-
-很抱歉，广告无法正常播放。 
-
-💡 **可能的原因：**
-• 网络连接不稳定
-• 广告提供商暂时不可用
-• 浏览器不支持
-
-🔄 **建议：**
-• 检查网络连接
-• 稍后再试
-• 或使用其他方式获得额度（邀请朋友）`,
-    'error.failed10': `❌ 查询维护模式状态失败。`,
-    'error.failed11': `❌ 刷新头像失败
-
-`,
-    'error.failed12': `❌ 验证失败，请稍后再试`,
-    'error.failed13': `❌ 启用维护模式失败。`,
-    'error.failed14': `❌ 关闭维护模式失败。`,
-    'error.failed15': `❌ 获取广告状态失败`,
-    'error.failed16': `❌ 获取统计数据失败`,
-    'error.failed17': `❌ 创建广播失败。`,
-    'error.failed18': `❌ 获取信息失败`,
-    'error.failed19': `❌ 领取奖励失败`,
-    'error.failed2': `❌ 创建过滤广播失败
-
-\\\${error instanceof Error ? error.message : String(error)}`,
-    'error.failed20': `❌ 确认失败`,
-    'error.failed21': `❌ 设置失败`,
-    'error.failed22': `❌ 跳过失败`,
-    'error.failed23': `❌ 操作失败`,
-    'error.failed24': `❌ 发送每日报表失败：\\\${error instanceof Error ? error.message : String(error)}`,
-    'error.failed25': `❌ 获取 VIP 漏斗数据失败`,
-    'error.failed26': `❌ **诊断失败**
-
-`,
-    'error.failed27': `❌ **刷新失败**
-
-`,
-    'error.failed28': `❌ **支付失败**
-
-`,
-    'error.failed29': `❌ 获取广告提供商列表失败`,
-    'error.failed3': `❌ 处理广播队列失败：\\\${error instanceof Error ? error.message : String(error)}`,
-    'error.failed30': `❌ 获取官方广告列表失败`,
-    'error.failed31': `❌ 启用广告提供商失败`,
-    'error.failed32': `❌ 停用广告提供商失败`,
-    'error.failed33': `❌ 启用官方广告失败`,
-    'error.failed34': `❌ 停用官方广告失败`,
-    'error.failed35': `❌ 获取分析数据失败`,
-    'error.failed36': `❌ 获取广告数据失败`,
-    'error.failed37': `❌ 设置优先级失败`,
-    'error.failed38': `❌ 退款失败：\\\${error instanceof Error ? error.message : String(error)}`,
-    'error.failed39': `❌ 操作失败：\\\${error instanceof Error ? error.message : String(error)}`,
-    'error.failed4': `❌ 查询广播状态失败：\\\${error instanceof Error ? error.message : String(error)}`,
-    'error.failed40': `❌ 提交失败，请稍后再试。`,
-    'error.failed41': `❌ 建立对话失败，请稍后再试。`,
-    'error.failed5': `❌ 取消广播失败：\\\${error instanceof Error ? error.message : String(error)}`,
-    'error.failed6': `❌ 清理广播失败：\\\${error instanceof Error ? error.message : String(error)}`,
-    'error.failed7': `❌ 重置失败：\\\${errorMessage}
-
-请稍后再试。`,
-    'error.failed8': `❌ 创建广播失败，请稍后再试。`,
-    'error.failed9': `❌ 刷新对话历史失败
-
-`,
-    'error.mbti': `❌ 无效的 MBTI 类型`,
-    'error.message': `❌ 过滤器格式错误
-
-\\\${error instanceof Error ? error.message : String(error)}
-
-`,
-    'error.message2': `❌ 此命令在生产环境中不可用。 
-
-This command is not available in production.`,
-    'error.message3': `❌ 发生错误，请稍后再试。 
-
-错误信息：\\\${error instanceof Error ? error.message : String(error)}`,
-    'error.message4': `❌ 很抱歉，你必须年满 18 岁才能使用本服务。 
-
-请成年后再来！`,
-    'error.nickname': `❌ 无法获取 Telegram 昵称`,
-    'error.nickname2': `❌ 昵称不能包含网址连结
-
-`,
-    'error.nickname3': `❌ \\\${validation.error}
-
-请重新输入昵称：`,
-    'error.quota': `❌ 今日漂流瓶配额已用完（\\\${quotaDisplay}）
-
-💡 获得更多配额的方式：
-`,
-    'error.quota2': `❌ 今日对话讯息配额已用完（\\\${usedToday}/\\\${dailyLimit}）
-
-`,
-    'error.quota3': `❌ 今日漂流瓶配额已用完（\\\${quotaDisplay}）
-
-`,
-    'error.register': `❌ 请先完成注册流程。 
-
-使用 /start 继续注册。`,
-    'error.register2': `❌ 找不到用户资料，请先使用 /start 注册。`,
-    'error.register3': `❌ 请先完成注册流程才能捡漂流瓶。 
-
-使用 /start 继续注册。`,
-    'error.settings': `❌ 最多只能设定 5 个兴趣标签。 
-
-请重新输入或取消编辑：`,
-    'error.short': `❌ 无效的语言代码`,
-    'error.short10': `❌ 权限不足`,
-    'error.short11': `❌ 稍后再说`,
-    'error.short12': `❌ 重新选择`,
-    'error.short13': `❌ 重新输入`,
-    'error.short14': `❌ 关闭`,
-    'error.short15': `❌ 未启用`,
-    'error.short2': `❌ 找不到用户资料`,
-    'error.short3': `❌ 未知的教学步骤`,
-    'error.short4': `❌ 系统发生错误`,
-    'error.short5': `❌ 频道配置错误`,
-    'error.short6': `❌ 未知操作`,
-    'error.short7': `❌ 不正确`,
-    'error.short8': `❌ 否`,
-    'error.short9': `❌ 发生错误`,
-    'error.start': `❌ 发生错误，请重新开始：/start`,
-    'error.stats': `❌ 你没有权限查看广告统计`,
-    'error.task': `❌ 查看任务中心时系统发生错误，请稍后再试。`,
-    'error.text': `❌ 计算结果时系统发生错误，请稍后再试。 
-
-`,
-    'error.text10': `❌ 发送者资讯错误。`,
-    'error.text11': `❌ 你没有权限查看分析数据`,
-    'error.text12': `❌ 发生错误，请稍后再试。`,
-    'error.text13': `❌ 你没有权限使用此命令。`,
-    'error.text14': `❌ 使用方法错误
-
-`,
-    'error.text15': `❌ 优先级必须是非负整数`,
-    'error.text16': `❌ 时长必须是正整数或`,
-    'error.text17': `❌ 处理支付时系统发生错误，请联系客服。 
-
-`,
-    'error.text18': `❌ 退款原因至少需要 10 个字，请重新输入：`,
-    'error.text19': `❌ **退款申请已被拒绝**
-
-`,
-    'error.text2': `❌ 个人简介包含不允许的连结。 
-
-`,
-    'error.text20': `❌ 退款申请超过时限
-
-`,
-    'error.text21': `❌ 退款请求不存在或已处理`,
-    'error.text22': `❌ 找不到支付记录。`,
-    'error.text23': `❌ 很抱歉，你必须年满 18 岁才能使用本服务。 
-
-`,
-    'error.text24': `❌ 发生错误，请重新输入。`,
-    'error.text25': `❌ 请认真回答问题
-
-`,
-    'error.text3': `❌ 未检测到你加入频道，请先加入后再试`,
-    'error.text4': `❌ 检测到你已离开频道，无法领取奖励。`,
-    'error.text5': `❌ 启动教学时发生错误，请稍后再试。`,
-    'error.text6': `❌ 系统发生错误，请稍后再试。`,
-    'error.text7': `❌ 时长必须是数字（分钟）`,
-    'error.text8': `❌ 发生错误，请稍后再试`,
-    'error.text9': `❌ 无法获取维护模式状态`,
-    'error.userNotFound': `❌ 用户不存在，请先使用 /start 注册。`,
-    'error.userNotFound2': `❌ 用户不存在，请先注册`,
-    'error.userNotFound3': `❌ 对方用户不存在。`,
-    'error.userNotFound4': `❌ 用户不存在`,
-    'error.userNotFound5': `❌ 用户不存在：\\\${userId}`,
-    'error.userNotFound6': `❌ 用户不存在或未注册。`,
-    'error.userNotFound7': `❌ 用户不存在。`,
-    'error.vip': `❌ 你没有权限查看 VIP 数据`,
-    'error.vip2': `❌ 你不是 VIP 用户，无法申请退款。`,
     errorDetails: `错误信息：{error}`,
     failed: `失败: \${broadcast.failedCount}
 `,
@@ -3825,13 +3621,270 @@ This command is not available in production.`,
     unknownAction: `❌ 未知操作`,
     unknownError: `🎨 UX: 友善的错误提示`,
     userNotFound: `用户不存在`,
+    userNotFound4: `❌ 用户不存在`,
     userNotFoundRegister: `⚠️ 用户不存在，请先使用 /start 注册。`,
     verificationFailed: `❌ 验证失败，请稍后再试`,
+    error: {
+      ad: `❌ 此广告不需要验证`,
+      ad2: `❌ 暂无可用的广告`,
+      ad3: `❌ 无法领取此广告`,
+      ad4: `❌ 广告不存在`,
+      ad5: `❌ 广告 ID 必须是数字`,
+      ad6: `❌ 你没有权限查看广告数据`,
+      admin: `❌ 系统发生错误，请稍后再试。 
+
+如果问题持续，请联系管理员。`,
+      admin2: `❌ **权限不足**
+
+此命令仅限超级管理员使用。`,
+      admin3: `❌ 此用户已经是超级管理员，无需添加。`,
+      admin4: `❌ 只有超级管理员可以使用此命令。`,
+      admin5: `❌ 此用户已经是管理员。`,
+      admin6: `❌ 无法移除超级管理员。`,
+      admin7: `❌ 此用户不是管理员。`,
+      appeal: `❌ 请提供申诉 ID
+
+用法: /admin_approve <appeal_id> [备注]`,
+      appeal2: `❌ 请提供申诉 ID
+
+用法: /admin_reject <appeal_id> [备注]`,
+      appeal3: `❌ 申诉 \\\${appealId} 已经被审核过了`,
+      appeal4: `❌ 找不到申诉 ID: \\\${appealId}`,
+      ban: `❌ 用户 \\\${targetUserId} 没有封禁记录`,
+      birthday: `❌ \\\${validation.error}
+
+请重新输入生日（格式：YYYY-MM-DD）：`,
+      birthday2: `❌ 生日格式错误
+
+请重新输入（格式：YYYY-MM-DD）：`,
+      birthday3: `❌ 生日格式错误`,
+      bottle: `❌ 此对话已结束。 
+
+使用 /catch 捡新的漂流瓶开始新对话。`,
+      bottle2: `❌ 你的帐号已被封禁，无法捡漂流瓶。 
+
+如有疑问，请使用 /appeal 申诉。`,
+      bottle3: `❌ 这个瓶子已经被其他人捡走了，请试试其他瓶子！`,
+      broadcast: `❌ 当前广播系统仅支持 \\\${MAX_SAFE_USERS} 个用户以内的广播。 
+
+`,
+      broadcast2: `❌ 广播 ID 必须是数字`,
+      broadcast3: `❌ 找不到该广播记录`,
+      cancel: `❌ 昵称太长，请输入不超过 36 个字符的昵称。 
+
+请重新输入或取消编辑：`,
+      cancel2: `❌ 个人简介太长，请输入不超过 200 个字符。 
+
+请重新输入或取消编辑：`,
+      cancel3: `❌ 地区名称太长，请输入不超过 50 个字符。 
+
+请重新输入或取消编辑：`,
+      cancel4: `❌ 昵称太短，至少需要 4 个字符。 
+
+请重新输入或取消编辑：`,
+      cancel5: `❌ 每个标签最多 20 个字符。 
+
+请重新输入或取消编辑：`,
+      cancel6: `❌ 取消编辑`,
+      cancel7: `❌ 已取消 \\\${ZODIAC_NAMES[zodiacSign]}`,
+      cancel8: `❌ 已取消 \\\${mbtiType}`,
+      cancel9: `❌ 取消`,
+      conversation: `❌ 找不到标识符 \\\${formatIdentifier(identifier)} 的对话
+
+`,
+      conversation2: `❌ 对话资讯错误。`,
+      conversation3: `❌ 对话资讯错误`,
+      conversation4: `❌ 对话不存在`,
+      conversationInfoError: `❌ 对话资讯错误`,
+      conversationNotFound: `❌ 对话不存在`,
+      failed: `❌ **广告加载失败**
+
+很抱歉，广告无法正常播放。 
+
+💡 **可能的原因：**
+• 网络连接不稳定
+• 广告提供商暂时不可用
+• 浏览器不支持
+
+🔄 **建议：**
+• 检查网络连接
+• 稍后再试
+• 或使用其他方式获得额度（邀请朋友）`,
+      failed10: `❌ 查询维护模式状态失败。`,
+      failed11: `❌ 刷新头像失败
+
+`,
+      failed12: `❌ 验证失败，请稍后再试`,
+      failed13: `❌ 启用维护模式失败。`,
+      failed14: `❌ 关闭维护模式失败。`,
+      failed15: `❌ 获取广告状态失败`,
+      failed16: `❌ 获取统计数据失败`,
+      failed17: `❌ 创建广播失败。`,
+      failed18: `❌ 获取信息失败`,
+      failed19: `❌ 领取奖励失败`,
+      failed2: `❌ 创建过滤广播失败
+
+\\\${error instanceof Error ? error.message : String(error)}`,
+      failed20: `❌ 确认失败`,
+      failed21: `❌ 设置失败`,
+      failed22: `❌ 跳过失败`,
+      failed23: `❌ 操作失败`,
+      failed24: `❌ 发送每日报表失败：\\\${error instanceof Error ? error.message : String(error)}`,
+      failed25: `❌ 获取 VIP 漏斗数据失败`,
+      failed26: `❌ **诊断失败**
+
+`,
+      failed27: `❌ **刷新失败**
+
+`,
+      failed28: `❌ **支付失败**
+
+`,
+      failed29: `❌ 获取广告提供商列表失败`,
+      failed3: `❌ 处理广播队列失败：\\\${error instanceof Error ? error.message : String(error)}`,
+      failed30: `❌ 获取官方广告列表失败`,
+      failed31: `❌ 启用广告提供商失败`,
+      failed32: `❌ 停用广告提供商失败`,
+      failed33: `❌ 启用官方广告失败`,
+      failed34: `❌ 停用官方广告失败`,
+      failed35: `❌ 获取分析数据失败`,
+      failed36: `❌ 获取广告数据失败`,
+      failed37: `❌ 设置优先级失败`,
+      failed38: `❌ 退款失败：\\\${error instanceof Error ? error.message : String(error)}`,
+      failed39: `❌ 操作失败：\\\${error instanceof Error ? error.message : String(error)}`,
+      failed4: `❌ 查询广播状态失败：\\\${error instanceof Error ? error.message : String(error)}`,
+      failed40: `❌ 提交失败，请稍后再试。`,
+      failed41: `❌ 建立对话失败，请稍后再试。`,
+      failed5: `❌ 取消广播失败：\\\${error instanceof Error ? error.message : String(error)}`,
+      failed6: `❌ 清理广播失败：\\\${error instanceof Error ? error.message : String(error)}`,
+      failed7: `❌ 重置失败：\\\${errorMessage}
+
+请稍后再试。`,
+      failed8: `❌ 创建广播失败，请稍后再试。`,
+      failed9: `❌ 刷新对话历史失败
+
+`,
+      mbti: `❌ 无效的 MBTI 类型`,
+      message: `❌ 过滤器格式错误
+
+\\\${error instanceof Error ? error.message : String(error)}
+
+`,
+      message2: `❌ 此命令在生产环境中不可用。 
+
+This command is not available in production.`,
+      message3: `❌ 发生错误，请稍后再试。 
+
+错误信息：\\\${error instanceof Error ? error.message : String(error)}`,
+      message4: `❌ 很抱歉，你必须年满 18 岁才能使用本服务。 
+
+请成年后再来！`,
+      nickname: `❌ 无法获取 Telegram 昵称`,
+      nickname2: `❌ 昵称不能包含网址连结
+
+`,
+      nickname3: `❌ \\\${validation.error}
+
+请重新输入昵称：`,
+      quota: `❌ 今日漂流瓶配额已用完（\\\${quotaDisplay}）
+
+💡 获得更多配额的方式：
+`,
+      quota2: `❌ 今日对话讯息配额已用完（\\\${usedToday}/\\\${dailyLimit}）
+
+`,
+      quota3: `❌ 今日漂流瓶配额已用完（\\\${quotaDisplay}）
+
+`,
+      register: `❌ 请先完成注册流程。 
+
+使用 /start 继续注册。`,
+      register2: `❌ 找不到用户资料，请先使用 /start 注册。`,
+      register3: `❌ 请先完成注册流程才能捡漂流瓶。 
+
+使用 /start 继续注册。`,
+      settings: `❌ 最多只能设定 5 个兴趣标签。 
+
+请重新输入或取消编辑：`,
+      short: `❌ 无效的语言代码`,
+      short10: `❌ 权限不足`,
+      short11: `❌ 稍后再说`,
+      short12: `❌ 重新选择`,
+      short13: `❌ 重新输入`,
+      short14: `❌ 关闭`,
+      short15: `❌ 未启用`,
+      short2: `❌ 找不到用户资料`,
+      short3: `❌ 未知的教学步骤`,
+      short4: `❌ 系统发生错误`,
+      short5: `❌ 频道配置错误`,
+      short6: `❌ 未知操作`,
+      short7: `❌ 不正确`,
+      short8: `❌ 否`,
+      short9: `❌ 发生错误`,
+      start: `❌ 发生错误，请重新开始：/start`,
+      stats: `❌ 你没有权限查看广告统计`,
+      task: `❌ 查看任务中心时系统发生错误，请稍后再试。`,
+      text: `❌ 计算结果时系统发生错误，请稍后再试。 
+
+`,
+      text10: `❌ 发送者资讯错误。`,
+      text11: `❌ 你没有权限查看分析数据`,
+      text12: `❌ 发生错误，请稍后再试。`,
+      text13: `❌ 你没有权限使用此命令。`,
+      text14: `❌ 使用方法错误
+
+`,
+      text15: `❌ 优先级必须是非负整数`,
+      text16: `❌ 时长必须是正整数或`,
+      text17: `❌ 处理支付时系统发生错误，请联系客服。 
+
+`,
+      text18: `❌ 退款原因至少需要 10 个字，请重新输入：`,
+      text19: `❌ **退款申请已被拒绝**
+
+`,
+      text2: `❌ 个人简介包含不允许的连结。 
+
+`,
+      text20: `❌ 退款申请超过时限
+
+`,
+      text21: `❌ 退款请求不存在或已处理`,
+      text22: `❌ 找不到支付记录。`,
+      text23: `❌ 很抱歉，你必须年满 18 岁才能使用本服务。 
+
+`,
+      text24: `❌ 发生错误，请重新输入。`,
+      text25: `❌ 请认真回答问题
+
+`,
+      text3: `❌ 未检测到你加入频道，请先加入后再试`,
+      text4: `❌ 检测到你已离开频道，无法领取奖励。`,
+      text5: `❌ 启动教学时发生错误，请稍后再试。`,
+      text6: `❌ 系统发生错误，请稍后再试。`,
+      text7: `❌ 时长必须是数字（分钟）`,
+      text8: `❌ 发生错误，请稍后再试`,
+      text9: `❌ 无法获取维护模式状态`,
+      userNotFound: `❌ 用户不存在，请先使用 /start 注册。`,
+      userNotFound2: `❌ 用户不存在，请先注册`,
+      userNotFound3: `❌ 对方用户不存在。`,
+      userNotFound4: `❌ 用户不存在`,
+      userNotFound5: `❌ 用户不存在：\\\${userId}`,
+      userNotFound6: `❌ 用户不存在或未注册。`,
+      userNotFound7: `❌ 用户不存在。`,
+      vip: `❌ 你没有权限查看 VIP 数据`,
+      vip2: `❌ 你不是 VIP 用户，无法申请退款。`,
+    },
   },
   estimate: {
     immediate: `立即发送（约 1-2 秒）`,
     minutes: `约 \${minutes} 分钟`,
     seconds: `约 \${seconds} 秒`,
+  },
+  gender: {
+    female: `女性`,
+    label: `👤 性别：{otherUser.gender}`,
+    male: `男性`,
   },
   help: {
     ad: `• 观看广告：每次 +1 额度（每日最多 20 次）
@@ -4128,7 +4181,11 @@ This command is not available in production.`,
     you: `你`,
   },
   invite: {
+    codeAccepted: `✅ 邀請碼已接受！感謝 {inviterName} 的邀請`,
     inviteeSuccess: `[需要翻译: invite.inviteeSuccess]`,
+    inviterSuccess: `✅ 邀請成功！你獲得了 +1 永久額度`,
+    limitReached: `❌ 你已達到邀請上限（{max} 人）`,
+    limitWarning: `⚠️ 你已邀請 {count} 人，還可邀請 {remaining} 人`,
     selfInviteError: `[需要翻译: invite.selfInviteError]`,
     upgradePrompt: `[需要翻译: invite.upgradePrompt]`,
     userType: `{type}`,
@@ -4186,6 +4243,174 @@ This command is not available in production.`,
 
 `,
   },
+  mbti: {
+    description: {
+      ENFJ: `主人公 - 富有魅力且鼓舞人心的領導者，有能力使聽眾著迷。`,
+      ENFP: `競選者 - 熱情、有創造力且社交能力強的自由精神，總能找到理由微笑。`,
+      ENTJ: `指揮官 - 大膽、富有想像力且意志強大的領導者，總能找到或創造解決方法。`,
+      ENTP: `辯論家 - 聰明好奇的思想家，無法抗拒智力上的挑戰。`,
+      ESFJ: `執政官 - 極有同情心、受歡迎且樂於助人的人，總是渴望為社群做出貢獻。`,
+      ESFP: `表演者 - 自發、精力充沛且熱情的表演者，生活在他們周圍從不無聊。`,
+      ESTJ: `總經理 - 出色的管理者，在管理事務或人員方面無與倫比。`,
+      ESTP: `企業家 - 聰明、精力充沛且善於洞察的人，真正享受生活在邊緣。`,
+      INFJ: `提倡者 - 安靜而神秘，同時鼓舞人心且不知疲倦的理想主義者。`,
+      INFP: `調停者 - 詩意、善良的利他主義者，總是熱情地為正義事業而努力。`,
+      INTJ: `建築師 - 富有想像力和戰略性的思想家，一切皆在計劃之中。`,
+      INTP: `邏輯學家 - 具有創新精神的發明家，對知識有著止不住的渴望。`,
+      ISFJ: `守衛者 - 非常專注且溫暖的守護者，時刻準備著保護所愛之人。`,
+      ISFP: `探險家 - 靈活且迷人的藝術家，時刻準備著探索和體驗新事物。`,
+      ISTJ: `物流師 - 實際且注重事實的個人，可靠性不容懷疑。`,
+      ISTP: `鑒賞家 - 大膽而實際的實驗者，擅長使用各種工具。`,
+    },
+    full: {
+      question1: `在社交場合中，你通常：`,
+      'question1.option1': `主動與他人交談`,
+      'question1.option2': `等待他人來找我`,
+      question10: `解決問題時，你更依賴：`,
+      'question10.option1': `實際經驗和事實`,
+      'question10.option2': `直覺和可能性`,
+      question11: `你更喜歡：`,
+      'question11.option1': `關注具體細節`,
+      'question11.option2': `關注整體概念`,
+      question12: `學習新事物時，你更喜歡：`,
+      'question12.option1': `按部就班的方法`,
+      'question12.option2': `探索創新的方式`,
+      question13: `閱讀時，你更喜歡：`,
+      'question13.option1': `實用的指南`,
+      'question13.option2': `理論和概念`,
+      question14: `你更關注：`,
+      'question14.option1': `現在和過去`,
+      'question14.option2': `未來和可能性`,
+      question15: `描述事物時，你傾向於：`,
+      'question15.option1': `使用具體例子`,
+      'question15.option2': `使用比喻和類比`,
+      question16: `工作中，你更重視：`,
+      'question16.option1': `實際應用`,
+      'question16.option2': `創新想法`,
+      question17: `你更信任：`,
+      'question17.option1': `已驗證的方法`,
+      'question17.option2': `新的嘗試`,
+      question18: `規劃未來時，你會：`,
+      'question18.option1': `基於現實條件`,
+      'question18.option2': `想像各種可能`,
+      question19: `做決定時，你更重視：`,
+      'question19.option1': `邏輯和客觀分析`,
+      'question19.option2': `情感和人際和諧`,
+      question2: `週末你更喜歡：`,
+      'question2.option1': `和朋友出去玩`,
+      'question2.option2': `在家獨處休息`,
+      question20: `批評他人時，你會：`,
+      'question20.option1': `直接指出問題`,
+      'question20.option2': `考慮對方感受`,
+      question21: `你更看重：`,
+      'question21.option1': `公平和正義`,
+      'question21.option2': `同情和理解`,
+      question22: `評價一個想法時，你首先考慮：`,
+      'question22.option1': `是否合理`,
+      'question22.option2': `是否有益`,
+      question23: `朋友向你傾訴時，你會：`,
+      'question23.option1': `分析問題並提供建議`,
+      'question23.option2': `傾聽並給予安慰`,
+      question24: `衝突中，你更傾向於：`,
+      'question24.option1': `堅持原則`,
+      'question24.option2': `維持關係`,
+      question25: `你更容易被說服通過：`,
+      'question25.option1': `事實和數據`,
+      'question25.option2': `情感和故事`,
+      question26: `團隊決策時，你更關注：`,
+      'question26.option1': `效率和結果`,
+      'question26.option2': `共識和團結`,
+      question27: `你認為好的領導者應該：`,
+      'question27.option1': `公正果斷`,
+      'question27.option2': `體貼關懷`,
+      question28: `你的工作方式是：`,
+      'question28.option1': `提前計劃和準備`,
+      'question28.option2': `隨機應變和靈活`,
+      question29: `你更喜歡：`,
+      'question29.option1': `有明確的截止日期`,
+      'question29.option2': `保持開放的選擇`,
+      question3: `參加聚會後，你通常：`,
+      'question3.option1': `感到充滿活力`,
+      'question3.option2': `感到需要休息`,
+      question30: `旅行時，你傾向於：`,
+      'question30.option1': `制定詳細行程`,
+      'question30.option2': `隨心所欲探索`,
+      question31: `你的房間通常：`,
+      'question31.option1': `整齊有序`,
+      'question31.option2': `隨性自在`,
+      question32: `處理任務時，你會：`,
+      'question32.option1': `盡早完成`,
+      'question32.option2': `接近截止日期才完成`,
+      question33: `你更喜歡的生活方式：`,
+      'question33.option1': `有規律和結構`,
+      'question33.option2': `自由和彈性`,
+      question34: `做決定時，你傾向於：`,
+      'question34.option1': `快速決定`,
+      'question34.option2': `保留選擇權`,
+      question35: `購物時，你會：`,
+      'question35.option1': `列清單按計劃購買`,
+      'question35.option2': `隨意逛逛看到喜歡就買`,
+      question36: `面對變化，你通常：`,
+      'question36.option1': `感到不安`,
+      'question36.option2': `感到興奮`,
+      question4: `在團隊中，你更傾向於：`,
+      'question4.option1': `積極發表意見`,
+      'question4.option2': `先聽後說`,
+      question5: `遇到新朋友時，你會：`,
+      'question5.option1': `很快就能熟絡起來`,
+      'question5.option2': `需要時間慢慢熟悉`,
+      question6: `你的朋友圈：`,
+      'question6.option1': `廣泛但不深入`,
+      'question6.option2': `小而親密`,
+      question7: `工作時，你更喜歡：`,
+      'question7.option1': `團隊合作`,
+      'question7.option2': `獨立工作`,
+      question8: `思考問題時，你傾向於：`,
+      'question8.option1': `邊說邊想`,
+      'question8.option2': `先想好再說`,
+      question9: `壓力大時，你會：`,
+      'question9.option1': `找朋友聊天`,
+      'question9.option2': `獨自消化`,
+    },
+    quick: {
+      question1: `在社交場合中，你通常：`,
+      'question1.option1': `主動與他人交談`,
+      'question1.option2': `等待他人來找我`,
+      question10: `你的工作方式是：`,
+      'question10.option1': `提前計劃和準備`,
+      'question10.option2': `隨機應變和靈活`,
+      question11: `你更喜歡：`,
+      'question11.option1': `有明確的截止日期`,
+      'question11.option2': `保持開放的選擇`,
+      question12: `旅行時，你傾向於：`,
+      'question12.option1': `制定詳細行程`,
+      'question12.option2': `隨心所欲探索`,
+      question2: `週末你更喜歡：`,
+      'question2.option1': `和朋友出去玩`,
+      'question2.option2': `在家獨處休息`,
+      question3: `參加聚會後，你通常：`,
+      'question3.option1': `感到充滿活力`,
+      'question3.option2': `感到需要休息`,
+      question4: `解決問題時，你更依賴：`,
+      'question4.option1': `實際經驗和事實`,
+      'question4.option2': `直覺和可能性`,
+      question5: `你更喜歡：`,
+      'question5.option1': `關注具體細節`,
+      'question5.option2': `關注整體概念`,
+      question6: `學習新事物時，你更喜歡：`,
+      'question6.option1': `按部就班的方法`,
+      'question6.option2': `探索創新的方式`,
+      question7: `做決定時，你更重視：`,
+      'question7.option1': `邏輯和客觀分析`,
+      'question7.option2': `情感和人際和諧`,
+      question8: `批評他人時，你會：`,
+      'question8.option1': `直接指出問題`,
+      'question8.option2': `考慮對方感受`,
+      question9: `你更看重：`,
+      'question9.option1': `公平和正義`,
+      'question9.option2': `同情和理解`,
+    },
+  },
   mbtiTest: {
     afterRegistration: `💡 完成注册后，你可以：
 `,
@@ -4241,7 +4466,7 @@ This command is not available in production.`,
     invite: `🎁 **邀请好友**
 
 `,
-    invite2: `📋 你的邀请码：{inviteCode}`,
+    invite2: `📋 你的邀请码：\\`,
     invite3: `📤 分享邀请码`,
     levelFree: `🆓 免费会员`,
     levelVip: `💎 VIP 会员`,
@@ -4255,8 +4480,11 @@ This command is not available in production.`,
     register: `• 好友使用你的邀请码注册
 `,
     selectFeature: `请选择功能：`,
-    settings: `• MBTI：\${user.mbti_result}`,
-    settings2: `• 星座：\${user.zodiac_sign}`,
+    settings: `• MBTI：\${mbti}
+ \${mbti}`,
+    settings2: `• 星座：\${zodiac}
+
+ \${zodiac}`,
     settings3: `未设定`,
     settings4: `未设定`,
     short: `免费会员`,
@@ -4286,10 +4514,12 @@ This command is not available in production.`,
     yourStatus: `你的状态`,
   },
   messageForward: {
+    blockedUrls: `❌ 訊息包含被禁止的網址`,
     dailyQuota: `📊 今日已发送：{used}/{limit} 则`,
     messageSent: `✅ 讯息已发送给 {identifier}
 
 `,
+    quotaExceeded: `❌ 今日訊息配額已用完`,
     removeLinks: `[需要从 zh-TW.ts 获取翻译]`,
     replyHint: `[需要从 zh-TW.ts 获取翻译]`,
     upgradeVip: `[需要从 zh-TW.ts 获取翻译]`,
@@ -4329,15 +4559,19 @@ This command is not available in production.`,
     claimReward: `✅ 领取奖励`,
     claimRewardButton: `✅ 领取奖励`,
     claimRewardSuccess: `✅ 领取奖励成功！获得 +{quota} 个永久额度！`,
+    communityBenefits: `💡 完成任務可獲得永久額度`,
+    communityThanks: `🙏 感謝支持社群！`,
     errorRetry: `❌ 发生错误，请稍后再试`,
     moreAdsAvailable: `💡 还有更多官方广告可以观看！`,
     nextAd: `➡️ 下一个广告`,
     noAdsAvailable: `❌ 暂无可用的广告`,
     noVerificationRequired: `❌ 此广告不需要验证`,
+    quotaInfo: `📊 今日剩餘：**{remaining}/20** 次`,
     requiresVerification: `
 
 ✅ 需要验证：加入群组/频道后点击「验证」按钮`,
     reward: `🎁 奖励：+{quota} 个永久额度`,
+    rewardPermanent: `🎁 完成任務可獲得 **+1 永久額度**`,
     statsAdNotFound: `❌ 广告不存在`,
     statsClicks: `• 点击次数: {count}
 `,
@@ -4383,11 +4617,6 @@ This command is not available in production.`,
 
 `,
     agreeTerms: `点击下方按钮表示你已阅读并同意上述条款。`,
-    'antiFraud.confirm_button': `[需要翻译: onboarding.antiFraud.confirm_button]`,
-    'antiFraud.learn_button': `[需要翻译: onboarding.antiFraud.learn_button]`,
-    'antiFraud.question1': `[需要翻译: onboarding.antiFraud.question1]`,
-    'antiFraud.question2': `[需要翻译: onboarding.antiFraud.question2]`,
-    'antiFraud.question3': `[需要翻译: onboarding.antiFraud.question3]`,
     antiFraudConfirm: `请确认：`,
     antiFraudFinalStep: `🛡️ 最后一步：反诈骗安全确认
 
@@ -4426,10 +4655,9 @@ This command is not available in production.`,
 请重新输入（格式：YYYY-MM-DD）：`,
     birthdayRetry: `请重新输入生日（格式：YYYY-MM-DD）：`,
     birthdayWarning: `⚠️ 生日设定后无法修改，请确认无误！`,
-    bloodType: `🩸 **请选择你的血型**
+    bloodTypeLabel: `🩸 **请选择你的血型**
 
 `,
-    'bloodType.select': `[需要翻译: onboarding.bloodType.select]`,
     complete: `请输入「是」完成测验：`,
     confirm: `为了保护所有使用者的安全，请确认你了解网路交友的风险。 
 
@@ -4441,13 +4669,9 @@ This command is not available in production.`,
     confirmBirthday: `⚠️ 请确认你的生日资讯：
 
 `,
-    customNickname: `[需要翻译: onboarding.customNickname]`,
+    customNickname: `自定昵称`,
     enterYes: `请输入「是」完成测验：`,
     errorRetry: `❌ 发生错误，请重新输入。`,
-    gender: `• 性别：\${updatedUser.gender}
-`,
-    'gender.female': `女`,
-    'gender.male': `男`,
     gender2: `• 性别：\${updatedUser.gender ===`,
     gender3: `请选择你的性别：
 
@@ -4476,6 +4700,7 @@ This command is not available in production.`,
 `,
     message2: `• 警惕索要金钱的讯息
 `,
+    moreLanguages: `更多语言`,
     nickname: `• 昵称：\${updatedUser.nickname}
 `,
     nickname2: `很好！你的昵称是：\${nickname}
@@ -4527,7 +4752,7 @@ This command is not available in production.`,
 
 `,
     start2: `现在你可以开始使用 XunNi 了！`,
-    startRegistration: `[需要翻译: onboarding.startRegistration]`,
+    startRegistration: `开始注册 →`,
     stats: `📊 统计`,
     stepAntiFraud: `🛡️ 请点击上方按钮确认反诈骗安全事项`,
     stepBirthday: `📅 请输入你的生日（格式：YYYY-MM-DD，例如：1995-06-15）`,
@@ -4537,10 +4762,6 @@ This command is not available in production.`,
     stepMbti: `🧠 请点击上方按钮选择 MBTI 设定方式`,
     stepNickname: `✏️ 请输入你的昵称`,
     stepTerms: `📜 请点击上方按钮同意服务条款`,
-    'terms.agree_button': `[需要翻译: onboarding.terms.agree_button]`,
-    'terms.english_only_note': `[需要翻译: onboarding.terms.english_only_note]`,
-    'terms.privacy_policy_button': `[需要翻译: onboarding.terms.privacy_policy_button]`,
-    'terms.terms_of_service_button': `[需要翻译: onboarding.terms.terms_of_service_button]`,
     termsOfService: `📋 使用者条款
 
 `,
@@ -4593,12 +4814,15 @@ This command is not available in production.`,
     understandRisks: `为了保护所有使用者的安全，请确认你了解网路交友的风险。 
 
 `,
+    useTelegramNickname: `使用 Telegram 昵称`,
     viewPrivacyPolicy: `📋 View Privacy Policy`,
     viewTermsOfService: `📋 View Terms of Service`,
     vip: `💡 填写血型可用于未来的血型配对功能（VIP 专属）
 
 `,
-    welcome: `[需要翻译: onboarding.welcome]`,
+    welcome: `欢迎使用 XunNi！
+
+请选择您的语言：`,
     yourAge: `你的年龄：{age} 岁
 `,
     zodiac: `• 星座：\${updatedUser.zodiac_sign}
@@ -4606,6 +4830,58 @@ This command is not available in production.`,
     zodiac2: `星座：\${zodiacSign}
 
 `,
+    antiFraud: {
+      confirm_button: `✅ 是的，我了解并会注意安全`,
+      learn_button: `📚 我想了解更多安全知识`,
+      question1: `1. 你了解网路交友的安全风险吗？ 
+`,
+      question2: `2. 你会保护好自己的个人资讯吗？ 
+`,
+      question3: `3. 遇到可疑讯息时，你会提高警觉吗？ 
+
+`,
+    },
+    bloodType: {
+      select: `[需要翻译: onboarding.bloodType.select]`,
+    },
+    example: {
+      birthday: `例如：1995-06-15`,
+    },
+    gender: {
+      female: `女`,
+      label: `• 性别：\${gender}
+`,
+      male: `男`,
+    },
+    info: {
+      age18: `• 必須年滿 18 歲才能使用本服務`,
+      city: `🌍 地區：{city}`,
+    },
+    prompt: {
+      birthday: `請輸入你的生日（格式：YYYY-MM-DD）：`,
+    },
+    terms: {
+      agree_button: `✅ 我同意`,
+      english_only_note: `[需要翻译: onboarding.terms.english_only_note]`,
+      privacy_policy_button: `🔒 隐私政策`,
+      terms_of_service_button: `📋 服務条款`,
+    },
+    warning: {
+      birthday: `⚠️ 生日設定後無法修改，請確認無誤！`,
+    },
+  },
+  payments: {
+    empty: `目前没有支付记录。`,
+    title: `💳 支付记录（第 {page} / {total} 页）`,
+    product: {
+      VIP_MONTHLY: `💎 VIP 月费订阅`,
+    },
+    status: {
+      failed: `❌ 支付失败`,
+      paid: `✅ 支付成功`,
+      pending: `⏳ 处理中`,
+      refunded: `↩️ 已退款`,
+    },
   },
   profile: {
     activatedInvites: `✅ 已激活邀请：{successfulInvites} / {inviteLimit} 人
@@ -4669,7 +4945,7 @@ This command is not available in production.`,
     mbtiWithSource: `🧠 MBTI：{mbti}{source}
 `,
     message: `https://t.me/share/url?url=https://t.me/\${botUsername}?start=invite_\${inviteCode}&text=来 XunNi 一起丢漂流瓶吧！ 🍾 使用我的邀请码：\${inviteCode} https://t.me/share/url?url=https://t.me/\${botUsername}?start=invite_\${inviteCode}&text=來`,
-    message2: `\${!user.is_vip && successfulInvites >= inviteLimit ? '⚠️ 已达免费用户邀请上限，升级 VIP 可解锁 100 人上限！ ' : ''}
+    message2: `\${inviteLimitWarning}
 
 `,
     message3: `🌍 语言：\${user.language_pref}
@@ -4735,7 +5011,7 @@ This command is not available in production.`,
 `,
     text5: `这个人很神秘，什么都没有留下～`,
     userNotFound: `⚠️ 用户不存在，请先使用 /start 注册。`,
-    vip: `VIP 会员（到期：\${new Date(user.vip_expire_at).toLocaleDateString('zh-TW')}）`,
+    vip: `VIP 会员（到期：\${expireDate}）`,
     vip2: `• 使用 /vip 升级 VIP 会员
 `,
     vipUpgrade: `• 使用 /vip 升级 VIP 会员
@@ -4907,14 +5183,14 @@ This command is not available in production.`,
   settings: {
     back: `返回`,
     changeLanguage: `🌐 更改语言`,
-    languageLabel: `🌐 语言：{language}`,
-    languageUpdated: `✅ 语言已更新为 {language}`,
     currentSettings: `⚙️ **当前设定**`,
+    languageLabel: `語言：{language}`,
+    languageUpdated: `✅ 语言已更新为：{language}`,
     message: `🌐 **选择语言 / Choose Language**
 
 请选择你的偏好语言：`,
-    returnToMenu: `⬅️ 返回主选单`,
-    selectOption: `请选择选项：`,
+    returnToMenu: `🏠 返回主菜单`,
+    selectOption: `[需要翻译: settings.selectOption]`,
     settings: `💡 选择你想要修改的设定：`,
     settings2: `⚙️ **设定**
 
@@ -4985,7 +5261,7 @@ This command is not available in production.`,
 `,
     mbti: `🧠 **MBTI**：\${mbti}
 `,
-    message: `• 到期时间：\${new Date(user.vip_expire_at!).toLocaleDateString('zh-TW')}
+    message: `• 到期时间：\${expireDate}
 `,
     message10: `• 总讯息数：\${stats.totalMessages}`,
     message2: `\${used}/\${permanentQuota}+\${taskBonus} (剩余 \${remaining})`,
@@ -5030,9 +5306,9 @@ This command is not available in production.`,
     reportTime: `报告生成时间：{time}`,
     separator: `---
 `,
-    settings: `🧠 **MBTI**：\${user.mbti_result}
+    settings: `🧠 **MBTI**：\${mbti}
 
- `,
+ \${mbti}`,
     settings2: `未设定`,
     short: `免费会员`,
     statDateEmpty: `统计日期不能为空`,
@@ -5213,9 +5489,7 @@ This command is not available in production.`,
     message5: `✅ 已选择 \${gender}`,
     message6: `✅ 已选择 \${bloodTypeDisplay[bloodType]}`,
     message7: `✅ 已选择 \${ZODIAC_NAMES[zodiacSign]}`,
-    message8: `✅ 你选择了：\${gender}
-
-`,
+    message8: `你选择了: \${gender}`,
     nickname: `✅ 使用 Telegram 昵称：\${suggestedNickname.substring(0, 18)}`,
     nickname2: `✅ 昵称已更新为：\${text}
 
@@ -5269,221 +5543,6 @@ This command is not available in production.`,
     start2: `✅ 开始快速版测验`,
     start3: `✅ 开始完整版测验`,
     start4: `✅ 开始测验`,
-    success: `✅ 验证成功！获得 +\${ad.reward_quota} 个永久额度！`,
-    'success.ad': `✅ 你已经看过所有官方广告了！`,
-    'success.ad2': `✅ 已启用广告提供商：\\\${providerName}
-
-`,
-    'success.ad3': `✅ 已停用广告提供商：\\\${providerName}
-
-`,
-    'success.ad4': `✅ 已启用官方广告 #\\\${adId}
-
-`,
-    'success.ad5': `✅ 已停用官方广告 #\\\${adId}
-
-`,
-    'success.ad6': `✅ 已设置广告提供商优先级
-
-`,
-    'success.ad7': `✅ 今日广告已达上限`,
-    'success.appeal': `✅ 申诉 \\\${appealId} 已批准，用户已解封`,
-    'success.appeal2': `✅ 申诉 \\\${appealId} 已拒绝`,
-    'success.appeal3': `✅ 目前没有待审核的申诉`,
-    'success.birthday': `✅ 生日已保存`,
-    'success.bloodType': `✅ 血型已更新为 \\\${getBloodTypeDisplay(bloodType as any)}`,
-    'success.bloodType2': `✅ 血型已清除`,
-    'success.bottle': `✅ 奖励已发放！ +1 瓶子`,
-    'success.bottle2': `✅ 开始新的漂流瓶`,
-    'success.bottle3': `✅ 瓶子已创建
-`,
-    'success.broadcast': `✅ 已清理 \\\${ids.length} 个卡住的广播
-
-`,
-    'success.broadcast2': `✅ 没有需要清理的广播
-
-`,
-    'success.broadcast3': `✅ 过滤广播已创建
-
-`,
-    'success.broadcast4': `✅ 广播已创建
-
-`,
-    'success.cancel': `✅ 广播已取消
-
-`,
-    'success.complete': `✅ 广播队列处理完成
-
-`,
-    'success.complete2': `✅ 系统维护已完成
-
-`,
-    'success.complete3': `✅ 教学已完成！`,
-    'success.complete4': `✅ **批量刷新完成**
-
-`,
-    'success.complete5': `✅ **刷新完成**
-
-`,
-    'success.complete6': `✅ 完成筛选，输入内容`,
-    'success.complete7': `✅ 筛选完成`,
-    'success.confirm': `✅ 已确认！`,
-    'success.confirm2': `✅ 安全确认完成`,
-    'success.confirm3': `✅ 确认`,
-    'success.conversation': `✅ **对话历史已更新！ **
-
-`,
-    'success.gender': `✅ 性别已保存`,
-    'success.invite': `✅ 已激活邀请：\\\${successfulInvites} / \\\${inviteLimit} 人
-`,
-    'success.mbti': `✅ 你的 MBTI 类型已更新为：**\\\${mbtiType}**
-
-`,
-    'success.mbti2': `✅ 你的 MBTI 类型已清除。 
-
-`,
-    'success.mbti3': `✅ MBTI 已清除`,
-    'success.mbti4': `✅ 已清除 MBTI 选择`,
-    'success.mbti5': `✅ 你的 MBTI 类型：\\\${mbtiType}
-
-`,
-    'success.message': `✅ 讯息已发送给 \\\${formatIdentifier(receiverIdentifier)}
-
-`,
-    'success.message2': `✅ 语言已更新为：\\\${getLanguageDisplay(languageCode)}`,
-    'success.message3': `✅ 已封锁此使用者 (#\\\${conversationIdentifier})
-
-`,
-    'success.message4': `✅ 获得 +\\\${ad.reward_quota} 个永久额度！`,
-    'success.message5': `✅ 已选择 \\\${gender}`,
-    'success.message6': `✅ 已选择 \\\${bloodTypeDisplay[bloodType]}`,
-    'success.message7': `✅ 已选择 \\\${ZODIAC_NAMES[zodiacSign]}`,
-    'success.message8': `✅ 你选择了：\\\${gender}
-
-`,
-    'success.nickname': `✅ 使用 Telegram 昵称：\\\${suggestedNickname.substring(0, 18)}`,
-    'success.nickname2': `✅ 昵称已更新为：\\\${text}
-
-`,
-    'success.register': `✅ 开发模式：跳过注册
-
-`,
-    'success.register2': `✅ 我了解了，继续注册`,
-    'success.register3': `✅ 注册完成！`,
-    'success.report': `✅ **举报已提交** (#\\\${conversationIdentifier})
-
-`,
-    'success.report2': `✅ 举报已提交`,
-    'success.report3': `✅ **已举报此用户**
-
-`,
-    'success.report4': `✅ 确定举报`,
-    'success.report5': `✅ 已举报`,
-    'success.settings': `✅ MBTI 已设定为 \\\${mbtiType}`,
-    'success.settings2': `✅ 昵称已设定`,
-    'success.settings3': `✅ 筛选条件已设定：
-
-`,
-    'success.settings4': `✅ 血型已设定为 \\\${getBloodTypeDisplay(bloodType as any)}`,
-    'success.settings5': `✅ MBTI 类型已设定：\\\${mbtiType}
-
-`,
-    'success.settings6': `✅ 已跳过血型设定`,
-    'success.short': `✅ 正在发送...`,
-    'success.short10': `✅ 正在加载...`,
-    'success.short11': `✅ 🌈 任何人`,
-    'success.short12': `✅ 👨 男生`,
-    'success.short13': `✅ 👩 女生`,
-    'success.short14': `✅ 继续编辑`,
-    'success.short15': `✅ 确定封锁`,
-    'success.short16': `✅ 已封锁`,
-    'success.short17': `✅ 我已阅读并同意`,
-    'success.short18': `✅ 已跳过`,
-    'success.short19': `✅ 领取奖励`,
-    'success.short2': `✅ 继续编辑草稿`,
-    'success.short20': `✅ 维护中`,
-    'success.short3': `✅ 草稿已删除`,
-    'success.short4': `✅ 验证并领取`,
-    'success.short5': `✅ 发送草稿`,
-    'success.short6': `✅ 已记录`,
-    'success.short7': `✅ 正确`,
-    'success.short8': `✅ 启用`,
-    'success.short9': `✅ 是`,
-    'success.start': `✅ 请点击按钮开始观看`,
-    'success.start2': `✅ 开始快速版测验`,
-    'success.start3': `✅ 开始完整版测验`,
-    'success.start4': `✅ 开始测验`,
-    'success.success': `✅ 验证成功！获得 +\\\${ad.reward_quota} 个永久额度！`,
-    'success.text': `✅ 已设置为 \\\${flag} \\\${countryName}`,
-    'success.text10': `✅ 是的，我了解并会注意安全`,
-    'success.text11': `✅ 维护模式已启用
-
-`,
-    'success.text12': `✅ 维护模式已关闭
-
-`,
-    'success.text13': `✅ 更准确的性格分析
-`,
-    'success.text14': `✅ 已跳过教学
-
-`,
-    'success.text15': `✅ 所有帖子都是最新的（免费用户状态正确）
-`,
-    'success.text16': `✅ **无需刷新**
-
-`,
-    'success.text17': `✅ 已选择 \\\${gender ===`,
-    'success.text18': `✅ 已选择 \\\${mbtiType}`,
-    'success.text19': `✅ **规则**：
-`,
-    'success.text2': `✅ 兴趣标签已更新：
-
-\\\${interestsStr}`,
-    'success.text20': `✅ **已封锁此用户**
-
-`,
-    'success.text21': `✅ **退款申请已提交**
-
-`,
-    'success.text22': `✅ **退款已批准**
-
-`,
-    'success.text23': `✅ 没有待处理的退款请求。`,
-    'success.text24': `✅ 正在准备支付...`,
-    'success.text25': `✅ 退款已批准
-
-`,
-    'success.text26': `✅ 退款已拒绝
-
-`,
-    'success.text27': `✅ 我已加入，领取奖励`,
-    'success.text28': `✅ 你选择了：\\\${gender ===`,
-    'success.text29': `✅ 反诈骗测验通过！ 
-
-`,
-    'success.text3': `✅ 匹配偏好已更新为：\\\${prefText}
-
-`,
-    'success.text30': `✅ 语言已变更为 \\\${newLanguageName}`,
-    'success.text4': `✅ 个人简介已更新！ 
-
-\\\${text}`,
-    'success.text5': `✅ 开发模式：数据已重置
-
-`,
-    'success.text6': `✅ 地区已更新为：\\\${text}`,
-    'success.text7': `✅ 快速了解基本性格类型
-
-`,
-    'success.text8': `✅ **头像已更新！ **
-
-`,
-    'success.text9': `✅ 推荐用于重新测试
-
-`,
-    'success.vip': `✅ 所有帖子都是最新的（VIP 状态正确）
-`,
-    'success.zodiac': `✅ 已清除星座选择`,
     success2: `🎉 **验证成功！ **
 
 ✅ 获得 **+\${ad.reward_quota} 个永久额度**
@@ -5569,9 +5628,209 @@ This command is not available in production.`,
     text9: `✅ 推荐用于重新测试
 
 `,
+    verify: `✅ 验证成功！获得 +\${ad.reward_quota} 个永久额度！`,
+    verify2: `✅ 验证成功！获得 +\\\${ad.reward_quota} 个永久额度！`,
     vip: `✅ 所有帖子都是最新的（VIP 状态正确）
 `,
     zodiac: `✅ 已清除星座选择`,
+    success: {
+      appeal: `✅ 申诉 \\\${appealId} 已批准，用户已解封`,
+      appeal2: `✅ 申诉 \\\${appealId} 已拒绝`,
+      appeal3: `✅ 目前没有待审核的申诉`,
+      birthday: `✅ 生日已保存`,
+      bloodType: `✅ 血型已更新为 \\\${getBloodTypeDisplay(bloodType as any)}`,
+      bloodType2: `✅ 血型已清除`,
+      bottle: `✅ 奖励已发放！ +1 瓶子`,
+      bottle2: `✅ 开始新的漂流瓶`,
+      bottle3: `✅ 瓶子已创建
+`,
+      broadcast: `✅ 已清理 \\\${ids.length} 个卡住的广播
+
+`,
+      broadcast2: `✅ 没有需要清理的广播
+
+`,
+      broadcast3: `✅ 过滤广播已创建
+
+`,
+      broadcast4: `✅ 广播已创建
+
+`,
+      cancel: `✅ 广播已取消
+
+`,
+      complete: `✅ 广播队列处理完成
+
+`,
+      complete2: `✅ 系统维护已完成
+
+`,
+      complete3: `✅ 教学已完成！`,
+      complete4: `✅ **批量刷新完成**
+
+`,
+      complete5: `✅ **刷新完成**
+
+`,
+      complete6: `✅ 完成筛选，输入内容`,
+      complete7: `✅ 筛选完成`,
+      confirm: `✅ 已确认！`,
+      confirm2: `✅ 安全确认完成`,
+      confirm3: `✅ 确认`,
+      conversation: `✅ **对话历史已更新！ **
+
+`,
+      gender: `✅ 性别已保存`,
+      invite: `✅ 已激活邀请：\\\${successfulInvites} / \\\${inviteLimit} 人
+`,
+      mbti: `✅ 你的 MBTI 类型已更新为：**\\\${mbtiType}**
+
+`,
+      mbti2: `✅ 你的 MBTI 类型已清除。 
+
+`,
+      mbti3: `✅ MBTI 已清除`,
+      mbti4: `✅ 已清除 MBTI 选择`,
+      mbti5: `✅ 你的 MBTI 类型：\\\${mbtiType}
+
+`,
+      message: `✅ 讯息已发送给 \\\${formatIdentifier(receiverIdentifier)}
+
+`,
+      message2: `✅ 语言已更新为：\\\${getLanguageDisplay(languageCode)}`,
+      message3: `✅ 已封锁此使用者 (#\\\${conversationIdentifier})
+
+`,
+      message4: `✅ 获得 +\\\${ad.reward_quota} 个永久额度！`,
+      message5: `✅ 已选择 \\\${gender}`,
+      message6: `✅ 已选择 \\\${bloodTypeDisplay[bloodType]}`,
+      message7: `✅ 已选择 \\\${ZODIAC_NAMES[zodiacSign]}`,
+      message8: `✅ 你选择了：\\\${gender}
+
+`,
+      nickname: `✅ 使用 Telegram 昵称：\\\${suggestedNickname.substring(0, 18)}`,
+      nickname2: `✅ 昵称已更新为：\\\${text}
+
+`,
+      register: `✅ 开发模式：跳过注册
+
+`,
+      register2: `✅ 我了解了，继续注册`,
+      register3: `✅ 注册完成！`,
+      report: `✅ **举报已提交** (#\\\${conversationIdentifier})
+
+`,
+      report2: `✅ 举报已提交`,
+      report3: `✅ **已举报此用户**
+
+`,
+      report4: `✅ 确定举报`,
+      report5: `✅ 已举报`,
+      settings: `✅ MBTI 已设定为 \\\${mbtiType}`,
+      settings2: `✅ 昵称已设定`,
+      settings3: `✅ 筛选条件已设定：
+
+`,
+      settings4: `✅ 血型已设定为 \\\${getBloodTypeDisplay(bloodType as any)}`,
+      settings5: `✅ MBTI 类型已设定：\\\${mbtiType}
+
+`,
+      settings6: `✅ 已跳过血型设定`,
+      short: `✅ 正在发送...`,
+      short10: `✅ 正在加载...`,
+      short11: `✅ 🌈 任何人`,
+      short12: `✅ 👨 男生`,
+      short13: `✅ 👩 女生`,
+      short14: `✅ 继续编辑`,
+      short15: `✅ 确定封锁`,
+      short16: `✅ 已封锁`,
+      short17: `✅ 我已阅读并同意`,
+      short18: `✅ 已跳过`,
+      short19: `✅ 领取奖励`,
+      short2: `✅ 继续编辑草稿`,
+      short20: `✅ 维护中`,
+      short3: `✅ 草稿已删除`,
+      short4: `✅ 验证并领取`,
+      short5: `✅ 发送草稿`,
+      short6: `✅ 已记录`,
+      short7: `✅ 正确`,
+      short8: `✅ 启用`,
+      short9: `✅ 是`,
+      start: `✅ 请点击按钮开始观看`,
+      start2: `✅ 开始快速版测验`,
+      start3: `✅ 开始完整版测验`,
+      start4: `✅ 开始测验`,
+      text: `✅ 已设置为 \\\${flag} \\\${countryName}`,
+      text10: `✅ 是的，我了解并会注意安全`,
+      text11: `✅ 维护模式已启用
+
+`,
+      text12: `✅ 维护模式已关闭
+
+`,
+      text13: `✅ 更准确的性格分析
+`,
+      text14: `✅ 已跳过教学
+
+`,
+      text15: `✅ 所有帖子都是最新的（免费用户状态正确）
+`,
+      text16: `✅ **无需刷新**
+
+`,
+      text17: `✅ 已选择 \\\${gender ===`,
+      text18: `✅ 已选择 \\\${mbtiType}`,
+      text19: `✅ **规则**：
+`,
+      text2: `✅ 兴趣标签已更新：
+
+\\\${interestsStr}`,
+      text20: `✅ **已封锁此用户**
+
+`,
+      text21: `✅ **退款申请已提交**
+
+`,
+      text22: `✅ **退款已批准**
+
+`,
+      text23: `✅ 没有待处理的退款请求。`,
+      text24: `✅ 正在准备支付...`,
+      text25: `✅ 退款已批准
+
+`,
+      text26: `✅ 退款已拒绝
+
+`,
+      text27: `✅ 我已加入，领取奖励`,
+      text28: `✅ 你选择了：\\\${gender ===`,
+      text29: `✅ 反诈骗测验通过！ 
+
+`,
+      text3: `✅ 匹配偏好已更新为：\\\${prefText}
+
+`,
+      text30: `✅ 语言已变更为 \\\${newLanguageName}`,
+      text4: `✅ 个人简介已更新！ 
+
+\\\${text}`,
+      text5: `✅ 开发模式：数据已重置
+
+`,
+      text6: `✅ 地区已更新为：\\\${text}`,
+      text7: `✅ 快速了解基本性格类型
+
+`,
+      text8: `✅ **头像已更新！ **
+
+`,
+      text9: `✅ 推荐用于重新测试
+
+`,
+      vip: `✅ 所有帖子都是最新的（VIP 状态正确）
+`,
+      zodiac: `✅ 已清除星座选择`,
+    },
   },
   target: {
     all: `所有用户`,
@@ -5580,9 +5839,9 @@ This command is not available in production.`,
     vip: `VIP 用户`,
   },
   tasks: {
-    bottle: `奖励：+\${task.reward_amount} 瓶子（\${task.reward_type}）
+    bottle: `奖励：+\${task.reward_amount} 瓶子（\${rewardTypeText}）
 
- {task.reward_type === 'daily' ? '當天有效' : '永久有效'} \${task.reward_type}`,
+ {task.reward_type === 'daily' ? '當天有效' : '永久有效'} \${rewardTypeText}`,
     bottle2: `奖励：+\${task.reward_amount} 瓶子（\${task.reward_type ===`,
     bottle3: `\${icon} \${task.name} (+\${task.reward_amount} 瓶子)
 `,
@@ -5595,14 +5854,6 @@ This command is not available in production.`,
 完成任务获得额外瓶子！ 
 
 `,
-    'description.bio': `写下你的故事（至少 20 字）`,
-    'description.city': `找到同城的朋友`,
-    'description.first_bottle': `开始你的交友之旅`,
-    'description.first_catch': `看看别人的故事`,
-    'description.first_conversation': `建立你的第一个连接（长按讯息 → 选择「回覆」）`,
-    'description.interests': `让别人更了解你`,
-    'description.invite_progress': `每邀请 1 人，每日额度永久 +1（免费最多 10 人，VIP 最多 100 人）`,
-    'description.join_channel': `获取最新消息和活动`,
     invite: `🔄 邀请好友 (\${inviteProgress.current}/\${inviteProgress.max})
 `,
     invite2: `每邀请 1 人 → 每日额度永久 +1
@@ -5612,14 +5863,6 @@ This command is not available in production.`,
     message2: `点击下方按钮加入 XunNi 官方频道，获取最新消息和活动！ 
 
 `,
-    'name.bio': `完善自我介绍`,
-    'name.city': `设定地区`,
-    'name.first_bottle': `丢出第一个瓶子`,
-    'name.first_catch': `捡起第一个瓶子`,
-    'name.first_conversation': `开始第一次对话`,
-    'name.interests': `填写兴趣标签`,
-    'name.invite_progress': `邀请好友`,
-    'name.join_channel': `加入官方频道`,
     profile: `👤 **个人资料任务** (\${completedCount}/\${profileTasks.length})
 `,
     quota: `当前每日配额：\${calculateDailyQuota(user)} 个
@@ -5650,6 +5893,26 @@ This command is not available in production.`,
 `,
     text4: `🎁 **已获得**
 `,
+    description: {
+      bio: `写下你的故事（至少 20 字）`,
+      city: `找到同城的朋友`,
+      first_bottle: `开始你的交友之旅`,
+      first_catch: `看看别人的故事`,
+      first_conversation: `建立你的第一个连接（长按讯息 → 选择「回覆」）`,
+      interests: `让别人更了解你`,
+      invite_progress: `每邀请 1 人，每日额度永久 +1（免费最多 10 人，VIP 最多 100 人）`,
+      join_channel: `获取最新消息和活动`,
+    },
+    name: {
+      bio: `完善自我介绍`,
+      city: `设定地区`,
+      first_bottle: `丢出第一个瓶子`,
+      first_catch: `捡起第一个瓶子`,
+      first_conversation: `开始第一次对话`,
+      interests: `填写兴趣标签`,
+      invite_progress: `邀请好友`,
+      join_channel: `加入官方频道`,
+    },
   },
   throw: {
     age: `• 年龄区间相近 ✓`,
@@ -5664,8 +5927,7 @@ This command is not available in production.`,
     bloodType5: `🌈 任何血型`,
     bottle: `
 💡 这个瓶子和你非常合拍！ 
-\${highlights.join('
-')}
+
 `,
     bottle10: `🍾 漂流瓶已丢出！ 
 
@@ -5731,7 +5993,7 @@ This command is not available in production.`,
     conversation7: `使用 /chats 查看所有对话`,
     currentSelection: `当前选择：{genderText}`,
     friendlyContent: `[需要从 zh-TW.ts 获取翻译]`,
-    gender: `• 性别：\${selectedGender}
+    gender: `• 性别：\${selectedGender === 'male' ? '👨 男生' : selectedGender === 'female' ? '👩 女生' : '🌈 任何人'}
 `,
     gender2: `👤 **性别筛选**
 
@@ -5761,7 +6023,7 @@ This command is not available in production.`,
     message: `已选择：\${selectedZodiac.length > 0 ? selectedZodiac.map((z) => ZODIAC_NAMES[z]).join(', ') : '无'}
 
 `,
-    message2: `当前选择：\${currentGender}
+    message2: `当前选择：\${currentGender === 'male' ? '👨 男生' : currentGender === 'female' ? '👩 女生' : '🌈 任何人'}
 
 `,
     message3: `已选择：\${selectedZodiac.length > 0 ? selectedZodiac.map((z) => ZODIAC_NAMES[z]).join(`,
@@ -5784,14 +6046,15 @@ This command is not available in production.`,
 `,
     quota2: `🎁 邀请好友可增加配额：
 `,
-    settings: `🧠 MBTI：\${matchResult.user.mbti_result}
- `,
-    settings2: `⭐ 星座：\${matchResult.user.zodiac}
- `,
-    settings3: `🧠 MBTI：\${user.mbti_result}
- `,
-    settings4: `⭐ 星座：\${user.zodiac_sign}
- `,
+    selected: `已選擇：{selected}`,
+    settings: `🧠 MBTI：\${mbti}
+ \${mbti}`,
+    settings2: `⭐ 星座：\${zodiac}
+ \${zodiac}`,
+    settings3: `🧠 MBTI：\${mbti}
+ \${mbti}`,
+    settings4: `⭐ 星座：\${zodiac}
+ \${zodiac}`,
     settings5: `未设定`,
     settings6: `未设定`,
     settings7: `未设定`,
@@ -5988,10 +6251,10 @@ This command is not available in production.`,
 `,
     message2: `申请时间：\${new Date(req.requested_at).toLocaleString('zh-TW')}
 `,
-    message3: `新到期时间：\${newExpire.toLocaleDateString('zh-TW')}
+    message3: `新到期时间：\${expireDate}
 
 `,
-    message4: `到期时间：\${newExpire.toLocaleDateString('zh-TW')}
+    message4: `到期时间：\${expireDate}
 
 `,
     message5: `支付时间：\${paymentDate.toLocaleDateString('zh-TW')}
@@ -6338,126 +6601,122 @@ This command is not available in production.`,
     userNotFound2: `⚠️ 用户不存在`,
     vip: `⚠️ 已达免费用户邀请上限，升级 VIP 可解锁 100 人上限！`,
     vip2: `⚠️ 此功能仅限 VIP 会员使用`,
-    vip3: `⚠️ **VIP 今天到期**`,
-    pageInfo: `📄 Page {page}/{totalPages}`,
-    end2: `[需要翻译]`,
-    female: `[需要翻译]`,
-    free: `[需要翻译]`,
-    rewardPermanent: `[需要翻译]`,
-    communityThanks: `[需要翻译]`,
-    languageUpdated: `[需要翻译]`,
+    vip3: `⚠️ **VIP 今天到期**
+
+`,
   },
   warnings: {
-    birthday: `[需要翻译: warnings.birthday]`,
+    birthday: `⚠️ 生日设定后无法修改，请确认无误！`,
     bloodType: `🩸 血型`,
     gender: `👤 性别：{otherUser.gender}`,
     mbti: `🧠 MBTI：\\\\\\\\\\\${mbti}`,
     register2: `[需要翻译: warnings.register2]`,
     register4: `[需要翻译: warnings.register4]`,
-    settings: `🧠 MBTI：\\\\\\\\\\\${bottle.mbti_result}`,
+    settings: `🧠 MBTI：\\\\\\\\\\\\$`,
     text5: `📖 简介：{otherUser.bio}`,
     text6: `[需要翻译: warnings.text6]`,
     userNotFound: `用户不存在`,
-    'warning.ad': `⚠️ 目前没有配置任何广告提供商
+    warning: {
+      ad: `⚠️ 目前没有配置任何广告提供商
 
 `,
-    'warning.ad2': `⚠️ 目前没有官方广告
+      ad2: `⚠️ 目前没有官方广告
 
 `,
-    'warning.ad3': `⚠️ 暂无可用的广告提供商`,
-    'warning.ad4': `⚠️ 无法选择广告提供商`,
-    'warning.ad5': `⚠️ 无法观看更多广告`,
-    'warning.birthday': `⚠️ 当前不在生日输入步骤`,
-    'warning.bloodType': `⚠️ 当前不在血型选择步骤`,
-    'warning.broadcast': `⚠️ 发现 \\\${stuckBroadcasts.results.length} 个卡住的广播
+      ad3: `⚠️ 暂无可用的广告提供商`,
+      ad4: `⚠️ 无法选择广告提供商`,
+      ad5: `⚠️ 无法观看更多广告`,
+      birthday: `⚠️ 当前不在生日输入步骤`,
+      bloodType: `⚠️ 当前不在血型选择步骤`,
+      broadcast: `⚠️ 发现 \\\${stuckBroadcasts.results.length} 个卡住的广播
 
 `,
-    'warning.complete': `⚠️ 请先完成上一支广告，再开始新的广告`,
-    'warning.confirm': `⚠️ 请确认你的生日资讯：
+      complete: `⚠️ 请先完成上一支广告，再开始新的广告`,
+      confirm: `⚠️ 请确认你的生日资讯：
 
 `,
-    'warning.conversation': `⚠️ 对话资讯错误。`,
-    'warning.conversation10': `⚠️ 对话不存在`,
-    'warning.conversation2': `⚠️ 对话资讯错误`,
-    'warning.conversation3': `⚠️ 此用户没有对话历史帖子
+      conversation: `⚠️ 对话资讯错误。`,
+      conversation10: `⚠️ 对话不存在`,
+      conversation2: `⚠️ 对话资讯错误`,
+      conversation3: `⚠️ 此用户没有对话历史帖子
 `,
-    'warning.conversation4': `⚠️ 找不到指定的对话，可能已结束或过期。`,
-    'warning.conversation5': `⚠️ **对话历史部分更新**
+      conversation4: `⚠️ 找不到指定的对话，可能已结束或过期。`,
+      conversation5: `⚠️ **对话历史部分更新**
 
 `,
-    'warning.conversation6': `⚠️ 无法识别对话对象
+      conversation6: `⚠️ 无法识别对话对象
 
 `,
-    'warning.conversation7': `⚠️ 找不到此对话
+      conversation7: `⚠️ 找不到此对话
 
 `,
-    'warning.conversation8': `⚠️ 对话不存在或已结束`,
-    'warning.conversation9': `⚠️ 此对话已结束`,
-    'warning.end': `⚠️ 测验已结束或不存在`,
-    'warning.failed': `⚠️ 支付验证失败，请稍后再试`,
-    'warning.gender': `⚠️ 当前不在性别选择步骤`,
-    'warning.invite': `⚠️ 无法获取邀请码`,
-    'warning.mbti': `⚠️ 当前不在 MBTI 测验步骤`,
-    'warning.mbti2': `⚠️ 无效的 MBTI 类型`,
-    'warning.message': `⚠️ 发现 \\\${outdatedPosts.length} 个过时帖子需要刷新
+      conversation8: `⚠️ 对话不存在或已结束`,
+      conversation9: `⚠️ 此对话已结束`,
+      end: `⚠️ 测验已结束或不存在`,
+      failed: `⚠️ 支付验证失败，请稍后再试`,
+      gender: `⚠️ 当前不在性别选择步骤`,
+      invite: `⚠️ 无法获取邀请码`,
+      mbti: `⚠️ 当前不在 MBTI 测验步骤`,
+      mbti2: `⚠️ 无效的 MBTI 类型`,
+      message: `⚠️ 发现 \\\${outdatedPosts.length} 个过时帖子需要刷新
 `,
-    'warning.message2': `⚠️ 注意：这是 \\\${testInfo}\\\${testTitle}，\\\${accuracy}。 
+      message2: `⚠️ 注意：这是 \\\${testInfo}\\\${testTitle}，\\\${accuracy}。 
 
 `,
-    'warning.message3': `⚠️ 请长按你要封锁的讯息后回覆指令
+      message3: `⚠️ 请长按你要封锁的讯息后回覆指令
 
 `,
-    'warning.message4': `⚠️ 请长按你要举报的讯息后回覆指令
+      message4: `⚠️ 请长按你要举报的讯息后回覆指令
 
 `,
-    'warning.message5': `⚠️ **讯息包含不允许的连结**
+      message5: `⚠️ **讯息包含不允许的连结**
 
 `,
-    'warning.register': `⚠️ 找不到用户资料，请先使用 /start 注册。`,
-    'warning.register2': `⚠️ 请先完成注册流程。 
+      register: `⚠️ 找不到用户资料，请先使用 /start 注册。`,
+      register2: `⚠️ 请先完成注册流程。 
 
 使用 /start 继续注册。`,
-    'warning.register3': `⚠️ 注册流程出现问题，请重新开始：/start`,
-    'warning.register4': `⚠️ 请先完成注册流程`,
-    'warning.settings': `⚠️ 再次提醒：性别设定后将**永远不能修改**！ 
+      register3: `⚠️ 注册流程出现问题，请重新开始：/start`,
+      register4: `⚠️ 请先完成注册流程`,
+      settings: `⚠️ 再次提醒：性别设定后将**永远不能修改**！ 
 
 `,
-    'warning.settings2': `⚠️ 生日设定后无法修改，请确认无误！`,
-    'warning.settings3': `⚠️ 注意：性别设定后无法修改，请谨慎选择！`,
-    'warning.short': `⚠️ 问题顺序错误`,
-    'warning.short2': `⚠️ 未知的选项`,
-    'warning.short3': `⚠️ 无效的请求`,
-    'warning.short4': `⚠️ 注意：
-`,
-    'warning.short5': `⚠️ 其他违规`,
-    'warning.start': `⚠️ 会话已过期，请重新开始：/throw`,
-    'warning.start2': `⚠️ 会话已过期，请重新开始`,
-    'warning.task': `⚠️ 未知的任务类型`,
-    'warning.text': `⚠️ **注意**
+      settings2: `⚠️ 生日设定后无法修改，请确认无误！`,
+      settings3: `⚠️ 注意：性别设定后无法修改，请谨慎选择！`,
+      short: `⚠️ 问题顺序错误`,
+      short2: `⚠️ 未知的选项`,
+      short3: `⚠️ 无效的请求`,
+      short4: `⚠️ 昵称长度限制 36 个字`,
+      short5: `⚠️ 其他违规`,
+      start: `⚠️ 会话已过期，请重新开始：/throw`,
+      start2: `⚠️ 会话已过期，请重新开始`,
+      task: `⚠️ 未知的任务类型`,
+      text: `⚠️ **注意**
 
 `,
-    'warning.text10': `⚠️ **不可修改项目**：
+      text10: `⚠️ **不可修改项目**：
 `,
-    'warning.text11': `⚠️ 会话已过期，请重新操作`,
-    'warning.text12': `⚠️ 草稿不存在或已过期`,
-    'warning.text2': `⚠️ 无效的支付类型`,
-    'warning.text3': `⚠️ 翻译服务暂时无法使用，以下为原文
+      text11: `⚠️ 会话已过期，请重新操作`,
+      text12: `⚠️ 草稿不存在或已过期`,
+      text2: `⚠️ 无效的支付类型`,
+      text3: `⚠️ 翻译服务暂时无法使用，以下为原文
 `,
-    'warning.text4': `⚠️ 安全提示：
+      text4: `⚠️ 安全提示：
 `,
-    'warning.text5': `⚠️ 当前不在反诈骗测验步骤`,
-    'warning.text6': `⚠️ 当前不在服务条款步骤`,
-    'warning.text7': `⚠️ 注意：此功能仅在 Staging 环境可用。`,
-    'warning.text8': `⚠️ **不允许发送图片、影片或多媒体**
+      text5: `⚠️ 当前不在反诈骗测验步骤`,
+      text6: `⚠️ 当前不在服务条款步骤`,
+      text7: `⚠️ 注意：此功能仅在 Staging 环境可用。`,
+      text8: `⚠️ **不允许发送图片、影片或多媒体**
 
 `,
-    'warning.text9': `⚠️ 此功能仅在 Staging 环境可用。`,
-    'warning.userNotFound': `⚠️ 用户不存在，请先使用 /start 注册。`,
-    'warning.userNotFound2': `⚠️ 用户不存在`,
-    'warning.vip': `⚠️ 已达免费用户邀请上限，升级 VIP 可解锁 100 人上限！`,
-    'warning.vip2': `⚠️ 此功能仅限 VIP 会员使用`,
-    'warning.vip3': `⚠️ **VIP 今天到期**
+      text9: `⚠️ 此功能仅在 Staging 环境可用。`,
+      userNotFound: `⚠️ 用户不存在，请先使用 /start 注册。`,
+      userNotFound2: `⚠️ 用户不存在`,
+      vip: `⚠️ 已达免费用户邀请上限，升级 VIP 可解锁 100 人上限！`,
+      vip2: `⚠️ 此功能仅限 VIP 会员使用`,
+      vip3: `⚠️ **VIP 今天到期**
 
 `,
+    },
   },
 };

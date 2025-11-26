@@ -183,7 +183,7 @@ async function getUserStats(
   const totalQuota = permanentQuota + taskBonus;
 
   const used = dailyUsage?.throws_count || 0;
-  const remaining = Math.max(0, totalQuota - used);
+  const _remaining = Math.max(0, totalQuota - used);
 
   // Format quota display (used/permanent+task)
   // Note: Remaining will be added in handleStats using i18n

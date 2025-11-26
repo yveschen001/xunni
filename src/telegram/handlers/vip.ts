@@ -91,7 +91,8 @@ export async function handleVip(message: TelegramMessage, env: Env): Promise<voi
           i18n.t('common.backToMainMenu'),
         [
           [{ text: i18n.t('vip.vip4', { priceStars }), callback_data: 'vip_renew' }],
-          [{ text: i18n.t('buttons.cancel'), callback_data: 'vip_cancel' }],
+          [{ text: i18n.t('buttons.viewPayments'), callback_data: 'payments_page_1' }],
+          [{ text: i18n.t('common.back3'), callback_data: 'return_to_menu' }],
         ]
       );
     } else {
@@ -124,7 +125,8 @@ export async function handleVip(message: TelegramMessage, env: Env): Promise<voi
           i18n.t('common.backToMainMenu'),
         [
           [{ text: i18n.t('vip.vip5', { priceStars }), callback_data: 'vip_purchase' }],
-          [{ text: i18n.t('buttons.cancel'), callback_data: 'vip_cancel' }],
+          [{ text: i18n.t('buttons.viewPayments'), callback_data: 'payments_page_1' }],
+          [{ text: i18n.t('common.back3'), callback_data: 'return_to_menu' }],
         ]
       );
     }
@@ -419,7 +421,7 @@ export async function handleSuccessfulPayment(
         '\n\n' +
         i18n.t('vip.vip15') +
         '\n' +
-        i18n.t('vip.message3', { newExpire }) +
+        i18n.t('vip.message3', { expireDate: newExpire.toLocaleDateString(user.language_pref || 'zh-TW') }) +
         '\n\n' +
         i18n.t('vip.vip18') +
         '\n' +
@@ -436,7 +438,7 @@ export async function handleSuccessfulPayment(
         '\n\n' +
         i18n.t('vip.vip19') +
         '\n' +
-        i18n.t('vip.message4', { newExpire }) +
+        i18n.t('vip.message4', { expireDate: newExpire.toLocaleDateString(user.language_pref || 'zh-TW') }) +
         '\n\n' +
         i18n.t('vip.vip20') +
         '\n' +

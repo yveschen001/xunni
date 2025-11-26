@@ -12,7 +12,7 @@ import type { Env, TelegramMessage } from '~/types';
 import { createDatabaseClient } from '~/db/client';
 import { createTelegramService } from '~/services/telegram';
 import { findUserByTelegramId } from '~/db/queries/users';
-import { createI18n } from '~/i18n';
+// import { createI18n } from '~/i18n'; // Unused for now
 
 /**
  * Check if dev commands are allowed in current environment

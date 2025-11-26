@@ -113,12 +113,15 @@ export async function handleMBTIAnswer(
   try {
     // Get user
     const user = await findUserByTelegramId(db, telegramId);
-    const i18n = createI18n(user?.language_pref || 'zh-TW');
-    
     if (!user) {
+      const { createI18n } = await import('~/i18n');
+      const i18n = createI18n('zh-TW');
       await telegram.answerCallbackQuery(callbackQuery.id, i18n.t('warning.userNotFound2'));
       return;
     }
+    
+    const { createI18n } = await import('~/i18n');
+    const i18n = createI18n(user.language_pref || 'zh-TW');
 
     // Verify test is in progress
     const progress = await getMBTITestProgress(db, telegramId);
@@ -152,7 +155,9 @@ export async function handleMBTIAnswer(
     }
   } catch (error) {
     console.error('[handleMBTIAnswer] Error:', error);
+    console.error('[handleMBTIAnswer] Error stack:', error instanceof Error ? error.stack : 'No stack');
     const user = await findUserByTelegramId(db, telegramId);
+    const { createI18n } = await import('~/i18n');
     const i18n = createI18n(user?.language_pref || 'zh-TW');
     await telegram.answerCallbackQuery(callbackQuery.id, i18n.t('common.systemError'));
   }

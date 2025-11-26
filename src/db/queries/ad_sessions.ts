@@ -50,6 +50,7 @@ export async function getActiveSessionByUser(
       `SELECT * FROM ad_sessions
        WHERE telegram_id = ?
          AND status IN ('pending', 'playing')
+         AND created_at > datetime('now', '-15 minutes')
        ORDER BY created_at DESC
        LIMIT 1`
     )

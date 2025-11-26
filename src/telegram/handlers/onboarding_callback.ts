@@ -46,9 +46,9 @@ export async function handleGenderSelection(
     await telegram.editMessageText(
       chatId,
       callbackQuery.message!.message_id,
-      i18n.t('success.message8', { gender }) +
+      i18n.t('success.message8', { gender: gender === 'male' ? i18n.t('common.male') : i18n.t('common.female') }) +
         '\n\n' +
-        i18n.t('warnings.settings') +
+        i18n.t('onboarding.genderWarning') +
         '\n\n' +
         i18n.t('common.confirm7'),
       {
@@ -107,17 +107,21 @@ export async function handleGenderConfirmation(
     await telegram.deleteMessage(chatId, callbackQuery.message!.message_id);
 
     // Ask for birthday
+    // Format values before passing to i18n
+    const notSetText = i18n.t('common.notSet');
+    const cityDisplay = user.city || notSetText;
+    
     await telegram.sendMessage(
       chatId,
-      i18n.t('common.birthday3') +
+      i18n.t('onboarding.prompt.birthday') +
         '\n\n' +
-        i18n.t('common.text10') +
+        i18n.t('onboarding.example.birthday') +
         '\n\n' +
-        i18n.t('warnings.birthday') +
+        i18n.t('onboarding.warning.birthday') +
         '\n' +
-        i18n.t('common.settings6') +
+        i18n.t('onboarding.info.city', { city: cityDisplay }) +
         '\n' +
-        i18n.t('common.text9')
+        i18n.t('onboarding.info.age18')
     );
   } catch (error) {
     console.error('[handleGenderConfirmation] Error:', error);
@@ -149,13 +153,13 @@ export async function handleGenderReselection(
       callbackQuery.message!.message_id,
       i18n.t('common.gender3') +
         '\n\n' +
-        i18n.t('warnings.settings'),
+        i18n.t('onboarding.genderWarning'),
       {
         reply_markup: {
           inline_keyboard: [
             [
-              { text: i18n.t('common.short86'), callback_data: 'gender_male' },
-              { text: i18n.t('common.short87'), callback_data: 'gender_female' },
+              { text: i18n.t('onboarding.gender.male'), callback_data: 'gender_male' },
+              { text: i18n.t('onboarding.gender.female'), callback_data: 'gender_female' },
             ],
           ],
         },
@@ -248,9 +252,9 @@ export async function handleBirthdayConfirmation(
 
     await telegram.sendMessageWithButtons(
       chatId,
-      i18n.t('common.bloodType') +
+      i18n.t('onboarding.bloodTypeLabel') +
         '\n\n' +
-        i18n.t('common.vip') +
+        i18n.t('onboarding.vip') +
         '\n\n' +
         i18n.t('common.bloodType3'),
       [
@@ -327,15 +331,15 @@ export async function handleBloodTypeSelection(
     // Show MBTI options: manual / test / skip
     await telegram.sendMessageWithButtons(
       chatId,
-      i18n.t('common.settings2') +
+      i18n.t('onboarding.settings2') +
         '\n\n' +
-        i18n.t('common.help') +
+        i18n.t('onboarding.help') +
         '\n\n' +
-        i18n.t('common.settings7'),
+        i18n.t('onboarding.settings7'),
       [
-        [{ text: i18n.t('common.mbti2'), callback_data: 'mbti_choice_manual' }],
-        [{ text: i18n.t('common.text5'), callback_data: 'mbti_choice_test' }],
-        [{ text: i18n.t('common.short'), callback_data: 'mbti_choice_skip' }],
+        [{ text: i18n.t('onboarding.mbti2'), callback_data: 'mbti_choice_manual' }],
+        [{ text: i18n.t('onboarding.text5'), callback_data: 'mbti_choice_test' }],
+        [{ text: i18n.t('onboarding.short'), callback_data: 'mbti_choice_skip' }],
       ]
     );
   } catch (error) {
@@ -363,17 +367,21 @@ export async function handleBirthdayRetry(callbackQuery: CallbackQuery, env: Env
     await telegram.deleteMessage(chatId, callbackQuery.message!.message_id);
 
     // Ask for birthday again
+    // Format values before passing to i18n
+    const notSetText = i18n.t('common.notSet');
+    const cityDisplay = user.city || notSetText;
+    
     await telegram.sendMessage(
       chatId,
       i18n.t('common.birthday2') +
         '\n\n' +
-        i18n.t('common.text10') +
+        i18n.t('onboarding.example.birthday') +
         '\n\n' +
-        i18n.t('warnings.birthday') +
+        i18n.t('onboarding.warning.birthday') +
         '\n' +
-        i18n.t('common.settings6') +
+        i18n.t('onboarding.info.city', { city: cityDisplay }) +
         '\n' +
-        i18n.t('common.text9')
+        i18n.t('onboarding.info.age18')
     );
 
     await telegram.answerCallbackQuery(callbackQuery.id);
@@ -530,24 +538,20 @@ export async function handleMBTIChoiceSkip(callbackQuery: CallbackQuery, env: En
     // Show anti-fraud test
     await telegram.sendMessageWithButtons(
       chatId,
-      i18n.t('common.settings3') +
+      i18n.t('onboarding.confirm2') +
         '\n\n' +
-        i18n.t('common.settings') +
-        '\n\n' +
-        i18n.t('common.confirm2') +
-        '\n\n' +
-        i18n.t('common.confirm') +
-        '\n\n' +
-        i18n.t('common.text49') +
+        i18n.t('onboarding.confirm') +
         '\n' +
-        i18n.t('common.text50') +
+        i18n.t('onboarding.antiFraud.question1') +
         '\n' +
-        i18n.t('common.message66') +
+        i18n.t('onboarding.antiFraud.question2') +
+        '\n' +
+        i18n.t('onboarding.antiFraud.question3') +
         '\n\n' +
-        i18n.t('common.confirm7'),
+        i18n.t('onboarding.confirm3'),
       [
-        [{ text: i18n.t('success.text10'), callback_data: 'anti_fraud_yes' }],
-        [{ text: i18n.t('common.text108'), callback_data: 'anti_fraud_learn' }],
+        [{ text: i18n.t('onboarding.antiFraud.confirm_button'), callback_data: 'anti_fraud_yes' }],
+        [{ text: i18n.t('onboarding.antiFraud.learn_button'), callback_data: 'anti_fraud_learn' }],
       ]
     );
   } catch (error) {
@@ -586,15 +590,15 @@ export async function handleMBTIChoiceBack(callbackQuery: CallbackQuery, env: En
     // Show MBTI options again (3 choices)
     await telegram.sendMessageWithButtons(
       chatId,
-      i18n.t('common.settings2') +
+      i18n.t('onboarding.settings2') +
         '\n\n' +
-        i18n.t('common.help') +
+        i18n.t('onboarding.help') +
         '\n\n' +
-        i18n.t('common.settings7'),
+        i18n.t('onboarding.settings7'),
       [
-        [{ text: i18n.t('common.mbti2'), callback_data: 'mbti_choice_manual' }],
-        [{ text: i18n.t('common.text5'), callback_data: 'mbti_choice_test' }],
-        [{ text: i18n.t('common.short'), callback_data: 'mbti_choice_skip' }],
+        [{ text: i18n.t('onboarding.mbti2'), callback_data: 'mbti_choice_manual' }],
+        [{ text: i18n.t('onboarding.text5'), callback_data: 'mbti_choice_test' }],
+        [{ text: i18n.t('onboarding.short'), callback_data: 'mbti_choice_skip' }],
       ]
     );
   } catch (error) {
@@ -673,20 +677,20 @@ export async function handleMBTIManualSelection(
     // Show anti-fraud test
     await telegram.sendMessageWithButtons(
       chatId,
-      i18n.t('common.confirm3') +
+      i18n.t('onboarding.confirm2') +
         '\n\n' +
-        i18n.t('common.confirm') +
-        '\n\n' +
-        i18n.t('common.text49') +
+        i18n.t('onboarding.confirm') +
         '\n' +
-        i18n.t('common.text50') +
+        i18n.t('onboarding.antiFraud.question1') +
         '\n' +
-        i18n.t('common.message66') +
+        i18n.t('onboarding.antiFraud.question2') +
+        '\n' +
+        i18n.t('onboarding.antiFraud.question3') +
         '\n\n' +
-        i18n.t('common.confirm7'),
+        i18n.t('onboarding.confirm3'),
       [
-        [{ text: i18n.t('success.text10'), callback_data: 'anti_fraud_yes' }],
-        [{ text: i18n.t('common.text108'), callback_data: 'anti_fraud_learn' }],
+        [{ text: i18n.t('onboarding.antiFraud.confirm_button'), callback_data: 'anti_fraud_yes' }],
+        [{ text: i18n.t('onboarding.antiFraud.learn_button'), callback_data: 'anti_fraud_learn' }],
       ]
     );
   } catch (error) {
@@ -745,20 +749,20 @@ export async function handleMBTISelection(
       chatId,
       i18n.t('success.mbti', { mbtiType }) +
         '\n\n' +
-        i18n.t('common.confirm3') +
+        i18n.t('onboarding.confirm2') +
         '\n\n' +
-        i18n.t('common.confirm') +
-        '\n\n' +
-        i18n.t('common.text49') +
+        i18n.t('onboarding.confirm') +
         '\n' +
-        i18n.t('common.text50') +
+        i18n.t('onboarding.antiFraud.question1') +
         '\n' +
-        i18n.t('common.message66') +
+        i18n.t('onboarding.antiFraud.question2') +
+        '\n' +
+        i18n.t('onboarding.antiFraud.question3') +
         '\n\n' +
-        i18n.t('common.confirm7'),
+        i18n.t('onboarding.confirm3'),
       [
-        [{ text: i18n.t('success.text10'), callback_data: 'anti_fraud_yes' }],
-        [{ text: i18n.t('common.text108'), callback_data: 'anti_fraud_learn' }],
+        [{ text: i18n.t('onboarding.antiFraud.confirm_button'), callback_data: 'anti_fraud_yes' }],
+        [{ text: i18n.t('onboarding.antiFraud.learn_button'), callback_data: 'anti_fraud_learn' }],
       ]
     );
   } catch (error) {
@@ -816,20 +820,19 @@ export async function handleAntiFraudConfirmation(
       chatId,
       i18n.t('success.text29') +
         '\n\n' +
-        i18n.t('common.text12') +
-        '\n\n' +
-        i18n.t('common.start') +
-        '\n\n' +
-        i18n.t('common.profile') +
-        '\n' +
-        i18n.t('common.text6') +
-        '\n\n' +
-        '📋 Legal documents are provided in English only.\n\n' +
-        i18n.t('common.text7'),
+        i18n.t('onboarding.start') +
+          '\n\n' +
+          i18n.t('onboarding.text21') +
+          '\n' +
+          i18n.t('onboarding.text19') +
+          '\n\n' +
+          i18n.t('onboarding.terms.english_only_note') +
+          '\n\n' +
+          i18n.t('onboarding.text7'),
       [
-        [{ text: i18n.t('success.short17'), callback_data: 'agree_terms' }],
-        [{ text: '📋 View Privacy Policy', url: LEGAL_URLS.PRIVACY_POLICY }],
-        [{ text: '📋 View Terms of Service', url: LEGAL_URLS.TERMS_OF_SERVICE }],
+        [{ text: i18n.t('onboarding.terms.agree_button'), callback_data: 'agree_terms' }],
+        [{ text: i18n.t('onboarding.terms.privacy_policy_button'), url: LEGAL_URLS.PRIVACY_POLICY }],
+        [{ text: i18n.t('onboarding.terms.terms_of_service_button'), url: LEGAL_URLS.TERMS_OF_SERVICE }],
       ]
     );
   } catch (error) {
@@ -952,21 +955,35 @@ export async function handleTermsAgreement(callbackQuery: CallbackQuery, env: En
       );
     } else {
       // Show completion message
+      // Format all values before passing to i18n (handle fallbacks and translations)
+      const notSetText = updatedI18n.t('common.notSet');
+      const bioDisplay = updatedUser.bio || notSetText;
+      const cityDisplay = updatedUser.city || notSetText;
+      const interestsDisplay = updatedUser.interests || notSetText;
+      const genderDisplay = updatedUser.gender === 'male' ? updatedI18n.t('common.male') : updatedI18n.t('common.female');
+      const mbtiDisplay = updatedUser.mbti_result || notSetText;
+      
       await telegram.sendMessageWithButtons(
         chatId,
-        updatedI18n.t('common.settings5') +
+        updatedI18n.t('success.register3') +
           '\n\n' +
           updatedI18n.t('common.profile2') +
           '\n' +
           updatedI18n.t('common.nickname3', { updatedUser: { nickname: updatedUser.nickname } }) +
           '\n' +
-          updatedI18n.t('common.gender', { updatedUser: { gender: updatedUser.gender } }) +
+          updatedI18n.t('common.settings5', { updatedUser: { bio: bioDisplay } }) +
+          '\n' +
+          updatedI18n.t('common.settings6', { updatedUser: { city: cityDisplay } }) +
+          '\n' +
+          updatedI18n.t('common.settings2', { updatedUser: { interests: interestsDisplay } }) +
+          '\n' +
+          updatedI18n.t('common.gender', { gender: genderDisplay }) +
           '\n' +
           updatedI18n.t('onboarding.age', { updatedUser: { age: updatedUser.age } }) +
           '\n' +
           updatedI18n.t('onboarding.zodiac', { updatedUser: { zodiac_sign: updatedUser.zodiac_sign } }) +
           '\n' +
-          updatedI18n.t('common.mbti3', { user: { mbti_result: updatedUser.mbti_result } }) +
+          updatedI18n.t('common.mbti3', { user: { mbti_result: mbtiDisplay } }) +
           '\n\n' +
           updatedI18n.t('common.start2'),
         [

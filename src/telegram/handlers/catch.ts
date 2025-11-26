@@ -427,14 +427,14 @@ export async function handleCatch(message: TelegramMessage, env: Env): Promise<v
 
     // Build message
     const matchScoreText = matchScore && matchType === 'smart'
-      ? i18n.t('catch.message', { matchScore: Math.round(matchScore) }) + '\n'
+      ? i18n.t('catch.message', { score: Math.round(matchScore) }) + '\n'
       : '';
     
     const catchMessage =
       i18n.t('catch.bottle4') + '\n\n' +
       matchScoreText +
       i18n.t('catch.nickname', { ownerMaskedNickname }) + '\n' +
-      i18n.t('catch.settings', { bottle: { mbti_result: bottle.mbti_result || i18n.t('catch.settings10') } }) + '\n' +
+      i18n.t('catch.settings', { mbti: bottle.mbti_result || i18n.t('catch.settings10') }) + '\n' +
       i18n.t('catch.zodiac', { zodiac: bottle.zodiac || 'Virgo' }) +
       i18n.t('catch.language', { language: ownerLanguage }) + '\n\n' +
       '━━━━━━━━━━━━━━━━\n' +

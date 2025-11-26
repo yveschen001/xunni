@@ -7,6 +7,7 @@ import type { Translations } from '../types';
 export const translations: Translations = {
   ad: {
     ad: `💡 Continue watching ads to earn more credits! (Fixed)`,
+    failed: `❌ 廣告載入失敗，請稍後再試`,
   },
   adPrompt: {
     completeTask: `• ✨ Complete tasks (earn permanent quota)`,
@@ -19,8 +20,10 @@ export const translations: Translations = {
     waysToGetMore: `💡 Ways to earn more quotas:`,
   },
   adProvider: {
-    'health.good': `Good`,
-    'health.needsAttention': `Needs attention`,
+    health: {
+      good: `Good`,
+      needsAttention: `Needs attention`,
+    },
   },
   adReward: {
     adCompleted: `Ad completed! Gained +\${quota} quota`,
@@ -57,51 +60,6 @@ export const translations: Translations = {
     ad5: `📢 **Official Ad List**
 
 `,
-    'adConfig.adIdMustBeNumber': `❌ Ad ID must be a number`,
-    'adConfig.addOfficialAdScript': `Please use the database script to add official ads:`,
-    'adConfig.addProviderScript': `Please use the database script to add ad providers:`,
-    'adConfig.clicks': `• Clicks: \${count} times`,
-    'adConfig.correctFormat': `**Correct format:**`,
-    'adConfig.disableCommand': `• \`/ad_provider_disable \` - Disable \`/ad_provider_disable <id>\``,
-    'adConfig.disableFailed': `❌ Failed to disable ad provider`,
-    'adConfig.disableOfficialAdCommand': `• \`/official_ad_disable \` - Disable \`/official_ad_disable <id>\``,
-    'adConfig.disableOfficialAdFailed': `❌ Failed to disable official ad`,
-    'adConfig.disabled': `❌ Disabled`,
-    'adConfig.enableCommand': `• \`/ad_provider_enable \` - Enable \`/ad_provider_enable <id>\``,
-    'adConfig.enableFailed': `❌ Failed to enable ad provider`,
-    'adConfig.enableOfficialAdCommand': `• \`/official_ad_enable \` - Enable \`/official_ad_enable <id>\``,
-    'adConfig.enableOfficialAdFailed': `❌ Failed to enable official ad`,
-    'adConfig.enabled': `✅ Enabled`,
-    'adConfig.example': `**Example:**`,
-    'adConfig.getListFailed': `❌ Failed to retrieve the ad provider list`,
-    'adConfig.getOfficialAdListFailed': `❌ Failed to retrieve the official ad list`,
-    'adConfig.id': `• ID: \${id}`,
-    'adConfig.impressions': `• Impressions: \${count} times`,
-    'adConfig.managementCommands': `**Admin Command:**`,
-    'adConfig.noOfficialAds': `⚠️ Currently no official ads available`,
-    'adConfig.noProviders': `⚠️ No ad providers configured at the moment`,
-    'adConfig.officialAdDisabled': `✅ Official advertisement disabled #\${id}`,
-    'adConfig.officialAdEnabled': `✅ Official advertisement enabled #\${id}`,
-    'adConfig.officialAdList': `📢 **Official Ad List**`,
-    'adConfig.priority': `• Priority: \${priority}`,
-    'adConfig.priorityCommand': `• \`/ad_provider_priority \` - Set priority \`/ad_provider_priority <id> <priority>\``,
-    'adConfig.priorityMustBeNonNegative': `❌ Priority must be a non-negative integer`,
-    'adConfig.prioritySet': `✅ Ad provider priority set`,
-    'adConfig.priorityValue': `Priority: \${priority}`,
-    'adConfig.provider': `Provider: \${name}`,
-    'adConfig.providerDisabled': `✅ Advertising provider disabled: \${name}`,
-    'adConfig.providerEnabled': `✅ Ad provider enabled: \${name}`,
-    'adConfig.providerList': `📺 **Ad Provider List**`,
-    'adConfig.reward': `• Reward: \${reward} amount`,
-    'adConfig.setPriorityFailed': `❌ Failed to set priority`,
-    'adConfig.status': `• Status: \${status}`,
-    'adConfig.testMode': `• 🧪 Test Mode`,
-    'adConfig.type': `• Type: \${type}`,
-    'adConfig.usageError': `❌ Incorrect usage`,
-    'adConfig.viewAllOfficialAds': `Use /official_ads to view all ads`,
-    'adConfig.viewAllProviders': `Use /ad_providers to view all providers`,
-    'adConfig.viewStatsCommand': `• \`/ad_stats \` - View detailed statistics \`/ad_stats <id>\``,
-    'adConfig.weight': `• Weight: \${weight}`,
     addAlreadyAdmin: `❌ This user is already an administrator.`,
     addAlreadySuperAdmin: `❌ This user is already a super administrator, no need to add.`,
     addCommand: `\`/admin_add <user_id>\`
@@ -145,15 +103,6 @@ This command requires manual modification of the configuration file.
     admin6: `\`/admin_remove 123456789\` - Remove normal administrator
 
 `,
-    'analytics.getAdDataFailed': `❌ Failed to retrieve ad data`,
-    'analytics.getDataFailed': `❌ Failed to retrieve analytics data`,
-    'analytics.getVipDataFailed': `❌ Failed to retrieve VIP funnel data`,
-    'analytics.noPermission': `❌ You do not have permission to view analytics data`,
-    'analytics.noPermissionAd': `❌ You do not have permission to view ad data`,
-    'analytics.noPermissionVip': `❌ You do not have permission to view VIP data`,
-    'analytics.onlySuperAdmin': `❌ Only super administrators can use this command.`,
-    'analytics.sendReportFailed': `❌ Failed to send daily report: \${error}`,
-    'analytics.userNotFound': `❌ User does not exist: \${userId}`,
     appeal: `Appeal ID: \${appeal.id}
 `,
     appeal2: `💡 Use the following command to review the appeal:
@@ -194,58 +143,6 @@ Usage: /admin_reject <appeal_id> [remarks]`,
 
 `,
     ban: `💡 Use /admin_bans <user_id> to view ban history for a specific user`,
-    'ban.appealAlreadyReviewed': `❌ Appeal {id} has already been reviewed`,
-    'ban.appealApproved': `Appeal Approved`,
-    'ban.appealApprovedUnbanned': `✅ Appeal {id} has been approved, user has been unbanned`,
-    'ban.appealId': `Appeal ID: {id}
-`,
-    'ban.appealList': `📋 Pending Appeal List
-
-`,
-    'ban.appealNotFound': `❌ Appeal ID not found: {id}`,
-    'ban.appealReason': `Reason: {reason}
-`,
-    'ban.appealRejected': `Appeal Rejected`,
-    'ban.appealRejectedMessage': `✅ Appeal {id} has been denied`,
-    'ban.appealSubmittedAt': `Submission time: {time}
-
-`,
-    'ban.appealUser': `User: {user}
-`,
-    'ban.banEnd': `End: \${end}`,
-    'ban.banId': `ID: \${id}`,
-    'ban.banReason': `Reason: \${reason}`,
-    'ban.banStart': `Start: \${start}`,
-    'ban.banUser': `User: \${user}`,
-    'ban.durationDays': `{days} days`,
-    'ban.durationHours': `{hours} hours`,
-    'ban.durationMustBePositive': `❌ Duration must be a positive integer or "permanent".`,
-    'ban.noAppeals': `✅ No pending appeals at the moment`,
-    'ban.noBanRecords': `❌ User \${userId} has no ban records`,
-    'ban.noBanRecordsList': `📊 Currently no ban records`,
-    'ban.noPermission': `❌ You do not have permission to use this command.`,
-    'ban.notAdmin': `❌ This user is not an administrator.`,
-    'ban.permanent': `Permanent`,
-    'ban.provideAppealId': `❌ Please provide the appeal ID
-
-`,
-    'ban.reason': `Admin ban`,
-    'ban.recentBans': `📊 Recent 10 ban records`,
-    'ban.riskScore': `Risk score: \${score}`,
-    'ban.temporaryBan': `🚫 You have been temporarily banned
-
-Ban duration: {duration}
-Unban time: {unbanTime}
-
-Ban reason: Multiple reports
-
-If you have questions, please use /appeal to submit an appeal.`,
-    'ban.totalBans': `Total bans: \${count}`,
-    'ban.usageApprove': `Usage: /admin_approve <appeal_id> [remarks]`,
-    'ban.usageReject': `Usage: /admin_reject <appeal_id> [remarks]`,
-    'ban.user': `User: \${user}`,
-    'ban.userBanHistory': `📊 User Ban History`,
-    'ban.viewHistory': `💡 Use /admin_bans <user_id> to view the ban history of a specific user`,
     ban2: `Total bans: \${userBans.results.length}
 
 `,
@@ -256,6 +153,11 @@ If you have questions, please use /appeal to submit an appeal.`,
 
 `,
     ban5: `📊 No ban records currently`,
+    banSuccess: `✅ 已封禁用戶 {userId} ({nickname})
+
+封禁時長：{duration}
+解封時間：{unbanTime}`,
+    banSuccessPermanent: `✅ 已永久封禁用戶 {userId} ({nickname})`,
     banUsageError: `Usage error`,
     banUserNotFound: `User does not exist`,
     cannotBanAdmin: `Unable to ban admin`,
@@ -269,42 +171,6 @@ If you have questions, please use /appeal to submit an appeal.`,
     conversation5: `🔄 Starting to refresh your conversation history...`,
     conversation6: `• No conversation history posts
 `,
-    'diagnose.allUpToDateFree': `✅ All posts are up to date (free user status correct)`,
-    'diagnose.allUpToDateVip': `✅ All posts are up to date (VIP status correct)`,
-    'diagnose.analysis': `🔎 **Analysis:**`,
-    'diagnose.avatarCache': `📸 **Avatar Cache:**`,
-    'diagnose.blurredUrl': `• Fuzzy URL: \${status}`,
-    'diagnose.createdWithVip': `• VIP at Creation: \${status}`,
-    'diagnose.error': `Error: \${error}`,
-    'diagnose.failed': `❌ **Diagnosis Failed**`,
-    'diagnose.fileId': `• File ID: \${fileId}...`,
-    'diagnose.hasAvatar': `• Has Avatar: \${status}`,
-    'diagnose.historyPosts': `💬 **Conversation History Posts:**`,
-    'diagnose.historyPostsHint': `💡 Conversation history posts are created only when there are new messages`,
-    'diagnose.isLatest': `• Latest: \${status}`,
-    'diagnose.morePosts': `...there are \${count} posts`,
-    'diagnose.nickname': `• Nickname: \${nickname}`,
-    'diagnose.no': `❌ No`,
-    'diagnose.noCache': `• No cache`,
-    'diagnose.noHistoryPosts': `• No conversation history posts`,
-    'diagnose.noHistoryPostsWarning': `⚠️ This user has no conversation history posts`,
-    'diagnose.none': `None`,
-    'diagnose.originalUrl': `• Original URL: \${status}`,
-    'diagnose.outdatedPostsFound': `⚠️ Found \${count} outdated posts that need refreshing`,
-    'diagnose.postId': `• ID: \${id}`,
-    'diagnose.postTitle': `📝 **Post #\${identifier}-H\${postNumber}**`,
-    'diagnose.postUpdatedAt': `• Update Time: \${date}`,
-    'diagnose.refreshHint': `💡 Use /admin_refresh_vip_avatars to batch refresh`,
-    'diagnose.title': `🔍 **Avatar Diagnostic Report**`,
-    'diagnose.totalPosts': `• Total: \${count}`,
-    'diagnose.unknown': `Unknown`,
-    'diagnose.updatedAt': `• Update Time: \${date}`,
-    'diagnose.userId': `• ID: \${userId}`,
-    'diagnose.userInfo': `👤 **User Information:**`,
-    'diagnose.username': `• Username: @\${username}`,
-    'diagnose.vipExpire': `• VIP Expiry: \${date}`,
-    'diagnose.vipStatus': `• VIP Status: \${status}`,
-    'diagnose.yes': `✅ Yes`,
     end: `End: \${banEnd}
 
 `,
@@ -321,10 +187,14 @@ If you have questions, please use /appeal to submit an appeal.`,
 
 This command is for super admin use only.`,
     listFooter: `---`,
+    listId: `ID：{id}`,
+    listNickname: `暱稱：{nickname}`,
     listNotRegistered: `Not registered`,
     listRoleAdmin: `Administrator`,
     listRoleSuperAdmin: `Super Administrator`,
     listTitle: `Administrator List`,
+    listTotal: `總數：{total}`,
+    listUsername: `用戶名：{username}`,
     message: `• Updated at: \${new Date(post.updated_at).toLocaleString('zh-TW', { month: '2-digit', day: '2-digit', hour: '2-digit', minute: '2-digit' })}
 
 `,
@@ -407,33 +277,6 @@ This command is for super admin use only.`,
     onlyAdmin: `❌ Only admins can use this command.`,
     onlySuperAdmin: `❌ Only super admins can use this command.`,
     operationFailed: `❌ An error occurred, please try again later.`,
-    'refresh.allUpToDate': `All VIP users' conversation history is up to date!`,
-    'refresh.batchComplete': `✅ **Batch refresh completed**`,
-    'refresh.checkHint': `Please check if the conversation history has been updated to clear avatars.`,
-    'refresh.complete': `✅ **Refresh completed**`,
-    'refresh.details': `📝 **Detailed results:**`,
-    'refresh.duration': `⏱️ **Duration:** \${duration} seconds`,
-    'refresh.error': `Error: \${error}`,
-    'refresh.errorOccurred': `An error occurred during processing, please check the logs.`,
-    'refresh.failed': `❌ **Refresh failed**`,
-    'refresh.failedPosts': `• Failed posts: \${count}`,
-    'refresh.failedUsers': `• Failure: \${count}`,
-    'refresh.moreUsers': `
-...there are \${count} users`,
-    'refresh.noRefreshNeeded': `✅ **No refresh needed**`,
-    'refresh.outdatedPosts': `• Expired posts: \${count}`,
-    'refresh.processedUsers': `• Processing users: \${count}`,
-    'refresh.processing': `⏳ Processing, please wait...`,
-    'refresh.startingBatchRefresh': `🔄 **Starting batch refresh of VIP avatars**`,
-    'refresh.startingRefresh': `🔄 Starting to refresh your conversation history...`,
-    'refresh.stats': `📊 **Statistics:**`,
-    'refresh.successUsers': `• Success: \${count}`,
-    'refresh.summary': `📊 **Summary:**`,
-    'refresh.totalVipUsers': `• Total VIP users: \${count}`,
-    'refresh.updated': `• Updates: \${count} posts`,
-    'refresh.updatedPosts': `• Updated posts: \${count}`,
-    'refresh.userDetail': `• \${username}: \${updated} updated, \${failed} failed`,
-    'refresh.usersNeedingRefresh': `• Need refresh: \${count}`,
     removeCannotRemoveSuperAdmin: `❌ Unable to remove super administrator.`,
     removeCommand: `\`/admin_remove <user_id>\`
 
@@ -595,6 +438,7 @@ This command requires manual modification of the configuration file.
 `,
     text9: `/official_ad_enable <ad_id>`,
     unbanNotBanned: `User is not banned`,
+    unbanSuccess: `✅ 已解封用戶 {userId}`,
     unbanUsageError: `Unban usage method is incorrect`,
     unbanUserNotFound: `User to unban does not exist`,
     userNotFound: `❌ User does not exist.`,
@@ -621,6 +465,185 @@ This command requires manual modification of the configuration file.
     vip9: `🔄 **VIP Renewal**
 
 `,
+    adConfig: {
+      adIdMustBeNumber: `❌ Ad ID must be a number`,
+      addOfficialAdScript: `Please use the database script to add official ads:`,
+      addProviderScript: `Please use the database script to add ad providers:`,
+      clicks: `• Clicks: \${count} times`,
+      correctFormat: `**Correct format:**`,
+      disableCommand: `• \`/ad_provider_disable \` - Disable \`/ad_provider_disable <id>\``,
+      disableFailed: `❌ Failed to disable ad provider`,
+      disableOfficialAdCommand: `• \`/official_ad_disable \` - Disable \`/official_ad_disable <id>\``,
+      disableOfficialAdFailed: `❌ Failed to disable official ad`,
+      disabled: `❌ Disabled`,
+      enableCommand: `• \`/ad_provider_enable \` - Enable \`/ad_provider_enable <id>\``,
+      enableFailed: `❌ Failed to enable ad provider`,
+      enableOfficialAdCommand: `• \`/official_ad_enable \` - Enable \`/official_ad_enable <id>\``,
+      enableOfficialAdFailed: `❌ Failed to enable official ad`,
+      enabled: `✅ Enabled`,
+      example: `**Example:**`,
+      getListFailed: `❌ Failed to retrieve the ad provider list`,
+      getOfficialAdListFailed: `❌ Failed to retrieve the official ad list`,
+      id: `• ID: \${id}`,
+      impressions: `• Impressions: \${count} times`,
+      managementCommands: `**Admin Command:**`,
+      noOfficialAds: `⚠️ Currently no official ads available`,
+      noProviders: `⚠️ No ad providers configured at the moment`,
+      officialAdDisabled: `✅ Official advertisement disabled #\${id}`,
+      officialAdEnabled: `✅ Official advertisement enabled #\${id}`,
+      officialAdList: `📢 **Official Ad List**`,
+      priority: `• Priority: \${priority}`,
+      priorityCommand: `• \`/ad_provider_priority \` - Set priority \`/ad_provider_priority <id> <priority>\``,
+      priorityMustBeNonNegative: `❌ Priority must be a non-negative integer`,
+      prioritySet: `✅ Ad provider priority set`,
+      priorityValue: `Priority: \${priority}`,
+      provider: `Provider: \${name}`,
+      providerDisabled: `✅ Advertising provider disabled: \${name}`,
+      providerEnabled: `✅ Ad provider enabled: \${name}`,
+      providerList: `📺 **Ad Provider List**`,
+      reward: `• Reward: \${reward} amount`,
+      setPriorityFailed: `❌ Failed to set priority`,
+      status: `• Status: \${status}`,
+      testMode: `• 🧪 Test Mode`,
+      type: `• Type: \${type}`,
+      usageError: `❌ Incorrect usage`,
+      viewAllOfficialAds: `Use /official_ads to view all ads`,
+      viewAllProviders: `Use /ad_providers to view all providers`,
+      viewStatsCommand: `• \`/ad_stats \` - View detailed statistics \`/ad_stats <id>\``,
+      weight: `• Weight: \${weight}`,
+    },
+    analytics: {
+      getAdDataFailed: `❌ Failed to retrieve ad data`,
+      getDataFailed: `❌ Failed to retrieve analytics data`,
+      getVipDataFailed: `❌ Failed to retrieve VIP funnel data`,
+      noPermission: `❌ You do not have permission to view analytics data`,
+      noPermissionAd: `❌ You do not have permission to view ad data`,
+      noPermissionVip: `❌ You do not have permission to view VIP data`,
+      onlySuperAdmin: `❌ Only super administrators can use this command.`,
+      sendReportFailed: `❌ Failed to send daily report: \${error}`,
+      userNotFound: `❌ User does not exist: \${userId}`,
+    },
+    ban: {
+      appealAlreadyReviewed: `❌ Appeal {id} has already been reviewed`,
+      appealApproved: `Appeal Approved`,
+      appealApprovedUnbanned: `✅ Appeal {id} has been approved, user has been unbanned`,
+      appealId: `Appeal ID: {id}
+`,
+      appealList: `📋 Pending Appeal List
+
+`,
+      appealNotFound: `❌ Appeal ID not found: {id}`,
+      appealReason: `Reason: {reason}
+`,
+      appealRejected: `Appeal Rejected`,
+      appealRejectedMessage: `✅ Appeal {id} has been denied`,
+      appealSubmittedAt: `Submission time: {time}
+
+`,
+      appealUser: `User: {user}
+`,
+      banEnd: `End: \${end}`,
+      banId: `ID: \${id}`,
+      banReason: `Reason: \${reason}`,
+      banStart: `Start: \${start}`,
+      banUser: `User: \${user}`,
+      durationDays: `{days} days`,
+      durationHours: `{hours} hours`,
+      durationMustBePositive: `❌ Duration must be a positive integer or "permanent".`,
+      noAppeals: `✅ No pending appeals at the moment`,
+      noBanRecords: `❌ User \${userId} has no ban records`,
+      noBanRecordsList: `📊 Currently no ban records`,
+      noPermission: `❌ You do not have permission to use this command.`,
+      notAdmin: `❌ This user is not an administrator.`,
+      permanent: `Permanent`,
+      provideAppealId: `❌ Please provide the appeal ID
+
+`,
+      reason: `Admin ban`,
+      recentBans: `📊 Recent 10 ban records`,
+      riskScore: `Risk score: \${score}`,
+      temporaryBan: `🚫 You have been temporarily banned
+
+Ban duration: {duration}
+Unban time: {unbanTime}
+
+Ban reason: Multiple reports
+
+If you have questions, please use /appeal to submit an appeal.`,
+      totalBans: `Total bans: \${count}`,
+      usageApprove: `Usage: /admin_approve <appeal_id> [remarks]`,
+      usageReject: `Usage: /admin_reject <appeal_id> [remarks]`,
+      user: `User: \${user}`,
+      userBanHistory: `📊 User Ban History`,
+      viewHistory: `💡 Use /admin_bans <user_id> to view the ban history of a specific user`,
+    },
+    diagnose: {
+      allUpToDateFree: `✅ All posts are up to date (free user status correct)`,
+      allUpToDateVip: `✅ All posts are up to date (VIP status correct)`,
+      analysis: `🔎 **Analysis:**`,
+      avatarCache: `📸 **Avatar Cache:**`,
+      blurredUrl: `• Fuzzy URL: \${status}`,
+      createdWithVip: `• VIP at Creation: \${status}`,
+      error: `Error: \${error}`,
+      failed: `❌ **Diagnosis Failed**`,
+      fileId: `• File ID: \${fileId}...`,
+      hasAvatar: `• Has Avatar: \${status}`,
+      historyPosts: `💬 **Conversation History Posts:**`,
+      historyPostsHint: `💡 Conversation history posts are created only when there are new messages`,
+      isLatest: `• Latest: \${status}`,
+      morePosts: `...there are \${count} posts`,
+      nickname: `• Nickname: \${nickname}`,
+      no: `❌ No`,
+      noCache: `• No cache`,
+      noHistoryPosts: `• No conversation history posts`,
+      noHistoryPostsWarning: `⚠️ This user has no conversation history posts`,
+      none: `None`,
+      originalUrl: `• Original URL: \${status}`,
+      outdatedPostsFound: `⚠️ Found \${count} outdated posts that need refreshing`,
+      postId: `• ID: \${id}`,
+      postTitle: `📝 **Post #\${identifier}-H\${postNumber}**`,
+      postUpdatedAt: `• Update Time: \${date}`,
+      refreshHint: `💡 Use /admin_refresh_vip_avatars to batch refresh`,
+      title: `🔍 **Avatar Diagnostic Report**`,
+      totalPosts: `• Total: \${count}`,
+      unknown: `Unknown`,
+      updatedAt: `• Update Time: \${date}`,
+      userId: `• ID: \${userId}`,
+      userInfo: `👤 **User Information:**`,
+      username: `• Username: @\${username}`,
+      vipExpire: `• VIP Expiry: \${date}`,
+      vipStatus: `• VIP Status: \${status}`,
+      yes: `✅ Yes`,
+    },
+    refresh: {
+      allUpToDate: `All VIP users' conversation history is up to date!`,
+      batchComplete: `✅ **Batch refresh completed**`,
+      checkHint: `Please check if the conversation history has been updated to clear avatars.`,
+      complete: `✅ **Refresh completed**`,
+      details: `📝 **Detailed results:**`,
+      duration: `⏱️ **Duration:** \${duration} seconds`,
+      error: `Error: \${error}`,
+      errorOccurred: `An error occurred during processing, please check the logs.`,
+      failed: `❌ **Refresh failed**`,
+      failedPosts: `• Failed posts: \${count}`,
+      failedUsers: `• Failure: \${count}`,
+      moreUsers: `
+...there are \${count} users`,
+      noRefreshNeeded: `✅ **No refresh needed**`,
+      outdatedPosts: `• Expired posts: \${count}`,
+      processedUsers: `• Processing users: \${count}`,
+      processing: `⏳ Processing, please wait...`,
+      startingBatchRefresh: `🔄 **Starting batch refresh of VIP avatars**`,
+      startingRefresh: `🔄 Starting to refresh your conversation history...`,
+      stats: `📊 **Statistics:**`,
+      successUsers: `• Success: \${count}`,
+      summary: `📊 **Summary:**`,
+      totalVipUsers: `• Total VIP users: \${count}`,
+      updated: `• Updates: \${count} posts`,
+      updatedPosts: `• Updated posts: \${count}`,
+      userDetail: `• \${username}: \${updated} updated, \${failed} failed`,
+      usersNeedingRefresh: `• Need refresh: \${count}`,
+    },
   },
   adminNotification: {
     amount: `Amount: \${stars} ⭐`,
@@ -791,6 +814,8 @@ Status: \${status}
 Submitted at: \${time}
 
 Please wait for the administrator's review.`,
+    approved: `✅ 你的申訴已通過，帳號已解封`,
+    noAppeal: `你目前沒有待審核的申訴`,
     notBanned: `✅ Your account is not banned, no need to appeal.`,
     notFound: `❌ Unable to find your appeal record.`,
     notes: `Remarks:`,
@@ -801,14 +826,13 @@ Please explain why you believe your account was banned and how you would like to
 💡 Please provide detailed information about your situation to help the administrator process your appeal faster.`,
     reasonTooLong: `❌ The reason for the appeal is too long, please keep it within 500 characters.`,
     reasonTooShort: `❌ The reason for the appeal is too short, please enter at least 10 characters.`,
+    rejected: `❌ 你的申訴已被拒絕`,
     reviewedAt: `Review Time:`,
     status: `📋 **Appeal Status**
 
 Appeal ID: #\${appealId}
 Status: \${status}
-Submission Time: \${createdAt}\${reviewInfo ? '
-
-' + reviewInfo : ''}`,
+Submission Time: \${createdAt}\${reviewInfo}`,
     statusApproved: `Approved`,
     statusPending: `Pending Review`,
     statusRejected: `Rejected`,
@@ -839,387 +863,391 @@ The result will be notified to you via Bot.`,
   bottle: {
     bottle13: `Message bottle content`,
     cancelled: `❌ Canceled \${zodiac}`,
-    'catch.anonymousUser': `Anonymous user`,
-    'catch.back': `🏠 Return to main menu: /menu`,
-    'catch.banned': `❌ Your account has been banned and cannot pick up message bottles.
-
-For any questions, please use /appeal to appeal.`,
-    'catch.block': `• To stop chatting, you can use /block to block
-`,
-    'catch.bottle': `😔 Currently, there are no suitable message bottles for you.
-
-`,
-    'catch.bottle2': `• Or throw a bottle yourself: /throw`,
-    'catch.bottle3': `🎣 Someone has picked up your message bottle!
-
-`,
-    'catch.bottle4': `🧴 You have picked up a message bottle!
-
-`,
-    'catch.bottle5': `💡 Come back tomorrow to catch more bottles!`,
-    'catch.bottleTaken': `❌ This message bottle has already been picked up by someone else, please try other message bottles!`,
-    'catch.catch': `📊 Today's catches: \\\\$\${newCatchesCount}/\\\${quota}
-
-`,
-    'catch.conversation': `An anonymous conversation has been created for you, come and start chatting!
-
-`,
-    'catch.conversation2': `• This is an anonymous conversation, please protect your personal privacy
-`,
-    'catch.conversation3': `📊 View all conversations`,
-    'catch.language': `🗣️ Language: \\\${language}
-
-`,
-    'catch.mbti': `🧠 MBTI: \\\${mbti}
-`,
-    'catch.message': `💫 Match score: \${Math.round(matchScore)} points (Smart Match)
-
-`,
-    'catch.message2': `\${catcherGender} | 📅 \${catcherAge} years old
-
-`,
-    'catch.message3': `conv_reply_\${conversationIdentifier}`,
-    'catch.message4': `2️⃣ Long press this message, select 'Reply' and enter your content
-
-`,
-    'catch.message5': `1️⃣ Click the '💬 Reply to Message' button below
-`,
-    'catch.message6': `2️⃣ Long press this message, select 'Reply' and enter your content`,
-    'catch.nickname': `📝 Nickname: \${ownerMaskedNickname}
-`,
-    'catch.nickname2': `📝 Nickname: \${catcherNickname}
-`,
-    'catch.notRegistered': `❌ Please complete the registration process before picking up message bottles.
-
-Use /start to continue registration.`,
-    'catch.originalContent': `Original: {content}`,
-    'catch.originalLanguage': `Original language: {language}`,
-    'catch.quotaExhausted': `❌ Today's message bottle quota has been exhausted (\\\${quotaDisplay})`,
-    'catch.replyButton': `💬 Reply message`,
-    'catch.replyMethods': `💡 **Two ways to reply**: 
-`,
-    'catch.report': `• If you encounter inappropriate content, please report it using /report
-`,
-    'catch.safetyTips': `⚠️ Safety reminder: 
-`,
-    'catch.settings': `🧠 MBTI: \${bottle.mbti_result}
- {bottle.mbti_result || '未設定'} \${bottle.mbti_result}`,
-    'catch.settings10': `Not set`,
-    'catch.settings11': `Not set`,
-    'catch.settings2': `Not set`,
-    'catch.settings3': `Not set`,
-    'catch.settings4': `Not set`,
-    'catch.settings5': `Not set`,
-    'catch.settings6': `Not set`,
-    'catch.settings7': `Not set`,
-    'catch.settings8': `Not set`,
-    'catch.settings9': `Not set`,
-    'catch.short': `💡 Tip:
-`,
-    'catch.short2': `• Please try again later
-`,
-    'catch.short3': `Anonymous user`,
-    'catch.short4': `♂️ Male`,
-    'catch.short5': `♀️ Female`,
-    'catch.text': `Translation language: \\\${catcherLangDisplay}
-`,
-    'catch.text2': `Original language: \\\${bottleLangDisplay}
-`,
-    'catch.text3': `🗣️ Language: \\\${ownerLanguage}
-
-`,
-    'catch.text4': `• To stop chatting, you can use /block to block
-
-`,
-    'catch.text5': `Original text: \\\${bottle.content}
-`,
-    'catch.text6': `💬 Translation service is temporarily experiencing issues, backup translation has been used
-`,
-    'catch.text7': `Translation: \\\${bottleContent}
-`,
-    'catch.text8': `💡 **Two ways to reply**:
-`,
-    'catch.translatedContent': `Translation: {content}`,
-    'catch.translatedLanguage': `Translated language: {language}`,
-    'catch.translationServiceFallback': `💬 Translation service is temporarily experiencing issues, fallback translation used`,
-    'catch.translationServiceUnavailable': `⚠️ Translation service is temporarily unavailable, below is the original text`,
-    'catch.unknown': `Unknown`,
-    'catch.zodiac': `⭐ Zodiac: \\\${bottle.zodiac}
-`,
-    'catch.zodiac2': `⭐ Zodiac: \\\${catcherZodiac}
-`,
     containsUrl: `Message bottle content must not contain any links`,
     empty: `Message bottle content cannot be empty`,
     friendlyContent: `• Friendly and respectful content is more likely to be picked up!`,
     inappropriate: `Message bottle content contains inappropriate content, please modify and resubmit`,
     selected: `Selected: \${selected}`,
     selectedItem: `✅ Selected \${zodiac}`,
-    'throw.age': `• Similar age range ✓`,
-    'throw.aiModerationFailed': `AI content review failed`,
-    'throw.back': `↩️ Return to filter menu`,
-    'throw.bloodType': `🩸 **Blood Type Filter**
-
-`,
-    'throw.bloodType2': `• Blood Type: Filter by specific blood type
-`,
-    'throw.bloodType3': `Select the blood type you want to match with:`,
-    'throw.bloodType4': `🩸 Blood Type Filter`,
-    'throw.bloodType5': `🌈 Any Blood Type`,
-    'throw.bottle': `
-💡 This message bottle is very compatible with you!
-\\\${highlights.join('
-')}
-`,
-    'throw.bottle10': `🍾 Message bottle has been thrown!
-
-`,
-    'throw.bottle11': `🍾 Throw Message Bottle`,
-    'throw.bottle2': `🎯 Your bottle has been sent to **3 recipients**: 
-`,
-    'throw.bottle3': `🍾 **Throwing your message bottle...**
-
-`,
-    'throw.bottle4': `🍾 **Throw Message Bottle** #THROW
-
-`,
-    'throw.bottle5': `Bottle ID: #\\\${bottleId}
-
-`,
-    'throw.bottle6': `📝 **Please enter the content of your message bottle**
-
-`,
-    'throw.bottle7': `1️⃣ Click the button below '🍾 Throw Message Bottle'
-`,
-    'throw.bottle8': `📝 Please enter the content of your message bottle: 
-
-`,
-    'throw.bottle9': `📝 Please enter the content of your message bottle:`,
-    'throw.cancel': `💡 Click to select or cancel MBTI type:`,
-    'throw.cancel2': `💡 Click to select or cancel Zodiac sign:`,
-    'throw.catch': `• Slot 3: Public Pool (waiting to be picked up)
-
-`,
-    'throw.catch2': `• Slot 2: Public Pool (waiting to be picked up)
-`,
-    'throw.catch3': `• Slot 1: Public Pool (Waiting to be picked up)
-`,
-    'throw.catch4': `🌊 Waiting for fate to pick you up...
-`,
-    'throw.complete': `⚙️ **Advanced Filter**
-
-\\\${summary}
-💡 Continue adjusting or complete the filter:`,
-    'throw.complete2': `🎯 **Pairing 1 Completed:**
-`,
-    'throw.complete3': `📝 You have an unfinished draft
-
-`,
-    'throw.complete4': `⏳ Estimated completion in 3-5 seconds`,
-    'throw.complete5': `⏳ Estimated completion in 2-3 seconds`,
-    'throw.complete6': `⏳ Estimated completion in 1-2 seconds`,
-    'throw.conversation': `💬 Conversation Identifier: \\\\$ {vipMatchInfo.conversationIdentifier}
-
- \${vipMatchInfo.conversationIdentifier}`,
-    'throw.conversation2': `💡 Tip: Each conversation is independent and can happen simultaneously
-
-`,
-    'throw.conversation3': `💡 You may receive **up to 3 conversations**!
-`,
-    'throw.conversation4': `💬 You may receive **up to 3 conversations**!
-`,
-    'throw.conversation5': `Use /chats to view all conversations
-
-`,
-    'throw.conversation6': `📊 Use /chats to view all conversations`,
-    'throw.conversation7': `Use /chats to view all conversations`,
-    'throw.currentSelection': `Current selection: {genderText}`,
-    'throw.gender': `• Gender: \\\\$ {selectedGender === 'male' ? '👨 Male' : selectedGender === 'female' ? '👩 Female' : '🌈 Anyone'}
-`,
-    'throw.gender2': `👤 **Gender Filter**
-
-`,
-    'throw.gender3': `• Gender: Filter by gender
-
-`,
-    'throw.gender4': `💡 Select the gender you desire:`,
-    'throw.gender5': `👤 Gender Filter`,
-    'throw.genderLabel': `• Gender: {gender}
-`,
-    'throw.mbti': `• MBTI: \\\${selectedMBTI.length > 0 ? selectedMBTI.join(', ') : 'No Limit'}
- {selectedMBTI.length > 0 ? selectedMBTI.join(', ') : '無限制'} \${selectedMBTI.length > 0 ? selectedMBTI.join(', ') : '無限制'}`,
-    'throw.mbti2': `Selected: \\\${selectedMBTI.length > 0 ? selectedMBTI.join(', ') : 'None'}
-
- {selectedMBTI.length > 0 ? selectedMBTI.join(', ') : '無'} \${selectedMBTI.length > 0 ? selectedMBTI.join(', ') : '無'}`,
-    'throw.mbti3': `Selected: \\\${selectedMBTI.length > 0 ? selectedMBTI.join(`,
-    'throw.mbti4': `🧠 **MBTI Filter**
-
-`,
-    'throw.mbti5': `• MBTI: Filter specific personality types
-`,
-    'throw.mbti6': `• High MBTI Match ✓`,
-    'throw.mbti7': `🧠 MBTI Filter`,
-    'throw.mbtiLabel': `• MBTI: {mbti}
-`,
-    'throw.message': `Selected: \\\${selectedZodiac.length > 0 ? selectedZodiac.map((z) => ZODIAC_NAMES[z]).join(', ') : 'None'}
-
-`,
-    'throw.message2': `Current selection: \\\${currentGender}
-
-`,
-    'throw.message3': `Selected: \\\${selectedZodiac.length > 0 ? selectedZodiac.map((z) => ZODIAC_NAMES[z]).join(`,
-    'throw.message4': `Current selection: \\\${bloodTypeDisplay[currentBloodType]}
-
-`,
-    'throw.message5': `👤 Partner: \\\${vipMatchInfo.matcherNickname}
-`,
-    'throw.message6': `"Hello! I'm someone who loves music and movies, hoping to meet like-minded friends!"
-
-`,
-    'throw.message7': `💡 You can modify matching preferences in /edit_profile
-
-`,
-    'throw.message8': `💬 Click /reply to respond to the message and start chatting
-`,
-    'throw.nickname': `📝 Partner's Nickname: \\\${matchedUserMaskedNickname}
-`,
-    'throw.quota': `• More quotas (30 per day)
-`,
-    'throw.quota2': `🎁 Invite friends to increase quotas: 
-`,
-    'throw.settings': `🧠 MBTI: \\\${matchResult.user.mbti_result}
- {matchResult.user.mbti_result || '未設定'} \${matchResult.user.mbti_result}`,
-    'throw.settings2': `⭐ Zodiac: \\\${matchResult.user.zodiac}
- {matchResult.user.zodiac || '未設定'} \${matchResult.user.zodiac}`,
-    'throw.settings3': `🧠 MBTI: \${user.mbti_result}
- {user.mbti_result || '未設定'} \${user.mbti_result}`,
-    'throw.settings4': `⭐ Zodiac: \${user.zodiac_sign}
- {user.zodiac_sign || '未設定'} \${user.zodiac_sign}`,
-    'throw.settings5': `Not set`,
-    'throw.settings6': `Not set`,
-    'throw.settings7': `Not set`,
-    'throw.settings8': `Not set`,
-    'throw.short': `• Same language ✓`,
-    'throw.short10': `♋ Cancer`,
-    'throw.short11': `♌ Leo`,
-    'throw.short12': `♍ Virgo`,
-    'throw.short13': `♎ Libra`,
-    'throw.short14': `♏ Scorpio`,
-    'throw.short15': `♐ Sagittarius`,
-    'throw.short16': `♑ Capricorn`,
-    'throw.short17': `♒ Aquarius`,
-    'throw.short18': `♓ Pisces`,
-    'throw.short19': `Violation`,
-    'throw.short2': `🩸 AB Type`,
-    'throw.short20': `Unlimited`,
-    'throw.short21': `Unlimited`,
-    'throw.short22': `Unlimited`,
-    'throw.short23': `Unlimited`,
-    'throw.short3': `🌈 Anyone`,
-    'throw.short4': `🩸 Type A`,
-    'throw.short5': `🩸 Type B`,
-    'throw.short6': `🩸 Type O`,
-    'throw.short7': `♈ Aries`,
-    'throw.short8': `♉ Taurus`,
-    'throw.short9': `♊ Gemini`,
-    'throw.start': `✍️ Restart`,
-    'throw.success': `One message bottle = 3 recipients, significantly increasing match success rate
-
-`,
-    'throw.success2': `✨ **VIP privilege activated! Smart matching successful!**
-
-`,
-    'throw.success3': `🎯 Your message bottle has been successfully matched!
-
-`,
-    'throw.text': `💝 Match rate: \${matchPercentage}%
-`,
-    'throw.text10': `🎯 Finding the best matching recipient for you
-
-`,
-    'throw.text11': `
-💬 Waiting for the other party's reply...
-`,
-    'throw.text12': `• Free users: up to +7
-`,
-    'throw.text13': `• Do not include personal contact information
-
-`,
-    'throw.text14': `💡 **Two input methods**: 
-`,
-    'throw.text15': `📊 Free users: 3 per day
-`,
-    'throw.text16': `Select the conditions you want to filter by:
-
-`,
-    'throw.text17': `• Advanced filtering and translation
-
-`,
-    'throw.text18': `Creation time: \\\${age}
-`,
-    'throw.text19': `Use /vip to upgrade immediately`,
-    'throw.text2': `• 🆕 Triple exposure opportunity (1 entry = 3 targets)
-`,
-    'throw.text20': `💬 **Example**:
-`,
-    'throw.text21': `Use /vip to learn more`,
-    'throw.text22': `Do you want to continue editing this draft?`,
-    'throw.text23': `💡 You can combine multiple conditions`,
-    'throw.text24': `Current filter conditions:
-
-`,
-    'throw.text3': `💡 This may take a few seconds, we are finding the most suitable people for you`,
-    'throw.text4': `Current selection: \\\${currentGender ===`,
-    'throw.text5': `🎯 Looking for matches: \\\${targetText}
-`,
-    'throw.text6': `🎯 Finding 3 best match candidates for you
-
-`,
-    'throw.text7': `📨 **2 additional slots waiting:**
-`,
-    'throw.text8': `🔍 Smartly matching with the best candidates...
-
-`,
-    'throw.text9': `Content preview: \\\${preview}
-
-`,
-    'throw.throw': `📊 Today's sent: \\\${quotaDisplay}
-
-`,
-    'throw.unlimited': `Unlimited`,
-    'throw.vip': `💎 VIP users: 30 per day (triple exposure)
-
-`,
-    'throw.vip2': `💎 **Upgrade to VIP for triple exposure opportunities!**
-`,
-    'throw.vip3': `⚙️ **Advanced Filter (VIP Exclusive)**
-
-`,
-    'throw.vip4': `• VIP Users: Up to +70
-
-`,
-    'throw.vip5': `✨ **VIP Privileges Activated!**
-
-`,
-    'throw.vip6': `💡 Upgrade to VIP to receive: 
-`,
-    'throw.vip7': `✨ VIP Privileges Activating
-`,
-    'throw.zodiac': `• Zodiac: \\\\$\\{selectedZodiac.length > 0 ? selectedZodiac.map((z) => ZODIAC_NAMES[z]).join(', ') : 'Unlimited'}
-`,
-    'throw.zodiac2': `⭐ Zodiac: \\\\$\\{matchResult.user.zodiac ||`,
-    'throw.zodiac3': `⭐ Zodiac: \\\\$\\{user.zodiac_sign ||`,
-    'throw.zodiac4': `⭐ **Zodiac Filter**
-
-`,
-    'throw.zodiac5': `• Zodiac: Filter specific zodiac signs
-`,
-    'throw.zodiac6': `• Zodiac Compatibility ✓`,
-    'throw.zodiac7': `⭐ Zodiac Filter`,
-    'throw.zodiacLabel': `• Zodiac: {zodiac}
-`,
     tips: `💡 Tip:`,
     tooLong: `Message bottle content is too long, maximum \${max} characters allowed (currently \${current} characters)`,
     tooShort: `Message bottle content is too short, at least \${min} characters required (currently \${current} characters)`,
+    catch: {
+      anonymousUser: `Anonymous user`,
+      back: `🏠 Return to main menu: /menu`,
+      banned: `❌ Your account has been banned and cannot pick up message bottles.
+
+For any questions, please use /appeal to appeal.`,
+      block: `• To stop chatting, you can use /block to block
+`,
+      bottle: `😔 Currently, there are no suitable message bottles for you.
+
+`,
+      bottle2: `• Or throw a bottle yourself: /throw`,
+      bottle3: `🎣 Someone has picked up your message bottle!
+
+`,
+      bottle4: `🧴 You have picked up a message bottle!
+
+`,
+      bottle5: `💡 Come back tomorrow to catch more bottles!`,
+      bottleTaken: `❌ This message bottle has already been picked up by someone else, please try other message bottles!`,
+      catch: `📊 Today's catches: \\\\$\${newCatchesCount}/\\\${quota}
+
+`,
+      conversation: `An anonymous conversation has been created for you, come and start chatting!
+
+`,
+      conversation2: `• This is an anonymous conversation, please protect your personal privacy
+`,
+      conversation3: `📊 View all conversations`,
+      language: `🗣️ Language: \\\${language}
+
+`,
+      mbti: `🧠 MBTI: \\\${mbti}
+`,
+      message: `💫 Match score: \${score} points (Smart Match)
+
+`,
+      message2: `\${catcherGender} | 📅 \${catcherAge} years old
+
+`,
+      message3: `conv_reply_\${conversationIdentifier}`,
+      message4: `2️⃣ Long press this message, select 'Reply' and enter your content
+
+`,
+      message5: `1️⃣ Click the '💬 Reply to Message' button below
+`,
+      message6: `2️⃣ Long press this message, select 'Reply' and enter your content`,
+      nickname: `📝 Nickname: \${ownerMaskedNickname}
+`,
+      nickname2: `📝 Nickname: \${catcherNickname}
+`,
+      notRegistered: `❌ Please complete the registration process before picking up message bottles.
+
+Use /start to continue registration.`,
+      originalContent: `Original: {content}`,
+      originalLanguage: `Original language: {language}`,
+      quotaExhausted: `❌ Today's message bottle quota has been exhausted (\\\${quotaDisplay})`,
+      replyButton: `💬 Reply message`,
+      replyMethods: `💡 **Two ways to reply**: 
+`,
+      report: `• If you encounter inappropriate content, please report it using /report
+`,
+      safetyTips: `⚠️ Safety reminder: 
+`,
+      settings: `🧠 MBTI：\${mbti}
+`,
+      settings10: `Not set`,
+      settings11: `Not set`,
+      settings2: `Not set`,
+      settings3: `Not set`,
+      settings4: `Not set`,
+      settings5: `Not set`,
+      settings6: `Not set`,
+      settings7: `Not set`,
+      settings8: `Not set`,
+      settings9: `Not set`,
+      short: `💡 Tip:
+`,
+      short2: `• Please try again later
+`,
+      short3: `Anonymous user`,
+      short4: `♂️ Male`,
+      short5: `♀️ Female`,
+      text: `Translation language: \\\${catcherLangDisplay}
+`,
+      text2: `Original language: \\\${bottleLangDisplay}
+`,
+      text3: `🗣️ Language: \\\${ownerLanguage}
+
+`,
+      text4: `• To stop chatting, you can use /block to block
+
+`,
+      text5: `Original text: \\\${bottle.content}
+`,
+      text6: `💬 Translation service is temporarily experiencing issues, backup translation has been used
+`,
+      text7: `Translation: \\\${bottleContent}
+`,
+      text8: `💡 **Two ways to reply**:
+`,
+      translatedContent: `Translation: {content}`,
+      translatedLanguage: `Translated language: {language}`,
+      translationServiceFallback: `💬 Translation service is temporarily experiencing issues, fallback translation used`,
+      translationServiceUnavailable: `⚠️ Translation service is temporarily unavailable, below is the original text`,
+      unknown: `Unknown`,
+      zodiac: `⭐ Zodiac: \\\${bottle.zodiac}
+`,
+      zodiac2: `⭐ Zodiac: \\\${catcherZodiac}
+`,
+    },
+    throw: {
+      age: `• Similar age range ✓`,
+      aiModerationFailed: `AI content review failed`,
+      back: `↩️ Return to filter menu`,
+      bloodType: `🩸 **Blood Type Filter**
+
+`,
+      bloodType2: `• Blood Type: Filter by specific blood type
+`,
+      bloodType3: `Select the blood type you want to match with:`,
+      bloodType4: `🩸 Blood Type Filter`,
+      bloodType5: `🌈 Any Blood Type`,
+      bottle: `
+💡 This message bottle is very compatible with you!
+\\
+`,
+      bottle10: `🍾 Message bottle has been thrown!
+
+`,
+      bottle11: `🍾 Throw Message Bottle`,
+      bottle2: `🎯 Your bottle has been sent to **3 recipients**: 
+`,
+      bottle3: `🍾 **Throwing your message bottle...**
+
+`,
+      bottle4: `🍾 **Throw Message Bottle** #THROW
+
+`,
+      bottle5: `Bottle ID: #\\\${bottleId}
+
+`,
+      bottle6: `📝 **Please enter the content of your message bottle**
+
+`,
+      bottle7: `1️⃣ Click the button below '🍾 Throw Message Bottle'
+`,
+      bottle8: `📝 Please enter the content of your message bottle: 
+
+`,
+      bottle9: `📝 Please enter the content of your message bottle:`,
+      cancel: `💡 Click to select or cancel MBTI type:`,
+      cancel2: `💡 Click to select or cancel Zodiac sign:`,
+      catch: `• Slot 3: Public Pool (waiting to be picked up)
+
+`,
+      catch2: `• Slot 2: Public Pool (waiting to be picked up)
+`,
+      catch3: `• Slot 1: Public Pool (Waiting to be picked up)
+`,
+      catch4: `🌊 Waiting for fate to pick you up...
+`,
+      complete: `⚙️ **Advanced Filter**
+
+\\\${summary}
+💡 Continue adjusting or complete the filter:`,
+      complete2: `🎯 **Pairing 1 Completed:**
+`,
+      complete3: `📝 You have an unfinished draft
+
+`,
+      complete4: `⏳ Estimated completion in 3-5 seconds`,
+      complete5: `⏳ Estimated completion in 2-3 seconds`,
+      complete6: `⏳ Estimated completion in 1-2 seconds`,
+      conversation: `💬 Conversation Identifier: \\\\$ {vipMatchInfo.conversationIdentifier}
+
+ \${vipMatchInfo.conversationIdentifier}`,
+      conversation2: `💡 Tip: Each conversation is independent and can happen simultaneously
+
+`,
+      conversation3: `💡 You may receive **up to 3 conversations**!
+`,
+      conversation4: `💬 You may receive **up to 3 conversations**!
+`,
+      conversation5: `Use /chats to view all conversations
+
+`,
+      conversation6: `📊 Use /chats to view all conversations`,
+      conversation7: `Use /chats to view all conversations`,
+      currentSelection: `Current selection: {genderText}`,
+      gender: `• Gender: \\\\$ {selectedGender === 'male' ? '👨 Male' : selectedGender === 'female' ? '👩 Female' : '🌈 Anyone'}
+`,
+      gender2: `👤 **Gender Filter**
+
+`,
+      gender3: `• Gender: Filter by gender
+
+`,
+      gender4: `💡 Select the gender you desire:`,
+      gender5: `👤 Gender Filter`,
+      genderLabel: `• Gender: {gender}
+`,
+      mbti: `• MBTI: \\\${selectedMBTI.length > 0 ? selectedMBTI.join(', ') : 'No Limit'}
+ {selectedMBTI.length > 0 ? selectedMBTI.join(', ') : '無限制'} \${selectedMBTI.length > 0 ? selectedMBTI.join(', ') : '無限制'}`,
+      mbti2: `Selected: \\\${selectedMBTI.length > 0 ? selectedMBTI.join(', ') : 'None'}
+
+ {selectedMBTI.length > 0 ? selectedMBTI.join(', ') : '無'} \${selectedMBTI.length > 0 ? selectedMBTI.join(', ') : '無'}`,
+      mbti3: `Selected: \\\${selectedMBTI.length > 0 ? selectedMBTI.join(`,
+      mbti4: `🧠 **MBTI Filter**
+
+`,
+      mbti5: `• MBTI: Filter specific personality types
+`,
+      mbti6: `• High MBTI Match ✓`,
+      mbti7: `🧠 MBTI Filter`,
+      mbtiLabel: `• MBTI: {mbti}
+`,
+      message: `Selected: \\\${selectedZodiac.length > 0 ? selectedZodiac.map((z) => ZODIAC_NAMES[z]).join(', ') : 'None'}
+
+`,
+      message2: `Current selection: \\\${currentGender === 'male' ? '👨 Male' : currentGender === 'female' ? '👩 Female' : '🌈 Anyone'}
+
+`,
+      message3: `Selected: \\\${selectedZodiac.length > 0 ? selectedZodiac.map((z) => ZODIAC_NAMES[z]).join(`,
+      message4: `Current selection: \\\${bloodTypeDisplay[currentBloodType]}
+
+`,
+      message5: `👤 Partner: \\\${vipMatchInfo.matcherNickname}
+`,
+      message6: `"Hello! I'm someone who loves music and movies, hoping to meet like-minded friends!"
+
+`,
+      message7: `💡 You can modify matching preferences in /edit_profile
+
+`,
+      message8: `💬 Click /reply to respond to the message and start chatting
+`,
+      nickname: `📝 Partner's Nickname: \\\${matchedUserMaskedNickname}
+`,
+      quota: `• More quotas (30 per day)
+`,
+      quota2: `🎁 Invite friends to increase quotas: 
+`,
+      settings: `🧠 MBTI: \\\${mbti}
+ \${mbti}`,
+      settings2: `⭐ Zodiac: \\\${zodiac}
+ \${zodiac}`,
+      settings3: `🧠 MBTI: \${mbti}
+ \${mbti}`,
+      settings4: `⭐ Zodiac: \${zodiac}
+ \${zodiac}`,
+      settings5: `Not set`,
+      settings6: `Not set`,
+      settings7: `Not set`,
+      settings8: `Not set`,
+      short: `• Same language ✓`,
+      short10: `♋ Cancer`,
+      short11: `♌ Leo`,
+      short12: `♍ Virgo`,
+      short13: `♎ Libra`,
+      short14: `♏ Scorpio`,
+      short15: `♐ Sagittarius`,
+      short16: `♑ Capricorn`,
+      short17: `♒ Aquarius`,
+      short18: `♓ Pisces`,
+      short19: `Violation`,
+      short2: `🩸 AB Type`,
+      short20: `Unlimited`,
+      short21: `Unlimited`,
+      short22: `Unlimited`,
+      short23: `Unlimited`,
+      short3: `🌈 Anyone`,
+      short4: `🩸 Type A`,
+      short5: `🩸 Type B`,
+      short6: `🩸 Type O`,
+      short7: `♈ Aries`,
+      short8: `♉ Taurus`,
+      short9: `♊ Gemini`,
+      start: `✍️ Restart`,
+      success: `One message bottle = 3 recipients, significantly increasing match success rate
+
+`,
+      success2: `✨ **VIP privilege activated! Smart matching successful!**
+
+`,
+      success3: `🎯 Your message bottle has been successfully matched!
+
+`,
+      text: `💝 Match rate: \${matchPercentage}%
+`,
+      text10: `🎯 Finding the best matching recipient for you
+
+`,
+      text11: `
+💬 Waiting for the other party's reply...
+`,
+      text12: `• Free users: up to +7
+`,
+      text13: `• Do not include personal contact information
+
+`,
+      text14: `💡 **Two input methods**: 
+`,
+      text15: `📊 Free users: 3 per day
+`,
+      text16: `Select the conditions you want to filter by:
+
+`,
+      text17: `• Advanced filtering and translation
+
+`,
+      text18: `Creation time: \\\${age}
+`,
+      text19: `Use /vip to upgrade immediately`,
+      text2: `• 🆕 Triple exposure opportunity (1 entry = 3 targets)
+`,
+      text20: `💬 **Example**:
+`,
+      text21: `Use /vip to learn more`,
+      text22: `Do you want to continue editing this draft?`,
+      text23: `💡 You can combine multiple conditions`,
+      text24: `Current filter conditions:
+
+`,
+      text3: `💡 This may take a few seconds, we are finding the most suitable people for you`,
+      text4: `Current selection: \\\${currentGender ===`,
+      text5: `🎯 Looking for matches: \\\${targetText}
+`,
+      text6: `🎯 Finding 3 best match candidates for you
+
+`,
+      text7: `📨 **2 additional slots waiting:**
+`,
+      text8: `🔍 Smartly matching with the best candidates...
+
+`,
+      text9: `Content preview: \\\${preview}
+
+`,
+      throw: `📊 Today's sent: \\\${quotaDisplay}
+
+`,
+      unlimited: `Unlimited`,
+      urlNotAllowed: `❌ 訊息包含不被允許的網址`,
+      vip: `💎 VIP users: 30 per day (triple exposure)
+
+`,
+      vip2: `💎 **Upgrade to VIP for triple exposure opportunities!**
+`,
+      vip3: `⚙️ **Advanced Filter (VIP Exclusive)**
+
+`,
+      vip4: `• VIP Users: Up to +70
+
+`,
+      vip5: `✨ **VIP Privileges Activated!**
+
+`,
+      vip6: `💡 Upgrade to VIP to receive: 
+`,
+      vip7: `✨ VIP Privileges Activating
+`,
+      zodiac: `• Zodiac: \\\\$\\{selectedZodiac.length > 0 ? selectedZodiac.map((z) => ZODIAC_NAMES[z]).join(', ') : 'Unlimited'}
+`,
+      zodiac2: `⭐ Zodiac: \\\\$\\{matchResult.user.zodiac ||`,
+      zodiac3: `⭐ Zodiac: \\\\$\\{user.zodiac_sign ||`,
+      zodiac4: `⭐ **Zodiac Filter**
+
+`,
+      zodiac5: `• Zodiac: Filter specific zodiac signs
+`,
+      zodiac6: `• Zodiac Compatibility ✓`,
+      zodiac7: `⭐ Zodiac Filter`,
+      zodiacLabel: `• Zodiac: {zodiac}
+`,
+    },
   },
   broadcast: {
     admin: `Admin Manual Cancellation`,
@@ -1269,9 +1297,6 @@ Please use /broadcast_status later to check the progress.`,
 `,
     empty: `Message bottle cannot be empty`,
     error: `Error: {error}`,
-    'estimate.immediate': `Send Immediately (Approx. 1-2 seconds)`,
-    'estimate.minutes': `About \${minutes} minutes`,
-    'estimate.seconds': `About \${seconds} seconds`,
     estimatedTime: `Estimated Time: {time}
 
 `,
@@ -1280,37 +1305,6 @@ Please use /broadcast_status later to check the progress.`,
     exampleMessage: `The system will undergo maintenance tonight at 22:00`,
     failed: `Failed: {count}
 `,
-    'filter.age': `Age: {min}-{max} years`,
-    'filter.atLeastOneRequired': `At least one filter is required`,
-    'filter.birthdayToday': `Birthday Today`,
-    'filter.country': `Country: {country}`,
-    'filter.genderFemale': `Female`,
-    'filter.genderMale': `Male`,
-    'filter.genderOther': `Other`,
-    'filter.invalidAgeFormat': `Invalid age range: {value} (format must be min-max, e.g., 18-25)`,
-    'filter.invalidAgeMinMax': `Invalid age range: {value} (minimum age cannot be greater than maximum age)`,
-    'filter.invalidAgeRange': `Invalid age range: {value} (age must be between 18-99)`,
-    'filter.invalidCountry': `Invalid country code: {value} (must be 2 uppercase letters, e.g., TW, US, JP)`,
-    'filter.invalidFormat': `Invalid filter format: {pair}`,
-    'filter.invalidGender': `Invalid gender value: {value} (must be male, female, or other)`,
-    'filter.invalidMbti': `Invalid MBTI type: {value} (must be one of: {mbtis})`,
-    'filter.invalidZodiac': `Invalid zodiac: {value} (must be one of: {zodiacs})`,
-    'filter.mbti': `MBTI: {mbti}`,
-    'filter.nonVipUsers': `Non-VIP User`,
-    'filter.unknownFilter': `Unknown filter: {key}`,
-    'filter.vipUsers': `VIP User`,
-    'filter.zodiacAquarius': `Aquarius`,
-    'filter.zodiacAries': `Aries`,
-    'filter.zodiacCancer': `Cancer`,
-    'filter.zodiacCapricorn': `Capricorn`,
-    'filter.zodiacGemini': `Gemini`,
-    'filter.zodiacLeo': `Leo`,
-    'filter.zodiacLibra': `Libra`,
-    'filter.zodiacPisces': `Pisces`,
-    'filter.zodiacSagittarius': `Sagittarius`,
-    'filter.zodiacScorpio': `Scorpio`,
-    'filter.zodiacTaurus': `Taurus`,
-    'filter.zodiacVirgo': `Virgo`,
     filterAge: `• age=18-25
 `,
     filterCommand: `/broadcast_filter 
@@ -1426,13 +1420,8 @@ There are {count} broadcasts in the queue waiting to be processed
     short2: `Waiting`,
     startedAt: `Start time: {time}
 `,
-    status: `Status: {status}
+    statusLabel: `Status: {status}
 `,
-    'status.cancelled': `Cancelled`,
-    'status.completed': `Completed`,
-    'status.failed': `Failed`,
-    'status.pending': `Waiting`,
-    'status.sending': `Sending`,
     statusPending: `Pending`,
     statusStuck: `Stuck (Retrying)`,
     statusTitle: `📊 Broadcast Status`,
@@ -1457,13 +1446,9 @@ There are {count} broadcasts in the queue waiting to be processed
 `,
     stuckBroadcastWillMarkFailed: `These broadcasts will be marked as 'failed' status
 `,
-    target: `Target: {target}
-`,
-    'target.all': `All Users`,
-    'target.nonVip': `Non-VIP Users`,
-    'target.unknown': `Unknown`,
-    'target.vip': `VIP User`,
     targetAll: `All users`,
+    targetLabel: `Target: {target}
+`,
     targetNonVip: `Non-VIP users`,
     targetType: `Target: {type}
 `,
@@ -1480,10 +1465,62 @@ There are {count} broadcasts in the queue waiting to be processed
     viewAllRecords: `Use /broadcast_status to view all broadcast records.`,
     viewDetailsHint: `💡 Use /broadcast_status to view details`,
     viewUpdatedStatus: `Use /broadcast_status to check the updated status.`,
+    estimate: {
+      immediate: `Send Immediately (Approx. 1-2 seconds)`,
+      minutes: `About \${minutes} minutes`,
+      seconds: `About \${seconds} seconds`,
+    },
+    filter: {
+      age: `Age: {min}-{max} years`,
+      atLeastOneRequired: `At least one filter is required`,
+      birthdayToday: `Birthday Today`,
+      country: `Country: {country}`,
+      genderFemale: `Female`,
+      genderMale: `Male`,
+      genderOther: `Other`,
+      invalidAgeFormat: `Invalid age range: {value} (format must be min-max, e.g., 18-25)`,
+      invalidAgeMinMax: `Invalid age range: {value} (minimum age cannot be greater than maximum age)`,
+      invalidAgeRange: `Invalid age range: {value} (age must be between 18-99)`,
+      invalidCountry: `Invalid country code: {value} (must be 2 uppercase letters, e.g., TW, US, JP)`,
+      invalidFormat: `Invalid filter format: {pair}`,
+      invalidGender: `Invalid gender value: {value} (must be male, female, or other)`,
+      invalidMbti: `Invalid MBTI type: {value} (must be one of: {mbtis})`,
+      invalidZodiac: `Invalid zodiac: {value} (must be one of: {zodiacs})`,
+      mbti: `MBTI: {mbti}`,
+      nonVipUsers: `Non-VIP User`,
+      unknownFilter: `Unknown filter: {key}`,
+      vipUsers: `VIP User`,
+      zodiacAquarius: `Aquarius`,
+      zodiacAries: `Aries`,
+      zodiacCancer: `Cancer`,
+      zodiacCapricorn: `Capricorn`,
+      zodiacGemini: `Gemini`,
+      zodiacLeo: `Leo`,
+      zodiacLibra: `Libra`,
+      zodiacPisces: `Pisces`,
+      zodiacSagittarius: `Sagittarius`,
+      zodiacScorpio: `Scorpio`,
+      zodiacTaurus: `Taurus`,
+      zodiacVirgo: `Virgo`,
+    },
+    status: {
+      cancelled: `Cancelled`,
+      completed: `Completed`,
+      failed: `Failed`,
+      pending: `Waiting`,
+      sending: `Sending`,
+    },
+    target: {
+      all: `All Users`,
+      nonVip: `Non-VIP Users`,
+      unknown: `Unknown`,
+      vip: `VIP User`,
+    },
   },
   buttons: {
     ad: `➡️ Next Ad`,
     back: `⬅️ Back`,
+    backToVip: `💎 Back to VIP Menu`,
     bottle: `📺 Watch Ads to Get More Message Bottles 🎁 (\${remaining}/20)`,
     bottle2: `💎 Upgrade to VIP for More Message Bottles`,
     bottle3: `🌊 Throw Out Message Bottle`,
@@ -1526,6 +1563,7 @@ There are {count} broadcasts in the queue waiting to be processed
     targetFemale: `👩 Female`,
     targetMale: `👨 Male`,
     text: `👤 View Profile`,
+    viewPayments: `💰 Subscription History`,
     vip: `💎 Upgrade to VIP`,
   },
   catch: {
@@ -1563,7 +1601,7 @@ If you have any questions, please use /appeal to appeal.`,
 `,
     mbti: `🧠 MBTI: \${mbti}
 `,
-    message: `💫 Match Score: \${Math.round(matchScore)} points (Smart Matching)
+    message: `💫 Match Score: \${score} points (Smart Matching)
 
 `,
     message2: `\${catcherGender} | 📅 \${catcherAge} years old
@@ -1593,8 +1631,8 @@ Use /start to continue registration.`,
 `,
     safetyTips: `⚠️ Safety Reminder:
 `,
-    settings: `🧠 MBTI: \${bottle.mbti_result}
- {bottle.mbti_result || '未設定'} \${bottle.mbti_result}`,
+    settings: `🧠 MBTI：\${mbti}
+`,
     settings10: `Not set`,
     settings11: `Not Set`,
     settings2: `Not Set`,
@@ -1679,8 +1717,6 @@ Use /start to continue registration.`,
     back: `💡 Type /menu at any time to return to the main menu`,
     back2: `↩️ Return to edit profile`,
     back3: `🏠 Return to main menu`,
-    prev: `⬅️ Previous`,
-    next: `Next ➡️`,
     back4: `↩️ Back`,
     backToMainMenu: `Return to main menu`,
     birthday: `🎂 Birthday: \${updatedUser.birthday}
@@ -1899,11 +1935,11 @@ Please use /catch to restart.`,
     end2: `End: \${endTime.toLocaleString(`,
     female: `Female`,
     free: `Free`,
-    gender: `👤 Gender: \${updatedUser.gender}
-`,
+    gender: `👤 Gender: \${gender}
+ {updatedUser.gender === 'male' ? '男' : '女'} \${gender}`,
     gender2: `Invalid gender value: \${trimmedValue} (must be male, female, or other)`,
-    gender3: `👤 Gender: \${user.gender}
-`,
+    gender3: `👤 Gender: \${gender}
+ {user.gender === 'male' ? '男' : '女'} \${gender}`,
     gender4: `👤 Gender: \${updatedUser.gender ===`,
     gender5: `👤 Gender: \${user.gender ===`,
     gender6: `Please select your gender now:
@@ -1933,7 +1969,7 @@ Please use /catch to restart.`,
     mbti2: `Your MBTI type is: **\${result.type}**
 
 `,
-    mbti3: `Current MBTI: **\${user.mbti_result}**
+    mbti3: `Current MBTI: **\${mbti}**
 `,
     mbti4: `🧠 **Select MBTI Test Version**
 
@@ -1946,15 +1982,15 @@ Please use /catch to restart.`,
     mbti8: `Please select your MBTI type:`,
     mbti9: `🧠 Retake MBTI Test`,
     message: `\${typeEmoji} **\${ad.title}**
-\${statusEmoji} Status: \${ad.is_enabled ? 'Enabled' : 'Disabled'}
+\${statusEmoji} Status: \${status}
 
 📊 **Statistics**
 • Impressions: \${stats.total_views}
 • Clicks: \${stats.total_clicks}
-• Click-Through Rate (CTR): \${stats.ctr}% {ad.is_enabled ? '啟用' : '停用'} \${ad.is_enabled ? '啟用' : '停用'}`,
+• Click-Through Rate (CTR): \${stats.ctr}% {ad.is_enabled ? '啟用' : '停用'} \${status}`,
     message10: `/broadcast_filter gender=female,age=18-25,country=TW Hello everyone!
 `,
-    message11: `\${banHours} \${user.language_pref}`,
+    message11: `\${banHours} \${user.language_pref === 'en' ? 'hours' : '小時'}`,
     message12: `Time: \${new Date(b.created_at).toLocaleString('zh-TW')}
 
 `,
@@ -1963,7 +1999,7 @@ There are \${pendingBroadcasts.results.length - 1} broadcasts pending in the que
 `,
     message14: `Progress: \${broadcast.sent_count}/\${broadcast.total_users}
 `,
-    message15: `\${days} \${user.language_pref}`,
+    message15: `\${days} \${user.language_pref === 'en' ? 'days' : '天'}`,
     message16: `Target: \${getBroadcastTargetName(broadcast.targetType)}
 `,
     message17: `Status: \${maintenance.isActive ? '✅ Under Maintenance' : '❌ Not Enabled'}
@@ -2091,6 +2127,7 @@ Please use /broadcast_status later to check progress.`,
     message9: `
 • Remaining views: \${ad.max_views - ad.current_views}/\${ad.max_views}`,
     newUser: `New user`,
+    next: `下一頁`,
     nickname: `💡 Please enter a simple nickname, do not include links like http:// or https://.
 
 `,
@@ -2124,6 +2161,8 @@ Please use /broadcast_status later to check progress.`,
     notRegistered: `Not registered`,
     notSet: `Not set`,
     operationFailed: `❌ An error occurred`,
+    pageInfo: `第 {current} / {total} 頁`,
+    prev: `上一頁`,
     profile: `👤 View profile - /profile
 `,
     profile2: `✏️ **Edit Profile**
@@ -2176,7 +2215,7 @@ Please use /start to restart registration.`,
     report3: `💡 This helps accurately specify whom to report.`,
     report4: `Please choose a reason for the report:`,
     selected: `Selected`,
-    settings: `🧠 MBTI: \${updatedUser.mbti_result} (can retest)`,
+    settings: `🧠 MBTI: \${updatedUser.mbti_result} (can retest) {updatedUser.mbti_result || '未設定'} \${updatedUser.mbti_result}`,
     settings10: `You have not set your MBTI type.
 
 `,
@@ -2190,7 +2229,7 @@ Please use /start to restart registration.`,
     settings18: `Not Set`,
     settings19: `Not Set`,
     settings2: `🏷️ Interest Tags: \${updatedUser.interests}
-`,
+ {updatedUser.interests || '未設定'} \${updatedUser.interests}`,
     settings20: `Not Set`,
     settings21: `Not Set`,
     settings22: `Not Set`,
@@ -2201,7 +2240,7 @@ Please use /start to restart registration.`,
     settings27: `Not Set`,
     settings28: `Not Set`,
     settings29: `Not Set`,
-    settings3: `🧠 MBTI: \${user.mbti_result} (Retake Test)`,
+    settings3: `🧠 MBTI: \${mbti} (Retake Test) \${mbti}`,
     settings30: `Not Set`,
     settings31: `Not Set`,
     settings32: `Not Set`,
@@ -2209,15 +2248,15 @@ Please use /start to restart registration.`,
     settings34: `Not Set`,
     settings35: `Not Set`,
     settings4: `🏷️ Interest Tags: \${user.interests}
-`,
+ {user.interests || '未設定'} \${user.interests}`,
     settings5: `📖 Personal Bio: \${updatedUser.bio}
-`,
+ {updatedUser.bio || '未設定'} \${updatedUser.bio}`,
     settings6: `🌍 Location: \${updatedUser.city}
-`,
+ {updatedUser.city || '未設定'} \${updatedUser.city}`,
     settings7: `📖 Personal Bio: \${user.bio}
-`,
+ {user.bio || '未設定'} \${user.bio}`,
     settings8: `🌍 Location: \${user.city}
-`,
+ {user.city || '未設定'} \${user.city}`,
     settings9: `You can retake the test at any time using the /mbti command.`,
     short: `💡 You can: 
 `,
@@ -2450,7 +2489,7 @@ Please use /start to restart registration.`,
 `,
     text108: `📚 I want to learn more about safety knowledge`,
     text109: `Send immediately (about 1-2 seconds)`,
-    text11: `\${Math.floor(hours / 24)} days ago`,
+    text11: `\${daysAgo} days ago`,
     text110: `2️⃣ Select 'Reply'
 `,
     text111: `**Filter format:**
@@ -2538,7 +2577,7 @@ Thank you for your patience!`,
 `,
     text28: `Status: \${progress.status}
 `,
-    text29: `\${Math.floor(hours)} hours ago`,
+    text29: `\${daysAgo} hours ago`,
     text3: `**Filter conditions:**
 \${filtersDesc}
 
@@ -2709,7 +2748,7 @@ Please use /throw to restart.`,
     unknownOption: `⚠️ Unknown option`,
     unlimited: `No restrictions`,
     userNotFound: `❌ User does not exist`,
-    vip: `Your VIP subscription expired on \${new Date(user.vip_expire_at).toLocaleDateString('zh-TW')} .
+    vip: `Your VIP subscription expired on \${expireDate} .
 
 `,
     vip10: `😢 **VIP subscription has expired**
@@ -2825,14 +2864,14 @@ The other party has ended this conversation.
 💡 Want to start a new conversation?
 • Use /catch to pick up a new message bottle`,
     endedTitle: `💬 **Conversation Ended**`,
-    gender: `👤 Gender: \${otherUser.gender}
+    gender: `👤 Gender: \${gender}
 `,
     mediaRestriction: `⚠️ **Sending images, videos, or multimedia is not allowed**
 
 💡 To protect privacy and security, only plain text messages are permitted in conversations.
 
 Please communicate with text messages.`,
-    message: `💫 Match Score: \${Math.round(partnerInfo.matchScore)} points
+    message: `💫 Match Score: \${score} points
 `,
     message10: `conv_profile_\${conversationId}`,
     message11: `• Last Message: \${lastMessageTime}
@@ -3250,9 +3289,6 @@ Please try again later.`,
     yes: `Yes`,
   },
   draft: {
-    'age.daysAgo': `\\\${days} days ago`,
-    'age.hoursAgo': `\\\${hours} hours ago`,
-    'age.justNow': `Just now`,
     contentHint: `💡 You can:
 • Directly enter new content to replace the draft
 • Use /throw to start over
@@ -3285,6 +3321,11 @@ Please try again later.`,
     throwBottle: `🍾 Throw message bottle
 
 What kind of chat partner are you looking for?`,
+    age: {
+      daysAgo: `\\\${days} days ago`,
+      hoursAgo: `\\\${hours} hours ago`,
+      justNow: `Just now`,
+    },
   },
   edit_profile: {
     nickname: `👤 Nickname: \\\\\\\\\\\\\\\${ownerMaskedNickname}`,
@@ -3541,256 +3582,14 @@ Please re-enter or cancel editing:`,
     vip2: `❌ You are not a VIP user and cannot apply for a refund.`,
   },
   errors: {
+    banned: `❌ 你的帳號已被封禁
+
+原因：{reason}`,
     channelConfigError: `❌ Channel configuration error`,
     claimRewardFailed: `❌ Failed to claim reward`,
     completeOnboarding: `⚠️ Please complete the registration process first.`,
     conversationInfoError: `❌ Conversation information error.`,
     conversationNotFound: `❌ Cannot find this conversation`,
-    'error.ad': `❌ This advertisement does not require verification`,
-    'error.ad2': `❌ No available advertisements at the moment`,
-    'error.ad3': `❌ Cannot claim this advertisement`,
-    'error.ad4': `❌ Advertisement does not exist`,
-    'error.ad5': `❌ Ad ID must be a number`,
-    'error.ad6': `❌ You do not have permission to view ad data`,
-    'error.admin': `❌ A system error occurred, please try again later.
-
-If the problem persists, please contact the administrator.`,
-    'error.admin2': `❌ **Insufficient permissions**
-
-This command is restricted to super administrators.`,
-    'error.admin3': `❌ This user is already a super administrator, no need to add.`,
-    'error.admin4': `❌ Only super administrators can use this command.`,
-    'error.admin5': `❌ This user is already an administrator.`,
-    'error.admin6': `❌ Cannot remove super administrator.`,
-    'error.admin7': `❌ This user is not an administrator.`,
-    'error.appeal': `❌ Please provide the appeal ID
-
-Usage: /admin_approve <appeal_id> [notes]`,
-    'error.appeal2': `<appeal_id>`,
-    'error.appeal3': `{appealId} \${appealId}`,
-    'error.appeal4': `{appealId} \${appealId}`,
-    'error.ban': `{targetUserId} \${targetUserId}`,
-    'error.birthday': `{validation.error} \${validation.error}`,
-    'error.birthday2': `❌ Incorrect birthday format
-
-Please re-enter (format: YYYY-MM-DD):`,
-    'error.birthday3': `❌ Incorrect birthday format`,
-    'error.bottle': `❌ This conversation has ended.
-
-Use /catch to pick a new Drift Bottle and start a new conversation.`,
-    'error.bottle2': `❌ Your account has been banned and you cannot pick up Drift Bottles.
-
-If you have questions, please use /appeal to appeal.`,
-    'error.bottle3': `❌ This bottle has already been picked up by someone else. Please try other bottles!`,
-    'error.broadcast': `❌ The current broadcasting system only supports broadcasting to \\\${MAX_SAFE_USERS} users or fewer.
-
-`,
-    'error.broadcast2': `❌ Broadcast ID must be a number`,
-    'error.broadcast3': `❌ Broadcast record not found`,
-    'error.cancel': `❌ Nickname too long, please enter a nickname no more than 36 characters.
-
-Please re-enter or cancel the edit:`,
-    'error.cancel2': `❌ Personal profile too long, please enter no more than 200 characters.
-
-Please re-enter or cancel the edit:`,
-    'error.cancel3': `❌ Region name too long, please enter no more than 50 characters.
-
-Please re-enter or cancel the edit:`,
-    'error.cancel4': `❌ Nickname too short, at least 4 characters required.
-
-Please re-enter or cancel the edit:`,
-    'error.cancel5': `❌ Each tag is limited to 20 characters.
-
-Please re-enter or cancel the edit:`,
-    'error.cancel6': `❌ Cancel edit`,
-    'error.cancel7': `❌ Canceled \\\${ZODIAC_NAMES[zodiacSign]}`,
-    'error.cancel8': `❌ Canceled \\\${mbtiType}`,
-    'error.cancel9': `❌ Cancel`,
-    'error.conversation': `❌ Conversation with identifier \\\${formatIdentifier(identifier)} not found
-
-`,
-    'error.conversation2': `❌ Conversation information error.`,
-    'error.conversation3': `❌ Conversation information error`,
-    'error.conversation4': `❌ Conversation does not exist`,
-    'error.conversationInfoError': `❌ Conversation information is incorrect`,
-    'error.conversationNotFound': `❌ Conversation does not exist`,
-    'error.failed': `❌ **Ad failed to load**
-
-Sorry, the ad could not play properly.
-
-💡 **Possible reasons:**
-• Unstable network connection
-• Ad provider temporarily unavailable
-• Browser not supported
-
-🔄 **Suggestions:**
-• Check network connection
-• Try again later
-• Or use other methods to gain credits (invite friends)`,
-    'error.failed10': `❌ Failed to query maintenance mode status.`,
-    'error.failed11': `❌ Failed to refresh avatar
-
-`,
-    'error.failed12': `❌ Verification failed, please try again later.`,
-    'error.failed13': `❌ Failed to enable maintenance mode.`,
-    'error.failed14': `❌ Failed to disable maintenance mode.`,
-    'error.failed15': `❌ Failed to get advertisement status.`,
-    'error.failed16': `❌ Failed to get statistics data.`,
-    'error.failed17': `❌ Failed to create broadcast.`,
-    'error.failed18': `❌ Failed to retrieve information.`,
-    'error.failed19': `❌ Failed to claim reward.`,
-    'error.failed2': `❌ Failed to create filtered broadcast
-
-\\\${error instanceof Error ? error.message : String(error)}`,
-    'error.failed20': `❌ Confirmation failed.`,
-    'error.failed21': `❌ Setting failed.`,
-    'error.failed22': `❌ Skipping failed.`,
-    'error.failed23': `❌ Operation failed.`,
-    'error.failed24': `❌ Failed to send daily report: \\\${error instanceof Error ? error.message : String(error)}`,
-    'error.failed25': `❌ Failed to retrieve VIP funnel data.`,
-    'error.failed26': `❌ **Diagnosis failed**
-
-`,
-    'error.failed27': `❌ **Refresh failed**
-
-`,
-    'error.failed28': `❌ **Payment failed**
-
-`,
-    'error.failed29': `❌ Failed to get advertisement provider list.`,
-    'error.failed3': `❌ Failed to process broadcast queue: \\\${error instanceof Error ? error.message : String(error)}`,
-    'error.failed30': `❌ Failed to get official advertisement list.`,
-    'error.failed31': `❌ Failed to enable ad provider`,
-    'error.failed32': `❌ Failed to disable ad provider`,
-    'error.failed33': `❌ Failed to enable official ads`,
-    'error.failed34': `❌ Failed to disable official ads`,
-    'error.failed35': `❌ Failed to retrieve analytics data`,
-    'error.failed36': `❌ Failed to retrieve ad data`,
-    'error.failed37': `❌ Failed to set priority`,
-    'error.failed38': `❌ Refund failed: \${error instanceof Error ? error.message : String(error)}`,
-    'error.failed39': `❌ Operation failed: \${error instanceof Error ? error.message : String(error)}`,
-    'error.failed4': `❌ Failed to query broadcast status: \${error instanceof Error ? error.message : String(error)}`,
-    'error.failed40': `❌ Submission failed, please try again later.`,
-    'error.failed41': `❌ Failed to create conversation, please try again later.`,
-    'error.failed5': `❌ Failed to cancel broadcast: \${error instanceof Error ? error.message : String(error)}`,
-    'error.failed6': `❌ Failed to clear broadcast: \${error instanceof Error ? error.message : String(error)}`,
-    'error.failed7': `❌ Reset failed: \${errorMessage}
-
-Please try again later.`,
-    'error.failed8': `❌ Failed to create broadcast, please try again later.`,
-    'error.failed9': `❌ Failed to refresh conversation history
-
-`,
-    'error.mbti': `❌ Invalid MBTI type`,
-    'error.message': `❌ Filter format error
-
-\\\${error instanceof Error ? error.message : String(error)}
-
-`,
-    'error.message2': `❌ This command is not available in production.
-
-This command is not available in production.`,
-    'error.message3': `❌ An error occurred, please try again later.
-
-Error message: \\\${error instanceof Error ? error.message : String(error)}`,
-    'error.message4': `❌ We're sorry, you must be at least 18 years old to use this service.
-
-Please come back when you're an adult!`,
-    'error.nickname': `❌ Unable to retrieve Telegram username`,
-    'error.nickname2': `❌ The username cannot contain a website link
-
-`,
-    'error.nickname3': `❌ \\\${validation.error}
-
-Please re-enter your username:`,
-    'error.quota': `❌ Today's message bottle quota has been used up (\\\${quotaDisplay})
-
-💡 Ways to get more quota: 
-`,
-    'error.quota2': `❌ Today's conversation message quota has been used up (\\\${usedToday}/\\\${dailyLimit})
-
-`,
-    'error.quota3': `❌ Today's message bottle quota has been used up (\\\${quotaDisplay})
-
-`,
-    'error.register': `❌ Please complete the registration process first.
-
-Use /start to continue the registration.`,
-    'error.register2': `❌ User data not found, please use /start to register first.`,
-    'error.register3': `❌ You must complete the registration process to pick up a message bottle.
-
-Use /start to continue the registration.`,
-    'error.settings': `❌ You can set a maximum of 5 interest tags.
-
-Please re-enter or cancel editing:`,
-    'error.short': `❌ Invalid language code`,
-    'error.short10': `❌ Insufficient permissions`,
-    'error.short11': `❌ Let's talk later`,
-    'error.short12': `❌ Re-select`,
-    'error.short13': `❌ Re-enter`,
-    'error.short14': `❌ Close`,
-    'error.short15': `❌ Not enabled`,
-    'error.short2': `❌ User data not found`,
-    'error.short3': `❌ Unknown instructional step`,
-    'error.short4': `❌ A system error has occurred`,
-    'error.short5': `❌ Channel configuration error`,
-    'error.short6': `❌ Unknown operation`,
-    'error.short7': `❌ Incorrect`,
-    'error.short8': `❌ No`,
-    'error.short9': `❌ An error has occurred`,
-    'error.start': `❌ An error has occurred, please restart: /start`,
-    'error.stats': `❌ You do not have permission to view ad statistics`,
-    'error.task': `❌ A system error occurred while viewing the task center, please try again later.`,
-    'error.text': `❌ A system error occurred while calculating results, please try again later.
-
-`,
-    'error.text10': `❌ Incorrect sender information.`,
-    'error.text11': `❌ You do not have permission to view analysis data`,
-    'error.text12': `❌ An error has occurred, please try again later.`,
-    'error.text13': `❌ You do not have permission to use this command.`,
-    'error.text14': `❌ Incorrect usage method
-
-`,
-    'error.text15': `❌ Priority must be a non-negative integer`,
-    'error.text16': `❌ Duration must be a positive integer or`,
-    'error.text17': `❌ A system error occurred while processing the payment, please contact customer support.
-
-`,
-    'error.text18': `❌ The refund reason must be at least 10 characters, please re-enter:`,
-    'error.text19': `❌ **Refund request has been denied**
-
-`,
-    'error.text2': `❌ Profile contains disallowed links.
-
-`,
-    'error.text20': `❌ Refund request exceeds the time limit
-
-`,
-    'error.text21': `❌ Refund request does not exist or has been processed`,
-    'error.text22': `❌ Payment record not found.`,
-    'error.text23': `❌ We are sorry, you must be over 18 years old to use this service.
-
-`,
-    'error.text24': `❌ An error occurred, please re-enter.`,
-    'error.text25': `❌ Please answer the question seriously
-
-`,
-    'error.text3': `❌ No detection of your channel membership, please join first before retrying`,
-    'error.text4': `❌ Detected that you have left the channel, unable to claim rewards.`,
-    'error.text5': `❌ An error occurred while starting the tutorial, please try again later.`,
-    'error.text6': `❌ A system error occurred, please try again later.`,
-    'error.text7': `❌ Duration must be a number (in minutes).`,
-    'error.text8': `❌ An error occurred, please try again later.`,
-    'error.text9': `❌ Unable to retrieve maintenance mode status.`,
-    'error.userNotFound': `❌ User does not exist, please register first using /start.`,
-    'error.userNotFound2': `❌ User does not exist, please register first.`,
-    'error.userNotFound3': `❌ The other user does not exist.`,
-    'error.userNotFound4': `❌ User does not exist.`,
-    'error.userNotFound5': `❌ User does not exist: \\\\$\${userId}`,
-    'error.userNotFound6': `❌ User does not exist or is not registered.`,
-    'error.userNotFound7': `❌ User does not exist.`,
-    'error.vip': `❌ You do not have permission to view VIP data.`,
-    'error.vip2': `❌ You are not a VIP user and cannot apply for a refund.`,
     errorDetails: `Error message: {error}`,
     failed: `Failed: \${broadcast.failedCount}
 `,
@@ -3821,13 +3620,266 @@ Error: \${broadcast.errorMessage}`,
     unknownAction: `❌ Unknown operation`,
     unknownError: `🎨 UX: Friendly error message`,
     userNotFound: `User does not exist`,
+    userNotFound4: `❌ User not found`,
     userNotFoundRegister: `⚠️ User does not exist, please register using /start first.`,
     verificationFailed: `❌ Verification failed, please try again later.`,
+    error: {
+      ad: `❌ This advertisement does not require verification`,
+      ad2: `❌ No available advertisements at the moment`,
+      ad3: `❌ Cannot claim this advertisement`,
+      ad4: `❌ Advertisement does not exist`,
+      ad5: `❌ Ad ID must be a number`,
+      ad6: `❌ You do not have permission to view ad data`,
+      admin: `❌ A system error occurred, please try again later.
+
+If the problem persists, please contact the administrator.`,
+      admin2: `❌ **Insufficient permissions**
+
+This command is restricted to super administrators.`,
+      admin3: `❌ This user is already a super administrator, no need to add.`,
+      admin4: `❌ Only super administrators can use this command.`,
+      admin5: `❌ This user is already an administrator.`,
+      admin6: `❌ Cannot remove super administrator.`,
+      admin7: `❌ This user is not an administrator.`,
+      appeal: `❌ Please provide the appeal ID
+
+Usage: /admin_approve <appeal_id> [notes]`,
+      appeal2: `<appeal_id>`,
+      appeal3: `{appealId} \${appealId}`,
+      appeal4: `{appealId} \${appealId}`,
+      ban: `{targetUserId} \${targetUserId}`,
+      birthday: `{validation.error} \${validation.error}`,
+      birthday2: `❌ Incorrect birthday format
+
+Please re-enter (format: YYYY-MM-DD):`,
+      birthday3: `❌ Incorrect birthday format`,
+      bottle: `❌ This conversation has ended.
+
+Use /catch to pick a new Drift Bottle and start a new conversation.`,
+      bottle2: `❌ Your account has been banned and you cannot pick up Drift Bottles.
+
+If you have questions, please use /appeal to appeal.`,
+      bottle3: `❌ This bottle has already been picked up by someone else. Please try other bottles!`,
+      broadcast: `❌ The current broadcasting system only supports broadcasting to \\\${MAX_SAFE_USERS} users or fewer.
+
+`,
+      broadcast2: `❌ Broadcast ID must be a number`,
+      broadcast3: `❌ Broadcast record not found`,
+      cancel: `❌ Nickname too long, please enter a nickname no more than 36 characters.
+
+Please re-enter or cancel the edit:`,
+      cancel2: `❌ Personal profile too long, please enter no more than 200 characters.
+
+Please re-enter or cancel the edit:`,
+      cancel3: `❌ Region name too long, please enter no more than 50 characters.
+
+Please re-enter or cancel the edit:`,
+      cancel4: `❌ Nickname too short, at least 4 characters required.
+
+Please re-enter or cancel the edit:`,
+      cancel5: `❌ Each tag is limited to 20 characters.
+
+Please re-enter or cancel the edit:`,
+      cancel6: `❌ Cancel edit`,
+      cancel7: `❌ Canceled \\\${ZODIAC_NAMES[zodiacSign]}`,
+      cancel8: `❌ Canceled \\\${mbtiType}`,
+      cancel9: `❌ Cancel`,
+      conversation: `❌ Conversation with identifier \\\${formatIdentifier(identifier)} not found
+
+`,
+      conversation2: `❌ Conversation information error.`,
+      conversation3: `❌ Conversation information error`,
+      conversation4: `❌ Conversation does not exist`,
+      conversationInfoError: `❌ Conversation information is incorrect`,
+      conversationNotFound: `❌ Conversation does not exist`,
+      failed: `❌ **Ad failed to load**
+
+Sorry, the ad could not play properly.
+
+💡 **Possible reasons:**
+• Unstable network connection
+• Ad provider temporarily unavailable
+• Browser not supported
+
+🔄 **Suggestions:**
+• Check network connection
+• Try again later
+• Or use other methods to gain credits (invite friends)`,
+      failed10: `❌ Failed to query maintenance mode status.`,
+      failed11: `❌ Failed to refresh avatar
+
+`,
+      failed12: `❌ Verification failed, please try again later.`,
+      failed13: `❌ Failed to enable maintenance mode.`,
+      failed14: `❌ Failed to disable maintenance mode.`,
+      failed15: `❌ Failed to get advertisement status.`,
+      failed16: `❌ Failed to get statistics data.`,
+      failed17: `❌ Failed to create broadcast.`,
+      failed18: `❌ Failed to retrieve information.`,
+      failed19: `❌ Failed to claim reward.`,
+      failed2: `❌ Failed to create filtered broadcast
+
+\\\${error instanceof Error ? error.message : String(error)}`,
+      failed20: `❌ Confirmation failed.`,
+      failed21: `❌ Setting failed.`,
+      failed22: `❌ Skipping failed.`,
+      failed23: `❌ Operation failed.`,
+      failed24: `❌ Failed to send daily report: \\\${error instanceof Error ? error.message : String(error)}`,
+      failed25: `❌ Failed to retrieve VIP funnel data.`,
+      failed26: `❌ **Diagnosis failed**
+
+`,
+      failed27: `❌ **Refresh failed**
+
+`,
+      failed28: `❌ **Payment failed**
+
+`,
+      failed29: `❌ Failed to get advertisement provider list.`,
+      failed3: `❌ Failed to process broadcast queue: \\\${error instanceof Error ? error.message : String(error)}`,
+      failed30: `❌ Failed to get official advertisement list.`,
+      failed31: `❌ Failed to enable ad provider`,
+      failed32: `❌ Failed to disable ad provider`,
+      failed33: `❌ Failed to enable official ads`,
+      failed34: `❌ Failed to disable official ads`,
+      failed35: `❌ Failed to retrieve analytics data`,
+      failed36: `❌ Failed to retrieve ad data`,
+      failed37: `❌ Failed to set priority`,
+      failed38: `❌ Refund failed: \${error instanceof Error ? error.message : String(error)}`,
+      failed39: `❌ Operation failed: \${error instanceof Error ? error.message : String(error)}`,
+      failed4: `❌ Failed to query broadcast status: \${error instanceof Error ? error.message : String(error)}`,
+      failed40: `❌ Submission failed, please try again later.`,
+      failed41: `❌ Failed to create conversation, please try again later.`,
+      failed5: `❌ Failed to cancel broadcast: \${error instanceof Error ? error.message : String(error)}`,
+      failed6: `❌ Failed to clear broadcast: \${error instanceof Error ? error.message : String(error)}`,
+      failed7: `❌ Reset failed: \${errorMessage}
+
+Please try again later.`,
+      failed8: `❌ Failed to create broadcast, please try again later.`,
+      failed9: `❌ Failed to refresh conversation history
+
+`,
+      mbti: `❌ Invalid MBTI type`,
+      message: `❌ Filter format error
+
+\\\${error instanceof Error ? error.message : String(error)}
+
+`,
+      message2: `❌ This command is not available in production.
+
+This command is not available in production.`,
+      message3: `❌ An error occurred, please try again later.
+
+Error message: \\\${error instanceof Error ? error.message : String(error)}`,
+      message4: `❌ We're sorry, you must be at least 18 years old to use this service.
+
+Please come back when you're an adult!`,
+      nickname: `❌ Unable to retrieve Telegram username`,
+      nickname2: `❌ The username cannot contain a website link
+
+`,
+      nickname3: `❌ \\\${validation.error}
+
+Please re-enter your username:`,
+      quota: `❌ Today's message bottle quota has been used up (\\\${quotaDisplay})
+
+💡 Ways to get more quota: 
+`,
+      quota2: `❌ Today's conversation message quota has been used up (\\\${usedToday}/\\\${dailyLimit})
+
+`,
+      quota3: `❌ Today's message bottle quota has been used up (\\\${quotaDisplay})
+
+`,
+      register: `❌ Please complete the registration process first.
+
+Use /start to continue the registration.`,
+      register2: `❌ User data not found, please use /start to register first.`,
+      register3: `❌ You must complete the registration process to pick up a message bottle.
+
+Use /start to continue the registration.`,
+      settings: `❌ You can set a maximum of 5 interest tags.
+
+Please re-enter or cancel editing:`,
+      short: `❌ Invalid language code`,
+      short10: `❌ Insufficient permissions`,
+      short11: `❌ Let's talk later`,
+      short12: `❌ Re-select`,
+      short13: `❌ Re-enter`,
+      short14: `❌ Close`,
+      short15: `❌ Not enabled`,
+      short2: `❌ User data not found`,
+      short3: `❌ Unknown instructional step`,
+      short4: `❌ A system error has occurred`,
+      short5: `❌ Channel configuration error`,
+      short6: `❌ Unknown operation`,
+      short7: `❌ Incorrect`,
+      short8: `❌ No`,
+      short9: `❌ An error has occurred`,
+      start: `❌ An error has occurred, please restart: /start`,
+      stats: `❌ You do not have permission to view ad statistics`,
+      task: `❌ A system error occurred while viewing the task center, please try again later.`,
+      text: `❌ A system error occurred while calculating results, please try again later.
+
+`,
+      text10: `❌ Incorrect sender information.`,
+      text11: `❌ You do not have permission to view analysis data`,
+      text12: `❌ An error has occurred, please try again later.`,
+      text13: `❌ You do not have permission to use this command.`,
+      text14: `❌ Incorrect usage method
+
+`,
+      text15: `❌ Priority must be a non-negative integer`,
+      text16: `❌ Duration must be a positive integer or`,
+      text17: `❌ A system error occurred while processing the payment, please contact customer support.
+
+`,
+      text18: `❌ The refund reason must be at least 10 characters, please re-enter:`,
+      text19: `❌ **Refund request has been denied**
+
+`,
+      text2: `❌ Profile contains disallowed links.
+
+`,
+      text20: `❌ Refund request exceeds the time limit
+
+`,
+      text21: `❌ Refund request does not exist or has been processed`,
+      text22: `❌ Payment record not found.`,
+      text23: `❌ We are sorry, you must be over 18 years old to use this service.
+
+`,
+      text24: `❌ An error occurred, please re-enter.`,
+      text25: `❌ Please answer the question seriously
+
+`,
+      text3: `❌ No detection of your channel membership, please join first before retrying`,
+      text4: `❌ Detected that you have left the channel, unable to claim rewards.`,
+      text5: `❌ An error occurred while starting the tutorial, please try again later.`,
+      text6: `❌ A system error occurred, please try again later.`,
+      text7: `❌ Duration must be a number (in minutes).`,
+      text8: `❌ An error occurred, please try again later.`,
+      text9: `❌ Unable to retrieve maintenance mode status.`,
+      userNotFound: `❌ User does not exist, please register first using /start.`,
+      userNotFound2: `❌ User does not exist, please register first.`,
+      userNotFound3: `❌ The other user does not exist.`,
+      userNotFound4: `❌ User does not exist.`,
+      userNotFound5: `❌ User does not exist: \\\\$\${userId}`,
+      userNotFound6: `❌ User does not exist or is not registered.`,
+      userNotFound7: `❌ User does not exist.`,
+      vip: `❌ You do not have permission to view VIP data.`,
+      vip2: `❌ You are not a VIP user and cannot apply for a refund.`,
+    },
   },
   estimate: {
     immediate: `Send Now (approximately 1-2 seconds)`,
     minutes: `Approximately \${minutes} minutes`,
     seconds: `Approximately \${seconds} seconds`,
+  },
+  gender: {
+    female: `Female`,
+    label: `👤 Gender: {otherUser.gender}`,
+    male: `Male`,
   },
   help: {
     ad: `• Watch ads: +1 quota each time (up to 20 times daily)
@@ -4124,7 +4176,11 @@ Go throw a message bottle to meet new friends! /throw
     you: `You`,
   },
   invite: {
+    codeAccepted: `✅ 邀請碼已接受！感謝 {inviterName} 的邀請`,
     inviteeSuccess: `[Needs translation: invite.inviteeSuccess]`,
+    inviterSuccess: `✅ 邀請成功！你獲得了 +1 永久額度`,
+    limitReached: `❌ 你已達到邀請上限（{max} 人）`,
+    limitWarning: `⚠️ 你已邀請 {count} 人，還可邀請 {remaining} 人`,
     selfInviteError: `[Needs translation: invite.selfInviteError]`,
     upgradePrompt: `[Needs translation: invite.upgradePrompt]`,
     userType: `{type}`,
@@ -4182,6 +4238,174 @@ Regular users will not be able to use the service; only administrators can log i
 
 `,
   },
+  mbti: {
+    description: {
+      ENFJ: `主人公 - 富有魅力且鼓舞人心的領導者，有能力使聽眾著迷。`,
+      ENFP: `競選者 - 熱情、有創造力且社交能力強的自由精神，總能找到理由微笑。`,
+      ENTJ: `指揮官 - 大膽、富有想像力且意志強大的領導者，總能找到或創造解決方法。`,
+      ENTP: `辯論家 - 聰明好奇的思想家，無法抗拒智力上的挑戰。`,
+      ESFJ: `執政官 - 極有同情心、受歡迎且樂於助人的人，總是渴望為社群做出貢獻。`,
+      ESFP: `表演者 - 自發、精力充沛且熱情的表演者，生活在他們周圍從不無聊。`,
+      ESTJ: `總經理 - 出色的管理者，在管理事務或人員方面無與倫比。`,
+      ESTP: `企業家 - 聰明、精力充沛且善於洞察的人，真正享受生活在邊緣。`,
+      INFJ: `提倡者 - 安靜而神秘，同時鼓舞人心且不知疲倦的理想主義者。`,
+      INFP: `調停者 - 詩意、善良的利他主義者，總是熱情地為正義事業而努力。`,
+      INTJ: `建築師 - 富有想像力和戰略性的思想家，一切皆在計劃之中。`,
+      INTP: `邏輯學家 - 具有創新精神的發明家，對知識有著止不住的渴望。`,
+      ISFJ: `守衛者 - 非常專注且溫暖的守護者，時刻準備著保護所愛之人。`,
+      ISFP: `探險家 - 靈活且迷人的藝術家，時刻準備著探索和體驗新事物。`,
+      ISTJ: `物流師 - 實際且注重事實的個人，可靠性不容懷疑。`,
+      ISTP: `鑒賞家 - 大膽而實際的實驗者，擅長使用各種工具。`,
+    },
+    full: {
+      question1: `在社交場合中，你通常：`,
+      'question1.option1': `主動與他人交談`,
+      'question1.option2': `等待他人來找我`,
+      question10: `解決問題時，你更依賴：`,
+      'question10.option1': `實際經驗和事實`,
+      'question10.option2': `直覺和可能性`,
+      question11: `你更喜歡：`,
+      'question11.option1': `關注具體細節`,
+      'question11.option2': `關注整體概念`,
+      question12: `學習新事物時，你更喜歡：`,
+      'question12.option1': `按部就班的方法`,
+      'question12.option2': `探索創新的方式`,
+      question13: `閱讀時，你更喜歡：`,
+      'question13.option1': `實用的指南`,
+      'question13.option2': `理論和概念`,
+      question14: `你更關注：`,
+      'question14.option1': `現在和過去`,
+      'question14.option2': `未來和可能性`,
+      question15: `描述事物時，你傾向於：`,
+      'question15.option1': `使用具體例子`,
+      'question15.option2': `使用比喻和類比`,
+      question16: `工作中，你更重視：`,
+      'question16.option1': `實際應用`,
+      'question16.option2': `創新想法`,
+      question17: `你更信任：`,
+      'question17.option1': `已驗證的方法`,
+      'question17.option2': `新的嘗試`,
+      question18: `規劃未來時，你會：`,
+      'question18.option1': `基於現實條件`,
+      'question18.option2': `想像各種可能`,
+      question19: `做決定時，你更重視：`,
+      'question19.option1': `邏輯和客觀分析`,
+      'question19.option2': `情感和人際和諧`,
+      question2: `週末你更喜歡：`,
+      'question2.option1': `和朋友出去玩`,
+      'question2.option2': `在家獨處休息`,
+      question20: `批評他人時，你會：`,
+      'question20.option1': `直接指出問題`,
+      'question20.option2': `考慮對方感受`,
+      question21: `你更看重：`,
+      'question21.option1': `公平和正義`,
+      'question21.option2': `同情和理解`,
+      question22: `評價一個想法時，你首先考慮：`,
+      'question22.option1': `是否合理`,
+      'question22.option2': `是否有益`,
+      question23: `朋友向你傾訴時，你會：`,
+      'question23.option1': `分析問題並提供建議`,
+      'question23.option2': `傾聽並給予安慰`,
+      question24: `衝突中，你更傾向於：`,
+      'question24.option1': `堅持原則`,
+      'question24.option2': `維持關係`,
+      question25: `你更容易被說服通過：`,
+      'question25.option1': `事實和數據`,
+      'question25.option2': `情感和故事`,
+      question26: `團隊決策時，你更關注：`,
+      'question26.option1': `效率和結果`,
+      'question26.option2': `共識和團結`,
+      question27: `你認為好的領導者應該：`,
+      'question27.option1': `公正果斷`,
+      'question27.option2': `體貼關懷`,
+      question28: `你的工作方式是：`,
+      'question28.option1': `提前計劃和準備`,
+      'question28.option2': `隨機應變和靈活`,
+      question29: `你更喜歡：`,
+      'question29.option1': `有明確的截止日期`,
+      'question29.option2': `保持開放的選擇`,
+      question3: `參加聚會後，你通常：`,
+      'question3.option1': `感到充滿活力`,
+      'question3.option2': `感到需要休息`,
+      question30: `旅行時，你傾向於：`,
+      'question30.option1': `制定詳細行程`,
+      'question30.option2': `隨心所欲探索`,
+      question31: `你的房間通常：`,
+      'question31.option1': `整齊有序`,
+      'question31.option2': `隨性自在`,
+      question32: `處理任務時，你會：`,
+      'question32.option1': `盡早完成`,
+      'question32.option2': `接近截止日期才完成`,
+      question33: `你更喜歡的生活方式：`,
+      'question33.option1': `有規律和結構`,
+      'question33.option2': `自由和彈性`,
+      question34: `做決定時，你傾向於：`,
+      'question34.option1': `快速決定`,
+      'question34.option2': `保留選擇權`,
+      question35: `購物時，你會：`,
+      'question35.option1': `列清單按計劃購買`,
+      'question35.option2': `隨意逛逛看到喜歡就買`,
+      question36: `面對變化，你通常：`,
+      'question36.option1': `感到不安`,
+      'question36.option2': `感到興奮`,
+      question4: `在團隊中，你更傾向於：`,
+      'question4.option1': `積極發表意見`,
+      'question4.option2': `先聽後說`,
+      question5: `遇到新朋友時，你會：`,
+      'question5.option1': `很快就能熟絡起來`,
+      'question5.option2': `需要時間慢慢熟悉`,
+      question6: `你的朋友圈：`,
+      'question6.option1': `廣泛但不深入`,
+      'question6.option2': `小而親密`,
+      question7: `工作時，你更喜歡：`,
+      'question7.option1': `團隊合作`,
+      'question7.option2': `獨立工作`,
+      question8: `思考問題時，你傾向於：`,
+      'question8.option1': `邊說邊想`,
+      'question8.option2': `先想好再說`,
+      question9: `壓力大時，你會：`,
+      'question9.option1': `找朋友聊天`,
+      'question9.option2': `獨自消化`,
+    },
+    quick: {
+      question1: `在社交場合中，你通常：`,
+      'question1.option1': `主動與他人交談`,
+      'question1.option2': `等待他人來找我`,
+      question10: `你的工作方式是：`,
+      'question10.option1': `提前計劃和準備`,
+      'question10.option2': `隨機應變和靈活`,
+      question11: `你更喜歡：`,
+      'question11.option1': `有明確的截止日期`,
+      'question11.option2': `保持開放的選擇`,
+      question12: `旅行時，你傾向於：`,
+      'question12.option1': `制定詳細行程`,
+      'question12.option2': `隨心所欲探索`,
+      question2: `週末你更喜歡：`,
+      'question2.option1': `和朋友出去玩`,
+      'question2.option2': `在家獨處休息`,
+      question3: `參加聚會後，你通常：`,
+      'question3.option1': `感到充滿活力`,
+      'question3.option2': `感到需要休息`,
+      question4: `解決問題時，你更依賴：`,
+      'question4.option1': `實際經驗和事實`,
+      'question4.option2': `直覺和可能性`,
+      question5: `你更喜歡：`,
+      'question5.option1': `關注具體細節`,
+      'question5.option2': `關注整體概念`,
+      question6: `學習新事物時，你更喜歡：`,
+      'question6.option1': `按部就班的方法`,
+      'question6.option2': `探索創新的方式`,
+      question7: `做決定時，你更重視：`,
+      'question7.option1': `邏輯和客觀分析`,
+      'question7.option2': `情感和人際和諧`,
+      question8: `批評他人時，你會：`,
+      'question8.option1': `直接指出問題`,
+      'question8.option2': `考慮對方感受`,
+      question9: `你更看重：`,
+      'question9.option1': `公平和正義`,
+      'question9.option2': `同情和理解`,
+    },
+  },
   mbtiTest: {
     afterRegistration: `💡 After completing registration, you can:
 `,
@@ -4237,7 +4461,7 @@ After completing registration, you can use /mbti to retake the test.
     invite: `🎁 **Invite Friends**
 
 `,
-    invite2: `📋 Your Invite Code：{inviteCode}`,
+    invite2: `📋 Your Invite Code：\\`,
     invite3: `📤 Share Invite Code`,
     levelFree: `🆓 Free Member`,
     levelVip: `💎 VIP Member`,
@@ -4251,11 +4475,11 @@ After completing registration, you can use /mbti to retake the test.
     register: `• Friends register using your invite code
 `,
     selectFeature: `Please select a feature：`,
-    settings: `• MBTI：\${user.mbti_result}
-`,
-    settings2: `• Zodiac Sign：\${user.zodiac_sign}
+    settings: `• MBTI：\${mbti}
+ \${mbti}`,
+    settings2: `• Zodiac Sign：\${zodiac}
 
-`,
+ \${zodiac}`,
     settings3: `Not Set`,
     settings4: `Not Set`,
     short: `Free Member`,
@@ -4285,10 +4509,12 @@ After completing registration, you can use /mbti to retake the test.
     yourStatus: `Your Status`,
   },
   messageForward: {
+    blockedUrls: `❌ 訊息包含被禁止的網址`,
     dailyQuota: `📊 Sent today: {used}/{limit} messages`,
     messageSent: `✅ Message has been sent to {identifier}
 
 `,
+    quotaExceeded: `❌ 今日訊息配額已用完`,
     removeLinks: `[Translation needed from zh-TW.ts]`,
     replyHint: `[Translation needed from zh-TW.ts]`,
     upgradeVip: `[Translation needed from zh-TW.ts]`,
@@ -4328,15 +4554,19 @@ Now please select your gender:
     claimReward: `✅ Claim Reward`,
     claimRewardButton: `✅ Reward claimed`,
     claimRewardSuccess: `✅ Reward claimed successfully! You have received +{quota} permanent quotas!`,
+    communityBenefits: `💡 完成任務可獲得永久額度`,
+    communityThanks: `🙏 感謝支持社群！`,
     errorRetry: `❌ An error occurred, please try again later`,
     moreAdsAvailable: `💡 There are more official advertisements to watch!`,
     nextAd: `➡️ Next advertisement`,
     noAdsAvailable: `❌ No available advertisements`,
     noVerificationRequired: `❌ This advertisement does not require verification`,
+    quotaInfo: `📊 今日剩餘：**{remaining}/20** 次`,
     requiresVerification: `
 
 ✅ Verification required: Click the 'Verify' button after joining the group/channel`,
     reward: `🎁 Reward: +{quota} permanent quotas`,
+    rewardPermanent: `🎁 完成任務可獲得 **+1 永久額度**`,
     statsAdNotFound: `❌ Advertisement does not exist`,
     statsClicks: `• Clicks: {count}
 `,
@@ -4382,11 +4612,6 @@ Now please select your gender:
 
 `,
     agreeTerms: `Click the button below to indicate that you have read and agreed to the above terms.`,
-    'antiFraud.confirm_button': `[Translation needed: onboarding.antiFraud.confirm_button]`,
-    'antiFraud.learn_button': `[Translation Needed: onboarding.antiFraud.learn_button]`,
-    'antiFraud.question1': `[Translation Needed: onboarding.antiFraud.question1]`,
-    'antiFraud.question2': `[Translation Needed: onboarding.antiFraud.question2]`,
-    'antiFraud.question3': `[Translation Needed: onboarding.antiFraud.question3]`,
     antiFraudConfirm: `Please confirm:`,
     antiFraudFinalStep: `🛡️ Last step: Anti-fraud security confirmation
 
@@ -4425,10 +4650,9 @@ Now please select your gender:
 Please re-enter (format: YYYY-MM-DD):`,
     birthdayRetry: `Please re-enter your birthday (format: YYYY-MM-DD):`,
     birthdayWarning: `⚠️ The birthday cannot be modified after setting, please confirm it's correct!`,
-    bloodType: `🩸 **Please select your blood type**
+    bloodTypeLabel: `🩸 **Please select your blood type**
 
 `,
-    'bloodType.select': `[Translation Needed: onboarding.bloodType.select]`,
     complete: `Please enter 'yes' to complete the test:`,
     confirm: `To protect all users' safety, please confirm that you understand the risks of online dating.
 
@@ -4440,13 +4664,9 @@ Please re-enter (format: YYYY-MM-DD):`,
     confirmBirthday: `⚠️ Please confirm your birthday information:
 
 `,
-    customNickname: `[Translation Needed: onboarding.customNickname]`,
+    customNickname: `Custom Nickname`,
     enterYes: `Please enter 'yes' to complete the test:`,
     errorRetry: `❌ An error occurred, please re-enter.`,
-    gender: `• Gender: \${updatedUser.gender}
- {updatedUser.gender === 'male' ? '男性' : '女性'} \${updatedUser.gender}`,
-    'gender.female': `Female`,
-    'gender.male': `Male`,
     gender2: `• Gender: \${updatedUser.gender ===`,
     gender3: `Please select your gender:
 
@@ -4475,6 +4695,7 @@ Please select your preferred language:`,
 `,
     message2: `• Be cautious of messages requesting money
 `,
+    moreLanguages: `More Languages`,
     nickname: `• Nickname: \${updatedUser.nickname}
 `,
     nickname2: `Great! Your nickname is: \${nickname}
@@ -4526,7 +4747,7 @@ Please re-enter your nickname:`,
 
 `,
     start2: `You can now start using XunNi!`,
-    startRegistration: `[Translation needed: onboarding.startRegistration]`,
+    startRegistration: `Start Registration →`,
     stats: `📊 Statistics`,
     stepAntiFraud: `🛡️ Please click the button above to confirm anti-fraud safety matters`,
     stepBirthday: `📅 Please enter your birthday (format: YYYY-MM-DD, e.g., 1995-06-15)`,
@@ -4536,10 +4757,6 @@ Please re-enter your nickname:`,
     stepMbti: `🧠 Please click the button above to select your MBTI setting`,
     stepNickname: `✏️ Please enter your nickname`,
     stepTerms: `📜 Please click the button above to agree to the Terms of Service`,
-    'terms.agree_button': `[Translation needed: onboarding.terms.agree_button]`,
-    'terms.english_only_note': `[Translation needed: onboarding.terms.english_only_note]`,
-    'terms.privacy_policy_button': `[Translation needed: onboarding.terms.privacy_policy_button]`,
-    'terms.terms_of_service_button': `[Translation needed: onboarding.terms.terms_of_service_button]`,
     termsOfService: `📋 User Terms
 
 `,
@@ -4592,12 +4809,15 @@ Please re-enter your nickname:`,
     understandRisks: `To protect the safety of all users, please confirm that you understand the risks of online dating.
 
 `,
+    useTelegramNickname: `Use Telegram Nickname`,
     viewPrivacyPolicy: `📋 View Privacy Policy`,
     viewTermsOfService: `📋 View Terms of Service`,
     vip: `💡 Providing your blood type will be used for future blood type matching features (VIP exclusive)
 
 `,
-    welcome: `[Translation needed: onboarding.welcome]`,
+    welcome: `Welcome to XunNi!
+
+Please select your language:`,
     yourAge: `Your age: {age} years old
 `,
     zodiac: `• Zodiac sign: \${updatedUser.zodiac_sign}
@@ -4605,6 +4825,58 @@ Please re-enter your nickname:`,
     zodiac2: `Zodiac sign: \${zodiacSign}
 
 `,
+    antiFraud: {
+      confirm_button: `✅ Yes, I understand and will pay attention to safety`,
+      learn_button: `📚 I want to learn more about safety knowledge`,
+      question1: `1. Are you aware of the safety risks of online dating?
+`,
+      question2: `2. Will you protect your personal information?
+`,
+      question3: `3. When encountering suspicious messages, will you be vigilant?
+
+`,
+    },
+    bloodType: {
+      select: `[Translation Needed: onboarding.bloodType.select]`,
+    },
+    example: {
+      birthday: `例如：1995-06-15`,
+    },
+    gender: {
+      female: `Female`,
+      label: `• Gender: \${gender}
+ {updatedUser.gender === 'male' ? '男性' : '女性'} \${gender}`,
+      male: `Male`,
+    },
+    info: {
+      age18: `• 必須年滿 18 歲才能使用本服務`,
+      city: `🌍 地區：{city}`,
+    },
+    prompt: {
+      birthday: `請輸入你的生日（格式：YYYY-MM-DD）：`,
+    },
+    terms: {
+      agree_button: `✅ I Agree`,
+      english_only_note: `[Translation needed: onboarding.terms.english_only_note]`,
+      privacy_policy_button: `🔒 Privacy Policy`,
+      terms_of_service_button: `📋 Terms of Service`,
+    },
+    warning: {
+      birthday: `⚠️ 生日設定後無法修改，請確認無誤！`,
+    },
+  },
+  payments: {
+    empty: `No payment records found.`,
+    title: `💳 Payment History (Page {page} / {total})`,
+    product: {
+      VIP_MONTHLY: `💎 VIP Monthly Subscription`,
+    },
+    status: {
+      failed: `❌ Payment Failed`,
+      paid: `✅ Payment Successful`,
+      pending: `⏳ Processing`,
+      refunded: `↩️ Refunded`,
+    },
   },
   profile: {
     activatedInvites: `✅ Activated invites: {successfulInvites} / {inviteLimit} people
@@ -4668,7 +4940,7 @@ Use /start to continue registration.`,
     mbtiWithSource: `🧠 MBTI: {mbti}{source}
 `,
     message: `https://t.me/share/url?url=https://t.me/\${botUsername}?start=invite_\${inviteCode}&text=Let's throw message bottles together on XunNi! 🍾 Use my invitation code: \${inviteCode} https://t.me/share/url?url=https://t.me/\${botUsername}?start=invite_\${inviteCode}&text=來`,
-    message2: `\${!user.is_vip && successfulInvites >= inviteLimit ? '⚠️ Reached the free user invite limit. Upgrade to VIP to unlock the limit of 100 invites!' : ''}
+    message2: `\${inviteLimitWarning}
 
 `,
     message3: `🌍 Language: \${user.language_pref}
@@ -4734,7 +5006,7 @@ Use /start to continue registration.`,
 `,
     text5: `This person is very mysterious, leaving nothing behind～`,
     userNotFound: `⚠️ User does not exist. Please register using /start first.`,
-    vip: `VIP Member (Expires: \${new Date(user.vip_expire_at).toLocaleDateString('zh-TW')})`,
+    vip: `VIP Member (Expires: \${expireDate})`,
     vip2: `• Use /vip to upgrade to VIP Member
 `,
     vipUpgrade: `• Upgrade to VIP member using /vip
@@ -4907,13 +5179,13 @@ Please use /throw to restart.`,
     back: `Back`,
     changeLanguage: `🌐 Change Language`,
     currentSettings: `⚙️ **Current Settings**`,
-    languageLabel: `🌐 Language: {language}`,
+    languageLabel: `語言：{language}`,
+    languageUpdated: `✅ Language updated to: {language}`,
     message: `🌐 **Choose Language / 选择语言**
 
 Please select your preferred language:`,
-    returnToMenu: `⬅️ Return to Menu`,
-    selectOption: `Please select an option:`,
-    languageUpdated: `✅ Language updated to {language}`,
+    returnToMenu: `🏠 Return to Menu`,
+    selectOption: `[Need Translation: settings.selectOption]`,
     settings: `💡 Choose the settings you want to modify:`,
     settings2: `⚙️ **Settings**
 
@@ -4984,7 +5256,7 @@ Please select your preferred language:`,
 `,
     mbti: `🧠 **MBTI**: \${mbti}
 `,
-    message: `• Expiration Time：\${new Date(user.vip_expire_at!).toLocaleDateString('zh-TW')}
+    message: `• Expiration Time：\${expireDate}
 `,
     message10: `• Total messages: \${stats.totalMessages}`,
     message2: `\${used}/\${permanentQuota}+\${taskBonus} (Remaining \${remaining})`,
@@ -5029,9 +5301,9 @@ Please select your preferred language:`,
     reportTime: `Report Generation Time: {time}`,
     separator: `---
 `,
-    settings: `🧠 **MBTI**: \${user.mbti_result}
+    settings: `🧠 **MBTI**: \${mbti}
 
- {user.mbti_result || '未設定'} \${user.mbti_result}`,
+ \${mbti}`,
     settings2: `Not set`,
     short: `Free member`,
     statDateEmpty: `Statistics date cannot be empty`,
@@ -5209,12 +5481,10 @@ Please select your preferred language:`,
 
 `,
     message4: `✅ Earned +\${ad.reward_quota} permanent quotas!`,
-    message5: `✅ Selected \${gender}`,
+    message5: `✅ Selected \${gender} {gender === 'male' ? '男生' : gender === 'female' ? '女生' : '任何人'} \${gender}`,
     message6: `✅ Selected \${bloodTypeDisplay[bloodType]}`,
     message7: `✅ Selected \${ZODIAC_NAMES[zodiacSign]}`,
-    message8: `✅ You selected: \${gender}
-
-`,
+    message8: `You selected: \${gender}`,
     nickname: `✅ Using Telegram nickname: \${suggestedNickname.substring(0, 18)}`,
     nickname2: `✅ Nickname updated to: \${text}
 
@@ -5268,219 +5538,6 @@ Please select your preferred language:`,
     start2: `✅ Start quick version test`,
     start3: `✅ Start full version test`,
     start4: `✅ Start test`,
-    success: `✅ Verification successful! Earned +\${ad.reward_quota} permanent credits!`,
-    'success.ad': `✅ You have already seen all official ads!`,
-    'success.ad2': `✅ Ad provider enabled: \\\${providerName}
-
-`,
-    'success.ad3': `✅ Ad provider disabled: \\\${providerName}
-
-`,
-    'success.ad4': `✅ Official ad enabled #\\\${adId}
-
-`,
-    'success.ad5': `✅ Official ad disabled #\\\${adId}
-
-`,
-    'success.ad6': `✅ Ad provider priority set
-
-`,
-    'success.ad7': `✅ Today's ad limit reached`,
-    'success.appeal': `✅ Appeal \\\${appealId} approved, user unblocked`,
-    'success.appeal2': `✅ Appeal \\\${appealId} denied`,
-    'success.appeal3': `✅ No pending appeals`,
-    'success.birthday': `✅ Birthday saved`,
-    'success.bloodType': `✅ Blood type updated to \\\${getBloodTypeDisplay(bloodType as any)}`,
-    'success.bloodType2': `✅ Blood type cleared`,
-    'success.bottle': `✅ Reward issued! +1 message bottle`,
-    'success.bottle2': `✅ Started a new message bottle`,
-    'success.bottle3': `✅ Message bottle created
-`,
-    'success.broadcast': `✅ Cleared \\\${ids.length} stuck broadcasts
-
-`,
-    'success.broadcast2': `✅ No broadcasts to clean up
-
-`,
-    'success.broadcast3': `✅ Filtered broadcasts created
-
-`,
-    'success.broadcast4': `✅ Broadcast created
-
-`,
-    'success.cancel': `✅ Broadcast cancelled
-
-`,
-    'success.complete': `✅ Broadcast queue processing completed
-
-`,
-    'success.complete2': `✅ System maintenance completed
-
-`,
-    'success.complete3': `✅ Tutorial completed!`,
-    'success.complete4': `✅ **Batch refresh completed**
-
-`,
-    'success.complete5': `✅ **Refresh completed**
-
-`,
-    'success.complete6': `✅ Filtering completed, enter content`,
-    'success.complete7': `✅ Filtering complete`,
-    'success.confirm': `✅ Confirmed!`,
-    'success.confirm2': `✅ Safety confirmation completed`,
-    'success.confirm3': `✅ Confirm`,
-    'success.conversation': `✅ **Chat history updated!**
-
-`,
-    'success.gender': `✅ Gender has been saved`,
-    'success.invite': `✅ Invitation activated: \\\${successfulInvites} / \\\${inviteLimit} people
-`,
-    'success.mbti': `✅ Your MBTI type has been updated to: **\\\${mbtiType}**
-
-`,
-    'success.mbti2': `✅ Your MBTI type has been cleared.
-
-`,
-    'success.mbti3': `✅ MBTI cleared`,
-    'success.mbti4': `✅ MBTI selection cleared`,
-    'success.mbti5': `✅ Your MBTI type: \\\${mbtiType}
-
-`,
-    'success.message': `✅ Message sent to \\\${formatIdentifier(receiverIdentifier)}
-
-`,
-    'success.message2': `✅ Language updated to: \\\${getLanguageDisplay(languageCode)}`,
-    'success.message3': `✅ This user has been blocked (#\\\${conversationIdentifier})
-
-`,
-    'success.message4': `✅ Received +\\\${ad.reward_quota} permanent slots!`,
-    'success.message5': `✅ Selected \\\${gender}`,
-    'success.message6': `✅ Selected \\\${bloodTypeDisplay[bloodType]}`,
-    'success.message7': `✅ Selected \\\${ZODIAC_NAMES[zodiacSign]}`,
-    'success.message8': `✅ You selected: \\\${gender}`,
-    'success.nickname': `✅ Using Telegram nickname: \\\${suggestedNickname.substring(0, 18)}`,
-    'success.nickname2': `✅ Nickname updated to: \\\${text}
-
-`,
-    'success.register': `✅ Development mode: Skip registration
-
-`,
-    'success.register2': `✅ I understand, continue registration`,
-    'success.register3': `✅ Registration completed!`,
-    'success.report': `✅ **Report submitted** (#\\\${conversationIdentifier})
-
-`,
-    'success.report2': `✅ Report submitted`,
-    'success.report3': `✅ **User reported**
-
-`,
-    'success.report4': `✅ Confirm report`,
-    'success.report5': `✅ Reported`,
-    'success.settings': `✅ MBTI set to \\\${mbtiType}`,
-    'success.settings2': `✅ Nickname set`,
-    'success.settings3': `✅ Filter criteria set: 
-
-`,
-    'success.settings4': `✅ Blood type set to \\\${getBloodTypeDisplay(bloodType as any)}`,
-    'success.settings5': `✅ MBTI type set: \\\${mbtiType}
-
-`,
-    'success.settings6': `✅ Blood type setting skipped`,
-    'success.short': `✅ Sending...`,
-    'success.short10': `✅ Loading...`,
-    'success.short11': `✅ 🌈 Anyone`,
-    'success.short12': `✅ 👨 Male`,
-    'success.short13': `✅ 👩 Female`,
-    'success.short14': `✅ Continue editing`,
-    'success.short15': `✅ Confirm block`,
-    'success.short16': `✅ Blocked`,
-    'success.short17': `✅ I have read and agree`,
-    'success.short18': `✅ Skipped`,
-    'success.short19': `✅ Claim Reward`,
-    'success.short2': `✅ Continue Editing Draft`,
-    'success.short20': `✅ Under Maintenance`,
-    'success.short3': `✅ Draft Deleted`,
-    'success.short4': `✅ Verify and Claim`,
-    'success.short5': `✅ Send Draft`,
-    'success.short6': `✅ Logged`,
-    'success.short7': `✅ Correct`,
-    'success.short8': `✅ Enabled`,
-    'success.short9': `✅ Yes`,
-    'success.start': `✅ Please click the button to start watching`,
-    'success.start2': `✅ Start Quick Test`,
-    'success.start3': `✅ Start Full Test`,
-    'success.start4': `✅ Start Test`,
-    'success.success': `✅ Verification Successful! You have received +\\\${ad.reward_quota} permanent credits!`,
-    'success.text': `✅ Set as \\\${flag} \\\${countryName}`,
-    'success.text10': `✅ Yes, I understand and will pay attention to safety`,
-    'success.text11': `✅ Maintenance Mode Enabled
-
-`,
-    'success.text12': `✅ Maintenance Mode Disabled
-
-`,
-    'success.text13': `✅ More accurate personality analysis
-`,
-    'success.text14': `✅ Tutorial skipped
-
-`,
-    'success.text15': `✅ All posts are up to date (free user status is correct)
-`,
-    'success.text16': `✅ **No need to refresh**
-
-`,
-    'success.text17': `✅ Selected \\\${gender ===`,
-    'success.text18': `✅ Selected \\\${mbtiType}`,
-    'success.text19': `✅ **Rules**：
-`,
-    'success.text2': `✅ Interest tags updated: 
-
-\\\${interestsStr}`,
-    'success.text20': `✅ **User has been blocked**
-
-`,
-    'success.text21': `✅ **Refund request submitted**
-
-`,
-    'success.text22': `✅ **Refund approved**
-
-`,
-    'success.text23': `✅ No pending refund requests.`,
-    'success.text24': `✅ Preparing payment...`,
-    'success.text25': `✅ Refund approved
-
-`,
-    'success.text26': `✅ Refund denied
-
-`,
-    'success.text27': `✅ I have joined and claimed the reward`,
-    'success.text28': `✅ Your selection: \\\\$ {gender ===`,
-    'success.text29': `✅ Anti-fraud test passed!
-
-`,
-    'success.text3': `✅ Matching preferences updated to: \${prefText}
-
-`,
-    'success.text30': `✅ Language changed to \\\${newLanguageName}`,
-    'success.text4': `✅ Profile updated!
-
-\\\${text}`,
-    'success.text5': `✅ Development mode: Data has been reset
-
-`,
-    'success.text6': `✅ Region updated to: \\\${text}`,
-    'success.text7': `✅ Quick understanding of basic personality types
-
-`,
-    'success.text8': `✅ **Avatar updated!**
-
-`,
-    'success.text9': `✅ Recommended for retesting
-
-`,
-    'success.vip': `✅ All posts are up to date (VIP status accurate)
-`,
-    'success.zodiac': `✅ Zodiac selection cleared`,
     success2: `🎉 **Verification successful!**
 
 ✅ Received **+\${ad.reward_quota} permanent quota**
@@ -5566,9 +5623,209 @@ Please select your preferred language:`,
     text9: `✅ Recommended for retesting
 
 `,
+    verify: `✅ Verification successful! Earned +\${ad.reward_quota} permanent credits!`,
+    verify2: `✅ Verification Successful! You have received +\\\${ad.reward_quota} permanent credits!`,
     vip: `✅ All posts are up to date (VIP status is correct)
 `,
     zodiac: `✅ Zodiac selection cleared`,
+    success: {
+      appeal: `✅ Appeal \\\${appealId} approved, user unblocked`,
+      appeal2: `✅ Appeal \\\${appealId} denied`,
+      appeal3: `✅ No pending appeals`,
+      birthday: `✅ Birthday saved`,
+      bloodType: `✅ Blood type updated to \\\${getBloodTypeDisplay(bloodType as any)}`,
+      bloodType2: `✅ Blood type cleared`,
+      bottle: `✅ Reward issued! +1 message bottle`,
+      bottle2: `✅ Started a new message bottle`,
+      bottle3: `✅ Message bottle created
+`,
+      broadcast: `✅ Cleared \\\${ids.length} stuck broadcasts
+
+`,
+      broadcast2: `✅ No broadcasts to clean up
+
+`,
+      broadcast3: `✅ Filtered broadcasts created
+
+`,
+      broadcast4: `✅ Broadcast created
+
+`,
+      cancel: `✅ Broadcast cancelled
+
+`,
+      complete: `✅ Broadcast queue processing completed
+
+`,
+      complete2: `✅ System maintenance completed
+
+`,
+      complete3: `✅ Tutorial completed!`,
+      complete4: `✅ **Batch refresh completed**
+
+`,
+      complete5: `✅ **Refresh completed**
+
+`,
+      complete6: `✅ Filtering completed, enter content`,
+      complete7: `✅ Filtering complete`,
+      confirm: `✅ Confirmed!`,
+      confirm2: `✅ Safety confirmation completed`,
+      confirm3: `✅ Confirm`,
+      conversation: `✅ **Chat history updated!**
+
+`,
+      gender: `✅ Gender has been saved`,
+      invite: `✅ Invitation activated: \\\${successfulInvites} / \\\${inviteLimit} people
+`,
+      mbti: `✅ Your MBTI type has been updated to: **\\\${mbtiType}**
+
+`,
+      mbti2: `✅ Your MBTI type has been cleared.
+
+`,
+      mbti3: `✅ MBTI cleared`,
+      mbti4: `✅ MBTI selection cleared`,
+      mbti5: `✅ Your MBTI type: \\\${mbtiType}
+
+`,
+      message: `✅ Message sent to \\\${formatIdentifier(receiverIdentifier)}
+
+`,
+      message2: `✅ Language updated to: \\\${getLanguageDisplay(languageCode)}`,
+      message3: `✅ This user has been blocked (#\\\${conversationIdentifier})
+
+`,
+      message4: `✅ Received +\\\${ad.reward_quota} permanent slots!`,
+      message5: `✅ Selected \\\${gender} {gender === 'male' ? '男生' : gender === 'female' ? '女生' : '任何人'} \${gender}`,
+      message6: `✅ Selected \\\${bloodTypeDisplay[bloodType]}`,
+      message7: `✅ Selected \\\${ZODIAC_NAMES[zodiacSign]}`,
+      message8: `✅ You selected: \\\${gender}
+
+ {gender === 'male' ? '👨 男性' : '👩 女性'} \${gender}`,
+      nickname: `✅ Using Telegram nickname: \\\${suggestedNickname.substring(0, 18)}`,
+      nickname2: `✅ Nickname updated to: \\\${text}
+
+`,
+      register: `✅ Development mode: Skip registration
+
+`,
+      register2: `✅ I understand, continue registration`,
+      register3: `✅ Registration completed!`,
+      report: `✅ **Report submitted** (#\\\${conversationIdentifier})
+
+`,
+      report2: `✅ Report submitted`,
+      report3: `✅ **User reported**
+
+`,
+      report4: `✅ Confirm report`,
+      report5: `✅ Reported`,
+      settings: `✅ MBTI set to \\\${mbtiType}`,
+      settings2: `✅ Nickname set`,
+      settings3: `✅ Filter criteria set: 
+
+`,
+      settings4: `✅ Blood type set to \\\${getBloodTypeDisplay(bloodType as any)}`,
+      settings5: `✅ MBTI type set: \\\${mbtiType}
+
+`,
+      settings6: `✅ Blood type setting skipped`,
+      short: `✅ Sending...`,
+      short10: `✅ Loading...`,
+      short11: `✅ 🌈 Anyone`,
+      short12: `✅ 👨 Male`,
+      short13: `✅ 👩 Female`,
+      short14: `✅ Continue editing`,
+      short15: `✅ Confirm block`,
+      short16: `✅ Blocked`,
+      short17: `✅ I have read and agree`,
+      short18: `✅ Skipped`,
+      short19: `✅ Claim Reward`,
+      short2: `✅ Continue Editing Draft`,
+      short20: `✅ Under Maintenance`,
+      short3: `✅ Draft Deleted`,
+      short4: `✅ Verify and Claim`,
+      short5: `✅ Send Draft`,
+      short6: `✅ Logged`,
+      short7: `✅ Correct`,
+      short8: `✅ Enabled`,
+      short9: `✅ Yes`,
+      start: `✅ Please click the button to start watching`,
+      start2: `✅ Start Quick Test`,
+      start3: `✅ Start Full Test`,
+      start4: `✅ Start Test`,
+      text: `✅ Set as \\\${flag} \\\${countryName}`,
+      text10: `✅ Yes, I understand and will pay attention to safety`,
+      text11: `✅ Maintenance Mode Enabled
+
+`,
+      text12: `✅ Maintenance Mode Disabled
+
+`,
+      text13: `✅ More accurate personality analysis
+`,
+      text14: `✅ Tutorial skipped
+
+`,
+      text15: `✅ All posts are up to date (free user status is correct)
+`,
+      text16: `✅ **No need to refresh**
+
+`,
+      text17: `✅ Selected \\\${gender ===`,
+      text18: `✅ Selected \\\${mbtiType}`,
+      text19: `✅ **Rules**：
+`,
+      text2: `✅ Interest tags updated: 
+
+\\\${interestsStr}`,
+      text20: `✅ **User has been blocked**
+
+`,
+      text21: `✅ **Refund request submitted**
+
+`,
+      text22: `✅ **Refund approved**
+
+`,
+      text23: `✅ No pending refund requests.`,
+      text24: `✅ Preparing payment...`,
+      text25: `✅ Refund approved
+
+`,
+      text26: `✅ Refund denied
+
+`,
+      text27: `✅ I have joined and claimed the reward`,
+      text28: `✅ Your selection: \\\\$ {gender ===`,
+      text29: `✅ Anti-fraud test passed!
+
+`,
+      text3: `✅ Matching preferences updated to: \${prefText}
+
+`,
+      text30: `✅ Language changed to \\\${newLanguageName}`,
+      text4: `✅ Profile updated!
+
+\\\${text}`,
+      text5: `✅ Development mode: Data has been reset
+
+`,
+      text6: `✅ Region updated to: \\\${text}`,
+      text7: `✅ Quick understanding of basic personality types
+
+`,
+      text8: `✅ **Avatar updated!**
+
+`,
+      text9: `✅ Recommended for retesting
+
+`,
+      vip: `✅ All posts are up to date (VIP status accurate)
+`,
+      zodiac: `✅ Zodiac selection cleared`,
+    },
   },
   target: {
     all: `All Users`,
@@ -5577,7 +5834,9 @@ Please select your preferred language:`,
     vip: `VIP Users`,
   },
   tasks: {
-    bottle: `Reward: +\${task.reward_amount} message bottles (\${rewardTypeText})`,
+    bottle: `Reward: +\${task.reward_amount} message bottles (\${rewardTypeText})
+
+ {task.reward_type === 'daily' ? '當天有效' : '永久有效'} \${rewardTypeText}`,
     bottle2: `Reward: +\${task.reward_amount} message bottles (\${task.reward_type ===`,
     bottle3: `\${icon} \${task.name} (+\${task.reward_amount} message bottles)
 `,
@@ -5590,14 +5849,6 @@ Please select your preferred language:`,
 Complete tasks to earn extra message bottles!
 
 `,
-    'description.bio': `Share your story (at least 20 words)`,
-    'description.city': `Find friends in the same city`,
-    'description.first_bottle': `Start your social journey`,
-    'description.first_catch': `Check out others' stories`,
-    'description.first_conversation': `Make your first connection (long press message → select 'Reply')`,
-    'description.interests': `Let others get to know you better`,
-    'description.invite_progress': `For each person invited, permanent daily quota +1 (free for up to 10 people, VIP up to 100 people)`,
-    'description.join_channel': `Get the latest news and events`,
     invite: `🔄 Invite friends (\${inviteProgress.current}/\${inviteProgress.max})
 `,
     invite2: `For each person invited → permanent daily quota +1
@@ -5607,14 +5858,6 @@ Complete tasks to earn extra message bottles!
     message2: `Click the button below to join the XunNi official channel for the latest news and events!
 
 `,
-    'name.bio': `Complete your profile`,
-    'name.city': `Set your area`,
-    'name.first_bottle': `Throw out the first message bottle`,
-    'name.first_catch': `Pick up the first message bottle`,
-    'name.first_conversation': `Start the first conversation`,
-    'name.interests': `Fill in interest tags`,
-    'name.invite_progress': `Invite friends`,
-    'name.join_channel': `Join the official channel`,
     profile: `👤 **Profile Tasks** (\${completedCount}/\${profileTasks.length})
 `,
     quota: `Current daily quota: \${calculateDailyQuota(user)} bottles
@@ -5645,6 +5888,26 @@ Complete tasks to earn extra message bottles!
 `,
     text4: `🎁 **Acquired**
 `,
+    description: {
+      bio: `Share your story (at least 20 words)`,
+      city: `Find friends in the same city`,
+      first_bottle: `Start your social journey`,
+      first_catch: `Check out others' stories`,
+      first_conversation: `Make your first connection (long press message → select 'Reply')`,
+      interests: `Let others get to know you better`,
+      invite_progress: `For each person invited, permanent daily quota +1 (free for up to 10 people, VIP up to 100 people)`,
+      join_channel: `Get the latest news and events`,
+    },
+    name: {
+      bio: `Complete your profile`,
+      city: `Set your area`,
+      first_bottle: `Throw out the first message bottle`,
+      first_catch: `Pick up the first message bottle`,
+      first_conversation: `Start the first conversation`,
+      interests: `Fill in interest tags`,
+      invite_progress: `Invite friends`,
+      join_channel: `Join the official channel`,
+    },
   },
   throw: {
     age: `• Age range is similar ✓`,
@@ -5659,8 +5922,7 @@ Complete tasks to earn extra message bottles!
     bloodType5: `🌈 Any blood type`,
     bottle: `
 💡 This message bottle is a great match for you!
-\${highlights.join('
-')}
+
 `,
     bottle10: `🍾 Message bottle has been thrown!
 
@@ -5726,7 +5988,7 @@ Complete tasks to earn extra message bottles!
     conversation7: `Use /chats to view all conversations`,
     currentSelection: `Current selection: {genderText}`,
     friendlyContent: `[Translation needed from zh-TW.ts]`,
-    gender: `• Gender: \${selectedGender}
+    gender: `• Gender: \${selectedGender === 'male' ? '👨 Male' : selectedGender === 'female' ? '👩 Female' : '🌈 Anyone'}
 `,
     gender2: `👤 **Gender Filter**
 
@@ -5755,7 +6017,7 @@ Complete tasks to earn extra message bottles!
     mbti7: `🧠 MBTI Filter`,
     mbtiLabel: `• MBTI: {mbti}
 `,
-    message: `Current selection: \${currentGender}
+    message: `Current selection: \${currentGender === 'male' ? '👨 Male' : currentGender === 'female' ? '👩 Female' : '🌈 Anyone'}
 
 `,
     message2: `Selected: \${selectedZodiac.length > 0 ? selectedZodiac.map((z) => ZODIAC_NAMES[z]).join(`,
@@ -5780,14 +6042,15 @@ Current selection: \${bloodTypeDisplay[currentBloodType]}
 `,
     quota2: `🎁 Invite friends to increase your quota:
 `,
-    settings: `🧠 MBTI: \${matchResult.user.mbti_result}
- {matchResult.user.mbti_result || '未設定'} \${matchResult.user.mbti_result}`,
-    settings2: `⭐ Zodiac: \${matchResult.user.zodiac}
- {matchResult.user.zodiac || '未設定'} \${matchResult.user.zodiac}`,
-    settings3: `🧠 MBTI: \${user.mbti_result}
- {user.mbti_result || '未設定'} \${user.mbti_result}`,
-    settings4: `⭐ Zodiac: \${user.zodiac_sign}
- {user.zodiac_sign || '未設定'} \${user.zodiac_sign}`,
+    selected: `已選擇：{selected}`,
+    settings: `🧠 MBTI: \${mbti}
+ \${mbti}`,
+    settings2: `⭐ Zodiac: \${zodiac}
+ \${zodiac}`,
+    settings3: `🧠 MBTI: \${mbti}
+ \${mbti}`,
+    settings4: `⭐ Zodiac: \${zodiac}
+ \${zodiac}`,
     settings5: `Not Set`,
     settings6: `Not Set`,
     settings7: `Not Set`,
@@ -5984,12 +6247,12 @@ Current selection: \${bloodTypeDisplay[currentBloodType]}
 `,
     message2: `Application time: \${new Date(req.requested_at).toLocaleString('en-US')}
  {new Date(req.requested_at).toLocaleString('zh-TW')} \${new Date(req.requested_at).toLocaleString('zh-TW')}`,
-    message3: `New expiration time: \${newExpire.toLocaleDateString('en-US')}
+    message3: `New expiration time: \${expireDate}
 
- {newExpire.toLocaleDateString('zh-TW')} \${newExpire.toLocaleDateString('zh-TW')}`,
-    message4: `Expiration time: \${newExpire.toLocaleDateString('en-US')}
+ {newExpire.toLocaleDateString('zh-TW')} \${expireDate}`,
+    message4: `Expiration time: \${expireDate}
 
- {newExpire.toLocaleDateString('zh-TW')} \${newExpire.toLocaleDateString('zh-TW')}`,
+ {newExpire.toLocaleDateString('zh-TW')} \${expireDate}`,
     message5: `Payment time: \${paymentDate.toLocaleDateString('en-US')}
  {paymentDate.toLocaleDateString('zh-TW')} \${paymentDate.toLocaleDateString('zh-TW')}`,
     message6: `📋 **Pending refund requests** (\${requests.results.length})
@@ -6334,124 +6597,122 @@ Use /start to continue registration.`,
     userNotFound2: `⚠️ User does not exist`,
     vip: `⚠️ Reached the free user invitation limit, upgrade to VIP to unlock the limit of 100 users!`,
     vip2: `⚠️ This feature is for VIP members only`,
-    vip3: `⚠️ **VIP expires today**`,
-    pageInfo: `📄 Page {page}/{totalPages}`,
-    cancel3: `[需要翻译]`,
-    catch4: `[需要翻译]`,
-    rewardPermanent: `[需要翻译]`,
-    communityThanks: `[需要翻译]`,
+    vip3: `⚠️ **VIP expires today**
+
+`,
   },
   warnings: {
-    birthday: `[Translation needed: warnings.birthday]`,
+    birthday: `⚠️ Birthday cannot be modified once set, please confirm it is correct!`,
     bloodType: `🩸 Blood Type`,
     gender: `👤 Gender: {otherUser.gender}`,
     mbti: `🧠 MBTI: \\\\\\\\\\\${mbti}`,
     register2: `[Needs translation: warnings.register2]`,
     register4: `[Needs translation: warnings.register4]`,
-    settings: `🧠 MBTI: \\\\\\\\\\\${bottle.mbti_result}`,
+    settings: `🧠 MBTI: \\\\\\\\\\\\$`,
     text5: `📖 Bio: {otherUser.bio}`,
     text6: `[Needs translation: warnings.text6]`,
     userNotFound: `User does not exist`,
-    'warning.ad': `⚠️ Currently no ad providers configured
+    warning: {
+      ad: `⚠️ Currently no ad providers configured
 
 `,
-    'warning.ad2': `⚠️ Currently no official ads
+      ad2: `⚠️ Currently no official ads
 
 `,
-    'warning.ad3': `⚠️ No available ad providers at this time`,
-    'warning.ad4': `⚠️ Unable to select ad provider`,
-    'warning.ad5': `⚠️ Unable to watch more ads`,
-    'warning.birthday': `⚠️ Currently not in birthday input step`,
-    'warning.bloodType': `⚠️ Currently not in blood type selection step`,
-    'warning.broadcast': `⚠️ Found \\\${stuckBroadcasts.results.length} stuck broadcasts
+      ad3: `⚠️ No available ad providers at this time`,
+      ad4: `⚠️ Unable to select ad provider`,
+      ad5: `⚠️ Unable to watch more ads`,
+      birthday: `⚠️ Currently not in birthday input step`,
+      bloodType: `⚠️ Currently not in blood type selection step`,
+      broadcast: `⚠️ Found \\\${stuckBroadcasts.results.length} stuck broadcasts
 
 `,
-    'warning.complete': `⚠️ Please complete the previous ad before starting a new one`,
-    'warning.confirm': `⚠️ Please confirm your birthday information: 
+      complete: `⚠️ Please complete the previous ad before starting a new one`,
+      confirm: `⚠️ Please confirm your birthday information: 
 
 `,
-    'warning.conversation': `⚠️ Conversation information is incorrect.`,
-    'warning.conversation10': `⚠️ Conversation does not exist`,
-    'warning.conversation2': `⚠️ Conversation information is incorrect`,
-    'warning.conversation3': `⚠️ This user has no conversation history posts
+      conversation: `⚠️ Conversation information is incorrect.`,
+      conversation10: `⚠️ Conversation does not exist`,
+      conversation2: `⚠️ Conversation information is incorrect`,
+      conversation3: `⚠️ This user has no conversation history posts
 `,
-    'warning.conversation4': `⚠️ Cannot find the specified conversation, it may have ended or expired.`,
-    'warning.conversation5': `⚠️ **Conversation history partially updated**
+      conversation4: `⚠️ Cannot find the specified conversation, it may have ended or expired.`,
+      conversation5: `⚠️ **Conversation history partially updated**
 
 `,
-    'warning.conversation6': `⚠️ Unable to identify conversation partner
+      conversation6: `⚠️ Unable to identify conversation partner
 
 `,
-    'warning.conversation7': `⚠️ Cannot find this conversation
+      conversation7: `⚠️ Cannot find this conversation
 
 `,
-    'warning.conversation8': `⚠️ Conversation does not exist or has ended`,
-    'warning.conversation9': `⚠️ This conversation has ended`,
-    'warning.end': `⚠️ Quiz has ended or does not exist`,
-    'warning.failed': `⚠️ Payment verification failed, please try again later`,
-    'warning.gender': `⚠️ Currently not in the gender selection step`,
-    'warning.invite': `⚠️ Unable to retrieve invitation code`,
-    'warning.mbti': `⚠️ Currently not in the MBTI quiz step`,
-    'warning.mbti2': `⚠️ Invalid MBTI type`,
-    'warning.message': `⚠️ Found \\\${outdatedPosts.length} outdated posts needing refresh
+      conversation8: `⚠️ Conversation does not exist or has ended`,
+      conversation9: `⚠️ This conversation has ended`,
+      end: `⚠️ Quiz has ended or does not exist`,
+      failed: `⚠️ Payment verification failed, please try again later`,
+      gender: `⚠️ Currently not in the gender selection step`,
+      invite: `⚠️ Unable to retrieve invitation code`,
+      mbti: `⚠️ Currently not in the MBTI quiz step`,
+      mbti2: `⚠️ Invalid MBTI type`,
+      message: `⚠️ Found \\\${outdatedPosts.length} outdated posts needing refresh
 `,
-    'warning.message2': `⚠️ Note: This is \\\${testInfo}\\\${testTitle}, \\\${accuracy}.
+      message2: `⚠️ Note: This is \\\${testInfo}\\\${testTitle}, \\\${accuracy}.
 
 `,
-    'warning.message3': `⚠️ Please long-press the message you want to block and reply with the command
+      message3: `⚠️ Please long-press the message you want to block and reply with the command
 
 `,
-    'warning.message4': `⚠️ Please long-press the message you want to report and reply with the command
+      message4: `⚠️ Please long-press the message you want to report and reply with the command
 
 `,
-    'warning.message5': `⚠️ **Message contains prohibited links**
+      message5: `⚠️ **Message contains prohibited links**
 
 `,
-    'warning.register': `⚠️ User data not found, please register first using /start.`,
-    'warning.register2': `⚠️ Please complete the registration process first.
+      register: `⚠️ User data not found, please register first using /start.`,
+      register2: `⚠️ Please complete the registration process first.
 
 Continue registration using /start.`,
-    'warning.register3': `⚠️ There was a problem with the registration process, please start over: /start`,
-    'warning.register4': `⚠️ Please complete the registration process first.`,
-    'warning.settings': `⚠️ Reminder: Once set, gender **cannot be modified** forever!
+      register3: `⚠️ There was a problem with the registration process, please start over: /start`,
+      register4: `⚠️ Please complete the registration process first.`,
+      settings: `⚠️ Reminder: Once set, gender **cannot be modified** forever!
 
 `,
-    'warning.settings2': `⚠️ Birthday cannot be modified once set, please confirm it is correct!`,
-    'warning.settings3': `⚠️ Note: Gender cannot be modified once set, please choose wisely!`,
-    'warning.short': `⚠️ Incorrect question order`,
-    'warning.short2': `⚠️ Unknown option`,
-    'warning.short3': `⚠️ Invalid request`,
-    'warning.short4': `⚠️ Attention: 
-`,
-    'warning.short5': `⚠️ Other violations`,
-    'warning.start': `⚠️ Session has expired, please start over: /throw`,
-    'warning.start2': `⚠️ Session has expired, please restart`,
-    'warning.task': `⚠️ Unknown task type`,
-    'warning.text': `⚠️ **Note**
+      settings2: `⚠️ Birthday cannot be modified once set, please confirm it is correct!`,
+      settings3: `⚠️ Note: Gender cannot be modified once set, please choose wisely!`,
+      short: `⚠️ Incorrect question order`,
+      short2: `⚠️ Unknown option`,
+      short3: `⚠️ Invalid request`,
+      short4: `⚠️ Nickname length limit: 36 characters`,
+      short5: `⚠️ Other violations`,
+      start: `⚠️ Session has expired, please start over: /throw`,
+      start2: `⚠️ Session has expired, please restart`,
+      task: `⚠️ Unknown task type`,
+      text: `⚠️ **Note**
 
 `,
-    'warning.text10': `⚠️ **Non-modifiable items**: 
+      text10: `⚠️ **Non-modifiable items**: 
 `,
-    'warning.text11': `⚠️ Session has expired, please re-operate`,
-    'warning.text12': `⚠️ Draft does not exist or has expired`,
-    'warning.text2': `⚠️ Invalid payment type`,
-    'warning.text3': `⚠️ Translation service is temporarily unavailable, showing original text below
+      text11: `⚠️ Session has expired, please re-operate`,
+      text12: `⚠️ Draft does not exist or has expired`,
+      text2: `⚠️ Invalid payment type`,
+      text3: `⚠️ Translation service is temporarily unavailable, showing original text below
 `,
-    'warning.text4': `⚠️ Safety reminder: 
+      text4: `⚠️ Safety reminder: 
 `,
-    'warning.text5': `⚠️ Currently not in the anti-fraud test step`,
-    'warning.text6': `⚠️ Currently not in the terms of service step`,
-    'warning.text7': `⚠️ Note: This feature is only available in the Staging environment.`,
-    'warning.text8': `⚠️ **Sending images, videos, or multimedia is not allowed**
+      text5: `⚠️ Currently not in the anti-fraud test step`,
+      text6: `⚠️ Currently not in the terms of service step`,
+      text7: `⚠️ Note: This feature is only available in the Staging environment.`,
+      text8: `⚠️ **Sending images, videos, or multimedia is not allowed**
 
 `,
-    'warning.text9': `⚠️ This feature is only available in the Staging environment.`,
-    'warning.userNotFound': `⚠️ User does not exist, please use /start to register first.`,
-    'warning.userNotFound2': `⚠️ User does not exist`,
-    'warning.vip': `⚠️ Reached the limit for free user invitations; upgrade to VIP to unlock a limit of 100 people!`,
-    'warning.vip2': `⚠️ This feature is for VIP members only`,
-    'warning.vip3': `⚠️ **VIP expires today**
+      text9: `⚠️ This feature is only available in the Staging environment.`,
+      userNotFound: `⚠️ User does not exist, please use /start to register first.`,
+      userNotFound2: `⚠️ User does not exist`,
+      vip: `⚠️ Reached the limit for free user invitations; upgrade to VIP to unlock a limit of 100 people!`,
+      vip2: `⚠️ This feature is for VIP members only`,
+      vip3: `⚠️ **VIP expires today**
 
 `,
+    },
   },
 };

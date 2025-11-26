@@ -148,7 +148,7 @@ export async function generateDailyReport(db: D1Database, date: string): Promise
 /**
  * Format daily report for Telegram
  */
-export function formatDailyReport(report: DailyReport, i18n?: any): string {
+export async function formatDailyReport(report: DailyReport, i18n?: any): Promise<string> {
   // 檢查是否有任何活動
   const hasActivity =
     report.user_metrics.dau > 0 ||
@@ -157,7 +157,7 @@ export function formatDailyReport(report: DailyReport, i18n?: any): string {
     report.content_metrics.bottles_thrown > 0;
 
   if (!i18n) {
-    const { createI18n } = require('~/i18n');
+    const { createI18n } = await import('~/i18n');
     i18n = createI18n('zh-TW');
   }
 
@@ -237,7 +237,7 @@ export async function generateAdPerformanceReport(
 /**
  * Format ad performance report for Telegram
  */
-export function formatAdPerformanceReport(report: AdPerformanceReport, i18n?: any): string {
+export async function formatAdPerformanceReport(report: AdPerformanceReport, i18n?: any): Promise<string> {
   // 檢查是否有廣告數據
   const hasAdData =
     report.third_party.total_impressions > 0 ||
@@ -245,7 +245,7 @@ export function formatAdPerformanceReport(report: AdPerformanceReport, i18n?: an
     (report.provider_comparison && report.provider_comparison.length > 0);
 
   if (!i18n) {
-    const { createI18n } = require('~/i18n');
+    const { createI18n } = await import('~/i18n');
     i18n = createI18n('zh-TW');
   }
 

@@ -61,10 +61,10 @@ export async function sendDailyReportsToSuperAdmins(env: Env): Promise<void> {
     const dailyReportData = await generateDailyReport(db.d1, dateStr);
     const { createI18n } = await import('~/i18n');
     const i18n = createI18n('zh-TW'); // Admin reports use Chinese
-    const dailyReport = formatDailyReport(dailyReportData, i18n);
+    const dailyReport = await formatDailyReport(dailyReportData, i18n);
 
     const adReportData = await generateAdPerformanceReport(db.d1, dateStr, dateStr);
-    const adReport = formatAdPerformanceReport(adReportData, i18n);
+    const adReport = await formatAdPerformanceReport(adReportData, i18n);
 
     const funnelReportData = await generateVIPFunnelReport(db.d1, dateStr, dateStr);
     const funnelReport = formatVIPFunnelReport(funnelReportData, i18n);

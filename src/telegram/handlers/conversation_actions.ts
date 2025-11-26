@@ -101,7 +101,8 @@ export async function handleConversationProfile(
     profileMessage += i18n.t('conversation.settings', { otherUser: { mbti_result: otherUser.mbti_result } }) + '\n';
     profileMessage += i18n.t('conversation.zodiac2', { zodiacLabel }) + '\n';
     profileMessage += i18n.t('conversation.bloodType2', { bloodTypeText }) + '\n';
-    profileMessage += i18n.t('conversation.gender', { otherUser }) + '\n';
+    const genderText = otherUser.gender === 'male' ? i18n.t('common.male') : otherUser.gender === 'female' ? i18n.t('common.female') : i18n.t('common.notSet');
+    profileMessage += i18n.t('conversation.gender', { gender: genderText }) + '\n';
     profileMessage += i18n.t('conversation.age', { ageRange }) + '\n';
 
     if (otherUser.city) {

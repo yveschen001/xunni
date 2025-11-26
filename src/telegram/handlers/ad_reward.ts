@@ -437,7 +437,7 @@ export async function handleAdError(
   errorMessage: string,
   env: Env
 ): Promise<void> {
-  const db = createDatabaseClient(env.DB);
+  const _db = createDatabaseClient(env.DB);
   const telegram = createTelegramService(env);
 
   try {

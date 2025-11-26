@@ -49,10 +49,10 @@ export async function handleBroadcast(message: TelegramMessage, env: Env): Promi
     const broadcastMessage = text.substring(text.indexOf(' ') + 1);
 
     // Validate message
-    const validation = validateBroadcastMessage(broadcastMessage);
+    const user = await findUserByTelegramId(db, telegramId);
+    const i18n = createI18n(user?.language_pref || 'zh-TW');
+    const validation = validateBroadcastMessage(broadcastMessage, i18n);
     if (!validation.valid) {
-      const user = await findUserByTelegramId(db, telegramId);
-      const i18n = createI18n(user?.language_pref || 'zh-TW');
       await telegram.sendMessage(chatId, `❌ ${validation.error}`);
       return;
     }
@@ -70,13 +70,11 @@ export async function handleBroadcast(message: TelegramMessage, env: Env): Promi
     const estimatedTime = estimateBroadcastTime(totalUsers);
 
     // Confirm to admin
-    const user = await findUserByTelegramId(db, telegramId);
-    const i18n = createI18n(user?.language_pref || 'zh-TW');
     await telegram.sendMessage(
       chatId,
       i18n.t('broadcast.created') +
         i18n.t('broadcast.id', { id: broadcastId }) +
-        i18n.t('broadcast.target', { target: i18n.t('broadcast.targetAll') }) +
+        i18n.t('broadcast.targetLabel', { target: i18n.t('broadcast.targetAll') }) +
         i18n.t('broadcast.userCount', { count: totalUsers }) +
         i18n.t('broadcast.estimatedTime', { time: estimatedTime }) +
         i18n.t('broadcast.sendingInBackground', { id: broadcastId })
@@ -115,11 +113,11 @@ export async function handleBroadcastVip(message: TelegramMessage, env: Env): Pr
     }
 
     const broadcastMessage = text.substring(text.indexOf(' ') + 1);
-    const validation = validateBroadcastMessage(broadcastMessage);
+    const user = await findUserByTelegramId(db, telegramId);
+    const i18n = createI18n(user?.language_pref || 'zh-TW');
+    const validation = validateBroadcastMessage(broadcastMessage, i18n);
 
     if (!validation.valid) {
-      const user = await findUserByTelegramId(db, telegramId);
-      const i18n = createI18n(user?.language_pref || 'zh-TW');
       await telegram.sendMessage(chatId, `❌ ${validation.error}`);
       return;
     }
@@ -134,13 +132,11 @@ export async function handleBroadcastVip(message: TelegramMessage, env: Env): Pr
     const { estimateBroadcastTime } = await import('~/domain/broadcast');
     const estimatedTime = estimateBroadcastTime(totalUsers);
 
-    const user = await findUserByTelegramId(db, telegramId);
-    const i18n = createI18n(user?.language_pref || 'zh-TW');
     await telegram.sendMessage(
       chatId,
       i18n.t('broadcast.created') +
         i18n.t('broadcast.id', { id: broadcastId }) +
-        i18n.t('broadcast.target', { target: i18n.t('broadcast.targetVip') }) +
+        i18n.t('broadcast.targetLabel', { target: i18n.t('broadcast.targetVip') }) +
         i18n.t('broadcast.userCount', { count: totalUsers }) +
         i18n.t('broadcast.estimatedTime', { time: estimatedTime }) +
         i18n.t('broadcast.sendingInBackground', { id: broadcastId })
@@ -179,11 +175,11 @@ export async function handleBroadcastNonVip(message: TelegramMessage, env: Env):
     }
 
     const broadcastMessage = text.substring(text.indexOf(' ') + 1);
-    const validation = validateBroadcastMessage(broadcastMessage);
+    const user = await findUserByTelegramId(db, telegramId);
+    const i18n = createI18n(user?.language_pref || 'zh-TW');
+    const validation = validateBroadcastMessage(broadcastMessage, i18n);
 
     if (!validation.valid) {
-      const user = await findUserByTelegramId(db, telegramId);
-      const i18n = createI18n(user?.language_pref || 'zh-TW');
       await telegram.sendMessage(chatId, `❌ ${validation.error}`);
       return;
     }
@@ -198,13 +194,11 @@ export async function handleBroadcastNonVip(message: TelegramMessage, env: Env):
     const { estimateBroadcastTime } = await import('~/domain/broadcast');
     const estimatedTime = estimateBroadcastTime(totalUsers);
 
-    const user = await findUserByTelegramId(db, telegramId);
-    const i18n = createI18n(user?.language_pref || 'zh-TW');
     await telegram.sendMessage(
       chatId,
       i18n.t('broadcast.created') +
         i18n.t('broadcast.id', { id: broadcastId }) +
-        i18n.t('broadcast.target', { target: i18n.t('broadcast.targetNonVip') }) +
+        i18n.t('broadcast.targetLabel', { target: i18n.t('broadcast.targetNonVip') }) +
         i18n.t('broadcast.userCount', { count: totalUsers }) +
         i18n.t('broadcast.estimatedTime', { time: estimatedTime }) +
         i18n.t('broadcast.sendingInBackground', { id: broadcastId })
@@ -267,7 +261,7 @@ export async function handleBroadcastProcess(message: TelegramMessage, env: Env)
 
     let message = i18n.t('broadcast.queueTriggered', { emoji: statusEmoji });
     message += i18n.t('broadcast.processingBroadcast', { id: broadcast.id });
-    message += i18n.t('broadcast.status', { status: statusText });
+    message += i18n.t('broadcast.statusLabel', { status: statusText });
     message += i18n.t('broadcast.targetType', { type: broadcast.target_type });
     message += i18n.t('broadcast.userCount2', { count: broadcast.total_users });
 

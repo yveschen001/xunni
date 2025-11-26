@@ -61,8 +61,8 @@ export async function handleMenu(message: TelegramMessage, env: Env): Promise<vo
       `${i18n.t('menu.text2', { user: { nickname: user.nickname } })}\n\n` +
       `${i18n.t('menu.yourStatus')}\n` +
       `• ${isVip ? i18n.t('menu.levelVip') : i18n.t('menu.levelFree')}\n` +
-      `${i18n.t('menu.settings', { user: { mbti_result: user.mbti_result || i18n.t('menu.notSet') } })}\n` +
-      `${i18n.t('menu.settings2', { user: { zodiac_sign: user.zodiac_sign || i18n.t('menu.notSet') } })}\n\n`;
+      `${i18n.t('menu.settings', { mbti: user.mbti_result || i18n.t('menu.notSet') })}\n` +
+      `${i18n.t('menu.settings2', { zodiac: user.zodiac_sign || i18n.t('menu.notSet') })}\n\n`;
 
     // Add next task reminder if exists
     if (nextTask) {

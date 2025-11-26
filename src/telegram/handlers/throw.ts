@@ -609,9 +609,9 @@ export async function processBottleContent(user: User, content: string, env: Env
             matchedChatId,
             `🍾 ${contentPreview} 📨🌊\n\n` +
               i18n.t('throw.nickname', { matchedUserMaskedNickname: ownerMaskedNickname }) + '\n' +
-              i18n.t('throw.settings3', { user: { mbti_result: user.mbti_result } }) +
+              i18n.t('throw.settings3', { mbti: user.mbti_result }) +
               '\n' +
-              i18n.t('throw.settings4', { user: { zodiac_sign: user.zodiac_sign } }) +
+              i18n.t('throw.settings4', { zodiac: user.zodiac_sign }) +
               '\n' +
               i18n.t('throw.text', { matchPercentage }) +
               '\n' +
@@ -634,9 +634,9 @@ export async function processBottleContent(user: User, content: string, env: Env
               '\n\n' +
               i18n.t('throw.nickname', { matchedUserMaskedNickname }) +
               '\n' +
-              i18n.t('throw.settings', { matchResult: { user: { mbti_result: matchResult.user.mbti_result } } }) +
+              i18n.t('throw.settings', { mbti: matchResult.user.mbti_result || i18n.t('common.notSet') }) +
               '\n' +
-              i18n.t('throw.settings2', { matchResult: { user: { zodiac: matchResult.user.zodiac } } }) +
+              i18n.t('throw.settings2', { zodiac: matchResult.user.zodiac || i18n.t('common.notSet') }) +
               '\n' +
               i18n.t('throw.text', { matchPercentage }) +
               '\n' +

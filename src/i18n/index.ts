@@ -66,7 +66,18 @@ export function t(
     if (value && typeof value === 'object') {
       // First try direct property access
       if (k in value) {
-        value = (value as Record<string, unknown>)[k] as Record<string, unknown> | string;
+        const nextValue = (value as Record<string, unknown>)[k] as Record<string, unknown> | string;
+        // If the value is a string but there are more keys, try combining with next key
+        // This handles cases like onboarding.gender.male where gender is a string but gender.male exists
+        if (typeof nextValue === 'string' && i < keys.length - 1) {
+          const combinedKey = `${k}.${keys[i + 1]}`;
+          if (combinedKey in value) {
+            value = (value as Record<string, unknown>)[combinedKey] as Record<string, unknown> | string;
+            i++; // Skip next key since we already used it
+            continue;
+          }
+        }
+        value = nextValue;
       } else if (i < keys.length - 1) {
         // If not found and there are more keys, try combining with next key (for keys like 'name.city')
         const combinedKey = `${k}.${keys[i + 1]}`;

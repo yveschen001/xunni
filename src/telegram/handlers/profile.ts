@@ -53,7 +53,8 @@ export async function handleProfile(message: TelegramMessage, env: Env): Promise
     const mbti = user.mbti_result || i18n.t('profile.settings');
     const mbtiSource =
       user.mbti_source === 'manual' ? ` (${i18n.t('profile.manual')})` : user.mbti_source === 'test' ? ` (${i18n.t('profile.test')})` : '';
-    const zodiac = user.zodiac_sign || 'Virgo';
+    const { getZodiacDisplay } = await import('~/domain/zodiac');
+    const zodiac = getZodiacDisplay(user.zodiac_sign, i18n);
     const { getBloodTypeDisplay } = await import('~/domain/blood_type');
     const { createI18n: createI18nForBloodType } = await import('~/i18n');
     const bloodTypeI18n = createI18nForBloodType(user.language_pref || 'zh-TW');
@@ -153,7 +154,8 @@ export async function handleProfileCard(message: TelegramMessage, env: Env): Pro
     const age = user.birthday ? calculateAge(user.birthday) : '?';
     const gender = user.gender === 'male' ? i18n.t('profile.cardGenderMale') : user.gender === 'female' ? i18n.t('profile.cardGenderFemale') : '?';
     const mbti = user.mbti_result || i18n.t('profile.notSet');
-    const zodiac = user.zodiac_sign || 'Virgo';
+    const { getZodiacDisplay } = await import('~/domain/zodiac');
+    const zodiac = getZodiacDisplay(user.zodiac_sign, i18n);
     const interests = user.interests ? JSON.parse(user.interests as string).join(', ') : i18n.t('profile.notSet');
     const bio = user.bio || i18n.t('profile.mysterious');
     const city = user.city || i18n.t('profile.notSet');
