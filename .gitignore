@@ -56,3 +56,12 @@ secrets/
 
 # TypeScript
 *.tsbuildinfo
+
+# Local Documents and Scripts
+*.pdf
+i18n_for_translation_fixed_*.csv
+*_REPORT.md
+TEST_STATUS_REPORT.md
+SMOKE_TEST_OPTIMIZATION_SUMMARY.md
+DEPLOYMENT_READINESS.md
+.cursorignore
