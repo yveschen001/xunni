@@ -1,6720 +1,4079 @@
 import type { Translations } from '../types';
 
-/**
- * ro translations
- * Auto-generated from i18n_for_translation.csv
- */
 export const translations: Translations = {
-  ad: {
-    ad: `💡 繼續觀看廣告可獲得更多額度！（已修正）`,
-    failed: `❌ 廣告載入失敗，請稍後再試`,
+  "ad": {
+    "ad": "💡 Continuă să vizionezi reclame pentru a câștiga mai multe cote! (Fixat)",
+    "failed": "❌ Eșec la încărcarea reclamelor, te rugăm să încerci din nou mai târziu"
   },
-  adPrompt: {
-    completeTask: `• ✨ 完成任務（獲得永久配額）`,
-    inviteFriends: `• 🎁 邀請好友（每人 +1 配額）`,
-    quotaExhausted: `❌ 今日漂流瓶配額已用完（\${quotaDisplay}）`,
-    taskButton: `✨ \${taskName} 🎁`,
-    upgradeVip: `• 💎 升級 VIP（每天 30 個配額）`,
-    watchAd: `• 📺 觀看廣告（剩餘 \${remaining}/20 次）`,
-    watchAdLimit: `• 📺 觀看廣告（今日已達上限）`,
-    waysToGetMore: `💡 獲得更多配額的方式：`,
+  "adPrompt": {
+    "completeTask": "• ✨ Finalizează sarcini (câștigă cotă permanentă)",
+    "inviteFriends": "• 🎁 Invitați prieteni (câștigă +1 cotă per persoană)",
+    "quotaExhausted": "❌ Cota mesajului de astăzi a fost consumată (${quotaDisplay})",
+    "taskButton": "✨ ${taskName} 🎁",
+    "upgradeVip": "• 💎 Upgrade la VIP (30 cote zilnice)",
+    "watchAd": "• 📺 Vizionare reclame (rămase ${remaining}/20 ori)",
+    "watchAdLimit": "• 📺 Vizionare reclame (limita zilnică atinsă)",
+    "waysToGetMore": "💡 Modalități de a câștiga mai multe cote:"
   },
-  adProvider: {
-    health: {
-      good: `良好`,
-      needsAttention: `需要關注`,
+  "adProvider": {
+    "health": {
+      "good": "Bine",
+      "needsAttention": "Trebuie să acorzi atenție"
+    }
+  },
+  "adReward": {
+    "adCompleted": "Reclama finalizată! Câștigat +${quota} cote",
+    "cannotSelectProvider": "⚠️ Imposibil de selectat furnizor de reclame",
+    "cannotWatchMore": "⚠️ Imposibil de vizionat mai multe reclame",
+    "clickButtonHint": "✅ Te rog să dai clic pe buton pentru a începe vizionarea",
+    "completedEarned": "🎁 Cota totală câștigată astăzi: **${earned}** cote",
+    "completedRemaining": "📈 Încercări rămase: **${remaining}** ori",
+    "completedReward": "✅ Câștigat **+1 cotă**",
+    "completedTitle": "🎉 **Vizionarea reclamei completă!**",
+    "completedWatched": "📊 Reclamele vizionate astăzi: **${watched}/20** ori",
+    "continueWatching": "💡 Continuă să vizionezi reclame pentru a câștiga mai multe cote!",
+    "dailyLimitReached": "Reclamele de astăzi au atins limita (${max}/${max})",
+    "getStatusFailed": "❌ Eșec la recuperarea stării reclamei",
+    "noProviders": "⚠️ Nu sunt furnizori de reclame disponibili în acest moment",
+    "pendingAd": "⚠️ Te rog să finalizezi reclama anterioară înainte de a începe o nouă",
+    "startWatchButton": "📺 Începe vizionarea reclamelor",
+    "vipNoAds": "💎 Utilizatorii VIP nu trebuie să vizioneze reclame",
+    "vipNoAdsReason": "Utilizatorii VIP au cote nelimitate și nu trebuie să vizioneze reclame",
+    "watchAdClickButton": "👇 Dă clic pe butonul de mai jos pentru a începe vizionarea",
+    "watchAdRemaining": "📊 Rămase astăzi: **${remaining}/20** ori",
+    "watchAdReward": "🎁 Finalizează vizionarea pentru a câștiga **+1 cotă**",
+    "watchAdTitle": "📺 **Câștigă cote vizionând reclame**"
+  },
+  "admin": {
+    "ad": "Folosește /official_ads pentru a vizualiza toate reclamele",
+    "ad2": "Te rog să folosești scriptul de baze de date pentru a adăuga furnizori de reclame:\n",
+    "ad3": "📺 **Lista Furnizorilor de Reclame**\n\n",
+    "ad4": "Te rog să folosești scriptul de baze de date pentru a adăuga reclame oficiale:\n",
+    "ad5": "📢 **Lista Oficială de Reclame**\n\n",
+    "adConfig": {
+      "adIdMustBeNumber": "❌ ID-ul reclamei trebuie să fie un număr",
+      "addOfficialAdScript": "Te rog să folosești scriptul de baze de date pentru a adăuga reclame oficiale:",
+      "addProviderScript": "Te rog să folosești scriptul de baze de date pentru a adăuga furnizori de reclame:",
+      "clicks": "• Clickuite: ${count} ori",
+      "correctFormat": "**Format corect:**",
+      "disableCommand": "• `/ad_provider_disable <id>` - Dezactivează",
+      "disableFailed": "❌ Eșec la dezactivarea furnizorului de reclame",
+      "disableOfficialAdCommand": "• `/official_ad_disable <id>` - Dezactivează",
+      "disableOfficialAdFailed": "❌ Eșec la dezactivarea reclamei oficiale",
+      "disabled": "❌ Dezactivează",
+      "enableCommand": "• `/ad_provider_enable <id>` - Activează",
+      "enableFailed": "❌ Eșec la activarea furnizorului de reclame",
+      "enableOfficialAdCommand": "• `/official_ad_enable <id>` - Activare",
+      "enableOfficialAdFailed": "❌ A fost o eroare la activarea anunțurilor oficiale",
+      "enabled": "✅ Activat",
+      "example": "**Exemplu:**",
+      "getListFailed": "❌ A fost o eroare la obținerea listei de furnizori de anunțuri",
+      "getOfficialAdListFailed": "❌ A fost o eroare la obținerea listei de anunțuri oficiale",
+      "id": "• ID: ${id}",
+      "impressions": "• Afișat: ${count} ori",
+      "managementCommands": "**Comenzi Admin:**",
+      "noOfficialAds": "⚠️ În prezent nu există anunțuri oficiale",
+      "noProviders": "⚠️ Nu sunt configurați furnizori de anunțuri în acest moment",
+      "officialAdDisabled": "✅ Anunț oficial dezactivat #${id}",
+      "officialAdEnabled": "✅ Anunț oficial activat #${id}",
+      "officialAdList": "📢 **Lista Anunțurilor Oficiale**",
+      "priority": "• Prioritate: ${priority}",
+      "priorityCommand": "• `/ad_provider_priority <id> <priority>` - Setează prioritatea",
+      "priorityMustBeNonNegative": "❌ Prioritatea trebuie să fie un număr întreg non-negativ",
+      "prioritySet": "✅ Prioritatea furnizorului de anunțuri setată",
+      "priorityValue": "Prioritate: ${priority}",
+      "provider": "Furnizor: ${name}",
+      "providerDisabled": "✅ Furnizor de anunțuri dezactivat: ${name}",
+      "providerEnabled": "✅ Furnizor de anunțuri activat: ${name}",
+      "providerList": "📺 **Lista Furnizorilor de Anunțuri**",
+      "reward": "• Recompensă: ${reward}",
+      "setPriorityFailed": "❌ A fost o eroare la setarea priorității",
+      "status": "• Statut: ${status}",
+      "testMode": "• 🧪 Mod Test",
+      "type": "• Tip: ${type}",
+      "usageError": "❌ Utilizare incorectă",
+      "viewAllOfficialAds": "Utilizează /official_ads pentru a vizualiza toate anunțurile",
+      "viewAllProviders": "Utilizează /ad_providers pentru a vizualiza toți furnizorii",
+      "viewStatsCommand": "• `/ad_stats <id>` - Vizualizează statistici detaliate",
+      "weight": "• Greutate: ${weight}"
     },
-  },
-  adReward: {
-    adCompleted: `廣告完成！獲得 +\${quota} 個配額`,
-    cannotSelectProvider: `⚠️ 無法選擇廣告提供商`,
-    cannotWatchMore: `⚠️ 無法觀看更多廣告`,
-    clickButtonHint: `✅ 請點擊按鈕開始觀看`,
-    completedEarned: `🎁 今日已獲得：**\${earned}** 個額度`,
-    completedRemaining: `📈 剩餘次數：**\${remaining}** 次`,
-    completedReward: `✅ 獲得 **+1 個額度**`,
-    completedTitle: `🎉 **廣告觀看完成！**`,
-    completedWatched: `📊 今日已觀看：**\${watched}/20** 次`,
-    continueWatching: `💡 繼續觀看廣告可獲得更多額度！`,
-    dailyLimitReached: `今日廣告已達上限（\${max}/\${max}）`,
-    getStatusFailed: `❌ 獲取廣告狀態失敗`,
-    noProviders: `⚠️ 暫無可用的廣告提供商`,
-    pendingAd: `⚠️ 請先完成上一支廣告，再開始新的廣告`,
-    startWatchButton: `📺 開始觀看廣告`,
-    vipNoAds: `💎 VIP 用戶無需觀看廣告`,
-    vipNoAdsReason: `VIP 用戶擁有無限配額，無需觀看廣告`,
-    watchAdClickButton: `👇 點擊下方按鈕開始觀看`,
-    watchAdRemaining: `📊 今日剩餘：**\${remaining}/20** 次`,
-    watchAdReward: `🎁 完成觀看可獲得 **+1 個額度**`,
-    watchAdTitle: `📺 **觀看廣告獲得額度**`,
-  },
-  admin: {
-    ad: `使用 /official_ads 查看所有廣告`,
-    ad2: `請使用資料庫腳本添加廣告提供商：
-`,
-    ad3: `📺 **廣告提供商列表**
-
-`,
-    ad4: `請使用資料庫腳本添加官方廣告：
-`,
-    ad5: `📢 **官方廣告列表**
-
-`,
-    addAlreadyAdmin: `❌ 此用戶已經是管理員。`,
-    addAlreadySuperAdmin: `❌ 此用戶已經是超級管理員，無需添加。`,
-    addCommand: `\`/admin_add <user_id>\`
-
-`,
-    addExample: `\`/admin_add 123456789\` - 添加為普通管理員
-
-`,
-    addInstructions: `⚠️ **注意**
-
-此命令需要手動修改配置文件。
-
-**步驟：**
-1. 編輯 \`wrangler.toml\`
-2. 找到 \`ADMIN_USER_IDS\` 變數
-3. 添加用戶 ID：\`{userId}\`
-4. 格式：\`ADMIN_USER_IDS = "ID1,ID2,{userId}"\`
-5. 重新部署：\`pnpm deploy:staging\`
-
-**用戶資訊：**
-• ID: \`{userId}\`
-• 暱稱: {nickname}
-• 用戶名: @{username}
-
-💡 或在 Cloudflare Dashboard 中修改環境變數`,
-    addUsageError: `❌ 使用方法錯誤
-
-`,
-    addUserNotFound: `❌ 用戶不存在或未註冊。`,
-    admin: `💡 使用 /admin_list 查看當前管理員列表`,
-    admin2: `管理員封禁 / Admin ban`,
-    admin3: `- 添加為普通管理員
-
-`,
-    admin4: `- 移除普通管理員
-
-`,
-    admin5: `\`/admin_add 123456789\` - 添加為普通管理員
-
-`,
-    admin6: `\`/admin_remove 123456789\` - 移除普通管理員
-
-`,
-    appeal: `申訴 ID: \${appeal.id}
-`,
-    appeal2: `💡 使用以下命令審核申訴：
-`,
-    appeal3: `📋 待審核申訴列表
-
-`,
-    appeal4: `申訴已批准`,
-    appeal5: `申訴被拒絕`,
-    appealAlreadyReviewed: `❌ 申訴 {id} 已經被審核過了`,
-    appealApproveUsageError: `❌ 請提供申訴 ID
-
-用法: /admin_approve <appeal_id> [備註]`,
-    appealApproved: `✅ 申訴 {id} 已批准，用戶已解封`,
-    appealApprovedDefault: `申訴已批准`,
-    appealDivider: `━━━━━━━━━━━━━━━━
-`,
-    appealId: `申訴 ID: {id}
-`,
-    appealNotFound: `❌ 找不到申訴 ID: {id}`,
-    appealReason: `理由: {reason}
-`,
-    appealRejectUsageError: `❌ 請提供申訴 ID
-
-用法: /admin_reject <appeal_id> [備註]`,
-    appealRejected: `✅ 申訴 {id} 已拒絕`,
-    appealRejectedDefault: `申訴被拒絕`,
-    appealReviewCommands: `/admin_approve <appeal_id> [備註]
-/admin_reject <appeal_id> [備註]`,
-    appealReviewHint: `💡 使用以下命令審核申訴：
-`,
-    appealSubmittedAt: `提交時間: {time}
-
-`,
-    appealUser: `用戶: {user}
-`,
-    appealsTitle: `📋 待審核申訴列表
-
-`,
-    ban: `💡 使用 /admin_bans <user_id> 查看特定用戶的封禁歷史`,
-    ban2: `總封禁次數: \${userBans.results.length}
-
-`,
-    ban3: `📊 最近 10 條封禁記錄
-
-`,
-    ban4: `📊 用戶封禁歷史
-
-`,
-    ban5: `📊 目前沒有封禁記錄`,
-    banSuccess: `✅ 已封禁用戶 {userId} ({nickname})
-
-封禁時長：{duration}
-解封時間：{unbanTime}`,
-    banSuccessPermanent: `✅ 已永久封禁用戶 {userId} ({nickname})`,
-    banUsageError: `使用方式错误`,
-    banUserNotFound: `用户不存在`,
-    cannotBanAdmin: `无法封禁管理员`,
-    conversation: `💡 對話歷史帖子只在有新消息時創建
-`,
-    conversation2: `所有 VIP 用戶的對話歷史都是最新的！`,
-    conversation3: `
-💬 **對話歷史帖子：**
-`,
-    conversation4: `請檢查對話歷史是否已更新為清晰頭像。`,
-    conversation5: `🔄 開始刷新您的對話歷史...`,
-    conversation6: `• 無對話歷史帖子
-`,
-    end: `結束: \${banEnd}
-
-`,
-    error: `错误`,
-    failed: `• 失敗帖子：\${results.totalPostsFailed}
-
-`,
-    failed2: `• 失敗：\${results.failedUsers}
-`,
-    failed3: `• 失敗：\${result.failed} 個帖子
-
-`,
-    insufficientPermission: `❌ **權限不足**
-
-此命令僅限超級管理員使用。`,
-    listFooter: `---`,
-    listId: `ID：{id}`,
-    listNickname: `暱稱：{nickname}`,
-    listNotRegistered: `未注册`,
-    listRoleAdmin: `管理员`,
-    listRoleSuperAdmin: `超级管理员`,
-    listTitle: `管理员列表`,
-    listTotal: `總數：{total}`,
-    listUsername: `用戶名：{username}`,
-    message: `• 更新時間：\${new Date(post.updated_at).toLocaleString('zh-TW', { month: '2-digit', day: '2-digit', hour: '2-digit', minute: '2-digit' })}
-
-`,
-    message10: `• 有頭像：\${post.partner_avatar_url ? '✅' : '❌'}
-`,
-    message11: `...還有 \${historyPosts.results.length - 5} 個帖子
-`,
-    message12: `用戶: \${targetUser?.nickname }
-`,
-    message13: `• 用戶名: @\${targetUser?.username }
-
-`,
-    message14: `用戶: \${appeal.nickname }
-`,
-    message15: `
-...還有 \${results.details.length - 10} 個用戶`,
-    message16: `• 用戶名: @\${targetUser.username }
-
-`,
-    message17: `• 總數：\${historyPosts.results.length}
-
-`,
-    message18: `💡 使用 /admin_refresh_vip_avatars 批量刷新
-`,
-    message19: `• 最新：\${post.is_latest ? '✅' : '❌'}
-`,
-    message2: `• 更新時間：\${avatarInfo.avatar_updated_at ? new Date(avatarInfo.avatar_updated_at).toLocaleString('zh-TW') : '未知'}
-`,
-    message20: `• 過時帖子：\${stats.totalOutdatedPosts}
-
-`,
-    message21: `/ad_provider_priority <id> <priority>`,
-    message22: `• 需要刷新：\${stats.usersNeedingRefresh}
-`,
-    message23: `• 更新帖子：\${results.totalPostsUpdated}
-`,
-    message24: `用戶: \${ban.nickname }
-`,
-    message25: `/ad_provider_disable <provider_id>`,
-    message26: `💡 或在 Cloudflare Dashboard 中修改環境變數`,
-    message27: `/ad_provider_enable <provider_id>`,
-    message28: `• 用戶名: @\${targetUser?.username ||`,
-    message29: `/admin_approve <appeal_id> [備註]
-`,
-    message3: `• \${username}: \${detail.postsUpdated} 更新, \${detail.postsFailed} 失敗
-`,
-    message30: `• 展示: \${ad.impression_count} 次
-`,
-    message31: `• 用戶名: @\${targetUser.username ||`,
-    message32: `• 用戶名：@\${user.username }
-`,
-    message33: `/admin_reject <appeal_id> [備註]`,
-    message34: `• 處理用戶：\${results.totalUsers}
-`,
-    message35: `• \`/ad_provider_enable <id>\` - 啟用
-`,
-    message36: `• \`/ad_provider_disable <id>\` - 停用
-`,
-    message37: `• \`/ad_provider_priority <id> <priority>\` - 設置優先級`,
-    message38: `• \`/official_ad_enable <id>\` - 啟用
-`,
-    message39: `• \`/official_ad_disable <id>\` - 停用
-`,
-    message4: `新到期：\${new Date(data.expire_date).toLocaleDateString('zh-TW')}
-`,
-    message40: `• 更新時間：\${new Date(post.updated_at).toLocaleString('zh-TW', { month: '2-digit', day: '2-digit', hour:`,
-    message5: `到期：\${new Date(data.expire_date).toLocaleDateString('zh-TW')}
-`,
-    message6: `錯誤：\${error instanceof Error ? error.message : String(error)}`,
-    message7: `• 原始 URL：\${avatarInfo.avatar_original_url ? '✅' : '❌'}
-`,
-    message8: `• 模糊 URL：\${avatarInfo.avatar_blurred_url ? '✅' : '❌'}
-`,
-    message9: `📝 **帖子 #\${post.identifier}-H\${post.post_number}**
-`,
-    nickname: `• 暱稱: \${targetUser?.nickname ||`,
-    nickname2: `• 暱稱: \${targetUser.nickname ||`,
-    noPendingAppeals: `✅ 目前沒有待審核的申訴`,
-    noPermission: `❌ 你沒有權限使用此命令。`,
-    onlyAdmin: `❌ 只有管理員可以使用此命令。`,
-    onlySuperAdmin: `❌ 只有超級管理員可以使用此命令。`,
-    operationFailed: `❌ 發生錯誤，請稍後再試。`,
-    removeCannotRemoveSuperAdmin: `❌ 無法移除超級管理員。`,
-    removeCommand: `\`/admin_remove <user_id>\`
-
-`,
-    removeExample: `\`/admin_remove 123456789\` - 移除普通管理員
-
-`,
-    removeInstructions: `⚠️ **注意**
-
-此命令需要手動修改配置文件。
-
-**步驟：**
-1. 編輯 \`wrangler.toml\`
-2. 找到 \`ADMIN_USER_IDS\` 變數
-3. 移除用戶 ID：\`{userId}\`
-4. 格式：\`ADMIN_USER_IDS = "ID1,ID2"\`（移除 {userId}）
-5. 重新部署：\`pnpm deploy:staging\`
-
-**用戶資訊：**
-• ID: \`{userId}\`
-• 暱稱: {nickname}
-• 用戶名: @{username}
-
-💡 或在 Cloudflare Dashboard 中修改環境變數`,
-    removeNotAdmin: `❌ 此用戶不是管理員。`,
-    removeUsageError: `❌ 使用方法錯誤
-
-`,
-    settings: `• 暱稱: \${targetUser?.nickname }
-`,
-    settings2: `• 暱稱: \${targetUser.nickname }
-`,
-    settings3: `• 暱稱：\${user.nickname }
-`,
-    settings4: `未設定`,
-    settings5: `未設定`,
-    settings6: `未設定`,
-    short: `**範例：**
-`,
-    short10: `支付 ID：\\`,
-    short11: `變數
-`,
-    short12: `用戶：\\`,
-    short2: `**示例：**
-`,
-    short3: `**步驟：**
-`,
-    short4: `5. 重新部署：\\`,
-    short5: `4. 重新部署：\\`,
-    short6: `1. 編輯 \\`,
-    short7: `2. 找到 \\`,
-    short8: `4. 格式：\\`,
-    short9: `• 無緩存
-`,
-    start: `開始: \${banStart}
-`,
-    stats: `📊 **統計：**
-`,
-    stats2: `• \`/ad_stats <id>\` - 查看詳細統計`,
-    success: `• 成功：\${results.successUsers}
-`,
-    text: `• 優先級: \${provider.priority}
-`,
-    text10: `金額：\${data.amount_stars} ⭐
-`,
-    text11: `請求 ID：#\${data.request_id}
-`,
-    text12: `• 權重: \${provider.weight}
-`,
-    text13: `原因：\${data.error_message}
-`,
-    text14: `/ad_provider_disable <id>`,
-    text15: `/official_ad_disable <id>`,
-    text16: `💡 使用 /admin_refunds 查看詳情`,
-    text17: `/ad_provider_enable <id>`,
-    text18: `使用 /ad_providers 查看所有提供商`,
-    text19: `/official_ad_enable <id>`,
-    text2: `• 獎勵: \${ad.quota_reward} 額度
-`,
-    text20: `剩餘：\${data.days_left} 天
-`,
-    text21: `/admin_remove 123456789`,
-    text22: `理由: \${appeal.reason}
-`,
-    text23: `提交時間: \${createdAt}
-
-`,
-    text24: `提供商：\${providerName}
-`,
-    text25: `• 類型: \${ad.ad_type}
-`,
-    text26: `/admin_add 123456789`,
-    text27: `處理過程中發生錯誤，請查看日誌。
-
-`,
-    text28: `優先級：\${priority}
-
-`,
-    text29: `原因: \${ban.reason}
-`,
-    text3: `/official_ad_disable <ad_id>`,
-    text30: `原因：\${data.reason}
-`,
-    text31: `時間：\${timestamp}
-
-`,
-    text32: `此命令需要手動修改配置文件。
-
-`,
-    text33: `• 狀態: \${status}
-`,
-    text34: `🔍 **頭像診斷報告**
-
-`,
-    text35: `
-📸 **頭像緩存：**
-`,
-    text36: `時間：\${timestamp}`,
-    text37: `🔴 **退款請求**
-
-`,
-    text38: `📢 **系統通知**
-
-`,
-    text39: `/ad_stats <id>`,
-    text4: `風險分數: \${ban.risk_snapshot}
-`,
-    text40: `👤 **用戶信息：**
-`,
-    text41: `
-🔎 **分析：**
-`,
-    text42: `📝 **詳細結果：**
-`,
-    text43: `⏳ 正在處理，請稍候...`,
-    text44: `3. 添加用戶 ID：\\`,
-    text45: `3. 移除用戶 ID：\\`,
-    text46: `📊 **總結：**
-`,
-    text47: `類型：\${type}
-`,
-    text48: `• 🧪 測試模式
-`,
-    text49: `**管理命令：**
-`,
-    text5: `⏱️ **耗時：** \${duration} 秒
-
-`,
-    text50: `**正確格式：**
-`,
-    text51: `\${hours} 小時`,
-    text52: `**用戶資訊：**
-`,
-    text6: `• 更新：\${result.updated} 個帖子
-`,
-    text7: `數據：\${JSON.stringify(data)}
-`,
-    text8: `• 點擊: \${ad.click_count} 次
-`,
-    text9: `/official_ad_enable <ad_id>`,
-    unbanNotBanned: `用户未被封禁`,
-    unbanSuccess: `✅ 已解封用戶 {userId}`,
-    unbanUsageError: `解封使用方式错误`,
-    unbanUserNotFound: `解封用户不存在`,
-    userNotFound: `❌ 用戶不存在。`,
-    vip: `• VIP 到期：\${new Date(user.vip_expire_at).toLocaleString('zh-TW')}
-`,
-    vip2: `• 創建時 VIP：\${post.created_with_vip_status ? '✅' : '❌'}
-`,
-    vip3: `• VIP 狀態：\${isVip ? '✅ 是' : '❌ 否'}
-`,
-    vip4: `• 總 VIP 用戶：\${stats.totalVipUsers}
-`,
-    vip5: `🔄 **開始批量刷新 VIP 頭像**
-
-`,
-    vip6: `⏰ **VIP 到期提醒已發送**
-
-`,
-    vip7: `🎉 **新 VIP 購買**
-
-`,
-    vip8: `⬇️ **VIP 自動降級**
-
-`,
-    vip9: `🔄 **VIP 續費**
-
-`,
-    adConfig: {
-      adIdMustBeNumber: `❌ 廣告 ID 必須是數字`,
-      addOfficialAdScript: `請使用資料庫腳本添加官方廣告：`,
-      addProviderScript: `請使用資料庫腳本添加廣告提供商：`,
-      clicks: `• 點擊: \${count} 次`,
-      correctFormat: `**正確格式：**`,
-      disableCommand: `• \`/ad_provider_disable <id>\` - 停用`,
-      disableFailed: `❌ 停用廣告提供商失敗`,
-      disableOfficialAdCommand: `• \`/official_ad_disable <id>\` - 停用`,
-      disableOfficialAdFailed: `❌ 停用官方廣告失敗`,
-      disabled: `❌ 停用`,
-      enableCommand: `• \`/ad_provider_enable <id>\` - 啟用`,
-      enableFailed: `❌ 啟用廣告提供商失敗`,
-      enableOfficialAdCommand: `• \`/official_ad_enable <id>\` - 啟用`,
-      enableOfficialAdFailed: `❌ 啟用官方廣告失敗`,
-      enabled: `✅ 啟用`,
-      example: `**範例：**`,
-      getListFailed: `❌ 獲取廣告提供商列表失敗`,
-      getOfficialAdListFailed: `❌ 獲取官方廣告列表失敗`,
-      id: `• ID: \${id}`,
-      impressions: `• 展示: \${count} 次`,
-      managementCommands: `**管理命令：**`,
-      noOfficialAds: `⚠️ 目前沒有官方廣告`,
-      noProviders: `⚠️ 目前沒有配置任何廣告提供商`,
-      officialAdDisabled: `✅ 已停用官方廣告 #\${id}`,
-      officialAdEnabled: `✅ 已啟用官方廣告 #\${id}`,
-      officialAdList: `📢 **官方廣告列表**`,
-      priority: `• 優先級: \${priority}`,
-      priorityCommand: `• \`/ad_provider_priority <id> <priority>\` - 設置優先級`,
-      priorityMustBeNonNegative: `❌ 優先級必須是非負整數`,
-      prioritySet: `✅ 已設置廣告提供商優先級`,
-      priorityValue: `優先級：\${priority}`,
-      provider: `提供商：\${name}`,
-      providerDisabled: `✅ 已停用廣告提供商：\${name}`,
-      providerEnabled: `✅ 已啟用廣告提供商：\${name}`,
-      providerList: `📺 **廣告提供商列表**`,
-      reward: `• 獎勵: \${reward} 額度`,
-      setPriorityFailed: `❌ 設置優先級失敗`,
-      status: `• 狀態: \${status}`,
-      testMode: `• 🧪 測試模式`,
-      type: `• 類型: \${type}`,
-      usageError: `❌ 使用方法錯誤`,
-      viewAllOfficialAds: `使用 /official_ads 查看所有廣告`,
-      viewAllProviders: `使用 /ad_providers 查看所有提供商`,
-      viewStatsCommand: `• \`/ad_stats <id>\` - 查看詳細統計`,
-      weight: `• 權重: \${weight}`,
+    "addAlreadyAdmin": "❌ Acest utilizator este deja admin.",
+    "addAlreadySuperAdmin": "❌ Acest utilizator este deja super admin, nu este nevoie să fie adăugat.",
+    "addCommand": "`/admin_add <user_id>`\n\n",
+    "addExample": "`/admin_add 123456789` - Adaugă ca administrator obișnuit\n\n",
+    "addInstructions": "⚠️ **Notă**\n\nAceastă comandă necesită modificarea manuală a fișierului de configurare.\n\n**Pași:**\n1. Editează `wrangler.toml`\n2. Găsește variabila `ADMIN_USER_IDS`\n3. Adaugă ID-ul utilizatorului: `{userId}`\n4. Format: `ADMIN_USER_IDS = \"ID1,ID2,{userId}\"`\n5. Redeploy: `pnpm deploy:staging`\n\n**Informații Utilizator:**\n• ID: `{userId}`\n• Nickname: {nickname}\n• Username: @{username}\n\n💡 Sau modifică variabilele de mediu în Cloudflare Dashboard",
+    "addUsageError": "❌ Utilizare incorectă\n\n",
+    "addUserNotFound": "❌ Utilizatorul nu există sau nu este înregistrat.",
+    "admin": "💡 Utilizează /admin_list pentru a vizualiza lista curentă de admini",
+    "admin2": "Banare admin / Banare admin",
+    "admin3": "- Adaugă ca administrator obișnuit\n\n",
+    "admin4": "- Elimină administrator obișnuit\n\n",
+    "admin5": "`/admin_add 123456789` - Adaugă ca administrator normal\n\n",
+    "admin6": "`/admin_remove 123456789` - Elimină administrator normal\n\n",
+    "analytics": {
+      "getAdDataFailed": "❌ A fost o eroare la obținerea datelor anunțului",
+      "getDataFailed": "❌ A fost o eroare la obținerea datelor de analiză",
+      "getVipDataFailed": "❌ A fost o eroare la obținerea datelor VIP funnel",
+      "noPermission": "❌ Nu ai permisiunea de a vizualiza datele de analiză",
+      "noPermissionAd": "❌ Nu aveți permisiunea de a vizualiza datele publicitare",
+      "noPermissionVip": "❌ Nu aveți permisiunea de a vizualiza datele VIP",
+      "onlySuperAdmin": "❌ Numai superadministratori pot folosi această comandă.",
+      "sendReportFailed": "❌ Trimiterea raportului zilnic a eșuat: ${error}",
+      "userNotFound": "❌ Utilizatorul nu a fost găsit: ${userId}"
     },
-    analytics: {
-      getAdDataFailed: `❌ 獲取廣告數據失敗`,
-      getDataFailed: `❌ 獲取分析數據失敗`,
-      getVipDataFailed: `❌ 獲取 VIP 漏斗數據失敗`,
-      noPermission: `❌ 你沒有權限查看分析數據`,
-      noPermissionAd: `❌ 你沒有權限查看廣告數據`,
-      noPermissionVip: `❌ 你沒有權限查看 VIP 數據`,
-      onlySuperAdmin: `❌ 只有超級管理員可以使用此命令。`,
-      sendReportFailed: `❌ 發送每日報表失敗：\${error}`,
-      userNotFound: `❌ 用戶不存在：\${userId}`,
+    "appeal": "ID apel: ${appeal.id}\n",
+    "appeal2": "💡 Utilizați următoarea comandă pentru a revizui apelul:\n",
+    "appeal3": "📋 Lista apelurilor în așteptare\n\n",
+    "appeal4": "Apel aprobat",
+    "appeal5": "Apel respins",
+    "appealAlreadyReviewed": "❌ Apelul {id} a fost deja revizuit",
+    "appealApproveUsageError": "❌ Vă rugăm să furnizați ID-ul apelului\n\nUtilizare: /admin_approve <appeal_id> [notes]",
+    "appealApproved": "✅ Apelul {id} a fost aprobat, utilizatorul a fost deblocat",
+    "appealApprovedDefault": "Apel aprobat",
+    "appealDivider": "━━━━━━━━━━━━━━━━\n",
+    "appealId": "ID apel: {id}\n",
+    "appealNotFound": "❌ ID apel nu a fost găsit: {id}",
+    "appealReason": "Motiv: {reason}\n",
+    "appealRejectUsageError": "❌ Vă rugăm să furnizați ID-ul apelului\n\nUtilizare: /admin_reject <appeal_id> [notes]",
+    "appealRejected": "✅ Apelul {id} a fost respins",
+    "appealRejectedDefault": "Apel respins",
+    "appealReviewCommands": "/admin_approve <appeal_id> [notes]\n/admin_reject <appeal_id> [notes]",
+    "appealReviewHint": "💡 Utilizați următoarea comandă pentru a revizui apelul:\n",
+    "appealSubmittedAt": "Timp de trimitere: {time}\n\n",
+    "appealUser": "Utilizator: {user}\n",
+    "appealsTitle": "📋 Lista Apelurilor în Așteptare\n\n",
+    "ban": {
+      "appealAlreadyReviewed": "❌ Apelul {id} a fost deja revizuit",
+      "appealApproved": "Apel aprobat",
+      "appealApprovedUnbanned": "✅ Apelul {id} a fost aprobat, utilizatorul a fost deblocat",
+      "appealId": "ID apel: {id}\n",
+      "appealList": "📋 Lista Apelurilor în Așteptare\n\n",
+      "appealNotFound": "❌ ID apel nu a fost găsit: {id}",
+      "appealReason": "Motiv: {reason}\n",
+      "appealRejected": "Apel respins",
+      "appealRejectedMessage": "✅ Apelul {id} a fost respins",
+      "appealSubmittedAt": "Timp de trimitere: {time}\n\n",
+      "appealUser": "Utilizator: {user}\n",
+      "banEnd": "Sfârșit: ${end}",
+      "banId": "ID: ${id}",
+      "banReason": "Motiv: ${reason}",
+      "banStart": "Început: ${start}",
+      "banUser": "Utilizator: ${user}",
+      "durationDays": "{days} zile",
+      "durationHours": "{hours} ore",
+      "durationMustBePositive": "❌ Durata trebuie să fie un număr întreg pozitiv sau 'permanent'.",
+      "noAppeals": "✅ Actualmente nu sunt apeluri în așteptare",
+      "noBanRecords": "❌ Utilizatorul ${userId} nu are înregistrări de interdicție",
+      "noBanRecordsList": "📊 Actualmente nu sunt înregistrări de interdicție",
+      "noPermission": "❌ Nu aveți permisiunea de a folosi această comandă.",
+      "notAdmin": "❌ Acest utilizator nu este un administrator.",
+      "permanent": "Permanent",
+      "provideAppealId": "❌ Vă rugăm să furnizați ID-ul apelului\n\n",
+      "reason": "Interzis de administrator",
+      "recentBans": "📊 Ultimele 10 înregistrări de interdicție",
+      "riskScore": "Scor de risc: ${score}",
+      "temporaryBan": "🚫 Ai fost interzis temporar\n\nDurata interdicției: {duration}\nTimpul de de-interzicere: {unbanTime}\n\nMotivul interdicției: Raporturi multiple\n\nDacă ai întrebări, te rugăm să folosești /appeal pentru a depune un apel.",
+      "totalBans": "Numărul total de interdicții: ${count}",
+      "usageApprove": "Utilizare: /admin_approve <appeal_id> [observații]",
+      "usageReject": "Utilizare: /admin_reject <appeal_id> [observații]",
+      "user": "Utilizator: ${user}",
+      "userBanHistory": "📊 Istoricul interdicțiilor utilizatorului",
+      "viewHistory": "💡 Folosește /admin_bans <user_id> pentru a vizualiza istoricul interdicțiilor unui utilizator specific"
     },
-    ban: {
-      appealAlreadyReviewed: `❌ 申訴 {id} 已經被審核過了`,
-      appealApproved: `申訴已批准`,
-      appealApprovedUnbanned: `✅ 申訴 {id} 已批准，用戶已解封`,
-      appealId: `申訴 ID: {id}
-`,
-      appealList: `📋 待審核申訴列表
-
-`,
-      appealNotFound: `❌ 找不到申訴 ID: {id}`,
-      appealReason: `理由: {reason}
-`,
-      appealRejected: `申訴被拒絕`,
-      appealRejectedMessage: `✅ 申訴 {id} 已拒絕`,
-      appealSubmittedAt: `提交時間: {time}
-
-`,
-      appealUser: `用戶: {user}
-`,
-      banEnd: `結束: \${end}`,
-      banId: `ID: \${id}`,
-      banReason: `原因: \${reason}`,
-      banStart: `開始: \${start}`,
-      banUser: `用戶: \${user}`,
-      durationDays: `{days} 天`,
-      durationHours: `{hours} 小時`,
-      durationMustBePositive: `❌ 時長必須是正整數或 "permanent"。`,
-      noAppeals: `✅ 目前沒有待審核的申訴`,
-      noBanRecords: `❌ 用戶 \${userId} 沒有封禁記錄`,
-      noBanRecordsList: `📊 目前沒有封禁記錄`,
-      noPermission: `❌ 你沒有權限使用此命令。`,
-      notAdmin: `❌ 此用戶不是管理員。`,
-      permanent: `永久`,
-      provideAppealId: `❌ 請提供申訴 ID
-
-`,
-      reason: `管理員封禁 / Admin ban`,
-      recentBans: `📊 最近 10 條封禁記錄`,
-      riskScore: `風險分數: \${score}`,
-      temporaryBan: `🚫 你已被暫時封禁
-
-封禁時長：{duration}
-解封時間：{unbanTime}
-
-封禁原因：多次被舉報
-
-如有疑問，請使用 /appeal 提出申訴。`,
-      totalBans: `總封禁次數: \${count}`,
-      usageApprove: `用法: /admin_approve <appeal_id> [備註]`,
-      usageReject: `用法: /admin_reject <appeal_id> [備註]`,
-      user: `用戶: \${user}`,
-      userBanHistory: `📊 用戶封禁歷史`,
-      viewHistory: `💡 使用 /admin_bans <user_id> 查看特定用戶的封禁歷史`,
+    "ban2": "Total interdicții: ${userBans.results.length}\n\n",
+    "ban3": "📊 Ultimele 10 Înregistrări de Interdicție\n\n",
+    "ban4": "📊 Istoricul Interdicțiilor Utilizatorului\n\n",
+    "ban5": "📊 Nu există înregistrări de interdicție în acest moment",
+    "banSuccess": "✅ Utilizator interzis {userId} ({nickname})\n\nDurata interdicției: {duration}\nTimpul de de-interzicere: {unbanTime}",
+    "banSuccessPermanent": "✅ Utilizator interzis permanent {userId} ({nickname})",
+    "banUsageError": "Eroare de utilizare",
+    "banUserNotFound": "Utilizatorul nu există",
+    "cannotBanAdmin": "Nu se poate interzice administratorul",
+    "conversation": "💡 Postările istoricului mesajelor sunt create doar atunci când există mesaje noi\n",
+    "conversation2": "Toate istoricele mesajelor utilizatorilor VIP sunt actualizate!",
+    "conversation3": "💬 **Postări din Istoricul Conversației:**\n",
+    "conversation4": "Te rugăm să verifici dacă istoricul mesajului a fost actualizat pentru a elimina avatarul.",
+    "conversation5": "🔄 Încep să actualizez istoricul tău de mesaje...",
+    "conversation6": "• Nu sunt postări în istoriul mesajelor\n",
+    "diagnose": {
+      "allUpToDateFree": "✅ Toate postările sunt actualizate (statutul utilizatorului gratuit este corect)",
+      "allUpToDateVip": "✅ Toate postările sunt actualizate (statutul VIP este corect)",
+      "analysis": "🔎 **Analiză:**",
+      "avatarCache": "📸 **Cache avatar:**",
+      "blurredUrl": "• URL estompat: ${status}",
+      "createdWithVip": "• Creat ca VIP: ${status}",
+      "error": "Eroare: ${error}",
+      "failed": "❌ **Diagnosticare eșuată**",
+      "fileId": "• ID fișier: ${fileId}...",
+      "hasAvatar": "• Are avatar: ${status}",
+      "historyPosts": "💬 **Postările istoricului mesajelor:**",
+      "historyPostsHint": "💡 Postările istoricului mesajelor sunt create doar atunci când există mesaje noi",
+      "isLatest": "• Cele mai recente: ${status}",
+      "morePosts": "...există ${count} postări mai multe",
+      "nickname": "• Poreclă: ${nickname}",
+      "no": "❌ Nu",
+      "noCache": "• Fără cache",
+      "noHistoryPosts": "• Nu sunt postări în istoriul mesajelor",
+      "noHistoryPostsWarning": "⚠️ Acest utilizator nu are postări în istoricul mesajelor",
+      "none": "Nimic",
+      "originalUrl": "• URL original: ${status}",
+      "outdatedPostsFound": "⚠️ Au fost găsite ${count} postări învechite care necesită o actualizare",
+      "postId": "• ID: ${id}",
+      "postTitle": "📝 **Posta #${identifier}-H${postNumber}**",
+      "postUpdatedAt": "• Actualizat la: ${date}",
+      "refreshHint": "💡 Folosește /admin_refresh_vip_avatars pentru a actualiza masa",
+      "title": "🔍 **Raport de Diagnosticare Avatar**",
+      "totalPosts": "• Total: ${count}",
+      "unknown": "Necunoscut",
+      "updatedAt": "• Actualizat la: ${date}",
+      "userId": "• ID: ${userId}",
+      "userInfo": "👤 **Informații Utilizator:**",
+      "username": "• Nume utilizator: @${username}",
+      "vipExpire": "• Expirare VIP: ${date}",
+      "vipStatus": "• Statut VIP: ${status}",
+      "yes": "✅ Da"
     },
-    diagnose: {
-      allUpToDateFree: `✅ 所有帖子都是最新的（免費用戶狀態正確）`,
-      allUpToDateVip: `✅ 所有帖子都是最新的（VIP 狀態正確）`,
-      analysis: `🔎 **分析：**`,
-      avatarCache: `📸 **頭像緩存：**`,
-      blurredUrl: `• 模糊 URL：\${status}`,
-      createdWithVip: ` • 創建時 VIP：\${status}`,
-      error: `錯誤：\${error}`,
-      failed: `❌ **診斷失敗**`,
-      fileId: `• File ID：\${fileId}...`,
-      hasAvatar: ` • 有頭像：\${status}`,
-      historyPosts: `💬 **對話歷史帖子：**`,
-      historyPostsHint: `💡 對話歷史帖子只在有新消息時創建`,
-      isLatest: ` • 最新：\${status}`,
-      morePosts: `...還有 \${count} 個帖子`,
-      nickname: `• 暱稱：\${nickname}`,
-      no: `❌ 否`,
-      noCache: `• 無緩存`,
-      noHistoryPosts: `• 無對話歷史帖子`,
-      noHistoryPostsWarning: `⚠️ 此用戶沒有對話歷史帖子`,
-      none: `無`,
-      originalUrl: `• 原始 URL：\${status}`,
-      outdatedPostsFound: `⚠️ 發現 \${count} 個過時帖子需要刷新`,
-      postId: ` • ID：\${id}`,
-      postTitle: `📝 **帖子 #\${identifier}-H\${postNumber}**`,
-      postUpdatedAt: ` • 更新時間：\${date}`,
-      refreshHint: `💡 使用 /admin_refresh_vip_avatars 批量刷新`,
-      title: `🔍 **頭像診斷報告**`,
-      totalPosts: `• 總數：\${count}`,
-      unknown: `未知`,
-      updatedAt: `• 更新時間：\${date}`,
-      userId: `• ID：\${userId}`,
-      userInfo: `👤 **用戶信息：**`,
-      username: `• 用戶名：@\${username}`,
-      vipExpire: `• VIP 到期：\${date}`,
-      vipStatus: `• VIP 狀態：\${status}`,
-      yes: `✅ 是`,
+    "end": "Final: ${banEnd}\n\n",
+    "error": "Eroare",
+    "failed": "• Postări eșuate: ${results.totalPostsFailed}\n\n",
+    "failed2": "• Eșuate: ${results.failedUsers}\n",
+    "failed3": "• Eșuat: ${result.failed} postare(e)\n\n",
+    "insufficientPermission": "❌ **Permisiuni Insuficiente**\n\nAceastă comandă este doar pentru super administratori.",
+    "listFooter": "---",
+    "listId": "ID: {id}",
+    "listNickname": "Pseudonim: {nickname}",
+    "listNotRegistered": "Neînregistrat",
+    "listRoleAdmin": "Administrator",
+    "listRoleSuperAdmin": "Super Administrator",
+    "listTitle": "Lista Administratorilor",
+    "listTotal": "Total: {total}",
+    "listUsername": "Nume utilizator: {username}",
+    "message": "• Actualizat la: ${new Date(post.updated_at).toLocaleString('zh-TW', { month: '2-digit', day: '2-digit', hour: '2-digit', minute: '2-digit' })}\n\n",
+    "message10": "• Are Avatar: ${post.partner_avatar_url ? '✅' : '❌'}\n",
+    "message11": "...și ${historyPosts.results.length - 5} postări suplimentare\n",
+    "message12": "Utilizator: ${targetUser?.nickname || targetUserId}\n",
+    "message13": "• Nume utilizator: @${targetUser?.username}\n\n",
+    "message14": "Utilizator: ${appeal.nickname || appeal.user_id}\n",
+    "message15": "...și ${results.details.length - 10} utilizatori suplimentari",
+    "message16": "• Nume utilizator: @${targetUser.username}\n\n",
+    "message17": "• Total: ${historyPosts.results.length}\n\n",
+    "message18": "💡 Folosește /admin_refresh_vip_avatars pentru a actualiza masa\n",
+    "message19": "• Ultimul: ${post.is_latest ? '✅' : '❌'}\n",
+    "message2": "• Actualizat la: ${avatarInfo.avatar_updated_at ? new Date(avatarInfo.avatar_updated_at).toLocaleString('zh-TW') : 'Necunoscut'}\n",
+    "message20": "• Postări învechite: ${stats.totalOutdatedPosts}\n\n",
+    "message21": "/ad_provider_priority <id> <prioritate> <priority>",
+    "message22": "• Necesită Actualizare: ${stats.usersNeedingRefresh}\n",
+    "message23": "• Postări Actualizate: ${results.totalPostsUpdated}\n",
+    "message24": "Utilizator: ${ban.nickname || ban.user_id}\n",
+    "message25": "/ad_provider_disable <provider_id>",
+    "message26": "💡 Sau modifică variabilele de mediu în Cloudflare Dashboard",
+    "message27": "/ad_provider_enable <provider_id>",
+    "message28": "• Nume utilizator: @${targetUser?.username ||",
+    "message29": "/admin_approve <appeal_id> [Note]\n",
+    "message3": "• ${username}: ${detail.postsUpdated} actualizări, ${detail.postsFailed} eșuate\n",
+    "message30": "• Impresii: ${ad.impression_count} ori\n",
+    "message31": "• Nume utilizator: @${targetUser.username ||",
+    "message32": "• Nume utilizator: @${user.username }\n",
+    "message33": "/admin_reject <appeal_id> [notă]",
+    "message34": "• Utilizatori procesați: ${results.totalUsers}\n",
+    "message35": "• `/ad_provider_enable <id>` - Activează\n",
+    "message36": "• `/ad_provider_disable <id>` - Dezactivează\n",
+    "message37": "• `/ad_provider_priority <id> <priority>` - Setează prioritatea",
+    "message38": "• `/official_ad_enable <id>` - Activează\n",
+    "message39": "• `/official_ad_disable <id>` - Dezactivează\n",
+    "message4": "Nouă expirare: ${new Date(data.expire_date).toLocaleDateString('zh-TW')}\n",
+    "message40": "• Timp de actualizare: ${new Date(post.updated_at).toLocaleString('zh-TW', { month: '2-digit', day: '2-digit', hour:",
+    "message5": "Expirare: ${new Date(data.expire_date).toLocaleDateString('zh-TW')}\n",
+    "message6": "Eroare: ${error instanceof Error ? error.message : String(error)}",
+    "message7": "• URL original: ${avatarInfo.avatar_original_url ? '✅' : '❌'}\n",
+    "message8": "• URL estompat: ${avatarInfo.avatar_blurred_url ? '✅' : '❌'}\n",
+    "message9": "📝 **Postare #${post.identifier}-H${post.post_number}**\n",
+    "nickname": "• Poreclă: ${targetUser?.nickname ||",
+    "nickname2": "• Poreclă: ${targetUser.nickname ||",
+    "noPendingAppeals": "✅ Nu sunt apeluri în așteptare deocamdată",
+    "noPermission": "❌ Nu ai permisiunea de a folosi această comandă.",
+    "onlyAdmin": "❌ Numai administratorii pot folosi această comandă.",
+    "onlySuperAdmin": "❌ Numai super administratorii pot folosi această comandă.",
+    "operationFailed": "❌ A apărut o eroare, te rugăm să încerci din nou mai târziu.",
+    "refresh": {
+      "allUpToDate": "Toată istoricul chat-ului utilizatorilor VIP este actualizat!",
+      "batchComplete": "✅ **Reîmprospătare în masă finalizată**",
+      "checkHint": "Te rog să verifici dacă istoricul chat-ului a fost actualizat pentru a șterge imaginile de profil.",
+      "complete": "✅ **Reîmprospătare finalizată**",
+      "details": "📝 **Rezultate detaliate:**",
+      "duration": "⏱️ **Durată:** ${duration} secunde",
+      "error": "Eroare: ${error}",
+      "errorOccurred": "A apărut o eroare în timpul procesării, te rog să verifici jurnalele.",
+      "failed": "❌ **Reîmprospătarea a eșuat**",
+      "failedPosts": "• Postări eșuate: ${count}",
+      "failedUsers": "• Eșuări: ${count}",
+      "moreUsers": "...și ${count} utilizatori în plus",
+      "noRefreshNeeded": "✅ **Nu este nevoie de reîmprospătare**",
+      "outdatedPosts": "• Postări expirate: ${count}",
+      "processedUsers": "• Utilizatori procesați: ${count}",
+      "processing": "⏳ Procesare, te rog așteaptă...",
+      "startingBatchRefresh": "🔄 **Începerea reîmprospătării în masă a avatarurilor VIP**",
+      "startingRefresh": "🔄 Începem reîmprospătarea istoricului tău de chat...",
+      "stats": "📊 **Statistici:**",
+      "successUsers": "• Succes: ${count}",
+      "summary": "📊 **Sumar:**",
+      "totalVipUsers": "• Total utilizatori VIP: ${count}",
+      "updated": "• Actualizat: ${count} postări",
+      "updatedPosts": "• Postări actualizate: ${count}",
+      "userDetail": "• ${username}: ${updated} actualizări, ${failed} eșuate",
+      "usersNeedingRefresh": "• Refresh necesar: ${count}"
     },
-    refresh: {
-      allUpToDate: `所有 VIP 用戶的對話歷史都是最新的！`,
-      batchComplete: `✅ **批量刷新完成**`,
-      checkHint: `請檢查對話歷史是否已更新為清晰頭像。`,
-      complete: `✅ **刷新完成**`,
-      details: `📝 **詳細結果：**`,
-      duration: `⏱️ **耗時：** \${duration} 秒`,
-      error: `錯誤：\${error}`,
-      errorOccurred: `處理過程中發生錯誤，請查看日誌。`,
-      failed: `❌ **刷新失敗**`,
-      failedPosts: `• 失敗帖子：\${count}`,
-      failedUsers: `• 失敗：\${count}`,
-      moreUsers: `
-...還有 \${count} 個用戶`,
-      noRefreshNeeded: `✅ **無需刷新**`,
-      outdatedPosts: `• 過時帖子：\${count}`,
-      processedUsers: `• 處理用戶：\${count}`,
-      processing: `⏳ 正在處理，請稍候...`,
-      startingBatchRefresh: `🔄 **開始批量刷新 VIP 頭像**`,
-      startingRefresh: `🔄 開始刷新您的對話歷史...`,
-      stats: `📊 **統計：**`,
-      successUsers: `• 成功：\${count}`,
-      summary: `📊 **總結：**`,
-      totalVipUsers: `• 總 VIP 用戶：\${count}`,
-      updated: `• 更新：\${count} 個帖子`,
-      updatedPosts: `• 更新帖子：\${count}`,
-      userDetail: `• \${username}: \${updated} 更新, \${failed} 失敗`,
-      usersNeedingRefresh: `• 需要刷新：\${count}`,
+    "removeCannotRemoveSuperAdmin": "❌ Nu se poate elimina super administratorul.",
+    "removeCommand": "`/admin_remove <user_id>`\n\n",
+    "removeExample": "`/admin_remove 123456789` - Elimină administrator obișnuit\n\n",
+    "removeInstructions": "⚠️ **Notă**\n\nAceastă comandă necesită modificări manuale ale fișierului de configurare.\n\n**Pași:**\n1. Editează `wrangler.toml`\n2. Găsește variabila `ADMIN_USER_IDS`\n3. Elimină ID-ul utilizatorului: `{userId}`\n4. Format: `ADMIN_USER_IDS = \"ID1,ID2\"` (elimină {userId})\n5. Redeploy: `pnpm deploy:staging`\n\n**Informații utilizator:**\n• ID: `{userId}`\n• Pseudonim: {nickname}\n• Nume utilizator: @{username}\n\n💡 Sau modifică variabilele de mediu în Dashboard Cloudflare",
+    "removeNotAdmin": "❌ Acest utilizator nu este administrator.",
+    "removeUsageError": "❌ Utilizare incorectă\n\n",
+    "settings": "• Pseudonim: ${targetUser?.nickname }\n",
+    "settings2": "• Pseudonim: ${targetUser.nickname }\n",
+    "settings3": "• Pseudonim: ${user.nickname }\n",
+    "settings4": "Neserbat",
+    "settings5": "Neserbat",
+    "settings6": "Neserbat",
+    "short": "**Exemplu:**\n",
+    "short10": "ID plată: \\",
+    "short11": "Variabilă\n",
+    "short12": "Utilizator: \\",
+    "short2": "**Exemplu:**\n",
+    "short3": "**Pași:**\n",
+    "short4": "5. Reimplementare: \\",
+    "short5": "4. Reimplementare: \\",
+    "short6": "1. Editează \\",
+    "short7": "2. Găsește \\",
+    "short8": "4. Format: \\",
+    "short9": "• Fără cache\n",
+    "start": "Început: ${banStart}\n",
+    "stats": "📊 **Statistici:**\n",
+    "stats2": "• `/ad_stats <id>` - Vezi statistici detaliate",
+    "success": "• Succes: ${results.successUsers}\n",
+    "text": "• Prioritate: ${provider.priority}\n",
+    "text10": "Sumă: ${data.amount_stars} ⭐\n",
+    "text11": "ID cerere: #${data.request_id}\n",
+    "text12": "• Greutate: ${provider.weight}\n",
+    "text13": "Motiv: ${data.error_message}\n",
+    "text14": "/ad_provider_disable <id>",
+    "text15": "/official_ad_disable <id>",
+    "text16": "💡 Folosește /admin_refunds pentru detalii",
+    "text17": "/ad_provider_enable <id>",
+    "text18": "Foloseste /ad_providers pentru a vedea toți furnizorii",
+    "text19": "/official_ad_enable <id>",
+    "text2": "• Recompensă: ${ad.quota_reward} cotă\n",
+    "text20": "Rămase: ${data.days_left} zile\n",
+    "text21": "/admin_remove 123456789",
+    "text22": "Motiv: ${appeal.reason}\n",
+    "text23": "Timp de trimitere: ${createdAt}\n\n",
+    "text24": "Furnizor: ${providerName}\n",
+    "text25": "• Tip: ${ad.ad_type}\n",
+    "text26": "/admin_add 123456789",
+    "text27": "A apărut o eroare în timpul procesării, vă rugăm să verificați jurnalele.\n\n",
+    "text28": "Prioritate: ${priority}\n\n",
+    "text29": "Motiv: ${ban.reason}\n",
+    "text3": "/official_ad_disable <ad_id>",
+    "text30": "Motiv: ${data.reason}\n",
+    "text31": "Timp: ${timestamp}\n\n",
+    "text32": "Această comandă necesită modificarea manuală a fișierului de configurare.\n\n",
+    "text33": "• Status: ${status}\n",
+    "text34": "🔍 **Raport de Diagnosticare a Avatarului**\n\n",
+    "text35": "📸 **Cache-ul Avatarului:**\n",
+    "text36": "Timp: ${timestamp}",
+    "text37": "🔴 **Cerere de Rambursare**\n\n",
+    "text38": "📢 **Notificare Sistem**\n\n",
+    "text39": "/ad_stats <id>",
+    "text4": "Scor de risc: ${ban.risk_snapshot}\n",
+    "text40": "👤 **Informații utilizator:**\n",
+    "text41": "🔎 **Analiză:**\n",
+    "text42": "📝 **Rezultate Detaliate:**\n",
+    "text43": "⏳ Se procesează, vă rugăm să așteptați...",
+    "text44": "3. Adăugați ID-ul utilizatorului: \\",
+    "text45": "3. Îndepărtați ID-ul utilizatorului: \\",
+    "text46": "📊 **Sumar:**\n",
+    "text47": "Tip: ${type}\n",
+    "text48": "• 🧪 Mod test\n",
+    "text49": "**Comenzi Admin:**\n",
+    "text5": "⏱️ **Durată:** ${duration} secunde\n\n",
+    "text50": "**Format corect:**\n",
+    "text51": "${hours} ore",
+    "text52": "**Informații utilizator:**\n",
+    "text6": "• Actualizat: ${result.updated} postări\n",
+    "text7": "Date: ${JSON.stringify(data)}\n",
+    "text8": "• Click-uri: ${ad.click_count} ori\n",
+    "text9": "/official_ad_enable <ad_id>",
+    "unbanNotBanned": "Utilizatorul nu este interzis",
+    "unbanSuccess": "✅ Utilizator neinterzis {userId}",
+    "unbanUsageError": "Metodă incorectă pentru neinterzicere",
+    "unbanUserNotFound": "Utilizatorul nu există",
+    "userNotFound": "❌ Utilizatorul nu există.",
+    "vip": "• Expirarea VIP: ${new Date(user.vip_expire_at).toLocaleString('zh-TW')}\n",
+    "vip2": "• Creat cu VIP: ${post.created_with_vip_status ? '✅' : '❌'}\n",
+    "vip3": "• Status VIP: ${isVip ? '✅ Da' : '❌ Nu'}\n",
+    "vip4": "• Utilizatori VIP în total: ${stats.totalVipUsers}\n",
+    "vip5": "🔄 **Începeți reîmprospătarea în masă a avatarelor VIP**\n\n",
+    "vip6": "⏰ **Aducerea aminte a expirării VIP a fost trimisă**\n\n",
+    "vip7": "🎉 **Nouă achiziție VIP**\n\n",
+    "vip8": "⬇️ **Retrogradare automată VIP**\n\n",
+    "vip9": "🔄 **Reînnoire VIP**\n\n"
+  },
+  "adminNotification": {
+    "amount": "Sumă: ${stars} ⭐",
+    "data": "Date: ${data}",
+    "daysLeft": "Rămase: ${days} zile",
+    "expireDate": "Expirare: ${date}",
+    "newExpireDate": "Nouă expirare: ${date}",
+    "paymentFailed": "❌ **Plata eșuată**",
+    "paymentId": "ID Plata: `${id}`",
+    "reason": "Motiv: ${reason}",
+    "refundRequest": "🔴 **Cerere de Rambursare**",
+    "requestId": "ID Cerere: #${id}",
+    "systemNotification": "📢 **Notificare de Sistem**",
+    "time": "Timp: ${time}",
+    "type": "Tip: ${type}",
+    "user": "Utilizator: `${userId}`",
+    "viewRefundsHint": "💡 Folosește /admin_refunds pentru detalii",
+    "vipDowngraded": "⬇️ **Scădere Automată VIP**",
+    "vipPurchased": "🎉 **Nouă Achiziție VIP**",
+    "vipReminderSent": "⏰ **Atenționare Expirare VIP Trimisa**",
+    "vipRenewed": "🔄 **Reînnoire VIP**"
+  },
+  "age": {
+    "daysAgo": "${days} zile în urmă",
+    "hoursAgo": "${hours} ore în urmă",
+    "justNow": "Chiar acum"
+  },
+  "analytics": {
+    "ad": "• Reclame oficiale: \n - Impresii: {officialImpressions} ori\n - Click-uri: {officialClicks} ori\n - CTR: {officialCtr}%\n - Recompense acordate: {officialRewardsGranted} sloturi\n\n• Vizualizări pagină VIP: {vipPageViews} ori\n• Intenții de achiziție: {vipPurchaseIntents} ori\n• Converzii reușite: {vipConversions} ori\n• Ratios de conversie: {vipConversionRate}%\n• Venit: \\\\\\\\\\$${vipRevenue}",
+    "ad2": "📊 **Raport Performanță Publicitate**\n📅 Perioadă: {start} ~ {end}\n\n• Impresii Totale: {thirdPartyImpressions}\n• Completări Totale: {thirdPartyCompletions}\n• Rata de Completare: {thirdPartyCompletionRate}%\n• Recompense Totale: {thirdPartyRewardsGranted} credite\n\n• Impresii Totale: {officialImpressions}\n• Click-uri Totale: {officialClicks}\n• CTR: {officialCtr}%\n• Recompense Totale: {officialRewardsGranted} credite",
+    "ad3": "📊 **Raport Performanță Publicitate**\n📅 Perioadă: {start} ~ {end}\n\n⚠️ **Momentan Nu Sunt Date Disponibile pentru Publicitate**\n\nAceasta poate fi din cauza:\n• Furnizorul de publicitate nu este configurat încă\n• Niciun utilizator nu a vizualizat publicități\n• Nici o activitate publicitară în perioada selectată\n\n💡 **Când vor apărea datele?**\n• Următoarele configurații trebuie finalizate:\n 1. Configurează furnizorul de publicitate (cum ar fi GigaPub)\n 2. Creează publicități oficiale\n 3. Utilizatorii încep să vizualizeze publicități\n\n• Se recomandă să configurezi întâi furnizorul de publicitate\n• Apoi așteptă utilizatorii să înceapă utilizarea funcției publicitare",
+    "complete": "• Rata de Completare: ${provider.completion_rate.toFixed(1)}%",
+    "complete2": "• Completări: ${provider.total_completions}",
+    "completion": "• Completări: {completions}",
+    "completionRate": "• Rata de Completare: {rate}%",
+    "conversionStepsTitle": "[Translation needed from zh-TW.ts]",
+    "invite": "• Invitații Inițiate: {initiated}\n• Invitații Acceptate: {accepted}\n• Invitații Activate: {activated}\n• Rata de Conversie: {conversionRate}%\n\n• Sticle Aruncate: {bottlesThrown}\n• Sticle Capturate: {bottlesCaught}\n• Conversații Noi: {conversationsStarted}\n• Runde Medii de Conversație: {avgConversationRounds}\n\n💡 Date Detaliate: /analytics",
+    "message": "📊 **Raport Operațiuni Zilnice**\n📅 Dată: {date}\n\n**👥 Date Utilizator**\n• Utilizatori Noi: {newUsers}\n• Utilizatori Activ (DAU): {dau}\n• Rata de Rată (D1): {d1Retention}%\n• Durata Medie a Sesiunii: {avgSessionDuration} minute\n\n**📺 Date Publicitate**\n• Publicitate Terță Parte:\n - Impresii: {thirdPartyImpressions}\n - Completări: {thirdPartyCompletions}\n - Rata de Completare: {thirdPartyCompletionRate}%\n - Recompense Acordate: {thirdPartyRewardsGranted} credite",
+    "message2": "📊 **Raport Operațiuni Zilnice**\n📅 Dată: {date}\n\n⚠️ **Nu Sunt Date Disponibile Azi**\n\nAceasta poate fi din cauza:\n• Sistemul a fost doar implementat, nicio activitate a utilizatorilor\n• Niciun utilizator nu a folosit Botul azi\n• Funcția de urmărire a datelor nu este activată încă\n\n💡 **Când vor apărea datele?**\n• Utilizatorii trebuie să efectueze una dintre următoarele acțiuni:\n - Trimite /start pentru a te înregistra\n - Aruncă sau prinde o sticlă\n - Vizualizează publicități\n - Achiziționează VIP\n\n• Este recomandat să aștepți utilizatorii să înceapă utilizarea înainte de a revizui\n• Sau simulează comportamentul utilizatorului într-un mediu de testare",
+    "message3": "**📈 Rata totală de conversie: ${report.overall_conversion_rate.toFixed(1)}%**",
+    "message4": "• Rata de Conversie: ${step.conversion_rate.toFixed(1)}%",
+    "message5": "• Rata de Eroare: ${provider.error_rate.toFixed(1)}%",
+    "message6": "• Cereri: ${provider.total_requests}",
+    "providerComparisonTitle": "[Translation needed from zh-TW.ts]",
+    "purchaseSuccess": "[Translation needed from zh-TW.ts]",
+    "request": "• Cereri: {requests}",
+    "text": "• Numărul de Utilizatori: ${step.user_count}",
+    "text2": "Intenții de Achiziție (click pentru a achiziționa)",
+    "vip": "📊 **Funnel de Conversie VIP**\n📅 Perioadă: {start} ~ {end}\n\n⚠️ **Momentan Nu Sunt Date Disponibile**\n\nAceasta poate fi din cauza:\n• Sistemul a fost doar implementat, nicio activitate a utilizatorului\n• Niciun eveniment legat de VIP în perioada selectată\n• Funcția de urmărire a datelor nu este activată încă\n\n💡 **Când vor apărea datele?**\n• Datele de conversie VIP necesită ca utilizatorii să efectueze următoarele acțiuni:\n 1. Vizualizează introducerea funcției VIP\n 2. Click pentru a achiziționa VIP\n 3. Finalizează achiziționarea VIP\n\n• Se recomandă să aștepți 24-48 de ore înainte de a verifica din nou\n• Sau simulează comportamentul utilizatorului într-un mediu de testare",
+    "vip2": "📊 **Funnel de Conversie VIP**\n📅 Perioadă: {start} ~ {end}",
+    "vip3": "Conștientizare (a văzut promptul VIP)",
+    "vip4": "Considerare (a vizualizat detaliile VIP)",
+    "vip5": "Interes (a dat click pentru a vizualiza VIP)"
+  },
+  "appeal": {
+    "alreadyExists": "⏳ Ai o cerere de apel în așteptare (ID: #${appealId})\n\nStatus: ${status}\nTimp Trimis: ${time}\n\nTe rugăm să ai răbdare în timp ce aștepți revizuirea adminului.",
+    "approved": "✅ Cererea ta de apel a fost aprobată, contul a fost deblocat",
+    "noAppeal": "Momentan nu ai cereri de apel în așteptare",
+    "notBanned": "✅ Contul tău nu este blocat, nu este nevoie de apel.",
+    "notFound": "❌ Nu am putut găsi înregistrarea cererii tale de apel.",
+    "notes": "Note:",
+    "prompt": "📝 **Trimite Cerere de Apel**\n\nTe rugăm să explici de ce crezi că contul a fost blocat și cum dorești să rezolvi această problemă.\n\n💡 Te rugăm să descrii situația ta în detaliu pentru a ajuta adminul să îți proceseze cererea de apel mai repede.",
+    "reasonTooLong": "❌ Motivul apelului este prea lung; te rugăm să-l menții sub 500 de cuvinte.",
+    "reasonTooShort": "❌ Motivul apelului este prea scurt, vă rugăm să introduceți cel puțin 10 caractere.",
+    "rejected": "❌ Apelul dumneavoastră a fost refuzat.",
+    "reviewedAt": "Timp de revizuire:",
+    "status": "📋 **Starea apelului**\n\nID Apel: #${appealId}\nStare: ${status}\nTimp de trimitere: ${createdAt}${reviewInfo}",
+    "statusApproved": "Aprobat",
+    "statusPending": "În așteptare de revizuire",
+    "statusRejected": "Refuzat",
+    "submitted": "✅ **Apel trimis**\n\nID Apel: #${appealId}\nStare: În așteptare de revizuire\n\nVom procesa apelul dumneavoastră în termen de 1-3 zile lucrătoare.\nVeți fi notificat cu privire la rezultat prin Bot."
+  },
+  "block": {
+    "cannotIdentify": "⚠️ Nu se poate recunoaște partenerul de conversație.",
+    "catchNewBottle": "💡 Folosiți /catch pentru a alege o nouă sticlă cu mesaj și a începe o nouă conversație.",
+    "conversationInfoError": "⚠️ Informațiile despre conversație sunt incorecte.",
+    "conversationMayEnded": "Conversația poate să fi fost încheiată sau nu există.",
+    "conversationNotFound": "⚠️ Această conversație nu a putut fi găsită.",
+    "ensureReply": "Vă rugăm să vă asigurați că răspundeți la mesajul trimis de cealaltă parte (cu identificatorul #).",
+    "hint": "💡 Acesta specifică cu exactitate persoana pe care doriți să o blocați.",
+    "replyRequired": "⚠️ Vă rugăm să apăsați lung mesajul pe care doriți să-l blocați și să răspundeți cu comanda.",
+    "step1": "1️⃣ Apăsați lung mesajul celeilalte persoane.",
+    "step2": "2️⃣ Selectați 'Răspunde'.",
+    "step3": "3️⃣ Introduceți /block.",
+    "steps": "**Pași pentru operare:**",
+    "success": "✅ Utilizatorul (#${identifier}) a fost blocat",
+    "willNotMatch": "Nu veți mai fi asociați cu sticlele de mesaje ale celuilalt."
+  },
+  "bottle": {
+    "bottle13": "Conținutul mesajului",
+    "cancelled": "❌ ${zodiac} anulat",
+    "catch": {
+      "anonymousUser": "Utilizator anonim",
+      "back": "🏠 Întoarceți-vă la meniul principal: /menu",
+      "banned": "❌ Contul dumneavoastră a fost interzis și nu poate alege sticle cu mesaje.\n\nDacă aveți întrebări, vă rugăm să folosiți /appeal pentru a depune un apel.",
+      "block": "• Folosiți /block pentru a opri conversația dacă nu mai doriți să discutați.\n",
+      "bottle": "😔 În prezent, nu există sticle cu mesaje potrivite pentru tine.\n\n",
+      "bottle2": "• Sau aruncați o sticlă singur: /throw",
+      "bottle3": "🎣 Cineva a găsit sticla ta cu mesaj!\n\n",
+      "bottle4": "🧴 Ai găsit o sticlă cu mesaj!\n\n",
+      "bottle5": "💡 Reveniti mâine pentru a ridica mai multe sticle!",
+      "bottleTaken": "❌ Această sticlă a fost deja ridicată de altcineva, vă rugăm să încercați alte sticle!",
+      "catch": "📊 Capturi de astăzi: \\\\$${newCatchesCount}/\\${quota}\n\n",
+      "conversation": "O conversație anonimă a fost creată pentru tine, vino și începe să comunici!\n\n",
+      "conversation2": "• Aceasta este o conversație anonimă, vă rugăm să vă protejați confidențialitatea personală.\n",
+      "conversation3": "📊 Vizualizați toate conversațiile",
+      "language": "🗣️ Limbă: \\${language}\n\n",
+      "mbti": "🧠 MBTI: \\${mbti}\n",
+      "message": "💫 Scor de potrivire: ${score} puncte (Potrivire inteligentă)\n\n",
+      "message2": "${catcherGender} | 📅 ${catcherAge} ani\n\n",
+      "message3": "conv_reply_\\${conversationIdentifier}",
+      "message4": "2️⃣ Apasă lung pe acest mesaj, selectează 'Răspunde' și introdu conținutul tău\n\n",
+      "message5": "1️⃣ Faceți clic pe butonul '💬 Răspundeți mesajului' de mai jos.\n",
+      "message6": "2️⃣ Apăsați lung acest mesaj, selectați 'Răspunde' și apoi introduceți conținutul dumneavoastră.",
+      "nickname": "📝 Pseudonim: \\${ownerMaskedNickname}\n",
+      "nickname2": "📝 Pseudonim: \\${catcherNickname}\n",
+      "notRegistered": "❌ Vă rugăm să finalizați procesul de înregistrare înainte de a alege sticle cu mesaje.\n\nFolosiți /start pentru a continua înregistrarea.",
+      "originalContent": "Text original: {content}",
+      "originalLanguage": "Limba originală: {language}",
+      "quotaExhausted": "❌ Cota de mesaje pentru astăzi a fost utilizată (\\${quotaDisplay})",
+      "replyButton": "💬 Răspunde la mesaj",
+      "replyMethods": "💡 **Două metode de răspuns**:\n",
+      "report": "• Folosește /report pentru a raporta conținutul inadecvat\n",
+      "safetyTips": "⚠️ Sfaturi de siguranță:\n",
+      "settings": "🧠 MBTI: ${mbti}\n",
+      "settings10": "Nesetată",
+      "settings11": "Nesetată",
+      "settings2": "Nesetată",
+      "settings3": "Nesetată",
+      "settings4": "Nesetată",
+      "settings5": "Nesetată",
+      "settings6": "Nesetată",
+      "settings7": "Nesetată",
+      "settings8": "Nesetată",
+      "settings9": "Nesetată",
+      "short": "💡 Sfaturile:\n",
+      "short2": "• Încearcă din nou mai târziu\n",
+      "short3": "Utilizator anonim",
+      "short4": "♂️ Bărbat",
+      "short5": "♀️ Femeie",
+      "text": "Limba de traducere: \\${catcherLangDisplay}\n",
+      "text2": "Limba originală: \\${bottleLangDisplay}\n",
+      "text3": "🗣️ Limbă: \\${ownerLanguage}\n\n",
+      "text4": "• Pentru a opri conversația, poți folosi /block pentru a bloca\n\n",
+      "text5": "Text original: \\${bottle.content}\n",
+      "text6": "💬 Serviciul de traducere are probleme temporare, s-a folosit traducerea de rezervă\n",
+      "text7": "Traducere: \\${bottleContent}\n",
+      "text8": "💡 **Două metode de răspuns**:\n",
+      "translatedContent": "Traducere: {content}",
+      "translatedLanguage": "Limba de traducere: {language}",
+      "translationServiceFallback": "💬 Serviciul de traducere are probleme temporare, s-a folosit traducerea de rezervă",
+      "translationServiceUnavailable": "⚠️ Serviciul de traducere este temporar indisponibil, iată textul original",
+      "unknown": "Necunoscut",
+      "zodiac": "⭐ Zodia: \\${bottle.zodiac }\n",
+      "zodiac2": "⭐ Zodia: \\${catcherZodiac}\n"
     },
-  },
-  adminNotification: {
-    amount: `金額：\${stars} ⭐`,
-    data: `數據：\${data}`,
-    daysLeft: `剩餘：\${days} 天`,
-    expireDate: `到期：\${date}`,
-    newExpireDate: `新到期：\${date}`,
-    paymentFailed: `❌ **支付失敗**`,
-    paymentId: `支付 ID：\`\${id}\``,
-    reason: `原因：\${reason}`,
-    refundRequest: `🔴 **退款請求**`,
-    requestId: `請求 ID：#\${id}`,
-    systemNotification: `📢 **系統通知**`,
-    time: `時間：\${time}`,
-    type: `類型：\${type}`,
-    user: `用戶：\`\${userId}\``,
-    viewRefundsHint: `💡 使用 /admin_refunds 查看詳情`,
-    vipDowngraded: `⬇️ **VIP 自動降級**`,
-    vipPurchased: `🎉 **新 VIP 購買**`,
-    vipReminderSent: `⏰ **VIP 到期提醒已發送**`,
-    vipRenewed: `🔄 **VIP 續費**`,
-  },
-  age: {
-    daysAgo: `\${days} 天前`,
-    hoursAgo: `\${hours} 小時前`,
-    justNow: `剛剛`,
-  },
-  analytics: {
-    ad: `• 官方廣告：
- - 展示：{officialImpressions} 次
- - 點擊：{officialClicks} 次
- - CTR：{officialCtr}%
- - 獎勵發放：{officialRewardsGranted} 個額度
-
-• VIP 頁面訪問：{vipPageViews} 次
-• 購買意向：{vipPurchaseIntents} 次
-• 成功轉化：{vipConversions} 次
-• 轉化率：{vipConversionRate}%
-• 收入：\${vipRevenue}`,
-    ad2: `📊 **廣告效果報表**
-📅 期間：{start} ~ {end}
-
-• 總展示：{thirdPartyImpressions} 次
-• 總完成：{thirdPartyCompletions} 次
-• 完成率：{thirdPartyCompletionRate}%
-• 總獎勵：{thirdPartyRewardsGranted} 個額度
-
-• 總展示：{officialImpressions} 次
-• 總點擊：{officialClicks} 次
-• CTR：{officialCtr}%
-• 總獎勵：{officialRewardsGranted} 個額度`,
-    ad3: `📊 **廣告效果報表**
-📅 期間：{start} ~ {end}
-
-⚠️ **目前還沒有廣告數據**
-
-這可能是因為：
-• 廣告提供商尚未配置
-• 還沒有用戶觀看廣告
-• 選定的時間範圍內沒有廣告活動
-
-💡 **數據何時會出現？**
-• 需要完成以下配置：
- 1. 配置廣告提供商（GigaPub 等）
- 2. 創建官方廣告
- 3. 用戶開始觀看廣告
-
-• 建議先配置廣告提供商
-• 然後等待用戶開始使用廣告功能`,
-    complete: `
-• 完成率：\${provider.completion_rate.toFixed(1)}%`,
-    complete2: `
-• 完成：\${provider.total_completions} 次`,
-    completion: `
-• 完成：{completions} 次`,
-    completionRate: `
-• 完成率：{rate}%`,
-    conversionStepsTitle: `[需要从 zh-TW.ts 获取翻译]`,
-    invite: `• 發起邀請：{initiated} 次
-• 接受邀請：{accepted} 次
-• 激活邀請：{activated} 次
-• 轉化率：{conversionRate}%
-
-• 丟瓶子：{bottlesThrown} 個
-• 撿瓶子：{bottlesCaught} 個
-• 新對話：{conversationsStarted} 個
-• 平均對話輪次：{avgConversationRounds}
-
-💡 詳細數據：/analytics`,
-    message: `📊 **每日運營報表**
-📅 日期：{date}
-
-**👥 用戶數據**
-• 新增用戶：{newUsers} 人
-• 活躍用戶（DAU）：{dau} 人
-• 留存率（D1）：{d1Retention}%
-• 平均使用時長：{avgSessionDuration} 分鐘
-
-**📺 廣告數據**
-• 第三方廣告：
- - 展示：{thirdPartyImpressions} 次
- - 完成：{thirdPartyCompletions} 次
- - 完成率：{thirdPartyCompletionRate}%
- - 獎勵發放：{thirdPartyRewardsGranted} 個額度`,
-    message2: `📊 **每日運營報表**
-📅 日期：{date}
-
-⚠️ **今日還沒有數據**
-
-這可能是因為：
-• 系統剛部署，還沒有用戶活動
-• 今天還沒有用戶使用 Bot
-• 數據追蹤功能尚未啟用
-
-💡 **數據何時會出現？**
-• 需要用戶執行以下任一操作：
- - 發送 /start 註冊
- - 丟瓶子或撿瓶子
- - 觀看廣告
- - 購買 VIP
-
-• 建議等待用戶開始使用後再查看
-• 或者在測試環境中模擬用戶行為`,
-    message3: `
-
-**📈 總轉化率：\${report.overall_conversion_rate.toFixed(1)}%**`,
-    message4: `
-• 轉化率：\${step.conversion_rate.toFixed(1)}%`,
-    message5: `
-• 錯誤率：\${provider.error_rate.toFixed(1)}%`,
-    message6: `
-• 請求：\${provider.total_requests} 次`,
-    providerComparisonTitle: `[需要从 zh-TW.ts 获取翻译]`,
-    purchaseSuccess: `[需要从 zh-TW.ts 获取翻译]`,
-    request: `
-• 請求：{requests} 次`,
-    text: `
-• 用戶數：\${step.user_count}`,
-    text2: `購買意向（點擊購買）`,
-    vip: `📊 **VIP 轉化漏斗**
-📅 期間：{start} ~ {end}
-
-⚠️ **目前還沒有數據**
-
-這可能是因為：
-• 系統剛部署，還沒有用戶活動
-• 選定的時間範圍內沒有 VIP 相關事件
-• 數據追蹤功能尚未啟用
-
-💡 **數據何時會出現？**
-• VIP 轉化數據需要用戶執行以下操作：
- 1. 查看 VIP 功能介紹
- 2. 點擊購買 VIP
- 3. 完成 VIP 購買
-
-• 建議等待 24-48 小時後再查看
-• 或者先在測試環境中模擬用戶行為`,
-    vip2: `📊 **VIP 轉化漏斗**
-📅 期間：{start} ~ {end}`,
-    vip3: `認知（看到 VIP 提示）`,
-    vip4: `考慮（查看 VIP 詳情）`,
-    vip5: `興趣（點擊查看 VIP）`,
-  },
-  appeal: {
-    alreadyExists: `⏳ 你已有一個待處理的申訴（編號：#\${appealId}）
-
-狀態：\${status}
-提交時間：\${time}
-
-請耐心等待管理員審核。`,
-    approved: `✅ 你的申訴已通過，帳號已解封`,
-    noAppeal: `你目前沒有待審核的申訴`,
-    notBanned: `✅ 你的帳號未被封禁，無需申訴。`,
-    notFound: `❌ 找不到你的申訴記錄。`,
-    notes: `備註：`,
-    prompt: `📝 **提交申訴**
-
-請說明你認為帳號被封禁的原因，以及你希望如何解決這個問題。
-
-💡 請詳細描述你的情況，這有助於管理員更快地處理你的申訴。`,
-    reasonTooLong: `❌ 申訴原因太長，請控制在 500 字以內。`,
-    reasonTooShort: `❌ 申訴原因太短，請至少輸入 10 個字。`,
-    rejected: `❌ 你的申訴已被拒絕`,
-    reviewedAt: `審核時間：`,
-    status: `📋 **申訴狀態**
-
-申訴編號：#\${appealId}
-狀態：\${status}
-提交時間：\${createdAt}\${reviewInfo}`,
-    statusApproved: `已批准`,
-    statusPending: `待審核`,
-    statusRejected: `已拒絕`,
-    submitted: `✅ **申訴已提交**
-
-申訴編號：#\${appealId}
-狀態：待審核
-
-我們會在 1-3 個工作日內處理你的申訴。
-處理結果會通過 Bot 通知你。`,
-  },
-  block: {
-    cannotIdentify: `⚠️ 無法識別對話對象`,
-    catchNewBottle: `💡 使用 /catch 撿新的漂流瓶開始新對話。`,
-    conversationInfoError: `⚠️ 對話資訊錯誤。`,
-    conversationMayEnded: `對話可能已結束或不存在。`,
-    conversationNotFound: `⚠️ 找不到此對話`,
-    ensureReply: `請確保回覆的是對方發送的訊息（帶有 # 標識符）。`,
-    hint: `💡 這樣可以準確指定要封鎖的對象。`,
-    replyRequired: `⚠️ 請長按你要封鎖的訊息後回覆指令`,
-    step1: `1️⃣ 長按對方的訊息`,
-    step2: `2️⃣ 選擇「回覆」`,
-    step3: `3️⃣ 輸入 /block`,
-    steps: `**操作步驟：**`,
-    success: `✅ 已封鎖此使用者 (#\${identifier})`,
-    willNotMatch: `你們將不會再被匹配到對方的漂流瓶。`,
-  },
-  bottle: {
-    bottle13: `瓶子内容`,
-    cancelled: `❌ 已取消 \${zodiac}`,
-    containsUrl: `瓶子內容不允許包含任何連結`,
-    empty: `瓶子內容不能為空`,
-    friendlyContent: `• 友善、尊重的內容更容易被撿到哦～`,
-    inappropriate: `瓶子內容包含不適當的內容，請修改後重新提交`,
-    selected: `已選擇：\${selected}`,
-    selectedItem: `✅ 已選擇 \${zodiac}`,
-    tips: `💡 提示：`,
-    tooLong: `瓶子內容太長，最多 \${max} 個字符（目前 \${current} 個字符）`,
-    tooShort: `瓶子內容太短，至少需要 \${min} 個字符（目前 \${current} 個字符）`,
-    catch: {
-      anonymousUser: `匿名用戶`,
-      back: `🏠 返回主選單：/menu`,
-      banned: `❌ 你的帳號已被封禁，無法撿漂流瓶。
-
-如有疑問，請使用 /appeal 申訴。`,
-      block: `• 不想再聊可使用 /block 封鎖
-`,
-      bottle: `😔 目前沒有適合你的漂流瓶
-
-`,
-      bottle2: `• 或者自己丟一個瓶子：/throw`,
-      bottle3: `🎣 有人撿到你的漂流瓶了！
-
-`,
-      bottle4: `🧴 你撿到了一個漂流瓶！
-
-`,
-      bottle5: `💡 明天再來撿更多瓶子吧！`,
-      bottleTaken: `❌ 這個瓶子已經被其他人撿走了，請試試其他瓶子！`,
-      catch: `📊 今日已撿：\\\${newCatchesCount}/\\\${quota}
-
-`,
-      conversation: `已為你們建立了匿名對話，快來開始聊天吧～
-
-`,
-      conversation2: `• 這是匿名對話，請保護個人隱私
-`,
-      conversation3: `📊 查看所有對話`,
-      language: `🗣️ 語言：\\\${language}
-
-`,
-      mbti: `🧠 MBTI：\\\${mbti}
-`,
-      message: `💫 配對度：\\\${score}分 (智能配對)
-
-`,
-      message2: `\\\${catcherGender} | 📅 \\\${catcherAge}歲
-
-`,
-      message3: `conv_reply_\\\${conversationIdentifier}`,
-      message4: `2️⃣ 長按此訊息，選擇「回覆」後輸入內容
-
-`,
-      message5: `1️⃣ 點擊下方「💬 回覆訊息」按鈕
-`,
-      message6: `2️⃣ 長按此訊息，選擇「回覆」後輸入內容`,
-      nickname: `📝 暱稱：\\\${ownerMaskedNickname}
-`,
-      nickname2: `📝 暱稱：\\\${catcherNickname}
-`,
-      notRegistered: `❌ 請先完成註冊流程才能撿漂流瓶。
-
-使用 /start 繼續註冊。`,
-      originalContent: `原文：{content}`,
-      originalLanguage: `原文語言：{language}`,
-      quotaExhausted: `❌ 今日漂流瓶配額已用完（\\\${quotaDisplay}）`,
-      replyButton: `💬 回覆訊息`,
-      replyMethods: `💡 **兩種回覆方式**：
-`,
-      report: `• 遇到不當內容請使用 /report 舉報
-`,
-      safetyTips: `⚠️ 安全提示：
-`,
-      settings: `🧠 MBTI：\${mbti}
-`,
-      settings10: `未設定`,
-      settings11: `未設定`,
-      settings2: `未設定`,
-      settings3: `未設定`,
-      settings4: `未設定`,
-      settings5: `未設定`,
-      settings6: `未設定`,
-      settings7: `未設定`,
-      settings8: `未設定`,
-      settings9: `未設定`,
-      short: `💡 提示：
-`,
-      short2: `• 稍後再試
-`,
-      short3: `匿名用戶`,
-      short4: `♂️ 男`,
-      short5: `♀️ 女`,
-      text: `翻譯語言：\\\${catcherLangDisplay}
-`,
-      text2: `原文語言：\\\${bottleLangDisplay}
-`,
-      text3: `🗣️ 語言：\\\${ownerLanguage}
-
-`,
-      text4: `• 不想再聊可使用 /block 封鎖
-
-`,
-      text5: `原文：\\\${bottle.content}
-`,
-      text6: `💬 翻譯服務暫時有問題，已使用備援翻譯
-`,
-      text7: `翻譯：\\\${bottleContent}
-`,
-      text8: `💡 **兩種回覆方式**：
-`,
-      translatedContent: `翻譯：{content}`,
-      translatedLanguage: `翻譯語言：{language}`,
-      translationServiceFallback: `💬 翻譯服務暫時有問題，已使用備援翻譯`,
-      translationServiceUnavailable: `⚠️ 翻譯服務暫時無法使用，以下為原文`,
-      unknown: `未知`,
-      zodiac: `⭐ 星座：\\\${bottle.zodiac }
-`,
-      zodiac2: `⭐ 星座：\\\${catcherZodiac}
-`,
+    "containsUrl": "Conținutul sticlei cu mesaj nu trebuie să conțină linkuri",
+    "empty": "Conținutul sticlei cu mesaj nu poate fi gol",
+    "friendlyContent": "• Conținutul prietenos și respectuos este mai probabil să fie selectat~",
+    "inappropriate": "Conținutul sticlei cu mesaj conține material inadecvat, te rugăm să modifici și să resubmiți",
+    "selected": "Selectat: ${selected}",
+    "selectedItem": "✅ Selectat ${zodiac}",
+    "throw": {
+      "age": "• Intervalul de vârstă este aproape ✓",
+      "aiModerationFailed": "Revizuirea conținutului AI a eșuat",
+      "back": "↩️ Întoarce-te la meniul de filtrare",
+      "bloodType": "🩸 **Filtru tip de sânge**\n\n",
+      "bloodType2": "• Tip sânge: Filtrează după tipuri de sânge specifice\n",
+      "bloodType3": "Selectează tipul de sânge pe care vrei să-l potrivești:",
+      "bloodType4": "🩸 Filtru tip sânge",
+      "bloodType5": "🌈 Orice tip de sânge",
+      "bottle": "💡 Această sticlă cu mesaj este foarte compatibilă cu tine!\n\\\n",
+      "bottle10": "🍾 Sticla cu mesaj a fost aruncată!\n\n",
+      "bottle11": "🍾 Aruncă sticla cu mesaj",
+      "bottle2": "🎯 Sticla ta a fost trimisă la **3 destinatari**:\n",
+      "bottle3": "🍾 **Aruncând sticla ta cu mesaj...**\n\n",
+      "bottle4": "🍾 **Aruncă sticla cu mesaj** #THROW\n\n",
+      "bottle5": "ID sticlă: #${bottleId}",
+      "bottle6": "📝 **Te rog introdu conținutul sticlei tale cu mesaj**\n\n",
+      "bottle7": "1️⃣ Fă clic pe butonul de mai jos '🍾 Aruncă sticla cu mesaj'\n",
+      "bottle8": "📝 Te rog introdu conținutul sticlei tale cu mesaj:\n\n",
+      "bottle9": "📝 Te rog introdu conținutul sticlei tale cu mesaj:",
+      "cancel": "💡 Fă clic pentru a selecta sau anula tipul MBTI:",
+      "cancel2": "💡 Fă clic pentru a selecta sau anula semnul zodiacal:",
+      "catch": "• Slot 3: Piscină Publică (așteaptă să fie ridicată)\n\n",
+      "catch2": "• Slot 2: Piscină Publică (așteaptă să fie ridicată)\n",
+      "catch3": "• Slot 1: Piscină Publică (așteaptă să fie ridicată)\n",
+      "catch4": "🌊 Așteptând să te ridice soarta...\n",
+      "complete": "⚙️ **Filtru avansat**\n\n\\${summary}\n💡 Continuă să ajustezi sau completează filtrul:",
+      "complete2": "🎯 **Potrivire 1 finalizată:**\n",
+      "complete3": "📝 Ai un proiect nefinalizat\n\n",
+      "complete4": "⏳ Finalizare estimată în 3-5 secunde",
+      "complete5": "⏳ Finalizare estimată în 2-3 secunde",
+      "complete6": "⏳ Finalizare estimată în 1-2 secunde",
+      "conversation": "💬 Identificator conversație: \\${vipMatchInfo.conversationIdentifier}\n\n",
+      "conversation2": "💡 Tip: Fiecare conversație este independentă și poate avea loc simultan\n\n",
+      "conversation3": "💡 Poți primi **până la 3 conversații**!\n",
+      "conversation4": "💬 Poți primi **până la 3 conversații**!\n",
+      "conversation5": "Folosește /chats pentru a vizualiza toate conversațiile\n\n",
+      "conversation6": "📊 Folosește /chats pentru a vizualiza toate conversațiile",
+      "conversation7": "Folosește /chats pentru a vizualiza toate conversațiile",
+      "currentSelection": "Selecție curentă: {genderText}",
+      "gender": "• Gen: \\${selectedGender === 'male' ? '👨 Bărbat' : selectedGender === 'female' ? '👩 Femeie' : '🌈 Oricine'}\n",
+      "gender2": "👤 **Filtru de Gen**\n\n",
+      "gender3": "• Gen: Filtrează după gen\n\n",
+      "gender4": "💡 Selectează genul dorit:",
+      "gender5": "👤 Filtru de Gen",
+      "genderLabel": "• Gen: {gender}\n",
+      "mbti": "• MBTI: \\${selectedMBTI.length > 0 ? selectedMBTI.join(', ') : 'Nelimitat'}\n",
+      "mbti2": "Selectat: \\${selectedMBTI.length > 0 ? selectedMBTI.join(', ') : 'Nimic'}\n\n",
+      "mbti3": "Selectat: \\${selectedMBTI.length > 0 ? selectedMBTI.join(",
+      "mbti4": "🧠 **Filtru MBTI**\n\n",
+      "mbti5": "• MBTI: Filtrează tipurile de personalitate specifice\n",
+      "mbti6": "• Compatibilitate MBTI ridicată ✓",
+      "mbti7": "🧠 Filtru MBTI",
+      "mbtiLabel": "• MBTI: {mbti}\n",
+      "message": "Selectat: \\${selectedZodiac.length > 0 ? selectedZodiac.map((z) => ZODIAC_NAMES[z]).join(', ') : 'Nimic'}\n\n",
+      "message2": "Selecție curentă: \\${currentGender === 'male' ? '👨 Bărbat' : currentGender === 'female' ? '👩 Femeie' : '🌈 Oricine'}\n\n",
+      "message3": "Selectat: \\${selectedZodiac.length > 0 ? selectedZodiac.map((z) => ZODIAC_NAMES[z]).join(",
+      "message4": "Selecție curentă: \\${bloodTypeDisplay[currentBloodType]}\n\n",
+      "message5": "👤 Cealaltă parte: \\${vipMatchInfo.matcherNickname}\n",
+      "message6": "\"Bună! Sunt cineva care iubește muzica și filmele, sper să întâlnesc prieteni care gândesc la fel!\"\n\n",
+      "message7": "💡 Poți modifica preferințele de potrivire în /edit_profile\n\n",
+      "message8": "💬 Fă clic pe /reply pentru a răspunde la mesaj și a începe conversația\n",
+      "nickname": "📝 Porecla celeilalte părți: \\${matchedUserMaskedNickname}\n",
+      "quota": "• Mai multe cote (30 pe zi)\n",
+      "quota2": "🎁 Invită prieteni pentru a crește cotele:\n",
+      "settings": "🧠 MBTI: ${mbti}\n",
+      "settings2": "⭐ Zodie: ${zodiac}\n",
+      "settings3": "🧠 MBTI: \\\\$\n",
+      "settings4": "⭐ Zodie: \\\\$\n",
+      "settings5": "Nesetată",
+      "settings6": "Nesetată",
+      "settings7": "Nesetată",
+      "settings8": "Nesetată",
+      "short": "• Aceeași limbă ✓",
+      "short10": "♋ Rac",
+      "short11": "♌ Leu",
+      "short12": "♍ Fecioară",
+      "short13": "♎ Balanță",
+      "short14": "♏ Scorpion",
+      "short15": "♐ Săgetător",
+      "short16": "♑ Capricorn",
+      "short17": "♒ Vărsător",
+      "short18": "♓ Pești",
+      "short19": "Încălcare",
+      "short2": "🩸 Tip AB",
+      "short20": "Nelimitat",
+      "short21": "Nelimitat",
+      "short22": "Nelimitat",
+      "short23": "Nelimitat",
+      "short3": "🌈 Oricine",
+      "short4": "🩸 Tip A",
+      "short5": "🩸 Tip B",
+      "short6": "🩸 Tip O",
+      "short7": "♈ Berbec",
+      "short8": "♉ Taur",
+      "short9": "♊ Gemeni",
+      "start": "✍️ Repornește",
+      "success": "O sticlă cu mesaj = 3 destinatari, crescând semnificativ rata de succes a potrivirii\n\n",
+      "success2": "✨ **Privilegiu VIP activat! Potrivire inteligentă reușită!**\n\n",
+      "success3": "🎯 Sticla ta cu mesaj a fost potrivită cu succes!\n\n",
+      "text": "💝 Procentajul potrivirii: \\${matchPercentage}%\n",
+      "text10": "🎯 Căutăm cel mai bun destinatar pentru tine\n\n",
+      "text11": "💬 Așteptând răspunsul celeilalte părți...\n",
+      "text12": "• Utilizatori gratuiti: Până la +7\n",
+      "text13": "• Nu include informații personale de contact\n\n",
+      "text14": "💡 **Două metode de introducere**:\n",
+      "text15": "📊 Utilizatori gratuiti: 3 pe zi\n",
+      "text16": "Selectează condițiile pe care vrei să le filtrezi:\n\n",
+      "text17": "• Filtrare avansată și traducere\n\n",
+      "text18": "Timp de creare: \\${age}\n",
+      "text19": "Utilizează /vip pentru a face upgrade imediat",
+      "text2": "• 🆕 Oportunitate triplu expunere (1 dată = 3 ținte)\n",
+      "text20": "💬 **Exemplu**:\n",
+      "text21": "Utilizează /vip pentru a afla mai multe",
+      "text22": "Ai dori să continui editarea acestui proiect?",
+      "text23": "💡 Poți combina mai multe condiții",
+      "text24": "Condiții de filtrare curente:\n\n",
+      "text3": "💡 Acest lucru poate dura câteva secunde, căutăm cele mai bune potriviri pentru tine",
+      "text4": "Selecție curentă: \\${currentGender ===",
+      "text5": "🎯 Căutăm ținte: \\${targetText}\n",
+      "text6": "🎯 Căutăm 3 cei mai buni candidați pentru tine\n\n",
+      "text7": "📨 **2 sloturi suplimentare așteaptă:**\n",
+      "text8": "🔍 Potrivire inteligentă cu cei mai buni candidați...\n\n",
+      "text9": "Previzualizare conținut: \\${preview}\n\n",
+      "throw": "📊 Astăzi trimise: \\${quotaDisplay}\n\n",
+      "unlimited": "Nelimitat",
+      "urlNotAllowed": "❌ Mesajul conține URL-uri interzise",
+      "vip": "💎 Utilizatori VIP: 30 pe zi (expunere triplă)\n\n",
+      "vip2": "💎 **Upgradează la VIP pentru oportunități de expunere tripla!**\n",
+      "vip3": "⚙️ **Filtru Avansat (Exclusiv VIP)**\n\n",
+      "vip4": "• Utilizatori VIP: Până la +70\n\n",
+      "vip5": "✨ **Privilegiu VIP Activat!**\n\n",
+      "vip6": "💡 Upgradează la VIP pentru a primi:\n",
+      "vip7": "✨ Activarea privilegiilor VIP\n",
+      "zodiac": "• Zodiac: \\${selectedZodiac.length > 0 ? selectedZodiac.map((z) => ZODIAC_NAMES[z]).join(', ') : 'Fără restricții'}\n",
+      "zodiac2": "⭐ Zodiac: \\${matchResult.user.zodiac ||",
+      "zodiac3": "⭐ Zodiac: \\${user.zodiac_sign ||",
+      "zodiac4": "⭐ **Filtru Zodiac**\n\n",
+      "zodiac5": "• Zodiac: Filtrare după semne zodiacale specifice\n",
+      "zodiac6": "• Zodiac foarte compatibil ✓",
+      "zodiac7": "⭐ Filtrare Zodiac",
+      "zodiacLabel": "• Zodiac: {zodiac}\n"
     },
-    throw: {
-      age: `• 年齡區間相近 ✓`,
-      aiModerationFailed: `AI 内容审核失败`,
-      back: `↩️ 返回篩選選單`,
-      bloodType: `🩸 **血型篩選**
-
-`,
-      bloodType2: `• 血型：篩選特定血型
-`,
-      bloodType3: `選擇你想要配對的血型：`,
-      bloodType4: `🩸 血型篩選`,
-      bloodType5: `🌈 任何血型`,
-      bottle: `
-💡 這個瓶子和你非常合拍！
-\\
-`,
-      bottle10: `🍾 漂流瓶已丟出！
-
-`,
-      bottle11: `🍾 丟漂流瓶`,
-      bottle2: `🎯 你的瓶子已發送給 **3 個對象**：
-`,
-      bottle3: `🍾 **正在丟出你的漂流瓶...**
-
-`,
-      bottle4: `🍾 **丟漂流瓶** #THROW
-
-`,
-      bottle5: `瓶子 ID：#\\\${bottleId}
-
-`,
-      bottle6: `📝 **請輸入你的漂流瓶內容**
-
-`,
-      bottle7: `1️⃣ 點擊下方「🍾 丟漂流瓶」按鈕
-`,
-      bottle8: `📝 請輸入你的漂流瓶內容：
-
-`,
-      bottle9: `📝 請輸入你的漂流瓶內容：`,
-      cancel: `💡 點擊選擇或取消 MBTI 類型：`,
-      cancel2: `💡 點擊選擇或取消星座：`,
-      catch: `• 槽位 3：公共池（等待撿起）
-
-`,
-      catch2: `• 槽位 2：公共池（等待撿起）
-`,
-      catch3: `• 槽位 1：公共池（等待撿起）
-`,
-      catch4: `🌊 等待有緣人撿起...
-`,
-      complete: `⚙️ **進階篩選**
-
-\\\${summary}
-💡 繼續調整或完成篩選：`,
-      complete2: `🎯 **第 1 個配對已完成：**
-`,
-      complete3: `📝 你有一個未完成的草稿
-
-`,
-      complete4: `⏳ 預計 3-5 秒完成`,
-      complete5: `⏳ 預計 2-3 秒完成`,
-      complete6: `⏳ 預計 1-2 秒完成`,
-      conversation: `💬 對話標識符：\\\${vipMatchInfo.conversationIdentifier}
-
-`,
-      conversation2: `💡 提示：每個對話都是獨立的，可以同時進行
-
-`,
-      conversation3: `💡 你可能會收到 **最多 3 個對話**！
-`,
-      conversation4: `💬 你可能會收到 **最多 3 個對話**！
-`,
-      conversation5: `使用 /chats 查看所有對話
-
-`,
-      conversation6: `📊 使用 /chats 查看所有對話`,
-      conversation7: `使用 /chats 查看所有對話`,
-      currentSelection: `當前選擇：{genderText}`,
-      gender: `• 性別：\\\${selectedGender === 'male' ? '👨 男生' : selectedGender === 'female' ? '👩 女生' : '🌈 任何人'}
-`,
-      gender2: `👤 **性別篩選**
-
-`,
-      gender3: `• 性別：篩選性別
-
-`,
-      gender4: `💡 選擇你想要的性別：`,
-      gender5: `👤 性別篩選`,
-      genderLabel: `• 性別：{gender}
-`,
-      mbti: `• MBTI：\\\${selectedMBTI.length > 0 ? selectedMBTI.join(', ') : '無限制'}
-`,
-      mbti2: `已選擇：\\\${selectedMBTI.length > 0 ? selectedMBTI.join(', ') : '無'}
-
-`,
-      mbti3: `已選擇：\\\${selectedMBTI.length > 0 ? selectedMBTI.join(`,
-      mbti4: `🧠 **MBTI 篩選**
-
-`,
-      mbti5: `• MBTI：篩選特定性格類型
-`,
-      mbti6: `• MBTI 高度配對 ✓`,
-      mbti7: `🧠 MBTI 篩選`,
-      mbtiLabel: `• MBTI：{mbti}
-`,
-      message: `已選擇：\\\${selectedZodiac.length > 0 ? selectedZodiac.map((z) => ZODIAC_NAMES[z]).join(', ') : '無'}
-
-`,
-      message2: `當前選擇：\\\${currentGender === 'male' ? '👨 男生' : currentGender === 'female' ? '👩 女生' : '🌈 任何人'}
-
-`,
-      message3: `已選擇：\\\${selectedZodiac.length > 0 ? selectedZodiac.map((z) => ZODIAC_NAMES[z]).join(`,
-      message4: `當前選擇：\\\${bloodTypeDisplay[currentBloodType]}
-
-`,
-      message5: `👤 對方：\\\${vipMatchInfo.matcherNickname}
-`,
-      message6: `「你好！我是一個喜歡音樂和電影的人，希望認識志同道合的朋友～」
-
-`,
-      message7: `💡 可在 /edit_profile 中修改匹配偏好
-
-`,
-      message8: `💬 直接按 /reply 回覆訊息開始聊天
-`,
-      nickname: `📝 對方暱稱：\\\${matchedUserMaskedNickname}
-`,
-      quota: `• 更多配額（30 個/天）
-`,
-      quota2: `🎁 邀請好友可增加配額：
-`,
-      settings: `🧠 MBTI：\${mbti}
-`,
-      settings2: `⭐ 星座：\${zodiac}
-`,
-      settings3: `🧠 MBTI：\\\\$
-`,
-      settings4: `⭐ 星座：\\\\$
-`,
-      settings5: `未設定`,
-      settings6: `未設定`,
-      settings7: `未設定`,
-      settings8: `未設定`,
-      short: `• 語言相同 ✓`,
-      short10: `♋ 巨蟹座`,
-      short11: `♌ 獅子座`,
-      short12: `♍ 處女座`,
-      short13: `♎ 天秤座`,
-      short14: `♏ 天蠍座`,
-      short15: `♐ 射手座`,
-      short16: `♑ 摩羯座`,
-      short17: `♒ 水瓶座`,
-      short18: `♓ 雙魚座`,
-      short19: `違規行為`,
-      short2: `🩸 AB 型`,
-      short20: `無限制`,
-      short21: `無限制`,
-      short22: `無限制`,
-      short23: `無限制`,
-      short3: `🌈 任何人`,
-      short4: `🩸 A 型`,
-      short5: `🩸 B 型`,
-      short6: `🩸 O 型`,
-      short7: `♈ 白羊座`,
-      short8: `♉ 金牛座`,
-      short9: `♊ 雙子座`,
-      start: `✍️ 重新開始`,
-      success: `一次丟瓶子 = 3 個對象，大幅提升配對成功率
-
-`,
-      success2: `✨ **VIP 特權啟動！智能配對成功！**
-
-`,
-      success3: `🎯 你的漂流瓶已被配對成功！
-
-`,
-      text: `💝 匹配度：\\\${matchPercentage}%
-`,
-      text10: `🎯 正在為你尋找最佳配對對象
-
-`,
-      text11: `
-💬 等待對方回覆中...
-`,
-      text12: `• 免費用戶：最多 +7 個
-`,
-      text13: `• 不要包含個人聯絡方式
-
-`,
-      text14: `💡 **兩種輸入方式**：
-`,
-      text15: `📊 免費用戶：3 個/天
-`,
-      text16: `選擇你想要篩選的條件：
-
-`,
-      text17: `• 進階篩選和翻譯
-
-`,
-      text18: `創建時間：\\\${age}
-`,
-      text19: `使用 /vip 立即升級`,
-      text2: `• 🆕 三倍曝光機會（1 次 = 3 個對象）
-`,
-      text20: `💬 **範例**：
-`,
-      text21: `使用 /vip 了解更多`,
-      text22: `要繼續編輯這個草稿嗎？`,
-      text23: `💡 可以組合多個條件`,
-      text24: `當前篩選條件：
-
-`,
-      text3: `💡 這可能需要幾秒鐘，我們正在為你找到最合適的人`,
-      text4: `當前選擇：\\\${currentGender ===`,
-      text5: `🎯 尋找對象：\\\${targetText}
-`,
-      text6: `🎯 正在為你尋找 3 個最佳配對對象
-
-`,
-      text7: `📨 **另外 2 個槽位等待中：**
-`,
-      text8: `🔍 正在智能匹配最佳對象...
-
-`,
-      text9: `內容預覽：\\\${preview}
-
-`,
-      throw: `📊 今日已丟：\\\${quotaDisplay}
-
-`,
-      unlimited: `無限制`,
-      urlNotAllowed: `❌ 訊息包含不被允許的網址`,
-      vip: `💎 VIP 用戶：30 個/天（三倍曝光）
-
-`,
-      vip2: `💎 **升級 VIP 可獲得三倍曝光機會！**
-`,
-      vip3: `⚙️ **進階篩選（VIP 專屬）**
-
-`,
-      vip4: `• VIP 用戶：最多 +70 個
-
-`,
-      vip5: `✨ **VIP 特權啟動！**
-
-`,
-      vip6: `💡 升級 VIP 獲得：
-`,
-      vip7: `✨ VIP 特權啟動中
-`,
-      zodiac: `• 星座：\\\${selectedZodiac.length > 0 ? selectedZodiac.map((z) => ZODIAC_NAMES[z]).join(', ') : '無限制'}
-`,
-      zodiac2: `⭐ 星座：\\\${matchResult.user.zodiac ||`,
-      zodiac3: `⭐ 星座：\\\${user.zodiac_sign ||`,
-      zodiac4: `⭐ **星座篩選**
-
-`,
-      zodiac5: `• 星座：篩選特定星座
-`,
-      zodiac6: `• 星座高度相容 ✓`,
-      zodiac7: `⭐ 星座篩選`,
-      zodiacLabel: `• 星座：{zodiac}
-`,
+    "tips": "💡 Sfaturi:",
+    "tooLong": "Conținutul mesajului este prea lung, maxim ${max} caractere (în prezent ${current} caractere)",
+    "tooShort": "Conținutul mesajului este prea scurt, sunt necesare cel puțin ${min} caractere (în prezent ${current} caractere)"
+  },
+  "broadcast": {
+    "admin": "Anulare manuală de către administrator",
+    "admin2": "Curățare manuală de către administrator (difuzare blocată)",
+    "allBroadcastsNormal": "Toate statusurile de difuzare sunt normale.",
+    "broadcastNotFound": "❌ Înregistrarea difuzării nu a fost găsită",
+    "cancelCommand": "/broadcast_cancel\n\n",
+    "cancelCorrectFormat": "**Format corect:**\n",
+    "cancelExample": "**Exemplu:**\n",
+    "cancelExampleCommand": "/broadcast_cancel 1",
+    "cancelFailed": "❌ Anularea difuzării a eșuat: {error}",
+    "cancelUsageError": "❌ Utilizare incorectă\n\n",
+    "cancelled": "✅ Transmiterea a fost anulată\n\n",
+    "cancelledId": "ID: {id}\n",
+    "cancelledStatus": "Status: Anulată\n\n",
+    "checkProgressLater": "Vă rugăm să folosiți /broadcast_status pentru a verifica progresul mai târziu.",
+    "cleanupFailed": "❌ Curățarea transmisiei a eșuat: {error}",
+    "cleanupIds": "ID transmitere: {ids}\n\n",
+    "cleanupMarkedFailed": "Aceste transmisii au fost marcate ca având statutul 'eșuat'\n",
+    "cleanupSuccess": "✅ {count} transmisii blocate au fost șterse\n\n",
+    "cleanupViewStatus": "Folosiți /broadcast_status pentru a vizualiza logurile actualizate.",
+    "completedAt": "Timp de completare: {time}\n",
+    "correctFormat": "**Format corect:**\n",
+    "createFailed": "❌ Crearea transmisiei a eșuat, vă rugăm să încercați din nou mai târziu.",
+    "createFailedShort": "❌ Crearea transmisiei a eșuat.",
+    "created": "✅ Transmiterea a fost creată\n\n",
+    "empty": "Mesajul transmisiei nu poate fi gol",
+    "error": "Eroare: {error}",
+    "estimate": {
+      "immediate": "Trimite imediat (aproximativ 1-2 secunde)",
+      "minutes": "Aproximativ \\${minutes} minute",
+      "seconds": "Aproximativ \\${seconds} secunde"
     },
-  },
-  broadcast: {
-    admin: `管理員手動取消`,
-    admin2: `管理員手動清理（廣播卡住）`,
-    allBroadcastsNormal: `所有廣播狀態正常。`,
-    broadcastNotFound: `❌ 找不到該廣播記錄`,
-    cancelCommand: `/broadcast_cancel <廣播ID>
-
-`,
-    cancelCorrectFormat: `**正確格式：**
-`,
-    cancelExample: `**示例：**
-`,
-    cancelExampleCommand: `/broadcast_cancel 1`,
-    cancelFailed: `❌ 取消廣播失敗：{error}`,
-    cancelUsageError: `❌ 使用方法錯誤
-
-`,
-    cancelled: `✅ 廣播已取消
-
-`,
-    cancelledId: `ID: {id}
-`,
-    cancelledStatus: `狀態: 已取消
-
-`,
-    checkProgressLater: `
-請稍後使用 /broadcast_status 查看進度。`,
-    cleanupFailed: `❌ 清理廣播失敗：{error}`,
-    cleanupIds: `廣播 ID: {ids}
-
-`,
-    cleanupMarkedFailed: `這些廣播已標記為「失敗」狀態
-`,
-    cleanupSuccess: `✅ 已清理 {count} 個卡住的廣播
-
-`,
-    cleanupViewStatus: `使用 /broadcast_status 查看更新後的記錄。`,
-    completedAt: `完成時間: {time}
-`,
-    correctFormat: `**正確格式：**
-`,
-    createFailed: `❌ 創建廣播失敗，請稍後再試。`,
-    createFailedShort: `❌ 創建廣播失敗。`,
-    created: `✅ 廣播已創建
-
-`,
-    empty: `廣播訊息不能為空`,
-    error: `錯誤: {error}`,
-    estimatedTime: `預計時間: {time}
-
-`,
-    example: `**示例：**
-`,
-    exampleMessage: `系統將於今晚 22:00 進行維護`,
-    failed: `失敗: {count}
-`,
-    filterAge: `• age=18-25
-`,
-    filterCommand: `/broadcast_filter <過濾器> <訊息內容>
-
-`,
-    filterConfirmConditions: `**過濾條件：**
-{conditions}
-
-`,
-    filterConfirmMessage: `**訊息內容：**
-{message}
-
-`,
-    filterConfirmTitle: `🔍 **廣播過濾器確認**
-
-`,
-    filterCorrectFormat: `**正確格式：**
-`,
-    filterCountry: `• country=TW|US|JP|...
-`,
-    filterCreateFailed: `❌ 創建過濾廣播失敗
-
-{error}`,
-    filterCreated: `✅ 過濾廣播已創建
-
-`,
-    filterCreatedConditions: `過濾條件: {conditions}
-`,
-    filterCreatedEstimatedTime: `預計時間: {time}
-
-`,
-    filterCreatedId: `ID: {id}
-`,
-    filterCreatedSending: `廣播將在後台發送，使用 /broadcast_status {id} 查看進度。`,
-    filterCreatedUserCount: `符合用戶數: {count} 人
-`,
-    filterExample1: `/broadcast_filter gender=female,age=18-25,country=TW 大家好！
-`,
-    filterExample2: `/broadcast_filter vip=true,mbti=INTJ VIP 專屬活動通知
-`,
-    filterExample3: `/broadcast_filter zodiac=Scorpio 天蠍座專屬訊息`,
-    filterExamples: `**示例：**
-`,
-    filterFormat: `**過濾器格式：**
-`,
-    filterFormatError: `❌ 過濾器格式錯誤
-
-{error}
-
-`,
-    filterGender: `• gender=male|female|other
-`,
-    filterMbti: `• mbti=INTJ|ENFP|...
-`,
-    filterQueryingUsers: `正在查詢符合條件的用戶...`,
-    filterUsageError: `❌ 使用方法錯誤
-
-`,
-    filterViewFormat: `請使用 /broadcast_filter 查看正確格式。`,
-    filterVip: `• vip=true|false
-
-`,
-    filterZodiac: `• zodiac=Aries|Taurus|...
-`,
-    foundStuckBroadcasts: `⚠️ 發現 {count} 個卡住的廣播
-
-`,
-    id: `ID: {id}
-`,
-    idMustBeNumber: `❌ 廣播 ID 必須是數字`,
-    maxUsersExceeded: `❌ 當前廣播系統僅支持 \${max} 個用戶以內的廣播。
-
-目標用戶數：\${current}`,
-    messageContent: `訊息內容`,
-    noPendingBroadcasts: `目前沒有待處理或卡住的廣播。
-
-`,
-    noRecords: `📊 目前沒有廣播記錄`,
-    noStuckBroadcasts: `✅ 沒有需要清理的廣播
-
-`,
-    processQueueFailed: `❌ 處理廣播隊列失敗：{error}`,
-    processingBroadcast: `正在處理廣播 #{id}
-`,
-    progress: `進度: {sent}/{total} ({percentage}%)
-`,
-    queryStatusFailed: `❌ 查詢廣播狀態失敗：{error}`,
-    queueProcessed: `✅ 廣播隊列處理完成
-
-`,
-    queueRemaining: `
-隊列中還有 {count} 個廣播待處理
-`,
-    queueTriggered: `{emoji} 廣播隊列處理已觸發
-
-`,
-    recentRecords: `📊 最近 5 條廣播記錄
-
-`,
-    recordId: `ID: {id}
-`,
-    recordProgress: `進度: {sent}/{total}
-`,
-    recordStatus: `狀態: {status}
-`,
-    recordTarget: `目標: {type}
-`,
-    recordTime: `時間: {time}
-
-`,
-    sendingInBackground: `廣播將在後台發送，使用 /broadcast_status {id} 查看進度。`,
-    short: `待處理`,
-    short2: `等待中`,
-    startedAt: `開始時間: {time}
-`,
-    statusLabel: `狀態：{status}
-`,
-    statusPending: `待處理`,
-    statusStuck: `卡住（重試中）`,
-    statusTitle: `📊 廣播狀態`,
-    stuckBroadcastConfirm: `**確認清理？**
-`,
-    stuckBroadcastConfirmCommand: `使用 \`/broadcast_cleanup confirm\` 確認`,
-    stuckBroadcastDivider: `━━━━━━━━━━━━━━━━
-`,
-    stuckBroadcastId: `**ID: {id}**
-`,
-    stuckBroadcastMessage: `訊息: {message}
-`,
-    stuckBroadcastNoRetry: `不會再被自動處理或重新發送
-
-`,
-    stuckBroadcastProgress: `進度: {sent}/{total}
-`,
-    stuckBroadcastStartTime: `開始時間: {time}
-
-`,
-    stuckBroadcastTarget: `目標: {type}
-`,
-    stuckBroadcastWillMarkFailed: `這些廣播將被標記為「失敗」狀態
-`,
-    targetAll: `所有用戶`,
-    targetLabel: `目標: {target}
-`,
-    targetNonVip: `非 VIP 用戶`,
-    targetType: `目標：{type}
-`,
-    targetVip: `VIP 用戶`,
-    tooLong: `廣播訊息不能超過 \${max} 個字符（目前 \${current} 個字符）`,
-    upgradeRequired: `大規模廣播需要升級系統架構，請參考 BROADCAST_SYSTEM_REDESIGN.md`,
-    usageError: `❌ 使用方法錯誤
-
-`,
-    userCount: `用戶數: {count} 人
-`,
-    userCount2: `用戶數：{count} 人
-`,
-    viewAllRecords: `使用 /broadcast_status 查看所有廣播記錄。`,
-    viewDetailsHint: `💡 使用 /broadcast_status <id> 查看詳細信息`,
-    viewUpdatedStatus: `使用 /broadcast_status 查看更新後的狀態。`,
-    estimate: {
-      immediate: `立即發送（約 1-2 秒）`,
-      minutes: `約 \\\${minutes} 分鐘`,
-      seconds: `約 \\\${seconds} 秒`,
+    "estimatedTime": "Timp estimat: {time}\n\n",
+    "example": "**Exemplu:**\n",
+    "exampleMessage": "Sistemul va fi supus unei întrețineri în această seară la 22:00.",
+    "failed": "Eșuat: {count}\n",
+    "filter": {
+      "age": "Vârstă: {min}-{max} ani",
+      "atLeastOneRequired": "Este necesar cel puțin un filtru",
+      "birthdayToday": "Ziua de naștere azi",
+      "country": "Țara: {country}",
+      "genderFemale": "Femeie",
+      "genderMale": "Bărbat",
+      "genderOther": "Alt gen",
+      "invalidAgeFormat": "Interval de vârstă invalid: {value} (formatul trebuie să fie min-max, de exemplu, 18-25)",
+      "invalidAgeMinMax": "Interval de vârstă invalid: {value} (vârsta minimă nu poate fi mai mare decât vârsta maximă)",
+      "invalidAgeRange": "Interval de vârstă invalid: {value} (vârsta trebuie să fie între 18-99)",
+      "invalidCountry": "Cod de țară invalid: {value} (trebuie să fie 2 litere mari, de exemplu, TW, US, JP)",
+      "invalidFormat": "Format de filtru invalid: {pair}",
+      "invalidGender": "Valoare invalidă pentru gen: {value} (trebuie să fie bărbat, femeie sau altul)",
+      "invalidMbti": "Tip MBTI invalid: {value} (trebuie să fie unul dintre: {mbtis})",
+      "invalidZodiac": "Zodiac invalid: {value} (trebuie să fie unul dintre: {zodiacs})",
+      "mbti": "MBTI: {mbti}",
+      "nonVipUsers": "Utilizator non-VIP",
+      "unknownFilter": "Filtru necunoscut: {key}",
+      "vipUsers": "Utilizator VIP",
+      "zodiacAquarius": "Vărsător",
+      "zodiacAries": "Berbec",
+      "zodiacCancer": "Rac",
+      "zodiacCapricorn": "Capricorn",
+      "zodiacGemini": "Gemeni",
+      "zodiacLeo": "Leu",
+      "zodiacLibra": "Balanță",
+      "zodiacPisces": "Pești",
+      "zodiacSagittarius": "Săgetător",
+      "zodiacScorpio": "Scorpion",
+      "zodiacTaurus": "Taur",
+      "zodiacVirgo": "Fecioară"
     },
-    filter: {
-      age: `年齡：{min}-{max} 歲`,
-      atLeastOneRequired: `至少需要一個過濾器`,
-      birthdayToday: `當天生日`,
-      country: `國家：{country}`,
-      genderFemale: `女性`,
-      genderMale: `男性`,
-      genderOther: `其他性別`,
-      invalidAgeFormat: `無效的年齡範圍：{value}（格式必須是 min-max，如 18-25）`,
-      invalidAgeMinMax: `無效的年齡範圍：{value}（最小年齡不能大於最大年齡）`,
-      invalidAgeRange: `無效的年齡範圍：{value}（年齡必須在 18-99 之間）`,
-      invalidCountry: `無效的國家代碼：{value}（必須是 2 個大寫字母，如 TW, US, JP）`,
-      invalidFormat: `無效的過濾器格式：{pair}`,
-      invalidGender: `無效的性別值：{value}（必須是 male, female 或 other）`,
-      invalidMbti: `無效的 MBTI 類型：{value}（必須是以下之一：{mbtis}）`,
-      invalidZodiac: `無效的星座：{value}（必須是以下之一：{zodiacs}）`,
-      mbti: `MBTI：{mbti}`,
-      nonVipUsers: `非 VIP 用戶`,
-      unknownFilter: `未知的過濾器：{key}`,
-      vipUsers: `VIP 用戶`,
-      zodiacAquarius: `水瓶座`,
-      zodiacAries: `白羊座`,
-      zodiacCancer: `巨蟹座`,
-      zodiacCapricorn: `摩羯座`,
-      zodiacGemini: `雙子座`,
-      zodiacLeo: `獅子座`,
-      zodiacLibra: `天秤座`,
-      zodiacPisces: `雙魚座`,
-      zodiacSagittarius: `射手座`,
-      zodiacScorpio: `天蠍座`,
-      zodiacTaurus: `金牛座`,
-      zodiacVirgo: `處女座`,
+    "filterAge": "• vârstă=18-25\n",
+    "filterCommand": "/broadcast_filter\n\n",
+    "filterConfirmConditions": "**Condiții de filtrare:**\n{conditions}\n\n",
+    "filterConfirmMessage": "**Conținutul mesajului:**\n{message}\n\n",
+    "filterConfirmTitle": "🔍 **Confirmare Filtru Transmitere**\n\n",
+    "filterCorrectFormat": "**Format Corect:**\n",
+    "filterCountry": "• țară=TW|US|JP|...\n",
+    "filterCreateFailed": "❌ Crearea filtrului de difuzare a eșuat\n\n{error}",
+    "filterCreated": "✅ Filtru de transmitere creat\n\n",
+    "filterCreatedConditions": "Criterii de Filtrare: {conditions}\n",
+    "filterCreatedEstimatedTime": "Timp estimat: {time}\n\n",
+    "filterCreatedId": "ID: {id}\n",
+    "filterCreatedSending": "Difuzarea va fi trimisă în fundal, folosiți /broadcast_status {id} pentru a verifica progresul.",
+    "filterCreatedUserCount": "Numărul de utilizatori care se potrivesc: {count} persoane\n",
+    "filterExample1": "/broadcast_filter gender=female,age=18-25, country=TW Salut tuturor!\n",
+    "filterExample2": "/broadcast_filter vip=true,mbti=INTJ Notificare exclusivă pentru evenimentul VIP\n",
+    "filterExample3": "/broadcast_filter zodiac=Scorpio Mesaj exclusiv pentru Scorpii",
+    "filterExamples": "**Exemplu:**\n",
+    "filterFormat": "**Format Filtru:**\n",
+    "filterFormatError": "❌ Eroare de format al filtrului\n\n{error}\n\n",
+    "filterGender": "• gender=masculin|feminin|altul\n",
+    "filterMbti": "• mbti=INTJ|ENFP|...\n",
+    "filterQueryingUsers": "Se interoghează utilizatorii care îndeplinesc criteriile...",
+    "filterUsageError": "❌ Utilizare incorectă\n\n",
+    "filterViewFormat": "Vă rugăm să folosiți /broadcast_filter pentru a verifica formatul corect.",
+    "filterVip": "• vip=da|nu\n\n",
+    "filterZodiac": "• zodiac=Berbec|Taur|...\n",
+    "foundStuckBroadcasts": "⚠️ S-au detectat {count} transmisii blocate\n\n",
+    "id": "ID: {id}\n",
+    "idMustBeNumber": "❌ ID-ul difuzării trebuie să fie un număr",
+    "maxUsersExceeded": "❌ Sistemul actual de difuzare suportă difuzarea către un maxim de ${max} utilizatori.\n\nNumărul țintă de utilizatori: ${current}",
+    "messageContent": "Conținut mesaj",
+    "noPendingBroadcasts": "În prezent, nu există transmisii restante sau blocate.\n\n",
+    "noRecords": "📊 Nu există înregistrări de difuzare disponibile acum",
+    "noStuckBroadcasts": "✅ Nu sunt transmisii de curățat\n\n",
+    "processQueueFailed": "❌ Procesareaăt cererii de difuzare a eșuat: {error}",
+    "processingBroadcast": "Procesare difuzare #{id}\n",
+    "progress": "Progres: {sent}/{total} ({percentage}%)\n",
+    "queryStatusFailed": "❌ Eșec la interogarea statusului difuzării: {error}",
+    "queueProcessed": "✅ Procesarea cozii de transmitere s-a încheiat\n\n",
+    "queueRemaining": "Există {count} transmisii în coadă care așteaptă să fie procesate\n",
+    "queueTriggered": "{emoji} Procesarea cozii de transmitere a fost declanșată\n\n",
+    "recentRecords": "📊 Ultimele 5 înregistrări de transmitere\n\n",
+    "recordId": "ID: {id}\n",
+    "recordProgress": "Progres: {sent}/{total}\n",
+    "recordStatus": "Status: {status}\n",
+    "recordTarget": "Țintă: {type}\n",
+    "recordTime": "Timp: {time}\n\n",
+    "sendingInBackground": "Difuzarea va fi trimisă în fundal, folosiți /broadcast_status {id} pentru a verifica progresul.",
+    "short": "În așteptare",
+    "short2": "În desfășurare",
+    "startedAt": "Ora de început: {time}\n",
+    "status": {
+      "cancelled": "Anulat",
+      "completed": "Finalizat",
+      "failed": "Eșuat",
+      "pending": "În desfășurare",
+      "sending": "Trimitere"
     },
-    status: {
-      cancelled: `已取消`,
-      completed: `已完成`,
-      failed: `失敗`,
-      pending: `等待中`,
-      sending: `發送中`,
+    "statusLabel": "Stare: {status}\n",
+    "statusPending": "În așteptare",
+    "statusStuck": "Blocat (Încercare din nou)",
+    "statusTitle": "📊 Stare difuzare",
+    "stuckBroadcastConfirm": "**Confirmați curățarea?**\n",
+    "stuckBroadcastConfirmCommand": "Confirmați cu `/broadcast_cleanup confirm`",
+    "stuckBroadcastDivider": "━━━━━━━━━━━━━━━━\n",
+    "stuckBroadcastId": "**ID: {id}**\n",
+    "stuckBroadcastMessage": "Mesaj: {message}\n",
+    "stuckBroadcastNoRetry": "Nu va fi procesată automat sau retransmisă\n\n",
+    "stuckBroadcastProgress": "Progres: {sent}/{total}\n",
+    "stuckBroadcastStartTime": "Timp de început: {time}\n\n",
+    "stuckBroadcastTarget": "Țintă: {type}\n",
+    "stuckBroadcastWillMarkFailed": "Aceste difuzări vor fi marcate cu starea 'eșuat'\n",
+    "target": {
+      "all": "Toți utilizatorii",
+      "nonVip": "Utilizatori non-VIP",
+      "unknown": "Necunoscut",
+      "vip": "Utilizatori VIP"
     },
-    target: {
-      all: `所有用戶`,
-      nonVip: `非 VIP 用戶`,
-      unknown: `未知`,
-      vip: `VIP 用戶`,
+    "targetAll": "Toți utilizatorii",
+    "targetLabel": "Țintă: {target}\n",
+    "targetNonVip": "Utilizatori non-VIP",
+    "targetType": "Țintă: {type}\n",
+    "targetVip": "Utilizatori VIP",
+    "tooLong": "Mesajul difuzat nu poate depăși ${max} caractere (în prezent ${current} caractere)",
+    "upgradeRequired": "Difuzarea în masă necesită o actualizare a arhitecturii sistemului, vă rugăm să consultați BROADCAST_SYSTEM_REDESIGN.md",
+    "usageError": "❌ Utilizare incorectă\n\n",
+    "userCount": "Număr de utilizatori: {count} persoane\n",
+    "userCount2": "Număr de utilizatori: {count} persoane\n",
+    "viewAllRecords": "Utilizați /broadcast_status pentru a vizualiza toate înregistrările de difuzare.",
+    "viewDetailsHint": "💡 Utilizați /broadcast_status <id> pentru detalii",
+    "viewUpdatedStatus": "Utilizați /broadcast_status pentru a vizualiza starea actualizată."
+  },
+  "buttons": {
+    "ad": "➡️ Următoarea reclamă",
+    "back": "⬅️ Înapoi / Întoarceți-vă",
+    "backToVip": "💎 Întoarceți-vă la Meniul VIP",
+    "bottle": "📺 Vizionați reclame pentru a obține mai multe sticle cu mesaje 🎁 (${remaining}/20)",
+    "bottle2": "💎 Faceți upgrade la VIP pentru mai multe sticle cu mesaje",
+    "bottle3": "🌊 Aruncă o sticlă cu mesaj",
+    "bottle4": "🎣 Ridică o sticlă cu mesaj",
+    "cancel": "Anulează",
+    "claim": "Ia",
+    "help": "❓ Ajutor",
+    "invite": "👥 Vizualizați codul de invitație",
+    "invite2": "🎁 Invită prieteni",
+    "mbtiMenu": "🧠 Meniu MBTI",
+    "message": "💬 Răspunde mesajului",
+    "profile": "✏️ Editează profilul",
+    "profile2": "👤 Profil",
+    "returnToMenu": "🏠 Înapoi la meniul principal",
+    "settings": "⚙️ Setări",
+    "short": "🇲🇾 Malaezia",
+    "short10": "🇺🇸 Statele Unite",
+    "short11": "🇯🇵 Japonia",
+    "short12": "🇰🇷 Coreea de Sud",
+    "short13": "🇬🇧 Regatul Unit",
+    "short14": "🇫🇷 Franța",
+    "short15": "🇩🇪 Germania",
+    "short16": "🇹🇭 Thailanda",
+    "short17": "🇦🇺 Australia",
+    "short18": "💬 Istoricul conversațiilor",
+    "short19": "🌐 Schimbă limba",
+    "short2": "🇺🇳 Steagul Națiunilor Unite",
+    "short20": "🎁 Încasează recompensa",
+    "short21": "🔄 Șterge selecția",
+    "short22": "Sari peste",
+    "short3": "📢 Alătură-te canalului oficial",
+    "short4": "🇸🇬 Singapore",
+    "short5": "🇨🇦 Canada",
+    "short6": "🇳🇿 Noua Zeelandă",
+    "short7": "🇹🇼 Taiwan",
+    "short8": "🇨🇳 China",
+    "short9": "🇭🇰 Hong Kong",
+    "stats": "📊 Statistici",
+    "targetAdvanced": "⚙️ Filtru avansat (MBTI/Zodie)",
+    "targetAny": "🌈 Oricine poate",
+    "targetFemale": "👩 Feminin",
+    "targetMale": "👨 Masculin",
+    "text": "👤 Vizualizează cardul de profil al altui utilizator",
+    "verify": "Verifică",
+    "viewPayments": "💰 Istoricul abonamentelor",
+    "vip": "💎 Upgrade la VIP"
+  },
+  "catch": {
+    "anonymousUser": "Utilizator anonim",
+    "back": "🏠 Înapoi la meniul principal: /menu",
+    "banned": "❌ Contul tău a fost interzis și nu poate să ridice sticle cu mesaje.\n\nDacă ai întrebări, te rugăm folosește /appeal pentru a trimite un apel.",
+    "block": "• Dacă nu mai vrei să discuți, poți folosi /block pentru a bloca\n",
+    "bottle": "😔 În prezent, nu există sticle cu mesaje potrivite pentru tine\n\n",
+    "bottle2": "• Sau poți arunca o sticlă tu însuți: /throw",
+    "bottle3": "🎣 Cineva a găsit sticla ta cu mesaj!\n\n",
+    "bottle4": "🧴 Ai ridicat o sticlă cu mesaj!\n\n",
+    "bottle5": "💡 Revino mâine pentru a ridica mai multe sticle!",
+    "bottleTaken": "❌ Această sticlă a fost deja ridicată de altcineva, te rugăm să încerci alte sticle!",
+    "catch": "📊 Astăzi ai prins: ${newCatchesCount}/${quota}\n\n",
+    "conversation": "Un chat anonim a fost creat pentru tine, vino să începi conversația～\n\n",
+    "conversation2": "• Aceasta este o conversație anonimă, vă rugăm să vă protejați intimitatea personală\n",
+    "conversation3": "📊 Vezi toate conversațiile",
+    "conversationError": "Crearea conversației a eșuat",
+    "language": "🗣️ Limba: ${language}\n\n",
+    "mbti": "🧠 MBTI: ${mbti}\n",
+    "message": "💫 Scor de potrivire: ${score} puncte (Potrivire Inteligentă)\n\n",
+    "message2": "${catcherGender} | 📅 ${catcherAge} ani\n\n",
+    "message3": "conv_reply_${conversationIdentifier}",
+    "message4": "2️⃣ Țineți apăsat acest mesaj, alegeți 'Răspundeți' și apoi introduceți conținutul dumneavoastră\n\n",
+    "message5": "1️⃣ Faceți clic pe butonul '💬 Răspundeți mesajului' de mai jos\n",
+    "message6": "2️⃣ Apăsați lung acest mesaj, selectați 'Răspundeți' și introduceți conținutul dumneavoastră",
+    "nickname": "📝 Pseudonim: ${ownerMaskedNickname}\n",
+    "nickname2": "📝 Pseudonim: ${catcherNickname}\n",
+    "notRegistered": "❌ Vă rugăm să finalizați procesul de înregistrare pentru a ridica sticlele cu mesaje.\n\nFolosiți /start pentru a continua înregistrarea.",
+    "originalContent": "Text original: {content}",
+    "originalLanguage": "Limba originală: {language}",
+    "quotaExhausted": "❌ Cota de mesaje a zilei de astăzi a fost epuizată (${quotaDisplay})",
+    "replyButton": "💬 Mesaj de răspuns",
+    "replyMethods": "💡 **Două modalități de a răspunde**:\n",
+    "report": "• Dacă întâlniți conținut inadecvat, vă rugăm să folosiți /report pentru a raporta\n",
+    "safetyTips": "⚠️ Memento de siguranță:\n",
+    "settings": "🧠 MBTI: ${mbti}\n",
+    "settings10": "Nelimitat",
+    "settings11": "Nelimitat",
+    "settings2": "Nelimitat",
+    "settings3": "Nelimitat",
+    "settings4": "Nelimitat",
+    "settings5": "Nelimitat",
+    "settings6": "Nelimitat",
+    "settings7": "Nelimitat",
+    "settings8": "Nelimitat",
+    "settings9": "Nelimitat",
+    "short": "💡 Sfat:\n",
+    "short2": "• Vă rugăm să încercați din nou mai târziu\n",
+    "short3": "Utilizator anonim",
+    "short4": "♂️ Masculin",
+    "short5": "♀️ Feminin",
+    "text": "Limba de traducere: ${catcherLangDisplay}\n",
+    "text2": "Limba originală: ${bottleLangDisplay}\n",
+    "text3": "🗣️ Limbă: ${ownerLanguage}\n\n",
+    "text4": "• Pentru a opri conversația, puteți folosi /block pentru a bloca\n\n",
+    "text5": "Text original: ${bottle.content}\n",
+    "text6": "💬 Serviciul de traducere are probleme temporare, s-a folosit traducerea de rezervă\n",
+    "text7": "Traducere: ${bottleContent}\n",
+    "text8": "💡 **Două modalități de a răspunde**:\n",
+    "translatedContent": "Traducere: {content}",
+    "translatedLanguage": "Limba de traducere: {language}",
+    "translationServiceFallback": "💬 Serviciul de traducere are probleme temporare, s-a folosit traducerea de rezervă",
+    "translationServiceUnavailable": "⚠️ Serviciul de traducere este temporar indisponibil, mai jos se află textul original",
+    "unknown": "Necunoscut",
+    "zodiac": "⭐ Zodia: {zodiac}\n",
+    "zodiac2": "⭐ Zodia: ${catcherZodiac}\n"
+  },
+  "channelMembership": {
+    "claimButton": "✅ Solicită recompensă",
+    "claimReward": "Făcând clic pe butonul de mai jos pentru a solicita recompensa ta: +1 sticlă cu mesaj",
+    "joined": "🎉 Am detectat că te-ai alăturat canalului oficial!",
+    "leftChannel": "❌ Am detectat că ai părăsit canalul, nu poți solicita recompensa.",
+    "notJoined": "❌ Nu am detectat că te-ai alăturat canalului, te rugăm să te alături mai întâi și să încerci din nou",
+    "oneTimeReward": "💡 Aceasta este o recompensă unică; va fi adăugată la cota de azi după solicitare.",
+    "rewardAdded": "Recompensă: +1 sticlă cu mesaj (adăugată la cota de azi)",
+    "rewardGranted": "✅ Recompensa a fost emisă! +1 sticlă cu mesaj",
+    "taskCompleted": "🎉 Felicitări pentru finalizarea sarcinii: Alătură-te canalului oficial!",
+    "viewMoreTasks": "💡 Folosește /tasks pentru a vizualiza mai multe sarcini",
+    "viewTaskCenter": "[📋 Vizualizează Centrul de Sarcini] → /tasks"
+  },
+  "common": {
+    "ad": "📺 Reclame de astăzi: ${adsWatched}/${AD_REWARD_CONSTANTS.MAX_ADS_PER_DAY} | A câștigat ${quotaEarned} cote | ${remaining} rămase",
+    "ad2": "📺 Reclame de astăzi: ${adsWatched}/${AD_REWARD_CONSTANTS.MAX_ADS_PER_DAY} ✅ Limita atinsă | A câștigat ${quotaEarned} cote",
+    "ad3": "📺 Reclame de astăzi: 0/${AD_REWARD_CONSTANTS.MAX_ADS_PER_DAY} | A câștigat 0 cote",
+    "ad4": "• 📺 Vizionare reclame (rămase ${remaining}/20 ori)\n",
+    "ad5": "• 📺 Vizionare reclame (limita de astăzi a fost atinsă)\n",
+    "ad6": "• Evitați reclamele sau conținutul inadecvat\n\n",
+    "ad7": "📊 Nu sunt disponibile reclame oficiale",
+    "ad8": "📢 Reclame spam",
+    "ad9": "💡 Există mai multe reclame oficiale de vizionat!",
+    "admin": "Te rugăm să încerci din nou mai târziu sau să contactezi administratorul.",
+    "age": "Interval de vârstă invalid: ${trimmedValue} (formatul trebuie să fie min-max, ca 18-25)",
+    "age2": "Vârstă: ${filters.age.min}-${filters.age.max} ani",
+    "age3": "Interval de vârstă invalid: ${trimmedValue} (vârsta trebuie să fie între 18-99)",
+    "age4": "Interval de vârstă invalid: ${trimmedValue} (vârsta minimă nu poate fi mai mare decât vârsta maximă)",
+    "anonymous": "Anonim",
+    "anonymousUser": "Utilizator anonim",
+    "anyBloodType": "🌈 Orice grup sanguin",
+    "anyone": "🌈 Oricine",
+    "back": "💡 Introduceți /menu pentru a reveni la meniul principal în orice moment",
+    "back2": "↩️ Înapoi la Editare Profil",
+    "back3": "🏠 Înapoi la Meniul Principal",
+    "back4": "↩️ Înapoi",
+    "backToMainMenu": "Înapoi la Meniul Principal",
+    "birthday": "🎂 Zi de naștere: ${updatedUser.birthday}\n",
+    "birthday2": "🎂 Zi de naștere: ${user.birthday}\n",
+    "birthday3": "Zi de naștere astăzi",
+    "bloodType": "🩸 Tip sanguin: ${bloodTypeText}\n\n",
+    "bloodType2": "🩸 **Editează tipul sanguin**\n\n",
+    "bloodType3": "Te rugăm să selectezi tipul tău sanguin:",
+    "bloodType4": "🩸 Editează Tipul Sanguin",
+    "bloodTypeA": "🩸 Tip A",
+    "bloodTypeAB": "🩸 Tip AB",
+    "bloodTypeB": "🩸 Tip B",
+    "bloodTypeO": "🩸 Tip O",
+    "bottle": "Conținutul sticlei cu mesaj este prea scurt, cel puțin ${MIN_BOTTLE_LENGTH} caractere sunt necesare (în prezent ${trimmedContent.length} caractere)",
+    "bottle10": "Recompensă: +1 sticlă cu mesaj (adăugată la cota de astăzi)\n\n",
+    "bottle11": "Nu veți mai fi asociați cu sticlele cu mesaje ale celuilalt.\n\n",
+    "bottle12": "Ce fel de persoană doriți să găsiți când aruncați o sticlă cu mesaj?\n\n",
+    "bottle13": "Folosiți /throw pentru a arunca o sticlă cu mesaj și a începe conversația!",
+    "bottle14": "Conținutul sticlei cu mesaj conține conținut inadecvat, vă rugăm să-l modificați și să-l reintroduceți.",
+    "bottle15": "Faceți clic pe butonul de mai jos pentru a revendica recompensa: +1 sticlă cu mesaj\n\n",
+    "bottle16": "💡 Această setare va fi utilizată automat pentru următoarea aruncare de sticlă cu mesaj.",
+    "bottle17": "🌊 Aruncați o sticlă cu mesaj - /throw\n",
+    "bottle18": "🎣 Prindeți o sticlă cu mesaj - /catch\n",
+    "bottle19": "🎉 Confirmarea vă va oferi o recompensă de +1 sticlă cu mesaj!",
+    "bottle2": "Conținutul sticlei cu mesaj este prea lung, se permit până la ${MAX_BOTTLE_LENGTH} caractere (în prezent ${content.length} caractere)",
+    "bottle20": "✏️ Vă rugăm să introduceți un nou conținut pentru sticla cu mesaj:\n\n",
+    "bottle21": "• Folosiți /catch pentru a prinde o nouă sticlă cu mesaj",
+    "bottle22": "• /throw - Aruncați o sticlă cu mesaj\n",
+    "bottle23": "• /catch - Prindeți o sticlă cu mesaj\n",
+    "bottle24": "• /throw - Aruncați o sticlă cu mesaj\n",
+    "bottle25": "• /catch - Prindeți o sticlă cu mesaj\n",
+    "bottle26": "• Trimiteți conținutul draft pentru a arunca o sticlă cu mesaj",
+    "bottle27": "📦 **Aruncă Sticla cu Mesaj**\n",
+    "bottle28": "🎣 **Ridică Sticla cu Mesaj**\n",
+    "bottle29": "💡 Finalizați sarcini pentru a câștiga sticle suplimentare",
+    "bottle3": "• Sticle cu mesaj: ${bottlesCount?.count || 0}\n",
+    "bottle30": "Conținutul sticlei nu trebuie să conțină linkuri",
+    "bottle31": "🍾 Aruncați Sticla cu Mesaj\n\n",
+    "bottle32": "Conținutul sticlei nu poate fi gol",
+    "bottle33": "Aruncați prima dumneavoastră sticlă",
+    "bottle34": "Ridicați prima dumneavoastră sticlă",
+    "bottle4": "O platformă socială anonimă de sticle cu mesaje, ajutându-vă să găsiți prieteni cu aceleași interese prin MBTI și semne zodiacale\n\n",
+    "bottle5": "⏰ Conversația a expirat\n\nCealaltă parte ar putea fi plecată. Folosiți /catch pentru a ridica o nouă sticlă!",
+    "bottle6": "💡 Folosiți /catch pentru a ridica o nouă sticlă cu mesaj pentru a începe o nouă conversație.",
+    "bottle7": "🍾 Aruncați Sticla cu Mesaj\n\nCe tip de partener de chat căutați?",
+    "bottle8": "Mergeți și aruncați o sticlă pentru a întâlni prieteni noi! /throw\n\n",
+    "bottle9": "Verificați sticlele cu mesaje ale altora și răspundeți dacă sunteți interesat să începeți o conversație\n\n",
+    "broadcast": "Transmisia va fi trimisă în fundal, utilizați /broadcast_status ${broadcastId} pentru a verifica progresul.",
+    "broadcast10": "📊 5 Înregistrări recente de transmisie\n\n",
+    "broadcast11": "Notificarea de întreținere a fost transmisă tuturor utilizatorilor.\n",
+    "broadcast12": "Notificarea de restaurare a fost transmisă tuturor utilizatorilor.",
+    "broadcast13": "📊 În prezent, nu există înregistrări de transmisie.",
+    "broadcast14": "📊 Starea transmisiei\n\n",
+    "broadcast15": "Toate stările transmisiunii sunt normale.",
+    "broadcast2": "Transmisiile la scară largă necesită actualizări ale arhitecturii sistemului, vă rugăm să consultați BROADCAST_SYSTEM_REDESIGN.md",
+    "broadcast3": "Folosiți /broadcast_status pentru a vizualiza toate înregistrările de transmisie.",
+    "broadcast4": "${statusEmoji} Procesarea cozii de transmisie a fost activată\n\n",
+    "broadcast5": "/broadcast_cancel\n\n",
+    "broadcast6": "ID difuzare: ${ids.join(', ')}\n\n",
+    "broadcast7": "Se procesează difuzarea #${broadcast.id}\n",
+    "broadcast8": "În prezent, nu există difuzări în așteptare sau blocate.\n\n",
+    "broadcast9": "ID difuzare: ${ids.join(",
+    "cancel": "Te rugăm să îndepărtezi aceste linkuri și să le reintri sau să anulezi editarea:",
+    "cancel2": "Status: Anulat\n\n",
+    "cancel3": "Te rugăm să reintri sau să anulezi editarea:",
+    "cancelled": "Anulat",
+    "catch": "⏰ Procesul sticlei cu mesaj a expirat\n\nTe rugăm să folosești /catch pentru a reporni.",
+    "catch2": "• Conținutul prietenos și respectuos este mai probabil să fie selectat~",
+    "catch3": "Proces sticlă cu mesaj",
+    "catch4": "Procesul sticlei cu mesaj",
+    "close": "❌ Închide",
+    "complete": "🎉 **Vizionarea anunțurilor s-a finalizat!**\n\n✅ Câștigat **+1 cotă**\n📊 Vizionate astăzi: **${updated.ads_watched}/20** ori\n🎁 Cotă câștigată astăzi: **${updated.quota_earned}**\n📈 Vizionări rămase: **${result.remaining_ads}** ori\n\n${result.remaining_ads > 0 ? '💡 Continuă să vizionezi anunțuri pentru a câștiga mai multe cote!' : '✅ Limita zilnică de anunțuri a fost atinsă'}",
+    "complete2": "📺 **Vizionați anunțuri pentru a câștiga credite**\n\n🎁 Finalizarea vizionării va câștiga **+1 credit**\n📊 Rămase astăzi: **${remainingAds}/20** ori\n\n👇 Fă clic pe butonul de mai jos pentru a începe să vizionezi",
+    "complete3": "Timp de completare: ${new Date(broadcast.completedAt).toLocaleString('zh-TW')}\n",
+    "complete4": "Estimare completare: ${new Date(maintenance.endTime).toLocaleString('zh-TW')}\n",
+    "complete5": "🎉 ${testTitle} finalizat!\n\n",
+    "complete6": "Finalizat chiar înainte de termenul limită",
+    "complete7": "Aproape terminat",
+    "complete8": "Terminați cât mai curând posibil",
+    "confirm": "Pentru a asigura siguranța tuturor utilizatorilor, te rugăm să confirmi că înțelegi următoarele:\n\n",
+    "confirm2": "🌍 **Confirmă-ți țara/regiunea**\n\n",
+    "confirm3": "🛡️ Ultimul pas: Confirmare de siguranță anti-fraudă\n\n",
+    "confirm4": "🔍 **Confirmarea filtrului de difuzare**\n\n",
+    "confirm5": "🌍 Confirmă-ți țara/regiunea",
+    "confirm6": "**Confirmi curățarea?**\n",
+    "confirm7": "Te rugăm să confirmi:",
+    "conversation": "{formatIdentifier(conv.identifier)} {conv.message_count} ${formatIdentifier(conv.identifier)} ${conv.message_count}\n",
+    "conversation10": "💡 **Nu s-a găsit istoric al conversației**\n\n",
+    "conversation11": "Unele istorice ale conversației poate că nu au fost actualizate, te rugăm să încerci din nou mai târziu.",
+    "conversation12": "📨 **Conversații recente:**\n\n",
+    "conversation13": "💬 Încă nu ai înregistrări ale conversațiilor\n\n",
+    "conversation14": "💬 Continuă conversația: /reply\n",
+    "conversation15": "Încă nu ai înregistrări ale conversațiilor.\n\n",
+    "conversation16": "Conversația poate fi încheiată sau nu există.",
+    "conversation17": "💬 Continuă conversația",
+    "conversation18": "Începe prima conversație",
+    "conversation2": "💬 **Conversație cu ${formatIdentifier(identifier)}**\n\n",
+    "conversation3": "{formatDate(stats.first_message_time)} ${formatDate(stats.first_message_time)}\n",
+    "conversation4": "• Conversații: ${conversationsCount?.count || 0}\n",
+    "conversation5": "{conversationIdentifier} ${conversationIdentifier}",
+    "conversation6": "Cache-ul avatarlor a fost reîmprospătat. Ultimul avatar va fi afișat data viitoare când vizualizezi istoricul conversațiilor.\n\n",
+    "conversation7": "💡 Pentru a proteja intimitatea și securitatea, doar mesajele text simple sunt permise în conversații.\n\n",
+    "conversation8": "Folosește /history pentru a vizualiza toate conversațiile\n\n",
+    "conversation9": "🔄 Reîmprospătăm toate istoricele conversațiilor...\n\n",
+    "country": "Codul de țară invalid: ${trimmedValue} (trebuie să fie 2 litere majuscule, de ex. TW, US, JP)",
+    "country2": "🌍 **Te rugăm să selectezi țara/regiunea**\n\n",
+    "country3": "{filters.country} ${filters.country}",
+    "end": "Sfârșit: ${endTime.toLocaleString('zh-TW')}\n\n",
+    "end2": "Sfârșit: ${endTime.toLocaleString(",
+    "female": "Femeie",
+    "free": "Gratuit",
+    "gender": "{gender} ${gender}\n",
+    "gender2": "{trimmedValue} ${trimmedValue}",
+    "gender3": "{gender} ${gender}\n",
+    "gender4": "👤 Gen: ${updatedUser.gender ===",
+    "gender5": "👤 Gen: ${user.gender ===",
+    "gender6": "Te rugăm să îți selectezi genul acum:\n\n",
+    "gender7": "Alt sex",
+    "help": "Testul de personalitate MBTI ne poate ajuta să găsim parteneri de chat mai potriviți pentru tine～\n\n",
+    "help2": "❓ Vezi Ajutor - /help",
+    "help3": "• /help - Vezi Ajutor",
+    "invite": "• Număr total de invitații: ${inviteStats?.total || 0}\n",
+    "invite2": "Cod invitație: ${user.invite_code }\n",
+    "invite3": "Invitat de: ${user.invited_by }\n\n",
+    "loading": "✅ Se încarcă......",
+    "login": "Utilizatorii obișnuiți nu vor avea acces la serviciu, doar administratorii se pot conecta.",
+    "male": "Masculin",
+    "mbti": "Tip MBTI invalid: ${trimmedValue} (trebuie să fie unul din: ${VALID_MBTI.join(', ')})",
+    "mbti10": "✍️ Introducere manuală MBTI",
+    "mbti11": "🧠 Meniu MBTI",
+    "mbti12": "Test MBTI complet",
+    "mbti13": "Test MBTI rapid",
+    "mbti2": "Tipul tău MBTI este: **${result.type}**\n\n",
+    "mbti3": "MBTI curent: **${mbti}**\n",
+    "mbti4": "🧠 **Selectează versiunea testului MBTI**\n\n",
+    "mbti5": "🧠 **Gestionarea tipurilor de personalitate MBTI**\n\n",
+    "mbti6": "⚙️ Filtre avansate (MBTI/Zodiac)",
+    "mbti7": "• Modifică manual tipul tău MBTI",
+    "mbti8": "Vă rugăm să selectați tipul dvs. MBTI:",
+    "mbti9": "🧠 Re-Test MBTI",
+    "message": "${typeEmoji} **${ad.title}**\n${statusEmoji} Stare: ${status}\n\n📊 **Statistici**\n• Vizualizări: ${stats.total_views}\n• Clickuri: ${stats.total_clicks}\n• Rata de clic (CTR): ${stats.ctr}%",
+    "message10": "/broadcast_filter gender=female,age=18-25,country=TW Bună tuturor!\n",
+    "message11": "${banHours} ${user.language_pref === 'en' ? 'ore' : '小時'}",
+    "message12": "Timp: ${new Date(b.created_at).toLocaleString('zh-TW')}\n\n",
+    "message13": "Există ${pendingBroadcasts.results.length - 1} transmisii în așteptare în coadă\n",
+    "message14": "Progres: ${broadcast.sent_count}/${broadcast.total_users}\n",
+    "message15": "${days} ${user.language_pref === 'en' ? 'zile' : '天'}",
+    "message16": "Țintă: ${getBroadcastTargetName(broadcast.targetType)}\n",
+    "message17": "Status: ${maintenance.isActive ? '✅ În întreținere' : '❌ Nu este activ'}\n",
+    "message18": "🚫 URL-uri blocate:\n${urlCheck.blockedUrls?.map((url) =>",
+    "message19": "• Ultima mesaj: ${formatDate(stats.last_message_time)}\n",
+    "message2": "data nașterii = '2000-01-01',\n vârsta = 25,\n semn zodiacal = 'Capricorni',\n punctaj anti-fraudă = 100,\n acordul termenilor = 1",
+    "message20": "Timp: ${formatDate(conv.last_message_time)}\n\n",
+    "message21": "Durata estimată: ${maintenance.estimatedDuration} minute\n",
+    "message22": "Folosește /broadcast_status ${broadcastId} pentru a verifica progresul.",
+    "message23": "💡 Vă rugăm să țineți apăsat pe mesajul la care doriți să răspundeți, selectați 'Răspunde' în meniul care apare, apoi introduceți răspunsul dvs. în caseta de chat.",
+    "message24": "📊 Trimise astăzi: ${usedToday + 1}/${dailyLimit} mesaje",
+    "message25": "/broadcast_filter zodiac=Scorpio Mesaj exclusiv pentru Scorpioni",
+    "message26": "• Activat: ${inviteStats?.activated || 0}\n",
+    "message27": "• În așteptare: ${inviteStats?.pending || 0}\n\n",
+    "message28": "/maintenance_enable [mesaj de întreținere]\n\n",
+    "message29": "Progres: ${b.sent_count}/${b.total_users}\n",
+    "message3": "Progres: ${broadcast.sentCount}/${broadcast.totalUsers} (${progress.percentage}%)\n",
+    "message30": "• Mesaje: ${messagesCount?.count || 0}\n\n",
+    "message31": "• Mesaje trimise partenerilor: ${stats.partner_messages} mesaje\n",
+    "message32": "Comandant - Lideri îndrăzneți, imaginative și puternici care întotdeauna găsesc sau creează soluții.",
+    "message33": "💡 Folosiți /broadcast_status <id> pentru a vedea detalii",
+    "message34": "🏷️ Etichete de interes: ${updatedUser.interests ||",
+    "message35": "Guvernator - Persoane empatice, populare și utile, mereu dornice să contribuie la comunitate.",
+    "message36": "/broadcast_filter\n\n",
+    "message37": "**Conținut mesaj:**\n${broadcastMessage}\n\n",
+    "message38": "• Mesaje totale: ${stats.total_messages} mesaje\n",
+    "message39": "Candidați - Spirite libere pasionate, creative și sociabile care găsesc mereu un motiv să zâmbească.",
+    "message4": "💡 Folosește /history ${formatIdentifier(conversations[0].identifier)} pentru a vizualiza întreaga conversație\n\n",
+    "message40": "Timp rămas: ${remaining.remainingText}\n",
+    "message41": "Interpreți - Distractivi, energici și pasionați care nu consideră niciodată viața plictisitoare.",
+    "message42": "Numărul de utilizatori: ${broadcast.total_users} persoane\n",
+    "message43": "• Ați trimis: ${stats.user_messages} mesaje\n",
+    "message44": "Mediator - Altruisti poetici și buni care lucrează neobosit pentru justiție.",
+    "message45": "Vă rugăm să utilizați /broadcast_status mai târziu pentru a verifica progresul.",
+    "message46": "Pseudonim: ${user.nickname }\n",
+    "message47": "• Recompense: ${stats.total_rewards}\n\n",
+    "message48": "Antreprenor - Persoane ingenioase, energice și perspicace care se bucură de viața pe margine.",
+    "message49": "🎁 Recompensă: +${ad.reward_quota} sloturi permanente",
+    "message5": "Timp: ${new Date().toLocaleString('zh-TW', { timeZone: 'Asia/Taipei' })}\n",
+    "message50": "Timp: ${new Date().toLocaleString(",
+    "message51": "Folosiți /broadcast_status pentru a verifica starea actualizată.",
+    "message52": "Scop: ${broadcast.target_type}\n",
+    "message53": "Folosiți /broadcast_status pentru a verifica înregistrarea actualizată.",
+    "message54": "• Dacă schimbați fotografia de profil Telegram, sistemul o va detecta automat\n",
+    "message55": "Aproximativ ${Math.ceil(totalSeconds)} secunde",
+    "message56": "Activat de: ${maintenance.enabledBy}\n",
+    "message57": "Logician - Inventatori inovativi cu o sete insațiabilă de cunoaștere.",
+    "message58": "Avocat - Idealisti tăcuți și misterioși, dar inspirați și neobosiți.",
+    "message59": "Găzduitor - Protectori foarte concentrați și călduroși, mereu gata să își protejeze cei dragi.",
+    "message6": "• Impresii: ${stats.total_views} | Click-uri: ${stats.total_clicks} (${stats.ctr}%)\n",
+    "message60": "Explorator - Artiști agili și fermecători, mereu gata să exploreze și să experimenteze lucruri noi.",
+    "message61": "• Țineți apăsat pe mesajul celuilalt pentru a răspunde /block pentru a bloca acest utilizator\n",
+    "message62": "Vă rugăm să vă asigurați că mesajul la care răspundeți este cel trimis de cealaltă parte (cu identificatorul #).",
+    "message63": "/broadcast_non_vip",
+    "message64": "Construiți-vă prima conexiune (țineți apăsat mesajul → alegeți 'Răspundeți')",
+    "message65": "Mesaj: ${messagePreview}\n",
+    "message66": "3. Ești mai vigilent când întâlnești mesaje suspecte?\n\n",
+    "message67": "💡 Utilizatorii VIP pot trimite 100 de mesaje zilnic.",
+    "message68": "/broadcast\n\n",
+    "message69": "/broadcast_vip",
+    "message7": "• Număr de verificări: ${stats.total_verified}\n• Rata de verificare: ${stats.verification_rate}%",
+    "message70": "Ultimul mesaj: ${preview}\n",
+    "message71": "Mesajele de difuzare nu pot depăși 4000 de caractere",
+    "message72": "1️⃣ Țineți apăsat pe mesajul celuilalt\n",
+    "message73": "Vă rugăm să comunicați cu cealaltă parte folosind mesaje text.",
+    "message74": "(Niciun mesaj)\n\n",
+    "message75": "Obțineți cele mai recente știri și evenimente",
+    "message76": "Mesajele de difuzare nu pot fi goale",
+    "message77": "(Nu sunt mesaje)",
+    "message8": "• Distribuția recompenselor: ${stats.total_rewards}\n• Rata recompenselor: ${stats.reward_rate}%",
+    "message9": "• Vederi rămase: ${ad.max_views - ad.current_views}/${ad.max_views}",
+    "newUser": "Utilizator Nou",
+    "next": "Pagina Următoare",
+    "nickname": "💡 Te rugăm să introduci un nickname simplu, nu include linkuri precum http:// sau https://.\n\n",
+    "nickname10": "Te rugăm să introduci un nickname nou:\n\n",
+    "nickname11": "• Nu folosi nickname-ul pentru a trimite reclame",
+    "nickname12": "📝 Editează Nickname",
+    "nickname13": "✍️ Customizează Nickname",
+    "nickname2": "Groza! Nickname-ul tău este: ${truncatedNickname}\n\n",
+    "nickname3": "📝 Nickname: ${updatedUser.nickname}\n",
+    "nickname4": "📝 Nickname: ${user.nickname}\n",
+    "nickname5": "• Limita de lungime a nickname-ului este de 36 de caractere\n",
+    "nickname6": "📝 **Editează Nickname-ul**\n\n",
+    "nickname7": "✏️ Te rugăm să selectezi nickname-ul tău:\n\n",
+    "nickname8": "✏️ Te rugăm să introduci nickname-ul tău:\n\n",
+    "nickname9": "Te rog să-mi spui nickname-ul tău (numele afișat):",
+    "no": "Nu",
+    "none": "Niciunul",
+    "notRegistered": "Nu înregistrat",
+    "notSet": "Neconfigurat",
+    "open": "Deschis",
+    "operationFailed": "❌ A apărut o eroare",
+    "pageInfo": "Pagina {current} / {total}",
+    "prev": "Pagina Anterioară",
+    "profile": "👤 Vezi Profil - /profile\n",
+    "profile2": "✏️ **Editează Profilul**\n\n",
+    "profile3": "(Poti să-l setezi și în profilul tău mai târziu)",
+    "quota": "💡 Upgradează la VIP pentru a obține mai multe cote (100 mesaje/zi):/vip",
+    "quota2": "• 💎 Upgradează la VIP (30 cote pe zi)",
+    "quota3": "• 🎁 Invitează Prieteni (+1 cotă per persoană)\n",
+    "quota4": "• ✨ Completează Sarcini (primi cote permanente)\n",
+    "register": "💡 Acesta este un test rapid (${testInfo}), rezultatele sunt doar pentru referință.\nDupă înregistrare, poți repeta cu /mbti.\n\n",
+    "register10": "🎉 Felicitări pentru completarea înregistrării!\n\n",
+    "register2": "💡 Acesta este un test complet (${testInfo}), rezultatele sunt mai precise.\nDupă înregistrare, poți repeta cu /mbti.\n\n",
+    "register3": "Pașii Înregistrării: ${user.onboarding_step}\n",
+    "register4": "⏰ Procesul de înregistrare a expirat\n\nTe rog să folosești /start pentru a reporni înregistrarea.",
+    "register5": "Sau folosește: /dev_restart (pornire automată a înregistrării)\n\n",
+    "register6": "💡 Poți acum să repornești procesul de înregistrare pentru test.\n\n",
+    "register7": "🔄 Reînregistrează-te: /start\n",
+    "register8": "💡 După completarea înregistrării, poți:\n",
+    "register9": "Procesul de înregistrare a fost finalizat automat.\n\n",
+    "report": "🚨 **Raportează conținut inadecvat** (#${conversationIdentifier})\n\n",
+    "report2": "Raporturi multiple",
+    "report3": "💡 Acest lucru va specifica cu exactitate obiectul de raportat.",
+    "report4": "Te rog să selectezi un motiv pentru raportare:",
+    "selected": "Selectat",
+    "settings": "🧠 MBTI: ${updatedUser.mbti_result} (poate fi reluat)",
+    "settings10": "Nu ți-ai setat tipul MBTI.\n\n",
+    "settings11": "Setează regiunea",
+    "settings12": "Neconfigurat",
+    "settings13": "Neaprobat",
+    "settings14": "Neaprobat",
+    "settings15": "Neaprobat",
+    "settings16": "Neaprobat",
+    "settings17": "Neaprobat",
+    "settings18": "Neaprobat",
+    "settings19": "Neaprobat",
+    "settings2": "🏷️ Etichete de interes: ${updatedUser.interests}\n",
+    "settings20": "Neaprobat",
+    "settings21": "Neaprobat",
+    "settings22": "Neaprobat",
+    "settings23": "Neaprobat",
+    "settings24": "Neaprobat",
+    "settings25": "Neaprobat",
+    "settings26": "Neaprobat",
+    "settings27": "Neaprobat",
+    "settings28": "Neaprobat",
+    "settings29": "Neaprobat",
+    "settings3": "🧠 MBTI: \\$ (poate fi retestat)",
+    "settings30": "Neaprobat",
+    "settings31": "Neaprobat",
+    "settings32": "Neaprobat",
+    "settings33": "Neaprobat",
+    "settings34": "Neaprobat",
+    "settings35": "Neaprobat",
+    "settings4": "🏷️ Etichete de interes: ${user.interests}\n",
+    "settings5": "📖 Bio personală: ${updatedUser.bio}\n",
+    "settings6": "🌍 Locație: ${updatedUser.city}\n",
+    "settings7": "📖 Bio personală: ${user.bio}\n",
+    "settings8": "🌍 Locație: ${user.city}\n",
+    "settings9": "Poți folosi comanda /mbti pentru a reseta oricând.",
+    "short": "💡 Poți:\n",
+    "short10": "Când lucrezi, preferi:",
+    "short100": "Povestiri emoționale",
+    "short101": "Eficiență și rezultate",
+    "short102": "Consens și unitate",
+    "short103": "Libertate și flexibilitate",
+    "short104": "Menținerea opțiunilor deschise",
+    "short105": "Adaugă linie",
+    "short106": "Rezultatele testului",
+    "short107": "Ascultă mai întâi, apoi vorbește",
+    "short108": "Mic și intim",
+    "short109": "Lucru în echipă",
+    "short11": "Când citești, preferi:",
+    "short110": "Lucru independent",
+    "short111": "Gândire în timp ce vorbești",
+    "short112": "Digestie solitară",
+    "short113": "Aplicație practică",
+    "short114": "Idei inovatoare",
+    "short115": "Încercări noi",
+    "short116": "Este rezonabil?",
+    "short117": "Este benefic?",
+    "short118": "Respectă principiile",
+    "short119": "Menține relațiile",
+    "short12": "La locul de muncă, prețuiești mai mult aceasta:",
+    "short120": "Corect și decisiv",
+    "short121": "Reflectiv și grijuliu",
+    "short122": "Ordonat și sistematic",
+    "short123": "Relaxat și degajat",
+    "short124": "Decizii rapide",
+    "short125": "Te simți neliniștit",
+    "short126": "Te simți entuziasmat",
+    "short127": "Vizitează linkul",
+    "short128": "Abonează-te la canal",
+    "short129": "Cont bancar",
+    "short13": "Când planifici pentru viitor, vei:",
+    "short130": "Notă:",
+    "short131": "Se trimite...",
+    "short132": "Card de credit",
+    "short133": "Bitcoin",
+    "short134": "Adaugă WeChat",
+    "short135": "Adaugă QQ",
+    "short136": "Număr de telefon mobil",
+    "short137": "Contactează-mă",
+    "short138": "O aventură de o noapte",
+    "short139": "Servicii sexuale",
+    "short14": "Analizează problemele și oferă sugestii",
+    "short140": "Înșelătorie",
+    "short141": "Investiție",
+    "short142": "Câștigă bani",
+    "short143": "Remitere",
+    "short144": "Transfer",
+    "short145": "Parolă",
+    "short146": "Schema piramidală",
+    "short147": "Finanțe",
+    "short148": "Gestionarea averii",
+    "short149": "Acțiuni",
+    "short15": "Când te confrunți cu schimbări, de obicei:",
+    "short150": "Derivatelor",
+    "short151": "Forex",
+    "short152": "Telefon",
+    "short153": "Întâlniri casuale",
+    "short154": "Întâlniri compensante",
+    "short155": "Sinucidere",
+    "short156": "Sărind de pe o clădire",
+    "short157": "Violență",
+    "short158": "Neconfigurat",
+    "short159": "Nerăspuns",
+    "short16": "Îți mulțumim pentru suport!❤️",
+    "short160": "Utilizator de test",
+    "short161": "Utilizator de test",
+    "short162": "Rezultate mai precise",
+    "short163": "Necesită atenție",
+    "short164": "Alătură-te grupului",
+    "short165": "Vezi detalii",
+    "short17": "Lasă-i pe ceilalți să te cunoască mai bine",
+    "short18": "Este corect?\n\n",
+    "short19": "🗑️ Șterge schița",
+    "short2": "🌈 Oricine poate",
+    "short20": "🏷️ Editează interesele",
+    "short21": "Te rugăm să selectezi o versiune de test:",
+    "short22": "Stilul tău de lucru este:",
+    "short23": "Are un termen limită clar",
+    "short24": "Se va familiariza repede",
+    "short25": "Necesită timp pentru a se adapta",
+    "short26": "Când ești stresat, vei:",
+    "short27": "Fă o listă și cumpără conform planului",
+    "short28": "Blocat (în încercare)",
+    "short29": "✏️ Editează conținutul",
+    "short3": "✏️ Continuă să editezi informațiile",
+    "short30": "📖 Editează profilul",
+    "short31": "🌍 Editează locația",
+    "short32": "💝 Preferințe de potrivire",
+    "short33": "Se actualizează...",
+    "short34": "🔞 Conținut pentru adulți",
+    "short35": "Inițiază conversația cu alții",
+    "short36": "Așteaptă ca alții să se apropie de mine",
+    "short37": "În weekenduri, preferi:",
+    "short38": "Experiență practică și fapte",
+    "short39": "Abordare pas cu pas",
+    "short4": "📝 Reia testul",
+    "short40": "Explorează modalități inovatoare",
+    "short41": "Analiză logică și obiectivă",
+    "short42": "Harmonie emoțională și interumană",
+    "short43": "Planifică și pregătește în avans",
+    "short44": "Adaptează-te și fii flexibil",
+    "short45": "Păstrează opțiunile deschise",
+    "short46": "Folosește metafore și analogii",
+    "short47": "Ascultă și oferă confort",
+    "short48": "Camera ta, de obicei:",
+    "short49": "În timp ce faci cumpărături, vei:",
+    "short5": "📝 Fă un test rapid",
+    "short50": "Lasă-i pe ceilalți să te cunoască mai bine",
+    "short51": "Găsește prieteni în același oraș",
+    "short52": "Verifică poveștile altora",
+    "short53": "Cel puțin 20 de caractere",
+    "short54": ": Potrivire activă,",
+    "short55": "Femeie (implicit)",
+    "short56": "Bărbat (implicit)",
+    "short57": "Rezultatele sunt doar pentru referință",
+    "short58": "Puteți:\n",
+    "short59": "Petreceți timp cu prietenii",
+    "short6": "Este necesar cel puțin un filtru",
+    "short60": "Stați singur acasă",
+    "short61": "Simțiți-vă energizat",
+    "short62": "Simțiți nevoia de a vă relaxa",
+    "short63": "Intuiție și posibilități",
+    "short64": "Concentrați-vă pe detalii specifice",
+    "short65": "Concentrați-vă pe conceptul general",
+    "short66": "Indicați problemele direct",
+    "short67": "Considerați sentimentele celeilalte persoane",
+    "short68": "Creați un itinerar detaliat",
+    "short69": "Explorați liber",
+    "short7": "Utilizator nou******",
+    "short70": "Împărtășiți-vă opiniile activ",
+    "short71": "Cercul dvs. de prieteni:",
+    "short72": "Larg, dar nu profund",
+    "short73": "Viitor și posibilități",
+    "short74": "Folosiți exemple specifice",
+    "short75": "Metode dovedite",
+    "short76": "Bazate pe condiții reale",
+    "short77": "Imaginați-vă diverse posibilități",
+    "short78": "Reglementat și structurat",
+    "short79": "Conține vocabular sensibil",
+    "short8": "Când criticați pe alții, veți:",
+    "short80": "Completați etichetele de interes",
+    "short81": "Îmbunătățiți-vă auto-prezentarea",
+    "short82": "Alăturați-vă canalului oficial",
+    "short83": "Scrieți-vă povestea",
+    "short84": "👨 Bărbat",
+    "short85": "👩 Femeie",
+    "short86": "👨 Om",
+    "short87": "👩 Femeie",
+    "short88": "Timp de recenzie:",
+    "short89": "❓ Incert",
+    "short9": "Când călătoriți, tindeți să:",
+    "short90": "Ce apreciați mai mult:",
+    "short91": "Onestitate și justiție",
+    "short92": "Empatie și înțelegere",
+    "short93": "Gândiți înainte de a vorbi",
+    "short94": "Vorbiți cu prietenii",
+    "short95": "Ghiduri practice",
+    "short96": "Teorii și concepte",
+    "short97": "Acum și trecutul",
+    "short98": "În cine aveți mai multă încredere:",
+    "short99": "Fapte și date",
+    "start": "Ora de început: ${new Date(maintenance.startTime).toLocaleString('zh-TW')}\n",
+    "start10": "Începeți →",
+    "start2": "Ora de început: ${new Date(broadcast.startedAt).toLocaleString('zh-TW')}\n",
+    "start3": "Începeți: ${startTime.toLocaleString('zh-TW')}\n",
+    "start4": "Timp de început: ${broadcast.started_at}\n\n",
+    "start5": "Începe: ${startTime.toLocaleString(",
+    "start6": "🎉 **Gata! Începe acum să îți faci prieteni～**\n\n",
+    "start7": "• Folosește /throw pentru a reporni\n",
+    "start8": "📺 Începe să te uiți la reclame",
+    "start9": "Începe-ți călătoria prieteniei",
+    "stats": "💡 Folosește /ad_stats {id} pentru a vizualiza statistici detaliate",
+    "stats2": "• /stats - Vizualizează statistici\n\n",
+    "stats3": "📊 Vezi statistici - /stats\n",
+    "stats4": "📊 **Statistici oficiale de реклами**\n\n",
+    "stats5": "Statistici de invitație:\n",
+    "stats6": "Statistici:\n",
+    "success": "Cumpărare reușită",
+    "systemError": "❌ A apărut o eroare în sistem",
+    "task": "🎉 Felicitări pentru completarea sarcinii: Alătură-te canalului oficial!\n\n",
+    "task2": "[📋 Vezi Centrul de Sarcini] → /tasks",
+    "task3": "• /tasks - Vezi Centrul de Sarcini\n",
+    "task4": "💡 Folosește /tasks pentru a vedea mai multe sarcini",
+    "task5": "Când procesezi o sarcină, vei:",
+    "task6": "📋 Vezi Sarcini",
+    "text": "Țintă: ${broadcast.target_type}\n",
+    "text10": "📖 Profil: ${updatedUser.bio ||",
+    "text100": "💡 Te rog introdu conținut în caseta de input de mai jos",
+    "text101": "Aceasta poate dura câteva momente, te rog așteaptă.",
+    "text102": "Poți folosi următoarele comenzi în orice moment:\n",
+    "text103": "🛠️ Notificare de întreținere a sistemului\n\n",
+    "text104": "🛠️ Starea modului de întreținere\n\n",
+    "text105": "Când evaluezi o idee, iei în considerare mai întâi:",
+    "text106": "⏱️ Aproximativ 2-3 minute\n",
+    "text107": "⏱️ Aproximativ 5-8 minute\n",
+    "text108": "📚 Vreau să învăț mai multe despre cunoștințele de siguranță",
+    "text109": "Trimite acum (aproximativ 1-2 secunde)",
+    "text11": "${daysAgo} zile în urmă",
+    "text110": "2️⃣ Alege 'Răspunde'\n",
+    "text111": "**Format Filtru:**\n",
+    "text112": "• Minimum 5 caractere\n",
+    "text113": "• Nu poate include URL-uri\n",
+    "text114": "Te rog să introduci regiunea ta:\n\n",
+    "text115": "• Poți modifica această setare în orice moment",
+    "text116": "• Până la 5 etichete\n",
+    "text117": "📋 Versiune Rapidă (12 Întrebări)",
+    "text118": "📚 Versiune Completă (36 Întrebări)",
+    "text119": "• Realizează un test mai detaliat\n",
+    "text12": "Director General - Un manager deosebit, fără egal în gestionarea afacerilor sau personalului.",
+    "text120": "💡 **Sugestie:**\n",
+    "text121": "Când înveți ceva nou, preferi să:",
+    "text122": "**Pași de urmat:**\n",
+    "text123": "🇺🇳 Folosește steagul Națiunilor Unite",
+    "text124": "Vrei să trimiți această schiță direct?",
+    "text125": "Aceasta poate dura câteva secunde.",
+    "text126": "Mulțumim pentru răbdare!",
+    "text127": "Întreținerea va dura cel puțin 5 minute.",
+    "text128": "În situații sociale, de obicei:",
+    "text129": "Când rezolvi probleme, te bazezi mai mult pe:",
+    "text13": "💡 Acesta va fi afișat pe cartea ta de profil, ajutând alți utilizatori să te înțeleagă mai bine.\n",
+    "text130": "Într-o echipă, ai tendința să:",
+    "text131": "Când te gândești la probleme, ai tendința să:",
+    "text132": "Când descrii lucruri, ai tendința să:",
+    "text133": "Când prietenii se confesează ție, vei:",
+    "text134": "În timpul luării deciziilor în echipă, te concentrezi mai mult pe:",
+    "text135": "Crezi că un bun lider ar trebui să:",
+    "text136": "Țintă: Toți utilizatorii\n",
+    "text137": "✏️ Te rugăm să introduci un conținut nou",
+    "text138": "💰 Fraude / Phishing",
+    "text139": "😡 Hărțuire / Abuz",
+    "text14": "Limba: ${user.language_pref}\n",
+    "text140": "După participarea la o întâlnire, de obicei:",
+    "text141": "Când iei decizii, prioritizezi:",
+    "text142": "Când întâlnești prieteni noi, tu:",
+    "text143": "În conflicte, ai tendința să:",
+    "text144": "Ești mai ușor convins de:",
+    "text145": "Stilul tău de viață preferat:",
+    "text146": "Când iei decizii, ai tendința să:",
+    "text147": "Răsfoiești casual și cumperi ce îți place",
+    "text148": ")} expiră.\n\n",
+    "text149": "📋 Documentele legale sunt disponibile doar în engleză.",
+    "text15": "🌍 Locație: ${updatedUser.city ||",
+    "text150": "📋 Documentele legale sunt disponibile doar în engleză.",
+    "text16": "✅ Necesită verificare: Fă clic pe butonul 'Verifică' după ce te alături grupului/canalului",
+    "text17": "Numărul de utilizatori țintiți: ${userIds.length}\n\n",
+    "text18": "Timp estimat: ${estimatedTime}\n\n",
+    "text19": "/broadcast_cleanup confirm",
+    "text2": "Te rugăm să folosești /broadcast_filter pentru a vedea formatul corect.",
+    "text20": "💝 Preferință de potrivire: ${matchPrefText}\n",
+    "text21": "Debatant - Un gânditor isteț și curios, incapabil să reziste provocărilor intelectuale.",
+    "text22": "Notează-ți sentimentele sau gândurile, iar sistemul te va ajuta să găsești persoana potrivită\n\n",
+    "text23": "Specialist în logistică - O persoană practică și orientată spre fapte, ale cărei calități sunt indiscutabile.",
+    "text24": "Apreciator - Un experimentator îndrăzneț și practic, priceput în utilizarea diferitelor instrumente.",
+    "text25": "💡 Aceasta este o recompensă unică, iar ea va fi adăugată la cota de astăzi după revendicare.",
+    "text26": "Numărul utilizatorilor potriviți: ${totalUsers} persoane\n",
+    "text27": "• Implicit este heterosexual (bărbații caută femei, femeile caută bărbați)\n",
+    "text28": "Stare: ${progress.status}\n",
+    "text29": "${daysAgo} ore în urmă",
+    "text3": "**Condiții de filtrare:**\n${filtersDesc}\n\n",
+    "text30": "Aproape ${remainingMinutes} minute",
+    "text31": "Aproape ${hours} ore ${mins} minute",
+    "text32": "Durata întreținerii nu poate depăși 24 de ore (1440 minute)",
+    "text33": "Numărul utilizatorilor: ${totalUsers} persoane\n",
+    "text34": "Țintă: ${b.target_type}\n",
+    "text35": "Criterii de filtrare: ${filtersDesc}\n",
+    "text36": "• Cel puțin 4 caractere, până la 36 de caractere\n",
+    "text37": "🇺🇳 Dacă nu a fost găsit, poți alege 'Steagul ONU'",
+    "text38": "📖 Profil: ${user.bio ||",
+    "text39": "Te rog să introduci etichetele tale de interes (separate prin virgule):\n\n",
+    "text4": "/maintenance_enable 60 Întreținere sistem de actualizare",
+    "text40": "• De exemplu: Muzică, Filme, Călătorie, Mâncare\n",
+    "text41": "Serviciul a fost reluat normal, mulțumim pentru răbdare!\n\n",
+    "text42": "🌍 Regiune: ${user.city ||",
+    "text43": "Sursa: ${sourceText}\n\n",
+    "text44": "Filtru necunoscut: ${trimmedKey}",
+    "text45": "Sistemul este în întreținere și este temporar indisponibil.\n\n",
+    "text46": "Am dedus că ești din:\n",
+    "text47": "• Fiecare etichetă poate avea un maxim de 20 de caractere\n\n",
+    "text48": "Durata: ${duration} minute\n",
+    "text49": "1. Ești conștient de riscurile de siguranță ale întâlnirilor online?\n",
+    "text5": "👋 Bun revenit, ${user.nickname}!\n\n",
+    "text50": "2. Îți vei proteja informațiile personale?\n",
+    "text51": "Minunat! Acum te rog să încarci poza ta de profil:\n\n",
+    "text52": "🌊 **Ce este XunNi?**\n",
+    "text53": "🎉 S-a detectat că te-ai alăturat canalului oficial!\n\n",
+    "text54": "💡 Acest lucru poate specifica exact pe cine să blochezi.",
+    "text55": "Status: ${statusText}\n",
+    "text56": "💡 Acum poți testa direct funcționalitățile de bază:\n",
+    "text57": "Ce fel de partener de chat cauți?\n\n",
+    "text58": "• Prezintă-ți interesele, personalitatea sau lucrurile pe care ai dori să le spui\n",
+    "text59": "🏷️ **Editează etichetele de interes**\n\n",
+    "text6": "Arhitect - Gânditor imaginativ și strategic, totul face parte din plan.",
+    "text60": "Pentru siguranță, sunt permise doar linkuri din următoarele domenii:\n",
+    "text61": "📋 **Versiunea Rapidă (12 întrebări)**\n",
+    "text62": "📚 **Versiunea Completă (36 întrebări)**\n",
+    "text63": "• Imaginea de profil se va actualiza automat la fiecare 7 zile\n",
+    "text64": "3️⃣ Introdu /report\n\n",
+    "text65": "3️⃣ Introdu /block\n\n",
+    "text66": "Status: ${b.status}\n",
+    "text67": "Nu va mai fi procesat automat sau trimis din nou\n\n",
+    "text68": "📖 **Editează profilul**\n\n",
+    "text69": "💝 **Setează preferințele de potrivire**\n\n",
+    "text7": "Protagonist - Lider carismatic și inspirator, capabil să captiveze un public.",
+    "text70": "💬 **Istoricul tău de chat**\n\n",
+    "text71": "• Poți de asemenea să actualizezi manual folosind această comandă în orice moment",
+    "text72": "📊 **Raport de Analiză a Datelor Zilnice**\n",
+    "text73": "Contul tău a fost restaurat la un abonament gratuit.\n\n",
+    "text74": "💡 Acesta va fi afișat pe cartea ta de profil\n",
+    "text75": "🔧 Modul Dezvoltator: Informații utilizator\n\n",
+    "text76": "• Introduceți direct conținut nou pentru a înlocui schița\n",
+    "text77": "• Nu sunt permise linkuri, imagini sau multimedia\n",
+    "text78": "• Afișare de maximum 18 caractere\n",
+    "text79": "• Cealaltă parte poate afișa până la 18 caractere\n",
+    "text8": "/broadcast Sistemul va fi supus întreținerii în această seară la 22:00",
+    "text80": "💡 Te rugăm să elimini aceste linkuri și să le retrimiți.",
+    "text81": "🔄 Se actualizează poza de profil...\n\n",
+    "text82": "• Utilizatorii gratuiti văd o poză de profil neclară\n",
+    "text83": "💬 **Cum să devenim prieteni?**\n",
+    "text84": "Format de filtrare invalid: ${pair}",
+    "text85": "Toate datele tale au fost șterse.\n\n",
+    "text86": "📝 **Conținut proiectat**\n\n",
+    "text87": "🌍 **Editează locația**\n\n",
+    "text88": "• De exemplu: Taipei, Hong Kong, Tokyo\n",
+    "text89": "• Până la 50 de caractere\n\n",
+    "text9": "🏷️ Etichete de interes: ${user.interests ||",
+    "text90": "Despre ${minutes} minute",
+    "text91": "Scrie-ți povestea (cel puțin 20 de caractere)",
+    "text92": "Caut utilizatori eligibili...",
+    "text93": "• Maxim 250 de caractere\n",
+    "text94": "• Nu include informații de contact personale\n",
+    "text95": "Te rog să selectezi elementul de editat:\n\n",
+    "text96": "Te rog să introduci profilul tău personal:\n\n",
+    "text97": "• Maxim 200 de caractere\n",
+    "text98": "• Evită să incluzi informații de contact\n\n",
+    "text99": "Toate funcțiile sunt acum complet operaționale.",
+    "throw": "⏰ Procesul de aruncare a sticlei a expirat\n\nTe rog folosește /throw pentru a reporni.",
+    "throw2": "Procesul de aruncare a sticlei",
+    "uncertain": "❓ Nu sunt sigur",
+    "unknownOption": "⚠️ Opțiune necunoscută",
+    "unlimited": "Fără limite",
+    "userNotFound": "❌ Utilizatorul nu există",
+    "vip": "Abonamentul tău VIP a expirat pe ${expireDate} .\n\n",
+    "vip10": "😢 **Abonamentul VIP a expirat**\n\n",
+    "vip11": "• Upgrade-ul la VIP va actualiza automat postările istorice",
+    "vip12": "⭐ Upgrade la VIP - /vip\n",
+    "vip13": "💎 Utilizatorii VIP nu trebuie să vizioneze reclame",
+    "vip14": "Target: Utilizatori non-VIP\n",
+    "vip15": "Target: Utilizatori VIP\n",
+    "vip16": "Utilizatori non-VIP",
+    "vip17": "Utilizatori VIP",
+    "vip2": "Abonamentul tău VIP a expirat pe ${new Date(user.vip_expire_at).toLocaleDateString(",
+    "vip3": "/broadcast_filter vip=true,mbti=INTJ notificare eveniment exclusiv VIP\n",
+    "vip4": "Pentru fiecare persoană invitată, limita zilnică crește permanent cu +1 (gratuit pentru până la 10 persoane, VIP pentru până la 100 persoane)",
+    "vip5": "VIP: ${user.is_vip ? 'Da' : 'Nu'}\n",
+    "vip6": "💡 Upgrade-ul la VIP oferă acces la filtre avansate (MBTI/Zodiac): /vip",
+    "vip7": "💡 Poți să te reinscrii la VIP oricând: /vip\n\n",
+    "vip8": "💡 Grupa de sânge poate fi folosită pentru funcția de potrivire a grupelor de sânge VIP\n\n",
+    "vip9": "• Utilizatorii VIP pot vedea pozele de profil clare între ei\n",
+    "yes": "Da",
+    "zodiac": "Semn zodiacal invalid: ${trimmedValue} (trebuie să fie unul din: ${VALID_ZODIACS.join(', ')})"
+  },
+  "conversation": {
+    "age": "🎂 Interval de vârstă: ${ageRange} ani\n",
+    "anonymousCardHint": "💡 Aceasta este o carte de date anonime și nu va afișa informații reale de identitate ale celeilalte părți.",
+    "backToMenuCommand": "🏠 Înapoi la meniul principal: /menu",
+    "ban": "• Raportările multiple vor duce la o interdicție\n",
+    "blockConfirmButton": "✅ Confirmă pentru a bloca",
+    "blockConfirmMessage": "Blocat:\n• Cealaltă parte nu îți mai poate trimite mesaje\n• Nu vei mai fi potrivit\n• Această conversație se va încheia imediat\n\n💡 Acest lucru nu raportază cealaltă parte, înseamnă doar că nu mai dorești să conversezi.",
+    "blockConfirmTitle": "🚫 **Ești sigur că vrei să blochezi acest utilizator?**",
+    "blockSuccessMessage": "Cealaltă parte a fost blocată și nu vei mai fi potrivit.\n\n💡 Vrei să începi o nouă conversație?\n• Folosește /catch pentru a ridica o sticlă cu mesaj nouă",
+    "blockSuccessNewConversation": "💬 **Conversație încheiată**\n\nCealaltă parte a încheiat această conversație.\n\n💡 Vrei să începi o nouă conversație?\n• Folosește /catch pentru a ridica o sticlă cu mesaj nouă",
+    "blockSuccessTitle": "✅ **Utilizatorul a fost blocat**",
+    "blocked": "✅ Blocat",
+    "bloodType": "🩸 Grupa de sânge: ${partnerInfo.bloodType}\n",
+    "bloodType2": "🩸 Grupa de sânge: ${bloodTypeText}\n",
+    "bottle": "Folosește /catch pentru a ridica o sticlă cu mesaj și a începe chatul!\n\n",
+    "bottle2": "• Folosește /catch pentru a ridica o sticlă cu mesaj nouă",
+    "cancelButton": "❌ Anulează",
+    "cancelSuccess": "Anulat",
+    "conversation": "💬 Istoricul conversației cu #${identifier} (Pagina ${postNumber})\n\n",
+    "conversation10": "În prezent, nu există conversații.\n\n",
+    "conversation11": "• Această conversație se va încheia imediat\n",
+    "conversation2": "💬 **Lista mea de conversații** (${conversations.length})\n\n",
+    "conversation3": "💡 Fă clic pe butonul 'Răspunde' la mesajul cealaltă parte pentru a continua conversația\n",
+    "conversation4": "💬 **Conversația a fost încheiată**\n\n",
+    "conversation5": "💬 **Conversațiile mele**\n\n",
+    "conversation6": "💡 Vrei să începi o nouă conversație?\n",
+    "conversation7": "• Această conversație se va încheia imediat\n\n",
+    "conversation8": "Cealaltă parte a încheiat această conversație.\n\n",
+    "conversation9": "💡 Acesta este istoricul conversației\n",
+    "conversationEnded": "❌ Această conversație s-a încheiat.\n\nFolosește /catch pentru a ridica o sticlă cu mesaj nouă și a începe o nouă conversație.",
+    "conversationInfoError": "❌ Informațiile conversației sunt incorecte.",
+    "editProfileCommand": "✏️ Editează profilul: /edit_profile",
+    "endedMessage": "Cealaltă parte a încheiat această conversație.\n\n💡 Vrei să începi o nouă conversație?\n• Folosește /catch pentru a ridica o sticlă cu mesaj nouă",
+    "endedNewConversation": "💬 **Conversație încheiată**\n\nCealaltă parte a încheiat această conversație.\n\n💡 Vrei să începi o nouă conversație?\n• Folosește /catch pentru a ridica o sticlă cu mesaj nouă",
+    "endedTitle": "💬 **Conversație încheiată**",
+    "gender": "👤 Gen: ${gender}\n",
+    "mediaRestriction": "⚠️ **Trimiterea imaginilor, videoclipurilor sau multimedia nu este permisă**\n\n💡 Pentru a proteja intimitatea și siguranța, sunt permise doar mesaje text simple în conversații.\n\nTe rugăm să folosești mesaje text pentru a comunica cu cealaltă parte.",
+    "message": "💫 Scor de potrivire: ${score} puncte\n",
+    "message10": "conv_profile_${conversationId}",
+    "message11": "• Ultimul mesaj: ${lastMessageTime}\n\n",
+    "message12": "📊 Mesaje totale: ${totalMessages} mesaje\n",
+    "message13": "💬 Răspunde direct apăsând /reply pentru a conversa\n",
+    "message14": "• Cealaltă parte nu îți mai poate trimite mesaje\n",
+    "message2": "📜 Continuă vizualizarea: #${identifier}-H${newPostNumber}",
+    "message3": "📅 Ultima actualizare: ${formatDateTime(new Date())}\n\n",
+    "message4": "[${timeStr}] De la: \n${messageContent}\n\n",
+    "message5": "conv_report_confirm_${conversationId}",
+    "message6": "conv_block_confirm_${conversationId}",
+    "message7": "• Numărul de mesaje: ${conv.message_count} mesaje\n",
+    "message77": "💬 Folosește /reply pentru a răspunde la mesaje",
+    "message8": "🏷️ Interese: ${otherUser.interests}\n",
+    "message9": "💬 Mesaj nou de la #${identifier}:\n\n",
+    "nickname": "📝 Pseudonim: ${partnerInfo.maskedNickname}\n",
+    "nickname2": "📝 Pseudonim: ${displayNickname}\n",
+    "noHistory": "💬 Nu ai niciun istoric de conversație încă\n\nAruncă o sticlă pentru a întâlni prieteni noi! /throw\n\n🏠 Întoarce-te la meniul principal: /menu",
+    "profile": "✏️ Editează profilul: /edit_profile\n",
+    "profileCardTitle": "👤 **Card de profil al altui utilizator**",
+    "replyButton": "💬 Răspunde la mesaj",
+    "replyConversation": "💬 Răspunde la conversația {identifier}",
+    "replyHint": "💡 Te rog să introduci mesajul tău în caseta de mai jos",
+    "replyMethod1": "1️⃣ Apasă butonul「💬 Răspunde la mesaj」de mai jos",
+    "replyMethod2": "2️⃣ Ține apăsat acest mesaj, selectează「Răspunde」și apoi introdu mesajul tău",
+    "replyMethodsTitle": "💡 **Două opțiuni de răspuns**:",
+    "report": "🚨 **Ești sigur că vrei să raportezi acest utilizator?**\n\n",
+    "report2": "💡 Aceasta nu va raporta utilizatorul, doar va încheia chat-ul.",
+    "report3": "Îți mulțumim pentru raport, îl vom analiza cât mai curând posibil.\n\n",
+    "report4": "După raportare:\n",
+    "reportConfirmButton": "✅ Confirmă raportul",
+    "reportConfirmMessage": "După raportare:\n• Vom analiza comportamentul acestui utilizator\n• Raportările multiple pot duce la interzicere\n• Această conversație se va încheia imediat\n• Nu vei fi potrivit cu acest utilizator din nou timp de 24 de ore\n\n💡 Te rog să te asiguri că celălalt utilizator are un comportament inadecvat.",
+    "reportConfirmTitle": "🚨 **Ești sigur că vrei să raportezi acest utilizator?**",
+    "reportSuccessMessage": "Îți mulțumim pentru raportul tău. Îl vom analiza cât mai curând posibil.\n\n💡 Ai dori să începi o nouă conversație?\n• Folosește /catch pentru a prelua o nouă sticlă cu mesaj",
+    "reportSuccessNewConversation": "💬 **Conversație încheiată**\n\nCelălalt utilizator a încheiat această conversație.\n\n💡 Ai dori să începi o nouă conversație?\n• Folosește /catch pentru a prelua o nouă sticlă cu mesaj",
+    "reportSuccessTitle": "✅ **Utilizator raportat**",
+    "reported": "✅ Raportat",
+    "separator": "━━━━━━━━━━━━━━━━",
+    "settings": "🧠 MBTI: ${otherUser.mbti_result}\n",
+    "settings2": "Nesetată",
+    "settings3": "Nesetată",
+    "settings4": "Nesetată",
+    "settings5": "Nesetată",
+    "short": "După blocare:\n",
+    "short2": "Utilizator necunoscut",
+    "short3": "Chiar acum",
+    "stats": "📊 Folosește /stats pentru a vizualiza statistici detaliate\n",
+    "text": "💡 Aceasta este o carte de date anonimă și nu va dezvălui informațiile reale de identitate ale celeilalte părți.\n\n",
+    "text10": "💎 Folosește /vip pentru a învăța mai multe\n\n",
+    "text11": "👤 **Carte de date a celeilalte părți**\n\n",
+    "text12": "${diffHours} ore în urmă",
+    "text13": "💡 Te rog să te asiguri că celălalt utilizator are un comportament inadecvat.",
+    "text14": "${diffMins} minute în urmă",
+    "text15": "• Vom analiza comportamentul acestui utilizator\n",
+    "text16": "💎 Folosește /vip pentru a afla mai multe",
+    "text17": "${diffDays} zile în urmă",
+    "text18": "• Nu vei fi potrivit din nou\n",
+    "text19": "👤 Informații despre alt utilizator:\n",
+    "text2": "📜 Vezi Istoricul: #${identifier}\n",
+    "text3": "🗣️ Limbă: ${languageLabel}\n",
+    "text4": "🌍 Regiune: ${otherUser.city}\n",
+    "text5": "📖 Biografie: ${otherUser.bio}\n",
+    "text6": "conv_reply_${identifier}",
+    "text7": "🚫 **Ești sigur că vrei să blochezi acest utilizator?**\n\n",
+    "text8": "Celălalt utilizator a fost blocat și nu vei mai fi potrivit cu acesta.\n\n",
+    "text9": "• Nu vei mai fi potrivit cu acest utilizator timp de 24 de ore\n\n",
+    "vip": "🔒 Upgrade la VIP pentru a debloca o fotografie de profil mai clară a celuilalt utilizator\n",
+    "vip2": "🔒 Upgradează la VIP pentru a debloca poza de profil clară a celuilalt utilizator\n",
+    "vipLearnMore": "💎 Folosește /vip pentru a afla mai multe",
+    "vipUnlockAvatar": "🔒 Upgradează la VIP pentru a debloca poza de profil clară a celeilalte părți",
+    "zodiac": "⭐ Zodiac: ${partnerInfo.zodiac}\n",
+    "zodiac2": "⭐ Zodiac: ${zodiacLabel}\n"
+  },
+  "conversationHistory": {
+    "backToMenu": "🏠 Înapoi la meniul principal: /menu",
+    "bloodType": "🩸 Tip de sânge: ${bloodType}",
+    "continueView": "📜 Continuă vizionarea: #${identifier}-H${postNumber}",
+    "historyNote": "💡 Aceasta este istoricul conversației",
+    "lastUpdated": "📅 Ultima actualizare: ${time}",
+    "matchScore": "💫 Compatibilitate: ${score} puncte",
+    "mbti": "🧠 MBTI: ${mbti}",
+    "messageEntry": "[${time}] Cealaltă parte:\n${content}",
+    "newMessage": "💬 Mesaj nou de la #${identifier}:",
+    "nickname": "📝 Pseudonim: ${nickname}",
+    "other": "Cealaltă parte",
+    "partnerInfo": "👤 Informații despre cealaltă parte:",
+    "replyButton": "💬 Răspunde la mesaj",
+    "replyHint": "💬 Răspunde direct apăsând /reply pentru chat",
+    "title": "💬 Istoricul conversației cu #${identifier} (Pagina ${postNumber})",
+    "totalMessages": "📊 Număr total de mesaje: ${count}",
+    "viewAllConversations": "📊 Vezi toate conversațiile",
+    "viewHistory": "📜 Vezi istoricul: #${identifier}",
+    "viewProfileCard": "👤 Vezi profilul celeilalte părți",
+    "vipLearnMore": "💎 Folosește /vip pentru a afla mai multe",
+    "vipUnlockAvatar": "🔒 Upgradează la VIP pentru a debloca poza de profil clară a celeilalte părți",
+    "you": "Tu",
+    "zodiac": "⭐ Zodiac: ${zodiac}"
+  },
+  "countries": {
+    "ae": "Emiratele Arabe Unite",
+    "al": "Albania",
+    "am": "Armenia",
+    "ar": "Argentina",
+    "at": "Austria",
+    "au": "Australia",
+    "az": "Azerbaidjan",
+    "ba": "Bosnia",
+    "bb": "Barbados",
+    "bd": "Bangladesh",
+    "be": "Belgia",
+    "bg": "Bulgaria",
+    "bh": "Bahrain",
+    "bo": "Bolivia",
+    "br": "Brazilia",
+    "ca": "Canada",
+    "ch": "Elveția",
+    "ci": "Coasta de Fildeș",
+    "cl": "Chile",
+    "cm": "Camerun",
+    "cn": "China",
+    "co": "Columbia",
+    "cr": "Costa Rica",
+    "cu": "Cuba",
+    "cz": "Republica Cehă",
+    "de": "Germania",
+    "dk": "Danemarca",
+    "do": "Republica Dominicană",
+    "dz": "Algeria",
+    "ec": "Ecuador",
+    "ee": "Estonia",
+    "eg": "Egipt",
+    "es": "Spania",
+    "et": "Etiopia",
+    "fi": "Finlanda",
+    "fr": "Franța",
+    "gb": "Regatul Unit",
+    "ge": "Georgia",
+    "gh": "Ghana",
+    "gr": "Grecia",
+    "gt": "Guatemala",
+    "hk": "Hong Kong",
+    "hn": "Honduras",
+    "hr": "Croația",
+    "hu": "Ungaria",
+    "id": "Indonezia",
+    "ie": "Irlanda",
+    "il": "Israel",
+    "in": "India",
+    "iq": "Irak",
+    "ir": "Iran",
+    "is": "Islanda",
+    "it": "Italia",
+    "jm": "Jamaica",
+    "jo": "Iordania",
+    "jp": "Japonia",
+    "ke": "Kenya",
+    "kh": "Cambodgia",
+    "kr": "Coreea de Sud",
+    "kw": "Kuwait",
+    "kz": "Kazahstan",
+    "la": "Laos",
+    "lb": "Liban",
+    "lk": "Sri Lanka",
+    "lt": "Lituania",
+    "lv": "Letonia",
+    "ly": "Libia",
+    "ma": "Maroc",
+    "mk": "Macedonia de Nord",
+    "mm": "Myanmar",
+    "mn": "Mongolia",
+    "mo": "Macao",
+    "mt": "Malta",
+    "mx": "Mexic",
+    "my": "Malaysia",
+    "ng": "Nigeria",
+    "ni": "Nicaragua",
+    "nl": "Olanda",
+    "no": "Norvegia",
+    "np": "Nepal",
+    "nz": "Noua Zeelandă",
+    "om": "Oman",
+    "pa": "Panama",
+    "pe": "Peru",
+    "ph": "Filipine",
+    "pk": "Pakistan",
+    "pl": "Polonia",
+    "pt": "Portugalia",
+    "py": "Paraguay",
+    "qa": "Qatar",
+    "ro": "România",
+    "rs": "Serbia",
+    "ru": "Rusia",
+    "rw": "Rwanda",
+    "sa": "Arabia Saudită",
+    "sd": "Sudan",
+    "se": "Suedia",
+    "sg": "Singapore",
+    "si": "Slovenia",
+    "sk": "Slovacia",
+    "sn": "Senegal",
+    "sv": "El Salvador",
+    "sy": "Siria",
+    "th": "Thailanda",
+    "tn": "Tunisia",
+    "tr": "Turcia",
+    "tt": "Trinidad",
+    "tw": "Taiwan",
+    "tz": "Tanzania",
+    "ua": "Ucraina",
+    "ug": "Uganda",
+    "un": "Națiunile Unite",
+    "us": "Statele Unite",
+    "uy": "Uruguay",
+    "uz": "Uzbekistan",
+    "ve": "Venezuela",
+    "vn": "Vietnam",
+    "ye": "Yemen",
+    "za": "Africa de Sud",
+    "zw": "Zimbabwe"
+  },
+  "country": {
+    "buttonAU": "🇦🇺 Australia",
+    "buttonCA": "🇨🇦 Canada",
+    "buttonCN": "🇨🇳 China",
+    "buttonDE": "🇩🇪 Germania",
+    "buttonFR": "🇫🇷 Franța",
+    "buttonGB": "🇬🇧 Regatul Unit",
+    "buttonHK": "🇭🇰 Hong Kong",
+    "buttonJP": "🇯🇵 Japonia",
+    "buttonKR": "🇰🇷 Coreea de Sud",
+    "buttonMY": "🇲🇾 Malaezia",
+    "buttonNZ": "🇳🇿 Noua Zeelandă",
+    "buttonSG": "🇸🇬 Singapore",
+    "buttonTH": "🇹🇭 Thailanda",
+    "buttonTW": "🇹🇼 Taiwan",
+    "buttonUS": "🇺🇸 Statele Unite",
+    "confirmButton": "✅ Corect",
+    "confirmDetected": "Am dedus locația ta pe baza setărilor de limbă:\n",
+    "confirmFailed": "❌ Confirmare eșuată",
+    "confirmHint": "💡 Aceasta va apărea pe cartea ta de profil, ajutând alți utilizatori să te înțeleagă mai bine.\n",
+    "confirmQuestion": "Este corect?\n\n",
+    "confirmReward": "🎉 Confirmarea va câștiga +1 recompensă în sticlă cu mesaj!",
+    "confirmTitle": "🌍 **Confirmați țara/regiunea dumneavoastră**\n\n",
+    "confirmed": "✅ Confirmat!",
+    "notCorrectButton": "❌ Incorect",
+    "selectHint": "💡 Aceasta va apărea pe cartea ta de profil\n",
+    "selectTitle": "🌍 **Vă rugăm să selectați țara/regiunea dumneavoastră**\n\n",
+    "selectUnFlagHint": "🇺🇳 Dacă nu este găsită, puteți alege 'steagul Națiunilor Unite'",
+    "setFailed": "❌ Configurare eșuată",
+    "setTo": "✅ Setat la {flag} {country}",
+    "unFlagButton": "🇺🇳 Steagul Națiunilor Unite",
+    "useUnFlagButton": "🇺🇳 Folosiți steagul Națiunilor Unite"
+  },
+  "dailyReports": {
+    "header": "📊 **Raport de analiză a datelor zilnice**",
+    "time": "Timp: ${time}"
+  },
+  "dev": {
+    "autoCompleted": "Procesul de înregistrare a fost finalizat automat.\n\n",
+    "bottles": "• Sticle cu mesaje: {count}\n",
+    "catchCommand": "• /catch - Prinde sticle cu mesaje\n",
+    "conversations": "• Conversații: {count}\n",
+    "dataReset": "✅ Mod de dezvoltare: Datele au fost resetate\n\nToate datele tale au fost șterse.\n\n💡 Poți acum să repornești procesul de înregistrare de test.\n\n🔄 Reînregistrează-te: /start\nsau folosește: /dev_restart (începere automată a înregistrării)\n\n⚠️ Notă: Această funcție este disponibilă doar în mediu de testare.",
+    "getUserInfoFailed": "❌ Eșec la recuperarea informațiilor",
+    "inviteActivated": "• Activate: {count}\n",
+    "inviteCode": "Cod de invitație: {code}\n",
+    "invitePending": "• Activare în așteptare: {count}\n\n",
+    "inviteStats": "Statistici invitații:\n",
+    "inviteTotal": "• Total înregistrări de invitație: {count}\n",
+    "invitedBy": "Invitat de: {invitedBy}\n\n",
+    "language": "Limbă: {lang}\n",
+    "messages": "• Mesaje: {count}\n\n",
+    "nickname": "Pseudonim: {nickname}\n",
+    "no": "Nu",
+    "none": "Niciunul",
+    "notAvailableInProduction": "❌ Această comandă nu este disponibilă în mediul de producție.\n\nAceastă comandă nu este disponibilă în producție.",
+    "notGenerated": "Nu generat",
+    "notSet": "Nu setat",
+    "onboardingStep": "Pasul de înregistrare: {step}\n",
+    "resetFailed": "❌ Resetare eșuată: {error}\n\nTe rugăm să încerci din nou mai târziu.",
+    "skipFailed": "❌ Sărire eșuată",
+    "skipRegistration": "✅ Mod de dezvoltare: Înregistrare sărită\n\n",
+    "stagingOnly": "⚠️ Această funcție este disponibilă doar în mediul de testare.",
+    "stats": "Statistică:\n",
+    "statsCommand": "• /stats - Vizualizați statistici\n\n",
+    "successfulInvites": "• invitații_reușite: {count}\n",
+    "telegramId": "ID Telegram: {id}\n",
+    "testCoreFeatures": "💡 Acum poți testa direct funcțiile de bază:\n",
+    "testUser": "Utilizator de test",
+    "throwCommand": "• /throw - Aruncă sticlă cu mesaj\n",
+    "userInfo": "🔧 Mod de dezvoltare: Informații utilizator\n\n",
+    "userNotFound": "❌ Utilizatorul nu există",
+    "vip": "VIP: {status}\n",
+    "yes": "Da"
+  },
+  "draft": {
+    "age": {
+      "daysAgo": "\\${days} zile în urmă",
+      "hoursAgo": "\\${hours} ore în urmă",
+      "justNow": "Chiar acum"
     },
+    "contentHint": "💡 Poți:\n• Introduce direct un nou conținut pentru a înlocui ciorna\n• Folosește /throw pentru a reporni\n• Trimite conținutul ciornei pentru a arunca o sticlă cu mesaj",
+    "contentTitle": "📝 **Conținut Draft**\n\n",
+    "continueEditing": "✅ Continuă editarea ciornei",
+    "deleteButton": "🗑️ Șterge ciorna",
+    "deleted": "✅ Ciorna a fost ștearsă",
+    "editButton": "✏️ Editează conținutul",
+    "editInput": "✏️ Te rugăm să introduci noul conținut pentru sticla cu mesaj:\n\n💡 Sugestii:\n• Minimum 5 caractere\n• Maximum 250 caractere\n• Linkuri, imagini și multimedia nu sunt permise\n• Nu include informații de contact personale\n• Conținutul prietenos și respectuos are mai multe șanse să fie selectat～",
+    "editPrompt": "✏️ Te rugăm să introduci noul conținut",
+    "newBottle": "✅ Începe o nouă sticlă cu mesaj",
+    "notFound": "⚠️ Ciorna nu există sau a expirat",
+    "sendButton": "✅ Trimite ciorna",
+    "sendQuestion": "Vrei să trimiti această ciornă direct?",
+    "sending": "✅ Se trimite...",
+    "targetGender": "Ce fel de partener de chat căutați?\n\n",
+    "targetGenderHint": "💡 Upgradează la VIP pentru filtre avansate (MBTI/Zodiac): /vip",
+    "throwBottle": "🍾 Aruncă sticlă cu mesaj\n\nCe fel de partener de chat cauți?"
   },
-  buttons: {
-    ad: `➡️ 下一個廣告`,
-    back: `⬅️ 返回 / Back`,
-    backToVip: `💎 Back to VIP Menu`,
-    bottle: `📺 看廣告獲取更多瓶子 🎁 (\${remaining}/20)`,
-    bottle2: `💎 升級 VIP 獲得更多瓶子`,
-    bottle3: `🌊 丟出漂流瓶`,
-    bottle4: `🎣 撿起漂流瓶`,
-    cancel: `取消`,
-    help: `❓ 幫助`,
-    invite: `👥 查看邀請碼`,
-    invite2: `🎁 邀請好友`,
-    mbtiMenu: `🧠 MBTI 選單`,
-    message: `💬 回覆訊息`,
-    profile: `✏️ 編輯個人資料`,
-    profile2: `👤 個人資料`,
-    returnToMenu: `🏠 返回主選單`,
-    settings: `⚙️ 設定`,
-    short: `🇲🇾 馬來西亞`,
-    short10: `🇺🇸 美國`,
-    short11: `🇯🇵 日本`,
-    short12: `🇰🇷 韓國`,
-    short13: `🇬🇧 英國`,
-    short14: `🇫🇷 法國`,
-    short15: `🇩🇪 德國`,
-    short16: `🇹🇭 泰國`,
-    short17: `🇦🇺 澳洲`,
-    short18: `💬 聊天記錄`,
-    short19: `🌐 變更語言`,
-    short2: `🇺🇳 聯合國旗`,
-    short20: `🎁 領取獎勵`,
-    short21: `🔄 清除選擇`,
-    short22: `跳過`,
-    short3: `📢 加入官方頻道`,
-    short4: `🇸🇬 新加坡`,
-    short5: `🇨🇦 加拿大`,
-    short6: `🇳🇿 紐西蘭`,
-    short7: `🇹🇼 台灣`,
-    short8: `🇨🇳 中國`,
-    short9: `🇭🇰 香港`,
-    stats: `📊 統計數據`,
-    targetAdvanced: `⚙️ 進階篩選（MBTI/星座）`,
-    targetAny: `🌈 任何人都可以`,
-    targetFemale: `👩 女生`,
-    targetMale: `👨 男生`,
-    text: `👤 查看對方資料卡`,
-    viewPayments: `💰 Subscription History`,
-    vip: `💎 升級 VIP`,
+  "edit_profile": {
+    "nickname": "👤 Porecla: ${ownerMaskedNickname}",
+    "short19": "✏️ Editează profilul"
   },
-  catch: {
-    anonymousUser: `匿名用戶`,
-    back: `🏠 返回主選單：/menu`,
-    banned: `❌ 你的帳號已被封禁，無法撿漂流瓶。
-
-如有疑問，請使用 /appeal 申訴。`,
-    block: `• 不想再聊可使用 /block 封鎖
-`,
-    bottle: `😔 目前沒有適合你的漂流瓶
-
-`,
-    bottle2: `• 或者自己丟一個瓶子：/throw`,
-    bottle3: `🎣 有人撿到你的漂流瓶了！
-
-`,
-    bottle4: `🧴 你撿到了一個漂流瓶！
-
-`,
-    bottle5: `💡 明天再來撿更多瓶子吧！`,
-    bottleTaken: `❌ 這個瓶子已經被其他人撿走了，請試試其他瓶子！`,
-    catch: `📊 今日已撿：\${newCatchesCount}/\${quota}
-
-`,
-    conversation: `已為你們建立了匿名對話，快來開始聊天吧～
-
-`,
-    conversation2: `• 這是匿名對話，請保護個人隱私
-`,
-    conversation3: `📊 查看所有對話`,
-    conversationError: `对话创建失败`,
-    language: `🗣️ 語言：\${language}
-
-`,
-    mbti: `🧠 MBTI：\${mbti}
-`,
-    message: `💫 配對度：\${score}分 (智能配對)
-
-`,
-    message2: `\${catcherGender} | 📅 \${catcherAge}歲
-
-`,
-    message3: `conv_reply_\${conversationIdentifier}`,
-    message4: `2️⃣ 長按此訊息，選擇「回覆」後輸入內容
-
-`,
-    message5: `1️⃣ 點擊下方「💬 回覆訊息」按鈕
-`,
-    message6: `2️⃣ 長按此訊息，選擇「回覆」後輸入內容`,
-    nickname: `📝 暱稱：\${ownerMaskedNickname}
-`,
-    nickname2: `📝 暱稱：\${catcherNickname}
-`,
-    notRegistered: `❌ 請先完成註冊流程才能撿漂流瓶。
-
-使用 /start 繼續註冊。`,
-    originalContent: `原文：{content}`,
-    originalLanguage: `原文語言：{language}`,
-    quotaExhausted: `❌ 今日漂流瓶配額已用完（\${quotaDisplay}）`,
-    replyButton: `💬 回覆訊息`,
-    replyMethods: `💡 **兩種回覆方式**：
-`,
-    report: `• 遇到不當內容請使用 /report 舉報
-`,
-    safetyTips: `⚠️ 安全提示：
-`,
-    settings: `🧠 MBTI：\${mbti}
-`,
-    settings10: `未設定`,
-    settings11: `未設定`,
-    settings2: `未設定`,
-    settings3: `未設定`,
-    settings4: `未設定`,
-    settings5: `未設定`,
-    settings6: `未設定`,
-    settings7: `未設定`,
-    settings8: `未設定`,
-    settings9: `未設定`,
-    short: `💡 提示：
-`,
-    short2: `• 稍後再試
-`,
-    short3: `匿名用戶`,
-    short4: `♂️ 男`,
-    short5: `♀️ 女`,
-    text: `翻譯語言：\${catcherLangDisplay}
-`,
-    text2: `原文語言：\${bottleLangDisplay}
-`,
-    text3: `🗣️ 語言：\${ownerLanguage}
-
-`,
-    text4: `• 不想再聊可使用 /block 封鎖
-
-`,
-    text5: `原文：\${bottle.content}
-`,
-    text6: `💬 翻譯服務暫時有問題，已使用備援翻譯
-`,
-    text7: `翻譯：\${bottleContent}
-`,
-    text8: `💡 **兩種回覆方式**：
-`,
-    translatedContent: `翻譯：{content}`,
-    translatedLanguage: `翻譯語言：{language}`,
-    translationServiceFallback: `💬 翻譯服務暫時有問題，已使用備援翻譯`,
-    translationServiceUnavailable: `⚠️ 翻譯服務暫時無法使用，以下為原文`,
-    unknown: `未知`,
-    zodiac: `⭐ 星座：{zodiac}
-`,
-    zodiac2: `⭐ 星座：\${catcherZodiac}
-`,
+  "error": {
+    "ad": "❌ Această reclamă nu necesită verificare",
+    "ad2": "❌ Nu sunt reclame disponibile în acest moment",
+    "ad3": "❌ Nu se poate revendica această reclama",
+    "ad4": "❌ Reklama nu există",
+    "ad5": "❌ ID-ul reclamei trebuie să fie un număr",
+    "ad6": "❌ Nu ai permisiunea de a vizualiza datele reclamei",
+    "admin": "❌ Eroare de sistem, te rugăm să încerci din nou mai târziu.\n\nDacă problema persistă, te rugăm să contactezi administratorul.",
+    "admin2": "❌ **Permisiuni insuficiente**\n\nAceastă comandă este limitată la super administratori.",
+    "admin3": "❌ Acest utilizator este deja super administrator, nu este nevoie să fie adăugat.",
+    "admin4": "❌ Numai super administratorii pot folosi această comandă.",
+    "admin5": "❌ Acest utilizator este deja administrator.",
+    "admin6": "❌ Nu se poate elimina super administratorul.",
+    "admin7": "❌ Acest utilizator nu este administrator.",
+    "appeal": "❌ Te rugăm să oferi ID-ul apelului\n\nUtilizare: /admin_approve <appeal_id> [note]",
+    "appeal2": "❌ Vă rugăm să furnizați ID-ul apelului\n\nUtilizare: /admin_reject <appeal_id> [remarks]",
+    "appeal3": "❌ Apelul ${appealId} a fost deja revizuit",
+    "appeal4": "❌ Nu pot găsi ID-ul apelului: ${appealId}",
+    "ban": "❌ Utilizatorul ${targetUserId} nu are nicio înregistrare de suspendare",
+    "birthday": "❌ ${validation.error}\n\nVă rugăm să reintroduceți data nașterii (format: YYYY-MM-DD):",
+    "birthday2": "❌ Formatul datei de naștere este incorect\n\nVă rugăm să reintroduceți (format: YYYY-MM-DD):",
+    "birthday3": "❌ Formatul datei de naștere este incorect",
+    "bottle": "❌ Această conversație s-a încheiat.\n\nUtilizați /catch pentru a alege o nouă sticlă cu mesaj și a începe o nouă conversație.",
+    "bottle2": "❌ Contul dumneavoastră a fost suspendat și nu poate să ridice sticle cu mesaj.\n\nDacă aveți întrebări, vă rugăm să utilizați /appeal pentru apel.",
+    "bottle3": "❌ Această sticlă a fost deja ridicată de altcineva, vă rugăm să încercați o altă sticlă!",
+    "broadcast": "❌ Sistemul de difuzare actual suportă doar difuzări pentru până la ${MAX_SAFE_USERS} utilizatori.\n\n",
+    "broadcast2": "❌ ID-ul difuzării trebuie să fie un număr",
+    "broadcast3": "❌ Nu pot găsi înregistrarea difuzării",
+    "cancel": "❌ Porecla este prea lungă, vă rugăm să introduceți o poreclă de maximum 36 de caractere.\n\nVă rugăm să reintroduceți sau să anulați editarea:",
+    "cancel2": "❌ Profilul personal este prea lung, vă rugăm să introduceți un profil de maximum 200 de caractere.\n\nVă rugăm să reintroduceți sau să anulați editarea:",
+    "cancel3": "❌ Numele regiunii este prea lung, vă rugăm să introduceți un nume de maximum 50 de caractere.\n\nVă rugăm să reintroduceți sau să anulați editarea:",
+    "cancel4": "❌ Porecla este prea scurtă, trebuie să aibă cel puțin 4 caractere.\n\nVă rugăm să reintroduceți sau să anulați editarea:",
+    "cancel5": "❌ Fiecare etichetă poate avea până la 20 de caractere.\n\nVă rugăm să reintroduceți sau să anulați editarea:",
+    "cancel6": "❌ Anulati editarea",
+    "cancel7": "❌ Anulat ${ZODIAC_NAMES[zodiacSign]}",
+    "cancel8": "❌ Anulat ${mbtiType}",
+    "cancel9": "❌ Anulat",
+    "conversation": "❌ Conversația cu identificatorul ${formatIdentifier(identifier)} nu a fost găsită\n\n",
+    "conversation2": "❌ Eroare în informațiile conversației.",
+    "conversation3": "❌ Eroare în informațiile conversației",
+    "conversation4": "❌ Conversația nu există",
+    "conversationInfoError": "❌ Eroare în informațiile conversației",
+    "conversationNotFound": "❌ Conversația nu există",
+    "failed": "❌ **Încărcarea reclamei a eșuat**\n\nNe cerem scuze, reclama nu a putut fi redată normal.\n\n💡 **Posibile motive:**\n• Conexiune de rețea instabilă\n• Providerul de reclame temporar indisponibil\n• Browser neacceptat\n\n🔄 **Sugestii:**\n• Verificați conexiunea de rețea\n• Încercați din nou mai târziu\n• Sau obțineți credite folosind alte metode (invitați prieteni)",
+    "failed10": "❌ Interogarea stării modului de întreținere a eșuat.",
+    "failed11": "❌ Eșec la actualizarea avatarului\n\n",
+    "failed12": "❌ Verificarea a eșuat, vă rugăm să încercați din nou mai târziu",
+    "failed13": "❌ Activarea modului de întreținere a eșuat.",
+    "failed14": "❌ Dezactivarea modului de întreținere a eșuat.",
+    "failed15": "❌ Obținerea stării reclamei a eșuat",
+    "failed16": "❌ Obținerea statisticilor a eșuat",
+    "failed17": "❌ Crearea difuzării a eșuat.",
+    "failed18": "❌ Obținerea informațiilor a eșuat",
+    "failed19": "❌ Reclamarea recompensei a eșuat",
+    "failed2": "❌ Crearea difuzării filtrate a eșuat\n\n${error instanceof Error ? error.message : String(error)}",
+    "failed20": "❌ Confirmarea a eșuat",
+    "failed21": "❌ Setarea a eșuat",
+    "failed22": "❌ Săritul a eșuat",
+    "failed23": "❌ Operația a eșuat",
+    "failed24": "❌ Trimiterea raportului zilnic a eșuat: ${error instanceof Error ? error.message : String(error)}",
+    "failed25": "❌ Obținerea datelor funnel-ului VIP a eșuat",
+    "failed26": "❌ **Diagnosticare eșuată**\n\n",
+    "failed27": "❌ **Actualizare eșuată**\n\n",
+    "failed28": "❌ **Plată eșuată**\n\n",
+    "failed29": "❌ Obținerea listei providerilor de reclame a eșuat",
+    "failed3": "❌ A eșuat procesarea cozii de difuzare: ${error instanceof Error ? error.message : String(error)}",
+    "failed30": "❌ A eșuat obținerea listei oficiale de reclame",
+    "failed31": "❌ A eșuat activarea furnizorului de reclame",
+    "failed32": "❌ A eșuat dezactivarea furnizorului de reclame",
+    "failed33": "❌ A eșuat activarea reclamelor oficiale",
+    "failed34": "❌ A eșuat dezactivarea reclamelor oficiale",
+    "failed35": "❌ A eșuat obținerea datelor analitice",
+    "failed36": "❌ A eșuat obținerea datelor despre reclame",
+    "failed37": "❌ A eșuat setarea priorității",
+    "failed38": "❌ Rambursarea a eșuat: ${error instanceof Error ? error.message : String(error)}",
+    "failed39": "❌ Operațiunea a eșuat: ${error instanceof Error ? error.message : String(error)}",
+    "failed4": "❌ A eșuat interogarea stării de difuzare: ${error instanceof Error ? error.message : String(error)}",
+    "failed40": "❌ Trimiterea a eșuat, vă rugăm să încercați din nou mai târziu.",
+    "failed41": "❌ A eșuat crearea conversației, vă rugăm să încercați din nou mai târziu.",
+    "failed5": "❌ A eșuat anularea difuzării: ${error instanceof Error ? error.message : String(error)}",
+    "failed6": "❌ A eșuat curățarea difuzării: ${error instanceof Error ? error.message : String(error)}",
+    "failed7": "❌ Resetarea a eșuat: ${errorMessage}\n\nVă rugăm să încercați din nou mai târziu.",
+    "failed8": "❌ A eșuat crearea difuzării, vă rugăm să încercați din nou mai târziu.",
+    "failed9": "❌ Eșec la actualizarea istoricului de chat\n\n",
+    "mbti": "❌ Tip MBTI invalid",
+    "message": "❌ Eroare în formatul filtrului\n\n${error instanceof Error ? error.message : String(error)}\n\n",
+    "message2": "❌ Această comandă nu este disponibilă în producție.\n\nAceastă comandă nu este disponibilă în producție.",
+    "message3": "❌ A apărut o eroare, vă rugăm să încercați din nou mai târziu.\n\nMesaj de eroare: ${error instanceof Error ? error.message : String(error)}",
+    "message4": "❌ Ne pare rău, trebuie să aveți cel puțin 18 ani pentru a utiliza acest serviciu.\n\nVă rugăm să reveniți când aveți vârsta corespunzătoare!",
+    "nickname": "❌ Nu se poate obține porecla Telegram",
+    "nickname2": "❌ Numele de utilizator nu poate conține linkuri de website\n\n",
+    "nickname3": "❌ ${validation.error}\n\nVă rugăm să reintroduceți porecla:",
+    "quota": "❌ Coada de mesaje pentru sticlele de astăzi a fost utilizată (${quotaDisplay})\n\n💡 Modalități de a obține mai multe cote:\n",
+    "quota2": "❌ Cota de mesaje pentru conversații de astăzi a fost utilizată (${usedToday}/${dailyLimit})\n\n",
+    "quota3": "❌ Cota de mesaje pentru sticle de astăzi a fost utilizată (${quotaDisplay})\n\n",
+    "register": "❌ Vă rugăm să finalizați procesul de înregistrare mai întâi.\n\nFolosiți /start pentru a continua înregistrarea.",
+    "register2": "❌ Profilul utilizatorului nu a fost găsit, vă rugăm să folosiți /start pentru a vă înregistra mai întâi.",
+    "register3": "❌ Vă rugăm să finalizați procesul de înregistrare pentru a ridica sticlele cu mesaje.\n\nFolosiți /start pentru a continua înregistrarea.",
+    "settings": "❌ Puteți seta un maximum de 5 etichete de interes.\n\nVă rugăm să reintroduceți sau să anulați editarea:",
+    "short": "❌ Cod de limbă invalid",
+    "short10": "❌ Permisiuni insuficiente",
+    "short11": "❌ Mai târziu",
+    "short12": "❌ Reselectați",
+    "short13": "❌ Reintroduceți",
+    "short14": "❌ Închideți",
+    "short15": "❌ Nu este activat",
+    "short2": "❌ Profilul utilizatorului nu a fost găsit",
+    "short3": "❌ Pas de tutorial necunoscut",
+    "short4": "❌ A apărut o eroare de sistem",
+    "short5": "❌ Eroare de configurare a canalului",
+    "short6": "❌ Operațiune necunoscută",
+    "short7": "❌ Incorect",
+    "short8": "❌ Nu",
+    "short9": "❌ A apărut o eroare",
+    "start": "❌ A apărut o eroare, vă rugăm să reporniți: /start",
+    "stats": "❌ Nu aveți permisiunea de a vizualiza statisticile anunțurilor.",
+    "task": "❌ A apărut o eroare în timpul vizualizării centrului de sarcini. Vă rugăm să încercați din nou mai târziu.",
+    "text": "❌ A apărut o eroare în timpul calculării rezultatelor, vă rugăm să încercați din nou mai târziu.\n\n",
+    "text10": "❌ Informațiile despre expeditor sunt incorecte.",
+    "text11": "❌ Nu aveți permisiunea de a vizualiza datele analitice.",
+    "text12": "❌ A apărut o eroare. Vă rugăm să încercați din nou mai târziu.",
+    "text13": "❌ Nu aveți permisiunea de a folosi această comandă.",
+    "text14": "❌ Metodă de utilizare incorectă\n\n",
+    "text15": "❌ Prioritatea trebuie să fie un număr întreg nenegativ.",
+    "text16": "❌ Durata trebuie să fie un număr întreg pozitiv sau",
+    "text17": "❌ A apărut o eroare în timpul procesării plății, vă rugăm să contactați asistența clienți.\n\n",
+    "text18": "❌ Motivul restituirii trebuie să aibă cel puțin 10 caractere. Vă rugăm să reintroduceți:",
+    "text19": "❌ **Cererea de restituire a fost respinsă**\n\n",
+    "text2": "❌ Profilul personal conține linkuri interzise.\n\n",
+    "text20": "❌ Cererea de restituire depășește limita de timp\n\n",
+    "text21": "❌ Cererea de restituire nu există sau a fost procesată.",
+    "text22": "❌ Înregistrarea plății nu a fost găsită.",
+    "text23": "❌ Ne pare rău, trebuie să aveți cel puțin 18 ani pentru a utiliza acest serviciu.\n\n",
+    "text24": "❌ A apărut o eroare. Vă rugăm să reintroduceți.",
+    "text25": "❌ Vă rugăm să răspundeți la întrebare cu seriozitate\n\n",
+    "text3": "❌ Nu ați fost detectat ca membru al canalului. Vă rugăm să vă alăturați mai întâi și să încercați din nou.",
+    "text4": "❌ Ați fost detectat ca având părăsit canalul și nu puteți solicita recompense.",
+    "text5": "❌ A apărut o eroare în timpul începutului tutorialului. Vă rugăm să încercați din nou mai târziu.",
+    "text6": "❌ A apărut o eroare în sistem. Vă rugăm să încercați din nou mai târziu.",
+    "text7": "❌ Durata trebuie să fie un număr (minute).",
+    "text8": "❌ A apărut o eroare, vă rugăm să încercați din nou mai târziu.",
+    "text9": "❌ Nu se poate obține starea modului de mentenanță.",
+    "userNotFound": "❌ Utilizatorul nu există, vă rugăm să vă înregistrați mai întâi folosind /start.",
+    "userNotFound2": "❌ Utilizatorul nu există, vă rugăm să vă înregistrați mai întâi.",
+    "userNotFound3": "❌ Celălalt utilizator nu există.",
+    "userNotFound4": "❌ Utilizatorul nu există.",
+    "userNotFound5": "❌ Utilizatorul nu există: ${userId}",
+    "userNotFound6": "❌ Utilizatorul nu există sau nu este înregistrat.",
+    "userNotFound7": "❌ Utilizatorul nu există.",
+    "vip": "❌ Nu aveți permisiunea de a vizualiza datele VIP.",
+    "vip2": "❌ Nu sunteți un utilizator VIP și nu puteți solicita o restituire."
   },
-  channelMembership: {
-    claimButton: `✅ 領取獎勵`,
-    claimReward: `點擊下方按鈕領取獎勵：+1 瓶子`,
-    joined: `🎉 檢測到你已加入官方頻道！`,
-    leftChannel: `❌ 檢測到你已離開頻道，無法領取獎勵。`,
-    notJoined: `❌ 未檢測到你加入頻道，請先加入後再試`,
-    oneTimeReward: `💡 這是一次性獎勵，領取後會追加到今天的額度中。`,
-    rewardAdded: `獎勵：+1 瓶子（已追加到今天的額度）`,
-    rewardGranted: `✅ 獎勵已發放！+1 瓶子`,
-    taskCompleted: `🎉 恭喜完成任務：加入官方頻道！`,
-    viewMoreTasks: `💡 使用 /tasks 查看更多任務`,
-    viewTaskCenter: `[📋 查看任務中心] → /tasks`,
-  },
-  common: {
-    ad: `📺 今日廣告：\${adsWatched}/\${AD_REWARD_CONSTANTS.MAX_ADS_PER_DAY} | 已獲得 \${quotaEarned} 個額度 | 剩餘 \${remaining} 次`,
-    ad2: `📺 今日廣告：\${adsWatched}/\${AD_REWARD_CONSTANTS.MAX_ADS_PER_DAY} ✅ 已達上限 | 已獲得 \${quotaEarned} 個額度`,
-    ad3: `📺 今日廣告：0/\${AD_REWARD_CONSTANTS.MAX_ADS_PER_DAY} | 已獲得 0 個額度`,
-    ad4: `• 📺 觀看廣告（剩餘 \${remaining}/20 次）
-`,
-    ad5: `• 📺 觀看廣告（今日已達上限）
-`,
-    ad6: `• 避免廣告或不當內容
-
-`,
-    ad7: `📊 暫無官方廣告`,
-    ad8: `📢 垃圾廣告`,
-    ad9: `💡 還有更多官方廣告可以觀看！`,
-    admin: `請稍後再試，或聯繫管理員。`,
-    age: `無效的年齡範圍：\${trimmedValue}（格式必須是 min-max，如 18-25）`,
-    age2: `年齡：\${filters.age.min}-\${filters.age.max} 歲`,
-    age3: `無效的年齡範圍：\${trimmedValue}（年齡必須在 18-99 之間）`,
-    age4: `無效的年齡範圍：\${trimmedValue}（最小年齡不能大於最大年齡）`,
-    anonymous: `匿名`,
-    anonymousUser: `匿名用戶`,
-    anyBloodType: `🌈 任何血型`,
-    anyone: `🌈 任何人`,
-    back: `💡 輸入 /menu 可隨時返回主選單`,
-    back2: `↩️ 返回編輯資料`,
-    back3: `🏠 返回主選單`,
-    back4: `↩️ 返回`,
-    backToMainMenu: `返回主选单`,
-    birthday: `🎂 生日：\${updatedUser.birthday}
-`,
-    birthday2: `🎂 生日：\${user.birthday}
-`,
-    birthday3: `當天生日`,
-    bloodType: `🩸 血型：\${bloodTypeText}
-
-`,
-    bloodType2: `🩸 **編輯血型**
-
-`,
-    bloodType3: `請選擇你的血型：`,
-    bloodType4: `🩸 編輯血型`,
-    bloodTypeA: `🩸 A 型`,
-    bloodTypeAB: `🩸 AB 型`,
-    bloodTypeB: `🩸 B 型`,
-    bloodTypeO: `🩸 O 型`,
-    bottle: `瓶子內容太短，至少需要 \${MIN_BOTTLE_LENGTH} 個字符（目前 \${trimmedContent.length} 個字符）`,
-    bottle10: `獎勵：+1 瓶子（已追加到今天的額度）
-
-`,
-    bottle11: `你們將不會再被匹配到對方的漂流瓶。
-
-`,
-    bottle12: `你想在丟漂流瓶時尋找什麼樣的對象？
-
-`,
-    bottle13: `使用 /throw 丟出漂流瓶開始聊天吧！`,
-    bottle14: `瓶子內容包含不適當的內容，請修改後重新提交`,
-    bottle15: `點擊下方按鈕領取獎勵：+1 瓶子
-
-`,
-    bottle16: `💡 下次丟漂流瓶時將自動使用此設置。`,
-    bottle17: `🌊 丟出漂流瓶 - /throw
-`,
-    bottle18: `🎣 撿起漂流瓶 - /catch
-`,
-    bottle19: `🎉 確認後可獲得 +1 瓶子獎勵！`,
-    bottle2: `瓶子內容太長，最多 \${MAX_BOTTLE_LENGTH} 個字符（目前 \${content.length} 個字符）`,
-    bottle20: `✏️ 請輸入新的漂流瓶內容：
-
-`,
-    bottle21: `• 使用 /catch 撿新的漂流瓶`,
-    bottle22: `• /throw - 丟出漂流瓶
-`,
-    bottle23: `• /catch - 撿起漂流瓶
-`,
-    bottle24: `• /throw - 丟漂流瓶
-`,
-    bottle25: `• /catch - 撿漂流瓶
-`,
-    bottle26: `• 發送草稿內容來丟出漂流瓶`,
-    bottle27: `📦 **丟出漂流瓶**
-`,
-    bottle28: `🎣 **撿起漂流瓶**
-`,
-    bottle29: `💡 完成任務可獲得額外瓶子`,
-    bottle3: `• 漂流瓶: \${bottlesCount?.count }
-`,
-    bottle30: `瓶子內容不允許包含任何連結`,
-    bottle31: `🍾 丟漂流瓶
-
-`,
-    bottle32: `瓶子內容不能為空`,
-    bottle33: `丟出第一個瓶子`,
-    bottle34: `撿起第一個瓶子`,
-    bottle4: `匿名漂流瓶交友平台，透過 MBTI 和星座幫你找到志同道合的朋友
-
-`,
-    bottle5: `⏰ 對話已超時
-
-對方可能已離開。使用 /catch 撿新的瓶子吧！`,
-    bottle6: `💡 使用 /catch 撿新的漂流瓶開始新對話。`,
-    bottle7: `🍾 丟漂流瓶
-
-你想要尋找什麼樣的聊天對象？`,
-    bottle8: `快去丟瓶子認識新朋友吧！ /throw
-
-`,
-    bottle9: `看看別人的漂流瓶，有興趣就回覆開始聊天
-
-`,
-    broadcast: `廣播將在後台發送，使用 /broadcast_status \${broadcastId} 查看進度。`,
-    broadcast10: `📊 最近 5 條廣播記錄
-
-`,
-    broadcast11: `維護通知已廣播給所有用戶。
-`,
-    broadcast12: `恢復通知已廣播給所有用戶。`,
-    broadcast13: `📊 目前沒有廣播記錄`,
-    broadcast14: `📊 廣播狀態
-
-`,
-    broadcast15: `所有廣播狀態正常。`,
-    broadcast2: `大規模廣播需要升級系統架構，請參考 BROADCAST_SYSTEM_REDESIGN.md`,
-    broadcast3: `使用 /broadcast_status 查看所有廣播記錄。`,
-    broadcast4: `\${statusEmoji} 廣播隊列處理已觸發
-
-`,
-    broadcast5: `/broadcast_cancel <廣播ID>
-
-`,
-    broadcast6: `廣播 ID: \${ids.join(', ')}
-
-`,
-    broadcast7: `正在處理廣播 #\${broadcast.id}
-`,
-    broadcast8: `目前沒有待處理或卡住的廣播。
-
-`,
-    broadcast9: `廣播 ID: \${ids.join(`,
-    cancel: `請移除這些連結後重新輸入或取消編輯：`,
-    cancel2: `狀態: 已取消
-
-`,
-    cancel3: `請重新輸入或取消編輯：`,
-    cancelled: `已取消`,
-    catch: `⏰ 撿瓶流程已超時
-
-請使用 /catch 重新開始。`,
-    catch2: `你撿瓶回覆 → 對方也回覆 → 開始匿名聊天`,
-    catch3: `• 友善、尊重的內容更容易被撿到哦～`,
-    catch4: `撿瓶流程`,
-    close: `❌ 關閉`,
-    complete: `🎉 **廣告觀看完成！**
-
-✅ 獲得 **+1 個額度**
-📊 今日已觀看：**\${updated.ads_watched}/20** 次
-🎁 今日已獲得：**\${updated.quota_earned}** 個額度
-📈 剩餘次數：**\${result.remaining_ads}** 次
-
-\${result.remaining_ads > 0 ? '💡 繼續觀看廣告可獲得更多額度！' : '✅ 今日廣告已達上限'}`,
-    complete2: `📺 **觀看廣告獲得額度**
-
-🎁 完成觀看可獲得 **+1 個額度**
-📊 今日剩餘：**\${remainingAds}/20** 次
-
-👇 點擊下方按鈕開始觀看`,
-    complete3: `完成時間: \${new Date(broadcast.completedAt).toLocaleString('zh-TW')}
-`,
-    complete4: `預計完成：\${new Date(maintenance.endTime).toLocaleString('zh-TW')}
-`,
-    complete5: `🎉 \${testTitle}完成！
-
-`,
-    complete6: `接近截止日期才完成`,
-    complete7: `即將完成`,
-    complete8: `盡早完成`,
-    confirm: `為了保護所有使用者的安全，請確認你了解以下事項：
-
-`,
-    confirm2: `🌍 **確認你的國家/地區**
-
-`,
-    confirm3: `🛡️ 最後一步：反詐騙安全確認
-
-`,
-    confirm4: `🔍 **廣播過濾器確認**
-
-`,
-    confirm5: `🌍 確認你的國家/地區`,
-    confirm6: `**確認清理？**
-`,
-    confirm7: `請確認：`,
-    conversation: `📨 \${formatIdentifier(conv.identifier)} 的對話（\${conv.message_count} 則訊息）
-`,
-    conversation10: `💡 **沒有找到對話歷史**
-
-`,
-    conversation11: `部分對話歷史可能未能更新，請稍後再試。`,
-    conversation12: `
-📨 **最近對話：**
-
-`,
-    conversation13: `💬 你還沒有任何對話記錄
-
-`,
-    conversation14: `💬 繼續對話：/reply
-`,
-    conversation15: `您還沒有任何對話記錄。
-
-`,
-    conversation16: `對話可能已結束或不存在。`,
-    conversation17: `💬 繼續對話`,
-    conversation18: `開始第一次對話`,
-    conversation2: `💬 **與 \${formatIdentifier(identifier)} 的對話**
-
-`,
-    conversation3: `• 對話開始：\${formatDate(stats.first_message_time)}
-`,
-    conversation4: `• 對話: \${conversationsCount?.count }
-`,
-    conversation5: `💬 回覆對話 \${conversationIdentifier}`,
-    conversation6: `您的頭像緩存已刷新，下次查看對話歷史時將顯示最新頭像。
-
-`,
-    conversation7: `💡 為了保護隱私和安全，對話中只允許純文字訊息。
-
-`,
-    conversation8: `使用 /history 查看所有對話
-
-`,
-    conversation9: `🔄 正在刷新所有對話歷史...
-
-`,
-    country: `無效的國家代碼：\${trimmedValue}（必須是 2 個大寫字母，如 TW, US, JP）`,
-    country2: `🌍 **請選擇你的國家/地區**
-
-`,
-    country3: `國家：\${filters.country}`,
-    end: `結束：\${endTime.toLocaleString('zh-TW')}
-
-`,
-    end2: `結束：\${endTime.toLocaleString(`,
-    female: `女`,
-    free: `免費`,
-    gender: `👤 性別：\${gender}
-`,
-    gender2: `無效的性別值：\${trimmedValue}（必須是 male, female 或 other）`,
-    gender3: `👤 性別：\${gender}
-`,
-    gender4: `👤 性別：\${updatedUser.gender ===`,
-    gender5: `👤 性別：\${user.gender ===`,
-    gender6: `現在請選擇你的性別：
-
-`,
-    gender7: `其他性別`,
-    help: `MBTI 性格測驗可以幫助我們為你找到更合適的聊天對象～
-
-`,
-    help2: `❓ 查看幫助 - /help`,
-    help3: `• /help - 查看幫助`,
-    invite: `• 邀請記錄總數: \${inviteStats?.total }
-`,
-    invite2: `邀請碼: \${user.invite_code }
-`,
-    invite3: `被誰邀請: \${user.invited_by }
-
-`,
-    loading: `✅ 正在加載......`,
-    login: `一般用戶將無法使用服務，只有管理員可以登入。`,
-    male: `男`,
-    mbti: `無效的 MBTI 類型：\${trimmedValue}（必須是以下之一：\${VALID_MBTI.join(', ')}）`,
-    mbti10: `✍️ 手動輸入 MBTI`,
-    mbti11: `🧠 MBTI 選單`,
-    mbti12: `MBTI 完整測驗`,
-    mbti13: `MBTI 快速測驗`,
-    mbti2: `你的 MBTI 類型是：**\${result.type}**
-
-`,
-    mbti3: `當前 MBTI：**\${mbti}**
-`,
-    mbti4: `🧠 **選擇 MBTI 測驗版本**
-
-`,
-    mbti5: `🧠 **MBTI 性格類型管理**
-
-`,
-    mbti6: `⚙️ 進階篩選（MBTI/星座）`,
-    mbti7: `• 手動修改你的 MBTI 類型`,
-    mbti8: `請選擇你的 MBTI 類型：`,
-    mbti9: `🧠 重新測試 MBTI`,
-    message: `\${typeEmoji} **\${ad.title}**
-\${statusEmoji} 狀態: \${status}
-
-📊 **統計數據**
-• 展示次數: \${stats.total_views}
-• 點擊次數: \${stats.total_clicks}
-• 點擊率 (CTR): \${stats.ctr}%`,
-    message10: `/broadcast_filter gender=female,age=18-25,country=TW 大家好！
-`,
-    message11: `\${banHours} \${user.language_pref === 'en' ? 'hours' : '小時'}`,
-    message12: `時間: \${new Date(b.created_at).toLocaleString('zh-TW')}
-
-`,
-    message13: `
-隊列中還有 \${pendingBroadcasts.results.length - 1} 個廣播待處理
-`,
-    message14: `進度: \${broadcast.sent_count}/\${broadcast.total_users}
-`,
-    message15: `\${days} \${user.language_pref === 'en' ? 'days' : '天'}`,
-    message16: `目標: \${getBroadcastTargetName(broadcast.targetType)}
-`,
-    message17: `狀態：\${maintenance.isActive ? '✅ 維護中' : '❌ 未啟用'}
-`,
-    message18: `🚫 禁止的網址：
-\${urlCheck.blockedUrls?.map((url) =>`,
-    message19: `• 最後訊息：\${formatDate(stats.last_message_time)}
-`,
-    message2: `birthday = '2000-01-01',
- age = 25,
- zodiac_sign = 'Capricorn',
- anti_fraud_score = 100,
- terms_agreed = 1`,
-    message20: `時間：\${formatDate(conv.last_message_time)}
-
-`,
-    message21: `預計時長：\${maintenance.estimatedDuration} 分鐘
-`,
-    message22: `使用 /broadcast_status \${broadcastId} 查看進度。`,
-    message23: `💡 請長按你要回復的消息，在出現的選單中選擇「回覆」後，在聊天框中輸入回復內容。`,
-    message24: `📊 今日已發送：\${usedToday + 1}/\${dailyLimit} 則`,
-    message25: `/broadcast_filter zodiac=Scorpio 天蠍座專屬訊息`,
-    message26: `• 已激活: \${inviteStats?.activated }
-`,
-    message27: `• 待激活: \${inviteStats?.pending }
-
-`,
-    message28: `/maintenance_enable <時長(分鐘)> [維護訊息]
-
-`,
-    message29: `進度: \${b.sent_count}/\${b.total_users}
-`,
-    message3: `進度: \${broadcast.sentCount}/\${broadcast.totalUsers} (\${progress.percentage}%)
-`,
-    message30: `• 訊息: \${messagesCount?.count }
-
-`,
-    message31: `• 對方發送：\${stats.partner_messages} 則
-`,
-    message32: `指揮官 - 大膽、富有想像力且意志強大的領導者，總能找到或創造解決方法。`,
-    message33: `💡 使用 /broadcast_status <id> 查看詳細信息`,
-    message34: `🏷️ 興趣標籤：\${updatedUser.interests ||`,
-    message35: `執政官 - 極有同情心、受歡迎且樂於助人的人，總是渴望為社群做出貢獻。`,
-    message36: `/broadcast_filter <過濾器> <訊息內容>
-
-`,
-    message37: `**訊息內容：**
-\${broadcastMessage}
-
-`,
-    message38: `• 總訊息數：\${stats.total_messages} 則
-`,
-    message39: `競選者 - 熱情、有創造力且社交能力強的自由精神，總能找到理由微笑。`,
-    message4: `💡 使用 /history \${formatIdentifier(conversations[0].identifier)} 查看完整對話
-
-`,
-    message40: `剩餘時間：\${remaining.remainingText}
-`,
-    message41: `表演者 - 自發、精力充沛且熱情的表演者，生活在他們周圍從不無聊。`,
-    message42: `用戶數：\${broadcast.total_users} 人
-`,
-    message43: `• 你發送：\${stats.user_messages} 則
-`,
-    message44: `調停者 - 詩意、善良的利他主義者，總是熱情地為正義事業而努力。`,
-    message45: `
-請稍後使用 /broadcast_status 查看進度。`,
-    message46: `昵稱: \${user.nickname }
-`,
-    message47: `• 獎勵：\${stats.total_rewards}
-
-`,
-    message48: `企業家 - 聰明、精力充沛且善於洞察的人，真正享受生活在邊緣。`,
-    message49: `🎁 獎勵：+\${ad.reward_quota} 個永久額度`,
-    message5: `時間：\${new Date().toLocaleString('zh-TW', { timeZone: 'Asia/Taipei' })}
-`,
-    message50: `時間：\${new Date().toLocaleString(`,
-    message51: `使用 /broadcast_status 查看更新後的狀態。`,
-    message52: `目標: \${broadcast.target_type}
-`,
-    message53: `使用 /broadcast_status 查看更新後的記錄。`,
-    message54: `• 如果您更換了 Telegram 頭像，系統會自動檢測
-`,
-    message55: `約 \${Math.ceil(totalSeconds)} 秒`,
-    message56: `啟用者：\${maintenance.enabledBy}
-`,
-    message57: `邏輯學家 - 具有創新精神的發明家，對知識有著止不住的渴望。`,
-    message58: `提倡者 - 安靜而神秘，同時鼓舞人心且不知疲倦的理想主義者。`,
-    message59: `守衛者 - 非常專注且溫暖的守護者，時刻準備著保護所愛之人。`,
-    message6: `• 展示：\${stats.total_views} | 點擊：\${stats.total_clicks} (\${stats.ctr}%)
-`,
-    message60: `探險家 - 靈活且迷人的藝術家，時刻準備著探索和體驗新事物。`,
-    message61: `• 長按對方訊息回覆 /block 可封鎖此使用者
-`,
-    message62: `請確保回覆的是對方發送的訊息（帶有 # 標識符）。`,
-    message63: `/broadcast_non_vip <訊息內容>`,
-    message64: `建立你的第一個連接（長按訊息 → 選擇「回覆」）`,
-    message65: `訊息: \${messagePreview}
-`,
-    message66: `3. 遇到可疑訊息時，你會提高警覺嗎？
-
-`,
-    message67: `💡 VIP 用戶每日可發送 100 則訊息。`,
-    message68: `/broadcast <訊息內容>
-
-`,
-    message69: `/broadcast_vip <訊息內容>`,
-    message7: `
-• 驗證次數: \${stats.total_verified}
-• 驗證率: \${stats.verification_rate}%`,
-    message70: `最後訊息：\${preview}
-`,
-    message71: `廣播訊息不能超過 4000 個字符`,
-    message72: `1️⃣ 長按對方的訊息
-`,
-    message73: `請使用文字訊息與對方交流。`,
-    message74: `(尚無訊息)
-
-`,
-    message75: `獲取最新消息和活動`,
-    message76: `廣播訊息不能為空`,
-    message77: `(無訊息)`,
-    message8: `
-• 獎勵發放: \${stats.total_rewards}
-• 獎勵率: \${stats.reward_rate}%`,
-    message9: `
-• 剩餘展示: \${ad.max_views - ad.current_views}/\${ad.max_views}`,
-    newUser: `新用戶`,
-    next: `下一頁`,
-    nickname: `💡 請輸入一個簡單的暱稱，不要包含 http:// 或 https:// 等連結。
-
-`,
-    nickname10: `請輸入新的暱稱：
-
-`,
-    nickname11: `• 請勿使用暱稱發送廣告`,
-    nickname12: `📝 編輯暱稱`,
-    nickname13: `✍️ 自訂暱稱`,
-    nickname2: `很好！你的暱稱是：\${truncatedNickname}
-
-`,
-    nickname3: `📝 暱稱：\${updatedUser.nickname}
-`,
-    nickname4: `📝 暱稱：\${user.nickname}
-`,
-    nickname5: `• 暱稱長度限制 36 個字
-`,
-    nickname6: `📝 **編輯暱稱**
-
-`,
-    nickname7: `✏️ 請選擇你的暱稱：
-
-`,
-    nickname8: `✏️ 請輸入你的暱稱：
-
-`,
-    nickname9: `請告訴我你的暱稱（顯示名稱）：`,
-    no: `否`,
-    none: `無`,
-    notRegistered: `未注册`,
-    notSet: `未設定`,
-    operationFailed: `❌ 發生錯誤`,
-    pageInfo: `第 {current} / {total} 頁`,
-    prev: `上一頁`,
-    profile: `👤 查看個人資料 - /profile
-`,
-    profile2: `✏️ **編輯個人資料**
-
-`,
-    profile3: `（你也可以稍後在個人資料中設置）`,
-    quota: `💡 升級 VIP 可獲得更多配額（100 則/天）：/vip`,
-    quota2: `• 💎 升級 VIP（每天 30 個配額）`,
-    quota3: `• 🎁 邀請好友（每人 +1 配額）
-`,
-    quota4: `• ✨ 完成任務（獲得永久配額）
-`,
-    register: `
-
-💡 這是快速測驗（\${testInfo}），結果僅供參考。
-完成註冊後，可使用 /mbti 重新測驗。
-
-`,
-    register10: `🎉 恭喜完成註冊！
-
-`,
-    register2: `
-
-💡 這是完整測驗（\${testInfo}），結果更準確。
-完成註冊後，可使用 /mbti 重新測驗。
-
-`,
-    register3: `註冊步驟: \${user.onboarding_step}
-`,
-    register4: `⏰ 註冊流程已超時
-
-請使用 /start 重新開始註冊。`,
-    register5: `或使用：/dev_restart（自動開始註冊）
-
-`,
-    register6: `💡 現在可以重新開始測試註冊流程。
-
-`,
-    register7: `🔄 重新註冊：/start
-`,
-    register8: `💡 完成註冊後，你可以：
-`,
-    register9: `已自動完成註冊流程。
-
-`,
-    report: `🚨 **舉報不當內容** (#\${conversationIdentifier})
-
-`,
-    report2: `多次被舉報 / Multiple reports`,
-    report3: `💡 這樣可以準確指定要舉報的對象。`,
-    report4: `請選擇舉報原因：`,
-    selected: `已選擇`,
-    settings: `🧠 MBTI：\${updatedUser.mbti_result }（可重新測試）`,
-    settings10: `你還沒有設定 MBTI 類型。
-
-`,
-    settings11: `設定地區`,
-    settings12: `未設定`,
-    settings13: `未設定`,
-    settings14: `未設定`,
-    settings15: `未設定`,
-    settings16: `未設定`,
-    settings17: `未設定`,
-    settings18: `未設定`,
-    settings19: `未設定`,
-    settings2: `🏷️ 興趣標籤：\${updatedUser.interests}
-`,
-    settings20: `未設定`,
-    settings21: `未設定`,
-    settings22: `未設定`,
-    settings23: `未設定`,
-    settings24: `未設定`,
-    settings25: `未設定`,
-    settings26: `未設定`,
-    settings27: `未設定`,
-    settings28: `未設定`,
-    settings29: `未設定`,
-    settings3: `🧠 MBTI：\\$（可重新測試）`,
-    settings30: `未設定`,
-    settings31: `未設定`,
-    settings32: `未設定`,
-    settings33: `未設定`,
-    settings34: `未設定`,
-    settings35: `未設定`,
-    settings4: `🏷️ 興趣標籤：\${user.interests }
-`,
-    settings5: `📖 個人簡介：\${updatedUser.bio}
-`,
-    settings6: `🌍 地區：\${updatedUser.city}
-`,
-    settings7: `📖 個人簡介：\${user.bio}
-`,
-    settings8: `🌍 地區：\${user.city }
-`,
-    settings9: `你可以隨時使用 /mbti 指令重新設定。`,
-    short: `💡 你可以：
-`,
-    short10: `工作時，你更喜歡：`,
-    short100: `情感和故事`,
-    short101: `效率和結果`,
-    short102: `共識和團結`,
-    short103: `自由和彈性`,
-    short104: `保留選擇權`,
-    short105: `加line`,
-    short106: `測驗結果`,
-    short107: `先聽後說`,
-    short108: `小而親密`,
-    short109: `團隊合作`,
-    short11: `閱讀時，你更喜歡：`,
-    short110: `獨立工作`,
-    short111: `邊說邊想`,
-    short112: `獨自消化`,
-    short113: `實際應用`,
-    short114: `創新想法`,
-    short115: `新的嘗試`,
-    short116: `是否合理`,
-    short117: `是否有益`,
-    short118: `堅持原則`,
-    short119: `維持關係`,
-    short12: `工作中，你更重視：`,
-    short120: `公正果斷`,
-    short121: `體貼關懷`,
-    short122: `整齊有序`,
-    short123: `隨性自在`,
-    short124: `快速決定`,
-    short125: `感到不安`,
-    short126: `感到興奮`,
-    short127: `訪問鏈接`,
-    short128: `訂閱頻道`,
-    short129: `銀行帳號`,
-    short13: `規劃未來時，你會：`,
-    short130: `備註：`,
-    short131: `發送中`,
-    short132: `信用卡`,
-    short133: `比特币`,
-    short134: `加微信`,
-    short135: `加qq`,
-    short136: `手机号`,
-    short137: `联系我`,
-    short138: `一夜情`,
-    short139: `性服务`,
-    short14: `分析問題並提供建議`,
-    short140: `騙錢`,
-    short141: `投資`,
-    short142: `賺錢`,
-    short143: `匯款`,
-    short144: `轉帳`,
-    short145: `密碼`,
-    short146: `传销`,
-    short147: `金融`,
-    short148: `理财`,
-    short149: `股票`,
-    short15: `面對變化，你通常：`,
-    short150: `期货`,
-    short151: `外汇`,
-    short152: `电话`,
-    short153: `约炮`,
-    short154: `援交`,
-    short155: `自杀`,
-    short156: `跳楼`,
-    short157: `暴力`,
-    short158: `未設置`,
-    short159: `未生成`,
-    short16: `感謝你的支持！❤️`,
-    short160: `測試用戶`,
-    short161: `測試用戶`,
-    short162: `結果更準確`,
-    short163: `需要關注`,
-    short164: `加入群組`,
-    short165: `查看詳情`,
-    short17: `讓其他用戶更了解你`,
-    short18: `這正確嗎？
-
-`,
-    short19: `🗑️ 刪除草稿`,
-    short2: `🌈 任何人都可以`,
-    short20: `🏷️ 編輯興趣`,
-    short21: `請選擇測驗版本：`,
-    short22: `你的工作方式是：`,
-    short23: `有明確的截止日期`,
-    short24: `很快就能熟絡起來`,
-    short25: `需要時間慢慢熟悉`,
-    short26: `壓力大時，你會：`,
-    short27: `列清單按計劃購買`,
-    short28: `卡住（重試中）`,
-    short29: `✏️ 修改內容`,
-    short3: `✏️ 繼續編輯資料`,
-    short30: `📖 編輯簡介`,
-    short31: `🌍 編輯地區`,
-    short32: `💝 匹配偏好`,
-    short33: `正在更新...`,
-    short34: `🔞 色情內容`,
-    short35: `主動與他人交談`,
-    short36: `等待他人來找我`,
-    short37: `週末你更喜歡：`,
-    short38: `實際經驗和事實`,
-    short39: `按部就班的方法`,
-    short4: `📝 重新進行測驗`,
-    short40: `探索創新的方式`,
-    short41: `邏輯和客觀分析`,
-    short42: `情感和人際和諧`,
-    short43: `提前計劃和準備`,
-    short44: `隨機應變和靈活`,
-    short45: `保持開放的選擇`,
-    short46: `使用比喻和類比`,
-    short47: `傾聽並給予安慰`,
-    short48: `你的房間通常：`,
-    short49: `購物時，你會：`,
-    short5: `📝 進行快速測驗`,
-    short50: `讓別人更了解你`,
-    short51: `找到同城的朋友`,
-    short52: `看看別人的故事`,
-    short53: `至少 20 字`,
-    short54: `: 主動配對,`,
-    short55: `女生（默認）`,
-    short56: `男生（默認）`,
-    short57: `結果僅供參考`,
-    short58: `你可以：
-`,
-    short59: `和朋友出去玩`,
-    short6: `至少需要一個過濾器`,
-    short60: `在家獨處休息`,
-    short61: `感到充滿活力`,
-    short62: `感到需要休息`,
-    short63: `直覺和可能性`,
-    short64: `關注具體細節`,
-    short65: `關注整體概念`,
-    short66: `直接指出問題`,
-    short67: `考慮對方感受`,
-    short68: `制定詳細行程`,
-    short69: `隨心所欲探索`,
-    short7: `新用戶******`,
-    short70: `積極發表意見`,
-    short71: `你的朋友圈：`,
-    short72: `廣泛但不深入`,
-    short73: `未來和可能性`,
-    short74: `使用具體例子`,
-    short75: `已驗證的方法`,
-    short76: `基於現實條件`,
-    short77: `想像各種可能`,
-    short78: `有規律和結構`,
-    short79: `包含敏感詞彙`,
-    short8: `批評他人時，你會：`,
-    short80: `填寫興趣標籤`,
-    short81: `完善自我介紹`,
-    short82: `加入官方頻道`,
-    short83: `寫下你的故事`,
-    short84: `👨 男生`,
-    short85: `👩 女生`,
-    short86: `👨 男性`,
-    short87: `👩 女性`,
-    short88: `審核時間：`,
-    short89: `❓ 不確定`,
-    short9: `旅行時，你傾向於：`,
-    short90: `你更看重：`,
-    short91: `公平和正義`,
-    short92: `同情和理解`,
-    short93: `先想好再說`,
-    short94: `找朋友聊天`,
-    short95: `實用的指南`,
-    short96: `理論和概念`,
-    short97: `現在和過去`,
-    short98: `你更信任：`,
-    short99: `事實和數據`,
-    start: `開始時間：\${new Date(maintenance.startTime).toLocaleString('zh-TW')}
-`,
-    start10: `開始使用 →`,
-    start2: `開始時間: \${new Date(broadcast.startedAt).toLocaleString('zh-TW')}
-`,
-    start3: `開始：\${startTime.toLocaleString('zh-TW')}
-`,
-    start4: `開始時間: \${broadcast.started_at}
-
-`,
-    start5: `開始：\${startTime.toLocaleString(`,
-    start6: `🎉 **準備好了！開始交朋友吧～**
-
-`,
-    start7: `• 使用 /throw 重新開始
-`,
-    start8: `📺 開始觀看廣告`,
-    start9: `開始你的交友之旅`,
-    stats: `💡 使用 /ad_stats {id} 查看詳細統計`,
-    stats2: `• /stats - 查看統計
-
-`,
-    stats3: `📊 查看統計 - /stats
-`,
-    stats4: `📊 **官方廣告統計**
-
-`,
-    stats5: `邀請統計:
-`,
-    stats6: `統計:
-`,
-    success: `購買成功`,
-    systemError: `❌ 系統發生錯誤`,
-    task: `🎉 恭喜完成任務：加入官方頻道！
-
-`,
-    task2: `[📋 查看任務中心] → /tasks`,
-    task3: `• /tasks - 查看任務中心
-`,
-    task4: `💡 使用 /tasks 查看更多任務`,
-    task5: `處理任務時，你會：`,
-    task6: `📋 查看任務`,
-    text: `目標：\${broadcast.target_type}
-`,
-    text10: `📖 個人簡介：\${updatedUser.bio ||`,
-    text100: `💡 請在下方輸入框輸入內容`,
-    text101: `這可能需要一些時間，請稍候。`,
-    text102: `你可以隨時使用以下命令：
-`,
-    text103: `🛠️ 系統維護通知
-
-`,
-    text104: `🛠️ 維護模式狀態
-
-`,
-    text105: `評價一個想法時，你首先考慮：`,
-    text106: `⏱️ 約 2-3 分鐘
-`,
-    text107: `⏱️ 約 5-8 分鐘
-`,
-    text108: `📚 我想了解更多安全知識`,
-    text109: `立即發送（約 1-2 秒）`,
-    text11: `\${daysAgo} 天前`,
-    text110: `2️⃣ 選擇「回覆」
-`,
-    text111: `**過濾器格式：**
-`,
-    text112: `• 最短 5 個字符
-`,
-    text113: `• 不能包含網址連結
-`,
-    text114: `請輸入你的地區：
-
-`,
-    text115: `• 你可以隨時修改此設置`,
-    text116: `• 最多 5 個標籤
-`,
-    text117: `📋 快速版（12 題）`,
-    text118: `📚 完整版（36 題）`,
-    text119: `• 進行更詳細的測驗
-`,
-    text12: `總經理 - 出色的管理者，在管理事務或人員方面無與倫比。`,
-    text120: `💡 **提示：**
-`,
-    text121: `學習新事物時，你更喜歡：`,
-    text122: `**操作步驟：**
-`,
-    text123: `🇺🇳 使用聯合國旗`,
-    text124: `要直接發送這個草稿嗎？`,
-    text125: `這可能需要幾秒鐘時間。`,
-    text126: `
-感謝您的耐心等待！`,
-    text127: `維護時長最少 5 分鐘`,
-    text128: `在社交場合中，你通常：`,
-    text129: `解決問題時，你更依賴：`,
-    text13: `💡 這將顯示在你的資料卡上，讓其他用戶更了解你。
-`,
-    text130: `在團隊中，你更傾向於：`,
-    text131: `思考問題時，你傾向於：`,
-    text132: `描述事物時，你傾向於：`,
-    text133: `朋友向你傾訴時，你會：`,
-    text134: `團隊決策時，你更關注：`,
-    text135: `你認為好的領導者應該：`,
-    text136: `目標: 所有用戶
-`,
-    text137: `✏️ 請輸入新的內容`,
-    text138: `💰 詐騙 / 釣魚`,
-    text139: `😡 騷擾 / 辱罵`,
-    text14: `語言: \${user.language_pref}
-`,
-    text140: `參加聚會後，你通常：`,
-    text141: `做決定時，你更重視：`,
-    text142: `遇到新朋友時，你會：`,
-    text143: `衝突中，你更傾向於：`,
-    text144: `你更容易被說服通過：`,
-    text145: `你更喜歡的生活方式：`,
-    text146: `做決定時，你傾向於：`,
-    text147: `隨意逛逛看到喜歡就買`,
-    text148: `)} 到期。
-
-`,
-    text149: `📋 法律文檔僅提供英文版本。`,
-    text15: `🌍 地區：\${updatedUser.city ||`,
-    text150: `📋 法的文書は英語版のみ提供されています。`,
-    text16: `
-
-✅ 需要驗證：加入群組/頻道後點擊「驗證」按鈕`,
-    text17: `目標用戶數：\${userIds.length}
-
-`,
-    text18: `預計時間: \${estimatedTime}
-
-`,
-    text19: `/broadcast_cleanup confirm`,
-    text2: `請使用 /broadcast_filter 查看正確格式。`,
-    text20: `💝 匹配偏好：\${matchPrefText}
-`,
-    text21: `辯論家 - 聰明好奇的思想家，無法抗拒智力上的挑戰。`,
-    text22: `寫下你的心情或想法，系統會幫你找到合適的人
-
-`,
-    text23: `物流師 - 實際且注重事實的個人，可靠性不容懷疑。`,
-    text24: `鑒賞家 - 大膽而實際的實驗者，擅長使用各種工具。`,
-    text25: `💡 這是一次性獎勵，領取後會追加到今天的額度中。`,
-    text26: `符合用戶數: \${totalUsers} 人
-`,
-    text27: `• 默認為異性（男生尋找女生，女生尋找男生）
-`,
-    text28: `狀態: \${progress.status}
-`,
-    text29: `\${daysAgo} 小時前`,
-    text3: `**過濾條件：**
-\${filtersDesc}
-
-`,
-    text30: `約 \${remainingMinutes} 分鐘`,
-    text31: `約 \${hours} 小時 \${mins} 分鐘`,
-    text32: `維護時長不能超過 24 小時（1440 分鐘）`,
-    text33: `用戶數: \${totalUsers} 人
-`,
-    text34: `目標: \${b.target_type}
-`,
-    text35: `過濾條件: \${filtersDesc}
-`,
-    text36: `• 最少 4 個字符，最多 36 個字符
-`,
-    text37: `🇺🇳 如果找不到，可以選擇「聯合國旗」`,
-    text38: `📖 個人簡介：\${user.bio ||`,
-    text39: `請輸入你的興趣標籤（用逗號分隔）：
-
-`,
-    text4: `/maintenance_enable 60 系統升級維護`,
-    text40: `• 例如：音樂, 電影, 旅行, 美食
-`,
-    text41: `服務已恢復正常，感謝您的耐心等待！
-
-`,
-    text42: `🌍 地區：\${user.city ||`,
-    text43: `來源：\${sourceText}
-
-`,
-    text44: `未知的過濾器：\${trimmedKey}`,
-    text45: `系統正在進行維護，暫時無法使用。
-
-`,
-    text46: `我們根據你的語言設置，推測你來自：
-`,
-    text47: `• 每個標籤最多 20 個字符
-
-`,
-    text48: `時長：\${duration} 分鐘
-`,
-    text49: `1. 你了解網路交友的安全風險嗎？
-`,
-    text5: `👋 歡迎回來，\${user.nickname}！
-
-`,
-    text50: `2. 你會保護好自己的個人資訊嗎？
-`,
-    text51: `很好！現在請上傳你的頭像照片：
-
-`,
-    text52: `🌊 **XunNi 是什麼？**
-`,
-    text53: `🎉 檢測到你已加入官方頻道！
-
-`,
-    text54: `💡 這樣可以準確指定要封鎖的對象。`,
-    text55: `狀態：\${statusText}
-`,
-    text56: `💡 現在可以直接測試核心功能：
-`,
-    text57: `你想要尋找什麼樣的聊天對象？
-
-`,
-    text58: `• 介紹你的興趣、性格或想說的話
-`,
-    text59: `🏷️ **編輯興趣標籤**
-
-`,
-    text6: `建築師 - 富有想像力和戰略性的思想家，一切皆在計劃之中。`,
-    text60: `為了安全，只允許以下網域的連結：
-`,
-    text61: `📋 **快速版（12 題）**
-`,
-    text62: `📚 **完整版（36 題）**
-`,
-    text63: `• 頭像會自動每 7 天更新一次
-`,
-    text64: `3️⃣ 輸入 /report
-
-`,
-    text65: `3️⃣ 輸入 /block
-
-`,
-    text66: `狀態: \${b.status}
-`,
-    text67: `不會再被自動處理或重新發送
-
-`,
-    text68: `📖 **編輯個人簡介**
-
-`,
-    text69: `💝 **設置匹配偏好**
-
-`,
-    text7: `主人公 - 富有魅力且鼓舞人心的領導者，有能力使聽眾著迷。`,
-    text70: `💬 **你的聊天記錄**
-
-`,
-    text71: `• 您也可以隨時使用此命令手動刷新`,
-    text72: `📊 **每日數據分析報表**
-`,
-    text73: `你的帳號已恢復為免費會員。
-
-`,
-    text74: `💡 這將顯示在你的資料卡上
-`,
-    text75: `🔧 開發模式：用戶信息
-
-`,
-    text76: `• 直接輸入新內容來替換草稿
-`,
-    text77: `• 不允許連結、圖片、多媒體
-`,
-    text78: `• 顯示時最多 18 個字符
-`,
-    text79: `• 對方最多顯示 18 個字
-`,
-    text8: `/broadcast 系統將於今晚 22:00 進行維護`,
-    text80: `💡 請移除這些連結後重新發送。`,
-    text81: `🔄 正在刷新頭像...
-
-`,
-    text82: `• 免費用戶看到的是模糊頭像
-`,
-    text83: `💬 **如何成為朋友？**
-`,
-    text84: `無效的過濾器格式：\${pair}`,
-    text85: `你的所有數據已被刪除。
-
-`,
-    text86: `📝 **草稿內容**
-
-`,
-    text87: `🌍 **編輯地區**
-
-`,
-    text88: `• 例如：台北、香港、東京
-`,
-    text89: `• 最多 50 個字符
-
-`,
-    text9: `🏷️ 興趣標籤：\${user.interests ||`,
-    text90: `約 \${minutes} 分鐘`,
-    text91: `寫下你的故事（至少 20 字）`,
-    text92: `正在查詢符合條件的用戶...`,
-    text93: `• 最多 250 個字符
-`,
-    text94: `• 不要包含個人聯絡方式
-`,
-    text95: `請選擇要編輯的項目：
-
-`,
-    text96: `請輸入你的個人簡介：
-
-`,
-    text97: `• 最多 200 個字符
-`,
-    text98: `• 避免包含聯絡方式
-
-`,
-    text99: `現在可以正常使用所有功能了。`,
-    throw: `⏰ 丟瓶流程已超時
-
-請使用 /throw 重新開始。`,
-    throw2: `丟瓶流程`,
-    uncertain: `❓ 不確定`,
-    unknownOption: `⚠️ 未知的選項`,
-    unlimited: `無限制`,
-    userNotFound: `❌ 用戶不存在`,
-    vip: `你的 VIP 訂閱已於 \${expireDate} 到期。
-
-`,
-    vip10: `😢 **VIP 訂閱已到期**
-
-`,
-    vip11: `• 升級 VIP 後會自動刷新歷史帖子`,
-    vip12: `⭐ 升級 VIP - /vip
-`,
-    vip13: `💎 VIP 用戶無需觀看廣告`,
-    vip14: `目標: 非 VIP 用戶
-`,
-    vip15: `目標: VIP 用戶
-`,
-    vip16: `非 VIP 用戶`,
-    vip17: `VIP 用戶`,
-    vip2: `你的 VIP 訂閱已於 \${new Date(user.vip_expire_at).toLocaleDateString(`,
-    vip3: `/broadcast_filter vip=true,mbti=INTJ VIP 專屬活動通知
-`,
-    vip4: `每邀請 1 人，每日額度永久 +1（免費最多 10 人，VIP 最多 100 人）`,
-    vip5: `VIP: \${user.is_vip ? '是' : '否'}
-`,
-    vip6: `💡 升級 VIP 可使用進階篩選（MBTI/星座）：/vip`,
-    vip7: `💡 隨時可以重新訂閱 VIP：/vip
-
-`,
-    vip8: `💡 血型可用於 VIP 血型配對功能
-
-`,
-    vip9: `• VIP 用戶可以看到清晰的對方頭像
-`,
-    yes: `是`,
-    zodiac: `無效的星座：\${trimmedValue}（必須是以下之一：\${VALID_ZODIACS.join(', ')}）`,
-  },
-  conversation: {
-    age: `🎂 年齡範圍：\${ageRange} 歲
-`,
-    anonymousCardHint: `💡 這是匿名資料卡，不會顯示對方的真實身份資訊。`,
-    backToMenuCommand: `🏠 返回主選單：/menu`,
-    ban: `• 多次被舉報會導致封禁
-`,
-    blockConfirmButton: `✅ 確定封鎖`,
-    blockConfirmMessage: `封鎖後：
-• 對方無法再向你發送訊息
-• 你們不會再被匹配到
-• 此對話將立即結束
-
-💡 這不會舉報對方，只是不想再聊天。`,
-    blockConfirmTitle: `🚫 **確定要封鎖這位用戶嗎？**`,
-    blockSuccessMessage: `對方已被封鎖，你們不會再被匹配到。
-
-💡 想要開始新的對話嗎？
-• 使用 /catch 撿起新的漂流瓶`,
-    blockSuccessNewConversation: `💬 **對話已結束**
-
-對方結束了這個對話。
-
-💡 想要開始新的對話嗎？
-• 使用 /catch 撿起新的漂流瓶`,
-    blockSuccessTitle: `✅ **已封鎖此用戶**`,
-    blocked: `✅ 已封鎖`,
-    bloodType: `🩸 血型：\${partnerInfo.bloodType}
-`,
-    bloodType2: `🩸 血型：\${bloodTypeText}
-`,
-    bottle: `使用 /catch 撿漂流瓶開始聊天吧！
-
-`,
-    bottle2: `• 使用 /catch 撿起新的漂流瓶`,
-    cancelButton: `❌ 取消`,
-    cancelSuccess: `已取消`,
-    conversation: `💬 與 #\${identifier} 的對話記錄（第 \${postNumber} 頁）
-
-`,
-    conversation10: `目前沒有任何對話。
-
-`,
-    conversation11: `• 此對話將立即結束
-`,
-    conversation2: `💬 **我的對話列表** (\${conversations.length})
-
-`,
-    conversation3: `💡 點擊對方訊息的「回覆」按鈕即可繼續對話
-`,
-    conversation4: `💬 **對話已結束**
-
-`,
-    conversation5: `💬 **我的對話**
-
-`,
-    conversation6: `💡 想要開始新的對話嗎？
-`,
-    conversation7: `• 此對話將立即結束
-
-`,
-    conversation8: `對方結束了這個對話。
-
-`,
-    conversation9: `💡 這是對話的歷史記錄
-`,
-    conversationEnded: `❌ 此對話已結束。
-
-使用 /catch 撿新的漂流瓶開始新對話。`,
-    conversationInfoError: `❌ 對話資訊錯誤。`,
-    editProfileCommand: `✏️ 編輯個人資料：/edit_profile`,
-    endedMessage: `對方結束了這個對話。
-
-💡 想要開始新的對話嗎？
-• 使用 /catch 撿起新的漂流瓶`,
-    endedNewConversation: `💬 **對話已結束**
-
-對方結束了這個對話。
-
-💡 想要開始新的對話嗎？
-• 使用 /catch 撿起新的漂流瓶`,
-    endedTitle: `💬 **對話已結束**`,
-    gender: `👤 性別：\${gender}
-`,
-    mediaRestriction: `⚠️ **不允許發送圖片、影片或多媒體**
-
-💡 為了保護隱私和安全，對話中只允許純文字訊息。
-
-請使用文字訊息與對方交流。`,
-    message: `💫 配對度：\${score}分
-`,
-    message10: `conv_profile_\${conversationId}`,
-    message11: `• 最後訊息：\${lastMessageTime}
-
-`,
-    message12: `📊 總訊息數：\${totalMessages} 則
-`,
-    message13: `💬 直接按 /reply 回覆訊息聊天
-`,
-    message14: `• 對方無法再向你發送訊息
-`,
-    message2: `
-📜 繼續查看：#\${identifier}-H\${newPostNumber}`,
-    message3: `📅 最後更新：\${formatDateTime(new Date())}
-
-`,
-    message4: `[\${timeStr}] 對方：
-\${messageContent}
-
-`,
-    message5: `conv_report_confirm_\${conversationId}`,
-    message6: `conv_block_confirm_\${conversationId}`,
-    message7: `• 訊息數：\${conv.message_count} 則
-`,
-    message77: `💬 使用 /reply 回覆訊息`,
-    message8: `🏷️ 興趣：\${otherUser.interests}
-`,
-    message9: `💬 來自 #\${identifier} 的新訊息：
-
-`,
-    nickname: `📝 暱稱：\${partnerInfo.maskedNickname}
-`,
-    nickname2: `📝 暱稱：\${displayNickname}
-`,
-    noHistory: `💬 你還沒有任何對話記錄
-
-快去丟瓶子認識新朋友吧！ /throw
-
-🏠 返回主選單：/menu`,
-    profile: `✏️ 編輯個人資料：/edit_profile
-`,
-    profileCardTitle: `👤 **對方的資料卡**`,
-    replyButton: `💬 回覆訊息`,
-    replyConversation: `💬 回覆對話 {identifier}`,
-    replyHint: `💡 請在下方輸入框輸入內容`,
-    replyMethod1: `1️⃣ 點擊下方「💬 回覆訊息」按鈕`,
-    replyMethod2: `2️⃣ 長按此訊息，選擇「回覆」後輸入內容`,
-    replyMethodsTitle: `💡 **兩種回覆方式**：`,
-    report: `🚨 **確定要舉報這位用戶嗎？**
-
-`,
-    report2: `💡 這不會舉報對方，只是不想再聊天。`,
-    report3: `感謝你的舉報，我們會盡快審核。
-
-`,
-    report4: `舉報後：
-`,
-    reportConfirmButton: `✅ 確定舉報`,
-    reportConfirmMessage: `舉報後：
-• 我們會審核此用戶的行為
-• 多次被舉報會導致封禁
-• 此對話將立即結束
-• 24小時內不會再匹配到此用戶
-
-💡 請確保對方確實有不當行為。`,
-    reportConfirmTitle: `🚨 **確定要舉報這位用戶嗎？**`,
-    reportSuccessMessage: `感謝你的舉報，我們會盡快審核。
-
-💡 想要開始新的對話嗎？
-• 使用 /catch 撿起新的漂流瓶`,
-    reportSuccessNewConversation: `💬 **對話已結束**
-
-對方結束了這個對話。
-
-💡 想要開始新的對話嗎？
-• 使用 /catch 撿起新的漂流瓶`,
-    reportSuccessTitle: `✅ **已舉報此用戶**`,
-    reported: `✅ 已舉報`,
-    separator: `━━━━━━━━━━━━━━━━`,
-    settings: `🧠 MBTI：\${otherUser.mbti_result }
-`,
-    settings2: `未設定`,
-    settings3: `未設定`,
-    settings4: `未設定`,
-    settings5: `未設定`,
-    short: `封鎖後：
-`,
-    short2: `未知用戶`,
-    short3: `剛剛`,
-    stats: `📊 使用 /stats 查看詳細統計
-`,
-    text: `💡 這是匿名資料卡，不會顯示對方的真實身份資訊。
-
-`,
-    text10: `💎 使用 /vip 了解更多
-
-`,
-    text11: `👤 **對方的資料卡**
-
-`,
-    text12: `\${diffHours} 小時前`,
-    text13: `💡 請確保對方確實有不當行為。`,
-    text14: `\${diffMins} 分鐘前`,
-    text15: `• 我們會審核此用戶的行為
-`,
-    text16: `💎 使用 /vip 了解更多`,
-    text17: `\${diffDays} 天前`,
-    text18: `• 你們不會再被匹配到
-`,
-    text19: `👤 對方資料：
-`,
-    text2: `📜 查看歷史記錄：#\${identifier}
-`,
-    text3: `🗣️ 語言：\${languageLabel}
-`,
-    text4: `🌍 地區：\${otherUser.city}
-`,
-    text5: `📖 簡介：\${otherUser.bio}
-`,
-    text6: `conv_reply_\${identifier}`,
-    text7: `🚫 **確定要封鎖這位用戶嗎？**
-
-`,
-    text8: `對方已被封鎖，你們不會再被匹配到。
-
-`,
-    text9: `• 24小時內不會再匹配到此用戶
-
-`,
-    vip: `
-🔒 升級 VIP 解鎖對方清晰頭像
-`,
-    vip2: `🔒 升級 VIP 解鎖對方清晰頭像
-`,
-    vipLearnMore: `💎 使用 /vip 了解更多`,
-    vipUnlockAvatar: `🔒 升級 VIP 解鎖對方清晰頭像`,
-    zodiac: `⭐ 星座：\${partnerInfo.zodiac}
-`,
-    zodiac2: `⭐ 星座：\${zodiacLabel}
-`,
-  },
-  conversationHistory: {
-    backToMenu: `🏠 返回主選單：/menu`,
-    bloodType: `🩸 血型：\${bloodType}`,
-    continueView: `📜 繼續查看：#\${identifier}-H\${postNumber}`,
-    historyNote: `💡 這是對話的歷史記錄`,
-    lastUpdated: `📅 最後更新：\${time}`,
-    matchScore: `💫 配對度：\${score}分`,
-    mbti: `🧠 MBTI：\${mbti}`,
-    messageEntry: `[\${time}] 對方：
-\${content}`,
-    newMessage: `💬 來自 #\${identifier} 的新訊息：`,
-    nickname: `📝 暱稱：\${nickname}`,
-    other: `對方`,
-    partnerInfo: `👤 對方資料：`,
-    replyButton: `💬 回覆訊息`,
-    replyHint: `💬 直接按 /reply 回覆訊息聊天`,
-    title: `💬 與 #\${identifier} 的對話記錄（第 \${postNumber} 頁）`,
-    totalMessages: `📊 總訊息數：\${count} 則`,
-    viewAllConversations: `📊 查看所有對話`,
-    viewHistory: `📜 查看歷史記錄：#\${identifier}`,
-    viewProfileCard: `👤 查看對方資料卡`,
-    vipLearnMore: `💎 使用 /vip 了解更多`,
-    vipUnlockAvatar: `🔒 升級 VIP 解鎖對方清晰頭像`,
-    you: `你`,
-    zodiac: `⭐ 星座：\${zodiac}`,
-  },
-  countries: {
-    ae: `阿聯酋`,
-    al: `阿爾巴尼亞`,
-    am: `亞美尼亞`,
-    ar: `阿根廷`,
-    at: `奧地利`,
-    au: `澳洲`,
-    az: `亞塞拜然`,
-    ba: `波斯尼亞`,
-    bb: `巴貝多`,
-    bd: `孟加拉`,
-    be: `比利時`,
-    bg: `保加利亞`,
-    bh: `巴林`,
-    bo: `玻利維亞`,
-    br: `巴西`,
-    ca: `加拿大`,
-    ch: `瑞士`,
-    ci: `象牙海岸`,
-    cl: `智利`,
-    cm: `喀麥隆`,
-    cn: `中國`,
-    co: `哥倫比亞`,
-    cr: `哥斯大黎加`,
-    cu: `古巴`,
-    cz: `捷克`,
-    de: `德國`,
-    dk: `丹麥`,
-    do: `多明尼加`,
-    dz: `阿爾及利亞`,
-    ec: `厄瓜多`,
-    ee: `愛沙尼亞`,
-    eg: `埃及`,
-    es: `西班牙`,
-    et: `衣索比亞`,
-    fi: `芬蘭`,
-    fr: `法國`,
-    gb: `英國`,
-    ge: `喬治亞`,
-    gh: `迦納`,
-    gr: `希臘`,
-    gt: `瓜地馬拉`,
-    hk: `香港`,
-    hn: `宏都拉斯`,
-    hr: `克羅地亞`,
-    hu: `匈牙利`,
-    id: `印尼`,
-    ie: `愛爾蘭`,
-    il: `以色列`,
-    in: `印度`,
-    iq: `伊拉克`,
-    ir: `伊朗`,
-    is: `冰島`,
-    it: `意大利`,
-    jm: `牙買加`,
-    jo: `約旦`,
-    jp: `日本`,
-    ke: `肯亞`,
-    kh: `柬埔寨`,
-    kr: `韓國`,
-    kw: `科威特`,
-    kz: `哈薩克`,
-    la: `寮國`,
-    lb: `黎巴嫩`,
-    lk: `斯里蘭卡`,
-    lt: `立陶宛`,
-    lv: `拉脫維亞`,
-    ly: `利比亞`,
-    ma: `摩洛哥`,
-    mk: `北馬其頓`,
-    mm: `緬甸`,
-    mn: `蒙古`,
-    mo: `澳門`,
-    mt: `馬爾他`,
-    mx: `墨西哥`,
-    my: `馬來西亞`,
-    ng: `奈及利亞`,
-    ni: `尼加拉瓜`,
-    nl: `荷蘭`,
-    no: `挪威`,
-    np: `尼泊爾`,
-    nz: `紐西蘭`,
-    om: `阿曼`,
-    pa: `巴拿馬`,
-    pe: `秘魯`,
-    ph: `菲律賓`,
-    pk: `巴基斯坦`,
-    pl: `波蘭`,
-    pt: `葡萄牙`,
-    py: `巴拉圭`,
-    qa: `卡達`,
-    ro: `羅馬尼亞`,
-    rs: `塞爾維亞`,
-    ru: `俄羅斯`,
-    rw: `盧安達`,
-    sa: `沙特阿拉伯`,
-    sd: `蘇丹`,
-    se: `瑞典`,
-    sg: `新加坡`,
-    si: `斯洛維尼亞`,
-    sk: `斯洛伐克`,
-    sn: `塞內加爾`,
-    sv: `薩爾瓦多`,
-    sy: `敘利亞`,
-    th: `泰國`,
-    tn: `突尼西亞`,
-    tr: `土耳其`,
-    tt: `千里達`,
-    tw: `台灣`,
-    tz: `坦尚尼亞`,
-    ua: `烏克蘭`,
-    ug: `烏干達`,
-    un: `聯合國`,
-    us: `美國`,
-    uy: `烏拉圭`,
-    uz: `烏茲別克`,
-    ve: `委內瑞拉`,
-    vn: `越南`,
-    ye: `葉門`,
-    za: `南非`,
-    zw: `辛巴威`,
-  },
-  country: {
-    buttonAU: `🇦🇺 澳洲`,
-    buttonCA: `🇨🇦 加拿大`,
-    buttonCN: `🇨🇳 中國`,
-    buttonDE: `🇩🇪 德國`,
-    buttonFR: `🇫🇷 法國`,
-    buttonGB: `🇬🇧 英國`,
-    buttonHK: `🇭🇰 香港`,
-    buttonJP: `🇯🇵 日本`,
-    buttonKR: `🇰🇷 韓國`,
-    buttonMY: `🇲🇾 馬來西亞`,
-    buttonNZ: `🇳🇿 紐西蘭`,
-    buttonSG: `🇸🇬 新加坡`,
-    buttonTH: `🇹🇭 泰國`,
-    buttonTW: `🇹🇼 台灣`,
-    buttonUS: `🇺🇸 美國`,
-    confirmButton: `✅ 正確`,
-    confirmDetected: `我們根據你的語言設置，推測你來自：
-`,
-    confirmFailed: `❌ 確認失敗`,
-    confirmHint: `💡 這將顯示在你的資料卡上，讓其他用戶更了解你。
-`,
-    confirmQuestion: `這正確嗎？
-
-`,
-    confirmReward: `🎉 確認後可獲得 +1 瓶子獎勵！`,
-    confirmTitle: `🌍 **確認你的國家/地區**
-
-`,
-    confirmed: `✅ 已確認！`,
-    notCorrectButton: `❌ 不正確`,
-    selectHint: `💡 這將顯示在你的資料卡上
-`,
-    selectTitle: `🌍 **請選擇你的國家/地區**
-
-`,
-    selectUnFlagHint: `🇺🇳 如果找不到，可以選擇「聯合國旗」`,
-    setFailed: `❌ 設置失敗`,
-    setTo: `✅ 已設置為 {flag} {country}`,
-    unFlagButton: `🇺🇳 聯合國旗`,
-    useUnFlagButton: `🇺🇳 使用聯合國旗`,
-  },
-  dailyReports: {
-    header: `📊 **每日數據分析報表**`,
-    time: `時間：\${time}`,
-  },
-  dev: {
-    autoCompleted: `已自動完成註冊流程。
-
-`,
-    bottles: `• 漂流瓶: {count}
-`,
-    catchCommand: `• /catch - 撿漂流瓶
-`,
-    conversations: `• 對話: {count}
-`,
-    dataReset: `✅ 開發模式：數據已重置
-
-你的所有數據已被刪除。
-
-💡 現在可以重新開始測試註冊流程。
-
-🔄 重新註冊：/start
-或使用：/dev_restart（自動開始註冊）
-
-⚠️ 注意：此功能僅在 Staging 環境可用。`,
-    getUserInfoFailed: `❌ 獲取信息失敗`,
-    inviteActivated: `• 已激活: {count}
-`,
-    inviteCode: `邀請碼: {code}
-`,
-    invitePending: `• 待激活: {count}
-
-`,
-    inviteStats: `邀請統計:
-`,
-    inviteTotal: `• 邀請記錄總數: {count}
-`,
-    invitedBy: `被誰邀請: {invitedBy}
-
-`,
-    language: `語言: {lang}
-`,
-    messages: `• 訊息: {count}
-
-`,
-    nickname: `昵稱: {nickname}
-`,
-    no: `否`,
-    none: `無`,
-    notAvailableInProduction: `❌ 此命令在生產環境中不可用。
-
-This command is not available in production.`,
-    notGenerated: `未生成`,
-    notSet: `未設置`,
-    onboardingStep: `註冊步驟: {step}
-`,
-    resetFailed: `❌ 重置失敗：{error}
-
-請稍後再試。`,
-    skipFailed: `❌ 跳過失敗`,
-    skipRegistration: `✅ 開發模式：跳過註冊
-
-`,
-    stagingOnly: `⚠️ 此功能僅在 Staging 環境可用。`,
-    stats: `統計:
-`,
-    statsCommand: `• /stats - 查看統計
-
-`,
-    successfulInvites: `• successful_invites: {count}
-`,
-    telegramId: `Telegram ID: {id}
-`,
-    testCoreFeatures: `💡 現在可以直接測試核心功能：
-`,
-    testUser: `測試用戶`,
-    throwCommand: `• /throw - 丟漂流瓶
-`,
-    userInfo: `🔧 開發模式：用戶信息
-
-`,
-    userNotFound: `❌ 用戶不存在`,
-    vip: `VIP: {status}
-`,
-    yes: `是`,
-  },
-  draft: {
-    contentHint: `💡 你可以：
-• 直接輸入新內容來替換草稿
-• 使用 /throw 重新開始
-• 發送草稿內容來丟出漂流瓶`,
-    contentTitle: `📝 **草稿內容**
-
-`,
-    continueEditing: `✅ 繼續編輯草稿`,
-    deleteButton: `🗑️ 刪除草稿`,
-    deleted: `✅ 草稿已刪除`,
-    editButton: `✏️ 修改內容`,
-    editInput: `✏️ 請輸入新的漂流瓶內容：
-
-💡 提示：
-• 最短 5 個字符
-• 最多 250 個字符
-• 不允許連結、圖片、多媒體
-• 不要包含個人聯絡方式
-• 友善、尊重的內容更容易被撿到哦～`,
-    editPrompt: `✏️ 請輸入新的內容`,
-    newBottle: `✅ 開始新的漂流瓶`,
-    notFound: `⚠️ 草稿不存在或已過期`,
-    sendButton: `✅ 發送草稿`,
-    sendQuestion: `要直接發送這個草稿嗎？`,
-    sending: `✅ 正在發送...`,
-    targetGender: `你想要尋找什麼樣的聊天對象？
-
-`,
-    targetGenderHint: `💡 升級 VIP 可使用進階篩選（MBTI/星座）：/vip`,
-    throwBottle: `🍾 丟漂流瓶
-
-你想要尋找什麼樣的聊天對象？`,
-    age: {
-      daysAgo: `\\\${days} 天前`,
-      hoursAgo: `\\\${hours} 小時前`,
-      justNow: `剛剛`,
+  "errors": {
+    "banned": "❌ Contul dumneavoastră a fost interzis.\n\nMotiv: {reason}",
+    "channelConfigError": "❌ Eroare de configurare a canalului.",
+    "claimRewardFailed": "❌ Eșec la solicitarea recompensei.",
+    "completeOnboarding": "⚠️ Vă rugăm să completați mai întâi procesul de înregistrare.",
+    "conversationInfoError": "❌ Informațiile despre conversație sunt incorecte.",
+    "conversationNotFound": "❌ Conversația nu a fost găsită.",
+    "error": {
+      "ad": "❌ Acest anunț nu necesită verificare.",
+      "ad2": "❌ Nu sunt anunțuri disponibile în acest moment.",
+      "ad3": "❌ Nu se poate solicita acest anunț.",
+      "ad4": "❌ Anunțul nu există.",
+      "ad5": "❌ ID-ul anunțului trebuie să fie un număr.",
+      "ad6": "❌ Nu aveți permisiunea de a vizualiza datele anunțului.",
+      "admin": "❌ A apărut o eroare în sistem, vă rugăm să încercați din nou mai târziu.\n\nDacă problema persistă, vă rugăm să contactați administratorul.",
+      "admin2": "❌ **Permisiuni insuficiente**\n\nAceastă comandă este restricționată doar pentru super administratori.",
+      "admin3": "❌ Acest utilizator este deja administrator super, nu este nevoie să fie adăugat.",
+      "admin4": "❌ Numai administratorii super pot folosi această comandă.",
+      "admin5": "❌ Acest utilizator este deja un administrator.",
+      "admin6": "❌ Nu se poate șterge administratorul super.",
+      "admin7": "❌ Acest utilizator nu este administrator.",
+      "appeal": "❌ Te rog să oferți ID-ul apelului\n\nUtilizare: /admin_approve <appeal_id> [remarks]",
+      "appeal2": "❌ Te rog să oferți ID-ul apelului\n\nUtilizare: /admin_reject <appeal_id> [remarks]",
+      "appeal3": "❌ Apelul \\${appealId} a fost deja revizuit",
+      "appeal4": "❌ Nu s-a putut găsi ID-ul apelului: \\${appealId}",
+      "ban": "❌ Utilizatorul \\${targetUserId} nu are înregistrări de interdicție",
+      "birthday": "❌ \\${validation.error}\n\nTe rog să reintroduci data nașterii (format: YYYY-MM-DD):",
+      "birthday2": "❌ Format greșit pentru data nașterii\n\nTe rog să reintroduci (format: YYYY-MM-DD):",
+      "birthday3": "❌ Format greșit pentru data nașterii",
+      "bottle": "❌ Această conversație s-a încheiat.\n\nFolosește /catch pentru a alege o nouă sticlă cu mesaj pentru a începe o nouă conversație.",
+      "bottle2": "❌ Contul tău a fost interzis și nu poate alege sticle cu mesaje.\n\nDacă ai întrebări, te rog folosește /appeal pentru a face apel.",
+      "bottle3": "❌ Această sticlă a fost deja ridicată de altcineva, te rog încearcă alte sticle!",
+      "broadcast": "❌ Sistemul de difuzare actual suportă doar difuzarea către \\${MAX_SAFE_USERS} utilizatori sau mai puțini.\n\n",
+      "broadcast2": "❌ ID-ul de difuzare trebuie să fie un număr",
+      "broadcast3": "❌ Nu s-a putut găsi înregistrarea difuzării",
+      "cancel": "❌ Numele de utilizator este prea lung, te rog introduceți un nume de utilizator de maximum 36 de caractere.\n\nTe rog să reintroduci sau să anulezi editarea:",
+      "cancel2": "❌ Profilul personal este prea lung, te rog introduceți un profil de maximum 200 de caractere.\n\nTe rog să reintroduci sau să anulezi editarea:",
+      "cancel3": "❌ Numele regiunii este prea lung, te rog introduceți un nume de maximum 50 de caractere.\n\nTe rog să reintroduci sau să anulezi editarea:",
+      "cancel4": "❌ Numele de utilizator este prea scurt, sunt necesare cel puțin 4 caractere.\n\nTe rog să reintroduci sau să anulezi editarea:",
+      "cancel5": "❌ Fiecare etichetă poate avea până la 20 de caractere.\n\nTe rog să reintroduci sau să anulezi editarea:",
+      "cancel6": "❌ Anulează editarea",
+      "cancel7": "❌ Anulat \\${ZODIAC_NAMES[zodiacSign]}",
+      "cancel8": "❌ Anulat \\${mbtiType}",
+      "cancel9": "❌ Anulat",
+      "conversation": "❌ Conversația cu identificatorul \\${formatIdentifier(identifier)} nu a fost găsită\n\n",
+      "conversation2": "❌ Eroare în informațiile conversației.",
+      "conversation3": "❌ Eroare în informațiile conversației",
+      "conversation4": "❌ Conversația nu există",
+      "conversationInfoError": "❌ Eroare în informațiile conversației",
+      "conversationNotFound": "❌ Conversația nu există",
+      "failed": "❌ **Încărcarea reclamei a eșuat**\n\nNe pare rău, reclama nu se redă corect.\n\n💡 **Posibile motive:**\n• Conexiune instabilă la rețea\n• Furnizorul de reclame indisponibil temporar\n• Browser neschimbat\n\n🔄 **Sugestii:**\n• Verifică conexiunea la rețea\n• Încearcă din nou mai târziu\n• Sau folosește alte modalități de a câștiga credite (invitați prieteni)",
+      "failed10": "❌ Interogarea stării modului de întreținere a eșuat.",
+      "failed11": "❌ Eșec la actualizarea avatarului\n\n",
+      "failed12": "❌ Verificarea a eșuat, te rog încearcă din nou mai târziu",
+      "failed13": "❌ Activarea modului de întreținere a eșuat.",
+      "failed14": "❌ Dezactivarea modului de întreținere a eșuat.",
+      "failed15": "❌ Nu s-a putut obține starea reclamei",
+      "failed16": "❌ Nu s-a putut obține statistici",
+      "failed17": "❌ Eșec la crearea difuzării.",
+      "failed18": "❌ Eșec la obținerea informațiilor",
+      "failed19": "❌ Eșec la revendicarea recompensei",
+      "failed2": "❌ Eșec la crearea difuzării filtrate\n\n\\${error instanceof Error ? error.message : String(error)}",
+      "failed20": "❌ Confirmarea a eșuat",
+      "failed21": "❌ Eșec la setare",
+      "failed22": "❌ Sărit eșuat",
+      "failed23": "❌ Operația a eșuat",
+      "failed24": "❌ A eșuat trimiterea raportului zilnic: \\${error instanceof Error ? error.message : String(error)}",
+      "failed25": "❌ A eșuat obținerea datelor din funnel-ul VIP",
+      "failed26": "❌ **Diagnosticare eșuată**\n\n",
+      "failed27": "❌ **Actualizare eșuată**\n\n",
+      "failed28": "❌ **Plată eșuată**\n\n",
+      "failed29": "❌ A eșuat obținerea listei furnizorilor de reclame",
+      "failed3": "❌ A eșuat procesarea cozii de difuzare: \\${error instanceof Error ? error.message : String(error)}",
+      "failed30": "❌ A eșuat obținerea listei oficiale de reclame",
+      "failed31": "❌ A eșuat activarea furnizorului de reclame",
+      "failed32": "❌ A eșuat dezactivarea furnizorului de reclame",
+      "failed33": "❌ A eșuat activarea reclamei oficiale",
+      "failed34": "❌ A eșuat dezactivarea reclamei oficiale",
+      "failed35": "❌ A eșuat obținerea datelor de analiză",
+      "failed36": "❌ A eșuat obținerea datelor publicitare",
+      "failed37": "❌ A eșuat setarea priorității",
+      "failed38": "❌ Eșec la rambursare: \\${error instanceof Error ? error.message : String(error)}",
+      "failed39": "❌ Operația a eșuat: \\${error instanceof Error ? error.message : String(error)}",
+      "failed4": "❌ A eșuat interogarea stării difuzării: \\${error instanceof Error ? error.message : String(error)}",
+      "failed40": "❌ Trimiterea a eșuat, te rugăm să încerci din nou mai târziu.",
+      "failed41": "❌ A eșuat crearea conversației, te rugăm să încerci din nou mai târziu.",
+      "failed5": "❌ A eșuat anularea difuzării: \\${error instanceof Error ? error.message : String(error)}",
+      "failed6": "❌ A eșuat curățarea difuzării: \\${error instanceof Error ? error.message : String(error)}",
+      "failed7": "❌ Resetarea a eșuat: \\${errorMessage}\n\nTe rugăm să încerci din nou mai târziu.",
+      "failed8": "❌ A eșuat crearea difuzării, te rugăm să încerci din nou mai târziu.",
+      "failed9": "❌ Eșec la actualizarea istoricului conversațiilor\n\n",
+      "mbti": "❌ Tip MBTI invalid",
+      "message": "❌ Eroare în formatul filtrului\n\n\\${error instanceof Error ? error.message : String(error)}\n\n",
+      "message2": "❌ Această comandă nu este disponibilă în producție.\n\nAceastă comandă nu este disponibilă în producție.",
+      "message3": "❌ A apărut o eroare, te rugăm să încerci din nou mai târziu.\n\nMesaj de eroare: \\${error instanceof Error ? error.message : String(error)}",
+      "message4": "❌ Ne pare rău, trebuie să ai cel puțin 18 ani pentru a folosi acest serviciu.\n\nTe rog să revii când ești adult!",
+      "nickname": "❌ Imposibil de obținut nickname-ul Telegram",
+      "nickname2": "❌ Numele de utilizator nu poate conține un link de website\n\n",
+      "nickname3": "❌ \\${validation.error}\n\nTe rog să reintroduci nickname-ul:",
+      "quota": "❌ Cota de sticle cu mesaje de azi este epuizată (\\${quotaDisplay})\n\n💡 Modalități de a obține mai multă cotă:\n",
+      "quota2": "❌ Cota de mesaje pentru conversații de astăzi a fost utilizată (\\${usedToday}/\\${dailyLimit})\n\n",
+      "quota3": "❌ Cota de mesaje pentru sticle de astăzi a fost utilizată (\\${quotaDisplay})\n\n",
+      "register": "❌ Te rog să finalizezi procesul de înregistrare mai întâi.\n\nFolosește /start pentru a continua înregistrarea.",
+      "register2": "❌ Datele utilizatorului nu au fost găsite, te rog folosește /start pentru a te înregistra mai întâi.",
+      "register3": "❌ Te rog să finalizezi procesul de înregistrare pentru a ridica sticle cu mesaje.\n\nFolosește /start pentru a continua înregistrarea.",
+      "settings": "❌ Poți seta până la 5 etichete de interes.\n\nTe rog să reintroduci sau să anulezi editarea:",
+      "short": "❌ Cod de limbă invalid",
+      "short10": "❌ Permisiuni insuficiente",
+      "short11": "❌ Vorbim mai târziu",
+      "short12": "❌ Reselectează",
+      "short13": "❌ Reintrodu",
+      "short14": "❌ Închide",
+      "short15": "❌ Nu este activat",
+      "short2": "❌ Datele utilizatorului nu au fost găsite",
+      "short3": "❌ Pas necunoscut în tutorial",
+      "short4": "❌ A apărut o eroare de sistem",
+      "short5": "❌ Eroare de configurare a canalului",
+      "short6": "❌ Operațiune necunoscută",
+      "short7": "❌ Incorect",
+      "short8": "❌ Nu",
+      "short9": "❌ A apărut o eroare",
+      "start": "❌ A apărut o eroare, vă rugăm să reporniți: /start",
+      "stats": "❌ Nu aveți permisiunea de a vizualiza statistici publicitare",
+      "task": "❌ A apărut o eroare la vizualizarea centrului de sarcini, vă rugăm să încercați din nou mai târziu.",
+      "text": "❌ A apărut o eroare de sistem în timpul calculării rezultatelor, vă rugăm să încercați din nou mai târziu.\n\n",
+      "text10": "❌ Eroare de informații ale expeditorului.",
+      "text11": "❌ Nu aveți permisiunea de a vizualiza datele de analiză",
+      "text12": "❌ A apărut o eroare, vă rugăm să încercați din nou mai târziu.",
+      "text13": "❌ Nu aveți permisiunea de a folosi această comandă.",
+      "text14": "❌ Metodă de utilizare incorectă\n\n",
+      "text15": "❌ Prioritatea trebuie să fie un număr întreg non-negativ",
+      "text16": "❌ Durata trebuie să fie un număr întreg pozitiv sau",
+      "text17": "❌ A apărut o eroare de sistem în timpul procesării plății, vă rugăm să contactați asistența clienți.\n\n",
+      "text18": "❌ Motivul returnării trebuie să aibă cel puțin 10 caractere, vă rugăm să reintrați:",
+      "text19": "❌ **Cererea de restituire a fost refuzată**\n\n",
+      "text2": "❌ Profilul conține linkuri interzise.\n\n",
+      "text20": "❌ Cererea de restituire depășește limita de timp\n\n",
+      "text21": "❌ Cererea de returnare nu există sau a fost procesată",
+      "text22": "❌ Înregistrarea plății nu a fost găsită.",
+      "text23": "❌ Ne pare rău, trebuie să aveți peste 18 ani pentru a utiliza acest serviciu.\n\n",
+      "text24": "❌ A apărut o eroare, vă rugăm să reintrați.",
+      "text25": "❌ Vă rugăm să răspundeți la întrebare cu seriozitate\n\n",
+      "text3": "❌ Nu s-a detectat apartenența la canalul dvs., vă rugăm să vă alăturați și să încercați din nou",
+      "text4": "❌ S-a detectat că ați părăsit canalul, nu puteți solicita recompense.",
+      "text5": "❌ A apărut o eroare la începe tutorialul, vă rugăm să încercați din nou mai târziu.",
+      "text6": "❌ A apărut o eroare în sistem, vă rugăm să încercați din nou mai târziu.",
+      "text7": "❌ Durata trebuie să fie un număr (minute)",
+      "text8": "❌ A apărut o eroare, vă rugăm să încercați din nou mai târziu",
+      "text9": "❌ Nu s-a putut obține starea modului de întreținere",
+      "userNotFound": "❌ Utilizatorul nu există, vă rugăm să folosiți /start pentru a vă înregistra mai întâi.",
+      "userNotFound2": "❌ Utilizatorul nu există, vă rugăm să vă înregistrați mai întâi",
+      "userNotFound3": "❌ Utilizatorul corespondent nu există.",
+      "userNotFound4": "❌ Utilizatorul nu există",
+      "userNotFound5": "❌ Utilizatorul nu există: \\\\$${userId}",
+      "userNotFound6": "❌ Utilizatorul nu există sau nu este înregistrat.",
+      "userNotFound7": "❌ Utilizatorul nu există.",
+      "vip": "❌ Nu aveți permisiunea de a vizualiza datele VIP",
+      "vip2": "❌ Nu sunteți un utilizator VIP, nu puteți solicita o returnare."
     },
+    "errorDetails": "Mesaj de eroare: {error}",
+    "failed": "Eșuat: ${broadcast.failedCount}\n",
+    "failed2": "Eșuat: ${result.failed} articole\n\n",
+    "failed3": "Aceste transmisiuni vor fi marcate ca având statut 'eșuat'\n",
+    "failed4": "Aceste transmisiuni au fost marcate ca având statut 'eșuat'\n",
+    "generic": "❌ A apărut o eroare, vă rugăm să încercați din nou mai târziu.",
+    "invalidRequest": "❌ Cerere invalidă",
+    "message": "${statusEmoji} **${provider.provider_display_name}**\n${healthEmoji} Stare de sănătate: ${health.is_healthy ? 'Bună' : 'Necesită atenție'}\n📊 Rată de completare: ${stats.completion_rate}%\n❌ Rată de eroare: ${stats.error_rate}%\n📈 Total cereri: ${stats.total_requests}\n✅ Total completări: ${stats.total_completions}\n💡 Recomandare: ${health.recommendation}",
+    "message2": "Mesaj de eroare: ${error instanceof Error ? error.message : String(error)}",
+    "message3": "Eroare: ${broadcast.errorMessage}",
+    "operationFailed": "❌ Operațiune eșuată",
+    "processError": "❌ A apărut o eroare în timpul procesării",
+    "sessionExpired": "❌ Sesiunea a expirat, vă rugăm să începeți din nou",
+    "systemError": "Eroare de sistem",
+    "systemErrorRetry": "❌ A apărut o eroare de sistem, vă rugăm să încercați din nou mai târziu.",
+    "unknownAction": "❌ Operațiune necunoscută",
+    "unknownError": "🎨 UX: Mesaj de eroare prietenos",
+    "userNotFound": "Utilizatorul nu există",
+    "userNotFound4": "❌ Utilizatorul nu există",
+    "userNotFoundRegister": "⚠️ Utilizatorul nu există, vă rugăm să vă înregistrați folosind /start mai întâi.",
+    "verificationFailed": "❌ Verificarea a eșuat, vă rugăm să încercați din nou mai târziu"
   },
-  edit_profile: {
-    nickname: `👤 昵称：\${ownerMaskedNickname}`,
-    short19: `✏️ 編輯個人資料`,
+  "estimate": {
+    "immediate": "Trimite imediat (aproximativ 1-2 secunde)",
+    "minutes": "Aproximativ ${minutes} minute",
+    "seconds": "Aproximativ ${seconds} secunde"
   },
-  error: {
-    ad: `❌ 此廣告不需要驗證`,
-    ad2: `❌ 暫無可用的廣告`,
-    ad3: `❌ 無法領取此廣告`,
-    ad4: `❌ 廣告不存在`,
-    ad5: `❌ 廣告 ID 必須是數字`,
-    ad6: `❌ 你沒有權限查看廣告數據`,
-    admin: `❌ 系統發生錯誤，請稍後再試。
-
-如果問題持續，請聯繫管理員。`,
-    admin2: `❌ **權限不足**
-
-此命令僅限超級管理員使用。`,
-    admin3: `❌ 此用戶已經是超級管理員，無需添加。`,
-    admin4: `❌ 只有超級管理員可以使用此命令。`,
-    admin5: `❌ 此用戶已經是管理員。`,
-    admin6: `❌ 無法移除超級管理員。`,
-    admin7: `❌ 此用戶不是管理員。`,
-    appeal: `❌ 請提供申訴 ID
-
-用法: /admin_approve <appeal_id> [備註]`,
-    appeal2: `❌ 請提供申訴 ID
-
-用法: /admin_reject <appeal_id> [備註]`,
-    appeal3: `❌ 申訴 \${appealId} 已經被審核過了`,
-    appeal4: `❌ 找不到申訴 ID: \${appealId}`,
-    ban: `❌ 用戶 \${targetUserId} 沒有封禁記錄`,
-    birthday: `❌ \${validation.error}
-
-請重新輸入生日（格式：YYYY-MM-DD）：`,
-    birthday2: `❌ 生日格式錯誤
-
-請重新輸入（格式：YYYY-MM-DD）：`,
-    birthday3: `❌ 生日格式錯誤`,
-    bottle: `❌ 此對話已結束。
-
-使用 /catch 撿新的漂流瓶開始新對話。`,
-    bottle2: `❌ 你的帳號已被封禁，無法撿漂流瓶。
-
-如有疑問，請使用 /appeal 申訴。`,
-    bottle3: `❌ 這個瓶子已經被其他人撿走了，請試試其他瓶子！`,
-    broadcast: `❌ 當前廣播系統僅支持 \${MAX_SAFE_USERS} 個用戶以內的廣播。
-
-`,
-    broadcast2: `❌ 廣播 ID 必須是數字`,
-    broadcast3: `❌ 找不到該廣播記錄`,
-    cancel: `❌ 暱稱太長，請輸入不超過 36 個字符的暱稱。
-
-請重新輸入或取消編輯：`,
-    cancel2: `❌ 個人簡介太長，請輸入不超過 200 個字符。
-
-請重新輸入或取消編輯：`,
-    cancel3: `❌ 地區名稱太長，請輸入不超過 50 個字符。
-
-請重新輸入或取消編輯：`,
-    cancel4: `❌ 暱稱太短，至少需要 4 個字符。
-
-請重新輸入或取消編輯：`,
-    cancel5: `❌ 每個標籤最多 20 個字符。
-
-請重新輸入或取消編輯：`,
-    cancel6: `❌ 取消編輯`,
-    cancel7: `❌ 已取消 \${ZODIAC_NAMES[zodiacSign]}`,
-    cancel8: `❌ 已取消 \${mbtiType}`,
-    cancel9: `❌ 取消`,
-    conversation: `❌ 找不到標識符 \${formatIdentifier(identifier)} 的對話
-
-`,
-    conversation2: `❌ 對話資訊錯誤。`,
-    conversation3: `❌ 對話資訊錯誤`,
-    conversation4: `❌ 對話不存在`,
-    conversationInfoError: `❌ 對話資訊錯誤`,
-    conversationNotFound: `❌ 對話不存在`,
-    failed: `❌ **廣告加載失敗**
-
-很抱歉，廣告無法正常播放。
-
-💡 **可能的原因：**
-• 網絡連接不穩定
-• 廣告提供商暫時不可用
-• 瀏覽器不支持
-
-🔄 **建議：**
-• 檢查網絡連接
-• 稍後再試
-• 或使用其他方式獲得額度（邀請朋友）`,
-    failed10: `❌ 查詢維護模式狀態失敗。`,
-    failed11: `❌ 刷新頭像失敗
-
-`,
-    failed12: `❌ 驗證失敗，請稍後再試`,
-    failed13: `❌ 啟用維護模式失敗。`,
-    failed14: `❌ 關閉維護模式失敗。`,
-    failed15: `❌ 獲取廣告狀態失敗`,
-    failed16: `❌ 獲取統計數據失敗`,
-    failed17: `❌ 創建廣播失敗。`,
-    failed18: `❌ 獲取信息失敗`,
-    failed19: `❌ 領取獎勵失敗`,
-    failed2: `❌ 創建過濾廣播失敗
-
-\${error instanceof Error ? error.message : String(error)}`,
-    failed20: `❌ 確認失敗`,
-    failed21: `❌ 設置失敗`,
-    failed22: `❌ 跳過失敗`,
-    failed23: `❌ 操作失敗`,
-    failed24: `❌ 發送每日報表失敗：\${error instanceof Error ? error.message : String(error)}`,
-    failed25: `❌ 獲取 VIP 漏斗數據失敗`,
-    failed26: `❌ **診斷失敗**
-
-`,
-    failed27: `❌ **刷新失敗**
-
-`,
-    failed28: `❌ **支付失敗**
-
-`,
-    failed29: `❌ 獲取廣告提供商列表失敗`,
-    failed3: `❌ 處理廣播隊列失敗：\${error instanceof Error ? error.message : String(error)}`,
-    failed30: `❌ 獲取官方廣告列表失敗`,
-    failed31: `❌ 啟用廣告提供商失敗`,
-    failed32: `❌ 停用廣告提供商失敗`,
-    failed33: `❌ 啟用官方廣告失敗`,
-    failed34: `❌ 停用官方廣告失敗`,
-    failed35: `❌ 獲取分析數據失敗`,
-    failed36: `❌ 獲取廣告數據失敗`,
-    failed37: `❌ 設置優先級失敗`,
-    failed38: `❌ 退款失敗：\${error instanceof Error ? error.message : String(error)}`,
-    failed39: `❌ 操作失敗：\${error instanceof Error ? error.message : String(error)}`,
-    failed4: `❌ 查詢廣播狀態失敗：\${error instanceof Error ? error.message : String(error)}`,
-    failed40: `❌ 提交失敗，請稍後再試。`,
-    failed41: `❌ 建立對話失敗，請稍後再試。`,
-    failed5: `❌ 取消廣播失敗：\${error instanceof Error ? error.message : String(error)}`,
-    failed6: `❌ 清理廣播失敗：\${error instanceof Error ? error.message : String(error)}`,
-    failed7: `❌ 重置失敗：\${errorMessage}
-
-請稍後再試。`,
-    failed8: `❌ 創建廣播失敗，請稍後再試。`,
-    failed9: `❌ 刷新對話歷史失敗
-
-`,
-    mbti: `❌ 無效的 MBTI 類型`,
-    message: `❌ 過濾器格式錯誤
-
-\${error instanceof Error ? error.message : String(error)}
-
-`,
-    message2: `❌ 此命令在生產環境中不可用。
-
-This command is not available in production.`,
-    message3: `❌ 發生錯誤，請稍後再試。
-
-錯誤信息：\${error instanceof Error ? error.message : String(error)}`,
-    message4: `❌ 很抱歉，你必須年滿 18 歲才能使用本服務。
-
-請成年後再來！`,
-    nickname: `❌ 無法獲取 Telegram 暱稱`,
-    nickname2: `❌ 暱稱不能包含網址連結
-
-`,
-    nickname3: `❌ \${validation.error}
-
-請重新輸入暱稱：`,
-    quota: `❌ 今日漂流瓶配額已用完（\${quotaDisplay}）
-
-💡 獲得更多配額的方式：
-`,
-    quota2: `❌ 今日對話訊息配額已用完（\${usedToday}/\${dailyLimit}）
-
-`,
-    quota3: `❌ 今日漂流瓶配額已用完（\${quotaDisplay}）
-
-`,
-    register: `❌ 請先完成註冊流程。
-
-使用 /start 繼續註冊。`,
-    register2: `❌ 找不到用戶資料，請先使用 /start 註冊。`,
-    register3: `❌ 請先完成註冊流程才能撿漂流瓶。
-
-使用 /start 繼續註冊。`,
-    settings: `❌ 最多只能設定 5 個興趣標籤。
-
-請重新輸入或取消編輯：`,
-    short: `❌ 無效的語言代碼`,
-    short10: `❌ 權限不足`,
-    short11: `❌ 稍後再說`,
-    short12: `❌ 重新選擇`,
-    short13: `❌ 重新輸入`,
-    short14: `❌ 關閉`,
-    short15: `❌ 未啟用`,
-    short2: `❌ 找不到用戶資料`,
-    short3: `❌ 未知的教學步驟`,
-    short4: `❌ 系統發生錯誤`,
-    short5: `❌ 頻道配置錯誤`,
-    short6: `❌ 未知操作`,
-    short7: `❌ 不正確`,
-    short8: `❌ 否`,
-    short9: `❌ 發生錯誤`,
-    start: `❌ 發生錯誤，請重新開始：/start`,
-    stats: `❌ 你沒有權限查看廣告統計`,
-    task: `❌ 查看任務中心時系統發生錯誤，請稍後再試。`,
-    text: `❌ 計算結果時系統發生錯誤，請稍後再試。
-
-`,
-    text10: `❌ 發送者資訊錯誤。`,
-    text11: `❌ 你沒有權限查看分析數據`,
-    text12: `❌ 發生錯誤，請稍後再試。`,
-    text13: `❌ 你沒有權限使用此命令。`,
-    text14: `❌ 使用方法錯誤
-
-`,
-    text15: `❌ 優先級必須是非負整數`,
-    text16: `❌ 時長必須是正整數或`,
-    text17: `❌ 處理支付時系統發生錯誤，請聯繫客服。
-
-`,
-    text18: `❌ 退款原因至少需要 10 個字，請重新輸入：`,
-    text19: `❌ **退款申請已被拒絕**
-
-`,
-    text2: `❌ 個人簡介包含不允許的連結。
-
-`,
-    text20: `❌ 退款申請超過時限
-
-`,
-    text21: `❌ 退款請求不存在或已處理`,
-    text22: `❌ 找不到支付記錄。`,
-    text23: `❌ 很抱歉，你必須年滿 18 歲才能使用本服務。
-
-`,
-    text24: `❌ 發生錯誤，請重新輸入。`,
-    text25: `❌ 請認真回答問題
-
-`,
-    text3: `❌ 未檢測到你加入頻道，請先加入後再試`,
-    text4: `❌ 檢測到你已離開頻道，無法領取獎勵。`,
-    text5: `❌ 啟動教學時發生錯誤，請稍後再試。`,
-    text6: `❌ 系統發生錯誤，請稍後再試。`,
-    text7: `❌ 時長必須是數字（分鐘）`,
-    text8: `❌ 發生錯誤，請稍後再試`,
-    text9: `❌ 無法獲取維護模式狀態`,
-    userNotFound: `❌ 用戶不存在，請先使用 /start 註冊。`,
-    userNotFound2: `❌ 用戶不存在，請先註冊`,
-    userNotFound3: `❌ 對方用戶不存在。`,
-    userNotFound4: `❌ 用戶不存在`,
-    userNotFound5: `❌ 用戶不存在：\${userId}`,
-    userNotFound6: `❌ 用戶不存在或未註冊。`,
-    userNotFound7: `❌ 用戶不存在。`,
-    vip: `❌ 你沒有權限查看 VIP 數據`,
-    vip2: `❌ 你不是 VIP 用戶，無法申請退款。`,
+  "gender": {
+    "female": "Femeie",
+    "label": "👤 Gen: {otherUser.gender}",
+    "male": "Bărbat"
   },
-  errors: {
-    banned: `❌ 你的帳號已被封禁
-
-原因：{reason}`,
-    channelConfigError: `❌ 頻道配置錯誤`,
-    claimRewardFailed: `❌ 領取獎勵失敗`,
-    completeOnboarding: `⚠️ 請先完成註冊流程。`,
-    conversationInfoError: `❌ 對話資訊錯誤。`,
-    conversationNotFound: `❌ 找不到此對話`,
-    errorDetails: `錯誤信息：{error}`,
-    failed: `失敗: \${broadcast.failedCount}
-`,
-    failed2: `失敗：\${result.failed} 個
-
-`,
-    failed3: `這些廣播將被標記為「失敗」狀態
-`,
-    failed4: `這些廣播已標記為「失敗」狀態
-`,
-    generic: `❌ 發生錯誤，請稍後再試。`,
-    invalidRequest: `❌ 無效的請求`,
-    message: `\${statusEmoji} **\${provider.provider_display_name}**
-\${healthEmoji} 健康狀態: \${health.is_healthy ? '良好' : '需要關注'}
-📊 完成率: \${stats.completion_rate}%
-❌ 錯誤率: \${stats.error_rate}%
-📈 總請求: \${stats.total_requests}
-✅ 總完成: \${stats.total_completions}
-💡 建議: \${health.recommendation}`,
-    message2: `錯誤信息：\${error instanceof Error ? error.message : String(error)}`,
-    message3: `
-錯誤: \${broadcast.errorMessage}`,
-    operationFailed: `❌ 操作失敗`,
-    processError: `❌ 處理過程中發生錯誤`,
-    sessionExpired: `❌ 會話已過期，請重新開始`,
-    systemError: `系统错误`,
-    systemErrorRetry: `❌ 系統發生錯誤，請稍後再試。`,
-    unknownAction: `❌ 未知操作`,
-    unknownError: `🎨 UX: 友善的錯誤提示`,
-    userNotFound: `用戶不存在`,
-    userNotFound4: `[需要翻译]`,
-    userNotFoundRegister: `⚠️ 用戶不存在，請先使用 /start 註冊。`,
-    verificationFailed: `❌ 驗證失敗，請稍後再試`,
-    error: {
-      ad: `❌ 此廣告不需要驗證`,
-      ad2: `❌ 暫無可用的廣告`,
-      ad3: `❌ 無法領取此廣告`,
-      ad4: `❌ 廣告不存在`,
-      ad5: `❌ 廣告 ID 必須是數字`,
-      ad6: `❌ 你沒有權限查看廣告數據`,
-      admin: `❌ 系統發生錯誤，請稍後再試。
-
-如果問題持續，請聯繫管理員。`,
-      admin2: `❌ **權限不足**
-
-此命令僅限超級管理員使用。`,
-      admin3: `❌ 此用戶已經是超級管理員，無需添加。`,
-      admin4: `❌ 只有超級管理員可以使用此命令。`,
-      admin5: `❌ 此用戶已經是管理員。`,
-      admin6: `❌ 無法移除超級管理員。`,
-      admin7: `❌ 此用戶不是管理員。`,
-      appeal: `❌ 請提供申訴 ID
-
-用法: /admin_approve <appeal_id> [備註]`,
-      appeal2: `❌ 請提供申訴 ID
-
-用法: /admin_reject <appeal_id> [備註]`,
-      appeal3: `❌ 申訴 \\\${appealId} 已經被審核過了`,
-      appeal4: `❌ 找不到申訴 ID: \\\${appealId}`,
-      ban: `❌ 用戶 \\\${targetUserId} 沒有封禁記錄`,
-      birthday: `❌ \\\${validation.error}
-
-請重新輸入生日（格式：YYYY-MM-DD）：`,
-      birthday2: `❌ 生日格式錯誤
-
-請重新輸入（格式：YYYY-MM-DD）：`,
-      birthday3: `❌ 生日格式錯誤`,
-      bottle: `❌ 此對話已結束。
-
-使用 /catch 撿新的漂流瓶開始新對話。`,
-      bottle2: `❌ 你的帳號已被封禁，無法撿漂流瓶。
-
-如有疑問，請使用 /appeal 申訴。`,
-      bottle3: `❌ 這個瓶子已經被其他人撿走了，請試試其他瓶子！`,
-      broadcast: `❌ 當前廣播系統僅支持 \\\${MAX_SAFE_USERS} 個用戶以內的廣播。
-
-`,
-      broadcast2: `❌ 廣播 ID 必須是數字`,
-      broadcast3: `❌ 找不到該廣播記錄`,
-      cancel: `❌ 暱稱太長，請輸入不超過 36 個字符的暱稱。
-
-請重新輸入或取消編輯：`,
-      cancel2: `❌ 個人簡介太長，請輸入不超過 200 個字符。
-
-請重新輸入或取消編輯：`,
-      cancel3: `❌ 地區名稱太長，請輸入不超過 50 個字符。
-
-請重新輸入或取消編輯：`,
-      cancel4: `❌ 暱稱太短，至少需要 4 個字符。
-
-請重新輸入或取消編輯：`,
-      cancel5: `❌ 每個標籤最多 20 個字符。
-
-請重新輸入或取消編輯：`,
-      cancel6: `❌ 取消編輯`,
-      cancel7: `❌ 已取消 \\\${ZODIAC_NAMES[zodiacSign]}`,
-      cancel8: `❌ 已取消 \\\${mbtiType}`,
-      cancel9: `❌ 取消`,
-      conversation: `❌ 找不到標識符 \\\${formatIdentifier(identifier)} 的對話
-
-`,
-      conversation2: `❌ 對話資訊錯誤。`,
-      conversation3: `❌ 對話資訊錯誤`,
-      conversation4: `❌ 對話不存在`,
-      conversationInfoError: `❌ 對話資訊錯誤`,
-      conversationNotFound: `❌ 對話不存在`,
-      failed: `❌ **廣告加載失敗**
-
-很抱歉，廣告無法正常播放。
-
-💡 **可能的原因：**
-• 網絡連接不穩定
-• 廣告提供商暫時不可用
-• 瀏覽器不支持
-
-🔄 **建議：**
-• 檢查網絡連接
-• 稍後再試
-• 或使用其他方式獲得額度（邀請朋友）`,
-      failed10: `❌ 查詢維護模式狀態失敗。`,
-      failed11: `❌ 刷新頭像失敗
-
-`,
-      failed12: `❌ 驗證失敗，請稍後再試`,
-      failed13: `❌ 啟用維護模式失敗。`,
-      failed14: `❌ 關閉維護模式失敗。`,
-      failed15: `❌ 獲取廣告狀態失敗`,
-      failed16: `❌ 獲取統計數據失敗`,
-      failed17: `❌ 創建廣播失敗。`,
-      failed18: `❌ 獲取信息失敗`,
-      failed19: `❌ 領取獎勵失敗`,
-      failed2: `❌ 創建過濾廣播失敗
-
-\\\${error instanceof Error ? error.message : String(error)}`,
-      failed20: `❌ 確認失敗`,
-      failed21: `❌ 設置失敗`,
-      failed22: `❌ 跳過失敗`,
-      failed23: `❌ 操作失敗`,
-      failed24: `❌ 發送每日報表失敗：\\\${error instanceof Error ? error.message : String(error)}`,
-      failed25: `❌ 獲取 VIP 漏斗數據失敗`,
-      failed26: `❌ **診斷失敗**
-
-`,
-      failed27: `❌ **刷新失敗**
-
-`,
-      failed28: `❌ **支付失敗**
-
-`,
-      failed29: `❌ 獲取廣告提供商列表失敗`,
-      failed3: `❌ 處理廣播隊列失敗：\\\${error instanceof Error ? error.message : String(error)}`,
-      failed30: `❌ 獲取官方廣告列表失敗`,
-      failed31: `❌ 啟用廣告提供商失敗`,
-      failed32: `❌ 停用廣告提供商失敗`,
-      failed33: `❌ 啟用官方廣告失敗`,
-      failed34: `❌ 停用官方廣告失敗`,
-      failed35: `❌ 獲取分析數據失敗`,
-      failed36: `❌ 獲取廣告數據失敗`,
-      failed37: `❌ 設置優先級失敗`,
-      failed38: `❌ 退款失敗：\\\${error instanceof Error ? error.message : String(error)}`,
-      failed39: `❌ 操作失敗：\\\${error instanceof Error ? error.message : String(error)}`,
-      failed4: `❌ 查詢廣播狀態失敗：\\\${error instanceof Error ? error.message : String(error)}`,
-      failed40: `❌ 提交失敗，請稍後再試。`,
-      failed41: `❌ 建立對話失敗，請稍後再試。`,
-      failed5: `❌ 取消廣播失敗：\\\${error instanceof Error ? error.message : String(error)}`,
-      failed6: `❌ 清理廣播失敗：\\\${error instanceof Error ? error.message : String(error)}`,
-      failed7: `❌ 重置失敗：\\\${errorMessage}
-
-請稍後再試。`,
-      failed8: `❌ 創建廣播失敗，請稍後再試。`,
-      failed9: `❌ 刷新對話歷史失敗
-
-`,
-      mbti: `❌ 無效的 MBTI 類型`,
-      message: `❌ 過濾器格式錯誤
-
-\\\${error instanceof Error ? error.message : String(error)}
-
-`,
-      message2: `❌ 此命令在生產環境中不可用。
-
-This command is not available in production.`,
-      message3: `❌ 發生錯誤，請稍後再試。
-
-錯誤信息：\\\${error instanceof Error ? error.message : String(error)}`,
-      message4: `❌ 很抱歉，你必須年滿 18 歲才能使用本服務。
-
-請成年後再來！`,
-      nickname: `❌ 無法獲取 Telegram 暱稱`,
-      nickname2: `❌ 暱稱不能包含網址連結
-
-`,
-      nickname3: `❌ \\\${validation.error}
-
-請重新輸入暱稱：`,
-      quota: `❌ 今日漂流瓶配額已用完（\\\${quotaDisplay}）
-
-💡 獲得更多配額的方式：
-`,
-      quota2: `❌ 今日對話訊息配額已用完（\\\${usedToday}/\\\${dailyLimit}）
-
-`,
-      quota3: `❌ 今日漂流瓶配額已用完（\\\${quotaDisplay}）
-
-`,
-      register: `❌ 請先完成註冊流程。
-
-使用 /start 繼續註冊。`,
-      register2: `❌ 找不到用戶資料，請先使用 /start 註冊。`,
-      register3: `❌ 請先完成註冊流程才能撿漂流瓶。
-
-使用 /start 繼續註冊。`,
-      settings: `❌ 最多只能設定 5 個興趣標籤。
-
-請重新輸入或取消編輯：`,
-      short: `❌ 無效的語言代碼`,
-      short10: `❌ 權限不足`,
-      short11: `❌ 稍後再說`,
-      short12: `❌ 重新選擇`,
-      short13: `❌ 重新輸入`,
-      short14: `❌ 關閉`,
-      short15: `❌ 未啟用`,
-      short2: `❌ 找不到用戶資料`,
-      short3: `❌ 未知的教學步驟`,
-      short4: `❌ 系統發生錯誤`,
-      short5: `❌ 頻道配置錯誤`,
-      short6: `❌ 未知操作`,
-      short7: `❌ 不正確`,
-      short8: `❌ 否`,
-      short9: `❌ 發生錯誤`,
-      start: `❌ 發生錯誤，請重新開始：/start`,
-      stats: `❌ 你沒有權限查看廣告統計`,
-      task: `❌ 查看任務中心時系統發生錯誤，請稍後再試。`,
-      text: `❌ 計算結果時系統發生錯誤，請稍後再試。
-
-`,
-      text10: `❌ 發送者資訊錯誤。`,
-      text11: `❌ 你沒有權限查看分析數據`,
-      text12: `❌ 發生錯誤，請稍後再試。`,
-      text13: `❌ 你沒有權限使用此命令。`,
-      text14: `❌ 使用方法錯誤
-
-`,
-      text15: `❌ 優先級必須是非負整數`,
-      text16: `❌ 時長必須是正整數或`,
-      text17: `❌ 處理支付時系統發生錯誤，請聯繫客服。
-
-`,
-      text18: `❌ 退款原因至少需要 10 個字，請重新輸入：`,
-      text19: `❌ **退款申請已被拒絕**
-
-`,
-      text2: `❌ 個人簡介包含不允許的連結。
-
-`,
-      text20: `❌ 退款申請超過時限
-
-`,
-      text21: `❌ 退款請求不存在或已處理`,
-      text22: `❌ 找不到支付記錄。`,
-      text23: `❌ 很抱歉，你必須年滿 18 歲才能使用本服務。
-
-`,
-      text24: `❌ 發生錯誤，請重新輸入。`,
-      text25: `❌ 請認真回答問題
-
-`,
-      text3: `❌ 未檢測到你加入頻道，請先加入後再試`,
-      text4: `❌ 檢測到你已離開頻道，無法領取獎勵。`,
-      text5: `❌ 啟動教學時發生錯誤，請稍後再試。`,
-      text6: `❌ 系統發生錯誤，請稍後再試。`,
-      text7: `❌ 時長必須是數字（分鐘）`,
-      text8: `❌ 發生錯誤，請稍後再試`,
-      text9: `❌ 無法獲取維護模式狀態`,
-      userNotFound: `❌ 用戶不存在，請先使用 /start 註冊。`,
-      userNotFound2: `❌ 用戶不存在，請先註冊`,
-      userNotFound3: `❌ 對方用戶不存在。`,
-      userNotFound4: `❌ 用戶不存在`,
-      userNotFound5: `❌ 用戶不存在：\\\${userId}`,
-      userNotFound6: `❌ 用戶不存在或未註冊。`,
-      userNotFound7: `❌ 用戶不存在。`,
-      vip: `❌ 你沒有權限查看 VIP 數據`,
-      vip2: `❌ 你不是 VIP 用戶，無法申請退款。`,
+  "help": {
+    "ad": "• Vizionați reclame: +1 credit de fiecare dată (până la 20 de ori pe zi)\n",
+    "ad2": "/ad_performance - Raport de performanță a reclamelor\n",
+    "ad3": "• Câștigați credite prin vizionarea reclamelor (afișat când creditele sunt consumate)\n",
+    "ad4": "• Vizionați anunțurile oficiale pentru a obține o cotă permanentă\n\n",
+    "ad5": "• Reclame oficiale: recompense de credit permanente\n",
+    "ad6": "• Experiență fără anunțuri\n\n",
+    "admin": "/admin_remove <user_id> - Eliminare administrator\n\n",
+    "admin2": "/admin_add <user_id> - Adăugare administrator\n",
+    "admin3": "/admin_list - Vizualizați lista administratorilor\n",
+    "admin4": "🔱 **Funcții Super Administrator**\n\n",
+    "admin5": "👮 **Funcții Administrator**\n\n",
+    "admin6": "**Gestionarea administratorilor**\n",
+    "admin_ads": "/admin_ads - Gestionare reclame oficiale\n",
+    "admin_tasks": "/admin_tasks - Gestionare sarcini comunitare",
+    "appeal": "/admin_reject <id> [note] - Refuză apelul\n\n",
+    "appeal2": "/admin_approve <id> [note] - Aproba apelul\n",
+    "appeal3": "/appeal_status - Verificați starea apelului\n\n",
+    "appeal4": "/admin_appeals - Vizualizați apelurile în așteptare\n",
+    "appeal5": "🛡️ **Securitate și Apeluri**\n",
+    "appeal6": "**Revizuirea apelurilor**\n",
+    "ban": "/admin_ban <user_id> [hours|permanent] - Interzice utilizatorul\n",
+    "ban2": "/admin_bans <user_id> - Vizualizați istoricul interdicțiilor utilizatorului\n\n",
+    "ban3": "/admin_unban <user_id> - Ridicați interdicția\n",
+    "ban4": "/admin_bans - Vizualizați înregistrările interdicțiilor\n",
+    "ban5": "/appeal - Apelați interdicția\n",
+    "ban6": "• Violările vor duce la o interdicție\n\n",
+    "birthday": "• Astăzi este ziua de naștere: is_birthday=true\n\n",
+    "bottle": "• Completați sarcini: Câștigați sticle cu mesaj suplimentare (utilizați /tasks pentru a vedea)\n",
+    "bottle2": "/tasks - Centru de sarcini (completați sarcinile pentru a câștiga sticle cu mesaj suplimentare)\n",
+    "bottle3": "• Limită zilnică pentru aruncarea și ridicarea sticlelor cu mesaj\n",
+    "bottle4": "• Utilizatori VIP: 30 sticle cu mesaj pe zi\n",
+    "bottle5": "• Sticlele cu mesaj sunt valabile timp de 24 de ore\n\n",
+    "bottle6": "• Utilizatori gratuiti: 3 sticle pe zi\n",
+    "bottle7": "/throw - Aruncă o sticlă cu mesaj\n",
+    "bottle8": "/catch - Ia o sticlă cu mesaj\n",
+    "bottle9": "🍾 **Sistemul Sticlei cu Mesaj**\n",
+    "broadcast": "/broadcast_status <id> - Vezi detalii despre difuzare\n",
+    "broadcast2": "/broadcast_process - Procesează manual coada de difuzare\n",
+    "broadcast3": "/broadcast_cleanup - Curăță difuzările blocate\n",
+    "broadcast4": "/broadcast_status - Vezi lista de difuzări\n",
+    "broadcast5": "**Monitorizarea Difuzărilor**\n",
+    "broadcast6": "**Trimiterea Difuzărilor**\n",
+    "cancel": "/broadcast_cancel <id> - Anulează difuzarea\n\n",
+    "conversation": "/chats - Lista conversațiilor mele\n\n",
+    "conversation2": "• Toate conversațiile sunt anonime\n",
+    "help2": "💡 Folosește /help pentru a vedea ajutorul",
+    "invite": "• Invită prieteni: +1 cotă pe persoană (max 10/100)\n",
+    "invite2": "/invite - Invită prieteni pentru a obține cotă\n",
+    "mbti": "• Filtrează după MBTI, Zodiac, Tip de Sânge\n",
+    "mbti2": "/mbti - Management MBTI\n",
+    "message": "/maintenance_enable - Activare mod de întreținere\n",
+    "message2": "/broadcast_non_vip - Trimiteți utilizatorilor non-VIP în masă\n",
+    "message3": "• Femei cu vârste între 18-25: gender=female,age=18-25\n",
+    "message4": "/broadcast_filter - Difuzare precisă\n",
+    "message5": "/broadcast_vip - Trimiteți utilizatorilor VIP în masă\n",
+    "message6": "/maintenance_disable - Dezactivare mod de întreținere\n\n",
+    "message7": "/maintenance_status - Vezi starea întreținerii\n",
+    "message8": "/broadcast - Trimiteți tuturor utilizatorilor în masă\n",
+    "profile": "/edit_profile - Editează profilul\n",
+    "profile2": "/profile - Vezi profilul\n",
+    "profile3": "👤 **Profil**\n",
+    "quota": "• Invitarea prietenilor poate crește cota (max 10/100)\n",
+    "quota2": "• Cotă zilnică de 30 de sticle cu mesaj\n",
+    "register": "/start - Începe să folosești / Continuă înregistrarea\n",
+    "report": "/report - Raportează conținut inadecvat\n",
+    "settings": "/settings - Setări notificări",
+    "settings2": "📖 **Ajutor și Setări**\n",
+    "stats": "/stats - Statistici mele\n\n",
+    "success": "└ Crește semnificativ rata de succes a potrivirii\n",
+    "text": "/maintenance_status - Vezi starea întreținerii",
+    "text10": "📖 **Lista de comenzi XunNi**\n\n",
+    "text11": "/analytics - Raport zilnic de operare\n",
+    "text12": "/dev_restart - Resetează complet contul",
+    "text13": "📜 **Regulile jocului XunNi**\n\n",
+    "text14": "• Numai text și Emojis oficiale pot fi trimise\n",
+    "text15": "/dev_info - Informații despre sistem\n",
+    "text16": "/quota - Vezi starea cotei\n",
+    "text17": "/rules - Vezi regulile jocului\n",
+    "text18": "/block - Blochează un utilizator\n",
+    "text19": "/help - Afișează această listă\n",
+    "text2": "/refresh_avatar - Reîmprospătează cache-ul avatarului\n",
+    "text20": "• Respectați-i pe ceilalți, comunicați cu bunătate\n\n",
+    "text21": "🎁 **Cum să Obții Cota**\n",
+    "text22": "• Nu împărtășiți informații personale de contact.\n",
+    "text23": "🛡️ **Reguli de Siguranță**\n",
+    "text24": "🎮 **Funcții Esențiale**\n",
+    "text25": "/menu - Meniul Principal\n",
+    "text26": "💬 **Chat Anonymous**\n",
+    "text27": "• Hărțuirea și insulele sunt interzise.\n",
+    "text28": "• Trimiterea de conținut inadecvat este interzisă.\n",
+    "text29": "• Deblocați avatarul clar al celeilalte părți.\n",
+    "text3": "• Trimiteți doar către femei: gender=female\n",
+    "text30": "• Escrocheriile și phishing-ul sunt interzise.\n",
+    "text31": "**Gestionarea Utilizatorilor**\n",
+    "text32": "**Întreținerea Sistemului**\n",
+    "text33": "**Analiza Datelor**\n",
+    "text34": "**Instrumente de Dezvoltare**\n",
+    "text4": "• Traducere automată în 34 de limbi (OpenAI preferat)\n",
+    "text5": "/profile_card - Vizualizați Carta de Profil\n",
+    "text6": "/dev_reset - Resetare Cont (pentru testare)\n",
+    "text7": "• Trimiteți doar către bărbați: gender=male\n",
+    "text8": "💡 Întâmpinați probleme? Utilizați /help pentru a vizualiza lista de comenzi.",
+    "text9": "• Folosiți /quota pentru a verifica starea cotelor dumneavoastră\n\n",
+    "throw": "• 🆕 Opportunitate de expunere triple (1 sticlă cu mesaj = 3 destinatari)\n",
+    "vip": "• VIP în Taiwan: country=TW,vip=true\n",
+    "vip2": "• Cotă zilnică gratuită: 3 (VIP: 30)\n",
+    "vip3": "/funnel - Funel de conversie VIP\n\n",
+    "vip4": "🎁 **Cota și VIP**\n",
+    "vip5": "/vip - Abonament VIP\n",
+    "vip6": "💎 **Beneficiile VIP**\n"
+  },
+  "history": {
+    "chatHistory": "💬 **Istoricul conversațiilor dumneavoastră**\n\n",
+    "continueChatButton": "💬 Continuați conversația",
+    "continueConversation": "💬 Continuați conversația: /reply\n",
+    "conversationEnd": "• Ultimul mesaj: {time}\n",
+    "conversationNotFound": "❌ Conversația cu identificatorul {identifier} nu a fost găsită.\n\nUtilizați /history pentru a vizualiza toate conversațiile.\n\n🏠 Întoarceți-vă la Meniul Principal: /menu",
+    "conversationStart": "• Conversația a început: {time}\n",
+    "conversationTitle": "📨 Conversația cu {identifier} ({count} mesaje)\n",
+    "conversationWith": "💬 **Conversație cu {identifier}**\n\n",
+    "daysAgo": "{days} zile în urmă",
+    "errorRetry": "❌ A apărut o eroare, vă rugăm să reîncercați mai târziu.",
+    "hoursAgo": "{hours} ore în urmă",
+    "justNow": "Chiar acum",
+    "lastMessage": "Ultimul mesaj: {preview}\n",
+    "messageSender": "{sender}: {content}\n\n",
+    "messageTime": "📨 {time}\n",
+    "minutesAgo": "{minutes} minute în urmă",
+    "noHistory": "💬 Nu aveți încă istoric de chat.\n\nMergeți să aruncați o sticlă cu mesaj pentru a întâlni prieteni noi! /throw\n\n🏠 Întoarceți-vă la Meniul Principal: /menu",
+    "noMessages": "(nu sunt mesaje)",
+    "partnerMessages": "• Cealaltă parte a trimis: {count} mesaje\n",
+    "recentMessages": "📨 **Conversații recente:**\n\n",
+    "returnToMenu": "🏠 Întoarceți-vă la Meniul Principal: /menu",
+    "returnToMenuButton": "🏠 Înapoi la Meniul Principal",
+    "stats": "📊 **Statistici:**\n",
+    "time": "Ora: {time}\n\n",
+    "totalMessages": "• Mesaje totale: {total}\n",
+    "userMessages": "• Ai trimis: {count}\n",
+    "viewFull": "💡 Utilizați /history {identifier} pentru a vizualiza conversația completă\n\n",
+    "you": "Tu"
+  },
+  "invite": {
+    "codeAccepted": "✅ Codul de invitație a fost acceptat! Îți mulțumim {inviterName} pentru invitație",
+    "inviteeSuccess": "✅ Ai acceptat invitația cu succes!",
+    "inviterSuccess": "✅ Invitație reușită! Ai câștigat +1 cotă permanentă",
+    "limitReached": "❌ Ai atins limita de invitații ({max} persoane)",
+    "limitWarning": "⚠️ Ai invitat {count} persoane și mai poți invita {remaining}",
+    "selfInviteError": "❌ Nu te poți invita pe tine însuți",
+    "upgradePrompt": "💎 Treci la VIP pentru mai multe cote de invitație",
+    "userType": "{type}"
+  },
+  "maintenance": {
+    "allFeaturesAvailable": "Acum poți folosi toate funcționalitățile în mod normal.",
+    "completed": "✅ Mentenanța sistemului este completă",
+    "completingSoon": "Aproape gata",
+    "correctFormat": "**Format corect:**\n/maintenance_enable [mesaj de întreținere]\n\n",
+    "defaultMessage": "Sistemul este în mentenanță și temporar indisponibil.",
+    "disableFailed": "❌ A eșuat dezactivarea modulului de mentenanță.",
+    "disableSuccess": "✅ Modul de mentenanță a fost dezactivat\n\nNotificarea de recuperare a fost transmisă tuturor utilizatorilor.",
+    "durationMax": "Durata mentenanței nu poate depăși 24 de ore (1440 de minute)",
+    "durationMin": "Durata mentenanței trebuie să fie de cel puțin 5 minute",
+    "durationMustBeNumber": "❌ Durata trebuie să fie numerică (în minute)",
+    "enableFailed": "❌ A eșuat activarea modulului de mentenanță.",
+    "enableSuccess": "✅ Modul de mentenanță a fost activat\n\nDurată: {duration} minute\nÎnceput: {startTime}\nFinal: {endTime}\n\nNotificarea de mentenanță a fost transmisă tuturor utilizatorilor.\nUtilizatorii obișnuiți nu vor avea acces la servicii; doar administratorii se pot conecta.",
+    "enabledBy": "Activator: {user}\n",
+    "estimatedDuration": "Durata estimată: {duration} minute\n",
+    "estimatedEnd": "Estimare finalizare: {time}\n",
+    "example": "**Exemplu:**\n/maintenance_enable 60 mentenanță upgrade sistem",
+    "notificationTitle": "🛠️ Notificare de Mentenanță a Sistemului",
+    "remainingHours": "Aproape {hours} ore {minutes} minute",
+    "remainingMinutes": "Aproape {minutes} minute",
+    "remainingTime": "Timp rămas: {time}\n",
+    "serviceRestored": "Serviciile au fost reluate în mod normal, mulțumim pentru răbdare!",
+    "startTime": "Timp de start: {time}\n",
+    "status": "Stare: {status}\n",
+    "statusActive": "✅ În mentenanță",
+    "statusFailed": "❌ Nu s-a putut obține starea modulului de mentenanță",
+    "statusInactive": "❌ Nu este activat",
+    "statusTitle": "🛠️ Starea Modulului de Mentenanță",
+    "thanks": "Îți mulțumim pentru răbdare!",
+    "unknown": "Necunoscut",
+    "usageError": "❌ Utilizare incorectă\n\n"
+  },
+  "mbti": {
+    "description": {
+      "ENFJ": "Protagonist - Un lider carismatic și inspirator care captivează audiența.",
+      "ENFP": "Candidat - Un spirit liber pasionat, creativ și sociabil care găsește întotdeauna un motiv de a zâmbi.",
+      "ENTJ": "Comandant - Un lider îndrăzneț, imaginativ și hotărât care găsește sau creează întotdeauna soluții.",
+      "ENTP": "Debatant - Un gânditor isteț și curios care nu poate rezista unei provocări intelectuale.",
+      "ESFJ": "Guvernator - O persoană profund empatică, bine apreciată și utilă care caută întotdeauna să contribuie la comunitate.",
+      "ESFP": "Interpret - O persoană spontană, energică și pasionată, care nu găsește niciodată viața plictisitoare.",
+      "ESTJ": "Manager - Un administrator excepțional cu abilități incomparabile în gestionarea afacerilor sau oamenilor.",
+      "ESTP": "Antreprenor - O persoană isteață, energică și perspicace, care se bucură cu adevărat de viața pe marginea prăpastiei.",
+      "INFJ": "Avocat - Un idealist tăcut și misterios, dar totodată inspirator și neobosit.",
+      "INFP": "Mediator - Un altruist poetic și amabil, întotdeauna lucrând cu pasiune pentru cauza justiției.",
+      "INTJ": "Arhitect - Un gânditor imaginative și strategic, care are totul planificat.",
+      "INTP": "Logician - Un inventator inovator cu o sete inepuizabilă de cunoaștere.",
+      "ISFJ": "Gardian - Un protector concentrat și cald, mereu pregătit să-și apere cei dragi.",
+      "ISFP": "Explorator - Un artist flexibil și fermecător, pregătit permanent să exploreze și să trăiască experiențe noi.",
+      "ISTJ": "Logistician - O persoană practică și orientată spre fapte, cu o fiabilitate indiscutabilă.",
+      "ISTP": "Evaluator - Un experimentator îndrăzneț și pragmatic, priceput în utilizarea unor instrumente diverse."
     },
-  },
-  estimate: {
-    immediate: `立即發送（約 1-2 秒）`,
-    minutes: `約 \${minutes} 分鐘`,
-    seconds: `約 \${seconds} 秒`,
-  },
-  gender: {
-    female: `[需要翻译]`,
-    label: `👤 性別：{otherUser.gender}`,
-    male: `[需要翻译]`,
-  },
-  help: {
-    ad: `• 觀看廣告：每次 +1 額度（每日最多 20 次）
-`,
-    ad2: `/ad_performance - 廣告效果報表
-`,
-    ad3: `• 觀看廣告獲得額度（額度用完時顯示）
-`,
-    ad4: `• 查看官方廣告獲得永久額度
-
-`,
-    ad5: `• 官方廣告：永久額度獎勵
-`,
-    ad6: `• 無廣告體驗
-
-`,
-    admin: `/admin_remove <user_id> - 移除管理員
-
-`,
-    admin2: `/admin_add <user_id> - 添加管理員
-`,
-    admin3: `/admin_list - 查看管理員列表
-`,
-    admin4: `🔱 **超級管理員功能**
-
-`,
-    admin5: `👮 **管理員功能**
-
-`,
-    admin6: `**管理員管理**
-`,
-    appeal: `/admin_reject <id> [備註] - 拒絕申訴
-
-`,
-    appeal2: `/admin_approve <id> [備註] - 批准申訴
-`,
-    appeal3: `/appeal_status - 查詢申訴狀態
-
-`,
-    appeal4: `/admin_appeals - 查看待審核申訴
-`,
-    appeal5: `🛡️ **安全與申訴**
-`,
-    appeal6: `**申訴審核**
-`,
-    ban: `/admin_ban <user_id> [hours|permanent] - 封禁用戶
-`,
-    ban2: `/admin_bans <user_id> - 查看用戶封禁歷史
-
-`,
-    ban3: `/admin_unban <user_id> - 解除封禁
-`,
-    ban4: `/admin_bans - 查看封禁記錄
-`,
-    ban5: `/appeal - 申訴封禁
-`,
-    ban6: `• 違規將被封禁
-
-`,
-    birthday: `• 今天生日：is_birthday=true
-
-`,
-    bottle: `• 完成任務：獲得額外瓶子（使用 /tasks 查看）
-`,
-    bottle2: `/tasks - 任務中心（完成任務獲得額外瓶子）
-`,
-    bottle3: `• 每天可以丟出和撿起有限數量的漂流瓶
-`,
-    bottle4: `• VIP 用戶：每天 30 個瓶子
-`,
-    bottle5: `• 瓶子在 24 小時內有效
-
-`,
-    bottle6: `• 免費用戶：每天 3 個瓶子
-`,
-    bottle7: `/throw - 丟出漂流瓶
-`,
-    bottle8: `/catch - 撿起漂流瓶
-`,
-    bottle9: `🍾 **漂流瓶系統**
-`,
-    broadcast: `/broadcast_status <id> - 查看廣播詳情
-`,
-    broadcast2: `/broadcast_process - 手動處理廣播隊列
-`,
-    broadcast3: `/broadcast_cleanup - 清理卡住的廣播
-`,
-    broadcast4: `/broadcast_status - 查看廣播列表
-`,
-    broadcast5: `**廣播監控**
-`,
-    broadcast6: `**廣播發送**
-`,
-    cancel: `/broadcast_cancel <id> - 取消廣播
-
-`,
-    conversation: `/chats - 我的對話列表
-
-`,
-    conversation2: `• 所有對話都是匿名的
-`,
-    help2: `💡 使用 /help 查看幫助`,
-    invite: `• 邀請好友：每人 +1 額度（最多 10/100）
-`,
-    invite2: `/invite - 邀請好友獲得額度
-`,
-    mbti: `• 可篩選 MBTI、星座、血型
-`,
-    mbti2: `/mbti - MBTI 管理
-`,
-    message: `/maintenance_enable <分鐘> <訊息> - 啟用維護模式
-`,
-    message2: `/broadcast_non_vip <訊息> - 群發給非 VIP 用戶
-`,
-    message3: `• 18-25歲女性：gender=female,age=18-25
-`,
-    message4: `/broadcast_filter <過濾器> <訊息> - 精準廣播
-`,
-    message5: `/broadcast_vip <訊息> - 群發給 VIP 用戶
-`,
-    message6: `/maintenance_disable - 關閉維護模式
-
-`,
-    message7: `/maintenance_status - 查看維護狀態
-`,
-    message8: `/broadcast <訊息> - 群發給所有用戶
-`,
-    profile: `/edit_profile - 編輯個人資料
-`,
-    profile2: `/profile - 查看個人資料
-`,
-    profile3: `👤 **個人資料**
-`,
-    quota: `• 邀請好友可增加配額（最多 10/100）
-`,
-    quota2: `• 每天 30 個漂流瓶配額
-`,
-    register: `/start - 開始使用 / 繼續註冊
-`,
-    report: `/report - 舉報不當內容
-`,
-    settings: `/settings - 推送設定`,
-    settings2: `📖 **幫助與設定**
-`,
-    stats: `/stats - 我的統計數據
-
-`,
-    success: `└ 大幅提升配對成功率
-`,
-    text: `/maintenance_status - 查看維護狀態`,
-    text10: `📖 **XunNi 指令列表**
-
-`,
-    text11: `/analytics - 每日運營報表
-`,
-    text12: `/dev_restart - 完全重置帳號`,
-    text13: `📜 **XunNi 遊戲規則**
-
-`,
-    text14: `• 只能發送文字和官方 Emoji
-`,
-    text15: `/dev_info - 系統信息
-`,
-    text16: `/quota - 查看額度狀態
-`,
-    text17: `/rules - 查看遊戲規則
-`,
-    text18: `/block - 封鎖使用者
-`,
-    text19: `/help - 顯示此列表
-`,
-    text2: `/refresh_avatar - 刷新頭像緩存
-`,
-    text20: `• 尊重對方，友善交流
-
-`,
-    text21: `🎁 **額度獲取方式**
-`,
-    text22: `• 不要分享個人聯絡方式
-`,
-    text23: `🛡️ **安全規則**
-`,
-    text24: `🎮 **核心功能**
-`,
-    text25: `/menu - 主選單
-`,
-    text26: `💬 **匿名聊天**
-`,
-    text27: `• 禁止騷擾、辱罵他人
-`,
-    text28: `• 禁止發送不當內容
-`,
-    text29: `• 解鎖對方清晰頭像
-`,
-    text3: `• 只發給女性：gender=female
-`,
-    text30: `• 禁止詐騙、釣魚
-`,
-    text31: `**用戶管理**
-`,
-    text32: `**系統維護**
-`,
-    text33: `**數據分析**
-`,
-    text34: `**開發工具**
-`,
-    text4: `• 34 種語言自動翻譯（OpenAI 優先）
-`,
-    text5: `/profile_card - 查看資料卡片
-`,
-    text6: `/dev_reset - 重置帳號（測試用）
-`,
-    text7: `• 只發給男性：gender=male
-`,
-    text8: `💡 遇到問題？使用 /help 查看指令列表`,
-    text9: `• 使用 /quota 查看額度狀態
-
-`,
-    throw: `• 🆕 三倍曝光機會（1 次丟瓶 = 3 個對象）
-`,
-    vip: `• 台灣的VIP：country=TW,vip=true
-`,
-    vip2: `• 每日免費額度：3 個（VIP：30 個）
-`,
-    vip3: `/funnel - VIP 轉化漏斗
-
-`,
-    vip4: `🎁 **額度與 VIP**
-`,
-    vip5: `/vip - VIP 訂閱
-`,
-    vip6: `💎 **VIP 權益**
-`,
-  },
-  history: {
-    chatHistory: `💬 **你的聊天記錄**
-
-`,
-    continueChatButton: `💬 繼續對話`,
-    continueConversation: `💬 繼續對話：/reply
-`,
-    conversationEnd: `• 最後訊息：{time}
-`,
-    conversationNotFound: `❌ 找不到標識符 {identifier} 的對話
-
-使用 /history 查看所有對話
-
-🏠 返回主選單：/menu`,
-    conversationStart: `• 對話開始：{time}
-`,
-    conversationTitle: `📨 {identifier} 的對話（{count} 則訊息）
-`,
-    conversationWith: `💬 **與 {identifier} 的對話**
-
-`,
-    daysAgo: `{days} 天前`,
-    errorRetry: `❌ 發生錯誤，請稍後再試。`,
-    hoursAgo: `{hours} 小時前`,
-    justNow: `剛剛`,
-    lastMessage: `最後訊息：{preview}
-`,
-    messageSender: `{sender}：{content}
-
-`,
-    messageTime: `📨 {time}
-`,
-    minutesAgo: `{minutes} 分鐘前`,
-    noHistory: `💬 你還沒有任何對話記錄
-
-快去丟瓶子認識新朋友吧！ /throw
-
-🏠 返回主選單：/menu`,
-    noMessages: `(無訊息)`,
-    partnerMessages: `• 對方發送：{count} 則
-`,
-    recentMessages: `
-📨 **最近對話：**
-
-`,
-    returnToMenu: `🏠 返回主選單：/menu`,
-    returnToMenuButton: `🏠 返回主選單`,
-    stats: `📊 **統計：**
-`,
-    time: `時間：{time}
-
-`,
-    totalMessages: `• 總訊息數：{total} 則
-`,
-    userMessages: `• 你發送：{count} 則
-`,
-    viewFull: `💡 使用 /history {identifier} 查看完整對話
-
-`,
-    you: `你`,
-  },
-  invite: {
-    codeAccepted: `✅ 邀請碼已接受！感謝 {inviterName} 的邀請`,
-    inviteeSuccess: `✅ 你已成功接受邀請！`,
-    inviterSuccess: `✅ 邀請成功！你獲得了 +1 永久額度`,
-    limitReached: `❌ 你已達到邀請上限（{max} 人）`,
-    limitWarning: `⚠️ 你已邀請 {count} 人，還可邀請 {remaining} 人`,
-    selfInviteError: `❌ 不能邀請自己`,
-    upgradePrompt: `💎 升級 VIP 可獲得更多邀請名額`,
-    userType: `{type}`,
-  },
-  maintenance: {
-    allFeaturesAvailable: `現在可以正常使用所有功能了。`,
-    completed: `✅ 系統維護已完成`,
-    completingSoon: `即將完成`,
-    correctFormat: `**正確格式：**
-/maintenance_enable <時長(分鐘)> [維護訊息]
-
-`,
-    defaultMessage: `系統正在進行維護，暫時無法使用。`,
-    disableFailed: `❌ 關閉維護模式失敗。`,
-    disableSuccess: `✅ 維護模式已關閉
-
-恢復通知已廣播給所有用戶。`,
-    durationMax: `維護時長不能超過 24 小時（1440 分鐘）`,
-    durationMin: `維護時長最少 5 分鐘`,
-    durationMustBeNumber: `❌ 時長必須是數字（分鐘）`,
-    enableFailed: `❌ 啟用維護模式失敗。`,
-    enableSuccess: `✅ 維護模式已啟用
-
-時長：{duration} 分鐘
-開始：{startTime}
-結束：{endTime}
-
-維護通知已廣播給所有用戶。
-一般用戶將無法使用服務，只有管理員可以登入。`,
-    enabledBy: `啟用者：{user}
-`,
-    estimatedDuration: `預計時長：{duration} 分鐘
-`,
-    estimatedEnd: `預計完成：{time}
-`,
-    example: `**示例：**
-/maintenance_enable 60 系統升級維護`,
-    notificationTitle: `🛠️ 系統維護通知`,
-    remainingHours: `約 {hours} 小時 {minutes} 分鐘`,
-    remainingMinutes: `約 {minutes} 分鐘`,
-    remainingTime: `剩餘時間：{time}
-`,
-    serviceRestored: `服務已恢復正常，感謝您的耐心等待！`,
-    startTime: `開始時間：{time}
-`,
-    status: `狀態：{status}
-`,
-    statusActive: `✅ 維護中`,
-    statusFailed: `❌ 無法獲取維護模式狀態`,
-    statusInactive: `❌ 未啟用`,
-    statusTitle: `🛠️ 維護模式狀態`,
-    thanks: `感謝您的耐心等待！`,
-    unknown: `未知`,
-    usageError: `❌ 使用方法錯誤
-
-`,
-  },
-  mbti: {
-    description: {
-      ENFJ: `主人公 - 富有魅力且鼓舞人心的領導者，有能力使聽眾著迷。`,
-      ENFP: `競選者 - 熱情、有創造力且社交能力強的自由精神，總能找到理由微笑。`,
-      ENTJ: `指揮官 - 大膽、富有想像力且意志強大的領導者，總能找到或創造解決方法。`,
-      ENTP: `辯論家 - 聰明好奇的思想家，無法抗拒智力上的挑戰。`,
-      ESFJ: `執政官 - 極有同情心、受歡迎且樂於助人的人，總是渴望為社群做出貢獻。`,
-      ESFP: `表演者 - 自發、精力充沛且熱情的表演者，生活在他們周圍從不無聊。`,
-      ESTJ: `總經理 - 出色的管理者，在管理事務或人員方面無與倫比。`,
-      ESTP: `企業家 - 聰明、精力充沛且善於洞察的人，真正享受生活在邊緣。`,
-      INFJ: `提倡者 - 安靜而神秘，同時鼓舞人心且不知疲倦的理想主義者。`,
-      INFP: `調停者 - 詩意、善良的利他主義者，總是熱情地為正義事業而努力。`,
-      INTJ: `建築師 - 富有想像力和戰略性的思想家，一切皆在計劃之中。`,
-      INTP: `邏輯學家 - 具有創新精神的發明家，對知識有著止不住的渴望。`,
-      ISFJ: `守衛者 - 非常專注且溫暖的守護者，時刻準備著保護所愛之人。`,
-      ISFP: `探險家 - 靈活且迷人的藝術家，時刻準備著探索和體驗新事物。`,
-      ISTJ: `物流師 - 實際且注重事實的個人，可靠性不容懷疑。`,
-      ISTP: `鑒賞家 - 大膽而實際的實驗者，擅長使用各種工具。`,
+    "full": {
+      "question1": "În situații sociale, de obicei:",
+      "question1.option1": "Ia inițiativa să vorbesc cu alții",
+      "question1.option2": "Aștept ca alții să se apropie de mine",
+      "question10": "Atunci când rezolvi probleme, te bazezi mai mult pe:",
+      "question10.option1": "Experiență practică și fapte",
+      "question10.option2": "Intuiție și posibilități",
+      "question11": "Preferi:",
+      "question11.option1": "Să mă concentrez pe detalii specifice",
+      "question11.option2": "Să mă concentrez pe imaginea de ansamblu",
+      "question12": "Când înveți lucruri noi, preferi:",
+      "question12.option1": "O abordare pas cu pas",
+      "question12.option2": "Să explorezi modalități inovatoare",
+      "question13": "Când citești, preferi:",
+      "question13.option1": "Ghiduri practice",
+      "question13.option2": "Teorii și concepte",
+      "question14": "Te preocupă mai mult:",
+      "question14.option1": "Prezentul și trecutul",
+      "question14.option2": "Viitorul și posibilitățile",
+      "question15": "Când descrii lucruri, ai tendința să:",
+      "question15.option1": "Folosesc exemple concrete",
+      "question15.option2": "Folosesc metafore și analogii",
+      "question16": "La muncă, prețuiești:",
+      "question16.option1": "Aplicarea practică",
+      "question16.option2": "Ideile inovatoare",
+      "question17": "Ai încredere în:",
+      "question17.option1": "Metode dovedite",
+      "question17.option2": "Încercări noi",
+      "question18": "Când planifici pentru viitor,:",
+      "question18.option1": "Îți bazezi pe condiții realiste",
+      "question18.option2": "Îți imaginezi diverse posibilități",
+      "question19": "Când iei decizii, prioritizezi:",
+      "question19.option1": "Logica și analiza obiectivă",
+      "question19.option2": "Emoțiile și armonia interumană",
+      "question2": "În weekenduri, preferi:",
+      "question2.option1": "Să ies cu prietenii",
+      "question2.option2": "Să rămân acasă singur pentru a mă odihni",
+      "question20": "Când critici pe alții,:",
+      "question20.option1": "Sublinezi direct problema",
+      "question20.option2": "Ieși în considerare sentimentele altora",
+      "question21": "Ce prețuiești mai mult:",
+      "question21.option1": "Corectitudine și justiție",
+      "question21.option2": "Compasiune și înțelegere",
+      "question22": "Când evaluezi o idee, mai întâi iei în considerare:",
+      "question22.option1": "Dacă este rațională",
+      "question22.option2": "Dacă este benefică",
+      "question23": "Când un prieten îți încredințează ceva, tu vei:",
+      "question23.option1": "Analiza problema și oferi sugestii",
+      "question23.option2": "Asculta și oferi confort",
+      "question24": "Într-un conflict, ai tendința să:",
+      "question24.option1": "Te ții de principii",
+      "question24.option2": "Menții relațiile",
+      "question25": "Ești mai ușor de convins de:",
+      "question25.option1": "Fapte și date",
+      "question25.option2": "Emoții și povești",
+      "question26": "În procesul decizional de echipă, te concentrezi mai mult pe:",
+      "question26.option1": "Eficiență și rezultate",
+      "question26.option2": "Consens și unitate",
+      "question27": "Crezi că un bun lider ar trebui să:",
+      "question27.option1": "Fie corect și decisiv",
+      "question27.option2": "Fie atent și grijuliu",
+      "question28": "Stilul tău de lucru este:",
+      "question28.option1": "Să planifici și să te pregătești din timp",
+      "question28.option2": "Să fii adaptabil și flexibil",
+      "question29": "Preferi:",
+      "question29.option1": "Să ai termene clare",
+      "question29.option2": "Să ții opțiunile deschise",
+      "question3": "După ce ai participat la o adunare, de obicei:",
+      "question3.option1": "Te simți energizat",
+      "question3.option2": "Simți nevoia să te odihnești",
+      "question30": "În timp ce călătorești, ai tendința să:",
+      "question30.option1": "Să faci itinerarii detaliate",
+      "question30.option2": "Să explorezi liber",
+      "question31": "Cameră ta este de obicei:",
+      "question31.option1": "Ordonați și organizată",
+      "question31.option2": "Relaxată și casuală",
+      "question32": "Când te ocupa de sarcini, vei:",
+      "question32.option1": "Termina devreme",
+      "question32.option2": "Completa aproape de termenul limită",
+      "question33": "Stilul tău de viață preferat:",
+      "question33.option1": "Structurat și ordonat",
+      "question33.option2": "Liber și flexibil",
+      "question34": "Când iei decizii, ai tendința să:",
+      "question34.option1": "Faci decizii rapide",
+      "question34.option2": "Să ții opțiunile deschise",
+      "question35": "În timp ce faci cumpărături, vei:",
+      "question35.option1": "Face o listă și cumpăra după cum ai planificat",
+      "question35.option2": "Răsfoiești casual și cumperi ce îți place",
+      "question36": "Când te confrunți cu schimbarea, de obicei:",
+      "question36.option1": "Te simți neliniștit",
+      "question36.option2": "Simți entuziasm",
+      "question4": "Într-o echipă, ești mai înclinat să:",
+      "question4.option1": "Îți exprimi opiniile activ",
+      "question4.option2": "Asculți înainte de a vorbi",
+      "question5": "Când întâlnești noi prieteni, tu:",
+      "question5.option1": "Te familiarizezi repede",
+      "question5.option2": "Ai nevoie de timp pentru a te acomoda treptat",
+      "question6": "Cercul tău de prieteni:",
+      "question6.option1": "Larg dar nu profund",
+      "question6.option2": "Mic și intim",
+      "question7": "Când lucrezi, preferi:",
+      "question7.option1": "Colaborare în echipă",
+      "question7.option2": "Lucru independent",
+      "question8": "Când gândești la probleme, ai tendința să:",
+      "question8.option1": "Gândești în timp ce vorbești",
+      "question8.option2": "Îți planifici gândurile înainte de a vorbi",
+      "question9": "Când ești sub stres, tu:",
+      "question9.option1": "Conversa cu prietenii",
+      "question9.option2": "Procesezi singur"
     },
-    full: {
-      question1: `在社交場合中，你通常：`,
-      'question1.option1': `主動與他人交談`,
-      'question1.option2': `等待他人來找我`,
-      question10: `解決問題時，你更依賴：`,
-      'question10.option1': `實際經驗和事實`,
-      'question10.option2': `直覺和可能性`,
-      question11: `你更喜歡：`,
-      'question11.option1': `關注具體細節`,
-      'question11.option2': `關注整體概念`,
-      question12: `學習新事物時，你更喜歡：`,
-      'question12.option1': `按部就班的方法`,
-      'question12.option2': `探索創新的方式`,
-      question13: `閱讀時，你更喜歡：`,
-      'question13.option1': `實用的指南`,
-      'question13.option2': `理論和概念`,
-      question14: `你更關注：`,
-      'question14.option1': `現在和過去`,
-      'question14.option2': `未來和可能性`,
-      question15: `描述事物時，你傾向於：`,
-      'question15.option1': `使用具體例子`,
-      'question15.option2': `使用比喻和類比`,
-      question16: `工作中，你更重視：`,
-      'question16.option1': `實際應用`,
-      'question16.option2': `創新想法`,
-      question17: `你更信任：`,
-      'question17.option1': `已驗證的方法`,
-      'question17.option2': `新的嘗試`,
-      question18: `規劃未來時，你會：`,
-      'question18.option1': `基於現實條件`,
-      'question18.option2': `想像各種可能`,
-      question19: `做決定時，你更重視：`,
-      'question19.option1': `邏輯和客觀分析`,
-      'question19.option2': `情感和人際和諧`,
-      question2: `週末你更喜歡：`,
-      'question2.option1': `和朋友出去玩`,
-      'question2.option2': `在家獨處休息`,
-      question20: `批評他人時，你會：`,
-      'question20.option1': `直接指出問題`,
-      'question20.option2': `考慮對方感受`,
-      question21: `你更看重：`,
-      'question21.option1': `公平和正義`,
-      'question21.option2': `同情和理解`,
-      question22: `評價一個想法時，你首先考慮：`,
-      'question22.option1': `是否合理`,
-      'question22.option2': `是否有益`,
-      question23: `朋友向你傾訴時，你會：`,
-      'question23.option1': `分析問題並提供建議`,
-      'question23.option2': `傾聽並給予安慰`,
-      question24: `衝突中，你更傾向於：`,
-      'question24.option1': `堅持原則`,
-      'question24.option2': `維持關係`,
-      question25: `你更容易被說服通過：`,
-      'question25.option1': `事實和數據`,
-      'question25.option2': `情感和故事`,
-      question26: `團隊決策時，你更關注：`,
-      'question26.option1': `效率和結果`,
-      'question26.option2': `共識和團結`,
-      question27: `你認為好的領導者應該：`,
-      'question27.option1': `公正果斷`,
-      'question27.option2': `體貼關懷`,
-      question28: `你的工作方式是：`,
-      'question28.option1': `提前計劃和準備`,
-      'question28.option2': `隨機應變和靈活`,
-      question29: `你更喜歡：`,
-      'question29.option1': `有明確的截止日期`,
-      'question29.option2': `保持開放的選擇`,
-      question3: `參加聚會後，你通常：`,
-      'question3.option1': `感到充滿活力`,
-      'question3.option2': `感到需要休息`,
-      question30: `旅行時，你傾向於：`,
-      'question30.option1': `制定詳細行程`,
-      'question30.option2': `隨心所欲探索`,
-      question31: `你的房間通常：`,
-      'question31.option1': `整齊有序`,
-      'question31.option2': `隨性自在`,
-      question32: `處理任務時，你會：`,
-      'question32.option1': `盡早完成`,
-      'question32.option2': `接近截止日期才完成`,
-      question33: `你更喜歡的生活方式：`,
-      'question33.option1': `有規律和結構`,
-      'question33.option2': `自由和彈性`,
-      question34: `做決定時，你傾向於：`,
-      'question34.option1': `快速決定`,
-      'question34.option2': `保留選擇權`,
-      question35: `購物時，你會：`,
-      'question35.option1': `列清單按計劃購買`,
-      'question35.option2': `隨意逛逛看到喜歡就買`,
-      question36: `面對變化，你通常：`,
-      'question36.option1': `感到不安`,
-      'question36.option2': `感到興奮`,
-      question4: `在團隊中，你更傾向於：`,
-      'question4.option1': `積極發表意見`,
-      'question4.option2': `先聽後說`,
-      question5: `遇到新朋友時，你會：`,
-      'question5.option1': `很快就能熟絡起來`,
-      'question5.option2': `需要時間慢慢熟悉`,
-      question6: `你的朋友圈：`,
-      'question6.option1': `廣泛但不深入`,
-      'question6.option2': `小而親密`,
-      question7: `工作時，你更喜歡：`,
-      'question7.option1': `團隊合作`,
-      'question7.option2': `獨立工作`,
-      question8: `思考問題時，你傾向於：`,
-      'question8.option1': `邊說邊想`,
-      'question8.option2': `先想好再說`,
-      question9: `壓力大時，你會：`,
-      'question9.option1': `找朋友聊天`,
-      'question9.option2': `獨自消化`,
+    "quick": {
+      "question1": "În situații sociale, de obicei:",
+      "question1.option1": "Te implici proactiv în conversații",
+      "question1.option2": "Aștepți ca alții să se apropie de tine",
+      "question10": "Stilul tău de lucru este:",
+      "question10.option1": "Planifici și te pregătești în avans",
+      "question10.option2": "Te adaptezi și ești flexibil",
+      "question11": "Preferi:",
+      "question11.option1": "Termene clare",
+      "question11.option2": "Să păstrezi opțiunile deschise",
+      "question12": "Când călătorești, ai tendința să:",
+      "question12.option1": "Creezi itinerarii detaliate",
+      "question12.option2": "Explorezi în ritmul tău",
+      "question2": "În weekenduri, preferi:",
+      "question2.option1": "Să ieși cu prietenii",
+      "question2.option2": "Să stai acasă pentru a te relaxa singur",
+      "question3": "După ce ai participat la o adunare, de obicei:",
+      "question3.option1": "Te simți energizat",
+      "question3.option2": "Simți nevoia să te odihnești",
+      "question4": "Când rezolvi probleme, te bazezi mai mult pe:",
+      "question4.option1": "Experiență practică și fapte",
+      "question4.option2": "Intuiție și posibilități",
+      "question5": "Preferi:",
+      "question5.option1": "Să te concentrezi pe detalii specifice",
+      "question5.option2": "Să te concentrezi pe conceptul general",
+      "question6": "Când înveți lucruri noi, preferi:",
+      "question6.option1": "O abordare pas cu pas",
+      "question6.option2": "Explorarea de metode inovatoare",
+      "question7": "Când iei decizii, valorezi mai mult:",
+      "question7.option1": "Logica și analiza obiectivă",
+      "question7.option2": "Emoția și armonia interumană",
+      "question8": "Când critici pe alții, tu:",
+      "question8.option1": "Indică direct problema",
+      "question8.option2": "Consideră sentimentele celeilalte persoane",
+      "question9": "Ce apreciezi mai mult:",
+      "question9.option1": "Corectitudine și Justiție",
+      "question9.option2": "Compasiune și Înțelegere"
+    }
+  },
+  "mbtiTest": {
+    "afterRegistration": "💡 După completarea înregistrării, poți:\n",
+    "answerRecorded": "✅ Înregistrat",
+    "completion": "🎉 {testTitle} Finalizat!\n\n",
+    "fullAccuracy": "Rezultate mai precise",
+    "fullQuestions": "36 întrebări",
+    "fullTest": "Completează testul MBTI",
+    "fullTestInfo": "💡 Acesta este un test complet ({questions}), rezultatul este mai precis.\nDupă finalizarea înregistrării, puteți folosi /mbti pentru a relua testul.\n\n",
+    "fullTestTitle": "Completează testul",
+    "manualModify": "• Modifică manual tipul tău MBTI",
+    "moreDetailedTest": "• Fă un test mai detaliat\n",
+    "note": "⚠️ Notă: Acesta este {testInfo}{testTitle}, {accuracy}.\n\n",
+    "questionOrderError": "⚠️ Ordine incorectă a întrebărilor",
+    "questions12": "12 întrebări",
+    "questions36": "36 întrebări",
+    "quickAccuracy": "Rezultatele sunt doar pentru referință",
+    "quickQuestions": "12 întrebări",
+    "quickTest": "Test rapid MBTI",
+    "quickTestInfo": "💡 Acesta este un test rapid ({questions}), rezultatul este doar pentru referință.\nDupă finalizarea înregistrării, puteți folosi /mbti pentru a relua testul.\n\n",
+    "quickTestTitle": "Test rapid",
+    "yourMbtiType": "Tipul dumneavoastră MBTI este: **{type}**\n\n"
+  },
+  "menu": {
+    "bottle": "• Activat după ce prietenii aruncă prima sticlă\n",
+    "buttonCatch": "🎣 Ridică o sticlă cu mesaj",
+    "buttonChats": "💬 Conversațiile mele",
+    "buttonHelp": "❓ Ajutor",
+    "buttonInvite": "👥 Invitați prieteni",
+    "buttonProfile": "👤 Profil",
+    "buttonSettings": "⚙️ Setări",
+    "buttonStats": "📊 Statistici",
+    "buttonThrow": "🌊 Aruncă o sticlă cu mesaj",
+    "buttonVip": "💎 VIP",
+    "invite": "🎁 **Invită prieteni**\n\n",
+    "invite2": "📋 Codul tău de invitație: {inviteCode}",
+    "invite3": "📤 Împărtășește codul de invitație",
+    "levelFree": "🆓 Membru gratuit",
+    "levelVip": "💎 Membru VIP",
+    "message": "https://t.me/share/url?url=https://t.me/${botUsername}?start=invite_${inviteCode}&text=Alătură-te lui XunNi pentru a arunca sticle cu mesaje împreună!🍾 Folosește codul meu de invitație pentru a te alătura și putem obține amândoi mai multe coturi! https://t.me/share/url?url=https://t.me/${botUsername}?start=invite_${inviteCode}&text=Join",
+    "message2": "https://t.me/share/url?url=https://t.me/${botUsername}?start=invite_${inviteCode}&text=Vino la XunNi și aruncă sticle cu mesaje împreună https://t.me/share/url?url=https://t.me/${botUsername}?start=invite_${inviteCode}&text=Come",
+    "notRegistered": "Neînregistrat",
+    "notSet": "Nelimitat",
+    "quota": "• Amândoi primiți o cotă zilnică +1\n\n",
+    "register": "• Prietenii se înregistrează folosind codul tău de invitație\n",
+    "selectFeature": "Te rugăm să alegi o funcție:",
+    "settings": "• MBTI: ${mbti}\n",
+    "settings2": "• Zodiac: ${zodiac}\n\n",
+    "settings3": "Nelimitat",
+    "settings4": "Nesetat",
+    "short": "Mem gratuit",
+    "stats": "📊 Vezi statistici invitație: /profil",
+    "stats2": "📊 Vezi statistici invitație",
+    "task": "🎯 **Următoarea sarcină**\n⏳ ${nextTask.name} (+${nextTask.reward_amount} sticle cu mesaj)\n💡 ${nextTask.description}\n\n",
+    "text": "🏠 **Meniul principal** ${vipBadge}\n\n",
+    "text2": "👋 Bună, ${user.nickname}!\n\n",
+    "text3": "💡 Apasă butonul de mai jos pentru a împărtăși cu prietenii:\n",
+    "text4": "💡 Selectează funcția dorită:",
+    "text5": "📊 Statutul tău:\n",
+    "title": "🏠 **Meniul Principal**",
+    "userNotFound": "Utilizatorul nu există",
+    "vip": "• Nivel: ${isVip ? 'Membru VIP 💎' : 'Membru gratuit'}\n",
+    "vip2": "Membru VIP 💎",
+    "yourStatus": "Statutul tău"
+  },
+  "messageForward": {
+    "blockedUrls": "❌ Mesajul conține un URL interzis",
+    "dailyQuota": "📊 Mesaje trimise astăzi: {used}/{limit}",
+    "messageSent": "✅ Mesajul a fost trimis către {identifier}\n\n",
+    "quotaExceeded": "❌ Cota de mesaje pentru astăzi a fost epuizată",
+    "removeLinks": "💡 Te rog elimină URL-ul și încearcă din nou",
+    "replyHint": "💡 Te rog răspunde la mesajul celeilalte părți pentru a trimite un mesaj",
+    "upgradeVip": "💡 Upgradează la VIP pentru mai multă cotă (100 mesaje/zi): /vip\n",
+    "urlNotAllowed": "❌ Mesajul conține un URL nepermis\n\n",
+    "urlNotAllowedDesc": "⚠️ Pentru siguranță, doar URL-uri specifice sunt permise în conversații.\n\n",
+    "vipDailyLimit": "💡 Utilizatorii VIP pot trimite 100 de mesaje pe zi.\n"
+  },
+  "nickname": {
+    "cannotGetNickname": "❌ Nu s-a putut prelua numele de utilizator Telegram",
+    "customHint": "⚠️ Notă:\n• Limita de caractere pentru nume de utilizator este de 36\n• Cealaltă parte afișează un maximum de 18 caractere\n• Te rog să nu folosești un nume de utilizator pentru a trimite reclame",
+    "customPrompt": "✏️ Te rog să introduci apelativul tău:\n\n",
+    "genderHint": "⚠️ Notă: Setările de gen nu pot fi schimbate odată ce sunt selectate, te rog alege cu atenție!",
+    "genderSelection": "Minunat! Apelativul tău este: {nickname}\n\nAcum te rog să selectezi genul tău:\n\n",
+    "nicknameSet": "✅ Nume de utilizator setat",
+    "userNotFound": "❌ Utilizatorul nu există"
+  },
+  "officialAd": {
+    "adNotFound": "❌ Reclama nu există",
+    "allAdsViewed": "✅ Ai vizionat toate reclamele oficiale",
+    "alreadyViewed": "Ai vizionat deja această reclama",
+    "buttonClaimReward": "Cere recompensă",
+    "buttonJoinGroup": "Alătură-te grupului",
+    "buttonSubscribeChannel": "Abonează-te la canal",
+    "buttonVerifyAndClaim": "✅ Verifică și cere",
+    "buttonViewDetails": "Vezi detalii",
+    "buttonVisitLink": "Vizitează linkul",
+    "cannotClaim": "❌ Nu se poate cere această reclamă",
+    "claimReward": "✅ Cere recompensă",
+    "claimRewardButton": "✅ Cere recompensă",
+    "claimRewardSuccess": "✅ Recompensă revendicată cu succes! Obținut +{quota} cotă permanentă!",
+    "communityBenefits": "💡 Completează sarcinile pentru a câștiga cotă permanentă",
+    "communityThanks": "🙏 Îți mulțumim pentru susținerea comunității!",
+    "errorRetry": "❌ A apărut o eroare, te rog încearcă din nou mai târziu",
+    "moreAdsAvailable": "💡 Există mai multe reclame oficiale de vizionat!",
+    "nextAd": "➡️ Următoarea reclamă",
+    "noAdsAvailable": "❌ Nu sunt anunțuri disponibile",
+    "noVerificationRequired": "❌ Acest anunț nu necesită verificare",
+    "quotaInfo": "📊 Rămase astăzi: **{remaining}/20** ori",
+    "requiresVerification": "✅ Verificare necesară: Faceți clic pe butonul 'Verificare' după ce ați intrat în grup/canal",
+    "reward": "🎁 Recompensă: +{quota} cotă permanentă",
+    "rewardPermanent": "🎁 Finalizați sarcina pentru a câștiga **+1 cotă permanentă**",
+    "rewardTemporary": "🎁 Felicitări! Ați primit +1 cotă temporară (valabilă astăzi)",
+    "statsAdNotFound": "❌ Anunțul nu există",
+    "statsClicks": "• Click-uri: {count}\n",
+    "statsCtr": "• Rata de clicuri (CTR): {rate}%\n",
+    "statsHint": "💡 Folosiți /ad_stats {id} pentru a vizualiza statistici detaliate",
+    "statsNoAds": "📊 Nu sunt anunțuri oficiale disponibile",
+    "statsNoPermission": "❌ Nu aveți permisiunea de a vizualiza statisticile anunțurilor",
+    "statsRemainingViews": "• Rămase afișări: {remaining}/{total}\n",
+    "statsRewardGranted": "• Recompense emise: {count}\n",
+    "statsRewardRate": "• Rata recompenselor: {rate}%\n",
+    "statsRewardSummary": "• Recompense: {rewards}\n\n",
+    "statsSummary": "• Afișări: {views} | Click-uri: {clicks} ({ctr}%)\n",
+    "statsTitle": "📊 **Statistici oficiale ale anunțurilor**\n\n",
+    "statsVerificationCount": "• Timp de verificare: {count}\n",
+    "statsVerificationRate": "• Rata de verificare: {rate}%\n",
+    "statsViews": "• Timp de afișare: {count}\n",
+    "statusDisabled": "Dezactivează",
+    "statusEnabled": "Activează",
+    "unlimited": "Nelimitat",
+    "userNotFound": "❌ Utilizatorul nu există",
+    "verifySuccess": "✅ Verificare reușită! Ați primit +{quota} cotă permanentă!"
+  },
+  "onboarding": {
+    "age": "• Vârstă: ${updatedUser.age} ani\n",
+    "age2": "Vârsta dumneavoastră: ${age} ani\n",
+    "age3": "Vârstă: ${age} ani\n",
+    "ageRestriction": "❌ Ne pare rău, trebuie să aveți cel puțin 18 ani pentru a folosi acest serviciu.\n\n",
+    "agreeTerms": "Faceți clic pe butonul de mai jos pentru a indica că ați citit și acceptat termenii de mai sus.",
+    "antiFraud": {
+      "confirm_button": "✅ Da, înțeleg și voi acorda atenție siguranței",
+      "learn_button": "📚 Vreau să aflu mai multe despre siguranță",
+      "question1": "1. Înțelegeți riscurile de siguranță ale întâlnirilor online?\n",
+      "question2": "2. Veți proteja informațiile dumneavoastră personale?\n",
+      "question3": "3. Când întâlniți mesaje suspecte, veți fi vigilent?\n\n"
     },
-    quick: {
-      question1: `在社交場合中，你通常：`,
-      'question1.option1': `主動與他人交談`,
-      'question1.option2': `等待他人來找我`,
-      question10: `你的工作方式是：`,
-      'question10.option1': `提前計劃和準備`,
-      'question10.option2': `隨機應變和靈活`,
-      question11: `你更喜歡：`,
-      'question11.option1': `有明確的截止日期`,
-      'question11.option2': `保持開放的選擇`,
-      question12: `旅行時，你傾向於：`,
-      'question12.option1': `制定詳細行程`,
-      'question12.option2': `隨心所欲探索`,
-      question2: `週末你更喜歡：`,
-      'question2.option1': `和朋友出去玩`,
-      'question2.option2': `在家獨處休息`,
-      question3: `參加聚會後，你通常：`,
-      'question3.option1': `感到充滿活力`,
-      'question3.option2': `感到需要休息`,
-      question4: `解決問題時，你更依賴：`,
-      'question4.option1': `實際經驗和事實`,
-      'question4.option2': `直覺和可能性`,
-      question5: `你更喜歡：`,
-      'question5.option1': `關注具體細節`,
-      'question5.option2': `關注整體概念`,
-      question6: `學習新事物時，你更喜歡：`,
-      'question6.option1': `按部就班的方法`,
-      'question6.option2': `探索創新的方式`,
-      question7: `做決定時，你更重視：`,
-      'question7.option1': `邏輯和客觀分析`,
-      'question7.option2': `情感和人際和諧`,
-      question8: `批評他人時，你會：`,
-      'question8.option1': `直接指出問題`,
-      'question8.option2': `考慮對方感受`,
-      question9: `你更看重：`,
-      'question9.option1': `公平和正義`,
-      'question9.option2': `同情和理解`,
+    "antiFraudConfirm": "Vă rugăm să confirmați:",
+    "antiFraudFinalStep": "🛡️ Ultimul pas: Confirmare de securitate anti-fraudă\n\n",
+    "antiFraudLearn": "📚 Vreau să aflu mai multe despre siguranță",
+    "antiFraudPassed": "✅ Testul anti-fraudă a fost trecut!\n\n",
+    "antiFraudQuestion1": "1. Înțelegeți riscurile de siguranță ale întâlnirilor online?\n",
+    "antiFraudQuestion2": "2. Veți proteja informațiile dumneavoastră personale?\n",
+    "antiFraudQuestion3": "3. Când întâlnești mesaje suspecte, vei fi vigilent?\n\n",
+    "antiFraudQuestions": "Pentru a proteja siguranța tuturor utilizatorilor, te rugăm să confirmi că înțelegi următoarele:\n\n",
+    "antiFraudYes": "✅ Da, înțeleg și voi acorda atenție siguranței",
+    "back": "⬅️ Înapoi",
+    "birthday": "Dacă credeți că aceasta este o eroare, vă rugăm să verificați dacă formatul datei dumneavoastră de naștere este corect (AAAA-LL-ZZ).",
+    "birthday2": "Te rugăm să reintroduci data nașterii tale (format: YYYY-MM-DD):\n\n",
+    "birthday3": "Te rugăm să introduci data nașterii tale (format: YYYY-MM-DD):\n\n",
+    "birthday4": "Data nașterii: ${birthday}\n",
+    "birthdayCheck": "Dacă credeți că aceasta este o eroare, vă rugăm să verificați dacă formatul datei nașterii este corect (AAAA-LL-ZZ).",
+    "birthdayError": "❌ {error}\n\n",
+    "birthdayFormatError": "❌ Format incorect pentru data nașterii\n\nVă rugăm să reintroduceți (format: AAAA-LL-ZZ):",
+    "birthdayRetry": "Vă rugăm să reintroduceți data nașterii (format: AAAA-LL-ZZ):",
+    "birthdayWarning": "⚠️ Data nașterii nu poate fi modificată după setare, vă rugăm să confirmați că este corectă!",
+    "bloodType": {
+      "select": "Vă rugăm să selectați tipul dumneavoastră de sânge:"
     },
-  },
-  mbtiTest: {
-    afterRegistration: `💡 完成註冊後，你可以：
-`,
-    answerRecorded: `✅ 已記錄`,
-    completion: `🎉 {testTitle}完成！
-
-`,
-    fullAccuracy: `結果更準確`,
-    fullQuestions: `36 題`,
-    fullTest: `MBTI 完整測驗`,
-    fullTestInfo: `
-
-💡 這是完整測驗（{questions}），結果更準確。
-完成註冊後，可使用 /mbti 重新測驗。
-
-`,
-    fullTestTitle: `完整測驗`,
-    manualModify: `• 手動修改你的 MBTI 類型`,
-    moreDetailedTest: `• 進行更詳細的測驗
-`,
-    note: `⚠️ 注意：這是 {testInfo}{testTitle}，{accuracy}。
-
-`,
-    questionOrderError: `⚠️ 問題順序錯誤`,
-    questions12: `12 題`,
-    questions36: `36 題`,
-    quickAccuracy: `結果僅供參考`,
-    quickQuestions: `12 題`,
-    quickTest: `MBTI 快速測驗`,
-    quickTestInfo: `
-
-💡 這是快速測驗（{questions}），結果僅供參考。
-完成註冊後，可使用 /mbti 重新測驗。
-
-`,
-    quickTestTitle: `快速測驗`,
-    yourMbtiType: `你的 MBTI 類型是：**{type}**
-
-`,
-  },
-  menu: {
-    bottle: `• 好友丟出第一個瓶子後激活
-`,
-    buttonCatch: `🎣 撿起漂流瓶`,
-    buttonChats: `💬 我的對話`,
-    buttonHelp: `❓ 幫助`,
-    buttonInvite: `👥 邀請好友`,
-    buttonProfile: `👤 個人資料`,
-    buttonSettings: `⚙️ 設定`,
-    buttonStats: `📊 統計`,
-    buttonThrow: `🌊 丟出漂流瓶`,
-    buttonVip: `💎 VIP`,
-    invite: `🎁 **邀請好友**
-
-`,
-    invite2: `📋 你的邀請碼：\\`,
-    invite3: `📤 分享邀請碼`,
-    levelFree: `🆓 免費會員`,
-    levelVip: `💎 VIP 會員`,
-    message: `https://t.me/share/url?url=https://t.me/\${botUsername}?start=invite_\${inviteCode}&text=來 XunNi 一起丟漂流瓶吧！🍾 使用我的邀請碼加入，我們都能獲得更多配額！`,
-    message2: `https://t.me/share/url?url=https://t.me/\${botUsername}?start=invite_\${inviteCode}&text=來 XunNi 一起丟漂流`,
-    notRegistered: `未注册`,
-    notSet: `未设定`,
-    quota: `• 你們都獲得每日配額 +1
-
-`,
-    register: `• 好友使用你的邀請碼註冊
-`,
-    selectFeature: `請選擇功能：`,
-    settings: `• MBTI：\${mbti}
-`,
-    settings2: `• 星座：\${zodiac}
-
-`,
-    settings3: `未設定`,
-    settings4: `未設定`,
-    short: `免費會員`,
-    stats: `📊 查看邀請統計：/profile`,
-    stats2: `📊 查看邀請統計`,
-    task: `🎯 **下一個任務**
-⏳ \${nextTask.name} (+\${nextTask.reward_amount} 瓶子)
-💡 \${nextTask.description}
-
-`,
-    text: `🏠 **主選單** \${vipBadge}
-
-`,
-    text2: `👋 嗨，\${user.nickname}！
-
-`,
-    text3: `💡 點擊下方按鈕分享給好友：
-`,
-    text4: `💡 選擇你想要的功能：`,
-    text5: `📊 你的狀態：
-`,
-    title: `🏠 **主選單**`,
-    userNotFound: `用戶不存在`,
-    vip: `• 等級：\${isVip ? 'VIP 會員 💎' : '免費會員'}
-`,
-    vip2: `VIP 會員 💎`,
-    yourStatus: `你的狀態`,
-  },
-  messageForward: {
-    blockedUrls: `❌ 訊息包含被禁止的網址`,
-    dailyQuota: `📊 今日已發送：{used}/{limit} 則`,
-    messageSent: `✅ 訊息已發送給 {identifier}
-
-`,
-    quotaExceeded: `❌ 今日訊息配額已用完`,
-    removeLinks: `💡 請移除網址後再試`,
-    replyHint: `💡 請回覆對方的訊息來發送消息`,
-    upgradeVip: `💡 升級 VIP 可獲得更多配額（100 則/天）：/vip
-`,
-    urlNotAllowed: `❌ 訊息包含不被允許的網址
-
-`,
-    urlNotAllowedDesc: `⚠️ 為了安全，對話中只允許特定網址。
-
-`,
-    vipDailyLimit: `💡 VIP 用戶每日可發送 100 則訊息。
-`,
-  },
-  nickname: {
-    cannotGetNickname: `❌ 無法獲取 Telegram 暱稱`,
-    customHint: `⚠️ 注意：
-• 暱稱長度限制 36 個字
-• 對方最多顯示 18 個字
-• 請勿使用暱稱發送廣告`,
-    customPrompt: `✏️ 請輸入你的暱稱：
-
-`,
-    genderHint: `⚠️ 注意：性別設定後無法修改，請謹慎選擇！`,
-    genderSelection: `很好！你的暱稱是：{nickname}
-
-現在請選擇你的性別：
-
-`,
-    nicknameSet: `✅ 暱稱已設定`,
-    userNotFound: `❌ 用戶不存在`,
-  },
-  officialAd: {
-    adNotFound: `❌ 廣告不存在`,
-    allAdsViewed: `✅ 你已經看過所有官方廣告了`,
-    alreadyViewed: `你已經看過此廣告`,
-    buttonClaimReward: `領取獎勵`,
-    buttonJoinGroup: `加入群組`,
-    buttonSubscribeChannel: `訂閱頻道`,
-    buttonVerifyAndClaim: `✅ 驗證並領取`,
-    buttonViewDetails: `查看詳情`,
-    buttonVisitLink: `訪問鏈接`,
-    cannotClaim: `❌ 無法領取此廣告`,
-    claimReward: `✅ 領取獎勵`,
-    claimRewardButton: `✅ 領取獎勵`,
-    claimRewardSuccess: `✅ 領取獎勵成功！獲得 +{quota} 個永久額度！`,
-    communityBenefits: `💡 完成任務可獲得永久額度`,
-    communityThanks: `🙏 感謝支持社群！`,
-    errorRetry: `❌ 發生錯誤，請稍後再試`,
-    moreAdsAvailable: `💡 還有更多官方廣告可以觀看！`,
-    nextAd: `➡️ 下一個廣告`,
-    noAdsAvailable: `❌ 暫無可用的廣告`,
-    noVerificationRequired: `❌ 此廣告不需要驗證`,
-    quotaInfo: `📊 今日剩餘：**{remaining}/20** 次`,
-    requiresVerification: `
-
-✅ 需要驗證：加入群組/頻道後點擊「驗證」按鈕`,
-    reward: `🎁 獎勵：+{quota} 個永久額度`,
-    rewardPermanent: `🎁 完成任務可獲得 **+1 永久額度**`,
-    statsAdNotFound: `❌ 廣告不存在`,
-    statsClicks: `• 點擊次數: {count}
-`,
-    statsCtr: `• 點擊率 (CTR): {rate}%
-`,
-    statsHint: `💡 使用 /ad_stats {id} 查看詳細統計`,
-    statsNoAds: `📊 暫無官方廣告`,
-    statsNoPermission: `❌ 你沒有權限查看廣告統計`,
-    statsRemainingViews: `• 剩餘展示: {remaining}/{total}
-`,
-    statsRewardGranted: `• 獎勵發放: {count}
-`,
-    statsRewardRate: `• 獎勵率: {rate}%
-`,
-    statsRewardSummary: `• 獎勵：{rewards}
-
-`,
-    statsSummary: `• 展示：{views} | 點擊：{clicks} ({ctr}%)
-`,
-    statsTitle: `📊 **官方廣告統計**
-
-`,
-    statsVerificationCount: `• 驗證次數: {count}
-`,
-    statsVerificationRate: `• 驗證率: {rate}%
-`,
-    statsViews: `• 展示次數: {count}
-`,
-    statusDisabled: `停用`,
-    statusEnabled: `啟用`,
-    unlimited: `無限`,
-    userNotFound: `❌ 用戶不存在`,
-    verifySuccess: `✅ 驗證成功！獲得 +{quota} 個永久額度！`,
-  },
-  onboarding: {
-    age: `• 年齡：\${updatedUser.age} 歲
-`,
-    age2: `你的年齡：\${age} 歲
-`,
-    age3: `年齡：\${age} 歲
-`,
-    ageRestriction: `❌ 很抱歉，你必須年滿 18 歲才能使用本服務。
-
-`,
-    agreeTerms: `點擊下方按鈕表示你已閱讀並同意上述條款。`,
-    antiFraudConfirm: `請確認：`,
-    antiFraudFinalStep: `🛡️ 最後一步：反詐騙安全確認
-
-`,
-    antiFraudLearn: `📚 我想了解更多安全知識`,
-    antiFraudPassed: `✅ 反詐騙測驗通過！
-
-`,
-    antiFraudQuestion1: `1. 你了解網路交友的安全風險嗎？
-`,
-    antiFraudQuestion2: `2. 你會保護好自己的個人資訊嗎？
-`,
-    antiFraudQuestion3: `3. 遇到可疑訊息時，你會提高警覺嗎？
-
-`,
-    antiFraudQuestions: `為了保護所有使用者的安全，請確認你了解以下事項：
-
-`,
-    antiFraudYes: `✅ 是的，我了解並會注意安全`,
-    back: `⬅️ 返回`,
-    birthday: `如果你認為這是錯誤，請檢查你的生日格式是否正確（YYYY-MM-DD）。`,
-    birthday2: `請重新輸入你的生日（格式：YYYY-MM-DD）：
-
-`,
-    birthday3: `請輸入你的生日（格式：YYYY-MM-DD）：
-
-`,
-    birthday4: `生日：\${birthday}
-`,
-    birthdayCheck: `如果你認為這是錯誤，請檢查你的生日格式是否正確（YYYY-MM-DD）。`,
-    birthdayError: `❌ {error}
-
-`,
-    birthdayFormatError: `❌ 生日格式錯誤
-
-請重新輸入（格式：YYYY-MM-DD）：`,
-    birthdayRetry: `請重新輸入生日（格式：YYYY-MM-DD）：`,
-    birthdayWarning: `⚠️ 生日設定後無法修改，請確認無誤！`,
-    bloodTypeLabel: `🩸 **請選擇你的血型**
-
-`,
-    complete: `請輸入「是」完成測驗：`,
-    confirm: `為了保護所有使用者的安全，請確認你了解網路交友的風險。
-
-`,
-    confirm2: `🛡️ 現在進行反詐騙安全確認
-
-`,
-    confirm3: `了解後，請確認：`,
-    confirmBirthday: `⚠️ 請確認你的生日資訊：
-
-`,
-    customNickname: `自訂暱稱`,
-    enterYes: `請輸入「是」完成測驗：`,
-    errorRetry: `❌ 發生錯誤，請重新輸入。`,
-    gender2: `• 性別：\${updatedUser.gender ===`,
-    gender3: `[需要翻译]`,
-    genderFemale: `[需要翻译]`,
-    genderMale: `[需要翻译]`,
-    genderWarning: `[需要翻译]`,
-    help: `這將幫助我們為你找到更合適的聊天對象～
-
-`,
-    iHaveRead: `✅ 我已閱讀並同意`,
-    languageSelection: `🌐 **Choose Language**
-
-Please select your preferred language:`,
-    lastStep: `最後一步：請閱讀並同意我們的服務條款
-
-`,
-    legalDocuments: `📋 Legal documents are provided in English only.
-
-`,
-    mbti: `請選擇你的 MBTI 類型：
-
-`,
-    mbti2: `✍️ 我已經知道我的 MBTI`,
-    message: `2. 🚨 識別詐騙訊息
-`,
-    message2: `• 警惕索要金錢的訊息
-`,
-    moreLanguages: `[需要翻译]`,
-    nickname: `• 暱稱：\${updatedUser.nickname}
-`,
-    nickname2: `很好！你的暱稱是：\${nickname}
-
-`,
-    nicknameError: `❌ {error}
-
-請重新輸入暱稱：`,
-    nicknameGood: `[需要翻译]`,
-    notCompleted: `⚠️ 請先完成註冊流程`,
-    nowSelectGender: `[需要翻译]`,
-    otherUserNotFound: `❌ 對方用戶不存在。`,
-    pleaseAnswer: `❌ 請認真回答問題
-
-`,
-    pleaseComeBack: `請成年後再來！
-
-`,
-    privacyPolicy: `📋 隱私權政策
-`,
-    profile: `• 隱私權政策：我們如何保護你的個人資料
-`,
-    profile2: `你的個人資料：
-`,
-    retry: `❌ 重新輸入`,
-    senderInfoError: `❌ 發送者資訊錯誤。`,
-    settings: `💡 提示：你可以隨時使用 /mbti 指令來設定或測驗你的 MBTI 類型。
-
-`,
-    settings2: `🧠 現在讓我們設定你的 MBTI 性格類型！
-
-`,
-    settings3: `好的，你可以稍後再設定 MBTI。
-
-`,
-    settings4: `如果不確定，可以先進行測驗或稍後再設定。`,
-    settings5: `🎉 恭喜！你已經完成所有設定！
-
-`,
-    settings6: `• 生日設定後無法修改
-`,
-    settings7: `你想要如何設定？`,
-    short: `⏭️ 稍後再說`,
-    start: `在開始使用前，請閱讀並同意我們的服務條款：
-
-`,
-    start2: `現在你可以開始使用 XunNi 了！`,
-    startRegistration: `[需要翻译]`,
-    stats: `📊 統計`,
-    stepAntiFraud: `🛡️ 請點擊上方按鈕確認反詐騙安全事項`,
-    stepBirthday: `📅 請輸入你的生日（格式：YYYY-MM-DD，例如：1995-06-15）`,
-    stepDefault: `請按照提示完成註冊`,
-    stepGender: `👤 請點擊上方按鈕選擇你的性別`,
-    stepLanguageSelection: `🌍 請點擊上方按鈕選擇你的語言`,
-    stepMbti: `🧠 請點擊上方按鈕選擇 MBTI 設定方式`,
-    stepNickname: `✏️ 請輸入你的暱稱`,
-    stepTerms: `📜 請點擊上方按鈕同意服務條款`,
-    termsOfService: `📋 使用者條款
-
-`,
-    text: `confirm_birthday_\${birthday}`,
-    text10: `例如：1995-06-15
-
-`,
-    text11: `🛡️ 網路交友安全小貼士
-
-`,
-    text12: `📋 最後一步：服務條款
-
-`,
-    text13: `• 第一次見面選擇公共場所
-`,
-    text14: `1. 🔒 保護個人資訊
-`,
-    text15: `• 不要分享財務資訊
-
-`,
-    text16: `• 不要點擊可疑連結
-
-`,
-    text17: `• 告訴朋友你的行程
-
-`,
-    text18: `3. 🤝 安全交友
-`,
-    text19: `📋 使用者條款
-
-`,
-    text2: `💡 你可以隨時使用 /mbti 指令重新測驗或修改。`,
-    text20: `請成年後再來！
-
-`,
-    text21: `📋 隱私權政策
-`,
-    text3: `gender_confirm_\${gender}`,
-    text4: `最後一步：請閱讀並同意我們的服務條款
-
-`,
-    text5: `📝 進行快速測驗（12 題，僅供參考）`,
-    text6: `• 使用者條款：使用本服務的規範
-
-`,
-    text7: `點擊下方按鈕表示你已閱讀並同意上述條款。`,
-    text8: `• 不要輕易透露真實姓名、地址、電話
-`,
-    text9: `• 必須年滿 18 歲才能使用本服務`,
-    understandRisks: `為了保護所有使用者的安全，請確認你了解網路交友的風險。
-
-`,
-    useTelegramNickname: `使用 Telegram 暱稱`,
-    viewPrivacyPolicy: `📋 View Privacy Policy`,
-    viewTermsOfService: `📋 View Terms of Service`,
-    vip: `💡 填寫血型可用於未來的血型配對功能（VIP 專屬）
-
-`,
-    welcome: `[需要翻译]`,
-    yourAge: `你的年齡：{age} 歲
-`,
-    zodiac: `• 星座：\${updatedUser.zodiac_sign}
-`,
-    zodiac2: `星座：\${zodiacSign}
-
-`,
-    antiFraud: {
-      confirm_button: `✅ 是的，我了解並會注意安全`,
-      learn_button: `📚 我想了解更多安全知識`,
-      question1: `1. 你了解網路交友的安全風險嗎？
-`,
-      question2: `2. 你會保護好自己的個人資訊嗎？
-`,
-      question3: `3. 遇到可疑訊息時，你會提高警覺嗎？
-
-`,
+    "bloodTypeLabel": "🩸 **Te rugăm să selectezi grupa ta sanguină**\n\n",
+    "complete": "Vă rugăm să introduceți 'da' pentru a finaliza testul:",
+    "confirm": "Pentru a proteja siguranța tuturor utilizatorilor, te rugăm să confirmi că înțelegi riscurile întâlnirilor online.\n\n",
+    "confirm2": "🛡️ Acum se desfășoară confirmarea siguranței anti-fraudă\n\n",
+    "confirm3": "După ce ați înțeles, vă rugăm să confirmați:",
+    "confirmBirthday": "⚠️ Te rugăm să confirmi informațiile despre data ta de naștere:\n\n",
+    "customNickname": "Poreclă personalizată",
+    "enterYes": "Vă rugăm să introduceți 'da' pentru a finaliza testul:",
+    "errorRetry": "❌ A apărut o eroare, vă rugăm să reintroduceți.",
+    "example": {
+      "birthday": "De exemplu: 1995-06-15"
     },
-    bloodType: {
-      select: `請選擇你的血型：`,
+    "gender": {
+      "female": "Femenin",
+      "label": "• Gen: ${gender}\n",
+      "male": "Masculin"
     },
-    example: {
-      birthday: `例如：1995-06-15`,
+    "gender2": "• Gen: ${updatedUser.gender ===",
+    "gender3": "Te rugăm să selectezi sexul tău:\n\n",
+    "genderFemale": "👩 Femenin",
+    "genderMale": "👨 Masculin",
+    "genderWarning": "⚠️ Notă: Genul nu poate fi modificat după setare, vă rugăm să alegeți cu atenție!",
+    "help": "Aceasta ne va ajuta să găsim parteneri de chat mai potriviți pentru tine～\n\n",
+    "iHaveRead": "✅ Am citit și sunt de acord",
+    "info": {
+      "age18": "• Trebuie să aveți 18 ani sau mai mult pentru a folosi acest serviciu",
+      "city": "🌍 Regiune: {city}"
     },
-    gender: {
-      female: `[需要翻译]`,
-      label: `• 性別：\${gender}
-`,
-      male: `[需要翻译]`,
+    "languageSelection": "🌐 **Alegeți Limba**\n\nVă rugăm să selectați limba preferată:",
+    "lastStep": "Ultimul pas: Te rugăm să citești și să accepți Termenii și condițiile noastre\n\n",
+    "legalDocuments": "📋 Documentele legale sunt disponibile doar în engleză.\n\n",
+    "mbti": "Te rugăm să selectezi tipul tău MBTI:\n\n",
+    "mbti2": "✍️ Știu deja tipul meu MBTI",
+    "message": "2. 🚨 Identificați mesajele frauduloase\n",
+    "message2": "• Fiți precauți în privința mesajelor care solicită bani\n",
+    "moreLanguages": "Mai multe limbi",
+    "nickname": "• Poreclă: ${updatedUser.nickname}\n",
+    "nickname2": "Minunat! Pseudonimul tău este: ${nickname}\n\n",
+    "nicknameError": "❌ {error}\n\nVă rugăm să reintroduceți porecla:",
+    "nicknameGood": "Minunat! Pseudonimul tău este: {nickname}\n\n",
+    "notCompleted": "⚠️ Vă rugăm să finalizați mai întâi procesul de înregistrare",
+    "nowSelectGender": "Acum te rugăm să selectezi sexul tău:\n\n",
+    "otherUserNotFound": "❌ Celălalt utilizator nu există.",
+    "pleaseAnswer": "❌ Te rugăm să răspunzi la întrebări în mod serios\n\n",
+    "pleaseComeBack": "Te rugăm să revii după ce împlinești 18 ani!\n\n",
+    "privacyPolicy": "📋 Politica de Confidențialitate\n",
+    "profile": "• Politica de Confidențialitate: Cum ne protejăm informațiile personale\n",
+    "profile2": "Informațiile dumneavoastră personale:\n",
+    "prompt": {
+      "birthday": "Vă rugăm să introduceți data nașterii (format: AAAA-LL-ZZ):"
     },
-    info: {
-      age18: `• 必須年滿 18 歲才能使用本服務`,
-      city: `🌍 地區：{city}`,
+    "retry": "❌ Te rugăm să introduci din nou",
+    "senderInfoError": "❌ Informațiile despre expeditor sunt incorecte.",
+    "settings": "💡 Sugestie: Poți folosi comanda /mbti în orice moment pentru a-ți seta sau testa tipul MBTI.\n\n",
+    "settings2": "🧠 Acum să ne setăm tipul de personalitate MBTI!\n\n",
+    "settings3": "Bine, poți să-ți setezi MBTI mai târziu.\n\n",
+    "settings4": "Dacă nu ești sigur, poți să dai testul mai întâi sau să-l stabilești mai târziu.",
+    "settings5": "🎉 Felicitări! Ai finalizat toate setările!\n\n",
+    "settings6": "• Data nașterii nu poate fi modificată după setare\n",
+    "settings7": "Cum ai dori să-l configurezi?",
+    "short": "⏭️ Vorbim despre asta mai târziu",
+    "start": "Înainte de a începe să folosești, te rugăm să citești și să accepți Termenii și condițiile noastre:\n\n",
+    "start2": "Acum poți începe să folosești XunNi!",
+    "startRegistration": "Începe înregistrarea →",
+    "stats": "📊 Statistici",
+    "stepAntiFraud": "🛡️ Te rugăm să apesi pe butonul de mai sus pentru a confirma măsurile de siguranță anti-fraudă",
+    "stepBirthday": "📅 Te rugăm să introduci data ta de naștere (format: AAAA-LL-ZZ, de exemplu, 1995-06-15)",
+    "stepDefault": "Te rugăm să finalizezi înregistrarea conform instrucțiunilor",
+    "stepGender": "👤 Te rugăm să apeși pe butonul de mai sus pentru a selecta genul tău",
+    "stepLanguageSelection": "🌍 Te rugăm să apeși pe butonul de mai sus pentru a alege limba ta",
+    "stepMbti": "🧠 Te rugăm să apeși pe butonul de mai sus pentru a selecta metoda de configurare MBTI",
+    "stepNickname": "✏️ Te rugăm să introduci porecla ta",
+    "stepTerms": "📜 Te rugăm să apeși pe butonul de mai sus pentru a accepta Termenii și Condițiile",
+    "terms": {
+      "agree_button": "✅ Sunt de acord",
+      "english_only_note": "📋 Documentele legale sunt disponibile doar în engleză.",
+      "privacy_policy_button": "🔒 Politica de confidențialitate",
+      "terms_of_service_button": "📋 Termenii și condițiile"
     },
-    prompt: {
-      birthday: `請輸入你的生日（格式：YYYY-MM-DD）：`,
+    "termsOfService": "📋 Termenii utilizatorilor\n\n",
+    "text": "confirm_birthday_${birthday}",
+    "text10": "De exemplu: 1995-06-15\n\n",
+    "text11": "🛡️ Sfaturi de siguranță pentru întâlniri online\n\n",
+    "text12": "📋 Pasul final: Termeni și condiții\n\n",
+    "text13": "• Alege un loc public pentru prima întâlnire\n",
+    "text14": "1. 🔒 Protejează informațiile personale\n",
+    "text15": "• Nu împărtăși informații financiare\n\n",
+    "text16": "• Nu da clic pe linkuri suspecte\n\n",
+    "text17": "• Informează-ți prietenii despre itinerariul tău\n\n",
+    "text18": "3. 🤝 Întâlniri sigure\n",
+    "text19": "📋 Acordul utilizatorului\n\n",
+    "text2": "💡 Poți folosi comanda /mbti oricând pentru a repeta sau modifica.",
+    "text20": "Te rugăm să revii după ce ajungi la vârsta adultă!\n\n",
+    "text21": "📋 Politica de confidențialitate\n",
+    "text3": "gender_confirm_${gender}",
+    "text4": "Pasul final: Te rugăm să citești și să accepți Termenii și condițiile noastre\n\n",
+    "text5": "📝 Fă un test rapid (12 întrebări, doar pentru referință)",
+    "text6": "• Termenii utilizatorilor: Ghiduri pentru utilizarea acestui serviciu\n\n",
+    "text7": "Apasă pe butonul de mai jos pentru a indica că ai citit și ești de acord cu termenii de mai sus.",
+    "text8": "• Nu-ți divulga cu ușurință numele real, adresa sau numărul de telefon\n",
+    "text9": "• Trebuie să ai cel puțin 18 ani pentru a folosi acest serviciu",
+    "understandRisks": "Pentru a proteja siguranța tuturor utilizatorilor, te rugăm să confirmi că înțelegi riscurile întâlnirilor online.\n\n",
+    "useTelegramNickname": "Folosește porecla de Telegram",
+    "viewPrivacyPolicy": "📋 Vizualizați Politica de Confidențialitate",
+    "viewTermsOfService": "📋 Vizualizați Termenii de Serviciu",
+    "vip": "💡 Furnizarea grupei tale sanguine va fi folosită pentru caracteristici viitoare de potrivire a grupei sanguine (exclusiv VIP)\n\n",
+    "warning": {
+      "birthday": "⚠️ Data nașterii nu poate fi modificată după setare. Vă rugăm să confirmați că este corectă!"
     },
-    terms: {
-      agree_button: `✅ 我同意`,
-      english_only_note: `📋 法律文檔僅提供英文版本。`,
-      privacy_policy_button: `🔒 隱私政策`,
-      terms_of_service_button: `📋 服務條款`,
+    "welcome": "Bun venit la XunNi！\n\nVă rugăm să selectați limba:",
+    "yourAge": "Vârsta dumneavoastră: {age} ani\n",
+    "zodiac": "• Zodiac: ${updatedUser.zodiac_sign}\n",
+    "zodiac2": "Semnul zodiacal: ${zodiacSign}\n\n"
+  },
+  "payments": {
+    "empty": "Momentan, nu există înregistrări de plată.",
+    "product": {
+      "VIP_MONTHLY": "💎 Abonament Monthly VIP"
     },
-    warning: {
-      birthday: `⚠️ 生日設定後無法修改，請確認無誤！`,
+    "status": {
+      "failed": "❌ Plata a eșuat",
+      "paid": "✅ Plata a fost realizată cu succes",
+      "pending": "⏳ În procesare",
+      "refunded": "↩️ Rambursat"
     },
+    "title": "💳 Înregistrările de plată (Pagina {page} / {total})"
   },
-  payments: {
-    empty: `No payment records found.`,
-    title: `💳 Payment History (Page {page} / {total})`,
-    product: {
-      VIP_MONTHLY: `💎 VIP Monthly Subscription`,
+  "profile": {
+    "activatedInvites": "✅ Invitații activate: {successfulInvites} / {inviteLimit} persoane\n",
+    "age": "🎂 Vârsta: ${age}\n",
+    "anonymousUser": "Utilizator anonim",
+    "bloodType": "🩸 Tip de sânge: ${bloodType}\n",
+    "bottle": ": permanentQuota} sticle cu mesaj\n\n",
+    "cardAge": "{age} ani",
+    "cardBio": "📝 Bio:\n{bio}\n\n",
+    "cardFooter": "💡 Aceasta este cartea de date afișată altora în conversație\n\n",
+    "cardGenderFemale": "♀️ Femeie",
+    "cardGenderMale": "♂️ Bărbat",
+    "cardInterests": "🏷️ Interese: {interests}\n\n",
+    "cardLanguage": "🌍 Limbaj: {language}\n\n",
+    "cardMbti": "🧠 MBTI: {mbti}\n",
+    "cardSeparator": "━━━━━━━━━━━━━━━━\n",
+    "cardTitle": "┌─────────────────────────┐\n│ 📇 Carte de profil │\n└─────────────────────────┘\n\n",
+    "cardZodiac": "⭐ Zodiac: {zodiac}\n",
+    "completeOnboarding": "⚠️ Vă rugăm să finalizați mai întâi procesul de înregistrare.\n\nFolosiți /start pentru a continua înregistrarea.",
+    "conversation": "💡 Aceasta este cartea de date pe care o afișezi celeilalte persoane în conversație\n\n",
+    "editProfile": "📝 Editați Profilul",
+    "gender": "👤 Gen: ${gender}\n",
+    "hints": "💡 Sfaturi:\n",
+    "invite": "⏳ Invitații în așteptare: ${inviteStats.pending} persoane\n",
+    "invite2": "🎁 **Informații despre invitație**\n\n",
+    "inviteCodeLabel": "📋 Codul dumneavoastră de invitație: `{inviteCode}`\n",
+    "manual": "Setări Manuale",
+    "mbti": "• Folosiți /mbti pentru a relua testul sau a modifica MBTI\n",
+    "mbtiWithSource": "🧠 MBTI: {mbti}{source}\n",
+    "message": "https://t.me/share/url?url=https://t.me/${botUsername}?start=invite_${inviteCode}&text=Veniți la XunNi și aruncați împreună sticle cu mesaj!🍾 Folosiți codul meu de invitație: ${inviteCode} https://t.me/share/url?url=https://t.me/${botUsername}?start=invite_${inviteCode}&text=Come",
+    "message2": "${inviteLimitWarning}\n\n",
+    "message3": "🌍 Limbaj: ${user.language_pref}\n\n",
+    "message4": "🌍 Limba: ${user.language_pref }\n",
+    "message5": "📈 Rata de conversie: ${inviteStats.conversionRate}%\n",
+    "message6": "${gender} • ${age} ani • ${city}\n\n",
+    "message7": "https://t.me/share/url?url=https://t.me/${botUsername}?start=invite_${inviteCode}&text=Veniți la XunNi și aruncați împreună sticle cu mesaj https://t.me/share/url?url=https://t.me/${botUsername}?start=invite_${inviteCode}&text=Come",
+    "mysterious": "Această persoană este foarte misterioasă, lăsând nimic în urmă～",
+    "nickname": "📛 Pseudonim: ${displayNickname}\n",
+    "notSet": "Neregelat",
+    "profile": "│ 📇 Cartelă de profil │\n",
+    "profile2": "👤 **Profil**\n\n",
+    "quota": "💡 Finalizează sarcini pentru a câștiga cote zilnice suplimentare (folosește /tasks pentru a verifica)\n",
+    "quota2": "📦 Cota zilnică actuală: ${taskBonus > 0 ?",
+    "quotaBottles": "{taskBonus} sticle cu mesaj",
+    "quotaTotal": "📦 Cota zilnică curentă: {quota}\n\n",
+    "returnToMenu": "🏠 Întoarce-te la meniul principal: /menu",
+    "separator": "━━━━━━━━━━━━━━━━\n\n",
+    "settings": "Neregelat",
+    "settings2": "Neregelat",
+    "settings3": "Neregelat",
+    "settings4": "Neregelat",
+    "settings5": "Neregelat",
+    "settings6": "Neregelat",
+    "settings7": "Neregelat",
+    "settings8": "Neregelat",
+    "shareInviteCode": "📤 Împărtășește codul de invitație",
+    "short": "📝 Editează profilul",
+    "short2": "Membru gratuit",
+    "stats": "• Folosește /stats pentru a vizualiza statistici\n\n",
+    "success": "💡 Câștigă +1 cotă zilnică permanent pentru fiecare persoană invitată cu succes\n",
+    "systemError": "❌ A apărut o eroare de sistem, te rugăm să încerci din nou mai târziu.",
+    "test": "Rezultate test",
+    "text": "• Folosește /profile_card pentru a vizualiza cartela completă de profil\n",
+    "text2": "🏷️ Interese: ${interests}\n\n",
+    "text3": "💎 Membri: ${vipStatus}\n\n",
+    "text4": "📝 Biografie:\n${bio}\n\n",
+    "text5": "Această persoană este foarte misterioasă, lăsând nimic în urmă～",
+    "userNotFound": "⚠️ Utilizatorul nu există, te rugăm să te înregistrezi mai întâi folosind /start.",
+    "vip": "Membru VIP (Expiră: ${expireDate})",
+    "vip2": "• Folosește /vip pentru a trece la membru VIP\n",
+    "vipUpgrade": "• Folosește /vip pentru a trece la membru VIP\n",
+    "zodiac": "⭐ Zodie: ${zodiac}\n"
+  },
+  "refreshAvatar": {
+    "failed": "❌ A eșuat actualizarea avatarului\n\nTe rugăm să încerci din nou mai târziu sau să contactezi administratorul.",
+    "processing": "🔄 Se actualizează avatarul...\n\nAcest lucru poate dura câteva secunde.",
+    "success": "✅ **Avatarul a fost actualizat!**\n\nCache-ul avatarului tău a fost actualizat și va afișa ultimul avatar în istoricul conversației data viitoare.\n\n💡 **Sfat:**\n• Avatarul va fi actualizat automat la fiecare 7 zile\n• Dacă îți schimbi avatarul Telegram, sistemul îl va detecta automat\n• Poți, de asemenea, să actualizezi manual folosind acest comandă în orice moment",
+    "userNotFound": "❌ Utilizatorul nu există, te rugăm să te înregistrezi mai întâi"
+  },
+  "refreshConversations": {
+    "clickButtonHint": "💡 **Sfat**: Te rugăm să dai clic pe butonul de mai sus pentru a începe",
+    "commandHelp": "• /help - Vezi ajutorul",
+    "commandMenu": "• /menu - Meniul principal",
+    "commandTasks": "• /tasks - Vezi centrul de sarcini",
+    "failed": "❌ A eșuat actualizarea istoricului conversației\n\nTe rugăm să încerci din nou mai târziu sau să contactezi administratorul.",
+    "noHistory": "💡 **Nu s-au găsit istorii de conversații**\n\nNu ai încă niciun record de conversație.\n\nÎncepe să conversezi folosind /throw pentru a arunca o sticlă cu mesaj!",
+    "partialSuccess": "⚠️ **Istoricul conversației actualizat parțial**\n\nActualizat cu succes: {updated} articole\nA eșuat: {failed} articole\n\nUnele istorii de conversație pot să nu fi fost actualizate, te rugăm să încerci din nou mai târziu.",
+    "processing": "🔄 Se actualizează tot istoricul conversației...\n\nAcest lucru poate dura ceva timp, te rugăm să aștepți.",
+    "success": "✅ **Istoricul conversației a fost actualizat!**\n\nActualizat cu succes postările istoricului a {updated} conversații.\n\n💡 **Sfat:**\n• Utilizatorii VIP pot vedea avatare clare ale altora\n• Utilizatorii gratuiti văd avatare estompate\n• Postările istoricului se vor actualiza automat după trecerea la VIP",
+    "userNotFound": "❌ Utilizatorul nu există, te rugăm să te înregistrezi mai întâi"
+  },
+  "report": {
+    "aiAutoBan": "🤖 AI auto-interzis",
+    "blockHint": "• Apasă lung pe mesajul părții opuse pentru a răspunde /bloca pentru a bloca acest utilizator\n",
+    "cancel": "❌ Anulează",
+    "cancelled": "Anulat",
+    "cannotIdentify": "⚠️ Nu se poate identifica partenerul de chat\n\n",
+    "catchHint": "• Folosește /capturează pentru a prelua o nouă sticlă cu mesaj",
+    "completeOnboarding": "⚠️ Te rugăm să finalizezi mai întâi procesul de înregistrare.\n\nFolosește /start pentru a continua înregistrarea.",
+    "conversationInfoError": "⚠️ Informațiile despre conversație sunt incorecte.",
+    "conversationInfoError2": "⚠️ Informațiile despre conversație sunt incorecte",
+    "conversationNotExists": "⚠️ Conversația nu există",
+    "conversationNotFound": "⚠️ Imposibil de găsit această conversație\n\nConversația poate fi încheiată sau nu există.",
+    "ensureReply": "Te rugăm să te asiguri că răspunzi la mesajul trimis de partea opusă (cu identificatorul #).",
+    "hint": "💡 Acest lucru va specifica precis ținta de raportat.",
+    "multipleReports": "Raporturi multiple",
+    "reasonHarassment": "😡 Hărțuire / Abuz",
+    "reasonNsfw": "🔞 Conținut explicit",
+    "reasonOther": "⚠️ Alte încălcări",
+    "reasonScam": "💰 Escrocherie / Phishing",
+    "reasonSpam": "📢 Spam",
+    "replyRequired": "⚠️ Te rugăm să apeși lung pe mesajul pe care vrei să-l raportezi și apoi să răspunzi cu comanda\n\n",
+    "selectReason": "Te rog să selectezi motivul raportării:",
+    "sessionExpired": "⚠️ Conversația a expirat, te rugăm să acționezi din nou",
+    "step1": "1️⃣ Apasă lung pe mesajul părții opuse\n",
+    "step2": "2️⃣ Selectează 'Răspunde'\n",
+    "step3": "3️⃣ Introdu /report\n\n",
+    "steps": "**Pași de operare:**\n",
+    "submitted": "✅ **Raport trimis** (#{identifier})\n\n",
+    "systemError": "❌ A apărut o eroare de sistem",
+    "thanks": "Îți mulțumim pentru raportul tău, îl vom revizui cât mai curând posibil.\n\n",
+    "tips": "💡 Sfaturi:\n",
+    "title": "🚨 **Raportează conținut inadecvat** (#{identifier})\n\n",
+    "userNotFound": "⚠️ Utilizatorul nu există, te rugăm să folosești /start pentru a te înregistra mai întâi."
+  },
+  "risk": {
+    "containsSensitiveWords": "Conține cuvinte sensibile"
+  },
+  "router": {
+    "replyPrompt": "💬 Răspunde",
+    "suggestCatch": "❓ Vrei să preiei o sticlă cu mesaj?\n\nFolosește /capturează pentru a prelua sticla cu mesaj\n\n💡 **Comenzi comune**:\n• /aruncă - Aruncă o sticlă cu mesaj\n• /capturează - Preia o sticlă cu mesaj\n• /meniu - Meniul principal\n• /sarcini - Centrul de sarcini",
+    "suggestMenu": "❓ Comandă neinclusă\n\n💡 **Comenzi comune**:\n• /aruncă - Aruncă o sticlă cu mesaj\n• /capturează - Preia o sticlă cu mesaj\n• /meniu - Meniul principal\n• /sarcini - Centrul de sarcini",
+    "suggestThrow": "❓ Vrei să arunci o sticlă cu mesaj?\n\nTe rog să apesi lung pe mesajul anterior sau pe acest mesaj,\nselectează 'Răspunde' din meniu,\napoi introdu conținutul sticlei cu mesaj care urmează să fie trimis\n\n💡 **Comenzi comune**:\n• /aruncă - Aruncă o sticlă cu mesaj\n• /capturează - Preia o sticlă cu mesaj\n• /meniu - Meniul principal\n• /sarcini - Centrul de sarcini\n\n#ARUNCĂ",
+    "throwPrompt": "📝 Te rog să introduci conținutul sticlei cu mesaj:"
+  },
+  "session": {
+    "timeoutCatchBottle": "⏰ Procesul de preluare a sticlei a expirat\n\nTe rog să folosești /capturează pentru a reporni.",
+    "timeoutConversation": "⏰ Conversația a expirat\n\nPartea opusă poate fi plecată. Folosește /capturează pentru a prelua o nouă sticlă!",
+    "timeoutEditProfile": "⏰ Procesul de editare a datelor a expirat\n\nTe rog să repornești editarea.",
+    "timeoutOnboarding": "⏰ Procesul de înregistrare a expirat\n\nTe rog să folosești /start pentru a reporni înregistrarea.",
+    "timeoutThrowBottle": "⏰ Procesul de aruncare a sticlei a expirat\n\nTe rog să folosești /aruncă pentru a reporni.",
+    "typeCatchBottle": "Procesul de preluare a sticlei",
+    "typeConversation": "Conversație",
+    "typeEditProfile": "Editează datele",
+    "typeOnboarding": "Procesul de înregistrare",
+    "typeThrowBottle": "Procesul de aruncare a sticlei"
+  },
+  "settings": {
+    "back": "Înapoi",
+    "changeLanguage": "🌐 Schimbă limba",
+    "currentSettings": "⚙️ **Setările curente**",
+    "languageLabel": "Limba: {language}",
+    "languageUpdated": "✅ Limba a fost actualizată la: {language}",
+    "message": "🌐 **Alege Limba**\n\nTe rugăm să selectezi limba preferată:",
+    "returnToMenu": "🏠 Întoarce-te la Meniul Principal",
+    "selectOption": "Te rugăm să alegi o opțiune:",
+    "settings": "💡 Alege setările pe care vrei să le modifici:",
+    "settings2": "⚙️ **Setări**\n\n",
+    "settings3": "🏠 Întoarce-te la Setări",
+    "settings4": "Setările curente:\n",
+    "text": "• Limbă: ${languageName} 🇹🇼\n\n",
+    "title": "🏠 **Meniu Principal**"
+  },
+  "stats": {
+    "activeUsers": "• Activ ieri: {active}\n\n",
+    "age": "🎂 **Vârstă**: ${age} ani\n",
+    "avgMatches": "• Medie Obiecte pe Sesiune: ${avg} obiecte\n",
+    "bottle": "💎 **Statistici sticlă cu mesaj VIP Triple** (Ultimele 30 de zile)\n",
+    "bottle2": "🍾 **Sticlă cu Mesaj**\n",
+    "bottle3": "🎈 Statistici Sticlă cu Mesaj\n",
+    "bottles": "🍾 **Sticlă cu Mesaj**\n",
+    "bottlesCaught": "• Găsite: ${count} sticle\n",
+    "bottlesThrown": "• Încărcate: ${count} sticle\n",
+    "catch": "• Capturate ieri: ${stats.caughtBottles}\n\n",
+    "catch2": "• Găsite: ${stats.bottlesCaught} sticle\n",
+    "caught": "• Capturate ieri: {caught}\n\n",
+    "conversation": "• Conversații Active: ${stats.activeConversations}\n",
+    "conversation2": "• Conversații Totale: ${stats.totalConversations}\n",
+    "conversation3": "• Conversații Totale: ${stats.totalConversations}",
+    "conversation4": "💬 **Conversații**\n",
+    "conversation5": "💬 Statistici Ale Conversațiilor\n",
+    "conversations": "💬 **Conversații**\n",
+    "conversationsActive": "• Conversații Active: ${count}\n",
+    "conversationsTotal": "• Conversații Totale: ${count}\n",
+    "date": "Data: {date}\n\n",
+    "dateFormatError": "Eroare în formatul datei, ar trebui să fie YYYY-MM-DD",
+    "match": "🎯 **Potrivire**\n",
+    "matchRate": "• Rata de Succes a Potrivirii: ${rate}%\n",
+    "matchRateValue": "• Rata de Potrivire: ${rate}%\n",
+    "matchedSlots": "• Potriviri Reușite: ${count}\n",
+    "mbti": "🧠 **MBTI**: ${mbti}\n",
+    "message": "• Timp de Expirare: ${expireDate}\n",
+    "message10": "• Mesaje Totale: ${stats.totalMessages}",
+    "message2": "${used}/${permanentQuota}+${taskBonus} (Rămase ${remaining})",
+    "message3": "Raport generat la: ${new Date().toLocaleString('zh-TW')}",
+    "message4": "${used}/${permanentQuota} (Rămase ${remaining})",
+    "message5": "• Mesaje totale: ${stats.totalMessages}\n\n",
+    "message6": "• Mesaje noi ieri: ${stats.newMessages}\n\n",
+    "message7": "• Sloturi Totale pentru Potriviri: ${vipStats.totalSlots}\n",
+    "message8": "• Rata medie de răspuns: ${stats.replyRate}%\n\n",
+    "message9": "• Utilizatori activi ieri: ${stats.activeUsers}\n\n",
+    "messages": "💬 Statistici Ale Conversațiilor",
+    "messagesTotal": "• Mesaje Totale: ${count}\n",
+    "new": "• Nou ieri: {new}",
+    "newMessages": "• Mesaje noi ieri: {new}\n\n",
+    "newUsers": "• Nou ieri: {new}",
+    "newVip": "• Noi ieri: {new}\n\n",
+    "notSet": "Neapărat",
+    "quota": "• Cota de astăzi: ${stats.todayQuota.display}\n\n",
+    "register": "📅 **Data înregistrării**: ${new Date(user.created_at).toLocaleDateString('zh-TW')}\n",
+    "register2": "• Total înregistrări: ${stats.totalUsers}",
+    "registerTime": "📅 **Data înregistrării**: ${date}\n",
+    "replyRate": "• Rata medie de răspuns: ${rate}%\n",
+    "reportTime": "Raport generat la: {time}",
+    "separator": "---\n",
+    "settings": "🧠 **MBTI**: \\$\n\n",
+    "settings2": "Neapărat",
+    "short": "Membru gratuit",
+    "statDateEmpty": "Data statisticilor nu poate fi goală",
+    "stats": "📊 **Statisticile mele**\n\n",
+    "stats2": "💎 Statistici VIP\n",
+    "stats3": "👥 Statistici Utilizatori\n",
+    "stats4": "Data statisticilor nu poate fi goală",
+    "success": "• Împerecheri reușite: ${vipStats.matchedSlots}\n",
+    "success2": "• Rata de succes a împerecherilor: ${stats.matchRate}%\n",
+    "text": "• Împerecheri medii per asociere: ${avgMatches} articole\n",
+    "text10": "🎯 **Împerechere**\n",
+    "text2": "• Nou ieri: ${stats.newBottles}\n",
+    "text3": "• Total: ${stats.totalBottles}",
+    "text4": "• Nou ieri: ${stats.newUsers}\n",
+    "text5": "• Noi VIP ieri: ${stats.newVip}\n\n",
+    "text6": "• Rata de împerechere: ${matchRate}%\n",
+    "text7": "📊 Raport de Date Zilnic XunNi\n",
+    "text8": "Eroare de formatare a datei, ar trebui să fie YYYY-MM-DD",
+    "text9": "Data: ${dateStr}\n\n",
+    "throw": "• Sticle aruncate: ${stats.bottlesThrown}\n",
+    "throw2": "• Aruncări: ${vipStats.throws}\n",
+    "throws": "• Aruncări: ${count}\n",
+    "timeLeftDaysHours": "${days} zile ${hours} ore",
+    "timeLeftHours": "${hours} ore",
+    "title": "📊 **Statisticile mele**\n\n",
+    "todayQuota": "• Cota de azi: ${display}\n\n",
+    "total": "• Total: {total}",
+    "totalConversations": "• Total dialoguri: {total}",
+    "totalMessages": "• Total mesaje: {total}",
+    "totalSlots": "• Total locuri corespunzătoare: ${count}\n",
+    "totalUsers": "• Total înregistrări: {total}",
+    "totalVip": "• Total VIP-uri: {total}",
+    "totalWithDiff": "• Total: {total} ({diff})",
+    "users": "👥 Statistici Utilizatori",
+    "vip": "⭐ **Status VIP**\n",
+    "vip2": "⭐ **Status VIP**\n",
+    "vip3": "Membru VIP 💎",
+    "vipAvgMatches": "• Medii meciuri pe sesiune: {avg} contrapartide",
+    "vipExpire": "• Timp de expirare: ${date}\n",
+    "vipFree": "Membru gratuit",
+    "vipMatchRate": "• Rata de potrivire: {rate}%",
+    "vipMatchedSlots": "• Potriviri reușite: {count}",
+    "vipMember": "Membru VIP 💎",
+    "vipThrows": "• Numărul de aruncări: {count}",
+    "vipTotalSlots": "• Sloturi totale de potrivire: {count}",
+    "vipTriple": "💎 **Statistici VIP Triple Bottle** (ultimele ${days} zile)",
+    "vipTripleTitle": "💎 **Statistici VIP Triple Bottle** (ultimele {days} zile)",
+    "zodiac": "🔮 **Zodiac**: ${zodiac}\n"
+  },
+  "status": {
+    "cancelled": "Anulat",
+    "completed": "Finalizat",
+    "failed": "Eșuat",
+    "pending": "Așteptând",
+    "sending": "Trimitere"
+  },
+  "subscription": {
+    "downgradedToFree": "Contul tău a fost revertit la un membru gratuit.",
+    "expired": "😢 **Abonamentul VIP a expirat**",
+    "expiredDate": "Abonamentul tău VIP a expirat pe ${date}.",
+    "renewVipHint": "💡 Poți re-abona la VIP oricând: /vip",
+    "thankYou": "Mulțumim pentru suport!❤️"
+  },
+  "success": {
+    "ad": "✅ Ai văzut toate anunțurile oficiale!",
+    "ad2": "✅ Furnizor de anunț activat: ${providerName}",
+    "ad3": "✅ Furnizor de reclame dezactivat: ${providerName}\n\n",
+    "ad4": "✅ Reclama oficială activată #${adId}\n\n",
+    "ad5": "✅ Reclama oficială dezactivată #${adId}\n\n",
+    "ad6": "✅ Prioritate furnizor de reclame setată\n\n",
+    "ad7": "✅ Limita de anunțuri de astăzi a fost atinsă",
+    "appeal": "✅ Apelația ${appealId} a fost aprobată, utilizatorul a fost deblocat",
+    "appeal2": "✅ Apelația ${appealId} a fost respinsă",
+    "appeal3": "✅ Fără apeluri în așteptare",
+    "birthday": "✅ Ziua de naștere salvată",
+    "bloodType": "✅ Tipul de sânge actualizat la ${getBloodTypeDisplay(bloodType as any)}",
+    "bloodType2": "✅ Tipul de sânge șters",
+    "bottle": "✅ Recompensă acordată! +1 sticlă cu mesaj",
+    "bottle2": "✅ Am început o nouă sticlă cu mesaj",
+    "bottle3": "✅ Sticlă cu mesaj creată\n",
+    "broadcast": "✅ Am curățat ${ids.length} difuzări blocate\n\n",
+    "broadcast2": "✅ Nicio difuzare nu necesită curățare\n\n",
+    "broadcast3": "✅ Difuzări filtrate create\n\n",
+    "broadcast4": "✅ Difuzare creată\n\n",
+    "cancel": "✅ Difuzare anulată\n\n",
+    "complete": "✅ Procesarea cozii de difuzări finalizată\n\n",
+    "complete2": "✅ Întreținere sistem finalizată\n\n",
+    "complete3": "✅ Tutorial completat!",
+    "complete4": "✅ **Refresh în masă finalizat**\n\n",
+    "complete5": "✅ **Refresh finalizat**\n\n",
+    "complete6": "✅ Filtrare completată, conținut introdus",
+    "complete7": "✅ Filtrare terminată",
+    "confirm": "✅ Confirmat!",
+    "confirm2": "✅ Verificare de siguranță finalizată",
+    "confirm3": "✅ Confirmă",
+    "conversation": "✅ **Istoricul conversației a fost actualizat!**\n\n",
+    "gender": "✅ Gen salvat",
+    "invite": "✅ Invită activat: ${successfulInvites} / ${inviteLimit} persoane\n",
+    "mbti": "✅ Tipul tău MBTI a fost actualizat la: **${mbtiType}**\n\n",
+    "mbti2": "✅ Tipul tău MBTI a fost șters.\n\n",
+    "mbti3": "✅ MBTI șters",
+    "mbti4": "✅ Selecția MBTI a fost ștersă",
+    "mbti5": "✅ Tipul tău MBTI: ${mbtiType}\n\n",
+    "message": "✅ Mesaj trimis către ${formatIdentifier(receiverIdentifier)}\n\n",
+    "message2": "✅ Limba actualizată la: ${getLanguageDisplay(languageCode)}",
+    "message3": "✅ Utilizator blocat (#${conversationIdentifier})\n\n",
+    "message4": "✅ Ai câștigat +${ad.reward_quota} cotă permanentă!",
+    "message5": "✅ Gen selectat ${gender}",
+    "message6": "✅ Tip de sânge selectat ${bloodTypeDisplay[bloodType]}",
+    "message7": "✅ Semn zodiacal selectat ${ZODIAC_NAMES[zodiacSign]}",
+    "message8": "Ai selectat: ${gender}",
+    "nickname": "✅ Folosind nickname-ul Telegram: ${suggestedNickname.substring(0, 18)}",
+    "nickname2": "✅ Pseudonimul actualizat la: ${text}\n\n",
+    "register": "✅ Mod dezvoltator: Sari peste înregistrare\n\n",
+    "register2": "✅ Înțeleg, continuă înregistrarea",
+    "register3": "✅ Înregistrare finalizată!",
+    "report": "✅ **Raportul a fost trimis** (#${conversationIdentifier})\n\n",
+    "report2": "✅ Raport trimis",
+    "report3": "✅ **Utilizatorul a fost raportat**\n\n",
+    "report4": "✅ Confirmă raportul",
+    "report5": "✅ Raportat",
+    "reportSubmitted": "✅ Raport trimis, mulțumim pentru feedback-ul tău",
+    "settings": "✅ MBTI setat la ${mbtiType}",
+    "settings2": "✅ Nickname setat",
+    "settings3": "✅ Criteriile de filtrare au fost setate:\n\n",
+    "settings4": "✅ Tip de sânge setat la ${getBloodTypeDisplay(bloodType as any)}",
+    "settings5": "✅ Tipul MBTI a fost setat: ${mbtiType}\n\n",
+    "settings6": "✅ Setarea tipului de sânge a fost sărită",
+    "short": "✅ Trimitere...",
+    "short10": "✅ Încărcare...",
+    "short11": "✅ 🌈 Oricine",
+    "short12": "✅ 👨 Bărbat",
+    "short13": "✅ 👩 Femeie",
+    "short14": "✅ Continuă editarea",
+    "short15": "✅ Confirmă blocarea",
+    "short16": "✅ Blocată",
+    "short17": "✅ Am citit și sunt de acord",
+    "short18": "✅ Sărit",
+    "short19": "✅ Solicită recompensă",
+    "short2": "✅ Continuă editarea brouillonului",
+    "short20": "✅ În întreținere",
+    "short3": "✅ Brouillon șters",
+    "short4": "✅ Verifică și solicită",
+    "short5": "✅ Conceput trimis",
+    "short6": "✅ Înregistrat",
+    "short7": "✅ Corect",
+    "short8": "✅ Activat",
+    "short9": "✅ Da",
+    "start": "✅ Vă rugăm să faceți clic pe buton pentru a începe vizionarea",
+    "start2": "✅ Începe Chestionar Rapid",
+    "start3": "✅ Începe Chestionar Complet",
+    "start4": "✅ Începe Chestionarul",
+    "success": {
+      "appeal": "✅ Apelul \\${appealId} aprobat, utilizatorul a fost deblocat",
+      "appeal2": "✅ Apelul \\${appealId} respins",
+      "appeal3": "✅ Niciun apel în așteptare",
+      "birthday": "✅ Data nașterii salvată",
+      "bloodType": "✅ Tipul de sânge actualizat la \\${getBloodTypeDisplay(bloodType as any)}",
+      "bloodType2": "✅ Tipul de sânge șters",
+      "bottle": "✅ Recompensă acordată! +1 sticlă cu mesaj",
+      "bottle2": "✅ Începe o nouă sticlă cu mesaj",
+      "bottle3": "✅ Sticlă creată\n",
+      "broadcast": "✅ S-au șters \\${ids.length} difuzări blocate\n\n",
+      "broadcast2": "✅ Nu există difuzări de curățat\n\n",
+      "broadcast3": "✅ Difuzări filtrate create\n\n",
+      "broadcast4": "✅ Difuzare creată\n\n",
+      "cancel": "✅ Difuzare anulată\n\n",
+      "complete": "✅ Procesarea cozii de difuzare finalizată\n\n",
+      "complete2": "✅ întreținerea sistemului a fost finalizată\n\n",
+      "complete3": "✅ Tutorial finalizat!",
+      "complete4": "✅ **Actualizare în lot finalizată**\n\n",
+      "complete5": "✅ **Actualizare finalizată**\n\n",
+      "complete6": "✅ Filtrare finalizată, conținut introdus",
+      "complete7": "✅ Filtrare completă",
+      "confirm": "✅ Confirmat!",
+      "confirm2": "✅ Confirmare de securitate finalizată",
+      "confirm3": "✅ Confirmă",
+      "conversation": "✅ **Istoricul chat-ului a fost actualizat!**\n\n",
+      "gender": "✅ Genul salvat",
+      "invite": "✅ Invitații active: \\${successfulInvites} / \\${inviteLimit} persoane\n",
+      "mbti": "✅ Tipul tău MBTI a fost actualizat la: **\\${mbtiType}**\n\n",
+      "mbti2": "✅ Tipul tău MBTI a fost șters.\n\n",
+      "mbti3": "✅ MBTI șters",
+      "mbti4": "✅ Selecția MBTI ștearsă",
+      "mbti5": "✅ Tipul tău MBTI: \\${mbtiType}\n\n",
+      "message": "✅ Mesaj trimis către \\${formatIdentifier(receiverIdentifier)}\n\n",
+      "message2": "✅ Limba actualizată la: \\${getLanguageDisplay(languageCode)}",
+      "message3": "✅ Acest utilizator a fost blocat (#\\${conversationIdentifier})\n\n",
+      "message4": "✅ Câștigat +\\${ad.reward_quota} cote permanente!",
+      "message5": "✅ Selectat \\${gender}",
+      "message6": "✅ Selectat \\${bloodTypeDisplay[bloodType]}",
+      "message7": "✅ Selectat \\${ZODIAC_NAMES[zodiacSign]}",
+      "message8": "✅ Ai selectat: \\${gender}\n\n",
+      "nickname": "✅ Folosind porecla Telegram: \\${suggestedNickname.substring(0, 18)}",
+      "nickname2": "✅ Pseudonimul actualizat la: \\${text}\n\n",
+      "register": "✅ Mod de dezvoltare: Sari peste înregistrare\n\n",
+      "register2": "✅ Înțeleg, continui înregistrarea",
+      "register3": "✅ Înregistrare completată!",
+      "report": "✅ **Raport trimis** (#\\${conversationIdentifier})\n\n",
+      "report2": "✅ Raport trimis",
+      "report3": "✅ **Utilizator raportat**\n\n",
+      "report4": "✅ Confirmă raportul",
+      "report5": "✅ Raportat",
+      "settings": "✅ MBTI setat ca \\${mbtiType}",
+      "settings2": "✅ Pseudonim setat",
+      "settings3": "✅ Criteriile de filtrare setate:\n\n",
+      "settings4": "✅ Tip de sânge setat la \\${getBloodTypeDisplay(bloodType as any)}",
+      "settings5": "✅ Tipul MBTI setat: \\${mbtiType}\n\n",
+      "settings6": "✅ Setarea tipului de sânge sărită",
+      "short": "✅ Trimit...",
+      "short10": "✅ Se încarcă...",
+      "short11": "✅ 🌈 Oricine",
+      "short12": "✅ 👨 Bărbat",
+      "short13": "✅ 👩 Femeie",
+      "short14": "✅ Continuă editarea",
+      "short15": "✅ Confirmă blocarea",
+      "short16": "✅ Blocat",
+      "short17": "✅ Am citit și sunt de acord",
+      "short18": "✅ Sărit",
+      "short19": "✅ Solicitați recompensa",
+      "short2": "✅ Continuă editarea schiței",
+      "short20": "✅ Mod de întreținere",
+      "short3": "✅ Schița ștearsă",
+      "short4": "✅ Verifică și solicită",
+      "short5": "✅ Trimite schița",
+      "short6": "✅ Conectat",
+      "short7": "✅ Corect",
+      "short8": "✅ Activat",
+      "short9": "✅ Da",
+      "start": "✅ Te rog apasă butonul pentru a începe să vizionezi",
+      "start2": "✅ Începe testul versiunii rapide",
+      "start3": "✅ Începe testul versiunii complete",
+      "start4": "✅ Începe testul",
+      "text": "✅ Setează la \\${flag} \\${countryName}",
+      "text10": "✅ Da, înțeleg și voi acorda atenție siguranței",
+      "text11": "✅ Mod întreținere activat\n\n",
+      "text12": "✅ Mod întreținere dezactivat\n\n",
+      "text13": "✅ Analiză de personalitate mai precisă\n",
+      "text14": "✅ Tutorial sărit\n\n",
+      "text15": "✅ Toate postările sunt la zi (starea utilizatorului gratuit este corectă)\n",
+      "text16": "✅ **Nu este nevoie de actualizare**\n\n",
+      "text17": "✅ Selectat \\${gender ===",
+      "text18": "✅ Selectat \\${mbtiType}",
+      "text19": "✅ **Reguli**:\n",
+      "text2": "✅ Etichetele de interese au fost actualizate:\n\n\\${interestsStr}",
+      "text20": "✅ **Utilizatorul a fost blocat**\n\n",
+      "text21": "✅ **Solicitare de rambursare trimisă**\n\n",
+      "text22": "✅ **Rambursare aprobată**\n\n",
+      "text23": "✅ Nu sunt cereri de rambursare în așteptare.",
+      "text24": "✅ Pregătim plata...",
+      "text25": "✅ Rambursare aprobată\n\n",
+      "text26": "✅ Rambursare refuzată\n\n",
+      "text27": "✅ M-am alăturat și am revendicat recompensa",
+      "text28": "✅ Ai ales: \\${gender ===",
+      "text29": "✅ Testul anti-fraudă a fost trecut!\n\n",
+      "text3": "✅ Preferințele de potrivire actualizate la: ${prefText}\n\n",
+      "text30": "✅ Limba a fost schimbată în \\${newLanguageName}",
+      "text4": "✅ Profilul a fost actualizat!\n\n\\${text}",
+      "text5": "✅ Mod dezvoltare: Datele au fost resetate\n\n",
+      "text6": "✅ Regiunea a fost actualizată la: \\${text}",
+      "text7": "✅ Înțelegere rapidă a tipurilor de personalitate de bază\n\n",
+      "text8": "✅ **Avatar actualizat!**\n\n",
+      "text9": "✅ Recomandat pentru retestare\n\n",
+      "vip": "✅ Toate postările sunt actualizate (starea VIP este corectă)\n",
+      "zodiac": "✅ Selecția zodiacului a fost ștersă"
     },
-    status: {
-      failed: `❌ Payment Failed`,
-      paid: `✅ Payment Successful`,
-      pending: `⏳ Processing`,
-      refunded: `↩️ Refunded`,
+    "success2": "🎉 **Verificare reușită!**\n\n✅ Ai câștigat **+${ad.reward_quota} cotă permanentă**\n💎 Mulțumim că te-ai alăturat comunității noastre!\n\n📊 **Cota ta:**\n• Cotă de bază: ${user.is_vip ? 'Nelimitat' : '10'}/zi\n• Cotă permanentă: +${ad.reward_quota}\n\n💡 În comunitate poți:\n• Comunica cu alți utilizatori\n• Obține cele mai recente actualizări de funcționalitate\n• Participa la activități pentru mai multe recompense",
+    "success3": "Postările istorice în conversație au fost reîmprospărate cu succes ${result.updated}.\n\n",
+    "success4": "Actualizare reușită: ${result.updated}\n",
+    "text": "✅ Setat pe ${flag} ${countryName}",
+    "text10": "✅ Da, înțeleg și voi acorda atenție siguranței",
+    "text11": "✅ Modul de întreținere a fost activat\n\n",
+    "text12": "✅ Modul de mentenanță a fost dezactivat\n\n",
+    "text13": "✅ Analiza personalității mai precisă\n",
+    "text14": "✅ Tutorialul a fost sărit\n\n",
+    "text15": "✅ Toate postările sunt actualizate (starea utilizatorului gratuit este corectă)\n",
+    "text16": "✅ **Nu este necesară reîncărcarea**\n\n",
+    "text17": "✅ Selectat ${gender ===",
+    "text18": "✅ Selectat ${mbtiType}",
+    "text19": "✅ **Reguli**:\n",
+    "text2": "✅ Etichetele de interese au fost actualizate:\n\n${interestsStr}",
+    "text20": "✅ **Utilizatorul a fost blocat**\n\n",
+    "text21": "✅ **Cererea de restituire a fost trimisă**\n\n",
+    "text22": "✅ **Restituirea a fost aprobată**\n\n",
+    "text23": "✅ Nu sunt cereri de rambursare în așteptare.",
+    "text24": "✅ Pregătim plata...",
+    "text25": "✅ Restituirea a fost aprobată\n\n",
+    "text26": "✅ Restituirea a fost refuzată\n\n",
+    "text27": "✅ M-am alăturat și am revendicat recompensa",
+    "text28": "✅ Ai ales: ${gender ===",
+    "text29": "✅ Testul anti-fraudă a fost aprobat!\n\n",
+    "text3": "✅ Preferința pentru meci a fost actualizată la: ${prefText}\n\n",
+    "text30": "✅ Limba a fost schimbată în ${newLanguageName}",
+    "text4": "✅ Profilul a fost actualizat!\n\n${text}",
+    "text5": "✅ Modul de dezvoltare: Datele au fost resetate\n\n",
+    "text6": "✅ Regiune actualizată la: ${text}",
+    "text7": "✅ Înțelegere rapidă a tipurilor de personalitate de bază\n\n",
+    "text8": "✅ **Avatarul a fost actualizat!**\n\n",
+    "text9": "✅ Recomandat pentru retestare\n\n",
+    "verify": "✅ Verificare reușită! Ai câștigat +${ad.reward_quota} cote permanente!",
+    "verify2": "✅ Verificare reușită! Ai câștigat +\\${ad.reward_quota} cote permanente!",
+    "vip": "✅ Toate postările sunt actualizate (starea VIP este corectă)\n",
+    "zodiac": "✅ Selectarea zodiacului ștearsă"
+  },
+  "target": {
+    "all": "Toți utilizatorii",
+    "nonVip": "Utilizatori non-VIP",
+    "unknown": "Necunoscut",
+    "vip": "Utilizatori VIP"
+  },
+  "tasks": {
+    "bottle": "Recompensă: +${task.reward_amount} sticle cu mesaj (${rewardTypeText})\n\n",
+    "bottle2": "Recompensă: +${task.reward_amount} sticle cu mesaj (${task.reward_type ===",
+    "bottle3": "${icon} ${task.name} (+${task.reward_amount} sticle cu mesaj)\n",
+    "bottle4": "• Recompensă permanentă: ${inviteProgress.current} sticle cu mesaj (distribuție zilnică)\n",
+    "bottle5": "• Recompensă unică: ${todayRewardCount} sticle cu mesaj (valabil pentru zi)\n",
+    "bottle6": "📋 **Centrul de Sarcini**\n\nFinalizați sarcinile pentru a câștiga sticle de mesaj suplimentare!\n\n",
+    "description": {
+      "bio": "Împărtășește-ți povestea (cel puțin 20 de cuvinte)",
+      "city": "Găsește prieteni în orașul tău",
+      "first_bottle": "Începe-ți călătoria socială",
+      "first_catch": "Vezi poveștile altora",
+      "first_conversation": "Fă-ți prima conexiune (apasă lung pe mesaj → selectează 'Răspunde')",
+      "interests": "Lasă-i pe ceilalți să te cunoască mai bine",
+      "invite_progress": "Câștigă +1 cotă permanentă zilnică pentru fiecare persoană invitată (gratuit pentru până la 10 persoane, VIP pentru până la 100 de persoane)",
+      "join_channel": "Obține cele mai recente știri și evenimente"
     },
-  },
-  profile: {
-    activatedInvites: `✅ 已激活邀請：{successfulInvites} / {inviteLimit} 人
-`,
-    age: `🎂 年齡：\${age}
-`,
-    anonymousUser: `匿名用戶`,
-    bloodType: `🩸 血型：\${bloodType}
-`,
-    bottle: `: permanentQuota} 個瓶子
-
-`,
-    cardAge: `{age} 歲`,
-    cardBio: `📝 簡介：
-{bio}
-
-`,
-    cardFooter: `💡 這是你在對話中展示給對方的資料卡片
-
-`,
-    cardGenderFemale: `♀️ 女`,
-    cardGenderMale: `♂️ 男`,
-    cardInterests: `🏷️ 興趣：{interests}
-
-`,
-    cardLanguage: `🌍 語言：{language}
-
-`,
-    cardMbti: `🧠 MBTI：{mbti}
-`,
-    cardSeparator: `━━━━━━━━━━━━━━━━
-`,
-    cardTitle: `┌─────────────────────────┐
-│ 📇 個人資料卡片 │
-└─────────────────────────┘
-
-`,
-    cardZodiac: `⭐ 星座：{zodiac}
-`,
-    completeOnboarding: `⚠️ 請先完成註冊流程。
-
-使用 /start 繼續註冊。`,
-    conversation: `💡 這是你在對話中展示給對方的資料卡片
-
-`,
-    editProfile: `📝 編輯資料`,
-    gender: `👤 性別：\${gender}
-`,
-    hints: `💡 提示：
-`,
-    invite: `⏳ 待激活邀請：\${inviteStats.pending} 人
-`,
-    invite2: `🎁 **邀請資訊**
-
-`,
-    inviteCodeLabel: `📋 你的邀請碼：\`{inviteCode}\`
-`,
-    manual: `手動設定`,
-    mbti: `• 使用 /mbti 重新測驗或修改 MBTI
-`,
-    mbtiWithSource: `🧠 MBTI：{mbti}{source}
-`,
-    message: `https://t.me/share/url?url=https://t.me/\${botUsername}?start=invite_\${inviteCode}&text=來 XunNi 一起丟漂流瓶吧！🍾 使用我的邀請碼：\${inviteCode}`,
-    message2: `\${inviteLimitWarning}
-
-`,
-    message3: `🌍 語言：\${user.language_pref }
-
-`,
-    message4: `🌍 語言：\${user.language_pref }
-`,
-    message5: `📈 轉化率：\${inviteStats.conversionRate}%
-`,
-    message6: `\${gender} • \${age} 歲 • \${city}
-
-`,
-    message7: `https://t.me/share/url?url=https://t.me/\${botUsername}?start=invite_\${inviteCode}&text=來 XunNi 一起丟漂流`,
-    mysterious: `這個人很神秘，什麼都沒有留下～`,
-    nickname: `📛 暱稱：\${displayNickname}
-`,
-    notSet: `未設定`,
-    profile: `│ 📇 個人資料卡片 │
-`,
-    profile2: `👤 **個人資料**
-
-`,
-    quota: `💡 完成任務可獲得當日額外配額（使用 /tasks 查看）
-`,
-    quota2: `📦 當前每日配額：\${taskBonus > 0 ?`,
-    quotaBottles: `{taskBonus} 個瓶子`,
-    quotaTotal: `📦 當前每日配額：{quota}
-
-`,
-    returnToMenu: `🏠 返回主選單：/menu`,
-    separator: `━━━━━━━━━━━━━━━━
-
-`,
-    settings: `未設定`,
-    settings2: `未設定`,
-    settings3: `未設定`,
-    settings4: `未設定`,
-    settings5: `未設定`,
-    settings6: `未設定`,
-    settings7: `未設定`,
-    settings8: `未設定`,
-    shareInviteCode: `📤 分享邀請碼`,
-    short: `📝 編輯資料`,
-    short2: `免費會員`,
-    stats: `• 使用 /stats 查看統計數據
-
-`,
-    success: `💡 每成功邀請 1 人，每日配額永久 +1
-`,
-    systemError: `❌ 系統發生錯誤，請稍後再試。`,
-    test: `測驗結果`,
-    text: `• 使用 /profile_card 查看完整資料卡片
-`,
-    text2: `🏷️ 興趣：\${interests}
-
-`,
-    text3: `💎 會員：\${vipStatus}
-
-`,
-    text4: `📝 簡介：
-\${bio}
-
-`,
-    text5: `這個人很神秘，什麼都沒有留下～`,
-    userNotFound: `⚠️ 用戶不存在，請先使用 /start 註冊。`,
-    vip: `VIP 會員（到期：\${expireDate}）`,
-    vip2: `• 使用 /vip 升級 VIP 會員
-`,
-    vipUpgrade: `• 使用 /vip 升級 VIP 會員
-`,
-    zodiac: `⭐ 星座：\${zodiac}
-`,
-  },
-  refreshAvatar: {
-    failed: `❌ 刷新頭像失敗
-
-請稍後再試，或聯繫管理員。`,
-    processing: `🔄 正在刷新頭像...
-
-這可能需要幾秒鐘時間。`,
-    success: `✅ **頭像已更新！**
-
-您的頭像緩存已刷新，下次查看對話歷史時將顯示最新頭像。
-
-💡 **提示：**
-• 頭像會自動每 7 天更新一次
-• 如果您更換了 Telegram 頭像，系統會自動檢測
-• 您也可以隨時使用此命令手動刷新`,
-    userNotFound: `❌ 用戶不存在，請先註冊`,
-  },
-  refreshConversations: {
-    clickButtonHint: `💡 **提示**：請點擊上方的按鈕來開始使用`,
-    commandHelp: `• /help - 查看幫助`,
-    commandMenu: `• /menu - 主選單`,
-    commandTasks: `• /tasks - 查看任務中心`,
-    failed: `❌ 刷新對話歷史失敗
-
-請稍後再試，或聯繫管理員。`,
-    noHistory: `💡 **沒有找到對話歷史**
-
-您還沒有任何對話記錄。
-
-使用 /throw 丟出漂流瓶開始聊天吧！`,
-    partialSuccess: `⚠️ **對話歷史部分更新**
-
-成功刷新：{updated} 個
-失敗：{failed} 個
-
-部分對話歷史可能未能更新，請稍後再試。`,
-    processing: `🔄 正在刷新所有對話歷史...
-
-這可能需要一些時間，請稍候。`,
-    success: `✅ **對話歷史已更新！**
-
-成功刷新 {updated} 個對話的歷史帖子。
-
-💡 **提示：**
-• VIP 用戶可以看到清晰的對方頭像
-• 免費用戶看到的是模糊頭像
-• 升級 VIP 後會自動刷新歷史帖子`,
-    userNotFound: `❌ 用戶不存在，請先註冊`,
-  },
-  report: {
-    blockHint: `• 長按對方訊息回覆 /block 可封鎖此使用者
-`,
-    cancel: `❌ 取消`,
-    cancelled: `已取消`,
-    cannotIdentify: `⚠️ 無法識別對話對象
-
-`,
-    catchHint: `• 使用 /catch 撿新的漂流瓶`,
-    completeOnboarding: `⚠️ 請先完成註冊流程。
-
-使用 /start 繼續註冊。`,
-    conversationInfoError: `⚠️ 對話資訊錯誤。`,
-    conversationInfoError2: `⚠️ 對話資訊錯誤`,
-    conversationNotExists: `⚠️ 對話不存在`,
-    conversationNotFound: `⚠️ 找不到此對話
-
-對話可能已結束或不存在。`,
-    ensureReply: `請確保回覆的是對方發送的訊息（帶有 # 標識符）。`,
-    hint: `💡 這樣可以準確指定要舉報的對象。`,
-    multipleReports: `多次被舉報 / Multiple reports`,
-    reasonHarassment: `😡 騷擾 / 辱罵`,
-    reasonNsfw: `🔞 色情內容`,
-    reasonOther: `⚠️ 其他違規`,
-    reasonScam: `💰 詐騙 / 釣魚`,
-    reasonSpam: `📢 垃圾廣告`,
-    replyRequired: `⚠️ 請長按你要舉報的訊息後回覆指令
-
-`,
-    selectReason: `請選擇舉報原因：`,
-    sessionExpired: `⚠️ 會話已過期，請重新操作`,
-    step1: `1️⃣ 長按對方的訊息
-`,
-    step2: `2️⃣ 選擇「回覆」
-`,
-    step3: `3️⃣ 輸入 /report
-
-`,
-    steps: `**操作步驟：**
-`,
-    submitted: `✅ **舉報已提交** (#{identifier})
-
-`,
-    systemError: `❌ 系統發生錯誤`,
-    thanks: `感謝你的舉報，我們會盡快審核。
-
-`,
-    tips: `💡 提示：
-`,
-    title: `🚨 **舉報不當內容** (#{identifier})
-
-`,
-    userNotFound: `⚠️ 用戶不存在，請先使用 /start 註冊。`,
-  },
-  risk: {
-    containsSensitiveWords: `包含敏感詞彙`,
-  },
-  router: {
-    replyPrompt: `💬 回覆`,
-    suggestCatch: `❓ 要撿漂流瓶？
-
-使用 /catch 撿起漂流瓶
-
-💡 **常用命令**：
-• /throw - 丟出漂流瓶
-• /catch - 撿起漂流瓶
-• /menu - 主選單
-• /tasks - 任務中心`,
-    suggestMenu: `❓ 找不到此命令
-
-💡 **常用命令**：
-• /throw - 丟出漂流瓶
-• /catch - 撿起漂流瓶
-• /menu - 主選單
-• /tasks - 任務中心`,
-    suggestThrow: `❓ 要丟漂流瓶？
-
-請長按上一則訊息，或本訊息，
-選單上選擇「回覆」後，
-輸入要發送的漂流瓶內容
-
-💡 **常用命令**：
-• /throw - 丟出漂流瓶
-• /catch - 撿起漂流瓶
-• /menu - 主選單
-• /tasks - 任務中心
-
-#THROW`,
-    throwPrompt: `📝 請輸入你的漂流瓶內容：`,
-  },
-  session: {
-    timeoutCatchBottle: `⏰ 撿瓶流程已超時
-
-請使用 /catch 重新開始。`,
-    timeoutConversation: `⏰ 對話已超時
-
-對方可能已離開。使用 /catch 撿新的瓶子吧！`,
-    timeoutEditProfile: `⏰ 編輯資料流程已超時
-
-請重新開始編輯。`,
-    timeoutOnboarding: `⏰ 註冊流程已超時
-
-請使用 /start 重新開始註冊。`,
-    timeoutThrowBottle: `⏰ 丟瓶流程已超時
-
-請使用 /throw 重新開始。`,
-    typeCatchBottle: `撿瓶流程`,
-    typeConversation: `對話`,
-    typeEditProfile: `編輯資料`,
-    typeOnboarding: `註冊流程`,
-    typeThrowBottle: `丟瓶流程`,
-  },
-  settings: {
-    back: `返回`,
-    changeLanguage: `🌐 更改語言`,
-    currentSettings: `⚙️ **當前設定**`,
-    languageLabel: `語言：{language}`,
-    languageUpdated: `✅ Language updated to: {language}`,
-    message: `🌐 **選擇語言 / Choose Language**
-
-請選擇你的偏好語言：`,
-    returnToMenu: `🏠 返回主選單`,
-    selectOption: `請選擇選項：`,
-    settings: `💡 選擇你想要修改的設定：`,
-    settings2: `⚙️ **設定**
-
-`,
-    settings3: `🏠 返回設定`,
-    settings4: `當前設定：
-`,
-    text: `• 語言：\${languageName} 🇹🇼
-
-`,
-    title: `🏠 **主選單**`,
-  },
-  stats: {
-    activeUsers: `• 昨日活躍：{active}
-
-`,
-    age: `🎂 **年齡**：\${age} 歲
-`,
-    avgMatches: `• 平均每次配對：\${avg} 個對象
-`,
-    bottle: `
-💎 **VIP 三倍瓶子統計**（近 30 天）
-`,
-    bottle2: `🍾 **漂流瓶**
-`,
-    bottle3: `🎈 漂流瓶統計
-`,
-    bottles: `🍾 **漂流瓶**
-`,
-    bottlesCaught: `• 撿到：\${count} 個
-`,
-    bottlesThrown: `• 丟出：\${count} 個
-`,
-    catch: `• 昨日被撿：\${stats.caughtBottles}
-
-`,
-    catch2: `• 撿到：\${stats.bottlesCaught} 個
-`,
-    caught: `• 昨日被撿：{caught}
-
-`,
-    conversation: `• 活躍對話：\${stats.activeConversations}
-`,
-    conversation2: `• 總對話數：\${stats.totalConversations}
-`,
-    conversation3: `• 總對話數：\${stats.totalConversations}`,
-    conversation4: `💬 **對話**
-`,
-    conversation5: `💬 對話統計
-`,
-    conversations: `💬 **對話**
-`,
-    conversationsActive: `• 活躍對話：\${count}
-`,
-    conversationsTotal: `• 總對話數：\${count}
-`,
-    date: `日期：{date}
-
-`,
-    dateFormatError: `日期格式錯誤，應為 YYYY-MM-DD`,
-    match: `🎯 **匹配**
-`,
-    matchRate: `• 匹配成功率：\${rate}%
-`,
-    matchRateValue: `• 配對率：\${rate}%
-`,
-    matchedSlots: `• 成功配對：\${count}
-`,
-    mbti: `🧠 **MBTI**：\${mbti}
-`,
-    message: `• 到期時間：\${expireDate}
-`,
-    message10: `• 總訊息數：\${stats.totalMessages}`,
-    message2: `\${used}/\${permanentQuota}+\${taskBonus} (剩餘 \${remaining})`,
-    message3: `報告生成時間：\${new Date().toLocaleString('zh-TW')}`,
-    message4: `\${used}/\${permanentQuota} (剩餘 \${remaining})`,
-    message5: `• 總訊息數：\${stats.totalMessages}
-
-`,
-    message6: `• 昨日新增訊息：\${stats.newMessages}
-
-`,
-    message7: `• 總配對槽位：\${vipStats.totalSlots}
-`,
-    message8: `• 平均回覆率：\${stats.replyRate}%
-
-`,
-    message9: `• 昨日活躍：\${stats.activeUsers}
-
-`,
-    messages: `💬 對話統計`,
-    messagesTotal: `• 總訊息數：\${count}
-`,
-    new: `• 昨日新增：{new}`,
-    newMessages: `• 昨日新增訊息：{new}
-
-`,
-    newUsers: `• 昨日新增：{new}`,
-    newVip: `• 昨日新增：{new}
-
-`,
-    notSet: `未設定`,
-    quota: `• 今日配額：\${stats.todayQuota.display}
-
-`,
-    register: `📅 **註冊時間**：\${new Date(user.created_at).toLocaleDateString('zh-TW')}
-`,
-    register2: `• 總註冊數：\${stats.totalUsers}`,
-    registerTime: `📅 **註冊時間**：\${date}
-`,
-    replyRate: `• 平均回覆率：\${rate}%
-`,
-    reportTime: `報告生成時間：{time}`,
-    separator: `---
-`,
-    settings: `🧠 **MBTI**：\\$
-
-`,
-    settings2: `未設定`,
-    short: `免費會員`,
-    statDateEmpty: `統計日期不能為空`,
-    stats: `📊 **我的統計數據**
-
-`,
-    stats2: `💎 VIP 統計
-`,
-    stats3: `👥 用戶統計
-`,
-    stats4: `統計日期不能為空`,
-    success: `• 成功配對：\${vipStats.matchedSlots}
-`,
-    success2: `• 匹配成功率：\${stats.matchRate}%
-`,
-    text: `• 平均每次配對：\${avgMatches} 個對象
-`,
-    text10: `🎯 **匹配**
-`,
-    text2: `• 昨日新增：\${stats.newBottles}
-`,
-    text3: `• 總數：\${stats.totalBottles}`,
-    text4: `• 昨日新增：\${stats.newUsers}
-`,
-    text5: `• 昨日新增：\${stats.newVip}
-
-`,
-    text6: `• 配對率：\${matchRate}%
-`,
-    text7: `📊 XunNi Bot 每日數據報告
-`,
-    text8: `日期格式錯誤，應為 YYYY-MM-DD`,
-    text9: `日期：\${dateStr}
-
-`,
-    throw: `• 丟出：\${stats.bottlesThrown} 個
-`,
-    throw2: `• 丟出次數：\${vipStats.throws}
-`,
-    throws: `• 丟出次數：\${count}
-`,
-    timeLeftDaysHours: `\${days} 天 \${hours} 小時`,
-    timeLeftHours: `\${hours} 小時`,
-    title: `📊 **我的統計數據**
-
-`,
-    todayQuota: `• 今日配額：\${display}
-
-`,
-    total: `• 總數：{total}`,
-    totalConversations: `• 總對話數：{total}`,
-    totalMessages: `• 總訊息數：{total}`,
-    totalSlots: `• 總配對槽位：\${count}
-`,
-    totalUsers: `• 總註冊數：{total}`,
-    totalVip: `• 總 VIP 數：{total}`,
-    totalWithDiff: `• 總數：{total} ({diff})`,
-    users: `👥 用戶統計`,
-    vip: `⭐ **VIP 狀態**
-`,
-    vip2: `⭐ **VIP 狀態**
-`,
-    vip3: `VIP 會員 💎`,
-    vipAvgMatches: `• 平均每次配對：{avg} 個對象`,
-    vipExpire: `• 到期時間：\${date}
-`,
-    vipFree: `免費會員`,
-    vipMatchRate: `• 配對率：{rate}%`,
-    vipMatchedSlots: `• 成功配對：{count}`,
-    vipMember: `VIP 會員 💎`,
-    vipThrows: `• 丟出次數：{count}`,
-    vipTotalSlots: `• 總配對槽位：{count}`,
-    vipTriple: `💎 **VIP 三倍瓶子統計**（近 \${days} 天）`,
-    vipTripleTitle: `💎 **VIP 三倍瓶子統計**（近 {days} 天）`,
-    zodiac: `🔮 **星座**：\${zodiac}
-`,
-  },
-  status: {
-    cancelled: `已取消`,
-    completed: `已完成`,
-    failed: `失敗`,
-    pending: `等待中`,
-    sending: `發送中`,
-  },
-  subscription: {
-    downgradedToFree: `你的帳號已恢復為免費會員。`,
-    expired: `😢 **VIP 訂閱已到期**`,
-    expiredDate: `你的 VIP 訂閱已於 \${date} 到期。`,
-    renewVipHint: `💡 隨時可以重新訂閱 VIP：/vip`,
-    thankYou: `感謝你的支持！❤️`,
-  },
-  success: {
-    ad: `✅ 你已經看過所有官方廣告了！`,
-    ad2: `✅ 已啟用廣告提供商：\${providerName}
-
-`,
-    ad3: `✅ 已停用廣告提供商：\${providerName}
-
-`,
-    ad4: `✅ 已啟用官方廣告 #\${adId}
-
-`,
-    ad5: `✅ 已停用官方廣告 #\${adId}
-
-`,
-    ad6: `✅ 已設置廣告提供商優先級
-
-`,
-    ad7: `✅ 今日廣告已達上限`,
-    appeal: `✅ 申訴 \${appealId} 已批准，用戶已解封`,
-    appeal2: `✅ 申訴 \${appealId} 已拒絕`,
-    appeal3: `✅ 目前沒有待審核的申訴`,
-    birthday: `✅ 生日已保存`,
-    bloodType: `✅ 血型已更新為 \${getBloodTypeDisplay(bloodType as any)}`,
-    bloodType2: `✅ 血型已清除`,
-    bottle: `✅ 獎勵已發放！+1 瓶子`,
-    bottle2: `✅ 開始新的漂流瓶`,
-    bottle3: `✅ 瓶子已創建
-`,
-    broadcast: `✅ 已清理 \${ids.length} 個卡住的廣播
-
-`,
-    broadcast2: `✅ 沒有需要清理的廣播
-
-`,
-    broadcast3: `✅ 過濾廣播已創建
-
-`,
-    broadcast4: `✅ 廣播已創建
-
-`,
-    cancel: `✅ 廣播已取消
-
-`,
-    complete: `✅ 廣播隊列處理完成
-
-`,
-    complete2: `✅ 系統維護已完成
-
-`,
-    complete3: `✅ 教學已完成！`,
-    complete4: `✅ **批量刷新完成**
-
-`,
-    complete5: `✅ **刷新完成**
-
-`,
-    complete6: `✅ 完成篩選，輸入內容`,
-    complete7: `✅ 篩選完成`,
-    confirm: `✅ 已確認！`,
-    confirm2: `✅ 安全確認完成`,
-    confirm3: `✅ 確認`,
-    conversation: `✅ **對話歷史已更新！**
-
-`,
-    gender: `✅ 性別已保存`,
-    invite: `✅ 已激活邀請：\${successfulInvites} / \${inviteLimit} 人
-`,
-    mbti: `✅ 你的 MBTI 類型已更新為：**\${mbtiType}**
-
-`,
-    mbti2: `✅ 你的 MBTI 類型已清除。
-
-`,
-    mbti3: `✅ MBTI 已清除`,
-    mbti4: `✅ 已清除 MBTI 選擇`,
-    mbti5: `✅ 你的 MBTI 類型：\${mbtiType}
-
-`,
-    message: `✅ 訊息已發送給 \${formatIdentifier(receiverIdentifier)}
-
-`,
-    message2: `✅ 語言已更新為：\${getLanguageDisplay(languageCode)}`,
-    message3: `✅ 已封鎖此使用者 (#\${conversationIdentifier})
-
-`,
-    message4: `✅ 獲得 +\${ad.reward_quota} 個永久額度！`,
-    message5: `✅ 已選擇 \${gender}`,
-    message6: `✅ 已選擇 \${bloodTypeDisplay[bloodType]}`,
-    message7: `✅ 已選擇 \${ZODIAC_NAMES[zodiacSign]}`,
-    message8: `[需要翻译]`,
-    nickname: `✅ 使用 Telegram 暱稱：\${suggestedNickname.substring(0, 18)}`,
-    nickname2: `✅ 暱稱已更新為：\${text}
-
-`,
-    register: `✅ 開發模式：跳過註冊
-
-`,
-    register2: `✅ 我了解了，繼續註冊`,
-    register3: `✅ 註冊完成！`,
-    report: `✅ **舉報已提交** (#\${conversationIdentifier})
-
-`,
-    report2: `✅ 舉報已提交`,
-    report3: `✅ **已舉報此用戶**
-
-`,
-    report4: `✅ 確定舉報`,
-    report5: `✅ 已舉報`,
-    reportSubmitted: `✅ 舉報已提交，感謝你的回報`,
-    settings: `✅ MBTI 已設定為 \${mbtiType}`,
-    settings2: `✅ 暱稱已設定`,
-    settings3: `✅ 篩選條件已設定：
-
-`,
-    settings4: `✅ 血型已設定為 \${getBloodTypeDisplay(bloodType as any)}`,
-    settings5: `✅ MBTI 類型已設定：\${mbtiType}
-
-`,
-    settings6: `✅ 已跳過血型設定`,
-    short: `✅ 正在發送...`,
-    short10: `✅ 正在加載...`,
-    short11: `✅ 🌈 任何人`,
-    short12: `✅ 👨 男生`,
-    short13: `✅ 👩 女生`,
-    short14: `✅ 繼續編輯`,
-    short15: `✅ 確定封鎖`,
-    short16: `✅ 已封鎖`,
-    short17: `✅ 我已閱讀並同意`,
-    short18: `✅ 已跳過`,
-    short19: `✅ 領取獎勵`,
-    short2: `✅ 繼續編輯草稿`,
-    short20: `✅ 維護中`,
-    short3: `✅ 草稿已刪除`,
-    short4: `✅ 驗證並領取`,
-    short5: `✅ 發送草稿`,
-    short6: `✅ 已記錄`,
-    short7: `✅ 正確`,
-    short8: `✅ 啟用`,
-    short9: `✅ 是`,
-    start: `✅ 請點擊按鈕開始觀看`,
-    start2: `✅ 開始快速版測驗`,
-    start3: `✅ 開始完整版測驗`,
-    start4: `✅ 開始測驗`,
-    success2: `🎉 **驗證成功！**
-
-✅ 獲得 **+\${ad.reward_quota} 個永久額度**
-💎 感謝你加入我們的社群！
-
-📊 **你的額度：**
-• 基礎額度：\${user.is_vip ? '無限' : '10'}/天
-• 永久額度：+\${ad.reward_quota}
-
-💡 在社群中你可以：
-• 與其他用戶交流
-• 獲得最新功能更新
-• 參與活動獲得更多獎勵`,
-    success3: `成功刷新 \${result.updated} 個對話的歷史帖子。
-
-`,
-    success4: `成功刷新：\${result.updated} 個
-`,
-    text: `✅ 已設置為 \${flag} \${countryName}`,
-    text10: `✅ 是的，我了解並會注意安全`,
-    text11: `✅ 維護模式已啟用
-
-`,
-    text12: `✅ 維護模式已關閉
-
-`,
-    text13: `✅ 更準確的性格分析
-`,
-    text14: `✅ 已跳過教學
-
-`,
-    text15: `✅ 所有帖子都是最新的（免費用戶狀態正確）
-`,
-    text16: `✅ **無需刷新**
-
-`,
-    text17: `✅ 已選擇 \${gender ===`,
-    text18: `✅ 已選擇 \${mbtiType}`,
-    text19: `✅ **規則**：
-`,
-    text2: `✅ 興趣標籤已更新：
-
-\${interestsStr}`,
-    text20: `✅ **已封鎖此用戶**
-
-`,
-    text21: `✅ **退款申請已提交**
-
-`,
-    text22: `✅ **退款已批准**
-
-`,
-    text23: `✅ 沒有待處理的退款請求。`,
-    text24: `✅ 正在準備支付...`,
-    text25: `✅ 退款已批准
-
-`,
-    text26: `✅ 退款已拒絕
-
-`,
-    text27: `✅ 我已加入，領取獎勵`,
-    text28: `✅ 你選擇了：\${gender ===`,
-    text29: `✅ 反詐騙測驗通過！
-
-`,
-    text3: `✅ 匹配偏好已更新為：\${prefText}
-
-`,
-    text30: `✅ 語言已變更為 \${newLanguageName}`,
-    text4: `✅ 個人簡介已更新！
-
-\${text}`,
-    text5: `✅ 開發模式：數據已重置
-
-`,
-    text6: `✅ 地區已更新為：\${text}`,
-    text7: `✅ 快速了解基本性格類型
-
-`,
-    text8: `✅ **頭像已更新！**
-
-`,
-    text9: `✅ 推薦用於重新測試
-
-`,
-    verify: `✅ 驗證成功！獲得 +\${ad.reward_quota} 個永久額度！`,
-    verify2: `✅ 驗證成功！獲得 +\\\${ad.reward_quota} 個永久額度！`,
-    vip: `✅ 所有帖子都是最新的（VIP 狀態正確）
-`,
-    zodiac: `✅ 已清除星座選擇`,
-    success: {
-      appeal: `✅ 申訴 \\\${appealId} 已批准，用戶已解封`,
-      appeal2: `✅ 申訴 \\\${appealId} 已拒絕`,
-      appeal3: `✅ 目前沒有待審核的申訴`,
-      birthday: `✅ 生日已保存`,
-      bloodType: `✅ 血型已更新為 \\\${getBloodTypeDisplay(bloodType as any)}`,
-      bloodType2: `✅ 血型已清除`,
-      bottle: `✅ 獎勵已發放！+1 瓶子`,
-      bottle2: `✅ 開始新的漂流瓶`,
-      bottle3: `✅ 瓶子已創建
-`,
-      broadcast: `✅ 已清理 \\\${ids.length} 個卡住的廣播
-
-`,
-      broadcast2: `✅ 沒有需要清理的廣播
-
-`,
-      broadcast3: `✅ 過濾廣播已創建
-
-`,
-      broadcast4: `✅ 廣播已創建
-
-`,
-      cancel: `✅ 廣播已取消
-
-`,
-      complete: `✅ 廣播隊列處理完成
-
-`,
-      complete2: `✅ 系統維護已完成
-
-`,
-      complete3: `✅ 教學已完成！`,
-      complete4: `✅ **批量刷新完成**
-
-`,
-      complete5: `✅ **刷新完成**
-
-`,
-      complete6: `✅ 完成篩選，輸入內容`,
-      complete7: `✅ 篩選完成`,
-      confirm: `✅ 已確認！`,
-      confirm2: `✅ 安全確認完成`,
-      confirm3: `✅ 確認`,
-      conversation: `✅ **對話歷史已更新！**
-
-`,
-      gender: `✅ 性別已保存`,
-      invite: `✅ 已激活邀請：\\\${successfulInvites} / \\\${inviteLimit} 人
-`,
-      mbti: `✅ 你的 MBTI 類型已更新為：**\\\${mbtiType}**
-
-`,
-      mbti2: `✅ 你的 MBTI 類型已清除。
-
-`,
-      mbti3: `✅ MBTI 已清除`,
-      mbti4: `✅ 已清除 MBTI 選擇`,
-      mbti5: `✅ 你的 MBTI 類型：\\\${mbtiType}
-
-`,
-      message: `✅ 訊息已發送給 \\\${formatIdentifier(receiverIdentifier)}
-
-`,
-      message2: `✅ 語言已更新為：\\\${getLanguageDisplay(languageCode)}`,
-      message3: `✅ 已封鎖此使用者 (#\\\${conversationIdentifier})
-
-`,
-      message4: `✅ 獲得 +\\\${ad.reward_quota} 個永久額度！`,
-      message5: `✅ 已選擇 \\\${gender}`,
-      message6: `✅ 已選擇 \\\${bloodTypeDisplay[bloodType]}`,
-      message7: `✅ 已選擇 \\\${ZODIAC_NAMES[zodiacSign]}`,
-      message8: `✅ 你選擇了：\\\${gender}
-
-`,
-      nickname: `✅ 使用 Telegram 暱稱：\\\${suggestedNickname.substring(0, 18)}`,
-      nickname2: `✅ 暱稱已更新為：\\\${text}
-
-`,
-      register: `✅ 開發模式：跳過註冊
-
-`,
-      register2: `✅ 我了解了，繼續註冊`,
-      register3: `✅ 註冊完成！`,
-      report: `✅ **舉報已提交** (#\\\${conversationIdentifier})
-
-`,
-      report2: `✅ 舉報已提交`,
-      report3: `✅ **已舉報此用戶**
-
-`,
-      report4: `✅ 確定舉報`,
-      report5: `✅ 已舉報`,
-      settings: `✅ MBTI 已設定為 \\\${mbtiType}`,
-      settings2: `✅ 暱稱已設定`,
-      settings3: `✅ 篩選條件已設定：
-
-`,
-      settings4: `✅ 血型已設定為 \\\${getBloodTypeDisplay(bloodType as any)}`,
-      settings5: `✅ MBTI 類型已設定：\\\${mbtiType}
-
-`,
-      settings6: `✅ 已跳過血型設定`,
-      short: `✅ 正在發送...`,
-      short10: `✅ 正在加載...`,
-      short11: `✅ 🌈 任何人`,
-      short12: `✅ 👨 男生`,
-      short13: `✅ 👩 女生`,
-      short14: `✅ 繼續編輯`,
-      short15: `✅ 確定封鎖`,
-      short16: `✅ 已封鎖`,
-      short17: `✅ 我已閱讀並同意`,
-      short18: `✅ 已跳過`,
-      short19: `✅ 領取獎勵`,
-      short2: `✅ 繼續編輯草稿`,
-      short20: `✅ 維護中`,
-      short3: `✅ 草稿已刪除`,
-      short4: `✅ 驗證並領取`,
-      short5: `✅ 發送草稿`,
-      short6: `✅ 已記錄`,
-      short7: `✅ 正確`,
-      short8: `✅ 啟用`,
-      short9: `✅ 是`,
-      start: `✅ 請點擊按鈕開始觀看`,
-      start2: `✅ 開始快速版測驗`,
-      start3: `✅ 開始完整版測驗`,
-      start4: `✅ 開始測驗`,
-      text: `✅ 已設置為 \\\${flag} \\\${countryName}`,
-      text10: `✅ 是的，我了解並會注意安全`,
-      text11: `✅ 維護模式已啟用
-
-`,
-      text12: `✅ 維護模式已關閉
-
-`,
-      text13: `✅ 更準確的性格分析
-`,
-      text14: `✅ 已跳過教學
-
-`,
-      text15: `✅ 所有帖子都是最新的（免費用戶狀態正確）
-`,
-      text16: `✅ **無需刷新**
-
-`,
-      text17: `✅ 已選擇 \\\${gender ===`,
-      text18: `✅ 已選擇 \\\${mbtiType}`,
-      text19: `✅ **規則**：
-`,
-      text2: `✅ 興趣標籤已更新：
-
-\\\${interestsStr}`,
-      text20: `✅ **已封鎖此用戶**
-
-`,
-      text21: `✅ **退款申請已提交**
-
-`,
-      text22: `✅ **退款已批准**
-
-`,
-      text23: `✅ 沒有待處理的退款請求。`,
-      text24: `✅ 正在準備支付...`,
-      text25: `✅ 退款已批准
-
-`,
-      text26: `✅ 退款已拒絕
-
-`,
-      text27: `✅ 我已加入，領取獎勵`,
-      text28: `✅ 你選擇了：\\\${gender ===`,
-      text29: `✅ 反詐騙測驗通過！
-
-`,
-      text3: `✅ 匹配偏好已更新為：\\\${prefText}
-
-`,
-      text30: `✅ 語言已變更為 \\\${newLanguageName}`,
-      text4: `✅ 個人簡介已更新！
-
-\\\${text}`,
-      text5: `✅ 開發模式：數據已重置
-
-`,
-      text6: `✅ 地區已更新為：\\\${text}`,
-      text7: `✅ 快速了解基本性格類型
-
-`,
-      text8: `✅ **頭像已更新！**
-
-`,
-      text9: `✅ 推薦用於重新測試
-
-`,
-      vip: `✅ 所有帖子都是最新的（VIP 狀態正確）
-`,
-      zodiac: `✅ 已清除星座選擇`,
+    "invite": "🔄 Invite friends (${inviteProgress.current}/${inviteProgress.max})\n",
+    "invite2": "Invită 1 persoană → Câștigă +1 cotă permanentă zilnică\n",
+    "message": "${icon} ${task.name} ${status} (+${task.reward_amount} sticle cu mesaj)\n",
+    "message2": "Faceți clic pe butonul de mai jos pentru a vă alătura canalului oficial XunNi pentru cele mai recente știri și evenimente!\n\n",
+    "name": {
+      "bio": "Completează-ți auto-prezentarea",
+      "city": "Setează-ți regiunea",
+      "first_bottle": "Aruncă-ți prima sticlă cu mesaj",
+      "first_catch": "Ridică-ți prima sticlă cu mesaj",
+      "first_conversation": "Începe-ți prima conversație",
+      "interests": "Completează etichetele de interes",
+      "invite_progress": "Invită prieteni",
+      "join_channel": "Alătură-te canalului oficial"
     },
+    "profile": "👤 **Sarcini Profil** (${completedCount}/${profileTasks.length})\n",
+    "quota": "Cota zilnică curentă: ${calculateDailyQuota(user)} unități\n",
+    "short": "(De revendicat)",
+    "short2": "Valabil pentru zi",
+    "short3": "Valabil permanent",
+    "task": "• Sarcină de invitație: ${inviteProgress.current}/${inviteProgress.max} în desfășurare\n\n",
+    "task2": "📱 **Sarcini Media Sociale** (${completedCount}/${socialTasks.length})\n",
+    "task3": "🎯 **Sarcini de Comportament** (${completedCount}/${actionTasks.length})\n",
+    "task4": "• Sarcini unice: ${oneTimeCompleted}/${oneTimeTotal} completate\n",
+    "task5": "🎉 Felicitări pentru completarea sarcinii \"${task.name}\"!\n\n",
+    "task6": "👥 **Sarcini de Invitație** (în desfășurare)\n",
+    "task7": "💡 Folosește /tasks pentru a vedea Centrul de Sarcini",
+    "text": "Apasă butonul \"M-am alăturat\" pentru a revendica recompensele 🎁",
+    "text2": "📢 **Alăturați-vă Canalului Oficial**\n\n",
+    "text3": "📊 **Progres general**\n",
+    "text4": "🎁 **Recompense obținute**\n"
   },
-  target: {
-    all: `所有用戶`,
-    nonVip: `非 VIP 用戶`,
-    unknown: `未知`,
-    vip: `VIP 用戶`,
+  "throw": {
+    "age": "• Interval de vârstă este aproape ✓",
+    "back": "↩️ Întoarce-te la meniul de filtrare",
+    "bloodType": "🩸 **Filtru Tip Sânge**\n\n",
+    "bloodType2": "• Tip de sânge: Filtrează tipurile specifice de sânge\n",
+    "bloodType3": "Selectează tipul de sânge pe care vrei să-l potrivești:",
+    "bloodType4": "🩸 Filtru tip de sânge",
+    "bloodType5": "🌈 Orice tip de sânge",
+    "bottle": "💡 Această sticlă cu mesaj este o potrivire excelentă pentru tine!\n\n",
+    "bottle10": "🍾 Sticla cu mesaj a fost aruncată!\n\n",
+    "bottle11": "🍾 Aruncă sticla cu mesaj",
+    "bottle2": "🎯 Sticla ta a fost trimisă către **3 destinatari**:\n",
+    "bottle3": "🍾 **Se aruncă sticla cu mesaj...**\n\n",
+    "bottle4": "🍾 **Aruncă Sticla cu Mesaj** #THROW\n\n",
+    "bottle5": "ID-ul sticlei: #${bottleId}\n\n",
+    "bottle6": "📝 **Vă rugăm să introduceți conținutul sticlei cu mesaj**\n\n",
+    "bottle7": "1️⃣ Apasă butonul \"🍾 Aruncă sticla cu mesaj\" de mai jos\n",
+    "bottle8": "📝 Vă rugăm să introduceți conținutul sticlei cu mesaj:\n\n",
+    "bottle9": "📝 Te rog să introduci conținutul sticlei cu mesaj:",
+    "cancel": "💡 Apasă pentru a selecta sau anula tipul MBTI:",
+    "cancel2": "💡 Apasă pentru a selecta sau anula semnul zodiacal:",
+    "catch": "• Slot 3: Piscină publică (așteptând să fie ridicată)\n\n",
+    "catch2": "• Slot 2: Piscină publică (așteaptă să fie ridicat)\n",
+    "catch3": "• Slot 1: Piscină publică (așteaptă să fie ridicat)\n",
+    "catch4": "🌊 Așteptând ca soarta să te ridice...\n",
+    "complete": "⚙️ **Filtru avansat**\n\n${summary}\n💡 Continuă să ajustezi sau să completezi filtrul:",
+    "complete2": "🎯 **Potrivire #1 finalizată:**\n",
+    "complete3": "📝 Aveți un proiect nesfârșit\n\n",
+    "complete4": "⏳ Timp estimat de finalizare în 3-5 secunde",
+    "complete5": "⏳ Timp estimat de finalizare în 2-3 secunde",
+    "complete6": "⏳ Timp estimat de finalizare în 1-2 secunde",
+    "conversation": "💬 Identificator conversație: ${vipMatchInfo.conversationIdentifier}\n\n",
+    "conversation2": "💡 Sfat: Fiecare conversație este independentă și poate avea loc simultan\n\n",
+    "conversation3": "💡 Poți primi **până la 3 conversații**!\n",
+    "conversation4": "💬 Poți primi **până la 3 conversații**!\n",
+    "conversation5": "Utilizați /chats pentru a vizualiza toate conversațiile\n\n",
+    "conversation6": "📊 Folosește /chats pentru a vizualiza toate conversațiile",
+    "conversation7": "Folosește /chats pentru a vizualiza toate conversațiile",
+    "currentSelection": "Selecția curentă: {genderText}",
+    "friendlyContent": "💬 Conținutul prietenos este mai probabil să primească un răspuns",
+    "gender": "• Gen: ${selectedGender === 'male' ? '👨 Bărbat' : selectedGender === 'female' ? '👩 Femeie' : '🌈 Oricine'}\n",
+    "gender2": "👤 **Filtru de Gen**\n\n",
+    "gender3": "• Gen: Filtrare după gen\n\n",
+    "gender4": "💡 Selectează genul pe care îl dorești:",
+    "gender5": "👤 Filtru de gen",
+    "genderLabel": "• Gen: {gender}\n",
+    "mbti": "• MBTI: ${selectedMBTI.length > 0 ? selectedMBTI.join(', ') : 'Fără Limită'}\n",
+    "mbti2": "Selectat: ${selectedMBTI.length > 0 ? selectedMBTI.join(', ') : 'Nimic'}\n\n",
+    "mbti3": "Selectat: ${selectedMBTI.length > 0 ? selectedMBTI.join(",
+    "mbti4": "🧠 **Filtru MBTI**\n\n",
+    "mbti5": "• Potrivire ridicată ✓\n",
+    "mbti6": "🧠 Filtru MBTI",
+    "mbti7": "• MBTI: {mbti}",
+    "mbtiLabel": "• MBTI: {mbti}\n",
+    "message": "Selecția curentă: ${currentGender === 'male' ? '👨 Bărbat' : currentGender === 'female' ? '👩 Femeie' : '🌈 Oricine'}\n\n",
+    "message2": "Selecția curentă: ${currentGender === 'male' ? '👨 Bărbat' : currentGender === 'female' ? '👩 Femeie' : '🌈 Oricine'}\n\n",
+    "message3": "Selectat: ${selectedZodiac.length > 0 ? selectedZodiac.map((z) => ZODIAC_NAMES[z]).join(",
+    "message4": "“Bună! Sunt cineva care iubește muzica și filmele, sperând să întâlnesc prieteni cu idei asemănătoare～” {bloodTypeDisplay[currentBloodType]} ${bloodTypeDisplay[currentBloodType]}\n\n",
+    "message5": "💡 Poți modifica preferințele de potrivire în /edit_profile {vipMatchInfo.matcherNickname} ${vipMatchInfo.matcherNickname}\n",
+    "message6": "\"Salut! Sunt cineva care iubește muzica și filmele și sper să întâlnesc prieteni cu gânduri asemănătoare~\"\n\n",
+    "message7": "💡 Puteți modifica preferințele de potrivire în /edit_profile\n\n",
+    "message8": "• Mai multă cotă (30 pe zi)\n",
+    "nickname": "🎁 Invitarea prietenilor poate crește cota ta: {matchedUserMaskedNickname} ${matchedUserMaskedNickname}\n",
+    "quota": "• Mai multe cote (30 pe zi)\n",
+    "quota2": "🎁 Invitați prietenii pentru a crește cota:\n",
+    "selected": "Selectat: {selected}",
+    "settings": "🧠 MBTI: \\$ {mbti} ${mbti}\n",
+    "settings2": "⭐ Zodiac: \\$ {zodiac} ${zodiac}\n",
+    "settings3": "Nesetat\n",
+    "settings4": "Nesetat\n",
+    "settings5": "Nesetat",
+    "settings6": "Nesetat",
+    "settings7": "• Aceeași limbă ✓",
+    "settings8": "♋ Rac",
+    "short": "♌ Leu",
+    "short10": "♍ Fecioară",
+    "short11": "♎ Balanță",
+    "short12": "♏ Scorpiu",
+    "short13": "♐ Săgetător",
+    "short14": "♑ Capricorn",
+    "short15": "♒ Vărsător",
+    "short16": "♓ Pești",
+    "short17": "Încălcări",
+    "short18": "🩸 Tip AB",
+    "short19": "Nelimitat",
+    "short2": "Nelimitat",
+    "short20": "Nelimitat",
+    "short21": "Nelimitat",
+    "short22": "🌈 Oricine",
+    "short23": "🩸 Tip A",
+    "short3": "🩸 Tip B",
+    "short4": "🩸 Tip O",
+    "short5": "♈ Berbec",
+    "short6": "♉ Taur",
+    "short7": "♊ Gemeni",
+    "short8": "♉ Taur",
+    "short9": "♊ Gemeni",
+    "start": "✍️ Reîncepeți",
+    "success": "Aruncarea unei sticle cu mesaj = 3 obiecte, îmbunătățind semnificativ rata de potrivire\n\n",
+    "success2": "✨ **Privilegii VIP activate! Potrivire inteligentă reușită!**\n\n",
+    "success3": "🎯 Sticla dumneavoastră cu mesaj a fost potrivită cu succes!\n\n",
+    "text": "💝 Compatibilitate: ${matchPercentage}%\n",
+    "text10": "🎯 Căutăm cea mai bună potrivire pentru dumneavoastră\n\n",
+    "text11": "💬 Așteptând răspunsul celeilalte părți...\n",
+    "text12": "• Utilizatori gratuiti: până la +7\n",
+    "text13": "• Nu includeți informații personale de contact\n\n",
+    "text14": "💡 **Două metode de introducere**：\n",
+    "text15": "📊 Utilizatori gratuiti: 3 pe zi\n",
+    "text16": "Alegeți condițiile pe care doriți să le filtrați:\n\n",
+    "text17": "• Filtrare avansată și traducere\n\n",
+    "text18": "Timp de creație: ${age}\n",
+    "text19": "Folosește /vip pentru a te upgrada acum",
+    "text2": "• 🆕 Oportunitate de expunere triplă (1 dată = 3 destinatari)\n",
+    "text20": "💬 **Exemplu**：\n",
+    "text21": "Folosește /vip pentru a afla mai multe",
+    "text22": "Vrei să continui editarea acestui proiect?",
+    "text23": "💡 Poți combina mai multe condiții",
+    "text24": "Condițiile curente de filtrare:\n\n",
+    "text3": "💡 Acest lucru poate dura câteva secunde, căutăm cele mai potrivite persoane pentru tine",
+    "text4": "Selecție curentă: ${currentGender ===",
+    "text5": "🎯 Căutăm destinatari: ${targetText}\n",
+    "text6": "🎯 Căutăm 3 cele mai bune potriviri pentru dumneavoastră\n\n",
+    "text7": "📨 **2 locuri suplimentare așteaptă:**\n",
+    "text8": "🔍 Potrivire inteligentă a celor mai bune opțiuni...\n\n",
+    "text9": "Previzualizare conținut: ${preview}\n\n",
+    "throw": "📊 Mesaje trimise astăzi: ${quotaDisplay}\n\n",
+    "tips": "💡 Sfat: Cu cât scrii mai detaliat, cu atât va fi mai ușor să găsești parteneri de chat potriviți",
+    "unlimited": "Nelimitat",
+    "vip": "💎 Utilizatori VIP: 30 pe zi (de trei ori expunerea)\n\n",
+    "vip2": "💎 **Upgradează la VIP pentru oportunități de expunere triplă!**\n",
+    "vip3": "⚙️ **Filtrare avansată (exclusiv pentru VIP)**\n\n",
+    "vip4": "• Utilizatori VIP: până la +70\n\n",
+    "vip5": "✨ **Privilegii VIP activate!**\n\n",
+    "vip6": "💡 Upgradează la VIP pentru a primi:\n",
+    "vip7": "✨ Activarea privilegiilor VIP\n",
+    "zodiac": "• Zodiac: ${selectedZodiac.length > 0 ? selectedZodiac.map((z) => ZODIAC_NAMES[z]).join(', ') : 'Fără limită'}\n",
+    "zodiac2": "⭐ Zodie: ${matchResult.user.zodiac ||",
+    "zodiac3": "⭐ Zodie: ${user.zodiac_sign ||",
+    "zodiac4": "⭐ **Filtru zodiacal**\n\n",
+    "zodiac5": "• Zodie: Filtrează semne zodiacale specifice\n",
+    "zodiac6": "• Foarte compatibil cu zodia ✓",
+    "zodiac7": "⭐ Filtrare zodie",
+    "zodiacLabel": "• Zodie: {zodiac}\n"
   },
-  tasks: {
-    bottle: `獎勵：+\${task.reward_amount} 瓶子（\${rewardTypeText}）
-
-`,
-    bottle2: `獎勵：+\${task.reward_amount} 瓶子（\${task.reward_type ===`,
-    bottle3: `\${icon} \${task.name} (+\${task.reward_amount} 瓶子)
-`,
-    bottle4: `• 永久獎勵：\${inviteProgress.current} 個瓶子（每天發放）
-`,
-    bottle5: `• 一次性獎勵：\${todayRewardCount} 個瓶子（當天有效）
-`,
-    bottle6: `📋 **任務中心**
-
-完成任務獲得額外瓶子！
-
-`,
-    invite: `🔄 邀請好友 (\${inviteProgress.current}/\${inviteProgress.max})
-`,
-    invite2: `每邀請 1 人 → 每日額度永久 +1
-`,
-    message: `\${icon} \${task.name} \${status} (+\${task.reward_amount} 瓶子)
-`,
-    message2: `點擊下方按鈕加入 XunNi 官方頻道，獲取最新消息和活動！
-
-`,
-    profile: `👤 **個人資料任務** (\${completedCount}/\${profileTasks.length})
-`,
-    quota: `當前每日配額：\${calculateDailyQuota(user)} 個
-`,
-    short: `(待領取)`,
-    short2: `當天有效`,
-    short3: `永久有效`,
-    task: `• 邀請任務：\${inviteProgress.current}/\${inviteProgress.max} 進行中
-
-`,
-    task2: `📱 **社交媒體任務** (\${completedCount}/\${socialTasks.length})
-`,
-    task3: `🎯 **行為任務** (\${completedCount}/\${actionTasks.length})
-`,
-    task4: `• 一次性任務：\${oneTimeCompleted}/\${oneTimeTotal} 已完成
-`,
-    task5: `🎉 恭喜完成任務「\${task.name}」！
-
-`,
-    task6: `👥 **邀請任務** (持續進行中)
-`,
-    task7: `💡 使用 /tasks 查看任務中心`,
-    text: `加入後點擊「我已加入」按鈕領取獎勵 🎁`,
-    text2: `📢 **加入官方頻道**
-
-`,
-    text3: `📊 **總進度**
-`,
-    text4: `🎁 **已獲得**
-`,
-    description: {
-      bio: `寫下你的故事（至少 20 字）`,
-      city: `找到同城的朋友`,
-      first_bottle: `開始你的交友之旅`,
-      first_catch: `看看別人的故事`,
-      first_conversation: `建立你的第一個連接（長按訊息 → 選擇「回覆」）`,
-      interests: `讓別人更了解你`,
-      invite_progress: `每邀請 1 人，每日額度永久 +1（免費最多 10 人，VIP 最多 100 人）`,
-      join_channel: `獲取最新消息和活動`,
-    },
-    name: {
-      bio: `完善自我介紹`,
-      city: `設定地區`,
-      first_bottle: `丟出第一個瓶子`,
-      first_catch: `撿起第一個瓶子`,
-      first_conversation: `開始第一次對話`,
-      interests: `填寫興趣標籤`,
-      invite_progress: `邀請好友`,
-      join_channel: `加入官方頻道`,
-    },
+  "tutorial": {
+    "availableCommands": "Poți folosi comenzile următoare în orice moment:",
+    "catchBottle": "🎣 **Ridică sticla cu mesaj**",
+    "catchBottleDesc": "Verifică sticlele cu mesaj ale altor persoane și, dacă ești interesat, răspunde pentru a începe să conversezi",
+    "clickButtonHint": "💡 Te rugăm să dai clic pe buton pentru a continua",
+    "commandCatch": "• /catch - Ridică sticla cu mesaj",
+    "commandHelp": "• /help - Vezi ajutorul",
+    "commandMenu": "📋 Meniu de comenzi",
+    "commandTasks": "• /tasks - Vezi sarcinile",
+    "commandThrow": "• /throw - Aruncă sticla cu mesaj",
+    "completeTasksForBottles": "💡 Completează sarcinile pentru a câștiga sticle suplimentare",
+    "completed": "✅ Tutorial completat!",
+    "howToBecomeFriends": "💬 **Cum să îți faci prieteni?**",
+    "howToBecomeFriendsDesc": "Ridici o sticlă cu mesaj → Aceștia răspund de asemenea → Începe un chat anonim",
+    "readyToStart": "🎉 **Pregătit! Să începem să ne facem prieteni～**",
+    "skip": "Sari peste",
+    "skipped": "✅ Tutorial omis",
+    "startUsing": "Începe să folosești →",
+    "throwBottle": "📦 **Aruncă sticla cu mesaj**",
+    "throwBottleDesc": "Scrie-ți gândurile sau sentimentele, sistemul te va ajuta să găsești persoana potrivită",
+    "unknownStep": "❌ Pas de tutorial necunoscut",
+    "viewTasks": "📋 Vezi sarcinile",
+    "welcome": "🎉 Felicitări pentru completarea înregistrării!",
+    "whatIsXunNi": "🌊 **Ce este XunNi?**",
+    "whatIsXunNiDesc": "O platformă anonimă de sticlă cu mesaj pentru prietenie care te ajută să găsești prieteni cu aceleași gânduri prin MBTI și semne zodiacale"
   },
-  throw: {
-    age: `• 年齡區間相近 ✓`,
-    back: `↩️ 返回篩選選單`,
-    bloodType: `🩸 **血型篩選**
-
-`,
-    bloodType2: `• 血型：篩選特定血型
-`,
-    bloodType3: `選擇你想要配對的血型：`,
-    bloodType4: `🩸 血型篩選`,
-    bloodType5: `🌈 任何血型`,
-    bottle: `
-💡 這個瓶子和你非常合拍！
-
-`,
-    bottle10: `🍾 漂流瓶已丟出！
-
-`,
-    bottle11: `🍾 丟漂流瓶`,
-    bottle2: `🎯 你的瓶子已發送給 **3 個對象**：
-`,
-    bottle3: `🍾 **正在丟出你的漂流瓶...**
-
-`,
-    bottle4: `🍾 **丟漂流瓶** #THROW
-
-`,
-    bottle5: `瓶子 ID：#\${bottleId}
-
-`,
-    bottle6: `📝 **請輸入你的漂流瓶內容**
-
-`,
-    bottle7: `1️⃣ 點擊下方「🍾 丟漂流瓶」按鈕
-`,
-    bottle8: `📝 請輸入你的漂流瓶內容：
-
-`,
-    bottle9: `📝 請輸入你的漂流瓶內容：`,
-    cancel: `💡 點擊選擇或取消 MBTI 類型：`,
-    cancel2: `💡 點擊選擇或取消星座：`,
-    catch: `• 槽位 3：公共池（等待撿起）
-
-`,
-    catch2: `• 槽位 2：公共池（等待撿起）
-`,
-    catch3: `• 槽位 1：公共池（等待撿起）
-`,
-    catch4: `🌊 等待有緣人撿起...
-`,
-    complete: `⚙️ **進階篩選**
-
-\${summary}
-💡 繼續調整或完成篩選：`,
-    complete2: `🎯 **第 1 個配對已完成：**
-`,
-    complete3: `📝 你有一個未完成的草稿
-
-`,
-    complete4: `⏳ 預計 3-5 秒完成`,
-    complete5: `⏳ 預計 2-3 秒完成`,
-    complete6: `⏳ 預計 1-2 秒完成`,
-    conversation: `💬 對話標識符：\${vipMatchInfo.conversationIdentifier}
-
-`,
-    conversation2: `💡 提示：每個對話都是獨立的，可以同時進行
-
-`,
-    conversation3: `💡 你可能會收到 **最多 3 個對話**！
-`,
-    conversation4: `💬 你可能會收到 **最多 3 個對話**！
-`,
-    conversation5: `使用 /chats 查看所有對話
-
-`,
-    conversation6: `📊 使用 /chats 查看所有對話`,
-    conversation7: `使用 /chats 查看所有對話`,
-    currentSelection: `當前選擇：{genderText}`,
-    friendlyContent: `💬 友善的內容更容易獲得回應`,
-    gender: `• 性別：\${selectedGender === 'male' ? '👨 男生' : selectedGender === 'female' ? '👩 女生' : '🌈 任何人'}
-`,
-    gender2: `👤 **性別篩選**
-
-`,
-    gender3: `• 性別：篩選性別
-
-`,
-    gender4: `💡 選擇你想要的性別：`,
-    gender5: `👤 性別篩選`,
-    genderLabel: `• 性別：{gender}
-`,
-    mbti: `• MBTI：\${selectedMBTI.length > 0 ? selectedMBTI.join(', ') : '無限制'}
-`,
-    mbti2: `已選擇：\${selectedMBTI.length > 0 ? selectedMBTI.join(', ') : '無'}
-
-`,
-    mbti3: `已選擇：\${selectedMBTI.length > 0 ? selectedMBTI.join(`,
-    mbti4: `🧠 **MBTI 篩選**
-
-`,
-    mbti5: `• MBTI：篩選特定性格類型
-`,
-    mbti6: `• MBTI 高度配對 ✓`,
-    mbti7: `🧠 MBTI 篩選`,
-    mbtiLabel: `• MBTI：{mbti}
-`,
-    message: `已選擇：\${selectedZodiac.length > 0 ? selectedZodiac.map((z) => ZODIAC_NAMES[z]).join(', ') : '無'}
-
-`,
-    message2: `當前選擇：\${currentGender === 'male' ? '👨 男生' : currentGender === 'female' ? '👩 女生' : '🌈 任何人'}
-
-`,
-    message3: `已選擇：\${selectedZodiac.length > 0 ? selectedZodiac.map((z) => ZODIAC_NAMES[z]).join(`,
-    message4: `當前選擇：\${bloodTypeDisplay[currentBloodType]}
-
-`,
-    message5: `👤 對方：\${vipMatchInfo.matcherNickname}
-`,
-    message6: `「你好！我是一個喜歡音樂和電影的人，希望認識志同道合的朋友～」
-
-`,
-    message7: `💡 可在 /edit_profile 中修改匹配偏好
-
-`,
-    message8: `💬 直接按 /reply 回覆訊息開始聊天
-`,
-    nickname: `📝 對方暱稱：\${matchedUserMaskedNickname}
-`,
-    quota: `• 更多配額（30 個/天）
-`,
-    quota2: `🎁 邀請好友可增加配額：
-`,
-    selected: `已選擇：{selected}`,
-    settings: `🧠 MBTI：\${mbti}
-`,
-    settings2: `⭐ 星座：\${zodiac}
-`,
-    settings3: `🧠 MBTI：\\$
-`,
-    settings4: `⭐ 星座：\\$
-`,
-    settings5: `未設定`,
-    settings6: `未設定`,
-    settings7: `未設定`,
-    settings8: `未設定`,
-    short: `• 語言相同 ✓`,
-    short10: `♋ 巨蟹座`,
-    short11: `♌ 獅子座`,
-    short12: `♍ 處女座`,
-    short13: `♎ 天秤座`,
-    short14: `♏ 天蠍座`,
-    short15: `♐ 射手座`,
-    short16: `♑ 摩羯座`,
-    short17: `♒ 水瓶座`,
-    short18: `♓ 雙魚座`,
-    short19: `違規行為`,
-    short2: `🩸 AB 型`,
-    short20: `無限制`,
-    short21: `無限制`,
-    short22: `無限制`,
-    short23: `無限制`,
-    short3: `🌈 任何人`,
-    short4: `🩸 A 型`,
-    short5: `🩸 B 型`,
-    short6: `🩸 O 型`,
-    short7: `♈ 白羊座`,
-    short8: `♉ 金牛座`,
-    short9: `♊ 雙子座`,
-    start: `✍️ 重新開始`,
-    success: `一次丟瓶子 = 3 個對象，大幅提升配對成功率
-
-`,
-    success2: `✨ **VIP 特權啟動！智能配對成功！**
-
-`,
-    success3: `🎯 你的漂流瓶已被配對成功！
-
-`,
-    text: `💝 匹配度：\${matchPercentage}%
-`,
-    text10: `🎯 正在為你尋找最佳配對對象
-
-`,
-    text11: `
-💬 等待對方回覆中...
-`,
-    text12: `• 免費用戶：最多 +7 個
-`,
-    text13: `• 不要包含個人聯絡方式
-
-`,
-    text14: `💡 **兩種輸入方式**：
-`,
-    text15: `📊 免費用戶：3 個/天
-`,
-    text16: `選擇你想要篩選的條件：
-
-`,
-    text17: `• 進階篩選和翻譯
-
-`,
-    text18: `創建時間：\${age}
-`,
-    text19: `使用 /vip 立即升級`,
-    text2: `• 🆕 三倍曝光機會（1 次 = 3 個對象）
-`,
-    text20: `💬 **範例**：
-`,
-    text21: `使用 /vip 了解更多`,
-    text22: `要繼續編輯這個草稿嗎？`,
-    text23: `💡 可以組合多個條件`,
-    text24: `當前篩選條件：
-
-`,
-    text3: `💡 這可能需要幾秒鐘，我們正在為你找到最合適的人`,
-    text4: `當前選擇：\${currentGender ===`,
-    text5: `🎯 尋找對象：\${targetText}
-`,
-    text6: `🎯 正在為你尋找 3 個最佳配對對象
-
-`,
-    text7: `📨 **另外 2 個槽位等待中：**
-`,
-    text8: `🔍 正在智能匹配最佳對象...
-
-`,
-    text9: `內容預覽：\${preview}
-
-`,
-    throw: `📊 今日已丟：\${quotaDisplay}
-
-`,
-    tips: `💡 提示：寫得越詳細，越容易找到合適的聊天對象`,
-    unlimited: `無限制`,
-    vip: `💎 VIP 用戶：30 個/天（三倍曝光）
-
-`,
-    vip2: `💎 **升級 VIP 可獲得三倍曝光機會！**
-`,
-    vip3: `⚙️ **進階篩選（VIP 專屬）**
-
-`,
-    vip4: `• VIP 用戶：最多 +70 個
-
-`,
-    vip5: `✨ **VIP 特權啟動！**
-
-`,
-    vip6: `💡 升級 VIP 獲得：
-`,
-    vip7: `✨ VIP 特權啟動中
-`,
-    zodiac: `• 星座：\${selectedZodiac.length > 0 ? selectedZodiac.map((z) => ZODIAC_NAMES[z]).join(', ') : '無限制'}
-`,
-    zodiac2: `⭐ 星座：\${matchResult.user.zodiac ||`,
-    zodiac3: `⭐ 星座：\${user.zodiac_sign ||`,
-    zodiac4: `⭐ **星座篩選**
-
-`,
-    zodiac5: `• 星座：篩選特定星座
-`,
-    zodiac6: `• 星座高度相容 ✓`,
-    zodiac7: `⭐ 星座篩選`,
-    zodiacLabel: `• 星座：{zodiac}
-`,
+  "vip": {
+    "admin": "⏳ Ai o cerere de returnare în așteptare, te rugăm să ai răbdare pentru ca administratorul să o revizuiască.",
+    "bottle": "📝 Conținut sticlă cu mesaj: ${bottle.content.substring(0, 50)}${bottle.content.length > 50 ? '...' : ''}\n\n",
+    "bottle2": "📝 Conținutul sticlei: ${bottle.content.substring(0, 50)}${bottle.content.length > 50 ?",
+    "bottle3": "Sticla dumneavoastră cu mesaj a fost ridicată de ${maskedMatcherNickname}!\n\n",
+    "bottle4": "Sistemul a găsit o sticlă cu mesaj de la ${maskedOwnerNickname}!\n\n",
+    "bottle5": "📝 Conținut sticlă cu mesaj: ${bottle.content}\n\n",
+    "bottle6": "• 🆕 Oportunitate de expunere triplu! Aruncând o sticlă activezi 3 ținte\n",
+    "cancelReminderButton": "❌ Mai târziu",
+    "conversation": "💬 Identificator conversație: ${conversationIdentifier}\n",
+    "conversation2": "🔄 Actualizăm istoricul conversației, avatarul gol va fi afișat în curând...\n\n",
+    "mbti": "• Filtrează potrivirile potențiale după MBTI, semn zodiacal și grup sangvin\n",
+    "mbti2": "• Filtrează potrivirile potențiale după MBTI și semn zodiacal\n",
+    "mbti3": "• Filtrează după MBTI și semn zodiacal\n",
+    "message": "Timp de expirare: ${new Date(sub.expire_date).toLocaleDateString('zh-TW')}\n\n",
+    "message10": "Numărul aplicației: #${result.meta.last_row_id}\n",
+    "message11": "Suma returnării: ${request.amount_stars} ⭐\n",
+    "message12": "💬 **Te rog să apeși lung acest mesaj, să alegi 'Răspunde' și să introduci conținut pentru a începe conversația cu cealaltă parte**",
+    "message13": "💡 Plată sigură și convenabilă folosind Telegram Stars\n\n",
+    "message14": "💡 Aceasta este prima dumneavoastră asociere, cu 2 sloturi așteptând\n\n",
+    "message2": "Timpul aplicației: ${new Date(req.requested_at).toLocaleString('zh-TW')}\n",
+    "message3": "Selecția curentă: ${bloodTypeDisplay[currentBloodType]} {expireDate} ${expireDate}\n\n",
+    "message4": "Timp de expirare: ${expireDate}\n\n",
+    "message5": "Timp de plată: ${paymentDate.toLocaleDateString('zh-TW')}\n",
+    "message6": "📋 **Solicitări de rambursare în așteptare** (${requests.results.length})\n\n",
+    "message7": "ID plată: ${payment.telegram_payment_charge_id}",
+    "message8": "Preț: ${priceStars} ⭐ Telegram Stars / lună\n",
+    "message9": "Timp de plată: ${paymentDate.toLocaleDateString(",
+    "purchaseCancelled": "✅ Achiziția anulată",
+    "quota": "• Cota zilnică de 30 de sticle cu mesaj (invitațiile prietenilor pot crește această cotă, până la 100 pe zi)\n",
+    "quota2": "• Cota zilnică de 30 de sticle cu mesaj (până la 100 pe zi)\n",
+    "refundAdminCommands": "Timp de expirare: ${expireDate} <ID> `/admin_approve_refund <ID>` `/admin_reject_refund <ID> ` `/admin_reject_refund <ID> <原因>`",
+    "refundApproved": "✅ **Refundare Aprobată**\n\nSumă Refundare: ${amount} ⭐\nRefundarea va fi creditată în termen de 1-3 zile lucrătoare.\n\nAbonamentul dvs. VIP a fost anulat.\n\nVă mulțumim pentru înțelegere!",
+    "refundApprovedAdmin": "✅ Refundare Aprobată\n\nID Cerere: #${requestId}\nID Utilizator: ${userId}\nSumă: ${amount} ⭐",
+    "refundExpired": "❌ Cererea de refundare depășește limita de timp\n\nData Plății: ${paymentDate}\nLimita de timp pentru refundare: În termen de 7 zile de la plată\n\n💡 Pentru circumstanțe speciale, vă rugăm să contactați suportul pentru clienți.",
+    "refundFailed": "❌ Refundare eșuată: ${error}",
+    "refundNoPayment": "❌ Înregistrarea plății nu a fost găsită.",
+    "refundNoPending": "✅ Nu există cereri de refundare în așteptare.",
+    "refundPending": "⏳ Aveți o cerere de refundare în așteptare, vă rugăm să așteptați cu răbdare pentru revizuirea administrativă.",
+    "refundPendingList": "📋 **Cereri de Refundare în Așteptare** (${count})",
+    "refundReasonTooShort": "❌ Motivul pentru refundare trebuie să fie de cel puțin 10 caractere, vă rugăm să reintroduceți:",
+    "refundRejected": "❌ **Cererea de Refundare a fost Respinsă**\n\nMotiv: ${reason}\n\nDacă aveți întrebări, vă rugăm să contactați suportul pentru clienți.",
+    "refundRejectedAdmin": "✅ Refundare Respinsă\n\nID Cerere: #${requestId}\nID Utilizator: ${userId}",
+    "refundRequestItem": "**#${id}** - ${nickname}\nID Utilizator: `${userId}`\nSumă: ${amount} ⭐\nMotiv: ${reason}\nSolicitat La: ${requestedAt}",
+    "refundRequestNotFound": "❌ Cererea de refundare nu există sau a fost procesată.",
+    "refundRequestReason": "📝 **Solicitați Refundare**\n\nVă rugăm să introduceți motivul refundării (cel puțin 10 caractere):",
+    "refundSubmitFailed": "❌ Încercarea de trimitere a eșuat, vă rugăm să încercați din nou mai târziu.",
+    "refundSubmitted": "✅ **Cererea de Refundare a fost Trimisa**\n\nNumăr Cerere: #${requestId}\nStatus: În Așteptare Revizuire\n\nVom procesa cererea dvs. în termen de 1-3 zile lucrătoare.\nRezultatul vă va fi comunicat prin Bot.\n\nVă mulțumim pentru răbdare!",
+    "reminderCancelled": "✅ Memento Anulat",
+    "reminderDaysLeft": "Abonamentul dvs. VIP va expira în ${days} zile.",
+    "reminderExpireDate": "Data Expirării: ${date}",
+    "reminderExpiringToday": "⚠️ **VIP Expiră Astăzi**",
+    "reminderExpiringTodayDesc": "Abonamentul dvs. VIP expiră astăzi.",
+    "reminderGracePeriod": "📌 Perioada de Grație: Serviciul nu va fi întrerupt dacă este reînnoit în termen de 3 zile după expirare.",
+    "reminderRenewHint": "💡 Reînnoiți acum pentru a beneficia de un serviciu VIP fără întreruperi!",
+    "reminderRenewHint2": "💡 Reînnoiți acum pentru a continua să beneficiați de avantajele VIP!",
+    "reminderTitle": "⏰ **Memento pentru Expirarea VIP**",
+    "renewButton": "💳 Reînnoiți Acum (${stars} ⭐)",
+    "renewalProcessing": "Se procesează reînnoirea...",
+    "settings": "💡 Pentru a anula abonamentul, vă rugăm să accesați Setările Telegram > Managementul Abonamentelor\n\n",
+    "settings2": "💡 Pentru a anula abonamentul, vă rugăm să mergeți la Setările Telegram > Managementul Abonamentelor",
+    "settings3": "💡 Puteți anula abonamentul în orice moment în setările Telegram",
+    "short": "(aproximativ 5 USD)",
+    "short2": "Vă mulțumim pentru răbdare!",
+    "short3": "Vă mulțumim pentru înțelegere!",
+    "short4": "• Aprobat: \\",
+    "short5": "• Respins: \\",
+    "start": "🚀 Începeți acum: /throw",
+    "success": "🎯 **Potrivire inteligentă VIP reușită!**\n\n",
+    "success2": "🎉 **Renovare automată reușită!**\n\n",
+    "success3": "🎉 **Potrivire inteligentă reușită!**\n\n",
+    "success4": "🎉 **Abonament reușit!**\n\n",
+    "text": "- Acces prioritar la traduceri ale modelului OpenAI GPT (calitate înaltă)\n",
+    "text10": "Vom procesa cererea dvs. în termen de 1-3 zile lucrătoare.\n",
+    "text11": "Timp de expirare: ${expireDate}\n\n",
+    "text12": "Rambursările vor fi creditate în termen de 1-3 zile lucrătoare.\n\n",
+    "text13": "ID Cerere: #${requestId}\n",
+    "text14": "└ 1 potrivire inteligentă + 2 pool-uri publice\n",
+    "text15": "Veți fi notificat cu privire la rezultatele procesării prin Bot.\n\n",
+    "text16": "Vă rugăm să introduceți motivul refundării (cel puțin 10 caractere):",
+    "text17": "Motiv: ${req.reason}\n",
+    "text18": "Termen limită pentru rambursare: în termen de 7 zile după plată\n\n",
+    "text19": "Contul dumneavoastră a fost restabilit la utilizator gratuit.\n\n",
+    "text2": "• Traducere automată în 34 de limbi (prioritate OpenAI GPT)\n",
+    "text20": "💡 Doriți să reînnoiți sau să îmbunătățiți?\n\n",
+    "text21": "💡 Vă rugăm să contactați suportul pentru clienți pentru cazuri speciale.",
+    "text22": "Motiv: ${reason}\n\n",
+    "text23": "• Deblocați o imagine de profil mai clară 🆕\n",
+    "text24": "Aceasta poate dura câteva secunde, vă rugăm să așteptați.",
+    "text25": "📝 **Solicitați Rambursare**\n\n",
+    "text26": "• Traducere automată în 34 de limbi\n",
+    "text27": "💡 Procesați folosind comanda următoare:\n",
+    "text28": "(Preț de testare în staging)",
+    "text29": "Pentru întrebări, vă rugăm să contactați suportul pentru clienți.",
+    "text3": "Sumă: ${request.amount_stars} ⭐",
+    "text30": "Statut: În așteptare de revizuire\n\n",
+    "text4": "🔄 **Reînnoire automată**: Facturat automat lunar, fără reînnoire manuală necesară\n",
+    "text5": "Sumă: ${req.amount_stars} ⭐\n",
+    "text6": "ID utilizator: ${request.user_id}\n",
+    "text7": "💳 Reînnoiți acum (${priceStars} ⭐)",
+    "text8": "ID utilizator: ${request.user_id}",
+    "text9": "📌 Perioadă de grație: Reînnoirea în termen de 3 zile după expirare nu va întrerupe serviciul.",
+    "viewVipCommand": "Puteți verifica avantajele VIP oricând folosind comanda /vip.",
+    "vip": "Abonamentul dumneavoastră VIP a expirat pe ${new Date(sub.expire_date).toLocaleDateString('zh-TW')}\n\n",
+    "vip10": "💎 **Îmbunătățiți la Membresia VIP**\n\n",
+    "vip11": "😢 **Membresia VIP a expirat**\n\n",
+    "vip12": "Faceți upgrade la membership VIP pentru a beneficia de următoarele avantaje:\n",
+    "vip13": "⏰ **Memento de expirare VIP**\n\n",
+    "vip14": "Membresia dumneavoastră VIP expiră astăzi.\n\n",
+    "vip15": "Abonamentul dumneavoastră VIP a fost reînnoit automat!\n",
+    "vip16": "Înscrierea ta VIP a fost anulată.\n\n",
+    "vip17": "Abonament XunNi VIP (lunar)",
+    "vip18": "✨ Avantajele VIP rămân active:\n",
+    "vip19": "Sunteți acum membru VIP!\n",
+    "vip2": "Membership-ul dumneavoastră VIP a expirat pe ${new Date(sub.expire_date).toLocaleDateString(",
+    "vip20": "✨ Avantajele VIP au fost activate:\n",
+    "vip21": "Membership VIP (30 zile)",
+    "vip22": "🎁 Avantajele VIP:\n",
+    "vip23": "Reînnoire XunNi VIP",
+    "vip24": "Achiziție XunNi VIP",
+    "vip25": "Abonament VIP",
+    "vip3": "Înscrierea ta VIP va expira în ${daysLeft} zile.\n\n",
+    "vip4": "🔄 Reînnoiți VIP (${priceStars} ⭐)",
+    "vip5": "💳 Cumpărați VIP (${priceStars} ⭐)",
+    "vip6": "Abonează-te la XunNi VIP cu reînnoire automată în fiecare lună!\n\n",
+    "vip7": "💡 Reînnoiți acum pentru a beneficia de serviciu VIP neîntrerupt!",
+    "vip8": "💡 Reînnoiți acum pentru a continua să beneficiați de avantajele VIP!\n",
+    "vip9": "✨ **Ești deja un membru VIP**\n\n"
   },
-  tutorial: {
-    availableCommands: `你可以隨時使用以下命令：`,
-    catchBottle: `🎣 **撿起漂流瓶**`,
-    catchBottleDesc: `看看別人的漂流瓶，有興趣就回覆開始聊天`,
-    clickButtonHint: `💡 請點擊按鈕繼續`,
-    commandCatch: `• /catch - 撿起漂流瓶`,
-    commandHelp: `• /help - 查看幫助`,
-    commandMenu: `📋 命令選單`,
-    commandTasks: `• /tasks - 查看任務`,
-    commandThrow: `• /throw - 丟出漂流瓶`,
-    completeTasksForBottles: `💡 完成任務可獲得額外瓶子`,
-    completed: `✅ 教學已完成！`,
-    howToBecomeFriends: `💬 **如何成為朋友？**`,
-    howToBecomeFriendsDesc: `你撿瓶回覆 → 對方也回覆 → 開始匿名聊天`,
-    readyToStart: `🎉 **準備好了！開始交朋友吧～**`,
-    skip: `跳過`,
-    skipped: `✅ 已跳過教學`,
-    startUsing: `開始使用 →`,
-    throwBottle: `📦 **丟出漂流瓶**`,
-    throwBottleDesc: `寫下你的心情或想法，系統會幫你找到合適的人`,
-    unknownStep: `❌ 未知的教學步驟`,
-    viewTasks: `📋 查看任務`,
-    welcome: `🎉 恭喜完成註冊！`,
-    whatIsXunNi: `🌊 **XunNi 是什麼？**`,
-    whatIsXunNiDesc: `匿名漂流瓶交友平台，透過 MBTI 和星座幫你找到志同道合的朋友`,
+  "vipTripleBottle": {
+    "bottleContent": "📝 Conținutul sticlei: {content}\n\n",
+    "bottlePicked": "Sticla ta cu mesaj a fost ridicată de {maskedMatcherNickname}!\n\n",
+    "conversationIdentifier": "💬 Identificator conversație: {conversationIdentifier}\n",
+    "firstMatch": "💡 Aceasta este prima ta potrivire, cu 2 locuri rămase\n\n",
+    "foundBottle": "Sistemul a găsit o sticlă de la {maskedOwnerNickname}!\n\n",
+    "matchSuccess": "🎯 **Potrivire VIP inteligentă reușită!**\n\n",
+    "replyHint": "💬 **Te rugăm să ții apăsat pe acest mesaj, să selectezi 'Răspunde' și să introduci conținutul pentru a începe conversația cu celălalt**",
+    "slotsWaiting": "Mai sunt {remaining} locuri disponibile\n\n",
+    "smartMatch": "🎉 **Potrivire inteligentă reușită!**\n\n",
+    "viewChats": "Folosește /chats pentru a vedea toate conversațiile\n\n"
   },
-  vip: {
-    admin: `⏳ 你已有待處理的退款請求，請耐心等待管理員審核。`,
-    bottle: `📝 瓶子內容：\${bottle.content.substring(0, 50)}\${bottle.content.length > 50 ? '...' : ''}
-
-`,
-    bottle2: `📝 瓶子內容：\${bottle.content.substring(0, 50)}\${bottle.content.length > 50 ?`,
-    bottle3: `你的瓶子已被 \${maskedMatcherNickname} 撿起！
-
-`,
-    bottle4: `系統為你找到了 \${maskedOwnerNickname} 的瓶子！
-
-`,
-    bottle5: `📝 瓶子內容：\${bottle.content}
-
-`,
-    bottle6: `• 🆕 三倍曝光機會！一次丟瓶子觸發 3 個對象
-`,
-    cancelReminderButton: `❌ 稍後再說`,
-    conversation: `💬 對話標識符：\${conversationIdentifier}
-`,
-    conversation2: `🔄 正在更新您的對話歷史，清晰頭像即將顯示...
-
-`,
-    mbti: `• 可篩選配對對象的 MBTI、星座、血型
-`,
-    mbti2: `• 可篩選配對對象的 MBTI 和星座
-`,
-    mbti3: `• 可篩選 MBTI 和星座
-`,
-    message: `到期時間：\${new Date(sub.expire_date).toLocaleDateString('zh-TW')}
-
-`,
-    message10: `申請編號：#\${result.meta.last_row_id}
-`,
-    message11: `退款金額：\${request.amount_stars} ⭐
-`,
-    message12: `💬 **請長按此訊息，選擇「回覆」後輸入內容和對方開始聊天**`,
-    message13: `💡 使用 Telegram Stars 安全便捷支付
-
-`,
-    message14: `💡 這是你的第 1 個配對，還有 2 個槽位等待中
-
-`,
-    message2: `申請時間：\${new Date(req.requested_at).toLocaleString('zh-TW')}
-`,
-    message3: `新到期時間：\${expireDate}
-
-`,
-    message4: `到期時間：\${expireDate}
-
-`,
-    message5: `支付時間：\${paymentDate.toLocaleDateString('zh-TW')}
-`,
-    message6: `📋 **待處理退款請求** (\${requests.results.length})
-
-`,
-    message7: `支付 ID：\${payment.telegram_payment_charge_id}`,
-    message8: `價格：\${priceStars} ⭐ Telegram Stars / 月
-`,
-    message9: `支付時間：\${paymentDate.toLocaleDateString(`,
-    purchaseCancelled: `✅ 已取消購買`,
-    quota: `• 每天 30 個漂流瓶配額（邀請好友可增加，最高 100 個/天）
-`,
-    quota2: `• 每天 30 個漂流瓶配額（最高 100 個/天）
-`,
-    refundAdminCommands: `💡 使用以下命令處理：
-• 批准：\`/admin_approve_refund <ID>\`
-• 拒絕：\`/admin_reject_refund <ID> <原因>\``,
-    refundApproved: `✅ **退款已批准**
-
-退款金額：\${amount} ⭐
-退款將在 1-3 個工作日內到帳。
-
-你的 VIP 會員已取消。
-
-感謝你的理解！`,
-    refundApprovedAdmin: `✅ 退款已批准
-
-請求 ID：#\${requestId}
-用戶 ID：\${userId}
-金額：\${amount} ⭐`,
-    refundExpired: `❌ 退款申請超過時限
-
-支付時間：\${paymentDate}
-退款時限：支付後 7 天內
-
-💡 如有特殊情況，請聯繫客服。`,
-    refundFailed: `❌ 退款失敗：\${error}`,
-    refundNoPayment: `❌ 找不到支付記錄。`,
-    refundNoPending: `✅ 沒有待處理的退款請求。`,
-    refundPending: `⏳ 你已有待處理的退款請求，請耐心等待管理員審核。`,
-    refundPendingList: `📋 **待處理退款請求** (\${count})`,
-    refundReasonTooShort: `❌ 退款原因至少需要 10 個字，請重新輸入：`,
-    refundRejected: `❌ **退款申請已被拒絕**
-
-原因：\${reason}
-
-如有疑問，請聯繫客服。`,
-    refundRejectedAdmin: `✅ 退款已拒絕
-
-請求 ID：#\${requestId}
-用戶 ID：\${userId}`,
-    refundRequestItem: `**#\${id}** - \${nickname}
-用戶 ID：\`\${userId}\`
-金額：\${amount} ⭐
-原因：\${reason}
-申請時間：\${requestedAt}`,
-    refundRequestNotFound: `❌ 退款請求不存在或已處理`,
-    refundRequestReason: `📝 **申請退款**
-
-請輸入退款原因（至少 10 個字）：`,
-    refundSubmitFailed: `❌ 提交失敗，請稍後再試。`,
-    refundSubmitted: `✅ **退款申請已提交**
-
-申請編號：#\${requestId}
-狀態：待審核
-
-我們會在 1-3 個工作日內處理你的申請。
-處理結果會通過 Bot 通知你。
-
-感謝你的耐心等待！`,
-    reminderCancelled: `✅ 已取消提醒`,
-    reminderDaysLeft: `你的 VIP 會員將在 \${days} 天後到期。`,
-    reminderExpireDate: `到期時間：\${date}`,
-    reminderExpiringToday: `⚠️ **VIP 今天到期**`,
-    reminderExpiringTodayDesc: `你的 VIP 會員今天到期。`,
-    reminderGracePeriod: `📌 寬限期：到期後 3 天內續費不會中斷服務。`,
-    reminderRenewHint: `💡 立即續費，享受不間斷的 VIP 服務！`,
-    reminderRenewHint2: `💡 立即續費，繼續享受 VIP 權益！`,
-    reminderTitle: `⏰ **VIP 到期提醒**`,
-    renewButton: `💳 立即續費 (\${stars} ⭐)`,
-    renewalProcessing: `正在處理續費...`,
-    settings: `💡 如需取消訂閱，請前往 Telegram 設定 > 訂閱管理
-
-`,
-    settings2: `💡 如需取消訂閱，請前往 Telegram 設定 > 訂閱管理`,
-    settings3: `💡 可隨時在 Telegram 設定中取消訂閱`,
-    short: `（約 5 USD）`,
-    short2: `感謝你的耐心等待！`,
-    short3: `感謝你的理解！`,
-    short4: `• 批准：\\`,
-    short5: `• 拒絕：\\`,
-    start: `🚀 立即開始使用：/throw`,
-    success: `🎯 **VIP 智能配對成功！**
-
-`,
-    success2: `🎉 **自動續費成功！**
-
-`,
-    success3: `🎉 **智能配對成功！**
-
-`,
-    success4: `🎉 **訂閱成功！**
-
-`,
-    text: `- 優先使用 OpenAI GPT 模型翻譯（高品質）
-`,
-    text10: `我們會在 1-3 個工作日內處理你的申請。
-`,
-    text11: `到期時間：\${expireDate}
-
-`,
-    text12: `退款將在 1-3 個工作日內到帳。
-
-`,
-    text13: `請求 ID：#\${requestId}
-`,
-    text14: `└ 1 個智能配對 + 2 個公共池
-`,
-    text15: `處理結果會通過 Bot 通知你。
-
-`,
-    text16: `請輸入退款原因（至少 10 個字）：`,
-    text17: `原因：\${req.reason}
-`,
-    text18: `退款時限：支付後 7 天內
-
-`,
-    text19: `你的帳號已恢復為免費用戶。
-
-`,
-    text2: `• 34 種語言自動翻譯（OpenAI GPT 優先）
-`,
-    text20: `💡 想要續訂或升級嗎？
-
-`,
-    text21: `💡 如有特殊情況，請聯繫客服。`,
-    text22: `原因：\${reason}
-
-`,
-    text23: `• 解鎖對方清晰頭像 🆕
-`,
-    text24: `這可能需要幾秒鐘時間，請稍候。`,
-    text25: `📝 **申請退款**
-
-`,
-    text26: `• 34 種語言自動翻譯
-`,
-    text27: `💡 使用以下命令處理：
-`,
-    text28: `（Staging 測試價）`,
-    text29: `如有疑問，請聯繫客服。`,
-    text3: `金額：\${request.amount_stars} ⭐`,
-    text30: `狀態：待審核
-
-`,
-    text4: `🔄 **自動續費**：每月自動扣款，無需手動續費
-`,
-    text5: `金額：\${req.amount_stars} ⭐
-`,
-    text6: `用戶 ID：\${request.user_id}
-`,
-    text7: `💳 立即續費 (\${priceStars} ⭐)`,
-    text8: `用戶 ID：\${request.user_id}`,
-    text9: `📌 寬限期：到期後 3 天內續費不會中斷服務。`,
-    viewVipCommand: `你可以隨時使用 /vip 命令查看 VIP 權益。`,
-    vip: `你的 VIP 會員已於 \${new Date(sub.expire_date).toLocaleDateString('zh-TW')} 到期。
-
-`,
-    vip10: `💎 **升級 VIP 會員**
-
-`,
-    vip11: `😢 **VIP 會員已到期**
-
-`,
-    vip12: `升級 VIP 會員，享受以下權益：
-`,
-    vip13: `⏰ **VIP 到期提醒**
-
-`,
-    vip14: `你的 VIP 會員今天到期。
-
-`,
-    vip15: `你的 VIP 訂閱已自動續費！
-`,
-    vip16: `你的 VIP 會員已取消。
-
-`,
-    vip17: `XunNi VIP 訂閱（月費）`,
-    vip18: `✨ VIP 權益持續啟用：
-`,
-    vip19: `你已成為 VIP 會員！
-`,
-    vip2: `你的 VIP 會員已於 \${new Date(sub.expire_date).toLocaleDateString(`,
-    vip20: `✨ VIP 權益已啟用：
-`,
-    vip21: `VIP 會員 (30 天)`,
-    vip22: `🎁 VIP 權益：
-`,
-    vip23: `XunNi VIP 續訂`,
-    vip24: `XunNi VIP 購買`,
-    vip25: `VIP 訂閱`,
-    vip3: `你的 VIP 會員將在 \${daysLeft} 天後到期。
-
-`,
-    vip4: `🔄 續訂 VIP (\${priceStars} ⭐)`,
-    vip5: `💳 購買 VIP (\${priceStars} ⭐)`,
-    vip6: `訂閱 XunNi VIP 會員，每月自動續費！
-
-`,
-    vip7: `💡 立即續費，享受不間斷的 VIP 服務！`,
-    vip8: `💡 立即續費，繼續享受 VIP 權益！
-`,
-    vip9: `✨ **你已經是 VIP 會員**
-
-`,
+  "warning": {
+    "ad": "⚠️ Niciun furnizor de reclame nu este configurat în prezent\n\n",
+    "ad2": "⚠️ Niciun anunț oficial disponibil în acest moment\n\n",
+    "ad3": "⚠️ Nu există furnizori de publicitate disponibili",
+    "ad4": "⚠️ Imposibil de selectat furnizor de publicitate",
+    "ad5": "⚠️ Nu se pot vizualiza mai multe reclame",
+    "birthday": "⚠️ În prezent nu ești în pasul de introducere a zilei de naștere",
+    "bloodType": "⚠️ În prezent nu ești în pasul de selecție a grupei sanguine",
+    "broadcast": "⚠️ Am găsit ${stuckBroadcasts.results.length} transmisiuni blocate\n\n",
+    "complete": "⚠️ Te rugăm să finalizezi reclama anterioară înainte de a începe una nouă",
+    "confirm": "⚠️ Te rugăm să confirmi informațiile despre ziua ta de naștere:\n\n",
+    "conversation": "⚠️ Eroare în informațiile conversației.",
+    "conversation10": "⚠️ Conversația nu există",
+    "conversation2": "⚠️ Eroare în informațiile conversației",
+    "conversation3": "⚠️ Acest utilizator nu are postări în istoria conversației\n",
+    "conversation4": "⚠️ Imposibil de găsit conversația specificată, aceasta poate fi încheiată sau a expirat.",
+    "conversation5": "⚠️ **Secțiunea istoric conversații actualizată**\n\n",
+    "conversation6": "⚠️ Nu am putut recunoaște partenerul de conversație\n\n",
+    "conversation7": "⚠️ Conversația nu a fost găsită\n\n",
+    "conversation8": "⚠️ Conversația nu există sau a fost încheiată",
+    "conversation9": "⚠️ Această conversație s-a încheiat",
+    "end": "⚠️ Testul s-a încheiat sau nu există",
+    "failed": "⚠️ Verificarea plății a eșuat, te rugăm să încerci din nou mai târziu",
+    "gender": "⚠️ În prezent nu ești în pasul de selecție a genului",
+    "invite": "⚠️ Imposibil de obținut codul de invitație",
+    "mbti": "⚠️ În prezent nu ești în pasul testului MBTI",
+    "mbti2": "⚠️ Tip MBTI invalid",
+    "message": "⚠️ Am găsit ${outdatedPosts.length} postări depășite care necesită actualizare\n",
+    "message2": "⚠️ Notă: Acesta este ${testInfo}${testTitle}, ${accuracy}.\n\n",
+    "message3": "⚠️ Te rugăm să ții apăsat pe mesajul pe care vrei să-l blochezi și să răspunzi cu comanda\n\n",
+    "message4": "⚠️ Te rugăm să ții apăsat pe mesajul pe care vrei să-l raportezi și să răspunzi cu comanda\n\n",
+    "message5": "⚠️ **Mesajul conține linkuri interzise**\n\n",
+    "register": "⚠️ Imposibil de găsit profilul utilizatorului, te rugăm să folosești /start pentru a te înregistra mai întâi.",
+    "register2": "⚠️ Te rugăm să finalizezi procesul de înregistrare mai întâi.\n\nFolosește /start pentru a continua înregistrarea.",
+    "register3": "⚠️ A apărut o problemă în procesul de înregistrare, te rugăm să repornești: /start",
+    "register4": "⚠️ Te rugăm să finalizezi procesul de înregistrare mai întâi",
+    "settings": "⚠️ Recomandare: Setarea genului **nu va putea fi modificată niciodată** după aceasta!\n\n",
+    "settings2": "⚠️ Setarea zilei de naștere nu poate fi modificată, te rugăm să confirmi că este corectă!",
+    "settings3": "⚠️ Notă: Odată ce genul este setat, nu poate fi schimbat, te rugăm să alegi cu înțelepciune!",
+    "short": "⚠️ Ordine incorectă a întrebărilor",
+    "short2": "⚠️ Opțiune necunoscută",
+    "short3": "⚠️ Cerere invalidă",
+    "short4": "⚠️ Notă:\n",
+    "short5": "⚠️ Alte încălcări",
+    "start": "⚠️ Sesiunea a expirat, vă rugăm să reporniți: /throw",
+    "start2": "⚠️ Sesiunea a expirat, vă rugăm să reporniți",
+    "task": "⚠️ Tip de sarcină necunoscut",
+    "text": "⚠️ **Atenție**\n\n",
+    "text10": "⚠️ **Elemente nemodificabile**：\n",
+    "text11": "⚠️ Sesiunea a expirat, vă rugăm să repetați operația",
+    "text12": "⚠️ Ciornă inexistentă sau a expirat",
+    "text2": "⚠️ Tip de plată invalid",
+    "text3": "⚠️ Serviciul de traducere este temporar indisponibil, iată textul original\n",
+    "text4": "⚠️ Sfat de siguranță：\n",
+    "text5": "⚠️ Actualmente nu suntem în etapa quiz-ului anti-fraudă",
+    "text6": "⚠️ Actualmente nu suntem în etapa termenilor de serviciu",
+    "text7": "⚠️ Notă: Această funcție este disponibilă doar în mediu Staging.",
+    "text8": "⚠️ **Trimiterea de imagini, videoclipuri sau multimedia nu este permisă**\n\n",
+    "text9": "⚠️ Această funcție este disponibilă doar în mediu Staging.",
+    "userNotFound": "⚠️ Utilizatorul nu există, vă rugăm să vă înregistrați mai întâi folosind /start.",
+    "userNotFound2": "⚠️ Utilizatorul nu există",
+    "vip": "⚠️ Ați atins limita de invitații pentru utilizatorii gratuiti, faceți upgrade la VIP pentru a debloca limita de 100 de persoane!",
+    "vip2": "⚠️ Această funcție este disponibilă doar pentru membrii VIP",
+    "vip3": "⚠️ **VIP expiră astăzi**\n\n"
   },
-  vipTripleBottle: {
-    bottleContent: `📝 瓶子內容：{content}
-
-`,
-    bottlePicked: `你的瓶子已被 {maskedMatcherNickname} 撿起！
-
-`,
-    conversationIdentifier: `💬 對話標識符：{conversationIdentifier}
-`,
-    firstMatch: `💡 這是你的第 1 個配對，還有 2 個槽位等待中
-
-`,
-    foundBottle: `系統為你找到了 {maskedOwnerNickname} 的瓶子！
-
-`,
-    matchSuccess: `🎯 **VIP 智能配對成功！**
-
-`,
-    replyHint: `💬 **請長按此訊息，選擇「回覆」後輸入內容和對方開始聊天**`,
-    slotsWaiting: `還有 {remaining} 個槽位等待中
-
-`,
-    smartMatch: `🎉 **智能配對成功！**
-
-`,
-    viewChats: `使用 /chats 查看所有對話
-
-`,
-  },
-  warning: {
-    ad: `⚠️ 目前沒有配置任何廣告提供商
-
-`,
-    ad2: `⚠️ 目前沒有官方廣告
-
-`,
-    ad3: `⚠️ 暫無可用的廣告提供商`,
-    ad4: `⚠️ 無法選擇廣告提供商`,
-    ad5: `⚠️ 無法觀看更多廣告`,
-    birthday: `⚠️ 當前不在生日輸入步驟`,
-    bloodType: `⚠️ 當前不在血型選擇步驟`,
-    broadcast: `⚠️ 發現 \${stuckBroadcasts.results.length} 個卡住的廣播
-
-`,
-    complete: `⚠️ 請先完成上一支廣告，再開始新的廣告`,
-    confirm: `⚠️ 請確認你的生日資訊：
-
-`,
-    conversation: `⚠️ 對話資訊錯誤。`,
-    conversation10: `⚠️ 對話不存在`,
-    conversation2: `⚠️ 對話資訊錯誤`,
-    conversation3: `⚠️ 此用戶沒有對話歷史帖子
-`,
-    conversation4: `⚠️ 找不到指定的對話，可能已結束或過期。`,
-    conversation5: `⚠️ **對話歷史部分更新**
-
-`,
-    conversation6: `⚠️ 無法識別對話對象
-
-`,
-    conversation7: `⚠️ 找不到此對話
-
-`,
-    conversation8: `⚠️ 對話不存在或已結束`,
-    conversation9: `⚠️ 此對話已結束`,
-    end: `⚠️ 測驗已結束或不存在`,
-    failed: `⚠️ 支付驗證失敗，請稍後再試`,
-    gender: `⚠️ 當前不在性別選擇步驟`,
-    invite: `⚠️ 無法獲取邀請碼`,
-    mbti: `⚠️ 當前不在 MBTI 測驗步驟`,
-    mbti2: `⚠️ 無效的 MBTI 類型`,
-    message: `⚠️ 發現 \${outdatedPosts.length} 個過時帖子需要刷新
-`,
-    message2: `⚠️ 注意：這是 \${testInfo}\${testTitle}，\${accuracy}。
-
-`,
-    message3: `⚠️ 請長按你要封鎖的訊息後回覆指令
-
-`,
-    message4: `⚠️ 請長按你要舉報的訊息後回覆指令
-
-`,
-    message5: `⚠️ **訊息包含不允許的連結**
-
-`,
-    register: `⚠️ 找不到用戶資料，請先使用 /start 註冊。`,
-    register2: `⚠️ 請先完成註冊流程。
-
-使用 /start 繼續註冊。`,
-    register3: `⚠️ 註冊流程出現問題，請重新開始：/start`,
-    register4: `⚠️ 請先完成註冊流程`,
-    settings: `⚠️ 再次提醒：性別設定後將**永遠不能修改**！
-
-`,
-    settings2: `⚠️ 生日設定後無法修改，請確認無誤！`,
-    settings3: `⚠️ 注意：性別設定後無法修改，請謹慎選擇！`,
-    short: `⚠️ 問題順序錯誤`,
-    short2: `⚠️ 未知的選項`,
-    short3: `⚠️ 無效的請求`,
-    short4: `⚠️ 注意：
-`,
-    short5: `⚠️ 其他違規`,
-    start: `⚠️ 會話已過期，請重新開始：/throw`,
-    start2: `⚠️ 會話已過期，請重新開始`,
-    task: `⚠️ 未知的任務類型`,
-    text: `⚠️ **注意**
-
-`,
-    text10: `⚠️ **不可修改項目**：
-`,
-    text11: `⚠️ 會話已過期，請重新操作`,
-    text12: `⚠️ 草稿不存在或已過期`,
-    text2: `⚠️ 無效的支付類型`,
-    text3: `⚠️ 翻譯服務暫時無法使用，以下為原文
-`,
-    text4: `⚠️ 安全提示：
-`,
-    text5: `⚠️ 當前不在反詐騙測驗步驟`,
-    text6: `⚠️ 當前不在服務條款步驟`,
-    text7: `⚠️ 注意：此功能僅在 Staging 環境可用。`,
-    text8: `⚠️ **不允許發送圖片、影片或多媒體**
-
-`,
-    text9: `⚠️ 此功能僅在 Staging 環境可用。`,
-    userNotFound: `⚠️ 用戶不存在，請先使用 /start 註冊。`,
-    userNotFound2: `⚠️ 用戶不存在`,
-    vip: `⚠️ 已達免費用戶邀請上限，升級 VIP 可解鎖 100 人上限！`,
-    vip2: `⚠️ 此功能僅限 VIP 會員使用`,
-    vip3: `⚠️ **VIP 今天到期**
-
-`,
-  },
-  warnings: {
-    birthday: `⚠️ 生日設定後無法修改，請確認無誤！`,
-    bloodType: `🩸 血型`,
-    gender: `[需要翻译]`,
-    mbti: `🧠 MBTI：\\\\\\\\\\\${mbti}`,
-    register2: `⚠️ 請先完成註冊`,
-    register4: `⚠️ 註冊未完成`,
-    settings: `🧠 MBTI：\\\\\\\\\\\\$`,
-    text5: `📖 簡介：{otherUser.bio}`,
-    text6: `⚠️ 請先完成註冊`,
-    userNotFound: `用戶不存在`,
-    warning: {
-      ad: `⚠️ 目前沒有配置任何廣告提供商
-
-`,
-      ad2: `⚠️ 目前沒有官方廣告
-
-`,
-      ad3: `⚠️ 暫無可用的廣告提供商`,
-      ad4: `⚠️ 無法選擇廣告提供商`,
-      ad5: `⚠️ 無法觀看更多廣告`,
-      birthday: `⚠️ 當前不在生日輸入步驟`,
-      bloodType: `⚠️ 當前不在血型選擇步驟`,
-      broadcast: `⚠️ 發現 \\\${stuckBroadcasts.results.length} 個卡住的廣播
-
-`,
-      complete: `⚠️ 請先完成上一支廣告，再開始新的廣告`,
-      confirm: `⚠️ 請確認你的生日資訊：
-
-`,
-      conversation: `⚠️ 對話資訊錯誤。`,
-      conversation10: `⚠️ 對話不存在`,
-      conversation2: `⚠️ 對話資訊錯誤`,
-      conversation3: `⚠️ 此用戶沒有對話歷史帖子
-`,
-      conversation4: `⚠️ 找不到指定的對話，可能已結束或過期。`,
-      conversation5: `⚠️ **對話歷史部分更新**
-
-`,
-      conversation6: `⚠️ 無法識別對話對象
-
-`,
-      conversation7: `⚠️ 找不到此對話
-
-`,
-      conversation8: `⚠️ 對話不存在或已結束`,
-      conversation9: `⚠️ 此對話已結束`,
-      end: `⚠️ 測驗已結束或不存在`,
-      failed: `⚠️ 支付驗證失敗，請稍後再試`,
-      gender: `⚠️ 當前不在性別選擇步驟`,
-      invite: `⚠️ 無法獲取邀請碼`,
-      mbti: `⚠️ 當前不在 MBTI 測驗步驟`,
-      mbti2: `⚠️ 無效的 MBTI 類型`,
-      message: `⚠️ 發現 \\\${outdatedPosts.length} 個過時帖子需要刷新
-`,
-      message2: `⚠️ 注意：這是 \\\${testInfo}\\\${testTitle}，\\\${accuracy}。
-
-`,
-      message3: `⚠️ 請長按你要封鎖的訊息後回覆指令
-
-`,
-      message4: `⚠️ 請長按你要舉報的訊息後回覆指令
-
-`,
-      message5: `⚠️ **訊息包含不允許的連結**
-
-`,
-      register: `⚠️ 找不到用戶資料，請先使用 /start 註冊。`,
-      register2: `⚠️ 請先完成註冊流程。
-
-使用 /start 繼續註冊。`,
-      register3: `⚠️ 註冊流程出現問題，請重新開始：/start`,
-      register4: `⚠️ 請先完成註冊流程`,
-      settings: `⚠️ 再次提醒：性別設定後將**永遠不能修改**！
-
-`,
-      settings2: `⚠️ 生日設定後無法修改，請確認無誤！`,
-      settings3: `⚠️ 注意：性別設定後無法修改，請謹慎選擇！`,
-      short: `⚠️ 問題順序錯誤`,
-      short2: `⚠️ 未知的選項`,
-      short3: `⚠️ 無效的請求`,
-      short4: `[需要翻译]`,
-      short5: `⚠️ 其他違規`,
-      start: `⚠️ 會話已過期，請重新開始：/throw`,
-      start2: `⚠️ 會話已過期，請重新開始`,
-      task: `⚠️ 未知的任務類型`,
-      text: `⚠️ **注意**
-
-`,
-      text10: `⚠️ **不可修改項目**：
-`,
-      text11: `⚠️ 會話已過期，請重新操作`,
-      text12: `⚠️ 草稿不存在或已過期`,
-      text2: `⚠️ 無效的支付類型`,
-      text3: `⚠️ 翻譯服務暫時無法使用，以下為原文
-`,
-      text4: `⚠️ 安全提示：
-`,
-      text5: `⚠️ 當前不在反詐騙測驗步驟`,
-      text6: `⚠️ 當前不在服務條款步驟`,
-      text7: `⚠️ 注意：此功能僅在 Staging 環境可用。`,
-      text8: `⚠️ **不允許發送圖片、影片或多媒體**
-
-`,
-      text9: `⚠️ 此功能僅在 Staging 環境可用。`,
-      userNotFound: `⚠️ 用戶不存在，請先使用 /start 註冊。`,
-      userNotFound2: `⚠️ 用戶不存在`,
-      vip: `⚠️ 已達免費用戶邀請上限，升級 VIP 可解鎖 100 人上限！`,
-      vip2: `⚠️ 此功能僅限 VIP 會員使用`,
-      vip3: `⚠️ **VIP 今天到期**
-
-`,
-    },
-  },
+  "warnings": {
+    "birthday": "⚠️ Data nașterii nu poate fi modificată după setare, vă rugăm să confirmați că este corectă!",
+    "bloodType": "🩸 Grupele sanguine",
+    "gender": "👤 Gen：{otherUser.gender}",
+    "mbti": "🧠 MBTI：\\\\\\\\\\${mbti}",
+    "register2": "[Needs translation: warnings.register2]",
+    "register4": "[Needs translation: warnings.register4]",
+    "settings": "🧠 MBTI：\\\\\\\\\\\\$",
+    "text5": "📖 Bio：{otherUser.bio}",
+    "text6": "[Needs translation: warnings.text6]",
+    "userNotFound": "Utilizatorul nu există",
+    "warning": {
+      "ad": "⚠️ În prezent, nu sunt configurate furnizori de reclame\n\n",
+      "ad2": "⚠️ În prezent, nu există reclame oficiale\n\n",
+      "ad3": "⚠️ Nu sunt furnizori de reclame disponibili în acest moment",
+      "ad4": "⚠️ Nu se poate selecta furnizorul de reclame",
+      "ad5": "⚠️ Nu se pot viziona mai multe reclame",
+      "birthday": "⚠️ Actualmente nu suntem în etapa de introducere a datei nașterii",
+      "bloodType": "⚠️ Actualmente nu suntem în etapa de selecție a grupei sanguine",
+      "broadcast": "⚠️ Am găsit \\${stuckBroadcasts.results.length} transmisiuni blocate\n\n",
+      "complete": "⚠️ Vă rugăm să finalizați reclama anterioară înainte de a începe o nouă reclamă",
+      "confirm": "⚠️ Te rugăm să confirmi informațiile despre ziua ta de naștere:\n\n",
+      "conversation": "⚠️ Eroare în informațiile privind conversația.",
+      "conversation10": "⚠️ Conversația nu există",
+      "conversation2": "⚠️ Eroare în informațiile privind conversația",
+      "conversation3": "⚠️ Acest utilizator nu are postări în istoricul conversației\n",
+      "conversation4": "⚠️ Nu s-a putut găsi conversația specificată, aceasta ar putea să fi încetat sau să fi expirat.",
+      "conversation5": "⚠️ **Istoricul conversațiilor a fost parțial actualizat**\n\n",
+      "conversation6": "⚠️ Nu am putut identifica partenerul de conversație\n\n",
+      "conversation7": "⚠️ Nu pot găsi această conversație\n\n",
+      "conversation8": "⚠️ Conversația nu există sau a luat sfârșit",
+      "conversation9": "⚠️ Această conversație a luat sfârșit",
+      "end": "⚠️ Testul s-a încheiat sau nu există",
+      "failed": "⚠️ Verificarea plății a eșuat, vă rugăm să încercați din nou mai târziu",
+      "gender": "⚠️ În prezent nu sunteți în pasul de selecție a genului",
+      "invite": "⚠️ Nu s-a putut recupera codul de invitație",
+      "mbti": "⚠️ În prezent nu sunteți în pasul testului MBTI",
+      "mbti2": "⚠️ Tip MBTI invalid",
+      "message": "⚠️ S-au detectat \\${outdatedPosts.length} postări depășite care necesită actualizare\n",
+      "message2": "⚠️ Notă: Acesta este \\${testInfo}\\${testTitle}, \\${accuracy}.\n\n",
+      "message3": "⚠️ Te rugăm să ții apăsat pe mesajul pe care vrei să-l blochezi și să răspunzi cu comanda\n\n",
+      "message4": "⚠️ Te rugăm să ții apăsat pe mesajul pe care vrei să-l raportezi și să răspunzi cu comanda\n\n",
+      "message5": "⚠️ **Mesajul conține linkuri interzise**\n\n",
+      "register": "⚠️ Profilul utilizatorului nu a fost găsit, vă rugăm să vă înregistrați mai întâi folosind /start.",
+      "register2": "⚠️ Vă rugăm să finalizați mai întâi procesul de înregistrare.\n\nFolositi /start pentru a continua înregistrarea.",
+      "register3": "⚠️ A apărut o problemă cu procesul de înregistrare, vă rugăm să începeți din nou: /start",
+      "register4": "⚠️ Vă rugăm să finalizați mai întâi procesul de înregistrare",
+      "settings": "⚠️ Recomandare: Odată setat, genul **nu poate fi modificat** niciodată!\n\n",
+      "settings2": "⚠️ Setarea zilei de naștere nu poate fi modificată, vă rugăm să confirmați că este corectă!",
+      "settings3": "⚠️ Notă: Setarea genului nu poate fi modificată, vă rugăm să alegeți cu atenție!",
+      "short": "⚠️ Ordine incorectă a întrebărilor",
+      "short2": "⚠️ Opțiune necunoscută",
+      "short3": "⚠️ Cerere invalidă",
+      "short4": "⚠️ Limita de lungime a poreclei este de 36 de caractere",
+      "short5": "⚠️ Alte încălcări",
+      "start": "⚠️ Sesiunea a expirat, vă rugăm să reintrați: /throw",
+      "start2": "⚠️ Sesiunea a expirat, vă rugăm să reintrați",
+      "task": "⚠️ Tip de task necunoscut",
+      "text": "⚠️ **Notă**\n\n",
+      "text10": "⚠️ **Elemente non-modificabile**:\n",
+      "text11": "⚠️ Sesiunea a expirat, vă rugăm să încercați din nou",
+      "text12": "⚠️ Ciorna nu există sau a expirat",
+      "text2": "⚠️ Tip de plată invalid",
+      "text3": "⚠️ Serviciul de traducere este temporar indisponibil, iată textul original\n",
+      "text4": "⚠️ Reminder de securitate:\n",
+      "text5": "⚠️ În prezent nu sunteți în pasul testului anti-fraudă",
+      "text6": "⚠️ În prezent nu sunteți în pasul termenilor de serviciu",
+      "text7": "⚠️ Notă: Această funcție este disponibilă doar în mediu Staging.",
+      "text8": "⚠️ **Trimiterea de imagini, videoclipuri sau multimedia nu este permisă**\n\n",
+      "text9": "⚠️ Această funcție este disponibilă doar în mediu Staging.",
+      "userNotFound": "⚠️ Utilizatorul nu există, vă rugăm să vă înregistrați mai întâi folosind /start.",
+      "userNotFound2": "⚠️ Utilizatorul nu există",
+      "vip": "⚠️ Ați atins limita pentru invitații de utilizatori gratuiti, treceți la VIP pentru a debloca limita de 100 de persoane!",
+      "vip2": "⚠️ Această funcție este disponibilă doar pentru membrii VIP",
+      "vip3": "⚠️ **VIP expiră astăzi**\n\n"
+    }
+  }
 };

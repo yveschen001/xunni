@@ -6,8 +6,9 @@
 import type { Env } from '~/types';
 import { createTelegramService } from '~/services/telegram';
 import { createDatabaseClient } from '~/db/client';
-import { getUsersWithIncompleteTask } from '~/db/queries/user_tasks';
+import { getUsersWithIncompleteTask, completeTask } from '~/db/queries/user_tasks';
 import { markTaskAsPendingClaim } from '~/db/queries/user_tasks';
+import { getTaskById } from '~/db/queries/tasks';
 
 /**
  * Check channel membership for users with incomplete "join channel" task
@@ -78,7 +79,15 @@ async function isUserInChannel(
   userId: string
 ): Promise<boolean> {
   try {
-    const member = await telegram.getChatMember(channelId, userId);
+    // Make sure channelId starts with @ or -100 if it's a username or ID
+    // If it's a public link, we need the username
+    let target = channelId;
+    if (channelId.startsWith('https://t.me/')) {
+      const parts = channelId.split('/');
+      target = '@' + parts[parts.length - 1];
+    }
+    
+    const member = await telegram.getChatMember(target, userId);
 
     // Check user status
     return ['creator', 'administrator', 'member'].includes(member.status);
@@ -96,6 +105,7 @@ export async function handleVerifyChannelJoin(
     id: string;
     from: { id: number };
     message?: { chat: { id: number }; message_id: number };
+    data?: string;
   },
   env: Env
 ): Promise<void> {
@@ -105,10 +115,28 @@ export async function handleVerifyChannelJoin(
   const chatId = callbackQuery.message?.chat.id;
   const messageId = callbackQuery.message?.message_id;
 
-  const channelId = env.OFFICIAL_CHANNEL_ID;
-  if (!channelId) {
+  // Determine which task and target to verify
+  let taskId = 'task_join_channel';
+  let targetId = env.OFFICIAL_CHANNEL_ID;
+
+  if (callbackQuery.data && callbackQuery.data.startsWith('verify_task_')) {
+    taskId = callbackQuery.data.replace('verify_task_', '');
+    const task = await getTaskById(db, taskId);
+    if (task && task.target_id) {
+      targetId = task.target_id;
+    } else {
+      // If custom task has no target ID, fail
+      const { findUserByTelegramId } = await import('~/db/queries/users');
+      const { createI18n } = await import('~/i18n');
+      const user = await findUserByTelegramId(db, userId);
+      const i18n = createI18n(user?.language_pref || 'zh-TW');
+      await telegram.answerCallbackQuery(callbackQuery.id, i18n.t('errors.channelConfigError'));
+      return;
+    }
+  }
+
+  if (!targetId) {
     // Get user's language preference for i18n
-    const db = createDatabaseClient(env.DB);
     const { findUserByTelegramId } = await import('~/db/queries/users');
     const { createI18n } = await import('~/i18n');
     const user = await findUserByTelegramId(db, callbackQuery.from.id.toString());
@@ -119,7 +147,7 @@ export async function handleVerifyChannelJoin(
 
   try {
     // Check if user is in channel
-    const isInChannel = await isUserInChannel(telegram, channelId, userId);
+    const isInChannel = await isUserInChannel(telegram, targetId, userId);
 
     if (!isInChannel) {
       // Get user's language preference for i18n
@@ -132,8 +160,7 @@ export async function handleVerifyChannelJoin(
     }
 
     // User is in channel, complete task immediately
-    const { completeTask } = await import('~/db/queries/user_tasks');
-    await completeTask(db, userId, 'task_join_channel');
+    await completeTask(db, userId, taskId);
 
     // Get user's language preference for i18n
     const { findUserByTelegramId } = await import('~/db/queries/users');
@@ -213,7 +240,6 @@ export async function handleClaimTaskReward(
     }
 
     // Complete task and claim reward
-    const { completeTask } = await import('~/db/queries/user_tasks');
     await completeTask(db, userId, taskId);
 
     // Get user's language preference for i18n

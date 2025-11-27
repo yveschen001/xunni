@@ -58,6 +58,32 @@ export async function routeUpdate(update: TelegramUpdate, env: Env): Promise<voi
   const telegram = createTelegramService(env);
   const db = createDatabaseClient(env.DB);
 
+  // 🌍 Pre-load translations based on user's language
+  // This ensures i18n.t() works synchronously in all handlers
+  let userLang = 'zh-TW'; // Default
+  
+  try {
+    const fromUser = update.message?.from || update.callback_query?.from || update.pre_checkout_query?.from;
+    if (fromUser) {
+      const telegramId = fromUser.id.toString();
+      // Try to get language from DB first (most accurate)
+      const user = await findUserByTelegramId(db, telegramId);
+      if (user?.language_pref) {
+        userLang = user.language_pref;
+      } else if (fromUser.language_code) {
+        // Fallback to Telegram language code
+        userLang = fromUser.language_code;
+      }
+    }
+    
+    // Load translations into memory cache (async)
+    const { loadTranslations } = await import('./i18n');
+    await loadTranslations(env, userLang);
+  } catch (e) {
+    console.error('[Router] Failed to pre-load translations:', e);
+    // Continue anyway, will fallback to static core languages
+  }
+
   // Handle successful payment FIRST (before other message processing)
   if (update.message && 'successful_payment' in update.message) {
     console.error('[Router] Payment received, processing...');
@@ -333,6 +359,20 @@ export async function routeUpdate(update: TelegramUpdate, env: Env): Promise<voi
       if (isEditingProfile) {
         return;
       }
+
+      // Try admin ad wizard input
+      const { handleAdminAdInput } = await import('./telegram/handlers/admin_ads');
+      const isAdminAdInput = await handleAdminAdInput(message, env);
+      if (isAdminAdInput) {
+        return;
+      }
+
+      // Try admin task wizard input
+      const { handleAdminTaskInput } = await import('./telegram/handlers/admin_tasks');
+      const isAdminTaskInput = await handleAdminTaskInput(message, env);
+      if (isAdminTaskInput) {
+        return;
+      }
     }
 
     // Check if user is at tutorial final page but hasn't clicked any button
@@ -503,6 +543,26 @@ export async function routeUpdate(update: TelegramUpdate, env: Env): Promise<voi
     if (text.startsWith('/admin_remove ')) {
       const { handleAdminRemove } = await import('./telegram/handlers/admin_ban');
       await handleAdminRemove(message, env);
+      return;
+    }
+
+    if (text === '/admin_ads') {
+      const { handleAdminAds } = await import('./telegram/handlers/admin_ads');
+      await handleAdminAds(message, env);
+      return;
+    }
+
+    if (text === '/admin_tasks') {
+      const { handleAdminTasks } = await import('./telegram/handlers/admin_tasks');
+      await handleAdminTasks(message, env);
+      return;
+    }
+
+    if (text === '/admin_ad_create') {
+      const { handleAdminAds } = await import('./telegram/handlers/admin_ads');
+      // Currently handleAdminAds has the create button, but we could expose a direct create handler
+      // For now, just show the menu
+      await handleAdminAds(message, env);
       return;
     }
 
@@ -707,7 +767,7 @@ export async function routeUpdate(update: TelegramUpdate, env: Env): Promise<voi
       return;
     }
 
-    if (text === '/menu') {
+    if (text === '/menu' || lowerText === 'menu') {
       const { handleMenu } = await import('./telegram/handlers/menu');
       await handleMenu(message, env);
       return;
@@ -969,22 +1029,40 @@ export async function routeUpdate(update: TelegramUpdate, env: Env): Promise<voi
         return;
       }
       if (data === 'lang_back') {
-        // Show popular languages again
+        // Go back to main menu instead of popular languages if coming from menu
+        // Or if coming from onboarding, show popular languages?
+        // But popular languages view is onboarding only. 
+        // If user is accessing language settings from /settings -> lang_more -> lang_page_x -> lang_back
+        // Then lang_back should go back to... popular languages? Or settings?
+        // Let's assume lang_back goes back to popular languages view (page 0 essentially but formatted differently)
+        // OR better: Just go back to "Popular" view which is what showLanguageSelection shows.
+
         const { getPopularLanguageButtons } = await import('~/i18n/languages');
         const { createI18n } = await import('./i18n');
         const { findUserByTelegramId } = await import('./db/queries/users');
         const user = await findUserByTelegramId(db, callbackQuery.from.id.toString());
         const i18n = createI18n(user?.language_pref || 'zh-TW');
-        await telegram.editMessageText(
-          chatId,
-          callbackQuery.message!.message_id,
-          i18n.t('onboarding.welcome'),
-          {
-            reply_markup: {
-              inline_keyboard: getPopularLanguageButtons(i18n),
-            },
-          }
-        );
+
+        // Check if message exists to edit
+        if (callbackQuery.message && callbackQuery.message.message_id) {
+          await telegram.editMessageText(
+            chatId,
+            callbackQuery.message.message_id,
+            i18n.t('onboarding.welcome'),
+            {
+              reply_markup: {
+                inline_keyboard: getPopularLanguageButtons(i18n),
+              },
+            }
+          );
+        } else {
+            // If message is missing (rare), send a new one
+            await telegram.sendMessageWithButtons(
+                chatId,
+                i18n.t('onboarding.welcome'),
+                getPopularLanguageButtons(i18n)
+            );
+        }
         await telegram.answerCallbackQuery(callbackQuery.id);
         return;
       }
@@ -1111,7 +1189,7 @@ export async function routeUpdate(update: TelegramUpdate, env: Env): Promise<voi
     }
 
     // Verify channel join (immediate check)
-    if (data === 'verify_channel_join') {
+    if (data === 'verify_channel_join' || data.startsWith('verify_task_')) {
       const { handleVerifyChannelJoin } = await import('~/services/channel_membership_check');
       await handleVerifyChannelJoin(callbackQuery, env);
       return;
@@ -1730,6 +1808,35 @@ export async function routeUpdate(update: TelegramUpdate, env: Env): Promise<voi
         i18n.t('vip.reminderCancelled') + '\n\n' + i18n.t('vip.viewVipCommand')
       );
       return;
+    }
+
+    // Admin Ad Callbacks
+    if (data.startsWith('admin_ad_') || data.startsWith('wizard_') && !data.startsWith('wizard_icon_') && !data.startsWith('wizard_verify_') && !data.startsWith('wizard_confirm_task') && !data.startsWith('wizard_cancel_task')) {
+      const { handleAdminAdCallback } = await import('./telegram/handlers/admin_ads');
+      await handleAdminAdCallback(callbackQuery, env);
+      return;
+    }
+
+    // Admin Task Callbacks
+    if (data.startsWith('admin_task_') || data.startsWith('wizard_icon_') || data.startsWith('wizard_verify_') || data === 'wizard_confirm_task' || data === 'wizard_cancel_task') {
+      const { handleAdminTaskCallback } = await import('./telegram/handlers/admin_tasks');
+      await handleAdminTaskCallback(callbackQuery, env);
+      return;
+    }
+
+    // ✨ NEW: Admin Ops Callbacks (Optimization)
+    if (data.startsWith('admin_ops_')) {
+      const { handleAdminOpsCallback } = await import('./telegram/handlers/admin_ops');
+      const parts = data.replace('admin_ops_', '').split('_');
+      // format: admin_ops_action_targetId
+      // parts[0] is action, parts[1] is targetId
+      const action = parts[0];
+      const targetId = parts[1];
+      
+      if (action && targetId) {
+        await handleAdminOpsCallback(callbackQuery, action, targetId, env);
+        return;
+      }
     }
 
     // Unknown callback

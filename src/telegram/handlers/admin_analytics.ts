@@ -13,6 +13,7 @@
 import type { Env } from '~/types';
 import { createDatabaseClient } from '~/db/client';
 import { createTelegramService } from '~/services/telegram';
+import { createI18n } from '~/i18n';
 import { findUserByTelegramId } from '~/db/queries/users';
 import {
   generateDailyReport,

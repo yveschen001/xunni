@@ -2,31 +2,89 @@
  * i18n System
  * Based on @doc/I18N_GUIDE.md
  *
- * Currently supports:
- * - zh-TW (Traditional Chinese) - 100% Complete
- * - zh-CN (Simplified Chinese) - 100% Complete
- * - en (English) - 100% Complete
- * - ar (Arabic) - 100% Complete (RTL supported)
- * - Other languages - Use key + zh-TW fallback
+ * Currently supports: Core languages + KV-loaded languages
+ *
+ * ⚠️ WORKER SIZE LIMIT WARNING ⚠️
+ * Only core languages are statically imported.
+ * All other languages must be loaded from KV via loadTranslations().
  */
 
 import { translations as zhTW } from './locales/zh-TW';
 import { translations as zhCN } from './locales/zh-CN';
 import { translations as en } from './locales/en';
 import { translations as ar } from './locales/ar';
-import type { Translations } from './types';
+import { translations as ja } from './locales/ja';
+import { translations as ko } from './locales/ko';
+import { translations as th } from './locales/th';
+import { translations as vi } from './locales/vi';
+import { translations as id } from './locales/id';
 
-// Translation cache
+import type { Translations } from './types';
+import type { Env } from '../types';
+
+// Translation cache (Memory L1)
 const translationCache: Map<string, Translations> = new Map();
 
-// Load translations
+// Load core translations (Static)
 translationCache.set('zh-TW', zhTW);
 translationCache.set('zh-CN', zhCN);
 translationCache.set('en', en);
 translationCache.set('ar', ar);
+translationCache.set('ja', ja);
+translationCache.set('ko', ko);
+translationCache.set('th', th);
+translationCache.set('vi', vi);
+translationCache.set('id', id);
 
 /**
- * Get translations for a language
+ * Load translations for a specific language (Async)
+ * 1. Check Memory Cache
+ * 2. Check KV Storage
+ * 3. Fallback to zh-TW (handled by getTranslations)
+ */
+export async function loadTranslations(env: Env, languageCode: string): Promise<void> {
+  // 1. Check Memory Cache (Fast path)
+  if (translationCache.has(languageCode)) {
+    return;
+  }
+
+  // 2. Handle region codes (e.g., es-ES -> es)
+  const baseLanguage = languageCode.split('-')[0];
+  if (translationCache.has(baseLanguage)) {
+    return; // Base language is already loaded
+  }
+
+  // 3. Load from KV (L2 Cache)
+  if (env.CACHE) {
+    try {
+      const cacheKey = `i18n:lang:${languageCode}`;
+      const translations = await env.CACHE.get<Translations>(cacheKey, 'json');
+      
+      if (translations) {
+        translationCache.set(languageCode, translations);
+        return;
+      }
+
+      // Try base language from KV
+      if (baseLanguage !== languageCode) {
+        const baseCacheKey = `i18n:lang:${baseLanguage}`;
+        const baseTranslations = await env.CACHE.get<Translations>(baseCacheKey, 'json');
+        if (baseTranslations) {
+          translationCache.set(baseLanguage, baseTranslations);
+          return;
+        }
+      }
+    } catch (e) {
+      console.error(`[i18n] Failed to load translations for ${languageCode} from KV:`, e);
+    }
+  }
+
+  // If not found in KV, we will rely on fallback to zh-TW in getTranslations()
+  console.warn(`[i18n] Language ${languageCode} not found in Cache or KV.`);
+}
+
+/**
+ * Get translations for a language (Synchronous)
  * Falls back to zh-TW if language not found
  */
 export function getTranslations(languageCode: string): Translations {
@@ -42,7 +100,7 @@ export function getTranslations(languageCode: string): Translations {
   }
 
   // Fallback to zh-TW
-  console.warn(`[i18n] Language ${languageCode} not found, falling back to zh-TW`);
+  // console.warn(`[i18n] Language ${languageCode} not found, falling back to zh-TW`);
   return translationCache.get('zh-TW')!;
 }
 
@@ -56,87 +114,68 @@ export function t(
 ): string {
   const translations = getTranslations(languageCode);
 
-  // Get translation by nested key (e.g., "onboarding.welcome")
-  // Handle keys with dots in property names (e.g., "tasks.name.city" -> tasks['name.city'])
   const keys = key.split('.');
   let value: Record<string, unknown> | string = translations;
 
   for (let i = 0; i < keys.length; i++) {
     const k = keys[i];
     if (value && typeof value === 'object') {
-      // First try direct property access
       if (k in value) {
         const nextValue = (value as Record<string, unknown>)[k] as Record<string, unknown> | string;
-        // If the value is a string but there are more keys, try combining with next key
-        // This handles cases like onboarding.gender.male where gender is a string but gender.male exists
         if (typeof nextValue === 'string' && i < keys.length - 1) {
           const combinedKey = `${k}.${keys[i + 1]}`;
           if (combinedKey in value) {
             value = (value as Record<string, unknown>)[combinedKey] as Record<string, unknown> | string;
-            i++; // Skip next key since we already used it
+            i++; 
             continue;
           }
         }
         value = nextValue;
       } else if (i < keys.length - 1) {
-        // If not found and there are more keys, try combining with next key (for keys like 'name.city')
         const combinedKey = `${k}.${keys[i + 1]}`;
         if (combinedKey in value) {
           value = (value as Record<string, unknown>)[combinedKey] as Record<string, unknown> | string;
-          i++; // Skip next key since we already used it
+          i++;
         } else {
           // Key not found
-          console.error(`[i18n] Translation key not found: ${key} for language: ${languageCode} (failed at: ${k})`);
+          // console.error(`[i18n] Translation key not found: ${key} for language: ${languageCode} (failed at: ${k})`);
           return `[${key}]`;
         }
       } else {
         // Key not found
-        console.error(`[i18n] Translation key not found: ${key} for language: ${languageCode} (failed at: ${k})`);
+        // console.error(`[i18n] Translation key not found: ${key} for language: ${languageCode} (failed at: ${k})`);
         return `[${key}]`;
       }
     } else {
       // Key not found
-      console.error(`[i18n] Translation key not found: ${key} for language: ${languageCode}`);
+      // console.error(`[i18n] Translation key not found: ${key} for language: ${languageCode}`);
       return `[${key}]`;
     }
   }
 
-  // Replace parameters
   if (typeof value === 'string' && params) {
-    // Support both {variable} and ${variable} formats
-    // Also support nested object access like ${updatedUser.nickname}
     let result = value;
-    
-    // Replace ${variable} format (template string style)
-    // Note: In template strings, \${} is escaped to ${} (literal), so we need to match both \${} and ${}
     result = result.replace(/(?:\\\$\{|\$\{)([^}]+)\}/g, (match, expr) => {
-      // Handle nested object access (e.g., updatedUser.nickname)
       const keys = expr.trim().split('.');
       let value: any = params;
       for (const key of keys) {
         if (value && typeof value === 'object' && key in value) {
           value = value[key];
         } else {
-          return match; // Return original if path not found
+          return match;
         }
       }
       return String(value ?? match);
     });
-    
-    // Replace {variable} format (simple style)
     result = result.replace(/\{(\w+)\}/g, (match, paramKey) => {
       return paramKey in params ? String(params[paramKey]) : match;
     });
-    
     return result;
   }
 
   return typeof value === 'string' ? value : `[${key}]`;
 }
 
-/**
- * Create i18n helper for a specific language
- */
 export function createI18n(languageCode: string) {
   return {
     t: (key: string, params?: Record<string, string | number>) => t(languageCode, key, params),
@@ -144,25 +183,15 @@ export function createI18n(languageCode: string) {
   };
 }
 
-/**
- * Load translations from external source (CSV/Google Sheets)
- * TODO: Implement in future
- */
+// Deprecated placeholder
 export async function loadExternalTranslations(
   languageCode: string,
   source: 'csv' | 'google-sheets',
   url: string
 ): Promise<void> {
-  console.error(`[i18n] Loading translations for ${languageCode} from ${source}: ${url}`);
-  // TODO: Implement CSV/Google Sheets import
-  throw new Error('External translations not yet implemented');
+  throw new Error('Use loadTranslations(env, lang) instead.');
 }
 
-/**
- * Export translations to CSV format
- * TODO: Implement in future
- */
 export function exportTranslationsToCSV(): string {
-  // TODO: Implement CSV export
   throw new Error('CSV export not yet implemented');
 }

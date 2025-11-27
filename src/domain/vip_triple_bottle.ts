@@ -240,18 +240,18 @@ async function sendMatchNotifications(
   // 這裡使用簡單的邏輯，實際應該複用 matching.ts 的邏輯
   if (bottleOwner.mbti_result && matcher.mbti_result) {
     try {
-        const { getBestMatches } = await import('~/domain/matching');
-        const bestMatches = getBestMatches(matcher.mbti_result);
-        if (bestMatches.includes(bottleOwner.mbti_result)) {
-            highlights.push(i18n?.t('common.mbtiMatch') || '🧠 MBTI 契合');
-        }
+      const { getBestMatches } = await import('~/domain/matching');
+      const bestMatches = getBestMatches(matcher.mbti_result);
+      if (bestMatches.includes(bottleOwner.mbti_result)) {
+        highlights.push(i18n?.t('common.mbtiMatch') || '🧠 MBTI 契合');
+      }
     } catch (e) {
-        // Ignore matching error
+      // Ignore matching error
     }
   }
   if (bottleOwner.zodiac_sign && matcher.zodiac_sign) {
-     // 簡單假設
-     highlights.push(i18n?.t('common.zodiacMatch') || '⭐ 星座契合');
+    // 簡單假設
+    highlights.push(i18n?.t('common.zodiacMatch') || '⭐ 星座契合');
   }
   // 如果沒有任何匹配點，顯示默認
   if (highlights.length === 0) {

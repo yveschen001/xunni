@@ -303,11 +303,11 @@ async function resumeOnboarding(
       const { createI18n } = await import('~/i18n');
       const i18n = createI18n(user.language_pref || 'zh-TW');
 
-    await telegram.sendMessageWithButtons(
-      chatId,
-      i18n.t('onboarding.bloodTypeLabel') + '\n\n' + i18n.t('onboarding.vip') + '\n\n' + i18n.t('onboarding.bloodType.select'),
-      [
+      await telegram.sendMessageWithButtons(
+        chatId,
+        i18n.t('onboarding.bloodTypeLabel') + '\n\n' + i18n.t('onboarding.vip') + '\n\n' + i18n.t('onboarding.bloodType.select'),
         [
+          [
             { text: options[0].display, callback_data: 'blood_type_A' },
             { text: options[1].display, callback_data: 'blood_type_B' },
           ],

@@ -38,7 +38,7 @@ import {
   formatVerificationButtonText,
   formatAdStats,
 } from '~/domain/official_ad';
-import { grantPermanentQuota } from '~/db/queries/users';
+import { grantTemporaryQuota } from '~/db/queries/ad_rewards';
 
 // ============================================================================
 // View Official Ads
@@ -261,7 +261,7 @@ export async function handleClaimAd(
     }
 
     // Grant reward
-    await grantPermanentQuota(db, telegramId, ad.reward_quota);
+    await grantTemporaryQuota(db, telegramId, ad.reward_quota);
 
     // Mark reward as granted
     await markRewardGranted(db, telegramId, adId);
@@ -270,7 +270,7 @@ export async function handleClaimAd(
     const baseQuota = user.is_vip ? i18n.t('officialAd.unlimited') : '10';
     const successMessage = 
       i18n.t('officialAd.claimRewardSuccess', { quota: ad.reward_quota }) + '\n\n' +
-      i18n.t('officialAd.rewardPermanent') + '\n\n' +
+      i18n.t('officialAd.rewardTemporary') + '\n\n' +
       i18n.t('officialAd.quotaInfo', { baseQuota, permanentQuota: ad.reward_quota }) + '\n\n' +
       (availableAds.length > 0 ? i18n.t('officialAd.moreAdsAvailable') : i18n.t('officialAd.allAdsViewed'));
 
@@ -383,7 +383,7 @@ export async function handleVerifyAd(
     await markAdVerified(db, telegramId, adId);
 
     // Grant reward
-    await grantPermanentQuota(db, telegramId, ad.reward_quota);
+    await grantTemporaryQuota(db, telegramId, ad.reward_quota);
 
     // Mark reward as granted
     await markRewardGranted(db, telegramId, adId);

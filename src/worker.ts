@@ -159,6 +159,12 @@ export default {
           );
         }
 
+        // MoonPacket API
+        if (url.pathname === '/api/moonpacket/check' && request.method === 'GET') {
+          const { handleMoonPacketCheck } = await import('./api/moonpacket');
+          return await handleMoonPacketCheck(request, env);
+        }
+
         return new Response(
           JSON.stringify({
             error: 'API endpoint not found',
@@ -189,7 +195,7 @@ export default {
   /**
    * Handle scheduled events (Cron)
    */
-  async scheduled(event: ScheduledEvent, _env: Env): Promise<void> {
+  async scheduled(event: ScheduledEvent, env: Env): Promise<void> {
     // eslint-disable-next-line no-console
     console.log('[Worker] Scheduled event:', event.cron);
 
@@ -225,6 +231,14 @@ export default {
         console.log('[Worker] Checking maintenance mode...');
         const { checkAndDisableExpiredMaintenance } = await import('./services/maintenance');
         await checkAndDisableExpiredMaintenance(env);
+      }
+
+      // AI Moderation Patrol (Every hour)
+      if (event.cron === '0 * * * *') {
+        // eslint-disable-next-line no-console
+        console.log('[Worker] Running AI Moderation Patrol...');
+        const { runAiModerationPatrol } = await import('./cron/ai_moderation_patrol');
+        await runAiModerationPatrol(env);
       }
 
       // Check channel membership (Every hour)

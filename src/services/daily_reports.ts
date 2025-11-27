@@ -69,6 +69,25 @@ export async function sendDailyReportsToSuperAdmins(env: Env): Promise<void> {
     const funnelReportData = await generateVIPFunnelReport(db.d1, dateStr, dateStr);
     const funnelReport = formatVIPFunnelReport(funnelReportData, i18n);
 
+    // ✨ NEW: AI Insight Analysis
+    let aiSummary = '';
+    try {
+      const { AIAnalystService } = await import('./ai_analyst');
+      const aiAnalyst = new AIAnalystService(env);
+      
+      const combinedStats = {
+        date: dateStr,
+        daily_metrics: dailyReportData,
+        ad_performance: adReportData,
+        vip_funnel: funnelReportData
+      };
+
+      aiSummary = await aiAnalyst.analyzeDailyStats(combinedStats);
+    } catch (aiError) {
+      console.error('[sendDailyReportsToSuperAdmins] AI Analysis failed:', aiError);
+      aiSummary = '⚠️ AI 分析服務暫時無法使用。';
+    }
+
     // Send to each super admin
     // Admin reports typically use Chinese (admin's language)
     // (i18n already created above)
@@ -85,6 +104,12 @@ export async function sendDailyReportsToSuperAdmins(env: Env): Promise<void> {
 
         // Delay to avoid rate limiting
         await sleep(500);
+
+        // 0. AI Summary (Priority)
+        if (aiSummary) {
+           await telegram.sendMessage(parseInt(adminId), aiSummary);
+           await sleep(500);
+        }
 
         // 1. Daily Analytics
         await telegram.sendMessage(parseInt(adminId), dailyReport);

@@ -1,6720 +1,4031 @@
 import type { Translations } from '../types';
 
-/**
- * fi translations
- * Auto-generated from i18n_for_translation.csv
- */
 export const translations: Translations = {
-  ad: {
-    ad: `💡 繼續觀看廣告可獲得更多額度！（已修正）`,
-    failed: `❌ 廣告載入失敗，請稍後再試`,
+  "ad": {
+    "ad": "💡 Jatka mainosten katsomista ansaitaksesi lisää kiintiöitä! (Kiinteä)",
+    "failed": "❌ Mainosten lataaminen epäonnistui, yritä myöhemmin uudelleen"
   },
-  adPrompt: {
-    completeTask: `• ✨ 完成任務（獲得永久配額）`,
-    inviteFriends: `• 🎁 邀請好友（每人 +1 配額）`,
-    quotaExhausted: `❌ 今日漂流瓶配額已用完（\${quotaDisplay}）`,
-    taskButton: `✨ \${taskName} 🎁`,
-    upgradeVip: `• 💎 升級 VIP（每天 30 個配額）`,
-    watchAd: `• 📺 觀看廣告（剩餘 \${remaining}/20 次）`,
-    watchAdLimit: `• 📺 觀看廣告（今日已達上限）`,
-    waysToGetMore: `💡 獲得更多配額的方式：`,
+  "adPrompt": {
+    "completeTask": "• ✨ Suorita tehtäviä (ansaitse pysyviä kiintiöitä)",
+    "inviteFriends": "• 🎁 Kutsu ystäviä (ansaitse +1 kiintiö per henkilö)",
+    "quotaExhausted": "❌ Tämän päivän pulloposti kiintiö on käytetty (${quotaDisplay})",
+    "taskButton": "✨ ${taskName} 🎁",
+    "upgradeVip": "• 💎 Päivitä VIP:ksi (30 kiintiötä päivittäin)",
+    "watchAd": "• 📺 Katso mainoksia (jäljellä ${remaining}/20 kertaa)",
+    "watchAdLimit": "• 📺 Katso mainoksia (päivittäinen raja saavutettu)",
+    "waysToGetMore": "💡 Tapoja ansaita lisää kiintiöitä:"
   },
-  adProvider: {
-    health: {
-      good: `良好`,
-      needsAttention: `需要關注`,
+  "adProvider": {
+    "health": {
+      "good": "Hyvä",
+      "needsAttention": "Vaatii huomiota"
+    }
+  },
+  "adReward": {
+    "adCompleted": "Mainos valmis! Ansaittu +${quota} kiintiötä",
+    "cannotSelectProvider": "⚠️ Ei voi valita mainostajaa",
+    "cannotWatchMore": "⚠️ Ei voi katsoa enempää mainoksia",
+    "clickButtonHint": "✅ Klikkaa painiketta aloittaaksesi katsomisen",
+    "completedEarned": "🎁 Tämän päivän ansaitut: **${earned}** kiintiötä",
+    "completedRemaining": "📈 Jäljellä olevat kerrat: **${remaining}** kertaa",
+    "completedReward": "✅ Ansaittu **+1 kiintiö**",
+    "completedTitle": "🎉 **Mainoksen katsominen on suoritettu!**",
+    "completedWatched": "📊 Tämän päivän katselut: **${watched}/20** kertaa",
+    "continueWatching": "💡 Jatka mainosten katsomista ansaitaksesi lisää kiintiöitä!",
+    "dailyLimitReached": "Tämän päivän mainokset ovat saavuttaneet rajan (${max}/${max})",
+    "getStatusFailed": "❌ Mainostilan hakeminen epäonnistui",
+    "noProviders": "⚠️ Ei saatavilla olevia mainostajia",
+    "pendingAd": "⚠️ Suorita edellinen mainos ennen uuden aloittamista",
+    "startWatchButton": "📺 Aloita mainosten katsominen",
+    "vipNoAds": "💎 VIP-käyttäjien ei tarvitse katsoa mainoksia",
+    "vipNoAdsReason": "VIP-käyttäjillä on rajattomat kiintiöt eikä heidän tarvitse katsoa mainoksia",
+    "watchAdClickButton": "👇 Klikkaa alla olevaa painiketta aloittaaksesi katsomisen",
+    "watchAdRemaining": "📊 Tämän päivän jäljellä: **${remaining}/20** kertaa",
+    "watchAdReward": "🎁 Suorita katsominen ansaitaksesi **+1 kiintiö**",
+    "watchAdTitle": "📺 **Katso mainoksia ansaitaksesi kiintiöitä**"
+  },
+  "admin": {
+    "ad": "Käytä /official_ads nähdäksesi kaikki mainokset",
+    "ad2": "Käytä tietokantaskriptiä lisätäksesi mainostajia:\n",
+    "ad3": "📺 **Mainostajien lista**\n\n",
+    "ad4": "Käytä tietokantaskriptiä lisätäksesi virallisia mainoksia:\n",
+    "ad5": "📢 **Virallinen mainoslista**\n\n",
+    "adConfig": {
+      "adIdMustBeNumber": "❌ Mainos-ID:n on oltava numero",
+      "addOfficialAdScript": "Käytä tietokantaskriptiä lisätäksesi virallisia mainoksia:",
+      "addProviderScript": "Käytä tietokantaskriptiä lisätäksesi mainostajia:",
+      "clicks": "• Klikattu: ${count} kertaa",
+      "correctFormat": "**Oikea muoto:**",
+      "disableCommand": "• `/ad_provider_disable <id>` - Poista käytöstä",
+      "disableFailed": "❌ Mainostajan poistaminen käytöstä epäonnistui",
+      "disableOfficialAdCommand": "• `/official_ad_disable <id>` - Poista käytöstä",
+      "disableOfficialAdFailed": "❌ Virallisen mainoksen poistaminen käytöstä epäonnistui",
+      "disabled": "❌ Poista käytöstä",
+      "enableCommand": "• `/ad_provider_enable <id>` - Ota käyttöön",
+      "enableFailed": "❌ Mainostajan ottaminen käyttöön epäonnistui",
+      "enableOfficialAdCommand": "• `/official_ad_enable <id>` - Ota käyttöön",
+      "enableOfficialAdFailed": "❌ Virhe virallisten ilmoitusten käyttöönotossa",
+      "enabled": "✅ Käytössä",
+      "example": "**Esimerkki:**",
+      "getListFailed": "❌ Virhe ilmoittajapalveluntarjoajalistan saamisessa",
+      "getOfficialAdListFailed": "❌ Virhe virallisen ilmoituslistan saamisessa",
+      "id": "• ID: ${id}",
+      "impressions": "• Nähty: ${count} kertaa",
+      "managementCommands": "**Hallintakomennot:**",
+      "noOfficialAds": "⚠️ Virallisia ilmoituksia ei ole tällä hetkellä saatavilla",
+      "noProviders": "⚠️ Ilmoittajapalveluntarjoajia ei ole tämänhetkisesti määritetty",
+      "officialAdDisabled": "✅ Virallinen ilmoitus #${id} poistettu käytöstä",
+      "officialAdEnabled": "✅ Virallinen ilmoitus #${id} otettu käyttöön",
+      "officialAdList": "📢 **Virallisten Ilmoitusten Lista**",
+      "priority": "• Prioriteetti: ${priority}",
+      "priorityCommand": "• `/ad_provider_priority <id> <priority>` - Määritä prioriteetti",
+      "priorityMustBeNonNegative": "❌ Prioriteetin on oltava ei-negatiivinen kokonaisluku",
+      "prioritySet": "✅ Ilmoittajapalveluntarjoajan prioriteetti asetettu",
+      "priorityValue": "Prioriteetti: ${priority}",
+      "provider": "Palveluntarjoaja: ${name}",
+      "providerDisabled": "✅ Ilmoittajapalveluntarjoaja poistettu käytöstä: ${name}",
+      "providerEnabled": "✅ Ilmoittajapalveluntarjoaja otettu käyttöön: ${name}",
+      "providerList": "📺 **Ilmoittajapalveluntarjoajien Lista**",
+      "reward": "• Palkkio: ${reward} krediittiä",
+      "setPriorityFailed": "❌ Virhe prioriteetin asettamisessa",
+      "status": "• Tila: ${status}",
+      "testMode": "• 🧪 Testitila",
+      "type": "• Tyyppi: ${type}",
+      "usageError": "❌ Virheellinen käyttö",
+      "viewAllOfficialAds": "Käytä /official_ads nähdäksesi kaikki ilmoitukset",
+      "viewAllProviders": "Käytä /ad_providers nähdäksesi kaikki tarjoajat",
+      "viewStatsCommand": "• `/ad_stats <id>` - Näytä yksityiskohtaiset tilastot",
+      "weight": "• Paino: ${weight}"
     },
-  },
-  adReward: {
-    adCompleted: `廣告完成！獲得 +\${quota} 個配額`,
-    cannotSelectProvider: `⚠️ 無法選擇廣告提供商`,
-    cannotWatchMore: `⚠️ 無法觀看更多廣告`,
-    clickButtonHint: `✅ 請點擊按鈕開始觀看`,
-    completedEarned: `🎁 今日已獲得：**\${earned}** 個額度`,
-    completedRemaining: `📈 剩餘次數：**\${remaining}** 次`,
-    completedReward: `✅ 獲得 **+1 個額度**`,
-    completedTitle: `🎉 **廣告觀看完成！**`,
-    completedWatched: `📊 今日已觀看：**\${watched}/20** 次`,
-    continueWatching: `💡 繼續觀看廣告可獲得更多額度！`,
-    dailyLimitReached: `今日廣告已達上限（\${max}/\${max}）`,
-    getStatusFailed: `❌ 獲取廣告狀態失敗`,
-    noProviders: `⚠️ 暫無可用的廣告提供商`,
-    pendingAd: `⚠️ 請先完成上一支廣告，再開始新的廣告`,
-    startWatchButton: `📺 開始觀看廣告`,
-    vipNoAds: `💎 VIP 用戶無需觀看廣告`,
-    vipNoAdsReason: `VIP 用戶擁有無限配額，無需觀看廣告`,
-    watchAdClickButton: `👇 點擊下方按鈕開始觀看`,
-    watchAdRemaining: `📊 今日剩餘：**\${remaining}/20** 次`,
-    watchAdReward: `🎁 完成觀看可獲得 **+1 個額度**`,
-    watchAdTitle: `📺 **觀看廣告獲得額度**`,
-  },
-  admin: {
-    ad: `使用 /official_ads 查看所有廣告`,
-    ad2: `請使用資料庫腳本添加廣告提供商：
-`,
-    ad3: `📺 **廣告提供商列表**
-
-`,
-    ad4: `請使用資料庫腳本添加官方廣告：
-`,
-    ad5: `📢 **官方廣告列表**
-
-`,
-    addAlreadyAdmin: `❌ 此用戶已經是管理員。`,
-    addAlreadySuperAdmin: `❌ 此用戶已經是超級管理員，無需添加。`,
-    addCommand: `\`/admin_add <user_id>\`
-
-`,
-    addExample: `\`/admin_add 123456789\` - 添加為普通管理員
-
-`,
-    addInstructions: `⚠️ **注意**
-
-此命令需要手動修改配置文件。
-
-**步驟：**
-1. 編輯 \`wrangler.toml\`
-2. 找到 \`ADMIN_USER_IDS\` 變數
-3. 添加用戶 ID：\`{userId}\`
-4. 格式：\`ADMIN_USER_IDS = "ID1,ID2,{userId}"\`
-5. 重新部署：\`pnpm deploy:staging\`
-
-**用戶資訊：**
-• ID: \`{userId}\`
-• 暱稱: {nickname}
-• 用戶名: @{username}
-
-💡 或在 Cloudflare Dashboard 中修改環境變數`,
-    addUsageError: `❌ 使用方法錯誤
-
-`,
-    addUserNotFound: `❌ 用戶不存在或未註冊。`,
-    admin: `💡 使用 /admin_list 查看當前管理員列表`,
-    admin2: `管理員封禁 / Admin ban`,
-    admin3: `- 添加為普通管理員
-
-`,
-    admin4: `- 移除普通管理員
-
-`,
-    admin5: `\`/admin_add 123456789\` - 添加為普通管理員
-
-`,
-    admin6: `\`/admin_remove 123456789\` - 移除普通管理員
-
-`,
-    appeal: `申訴 ID: \${appeal.id}
-`,
-    appeal2: `💡 使用以下命令審核申訴：
-`,
-    appeal3: `📋 待審核申訴列表
-
-`,
-    appeal4: `申訴已批准`,
-    appeal5: `申訴被拒絕`,
-    appealAlreadyReviewed: `❌ 申訴 {id} 已經被審核過了`,
-    appealApproveUsageError: `❌ 請提供申訴 ID
-
-用法: /admin_approve <appeal_id> [備註]`,
-    appealApproved: `✅ 申訴 {id} 已批准，用戶已解封`,
-    appealApprovedDefault: `申訴已批准`,
-    appealDivider: `━━━━━━━━━━━━━━━━
-`,
-    appealId: `申訴 ID: {id}
-`,
-    appealNotFound: `❌ 找不到申訴 ID: {id}`,
-    appealReason: `理由: {reason}
-`,
-    appealRejectUsageError: `❌ 請提供申訴 ID
-
-用法: /admin_reject <appeal_id> [備註]`,
-    appealRejected: `✅ 申訴 {id} 已拒絕`,
-    appealRejectedDefault: `申訴被拒絕`,
-    appealReviewCommands: `/admin_approve <appeal_id> [備註]
-/admin_reject <appeal_id> [備註]`,
-    appealReviewHint: `💡 使用以下命令審核申訴：
-`,
-    appealSubmittedAt: `提交時間: {time}
-
-`,
-    appealUser: `用戶: {user}
-`,
-    appealsTitle: `📋 待審核申訴列表
-
-`,
-    ban: `💡 使用 /admin_bans <user_id> 查看特定用戶的封禁歷史`,
-    ban2: `總封禁次數: \${userBans.results.length}
-
-`,
-    ban3: `📊 最近 10 條封禁記錄
-
-`,
-    ban4: `📊 用戶封禁歷史
-
-`,
-    ban5: `📊 目前沒有封禁記錄`,
-    banSuccess: `✅ 已封禁用戶 {userId} ({nickname})
-
-封禁時長：{duration}
-解封時間：{unbanTime}`,
-    banSuccessPermanent: `✅ 已永久封禁用戶 {userId} ({nickname})`,
-    banUsageError: `使用方式错误`,
-    banUserNotFound: `用户不存在`,
-    cannotBanAdmin: `无法封禁管理员`,
-    conversation: `💡 對話歷史帖子只在有新消息時創建
-`,
-    conversation2: `所有 VIP 用戶的對話歷史都是最新的！`,
-    conversation3: `
-💬 **對話歷史帖子：**
-`,
-    conversation4: `請檢查對話歷史是否已更新為清晰頭像。`,
-    conversation5: `🔄 開始刷新您的對話歷史...`,
-    conversation6: `• 無對話歷史帖子
-`,
-    end: `結束: \${banEnd}
-
-`,
-    error: `错误`,
-    failed: `• 失敗帖子：\${results.totalPostsFailed}
-
-`,
-    failed2: `• 失敗：\${results.failedUsers}
-`,
-    failed3: `• 失敗：\${result.failed} 個帖子
-
-`,
-    insufficientPermission: `❌ **權限不足**
-
-此命令僅限超級管理員使用。`,
-    listFooter: `---`,
-    listId: `ID：{id}`,
-    listNickname: `暱稱：{nickname}`,
-    listNotRegistered: `未注册`,
-    listRoleAdmin: `管理员`,
-    listRoleSuperAdmin: `超级管理员`,
-    listTitle: `管理员列表`,
-    listTotal: `總數：{total}`,
-    listUsername: `用戶名：{username}`,
-    message: `• 更新時間：\${new Date(post.updated_at).toLocaleString('zh-TW', { month: '2-digit', day: '2-digit', hour: '2-digit', minute: '2-digit' })}
-
-`,
-    message10: `• 有頭像：\${post.partner_avatar_url ? '✅' : '❌'}
-`,
-    message11: `...還有 \${historyPosts.results.length - 5} 個帖子
-`,
-    message12: `用戶: \${targetUser?.nickname }
-`,
-    message13: `• 用戶名: @\${targetUser?.username }
-
-`,
-    message14: `用戶: \${appeal.nickname }
-`,
-    message15: `
-...還有 \${results.details.length - 10} 個用戶`,
-    message16: `• 用戶名: @\${targetUser.username }
-
-`,
-    message17: `• 總數：\${historyPosts.results.length}
-
-`,
-    message18: `💡 使用 /admin_refresh_vip_avatars 批量刷新
-`,
-    message19: `• 最新：\${post.is_latest ? '✅' : '❌'}
-`,
-    message2: `• 更新時間：\${avatarInfo.avatar_updated_at ? new Date(avatarInfo.avatar_updated_at).toLocaleString('zh-TW') : '未知'}
-`,
-    message20: `• 過時帖子：\${stats.totalOutdatedPosts}
-
-`,
-    message21: `/ad_provider_priority <id> <priority>`,
-    message22: `• 需要刷新：\${stats.usersNeedingRefresh}
-`,
-    message23: `• 更新帖子：\${results.totalPostsUpdated}
-`,
-    message24: `用戶: \${ban.nickname }
-`,
-    message25: `/ad_provider_disable <provider_id>`,
-    message26: `💡 或在 Cloudflare Dashboard 中修改環境變數`,
-    message27: `/ad_provider_enable <provider_id>`,
-    message28: `• 用戶名: @\${targetUser?.username ||`,
-    message29: `/admin_approve <appeal_id> [備註]
-`,
-    message3: `• \${username}: \${detail.postsUpdated} 更新, \${detail.postsFailed} 失敗
-`,
-    message30: `• 展示: \${ad.impression_count} 次
-`,
-    message31: `• 用戶名: @\${targetUser.username ||`,
-    message32: `• 用戶名：@\${user.username }
-`,
-    message33: `/admin_reject <appeal_id> [備註]`,
-    message34: `• 處理用戶：\${results.totalUsers}
-`,
-    message35: `• \`/ad_provider_enable <id>\` - 啟用
-`,
-    message36: `• \`/ad_provider_disable <id>\` - 停用
-`,
-    message37: `• \`/ad_provider_priority <id> <priority>\` - 設置優先級`,
-    message38: `• \`/official_ad_enable <id>\` - 啟用
-`,
-    message39: `• \`/official_ad_disable <id>\` - 停用
-`,
-    message4: `新到期：\${new Date(data.expire_date).toLocaleDateString('zh-TW')}
-`,
-    message40: `• 更新時間：\${new Date(post.updated_at).toLocaleString('zh-TW', { month: '2-digit', day: '2-digit', hour:`,
-    message5: `到期：\${new Date(data.expire_date).toLocaleDateString('zh-TW')}
-`,
-    message6: `錯誤：\${error instanceof Error ? error.message : String(error)}`,
-    message7: `• 原始 URL：\${avatarInfo.avatar_original_url ? '✅' : '❌'}
-`,
-    message8: `• 模糊 URL：\${avatarInfo.avatar_blurred_url ? '✅' : '❌'}
-`,
-    message9: `📝 **帖子 #\${post.identifier}-H\${post.post_number}**
-`,
-    nickname: `• 暱稱: \${targetUser?.nickname ||`,
-    nickname2: `• 暱稱: \${targetUser.nickname ||`,
-    noPendingAppeals: `✅ 目前沒有待審核的申訴`,
-    noPermission: `❌ 你沒有權限使用此命令。`,
-    onlyAdmin: `❌ 只有管理員可以使用此命令。`,
-    onlySuperAdmin: `❌ 只有超級管理員可以使用此命令。`,
-    operationFailed: `❌ 發生錯誤，請稍後再試。`,
-    removeCannotRemoveSuperAdmin: `❌ 無法移除超級管理員。`,
-    removeCommand: `\`/admin_remove <user_id>\`
-
-`,
-    removeExample: `\`/admin_remove 123456789\` - 移除普通管理員
-
-`,
-    removeInstructions: `⚠️ **注意**
-
-此命令需要手動修改配置文件。
-
-**步驟：**
-1. 編輯 \`wrangler.toml\`
-2. 找到 \`ADMIN_USER_IDS\` 變數
-3. 移除用戶 ID：\`{userId}\`
-4. 格式：\`ADMIN_USER_IDS = "ID1,ID2"\`（移除 {userId}）
-5. 重新部署：\`pnpm deploy:staging\`
-
-**用戶資訊：**
-• ID: \`{userId}\`
-• 暱稱: {nickname}
-• 用戶名: @{username}
-
-💡 或在 Cloudflare Dashboard 中修改環境變數`,
-    removeNotAdmin: `❌ 此用戶不是管理員。`,
-    removeUsageError: `❌ 使用方法錯誤
-
-`,
-    settings: `• 暱稱: \${targetUser?.nickname }
-`,
-    settings2: `• 暱稱: \${targetUser.nickname }
-`,
-    settings3: `• 暱稱：\${user.nickname }
-`,
-    settings4: `未設定`,
-    settings5: `未設定`,
-    settings6: `未設定`,
-    short: `**範例：**
-`,
-    short10: `支付 ID：\\`,
-    short11: `變數
-`,
-    short12: `用戶：\\`,
-    short2: `**示例：**
-`,
-    short3: `**步驟：**
-`,
-    short4: `5. 重新部署：\\`,
-    short5: `4. 重新部署：\\`,
-    short6: `1. 編輯 \\`,
-    short7: `2. 找到 \\`,
-    short8: `4. 格式：\\`,
-    short9: `• 無緩存
-`,
-    start: `開始: \${banStart}
-`,
-    stats: `📊 **統計：**
-`,
-    stats2: `• \`/ad_stats <id>\` - 查看詳細統計`,
-    success: `• 成功：\${results.successUsers}
-`,
-    text: `• 優先級: \${provider.priority}
-`,
-    text10: `金額：\${data.amount_stars} ⭐
-`,
-    text11: `請求 ID：#\${data.request_id}
-`,
-    text12: `• 權重: \${provider.weight}
-`,
-    text13: `原因：\${data.error_message}
-`,
-    text14: `/ad_provider_disable <id>`,
-    text15: `/official_ad_disable <id>`,
-    text16: `💡 使用 /admin_refunds 查看詳情`,
-    text17: `/ad_provider_enable <id>`,
-    text18: `使用 /ad_providers 查看所有提供商`,
-    text19: `/official_ad_enable <id>`,
-    text2: `• 獎勵: \${ad.quota_reward} 額度
-`,
-    text20: `剩餘：\${data.days_left} 天
-`,
-    text21: `/admin_remove 123456789`,
-    text22: `理由: \${appeal.reason}
-`,
-    text23: `提交時間: \${createdAt}
-
-`,
-    text24: `提供商：\${providerName}
-`,
-    text25: `• 類型: \${ad.ad_type}
-`,
-    text26: `/admin_add 123456789`,
-    text27: `處理過程中發生錯誤，請查看日誌。
-
-`,
-    text28: `優先級：\${priority}
-
-`,
-    text29: `原因: \${ban.reason}
-`,
-    text3: `/official_ad_disable <ad_id>`,
-    text30: `原因：\${data.reason}
-`,
-    text31: `時間：\${timestamp}
-
-`,
-    text32: `此命令需要手動修改配置文件。
-
-`,
-    text33: `• 狀態: \${status}
-`,
-    text34: `🔍 **頭像診斷報告**
-
-`,
-    text35: `
-📸 **頭像緩存：**
-`,
-    text36: `時間：\${timestamp}`,
-    text37: `🔴 **退款請求**
-
-`,
-    text38: `📢 **系統通知**
-
-`,
-    text39: `/ad_stats <id>`,
-    text4: `風險分數: \${ban.risk_snapshot}
-`,
-    text40: `👤 **用戶信息：**
-`,
-    text41: `
-🔎 **分析：**
-`,
-    text42: `📝 **詳細結果：**
-`,
-    text43: `⏳ 正在處理，請稍候...`,
-    text44: `3. 添加用戶 ID：\\`,
-    text45: `3. 移除用戶 ID：\\`,
-    text46: `📊 **總結：**
-`,
-    text47: `類型：\${type}
-`,
-    text48: `• 🧪 測試模式
-`,
-    text49: `**管理命令：**
-`,
-    text5: `⏱️ **耗時：** \${duration} 秒
-
-`,
-    text50: `**正確格式：**
-`,
-    text51: `\${hours} 小時`,
-    text52: `**用戶資訊：**
-`,
-    text6: `• 更新：\${result.updated} 個帖子
-`,
-    text7: `數據：\${JSON.stringify(data)}
-`,
-    text8: `• 點擊: \${ad.click_count} 次
-`,
-    text9: `/official_ad_enable <ad_id>`,
-    unbanNotBanned: `用户未被封禁`,
-    unbanSuccess: `✅ 已解封用戶 {userId}`,
-    unbanUsageError: `解封使用方式错误`,
-    unbanUserNotFound: `解封用户不存在`,
-    userNotFound: `❌ 用戶不存在。`,
-    vip: `• VIP 到期：\${new Date(user.vip_expire_at).toLocaleString('zh-TW')}
-`,
-    vip2: `• 創建時 VIP：\${post.created_with_vip_status ? '✅' : '❌'}
-`,
-    vip3: `• VIP 狀態：\${isVip ? '✅ 是' : '❌ 否'}
-`,
-    vip4: `• 總 VIP 用戶：\${stats.totalVipUsers}
-`,
-    vip5: `🔄 **開始批量刷新 VIP 頭像**
-
-`,
-    vip6: `⏰ **VIP 到期提醒已發送**
-
-`,
-    vip7: `🎉 **新 VIP 購買**
-
-`,
-    vip8: `⬇️ **VIP 自動降級**
-
-`,
-    vip9: `🔄 **VIP 續費**
-
-`,
-    adConfig: {
-      adIdMustBeNumber: `❌ 廣告 ID 必須是數字`,
-      addOfficialAdScript: `請使用資料庫腳本添加官方廣告：`,
-      addProviderScript: `請使用資料庫腳本添加廣告提供商：`,
-      clicks: `• 點擊: \${count} 次`,
-      correctFormat: `**正確格式：**`,
-      disableCommand: `• \`/ad_provider_disable <id>\` - 停用`,
-      disableFailed: `❌ 停用廣告提供商失敗`,
-      disableOfficialAdCommand: `• \`/official_ad_disable <id>\` - 停用`,
-      disableOfficialAdFailed: `❌ 停用官方廣告失敗`,
-      disabled: `❌ 停用`,
-      enableCommand: `• \`/ad_provider_enable <id>\` - 啟用`,
-      enableFailed: `❌ 啟用廣告提供商失敗`,
-      enableOfficialAdCommand: `• \`/official_ad_enable <id>\` - 啟用`,
-      enableOfficialAdFailed: `❌ 啟用官方廣告失敗`,
-      enabled: `✅ 啟用`,
-      example: `**範例：**`,
-      getListFailed: `❌ 獲取廣告提供商列表失敗`,
-      getOfficialAdListFailed: `❌ 獲取官方廣告列表失敗`,
-      id: `• ID: \${id}`,
-      impressions: `• 展示: \${count} 次`,
-      managementCommands: `**管理命令：**`,
-      noOfficialAds: `⚠️ 目前沒有官方廣告`,
-      noProviders: `⚠️ 目前沒有配置任何廣告提供商`,
-      officialAdDisabled: `✅ 已停用官方廣告 #\${id}`,
-      officialAdEnabled: `✅ 已啟用官方廣告 #\${id}`,
-      officialAdList: `📢 **官方廣告列表**`,
-      priority: `• 優先級: \${priority}`,
-      priorityCommand: `• \`/ad_provider_priority <id> <priority>\` - 設置優先級`,
-      priorityMustBeNonNegative: `❌ 優先級必須是非負整數`,
-      prioritySet: `✅ 已設置廣告提供商優先級`,
-      priorityValue: `優先級：\${priority}`,
-      provider: `提供商：\${name}`,
-      providerDisabled: `✅ 已停用廣告提供商：\${name}`,
-      providerEnabled: `✅ 已啟用廣告提供商：\${name}`,
-      providerList: `📺 **廣告提供商列表**`,
-      reward: `• 獎勵: \${reward} 額度`,
-      setPriorityFailed: `❌ 設置優先級失敗`,
-      status: `• 狀態: \${status}`,
-      testMode: `• 🧪 測試模式`,
-      type: `• 類型: \${type}`,
-      usageError: `❌ 使用方法錯誤`,
-      viewAllOfficialAds: `使用 /official_ads 查看所有廣告`,
-      viewAllProviders: `使用 /ad_providers 查看所有提供商`,
-      viewStatsCommand: `• \`/ad_stats <id>\` - 查看詳細統計`,
-      weight: `• 權重: \${weight}`,
+    "addAlreadyAdmin": "❌ Tämä käyttäjä on jo ylläpitäjä.",
+    "addAlreadySuperAdmin": "❌ Tämä käyttäjä on jo super ylläpitäjä, ei tarvitse lisätä.",
+    "addCommand": "`/admin_add <user_id>`\n\n",
+    "addExample": "`/admin_add 123456789` - Lisää tavalliseksi pääkäyttäjäksi\n\n",
+    "addInstructions": "⚠️ **Huomautus**\n\nTämä komento vaatii manuaalista muokkausta kokoonpanotiedostoon.\n\n**Vaiheet:**\n1. Muokkaa `wrangler.toml`\n2. Etsi `ADMIN_USER_IDS` muuttuja\n3. Lisää käyttäjän ID: `{userId}`\n4. Muoto: `ADMIN_USER_IDS = \"ID1,ID2,{userId}\"`\n5. Uudelleenjake: `pnpm deploy:staging`\n\n**Käyttäjätiedot:**\n• ID: `{userId}`\n• Nimimerkki: {nickname}\n• Käyttäjänimi: @{username}\n\n💡 Tai muokkaa ympäristömuuttujia Cloudflare Dashboardissa",
+    "addUsageError": "❌ Virheellinen käyttö\n\n",
+    "addUserNotFound": "❌ Käyttäjää ei ole olemassa tai se ei ole rekisteröity.",
+    "admin": "💡 Käytä /admin_list nähdäksesi nykyisen ylläpitäjälistan",
+    "admin2": "Ylläpitäjäkielto",
+    "admin3": "- Lisää tavalliseksi pääkäyttäjäksi\n\n",
+    "admin4": "- Poista tavallinen pääkäyttäjä\n\n",
+    "admin5": "`/admin_add 123456789` - Lisää normaaliksi pääkäyttäjäksi\n\n",
+    "admin6": "`/admin_remove 123456789` - Poista normaali pääkäyttäjä\n\n",
+    "analytics": {
+      "getAdDataFailed": "❌ Virhe ilmoitusdatassa",
+      "getDataFailed": "❌ Virhe analytiikkadatassa",
+      "getVipDataFailed": "❌ Virhe VIP-myyntisyötteessä",
+      "noPermission": "❌ Sinulla ei ole lupaa nähdä analytiikkadataa",
+      "noPermissionAd": "❌ Sinulla ei ole lupaa nähdä mainostietoja",
+      "noPermissionVip": "❌ Sinulla ei ole lupaa nähdä VIP-tietoja",
+      "onlySuperAdmin": "❌ Vain supervalvojat voivat käyttää tätä komentoa.",
+      "sendReportFailed": "❌ Päivittäisen raportin lähettäminen epäonnistui: ${error}",
+      "userNotFound": "❌ Käyttäjää ei ole olemassa: ${userId}"
     },
-    analytics: {
-      getAdDataFailed: `❌ 獲取廣告數據失敗`,
-      getDataFailed: `❌ 獲取分析數據失敗`,
-      getVipDataFailed: `❌ 獲取 VIP 漏斗數據失敗`,
-      noPermission: `❌ 你沒有權限查看分析數據`,
-      noPermissionAd: `❌ 你沒有權限查看廣告數據`,
-      noPermissionVip: `❌ 你沒有權限查看 VIP 數據`,
-      onlySuperAdmin: `❌ 只有超級管理員可以使用此命令。`,
-      sendReportFailed: `❌ 發送每日報表失敗：\${error}`,
-      userNotFound: `❌ 用戶不存在：\${userId}`,
+    "appeal": "Valitus-ID: ${appeal.id}\n",
+    "appeal2": "💡 Käytä seuraavaa komentoa tarkistaaksesi valituksen:\n",
+    "appeal3": "📋 Odottaa käsittelyä olevat valitukset\n\n",
+    "appeal4": "Valitus hyväksytty",
+    "appeal5": "Valitus hylätty",
+    "appealAlreadyReviewed": "❌ Valitusta {id} on jo käsitelty",
+    "appealApproveUsageError": "❌ Ole hyvä ja anna valitus-ID\n\nKäyttö: /admin_approve <appeal_id> [notes]",
+    "appealApproved": "✅ Valitus {id} on hyväksytty, käyttäjän esto on poistettu",
+    "appealApprovedDefault": "Valitus hyväksytty",
+    "appealDivider": "━━━━━━━━━━━━━━━━\n",
+    "appealId": "Valitus-ID: {id}\n",
+    "appealNotFound": "❌ Valitus-ID:tä {id} ei löytynyt",
+    "appealReason": "Syynä: {reason}\n",
+    "appealRejectUsageError": "❌ Ole hyvä ja anna valitus-ID\n\nKäyttö: /admin_reject <appeal_id> [notes]",
+    "appealRejected": "✅ Valitus {id} on hylätty",
+    "appealRejectedDefault": "Valitus hylätty",
+    "appealReviewCommands": "/admin_approve <appeal_id> [notes]\n/admin_reject <appeal_id> [notes]",
+    "appealReviewHint": "💡 Käytä seuraavaa komentoa tarkistaaksesi valituksen:\n",
+    "appealSubmittedAt": "Lähetysaika: {time}\n\n",
+    "appealUser": "Käyttäjä: {user}\n",
+    "appealsTitle": "📋 Odottavat valitukset\n\n",
+    "ban": {
+      "appealAlreadyReviewed": "❌ Valitusta {id} on jo käsitelty",
+      "appealApproved": "Valitus hyväksytty",
+      "appealApprovedUnbanned": "✅ Valitus {id} on hyväksytty, käyttäjän esto on poistettu",
+      "appealId": "Valitus-ID: {id}\n",
+      "appealList": "📋 Odotettavissa oleva valituslista\n\n",
+      "appealNotFound": "❌ Valitus-ID:tä {id} ei löytynyt",
+      "appealReason": "Syynä: {reason}\n",
+      "appealRejected": "Valitus hylätty",
+      "appealRejectedMessage": "✅ Valitus {id} on hylätty",
+      "appealSubmittedAt": "Lähetysaika: {time}\n\n",
+      "appealUser": "Käyttäjä: {user}\n",
+      "banEnd": "Loppu: ${end}",
+      "banId": "ID: ${id}",
+      "banReason": "Syynä: ${reason}",
+      "banStart": "Alku: ${start}",
+      "banUser": "Käyttäjä: ${user}",
+      "durationDays": "{days} päivää",
+      "durationHours": "{hours} tuntia",
+      "durationMustBePositive": "❌ Keston on oltava positiivinen kokonaisluku tai 'pysyvä'.",
+      "noAppeals": "✅ Tällä hetkellä ei ole odottavia valituksia",
+      "noBanRecords": "❌ Käyttäjällä ${userId} ei ole estotietoja",
+      "noBanRecordsList": "📊 Tällä hetkellä ei ole estotietoja",
+      "noPermission": "❌ Sinulla ei ole lupaa käyttää tätä komentoa.",
+      "notAdmin": "❌ Tämä käyttäjä ei ole valvoja.",
+      "permanent": "Pysyvä",
+      "provideAppealId": "❌ Anna valituksen ID\n\n",
+      "reason": "Ylläpitäjän kielto",
+      "recentBans": "📊 Viimeisimmät 10 kieltohistoriaa",
+      "riskScore": "Riskipisteet: ${score}",
+      "temporaryBan": "🚫 Olet saanut väliaikaisen bannin\n\nBanniaika: {duration}\nPurkamisaika: {unbanTime}\n\nBannin syy: Useat ilmoitukset\n\nJos sinulla on kysyttävää, käytä /appeal lähetäksesi vetoomus.",
+      "totalBans": "Kieltojen yhteensä: ${count}",
+      "usageApprove": "Käyttö: /admin_approve <appeal_id> [huomiot]",
+      "usageReject": "Käyttö: /admin_reject <appeal_id> [huomiot]",
+      "user": "Kä käyttäjä: ${user}",
+      "userBanHistory": "📊 Käyttäjän kieltohistoria",
+      "viewHistory": "💡 Käytä /admin_bans <user_id> nähdäksesi tietyn käyttäjän kieltohistorian"
     },
-    ban: {
-      appealAlreadyReviewed: `❌ 申訴 {id} 已經被審核過了`,
-      appealApproved: `申訴已批准`,
-      appealApprovedUnbanned: `✅ 申訴 {id} 已批准，用戶已解封`,
-      appealId: `申訴 ID: {id}
-`,
-      appealList: `📋 待審核申訴列表
-
-`,
-      appealNotFound: `❌ 找不到申訴 ID: {id}`,
-      appealReason: `理由: {reason}
-`,
-      appealRejected: `申訴被拒絕`,
-      appealRejectedMessage: `✅ 申訴 {id} 已拒絕`,
-      appealSubmittedAt: `提交時間: {time}
-
-`,
-      appealUser: `用戶: {user}
-`,
-      banEnd: `結束: \${end}`,
-      banId: `ID: \${id}`,
-      banReason: `原因: \${reason}`,
-      banStart: `開始: \${start}`,
-      banUser: `用戶: \${user}`,
-      durationDays: `{days} 天`,
-      durationHours: `{hours} 小時`,
-      durationMustBePositive: `❌ 時長必須是正整數或 "permanent"。`,
-      noAppeals: `✅ 目前沒有待審核的申訴`,
-      noBanRecords: `❌ 用戶 \${userId} 沒有封禁記錄`,
-      noBanRecordsList: `📊 目前沒有封禁記錄`,
-      noPermission: `❌ 你沒有權限使用此命令。`,
-      notAdmin: `❌ 此用戶不是管理員。`,
-      permanent: `永久`,
-      provideAppealId: `❌ 請提供申訴 ID
-
-`,
-      reason: `管理員封禁 / Admin ban`,
-      recentBans: `📊 最近 10 條封禁記錄`,
-      riskScore: `風險分數: \${score}`,
-      temporaryBan: `🚫 你已被暫時封禁
-
-封禁時長：{duration}
-解封時間：{unbanTime}
-
-封禁原因：多次被舉報
-
-如有疑問，請使用 /appeal 提出申訴。`,
-      totalBans: `總封禁次數: \${count}`,
-      usageApprove: `用法: /admin_approve <appeal_id> [備註]`,
-      usageReject: `用法: /admin_reject <appeal_id> [備註]`,
-      user: `用戶: \${user}`,
-      userBanHistory: `📊 用戶封禁歷史`,
-      viewHistory: `💡 使用 /admin_bans <user_id> 查看特定用戶的封禁歷史`,
+    "ban2": "Yhteensä kieltoja: ${userBans.results.length}\n\n",
+    "ban3": "📊 Viimeiset 10 kielto-merkintää\n\n",
+    "ban4": "📊 Käyttäjän kieltohistoria\n\n",
+    "ban5": "📊 Ei tällä hetkellä kieltohistoriaa",
+    "banSuccess": "✅ Kielletty käyttäjä {userId} ({nickname})\n\nBanniaika: {duration}\nPurkamisaika: {unbanTime}",
+    "banSuccessPermanent": "✅ Pysyvästi kielletty käyttäjä {userId} ({nickname})",
+    "banUsageError": "Käyttövirhe",
+    "banUserNotFound": "Käyttäjää ei ole olemassa",
+    "cannotBanAdmin": "Ylläpitäjää ei voida kieltää",
+    "conversation": "💡 Keskusteluhistorian julkaisut luodaan vain, kun on uusia viestejä\n",
+    "conversation2": "Kaikkien VIP-käyttäjien keskusteluhistoriat ovat ajan tasalla!",
+    "conversation3": "💬 **Keskusteluhistoria:**\n",
+    "conversation4": "Tarkista, onko keskusteluhistoria päivitetty selkeään avatarin.",
+    "conversation5": "🔄 Aloitetaan keskusteluhistorian päivittäminen...",
+    "conversation6": "• Ei keskusteluhistorian julkaisuja\n",
+    "diagnose": {
+      "allUpToDateFree": "✅ Kaikki julkaisut ovat ajan tasalla (ilmaiskäyttäjän tila on oikein)",
+      "allUpToDateVip": "✅ Kaikki julkaisut ovat ajan tasalla (VIP-tila on oikein)",
+      "analysis": "🔎 **Analyysi:**",
+      "avatarCache": "📸 **Avatarin välimuisti:**",
+      "blurredUrl": "• Epäselvä URL: ${status}",
+      "createdWithVip": "• Luotu VIPnä: ${status}",
+      "error": "Virhe: ${error}",
+      "failed": "❌ **diagnosointi epäonnistui**",
+      "fileId": "• tiedosto ID: ${fileId}...",
+      "hasAvatar": "• On avatar: ${status}",
+      "historyPosts": "💬 **Keskusteluhistorian julkaisut:**",
+      "historyPostsHint": "💡 Keskusteluhistorian julkaisut luodaan vain, kun on uusia viestejä",
+      "isLatest": "• Viimeisin: ${status}",
+      "morePosts": "...ja ${count} lisää julkaisua",
+      "nickname": "• Nimimerkki: ${nickname}",
+      "no": "❌ Ei",
+      "noCache": "• Ei välimuistia",
+      "noHistoryPosts": "• Ei keskusteluhistorian julkaisuja",
+      "noHistoryPostsWarning": "⚠️ Tällä käyttäjällä ei ole keskusteluhistorian julkaisuja",
+      "none": "Ei mitään",
+      "originalUrl": "• Alkuperäinen URL: ${status}",
+      "outdatedPostsFound": "⚠️ Löydetty ${count} vanhentunutta julkaisua, jotka tarvitsevat päivittämistä",
+      "postId": "• ID: ${id}",
+      "postTitle": "📝 **Postitus #${identifier}-H${postNumber}**",
+      "postUpdatedAt": "• Viimeksi päivitetty: ${date}",
+      "refreshHint": "💡 Käytä /admin_refresh_vip_avatars päivittääksesi massana",
+      "title": "🔍 **Avatarin diagnostiikkaraportti**",
+      "totalPosts": "• Yhteensä: ${count}",
+      "unknown": "Tuntematon",
+      "updatedAt": "• Viimeksi päivitetty: ${date}",
+      "userId": "• ID: ${userId}",
+      "userInfo": "👤 **Käyttäjätiedot:**",
+      "username": "• Käyttäjänimi: @${username}",
+      "vipExpire": "• VIP voimassaoloaika: ${date}",
+      "vipStatus": "• VIP tila: ${status}",
+      "yes": "✅ Kyllä"
     },
-    diagnose: {
-      allUpToDateFree: `✅ 所有帖子都是最新的（免費用戶狀態正確）`,
-      allUpToDateVip: `✅ 所有帖子都是最新的（VIP 狀態正確）`,
-      analysis: `🔎 **分析：**`,
-      avatarCache: `📸 **頭像緩存：**`,
-      blurredUrl: `• 模糊 URL：\${status}`,
-      createdWithVip: ` • 創建時 VIP：\${status}`,
-      error: `錯誤：\${error}`,
-      failed: `❌ **診斷失敗**`,
-      fileId: `• File ID：\${fileId}...`,
-      hasAvatar: ` • 有頭像：\${status}`,
-      historyPosts: `💬 **對話歷史帖子：**`,
-      historyPostsHint: `💡 對話歷史帖子只在有新消息時創建`,
-      isLatest: ` • 最新：\${status}`,
-      morePosts: `...還有 \${count} 個帖子`,
-      nickname: `• 暱稱：\${nickname}`,
-      no: `❌ 否`,
-      noCache: `• 無緩存`,
-      noHistoryPosts: `• 無對話歷史帖子`,
-      noHistoryPostsWarning: `⚠️ 此用戶沒有對話歷史帖子`,
-      none: `無`,
-      originalUrl: `• 原始 URL：\${status}`,
-      outdatedPostsFound: `⚠️ 發現 \${count} 個過時帖子需要刷新`,
-      postId: ` • ID：\${id}`,
-      postTitle: `📝 **帖子 #\${identifier}-H\${postNumber}**`,
-      postUpdatedAt: ` • 更新時間：\${date}`,
-      refreshHint: `💡 使用 /admin_refresh_vip_avatars 批量刷新`,
-      title: `🔍 **頭像診斷報告**`,
-      totalPosts: `• 總數：\${count}`,
-      unknown: `未知`,
-      updatedAt: `• 更新時間：\${date}`,
-      userId: `• ID：\${userId}`,
-      userInfo: `👤 **用戶信息：**`,
-      username: `• 用戶名：@\${username}`,
-      vipExpire: `• VIP 到期：\${date}`,
-      vipStatus: `• VIP 狀態：\${status}`,
-      yes: `✅ 是`,
+    "end": "Loppu: ${banEnd}\n\n",
+    "error": "Virhe",
+    "failed": "• Epäonnistuneet julkaisut: ${results.totalPostsFailed}\n\n",
+    "failed2": "• Epäonnistui: ${results.failedUsers}\n",
+    "failed3": "• Epäonnistui: ${result.failed} julkaisua(n)\n\n",
+    "insufficientPermission": "❌ **Riittämättömät oikeudet**\n\nTämä komento on rajoitettu superadminille.",
+    "listFooter": "---",
+    "listId": "ID: {id}",
+    "listNickname": "Lempinimi: {nickname}",
+    "listNotRegistered": "Ei rekisteröity",
+    "listRoleAdmin": "Ylläpitäjä",
+    "listRoleSuperAdmin": "Super Ylläpitäjä",
+    "listTitle": "Ylläpitäjälista",
+    "listTotal": "Yhteensä: {total}",
+    "listUsername": "Käyttäjänimi: {username}",
+    "message": "• Päivitetty: ${new Date(post.updated_at).toLocaleString('zh-TW', { month: '2-digit', day: '2-digit', hour: '2-digit', minute: '2-digit' })}\n\n",
+    "message10": "• On avatar: ${post.partner_avatar_url ? '✅' : '❌'}\n",
+    "message11": "...ja ${historyPosts.results.length - 5} muuta postausta\n",
+    "message12": "Käyttäjä: ${targetUser?.nickname || targetUserId}\n",
+    "message13": "• Käyttäjänimi: @${targetUser?.username}\n\n",
+    "message14": "Käyttäjä: ${appeal.nickname || appeal.user_id}\n",
+    "message15": "...ja ${results.details.length - 10} muuta käyttäjää",
+    "message16": "• Käyttäjänimi: @${targetUser.username}\n\n",
+    "message17": "• Yhteensä: ${historyPosts.results.length}\n\n",
+    "message18": "💡 Käytä /admin_refresh_vip_avatars päivittääksesi massana\n",
+    "message19": "• Uusin: ${post.is_latest ? '✅' : '❌'}\n",
+    "message2": "• Päivitetty: ${avatarInfo.avatar_updated_at ? new Date(avatarInfo.avatar_updated_at).toLocaleString('zh-TW') : 'Tuntematon'}\n",
+    "message20": "• Vanhentuneet julkaisut: ${stats.totalOutdatedPosts}\n\n",
+    "message21": "/ad_provider_priority <id> <priority>",
+    "message22": "• Vaatii päivityksen: ${stats.usersNeedingRefresh}\n",
+    "message23": "• Päivitetyt postit: ${results.totalPostsUpdated}\n",
+    "message24": "Käyttäjä: ${ban.nickname || ban.user_id}\n",
+    "message25": "/ad_provider_disable <provider_id>",
+    "message26": "💡 Tai muokkaa ympäristömuuttujia Cloudflare Hallintapaneelissa",
+    "message27": "/ad_provider_enable <provider_id>",
+    "message28": "• Käyttäjänimi: @${targetUser?.username ||",
+    "message29": "/admin_approve <appeal_id> [huomautus]\n",
+    "message3": "• ${username}: ${detail.postsUpdated} päivitetty, ${detail.postsFailed} epäonnistui\n",
+    "message30": "• Näyttökerrat: ${ad.impression_count} kertaa\n",
+    "message31": "• Käyttäjänimi: @${targetUser.username ||",
+    "message32": "• Käyttäjänimi: @${user.username }\n",
+    "message33": "/admin_reject <appeal_id> [huomautus]",
+    "message34": "• Käsitellyt käyttäjät: ${results.totalUsers}\n",
+    "message35": "• `/ad_provider_enable <id>` - Ota käyttöön\n",
+    "message36": "• `/ad_provider_disable <id>` - Poista käytöstä\n",
+    "message37": "• `/ad_provider_priority <id> <priority>` - Aseta prioriteetti",
+    "message38": "• `/official_ad_enable <id>` - Ota käyttöön\n",
+    "message39": "• `/official_ad_disable <id>` - Poista käytöstä\n",
+    "message4": "Uusi vanhenemispäivämäärä: ${new Date(data.expire_date).toLocaleDateString('zh-TW')}\n",
+    "message40": "• Päivitetty: ${new Date(post.updated_at).toLocaleString('zh-TW', { month: '2-digit', day: '2-digit', hour:",
+    "message5": "Vanhenemisaika: ${new Date(data.expire_date).toLocaleDateString('zh-TW')}\n",
+    "message6": "Virhe: ${error instanceof Error ? error.message : String(error)}",
+    "message7": "• Alkuperäinen URL: ${avatarInfo.avatar_original_url ? '✅' : '❌'}\n",
+    "message8": "• Sumennettu URL: ${avatarInfo.avatar_blurred_url ? '✅' : '❌'}\n",
+    "message9": "📝 **Viesti #${post.identifier}-H${post.post_number}**\n",
+    "nickname": "• Lempinimi: ${targetUser?.nickname ||",
+    "nickname2": "• Lempinimi: ${targetUser.nickname ||",
+    "noPendingAppeals": "✅ Ei käsittelemättömiä valituksia tällä hetkellä",
+    "noPermission": "❌ Sinulla ei ole oikeuksia käyttää tätä komentoa.",
+    "onlyAdmin": "❌ Vain ylläpitäjät voivat käyttää tätä komentoa.",
+    "onlySuperAdmin": "❌ Vain superylläpitäjät voivat käyttää tätä komentoa.",
+    "operationFailed": "❌ Tapahtui virhe, yritä uudelleen myöhemmin.",
+    "refresh": {
+      "allUpToDate": "Kaikkien VIP-käyttäjien chat-historiat ovat ajan tasalla!",
+      "batchComplete": "✅ **Eräpäivitys valmis**",
+      "checkHint": "Tarkista, onko chat-historia päivitetty selkeillä avatarilla.",
+      "complete": "✅ **Päivitys valmis**",
+      "details": "📝 **Yksityiskohtaiset tulokset:**",
+      "duration": "⏱️ **Kesto:** ${duration} sekuntia",
+      "error": "Virhe: ${error}",
+      "errorOccurred": "Käsittelyn aikana tapahtui virhe, tarkista lokit.",
+      "failed": "❌ **Päivitys epäonnistui**",
+      "failedPosts": "• Epäonnistuneet viestit: ${count}",
+      "failedUsers": "• Epäonnistui: ${count}",
+      "moreUsers": "... on vielä ${count} käyttäjää",
+      "noRefreshNeeded": "✅ **Päivitystä ei tarvita**",
+      "outdatedPosts": "• Vanhenneet viestit: ${count}",
+      "processedUsers": "• Käsitellyt käyttäjät: ${count}",
+      "processing": "⏳ Käsitellään, ole hyvä ja odota...",
+      "startingBatchRefresh": "🔄 **Aloitetaan VIP-avatarien eräpäivitys**",
+      "startingRefresh": "🔄 Aloitetaan chat-historian päivitys...",
+      "stats": "📊 **Tilastot:**",
+      "successUsers": "• Onnistuminen: ${count}",
+      "summary": "📊 **Yhteenveto:**",
+      "totalVipUsers": "• Yhteensä VIP-käyttäjiä: ${count}",
+      "updated": "• Päivitetty: ${count} viestiä",
+      "updatedPosts": "• Viestit päivitetty: ${count}",
+      "userDetail": "• ${username}: ${updated} päivitetty, ${failed} epäonnistui",
+      "usersNeedingRefresh": "• Tarvitsee päivityksen: ${count}"
     },
-    refresh: {
-      allUpToDate: `所有 VIP 用戶的對話歷史都是最新的！`,
-      batchComplete: `✅ **批量刷新完成**`,
-      checkHint: `請檢查對話歷史是否已更新為清晰頭像。`,
-      complete: `✅ **刷新完成**`,
-      details: `📝 **詳細結果：**`,
-      duration: `⏱️ **耗時：** \${duration} 秒`,
-      error: `錯誤：\${error}`,
-      errorOccurred: `處理過程中發生錯誤，請查看日誌。`,
-      failed: `❌ **刷新失敗**`,
-      failedPosts: `• 失敗帖子：\${count}`,
-      failedUsers: `• 失敗：\${count}`,
-      moreUsers: `
-...還有 \${count} 個用戶`,
-      noRefreshNeeded: `✅ **無需刷新**`,
-      outdatedPosts: `• 過時帖子：\${count}`,
-      processedUsers: `• 處理用戶：\${count}`,
-      processing: `⏳ 正在處理，請稍候...`,
-      startingBatchRefresh: `🔄 **開始批量刷新 VIP 頭像**`,
-      startingRefresh: `🔄 開始刷新您的對話歷史...`,
-      stats: `📊 **統計：**`,
-      successUsers: `• 成功：\${count}`,
-      summary: `📊 **總結：**`,
-      totalVipUsers: `• 總 VIP 用戶：\${count}`,
-      updated: `• 更新：\${count} 個帖子`,
-      updatedPosts: `• 更新帖子：\${count}`,
-      userDetail: `• \${username}: \${updated} 更新, \${failed} 失敗`,
-      usersNeedingRefresh: `• 需要刷新：\${count}`,
+    "removeCannotRemoveSuperAdmin": "❌ Ei voida poistaa superadminia.",
+    "removeCommand": "`/admin_remove <user_id>`\n\n",
+    "removeExample": "`/admin_remove 123456789` - Poista tavallinen pääkäyttäjä\n\n",
+    "removeInstructions": "⚠️ **Huomaa**\n\nTämä komento vaatii manuaalista muutosta konfigurointitiedostoon.\n\n**Vaiheet:**\n1. Muokkaa `wrangler.toml`\n2. Etsi `ADMIN_USER_IDS` -muuttuja\n3. Poista käyttäjän ID: `{userId}`\n4. Muoto: `ADMIN_USER_IDS = \"ID1,ID2\"` (Poista {userId})\n5. Julkaise uudelleen: `pnpm deploy:staging`\n\n**Käyttäjätiedot:**\n• ID: `{userId}`\n• Nickname: {nickname}\n• Käyttäjänimi: @{username}\n\n💡 Tai muokkaa ympäristömuuttujia Cloudflare Dashboardissa",
+    "removeNotAdmin": "❌ Tämä käyttäjä ei ole admin.",
+    "removeUsageError": "❌ Virheellinen käyttö\n\n",
+    "settings": "• Nimi: ${targetUser?.nickname }\n",
+    "settings2": "• Nimi: ${targetUser.nickname }\n",
+    "settings3": "• Nimi: ${user.nickname }\n",
+    "settings4": "Ei asetettu",
+    "settings5": "Ei asetettu",
+    "settings6": "Ei asetettu",
+    "short": "**Esimerkki:**\n",
+    "short10": "Maksu-ID: \\",
+    "short11": "Muuttuja\n",
+    "short12": "Käyttäjä: \\",
+    "short2": "**Esimerkki:**\n",
+    "short3": "**Vaiheet:**\n",
+    "short4": "5. Julkaise uudelleen: \\",
+    "short5": "4. Julkaise uudelleen: \\",
+    "short6": "1. Muokkaa \\",
+    "short7": "2. Etsi \\",
+    "short8": "4. Muoto: \\",
+    "short9": "• Ei välimuistia\n",
+    "start": "Aloitus: ${banStart}\n",
+    "stats": "📊 **Tilastot:**\n",
+    "stats2": "• `/ad_stats <id>` - Tarkastele yksityiskohtaisia tilastoja",
+    "success": "• Onnistuminen: ${results.successUsers}\n",
+    "text": "• Prioriteetti: ${provider.priority}\n",
+    "text10": "Määrä: ${data.amount_stars} ⭐\n",
+    "text11": "Pyyntö-ID: #${data.request_id}\n",
+    "text12": "• Paino: ${provider.weight}\n",
+    "text13": "Syy: ${data.error_message}\n",
+    "text14": "/ad_provider_disable <id>",
+    "text15": "/official_ad_disable <id>",
+    "text16": "💡 Käytä /admin_refunds saadaksesi tarkempia tietoja",
+    "text17": "/ad_provider_enable <id>",
+    "text18": "Käytä /ad_providers nähdäksesi kaikki tarjoajat",
+    "text19": "/official_ad_enable <id>",
+    "text2": "• Palkinto: ${ad.quota_reward} kvotaa\n",
+    "text20": "Jäljellä: ${data.days_left} päivää\n",
+    "text21": "/admin_remove 123456789",
+    "text22": "Syy: ${appeal.reason}\n",
+    "text23": "Lähetysaika: ${createdAt}\n\n",
+    "text24": "Palveluntarjoaja: ${providerName}\n",
+    "text25": "• Tyyppi: ${ad.ad_type}\n",
+    "text26": "/admin_add 123456789",
+    "text27": "Käsittelyssä tapahtui virhe, tarkista lokit.\n\n",
+    "text28": "Prioriteetti: ${priority}\n\n",
+    "text29": "Syynä: ${ban.reason}\n",
+    "text3": "/official_ad_disable <ad_id>",
+    "text30": "Syynä: ${data.reason}\n",
+    "text31": "Aika: ${timestamp}\n\n",
+    "text32": "Tämä komento vaatii manuaalista konfiguraatiotiedoston muokkausta.\n\n",
+    "text33": "• Tila: ${status}\n",
+    "text34": "🔍 **Avatar-diagnoosiraportti**\n\n",
+    "text35": "📸 **Avatar-välimuisti:**\n",
+    "text36": "Aika: ${timestamp}",
+    "text37": "🔴 **Hyvityspyynnön**\n\n",
+    "text38": "📢 **Järjestelmäilmoitus**\n\n",
+    "text39": "/ad_stats <id>",
+    "text4": "Riskipisteet: ${ban.risk_snapshot}\n",
+    "text40": "👤 **Käyttäjäinformaatio:**\n",
+    "text41": "🔎 **Analyysi:**\n",
+    "text42": "📝 **Yksityiskohtaiset tulokset:**\n",
+    "text43": "⏳ Käsitellään, ole hyvä ja odota...",
+    "text44": "3. Lisää käyttäjä-ID: \\",
+    "text45": "3. Poista käyttäjä-ID: \\",
+    "text46": "📊 **Yhteenveto:**\n",
+    "text47": "Tyyppi: ${type}\n",
+    "text48": "• 🧪 Testitila\n",
+    "text49": "**Ylläpitäjän komennot:**\n",
+    "text5": "⏱️ **Kesto:** ${duration} sekuntia\n\n",
+    "text50": "**Oikea muoto:**\n",
+    "text51": "${hours} tuntia",
+    "text52": "**Käyttäjäinformaatio:**\n",
+    "text6": "• Päivitetty: ${result.updated} viestiä\n",
+    "text7": "Tietoja: ${JSON.stringify(data)}\n",
+    "text8": "• Klikkaukset: ${ad.click_count} kertaa\n",
+    "text9": "/official_ad_enable <ad_id>",
+    "unbanNotBanned": "Käyttäjä ei ole estetty",
+    "unbanSuccess": "✅ Estäminen poistettu käyttäjältä {userId}",
+    "unbanUsageError": "Virhe estämisen poistamisessa",
+    "unbanUserNotFound": "Estettävää käyttäjää ei ole olemassa",
+    "userNotFound": "❌ Käyttäjää ei ole olemassa.",
+    "vip2": "• Luotu VIP:llä: ${post.created_with_vip_status ? '✅' : '❌'}\n",
+    "vip4": "• Yhteensä VIP-käyttäjiä: ${stats.totalVipUsers}\n"
+  },
+  "adminNotification": {
+    "amount": "Määrä: ${stars} ⭐",
+    "data": "Tietoja: ${data}",
+    "daysLeft": "Jäljellä: ${days} päivää",
+    "expireDate": "Voimassaolo: ${date}",
+    "newExpireDate": "Uusi voimassaolo: ${date}",
+    "paymentFailed": "❌ **Maksu epäonnistui**",
+    "paymentId": "Maksu-ID: `${id}`",
+    "reason": "Syynä: ${reason}",
+    "refundRequest": "🔴 **Hyvityspyyntö**",
+    "requestId": "Pyyntö-ID: #${id}",
+    "systemNotification": "📢 **Systemiviesti**",
+    "time": "Aika: ${time}",
+    "type": "Tyyppi: ${type}",
+    "user": "Käyttäjä: `${userId}`",
+    "viewRefundsHint": "💡 Käytä /admin_refunds lisätietoja varten",
+    "vipDowngraded": "⬇️ **VIP Automattinen alennus**",
+    "vipPurchased": "🎉 **Uusi VIP-ostos**",
+    "vipReminderSent": "⏰ **VIP-vanhenemis muistutus lähetetty**",
+    "vipRenewed": "🔄 **VIP-uusiminen**"
+  },
+  "age": {
+    "daysAgo": "${days} päivää sitten",
+    "hoursAgo": "${hours} tuntia sitten",
+    "justNow": "Juuri nyt"
+  },
+  "analytics": {
+    "ad": "{officialImpressions} {officialClicks} {officialCtr} {officialRewardsGranted} {vipPageViews} {vipPurchaseIntents} {vipConversions} {vipConversionRate} {vipRevenue} ${vipRevenue}",
+    "ad2": "📊 **Mainosten suorituskykyraportti**\n📅 Aika: {start} ~ {end}\n\n• Yhteensä näytöt: {thirdPartyImpressions} kertaa\n• Yhteensä täytöt: {thirdPartyCompletions} kertaa\n• Täyttöaste: {thirdPartyCompletionRate}%\n• Yhteensä myönnetyt hyvitykset: {thirdPartyRewards Granted} kredittiä\n\n• Yhteensä näytöt: {officialImpressions} kertaa\n• Yhteensä klikkaukset: {officialClicks} kertaa\n• CTR: {officialCtr}%\n• Yhteensä myönnetyt hyvitykset: {officialRewardsGranted} kredittiä {thirdPartyRewardsGranted}",
+    "ad3": "📊 **Mainosten suorituskykyraportti**\n📅 Aika: {start} ~ {end}\n\n⚠️ **Mainostietoja ei ole tällä hetkellä saatavilla**\n\nTämä voi johtua:\n• Mainostajaa ei ole vielä määritetty\n• Kukaan käyttäjistä ei ole vielä katsellut mainoksia\n• Valitussa aikavälin ei ole mainostoimintoja\n\n💡 **Milloin tiedot tulevat näkyviin?**\n• Seuraavat asetukset on saatava valmiiksi:\n 1. Määritä mainostaja (esim. GigaPub)\n 2. Luo virallisia mainoksia\n 3. Käyttäjät alkavat katsella mainoksia\n\n• Suositellaan määrittämään mainostaja ensin\n• Odota sitten, että käyttäjät alkavat käyttää mainostoimintoa.",
+    "complete": "• Täyttöaste: ${provider.completion_rate.toFixed(1)}%",
+    "complete2": "• Täytöt: ${provider.total_completions} kertaa",
+    "completion": "• Täytöt: {completions} kertaa",
+    "completionRate": "• Täyttöaste: {rate}%",
+    "conversionStepsTitle": "[Käännös tarvitaan zh-TW.ts:stä]",
+    "invite": "• Kutsut aloitettu: {initiated} kertaa\n• Kutsut hyväksytty: {accepted} kertaa\n• Kutsut aktivoitu: {activated} kertaa\n• Konversioprosentti: {conversionRate}%\n\n• Pullopostit heitetty: {bottlesThrown} kertaa\n• Pullopostit saatu: {bottlesCaught} kertaa\n• Uudet keskustelut: {conversationsStarted} kertaa\n• Keskimääräiset keskustelukierrokset: {avgConversationRounds}\n\n💡 Yksityiskohtaiset tiedot: /analytics",
+    "message": "📊 **Päivittäinen toimintaraportti**\n📅 Päivämäärä: {date}\n\n**👥 Käyttäjätiedot**\n• Uudet käyttäjät: {newUsers} henkilöä\n• Aktiiviset käyttäjät (DAU): {dau} henkilöä\n• Pysymisaste (D1): {d1Retention}%\n• Keskimääräinen istunnon kesto: {avgSessionDuration} minuuttia\n\n**📺 Mainostiedot**\n• Kolmannen osapuolen mainokset:\n - Näytöt: {thirdPartyImpressions} kertaa\n - Täytöt: {thirdPartyCompletions} kertaa\n - Täyttöaste: {thirdPartyCompletionRate}%\n - Hyvitykset myönnetty: {thirdPartyRewardsGranted} kredittiä",
+    "message2": "📊 **Päivittäinen toimintaraportti**\n📅 Päivämäärä: {date}\n\n⚠️ **Tänään ei ole saatavilla tietoja**\n\nTämä voi johtua:\n• Järjestelmä on juuri otettu käyttöön, ei käyttäjätapahtumia vielä\n• Kukaan käyttäjistä ei ole käyttänyt bottia tänään\n• Tietojen seurantaominaisuuksia ei ole vielä otettu käyttöön\n\n💡 **Milloin tiedot tulevat näkyviin?**\n• Käyttäjien on suoritettava jokin seuraavista toimista:\n - Lähetä /start rekisteröityäksesi\n - Heitä tai saa pulloja\n - Katsella mainoksia\n - Osta VIP\n\n• On suositeltavaa odottaa, että käyttäjät alkavat käyttää ennen tarkistamista\n• Tai simuloida käyttäjäkäyttäytymistä testausympäristössä.",
+    "message3": "{report.overall_conversion_rate.toFixed(1)} ${report.overall_conversion_rate.toFixed(1)}",
+    "message4": "• Konversioprosentti: ${step.conversion_rate.toFixed(1)}%",
+    "message5": "• Virheprosentti: ${provider.error_rate.toFixed(1)}%",
+    "message6": "• Pyyntöjä: ${provider.total_requests} kertaa",
+    "providerComparisonTitle": "[Käännös tarvitaan zh-TW.ts:stä]",
+    "purchaseSuccess": "[Käännös tarvitaan zh-TW.ts:stä]",
+    "request": "• Pyyntöjä: {requests} kertaa",
+    "text": "• Käyttäjämäärä: ${step.user_count}",
+    "text2": "Osto-aikomus (Klikkaus ostamista varten)",
+    "vip": "📊 **VIP-konversioputki**\n📅 Aika: {start} ~ {end}\n\n⚠️ **Tietoja ei ole tällä hetkellä saatavilla**\n\nTämä voi johtua:\n• Järjestelmä on juuri otettu käyttöön, ei käyttäjätapahtumia vielä\n• Ei VIP:hin liittyviä tapahtumia valitussa aikarajassa\n• Tietojen seurantaominaisuuksia ei ole vielä otettu käyttöön\n\n💡 **Milloin tiedot tulevat näkyviin?**\n• VIP-konversiotiedot edellyttävät käyttäjiltä seuraavien toimintojen suorittamista:\n 1. Katsella VIP-ominaisuuden esittely\n 2. Klikata ostaakseen VIP\n 3. Täydentää VIP-osto\n\n• Suositellaan odottamaan 24-48 tuntia ennen kuin tarkistat uudelleen\n• Tai simuloida käyttäjäkäyttäytymistä testausympäristössä.",
+    "vip2": "📊 **VIP-konversioputki**\n📅 Aika: {start} ~ {end}",
+    "vip3": "Tietoisuus (Näki VIP-kehoituksen)",
+    "vip4": "Harkinta (Katsottu VIP-yksityiskohdat)",
+    "vip5": "Kiinnostus (Klikattu nähdäksesi VIP)"
+  },
+  "appeal": {
+    "alreadyExists": "⏳ Sinulla on yksi odottava valitus (ID: #${appealId})\n\nTila: ${status}\nLähetetty aika: ${time}\n\nOle hyvä ja odota kärsivällisesti, että ylläpitäjä tarkistaa.",
+    "approved": "✅ Valituksesi on hyväksytty, ja tilisi on avattu taas",
+    "noAppeal": "Sinulla ei ole tällä hetkellä odottavia valituksia",
+    "notBanned": "✅ Tilisi ei ole estetty, ei valitusta tarvita.",
+    "notFound": "❌ Valitusrekisteriä ei löytynyt.",
+    "notes": "Huomiot:",
+    "prompt": "📝 **Lähetä valitus**\n\nSelitä, miksi uskot, että tilisi on estetty ja miten haluaisit ratkaista tämän ongelman.\n\n💡 Ole hyvä ja kuvaa tilannettasi yksityiskohtaisesti, tämä auttaa ylläpitäjää käsittelemään valitustasi nopeammin.",
+    "reasonTooLong": "❌ Valitus syy liian pitkä, pidä se alle 500 sanaa.",
+    "reasonTooShort": "❌ Vetoomuksen syy on liian lyhyt, syötä vähintään 10 merkkiä.",
+    "rejected": "❌ Vetoomuksesi on hylätty.",
+    "reviewedAt": "Tarkistusaika:",
+    "status": "📋 **Vetoomuksen tila**\n\nVetoomus-ID: #${appealId}\nTila: ${status}\nLähetysaika: ${createdAt}${reviewInfo}",
+    "statusApproved": "Hyväksytty",
+    "statusPending": "Odottaa tarkistusta",
+    "statusRejected": "Hylätty",
+    "submitted": "✅ **Vetoomus lähetetty**\n\nVetoomus-ID: #${appealId}\nTila: Odottaa tarkistusta\n\nKäymme vetoomuksesi läpi 1-3 arkipäivän kuluessa.\nIlmoitamme tuloksesta sinulle Botin kautta."
+  },
+  "block": {
+    "cannotIdentify": "⚠️ Keskustelukumppania ei pystytä tunnistamaan.",
+    "catchNewBottle": "💡 Käytä /catch noudetaksesi uusia viestipulloja ja aloittaaksesi uuden keskustelun.",
+    "conversationInfoError": "⚠️ Keskustelutiedot ovat virheellisiä.",
+    "conversationMayEnded": "Keskustelu on voinut päättyä tai sitä ei ole olemassa.",
+    "conversationNotFound": "⚠️ Tätä keskustelua ei löydy.",
+    "ensureReply": "Varmista, että vastaat toisen osapuolen lähettämään viestiin (jolla on # tunnus).",
+    "hint": "💡 Tämä tarkasti määrittää henkilön, jonka haluat estää.",
+    "replyRequired": "⚠️ Pitkään paina viestiä, jonka haluat estää, ja vastaa komennolla.",
+    "step1": "1️⃣ Pitkään paina toisen osapuolen viestiä.",
+    "step2": "2️⃣ Valitse 'Vastaa'.",
+    "step3": "3️⃣ Syötä /block.",
+    "steps": "**Toimintavaiheet:**",
+    "success": "✅ Tämä käyttäjä on estetty (#${identifier}).",
+    "willNotMatch": "Et enää saa toisten viestipulloja."
+  },
+  "bottle": {
+    "bottle13": "Pullon sisältö",
+    "cancelled": "❌ Peruutettu ${zodiac}.",
+    "catch": {
+      "anonymousUser": "Anonyymi käyttäjä",
+      "back": "🏠 Palaa päätäyteen: /menu",
+      "banned": "❌ Tilisi on laitettu estoon, eikä voit noutaa viestipulloja.\n\nJos sinulla on kysymyksiä, käytä /appeal tehdäksesi vetoomuksen.",
+      "block": "• Jos et halua enää keskustella, voit käyttää /block estääksesi.\n",
+      "bottle2": "• Tai heitä pullo itse: /throw",
+      "bottle5": "💡 Tule takaisin huomenna noutamaan lisää pulloja!",
+      "bottleTaken": "❌ Tämä pullo on jo noudettu toisen toimesta, kokeile muita pulloja!",
+      "catch": "{newCatchesCount} {quota} ${newCatchesCount} ${quota}\n\n",
+      "conversation2": "• Tämä on anonyymi keskustelu, suojaa henkilökohtainen yksityisyytesi.\n",
+      "conversation3": "📊 Näytä kaikki keskustelut.",
+      "language": "{language} ${language}\n\n",
+      "mbti": "🧠 MBTI: \\${mbti}\n",
+      "message": "{score} ${score}\n\n",
+      "message2": "{catcherGender} {catcherAge} ${catcherGender} ${catcherAge}\n\n",
+      "message3": "conv_reply_\\${conversationIdentifier}",
+      "message5": "1️⃣ Napsauta '💬 Vastaa viestiin' painiketta alla.\n",
+      "message6": "2️⃣ Pitkään paina tätä viestiä, valitse 'Vastaa' ja syötä sitten sisältösi.",
+      "nickname": "📝 Nimimerkki: \\${ownerMaskedNickname}\n",
+      "nickname2": "📝 Nimimerkki: \\${catcherNickname}\n",
+      "notRegistered": "❌ Ole hyvä ja viimeistele rekisteröintiprosessi ennen viestipullojen noutamista.\n\nKäytä /start jatkaaksesi rekisteröintiä.",
+      "originalContent": "Alkuperäinen teksti: {content}",
+      "originalLanguage": "Alkuperäinen kieli: {language}",
+      "quotaExhausted": "❌ Tänään pullopostin lähetysrima on täynnä (\\${quotaDisplay})",
+      "replyButton": "💬 Vastaa viestiin",
+      "replyMethods": "💡 **Kaksi vastausvaihtoehtoa**：\n",
+      "report": "• Käytä /report ilmoittaaksesi sopimattomasta sisällöstä\n",
+      "safetyTips": "⚠️ Turvallisuusmuistutus：\n",
+      "settings": "🧠 MBTI：${mbti}\n",
+      "settings10": "Ei asetettu",
+      "settings11": "Ei asetettu",
+      "settings2": "Ei asetettu",
+      "settings3": "Ei asetettu",
+      "settings4": "Ei asetettu",
+      "settings5": "Ei asetettu",
+      "settings6": "Ei asetettu",
+      "settings7": "Ei asetettu",
+      "settings8": "Ei asetettu",
+      "settings9": "Ei asetettu",
+      "short": "💡 Vinkki：\n",
+      "short2": "• Yritä uudelleen myöhemmin\n",
+      "short3": "Anonyymi käyttäjä",
+      "short4": "♂️ Mies",
+      "short5": "♀️ Nainen",
+      "text": "Käännöskieli: \\${catcherLangDisplay}\n",
+      "text2": "Alkuperäinen kieli: \\${bottleLangDisplay}\n",
+      "text3": "{ownerLanguage} ${ownerLanguage}\n\n",
+      "text5": "Alkuperäinen teksti: \\${bottle.content}\n",
+      "text6": "💬 Käännöspalvelu on tilapäisesti poissa käytöstä, varakäännös on käytetty\n",
+      "text7": "Käännös: \\${bottleContent}\n",
+      "text8": "💡 **Kaksi vastausvaihtoehtoa**：\n",
+      "translatedContent": "Käännös: {content}",
+      "translatedLanguage": "Käännöskieli: {language}",
+      "translationServiceFallback": "💬 Käännöspalvelu on tilapäisesti poissa käytöstä, varakäännös on käytetty",
+      "translationServiceUnavailable": "⚠️ Käännöspalvelu ei ole tällä hetkellä käytössä, alkuperäinen teksti näkyy alla",
+      "unknown": "Tuntematon",
+      "zodiac": "⭐ Horoskooppi: \\${bottle.zodiac }\n",
+      "zodiac2": "⭐ Horoskooppi: \\${catcherZodiac}\n"
     },
-  },
-  adminNotification: {
-    amount: `金額：\${stars} ⭐`,
-    data: `數據：\${data}`,
-    daysLeft: `剩餘：\${days} 天`,
-    expireDate: `到期：\${date}`,
-    newExpireDate: `新到期：\${date}`,
-    paymentFailed: `❌ **支付失敗**`,
-    paymentId: `支付 ID：\`\${id}\``,
-    reason: `原因：\${reason}`,
-    refundRequest: `🔴 **退款請求**`,
-    requestId: `請求 ID：#\${id}`,
-    systemNotification: `📢 **系統通知**`,
-    time: `時間：\${time}`,
-    type: `類型：\${type}`,
-    user: `用戶：\`\${userId}\``,
-    viewRefundsHint: `💡 使用 /admin_refunds 查看詳情`,
-    vipDowngraded: `⬇️ **VIP 自動降級**`,
-    vipPurchased: `🎉 **新 VIP 購買**`,
-    vipReminderSent: `⏰ **VIP 到期提醒已發送**`,
-    vipRenewed: `🔄 **VIP 續費**`,
-  },
-  age: {
-    daysAgo: `\${days} 天前`,
-    hoursAgo: `\${hours} 小時前`,
-    justNow: `剛剛`,
-  },
-  analytics: {
-    ad: `• 官方廣告：
- - 展示：{officialImpressions} 次
- - 點擊：{officialClicks} 次
- - CTR：{officialCtr}%
- - 獎勵發放：{officialRewardsGranted} 個額度
-
-• VIP 頁面訪問：{vipPageViews} 次
-• 購買意向：{vipPurchaseIntents} 次
-• 成功轉化：{vipConversions} 次
-• 轉化率：{vipConversionRate}%
-• 收入：\${vipRevenue}`,
-    ad2: `📊 **廣告效果報表**
-📅 期間：{start} ~ {end}
-
-• 總展示：{thirdPartyImpressions} 次
-• 總完成：{thirdPartyCompletions} 次
-• 完成率：{thirdPartyCompletionRate}%
-• 總獎勵：{thirdPartyRewardsGranted} 個額度
-
-• 總展示：{officialImpressions} 次
-• 總點擊：{officialClicks} 次
-• CTR：{officialCtr}%
-• 總獎勵：{officialRewardsGranted} 個額度`,
-    ad3: `📊 **廣告效果報表**
-📅 期間：{start} ~ {end}
-
-⚠️ **目前還沒有廣告數據**
-
-這可能是因為：
-• 廣告提供商尚未配置
-• 還沒有用戶觀看廣告
-• 選定的時間範圍內沒有廣告活動
-
-💡 **數據何時會出現？**
-• 需要完成以下配置：
- 1. 配置廣告提供商（GigaPub 等）
- 2. 創建官方廣告
- 3. 用戶開始觀看廣告
-
-• 建議先配置廣告提供商
-• 然後等待用戶開始使用廣告功能`,
-    complete: `
-• 完成率：\${provider.completion_rate.toFixed(1)}%`,
-    complete2: `
-• 完成：\${provider.total_completions} 次`,
-    completion: `
-• 完成：{completions} 次`,
-    completionRate: `
-• 完成率：{rate}%`,
-    conversionStepsTitle: `[需要从 zh-TW.ts 获取翻译]`,
-    invite: `• 發起邀請：{initiated} 次
-• 接受邀請：{accepted} 次
-• 激活邀請：{activated} 次
-• 轉化率：{conversionRate}%
-
-• 丟瓶子：{bottlesThrown} 個
-• 撿瓶子：{bottlesCaught} 個
-• 新對話：{conversationsStarted} 個
-• 平均對話輪次：{avgConversationRounds}
-
-💡 詳細數據：/analytics`,
-    message: `📊 **每日運營報表**
-📅 日期：{date}
-
-**👥 用戶數據**
-• 新增用戶：{newUsers} 人
-• 活躍用戶（DAU）：{dau} 人
-• 留存率（D1）：{d1Retention}%
-• 平均使用時長：{avgSessionDuration} 分鐘
-
-**📺 廣告數據**
-• 第三方廣告：
- - 展示：{thirdPartyImpressions} 次
- - 完成：{thirdPartyCompletions} 次
- - 完成率：{thirdPartyCompletionRate}%
- - 獎勵發放：{thirdPartyRewardsGranted} 個額度`,
-    message2: `📊 **每日運營報表**
-📅 日期：{date}
-
-⚠️ **今日還沒有數據**
-
-這可能是因為：
-• 系統剛部署，還沒有用戶活動
-• 今天還沒有用戶使用 Bot
-• 數據追蹤功能尚未啟用
-
-💡 **數據何時會出現？**
-• 需要用戶執行以下任一操作：
- - 發送 /start 註冊
- - 丟瓶子或撿瓶子
- - 觀看廣告
- - 購買 VIP
-
-• 建議等待用戶開始使用後再查看
-• 或者在測試環境中模擬用戶行為`,
-    message3: `
-
-**📈 總轉化率：\${report.overall_conversion_rate.toFixed(1)}%**`,
-    message4: `
-• 轉化率：\${step.conversion_rate.toFixed(1)}%`,
-    message5: `
-• 錯誤率：\${provider.error_rate.toFixed(1)}%`,
-    message6: `
-• 請求：\${provider.total_requests} 次`,
-    providerComparisonTitle: `[需要从 zh-TW.ts 获取翻译]`,
-    purchaseSuccess: `[需要从 zh-TW.ts 获取翻译]`,
-    request: `
-• 請求：{requests} 次`,
-    text: `
-• 用戶數：\${step.user_count}`,
-    text2: `購買意向（點擊購買）`,
-    vip: `📊 **VIP 轉化漏斗**
-📅 期間：{start} ~ {end}
-
-⚠️ **目前還沒有數據**
-
-這可能是因為：
-• 系統剛部署，還沒有用戶活動
-• 選定的時間範圍內沒有 VIP 相關事件
-• 數據追蹤功能尚未啟用
-
-💡 **數據何時會出現？**
-• VIP 轉化數據需要用戶執行以下操作：
- 1. 查看 VIP 功能介紹
- 2. 點擊購買 VIP
- 3. 完成 VIP 購買
-
-• 建議等待 24-48 小時後再查看
-• 或者先在測試環境中模擬用戶行為`,
-    vip2: `📊 **VIP 轉化漏斗**
-📅 期間：{start} ~ {end}`,
-    vip3: `認知（看到 VIP 提示）`,
-    vip4: `考慮（查看 VIP 詳情）`,
-    vip5: `興趣（點擊查看 VIP）`,
-  },
-  appeal: {
-    alreadyExists: `⏳ 你已有一個待處理的申訴（編號：#\${appealId}）
-
-狀態：\${status}
-提交時間：\${time}
-
-請耐心等待管理員審核。`,
-    approved: `✅ 你的申訴已通過，帳號已解封`,
-    noAppeal: `你目前沒有待審核的申訴`,
-    notBanned: `✅ 你的帳號未被封禁，無需申訴。`,
-    notFound: `❌ 找不到你的申訴記錄。`,
-    notes: `備註：`,
-    prompt: `📝 **提交申訴**
-
-請說明你認為帳號被封禁的原因，以及你希望如何解決這個問題。
-
-💡 請詳細描述你的情況，這有助於管理員更快地處理你的申訴。`,
-    reasonTooLong: `❌ 申訴原因太長，請控制在 500 字以內。`,
-    reasonTooShort: `❌ 申訴原因太短，請至少輸入 10 個字。`,
-    rejected: `❌ 你的申訴已被拒絕`,
-    reviewedAt: `審核時間：`,
-    status: `📋 **申訴狀態**
-
-申訴編號：#\${appealId}
-狀態：\${status}
-提交時間：\${createdAt}\${reviewInfo}`,
-    statusApproved: `已批准`,
-    statusPending: `待審核`,
-    statusRejected: `已拒絕`,
-    submitted: `✅ **申訴已提交**
-
-申訴編號：#\${appealId}
-狀態：待審核
-
-我們會在 1-3 個工作日內處理你的申訴。
-處理結果會通過 Bot 通知你。`,
-  },
-  block: {
-    cannotIdentify: `⚠️ 無法識別對話對象`,
-    catchNewBottle: `💡 使用 /catch 撿新的漂流瓶開始新對話。`,
-    conversationInfoError: `⚠️ 對話資訊錯誤。`,
-    conversationMayEnded: `對話可能已結束或不存在。`,
-    conversationNotFound: `⚠️ 找不到此對話`,
-    ensureReply: `請確保回覆的是對方發送的訊息（帶有 # 標識符）。`,
-    hint: `💡 這樣可以準確指定要封鎖的對象。`,
-    replyRequired: `⚠️ 請長按你要封鎖的訊息後回覆指令`,
-    step1: `1️⃣ 長按對方的訊息`,
-    step2: `2️⃣ 選擇「回覆」`,
-    step3: `3️⃣ 輸入 /block`,
-    steps: `**操作步驟：**`,
-    success: `✅ 已封鎖此使用者 (#\${identifier})`,
-    willNotMatch: `你們將不會再被匹配到對方的漂流瓶。`,
-  },
-  bottle: {
-    bottle13: `瓶子内容`,
-    cancelled: `❌ 已取消 \${zodiac}`,
-    containsUrl: `瓶子內容不允許包含任何連結`,
-    empty: `瓶子內容不能為空`,
-    friendlyContent: `• 友善、尊重的內容更容易被撿到哦～`,
-    inappropriate: `瓶子內容包含不適當的內容，請修改後重新提交`,
-    selected: `已選擇：\${selected}`,
-    selectedItem: `✅ 已選擇 \${zodiac}`,
-    tips: `💡 提示：`,
-    tooLong: `瓶子內容太長，最多 \${max} 個字符（目前 \${current} 個字符）`,
-    tooShort: `瓶子內容太短，至少需要 \${min} 個字符（目前 \${current} 個字符）`,
-    catch: {
-      anonymousUser: `匿名用戶`,
-      back: `🏠 返回主選單：/menu`,
-      banned: `❌ 你的帳號已被封禁，無法撿漂流瓶。
-
-如有疑問，請使用 /appeal 申訴。`,
-      block: `• 不想再聊可使用 /block 封鎖
-`,
-      bottle: `😔 目前沒有適合你的漂流瓶
-
-`,
-      bottle2: `• 或者自己丟一個瓶子：/throw`,
-      bottle3: `🎣 有人撿到你的漂流瓶了！
-
-`,
-      bottle4: `🧴 你撿到了一個漂流瓶！
-
-`,
-      bottle5: `💡 明天再來撿更多瓶子吧！`,
-      bottleTaken: `❌ 這個瓶子已經被其他人撿走了，請試試其他瓶子！`,
-      catch: `📊 今日已撿：\\\${newCatchesCount}/\\\${quota}
-
-`,
-      conversation: `已為你們建立了匿名對話，快來開始聊天吧～
-
-`,
-      conversation2: `• 這是匿名對話，請保護個人隱私
-`,
-      conversation3: `📊 查看所有對話`,
-      language: `🗣️ 語言：\\\${language}
-
-`,
-      mbti: `🧠 MBTI：\\\${mbti}
-`,
-      message: `💫 配對度：\\\${score}分 (智能配對)
-
-`,
-      message2: `\\\${catcherGender} | 📅 \\\${catcherAge}歲
-
-`,
-      message3: `conv_reply_\\\${conversationIdentifier}`,
-      message4: `2️⃣ 長按此訊息，選擇「回覆」後輸入內容
-
-`,
-      message5: `1️⃣ 點擊下方「💬 回覆訊息」按鈕
-`,
-      message6: `2️⃣ 長按此訊息，選擇「回覆」後輸入內容`,
-      nickname: `📝 暱稱：\\\${ownerMaskedNickname}
-`,
-      nickname2: `📝 暱稱：\\\${catcherNickname}
-`,
-      notRegistered: `❌ 請先完成註冊流程才能撿漂流瓶。
-
-使用 /start 繼續註冊。`,
-      originalContent: `原文：{content}`,
-      originalLanguage: `原文語言：{language}`,
-      quotaExhausted: `❌ 今日漂流瓶配額已用完（\\\${quotaDisplay}）`,
-      replyButton: `💬 回覆訊息`,
-      replyMethods: `💡 **兩種回覆方式**：
-`,
-      report: `• 遇到不當內容請使用 /report 舉報
-`,
-      safetyTips: `⚠️ 安全提示：
-`,
-      settings: `🧠 MBTI：\${mbti}
-`,
-      settings10: `未設定`,
-      settings11: `未設定`,
-      settings2: `未設定`,
-      settings3: `未設定`,
-      settings4: `未設定`,
-      settings5: `未設定`,
-      settings6: `未設定`,
-      settings7: `未設定`,
-      settings8: `未設定`,
-      settings9: `未設定`,
-      short: `💡 提示：
-`,
-      short2: `• 稍後再試
-`,
-      short3: `匿名用戶`,
-      short4: `♂️ 男`,
-      short5: `♀️ 女`,
-      text: `翻譯語言：\\\${catcherLangDisplay}
-`,
-      text2: `原文語言：\\\${bottleLangDisplay}
-`,
-      text3: `🗣️ 語言：\\\${ownerLanguage}
-
-`,
-      text4: `• 不想再聊可使用 /block 封鎖
-
-`,
-      text5: `原文：\\\${bottle.content}
-`,
-      text6: `💬 翻譯服務暫時有問題，已使用備援翻譯
-`,
-      text7: `翻譯：\\\${bottleContent}
-`,
-      text8: `💡 **兩種回覆方式**：
-`,
-      translatedContent: `翻譯：{content}`,
-      translatedLanguage: `翻譯語言：{language}`,
-      translationServiceFallback: `💬 翻譯服務暫時有問題，已使用備援翻譯`,
-      translationServiceUnavailable: `⚠️ 翻譯服務暫時無法使用，以下為原文`,
-      unknown: `未知`,
-      zodiac: `⭐ 星座：\\\${bottle.zodiac }
-`,
-      zodiac2: `⭐ 星座：\\\${catcherZodiac}
-`,
+    "containsUrl": "Pullopostin sisältö ei saa sisältää linkkejä",
+    "empty": "Pullopostin sisältö ei voi olla tyhjää",
+    "friendlyContent": "• Ystävällinen ja kunnioittava sisältö todennäköisemmin valitaan～",
+    "inappropriate": "Pullopostin sisältö sisältää sopimatonta materiaalia, muokkaa ja lähetä uudelleen",
+    "selected": "Valittu: ${selected}",
+    "selectedItem": "✅ Valittu ${zodiac}",
+    "throw": {
+      "age": "• Lähes sama ikäryhmä ✓",
+      "aiModerationFailed": "AI-sisällön tarkistus epäonnistui",
+      "back": "↩️ Palaa suodatinvalikkoon",
+      "bloodType2": "• Veriryhmä: Suodata tietyt veriryhmät\n",
+      "bloodType3": "Valitse veriryhmät, joita haluat vastata:",
+      "bloodType4": "🩸 Veriryhmäsuodatin",
+      "bloodType5": "🌈 Mikä tahansa veren tyyppi",
+      "bottle11": "🍾 Heitä viestipullo",
+      "bottle2": "🎯 Viestipullosi on lähetetty **3 vastaanottajalle**:\n",
+      "bottle5": "Pullon ID: #${bottleId}",
+      "bottle7": "1️⃣ Napsauta alla olevaa painiketta '🍾 Heitä viestipullo'\n",
+      "bottle9": "📝 Ole hyvä ja syötä viestipullosi sisältö:",
+      "cancel": "💡 Napsauta valitaksesi tai peruuttaaksesi MBTI-tyypin:",
+      "cancel2": "💡 Napsauta valitaksesi tai peruuttaaksesi horoskooppimerkin:",
+      "catch2": "• Paikka 2: Julkinen allas (odottaa noutamista)\n",
+      "catch3": "• Paikka 1: Julkinen allas (odottaa noutamista)\n",
+      "catch4": "🌊 Odotetaan, että määrätty henkilö noutaa sen...\n",
+      "complete": "⚙️ **Edistyneet suodattimet**\n\n\\${summary}\n💡 Jatka säätämistä tai viimeistele suodatin:",
+      "complete2": "🎯 **1. ottelu on suoritettu:**\n",
+      "complete4": "⏳ Arvioitu valmistuminen 3-5 sekunnissa",
+      "complete5": "⏳ Arvioitu valmistuminen 2-3 sekunnissa",
+      "complete6": "⏳ Arvioitu valmistuminen 1-2 sekunnissa",
+      "conversation": "💬 Keskustelun tunnus: \\${vipMatchInfo.conversationIdentifier}\n\n",
+      "conversation3": "💡 Voit vastaanottaa **enintään 3 keskustelua**!\n",
+      "conversation4": "💬 Voit vastaanottaa **enintään 3 keskustelua**!\n",
+      "conversation6": "📊 Käytä /chats nähdäksesi kaikki keskustelut",
+      "conversation7": "Käytä /chats nähdäksesi kaikki keskustelut",
+      "currentSelection": "Nykyinen valinta: {genderText}",
+      "gender4": "💡 Valitse haluamasi sukupuoli:",
+      "gender5": "👤 Sukupuolisuodatin",
+      "genderLabel": "• Sukupuoli: {gender}\n",
+      "mbti3": "Valittu: \\${selectedMBTI.length > 0 ? selectedMBTI.join(",
+      "mbti5": "• MBTI: Suodata tiettyjä persoonallisuustyyppejä\n",
+      "mbti6": "• Hyvin yhteensopivat MBTI ✓",
+      "mbti7": "🧠 MBTI-suodatin",
+      "mbtiLabel": "• MBTI: {mbti}\n",
+      "message3": "Valittu: \\${selectedZodiac.length > 0 ? selectedZodiac.map((z) => ZODIAC_NAMES[z]).join(",
+      "message4": "{bloodTypeDisplay[currentBloodType]} ${bloodTypeDisplay[currentBloodType]}\n\n",
+      "message5": "👤 Muu osapuoli: \\${vipMatchInfo.matcherNickname}\n",
+      "message6": "\"Hei! Olen henkilö, joka rakastaa musiikkia ja elokuvia, toivon tapaavani samanhenkisiä ystäviä~\"\n\n",
+      "message7": "💡 Voit muokata yhteensopivuusasetuksiasi kohdassa /edit_profile\n\n",
+      "message8": "💬 Paina /reply vastataksesi viestiin ja aloittaaksesi keskustelun\n",
+      "nickname": "📝 Muu osapuoli:n lempinimi: \\${matchedUserMaskedNickname}\n",
+      "quota": "• Lisää kiintiöitä (30 päivässä)\n",
+      "quota2": "🎁 Ystävien kutsuminen voi lisätä kiintiöitäsi:\n",
+      "settings": "{mbti} ${mbti}\n",
+      "settings2": "⭐ Horoskooppi: ${zodiac}\n",
+      "settings4": "⭐ Horoskooppi: \\\\$\n",
+      "settings5": "Ei asetettu",
+      "settings6": "Ei asetettu",
+      "settings7": "Ei asetettu",
+      "settings8": "Ei asetettu",
+      "short": "• Samaa kieltä ✓",
+      "short10": "♋ Rav",
+      "short11": "♌ Leijona",
+      "short12": "♍ Neitsyt",
+      "short13": "♎ Vaaka",
+      "short14": "♏ Skorpioni",
+      "short15": "♐ Jousimies",
+      "short16": "♑ Kauris",
+      "short17": "♒ Vesimies",
+      "short18": "♓ Kalat",
+      "short19": "Rikkomus",
+      "short2": "🩸 AB-tyyppi",
+      "short20": "Rajaton",
+      "short21": "Rajaton",
+      "short22": "Rajaton",
+      "short23": "Rajaton",
+      "short3": "🌈 Kuka vain",
+      "short4": "🩸 A-tyyppi",
+      "short5": "🩸 B-tyyppi",
+      "short6": "🩸 O-tyyppi",
+      "short7": "♈ Oinas",
+      "short8": "♉ Härkä",
+      "short9": "♊ Kaksoset",
+      "start": "✍️ Aloita alusta",
+      "text": "💝 Yhteensopivuusaste: \\${matchPercentage}%\n",
+      "text12": "• Ilmaiset käyttäjät: Enintään +7\n",
+      "text14": "💡 **Kaksi syöttötapaa**:\n",
+      "text15": "📊 Ilmaiset käyttäjät: 3 päivässä\n",
+      "text16": "Valitse suodattamasi ehdot:\n\n",
+      "text17": "• Edistynyt suodatus ja käännös\n\n",
+      "text18": "Luotu: \\${age}\n",
+      "text19": "Käytä /vip päivittääksesi heti",
+      "text2": "• 🆕 Kolminkertainen altistumismahdollisuus (1 kerta = 3 kohdetta)\n",
+      "text20": "💬 **Esimerkki**:\n",
+      "text21": "Käytä /vip saadaksesi lisätietoja",
+      "text22": "Haluatko jatkaa tämän luonnoksen muokkaamista?",
+      "text23": "💡 Voit yhdistää useita ehtoja",
+      "text24": "Nykyiset suodatusvaatimukset:\n\n",
+      "text3": "💡 Tämä voi kestää muutaman sekunnin, etsimme sinulle sopivimmat ihmiset",
+      "text4": "Nykyinen valinta: \\${currentGender ===",
+      "text5": "🎯 Etsitään kohteita: \\${targetText}\n",
+      "text6": "🎯 Etsitään 3 parasta ehdokasta sinulle\n\n",
+      "text7": "📨 **2 lisäpaikkaa odottaa:**\n",
+      "text8": "🔍 Sovitetaan älykkäästi parhaat ehdokkaat...\n\n",
+      "text9": "Sisältöesikatselu: \\${preview}\n\n",
+      "throw": "📊 Tänään lähetetyt: \\${quotaDisplay}\n\n",
+      "unlimited": "Rajoittamaton",
+      "urlNotAllowed": "❌ Viesti sisältää valtuuttamattoman URL-osoitteen",
+      "vip": "💎 VIP-käyttäjät: 30 päivässä (kolminkertainen näkyvyys)\n\n",
+      "vip2": "💎 **Päivitä VIP:ksi kolminkertaista altistumismahdollisuutta varten!**\n",
+      "vip3": "⚙️ **Edistynyt Suodatus (VIP-exclusiivinen)**\n\n",
+      "vip4": "• VIP-käyttäjät: Jopa +70\n\n",
+      "vip5": "✨ **VIP-etuudet aktivoitu!**\n\n",
+      "vip6": "💡 Päivitä VIP:ksi saadaksesi:\n",
+      "vip7": "✨ Aktivointi VIP-etuoikeudet\n",
+      "zodiac": "• Horoskooppi: \\${selectedZodiac.length > 0 ? selectedZodiac.map((z) => ZODIAC_NAMES[z]).join(', ') : 'Ei rajoituksia'}\n",
+      "zodiac2": "⭐ Horoskooppi: \\${matchResult.user.zodiac ||",
+      "zodiac3": "⭐ Horoskooppi: \\${user.zodiac_sign ||",
+      "zodiac4": "⭐ **Horoskooppisuodatus**\n\n",
+      "zodiac5": "• Horoskooppi: suodata tiettyjen horoskooppimerkkien mukaan\n",
+      "zodiac6": "• Erittäin yhteensopivat horoskoopit ✓",
+      "zodiac7": "⭐ Horoskooppisuodatus",
+      "zodiacLabel": "• Horoskooppimerkki: {zodiac}\n"
     },
-    throw: {
-      age: `• 年齡區間相近 ✓`,
-      aiModerationFailed: `AI 内容审核失败`,
-      back: `↩️ 返回篩選選單`,
-      bloodType: `🩸 **血型篩選**
-
-`,
-      bloodType2: `• 血型：篩選特定血型
-`,
-      bloodType3: `選擇你想要配對的血型：`,
-      bloodType4: `🩸 血型篩選`,
-      bloodType5: `🌈 任何血型`,
-      bottle: `
-💡 這個瓶子和你非常合拍！
-\\
-`,
-      bottle10: `🍾 漂流瓶已丟出！
-
-`,
-      bottle11: `🍾 丟漂流瓶`,
-      bottle2: `🎯 你的瓶子已發送給 **3 個對象**：
-`,
-      bottle3: `🍾 **正在丟出你的漂流瓶...**
-
-`,
-      bottle4: `🍾 **丟漂流瓶** #THROW
-
-`,
-      bottle5: `瓶子 ID：#\\\${bottleId}
-
-`,
-      bottle6: `📝 **請輸入你的漂流瓶內容**
-
-`,
-      bottle7: `1️⃣ 點擊下方「🍾 丟漂流瓶」按鈕
-`,
-      bottle8: `📝 請輸入你的漂流瓶內容：
-
-`,
-      bottle9: `📝 請輸入你的漂流瓶內容：`,
-      cancel: `💡 點擊選擇或取消 MBTI 類型：`,
-      cancel2: `💡 點擊選擇或取消星座：`,
-      catch: `• 槽位 3：公共池（等待撿起）
-
-`,
-      catch2: `• 槽位 2：公共池（等待撿起）
-`,
-      catch3: `• 槽位 1：公共池（等待撿起）
-`,
-      catch4: `🌊 等待有緣人撿起...
-`,
-      complete: `⚙️ **進階篩選**
-
-\\\${summary}
-💡 繼續調整或完成篩選：`,
-      complete2: `🎯 **第 1 個配對已完成：**
-`,
-      complete3: `📝 你有一個未完成的草稿
-
-`,
-      complete4: `⏳ 預計 3-5 秒完成`,
-      complete5: `⏳ 預計 2-3 秒完成`,
-      complete6: `⏳ 預計 1-2 秒完成`,
-      conversation: `💬 對話標識符：\\\${vipMatchInfo.conversationIdentifier}
-
-`,
-      conversation2: `💡 提示：每個對話都是獨立的，可以同時進行
-
-`,
-      conversation3: `💡 你可能會收到 **最多 3 個對話**！
-`,
-      conversation4: `💬 你可能會收到 **最多 3 個對話**！
-`,
-      conversation5: `使用 /chats 查看所有對話
-
-`,
-      conversation6: `📊 使用 /chats 查看所有對話`,
-      conversation7: `使用 /chats 查看所有對話`,
-      currentSelection: `當前選擇：{genderText}`,
-      gender: `• 性別：\\\${selectedGender === 'male' ? '👨 男生' : selectedGender === 'female' ? '👩 女生' : '🌈 任何人'}
-`,
-      gender2: `👤 **性別篩選**
-
-`,
-      gender3: `• 性別：篩選性別
-
-`,
-      gender4: `💡 選擇你想要的性別：`,
-      gender5: `👤 性別篩選`,
-      genderLabel: `• 性別：{gender}
-`,
-      mbti: `• MBTI：\\\${selectedMBTI.length > 0 ? selectedMBTI.join(', ') : '無限制'}
-`,
-      mbti2: `已選擇：\\\${selectedMBTI.length > 0 ? selectedMBTI.join(', ') : '無'}
-
-`,
-      mbti3: `已選擇：\\\${selectedMBTI.length > 0 ? selectedMBTI.join(`,
-      mbti4: `🧠 **MBTI 篩選**
-
-`,
-      mbti5: `• MBTI：篩選特定性格類型
-`,
-      mbti6: `• MBTI 高度配對 ✓`,
-      mbti7: `🧠 MBTI 篩選`,
-      mbtiLabel: `• MBTI：{mbti}
-`,
-      message: `已選擇：\\\${selectedZodiac.length > 0 ? selectedZodiac.map((z) => ZODIAC_NAMES[z]).join(', ') : '無'}
-
-`,
-      message2: `當前選擇：\\\${currentGender === 'male' ? '👨 男生' : currentGender === 'female' ? '👩 女生' : '🌈 任何人'}
-
-`,
-      message3: `已選擇：\\\${selectedZodiac.length > 0 ? selectedZodiac.map((z) => ZODIAC_NAMES[z]).join(`,
-      message4: `當前選擇：\\\${bloodTypeDisplay[currentBloodType]}
-
-`,
-      message5: `👤 對方：\\\${vipMatchInfo.matcherNickname}
-`,
-      message6: `「你好！我是一個喜歡音樂和電影的人，希望認識志同道合的朋友～」
-
-`,
-      message7: `💡 可在 /edit_profile 中修改匹配偏好
-
-`,
-      message8: `💬 直接按 /reply 回覆訊息開始聊天
-`,
-      nickname: `📝 對方暱稱：\\\${matchedUserMaskedNickname}
-`,
-      quota: `• 更多配額（30 個/天）
-`,
-      quota2: `🎁 邀請好友可增加配額：
-`,
-      settings: `🧠 MBTI：\${mbti}
-`,
-      settings2: `⭐ 星座：\${zodiac}
-`,
-      settings3: `🧠 MBTI：\\\\$
-`,
-      settings4: `⭐ 星座：\\\\$
-`,
-      settings5: `未設定`,
-      settings6: `未設定`,
-      settings7: `未設定`,
-      settings8: `未設定`,
-      short: `• 語言相同 ✓`,
-      short10: `♋ 巨蟹座`,
-      short11: `♌ 獅子座`,
-      short12: `♍ 處女座`,
-      short13: `♎ 天秤座`,
-      short14: `♏ 天蠍座`,
-      short15: `♐ 射手座`,
-      short16: `♑ 摩羯座`,
-      short17: `♒ 水瓶座`,
-      short18: `♓ 雙魚座`,
-      short19: `違規行為`,
-      short2: `🩸 AB 型`,
-      short20: `無限制`,
-      short21: `無限制`,
-      short22: `無限制`,
-      short23: `無限制`,
-      short3: `🌈 任何人`,
-      short4: `🩸 A 型`,
-      short5: `🩸 B 型`,
-      short6: `🩸 O 型`,
-      short7: `♈ 白羊座`,
-      short8: `♉ 金牛座`,
-      short9: `♊ 雙子座`,
-      start: `✍️ 重新開始`,
-      success: `一次丟瓶子 = 3 個對象，大幅提升配對成功率
-
-`,
-      success2: `✨ **VIP 特權啟動！智能配對成功！**
-
-`,
-      success3: `🎯 你的漂流瓶已被配對成功！
-
-`,
-      text: `💝 匹配度：\\\${matchPercentage}%
-`,
-      text10: `🎯 正在為你尋找最佳配對對象
-
-`,
-      text11: `
-💬 等待對方回覆中...
-`,
-      text12: `• 免費用戶：最多 +7 個
-`,
-      text13: `• 不要包含個人聯絡方式
-
-`,
-      text14: `💡 **兩種輸入方式**：
-`,
-      text15: `📊 免費用戶：3 個/天
-`,
-      text16: `選擇你想要篩選的條件：
-
-`,
-      text17: `• 進階篩選和翻譯
-
-`,
-      text18: `創建時間：\\\${age}
-`,
-      text19: `使用 /vip 立即升級`,
-      text2: `• 🆕 三倍曝光機會（1 次 = 3 個對象）
-`,
-      text20: `💬 **範例**：
-`,
-      text21: `使用 /vip 了解更多`,
-      text22: `要繼續編輯這個草稿嗎？`,
-      text23: `💡 可以組合多個條件`,
-      text24: `當前篩選條件：
-
-`,
-      text3: `💡 這可能需要幾秒鐘，我們正在為你找到最合適的人`,
-      text4: `當前選擇：\\\${currentGender ===`,
-      text5: `🎯 尋找對象：\\\${targetText}
-`,
-      text6: `🎯 正在為你尋找 3 個最佳配對對象
-
-`,
-      text7: `📨 **另外 2 個槽位等待中：**
-`,
-      text8: `🔍 正在智能匹配最佳對象...
-
-`,
-      text9: `內容預覽：\\\${preview}
-
-`,
-      throw: `📊 今日已丟：\\\${quotaDisplay}
-
-`,
-      unlimited: `無限制`,
-      urlNotAllowed: `❌ 訊息包含不被允許的網址`,
-      vip: `💎 VIP 用戶：30 個/天（三倍曝光）
-
-`,
-      vip2: `💎 **升級 VIP 可獲得三倍曝光機會！**
-`,
-      vip3: `⚙️ **進階篩選（VIP 專屬）**
-
-`,
-      vip4: `• VIP 用戶：最多 +70 個
-
-`,
-      vip5: `✨ **VIP 特權啟動！**
-
-`,
-      vip6: `💡 升級 VIP 獲得：
-`,
-      vip7: `✨ VIP 特權啟動中
-`,
-      zodiac: `• 星座：\\\${selectedZodiac.length > 0 ? selectedZodiac.map((z) => ZODIAC_NAMES[z]).join(', ') : '無限制'}
-`,
-      zodiac2: `⭐ 星座：\\\${matchResult.user.zodiac ||`,
-      zodiac3: `⭐ 星座：\\\${user.zodiac_sign ||`,
-      zodiac4: `⭐ **星座篩選**
-
-`,
-      zodiac5: `• 星座：篩選特定星座
-`,
-      zodiac6: `• 星座高度相容 ✓`,
-      zodiac7: `⭐ 星座篩選`,
-      zodiacLabel: `• 星座：{zodiac}
-`,
+    "tips": "💡 Vinkki:",
+    "tooLong": "Viestin sisältö on liian pitkä, max ${max} merkkiä (nyt ${current} merkkiä)",
+    "tooShort": "Viestin sisältö on liian lyhyt, vähintään ${min} merkkiä vaaditaan (nyt ${current} merkkiä)"
+  },
+  "broadcast": {
+    "admin": "Ylläpitäjä keskeytti manuaalisesti",
+    "admin2": "Ylläpitäjä tyhjensi manuaalisesti (lähetys juuttunut)",
+    "allBroadcastsNormal": "Kaikki lähetysstatukset ovat normaaleja.",
+    "broadcastNotFound": "❌ Lähetyksen tietueita ei löytynyt",
+    "cancelCommand": "/broadcast_cancel\n\n",
+    "cancelCorrectFormat": "**Oikea muoto:**\n",
+    "cancelExample": "**Esimerkki:**\n",
+    "cancelExampleCommand": "/broadcast_cancel 1",
+    "cancelFailed": "❌ Lähetyksen peruminen epäonnistui: {error}",
+    "cancelUsageError": "❌ Virheellinen käyttö\n\n",
+    "cancelled": "✅ Lähetys on peruutettu\n\n",
+    "cancelledId": "ID: {id}\n",
+    "cancelledStatus": "Tila: Peruutettu\n\n",
+    "checkProgressLater": "Käytä /broadcast_status tarkistaaksesi etenemisen myöhemmin.",
+    "cleanupFailed": "❌ Lähetyksen puhdistus epäonnistui: {error}",
+    "cleanupIds": "Lähetys ID: {ids}\n\n",
+    "cleanupMarkedFailed": "Nämä lähetykset on merkitty 'epäonnistuneiksi' tilaksi\n",
+    "cleanupSuccess": "✅ Tyhjennetty {count} juuttunutta lähetystä\n\n",
+    "cleanupViewStatus": "Käytä /broadcast_status tarkistaaksesi päivitetyt lokit.",
+    "completedAt": "Valmistumisaika: {time}\n",
+    "correctFormat": "**Oikea muoto:**\n",
+    "createFailed": "❌ Lähetyksen luonti epäonnistui, yritä uudelleen myöhemmin.",
+    "createFailedShort": "❌ Lähetyksen luonti epäonnistui.",
+    "created": "✅ Lähetys on luotu\n\n",
+    "empty": "Lähetyssanoma ei voi olla tyhjää",
+    "error": "Virhe: {error}",
+    "estimate": {
+      "immediate": "Lähetä heti (noin 1-2 sekuntia)",
+      "minutes": "Noin \\${minutes} minuuttia",
+      "seconds": "Noin \\${seconds} sekuntia"
     },
-  },
-  broadcast: {
-    admin: `管理員手動取消`,
-    admin2: `管理員手動清理（廣播卡住）`,
-    allBroadcastsNormal: `所有廣播狀態正常。`,
-    broadcastNotFound: `❌ 找不到該廣播記錄`,
-    cancelCommand: `/broadcast_cancel <廣播ID>
-
-`,
-    cancelCorrectFormat: `**正確格式：**
-`,
-    cancelExample: `**示例：**
-`,
-    cancelExampleCommand: `/broadcast_cancel 1`,
-    cancelFailed: `❌ 取消廣播失敗：{error}`,
-    cancelUsageError: `❌ 使用方法錯誤
-
-`,
-    cancelled: `✅ 廣播已取消
-
-`,
-    cancelledId: `ID: {id}
-`,
-    cancelledStatus: `狀態: 已取消
-
-`,
-    checkProgressLater: `
-請稍後使用 /broadcast_status 查看進度。`,
-    cleanupFailed: `❌ 清理廣播失敗：{error}`,
-    cleanupIds: `廣播 ID: {ids}
-
-`,
-    cleanupMarkedFailed: `這些廣播已標記為「失敗」狀態
-`,
-    cleanupSuccess: `✅ 已清理 {count} 個卡住的廣播
-
-`,
-    cleanupViewStatus: `使用 /broadcast_status 查看更新後的記錄。`,
-    completedAt: `完成時間: {time}
-`,
-    correctFormat: `**正確格式：**
-`,
-    createFailed: `❌ 創建廣播失敗，請稍後再試。`,
-    createFailedShort: `❌ 創建廣播失敗。`,
-    created: `✅ 廣播已創建
-
-`,
-    empty: `廣播訊息不能為空`,
-    error: `錯誤: {error}`,
-    estimatedTime: `預計時間: {time}
-
-`,
-    example: `**示例：**
-`,
-    exampleMessage: `系統將於今晚 22:00 進行維護`,
-    failed: `失敗: {count}
-`,
-    filterAge: `• age=18-25
-`,
-    filterCommand: `/broadcast_filter <過濾器> <訊息內容>
-
-`,
-    filterConfirmConditions: `**過濾條件：**
-{conditions}
-
-`,
-    filterConfirmMessage: `**訊息內容：**
-{message}
-
-`,
-    filterConfirmTitle: `🔍 **廣播過濾器確認**
-
-`,
-    filterCorrectFormat: `**正確格式：**
-`,
-    filterCountry: `• country=TW|US|JP|...
-`,
-    filterCreateFailed: `❌ 創建過濾廣播失敗
-
-{error}`,
-    filterCreated: `✅ 過濾廣播已創建
-
-`,
-    filterCreatedConditions: `過濾條件: {conditions}
-`,
-    filterCreatedEstimatedTime: `預計時間: {time}
-
-`,
-    filterCreatedId: `ID: {id}
-`,
-    filterCreatedSending: `廣播將在後台發送，使用 /broadcast_status {id} 查看進度。`,
-    filterCreatedUserCount: `符合用戶數: {count} 人
-`,
-    filterExample1: `/broadcast_filter gender=female,age=18-25,country=TW 大家好！
-`,
-    filterExample2: `/broadcast_filter vip=true,mbti=INTJ VIP 專屬活動通知
-`,
-    filterExample3: `/broadcast_filter zodiac=Scorpio 天蠍座專屬訊息`,
-    filterExamples: `**示例：**
-`,
-    filterFormat: `**過濾器格式：**
-`,
-    filterFormatError: `❌ 過濾器格式錯誤
-
-{error}
-
-`,
-    filterGender: `• gender=male|female|other
-`,
-    filterMbti: `• mbti=INTJ|ENFP|...
-`,
-    filterQueryingUsers: `正在查詢符合條件的用戶...`,
-    filterUsageError: `❌ 使用方法錯誤
-
-`,
-    filterViewFormat: `請使用 /broadcast_filter 查看正確格式。`,
-    filterVip: `• vip=true|false
-
-`,
-    filterZodiac: `• zodiac=Aries|Taurus|...
-`,
-    foundStuckBroadcasts: `⚠️ 發現 {count} 個卡住的廣播
-
-`,
-    id: `ID: {id}
-`,
-    idMustBeNumber: `❌ 廣播 ID 必須是數字`,
-    maxUsersExceeded: `❌ 當前廣播系統僅支持 \${max} 個用戶以內的廣播。
-
-目標用戶數：\${current}`,
-    messageContent: `訊息內容`,
-    noPendingBroadcasts: `目前沒有待處理或卡住的廣播。
-
-`,
-    noRecords: `📊 目前沒有廣播記錄`,
-    noStuckBroadcasts: `✅ 沒有需要清理的廣播
-
-`,
-    processQueueFailed: `❌ 處理廣播隊列失敗：{error}`,
-    processingBroadcast: `正在處理廣播 #{id}
-`,
-    progress: `進度: {sent}/{total} ({percentage}%)
-`,
-    queryStatusFailed: `❌ 查詢廣播狀態失敗：{error}`,
-    queueProcessed: `✅ 廣播隊列處理完成
-
-`,
-    queueRemaining: `
-隊列中還有 {count} 個廣播待處理
-`,
-    queueTriggered: `{emoji} 廣播隊列處理已觸發
-
-`,
-    recentRecords: `📊 最近 5 條廣播記錄
-
-`,
-    recordId: `ID: {id}
-`,
-    recordProgress: `進度: {sent}/{total}
-`,
-    recordStatus: `狀態: {status}
-`,
-    recordTarget: `目標: {type}
-`,
-    recordTime: `時間: {time}
-
-`,
-    sendingInBackground: `廣播將在後台發送，使用 /broadcast_status {id} 查看進度。`,
-    short: `待處理`,
-    short2: `等待中`,
-    startedAt: `開始時間: {time}
-`,
-    statusLabel: `狀態：{status}
-`,
-    statusPending: `待處理`,
-    statusStuck: `卡住（重試中）`,
-    statusTitle: `📊 廣播狀態`,
-    stuckBroadcastConfirm: `**確認清理？**
-`,
-    stuckBroadcastConfirmCommand: `使用 \`/broadcast_cleanup confirm\` 確認`,
-    stuckBroadcastDivider: `━━━━━━━━━━━━━━━━
-`,
-    stuckBroadcastId: `**ID: {id}**
-`,
-    stuckBroadcastMessage: `訊息: {message}
-`,
-    stuckBroadcastNoRetry: `不會再被自動處理或重新發送
-
-`,
-    stuckBroadcastProgress: `進度: {sent}/{total}
-`,
-    stuckBroadcastStartTime: `開始時間: {time}
-
-`,
-    stuckBroadcastTarget: `目標: {type}
-`,
-    stuckBroadcastWillMarkFailed: `這些廣播將被標記為「失敗」狀態
-`,
-    targetAll: `所有用戶`,
-    targetLabel: `目標: {target}
-`,
-    targetNonVip: `非 VIP 用戶`,
-    targetType: `目標：{type}
-`,
-    targetVip: `VIP 用戶`,
-    tooLong: `廣播訊息不能超過 \${max} 個字符（目前 \${current} 個字符）`,
-    upgradeRequired: `大規模廣播需要升級系統架構，請參考 BROADCAST_SYSTEM_REDESIGN.md`,
-    usageError: `❌ 使用方法錯誤
-
-`,
-    userCount: `用戶數: {count} 人
-`,
-    userCount2: `用戶數：{count} 人
-`,
-    viewAllRecords: `使用 /broadcast_status 查看所有廣播記錄。`,
-    viewDetailsHint: `💡 使用 /broadcast_status <id> 查看詳細信息`,
-    viewUpdatedStatus: `使用 /broadcast_status 查看更新後的狀態。`,
-    estimate: {
-      immediate: `立即發送（約 1-2 秒）`,
-      minutes: `約 \\\${minutes} 分鐘`,
-      seconds: `約 \\\${seconds} 秒`,
+    "estimatedTime": "Arvioitu aika: {time}\n\n",
+    "example": "**Esimerkki:**\n",
+    "exampleMessage": "Järjestelmä käy huollossa tänä iltana klo 22:00",
+    "failed": "Epäonnistumiset: {count}\n",
+    "filter": {
+      "age": "Ikä: {min}-{max} vuotta",
+      "atLeastOneRequired": "Vähintään yksi suodatin vaaditaan",
+      "birthdayToday": "Syntymäpäivä tänään",
+      "country": "Maa: {country}",
+      "genderFemale": "Nainen",
+      "genderMale": "Mies",
+      "genderOther": "Muu sukupuoli",
+      "invalidAgeFormat": "Virheellinen ikäalue: {value} (muodon on oltava min-max, esim. 18-25)",
+      "invalidAgeMinMax": "Virheellinen ikäalue: {value} (minimi-ikä ei voi ylittää maksimumi-ikää)",
+      "invalidAgeRange": "Virheellinen ikäalue: {value} (ikä on oltava välillä 18-99)",
+      "invalidCountry": "Virheellinen maakoode: {value} (tulee olla 2 suurella kirjaimella, esim. TW, US, JP)",
+      "invalidFormat": "Virheellinen suodatinmuoto: {pair}",
+      "invalidGender": "Virheellinen sukupuoliarvo: {value} (tulee olla mies, nainen tai muu)",
+      "invalidMbti": "Virheellinen MBTI-tyyppi: {value} (tulee olla yksi näistä: {mbtis})",
+      "invalidZodiac": "Virheellinen horoskooppi: {value} (tulee olla yksi näistä: {zodiacs})",
+      "mbti": "MBTI: {mbti}",
+      "nonVipUsers": "Ei-VIP-käyttäjä",
+      "unknownFilter": "Tuntematon suodatin: {key}",
+      "vipUsers": "VIP-käyttäjä",
+      "zodiacAquarius": "Vesimies",
+      "zodiacAries": "Oinas",
+      "zodiacCancer": "Rapu",
+      "zodiacCapricorn": "Kauris",
+      "zodiacGemini": "Kaksoset",
+      "zodiacLeo": "Leijona",
+      "zodiacLibra": "Vaaka",
+      "zodiacPisces": "Kalat",
+      "zodiacSagittarius": "Jousimies",
+      "zodiacScorpio": "Skorpioni",
+      "zodiacTaurus": "Härkä",
+      "zodiacVirgo": "Neitsyt"
     },
-    filter: {
-      age: `年齡：{min}-{max} 歲`,
-      atLeastOneRequired: `至少需要一個過濾器`,
-      birthdayToday: `當天生日`,
-      country: `國家：{country}`,
-      genderFemale: `女性`,
-      genderMale: `男性`,
-      genderOther: `其他性別`,
-      invalidAgeFormat: `無效的年齡範圍：{value}（格式必須是 min-max，如 18-25）`,
-      invalidAgeMinMax: `無效的年齡範圍：{value}（最小年齡不能大於最大年齡）`,
-      invalidAgeRange: `無效的年齡範圍：{value}（年齡必須在 18-99 之間）`,
-      invalidCountry: `無效的國家代碼：{value}（必須是 2 個大寫字母，如 TW, US, JP）`,
-      invalidFormat: `無效的過濾器格式：{pair}`,
-      invalidGender: `無效的性別值：{value}（必須是 male, female 或 other）`,
-      invalidMbti: `無效的 MBTI 類型：{value}（必須是以下之一：{mbtis}）`,
-      invalidZodiac: `無效的星座：{value}（必須是以下之一：{zodiacs}）`,
-      mbti: `MBTI：{mbti}`,
-      nonVipUsers: `非 VIP 用戶`,
-      unknownFilter: `未知的過濾器：{key}`,
-      vipUsers: `VIP 用戶`,
-      zodiacAquarius: `水瓶座`,
-      zodiacAries: `白羊座`,
-      zodiacCancer: `巨蟹座`,
-      zodiacCapricorn: `摩羯座`,
-      zodiacGemini: `雙子座`,
-      zodiacLeo: `獅子座`,
-      zodiacLibra: `天秤座`,
-      zodiacPisces: `雙魚座`,
-      zodiacSagittarius: `射手座`,
-      zodiacScorpio: `天蠍座`,
-      zodiacTaurus: `金牛座`,
-      zodiacVirgo: `處女座`,
+    "filterAge": "• ikä=18-25\n",
+    "filterCommand": "/broadcast_filter\n\n",
+    "filterConfirmConditions": "**Suodatusvaatimukset:**\n{conditions}\n\n",
+    "filterConfirmMessage": "**Viestin sisältö:**\n{message}\n\n",
+    "filterConfirmTitle": "🔍 **Lähetyssuodatusvahvistus**\n\n",
+    "filterCorrectFormat": "**Oikea muoto:**\n",
+    "filterCountry": "• maa=TW|US|JP|...\n",
+    "filterCreateFailed": "❌ Lähetettävän suodattimen luominen epäonnistui\n\n{error}",
+    "filterCreated": "✅ Lähetyssuodatus luotu\n\n",
+    "filterCreatedConditions": "Suodatinvaatimukset: {conditions}\n",
+    "filterCreatedEstimatedTime": "Arvioitu aika: {time}\n\n",
+    "filterCreatedId": "ID: {id}\n",
+    "filterCreatedSending": "Lähetys lähetetään taustalla. Käytä /broadcast_status {id} tarkistaaksesi edistymisen.",
+    "filterCreatedUserCount": "Vastaavien käyttäjien määrä: {count} henkilöä\n",
+    "filterExample1": "/broadcast_filter sukupuoli=nainen,ikä=18-25, maa=TW Hei kaikille!\n",
+    "filterExample2": "/broadcast_filter vip=true,mbti=INTJ VIP-yksityistapahtuman ilmoitus\n",
+    "filterExample3": "/broadcast_filter horoskooppi=Skorpioni Skorpioni-yksityinen viesti",
+    "filterExamples": "**Esimerkki:**\n",
+    "filterFormat": "**Suodatinmuoto:**\n",
+    "filterFormatError": "❌ Suodatusmuotoilun virhe\n\n{error}\n\n",
+    "filterGender": "• sukupuoli=mies|nainen|muu\n",
+    "filterMbti": "• mbti=INTJ|ENFP|...\n",
+    "filterQueryingUsers": "Etsitään käyttäjiä, jotka täyttävät vaatimukset...",
+    "filterUsageError": "❌ Virheellinen käyttö\n\n",
+    "filterViewFormat": "Käytä /broadcast_filter nähdäksesi oikean muodon.",
+    "filterVip": "• vip=true|false\n\n",
+    "filterZodiac": "• horoskooppi oinas|bull|...\n",
+    "foundStuckBroadcasts": "⚠️ Havaitut {count} juuttunutta lähetystä\n\n",
+    "id": "ID: {id}\n",
+    "idMustBeNumber": "❌ Lähetteen ID:n tulee olla numero",
+    "maxUsersExceeded": "❌ Nykyinen lähetysjärjestelmä tukee enintään ${max} käyttäjän lähettämistä.\n\nTavoitekäyttäjien määrä: ${current}",
+    "messageContent": "Viestin sisältö",
+    "noPendingBroadcasts": "Tällä hetkellä ei ole odottavia tai juuttuneita lähetyksiä.\n\n",
+    "noRecords": "📊 Tällä hetkellä ei ole saatavilla lähetyshistoriaa",
+    "noStuckBroadcasts": "✅ Ei lähetystä siivottavaksi\n\n",
+    "processQueueFailed": "❌ Lähetysjonoa ei voitu käsitellä: {error}",
+    "processingBroadcast": "Käsitellään lähetystä #{id}\n",
+    "progress": "Edistyminen: {sent}/{total} ({percentage}%)\n",
+    "queryStatusFailed": "❌ Lähetyksen tilan kysyminen epäonnistui: {error}",
+    "queueProcessed": "✅ Lähetysjonon käsittely valmis\n\n",
+    "queueRemaining": "Jonossa on {count} lähetystä odottamassa käsittelyä\n",
+    "queueTriggered": "{emoji} Lähetysjonon käsittely on käynnistetty\n\n",
+    "recentRecords": "📊 Viimeiset 5 lähetyksen tietueet\n\n",
+    "recordId": "ID: {id}\n",
+    "recordProgress": "Edistyminen: {sent}/{total}\n",
+    "recordStatus": "Tila: {status}\n",
+    "recordTarget": "Kohde: {type}\n",
+    "recordTime": "Aika: {time}\n\n",
+    "sendingInBackground": "Lähetys lähetetään taustalla. Käytä /broadcast_status {id} tarkistaaksesi edistymisen.",
+    "short": "Odottaa",
+    "short2": "Käynnissä",
+    "startedAt": "Aloitusaika: {time}\n",
+    "status": {
+      "cancelled": "Peruttu",
+      "completed": "Valmis",
+      "failed": "Epätosia",
+      "pending": "Käynnissä",
+      "sending": "Lähetetään"
     },
-    status: {
-      cancelled: `已取消`,
-      completed: `已完成`,
-      failed: `失敗`,
-      pending: `等待中`,
-      sending: `發送中`,
+    "statusLabel": "Tila: {status}\n",
+    "statusPending": "Odottaa",
+    "statusStuck": "Jämähtänyt (yritys uudelleen)",
+    "statusTitle": "📊 Lähetyksen tila",
+    "stuckBroadcastConfirm": "**Vahvista puhdistus?**\n",
+    "stuckBroadcastConfirmCommand": "Käytä `/broadcast_cleanup confirm` vahvistaaksesi",
+    "stuckBroadcastDivider": "━━━━━━━━━━━━━━━━\n",
+    "stuckBroadcastId": "**ID: {id}**\n",
+    "stuckBroadcastMessage": "Viesti: {message}\n",
+    "stuckBroadcastNoRetry": "Ei käsitellä automaattisesti tai lähetetä uudelleen\n\n",
+    "stuckBroadcastProgress": "Edistyminen: {sent}/{total}\n",
+    "stuckBroadcastStartTime": "Aloitusaika: {time}\n\n",
+    "stuckBroadcastTarget": "Kohde: {type}\n",
+    "stuckBroadcastWillMarkFailed": "Nämä lähetysten statukset merkitään 'Epätosia' tilaksi\n",
+    "target": {
+      "all": "Kaikki käyttäjät",
+      "nonVip": "Ei-VIP käyttäjät",
+      "unknown": "Tuntematon",
+      "vip": "VIP käyttäjät"
     },
-    target: {
-      all: `所有用戶`,
-      nonVip: `非 VIP 用戶`,
-      unknown: `未知`,
-      vip: `VIP 用戶`,
+    "targetAll": "Kaikki käyttäjät",
+    "targetLabel": "Kohde: {target}\n",
+    "targetNonVip": "Ei-VIP käyttäjät",
+    "targetType": "Kohde: {type}\n",
+    "targetVip": "VIP käyttäjät",
+    "tooLong": "Lähetyksen viestin pituus ei saa ylittää ${max} merkkiä (tällä hetkellä ${current} merkkiä)",
+    "upgradeRequired": "Suuret lähetykset vaativat järjestelmäarkkitehtuurin päivityksen, katso BROADCAST_SYSTEM_REDESIGN.md",
+    "usageError": "❌ Virheellinen käyttö\n\n",
+    "userCount": "Käyttäjämäärä: {count} henkilöä\n",
+    "userCount2": "Käyttäjämäärä: {count} henkilöä\n",
+    "viewAllRecords": "Käytä /broadcast_status nähdäksesi kaikki lähetyksen tiedot.",
+    "viewDetailsHint": "💡 Käytä /broadcast_status <id> nähdäksesi tiedot",
+    "viewUpdatedStatus": "Käytä /broadcast_status tarkistaaksesi päivitetyn tilan."
+  },
+  "buttons": {
+    "ad": "➡️ Seuraava ilmoitus",
+    "back": "⬅️ Takaisin / Paluu",
+    "backToVip": "💎 Palaa VIP-valikkoon",
+    "bottle": "📺 Katso mainoksia saadaksesi lisää pulloposteja 🎁 (${remaining}/20)",
+    "bottle2": "💎 Upgrade to VIP for more message bottles",
+    "bottle3": "🌊 Heitä viestipullo",
+    "bottle4": "🎣 Nosta viestipullo",
+    "cancel": "Peruuta",
+    "claim": "Vakuuta",
+    "help": "❓ Apua",
+    "invite": "👥 Näytä kutsukoodi",
+    "invite2": "🎁 Kutsu ystäviä",
+    "mbtiMenu": "🧠 MBTI-valikko",
+    "message": "💬 Vastaa viestiin",
+    "profile": "✏️ Muokkaa profiilia",
+    "profile2": "👤 Profiili",
+    "returnToMenu": "🏠 Palaa päävalikkoon",
+    "settings": "⚙️ Asetukset",
+    "short": "🇲🇾 Malesia",
+    "short10": "🇺🇸 Yhdysvallat",
+    "short11": "🇯🇵 Japani",
+    "short12": "🇰🇷 Etelä-Korea",
+    "short13": "🇬🇧 Yhdistynyt kuningaskunta",
+    "short14": "🇫🇷 Ranska",
+    "short15": "🇩🇪 Saksa",
+    "short16": "🇹🇭 Thaimaa",
+    "short17": "🇦🇺 Australia",
+    "short18": "💬 Viestihistoria",
+    "short19": "🌐 Vaihda kieli",
+    "short2": "🇺🇳 Yhdistyneiden kansakuntien lippu",
+    "short20": "🎁 Nauti palkinto",
+    "short21": "🔄 Tyhjennä valinta",
+    "short22": "Ohita",
+    "short3": "📢 Liity viralliselle kanavalle",
+    "short4": "🇸🇬 Singapore",
+    "short5": "🇨🇦 Kanada",
+    "short6": "🇳🇿 Uusi-Seelanti",
+    "short7": "🇹🇼 Taiwan",
+    "short8": "🇨🇳 Kiina",
+    "short9": "🇭🇰 Hongkong",
+    "stats": "📊 Tilastot",
+    "targetAdvanced": "⚙️ Laaja suodatin (MBTI/ horoskooppi)",
+    "targetAny": "🌈 Kuka tahansa voi",
+    "targetFemale": "👩 Nainen",
+    "targetMale": "👨 Mies",
+    "text": "👤 Näytä toisen profiilikortti",
+    "verify": "Vahvista",
+    "viewPayments": "💰 Tilauksen historia",
+    "vip": "💎 Päivitä VIP:ksi"
+  },
+  "catch": {
+    "anonymousUser": "Nimettömä käyttäjä",
+    "back": "🏠 Palaa päävalikkoon: /menu",
+    "banned": "❌ Tilisi on estetty etkä voi noutaa viestipulloja.\n\nJos sinulla on kysymyksiä, käytä /appeal valittaa.",
+    "block": "• Voit lopettaa chatin käyttämällä /block estääksesi\n",
+    "bottle": "😔 Tällä hetkellä ei ole soveltuvia pulloposteja sinulle\n\n",
+    "bottle2": "• Tai heitä pullo itse: /throw",
+    "bottle3": "🎣 Joku on löytänyt pullopostisi!\n\n",
+    "bottle4": "🧴 Olet nostanut pullopostin!\n\n",
+    "bottle5": "💡 Palaa huomenna noutamaan lisää pulloja!",
+    "bottleTaken": "❌ Tämä pullo on jo noudettu jonkun muun toimesta, yritä muita pulloja!",
+    "catch": "📊 Tänään saatu: ${newCatchesCount}/${quota}\n\n",
+    "conversation": "Sinulle on luotu anonyymi keskustelu, tule aloittamaan keskustelu～\n\n",
+    "conversation2": "• Tämä on anonyymi keskustelu, suojaa henkilökohtaista yksityisyyttäsi\n",
+    "conversation3": "📊 Näytä kaikki keskustelut",
+    "conversationError": "Keskustelun luominen epäonnistui",
+    "language": "🗣️ Kieli: ${language}\n\n",
+    "mbti": "🧠 MBTI: ${mbti}\n",
+    "message": "💫 Match-pisteet: ${score} pistettä (Älykäs yhteensovittaminen)\n\n",
+    "message2": "${catcherGender} | 📅 ${catcherAge} vuotta vanha\n\n",
+    "message3": "conv_reply_${conversationIdentifier}",
+    "message4": "2️⃣ Pitkään paina tätä viestiä, valitse 'Vastaa' ja syötä sitten sisältösi\n\n",
+    "message5": "1️⃣ Napsauta alla olevaa '💬 Vastaa viestiin' -painiketta\n",
+    "message6": "2️⃣ Pidä tätä viestiä pitkään painettuna, valitse 'Vastaus' ja syötä sisältösi",
+    "nickname": "📝 Nimimerkki: ${ownerMaskedNickname}\n",
+    "nickname2": "📝 Nimimerkki: ${catcherNickname}\n",
+    "notRegistered": "❌ Ole hyvä ja viimeistele rekisteröintiprosessi ennen pullopostien nostamista.\n\nKäytä /start jatkaaksesi rekisteröintiä.",
+    "originalContent": "Alkuperäinen teksti: {content}",
+    "originalLanguage": "Alkuperäinen kieli: {language}",
+    "quotaExhausted": "❌ Tämän päivän pullopostikiintiö on käytetty loppuun (${quotaDisplay})",
+    "replyButton": "💬 Vastaa viestiin",
+    "replyMethods": "💡 **Kaksi tapaa vastata**:\n",
+    "report": "• Jos kohtaat sopimatonta sisältöä, käytä /report raportoidaksesi siitä\n",
+    "safetyTips": "⚠️ Turvallisuusmuistutus:\n",
+    "settings": "🧠 MBTI: ${mbti}\n",
+    "settings10": "Ei asetettu",
+    "settings11": "Ei asetettu",
+    "settings2": "Ei asetettu",
+    "settings3": "Ei asetettu",
+    "settings4": "Ei asetettu",
+    "settings5": "Ei asetettu",
+    "settings6": "Ei asetettu",
+    "settings7": "Ei asetettu",
+    "settings8": "Ei asetettu",
+    "settings9": "Ei asetettu",
+    "short": "💡 Vinkki:\n",
+    "short2": "• Ole hyvä ja yritä myöhemmin uudelleen\n",
+    "short3": "Anonyymi käyttäjä",
+    "short4": "♂️ Mies",
+    "short5": "♀️ Nainen",
+    "text": "Käännöskieli: ${catcherLangDisplay}\n",
+    "text2": "Alkuperäinen kieli: ${bottleLangDisplay}\n",
+    "text3": "🗣️ Kieli: ${ownerLanguage}\n\n",
+    "text4": "• Voit lopettaa keskustelun käyttämällä /block estääksesi\n\n",
+    "text5": "Alkuperäinen teksti: ${bottle.content}\n",
+    "text6": "💬 Käännöspalvelussa on ongelmia, varakäännös on käytössä\n",
+    "text7": "Käännös: ${bottleContent}\n",
+    "text8": "💡 **Kaksi tapaa vastata**:\n",
+    "translatedContent": "Käännös: {content}",
+    "translatedLanguage": "Käännöskieli: {language}",
+    "translationServiceFallback": "💬 Käännöspalvelussa on ongelmia, varakäännös on käytössä",
+    "translationServiceUnavailable": "⚠️ Käännöspalvelu ei ole tilapäisesti käytettävissä, seuraava on alkuperäinen teksti",
+    "unknown": "Tuntematon",
+    "zodiac": "⭐ Horoskooppi: {zodiac}\n",
+    "zodiac2": "⭐ Horoskooppi: ${catcherZodiac}\n"
+  },
+  "channelMembership": {
+    "claimButton": "✅ Vahvista palkinto",
+    "claimReward": "Napsauta alla olevaa painiketta varmistaaksesi palkinnon: +1 pulloposti",
+    "joined": "🎉 Havaitsemme, että olet liittynyt viralliseen kanavaan!",
+    "leftChannel": "❌ Havaitsemme, että olet jättänyt kanavan, et voi vahvistaa palkintoa.",
+    "notJoined": "❌ Ei havaittu, että olet liittynyt kanavaan, liity ensin ja yritä uudelleen",
+    "oneTimeReward": "💡 Tämä on kertaluonteinen palkinto, se lisätään tänään käytettävään kiintiöön palkinnon vahvistamisen jälkeen.",
+    "rewardAdded": "Palkinto: +1 pulloposti (lisätty tänään käytettävään kiintiöön)",
+    "rewardGranted": "✅ Palkinto on myönnetty! +1 pulloposti",
+    "taskCompleted": "🎉 Onnittelut tehtävän suorittamisesta: Liity viralliseen kanavaan!",
+    "viewMoreTasks": "💡 Käytä /tasks nähdäksesi lisää tehtäviä",
+    "viewTaskCenter": "[📋 Näytä Tehtävät] → /tasks"
+  },
+  "common": {
+    "ad": "📺 Tänään mainokset: ${adsWatched}/${AD_REWARD_CONSTANTS.MAX_ADS_PER_DAY} | Ansaitut ${quotaEarned} kiintiöt | Jäljellä ${remaining} kertaa",
+    "ad2": "📺 Tänään mainokset: ${adsWatched}/${AD_REWARD_CONSTANTS.MAX_ADS_PER_DAY} ✅ Saavuttanut rajat | Ansaitut ${quotaEarned} kiintiöt",
+    "ad3": "📺 Tänään mainokset: 0/${AD_REWARD_CONSTANTS.MAX_ADS_PER_DAY} | Ansaitut 0 kiintiötä",
+    "ad4": "• 📺 Katso mainoksia (Jäljellä ${remaining}/20 kertaa)\n",
+    "ad5": "• 📺 Katso mainoksia (ylitetty tänään raja)\n",
+    "ad6": "• Vältä mainoksia tai epäsopivaa sisältöä\n\n",
+    "ad7": "📊 Ei virallisia mainoksia saatavilla",
+    "ad8": "📢 Roskamainokset",
+    "ad9": "💡 Katso lisää virallisia mainoksia!",
+    "admin": "Yritä uudelleen myöhemmin tai ota yhteyttä ylläpitoon.",
+    "age": "Virheellinen ikäraja: ${trimmedValue} (muoto on oltava min-maks, esim. 18-25)",
+    "age2": "Ikä: ${filters.age.min}-${filters.age.max} vuotta",
+    "age3": "Virheellinen ikäraja: ${trimmedValue} (iän on oltava 18-99)",
+    "age4": "Virheellinen ikäraja: ${trimmedValue} (minimi-ikä ei voi olla suurempi kuin maksimi-ikä)",
+    "anonymous": "Anonyymi",
+    "anonymousUser": "Anonyymi käyttäjä",
+    "anyBloodType": "🌈 Mikä tahansa verityyppi",
+    "anyone": "🌈 Kenellekään",
+    "back": "💡 Syötä /menu milloin tahansa palataksesi päävalikkoon",
+    "back2": "↩️ Palaa muokkaamaan profiilia",
+    "back3": "🏠 Palaa päävalikkoon",
+    "back4": "↩️ Palaa takaisin",
+    "backToMainMenu": "Palaa päävalikkoon",
+    "birthday": "🎂 Syntymäpäivä: ${updatedUser.birthday}\n",
+    "birthday2": "🎂 Syntymäpäivä: ${user.birthday}\n",
+    "birthday3": "Syntymäpäivä tänään",
+    "bloodType": "🩸 Veren tyyppi: ${bloodTypeText}\n\n",
+    "bloodType2": "🩸 **Muokkaa veren tyyppiä**\n\n",
+    "bloodType3": "Valitse verityyppisi:",
+    "bloodType4": "🩸 Muokkaa verityyppiä",
+    "bloodTypeA": "🩸 Tyyppi A",
+    "bloodTypeAB": "🩸 Tyyppi AB",
+    "bloodTypeB": "🩸 Tyyppi B",
+    "bloodTypeO": "🩸 Tyyppi O",
+    "bottle": "Pullopostin sisältö on liian lyhyt, vähintään ${MIN_BOTTLE_LENGTH} merkkiä vaaditaan (tällä hetkellä ${trimmedContent.length} merkkiä)",
+    "bottle10": "Palkinto: +1 pulloposti (lisätty tämän päivän kiintiöön)\n\n",
+    "bottle11": "Te ette enää sovi toistenne pulloposteihin.\n\n",
+    "bottle12": "Millerä haluat löytää, kun heität pullopostin?\n\n",
+    "bottle13": "Käytä /throw heittääksesi pullopostin ja aloittaaksesi keskustelun!",
+    "bottle14": "Pullopostin sisältö sisältää epäsopivaa sisältöä, muokkaa se ja lähetä se uudelleen.",
+    "bottle15": "Napsauta alla olevaa painiketta saadaksesi palkinnon: +1 pulloposti\n\n",
+    "bottle16": "💡 Tämä asetus käytetään automaattisesti seuraavalla pullopostin heitolla.",
+    "bottle17": "🌊 Heitä pulloposti - /throw\n",
+    "bottle18": "🎣 Nosta pulloposti - /catch\n",
+    "bottle19": "🎉 Vahvistamalla saat +1 pulloposti-palkinnon!",
+    "bottle2": "Pullopostin sisältö on liian pitkä, enintään ${MAX_BOTTLE_LENGTH} merkkiä sallittu (kuten ${content.length} merkkiä tällä hetkellä)",
+    "bottle20": "✏️ Ole hyvä ja syötä uusi pullopostin sisältö:\n\n",
+    "bottle21": "• Käytä /catch noustaksesi uusi pulloposti",
+    "bottle22": "• /throw - Heitä pulloposti\n",
+    "bottle23": "• /catch - Nosta pulloposti\n",
+    "bottle24": "• /throw - Heitä pulloposti\n",
+    "bottle25": "• /catch - Nosta pulloposti\n",
+    "bottle26": "• Lähetä luonnossisältö heittääksesi pullopostin",
+    "bottle27": "📦 **Heitä pulloposti**\n",
+    "bottle28": "🎣 **Nosta pulloposti**\n",
+    "bottle29": "💡 Suorita tehtäviä ansaitaksesi ylimääräisiä pulloja",
+    "bottle3": "• Pullopostit: ${bottlesCount?.count || 0}\n",
+    "bottle30": "Pullopostin sisältö ei saa sisältää linkkejä",
+    "bottle31": "🍾 Heitä pulloposti\n\n",
+    "bottle32": "Pullopostin sisältö ei voi olla tyhjää",
+    "bottle33": "Heitä ensimmäinen pullopostisi",
+    "bottle34": "Nosta ensimmäinen pullopostisi",
+    "bottle4": "Anonyymi pullopostialusta, joka auttaa sinua löytämään samanhenkisiä ystäviä MBTI:n ja horoskooppimerkkien avulla\n\n",
+    "bottle5": "⏰ Keskustelu on aikakatkaistu\n\nToinen osapuoli on saattanut poistua. Käytä /catch noustaksesi uusi pullo!",
+    "bottle6": "💡 Käytä /catch noustaksesi uusi pulloposti aloittaaksesi uuden keskustelun.",
+    "bottle7": "🍾 Heitä pulloposti\n\nMillaista keskustelukumppania etsit?",
+    "bottle8": "Mene heittämään pullo tapaamaan uusia ystäviä! /throw\n\n",
+    "bottle9": "Tutustu muiden pulloposteihin ja vastaa, jos olet kiinnostunut aloittamaan keskustelun\n\n",
+    "broadcast": "Lähetys lähetetään taustalla, käytä /broadcast_status ${broadcastId} tarkistaaksesi edistymisen.",
+    "broadcast10": "📊 Viimeiset 5 lähetysrekisteriä\n\n",
+    "broadcast11": "Huoltotiedote on lähetetty kaikille käyttäjille.\n",
+    "broadcast12": "Palautustiedote on lähetetty kaikille käyttäjille.",
+    "broadcast13": "📊 Tällä hetkellä ei ole lähetysrekistereitä.",
+    "broadcast14": "📊 Lähetyksen tila\n\n",
+    "broadcast15": "Kaikki lähetyksen tilat ovat normaalit.",
+    "broadcast2": "Laajamittaiset lähetykset vaativat järjestelmän arkkitehtuurin päivityksiä, katso BROADCAST_SYSTEM_REDESIGN.md.",
+    "broadcast3": "Käytä /broadcast_status nähdäksesi kaikki lähetysrekisterit.",
+    "broadcast4": "${statusEmoji} Lähetysjonon käsittely on käynnistetty\n\n",
+    "broadcast5": "/broadcast_cancel\n\n",
+    "broadcast6": "Lähetys-ID: ${ids.join(', ')}\n\n",
+    "broadcast7": "Käsitellään lähetystä #${broadcast.id}\n",
+    "broadcast8": "Tällä hetkellä ei ole käsiteltäviä tai jumissa olevia lähetyksiä.\n\n",
+    "broadcast9": "Lähetys-ID: ${ids.join(",
+    "cancel": "Poista nämä linkit ja syötä uudelleen tai peruuta muokkaus:",
+    "cancel2": "Tila: Peruttu\n\n",
+    "cancel3": "Ole hyvä ja syötä uudelleen tai peruuta muokkaus:",
+    "cancelled": "Peruutettu",
+    "catch": "⏰ Pullopostiprosessi on aikarajan ylittänyt\n\nOle hyvä ja käytä /catch käynnistääksesi uudelleen.",
+    "catch2": "• Ystävällinen ja kunnioittava sisältö on todennäköisemmin poimittu~",
+    "catch3": "Pullopostiprosessi",
+    "catch4": "Pullopostiprosessi",
+    "close": "❌ Sulje",
+    "complete": "🎉 **Mainosnäyttö lopetettu!**\n\n✅ Voitettu **+1 kiintiö**\n📊 Tänään katsottu: **${updated.ads_watched}/20** kertaa\n🎁 Tänään ansaittu kiintiö: **${updated.quota_earned}**\n📈 Jäljelle jäävät katselut: **${result.remaining_ads}** kertaa\n\n${result.remaining_ads > 0 ? '💡 Jatka mainosten katsomista ansaitaksesi lisää kiintiötä!' : '✅ Päivittäinen mainosraja saavutettu'}",
+    "complete2": "📺 **Katsotaan mainoksia ansaitaksemme krediittejä**\n\n🎁 Katsomisen suorittaminen ansaitsee **+1 krediitti**\n📊 Jäljellä tänään: **${remainingAds}/20** kertaa\n\n👇 Napsauta alla olevaa painiketta aloittaaksesi katsomisen",
+    "complete3": "Valmistumisaika: ${new Date(broadcast.completedAt).toLocaleString('zh-TW')}\n",
+    "complete4": "Arvioitu valmistumisaika: ${new Date(maintenance.endTime).toLocaleString('zh-TW')}\n",
+    "complete5": "🎉 ${testTitle} valmis!\n\n",
+    "complete6": "Valmistui juuri ennen määräaikaa",
+    "complete7": "Almost finished",
+    "complete8": "Finish as soon as possible",
+    "confirm": "Kaikkien käyttäjien turvallisuuden varmistamiseksi, ole hyvä ja vahvista, että ymmärrät seuraavat:\n\n",
+    "confirm2": "🌍 **Vahvista maasi/alueesi**\n\n",
+    "confirm3": "🛡️ Viimeinen askel: Petostentorjunta-an turvallisuusvahvistus\n\n",
+    "confirm4": "🔍 **Vahvista lähetysfiltrin**\n\n",
+    "confirm5": "🌍 Vahvista maasi/alueesi",
+    "confirm6": "**Vahvista puhdistus?**\n",
+    "confirm7": "Ole hyvä ja vahvista:",
+    "conversation": "📨 ${formatIdentifier(conv.identifier)} keskustelu (${conv.message_count} viestiä)\n",
+    "conversation10": "💡 **Keskusteluhistoriaa ei löytynyt**\n\n",
+    "conversation11": "Jotkut keskusteluhistoriat eivät ehkä ole päivittyneet, ole hyvä ja yritä uudelleen myöhemmin.",
+    "conversation12": "📨 **Viimeisimmät keskustelut:**\n\n",
+    "conversation13": "💬 Sinulla ei ole vielä keskustelurekistereitä\n\n",
+    "conversation14": "💬 Jatka keskustelua: /reply\n",
+    "conversation15": "Sinulla ei ole vielä keskustelurekistereitä.\n\n",
+    "conversation16": "Keskustelu on voinut päättyä tai ei ole olemassa.",
+    "conversation17": "💬 Jatka keskustelua",
+    "conversation18": "Aloita ensimmäinen keskustelu",
+    "conversation2": "💬 **Keskustelu ${formatIdentifier(identifier)} kanssa**\n\n",
+    "conversation3": "• Keskustelu aloitettu: ${formatDate(stats.first_message_time)}\n",
+    "conversation4": "• Keskusteluja: ${conversationsCount?.count || 0}\n",
+    "conversation5": "💬 Vastaa keskusteluun ${conversationIdentifier}",
+    "conversation6": "Avatar-välimuistisi on päivitetty. Uusin avatar näkyy seuraavalla kerralla, kun tarkastelet keskusteluhistoriaa.\n\n",
+    "conversation7": "💡 Suojatakseen yksityisyyttä ja turvallisuutta, vain tavalliset tekstiviestit ovat sallittuja keskusteluissa.\n\n",
+    "conversation8": "Käytä /history nähdäksesi kaikki keskustelut\n\n",
+    "conversation9": "🔄 Päivitetään kaikkia keskusteluhistorioita...\n\n",
+    "country": "Virheellinen maa-koodi: ${trimmedValue} (täytyy olla 2 suurta kirjainta, esim. TW, US, JP)",
+    "country2": "🌍 **Valitse maa/alueesi**\n\n",
+    "country3": "Maa: ${filters.country}",
+    "end": "Loppu: ${endTime.toLocaleString('zh-TW')}\n\n",
+    "end2": "Loppu: ${endTime.toLocaleString(",
+    "female": "Nainen",
+    "free": "Ilmainen",
+    "gender": "👤 Sukupuoli: ${gender}\n",
+    "gender2": "Virheellinen sukupuoliarvo: ${trimmedValue} (täytyy olla mies, nainen tai muu)",
+    "gender3": "👤 Sukupuoli: ${gender}\n",
+    "gender4": "👤 Sukupuoli: ${updatedUser.gender ===",
+    "gender5": "👤 Sukupuoli: ${user.gender ===",
+    "gender6": "Valitse sukupuolesi nyt:\n\n",
+    "gender7": "Muu",
+    "help": "MBTI-persoonallisuustesti voi auttaa meitä löytämään sinulle sopivampia chat-kumppaneita～\n\n",
+    "help2": "❓ Näytä apua - /help",
+    "help3": "• /help - Näytä apua",
+    "invite": "• Kutsujen kokonaismäärä: ${inviteStats?.total || 0}\n",
+    "invite2": "Kutsukoodi: ${user.invite_code }\n",
+    "invite3": "Kutsunut: ${user.invited_by }\n\n",
+    "loading": "✅ Lataa......",
+    "login": "Yleiskäyttäjät eivät voi käyttää palvelua, vain ylläpitäjät voivat kirjautua sisään.",
+    "male": "Mies",
+    "mbti": "Virheellinen MBTI-tyyppi: ${trimmedValue} (on oltava yksi näistä: ${VALID_MBTI.join(', ')})",
+    "mbti10": "✍️ Kirjoita MBTI manuaalisesti",
+    "mbti11": "🧠 MBTI-valikko",
+    "mbti12": "Täydellinen MBTI-testi",
+    "mbti13": "Nopea MBTI-testi",
+    "mbti2": "MBTI-tyyppisi on: **${result.type}**\n\n",
+    "mbti3": "Nykyinen MBTI: **${mbti}**\n",
+    "mbti4": "🧠 **Valitse MBTI-testiversio**\n\n",
+    "mbti5": "🧠 **MBTI-persoonallisuustyypin hallinta**\n\n",
+    "mbti6": "⚙️ Edistyneet suodattimet (MBTI/horoskooppi)",
+    "mbti7": "• Muokkaa MBTI-tyyppiäsi manuaalisesti",
+    "mbti8": "Valitse MBTI-tyyppisi:",
+    "mbti9": "🧠 Ota MBTI-testi uudelleen",
+    "message": "${typeEmoji} **${ad.title}**\n${statusEmoji} Tila: ${status}\n\n📊 **Tilastot**\n• Näytöt: ${stats.total_views}\n• Klikkaukset: ${stats.total_clicks}\n• Klikkausprosentti (CTR): ${stats.ctr}%",
+    "message10": "/broadcast_filter gender=female,age=18-25,country=TW Hei kaikille!\n",
+    "message11": "${banHours} ${user.language_pref === 'en' ? 'tuntia' : '小時'}",
+    "message12": "Aika: ${new Date(b.created_at).toLocaleString('zh-TW')}\n\n",
+    "message13": "Jonossa on ${pendingBroadcasts.results.length - 1} lähetystä odottamassa\n",
+    "message14": "Edistyminen: ${broadcast.sent_count}/${broadcast.total_users}\n",
+    "message15": "${days} ${user.language_pref === 'en' ? 'päivää' : '天'}",
+    "message16": "Kohde: ${getBroadcastTargetName(broadcast.targetType)}\n",
+    "message17": "Tila: ${maintenance.isActive ? '✅ Kuukausihuollossa' : '❌ Ei aktiivinen'}\n",
+    "message18": "🚫 Estetyt URL-osoitteet:\n${urlCheck.blockedUrls?.map((url) =>",
+    "message19": "• Viimeinen viesti: ${formatDate(stats.last_message_time)}\n",
+    "message2": "syntymäpäivä = '2000-01-01',\n ikä = 25,\n horoskooppimerkki = 'Kauris',\n petoksenestopiste = 100,\n ehdot_mukautettu = 1",
+    "message20": "Aika: ${formatDate(conv.last_message_time)}\n\n",
+    "message21": "Arvioitu kesto: ${maintenance.estimatedDuration} minuuttia\n",
+    "message22": "Käytä /broadcast_status ${broadcastId} tarkistaaksesi edistyksen.",
+    "message23": "💡 Pitkä paina viestiä, johon haluat vastata, valitse 'Vastaus' ilmestyvästä valikosta ja syötä sitten vastauksesi chat-ikkunaan.",
+    "message24": "📊 Tänään lähetetty: ${usedToday + 1}/${dailyLimit} viestiä",
+    "message25": "/broadcast_filter zodiac=Skorpioni Exklusiivinen viesti Skorpioneille",
+    "message26": "• Aktivoitu: ${inviteStats?.activated || 0}\n",
+    "message27": "• Odottaa: ${inviteStats?.pending || 0}\n\n",
+    "message28": "/maintenance_enable [huoltoviesti]\n\n",
+    "message29": "Edistyminen: ${b.sent_count}/${b.total_users}\n",
+    "message3": "Edistyminen: ${broadcast.sentCount}/${broadcast.totalUsers} (${progress.percentage}%)\n",
+    "message30": "• Viestejä: ${messagesCount?.count || 0}\n\n",
+    "message31": "• Kumppani lähetti: ${stats.partner_messages} viestiä\n",
+    "message32": "Komentaja - Rohkea, kekseliäs ja vahva johtaja, joka pystyy aina löytämään tai luomaan ratkaisuja.",
+    "message33": "💡 Käytä /broadcast_status <id> nähdäksesi yksityiskohtaiset tiedot",
+    "message34": "🏷️ Kiinnostuksenmerkit: ${updatedUser.interests ||",
+    "message35": "Gubernööri - Ymmärtäväinen, suosittu ja avulias henkilö, joka on aina halukas osallistumaan yhteisöön.",
+    "message36": "/broadcast_filter\n\n",
+    "message37": "**Viestin sisältö:**\n${broadcastMessage}\n\n",
+    "message38": "• Yhteensä viestejä: ${stats.total_messages} viestiä\n",
+    "message39": "Kandidaatti - Innostunut, luova ja sosiaalinen vapaa henki, joka löytää aina syitä hymyillä.",
+    "message4": "💡 Käytä /history ${formatIdentifier(conversations[0].identifier)} nähdäksesi koko keskustelun\n\n",
+    "message40": "Jäljellä oleva aika: ${remaining.remainingText}\n",
+    "message41": "Esittely - Spontaani, energinen ja intohimoinen esittäjä, joka ei ikinä koe elämää tylsäksi.",
+    "message42": "Käyttäjien määrä: ${broadcast.total_users} henkilöä\n",
+    "message43": "• Lähetit: ${stats.user_messages} viestiä\n",
+    "message44": "Välimies - Runollinen, ystävällinen altruisti, joka vääntäytyy jatkuvasti oikeudenmukaisuuden puolesta.",
+    "message45": "Tarkista myöhemmin /broadcast_status komennolla edistyminen.",
+    "message46": "Käyttäjänimi: ${user.nickname }\n",
+    "message47": "• Palkinnot: ${stats.total_rewards}\n\n",
+    "message48": "Yrittäjä - Älykäs, energinen ja oivaltava henkilö, joka todella nauttii elämisestä rajalla.",
+    "message49": "🎁 Palkinto: +${ad.reward_quota} pysyvä kiintiö",
+    "message5": "Aika: ${new Date().toLocaleString('zh-TW', { timeZone: 'Asia/Taipei' })}\n",
+    "message50": "Aika: ${new Date().toLocaleString(",
+    "message51": "Käytä /broadcast_status tarkistaaksesi päivitetty tila.",
+    "message52": "Kohde: ${broadcast.target_type}\n",
+    "message53": "Käytä /broadcast_status tarkistamaan päivitetty tietue.",
+    "message54": "• Jos muutat Telegram-profiilikuvan, järjestelmä havaitsee sen automaattisesti\n",
+    "message55": "Noin ${Math.ceil(totalSeconds)} sekuntia",
+    "message56": "Olemme mahdollistaneet: ${maintenance.enabledBy}\n",
+    "message57": "Logiikkamies - Innovatiivinen keksijä, jolla on tyydyttämätön oppimisen jano.",
+    "message58": "Puolustaja - Hiljainen mutta inspiroiva ja väsymätön idealisti.",
+    "message59": "Vartija - Erittäin keskittynyt ja lämmin suojaaja, joka on aina valmis suojelemaan rakkaitaan.",
+    "message6": "• Näytöt: ${stats.total_views} | Klikkaukset: ${stats.total_clicks} (${stats.ctr}%)\n",
+    "message60": "Tutkija - Joustava ja viehättävä taiteilija, joka on aina valmis tutkimaan ja kokemaan uusia asioita.",
+    "message61": "• Pitkä painallus toisen viestiin vastaamiseksi /block estää tämän käyttäjän\n",
+    "message62": "Varmista, että vastaat toisen osapuolen lähettämään viestiin (jonka tunniste on #).",
+    "message63": "/broadcast_non_vip",
+    "message64": "Perusta ensimmäinen yhteys (pitkä painallus viesti → valitse 'Vastaa')",
+    "message65": "Viesti: ${messagePreview}\n",
+    "message66": "3. Oletko tarkkaavaisempi kohtaessasi epäilyttäviä viestejä?\n\n",
+    "message67": "💡 VIP-käyttäjät voivat lähettää 100 viestiä päivittäin.",
+    "message68": "/broadcast\n\n",
+    "message69": "/broadcast_vip",
+    "message7": "• Vahvistusten määrä: ${stats.total_verified}\n• Vahvistusprosentti: ${stats.verification_rate}%",
+    "message70": "Viimeinen viesti: ${preview}\n",
+    "message71": "Lähetyviestien pituus ei saa ylittää 4000 merkkiä",
+    "message72": "1️⃣ Pitkä painallus toisen viestiin\n",
+    "message73": "Viestit tulee vaihtaa tekstiviestien avulla.",
+    "message74": "(Ei viestejä)\n\n",
+    "message75": "Saat uusimmat uutiset ja tapahtumat",
+    "message76": "Lähetyviestit eivät voi olla tyhjät",
+    "message77": "(Ei viestejä)",
+    "message8": "• Palkintoja jaettu: ${stats.total_rewards}\n• Palkintoprosentti: ${stats.reward_rate}%",
+    "message9": "• Jäljellä olevat katselut: ${ad.max_views - ad.current_views}/${ad.max_views}",
+    "newUser": "Uusi käyttäjä",
+    "next": "Seuraava sivu",
+    "nickname": "💡 Ole hyvä ja syötä yksinkertainen lempinimi, älä sisällytä linkkejä kuten http:// tai https://.\n\n",
+    "nickname10": "Ole hyvä ja syötä uusi lempinimi:\n\n",
+    "nickname11": "• Älä käytä lempinimeä mainosten lähettämiseen",
+    "nickname12": "📝 Muokkaa lempinimeä",
+    "nickname13": "✍️ Mukauta lempinimeä",
+    "nickname2": "Hienoa! Lempinimesi on: ${truncatedNickname}\n\n",
+    "nickname3": "📝 Lempinimi: ${updatedUser.nickname}\n",
+    "nickname4": "📝 Lempinimi: ${user.nickname}\n",
+    "nickname5": "• Lempinimen pituusraja on 36 merkkiä\n",
+    "nickname6": "📝 **Muokkaa lempinimeä**\n\n",
+    "nickname7": "✏️ Valitse lempinimesi:\n\n",
+    "nickname8": "✏️ Anna lempinimesi:\n\n",
+    "nickname9": "Ole hyvä ja kerro minulle lempinimesi (näyttönimi):",
+    "no": "Ei",
+    "none": "Ei mitään",
+    "notRegistered": "Ei rekisteröity",
+    "notSet": "Ei asetettu",
+    "open": "Avaa",
+    "operationFailed": "❌ Ilmeni virhe",
+    "pageInfo": "Sivu {current} / {total}",
+    "prev": "Edellinen sivu",
+    "profile": "👤 Katso profiilia - /profile\n",
+    "profile2": "✏️ **Muokkaa profiilia**\n\n",
+    "profile3": "(Voit myös asettaa sen profiilissasi myöhemmin)",
+    "quota": "💡 Päivitä VIP:ksi saadaksesi lisää kiintiöitä (100 viestiä/päivä): /vip",
+    "quota2": "• 💎 Päivitä VIP:ksi (30 viestiä/päivä)",
+    "quota3": "• 🎁 Kutsu ystäviä (+1 kiintiö per henkilö)\n",
+    "quota4": "• ✨ Suorita tehtäviä (saavuta pysyviä kiintiöitä)\n",
+    "register": "💡 Tämä on nopea testi (${testInfo}), tulokset ovat vain viitteellisiä.\nRekisteröinnin jälkeen voit ottaa sen uudelleen /mbti.\n\n",
+    "register10": "🎉 Onnittelut rekisteröinnin suorittamisesta!\n\n",
+    "register2": "💡 Tämä on täydellinen testi (${testInfo}), tulokset ovat tarkempia.\nRekisteröinnin jälkeen voit ottaa sen uudelleen /mbti.\n\n",
+    "register3": "Rekisteröintivaiheet: ${user.onboarding_step}\n",
+    "register4": "⏰ Rekisteröintiprosessi on aikakatkaistu\n\nOle hyvä ja käytä /start aloittaaksesi rekisteröinnin uudelleen.",
+    "register5": "Tai käytä: /dev_restart (automaattinen rekisteröinnin alku)\n\n",
+    "register6": "💡 Voit nyt aloittaa testirekisteröintiprosessin uudelleen.\n\n",
+    "register7": "🔄 Rekisteröidy uudelleen: /start\n",
+    "register8": "💡 Rekisteröinnin jälkeen voit:\n",
+    "register9": "Rekisteröintiprosessi on suoritettu automaattisesti.\n\n",
+    "report": "🚨 **Ilmoita sopimattomasta sisällöstä** (#${conversationIdentifier})\n\n",
+    "report2": "Useita ilmoituksia",
+    "report3": "💡 Tämä auttaa tarkkaan määrittämään, ketä ilmoittaa.",
+    "report4": "Valitse syy ilmoitukseen:",
+    "selected": "Valittu",
+    "settings": "🧠 MBTI: ${updatedUser.mbti_result } (uudelleen testaaminen saatavilla)",
+    "settings10": "Et ole määrittänyt MBTI-tyyppiäsi.\n\n",
+    "settings11": "Aseta alue",
+    "settings12": "Ei asetettu",
+    "settings13": "Ei asetettu",
+    "settings14": "Ei asetettu",
+    "settings15": "Ei asetettu",
+    "settings16": "Ei asetettu",
+    "settings17": "Ei asetettu",
+    "settings18": "Ei asetettu",
+    "settings19": "Ei asetettu",
+    "settings2": "🏷️ Kiinnostuksen tunnisteet: ${updatedUser.interests}\n",
+    "settings20": "Ei asetettu",
+    "settings21": "Ei asetettu",
+    "settings22": "Ei asetettu",
+    "settings23": "Ei asetettu",
+    "settings24": "Ei asetettu",
+    "settings25": "Ei asetettu",
+    "settings26": "Ei asetettu",
+    "settings27": "Ei asetettu",
+    "settings28": "Ei asetettu",
+    "settings29": "Ei asetettu",
+    "settings3": "🧠 MBTI: \\$ (uusintatesti saatavilla)",
+    "settings30": "Ei asetettu",
+    "settings31": "Ei asetettu",
+    "settings32": "Ei asetettu",
+    "settings33": "Ei asetettu",
+    "settings34": "Ei asetettu",
+    "settings35": "Ei asetettu",
+    "settings4": "🏷️ Kiinnostuksen tunnisteet: ${user.interests}\n",
+    "settings5": "📖 Henkilöprofiili: ${updatedUser.bio}\n",
+    "settings6": "🌍 Sijainti: ${updatedUser.city}\n",
+    "settings7": "📖 Henkilöprofiili: ${user.bio}\n",
+    "settings8": "🌍 Sijainti: ${user.city}\n",
+    "settings9": "Voit konfiguroida uudelleen milloin tahansa käyttämällä /mbti komentoa.",
+    "short": "💡 Voit:\n",
+    "short10": "Työskennellessäsi suosii:",
+    "short100": "Tunteet ja tarinat",
+    "short101": "Tehokkuus ja tulokset",
+    "short102": "Konsensus ja yhtenäisyys",
+    "short103": "Vapaus ja joustavuus",
+    "short104": "Vaihtoehtojen säilyttäminen",
+    "short105": "Lisää rivi",
+    "short106": "Testitulokset",
+    "short107": "Kuuntele ennen puhumista",
+    "short108": "Pieni ja intiimi",
+    "short109": "Tiimityö",
+    "short11": "Lukiessasi, suosii:",
+    "short110": "Itsenäinen työ",
+    "short111": "Ajattele puhuessasi",
+    "short112": "Pureskele yksin",
+    "short113": "Käytännön soveltaminen",
+    "short114": "Innovatiiviset ideat",
+    "short115": "Uudet yritykset",
+    "short116": "Onko se järkevää?",
+    "short117": "Onko se hyödyllistä?",
+    "short118": "Pysy periaatteissa",
+    "short119": "Ylläpidä suhteita",
+    "short12": "Työssäsi, mitä arvostat enemmän:",
+    "short120": "Reilu ja päättäväinen",
+    "short121": "Ajatteleva ja huolehtiva",
+    "short122": "Siisti ja järjestelmällinen",
+    "short123": "Rennosti ja vapaasti",
+    "short124": "Nopeat päätökset",
+    "short125": "Tunnet ahdistusta",
+    "short126": "Tunnet innostusta",
+    "short127": "Vieraile linkissä",
+    "short128": "Tilaa kanava",
+    "short129": "Pankkitili",
+    "short13": "Kun suunnittelet tulevaisuutta, sinä:",
+    "short130": "Huom:",
+    "short131": "Lähettäminen",
+    "short132": "Luottokortti",
+    "short133": "Bitcoin",
+    "short134": "Lisää WeChat",
+    "short135": "Lisää QQ",
+    "short136": "Puhelinnumero",
+    "short137": "Ota yhteyttä minuun",
+    "short138": "Yhden yön juttu",
+    "short139": "Seksipalvelut",
+    "short14": "Analysoi ongelmat ja tarjoa ehdotuksia",
+    "short140": "Huijaus",
+    "short141": "Sijoitus",
+    "short142": "Ansaita rahaa",
+    "short143": "Rahansiirto",
+    "short144": "Siirto",
+    "short145": "Salasana",
+    "short146": "Pyramidihuijaus",
+    "short147": "Rahoitus",
+    "short148": "Varallisuuden hallinta",
+    "short149": "Osakkeet",
+    "short15": "Kun kohtaat muutoksia, toimit yleensä:",
+    "short150": "Futuurit",
+    "short151": "Valuuttakauppa",
+    "short152": "Puhelin",
+    "short153": "Rento deittailu",
+    "short154": "Palkattu seura",
+    "short155": "Itsemurha",
+    "short156": "Hyppäämistä rakennuksesta",
+    "short157": "Väkivalta",
+    "short158": "Ei asetettu",
+    "short159": "Ei luotu",
+    "short16": "Kiitos tuestasi! ❤️",
+    "short160": "Testikäyttäjä",
+    "short161": "Testaaja",
+    "short162": "Tulokset ovat tarkempia",
+    "short163": "Huomioitavaa",
+    "short164": "Liity ryhmään",
+    "short165": "Katso tiedot",
+    "short17": "Auta muita käyttäjiä ymmärtämään sinua paremmin",
+    "short18": "Onko tämä oikein?\n\n",
+    "short19": "🗑️ Poista luonnos",
+    "short2": "🌈 Kuka tahansa voi",
+    "short20": "🏷️ Muokkaa kiinnostuksen kohteita",
+    "short21": "Valitse testiversio:",
+    "short22": "Työtapasi on:",
+    "short23": "Aseta selkeä määräaika",
+    "short24": "Tutustu nopeasti",
+    "short25": "Tarvitsee aikaa tottua siihen",
+    "short26": "Kun olet stressaantunut, teet:",
+    "short27": "Listaa suunnitellut ostokset",
+    "short28": "Jumitettu (yrityksiä)",
+    "short29": "✏️ Muokkaa sisältöä",
+    "short3": "✏️ Jatka tietojen muokkaamista",
+    "short30": "📖 Muokkaa profiilia",
+    "short31": "🌍 Muokkaa sijaintia",
+    "short32": "💝 Täsmää mieltymyksiin",
+    "short33": "Päivitetään...",
+    "short34": "🔞 Aikuisille tarkoitettu sisältö",
+    "short35": "Aloita keskustelu muiden kanssa",
+    "short36": "Odota, että muut lähestyvät minua",
+    "short37": "Viikonloppuisin, mieluummin:",
+    "short38": "Käytännön kokemus ja faktat",
+    "short39": "Askeltava lähestymistapa",
+    "short4": "📝 Toista testi",
+    "short40": "Tutki innovatiivisia keinoja",
+    "short41": "Logiikka ja objektiivinen analyysi",
+    "short42": "Tuntemukset ja ihmissuhteiden harmonia",
+    "short43": "Suunnittele ja valmistaudu etukäteen",
+    "short44": "Ole sopeutuva ja joustava",
+    "short45": "Pidä vaihtoehtoja auki",
+    "short46": "Käytä metaforia ja analogioita",
+    "short47": "Kuuntele ja tarjoa lohdutusta",
+    "short48": "Huoneesi on yleensä:",
+    "short49": "Ostoksia tehdessä, teet:",
+    "short5": "📝 Ota nopea testi",
+    "short50": "Auta muita ymmärtämään sinua paremmin",
+    "short51": "Löydä ystäviä samasta kaupungista",
+    "short52": "Tutustu muiden tarinoihin",
+    "short53": "Vähintään 20 sanaa",
+    "short54": ": Aktiivinen ottelu,",
+    "short55": "Nainen (oletus)",
+    "short56": "Mies (oletus)",
+    "short57": "Tulokset ovat vain viitteenä",
+    "short58": "Voit:\n",
+    "short59": "Käydä aikaa ystävien kanssa",
+    "short6": "Vaaditaan vähintään yksi suodatin",
+    "short60": "Levätä yksin kotona",
+    "short61": "Tuntea itsensä energiseksi",
+    "short62": "Tuntea tarpeen levätä",
+    "short63": "Intuitio ja mahdollisuudet",
+    "short64": "Keskittyä erityisiin yksityiskohtiin",
+    "short65": "Keskittyä kokonaiskonseptiin",
+    "short66": "Osoittaa ongelmat suoraan",
+    "short67": "Otta huomioon muiden tunteet",
+    "short68": "Laatia tarkka aikataulu",
+    "short69": "Tutkia vapaasti",
+    "short7": "Uusi käyttäjä******",
+    "short70": "Jakaa mielipiteitäsi aktiivisesti",
+    "short71": "Ystäväpiirisi:",
+    "short72": "Laaja mutta ei syvä",
+    "short73": "Tulevaisuus ja mahdollisuudet",
+    "short74": "Käytä erityisiä esimerkkejä",
+    "short75": "Vahvistetut menetelmät",
+    "short76": "Perustuu realistisiin olosuhteisiin",
+    "short77": "Kuvitella erilaisia mahdollisuuksia",
+    "short78": "Säännöllisyys ja rakenne",
+    "short79": "Sisällyttää herkkää sanastoa",
+    "short8": "Kun kritisoit muita, teet näin:",
+    "short80": "Täytä kiinnostustunnisteet",
+    "short81": "Paranna esittelyäsi",
+    "short82": "Liity viralliseen kanavaan",
+    "short83": "Kirjoita tarinasi ylös",
+    "short84": "👨 Mies",
+    "short85": "👩 Nainen",
+    "short86": "👨 Mies",
+    "short87": "👩 Nainen",
+    "short88": "Arvosteluaika:",
+    "short89": "❓ Epävarma",
+    "short9": "Kun matkustat, sinulla on taipumus:",
+    "short90": "Arvostat enemmän:",
+    "short91": "Oikeudenmukaisuus ja oikeus",
+    "short92": "Myötätunto ja ymmärrys",
+    "short93": "Pohdi ennen kuin puhut",
+    "short94": "Jutella ystävien kanssa",
+    "short95": "Käytännön oppaat",
+    "short96": "Teoriat ja käsitteet",
+    "short97": "Nyt ja menneisyys",
+    "short98": "Luotat enemmän:",
+    "short99": "Faktoja ja tietoja",
+    "start": "Aloitusaika: ${new Date(maintenance.startTime).toLocaleString('zh-TW')}\n",
+    "start10": "Aloita →",
+    "start2": "Aloitusaika: ${new Date(broadcast.startedAt).toLocaleString('zh-TW')}\n",
+    "start3": "Aloita: ${startTime.toLocaleString('zh-TW')}\n",
+    "start4": "Aloitus aika: ${broadcast.started_at}\n\n",
+    "start5": "Aloita: ${startTime.toLocaleString(",
+    "start6": "🎉 **Valmis! Aloita ystävien tekeminen nyt～**\n\n",
+    "start7": "📺 Aloita mainosten katsominen\n",
+    "start8": "Aloita matkasi ystävien tekemiseen",
+    "start9": "💡 Käytä /ad_stats {id} nähdäksesi yksityiskohtaiset tilastot",
+    "stats": "💡 Käytä /ad_stats {id} nähdäksesi yksityiskohtaiset tilastot",
+    "stats2": "• /stats - Katso tilastoja\n\n",
+    "stats3": "📊 **Viralliset mainostilastot**\n",
+    "stats4": "📊 **Viralliset mainostilastot**\n\n",
+    "stats5": "Tilastot:\n",
+    "stats6": "Osto onnistui\n",
+    "success": "❌ Järjestelmässä on tapahtunut virhe",
+    "systemError": "🎉 Onneksi olkoon tehtävän suorittamisesta: Liity viralliselle kanavalle!",
+    "task": "🎉 Onnittelut tehtävän suorittamisesta: Liity viralliseen kanavaan!\n\n",
+    "task2": "• /tasks - Näytä Tehtäväkeskus",
+    "task3": "💡 Käytä /tasks nähdäksesi lisää tehtäviä\n",
+    "task4": "Tehtäviä käsitellessäsi:",
+    "task5": "📋 Näytä Tehtävät",
+    "task6": "📋 Näytä tehtävät",
+    "text": "Tavoite: ${broadcast.target_type}\n",
+    "text10": "💡 Ole hyvä ja syötä sisältö alla olevaan boksiin",
+    "text100": "Tämä saattaa kestää hetken, ole hyvä ja odota.",
+    "text101": "Voit käyttää seuraavia komentoja milloin tahansa:",
+    "text102": "🛠️ Järjestelmähuollon ilmoitus\n",
+    "text103": "🛠️ Järjestelmähuoltoilmoitus\n\n",
+    "text104": "🛠️ Huoltotilan tila\n\n",
+    "text105": "Kun arvioit ideaa, mietit ensin:",
+    "text106": "⏱️ Noin 5-8 minuuttia\n",
+    "text107": "⏱️ Noin 5-8 minuuttia\n",
+    "text108": "📚 Haluan oppia lisää turvallisuustiedosta",
+    "text109": "Lähetä heti (noin 1-2 sekuntia)",
+    "text11": "${daysAgo} päivää sitten",
+    "text110": "2️⃣ Valitse 'Vastaus'\n",
+    "text111": "• Vähintään 5 merkkiä\n",
+    "text112": "• Vähintään 5 merkkiä\n",
+    "text113": "Ole hyvä ja syötä alueesi:\n",
+    "text114": "Ole hyvä ja syötä alueesi:\n\n",
+    "text115": "• Enintään 5 tagia",
+    "text116": "📋 Nopea versio (12 kysymystä)\n",
+    "text117": "📚 Täysi versio (36 kysymystä)",
+    "text118": "📚 Täysi versio (36 kysymystä)",
+    "text119": "Pääjohtaja - Erityinen johtaja, joka ei vertaa asioiden tai henkilöstön käsittelyssä.\n",
+    "text12": "💡 **Vinkki:**",
+    "text120": "Kun opit uusia asioita, pidät seuraavista:\n",
+    "text121": "**Vaiheet:**",
+    "text122": "🇺🇳 Käytä Yhdistyneiden Kansakuntien lippua\n",
+    "text123": "Haluatko lähettää tämän luonnoksen suoraan?",
+    "text124": "Tämä saattaa kestää muutaman sekunnin.",
+    "text125": "Tämä saattaa kestää muutaman sekunnin.",
+    "text126": "Kiitos kärsivällisyydestäsi!",
+    "text127": "Huollon kesto on vähintään 5 minuuttia.",
+    "text128": "Sosiaalisissa tilanteissa toimit yleensä:",
+    "text129": "Ongelmia ratkaistaessa luot enemmän:",
+    "text13": "💡 Tämä tulee näkymään profiilikortissasi antaaksesi muille käyttäjille paremman käsityksen sinusta.\n",
+    "text130": "Tiimissä toimit yleensä:",
+    "text131": "Ongelmaa ajatellessasi suuntaudut enemmän:",
+    "text132": "Kuvailtaessa asioita suuntaudut yleensä:",
+    "text133": "Kun ystävät luottavat sinulle, teet:",
+    "text134": "Tiimipäätöksenteossa keskityt enemmän:",
+    "text135": "Usko, että hyvän johtajan tulisi:",
+    "text136": "Tavoite: Kaikki käyttäjät\n",
+    "text137": "✏️ Ole hyvä ja syötä uusi sisältö",
+    "text138": "💰 Petos / Kalastelu",
+    "text139": "😡 Häirintä / Väkivalta",
+    "text14": "Kieli: ${user.language_pref}\n",
+    "text140": "Kokoontumisen jälkeen toimit yleensä:",
+    "text141": "Päätöksiä tehdessä arvostat enemmän:",
+    "text142": "Kun tapaat uusia ystäviä, teet:",
+    "text143": "Riidoissa toimit yleensä:",
+    "text144": "Olet helpommin vakuutettavissa:",
+    "text145": "Suosimasi elämäntapa:",
+    "text146": "Päätöksiä tehdessä suuntaudut enemmän:",
+    "text147": "Sattumanvaraisesti selailen ja ostan, mitä tykkään",
+    "text148": ")} vanhentumassa.\n\n",
+    "text149": "📋 Oikeudelliset asiakirjat on annettu vain englanniksi.",
+    "text15": "🌍 Alue: ${updatedUser.city ||",
+    "text150": "📋 Oikeudelliset asiakirjat on annettu vain englanniksi.",
+    "text16": "✅ Vahvistus tarvitaan: Napsauta 'Vahvista'-painiketta liityttyäsi ryhmään/kanavaan",
+    "text17": "Kohdekäyttäjämäärä: ${userIds.length}\n\n",
+    "text18": "Arvioitu aika: ${estimatedTime}\n\n",
+    "text19": "/broadcast_cleanup vahvista",
+    "text2": "Käytä /broadcast_filter nähdäksesi oikean muodon.",
+    "text20": "💝 Matchauspreferenssi: ${matchPrefText}\n",
+    "text21": "Puhuja - Älykäs ja utelias ajattelija, joka ei voi vastustaa älyllisiä haasteita.",
+    "text22": "Kirjoita tunteesi tai ajatuksesi, ja järjestelmä auttaa sinua löytämään oikean henkilön\n\n",
+    "text23": "Logistiikkaspesialisti - Käytännöllinen ja faktoihin keskittyvä henkilö, luotettavuus on kiistaton.",
+    "text24": "Asiantuntija - Rohkea ja käytännöllinen kokeilija, joka hallitsee erilaisten työkalujen käytön.",
+    "text25": "💡 Tämä on kertaluonteinen palkinto, joka lisätään tänään annettuun kiintiöön sen jälkeen, kun se on haettu.",
+    "text26": "Matchattujen käyttäjien määrä: ${totalUsers} henkilöä\n",
+    "text27": "• Oletusarvoisesti vastakkaista sukupuolta (miehet etsivät naisia, naiset etsivät miehiä)\n",
+    "text28": "Tila: ${progress.status}\n",
+    "text29": "${daysAgo} tuntia sitten",
+    "text3": "**Suodatuskriteerit:**\n${filtersDesc}\n\n",
+    "text30": "Noin ${remainingMinutes} minuuttia",
+    "text31": "Noin ${hours} tuntia ${mins} minuuttia",
+    "text32": "Huollon kesto ei voi ylittää 24 tuntia (1440 minuuttia)",
+    "text33": "Käyttäjien määrä: ${totalUsers} henkilöä\n",
+    "text34": "Tavoite: ${b.target_type}\n",
+    "text35": "Suodatuskriteerit: ${filtersDesc}\n",
+    "text36": "• Vähintään 4 merkkiä, enintään 36 merkkiä\n",
+    "text37": "🇺🇳 Jos ei löytynyt, voit valita 'Yhdistyneiden kansakuntien lippu'",
+    "text38": "📖 Henkilökohtainen profiili: ${user.bio ||",
+    "text39": "Ole hyvä ja syötä kiinnostustagisi (erotettuna pilkuilla):\n\n",
+    "text4": "/maintenance_enable 60 Järjestelmän päivityksen huolto",
+    "text40": "• Esimerkiksi: musiikki, elokuvat, matkustaminen, ruoka\n",
+    "text41": "Palvelu on jatkunut normaalisti, kiitos kärsivällisyydestäsi!\n\n",
+    "text42": "🌍 Alue: ${user.city ||",
+    "text43": "Lähde: ${sourceText}\n\n",
+    "text44": "Tuntematon suodatin: ${trimmedKey}",
+    "text45": "Järjestelmä on huollossa ja tilapäisesti poissa käytöstä.\n\n",
+    "text46": "Inferoimme sijaintisi kieliasetustesi perusteella:\n",
+    "text47": "• Jokaisessa tagissa voi olla enintään 20 merkkiä\n\n",
+    "text48": "Kesto: ${duration} minuuttia\n",
+    "text49": "1. Oletko tietoinen nettideittailun turvallisuusriskeistä?\n",
+    "text5": "👋 Tervetuloa takaisin, ${user.nickname}!\n\n",
+    "text50": "2. Suojatko henkilökohtaisia tietojasi?\n",
+    "text51": "Loistavaa! Nyt lataa profiilikuva:\n\n",
+    "text52": "🌊 **Mikä on XunNi?**\n",
+    "text53": "🎉 Huomattiin, että olet liittynyt viralliseen kanavaan!\n\n",
+    "text54": "💡 Tämä antaa sinun tarkasti määrittää, ketä estää.",
+    "text55": "Tila: ${statusText}\n",
+    "text56": "💡 Voit nyt suoraan testata ydintoimintoja:\n",
+    "text57": "Millaisen keskustelukumppanin etsit?\n\n",
+    "text58": "• Esittele kiinnostuksen kohteesi, luonteesi tai mitä tahansa haluat sanoa\n",
+    "text59": "🏷️ **Muokkaa kiinnostustageja**\n\n",
+    "text6": "Arkkitehti - Kuvitteleva ja strateginen ajattelija, kaikki on suunniteltu.",
+    "text60": "Turvallisuuden vuoksi seuraavilta verkkotunnuksilta tulevat linkit ovat sallittuja:\n",
+    "text61": "📋 **Nopea versio (12 kysymystä)**\n",
+    "text62": "📚 **Koko versio (36 kysymystä)**\n",
+    "text63": "• Profiilikuva päivittyy automaattisesti joka 7. päivä\n",
+    "text64": "3️⃣ Syötä /report\n\n",
+    "text65": "3️⃣ Syötä /block\n\n",
+    "text66": "Tila: ${b.status}\n",
+    "text67": "Ei käsitellä enää automaattisesti tai lähetetä uudelleen\n\n",
+    "text68": "📖 **Muokkaa profiilia**\n\n",
+    "text69": "💝 **Aseta yhteensopivuusasetukset**\n\n",
+    "text7": "Päähenkilö - Karismaattinen ja inspiroiva johtaja, joka kykenee lumomaan yleisön.",
+    "text70": "💬 **Keskusteluhistoria**\n\n",
+    "text71": "• Voit myös manuaalisesti päivittää tämän komennon avulla milloin tahansa",
+    "text72": "📊 **Päivittäinen data-analyysiraportti**\n",
+    "text73": "Tilisi on palautettu ilmaisjäsenyyteen.\n\n",
+    "text74": "💡 Tämä tulee näkymään profiilikortillasi\n",
+    "text75": "🔧 Kehittäjätila: Käyttäjätiedot\n\n",
+    "text76": "• Syötä suoraan uusi sisältö korvaamaan luonnos\n",
+    "text77": "• Linkit, kuvat ja multimedia eivät ole sallittuja\n",
+    "text78": "• Näytettävän tekstin pituus voi olla enintään 18 merkkiä\n",
+    "text79": "• Vastapuoli voi näyttää enintään 18 merkkiä\n",
+    "text8": "/broadcast Järjestelmä on huollossa tänä iltana klo 22:00",
+    "text80": "💡 Ole hyvä ja poista nämä linkit ja lähetä uudelleen.",
+    "text81": "🔄 Päivitän profiilikuvaa...\n\n",
+    "text82": "• Ilmaiset käyttäjät näkevät sumean profiilikuvan\n",
+    "text83": "💬 **Kuinka tulla ystäviksi?**\n",
+    "text84": "Virheellinen suodatinmuoto: ${pair}",
+    "text85": "Kaikki tietosi on poistettu.\n\n",
+    "text86": "📝 **Luonnossisältö**\n\n",
+    "text87": "🌍 **Muokkaa sijaintia**\n\n",
+    "text88": "• Esimerkiksi: Taipei, Hongkong, Tokio\n",
+    "text89": "• Enintään 50 merkkiä\n\n",
+    "text9": "🏷️ Kiinnostuksen kohteet: ${user.interests ||",
+    "text90": "Tietoa ${minutes} minuuttia",
+    "text91": "Kirjoita tarinasi (vähintään 20 merkkiä)",
+    "text92": "Haetaan käyttäjiä, jotka vastaavat kriteerejä...",
+    "text93": "• Enintään 250 merkkiä\n",
+    "text94": "• Älä sisällytä henkilökohtaisia yhteystietoja\n",
+    "text95": "Ole hyvä ja valitse muokattava kohde:\n\n",
+    "text96": "Ole hyvä ja syötä henkilökohtainen profiilisi:\n\n",
+    "text97": "• Enintään 200 merkkiä\n",
+    "text98": "• Vältä yhteystietojen mukaan ottamista\n\n",
+    "text99": "Kaikki toiminnot toimivat nyt normaalisti.",
+    "throw": "⏰ Pullon heittoprosessi on aikakatkaistu\n\nKäytä /throw aloittaaksesi uudelleen.",
+    "throw2": "Pullon heittoprosessi",
+    "uncertain": "❓ Ei ole varma",
+    "unknownOption": "⚠️ Tuntematon vaihtoehto",
+    "unlimited": "Ei rajoitusta",
+    "userNotFound": "❌ Käyttäjää ei ole olemassa",
+    "vip": "VIP-tilauksesi on päättynyt ${expireDate} .\n\n",
+    "vip10": "😢 **VIP-tilaus on päättynyt**\n\n",
+    "vip11": "• Päivittäminen VIP:ksi päivittää automaattisesti aiemmat julkaisut",
+    "vip12": "⭐ Päivitä VIP:ksi - /vip\n",
+    "vip13": "💎 VIP-käyttäjät eivät tarvitse katsella mainoksia",
+    "vip14": "Kohteena: Ei-VIP-käyttäjät\n",
+    "vip15": "Kohteena: VIP-käyttäjät\n",
+    "vip16": "Ei-VIP-käyttäjät",
+    "vip17": "VIP-käyttäjät",
+    "vip2": "VIP-tilauksesi on vanhentunut ${new Date(user.vip_expire_at).toLocaleDateString(",
+    "vip3": "/broadcast_filter vip=true,mbti=INTJ VIP-exklusivinen tapahtumatieto\n",
+    "vip4": "Jokaiselle kutsutulle henkilölle päivittäinen kiintiö kasvaa pysyvästi +1 (ilmainen jopa 10 henkilöä, VIP jopa 100 henkilöä)",
+    "vip5": "VIP: ${user.is_vip ? 'Kyllä' : 'Ei'}\n",
+    "vip6": "💡 Päivitä VIP:ksi edistyksellistä suodatusta varten (MBTI/horoskooppi): /vip",
+    "vip7": "💡 Voit tilata VIP-tilauksen uudelleen milloin tahansa: /vip\n\n",
+    "vip8": "💡 Veriryhmää voidaan käyttää VIP-veriryhmän yhteensovittamisominaisuudessa\n\n",
+    "vip9": "• VIP-käyttäjät voivat nähdä selkeät profiilikuvat\n",
+    "yes": "Kyllä",
+    "zodiac": "Virheellinen horoskooppi: ${trimmedValue} (pitää olla yksi: ${VALID_ZODIACS.join(', ')})"
+  },
+  "conversation": {
+    "age": "🎂 Ikäryhmä: ${ageRange} vuotta\n",
+    "anonymousCardHint": "💡 Tämä on anonyymi tietokortti, eikä se paljasta toisen osapuolen todellista henkilöllisyyttä.",
+    "backToMenuCommand": "🏠 Palaa päävalikkoon: /menu",
+    "ban": "• Useat ilmoitukset voivat johtaa kieltoon\n",
+    "blockConfirmButton": "✅ Vahvista estäminen",
+    "blockConfirmMessage": "Estetty:\n• Toinen osapuoli ei voi enää lähettää sinulle viestejä\n• Sinua ei enää yhdistetä\n• Tämä keskustelu päättyy heti\n\n💡 Tämä ei raportoida toista osapuolta, vaan tarkoittaa vain, että et halua keskustella enää.",
+    "blockConfirmTitle": "🚫 **Oletko varma, että haluat estää tämän käyttäjän?**",
+    "blockSuccessMessage": "Toinen osapuoli on estetty, etkä enää saa yhdistettäjä.\n\n💡 Haluatko aloittaa uuden keskustelun?\n• Käytä /catch saadaksesi uuden pullopostin",
+    "blockSuccessNewConversation": "💬 **Keskustelu Päättynyt**\n\nToinen osapuoli on päättänyt tämän keskustelun.\n\n💡 Haluatko aloittaa uuden keskustelun?\n• Käytä /catch saadaksesi uuden pullopostin",
+    "blockSuccessTitle": "✅ **Käyttäjä on estetty**",
+    "blocked": "✅ Estetty",
+    "bloodType": "🩸 Verityyppi: ${partnerInfo.bloodType}\n",
+    "bloodType2": "🩸 Verityyppi: ${bloodTypeText}\n",
+    "bottle": "Käytä /catch napataaksesi pulloposti ja aloittaaksesi keskustelun!\n\n",
+    "bottle2": "• Käytä /catch saadaksesi uuden pullopostin",
+    "cancelButton": "❌ Peruuta",
+    "cancelSuccess": "Peruttu",
+    "conversation": "💬 Keskusteluhistoria #${identifier} (Sivu ${postNumber})\n\n",
+    "conversation10": "Tällä hetkellä ei ole keskusteluja.\n\n",
+    "conversation11": "• Tämä keskustelu päättyy heti\n",
+    "conversation2": "💬 **Keskustelulistani** (${conversations.length})\n\n",
+    "conversation3": "💡 Klikkaa 'Vastaa' painiketta toisen osapuolen viestissä jatkaaksesi keskustelua\n",
+    "conversation4": "💬 **Keskustelu päättynyt**\n\n",
+    "conversation5": "💬 **Keskusteluni**\n\n",
+    "conversation6": "💡 Haluatko aloittaa uuden keskustelun?\n",
+    "conversation7": "• Tämä keskustelu päättyy heti\n\n",
+    "conversation8": "Toinen osapuoli on päättänyt tämän keskustelun.\n\n",
+    "conversation9": "💡 Tämä on keskusteluhistoria\n",
+    "conversationEnded": "❌ Tämä keskustelu on päättynyt.\n\nKäytä /catch saadaksesi uuden pullopostin aloittaaksesi uuden keskustelun.",
+    "conversationInfoError": "❌ Keskustelutiedot ovat virheelliset.",
+    "editProfileCommand": "✏️ Muokkaa Profiilia: /edit_profile",
+    "endedMessage": "Toinen osapuoli on päättänyt tämän keskustelun.\n\n💡 Haluatko aloittaa uuden keskustelun?\n• Käytä /catch saadaksesi uuden pullopostin",
+    "endedNewConversation": "💬 **Keskustelu Päättynyt**\n\nToinen osapuoli on päättänyt tämän keskustelun.\n\n💡 Haluatko aloittaa uuden keskustelun?\n• Käytä /catch saadaksesi uuden pullopostin",
+    "endedTitle": "💬 **Keskustelu Päättynyt**",
+    "gender": "👤 Sukupuoli: ${gender}\n",
+    "mediaRestriction": "⚠️ **Kuvien, videoiden tai multimediaelementtien lähettäminen ei ole sallittua**\n\n💡 Yksityisyyden ja turvallisuuden suojelemiseksi vain puhtaat tekstiviestit ovat sallittuja keskustelussa.\n\nOle hyvä ja kommunikoi toisen osapuolen kanssa tekstiviestein.",
+    "message": "💫 Match-pistemäärä: ${score} pistettä\n",
+    "message10": "conv_profile_${conversationId}",
+    "message11": "• Viimeinen viesti: ${lastMessageTime}\n\n",
+    "message12": "📊 Yhteensä Viestejä: ${totalMessages} viestiä\n",
+    "message13": "💬 Paina /reply vastataksesi viesteihin\n",
+    "message14": "• Toinen osapuoli ei voi enää lähettää sinulle viestejä\n",
+    "message2": "📜 Jatka katsomista: #${identifier}-H${newPostNumber}",
+    "message3": "📅 Viimeksi päivitetty: ${formatDateTime(new Date())}\n\n",
+    "message4": "[${timeStr}] Lähettäjä: \n${messageContent}\n\n",
+    "message5": "conv_report_confirm_${conversationId}",
+    "message6": "conv_block_confirm_${conversationId}",
+    "message7": "• Viestimäärä: ${conv.message_count} viestiä\n",
+    "message77": "💬 Käytä /reply vastataksesi viesteihin",
+    "message8": "🏷️ Kiinnostuksen kohteet: ${otherUser.interests}\n",
+    "message9": "💬 Uusi viesti #${identifier}:\n\n",
+    "nickname": "📝 Nimimerkki: ${partnerInfo.maskedNickname}\n",
+    "nickname2": "📝 Nimimerkki: ${displayNickname}\n",
+    "noHistory": "💬 Sinulla ei ole vielä keskusteluhistoriaa\n\nKäy heittämässä pullo tavataksesi uusia ystäviä! /throw\n\n🏠 Takaisin päävalikkoon: /menu",
+    "profile": "✏️ Muokkaa Profiilia: /edit_profile\n",
+    "profileCardTitle": "👤 **Toisen osapuolen profiilitekardi**",
+    "replyButton": "💬 Vastaa viestiin",
+    "replyConversation": "💬 Vastaa keskusteluun {identifier}",
+    "replyHint": "💡 Ole hyvä ja syötä sisältö alas olevaan kenttään",
+    "replyMethod1": "1️⃣ Napsauta alla olevaa '💬 Vastaa viestiin' -painiketta",
+    "replyMethod2": "2️⃣ Pidä tätä viestiä painettuna, valitse 'Vastaa', ja syötä sitten sisältö",
+    "replyMethodsTitle": "💡 **Kaksi tapaa vastata:**",
+    "report": "🚨 **Oletko varma, että haluat raportoida tämän käyttäjän?**\n\n",
+    "report2": "💡 Tämä ei raportoita toista osapuolta, vaan merkitsee, ettet halua keskustella enää.",
+    "report3": "Kiitos raportistasi, tarkastelemme sitä mahdollisimman pian.\n\n",
+    "report4": "Raportoinnin jälkeen:\n",
+    "reportConfirmButton": "✅ Vahvista raportti",
+    "reportConfirmMessage": "Raportoinnin jälkeen:\n• Tarkastamme tämän käyttäjän käyttäytymisen\n• Useat raportit voivat johtaa kieltoon\n• Tämä keskustelu päättyy välittömästi\n• Et tule enää saamaan ottamatta yhteyttä tähän käyttäjään 24 tunnin sisällä\n\n💡 Varmista, että toisella osapuolella on sopimatonta käytöstä.",
+    "reportConfirmTitle": "🚨 **Oletko varma, että haluat raportoida tämän käyttäjän?**",
+    "reportSuccessMessage": "Kiitos raportistasi, tarkastamme sen mahdollisimman pian.\n\n💡 Haluatko aloittaa uuden keskustelun?\n• Käytä /catch ottaaksesi uuden pullopostin",
+    "reportSuccessNewConversation": "💬 **Keskustelu päättynyt**\n\nToinen osapuoli on päättänyt tämän keskustelun.\n\n💡 Haluatko aloittaa uuden keskustelun?\n• Käytä /catch ottaaksesi uuden pullopostin",
+    "reportSuccessTitle": "✅ **Tämä käyttäjä on raportoitu**",
+    "reported": "✅ Raportoitu",
+    "separator": "━━━━━━━━━━━━━━━━",
+    "settings": "🧠 MBTI: ${otherUser.mbti_result}\n",
+    "settings2": "Ei asetettu",
+    "settings3": "Ei asetettu",
+    "settings4": "Ei asetettu",
+    "settings5": "Ei asetettu",
+    "short": "Estämisen jälkeen:\n",
+    "short2": "Tuntematon käyttäjä",
+    "short3": "Juuri nyt",
+    "stats": "📊 Käytä /stats nähdäksesi yksityiskohtaiset tilastot\n",
+    "text": "💡 Tämä on nimettömä data-kortti eikä paljasta toisen osapuolen todellista henkilöllisyysinformaatioita.\n\n",
+    "text10": "💎 Käytä /vip saadaksesi lisätietoja\n\n",
+    "text11": "👤 **Toisen osapuolen data-kortti**\n\n",
+    "text12": "${diffHours} tuntia sitten",
+    "text13": "💡 Varmista, että toisella osapuolella on sopimatonta käytöstä.",
+    "text14": "${diffMins} minuuttia sitten",
+    "text15": "• Tarkastamme tämän käyttäjän käyttäytymisen\n",
+    "text16": "💎 Käytä /vip saadaksesi lisätietoja",
+    "text17": "${diffDays} päivää sitten",
+    "text18": "• Et enää saa ottamatta yhteyttä toisiinne\n",
+    "text19": "👤 Toisen osapuolen tiedot:\n",
+    "text2": "📜 Näytä historia: #${identifier}\n",
+    "text3": "🗣️ Kieli: ${languageLabel}\n",
+    "text4": "🌍 Alue: ${otherUser.city}\n",
+    "text5": "📖 Bio: ${otherUser.bio}\n",
+    "text6": "conv_reply_${identifier}",
+    "text7": "🚫 **Oletko varma, että haluat estää tämän käyttäjän?**\n\n",
+    "text8": "Toinen käyttäjä on estetty, etkä enää tule saamaan tätä osapuolta.\n\n",
+    "text9": "• Et tule enää vastaamaan tähän käyttäjään 24 tuntiin\n\n",
+    "vip": "🔒 Päivitä VIP:ksi saadaksesi selkeämmän profiilikuva toisen käyttäjän\n",
+    "vip2": "🔒 Päivitä VIP:ksi avataksesi toisen osapuolen selkeän profiilikuva\n",
+    "vipLearnMore": "💎 Käytä /vip saadaksesi lisätietoja",
+    "vipUnlockAvatar": "🔒 Päivitä VIP:ksi, jotta voit avata selkeämmät profiilikuvat",
+    "zodiac": "⭐ Horoskooppi: ${partnerInfo.zodiac}\n",
+    "zodiac2": "⭐ Horoskooppi: ${zodiacLabel}\n"
+  },
+  "conversationHistory": {
+    "backToMenu": "🏠 Palaa päävalikkoon: /menu",
+    "bloodType": "🩸 Veriryhmä: ${bloodType}",
+    "continueView": "📜 Jatka katselua: #${identifier}-H${postNumber}",
+    "historyNote": "💡 Tämä on keskusteluhistoria",
+    "lastUpdated": "📅 Viimeksi päivitetty: ${time}",
+    "matchScore": "💫 Yhteensopivuus: ${score} pistettä",
+    "mbti": "🧠 MBTI: ${mbti}",
+    "messageEntry": "[${time}] Kumppani:\n${content}",
+    "newMessage": "💬 Uusi viesti #${identifier}:",
+    "nickname": "📝 Nimimerkki: ${nickname}",
+    "other": "Kumppani",
+    "partnerInfo": "👤 Kumppanin tiedot:",
+    "replyButton": "💬 Vastaa viestiin",
+    "replyHint": "💬 Vastaa suoraan viestiin painamalla /reply",
+    "title": "💬 Keskusteluhistoria #${identifier} (Sivu ${postNumber})",
+    "totalMessages": "📊 Yhteensä viestejä: ${count}",
+    "viewAllConversations": "📊 Katso kaikki keskustelut",
+    "viewHistory": "📜 Katso historia: #${identifier}",
+    "viewProfileCard": "👤 Katso kumppanin profiilikortti",
+    "vipLearnMore": "💎 Käytä /vip saadaksesi lisätietoja",
+    "vipUnlockAvatar": "🔒 Päivitä VIP:ksi, jotta voit avata selkeämmät profiilikuvat",
+    "you": "Sinä",
+    "zodiac": "⭐ Horoskooppi: ${zodiac}"
+  },
+  "countries": {
+    "ae": "Yhdistyneet Arabiemiirikunnat",
+    "al": "Albania",
+    "am": "Armenia",
+    "ar": "Argentiina",
+    "at": "Itävalta",
+    "au": "Australia",
+    "az": "Azerbaidžan",
+    "ba": "Bosnia",
+    "bb": "Barbados",
+    "bd": "Bangladeshi",
+    "be": "Belgia",
+    "bg": "Bulgaria",
+    "bh": "Bahrain",
+    "bo": "Bolivia",
+    "br": "Brasil",
+    "ca": "Kanada",
+    "ch": "Sveitsi",
+    "ci": "Norsunluurannikko",
+    "cl": "Chile",
+    "cm": "Kamerun",
+    "cn": "Kiina",
+    "co": "Kolumbia",
+    "cr": "Costa Rica",
+    "cu": "Kuuba",
+    "cz": "Tšekin tasavalta",
+    "de": "Saksa",
+    "dk": "Tanska",
+    "do": "Dominikaaninen tasavalta",
+    "dz": "Algeria",
+    "ec": "Ecuador",
+    "ee": "Viro",
+    "eg": "Egypti",
+    "es": "Espanja",
+    "et": "Etiopia",
+    "fi": "Suomi",
+    "fr": "Ranska",
+    "gb": "Yhdistynyt kuningaskunta",
+    "ge": "Georgia",
+    "gh": "Ghana",
+    "gr": "Kreikka",
+    "gt": "Guatemala",
+    "hk": "Hongkong",
+    "hn": "Honduras",
+    "hr": "Kroatia",
+    "hu": "Unkari",
+    "id": "Indonesia",
+    "ie": "Irlanti",
+    "il": "Israel",
+    "in": "Intia",
+    "iq": "Irak",
+    "ir": "Iran",
+    "is": "Islanti",
+    "it": "Italia",
+    "jm": "Jamaika",
+    "jo": "Jordania",
+    "jp": "Japani",
+    "ke": "Kenia",
+    "kh": "Kambodža",
+    "kr": "Etelä-Korea",
+    "kw": "Kuwait",
+    "kz": "Kazakhstan",
+    "la": "Laos",
+    "lb": "Libanon",
+    "lk": "Sri Lanka",
+    "lt": "Liettua",
+    "lv": "Latvia",
+    "ly": "Libya",
+    "ma": "Marokko",
+    "mk": "Pohjois-Makedonia",
+    "mm": "Myanmar",
+    "mn": "Mongolia",
+    "mo": "Macao",
+    "mt": "Malta",
+    "mx": "Meksiko",
+    "my": "Malesia",
+    "ng": "Nigeria",
+    "ni": "Nicaragua",
+    "nl": "Alankomaat",
+    "no": "Norja",
+    "np": "Nepal",
+    "nz": "Uusi-Seelanti",
+    "om": "Omaani",
+    "pa": "Panama",
+    "pe": "Peru",
+    "ph": "Filippiinit",
+    "pk": "Pakistan",
+    "pl": "Puola",
+    "pt": "Portugali",
+    "py": "Paraguay",
+    "qa": "Qatar",
+    "ro": "Romania",
+    "rs": "Serbia",
+    "ru": "Venäjä",
+    "rw": "Ruanda",
+    "sa": "Saudi-Arabia",
+    "sd": "Sudan",
+    "se": "Ruotsi",
+    "sg": "Singapore",
+    "si": "Slovenia",
+    "sk": "Slovakia",
+    "sn": "Senegal",
+    "sv": "El Salvador",
+    "sy": "Syyria",
+    "th": "Thaimaa",
+    "tn": "Tunis",
+    "tr": "Turkia",
+    "tt": "Trinidad",
+    "tw": "Taiwan",
+    "tz": "Tansania",
+    "ua": "Ukraina",
+    "ug": "Uganda",
+    "un": "Yhdistyneet Kansakunnat",
+    "us": "Yhdysvallat",
+    "uy": "Uruguay",
+    "uz": "Uzbekistani",
+    "ve": "Venezuela",
+    "vn": "Vietnam",
+    "ye": "Jemen",
+    "za": "Etelä-Afrika",
+    "zw": "Zimbabwe"
+  },
+  "country": {
+    "buttonAU": "🇦🇺 Australia",
+    "buttonCA": "🇨🇦 Kanada",
+    "buttonCN": "🇨🇳 Kiina",
+    "buttonDE": "🇩🇪 Saksa",
+    "buttonFR": "🇫🇷 Ranska",
+    "buttonGB": "🇬🇧 Yhdistynyt kuningaskunta",
+    "buttonHK": "🇭🇰 Hongkong",
+    "buttonJP": "🇯🇵 Japani",
+    "buttonKR": "🇰🇷 Etelä-Korea",
+    "buttonMY": "🇲🇾 Malesia",
+    "buttonNZ": "🇳🇿 Uusi-Seelanti",
+    "buttonSG": "🇸🇬 Singapore",
+    "buttonTH": "🇹🇭 Thaimaa",
+    "buttonTW": "🇹🇼 Taiwan",
+    "buttonUS": "🇺🇸 Yhdysvallat",
+    "confirmButton": "✅ Oikein",
+    "confirmDetected": "Kieliasetustesi perusteella olet todennäköisesti kotoisin:\n",
+    "confirmFailed": "❌ Vahvistus epäonnistui",
+    "confirmHint": "💡 Tämä näkyy profiilissasi, jotta muut ymmärtävät sinua paremmin.\n",
+    "confirmQuestion": "Onko tämä oikein?\n\n",
+    "confirmReward": "🎉 Vahvistamalla ansaitset +1 pulloposti-palkinnon!",
+    "confirmTitle": "🌍 **Vahvista maa/alueesi**\n\n",
+    "confirmed": "✅ Vahvistettu!",
+    "notCorrectButton": "❌ Väärin",
+    "selectHint": "💡 Tämä näkyy profiilissasi\n",
+    "selectTitle": "🌍 **Valitse maa/alueesi**\n\n",
+    "selectUnFlagHint": "🇺🇳 Jos et löydä, voit valita 'Yhdistyneiden kansakuntien lippu'",
+    "setFailed": "❌ Asetus epäonnistui",
+    "setTo": "✅ Asetettu {flag} {country}",
+    "unFlagButton": "🇺🇳 Yhdistyneiden kansakuntien lippu",
+    "useUnFlagButton": "🇺🇳 Käytä Yhdistyneiden kansakuntien lippua"
+  },
+  "dailyReports": {
+    "header": "📊 **Päivittäinen tietojen analyysiraportti**",
+    "time": "Aika: ${time}"
+  },
+  "dev": {
+    "autoCompleted": "Rekisteröintiprosessi on suoritettu automaattisesti.\n\n",
+    "bottles": "• Viestipullot: {count}\n",
+    "catchCommand": "• /catch - Kaappaa viestipullot\n",
+    "conversations": "• Keskustelut: {count}\n",
+    "dataReset": "✅ Kehitysmoodi: Tiedot on palautettu\n\nKaikki tietosi on poistettu.\n\n💡 Voit nyt aloittaa rekisteröintiprosessin uudelleen testauksen vuoksi.\n\n🔄 Rekisteröidy uudelleen: /start\ntai käytä: /dev_restart (aloita rekisteröinti automaattisesti)\n\n⚠️ Huom: Tämä ominaisuus on vain käytettävissä Staging-ympäristössä.",
+    "getUserInfoFailed": "❌ Tietojen noutaminen epäonnistui",
+    "inviteActivated": "• Aktivoitu: {count}\n",
+    "inviteCode": "Kutsukoodi: {code}\n",
+    "invitePending": "• Odottaa aktivointia: {count}\n\n",
+    "inviteStats": "Kutsutilastot:\n",
+    "inviteTotal": "• Kokonaiskutsutiedot: {count}\n",
+    "invitedBy": "Kutsuja: {invitedBy}\n\n",
+    "language": "Kieli: {lang}\n",
+    "messages": "• Viestejä: {count}\n\n",
+    "nickname": "Nimimerkki: {nickname}\n",
+    "no": "Ei",
+    "none": "Ei mitään",
+    "notAvailableInProduction": "❌ Tämä komento ei ole käytettävissä tuotannossa.\n\nTätä komentoa ei ole käytettävissä tuotannossa.",
+    "notGenerated": "Ei luotu",
+    "notSet": "Ei asetettu",
+    "onboardingStep": "Rekisteröintivaihe: {step}\n",
+    "resetFailed": "❌ Nollaus epäonnistui: {error}\n\nYritä uudelleen myöhemmin.",
+    "skipFailed": "❌ Ohita epäonnistui",
+    "skipRegistration": "✅ Kehitysmoodi: Rekisteröinti ohitettu\n\n",
+    "stagingOnly": "⚠️ Tämä ominaisuus on saatavilla vain Staging-ympäristössä.",
+    "stats": "Tilastot:\n",
+    "statsCommand": "• /stats - Näytä tilastot\n\n",
+    "successfulInvites": "• onnistuneet_kutsut: {count}\n",
+    "telegramId": "Telegram ID: {id}\n",
+    "testCoreFeatures": "💡 Voit nyt suoraan testata ydinominaisuuksia:\n",
+    "testUser": "Testikäyttäjä",
+    "throwCommand": "• /throw - Heitä viestipullo\n",
+    "userInfo": "🔧 Kehitysmoodi: Käyttäjätiedot\n\n",
+    "userNotFound": "❌ Käyttäjää ei ole olemassa",
+    "vip": "VIP: {status}\n",
+    "yes": "Kyllä"
+  },
+  "draft": {
+    "age": {
+      "daysAgo": "\\${days} päivää sitten",
+      "hoursAgo": "\\${hours} tuntia sitten",
+      "justNow": "Juuri nyt"
     },
+    "contentHint": "💡 Voit:\n• Syötä uusi sisältö korvataksesi luonnoksen suoraan\n• Käytä /throw -komentoa aloittaaksesi uudelleen\n• Lähetä luonnossisältö heittääksesi viestipullo",
+    "contentTitle": "📝 **Luonnossisältö**\n\n",
+    "continueEditing": "✅ Jatka luonnoksen muokkaamista",
+    "deleteButton": "🗑️ Poista luonnos",
+    "deleted": "✅ Luonnos on poistettu",
+    "editButton": "✏️ Muokkaa sisältöä",
+    "editInput": "✏️ Ole hyvä ja syötä uusi viestipullon sisältö:\n\n💡 Vinkki:\n• Vähintään 5 merkkiä\n• Enintään 250 merkkiä\n• Ei linkkejä, kuvia tai multimediaa sallitaan\n• Älä sisällytä henkilökohtaisia yhteystietoja\n• Ystävällinen ja kunnioittava sisältö todennäköisemmin valitaan～",
+    "editPrompt": "✏️ Ole hyvä ja syötä uusi sisältö",
+    "newBottle": "✅ Aloita uusi viestipullo",
+    "notFound": "⚠️ Luonnosta ei ole olemassa tai se on vanhentunut",
+    "sendButton": "✅ Lähetetään luonnosta",
+    "sendQuestion": "Haluatko lähettää tämän luonnoksen suoraan?",
+    "sending": "✅ Lähetetään...",
+    "targetGender": "Millaisen keskustelukumppanin etsit?\n\n",
+    "targetGenderHint": "💡 Päivitä VIP:ksi edistyneelle suodattamiselle (MBTI/Zodiac): /vip",
+    "throwBottle": "🍾 Heitä viestipullo\n\nMinkä tyyppistä keskustelukumppania etsit?"
   },
-  buttons: {
-    ad: `➡️ 下一個廣告`,
-    back: `⬅️ 返回 / Back`,
-    backToVip: `💎 Back to VIP Menu`,
-    bottle: `📺 看廣告獲取更多瓶子 🎁 (\${remaining}/20)`,
-    bottle2: `💎 升級 VIP 獲得更多瓶子`,
-    bottle3: `🌊 丟出漂流瓶`,
-    bottle4: `🎣 撿起漂流瓶`,
-    cancel: `取消`,
-    help: `❓ 幫助`,
-    invite: `👥 查看邀請碼`,
-    invite2: `🎁 邀請好友`,
-    mbtiMenu: `🧠 MBTI 選單`,
-    message: `💬 回覆訊息`,
-    profile: `✏️ 編輯個人資料`,
-    profile2: `👤 個人資料`,
-    returnToMenu: `🏠 返回主選單`,
-    settings: `⚙️ 設定`,
-    short: `🇲🇾 馬來西亞`,
-    short10: `🇺🇸 美國`,
-    short11: `🇯🇵 日本`,
-    short12: `🇰🇷 韓國`,
-    short13: `🇬🇧 英國`,
-    short14: `🇫🇷 法國`,
-    short15: `🇩🇪 德國`,
-    short16: `🇹🇭 泰國`,
-    short17: `🇦🇺 澳洲`,
-    short18: `💬 聊天記錄`,
-    short19: `🌐 變更語言`,
-    short2: `🇺🇳 聯合國旗`,
-    short20: `🎁 領取獎勵`,
-    short21: `🔄 清除選擇`,
-    short22: `跳過`,
-    short3: `📢 加入官方頻道`,
-    short4: `🇸🇬 新加坡`,
-    short5: `🇨🇦 加拿大`,
-    short6: `🇳🇿 紐西蘭`,
-    short7: `🇹🇼 台灣`,
-    short8: `🇨🇳 中國`,
-    short9: `🇭🇰 香港`,
-    stats: `📊 統計數據`,
-    targetAdvanced: `⚙️ 進階篩選（MBTI/星座）`,
-    targetAny: `🌈 任何人都可以`,
-    targetFemale: `👩 女生`,
-    targetMale: `👨 男生`,
-    text: `👤 查看對方資料卡`,
-    viewPayments: `💰 Subscription History`,
-    vip: `💎 升級 VIP`,
+  "edit_profile": {
+    "nickname": "👤 Nimimerkki: ${ownerMaskedNickname}",
+    "short19": "✏️ Muokkaa profiilia"
   },
-  catch: {
-    anonymousUser: `匿名用戶`,
-    back: `🏠 返回主選單：/menu`,
-    banned: `❌ 你的帳號已被封禁，無法撿漂流瓶。
-
-如有疑問，請使用 /appeal 申訴。`,
-    block: `• 不想再聊可使用 /block 封鎖
-`,
-    bottle: `😔 目前沒有適合你的漂流瓶
-
-`,
-    bottle2: `• 或者自己丟一個瓶子：/throw`,
-    bottle3: `🎣 有人撿到你的漂流瓶了！
-
-`,
-    bottle4: `🧴 你撿到了一個漂流瓶！
-
-`,
-    bottle5: `💡 明天再來撿更多瓶子吧！`,
-    bottleTaken: `❌ 這個瓶子已經被其他人撿走了，請試試其他瓶子！`,
-    catch: `📊 今日已撿：\${newCatchesCount}/\${quota}
-
-`,
-    conversation: `已為你們建立了匿名對話，快來開始聊天吧～
-
-`,
-    conversation2: `• 這是匿名對話，請保護個人隱私
-`,
-    conversation3: `📊 查看所有對話`,
-    conversationError: `对话创建失败`,
-    language: `🗣️ 語言：\${language}
-
-`,
-    mbti: `🧠 MBTI：\${mbti}
-`,
-    message: `💫 配對度：\${score}分 (智能配對)
-
-`,
-    message2: `\${catcherGender} | 📅 \${catcherAge}歲
-
-`,
-    message3: `conv_reply_\${conversationIdentifier}`,
-    message4: `2️⃣ 長按此訊息，選擇「回覆」後輸入內容
-
-`,
-    message5: `1️⃣ 點擊下方「💬 回覆訊息」按鈕
-`,
-    message6: `2️⃣ 長按此訊息，選擇「回覆」後輸入內容`,
-    nickname: `📝 暱稱：\${ownerMaskedNickname}
-`,
-    nickname2: `📝 暱稱：\${catcherNickname}
-`,
-    notRegistered: `❌ 請先完成註冊流程才能撿漂流瓶。
-
-使用 /start 繼續註冊。`,
-    originalContent: `原文：{content}`,
-    originalLanguage: `原文語言：{language}`,
-    quotaExhausted: `❌ 今日漂流瓶配額已用完（\${quotaDisplay}）`,
-    replyButton: `💬 回覆訊息`,
-    replyMethods: `💡 **兩種回覆方式**：
-`,
-    report: `• 遇到不當內容請使用 /report 舉報
-`,
-    safetyTips: `⚠️ 安全提示：
-`,
-    settings: `🧠 MBTI：\${mbti}
-`,
-    settings10: `未設定`,
-    settings11: `未設定`,
-    settings2: `未設定`,
-    settings3: `未設定`,
-    settings4: `未設定`,
-    settings5: `未設定`,
-    settings6: `未設定`,
-    settings7: `未設定`,
-    settings8: `未設定`,
-    settings9: `未設定`,
-    short: `💡 提示：
-`,
-    short2: `• 稍後再試
-`,
-    short3: `匿名用戶`,
-    short4: `♂️ 男`,
-    short5: `♀️ 女`,
-    text: `翻譯語言：\${catcherLangDisplay}
-`,
-    text2: `原文語言：\${bottleLangDisplay}
-`,
-    text3: `🗣️ 語言：\${ownerLanguage}
-
-`,
-    text4: `• 不想再聊可使用 /block 封鎖
-
-`,
-    text5: `原文：\${bottle.content}
-`,
-    text6: `💬 翻譯服務暫時有問題，已使用備援翻譯
-`,
-    text7: `翻譯：\${bottleContent}
-`,
-    text8: `💡 **兩種回覆方式**：
-`,
-    translatedContent: `翻譯：{content}`,
-    translatedLanguage: `翻譯語言：{language}`,
-    translationServiceFallback: `💬 翻譯服務暫時有問題，已使用備援翻譯`,
-    translationServiceUnavailable: `⚠️ 翻譯服務暫時無法使用，以下為原文`,
-    unknown: `未知`,
-    zodiac: `⭐ 星座：{zodiac}
-`,
-    zodiac2: `⭐ 星座：\${catcherZodiac}
-`,
+  "error": {
+    "ad": "❌ Tämä mainos ei vaadi vahvistusta",
+    "ad2": "❌ Tällä hetkellä ei ole saatavilla olevia mainoksia",
+    "ad3": "❌ Tämän mainoksen noutaminen epäonnistui",
+    "ad4": "❌ Mainosta ei ole olemassa",
+    "ad5": "❌ Mainoksen ID:n on oltava numero",
+    "ad6": "❌ Sinulla ei ole lupaa nähdä mainostietoja",
+    "admin": "❌ tapahtui järjestelmävirhe, yritä myöhemmin uudelleen.\n\nJos ongelma jatkuu, ota yhteyttä ylläpitäjään.",
+    "admin2": "❌ **Puutteelliset oikeudet**\n\nTämä komento on rajoitettu superylläpitäjille.",
+    "admin3": "❌ Tämä käyttäjä on jo superylläpitäjä, ei tarvitse lisätä.",
+    "admin4": "❌ Vain superylläpitäjät voivat käyttää tätä komentoa.",
+    "admin5": "❌ Tämä käyttäjä on jo ylläpitäjä.",
+    "admin6": "❌ Superylläpitäjää ei voitu poistaa.",
+    "admin7": "❌ Tämä käyttäjä ei ole ylläpitäjä.",
+    "appeal": "❌ Ole hyvä ja anna vetoomuksen ID\n\nKäyttö: /admin_approve <appeal_id> [note]",
+    "appeal2": "❌ Ole hyvä ja anna valitus-ID\n\nKäyttö: /admin_reject <appeal_id> [note]",
+    "appeal3": "❌ Valitus ${appealId} on jo tarkastettu",
+    "appeal4": "❌ Valitus-ID:tä ei löydy: ${appealId}",
+    "ban": "❌ Käyttäjällä ${targetUserId} ei ole kieltohistoriaa",
+    "birthday": "❌ ${validation.error}\n\nOle hyvä ja syötä syntymäpäiväsi uudelleen (muoto: YYYY-MM-DD):",
+    "birthday2": "❌ Väärä syntymäpäivän muoto\n\nOle hyvä ja syötä uudelleen (muoto: YYYY-MM-DD):",
+    "birthday3": "❌ Väärä syntymäpäivän muoto",
+    "bottle": "❌ Tämä keskustelu on päättynyt.\n\nKäytä /catch valitaksesi uuden pullopostin aloittaaksesi uuden keskustelun.",
+    "bottle2": "❌ Tili on kielletty, etkä voi nostaa pulloposteja.\n\nJos sinulla on kysymyksiä, käytä /appeal valittaaksesi.",
+    "bottle3": "❌ Tämä pullo on jo nostettu jonkun muun toimesta, yritä muita pulloja!",
+    "broadcast": "❌ Nykyinen lähetysjärjestelmä tukee vain enintään ${MAX_SAFE_USERS} käyttäjän lähetyksiä.\n\n",
+    "broadcast2": "❌ Lähetys-ID:n on oltava numero",
+    "broadcast3": "❌ Lähetystietoja ei löydy",
+    "cancel": "❌ Nimimerkki on liian pitkä, syötä nimimerkki, jossa on enintään 36 merkkiä.\n\nOle hyvä ja syötä uudelleen tai peruuta muokkaus:",
+    "cancel2": "❌ Henkilöprofiili on liian pitkä, syötä profiili, jossa on enintään 200 merkkiä.\n\nOle hyvä ja syötä uudelleen tai peruuta muokkaus:",
+    "cancel3": "❌ Alueen nimi on liian pitkä, syötä nimi, jossa on enintään 50 merkkiä.\n\nOle hyvä ja syötä uudelleen tai peruuta muokkaus:",
+    "cancel4": "❌ Nimimerkki on liian lyhyt, vähintään 4 merkkiä vaaditaan.\n\nOle hyvä ja syötä uudelleen tai peruuta muokkaus:",
+    "cancel5": "❌ Jokaisessa tunnisteessa voi olla enintään 20 merkkiä.\n\nOle hyvä ja syötä uudelleen tai peruuta muokkaus:",
+    "cancel6": "❌ Peruuta muokkaus",
+    "cancel7": "❌ Peruuttaminen ${ZODIAC_NAMES[zodiacSign]}",
+    "cancel8": "❌ Peruuttaminen ${mbtiType}",
+    "cancel9": "❌ Peruuta",
+    "conversation": "❌ Keskustelua, jonka tunnus on ${formatIdentifier(identifier)}, ei löydy\n\n",
+    "conversation2": "❌ Keskustelutietojen virhe.",
+    "conversation3": "❌ Keskustelutietojen virhe",
+    "conversation4": "❌ Keskustelua ei ole",
+    "conversationInfoError": "❌ Keskustelutietojen virhe",
+    "conversationNotFound": "❌ Keskustelua ei ole",
+    "failed": "❌ **Mainoksen lataaminen epäonnistui**\n\nPahoittelemme, mainosta ei voida toistaa oikein.\n\n💡 **Mahdolliset syyt:**\n• Epävakaa Internet-yhteys\n• Mainostoimittaja tilapäisesti saatavilla\n• Selain ei tuettu\n\n🔄 **Ehdotukset:**\n• Tarkista Internet-yhteys\n• Yritä myöhemmin uudelleen\n• Tai käytä muita tapoja ansaita krediittejä (kutsu ystäviä)",
+    "failed10": "❌ Huoltotilan tilan kysely epäonnistui.",
+    "failed11": "❌ Avatarin päivittäminen epäonnistui\n\n",
+    "failed12": "❌ Vahvistus epäonnistui, yritä myöhemmin uudelleen",
+    "failed13": "❌ Huoltotilan aktivointi epäonnistui.",
+    "failed14": "❌ Huoltotilan poisto epäonnistui.",
+    "failed15": "❌ Mainostilan hakeminen epäonnistui",
+    "failed16": "❌ Tilastojen noutaminen epäonnistui",
+    "failed17": "❌ Lähetyksen luominen epäonnistui.",
+    "failed18": "❌ Tietojen hakeminen epäonnistui",
+    "failed19": "❌ Palkkioiden hakeminen epäonnistui",
+    "failed2": "❌ Suodatetun lähetyksen luominen epäonnistui\n\n${error instanceof Error ? error.message : String(error)}",
+    "failed20": "❌ Vahvistaminen epäonnistui",
+    "failed21": "❌ Asetus epäonnistui",
+    "failed22": "❌ Ohittaminen epäonnistui",
+    "failed23": "❌ Toiminta epäonnistui",
+    "failed24": "❌ Päivittäisen raportin lähettäminen epäonnistui: ${error instanceof Error ? error.message : String(error)}",
+    "failed25": "❌ VIP-putken tietojen hakeminen epäonnistui",
+    "failed26": "❌ **Diagnostiikka epäonnistui**\n\n",
+    "failed27": "❌ **Päivitys epäonnistui**\n\n",
+    "failed28": "❌ **Maksu epäonnistui**\n\n",
+    "failed29": "❌ Mainostarjoajien luettelon hakeminen epäonnistui",
+    "failed3": "❌ Lähetysjonon käsittely epäonnistui: ${error instanceof Error ? error.message : String(error)}",
+    "failed30": "❌ Virallisen mainoslistan hakeminen epäonnistui",
+    "failed31": "❌ Mainostoimittajan aktivointi epäonnistui",
+    "failed32": "❌ Mainostoimittajan deaktivoiminen epäonnistui",
+    "failed33": "❌ Virallisten mainosten aktivointi epäonnistui",
+    "failed34": "❌ Virallisten mainosten deaktivoiminen epäonnistui",
+    "failed35": "❌ Analytiikkatietojen hakeminen epäonnistui",
+    "failed36": "❌ Mainostietojen hakeminen epäonnistui",
+    "failed37": "❌ Prioriteetin asettaminen epäonnistui",
+    "failed38": "❌ Hyvitys epäonnistui: ${error instanceof Error ? error.message : String(error)}",
+    "failed39": "❌ Toiminto epäonnistui: ${error instanceof Error ? error.message : String(error)}",
+    "failed4": "❌ Lähetysstatuksen kysely epäonnistui: ${error instanceof Error ? error.message : String(error)}",
+    "failed40": "❌ Lähetys epäonnistui, yritä myöhemmin uudelleen.",
+    "failed41": "❌ Keskustelun aloittaminen epäonnistui, yritä myöhemmin uudelleen.",
+    "failed5": "❌ Lähetyksen peruminen epäonnistui: ${error instanceof Error ? error.message : String(error)}",
+    "failed6": "❌ Lähetyksen puhdistaminen epäonnistui: ${error instanceof Error ? error.message : String(error)}",
+    "failed7": "❌ Nollaus epäonnistui: ${errorMessage}\n\nYritä myöhemmin uudelleen.",
+    "failed8": "❌ Lähetyksen luominen epäonnistui, yritä myöhemmin uudelleen.",
+    "failed9": "❌ Keskusteluhistorian päivittäminen epäonnistui\n\n",
+    "mbti": "❌ Virheellinen MBTI-tyyppi",
+    "message": "❌ Suodatinmuotoilun virhe\n\n${error instanceof Error ? error.message : String(error)}\n\n",
+    "message2": "❌ Tätä komentoa ei ole saatavilla tuotantoympäristössä.\n\nTätä komentoa ei ole saatavilla tuotantoympäristössä.",
+    "message3": "❌ Tapahtui virhe, yritä myöhemmin uudelleen.\n\nVirheilmoitus: ${error instanceof Error ? error.message : String(error)}",
+    "message4": "❌ Anteeksi, sinun on oltava 18-vuotias tai vanhempi käyttääksesi tätä palvelua.\n\nTule takaisin, kun olet vanhempi!",
+    "nickname": "❌ Telegram-käyttäjänimen hakeminen epäonnistui",
+    "nickname2": "❌ Nimimerkki ei voi sisältää verkkosivulinkkejä\n\n",
+    "nickname3": "❌ ${validation.error}\n\nOle hyvä ja syötä käyttäjänimesi uudelleen:",
+    "quota": "❌ Tänään lähetettyjen pullopostien kiintiö on käytetty (${quotaDisplay})\n\n💡 Tapoja saada lisää kiintiötä:\n",
+    "quota2": "❌ Tämä päivän keskustelusanomien kiintiö on käytetty (${usedToday}/${dailyLimit})\n\n",
+    "quota3": "❌ Tämä päivän pullopostiviestien kiintiö on käytetty (${quotaDisplay})\n\n",
+    "register": "❌ Suorita ensin rekisteröintiprosessi.\n\nKäytä /start jatkaaksesi rekisteröintiä.",
+    "register2": "❌ Käyttäjätietoja ei löytynyt, käytä ensin /start rekisteröityäksesi.",
+    "register3": "❌ Sinun on suoritettava rekisteröintiprosessi, jotta voit nostaa pulloposteja.\n\nKäytä /start jatkaaksesi rekisteröintiä.",
+    "settings": "❌ Voit asettaa enintään 5 kiinnostuksen kohdetunnistetta.\n\nOle hyvä ja syötä taas tai peruuta muokkaus:",
+    "short": "❌ Virheellinen kielikoodi",
+    "short10": "❌ Riittämättömät oikeudet",
+    "short11": "❌ Keskustellaan myöhemmin",
+    "short12": "❌ Valitse uudelleen",
+    "short13": "❌ Syötä taas",
+    "short14": "❌ Sulje",
+    "short15": "❌ Ei käytössä",
+    "short2": "❌ Käyttäjätietoja ei löytynyt",
+    "short3": "❌ Tuntematon opastusaskel",
+    "short4": "❌ Tapahtui järjestelmävirhe",
+    "short5": "❌ Kanavan konfigurointivirhe",
+    "short6": "❌ Tuntematon toimenpide",
+    "short7": "❌ Väärin",
+    "short8": "❌ Ei",
+    "short9": "❌ Tapahtui virhe",
+    "start": "❌ Tapahtui virhe, käynnistä uudelleen: /start",
+    "stats": "❌ Sinulla ei ole oikeuksia tarkastella mainostilastoja.",
+    "task": "❌ Virhe tapahtui tehtäväkeskusta tarkasteltaessa, yritä myöhemmin uudelleen.",
+    "text": "❌ Virhe tulosten laskemisessa, yritä myöhemmin uudelleen.\n\n",
+    "text10": "❌ Lähettäjän tiedot ovat virheelliset.",
+    "text11": "❌ Sinulla ei ole oikeuksia tarkastella analyysitietoja.",
+    "text12": "❌ Virhe tapahtui, yritä myöhemmin uudelleen.",
+    "text13": "❌ Sinulla ei ole oikeuksia käyttää tätä komentoa.",
+    "text14": "❌ Väärä käyttömenetelmä\n\n",
+    "text15": "❌ Etuuden on oltava ei-negatiivinen kokonaisluku.",
+    "text16": "❌ Keston on oltava positiivinen kokonaisluku tai",
+    "text17": "❌ Virhe maksua käsiteltäessä, ota yhteyttä asiakastukeen.\n\n",
+    "text18": "❌ Hyvityksen syyn on oltava vähintään 10 merkkiä, kirjoita se uudelleen:",
+    "text19": "❌ **Hyvityspyyntö on hylätty**\n\n",
+    "text2": "❌ Henkilöprofiili sisältää kiellettyjä linkkejä.\n\n",
+    "text20": "❌ Hyvityspyyntö ylittää aikarajan\n\n",
+    "text21": "❌ Hyvityspyyntöä ei ole olemassa tai se on käsitelty.",
+    "text22": "❌ Maksutietoja ei löytynyt.",
+    "text23": "❌ Anteeksi, sinun on oltava vähintään 18-vuotias voidaksesi käyttää tätä palvelua.\n\n",
+    "text24": "❌ Virhe tapahtui, kirjoita se uudelleen.",
+    "text25": "❌ Vastaa kysymykseen vakavasti\n\n",
+    "text3": "❌ Kanavalle liittymistä ei havaittu, liity ensin ja yritä sitten uudelleen.",
+    "text4": "❌ Havaittiin, että olet jättänyt kanavan, et voi lunastaa palkintoja.",
+    "text5": "❌ Virhe tapahtui opetusohjelmaa käynnistettäessä, yritä myöhemmin uudelleen.",
+    "text6": "❌ Järjestelmävirhe tapahtui, yritä myöhemmin uudelleen.",
+    "text7": "❌ Keston on oltava numero (minuuteissa).",
+    "text8": "❌ Virhe tapahtui, yritä myöhemmin uudelleen.",
+    "text9": "❌ Ylläpitotilan tilaa ei voi hakea.",
+    "userNotFound": "❌ Käyttäjää ei ole olemassa, käytä ensin /start rekisteröityäksesi.",
+    "userNotFound2": "❌ Käyttäjää ei ole olemassa, rekisteröidy ensin.",
+    "userNotFound3": "❌ Toinen käyttäjä ei ole olemassa.",
+    "userNotFound4": "❌ Käyttäjää ei ole olemassa.",
+    "userNotFound5": "❌ Käyttäjää ei ole olemassa: ${userId}.",
+    "userNotFound6": "❌ Käyttäjää ei ole olemassa tai hän ei ole rekisteröitynyt.",
+    "userNotFound7": "❌ Käyttäjää ei ole olemassa.",
+    "vip": "❌ Sinulla ei ole oikeuksia tarkastella VIP-tietoja.",
+    "vip2": "❌ Et ole VIP-käyttäjä etkä voi hakea hyvitystä."
   },
-  channelMembership: {
-    claimButton: `✅ 領取獎勵`,
-    claimReward: `點擊下方按鈕領取獎勵：+1 瓶子`,
-    joined: `🎉 檢測到你已加入官方頻道！`,
-    leftChannel: `❌ 檢測到你已離開頻道，無法領取獎勵。`,
-    notJoined: `❌ 未檢測到你加入頻道，請先加入後再試`,
-    oneTimeReward: `💡 這是一次性獎勵，領取後會追加到今天的額度中。`,
-    rewardAdded: `獎勵：+1 瓶子（已追加到今天的額度）`,
-    rewardGranted: `✅ 獎勵已發放！+1 瓶子`,
-    taskCompleted: `🎉 恭喜完成任務：加入官方頻道！`,
-    viewMoreTasks: `💡 使用 /tasks 查看更多任務`,
-    viewTaskCenter: `[📋 查看任務中心] → /tasks`,
-  },
-  common: {
-    ad: `📺 今日廣告：\${adsWatched}/\${AD_REWARD_CONSTANTS.MAX_ADS_PER_DAY} | 已獲得 \${quotaEarned} 個額度 | 剩餘 \${remaining} 次`,
-    ad2: `📺 今日廣告：\${adsWatched}/\${AD_REWARD_CONSTANTS.MAX_ADS_PER_DAY} ✅ 已達上限 | 已獲得 \${quotaEarned} 個額度`,
-    ad3: `📺 今日廣告：0/\${AD_REWARD_CONSTANTS.MAX_ADS_PER_DAY} | 已獲得 0 個額度`,
-    ad4: `• 📺 觀看廣告（剩餘 \${remaining}/20 次）
-`,
-    ad5: `• 📺 觀看廣告（今日已達上限）
-`,
-    ad6: `• 避免廣告或不當內容
-
-`,
-    ad7: `📊 暫無官方廣告`,
-    ad8: `📢 垃圾廣告`,
-    ad9: `💡 還有更多官方廣告可以觀看！`,
-    admin: `請稍後再試，或聯繫管理員。`,
-    age: `無效的年齡範圍：\${trimmedValue}（格式必須是 min-max，如 18-25）`,
-    age2: `年齡：\${filters.age.min}-\${filters.age.max} 歲`,
-    age3: `無效的年齡範圍：\${trimmedValue}（年齡必須在 18-99 之間）`,
-    age4: `無效的年齡範圍：\${trimmedValue}（最小年齡不能大於最大年齡）`,
-    anonymous: `匿名`,
-    anonymousUser: `匿名用戶`,
-    anyBloodType: `🌈 任何血型`,
-    anyone: `🌈 任何人`,
-    back: `💡 輸入 /menu 可隨時返回主選單`,
-    back2: `↩️ 返回編輯資料`,
-    back3: `🏠 返回主選單`,
-    back4: `↩️ 返回`,
-    backToMainMenu: `返回主选单`,
-    birthday: `🎂 生日：\${updatedUser.birthday}
-`,
-    birthday2: `🎂 生日：\${user.birthday}
-`,
-    birthday3: `當天生日`,
-    bloodType: `🩸 血型：\${bloodTypeText}
-
-`,
-    bloodType2: `🩸 **編輯血型**
-
-`,
-    bloodType3: `請選擇你的血型：`,
-    bloodType4: `🩸 編輯血型`,
-    bloodTypeA: `🩸 A 型`,
-    bloodTypeAB: `🩸 AB 型`,
-    bloodTypeB: `🩸 B 型`,
-    bloodTypeO: `🩸 O 型`,
-    bottle: `瓶子內容太短，至少需要 \${MIN_BOTTLE_LENGTH} 個字符（目前 \${trimmedContent.length} 個字符）`,
-    bottle10: `獎勵：+1 瓶子（已追加到今天的額度）
-
-`,
-    bottle11: `你們將不會再被匹配到對方的漂流瓶。
-
-`,
-    bottle12: `你想在丟漂流瓶時尋找什麼樣的對象？
-
-`,
-    bottle13: `使用 /throw 丟出漂流瓶開始聊天吧！`,
-    bottle14: `瓶子內容包含不適當的內容，請修改後重新提交`,
-    bottle15: `點擊下方按鈕領取獎勵：+1 瓶子
-
-`,
-    bottle16: `💡 下次丟漂流瓶時將自動使用此設置。`,
-    bottle17: `🌊 丟出漂流瓶 - /throw
-`,
-    bottle18: `🎣 撿起漂流瓶 - /catch
-`,
-    bottle19: `🎉 確認後可獲得 +1 瓶子獎勵！`,
-    bottle2: `瓶子內容太長，最多 \${MAX_BOTTLE_LENGTH} 個字符（目前 \${content.length} 個字符）`,
-    bottle20: `✏️ 請輸入新的漂流瓶內容：
-
-`,
-    bottle21: `• 使用 /catch 撿新的漂流瓶`,
-    bottle22: `• /throw - 丟出漂流瓶
-`,
-    bottle23: `• /catch - 撿起漂流瓶
-`,
-    bottle24: `• /throw - 丟漂流瓶
-`,
-    bottle25: `• /catch - 撿漂流瓶
-`,
-    bottle26: `• 發送草稿內容來丟出漂流瓶`,
-    bottle27: `📦 **丟出漂流瓶**
-`,
-    bottle28: `🎣 **撿起漂流瓶**
-`,
-    bottle29: `💡 完成任務可獲得額外瓶子`,
-    bottle3: `• 漂流瓶: \${bottlesCount?.count }
-`,
-    bottle30: `瓶子內容不允許包含任何連結`,
-    bottle31: `🍾 丟漂流瓶
-
-`,
-    bottle32: `瓶子內容不能為空`,
-    bottle33: `丟出第一個瓶子`,
-    bottle34: `撿起第一個瓶子`,
-    bottle4: `匿名漂流瓶交友平台，透過 MBTI 和星座幫你找到志同道合的朋友
-
-`,
-    bottle5: `⏰ 對話已超時
-
-對方可能已離開。使用 /catch 撿新的瓶子吧！`,
-    bottle6: `💡 使用 /catch 撿新的漂流瓶開始新對話。`,
-    bottle7: `🍾 丟漂流瓶
-
-你想要尋找什麼樣的聊天對象？`,
-    bottle8: `快去丟瓶子認識新朋友吧！ /throw
-
-`,
-    bottle9: `看看別人的漂流瓶，有興趣就回覆開始聊天
-
-`,
-    broadcast: `廣播將在後台發送，使用 /broadcast_status \${broadcastId} 查看進度。`,
-    broadcast10: `📊 最近 5 條廣播記錄
-
-`,
-    broadcast11: `維護通知已廣播給所有用戶。
-`,
-    broadcast12: `恢復通知已廣播給所有用戶。`,
-    broadcast13: `📊 目前沒有廣播記錄`,
-    broadcast14: `📊 廣播狀態
-
-`,
-    broadcast15: `所有廣播狀態正常。`,
-    broadcast2: `大規模廣播需要升級系統架構，請參考 BROADCAST_SYSTEM_REDESIGN.md`,
-    broadcast3: `使用 /broadcast_status 查看所有廣播記錄。`,
-    broadcast4: `\${statusEmoji} 廣播隊列處理已觸發
-
-`,
-    broadcast5: `/broadcast_cancel <廣播ID>
-
-`,
-    broadcast6: `廣播 ID: \${ids.join(', ')}
-
-`,
-    broadcast7: `正在處理廣播 #\${broadcast.id}
-`,
-    broadcast8: `目前沒有待處理或卡住的廣播。
-
-`,
-    broadcast9: `廣播 ID: \${ids.join(`,
-    cancel: `請移除這些連結後重新輸入或取消編輯：`,
-    cancel2: `狀態: 已取消
-
-`,
-    cancel3: `請重新輸入或取消編輯：`,
-    cancelled: `已取消`,
-    catch: `⏰ 撿瓶流程已超時
-
-請使用 /catch 重新開始。`,
-    catch2: `你撿瓶回覆 → 對方也回覆 → 開始匿名聊天`,
-    catch3: `• 友善、尊重的內容更容易被撿到哦～`,
-    catch4: `撿瓶流程`,
-    close: `❌ 關閉`,
-    complete: `🎉 **廣告觀看完成！**
-
-✅ 獲得 **+1 個額度**
-📊 今日已觀看：**\${updated.ads_watched}/20** 次
-🎁 今日已獲得：**\${updated.quota_earned}** 個額度
-📈 剩餘次數：**\${result.remaining_ads}** 次
-
-\${result.remaining_ads > 0 ? '💡 繼續觀看廣告可獲得更多額度！' : '✅ 今日廣告已達上限'}`,
-    complete2: `📺 **觀看廣告獲得額度**
-
-🎁 完成觀看可獲得 **+1 個額度**
-📊 今日剩餘：**\${remainingAds}/20** 次
-
-👇 點擊下方按鈕開始觀看`,
-    complete3: `完成時間: \${new Date(broadcast.completedAt).toLocaleString('zh-TW')}
-`,
-    complete4: `預計完成：\${new Date(maintenance.endTime).toLocaleString('zh-TW')}
-`,
-    complete5: `🎉 \${testTitle}完成！
-
-`,
-    complete6: `接近截止日期才完成`,
-    complete7: `即將完成`,
-    complete8: `盡早完成`,
-    confirm: `為了保護所有使用者的安全，請確認你了解以下事項：
-
-`,
-    confirm2: `🌍 **確認你的國家/地區**
-
-`,
-    confirm3: `🛡️ 最後一步：反詐騙安全確認
-
-`,
-    confirm4: `🔍 **廣播過濾器確認**
-
-`,
-    confirm5: `🌍 確認你的國家/地區`,
-    confirm6: `**確認清理？**
-`,
-    confirm7: `請確認：`,
-    conversation: `📨 \${formatIdentifier(conv.identifier)} 的對話（\${conv.message_count} 則訊息）
-`,
-    conversation10: `💡 **沒有找到對話歷史**
-
-`,
-    conversation11: `部分對話歷史可能未能更新，請稍後再試。`,
-    conversation12: `
-📨 **最近對話：**
-
-`,
-    conversation13: `💬 你還沒有任何對話記錄
-
-`,
-    conversation14: `💬 繼續對話：/reply
-`,
-    conversation15: `您還沒有任何對話記錄。
-
-`,
-    conversation16: `對話可能已結束或不存在。`,
-    conversation17: `💬 繼續對話`,
-    conversation18: `開始第一次對話`,
-    conversation2: `💬 **與 \${formatIdentifier(identifier)} 的對話**
-
-`,
-    conversation3: `• 對話開始：\${formatDate(stats.first_message_time)}
-`,
-    conversation4: `• 對話: \${conversationsCount?.count }
-`,
-    conversation5: `💬 回覆對話 \${conversationIdentifier}`,
-    conversation6: `您的頭像緩存已刷新，下次查看對話歷史時將顯示最新頭像。
-
-`,
-    conversation7: `💡 為了保護隱私和安全，對話中只允許純文字訊息。
-
-`,
-    conversation8: `使用 /history 查看所有對話
-
-`,
-    conversation9: `🔄 正在刷新所有對話歷史...
-
-`,
-    country: `無效的國家代碼：\${trimmedValue}（必須是 2 個大寫字母，如 TW, US, JP）`,
-    country2: `🌍 **請選擇你的國家/地區**
-
-`,
-    country3: `國家：\${filters.country}`,
-    end: `結束：\${endTime.toLocaleString('zh-TW')}
-
-`,
-    end2: `結束：\${endTime.toLocaleString(`,
-    female: `女`,
-    free: `免費`,
-    gender: `👤 性別：\${gender}
-`,
-    gender2: `無效的性別值：\${trimmedValue}（必須是 male, female 或 other）`,
-    gender3: `👤 性別：\${gender}
-`,
-    gender4: `👤 性別：\${updatedUser.gender ===`,
-    gender5: `👤 性別：\${user.gender ===`,
-    gender6: `現在請選擇你的性別：
-
-`,
-    gender7: `其他性別`,
-    help: `MBTI 性格測驗可以幫助我們為你找到更合適的聊天對象～
-
-`,
-    help2: `❓ 查看幫助 - /help`,
-    help3: `• /help - 查看幫助`,
-    invite: `• 邀請記錄總數: \${inviteStats?.total }
-`,
-    invite2: `邀請碼: \${user.invite_code }
-`,
-    invite3: `被誰邀請: \${user.invited_by }
-
-`,
-    loading: `✅ 正在加載......`,
-    login: `一般用戶將無法使用服務，只有管理員可以登入。`,
-    male: `男`,
-    mbti: `無效的 MBTI 類型：\${trimmedValue}（必須是以下之一：\${VALID_MBTI.join(', ')}）`,
-    mbti10: `✍️ 手動輸入 MBTI`,
-    mbti11: `🧠 MBTI 選單`,
-    mbti12: `MBTI 完整測驗`,
-    mbti13: `MBTI 快速測驗`,
-    mbti2: `你的 MBTI 類型是：**\${result.type}**
-
-`,
-    mbti3: `當前 MBTI：**\${mbti}**
-`,
-    mbti4: `🧠 **選擇 MBTI 測驗版本**
-
-`,
-    mbti5: `🧠 **MBTI 性格類型管理**
-
-`,
-    mbti6: `⚙️ 進階篩選（MBTI/星座）`,
-    mbti7: `• 手動修改你的 MBTI 類型`,
-    mbti8: `請選擇你的 MBTI 類型：`,
-    mbti9: `🧠 重新測試 MBTI`,
-    message: `\${typeEmoji} **\${ad.title}**
-\${statusEmoji} 狀態: \${status}
-
-📊 **統計數據**
-• 展示次數: \${stats.total_views}
-• 點擊次數: \${stats.total_clicks}
-• 點擊率 (CTR): \${stats.ctr}%`,
-    message10: `/broadcast_filter gender=female,age=18-25,country=TW 大家好！
-`,
-    message11: `\${banHours} \${user.language_pref === 'en' ? 'hours' : '小時'}`,
-    message12: `時間: \${new Date(b.created_at).toLocaleString('zh-TW')}
-
-`,
-    message13: `
-隊列中還有 \${pendingBroadcasts.results.length - 1} 個廣播待處理
-`,
-    message14: `進度: \${broadcast.sent_count}/\${broadcast.total_users}
-`,
-    message15: `\${days} \${user.language_pref === 'en' ? 'days' : '天'}`,
-    message16: `目標: \${getBroadcastTargetName(broadcast.targetType)}
-`,
-    message17: `狀態：\${maintenance.isActive ? '✅ 維護中' : '❌ 未啟用'}
-`,
-    message18: `🚫 禁止的網址：
-\${urlCheck.blockedUrls?.map((url) =>`,
-    message19: `• 最後訊息：\${formatDate(stats.last_message_time)}
-`,
-    message2: `birthday = '2000-01-01',
- age = 25,
- zodiac_sign = 'Capricorn',
- anti_fraud_score = 100,
- terms_agreed = 1`,
-    message20: `時間：\${formatDate(conv.last_message_time)}
-
-`,
-    message21: `預計時長：\${maintenance.estimatedDuration} 分鐘
-`,
-    message22: `使用 /broadcast_status \${broadcastId} 查看進度。`,
-    message23: `💡 請長按你要回復的消息，在出現的選單中選擇「回覆」後，在聊天框中輸入回復內容。`,
-    message24: `📊 今日已發送：\${usedToday + 1}/\${dailyLimit} 則`,
-    message25: `/broadcast_filter zodiac=Scorpio 天蠍座專屬訊息`,
-    message26: `• 已激活: \${inviteStats?.activated }
-`,
-    message27: `• 待激活: \${inviteStats?.pending }
-
-`,
-    message28: `/maintenance_enable <時長(分鐘)> [維護訊息]
-
-`,
-    message29: `進度: \${b.sent_count}/\${b.total_users}
-`,
-    message3: `進度: \${broadcast.sentCount}/\${broadcast.totalUsers} (\${progress.percentage}%)
-`,
-    message30: `• 訊息: \${messagesCount?.count }
-
-`,
-    message31: `• 對方發送：\${stats.partner_messages} 則
-`,
-    message32: `指揮官 - 大膽、富有想像力且意志強大的領導者，總能找到或創造解決方法。`,
-    message33: `💡 使用 /broadcast_status <id> 查看詳細信息`,
-    message34: `🏷️ 興趣標籤：\${updatedUser.interests ||`,
-    message35: `執政官 - 極有同情心、受歡迎且樂於助人的人，總是渴望為社群做出貢獻。`,
-    message36: `/broadcast_filter <過濾器> <訊息內容>
-
-`,
-    message37: `**訊息內容：**
-\${broadcastMessage}
-
-`,
-    message38: `• 總訊息數：\${stats.total_messages} 則
-`,
-    message39: `競選者 - 熱情、有創造力且社交能力強的自由精神，總能找到理由微笑。`,
-    message4: `💡 使用 /history \${formatIdentifier(conversations[0].identifier)} 查看完整對話
-
-`,
-    message40: `剩餘時間：\${remaining.remainingText}
-`,
-    message41: `表演者 - 自發、精力充沛且熱情的表演者，生活在他們周圍從不無聊。`,
-    message42: `用戶數：\${broadcast.total_users} 人
-`,
-    message43: `• 你發送：\${stats.user_messages} 則
-`,
-    message44: `調停者 - 詩意、善良的利他主義者，總是熱情地為正義事業而努力。`,
-    message45: `
-請稍後使用 /broadcast_status 查看進度。`,
-    message46: `昵稱: \${user.nickname }
-`,
-    message47: `• 獎勵：\${stats.total_rewards}
-
-`,
-    message48: `企業家 - 聰明、精力充沛且善於洞察的人，真正享受生活在邊緣。`,
-    message49: `🎁 獎勵：+\${ad.reward_quota} 個永久額度`,
-    message5: `時間：\${new Date().toLocaleString('zh-TW', { timeZone: 'Asia/Taipei' })}
-`,
-    message50: `時間：\${new Date().toLocaleString(`,
-    message51: `使用 /broadcast_status 查看更新後的狀態。`,
-    message52: `目標: \${broadcast.target_type}
-`,
-    message53: `使用 /broadcast_status 查看更新後的記錄。`,
-    message54: `• 如果您更換了 Telegram 頭像，系統會自動檢測
-`,
-    message55: `約 \${Math.ceil(totalSeconds)} 秒`,
-    message56: `啟用者：\${maintenance.enabledBy}
-`,
-    message57: `邏輯學家 - 具有創新精神的發明家，對知識有著止不住的渴望。`,
-    message58: `提倡者 - 安靜而神秘，同時鼓舞人心且不知疲倦的理想主義者。`,
-    message59: `守衛者 - 非常專注且溫暖的守護者，時刻準備著保護所愛之人。`,
-    message6: `• 展示：\${stats.total_views} | 點擊：\${stats.total_clicks} (\${stats.ctr}%)
-`,
-    message60: `探險家 - 靈活且迷人的藝術家，時刻準備著探索和體驗新事物。`,
-    message61: `• 長按對方訊息回覆 /block 可封鎖此使用者
-`,
-    message62: `請確保回覆的是對方發送的訊息（帶有 # 標識符）。`,
-    message63: `/broadcast_non_vip <訊息內容>`,
-    message64: `建立你的第一個連接（長按訊息 → 選擇「回覆」）`,
-    message65: `訊息: \${messagePreview}
-`,
-    message66: `3. 遇到可疑訊息時，你會提高警覺嗎？
-
-`,
-    message67: `💡 VIP 用戶每日可發送 100 則訊息。`,
-    message68: `/broadcast <訊息內容>
-
-`,
-    message69: `/broadcast_vip <訊息內容>`,
-    message7: `
-• 驗證次數: \${stats.total_verified}
-• 驗證率: \${stats.verification_rate}%`,
-    message70: `最後訊息：\${preview}
-`,
-    message71: `廣播訊息不能超過 4000 個字符`,
-    message72: `1️⃣ 長按對方的訊息
-`,
-    message73: `請使用文字訊息與對方交流。`,
-    message74: `(尚無訊息)
-
-`,
-    message75: `獲取最新消息和活動`,
-    message76: `廣播訊息不能為空`,
-    message77: `(無訊息)`,
-    message8: `
-• 獎勵發放: \${stats.total_rewards}
-• 獎勵率: \${stats.reward_rate}%`,
-    message9: `
-• 剩餘展示: \${ad.max_views - ad.current_views}/\${ad.max_views}`,
-    newUser: `新用戶`,
-    next: `下一頁`,
-    nickname: `💡 請輸入一個簡單的暱稱，不要包含 http:// 或 https:// 等連結。
-
-`,
-    nickname10: `請輸入新的暱稱：
-
-`,
-    nickname11: `• 請勿使用暱稱發送廣告`,
-    nickname12: `📝 編輯暱稱`,
-    nickname13: `✍️ 自訂暱稱`,
-    nickname2: `很好！你的暱稱是：\${truncatedNickname}
-
-`,
-    nickname3: `📝 暱稱：\${updatedUser.nickname}
-`,
-    nickname4: `📝 暱稱：\${user.nickname}
-`,
-    nickname5: `• 暱稱長度限制 36 個字
-`,
-    nickname6: `📝 **編輯暱稱**
-
-`,
-    nickname7: `✏️ 請選擇你的暱稱：
-
-`,
-    nickname8: `✏️ 請輸入你的暱稱：
-
-`,
-    nickname9: `請告訴我你的暱稱（顯示名稱）：`,
-    no: `否`,
-    none: `無`,
-    notRegistered: `未注册`,
-    notSet: `未設定`,
-    operationFailed: `❌ 發生錯誤`,
-    pageInfo: `第 {current} / {total} 頁`,
-    prev: `上一頁`,
-    profile: `👤 查看個人資料 - /profile
-`,
-    profile2: `✏️ **編輯個人資料**
-
-`,
-    profile3: `（你也可以稍後在個人資料中設置）`,
-    quota: `💡 升級 VIP 可獲得更多配額（100 則/天）：/vip`,
-    quota2: `• 💎 升級 VIP（每天 30 個配額）`,
-    quota3: `• 🎁 邀請好友（每人 +1 配額）
-`,
-    quota4: `• ✨ 完成任務（獲得永久配額）
-`,
-    register: `
-
-💡 這是快速測驗（\${testInfo}），結果僅供參考。
-完成註冊後，可使用 /mbti 重新測驗。
-
-`,
-    register10: `🎉 恭喜完成註冊！
-
-`,
-    register2: `
-
-💡 這是完整測驗（\${testInfo}），結果更準確。
-完成註冊後，可使用 /mbti 重新測驗。
-
-`,
-    register3: `註冊步驟: \${user.onboarding_step}
-`,
-    register4: `⏰ 註冊流程已超時
-
-請使用 /start 重新開始註冊。`,
-    register5: `或使用：/dev_restart（自動開始註冊）
-
-`,
-    register6: `💡 現在可以重新開始測試註冊流程。
-
-`,
-    register7: `🔄 重新註冊：/start
-`,
-    register8: `💡 完成註冊後，你可以：
-`,
-    register9: `已自動完成註冊流程。
-
-`,
-    report: `🚨 **舉報不當內容** (#\${conversationIdentifier})
-
-`,
-    report2: `多次被舉報 / Multiple reports`,
-    report3: `💡 這樣可以準確指定要舉報的對象。`,
-    report4: `請選擇舉報原因：`,
-    selected: `已選擇`,
-    settings: `🧠 MBTI：\${updatedUser.mbti_result }（可重新測試）`,
-    settings10: `你還沒有設定 MBTI 類型。
-
-`,
-    settings11: `設定地區`,
-    settings12: `未設定`,
-    settings13: `未設定`,
-    settings14: `未設定`,
-    settings15: `未設定`,
-    settings16: `未設定`,
-    settings17: `未設定`,
-    settings18: `未設定`,
-    settings19: `未設定`,
-    settings2: `🏷️ 興趣標籤：\${updatedUser.interests}
-`,
-    settings20: `未設定`,
-    settings21: `未設定`,
-    settings22: `未設定`,
-    settings23: `未設定`,
-    settings24: `未設定`,
-    settings25: `未設定`,
-    settings26: `未設定`,
-    settings27: `未設定`,
-    settings28: `未設定`,
-    settings29: `未設定`,
-    settings3: `🧠 MBTI：\\$（可重新測試）`,
-    settings30: `未設定`,
-    settings31: `未設定`,
-    settings32: `未設定`,
-    settings33: `未設定`,
-    settings34: `未設定`,
-    settings35: `未設定`,
-    settings4: `🏷️ 興趣標籤：\${user.interests }
-`,
-    settings5: `📖 個人簡介：\${updatedUser.bio}
-`,
-    settings6: `🌍 地區：\${updatedUser.city}
-`,
-    settings7: `📖 個人簡介：\${user.bio}
-`,
-    settings8: `🌍 地區：\${user.city }
-`,
-    settings9: `你可以隨時使用 /mbti 指令重新設定。`,
-    short: `💡 你可以：
-`,
-    short10: `工作時，你更喜歡：`,
-    short100: `情感和故事`,
-    short101: `效率和結果`,
-    short102: `共識和團結`,
-    short103: `自由和彈性`,
-    short104: `保留選擇權`,
-    short105: `加line`,
-    short106: `測驗結果`,
-    short107: `先聽後說`,
-    short108: `小而親密`,
-    short109: `團隊合作`,
-    short11: `閱讀時，你更喜歡：`,
-    short110: `獨立工作`,
-    short111: `邊說邊想`,
-    short112: `獨自消化`,
-    short113: `實際應用`,
-    short114: `創新想法`,
-    short115: `新的嘗試`,
-    short116: `是否合理`,
-    short117: `是否有益`,
-    short118: `堅持原則`,
-    short119: `維持關係`,
-    short12: `工作中，你更重視：`,
-    short120: `公正果斷`,
-    short121: `體貼關懷`,
-    short122: `整齊有序`,
-    short123: `隨性自在`,
-    short124: `快速決定`,
-    short125: `感到不安`,
-    short126: `感到興奮`,
-    short127: `訪問鏈接`,
-    short128: `訂閱頻道`,
-    short129: `銀行帳號`,
-    short13: `規劃未來時，你會：`,
-    short130: `備註：`,
-    short131: `發送中`,
-    short132: `信用卡`,
-    short133: `比特币`,
-    short134: `加微信`,
-    short135: `加qq`,
-    short136: `手机号`,
-    short137: `联系我`,
-    short138: `一夜情`,
-    short139: `性服务`,
-    short14: `分析問題並提供建議`,
-    short140: `騙錢`,
-    short141: `投資`,
-    short142: `賺錢`,
-    short143: `匯款`,
-    short144: `轉帳`,
-    short145: `密碼`,
-    short146: `传销`,
-    short147: `金融`,
-    short148: `理财`,
-    short149: `股票`,
-    short15: `面對變化，你通常：`,
-    short150: `期货`,
-    short151: `外汇`,
-    short152: `电话`,
-    short153: `约炮`,
-    short154: `援交`,
-    short155: `自杀`,
-    short156: `跳楼`,
-    short157: `暴力`,
-    short158: `未設置`,
-    short159: `未生成`,
-    short16: `感謝你的支持！❤️`,
-    short160: `測試用戶`,
-    short161: `測試用戶`,
-    short162: `結果更準確`,
-    short163: `需要關注`,
-    short164: `加入群組`,
-    short165: `查看詳情`,
-    short17: `讓其他用戶更了解你`,
-    short18: `這正確嗎？
-
-`,
-    short19: `🗑️ 刪除草稿`,
-    short2: `🌈 任何人都可以`,
-    short20: `🏷️ 編輯興趣`,
-    short21: `請選擇測驗版本：`,
-    short22: `你的工作方式是：`,
-    short23: `有明確的截止日期`,
-    short24: `很快就能熟絡起來`,
-    short25: `需要時間慢慢熟悉`,
-    short26: `壓力大時，你會：`,
-    short27: `列清單按計劃購買`,
-    short28: `卡住（重試中）`,
-    short29: `✏️ 修改內容`,
-    short3: `✏️ 繼續編輯資料`,
-    short30: `📖 編輯簡介`,
-    short31: `🌍 編輯地區`,
-    short32: `💝 匹配偏好`,
-    short33: `正在更新...`,
-    short34: `🔞 色情內容`,
-    short35: `主動與他人交談`,
-    short36: `等待他人來找我`,
-    short37: `週末你更喜歡：`,
-    short38: `實際經驗和事實`,
-    short39: `按部就班的方法`,
-    short4: `📝 重新進行測驗`,
-    short40: `探索創新的方式`,
-    short41: `邏輯和客觀分析`,
-    short42: `情感和人際和諧`,
-    short43: `提前計劃和準備`,
-    short44: `隨機應變和靈活`,
-    short45: `保持開放的選擇`,
-    short46: `使用比喻和類比`,
-    short47: `傾聽並給予安慰`,
-    short48: `你的房間通常：`,
-    short49: `購物時，你會：`,
-    short5: `📝 進行快速測驗`,
-    short50: `讓別人更了解你`,
-    short51: `找到同城的朋友`,
-    short52: `看看別人的故事`,
-    short53: `至少 20 字`,
-    short54: `: 主動配對,`,
-    short55: `女生（默認）`,
-    short56: `男生（默認）`,
-    short57: `結果僅供參考`,
-    short58: `你可以：
-`,
-    short59: `和朋友出去玩`,
-    short6: `至少需要一個過濾器`,
-    short60: `在家獨處休息`,
-    short61: `感到充滿活力`,
-    short62: `感到需要休息`,
-    short63: `直覺和可能性`,
-    short64: `關注具體細節`,
-    short65: `關注整體概念`,
-    short66: `直接指出問題`,
-    short67: `考慮對方感受`,
-    short68: `制定詳細行程`,
-    short69: `隨心所欲探索`,
-    short7: `新用戶******`,
-    short70: `積極發表意見`,
-    short71: `你的朋友圈：`,
-    short72: `廣泛但不深入`,
-    short73: `未來和可能性`,
-    short74: `使用具體例子`,
-    short75: `已驗證的方法`,
-    short76: `基於現實條件`,
-    short77: `想像各種可能`,
-    short78: `有規律和結構`,
-    short79: `包含敏感詞彙`,
-    short8: `批評他人時，你會：`,
-    short80: `填寫興趣標籤`,
-    short81: `完善自我介紹`,
-    short82: `加入官方頻道`,
-    short83: `寫下你的故事`,
-    short84: `👨 男生`,
-    short85: `👩 女生`,
-    short86: `👨 男性`,
-    short87: `👩 女性`,
-    short88: `審核時間：`,
-    short89: `❓ 不確定`,
-    short9: `旅行時，你傾向於：`,
-    short90: `你更看重：`,
-    short91: `公平和正義`,
-    short92: `同情和理解`,
-    short93: `先想好再說`,
-    short94: `找朋友聊天`,
-    short95: `實用的指南`,
-    short96: `理論和概念`,
-    short97: `現在和過去`,
-    short98: `你更信任：`,
-    short99: `事實和數據`,
-    start: `開始時間：\${new Date(maintenance.startTime).toLocaleString('zh-TW')}
-`,
-    start10: `開始使用 →`,
-    start2: `開始時間: \${new Date(broadcast.startedAt).toLocaleString('zh-TW')}
-`,
-    start3: `開始：\${startTime.toLocaleString('zh-TW')}
-`,
-    start4: `開始時間: \${broadcast.started_at}
-
-`,
-    start5: `開始：\${startTime.toLocaleString(`,
-    start6: `🎉 **準備好了！開始交朋友吧～**
-
-`,
-    start7: `• 使用 /throw 重新開始
-`,
-    start8: `📺 開始觀看廣告`,
-    start9: `開始你的交友之旅`,
-    stats: `💡 使用 /ad_stats {id} 查看詳細統計`,
-    stats2: `• /stats - 查看統計
-
-`,
-    stats3: `📊 查看統計 - /stats
-`,
-    stats4: `📊 **官方廣告統計**
-
-`,
-    stats5: `邀請統計:
-`,
-    stats6: `統計:
-`,
-    success: `購買成功`,
-    systemError: `❌ 系統發生錯誤`,
-    task: `🎉 恭喜完成任務：加入官方頻道！
-
-`,
-    task2: `[📋 查看任務中心] → /tasks`,
-    task3: `• /tasks - 查看任務中心
-`,
-    task4: `💡 使用 /tasks 查看更多任務`,
-    task5: `處理任務時，你會：`,
-    task6: `📋 查看任務`,
-    text: `目標：\${broadcast.target_type}
-`,
-    text10: `📖 個人簡介：\${updatedUser.bio ||`,
-    text100: `💡 請在下方輸入框輸入內容`,
-    text101: `這可能需要一些時間，請稍候。`,
-    text102: `你可以隨時使用以下命令：
-`,
-    text103: `🛠️ 系統維護通知
-
-`,
-    text104: `🛠️ 維護模式狀態
-
-`,
-    text105: `評價一個想法時，你首先考慮：`,
-    text106: `⏱️ 約 2-3 分鐘
-`,
-    text107: `⏱️ 約 5-8 分鐘
-`,
-    text108: `📚 我想了解更多安全知識`,
-    text109: `立即發送（約 1-2 秒）`,
-    text11: `\${daysAgo} 天前`,
-    text110: `2️⃣ 選擇「回覆」
-`,
-    text111: `**過濾器格式：**
-`,
-    text112: `• 最短 5 個字符
-`,
-    text113: `• 不能包含網址連結
-`,
-    text114: `請輸入你的地區：
-
-`,
-    text115: `• 你可以隨時修改此設置`,
-    text116: `• 最多 5 個標籤
-`,
-    text117: `📋 快速版（12 題）`,
-    text118: `📚 完整版（36 題）`,
-    text119: `• 進行更詳細的測驗
-`,
-    text12: `總經理 - 出色的管理者，在管理事務或人員方面無與倫比。`,
-    text120: `💡 **提示：**
-`,
-    text121: `學習新事物時，你更喜歡：`,
-    text122: `**操作步驟：**
-`,
-    text123: `🇺🇳 使用聯合國旗`,
-    text124: `要直接發送這個草稿嗎？`,
-    text125: `這可能需要幾秒鐘時間。`,
-    text126: `
-感謝您的耐心等待！`,
-    text127: `維護時長最少 5 分鐘`,
-    text128: `在社交場合中，你通常：`,
-    text129: `解決問題時，你更依賴：`,
-    text13: `💡 這將顯示在你的資料卡上，讓其他用戶更了解你。
-`,
-    text130: `在團隊中，你更傾向於：`,
-    text131: `思考問題時，你傾向於：`,
-    text132: `描述事物時，你傾向於：`,
-    text133: `朋友向你傾訴時，你會：`,
-    text134: `團隊決策時，你更關注：`,
-    text135: `你認為好的領導者應該：`,
-    text136: `目標: 所有用戶
-`,
-    text137: `✏️ 請輸入新的內容`,
-    text138: `💰 詐騙 / 釣魚`,
-    text139: `😡 騷擾 / 辱罵`,
-    text14: `語言: \${user.language_pref}
-`,
-    text140: `參加聚會後，你通常：`,
-    text141: `做決定時，你更重視：`,
-    text142: `遇到新朋友時，你會：`,
-    text143: `衝突中，你更傾向於：`,
-    text144: `你更容易被說服通過：`,
-    text145: `你更喜歡的生活方式：`,
-    text146: `做決定時，你傾向於：`,
-    text147: `隨意逛逛看到喜歡就買`,
-    text148: `)} 到期。
-
-`,
-    text149: `📋 法律文檔僅提供英文版本。`,
-    text15: `🌍 地區：\${updatedUser.city ||`,
-    text150: `📋 法的文書は英語版のみ提供されています。`,
-    text16: `
-
-✅ 需要驗證：加入群組/頻道後點擊「驗證」按鈕`,
-    text17: `目標用戶數：\${userIds.length}
-
-`,
-    text18: `預計時間: \${estimatedTime}
-
-`,
-    text19: `/broadcast_cleanup confirm`,
-    text2: `請使用 /broadcast_filter 查看正確格式。`,
-    text20: `💝 匹配偏好：\${matchPrefText}
-`,
-    text21: `辯論家 - 聰明好奇的思想家，無法抗拒智力上的挑戰。`,
-    text22: `寫下你的心情或想法，系統會幫你找到合適的人
-
-`,
-    text23: `物流師 - 實際且注重事實的個人，可靠性不容懷疑。`,
-    text24: `鑒賞家 - 大膽而實際的實驗者，擅長使用各種工具。`,
-    text25: `💡 這是一次性獎勵，領取後會追加到今天的額度中。`,
-    text26: `符合用戶數: \${totalUsers} 人
-`,
-    text27: `• 默認為異性（男生尋找女生，女生尋找男生）
-`,
-    text28: `狀態: \${progress.status}
-`,
-    text29: `\${daysAgo} 小時前`,
-    text3: `**過濾條件：**
-\${filtersDesc}
-
-`,
-    text30: `約 \${remainingMinutes} 分鐘`,
-    text31: `約 \${hours} 小時 \${mins} 分鐘`,
-    text32: `維護時長不能超過 24 小時（1440 分鐘）`,
-    text33: `用戶數: \${totalUsers} 人
-`,
-    text34: `目標: \${b.target_type}
-`,
-    text35: `過濾條件: \${filtersDesc}
-`,
-    text36: `• 最少 4 個字符，最多 36 個字符
-`,
-    text37: `🇺🇳 如果找不到，可以選擇「聯合國旗」`,
-    text38: `📖 個人簡介：\${user.bio ||`,
-    text39: `請輸入你的興趣標籤（用逗號分隔）：
-
-`,
-    text4: `/maintenance_enable 60 系統升級維護`,
-    text40: `• 例如：音樂, 電影, 旅行, 美食
-`,
-    text41: `服務已恢復正常，感謝您的耐心等待！
-
-`,
-    text42: `🌍 地區：\${user.city ||`,
-    text43: `來源：\${sourceText}
-
-`,
-    text44: `未知的過濾器：\${trimmedKey}`,
-    text45: `系統正在進行維護，暫時無法使用。
-
-`,
-    text46: `我們根據你的語言設置，推測你來自：
-`,
-    text47: `• 每個標籤最多 20 個字符
-
-`,
-    text48: `時長：\${duration} 分鐘
-`,
-    text49: `1. 你了解網路交友的安全風險嗎？
-`,
-    text5: `👋 歡迎回來，\${user.nickname}！
-
-`,
-    text50: `2. 你會保護好自己的個人資訊嗎？
-`,
-    text51: `很好！現在請上傳你的頭像照片：
-
-`,
-    text52: `🌊 **XunNi 是什麼？**
-`,
-    text53: `🎉 檢測到你已加入官方頻道！
-
-`,
-    text54: `💡 這樣可以準確指定要封鎖的對象。`,
-    text55: `狀態：\${statusText}
-`,
-    text56: `💡 現在可以直接測試核心功能：
-`,
-    text57: `你想要尋找什麼樣的聊天對象？
-
-`,
-    text58: `• 介紹你的興趣、性格或想說的話
-`,
-    text59: `🏷️ **編輯興趣標籤**
-
-`,
-    text6: `建築師 - 富有想像力和戰略性的思想家，一切皆在計劃之中。`,
-    text60: `為了安全，只允許以下網域的連結：
-`,
-    text61: `📋 **快速版（12 題）**
-`,
-    text62: `📚 **完整版（36 題）**
-`,
-    text63: `• 頭像會自動每 7 天更新一次
-`,
-    text64: `3️⃣ 輸入 /report
-
-`,
-    text65: `3️⃣ 輸入 /block
-
-`,
-    text66: `狀態: \${b.status}
-`,
-    text67: `不會再被自動處理或重新發送
-
-`,
-    text68: `📖 **編輯個人簡介**
-
-`,
-    text69: `💝 **設置匹配偏好**
-
-`,
-    text7: `主人公 - 富有魅力且鼓舞人心的領導者，有能力使聽眾著迷。`,
-    text70: `💬 **你的聊天記錄**
-
-`,
-    text71: `• 您也可以隨時使用此命令手動刷新`,
-    text72: `📊 **每日數據分析報表**
-`,
-    text73: `你的帳號已恢復為免費會員。
-
-`,
-    text74: `💡 這將顯示在你的資料卡上
-`,
-    text75: `🔧 開發模式：用戶信息
-
-`,
-    text76: `• 直接輸入新內容來替換草稿
-`,
-    text77: `• 不允許連結、圖片、多媒體
-`,
-    text78: `• 顯示時最多 18 個字符
-`,
-    text79: `• 對方最多顯示 18 個字
-`,
-    text8: `/broadcast 系統將於今晚 22:00 進行維護`,
-    text80: `💡 請移除這些連結後重新發送。`,
-    text81: `🔄 正在刷新頭像...
-
-`,
-    text82: `• 免費用戶看到的是模糊頭像
-`,
-    text83: `💬 **如何成為朋友？**
-`,
-    text84: `無效的過濾器格式：\${pair}`,
-    text85: `你的所有數據已被刪除。
-
-`,
-    text86: `📝 **草稿內容**
-
-`,
-    text87: `🌍 **編輯地區**
-
-`,
-    text88: `• 例如：台北、香港、東京
-`,
-    text89: `• 最多 50 個字符
-
-`,
-    text9: `🏷️ 興趣標籤：\${user.interests ||`,
-    text90: `約 \${minutes} 分鐘`,
-    text91: `寫下你的故事（至少 20 字）`,
-    text92: `正在查詢符合條件的用戶...`,
-    text93: `• 最多 250 個字符
-`,
-    text94: `• 不要包含個人聯絡方式
-`,
-    text95: `請選擇要編輯的項目：
-
-`,
-    text96: `請輸入你的個人簡介：
-
-`,
-    text97: `• 最多 200 個字符
-`,
-    text98: `• 避免包含聯絡方式
-
-`,
-    text99: `現在可以正常使用所有功能了。`,
-    throw: `⏰ 丟瓶流程已超時
-
-請使用 /throw 重新開始。`,
-    throw2: `丟瓶流程`,
-    uncertain: `❓ 不確定`,
-    unknownOption: `⚠️ 未知的選項`,
-    unlimited: `無限制`,
-    userNotFound: `❌ 用戶不存在`,
-    vip: `你的 VIP 訂閱已於 \${expireDate} 到期。
-
-`,
-    vip10: `😢 **VIP 訂閱已到期**
-
-`,
-    vip11: `• 升級 VIP 後會自動刷新歷史帖子`,
-    vip12: `⭐ 升級 VIP - /vip
-`,
-    vip13: `💎 VIP 用戶無需觀看廣告`,
-    vip14: `目標: 非 VIP 用戶
-`,
-    vip15: `目標: VIP 用戶
-`,
-    vip16: `非 VIP 用戶`,
-    vip17: `VIP 用戶`,
-    vip2: `你的 VIP 訂閱已於 \${new Date(user.vip_expire_at).toLocaleDateString(`,
-    vip3: `/broadcast_filter vip=true,mbti=INTJ VIP 專屬活動通知
-`,
-    vip4: `每邀請 1 人，每日額度永久 +1（免費最多 10 人，VIP 最多 100 人）`,
-    vip5: `VIP: \${user.is_vip ? '是' : '否'}
-`,
-    vip6: `💡 升級 VIP 可使用進階篩選（MBTI/星座）：/vip`,
-    vip7: `💡 隨時可以重新訂閱 VIP：/vip
-
-`,
-    vip8: `💡 血型可用於 VIP 血型配對功能
-
-`,
-    vip9: `• VIP 用戶可以看到清晰的對方頭像
-`,
-    yes: `是`,
-    zodiac: `無效的星座：\${trimmedValue}（必須是以下之一：\${VALID_ZODIACS.join(', ')}）`,
-  },
-  conversation: {
-    age: `🎂 年齡範圍：\${ageRange} 歲
-`,
-    anonymousCardHint: `💡 這是匿名資料卡，不會顯示對方的真實身份資訊。`,
-    backToMenuCommand: `🏠 返回主選單：/menu`,
-    ban: `• 多次被舉報會導致封禁
-`,
-    blockConfirmButton: `✅ 確定封鎖`,
-    blockConfirmMessage: `封鎖後：
-• 對方無法再向你發送訊息
-• 你們不會再被匹配到
-• 此對話將立即結束
-
-💡 這不會舉報對方，只是不想再聊天。`,
-    blockConfirmTitle: `🚫 **確定要封鎖這位用戶嗎？**`,
-    blockSuccessMessage: `對方已被封鎖，你們不會再被匹配到。
-
-💡 想要開始新的對話嗎？
-• 使用 /catch 撿起新的漂流瓶`,
-    blockSuccessNewConversation: `💬 **對話已結束**
-
-對方結束了這個對話。
-
-💡 想要開始新的對話嗎？
-• 使用 /catch 撿起新的漂流瓶`,
-    blockSuccessTitle: `✅ **已封鎖此用戶**`,
-    blocked: `✅ 已封鎖`,
-    bloodType: `🩸 血型：\${partnerInfo.bloodType}
-`,
-    bloodType2: `🩸 血型：\${bloodTypeText}
-`,
-    bottle: `使用 /catch 撿漂流瓶開始聊天吧！
-
-`,
-    bottle2: `• 使用 /catch 撿起新的漂流瓶`,
-    cancelButton: `❌ 取消`,
-    cancelSuccess: `已取消`,
-    conversation: `💬 與 #\${identifier} 的對話記錄（第 \${postNumber} 頁）
-
-`,
-    conversation10: `目前沒有任何對話。
-
-`,
-    conversation11: `• 此對話將立即結束
-`,
-    conversation2: `💬 **我的對話列表** (\${conversations.length})
-
-`,
-    conversation3: `💡 點擊對方訊息的「回覆」按鈕即可繼續對話
-`,
-    conversation4: `💬 **對話已結束**
-
-`,
-    conversation5: `💬 **我的對話**
-
-`,
-    conversation6: `💡 想要開始新的對話嗎？
-`,
-    conversation7: `• 此對話將立即結束
-
-`,
-    conversation8: `對方結束了這個對話。
-
-`,
-    conversation9: `💡 這是對話的歷史記錄
-`,
-    conversationEnded: `❌ 此對話已結束。
-
-使用 /catch 撿新的漂流瓶開始新對話。`,
-    conversationInfoError: `❌ 對話資訊錯誤。`,
-    editProfileCommand: `✏️ 編輯個人資料：/edit_profile`,
-    endedMessage: `對方結束了這個對話。
-
-💡 想要開始新的對話嗎？
-• 使用 /catch 撿起新的漂流瓶`,
-    endedNewConversation: `💬 **對話已結束**
-
-對方結束了這個對話。
-
-💡 想要開始新的對話嗎？
-• 使用 /catch 撿起新的漂流瓶`,
-    endedTitle: `💬 **對話已結束**`,
-    gender: `👤 性別：\${gender}
-`,
-    mediaRestriction: `⚠️ **不允許發送圖片、影片或多媒體**
-
-💡 為了保護隱私和安全，對話中只允許純文字訊息。
-
-請使用文字訊息與對方交流。`,
-    message: `💫 配對度：\${score}分
-`,
-    message10: `conv_profile_\${conversationId}`,
-    message11: `• 最後訊息：\${lastMessageTime}
-
-`,
-    message12: `📊 總訊息數：\${totalMessages} 則
-`,
-    message13: `💬 直接按 /reply 回覆訊息聊天
-`,
-    message14: `• 對方無法再向你發送訊息
-`,
-    message2: `
-📜 繼續查看：#\${identifier}-H\${newPostNumber}`,
-    message3: `📅 最後更新：\${formatDateTime(new Date())}
-
-`,
-    message4: `[\${timeStr}] 對方：
-\${messageContent}
-
-`,
-    message5: `conv_report_confirm_\${conversationId}`,
-    message6: `conv_block_confirm_\${conversationId}`,
-    message7: `• 訊息數：\${conv.message_count} 則
-`,
-    message77: `💬 使用 /reply 回覆訊息`,
-    message8: `🏷️ 興趣：\${otherUser.interests}
-`,
-    message9: `💬 來自 #\${identifier} 的新訊息：
-
-`,
-    nickname: `📝 暱稱：\${partnerInfo.maskedNickname}
-`,
-    nickname2: `📝 暱稱：\${displayNickname}
-`,
-    noHistory: `💬 你還沒有任何對話記錄
-
-快去丟瓶子認識新朋友吧！ /throw
-
-🏠 返回主選單：/menu`,
-    profile: `✏️ 編輯個人資料：/edit_profile
-`,
-    profileCardTitle: `👤 **對方的資料卡**`,
-    replyButton: `💬 回覆訊息`,
-    replyConversation: `💬 回覆對話 {identifier}`,
-    replyHint: `💡 請在下方輸入框輸入內容`,
-    replyMethod1: `1️⃣ 點擊下方「💬 回覆訊息」按鈕`,
-    replyMethod2: `2️⃣ 長按此訊息，選擇「回覆」後輸入內容`,
-    replyMethodsTitle: `💡 **兩種回覆方式**：`,
-    report: `🚨 **確定要舉報這位用戶嗎？**
-
-`,
-    report2: `💡 這不會舉報對方，只是不想再聊天。`,
-    report3: `感謝你的舉報，我們會盡快審核。
-
-`,
-    report4: `舉報後：
-`,
-    reportConfirmButton: `✅ 確定舉報`,
-    reportConfirmMessage: `舉報後：
-• 我們會審核此用戶的行為
-• 多次被舉報會導致封禁
-• 此對話將立即結束
-• 24小時內不會再匹配到此用戶
-
-💡 請確保對方確實有不當行為。`,
-    reportConfirmTitle: `🚨 **確定要舉報這位用戶嗎？**`,
-    reportSuccessMessage: `感謝你的舉報，我們會盡快審核。
-
-💡 想要開始新的對話嗎？
-• 使用 /catch 撿起新的漂流瓶`,
-    reportSuccessNewConversation: `💬 **對話已結束**
-
-對方結束了這個對話。
-
-💡 想要開始新的對話嗎？
-• 使用 /catch 撿起新的漂流瓶`,
-    reportSuccessTitle: `✅ **已舉報此用戶**`,
-    reported: `✅ 已舉報`,
-    separator: `━━━━━━━━━━━━━━━━`,
-    settings: `🧠 MBTI：\${otherUser.mbti_result }
-`,
-    settings2: `未設定`,
-    settings3: `未設定`,
-    settings4: `未設定`,
-    settings5: `未設定`,
-    short: `封鎖後：
-`,
-    short2: `未知用戶`,
-    short3: `剛剛`,
-    stats: `📊 使用 /stats 查看詳細統計
-`,
-    text: `💡 這是匿名資料卡，不會顯示對方的真實身份資訊。
-
-`,
-    text10: `💎 使用 /vip 了解更多
-
-`,
-    text11: `👤 **對方的資料卡**
-
-`,
-    text12: `\${diffHours} 小時前`,
-    text13: `💡 請確保對方確實有不當行為。`,
-    text14: `\${diffMins} 分鐘前`,
-    text15: `• 我們會審核此用戶的行為
-`,
-    text16: `💎 使用 /vip 了解更多`,
-    text17: `\${diffDays} 天前`,
-    text18: `• 你們不會再被匹配到
-`,
-    text19: `👤 對方資料：
-`,
-    text2: `📜 查看歷史記錄：#\${identifier}
-`,
-    text3: `🗣️ 語言：\${languageLabel}
-`,
-    text4: `🌍 地區：\${otherUser.city}
-`,
-    text5: `📖 簡介：\${otherUser.bio}
-`,
-    text6: `conv_reply_\${identifier}`,
-    text7: `🚫 **確定要封鎖這位用戶嗎？**
-
-`,
-    text8: `對方已被封鎖，你們不會再被匹配到。
-
-`,
-    text9: `• 24小時內不會再匹配到此用戶
-
-`,
-    vip: `
-🔒 升級 VIP 解鎖對方清晰頭像
-`,
-    vip2: `🔒 升級 VIP 解鎖對方清晰頭像
-`,
-    vipLearnMore: `💎 使用 /vip 了解更多`,
-    vipUnlockAvatar: `🔒 升級 VIP 解鎖對方清晰頭像`,
-    zodiac: `⭐ 星座：\${partnerInfo.zodiac}
-`,
-    zodiac2: `⭐ 星座：\${zodiacLabel}
-`,
-  },
-  conversationHistory: {
-    backToMenu: `🏠 返回主選單：/menu`,
-    bloodType: `🩸 血型：\${bloodType}`,
-    continueView: `📜 繼續查看：#\${identifier}-H\${postNumber}`,
-    historyNote: `💡 這是對話的歷史記錄`,
-    lastUpdated: `📅 最後更新：\${time}`,
-    matchScore: `💫 配對度：\${score}分`,
-    mbti: `🧠 MBTI：\${mbti}`,
-    messageEntry: `[\${time}] 對方：
-\${content}`,
-    newMessage: `💬 來自 #\${identifier} 的新訊息：`,
-    nickname: `📝 暱稱：\${nickname}`,
-    other: `對方`,
-    partnerInfo: `👤 對方資料：`,
-    replyButton: `💬 回覆訊息`,
-    replyHint: `💬 直接按 /reply 回覆訊息聊天`,
-    title: `💬 與 #\${identifier} 的對話記錄（第 \${postNumber} 頁）`,
-    totalMessages: `📊 總訊息數：\${count} 則`,
-    viewAllConversations: `📊 查看所有對話`,
-    viewHistory: `📜 查看歷史記錄：#\${identifier}`,
-    viewProfileCard: `👤 查看對方資料卡`,
-    vipLearnMore: `💎 使用 /vip 了解更多`,
-    vipUnlockAvatar: `🔒 升級 VIP 解鎖對方清晰頭像`,
-    you: `你`,
-    zodiac: `⭐ 星座：\${zodiac}`,
-  },
-  countries: {
-    ae: `阿聯酋`,
-    al: `阿爾巴尼亞`,
-    am: `亞美尼亞`,
-    ar: `阿根廷`,
-    at: `奧地利`,
-    au: `澳洲`,
-    az: `亞塞拜然`,
-    ba: `波斯尼亞`,
-    bb: `巴貝多`,
-    bd: `孟加拉`,
-    be: `比利時`,
-    bg: `保加利亞`,
-    bh: `巴林`,
-    bo: `玻利維亞`,
-    br: `巴西`,
-    ca: `加拿大`,
-    ch: `瑞士`,
-    ci: `象牙海岸`,
-    cl: `智利`,
-    cm: `喀麥隆`,
-    cn: `中國`,
-    co: `哥倫比亞`,
-    cr: `哥斯大黎加`,
-    cu: `古巴`,
-    cz: `捷克`,
-    de: `德國`,
-    dk: `丹麥`,
-    do: `多明尼加`,
-    dz: `阿爾及利亞`,
-    ec: `厄瓜多`,
-    ee: `愛沙尼亞`,
-    eg: `埃及`,
-    es: `西班牙`,
-    et: `衣索比亞`,
-    fi: `芬蘭`,
-    fr: `法國`,
-    gb: `英國`,
-    ge: `喬治亞`,
-    gh: `迦納`,
-    gr: `希臘`,
-    gt: `瓜地馬拉`,
-    hk: `香港`,
-    hn: `宏都拉斯`,
-    hr: `克羅地亞`,
-    hu: `匈牙利`,
-    id: `印尼`,
-    ie: `愛爾蘭`,
-    il: `以色列`,
-    in: `印度`,
-    iq: `伊拉克`,
-    ir: `伊朗`,
-    is: `冰島`,
-    it: `意大利`,
-    jm: `牙買加`,
-    jo: `約旦`,
-    jp: `日本`,
-    ke: `肯亞`,
-    kh: `柬埔寨`,
-    kr: `韓國`,
-    kw: `科威特`,
-    kz: `哈薩克`,
-    la: `寮國`,
-    lb: `黎巴嫩`,
-    lk: `斯里蘭卡`,
-    lt: `立陶宛`,
-    lv: `拉脫維亞`,
-    ly: `利比亞`,
-    ma: `摩洛哥`,
-    mk: `北馬其頓`,
-    mm: `緬甸`,
-    mn: `蒙古`,
-    mo: `澳門`,
-    mt: `馬爾他`,
-    mx: `墨西哥`,
-    my: `馬來西亞`,
-    ng: `奈及利亞`,
-    ni: `尼加拉瓜`,
-    nl: `荷蘭`,
-    no: `挪威`,
-    np: `尼泊爾`,
-    nz: `紐西蘭`,
-    om: `阿曼`,
-    pa: `巴拿馬`,
-    pe: `秘魯`,
-    ph: `菲律賓`,
-    pk: `巴基斯坦`,
-    pl: `波蘭`,
-    pt: `葡萄牙`,
-    py: `巴拉圭`,
-    qa: `卡達`,
-    ro: `羅馬尼亞`,
-    rs: `塞爾維亞`,
-    ru: `俄羅斯`,
-    rw: `盧安達`,
-    sa: `沙特阿拉伯`,
-    sd: `蘇丹`,
-    se: `瑞典`,
-    sg: `新加坡`,
-    si: `斯洛維尼亞`,
-    sk: `斯洛伐克`,
-    sn: `塞內加爾`,
-    sv: `薩爾瓦多`,
-    sy: `敘利亞`,
-    th: `泰國`,
-    tn: `突尼西亞`,
-    tr: `土耳其`,
-    tt: `千里達`,
-    tw: `台灣`,
-    tz: `坦尚尼亞`,
-    ua: `烏克蘭`,
-    ug: `烏干達`,
-    un: `聯合國`,
-    us: `美國`,
-    uy: `烏拉圭`,
-    uz: `烏茲別克`,
-    ve: `委內瑞拉`,
-    vn: `越南`,
-    ye: `葉門`,
-    za: `南非`,
-    zw: `辛巴威`,
-  },
-  country: {
-    buttonAU: `🇦🇺 澳洲`,
-    buttonCA: `🇨🇦 加拿大`,
-    buttonCN: `🇨🇳 中國`,
-    buttonDE: `🇩🇪 德國`,
-    buttonFR: `🇫🇷 法國`,
-    buttonGB: `🇬🇧 英國`,
-    buttonHK: `🇭🇰 香港`,
-    buttonJP: `🇯🇵 日本`,
-    buttonKR: `🇰🇷 韓國`,
-    buttonMY: `🇲🇾 馬來西亞`,
-    buttonNZ: `🇳🇿 紐西蘭`,
-    buttonSG: `🇸🇬 新加坡`,
-    buttonTH: `🇹🇭 泰國`,
-    buttonTW: `🇹🇼 台灣`,
-    buttonUS: `🇺🇸 美國`,
-    confirmButton: `✅ 正確`,
-    confirmDetected: `我們根據你的語言設置，推測你來自：
-`,
-    confirmFailed: `❌ 確認失敗`,
-    confirmHint: `💡 這將顯示在你的資料卡上，讓其他用戶更了解你。
-`,
-    confirmQuestion: `這正確嗎？
-
-`,
-    confirmReward: `🎉 確認後可獲得 +1 瓶子獎勵！`,
-    confirmTitle: `🌍 **確認你的國家/地區**
-
-`,
-    confirmed: `✅ 已確認！`,
-    notCorrectButton: `❌ 不正確`,
-    selectHint: `💡 這將顯示在你的資料卡上
-`,
-    selectTitle: `🌍 **請選擇你的國家/地區**
-
-`,
-    selectUnFlagHint: `🇺🇳 如果找不到，可以選擇「聯合國旗」`,
-    setFailed: `❌ 設置失敗`,
-    setTo: `✅ 已設置為 {flag} {country}`,
-    unFlagButton: `🇺🇳 聯合國旗`,
-    useUnFlagButton: `🇺🇳 使用聯合國旗`,
-  },
-  dailyReports: {
-    header: `📊 **每日數據分析報表**`,
-    time: `時間：\${time}`,
-  },
-  dev: {
-    autoCompleted: `已自動完成註冊流程。
-
-`,
-    bottles: `• 漂流瓶: {count}
-`,
-    catchCommand: `• /catch - 撿漂流瓶
-`,
-    conversations: `• 對話: {count}
-`,
-    dataReset: `✅ 開發模式：數據已重置
-
-你的所有數據已被刪除。
-
-💡 現在可以重新開始測試註冊流程。
-
-🔄 重新註冊：/start
-或使用：/dev_restart（自動開始註冊）
-
-⚠️ 注意：此功能僅在 Staging 環境可用。`,
-    getUserInfoFailed: `❌ 獲取信息失敗`,
-    inviteActivated: `• 已激活: {count}
-`,
-    inviteCode: `邀請碼: {code}
-`,
-    invitePending: `• 待激活: {count}
-
-`,
-    inviteStats: `邀請統計:
-`,
-    inviteTotal: `• 邀請記錄總數: {count}
-`,
-    invitedBy: `被誰邀請: {invitedBy}
-
-`,
-    language: `語言: {lang}
-`,
-    messages: `• 訊息: {count}
-
-`,
-    nickname: `昵稱: {nickname}
-`,
-    no: `否`,
-    none: `無`,
-    notAvailableInProduction: `❌ 此命令在生產環境中不可用。
-
-This command is not available in production.`,
-    notGenerated: `未生成`,
-    notSet: `未設置`,
-    onboardingStep: `註冊步驟: {step}
-`,
-    resetFailed: `❌ 重置失敗：{error}
-
-請稍後再試。`,
-    skipFailed: `❌ 跳過失敗`,
-    skipRegistration: `✅ 開發模式：跳過註冊
-
-`,
-    stagingOnly: `⚠️ 此功能僅在 Staging 環境可用。`,
-    stats: `統計:
-`,
-    statsCommand: `• /stats - 查看統計
-
-`,
-    successfulInvites: `• successful_invites: {count}
-`,
-    telegramId: `Telegram ID: {id}
-`,
-    testCoreFeatures: `💡 現在可以直接測試核心功能：
-`,
-    testUser: `測試用戶`,
-    throwCommand: `• /throw - 丟漂流瓶
-`,
-    userInfo: `🔧 開發模式：用戶信息
-
-`,
-    userNotFound: `❌ 用戶不存在`,
-    vip: `VIP: {status}
-`,
-    yes: `是`,
-  },
-  draft: {
-    contentHint: `💡 你可以：
-• 直接輸入新內容來替換草稿
-• 使用 /throw 重新開始
-• 發送草稿內容來丟出漂流瓶`,
-    contentTitle: `📝 **草稿內容**
-
-`,
-    continueEditing: `✅ 繼續編輯草稿`,
-    deleteButton: `🗑️ 刪除草稿`,
-    deleted: `✅ 草稿已刪除`,
-    editButton: `✏️ 修改內容`,
-    editInput: `✏️ 請輸入新的漂流瓶內容：
-
-💡 提示：
-• 最短 5 個字符
-• 最多 250 個字符
-• 不允許連結、圖片、多媒體
-• 不要包含個人聯絡方式
-• 友善、尊重的內容更容易被撿到哦～`,
-    editPrompt: `✏️ 請輸入新的內容`,
-    newBottle: `✅ 開始新的漂流瓶`,
-    notFound: `⚠️ 草稿不存在或已過期`,
-    sendButton: `✅ 發送草稿`,
-    sendQuestion: `要直接發送這個草稿嗎？`,
-    sending: `✅ 正在發送...`,
-    targetGender: `你想要尋找什麼樣的聊天對象？
-
-`,
-    targetGenderHint: `💡 升級 VIP 可使用進階篩選（MBTI/星座）：/vip`,
-    throwBottle: `🍾 丟漂流瓶
-
-你想要尋找什麼樣的聊天對象？`,
-    age: {
-      daysAgo: `\\\${days} 天前`,
-      hoursAgo: `\\\${hours} 小時前`,
-      justNow: `剛剛`,
+  "errors": {
+    "banned": "❌ Tilisi on estetty\n\nSyynä: {reason}",
+    "channelConfigError": "❌ Kanavan konfigurointivirhe.",
+    "claimRewardFailed": "❌ Palkinnon lunastus epäonnistui.",
+    "completeOnboarding": "⚠️ Suorita rekisteröintiprosessi ensin.",
+    "conversationInfoError": "❌ Keskustelutiedot ovat virheelliset.",
+    "conversationNotFound": "❌ Tätä keskustelua ei löydy.",
+    "error": {
+      "ad": "❌ Tälle mainokselle ei vaadita vahvistusta.",
+      "ad2": "❌ Ei saatavilla olevia mainoksia tällä hetkellä.",
+      "ad3": "❌ Tätä ilmoitusta ei voi lunastaa.",
+      "ad4": "❌ Mainosta ei ole olemassa.",
+      "ad5": "❌ Mainoksen ID:n on oltava numero.",
+      "ad6": "❌ Sinulla ei ole oikeuksia tarkastella mainostietoja.",
+      "admin": "❌ Järjestelmävirhe tapahtui, yritä myöhemmin uudelleen.\n\nJos ongelma jatkuu, ota yhteyttä ylläpitäjään.",
+      "admin2": "❌ **Riittämättömät oikeudet**\n\nTämä komento on rajoitettu superylläpitäjille.",
+      "admin3": "❌ Tämä käyttäjä on jo super ylläpitäjä, ei tarvitse lisätä.",
+      "admin4": "❌ Vain super ylläpitäjät voivat käyttää tätä komentoa.",
+      "admin5": "❌ Tämä käyttäjä on jo ylläpitäjä.",
+      "admin6": "❌ Ei voida poistaa super ylläpitäjää.",
+      "admin7": "❌ Tämä käyttäjä ei ole ylläpitäjä.",
+      "appeal": "❌ Anna valitus-ID\n\nKäyttö: /admin_approve <appeal_id> [muistiinpanot]",
+      "appeal2": "❌ Anna valitus-ID\n\nKäyttö: /admin_reject <appeal_id> [muistiinpano]",
+      "appeal3": "❌ Valitus \\${appealId} on jo käsitelty",
+      "appeal4": "❌ Ei voitu löytää valitus-ID:tä: \\${appealId}",
+      "ban": "❌ Käyttäjällä \\${targetUserId} ei ole kieltohistoriaa",
+      "birthday": "❌ \\${validation.error}\n\nOle hyvä ja syötä syntymäpäiväsi uudelleen (muoto: YYYY-MM-DD):",
+      "birthday2": "❌ Virheellinen syntymäpäivämuoto\n\nOle hyvä ja syötä uudelleen (muoto: YYYY-MM-DD):",
+      "birthday3": "❌ Virheellinen syntymäpäivämuoto",
+      "bottle": "❌ Tämä keskustelu on päättynyt.\n\nKäytä /catch ottaaksesi uuden viestipullon ja aloittaaksesi uuden keskustelun.",
+      "bottle2": "❌ Tilisi on kielletty, eikä voitaisiin ottaa vastaan viestipullia.\n\nJos sinulla on kysymyksiä, käytä /appeal tehdäksesi valituksen.",
+      "bottle3": "❌ Tämä pullo on jo otettu jonkun toimesta, kokeile muita pulloja!",
+      "broadcast": "❌ Nykyinen lähetysjärjestelmä tukee vain lähettämistä \\${MAX_SAFE_USERS} käyttäjälle tai vähemmälle.\n\n",
+      "broadcast2": "❌ Lähetys-ID:n on oltava numero",
+      "broadcast3": "❌ Ei voitu löytää lähetyshistoriaa",
+      "cancel": "❌ Nimimerkki liian pitkä, syötä nimimerkki, joka on enintään 36 merkkiä pitkä.\n\nOle hyvä ja syötä uudelleen tai peru muokkaus:",
+      "cancel2": "❌ Henkilöprofiili liian pitkä, syötä enintään 200 merkkiä.\n\nOle hyvä ja syötä uudelleen tai peru muokkaus:",
+      "cancel3": "❌ Alueen nimi liian pitkä, syötä enintään 50 merkkiä.\n\nOle hyvä ja syötä uudelleen tai peru muokkaus:",
+      "cancel4": "❌ Nimimerkki liian lyhyt, vähintään 4 merkkiä tarvitaan.\n\nOle hyvä ja syötä uudelleen tai peru muokkaus:",
+      "cancel5": "❌ Jokainen tunniste voi olla enintään 20 merkkiä pitkä.\n\nOle hyvä ja syötä uudelleen tai peru muokkaus:",
+      "cancel6": "❌ Peru muokkaus",
+      "cancel7": "❌ Peru \\${ZODIAC_NAMES[zodiacSign]}",
+      "cancel8": "❌ Peru \\${mbtiType}",
+      "cancel9": "❌ Peru",
+      "conversation": "❌ Keskustelua, jonka tunnus on \\${formatIdentifier(identifier)}, ei löydy\n\n",
+      "conversation2": "❌ Keskustelutiedot virhe.",
+      "conversation3": "❌ Keskustelutiedot virhe",
+      "conversation4": "❌ Keskustelu ei ole olemassa",
+      "conversationInfoError": "❌ Keskustelutiedot virhe",
+      "conversationNotFound": "❌ Keskustelu ei ole olemassa",
+      "failed": "❌ **Mainoksen lataus epäonnistui**\n\nAnteeksi, mainosta ei voida esittää normaalisti.\n\n💡 **Mahdolliset syyt:**\n• Epävakaa internet-yhteys\n• Mainospalvelun tarjoaja tilapäisesti poissa käytöstä\n• Selain ei tuettu\n\n🔄 **Ehdotukset:**\n• Tarkista internet-yhteytesi\n• Yritä myöhemmin uudelleen\n• Tai käytä muita menetelmiä saadaksesi krediittejä (kutsu ystäviä)",
+      "failed10": "❌ Virhe ylläpitotilan kyselyssä.",
+      "failed11": "❌ Avatarin päivittäminen epäonnistui\n\n",
+      "failed12": "❌ Vahvistus epäonnistui, yritä myöhemmin uudelleen",
+      "failed13": "❌ Ylläpitotilan aktivointi epäonnistui.",
+      "failed14": "❌ Ylläpitotilan poistaminen epäonnistui.",
+      "failed15": "❌ Mainostilan hakeminen epäonnistui",
+      "failed16": "❌ Tilastojen hakeminen epäonnistui",
+      "failed17": "❌ Lähetyksen luonti epäonnistui.",
+      "failed18": "❌ Tietojen hakeminen epäonnistui",
+      "failed19": "❌ Palkan lunastus epäonnistui",
+      "failed2": "❌ Suodatetun lähetyksen luonti epäonnistui\n\n\\${error instanceof Error ? error.message : String(error)}",
+      "failed20": "❌ Vahvistus epäonnistui",
+      "failed21": "❌ Asettaminen epäonnistui",
+      "failed22": "❌ Ohita epäonnistui",
+      "failed23": "❌ Toiminta epäonnistui",
+      "failed24": "❌ Päivittäisen raportin lähettäminen epäonnistui: \\${error instanceof Error ? error.message : String(error)}",
+      "failed25": "❌ VIP-myynnin tietojen hakeminen epäonnistui",
+      "failed26": "❌ **Diagnostiikka epäonnistui**\n\n",
+      "failed27": "❌ **Päivitys epäonnistui**\n\n",
+      "failed28": "❌ **Maksu epäonnistui**\n\n",
+      "failed29": "❌ Mainostoimittajalistan hakeminen epäonnistui",
+      "failed3": "❌ Lähetysjonoa käsitellessä tapahtui virhe: \\${error instanceof Error ? error.message : String(error)}",
+      "failed30": "❌ Virallisen mainoslistan hakeminen epäonnistui",
+      "failed31": "❌ Mainostoimittajan aktivointi epäonnistui",
+      "failed32": "❌ Mainostoimittajan deaktivointi epäonnistui",
+      "failed33": "❌ Virallisen mainoksen aktivointi epäonnistui",
+      "failed34": "❌ Virallisen mainoksen deaktivointi epäonnistui",
+      "failed35": "❌ Analytiikkatietojen hakeminen epäonnistui",
+      "failed36": "❌ Mainostietojen hakeminen epäonnistui",
+      "failed37": "❌ Prioriteetin asettaminen epäonnistui",
+      "failed38": "❌ Palautus epäonnistui: \\${error instanceof Error ? error.message : String(error)}",
+      "failed39": "❌ Toiminto epäonnistui: \\${error instanceof Error ? error.message : String(error)}",
+      "failed4": "❌ Lähetysstatuskysely epäonnistui: \\${error instanceof Error ? error.message : String(error)}",
+      "failed40": "❌ Lähetys epäonnistui, yritä myöhemmin uudelleen.",
+      "failed41": "❌ Keskustelun luominen epäonnistui, yritä myöhemmin uudelleen.",
+      "failed5": "❌ Lähetyksen peruminen epäonnistui: \\${error instanceof Error ? error.message : String(error)}",
+      "failed6": "❌ Lähetyksen puhdistaminen epäonnistui: \\${error instanceof Error ? error.message : String(error)}",
+      "failed7": "❌ Resetointi epäonnistui: \\${errorMessage}\n\nYritä myöhemmin uudelleen.",
+      "failed8": "❌ Lähetyksen luominen epäonnistui, yritä myöhemmin uudelleen.",
+      "failed9": "❌ Keskusteluhistorian päivittäminen epäonnistui\n\n",
+      "mbti": "❌ Virheellinen MBTI-tyyppi",
+      "message": "❌ Suodatinmuotoilun virhe\n\n\\${error instanceof Error ? error.message : String(error)}\n\n",
+      "message2": "❌ Tämä komento ei ole käytettävissä tuotannossa.\n\nTämä komento ei ole käytettävissä tuotannossa.",
+      "message3": "❌ Tapahtui virhe, yritä myöhemmin uudelleen.\n\nVirheviesti: \\${error instanceof Error ? error.message : String(error)}",
+      "message4": "❌ Anteeksi, sinun tulee olla vähintään 18-vuotias voidaksesi käyttää tätä palvelua.\n\nPalaa takaisin, kun olet aikuinen!",
+      "nickname": "❌ Telegram-nimimerkkiä ei pystytä hakemaan",
+      "nickname2": "❌ Käyttäjätunnus ei voi sisältää verkkosivulinkkiä\n\n",
+      "nickname3": "❌ \\${validation.error}\n\nOle hyvä ja syötä nimimerkkisi uudelleen:",
+      "quota": "❌ Tänään käytetty pullo viestiquota on loppunut (\\${quotaDisplay})\n\n💡 Tapoja saada lisää quota:\n",
+      "quota2": "❌ Tämä päivän keskustelusanomien kiintiö on käytetty (\\${usedToday}/\\${dailyLimit})\n\n",
+      "quota3": "❌ Tämä päivän pullopostiviestien kiintiö on käytetty (\\${quotaDisplay})\n\n",
+      "register": "❌ Ole hyvä ja suorita rekisteröintiprosessi ensin.\n\nKäytä /start jatkaaksesi rekisteröintiä.",
+      "register2": "❌ Käyttäjäprofiilia ei löytynyt, käytä /start rekisteröidäksesi ensin.",
+      "register3": "❌ Ole hyvä ja suorita rekisteröintiprosessi ennen pullojen keräämistä.\n\nKäytä /start jatkaaksesi rekisteröintiä.",
+      "settings": "❌ Voit asettaa korkeintaan 5 kiinnostuksen kohteen tagia.\n\nOle hyvä ja syötä tai peruuta muokkaus:",
+      "short": "❌ Virheellinen kielikoodi",
+      "short10": "❌ Riittämättömät oikeudet",
+      "short11": "❌ Ei juuri nyt",
+      "short12": "❌ Valitse uudelleen",
+      "short13": "❌ Syötä uudelleen",
+      "short14": "❌ Sulje",
+      "short15": "❌ Ei käytössä",
+      "short2": "❌ Käyttäjäprofiilia ei löytynyt",
+      "short3": "❌ Tuntematon ohjeaskel",
+      "short4": "❌ Tapahtui järjestelmävirhe",
+      "short5": "❌ Kanavan asetusten virhe",
+      "short6": "❌ Tuntematon toiminto",
+      "short7": "❌ Virheellinen",
+      "short8": "❌ Ei",
+      "short9": "❌ Tapahtui virhe",
+      "start": "❌ Tapahtui virhe, käynnistä uudelleen: /start",
+      "stats": "❌ Sinulla ei ole oikeuksia katsella mainostilastoja",
+      "task": "❌ Tapahtui virhe järjestelmässä nähtäessä tehtäväkeskusta, yritä myöhemmin uudelleen.",
+      "text": "❌ Järjestelmävirhe tapahtui tuloksia laskettaessa, yritä myöhemmin uudelleen.\n\n",
+      "text10": "❌ Lähettäjän tiedot ovat virheelliset.",
+      "text11": "❌ Sinulla ei ole oikeuksia katsella analyyttisiä tietoja",
+      "text12": "❌ Tapahtui virhe, yritä myöhemmin uudelleen.",
+      "text13": "❌ Sinulla ei ole oikeuksia käyttää tätä komentoa.",
+      "text14": "❌ Väärä käyttömenetelmä\n\n",
+      "text15": "❌ Prioriteetin on oltava ei-negatiivinen kokonaisluku",
+      "text16": "❌ Keston on oltava positiivinen kokonaisluku tai",
+      "text17": "❌ Järjestelmävirhe tapahtui maksua käsiteltäessä, ota yhteyttä asiakastukeen.\n\n",
+      "text18": "❌ Palautusperusteen on oltava vähintään 10 merkkiä, syötä uudelleen:",
+      "text19": "❌ **Hyvityspyyntö on hylätty**\n\n",
+      "text2": "❌ Profeili sisältää kiellettyjä linkkejä.\n\n",
+      "text20": "❌ Hyvityspyyntö ylittää aikarajan\n\n",
+      "text21": "❌ Palautuspyyntö ei ole olemassa tai se on käsitelty",
+      "text22": "❌ Maksutietoa ei löytynyt.",
+      "text23": "❌ Olemme pahoillamme, sinun on oltava yli 18-vuotias voidaksesi käyttää tätä palvelua.\n\n",
+      "text24": "❌ Tapahtui virhe, syötä uudelleen.",
+      "text25": "❌ Vastaa kysymykseen vakavasti\n\n",
+      "text3": "❌ Kanavasuhteesi ei havaittu, liity ensin ja yritä sitten uudelleen",
+      "text4": "❌ Havaittiin, että olet poistunut kanavasta etkä voi vaatia palkintoja.",
+      "text5": "❌ Tapahtui virhe opetusohjelman aktivoinnissa, yritä myöhemmin uudelleen.",
+      "text6": "❌ Tapahtui virhe järjestelmässä, yritä myöhemmin uudelleen.",
+      "text7": "❌ Keston on oltava numero (minuutit)",
+      "text8": "❌ Tapahtui virhe, yritä myöhemmin uudelleen",
+      "text9": "❌ Ylläpitotilaa ei voida noutaa",
+      "userNotFound": "❌ Käyttäjää ei ole olemassa, rekisteröidy ensin käyttäen /start.",
+      "userNotFound2": "❌ Käyttäjää ei ole olemassa, rekisteröidy ensin",
+      "userNotFound3": "❌ Muitakaan käyttäjiä ei ole olemassa.",
+      "userNotFound4": "❌ Käyttäjää ei ole olemassa",
+      "userNotFound5": "❌ Käyttäjää ei ole olemassa: \\\\$${userId}",
+      "userNotFound6": "❌ Käyttäjää ei ole olemassa tai hän ei ole rekisteröitynyt.",
+      "userNotFound7": "❌ Käyttäjää ei ole olemassa.",
+      "vip": "❌ Sinulla ei ole oikeuksia katsella VIP-tietoja",
+      "vip2": "❌ Et ole VIP-käyttäjä etkä voi vaatia palautusta."
     },
+    "errorDetails": "Virheviesti: {error}",
+    "failed": "Epäkätevästi: ${broadcast.failedCount}\n",
+    "failed2": "Epäonnistui: ${result.failed} kohdetta\n\n",
+    "failed3": "Nämä lähetykset merkitään 'epäonnistuneiksi'\n",
+    "failed4": "Nämä lähetykset on merkitty 'epäonnistuneiksi'\n",
+    "generic": "❌ Tapahtui virhe, yritä myöhemmin uudelleen.",
+    "invalidRequest": "❌ Virheellinen pyyntö",
+    "message": "${statusEmoji} **${provider.provider_display_name}**\n${healthEmoji} Terveystila: ${health.is_healthy ? 'Hyvä' : 'Vaatii Huomiota'}\n📊 Valmistumisaste: ${stats.completion_rate}%\n❌ Virheaste: ${stats.error_rate}%\n📈 Yhteensä pyyntöjä: ${stats.total_requests}\n✅ Yhteensä valmiita: ${stats.total_completions}\n💡 Suositus: ${health.recommendation}",
+    "message2": "Virhesanoma: ${error instanceof Error ? error.message : String(error)}",
+    "message3": "Virhe: ${broadcast.errorMessage}",
+    "operationFailed": "❌ Toiminto epäonnistui",
+    "processError": "❌ Virhe tapahtui käsittelyn aikana",
+    "sessionExpired": "❌ Istunto on vanhentunut, aloita uudelleen",
+    "systemError": "Järjestelmävirhe",
+    "systemErrorRetry": "❌ Tapahtui järjestelmävirhe, yritä myöhemmin uudelleen.",
+    "unknownAction": "❌ Tuntematon toiminto",
+    "unknownError": "🎨 UX: Ystävällinen virhesanoma",
+    "userNotFound": "Käyttäjää ei ole olemassa",
+    "userNotFound4": "❌ Käyttäjää ei ole olemassa",
+    "userNotFoundRegister": "⚠️ Käyttäjää ei ole olemassa, rekisteröidy ensin /start-komennolla.",
+    "verificationFailed": "❌ Vahvistus epäonnistui, yritä myöhemmin uudelleen"
   },
-  edit_profile: {
-    nickname: `👤 昵称：\${ownerMaskedNickname}`,
-    short19: `✏️ 編輯個人資料`,
+  "estimate": {
+    "immediate": "Lähetä nyt (noin 1-2 sekuntia)",
+    "minutes": "Noin ${minutes} minuuttia",
+    "seconds": "Noin ${seconds} sekuntia"
   },
-  error: {
-    ad: `❌ 此廣告不需要驗證`,
-    ad2: `❌ 暫無可用的廣告`,
-    ad3: `❌ 無法領取此廣告`,
-    ad4: `❌ 廣告不存在`,
-    ad5: `❌ 廣告 ID 必須是數字`,
-    ad6: `❌ 你沒有權限查看廣告數據`,
-    admin: `❌ 系統發生錯誤，請稍後再試。
-
-如果問題持續，請聯繫管理員。`,
-    admin2: `❌ **權限不足**
-
-此命令僅限超級管理員使用。`,
-    admin3: `❌ 此用戶已經是超級管理員，無需添加。`,
-    admin4: `❌ 只有超級管理員可以使用此命令。`,
-    admin5: `❌ 此用戶已經是管理員。`,
-    admin6: `❌ 無法移除超級管理員。`,
-    admin7: `❌ 此用戶不是管理員。`,
-    appeal: `❌ 請提供申訴 ID
-
-用法: /admin_approve <appeal_id> [備註]`,
-    appeal2: `❌ 請提供申訴 ID
-
-用法: /admin_reject <appeal_id> [備註]`,
-    appeal3: `❌ 申訴 \${appealId} 已經被審核過了`,
-    appeal4: `❌ 找不到申訴 ID: \${appealId}`,
-    ban: `❌ 用戶 \${targetUserId} 沒有封禁記錄`,
-    birthday: `❌ \${validation.error}
-
-請重新輸入生日（格式：YYYY-MM-DD）：`,
-    birthday2: `❌ 生日格式錯誤
-
-請重新輸入（格式：YYYY-MM-DD）：`,
-    birthday3: `❌ 生日格式錯誤`,
-    bottle: `❌ 此對話已結束。
-
-使用 /catch 撿新的漂流瓶開始新對話。`,
-    bottle2: `❌ 你的帳號已被封禁，無法撿漂流瓶。
-
-如有疑問，請使用 /appeal 申訴。`,
-    bottle3: `❌ 這個瓶子已經被其他人撿走了，請試試其他瓶子！`,
-    broadcast: `❌ 當前廣播系統僅支持 \${MAX_SAFE_USERS} 個用戶以內的廣播。
-
-`,
-    broadcast2: `❌ 廣播 ID 必須是數字`,
-    broadcast3: `❌ 找不到該廣播記錄`,
-    cancel: `❌ 暱稱太長，請輸入不超過 36 個字符的暱稱。
-
-請重新輸入或取消編輯：`,
-    cancel2: `❌ 個人簡介太長，請輸入不超過 200 個字符。
-
-請重新輸入或取消編輯：`,
-    cancel3: `❌ 地區名稱太長，請輸入不超過 50 個字符。
-
-請重新輸入或取消編輯：`,
-    cancel4: `❌ 暱稱太短，至少需要 4 個字符。
-
-請重新輸入或取消編輯：`,
-    cancel5: `❌ 每個標籤最多 20 個字符。
-
-請重新輸入或取消編輯：`,
-    cancel6: `❌ 取消編輯`,
-    cancel7: `❌ 已取消 \${ZODIAC_NAMES[zodiacSign]}`,
-    cancel8: `❌ 已取消 \${mbtiType}`,
-    cancel9: `❌ 取消`,
-    conversation: `❌ 找不到標識符 \${formatIdentifier(identifier)} 的對話
-
-`,
-    conversation2: `❌ 對話資訊錯誤。`,
-    conversation3: `❌ 對話資訊錯誤`,
-    conversation4: `❌ 對話不存在`,
-    conversationInfoError: `❌ 對話資訊錯誤`,
-    conversationNotFound: `❌ 對話不存在`,
-    failed: `❌ **廣告加載失敗**
-
-很抱歉，廣告無法正常播放。
-
-💡 **可能的原因：**
-• 網絡連接不穩定
-• 廣告提供商暫時不可用
-• 瀏覽器不支持
-
-🔄 **建議：**
-• 檢查網絡連接
-• 稍後再試
-• 或使用其他方式獲得額度（邀請朋友）`,
-    failed10: `❌ 查詢維護模式狀態失敗。`,
-    failed11: `❌ 刷新頭像失敗
-
-`,
-    failed12: `❌ 驗證失敗，請稍後再試`,
-    failed13: `❌ 啟用維護模式失敗。`,
-    failed14: `❌ 關閉維護模式失敗。`,
-    failed15: `❌ 獲取廣告狀態失敗`,
-    failed16: `❌ 獲取統計數據失敗`,
-    failed17: `❌ 創建廣播失敗。`,
-    failed18: `❌ 獲取信息失敗`,
-    failed19: `❌ 領取獎勵失敗`,
-    failed2: `❌ 創建過濾廣播失敗
-
-\${error instanceof Error ? error.message : String(error)}`,
-    failed20: `❌ 確認失敗`,
-    failed21: `❌ 設置失敗`,
-    failed22: `❌ 跳過失敗`,
-    failed23: `❌ 操作失敗`,
-    failed24: `❌ 發送每日報表失敗：\${error instanceof Error ? error.message : String(error)}`,
-    failed25: `❌ 獲取 VIP 漏斗數據失敗`,
-    failed26: `❌ **診斷失敗**
-
-`,
-    failed27: `❌ **刷新失敗**
-
-`,
-    failed28: `❌ **支付失敗**
-
-`,
-    failed29: `❌ 獲取廣告提供商列表失敗`,
-    failed3: `❌ 處理廣播隊列失敗：\${error instanceof Error ? error.message : String(error)}`,
-    failed30: `❌ 獲取官方廣告列表失敗`,
-    failed31: `❌ 啟用廣告提供商失敗`,
-    failed32: `❌ 停用廣告提供商失敗`,
-    failed33: `❌ 啟用官方廣告失敗`,
-    failed34: `❌ 停用官方廣告失敗`,
-    failed35: `❌ 獲取分析數據失敗`,
-    failed36: `❌ 獲取廣告數據失敗`,
-    failed37: `❌ 設置優先級失敗`,
-    failed38: `❌ 退款失敗：\${error instanceof Error ? error.message : String(error)}`,
-    failed39: `❌ 操作失敗：\${error instanceof Error ? error.message : String(error)}`,
-    failed4: `❌ 查詢廣播狀態失敗：\${error instanceof Error ? error.message : String(error)}`,
-    failed40: `❌ 提交失敗，請稍後再試。`,
-    failed41: `❌ 建立對話失敗，請稍後再試。`,
-    failed5: `❌ 取消廣播失敗：\${error instanceof Error ? error.message : String(error)}`,
-    failed6: `❌ 清理廣播失敗：\${error instanceof Error ? error.message : String(error)}`,
-    failed7: `❌ 重置失敗：\${errorMessage}
-
-請稍後再試。`,
-    failed8: `❌ 創建廣播失敗，請稍後再試。`,
-    failed9: `❌ 刷新對話歷史失敗
-
-`,
-    mbti: `❌ 無效的 MBTI 類型`,
-    message: `❌ 過濾器格式錯誤
-
-\${error instanceof Error ? error.message : String(error)}
-
-`,
-    message2: `❌ 此命令在生產環境中不可用。
-
-This command is not available in production.`,
-    message3: `❌ 發生錯誤，請稍後再試。
-
-錯誤信息：\${error instanceof Error ? error.message : String(error)}`,
-    message4: `❌ 很抱歉，你必須年滿 18 歲才能使用本服務。
-
-請成年後再來！`,
-    nickname: `❌ 無法獲取 Telegram 暱稱`,
-    nickname2: `❌ 暱稱不能包含網址連結
-
-`,
-    nickname3: `❌ \${validation.error}
-
-請重新輸入暱稱：`,
-    quota: `❌ 今日漂流瓶配額已用完（\${quotaDisplay}）
-
-💡 獲得更多配額的方式：
-`,
-    quota2: `❌ 今日對話訊息配額已用完（\${usedToday}/\${dailyLimit}）
-
-`,
-    quota3: `❌ 今日漂流瓶配額已用完（\${quotaDisplay}）
-
-`,
-    register: `❌ 請先完成註冊流程。
-
-使用 /start 繼續註冊。`,
-    register2: `❌ 找不到用戶資料，請先使用 /start 註冊。`,
-    register3: `❌ 請先完成註冊流程才能撿漂流瓶。
-
-使用 /start 繼續註冊。`,
-    settings: `❌ 最多只能設定 5 個興趣標籤。
-
-請重新輸入或取消編輯：`,
-    short: `❌ 無效的語言代碼`,
-    short10: `❌ 權限不足`,
-    short11: `❌ 稍後再說`,
-    short12: `❌ 重新選擇`,
-    short13: `❌ 重新輸入`,
-    short14: `❌ 關閉`,
-    short15: `❌ 未啟用`,
-    short2: `❌ 找不到用戶資料`,
-    short3: `❌ 未知的教學步驟`,
-    short4: `❌ 系統發生錯誤`,
-    short5: `❌ 頻道配置錯誤`,
-    short6: `❌ 未知操作`,
-    short7: `❌ 不正確`,
-    short8: `❌ 否`,
-    short9: `❌ 發生錯誤`,
-    start: `❌ 發生錯誤，請重新開始：/start`,
-    stats: `❌ 你沒有權限查看廣告統計`,
-    task: `❌ 查看任務中心時系統發生錯誤，請稍後再試。`,
-    text: `❌ 計算結果時系統發生錯誤，請稍後再試。
-
-`,
-    text10: `❌ 發送者資訊錯誤。`,
-    text11: `❌ 你沒有權限查看分析數據`,
-    text12: `❌ 發生錯誤，請稍後再試。`,
-    text13: `❌ 你沒有權限使用此命令。`,
-    text14: `❌ 使用方法錯誤
-
-`,
-    text15: `❌ 優先級必須是非負整數`,
-    text16: `❌ 時長必須是正整數或`,
-    text17: `❌ 處理支付時系統發生錯誤，請聯繫客服。
-
-`,
-    text18: `❌ 退款原因至少需要 10 個字，請重新輸入：`,
-    text19: `❌ **退款申請已被拒絕**
-
-`,
-    text2: `❌ 個人簡介包含不允許的連結。
-
-`,
-    text20: `❌ 退款申請超過時限
-
-`,
-    text21: `❌ 退款請求不存在或已處理`,
-    text22: `❌ 找不到支付記錄。`,
-    text23: `❌ 很抱歉，你必須年滿 18 歲才能使用本服務。
-
-`,
-    text24: `❌ 發生錯誤，請重新輸入。`,
-    text25: `❌ 請認真回答問題
-
-`,
-    text3: `❌ 未檢測到你加入頻道，請先加入後再試`,
-    text4: `❌ 檢測到你已離開頻道，無法領取獎勵。`,
-    text5: `❌ 啟動教學時發生錯誤，請稍後再試。`,
-    text6: `❌ 系統發生錯誤，請稍後再試。`,
-    text7: `❌ 時長必須是數字（分鐘）`,
-    text8: `❌ 發生錯誤，請稍後再試`,
-    text9: `❌ 無法獲取維護模式狀態`,
-    userNotFound: `❌ 用戶不存在，請先使用 /start 註冊。`,
-    userNotFound2: `❌ 用戶不存在，請先註冊`,
-    userNotFound3: `❌ 對方用戶不存在。`,
-    userNotFound4: `❌ 用戶不存在`,
-    userNotFound5: `❌ 用戶不存在：\${userId}`,
-    userNotFound6: `❌ 用戶不存在或未註冊。`,
-    userNotFound7: `❌ 用戶不存在。`,
-    vip: `❌ 你沒有權限查看 VIP 數據`,
-    vip2: `❌ 你不是 VIP 用戶，無法申請退款。`,
+  "gender": {
+    "female": "Nainen",
+    "label": "👤 Sukupuoli: {otherUser.gender}",
+    "male": "Mies"
   },
-  errors: {
-    banned: `❌ 你的帳號已被封禁
-
-原因：{reason}`,
-    channelConfigError: `❌ 頻道配置錯誤`,
-    claimRewardFailed: `❌ 領取獎勵失敗`,
-    completeOnboarding: `⚠️ 請先完成註冊流程。`,
-    conversationInfoError: `❌ 對話資訊錯誤。`,
-    conversationNotFound: `❌ 找不到此對話`,
-    errorDetails: `錯誤信息：{error}`,
-    failed: `失敗: \${broadcast.failedCount}
-`,
-    failed2: `失敗：\${result.failed} 個
-
-`,
-    failed3: `這些廣播將被標記為「失敗」狀態
-`,
-    failed4: `這些廣播已標記為「失敗」狀態
-`,
-    generic: `❌ 發生錯誤，請稍後再試。`,
-    invalidRequest: `❌ 無效的請求`,
-    message: `\${statusEmoji} **\${provider.provider_display_name}**
-\${healthEmoji} 健康狀態: \${health.is_healthy ? '良好' : '需要關注'}
-📊 完成率: \${stats.completion_rate}%
-❌ 錯誤率: \${stats.error_rate}%
-📈 總請求: \${stats.total_requests}
-✅ 總完成: \${stats.total_completions}
-💡 建議: \${health.recommendation}`,
-    message2: `錯誤信息：\${error instanceof Error ? error.message : String(error)}`,
-    message3: `
-錯誤: \${broadcast.errorMessage}`,
-    operationFailed: `❌ 操作失敗`,
-    processError: `❌ 處理過程中發生錯誤`,
-    sessionExpired: `❌ 會話已過期，請重新開始`,
-    systemError: `系统错误`,
-    systemErrorRetry: `❌ 系統發生錯誤，請稍後再試。`,
-    unknownAction: `❌ 未知操作`,
-    unknownError: `🎨 UX: 友善的錯誤提示`,
-    userNotFound: `用戶不存在`,
-    userNotFound4: `[需要翻译]`,
-    userNotFoundRegister: `⚠️ 用戶不存在，請先使用 /start 註冊。`,
-    verificationFailed: `❌ 驗證失敗，請稍後再試`,
-    error: {
-      ad: `❌ 此廣告不需要驗證`,
-      ad2: `❌ 暫無可用的廣告`,
-      ad3: `❌ 無法領取此廣告`,
-      ad4: `❌ 廣告不存在`,
-      ad5: `❌ 廣告 ID 必須是數字`,
-      ad6: `❌ 你沒有權限查看廣告數據`,
-      admin: `❌ 系統發生錯誤，請稍後再試。
-
-如果問題持續，請聯繫管理員。`,
-      admin2: `❌ **權限不足**
-
-此命令僅限超級管理員使用。`,
-      admin3: `❌ 此用戶已經是超級管理員，無需添加。`,
-      admin4: `❌ 只有超級管理員可以使用此命令。`,
-      admin5: `❌ 此用戶已經是管理員。`,
-      admin6: `❌ 無法移除超級管理員。`,
-      admin7: `❌ 此用戶不是管理員。`,
-      appeal: `❌ 請提供申訴 ID
-
-用法: /admin_approve <appeal_id> [備註]`,
-      appeal2: `❌ 請提供申訴 ID
-
-用法: /admin_reject <appeal_id> [備註]`,
-      appeal3: `❌ 申訴 \\\${appealId} 已經被審核過了`,
-      appeal4: `❌ 找不到申訴 ID: \\\${appealId}`,
-      ban: `❌ 用戶 \\\${targetUserId} 沒有封禁記錄`,
-      birthday: `❌ \\\${validation.error}
-
-請重新輸入生日（格式：YYYY-MM-DD）：`,
-      birthday2: `❌ 生日格式錯誤
-
-請重新輸入（格式：YYYY-MM-DD）：`,
-      birthday3: `❌ 生日格式錯誤`,
-      bottle: `❌ 此對話已結束。
-
-使用 /catch 撿新的漂流瓶開始新對話。`,
-      bottle2: `❌ 你的帳號已被封禁，無法撿漂流瓶。
-
-如有疑問，請使用 /appeal 申訴。`,
-      bottle3: `❌ 這個瓶子已經被其他人撿走了，請試試其他瓶子！`,
-      broadcast: `❌ 當前廣播系統僅支持 \\\${MAX_SAFE_USERS} 個用戶以內的廣播。
-
-`,
-      broadcast2: `❌ 廣播 ID 必須是數字`,
-      broadcast3: `❌ 找不到該廣播記錄`,
-      cancel: `❌ 暱稱太長，請輸入不超過 36 個字符的暱稱。
-
-請重新輸入或取消編輯：`,
-      cancel2: `❌ 個人簡介太長，請輸入不超過 200 個字符。
-
-請重新輸入或取消編輯：`,
-      cancel3: `❌ 地區名稱太長，請輸入不超過 50 個字符。
-
-請重新輸入或取消編輯：`,
-      cancel4: `❌ 暱稱太短，至少需要 4 個字符。
-
-請重新輸入或取消編輯：`,
-      cancel5: `❌ 每個標籤最多 20 個字符。
-
-請重新輸入或取消編輯：`,
-      cancel6: `❌ 取消編輯`,
-      cancel7: `❌ 已取消 \\\${ZODIAC_NAMES[zodiacSign]}`,
-      cancel8: `❌ 已取消 \\\${mbtiType}`,
-      cancel9: `❌ 取消`,
-      conversation: `❌ 找不到標識符 \\\${formatIdentifier(identifier)} 的對話
-
-`,
-      conversation2: `❌ 對話資訊錯誤。`,
-      conversation3: `❌ 對話資訊錯誤`,
-      conversation4: `❌ 對話不存在`,
-      conversationInfoError: `❌ 對話資訊錯誤`,
-      conversationNotFound: `❌ 對話不存在`,
-      failed: `❌ **廣告加載失敗**
-
-很抱歉，廣告無法正常播放。
-
-💡 **可能的原因：**
-• 網絡連接不穩定
-• 廣告提供商暫時不可用
-• 瀏覽器不支持
-
-🔄 **建議：**
-• 檢查網絡連接
-• 稍後再試
-• 或使用其他方式獲得額度（邀請朋友）`,
-      failed10: `❌ 查詢維護模式狀態失敗。`,
-      failed11: `❌ 刷新頭像失敗
-
-`,
-      failed12: `❌ 驗證失敗，請稍後再試`,
-      failed13: `❌ 啟用維護模式失敗。`,
-      failed14: `❌ 關閉維護模式失敗。`,
-      failed15: `❌ 獲取廣告狀態失敗`,
-      failed16: `❌ 獲取統計數據失敗`,
-      failed17: `❌ 創建廣播失敗。`,
-      failed18: `❌ 獲取信息失敗`,
-      failed19: `❌ 領取獎勵失敗`,
-      failed2: `❌ 創建過濾廣播失敗
-
-\\\${error instanceof Error ? error.message : String(error)}`,
-      failed20: `❌ 確認失敗`,
-      failed21: `❌ 設置失敗`,
-      failed22: `❌ 跳過失敗`,
-      failed23: `❌ 操作失敗`,
-      failed24: `❌ 發送每日報表失敗：\\\${error instanceof Error ? error.message : String(error)}`,
-      failed25: `❌ 獲取 VIP 漏斗數據失敗`,
-      failed26: `❌ **診斷失敗**
-
-`,
-      failed27: `❌ **刷新失敗**
-
-`,
-      failed28: `❌ **支付失敗**
-
-`,
-      failed29: `❌ 獲取廣告提供商列表失敗`,
-      failed3: `❌ 處理廣播隊列失敗：\\\${error instanceof Error ? error.message : String(error)}`,
-      failed30: `❌ 獲取官方廣告列表失敗`,
-      failed31: `❌ 啟用廣告提供商失敗`,
-      failed32: `❌ 停用廣告提供商失敗`,
-      failed33: `❌ 啟用官方廣告失敗`,
-      failed34: `❌ 停用官方廣告失敗`,
-      failed35: `❌ 獲取分析數據失敗`,
-      failed36: `❌ 獲取廣告數據失敗`,
-      failed37: `❌ 設置優先級失敗`,
-      failed38: `❌ 退款失敗：\\\${error instanceof Error ? error.message : String(error)}`,
-      failed39: `❌ 操作失敗：\\\${error instanceof Error ? error.message : String(error)}`,
-      failed4: `❌ 查詢廣播狀態失敗：\\\${error instanceof Error ? error.message : String(error)}`,
-      failed40: `❌ 提交失敗，請稍後再試。`,
-      failed41: `❌ 建立對話失敗，請稍後再試。`,
-      failed5: `❌ 取消廣播失敗：\\\${error instanceof Error ? error.message : String(error)}`,
-      failed6: `❌ 清理廣播失敗：\\\${error instanceof Error ? error.message : String(error)}`,
-      failed7: `❌ 重置失敗：\\\${errorMessage}
-
-請稍後再試。`,
-      failed8: `❌ 創建廣播失敗，請稍後再試。`,
-      failed9: `❌ 刷新對話歷史失敗
-
-`,
-      mbti: `❌ 無效的 MBTI 類型`,
-      message: `❌ 過濾器格式錯誤
-
-\\\${error instanceof Error ? error.message : String(error)}
-
-`,
-      message2: `❌ 此命令在生產環境中不可用。
-
-This command is not available in production.`,
-      message3: `❌ 發生錯誤，請稍後再試。
-
-錯誤信息：\\\${error instanceof Error ? error.message : String(error)}`,
-      message4: `❌ 很抱歉，你必須年滿 18 歲才能使用本服務。
-
-請成年後再來！`,
-      nickname: `❌ 無法獲取 Telegram 暱稱`,
-      nickname2: `❌ 暱稱不能包含網址連結
-
-`,
-      nickname3: `❌ \\\${validation.error}
-
-請重新輸入暱稱：`,
-      quota: `❌ 今日漂流瓶配額已用完（\\\${quotaDisplay}）
-
-💡 獲得更多配額的方式：
-`,
-      quota2: `❌ 今日對話訊息配額已用完（\\\${usedToday}/\\\${dailyLimit}）
-
-`,
-      quota3: `❌ 今日漂流瓶配額已用完（\\\${quotaDisplay}）
-
-`,
-      register: `❌ 請先完成註冊流程。
-
-使用 /start 繼續註冊。`,
-      register2: `❌ 找不到用戶資料，請先使用 /start 註冊。`,
-      register3: `❌ 請先完成註冊流程才能撿漂流瓶。
-
-使用 /start 繼續註冊。`,
-      settings: `❌ 最多只能設定 5 個興趣標籤。
-
-請重新輸入或取消編輯：`,
-      short: `❌ 無效的語言代碼`,
-      short10: `❌ 權限不足`,
-      short11: `❌ 稍後再說`,
-      short12: `❌ 重新選擇`,
-      short13: `❌ 重新輸入`,
-      short14: `❌ 關閉`,
-      short15: `❌ 未啟用`,
-      short2: `❌ 找不到用戶資料`,
-      short3: `❌ 未知的教學步驟`,
-      short4: `❌ 系統發生錯誤`,
-      short5: `❌ 頻道配置錯誤`,
-      short6: `❌ 未知操作`,
-      short7: `❌ 不正確`,
-      short8: `❌ 否`,
-      short9: `❌ 發生錯誤`,
-      start: `❌ 發生錯誤，請重新開始：/start`,
-      stats: `❌ 你沒有權限查看廣告統計`,
-      task: `❌ 查看任務中心時系統發生錯誤，請稍後再試。`,
-      text: `❌ 計算結果時系統發生錯誤，請稍後再試。
-
-`,
-      text10: `❌ 發送者資訊錯誤。`,
-      text11: `❌ 你沒有權限查看分析數據`,
-      text12: `❌ 發生錯誤，請稍後再試。`,
-      text13: `❌ 你沒有權限使用此命令。`,
-      text14: `❌ 使用方法錯誤
-
-`,
-      text15: `❌ 優先級必須是非負整數`,
-      text16: `❌ 時長必須是正整數或`,
-      text17: `❌ 處理支付時系統發生錯誤，請聯繫客服。
-
-`,
-      text18: `❌ 退款原因至少需要 10 個字，請重新輸入：`,
-      text19: `❌ **退款申請已被拒絕**
-
-`,
-      text2: `❌ 個人簡介包含不允許的連結。
-
-`,
-      text20: `❌ 退款申請超過時限
-
-`,
-      text21: `❌ 退款請求不存在或已處理`,
-      text22: `❌ 找不到支付記錄。`,
-      text23: `❌ 很抱歉，你必須年滿 18 歲才能使用本服務。
-
-`,
-      text24: `❌ 發生錯誤，請重新輸入。`,
-      text25: `❌ 請認真回答問題
-
-`,
-      text3: `❌ 未檢測到你加入頻道，請先加入後再試`,
-      text4: `❌ 檢測到你已離開頻道，無法領取獎勵。`,
-      text5: `❌ 啟動教學時發生錯誤，請稍後再試。`,
-      text6: `❌ 系統發生錯誤，請稍後再試。`,
-      text7: `❌ 時長必須是數字（分鐘）`,
-      text8: `❌ 發生錯誤，請稍後再試`,
-      text9: `❌ 無法獲取維護模式狀態`,
-      userNotFound: `❌ 用戶不存在，請先使用 /start 註冊。`,
-      userNotFound2: `❌ 用戶不存在，請先註冊`,
-      userNotFound3: `❌ 對方用戶不存在。`,
-      userNotFound4: `❌ 用戶不存在`,
-      userNotFound5: `❌ 用戶不存在：\\\${userId}`,
-      userNotFound6: `❌ 用戶不存在或未註冊。`,
-      userNotFound7: `❌ 用戶不存在。`,
-      vip: `❌ 你沒有權限查看 VIP 數據`,
-      vip2: `❌ 你不是 VIP 用戶，無法申請退款。`,
+  "help": {
+    "ad": "• Katso mainoksia: +1 kiintiö joka kerta (enintään 20 kertaa päivässä)\n",
+    "ad2": "/ad_performance - Mainosten suorituskykyraportti\n",
+    "ad3": "• Ansaitse kiintiöitä katsomalla mainoksia (kiintiö näkyy, kun se on käytetty)\n",
+    "ad4": "• Näytä virallisia mainoksia saadaksesi pysyvän kiintiön\n\n",
+    "ad5": "• Viralliset mainokset: Pysyvät kiintiöpalkkiot\n",
+    "ad6": "• mainokseton kokemus\n\n",
+    "admin": "/admin_remove <user_id> - Poista ylläpitäjä\n\n",
+    "admin2": "/admin_add <user_id> - Lisää ylläpitäjä\n",
+    "admin3": "/admin_list - Näytä ylläpitäjälista\n",
+    "admin4": "🔱 **Superylläpitäjän ominaisuudet**\n\n",
+    "admin5": "👮 **Ylläpitäjän ominaisuudet**\n\n",
+    "admin6": "**Ylläpitäjän Hallinta**\n",
+    "admin_ads": "/admin_ads - Hallinnoi virallisia mainoksia\n",
+    "admin_tasks": "/admin_tasks - Hallinnoi yhteisötehtäviä",
+    "appeal": "/admin_reject <id> [huomautus] - Hylkää valitus\n\n",
+    "appeal2": "/admin_approve <id> [huomautus] - Hyväksy valitus\n",
+    "appeal3": "/appeal_status - Tarkista valituksen tila\n\n",
+    "appeal4": "/admin_appeals - Näytä odottavat valitukset\n",
+    "appeal5": "🛡️ **Turvallisuus ja Valitukset**\n",
+    "appeal6": "**Valituksen Arviointi**\n",
+    "ban": "/admin_ban <user_id> [tunnit|pysyvä] - Estä käyttäjä\n",
+    "ban2": "/admin_bans <user_id> - Näytä käyttäjän kieltohistoria\n\n",
+    "ban3": "/admin_unban <user_id> - Poista esto käyttäjältä\n",
+    "ban4": "/admin_bans - Näytä estotiedot\n",
+    "ban5": "/appeal - Tee valitus estosta\n",
+    "ban6": "• Rikkomukset johtavat kieltoon\n\n",
+    "birthday": "• Tänään on syntymäpäivä: is_birthday=true\n\n",
+    "bottle": "• Suorita tehtäviä: Saa ylimääräisiä pulloja (käytä /tasks nähdäksesi)\n",
+    "bottle2": "/tasks - Tehtäväkeskus (suorita tehtäviä saadaksesi ylimääräisiä pulloja)\n",
+    "bottle3": "• Rajoitettu määrä pulloja voidaan heittää ja kerätä joka päivä\n",
+    "bottle4": "• VIP-käyttäjät: 30 pulloa päivässä\n",
+    "bottle5": "• Viestipullot ovat voimassa 24 tuntia\n\n",
+    "bottle6": "• Ilmaiset käyttäjät: 3 viestipullopostia päivässä\n",
+    "bottle7": "/throw - Heitä viestipulloposti\n",
+    "bottle8": "/catch - Nouta viestipulloposti\n",
+    "bottle9": "🍾 **Viestipullopostijärjestelmä**\n",
+    "broadcast": "/broadcast_status <id> -Katso lähetyksen tiedot\n",
+    "broadcast2": "/broadcast_process - Käsittele lähetystä manuaalisesti\n",
+    "broadcast3": "/broadcast_cleanup - Siivoa jumittuneet lähetykset\n",
+    "broadcast4": "/broadcast_status - Katso lähetyslista\n",
+    "broadcast5": "**Lähetyksen valvonta**\n",
+    "broadcast6": "**Lähetyksen lähettäminen**\n",
+    "cancel": "/broadcast_cancel <id> - Peruuta lähetys\n\n",
+    "conversation": "/keskustelut - Keskustelulistani\n\n",
+    "conversation2": "• Kaikki keskustelut ovat anonyymejä\n",
+    "help2": "💡 Käytä /help saadaksesi apua",
+    "invite": "• Kutsu ystäviä: +1 kiintiö per henkilö (enintään 10/100)\n",
+    "invite2": "/invite - Kutsu ystäviä saadaksesi kiintiötä\n",
+    "mbti": "• Suodata MBTI:n, horoskoopin, veriryhmän mukaan\n",
+    "mbti2": "/mbti - MBTI-hallinta\n",
+    "message": "/huolto_ota_käyttöön - Ota huoltotila käyttöön\n",
+    "message2": "/lähetä_ei_vip - Lähetä ei-VIP käyttäjille suurissa erissä\n",
+    "message3": "• Naisten ikä 18-25: sukupuoli=nainen, ikä=18-25\n",
+    "message4": "/lähetä_suodatin - Tarkka lähetys\n",
+    "message5": "/lähetä_vip - Lähetä VIP-käyttäjille suurissa erissä\n",
+    "message6": "/huolto_ota_poistoon - Poista huoltotila käytöstä\n\n",
+    "message7": "/maintenance_status - Tarkista huoltotila\n",
+    "message8": "/lähetä - Lähetä kaikille käyttäjille suurissa erissä\n",
+    "profile": "/edit_profile - Muokkaa profiilia\n",
+    "profile2": "/profile - Katso profiili\n",
+    "profile3": "👤 **Profiili**\n",
+    "quota": "• Ystävien kutsuminen lisää kiintiötä (enintään 10/100)\n",
+    "quota2": "• 30 viestipullopostin kiintiö päivässä\n",
+    "register": "/start - Aloita käyttö / Jatka rekisteröintiä\n",
+    "report": "/report - Ilmoita sopimattomasta sisällöstä\n",
+    "settings": "/settings - Ilmoitusasetukset",
+    "settings2": "📖 **Apua ja asetukset**\n",
+    "stats": "/tilastot - Tilastoni\n\n",
+    "success": "└ Suurennetaan merkittävästi sovittamisen onnistumisprosenttia\n",
+    "text": "/maintenance_status - Tarkista huoltotila",
+    "text10": "📖 **XunNi Komentoluettelo**\n\n",
+    "text11": "/analytics - Päivittäinen toimintaraportti\n",
+    "text12": "/dev_restart - Nollaa tili täysin",
+    "text13": "📜 **XunNi Pelisäännöt**\n\n",
+    "text14": "• Vain teksti ja viralliset emojit voidaan lähettää\n",
+    "text15": "/dev_info - Järjestelmätiedot\n",
+    "text16": "/quota - Tarkista kiintiötilanne\n",
+    "text17": "/rules - Katso pelisäännöt\n",
+    "text18": "/block - Estä käyttäjä\n",
+    "text19": "/help - Näytä tämä lista\n",
+    "text2": "/refresh_avatar - Päivitä avatarin välimuisti\n",
+    "text20": "• Kunnioita muita, kommunikoi ystävällisesti\n\n",
+    "text21": "🎁 **Kiintiöhankintamenetelmä**\n",
+    "text22": "• Älä jaa henkilökohtaisia yhteystietoja\n",
+    "text23": "🛡️ **Turvallisuusohjeet**\n",
+    "text24": "🎮 **Ydinominaisuudet**\n",
+    "text25": "/menu - Päävalikko\n",
+    "text26": "💬 **Anonyymi keskustelu**\n",
+    "text27": "• Häirintä ja muiden väärinkäyttö on kielletty\n",
+    "text28": "• Sopimattoman sisällön lähettäminen on kielletty\n",
+    "text29": "• Vapauta muiden selkeät profiilikuvat\n",
+    "text3": "• Lähetä vain naisille: sukupuoli=female\n",
+    "text30": "• Huijaus ja kalastelu on kielletty\n",
+    "text31": "**Käyttäjähallinta**\n",
+    "text32": "**Järjestelmän ylläpito**\n",
+    "text33": "**Tietoanalyysi**\n",
+    "text34": "**Kehitystyökalut**\n",
+    "text4": "• 34 kieltä käännetty automaattisesti (OpenAI etusijalla)\n",
+    "text5": "/profile_card - Näytä profiilikortti\n",
+    "text6": "/dev_reset - Nollaa tili (testausta varten)\n",
+    "text7": "• Lähetä vain miehille: sukupuoli=male\n",
+    "text8": "💡 Koetko ongelmia? Käytä /help nähdäksesi komennot",
+    "text9": "• Käytä /kiintiö tarkistaaksesi kiintiötilasi\n\n",
+    "throw": "• 🆕 Kolmoisvalotusaika (1 viestipullo = 3 kohdetta)\n",
+    "vip": "• VIP Taiwanissa: maa=TW,vip=true\n",
+    "vip2": "• Päivittäinen ilmainen kiintiö: 3 (VIP: 30)\n",
+    "vip3": "/myrsky - VIP-muunnosputki\n\n",
+    "vip4": "🎁 **Kiintiö ja VIP**\n",
+    "vip5": "/vip - VIP-tilaus\n",
+    "vip6": "💎 **VIP-edut**\n"
+  },
+  "history": {
+    "chatHistory": "💬 **Keskusteluhistoriasi**\n\n",
+    "continueChatButton": "💬 Jatka keskustelua",
+    "continueConversation": "💬 Jatka keskustelua: /reply\n",
+    "conversationEnd": "• Viimeinen viesti: {time}\n",
+    "conversationNotFound": "❌ Keskustelua tunnistimella {identifier} ei löytynyt\n\nKäytä /history nähdäksesi kaikki keskustelut\n\n🏠 Palaa päävalikkoon: /menu",
+    "conversationStart": "• Keskustelu aloitettu: {time}\n",
+    "conversationTitle": "📨 Keskustelu {identifier} kanssa ({count} viestiä)\n",
+    "conversationWith": "💬 **Keskustelu käyttäjän {identifier} kanssa**\n\n",
+    "daysAgo": "{days} päivää sitten",
+    "errorRetry": "❌ Tapahtui virhe, yritä myöhemmin uudelleen.",
+    "hoursAgo": "{hours} tuntia sitten",
+    "justNow": "Juuri nyt",
+    "lastMessage": "Viimeinen viesti: {preview}\n",
+    "messageSender": "{sender}: {content}\n\n",
+    "messageTime": "📨 {time}\n",
+    "minutesAgo": "{minutes} minuuttia sitten",
+    "noHistory": "💬 Sinulla ei ole vielä keskusteluhistoriaa\n\nLähetä pulloposti löytääksesi uusia ystäviä! /throw\n\n🏠 Palaa päävalikkoon: /menu",
+    "noMessages": "(Ei viestejä)",
+    "partnerMessages": "• Toisen osapuolen lähettämät viestit: {count}\n",
+    "recentMessages": "📨 **Äskettäiset keskustelut:**\n\n",
+    "returnToMenu": "🏠 Palaa päävalikkoon: /menu",
+    "returnToMenuButton": "🏠 Palaa päävalikkoon",
+    "stats": "📊 **Tilastot:**\n",
+    "time": "Aika: {time}\n\n",
+    "totalMessages": "• Yhteensä viestejä: {total}\n",
+    "userMessages": "• Lähetit: {count}\n",
+    "viewFull": "💡 Käytä /historia {identifier} nähdäksesi koko keskustelun\n\n",
+    "you": "Sinä"
+  },
+  "invite": {
+    "codeAccepted": "✅ Kutsukoodi hyväksytty! Kiitos, {inviterName}, kutsusta",
+    "inviteeSuccess": "✅ Olet onnistuneesti hyväksynyt kutsun!",
+    "inviterSuccess": "✅ Kutsu onnistui! Olet ansainnut +1 pysyvän kiintiön",
+    "limitReached": "❌ Olet saavuttanut kutsurajan ({max} henkilöä)",
+    "limitWarning": "⚠️ Olet kutsunut {count} henkilöä, voit vielä kutsua {remaining} henkilöä",
+    "selfInviteError": "❌ Et voi kutsua itseäsi",
+    "upgradePrompt": "💎 Päivitä VIP:ksi saadaksesi lisää kutsupaikkoja",
+    "userType": "{type}"
+  },
+  "maintenance": {
+    "allFeaturesAvailable": "Voit nyt käyttää kaikkia ominaisuuksia normaalisti.",
+    "completed": "✅ Järjestelmähuolto on suoritettu",
+    "completingSoon": "Melkein valmis",
+    "correctFormat": "**Oikea muoto:**\n/huolto_ota_käyttöön [huoltoilmoitus]\n\n",
+    "defaultMessage": "Järjestelmä on huollossa eikä ole käytettävissä toistaiseksi.",
+    "disableFailed": "❌ Huoltotilan poistaminen epäonnistui.",
+    "disableSuccess": "✅ Huoltotila on poistettu käytöstä\n\nPalautusilmoitus on julkaistu kaikille käyttäjille.",
+    "durationMax": "Huollon kesto ei voi ylittää 24 tuntia (1440 minuuttia)",
+    "durationMin": "Huollon keston on oltava vähintään 5 minuuttia",
+    "durationMustBeNumber": "❌ Keston on oltava numero (minuutteina)",
+    "enableFailed": "❌ Huoltotilan aktivointi epäonnistui.",
+    "enableSuccess": "✅ Huoltotila on aktivoitu\n\nKesto: {duration} minuuttia\nAloitus: {startTime}\nPäättyminen: {endTime}\n\nHuoltoviesti on julkaistu kaikille käyttäjille.\nYleiset käyttäjät eivät voi käyttää palvelua; vain järjestelmänvalvojat voivat kirjautua sisään.",
+    "enabledBy": "Aktivoi: {user}\n",
+    "estimatedDuration": "Arvioitu kesto: {duration} minuuttia\n",
+    "estimatedEnd": "Arvioitu valmistuminen: {time}\n",
+    "example": "**Esimerkki:**\n/maintenance_enable 60 järjestelmän päivityshuolto",
+    "notificationTitle": "🛠️ Järjestelmän huoltoviesti",
+    "remainingHours": "Noin {hours} tuntia {minutes} minuuttia",
+    "remainingMinutes": "Noin {minutes} minuuttia",
+    "remainingTime": "Jäljellä oleva aika: {time}\n",
+    "serviceRestored": "Palvelu on palautunut normaalisti, kiitos kärsivällisyydestäsi!",
+    "startTime": "Aloitusaika: {time}\n",
+    "status": "Tila: {status}\n",
+    "statusActive": "✅ Huollossa",
+    "statusFailed": "❌ Ei voida noutaa huoltotilan tilaa",
+    "statusInactive": "❌ Ei ole käytössä",
+    "statusTitle": "🛠️ Huoltotilan tila",
+    "thanks": "Kiitos kärsivällisyydestäsi!",
+    "unknown": "Tuntematon",
+    "usageError": "❌ Virheellinen käyttö\n\n"
+  },
+  "mbti": {
+    "description": {
+      "ENFJ": "Päähenkilö - Karismaattinen ja inspiroiva johtaja, joka valloittaa yleisön.",
+      "ENFP": "Ehdokas - Intoisa, luova ja sosiaalinen vapaa henki, joka löytää aina syyn hymyillä.",
+      "ENTJ": "Komentaja - Rohkea, kekseliäs ja päättäväinen johtaja, joka löytää tai luo aina ratkaisuja.",
+      "ENTP": "Väittelijä - Älykäs ja utelias ajattelija, joka ei voi vastustaa älyllistä haastetta.",
+      "ESFJ": "Kuvernööri - Extremesenmyötuntoinen, suosittu ja avulias henkilö, joka haluaa aina edistää yhteisöä.",
+      "ESFP": "Esittäjä - Spontaani, energinen ja intohimoinen, he eivät koskaan koe elämää ympärillään tylsänä.",
+      "ESTJ": "Toimitusjohtaja - Erinomainen johtaja, vertaansa vailla asioiden tai ihmisten käsittelyssä.",
+      "ESTP": "Yrittäjä - Älykäs, energinen ja oivaltava, he nauttivat todella elämisestä rajalla.",
+      "INFJ": "Ihminen - Hiljainen ja salaperäinen, mutta inspiroivia ja väsymättömiä idealisteja.",
+      "INFP": "Välittäjä - Runolliset, ystävälliset altruistit, jotka aina intohimoisesti pyrkivät oikeudenmukaisuuteen.",
+      "INTJ": "Arkkitehti - Kuvitteleva ja strateginen ajattelija, kaikki on hyvin suunniteltu.",
+      "INTP": "Loogikko - Innovatiiviset keksijät, joilla on sammumaton tieteenhimo.",
+      "ISFJ": "Suojeleja - Erittäin keskittyneet ja lämpimät suojelevat, valmiina aina turvaamaan rakkaitaan.",
+      "ISFP": "Tutkija - Joustavat ja viehättävät taiteilijat, jotka ovat aina valmiita tutkimaan ja kokemaan uusia asioita.",
+      "ISTJ": "Logistiikka-asiantuntija - Käytännölliset henkilöt, jotka keskittyvät faktoihin, ja joiden luotettavuus on kiistaton.",
+      "ISTP": "Arvioija - Rohkeat ja käytännönläheiset kokeilijat, taitavia käyttämään erilaisia työkaluja."
     },
-  },
-  estimate: {
-    immediate: `立即發送（約 1-2 秒）`,
-    minutes: `約 \${minutes} 分鐘`,
-    seconds: `約 \${seconds} 秒`,
-  },
-  gender: {
-    female: `[需要翻译]`,
-    label: `👤 性別：{otherUser.gender}`,
-    male: `[需要翻译]`,
-  },
-  help: {
-    ad: `• 觀看廣告：每次 +1 額度（每日最多 20 次）
-`,
-    ad2: `/ad_performance - 廣告效果報表
-`,
-    ad3: `• 觀看廣告獲得額度（額度用完時顯示）
-`,
-    ad4: `• 查看官方廣告獲得永久額度
-
-`,
-    ad5: `• 官方廣告：永久額度獎勵
-`,
-    ad6: `• 無廣告體驗
-
-`,
-    admin: `/admin_remove <user_id> - 移除管理員
-
-`,
-    admin2: `/admin_add <user_id> - 添加管理員
-`,
-    admin3: `/admin_list - 查看管理員列表
-`,
-    admin4: `🔱 **超級管理員功能**
-
-`,
-    admin5: `👮 **管理員功能**
-
-`,
-    admin6: `**管理員管理**
-`,
-    appeal: `/admin_reject <id> [備註] - 拒絕申訴
-
-`,
-    appeal2: `/admin_approve <id> [備註] - 批准申訴
-`,
-    appeal3: `/appeal_status - 查詢申訴狀態
-
-`,
-    appeal4: `/admin_appeals - 查看待審核申訴
-`,
-    appeal5: `🛡️ **安全與申訴**
-`,
-    appeal6: `**申訴審核**
-`,
-    ban: `/admin_ban <user_id> [hours|permanent] - 封禁用戶
-`,
-    ban2: `/admin_bans <user_id> - 查看用戶封禁歷史
-
-`,
-    ban3: `/admin_unban <user_id> - 解除封禁
-`,
-    ban4: `/admin_bans - 查看封禁記錄
-`,
-    ban5: `/appeal - 申訴封禁
-`,
-    ban6: `• 違規將被封禁
-
-`,
-    birthday: `• 今天生日：is_birthday=true
-
-`,
-    bottle: `• 完成任務：獲得額外瓶子（使用 /tasks 查看）
-`,
-    bottle2: `/tasks - 任務中心（完成任務獲得額外瓶子）
-`,
-    bottle3: `• 每天可以丟出和撿起有限數量的漂流瓶
-`,
-    bottle4: `• VIP 用戶：每天 30 個瓶子
-`,
-    bottle5: `• 瓶子在 24 小時內有效
-
-`,
-    bottle6: `• 免費用戶：每天 3 個瓶子
-`,
-    bottle7: `/throw - 丟出漂流瓶
-`,
-    bottle8: `/catch - 撿起漂流瓶
-`,
-    bottle9: `🍾 **漂流瓶系統**
-`,
-    broadcast: `/broadcast_status <id> - 查看廣播詳情
-`,
-    broadcast2: `/broadcast_process - 手動處理廣播隊列
-`,
-    broadcast3: `/broadcast_cleanup - 清理卡住的廣播
-`,
-    broadcast4: `/broadcast_status - 查看廣播列表
-`,
-    broadcast5: `**廣播監控**
-`,
-    broadcast6: `**廣播發送**
-`,
-    cancel: `/broadcast_cancel <id> - 取消廣播
-
-`,
-    conversation: `/chats - 我的對話列表
-
-`,
-    conversation2: `• 所有對話都是匿名的
-`,
-    help2: `💡 使用 /help 查看幫助`,
-    invite: `• 邀請好友：每人 +1 額度（最多 10/100）
-`,
-    invite2: `/invite - 邀請好友獲得額度
-`,
-    mbti: `• 可篩選 MBTI、星座、血型
-`,
-    mbti2: `/mbti - MBTI 管理
-`,
-    message: `/maintenance_enable <分鐘> <訊息> - 啟用維護模式
-`,
-    message2: `/broadcast_non_vip <訊息> - 群發給非 VIP 用戶
-`,
-    message3: `• 18-25歲女性：gender=female,age=18-25
-`,
-    message4: `/broadcast_filter <過濾器> <訊息> - 精準廣播
-`,
-    message5: `/broadcast_vip <訊息> - 群發給 VIP 用戶
-`,
-    message6: `/maintenance_disable - 關閉維護模式
-
-`,
-    message7: `/maintenance_status - 查看維護狀態
-`,
-    message8: `/broadcast <訊息> - 群發給所有用戶
-`,
-    profile: `/edit_profile - 編輯個人資料
-`,
-    profile2: `/profile - 查看個人資料
-`,
-    profile3: `👤 **個人資料**
-`,
-    quota: `• 邀請好友可增加配額（最多 10/100）
-`,
-    quota2: `• 每天 30 個漂流瓶配額
-`,
-    register: `/start - 開始使用 / 繼續註冊
-`,
-    report: `/report - 舉報不當內容
-`,
-    settings: `/settings - 推送設定`,
-    settings2: `📖 **幫助與設定**
-`,
-    stats: `/stats - 我的統計數據
-
-`,
-    success: `└ 大幅提升配對成功率
-`,
-    text: `/maintenance_status - 查看維護狀態`,
-    text10: `📖 **XunNi 指令列表**
-
-`,
-    text11: `/analytics - 每日運營報表
-`,
-    text12: `/dev_restart - 完全重置帳號`,
-    text13: `📜 **XunNi 遊戲規則**
-
-`,
-    text14: `• 只能發送文字和官方 Emoji
-`,
-    text15: `/dev_info - 系統信息
-`,
-    text16: `/quota - 查看額度狀態
-`,
-    text17: `/rules - 查看遊戲規則
-`,
-    text18: `/block - 封鎖使用者
-`,
-    text19: `/help - 顯示此列表
-`,
-    text2: `/refresh_avatar - 刷新頭像緩存
-`,
-    text20: `• 尊重對方，友善交流
-
-`,
-    text21: `🎁 **額度獲取方式**
-`,
-    text22: `• 不要分享個人聯絡方式
-`,
-    text23: `🛡️ **安全規則**
-`,
-    text24: `🎮 **核心功能**
-`,
-    text25: `/menu - 主選單
-`,
-    text26: `💬 **匿名聊天**
-`,
-    text27: `• 禁止騷擾、辱罵他人
-`,
-    text28: `• 禁止發送不當內容
-`,
-    text29: `• 解鎖對方清晰頭像
-`,
-    text3: `• 只發給女性：gender=female
-`,
-    text30: `• 禁止詐騙、釣魚
-`,
-    text31: `**用戶管理**
-`,
-    text32: `**系統維護**
-`,
-    text33: `**數據分析**
-`,
-    text34: `**開發工具**
-`,
-    text4: `• 34 種語言自動翻譯（OpenAI 優先）
-`,
-    text5: `/profile_card - 查看資料卡片
-`,
-    text6: `/dev_reset - 重置帳號（測試用）
-`,
-    text7: `• 只發給男性：gender=male
-`,
-    text8: `💡 遇到問題？使用 /help 查看指令列表`,
-    text9: `• 使用 /quota 查看額度狀態
-
-`,
-    throw: `• 🆕 三倍曝光機會（1 次丟瓶 = 3 個對象）
-`,
-    vip: `• 台灣的VIP：country=TW,vip=true
-`,
-    vip2: `• 每日免費額度：3 個（VIP：30 個）
-`,
-    vip3: `/funnel - VIP 轉化漏斗
-
-`,
-    vip4: `🎁 **額度與 VIP**
-`,
-    vip5: `/vip - VIP 訂閱
-`,
-    vip6: `💎 **VIP 權益**
-`,
-  },
-  history: {
-    chatHistory: `💬 **你的聊天記錄**
-
-`,
-    continueChatButton: `💬 繼續對話`,
-    continueConversation: `💬 繼續對話：/reply
-`,
-    conversationEnd: `• 最後訊息：{time}
-`,
-    conversationNotFound: `❌ 找不到標識符 {identifier} 的對話
-
-使用 /history 查看所有對話
-
-🏠 返回主選單：/menu`,
-    conversationStart: `• 對話開始：{time}
-`,
-    conversationTitle: `📨 {identifier} 的對話（{count} 則訊息）
-`,
-    conversationWith: `💬 **與 {identifier} 的對話**
-
-`,
-    daysAgo: `{days} 天前`,
-    errorRetry: `❌ 發生錯誤，請稍後再試。`,
-    hoursAgo: `{hours} 小時前`,
-    justNow: `剛剛`,
-    lastMessage: `最後訊息：{preview}
-`,
-    messageSender: `{sender}：{content}
-
-`,
-    messageTime: `📨 {time}
-`,
-    minutesAgo: `{minutes} 分鐘前`,
-    noHistory: `💬 你還沒有任何對話記錄
-
-快去丟瓶子認識新朋友吧！ /throw
-
-🏠 返回主選單：/menu`,
-    noMessages: `(無訊息)`,
-    partnerMessages: `• 對方發送：{count} 則
-`,
-    recentMessages: `
-📨 **最近對話：**
-
-`,
-    returnToMenu: `🏠 返回主選單：/menu`,
-    returnToMenuButton: `🏠 返回主選單`,
-    stats: `📊 **統計：**
-`,
-    time: `時間：{time}
-
-`,
-    totalMessages: `• 總訊息數：{total} 則
-`,
-    userMessages: `• 你發送：{count} 則
-`,
-    viewFull: `💡 使用 /history {identifier} 查看完整對話
-
-`,
-    you: `你`,
-  },
-  invite: {
-    codeAccepted: `✅ 邀請碼已接受！感謝 {inviterName} 的邀請`,
-    inviteeSuccess: `✅ 你已成功接受邀請！`,
-    inviterSuccess: `✅ 邀請成功！你獲得了 +1 永久額度`,
-    limitReached: `❌ 你已達到邀請上限（{max} 人）`,
-    limitWarning: `⚠️ 你已邀請 {count} 人，還可邀請 {remaining} 人`,
-    selfInviteError: `❌ 不能邀請自己`,
-    upgradePrompt: `💎 升級 VIP 可獲得更多邀請名額`,
-    userType: `{type}`,
-  },
-  maintenance: {
-    allFeaturesAvailable: `現在可以正常使用所有功能了。`,
-    completed: `✅ 系統維護已完成`,
-    completingSoon: `即將完成`,
-    correctFormat: `**正確格式：**
-/maintenance_enable <時長(分鐘)> [維護訊息]
-
-`,
-    defaultMessage: `系統正在進行維護，暫時無法使用。`,
-    disableFailed: `❌ 關閉維護模式失敗。`,
-    disableSuccess: `✅ 維護模式已關閉
-
-恢復通知已廣播給所有用戶。`,
-    durationMax: `維護時長不能超過 24 小時（1440 分鐘）`,
-    durationMin: `維護時長最少 5 分鐘`,
-    durationMustBeNumber: `❌ 時長必須是數字（分鐘）`,
-    enableFailed: `❌ 啟用維護模式失敗。`,
-    enableSuccess: `✅ 維護模式已啟用
-
-時長：{duration} 分鐘
-開始：{startTime}
-結束：{endTime}
-
-維護通知已廣播給所有用戶。
-一般用戶將無法使用服務，只有管理員可以登入。`,
-    enabledBy: `啟用者：{user}
-`,
-    estimatedDuration: `預計時長：{duration} 分鐘
-`,
-    estimatedEnd: `預計完成：{time}
-`,
-    example: `**示例：**
-/maintenance_enable 60 系統升級維護`,
-    notificationTitle: `🛠️ 系統維護通知`,
-    remainingHours: `約 {hours} 小時 {minutes} 分鐘`,
-    remainingMinutes: `約 {minutes} 分鐘`,
-    remainingTime: `剩餘時間：{time}
-`,
-    serviceRestored: `服務已恢復正常，感謝您的耐心等待！`,
-    startTime: `開始時間：{time}
-`,
-    status: `狀態：{status}
-`,
-    statusActive: `✅ 維護中`,
-    statusFailed: `❌ 無法獲取維護模式狀態`,
-    statusInactive: `❌ 未啟用`,
-    statusTitle: `🛠️ 維護模式狀態`,
-    thanks: `感謝您的耐心等待！`,
-    unknown: `未知`,
-    usageError: `❌ 使用方法錯誤
-
-`,
-  },
-  mbti: {
-    description: {
-      ENFJ: `主人公 - 富有魅力且鼓舞人心的領導者，有能力使聽眾著迷。`,
-      ENFP: `競選者 - 熱情、有創造力且社交能力強的自由精神，總能找到理由微笑。`,
-      ENTJ: `指揮官 - 大膽、富有想像力且意志強大的領導者，總能找到或創造解決方法。`,
-      ENTP: `辯論家 - 聰明好奇的思想家，無法抗拒智力上的挑戰。`,
-      ESFJ: `執政官 - 極有同情心、受歡迎且樂於助人的人，總是渴望為社群做出貢獻。`,
-      ESFP: `表演者 - 自發、精力充沛且熱情的表演者，生活在他們周圍從不無聊。`,
-      ESTJ: `總經理 - 出色的管理者，在管理事務或人員方面無與倫比。`,
-      ESTP: `企業家 - 聰明、精力充沛且善於洞察的人，真正享受生活在邊緣。`,
-      INFJ: `提倡者 - 安靜而神秘，同時鼓舞人心且不知疲倦的理想主義者。`,
-      INFP: `調停者 - 詩意、善良的利他主義者，總是熱情地為正義事業而努力。`,
-      INTJ: `建築師 - 富有想像力和戰略性的思想家，一切皆在計劃之中。`,
-      INTP: `邏輯學家 - 具有創新精神的發明家，對知識有著止不住的渴望。`,
-      ISFJ: `守衛者 - 非常專注且溫暖的守護者，時刻準備著保護所愛之人。`,
-      ISFP: `探險家 - 靈活且迷人的藝術家，時刻準備著探索和體驗新事物。`,
-      ISTJ: `物流師 - 實際且注重事實的個人，可靠性不容懷疑。`,
-      ISTP: `鑒賞家 - 大膽而實際的實驗者，擅長使用各種工具。`,
+    "full": {
+      "question1": "Sosiaalisissa tilanteissa sinä yleensä:",
+      "question1.option1": "Aloitat keskustelun muiden kanssa",
+      "question1.option2": "Odota, että muut lähestyvät minua",
+      "question10": "Probleemien ratkaisemisessa nojaudut enemmän:",
+      "question10.option1": "Käytännön kokemukseen ja faktoihin",
+      "question10.option2": "Intuutioon ja mahdollisuuksiin",
+      "question11": "Preferenssisi:",
+      "question11.option1": "Keskityt erityisiin yksityiskohtiin",
+      "question11.option2": "Keskityt kokonaiskonsepteihin",
+      "question12": "Uuden oppimisessa preferoit:",
+      "question12.option1": "Askel askeleelta -lähestymistapa",
+      "question12.option2": "Innovatiivisten keinojen tutkiminen",
+      "question13": "Lukiessasi preferoit:",
+      "question13.option1": "Käytännön ohjeet",
+      "question13.option2": "Teoriat ja konseptit",
+      "question14": "Keskityt enemmän:",
+      "question14.option1": "Nykyhetkeen ja menneisyyteen",
+      "question14.option2": "Tulevaisuuteen ja mahdollisuuksiin",
+      "question15": "Kuvaillessasi asioita, sinä yleensä:",
+      "question15.option1": "Käytät erityisiä esimerkkejä",
+      "question15.option2": "Käytät vertauskuvia ja analoogioita",
+      "question16": "Työssä arvostat:",
+      "question16.option1": "Käytännön sovellusta",
+      "question16.option2": "Innovatiivisia ideoita",
+      "question17": "Luotat enemmän:",
+      "question17.option1": "Todistettuihin menetelmiin",
+      "question17.option2": "Uusiin yrityksiin",
+      "question18": "Suunnitellessasi tulevaisuutta:",
+      "question18.option1": "Perustat realistisiin olosuhteisiin",
+      "question18.option2": "Kuvittelet erilaisia mahdollisuuksia",
+      "question19": "Päätöksenteossa priorisoit:",
+      "question19.option1": "Logiikka ja objektiivinen analyysi",
+      "question19.option2": "Emotion ja ihmissuhteiden harmonia",
+      "question2": "Viikonloppuisin preferoit:",
+      "question2.option1": "Käymistä ystävien kanssa",
+      "question2.option2": "Kotona olemista yksin rentoutumiseen",
+      "question20": "Kritiikissä muita kohtaan:",
+      "question20.option1": "Tuot ongelman suoraan esiin",
+      "question20.option2": "Otaten huomioon toisen henkilön tunteet",
+      "question21": "Mitä arvostat enemmän:",
+      "question21.option1": "Reiluus ja oikeus",
+      "question21.option2": "Empatia ja ymmärrys",
+      "question22": "Kun arvioit ideaa, mietit ensin:",
+      "question22.option1": "Onko se järkevää",
+      "question22.option2": "Onko se hyödyllistä",
+      "question23": "Kun ystäväsi avautuu sinulle, teet:",
+      "question23.option1": "Analysoit ongelman ja tarjoat neuvoja",
+      "question23.option2": "Kuuntelet ja tarjoat lohtua",
+      "question24": "Konflikteissa sinun on tapana:",
+      "question24.option1": "Pysyä periaatteissa",
+      "question24.option2": "Säilyttää suhteet",
+      "question25": "Sinut on helpompi vakuuttaa:",
+      "question25.option1": "Fakteilla ja tiedoilla",
+      "question25.option2": "Tunteilla ja tarinoilla",
+      "question26": "Tiimipäätöksenteossa keskityt enemmän:",
+      "question26.option1": "Tehokkuuteen ja tuloksiin",
+      "question26.option2": "Konsensukseen ja yhtenäisyyteen",
+      "question27": "Uskot, että hyvä johtaja pitäisi olla:",
+      "question27.option1": "Reilu ja päättäväinen",
+      "question27.option2": "Harkitseva ja huolehtivainen",
+      "question28": "Tyylisi työskennellä on:",
+      "question28.option1": "Suunnitella ja valmistella etukäteen",
+      "question28.option2": "Mukautua ja olla joustava",
+      "question29": "Pidät mieluummin:",
+      "question29.option1": "Selkeistä määräajoista",
+      "question29.option2": "Avoimista vaihtoehdoista",
+      "question3": "Kun olet ollut kokoontumisessa, tunnet yleensä:",
+      "question3.option1": "Olevasi energinen",
+      "question3.option2": "Tunnet tarpeen levätä",
+      "question30": "Matkustaessasi sinulla on yleensä tapana:",
+      "question30.option1": "Laatia tarkkoja matkasuunnitelmia",
+      "question30.option2": "Tutkia vapaasti",
+      "question31": "Huoneesi on yleensä:",
+      "question31.option1": "Siisti ja järjestelmällinen",
+      "question31.option2": "Rentoa ja rentouttavaa",
+      "question32": "Tehtäviä hoitaessasi:",
+      "question32.option1": "Valmistaa mahdollisimman aikaisin",
+      "question32.option2": "Saada päätökseen lähellä määräaikaa",
+      "question33": "Toivomasi elämäntyyli:",
+      "question33.option1": "Säännöllinen ja rakenteellinen",
+      "question33.option2": "Vapaa ja joustava",
+      "question34": "Päätöksiä tehdessäsi sinulla on tapana:",
+      "question34.option1": "Tehdä nopeita päätöksiä",
+      "question34.option2": "Pitää vaihtoehdot avoimina",
+      "question35": "Ostoksia tehdessäsi:",
+      "question35.option1": "Laadin listan ja ostan suunnitellusti",
+      "question35.option2": "Selaan vapaasti ja ostan, jos pidän",
+      "question36": "Kohtaessasi muutoksia tunnet yleensä:",
+      "question36.option1": "Olevasi levoton",
+      "question36.option2": "Tunne innostusta",
+      "question4": "Tiimissä suosittelet:",
+      "question4.option1": "Puhu aktiivisesti",
+      "question4.option2": "Kuuntele ensin, sitten puhu",
+      "question5": "Kun tapaat uusia ystäviä, sinä:",
+      "question5.option1": "Tutustut nopeasti",
+      "question5.option2": "Tarvitset aikaa lämmitellä",
+      "question6": "Ympärilläsi on ystäviä:",
+      "question6.option1": "Laaja mutta ei syvä",
+      "question6.option2": "Pieni ja tiivis",
+      "question7": "Työskentelyssä suosittelet:",
+      "question7.option1": "Tiimityöskentely",
+      "question7.option2": "Itsenäistä työtä",
+      "question8": "Kun ajattelet ongelmia, sinä:",
+      "question8.option1": "Puhuessasi ajattelet",
+      "question8.option2": "Ajattele rauhassa ennen puhumista",
+      "question9": "Stressitilanteessa sinä:",
+      "question9.option1": "Juttelet ystävien kanssa",
+      "question9.option2": "Käsittelet asioita yksin"
     },
-    full: {
-      question1: `在社交場合中，你通常：`,
-      'question1.option1': `主動與他人交談`,
-      'question1.option2': `等待他人來找我`,
-      question10: `解決問題時，你更依賴：`,
-      'question10.option1': `實際經驗和事實`,
-      'question10.option2': `直覺和可能性`,
-      question11: `你更喜歡：`,
-      'question11.option1': `關注具體細節`,
-      'question11.option2': `關注整體概念`,
-      question12: `學習新事物時，你更喜歡：`,
-      'question12.option1': `按部就班的方法`,
-      'question12.option2': `探索創新的方式`,
-      question13: `閱讀時，你更喜歡：`,
-      'question13.option1': `實用的指南`,
-      'question13.option2': `理論和概念`,
-      question14: `你更關注：`,
-      'question14.option1': `現在和過去`,
-      'question14.option2': `未來和可能性`,
-      question15: `描述事物時，你傾向於：`,
-      'question15.option1': `使用具體例子`,
-      'question15.option2': `使用比喻和類比`,
-      question16: `工作中，你更重視：`,
-      'question16.option1': `實際應用`,
-      'question16.option2': `創新想法`,
-      question17: `你更信任：`,
-      'question17.option1': `已驗證的方法`,
-      'question17.option2': `新的嘗試`,
-      question18: `規劃未來時，你會：`,
-      'question18.option1': `基於現實條件`,
-      'question18.option2': `想像各種可能`,
-      question19: `做決定時，你更重視：`,
-      'question19.option1': `邏輯和客觀分析`,
-      'question19.option2': `情感和人際和諧`,
-      question2: `週末你更喜歡：`,
-      'question2.option1': `和朋友出去玩`,
-      'question2.option2': `在家獨處休息`,
-      question20: `批評他人時，你會：`,
-      'question20.option1': `直接指出問題`,
-      'question20.option2': `考慮對方感受`,
-      question21: `你更看重：`,
-      'question21.option1': `公平和正義`,
-      'question21.option2': `同情和理解`,
-      question22: `評價一個想法時，你首先考慮：`,
-      'question22.option1': `是否合理`,
-      'question22.option2': `是否有益`,
-      question23: `朋友向你傾訴時，你會：`,
-      'question23.option1': `分析問題並提供建議`,
-      'question23.option2': `傾聽並給予安慰`,
-      question24: `衝突中，你更傾向於：`,
-      'question24.option1': `堅持原則`,
-      'question24.option2': `維持關係`,
-      question25: `你更容易被說服通過：`,
-      'question25.option1': `事實和數據`,
-      'question25.option2': `情感和故事`,
-      question26: `團隊決策時，你更關注：`,
-      'question26.option1': `效率和結果`,
-      'question26.option2': `共識和團結`,
-      question27: `你認為好的領導者應該：`,
-      'question27.option1': `公正果斷`,
-      'question27.option2': `體貼關懷`,
-      question28: `你的工作方式是：`,
-      'question28.option1': `提前計劃和準備`,
-      'question28.option2': `隨機應變和靈活`,
-      question29: `你更喜歡：`,
-      'question29.option1': `有明確的截止日期`,
-      'question29.option2': `保持開放的選擇`,
-      question3: `參加聚會後，你通常：`,
-      'question3.option1': `感到充滿活力`,
-      'question3.option2': `感到需要休息`,
-      question30: `旅行時，你傾向於：`,
-      'question30.option1': `制定詳細行程`,
-      'question30.option2': `隨心所欲探索`,
-      question31: `你的房間通常：`,
-      'question31.option1': `整齊有序`,
-      'question31.option2': `隨性自在`,
-      question32: `處理任務時，你會：`,
-      'question32.option1': `盡早完成`,
-      'question32.option2': `接近截止日期才完成`,
-      question33: `你更喜歡的生活方式：`,
-      'question33.option1': `有規律和結構`,
-      'question33.option2': `自由和彈性`,
-      question34: `做決定時，你傾向於：`,
-      'question34.option1': `快速決定`,
-      'question34.option2': `保留選擇權`,
-      question35: `購物時，你會：`,
-      'question35.option1': `列清單按計劃購買`,
-      'question35.option2': `隨意逛逛看到喜歡就買`,
-      question36: `面對變化，你通常：`,
-      'question36.option1': `感到不安`,
-      'question36.option2': `感到興奮`,
-      question4: `在團隊中，你更傾向於：`,
-      'question4.option1': `積極發表意見`,
-      'question4.option2': `先聽後說`,
-      question5: `遇到新朋友時，你會：`,
-      'question5.option1': `很快就能熟絡起來`,
-      'question5.option2': `需要時間慢慢熟悉`,
-      question6: `你的朋友圈：`,
-      'question6.option1': `廣泛但不深入`,
-      'question6.option2': `小而親密`,
-      question7: `工作時，你更喜歡：`,
-      'question7.option1': `團隊合作`,
-      'question7.option2': `獨立工作`,
-      question8: `思考問題時，你傾向於：`,
-      'question8.option1': `邊說邊想`,
-      'question8.option2': `先想好再說`,
-      question9: `壓力大時，你會：`,
-      'question9.option1': `找朋友聊天`,
-      'question9.option2': `獨自消化`,
+    "quick": {
+      "question1": "Sosiaalisissa tilanteissa olet yleensä:",
+      "question1.option1": "Aloitat keskusteluja muiden kanssa",
+      "question1.option2": "Odota, että muut lähestyvät minua",
+      "question10": "Työskentelytyylisi on:",
+      "question10.option1": "Suunnittele ja valmistele etukäteen",
+      "question10.option2": "Sopeudu ja ole joustava",
+      "question11": "Suosittelet:",
+      "question11.option1": "Selkeät määräajat",
+      "question11.option2": "Pidä vaihtoehdot avoimina",
+      "question12": "Matkustaessasi sinä:",
+      "question12.option1": "Laadi yksityiskohtaiset matkasuunnitelmat",
+      "question12.option2": "Tutki vapaasti",
+      "question2": "Viikonloppuisin suoritat mieluummin:",
+      "question2.option1": "Vietä aikaa ystävien kanssa",
+      "question2.option2": "Lepää yksin kotona",
+      "question3": "Kun olet käynyt juhlissa, sinä yleensä:",
+      "question3.option1": "Tunnet itsesi energiseksi",
+      "question3.option2": "Tunnet tarvitsevasi lepoa",
+      "question4": "Ongelmaa ratkaistaessasi luot enemmän:",
+      "question4.option1": "Käytännön kokemukseen ja faktoihin",
+      "question4.option2": "Intuitioon ja mahdollisuuksiin",
+      "question5": "Suosittelet:",
+      "question5.option1": "Keskityt erityisiin yksityiskohtiin",
+      "question5.option2": "Keskityt kokonaiskonseptiin",
+      "question6": "Uusia asioita oppiessasi suosittelet:",
+      "question6.option1": "Askel askeleelta -menetelmiä",
+      "question6.option2": "Tutki innovatiivisia tapoja",
+      "question7": "Päätöksiä tehdessä arvostat enemmän:",
+      "question7.option1": "Logiikkaa ja objektiivista analyysiä",
+      "question7.option2": "Tuntemuksia ja ihmissuhteiden harmoniaa",
+      "question8": "Kun kriittisesti puhut muista, sinä:",
+      "question8.option1": "Osoita ongelma suoraan",
+      "question8.option2": "Ota huomioon toisen tunteet",
+      "question9": "Mitä arvostat enemmän:",
+      "question9.option1": "Oikeudenmukaisuus ja tasa-arvo",
+      "question9.option2": "Empatia ja ymmärrys"
+    }
+  },
+  "mbtiTest": {
+    "afterRegistration": "💡 Rekisteröinnin jälkeen voit:\n",
+    "answerRecorded": "✅ Tallennettu",
+    "completion": "🎉 {testTitle} Suoritettu!\n\n",
+    "fullAccuracy": "Tarkemmat tulokset",
+    "fullQuestions": "36 kysymystä",
+    "fullTest": "Suorita MBTI-testi",
+    "fullTestInfo": "💡 Tämä on täydellinen testi ({questions}), tulos on tarkempi.\nRekisteröinnin jälkeen voit käyttää /mbti testin uusimiseen.\n\n",
+    "fullTestTitle": "Suorita testi",
+    "manualModify": "• Muokkaa MBTI-tyyppiäsi manuaalisesti",
+    "moreDetailedTest": "• Ota yksityiskohtaisempi testi\n",
+    "note": "⚠️ Huomio: Tämä on {testInfo}{testTitle}, {accuracy}.\n\n",
+    "questionOrderError": "⚠️ Väärä kysymysjärjestys",
+    "questions12": "12 kysymystä",
+    "questions36": "36 kysymystä",
+    "quickAccuracy": "Tulokset vain viitteeksi",
+    "quickQuestions": "12 kysymystä",
+    "quickTest": "Nopea MBTI-testi",
+    "quickTestInfo": "💡 Tämä on nopea testi ({questions}), tulos on vain viitteellinen.\nRekisteröinnin jälkeen voit käyttää /mbti testin uusimiseen.\n\n",
+    "quickTestTitle": "Nopea testi",
+    "yourMbtiType": "MBTI-tyyppisi on: **{type}**\n\n"
+  },
+  "menu": {
+    "bottle": "• Aktivoituu, kun ystävä heittää ensimmäisen pullopostin\n",
+    "buttonCatch": "🎣 Nosta viestipullo",
+    "buttonChats": "💬 Keskusteluni",
+    "buttonHelp": "❓ Apua",
+    "buttonInvite": "👥 Kutsu ystäviä",
+    "buttonProfile": "👤 Profiili",
+    "buttonSettings": "⚙️ Asetukset",
+    "buttonStats": "📊 Tilastot",
+    "buttonThrow": "🌊 Heitä viestipullo",
+    "buttonVip": "💎 VIP",
+    "invite": "🎁 **Kutsu ystäviä**\n\n",
+    "invite2": "📋 Kutsu koodisi: {inviteCode}",
+    "invite3": "📤 Jaa kutsukoodi",
+    "levelFree": "🆓 Ilmainen jäsen",
+    "levelVip": "💎 VIP-jäsen",
+    "message": "https://t.me/share/url?url=https://t.me/${botUsername}?start=invite_${inviteCode}&text=Liity XunNi- palveluun heittääksesi viestipulloja yhdessä!🍾 Käytä kutsukoodiani liittyessäsi, niin saamme molemmat enemmän kvoteja! https://t.me/share/url?url=https://t.me/${botUsername}?start=invite_${inviteCode}&text=Join",
+    "message2": "https://t.me/share/url?url=https://t.me/${botUsername}?start=invite_${inviteCode}&text=Liity XunNi- palveluun heittääksesi viestipulloja yhdessä https://t.me/share/url?url=https://t.me/${botUsername}?start=invite_${inviteCode}&text=Join",
+    "notRegistered": "Ei rekisteröitynyt",
+    "notSet": "Ei asetettu",
+    "quota": "• Saatte molemmat päivittäisen kiintiön +1\n\n",
+    "register": "• Ystävät rekisteröityvät käyttämällä kutsukoodiasi\n",
+    "selectFeature": "Valitse ominaisuus:",
+    "settings": "• MBTI: ${mbti}\n",
+    "settings2": "• Horoskooppi: ${zodiac}\n\n",
+    "settings3": "Ei asetettu",
+    "settings4": "Ei asetettu",
+    "short": "Ilmainen jäsen",
+    "stats": "📊 Näytä kutsutilastot: /profile",
+    "stats2": "📊 Näytä kutsutilastot",
+    "task": "🎯 **Seuraava tehtävä**\n⏳ ${nextTask.name} (+${nextTask.reward_amount} viestipulloa)\n💡 ${nextTask.description}\n\n",
+    "text": "🏠 **Päänäyttö** ${vipBadge}\n\n",
+    "text2": "👋 Hei, ${user.nickname}!\n\n",
+    "text3": "💡 Napsauta alla olevaa painiketta jakaaksesi ystäville:\n",
+    "text4": "💡 Valitse haluttu toiminto:",
+    "text5": "📊 Tilasi:\n",
+    "title": "🏠 **Päävalikko**",
+    "userNotFound": "Käyttäjää ei ole olemassa",
+    "vip": "• Taso: ${isVip ? 'VIP-jäsen 💎' : 'Ilmainen jäsen'}\n",
+    "vip2": "VIP-jäsen 💎",
+    "yourStatus": "Tilasi"
+  },
+  "messageForward": {
+    "blockedUrls": "❌ Viesti sisältää kielletyn URL-osoitteen",
+    "dailyQuota": "📊 Tänään lähetetyt: {used}/{limit} viestiä",
+    "messageSent": "✅ Viesti on lähetetty käyttäjälle {identifier}\n\n",
+    "quotaExceeded": "❌ Tänään lähetettävien viestien kvota on loppu",
+    "removeLinks": "💡 Poista URL-osoite ja yritä uudelleen",
+    "replyHint": "💡 Vastaa toisen henkilön viestiin lähettääksesi viestin",
+    "upgradeVip": "💡 Päivitä VIP:ksi saadaksesi lisää kvotoja (100 viestiä/päivä): /vip\n",
+    "urlNotAllowed": "❌ Viesti sisältää kielletyn URL-osoitteen\n\n",
+    "urlNotAllowedDesc": "⚠️ Turvallisuuden vuoksi keskustelussa on sallittuja vain tietyt URL-osoitteet.\n\n",
+    "vipDailyLimit": "💡 VIP-käyttäjät voivat lähettää 100 viestiä päivittäin.\n"
+  },
+  "nickname": {
+    "cannotGetNickname": "❌ Telegram-nimimerkkiä ei voitu noutaa",
+    "customHint": "⚠️ Huomio:\n• Nimimerkin pituusraja on 36 merkkiä\n• Toinen osapuoli voi näyttää enintään 18 merkkiä\n• Älä käytä nimimerkkiä mainosten lähettämiseen",
+    "customPrompt": "✏️ Syötä lempinimesi:\n\n",
+    "genderHint": "⚠️ Huomio: Sukupuolta ei voi muuttaa asetuksen jälkeen, valitse tarkasti!",
+    "genderSelection": "Hienoa! Lempinimesi on: {nickname}\n\nValitse nyt sukupuolesi:\n\n",
+    "nicknameSet": "✅ Nimimerkki on asetettu",
+    "userNotFound": "❌ Käyttäjää ei ole olemassa"
+  },
+  "officialAd": {
+    "adNotFound": "❌ Mainosta ei ole olemassa",
+    "allAdsViewed": "✅ Olet jo nähnyt kaikki viralliset mainokset",
+    "alreadyViewed": "Olet jo katsonut tämän mainoksen",
+    "buttonClaimReward": "Vaatimukset",
+    "buttonJoinGroup": "Liity ryhmään",
+    "buttonSubscribeChannel": "Tilaa kanava",
+    "buttonVerifyAndClaim": "✅ Vahvista ja vaadi",
+    "buttonViewDetails": "Näytä tiedot",
+    "buttonVisitLink": "Vieraile linkissä",
+    "cannotClaim": "❌ Tämän mainoksen vaatiminen ei onnistu",
+    "claimReward": "✅ Vaatimukset",
+    "claimRewardButton": "✅ Vaatimukset",
+    "claimRewardSuccess": "✅ Palkinnot vaadittu onnistuneesti! Saavutettu +{quota} pysyvä kvota!",
+    "communityBenefits": "💡 Suorita tehtäviä saadaksesi pysyvän kvotan",
+    "communityThanks": "🙏 Kiitos tuestasi yhteisölle!",
+    "errorRetry": "❌ Tapahtui virhe, yritä uudelleen myöhemmin",
+    "moreAdsAvailable": "💡 Katsottavaksi on lisää virallisia mainoksia!",
+    "nextAd": "➡️ Seuraava mainos",
+    "noAdsAvailable": "❌ Ei saatavilla olevia mainoksia tällä hetkellä",
+    "noVerificationRequired": "❌ Tämä mainos ei vaadi vahvistusta",
+    "quotaInfo": "📊 Jäljellä tänään: **{remaining}/20** kertaa",
+    "requiresVerification": "✅ Vahvistus vaaditaan: Klikkaa 'Vahvista' -painiketta liittyessäsi ryhmään/kanavaan",
+    "reward": "🎁 Palkinto: +{quota} pysyvää kiintiötä",
+    "rewardPermanent": "🎁 Suorita tehtävä ansaitaksesi **+1 pysyvä kiintiö**",
+    "rewardTemporary": "🎁 Onneksi olkoon! Olet saanut +1 tilapäisen kiintiön (voimassa tänään)",
+    "statsAdNotFound": "❌ Mainosta ei ole olemassa",
+    "statsClicks": "• Klikkaukset: {count}\n",
+    "statsCtr": "• Klikkausprosentti (CTR): {rate}%\n",
+    "statsHint": "💡 Käytä /ad_stats {id} nähdäksesi yksityiskohtaiset tilastot",
+    "statsNoAds": "📊 Ei virallisia mainoksia saatavilla",
+    "statsNoPermission": "❌ Sinulla ei ole oikeuksia nähdä mainostilastoja",
+    "statsRemainingViews": "• Jäljellä olevat näyttökerrat: {remaining}/{total}\n",
+    "statsRewardGranted": "• Jaetut palkinnot: {count}\n",
+    "statsRewardRate": "• Palkintoprosentti: {rate}%\n",
+    "statsRewardSummary": "• Palkkiot: {rewards}\n\n",
+    "statsSummary": "• Näytöt: {views} | Klikkaukset: {clicks} ({ctr}%)\n",
+    "statsTitle": "📊 **Viralliset mainostilastot**\n\n",
+    "statsVerificationCount": "• Vahvistuskerrat: {count}\n",
+    "statsVerificationRate": "• Vahvistusprosentti: {rate}%\n",
+    "statsViews": "• Näyttökerrat: {count}\n",
+    "statusDisabled": "Poista käytöstä",
+    "statusEnabled": "Ota käyttöön",
+    "unlimited": "Rajaton",
+    "userNotFound": "❌ Käyttäjää ei ole olemassa",
+    "verifySuccess": "✅ Vahvistus onnistui! Olet saanut +{quota} pysyvää kiintiötä!"
+  },
+  "onboarding": {
+    "age": "• Ikä: ${updatedUser.age} vuotta\n",
+    "age2": "Ikäsi: ${age} vuotta\n",
+    "age3": "Ikä: ${age} vuotta\n",
+    "ageRestriction": "❌ Anteeksi, sinun on oltava vähintään 18-vuotias voidaksesi käyttää tätä palvelua.\n\n",
+    "agreeTerms": "Klikkaa alla olevaa painiketta ilmoittaaksesi, että olet lukenut ja hyväksynyt yllä olevat ehdot.",
+    "antiFraud": {
+      "confirm_button": "✅ Kyllä, ymmärrän ja kiinnitän huomiota turvallisuuteen",
+      "learn_button": "📚 Haluan oppia lisää turvallisuustietoisuudesta",
+      "question1": "1. Oletko tietoinen online-tapaamisen turvallisuusriskistä?\n",
+      "question2": "2. Suojatko henkilökohtaiset tietosi hyvin?\n",
+      "question3": "3. Kun kohtaat epäilyttäviä viestejä, oletko valppaana?\n\n"
     },
-    quick: {
-      question1: `在社交場合中，你通常：`,
-      'question1.option1': `主動與他人交談`,
-      'question1.option2': `等待他人來找我`,
-      question10: `你的工作方式是：`,
-      'question10.option1': `提前計劃和準備`,
-      'question10.option2': `隨機應變和靈活`,
-      question11: `你更喜歡：`,
-      'question11.option1': `有明確的截止日期`,
-      'question11.option2': `保持開放的選擇`,
-      question12: `旅行時，你傾向於：`,
-      'question12.option1': `制定詳細行程`,
-      'question12.option2': `隨心所欲探索`,
-      question2: `週末你更喜歡：`,
-      'question2.option1': `和朋友出去玩`,
-      'question2.option2': `在家獨處休息`,
-      question3: `參加聚會後，你通常：`,
-      'question3.option1': `感到充滿活力`,
-      'question3.option2': `感到需要休息`,
-      question4: `解決問題時，你更依賴：`,
-      'question4.option1': `實際經驗和事實`,
-      'question4.option2': `直覺和可能性`,
-      question5: `你更喜歡：`,
-      'question5.option1': `關注具體細節`,
-      'question5.option2': `關注整體概念`,
-      question6: `學習新事物時，你更喜歡：`,
-      'question6.option1': `按部就班的方法`,
-      'question6.option2': `探索創新的方式`,
-      question7: `做決定時，你更重視：`,
-      'question7.option1': `邏輯和客觀分析`,
-      'question7.option2': `情感和人際和諧`,
-      question8: `批評他人時，你會：`,
-      'question8.option1': `直接指出問題`,
-      'question8.option2': `考慮對方感受`,
-      question9: `你更看重：`,
-      'question9.option1': `公平和正義`,
-      'question9.option2': `同情和理解`,
+    "antiFraudConfirm": "Ole hyvä ja vahvista:",
+    "antiFraudFinalStep": "🛡️ Viimeinen askel: Petosriskiuudistuksen vahvistus\n\n",
+    "antiFraudLearn": "📚 Haluan oppia lisää turvallisuustietoisuudesta",
+    "antiFraudPassed": "✅ Petotesti hyväksytty!\n\n",
+    "antiFraudQuestion1": "1. Oletko tietoinen online-tapaamisen turvallisuusriskistä?\n",
+    "antiFraudQuestion2": "2. Suojatko henkilökohtaiset tietosi hyvin?\n",
+    "antiFraudQuestion3": "3. Kun kohtaat epäilyttäviä viestejä, oletko valppaana?\n\n",
+    "antiFraudQuestions": "Kaikkien käyttäjien turvallisuuden suojelemiseksi vahvista, että ymmärrät seuraavat:\n\n",
+    "antiFraudYes": "✅ Kyllä, ymmärrän ja kiinnitän huomiota turvallisuuteen",
+    "back": "⬅️ Takaisin",
+    "birthday": "Jos luulet, että tämä on virhe, tarkista, että syntymäpäiväsi muoto on oikea (VVVV-KK-PV).",
+    "birthday4": "syntymäpäivä: ${birthday}\n",
+    "birthdayCheck": "Jos luulet, että tämä on virhe, tarkista syntymäpäiväsi muoto (VVVV-KK-PV).",
+    "birthdayError": "{error}\n\n",
+    "birthdayFormatError": "❌ Virheellinen syntymäpäivän muoto\n\nOle hyvä ja syötä uudelleen (muoto: VVVV-KK-PV):",
+    "birthdayRetry": "Ole hyvä ja syötä syntymäpäiväsi uudelleen (muoto: VVVV-KK-PV):",
+    "birthdayWarning": "⚠️ Syntymäpäivää ei voida muuttaa asetuksen jälkeen, varmista että se on oikein!",
+    "bloodType": {
+      "select": "Valitse veriryhmäsi:"
     },
-  },
-  mbtiTest: {
-    afterRegistration: `💡 完成註冊後，你可以：
-`,
-    answerRecorded: `✅ 已記錄`,
-    completion: `🎉 {testTitle}完成！
-
-`,
-    fullAccuracy: `結果更準確`,
-    fullQuestions: `36 題`,
-    fullTest: `MBTI 完整測驗`,
-    fullTestInfo: `
-
-💡 這是完整測驗（{questions}），結果更準確。
-完成註冊後，可使用 /mbti 重新測驗。
-
-`,
-    fullTestTitle: `完整測驗`,
-    manualModify: `• 手動修改你的 MBTI 類型`,
-    moreDetailedTest: `• 進行更詳細的測驗
-`,
-    note: `⚠️ 注意：這是 {testInfo}{testTitle}，{accuracy}。
-
-`,
-    questionOrderError: `⚠️ 問題順序錯誤`,
-    questions12: `12 題`,
-    questions36: `36 題`,
-    quickAccuracy: `結果僅供參考`,
-    quickQuestions: `12 題`,
-    quickTest: `MBTI 快速測驗`,
-    quickTestInfo: `
-
-💡 這是快速測驗（{questions}），結果僅供參考。
-完成註冊後，可使用 /mbti 重新測驗。
-
-`,
-    quickTestTitle: `快速測驗`,
-    yourMbtiType: `你的 MBTI 類型是：**{type}**
-
-`,
-  },
-  menu: {
-    bottle: `• 好友丟出第一個瓶子後激活
-`,
-    buttonCatch: `🎣 撿起漂流瓶`,
-    buttonChats: `💬 我的對話`,
-    buttonHelp: `❓ 幫助`,
-    buttonInvite: `👥 邀請好友`,
-    buttonProfile: `👤 個人資料`,
-    buttonSettings: `⚙️ 設定`,
-    buttonStats: `📊 統計`,
-    buttonThrow: `🌊 丟出漂流瓶`,
-    buttonVip: `💎 VIP`,
-    invite: `🎁 **邀請好友**
-
-`,
-    invite2: `📋 你的邀請碼：\\`,
-    invite3: `📤 分享邀請碼`,
-    levelFree: `🆓 免費會員`,
-    levelVip: `💎 VIP 會員`,
-    message: `https://t.me/share/url?url=https://t.me/\${botUsername}?start=invite_\${inviteCode}&text=來 XunNi 一起丟漂流瓶吧！🍾 使用我的邀請碼加入，我們都能獲得更多配額！`,
-    message2: `https://t.me/share/url?url=https://t.me/\${botUsername}?start=invite_\${inviteCode}&text=來 XunNi 一起丟漂流`,
-    notRegistered: `未注册`,
-    notSet: `未设定`,
-    quota: `• 你們都獲得每日配額 +1
-
-`,
-    register: `• 好友使用你的邀請碼註冊
-`,
-    selectFeature: `請選擇功能：`,
-    settings: `• MBTI：\${mbti}
-`,
-    settings2: `• 星座：\${zodiac}
-
-`,
-    settings3: `未設定`,
-    settings4: `未設定`,
-    short: `免費會員`,
-    stats: `📊 查看邀請統計：/profile`,
-    stats2: `📊 查看邀請統計`,
-    task: `🎯 **下一個任務**
-⏳ \${nextTask.name} (+\${nextTask.reward_amount} 瓶子)
-💡 \${nextTask.description}
-
-`,
-    text: `🏠 **主選單** \${vipBadge}
-
-`,
-    text2: `👋 嗨，\${user.nickname}！
-
-`,
-    text3: `💡 點擊下方按鈕分享給好友：
-`,
-    text4: `💡 選擇你想要的功能：`,
-    text5: `📊 你的狀態：
-`,
-    title: `🏠 **主選單**`,
-    userNotFound: `用戶不存在`,
-    vip: `• 等級：\${isVip ? 'VIP 會員 💎' : '免費會員'}
-`,
-    vip2: `VIP 會員 💎`,
-    yourStatus: `你的狀態`,
-  },
-  messageForward: {
-    blockedUrls: `❌ 訊息包含被禁止的網址`,
-    dailyQuota: `📊 今日已發送：{used}/{limit} 則`,
-    messageSent: `✅ 訊息已發送給 {identifier}
-
-`,
-    quotaExceeded: `❌ 今日訊息配額已用完`,
-    removeLinks: `💡 請移除網址後再試`,
-    replyHint: `💡 請回覆對方的訊息來發送消息`,
-    upgradeVip: `💡 升級 VIP 可獲得更多配額（100 則/天）：/vip
-`,
-    urlNotAllowed: `❌ 訊息包含不被允許的網址
-
-`,
-    urlNotAllowedDesc: `⚠️ 為了安全，對話中只允許特定網址。
-
-`,
-    vipDailyLimit: `💡 VIP 用戶每日可發送 100 則訊息。
-`,
-  },
-  nickname: {
-    cannotGetNickname: `❌ 無法獲取 Telegram 暱稱`,
-    customHint: `⚠️ 注意：
-• 暱稱長度限制 36 個字
-• 對方最多顯示 18 個字
-• 請勿使用暱稱發送廣告`,
-    customPrompt: `✏️ 請輸入你的暱稱：
-
-`,
-    genderHint: `⚠️ 注意：性別設定後無法修改，請謹慎選擇！`,
-    genderSelection: `很好！你的暱稱是：{nickname}
-
-現在請選擇你的性別：
-
-`,
-    nicknameSet: `✅ 暱稱已設定`,
-    userNotFound: `❌ 用戶不存在`,
-  },
-  officialAd: {
-    adNotFound: `❌ 廣告不存在`,
-    allAdsViewed: `✅ 你已經看過所有官方廣告了`,
-    alreadyViewed: `你已經看過此廣告`,
-    buttonClaimReward: `領取獎勵`,
-    buttonJoinGroup: `加入群組`,
-    buttonSubscribeChannel: `訂閱頻道`,
-    buttonVerifyAndClaim: `✅ 驗證並領取`,
-    buttonViewDetails: `查看詳情`,
-    buttonVisitLink: `訪問鏈接`,
-    cannotClaim: `❌ 無法領取此廣告`,
-    claimReward: `✅ 領取獎勵`,
-    claimRewardButton: `✅ 領取獎勵`,
-    claimRewardSuccess: `✅ 領取獎勵成功！獲得 +{quota} 個永久額度！`,
-    communityBenefits: `💡 完成任務可獲得永久額度`,
-    communityThanks: `🙏 感謝支持社群！`,
-    errorRetry: `❌ 發生錯誤，請稍後再試`,
-    moreAdsAvailable: `💡 還有更多官方廣告可以觀看！`,
-    nextAd: `➡️ 下一個廣告`,
-    noAdsAvailable: `❌ 暫無可用的廣告`,
-    noVerificationRequired: `❌ 此廣告不需要驗證`,
-    quotaInfo: `📊 今日剩餘：**{remaining}/20** 次`,
-    requiresVerification: `
-
-✅ 需要驗證：加入群組/頻道後點擊「驗證」按鈕`,
-    reward: `🎁 獎勵：+{quota} 個永久額度`,
-    rewardPermanent: `🎁 完成任務可獲得 **+1 永久額度**`,
-    statsAdNotFound: `❌ 廣告不存在`,
-    statsClicks: `• 點擊次數: {count}
-`,
-    statsCtr: `• 點擊率 (CTR): {rate}%
-`,
-    statsHint: `💡 使用 /ad_stats {id} 查看詳細統計`,
-    statsNoAds: `📊 暫無官方廣告`,
-    statsNoPermission: `❌ 你沒有權限查看廣告統計`,
-    statsRemainingViews: `• 剩餘展示: {remaining}/{total}
-`,
-    statsRewardGranted: `• 獎勵發放: {count}
-`,
-    statsRewardRate: `• 獎勵率: {rate}%
-`,
-    statsRewardSummary: `• 獎勵：{rewards}
-
-`,
-    statsSummary: `• 展示：{views} | 點擊：{clicks} ({ctr}%)
-`,
-    statsTitle: `📊 **官方廣告統計**
-
-`,
-    statsVerificationCount: `• 驗證次數: {count}
-`,
-    statsVerificationRate: `• 驗證率: {rate}%
-`,
-    statsViews: `• 展示次數: {count}
-`,
-    statusDisabled: `停用`,
-    statusEnabled: `啟用`,
-    unlimited: `無限`,
-    userNotFound: `❌ 用戶不存在`,
-    verifySuccess: `✅ 驗證成功！獲得 +{quota} 個永久額度！`,
-  },
-  onboarding: {
-    age: `• 年齡：\${updatedUser.age} 歲
-`,
-    age2: `你的年齡：\${age} 歲
-`,
-    age3: `年齡：\${age} 歲
-`,
-    ageRestriction: `❌ 很抱歉，你必須年滿 18 歲才能使用本服務。
-
-`,
-    agreeTerms: `點擊下方按鈕表示你已閱讀並同意上述條款。`,
-    antiFraudConfirm: `請確認：`,
-    antiFraudFinalStep: `🛡️ 最後一步：反詐騙安全確認
-
-`,
-    antiFraudLearn: `📚 我想了解更多安全知識`,
-    antiFraudPassed: `✅ 反詐騙測驗通過！
-
-`,
-    antiFraudQuestion1: `1. 你了解網路交友的安全風險嗎？
-`,
-    antiFraudQuestion2: `2. 你會保護好自己的個人資訊嗎？
-`,
-    antiFraudQuestion3: `3. 遇到可疑訊息時，你會提高警覺嗎？
-
-`,
-    antiFraudQuestions: `為了保護所有使用者的安全，請確認你了解以下事項：
-
-`,
-    antiFraudYes: `✅ 是的，我了解並會注意安全`,
-    back: `⬅️ 返回`,
-    birthday: `如果你認為這是錯誤，請檢查你的生日格式是否正確（YYYY-MM-DD）。`,
-    birthday2: `請重新輸入你的生日（格式：YYYY-MM-DD）：
-
-`,
-    birthday3: `請輸入你的生日（格式：YYYY-MM-DD）：
-
-`,
-    birthday4: `生日：\${birthday}
-`,
-    birthdayCheck: `如果你認為這是錯誤，請檢查你的生日格式是否正確（YYYY-MM-DD）。`,
-    birthdayError: `❌ {error}
-
-`,
-    birthdayFormatError: `❌ 生日格式錯誤
-
-請重新輸入（格式：YYYY-MM-DD）：`,
-    birthdayRetry: `請重新輸入生日（格式：YYYY-MM-DD）：`,
-    birthdayWarning: `⚠️ 生日設定後無法修改，請確認無誤！`,
-    bloodTypeLabel: `🩸 **請選擇你的血型**
-
-`,
-    complete: `請輸入「是」完成測驗：`,
-    confirm: `為了保護所有使用者的安全，請確認你了解網路交友的風險。
-
-`,
-    confirm2: `🛡️ 現在進行反詐騙安全確認
-
-`,
-    confirm3: `了解後，請確認：`,
-    confirmBirthday: `⚠️ 請確認你的生日資訊：
-
-`,
-    customNickname: `自訂暱稱`,
-    enterYes: `請輸入「是」完成測驗：`,
-    errorRetry: `❌ 發生錯誤，請重新輸入。`,
-    gender2: `• 性別：\${updatedUser.gender ===`,
-    gender3: `[需要翻译]`,
-    genderFemale: `[需要翻译]`,
-    genderMale: `[需要翻译]`,
-    genderWarning: `[需要翻译]`,
-    help: `這將幫助我們為你找到更合適的聊天對象～
-
-`,
-    iHaveRead: `✅ 我已閱讀並同意`,
-    languageSelection: `🌐 **Choose Language**
-
-Please select your preferred language:`,
-    lastStep: `最後一步：請閱讀並同意我們的服務條款
-
-`,
-    legalDocuments: `📋 Legal documents are provided in English only.
-
-`,
-    mbti: `請選擇你的 MBTI 類型：
-
-`,
-    mbti2: `✍️ 我已經知道我的 MBTI`,
-    message: `2. 🚨 識別詐騙訊息
-`,
-    message2: `• 警惕索要金錢的訊息
-`,
-    moreLanguages: `[需要翻译]`,
-    nickname: `• 暱稱：\${updatedUser.nickname}
-`,
-    nickname2: `很好！你的暱稱是：\${nickname}
-
-`,
-    nicknameError: `❌ {error}
-
-請重新輸入暱稱：`,
-    nicknameGood: `[需要翻译]`,
-    notCompleted: `⚠️ 請先完成註冊流程`,
-    nowSelectGender: `[需要翻译]`,
-    otherUserNotFound: `❌ 對方用戶不存在。`,
-    pleaseAnswer: `❌ 請認真回答問題
-
-`,
-    pleaseComeBack: `請成年後再來！
-
-`,
-    privacyPolicy: `📋 隱私權政策
-`,
-    profile: `• 隱私權政策：我們如何保護你的個人資料
-`,
-    profile2: `你的個人資料：
-`,
-    retry: `❌ 重新輸入`,
-    senderInfoError: `❌ 發送者資訊錯誤。`,
-    settings: `💡 提示：你可以隨時使用 /mbti 指令來設定或測驗你的 MBTI 類型。
-
-`,
-    settings2: `🧠 現在讓我們設定你的 MBTI 性格類型！
-
-`,
-    settings3: `好的，你可以稍後再設定 MBTI。
-
-`,
-    settings4: `如果不確定，可以先進行測驗或稍後再設定。`,
-    settings5: `🎉 恭喜！你已經完成所有設定！
-
-`,
-    settings6: `• 生日設定後無法修改
-`,
-    settings7: `你想要如何設定？`,
-    short: `⏭️ 稍後再說`,
-    start: `在開始使用前，請閱讀並同意我們的服務條款：
-
-`,
-    start2: `現在你可以開始使用 XunNi 了！`,
-    startRegistration: `[需要翻译]`,
-    stats: `📊 統計`,
-    stepAntiFraud: `🛡️ 請點擊上方按鈕確認反詐騙安全事項`,
-    stepBirthday: `📅 請輸入你的生日（格式：YYYY-MM-DD，例如：1995-06-15）`,
-    stepDefault: `請按照提示完成註冊`,
-    stepGender: `👤 請點擊上方按鈕選擇你的性別`,
-    stepLanguageSelection: `🌍 請點擊上方按鈕選擇你的語言`,
-    stepMbti: `🧠 請點擊上方按鈕選擇 MBTI 設定方式`,
-    stepNickname: `✏️ 請輸入你的暱稱`,
-    stepTerms: `📜 請點擊上方按鈕同意服務條款`,
-    termsOfService: `📋 使用者條款
-
-`,
-    text: `confirm_birthday_\${birthday}`,
-    text10: `例如：1995-06-15
-
-`,
-    text11: `🛡️ 網路交友安全小貼士
-
-`,
-    text12: `📋 最後一步：服務條款
-
-`,
-    text13: `• 第一次見面選擇公共場所
-`,
-    text14: `1. 🔒 保護個人資訊
-`,
-    text15: `• 不要分享財務資訊
-
-`,
-    text16: `• 不要點擊可疑連結
-
-`,
-    text17: `• 告訴朋友你的行程
-
-`,
-    text18: `3. 🤝 安全交友
-`,
-    text19: `📋 使用者條款
-
-`,
-    text2: `💡 你可以隨時使用 /mbti 指令重新測驗或修改。`,
-    text20: `請成年後再來！
-
-`,
-    text21: `📋 隱私權政策
-`,
-    text3: `gender_confirm_\${gender}`,
-    text4: `最後一步：請閱讀並同意我們的服務條款
-
-`,
-    text5: `📝 進行快速測驗（12 題，僅供參考）`,
-    text6: `• 使用者條款：使用本服務的規範
-
-`,
-    text7: `點擊下方按鈕表示你已閱讀並同意上述條款。`,
-    text8: `• 不要輕易透露真實姓名、地址、電話
-`,
-    text9: `• 必須年滿 18 歲才能使用本服務`,
-    understandRisks: `為了保護所有使用者的安全，請確認你了解網路交友的風險。
-
-`,
-    useTelegramNickname: `使用 Telegram 暱稱`,
-    viewPrivacyPolicy: `📋 View Privacy Policy`,
-    viewTermsOfService: `📋 View Terms of Service`,
-    vip: `💡 填寫血型可用於未來的血型配對功能（VIP 專屬）
-
-`,
-    welcome: `[需要翻译]`,
-    yourAge: `你的年齡：{age} 歲
-`,
-    zodiac: `• 星座：\${updatedUser.zodiac_sign}
-`,
-    zodiac2: `星座：\${zodiacSign}
-
-`,
-    antiFraud: {
-      confirm_button: `✅ 是的，我了解並會注意安全`,
-      learn_button: `📚 我想了解更多安全知識`,
-      question1: `1. 你了解網路交友的安全風險嗎？
-`,
-      question2: `2. 你會保護好自己的個人資訊嗎？
-`,
-      question3: `3. 遇到可疑訊息時，你會提高警覺嗎？
-
-`,
+    "complete": "Syötä 'kyllä' testin suorittamiseksi:",
+    "confirm3": "Kun olet ymmärtänyt, vahvista:",
+    "customNickname": "Mukautettu käyttäjänimi",
+    "enterYes": "Syötä 'kyllä' testin suorittamiseksi:",
+    "errorRetry": "❌ Tapahtui virhe, syötä uudelleen.",
+    "example": {
+      "birthday": "Esimerkiksi: 1995-06-15"
     },
-    bloodType: {
-      select: `請選擇你的血型：`,
+    "gender": {
+      "female": "Nainen",
+      "label": "• Sukupuoli: ${gender}\n",
+      "male": "Mies"
     },
-    example: {
-      birthday: `例如：1995-06-15`,
+    "gender2": "• Sukupuoli: ${updatedUser.gender ===",
+    "genderFemale": "👩 Nainen",
+    "genderMale": "👨 Mies",
+    "genderWarning": "⚠️ Huom: Sukupuolta ei voi muuttaa asetuksen jälkeen, valitse huolellisesti!",
+    "iHaveRead": "✅ Olen lukenut ja hyväksyn",
+    "info": {
+      "age18": "• Palvelun käyttöön on oltava vähintään 18 vuotta vanha",
+      "city": "🌍 Alue: {city}"
     },
-    gender: {
-      female: `[需要翻译]`,
-      label: `• 性別：\${gender}
-`,
-      male: `[需要翻译]`,
+    "languageSelection": "🌐 **Valitse kieli**\n\nValitse toivottu kieli:",
+    "legalDocuments": "📋 Lailliset asiakirjat ovat saatavilla vain englanniksi.\n\n",
+    "mbti": "Valitse MBTI-tyyppisi:\n\n",
+    "mbti2": "✍️ Tunnen jo MBTI:ni",
+    "message": "2. 🚨 Tunnista huijausviestit\n",
+    "message2": "• Ole varovainen viestien kanssa, joissa pyydetään rahaa\n",
+    "moreLanguages": "Lisää kieliä",
+    "nickname": "• Käyttäjänimi: ${updatedUser.nickname}\n",
+    "nickname2": "{nickname} ${nickname}\n\n",
+    "nicknameError": "❌ {error}\n\nOle hyvä ja syötä käyttäjänimesi uudelleen:",
+    "nicknameGood": "{nickname}\n\n",
+    "notCompleted": "⚠️ Ole hyvä ja suorita rekisteröintiprosessi ensin",
+    "nowSelectGender": "Valitse sukupuolesi:\n\n",
+    "otherUserNotFound": "❌ Toinen käyttäjä ei olemassa.",
+    "pleaseAnswer": "❌ Vastaa kysymyksiin vakavasti\n\n",
+    "pleaseComeBack": "Palaa takaisin, kun täytät 18 vuotta!\n\n",
+    "privacyPolicy": "📋 Tietosuojakäytäntö\n",
+    "profile": "• Tietosuojakäytäntö: Kuinka suojaamme henkilökohtaisia tietojasi\n",
+    "profile2": "Henkilökohtaiset tietosi:\n",
+    "prompt": {
+      "birthday": "Ole hyvä ja syötä syntymäpäiväsi (muoto: VVVV-KK-PV):"
     },
-    info: {
-      age18: `• 必須年滿 18 歲才能使用本服務`,
-      city: `🌍 地區：{city}`,
+    "retry": "❌ Ole hyvä ja syötä uudelleen",
+    "senderInfoError": "❌ Lähettäjän tiedot ovat virheelliset.",
+    "settings": "💡 Vinkki: Voit käyttää /mbti komentoa milloin tahansa asettaaksesi tai testataksesi MBTI-tyyppisi.\n\n",
+    "settings2": "🧠 Nyt asetetaan MBTI-persoonallisuustyyppisi!\n\n",
+    "settings3": "Hyvä on, voit asettaa MBTI:n myöhemmin.\n\n",
+    "settings4": "Jos olet epävarma, voit ensin tehdä testin tai asettaa sen myöhemmin.",
+    "settings5": "🎉 Onnittelut! Olet suorittanut kaikki asetukset!\n\n",
+    "settings6": "• Syntymäpäivää ei voi muuttaa asettamisen jälkeen\n",
+    "settings7": "Miten haluaisit asettaa sen?",
+    "short": "⏭️ Puhutaan myöhemmin",
+    "start": "Ennen kuin aloitat käytön, lue ja hyväksy käyttöehdot:\n\n",
+    "start2": "Nyt voit aloittaa XunNi:n käytön!",
+    "startRegistration": "Aloita rekisteröinti →",
+    "stats": "📊 Tilastot",
+    "stepAntiFraud": "🛡️ Ole hyvä ja napsauta yllä olevaa painiketta vahvistaaksesi petoksentorjuntakysymyksiä",
+    "stepBirthday": "📅 Ole hyvä ja syötä syntymäpäiväsi (muoto: VVVV-KK-PV, esim. 1995-06-15)",
+    "stepDefault": "Ole hyvä ja seuraa ohjeita rekisteröinnin loppuunsaattamiseksi",
+    "stepGender": "👤 Ole hyvä ja napsauta yllä olevaa painiketta valitaksesi sukupuolesi",
+    "stepLanguageSelection": "🌍 Ole hyvä ja napsauta yllä olevaa painiketta valitaksesi kielesi",
+    "stepMbti": "🧠 Ole hyvä ja napsauta yllä olevaa painiketta valitaksesi MBTI-asetustavan",
+    "stepNickname": "✏️ Ole hyvä ja syötä lempinimesi",
+    "stepTerms": "📜 Ole hyvä ja napsauta yllä olevaa painiketta hyväksyäksesi käyttöehdot",
+    "terms": {
+      "agree_button": "✅ Hyväksyn",
+      "english_only_note": "📋 Lainsäädäntöasiakirjat on toimitettu vain englanniksi.",
+      "privacy_policy_button": "🔒 Tietosuojakäytäntö",
+      "terms_of_service_button": "📋 Käyttöehdot"
     },
-    prompt: {
-      birthday: `請輸入你的生日（格式：YYYY-MM-DD）：`,
+    "termsOfService": "📋 Käyttäjän ehdot\n\n",
+    "text": "{birthday} ${birthday}",
+    "text10": "Esimerkiksi: 1995-06-15\n\n",
+    "text11": "🛡️ Online-deittailun turvallisuusvinkit\n\n",
+    "text12": "📋 Viimeinen vaihe: Käyttöehdot\n\n",
+    "text13": "• Valitse julkisia paikkoja ensitapaamisiin\n",
+    "text14": "1. 🔒 Suojaa henkilötietosi\n",
+    "text15": "• Älä jaa taloudellisia tietoja\n\n",
+    "text16": "• Älä klikkaa epäilyttäviä linkkejä\n\n",
+    "text17": "• Kerro ystäville matkasuunnitelmasi\n\n",
+    "text18": "3. 🤝 Turvallinen deittailu\n",
+    "text19": "📋 Käyttäjäsopimus\n\n",
+    "text2": "💡 Voit käyttää /mbti-komentoa milloin tahansa testataksesi tai muokataksesi.",
+    "text20": "Palaa takaisin aikuisen iän saavuttamisen jälkeen!\n\n",
+    "text21": "📋 Tietosuojakäytäntö\n",
+    "text3": "{gender} ${gender}",
+    "text4": "Viimeinen vaihe: Lue ja hyväksy käyttöehdot\n\n",
+    "text5": "📝 Suorita nopea testi (12 kysymystä, vain viitteeksi)",
+    "text6": "• Käyttäjän ehdot: Ohjeet tämän palvelun käyttöön\n\n",
+    "text7": "Napsauta alla olevaa painiketta ilmoittaaksesi, että olet lukenut ja hyväksynyt yllä olevat ehdot.",
+    "text8": "• Älä paljasta helposti oikeaa nimeäsi, osoitetta tai puhelinnumeroasi\n",
+    "text9": "• Palvelun käyttöön on oltava vähintään 18-vuotias",
+    "understandRisks": "Kaikkien käyttäjien turvallisuuden suojelemiseksi, vahvista, että ymmärrät online-deittailun riskit.\n\n",
+    "useTelegramNickname": "Käytä Telegram-lempinimeä",
+    "viewPrivacyPolicy": "📋 Näytä tietosuojakäytäntö",
+    "viewTermsOfService": "📋 Näytä käyttöehdot",
+    "vip": "💡 Verentyypin antaminen käytetään tulevissa verenryhmämatching-ominaisuuksissa (VIP-exclusiivinen)\n\n",
+    "warning": {
+      "birthday": "⚠️ Syntymäpäivää ei voi muokata asettamisen jälkeen, vahvista, että se on oikea!"
     },
-    terms: {
-      agree_button: `✅ 我同意`,
-      english_only_note: `📋 法律文檔僅提供英文版本。`,
-      privacy_policy_button: `🔒 隱私政策`,
-      terms_of_service_button: `📋 服務條款`,
+    "welcome": "Tervetuloa XunNi:in！\n\nValitse kielesi:",
+    "yourAge": "Ikäsi: {age} vuotta\n",
+    "zodiac": "• Horoskooppimerkki: ${updatedUser.zodiac_sign}\n",
+    "zodiac2": "{zodiacSign} ${zodiacSign}\n\n"
+  },
+  "payments": {
+    "empty": "Tällä hetkellä ei ole maksutietoja.",
+    "product": {
+      "VIP_MONTHLY": "💎 V.I.P. kuukausitilaus"
     },
-    warning: {
-      birthday: `⚠️ 生日設定後無法修改，請確認無誤！`,
+    "status": {
+      "failed": "❌ Maksu epäonnistui",
+      "paid": "✅ Maksu onnistui",
+      "pending": "⏳ Käsittelyssä",
+      "refunded": "↩️ Hyvitetty"
     },
+    "title": "💳 Maksutiedot (Sivu {page} / {total})"
   },
-  payments: {
-    empty: `No payment records found.`,
-    title: `💳 Payment History (Page {page} / {total})`,
-    product: {
-      VIP_MONTHLY: `💎 VIP Monthly Subscription`,
+  "profile": {
+    "activatedInvites": "✅ Aktivoinnit: {successfulInvites} / {inviteLimit} henkilöä\n",
+    "age": "🎂 Ikä: ${age}\n",
+    "anonymousUser": "Anonyyminen käyttäjä",
+    "bloodType": "🩸 Veren tyyppi: ${bloodType}\n",
+    "bottle": ": permanentQuota} viestipullot\n\n",
+    "cardAge": "{age} vuotta vanha",
+    "cardBio": "{bio}\n\n",
+    "cardFooter": "💡 Tämä on tietokortti, joka näytetään muille keskustelussa\n\n",
+    "cardGenderFemale": "♀️ Nainen",
+    "cardGenderMale": "♂️ Mies",
+    "cardInterests": "{interests}\n\n",
+    "cardLanguage": "{language}\n\n",
+    "cardMbti": "🧠 MBTI: {mbti}\n",
+    "cardSeparator": "━━━━━━━━━━━━━━━━\n",
+    "cardTitle": "┌─────────────────────────┐\n│ 📇 Profiilikortti │\n└─────────────────────────┘\n\n",
+    "cardZodiac": "⭐ Horoskooppimerkki: {zodiac}\n",
+    "completeOnboarding": "⚠️ Ole hyvä ja suorita rekisteröintiprosessi ensin.\n\nKäytä /start jatkaaksesi rekisteröintiä.",
+    "conversation": "💡 Tämä on tietokortti, jonka näytät toiselle henkilölle keskustelussa\n\n",
+    "editProfile": "📝 Muokkaa profiilia",
+    "gender": "👤 Sukupuoli: ${gender}\n",
+    "hints": "💡 Vinkki:\n",
+    "invite": "⏳ Odottavat aktivoinnit: ${inviteStats.pending} henkilöä\n",
+    "invite2": "🎁 **Kutsutiedot**\n\n",
+    "inviteCodeLabel": "📋 Kutsukoodisi: `{inviteCode}`\n",
+    "manual": "Manuaalinen asetus",
+    "mbti": "• Käytä /mbti uudelleenottamiseen tai muokkaamiseen\n",
+    "mbtiWithSource": "🧠 MBTI: {mbti}{source}\n",
+    "message": "https://t.me/share/url?url=https://t.me/${botUsername}?start=invite_${inviteCode}&text=Tule XunNi:in ja lähetä pulloposteja yhdessä!🍾 Käytä kutsukoodiani: ${inviteCode} https://t.me/share/url?url=https://t.me/${botUsername}?start=invite_${inviteCode}&text=Come",
+    "message2": "${inviteLimitWarning}\n\n",
+    "message3": "{user.language_pref} ${user.language_pref}\n\n",
+    "message4": "🌍 Kieli: ${user.language_pref }\n",
+    "message5": "📈 Muuntokurssi: ${inviteStats.conversionRate}%\n",
+    "message6": "{gender} {age} {city} ${gender} ${age} ${city}\n\n",
+    "message7": "https://t.me/share/url?url=https://t.me/${botUsername}?start=invite_${inviteCode}&text=Tule XunNi:in ja lähetä pulloposteja yhdessä https://t.me/share/url?url=https://t.me/${botUsername}?start=invite_${inviteCode}&text=Come",
+    "mysterious": "Tämä henkilö on hyvin salaperäinen, jättää jälkeensä mitään~",
+    "nickname": "📛 Nimimerkki: ${displayNickname}\n",
+    "notSet": "Ei asetettu",
+    "profile": "│ 📇 Profiilikortti │\n",
+    "profile2": "👤 **Profiili**\n\n",
+    "quota": "💡 Suorita tehtäviä ansaitaksesi lisää päivittäisiä kiintiöitä (käytä /tasks katsellaksesi)\n",
+    "quota2": "📦 Nykyinen päivittäinen kiintiö: ${taskBonus > 0 ?",
+    "quotaBottles": "{taskBonus} viestipulloa",
+    "quotaTotal": "{quota}\n\n",
+    "returnToMenu": "🏠 Palaa päävalikkoon: /menu",
+    "separator": "━━━━━━━━━━━━━━━━\n\n",
+    "settings": "Ei asetettu",
+    "settings2": "Ei asetettu",
+    "settings3": "Ei asetettu",
+    "settings4": "Ei asetettu",
+    "settings5": "Ei asetettu",
+    "settings6": "Ei asetettu",
+    "settings7": "Ei asetettu",
+    "settings8": "Ei asetettu",
+    "shareInviteCode": "📤 Jaa kutsukoodi",
+    "short": "📝 Muokkaa profiilia",
+    "short2": "Ilmainen jäsen",
+    "stats": "• Käytä /stats nähdäksesi tilastot\n\n",
+    "success": "💡 Jokaisesta onnistuneesta kutsusta päivittäinen kiintiö kasvaa pysyvästi +1:llä\n",
+    "systemError": "❌ Tapahtui järjestelmävirhe, yritä myöhemmin uudelleen.",
+    "test": "Testitulokset",
+    "text": "• Käytä /profile_card nähdäksesi täydellisen profiilikortin\n",
+    "text2": "🏷️ Kiinnostuksen kohteet: ${interests}\n\n",
+    "text3": "💎 Jäsenyys: ${vipStatus}\n\n",
+    "text4": "📝 Esittely:\n${bio}\n\n",
+    "text5": "Tämä henkilö on hyvin salaperäinen, ei jätä jälkiä～",
+    "userNotFound": "⚠️ Käyttäjää ei ole olemassa, käytä /start rekisteröityäksesi ensin.",
+    "vip": "VIP-jäsen (Voimassa: ${expireDate})",
+    "vip2": "• Käytä /vip päivittääksesi VIP-jäseneksi\n",
+    "vipUpgrade": "• Käytä /vip päivittääksesi VIP-jäseneksi\n",
+    "zodiac": "⭐ Horoskooppi: ${zodiac}\n"
+  },
+  "refreshAvatar": {
+    "failed": "❌ Avatarin päivittäminen epäonnistui\n\nYritä myöhemmin uudelleen tai ota yhteyttä järjestelmänvalvojaan.",
+    "processing": "🔄 Päivitetään avatar...\n\nTämä saattaa kestää muutaman sekunnin.",
+    "success": "✅ **Avatar päivitetty!**\n\nAvatar-välimuistisi on päivitetty, uusin avatar näkyy seuraavalla kertaa kun tarkistat keskusteluhistorian.\n\n💡 **Vinkki:**\n• Avatar päivittyy automaattisesti 7 päivän välein\n• Järjestelmä tunnistaa automaattisesti, jos vaihdat Telegram-avatarisi\n• Voit myös päivittää manuaalisesti milloin tahansa tämän komennon avulla",
+    "userNotFound": "❌ Käyttäjää ei ole olemassa, rekisteröidy ensin"
+  },
+  "refreshConversations": {
+    "clickButtonHint": "💡 **Vinkki**: Klikkaa yllä olevaa painiketta aloittaaksesi käytön",
+    "commandHelp": "• /help - Näytä apua",
+    "commandMenu": "• /menu - Päävalikko",
+    "commandTasks": "• /tasks - Näytä tehtäväkeskus",
+    "failed": "❌ Keskusteluhistorian päivittäminen epäonnistui\n\nYritä myöhemmin uudelleen tai ota yhteyttä järjestelmänvalvojaan.",
+    "noHistory": "💡 **Ei keskusteluhistoriaa löytynyt**\n\nSinulla ei ole vielä keskustelutietueita.\n\nKäytä /throw heittääksesi viestipulloa ja aloittaaksesi keskustelun!",
+    "partialSuccess": "⚠️ **Osittainen keskusteluhistorian päivitys**\n\nPäivitetty onnistuneesti: {updated} item\nEpäonnistunut: {failed} item\n\nOsa keskusteluhistoriasta ei ole saattanut päivittyä, yritä myöhemmin uudelleen.",
+    "processing": "🔄 Päivitetään koko keskusteluhistoriaa...\n\nTämä saattaa kestää jonkin aikaa, ole hyvä ja odota.",
+    "success": "✅ **Keskusteluhistoria päivitetty!**\n\nKeskusteluhistorian {updated} viestiä on päivitetty onnistuneesti.\n\n💡 **Vinkki:**\n• VIP-käyttäjät näkevät selkeät avatarit\n• Ilmaiset käyttäjät näkevät sumentuneet avatarit\n• Historia postit päivittyvät automaattisesti VIP:ksi päivittämisen jälkeen",
+    "userNotFound": "❌ Käyttäjää ei ole olemassa, rekisteröidy ensin"
+  },
+  "report": {
+    "aiAutoBan": "🤖 AI automaattinen esto",
+    "blockHint": "• Pitkä painallus viestiin vastataksesi / estääksesi käyttäjän estämisen\n",
+    "cancel": "❌ Peruuta",
+    "cancelled": "Peruutettu",
+    "cannotIdentify": "⚠️ Chat-kumppanin tunnistaminen epäonnistui\n\n",
+    "catchHint": "• Käytä /catch noutaaksesi uuden pullopostin",
+    "completeOnboarding": "⚠️ Täytä ensin rekisteröintiprosessi.\n\nKäytä /start jatkaaksesi rekisteröintiä.",
+    "conversationInfoError": "⚠️ Keskustelutiedot ovat virheelliset.",
+    "conversationInfoError2": "⚠️ Keskustelutiedot ovat virheelliset",
+    "conversationNotExists": "⚠️ Keskustelua ei ole olemassa",
+    "conversationNotFound": "⚠️ Tätä keskustelua ei löytynyt\n\nKeskustelu on saattanut päättyä tai sitä ei ole olemassa.",
+    "ensureReply": "Ole hyvä ja varmista, että vastaat toisen osapuolen lähettämään viestiin (tunnisteen # kanssa).",
+    "hint": "💡 Tämä auttaa tarkasti määrittämään raportoitavan kohteen.",
+    "multipleReports": "Useita raportteja",
+    "reasonHarassment": "😡 Häirintä / Kaarit",
+    "reasonNsfw": "🔞 Aikuissisältö",
+    "reasonOther": "⚠️ Muut rikkomukset",
+    "reasonScam": "💰 Huijaus / Kalastelu",
+    "reasonSpam": "📢 Roskaposti",
+    "replyRequired": "⚠️ Pitkä paina viestiä, jonka haluat ilmoittaa, ja vastaa sitten komennolla\n\n",
+    "selectReason": "Valitse raportoinnin syy:",
+    "sessionExpired": "⚠️ Keskusteluaika on umpeutunut, toimi uudelleen",
+    "step1": "1️⃣ Pitkä painallus toisen osapuolen viestiin\n",
+    "step2": "2️⃣ Valitse 'Vastaa'\n",
+    "step3": "3️⃣ Syötä /report\n\n",
+    "steps": "**Toimintavaiheet:**\n",
+    "submitted": "✅ **Ilmoitus jätetty** (#{identifier})\n\n",
+    "systemError": "❌ Järjestelmävirhe",
+    "thanks": "Kiitos ilmoituksestasi, tarkastamme sen mahdollisimman pian.\n\n",
+    "tips": "💡 Vinkki:\n",
+    "title": "🚨 **Ilmoita sopimaton sisältö** (#{identifier})\n\n",
+    "userNotFound": "⚠️ Käyttäjä ei ole olemassa, käytä /start rekisteröityäksesi ensin."
+  },
+  "risk": {
+    "containsSensitiveWords": "Sisältää herkkää sanastoa"
+  },
+  "router": {
+    "replyPrompt": "💬 Vastaa",
+    "suggestCatch": "❓ Haluatko noutaa pullopostin?\n\nKäytä /catch noutaaksesi pullopostin\n\n💡 **Yleiset komennot**:\n• /throw - Heitä pulloposti\n• /catch - Noutaa pullopostin\n• /menu - Päävalikko\n• /tasks - Tehtäväkeskus",
+    "suggestMenu": "❓ Tämän komenne ei löydy\n\n💡 **Yleiset komennot**:\n• /throw - Heitä pulloposti\n• /catch - Noutaa pullopostin\n• /menu - Päävalikko\n• /tasks - Tehtäväkeskus",
+    "suggestThrow": "❓ Haluatko heittää pullopostin?\n\nPitkä painallus edelliseen viestiin tai tähän viestiin,\nvalitse 'Vastaa' valikosta, kirjoita sitten lähetettävä sisältö\n\n💡 **Yleiset komennot**:\n• /throw - Heitä pulloposti\n• /catch - Noutaa pullopostin\n• /menu - Päävalikko\n• /tasks - Tehtäväkeskus\n\n#THROW",
+    "throwPrompt": "📝 Ole hyvä ja kirjoita pullopostisi sisältö:"
+  },
+  "session": {
+    "timeoutCatchBottle": "⏰ Pullopostin noutoprosessi on aikakatkaistu\n\nKäytä /catch käynnistääksesi sen uudelleen.",
+    "timeoutConversation": "⏰ Keskusteluaika on umpeutunut\n\nToinen osapuoli on saattanut poistua. Käytä /catch noutaaksesi uuden pullon!",
+    "timeoutEditProfile": "⏰ Profiilin muokkausprosessi on aikakatkaistu\n\nKäynnistä muokkaus uudelleen.",
+    "timeoutOnboarding": "⏰ Rekisteröintiprosessi on aikakatkaistu\n\nKäytä /start käynnistääksesi rekisteröinti uudelleen.",
+    "timeoutThrowBottle": "⏰ Pullopostin heitto prosessi on aikakatkaistu\n\nKäytä /throw käynnistääksesi sen uudelleen.",
+    "typeCatchBottle": "Pullopostin noutoprosessi",
+    "typeConversation": "Keskustelu",
+    "typeEditProfile": "Profiilin muokkaus",
+    "typeOnboarding": "Rekisteröintiprosessi",
+    "typeThrowBottle": "Pullopostin heitto prosessi"
+  },
+  "settings": {
+    "back": "Takaisin",
+    "changeLanguage": "🌐 Vaihda kieli",
+    "currentSettings": "⚙️ **Nykyiset asetukset**",
+    "languageLabel": "Kieli: {language}",
+    "languageUpdated": "✅ Kieli on päivitetty: {language}",
+    "message": "🌐 **Valitse kieli**\n\nValitse haluamasi kieli:",
+    "returnToMenu": "🏠 Palaa päävalikkoon",
+    "selectOption": "Valitse vaihtoehto:",
+    "settings": "💡 Valitse asetukset, jotka haluat muuttaa:",
+    "settings2": "⚙️ **Asetukset**\n\n",
+    "settings3": "🏠 Palaa asetuksiin",
+    "settings4": "Nykyiset asetukset:\n",
+    "text": "• Kieli：${languageName} 🇹🇼\n\n",
+    "title": "🏠 **Päävalikko**"
+  },
+  "stats": {
+    "activeUsers": "• Aktiivinen Eilen: {active}\n\n",
+    "age": "🎂 **Ikä**: ${age} vuotta\n",
+    "avgMatches": "• Keskimääräiset ottelut per istunto: ${avg} kohdetta\n",
+    "bottle": "💎 **VIP Kolmoispullotilastot** (Viimeiset 30 päivää)\n",
+    "bottle2": "🍾 **Viesti Pulloposti**\n",
+    "bottle3": "🎈 Viesti Pulloposti Tilastot\n",
+    "bottles": "🍾 **Viesti Pulloposti**\n",
+    "bottlesCaught": "• Löydetty: ${count} kohdetta\n",
+    "bottlesThrown": "• Hävitty: ${count} kohdetta\n",
+    "catch": "• Saatu Eilen：${stats.caughtBottles}\n\n",
+    "catch2": "• Löydetty: ${stats.bottlesCaught} kohdetta\n",
+    "caught": "• Saatu Eilen: {caught}\n\n",
+    "conversation": "• Aktiiviset keskustelut: ${stats.activeConversations}\n",
+    "conversation2": "• Yhteensä keskusteluja: ${stats.totalConversations}\n",
+    "conversation3": "• Yhteensä keskusteluja: ${stats.totalConversations}",
+    "conversation4": "💬 **Keskustelut**\n",
+    "conversation5": "💬 Keskustelu Tilastot\n",
+    "conversations": "💬 **Keskustelut**\n",
+    "conversationsActive": "• Aktiiviset keskustelut: ${count}\n",
+    "conversationsTotal": "• Yhteensä keskusteluja: ${count}\n",
+    "date": "Päivämäärä: {date}\n\n",
+    "dateFormatError": "Päivämäärämuoto on virheellinen, sen tulisi olla YYYY-MM-DD",
+    "match": "🎯 **Ottelu**\n",
+    "matchRate": "• Ottelun onnistumisprosentti: ${rate}%\n",
+    "matchRateValue": "• Otteluprosentti: ${rate}%\n",
+    "matchedSlots": "• Onnistuneet ottelut: ${count}\n",
+    "mbti": "🧠 **MBTI**: ${mbti}\n",
+    "message": "• Vanhenemisaika: ${expireDate}\n",
+    "message10": "• Yhteensä viestejä: ${stats.totalMessages}",
+    "message2": "${used}/${permanentQuota}+${taskBonus} (Jäljellä ${remaining})",
+    "message3": "Raportti luotu: ${new Date().toLocaleString('zh-TW')}",
+    "message4": "${used}/${permanentQuota} (Jäljellä ${remaining})",
+    "message5": "• Yhteensä viestejä: ${stats.totalMessages}\n\n",
+    "message6": "• Uusia viestejä eilen: ${stats.newMessages}\n\n",
+    "message7": "• Yhteensä ottelupaikkoja: ${vipStats.totalSlots}\n",
+    "message8": "• Keskimääräinen vastausprosentti: ${stats.replyRate}%\n\n",
+    "message9": "• Aktiiviset käyttäjät eilen: ${stats.activeUsers}\n\n",
+    "messages": "💬 Keskustelu Tilastot",
+    "messagesTotal": "• Yhteensä viestejä: ${count}\n",
+    "new": "• Uusia eilen: {new}",
+    "newMessages": "• Uudet viestit Eilen: {new}\n\n",
+    "newUsers": "• Uusia eilen: {new}",
+    "newVip": "• Uudet Eilen: {new}\n\n",
+    "notSet": "Ei asetettu",
+    "quota": "• Tämän päivän kvota: ${stats.todayQuota.display}\n\n",
+    "register": "📅 **Rekisteröintiaika**: ${new Date(user.created_at).toLocaleDateString('zh-TW')}\n",
+    "register2": "• Yhteensä rekisteröityneitä: ${stats.totalUsers}",
+    "registerTime": "📅 **Rekisteröintiaika**: ${date}\n",
+    "replyRate": "• Keskimääräinen vastausprosentti: ${rate}%\n",
+    "reportTime": "Raportti luotu aikaisintaan: {time}",
+    "separator": "---\n",
+    "settings": "🧠 **MBTI**: \\$\n\n",
+    "settings2": "Ei asetettu",
+    "short": "Ilmainen jäsen",
+    "statDateEmpty": "Tilastollinen päivämäärä ei voi olla tyhjä",
+    "stats": "📊 **Omat tilastot**\n\n",
+    "stats2": "💎 VIP-tilastot\n",
+    "stats3": "👥 Käyttäjätilastot\n",
+    "stats4": "Tilastollinen päivämäärä ei voi olla tyhjä",
+    "success": "• Onnistuneita vastineita: ${vipStats.matchedSlots}\n",
+    "success2": "• Vastaavuuden onnistumisprosentti: ${stats.matchRate}%\n",
+    "text": "• Keskimääräiset vastineet paritukselle: ${avgMatches} kappaletta\n",
+    "text10": "🎯 **Paritus**\n",
+    "text2": "• Uusia eilen: ${stats.newBottles}\n",
+    "text3": "• Yhteensä: ${stats.totalBottles}",
+    "text4": "• Uusia eilen: ${stats.newUsers}\n",
+    "text5": "• Uudet VIP:t eilen: ${stats.newVip}\n\n",
+    "text6": "• Vastausuusprosentti: ${matchRate}%\n",
+    "text7": "📊 XunNi Botin päivittäinen tietoraportti\n",
+    "text8": "Päivämäärämuoto virhe, pitäisi olla YYYY-MM-DD",
+    "text9": "Päivämäärä: ${dateStr}\n\n",
+    "throw": "• Heitetty: ${stats.bottlesThrown} kappaletta\n",
+    "throw2": "• Heittojen määrä: ${vipStats.throws}\n",
+    "throws": "• Heittojen määrä: ${count}\n",
+    "timeLeftDaysHours": "${days} päivää ${hours} tuntia",
+    "timeLeftHours": "${hours} tuntia",
+    "title": "📊 **Omat tilastot**\n\n",
+    "todayQuota": "• Tämän päivän kvota: ${display}\n\n",
+    "total": "• Yhteensä: {total}",
+    "totalConversations": "• Yhteensä keskusteluja: {total}",
+    "totalMessages": "• Yhteensä viestejä: {total}",
+    "totalSlots": "• Yhteensä vastaavia paikkoja: ${count}\n",
+    "totalUsers": "• Yhteensä rekisteröityneitä: {total}",
+    "totalVip": "• Yhteensä VIP-jäseniä: {total}",
+    "totalWithDiff": "• Yhteensä: {total} ({diff})",
+    "users": "👥 Käyttäjätilastot",
+    "vip": "⭐ **VIP-tila**\n",
+    "vip2": "⭐ **VIP-tila**\n",
+    "vip3": "VIP-jäsen 💎",
+    "vipAvgMatches": "• Keskimääräinen paritus: {avg} ottelua",
+    "vipExpire": "• Vanhentumisaika: ${date}\n",
+    "vipFree": "Ilmainen jäsen",
+    "vipMatchRate": "• Paritusaste: {rate}%",
+    "vipMatchedSlots": "• Onnistuneita pareja: {count}",
+    "vipMember": "VIP-jäsen 💎",
+    "vipThrows": "• Heitetyt pullopostit: {count}",
+    "vipTotalSlots": "• Yhteensä parituspaikkoja: {count}",
+    "vipTriple": "💎 **VIP Kolmoispulloposti-tilastot** (viimeiset ${days} päivää)",
+    "vipTripleTitle": "💎 **VIP Kolmoispulloposti-tilastot** (viimeiset {days} päivää)",
+    "zodiac": "🔮 **Horoskooppi**: ${zodiac}\n"
+  },
+  "status": {
+    "cancelled": "Peruttu",
+    "completed": "Suoritettu",
+    "failed": "Epäonnistunut",
+    "pending": "Käynnissä",
+    "sending": "Lähetetään"
+  },
+  "subscription": {
+    "downgradedToFree": "Tilisi on palautettu ilmaiseksi jäseneksi.",
+    "expired": "😢 **VIP-tilaus on vanhentunut**",
+    "expiredDate": "VIP-tilauksesi vanhentui ${date}.",
+    "renewVipHint": "💡 Voit tilata VIP:n uudelleen milloin tahansa: /vip",
+    "thankYou": "Kiitos tuestasi!❤️"
+  },
+  "success": {
+    "ad": "✅ Olet tarkastellut kaikkia virallisia mainoksia!",
+    "ad2": "✅ Mainontapalvelu otettu käyttöön: ${providerName}",
+    "ad3": "✅ Mainospalveluntarjoaja poistettu käytöstä: ${providerName}\n\n",
+    "ad4": "✅ Virallinen mainos otettu käyttöön #${adId}\n\n",
+    "ad5": "✅ Virallinen mainos poistettu käytöstä #${adId}\n\n",
+    "ad6": "✅ Mainospalveluntarjoajan prioriteetti asetettu\n\n",
+    "ad7": "✅ Tänään mainosraja saavutettu",
+    "appeal": "✅ Valitus ${appealId} hyväksytty, käyttäjä on avattu",
+    "appeal2": "✅ Valitus ${appealId} hylätty",
+    "appeal3": "✅ Ei odottavia valituksia",
+    "birthday": "✅ Syntymäpäivä tallennettu",
+    "bloodType": "✅ Verityyppi päivitetty muotoon ${getBloodTypeDisplay(bloodType as any)}",
+    "bloodType2": "✅ Verityyppi poistettu",
+    "bottle": "✅ Palkinto myönnetty! +1 viestipullo",
+    "bottle2": "✅ Uusi viestipullo käynnistetty",
+    "bottle3": "✅ Viestipullo luotu\n",
+    "broadcast": "✅ Poistettiin ${ids.length} jumittunutta lähetyksissä\n\n",
+    "broadcast2": "✅ Ei tarvitse poistaa lähetyksiä\n\n",
+    "broadcast3": "✅ Suodatetut lähetykset luotu\n\n",
+    "broadcast4": "✅ Lähetys luotu\n\n",
+    "cancel": "✅ Lähetys peruutettu\n\n",
+    "complete": "✅ Lähetysjonon käsittely valmis\n\n",
+    "complete2": "✅ Järjestelmän huolto suoritettu\n\n",
+    "complete3": "✅ Opastus suoritettu!",
+    "complete4": "✅ **Eräpäivitys suoritettu**\n\n",
+    "complete5": "✅ **Päivittäminen valmis**\n\n",
+    "complete6": "✅ Suodatus suoritettu, syötä sisältö",
+    "complete7": "✅ Suodatus valmis",
+    "confirm": "✅ Vahvistettu!",
+    "confirm2": "✅ Turvatarkastus suoritettu",
+    "confirm3": "✅ Vahvista",
+    "conversation": "✅ **Keskustelu historia on päivitetty!**\n\n",
+    "gender": "✅ Sukupuoli tallennettu",
+    "invite": "✅ Kutsu aktivoitu: ${successfulInvites} / ${inviteLimit} henkilöä\n",
+    "mbti": "✅ MBTI-tyyppisi on päivitetty: **${mbtiType}**\n\n",
+    "mbti2": "✅ MBTI-tyyppisi on poistettu.\n\n",
+    "mbti3": "✅ MBTI tyhjennetty",
+    "mbti4": "✅ MBTI-valinta tyhjennetty",
+    "mbti5": "✅ MBTI-tyyppisi: ${mbtiType}\n\n",
+    "message": "✅ Viesti lähetetty ${formatIdentifier(receiverIdentifier)}\n\n",
+    "message2": "✅ Kieli päivitetty muotoon: ${getLanguageDisplay(languageCode)}",
+    "message3": "✅ Käyttäjä estetty (#${conversationIdentifier})\n\n",
+    "message4": "✅ Saavutettu +${ad.reward_quota} pysyvää kvota!",
+    "message5": "✅ Valittu ${gender}",
+    "message6": "✅ Valittu ${bloodTypeDisplay[bloodType]}",
+    "message7": "✅ Valittu ${ZODIAC_NAMES[zodiacSign]}",
+    "message8": "Valitsit: ${gender}",
+    "nickname": "✅ Käytetään Telegram-nimimerkkiä: ${suggestedNickname.substring(0, 18)}",
+    "nickname2": "✅ Lempinimi päivitetty: ${text}\n\n",
+    "register": "✅ Kehittäjätila: Ohita rekisteröinti\n\n",
+    "register2": "✅ Ymmärrän, jatka rekisteröintiä",
+    "register3": "✅ Rekisteröinti suoritettu!",
+    "report": "✅ **Ilmoitus on lähetetty** (#${conversationIdentifier})\n\n",
+    "report2": "✅ Ilmoitus lähetetty",
+    "report3": "✅ **Käyttäjä on ilmoitettu**\n\n",
+    "report4": "✅ Vahvista raportti",
+    "report5": "✅ Raportoitu",
+    "reportSubmitted": "✅ Raportti lähetetty, kiitos palautteestasi",
+    "settings": "✅ MBTI asetettu muotoon ${mbtiType}",
+    "settings2": "✅ Nimimerkki asetettu",
+    "settings3": "✅ Suodatuskriteerit on asetettu:\n\n",
+    "settings4": "✅ Verityyppi asetettu muotoon ${getBloodTypeDisplay(bloodType as any)}",
+    "settings5": "✅ MBTI-tyyppi on asetettu: ${mbtiType}\n\n",
+    "settings6": "✅ Verityypin asettaminen ohitettu",
+    "short": "✅ Lähetetään...",
+    "short10": "✅ Ladataan...",
+    "short11": "✅ 🌈 Kenet tahansa",
+    "short12": "✅ 👨 Mies",
+    "short13": "✅ 👩 Nainen",
+    "short14": "✅ Jatka muokkaamista",
+    "short15": "✅ Vahvista estäminen",
+    "short16": "✅ Estetty",
+    "short17": "✅ Olen lukenut ja hyväksyn",
+    "short18": "✅ Ohitettu",
+    "short19": "✅ Vaadi palkkio",
+    "short2": "✅ Jatka luonnoksen muokkaamista",
+    "short20": "✅ Huollossa",
+    "short3": "✅ Luonnos poistettu",
+    "short4": "✅ Vahvista ja vaadi",
+    "short5": "✅ Luonnos lähetetty",
+    "short6": "✅ Tallennettu",
+    "short7": "✅ Oikein",
+    "short8": "✅ Ota käyttöön",
+    "short9": "✅ Kyllä",
+    "start": "✅ Klikkaa painiketta aloittaaksesi katsomisen",
+    "start2": "✅ Aloita lyhyen version testi",
+    "start3": "✅ Aloita täyden version testi",
+    "start4": "✅ Aloita testi",
+    "success": {
+      "appeal": "✅ Valitus \\${appealId} hyväksytty, käyttäjä on avattu",
+      "appeal2": "✅ Valitus \\${appealId} hylätty",
+      "appeal3": "✅ Ei käsittelemättömiä valituksia",
+      "birthday": "✅ Syntymäpäivä tallennettu",
+      "bloodType": "✅ Veriryhmä päivitetty: \\${getBloodTypeDisplay(bloodType as any)}",
+      "bloodType2": "✅ Veriryhmä tyhjennetty",
+      "bottle": "✅ Palkkio jaettu! +1 viestipulloposti",
+      "bottle2": "✅ Aloita uusi viestipulloposti",
+      "bottle3": "✅ Viestipulloposti luotu\n",
+      "broadcast": "✅ Poistettu \\${ids.length} jumittunutta lähetystä\n\n",
+      "broadcast2": "✅ Ei lähetettäviä viestejä\n\n",
+      "broadcast3": "✅ Suodatetut lähetykset luotu\n\n",
+      "broadcast4": "✅ Lähetys luotu\n\n",
+      "cancel": "✅ Lähetys peruutettu\n\n",
+      "complete": "✅ Lähetysten käsittely valmis\n\n",
+      "complete2": "✅ Järjestelmänhuolto suoritettu\n\n",
+      "complete3": "✅ Opastus valmis!",
+      "complete4": "✅ **Eräpäivitys suoritettu**\n\n",
+      "complete5": "✅ **Päivitys suoritettu**\n\n",
+      "complete6": "✅ Suodatus valmis, syöttö sisältö",
+      "complete7": "✅ Suodatus valmis",
+      "confirm": "✅ Vahvistettu!",
+      "confirm2": "✅ Turvatarkastus suoritettu",
+      "confirm3": "✅ Vahvista",
+      "conversation": "✅ **Keskusteluhistoria päivitetty!**\n\n",
+      "gender": "✅ Sukupuoli tallennettu",
+      "invite": "✅ Kutsut aktivoitu: \\${successfulInvites} / \\${inviteLimit} henkilöä\n",
+      "mbti": "✅ MBTI-tyyppisi on päivitetty: **\\${mbtiType}**\n\n",
+      "mbti2": "✅ MBTI-tyyppisi on tyhjennetty.\n\n",
+      "mbti3": "✅ MBTI tyhjennetty",
+      "mbti4": "✅ MBTI-valinta tyhjennetty",
+      "mbti5": "✅ MBTI-tyyppisi: \\${mbtiType}\n\n",
+      "message": "✅ Viesti lähetetty \\${formatIdentifier(receiverIdentifier)}\n\n",
+      "message2": "✅ Kieli päivitetty: \\${getLanguageDisplay(languageCode)}",
+      "message3": "✅ Tämä käyttäjä on estetty (#\\${conversationIdentifier})\n\n",
+      "message4": "✅ Saavuttanut +\\${ad.reward_quota} pysyvää kiintiötä!",
+      "message5": "✅ Valittu \\${gender}",
+      "message6": "✅ Valittu \\${bloodTypeDisplay[bloodType]}",
+      "message7": "✅ Valittu \\${ZODIAC_NAMES[zodiacSign]}",
+      "message8": "✅ Valitsit: \\${gender}\n\n",
+      "nickname": "✅ Käytetään Telegram-nick: \\${suggestedNickname.substring(0, 18)}",
+      "nickname2": "✅ Nimimerkki päivitetty: \\${text}\n\n",
+      "register": "✅ Kehitystilassa: Rekisteröinti ohitettu\n\n",
+      "register2": "✅ Ymmärrän, jatka rekisteröintiä",
+      "register3": "✅ Rekisteröinti suoritettu!",
+      "report": "✅ **Ilmoitus lähetetty** (#\\${conversationIdentifier})\n\n",
+      "report2": "✅ Ilmoitus lähetetty",
+      "report3": "✅ **Käyttäjä ilmoitettu**\n\n",
+      "report4": "✅ Vahvista ilmoitus",
+      "report5": "✅ Ilmoitettu",
+      "settings": "✅ MBTI on asetettu muotoon \\${mbtiType}",
+      "settings2": "✅ Näyttönimi on asetettu",
+      "settings3": "✅ Suodatuskriteerit asetettu:\n\n",
+      "settings4": "✅ Verityypiksi on asetettu \\${getBloodTypeDisplay(bloodType as any)}",
+      "settings5": "✅ MBTI-tyyppi asetettu: \\${mbtiType}\n\n",
+      "settings6": "✅ Verityypin asettaminen on ohitettu",
+      "short": "✅ Lähetetään...",
+      "short10": "✅ Ladataan...",
+      "short11": "✅ 🌈 Kuka tahansa",
+      "short12": "✅ 👨 Mies",
+      "short13": "✅ 👩 Nainen",
+      "short14": "✅ Jatka muokkaamista",
+      "short15": "✅ Vahvista esto",
+      "short16": "✅ Estetty",
+      "short17": "✅ Olen lukenut ja hyväksynyt",
+      "short18": "✅ Ohitettu",
+      "short19": "✅ Nosta palkinto",
+      "short2": "✅ Jatka luonnoksen muokkaamista",
+      "short20": "✅ Huollossa",
+      "short3": "✅ Luonnos on poistettu",
+      "short4": "✅ Vahvista ja kokoa",
+      "short5": "✅ Lähetä luonnos",
+      "short6": "✅ Kirjautunut",
+      "short7": "✅ Oikein",
+      "short8": "✅ Käytössä",
+      "short9": "✅ Kyllä",
+      "start": "✅ Ole hyvä ja napsauta painiketta aloittaaksesi katselun",
+      "start2": "✅ Aloita nopea testi",
+      "start3": "✅ Aloita täysversion testi",
+      "start4": "✅ Aloita testi",
+      "text": "✅ Aseta muotoon \\${flag} \\${countryName}",
+      "text10": "✅ Kyllä, ymmärrän ja kiinnitän huomiota turvallisuuteen",
+      "text11": "✅ Huoltotila käytössä\n\n",
+      "text12": "✅ Huoltotila poistettu käytöstä\n\n",
+      "text13": "✅ Tarkempi persoonallisuusanalyyysi\n",
+      "text14": "✅ Opastus ohitettu\n\n",
+      "text15": "✅ Kaikki julkaisut ovat ajan tasalla (ilmais käyttäjästatus on oikein)\n",
+      "text16": "✅ **Ei tarvitse päivittää**\n\n",
+      "text17": "✅ Valittu \\${gender ===",
+      "text18": "✅ Valittu \\${mbtiType}",
+      "text19": "✅ **Säännöt**:\n",
+      "text2": "✅ Kiinnostustagit on päivitetty:\n\n\\${interestsStr}",
+      "text20": "✅ **Käyttäjä on estetty**\n\n",
+      "text21": "✅ **Palautuspyyntö on lähetetty**\n\n",
+      "text22": "✅ **Palautus on hyväksytty**\n\n",
+      "text23": "✅ Ei odottavia hyvityspyyntöjä.",
+      "text24": "✅ Valmistellaan maksua...",
+      "text25": "✅ Palautus on hyväksytty\n\n",
+      "text26": "✅ Palautus on hylätty\n\n",
+      "text27": "✅ Olen liittynyt ja lunastanut palkkion",
+      "text28": "✅ Valitsit: \\${gender ===",
+      "text29": "✅ Petostentorjuntatesti läpäisty!\n\n",
+      "text3": "✅ Yhteensopivuusasetukset päivitetty: ${prefText}\n\n",
+      "text30": "✅ Kieli on vaihdettu \\${newLanguageName}",
+      "text4": "✅ Profiilia on päivitetty!\n\n\\${text}",
+      "text5": "✅ Kehitystilassa: Tiedot on nollattu\n\n",
+      "text6": "✅ Alue on päivitetty: \\${text}",
+      "text7": "✅ Nopeaa ymmärrystä peruspersoonallisuustyypeistä\n\n",
+      "text8": "✅ **Avatar on päivitetty!**\n\n",
+      "text9": "✅ Suositeltu uusintatestausta varten\n\n",
+      "vip": "✅ Kaikki viestit ovat ajan tasalla (VIP-tila on oikea)\n",
+      "zodiac": "✅ Horoskooppivalinta on tyhjennetty"
     },
-    status: {
-      failed: `❌ Payment Failed`,
-      paid: `✅ Payment Successful`,
-      pending: `⏳ Processing`,
-      refunded: `↩️ Refunded`,
+    "success2": "🎉 **Vahvistus onnistui!**\n\n✅ Ansaittu **+${ad.reward_quota} pysyvää kiintiötä**\n💎 Kiitos, että liityit yhteisöömme!\n\n📊 **Kiintiösi:**\n• Peruskiintiö: ${user.is_vip ? 'Rajoittamaton' : '10'}/päivä\n• Pysyvä kiintiö: +${ad.reward_quota}\n\n💡 Yhteisössä voit:\n• Kommunikoida muiden käyttäjien kanssa\n• Saada uusimmat ominaisuuspäivitykset\n• Osallistua aktiviteetteihin saadaksesi lisää palkintoja",
+    "success3": "Päivitys onnistui, ${result.updated} historiallista viestiä keskustelussa.\n\n",
+    "success4": "Onnistuneesti päivitetty: ${result.updated}\n",
+    "text": "✅ Asetettu ${flag} ${countryName}",
+    "text10": "✅ Kyllä, ymmärrän ja kiinnitan huomiota turvallisuuteen",
+    "text11": "✅ Huoltotila on otettu käyttöön\n\n",
+    "text12": "✅ Huoltotila on poistettu käytöstä\n\n",
+    "text13": "✅ Tarkempi persoonallisuusanalyysi\n",
+    "text14": "✅ Opastus on ohitettu\n\n",
+    "text15": "✅ Kaikki viestit ovat ajan tasalla (ilmais käyttäjästatus on oikea)\n",
+    "text16": "✅ **Ei tarvitse päivittää**\n\n",
+    "text17": "✅ Valittu ${gender ===",
+    "text18": "✅ Valittu ${mbtiType}",
+    "text19": "✅ **Säännöt**:\n",
+    "text2": "✅ Kiinnostustagit on päivitetty:\n\n${interestsStr}",
+    "text20": "✅ **Käyttäjä on estetty**\n\n",
+    "text21": "✅ **Palautuspyyntö on lähetetty**\n\n",
+    "text22": "✅ **Palautus on hyväksytty**\n\n",
+    "text23": "✅ Ei odottavia hyvityspyyntöjä.",
+    "text24": "✅ Valmistellaan maksua...",
+    "text25": "✅ Palautus on hyväksytty\n\n",
+    "text26": "✅ Palautus on hylätty\n\n",
+    "text27": "✅ Olen liittynyt ja lunastanut palkkion",
+    "text28": "✅ Valitsit: ${gender ===",
+    "text29": "✅ Huijaustesti läpäisty!\n\n",
+    "text3": "✅ Otteluasetuksia päivitetty: ${prefText}\n\n",
+    "text30": "✅ Kieli on vaihdettu ${newLanguageName}",
+    "text4": "✅ Profiilia on päivitetty!\n\n${text}",
+    "text5": "✅ Kehitys tila: Tiedot on nollattu\n\n",
+    "text6": "✅ Alue päivitetty: ${text}",
+    "text7": "✅ Nopeaa ymmärrystä peruspersoonallisuuden tyypeistä\n\n",
+    "text8": "✅ **Avatar on päivitetty!**\n\n",
+    "text9": "✅ Suositeltu uudelleentestaamiseen\n\n",
+    "verify": "✅ Vahvistus onnistui! Saavut +${ad.reward_quota} pysyvää kiintiötä!",
+    "verify2": "✅ Vahvistus onnistui! Saavut +\\${ad.reward_quota} pysyvää kiintiötä!",
+    "vip": "✅ Kaikki postit ovat ajan tasalla (VIP-status oikea)\n",
+    "zodiac": "✅ Aurinko- ja horoskooppivalinta tyhjennetty"
+  },
+  "target": {
+    "all": "Kaikki käyttäjät",
+    "nonVip": "Ei-VIP-käyttäjät",
+    "unknown": "Tuntematon",
+    "vip": "VIP-käyttäjät"
+  },
+  "tasks": {
+    "bottle": "Palkinto: +${task.reward_amount} pullopostia (${rewardTypeText})\n\n",
+    "bottle2": "Palkinto: +${task.reward_amount} pullopostia (${task.reward_type ===",
+    "bottle3": "${icon} ${task.name} (+${task.reward_amount} pullopostia)\n",
+    "bottle4": "• Pysyvä palkinto: ${inviteProgress.current} pullopostia (jaetaan päivittäin)\n",
+    "bottle5": "• Kertaluonteinen palkinto: ${todayRewardCount} pullopostia (voimassa päivän ajan)\n",
+    "bottle6": "📋 **Tehtävien keskus**\n\nSuorita tehtäviä ansaitaksesi lisäpulloposteja!\n\n",
+    "description": {
+      "bio": "Kirjoita tarinasi (vähintään 20 merkkiä)",
+      "city": "Löydä ystäviä samasta kaupungista",
+      "first_bottle": "Aloita ystävyysmatkasi",
+      "first_catch": "Näe muiden tarinat",
+      "first_conversation": "Perusta ensimmäinen yhteys (pidä viestiä pitkään → valitse 'Vastaus')",
+      "interests": "Anna muiden ymmärtää sinua paremmin",
+      "invite_progress": "Jokaisesta kutsutusta päivittäinen kiintiö pysyvästi +1 (ilmaiseksi enintään 10 henkilöä, VIP enintään 100 henkilöä)",
+      "join_channel": "Saat uusimmat uutiset ja tapahtumat"
     },
-  },
-  profile: {
-    activatedInvites: `✅ 已激活邀請：{successfulInvites} / {inviteLimit} 人
-`,
-    age: `🎂 年齡：\${age}
-`,
-    anonymousUser: `匿名用戶`,
-    bloodType: `🩸 血型：\${bloodType}
-`,
-    bottle: `: permanentQuota} 個瓶子
-
-`,
-    cardAge: `{age} 歲`,
-    cardBio: `📝 簡介：
-{bio}
-
-`,
-    cardFooter: `💡 這是你在對話中展示給對方的資料卡片
-
-`,
-    cardGenderFemale: `♀️ 女`,
-    cardGenderMale: `♂️ 男`,
-    cardInterests: `🏷️ 興趣：{interests}
-
-`,
-    cardLanguage: `🌍 語言：{language}
-
-`,
-    cardMbti: `🧠 MBTI：{mbti}
-`,
-    cardSeparator: `━━━━━━━━━━━━━━━━
-`,
-    cardTitle: `┌─────────────────────────┐
-│ 📇 個人資料卡片 │
-└─────────────────────────┘
-
-`,
-    cardZodiac: `⭐ 星座：{zodiac}
-`,
-    completeOnboarding: `⚠️ 請先完成註冊流程。
-
-使用 /start 繼續註冊。`,
-    conversation: `💡 這是你在對話中展示給對方的資料卡片
-
-`,
-    editProfile: `📝 編輯資料`,
-    gender: `👤 性別：\${gender}
-`,
-    hints: `💡 提示：
-`,
-    invite: `⏳ 待激活邀請：\${inviteStats.pending} 人
-`,
-    invite2: `🎁 **邀請資訊**
-
-`,
-    inviteCodeLabel: `📋 你的邀請碼：\`{inviteCode}\`
-`,
-    manual: `手動設定`,
-    mbti: `• 使用 /mbti 重新測驗或修改 MBTI
-`,
-    mbtiWithSource: `🧠 MBTI：{mbti}{source}
-`,
-    message: `https://t.me/share/url?url=https://t.me/\${botUsername}?start=invite_\${inviteCode}&text=來 XunNi 一起丟漂流瓶吧！🍾 使用我的邀請碼：\${inviteCode}`,
-    message2: `\${inviteLimitWarning}
-
-`,
-    message3: `🌍 語言：\${user.language_pref }
-
-`,
-    message4: `🌍 語言：\${user.language_pref }
-`,
-    message5: `📈 轉化率：\${inviteStats.conversionRate}%
-`,
-    message6: `\${gender} • \${age} 歲 • \${city}
-
-`,
-    message7: `https://t.me/share/url?url=https://t.me/\${botUsername}?start=invite_\${inviteCode}&text=來 XunNi 一起丟漂流`,
-    mysterious: `這個人很神秘，什麼都沒有留下～`,
-    nickname: `📛 暱稱：\${displayNickname}
-`,
-    notSet: `未設定`,
-    profile: `│ 📇 個人資料卡片 │
-`,
-    profile2: `👤 **個人資料**
-
-`,
-    quota: `💡 完成任務可獲得當日額外配額（使用 /tasks 查看）
-`,
-    quota2: `📦 當前每日配額：\${taskBonus > 0 ?`,
-    quotaBottles: `{taskBonus} 個瓶子`,
-    quotaTotal: `📦 當前每日配額：{quota}
-
-`,
-    returnToMenu: `🏠 返回主選單：/menu`,
-    separator: `━━━━━━━━━━━━━━━━
-
-`,
-    settings: `未設定`,
-    settings2: `未設定`,
-    settings3: `未設定`,
-    settings4: `未設定`,
-    settings5: `未設定`,
-    settings6: `未設定`,
-    settings7: `未設定`,
-    settings8: `未設定`,
-    shareInviteCode: `📤 分享邀請碼`,
-    short: `📝 編輯資料`,
-    short2: `免費會員`,
-    stats: `• 使用 /stats 查看統計數據
-
-`,
-    success: `💡 每成功邀請 1 人，每日配額永久 +1
-`,
-    systemError: `❌ 系統發生錯誤，請稍後再試。`,
-    test: `測驗結果`,
-    text: `• 使用 /profile_card 查看完整資料卡片
-`,
-    text2: `🏷️ 興趣：\${interests}
-
-`,
-    text3: `💎 會員：\${vipStatus}
-
-`,
-    text4: `📝 簡介：
-\${bio}
-
-`,
-    text5: `這個人很神秘，什麼都沒有留下～`,
-    userNotFound: `⚠️ 用戶不存在，請先使用 /start 註冊。`,
-    vip: `VIP 會員（到期：\${expireDate}）`,
-    vip2: `• 使用 /vip 升級 VIP 會員
-`,
-    vipUpgrade: `• 使用 /vip 升級 VIP 會員
-`,
-    zodiac: `⭐ 星座：\${zodiac}
-`,
-  },
-  refreshAvatar: {
-    failed: `❌ 刷新頭像失敗
-
-請稍後再試，或聯繫管理員。`,
-    processing: `🔄 正在刷新頭像...
-
-這可能需要幾秒鐘時間。`,
-    success: `✅ **頭像已更新！**
-
-您的頭像緩存已刷新，下次查看對話歷史時將顯示最新頭像。
-
-💡 **提示：**
-• 頭像會自動每 7 天更新一次
-• 如果您更換了 Telegram 頭像，系統會自動檢測
-• 您也可以隨時使用此命令手動刷新`,
-    userNotFound: `❌ 用戶不存在，請先註冊`,
-  },
-  refreshConversations: {
-    clickButtonHint: `💡 **提示**：請點擊上方的按鈕來開始使用`,
-    commandHelp: `• /help - 查看幫助`,
-    commandMenu: `• /menu - 主選單`,
-    commandTasks: `• /tasks - 查看任務中心`,
-    failed: `❌ 刷新對話歷史失敗
-
-請稍後再試，或聯繫管理員。`,
-    noHistory: `💡 **沒有找到對話歷史**
-
-您還沒有任何對話記錄。
-
-使用 /throw 丟出漂流瓶開始聊天吧！`,
-    partialSuccess: `⚠️ **對話歷史部分更新**
-
-成功刷新：{updated} 個
-失敗：{failed} 個
-
-部分對話歷史可能未能更新，請稍後再試。`,
-    processing: `🔄 正在刷新所有對話歷史...
-
-這可能需要一些時間，請稍候。`,
-    success: `✅ **對話歷史已更新！**
-
-成功刷新 {updated} 個對話的歷史帖子。
-
-💡 **提示：**
-• VIP 用戶可以看到清晰的對方頭像
-• 免費用戶看到的是模糊頭像
-• 升級 VIP 後會自動刷新歷史帖子`,
-    userNotFound: `❌ 用戶不存在，請先註冊`,
-  },
-  report: {
-    blockHint: `• 長按對方訊息回覆 /block 可封鎖此使用者
-`,
-    cancel: `❌ 取消`,
-    cancelled: `已取消`,
-    cannotIdentify: `⚠️ 無法識別對話對象
-
-`,
-    catchHint: `• 使用 /catch 撿新的漂流瓶`,
-    completeOnboarding: `⚠️ 請先完成註冊流程。
-
-使用 /start 繼續註冊。`,
-    conversationInfoError: `⚠️ 對話資訊錯誤。`,
-    conversationInfoError2: `⚠️ 對話資訊錯誤`,
-    conversationNotExists: `⚠️ 對話不存在`,
-    conversationNotFound: `⚠️ 找不到此對話
-
-對話可能已結束或不存在。`,
-    ensureReply: `請確保回覆的是對方發送的訊息（帶有 # 標識符）。`,
-    hint: `💡 這樣可以準確指定要舉報的對象。`,
-    multipleReports: `多次被舉報 / Multiple reports`,
-    reasonHarassment: `😡 騷擾 / 辱罵`,
-    reasonNsfw: `🔞 色情內容`,
-    reasonOther: `⚠️ 其他違規`,
-    reasonScam: `💰 詐騙 / 釣魚`,
-    reasonSpam: `📢 垃圾廣告`,
-    replyRequired: `⚠️ 請長按你要舉報的訊息後回覆指令
-
-`,
-    selectReason: `請選擇舉報原因：`,
-    sessionExpired: `⚠️ 會話已過期，請重新操作`,
-    step1: `1️⃣ 長按對方的訊息
-`,
-    step2: `2️⃣ 選擇「回覆」
-`,
-    step3: `3️⃣ 輸入 /report
-
-`,
-    steps: `**操作步驟：**
-`,
-    submitted: `✅ **舉報已提交** (#{identifier})
-
-`,
-    systemError: `❌ 系統發生錯誤`,
-    thanks: `感謝你的舉報，我們會盡快審核。
-
-`,
-    tips: `💡 提示：
-`,
-    title: `🚨 **舉報不當內容** (#{identifier})
-
-`,
-    userNotFound: `⚠️ 用戶不存在，請先使用 /start 註冊。`,
-  },
-  risk: {
-    containsSensitiveWords: `包含敏感詞彙`,
-  },
-  router: {
-    replyPrompt: `💬 回覆`,
-    suggestCatch: `❓ 要撿漂流瓶？
-
-使用 /catch 撿起漂流瓶
-
-💡 **常用命令**：
-• /throw - 丟出漂流瓶
-• /catch - 撿起漂流瓶
-• /menu - 主選單
-• /tasks - 任務中心`,
-    suggestMenu: `❓ 找不到此命令
-
-💡 **常用命令**：
-• /throw - 丟出漂流瓶
-• /catch - 撿起漂流瓶
-• /menu - 主選單
-• /tasks - 任務中心`,
-    suggestThrow: `❓ 要丟漂流瓶？
-
-請長按上一則訊息，或本訊息，
-選單上選擇「回覆」後，
-輸入要發送的漂流瓶內容
-
-💡 **常用命令**：
-• /throw - 丟出漂流瓶
-• /catch - 撿起漂流瓶
-• /menu - 主選單
-• /tasks - 任務中心
-
-#THROW`,
-    throwPrompt: `📝 請輸入你的漂流瓶內容：`,
-  },
-  session: {
-    timeoutCatchBottle: `⏰ 撿瓶流程已超時
-
-請使用 /catch 重新開始。`,
-    timeoutConversation: `⏰ 對話已超時
-
-對方可能已離開。使用 /catch 撿新的瓶子吧！`,
-    timeoutEditProfile: `⏰ 編輯資料流程已超時
-
-請重新開始編輯。`,
-    timeoutOnboarding: `⏰ 註冊流程已超時
-
-請使用 /start 重新開始註冊。`,
-    timeoutThrowBottle: `⏰ 丟瓶流程已超時
-
-請使用 /throw 重新開始。`,
-    typeCatchBottle: `撿瓶流程`,
-    typeConversation: `對話`,
-    typeEditProfile: `編輯資料`,
-    typeOnboarding: `註冊流程`,
-    typeThrowBottle: `丟瓶流程`,
-  },
-  settings: {
-    back: `返回`,
-    changeLanguage: `🌐 更改語言`,
-    currentSettings: `⚙️ **當前設定**`,
-    languageLabel: `語言：{language}`,
-    languageUpdated: `✅ Language updated to: {language}`,
-    message: `🌐 **選擇語言 / Choose Language**
-
-請選擇你的偏好語言：`,
-    returnToMenu: `🏠 返回主選單`,
-    selectOption: `請選擇選項：`,
-    settings: `💡 選擇你想要修改的設定：`,
-    settings2: `⚙️ **設定**
-
-`,
-    settings3: `🏠 返回設定`,
-    settings4: `當前設定：
-`,
-    text: `• 語言：\${languageName} 🇹🇼
-
-`,
-    title: `🏠 **主選單**`,
-  },
-  stats: {
-    activeUsers: `• 昨日活躍：{active}
-
-`,
-    age: `🎂 **年齡**：\${age} 歲
-`,
-    avgMatches: `• 平均每次配對：\${avg} 個對象
-`,
-    bottle: `
-💎 **VIP 三倍瓶子統計**（近 30 天）
-`,
-    bottle2: `🍾 **漂流瓶**
-`,
-    bottle3: `🎈 漂流瓶統計
-`,
-    bottles: `🍾 **漂流瓶**
-`,
-    bottlesCaught: `• 撿到：\${count} 個
-`,
-    bottlesThrown: `• 丟出：\${count} 個
-`,
-    catch: `• 昨日被撿：\${stats.caughtBottles}
-
-`,
-    catch2: `• 撿到：\${stats.bottlesCaught} 個
-`,
-    caught: `• 昨日被撿：{caught}
-
-`,
-    conversation: `• 活躍對話：\${stats.activeConversations}
-`,
-    conversation2: `• 總對話數：\${stats.totalConversations}
-`,
-    conversation3: `• 總對話數：\${stats.totalConversations}`,
-    conversation4: `💬 **對話**
-`,
-    conversation5: `💬 對話統計
-`,
-    conversations: `💬 **對話**
-`,
-    conversationsActive: `• 活躍對話：\${count}
-`,
-    conversationsTotal: `• 總對話數：\${count}
-`,
-    date: `日期：{date}
-
-`,
-    dateFormatError: `日期格式錯誤，應為 YYYY-MM-DD`,
-    match: `🎯 **匹配**
-`,
-    matchRate: `• 匹配成功率：\${rate}%
-`,
-    matchRateValue: `• 配對率：\${rate}%
-`,
-    matchedSlots: `• 成功配對：\${count}
-`,
-    mbti: `🧠 **MBTI**：\${mbti}
-`,
-    message: `• 到期時間：\${expireDate}
-`,
-    message10: `• 總訊息數：\${stats.totalMessages}`,
-    message2: `\${used}/\${permanentQuota}+\${taskBonus} (剩餘 \${remaining})`,
-    message3: `報告生成時間：\${new Date().toLocaleString('zh-TW')}`,
-    message4: `\${used}/\${permanentQuota} (剩餘 \${remaining})`,
-    message5: `• 總訊息數：\${stats.totalMessages}
-
-`,
-    message6: `• 昨日新增訊息：\${stats.newMessages}
-
-`,
-    message7: `• 總配對槽位：\${vipStats.totalSlots}
-`,
-    message8: `• 平均回覆率：\${stats.replyRate}%
-
-`,
-    message9: `• 昨日活躍：\${stats.activeUsers}
-
-`,
-    messages: `💬 對話統計`,
-    messagesTotal: `• 總訊息數：\${count}
-`,
-    new: `• 昨日新增：{new}`,
-    newMessages: `• 昨日新增訊息：{new}
-
-`,
-    newUsers: `• 昨日新增：{new}`,
-    newVip: `• 昨日新增：{new}
-
-`,
-    notSet: `未設定`,
-    quota: `• 今日配額：\${stats.todayQuota.display}
-
-`,
-    register: `📅 **註冊時間**：\${new Date(user.created_at).toLocaleDateString('zh-TW')}
-`,
-    register2: `• 總註冊數：\${stats.totalUsers}`,
-    registerTime: `📅 **註冊時間**：\${date}
-`,
-    replyRate: `• 平均回覆率：\${rate}%
-`,
-    reportTime: `報告生成時間：{time}`,
-    separator: `---
-`,
-    settings: `🧠 **MBTI**：\\$
-
-`,
-    settings2: `未設定`,
-    short: `免費會員`,
-    statDateEmpty: `統計日期不能為空`,
-    stats: `📊 **我的統計數據**
-
-`,
-    stats2: `💎 VIP 統計
-`,
-    stats3: `👥 用戶統計
-`,
-    stats4: `統計日期不能為空`,
-    success: `• 成功配對：\${vipStats.matchedSlots}
-`,
-    success2: `• 匹配成功率：\${stats.matchRate}%
-`,
-    text: `• 平均每次配對：\${avgMatches} 個對象
-`,
-    text10: `🎯 **匹配**
-`,
-    text2: `• 昨日新增：\${stats.newBottles}
-`,
-    text3: `• 總數：\${stats.totalBottles}`,
-    text4: `• 昨日新增：\${stats.newUsers}
-`,
-    text5: `• 昨日新增：\${stats.newVip}
-
-`,
-    text6: `• 配對率：\${matchRate}%
-`,
-    text7: `📊 XunNi Bot 每日數據報告
-`,
-    text8: `日期格式錯誤，應為 YYYY-MM-DD`,
-    text9: `日期：\${dateStr}
-
-`,
-    throw: `• 丟出：\${stats.bottlesThrown} 個
-`,
-    throw2: `• 丟出次數：\${vipStats.throws}
-`,
-    throws: `• 丟出次數：\${count}
-`,
-    timeLeftDaysHours: `\${days} 天 \${hours} 小時`,
-    timeLeftHours: `\${hours} 小時`,
-    title: `📊 **我的統計數據**
-
-`,
-    todayQuota: `• 今日配額：\${display}
-
-`,
-    total: `• 總數：{total}`,
-    totalConversations: `• 總對話數：{total}`,
-    totalMessages: `• 總訊息數：{total}`,
-    totalSlots: `• 總配對槽位：\${count}
-`,
-    totalUsers: `• 總註冊數：{total}`,
-    totalVip: `• 總 VIP 數：{total}`,
-    totalWithDiff: `• 總數：{total} ({diff})`,
-    users: `👥 用戶統計`,
-    vip: `⭐ **VIP 狀態**
-`,
-    vip2: `⭐ **VIP 狀態**
-`,
-    vip3: `VIP 會員 💎`,
-    vipAvgMatches: `• 平均每次配對：{avg} 個對象`,
-    vipExpire: `• 到期時間：\${date}
-`,
-    vipFree: `免費會員`,
-    vipMatchRate: `• 配對率：{rate}%`,
-    vipMatchedSlots: `• 成功配對：{count}`,
-    vipMember: `VIP 會員 💎`,
-    vipThrows: `• 丟出次數：{count}`,
-    vipTotalSlots: `• 總配對槽位：{count}`,
-    vipTriple: `💎 **VIP 三倍瓶子統計**（近 \${days} 天）`,
-    vipTripleTitle: `💎 **VIP 三倍瓶子統計**（近 {days} 天）`,
-    zodiac: `🔮 **星座**：\${zodiac}
-`,
-  },
-  status: {
-    cancelled: `已取消`,
-    completed: `已完成`,
-    failed: `失敗`,
-    pending: `等待中`,
-    sending: `發送中`,
-  },
-  subscription: {
-    downgradedToFree: `你的帳號已恢復為免費會員。`,
-    expired: `😢 **VIP 訂閱已到期**`,
-    expiredDate: `你的 VIP 訂閱已於 \${date} 到期。`,
-    renewVipHint: `💡 隨時可以重新訂閱 VIP：/vip`,
-    thankYou: `感謝你的支持！❤️`,
-  },
-  success: {
-    ad: `✅ 你已經看過所有官方廣告了！`,
-    ad2: `✅ 已啟用廣告提供商：\${providerName}
-
-`,
-    ad3: `✅ 已停用廣告提供商：\${providerName}
-
-`,
-    ad4: `✅ 已啟用官方廣告 #\${adId}
-
-`,
-    ad5: `✅ 已停用官方廣告 #\${adId}
-
-`,
-    ad6: `✅ 已設置廣告提供商優先級
-
-`,
-    ad7: `✅ 今日廣告已達上限`,
-    appeal: `✅ 申訴 \${appealId} 已批准，用戶已解封`,
-    appeal2: `✅ 申訴 \${appealId} 已拒絕`,
-    appeal3: `✅ 目前沒有待審核的申訴`,
-    birthday: `✅ 生日已保存`,
-    bloodType: `✅ 血型已更新為 \${getBloodTypeDisplay(bloodType as any)}`,
-    bloodType2: `✅ 血型已清除`,
-    bottle: `✅ 獎勵已發放！+1 瓶子`,
-    bottle2: `✅ 開始新的漂流瓶`,
-    bottle3: `✅ 瓶子已創建
-`,
-    broadcast: `✅ 已清理 \${ids.length} 個卡住的廣播
-
-`,
-    broadcast2: `✅ 沒有需要清理的廣播
-
-`,
-    broadcast3: `✅ 過濾廣播已創建
-
-`,
-    broadcast4: `✅ 廣播已創建
-
-`,
-    cancel: `✅ 廣播已取消
-
-`,
-    complete: `✅ 廣播隊列處理完成
-
-`,
-    complete2: `✅ 系統維護已完成
-
-`,
-    complete3: `✅ 教學已完成！`,
-    complete4: `✅ **批量刷新完成**
-
-`,
-    complete5: `✅ **刷新完成**
-
-`,
-    complete6: `✅ 完成篩選，輸入內容`,
-    complete7: `✅ 篩選完成`,
-    confirm: `✅ 已確認！`,
-    confirm2: `✅ 安全確認完成`,
-    confirm3: `✅ 確認`,
-    conversation: `✅ **對話歷史已更新！**
-
-`,
-    gender: `✅ 性別已保存`,
-    invite: `✅ 已激活邀請：\${successfulInvites} / \${inviteLimit} 人
-`,
-    mbti: `✅ 你的 MBTI 類型已更新為：**\${mbtiType}**
-
-`,
-    mbti2: `✅ 你的 MBTI 類型已清除。
-
-`,
-    mbti3: `✅ MBTI 已清除`,
-    mbti4: `✅ 已清除 MBTI 選擇`,
-    mbti5: `✅ 你的 MBTI 類型：\${mbtiType}
-
-`,
-    message: `✅ 訊息已發送給 \${formatIdentifier(receiverIdentifier)}
-
-`,
-    message2: `✅ 語言已更新為：\${getLanguageDisplay(languageCode)}`,
-    message3: `✅ 已封鎖此使用者 (#\${conversationIdentifier})
-
-`,
-    message4: `✅ 獲得 +\${ad.reward_quota} 個永久額度！`,
-    message5: `✅ 已選擇 \${gender}`,
-    message6: `✅ 已選擇 \${bloodTypeDisplay[bloodType]}`,
-    message7: `✅ 已選擇 \${ZODIAC_NAMES[zodiacSign]}`,
-    message8: `[需要翻译]`,
-    nickname: `✅ 使用 Telegram 暱稱：\${suggestedNickname.substring(0, 18)}`,
-    nickname2: `✅ 暱稱已更新為：\${text}
-
-`,
-    register: `✅ 開發模式：跳過註冊
-
-`,
-    register2: `✅ 我了解了，繼續註冊`,
-    register3: `✅ 註冊完成！`,
-    report: `✅ **舉報已提交** (#\${conversationIdentifier})
-
-`,
-    report2: `✅ 舉報已提交`,
-    report3: `✅ **已舉報此用戶**
-
-`,
-    report4: `✅ 確定舉報`,
-    report5: `✅ 已舉報`,
-    reportSubmitted: `✅ 舉報已提交，感謝你的回報`,
-    settings: `✅ MBTI 已設定為 \${mbtiType}`,
-    settings2: `✅ 暱稱已設定`,
-    settings3: `✅ 篩選條件已設定：
-
-`,
-    settings4: `✅ 血型已設定為 \${getBloodTypeDisplay(bloodType as any)}`,
-    settings5: `✅ MBTI 類型已設定：\${mbtiType}
-
-`,
-    settings6: `✅ 已跳過血型設定`,
-    short: `✅ 正在發送...`,
-    short10: `✅ 正在加載...`,
-    short11: `✅ 🌈 任何人`,
-    short12: `✅ 👨 男生`,
-    short13: `✅ 👩 女生`,
-    short14: `✅ 繼續編輯`,
-    short15: `✅ 確定封鎖`,
-    short16: `✅ 已封鎖`,
-    short17: `✅ 我已閱讀並同意`,
-    short18: `✅ 已跳過`,
-    short19: `✅ 領取獎勵`,
-    short2: `✅ 繼續編輯草稿`,
-    short20: `✅ 維護中`,
-    short3: `✅ 草稿已刪除`,
-    short4: `✅ 驗證並領取`,
-    short5: `✅ 發送草稿`,
-    short6: `✅ 已記錄`,
-    short7: `✅ 正確`,
-    short8: `✅ 啟用`,
-    short9: `✅ 是`,
-    start: `✅ 請點擊按鈕開始觀看`,
-    start2: `✅ 開始快速版測驗`,
-    start3: `✅ 開始完整版測驗`,
-    start4: `✅ 開始測驗`,
-    success2: `🎉 **驗證成功！**
-
-✅ 獲得 **+\${ad.reward_quota} 個永久額度**
-💎 感謝你加入我們的社群！
-
-📊 **你的額度：**
-• 基礎額度：\${user.is_vip ? '無限' : '10'}/天
-• 永久額度：+\${ad.reward_quota}
-
-💡 在社群中你可以：
-• 與其他用戶交流
-• 獲得最新功能更新
-• 參與活動獲得更多獎勵`,
-    success3: `成功刷新 \${result.updated} 個對話的歷史帖子。
-
-`,
-    success4: `成功刷新：\${result.updated} 個
-`,
-    text: `✅ 已設置為 \${flag} \${countryName}`,
-    text10: `✅ 是的，我了解並會注意安全`,
-    text11: `✅ 維護模式已啟用
-
-`,
-    text12: `✅ 維護模式已關閉
-
-`,
-    text13: `✅ 更準確的性格分析
-`,
-    text14: `✅ 已跳過教學
-
-`,
-    text15: `✅ 所有帖子都是最新的（免費用戶狀態正確）
-`,
-    text16: `✅ **無需刷新**
-
-`,
-    text17: `✅ 已選擇 \${gender ===`,
-    text18: `✅ 已選擇 \${mbtiType}`,
-    text19: `✅ **規則**：
-`,
-    text2: `✅ 興趣標籤已更新：
-
-\${interestsStr}`,
-    text20: `✅ **已封鎖此用戶**
-
-`,
-    text21: `✅ **退款申請已提交**
-
-`,
-    text22: `✅ **退款已批准**
-
-`,
-    text23: `✅ 沒有待處理的退款請求。`,
-    text24: `✅ 正在準備支付...`,
-    text25: `✅ 退款已批准
-
-`,
-    text26: `✅ 退款已拒絕
-
-`,
-    text27: `✅ 我已加入，領取獎勵`,
-    text28: `✅ 你選擇了：\${gender ===`,
-    text29: `✅ 反詐騙測驗通過！
-
-`,
-    text3: `✅ 匹配偏好已更新為：\${prefText}
-
-`,
-    text30: `✅ 語言已變更為 \${newLanguageName}`,
-    text4: `✅ 個人簡介已更新！
-
-\${text}`,
-    text5: `✅ 開發模式：數據已重置
-
-`,
-    text6: `✅ 地區已更新為：\${text}`,
-    text7: `✅ 快速了解基本性格類型
-
-`,
-    text8: `✅ **頭像已更新！**
-
-`,
-    text9: `✅ 推薦用於重新測試
-
-`,
-    verify: `✅ 驗證成功！獲得 +\${ad.reward_quota} 個永久額度！`,
-    verify2: `✅ 驗證成功！獲得 +\\\${ad.reward_quota} 個永久額度！`,
-    vip: `✅ 所有帖子都是最新的（VIP 狀態正確）
-`,
-    zodiac: `✅ 已清除星座選擇`,
-    success: {
-      appeal: `✅ 申訴 \\\${appealId} 已批准，用戶已解封`,
-      appeal2: `✅ 申訴 \\\${appealId} 已拒絕`,
-      appeal3: `✅ 目前沒有待審核的申訴`,
-      birthday: `✅ 生日已保存`,
-      bloodType: `✅ 血型已更新為 \\\${getBloodTypeDisplay(bloodType as any)}`,
-      bloodType2: `✅ 血型已清除`,
-      bottle: `✅ 獎勵已發放！+1 瓶子`,
-      bottle2: `✅ 開始新的漂流瓶`,
-      bottle3: `✅ 瓶子已創建
-`,
-      broadcast: `✅ 已清理 \\\${ids.length} 個卡住的廣播
-
-`,
-      broadcast2: `✅ 沒有需要清理的廣播
-
-`,
-      broadcast3: `✅ 過濾廣播已創建
-
-`,
-      broadcast4: `✅ 廣播已創建
-
-`,
-      cancel: `✅ 廣播已取消
-
-`,
-      complete: `✅ 廣播隊列處理完成
-
-`,
-      complete2: `✅ 系統維護已完成
-
-`,
-      complete3: `✅ 教學已完成！`,
-      complete4: `✅ **批量刷新完成**
-
-`,
-      complete5: `✅ **刷新完成**
-
-`,
-      complete6: `✅ 完成篩選，輸入內容`,
-      complete7: `✅ 篩選完成`,
-      confirm: `✅ 已確認！`,
-      confirm2: `✅ 安全確認完成`,
-      confirm3: `✅ 確認`,
-      conversation: `✅ **對話歷史已更新！**
-
-`,
-      gender: `✅ 性別已保存`,
-      invite: `✅ 已激活邀請：\\\${successfulInvites} / \\\${inviteLimit} 人
-`,
-      mbti: `✅ 你的 MBTI 類型已更新為：**\\\${mbtiType}**
-
-`,
-      mbti2: `✅ 你的 MBTI 類型已清除。
-
-`,
-      mbti3: `✅ MBTI 已清除`,
-      mbti4: `✅ 已清除 MBTI 選擇`,
-      mbti5: `✅ 你的 MBTI 類型：\\\${mbtiType}
-
-`,
-      message: `✅ 訊息已發送給 \\\${formatIdentifier(receiverIdentifier)}
-
-`,
-      message2: `✅ 語言已更新為：\\\${getLanguageDisplay(languageCode)}`,
-      message3: `✅ 已封鎖此使用者 (#\\\${conversationIdentifier})
-
-`,
-      message4: `✅ 獲得 +\\\${ad.reward_quota} 個永久額度！`,
-      message5: `✅ 已選擇 \\\${gender}`,
-      message6: `✅ 已選擇 \\\${bloodTypeDisplay[bloodType]}`,
-      message7: `✅ 已選擇 \\\${ZODIAC_NAMES[zodiacSign]}`,
-      message8: `✅ 你選擇了：\\\${gender}
-
-`,
-      nickname: `✅ 使用 Telegram 暱稱：\\\${suggestedNickname.substring(0, 18)}`,
-      nickname2: `✅ 暱稱已更新為：\\\${text}
-
-`,
-      register: `✅ 開發模式：跳過註冊
-
-`,
-      register2: `✅ 我了解了，繼續註冊`,
-      register3: `✅ 註冊完成！`,
-      report: `✅ **舉報已提交** (#\\\${conversationIdentifier})
-
-`,
-      report2: `✅ 舉報已提交`,
-      report3: `✅ **已舉報此用戶**
-
-`,
-      report4: `✅ 確定舉報`,
-      report5: `✅ 已舉報`,
-      settings: `✅ MBTI 已設定為 \\\${mbtiType}`,
-      settings2: `✅ 暱稱已設定`,
-      settings3: `✅ 篩選條件已設定：
-
-`,
-      settings4: `✅ 血型已設定為 \\\${getBloodTypeDisplay(bloodType as any)}`,
-      settings5: `✅ MBTI 類型已設定：\\\${mbtiType}
-
-`,
-      settings6: `✅ 已跳過血型設定`,
-      short: `✅ 正在發送...`,
-      short10: `✅ 正在加載...`,
-      short11: `✅ 🌈 任何人`,
-      short12: `✅ 👨 男生`,
-      short13: `✅ 👩 女生`,
-      short14: `✅ 繼續編輯`,
-      short15: `✅ 確定封鎖`,
-      short16: `✅ 已封鎖`,
-      short17: `✅ 我已閱讀並同意`,
-      short18: `✅ 已跳過`,
-      short19: `✅ 領取獎勵`,
-      short2: `✅ 繼續編輯草稿`,
-      short20: `✅ 維護中`,
-      short3: `✅ 草稿已刪除`,
-      short4: `✅ 驗證並領取`,
-      short5: `✅ 發送草稿`,
-      short6: `✅ 已記錄`,
-      short7: `✅ 正確`,
-      short8: `✅ 啟用`,
-      short9: `✅ 是`,
-      start: `✅ 請點擊按鈕開始觀看`,
-      start2: `✅ 開始快速版測驗`,
-      start3: `✅ 開始完整版測驗`,
-      start4: `✅ 開始測驗`,
-      text: `✅ 已設置為 \\\${flag} \\\${countryName}`,
-      text10: `✅ 是的，我了解並會注意安全`,
-      text11: `✅ 維護模式已啟用
-
-`,
-      text12: `✅ 維護模式已關閉
-
-`,
-      text13: `✅ 更準確的性格分析
-`,
-      text14: `✅ 已跳過教學
-
-`,
-      text15: `✅ 所有帖子都是最新的（免費用戶狀態正確）
-`,
-      text16: `✅ **無需刷新**
-
-`,
-      text17: `✅ 已選擇 \\\${gender ===`,
-      text18: `✅ 已選擇 \\\${mbtiType}`,
-      text19: `✅ **規則**：
-`,
-      text2: `✅ 興趣標籤已更新：
-
-\\\${interestsStr}`,
-      text20: `✅ **已封鎖此用戶**
-
-`,
-      text21: `✅ **退款申請已提交**
-
-`,
-      text22: `✅ **退款已批准**
-
-`,
-      text23: `✅ 沒有待處理的退款請求。`,
-      text24: `✅ 正在準備支付...`,
-      text25: `✅ 退款已批准
-
-`,
-      text26: `✅ 退款已拒絕
-
-`,
-      text27: `✅ 我已加入，領取獎勵`,
-      text28: `✅ 你選擇了：\\\${gender ===`,
-      text29: `✅ 反詐騙測驗通過！
-
-`,
-      text3: `✅ 匹配偏好已更新為：\\\${prefText}
-
-`,
-      text30: `✅ 語言已變更為 \\\${newLanguageName}`,
-      text4: `✅ 個人簡介已更新！
-
-\\\${text}`,
-      text5: `✅ 開發模式：數據已重置
-
-`,
-      text6: `✅ 地區已更新為：\\\${text}`,
-      text7: `✅ 快速了解基本性格類型
-
-`,
-      text8: `✅ **頭像已更新！**
-
-`,
-      text9: `✅ 推薦用於重新測試
-
-`,
-      vip: `✅ 所有帖子都是最新的（VIP 狀態正確）
-`,
-      zodiac: `✅ 已清除星座選擇`,
+    "invite": "🔄 Kutsu ystäviä (${inviteProgress.current}/${inviteProgress.max})\n",
+    "invite2": "Jokaisesta kutsutusta → päivittäinen kiintiö pysyvästi +1\n",
+    "message": "${icon} ${task.name} ${status} (+${task.reward_amount} pullopostia)\n",
+    "message2": "Klikkaa alla olevaa painiketta liittyäksesi XunNi:n viralliseen kanavaan viimeisimmistä uutisista ja tapahtumista!\n\n",
+    "name": {
+      "bio": "Täytä itseesittelysi",
+      "city": "Aseta alue",
+      "first_bottle": "Heitä ensimmäinen pullopostisi",
+      "first_catch": "Nosta ensimmäinen pullopostisi",
+      "first_conversation": "Aloita ensimmäinen keskustelusi",
+      "interests": "Täytä kiinnostustunnisteet",
+      "invite_progress": "Kutsu ystäviä",
+      "join_channel": "Liity viralliselle kanavalle"
     },
+    "profile": "👤 **Profiilitehtävät** (${completedCount}/${profileTasks.length})\n",
+    "quota": "Nykyinen päivittäinen kiintiö: ${calculateDailyQuota(user)} pullopostia\n",
+    "short": "(Vaatimaton kerätä)",
+    "short2": "Voimassa päivän ajan",
+    "short3": "Pysyvästi voimassa",
+    "task": "• Kutsu-tehtävä: ${inviteProgress.current}/${inviteProgress.max} kesken\n\n",
+    "task2": "📱 **Sosiaalisen median tehtävät** (${completedCount}/${socialTasks.length})\n",
+    "task3": "🎯 **Käyttäytymistehtävät** (${completedCount}/${actionTasks.length})\n",
+    "task4": "• Kertaluonteiset tehtävät: ${oneTimeCompleted}/${oneTimeTotal} suoritettu\n",
+    "task5": "🎉 Onnittelut tehtävän \"${task.name}\" suorittamisesta!\n\n",
+    "task6": "👥 **Kutsutehtävät** (käynnissä)\n",
+    "task7": "💡 Käytä /tasks nähdäksesi tehtäväkeskuksen",
+    "text": "Klikkaa 'Olen liittynyt' -painiketta liittymisen jälkeen saadaksesi palkintoja 🎁",
+    "text2": "📢 **Liity viralliselle kanavalle**\n\n",
+    "text3": "📊 **Kokonaisprosessi**\n",
+    "text4": "🎁 **Saadut palkinnot**\n"
   },
-  target: {
-    all: `所有用戶`,
-    nonVip: `非 VIP 用戶`,
-    unknown: `未知`,
-    vip: `VIP 用戶`,
+  "throw": {
+    "age": "• Ikähaarukka on samankaltainen ✓",
+    "back": "↩️ Palaa suodatinvalikkoon",
+    "bloodType": "🩸 **Verityyppisuodatin**\n\n",
+    "bloodType2": "• Veriryhmä: Suodata tietyn veriryhmän mukaan\n",
+    "bloodType3": "Valitse veriryhmä, johon haluat osua:",
+    "bloodType4": "🩸 Veriryhmäsuodatin",
+    "bloodType5": "🌈 Mikä tahansa veriryhmä",
+    "bottle": "💡 Tämä pulloposti on loistava valinta sinulle!\n\n",
+    "bottle10": "🍾 Pulloposti on heitetty!\n\n",
+    "bottle11": "🍾 Heitä viestipulloposti",
+    "bottle2": "🎯 Pullosi on lähetetty **3 vastaanottajalle**:\n",
+    "bottle3": "🍾 **Heitetään pullopostia...**\n\n",
+    "bottle4": "🍾 **Heitä pulloposti** #HEITÄ\n\n",
+    "bottle5": "Pullopostin ID: #${bottleId}\n\n",
+    "bottle6": "📝 **Ole hyvä ja syötä pullopostisi sisältö**\n\n",
+    "bottle7": "1️⃣ Klikkaa alla olevaa '🍾 Heitä viestipulloposti' -painiketta\n",
+    "bottle8": "📝 Ole hyvä ja syötä pullopostisi sisältö:\n\n",
+    "bottle9": "📝 Ole hyvä ja syötä viestipullopostisi sisältö:",
+    "cancel": "💡 Klikkaa valitaksesi tai peruuttaaksesi MBTI-tyypin:",
+    "cancel2": "💡 Klikkaa valitaksesi tai peruuttaaksesi horoskooppimerkin:",
+    "catch": "• Paikka 3: Julkinen allas (odottaa noutamista)\n\n",
+    "catch2": "• Paikka 2: Julkinen allas (odottaa noukkimista)\n",
+    "catch3": "• Paikka 1: Julkinen allas (odottaa noukkimista)\n",
+    "catch4": "🌊 Odotetaan kohtalon nappaavan...\n",
+    "complete": "⚙️ **Edistynyt suodatin**\n\n${summary}\n💡 Jatka suodattimen säätämistä tai viimeistelemistä:",
+    "complete2": "🎯 **1. osuma on valmis:**\n",
+    "complete3": "📝 Sinulla on kesken oleva luonnos\n\n",
+    "complete4": "⏳ Arvioitu valmistumisaika 3-5 sekuntia",
+    "complete5": "⏳ Arvioitu valmistumisaika 2-3 sekuntia",
+    "complete6": "⏳ Arvioitu valmistumisaika 1-2 sekuntia",
+    "conversation": "💬 Keskustelun tunniste: ${vipMatchInfo.conversationIdentifier}\n\n",
+    "conversation2": "💡 Vinkki: Jokainen keskustelu on itsenäinen ja voi tapahtua samanaikaisesti\n\n",
+    "conversation3": "💡 Saatat saada **enintään 3 keskustelua**!\n",
+    "conversation4": "💬 Saatat saada **enintään 3 keskustelua**!\n",
+    "conversation5": "Käytä /chats nähdäksesi kaikki keskustelut\n\n",
+    "conversation6": "📊 Käytä /chats nähdäksesi kaikki keskustelut",
+    "conversation7": "Käytä /chats nähdäksesi kaikki keskustelut",
+    "currentSelection": "Nykyinen valinta: {genderText}",
+    "friendlyContent": "💬 Ystävällinen sisältö saa todennäköisemmin vastauksia",
+    "gender": "• Sukupuoli: ${selectedGender === 'male' ? '👨 Mies' : selectedGender === 'female' ? '👩 Nainen' : '🌈 Kuka vain'}\n",
+    "gender2": "👤 **Sukupuolisuodatin**\n\n",
+    "gender3": "• Sukupuoli: Suodata sukupuolen mukaan\n\n",
+    "gender4": "💡 Valitse haluamasi sukupuoli:",
+    "gender5": "👤 Sukupuolisuodatin",
+    "genderLabel": "• Sukupuoli: {gender}\n",
+    "mbti": "• MBTI: ${selectedMBTI.length > 0 ? selectedMBTI.join(', ') : 'Ei rajoituksia'}\n",
+    "mbti2": "Valittu: ${selectedMBTI.length > 0 ? selectedMBTI.join(', ') : 'Ei mitään'}\n\n",
+    "mbti3": "Valittu: ${selectedMBTI.length > 0 ? selectedMBTI.join(",
+    "mbti4": "🧠 **MBTI-suodatin**\n\n",
+    "mbti5": "• MBTI: Suodata erityisiä persoonallisuustyyppejä\n",
+    "mbti6": "• Korkea MBTI-ottuvuus ✓",
+    "mbti7": "🧠 MBTI Suodatin",
+    "mbtiLabel": "• MBTI: {mbti}\n",
+    "message": "Nykyinen valinta: ${currentGender === 'male' ? '👨 Mies' : currentGender === 'female' ? '👩 Nainen' : '🌈 Kuka vain'}\n\n",
+    "message2": "Nykyinen valinta: ${currentGender === 'male' ? '👨 Mies' : currentGender === 'female' ? '👩 Nainen' : '🌈 Kuka tahansa'}\n\n",
+    "message3": "Valittu: ${selectedZodiac.length > 0 ? selectedZodiac.map((z) => ZODIAC_NAMES[z]).join(",
+    "message4": ") : 'Ei mitään'} {bloodTypeDisplay[currentBloodType]} ${bloodTypeDisplay[currentBloodType]}\n\n",
+    "message5": "👤 Vastustaja: ${vipMatchInfo.matcherNickname}\n",
+    "message6": "\"Hei! Olen joku, joka rakastaa musiikkia ja elokuvia, ja toivon tapaavani samanhenkisiä ystäviä~\"\n\n",
+    "message7": "💡 Voit muokata otteluasetuksiasi /edit_profile\n\n",
+    "message8": "💬 Vastaa suoraan painamalla /reply aloittaaksesi keskustelun\n",
+    "nickname": "📝 Vastustajan lempinimi: ${matchedUserMaskedNickname}\n",
+    "quota": "• Lisää kiintiöitä (30 päivässä)\n",
+    "quota2": "🎁 Kutsu ystäviä lisäämään kiintiösi:\n",
+    "selected": "Valittu: {selected}",
+    "settings": "🧠 MBTI: ${mbti}\n",
+    "settings2": "⭐ Horoskooppi: ${zodiac}\n",
+    "settings3": "🧠 MBTI: \\$\n",
+    "settings4": "⭐ Horoskooppi: \\$\n",
+    "settings5": "Ei asetettu",
+    "settings6": "Ei asetettu",
+    "settings7": "Ei asetettu",
+    "settings8": "Ei asetettu",
+    "short": "• Sama kieli ✓",
+    "short10": "♋ Ravut",
+    "short11": "♌ Leijona",
+    "short12": "♍ Neitsyt",
+    "short13": "♎ Vaaka",
+    "short14": "♏ Skorpioni",
+    "short15": "♐ Jousimies",
+    "short16": "♑ Kauris",
+    "short17": "♒ Vesimies",
+    "short18": "♓ Kalat",
+    "short19": "Rikkomuskäyttäytyminen",
+    "short2": "🩸 AB-tyyppi",
+    "short20": "Rajoittamaton",
+    "short21": "Rajoittamaton",
+    "short22": "Rajoittamaton",
+    "short23": "Rajoittamaton",
+    "short3": "🌈 Kuka tahansa",
+    "short4": "🩸 A-tyyppi",
+    "short5": "🩸 B-tyyppi",
+    "short6": "🩸 O-tyyppi",
+    "short7": "♈ Oinas",
+    "short8": "♉ Härkä",
+    "short9": "♊ Kaksoset",
+    "start": "✍️ Käynnistä uudelleen",
+    "success": "Yhden pullopostin heittäminen = 3 objektia, parantaa voimakkaasti ottelun onnistumisprosenttia\n\n",
+    "success2": "✨ **VIP-oikeudet aktivoitu! Älykäs ottelu onnistui!**\n\n",
+    "success3": "🎯 Pullopostisi on otteltu onnistuneesti!\n\n",
+    "text": "💝 Yhdistämisprosentti: ${matchPercentage}%\n",
+    "text10": "🎯 Etsimme sinulle parasta ottelua\n\n",
+    "text11": "💬 Odotamme toisen osapuolen vastausta...\n",
+    "text12": "• Ilmaiset käyttäjät: enintään +7\n",
+    "text13": "• Älä sisällytä henkilökohtaisia yhteystietoja\n\n",
+    "text14": "💡 **Kaksi syöttötapaa**：\n",
+    "text15": "📊 Ilmaiset käyttäjät: 3 päivässä\n",
+    "text16": "Valitse suodatuskriteerit:\n\n",
+    "text17": "• Edistynyt suodatus ja käännös\n\n",
+    "text18": "Luontiaika: ${age}\n",
+    "text19": "Käytä /vip päivittääksesi nyt",
+    "text2": "• 🆕 Kolminkertainen altistusmahdollisuus (1 kerta = 3 kohdetta)\n",
+    "text20": "💬 **Esimerkki**：\n",
+    "text21": "Käytä /vip saadaksesi lisätietoja",
+    "text22": "Haluatko jatkaa tämän luonnoksen muokkaamista?",
+    "text23": "💡 Voit yhdistää useita kriteerejä",
+    "text24": "Nykyiset suodatuskriteerit:\n\n",
+    "text3": "💡 Tämä voi kestää muutaman sekunnin, etsimme sinulle sopivimpia henkilöitä",
+    "text4": "Nykyinen valinta: ${currentGender ===",
+    "text5": "🎯 Etsitään kohdetta: ${targetText}\n",
+    "text6": "🎯 Etsimme sinulle 3 parasta ottelua\n\n",
+    "text7": "📨 **2 lisäpaikkaa odottaa:**\n",
+    "text8": "🔍 Älykkäästi ottelun parhaita vaihtoehtoja...\n\n",
+    "text9": "Sisältöesikatselu: ${preview}\n\n",
+    "throw": "📊 Tänään lähetetty: ${quotaDisplay}\n\n",
+    "tips": "💡 Vinkki: Mitä tarkemmin kirjoitat, sitä helpompi on löytää sopivia keskustelukumppaneita",
+    "unlimited": "Rajoittamaton",
+    "vip": "💎 VIP-käyttäjiä: 30 päivässä (kolme kertaa altistuminen)\n\n",
+    "vip2": "💎 **Päivitys VIP:ksi myöntää kolminkertaisen altistusmahdollisuuden!**\n",
+    "vip3": "⚙️ **Kehittynyt suodatus (VIP-yksinoikeus)**\n\n",
+    "vip4": "• VIP-käyttäjät: jopa +70\n\n",
+    "vip5": "✨ **VIP-privilegiejä aktivoitu!**\n\n",
+    "vip6": "💡 Päivitä VIP:ksi saadaksesi:\n",
+    "vip7": "✨ Aktivoidaan VIP-edut\n",
+    "zodiac": "• Horoskooppi: ${selectedZodiac.length > 0 ? selectedZodiac.map((z) => ZODIAC_NAMES[z]).join(', ') : 'Ei rajoitusta'}\n",
+    "zodiac2": "⭐ Horoskooppi: ${matchResult.user.zodiac ||",
+    "zodiac3": "⭐ Horoskooppi: ${user.zodiac_sign ||",
+    "zodiac4": "⭐ **Horoskooppisuodatin**\n\n",
+    "zodiac5": "• Horoskooppi: suodata tietyt horoskooppimerkit\n",
+    "zodiac6": "• Erittäin yhteensopivat horoskoopit ✓",
+    "zodiac7": "⭐ Horoskooppisuodatus",
+    "zodiacLabel": "• Horoskooppi: {zodiac}\n"
   },
-  tasks: {
-    bottle: `獎勵：+\${task.reward_amount} 瓶子（\${rewardTypeText}）
-
-`,
-    bottle2: `獎勵：+\${task.reward_amount} 瓶子（\${task.reward_type ===`,
-    bottle3: `\${icon} \${task.name} (+\${task.reward_amount} 瓶子)
-`,
-    bottle4: `• 永久獎勵：\${inviteProgress.current} 個瓶子（每天發放）
-`,
-    bottle5: `• 一次性獎勵：\${todayRewardCount} 個瓶子（當天有效）
-`,
-    bottle6: `📋 **任務中心**
-
-完成任務獲得額外瓶子！
-
-`,
-    invite: `🔄 邀請好友 (\${inviteProgress.current}/\${inviteProgress.max})
-`,
-    invite2: `每邀請 1 人 → 每日額度永久 +1
-`,
-    message: `\${icon} \${task.name} \${status} (+\${task.reward_amount} 瓶子)
-`,
-    message2: `點擊下方按鈕加入 XunNi 官方頻道，獲取最新消息和活動！
-
-`,
-    profile: `👤 **個人資料任務** (\${completedCount}/\${profileTasks.length})
-`,
-    quota: `當前每日配額：\${calculateDailyQuota(user)} 個
-`,
-    short: `(待領取)`,
-    short2: `當天有效`,
-    short3: `永久有效`,
-    task: `• 邀請任務：\${inviteProgress.current}/\${inviteProgress.max} 進行中
-
-`,
-    task2: `📱 **社交媒體任務** (\${completedCount}/\${socialTasks.length})
-`,
-    task3: `🎯 **行為任務** (\${completedCount}/\${actionTasks.length})
-`,
-    task4: `• 一次性任務：\${oneTimeCompleted}/\${oneTimeTotal} 已完成
-`,
-    task5: `🎉 恭喜完成任務「\${task.name}」！
-
-`,
-    task6: `👥 **邀請任務** (持續進行中)
-`,
-    task7: `💡 使用 /tasks 查看任務中心`,
-    text: `加入後點擊「我已加入」按鈕領取獎勵 🎁`,
-    text2: `📢 **加入官方頻道**
-
-`,
-    text3: `📊 **總進度**
-`,
-    text4: `🎁 **已獲得**
-`,
-    description: {
-      bio: `寫下你的故事（至少 20 字）`,
-      city: `找到同城的朋友`,
-      first_bottle: `開始你的交友之旅`,
-      first_catch: `看看別人的故事`,
-      first_conversation: `建立你的第一個連接（長按訊息 → 選擇「回覆」）`,
-      interests: `讓別人更了解你`,
-      invite_progress: `每邀請 1 人，每日額度永久 +1（免費最多 10 人，VIP 最多 100 人）`,
-      join_channel: `獲取最新消息和活動`,
-    },
-    name: {
-      bio: `完善自我介紹`,
-      city: `設定地區`,
-      first_bottle: `丟出第一個瓶子`,
-      first_catch: `撿起第一個瓶子`,
-      first_conversation: `開始第一次對話`,
-      interests: `填寫興趣標籤`,
-      invite_progress: `邀請好友`,
-      join_channel: `加入官方頻道`,
-    },
+  "tutorial": {
+    "availableCommands": "Voit käyttää seuraavia komentoja milloin tahansa:",
+    "catchBottle": "🎣 **Nosta viestipullo**",
+    "catchBottleDesc": "Tutustu muiden viestipulloihin, vastaa kiinnostuksesi mukaan ja aloita keskustelu",
+    "clickButtonHint": "💡 Ole hyvä ja napsauta painiketta jatkaaksesi",
+    "commandCatch": "• /catch - Nosta viestipullo",
+    "commandHelp": "• /help - Näytä apu",
+    "commandMenu": "📋 Komentovalikko",
+    "commandTasks": "• /tasks - Näytä tehtävät",
+    "commandThrow": "• /throw - Heitä pois viestipullo",
+    "completeTasksForBottles": "💡 Suorita tehtävät ansaitaksesi ylimääräisiä pulloja",
+    "completed": "✅ Opastus suoritettu!",
+    "howToBecomeFriends": "💬 **Kuinka tehdä ystäviä?**",
+    "howToBecomeFriendsDesc": "Nostat pullon → Toinen osapuoli vastaa → Aloita anonyymi chat",
+    "readyToStart": "🎉 **Valmis! Aloitetaan ystävien tekeminen～**",
+    "skip": "Ohita",
+    "skipped": "✅ Opastus ohitettu",
+    "startUsing": "Aloita käyttö →",
+    "throwBottle": "📦 **Heitä pois viestipullo**",
+    "throwBottleDesc": "Kirjoita tunteesi tai ajatuksesi, ja järjestelmä auttaa sinua löytämään sopivan henkilön",
+    "unknownStep": "❌ Tuntematon opastuksen vaihe",
+    "viewTasks": "📋 Näytä tehtävät",
+    "welcome": "🎉 Onnittelut rekisteröinnin suorittamisesta!",
+    "whatIsXunNi": "🌊 **Mikä on XunNi?**",
+    "whatIsXunNiDesc": "Anonyymi viestipullo sosiaalinen alusta, joka auttaa sinua löytämään samanhenkisiä ystäviä MBTI:n ja horoskooppimerkkien kautta"
   },
-  throw: {
-    age: `• 年齡區間相近 ✓`,
-    back: `↩️ 返回篩選選單`,
-    bloodType: `🩸 **血型篩選**
-
-`,
-    bloodType2: `• 血型：篩選特定血型
-`,
-    bloodType3: `選擇你想要配對的血型：`,
-    bloodType4: `🩸 血型篩選`,
-    bloodType5: `🌈 任何血型`,
-    bottle: `
-💡 這個瓶子和你非常合拍！
-
-`,
-    bottle10: `🍾 漂流瓶已丟出！
-
-`,
-    bottle11: `🍾 丟漂流瓶`,
-    bottle2: `🎯 你的瓶子已發送給 **3 個對象**：
-`,
-    bottle3: `🍾 **正在丟出你的漂流瓶...**
-
-`,
-    bottle4: `🍾 **丟漂流瓶** #THROW
-
-`,
-    bottle5: `瓶子 ID：#\${bottleId}
-
-`,
-    bottle6: `📝 **請輸入你的漂流瓶內容**
-
-`,
-    bottle7: `1️⃣ 點擊下方「🍾 丟漂流瓶」按鈕
-`,
-    bottle8: `📝 請輸入你的漂流瓶內容：
-
-`,
-    bottle9: `📝 請輸入你的漂流瓶內容：`,
-    cancel: `💡 點擊選擇或取消 MBTI 類型：`,
-    cancel2: `💡 點擊選擇或取消星座：`,
-    catch: `• 槽位 3：公共池（等待撿起）
-
-`,
-    catch2: `• 槽位 2：公共池（等待撿起）
-`,
-    catch3: `• 槽位 1：公共池（等待撿起）
-`,
-    catch4: `🌊 等待有緣人撿起...
-`,
-    complete: `⚙️ **進階篩選**
-
-\${summary}
-💡 繼續調整或完成篩選：`,
-    complete2: `🎯 **第 1 個配對已完成：**
-`,
-    complete3: `📝 你有一個未完成的草稿
-
-`,
-    complete4: `⏳ 預計 3-5 秒完成`,
-    complete5: `⏳ 預計 2-3 秒完成`,
-    complete6: `⏳ 預計 1-2 秒完成`,
-    conversation: `💬 對話標識符：\${vipMatchInfo.conversationIdentifier}
-
-`,
-    conversation2: `💡 提示：每個對話都是獨立的，可以同時進行
-
-`,
-    conversation3: `💡 你可能會收到 **最多 3 個對話**！
-`,
-    conversation4: `💬 你可能會收到 **最多 3 個對話**！
-`,
-    conversation5: `使用 /chats 查看所有對話
-
-`,
-    conversation6: `📊 使用 /chats 查看所有對話`,
-    conversation7: `使用 /chats 查看所有對話`,
-    currentSelection: `當前選擇：{genderText}`,
-    friendlyContent: `💬 友善的內容更容易獲得回應`,
-    gender: `• 性別：\${selectedGender === 'male' ? '👨 男生' : selectedGender === 'female' ? '👩 女生' : '🌈 任何人'}
-`,
-    gender2: `👤 **性別篩選**
-
-`,
-    gender3: `• 性別：篩選性別
-
-`,
-    gender4: `💡 選擇你想要的性別：`,
-    gender5: `👤 性別篩選`,
-    genderLabel: `• 性別：{gender}
-`,
-    mbti: `• MBTI：\${selectedMBTI.length > 0 ? selectedMBTI.join(', ') : '無限制'}
-`,
-    mbti2: `已選擇：\${selectedMBTI.length > 0 ? selectedMBTI.join(', ') : '無'}
-
-`,
-    mbti3: `已選擇：\${selectedMBTI.length > 0 ? selectedMBTI.join(`,
-    mbti4: `🧠 **MBTI 篩選**
-
-`,
-    mbti5: `• MBTI：篩選特定性格類型
-`,
-    mbti6: `• MBTI 高度配對 ✓`,
-    mbti7: `🧠 MBTI 篩選`,
-    mbtiLabel: `• MBTI：{mbti}
-`,
-    message: `已選擇：\${selectedZodiac.length > 0 ? selectedZodiac.map((z) => ZODIAC_NAMES[z]).join(', ') : '無'}
-
-`,
-    message2: `當前選擇：\${currentGender === 'male' ? '👨 男生' : currentGender === 'female' ? '👩 女生' : '🌈 任何人'}
-
-`,
-    message3: `已選擇：\${selectedZodiac.length > 0 ? selectedZodiac.map((z) => ZODIAC_NAMES[z]).join(`,
-    message4: `當前選擇：\${bloodTypeDisplay[currentBloodType]}
-
-`,
-    message5: `👤 對方：\${vipMatchInfo.matcherNickname}
-`,
-    message6: `「你好！我是一個喜歡音樂和電影的人，希望認識志同道合的朋友～」
-
-`,
-    message7: `💡 可在 /edit_profile 中修改匹配偏好
-
-`,
-    message8: `💬 直接按 /reply 回覆訊息開始聊天
-`,
-    nickname: `📝 對方暱稱：\${matchedUserMaskedNickname}
-`,
-    quota: `• 更多配額（30 個/天）
-`,
-    quota2: `🎁 邀請好友可增加配額：
-`,
-    selected: `已選擇：{selected}`,
-    settings: `🧠 MBTI：\${mbti}
-`,
-    settings2: `⭐ 星座：\${zodiac}
-`,
-    settings3: `🧠 MBTI：\\$
-`,
-    settings4: `⭐ 星座：\\$
-`,
-    settings5: `未設定`,
-    settings6: `未設定`,
-    settings7: `未設定`,
-    settings8: `未設定`,
-    short: `• 語言相同 ✓`,
-    short10: `♋ 巨蟹座`,
-    short11: `♌ 獅子座`,
-    short12: `♍ 處女座`,
-    short13: `♎ 天秤座`,
-    short14: `♏ 天蠍座`,
-    short15: `♐ 射手座`,
-    short16: `♑ 摩羯座`,
-    short17: `♒ 水瓶座`,
-    short18: `♓ 雙魚座`,
-    short19: `違規行為`,
-    short2: `🩸 AB 型`,
-    short20: `無限制`,
-    short21: `無限制`,
-    short22: `無限制`,
-    short23: `無限制`,
-    short3: `🌈 任何人`,
-    short4: `🩸 A 型`,
-    short5: `🩸 B 型`,
-    short6: `🩸 O 型`,
-    short7: `♈ 白羊座`,
-    short8: `♉ 金牛座`,
-    short9: `♊ 雙子座`,
-    start: `✍️ 重新開始`,
-    success: `一次丟瓶子 = 3 個對象，大幅提升配對成功率
-
-`,
-    success2: `✨ **VIP 特權啟動！智能配對成功！**
-
-`,
-    success3: `🎯 你的漂流瓶已被配對成功！
-
-`,
-    text: `💝 匹配度：\${matchPercentage}%
-`,
-    text10: `🎯 正在為你尋找最佳配對對象
-
-`,
-    text11: `
-💬 等待對方回覆中...
-`,
-    text12: `• 免費用戶：最多 +7 個
-`,
-    text13: `• 不要包含個人聯絡方式
-
-`,
-    text14: `💡 **兩種輸入方式**：
-`,
-    text15: `📊 免費用戶：3 個/天
-`,
-    text16: `選擇你想要篩選的條件：
-
-`,
-    text17: `• 進階篩選和翻譯
-
-`,
-    text18: `創建時間：\${age}
-`,
-    text19: `使用 /vip 立即升級`,
-    text2: `• 🆕 三倍曝光機會（1 次 = 3 個對象）
-`,
-    text20: `💬 **範例**：
-`,
-    text21: `使用 /vip 了解更多`,
-    text22: `要繼續編輯這個草稿嗎？`,
-    text23: `💡 可以組合多個條件`,
-    text24: `當前篩選條件：
-
-`,
-    text3: `💡 這可能需要幾秒鐘，我們正在為你找到最合適的人`,
-    text4: `當前選擇：\${currentGender ===`,
-    text5: `🎯 尋找對象：\${targetText}
-`,
-    text6: `🎯 正在為你尋找 3 個最佳配對對象
-
-`,
-    text7: `📨 **另外 2 個槽位等待中：**
-`,
-    text8: `🔍 正在智能匹配最佳對象...
-
-`,
-    text9: `內容預覽：\${preview}
-
-`,
-    throw: `📊 今日已丟：\${quotaDisplay}
-
-`,
-    tips: `💡 提示：寫得越詳細，越容易找到合適的聊天對象`,
-    unlimited: `無限制`,
-    vip: `💎 VIP 用戶：30 個/天（三倍曝光）
-
-`,
-    vip2: `💎 **升級 VIP 可獲得三倍曝光機會！**
-`,
-    vip3: `⚙️ **進階篩選（VIP 專屬）**
-
-`,
-    vip4: `• VIP 用戶：最多 +70 個
-
-`,
-    vip5: `✨ **VIP 特權啟動！**
-
-`,
-    vip6: `💡 升級 VIP 獲得：
-`,
-    vip7: `✨ VIP 特權啟動中
-`,
-    zodiac: `• 星座：\${selectedZodiac.length > 0 ? selectedZodiac.map((z) => ZODIAC_NAMES[z]).join(', ') : '無限制'}
-`,
-    zodiac2: `⭐ 星座：\${matchResult.user.zodiac ||`,
-    zodiac3: `⭐ 星座：\${user.zodiac_sign ||`,
-    zodiac4: `⭐ **星座篩選**
-
-`,
-    zodiac5: `• 星座：篩選特定星座
-`,
-    zodiac6: `• 星座高度相容 ✓`,
-    zodiac7: `⭐ 星座篩選`,
-    zodiacLabel: `• 星座：{zodiac}
-`,
+  "vip": {
+    "admin": "⏳ Sinulla on odottava hyvityspyyntö, ole kärsivällinen, kun järjestelmänvalvoja tarkastelee sitä.",
+    "bottle": "📝 Pullopostin sisältö: ${bottle.content.substring(0, 50)}${bottle.content.length > 50 ? '...' : ''}\n\n",
+    "bottle2": "📝 Pullon sisältö: ${bottle.content.substring(0, 50)}${bottle.content.length > 50 ?",
+    "bottle3": "Pullopostisi on noutanut ${maskedMatcherNickname}!\n\n",
+    "bottle4": "Järjestelmä on löytänyt pullopostin käyttäjältä ${maskedOwnerNickname}!\n\n",
+    "bottle5": "📝 Pullopostin sisältö: ${bottle.content}\n\n",
+    "bottle6": "• 🆕 Kolminkertainen altistumismahdollisuus! Yhden pullon heittäminen laukaisee 3 kohdetta\n",
+    "cancelReminderButton": "❌ Keskustellaan myöhemmin",
+    "conversation": "💬 Keskustelun tunnus: ${conversationIdentifier}\n",
+    "conversation2": "🔄 Päivitetään keskusteluhistoriaasi, tyhjää avataria näytetään pian...\n\n",
+    "mbti": "• Suodatettavat vastaavuustavoitteet MBTI:n, horoskooppimerkin ja veriryhmän mukaan\n",
+    "mbti2": "• Suodatettavat vastaavuustavoitteet MBTI:n ja horoskooppimerkin mukaan\n",
+    "mbti3": "• Suodatettavat MBTI:n ja horoskooppimerkin mukaan\n",
+    "message": "Vanhentumisaika: ${new Date(sub.expire_date).toLocaleDateString('zh-TW')}\n\n",
+    "message10": "Hakemusnumero: #${result.meta.last_row_id}\n",
+    "message11": "Hyvitys summa: ${request.amount_stars} ⭐\n",
+    "message12": "💬 **Pitkä paina tätä viestiä, valitse 'Vastaa', ja syötä sisältösi aloittaaksesi keskustelun toisen osapuolen kanssa**",
+    "message13": "💡 Turvallinen ja kätevä maksu Telegram Starsilla\n\n",
+    "message14": "💡 Tämä on 1. parisi, 2 paikkaa odottaa\n\n",
+    "message2": "Hakemusaika: ${new Date(req.requested_at).toLocaleString('zh-TW')}\n",
+    "message3": "Nykyinen valinta: ${bloodTypeDisplay[currentBloodType]} {expireDate} ${expireDate}\n\n",
+    "message4": "Voimassaoloaika: ${expireDate}\n\n",
+    "message5": "Maksuaika: ${paymentDate.toLocaleDateString('zh-TW')}\n",
+    "message6": "📋 **Odottaa palautuspyyntöjä** (${requests.results.length})\n\n",
+    "message7": "Maksutunnus: ${payment.telegram_payment_charge_id}",
+    "message8": "Hinta: ${priceStars} ⭐ Telegram Stars / kuukausi\n",
+    "message9": "Maksuaika: ${paymentDate.toLocaleDateString(",
+    "purchaseCancelled": "✅ Ostos peruutettu",
+    "quota": "• Päivittäinen kiintiö 30 viestipulloa (Kutsu ystäviä lisäämään, max 100 päivässä)\n",
+    "quota2": "• Päivittäinen kiintiö 30 viestipulloa (max 100 päivässä)\n",
+    "refundAdminCommands": "Vanhentumisaika: ${expireDate} <ID> `/admin_approve_refund <ID>` `/admin_reject_refund <ID> <syy>` `/admin_reject_refund <ID> <原因>`",
+    "refundApproved": "✅ **Hyvitys hyväksytty**\n\nHyvitysmäärä: ${amount} ⭐\nHyvitys hyvitetään 1-3 arkipäivän kuluessa.\n\nVIP-jäsenyytesi on peruutettu.\n\nKiitos ymmärryksestäsi!",
+    "refundApprovedAdmin": "✅ Hyvitys hyväksytty\n\nPyyntö ID: #${requestId}\nKäyttäjä ID: ${userId}\nMäärä: ${amount} ⭐",
+    "refundExpired": "❌ Hyvityspyyntö ylittää aikarajan\n\nMaksupäivämäärä: ${paymentDate}\nHyvityksen määräaika: 7 päivän sisällä maksusta\n\n💡 Jos on erityisiä olosuhteita, ota yhteyttä asiakaspalveluun.",
+    "refundFailed": "❌ Hyvitys epäonnistui: ${error}",
+    "refundNoPayment": "❌ Maksutietueita ei löytynyt.",
+    "refundNoPending": "✅ Ei odottavia hyvityspyyntöjä.",
+    "refundPending": "⏳ Sinulla on odottava hyvityspyyntö, ole kärsivällinen odotellessasi ylläpitäjän arviointia.",
+    "refundPendingList": "📋 **Odottavat hyvityspyynnöt** (${count})",
+    "refundReasonTooShort": "❌ Hyvityksen syyn on oltava vähintään 10 merkkiä, anna se uudelleen:",
+    "refundRejected": "❌ **Hyvityspyyntö hylättiin**\n\nSyy: ${reason}\n\nJos sinulla on kysymyksiä, ota yhteyttä asiakaspalveluun.",
+    "refundRejectedAdmin": "✅ Hyvitys hylätty\n\nPyyntö ID: #${requestId}\nKäyttäjä ID: ${userId}",
+    "refundRequestItem": "**#${id}** - ${nickname}\nKäyttäjä ID: `${userId}`\nMäärä: ${amount} ⭐\nSyy: ${reason}\nPyyntöaika: ${requestedAt}",
+    "refundRequestNotFound": "❌ Hyvityspyyntö ei ole olemassa tai se on käsitelty",
+    "refundRequestReason": "📝 **Pyyntö hyvityksestä**\n\nOle hyvä ja anna hyvityksen syy (vähintään 10 merkkiä):",
+    "refundSubmitFailed": "❌ Toimitus epäonnistui, yritä myöhemmin uudelleen.",
+    "refundSubmitted": "✅ **Hyvityspyyntö lähetetty**\n\nPyyntönumero: #${requestId}\nTila: Odottava arviointi\n\nKäsittelemme pyyntösi 1-3 arkipäivän kuluessa.\nTulos ilmoitetaan sinulle Botin kautta.\n\nKiitos kärsivällisyydestäsi!",
+    "reminderCancelled": "✅ Muistutus peruutettu",
+    "reminderDaysLeft": "VIP-jäsenyytesi loppuu ${days} päivän kuluttua.",
+    "reminderExpireDate": "Erääntymispäivämäärä: ${date}",
+    "reminderExpiringToday": "⚠️ **VIP Tänään loppumassa**",
+    "reminderExpiringTodayDesc": "VIP-jäsenyytesi loppuu tänään.",
+    "reminderGracePeriod": "📌 Armoaika: Uudistaminen 3 päivän kuluessa vanhentumisesta ei keskeytä palvelua.",
+    "reminderRenewHint": "💡 Uudista nyt nauttiaksesi keskeytymättömästä VIP-palvelusta!",
+    "reminderRenewHint2": "💡 Uudista nyt jatkaaksesi VIP-etuuksien nauttimista!",
+    "reminderTitle": "⏰ **VIP-erääntymismuistutus**",
+    "renewButton": "💳 Uudista nyt (${stars} ⭐)",
+    "renewalProcessing": "Uudistaminen käsittelyssä...",
+    "settings": "💡 Peruaksesi tilauksesi, siirry Telegram Asetuksiin > Tilauksen hallinta\n\n",
+    "settings2": "💡 Peruaksesi tilauksen, siirry Telegramin asetuksiin > Tilauksen hallinta",
+    "settings3": "💡 Voit peruuttaa tilauksen milloin tahansa Telegramin asetuksissa",
+    "short": "(noin 5 USD)",
+    "short2": "Kiitos kärsivällisyydestäsi!",
+    "short3": "Kiitos ymmärryksestäsi!",
+    "short4": "• Hyväksy: \\",
+    "short5": "• Hylkää: \\",
+    "start": "🚀 Aloita käyttö nyt: /throw",
+    "success": "🎯 **VIP-älykäs yhteensovitus onnistui!**\n\n",
+    "success2": "🎉 **Automaattinen uusiminen onnistui!**\n\n",
+    "success3": "🎉 **Älykäs yhteensovitus onnistui!**\n\n",
+    "success4": "🎉 **Tilauksen onnistui!**\n\n",
+    "text": "- Etusijapääsy OpenAI GPT-mallin käännöksiin (korkea laatu)\n",
+    "text10": "Käsittelemme pyyntösi 1-3 arkipäivän kuluessa.\n",
+    "text11": "Vanhentumisaika: ${expireDate}\n\n",
+    "text12": "Palautukset hyvitetään 1-3 arkipäivän kuluessa.\n\n",
+    "text13": "Pyyntö ID: #${requestId}\n",
+    "text14": "└ 1 älykäs vastaavuus + 2 julkista allasta\n",
+    "text15": "Saat tiedot käsittelyn tuloksista Botin kautta.\n\n",
+    "text16": "Ole hyvä ja anna hyvityksen syy (vähintään 10 merkkiä):",
+    "text17": "Syy: ${req.reason}\n",
+    "text18": "Palautuksen määräaika: 7 päivän kuluessa maksusta\n\n",
+    "text19": "Tilisi on palautettu ilmaiseksi käyttäjäksi.\n\n",
+    "text2": "• Automattinen käännös 34 kielelle (OpenAI GPT etusijalla)\n",
+    "text20": "💡 Haluatko uusia tai päivittää?\n\n",
+    "text21": "💡 Ole hyvä ja ota yhteyttä asiakastukeen erityistapauksissa.",
+    "text22": "Syy: ${reason}\n\n",
+    "text23": "• Vapaa profiilikuva 🆕\n",
+    "text24": "Tämä voi viedä muutaman sekunnin, ole hyvä ja odota.",
+    "text25": "📝 **Pyyntö palautukseen**\n\n",
+    "text26": "• Automattinen käännös 34 kielelle\n",
+    "text27": "💡 Suorita seuraavalla komennolla:\n",
+    "text28": "(Testihinta)",
+    "text29": "Jos sinulla on kysymyksiä, ota yhteyttä asiakastukeen.",
+    "text3": "Määrä: ${request.amount_stars} ⭐",
+    "text30": "Tila: Odottaa tarkistusta\n\n",
+    "text4": "🔄 **Automaattinen uusiminen**: Kuukausimaksut automaattisesti, ei manuaalisia uusimisia vaadita\n",
+    "text5": "Määrä: ${req.amount_stars} ⭐\n",
+    "text6": "Käyttäjä-ID: ${request.user_id}\n",
+    "text7": "💳 Uusi Nyt (${priceStars} ⭐)",
+    "text8": "Käyttäjä-ID: ${request.user_id}",
+    "text9": "📌 Armon aika: Palvelua ei keskeytetä, jos se uusitaan 3 päivän kuluessa vanhentumisesta.",
+    "viewVipCommand": "Voit tarkistaa VIP-edut milloin tahansa käyttämällä /vip komentoa.",
+    "vip": "VIP-jäsenyytesi päättyi ${new Date(sub.expire_date).toLocaleDateString('zh-TW')}\n\n",
+    "vip10": "💎 **Päivitä VIP-jäsenyyteen**\n\n",
+    "vip11": "😢 **VIP-jäsenyys on vanhentunut**\n\n",
+    "vip12": "Päivitä VIP-jäsenyyteen ja nauti seuraavista eduista:\n",
+    "vip13": "⏰ **VIP-vanhenemisilmoitus**\n\n",
+    "vip14": "VIP-jäsenyytesi vanhenee tänään.\n\n",
+    "vip15": "VIP-tilauksesi on uusittu automaattisesti!\n",
+    "vip16": "VIP-jäsenyytesi on peruutettu.\n\n",
+    "vip17": "XunNi VIP -tilaus (Kuukausi)",
+    "vip18": "✨ VIP-edut jatkuvat:\n",
+    "vip19": "Olet nyt VIP-jäsen!\n",
+    "vip2": "VIP-jäsenyytesi vanhentui ${new Date(sub.expire_date).toLocaleDateString(",
+    "vip20": "✨ VIP-edut on aktivoitu:\n",
+    "vip21": "VIP-jäsenyys (30 päivää)",
+    "vip22": "🎁 VIP-edut:\n",
+    "vip23": "XunNi VIP -uusiminen",
+    "vip24": "XunNi VIP -osto",
+    "vip25": "VIP-tilaus",
+    "vip3": "VIP-jäsenyytesi vanhenee ${daysLeft} päivän kuluttua.\n\n",
+    "vip4": "🔄 Uusi VIP (${priceStars} ⭐)",
+    "vip5": "💳 Osta VIP (${priceStars} ⭐)",
+    "vip6": "Tilaa XunNi VIP-jäsenyys, joka uusitaan automaattisesti joka kuukausi!\n\n",
+    "vip7": "💡 Uusi nyt nauttiaksesi keskeytymättömästä VIP-palvelusta!",
+    "vip8": "💡 Uusi nyt jatkaaksesi VIP-etujen nauttimista!\n",
+    "vip9": "✨ **Olet jo VIP-jäsen**\n\n"
   },
-  tutorial: {
-    availableCommands: `你可以隨時使用以下命令：`,
-    catchBottle: `🎣 **撿起漂流瓶**`,
-    catchBottleDesc: `看看別人的漂流瓶，有興趣就回覆開始聊天`,
-    clickButtonHint: `💡 請點擊按鈕繼續`,
-    commandCatch: `• /catch - 撿起漂流瓶`,
-    commandHelp: `• /help - 查看幫助`,
-    commandMenu: `📋 命令選單`,
-    commandTasks: `• /tasks - 查看任務`,
-    commandThrow: `• /throw - 丟出漂流瓶`,
-    completeTasksForBottles: `💡 完成任務可獲得額外瓶子`,
-    completed: `✅ 教學已完成！`,
-    howToBecomeFriends: `💬 **如何成為朋友？**`,
-    howToBecomeFriendsDesc: `你撿瓶回覆 → 對方也回覆 → 開始匿名聊天`,
-    readyToStart: `🎉 **準備好了！開始交朋友吧～**`,
-    skip: `跳過`,
-    skipped: `✅ 已跳過教學`,
-    startUsing: `開始使用 →`,
-    throwBottle: `📦 **丟出漂流瓶**`,
-    throwBottleDesc: `寫下你的心情或想法，系統會幫你找到合適的人`,
-    unknownStep: `❌ 未知的教學步驟`,
-    viewTasks: `📋 查看任務`,
-    welcome: `🎉 恭喜完成註冊！`,
-    whatIsXunNi: `🌊 **XunNi 是什麼？**`,
-    whatIsXunNiDesc: `匿名漂流瓶交友平台，透過 MBTI 和星座幫你找到志同道合的朋友`,
+  "vipTripleBottle": {
+    "bottleContent": "📝 Pullopostin sisältö: {content}\n\n",
+    "bottlePicked": "Pullopostisi on noutanut {maskedMatcherNickname}!\n\n",
+    "conversationIdentifier": "💬 Keskustelun tunniste: {conversationIdentifier}\n",
+    "firstMatch": "💡 Tämä on 1. ottelusi, 2 paikkaa jäljellä\n\n",
+    "foundBottle": "Järjestelmä on löytänyt pullon käyttäjältä {maskedOwnerNickname}!\n\n",
+    "matchSuccess": "🎯 **VIP-älykäs paritus onnistui!**\n\n",
+    "replyHint": "💬 **Pidä tätä viestiä pitkään painettuna, valitse 'Vastaa', syötä sitten sisältösi aloittaaksesi keskustelun toisen osapuolen kanssa**",
+    "slotsWaiting": "Jäljellä {remaining} paikkaa\n\n",
+    "smartMatch": "🎉 **Älykäs paritus onnistui!**\n\n",
+    "viewChats": "Käytä /chats nähdäksesi kaikki keskustelut\n\n"
   },
-  vip: {
-    admin: `⏳ 你已有待處理的退款請求，請耐心等待管理員審核。`,
-    bottle: `📝 瓶子內容：\${bottle.content.substring(0, 50)}\${bottle.content.length > 50 ? '...' : ''}
-
-`,
-    bottle2: `📝 瓶子內容：\${bottle.content.substring(0, 50)}\${bottle.content.length > 50 ?`,
-    bottle3: `你的瓶子已被 \${maskedMatcherNickname} 撿起！
-
-`,
-    bottle4: `系統為你找到了 \${maskedOwnerNickname} 的瓶子！
-
-`,
-    bottle5: `📝 瓶子內容：\${bottle.content}
-
-`,
-    bottle6: `• 🆕 三倍曝光機會！一次丟瓶子觸發 3 個對象
-`,
-    cancelReminderButton: `❌ 稍後再說`,
-    conversation: `💬 對話標識符：\${conversationIdentifier}
-`,
-    conversation2: `🔄 正在更新您的對話歷史，清晰頭像即將顯示...
-
-`,
-    mbti: `• 可篩選配對對象的 MBTI、星座、血型
-`,
-    mbti2: `• 可篩選配對對象的 MBTI 和星座
-`,
-    mbti3: `• 可篩選 MBTI 和星座
-`,
-    message: `到期時間：\${new Date(sub.expire_date).toLocaleDateString('zh-TW')}
-
-`,
-    message10: `申請編號：#\${result.meta.last_row_id}
-`,
-    message11: `退款金額：\${request.amount_stars} ⭐
-`,
-    message12: `💬 **請長按此訊息，選擇「回覆」後輸入內容和對方開始聊天**`,
-    message13: `💡 使用 Telegram Stars 安全便捷支付
-
-`,
-    message14: `💡 這是你的第 1 個配對，還有 2 個槽位等待中
-
-`,
-    message2: `申請時間：\${new Date(req.requested_at).toLocaleString('zh-TW')}
-`,
-    message3: `新到期時間：\${expireDate}
-
-`,
-    message4: `到期時間：\${expireDate}
-
-`,
-    message5: `支付時間：\${paymentDate.toLocaleDateString('zh-TW')}
-`,
-    message6: `📋 **待處理退款請求** (\${requests.results.length})
-
-`,
-    message7: `支付 ID：\${payment.telegram_payment_charge_id}`,
-    message8: `價格：\${priceStars} ⭐ Telegram Stars / 月
-`,
-    message9: `支付時間：\${paymentDate.toLocaleDateString(`,
-    purchaseCancelled: `✅ 已取消購買`,
-    quota: `• 每天 30 個漂流瓶配額（邀請好友可增加，最高 100 個/天）
-`,
-    quota2: `• 每天 30 個漂流瓶配額（最高 100 個/天）
-`,
-    refundAdminCommands: `💡 使用以下命令處理：
-• 批准：\`/admin_approve_refund <ID>\`
-• 拒絕：\`/admin_reject_refund <ID> <原因>\``,
-    refundApproved: `✅ **退款已批准**
-
-退款金額：\${amount} ⭐
-退款將在 1-3 個工作日內到帳。
-
-你的 VIP 會員已取消。
-
-感謝你的理解！`,
-    refundApprovedAdmin: `✅ 退款已批准
-
-請求 ID：#\${requestId}
-用戶 ID：\${userId}
-金額：\${amount} ⭐`,
-    refundExpired: `❌ 退款申請超過時限
-
-支付時間：\${paymentDate}
-退款時限：支付後 7 天內
-
-💡 如有特殊情況，請聯繫客服。`,
-    refundFailed: `❌ 退款失敗：\${error}`,
-    refundNoPayment: `❌ 找不到支付記錄。`,
-    refundNoPending: `✅ 沒有待處理的退款請求。`,
-    refundPending: `⏳ 你已有待處理的退款請求，請耐心等待管理員審核。`,
-    refundPendingList: `📋 **待處理退款請求** (\${count})`,
-    refundReasonTooShort: `❌ 退款原因至少需要 10 個字，請重新輸入：`,
-    refundRejected: `❌ **退款申請已被拒絕**
-
-原因：\${reason}
-
-如有疑問，請聯繫客服。`,
-    refundRejectedAdmin: `✅ 退款已拒絕
-
-請求 ID：#\${requestId}
-用戶 ID：\${userId}`,
-    refundRequestItem: `**#\${id}** - \${nickname}
-用戶 ID：\`\${userId}\`
-金額：\${amount} ⭐
-原因：\${reason}
-申請時間：\${requestedAt}`,
-    refundRequestNotFound: `❌ 退款請求不存在或已處理`,
-    refundRequestReason: `📝 **申請退款**
-
-請輸入退款原因（至少 10 個字）：`,
-    refundSubmitFailed: `❌ 提交失敗，請稍後再試。`,
-    refundSubmitted: `✅ **退款申請已提交**
-
-申請編號：#\${requestId}
-狀態：待審核
-
-我們會在 1-3 個工作日內處理你的申請。
-處理結果會通過 Bot 通知你。
-
-感謝你的耐心等待！`,
-    reminderCancelled: `✅ 已取消提醒`,
-    reminderDaysLeft: `你的 VIP 會員將在 \${days} 天後到期。`,
-    reminderExpireDate: `到期時間：\${date}`,
-    reminderExpiringToday: `⚠️ **VIP 今天到期**`,
-    reminderExpiringTodayDesc: `你的 VIP 會員今天到期。`,
-    reminderGracePeriod: `📌 寬限期：到期後 3 天內續費不會中斷服務。`,
-    reminderRenewHint: `💡 立即續費，享受不間斷的 VIP 服務！`,
-    reminderRenewHint2: `💡 立即續費，繼續享受 VIP 權益！`,
-    reminderTitle: `⏰ **VIP 到期提醒**`,
-    renewButton: `💳 立即續費 (\${stars} ⭐)`,
-    renewalProcessing: `正在處理續費...`,
-    settings: `💡 如需取消訂閱，請前往 Telegram 設定 > 訂閱管理
-
-`,
-    settings2: `💡 如需取消訂閱，請前往 Telegram 設定 > 訂閱管理`,
-    settings3: `💡 可隨時在 Telegram 設定中取消訂閱`,
-    short: `（約 5 USD）`,
-    short2: `感謝你的耐心等待！`,
-    short3: `感謝你的理解！`,
-    short4: `• 批准：\\`,
-    short5: `• 拒絕：\\`,
-    start: `🚀 立即開始使用：/throw`,
-    success: `🎯 **VIP 智能配對成功！**
-
-`,
-    success2: `🎉 **自動續費成功！**
-
-`,
-    success3: `🎉 **智能配對成功！**
-
-`,
-    success4: `🎉 **訂閱成功！**
-
-`,
-    text: `- 優先使用 OpenAI GPT 模型翻譯（高品質）
-`,
-    text10: `我們會在 1-3 個工作日內處理你的申請。
-`,
-    text11: `到期時間：\${expireDate}
-
-`,
-    text12: `退款將在 1-3 個工作日內到帳。
-
-`,
-    text13: `請求 ID：#\${requestId}
-`,
-    text14: `└ 1 個智能配對 + 2 個公共池
-`,
-    text15: `處理結果會通過 Bot 通知你。
-
-`,
-    text16: `請輸入退款原因（至少 10 個字）：`,
-    text17: `原因：\${req.reason}
-`,
-    text18: `退款時限：支付後 7 天內
-
-`,
-    text19: `你的帳號已恢復為免費用戶。
-
-`,
-    text2: `• 34 種語言自動翻譯（OpenAI GPT 優先）
-`,
-    text20: `💡 想要續訂或升級嗎？
-
-`,
-    text21: `💡 如有特殊情況，請聯繫客服。`,
-    text22: `原因：\${reason}
-
-`,
-    text23: `• 解鎖對方清晰頭像 🆕
-`,
-    text24: `這可能需要幾秒鐘時間，請稍候。`,
-    text25: `📝 **申請退款**
-
-`,
-    text26: `• 34 種語言自動翻譯
-`,
-    text27: `💡 使用以下命令處理：
-`,
-    text28: `（Staging 測試價）`,
-    text29: `如有疑問，請聯繫客服。`,
-    text3: `金額：\${request.amount_stars} ⭐`,
-    text30: `狀態：待審核
-
-`,
-    text4: `🔄 **自動續費**：每月自動扣款，無需手動續費
-`,
-    text5: `金額：\${req.amount_stars} ⭐
-`,
-    text6: `用戶 ID：\${request.user_id}
-`,
-    text7: `💳 立即續費 (\${priceStars} ⭐)`,
-    text8: `用戶 ID：\${request.user_id}`,
-    text9: `📌 寬限期：到期後 3 天內續費不會中斷服務。`,
-    viewVipCommand: `你可以隨時使用 /vip 命令查看 VIP 權益。`,
-    vip: `你的 VIP 會員已於 \${new Date(sub.expire_date).toLocaleDateString('zh-TW')} 到期。
-
-`,
-    vip10: `💎 **升級 VIP 會員**
-
-`,
-    vip11: `😢 **VIP 會員已到期**
-
-`,
-    vip12: `升級 VIP 會員，享受以下權益：
-`,
-    vip13: `⏰ **VIP 到期提醒**
-
-`,
-    vip14: `你的 VIP 會員今天到期。
-
-`,
-    vip15: `你的 VIP 訂閱已自動續費！
-`,
-    vip16: `你的 VIP 會員已取消。
-
-`,
-    vip17: `XunNi VIP 訂閱（月費）`,
-    vip18: `✨ VIP 權益持續啟用：
-`,
-    vip19: `你已成為 VIP 會員！
-`,
-    vip2: `你的 VIP 會員已於 \${new Date(sub.expire_date).toLocaleDateString(`,
-    vip20: `✨ VIP 權益已啟用：
-`,
-    vip21: `VIP 會員 (30 天)`,
-    vip22: `🎁 VIP 權益：
-`,
-    vip23: `XunNi VIP 續訂`,
-    vip24: `XunNi VIP 購買`,
-    vip25: `VIP 訂閱`,
-    vip3: `你的 VIP 會員將在 \${daysLeft} 天後到期。
-
-`,
-    vip4: `🔄 續訂 VIP (\${priceStars} ⭐)`,
-    vip5: `💳 購買 VIP (\${priceStars} ⭐)`,
-    vip6: `訂閱 XunNi VIP 會員，每月自動續費！
-
-`,
-    vip7: `💡 立即續費，享受不間斷的 VIP 服務！`,
-    vip8: `💡 立即續費，繼續享受 VIP 權益！
-`,
-    vip9: `✨ **你已經是 VIP 會員**
-
-`,
+  "warning": {
+    "ad": "⚠️ Mainospalveluntarjoajia ei ole tällä hetkellä määritelty\n\n",
+    "ad2": "⚠️ Virallisia mainoksia ei ole saatavilla tällä hetkellä\n\n",
+    "ad3": "⚠️ Ei saatavilla olevia mainospalveluntarjoajia",
+    "ad4": "⚠️ Ei voi valita mainospalveluntarjoajaa",
+    "ad5": "⚠️ Ei voi nähdä lisää mainoksia",
+    "birthday": "⚠️ Tällä hetkellä ei ole syntymäpäiväsyöttövaiheessa",
+    "bloodType": "⚠️ Tällä hetkellä ei ole veren tyyppivalintavaiheessa",
+    "broadcast": "⚠️ Löydetty ${stuckBroadcasts.results.length} jumissa olevaa lähetysohjelmaa\n\n",
+    "complete": "⚠️ Ole hyvä ja viimeistele edellinen mainos ennen uuden aloittamista",
+    "confirm": "⚠️ Vahvista syntymäpäivätietosi:\n\n",
+    "conversation": "⚠️ Keskustelutiedot virheelliset.",
+    "conversation10": "⚠️ Keskustelua ei ole olemassa",
+    "conversation2": "⚠️ Keskustelutiedot virheelliset",
+    "conversation3": "⚠️ Tällä käyttäjällä ei ole keskusteluhistoriaa\n",
+    "conversation4": "⚠️ Määriteltyä keskustelua ei voi löytää, ja se on ehkä päättynyt tai vanhentunut.",
+    "conversation5": "⚠️ **Keskusteluhistorian osio päivitetty**\n\n",
+    "conversation6": "⚠️ Keskustelukumppania ei pystytä tunnistamaan\n\n",
+    "conversation7": "⚠️ Keskustelua ei löytynyt\n\n",
+    "conversation8": "⚠️ Keskustelua ei ole olemassa tai se on päättynyt",
+    "conversation9": "⚠️ Tämä keskustelu on päättynyt",
+    "end": "⚠️ Kysely on päättynyt tai ei ole olemassa",
+    "failed": "⚠️ Maksuvahvistus epäonnistui, yritä myöhemmin uudelleen",
+    "gender": "⚠️ Tällä hetkellä ei ole sukupuolen valintavaiheessa",
+    "invite": "⚠️ Ei voi noutaa kutsukoodia",
+    "mbti": "⚠️ Tällä hetkellä ei olla MBTI-testausvaiheessa",
+    "mbti2": "⚠️ Virheellinen MBTI-tyyppi",
+    "message": "⚠️ Löydetty ${outdatedPosts.length} vanhentunutta viestiä, jotka tarvitsevat päivittämistä\n",
+    "message2": "⚠️ Huom: Tämä on ${testInfo}${testTitle}, ${accuracy}.\n\n",
+    "message3": "⚠️ Pitkä paina viestiä, jonka haluat estää, ja vastaa komennolla\n\n",
+    "message4": "⚠️ Pitkä paina viestiä, jonka haluat ilmoittaa, ja vastaa komennolla\n\n",
+    "message5": "⚠️ **Viesti sisältää kiellettyjä linkkejä**\n\n",
+    "register": "⚠️ Käyttäjätietoja ei löytynyt, rekisteröidy ensin käyttämällä /start.",
+    "register2": "⚠️ Ole hyvä ja viimeistele rekisteröintiprosessi.\n\nKäytä /start jatkaaksesi rekisteröintiä.",
+    "register3": "⚠️ Rekisteröintiprosessissa tapahtui ongelma, käynnistä se uudelleen: /start",
+    "register4": "⚠️ Ole hyvä ja viimeistele rekisteröintiprosessi",
+    "settings": "⚠️ Muistutus: Sukupuoliasetusta **ei voida muuttaa** tämän jälkeen!\n\n",
+    "settings2": "⚠️ Syntymäpäiväasetuksia ei voida muuttaa, varmista, että ne ovat oikein!",
+    "settings3": "⚠️ Huomio: Sukupuoliasetuksia ei voi muuttaa, valitse huolellisesti!",
+    "short": "⚠️ Virheellinen kysymyksen järjestys",
+    "short2": "⚠️ Tuntematon vaihtoehto",
+    "short3": "⚠️ Virheellinen pyyntö",
+    "short4": "⚠️ Huomio:\n",
+    "short5": "⚠️ Muita rikkomuksia",
+    "start": "⚠️ Istunto on vanhentunut, käynnistä uudelleen: /throw",
+    "start2": "⚠️ Istunto on vanhentunut, yritä uudelleen",
+    "task": "⚠️ Tuntematon tehtävätyyppi",
+    "text": "⚠️ **Huomio**\n\n",
+    "text10": "⚠️ **Vain luku -kohde**:\n",
+    "text11": "⚠️ Istunto on vanhentunut, yritä uudelleen",
+    "text12": "⚠️ Luonnos ei ole olemassa tai se on vanhentunut",
+    "text2": "⚠️ Virheellinen maksutyyppi",
+    "text3": "⚠️ Käännöspalvelu on tilapäisesti poissa käytöstä, tässä on alkuperäinen teksti\n",
+    "text4": "⚠️ Turvatiedote:\n",
+    "text5": "⚠️ Tällä hetkellä ei ole petostentorjuntatesti-vaiheessa",
+    "text6": "⚠️ Tällä hetkellä ei ole käyttöehtovaiheessa",
+    "text7": "⚠️ Huom: Tämä ominaisuus on saatavilla vain Staging-ympäristössä.",
+    "text8": "⚠️ **Kuvien, videoiden tai multimediaesitysten lähettäminen ei ole sallittua**\n\n",
+    "text9": "⚠️ Tämä ominaisuus on saatavilla vain Staging-ympäristössä.",
+    "userNotFound": "⚠️ Käyttäjää ei ole olemassa, rekisteröidy ensin käyttämällä /start.",
+    "userNotFound2": "⚠️ Käyttäjää ei ole olemassa",
+    "vip": "⚠️ Ilmaiskäyttäjäryhmä on täynnä, päivitä VIP:ksi avataksesi 100 käyttäjän rajan!",
+    "vip2": "⚠️ Tämä ominaisuus on vain VIP-jäsenille",
+    "vip3": "⚠️ **VIP päättyy tänään**\n\n"
   },
-  vipTripleBottle: {
-    bottleContent: `📝 瓶子內容：{content}
-
-`,
-    bottlePicked: `你的瓶子已被 {maskedMatcherNickname} 撿起！
-
-`,
-    conversationIdentifier: `💬 對話標識符：{conversationIdentifier}
-`,
-    firstMatch: `💡 這是你的第 1 個配對，還有 2 個槽位等待中
-
-`,
-    foundBottle: `系統為你找到了 {maskedOwnerNickname} 的瓶子！
-
-`,
-    matchSuccess: `🎯 **VIP 智能配對成功！**
-
-`,
-    replyHint: `💬 **請長按此訊息，選擇「回覆」後輸入內容和對方開始聊天**`,
-    slotsWaiting: `還有 {remaining} 個槽位等待中
-
-`,
-    smartMatch: `🎉 **智能配對成功！**
-
-`,
-    viewChats: `使用 /chats 查看所有對話
-
-`,
-  },
-  warning: {
-    ad: `⚠️ 目前沒有配置任何廣告提供商
-
-`,
-    ad2: `⚠️ 目前沒有官方廣告
-
-`,
-    ad3: `⚠️ 暫無可用的廣告提供商`,
-    ad4: `⚠️ 無法選擇廣告提供商`,
-    ad5: `⚠️ 無法觀看更多廣告`,
-    birthday: `⚠️ 當前不在生日輸入步驟`,
-    bloodType: `⚠️ 當前不在血型選擇步驟`,
-    broadcast: `⚠️ 發現 \${stuckBroadcasts.results.length} 個卡住的廣播
-
-`,
-    complete: `⚠️ 請先完成上一支廣告，再開始新的廣告`,
-    confirm: `⚠️ 請確認你的生日資訊：
-
-`,
-    conversation: `⚠️ 對話資訊錯誤。`,
-    conversation10: `⚠️ 對話不存在`,
-    conversation2: `⚠️ 對話資訊錯誤`,
-    conversation3: `⚠️ 此用戶沒有對話歷史帖子
-`,
-    conversation4: `⚠️ 找不到指定的對話，可能已結束或過期。`,
-    conversation5: `⚠️ **對話歷史部分更新**
-
-`,
-    conversation6: `⚠️ 無法識別對話對象
-
-`,
-    conversation7: `⚠️ 找不到此對話
-
-`,
-    conversation8: `⚠️ 對話不存在或已結束`,
-    conversation9: `⚠️ 此對話已結束`,
-    end: `⚠️ 測驗已結束或不存在`,
-    failed: `⚠️ 支付驗證失敗，請稍後再試`,
-    gender: `⚠️ 當前不在性別選擇步驟`,
-    invite: `⚠️ 無法獲取邀請碼`,
-    mbti: `⚠️ 當前不在 MBTI 測驗步驟`,
-    mbti2: `⚠️ 無效的 MBTI 類型`,
-    message: `⚠️ 發現 \${outdatedPosts.length} 個過時帖子需要刷新
-`,
-    message2: `⚠️ 注意：這是 \${testInfo}\${testTitle}，\${accuracy}。
-
-`,
-    message3: `⚠️ 請長按你要封鎖的訊息後回覆指令
-
-`,
-    message4: `⚠️ 請長按你要舉報的訊息後回覆指令
-
-`,
-    message5: `⚠️ **訊息包含不允許的連結**
-
-`,
-    register: `⚠️ 找不到用戶資料，請先使用 /start 註冊。`,
-    register2: `⚠️ 請先完成註冊流程。
-
-使用 /start 繼續註冊。`,
-    register3: `⚠️ 註冊流程出現問題，請重新開始：/start`,
-    register4: `⚠️ 請先完成註冊流程`,
-    settings: `⚠️ 再次提醒：性別設定後將**永遠不能修改**！
-
-`,
-    settings2: `⚠️ 生日設定後無法修改，請確認無誤！`,
-    settings3: `⚠️ 注意：性別設定後無法修改，請謹慎選擇！`,
-    short: `⚠️ 問題順序錯誤`,
-    short2: `⚠️ 未知的選項`,
-    short3: `⚠️ 無效的請求`,
-    short4: `⚠️ 注意：
-`,
-    short5: `⚠️ 其他違規`,
-    start: `⚠️ 會話已過期，請重新開始：/throw`,
-    start2: `⚠️ 會話已過期，請重新開始`,
-    task: `⚠️ 未知的任務類型`,
-    text: `⚠️ **注意**
-
-`,
-    text10: `⚠️ **不可修改項目**：
-`,
-    text11: `⚠️ 會話已過期，請重新操作`,
-    text12: `⚠️ 草稿不存在或已過期`,
-    text2: `⚠️ 無效的支付類型`,
-    text3: `⚠️ 翻譯服務暫時無法使用，以下為原文
-`,
-    text4: `⚠️ 安全提示：
-`,
-    text5: `⚠️ 當前不在反詐騙測驗步驟`,
-    text6: `⚠️ 當前不在服務條款步驟`,
-    text7: `⚠️ 注意：此功能僅在 Staging 環境可用。`,
-    text8: `⚠️ **不允許發送圖片、影片或多媒體**
-
-`,
-    text9: `⚠️ 此功能僅在 Staging 環境可用。`,
-    userNotFound: `⚠️ 用戶不存在，請先使用 /start 註冊。`,
-    userNotFound2: `⚠️ 用戶不存在`,
-    vip: `⚠️ 已達免費用戶邀請上限，升級 VIP 可解鎖 100 人上限！`,
-    vip2: `⚠️ 此功能僅限 VIP 會員使用`,
-    vip3: `⚠️ **VIP 今天到期**
-
-`,
-  },
-  warnings: {
-    birthday: `⚠️ 生日設定後無法修改，請確認無誤！`,
-    bloodType: `🩸 血型`,
-    gender: `[需要翻译]`,
-    mbti: `🧠 MBTI：\\\\\\\\\\\${mbti}`,
-    register2: `⚠️ 請先完成註冊`,
-    register4: `⚠️ 註冊未完成`,
-    settings: `🧠 MBTI：\\\\\\\\\\\\$`,
-    text5: `📖 簡介：{otherUser.bio}`,
-    text6: `⚠️ 請先完成註冊`,
-    userNotFound: `用戶不存在`,
-    warning: {
-      ad: `⚠️ 目前沒有配置任何廣告提供商
-
-`,
-      ad2: `⚠️ 目前沒有官方廣告
-
-`,
-      ad3: `⚠️ 暫無可用的廣告提供商`,
-      ad4: `⚠️ 無法選擇廣告提供商`,
-      ad5: `⚠️ 無法觀看更多廣告`,
-      birthday: `⚠️ 當前不在生日輸入步驟`,
-      bloodType: `⚠️ 當前不在血型選擇步驟`,
-      broadcast: `⚠️ 發現 \\\${stuckBroadcasts.results.length} 個卡住的廣播
-
-`,
-      complete: `⚠️ 請先完成上一支廣告，再開始新的廣告`,
-      confirm: `⚠️ 請確認你的生日資訊：
-
-`,
-      conversation: `⚠️ 對話資訊錯誤。`,
-      conversation10: `⚠️ 對話不存在`,
-      conversation2: `⚠️ 對話資訊錯誤`,
-      conversation3: `⚠️ 此用戶沒有對話歷史帖子
-`,
-      conversation4: `⚠️ 找不到指定的對話，可能已結束或過期。`,
-      conversation5: `⚠️ **對話歷史部分更新**
-
-`,
-      conversation6: `⚠️ 無法識別對話對象
-
-`,
-      conversation7: `⚠️ 找不到此對話
-
-`,
-      conversation8: `⚠️ 對話不存在或已結束`,
-      conversation9: `⚠️ 此對話已結束`,
-      end: `⚠️ 測驗已結束或不存在`,
-      failed: `⚠️ 支付驗證失敗，請稍後再試`,
-      gender: `⚠️ 當前不在性別選擇步驟`,
-      invite: `⚠️ 無法獲取邀請碼`,
-      mbti: `⚠️ 當前不在 MBTI 測驗步驟`,
-      mbti2: `⚠️ 無效的 MBTI 類型`,
-      message: `⚠️ 發現 \\\${outdatedPosts.length} 個過時帖子需要刷新
-`,
-      message2: `⚠️ 注意：這是 \\\${testInfo}\\\${testTitle}，\\\${accuracy}。
-
-`,
-      message3: `⚠️ 請長按你要封鎖的訊息後回覆指令
-
-`,
-      message4: `⚠️ 請長按你要舉報的訊息後回覆指令
-
-`,
-      message5: `⚠️ **訊息包含不允許的連結**
-
-`,
-      register: `⚠️ 找不到用戶資料，請先使用 /start 註冊。`,
-      register2: `⚠️ 請先完成註冊流程。
-
-使用 /start 繼續註冊。`,
-      register3: `⚠️ 註冊流程出現問題，請重新開始：/start`,
-      register4: `⚠️ 請先完成註冊流程`,
-      settings: `⚠️ 再次提醒：性別設定後將**永遠不能修改**！
-
-`,
-      settings2: `⚠️ 生日設定後無法修改，請確認無誤！`,
-      settings3: `⚠️ 注意：性別設定後無法修改，請謹慎選擇！`,
-      short: `⚠️ 問題順序錯誤`,
-      short2: `⚠️ 未知的選項`,
-      short3: `⚠️ 無效的請求`,
-      short4: `[需要翻译]`,
-      short5: `⚠️ 其他違規`,
-      start: `⚠️ 會話已過期，請重新開始：/throw`,
-      start2: `⚠️ 會話已過期，請重新開始`,
-      task: `⚠️ 未知的任務類型`,
-      text: `⚠️ **注意**
-
-`,
-      text10: `⚠️ **不可修改項目**：
-`,
-      text11: `⚠️ 會話已過期，請重新操作`,
-      text12: `⚠️ 草稿不存在或已過期`,
-      text2: `⚠️ 無效的支付類型`,
-      text3: `⚠️ 翻譯服務暫時無法使用，以下為原文
-`,
-      text4: `⚠️ 安全提示：
-`,
-      text5: `⚠️ 當前不在反詐騙測驗步驟`,
-      text6: `⚠️ 當前不在服務條款步驟`,
-      text7: `⚠️ 注意：此功能僅在 Staging 環境可用。`,
-      text8: `⚠️ **不允許發送圖片、影片或多媒體**
-
-`,
-      text9: `⚠️ 此功能僅在 Staging 環境可用。`,
-      userNotFound: `⚠️ 用戶不存在，請先使用 /start 註冊。`,
-      userNotFound2: `⚠️ 用戶不存在`,
-      vip: `⚠️ 已達免費用戶邀請上限，升級 VIP 可解鎖 100 人上限！`,
-      vip2: `⚠️ 此功能僅限 VIP 會員使用`,
-      vip3: `⚠️ **VIP 今天到期**
-
-`,
-    },
-  },
+  "warnings": {
+    "birthday": "⚠️ Syntymäpäivää ei voi muuttaa sen jälkeen kun se on asetettu, vahvista, että se on oikein!",
+    "bloodType": "🩸 Veriryhmä",
+    "gender": "👤 Sukupuoli: {otherUser.gender}",
+    "mbti": "🧠 MBTI: \\\\\\\\\\${mbti}",
+    "register2": "[Requires translation: warnings.register2]",
+    "register4": "[Requires translation: warnings.register4]",
+    "settings": "🧠 MBTI: \\\\\\\\\\\\$",
+    "text5": "📖 Esittely: {otherUser.bio}",
+    "text6": "[Requires translation: warnings.text6]",
+    "userNotFound": "Käyttäjää ei ole olemassa",
+    "warning": {
+      "ad": "⚠️ Tällä hetkellä ei ole määriteltyjä mainospalveluntarjoajia\n\n",
+      "ad2": "⚠️ Tällä hetkellä ei ole virallisia mainoksia\n\n",
+      "ad3": "⚠️ Tällä hetkellä ei ole saatavilla mainospalveluntarjoajia",
+      "ad4": "⚠️ Mainospalveluntarjoajaa ei voi valita",
+      "ad5": "⚠️ Enemmän mainoksia ei voi katsoa",
+      "birthday": "⚠️ Tällä hetkellä ei ole syntymäpäivätietovaiheessa",
+      "bloodType": "⚠️ Tällä hetkellä ei ole verityypin valintavaiheessa",
+      "broadcast": "⚠️ Löydetty \\${stuckBroadcasts.results.length} jumissa olevaa lähetysohjelmaa\n\n",
+      "complete": "⚠️ Ole hyvä ja suorita edellinen ilmoitus ennen uuden aloittamista",
+      "confirm": "⚠️ Ole hyvä ja vahvista syntymäpäivätietosi:\n\n",
+      "conversation": "⚠️ Keskustelutiedot ovat virheelliset.",
+      "conversation10": "⚠️ Keskustelua ei ole olemassa",
+      "conversation2": "⚠️ Keskustelutiedot ovat virheelliset",
+      "conversation3": "⚠️ Tällä käyttäjällä ei ole keskusteluhistorian julkaisuja\n",
+      "conversation4": "⚠️ Määritettyä keskustelua ei löytynyt, se on saattanut päättyä tai vanhentua.",
+      "conversation5": "⚠️ **Keskusteluhistoria päivitetty osittain**\n\n",
+      "conversation6": "⚠️ Keskustelukumppania ei voida tunnistaa\n\n",
+      "conversation7": "⚠️ Tätä keskustelua ei löytynyt\n\n",
+      "conversation8": "⚠️ Keskustelua ei ole olemassa tai se on päättynyt",
+      "conversation9": "⚠️ Tämä keskustelu on päättynyt",
+      "end": "⚠️ Testi on päättynyt tai ei olemassa.",
+      "failed": "⚠️ Maksuvahvistus epäonnistui, yritä myöhemmin uudelleen.",
+      "gender": "⚠️ Et ole tällä hetkellä sukupuolen valintavaiheessa.",
+      "invite": "⚠️ Kutsukoodin hakeminen epäonnistui.",
+      "mbti": "⚠️ Et ole tällä hetkellä MBTI-testivaiheessa.",
+      "mbti2": "⚠️ Virheellinen MBTI-tyyppi.",
+      "message": "⚠️ Löydettiin \\${outdatedPosts.length} vanhentunutta postausta, jotka tulee päivittää\n",
+      "message2": "⚠️ Huomio: Tämä on \\${testInfo}\\${testTitle}, \\${accuracy}.\n\n",
+      "message3": "⚠️ Ole hyvä ja pidä pitkään painettuna estettävää viestiä ja vastaa komennolla\n\n",
+      "message4": "⚠️ Ole hyvä ja pidä pitkään painettuna raportoitavaa viestiä ja vastaa komennolla\n\n",
+      "message5": "⚠️ **Viesti sisältää kiellettyjä linkkejä**\n\n",
+      "register": "⚠️ Käyttäjäprofiilia ei löydy, rekisteröidy ensin käyttämällä /start.",
+      "register2": "⚠️ Ole hyvä ja suorita rekisteröintiprosessi ensin.\n\nKäytä /start jatkaaksesi rekisteröintiä.",
+      "register3": "⚠️ Rekisteröintiprosessissa tapahtui ongelma, käynnistä se uudelleen: /start",
+      "register4": "⚠️ Ole hyvä ja suorita rekisteröintiprosessi ensin",
+      "settings": "⚠️ Muistutus: Kun sukupuoli on asetettu, sitä **ei voi muuttaa** koskaan!\n\n",
+      "settings2": "⚠️ Syntymäpäiväasetuksia ei voi muuttaa, vahvista!",
+      "settings3": "⚠️ Huom: Sukupuolen asetuksia ei voi muuttaa, valitse huolellisesti!",
+      "short": "⚠️ Väärä kysymysten järjestys",
+      "short2": "⚠️ Tuntematon vaihtoehto",
+      "short3": "⚠️ Virheellinen pyyntö",
+      "short4": "⚠️ Nimimerkin pituusrajoitus on 36 merkkiä",
+      "short5": "⚠️ Muita rikkomuksia",
+      "start": "⚠️ Istunto on vanhentunut, käynnistä se uudelleen: /throw",
+      "start2": "⚠️ Istunto on vanhentunut, käynnistä se uudelleen",
+      "task": "⚠️ Tuntematon tehtävätyyppi",
+      "text": "⚠️ **Huomio**\n\n",
+      "text10": "⚠️ **Muuttamattomat kohteet**:\n",
+      "text11": "⚠️ Istunto on vanhentunut, yritä uudelleen",
+      "text12": "⚠️ Luonnosta ei ole olemassa tai se on vanhentunut",
+      "text2": "⚠️ Virheellinen maksutyyppi",
+      "text3": "⚠️ Käännöspalvelu ei ole tilapäisesti käytettävissä, alkuperäinen teksti on alla\n",
+      "text4": "⚠️ Turvallisuusmuistutus:\n",
+      "text5": "⚠️ Et ole tällä hetkellä petostonestotestivaiheessa",
+      "text6": "⚠️ Et ole tällä hetkellä palveluehtovaiheessa",
+      "text7": "⚠️ Huom: Tämä ominaisuus on saatavilla vain Staging-ympäristössä.",
+      "text8": "⚠️ **Kuvien, videoiden tai monimedia sisällön lähettäminen ei ole sallittua**\n\n",
+      "text9": "⚠️ Tämä ominaisuus on saatavilla vain Staging-ympäristössä.",
+      "userNotFound": "⚠️ Käyttäjää ei ole olemassa, rekisteröidy ensin käyttämällä /start.",
+      "userNotFound2": "⚠️ Käyttäjää ei ole olemassa",
+      "vip": "⚠️ Kutsuraja ilmaisille käyttäjille saavutettu, päivitä VIP:ksi, jotta voit avata 100 henkilön rajan!",
+      "vip2": "⚠️ Tämä ominaisuus on vain VIP-jäsenille",
+      "vip3": "⚠️ **VIP vanhentuu tänään**\n\n"
+    }
+  }
 };

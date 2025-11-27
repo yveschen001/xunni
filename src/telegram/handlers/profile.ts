@@ -84,6 +84,7 @@ export async function handleProfile(message: TelegramMessage, env: Env): Promise
     const profileMessage =
       i18n.t('profile.profile2') +
       i18n.t('profile.nickname', { displayNickname }) +
+      `ID: \`${telegramId}\`\n` + // ✨ NEW: Add User ID
       i18n.t('profile.age', { age }) +
       i18n.t('profile.gender', { gender }) +
       i18n.t('profile.bloodType', { bloodType }) +

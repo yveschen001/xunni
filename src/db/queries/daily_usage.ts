@@ -128,3 +128,23 @@ export async function incrementMessagesSent(
 
   await db.execute(sql, [telegramId, date]);
 }
+
+/**
+ * Increment ads watched count
+ */
+export async function incrementAdsWatched(
+  db: DatabaseClient,
+  telegramId: string,
+  date: string
+): Promise<void> {
+  const sql = `
+    INSERT INTO daily_usage (telegram_id, date, ads_watched)
+    VALUES (?, ?, 1)
+    ON CONFLICT(telegram_id, date)
+    DO UPDATE SET
+      ads_watched = COALESCE(ads_watched, 0) + 1,
+      updated_at = CURRENT_TIMESTAMP
+  `;
+
+  await db.execute(sql, [telegramId, date]);
+}

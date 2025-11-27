@@ -1011,9 +1011,8 @@ export const translations: Translations = {
       bottle4: `🍾 **丟漂流瓶** #THROW
 
 `,
-      bottle5: `瓶子 ID：#\\\${bottleId}
+      bottle5: `瓶子 ID：#\${bottleId}`,
 
-`,
       bottle6: `📝 **請輸入你的漂流瓶內容**
 
 `,
@@ -1518,10 +1517,12 @@ export const translations: Translations = {
     },
   },
   buttons: {
+    claim: '領取',
     ad: `➡️ 下一個廣告`,
     back: `⬅️ 返回 / Back`,
     backToVip: `💎 返回 VIP 選單`,
     bottle: `📺 看廣告獲取更多瓶子 🎁 (\${remaining}/20)`,
+    verify: `驗證`,
     bottle2: `💎 升級 VIP 獲得更多瓶子`,
     bottle3: `🌊 丟出漂流瓶`,
     bottle4: `🎣 撿起漂流瓶`,
@@ -1692,7 +1693,9 @@ export const translations: Translations = {
     viewTaskCenter: `[📋 查看任務中心] → /tasks`,
   },
   common: {
+    open: '打開',
     ad: `📺 今日廣告：\${adsWatched}/\${AD_REWARD_CONSTANTS.MAX_ADS_PER_DAY} | 已獲得 \${quotaEarned} 個額度 | 剩餘 \${remaining} 次`,
+    anonymousUser: `匿名用戶`,
     ad2: `📺 今日廣告：\${adsWatched}/\${AD_REWARD_CONSTANTS.MAX_ADS_PER_DAY} ✅ 已達上限 | 已獲得 \${quotaEarned} 個額度`,
     ad3: `📺 今日廣告：0/\${AD_REWARD_CONSTANTS.MAX_ADS_PER_DAY} | 已獲得 0 個額度`,
     ad4: `• 📺 觀看廣告（剩餘 \${remaining}/20 次）
@@ -2783,8 +2786,9 @@ export const translations: Translations = {
     zodiac: `無效的星座：\${trimmedValue}（必須是以下之一：\${VALID_ZODIACS.join(', ')}）`,
   },
   conversation: {
-    age: `🎂 年齡範圍：\${ageRange} 歲
+    age: `🎂 年齡範圍：\${ageRange}歲
 `,
+    conversationInfoError: `⚠️ 對話資訊錯誤，請稍後再試。`,
     anonymousCardHint: `💡 這是匿名資料卡，不會顯示對方的真實身份資訊。`,
     backToMenuCommand: `🏠 返回主選單：/menu`,
     ban: `• 多次被舉報會導致封禁
@@ -4035,6 +4039,8 @@ This command is not available in production.`,
     success: `└ 大幅提升配對成功率
 `,
     text: `/maintenance_status - 查看維護狀態`,
+    admin_ads: `\n/admin_ads - 管理官方廣告\n`,
+    admin_tasks: `\n/admin_tasks - 管理社群任務`,
     text10: `📖 **XunNi 指令列表**
 
 `,
@@ -4181,7 +4187,10 @@ This command is not available in production.`,
     you: `你`,
   },
   invite: {
-    codeAccepted: `✅ 邀請碼已接受！感謝 {inviterName} 的邀請`,
+    codeAccepted: `✅ 邀請碼已接受！感謝 {inviterName}的邀請`,
+    selfInviteError: `❌ 您不能使用自己的邀請碼！`,
+    upgradePrompt: `💡 升級 VIP 可獲得更多邀請獎勵！`,
+    inviteeSuccess: `🎉 恭喜！您已成功接受邀請！`,
     inviteeSuccess: `✅ 你已成功接受邀請！`,
     inviterSuccess: `✅ 邀請成功！你獲得了 +1 永久額度`,
     limitReached: `❌ 你已達到邀請上限（{max} 人）`,
@@ -4516,6 +4525,12 @@ This command is not available in production.`,
   messageForward: {
     blockedUrls: `❌ 訊息包含被禁止的網址`,
     dailyQuota: `📊 今日已發送：{used}/{limit} 則`,
+    replyHint: `💡 長按對方的訊息並選擇「回覆」來發送回應。`,
+    urlNotAllowed: `⚠️ 禁止發送網址`,
+    urlNotAllowedDesc: `為了安全起見，禁止發送外部連結。`,
+    removeLinks: `請移除連結後再試。`,
+    vipDailyLimit: `VIP 每日上限`,
+    upgradeVip: `升級 VIP`,
     messageSent: `✅ 訊息已發送給 {identifier}
 
 `,
@@ -4552,6 +4567,7 @@ This command is not available in production.`,
     userNotFound: `❌ 用戶不存在`,
   },
   officialAd: {
+    rewardTemporary: '🎁 恭喜獲得 +1 臨時額度 (今日有效)',
     adNotFound: `❌ 廣告不存在`,
     allAdsViewed: `✅ 你已經看過所有官方廣告了`,
     alreadyViewed: `你已經看過此廣告`,
@@ -4613,8 +4629,16 @@ This command is not available in production.`,
     verifySuccess: `✅ 驗證成功！獲得 +{quota} 個永久額度！`,
   },
   onboarding: {
-    age: `• 年齡：\${updatedUser.age} 歲
+    age: `• 年齡：\${updatedUser.age}歲
 `,
+    terms: {
+      english_only_note: `⚠️ 注意：目前服務條款僅提供英文版本。`,
+      agree_button: `我同意服務條款`,
+      privacy_policy_button: `隱私政策`,
+      terms_of_service_button: `服務條款`,
+      notCompleted: `⚠️ 請先完成註冊流程。`
+    },
+    
     age2: `你的年齡：\${age} 歲
 `,
     age3: `年齡：\${age} 歲
@@ -5075,6 +5099,7 @@ This command is not available in production.`,
     userNotFound: `❌ 用戶不存在，請先註冊`,
   },
   report: {
+    aiAutoBan: '🤖 AI 自動封禁',
     blockHint: `• 長按對方訊息回覆 /block 可封鎖此使用者
 `,
     cancel: `❌ 取消`,
@@ -5191,6 +5216,8 @@ This command is not available in production.`,
     changeLanguage: `🌐 更改語言`,
     currentSettings: `⚙️ **當前設定**`,
     languageLabel: `語言：{language}`,
+    selectOption: `請選擇要設定的項目：`,
+    returnToMenu: `返回主選單`,
     languageUpdated: `✅ 語言已更新為：{language}`,
     message: `🌐 **選擇語言 / Choose Language**
 
@@ -5408,9 +5435,8 @@ This command is not available in production.`,
   },
   success: {
     ad: `✅ 你已經看過所有官方廣告了！`,
-    ad2: `✅ 已啟用廣告提供商：\${providerName}
-
-`,
+    ad2: `✅ 已啟用廣告提供商：\${providerName}`,
+    reportSubmitted: `✅ 檢舉已提交，感謝您的反饋！`,
     ad3: `✅ 已停用廣告提供商：\${providerName}
 
 `,
@@ -6615,6 +6641,9 @@ This command is not available in production.`,
     birthday: `⚠️ 生日設定後無法修改，請確認無誤！`,
     bloodType: `🩸 血型`,
     gender: `👤 性別：{otherUser.gender}`,
+    text6: `⚠️ 請勿發送敏感資訊`,
+    register2: `⚠️ 請先完成註冊流程。`,
+    register4: `⚠️ 請先完成註冊流程。`,
     mbti: `🧠 MBTI：\\\\\\\\\\\${mbti}`,
     register2: `⚠️ 請先完成註冊`,
     register4: `⚠️ 註冊未完成`,

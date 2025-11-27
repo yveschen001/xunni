@@ -24,6 +24,7 @@ export interface Env {
   GEMINI_PROJECT_ID?: string;
   GEMINI_LOCATION?: string;
   GEMINI_MODELS?: string;
+  MOONPACKET_API_KEY?: string; // New MoonPacket API Key
 
   // Environment variables
   ENVIRONMENT: 'development' | 'staging' | 'production';
@@ -32,7 +33,12 @@ export interface Env {
   BROADCAST_MAX_JOBS: string;
   ENABLE_AI_MODERATION: string;
   ENABLE_TRANSLATION: string;
+  ADMIN_LOG_GROUP_ID?: string; // Centralized Admin Log Group
   ADMIN_USER_IDS?: string; // Comma-separated list of admin Telegram IDs
+  SUPER_ADMIN_USER_ID?: string; // Super Admin Telegram ID
+  VIP_PRICE_STARS?: string; // VIP Price in Stars
+  OFFICIAL_CHANNEL_ID?: string; // Official Channel ID
+  PUBLIC_URL?: string; // Public URL of the worker
 }
 
 // ============================================================================

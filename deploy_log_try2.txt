@@ -1,0 +1,1092 @@
+
+> xunni-bot@1.0.0 deploy:staging /Users/yichen/Downloads/cursor/XunNi
+> wrangler deploy --env staging
+
+
+ ⛅️ wrangler 3.114.15 (update available 4.50.0)
+-----------------------------------------------
+
+[33m▲ [43;33m[[43;30mWARNING[43;33m][0m [1mThe version of Wrangler you are using is now out-of-date.[0m
+
+  Please update to the latest version to prevent critical errors.
+  Run `npm install --save-dev wrangler@4` to update to the latest version.
+  After installation, run Wrangler with `npx wrangler`.
+
+
+[33m▲ [43;33m[[43;30mWARNING[43;33m][0m [1mYou are using `node_compat`, which is a legacy Node.js compatibility option. Instead, use the `nodejs_compat` compatibility flag. This includes the functionality from legacy `node_compat` polyfills and natively implemented Node.js APIs. See https://developers.cloudflare.com/workers/runtime-apis/nodejs for more information.[0m
+
+
+[33m▲ [43;33m[[43;30mWARNING[43;33m][0m [1mDuplicate key "appealReviewCommands" in object literal[0m [duplicate-object-key]
+
+    src/i18n/locales/ar.ts:126:4:
+[37m      126 │     [32mappealReviewCommands[37m: `/admin_approve <appeal_id> [notes]
+          ╵     [32m~~~~~~~~~~~~~~~~~~~~[0m
+
+  The original key "appealReviewCommands" is here:
+
+    src/i18n/locales/ar.ts:81:4:
+[37m      81 │     [32mappealReviewCommands[37m: `/admin_approve <appeal_id> [備註]\n/a...
+         ╵     [32m~~~~~~~~~~~~~~~~~~~~[0m
+
+
+[33m▲ [43;33m[[43;30mWARNING[43;33m][0m [1mDuplicate key "ban" in object literal[0m [duplicate-object-key]
+
+    src/i18n/locales/ar.ts:519:4:
+[37m      519 │     [32mban[37m: {
+          ╵     [32m~~~[0m
+
+  The original key "ban" is here:
+
+    src/i18n/locales/ar.ts:138:4:
+[37m      138 │     [32mban[37m: `💡 استخدم /admin_bans <user_id> لعرض تار...
+          ╵     [32m~~~[0m
+
+
+[33m▲ [43;33m[[43;30mWARNING[43;33m][0m [1mDuplicate key "anonymousUser" in object literal[0m [duplicate-object-key]
+
+    src/i18n/locales/ar.ts:1659:4:
+[37m      1659 │     [32manonymousUser[37m: `[ترجمة مطلوبة من zh-TW.ts]`,
+           ╵     [32m~~~~~~~~~~~~~[0m
+
+  The original key "anonymousUser" is here:
+
+    src/i18n/locales/ar.ts:1640:4:
+[37m      1640 │     [32manonymousUser[37m: `匿名用戶`,
+           ╵     [32m~~~~~~~~~~~~~[0m
+
+
+[33m▲ [43;33m[[43;30mWARNING[43;33m][0m [1mDuplicate key "conversationInfoError" in object literal[0m [duplicate-object-key]
+
+    src/i18n/locales/ar.ts:2801:4:
+[37m      2801 │     [32mconversationInfoError[37m: `[ترجمة مطلوبة من zh-TW....
+           ╵     [32m~~~~~~~~~~~~~~~~~~~~~[0m
+
+  The original key "conversationInfoError" is here:
+
+    src/i18n/locales/ar.ts:2734:4:
+[37m      2734 │     [32mconversationInfoError[37m: `⚠️ 對話資訊錯誤，請稍�...
+           ╵     [32m~~~~~~~~~~~~~~~~~~~~~[0m
+
+
+[33m▲ [43;33m[[43;30mWARNING[43;33m][0m [1mDuplicate key "inviteeSuccess" in object literal[0m [duplicate-object-key]
+
+    src/i18n/locales/ar.ts:4132:4:
+[37m      4132 │     [32minviteeSuccess[37m: `[يحتاج إلى ترجمة: invite.invit...
+           ╵     [32m~~~~~~~~~~~~~~[0m
+
+  The original key "inviteeSuccess" is here:
+
+    src/i18n/locales/ar.ts:4131:4:
+[37m      4131 │     [32minviteeSuccess[37m: `🎉 恭喜！您已成功接受邀請！`,
+           ╵     [32m~~~~~~~~~~~~~~[0m
+
+
+[33m▲ [43;33m[[43;30mWARNING[43;33m][0m [1mDuplicate key "selfInviteError" in object literal[0m [duplicate-object-key]
+
+    src/i18n/locales/ar.ts:4136:4:
+[37m      4136 │     [32mselfInviteError[37m: `[يحتاج إلى ترجمة: invite.self...
+           ╵     [32m~~~~~~~~~~~~~~~[0m
+
+  The original key "selfInviteError" is here:
+
+    src/i18n/locales/ar.ts:4129:4:
+[37m      4129 │     [32mselfInviteError[37m: `❌ 您不能使用自己的邀請碼！`,
+           ╵     [32m~~~~~~~~~~~~~~~[0m
+
+
+[33m▲ [43;33m[[43;30mWARNING[43;33m][0m [1mDuplicate key "upgradePrompt" in object literal[0m [duplicate-object-key]
+
+    src/i18n/locales/ar.ts:4137:4:
+[37m      4137 │     [32mupgradePrompt[37m: `[يحتاج إلى ترجمة: invite.upgrad...
+           ╵     [32m~~~~~~~~~~~~~[0m
+
+  The original key "upgradePrompt" is here:
+
+    src/i18n/locales/ar.ts:4130:4:
+[37m      4130 │     [32mupgradePrompt[37m: `💡 升級 VIP 可獲得更多邀請獎勵�...
+           ╵     [32m~~~~~~~~~~~~~[0m
+
+
+[33m▲ [43;33m[[43;30mWARNING[43;33m][0m [1mDuplicate key "removeLinks" in object literal[0m [duplicate-object-key]
+
+    src/i18n/locales/ar.ts:4476:4:
+[37m      4476 │     [32mremoveLinks[37m: `[الترجمة مطلوبة من zh-TW.ts]`,
+           ╵     [32m~~~~~~~~~~~[0m
+
+  The original key "removeLinks" is here:
+
+    src/i18n/locales/ar.ts:4469:4:
+[37m      4469 │     [32mremoveLinks[37m: `請移除連結後再試。`,
+           ╵     [32m~~~~~~~~~~~[0m
+
+
+[33m▲ [43;33m[[43;30mWARNING[43;33m][0m [1mDuplicate key "replyHint" in object literal[0m [duplicate-object-key]
+
+    src/i18n/locales/ar.ts:4477:4:
+[37m      4477 │     [32mreplyHint[37m: `[الترجمة مطلوبة من zh-TW.ts]`,
+           ╵     [32m~~~~~~~~~[0m
+
+  The original key "replyHint" is here:
+
+    src/i18n/locales/ar.ts:4466:4:
+[37m      4466 │     [32mreplyHint[37m: `💡 長按對方的訊息並選擇「回覆」�...
+           ╵     [32m~~~~~~~~~[0m
+
+
+[33m▲ [43;33m[[43;30mWARNING[43;33m][0m [1mDuplicate key "upgradeVip" in object literal[0m [duplicate-object-key]
+
+    src/i18n/locales/ar.ts:4478:4:
+[37m      4478 │     [32mupgradeVip[37m: `[متطلبات ترجمة من zh-TW.ts]`,
+           ╵     [32m~~~~~~~~~~[0m
+
+  The original key "upgradeVip" is here:
+
+    src/i18n/locales/ar.ts:4471:4:
+[37m      4471 │     [32mupgradeVip[37m: `升級 VIP`,
+           ╵     [32m~~~~~~~~~~[0m
+
+
+[33m▲ [43;33m[[43;30mWARNING[43;33m][0m [1mDuplicate key "urlNotAllowed" in object literal[0m [duplicate-object-key]
+
+    src/i18n/locales/ar.ts:4479:4:
+[37m      4479 │     [32murlNotAllowed[37m: `[متطلبات ترجمة من zh-TW.ts]`,
+           ╵     [32m~~~~~~~~~~~~~[0m
+
+  The original key "urlNotAllowed" is here:
+
+    src/i18n/locales/ar.ts:4467:4:
+[37m      4467 │     [32murlNotAllowed[37m: `⚠️ 禁止發送網址`,
+           ╵     [32m~~~~~~~~~~~~~[0m
+
+
+[33m▲ [43;33m[[43;30mWARNING[43;33m][0m [1mDuplicate key "urlNotAllowedDesc" in object literal[0m [duplicate-object-key]
+
+    src/i18n/locales/ar.ts:4480:4:
+[37m      4480 │     [32murlNotAllowedDesc[37m: `[متطلبات ترجمة من zh-TW.ts]`,
+           ╵     [32m~~~~~~~~~~~~~~~~~[0m
+
+  The original key "urlNotAllowedDesc" is here:
+
+    src/i18n/locales/ar.ts:4468:4:
+[37m      4468 │     [32murlNotAllowedDesc[37m: `為了安全起見，禁止發送外部�...
+           ╵     [32m~~~~~~~~~~~~~~~~~[0m
+
+
+[33m▲ [43;33m[[43;30mWARNING[43;33m][0m [1mDuplicate key "vipDailyLimit" in object literal[0m [duplicate-object-key]
+
+    src/i18n/locales/ar.ts:4481:4:
+[37m      4481 │     [32mvipDailyLimit[37m: `[متطلبات ترجمة من zh-TW.ts]`,
+           ╵     [32m~~~~~~~~~~~~~[0m
+
+  The original key "vipDailyLimit" is here:
+
+    src/i18n/locales/ar.ts:4470:4:
+[37m      4470 │     [32mvipDailyLimit[37m: `VIP 每日上限`,
+           ╵     [32m~~~~~~~~~~~~~[0m
+
+
+[33m▲ [43;33m[[43;30mWARNING[43;33m][0m [1mDuplicate key "terms" in object literal[0m [duplicate-object-key]
+
+    src/i18n/locales/ar.ts:4825:4:
+[37m      4825 │     [32mterms[37m: {
+           ╵     [32m~~~~~[0m
+
+  The original key "terms" is here:
+
+    src/i18n/locales/ar.ts:4566:4:
+[37m      4566 │     [32mterms[37m: {
+           ╵     [32m~~~~~[0m
+
+
+[33m▲ [43;33m[[43;30mWARNING[43;33m][0m [1mDuplicate key "returnToMenu" in object literal[0m [duplicate-object-key]
+
+    src/i18n/locales/ar.ts:5157:4:
+[37m      5157 │     [32mreturnToMenu[37m: `[Translation Needed: settings.returnToMenu]`,
+           ╵     [32m~~~~~~~~~~~~[0m
+
+  The original key "returnToMenu" is here:
+
+    src/i18n/locales/ar.ts:5150:4:
+[37m      5150 │     [32mreturnToMenu[37m: `返回主選單`,
+           ╵     [32m~~~~~~~~~~~~[0m
+
+
+[33m▲ [43;33m[[43;30mWARNING[43;33m][0m [1mDuplicate key "selectOption" in object literal[0m [duplicate-object-key]
+
+    src/i18n/locales/ar.ts:5158:4:
+[37m      5158 │     [32mselectOption[37m: `[Translation Needed: settings.selectOption]`,
+           ╵     [32m~~~~~~~~~~~~[0m
+
+  The original key "selectOption" is here:
+
+    src/i18n/locales/ar.ts:5149:4:
+[37m      5149 │     [32mselectOption[37m: `請選擇要設定的項目：`,
+           ╵     [32m~~~~~~~~~~~~[0m
+
+
+[33m▲ [43;33m[[43;30mWARNING[43;33m][0m [1mDuplicate key "reportSubmitted" in object literal[0m [duplicate-object-key]
+
+    src/i18n/locales/ar.ts:5475:4:
+[37m      5475 │     [32mreportSubmitted[37m: `[ترجمة مطلوبة من zh-TW.ts]`,
+           ╵     [32m~~~~~~~~~~~~~~~[0m
+
+  The original key "reportSubmitted" is here:
+
+    src/i18n/locales/ar.ts:5371:4:
+[37m      5371 │     [32mreportSubmitted[37m: `✅ 檢舉已提交，感謝您的反饋！`,
+           ╵     [32m~~~~~~~~~~~~~~~[0m
+
+
+[33m▲ [43;33m[[43;30mWARNING[43;33m][0m [1mDuplicate key "register2" in object literal[0m [duplicate-object-key]
+
+    src/i18n/locales/ar.ts:6580:4:
+[37m      6580 │     [32mregister2[37m: `[Translation needed: warnings.register2]`,
+           ╵     [32m~~~~~~~~~[0m
+
+  The original key "register2" is here:
+
+    src/i18n/locales/ar.ts:6577:4:
+[37m      6577 │     [32mregister2[37m: `⚠️ 請先完成註冊流程。`,
+           ╵     [32m~~~~~~~~~[0m
+
+
+[33m▲ [43;33m[[43;30mWARNING[43;33m][0m [1mDuplicate key "register4" in object literal[0m [duplicate-object-key]
+
+    src/i18n/locales/ar.ts:6581:4:
+[37m      6581 │     [32mregister4[37m: `[Translation needed: warnings.register4]`,
+           ╵     [32m~~~~~~~~~[0m
+
+  The original key "register4" is here:
+
+    src/i18n/locales/ar.ts:6578:4:
+[37m      6578 │     [32mregister4[37m: `⚠️ 請先完成註冊流程。`,
+           ╵     [32m~~~~~~~~~[0m
+
+
+[33m▲ [43;33m[[43;30mWARNING[43;33m][0m [1mDuplicate key "text6" in object literal[0m [duplicate-object-key]
+
+    src/i18n/locales/ar.ts:6584:4:
+[37m      6584 │     [32mtext6[37m: `[Translation needed: warnings.text6]`,
+           ╵     [32m~~~~~[0m
+
+  The original key "text6" is here:
+
+    src/i18n/locales/ar.ts:6576:4:
+[37m      6576 │     [32mtext6[37m: `⚠️ 請勿發送敏感資訊`,
+           ╵     [32m~~~~~[0m
+
+
+[33m▲ [43;33m[[43;30mWARNING[43;33m][0m [1mDuplicate key "appealReviewCommands" in object literal[0m [duplicate-object-key]
+
+    src/i18n/locales/en.ts:139:4:
+[37m      139 │     [32mappealReviewCommands[37m: `/admin_approve <appeal_id> [note]
+          ╵     [32m~~~~~~~~~~~~~~~~~~~~[0m
+
+  The original key "appealReviewCommands" is here:
+
+    src/i18n/locales/en.ts:88:4:
+[37m      88 │     [32mappealReviewCommands[37m: `/admin_approve <appeal_id> [Note]\n/adm...
+         ╵     [32m~~~~~~~~~~~~~~~~~~~~[0m
+
+
+[33m▲ [43;33m[[43;30mWARNING[43;33m][0m [1mDuplicate key "ban" in object literal[0m [duplicate-object-key]
+
+    src/i18n/locales/en.ts:532:4:
+[37m      532 │     [32mban[37m: {
+          ╵     [32m~~~[0m
+
+  The original key "ban" is here:
+
+    src/i18n/locales/en.ts:151:4:
+[37m      151 │     [32mban[37m: `💡 Use /admin_bans <user_id> to view ban history for ...
+          ╵     [32m~~~[0m
+
+
+[33m▲ [43;33m[[43;30mWARNING[43;33m][0m [1mDuplicate key "anonymousUser" in object literal[0m [duplicate-object-key]
+
+    src/i18n/locales/en.ts:1723:4:
+[37m      1723 │     [32manonymousUser[37m: `[Translation needed from zh-TW.ts]`,
+           ╵     [32m~~~~~~~~~~~~~[0m
+
+  The original key "anonymousUser" is here:
+
+    src/i18n/locales/en.ts:1704:4:
+[37m      1704 │     [32manonymousUser[37m: `匿名用戶`,
+           ╵     [32m~~~~~~~~~~~~~[0m
+
+
+[33m▲ [43;33m[[43;30mWARNING[43;33m][0m [1mDuplicate key "conversationInfoError" in object literal[0m [duplicate-object-key]
+
+    src/i18n/locales/en.ts:2864:4:
+[37m      2864 │     [32mconversationInfoError[37m: `[Translation needed from zh-TW.ts]`,
+           ╵     [32m~~~~~~~~~~~~~~~~~~~~~[0m
+
+  The original key "conversationInfoError" is here:
+
+    src/i18n/locales/en.ts:2797:4:
+[37m      2797 │     [32mconversationInfoError[37m: `⚠️ 對話資訊錯誤，請稍�...
+           ╵     [32m~~~~~~~~~~~~~~~~~~~~~[0m
+
+
+[33m▲ [43;33m[[43;30mWARNING[43;33m][0m [1mDuplicate key "inviteeSuccess" in object literal[0m [duplicate-object-key]
+
+    src/i18n/locales/en.ts:4195:4:
+[37m      4195 │     [32minviteeSuccess[37m: `[Needs translation: invite.inviteeSuccess]`,
+           ╵     [32m~~~~~~~~~~~~~~[0m
+
+  The original key "inviteeSuccess" is here:
+
+    src/i18n/locales/en.ts:4194:4:
+[37m      4194 │     [32minviteeSuccess[37m: `🎉 恭喜！您已成功接受邀請！`,
+           ╵     [32m~~~~~~~~~~~~~~[0m
+
+
+[33m▲ [43;33m[[43;30mWARNING[43;33m][0m [1mDuplicate key "selfInviteError" in object literal[0m [duplicate-object-key]
+
+    src/i18n/locales/en.ts:4199:4:
+[37m      4199 │     [32mselfInviteError[37m: `[Needs translation: invite.selfInviteError]`,
+           ╵     [32m~~~~~~~~~~~~~~~[0m
+
+  The original key "selfInviteError" is here:
+
+    src/i18n/locales/en.ts:4192:4:
+[37m      4192 │     [32mselfInviteError[37m: `❌ 您不能使用自己的邀請碼！`,
+           ╵     [32m~~~~~~~~~~~~~~~[0m
+
+
+[33m▲ [43;33m[[43;30mWARNING[43;33m][0m [1mDuplicate key "upgradePrompt" in object literal[0m [duplicate-object-key]
+
+    src/i18n/locales/en.ts:4200:4:
+[37m      4200 │     [32mupgradePrompt[37m: `[Needs translation: invite.upgradePrompt]`,
+           ╵     [32m~~~~~~~~~~~~~[0m
+
+  The original key "upgradePrompt" is here:
+
+    src/i18n/locales/en.ts:4193:4:
+[37m      4193 │     [32mupgradePrompt[37m: `💡 升級 VIP 可獲得更多邀請獎勵�...
+           ╵     [32m~~~~~~~~~~~~~[0m
+
+
+[33m▲ [43;33m[[43;30mWARNING[43;33m][0m [1mDuplicate key "removeLinks" in object literal[0m [duplicate-object-key]
+
+    src/i18n/locales/en.ts:4539:4:
+[37m      4539 │     [32mremoveLinks[37m: `[Translation needed from zh-TW.ts]`,
+           ╵     [32m~~~~~~~~~~~[0m
+
+  The original key "removeLinks" is here:
+
+    src/i18n/locales/en.ts:4532:4:
+[37m      4532 │     [32mremoveLinks[37m: `請移除連結後再試。`,
+           ╵     [32m~~~~~~~~~~~[0m
+
+
+[33m▲ [43;33m[[43;30mWARNING[43;33m][0m [1mDuplicate key "replyHint" in object literal[0m [duplicate-object-key]
+
+    src/i18n/locales/en.ts:4540:4:
+[37m      4540 │     [32mreplyHint[37m: `[Translation needed from zh-TW.ts]`,
+           ╵     [32m~~~~~~~~~[0m
+
+  The original key "replyHint" is here:
+
+    src/i18n/locales/en.ts:4529:4:
+[37m      4529 │     [32mreplyHint[37m: `💡 長按對方的訊息並選擇「回覆」�...
+           ╵     [32m~~~~~~~~~[0m
+
+
+[33m▲ [43;33m[[43;30mWARNING[43;33m][0m [1mDuplicate key "upgradeVip" in object literal[0m [duplicate-object-key]
+
+    src/i18n/locales/en.ts:4541:4:
+[37m      4541 │     [32mupgradeVip[37m: `[Translation needed from zh-TW.ts]`,
+           ╵     [32m~~~~~~~~~~[0m
+
+  The original key "upgradeVip" is here:
+
+    src/i18n/locales/en.ts:4534:4:
+[37m      4534 │     [32mupgradeVip[37m: `升級 VIP`,
+           ╵     [32m~~~~~~~~~~[0m
+
+
+[33m▲ [43;33m[[43;30mWARNING[43;33m][0m [1mDuplicate key "urlNotAllowed" in object literal[0m [duplicate-object-key]
+
+    src/i18n/locales/en.ts:4542:4:
+[37m      4542 │     [32murlNotAllowed[37m: `[Translation needed from zh-TW.ts]`,
+           ╵     [32m~~~~~~~~~~~~~[0m
+
+  The original key "urlNotAllowed" is here:
+
+    src/i18n/locales/en.ts:4530:4:
+[37m      4530 │     [32murlNotAllowed[37m: `⚠️ 禁止發送網址`,
+           ╵     [32m~~~~~~~~~~~~~[0m
+
+
+[33m▲ [43;33m[[43;30mWARNING[43;33m][0m [1mDuplicate key "urlNotAllowedDesc" in object literal[0m [duplicate-object-key]
+
+    src/i18n/locales/en.ts:4543:4:
+[37m      4543 │     [32murlNotAllowedDesc[37m: `[Translation needed from zh-TW.ts]`,
+           ╵     [32m~~~~~~~~~~~~~~~~~[0m
+
+  The original key "urlNotAllowedDesc" is here:
+
+    src/i18n/locales/en.ts:4531:4:
+[37m      4531 │     [32murlNotAllowedDesc[37m: `為了安全起見，禁止發送外部�...
+           ╵     [32m~~~~~~~~~~~~~~~~~[0m
+
+
+[33m▲ [43;33m[[43;30mWARNING[43;33m][0m [1mDuplicate key "vipDailyLimit" in object literal[0m [duplicate-object-key]
+
+    src/i18n/locales/en.ts:4544:4:
+[37m      4544 │     [32mvipDailyLimit[37m: `[Translation needed from zh-TW.ts]`,
+           ╵     [32m~~~~~~~~~~~~~[0m
+
+  The original key "vipDailyLimit" is here:
+
+    src/i18n/locales/en.ts:4533:4:
+[37m      4533 │     [32mvipDailyLimit[37m: `VIP 每日上限`,
+           ╵     [32m~~~~~~~~~~~~~[0m
+
+
+[33m▲ [43;33m[[43;30mWARNING[43;33m][0m [1mDuplicate key "terms" in object literal[0m [duplicate-object-key]
+
+    src/i18n/locales/en.ts:4888:4:
+[37m      4888 │     [32mterms[37m: {
+           ╵     [32m~~~~~[0m
+
+  The original key "terms" is here:
+
+    src/i18n/locales/en.ts:4629:4:
+[37m      4629 │     [32mterms[37m: {
+           ╵     [32m~~~~~[0m
+
+
+[33m▲ [43;33m[[43;30mWARNING[43;33m][0m [1mDuplicate key "returnToMenu" in object literal[0m [duplicate-object-key]
+
+    src/i18n/locales/en.ts:5220:4:
+[37m      5220 │     [32mreturnToMenu[37m: `🏠 Return to Menu`,
+           ╵     [32m~~~~~~~~~~~~[0m
+
+  The original key "returnToMenu" is here:
+
+    src/i18n/locales/en.ts:5215:4:
+[37m      5215 │     [32mreturnToMenu[37m: `返回主選單`,
+           ╵     [32m~~~~~~~~~~~~[0m
+
+
+[33m▲ [43;33m[[43;30mWARNING[43;33m][0m [1mDuplicate key "selectOption" in object literal[0m [duplicate-object-key]
+
+    src/i18n/locales/en.ts:5221:4:
+[37m      5221 │     [32mselectOption[37m: `[Need Translation: settings.selectOption]`,
+           ╵     [32m~~~~~~~~~~~~[0m
+
+  The original key "selectOption" is here:
+
+    src/i18n/locales/en.ts:5214:4:
+[37m      5214 │     [32mselectOption[37m: `請選擇要設定的項目：`,
+           ╵     [32m~~~~~~~~~~~~[0m
+
+
+[33m▲ [43;33m[[43;30mWARNING[43;33m][0m [1mDuplicate key "reportSubmitted" in object literal[0m [duplicate-object-key]
+
+    src/i18n/locales/en.ts:5538:4:
+[37m      5538 │     [32mreportSubmitted[37m: `[Translation needed from zh-TW.ts]`,
+           ╵     [32m~~~~~~~~~~~~~~~[0m
+
+  The original key "reportSubmitted" is here:
+
+    src/i18n/locales/en.ts:5434:4:
+[37m      5434 │     [32mreportSubmitted[37m: `✅ 檢舉已提交，感謝您的反饋！`,
+           ╵     [32m~~~~~~~~~~~~~~~[0m
+
+
+[33m▲ [43;33m[[43;30mWARNING[43;33m][0m [1mDuplicate key "register2" in object literal[0m [duplicate-object-key]
+
+    src/i18n/locales/en.ts:6644:4:
+[37m      6644 │     [32mregister2[37m: `[Needs translation: warnings.register2]`,
+           ╵     [32m~~~~~~~~~[0m
+
+  The original key "register2" is here:
+
+    src/i18n/locales/en.ts:6641:4:
+[37m      6641 │     [32mregister2[37m: `⚠️ 請先完成註冊流程。`,
+           ╵     [32m~~~~~~~~~[0m
+
+
+[33m▲ [43;33m[[43;30mWARNING[43;33m][0m [1mDuplicate key "register4" in object literal[0m [duplicate-object-key]
+
+    src/i18n/locales/en.ts:6645:4:
+[37m      6645 │     [32mregister4[37m: `[Needs translation: warnings.register4]`,
+           ╵     [32m~~~~~~~~~[0m
+
+  The original key "register4" is here:
+
+    src/i18n/locales/en.ts:6642:4:
+[37m      6642 │     [32mregister4[37m: `⚠️ 請先完成註冊流程。`,
+           ╵     [32m~~~~~~~~~[0m
+
+
+[33m▲ [43;33m[[43;30mWARNING[43;33m][0m [1mDuplicate key "text6" in object literal[0m [duplicate-object-key]
+
+    src/i18n/locales/en.ts:6648:4:
+[37m      6648 │     [32mtext6[37m: `[Needs translation: warnings.text6]`,
+           ╵     [32m~~~~~[0m
+
+  The original key "text6" is here:
+
+    src/i18n/locales/en.ts:6640:4:
+[37m      6640 │     [32mtext6[37m: `⚠️ 請勿發送敏感資訊`,
+           ╵     [32m~~~~~[0m
+
+
+[33m▲ [43;33m[[43;30mWARNING[43;33m][0m [1mDuplicate key "appealReviewCommands" in object literal[0m [duplicate-object-key]
+
+    src/i18n/locales/zh-CN.ts:139:4:
+[37m      139 │     [32mappealReviewCommands[37m: `/admin_approve <appeal_id> [备注]
+          ╵     [32m~~~~~~~~~~~~~~~~~~~~[0m
+
+  The original key "appealReviewCommands" is here:
+
+    src/i18n/locales/zh-CN.ts:88:4:
+[37m      88 │     [32mappealReviewCommands[37m: `/admin_approve <appeal_id> [備註]\n/a...
+         ╵     [32m~~~~~~~~~~~~~~~~~~~~[0m
+
+
+[33m▲ [43;33m[[43;30mWARNING[43;33m][0m [1mDuplicate key "ban" in object literal[0m [duplicate-object-key]
+
+    src/i18n/locales/zh-CN.ts:532:4:
+[37m      532 │     [32mban[37m: {
+          ╵     [32m~~~[0m
+
+  The original key "ban" is here:
+
+    src/i18n/locales/zh-CN.ts:151:4:
+[37m      151 │     [32mban[37m: `💡 使用 /admin_bans <user_id> 查看特定用户的...
+          ╵     [32m~~~[0m
+
+
+[33m▲ [43;33m[[43;30mWARNING[43;33m][0m [1mDuplicate key "anonymousUser" in object literal[0m [duplicate-object-key]
+
+    src/i18n/locales/zh-CN.ts:1723:4:
+[37m      1723 │     [32manonymousUser[37m: `[需要从 zh-TW.ts 获取翻译]`,
+           ╵     [32m~~~~~~~~~~~~~[0m
+
+  The original key "anonymousUser" is here:
+
+    src/i18n/locales/zh-CN.ts:1704:4:
+[37m      1704 │     [32manonymousUser[37m: `匿名用戶`,
+           ╵     [32m~~~~~~~~~~~~~[0m
+
+
+[33m▲ [43;33m[[43;30mWARNING[43;33m][0m [1mDuplicate key "conversationInfoError" in object literal[0m [duplicate-object-key]
+
+    src/i18n/locales/zh-CN.ts:2864:4:
+[37m      2864 │     [32mconversationInfoError[37m: `[需要从 zh-TW.ts 获取翻译]`,
+           ╵     [32m~~~~~~~~~~~~~~~~~~~~~[0m
+
+  The original key "conversationInfoError" is here:
+
+    src/i18n/locales/zh-CN.ts:2797:4:
+[37m      2797 │     [32mconversationInfoError[37m: `⚠️ 對話資訊錯誤，請稍�...
+           ╵     [32m~~~~~~~~~~~~~~~~~~~~~[0m
+
+
+[33m▲ [43;33m[[43;30mWARNING[43;33m][0m [1mDuplicate key "inviteeSuccess" in object literal[0m [duplicate-object-key]
+
+    src/i18n/locales/zh-CN.ts:4200:4:
+[37m      4200 │     [32minviteeSuccess[37m: `[需要翻译: invite.inviteeSuccess]`,
+           ╵     [32m~~~~~~~~~~~~~~[0m
+
+  The original key "inviteeSuccess" is here:
+
+    src/i18n/locales/zh-CN.ts:4199:4:
+[37m      4199 │     [32minviteeSuccess[37m: `🎉 恭喜！您已成功接受邀請！`,
+           ╵     [32m~~~~~~~~~~~~~~[0m
+
+
+[33m▲ [43;33m[[43;30mWARNING[43;33m][0m [1mDuplicate key "selfInviteError" in object literal[0m [duplicate-object-key]
+
+    src/i18n/locales/zh-CN.ts:4204:4:
+[37m      4204 │     [32mselfInviteError[37m: `[需要翻译: invite.selfInviteError]`,
+           ╵     [32m~~~~~~~~~~~~~~~[0m
+
+  The original key "selfInviteError" is here:
+
+    src/i18n/locales/zh-CN.ts:4197:4:
+[37m      4197 │     [32mselfInviteError[37m: `❌ 您不能使用自己的邀請碼！`,
+           ╵     [32m~~~~~~~~~~~~~~~[0m
+
+
+[33m▲ [43;33m[[43;30mWARNING[43;33m][0m [1mDuplicate key "upgradePrompt" in object literal[0m [duplicate-object-key]
+
+    src/i18n/locales/zh-CN.ts:4205:4:
+[37m      4205 │     [32mupgradePrompt[37m: `[需要翻译: invite.upgradePrompt]`,
+           ╵     [32m~~~~~~~~~~~~~[0m
+
+  The original key "upgradePrompt" is here:
+
+    src/i18n/locales/zh-CN.ts:4198:4:
+[37m      4198 │     [32mupgradePrompt[37m: `💡 升級 VIP 可獲得更多邀請獎勵�...
+           ╵     [32m~~~~~~~~~~~~~[0m
+
+
+[33m▲ [43;33m[[43;30mWARNING[43;33m][0m [1mDuplicate key "removeLinks" in object literal[0m [duplicate-object-key]
+
+    src/i18n/locales/zh-CN.ts:4544:4:
+[37m      4544 │     [32mremoveLinks[37m: `[需要从 zh-TW.ts 获取翻译]`,
+           ╵     [32m~~~~~~~~~~~[0m
+
+  The original key "removeLinks" is here:
+
+    src/i18n/locales/zh-CN.ts:4537:4:
+[37m      4537 │     [32mremoveLinks[37m: `請移除連結後再試。`,
+           ╵     [32m~~~~~~~~~~~[0m
+
+
+[33m▲ [43;33m[[43;30mWARNING[43;33m][0m [1mDuplicate key "replyHint" in object literal[0m [duplicate-object-key]
+
+    src/i18n/locales/zh-CN.ts:4545:4:
+[37m      4545 │     [32mreplyHint[37m: `[需要从 zh-TW.ts 获取翻译]`,
+           ╵     [32m~~~~~~~~~[0m
+
+  The original key "replyHint" is here:
+
+    src/i18n/locales/zh-CN.ts:4534:4:
+[37m      4534 │     [32mreplyHint[37m: `💡 長按對方的訊息並選擇「回覆」�...
+           ╵     [32m~~~~~~~~~[0m
+
+
+[33m▲ [43;33m[[43;30mWARNING[43;33m][0m [1mDuplicate key "upgradeVip" in object literal[0m [duplicate-object-key]
+
+    src/i18n/locales/zh-CN.ts:4546:4:
+[37m      4546 │     [32mupgradeVip[37m: `[需要从 zh-TW.ts 获取翻译]`,
+           ╵     [32m~~~~~~~~~~[0m
+
+  The original key "upgradeVip" is here:
+
+    src/i18n/locales/zh-CN.ts:4539:4:
+[37m      4539 │     [32mupgradeVip[37m: `升級 VIP`,
+           ╵     [32m~~~~~~~~~~[0m
+
+
+[33m▲ [43;33m[[43;30mWARNING[43;33m][0m [1mDuplicate key "urlNotAllowed" in object literal[0m [duplicate-object-key]
+
+    src/i18n/locales/zh-CN.ts:4547:4:
+[37m      4547 │     [32murlNotAllowed[37m: `[需要从 zh-TW.ts 获取翻译]`,
+           ╵     [32m~~~~~~~~~~~~~[0m
+
+  The original key "urlNotAllowed" is here:
+
+    src/i18n/locales/zh-CN.ts:4535:4:
+[37m      4535 │     [32murlNotAllowed[37m: `⚠️ 禁止發送網址`,
+           ╵     [32m~~~~~~~~~~~~~[0m
+
+
+[33m▲ [43;33m[[43;30mWARNING[43;33m][0m [1mDuplicate key "urlNotAllowedDesc" in object literal[0m [duplicate-object-key]
+
+    src/i18n/locales/zh-CN.ts:4548:4:
+[37m      4548 │     [32murlNotAllowedDesc[37m: `[需要从 zh-TW.ts 获取翻译]`,
+           ╵     [32m~~~~~~~~~~~~~~~~~[0m
+
+  The original key "urlNotAllowedDesc" is here:
+
+    src/i18n/locales/zh-CN.ts:4536:4:
+[37m      4536 │     [32murlNotAllowedDesc[37m: `為了安全起見，禁止發送外部�...
+           ╵     [32m~~~~~~~~~~~~~~~~~[0m
+
+
+[33m▲ [43;33m[[43;30mWARNING[43;33m][0m [1mDuplicate key "vipDailyLimit" in object literal[0m [duplicate-object-key]
+
+    src/i18n/locales/zh-CN.ts:4549:4:
+[37m      4549 │     [32mvipDailyLimit[37m: `[需要从 zh-TW.ts 获取翻译]`,
+           ╵     [32m~~~~~~~~~~~~~[0m
+
+  The original key "vipDailyLimit" is here:
+
+    src/i18n/locales/zh-CN.ts:4538:4:
+[37m      4538 │     [32mvipDailyLimit[37m: `VIP 每日上限`,
+           ╵     [32m~~~~~~~~~~~~~[0m
+
+
+[33m▲ [43;33m[[43;30mWARNING[43;33m][0m [1mDuplicate key "terms" in object literal[0m [duplicate-object-key]
+
+    src/i18n/locales/zh-CN.ts:4893:4:
+[37m      4893 │     [32mterms[37m: {
+           ╵     [32m~~~~~[0m
+
+  The original key "terms" is here:
+
+    src/i18n/locales/zh-CN.ts:4634:4:
+[37m      4634 │     [32mterms[37m: {
+           ╵     [32m~~~~~[0m
+
+
+[33m▲ [43;33m[[43;30mWARNING[43;33m][0m [1mDuplicate key "returnToMenu" in object literal[0m [duplicate-object-key]
+
+    src/i18n/locales/zh-CN.ts:5225:4:
+[37m      5225 │     [32mreturnToMenu[37m: `🏠 返回主菜单`,
+           ╵     [32m~~~~~~~~~~~~[0m
+
+  The original key "returnToMenu" is here:
+
+    src/i18n/locales/zh-CN.ts:5220:4:
+[37m      5220 │     [32mreturnToMenu[37m: `返回主選單`,
+           ╵     [32m~~~~~~~~~~~~[0m
+
+
+[33m▲ [43;33m[[43;30mWARNING[43;33m][0m [1mDuplicate key "selectOption" in object literal[0m [duplicate-object-key]
+
+    src/i18n/locales/zh-CN.ts:5226:4:
+[37m      5226 │     [32mselectOption[37m: `[需要翻译: settings.selectOption]`,
+           ╵     [32m~~~~~~~~~~~~[0m
+
+  The original key "selectOption" is here:
+
+    src/i18n/locales/zh-CN.ts:5219:4:
+[37m      5219 │     [32mselectOption[37m: `請選擇要設定的項目：`,
+           ╵     [32m~~~~~~~~~~~~[0m
+
+
+[33m▲ [43;33m[[43;30mWARNING[43;33m][0m [1mDuplicate key "reportSubmitted" in object literal[0m [duplicate-object-key]
+
+    src/i18n/locales/zh-CN.ts:5543:4:
+[37m      5543 │     [32mreportSubmitted[37m: `[需要从 zh-TW.ts 获取翻译]`,
+           ╵     [32m~~~~~~~~~~~~~~~[0m
+
+  The original key "reportSubmitted" is here:
+
+    src/i18n/locales/zh-CN.ts:5439:4:
+[37m      5439 │     [32mreportSubmitted[37m: `✅ 檢舉已提交，感謝您的反饋！`,
+           ╵     [32m~~~~~~~~~~~~~~~[0m
+
+
+[33m▲ [43;33m[[43;30mWARNING[43;33m][0m [1mDuplicate key "register2" in object literal[0m [duplicate-object-key]
+
+    src/i18n/locales/zh-CN.ts:6648:4:
+[37m      6648 │     [32mregister2[37m: `[需要翻译: warnings.register2]`,
+           ╵     [32m~~~~~~~~~[0m
+
+  The original key "register2" is here:
+
+    src/i18n/locales/zh-CN.ts:6645:4:
+[37m      6645 │     [32mregister2[37m: `⚠️ 請先完成註冊流程。`,
+           ╵     [32m~~~~~~~~~[0m
+
+
+[33m▲ [43;33m[[43;30mWARNING[43;33m][0m [1mDuplicate key "register4" in object literal[0m [duplicate-object-key]
+
+    src/i18n/locales/zh-CN.ts:6649:4:
+[37m      6649 │     [32mregister4[37m: `[需要翻译: warnings.register4]`,
+           ╵     [32m~~~~~~~~~[0m
+
+  The original key "register4" is here:
+
+    src/i18n/locales/zh-CN.ts:6646:4:
+[37m      6646 │     [32mregister4[37m: `⚠️ 請先完成註冊流程。`,
+           ╵     [32m~~~~~~~~~[0m
+
+
+[33m▲ [43;33m[[43;30mWARNING[43;33m][0m [1mDuplicate key "text6" in object literal[0m [duplicate-object-key]
+
+    src/i18n/locales/zh-CN.ts:6652:4:
+[37m      6652 │     [32mtext6[37m: `[需要翻译: warnings.text6]`,
+           ╵     [32m~~~~~[0m
+
+  The original key "text6" is here:
+
+    src/i18n/locales/zh-CN.ts:6644:4:
+[37m      6644 │     [32mtext6[37m: `⚠️ 請勿發送敏感資訊`,
+           ╵     [32m~~~~~[0m
+
+
+[33m▲ [43;33m[[43;30mWARNING[43;33m][0m [1mDuplicate key "ban" in object literal[0m [duplicate-object-key]
+
+    src/i18n/locales/zh-TW.ts:526:4:
+[37m      526 │     [32mban[37m: {
+          ╵     [32m~~~[0m
+
+  The original key "ban" is here:
+
+    src/i18n/locales/zh-TW.ts:145:4:
+[37m      145 │     [32mban[37m: `💡 使用 /admin_bans <user_id> 查看特定用戶的...
+          ╵     [32m~~~[0m
+
+
+[33m▲ [43;33m[[43;30mWARNING[43;33m][0m [1mDuplicate key "anonymousUser" in object literal[0m [duplicate-object-key]
+
+    src/i18n/locales/zh-TW.ts:1717:4:
+[37m      1717 │     [32manonymousUser[37m: `匿名用戶`,
+           ╵     [32m~~~~~~~~~~~~~[0m
+
+  The original key "anonymousUser" is here:
+
+    src/i18n/locales/zh-TW.ts:1698:4:
+[37m      1698 │     [32manonymousUser[37m: `匿名用戶`,
+           ╵     [32m~~~~~~~~~~~~~[0m
+
+
+[33m▲ [43;33m[[43;30mWARNING[43;33m][0m [1mDuplicate key "conversationInfoError" in object literal[0m [duplicate-object-key]
+
+    src/i18n/locales/zh-TW.ts:2858:4:
+[37m      2858 │     [32mconversationInfoError[37m: `❌ 對話資訊錯誤。`,
+           ╵     [32m~~~~~~~~~~~~~~~~~~~~~[0m
+
+  The original key "conversationInfoError" is here:
+
+    src/i18n/locales/zh-TW.ts:2791:4:
+[37m      2791 │     [32mconversationInfoError[37m: `⚠️ 對話資訊錯誤，請稍�...
+           ╵     [32m~~~~~~~~~~~~~~~~~~~~~[0m
+
+
+[33m▲ [43;33m[[43;30mWARNING[43;33m][0m [1mDuplicate key "inviteeSuccess" in object literal[0m [duplicate-object-key]
+
+    src/i18n/locales/zh-TW.ts:4194:4:
+[37m      4194 │     [32minviteeSuccess[37m: `✅ 你已成功接受邀請！`,
+           ╵     [32m~~~~~~~~~~~~~~[0m
+
+  The original key "inviteeSuccess" is here:
+
+    src/i18n/locales/zh-TW.ts:4193:4:
+[37m      4193 │     [32minviteeSuccess[37m: `🎉 恭喜！您已成功接受邀請！`,
+           ╵     [32m~~~~~~~~~~~~~~[0m
+
+
+[33m▲ [43;33m[[43;30mWARNING[43;33m][0m [1mDuplicate key "selfInviteError" in object literal[0m [duplicate-object-key]
+
+    src/i18n/locales/zh-TW.ts:4198:4:
+[37m      4198 │     [32mselfInviteError[37m: `❌ 不能邀請自己`,
+           ╵     [32m~~~~~~~~~~~~~~~[0m
+
+  The original key "selfInviteError" is here:
+
+    src/i18n/locales/zh-TW.ts:4191:4:
+[37m      4191 │     [32mselfInviteError[37m: `❌ 您不能使用自己的邀請碼！`,
+           ╵     [32m~~~~~~~~~~~~~~~[0m
+
+
+[33m▲ [43;33m[[43;30mWARNING[43;33m][0m [1mDuplicate key "upgradePrompt" in object literal[0m [duplicate-object-key]
+
+    src/i18n/locales/zh-TW.ts:4199:4:
+[37m      4199 │     [32mupgradePrompt[37m: `💎 升級 VIP 可獲得更多邀請名額`,
+           ╵     [32m~~~~~~~~~~~~~[0m
+
+  The original key "upgradePrompt" is here:
+
+    src/i18n/locales/zh-TW.ts:4192:4:
+[37m      4192 │     [32mupgradePrompt[37m: `💡 升級 VIP 可獲得更多邀請獎勵�...
+           ╵     [32m~~~~~~~~~~~~~[0m
+
+
+[33m▲ [43;33m[[43;30mWARNING[43;33m][0m [1mDuplicate key "removeLinks" in object literal[0m [duplicate-object-key]
+
+    src/i18n/locales/zh-TW.ts:4538:4:
+[37m      4538 │     [32mremoveLinks[37m: `💡 請移除網址後再試`,
+           ╵     [32m~~~~~~~~~~~[0m
+
+  The original key "removeLinks" is here:
+
+    src/i18n/locales/zh-TW.ts:4531:4:
+[37m      4531 │     [32mremoveLinks[37m: `請移除連結後再試。`,
+           ╵     [32m~~~~~~~~~~~[0m
+
+
+[33m▲ [43;33m[[43;30mWARNING[43;33m][0m [1mDuplicate key "replyHint" in object literal[0m [duplicate-object-key]
+
+    src/i18n/locales/zh-TW.ts:4539:4:
+[37m      4539 │     [32mreplyHint[37m: `💡 請回覆對方的訊息來發送消息`,
+           ╵     [32m~~~~~~~~~[0m
+
+  The original key "replyHint" is here:
+
+    src/i18n/locales/zh-TW.ts:4528:4:
+[37m      4528 │     [32mreplyHint[37m: `💡 長按對方的訊息並選擇「回覆」�...
+           ╵     [32m~~~~~~~~~[0m
+
+
+[33m▲ [43;33m[[43;30mWARNING[43;33m][0m [1mDuplicate key "upgradeVip" in object literal[0m [duplicate-object-key]
+
+    src/i18n/locales/zh-TW.ts:4540:4:
+[37m      4540 │     [32mupgradeVip[37m: `💡 升級 VIP 可獲得更多配額（100 則...
+           ╵     [32m~~~~~~~~~~[0m
+
+  The original key "upgradeVip" is here:
+
+    src/i18n/locales/zh-TW.ts:4533:4:
+[37m      4533 │     [32mupgradeVip[37m: `升級 VIP`,
+           ╵     [32m~~~~~~~~~~[0m
+
+
+[33m▲ [43;33m[[43;30mWARNING[43;33m][0m [1mDuplicate key "urlNotAllowed" in object literal[0m [duplicate-object-key]
+
+    src/i18n/locales/zh-TW.ts:4542:4:
+[37m      4542 │     [32murlNotAllowed[37m: `❌ 訊息包含不被允許的網址
+           ╵     [32m~~~~~~~~~~~~~[0m
+
+  The original key "urlNotAllowed" is here:
+
+    src/i18n/locales/zh-TW.ts:4529:4:
+[37m      4529 │     [32murlNotAllowed[37m: `⚠️ 禁止發送網址`,
+           ╵     [32m~~~~~~~~~~~~~[0m
+
+
+[33m▲ [43;33m[[43;30mWARNING[43;33m][0m [1mDuplicate key "urlNotAllowedDesc" in object literal[0m [duplicate-object-key]
+
+    src/i18n/locales/zh-TW.ts:4545:4:
+[37m      4545 │     [32murlNotAllowedDesc[37m: `⚠️ 為了安全，對話中只允許...
+           ╵     [32m~~~~~~~~~~~~~~~~~[0m
+
+  The original key "urlNotAllowedDesc" is here:
+
+    src/i18n/locales/zh-TW.ts:4530:4:
+[37m      4530 │     [32murlNotAllowedDesc[37m: `為了安全起見，禁止發送外部�...
+           ╵     [32m~~~~~~~~~~~~~~~~~[0m
+
+
+[33m▲ [43;33m[[43;30mWARNING[43;33m][0m [1mDuplicate key "vipDailyLimit" in object literal[0m [duplicate-object-key]
+
+    src/i18n/locales/zh-TW.ts:4548:4:
+[37m      4548 │     [32mvipDailyLimit[37m: `💡 VIP 用戶每日可發送 100 則訊息。
+           ╵     [32m~~~~~~~~~~~~~[0m
+
+  The original key "vipDailyLimit" is here:
+
+    src/i18n/locales/zh-TW.ts:4532:4:
+[37m      4532 │     [32mvipDailyLimit[37m: `VIP 每日上限`,
+           ╵     [32m~~~~~~~~~~~~~[0m
+
+
+[33m▲ [43;33m[[43;30mWARNING[43;33m][0m [1mDuplicate key "terms" in object literal[0m [duplicate-object-key]
+
+    src/i18n/locales/zh-TW.ts:4893:4:
+[37m      4893 │     [32mterms[37m: {
+           ╵     [32m~~~~~[0m
+
+  The original key "terms" is here:
+
+    src/i18n/locales/zh-TW.ts:4634:4:
+[37m      4634 │     [32mterms[37m: {
+           ╵     [32m~~~~~[0m
+
+
+[33m▲ [43;33m[[43;30mWARNING[43;33m][0m [1mDuplicate key "returnToMenu" in object literal[0m [duplicate-object-key]
+
+    src/i18n/locales/zh-TW.ts:5225:4:
+[37m      5225 │     [32mreturnToMenu[37m: `🏠 返回主選單`,
+           ╵     [32m~~~~~~~~~~~~[0m
+
+  The original key "returnToMenu" is here:
+
+    src/i18n/locales/zh-TW.ts:5220:4:
+[37m      5220 │     [32mreturnToMenu[37m: `返回主選單`,
+           ╵     [32m~~~~~~~~~~~~[0m
+
+
+[33m▲ [43;33m[[43;30mWARNING[43;33m][0m [1mDuplicate key "selectOption" in object literal[0m [duplicate-object-key]
+
+    src/i18n/locales/zh-TW.ts:5226:4:
+[37m      5226 │     [32mselectOption[37m: `請選擇選項：`,
+           ╵     [32m~~~~~~~~~~~~[0m
+
+  The original key "selectOption" is here:
+
+    src/i18n/locales/zh-TW.ts:5219:4:
+[37m      5219 │     [32mselectOption[37m: `請選擇要設定的項目：`,
+           ╵     [32m~~~~~~~~~~~~[0m
+
+
+[33m▲ [43;33m[[43;30mWARNING[43;33m][0m [1mDuplicate key "reportSubmitted" in object literal[0m [duplicate-object-key]
+
+    src/i18n/locales/zh-TW.ts:5543:4:
+[37m      5543 │     [32mreportSubmitted[37m: `✅ 舉報已提交，感謝你的回報`,
+           ╵     [32m~~~~~~~~~~~~~~~[0m
+
+  The original key "reportSubmitted" is here:
+
+    src/i18n/locales/zh-TW.ts:5439:4:
+[37m      5439 │     [32mreportSubmitted[37m: `✅ 檢舉已提交，感謝您的反饋！`,
+           ╵     [32m~~~~~~~~~~~~~~~[0m
+
+
+[33m▲ [43;33m[[43;30mWARNING[43;33m][0m [1mDuplicate key "register2" in object literal[0m [duplicate-object-key]
+
+    src/i18n/locales/zh-TW.ts:6648:4:
+[37m      6648 │     [32mregister2[37m: `⚠️ 請先完成註冊`,
+           ╵     [32m~~~~~~~~~[0m
+
+  The original key "register2" is here:
+
+    src/i18n/locales/zh-TW.ts:6645:4:
+[37m      6645 │     [32mregister2[37m: `⚠️ 請先完成註冊流程。`,
+           ╵     [32m~~~~~~~~~[0m
+
+
+[33m▲ [43;33m[[43;30mWARNING[43;33m][0m [1mDuplicate key "register4" in object literal[0m [duplicate-object-key]
+
+    src/i18n/locales/zh-TW.ts:6649:4:
+[37m      6649 │     [32mregister4[37m: `⚠️ 註冊未完成`,
+           ╵     [32m~~~~~~~~~[0m
+
+  The original key "register4" is here:
+
+    src/i18n/locales/zh-TW.ts:6646:4:
+[37m      6646 │     [32mregister4[37m: `⚠️ 請先完成註冊流程。`,
+           ╵     [32m~~~~~~~~~[0m
+
+
+[33m▲ [43;33m[[43;30mWARNING[43;33m][0m [1mDuplicate key "text6" in object literal[0m [duplicate-object-key]
+
+    src/i18n/locales/zh-TW.ts:6652:4:
+[37m      6652 │     [32mtext6[37m: `⚠️ 請先完成註冊`,
+           ╵     [32m~~~~~[0m
+
+  The original key "text6" is here:
+
+    src/i18n/locales/zh-TW.ts:6644:4:
+[37m      6644 │     [32mtext6[37m: `⚠️ 請勿發送敏感資訊`,
+           ╵     [32m~~~~~[0m
+
+
+Total Upload: 2705.86 KiB / gzip: 475.47 KiB
+Your worker has access to the following bindings:
+- KV Namespaces:
+  - CACHE: 8222fd298f254b498b7842d03e5d2a4d
+- D1 Databases:
+  - DB: xunni-db-staging (7b77ad82-ba26-489f-995f-8256b32379df)
+- Vars:
+  - ENVIRONMENT: "staging"
+  - LOG_LEVEL: "info"
+  - BROADCAST_BATCH_SIZE: "25"
+  - BROADCAST_MAX_JOBS: "3"
+  - ENABLE_AI_MODERATION: "true"
+  - ENABLE_TRANSLATION: "true"
+  - ADMIN_LOG_GROUP_ID: "-4917557179"
+  - GEMINI_PROJECT_ID: "gen-lang-client-0526946218"
+  - GEMINI_LOCATION: "us-central1"
+  - GEMINI_MODELS: "gemini-2.0-flash-exp,gemini-2.5-flash..."
+  - GEMINI_API_VERSION: "v1beta"
+  - OPENAI_MODEL: "gpt-4o-mini"
+  - SUPER_ADMIN_USER_ID: "396943893"
+  - ADMIN_USER_IDS: ""
+  - PUBLIC_URL: "https://xunni-bot-staging.yves221.wor..."
+  - ENABLE_ANALYTICS: "true"
+  - AD_PROVIDER_STRATEGY: "priority"
+  - AD_REWARD_SECRET: "NOGD2InZ/VuIhZPSiajhwdmIc/PKHnijE/VSU..."
+  - OFFICIAL_CHANNEL_ID: "-1003260293651"
+  - ENABLE_VIP_SUBSCRIPTION: "false"
+  - ENABLE_SMART_MATCHING: "true"
+  - SMART_MATCHING_THRESHOLD: "70"
+
+[31m✘ [41;31m[[41;97mERROR[41;31m][0m [1mA request to the Cloudflare API (/accounts/7404fbe7880034e92c7d4a20969e42f5/workers/scripts/xunni-bot-staging/versions) failed.[0m
+
+  Uncaught ReferenceError: bottleId is not defined
+    at null.<anonymous> (file:///Users/yichen/Downloads/cursor/XunNi/src/i18n/locales/zh-TW.ts:1014:26) in src/i18n/locales/zh-TW.ts
+    at null.<anonymous> (worker.js:5:56) in __init
+    at null.<anonymous> (file:///Users/yichen/Downloads/cursor/XunNi/src/i18n/index.ts:13:1) in src/i18n/index.ts
+    at null.<anonymous> (worker.js:5:56) in __init
+    at null.<anonymous> (file:///Users/yichen/Downloads/cursor/XunNi/src/telegram/handlers/onboarding_input.ts:24:1)
+   [code: 10021]
+  To learn more about this error, visit: [4mhttps://developers.cloudflare.com/workers/observability/errors/#validation-errors-10021[0m
+
+  
+  If you think this is a bug, please open an issue at: [4mhttps://github.com/cloudflare/workers-sdk/issues/new/choose[0m
+
+
+🪵  Logs were written to "/Users/yichen/Library/Preferences/.wrangler/logs/wrangler-2025-11-26_09-17-05_960.log"
+ ELIFECYCLE  Command failed with exit code 1.

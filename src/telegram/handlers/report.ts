@@ -179,9 +179,50 @@ export async function handleReportReason(
     // Increment target user's risk score
     await incrementRiskScore(db, otherUserId);
 
-    // Check if user should be auto-banned (e.g., 3+ reports in 24h)
+    // ✨ NEW: Get recent messages for AI analysis (Evidence)
+    const lastMessages = await db.d1
+      .prepare(
+        `SELECT content FROM conversation_messages 
+         WHERE conversation_id = ? 
+         ORDER BY created_at DESC 
+         LIMIT 5`
+      )
+      .bind(conversation.id)
+      .all<{ content: string }>();
+    
+    const evidence = lastMessages.results?.map(m => m.content).reverse() || [];
+
+    // ✨ NEW: AI Analysis & Admin Logging
+    const { ContentModerationService } = await import('~/services/content_moderation');
+    const { AdminLogService } = await import('~/services/admin_log');
+    
+    const aiService = new ContentModerationService(env);
+    const logService = new AdminLogService(env);
+
+    const aiResult = await aiService.analyzeReport({
+      reporter: telegramId,
+      suspect: otherUserId,
+      reason: reason,
+      messages: evidence
+    });
+
+    let actionTaken = 'Reported';
+
+    // Check if user should be auto-banned (e.g., 3+ reports in 24h OR High AI Confidence)
     const recentReports = await getRecentReportCount(db, otherUserId);
-    if (recentReports >= 1) {
+    
+    if (aiResult.verdict === 'violation' && aiResult.confidence > 90) {
+      // Immediate AI Ban
+      await autoBanUser(
+        db,
+        telegram,
+        otherUserId,
+        `${i18n.t('report.aiAutoBan')} (${aiResult.reason})`,
+        5, // Treat as 5 reports for longer ban
+        env
+      );
+      actionTaken = 'Auto-Banned (AI)';
+    } else if (recentReports >= 1) {
       // Auto-ban based on report count
       await autoBanUser(
         db,
@@ -191,7 +232,19 @@ export async function handleReportReason(
         recentReports,
         env
       );
+      actionTaken = 'Auto-Banned (Reports)';
     }
+
+    // Log to Admin Group
+    await logService.logReport({
+      reporterId: telegramId,
+      suspectId: otherUserId,
+      reason: reason,
+      evidence: evidence,
+      aiVerdict: aiResult.verdict,
+      aiConfidence: aiResult.confidence,
+      actionTaken: actionTaken
+    });
 
     // Clear session
     await clearSession(db, telegramId);

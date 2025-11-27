@@ -17,6 +17,7 @@ export interface Broadcast {
   completedAt?: string;
   errorMessage?: string;
   filterJson?: string; // JSON string of BroadcastFilters
+  lastProcessedId?: number; // For cursor pagination
 }
 
 export interface BroadcastTarget {

@@ -3,7 +3,6 @@ import { createDatabaseClient } from '~/db/client';
 import { createTelegramService } from '~/services/telegram';
 import { createI18n } from '~/i18n';
 import { findUserByTelegramId } from '~/db/queries/users';
-import { handleMenu } from './menu';
 
 const PAGE_SIZE = 12;
 

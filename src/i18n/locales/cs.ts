@@ -1,6720 +1,4079 @@
 import type { Translations } from '../types';
 
-/**
- * cs translations
- * Auto-generated from i18n_for_translation.csv
- */
 export const translations: Translations = {
-  ad: {
-    ad: `💡 繼續觀看廣告可獲得更多額度！（已修正）`,
-    failed: `❌ 廣告載入失敗，請稍後再試`,
+  "ad": {
+    "ad": "💡 Pokračujte ve sledování reklam, abyste získali více kvót! (Fixováno)",
+    "failed": "❌ Načtení reklam se nezdařilo, zkuste to prosím znovu později"
   },
-  adPrompt: {
-    completeTask: `• ✨ 完成任務（獲得永久配額）`,
-    inviteFriends: `• 🎁 邀請好友（每人 +1 配額）`,
-    quotaExhausted: `❌ 今日漂流瓶配額已用完（\${quotaDisplay}）`,
-    taskButton: `✨ \${taskName} 🎁`,
-    upgradeVip: `• 💎 升級 VIP（每天 30 個配額）`,
-    watchAd: `• 📺 觀看廣告（剩餘 \${remaining}/20 次）`,
-    watchAdLimit: `• 📺 觀看廣告（今日已達上限）`,
-    waysToGetMore: `💡 獲得更多配額的方式：`,
+  "adPrompt": {
+    "completeTask": "• ✨ Dokončete úkoly (získejte trvalou kvótu)",
+    "inviteFriends": "• 🎁 Pozvěte přátele (získejte +1 kvótu na osobu)",
+    "quotaExhausted": "❌ Dnešní kvóta láhve se zprávou byla vyčerpána (${quotaDisplay})",
+    "taskButton": "✨ ${taskName} 🎁",
+    "upgradeVip": "• 💎 Upgradujte na VIP (30 kvót denně)",
+    "watchAd": "• 📺 Sledujte reklamy (zbývá ${remaining}/20 krát)",
+    "watchAdLimit": "• 📺 Sledujte reklamy (denní limit byl dosažen)",
+    "waysToGetMore": "💡 Způsoby, jak získat více kvót:"
   },
-  adProvider: {
-    health: {
-      good: `良好`,
-      needsAttention: `需要關注`,
+  "adProvider": {
+    "health": {
+      "good": "Dobré",
+      "needsAttention": "Je potřeba věnovat pozornost"
+    }
+  },
+  "adReward": {
+    "adCompleted": "Reklama byla dokončena! Získáno +${quota} kvót",
+    "cannotSelectProvider": "⚠️ Není možné vybrat poskytovatele reklam",
+    "cannotWatchMore": "⚠️ Není možné sledovat více reklam",
+    "clickButtonHint": "✅ Prosím klikněte na tlačítko pro zahájení sledování",
+    "completedEarned": "🎁 Dnes celkem získáno: **${earned}** kvót",
+    "completedRemaining": "📈 Zbývající pokusy: **${remaining}** krát",
+    "completedReward": "✅ Získáno **+1 kvóta**",
+    "completedTitle": "🎉 **Sledování reklamy bylo dokončeno!**",
+    "completedWatched": "📊 Dnes sledováno: **${watched}/20** krát",
+    "continueWatching": "💡 Pokračujte ve sledování reklam, abyste získali více kvót!",
+    "dailyLimitReached": "Dnešní reklamy dosáhly limitu (${max}/${max})",
+    "getStatusFailed": "❌ Nepodařilo se načíst stav reklamy",
+    "noProviders": "⚠️ Momentálně nejsou k dispozici žádní poskytovatelé reklam",
+    "pendingAd": "⚠️ Dokončete předchozí reklamu před zahájením nové",
+    "startWatchButton": "📺 Začněte sledovat reklamy",
+    "vipNoAds": "💎 VIP uživatelé nemusí sledovat reklamy",
+    "vipNoAdsReason": "VIP uživatelé mají neomezené kvóty a nemusí sledovat reklamy",
+    "watchAdClickButton": "👇 Klikněte na tlačítko níže a začněte sledovat",
+    "watchAdRemaining": "📊 Dnes zbývá: **${remaining}/20** krát",
+    "watchAdReward": "🎁 Dokončete sledování, abyste získali **+1 kvótu**",
+    "watchAdTitle": "📺 **Získejte kvóty sledováním reklam**"
+  },
+  "admin": {
+    "ad": "Použijte /official_ads pro zobrazení všech reklam",
+    "ad2": "Prosím použijte databázový skript pro přidání poskytovatelů reklam:\n",
+    "ad3": "📺 **Seznam poskytovatelů reklamy**\n\n",
+    "ad4": "Prosím použijte databázový skript pro přidání oficiálních reklam:\n",
+    "ad5": "📢 **Oficiální seznam reklam**\n\n",
+    "adConfig": {
+      "adIdMustBeNumber": "❌ ID reklamy musí být číslo",
+      "addOfficialAdScript": "Prosím použijte databázový skript pro přidání oficiálních reklam:",
+      "addProviderScript": "Prosím použijte databázový skript pro přidání poskytovatelů reklam:",
+      "clicks": "• Kliknuto: ${count} krát",
+      "correctFormat": "**Správný formát:**",
+      "disableCommand": "• `/ad_provider_disable <id>` - Zakázat",
+      "disableFailed": "❌ Nepodařilo se zakázat poskytovatele reklam",
+      "disableOfficialAdCommand": "• `/official_ad_disable <id>` - Zakázat",
+      "disableOfficialAdFailed": "❌ Nepodařilo se zakázat oficiální reklamu",
+      "disabled": "❌ Zakázat",
+      "enableCommand": "• `/ad_provider_enable <id>` - Povolte",
+      "enableFailed": "❌ Nepodařilo se povolit poskytovatele reklam",
+      "enableOfficialAdCommand": "• `/official_ad_enable <id>` - Povolit",
+      "enableOfficialAdFailed": "❌ Nepodařilo se povolit oficiální reklamy",
+      "enabled": "✅ Povolené",
+      "example": "**Příklad:**",
+      "getListFailed": "❌ Nepodařilo se získat seznam poskytovatelů reklam",
+      "getOfficialAdListFailed": "❌ Nepodařilo se získat seznam oficiálních reklam",
+      "id": "• ID: ${id}",
+      "impressions": "• Zobrazeno: ${count} krát",
+      "managementCommands": "**Admin příkazy:**",
+      "noOfficialAds": "⚠️ Momentálně žádné oficiální reklamy",
+      "noProviders": "⚠️ Momentálně nejsou nakonfigurováni žádní poskytovatelé reklam",
+      "officialAdDisabled": "✅ Oficiální reklama zakázána #${id}",
+      "officialAdEnabled": "✅ Oficiální reklama povolena #${id}",
+      "officialAdList": "📢 **Seznam oficiálních reklam**",
+      "priority": "• Priorita: ${priority}",
+      "priorityCommand": "• `/ad_provider_priority <id> <priority>` - Nastavit prioritu",
+      "priorityMustBeNonNegative": "❌ Priorita musí být celé nezáporné číslo",
+      "prioritySet": "✅ Priorita poskytovatele reklamy nastavena",
+      "priorityValue": "Priorita: ${priority}",
+      "provider": "Poskytovatel: ${name}",
+      "providerDisabled": "✅ Zakázán poskytovatel reklamy: ${name}",
+      "providerEnabled": "✅ Povolena reklama poskytovatele: ${name}",
+      "providerList": "📺 **Seznam poskytovatelů reklam**",
+      "reward": "• Odměna: ${reward}",
+      "setPriorityFailed": "❌ Nepodařilo se nastavit prioritu",
+      "status": "• Stav: ${status}",
+      "testMode": "• 🧪 Testovací režim",
+      "type": "• Typ: ${type}",
+      "usageError": "❌ Nesprávné použití",
+      "viewAllOfficialAds": "Použijte /official_ads pro zobrazení všech reklam",
+      "viewAllProviders": "Použijte /ad_providers pro zobrazení všech poskytovatelů",
+      "viewStatsCommand": "• `/ad_stats <id>` - Zobrazit podrobné statistiky",
+      "weight": "• Váha: ${weight}"
     },
-  },
-  adReward: {
-    adCompleted: `廣告完成！獲得 +\${quota} 個配額`,
-    cannotSelectProvider: `⚠️ 無法選擇廣告提供商`,
-    cannotWatchMore: `⚠️ 無法觀看更多廣告`,
-    clickButtonHint: `✅ 請點擊按鈕開始觀看`,
-    completedEarned: `🎁 今日已獲得：**\${earned}** 個額度`,
-    completedRemaining: `📈 剩餘次數：**\${remaining}** 次`,
-    completedReward: `✅ 獲得 **+1 個額度**`,
-    completedTitle: `🎉 **廣告觀看完成！**`,
-    completedWatched: `📊 今日已觀看：**\${watched}/20** 次`,
-    continueWatching: `💡 繼續觀看廣告可獲得更多額度！`,
-    dailyLimitReached: `今日廣告已達上限（\${max}/\${max}）`,
-    getStatusFailed: `❌ 獲取廣告狀態失敗`,
-    noProviders: `⚠️ 暫無可用的廣告提供商`,
-    pendingAd: `⚠️ 請先完成上一支廣告，再開始新的廣告`,
-    startWatchButton: `📺 開始觀看廣告`,
-    vipNoAds: `💎 VIP 用戶無需觀看廣告`,
-    vipNoAdsReason: `VIP 用戶擁有無限配額，無需觀看廣告`,
-    watchAdClickButton: `👇 點擊下方按鈕開始觀看`,
-    watchAdRemaining: `📊 今日剩餘：**\${remaining}/20** 次`,
-    watchAdReward: `🎁 完成觀看可獲得 **+1 個額度**`,
-    watchAdTitle: `📺 **觀看廣告獲得額度**`,
-  },
-  admin: {
-    ad: `使用 /official_ads 查看所有廣告`,
-    ad2: `請使用資料庫腳本添加廣告提供商：
-`,
-    ad3: `📺 **廣告提供商列表**
-
-`,
-    ad4: `請使用資料庫腳本添加官方廣告：
-`,
-    ad5: `📢 **官方廣告列表**
-
-`,
-    addAlreadyAdmin: `❌ 此用戶已經是管理員。`,
-    addAlreadySuperAdmin: `❌ 此用戶已經是超級管理員，無需添加。`,
-    addCommand: `\`/admin_add <user_id>\`
-
-`,
-    addExample: `\`/admin_add 123456789\` - 添加為普通管理員
-
-`,
-    addInstructions: `⚠️ **注意**
-
-此命令需要手動修改配置文件。
-
-**步驟：**
-1. 編輯 \`wrangler.toml\`
-2. 找到 \`ADMIN_USER_IDS\` 變數
-3. 添加用戶 ID：\`{userId}\`
-4. 格式：\`ADMIN_USER_IDS = "ID1,ID2,{userId}"\`
-5. 重新部署：\`pnpm deploy:staging\`
-
-**用戶資訊：**
-• ID: \`{userId}\`
-• 暱稱: {nickname}
-• 用戶名: @{username}
-
-💡 或在 Cloudflare Dashboard 中修改環境變數`,
-    addUsageError: `❌ 使用方法錯誤
-
-`,
-    addUserNotFound: `❌ 用戶不存在或未註冊。`,
-    admin: `💡 使用 /admin_list 查看當前管理員列表`,
-    admin2: `管理員封禁 / Admin ban`,
-    admin3: `- 添加為普通管理員
-
-`,
-    admin4: `- 移除普通管理員
-
-`,
-    admin5: `\`/admin_add 123456789\` - 添加為普通管理員
-
-`,
-    admin6: `\`/admin_remove 123456789\` - 移除普通管理員
-
-`,
-    appeal: `申訴 ID: \${appeal.id}
-`,
-    appeal2: `💡 使用以下命令審核申訴：
-`,
-    appeal3: `📋 待審核申訴列表
-
-`,
-    appeal4: `申訴已批准`,
-    appeal5: `申訴被拒絕`,
-    appealAlreadyReviewed: `❌ 申訴 {id} 已經被審核過了`,
-    appealApproveUsageError: `❌ 請提供申訴 ID
-
-用法: /admin_approve <appeal_id> [備註]`,
-    appealApproved: `✅ 申訴 {id} 已批准，用戶已解封`,
-    appealApprovedDefault: `申訴已批准`,
-    appealDivider: `━━━━━━━━━━━━━━━━
-`,
-    appealId: `申訴 ID: {id}
-`,
-    appealNotFound: `❌ 找不到申訴 ID: {id}`,
-    appealReason: `理由: {reason}
-`,
-    appealRejectUsageError: `❌ 請提供申訴 ID
-
-用法: /admin_reject <appeal_id> [備註]`,
-    appealRejected: `✅ 申訴 {id} 已拒絕`,
-    appealRejectedDefault: `申訴被拒絕`,
-    appealReviewCommands: `/admin_approve <appeal_id> [備註]
-/admin_reject <appeal_id> [備註]`,
-    appealReviewHint: `💡 使用以下命令審核申訴：
-`,
-    appealSubmittedAt: `提交時間: {time}
-
-`,
-    appealUser: `用戶: {user}
-`,
-    appealsTitle: `📋 待審核申訴列表
-
-`,
-    ban: `💡 使用 /admin_bans <user_id> 查看特定用戶的封禁歷史`,
-    ban2: `總封禁次數: \${userBans.results.length}
-
-`,
-    ban3: `📊 最近 10 條封禁記錄
-
-`,
-    ban4: `📊 用戶封禁歷史
-
-`,
-    ban5: `📊 目前沒有封禁記錄`,
-    banSuccess: `✅ 已封禁用戶 {userId} ({nickname})
-
-封禁時長：{duration}
-解封時間：{unbanTime}`,
-    banSuccessPermanent: `✅ 已永久封禁用戶 {userId} ({nickname})`,
-    banUsageError: `使用方式错误`,
-    banUserNotFound: `用户不存在`,
-    cannotBanAdmin: `无法封禁管理员`,
-    conversation: `💡 對話歷史帖子只在有新消息時創建
-`,
-    conversation2: `所有 VIP 用戶的對話歷史都是最新的！`,
-    conversation3: `
-💬 **對話歷史帖子：**
-`,
-    conversation4: `請檢查對話歷史是否已更新為清晰頭像。`,
-    conversation5: `🔄 開始刷新您的對話歷史...`,
-    conversation6: `• 無對話歷史帖子
-`,
-    end: `結束: \${banEnd}
-
-`,
-    error: `错误`,
-    failed: `• 失敗帖子：\${results.totalPostsFailed}
-
-`,
-    failed2: `• 失敗：\${results.failedUsers}
-`,
-    failed3: `• 失敗：\${result.failed} 個帖子
-
-`,
-    insufficientPermission: `❌ **權限不足**
-
-此命令僅限超級管理員使用。`,
-    listFooter: `---`,
-    listId: `ID：{id}`,
-    listNickname: `暱稱：{nickname}`,
-    listNotRegistered: `未注册`,
-    listRoleAdmin: `管理员`,
-    listRoleSuperAdmin: `超级管理员`,
-    listTitle: `管理员列表`,
-    listTotal: `總數：{total}`,
-    listUsername: `用戶名：{username}`,
-    message: `• 更新時間：\${new Date(post.updated_at).toLocaleString('zh-TW', { month: '2-digit', day: '2-digit', hour: '2-digit', minute: '2-digit' })}
-
-`,
-    message10: `• 有頭像：\${post.partner_avatar_url ? '✅' : '❌'}
-`,
-    message11: `...還有 \${historyPosts.results.length - 5} 個帖子
-`,
-    message12: `用戶: \${targetUser?.nickname }
-`,
-    message13: `• 用戶名: @\${targetUser?.username }
-
-`,
-    message14: `用戶: \${appeal.nickname }
-`,
-    message15: `
-...還有 \${results.details.length - 10} 個用戶`,
-    message16: `• 用戶名: @\${targetUser.username }
-
-`,
-    message17: `• 總數：\${historyPosts.results.length}
-
-`,
-    message18: `💡 使用 /admin_refresh_vip_avatars 批量刷新
-`,
-    message19: `• 最新：\${post.is_latest ? '✅' : '❌'}
-`,
-    message2: `• 更新時間：\${avatarInfo.avatar_updated_at ? new Date(avatarInfo.avatar_updated_at).toLocaleString('zh-TW') : '未知'}
-`,
-    message20: `• 過時帖子：\${stats.totalOutdatedPosts}
-
-`,
-    message21: `/ad_provider_priority <id> <priority>`,
-    message22: `• 需要刷新：\${stats.usersNeedingRefresh}
-`,
-    message23: `• 更新帖子：\${results.totalPostsUpdated}
-`,
-    message24: `用戶: \${ban.nickname }
-`,
-    message25: `/ad_provider_disable <provider_id>`,
-    message26: `💡 或在 Cloudflare Dashboard 中修改環境變數`,
-    message27: `/ad_provider_enable <provider_id>`,
-    message28: `• 用戶名: @\${targetUser?.username ||`,
-    message29: `/admin_approve <appeal_id> [備註]
-`,
-    message3: `• \${username}: \${detail.postsUpdated} 更新, \${detail.postsFailed} 失敗
-`,
-    message30: `• 展示: \${ad.impression_count} 次
-`,
-    message31: `• 用戶名: @\${targetUser.username ||`,
-    message32: `• 用戶名：@\${user.username }
-`,
-    message33: `/admin_reject <appeal_id> [備註]`,
-    message34: `• 處理用戶：\${results.totalUsers}
-`,
-    message35: `• \`/ad_provider_enable <id>\` - 啟用
-`,
-    message36: `• \`/ad_provider_disable <id>\` - 停用
-`,
-    message37: `• \`/ad_provider_priority <id> <priority>\` - 設置優先級`,
-    message38: `• \`/official_ad_enable <id>\` - 啟用
-`,
-    message39: `• \`/official_ad_disable <id>\` - 停用
-`,
-    message4: `新到期：\${new Date(data.expire_date).toLocaleDateString('zh-TW')}
-`,
-    message40: `• 更新時間：\${new Date(post.updated_at).toLocaleString('zh-TW', { month: '2-digit', day: '2-digit', hour:`,
-    message5: `到期：\${new Date(data.expire_date).toLocaleDateString('zh-TW')}
-`,
-    message6: `錯誤：\${error instanceof Error ? error.message : String(error)}`,
-    message7: `• 原始 URL：\${avatarInfo.avatar_original_url ? '✅' : '❌'}
-`,
-    message8: `• 模糊 URL：\${avatarInfo.avatar_blurred_url ? '✅' : '❌'}
-`,
-    message9: `📝 **帖子 #\${post.identifier}-H\${post.post_number}**
-`,
-    nickname: `• 暱稱: \${targetUser?.nickname ||`,
-    nickname2: `• 暱稱: \${targetUser.nickname ||`,
-    noPendingAppeals: `✅ 目前沒有待審核的申訴`,
-    noPermission: `❌ 你沒有權限使用此命令。`,
-    onlyAdmin: `❌ 只有管理員可以使用此命令。`,
-    onlySuperAdmin: `❌ 只有超級管理員可以使用此命令。`,
-    operationFailed: `❌ 發生錯誤，請稍後再試。`,
-    removeCannotRemoveSuperAdmin: `❌ 無法移除超級管理員。`,
-    removeCommand: `\`/admin_remove <user_id>\`
-
-`,
-    removeExample: `\`/admin_remove 123456789\` - 移除普通管理員
-
-`,
-    removeInstructions: `⚠️ **注意**
-
-此命令需要手動修改配置文件。
-
-**步驟：**
-1. 編輯 \`wrangler.toml\`
-2. 找到 \`ADMIN_USER_IDS\` 變數
-3. 移除用戶 ID：\`{userId}\`
-4. 格式：\`ADMIN_USER_IDS = "ID1,ID2"\`（移除 {userId}）
-5. 重新部署：\`pnpm deploy:staging\`
-
-**用戶資訊：**
-• ID: \`{userId}\`
-• 暱稱: {nickname}
-• 用戶名: @{username}
-
-💡 或在 Cloudflare Dashboard 中修改環境變數`,
-    removeNotAdmin: `❌ 此用戶不是管理員。`,
-    removeUsageError: `❌ 使用方法錯誤
-
-`,
-    settings: `• 暱稱: \${targetUser?.nickname }
-`,
-    settings2: `• 暱稱: \${targetUser.nickname }
-`,
-    settings3: `• 暱稱：\${user.nickname }
-`,
-    settings4: `未設定`,
-    settings5: `未設定`,
-    settings6: `未設定`,
-    short: `**範例：**
-`,
-    short10: `支付 ID：\\`,
-    short11: `變數
-`,
-    short12: `用戶：\\`,
-    short2: `**示例：**
-`,
-    short3: `**步驟：**
-`,
-    short4: `5. 重新部署：\\`,
-    short5: `4. 重新部署：\\`,
-    short6: `1. 編輯 \\`,
-    short7: `2. 找到 \\`,
-    short8: `4. 格式：\\`,
-    short9: `• 無緩存
-`,
-    start: `開始: \${banStart}
-`,
-    stats: `📊 **統計：**
-`,
-    stats2: `• \`/ad_stats <id>\` - 查看詳細統計`,
-    success: `• 成功：\${results.successUsers}
-`,
-    text: `• 優先級: \${provider.priority}
-`,
-    text10: `金額：\${data.amount_stars} ⭐
-`,
-    text11: `請求 ID：#\${data.request_id}
-`,
-    text12: `• 權重: \${provider.weight}
-`,
-    text13: `原因：\${data.error_message}
-`,
-    text14: `/ad_provider_disable <id>`,
-    text15: `/official_ad_disable <id>`,
-    text16: `💡 使用 /admin_refunds 查看詳情`,
-    text17: `/ad_provider_enable <id>`,
-    text18: `使用 /ad_providers 查看所有提供商`,
-    text19: `/official_ad_enable <id>`,
-    text2: `• 獎勵: \${ad.quota_reward} 額度
-`,
-    text20: `剩餘：\${data.days_left} 天
-`,
-    text21: `/admin_remove 123456789`,
-    text22: `理由: \${appeal.reason}
-`,
-    text23: `提交時間: \${createdAt}
-
-`,
-    text24: `提供商：\${providerName}
-`,
-    text25: `• 類型: \${ad.ad_type}
-`,
-    text26: `/admin_add 123456789`,
-    text27: `處理過程中發生錯誤，請查看日誌。
-
-`,
-    text28: `優先級：\${priority}
-
-`,
-    text29: `原因: \${ban.reason}
-`,
-    text3: `/official_ad_disable <ad_id>`,
-    text30: `原因：\${data.reason}
-`,
-    text31: `時間：\${timestamp}
-
-`,
-    text32: `此命令需要手動修改配置文件。
-
-`,
-    text33: `• 狀態: \${status}
-`,
-    text34: `🔍 **頭像診斷報告**
-
-`,
-    text35: `
-📸 **頭像緩存：**
-`,
-    text36: `時間：\${timestamp}`,
-    text37: `🔴 **退款請求**
-
-`,
-    text38: `📢 **系統通知**
-
-`,
-    text39: `/ad_stats <id>`,
-    text4: `風險分數: \${ban.risk_snapshot}
-`,
-    text40: `👤 **用戶信息：**
-`,
-    text41: `
-🔎 **分析：**
-`,
-    text42: `📝 **詳細結果：**
-`,
-    text43: `⏳ 正在處理，請稍候...`,
-    text44: `3. 添加用戶 ID：\\`,
-    text45: `3. 移除用戶 ID：\\`,
-    text46: `📊 **總結：**
-`,
-    text47: `類型：\${type}
-`,
-    text48: `• 🧪 測試模式
-`,
-    text49: `**管理命令：**
-`,
-    text5: `⏱️ **耗時：** \${duration} 秒
-
-`,
-    text50: `**正確格式：**
-`,
-    text51: `\${hours} 小時`,
-    text52: `**用戶資訊：**
-`,
-    text6: `• 更新：\${result.updated} 個帖子
-`,
-    text7: `數據：\${JSON.stringify(data)}
-`,
-    text8: `• 點擊: \${ad.click_count} 次
-`,
-    text9: `/official_ad_enable <ad_id>`,
-    unbanNotBanned: `用户未被封禁`,
-    unbanSuccess: `✅ 已解封用戶 {userId}`,
-    unbanUsageError: `解封使用方式错误`,
-    unbanUserNotFound: `解封用户不存在`,
-    userNotFound: `❌ 用戶不存在。`,
-    vip: `• VIP 到期：\${new Date(user.vip_expire_at).toLocaleString('zh-TW')}
-`,
-    vip2: `• 創建時 VIP：\${post.created_with_vip_status ? '✅' : '❌'}
-`,
-    vip3: `• VIP 狀態：\${isVip ? '✅ 是' : '❌ 否'}
-`,
-    vip4: `• 總 VIP 用戶：\${stats.totalVipUsers}
-`,
-    vip5: `🔄 **開始批量刷新 VIP 頭像**
-
-`,
-    vip6: `⏰ **VIP 到期提醒已發送**
-
-`,
-    vip7: `🎉 **新 VIP 購買**
-
-`,
-    vip8: `⬇️ **VIP 自動降級**
-
-`,
-    vip9: `🔄 **VIP 續費**
-
-`,
-    adConfig: {
-      adIdMustBeNumber: `❌ 廣告 ID 必須是數字`,
-      addOfficialAdScript: `請使用資料庫腳本添加官方廣告：`,
-      addProviderScript: `請使用資料庫腳本添加廣告提供商：`,
-      clicks: `• 點擊: \${count} 次`,
-      correctFormat: `**正確格式：**`,
-      disableCommand: `• \`/ad_provider_disable <id>\` - 停用`,
-      disableFailed: `❌ 停用廣告提供商失敗`,
-      disableOfficialAdCommand: `• \`/official_ad_disable <id>\` - 停用`,
-      disableOfficialAdFailed: `❌ 停用官方廣告失敗`,
-      disabled: `❌ 停用`,
-      enableCommand: `• \`/ad_provider_enable <id>\` - 啟用`,
-      enableFailed: `❌ 啟用廣告提供商失敗`,
-      enableOfficialAdCommand: `• \`/official_ad_enable <id>\` - 啟用`,
-      enableOfficialAdFailed: `❌ 啟用官方廣告失敗`,
-      enabled: `✅ 啟用`,
-      example: `**範例：**`,
-      getListFailed: `❌ 獲取廣告提供商列表失敗`,
-      getOfficialAdListFailed: `❌ 獲取官方廣告列表失敗`,
-      id: `• ID: \${id}`,
-      impressions: `• 展示: \${count} 次`,
-      managementCommands: `**管理命令：**`,
-      noOfficialAds: `⚠️ 目前沒有官方廣告`,
-      noProviders: `⚠️ 目前沒有配置任何廣告提供商`,
-      officialAdDisabled: `✅ 已停用官方廣告 #\${id}`,
-      officialAdEnabled: `✅ 已啟用官方廣告 #\${id}`,
-      officialAdList: `📢 **官方廣告列表**`,
-      priority: `• 優先級: \${priority}`,
-      priorityCommand: `• \`/ad_provider_priority <id> <priority>\` - 設置優先級`,
-      priorityMustBeNonNegative: `❌ 優先級必須是非負整數`,
-      prioritySet: `✅ 已設置廣告提供商優先級`,
-      priorityValue: `優先級：\${priority}`,
-      provider: `提供商：\${name}`,
-      providerDisabled: `✅ 已停用廣告提供商：\${name}`,
-      providerEnabled: `✅ 已啟用廣告提供商：\${name}`,
-      providerList: `📺 **廣告提供商列表**`,
-      reward: `• 獎勵: \${reward} 額度`,
-      setPriorityFailed: `❌ 設置優先級失敗`,
-      status: `• 狀態: \${status}`,
-      testMode: `• 🧪 測試模式`,
-      type: `• 類型: \${type}`,
-      usageError: `❌ 使用方法錯誤`,
-      viewAllOfficialAds: `使用 /official_ads 查看所有廣告`,
-      viewAllProviders: `使用 /ad_providers 查看所有提供商`,
-      viewStatsCommand: `• \`/ad_stats <id>\` - 查看詳細統計`,
-      weight: `• 權重: \${weight}`,
+    "addAlreadyAdmin": "❌ Tento uživatel je již administrátor.",
+    "addAlreadySuperAdmin": "❌ Tento uživatel je již super administrátor, není potřeba přidávat.",
+    "addCommand": "`/admin_add <user_id>`\n\n",
+    "addExample": "`/admin_add 123456789` - Přidat jako běžného administrátora\n\n",
+    "addInstructions": "⚠️ **Poznámka**\n\nTento příkaz vyžaduje ruční úpravu konfiguračního souboru.\n\n**Kroky:**\n1. Upravte `wrangler.toml`\n2. Najděte proměnnou `ADMIN_USER_IDS`\n3. Přidejte uživatelské ID: `{userId}`\n4. Formát: `ADMIN_USER_IDS = \"ID1,ID2,{userId}\"`\n5. Znovu nasadit: `pnpm deploy:staging`\n\n**Informace o uživateli:**\n• ID: `{userId}`\n• Přezdívka: {nickname}\n• Uživatelské jméno: @{username}\n\n💡 Nebo upravte proměnné prostředí v Cloudflare Dashboard",
+    "addUsageError": "❌ Nesprávné použití\n\n",
+    "addUserNotFound": "❌ Uživatel neexistuje nebo není registrován.",
+    "admin": "💡 Použijte /admin_list pro zobrazení aktuálního seznamu administrátorů",
+    "admin2": "Zákaz administrátora / Zákaz administrátora",
+    "admin3": "- Přidat jako běžného admina\n\n",
+    "admin4": "- Odebrat běžného admina\n\n",
+    "admin5": "`/admin_add 123456789` - Přidat jako normálního administrátora\n\n",
+    "admin6": "`/admin_remove 123456789` - Odebrat normálního administrátora\n\n",
+    "analytics": {
+      "getAdDataFailed": "❌ Nepodařilo se získat data o reklamě",
+      "getDataFailed": "❌ Nepodařilo se získat data o analýzách",
+      "getVipDataFailed": "❌ Nepodařilo se získat data o VIP trychtýři",
+      "noPermission": "❌ Nemáte oprávnění zobrazit data o analýzách",
+      "noPermissionAd": "❌ Nemáte oprávnění zobrazit údaje o reklamě",
+      "noPermissionVip": "❌ Nemáte oprávnění zobrazit údaje o VIP",
+      "onlySuperAdmin": "❌ Tento příkaz mohou použít pouze super administrátoři.",
+      "sendReportFailed": "❌ Nepodařilo se odeslat denní zprávu: ${error}",
+      "userNotFound": "❌ Uživatel nebyl nalezen: ${userId}"
     },
-    analytics: {
-      getAdDataFailed: `❌ 獲取廣告數據失敗`,
-      getDataFailed: `❌ 獲取分析數據失敗`,
-      getVipDataFailed: `❌ 獲取 VIP 漏斗數據失敗`,
-      noPermission: `❌ 你沒有權限查看分析數據`,
-      noPermissionAd: `❌ 你沒有權限查看廣告數據`,
-      noPermissionVip: `❌ 你沒有權限查看 VIP 數據`,
-      onlySuperAdmin: `❌ 只有超級管理員可以使用此命令。`,
-      sendReportFailed: `❌ 發送每日報表失敗：\${error}`,
-      userNotFound: `❌ 用戶不存在：\${userId}`,
+    "appeal": "ID odvolání: ${appeal.id}\n",
+    "appeal2": "💡 Použijte následující příkaz k přezkoumání odvolání:\n",
+    "appeal3": "📋 Seznam čekajících apelů\n\n",
+    "appeal4": "Odvolání bylo schváleno",
+    "appeal5": "Odvolání bylo zamítnuto",
+    "appealAlreadyReviewed": "❌ Odvolání {id} již bylo přezkoumáno",
+    "appealApproveUsageError": "❌ Prosím, uveďte ID odvolání\n\nPoužití: /admin_approve <appeal_id> [poznámky]",
+    "appealApproved": "✅ Odvolání {id} bylo schváleno, uživatel byl odblokován",
+    "appealApprovedDefault": "Odvolání bylo schváleno",
+    "appealDivider": "━━━━━━━━━━━━━━━━\n",
+    "appealId": "ID odvolání: {id}\n",
+    "appealNotFound": "❌ ID odvolání nebylo nalezeno: {id}",
+    "appealReason": "Důvod: {reason}\n",
+    "appealRejectUsageError": "❌ Prosím, uveďte ID odvolání\n\nPoužití: /admin_reject <appeal_id> [poznámky]",
+    "appealRejected": "✅ Odvolání {id} bylo zamítnuto",
+    "appealRejectedDefault": "Odvolání bylo zamítnuto",
+    "appealReviewCommands": "/admin_approve <appeal_id> [poznámky]\n/admin_reject <appeal_id> [poznámky]",
+    "appealReviewHint": "💡 Použijte následující příkaz k přezkoumání odvolání:\n",
+    "appealSubmittedAt": "Čas odeslání: {time}\n\n",
+    "appealUser": "Uživatel: {user}\n",
+    "appealsTitle": "📋 Seznam čekajících apelů\n\n",
+    "ban": {
+      "appealAlreadyReviewed": "❌ Odvolání {id} již bylo přezkoumáno",
+      "appealApproved": "Odvolání bylo schváleno",
+      "appealApprovedUnbanned": "✅ Odvolání {id} bylo schváleno, uživatel byl odblokován",
+      "appealId": "ID odvolání: {id}\n",
+      "appealList": "📋 Seznam čekajících apelů\n\n",
+      "appealNotFound": "❌ ID odvolání nebylo nalezeno: {id}",
+      "appealReason": "Důvod: {reason}\n",
+      "appealRejected": "Odvolání bylo zamítnuto",
+      "appealRejectedMessage": "✅ Odvolání {id} bylo zamítnuto",
+      "appealSubmittedAt": "Čas odeslání: {time}\n\n",
+      "appealUser": "Uživatel: {user}\n",
+      "banEnd": "Konec: ${end}",
+      "banId": "ID: ${id}",
+      "banReason": "Důvod: ${reason}",
+      "banStart": "Začátek: ${start}",
+      "banUser": "Uživatel: ${user}",
+      "durationDays": "{days} dní",
+      "durationHours": "{hours} hodin",
+      "durationMustBePositive": "❌ Doba musí být kladné celé číslo nebo 'stálé'.",
+      "noAppeals": "✅ V tuto chvíli nejsou žádná čekající odvolání",
+      "noBanRecords": "❌ Uživatel ${userId} nemá žádné záznamy o zákazu",
+      "noBanRecordsList": "📊 V tuto chvíli nejsou žádné záznamy o zákazu",
+      "noPermission": "❌ Nemáte oprávnění tento příkaz použít.",
+      "notAdmin": "❌ Tento uživatel není administrátor.",
+      "permanent": "Trvalé",
+      "provideAppealId": "❌ Prosím, zadejte ID apelu\n\n",
+      "reason": "Zákaz od admina",
+      "recentBans": "📊 Posledních 10 záznamů o zákazu",
+      "riskScore": "Rizikové skóre: ${score}",
+      "temporaryBan": "🚫 Byli jste dočasně zablokováni\n\nDoba zákazu: {duration}\nČas odblokování: {unbanTime}\n\nDůvod zákazu: Více hlášení\n\nPokud máte otázky, použijte /appeal k podání odvolání.",
+      "totalBans": "Celkový počet zákazů: ${count}",
+      "usageApprove": "Použití: /admin_approve <appeal_id> [poznámky]",
+      "usageReject": "Použití: /admin_reject <appeal_id> [poznámky]",
+      "user": "Uživatel: ${user}",
+      "userBanHistory": "📊 Historie zákazů uživatele",
+      "viewHistory": "💡 Použijte /admin_bans <user_id> pro zobrazení historie zákazů konkrétního uživatele"
     },
-    ban: {
-      appealAlreadyReviewed: `❌ 申訴 {id} 已經被審核過了`,
-      appealApproved: `申訴已批准`,
-      appealApprovedUnbanned: `✅ 申訴 {id} 已批准，用戶已解封`,
-      appealId: `申訴 ID: {id}
-`,
-      appealList: `📋 待審核申訴列表
-
-`,
-      appealNotFound: `❌ 找不到申訴 ID: {id}`,
-      appealReason: `理由: {reason}
-`,
-      appealRejected: `申訴被拒絕`,
-      appealRejectedMessage: `✅ 申訴 {id} 已拒絕`,
-      appealSubmittedAt: `提交時間: {time}
-
-`,
-      appealUser: `用戶: {user}
-`,
-      banEnd: `結束: \${end}`,
-      banId: `ID: \${id}`,
-      banReason: `原因: \${reason}`,
-      banStart: `開始: \${start}`,
-      banUser: `用戶: \${user}`,
-      durationDays: `{days} 天`,
-      durationHours: `{hours} 小時`,
-      durationMustBePositive: `❌ 時長必須是正整數或 "permanent"。`,
-      noAppeals: `✅ 目前沒有待審核的申訴`,
-      noBanRecords: `❌ 用戶 \${userId} 沒有封禁記錄`,
-      noBanRecordsList: `📊 目前沒有封禁記錄`,
-      noPermission: `❌ 你沒有權限使用此命令。`,
-      notAdmin: `❌ 此用戶不是管理員。`,
-      permanent: `永久`,
-      provideAppealId: `❌ 請提供申訴 ID
-
-`,
-      reason: `管理員封禁 / Admin ban`,
-      recentBans: `📊 最近 10 條封禁記錄`,
-      riskScore: `風險分數: \${score}`,
-      temporaryBan: `🚫 你已被暫時封禁
-
-封禁時長：{duration}
-解封時間：{unbanTime}
-
-封禁原因：多次被舉報
-
-如有疑問，請使用 /appeal 提出申訴。`,
-      totalBans: `總封禁次數: \${count}`,
-      usageApprove: `用法: /admin_approve <appeal_id> [備註]`,
-      usageReject: `用法: /admin_reject <appeal_id> [備註]`,
-      user: `用戶: \${user}`,
-      userBanHistory: `📊 用戶封禁歷史`,
-      viewHistory: `💡 使用 /admin_bans <user_id> 查看特定用戶的封禁歷史`,
+    "ban2": "Celkový počet zákazů: ${userBans.results.length}\n\n",
+    "ban3": "📊 Posledních 10 záznamů o zákazu\n\n",
+    "ban4": "📊 Historie zákazů uživatelů\n\n",
+    "ban5": "📊 Momentálně nejsou žádné záznamy o zákazu",
+    "banSuccess": "✅ Zablokovaný uživatel {userId} ({nickname})\n\nDoba zákazu: {duration}\nČas odblokování: {unbanTime}",
+    "banSuccessPermanent": "✅ Trvale zablokovaný uživatel {userId} ({nickname})",
+    "banUsageError": "Chyba použití",
+    "banUserNotFound": "Uživatel neexistuje",
+    "cannotBanAdmin": "Nelze zablokovat admina",
+    "conversation": "💡 Příspěvky historie zpráv se vytvářejí pouze, když jsou nové zprávy\n",
+    "conversation2": "Historie zpráv všech VIP uživatelů je aktuální!",
+    "conversation3": "💬 **Příspěvky historie konverzací:**\n",
+    "conversation4": "Zkontrolujte, zda byla historie zpráv aktualizována pro odstranění avataru.",
+    "conversation5": "🔄 Začínám osvěžovat vaši historii zpráv...",
+    "conversation6": "• Žádné příspěvky historie zpráv\n",
+    "diagnose": {
+      "allUpToDateFree": "✅ Všechny příspěvky jsou aktuální (stav běžného uživatele je správný)",
+      "allUpToDateVip": "✅ Všechny příspěvky jsou aktuální (stav VIP je správný)",
+      "analysis": "🔎 **Analýza:**",
+      "avatarCache": "📸 **Cache avataru:**",
+      "blurredUrl": "• Zmazaná URL: ${status}",
+      "createdWithVip": "• Vytvořeno jako VIP: ${status}",
+      "error": "Chyba: ${error}",
+      "failed": "❌ **Diagnóza selhala**",
+      "fileId": "• ID souboru: ${fileId}...",
+      "hasAvatar": "• Má avatar: ${status}",
+      "historyPosts": "💬 **Příspěvky historie zpráv:**",
+      "historyPostsHint": "💡 Příspěvky historie zpráv se vytvářejí pouze, když jsou nové zprávy",
+      "isLatest": "• Nejnovější: ${status}",
+      "morePosts": "...existuje ${count} dalších příspěvků",
+      "nickname": "• Přezdívka: ${nickname}",
+      "no": "❌ Ne",
+      "noCache": "• Žádná cache",
+      "noHistoryPosts": "• Žádné příspěvky historie zpráv",
+      "noHistoryPostsWarning": "⚠️ Tento uživatel nemá žádné příspěvky historie zpráv",
+      "none": "Žádné",
+      "originalUrl": "• Původní URL: ${status}",
+      "outdatedPostsFound": "⚠️ Nalezeno ${count} zastaralých příspěvků, které je třeba osvěžit",
+      "postId": "• ID: ${id}",
+      "postTitle": "📝 **Příspěvek #${identifier}-H${postNumber}**",
+      "postUpdatedAt": "• Aktualizováno: ${date}",
+      "refreshHint": "💡 Použijte /admin_refresh_vip_avatars pro hromadnou aktualizaci",
+      "title": "🔍 **Zpráva o diagnostice Avataru**",
+      "totalPosts": "• Celkem: ${count}",
+      "unknown": "Neznámé",
+      "updatedAt": "• Aktualizováno: ${date}",
+      "userId": "• ID: ${userId}",
+      "userInfo": "👤 **Informace o uživateli:**",
+      "username": "• Uživatelské jméno: @${username}",
+      "vipExpire": "• Vypršení VIP: ${date}",
+      "vipStatus": "• Stav VIP: ${status}",
+      "yes": "✅ Ano"
     },
-    diagnose: {
-      allUpToDateFree: `✅ 所有帖子都是最新的（免費用戶狀態正確）`,
-      allUpToDateVip: `✅ 所有帖子都是最新的（VIP 狀態正確）`,
-      analysis: `🔎 **分析：**`,
-      avatarCache: `📸 **頭像緩存：**`,
-      blurredUrl: `• 模糊 URL：\${status}`,
-      createdWithVip: ` • 創建時 VIP：\${status}`,
-      error: `錯誤：\${error}`,
-      failed: `❌ **診斷失敗**`,
-      fileId: `• File ID：\${fileId}...`,
-      hasAvatar: ` • 有頭像：\${status}`,
-      historyPosts: `💬 **對話歷史帖子：**`,
-      historyPostsHint: `💡 對話歷史帖子只在有新消息時創建`,
-      isLatest: ` • 最新：\${status}`,
-      morePosts: `...還有 \${count} 個帖子`,
-      nickname: `• 暱稱：\${nickname}`,
-      no: `❌ 否`,
-      noCache: `• 無緩存`,
-      noHistoryPosts: `• 無對話歷史帖子`,
-      noHistoryPostsWarning: `⚠️ 此用戶沒有對話歷史帖子`,
-      none: `無`,
-      originalUrl: `• 原始 URL：\${status}`,
-      outdatedPostsFound: `⚠️ 發現 \${count} 個過時帖子需要刷新`,
-      postId: ` • ID：\${id}`,
-      postTitle: `📝 **帖子 #\${identifier}-H\${postNumber}**`,
-      postUpdatedAt: ` • 更新時間：\${date}`,
-      refreshHint: `💡 使用 /admin_refresh_vip_avatars 批量刷新`,
-      title: `🔍 **頭像診斷報告**`,
-      totalPosts: `• 總數：\${count}`,
-      unknown: `未知`,
-      updatedAt: `• 更新時間：\${date}`,
-      userId: `• ID：\${userId}`,
-      userInfo: `👤 **用戶信息：**`,
-      username: `• 用戶名：@\${username}`,
-      vipExpire: `• VIP 到期：\${date}`,
-      vipStatus: `• VIP 狀態：\${status}`,
-      yes: `✅ 是`,
+    "end": "Konec: ${banEnd}\n\n",
+    "error": "Chyba",
+    "failed": "• Neúspěšné příspěvky: ${results.totalPostsFailed}\n\n",
+    "failed2": "• Nepovedlo se: ${results.failedUsers}\n",
+    "failed3": "• Neúspěšné: ${result.failed} příspěvek/ů\n\n",
+    "insufficientPermission": "❌ **Nedostatečná oprávnění**\n\nTento příkaz je pouze pro super administrátory.",
+    "listFooter": "---",
+    "listId": "ID: {id}",
+    "listNickname": "Přezdívka: {nickname}",
+    "listNotRegistered": "Není registrován",
+    "listRoleAdmin": "Administrátor",
+    "listRoleSuperAdmin": "Super administrátor",
+    "listTitle": "Seznam administrátorů",
+    "listTotal": "Celkem: {total}",
+    "listUsername": "Uživatelské jméno: {username}",
+    "message": "• Aktualizováno: ${new Date(post.updated_at).toLocaleString('zh-TW', { month: '2-digit', day: '2-digit', hour: '2-digit', minute: '2-digit' })}\n\n",
+    "message10": "• Má Avatar: ${post.partner_avatar_url ? '✅' : '❌'}\n",
+    "message11": "...a ${historyPosts.results.length - 5} dalších příspěvků\n",
+    "message12": "Uživatel: ${targetUser?.nickname || targetUserId}\n",
+    "message13": "• Uživatelské jméno: @${targetUser?.username}\n\n",
+    "message14": "Uživatel: ${appeal.nickname || appeal.user_id}\n",
+    "message15": "...a ${results.details.length - 10} dalších uživatelů",
+    "message16": "• Uživatelské jméno: @${targetUser.username}\n\n",
+    "message17": "• Celkem: ${historyPosts.results.length}\n\n",
+    "message18": "💡 Použijte /admin_refresh_vip_avatars pro hromadnou aktualizaci\n",
+    "message19": "• Nejnovější: ${post.is_latest ? '✅' : '❌'}\n",
+    "message2": "• Aktualizováno: ${avatarInfo.avatar_updated_at ? new Date(avatarInfo.avatar_updated_at).toLocaleString('zh-TW') : 'Neznámé'}\n",
+    "message20": "• Zastaralé příspěvky: ${stats.totalOutdatedPosts}\n\n",
+    "message21": "/ad_provider_priority <id> <priority>",
+    "message22": "• Potřebuje aktualizaci: ${stats.usersNeedingRefresh}\n",
+    "message23": "• Aktualizované příspěvky: ${results.totalPostsUpdated}\n",
+    "message24": "Uživatel: ${ban.nickname || ban.user_id}\n",
+    "message25": "/ad_provider_disable <provider_id>",
+    "message26": "💡 Nebo upravte proměnné prostředí v Cloudflare Dashboard",
+    "message27": "/ad_provider_enable <provider_id>",
+    "message28": "• Uživatelské jméno: @${targetUser?.username ||",
+    "message29": "/admin_approve <appeal_id> [Poznámky]\n",
+    "message3": "• ${username}: ${detail.postsUpdated} aktualizací, ${detail.postsFailed} neúspěchů\n",
+    "message30": "• Zobrazení: ${ad.impression_count} krát\n",
+    "message31": "• Uživatel: @${targetUser.username ||",
+    "message32": "• Uživatel: @${user.username }\n",
+    "message33": "/admin_reject <appeal_id> [poznámka]",
+    "message34": "• Zpracovaní uživatelé: ${results.totalUsers}\n",
+    "message35": "• `/ad_provider_enable <id>` - Povolit\n",
+    "message36": "• `/ad_provider_disable <id>` - Zakázat\n",
+    "message37": "• `/ad_provider_priority <id> <priority>` - Nastavit prioritu",
+    "message38": "• `/official_ad_enable <id>` - Povolit\n",
+    "message39": "• `/official_ad_disable <id>` - Zakázat\n",
+    "message4": "Nové vypršení: ${new Date(data.expire_date).toLocaleDateString('zh-TW')}\n",
+    "message40": "• Čas aktualizace: ${new Date(post.updated_at).toLocaleString('zh-TW', { month: '2-digit', day: '2-digit', hour:",
+    "message5": "Vypršení: ${new Date(data.expire_date).toLocaleDateString('zh-TW')}\n",
+    "message6": "Chyba: ${error instanceof Error ? error.message : String(error)}",
+    "message7": "• Originální URL: ${avatarInfo.avatar_original_url ? '✅' : '❌'}\n",
+    "message8": "• Rozmazaná URL: ${avatarInfo.avatar_blurred_url ? '✅' : '❌'}\n",
+    "message9": "📝 **Příspěvek #${post.identifier}-H${post.post_number}**\n",
+    "nickname": "• Přezdívka: ${targetUser?.nickname ||",
+    "nickname2": "• Přezdívka: ${targetUser.nickname ||",
+    "noPendingAppeals": "✅ Momentálně nejsou žádné čekající odvolání",
+    "noPermission": "❌ Nemáte oprávnění použít tento příkaz.",
+    "onlyAdmin": "❌ Pouze administrátoři mohou použít tento příkaz.",
+    "onlySuperAdmin": "❌ Pouze super administrátoři mohou použít tento příkaz.",
+    "operationFailed": "❌ Došlo k chybě, prosím zkuste to znovu později.",
+    "refresh": {
+      "allUpToDate": "Veškerá historie chatu VIP uživatelů je aktuální!",
+      "batchComplete": "✅ **Hromadné obnovení dokončeno**",
+      "checkHint": "Zkontrolujte, zda byla historie chatu aktualizována na čisté profilové obrázky.",
+      "complete": "✅ **Obnovení dokončeno**",
+      "details": "📝 **Podrobné výsledky:**",
+      "duration": "⏱️ **Délka trvání:** ${duration} sekund",
+      "error": "Chyba: ${error}",
+      "errorOccurred": "Během zpracování došlo k chybě, prosím zkontrolujte protokoly.",
+      "failed": "❌ **Obnovení se nezdařilo**",
+      "failedPosts": "• Nepodařené příspěvky: ${count}",
+      "failedUsers": "• Neúspěchy: ${count}",
+      "moreUsers": "...a ${count} více uživatelů",
+      "noRefreshNeeded": "✅ **Obnovení není potřeba**",
+      "outdatedPosts": "• Expirace příspěvků: ${count}",
+      "processedUsers": "• Zpracovaní uživatelé: ${count}",
+      "processing": "⏳ Zpracovává se, prosím čekejte...",
+      "startingBatchRefresh": "🔄 **Začíná hromadné obnovení VIP avatarů**",
+      "startingRefresh": "🔄 Začíná obnovování vaší historie chatu...",
+      "stats": "📊 **Statistiky:**",
+      "successUsers": "• Úspěch: ${count}",
+      "summary": "📊 **Shrnutí:**",
+      "totalVipUsers": "• Celkový počet VIP uživatelů: ${count}",
+      "updated": "• Aktualizováno: ${count} příspěvků",
+      "updatedPosts": "• Aktualizované příspěvky: ${count}",
+      "userDetail": "• ${username}: ${updated} aktualizací, ${failed} neúspěchů",
+      "usersNeedingRefresh": "• Je potřeba obnovit: ${count}"
     },
-    refresh: {
-      allUpToDate: `所有 VIP 用戶的對話歷史都是最新的！`,
-      batchComplete: `✅ **批量刷新完成**`,
-      checkHint: `請檢查對話歷史是否已更新為清晰頭像。`,
-      complete: `✅ **刷新完成**`,
-      details: `📝 **詳細結果：**`,
-      duration: `⏱️ **耗時：** \${duration} 秒`,
-      error: `錯誤：\${error}`,
-      errorOccurred: `處理過程中發生錯誤，請查看日誌。`,
-      failed: `❌ **刷新失敗**`,
-      failedPosts: `• 失敗帖子：\${count}`,
-      failedUsers: `• 失敗：\${count}`,
-      moreUsers: `
-...還有 \${count} 個用戶`,
-      noRefreshNeeded: `✅ **無需刷新**`,
-      outdatedPosts: `• 過時帖子：\${count}`,
-      processedUsers: `• 處理用戶：\${count}`,
-      processing: `⏳ 正在處理，請稍候...`,
-      startingBatchRefresh: `🔄 **開始批量刷新 VIP 頭像**`,
-      startingRefresh: `🔄 開始刷新您的對話歷史...`,
-      stats: `📊 **統計：**`,
-      successUsers: `• 成功：\${count}`,
-      summary: `📊 **總結：**`,
-      totalVipUsers: `• 總 VIP 用戶：\${count}`,
-      updated: `• 更新：\${count} 個帖子`,
-      updatedPosts: `• 更新帖子：\${count}`,
-      userDetail: `• \${username}: \${updated} 更新, \${failed} 失敗`,
-      usersNeedingRefresh: `• 需要刷新：\${count}`,
+    "removeCannotRemoveSuperAdmin": "❌ Nelze odstranit super administrátora.",
+    "removeCommand": "`/admin_remove <user_id>`\n\n",
+    "removeExample": "`/admin_remove 123456789` - Odebrat běžného administrátora\n\n",
+    "removeInstructions": "⚠️ **Poznámka**\n\nTento příkaz vyžaduje manuální úpravu konfiguračního souboru.\n\n**Kroky:**\n1. Upravit `wrangler.toml`\n2. Najít proměnnou `ADMIN_USER_IDS`\n3. Odstranit uživatelské ID: `{userId}`\n4. Formát: `ADMIN_USER_IDS = \"ID1,ID2\"` (odstranit {userId})\n5. Znovu nasadit: `pnpm deploy:staging`\n\n**Informace o uživateli:**\n• ID: `{userId}`\n• Přezdívka: {nickname}\n• Uživatelské jméno: @{username}\n\n💡 Nebo upravte environmentální proměnné v panelu Cloudflare Dashboard",
+    "removeNotAdmin": "❌ Tento uživatel není administrátor.",
+    "removeUsageError": "❌ Nesprávné použití\n\n",
+    "settings": "• Přezdívka: ${targetUser?.nickname }\n",
+    "settings2": "• Přezdívka: ${targetUser.nickname }\n",
+    "settings3": "• Přezdívka: ${user.nickname }\n",
+    "settings4": "Není nastaveno",
+    "settings5": "Není nastaveno",
+    "settings6": "Není nastaveno",
+    "short": "**Příklad:**\n",
+    "short10": "ID platby: \\",
+    "short11": "Proměnná\n",
+    "short12": "Uživatel: \\",
+    "short2": "**Ukázka:**\n",
+    "short3": "**Kroky:**\n",
+    "short4": "5. Znovu nasadit: \\",
+    "short5": "4. Znovu nasadit: \\",
+    "short6": "1. Upravit \\",
+    "short7": "2. Najít \\",
+    "short8": "4. Formát: \\",
+    "short9": "• Bez cache\n",
+    "start": "Začátek: ${banStart}\n",
+    "stats": "📊 **Statistiky:**\n",
+    "stats2": "• `/ad_stats <id>` - Zobrazit podrobné statistiky",
+    "success": "• Úspěch: ${results.successUsers}\n",
+    "text": "• Priorita: ${provider.priority}\n",
+    "text10": "Částka: ${data.amount_stars} ⭐\n",
+    "text11": "ID žádosti: #${data.request_id}\n",
+    "text12": "• Váha: ${provider.weight}\n",
+    "text13": "Důvod: ${data.error_message}\n",
+    "text14": "/ad_provider_disable <id>",
+    "text15": "/official_ad_disable <id>",
+    "text16": "💡 Použijte /admin_refunds pro podrobnosti",
+    "text17": "/ad_provider_enable <id>",
+    "text18": "Použijte /ad_providers pro zobrazení všech poskytovatelů",
+    "text19": "/official_ad_enable <id>",
+    "text2": "• Odměna: ${ad.quota_reward} kvota\n",
+    "text20": "Zbývá: ${data.days_left} dní\n",
+    "text21": "/admin_remove 123456789",
+    "text22": "Důvod: ${appeal.reason}\n",
+    "text23": "Čas odeslání: ${createdAt}\n\n",
+    "text24": "Poskytovatel: ${providerName}\n",
+    "text25": "• Typ: ${ad.ad_type}\n",
+    "text26": "/admin_add 123456789",
+    "text27": "Došlo k chybě při zpracování, prosím zkontrolujte protokoly.\n\n",
+    "text28": "Priorita: ${priority}\n\n",
+    "text29": "Důvod: ${ban.reason}\n",
+    "text3": "/official_ad_disable <ad_id>",
+    "text30": "Důvod: ${data.reason}\n",
+    "text31": "Čas: ${timestamp}\n\n",
+    "text32": "Tento příkaz vyžaduje ruční úpravu konfiguračního souboru.\n\n",
+    "text33": "• Stav: ${status}\n",
+    "text34": "🔍 **Zpráva o diagnostice avataru**\n\n",
+    "text35": "📸 **Cache avataru:**\n",
+    "text36": "Čas: ${timestamp}",
+    "text37": "🔴 **Žádost o vrácení peněz**\n\n",
+    "text38": "📢 **Systémová notifikace**\n\n",
+    "text39": "/ad_stats <id>",
+    "text4": "Skóre rizika: ${ban.risk_snapshot}\n",
+    "text40": "👤 **Informace o uživateli:**\n",
+    "text41": "🔎 **Analýza:**\n",
+    "text42": "📝 **Podrobné výsledky:**\n",
+    "text43": "⏳ Zpracovává se, prosím čekejte...",
+    "text44": "3. Přidat ID uživatele: \\",
+    "text45": "3. Odebrat ID uživatele: \\",
+    "text46": "📊 **Shrnutí:**\n",
+    "text47": "Typ: ${type}\n",
+    "text48": "• 🧪 Testovací režim\n",
+    "text49": "**Administrátorské příkazy:**\n",
+    "text5": "⏱️ **Doba:** ${duration} sekund\n\n",
+    "text50": "**Správný formát:**\n",
+    "text51": "${hours} hodin",
+    "text52": "**Informace o uživateli:**\n",
+    "text6": "• Aktualizováno: ${result.updated} příspěvků\n",
+    "text7": "Data: ${JSON.stringify(data)}\n",
+    "text8": "• Kliknutí: ${ad.click_count} krát\n",
+    "text9": "/official_ad_enable <ad_id>",
+    "unbanNotBanned": "Uživatel není zablokován",
+    "unbanSuccess": "✅ Uživatel {userId} nebyl zablokován",
+    "unbanUsageError": "Nesprávná metoda pro odblokování",
+    "unbanUserNotFound": "Uživatel neexistuje",
+    "userNotFound": "❌ Uživatel neexistuje.",
+    "vip": "• VIP expirace: ${new Date(user.vip_expire_at).toLocaleString('zh-TW')}\n",
+    "vip2": "• Vytvořeno s VIP: ${post.created_with_vip_status ? '✅' : '❌'}\n",
+    "vip3": "• VIP stav: ${isVip ? '✅ Ano' : '❌ Ne'}\n",
+    "vip4": "• Celkem VIP uživatelů: ${stats.totalVipUsers}\n",
+    "vip5": "🔄 **Spustit hromadné obnovení VIP avatarů**\n\n",
+    "vip6": "⏰ **Připomenutí konce VIP členství odesláno**\n\n",
+    "vip7": "🎉 **Nový VIP nákup**\n\n",
+    "vip8": "⬇️ **Automatické snížení VIP**\n\n",
+    "vip9": "🔄 **Obnovení VIP**\n\n"
+  },
+  "adminNotification": {
+    "amount": "Částka: ${stars} ⭐",
+    "data": "Data: ${data}",
+    "daysLeft": "Zbývá: ${days} dní",
+    "expireDate": "Vypršení: ${date}",
+    "newExpireDate": "Nové vypršení: ${date}",
+    "paymentFailed": "❌ **Platba selhala**",
+    "paymentId": "ID platby: `${id}`",
+    "reason": "Důvod: ${reason}",
+    "refundRequest": "🔴 **Žádost o vrácení peněz**",
+    "requestId": "ID žádosti: #${id}",
+    "systemNotification": "📢 **Systémové upozornění**",
+    "time": "Čas: ${time}",
+    "type": "Typ: ${type}",
+    "user": "Uživatel: `${userId}`",
+    "viewRefundsHint": "💡 Použijte /admin_refunds pro detaily",
+    "vipDowngraded": "⬇️ **Automatické snížení VIP**",
+    "vipPurchased": "🎉 **Nový VIP nákup**",
+    "vipReminderSent": "⏰ **Připomenutí vypršení VIP odesláno**",
+    "vipRenewed": "🔄 **Obnovení VIP**"
+  },
+  "age": {
+    "daysAgo": "před ${days} dny",
+    "hoursAgo": "před ${hours} hodinami",
+    "justNow": "Právě teď"
+  },
+  "analytics": {
+    "ad": "• Oficiální reklamy: \n - Zobrazení: {officialImpressions} krát\n - Kliknutí: {officialClicks} krát\n - CTR: {officialCtr}%\n - Udělené odměny: {officialRewardsGranted} míst\n\n• Zobrazení VIP stránek: {vipPageViews} krát\n• Úmysly nákupu: {vipPurchaseIntents} krát\n• Úspěšné konverze: {vipConversions} krát\n• Míra konverze: {vipConversionRate}%\n• Příjem: \\\\\\\\\\$${vipRevenue}",
+    "ad2": "📊 **Zpráva o výkonnosti reklamy**\n📅 Období: {start} ~ {end}\n\n• Celková zobrazení: {thirdPartyImpressions}\n• Celkové dokončení: {thirdPartyCompletions}\n• Míra dokončení: {thirdPartyCompletionRate}%\n• Celkové odměny: {thirdPartyRewardsGranted} kredity\n\n• Celková zobrazení: {officialImpressions}\n• Celková kliknutí: {officialClicks}\n• CTR: {officialCtr}%\n• Celkové odměny: {officialRewardsGranted} kredity",
+    "ad3": "📊 **Zpráva o výkonnosti reklamy**\n📅 Období: {start} ~ {end}\n\n⚠️ **Aktuálně nejsou dostupná data o reklamě**\n\nTo může být způsobeno:\n• Reklamní poskytovatel ještě nebyl nakonfigurován\n• Žádní uživatelé neviděli reklamy\n• Během vybraného časového intervalu nebyly žádné reklamní aktivity\n\n💡 **Kdy se data objeví?**\n• Následující konfigurace je třeba dokončit:\n 1. Nakonfigurujte reklamního poskytovatele (např. GigaPub)\n 2. Vytvořte oficiální reklamy\n 3. Uživatelé začnou víc reklam\n\n• Doporučuje se nejprve nakonfigurovat reklamního poskytovatele\n• Poté čekat, až uživatelé začnou používat reklamu.",
+    "complete": "• Míra dokončení: ${provider.completion_rate.toFixed(1)}%",
+    "complete2": "• Dokončení: ${provider.total_completions}",
+    "completion": "• Dokončení: {completions}",
+    "completionRate": "• Míra dokončení: {rate}%",
+    "conversionStepsTitle": "[Translation needed from zh-TW.ts]",
+    "invite": "• Iniciované pozvánky: {initiated}\n• Přijaté pozvánky: {accepted}\n• Aktivované pozvánky: {activated}\n• Míra konverze: {conversionRate}%\n\n• Láhve hozené: {bottlesThrown}\n• Láhve zachycené: {bottlesCaught}\n• Nové konverzace: {conversationsStarted}\n• Průměrné kola konverzace: {avgConversationRounds}\n\n💡 Podrobné údaje: /analytics",
+    "message": "📊 **Zpráva o denním provozu**\n📅 Datum: {date}\n\n**👥 Uživatelští data**\n• Noví uživatelé: {newUsers}\n• Aktivní uživatelé (DAU): {dau}\n• Míra udržení (D1): {d1Retention}%\n• Průměrná doba sezení: {avgSessionDuration} minut\n\n**📺 Údaje o reklamě**\n• Reklamy třetích stran:\n - Zobrazení: {thirdPartyImpressions}\n - Dokončení: {thirdPartyCompletions}\n - Míra dokončení: {thirdPartyCompletionRate}%\n - Udělené odměny: {thirdPartyRewardsGranted} kredity",
+    "message2": "📊 **Zpráva o denním provozu**\n📅 Datum: {date}\n\n⚠️ **Dnes nejsou k dispozici žádná data**\n\nTo může být způsobeno:\n• Systém byl právě nasazen, žádná aktivita uživatelů ještě nebyla\n• Dnes žádní uživatelé nepoužívali Bot\n• Funkce sledování dat nebyla ještě povolena\n\n💡 **Kdy se data objeví?**\n• Uživatelé musí provést jednu z následujících akcí:\n - Odeslat /start pro registraci\n - Hodit nebo chytit láhev\n - Sledovat reklamy\n - Koupit VIP\n\n• Doporučuje se počkat, až uživatelé začnou používat, než přezkoumáte\n• Nebo simulovat chování uživatelů v testovacím prostředí",
+    "message3": "**📈 Celková míra konverze: ${report.overall_conversion_rate.toFixed(1)}%**",
+    "message4": "• Míra konverze: ${step.conversion_rate.toFixed(1)}%",
+    "message5": "• Míra chyb: ${provider.error_rate.toFixed(1)}%",
+    "message6": "• Požadavky: ${provider.total_requests}",
+    "providerComparisonTitle": "[Translation needed from zh-TW.ts]",
+    "purchaseSuccess": "[Translation needed from zh-TW.ts]",
+    "request": "• Požadavky: {requests}",
+    "text": "• Počet uživatelů: ${step.user_count}",
+    "text2": "Úmysly nákupu (klikněte k nákupu)",
+    "vip": "📊 **VIP konverzní trychtýř**\n📅 Období: {start} ~ {end}\n\n⚠️ **Aktuálně nejsou k dispozici žádná data**\n\nTo může být způsobeno:\n• Systém byl právě nasazen, žádná aktivita uživatelů ještě nebyla\n• Žádné události související s VIP během vybraného časového intervalu\n• Funkce sledování dat nebyla ještě povolena\n\n💡 **Kdy se data objeví?**\n• Údaje o VIP konverzi vyžadují, aby uživatelé provedli následující akce:\n 1. Zobrazit úvod do VIP funkcí\n 2. Kliknout na nákup VIP\n 3. Dokončit nákup VIP\n\n• Doporučuje se počkat 24-48 hodin před dalším kontrolováním\n• Nebo simulovat chování uživatelů v testovacím prostředí",
+    "vip2": "📊 **VIP konverzní trychtýř**\n📅 Období: {start} ~ {end}",
+    "vip3": "Povědomí (viděný VIP výzva)",
+    "vip4": "Úvaha (zobrazené detaily VIP)",
+    "vip5": "Zájem (kliknuto pro zobrazení VIP)"
+  },
+  "appeal": {
+    "alreadyExists": "⏳ Máte nevyřízenou žádost (ID: #${appealId})\n\nStav: ${status}\nOdeslaný čas: ${time}\n\nProsím buďte trpěliví při čekání na přezkoumání admina.",
+    "approved": "✅ Vaše žádost byla schválena, účet byl odblokován.",
+    "noAppeal": "Aktuálně nemáte žádné nevyřízené žádosti.",
+    "notBanned": "✅ Váš účet není zablokován, žádná žádost není potřebná.",
+    "notFound": "❌ Nepodařilo se najít záznam vaší žádosti.",
+    "notes": "Poznámky:",
+    "prompt": "📝 **Odeslat žádost**\n\nProsím vysvětlete, proč se domníváte, že byl účet zablokován a jak byste chtěli tento problém vyřešit.\n\n💡 Prosím podrobně popište svou situaci, aby byl admin rychlejší v zpracování vaší žádosti.",
+    "reasonTooLong": "❌ Důvod žádosti je příliš dlouhý; prosím udržujte ho pod 500 slovy.",
+    "reasonTooShort": "❌ Důvod odvolání je příliš krátký, prosím, zadejte alespoň 10 znaků.",
+    "rejected": "❌ Vaše odvolání bylo zamítnuto.",
+    "reviewedAt": "Doba přezkoumání:",
+    "status": "📋 **Stav odvolání**\n\nID odvolání: #${appealId}\nStatus: ${status}\nČas odeslání: ${createdAt}${reviewInfo}",
+    "statusApproved": "Schváleno",
+    "statusPending": "Čeká na přezkoumání",
+    "statusRejected": "Zamítnuto",
+    "submitted": "✅ **Odvolání odesláno**\n\nID odvolání: #${appealId}\nStatus: Čeká na přezkoumání\n\nVaše odvolání zpracujeme během 1-3 pracovních dnů.\nO výsledku vás budeme informovat prostřednictvím Bota."
+  },
+  "block": {
+    "cannotIdentify": "⚠️ Nelze rozpoznat partnera v konverzaci.",
+    "catchNewBottle": "💡 Použijte /catch pro vyzvednutí nové láhve se zprávou a zahájení nové konverzace.",
+    "conversationInfoError": "⚠️ Informace o konverzaci jsou nesprávné.",
+    "conversationMayEnded": "Konverzace mohla skončit nebo neexistuje.",
+    "conversationNotFound": "⚠️ Tato konverzace nebyla nalezena.",
+    "ensureReply": "Prosím, ujistěte se, že odpovídáte na zprávu zaslanou druhou stranou (s identifikátorem #).",
+    "hint": "💡 Toto přesně určuje osobu, kterou chcete zablokovat.",
+    "replyRequired": "⚠️ Prosím, dlouze stiskněte zprávu, kterou chcete zablokovat a odpovězte s příkazem.",
+    "step1": "1️⃣ Dlouze stiskněte zprávu druhé osoby.",
+    "step2": "2️⃣ Vyberte 'Odpovědět'.",
+    "step3": "3️⃣ Zadejte /block.",
+    "steps": "**Kroky k provedení:**",
+    "success": "✅ Tento uživatel byl zablokován (#${identifier})",
+    "willNotMatch": "Už nebudete spojováni se zprávami navzájem."
+  },
+  "bottle": {
+    "bottle13": "Obsah zprávy",
+    "cancelled": "❌ ${zodiac} zrušeno",
+    "catch": {
+      "anonymousUser": "Anonymní uživatel",
+      "back": "🏠 Návrat do hlavního menu: /menu",
+      "banned": "❌ Váš účet byl zablokován a nemůžete vybírat láhve se zprávami.\n\nPokud máte otázky, použijte /appeal k podání odvolání.",
+      "block": "• Použijte /block pro zastavení chatu, pokud již nechcete mluvit.\n",
+      "bottle": "😔 Aktuálně pro vás nejsou žádné vhodné láhve se zprávou.\n\n",
+      "bottle2": "• Nebo si láhev hoďte sami: /throw",
+      "bottle3": "🎣 Někdo vyzvedl vaši láhev se zprávou!\n\n",
+      "bottle4": "🧴 Vyzvedli jste láhev se zprávou!\n\n",
+      "bottle5": "💡 Vraťte se zítra pro další láhve!",
+      "bottleTaken": "❌ Tato láhev byla již vyzvednuta někým jiným, prosím zkuste jiné láhve!",
+      "catch": "📊 Dnešní úlovky: \\\\$${newCatchesCount}/\\${quota}\n\n",
+      "conversation": "Byl pro vás vytvořen anonymní chat, přijďte začít konverzaci!\n\n",
+      "conversation2": "• Toto je anonymní konverzace, prosím, chraňte své osobní soukromí.\n",
+      "conversation3": "📊 Zobrazit všechny konverzace",
+      "language": "🗣️ Jazyk: \\${language}\n\n",
+      "mbti": "🧠 MBTI: \\${mbti}\n",
+      "message": "💫 Skóre shody: ${score} bodů (Inteligentní shoda)\n\n",
+      "message2": "${catcherGender} | 📅 ${catcherAge} let\n\n",
+      "message3": "conv_reply_\\${conversationIdentifier}",
+      "message4": "2️⃣ Dlouze stiskněte tuto zprávu, vyberte 'Odpovědět' a zadejte svůj obsah\n\n",
+      "message5": "1️⃣ Klikněte na tlačítko '💬 Odpovědět na zprávu' níže.\n",
+      "message6": "2️⃣ Dlouze stiskněte tuto zprávu, vyberte 'Odpovědět' a poté zadejte svůj obsah.",
+      "nickname": "📝 Přezdívka: \\${ownerMaskedNickname}\n",
+      "nickname2": "📝 Přezdívka: \\${catcherNickname}\n",
+      "notRegistered": "❌ Prosím, dokončete registrační proces před výběrem láhve se zprávami.\n\nPoužijte /start pro pokračování registrace.",
+      "originalContent": "Původní text: {content}",
+      "originalLanguage": "Originální jazyk: {language}",
+      "quotaExhausted": "❌ Dnešní limit na láhve se zprávami byl vyčerpán (\\${quotaDisplay})",
+      "replyButton": "💬 Odpovědět na zprávu",
+      "replyMethods": "💡 **Dva způsoby odpovědi**:\n",
+      "report": "• Použijte /report k nahlášení nevhodného obsahu\n",
+      "safetyTips": "⚠️ Bezpečnostní tip:\n",
+      "settings": "🧠 MBTI: ${mbti}\n",
+      "settings10": "Nastaveno nezměněno",
+      "settings11": "Nastaveno nezměněno",
+      "settings2": "Nastaveno nezměněno",
+      "settings3": "Nastaveno nezměněno",
+      "settings4": "Nastaveno nezměněno",
+      "settings5": "Nastaveno nezměněno",
+      "settings6": "Nastaveno nezměněno",
+      "settings7": "Nastaveno nezměněno",
+      "settings8": "Nastaveno nezměněno",
+      "settings9": "Nastaveno nezměněno",
+      "short": "💡 Tip:\n",
+      "short2": "• Zkuste to znovu později\n",
+      "short3": "Anonymní uživatel",
+      "short4": "♂️ Muž",
+      "short5": "♀️ Žena",
+      "text": "Překladový jazyk: \\${catcherLangDisplay}\n",
+      "text2": "Originální jazyk: \\${bottleLangDisplay}\n",
+      "text3": "🗣️ Jazyk: \\${ownerLanguage}\n\n",
+      "text4": "• Chcete-li přestat chatovat, můžete použít /block pro zablokování\n\n",
+      "text5": "Originální text: \\${bottle.content}\n",
+      "text6": "💬 Překladová služba momentálně má problémy, použit byl záložní překlad\n",
+      "text7": "Překlad: \\${bottleContent}\n",
+      "text8": "💡 **Dva způsoby odpovědi**:\n",
+      "translatedContent": "Překlad: {content}",
+      "translatedLanguage": "Překladový jazyk: {language}",
+      "translationServiceFallback": "💬 Překladová služba momentálně má problémy, použit byl záložní překlad",
+      "translationServiceUnavailable": "⚠️ Překladová služba je dočasně nedostupná, zde je originální text",
+      "unknown": "Neznámý",
+      "zodiac": "⭐ Znamení zvěrokruhu: \\${bottle.zodiac }\n",
+      "zodiac2": "⭐ Znamení zvěrokruhu: \\${catcherZodiac}\n"
     },
-  },
-  adminNotification: {
-    amount: `金額：\${stars} ⭐`,
-    data: `數據：\${data}`,
-    daysLeft: `剩餘：\${days} 天`,
-    expireDate: `到期：\${date}`,
-    newExpireDate: `新到期：\${date}`,
-    paymentFailed: `❌ **支付失敗**`,
-    paymentId: `支付 ID：\`\${id}\``,
-    reason: `原因：\${reason}`,
-    refundRequest: `🔴 **退款請求**`,
-    requestId: `請求 ID：#\${id}`,
-    systemNotification: `📢 **系統通知**`,
-    time: `時間：\${time}`,
-    type: `類型：\${type}`,
-    user: `用戶：\`\${userId}\``,
-    viewRefundsHint: `💡 使用 /admin_refunds 查看詳情`,
-    vipDowngraded: `⬇️ **VIP 自動降級**`,
-    vipPurchased: `🎉 **新 VIP 購買**`,
-    vipReminderSent: `⏰ **VIP 到期提醒已發送**`,
-    vipRenewed: `🔄 **VIP 續費**`,
-  },
-  age: {
-    daysAgo: `\${days} 天前`,
-    hoursAgo: `\${hours} 小時前`,
-    justNow: `剛剛`,
-  },
-  analytics: {
-    ad: `• 官方廣告：
- - 展示：{officialImpressions} 次
- - 點擊：{officialClicks} 次
- - CTR：{officialCtr}%
- - 獎勵發放：{officialRewardsGranted} 個額度
-
-• VIP 頁面訪問：{vipPageViews} 次
-• 購買意向：{vipPurchaseIntents} 次
-• 成功轉化：{vipConversions} 次
-• 轉化率：{vipConversionRate}%
-• 收入：\${vipRevenue}`,
-    ad2: `📊 **廣告效果報表**
-📅 期間：{start} ~ {end}
-
-• 總展示：{thirdPartyImpressions} 次
-• 總完成：{thirdPartyCompletions} 次
-• 完成率：{thirdPartyCompletionRate}%
-• 總獎勵：{thirdPartyRewardsGranted} 個額度
-
-• 總展示：{officialImpressions} 次
-• 總點擊：{officialClicks} 次
-• CTR：{officialCtr}%
-• 總獎勵：{officialRewardsGranted} 個額度`,
-    ad3: `📊 **廣告效果報表**
-📅 期間：{start} ~ {end}
-
-⚠️ **目前還沒有廣告數據**
-
-這可能是因為：
-• 廣告提供商尚未配置
-• 還沒有用戶觀看廣告
-• 選定的時間範圍內沒有廣告活動
-
-💡 **數據何時會出現？**
-• 需要完成以下配置：
- 1. 配置廣告提供商（GigaPub 等）
- 2. 創建官方廣告
- 3. 用戶開始觀看廣告
-
-• 建議先配置廣告提供商
-• 然後等待用戶開始使用廣告功能`,
-    complete: `
-• 完成率：\${provider.completion_rate.toFixed(1)}%`,
-    complete2: `
-• 完成：\${provider.total_completions} 次`,
-    completion: `
-• 完成：{completions} 次`,
-    completionRate: `
-• 完成率：{rate}%`,
-    conversionStepsTitle: `[需要从 zh-TW.ts 获取翻译]`,
-    invite: `• 發起邀請：{initiated} 次
-• 接受邀請：{accepted} 次
-• 激活邀請：{activated} 次
-• 轉化率：{conversionRate}%
-
-• 丟瓶子：{bottlesThrown} 個
-• 撿瓶子：{bottlesCaught} 個
-• 新對話：{conversationsStarted} 個
-• 平均對話輪次：{avgConversationRounds}
-
-💡 詳細數據：/analytics`,
-    message: `📊 **每日運營報表**
-📅 日期：{date}
-
-**👥 用戶數據**
-• 新增用戶：{newUsers} 人
-• 活躍用戶（DAU）：{dau} 人
-• 留存率（D1）：{d1Retention}%
-• 平均使用時長：{avgSessionDuration} 分鐘
-
-**📺 廣告數據**
-• 第三方廣告：
- - 展示：{thirdPartyImpressions} 次
- - 完成：{thirdPartyCompletions} 次
- - 完成率：{thirdPartyCompletionRate}%
- - 獎勵發放：{thirdPartyRewardsGranted} 個額度`,
-    message2: `📊 **每日運營報表**
-📅 日期：{date}
-
-⚠️ **今日還沒有數據**
-
-這可能是因為：
-• 系統剛部署，還沒有用戶活動
-• 今天還沒有用戶使用 Bot
-• 數據追蹤功能尚未啟用
-
-💡 **數據何時會出現？**
-• 需要用戶執行以下任一操作：
- - 發送 /start 註冊
- - 丟瓶子或撿瓶子
- - 觀看廣告
- - 購買 VIP
-
-• 建議等待用戶開始使用後再查看
-• 或者在測試環境中模擬用戶行為`,
-    message3: `
-
-**📈 總轉化率：\${report.overall_conversion_rate.toFixed(1)}%**`,
-    message4: `
-• 轉化率：\${step.conversion_rate.toFixed(1)}%`,
-    message5: `
-• 錯誤率：\${provider.error_rate.toFixed(1)}%`,
-    message6: `
-• 請求：\${provider.total_requests} 次`,
-    providerComparisonTitle: `[需要从 zh-TW.ts 获取翻译]`,
-    purchaseSuccess: `[需要从 zh-TW.ts 获取翻译]`,
-    request: `
-• 請求：{requests} 次`,
-    text: `
-• 用戶數：\${step.user_count}`,
-    text2: `購買意向（點擊購買）`,
-    vip: `📊 **VIP 轉化漏斗**
-📅 期間：{start} ~ {end}
-
-⚠️ **目前還沒有數據**
-
-這可能是因為：
-• 系統剛部署，還沒有用戶活動
-• 選定的時間範圍內沒有 VIP 相關事件
-• 數據追蹤功能尚未啟用
-
-💡 **數據何時會出現？**
-• VIP 轉化數據需要用戶執行以下操作：
- 1. 查看 VIP 功能介紹
- 2. 點擊購買 VIP
- 3. 完成 VIP 購買
-
-• 建議等待 24-48 小時後再查看
-• 或者先在測試環境中模擬用戶行為`,
-    vip2: `📊 **VIP 轉化漏斗**
-📅 期間：{start} ~ {end}`,
-    vip3: `認知（看到 VIP 提示）`,
-    vip4: `考慮（查看 VIP 詳情）`,
-    vip5: `興趣（點擊查看 VIP）`,
-  },
-  appeal: {
-    alreadyExists: `⏳ 你已有一個待處理的申訴（編號：#\${appealId}）
-
-狀態：\${status}
-提交時間：\${time}
-
-請耐心等待管理員審核。`,
-    approved: `✅ 你的申訴已通過，帳號已解封`,
-    noAppeal: `你目前沒有待審核的申訴`,
-    notBanned: `✅ 你的帳號未被封禁，無需申訴。`,
-    notFound: `❌ 找不到你的申訴記錄。`,
-    notes: `備註：`,
-    prompt: `📝 **提交申訴**
-
-請說明你認為帳號被封禁的原因，以及你希望如何解決這個問題。
-
-💡 請詳細描述你的情況，這有助於管理員更快地處理你的申訴。`,
-    reasonTooLong: `❌ 申訴原因太長，請控制在 500 字以內。`,
-    reasonTooShort: `❌ 申訴原因太短，請至少輸入 10 個字。`,
-    rejected: `❌ 你的申訴已被拒絕`,
-    reviewedAt: `審核時間：`,
-    status: `📋 **申訴狀態**
-
-申訴編號：#\${appealId}
-狀態：\${status}
-提交時間：\${createdAt}\${reviewInfo}`,
-    statusApproved: `已批准`,
-    statusPending: `待審核`,
-    statusRejected: `已拒絕`,
-    submitted: `✅ **申訴已提交**
-
-申訴編號：#\${appealId}
-狀態：待審核
-
-我們會在 1-3 個工作日內處理你的申訴。
-處理結果會通過 Bot 通知你。`,
-  },
-  block: {
-    cannotIdentify: `⚠️ 無法識別對話對象`,
-    catchNewBottle: `💡 使用 /catch 撿新的漂流瓶開始新對話。`,
-    conversationInfoError: `⚠️ 對話資訊錯誤。`,
-    conversationMayEnded: `對話可能已結束或不存在。`,
-    conversationNotFound: `⚠️ 找不到此對話`,
-    ensureReply: `請確保回覆的是對方發送的訊息（帶有 # 標識符）。`,
-    hint: `💡 這樣可以準確指定要封鎖的對象。`,
-    replyRequired: `⚠️ 請長按你要封鎖的訊息後回覆指令`,
-    step1: `1️⃣ 長按對方的訊息`,
-    step2: `2️⃣ 選擇「回覆」`,
-    step3: `3️⃣ 輸入 /block`,
-    steps: `**操作步驟：**`,
-    success: `✅ 已封鎖此使用者 (#\${identifier})`,
-    willNotMatch: `你們將不會再被匹配到對方的漂流瓶。`,
-  },
-  bottle: {
-    bottle13: `瓶子内容`,
-    cancelled: `❌ 已取消 \${zodiac}`,
-    containsUrl: `瓶子內容不允許包含任何連結`,
-    empty: `瓶子內容不能為空`,
-    friendlyContent: `• 友善、尊重的內容更容易被撿到哦～`,
-    inappropriate: `瓶子內容包含不適當的內容，請修改後重新提交`,
-    selected: `已選擇：\${selected}`,
-    selectedItem: `✅ 已選擇 \${zodiac}`,
-    tips: `💡 提示：`,
-    tooLong: `瓶子內容太長，最多 \${max} 個字符（目前 \${current} 個字符）`,
-    tooShort: `瓶子內容太短，至少需要 \${min} 個字符（目前 \${current} 個字符）`,
-    catch: {
-      anonymousUser: `匿名用戶`,
-      back: `🏠 返回主選單：/menu`,
-      banned: `❌ 你的帳號已被封禁，無法撿漂流瓶。
-
-如有疑問，請使用 /appeal 申訴。`,
-      block: `• 不想再聊可使用 /block 封鎖
-`,
-      bottle: `😔 目前沒有適合你的漂流瓶
-
-`,
-      bottle2: `• 或者自己丟一個瓶子：/throw`,
-      bottle3: `🎣 有人撿到你的漂流瓶了！
-
-`,
-      bottle4: `🧴 你撿到了一個漂流瓶！
-
-`,
-      bottle5: `💡 明天再來撿更多瓶子吧！`,
-      bottleTaken: `❌ 這個瓶子已經被其他人撿走了，請試試其他瓶子！`,
-      catch: `📊 今日已撿：\\\${newCatchesCount}/\\\${quota}
-
-`,
-      conversation: `已為你們建立了匿名對話，快來開始聊天吧～
-
-`,
-      conversation2: `• 這是匿名對話，請保護個人隱私
-`,
-      conversation3: `📊 查看所有對話`,
-      language: `🗣️ 語言：\\\${language}
-
-`,
-      mbti: `🧠 MBTI：\\\${mbti}
-`,
-      message: `💫 配對度：\\\${score}分 (智能配對)
-
-`,
-      message2: `\\\${catcherGender} | 📅 \\\${catcherAge}歲
-
-`,
-      message3: `conv_reply_\\\${conversationIdentifier}`,
-      message4: `2️⃣ 長按此訊息，選擇「回覆」後輸入內容
-
-`,
-      message5: `1️⃣ 點擊下方「💬 回覆訊息」按鈕
-`,
-      message6: `2️⃣ 長按此訊息，選擇「回覆」後輸入內容`,
-      nickname: `📝 暱稱：\\\${ownerMaskedNickname}
-`,
-      nickname2: `📝 暱稱：\\\${catcherNickname}
-`,
-      notRegistered: `❌ 請先完成註冊流程才能撿漂流瓶。
-
-使用 /start 繼續註冊。`,
-      originalContent: `原文：{content}`,
-      originalLanguage: `原文語言：{language}`,
-      quotaExhausted: `❌ 今日漂流瓶配額已用完（\\\${quotaDisplay}）`,
-      replyButton: `💬 回覆訊息`,
-      replyMethods: `💡 **兩種回覆方式**：
-`,
-      report: `• 遇到不當內容請使用 /report 舉報
-`,
-      safetyTips: `⚠️ 安全提示：
-`,
-      settings: `🧠 MBTI：\${mbti}
-`,
-      settings10: `未設定`,
-      settings11: `未設定`,
-      settings2: `未設定`,
-      settings3: `未設定`,
-      settings4: `未設定`,
-      settings5: `未設定`,
-      settings6: `未設定`,
-      settings7: `未設定`,
-      settings8: `未設定`,
-      settings9: `未設定`,
-      short: `💡 提示：
-`,
-      short2: `• 稍後再試
-`,
-      short3: `匿名用戶`,
-      short4: `♂️ 男`,
-      short5: `♀️ 女`,
-      text: `翻譯語言：\\\${catcherLangDisplay}
-`,
-      text2: `原文語言：\\\${bottleLangDisplay}
-`,
-      text3: `🗣️ 語言：\\\${ownerLanguage}
-
-`,
-      text4: `• 不想再聊可使用 /block 封鎖
-
-`,
-      text5: `原文：\\\${bottle.content}
-`,
-      text6: `💬 翻譯服務暫時有問題，已使用備援翻譯
-`,
-      text7: `翻譯：\\\${bottleContent}
-`,
-      text8: `💡 **兩種回覆方式**：
-`,
-      translatedContent: `翻譯：{content}`,
-      translatedLanguage: `翻譯語言：{language}`,
-      translationServiceFallback: `💬 翻譯服務暫時有問題，已使用備援翻譯`,
-      translationServiceUnavailable: `⚠️ 翻譯服務暫時無法使用，以下為原文`,
-      unknown: `未知`,
-      zodiac: `⭐ 星座：\\\${bottle.zodiac }
-`,
-      zodiac2: `⭐ 星座：\\\${catcherZodiac}
-`,
+    "containsUrl": "Obsah láhve se zprávou nesmí obsahovat žádné odkazy",
+    "empty": "Obsah láhve se zprávou nemůže být prázdný",
+    "friendlyContent": "• Přátelský a respektující obsah má větší šanci být vyzvednut~",
+    "inappropriate": "Obsah láhve se zprávou obsahuje nevhodný obsah, prosím upravte a znovu odešlete",
+    "selected": "Vybráno: ${selected}",
+    "selectedItem": "✅ Vybráno ${zodiac}",
+    "throw": {
+      "age": "• Věkový rozsah je blízko ✓",
+      "aiModerationFailed": "Kontrola obsahu AI selhala",
+      "back": "↩️ Návrat do filtračního menu",
+      "bloodType": "🩸 **Filtr krevní skupiny**\n\n",
+      "bloodType2": "• Typ krve: Filtr podle konkrétních typů krve\n",
+      "bloodType3": "Vyberte typ krve, který chcete spojit:",
+      "bloodType4": "🩸 Filtr typu krve",
+      "bloodType5": "🌈 Jakákoli krevní skupina",
+      "bottle": "💡 Tato láhev se zprávou je s vámi velmi kompatibilní!\n\\\n",
+      "bottle10": "🍾 Láhev se zprávou byla hozena!\n\n",
+      "bottle11": "🍾 Hoďte láhev se zprávou",
+      "bottle2": "🎯 Vaše láhev byla odeslána **3 příjemcům**:\n",
+      "bottle3": "🍾 **Hodím vaši láhev se zprávou...**\n\n",
+      "bottle4": "🍾 **Hoďte láhev se zprávou** #THROW\n\n",
+      "bottle5": "ID láhve: #${bottleId}",
+      "bottle6": "📝 **Prosím zadejte obsah vaší láhve se zprávou**\n\n",
+      "bottle7": "1️⃣ Klikněte na tlačítko níže '🍾 Hoďte láhev se zprávou'\n",
+      "bottle8": "📝 Prosím zadejte obsah vaší láhve se zprávou:\n\n",
+      "bottle9": "📝 Prosím zadejte obsah vaší láhve se zprávou:",
+      "cancel": "💡 Klikněte pro výběr nebo zrušení typu MBTI:",
+      "cancel2": "💡 Klikněte pro výběr nebo zrušení znamení zvěrokruhu:",
+      "catch": "• Místo 3: Veřejný bazén (čeká na vyzvednutí)\n\n",
+      "catch2": "• Místo 2: Veřejný bazén (čeká na vyzvednutí)\n",
+      "catch3": "• Místo 1: Veřejný bazén (čeká na vyzvednutí)\n",
+      "catch4": "🌊 Čekání, až si vás osud vybere...\n",
+      "complete": "⚙️ **Pokročilý filtr**\n\n\\${summary}\n💡 Pokračujte v úpravách nebo dokončete filtr:",
+      "complete2": "🎯 **Párování 1 dokončeno:**\n",
+      "complete3": "📝 Máte nedokončený návrh\n\n",
+      "complete4": "⏳ Odhadované dokončení za 3-5 sekund",
+      "complete5": "⏳ Odhadované dokončení za 2-3 sekundy",
+      "complete6": "⏳ Odhadované dokončení za 1-2 sekundy",
+      "conversation": "💬 Identifikátor konverzace: \\${vipMatchInfo.conversationIdentifier}\n\n",
+      "conversation2": "💡 Tip: Každá konverzace je nezávislá a může probíhat současně\n\n",
+      "conversation3": "💡 Můžete obdržet **až 3 konverzace**!\n",
+      "conversation4": "💬 Můžete obdržet **až 3 konverzace**!\n",
+      "conversation5": "Použijte /chats pro zobrazení všech konverzací\n\n",
+      "conversation6": "📊 Použijte /chats pro zobrazení všech konverzací",
+      "conversation7": "Použijte /chats pro zobrazení všech konverzací",
+      "currentSelection": "Aktuální výběr: {genderText}",
+      "gender": "• Pohlaví: \\${selectedGender === 'male' ? '👨 Muž' : selectedGender === 'female' ? '👩 Žena' : '🌈 Kdokoli'}\n",
+      "gender2": "👤 **Filtr pohlaví**\n\n",
+      "gender3": "• Pohlaví: Filtrujte podle pohlaví\n\n",
+      "gender4": "💡 Vyberte požadované pohlaví:",
+      "gender5": "👤 Filtr pohlaví",
+      "genderLabel": "• Pohlaví: {gender}\n",
+      "mbti": "• MBTI: \\${selectedMBTI.length > 0 ? selectedMBTI.join(', ') : 'Neomezeno'}\n",
+      "mbti2": "Vybráno: \\${selectedMBTI.length > 0 ? selectedMBTI.join(', ') : 'Žádné'}\n\n",
+      "mbti3": "Vybráno: \\${selectedMBTI.length > 0 ? selectedMBTI.join(",
+      "mbti4": "🧠 **Filtr MBTI**\n\n",
+      "mbti5": "• MBTI: Filtrujte specifické osobnostní typy\n",
+      "mbti6": "• Vysoká shoda MBTI ✓",
+      "mbti7": "🧠 Filtr MBTI",
+      "mbtiLabel": "• MBTI: {mbti}\n",
+      "message": "Vybráno: \\${selectedZodiac.length > 0 ? selectedZodiac.map((z) => ZODIAC_NAMES[z]).join(', ') : 'Žádné'}\n\n",
+      "message2": "Aktuální výběr: \\${currentGender === 'male' ? '👨 Muž' : currentGender === 'female' ? '👩 Žena' : '🌈 Kdokoli'}\n\n",
+      "message3": "Vybráno: \\${selectedZodiac.length > 0 ? selectedZodiac.map((z) => ZODIAC_NAMES[z]).join(",
+      "message4": "Aktuální výběr: \\${bloodTypeDisplay[currentBloodType]}\n\n",
+      "message5": "👤 Druhá strana: \\${vipMatchInfo.matcherNickname}\n",
+      "message6": "\"Ahoj! Jsem někdo, kdo miluje hudbu a filmy, doufajíc, že potkám přátele se stejnými zájmy!\"\n\n",
+      "message7": "💡 Můžete upravit preference shody v /edit_profile\n\n",
+      "message8": "💬 Klikněte na /reply pro odpověď na zprávu a začněte chatovat\n",
+      "nickname": "📝 Přezdívka druhé strany: \\${matchedUserMaskedNickname}\n",
+      "quota": "• Více kvót (30 denně)\n",
+      "quota2": "🎁 Pozvěte přátele pro zvýšení kvót:\n",
+      "settings": "🧠 MBTI: ${mbti}\n",
+      "settings2": "⭐ Znamení: ${zodiac}\n",
+      "settings3": "🧠 MBTI: \\\\$\n",
+      "settings4": "⭐ Znamení: \\\\$\n",
+      "settings5": "Není nastaveno",
+      "settings6": "Není nastaveno",
+      "settings7": "Není nastaveno",
+      "settings8": "Není nastaveno",
+      "short": "• Stejný jazyk ✓",
+      "short10": "♋ Rak",
+      "short11": "♌ Lev",
+      "short12": "♍ Panna",
+      "short13": "♎ Váhy",
+      "short14": "♏ Štír",
+      "short15": "♐ Střelec",
+      "short16": "♑ Kozoroh",
+      "short17": "♒ Vodnář",
+      "short18": "♓ Ryby",
+      "short19": "Porušení",
+      "short2": "🩸 Typ AB",
+      "short20": "Neomezené",
+      "short21": "Neomezené",
+      "short22": "Neomezené",
+      "short23": "Neomezené",
+      "short3": "🌈 Kdokoli",
+      "short4": "🩸 Typ A",
+      "short5": "🩸 Typ B",
+      "short6": "🩸 Typ O",
+      "short7": "♈ Beran",
+      "short8": "♉ Býk",
+      "short9": "♊ Blíženci",
+      "start": "✍️ Restartovat",
+      "success": "Jedna lahvička se zprávou = 3 příjemci, což významně zvyšuje úspěšnost shody\n\n",
+      "success2": "✨ **VIP výsada aktivována! Inteligentní shoda byla úspěšná!**\n\n",
+      "success3": "🎯 Vaše lahvička se zprávou byla úspěšně srovnána!\n\n",
+      "text": "💝 Procento shody: \\${matchPercentage}%\n",
+      "text10": "🎯 Hledáme pro vás nejlepšího odpovídajícího příjemce\n\n",
+      "text11": "💬 Čekání na odpověď druhé strany...\n",
+      "text12": "• Bezplatní uživatelé: Až +7\n",
+      "text13": "• Nezahrnujte osobní kontaktní informace\n\n",
+      "text14": "💡 **Dvě metody zadávání**:\n",
+      "text15": "📊 Bezplatní uživatelé: 3 denně\n",
+      "text16": "Vyberte podmínky, podle kterých chcete filtrovat:\n\n",
+      "text17": "• Pokročilé filtrování a překlad\n\n",
+      "text18": "Čas vytvoření: \\${age}\n",
+      "text19": "Použijte /vip pro okamžité vylepšení",
+      "text2": "• 🆕 Tří násobná příležitost k oslovení (1 čas = 3 cíle)\n",
+      "text20": "💬 **Příklad**:\n",
+      "text21": "Použijte /vip pro více informací",
+      "text22": "Chcete pokračovat v úpravě této zásoby?",
+      "text23": "💡 Můžete kombinovat více podmínek",
+      "text24": "Aktuální filtrovací podmínky:\n\n",
+      "text3": "💡 To může chvíli trvat, hledáme pro vás nejlepší shody",
+      "text4": "Aktuální výběr: \\${currentGender ===",
+      "text5": "🎯 Hledání cílů: \\${targetText}\n",
+      "text6": "🎯 Hledání 3 nejlepších kandidátů pro vás\n\n",
+      "text7": "📨 **Další 2 sloty čekají:**\n",
+      "text8": "🔍 Chytré shodování s nejlepšími kandidáty...\n\n",
+      "text9": "Náhled obsahu: \\${preview}\n\n",
+      "throw": "📊 Dnes odesláno: \\${quotaDisplay}\n\n",
+      "unlimited": "Neomezeno",
+      "urlNotAllowed": "❌ Zpráva obsahuje zakázané URL",
+      "vip": "💎 VIP uživatelé: 30 za den (trojnásobná viditelnost)\n\n",
+      "vip2": "💎 **Vylepšete na VIP pro příležitosti tří násobného oslovení!**\n",
+      "vip3": "⚙️ **Pokročilý filtr (exkluzivní pro VIP)**\n\n",
+      "vip4": "• VIP uživatelé: Až +70\n\n",
+      "vip5": "✨ **VIP výhody aktivovány!**\n\n",
+      "vip6": "💡 Vylepšete na VIP, abyste získali:\n",
+      "vip7": "✨ Aktivace VIP výhod\n",
+      "zodiac": "• Zvěrokruh: \\${selectedZodiac.length > 0 ? selectedZodiac.map((z) => ZODIAC_NAMES[z]).join(', ') : 'Bez omezení'}\n",
+      "zodiac2": "⭐ Zvěrokruh: \\${matchResult.user.zodiac ||",
+      "zodiac3": "⭐ Zvěrokruh: \\${user.zodiac_sign ||",
+      "zodiac4": "⭐ **Filtr zvěrokruhu**\n\n",
+      "zodiac5": "• Zvěrokruh: Filtr podle konkrétních znamení zvěrokruhu\n",
+      "zodiac6": "• Zvěrokruh vysoce kompatibilní ✓",
+      "zodiac7": "⭐ Filtr zvěrokruhu",
+      "zodiacLabel": "• Zvěrokruh: {zvěrokruh} {zodiac}\n"
     },
-    throw: {
-      age: `• 年齡區間相近 ✓`,
-      aiModerationFailed: `AI 内容审核失败`,
-      back: `↩️ 返回篩選選單`,
-      bloodType: `🩸 **血型篩選**
-
-`,
-      bloodType2: `• 血型：篩選特定血型
-`,
-      bloodType3: `選擇你想要配對的血型：`,
-      bloodType4: `🩸 血型篩選`,
-      bloodType5: `🌈 任何血型`,
-      bottle: `
-💡 這個瓶子和你非常合拍！
-\\
-`,
-      bottle10: `🍾 漂流瓶已丟出！
-
-`,
-      bottle11: `🍾 丟漂流瓶`,
-      bottle2: `🎯 你的瓶子已發送給 **3 個對象**：
-`,
-      bottle3: `🍾 **正在丟出你的漂流瓶...**
-
-`,
-      bottle4: `🍾 **丟漂流瓶** #THROW
-
-`,
-      bottle5: `瓶子 ID：#\\\${bottleId}
-
-`,
-      bottle6: `📝 **請輸入你的漂流瓶內容**
-
-`,
-      bottle7: `1️⃣ 點擊下方「🍾 丟漂流瓶」按鈕
-`,
-      bottle8: `📝 請輸入你的漂流瓶內容：
-
-`,
-      bottle9: `📝 請輸入你的漂流瓶內容：`,
-      cancel: `💡 點擊選擇或取消 MBTI 類型：`,
-      cancel2: `💡 點擊選擇或取消星座：`,
-      catch: `• 槽位 3：公共池（等待撿起）
-
-`,
-      catch2: `• 槽位 2：公共池（等待撿起）
-`,
-      catch3: `• 槽位 1：公共池（等待撿起）
-`,
-      catch4: `🌊 等待有緣人撿起...
-`,
-      complete: `⚙️ **進階篩選**
-
-\\\${summary}
-💡 繼續調整或完成篩選：`,
-      complete2: `🎯 **第 1 個配對已完成：**
-`,
-      complete3: `📝 你有一個未完成的草稿
-
-`,
-      complete4: `⏳ 預計 3-5 秒完成`,
-      complete5: `⏳ 預計 2-3 秒完成`,
-      complete6: `⏳ 預計 1-2 秒完成`,
-      conversation: `💬 對話標識符：\\\${vipMatchInfo.conversationIdentifier}
-
-`,
-      conversation2: `💡 提示：每個對話都是獨立的，可以同時進行
-
-`,
-      conversation3: `💡 你可能會收到 **最多 3 個對話**！
-`,
-      conversation4: `💬 你可能會收到 **最多 3 個對話**！
-`,
-      conversation5: `使用 /chats 查看所有對話
-
-`,
-      conversation6: `📊 使用 /chats 查看所有對話`,
-      conversation7: `使用 /chats 查看所有對話`,
-      currentSelection: `當前選擇：{genderText}`,
-      gender: `• 性別：\\\${selectedGender === 'male' ? '👨 男生' : selectedGender === 'female' ? '👩 女生' : '🌈 任何人'}
-`,
-      gender2: `👤 **性別篩選**
-
-`,
-      gender3: `• 性別：篩選性別
-
-`,
-      gender4: `💡 選擇你想要的性別：`,
-      gender5: `👤 性別篩選`,
-      genderLabel: `• 性別：{gender}
-`,
-      mbti: `• MBTI：\\\${selectedMBTI.length > 0 ? selectedMBTI.join(', ') : '無限制'}
-`,
-      mbti2: `已選擇：\\\${selectedMBTI.length > 0 ? selectedMBTI.join(', ') : '無'}
-
-`,
-      mbti3: `已選擇：\\\${selectedMBTI.length > 0 ? selectedMBTI.join(`,
-      mbti4: `🧠 **MBTI 篩選**
-
-`,
-      mbti5: `• MBTI：篩選特定性格類型
-`,
-      mbti6: `• MBTI 高度配對 ✓`,
-      mbti7: `🧠 MBTI 篩選`,
-      mbtiLabel: `• MBTI：{mbti}
-`,
-      message: `已選擇：\\\${selectedZodiac.length > 0 ? selectedZodiac.map((z) => ZODIAC_NAMES[z]).join(', ') : '無'}
-
-`,
-      message2: `當前選擇：\\\${currentGender === 'male' ? '👨 男生' : currentGender === 'female' ? '👩 女生' : '🌈 任何人'}
-
-`,
-      message3: `已選擇：\\\${selectedZodiac.length > 0 ? selectedZodiac.map((z) => ZODIAC_NAMES[z]).join(`,
-      message4: `當前選擇：\\\${bloodTypeDisplay[currentBloodType]}
-
-`,
-      message5: `👤 對方：\\\${vipMatchInfo.matcherNickname}
-`,
-      message6: `「你好！我是一個喜歡音樂和電影的人，希望認識志同道合的朋友～」
-
-`,
-      message7: `💡 可在 /edit_profile 中修改匹配偏好
-
-`,
-      message8: `💬 直接按 /reply 回覆訊息開始聊天
-`,
-      nickname: `📝 對方暱稱：\\\${matchedUserMaskedNickname}
-`,
-      quota: `• 更多配額（30 個/天）
-`,
-      quota2: `🎁 邀請好友可增加配額：
-`,
-      settings: `🧠 MBTI：\${mbti}
-`,
-      settings2: `⭐ 星座：\${zodiac}
-`,
-      settings3: `🧠 MBTI：\\\\$
-`,
-      settings4: `⭐ 星座：\\\\$
-`,
-      settings5: `未設定`,
-      settings6: `未設定`,
-      settings7: `未設定`,
-      settings8: `未設定`,
-      short: `• 語言相同 ✓`,
-      short10: `♋ 巨蟹座`,
-      short11: `♌ 獅子座`,
-      short12: `♍ 處女座`,
-      short13: `♎ 天秤座`,
-      short14: `♏ 天蠍座`,
-      short15: `♐ 射手座`,
-      short16: `♑ 摩羯座`,
-      short17: `♒ 水瓶座`,
-      short18: `♓ 雙魚座`,
-      short19: `違規行為`,
-      short2: `🩸 AB 型`,
-      short20: `無限制`,
-      short21: `無限制`,
-      short22: `無限制`,
-      short23: `無限制`,
-      short3: `🌈 任何人`,
-      short4: `🩸 A 型`,
-      short5: `🩸 B 型`,
-      short6: `🩸 O 型`,
-      short7: `♈ 白羊座`,
-      short8: `♉ 金牛座`,
-      short9: `♊ 雙子座`,
-      start: `✍️ 重新開始`,
-      success: `一次丟瓶子 = 3 個對象，大幅提升配對成功率
-
-`,
-      success2: `✨ **VIP 特權啟動！智能配對成功！**
-
-`,
-      success3: `🎯 你的漂流瓶已被配對成功！
-
-`,
-      text: `💝 匹配度：\\\${matchPercentage}%
-`,
-      text10: `🎯 正在為你尋找最佳配對對象
-
-`,
-      text11: `
-💬 等待對方回覆中...
-`,
-      text12: `• 免費用戶：最多 +7 個
-`,
-      text13: `• 不要包含個人聯絡方式
-
-`,
-      text14: `💡 **兩種輸入方式**：
-`,
-      text15: `📊 免費用戶：3 個/天
-`,
-      text16: `選擇你想要篩選的條件：
-
-`,
-      text17: `• 進階篩選和翻譯
-
-`,
-      text18: `創建時間：\\\${age}
-`,
-      text19: `使用 /vip 立即升級`,
-      text2: `• 🆕 三倍曝光機會（1 次 = 3 個對象）
-`,
-      text20: `💬 **範例**：
-`,
-      text21: `使用 /vip 了解更多`,
-      text22: `要繼續編輯這個草稿嗎？`,
-      text23: `💡 可以組合多個條件`,
-      text24: `當前篩選條件：
-
-`,
-      text3: `💡 這可能需要幾秒鐘，我們正在為你找到最合適的人`,
-      text4: `當前選擇：\\\${currentGender ===`,
-      text5: `🎯 尋找對象：\\\${targetText}
-`,
-      text6: `🎯 正在為你尋找 3 個最佳配對對象
-
-`,
-      text7: `📨 **另外 2 個槽位等待中：**
-`,
-      text8: `🔍 正在智能匹配最佳對象...
-
-`,
-      text9: `內容預覽：\\\${preview}
-
-`,
-      throw: `📊 今日已丟：\\\${quotaDisplay}
-
-`,
-      unlimited: `無限制`,
-      urlNotAllowed: `❌ 訊息包含不被允許的網址`,
-      vip: `💎 VIP 用戶：30 個/天（三倍曝光）
-
-`,
-      vip2: `💎 **升級 VIP 可獲得三倍曝光機會！**
-`,
-      vip3: `⚙️ **進階篩選（VIP 專屬）**
-
-`,
-      vip4: `• VIP 用戶：最多 +70 個
-
-`,
-      vip5: `✨ **VIP 特權啟動！**
-
-`,
-      vip6: `💡 升級 VIP 獲得：
-`,
-      vip7: `✨ VIP 特權啟動中
-`,
-      zodiac: `• 星座：\\\${selectedZodiac.length > 0 ? selectedZodiac.map((z) => ZODIAC_NAMES[z]).join(', ') : '無限制'}
-`,
-      zodiac2: `⭐ 星座：\\\${matchResult.user.zodiac ||`,
-      zodiac3: `⭐ 星座：\\\${user.zodiac_sign ||`,
-      zodiac4: `⭐ **星座篩選**
-
-`,
-      zodiac5: `• 星座：篩選特定星座
-`,
-      zodiac6: `• 星座高度相容 ✓`,
-      zodiac7: `⭐ 星座篩選`,
-      zodiacLabel: `• 星座：{zodiac}
-`,
+    "tips": "💡 Tip:",
+    "tooLong": "Obsah zprávy je příliš dlouhý, maximum ${max} znaků (aktuálně ${current} znaků)",
+    "tooShort": "Obsah zprávy je příliš krátký, minimálně ${min} znaků požadováno (aktuálně ${current} znaků)"
+  },
+  "broadcast": {
+    "admin": "Ruční zrušení administrátorem",
+    "admin2": "Ruční úklid administrátorem (zaseknuté vysílání)",
+    "allBroadcastsNormal": "Všechny stavy vysílání jsou normální.",
+    "broadcastNotFound": "❌ Záznam vysílání nebyl nalezen",
+    "cancelCommand": "/broadcast_cancel\n\n",
+    "cancelCorrectFormat": "**Správný formát:**\n",
+    "cancelExample": "**Příklad:**\n",
+    "cancelExampleCommand": "/broadcast_cancel 1",
+    "cancelFailed": "❌ Zrušení vysílání se nezdařilo: {error}",
+    "cancelUsageError": "❌ Nesprávné použití\n\n",
+    "cancelled": "✅ Vysílání bylo zrušeno\n\n",
+    "cancelledId": "{id}\n",
+    "cancelledStatus": "Stav: Zrušeno\n\n",
+    "checkProgressLater": "Prosím použijte /broadcast_status pro kontrolu pokroku později.",
+    "cleanupFailed": "❌ Úklid vysílání selhal: {error}",
+    "cleanupIds": "{ids}\n\n",
+    "cleanupMarkedFailed": "Tato vysílání byla označena jako stav 'neúspěch'\n",
+    "cleanupSuccess": "{count}\n\n",
+    "cleanupViewStatus": "Použijte /broadcast_status pro zobrazení aktualizovaných protokolů.",
+    "completedAt": "Čas dokončení: {time}\n",
+    "correctFormat": "**Správný formát:**\n",
+    "createFailed": "❌ Vytvoření vysílání selhalo, zkuste to prosím znovu později.",
+    "createFailedShort": "❌ Vytvoření vysílání selhalo.",
+    "created": "✅ Vysílání bylo vytvořeno\n\n",
+    "empty": "Zpráva vysílání nemůže být prázdná",
+    "error": "Chyba: {error}",
+    "estimate": {
+      "immediate": "Odeslat okamžitě (přibližně 1-2 sekundy)",
+      "minutes": "Přibližně \\${minutes} minut",
+      "seconds": "Přibližně \\${seconds} sekund"
     },
-  },
-  broadcast: {
-    admin: `管理員手動取消`,
-    admin2: `管理員手動清理（廣播卡住）`,
-    allBroadcastsNormal: `所有廣播狀態正常。`,
-    broadcastNotFound: `❌ 找不到該廣播記錄`,
-    cancelCommand: `/broadcast_cancel <廣播ID>
-
-`,
-    cancelCorrectFormat: `**正確格式：**
-`,
-    cancelExample: `**示例：**
-`,
-    cancelExampleCommand: `/broadcast_cancel 1`,
-    cancelFailed: `❌ 取消廣播失敗：{error}`,
-    cancelUsageError: `❌ 使用方法錯誤
-
-`,
-    cancelled: `✅ 廣播已取消
-
-`,
-    cancelledId: `ID: {id}
-`,
-    cancelledStatus: `狀態: 已取消
-
-`,
-    checkProgressLater: `
-請稍後使用 /broadcast_status 查看進度。`,
-    cleanupFailed: `❌ 清理廣播失敗：{error}`,
-    cleanupIds: `廣播 ID: {ids}
-
-`,
-    cleanupMarkedFailed: `這些廣播已標記為「失敗」狀態
-`,
-    cleanupSuccess: `✅ 已清理 {count} 個卡住的廣播
-
-`,
-    cleanupViewStatus: `使用 /broadcast_status 查看更新後的記錄。`,
-    completedAt: `完成時間: {time}
-`,
-    correctFormat: `**正確格式：**
-`,
-    createFailed: `❌ 創建廣播失敗，請稍後再試。`,
-    createFailedShort: `❌ 創建廣播失敗。`,
-    created: `✅ 廣播已創建
-
-`,
-    empty: `廣播訊息不能為空`,
-    error: `錯誤: {error}`,
-    estimatedTime: `預計時間: {time}
-
-`,
-    example: `**示例：**
-`,
-    exampleMessage: `系統將於今晚 22:00 進行維護`,
-    failed: `失敗: {count}
-`,
-    filterAge: `• age=18-25
-`,
-    filterCommand: `/broadcast_filter <過濾器> <訊息內容>
-
-`,
-    filterConfirmConditions: `**過濾條件：**
-{conditions}
-
-`,
-    filterConfirmMessage: `**訊息內容：**
-{message}
-
-`,
-    filterConfirmTitle: `🔍 **廣播過濾器確認**
-
-`,
-    filterCorrectFormat: `**正確格式：**
-`,
-    filterCountry: `• country=TW|US|JP|...
-`,
-    filterCreateFailed: `❌ 創建過濾廣播失敗
-
-{error}`,
-    filterCreated: `✅ 過濾廣播已創建
-
-`,
-    filterCreatedConditions: `過濾條件: {conditions}
-`,
-    filterCreatedEstimatedTime: `預計時間: {time}
-
-`,
-    filterCreatedId: `ID: {id}
-`,
-    filterCreatedSending: `廣播將在後台發送，使用 /broadcast_status {id} 查看進度。`,
-    filterCreatedUserCount: `符合用戶數: {count} 人
-`,
-    filterExample1: `/broadcast_filter gender=female,age=18-25,country=TW 大家好！
-`,
-    filterExample2: `/broadcast_filter vip=true,mbti=INTJ VIP 專屬活動通知
-`,
-    filterExample3: `/broadcast_filter zodiac=Scorpio 天蠍座專屬訊息`,
-    filterExamples: `**示例：**
-`,
-    filterFormat: `**過濾器格式：**
-`,
-    filterFormatError: `❌ 過濾器格式錯誤
-
-{error}
-
-`,
-    filterGender: `• gender=male|female|other
-`,
-    filterMbti: `• mbti=INTJ|ENFP|...
-`,
-    filterQueryingUsers: `正在查詢符合條件的用戶...`,
-    filterUsageError: `❌ 使用方法錯誤
-
-`,
-    filterViewFormat: `請使用 /broadcast_filter 查看正確格式。`,
-    filterVip: `• vip=true|false
-
-`,
-    filterZodiac: `• zodiac=Aries|Taurus|...
-`,
-    foundStuckBroadcasts: `⚠️ 發現 {count} 個卡住的廣播
-
-`,
-    id: `ID: {id}
-`,
-    idMustBeNumber: `❌ 廣播 ID 必須是數字`,
-    maxUsersExceeded: `❌ 當前廣播系統僅支持 \${max} 個用戶以內的廣播。
-
-目標用戶數：\${current}`,
-    messageContent: `訊息內容`,
-    noPendingBroadcasts: `目前沒有待處理或卡住的廣播。
-
-`,
-    noRecords: `📊 目前沒有廣播記錄`,
-    noStuckBroadcasts: `✅ 沒有需要清理的廣播
-
-`,
-    processQueueFailed: `❌ 處理廣播隊列失敗：{error}`,
-    processingBroadcast: `正在處理廣播 #{id}
-`,
-    progress: `進度: {sent}/{total} ({percentage}%)
-`,
-    queryStatusFailed: `❌ 查詢廣播狀態失敗：{error}`,
-    queueProcessed: `✅ 廣播隊列處理完成
-
-`,
-    queueRemaining: `
-隊列中還有 {count} 個廣播待處理
-`,
-    queueTriggered: `{emoji} 廣播隊列處理已觸發
-
-`,
-    recentRecords: `📊 最近 5 條廣播記錄
-
-`,
-    recordId: `ID: {id}
-`,
-    recordProgress: `進度: {sent}/{total}
-`,
-    recordStatus: `狀態: {status}
-`,
-    recordTarget: `目標: {type}
-`,
-    recordTime: `時間: {time}
-
-`,
-    sendingInBackground: `廣播將在後台發送，使用 /broadcast_status {id} 查看進度。`,
-    short: `待處理`,
-    short2: `等待中`,
-    startedAt: `開始時間: {time}
-`,
-    statusLabel: `狀態：{status}
-`,
-    statusPending: `待處理`,
-    statusStuck: `卡住（重試中）`,
-    statusTitle: `📊 廣播狀態`,
-    stuckBroadcastConfirm: `**確認清理？**
-`,
-    stuckBroadcastConfirmCommand: `使用 \`/broadcast_cleanup confirm\` 確認`,
-    stuckBroadcastDivider: `━━━━━━━━━━━━━━━━
-`,
-    stuckBroadcastId: `**ID: {id}**
-`,
-    stuckBroadcastMessage: `訊息: {message}
-`,
-    stuckBroadcastNoRetry: `不會再被自動處理或重新發送
-
-`,
-    stuckBroadcastProgress: `進度: {sent}/{total}
-`,
-    stuckBroadcastStartTime: `開始時間: {time}
-
-`,
-    stuckBroadcastTarget: `目標: {type}
-`,
-    stuckBroadcastWillMarkFailed: `這些廣播將被標記為「失敗」狀態
-`,
-    targetAll: `所有用戶`,
-    targetLabel: `目標: {target}
-`,
-    targetNonVip: `非 VIP 用戶`,
-    targetType: `目標：{type}
-`,
-    targetVip: `VIP 用戶`,
-    tooLong: `廣播訊息不能超過 \${max} 個字符（目前 \${current} 個字符）`,
-    upgradeRequired: `大規模廣播需要升級系統架構，請參考 BROADCAST_SYSTEM_REDESIGN.md`,
-    usageError: `❌ 使用方法錯誤
-
-`,
-    userCount: `用戶數: {count} 人
-`,
-    userCount2: `用戶數：{count} 人
-`,
-    viewAllRecords: `使用 /broadcast_status 查看所有廣播記錄。`,
-    viewDetailsHint: `💡 使用 /broadcast_status <id> 查看詳細信息`,
-    viewUpdatedStatus: `使用 /broadcast_status 查看更新後的狀態。`,
-    estimate: {
-      immediate: `立即發送（約 1-2 秒）`,
-      minutes: `約 \\\${minutes} 分鐘`,
-      seconds: `約 \\\${seconds} 秒`,
+    "estimatedTime": "{time}\n\n",
+    "example": "**Příklad:**\n",
+    "exampleMessage": "Systém bude dnes večer od 22:00 v údržbě.",
+    "failed": "Neúspěšně: {count}\n",
+    "filter": {
+      "age": "Věk: {min}-{max} let",
+      "atLeastOneRequired": "Vyžaduje se alespoň jeden filtr",
+      "birthdayToday": "Narozeniny dnes",
+      "country": "Země: {country}",
+      "genderFemale": "Žena",
+      "genderMale": "Muž",
+      "genderOther": "Jiné pohlaví",
+      "invalidAgeFormat": "Neplatný věkový rozmezí: {value} (formát musí být min-max, např. 18-25)",
+      "invalidAgeMinMax": "Neplatný věkový rozmezí: {value} (minimální věk nesmí být větší než maximální věk)",
+      "invalidAgeRange": "Neplatný věkový rozmezí: {value} (věk musí být mezi 18-99)",
+      "invalidCountry": "Neplatný kód země: {value} (musí být 2 velká písmena, např. TW, US, JP)",
+      "invalidFormat": "Neplatný formát filtru: {pair}",
+      "invalidGender": "Neplatná hodnota pohlaví: {value} (musí být muž, žena nebo jiné)",
+      "invalidMbti": "Neplatný typ MBTI: {value} (musí být jedním z: {mbtis})",
+      "invalidZodiac": "Neplatné znamení: {value} (musí být jedním z: {zodiacs})",
+      "mbti": "{mbti}",
+      "nonVipUsers": "Uživatel bez VIP",
+      "unknownFilter": "Neznámý filtr: {key}",
+      "vipUsers": "Uživatel VIP",
+      "zodiacAquarius": "Vodnář",
+      "zodiacAries": "Beran",
+      "zodiacCancer": "Rak",
+      "zodiacCapricorn": "Kozoroh",
+      "zodiacGemini": "Blíženci",
+      "zodiacLeo": "Lev",
+      "zodiacLibra": "Váhy",
+      "zodiacPisces": "Ryby",
+      "zodiacSagittarius": "Střelec",
+      "zodiacScorpio": "Štír",
+      "zodiacTaurus": "Býk",
+      "zodiacVirgo": "Panna"
     },
-    filter: {
-      age: `年齡：{min}-{max} 歲`,
-      atLeastOneRequired: `至少需要一個過濾器`,
-      birthdayToday: `當天生日`,
-      country: `國家：{country}`,
-      genderFemale: `女性`,
-      genderMale: `男性`,
-      genderOther: `其他性別`,
-      invalidAgeFormat: `無效的年齡範圍：{value}（格式必須是 min-max，如 18-25）`,
-      invalidAgeMinMax: `無效的年齡範圍：{value}（最小年齡不能大於最大年齡）`,
-      invalidAgeRange: `無效的年齡範圍：{value}（年齡必須在 18-99 之間）`,
-      invalidCountry: `無效的國家代碼：{value}（必須是 2 個大寫字母，如 TW, US, JP）`,
-      invalidFormat: `無效的過濾器格式：{pair}`,
-      invalidGender: `無效的性別值：{value}（必須是 male, female 或 other）`,
-      invalidMbti: `無效的 MBTI 類型：{value}（必須是以下之一：{mbtis}）`,
-      invalidZodiac: `無效的星座：{value}（必須是以下之一：{zodiacs}）`,
-      mbti: `MBTI：{mbti}`,
-      nonVipUsers: `非 VIP 用戶`,
-      unknownFilter: `未知的過濾器：{key}`,
-      vipUsers: `VIP 用戶`,
-      zodiacAquarius: `水瓶座`,
-      zodiacAries: `白羊座`,
-      zodiacCancer: `巨蟹座`,
-      zodiacCapricorn: `摩羯座`,
-      zodiacGemini: `雙子座`,
-      zodiacLeo: `獅子座`,
-      zodiacLibra: `天秤座`,
-      zodiacPisces: `雙魚座`,
-      zodiacSagittarius: `射手座`,
-      zodiacScorpio: `天蠍座`,
-      zodiacTaurus: `金牛座`,
-      zodiacVirgo: `處女座`,
+    "filterAge": "• věk=18-25\n",
+    "filterCommand": "/broadcast_filter\n\n",
+    "filterConfirmConditions": "{conditions}\n\n",
+    "filterConfirmMessage": "{message}\n\n",
+    "filterConfirmTitle": "🔍 **Potvrzení filtru vysílání**\n\n",
+    "filterCorrectFormat": "**Správný formát:**\n",
+    "filterCountry": "• země=TW|US|JP|...\n",
+    "filterCreateFailed": "❌ Nepodařilo se vytvořit filtr vysílání\n\n{error}",
+    "filterCreated": "✅ Filtr vysílání byl vytvořen\n\n",
+    "filterCreatedConditions": "Kritéria filtru: {conditions}\n",
+    "filterCreatedEstimatedTime": "{time}\n\n",
+    "filterCreatedId": "{id}\n",
+    "filterCreatedSending": "Vysílání bude provedeno na pozadí, použijte /broadcast_status {id} pro kontrolu postupu.",
+    "filterCreatedUserCount": "Počet shodujících se uživatelů: {count} lidí\n",
+    "filterExample1": "/broadcast_filter gender=female,age=18-25, country=TW Ahoj všichni!\n",
+    "filterExample2": "/broadcast_filter vip=true,mbti=INTJ Notifikace na VIP exkluzivní událost\n",
+    "filterExample3": "/broadcast_filter zodiac=Štír Exkluzivní zpráva pro Štíra",
+    "filterExamples": "**Příklad:**\n",
+    "filterFormat": "**Formát filtru:**\n",
+    "filterFormatError": "{error}\n\n",
+    "filterGender": "• gender=muž|žena|jiný\n",
+    "filterMbti": "• mbti=INTJ|ENFP|...\n",
+    "filterQueryingUsers": "Dotazuji uživatele, kteří splňují kritéria...",
+    "filterUsageError": "❌ Nesprávné použití\n\n",
+    "filterViewFormat": "Použijte prosím /broadcast_filter pro kontrolu správného formátu.",
+    "filterVip": "• vip=true|false\n\n",
+    "filterZodiac": "• zodiac=Beran|Býk|...\n",
+    "foundStuckBroadcasts": "{count}\n\n",
+    "id": "{id}\n",
+    "idMustBeNumber": "❌ ID vysílání musí být číslo",
+    "maxUsersExceeded": "❌ Aktuální systém vysílání podporuje maximálně ${max} uživatelů.\n\nCílový počet uživatelů: ${current}",
+    "messageContent": "Obsah zprávy",
+    "noPendingBroadcasts": "V současné době nejsou žádná čekající nebo uvízlá vysílání.\n\n",
+    "noRecords": "📊 Nyní nejsou k dispozici žádné záznamy o vysíláních",
+    "noStuckBroadcasts": "✅ Žádná vysílání k vyčištění\n\n",
+    "processQueueFailed": "❌ Nepodařilo se zpracovat frontu vysílání: {error}",
+    "processingBroadcast": "Zpracovávám vysílání #{id}\n",
+    "progress": "Pokrok: {sent}/{total} ({percentage}%)\n",
+    "queryStatusFailed": "❌ Nepodařilo se dotázat na stav vysílání: {error}",
+    "queueProcessed": "✅ Zpracování fronty vysílání bylo dokončeno\n\n",
+    "queueRemaining": "{count}\n",
+    "queueTriggered": "{emoji}\n\n",
+    "recentRecords": "📊 Posledních 5 záznamů vysílání\n\n",
+    "recordId": "{id}\n",
+    "recordProgress": "Pokrok: {sent}/{total}\n",
+    "recordStatus": "Stav: {status}\n",
+    "recordTarget": "Cíl: {type}\n",
+    "recordTime": "{time}\n\n",
+    "sendingInBackground": "Vysílání bude provedeno na pozadí, použijte /broadcast_status {id} pro kontrolu postupu.",
+    "short": "Čeká",
+    "short2": "Probíhá",
+    "startedAt": "Čas začátku: {time}\n",
+    "status": {
+      "cancelled": "Zrušeno",
+      "completed": "Dokončeno",
+      "failed": "Nepodařilo se",
+      "pending": "Probíhá",
+      "sending": "Odesílání"
     },
-    status: {
-      cancelled: `已取消`,
-      completed: `已完成`,
-      failed: `失敗`,
-      pending: `等待中`,
-      sending: `發送中`,
+    "statusLabel": "Stav: {status}\n",
+    "statusPending": "Čeká",
+    "statusStuck": "Uvízl (Zkouším znovu)",
+    "statusTitle": "📊 Stav vysílání",
+    "stuckBroadcastConfirm": "**Potvrdit úklid?**\n",
+    "stuckBroadcastConfirmCommand": "Potvrďte pomocí `/broadcast_cleanup confirm`",
+    "stuckBroadcastDivider": "━━━━━━━━━━━━━━━━\n",
+    "stuckBroadcastId": "{id}\n",
+    "stuckBroadcastMessage": "Zpráva: {message}\n",
+    "stuckBroadcastNoRetry": "Nebude automaticky zpracováno ani znovu odesláno\n\n",
+    "stuckBroadcastProgress": "Pokrok: {sent}/{total}\n",
+    "stuckBroadcastStartTime": "{time}\n\n",
+    "stuckBroadcastTarget": "Cíl: {type}\n",
+    "stuckBroadcastWillMarkFailed": "Tyto vysílání budou označena jako 'neúspěšná'\n",
+    "target": {
+      "all": "Všichni uživatelé",
+      "nonVip": "Uživatelé bez VIP",
+      "unknown": "Neznámý",
+      "vip": "Uživatelé VIP"
     },
-    target: {
-      all: `所有用戶`,
-      nonVip: `非 VIP 用戶`,
-      unknown: `未知`,
-      vip: `VIP 用戶`,
+    "targetAll": "Všichni uživatelé",
+    "targetLabel": "Cíl: {target}\n",
+    "targetNonVip": "Uživatelé bez VIP",
+    "targetType": "Cíl: {type}\n",
+    "targetVip": "Uživatelé VIP",
+    "tooLong": "Vysílací zpráva nemůže překročit ${max} znaků (aktuálně ${current} znaků)",
+    "upgradeRequired": "Hromadné vysílání vyžaduje upgrade systémové architektury, prosím odkazujte se na BROADCAST_SYSTEM_REDESIGN.md",
+    "usageError": "❌ Nesprávné použití\n\n",
+    "userCount": "Počet uživatelů: {count} lidí\n",
+    "userCount2": "Počet uživatelů: {count} lidí\n",
+    "viewAllRecords": "Použijte /broadcast_status pro zobrazení všech záznamů o vysílání.",
+    "viewDetailsHint": "💡 Použijte /broadcast_status <id> pro podrobnosti",
+    "viewUpdatedStatus": "Použijte /broadcast_status pro zobrazení aktualizovaného stavu."
+  },
+  "buttons": {
+    "ad": "➡️ Další reklama",
+    "back": "⬅️ Zpět / Zpět",
+    "backToVip": "💎 Návrat do VIP menu",
+    "bottle": "📺 Sledujte reklamy pro získání více láhví se zprávou 🎁 (${remaining}/20)",
+    "bottle2": "💎 Upgradujte na VIP pro více láhví se zprávou",
+    "bottle3": "🌊 Hoďte láhev se zprávou",
+    "bottle4": "🎣 Vezměte si láhev se zprávou",
+    "cancel": "Zrušit",
+    "claim": "Nárokovat",
+    "help": "❓ Pomoc",
+    "invite": "👥 Zobrazit pozvánkový kód",
+    "invite2": "🎁 Pozvat přátele",
+    "mbtiMenu": "🧠 MBTI Menu",
+    "message": "💬 Odpovědět na zprávu",
+    "profile": "✏️ Upravit profil",
+    "profile2": "👤 Profil",
+    "returnToMenu": "🏠 Zpět na hlavní menu",
+    "settings": "⚙️ Nastavení",
+    "short": "🇲🇾 Malajsie",
+    "short10": "🇺🇸 Spojené státy",
+    "short11": "🇯🇵 Japonsko",
+    "short12": "🇰🇷 Jižní Korea",
+    "short13": "🇬🇧 Spojené království",
+    "short14": "🇫🇷 Francie",
+    "short15": "🇩🇪 Německo",
+    "short16": "🇹🇭 Thajsko",
+    "short17": "🇦🇺 Austrálie",
+    "short18": "💬 Historie chatu",
+    "short19": "🌐 Změnit jazyk",
+    "short2": "🇺🇳 Vlajka OSN",
+    "short20": "🎁 Vyžádat odměnu",
+    "short21": "🔄 Vymazat výběr",
+    "short22": "Přeskočit",
+    "short3": "📢 Připojit se k oficiálnímu kanálu",
+    "short4": "🇸🇬 Singapur",
+    "short5": "🇨🇦 Kanada",
+    "short6": "🇳🇿 Nový Zéland",
+    "short7": "🇹🇼 Tchaj-wan",
+    "short8": "🇨🇳 Čína",
+    "short9": "🇭🇰 Hongkong",
+    "stats": "📊 Statistika",
+    "targetAdvanced": "⚙️ Pokročilý filtr (MBTI/Znamení)",
+    "targetAny": "🌈 Kdokoliv může",
+    "targetFemale": "👩 Žena",
+    "targetMale": "👨 Muž",
+    "text": "👤 Zobrazit profil jiného uživatele",
+    "verify": "Ověřit",
+    "viewPayments": "💰 Historie předplatného",
+    "vip": "💎 Upgradovat na VIP"
+  },
+  "catch": {
+    "anonymousUser": "Anonymní uživatel",
+    "back": "🏠 Zpět na hlavní menu: /menu",
+    "banned": "❌ Váš účet byl zablokován a nemůže vybírat láhve se zprávami.\n\nPokud máte otázky, použijte /appeal pro podání odvolání.",
+    "block": "• Pokud už nechcete chatovat, můžete použít /block pro zablokování\n",
+    "bottle": "😔 V současné době pro vás nejsou žádné vhodné láhve se zprávou\n\n",
+    "bottle2": "• Nebo můžete sami hodit láhev: /throw",
+    "bottle3": "🎣 Někdo našel vaši láhev se zprávou!\n\n",
+    "bottle4": "🧴 Zvedli jste láhev se zprávou!\n\n",
+    "bottle5": "💡 Vraťte se zítra pro více lahví!",
+    "bottleTaken": "❌ Tato láhev byla již vybrána někým jiným, zkuste prosím jiné lahve!",
+    "catch": "{newCatchesCount} {quota} ${newCatchesCount} ${quota}\n\n",
+    "conversation": "Byl pro vás vytvořen anonymní chat, přijďte začít chatovat～\n\n",
+    "conversation2": "• Toto je anonymní konverzace, prosím, chraňte své osobní soukromí\n",
+    "conversation3": "📊 Zobrazit všechny konverzace",
+    "conversationError": "Vytvoření konverzace se nezdařilo",
+    "language": "{language} ${language}\n\n",
+    "mbti": "🧠 MBTI: ${mbti}\n",
+    "message": "{score} ${score}\n\n",
+    "message2": "{catcherGender} {catcherAge} ${catcherGender} ${catcherAge}\n\n",
+    "message3": "{conversationIdentifier} ${conversationIdentifier}",
+    "message4": "2️⃣ Dlouze stiskněte tuto zprávu, vyberte 'Odpovědět' a poté zadejte svůj obsah\n\n",
+    "message5": "1️⃣ Klikněte na tlačítko '💬 Odpovědět' níže\n",
+    "message6": "2️⃣ Dlouze stiskněte tuto zprávu, vyberte 'Odpovědět' a zadejte svůj obsah",
+    "nickname": "📝 Přezdívka: ${ownerMaskedNickname}\n",
+    "nickname2": "📝 Přezdívka: ${catcherNickname}\n",
+    "notRegistered": "❌ Dokončete registrační proces, abyste mohli vyzvednout láhve se zprávou.\n\nPoužijte /start pro pokračování registrace.",
+    "originalContent": "Původní text: {content}",
+    "originalLanguage": "Původní jazyk: {language}",
+    "quotaExhausted": "❌ Dnešní kvóta na láhve se zprávou byla vyčerpána (${quotaDisplay})",
+    "replyButton": "💬 Odpovědět na zprávu",
+    "replyMethods": "💡 **Dva způsoby, jak odpovědět**:\n",
+    "report": "• Pokud narazíte na nevhodný obsah, prosím, použijte /report k nahlášení\n",
+    "safetyTips": "⚠️ Bezpečnostní připomínka:\n",
+    "settings": "{mbti} ${mbti}\n",
+    "settings10": "Nastaveno není",
+    "settings11": "Nastaveno není",
+    "settings2": "Nastaveno není",
+    "settings3": "Nastaveno není",
+    "settings4": "Nastaveno není",
+    "settings5": "Nastaveno není",
+    "settings6": "Nastaveno není",
+    "settings7": "Nastaveno není",
+    "settings8": "Nastaveno není",
+    "settings9": "Nastaveno není",
+    "short": "💡 Tip:\n",
+    "short2": "• Prosím, zkuste to znovu později\n",
+    "short3": "Anonymní uživatel",
+    "short4": "♂️ Muž",
+    "short5": "♀️ Žena",
+    "text": "Překladový jazyk: ${catcherLangDisplay}\n",
+    "text2": "Původní jazyk: ${bottleLangDisplay}\n",
+    "text3": "{ownerLanguage} ${ownerLanguage}\n\n",
+    "text4": "• Chcete-li přestat chatovat, můžete použít /block pro blokaci\n\n",
+    "text5": "Původní text: ${bottle.content}\n",
+    "text6": "💬 Služba překladu dočasně má problémy, byla použita záložní překlad\n",
+    "text7": "Překlad: ${bottleContent}\n",
+    "text8": "💡 **Dva způsoby, jak odpovědět**:\n",
+    "translatedContent": "Překlad: {content}",
+    "translatedLanguage": "Překladový jazyk: {language}",
+    "translationServiceFallback": "💬 Služba překladu dočasně má problémy, byla použita záložní překlad",
+    "translationServiceUnavailable": "⚠️ Služba překladu je dočasně nedostupná, níže je původní text",
+    "unknown": "Neznámý",
+    "zodiac": "⭐ Zodiac: {zodiac}\n",
+    "zodiac2": "⭐ Zodiac: ${catcherZodiac}\n"
+  },
+  "channelMembership": {
+    "claimButton": "✅ Vyžádat odměnu",
+    "claimReward": "Klikněte na tlačítko níže pro vyžádání vaší odměny: +1 láhev se zprávou",
+    "joined": "🎉 Detekováno, že jste se připojili k oficiálnímu kanálu!",
+    "leftChannel": "❌ Detekováno, že jste opustili kanál, nelze vyžádat odměnu.",
+    "notJoined": "❌ Nedetekováno, že jste se připojili k kanálu, prosím připojte se nejdříve a zkuste to znovu",
+    "oneTimeReward": "💡 Toto je jednorázová odměna; po vyžádání bude přidána do dnešního kvóta.",
+    "rewardAdded": "Odměna: +1 láhev se zprávou (přidáno do dnešního kvóta)",
+    "rewardGranted": "✅ Odměna byla vydána! +1 láhev se zprávou",
+    "taskCompleted": "🎉 Gratulujeme k dokončení úkolu: Připojte se k oficiálnímu kanálu!",
+    "viewMoreTasks": "💡 Použijte /tasks pro zobrazení dalších úkolů",
+    "viewTaskCenter": "[📋 Zobrazit Centrum úkolů] → /tasks"
+  },
+  "common": {
+    "ad": "📺 Dnešní reklamy: ${adsWatched}/${AD_REWARD_CONSTANTS.MAX_ADS_PER_DAY} | Vydělaných ${quotaEarned} kvót | ${remaining} zbývá",
+    "ad2": "📺 Dnešní reklamy: ${adsWatched}/${AD_REWARD_CONSTANTS.MAX_ADS_PER_DAY} ✅ Dosáhli jste limitu | Vydělaných ${quotaEarned} kvót",
+    "ad3": "📺 Dnešní reklamy: 0/${AD_REWARD_CONSTANTS.MAX_ADS_PER_DAY} | Vydělané 0 kvót",
+    "ad4": "• 📺 Sledujte reklamy (zbývá ${remaining}/20krát)\n",
+    "ad5": "• 📺 Sledujte reklamy (dnešní limit dosažen)\n",
+    "ad6": "• Vyvarujte se reklam nebo nevhodného obsahu\n\n",
+    "ad7": "📊 Žádné oficiální reklamy nejsou k dispozici",
+    "ad8": "📢 Spamové reklamy",
+    "ad9": "💡 Existuje více oficiálních reklam k zhlédnutí!",
+    "admin": "Zkuste to prosím znovu později nebo kontaktujte administrátora.",
+    "age": "Neplatný věkový rozsah: ${trimmedValue} (formát musí být min-max, například 18-25)",
+    "age2": "Věk: ${filters.age.min}-${filters.age.max} let",
+    "age3": "Neplatný věkový rozsah: ${trimmedValue} (věk musí být mezi 18-99)",
+    "age4": "Neplatný věkový rozsah: ${trimmedValue} (minimální věk nesmí být větší než maximální věk)",
+    "anonymous": "Anonymní",
+    "anonymousUser": "Anonymní uživatel",
+    "anyBloodType": "🌈 Jakýkoliv krevní typ",
+    "anyone": "🌈 Každý",
+    "back": "💡 Zadejte /menu pro návrat do hlavního menu kdykoliv",
+    "back2": "↩️ Návrat k úpravě profilu",
+    "back3": "🏠 Návrat do hlavního menu",
+    "back4": "↩️ Návrat",
+    "backToMainMenu": "Návrat do hlavního menu",
+    "birthday": "🎂 Narozeniny: ${updatedUser.birthday}\n",
+    "birthday2": "🎂 Narozeniny: ${user.birthday}\n",
+    "birthday3": "Dnes narozeniny",
+    "bloodType": "{bloodTypeText} ${bloodTypeText}\n\n",
+    "bloodType2": "🩸 **Upravit krevní skupinu**\n\n",
+    "bloodType3": "Prosím zvolte svůj krevní typ:",
+    "bloodType4": "🩸 Upravit krevní typ",
+    "bloodTypeA": "🩸 Typ A",
+    "bloodTypeAB": "🩸 Typ AB",
+    "bloodTypeB": "🩸 Typ B",
+    "bloodTypeO": "🩸 Typ O",
+    "bottle": "Obsah láhve se zprávou je příliš krátký, vyžadováno alespoň ${MIN_BOTTLE_LENGTH} znaků (aktuálně ${trimmedContent.length} znaků)",
+    "bottle10": "Odměna: +1 láhev se zprávou (přidána do dnešního kvóty)\n\n",
+    "bottle11": "Nebudete již navzájem spojeni se zprávami láhví.\n\n",
+    "bottle12": "Jaký typ osoby chcete najít při házení láhve se zprávou?\n\n",
+    "bottle13": "Použijte /throw k házení láhve se zprávou a začněte chatovat!",
+    "bottle14": "Obsah láhve se zprávou obsahuje nevhodný obsah, prosím upravte ho a znovu odešlete.",
+    "bottle15": "Klikněte na tlačítko níže pro získání odměny: +1 láhev se zprávou\n\n",
+    "bottle16": "💡 Toto nastavení bude automaticky použito pro vaše další házení láhve se zprávou.",
+    "bottle17": "🌊 Házení láhve se zprávou - /throw\n",
+    "bottle18": "🎣 Chycení láhve se zprávou - /catch\n",
+    "bottle19": "🎉 Potvrzením získáte odměnu +1 láhev se zprávou!",
+    "bottle2": "Obsah láhve se zprávou je příliš dlouhý, maximálně ${MAX_BOTTLE_LENGTH} znaků povoleno (aktuálně ${content.length} znaků)",
+    "bottle20": "✏️ Zadejte nový obsah láhve se zprávou:\n\n",
+    "bottle21": "• Použijte /catch k chytání nové láhve se zprávou",
+    "bottle22": "• /throw - Házení láhve se zprávou\n",
+    "bottle23": "• /catch - Chycení láhve se zprávou\n",
+    "bottle24": "• /throw - Házení láhve se zprávou\n",
+    "bottle25": "• /catch - Chycení láhve se zprávou\n",
+    "bottle26": "• Odešlete návrh obsahu k házení láhve se zprávou",
+    "bottle27": "📦 **Házení láhve se zprávou**\n",
+    "bottle28": "🎣 **Chycení láhve se zprávou**\n",
+    "bottle29": "💡 Splňte úkoly pro získání extra láhví",
+    "bottle3": "• Láhve se zprávou: ${bottlesCount?.count || 0}\n",
+    "bottle30": "Obsah láhve nesmí obsahovat žádné odkazy",
+    "bottle31": "🍾 Házení láhve se zprávou\n\n",
+    "bottle32": "Obsah láhve nemůže být prázdný",
+    "bottle33": "Hoďte svou první láhev",
+    "bottle34": "Zvedněte svou první láhev",
+    "bottle4": "Anonymní platforma pro láhve se zprávou, která vám pomáhá najít podobně smýšlející přátele prostřednictvím MBTI a znamení zvěrokruhu\n\n",
+    "bottle5": "⏰ Rozhovor vypršel\n\nDruhá strana mohla odejít. Použijte /catch k zvednutí nové láhve!",
+    "bottle6": "💡 Použijte /catch k zvednutí nové láhve se zprávou a začněte nový rozhovor.",
+    "bottle7": "🍾 Házení láhve se zprávou\n\nJakého chat partnera hledáte?",
+    "bottle8": "Jděte a hoďte láhev, abyste potkali nové přátele! /throw\n\n",
+    "bottle9": "Podívejte se na láhve se zprávou od ostatních a odpovězte, pokud máte zájem začít chatovat\n\n",
+    "broadcast": "Broadcast bude odeslán na pozadí, použijte /broadcast_status ${broadcastId} pro kontrolu průběhu.",
+    "broadcast10": "📊 Posledních 5 záznamů vysílání\n\n",
+    "broadcast11": "Oznámení o údržbě bylo vysíláno všem uživatelům.\n",
+    "broadcast12": "Oznámení o obnově bylo vysíláno všem uživatelům.",
+    "broadcast13": "📊 V současnosti nejsou žádné záznamy vysílání.",
+    "broadcast14": "📊 Stav vysílání\n\n",
+    "broadcast15": "Všechny stavy vysílání jsou normální.",
+    "broadcast2": "Velkoplošná vysílání vyžadují upgrady systémové architektury, prosím odkažte na BROADCAST_SYSTEM_REDESIGN.md",
+    "broadcast3": "Použijte /broadcast_status pro zobrazení všech záznamů vysílání.",
+    "broadcast4": "${statusEmoji} Zpracování fronty vysílání bylo spuštěno\n\n",
+    "broadcast5": "/broadcast_cancel\n\n",
+    "broadcast6": "ID vysílání: ${ids.join(', ')}\n\n",
+    "broadcast7": "Zpracovávám vysílání #${broadcast.id}\n",
+    "broadcast8": "V současnosti nejsou žádná pending nebo zacyklená vysílání.\n\n",
+    "broadcast9": "ID vysílání: ${ids.join(",
+    "cancel": "Prosím, odstraňte tyto odkazy a zadejte je znovu nebo zrušte úpravy:",
+    "cancel2": "Stav: Zrušeno\n\n",
+    "cancel3": "Prosím, zadejte to znovu nebo zrušte úpravu:",
+    "cancelled": "Zrušeno",
+    "catch": "⏰ Proces láhve se zprávou vypršel\n\nProsím znovu použijte /catch pro zahájení.",
+    "catch2": "Chytíte láhev → Odpoví druhá strana → Zahájení anonymního chatu",
+    "catch3": "• Přátelský a respektující obsah má větší šanci na úspěch!",
+    "catch4": "Proces láhve se zprávou",
+    "close": "❌ Zavřít",
+    "complete": "🎉 **Zobrazování reklam dokončeno!**\n\n✅ Získáno **+1 kvóta**\n📊 Dnes zobrazeno: **${updated.ads_watched}/20** krát\n🎁 Dnes získaná kvóta: **${updated.quota_earned}**\n📈 Zbývající zobrazení: **${result.remaining_ads}** krát\n\n${result.remaining_ads > 0 ? '💡 Pokračujte ve sledování reklam, abyste získali více kvót!' : '✅ Denní limit reklam byl dosažen'}",
+    "complete2": "📺 **Sledujte reklamy, abyste získali kvóty**\n\n🎁 Dokončené zobrazení přináší **+1 kvóta**\n📊 Zbývá dnes: **${remainingAds}/20**x\n\n👇 Klikněte na tlačítko níže pro zahájení sledování",
+    "complete3": "Čas dokončení: ${new Date(broadcast.completedAt).toLocaleString('zh-TW')}\n",
+    "complete4": "Odhadované dokončení: ${new Date(maintenance.endTime).toLocaleString('zh-TW')}\n",
+    "complete5": "🎉 ${testTitle} dokončeno!\n\n",
+    "complete6": "Dokončeno blízko termínu",
+    "complete7": "Brzy se dokončí",
+    "complete8": "Dokončete co nejdříve",
+    "confirm": "Abychom zajistili bezpečnost všech uživatelů, potvrďte, prosím, že chápete následující:\n\n",
+    "confirm2": "🌍 **Potvrďte svou zemi/region**\n\n",
+    "confirm3": "🛡️ Poslední krok: Potvrzení proti podvodům\n\n",
+    "confirm4": "🔍 **Potvrzení vysílacího filtru**\n\n",
+    "confirm5": "🌍 Potvrďte svou zemi/region",
+    "confirm6": "**Potvrdit vyčištění?**\n",
+    "confirm7": "Prosím potvrďte:",
+    "conversation": "📨 ${formatIdentifier(conv.identifier)}'s konverzace (${conv.message_count} zpráv)\n",
+    "conversation10": "💡 **Nebyla nalezena historie konverzací**\n\n",
+    "conversation11": "Některé záznamy konverzace nemusí být aktualizovány, prosím zkuste to znovu později.",
+    "conversation12": "📨 **Nedávné konverzace:**\n\n",
+    "conversation13": "💬 Zatím nemáte žádné záznamy konverzací\n\n",
+    "conversation14": "💬 Pokračujte v konverzaci: /reply\n",
+    "conversation15": "Zatím nemáte žádné záznamy konverzací.\n\n",
+    "conversation16": "Konverzace mohla skončit, nebo neexistuje.",
+    "conversation17": "💬 Pokračujte v konverzaci",
+    "conversation18": "Zahájit první konverzaci",
+    "conversation2": "💬 **Konverzace s ${formatIdentifier(identifier)}**\n\n",
+    "conversation3": "• Konverzace zahájena: ${formatDate(stats.first_message_time)}\n",
+    "conversation4": "• Konverzace: ${conversationsCount?.count || 0}\n",
+    "conversation5": "💬 Odpovědět na konverzaci ${conversationIdentifier}",
+    "conversation6": "Vaše cache avataru byla aktualizována. Nejnovější avatar se zobrazí příště, když si prohlédnete historii konverzací.\n\n",
+    "conversation7": "💡 Pro ochranu soukromí a zabezpečení jsou v konverzacích povoleny pouze textové zprávy.\n\n",
+    "conversation8": "Použijte /history pro zobrazení všech konverzací\n\n",
+    "conversation9": "🔄 Obnovuji celou historii konverzací...\n\n",
+    "country": "Neplatný kód země: ${trimmedValue} (musí být 2 velká písmena, např. TW, US, JP)",
+    "country2": "🌍 **Vyberte prosím svou zemi/region**\n\n",
+    "country3": "Země: ${filters.country}",
+    "end": "Konec: ${endTime.toLocaleString('zh-TW')}\n\n",
+    "end2": "Konec: ${endTime.toLocaleString(",
+    "female": "女",
+    "free": "Zdarma",
+    "gender": "👤 Pohlaví: ${gender}\n",
+    "gender2": "Neplatná hodnota pohlaví: ${trimmedValue} (musí být muž, žena nebo jiný)",
+    "gender3": "👤 Pohlaví: ${gender}\n",
+    "gender4": "👤 Pohlaví: ${updatedUser.gender ===",
+    "gender5": "👤 Pohlaví: ${user.gender ===",
+    "gender6": "Prosím, nyní vyberte své pohlaví:\n\n",
+    "gender7": "Jiné pohlaví",
+    "help": "MBTI osobnostní test nám může pomoci najít vhodnější chatovací partnery pro vás～\n\n",
+    "help2": "❓ Zobrazit pomoc - /help",
+    "help3": "• /help - Zobrazit pomoc",
+    "invite": "• Celkový počet pozvánek: ${inviteStats?.total || 0}\n",
+    "invite2": "Pozvánkový kód: ${user.invite_code }\n",
+    "invite3": "Pozvánka od: ${user.invited_by }\n\n",
+    "loading": "✅ Načítání......",
+    "login": "Běžní uživatelé nebudou mít přístup k službě, pouze administrátoři se mohou přihlásit.",
+    "male": "Muži",
+    "mbti": "Neplatný MBTI typ: ${trimmedValue} (musí být jedním z: ${VALID_MBTI.join(', ')})",
+    "mbti10": "✍️ Ručně zadejte MBTI",
+    "mbti11": "🧠 MBTI nabídka",
+    "mbti12": "Celý MBTI test",
+    "mbti13": "Rychlý MBTI test",
+    "mbti2": "Typ vaší MBTI je: **${result.type}**\n\n",
+    "mbti3": "Současný MBTI: **${mbti}**\n",
+    "mbti4": "🧠 **Vyberte verzi MBTI testu**\n\n",
+    "mbti5": "🧠 **Správa typu MBTI osobnosti**\n\n",
+    "mbti6": "⚙️ Pokročilé filtry (MBTI/Znamení)",
+    "mbti7": "• Ručně upravit váš MBTI typ",
+    "mbti8": "Vyberte, prosím, svůj MBTI typ:",
+    "mbti9": "🧠 Opakovaný MBTI test",
+    "message": "${typeEmoji} **${ad.title}**\n${statusEmoji} Stav: ${status}\n\n📊 **Statistiky**\n• Zobrazení: ${stats.total_views}\n• Kliknutí: ${stats.total_clicks}\n• Míra prokliku (CTR): ${stats.ctr}%",
+    "message10": "/broadcast_filter gender=female,age=18-25,country=TW Ahoj všichni!\n",
+    "message11": "${banHours} ${user.language_pref === 'en' ? 'hours' : '小時'}",
+    "message12": "Čas: ${new Date(b.created_at).toLocaleString('zh-TW')}\n\n",
+    "message13": "V řadě čeká ${pendingBroadcasts.results.length - 1} vysílání\n",
+    "message14": "Pokrok: ${broadcast.sent_count}/${broadcast.total_users}\n",
+    "message15": "${days} ${user.language_pref === 'en' ? 'days' : '天'}",
+    "message16": "Cíl: ${getBroadcastTargetName(broadcast.targetType)}\n",
+    "message17": "Stav: ${maintenance.isActive ? '✅ V údržbě' : '❌ Neaktivní'}\n",
+    "message18": "🚫 Zablokované URL:\n${urlCheck.blockedUrls?.map((url) =>",
+    "message19": "• Poslední zpráva: ${formatDate(stats.last_message_time)}\n",
+    "message2": "narození = '2000-01-01',\n věk = 25,\n znamení zvěrokruhu = 'Kozoroh',\n skóre proti podvodům = 100,\n souhlas s podmínkami = 1",
+    "message20": "Čas: ${formatDate(conv.last_message_time)}\n\n",
+    "message21": "Odhadovaná doba: ${maintenance.estimatedDuration} minut\n",
+    "message22": "Použijte /broadcast_status ${broadcastId} pro kontrolu postupu.",
+    "message23": "💡 Prosíme, dlouze stiskněte zprávu, na kterou chcete odpovědět, vyberte 'Odpovědět' v nabídce, která se objeví, a poté zadejte svou odpověď do chatovacího okna.",
+    "message24": "📊 Odesláno dnes: ${usedToday + 1}/${dailyLimit} zpráv",
+    "message25": "/broadcast_filter zodiac=Scorpio Exkluzivní zpráva pro Štíra",
+    "message26": "• Aktivováno: ${inviteStats?.activated || 0}\n",
+    "message27": "• Čekající: ${inviteStats?.pending || 0}\n\n",
+    "message28": "/maintenance_enable [zpráva o údržbě]\n\n",
+    "message29": "Pokrok: ${b.sent_count}/${b.total_users}\n",
+    "message3": "Pokrok: ${broadcast.sentCount}/${broadcast.totalUsers} (${progress.percentage}%)\n",
+    "message30": "• Zprávy: ${messagesCount?.count || 0}\n\n",
+    "message31": "• Partnerovské zprávy odeslané: ${stats.partner_messages} zprávy\n",
+    "message32": "Velitel - Odvážní, výjimečně kreativní a silní vůdci, kteří vždy najdou nebo vytvoří řešení.",
+    "message33": "💡 Použijte /broadcast_status <id> pro zobrazení podrobností",
+    "message34": "🏷️ Značky zájmu: ${updatedUser.interests ||",
+    "message35": "Guvernér - Empatický, populární a ochotní jedinci, kteří se vždy snaží přispět do komunity.",
+    "message36": "/broadcast_filter\n\n",
+    "message37": "**Obsah zprávy:**\n${broadcastMessage}\n\n",
+    "message38": "• Celkem zpráv: ${stats.total_messages} zpráv\n",
+    "message39": "Kandidát - Vášniví, kreativní a společenské volnomyšlenkáři, kteří vždy najdou důvod se usmívat.",
+    "message4": "💡 Použijte /history ${formatIdentifier(conversations[0].identifier)} pro zobrazení celé konverzace\n\n",
+    "message40": "Zbývající čas: ${remaining.remainingText}\n",
+    "message41": "Interpret - Spontánní, energičtí a vášniví umělci, kteří nikdy nenacházejí život nudný.",
+    "message42": "Počet uživatelů: ${broadcast.total_users} lidí\n",
+    "message43": "• Poslali jste: ${stats.user_messages} zpráv\n",
+    "message44": "Mediátor - Poetští, laskaví altruisté, kteří neúnavně usilují o spravedlnost.",
+    "message45": "Prosím, použijte /broadcast_status později pro kontrolu pokroku.",
+    "message46": "Přezdívka: ${user.nickname }\n",
+    "message47": "• Odměny: ${stats.total_rewards}\n\n",
+    "message48": "Podnikatel - Chytrý, energický a vnímavý jedinci, kteří si skutečně užívají život na hraně.",
+    "message49": "🎁 Odměna: +${ad.reward_quota} trvalých slotů",
+    "message5": "Čas: ${new Date().toLocaleString('zh-TW', { timeZone: 'Asia/Taipei' })}\n",
+    "message50": "Čas: ${new Date().toLocaleString(",
+    "message51": "Použijte /broadcast_status pro kontrolu aktualizovaného stavu.",
+    "message52": "Cíl: ${broadcast.target_type}\n",
+    "message53": "Použijte /broadcast_status pro kontrolu aktualizovaného záznamu.",
+    "message54": "• Pokud změníte profilový obrázek na Telegramu, systém to automaticky detekuje\n",
+    "message55": "Přibližně ${Math.ceil(totalSeconds)} sekund",
+    "message56": "Povoleno: ${maintenance.enabledBy}\n",
+    "message57": "Logik - Inovativní vynálezci s neutuchající touhou po znalostech.",
+    "message58": "Obhájce - Tichý a tajemný, přesto inspirující a neúnavný idealisté.",
+    "message59": "Strážce - Vysoce zaměření a vřelí ochránci, vždy připraveni chránit své blízké.",
+    "message6": "• Zobrazení: ${stats.total_views} | Kliknutí: ${stats.total_clicks} (${stats.ctr}%)\n",
+    "message60": "Průzkumník - Obratní a okouzlující umělci, vždy připraveni objevovat a zažívat nové věci.",
+    "message61": "• Dlouze stiskněte zprávu druhé osoby pro odpověď /block pro blokování tohoto uživatele\n",
+    "message62": "Prosím, ujistěte se, že zpráva, na kterou odpovídáte, je ta, kterou poslal druhý účastník (s identifikátorem #).",
+    "message63": "/broadcast_non_vip",
+    "message64": "Navážete své první spojení (dlouze stiskněte zprávu → vyberte 'Odpovědět')",
+    "message65": "Zpráva: ${messagePreview}\n",
+    "message66": "3. Jste ostražitější, když se setkáte s podezřelými zprávami?\n\n",
+    "message67": "💡 VIP uživatelé mohou denně poslat 100 zpráv.",
+    "message68": "/broadcast\n\n",
+    "message69": "/broadcast_vip",
+    "message7": "• Počet ověření: ${stats.total_verified}\n• Míra ověření: ${stats.verification_rate}%",
+    "message70": "Poslední zpráva: ${preview}\n",
+    "message71": "Zprávy pro vysílání nesmí překročit 4000 znaků",
+    "message72": "1️⃣ Dlouze stiskněte zprávu druhé osoby\n",
+    "message73": "Prosím, komunikujte s druhou stranou pomocí textových zpráv.",
+    "message74": "(Žádné zprávy)\n\n",
+    "message75": "Získejte nejnovější zprávy a události",
+    "message76": "Zprávy pro vysílání nemohou být prázdné",
+    "message77": "(Žádné zprávy)",
+    "message8": "• Distribuce odměn: ${stats.total_rewards}\n• Míra odměn: ${stats.reward_rate}%",
+    "message9": "• Zbývající zobrazení: ${ad.max_views - ad.current_views}/${ad.max_views}",
+    "newUser": "Nový uživatel",
+    "next": "Další stránka",
+    "nickname": "💡 Prosím, zadejte jednoduchou přezdívku, nezahrnujte odkazy jako http:// nebo https://.\n\n",
+    "nickname10": "Prosím, zadejte novou přezdívku:\n\n",
+    "nickname11": "• Nepoužívejte přezdívku k zasílání reklam",
+    "nickname12": "📝 Upravit přezdívku",
+    "nickname13": "✍️ Přizpůsobit přezdívku",
+    "nickname2": "Skvělé! Vaše přezdívka je: ${truncatedNickname}\n\n",
+    "nickname3": "📝 Přezdívka: ${updatedUser.nickname}\n",
+    "nickname4": "📝 Přezdívka: ${user.nickname}\n",
+    "nickname5": "• Maximální délka přezdívky je 36 znaků\n",
+    "nickname6": "📝 **Upravit přezdívku**\n\n",
+    "nickname7": "✏️ Prosím, vyberte svou přezdívku:\n\n",
+    "nickname8": "✏️ Prosím, zadejte svou přezdívku:\n\n",
+    "nickname9": "Prosím, řekněte mi svou přezdívku (zobrazované jméno):",
+    "no": "Ne",
+    "none": "Žádný",
+    "notRegistered": "Není registrován",
+    "notSet": "Není nastaveno",
+    "open": "Otevřít",
+    "operationFailed": "❌ Došlo k chybě",
+    "pageInfo": "Stránka {current} / {total}",
+    "prev": "Předchozí stránka",
+    "profile": "👤 Zobrazit profil - /profile\n",
+    "profile2": "✏️ **Upravit profil**\n\n",
+    "profile3": "(Můžete to také nastavit ve svém profilu později)",
+    "quota": "💡 Upgradujte na VIP pro více kvót (100 zpráv/den):/vip",
+    "quota2": "• 💎 Upgradujte na VIP (30 kvót za den)",
+    "quota3": "• 🎁 Pozvěte přátele (+1 kvóta na osobu)\n",
+    "quota4": "• ✨ Plňte úkoly (získejte trvalé kvóty)\n",
+    "register": "💡 Toto je rychlý test (${testInfo}), výsledky jsou pouze pro referenci.\nPo registraci si můžete test zopakovat pomocí /mbti.\n\n",
+    "register10": "🎉 Gratulujeme k dokončení registrace!\n\n",
+    "register2": "💡 Toto je plný test (${testInfo}), výsledky jsou přesnější.\nPo registraci můžete test opakovat pomocí /mbti.\n\n",
+    "register3": "Kroky registrace: ${user.onboarding_step}\n",
+    "register4": "⏰ Proces registrace vypršel\n\nProsím, použijte /start k opětovnému spuštění registrace.",
+    "register5": "Nebo použijte: /dev_restart (automatické zahájení registrace)\n\n",
+    "register6": "💡 Nyní můžete restartovat proces registrace testu.\n\n",
+    "register7": "🔄 Znovu registrovat: /start\n",
+    "register8": "💡 Po dokončení registrace můžete:\n",
+    "register9": "Proces registrace byl automaticky dokončen.\n\n",
+    "report": "🚨 **Nahlásit nevhodný obsah** (#${conversationIdentifier})\n\n",
+    "report2": "Vícenásobná hlášení",
+    "report3": "💡 Toto přesně specifikuje objekt k ověření.",
+    "report4": "Prosím, vyberte důvod pro hlášení:",
+    "selected": "Vybráno",
+    "settings": "🧠 MBTI: ${updatedUser.mbti_result} (lze znovu udělat)",
+    "settings10": "Nastavili jste svůj MBTI typ.\n\n",
+    "settings11": "Nastavit region",
+    "settings12": "Není nastaveno",
+    "settings13": "Nastaveno",
+    "settings14": "Nastaveno",
+    "settings15": "Nastaveno",
+    "settings16": "Nastaveno",
+    "settings17": "Nastaveno",
+    "settings18": "Nastaveno",
+    "settings19": "Nastaveno",
+    "settings2": "🏷️ Zájmové štítky: ${updatedUser.interests}\n",
+    "settings20": "Nastaveno",
+    "settings21": "Nastaveno",
+    "settings22": "Nastaveno",
+    "settings23": "Nastaveno",
+    "settings24": "Nastaveno",
+    "settings25": "Nastaveno",
+    "settings26": "Nastaveno",
+    "settings27": "Nastaveno",
+    "settings28": "Nastaveno",
+    "settings29": "Nastaveno",
+    "settings3": "🧠 MBTI: \\$ (můžete znovu testovat)",
+    "settings30": "Nastaveno",
+    "settings31": "Nastaveno",
+    "settings32": "Nastaveno",
+    "settings33": "Nastaveno",
+    "settings34": "Nastaveno",
+    "settings35": "Nastaveno",
+    "settings4": "🏷️ Zájmů štítky: ${user.interests}\n",
+    "settings5": "📖 Osobní bio: ${updatedUser.bio}\n",
+    "settings6": "🌍 Poloha: ${updatedUser.city}\n",
+    "settings7": "📖 Osobní bio: ${user.bio}\n",
+    "settings8": "🌍 Poloha: ${user.city}\n",
+    "settings9": "Můžete kdykoliv použít příkaz /mbti k resetování.",
+    "short": "💡 Můžete:\n",
+    "short10": "Když pracujete, preferujete:",
+    "short100": "Emocionální příběhy",
+    "short101": "Efektivitu a výsledky",
+    "short102": "Konsensus a jednotu",
+    "short103": "Svobodu a flexibilitu",
+    "short104": "Udržení otevřených možností",
+    "short105": "Přidat řádek",
+    "short106": "Výsledky testu",
+    "short107": "Nejprve poslouchat, pak mluvit",
+    "short108": "Malé a intimní",
+    "short109": "Týmovou práci",
+    "short11": "Když čtete, preferujete:",
+    "short110": "Nezávislou práci",
+    "short111": "Přemýšlení při mluvení",
+    "short112": "Samostatné zpracovávání",
+    "short113": "Praktické použití",
+    "short114": "Inovativní myšlenky",
+    "short115": "Nové pokusy",
+    "short116": "Je to rozumné?",
+    "short117": "Je to prospěšné?",
+    "short118": "Držte se principů",
+    "short119": "Udržujte vztahy",
+    "short12": "V práci si ceníte více tohoto:",
+    "short120": "Spravedlivý a rozhodný",
+    "short121": "Ohleduplný a pečující",
+    "short122": "Úhledný a organizovaný",
+    "short123": "Neformální a uvolněný",
+    "short124": "Rychlá rozhodnutí",
+    "short125": "Cítit se nepříjemně",
+    "short126": "Cítit se vzrušeně",
+    "short127": "Navštivte odkaz",
+    "short128": "Přihlaste se k odběru kanálu",
+    "short129": "Bankovní účet",
+    "short13": "Při plánování budoucnosti budete:",
+    "short130": "Poznámka:",
+    "short131": "Odesílání...",
+    "short132": "Platební karta",
+    "short133": "Bitcoin",
+    "short134": "Přidat WeChat",
+    "short135": "Přidat QQ",
+    "short136": "Mobilní číslo",
+    "short137": "Kontaktujte mě",
+    "short138": "Jednorázové setkání",
+    "short139": "Sexuální služby",
+    "short14": "Analyzovat problémy a poskytnout návrhy",
+    "short140": "Podvod",
+    "short141": "Investice",
+    "short142": "Vydělat peníze",
+    "short143": "Remitence",
+    "short144": "Převod",
+    "short145": "Heslo",
+    "short146": "Pyramidová hra",
+    "short147": "Finance",
+    "short148": "Správa majetku",
+    "short149": "Akcie",
+    "short15": "Při čelení změnám obvykle:",
+    "short150": "Futures",
+    "short151": "Forex",
+    "short152": "Telefon",
+    "short153": "Neformální randění",
+    "short154": "Odměňované randění",
+    "short155": "Sebevražda",
+    "short156": "Skákání z budovy",
+    "short157": "Násilí",
+    "short158": "Není nastaveno",
+    "short159": "Není vygenerováno",
+    "short16": "Děkujeme za vaši podporu!❤️",
+    "short160": "Testovací uživatel",
+    "short161": "Testovací uživatel",
+    "short162": "Přesnější výsledky",
+    "short163": "Potřebuje pozornost",
+    "short164": "Připojit se ke skupině",
+    "short165": "Zobrazit detaily",
+    "short17": "Nech ostatní uživatele lépe poznat",
+    "short18": "Je to správně?\n\n",
+    "short19": "🗑️ Smazat návrh",
+    "short2": "🌈 Může kdokoliv",
+    "short20": "🏷️ Upravit zájmy",
+    "short21": "Prosím vyberte testovací verzi:",
+    "short22": "Váš pracovní styl je:",
+    "short23": "Má jasný termín",
+    "short24": "Rychle se seznámí",
+    "short25": "Potřebuje čas na usazení",
+    "short26": "Když jste ve stresu, budete:",
+    "short27": "Vytvořit seznam a nakoupit podle plánu",
+    "short28": "Zaseknutý (zkouší se znovu)",
+    "short29": "✏️ Upravit obsah",
+    "short3": "✏️ Pokračovat v úpravě informací",
+    "short30": "📖 Upravit profil",
+    "short31": "🌍 Upravit lokaci",
+    "short32": "💝 Nastavit preference",
+    "short33": "Aktualizuji...",
+    "short34": "🔞 Obsah pro dospělé",
+    "short35": "Navázat konverzaci s ostatními",
+    "short36": "Čekat, až se ostatní ozvou",
+    "short37": "O víkendech preferujete:",
+    "short38": "Praktické zkušenosti a fakta",
+    "short39": "Postupný přístup",
+    "short4": "📝 Znovu se zúčastnit testu",
+    "short40": "Objevovat inovativní způsoby",
+    "short41": "Logická a objektivní analýza",
+    "short42": "Emoční a mezilidská harmonie",
+    "short43": "Plánovat a připravovat se předem",
+    "short44": "Přizpůsobit se a být flexibilní",
+    "short45": "Nechat si otevřené možnosti",
+    "short46": "Používat metafory a analogie",
+    "short47": "Poslouchat a poskytovat útěchu",
+    "short48": "Váš pokoj obvykle:",
+    "short49": "Při nakupování uděláte:",
+    "short5": "📝 Udělat rychlý test",
+    "short50": "Nechte jiné vás lépe poznat",
+    "short51": "Najít přátele ve stejném městě",
+    "short52": "Podívejte se na příběhy ostatních",
+    "short53": "Nejméně 20 znaků",
+    "short54": ": Aktivní párování,",
+    "short55": "Žena (výchozí)",
+    "short56": "Muž (výchozí)",
+    "short57": "Výsledky jsou pouze pro referenci",
+    "short58": "Můžete:\n",
+    "short59": "Trávit čas s přáteli",
+    "short6": "Je vyžadován alespoň jeden filtr",
+    "short60": "Odpočívat doma o samotě",
+    "short61": "Cítit energii",
+    "short62": "Cítit potřebu relaxovat",
+    "short63": "Intuice a možnosti",
+    "short64": "Zaměřit se na konkrétní detaily",
+    "short65": "Zaměřit se na celkový koncept",
+    "short66": "Přímo upozornit na problémy",
+    "short67": "Zohlednit city druhého člověka",
+    "short68": "Vytvořit podrobný itinerář",
+    "short69": "Prozkoumávat volně",
+    "short7": "Nový uživatel******",
+    "short70": "Aktivně sdílet své názory",
+    "short71": "Váš okruh přátel:",
+    "short72": "Široký, ale povrchní",
+    "short73": "Budoucnost a možnosti",
+    "short74": "Používat konkrétní příklady",
+    "short75": "Ověřené metody",
+    "short76": "Založené na skutečných podmínkách",
+    "short77": "Představit si různé možnosti",
+    "short78": "Regulované a strukturované",
+    "short79": "Obsahuje citlivou slovní zásobu",
+    "short8": "Při kritice ostatních budete:",
+    "short80": "Vyplnit štítky zájmu",
+    "short81": "Zlepšit svůj osobní popis",
+    "short82": "Připojit se k oficiálnímu kanálu",
+    "short83": "Sepsat svůj příběh",
+    "short84": "👨 Muž",
+    "short85": "👩 Žena",
+    "short86": "👨 Chlap",
+    "short87": "👩 Dáma",
+    "short88": "Čas na hodnocení:",
+    "short89": "❓ Nejasné",
+    "short9": "Při cestování obvykle:",
+    "short90": "Na čem vám více záleží:",
+    "short91": "Spravedlnost a právo",
+    "short92": "Empatie a porozumění",
+    "short93": "Přemýšlet před mluvením",
+    "short94": "Pokecat s přáteli",
+    "short95": "Praktické příručky",
+    "short96": "Teorie a koncepty",
+    "short97": "Teď a minulost",
+    "short98": "Komu více důvěřujete:",
+    "short99": "Fakta a data",
+    "start": "Čas začátku: ${new Date(maintenance.startTime).toLocaleString('zh-TW')}\n",
+    "start10": "Začít →",
+    "start2": "Čas začátku: ${new Date(broadcast.startedAt).toLocaleString('zh-TW')}\n",
+    "start3": "Začátek: ${startTime.toLocaleString('zh-TW')}\n",
+    "start4": "Čas zahájení: ${broadcast.started_at}\n\n",
+    "start5": "Začátek: ${startTime.toLocaleString(",
+    "start6": "🎉 **Hotovo! Začněte si nyní navazovat přátelství～**\n\n",
+    "start7": "• Použijte /throw k obnovení\n",
+    "start8": "📺 Začněte sledovat reklamy",
+    "start9": "Začněte svou cestu přátelství",
+    "stats": "💡 Použijte /ad_stats {id} pro zobrazení podrobných statistik",
+    "stats2": "• /stats - Zobrazit statistiky\n\n",
+    "stats3": "📊 Zobrazit statistiky - /stats\n",
+    "stats4": "📊 **Oficiální statistiky reklamy**\n\n",
+    "stats5": "Statistiky pozvání:\n",
+    "stats6": "Statistiky:\n",
+    "success": "Nákup úspěšný",
+    "systemError": "❌ V systému došlo k chybě",
+    "task": "🎉 Gratulujeme k dokončení úkolu: Připojte se k oficiálnímu kanálu!\n\n",
+    "task2": "[📋 Zobrazit Centrum úkolů] → /tasks",
+    "task3": "• /tasks - Zobrazit Centrum úkolů\n",
+    "task4": "💡 Použijte /tasks pro zobrazení dalších úkolů",
+    "task5": "Při zpracování úkolu budete:",
+    "task6": "📋 Zobrazit úkoly",
+    "text": "Cíl: ${broadcast.target_type}\n",
+    "text10": "📖 Profil: ${updatedUser.bio ||",
+    "text100": "💡 Prosím, zadejte obsah do níže uvedeného vstupního pole",
+    "text101": "To může chvíli trvat, prosím počkejte.",
+    "text102": "Můžete kdykoli použít následující příkazy:\n",
+    "text103": "🛠️ Oznámení o údržbě systému\n\n",
+    "text104": "🛠️ Stav údržbového režimu\n\n",
+    "text105": "Při hodnocení nápadu nejprve zvažujete:",
+    "text106": "⏱️ Přibližně 2-3 minuty\n",
+    "text107": "⏱️ Přibližně 5-8 minut\n",
+    "text108": "📚 Chci se dozvědět více o bezpečnostních znalostech",
+    "text109": "Odeslat nyní (přibližně 1-2 sekundy)",
+    "text11": "${daysAgo} dní zpět",
+    "text110": "2️⃣ Vyberte 'Odpovědět'\n",
+    "text111": "**Formát filtru:**\n",
+    "text112": "• Minimálně 5 znaků\n",
+    "text113": "• Nemůže obsahovat URL\n",
+    "text114": "Prosím zadejte svůj region:\n\n",
+    "text115": "• Tento nastavení můžete kdykoli upravit",
+    "text116": "• Až 5 štítků\n",
+    "text117": "📋 Rychlá verze (12 otázek)",
+    "text118": "📚 Kompletní verze (36 otázek)",
+    "text119": "• Proveďte podrobnější test\n",
+    "text12": "Generální ředitel - Vynikající manažer, bezkonkurenční v řízení záležitostí nebo personálu.",
+    "text120": "💡 **Tip:**\n",
+    "text121": "Při učení něčeho nového dáváte přednost:",
+    "text122": "**Kroky, kterými se řídit:**\n",
+    "text123": "🇺🇳 Použijte vlajku OSN",
+    "text124": "Chcete tento návrh odeslat přímo?",
+    "text125": "To může trvat několik sekund.",
+    "text126": "Děkujeme za vaši trpělivost!",
+    "text127": "Údržba potrvá alespoň 5 minut.",
+    "text128": "V sociálních situacích obvykle:",
+    "text129": "Při řešení problémů se více spoléháte na:",
+    "text13": "💡 To bude zobrazeno na vaší profilové kartě, což pomůže ostatním uživatelům vás lépe pochopit.\n",
+    "text130": "V týmu máte tendenci:",
+    "text131": "Při přemýšlení o problémech máte tendenci:",
+    "text132": "Při popisování věcí máte tendenci:",
+    "text133": "Když se vám přátelé svěřují, uděláte:",
+    "text134": "Během rozhodování v týmu se více soustředíte na:",
+    "text135": "Myslíte si, že dobrý vůdce by měl:",
+    "text136": "Cíl: Všichni uživatelé\n",
+    "text137": "✏️ Prosím, zadejte nový obsah",
+    "text138": "💰 Podvod / Phishing",
+    "text139": "😡 Obtěžování / Zneužívání",
+    "text14": "Jazyk: ${user.language_pref}\n",
+    "text140": "Po návštěvě setkání obvykle:",
+    "text141": "Při rozhodování upřednostňujete:",
+    "text142": "Když poznáváte nové přátele, vy:",
+    "text143": "V konfliktech máte tendenci:",
+    "text144": "Jste snáze přesvědčeni:",
+    "text145": "Váš oblíbený životní styl:",
+    "text146": "Při rozhodování máte tendenci:",
+    "text147": "Volně procházet a kupovat, co se vám líbí",
+    "text148": ")} vyprší.\n\n",
+    "text149": "📋 Právní dokumenty jsou k dispozici pouze v angličtině.",
+    "text15": "🌍 Umístění: ${updatedUser.city ||",
+    "text150": "📋 Právní dokumenty jsou k dispozici pouze v angličtině.",
+    "text16": "✅ Ověření nutné: Klikněte na tlačítko 'Ověřit' po připojení do skupiny/kanálu",
+    "text17": "Cílový počet uživatelů: ${userIds.length}\n\n",
+    "text18": "Odhadovaný čas: ${estimatedTime}\n\n",
+    "text19": "/broadcast_cleanup potvrdit",
+    "text2": "Prosím, použijte /broadcast_filter pro zobrazení správného formátu.",
+    "text20": "💝 Preference shody: ${matchPrefText}\n",
+    "text21": "Debatér - Chytrý a zvědavý myslitel, který se nedokáže ubránit intelektuálním výzvám.",
+    "text22": "Zapište si své pocity nebo myšlenky a systém vám pomůže najít toho pravého člověka\n\n",
+    "text23": "Logistický specialista - Praktičtí a fakta orientovaní jednotlivci, jejichž spolehlivost je nezpochybnitelná.",
+    "text24": "Oceňovatel - Odvážný a praktický experimentátor, schopný používat různé nástroje.",
+    "text25": "💡 Toto je jednorázová odměna a bude přidána do dnešního kvóta po uplatnění.",
+    "text26": "Počet shodujících se uživatelů: ${totalUsers} lidí\n",
+    "text27": "• Výchozí je heterosexuální (muži hledají ženy, ženy hledají muže)\n",
+    "text28": "Stav: ${progress.status}\n",
+    "text29": "${daysAgo} hodinami zpět",
+    "text3": "**Filtrační podmínky:**\n${filtersDesc}\n\n",
+    "text30": "Za ${remainingMinutes} minut",
+    "text31": "Za přibližně ${hours} hodin ${mins} minut",
+    "text32": "Doba údržby nesmí přesáhnout 24 hodin (1440 minut)",
+    "text33": "Počet uživatelů: ${totalUsers} lidí\n",
+    "text34": "Cíl: ${b.target_type}\n",
+    "text35": "Kritéria filtru: ${filtersDesc}\n",
+    "text36": "• Alespoň 4 znaky, až 36 znaků\n",
+    "text37": "🇺🇳 Pokud nebylo nalezeno, můžete vybrat 'Vlajku OSN'",
+    "text38": "📖 Profil: ${user.bio ||",
+    "text39": "Prosím zadejte své zájmové štítky (oddělené čárkami):\n\n",
+    "text4": "/maintenance_enable 60 Údržba systému",
+    "text40": "• Například: Hudba, Filmy, Cestování, Jídlo\n",
+    "text41": "Služba byla obnovena do normálního stavu, děkujeme za trpělivost!\n\n",
+    "text42": "🌍 Oblast: ${user.city ||",
+    "text43": "Zdroj: ${sourceText}\n\n",
+    "text44": "Neznámý filtr: ${trimmedKey}",
+    "text45": "Systém je v údržbě a dočasně nedostupný.\n\n",
+    "text46": "Předpokládáme, že pocházíte z:\n",
+    "text47": "• Každý štítek může mít maximálně 20 znaků\n\n",
+    "text48": "Doba trvání: ${duration} minut\n",
+    "text49": "1. Jste si vědom(a) bezpečnostních rizik online seznamování?\n",
+    "text5": "👋 Vítejte zpět, ${user.nickname}!\n\n",
+    "text50": "2. Budete chránit své osobní informace?\n",
+    "text51": "Skvělé! Nyní prosím nahrajte svou profilovou fotografie:\n\n",
+    "text52": "🌊 **Co je XunNi?**\n",
+    "text53": "🎉 Bylo zjištěno, že jste se připojili k oficiálnímu kanálu!\n\n",
+    "text54": "💡 Toto přesně určí, koho zablokovat.",
+    "text55": "Stav: ${statusText}\n",
+    "text56": "💡 Nyní můžete přímo testovat hlavní funkce:\n",
+    "text57": "Jakého chatovacího partnera hledáte?\n\n",
+    "text58": "• Představte své zájmy, osobnost nebo věci, které byste chtěli říct\n",
+    "text59": "🏷️ **Upravit zájmové štítky**\n\n",
+    "text6": "Architekt - Imaginativní a strategický myslitel, všechno je součástí plánu.",
+    "text60": "Pro bezpečnost jsou povoleny pouze odkazy z následujících domén:\n",
+    "text61": "📋 **Rychlá verze (12 otázek)**\n",
+    "text62": "📚 **Úplná verze (36 otázek)**\n",
+    "text63": "• Profilový obrázek se automaticky aktualizuje každých 7 dní\n",
+    "text64": "3️⃣ Zadejte /report\n\n",
+    "text65": "3️⃣ Zadejte /block\n\n",
+    "text66": "Stav: ${b.status}\n",
+    "text67": "Nebude již automaticky zpracováváno nebo znovu odesíláno\n\n",
+    "text68": "📖 **Upravit profil**\n\n",
+    "text69": "💝 **Nastavit preference shody**\n\n",
+    "text7": "Protagonista - Charismatický a inspirující vůdce, schopný uchvátit publikum.",
+    "text70": "💬 **Vaše historie chatu**\n\n",
+    "text71": "• Také můžete kdykoliv manuálně obnovit pomocí tohoto příkazu",
+    "text72": "📊 **Denní analýza dat**\n",
+    "text73": "Váš účet byl obnoven na bezplatné členství.\n\n",
+    "text74": "💡 Toto bude zobrazeno na vaší profilové kartě\n",
+    "text75": "🔧 Režim pro vývojáře: Informace o uživateli\n\n",
+    "text76": "• Přímo zadejte nový obsah pro nahrazení návrhu\n",
+    "text77": "• Žádné odkazy, obrázky ani multimédia nejsou povolena\n",
+    "text78": "• Zobrazí maximálně 18 znaků\n",
+    "text79": "• Druhá strana může zobrazit až 18 znaků\n",
+    "text8": "/broadcast Systém bude mít údržbu dnes večer v 22:00",
+    "text80": "💡 Prosím, odstraňte tyto odkazy a znovu odešlete.",
+    "text81": "🔄 Obnovuji profilovou fotografii...\n\n",
+    "text82": "• Uživatelé bez VIP vidí rozmazaný profilový obrázek\n",
+    "text83": "💬 **Jak se stát přáteli?**\n",
+    "text84": "Neplatný formát filtru: ${pair}",
+    "text85": "Všechna vaše data byla smazána.\n\n",
+    "text86": "📝 **Návrh obsahu**\n\n",
+    "text87": "🌍 **Upravit lokaci**\n\n",
+    "text88": "• Například: Taipei, Hongkong, Tokio\n",
+    "text89": "• Až 50 znaků\n\n",
+    "text9": "🏷️ Značky zájmu: ${user.interests ||",
+    "text90": "O ${minutes} minutách",
+    "text91": "Napište svůj příběh (alespoň 20 znaků)",
+    "text92": "Hledám způsobilé uživatele...",
+    "text93": "• Maximálně 250 znaků\n",
+    "text94": "• Nezahrnujte osobní kontaktní informace\n",
+    "text95": "Prosím vyberte položku k úpravě:\n\n",
+    "text96": "Prosím, zadejte svůj osobní profil:\n\n",
+    "text97": "• Maximálně 200 znaků\n",
+    "text98": "• Vyhněte se zahrnutí kontaktních informací\n\n",
+    "text99": "Všechny funkce jsou nyní plně funkční.",
+    "throw": "⏰ Proces hodu láhví vypršel\n\nPro pokračování použijte /throw.",
+    "throw2": "Proces hodu láhví",
+    "uncertain": "❓ Nejste si jisti",
+    "unknownOption": "⚠️ Neznámá možnost",
+    "unlimited": "Žádné limity",
+    "userNotFound": "❌ Uživatel neexistuje",
+    "vip": "Vaše VIP předplatné vypršelo dne ${expireDate}.\n\n",
+    "vip10": "😢 **VIP předplatné vypršelo**\n\n",
+    "vip11": "• Přechod na VIP automaticky obnoví historické příspěvky",
+    "vip12": "⭐ Upgradujte na VIP - /vip\n",
+    "vip13": "💎 VIP uživatelé nemusí sledovat reklamy",
+    "vip14": "Cíl: Uživatelé bez VIP\n",
+    "vip15": "Cíl: VIP uživatelé\n",
+    "vip16": "Uživatelé bez VIP",
+    "vip17": "VIP uživatelé",
+    "vip2": "Vaše VIP předplatné vypršelo dne ${new Date(user.vip_expire_at).toLocaleDateString(",
+    "vip3": "/broadcast_filter vip=true,mbti=INTJ VIP exkluzivní upozornění na událost\n",
+    "vip4": "Za každého pozvaného se denní limit trvale zvyšuje o +1 (zdarma pro až 10 lidí, VIP pro až 100 lidí)",
+    "vip5": "VIP: ${user.is_vip ? 'Ano' : 'Ne'}\n",
+    "vip6": "💡 Přechod na VIP poskytuje přístup k pokročilému filtrování (MBTI/Zvěrokruh): /vip",
+    "vip7": "💡 Můžete se kdykoli znovu přihlásit k VIP: /vip\n\n",
+    "vip8": "💡 Skupina krve může být použita pro funkci shody krve VIP\n\n",
+    "vip9": "• VIP uživatelé mohou vidět navzájem své jasné profilové obrázky\n",
+    "yes": "Ano",
+    "zodiac": "Neplatný znamení zvěrokruhu: ${trimmedValue} (musí být jedním z: ${VALID_ZODIACS.join(', ')})"
+  },
+  "conversation": {
+    "age": "🎂 Věkový rozmezí: ${ageRange} let\n",
+    "anonymousCardHint": "💡 Toto je anonymní datová karta a nebude zobrazovat skutečné identifikační informace druhé strany.",
+    "backToMenuCommand": "🏠 Vraťte se do hlavního menu: /menu",
+    "ban": "• Vícenásobné hlášení povede k zákazu\n",
+    "blockConfirmButton": "✅ Potvrdit blokování",
+    "blockConfirmMessage": "Zablokováno:\n• Druhá strana vám již nemůže posílat zprávy\n• Nebudete již spojeni\n• Tato konverzace se okamžitě ukončí\n\n💡 To neohlásí druhou stranu, jen to znamená, že si již nepřejete chatovat.",
+    "blockConfirmTitle": "🚫 **Opravdu chcete tohoto uživatele zablokovat?**",
+    "blockSuccessMessage": "Druhá strana byla zablokována a nebudete již spojeni.\n\n💡 Chcete začít novou konverzaci?\n• Použijte /catch k vyzvednutí nové láhve se zprávou",
+    "blockSuccessNewConversation": "💬 **Konverzace ukončena**\n\nDruhá strana tuto konverzaci ukončila.\n\n💡 Chcete začít novou konverzaci?\n• Použijte /catch k vyzvednutí nové láhve se zprávou",
+    "blockSuccessTitle": "✅ **Uživatel byl zablokován**",
+    "blocked": "✅ Zablokováno",
+    "bloodType": "🩸 Krevní skupina: ${partnerInfo.bloodType}\n",
+    "bloodType2": "🩸 Krevní skupina: ${bloodTypeText}\n",
+    "bottle": "Použijte /catch pro vyzvednutí láhve se zprávou a zahájení chatu!\n\n",
+    "bottle2": "• Použijte /catch k vyzvednutí nové láhve se zprávou",
+    "cancelButton": "❌ Storno",
+    "cancelSuccess": "Zrušeno",
+    "conversation": "💬 Historie konverzace s #${identifier} (Stránka ${postNumber})\n\n",
+    "conversation10": "Aktuálně nejsou žádné konverzace.\n\n",
+    "conversation11": "• Tato konverzace se okamžitě ukončí\n",
+    "conversation2": "💬 **Můj seznam konverzací** (${conversations.length})\n\n",
+    "conversation3": "💡 Klikněte na tlačítko 'Odpovědět' na zprávě druhé strany, abyste pokračovali v konverzaci\n",
+    "conversation4": "💬 **Konverzace skončila**\n\n",
+    "conversation5": "💬 **Moje konverzace**\n\n",
+    "conversation6": "💡 Chcete začít novou konverzaci?\n",
+    "conversation7": "• Tato konverzace okamžitě skončí\n\n",
+    "conversation8": "Druhá strana tuto konverzaci ukončila.\n\n",
+    "conversation9": "💡 Toto je historie konverzace\n",
+    "conversationEnded": "❌ Tato konverzace byla ukončena.\n\nPoužijte /catch k vyzvednutí nové láhve se zprávou a začněte novou konverzaci.",
+    "conversationInfoError": "❌ Informace o konverzaci jsou nesprávné.",
+    "editProfileCommand": "✏️ Upravit profil: /edit_profile",
+    "endedMessage": "Druhá strana tuto konverzaci ukončila.\n\n💡 Chcete začít novou konverzaci?\n• Použijte /catch k vyzvednutí nové láhve se zprávou",
+    "endedNewConversation": "💬 **Konverzace ukončena**\n\nDruhá strana tuto konverzaci ukončila.\n\n💡 Chcete začít novou konverzaci?\n• Použijte /catch k vyzvednutí nové láhve se zprávou",
+    "endedTitle": "💬 **Konverzace ukončena**",
+    "gender": "👤 Pohlaví: ${gender}\n",
+    "mediaRestriction": "⚠️ **Odesílání obrázků, videí nebo multimédií není povoleno**\n\n💡 Abychom chránili soukromí a bezpečnost, jsou v konverzacích povoleny pouze textové zprávy.\n\nProsím, používejte textové zprávy k komunikaci s druhou stranou.",
+    "message": "💫 Bodové hodnocení: ${score} body\n",
+    "message10": "conv_profile_${conversationId}",
+    "message11": "• Poslední zpráva: ${lastMessageTime}\n\n",
+    "message12": "📊 Celkem zpráv: ${totalMessages} zpráv\n",
+    "message13": "💬 Odpovězte přímo stisknutím /reply pro chat\n",
+    "message14": "• Druhá strana vám již nemůže posílat zprávy\n",
+    "message2": "📜 Pokračujte ve sledování: #${identifier}-H${newPostNumber}",
+    "message3": "📅 Naposledy aktualizováno: ${formatDateTime(new Date())}\n\n",
+    "message4": "[${timeStr}] Od: \n${messageContent}\n\n",
+    "message5": "conv_report_confirm_${conversationId}",
+    "message6": "conv_block_confirm_${conversationId}",
+    "message7": "• Počet zpráv: ${conv.message_count} zpráv\n",
+    "message77": "💬 Použijte /reply k odpovědi na zprávy",
+    "message8": "🏷️ Zájmy: ${otherUser.interests}\n",
+    "message9": "💬 Nová zpráva od #${identifier}:\n\n",
+    "nickname": "📝 Přezdívka: ${partnerInfo.maskedNickname}\n",
+    "nickname2": "📝 Přezdívka: ${displayNickname}\n",
+    "noHistory": "💬 Ještě nemáte žádnou historii konverzací\n\nZahodťe láhev, abyste se seznámili s novými přáteli! /throw\n\n🏠 Návrat do hlavního menu: /menu",
+    "profile": "✏️ Upravit profil: /edit_profile\n",
+    "profileCardTitle": "👤 **Profilová karta jiného uživatele**",
+    "replyButton": "💬 Odpovědět na zprávu",
+    "replyConversation": "💬 Odpovědět na konverzaci {identifier}",
+    "replyHint": "💡 Zadejte svou zprávu do níže uvedeného pole",
+    "replyMethod1": "1️⃣ Klikněte na tlačítko「💬 Odpovědět na zprávu」níže",
+    "replyMethod2": "2️⃣ Dlouze stiskněte tuto zprávu, vyberte「Odpovědět」a poté zadejte svou zprávu",
+    "replyMethodsTitle": "💡 **Dvě možnosti odpovědi**:",
+    "report": "🚨 **Opravdu chcete nahlásit tohoto uživatele?**\n\n",
+    "report2": "💡 Toto nenahlásí uživatele, jen ukončí chat.",
+    "report3": "Děkujeme za váš report, provedeme jeho zhodnocení co nejdříve.\n\n",
+    "report4": "Po nahlášení:\n",
+    "reportConfirmButton": "✅ Potvrdit hlášení",
+    "reportConfirmMessage": "Po nahlášení:\n• Prozkoumáme chování tohoto uživatele\n• Vícenásobná hlášení mohou vést k zablokování\n• Tato konverzace okamžitě skončí\n• Nebudete znovu spárováni s tímto uživatelem po dobu 24 hodin\n\n💡 Prosím ujistěte se, že jiný uživatel má nevhodné chování.",
+    "reportConfirmTitle": "🚨 **Jste si jisti, že chcete nahlásit tohoto uživatele?**",
+    "reportSuccessMessage": "Děkujeme za vaše hlášení. Prozkoumáme to co nejdříve.\n\n💡 Chtěli byste začít novou konverzaci?\n• Použijte /catch pro vyzvednutí nové láhve se zprávou",
+    "reportSuccessNewConversation": "💬 **Konverzace ukončena**\n\nJiný uživatel tuto konverzaci ukončil.\n\n💡 Chtěli byste začít novou konverzaci?\n• Použijte /catch pro vyzvednutí nové láhve se zprávou",
+    "reportSuccessTitle": "✅ **Uživatel nahlášen**",
+    "reported": "✅ Nahlášeno",
+    "separator": "━━━━━━━━━━━━━━━━",
+    "settings": "🧠 MBTI: ${otherUser.mbti_result}\n",
+    "settings2": "Není nastaveno",
+    "settings3": "Není nastaveno",
+    "settings4": "Není nastaveno",
+    "settings5": "Není nastaveno",
+    "short": "Po zablokování:\n",
+    "short2": "Neznámý uživatel",
+    "short3": "Právě teď",
+    "stats": "📊 Použijte /stats pro zobrazení podrobných statistik\n",
+    "text": "💡 Toto je anonymní datová karta a neodhalí skutečnou identitu druhé strany.\n\n",
+    "text10": "💎 Použijte /vip pro více informací\n\n",
+    "text11": "👤 **Datová karta druhé strany**\n\n",
+    "text12": "${diffHours} před hodinami",
+    "text13": "💡 Prosím ujistěte se, že jiný uživatel má nevhodné chování.",
+    "text14": "${diffMins} před minutami",
+    "text15": "• Prozkoumáme chování tohoto uživatele\n",
+    "text16": "💎 Použijte /vip pro více informací",
+    "text17": "${diffDays} před dny",
+    "text18": "• Nebudete znovu spárováni\n",
+    "text19": "👤 Informace o jiném uživateli:\n",
+    "text2": "📜 Zobrazit historii: #${identifier}\n",
+    "text3": "🗣️ Jazyk: ${languageLabel}\n",
+    "text4": "🌍 Region: ${otherUser.city}\n",
+    "text5": "📖 Bio: ${otherUser.bio}\n",
+    "text6": "conv_reply_${identifier}",
+    "text7": "🚫 **Opravdu chcete zablokovat tohoto uživatele?**\n\n",
+    "text8": "Druhý uživatel byl zablokován a nebudete již shodnuti.\n\n",
+    "text9": "• Nebudete se s tímto uživatelem znovu shodovat po dobu 24 hodin\n\n",
+    "vip": "🔒 Upgradujte na VIP pro odemčení jasnějšího profilu druhého uživatele\n",
+    "vip2": "🔒 Upgradujte na VIP pro odemčení jasného profilového obrázku jiného uživatele\n",
+    "vipLearnMore": "💎 Použijte /vip pro více informací",
+    "vipUnlockAvatar": "🔒 Vylepšete se na VIP a odemkněte jasný profilový obrázek druhé strany",
+    "zodiac": "⭐ Znamení zvěrokruhu: ${partnerInfo.zodiac}\n",
+    "zodiac2": "⭐ Znamení zvěrokruhu: ${zodiacLabel}\n"
+  },
+  "conversationHistory": {
+    "backToMenu": "🏠 Zpět do hlavního menu: /menu",
+    "bloodType": "🩸 Krevní skupina: ${bloodType}",
+    "continueView": "📜 Pokračovat ve sledování: #${identifier}-H${postNumber}",
+    "historyNote": "💡 Toto je historie konverzace",
+    "lastUpdated": "📅 Poslední aktualizace: ${time}",
+    "matchScore": "💫 Kompatibilita: ${score} bodů",
+    "mbti": "🧠 MBTI: ${mbti}",
+    "messageEntry": "[${time}] Druhá strana:\n${content}",
+    "newMessage": "💬 Nová zpráva od #${identifier}:",
+    "nickname": "📝 Přezdívka: ${nickname}",
+    "other": "Druhá strana",
+    "partnerInfo": "👤 Informace o druhé straně:",
+    "replyButton": "💬 Odpovědět na zprávu",
+    "replyHint": "💬 Odpovědět přímo stisknutím /reply v chatu",
+    "title": "💬 Historie konverzace s #${identifier} (Stránka ${postNumber})",
+    "totalMessages": "📊 Celkem zpráv: ${count}",
+    "viewAllConversations": "📊 Zobrazit všechny konverzace",
+    "viewHistory": "📜 Zobrazit historii: #${identifier}",
+    "viewProfileCard": "👤 Zobrazit profil druhé strany",
+    "vipLearnMore": "💎 Použijte /vip pro více informací",
+    "vipUnlockAvatar": "🔒 Vylepšete se na VIP a odemkněte jasný profilový obrázek druhé strany",
+    "you": "Vy",
+    "zodiac": "⭐ Znamení zvěrokruhu: ${zodiac}"
+  },
+  "countries": {
+    "ae": "Spojené arabské emiráty",
+    "al": "Albánie",
+    "am": "Arménie",
+    "ar": "Argentina",
+    "at": "Rakousko",
+    "au": "Austrálie",
+    "az": "Ázerbájdžán",
+    "ba": "Bosna",
+    "bb": "Barbados",
+    "bd": "Bangladéš",
+    "be": "Belgie",
+    "bg": "Bulharsko",
+    "bh": "Bahrajn",
+    "bo": "Bolívie",
+    "br": "Brazílie",
+    "ca": "Kanada",
+    "ch": "Švýcarsko",
+    "ci": "Pobřeží slonoviny",
+    "cl": "Chile",
+    "cm": "Kamerun",
+    "cn": "Čína",
+    "co": "Kolumbie",
+    "cr": "Kostarika",
+    "cu": "Kuba",
+    "cz": "Česká republika",
+    "de": "Německo",
+    "dk": "Dánsko",
+    "do": "Dominikánská republika",
+    "dz": "Alžírsko",
+    "ec": "Ekvádor",
+    "ee": "Estonsko",
+    "eg": "Egypt",
+    "es": "Španělsko",
+    "et": "Etiopie",
+    "fi": "Finsko",
+    "fr": "Francie",
+    "gb": "Velká Británie",
+    "ge": "Gruzie",
+    "gh": "Ghana",
+    "gr": "Řecko",
+    "gt": "Guatemala",
+    "hk": "Hongkong",
+    "hn": "Honduras",
+    "hr": "Chorvatsko",
+    "hu": "Maďarsko",
+    "id": "Indonésie",
+    "ie": "Irsko",
+    "il": "Izrael",
+    "in": "Indie",
+    "iq": "Irák",
+    "ir": "Írán",
+    "is": "Islansko",
+    "it": "Itálie",
+    "jm": "Jamajka",
+    "jo": "Jordánsko",
+    "jp": "Japonsko",
+    "ke": "Keňa",
+    "kh": "Kambodža",
+    "kr": "Jižní Korea",
+    "kw": "Kuvajt",
+    "kz": "Kazachstán",
+    "la": "Laos",
+    "lb": "Libanon",
+    "lk": "Šrí Lanka",
+    "lt": "Litva",
+    "lv": "Lotyšsko",
+    "ly": "Libye",
+    "ma": "Maroko",
+    "mk": "Severní Makedonie",
+    "mm": "Myanmar",
+    "mn": "Mongolsko",
+    "mo": "Macao",
+    "mt": "Malta",
+    "mx": "Mexiko",
+    "my": "Malajsie",
+    "ng": "Nigérie",
+    "ni": "Nikaragua",
+    "nl": "Nizozemsko",
+    "no": "Norsko",
+    "np": "Nepál",
+    "nz": "Nový Zéland",
+    "om": "Omán",
+    "pa": "Panama",
+    "pe": "Peru",
+    "ph": "Filipíny",
+    "pk": "Pákistán",
+    "pl": "Polsko",
+    "pt": "Portugalsko",
+    "py": "Paraguay",
+    "qa": "Katar",
+    "ro": "Rumunsko",
+    "rs": "Srbsko",
+    "ru": "Rusko",
+    "rw": "Rwanda",
+    "sa": "Saúdská Arábie",
+    "sd": "Súdán",
+    "se": "Švédsko",
+    "sg": "Singapur",
+    "si": "Slovinsko",
+    "sk": "Slovensko",
+    "sn": "Senegal",
+    "sv": "El Salvador",
+    "sy": "Sýrie",
+    "th": "Thajsko",
+    "tn": "Tunisko",
+    "tr": "Turecko",
+    "tt": "Trinidad",
+    "tw": "Tchaj-wan",
+    "tz": "Tanzanie",
+    "ua": "Ukrajina",
+    "ug": "Uganda",
+    "un": "Spojené národy",
+    "us": "Spojené státy",
+    "uy": "Uruguay",
+    "uz": "Uzbekistán",
+    "ve": "Venezuela",
+    "vn": "Vietnam",
+    "ye": "Jemen",
+    "za": "Jižní Afrika",
+    "zw": "Zimbabwe"
+  },
+  "country": {
+    "buttonAU": "🇦🇺 Austrálie",
+    "buttonCA": "🇨🇦 Kanada",
+    "buttonCN": "🇨🇳 Čína",
+    "buttonDE": "🇩🇪 Německo",
+    "buttonFR": "🇫🇷 Francie",
+    "buttonGB": "🇬🇧 Spojené království",
+    "buttonHK": "🇭🇰 Hongkong",
+    "buttonJP": "🇯🇵 Japonsko",
+    "buttonKR": "🇰🇷 Jižní Korea",
+    "buttonMY": "🇲🇾 Malajsie",
+    "buttonNZ": "🇳🇿 Nový Zéland",
+    "buttonSG": "🇸🇬 Singapur",
+    "buttonTH": "🇹🇭 Thajsko",
+    "buttonTW": "🇹🇼 Tchaj-wan",
+    "buttonUS": "🇺🇸 Spojené státy",
+    "confirmButton": "✅ Správné",
+    "confirmDetected": "Vaši polohu jsme odvodili na základě jazykových nastavení:\n",
+    "confirmFailed": "❌ Potvrzení selhalo",
+    "confirmHint": "💡 To se zobrazí na vaší profilové kartě a pomůže ostatním uživatelům vás lépe pochopit.\n",
+    "confirmQuestion": "Je to správné?\n\n",
+    "confirmReward": "🎉 Potvrzením získáte odměnu +1 láhev se zprávou!",
+    "confirmTitle": "🌍 **Potvrďte svou zemi/oblast**\n\n",
+    "confirmed": "✅ Potvrzeno!",
+    "notCorrectButton": "❌ Nesprávné",
+    "selectHint": "💡 To se zobrazí na vaší profilové kartě\n",
+    "selectTitle": "🌍 **Vyberte svou zemi/oblast**\n\n",
+    "selectUnFlagHint": "🇺🇳 Pokud nebylo nalezeno, můžete zvolit 'vlajku OSN'",
+    "setFailed": "❌ Nastavení selhalo",
+    "setTo": "✅ Nastaveno na {flag} {country}",
+    "unFlagButton": "🇺🇳 Vlajka OSN",
+    "useUnFlagButton": "🇺🇳 Použít vlajku OSN"
+  },
+  "dailyReports": {
+    "header": "📊 **Zpráva o analýze dat za den**",
+    "time": "Čas: ${time}"
+  },
+  "dev": {
+    "autoCompleted": "Registrační proces byl automaticky dokončen.\n\n",
+    "bottles": "• Láhve se zprávami: {count}\n",
+    "catchCommand": "• /catch - Chytnout láhve se zprávami\n",
+    "conversations": "• Konverzace: {count}\n",
+    "dataReset": "✅ Vývojový režim: Data byla resetována\n\nVšechna vaše data byla smazána.\n\n💡 Nyní můžete znovu spustit registrační proces pro testování.\n\n🔄 Znovu se registrovat: /start\nnebo použijte: /dev_restart (automatické spuštění registrace)\n\n⚠️ Poznámka: Tato funkce je dostupná pouze v prostředí Staging.",
+    "getUserInfoFailed": "❌ Nepodařilo se získat informace",
+    "inviteActivated": "• Aktivováno: {count}\n",
+    "inviteCode": "Invitační kód: {code}\n",
+    "invitePending": "• Čeká na aktivaci: {count}\n\n",
+    "inviteStats": "Statistika pozvánek:\n",
+    "inviteTotal": "• Celkový počet pozvánek: {count}\n",
+    "invitedBy": "Pozván od: {invitedBy}\n\n",
+    "language": "Jazyk: {lang}\n",
+    "messages": "• Zprávy: {count}\n\n",
+    "nickname": "Přezdívka: {nickname}\n",
+    "no": "Ne",
+    "none": "Žádný",
+    "notAvailableInProduction": "❌ Tento příkaz není k dispozici v produkčním prostředí.\n\nTento příkaz není k dispozici v produkci.",
+    "notGenerated": "Nevytvořeno",
+    "notSet": "Není nastaveno",
+    "onboardingStep": "Registrační krok: {step}\n",
+    "resetFailed": "❌ Resetování se nezdařilo: {error}\n\nZkuste prosím znovu později.",
+    "skipFailed": "❌ Přeskočit se nezdařilo",
+    "skipRegistration": "✅ Vývojový režim: Registrace byla přeskočena\n\n",
+    "stagingOnly": "⚠️ Tato funkce je k dispozici pouze v testovacím prostředí.",
+    "stats": "Statistiky:\n",
+    "statsCommand": "• /stats - Zobrazit statistiky\n\n",
+    "successfulInvites": "• successful_invites: {count}\n",
+    "telegramId": "Telegram ID: {id}\n",
+    "testCoreFeatures": "💡 Nyní můžete přímo testovat základní funkce:\n",
+    "testUser": "Testovací uživatel",
+    "throwCommand": "• /throw - Hodit láhev se zprávou\n",
+    "userInfo": "🔧 Vývojový režim: Informace o uživateli\n\n",
+    "userNotFound": "❌ Uživatel neexistuje",
+    "vip": "VIP: {status}\n",
+    "yes": "Ano"
+  },
+  "draft": {
+    "age": {
+      "daysAgo": "\\${days} dnů zpět",
+      "hoursAgo": "\\${hours} hodin zpět",
+      "justNow": "Právě teď"
     },
+    "contentHint": "💡 Můžete:\n• Přímo zadat nový obsah k nahrazení konceptu\n• Použít /throw k restartování\n• Odeslat obsah konceptu, aby se hodila láhev se zprávou",
+    "contentTitle": "📝 **Návrh obsahu**\n\n",
+    "continueEditing": "✅ Pokračovat v úpravě konceptu",
+    "deleteButton": "🗑️ Smazat koncept",
+    "deleted": "✅ Koncept byl smazán",
+    "editButton": "✏️ Upravit obsah",
+    "editInput": "✏️ Zadejte prosím nový obsah láhve se zprávou:\n\n💡 Tipy:\n• Minimálně 5 znaků\n• Maximálně 250 znaků\n• Odkazy, obrázky a multimédia nejsou povoleny\n• Nezahrnujte osobní kontaktní informace\n• Přátelský a respektující obsah má větší šanci být vybrán～",
+    "editPrompt": "✏️ Zadejte prosím nový obsah",
+    "newBottle": "✅ Začít novou láhev se zprávou",
+    "notFound": "⚠️ Koncept neexistuje nebo vypršel",
+    "sendButton": "✅ Odeslat koncept",
+    "sendQuestion": "Chcete tento koncept odeslat přímo?",
+    "sending": "✅ Odesílání...",
+    "targetGender": "Jakého typu chatovacího partnera hledáte?\n\n",
+    "targetGenderHint": "💡 Upgradujte na VIP pro pokročilé filtry (MBTI/Znamení): /vip",
+    "throwBottle": "🍾 Hodit láhev se zprávou\n\nJakého chatovacího partnera hledáte?"
   },
-  buttons: {
-    ad: `➡️ 下一個廣告`,
-    back: `⬅️ 返回 / Back`,
-    backToVip: `💎 Back to VIP Menu`,
-    bottle: `📺 看廣告獲取更多瓶子 🎁 (\${remaining}/20)`,
-    bottle2: `💎 升級 VIP 獲得更多瓶子`,
-    bottle3: `🌊 丟出漂流瓶`,
-    bottle4: `🎣 撿起漂流瓶`,
-    cancel: `取消`,
-    help: `❓ 幫助`,
-    invite: `👥 查看邀請碼`,
-    invite2: `🎁 邀請好友`,
-    mbtiMenu: `🧠 MBTI 選單`,
-    message: `💬 回覆訊息`,
-    profile: `✏️ 編輯個人資料`,
-    profile2: `👤 個人資料`,
-    returnToMenu: `🏠 返回主選單`,
-    settings: `⚙️ 設定`,
-    short: `🇲🇾 馬來西亞`,
-    short10: `🇺🇸 美國`,
-    short11: `🇯🇵 日本`,
-    short12: `🇰🇷 韓國`,
-    short13: `🇬🇧 英國`,
-    short14: `🇫🇷 法國`,
-    short15: `🇩🇪 德國`,
-    short16: `🇹🇭 泰國`,
-    short17: `🇦🇺 澳洲`,
-    short18: `💬 聊天記錄`,
-    short19: `🌐 變更語言`,
-    short2: `🇺🇳 聯合國旗`,
-    short20: `🎁 領取獎勵`,
-    short21: `🔄 清除選擇`,
-    short22: `跳過`,
-    short3: `📢 加入官方頻道`,
-    short4: `🇸🇬 新加坡`,
-    short5: `🇨🇦 加拿大`,
-    short6: `🇳🇿 紐西蘭`,
-    short7: `🇹🇼 台灣`,
-    short8: `🇨🇳 中國`,
-    short9: `🇭🇰 香港`,
-    stats: `📊 統計數據`,
-    targetAdvanced: `⚙️ 進階篩選（MBTI/星座）`,
-    targetAny: `🌈 任何人都可以`,
-    targetFemale: `👩 女生`,
-    targetMale: `👨 男生`,
-    text: `👤 查看對方資料卡`,
-    viewPayments: `💰 Subscription History`,
-    vip: `💎 升級 VIP`,
+  "edit_profile": {
+    "nickname": "👤 Přezdívka: ${ownerMaskedNickname}",
+    "short19": "✏️ Upravit profil"
   },
-  catch: {
-    anonymousUser: `匿名用戶`,
-    back: `🏠 返回主選單：/menu`,
-    banned: `❌ 你的帳號已被封禁，無法撿漂流瓶。
-
-如有疑問，請使用 /appeal 申訴。`,
-    block: `• 不想再聊可使用 /block 封鎖
-`,
-    bottle: `😔 目前沒有適合你的漂流瓶
-
-`,
-    bottle2: `• 或者自己丟一個瓶子：/throw`,
-    bottle3: `🎣 有人撿到你的漂流瓶了！
-
-`,
-    bottle4: `🧴 你撿到了一個漂流瓶！
-
-`,
-    bottle5: `💡 明天再來撿更多瓶子吧！`,
-    bottleTaken: `❌ 這個瓶子已經被其他人撿走了，請試試其他瓶子！`,
-    catch: `📊 今日已撿：\${newCatchesCount}/\${quota}
-
-`,
-    conversation: `已為你們建立了匿名對話，快來開始聊天吧～
-
-`,
-    conversation2: `• 這是匿名對話，請保護個人隱私
-`,
-    conversation3: `📊 查看所有對話`,
-    conversationError: `对话创建失败`,
-    language: `🗣️ 語言：\${language}
-
-`,
-    mbti: `🧠 MBTI：\${mbti}
-`,
-    message: `💫 配對度：\${score}分 (智能配對)
-
-`,
-    message2: `\${catcherGender} | 📅 \${catcherAge}歲
-
-`,
-    message3: `conv_reply_\${conversationIdentifier}`,
-    message4: `2️⃣ 長按此訊息，選擇「回覆」後輸入內容
-
-`,
-    message5: `1️⃣ 點擊下方「💬 回覆訊息」按鈕
-`,
-    message6: `2️⃣ 長按此訊息，選擇「回覆」後輸入內容`,
-    nickname: `📝 暱稱：\${ownerMaskedNickname}
-`,
-    nickname2: `📝 暱稱：\${catcherNickname}
-`,
-    notRegistered: `❌ 請先完成註冊流程才能撿漂流瓶。
-
-使用 /start 繼續註冊。`,
-    originalContent: `原文：{content}`,
-    originalLanguage: `原文語言：{language}`,
-    quotaExhausted: `❌ 今日漂流瓶配額已用完（\${quotaDisplay}）`,
-    replyButton: `💬 回覆訊息`,
-    replyMethods: `💡 **兩種回覆方式**：
-`,
-    report: `• 遇到不當內容請使用 /report 舉報
-`,
-    safetyTips: `⚠️ 安全提示：
-`,
-    settings: `🧠 MBTI：\${mbti}
-`,
-    settings10: `未設定`,
-    settings11: `未設定`,
-    settings2: `未設定`,
-    settings3: `未設定`,
-    settings4: `未設定`,
-    settings5: `未設定`,
-    settings6: `未設定`,
-    settings7: `未設定`,
-    settings8: `未設定`,
-    settings9: `未設定`,
-    short: `💡 提示：
-`,
-    short2: `• 稍後再試
-`,
-    short3: `匿名用戶`,
-    short4: `♂️ 男`,
-    short5: `♀️ 女`,
-    text: `翻譯語言：\${catcherLangDisplay}
-`,
-    text2: `原文語言：\${bottleLangDisplay}
-`,
-    text3: `🗣️ 語言：\${ownerLanguage}
-
-`,
-    text4: `• 不想再聊可使用 /block 封鎖
-
-`,
-    text5: `原文：\${bottle.content}
-`,
-    text6: `💬 翻譯服務暫時有問題，已使用備援翻譯
-`,
-    text7: `翻譯：\${bottleContent}
-`,
-    text8: `💡 **兩種回覆方式**：
-`,
-    translatedContent: `翻譯：{content}`,
-    translatedLanguage: `翻譯語言：{language}`,
-    translationServiceFallback: `💬 翻譯服務暫時有問題，已使用備援翻譯`,
-    translationServiceUnavailable: `⚠️ 翻譯服務暫時無法使用，以下為原文`,
-    unknown: `未知`,
-    zodiac: `⭐ 星座：{zodiac}
-`,
-    zodiac2: `⭐ 星座：\${catcherZodiac}
-`,
+  "error": {
+    "ad": "❌ Tato reklama nevyžaduje ověření",
+    "ad2": "❌ Momentálně nejsou k dispozici žádné reklamy",
+    "ad3": "❌ Nelze si nárokovat tuto reklamu",
+    "ad4": "❌ Reklama neexistuje",
+    "ad5": "❌ ID reklamy musí být číslo",
+    "ad6": "❌ Nemáte oprávnění zobrazit údaje o reklamě",
+    "admin": "❌ Systémová chyba, zkuste prosím znovu později.\n\nPokud problém přetrvává, kontaktujte prosím správce.",
+    "admin2": "❌ **Nedostatečná oprávnění**\n\nTento příkaz je omezen na superadministrátory.",
+    "admin3": "❌ Tento uživatel je již superadministrátor, není třeba přidávat.",
+    "admin4": "❌ Pouze superadministrátoři mohou používat tento příkaz.",
+    "admin5": "❌ Tento uživatel je již administrátor.",
+    "admin6": "❌ Nelze odstranit superadministrátora.",
+    "admin7": "❌ Tento uživatel není administrátor.",
+    "appeal": "❌ Zadejte prosím ID odvolání\n\nPoužití: /admin_approve <appeal_id> [note]",
+    "appeal2": "❌ Prosím, uveďte ID odvolání\n\nPoužití: /admin_reject <appeal_id> [poznámky]",
+    "appeal3": "❌ Odvolání ${appealId} již bylo zkontrolováno",
+    "appeal4": "❌ Nelze najít ID odvolání: ${appealId}",
+    "ban": "❌ Uživatel ${targetUserId} nemá žádný záznam o pozastavení",
+    "birthday": "❌ ${validation.error}\n\nProsím, zadejte své datum narození znovu (formát: RRRR-MM-DD):",
+    "birthday2": "❌ Chybný formát data narození\n\nProsím, zadejte znovu (formát: RRRR-MM-DD):",
+    "birthday3": "❌ Chybný formát data narození",
+    "bottle": "❌ Tato konverzace byla ukončena.\n\nPoužijte /catch pro vyzvednutí nové láhve se zprávou a zahájení nové konverzace.",
+    "bottle2": "❌ Váš účet byl pozastaven a nemůže vyzvedávat láhve se zprávou.\n\nPokud máte nějaké dotazy, použijte prosím /appeal pro odvolání.",
+    "bottle3": "❌ Tuto láhev již někdo vyzvedl, prosím zkuste jinou láhev!",
+    "broadcast": "❌ Aktuální vysílací systém podporuje pouze vysílání pro maximálně ${MAX_SAFE_USERS} uživatelů.\n\n",
+    "broadcast2": "❌ ID vysílání musí být číslo",
+    "broadcast3": "❌ Nelze najít záznam o vysílání",
+    "cancel": "❌ Přezdívka je příliš dlouhá, zadejte prosím přezdívku o maximální délce 36 znaků.\n\nProsím, zadejte znovu nebo zrušte úpravy:",
+    "cancel2": "❌ Osobní profil je příliš dlouhý, zadejte prosím profil o maximální délce 200 znaků.\n\nProsím, zadejte znovu nebo zrušte úpravy:",
+    "cancel3": "❌ Název oblasti je příliš dlouhý, zadejte prosím název o maximální délce 50 znaků.\n\nProsím, zadejte znovu nebo zrušte úpravy:",
+    "cancel4": "❌ Přezdívka je příliš krátká, musí mít alespoň 4 znaky.\n\nProsím, zadejte znovu nebo zrušte úpravy:",
+    "cancel5": "❌ Každý štítek může mít maximálně 20 znaků.\n\nProsím, zadejte znovu nebo zrušte úpravy:",
+    "cancel6": "❌ Zrušit úpravy",
+    "cancel7": "❌ Zrušeno ${ZODIAC_NAMES[zodiacSign]}",
+    "cancel8": "❌ Zrušeno ${mbtiType}",
+    "cancel9": "❌ Zrušeno",
+    "conversation": "❌ Rozhovor s identifikátorem ${formatIdentifier(identifier)} nebyl nalezen\n\n",
+    "conversation2": "❌ Chyba informací o konverzaci.",
+    "conversation3": "❌ Chyba informací o konverzaci",
+    "conversation4": "❌ Konverzace neexistuje",
+    "conversationInfoError": "❌ Chyba informací o konverzaci",
+    "conversationNotFound": "❌ Konverzace neexistuje",
+    "failed": "❌ **Načítání reklamy selhalo**\n\nOmlouváme se, reklama nemohla být normálně přehrána.\n\n💡 **Možné důvody:**\n• Nestabilní síťové připojení\n• Poskytovatel reklamy dočasně nedostupný\n• Prohlížeč není podporován\n\n🔄 **Návrhy:**\n• Zkontrolujte síťové připojení\n• Zkuste to znovu později\n• Nebo získejte kredity pomocí jiných metod (pozvěte přátele)",
+    "failed10": "❌ Dotazování stavu režimu údržby selhalo.",
+    "failed11": "❌ Nepodařilo se obnovit avatara\n\n",
+    "failed12": "❌ Ověření selhalo, zkuste to prosím znovu později",
+    "failed13": "❌ Aktivace režimu údržby selhala.",
+    "failed14": "❌ Deaktivace režimu údržby selhala.",
+    "failed15": "❌ Získání stavu reklamy selhalo",
+    "failed16": "❌ Získání statistik selhalo",
+    "failed17": "❌ Vytvoření vysílání selhalo.",
+    "failed18": "❌ Získání informací selhalo",
+    "failed19": "❌ Uplatnění odměny selhalo",
+    "failed2": "❌ Vytvoření filtrovaného vysílání se nezdařilo\n\n${error instanceof Error ? error.message : String(error)}",
+    "failed20": "❌ Potvrzení selhalo",
+    "failed21": "❌ Nastavení selhalo",
+    "failed22": "❌ Přeskočení selhalo",
+    "failed23": "❌ Operace selhala",
+    "failed24": "❌ Odeslání denní zprávy selhalo: ${error instanceof Error ? error.message : String(error)}",
+    "failed25": "❌ Získání dat VIP trychtýře selhalo",
+    "failed26": "❌ **Selhaly diagnostiky**\n\n",
+    "failed27": "❌ **Obnovení selhalo**\n\n",
+    "failed28": "❌ **Platba selhala**\n\n",
+    "failed29": "❌ Získání seznamu poskytovatelů reklamy selhalo",
+    "failed3": "❌ Nepodařilo se zpracovat frontu příspěvků: ${error instanceof Error ? error.message : String(error)}",
+    "failed30": "❌ Nepodařilo se načíst oficiální seznam reklam",
+    "failed31": "❌ Nepodařilo se povolit poskytovatele reklamy",
+    "failed32": "❌ Nepodařilo se zakázat poskytovatele reklamy",
+    "failed33": "❌ Nepodařilo se povolit oficiální reklamy",
+    "failed34": "❌ Nepodařilo se zakázat oficiální reklamy",
+    "failed35": "❌ Nepodařilo se načíst analytická data",
+    "failed36": "❌ Nepodařilo se načíst data o reklamách",
+    "failed37": "❌ Nepodařilo se nastavit prioritu",
+    "failed38": "❌ Vrácení peněz selhalo: ${error instanceof Error ? error.message : String(error)}",
+    "failed39": "❌ Operace selhala: ${error instanceof Error ? error.message : String(error)}",
+    "failed4": "❌ Nepodařilo se dotázat na stav vysílání: ${error instanceof Error ? error.message : String(error)}",
+    "failed40": "❌ Odeslání selhalo, zkuste to prosím později.",
+    "failed41": "❌ Nepodařilo se vytvořit konverzaci, zkuste to prosím později.",
+    "failed5": "❌ Nepodařilo se zrušit vysílání: ${error instanceof Error ? error.message : String(error)}",
+    "failed6": "❌ Nepodařilo se vyčistit vysílání: ${error instanceof Error ? error.message : String(error)}",
+    "failed7": "❌ Obnovení selhalo: ${errorMessage}\n\nZkuste to prosím později.",
+    "failed8": "❌ Nepodařilo se vytvořit vysílání, zkuste to prosím později.",
+    "failed9": "❌ Nepodařilo se obnovit historii chatu\n\n",
+    "mbti": "❌ Neplatný typ MBTI",
+    "message": "❌ Chyba ve formátu filtru\n\n${error instanceof Error ? error.message : String(error)}\n\n",
+    "message2": "❌ Tato příkaz není k dispozici v produkci.\n\nTato příkaz není k dispozici v produkci.",
+    "message3": "❌ Došlo k chybě, zkuste to prosím později.\n\nZpráva o chybě: ${error instanceof Error ? error.message : String(error)}",
+    "message4": "❌ Omlouváme se, musíte být alespoň 18 let, abyste mohli používat tuto službu.\n\nProsím, vraťte se, až dosáhnete zletilosti!",
+    "nickname": "❌ Nepodařilo se načíst přezdívku Telegramu",
+    "nickname2": "❌ Přezdívka nemůže obsahovat odkazy na webové stránky\n\n",
+    "nickname3": "❌ ${validation.error}\n\nProsím, znovu zadejte přezdívku:",
+    "quota": "❌ Dnešní kvóta na zprávy z láhve byla vyčerpána (${quotaDisplay})\n\n💡 Způsoby, jak získat více kvót:\n",
+    "quota2": "❌ Dnešní kvóta zpráv v rozhovoru byla vyčerpána (${usedToday}/${dailyLimit})\n\n",
+    "quota3": "❌ Dnešní kvóta zpráv v láhvi byla vyčerpána (${quotaDisplay})\n\n",
+    "register": "❌ Nejprve dokončete registrační proces.\n\nPoužijte /start k pokračování v registraci.",
+    "register2": "❌ Profil uživatele nebyl nalezen, prosím použijte /start k registraci nejdříve.",
+    "register3": "❌ Prosím, dokončete registrační proces, abyste mohli vyzvednout láhve se zprávou.\n\nPoužijte /start k pokračování v registraci.",
+    "settings": "❌ Můžete nastavit maximálně 5 štítků zájmu.\n\nZnovu zadejte nebo zrušte úpravy:",
+    "short": "❌ Neplatný jazykový kód",
+    "short10": "❌ Nedostatečná oprávnění",
+    "short11": "❌ Později",
+    "short12": "❌ Vybrat znovu",
+    "short13": "❌ Znovu zadat",
+    "short14": "❌ Zavřít",
+    "short15": "❌ Není povoleno",
+    "short2": "❌ Profil uživatele nebyl nalezen",
+    "short3": "❌ Neznámý krok tutoriálu",
+    "short4": "❌ Došlo k systémové chybě",
+    "short5": "❌ Chyba konfigurace kanálu",
+    "short6": "❌ Neznámá operace",
+    "short7": "❌ Nesprávné",
+    "short8": "❌ Ne",
+    "short9": "❌ Došlo k chybě",
+    "start": "❌ Došlo k chybě, prosím restartujte: /start",
+    "stats": "❌ Nemáte oprávnění zobrazit statistiky reklamy.",
+    "task": "❌ Došlo k chybě při zobrazení centra úloh. Zkuste to prosím znovu později.",
+    "text": "❌ Při výpočtu výsledků došlo k chybě, zkuste to prosím později.\n\n",
+    "text10": "❌ Informace o odesílateli jsou nesprávné.",
+    "text11": "❌ Nemáte oprávnění zobrazit analytická data.",
+    "text12": "❌ Došlo k chybě. Zkuste to prosím znovu později.",
+    "text13": "❌ Nemáte oprávnění použít tento příkaz.",
+    "text14": "❌ Nesprávná metoda použití\n\n",
+    "text15": "❌ Priorita musí být nezáporné celé číslo.",
+    "text16": "❌ Délka musí být kladné celé číslo nebo",
+    "text17": "❌ Při zpracování platby došlo k chybě, prosím kontaktujte zákaznickou podporu.\n\n",
+    "text18": "❌ Důvod vrácení musí mít minimálně 10 znaků. Zadejte prosím znovu:",
+    "text19": "❌ **Žádost o vrácení peněz byla zamítnuta**\n\n",
+    "text2": "❌ Osobní profil obsahuje zakázané odkazy.\n\n",
+    "text20": "❌ Žádost o vrácení peněz překračuje časový limit\n\n",
+    "text21": "❌ Žádost o vrácení neexistuje nebo byla zpracována.",
+    "text22": "❌ Záznam o platbě nebyl nalezen.",
+    "text23": "❌ Omlouváme se, musíte mít alespoň 18 let, abyste mohli tuto službu používat.\n\n",
+    "text24": "❌ Došlo k chybě. Zadejte prosím znovu.",
+    "text25": "❌ Prosím, odpovězte na otázku vážně\n\n",
+    "text3": "❌ Nejsou detekováni jako člen kanálu. Nejprve se přihlaste a zkuste to znovu.",
+    "text4": "❌ Byli jste detekováni jako opustivší kanál a nemůžete si nárokovat odměny.",
+    "text5": "❌ Došlo k chybě při spuštění tutoriálu. Zkuste to prosím znovu později.",
+    "text6": "❌ Došlo k chybě v systému. Zkuste to prosím znovu později.",
+    "text7": "❌ Délka musí být číslo (minuty).",
+    "text8": "❌ Došlo k chybě, zkuste to prosím znovu.",
+    "text9": "❌ Nelze získat stav údržby.",
+    "userNotFound": "❌ Uživatel neexistuje, nejprve se prosím registrujte pomocí /start.",
+    "userNotFound2": "❌ Uživatel neexistuje, nejprve se prosím registrujte.",
+    "userNotFound3": "❌ Druhý uživatel neexistuje.",
+    "userNotFound4": "❌ Uživatel neexistuje.",
+    "userNotFound5": "❌ Uživatel neexistuje: ${userId}",
+    "userNotFound6": "❌ Uživatel neexistuje nebo není zaregistrován.",
+    "userNotFound7": "❌ Uživatel neexistuje.",
+    "vip": "❌ Nemáte oprávnění zobrazit VIP data.",
+    "vip2": "❌ Nejste VIP uživatel a nemůžete zažádat o vrácení."
   },
-  channelMembership: {
-    claimButton: `✅ 領取獎勵`,
-    claimReward: `點擊下方按鈕領取獎勵：+1 瓶子`,
-    joined: `🎉 檢測到你已加入官方頻道！`,
-    leftChannel: `❌ 檢測到你已離開頻道，無法領取獎勵。`,
-    notJoined: `❌ 未檢測到你加入頻道，請先加入後再試`,
-    oneTimeReward: `💡 這是一次性獎勵，領取後會追加到今天的額度中。`,
-    rewardAdded: `獎勵：+1 瓶子（已追加到今天的額度）`,
-    rewardGranted: `✅ 獎勵已發放！+1 瓶子`,
-    taskCompleted: `🎉 恭喜完成任務：加入官方頻道！`,
-    viewMoreTasks: `💡 使用 /tasks 查看更多任務`,
-    viewTaskCenter: `[📋 查看任務中心] → /tasks`,
-  },
-  common: {
-    ad: `📺 今日廣告：\${adsWatched}/\${AD_REWARD_CONSTANTS.MAX_ADS_PER_DAY} | 已獲得 \${quotaEarned} 個額度 | 剩餘 \${remaining} 次`,
-    ad2: `📺 今日廣告：\${adsWatched}/\${AD_REWARD_CONSTANTS.MAX_ADS_PER_DAY} ✅ 已達上限 | 已獲得 \${quotaEarned} 個額度`,
-    ad3: `📺 今日廣告：0/\${AD_REWARD_CONSTANTS.MAX_ADS_PER_DAY} | 已獲得 0 個額度`,
-    ad4: `• 📺 觀看廣告（剩餘 \${remaining}/20 次）
-`,
-    ad5: `• 📺 觀看廣告（今日已達上限）
-`,
-    ad6: `• 避免廣告或不當內容
-
-`,
-    ad7: `📊 暫無官方廣告`,
-    ad8: `📢 垃圾廣告`,
-    ad9: `💡 還有更多官方廣告可以觀看！`,
-    admin: `請稍後再試，或聯繫管理員。`,
-    age: `無效的年齡範圍：\${trimmedValue}（格式必須是 min-max，如 18-25）`,
-    age2: `年齡：\${filters.age.min}-\${filters.age.max} 歲`,
-    age3: `無效的年齡範圍：\${trimmedValue}（年齡必須在 18-99 之間）`,
-    age4: `無效的年齡範圍：\${trimmedValue}（最小年齡不能大於最大年齡）`,
-    anonymous: `匿名`,
-    anonymousUser: `匿名用戶`,
-    anyBloodType: `🌈 任何血型`,
-    anyone: `🌈 任何人`,
-    back: `💡 輸入 /menu 可隨時返回主選單`,
-    back2: `↩️ 返回編輯資料`,
-    back3: `🏠 返回主選單`,
-    back4: `↩️ 返回`,
-    backToMainMenu: `返回主选单`,
-    birthday: `🎂 生日：\${updatedUser.birthday}
-`,
-    birthday2: `🎂 生日：\${user.birthday}
-`,
-    birthday3: `當天生日`,
-    bloodType: `🩸 血型：\${bloodTypeText}
-
-`,
-    bloodType2: `🩸 **編輯血型**
-
-`,
-    bloodType3: `請選擇你的血型：`,
-    bloodType4: `🩸 編輯血型`,
-    bloodTypeA: `🩸 A 型`,
-    bloodTypeAB: `🩸 AB 型`,
-    bloodTypeB: `🩸 B 型`,
-    bloodTypeO: `🩸 O 型`,
-    bottle: `瓶子內容太短，至少需要 \${MIN_BOTTLE_LENGTH} 個字符（目前 \${trimmedContent.length} 個字符）`,
-    bottle10: `獎勵：+1 瓶子（已追加到今天的額度）
-
-`,
-    bottle11: `你們將不會再被匹配到對方的漂流瓶。
-
-`,
-    bottle12: `你想在丟漂流瓶時尋找什麼樣的對象？
-
-`,
-    bottle13: `使用 /throw 丟出漂流瓶開始聊天吧！`,
-    bottle14: `瓶子內容包含不適當的內容，請修改後重新提交`,
-    bottle15: `點擊下方按鈕領取獎勵：+1 瓶子
-
-`,
-    bottle16: `💡 下次丟漂流瓶時將自動使用此設置。`,
-    bottle17: `🌊 丟出漂流瓶 - /throw
-`,
-    bottle18: `🎣 撿起漂流瓶 - /catch
-`,
-    bottle19: `🎉 確認後可獲得 +1 瓶子獎勵！`,
-    bottle2: `瓶子內容太長，最多 \${MAX_BOTTLE_LENGTH} 個字符（目前 \${content.length} 個字符）`,
-    bottle20: `✏️ 請輸入新的漂流瓶內容：
-
-`,
-    bottle21: `• 使用 /catch 撿新的漂流瓶`,
-    bottle22: `• /throw - 丟出漂流瓶
-`,
-    bottle23: `• /catch - 撿起漂流瓶
-`,
-    bottle24: `• /throw - 丟漂流瓶
-`,
-    bottle25: `• /catch - 撿漂流瓶
-`,
-    bottle26: `• 發送草稿內容來丟出漂流瓶`,
-    bottle27: `📦 **丟出漂流瓶**
-`,
-    bottle28: `🎣 **撿起漂流瓶**
-`,
-    bottle29: `💡 完成任務可獲得額外瓶子`,
-    bottle3: `• 漂流瓶: \${bottlesCount?.count }
-`,
-    bottle30: `瓶子內容不允許包含任何連結`,
-    bottle31: `🍾 丟漂流瓶
-
-`,
-    bottle32: `瓶子內容不能為空`,
-    bottle33: `丟出第一個瓶子`,
-    bottle34: `撿起第一個瓶子`,
-    bottle4: `匿名漂流瓶交友平台，透過 MBTI 和星座幫你找到志同道合的朋友
-
-`,
-    bottle5: `⏰ 對話已超時
-
-對方可能已離開。使用 /catch 撿新的瓶子吧！`,
-    bottle6: `💡 使用 /catch 撿新的漂流瓶開始新對話。`,
-    bottle7: `🍾 丟漂流瓶
-
-你想要尋找什麼樣的聊天對象？`,
-    bottle8: `快去丟瓶子認識新朋友吧！ /throw
-
-`,
-    bottle9: `看看別人的漂流瓶，有興趣就回覆開始聊天
-
-`,
-    broadcast: `廣播將在後台發送，使用 /broadcast_status \${broadcastId} 查看進度。`,
-    broadcast10: `📊 最近 5 條廣播記錄
-
-`,
-    broadcast11: `維護通知已廣播給所有用戶。
-`,
-    broadcast12: `恢復通知已廣播給所有用戶。`,
-    broadcast13: `📊 目前沒有廣播記錄`,
-    broadcast14: `📊 廣播狀態
-
-`,
-    broadcast15: `所有廣播狀態正常。`,
-    broadcast2: `大規模廣播需要升級系統架構，請參考 BROADCAST_SYSTEM_REDESIGN.md`,
-    broadcast3: `使用 /broadcast_status 查看所有廣播記錄。`,
-    broadcast4: `\${statusEmoji} 廣播隊列處理已觸發
-
-`,
-    broadcast5: `/broadcast_cancel <廣播ID>
-
-`,
-    broadcast6: `廣播 ID: \${ids.join(', ')}
-
-`,
-    broadcast7: `正在處理廣播 #\${broadcast.id}
-`,
-    broadcast8: `目前沒有待處理或卡住的廣播。
-
-`,
-    broadcast9: `廣播 ID: \${ids.join(`,
-    cancel: `請移除這些連結後重新輸入或取消編輯：`,
-    cancel2: `狀態: 已取消
-
-`,
-    cancel3: `請重新輸入或取消編輯：`,
-    cancelled: `已取消`,
-    catch: `⏰ 撿瓶流程已超時
-
-請使用 /catch 重新開始。`,
-    catch2: `你撿瓶回覆 → 對方也回覆 → 開始匿名聊天`,
-    catch3: `• 友善、尊重的內容更容易被撿到哦～`,
-    catch4: `撿瓶流程`,
-    close: `❌ 關閉`,
-    complete: `🎉 **廣告觀看完成！**
-
-✅ 獲得 **+1 個額度**
-📊 今日已觀看：**\${updated.ads_watched}/20** 次
-🎁 今日已獲得：**\${updated.quota_earned}** 個額度
-📈 剩餘次數：**\${result.remaining_ads}** 次
-
-\${result.remaining_ads > 0 ? '💡 繼續觀看廣告可獲得更多額度！' : '✅ 今日廣告已達上限'}`,
-    complete2: `📺 **觀看廣告獲得額度**
-
-🎁 完成觀看可獲得 **+1 個額度**
-📊 今日剩餘：**\${remainingAds}/20** 次
-
-👇 點擊下方按鈕開始觀看`,
-    complete3: `完成時間: \${new Date(broadcast.completedAt).toLocaleString('zh-TW')}
-`,
-    complete4: `預計完成：\${new Date(maintenance.endTime).toLocaleString('zh-TW')}
-`,
-    complete5: `🎉 \${testTitle}完成！
-
-`,
-    complete6: `接近截止日期才完成`,
-    complete7: `即將完成`,
-    complete8: `盡早完成`,
-    confirm: `為了保護所有使用者的安全，請確認你了解以下事項：
-
-`,
-    confirm2: `🌍 **確認你的國家/地區**
-
-`,
-    confirm3: `🛡️ 最後一步：反詐騙安全確認
-
-`,
-    confirm4: `🔍 **廣播過濾器確認**
-
-`,
-    confirm5: `🌍 確認你的國家/地區`,
-    confirm6: `**確認清理？**
-`,
-    confirm7: `請確認：`,
-    conversation: `📨 \${formatIdentifier(conv.identifier)} 的對話（\${conv.message_count} 則訊息）
-`,
-    conversation10: `💡 **沒有找到對話歷史**
-
-`,
-    conversation11: `部分對話歷史可能未能更新，請稍後再試。`,
-    conversation12: `
-📨 **最近對話：**
-
-`,
-    conversation13: `💬 你還沒有任何對話記錄
-
-`,
-    conversation14: `💬 繼續對話：/reply
-`,
-    conversation15: `您還沒有任何對話記錄。
-
-`,
-    conversation16: `對話可能已結束或不存在。`,
-    conversation17: `💬 繼續對話`,
-    conversation18: `開始第一次對話`,
-    conversation2: `💬 **與 \${formatIdentifier(identifier)} 的對話**
-
-`,
-    conversation3: `• 對話開始：\${formatDate(stats.first_message_time)}
-`,
-    conversation4: `• 對話: \${conversationsCount?.count }
-`,
-    conversation5: `💬 回覆對話 \${conversationIdentifier}`,
-    conversation6: `您的頭像緩存已刷新，下次查看對話歷史時將顯示最新頭像。
-
-`,
-    conversation7: `💡 為了保護隱私和安全，對話中只允許純文字訊息。
-
-`,
-    conversation8: `使用 /history 查看所有對話
-
-`,
-    conversation9: `🔄 正在刷新所有對話歷史...
-
-`,
-    country: `無效的國家代碼：\${trimmedValue}（必須是 2 個大寫字母，如 TW, US, JP）`,
-    country2: `🌍 **請選擇你的國家/地區**
-
-`,
-    country3: `國家：\${filters.country}`,
-    end: `結束：\${endTime.toLocaleString('zh-TW')}
-
-`,
-    end2: `結束：\${endTime.toLocaleString(`,
-    female: `女`,
-    free: `免費`,
-    gender: `👤 性別：\${gender}
-`,
-    gender2: `無效的性別值：\${trimmedValue}（必須是 male, female 或 other）`,
-    gender3: `👤 性別：\${gender}
-`,
-    gender4: `👤 性別：\${updatedUser.gender ===`,
-    gender5: `👤 性別：\${user.gender ===`,
-    gender6: `現在請選擇你的性別：
-
-`,
-    gender7: `其他性別`,
-    help: `MBTI 性格測驗可以幫助我們為你找到更合適的聊天對象～
-
-`,
-    help2: `❓ 查看幫助 - /help`,
-    help3: `• /help - 查看幫助`,
-    invite: `• 邀請記錄總數: \${inviteStats?.total }
-`,
-    invite2: `邀請碼: \${user.invite_code }
-`,
-    invite3: `被誰邀請: \${user.invited_by }
-
-`,
-    loading: `✅ 正在加載......`,
-    login: `一般用戶將無法使用服務，只有管理員可以登入。`,
-    male: `男`,
-    mbti: `無效的 MBTI 類型：\${trimmedValue}（必須是以下之一：\${VALID_MBTI.join(', ')}）`,
-    mbti10: `✍️ 手動輸入 MBTI`,
-    mbti11: `🧠 MBTI 選單`,
-    mbti12: `MBTI 完整測驗`,
-    mbti13: `MBTI 快速測驗`,
-    mbti2: `你的 MBTI 類型是：**\${result.type}**
-
-`,
-    mbti3: `當前 MBTI：**\${mbti}**
-`,
-    mbti4: `🧠 **選擇 MBTI 測驗版本**
-
-`,
-    mbti5: `🧠 **MBTI 性格類型管理**
-
-`,
-    mbti6: `⚙️ 進階篩選（MBTI/星座）`,
-    mbti7: `• 手動修改你的 MBTI 類型`,
-    mbti8: `請選擇你的 MBTI 類型：`,
-    mbti9: `🧠 重新測試 MBTI`,
-    message: `\${typeEmoji} **\${ad.title}**
-\${statusEmoji} 狀態: \${status}
-
-📊 **統計數據**
-• 展示次數: \${stats.total_views}
-• 點擊次數: \${stats.total_clicks}
-• 點擊率 (CTR): \${stats.ctr}%`,
-    message10: `/broadcast_filter gender=female,age=18-25,country=TW 大家好！
-`,
-    message11: `\${banHours} \${user.language_pref === 'en' ? 'hours' : '小時'}`,
-    message12: `時間: \${new Date(b.created_at).toLocaleString('zh-TW')}
-
-`,
-    message13: `
-隊列中還有 \${pendingBroadcasts.results.length - 1} 個廣播待處理
-`,
-    message14: `進度: \${broadcast.sent_count}/\${broadcast.total_users}
-`,
-    message15: `\${days} \${user.language_pref === 'en' ? 'days' : '天'}`,
-    message16: `目標: \${getBroadcastTargetName(broadcast.targetType)}
-`,
-    message17: `狀態：\${maintenance.isActive ? '✅ 維護中' : '❌ 未啟用'}
-`,
-    message18: `🚫 禁止的網址：
-\${urlCheck.blockedUrls?.map((url) =>`,
-    message19: `• 最後訊息：\${formatDate(stats.last_message_time)}
-`,
-    message2: `birthday = '2000-01-01',
- age = 25,
- zodiac_sign = 'Capricorn',
- anti_fraud_score = 100,
- terms_agreed = 1`,
-    message20: `時間：\${formatDate(conv.last_message_time)}
-
-`,
-    message21: `預計時長：\${maintenance.estimatedDuration} 分鐘
-`,
-    message22: `使用 /broadcast_status \${broadcastId} 查看進度。`,
-    message23: `💡 請長按你要回復的消息，在出現的選單中選擇「回覆」後，在聊天框中輸入回復內容。`,
-    message24: `📊 今日已發送：\${usedToday + 1}/\${dailyLimit} 則`,
-    message25: `/broadcast_filter zodiac=Scorpio 天蠍座專屬訊息`,
-    message26: `• 已激活: \${inviteStats?.activated }
-`,
-    message27: `• 待激活: \${inviteStats?.pending }
-
-`,
-    message28: `/maintenance_enable <時長(分鐘)> [維護訊息]
-
-`,
-    message29: `進度: \${b.sent_count}/\${b.total_users}
-`,
-    message3: `進度: \${broadcast.sentCount}/\${broadcast.totalUsers} (\${progress.percentage}%)
-`,
-    message30: `• 訊息: \${messagesCount?.count }
-
-`,
-    message31: `• 對方發送：\${stats.partner_messages} 則
-`,
-    message32: `指揮官 - 大膽、富有想像力且意志強大的領導者，總能找到或創造解決方法。`,
-    message33: `💡 使用 /broadcast_status <id> 查看詳細信息`,
-    message34: `🏷️ 興趣標籤：\${updatedUser.interests ||`,
-    message35: `執政官 - 極有同情心、受歡迎且樂於助人的人，總是渴望為社群做出貢獻。`,
-    message36: `/broadcast_filter <過濾器> <訊息內容>
-
-`,
-    message37: `**訊息內容：**
-\${broadcastMessage}
-
-`,
-    message38: `• 總訊息數：\${stats.total_messages} 則
-`,
-    message39: `競選者 - 熱情、有創造力且社交能力強的自由精神，總能找到理由微笑。`,
-    message4: `💡 使用 /history \${formatIdentifier(conversations[0].identifier)} 查看完整對話
-
-`,
-    message40: `剩餘時間：\${remaining.remainingText}
-`,
-    message41: `表演者 - 自發、精力充沛且熱情的表演者，生活在他們周圍從不無聊。`,
-    message42: `用戶數：\${broadcast.total_users} 人
-`,
-    message43: `• 你發送：\${stats.user_messages} 則
-`,
-    message44: `調停者 - 詩意、善良的利他主義者，總是熱情地為正義事業而努力。`,
-    message45: `
-請稍後使用 /broadcast_status 查看進度。`,
-    message46: `昵稱: \${user.nickname }
-`,
-    message47: `• 獎勵：\${stats.total_rewards}
-
-`,
-    message48: `企業家 - 聰明、精力充沛且善於洞察的人，真正享受生活在邊緣。`,
-    message49: `🎁 獎勵：+\${ad.reward_quota} 個永久額度`,
-    message5: `時間：\${new Date().toLocaleString('zh-TW', { timeZone: 'Asia/Taipei' })}
-`,
-    message50: `時間：\${new Date().toLocaleString(`,
-    message51: `使用 /broadcast_status 查看更新後的狀態。`,
-    message52: `目標: \${broadcast.target_type}
-`,
-    message53: `使用 /broadcast_status 查看更新後的記錄。`,
-    message54: `• 如果您更換了 Telegram 頭像，系統會自動檢測
-`,
-    message55: `約 \${Math.ceil(totalSeconds)} 秒`,
-    message56: `啟用者：\${maintenance.enabledBy}
-`,
-    message57: `邏輯學家 - 具有創新精神的發明家，對知識有著止不住的渴望。`,
-    message58: `提倡者 - 安靜而神秘，同時鼓舞人心且不知疲倦的理想主義者。`,
-    message59: `守衛者 - 非常專注且溫暖的守護者，時刻準備著保護所愛之人。`,
-    message6: `• 展示：\${stats.total_views} | 點擊：\${stats.total_clicks} (\${stats.ctr}%)
-`,
-    message60: `探險家 - 靈活且迷人的藝術家，時刻準備著探索和體驗新事物。`,
-    message61: `• 長按對方訊息回覆 /block 可封鎖此使用者
-`,
-    message62: `請確保回覆的是對方發送的訊息（帶有 # 標識符）。`,
-    message63: `/broadcast_non_vip <訊息內容>`,
-    message64: `建立你的第一個連接（長按訊息 → 選擇「回覆」）`,
-    message65: `訊息: \${messagePreview}
-`,
-    message66: `3. 遇到可疑訊息時，你會提高警覺嗎？
-
-`,
-    message67: `💡 VIP 用戶每日可發送 100 則訊息。`,
-    message68: `/broadcast <訊息內容>
-
-`,
-    message69: `/broadcast_vip <訊息內容>`,
-    message7: `
-• 驗證次數: \${stats.total_verified}
-• 驗證率: \${stats.verification_rate}%`,
-    message70: `最後訊息：\${preview}
-`,
-    message71: `廣播訊息不能超過 4000 個字符`,
-    message72: `1️⃣ 長按對方的訊息
-`,
-    message73: `請使用文字訊息與對方交流。`,
-    message74: `(尚無訊息)
-
-`,
-    message75: `獲取最新消息和活動`,
-    message76: `廣播訊息不能為空`,
-    message77: `(無訊息)`,
-    message8: `
-• 獎勵發放: \${stats.total_rewards}
-• 獎勵率: \${stats.reward_rate}%`,
-    message9: `
-• 剩餘展示: \${ad.max_views - ad.current_views}/\${ad.max_views}`,
-    newUser: `新用戶`,
-    next: `下一頁`,
-    nickname: `💡 請輸入一個簡單的暱稱，不要包含 http:// 或 https:// 等連結。
-
-`,
-    nickname10: `請輸入新的暱稱：
-
-`,
-    nickname11: `• 請勿使用暱稱發送廣告`,
-    nickname12: `📝 編輯暱稱`,
-    nickname13: `✍️ 自訂暱稱`,
-    nickname2: `很好！你的暱稱是：\${truncatedNickname}
-
-`,
-    nickname3: `📝 暱稱：\${updatedUser.nickname}
-`,
-    nickname4: `📝 暱稱：\${user.nickname}
-`,
-    nickname5: `• 暱稱長度限制 36 個字
-`,
-    nickname6: `📝 **編輯暱稱**
-
-`,
-    nickname7: `✏️ 請選擇你的暱稱：
-
-`,
-    nickname8: `✏️ 請輸入你的暱稱：
-
-`,
-    nickname9: `請告訴我你的暱稱（顯示名稱）：`,
-    no: `否`,
-    none: `無`,
-    notRegistered: `未注册`,
-    notSet: `未設定`,
-    operationFailed: `❌ 發生錯誤`,
-    pageInfo: `第 {current} / {total} 頁`,
-    prev: `上一頁`,
-    profile: `👤 查看個人資料 - /profile
-`,
-    profile2: `✏️ **編輯個人資料**
-
-`,
-    profile3: `（你也可以稍後在個人資料中設置）`,
-    quota: `💡 升級 VIP 可獲得更多配額（100 則/天）：/vip`,
-    quota2: `• 💎 升級 VIP（每天 30 個配額）`,
-    quota3: `• 🎁 邀請好友（每人 +1 配額）
-`,
-    quota4: `• ✨ 完成任務（獲得永久配額）
-`,
-    register: `
-
-💡 這是快速測驗（\${testInfo}），結果僅供參考。
-完成註冊後，可使用 /mbti 重新測驗。
-
-`,
-    register10: `🎉 恭喜完成註冊！
-
-`,
-    register2: `
-
-💡 這是完整測驗（\${testInfo}），結果更準確。
-完成註冊後，可使用 /mbti 重新測驗。
-
-`,
-    register3: `註冊步驟: \${user.onboarding_step}
-`,
-    register4: `⏰ 註冊流程已超時
-
-請使用 /start 重新開始註冊。`,
-    register5: `或使用：/dev_restart（自動開始註冊）
-
-`,
-    register6: `💡 現在可以重新開始測試註冊流程。
-
-`,
-    register7: `🔄 重新註冊：/start
-`,
-    register8: `💡 完成註冊後，你可以：
-`,
-    register9: `已自動完成註冊流程。
-
-`,
-    report: `🚨 **舉報不當內容** (#\${conversationIdentifier})
-
-`,
-    report2: `多次被舉報 / Multiple reports`,
-    report3: `💡 這樣可以準確指定要舉報的對象。`,
-    report4: `請選擇舉報原因：`,
-    selected: `已選擇`,
-    settings: `🧠 MBTI：\${updatedUser.mbti_result }（可重新測試）`,
-    settings10: `你還沒有設定 MBTI 類型。
-
-`,
-    settings11: `設定地區`,
-    settings12: `未設定`,
-    settings13: `未設定`,
-    settings14: `未設定`,
-    settings15: `未設定`,
-    settings16: `未設定`,
-    settings17: `未設定`,
-    settings18: `未設定`,
-    settings19: `未設定`,
-    settings2: `🏷️ 興趣標籤：\${updatedUser.interests}
-`,
-    settings20: `未設定`,
-    settings21: `未設定`,
-    settings22: `未設定`,
-    settings23: `未設定`,
-    settings24: `未設定`,
-    settings25: `未設定`,
-    settings26: `未設定`,
-    settings27: `未設定`,
-    settings28: `未設定`,
-    settings29: `未設定`,
-    settings3: `🧠 MBTI：\\$（可重新測試）`,
-    settings30: `未設定`,
-    settings31: `未設定`,
-    settings32: `未設定`,
-    settings33: `未設定`,
-    settings34: `未設定`,
-    settings35: `未設定`,
-    settings4: `🏷️ 興趣標籤：\${user.interests }
-`,
-    settings5: `📖 個人簡介：\${updatedUser.bio}
-`,
-    settings6: `🌍 地區：\${updatedUser.city}
-`,
-    settings7: `📖 個人簡介：\${user.bio}
-`,
-    settings8: `🌍 地區：\${user.city }
-`,
-    settings9: `你可以隨時使用 /mbti 指令重新設定。`,
-    short: `💡 你可以：
-`,
-    short10: `工作時，你更喜歡：`,
-    short100: `情感和故事`,
-    short101: `效率和結果`,
-    short102: `共識和團結`,
-    short103: `自由和彈性`,
-    short104: `保留選擇權`,
-    short105: `加line`,
-    short106: `測驗結果`,
-    short107: `先聽後說`,
-    short108: `小而親密`,
-    short109: `團隊合作`,
-    short11: `閱讀時，你更喜歡：`,
-    short110: `獨立工作`,
-    short111: `邊說邊想`,
-    short112: `獨自消化`,
-    short113: `實際應用`,
-    short114: `創新想法`,
-    short115: `新的嘗試`,
-    short116: `是否合理`,
-    short117: `是否有益`,
-    short118: `堅持原則`,
-    short119: `維持關係`,
-    short12: `工作中，你更重視：`,
-    short120: `公正果斷`,
-    short121: `體貼關懷`,
-    short122: `整齊有序`,
-    short123: `隨性自在`,
-    short124: `快速決定`,
-    short125: `感到不安`,
-    short126: `感到興奮`,
-    short127: `訪問鏈接`,
-    short128: `訂閱頻道`,
-    short129: `銀行帳號`,
-    short13: `規劃未來時，你會：`,
-    short130: `備註：`,
-    short131: `發送中`,
-    short132: `信用卡`,
-    short133: `比特币`,
-    short134: `加微信`,
-    short135: `加qq`,
-    short136: `手机号`,
-    short137: `联系我`,
-    short138: `一夜情`,
-    short139: `性服务`,
-    short14: `分析問題並提供建議`,
-    short140: `騙錢`,
-    short141: `投資`,
-    short142: `賺錢`,
-    short143: `匯款`,
-    short144: `轉帳`,
-    short145: `密碼`,
-    short146: `传销`,
-    short147: `金融`,
-    short148: `理财`,
-    short149: `股票`,
-    short15: `面對變化，你通常：`,
-    short150: `期货`,
-    short151: `外汇`,
-    short152: `电话`,
-    short153: `约炮`,
-    short154: `援交`,
-    short155: `自杀`,
-    short156: `跳楼`,
-    short157: `暴力`,
-    short158: `未設置`,
-    short159: `未生成`,
-    short16: `感謝你的支持！❤️`,
-    short160: `測試用戶`,
-    short161: `測試用戶`,
-    short162: `結果更準確`,
-    short163: `需要關注`,
-    short164: `加入群組`,
-    short165: `查看詳情`,
-    short17: `讓其他用戶更了解你`,
-    short18: `這正確嗎？
-
-`,
-    short19: `🗑️ 刪除草稿`,
-    short2: `🌈 任何人都可以`,
-    short20: `🏷️ 編輯興趣`,
-    short21: `請選擇測驗版本：`,
-    short22: `你的工作方式是：`,
-    short23: `有明確的截止日期`,
-    short24: `很快就能熟絡起來`,
-    short25: `需要時間慢慢熟悉`,
-    short26: `壓力大時，你會：`,
-    short27: `列清單按計劃購買`,
-    short28: `卡住（重試中）`,
-    short29: `✏️ 修改內容`,
-    short3: `✏️ 繼續編輯資料`,
-    short30: `📖 編輯簡介`,
-    short31: `🌍 編輯地區`,
-    short32: `💝 匹配偏好`,
-    short33: `正在更新...`,
-    short34: `🔞 色情內容`,
-    short35: `主動與他人交談`,
-    short36: `等待他人來找我`,
-    short37: `週末你更喜歡：`,
-    short38: `實際經驗和事實`,
-    short39: `按部就班的方法`,
-    short4: `📝 重新進行測驗`,
-    short40: `探索創新的方式`,
-    short41: `邏輯和客觀分析`,
-    short42: `情感和人際和諧`,
-    short43: `提前計劃和準備`,
-    short44: `隨機應變和靈活`,
-    short45: `保持開放的選擇`,
-    short46: `使用比喻和類比`,
-    short47: `傾聽並給予安慰`,
-    short48: `你的房間通常：`,
-    short49: `購物時，你會：`,
-    short5: `📝 進行快速測驗`,
-    short50: `讓別人更了解你`,
-    short51: `找到同城的朋友`,
-    short52: `看看別人的故事`,
-    short53: `至少 20 字`,
-    short54: `: 主動配對,`,
-    short55: `女生（默認）`,
-    short56: `男生（默認）`,
-    short57: `結果僅供參考`,
-    short58: `你可以：
-`,
-    short59: `和朋友出去玩`,
-    short6: `至少需要一個過濾器`,
-    short60: `在家獨處休息`,
-    short61: `感到充滿活力`,
-    short62: `感到需要休息`,
-    short63: `直覺和可能性`,
-    short64: `關注具體細節`,
-    short65: `關注整體概念`,
-    short66: `直接指出問題`,
-    short67: `考慮對方感受`,
-    short68: `制定詳細行程`,
-    short69: `隨心所欲探索`,
-    short7: `新用戶******`,
-    short70: `積極發表意見`,
-    short71: `你的朋友圈：`,
-    short72: `廣泛但不深入`,
-    short73: `未來和可能性`,
-    short74: `使用具體例子`,
-    short75: `已驗證的方法`,
-    short76: `基於現實條件`,
-    short77: `想像各種可能`,
-    short78: `有規律和結構`,
-    short79: `包含敏感詞彙`,
-    short8: `批評他人時，你會：`,
-    short80: `填寫興趣標籤`,
-    short81: `完善自我介紹`,
-    short82: `加入官方頻道`,
-    short83: `寫下你的故事`,
-    short84: `👨 男生`,
-    short85: `👩 女生`,
-    short86: `👨 男性`,
-    short87: `👩 女性`,
-    short88: `審核時間：`,
-    short89: `❓ 不確定`,
-    short9: `旅行時，你傾向於：`,
-    short90: `你更看重：`,
-    short91: `公平和正義`,
-    short92: `同情和理解`,
-    short93: `先想好再說`,
-    short94: `找朋友聊天`,
-    short95: `實用的指南`,
-    short96: `理論和概念`,
-    short97: `現在和過去`,
-    short98: `你更信任：`,
-    short99: `事實和數據`,
-    start: `開始時間：\${new Date(maintenance.startTime).toLocaleString('zh-TW')}
-`,
-    start10: `開始使用 →`,
-    start2: `開始時間: \${new Date(broadcast.startedAt).toLocaleString('zh-TW')}
-`,
-    start3: `開始：\${startTime.toLocaleString('zh-TW')}
-`,
-    start4: `開始時間: \${broadcast.started_at}
-
-`,
-    start5: `開始：\${startTime.toLocaleString(`,
-    start6: `🎉 **準備好了！開始交朋友吧～**
-
-`,
-    start7: `• 使用 /throw 重新開始
-`,
-    start8: `📺 開始觀看廣告`,
-    start9: `開始你的交友之旅`,
-    stats: `💡 使用 /ad_stats {id} 查看詳細統計`,
-    stats2: `• /stats - 查看統計
-
-`,
-    stats3: `📊 查看統計 - /stats
-`,
-    stats4: `📊 **官方廣告統計**
-
-`,
-    stats5: `邀請統計:
-`,
-    stats6: `統計:
-`,
-    success: `購買成功`,
-    systemError: `❌ 系統發生錯誤`,
-    task: `🎉 恭喜完成任務：加入官方頻道！
-
-`,
-    task2: `[📋 查看任務中心] → /tasks`,
-    task3: `• /tasks - 查看任務中心
-`,
-    task4: `💡 使用 /tasks 查看更多任務`,
-    task5: `處理任務時，你會：`,
-    task6: `📋 查看任務`,
-    text: `目標：\${broadcast.target_type}
-`,
-    text10: `📖 個人簡介：\${updatedUser.bio ||`,
-    text100: `💡 請在下方輸入框輸入內容`,
-    text101: `這可能需要一些時間，請稍候。`,
-    text102: `你可以隨時使用以下命令：
-`,
-    text103: `🛠️ 系統維護通知
-
-`,
-    text104: `🛠️ 維護模式狀態
-
-`,
-    text105: `評價一個想法時，你首先考慮：`,
-    text106: `⏱️ 約 2-3 分鐘
-`,
-    text107: `⏱️ 約 5-8 分鐘
-`,
-    text108: `📚 我想了解更多安全知識`,
-    text109: `立即發送（約 1-2 秒）`,
-    text11: `\${daysAgo} 天前`,
-    text110: `2️⃣ 選擇「回覆」
-`,
-    text111: `**過濾器格式：**
-`,
-    text112: `• 最短 5 個字符
-`,
-    text113: `• 不能包含網址連結
-`,
-    text114: `請輸入你的地區：
-
-`,
-    text115: `• 你可以隨時修改此設置`,
-    text116: `• 最多 5 個標籤
-`,
-    text117: `📋 快速版（12 題）`,
-    text118: `📚 完整版（36 題）`,
-    text119: `• 進行更詳細的測驗
-`,
-    text12: `總經理 - 出色的管理者，在管理事務或人員方面無與倫比。`,
-    text120: `💡 **提示：**
-`,
-    text121: `學習新事物時，你更喜歡：`,
-    text122: `**操作步驟：**
-`,
-    text123: `🇺🇳 使用聯合國旗`,
-    text124: `要直接發送這個草稿嗎？`,
-    text125: `這可能需要幾秒鐘時間。`,
-    text126: `
-感謝您的耐心等待！`,
-    text127: `維護時長最少 5 分鐘`,
-    text128: `在社交場合中，你通常：`,
-    text129: `解決問題時，你更依賴：`,
-    text13: `💡 這將顯示在你的資料卡上，讓其他用戶更了解你。
-`,
-    text130: `在團隊中，你更傾向於：`,
-    text131: `思考問題時，你傾向於：`,
-    text132: `描述事物時，你傾向於：`,
-    text133: `朋友向你傾訴時，你會：`,
-    text134: `團隊決策時，你更關注：`,
-    text135: `你認為好的領導者應該：`,
-    text136: `目標: 所有用戶
-`,
-    text137: `✏️ 請輸入新的內容`,
-    text138: `💰 詐騙 / 釣魚`,
-    text139: `😡 騷擾 / 辱罵`,
-    text14: `語言: \${user.language_pref}
-`,
-    text140: `參加聚會後，你通常：`,
-    text141: `做決定時，你更重視：`,
-    text142: `遇到新朋友時，你會：`,
-    text143: `衝突中，你更傾向於：`,
-    text144: `你更容易被說服通過：`,
-    text145: `你更喜歡的生活方式：`,
-    text146: `做決定時，你傾向於：`,
-    text147: `隨意逛逛看到喜歡就買`,
-    text148: `)} 到期。
-
-`,
-    text149: `📋 法律文檔僅提供英文版本。`,
-    text15: `🌍 地區：\${updatedUser.city ||`,
-    text150: `📋 法的文書は英語版のみ提供されています。`,
-    text16: `
-
-✅ 需要驗證：加入群組/頻道後點擊「驗證」按鈕`,
-    text17: `目標用戶數：\${userIds.length}
-
-`,
-    text18: `預計時間: \${estimatedTime}
-
-`,
-    text19: `/broadcast_cleanup confirm`,
-    text2: `請使用 /broadcast_filter 查看正確格式。`,
-    text20: `💝 匹配偏好：\${matchPrefText}
-`,
-    text21: `辯論家 - 聰明好奇的思想家，無法抗拒智力上的挑戰。`,
-    text22: `寫下你的心情或想法，系統會幫你找到合適的人
-
-`,
-    text23: `物流師 - 實際且注重事實的個人，可靠性不容懷疑。`,
-    text24: `鑒賞家 - 大膽而實際的實驗者，擅長使用各種工具。`,
-    text25: `💡 這是一次性獎勵，領取後會追加到今天的額度中。`,
-    text26: `符合用戶數: \${totalUsers} 人
-`,
-    text27: `• 默認為異性（男生尋找女生，女生尋找男生）
-`,
-    text28: `狀態: \${progress.status}
-`,
-    text29: `\${daysAgo} 小時前`,
-    text3: `**過濾條件：**
-\${filtersDesc}
-
-`,
-    text30: `約 \${remainingMinutes} 分鐘`,
-    text31: `約 \${hours} 小時 \${mins} 分鐘`,
-    text32: `維護時長不能超過 24 小時（1440 分鐘）`,
-    text33: `用戶數: \${totalUsers} 人
-`,
-    text34: `目標: \${b.target_type}
-`,
-    text35: `過濾條件: \${filtersDesc}
-`,
-    text36: `• 最少 4 個字符，最多 36 個字符
-`,
-    text37: `🇺🇳 如果找不到，可以選擇「聯合國旗」`,
-    text38: `📖 個人簡介：\${user.bio ||`,
-    text39: `請輸入你的興趣標籤（用逗號分隔）：
-
-`,
-    text4: `/maintenance_enable 60 系統升級維護`,
-    text40: `• 例如：音樂, 電影, 旅行, 美食
-`,
-    text41: `服務已恢復正常，感謝您的耐心等待！
-
-`,
-    text42: `🌍 地區：\${user.city ||`,
-    text43: `來源：\${sourceText}
-
-`,
-    text44: `未知的過濾器：\${trimmedKey}`,
-    text45: `系統正在進行維護，暫時無法使用。
-
-`,
-    text46: `我們根據你的語言設置，推測你來自：
-`,
-    text47: `• 每個標籤最多 20 個字符
-
-`,
-    text48: `時長：\${duration} 分鐘
-`,
-    text49: `1. 你了解網路交友的安全風險嗎？
-`,
-    text5: `👋 歡迎回來，\${user.nickname}！
-
-`,
-    text50: `2. 你會保護好自己的個人資訊嗎？
-`,
-    text51: `很好！現在請上傳你的頭像照片：
-
-`,
-    text52: `🌊 **XunNi 是什麼？**
-`,
-    text53: `🎉 檢測到你已加入官方頻道！
-
-`,
-    text54: `💡 這樣可以準確指定要封鎖的對象。`,
-    text55: `狀態：\${statusText}
-`,
-    text56: `💡 現在可以直接測試核心功能：
-`,
-    text57: `你想要尋找什麼樣的聊天對象？
-
-`,
-    text58: `• 介紹你的興趣、性格或想說的話
-`,
-    text59: `🏷️ **編輯興趣標籤**
-
-`,
-    text6: `建築師 - 富有想像力和戰略性的思想家，一切皆在計劃之中。`,
-    text60: `為了安全，只允許以下網域的連結：
-`,
-    text61: `📋 **快速版（12 題）**
-`,
-    text62: `📚 **完整版（36 題）**
-`,
-    text63: `• 頭像會自動每 7 天更新一次
-`,
-    text64: `3️⃣ 輸入 /report
-
-`,
-    text65: `3️⃣ 輸入 /block
-
-`,
-    text66: `狀態: \${b.status}
-`,
-    text67: `不會再被自動處理或重新發送
-
-`,
-    text68: `📖 **編輯個人簡介**
-
-`,
-    text69: `💝 **設置匹配偏好**
-
-`,
-    text7: `主人公 - 富有魅力且鼓舞人心的領導者，有能力使聽眾著迷。`,
-    text70: `💬 **你的聊天記錄**
-
-`,
-    text71: `• 您也可以隨時使用此命令手動刷新`,
-    text72: `📊 **每日數據分析報表**
-`,
-    text73: `你的帳號已恢復為免費會員。
-
-`,
-    text74: `💡 這將顯示在你的資料卡上
-`,
-    text75: `🔧 開發模式：用戶信息
-
-`,
-    text76: `• 直接輸入新內容來替換草稿
-`,
-    text77: `• 不允許連結、圖片、多媒體
-`,
-    text78: `• 顯示時最多 18 個字符
-`,
-    text79: `• 對方最多顯示 18 個字
-`,
-    text8: `/broadcast 系統將於今晚 22:00 進行維護`,
-    text80: `💡 請移除這些連結後重新發送。`,
-    text81: `🔄 正在刷新頭像...
-
-`,
-    text82: `• 免費用戶看到的是模糊頭像
-`,
-    text83: `💬 **如何成為朋友？**
-`,
-    text84: `無效的過濾器格式：\${pair}`,
-    text85: `你的所有數據已被刪除。
-
-`,
-    text86: `📝 **草稿內容**
-
-`,
-    text87: `🌍 **編輯地區**
-
-`,
-    text88: `• 例如：台北、香港、東京
-`,
-    text89: `• 最多 50 個字符
-
-`,
-    text9: `🏷️ 興趣標籤：\${user.interests ||`,
-    text90: `約 \${minutes} 分鐘`,
-    text91: `寫下你的故事（至少 20 字）`,
-    text92: `正在查詢符合條件的用戶...`,
-    text93: `• 最多 250 個字符
-`,
-    text94: `• 不要包含個人聯絡方式
-`,
-    text95: `請選擇要編輯的項目：
-
-`,
-    text96: `請輸入你的個人簡介：
-
-`,
-    text97: `• 最多 200 個字符
-`,
-    text98: `• 避免包含聯絡方式
-
-`,
-    text99: `現在可以正常使用所有功能了。`,
-    throw: `⏰ 丟瓶流程已超時
-
-請使用 /throw 重新開始。`,
-    throw2: `丟瓶流程`,
-    uncertain: `❓ 不確定`,
-    unknownOption: `⚠️ 未知的選項`,
-    unlimited: `無限制`,
-    userNotFound: `❌ 用戶不存在`,
-    vip: `你的 VIP 訂閱已於 \${expireDate} 到期。
-
-`,
-    vip10: `😢 **VIP 訂閱已到期**
-
-`,
-    vip11: `• 升級 VIP 後會自動刷新歷史帖子`,
-    vip12: `⭐ 升級 VIP - /vip
-`,
-    vip13: `💎 VIP 用戶無需觀看廣告`,
-    vip14: `目標: 非 VIP 用戶
-`,
-    vip15: `目標: VIP 用戶
-`,
-    vip16: `非 VIP 用戶`,
-    vip17: `VIP 用戶`,
-    vip2: `你的 VIP 訂閱已於 \${new Date(user.vip_expire_at).toLocaleDateString(`,
-    vip3: `/broadcast_filter vip=true,mbti=INTJ VIP 專屬活動通知
-`,
-    vip4: `每邀請 1 人，每日額度永久 +1（免費最多 10 人，VIP 最多 100 人）`,
-    vip5: `VIP: \${user.is_vip ? '是' : '否'}
-`,
-    vip6: `💡 升級 VIP 可使用進階篩選（MBTI/星座）：/vip`,
-    vip7: `💡 隨時可以重新訂閱 VIP：/vip
-
-`,
-    vip8: `💡 血型可用於 VIP 血型配對功能
-
-`,
-    vip9: `• VIP 用戶可以看到清晰的對方頭像
-`,
-    yes: `是`,
-    zodiac: `無效的星座：\${trimmedValue}（必須是以下之一：\${VALID_ZODIACS.join(', ')}）`,
-  },
-  conversation: {
-    age: `🎂 年齡範圍：\${ageRange} 歲
-`,
-    anonymousCardHint: `💡 這是匿名資料卡，不會顯示對方的真實身份資訊。`,
-    backToMenuCommand: `🏠 返回主選單：/menu`,
-    ban: `• 多次被舉報會導致封禁
-`,
-    blockConfirmButton: `✅ 確定封鎖`,
-    blockConfirmMessage: `封鎖後：
-• 對方無法再向你發送訊息
-• 你們不會再被匹配到
-• 此對話將立即結束
-
-💡 這不會舉報對方，只是不想再聊天。`,
-    blockConfirmTitle: `🚫 **確定要封鎖這位用戶嗎？**`,
-    blockSuccessMessage: `對方已被封鎖，你們不會再被匹配到。
-
-💡 想要開始新的對話嗎？
-• 使用 /catch 撿起新的漂流瓶`,
-    blockSuccessNewConversation: `💬 **對話已結束**
-
-對方結束了這個對話。
-
-💡 想要開始新的對話嗎？
-• 使用 /catch 撿起新的漂流瓶`,
-    blockSuccessTitle: `✅ **已封鎖此用戶**`,
-    blocked: `✅ 已封鎖`,
-    bloodType: `🩸 血型：\${partnerInfo.bloodType}
-`,
-    bloodType2: `🩸 血型：\${bloodTypeText}
-`,
-    bottle: `使用 /catch 撿漂流瓶開始聊天吧！
-
-`,
-    bottle2: `• 使用 /catch 撿起新的漂流瓶`,
-    cancelButton: `❌ 取消`,
-    cancelSuccess: `已取消`,
-    conversation: `💬 與 #\${identifier} 的對話記錄（第 \${postNumber} 頁）
-
-`,
-    conversation10: `目前沒有任何對話。
-
-`,
-    conversation11: `• 此對話將立即結束
-`,
-    conversation2: `💬 **我的對話列表** (\${conversations.length})
-
-`,
-    conversation3: `💡 點擊對方訊息的「回覆」按鈕即可繼續對話
-`,
-    conversation4: `💬 **對話已結束**
-
-`,
-    conversation5: `💬 **我的對話**
-
-`,
-    conversation6: `💡 想要開始新的對話嗎？
-`,
-    conversation7: `• 此對話將立即結束
-
-`,
-    conversation8: `對方結束了這個對話。
-
-`,
-    conversation9: `💡 這是對話的歷史記錄
-`,
-    conversationEnded: `❌ 此對話已結束。
-
-使用 /catch 撿新的漂流瓶開始新對話。`,
-    conversationInfoError: `❌ 對話資訊錯誤。`,
-    editProfileCommand: `✏️ 編輯個人資料：/edit_profile`,
-    endedMessage: `對方結束了這個對話。
-
-💡 想要開始新的對話嗎？
-• 使用 /catch 撿起新的漂流瓶`,
-    endedNewConversation: `💬 **對話已結束**
-
-對方結束了這個對話。
-
-💡 想要開始新的對話嗎？
-• 使用 /catch 撿起新的漂流瓶`,
-    endedTitle: `💬 **對話已結束**`,
-    gender: `👤 性別：\${gender}
-`,
-    mediaRestriction: `⚠️ **不允許發送圖片、影片或多媒體**
-
-💡 為了保護隱私和安全，對話中只允許純文字訊息。
-
-請使用文字訊息與對方交流。`,
-    message: `💫 配對度：\${score}分
-`,
-    message10: `conv_profile_\${conversationId}`,
-    message11: `• 最後訊息：\${lastMessageTime}
-
-`,
-    message12: `📊 總訊息數：\${totalMessages} 則
-`,
-    message13: `💬 直接按 /reply 回覆訊息聊天
-`,
-    message14: `• 對方無法再向你發送訊息
-`,
-    message2: `
-📜 繼續查看：#\${identifier}-H\${newPostNumber}`,
-    message3: `📅 最後更新：\${formatDateTime(new Date())}
-
-`,
-    message4: `[\${timeStr}] 對方：
-\${messageContent}
-
-`,
-    message5: `conv_report_confirm_\${conversationId}`,
-    message6: `conv_block_confirm_\${conversationId}`,
-    message7: `• 訊息數：\${conv.message_count} 則
-`,
-    message77: `💬 使用 /reply 回覆訊息`,
-    message8: `🏷️ 興趣：\${otherUser.interests}
-`,
-    message9: `💬 來自 #\${identifier} 的新訊息：
-
-`,
-    nickname: `📝 暱稱：\${partnerInfo.maskedNickname}
-`,
-    nickname2: `📝 暱稱：\${displayNickname}
-`,
-    noHistory: `💬 你還沒有任何對話記錄
-
-快去丟瓶子認識新朋友吧！ /throw
-
-🏠 返回主選單：/menu`,
-    profile: `✏️ 編輯個人資料：/edit_profile
-`,
-    profileCardTitle: `👤 **對方的資料卡**`,
-    replyButton: `💬 回覆訊息`,
-    replyConversation: `💬 回覆對話 {identifier}`,
-    replyHint: `💡 請在下方輸入框輸入內容`,
-    replyMethod1: `1️⃣ 點擊下方「💬 回覆訊息」按鈕`,
-    replyMethod2: `2️⃣ 長按此訊息，選擇「回覆」後輸入內容`,
-    replyMethodsTitle: `💡 **兩種回覆方式**：`,
-    report: `🚨 **確定要舉報這位用戶嗎？**
-
-`,
-    report2: `💡 這不會舉報對方，只是不想再聊天。`,
-    report3: `感謝你的舉報，我們會盡快審核。
-
-`,
-    report4: `舉報後：
-`,
-    reportConfirmButton: `✅ 確定舉報`,
-    reportConfirmMessage: `舉報後：
-• 我們會審核此用戶的行為
-• 多次被舉報會導致封禁
-• 此對話將立即結束
-• 24小時內不會再匹配到此用戶
-
-💡 請確保對方確實有不當行為。`,
-    reportConfirmTitle: `🚨 **確定要舉報這位用戶嗎？**`,
-    reportSuccessMessage: `感謝你的舉報，我們會盡快審核。
-
-💡 想要開始新的對話嗎？
-• 使用 /catch 撿起新的漂流瓶`,
-    reportSuccessNewConversation: `💬 **對話已結束**
-
-對方結束了這個對話。
-
-💡 想要開始新的對話嗎？
-• 使用 /catch 撿起新的漂流瓶`,
-    reportSuccessTitle: `✅ **已舉報此用戶**`,
-    reported: `✅ 已舉報`,
-    separator: `━━━━━━━━━━━━━━━━`,
-    settings: `🧠 MBTI：\${otherUser.mbti_result }
-`,
-    settings2: `未設定`,
-    settings3: `未設定`,
-    settings4: `未設定`,
-    settings5: `未設定`,
-    short: `封鎖後：
-`,
-    short2: `未知用戶`,
-    short3: `剛剛`,
-    stats: `📊 使用 /stats 查看詳細統計
-`,
-    text: `💡 這是匿名資料卡，不會顯示對方的真實身份資訊。
-
-`,
-    text10: `💎 使用 /vip 了解更多
-
-`,
-    text11: `👤 **對方的資料卡**
-
-`,
-    text12: `\${diffHours} 小時前`,
-    text13: `💡 請確保對方確實有不當行為。`,
-    text14: `\${diffMins} 分鐘前`,
-    text15: `• 我們會審核此用戶的行為
-`,
-    text16: `💎 使用 /vip 了解更多`,
-    text17: `\${diffDays} 天前`,
-    text18: `• 你們不會再被匹配到
-`,
-    text19: `👤 對方資料：
-`,
-    text2: `📜 查看歷史記錄：#\${identifier}
-`,
-    text3: `🗣️ 語言：\${languageLabel}
-`,
-    text4: `🌍 地區：\${otherUser.city}
-`,
-    text5: `📖 簡介：\${otherUser.bio}
-`,
-    text6: `conv_reply_\${identifier}`,
-    text7: `🚫 **確定要封鎖這位用戶嗎？**
-
-`,
-    text8: `對方已被封鎖，你們不會再被匹配到。
-
-`,
-    text9: `• 24小時內不會再匹配到此用戶
-
-`,
-    vip: `
-🔒 升級 VIP 解鎖對方清晰頭像
-`,
-    vip2: `🔒 升級 VIP 解鎖對方清晰頭像
-`,
-    vipLearnMore: `💎 使用 /vip 了解更多`,
-    vipUnlockAvatar: `🔒 升級 VIP 解鎖對方清晰頭像`,
-    zodiac: `⭐ 星座：\${partnerInfo.zodiac}
-`,
-    zodiac2: `⭐ 星座：\${zodiacLabel}
-`,
-  },
-  conversationHistory: {
-    backToMenu: `🏠 返回主選單：/menu`,
-    bloodType: `🩸 血型：\${bloodType}`,
-    continueView: `📜 繼續查看：#\${identifier}-H\${postNumber}`,
-    historyNote: `💡 這是對話的歷史記錄`,
-    lastUpdated: `📅 最後更新：\${time}`,
-    matchScore: `💫 配對度：\${score}分`,
-    mbti: `🧠 MBTI：\${mbti}`,
-    messageEntry: `[\${time}] 對方：
-\${content}`,
-    newMessage: `💬 來自 #\${identifier} 的新訊息：`,
-    nickname: `📝 暱稱：\${nickname}`,
-    other: `對方`,
-    partnerInfo: `👤 對方資料：`,
-    replyButton: `💬 回覆訊息`,
-    replyHint: `💬 直接按 /reply 回覆訊息聊天`,
-    title: `💬 與 #\${identifier} 的對話記錄（第 \${postNumber} 頁）`,
-    totalMessages: `📊 總訊息數：\${count} 則`,
-    viewAllConversations: `📊 查看所有對話`,
-    viewHistory: `📜 查看歷史記錄：#\${identifier}`,
-    viewProfileCard: `👤 查看對方資料卡`,
-    vipLearnMore: `💎 使用 /vip 了解更多`,
-    vipUnlockAvatar: `🔒 升級 VIP 解鎖對方清晰頭像`,
-    you: `你`,
-    zodiac: `⭐ 星座：\${zodiac}`,
-  },
-  countries: {
-    ae: `阿聯酋`,
-    al: `阿爾巴尼亞`,
-    am: `亞美尼亞`,
-    ar: `阿根廷`,
-    at: `奧地利`,
-    au: `澳洲`,
-    az: `亞塞拜然`,
-    ba: `波斯尼亞`,
-    bb: `巴貝多`,
-    bd: `孟加拉`,
-    be: `比利時`,
-    bg: `保加利亞`,
-    bh: `巴林`,
-    bo: `玻利維亞`,
-    br: `巴西`,
-    ca: `加拿大`,
-    ch: `瑞士`,
-    ci: `象牙海岸`,
-    cl: `智利`,
-    cm: `喀麥隆`,
-    cn: `中國`,
-    co: `哥倫比亞`,
-    cr: `哥斯大黎加`,
-    cu: `古巴`,
-    cz: `捷克`,
-    de: `德國`,
-    dk: `丹麥`,
-    do: `多明尼加`,
-    dz: `阿爾及利亞`,
-    ec: `厄瓜多`,
-    ee: `愛沙尼亞`,
-    eg: `埃及`,
-    es: `西班牙`,
-    et: `衣索比亞`,
-    fi: `芬蘭`,
-    fr: `法國`,
-    gb: `英國`,
-    ge: `喬治亞`,
-    gh: `迦納`,
-    gr: `希臘`,
-    gt: `瓜地馬拉`,
-    hk: `香港`,
-    hn: `宏都拉斯`,
-    hr: `克羅地亞`,
-    hu: `匈牙利`,
-    id: `印尼`,
-    ie: `愛爾蘭`,
-    il: `以色列`,
-    in: `印度`,
-    iq: `伊拉克`,
-    ir: `伊朗`,
-    is: `冰島`,
-    it: `意大利`,
-    jm: `牙買加`,
-    jo: `約旦`,
-    jp: `日本`,
-    ke: `肯亞`,
-    kh: `柬埔寨`,
-    kr: `韓國`,
-    kw: `科威特`,
-    kz: `哈薩克`,
-    la: `寮國`,
-    lb: `黎巴嫩`,
-    lk: `斯里蘭卡`,
-    lt: `立陶宛`,
-    lv: `拉脫維亞`,
-    ly: `利比亞`,
-    ma: `摩洛哥`,
-    mk: `北馬其頓`,
-    mm: `緬甸`,
-    mn: `蒙古`,
-    mo: `澳門`,
-    mt: `馬爾他`,
-    mx: `墨西哥`,
-    my: `馬來西亞`,
-    ng: `奈及利亞`,
-    ni: `尼加拉瓜`,
-    nl: `荷蘭`,
-    no: `挪威`,
-    np: `尼泊爾`,
-    nz: `紐西蘭`,
-    om: `阿曼`,
-    pa: `巴拿馬`,
-    pe: `秘魯`,
-    ph: `菲律賓`,
-    pk: `巴基斯坦`,
-    pl: `波蘭`,
-    pt: `葡萄牙`,
-    py: `巴拉圭`,
-    qa: `卡達`,
-    ro: `羅馬尼亞`,
-    rs: `塞爾維亞`,
-    ru: `俄羅斯`,
-    rw: `盧安達`,
-    sa: `沙特阿拉伯`,
-    sd: `蘇丹`,
-    se: `瑞典`,
-    sg: `新加坡`,
-    si: `斯洛維尼亞`,
-    sk: `斯洛伐克`,
-    sn: `塞內加爾`,
-    sv: `薩爾瓦多`,
-    sy: `敘利亞`,
-    th: `泰國`,
-    tn: `突尼西亞`,
-    tr: `土耳其`,
-    tt: `千里達`,
-    tw: `台灣`,
-    tz: `坦尚尼亞`,
-    ua: `烏克蘭`,
-    ug: `烏干達`,
-    un: `聯合國`,
-    us: `美國`,
-    uy: `烏拉圭`,
-    uz: `烏茲別克`,
-    ve: `委內瑞拉`,
-    vn: `越南`,
-    ye: `葉門`,
-    za: `南非`,
-    zw: `辛巴威`,
-  },
-  country: {
-    buttonAU: `🇦🇺 澳洲`,
-    buttonCA: `🇨🇦 加拿大`,
-    buttonCN: `🇨🇳 中國`,
-    buttonDE: `🇩🇪 德國`,
-    buttonFR: `🇫🇷 法國`,
-    buttonGB: `🇬🇧 英國`,
-    buttonHK: `🇭🇰 香港`,
-    buttonJP: `🇯🇵 日本`,
-    buttonKR: `🇰🇷 韓國`,
-    buttonMY: `🇲🇾 馬來西亞`,
-    buttonNZ: `🇳🇿 紐西蘭`,
-    buttonSG: `🇸🇬 新加坡`,
-    buttonTH: `🇹🇭 泰國`,
-    buttonTW: `🇹🇼 台灣`,
-    buttonUS: `🇺🇸 美國`,
-    confirmButton: `✅ 正確`,
-    confirmDetected: `我們根據你的語言設置，推測你來自：
-`,
-    confirmFailed: `❌ 確認失敗`,
-    confirmHint: `💡 這將顯示在你的資料卡上，讓其他用戶更了解你。
-`,
-    confirmQuestion: `這正確嗎？
-
-`,
-    confirmReward: `🎉 確認後可獲得 +1 瓶子獎勵！`,
-    confirmTitle: `🌍 **確認你的國家/地區**
-
-`,
-    confirmed: `✅ 已確認！`,
-    notCorrectButton: `❌ 不正確`,
-    selectHint: `💡 這將顯示在你的資料卡上
-`,
-    selectTitle: `🌍 **請選擇你的國家/地區**
-
-`,
-    selectUnFlagHint: `🇺🇳 如果找不到，可以選擇「聯合國旗」`,
-    setFailed: `❌ 設置失敗`,
-    setTo: `✅ 已設置為 {flag} {country}`,
-    unFlagButton: `🇺🇳 聯合國旗`,
-    useUnFlagButton: `🇺🇳 使用聯合國旗`,
-  },
-  dailyReports: {
-    header: `📊 **每日數據分析報表**`,
-    time: `時間：\${time}`,
-  },
-  dev: {
-    autoCompleted: `已自動完成註冊流程。
-
-`,
-    bottles: `• 漂流瓶: {count}
-`,
-    catchCommand: `• /catch - 撿漂流瓶
-`,
-    conversations: `• 對話: {count}
-`,
-    dataReset: `✅ 開發模式：數據已重置
-
-你的所有數據已被刪除。
-
-💡 現在可以重新開始測試註冊流程。
-
-🔄 重新註冊：/start
-或使用：/dev_restart（自動開始註冊）
-
-⚠️ 注意：此功能僅在 Staging 環境可用。`,
-    getUserInfoFailed: `❌ 獲取信息失敗`,
-    inviteActivated: `• 已激活: {count}
-`,
-    inviteCode: `邀請碼: {code}
-`,
-    invitePending: `• 待激活: {count}
-
-`,
-    inviteStats: `邀請統計:
-`,
-    inviteTotal: `• 邀請記錄總數: {count}
-`,
-    invitedBy: `被誰邀請: {invitedBy}
-
-`,
-    language: `語言: {lang}
-`,
-    messages: `• 訊息: {count}
-
-`,
-    nickname: `昵稱: {nickname}
-`,
-    no: `否`,
-    none: `無`,
-    notAvailableInProduction: `❌ 此命令在生產環境中不可用。
-
-This command is not available in production.`,
-    notGenerated: `未生成`,
-    notSet: `未設置`,
-    onboardingStep: `註冊步驟: {step}
-`,
-    resetFailed: `❌ 重置失敗：{error}
-
-請稍後再試。`,
-    skipFailed: `❌ 跳過失敗`,
-    skipRegistration: `✅ 開發模式：跳過註冊
-
-`,
-    stagingOnly: `⚠️ 此功能僅在 Staging 環境可用。`,
-    stats: `統計:
-`,
-    statsCommand: `• /stats - 查看統計
-
-`,
-    successfulInvites: `• successful_invites: {count}
-`,
-    telegramId: `Telegram ID: {id}
-`,
-    testCoreFeatures: `💡 現在可以直接測試核心功能：
-`,
-    testUser: `測試用戶`,
-    throwCommand: `• /throw - 丟漂流瓶
-`,
-    userInfo: `🔧 開發模式：用戶信息
-
-`,
-    userNotFound: `❌ 用戶不存在`,
-    vip: `VIP: {status}
-`,
-    yes: `是`,
-  },
-  draft: {
-    contentHint: `💡 你可以：
-• 直接輸入新內容來替換草稿
-• 使用 /throw 重新開始
-• 發送草稿內容來丟出漂流瓶`,
-    contentTitle: `📝 **草稿內容**
-
-`,
-    continueEditing: `✅ 繼續編輯草稿`,
-    deleteButton: `🗑️ 刪除草稿`,
-    deleted: `✅ 草稿已刪除`,
-    editButton: `✏️ 修改內容`,
-    editInput: `✏️ 請輸入新的漂流瓶內容：
-
-💡 提示：
-• 最短 5 個字符
-• 最多 250 個字符
-• 不允許連結、圖片、多媒體
-• 不要包含個人聯絡方式
-• 友善、尊重的內容更容易被撿到哦～`,
-    editPrompt: `✏️ 請輸入新的內容`,
-    newBottle: `✅ 開始新的漂流瓶`,
-    notFound: `⚠️ 草稿不存在或已過期`,
-    sendButton: `✅ 發送草稿`,
-    sendQuestion: `要直接發送這個草稿嗎？`,
-    sending: `✅ 正在發送...`,
-    targetGender: `你想要尋找什麼樣的聊天對象？
-
-`,
-    targetGenderHint: `💡 升級 VIP 可使用進階篩選（MBTI/星座）：/vip`,
-    throwBottle: `🍾 丟漂流瓶
-
-你想要尋找什麼樣的聊天對象？`,
-    age: {
-      daysAgo: `\\\${days} 天前`,
-      hoursAgo: `\\\${hours} 小時前`,
-      justNow: `剛剛`,
+  "errors": {
+    "banned": "❌ Váš účet byl zablokován.\n\nDůvod: {reason}",
+    "channelConfigError": "❌ Chyba konfigurace kanálu.",
+    "claimRewardFailed": "❌ Nezdařilo se uplatnit odměnu.",
+    "completeOnboarding": "⚠️ Nejprve prosím dokončete registrační proces.",
+    "conversationInfoError": "❌ Informace o konverzaci jsou nesprávné.",
+    "conversationNotFound": "❌ Konverzace nebyla nalezena.",
+    "error": {
+      "ad": "❌ Tato reklama nevyžaduje ověření.",
+      "ad2": "❌ Momentálně nejsou k dispozici žádné reklamy.",
+      "ad3": "❌ Nelze uplatnit tuto reklamu.",
+      "ad4": "❌ Reklama neexistuje.",
+      "ad5": "❌ ID reklamy musí být číslo.",
+      "ad6": "❌ Nemáte oprávnění zobrazit data reklamy.",
+      "admin": "❌ Došlo k chybě v systému, zkuste to prosím znovu později.\n\nPokud problém přetrvává, kontaktujte prosím administrátora.",
+      "admin2": "❌ **Nedostatečná oprávnění**\n\nTento příkaz je omezen pouze na super administrátory.",
+      "admin3": "❌ Tento uživatel je již super administrátor, není potřeba přidávat.",
+      "admin4": "❌ Pouze super administrátoři mohou používat tento příkaz.",
+      "admin5": "❌ Tento uživatel je již administrátor.",
+      "admin6": "❌ Nelze odebrat super administrátora.",
+      "admin7": "❌ Tento uživatel není administrátor.",
+      "appeal": "❌ Prosím, zadejte ID odvolání\n\nPoužití: /admin_approve <appeal_id> [poznámky]",
+      "appeal2": "❌ Prosím, zadejte ID odvolání\n\nPoužití: /admin_reject <appeal_id> [poznámky]",
+      "appeal3": "❌ Odvolání \\${appealId} již bylo posouzeno",
+      "appeal4": "❌ Nelze nalézt ID odvolání: \\${appealId}",
+      "ban": "❌ Uživatel \\${targetUserId} nemá žádné záznamy o zákazu",
+      "birthday": "❌ \\${validation.error}\n\nProsím, zadejte znovu své datum narození (formát: RRRR-MM-DD):",
+      "birthday2": "❌ Nesprávný formát data narození\n\nProsím, zadejte znovu (formát: RRRR-MM-DD):",
+      "birthday3": "❌ Nesprávný formát data narození",
+      "bottle": "❌ Tato konverzace byla ukončena.\n\nPoužijte /catch k výběru nové láhve se zprávou a zahájení nové konverzace.",
+      "bottle2": "❌ Váš účet byl zakázán a nemůže vybírat láhve se zprávou.\n\nPokud máte dotazy, použijte prosím /appeal k odvolání.",
+      "bottle3": "❌ Tato láhev byla již vyzvednuta někým jiným, zkuste prosím jiné láhve!",
+      "broadcast": "❌ Aktuální vysílací systém podporuje pouze vysílání pro \\${MAX_SAFE_USERS} uživatelů nebo méně.\n\n",
+      "broadcast2": "❌ ID vysílání musí být číslo",
+      "broadcast3": "❌ Nelze nalézt záznam o vysílání",
+      "cancel": "❌ Přezdívka je příliš dlouhá, prosím, zadejte přezdívku, která má maximálně 36 znaků.\n\nProsím, zadejte znovu nebo zrušte úpravy:",
+      "cancel2": "❌ Osobní profil je příliš dlouhý, prosím, zadejte profil, který má maximálně 200 znaků.\n\nProsím, zadejte znovu nebo zrušte úpravy:",
+      "cancel3": "❌ Název regionu je příliš dlouhý, prosím, zadejte název, který má maximálně 50 znaků.\n\nProsím, zadejte znovu nebo zrušte úpravy:",
+      "cancel4": "❌ Přezdívka je příliš krátká, je potřeba alespoň 4 znaky.\n\nProsím, zadejte znovu nebo zrušte úpravy:",
+      "cancel5": "❌ Každý štítek může mít až 20 znaků.\n\nProsím, zadejte znovu nebo zrušte úpravy:",
+      "cancel6": "❌ Zrušit úpravy",
+      "cancel7": "❌ Zrušeno \\${ZODIAC_NAMES[zodiacSign]}",
+      "cancel8": "❌ Zrušeno \\${mbtiType}",
+      "cancel9": "❌ Zrušeno",
+      "conversation": "❌ Rozhovor s identifikátorem \\${formatIdentifier(identifier)} nebyl nalezen\n\n",
+      "conversation2": "❌ Chyba v informacích o konverzaci.",
+      "conversation3": "❌ Chyba v informacích o konverzaci",
+      "conversation4": "❌ Konverzace neexistuje",
+      "conversationInfoError": "❌ Chyba v informacích o konverzaci",
+      "conversationNotFound": "❌ Konverzace neexistuje",
+      "failed": "❌ **Načítání reklamy selhalo**\n\nOmlouváme se, reklama se nepřehrává správně.\n\n💡 **Možné důvody:**\n• Nestabilní síťové připojení\n• Poskytovatel reklamy dočasně nedostupný\n• Prohlížeč není podporován\n\n🔄 **Návrhy:**\n• Zkontrolujte své síťové připojení\n• Zkuste to znovu později\n• Nebo použijte jiné způsoby, jak získat kredity (pozvěte přátele)",
+      "failed10": "❌ Nepodařilo se dotázat na stav režimu údržby.",
+      "failed11": "❌ Nepodařilo se obnovit avatara\n\n",
+      "failed12": "❌ Ověření selhalo, zkusíte to prosím znovu později",
+      "failed13": "❌ Nepodařilo se aktivovat režim údržby.",
+      "failed14": "❌ Nepodařilo se deaktivovat režim údržby.",
+      "failed15": "❌ Nepodařilo se získat stav reklamy",
+      "failed16": "❌ Nepodařilo se získat statistiky",
+      "failed17": "❌ Nepodařilo se vytvořit vysílání.",
+      "failed18": "❌ Nepodařilo se získat informace",
+      "failed19": "❌ Nepodařilo se nárokovat odměnu",
+      "failed2": "❌ Nepodařilo se vytvořit filtrové vysílání\n\n\\${error instanceof Error ? error.message : String(error)}",
+      "failed20": "❌ Potvrzení selhalo",
+      "failed21": "❌ Nepodařilo se nastavit",
+      "failed22": "❌ Přeskočení selhalo",
+      "failed23": "❌ Operace selhala",
+      "failed24": "❌ Nepodařilo se odeslat denní zprávu: \\${error instanceof Error ? error.message : String(error)}",
+      "failed25": "❌ Nepodařilo se stáhnout data z VIP funnelu",
+      "failed26": "❌ **Selhaly diagnostiky**\n\n",
+      "failed27": "❌ **Obnovení selhalo**\n\n",
+      "failed28": "❌ **Platba selhala**\n\n",
+      "failed29": "❌ Nepodařilo se získat seznam poskytovatelů reklam",
+      "failed3": "❌ Nepodařilo se zpracovat frontu vysílání: \\${error instanceof Error ? error.message : String(error)}",
+      "failed30": "❌ Nepodařilo se získat oficiální seznam reklam",
+      "failed31": "❌ Nepodařilo se povolit poskytovatele reklam",
+      "failed32": "❌ Nepodařilo se zakázat poskytovatele reklam",
+      "failed33": "❌ Nepodařilo se povolit oficiální reklamu",
+      "failed34": "❌ Nepodařilo se zakázat oficiální reklamu",
+      "failed35": "❌ Nepodařilo se získat analytická data",
+      "failed36": "❌ Nepodařilo se získat reklamační data",
+      "failed37": "❌ Nepodařilo se nastavit prioritu",
+      "failed38": "❌ Vrácení peněz se nezdařilo: \\${error instanceof Error ? error.message : String(error)}",
+      "failed39": "❌ Operace selhala: \\${error instanceof Error ? error.message : String(error)}",
+      "failed4": "❌ Nepodařilo se dotázat na stav vysílání: \\${error instanceof Error ? error.message : String(error)}",
+      "failed40": "❌ Odeslání se nezdařilo, zkuste to prosím znovu později.",
+      "failed41": "❌ Nepodařilo se vytvořit konverzaci, zkuste to prosím znovu později.",
+      "failed5": "❌ Nepodařilo se zrušit vysílání: \\${error instanceof Error ? error.message : String(error)}",
+      "failed6": "❌ Nepodařilo se vyčistit vysílání: \\${error instanceof Error ? error.message : String(error)}",
+      "failed7": "❌ Obnovení selhalo: \\${errorMessage}\n\nZkuste to prosím znovu později.",
+      "failed8": "❌ Nepodařilo se vytvořit vysílání, zkuste to prosím znovu později.",
+      "failed9": "❌ Nepodařilo se obnovit historii rozhovoru\n\n",
+      "mbti": "❌ Neplatný typ MBTI",
+      "message": "❌ Chyba ve formátu filtru\n\n\\${error instanceof Error ? error.message : String(error)}\n\n",
+      "message2": "❌ Tato příkaz není dostupný v produkci.\n\nTato příkaz není dostupný v produkci.",
+      "message3": "❌ Nastala chyba, zkuste to prosím znovu později.\n\nZpráva o chybě: \\${error instanceof Error ? error.message : String(error)}",
+      "message4": "❌ Omlouváme se, musíte být alespoň 18 let, abyste mohli tuto službu používat.\n\nVraťte se prosím, až budete dospělí!",
+      "nickname": "❌ Nelze získat přezdívku Telegramu",
+      "nickname2": "❌ Uživatelské jméno nemůže obsahovat odkaz na webovou stránku\n\n",
+      "nickname3": "❌ \\${validation.error}\n\nZnovu zadejte přezdívku:",
+      "quota": "❌ Dnešní kvóta na láhve se zprávou je vyčerpána (\\${quotaDisplay})\n\n💡 Způsoby, jak získat více kvoty:\n",
+      "quota2": "❌ Dnešní kvóta zpráv v rozhovoru byla vyčerpána (\\${usedToday}/\\${dailyLimit})\n\n",
+      "quota3": "❌ Dnešní kvóta zpráv v láhvi byla vyčerpána (\\${quotaDisplay})\n\n",
+      "register": "❌ Nejprve prosím dokončete registrační proces.\n\nPoužijte /start pro pokračování registrace.",
+      "register2": "❌ Uživatelova data nebyla nalezena, nejprve prosím použijte /start pro registraci.",
+      "register3": "❌ Prosím, dokončete registrační proces pro vyzvednutí lahví se zprávou.\n\nPoužijte /start pro pokračování registrace.",
+      "settings": "❌ Můžete nastavit až 5 zájmových štítků.\n\nZnovu zadejte nebo zrušte úpravy:",
+      "short": "❌ Neplatný jazykový kód",
+      "short10": "❌ Nedostatečná oprávnění",
+      "short11": "❌ Na shledanou později",
+      "short12": "❌ Znovu vyberte",
+      "short13": "❌ Znovu zadejte",
+      "short14": "❌ Zavřít",
+      "short15": "❌ Není povoleno",
+      "short2": "❌ Uživatelova data nebyla nalezena",
+      "short3": "❌ Neznámý krok tutoriálu",
+      "short4": "❌ Nastala systémová chyba",
+      "short5": "❌ Chyba konfigurace kanálu",
+      "short6": "❌ Neznámá operace",
+      "short7": "❌ Nesprávné",
+      "short8": "❌ Ne",
+      "short9": "❌ Došlo k chybě",
+      "start": "❌ Došlo k chybě, prosím restartujte: /start",
+      "stats": "❌ Nemáte oprávnění zobrazit statistiky reklam",
+      "task": "❌ Došlo k chybě při zobrazení centra úloh, prosím zkuste to později.",
+      "text": "❌ Při výpočtu výsledků došlo k systémové chybě, zkuste to prosím později.\n\n",
+      "text10": "❌ Chyba informací o odesílateli.",
+      "text11": "❌ Nemáte oprávnění zobrazit analytická data",
+      "text12": "❌ Došlo k chybě, prosím zkuste to později.",
+      "text13": "❌ Nemáte oprávnění použít tento příkaz.",
+      "text14": "❌ Nesprávná metoda použití\n\n",
+      "text15": "❌ Priorita musí být nezáporné celé číslo",
+      "text16": "❌ Doba trvání musí být kladné celé číslo nebo",
+      "text17": "❌ Při zpracování platby došlo k systémové chybě, prosím kontaktujte zákaznickou podporu.\n\n",
+      "text18": "❌ Důvod vrácení musí mít alespoň 10 znaků, prosím zadejte znovu:",
+      "text19": "❌ **Žádost o vrácení peněz byla zamítnuta**\n\n",
+      "text2": "❌ Profil obsahuje nepovolené odkazy.\n\n",
+      "text20": "❌ Žádost o vrácení peněz překračuje časový limit\n\n",
+      "text21": "❌ Žádost o vrácení neexistuje nebo byla zpracována",
+      "text22": "❌ Záznam o platbě nebyl nalezen.",
+      "text23": "❌ Omlouváme se, musíte být starší 18 let, abyste mohli tuto službu používat.\n\n",
+      "text24": "❌ Došlo k chybě, prosím zadejte znovu.",
+      "text25": "❌ Prosím, odpovězte na otázku vážně\n\n",
+      "text3": "❌ Nedetekováno členství ve vašem kanálu, prosím připojte se a zkuste to znovu",
+      "text4": "❌ Bylo zjištěno, že jste opustili kanál, nemůžete si nárokovat odměny.",
+      "text5": "❌ Došlo k chybě při zahájení tutoriálu, prosím zkuste to později.",
+      "text6": "❌ Došlo k chybě v systému, prosím zkuste to později.",
+      "text7": "❌ Doba trvání musí být číslo (minuty)",
+      "text8": "❌ Došlo k chybě, prosím zkuste to později",
+      "text9": "❌ Nelze získat stav režimu údržby",
+      "userNotFound": "❌ Uživatelská id neexistuje, prosím použijte /start pro registraci.",
+      "userNotFound2": "❌ Uživatelská id neexistuje, prosím nejdříve se zaregistrujte",
+      "userNotFound3": "❌ Uživatel protistrany neexistuje.",
+      "userNotFound4": "❌ Uživatelská id neexistuje",
+      "userNotFound5": "❌ Uživatel neexistuje: \\\\$${userId}",
+      "userNotFound6": "❌ Uživatelská id neexistuje nebo není registrována.",
+      "userNotFound7": "❌ Uživatelská id neexistuje.",
+      "vip": "❌ Nemáte oprávnění zobrazit VIP data",
+      "vip2": "❌ Nejste VIP uživatel, nemůžete požádat o vrácení."
     },
+    "errorDetails": "Chybová zpráva: {error}",
+    "failed": "Nepodařilo se: ${broadcast.failedCount}\n",
+    "failed2": "Nepodařilo se: ${result.failed} položek\n\n",
+    "failed3": "Tyto vysílání budou označeny jako 'neúspěšné'\n",
+    "failed4": "Tyto vysílání byly označeny jako 'neúspěšné'\n",
+    "generic": "❌ Došlo k chybě, prosím zkuste to později.",
+    "invalidRequest": "❌ Neplatná žádost",
+    "message": "${statusEmoji} **${provider.provider_display_name}**\n${healthEmoji} Zdravotní stav: ${health.is_healthy ? 'Dobré' : 'Vyžaduje pozornost'}\n📊 Míra dokončení: ${stats.completion_rate}%\n❌ Míra chyb: ${stats.error_rate}%\n📈 Celkový počet požadavků: ${stats.total_requests}\n✅ Celkový počet dokončení: ${stats.total_completions}\n💡 Doporučení: ${health.recommendation}",
+    "message2": "Chybová zpráva: ${error instanceof Error ? error.message : String(error)}",
+    "message3": "Chyba: ${broadcast.errorMessage}",
+    "operationFailed": "❌ Operace selhala",
+    "processError": "❌ Během zpracování došlo k chybě",
+    "sessionExpired": "❌ Relace vypršela, prosím začněte znovu",
+    "systemError": "Systémová chyba",
+    "systemErrorRetry": "❌ Došlo k systémové chybě, zkuste to prosím znovu později.",
+    "unknownAction": "❌ Neznámá operace",
+    "unknownError": "🎨 UX: Přátelská chybová zpráva",
+    "userNotFound": "Uživatel neexistuje",
+    "userNotFound4": "❌ Uživatel neexistuje",
+    "userNotFoundRegister": "⚠️ Uživatel neexistuje, prosím zaregistrujte se nejprve pomocí /start.",
+    "verificationFailed": "❌ Ověření selhalo, zkuste to prosím znovu později"
   },
-  edit_profile: {
-    nickname: `👤 昵称：\${ownerMaskedNickname}`,
-    short19: `✏️ 編輯個人資料`,
+  "estimate": {
+    "immediate": "Odeslat okamžitě (asi 1-2 sekundy)",
+    "minutes": "Asi ${minutes} minut",
+    "seconds": "Asi ${seconds} sekund"
   },
-  error: {
-    ad: `❌ 此廣告不需要驗證`,
-    ad2: `❌ 暫無可用的廣告`,
-    ad3: `❌ 無法領取此廣告`,
-    ad4: `❌ 廣告不存在`,
-    ad5: `❌ 廣告 ID 必須是數字`,
-    ad6: `❌ 你沒有權限查看廣告數據`,
-    admin: `❌ 系統發生錯誤，請稍後再試。
-
-如果問題持續，請聯繫管理員。`,
-    admin2: `❌ **權限不足**
-
-此命令僅限超級管理員使用。`,
-    admin3: `❌ 此用戶已經是超級管理員，無需添加。`,
-    admin4: `❌ 只有超級管理員可以使用此命令。`,
-    admin5: `❌ 此用戶已經是管理員。`,
-    admin6: `❌ 無法移除超級管理員。`,
-    admin7: `❌ 此用戶不是管理員。`,
-    appeal: `❌ 請提供申訴 ID
-
-用法: /admin_approve <appeal_id> [備註]`,
-    appeal2: `❌ 請提供申訴 ID
-
-用法: /admin_reject <appeal_id> [備註]`,
-    appeal3: `❌ 申訴 \${appealId} 已經被審核過了`,
-    appeal4: `❌ 找不到申訴 ID: \${appealId}`,
-    ban: `❌ 用戶 \${targetUserId} 沒有封禁記錄`,
-    birthday: `❌ \${validation.error}
-
-請重新輸入生日（格式：YYYY-MM-DD）：`,
-    birthday2: `❌ 生日格式錯誤
-
-請重新輸入（格式：YYYY-MM-DD）：`,
-    birthday3: `❌ 生日格式錯誤`,
-    bottle: `❌ 此對話已結束。
-
-使用 /catch 撿新的漂流瓶開始新對話。`,
-    bottle2: `❌ 你的帳號已被封禁，無法撿漂流瓶。
-
-如有疑問，請使用 /appeal 申訴。`,
-    bottle3: `❌ 這個瓶子已經被其他人撿走了，請試試其他瓶子！`,
-    broadcast: `❌ 當前廣播系統僅支持 \${MAX_SAFE_USERS} 個用戶以內的廣播。
-
-`,
-    broadcast2: `❌ 廣播 ID 必須是數字`,
-    broadcast3: `❌ 找不到該廣播記錄`,
-    cancel: `❌ 暱稱太長，請輸入不超過 36 個字符的暱稱。
-
-請重新輸入或取消編輯：`,
-    cancel2: `❌ 個人簡介太長，請輸入不超過 200 個字符。
-
-請重新輸入或取消編輯：`,
-    cancel3: `❌ 地區名稱太長，請輸入不超過 50 個字符。
-
-請重新輸入或取消編輯：`,
-    cancel4: `❌ 暱稱太短，至少需要 4 個字符。
-
-請重新輸入或取消編輯：`,
-    cancel5: `❌ 每個標籤最多 20 個字符。
-
-請重新輸入或取消編輯：`,
-    cancel6: `❌ 取消編輯`,
-    cancel7: `❌ 已取消 \${ZODIAC_NAMES[zodiacSign]}`,
-    cancel8: `❌ 已取消 \${mbtiType}`,
-    cancel9: `❌ 取消`,
-    conversation: `❌ 找不到標識符 \${formatIdentifier(identifier)} 的對話
-
-`,
-    conversation2: `❌ 對話資訊錯誤。`,
-    conversation3: `❌ 對話資訊錯誤`,
-    conversation4: `❌ 對話不存在`,
-    conversationInfoError: `❌ 對話資訊錯誤`,
-    conversationNotFound: `❌ 對話不存在`,
-    failed: `❌ **廣告加載失敗**
-
-很抱歉，廣告無法正常播放。
-
-💡 **可能的原因：**
-• 網絡連接不穩定
-• 廣告提供商暫時不可用
-• 瀏覽器不支持
-
-🔄 **建議：**
-• 檢查網絡連接
-• 稍後再試
-• 或使用其他方式獲得額度（邀請朋友）`,
-    failed10: `❌ 查詢維護模式狀態失敗。`,
-    failed11: `❌ 刷新頭像失敗
-
-`,
-    failed12: `❌ 驗證失敗，請稍後再試`,
-    failed13: `❌ 啟用維護模式失敗。`,
-    failed14: `❌ 關閉維護模式失敗。`,
-    failed15: `❌ 獲取廣告狀態失敗`,
-    failed16: `❌ 獲取統計數據失敗`,
-    failed17: `❌ 創建廣播失敗。`,
-    failed18: `❌ 獲取信息失敗`,
-    failed19: `❌ 領取獎勵失敗`,
-    failed2: `❌ 創建過濾廣播失敗
-
-\${error instanceof Error ? error.message : String(error)}`,
-    failed20: `❌ 確認失敗`,
-    failed21: `❌ 設置失敗`,
-    failed22: `❌ 跳過失敗`,
-    failed23: `❌ 操作失敗`,
-    failed24: `❌ 發送每日報表失敗：\${error instanceof Error ? error.message : String(error)}`,
-    failed25: `❌ 獲取 VIP 漏斗數據失敗`,
-    failed26: `❌ **診斷失敗**
-
-`,
-    failed27: `❌ **刷新失敗**
-
-`,
-    failed28: `❌ **支付失敗**
-
-`,
-    failed29: `❌ 獲取廣告提供商列表失敗`,
-    failed3: `❌ 處理廣播隊列失敗：\${error instanceof Error ? error.message : String(error)}`,
-    failed30: `❌ 獲取官方廣告列表失敗`,
-    failed31: `❌ 啟用廣告提供商失敗`,
-    failed32: `❌ 停用廣告提供商失敗`,
-    failed33: `❌ 啟用官方廣告失敗`,
-    failed34: `❌ 停用官方廣告失敗`,
-    failed35: `❌ 獲取分析數據失敗`,
-    failed36: `❌ 獲取廣告數據失敗`,
-    failed37: `❌ 設置優先級失敗`,
-    failed38: `❌ 退款失敗：\${error instanceof Error ? error.message : String(error)}`,
-    failed39: `❌ 操作失敗：\${error instanceof Error ? error.message : String(error)}`,
-    failed4: `❌ 查詢廣播狀態失敗：\${error instanceof Error ? error.message : String(error)}`,
-    failed40: `❌ 提交失敗，請稍後再試。`,
-    failed41: `❌ 建立對話失敗，請稍後再試。`,
-    failed5: `❌ 取消廣播失敗：\${error instanceof Error ? error.message : String(error)}`,
-    failed6: `❌ 清理廣播失敗：\${error instanceof Error ? error.message : String(error)}`,
-    failed7: `❌ 重置失敗：\${errorMessage}
-
-請稍後再試。`,
-    failed8: `❌ 創建廣播失敗，請稍後再試。`,
-    failed9: `❌ 刷新對話歷史失敗
-
-`,
-    mbti: `❌ 無效的 MBTI 類型`,
-    message: `❌ 過濾器格式錯誤
-
-\${error instanceof Error ? error.message : String(error)}
-
-`,
-    message2: `❌ 此命令在生產環境中不可用。
-
-This command is not available in production.`,
-    message3: `❌ 發生錯誤，請稍後再試。
-
-錯誤信息：\${error instanceof Error ? error.message : String(error)}`,
-    message4: `❌ 很抱歉，你必須年滿 18 歲才能使用本服務。
-
-請成年後再來！`,
-    nickname: `❌ 無法獲取 Telegram 暱稱`,
-    nickname2: `❌ 暱稱不能包含網址連結
-
-`,
-    nickname3: `❌ \${validation.error}
-
-請重新輸入暱稱：`,
-    quota: `❌ 今日漂流瓶配額已用完（\${quotaDisplay}）
-
-💡 獲得更多配額的方式：
-`,
-    quota2: `❌ 今日對話訊息配額已用完（\${usedToday}/\${dailyLimit}）
-
-`,
-    quota3: `❌ 今日漂流瓶配額已用完（\${quotaDisplay}）
-
-`,
-    register: `❌ 請先完成註冊流程。
-
-使用 /start 繼續註冊。`,
-    register2: `❌ 找不到用戶資料，請先使用 /start 註冊。`,
-    register3: `❌ 請先完成註冊流程才能撿漂流瓶。
-
-使用 /start 繼續註冊。`,
-    settings: `❌ 最多只能設定 5 個興趣標籤。
-
-請重新輸入或取消編輯：`,
-    short: `❌ 無效的語言代碼`,
-    short10: `❌ 權限不足`,
-    short11: `❌ 稍後再說`,
-    short12: `❌ 重新選擇`,
-    short13: `❌ 重新輸入`,
-    short14: `❌ 關閉`,
-    short15: `❌ 未啟用`,
-    short2: `❌ 找不到用戶資料`,
-    short3: `❌ 未知的教學步驟`,
-    short4: `❌ 系統發生錯誤`,
-    short5: `❌ 頻道配置錯誤`,
-    short6: `❌ 未知操作`,
-    short7: `❌ 不正確`,
-    short8: `❌ 否`,
-    short9: `❌ 發生錯誤`,
-    start: `❌ 發生錯誤，請重新開始：/start`,
-    stats: `❌ 你沒有權限查看廣告統計`,
-    task: `❌ 查看任務中心時系統發生錯誤，請稍後再試。`,
-    text: `❌ 計算結果時系統發生錯誤，請稍後再試。
-
-`,
-    text10: `❌ 發送者資訊錯誤。`,
-    text11: `❌ 你沒有權限查看分析數據`,
-    text12: `❌ 發生錯誤，請稍後再試。`,
-    text13: `❌ 你沒有權限使用此命令。`,
-    text14: `❌ 使用方法錯誤
-
-`,
-    text15: `❌ 優先級必須是非負整數`,
-    text16: `❌ 時長必須是正整數或`,
-    text17: `❌ 處理支付時系統發生錯誤，請聯繫客服。
-
-`,
-    text18: `❌ 退款原因至少需要 10 個字，請重新輸入：`,
-    text19: `❌ **退款申請已被拒絕**
-
-`,
-    text2: `❌ 個人簡介包含不允許的連結。
-
-`,
-    text20: `❌ 退款申請超過時限
-
-`,
-    text21: `❌ 退款請求不存在或已處理`,
-    text22: `❌ 找不到支付記錄。`,
-    text23: `❌ 很抱歉，你必須年滿 18 歲才能使用本服務。
-
-`,
-    text24: `❌ 發生錯誤，請重新輸入。`,
-    text25: `❌ 請認真回答問題
-
-`,
-    text3: `❌ 未檢測到你加入頻道，請先加入後再試`,
-    text4: `❌ 檢測到你已離開頻道，無法領取獎勵。`,
-    text5: `❌ 啟動教學時發生錯誤，請稍後再試。`,
-    text6: `❌ 系統發生錯誤，請稍後再試。`,
-    text7: `❌ 時長必須是數字（分鐘）`,
-    text8: `❌ 發生錯誤，請稍後再試`,
-    text9: `❌ 無法獲取維護模式狀態`,
-    userNotFound: `❌ 用戶不存在，請先使用 /start 註冊。`,
-    userNotFound2: `❌ 用戶不存在，請先註冊`,
-    userNotFound3: `❌ 對方用戶不存在。`,
-    userNotFound4: `❌ 用戶不存在`,
-    userNotFound5: `❌ 用戶不存在：\${userId}`,
-    userNotFound6: `❌ 用戶不存在或未註冊。`,
-    userNotFound7: `❌ 用戶不存在。`,
-    vip: `❌ 你沒有權限查看 VIP 數據`,
-    vip2: `❌ 你不是 VIP 用戶，無法申請退款。`,
+  "gender": {
+    "female": "Žena",
+    "label": "👤 Pohlaví: {otherUser.gender}",
+    "male": "Muž"
   },
-  errors: {
-    banned: `❌ 你的帳號已被封禁
-
-原因：{reason}`,
-    channelConfigError: `❌ 頻道配置錯誤`,
-    claimRewardFailed: `❌ 領取獎勵失敗`,
-    completeOnboarding: `⚠️ 請先完成註冊流程。`,
-    conversationInfoError: `❌ 對話資訊錯誤。`,
-    conversationNotFound: `❌ 找不到此對話`,
-    errorDetails: `錯誤信息：{error}`,
-    failed: `失敗: \${broadcast.failedCount}
-`,
-    failed2: `失敗：\${result.failed} 個
-
-`,
-    failed3: `這些廣播將被標記為「失敗」狀態
-`,
-    failed4: `這些廣播已標記為「失敗」狀態
-`,
-    generic: `❌ 發生錯誤，請稍後再試。`,
-    invalidRequest: `❌ 無效的請求`,
-    message: `\${statusEmoji} **\${provider.provider_display_name}**
-\${healthEmoji} 健康狀態: \${health.is_healthy ? '良好' : '需要關注'}
-📊 完成率: \${stats.completion_rate}%
-❌ 錯誤率: \${stats.error_rate}%
-📈 總請求: \${stats.total_requests}
-✅ 總完成: \${stats.total_completions}
-💡 建議: \${health.recommendation}`,
-    message2: `錯誤信息：\${error instanceof Error ? error.message : String(error)}`,
-    message3: `
-錯誤: \${broadcast.errorMessage}`,
-    operationFailed: `❌ 操作失敗`,
-    processError: `❌ 處理過程中發生錯誤`,
-    sessionExpired: `❌ 會話已過期，請重新開始`,
-    systemError: `系统错误`,
-    systemErrorRetry: `❌ 系統發生錯誤，請稍後再試。`,
-    unknownAction: `❌ 未知操作`,
-    unknownError: `🎨 UX: 友善的錯誤提示`,
-    userNotFound: `用戶不存在`,
-    userNotFound4: `[需要翻译]`,
-    userNotFoundRegister: `⚠️ 用戶不存在，請先使用 /start 註冊。`,
-    verificationFailed: `❌ 驗證失敗，請稍後再試`,
-    error: {
-      ad: `❌ 此廣告不需要驗證`,
-      ad2: `❌ 暫無可用的廣告`,
-      ad3: `❌ 無法領取此廣告`,
-      ad4: `❌ 廣告不存在`,
-      ad5: `❌ 廣告 ID 必須是數字`,
-      ad6: `❌ 你沒有權限查看廣告數據`,
-      admin: `❌ 系統發生錯誤，請稍後再試。
-
-如果問題持續，請聯繫管理員。`,
-      admin2: `❌ **權限不足**
-
-此命令僅限超級管理員使用。`,
-      admin3: `❌ 此用戶已經是超級管理員，無需添加。`,
-      admin4: `❌ 只有超級管理員可以使用此命令。`,
-      admin5: `❌ 此用戶已經是管理員。`,
-      admin6: `❌ 無法移除超級管理員。`,
-      admin7: `❌ 此用戶不是管理員。`,
-      appeal: `❌ 請提供申訴 ID
-
-用法: /admin_approve <appeal_id> [備註]`,
-      appeal2: `❌ 請提供申訴 ID
-
-用法: /admin_reject <appeal_id> [備註]`,
-      appeal3: `❌ 申訴 \\\${appealId} 已經被審核過了`,
-      appeal4: `❌ 找不到申訴 ID: \\\${appealId}`,
-      ban: `❌ 用戶 \\\${targetUserId} 沒有封禁記錄`,
-      birthday: `❌ \\\${validation.error}
-
-請重新輸入生日（格式：YYYY-MM-DD）：`,
-      birthday2: `❌ 生日格式錯誤
-
-請重新輸入（格式：YYYY-MM-DD）：`,
-      birthday3: `❌ 生日格式錯誤`,
-      bottle: `❌ 此對話已結束。
-
-使用 /catch 撿新的漂流瓶開始新對話。`,
-      bottle2: `❌ 你的帳號已被封禁，無法撿漂流瓶。
-
-如有疑問，請使用 /appeal 申訴。`,
-      bottle3: `❌ 這個瓶子已經被其他人撿走了，請試試其他瓶子！`,
-      broadcast: `❌ 當前廣播系統僅支持 \\\${MAX_SAFE_USERS} 個用戶以內的廣播。
-
-`,
-      broadcast2: `❌ 廣播 ID 必須是數字`,
-      broadcast3: `❌ 找不到該廣播記錄`,
-      cancel: `❌ 暱稱太長，請輸入不超過 36 個字符的暱稱。
-
-請重新輸入或取消編輯：`,
-      cancel2: `❌ 個人簡介太長，請輸入不超過 200 個字符。
-
-請重新輸入或取消編輯：`,
-      cancel3: `❌ 地區名稱太長，請輸入不超過 50 個字符。
-
-請重新輸入或取消編輯：`,
-      cancel4: `❌ 暱稱太短，至少需要 4 個字符。
-
-請重新輸入或取消編輯：`,
-      cancel5: `❌ 每個標籤最多 20 個字符。
-
-請重新輸入或取消編輯：`,
-      cancel6: `❌ 取消編輯`,
-      cancel7: `❌ 已取消 \\\${ZODIAC_NAMES[zodiacSign]}`,
-      cancel8: `❌ 已取消 \\\${mbtiType}`,
-      cancel9: `❌ 取消`,
-      conversation: `❌ 找不到標識符 \\\${formatIdentifier(identifier)} 的對話
-
-`,
-      conversation2: `❌ 對話資訊錯誤。`,
-      conversation3: `❌ 對話資訊錯誤`,
-      conversation4: `❌ 對話不存在`,
-      conversationInfoError: `❌ 對話資訊錯誤`,
-      conversationNotFound: `❌ 對話不存在`,
-      failed: `❌ **廣告加載失敗**
-
-很抱歉，廣告無法正常播放。
-
-💡 **可能的原因：**
-• 網絡連接不穩定
-• 廣告提供商暫時不可用
-• 瀏覽器不支持
-
-🔄 **建議：**
-• 檢查網絡連接
-• 稍後再試
-• 或使用其他方式獲得額度（邀請朋友）`,
-      failed10: `❌ 查詢維護模式狀態失敗。`,
-      failed11: `❌ 刷新頭像失敗
-
-`,
-      failed12: `❌ 驗證失敗，請稍後再試`,
-      failed13: `❌ 啟用維護模式失敗。`,
-      failed14: `❌ 關閉維護模式失敗。`,
-      failed15: `❌ 獲取廣告狀態失敗`,
-      failed16: `❌ 獲取統計數據失敗`,
-      failed17: `❌ 創建廣播失敗。`,
-      failed18: `❌ 獲取信息失敗`,
-      failed19: `❌ 領取獎勵失敗`,
-      failed2: `❌ 創建過濾廣播失敗
-
-\\\${error instanceof Error ? error.message : String(error)}`,
-      failed20: `❌ 確認失敗`,
-      failed21: `❌ 設置失敗`,
-      failed22: `❌ 跳過失敗`,
-      failed23: `❌ 操作失敗`,
-      failed24: `❌ 發送每日報表失敗：\\\${error instanceof Error ? error.message : String(error)}`,
-      failed25: `❌ 獲取 VIP 漏斗數據失敗`,
-      failed26: `❌ **診斷失敗**
-
-`,
-      failed27: `❌ **刷新失敗**
-
-`,
-      failed28: `❌ **支付失敗**
-
-`,
-      failed29: `❌ 獲取廣告提供商列表失敗`,
-      failed3: `❌ 處理廣播隊列失敗：\\\${error instanceof Error ? error.message : String(error)}`,
-      failed30: `❌ 獲取官方廣告列表失敗`,
-      failed31: `❌ 啟用廣告提供商失敗`,
-      failed32: `❌ 停用廣告提供商失敗`,
-      failed33: `❌ 啟用官方廣告失敗`,
-      failed34: `❌ 停用官方廣告失敗`,
-      failed35: `❌ 獲取分析數據失敗`,
-      failed36: `❌ 獲取廣告數據失敗`,
-      failed37: `❌ 設置優先級失敗`,
-      failed38: `❌ 退款失敗：\\\${error instanceof Error ? error.message : String(error)}`,
-      failed39: `❌ 操作失敗：\\\${error instanceof Error ? error.message : String(error)}`,
-      failed4: `❌ 查詢廣播狀態失敗：\\\${error instanceof Error ? error.message : String(error)}`,
-      failed40: `❌ 提交失敗，請稍後再試。`,
-      failed41: `❌ 建立對話失敗，請稍後再試。`,
-      failed5: `❌ 取消廣播失敗：\\\${error instanceof Error ? error.message : String(error)}`,
-      failed6: `❌ 清理廣播失敗：\\\${error instanceof Error ? error.message : String(error)}`,
-      failed7: `❌ 重置失敗：\\\${errorMessage}
-
-請稍後再試。`,
-      failed8: `❌ 創建廣播失敗，請稍後再試。`,
-      failed9: `❌ 刷新對話歷史失敗
-
-`,
-      mbti: `❌ 無效的 MBTI 類型`,
-      message: `❌ 過濾器格式錯誤
-
-\\\${error instanceof Error ? error.message : String(error)}
-
-`,
-      message2: `❌ 此命令在生產環境中不可用。
-
-This command is not available in production.`,
-      message3: `❌ 發生錯誤，請稍後再試。
-
-錯誤信息：\\\${error instanceof Error ? error.message : String(error)}`,
-      message4: `❌ 很抱歉，你必須年滿 18 歲才能使用本服務。
-
-請成年後再來！`,
-      nickname: `❌ 無法獲取 Telegram 暱稱`,
-      nickname2: `❌ 暱稱不能包含網址連結
-
-`,
-      nickname3: `❌ \\\${validation.error}
-
-請重新輸入暱稱：`,
-      quota: `❌ 今日漂流瓶配額已用完（\\\${quotaDisplay}）
-
-💡 獲得更多配額的方式：
-`,
-      quota2: `❌ 今日對話訊息配額已用完（\\\${usedToday}/\\\${dailyLimit}）
-
-`,
-      quota3: `❌ 今日漂流瓶配額已用完（\\\${quotaDisplay}）
-
-`,
-      register: `❌ 請先完成註冊流程。
-
-使用 /start 繼續註冊。`,
-      register2: `❌ 找不到用戶資料，請先使用 /start 註冊。`,
-      register3: `❌ 請先完成註冊流程才能撿漂流瓶。
-
-使用 /start 繼續註冊。`,
-      settings: `❌ 最多只能設定 5 個興趣標籤。
-
-請重新輸入或取消編輯：`,
-      short: `❌ 無效的語言代碼`,
-      short10: `❌ 權限不足`,
-      short11: `❌ 稍後再說`,
-      short12: `❌ 重新選擇`,
-      short13: `❌ 重新輸入`,
-      short14: `❌ 關閉`,
-      short15: `❌ 未啟用`,
-      short2: `❌ 找不到用戶資料`,
-      short3: `❌ 未知的教學步驟`,
-      short4: `❌ 系統發生錯誤`,
-      short5: `❌ 頻道配置錯誤`,
-      short6: `❌ 未知操作`,
-      short7: `❌ 不正確`,
-      short8: `❌ 否`,
-      short9: `❌ 發生錯誤`,
-      start: `❌ 發生錯誤，請重新開始：/start`,
-      stats: `❌ 你沒有權限查看廣告統計`,
-      task: `❌ 查看任務中心時系統發生錯誤，請稍後再試。`,
-      text: `❌ 計算結果時系統發生錯誤，請稍後再試。
-
-`,
-      text10: `❌ 發送者資訊錯誤。`,
-      text11: `❌ 你沒有權限查看分析數據`,
-      text12: `❌ 發生錯誤，請稍後再試。`,
-      text13: `❌ 你沒有權限使用此命令。`,
-      text14: `❌ 使用方法錯誤
-
-`,
-      text15: `❌ 優先級必須是非負整數`,
-      text16: `❌ 時長必須是正整數或`,
-      text17: `❌ 處理支付時系統發生錯誤，請聯繫客服。
-
-`,
-      text18: `❌ 退款原因至少需要 10 個字，請重新輸入：`,
-      text19: `❌ **退款申請已被拒絕**
-
-`,
-      text2: `❌ 個人簡介包含不允許的連結。
-
-`,
-      text20: `❌ 退款申請超過時限
-
-`,
-      text21: `❌ 退款請求不存在或已處理`,
-      text22: `❌ 找不到支付記錄。`,
-      text23: `❌ 很抱歉，你必須年滿 18 歲才能使用本服務。
-
-`,
-      text24: `❌ 發生錯誤，請重新輸入。`,
-      text25: `❌ 請認真回答問題
-
-`,
-      text3: `❌ 未檢測到你加入頻道，請先加入後再試`,
-      text4: `❌ 檢測到你已離開頻道，無法領取獎勵。`,
-      text5: `❌ 啟動教學時發生錯誤，請稍後再試。`,
-      text6: `❌ 系統發生錯誤，請稍後再試。`,
-      text7: `❌ 時長必須是數字（分鐘）`,
-      text8: `❌ 發生錯誤，請稍後再試`,
-      text9: `❌ 無法獲取維護模式狀態`,
-      userNotFound: `❌ 用戶不存在，請先使用 /start 註冊。`,
-      userNotFound2: `❌ 用戶不存在，請先註冊`,
-      userNotFound3: `❌ 對方用戶不存在。`,
-      userNotFound4: `❌ 用戶不存在`,
-      userNotFound5: `❌ 用戶不存在：\\\${userId}`,
-      userNotFound6: `❌ 用戶不存在或未註冊。`,
-      userNotFound7: `❌ 用戶不存在。`,
-      vip: `❌ 你沒有權限查看 VIP 數據`,
-      vip2: `❌ 你不是 VIP 用戶，無法申請退款。`,
+  "help": {
+    "ad": "• Sledujte reklamy: +1 kredit každýkrát (až 20krát denně)\n",
+    "ad2": "/ad_performance - Zpráva o výkonu reklamy\n",
+    "ad3": "• Získejte kredity sledováním reklam (ukáže se, když jsou kredity vyčerpány)\n",
+    "ad4": "• Zobrazujte oficiální reklamy pro získání trvalého kvóta\n\n",
+    "ad5": "• Oficiální reklamy: Trvalé odměny za kredity\n",
+    "ad6": "• Bezreklamový zážitek\n\n",
+    "admin": "/admin_remove <user_id> - Odebrat administrátora\n\n",
+    "admin2": "/admin_add <user_id> - Přidat administrátora\n",
+    "admin3": "/admin_list - Zobrazit seznam administrátorů\n",
+    "admin4": "🔱 **Funkce super administrátora**\n\n",
+    "admin5": "👮 **Funkce administrátora**\n\n",
+    "admin6": "**Správa administrátorů**\n",
+    "admin_ads": "/admin_ads - Spravovat oficiální reklamy\n",
+    "admin_tasks": "/admin_tasks - Spravovat úkoly komunity",
+    "appeal": "/admin_reject <id> [poznámka] - Zamítnout odvolání\n\n",
+    "appeal2": "/admin_approve <id> [poznámka] - Schválit odvolání\n",
+    "appeal3": "/appeal_status - Zkontrolujte stav odvolání\n\n",
+    "appeal4": "/admin_appeals - Zobrazit čekající odvolání\n",
+    "appeal5": "🛡️ **Bezpečnost a odvolání**\n",
+    "appeal6": "**Přezkum odvolání**\n",
+    "ban": "/admin_ban <user_id> [hodiny|trvale] - Zablokovat uživatele\n",
+    "ban2": "/admin_bans <user_id> - Zobrazit historii zákazu uživatele\n\n",
+    "ban3": "/admin_unban <user_id> - Zrušit blokaci\n",
+    "ban4": "/admin_bans - Zobrazit záznamy o blokacích\n",
+    "ban5": "/appeal - Odvolání proti blokaci\n",
+    "ban6": "• Porušení pravidel povede k zákazu\n\n",
+    "birthday": "• Dnes je narozeniny: is_birthday=true\n\n",
+    "bottle": "• Dokončete úkoly: Získejte další láhve se zprávou (použijte /tasks pro zobrazení)\n",
+    "bottle2": "/tasks - Centrum úkolů (dokončete úkoly pro získání dalších lahví se zprávou)\n",
+    "bottle3": "• Denní limit na házení a sbírání lahví se zprávou\n",
+    "bottle4": "• VIP uživatelé: 30 lahví se zprávou denně\n",
+    "bottle5": "• Zprávy láhví se zprávou jsou platné po dobu 24 hodin\n\n",
+    "bottle6": "• Bezplatní uživatelé: 3 láhve za den\n",
+    "bottle7": "/throw - Vyhodit láhev se zprávou\n",
+    "bottle8": "/catch - Zvednout láhev se zprávou\n",
+    "bottle9": "🍾 **Systém lahví se zprávou**\n",
+    "broadcast": "/broadcast_status <id> - Zobrazit detaily vysílání\n",
+    "broadcast2": "/broadcast_process - Ručně zpracovat frontu vysílání\n",
+    "broadcast3": "/broadcast_cleanup - Vyčistit uvíznutá vysílání\n",
+    "broadcast4": "/broadcast_status - Zobrazit seznam vysílání\n",
+    "broadcast5": "**Sledování vysílání**\n",
+    "broadcast6": "**Odesílání vysílání**\n",
+    "cancel": "/broadcast_cancel <id> - Zrušit vysílání\n\n",
+    "conversation": "/chats - Můj seznam konverzací\n\n",
+    "conversation2": "• Všechny konverzace jsou anonymní\n",
+    "help2": "💡 Použijte /help pro zobrazení nápovědy",
+    "invite": "• Pozvání přátel: +1 kvóta na osobu (max 10/100)\n",
+    "invite2": "/invite - Pozvat přátele k získání kvóty\n",
+    "mbti": "• Filtr podle MBTI, znamení, krevní skupiny\n",
+    "mbti2": "/mbti - Správa MBTI\n",
+    "message": "/maintenance_enable - Povolit režim údržby\n",
+    "message2": "/broadcast_non_vip - Odeslat ne-VIP uživatelům hromadně\n",
+    "message3": "• Ženy ve věku 18-25: gender=female,age=18-25\n",
+    "message4": "/broadcast_filter - Přesné vysílání\n",
+    "message5": "/broadcast_vip - Odeslat VIP uživatelům hromadně\n",
+    "message6": "/maintenance_disable - Zakázat režim údržby\n\n",
+    "message7": "/maintenance_status - Zobrazit stav údržby\n",
+    "message8": "/broadcast - Odeslat všem uživatelům hromadně\n",
+    "profile": "/edit_profile - Upravit profil\n",
+    "profile2": "/profile - Zobrazit profil\n",
+    "profile3": "👤 **Profil**\n",
+    "quota": "• Pozvání přátel může zvýšit kvótu (max 10/100)\n",
+    "quota2": "• 30 láhví se zprávou kvóta denně\n",
+    "register": "/start - Začít používat / Pokračovat v registraci\n",
+    "report": "/report - Nahlásit nevhodný obsah\n",
+    "settings": "/settings - Nastavení notifikací",
+    "settings2": "📖 **Nápověda a nastavení**\n",
+    "stats": "/stats - Moje statistiky\n\n",
+    "success": "└ Výrazně zvýšit úspěšnost shod\n",
+    "text": "/maintenance_status - Zobrazit stav údržby",
+    "text10": "📖 **Seznam příkazů XunNi**\n\n",
+    "text11": "/analytics - Denní provozní zpráva\n",
+    "text12": "/dev_restart - Úplně resetovat účet",
+    "text13": "📜 **Pravidla hry XunNi**\n\n",
+    "text14": "• Lze posílat pouze text a oficiální emoji\n",
+    "text15": "/dev_info - Systémové informace\n",
+    "text16": "/quota - Zobrazit stav kvóty\n",
+    "text17": "/rules - Zobrazit pravidla hry\n",
+    "text18": "/block - Zablokovat uživatele\n",
+    "text19": "/help - Zobrazit tento seznam\n",
+    "text2": "/refresh_avatar - Obnovit cache avataru\n",
+    "text20": "• Respektujte ostatní, komunikujte laskavě\n\n",
+    "text21": "🎁 **Jak získat kvótu**\n",
+    "text22": "• Nesdílejte osobní kontaktní informace.\n",
+    "text23": "🛡️ **Pravidla bezpečnosti**\n",
+    "text24": "🎮 **Hlavní funkce**\n",
+    "text25": "/menu - Hlavní menu\n",
+    "text26": "💬 **Anonymní chat**\n",
+    "text27": "• Obtěžování a urážky jsou zakázány.\n",
+    "text28": "• Odesílání nevhodného obsahu je zakázáno.\n",
+    "text29": "• Odemkněte jasný avatar druhé strany.\n",
+    "text3": "• Odesílejte pouze ženám: gender=female\n",
+    "text30": "• Podvody a phishing jsou zakázány.\n",
+    "text31": "**Správa uživatelů**\n",
+    "text32": "**Údržba systému**\n",
+    "text33": "**Analýza dat**\n",
+    "text34": "**Vývojové nástroje**\n",
+    "text4": "• Automatický překlad ve 34 jazycích (preferováno OpenAI)\n",
+    "text5": "/profile_card - Zobrazit profilovou kartu\n",
+    "text6": "/dev_reset - Resetovat účet (pro testování)\n",
+    "text7": "• Odesílejte pouze mužům: gender=male\n",
+    "text8": "💡 Narazili jste na problémy? Použijte /help pro zobrazení seznamu příkazů.",
+    "text9": "• Použijte /quota k ověření stavu svého kvóta\n\n",
+    "throw": "• 🆕 Trojitá příležitost (1 láhev se zprávou = 3 příjemci)\n",
+    "vip": "• VIP na Tchaj-wanu: country=TW,vip=true\n",
+    "vip2": "• Denní bezplatná kvóta: 3 (VIP: 30)\n",
+    "vip3": "/funnel - VIP konverzní trychtýř\n\n",
+    "vip4": "🎁 **Kvóta a VIP**\n",
+    "vip5": "/vip - VIP předplatné\n",
+    "vip6": "💎 **Výhody VIP**\n"
+  },
+  "history": {
+    "chatHistory": "💬 **Vaše historie chatu**\n\n",
+    "continueChatButton": "💬 Pokračovat v konverzaci",
+    "continueConversation": "💬 Pokračovat v konverzaci: /reply\n",
+    "conversationEnd": "• Poslední zpráva: {time}\n",
+    "conversationNotFound": "❌ Konverzace s identifikátorem {identifier} nebyla nalezena.\n\nPoužijte /history pro zobrazení všech konverzací.\n\n🏠 Návrat do hlavního menu: /menu",
+    "conversationStart": "• Konverzace zahájena: {time}\n",
+    "conversationTitle": "📨 Konverzace s {identifier} ({count} zpráv)\n",
+    "conversationWith": "💬 **Konverzace s {identifier}**\n\n",
+    "daysAgo": "{days} dny zpět",
+    "errorRetry": "❌ Došlo k chybě, zkuste to prosím později.",
+    "hoursAgo": "{hours} hodiny zpět",
+    "justNow": "Právě teď",
+    "lastMessage": "Poslední zpráva: {preview}\n",
+    "messageSender": "{sender}: {content}\n\n",
+    "messageTime": "📨 {time}\n",
+    "minutesAgo": "{minutes} minut zpět",
+    "noHistory": "💬 Ještě nemáte žádnou historii chatu.\n\nZkuste hodit láhev se zprávou, abyste potkali nové přátele! /throw\n\n🏠 Návrat do hlavního menu: /menu",
+    "noMessages": "(žádné zprávy)",
+    "partnerMessages": "• Druhá strana odeslala: {count} zpráv\n",
+    "recentMessages": "📨 **Nedávné konverzace:**\n\n",
+    "returnToMenu": "🏠 Návrat do hlavního menu: /menu",
+    "returnToMenuButton": "🏠 Návrat do hlavního menu",
+    "stats": "📊 **Statistiky:**\n",
+    "time": "Čas: {time}\n\n",
+    "totalMessages": "• Celkem zpráv: {total}\n",
+    "userMessages": "• Poslal/a jste: {count}\n",
+    "viewFull": "💡 Použijte /history {identifier} pro zobrazení celé konverzace\n\n",
+    "you": "Vy"
+  },
+  "invite": {
+    "codeAccepted": "✅ Kód pozvánky byl přijat! Děkujeme {inviterName} za pozvání",
+    "inviteeSuccess": "✅ Úspěšně jste přijali pozvání!",
+    "inviterSuccess": "✅ Pozvánka byla úspěšná! Získali jste +1 trvalou kvótu",
+    "limitReached": "❌ Dosáhli jste limitu pozvánek ({max} lidí)",
+    "limitWarning": "⚠️ Pozvali jste {count} lidí a můžete pozvat ještě {remaining} více",
+    "selfInviteError": "❌ Nemůžete pozvat sami sebe",
+    "upgradePrompt": "💎 Upgradujte na VIP pro větší kvóty pozvánek",
+    "userType": "{type}"
+  },
+  "maintenance": {
+    "allFeaturesAvailable": "Nyní můžete používat všechny funkce běžně.",
+    "completed": "✅ Údržba systému byla dokončena",
+    "completingSoon": "Téměř hotovo",
+    "correctFormat": "**Správný formát:**\n/maintenance_enable [údržbová zpráva]\n\n",
+    "defaultMessage": "Systém je momentálně nedostupný z důvodu údržby.",
+    "disableFailed": "❌ Nepodařilo se vypnout údržbový režim.",
+    "disableSuccess": "✅ Údržbový režim byl vypnut\n\nOznámení o obnově bylo vysíláno všem uživatelům.",
+    "durationMax": "Doba údržby nesmí přesáhnout 24 hodin (1440 minut)",
+    "durationMin": "Doba údržby musí být alespoň 5 minut",
+    "durationMustBeNumber": "❌ Doba musí být číselná (v minutách)",
+    "enableFailed": "❌ Nepodařilo se aktivovat údržbový režim.",
+    "enableSuccess": "✅ Údržbový režim byl zapnut\n\nDoba: {duration} minut\nZačátek: {startTime}\nKonec: {endTime}\n\nOznámení o údržbě bylo vysíláno všem uživatelům.\nBěžní uživatelé nebudou mít přístup k službám; pouze administrátoři se mohou přihlásit.",
+    "enabledBy": "Aktivátor: {user}\n",
+    "estimatedDuration": "Odhadovaná doba: {duration} minut\n",
+    "estimatedEnd": "Odhadované dokončení: {time}\n",
+    "example": "**Příklad:**\n/maintenance_enable 60 údržba systému aktualizace",
+    "notificationTitle": "🛠️ Oznámení o údržbě systému",
+    "remainingHours": "Přibližně {hours} hodin {minutes} minut",
+    "remainingMinutes": "Přibližně {minutes} minut",
+    "remainingTime": "Zbývající čas: {time}\n",
+    "serviceRestored": "Služby byly obnoveny normálně, děkujeme za vaši trpělivost!",
+    "startTime": "Čas začátku: {time}\n",
+    "status": "Stav: {status}\n",
+    "statusActive": "✅ V údržbě",
+    "statusFailed": "❌ Nepodařilo se načíst stav údržbového režimu",
+    "statusInactive": "❌ Není aktivován",
+    "statusTitle": "🛠️ Stav údržbového režimu",
+    "thanks": "Děkujeme za vaši trpělivost!",
+    "unknown": "Neznámý",
+    "usageError": "❌ Nesprávné použití\n\n"
+  },
+  "mbti": {
+    "description": {
+      "ENFJ": "Protagonista - Charismatický a inspirativní vůdce, který okouzluje publikum.",
+      "ENFP": "Kandidát - Vášnivý, kreativní a společenský volný duch, který vždy najde důvod se usmívat.",
+      "ENTJ": "Velitel - Odvážný, nápaditý a silný vůdce, který vždy najde nebo vytvoří řešení.",
+      "ENTP": "Oponent - Chytrý a zvědavý myslitel, který se neubrání intelektuální výzvě.",
+      "ESFJ": "Governér - Hloubě empatický, oblíbený a nápomocný člověk, který vždy hledá příležitosti, jak přispět komunitě.",
+      "ESFP": "Výkon - Spontánní, energická a vášnivá osobnost, která nikdy nenudí život.",
+      "ESTJ": "Manažer - Výjimečný administrátor s bezkonkurenčními dovednostmi v řízení záležitostí nebo lidí.",
+      "ESTP": "Podnikatel - Chytrá, energická a bystrá osoba, která si skutečně užívá žít na hraně.",
+      "INFJ": "Zastánce - Tichý a tajemný, přesto inspirující a neúnavný idealista.",
+      "INFP": "Zprostředkovatel - Poetický a laskavý altruista, který vždy vášnivě pracuje na obraně spravedlnosti.",
+      "INTJ": "Architekt - Představivý a strategicky myslící člověk, který má vše naplánováno.",
+      "INTP": "Logik - Inovativní vynálezce s neuhasitelnou touhou po poznání.",
+      "ISFJ": "Strážce - Zaměřený a teplý ochránce, vždy připravený chránit své blízké.",
+      "ISFP": "Objevitel - Flexibilní a okouzlující umělec, neustále připravený zkoumat a zažívat nové věci.",
+      "ISTJ": "Logistik - Praktický a na fakta orientovaný jedinec s nepochybnou spolehlivostí.",
+      "ISTP": "Oceňovatel - Odvážný a pragmatický experimentátor se schopností využívat různé nástroje."
     },
-  },
-  estimate: {
-    immediate: `立即發送（約 1-2 秒）`,
-    minutes: `約 \${minutes} 分鐘`,
-    seconds: `約 \${seconds} 秒`,
-  },
-  gender: {
-    female: `[需要翻译]`,
-    label: `👤 性別：{otherUser.gender}`,
-    male: `[需要翻译]`,
-  },
-  help: {
-    ad: `• 觀看廣告：每次 +1 額度（每日最多 20 次）
-`,
-    ad2: `/ad_performance - 廣告效果報表
-`,
-    ad3: `• 觀看廣告獲得額度（額度用完時顯示）
-`,
-    ad4: `• 查看官方廣告獲得永久額度
-
-`,
-    ad5: `• 官方廣告：永久額度獎勵
-`,
-    ad6: `• 無廣告體驗
-
-`,
-    admin: `/admin_remove <user_id> - 移除管理員
-
-`,
-    admin2: `/admin_add <user_id> - 添加管理員
-`,
-    admin3: `/admin_list - 查看管理員列表
-`,
-    admin4: `🔱 **超級管理員功能**
-
-`,
-    admin5: `👮 **管理員功能**
-
-`,
-    admin6: `**管理員管理**
-`,
-    appeal: `/admin_reject <id> [備註] - 拒絕申訴
-
-`,
-    appeal2: `/admin_approve <id> [備註] - 批准申訴
-`,
-    appeal3: `/appeal_status - 查詢申訴狀態
-
-`,
-    appeal4: `/admin_appeals - 查看待審核申訴
-`,
-    appeal5: `🛡️ **安全與申訴**
-`,
-    appeal6: `**申訴審核**
-`,
-    ban: `/admin_ban <user_id> [hours|permanent] - 封禁用戶
-`,
-    ban2: `/admin_bans <user_id> - 查看用戶封禁歷史
-
-`,
-    ban3: `/admin_unban <user_id> - 解除封禁
-`,
-    ban4: `/admin_bans - 查看封禁記錄
-`,
-    ban5: `/appeal - 申訴封禁
-`,
-    ban6: `• 違規將被封禁
-
-`,
-    birthday: `• 今天生日：is_birthday=true
-
-`,
-    bottle: `• 完成任務：獲得額外瓶子（使用 /tasks 查看）
-`,
-    bottle2: `/tasks - 任務中心（完成任務獲得額外瓶子）
-`,
-    bottle3: `• 每天可以丟出和撿起有限數量的漂流瓶
-`,
-    bottle4: `• VIP 用戶：每天 30 個瓶子
-`,
-    bottle5: `• 瓶子在 24 小時內有效
-
-`,
-    bottle6: `• 免費用戶：每天 3 個瓶子
-`,
-    bottle7: `/throw - 丟出漂流瓶
-`,
-    bottle8: `/catch - 撿起漂流瓶
-`,
-    bottle9: `🍾 **漂流瓶系統**
-`,
-    broadcast: `/broadcast_status <id> - 查看廣播詳情
-`,
-    broadcast2: `/broadcast_process - 手動處理廣播隊列
-`,
-    broadcast3: `/broadcast_cleanup - 清理卡住的廣播
-`,
-    broadcast4: `/broadcast_status - 查看廣播列表
-`,
-    broadcast5: `**廣播監控**
-`,
-    broadcast6: `**廣播發送**
-`,
-    cancel: `/broadcast_cancel <id> - 取消廣播
-
-`,
-    conversation: `/chats - 我的對話列表
-
-`,
-    conversation2: `• 所有對話都是匿名的
-`,
-    help2: `💡 使用 /help 查看幫助`,
-    invite: `• 邀請好友：每人 +1 額度（最多 10/100）
-`,
-    invite2: `/invite - 邀請好友獲得額度
-`,
-    mbti: `• 可篩選 MBTI、星座、血型
-`,
-    mbti2: `/mbti - MBTI 管理
-`,
-    message: `/maintenance_enable <分鐘> <訊息> - 啟用維護模式
-`,
-    message2: `/broadcast_non_vip <訊息> - 群發給非 VIP 用戶
-`,
-    message3: `• 18-25歲女性：gender=female,age=18-25
-`,
-    message4: `/broadcast_filter <過濾器> <訊息> - 精準廣播
-`,
-    message5: `/broadcast_vip <訊息> - 群發給 VIP 用戶
-`,
-    message6: `/maintenance_disable - 關閉維護模式
-
-`,
-    message7: `/maintenance_status - 查看維護狀態
-`,
-    message8: `/broadcast <訊息> - 群發給所有用戶
-`,
-    profile: `/edit_profile - 編輯個人資料
-`,
-    profile2: `/profile - 查看個人資料
-`,
-    profile3: `👤 **個人資料**
-`,
-    quota: `• 邀請好友可增加配額（最多 10/100）
-`,
-    quota2: `• 每天 30 個漂流瓶配額
-`,
-    register: `/start - 開始使用 / 繼續註冊
-`,
-    report: `/report - 舉報不當內容
-`,
-    settings: `/settings - 推送設定`,
-    settings2: `📖 **幫助與設定**
-`,
-    stats: `/stats - 我的統計數據
-
-`,
-    success: `└ 大幅提升配對成功率
-`,
-    text: `/maintenance_status - 查看維護狀態`,
-    text10: `📖 **XunNi 指令列表**
-
-`,
-    text11: `/analytics - 每日運營報表
-`,
-    text12: `/dev_restart - 完全重置帳號`,
-    text13: `📜 **XunNi 遊戲規則**
-
-`,
-    text14: `• 只能發送文字和官方 Emoji
-`,
-    text15: `/dev_info - 系統信息
-`,
-    text16: `/quota - 查看額度狀態
-`,
-    text17: `/rules - 查看遊戲規則
-`,
-    text18: `/block - 封鎖使用者
-`,
-    text19: `/help - 顯示此列表
-`,
-    text2: `/refresh_avatar - 刷新頭像緩存
-`,
-    text20: `• 尊重對方，友善交流
-
-`,
-    text21: `🎁 **額度獲取方式**
-`,
-    text22: `• 不要分享個人聯絡方式
-`,
-    text23: `🛡️ **安全規則**
-`,
-    text24: `🎮 **核心功能**
-`,
-    text25: `/menu - 主選單
-`,
-    text26: `💬 **匿名聊天**
-`,
-    text27: `• 禁止騷擾、辱罵他人
-`,
-    text28: `• 禁止發送不當內容
-`,
-    text29: `• 解鎖對方清晰頭像
-`,
-    text3: `• 只發給女性：gender=female
-`,
-    text30: `• 禁止詐騙、釣魚
-`,
-    text31: `**用戶管理**
-`,
-    text32: `**系統維護**
-`,
-    text33: `**數據分析**
-`,
-    text34: `**開發工具**
-`,
-    text4: `• 34 種語言自動翻譯（OpenAI 優先）
-`,
-    text5: `/profile_card - 查看資料卡片
-`,
-    text6: `/dev_reset - 重置帳號（測試用）
-`,
-    text7: `• 只發給男性：gender=male
-`,
-    text8: `💡 遇到問題？使用 /help 查看指令列表`,
-    text9: `• 使用 /quota 查看額度狀態
-
-`,
-    throw: `• 🆕 三倍曝光機會（1 次丟瓶 = 3 個對象）
-`,
-    vip: `• 台灣的VIP：country=TW,vip=true
-`,
-    vip2: `• 每日免費額度：3 個（VIP：30 個）
-`,
-    vip3: `/funnel - VIP 轉化漏斗
-
-`,
-    vip4: `🎁 **額度與 VIP**
-`,
-    vip5: `/vip - VIP 訂閱
-`,
-    vip6: `💎 **VIP 權益**
-`,
-  },
-  history: {
-    chatHistory: `💬 **你的聊天記錄**
-
-`,
-    continueChatButton: `💬 繼續對話`,
-    continueConversation: `💬 繼續對話：/reply
-`,
-    conversationEnd: `• 最後訊息：{time}
-`,
-    conversationNotFound: `❌ 找不到標識符 {identifier} 的對話
-
-使用 /history 查看所有對話
-
-🏠 返回主選單：/menu`,
-    conversationStart: `• 對話開始：{time}
-`,
-    conversationTitle: `📨 {identifier} 的對話（{count} 則訊息）
-`,
-    conversationWith: `💬 **與 {identifier} 的對話**
-
-`,
-    daysAgo: `{days} 天前`,
-    errorRetry: `❌ 發生錯誤，請稍後再試。`,
-    hoursAgo: `{hours} 小時前`,
-    justNow: `剛剛`,
-    lastMessage: `最後訊息：{preview}
-`,
-    messageSender: `{sender}：{content}
-
-`,
-    messageTime: `📨 {time}
-`,
-    minutesAgo: `{minutes} 分鐘前`,
-    noHistory: `💬 你還沒有任何對話記錄
-
-快去丟瓶子認識新朋友吧！ /throw
-
-🏠 返回主選單：/menu`,
-    noMessages: `(無訊息)`,
-    partnerMessages: `• 對方發送：{count} 則
-`,
-    recentMessages: `
-📨 **最近對話：**
-
-`,
-    returnToMenu: `🏠 返回主選單：/menu`,
-    returnToMenuButton: `🏠 返回主選單`,
-    stats: `📊 **統計：**
-`,
-    time: `時間：{time}
-
-`,
-    totalMessages: `• 總訊息數：{total} 則
-`,
-    userMessages: `• 你發送：{count} 則
-`,
-    viewFull: `💡 使用 /history {identifier} 查看完整對話
-
-`,
-    you: `你`,
-  },
-  invite: {
-    codeAccepted: `✅ 邀請碼已接受！感謝 {inviterName} 的邀請`,
-    inviteeSuccess: `✅ 你已成功接受邀請！`,
-    inviterSuccess: `✅ 邀請成功！你獲得了 +1 永久額度`,
-    limitReached: `❌ 你已達到邀請上限（{max} 人）`,
-    limitWarning: `⚠️ 你已邀請 {count} 人，還可邀請 {remaining} 人`,
-    selfInviteError: `❌ 不能邀請自己`,
-    upgradePrompt: `💎 升級 VIP 可獲得更多邀請名額`,
-    userType: `{type}`,
-  },
-  maintenance: {
-    allFeaturesAvailable: `現在可以正常使用所有功能了。`,
-    completed: `✅ 系統維護已完成`,
-    completingSoon: `即將完成`,
-    correctFormat: `**正確格式：**
-/maintenance_enable <時長(分鐘)> [維護訊息]
-
-`,
-    defaultMessage: `系統正在進行維護，暫時無法使用。`,
-    disableFailed: `❌ 關閉維護模式失敗。`,
-    disableSuccess: `✅ 維護模式已關閉
-
-恢復通知已廣播給所有用戶。`,
-    durationMax: `維護時長不能超過 24 小時（1440 分鐘）`,
-    durationMin: `維護時長最少 5 分鐘`,
-    durationMustBeNumber: `❌ 時長必須是數字（分鐘）`,
-    enableFailed: `❌ 啟用維護模式失敗。`,
-    enableSuccess: `✅ 維護模式已啟用
-
-時長：{duration} 分鐘
-開始：{startTime}
-結束：{endTime}
-
-維護通知已廣播給所有用戶。
-一般用戶將無法使用服務，只有管理員可以登入。`,
-    enabledBy: `啟用者：{user}
-`,
-    estimatedDuration: `預計時長：{duration} 分鐘
-`,
-    estimatedEnd: `預計完成：{time}
-`,
-    example: `**示例：**
-/maintenance_enable 60 系統升級維護`,
-    notificationTitle: `🛠️ 系統維護通知`,
-    remainingHours: `約 {hours} 小時 {minutes} 分鐘`,
-    remainingMinutes: `約 {minutes} 分鐘`,
-    remainingTime: `剩餘時間：{time}
-`,
-    serviceRestored: `服務已恢復正常，感謝您的耐心等待！`,
-    startTime: `開始時間：{time}
-`,
-    status: `狀態：{status}
-`,
-    statusActive: `✅ 維護中`,
-    statusFailed: `❌ 無法獲取維護模式狀態`,
-    statusInactive: `❌ 未啟用`,
-    statusTitle: `🛠️ 維護模式狀態`,
-    thanks: `感謝您的耐心等待！`,
-    unknown: `未知`,
-    usageError: `❌ 使用方法錯誤
-
-`,
-  },
-  mbti: {
-    description: {
-      ENFJ: `主人公 - 富有魅力且鼓舞人心的領導者，有能力使聽眾著迷。`,
-      ENFP: `競選者 - 熱情、有創造力且社交能力強的自由精神，總能找到理由微笑。`,
-      ENTJ: `指揮官 - 大膽、富有想像力且意志強大的領導者，總能找到或創造解決方法。`,
-      ENTP: `辯論家 - 聰明好奇的思想家，無法抗拒智力上的挑戰。`,
-      ESFJ: `執政官 - 極有同情心、受歡迎且樂於助人的人，總是渴望為社群做出貢獻。`,
-      ESFP: `表演者 - 自發、精力充沛且熱情的表演者，生活在他們周圍從不無聊。`,
-      ESTJ: `總經理 - 出色的管理者，在管理事務或人員方面無與倫比。`,
-      ESTP: `企業家 - 聰明、精力充沛且善於洞察的人，真正享受生活在邊緣。`,
-      INFJ: `提倡者 - 安靜而神秘，同時鼓舞人心且不知疲倦的理想主義者。`,
-      INFP: `調停者 - 詩意、善良的利他主義者，總是熱情地為正義事業而努力。`,
-      INTJ: `建築師 - 富有想像力和戰略性的思想家，一切皆在計劃之中。`,
-      INTP: `邏輯學家 - 具有創新精神的發明家，對知識有著止不住的渴望。`,
-      ISFJ: `守衛者 - 非常專注且溫暖的守護者，時刻準備著保護所愛之人。`,
-      ISFP: `探險家 - 靈活且迷人的藝術家，時刻準備著探索和體驗新事物。`,
-      ISTJ: `物流師 - 實際且注重事實的個人，可靠性不容懷疑。`,
-      ISTP: `鑒賞家 - 大膽而實際的實驗者，擅長使用各種工具。`,
+    "full": {
+      "question1": "V sociálních situacích obvykle:",
+      "question1.option1": "Iniciujete rozhovor s ostatními",
+      "question1.option2": "Čekáte, až se k vám ostatní přiblíží",
+      "question10": "Při řešení problémů se více spoléháte na:",
+      "question10.option1": "Praktické zkušenosti a fakta",
+      "question10.option2": "Intuici a možnosti",
+      "question11": "Preferujete:",
+      "question11.option1": "Zaměření na konkrétní detaily",
+      "question11.option2": "Zaměření na celkový obraz",
+      "question12": "Při učení nových věcí dáváte přednost:",
+      "question12.option1": "Krok za krokem přístup",
+      "question12.option2": "Zkoumání inovativních cest",
+      "question13": "Při čtení preferujete:",
+      "question13.option1": "Praktické příručky",
+      "question13.option2": "Teorie a koncepty",
+      "question14": "Více vás zajímá:",
+      "question14.option1": "Přítomnost a minulost",
+      "question14.option2": "Budoucnost a možnosti",
+      "question15": "Při popisu věcí tendujete:",
+      "question15.option1": "Používat konkrétní příklady",
+      "question15.option2": "Používat metafory a analogie",
+      "question16": "V práci oceňujete:",
+      "question16.option1": "Praktickou aplikaci",
+      "question16.option2": "Inovativní nápady",
+      "question17": "Důvěřujete:",
+      "question17.option1": "Ověřeným metodám",
+      "question17.option2": "Novým pokusům",
+      "question18": "Při plánování budoucnosti:",
+      "question18.option1": "Zakládáte na realistických podmínkách",
+      "question18.option2": "Představujete si různé možnosti",
+      "question19": "Při rozhodování dáváte přednost:",
+      "question19.option1": "Logice a objektivní analýze",
+      "question19.option2": "Emocím a mezilidské harmonii",
+      "question2": "O víkendech preferujete:",
+      "question2.option1": "Vycházet s přáteli",
+      "question2.option2": "Zůstat doma sám, abych si odpočinul",
+      "question20": "Při kritizování ostatních:",
+      "question20.option1": "Přímo ukazujete na problém",
+      "question20.option2": "Zohledňujete pocity ostatních",
+      "question21": "Co si více vážíte:",
+      "question21.option1": "Spravedlnosti a rovnosti",
+      "question21.option2": "Soucitu a porozumění",
+      "question22": "Při hodnocení nápadu nejprve zvažujete:",
+      "question22.option1": "Zda je to rozumné",
+      "question22.option2": "Zda je to prospěšné",
+      "question23": "Když se vám přítel svěřuje, uděláte:",
+      "question23.option1": "Analyzujete problém a poskytnete návrhy",
+      "question23.option2": "Posloucháte a poskytujete útěchu",
+      "question24": "V konfliktu obvykle:",
+      "question24.option1": "Držíte se principů",
+      "question24.option2": "Udržujete vztahy",
+      "question25": "Snáze vás přesvědčí:",
+      "question25.option1": "Fakta a data",
+      "question25.option2": "Emoce a příběhy",
+      "question26": "Při rozhodování v týmu se více soustředíte na:",
+      "question26.option1": "Efektivitu a výsledky",
+      "question26.option2": "Konsensus a jednotu",
+      "question27": "Věříte, že dobrý vůdce by měl:",
+      "question27.option1": "Být spravedlivý a rozhodný",
+      "question27.option2": "Být ohleduplný a pečující",
+      "question28": "Váš pracovní styl je:",
+      "question28.option1": "Plánovat a připravovat se dopředu",
+      "question28.option2": "Být přizpůsobivý a flexibilní",
+      "question29": "Preferujete:",
+      "question29.option1": "Mít jasné termíny",
+      "question29.option2": "Udržovat otevřené možnosti",
+      "question3": "Po účasti na setkání obvykle:",
+      "question3.option1": "Cítíte se energicky",
+      "question3.option2": "Cítíte potřebu odpočinout si",
+      "question30": "Během cestování máte tendenci:",
+      "question30.option1": "Vytvářet podrobné itineráře",
+      "question30.option2": "Volně objevovat",
+      "question31": "Váš pokoj je obvykle:",
+      "question31.option1": "Úhledný a organizovaný",
+      "question31.option2": "Neformální a uvolněný",
+      "question32": "Při zvládání úkolů:",
+      "question32.option1": "Dokončíte brzy",
+      "question32.option2": "Dokončíte to těsně před termínem",
+      "question33": "Váš preferovaný životní styl:",
+      "question33.option1": "Strukturovaný a uspořádaný",
+      "question33.option2": "Volný a flexibilní",
+      "question34": "Při rozhodování obvykle:",
+      "question34.option1": "Děláte rychlá rozhodnutí",
+      "question34.option2": "Udržujete otevřené možnosti",
+      "question35": "Při nakupování:",
+      "question35.option1": "Vytvoříte seznam a nakoupíte podle plánu",
+      "question35.option2": "Prohlížíte si volně a kupujete, co se vám líbí",
+      "question36": "Když čelíte změnám, obvykle:",
+      "question36.option1": "Cítíte se nepříjemně",
+      "question36.option2": "Cítíte se nadšení",
+      "question4": "V týmu obvykle:",
+      "question4.option1": "Aktivně se hlásíte",
+      "question4.option2": "Než promluvíte, posloucháte",
+      "question5": "Při setkání s novými přáteli:",
+      "question5.option1": "Rychle se s nimi sblížíte",
+      "question5.option2": "Potřebujete čas na jejich poznání",
+      "question6": "Tvůj okruh přátel:",
+      "question6.option1": "Široký, ale ne hluboký",
+      "question6.option2": "Malý a blízký",
+      "question7": "Při práci upřednostňuješ:",
+      "question7.option1": "Týmovou spolupráci",
+      "question7.option2": "Samostatnou práci",
+      "question8": "Když přemýšlíš o problémech, máš tendenci:",
+      "question8.option1": "Mluvit nahlas při brainstormingu",
+      "question8.option2": "Promyslet to před mluvením",
+      "question9": "Když jsi pod tlakem, uděláš:",
+      "question9.option1": "Pohovoříš s přáteli",
+      "question9.option2": "Zpracuješ to sám"
     },
-    full: {
-      question1: `在社交場合中，你通常：`,
-      'question1.option1': `主動與他人交談`,
-      'question1.option2': `等待他人來找我`,
-      question10: `解決問題時，你更依賴：`,
-      'question10.option1': `實際經驗和事實`,
-      'question10.option2': `直覺和可能性`,
-      question11: `你更喜歡：`,
-      'question11.option1': `關注具體細節`,
-      'question11.option2': `關注整體概念`,
-      question12: `學習新事物時，你更喜歡：`,
-      'question12.option1': `按部就班的方法`,
-      'question12.option2': `探索創新的方式`,
-      question13: `閱讀時，你更喜歡：`,
-      'question13.option1': `實用的指南`,
-      'question13.option2': `理論和概念`,
-      question14: `你更關注：`,
-      'question14.option1': `現在和過去`,
-      'question14.option2': `未來和可能性`,
-      question15: `描述事物時，你傾向於：`,
-      'question15.option1': `使用具體例子`,
-      'question15.option2': `使用比喻和類比`,
-      question16: `工作中，你更重視：`,
-      'question16.option1': `實際應用`,
-      'question16.option2': `創新想法`,
-      question17: `你更信任：`,
-      'question17.option1': `已驗證的方法`,
-      'question17.option2': `新的嘗試`,
-      question18: `規劃未來時，你會：`,
-      'question18.option1': `基於現實條件`,
-      'question18.option2': `想像各種可能`,
-      question19: `做決定時，你更重視：`,
-      'question19.option1': `邏輯和客觀分析`,
-      'question19.option2': `情感和人際和諧`,
-      question2: `週末你更喜歡：`,
-      'question2.option1': `和朋友出去玩`,
-      'question2.option2': `在家獨處休息`,
-      question20: `批評他人時，你會：`,
-      'question20.option1': `直接指出問題`,
-      'question20.option2': `考慮對方感受`,
-      question21: `你更看重：`,
-      'question21.option1': `公平和正義`,
-      'question21.option2': `同情和理解`,
-      question22: `評價一個想法時，你首先考慮：`,
-      'question22.option1': `是否合理`,
-      'question22.option2': `是否有益`,
-      question23: `朋友向你傾訴時，你會：`,
-      'question23.option1': `分析問題並提供建議`,
-      'question23.option2': `傾聽並給予安慰`,
-      question24: `衝突中，你更傾向於：`,
-      'question24.option1': `堅持原則`,
-      'question24.option2': `維持關係`,
-      question25: `你更容易被說服通過：`,
-      'question25.option1': `事實和數據`,
-      'question25.option2': `情感和故事`,
-      question26: `團隊決策時，你更關注：`,
-      'question26.option1': `效率和結果`,
-      'question26.option2': `共識和團結`,
-      question27: `你認為好的領導者應該：`,
-      'question27.option1': `公正果斷`,
-      'question27.option2': `體貼關懷`,
-      question28: `你的工作方式是：`,
-      'question28.option1': `提前計劃和準備`,
-      'question28.option2': `隨機應變和靈活`,
-      question29: `你更喜歡：`,
-      'question29.option1': `有明確的截止日期`,
-      'question29.option2': `保持開放的選擇`,
-      question3: `參加聚會後，你通常：`,
-      'question3.option1': `感到充滿活力`,
-      'question3.option2': `感到需要休息`,
-      question30: `旅行時，你傾向於：`,
-      'question30.option1': `制定詳細行程`,
-      'question30.option2': `隨心所欲探索`,
-      question31: `你的房間通常：`,
-      'question31.option1': `整齊有序`,
-      'question31.option2': `隨性自在`,
-      question32: `處理任務時，你會：`,
-      'question32.option1': `盡早完成`,
-      'question32.option2': `接近截止日期才完成`,
-      question33: `你更喜歡的生活方式：`,
-      'question33.option1': `有規律和結構`,
-      'question33.option2': `自由和彈性`,
-      question34: `做決定時，你傾向於：`,
-      'question34.option1': `快速決定`,
-      'question34.option2': `保留選擇權`,
-      question35: `購物時，你會：`,
-      'question35.option1': `列清單按計劃購買`,
-      'question35.option2': `隨意逛逛看到喜歡就買`,
-      question36: `面對變化，你通常：`,
-      'question36.option1': `感到不安`,
-      'question36.option2': `感到興奮`,
-      question4: `在團隊中，你更傾向於：`,
-      'question4.option1': `積極發表意見`,
-      'question4.option2': `先聽後說`,
-      question5: `遇到新朋友時，你會：`,
-      'question5.option1': `很快就能熟絡起來`,
-      'question5.option2': `需要時間慢慢熟悉`,
-      question6: `你的朋友圈：`,
-      'question6.option1': `廣泛但不深入`,
-      'question6.option2': `小而親密`,
-      question7: `工作時，你更喜歡：`,
-      'question7.option1': `團隊合作`,
-      'question7.option2': `獨立工作`,
-      question8: `思考問題時，你傾向於：`,
-      'question8.option1': `邊說邊想`,
-      'question8.option2': `先想好再說`,
-      question9: `壓力大時，你會：`,
-      'question9.option1': `找朋友聊天`,
-      'question9.option2': `獨自消化`,
+    "quick": {
+      "question1": "V sociálních situacích obvykle:",
+      "question1.option1": "Zahajuji rozhovory s ostatními",
+      "question1.option2": "Čekám, až přijdou ostatní za mnou",
+      "question10": "Tvůj pracovní styl je:",
+      "question10.option1": "Plánovat a připravovat se dopředu",
+      "question10.option2": "Být přizpůsobivý a flexibilní",
+      "question11": "Více preferuješ:",
+      "question11.option1": "Jasně definované termíny",
+      "question11.option2": "Udržování otevřených možností",
+      "question12": "Při cestování máš tendenci:",
+      "question12.option1": "Vytvořit podrobný itinerář",
+      "question12.option2": "Volně zkoumat",
+      "question2": "O víkendech preferuješ:",
+      "question2.option1": "Jít ven s přáteli",
+      "question2.option2": "Zůstat doma a odpočívat",
+      "question3": "Po účasti na večírku obvykle:",
+      "question3.option1": "Cítit se energicky",
+      "question3.option2": "Cítit potřebu odpočinku",
+      "question4": "Při řešení problémů více spoléháš na:",
+      "question4.option1": "Praktické zkušenosti a fakta",
+      "question4.option2": "Intuici a možnosti",
+      "question5": "Více preferuješ:",
+      "question5.option1": "Zaměření na konkrétní detaily",
+      "question5.option2": "Zaměření na celkový koncept",
+      "question6": "Při učení novým věcem preferuješ:",
+      "question6.option1": "Postupný přístup",
+      "question6.option2": "Zkoumání inovativních cest",
+      "question7": "Při rozhodování si více ceníš:",
+      "question7.option1": "Logiku a objektivní analýzu",
+      "question7.option2": "Emoce a mezilidskou harmonii",
+      "question8": "Když kritizuješ ostatní, ty:",
+      "question8.option1": "Přímo ukažte problém",
+      "question8.option2": "Zvažte pocity druhé osoby",
+      "question9": "Co si více vážíte:",
+      "question9.option1": "Spravedlnost a právo",
+      "question9.option2": "Soucit a porozumění"
+    }
+  },
+  "mbtiTest": {
+    "afterRegistration": "💡 Po dokončení registrace můžete:\n",
+    "answerRecorded": "✅ Zaznamenáno",
+    "completion": "🎉 {testTitle} Dokončeno!\n\n",
+    "fullAccuracy": "Přesnější výsledky",
+    "fullQuestions": "36 otázek",
+    "fullTest": "Dokončit MBTI test",
+    "fullTestInfo": "💡 Toto je kompletní test ({questions}), výsledek je přesnější.\nPo dokončení registrace můžeš použít /mbti k opakování testu.\n\n",
+    "fullTestTitle": "Dokončit test",
+    "manualModify": "• Manuálně upravit svůj typ MBTI",
+    "moreDetailedTest": "• Provést podrobnější test\n",
+    "note": "⚠️Poznámka: Toto je {testInfo}{testTitle}, {accuracy}.\n\n",
+    "questionOrderError": "⚠️ Nesprávné pořadí otázek",
+    "questions12": "12 otázek",
+    "questions36": "36 otázek",
+    "quickAccuracy": "Výsledky pouze pro referenci",
+    "quickQuestions": "12 otázek",
+    "quickTest": "Rychlý MBTI test",
+    "quickTestInfo": "💡 Toto je rychlý test ({questions}), výsledek je pouze pro orientaci.\nPo dokončení registrace můžeš použít /mbti k opakování testu.\n\n",
+    "quickTestTitle": "Rychlý test",
+    "yourMbtiType": "Tvůj MBTI typ je: **{type}**\n\n"
+  },
+  "menu": {
+    "bottle": "• Aktivováno poté, co přátelé hodí první láhev\n",
+    "buttonCatch": "🎣 Zvedněte láhev se zprávou",
+    "buttonChats": "💬 Můj rozhovory",
+    "buttonHelp": "❓ Nápověda",
+    "buttonInvite": "👥 Pozvat přátele",
+    "buttonProfile": "👤 Profil",
+    "buttonSettings": "⚙️ Nastavení",
+    "buttonStats": "📊 Statistika",
+    "buttonThrow": "🌊 Hodit láhev se zprávou",
+    "buttonVip": "💎 VIP",
+    "invite": "🎁 **Pozvi přátele**\n\n",
+    "invite2": "📋 Váš pozvánkový kód: {inviteCode}",
+    "invite3": "📤 Sdílet pozvánkový kód",
+    "levelFree": "🆓 Bezplatný člen",
+    "levelVip": "💎 VIP člen",
+    "message": "https://t.me/share/url?url=https://t.me/${botUsername}?start=invite_${inviteCode}&text=Zaregistrujte se na XunNi a házejte společně láhve se zprávami!🍾 Použijte můj pozvánkový kód k registraci a oba získáme více kvót! https://t.me/share/url?url=https://t.me/${botUsername}?start=invite_${inviteCode}&text=Join",
+    "message2": "https://t.me/share/url?url=https://t.me/${botUsername}?start=invite_${inviteCode}&text=Přijďte na XunNi a házejte společně láhve se zprávami https://t.me/share/url?url=https://t.me/${botUsername}?start=invite_${inviteCode}&text=Come",
+    "notRegistered": "Neregistrován",
+    "notSet": "Nastaveno",
+    "quota": "• Oba máte denní kvótu +1\n\n",
+    "register": "• Přátelé se registrují pomocí vašeho pozvánkového kódu\n",
+    "selectFeature": "Vyberte funkci:",
+    "settings": "• MBTI: ${mbti}\n",
+    "settings2": "• Zvěrokruh: ${zodiac}\n\n",
+    "settings3": "Nastaveno",
+    "settings4": "Nastaveno není",
+    "short": "Bezplatný člen",
+    "stats": "📊 Zobrazit statistiku pozvání: /profile",
+    "stats2": "📊 Zobrazit statistiku pozvání",
+    "task": "🎯 **Další úkol**\n⏳ ${nextTask.name} (+${nextTask.reward_amount} lahví se zprávou)\n💡 ${nextTask.description}\n\n",
+    "text": "🏠 **Hlavní menu** ${vipBadge}\n\n",
+    "text2": "👋 Ahoj, ${user.nickname}!\n\n",
+    "text3": "💡 Klikněte na tlačítko níže a sdílejte s přáteli:\n",
+    "text4": "💡 Vyberte funkci, kterou chcete:",
+    "text5": "📊 Váš stav:\n",
+    "title": "🏠 **Hlavní menu**",
+    "userNotFound": "Uživatel neexistuje",
+    "vip": "• Úroveň: ${isVip ? 'VIP člen 💎' : 'bezplatný člen'}\n",
+    "vip2": "VIP Člen 💎",
+    "yourStatus": "Váš stav"
+  },
+  "messageForward": {
+    "blockedUrls": "❌ Zpráva obsahuje zakázanou URL",
+    "dailyQuota": "📊 Dnes odesláno: {used}/{limit} zpráv",
+    "messageSent": "✅ Zpráva byla odeslána {identifier}\n\n",
+    "quotaExceeded": "❌ Dnešní kvota zpráv byla vyčerpána",
+    "removeLinks": "💡 Prosím, odstraňte URL a zkuste to znovu",
+    "replyHint": "💡 Prosím, odpovězte na zprávu druhé strany, abyste mohli odeslat zprávu",
+    "upgradeVip": "💡 Přihlaste se k VIP, abyste získali více kvot (100 zpráv/den): /vip\n",
+    "urlNotAllowed": "❌ Zpráva obsahuje nepovolenou URL\n\n",
+    "urlNotAllowedDesc": "⚠️ Pro bezpečnost jsou v konverzacích povoleny pouze konkrétní URL.\n\n",
+    "vipDailyLimit": "💡 VIP uživatelé mohou posílat 100 zpráv denně.\n"
+  },
+  "nickname": {
+    "cannotGetNickname": "❌ Nelze načíst Telegram přezdívku",
+    "customHint": "⚠️ Poznámka:\n• Limit délky přezdívky je 36 znaků\n• Druhá strana zobrazuje maximálně 18 znaků\n• Prosím, nepoužívejte přezdívku k odesílání reklam",
+    "customPrompt": "✏️ Zadejte prosím své uživatelské jméno:\n\n",
+    "genderHint": "⚠️ Poznámka: Nastavení pohlaví nelze po výběru změnit, prosím, vybírejte pečlivě!",
+    "genderSelection": "Skvělé! Vaše uživatelské jméno je: {nickname}\n\nNyní prosím vyberte své pohlaví:\n\n",
+    "nicknameSet": "✅ Přezdívka nastavena",
+    "userNotFound": "❌ Uživatel neexistuje"
+  },
+  "officialAd": {
+    "adNotFound": "❌ Reklama neexistuje",
+    "allAdsViewed": "✅ Zobrazil jste všechny oficiální reklamy",
+    "alreadyViewed": "Tuto reklamu jste již viděli",
+    "buttonClaimReward": "Získat odměnu",
+    "buttonJoinGroup": "Připojit se ke skupině",
+    "buttonSubscribeChannel": "Přihlásit se k kanálu",
+    "buttonVerifyAndClaim": "✅ Ověřit a nárokovat si",
+    "buttonViewDetails": "Zobrazit podrobnosti",
+    "buttonVisitLink": "Navštívit odkaz",
+    "cannotClaim": "❌ Nelze nárokovat tuto reklamu",
+    "claimReward": "✅ Získat odměnu",
+    "claimRewardButton": "✅ Získat odměnu",
+    "claimRewardSuccess": "✅ Odměna úspěšně nárokována! Získáno +{quota} trvalé kvoty!",
+    "communityBenefits": "💡 Doplňte úkoly a získejte trvalou kvotu",
+    "communityThanks": "🙏 Děkujeme, že podporujete komunitu!",
+    "errorRetry": "❌ Došlo k chybě, prosím zkuste to znovu později",
+    "moreAdsAvailable": "💡 Je zde více oficiálních reklam k zhlédnutí!",
+    "nextAd": "➡️ Další reklama",
+    "noAdsAvailable": "❌ Žádné dostupné inzeráty",
+    "noVerificationRequired": "❌ Tento inzerát nevyžaduje ověření",
+    "quotaInfo": "📊 Zbývá dnes: **{remaining}/20**krát",
+    "requiresVerification": "✅ Ověření vyžadováno: Klikněte na tlačítko 'Ověřit' po připojení ke skupině/kanálu",
+    "reward": "🎁 Odměna: +{quota} trvalá kvóta",
+    "rewardPermanent": "🎁 Dokončete úkol a získejte **+1 trvalou kvótu**",
+    "rewardTemporary": "🎁 Gratulujeme! Obdrželi jste +1 dočasnou kvótu (platnou dnes)",
+    "statsAdNotFound": "❌ Inzerát neexistuje",
+    "statsClicks": "• Kliknutí: {count}\n",
+    "statsCtr": "• Míra prokliku (CTR): {rate}%\n",
+    "statsHint": "💡 Použijte /ad_stats {id} pro zobrazení podrobných statistik",
+    "statsNoAds": "📊 Žádné oficiální inzeráty k dispozici",
+    "statsNoPermission": "❌ Nemáte oprávnění zobrazit statistiky inzerátu",
+    "statsRemainingViews": "• Zbývající zobrazení: {remaining}/{total}\n",
+    "statsRewardGranted": "• Vydané odměny: {count}\n",
+    "statsRewardRate": "• Míra odměn: {rate}%\n",
+    "statsRewardSummary": "• Odměny: {rewards}\n\n",
+    "statsSummary": "• Zobrazení: {views} | Kliknutí: {clicks} ({ctr}%)\n",
+    "statsTitle": "📊 **Statistiky oficiální reklamy**\n\n",
+    "statsVerificationCount": "• Ověřovací časy: {count}\n",
+    "statsVerificationRate": "• Míra ověření: {rate}%\n",
+    "statsViews": "• Počet zobrazení: {count}\n",
+    "statusDisabled": "Zablokovat",
+    "statusEnabled": "Povolit",
+    "unlimited": "Neomezeně",
+    "userNotFound": "❌ Uživatel neexistuje",
+    "verifySuccess": "✅ Ověření úspěšné! Obdrželi jste +{quota} trvalou kvótu!"
+  },
+  "onboarding": {
+    "age": "• Věk: ${updatedUser.age} let\n",
+    "age2": "Tvůj věk: ${age} let\n",
+    "age3": "Věk: ${age} let\n",
+    "ageRestriction": "❌ Omlouváme se, musíte být alespoň 18 let, abyste mohli tuto službu používat.\n\n",
+    "agreeTerms": "Klikněte na tlačítko níže a potvrďte, že jste si přečetli a souhlasíte s výše uvedenými podmínkami.",
+    "antiFraud": {
+      "confirm_button": "✅ Ano, rozumím a budu dbát na bezpečnost",
+      "learn_button": "📚 Chci se dozvědět více o bezpečnosti",
+      "question1": "1. Chápete bezpečnostní rizika online seznamování?\n",
+      "question2": "2. Budete chránit své osobní informace?\n",
+      "question3": "3. Budete při setkání s podezřelými zprávami obezřetní?\n\n"
     },
-    quick: {
-      question1: `在社交場合中，你通常：`,
-      'question1.option1': `主動與他人交談`,
-      'question1.option2': `等待他人來找我`,
-      question10: `你的工作方式是：`,
-      'question10.option1': `提前計劃和準備`,
-      'question10.option2': `隨機應變和靈活`,
-      question11: `你更喜歡：`,
-      'question11.option1': `有明確的截止日期`,
-      'question11.option2': `保持開放的選擇`,
-      question12: `旅行時，你傾向於：`,
-      'question12.option1': `制定詳細行程`,
-      'question12.option2': `隨心所欲探索`,
-      question2: `週末你更喜歡：`,
-      'question2.option1': `和朋友出去玩`,
-      'question2.option2': `在家獨處休息`,
-      question3: `參加聚會後，你通常：`,
-      'question3.option1': `感到充滿活力`,
-      'question3.option2': `感到需要休息`,
-      question4: `解決問題時，你更依賴：`,
-      'question4.option1': `實際經驗和事實`,
-      'question4.option2': `直覺和可能性`,
-      question5: `你更喜歡：`,
-      'question5.option1': `關注具體細節`,
-      'question5.option2': `關注整體概念`,
-      question6: `學習新事物時，你更喜歡：`,
-      'question6.option1': `按部就班的方法`,
-      'question6.option2': `探索創新的方式`,
-      question7: `做決定時，你更重視：`,
-      'question7.option1': `邏輯和客觀分析`,
-      'question7.option2': `情感和人際和諧`,
-      question8: `批評他人時，你會：`,
-      'question8.option1': `直接指出問題`,
-      'question8.option2': `考慮對方感受`,
-      question9: `你更看重：`,
-      'question9.option1': `公平和正義`,
-      'question9.option2': `同情和理解`,
+    "antiFraudConfirm": "Prosím potvrďte:",
+    "antiFraudFinalStep": "🛡️ Poslední krok: Potvrzení protifraudulární bezpečnosti\n\n",
+    "antiFraudLearn": "📚 Chci se dozvědět více o bezpečnosti",
+    "antiFraudPassed": "✅ Test proti podvodům úspěšně prošel!\n\n",
+    "antiFraudQuestion1": "1. Chápete bezpečnostní rizika online seznamování?\n",
+    "antiFraudQuestion2": "2. Budete chránit své osobní informace?\n",
+    "antiFraudQuestion3": "3. Budete při setkání s podezřelými zprávami obezřetní?\n\n",
+    "antiFraudQuestions": "Abychom chránili bezpečnost všech uživatelů, prosím potvrďte, že rozumíte následujícímu:\n\n",
+    "antiFraudYes": "✅ Ano, rozumím a budu dbát na bezpečnost",
+    "back": "⬅️ Zpět",
+    "birthday": "Pokud si myslíte, že je to omyl, zkontrolujte prosím, zda je formát vašeho data narození správný (RRRR-MM-DD).",
+    "birthday2": "Zadejte prosím své datum narození znovu (formát: RRRR-MM-DD):\n\n",
+    "birthday3": "Zadejte prosím své datum narození (formát: RRRR-MM-DD):\n\n",
+    "birthday4": "Narozeniny: ${birthday}\n",
+    "birthdayCheck": "Pokud si myslíte, že se jedná o chybu, zkontrolujte, zda je formát vašich narozenin správný (RRRR-MM-DD).",
+    "birthdayError": "❌ {error}\n\n",
+    "birthdayFormatError": "❌ Nesprávný formát narozenin\n\nProsím, zadejte znovu (formát: RRRR-MM-DD):",
+    "birthdayRetry": "Prosím, zadejte znovu datum narození (formát: RRRR-MM-DD):",
+    "birthdayWarning": "⚠️ Narozeniny nelze upravovat po nastavení, prosím potvrďte, že jsou správné!",
+    "bloodType": {
+      "select": "Prosím, vyberte svůj krevní typ:"
     },
-  },
-  mbtiTest: {
-    afterRegistration: `💡 完成註冊後，你可以：
-`,
-    answerRecorded: `✅ 已記錄`,
-    completion: `🎉 {testTitle}完成！
-
-`,
-    fullAccuracy: `結果更準確`,
-    fullQuestions: `36 題`,
-    fullTest: `MBTI 完整測驗`,
-    fullTestInfo: `
-
-💡 這是完整測驗（{questions}），結果更準確。
-完成註冊後，可使用 /mbti 重新測驗。
-
-`,
-    fullTestTitle: `完整測驗`,
-    manualModify: `• 手動修改你的 MBTI 類型`,
-    moreDetailedTest: `• 進行更詳細的測驗
-`,
-    note: `⚠️ 注意：這是 {testInfo}{testTitle}，{accuracy}。
-
-`,
-    questionOrderError: `⚠️ 問題順序錯誤`,
-    questions12: `12 題`,
-    questions36: `36 題`,
-    quickAccuracy: `結果僅供參考`,
-    quickQuestions: `12 題`,
-    quickTest: `MBTI 快速測驗`,
-    quickTestInfo: `
-
-💡 這是快速測驗（{questions}），結果僅供參考。
-完成註冊後，可使用 /mbti 重新測驗。
-
-`,
-    quickTestTitle: `快速測驗`,
-    yourMbtiType: `你的 MBTI 類型是：**{type}**
-
-`,
-  },
-  menu: {
-    bottle: `• 好友丟出第一個瓶子後激活
-`,
-    buttonCatch: `🎣 撿起漂流瓶`,
-    buttonChats: `💬 我的對話`,
-    buttonHelp: `❓ 幫助`,
-    buttonInvite: `👥 邀請好友`,
-    buttonProfile: `👤 個人資料`,
-    buttonSettings: `⚙️ 設定`,
-    buttonStats: `📊 統計`,
-    buttonThrow: `🌊 丟出漂流瓶`,
-    buttonVip: `💎 VIP`,
-    invite: `🎁 **邀請好友**
-
-`,
-    invite2: `📋 你的邀請碼：\\`,
-    invite3: `📤 分享邀請碼`,
-    levelFree: `🆓 免費會員`,
-    levelVip: `💎 VIP 會員`,
-    message: `https://t.me/share/url?url=https://t.me/\${botUsername}?start=invite_\${inviteCode}&text=來 XunNi 一起丟漂流瓶吧！🍾 使用我的邀請碼加入，我們都能獲得更多配額！`,
-    message2: `https://t.me/share/url?url=https://t.me/\${botUsername}?start=invite_\${inviteCode}&text=來 XunNi 一起丟漂流`,
-    notRegistered: `未注册`,
-    notSet: `未设定`,
-    quota: `• 你們都獲得每日配額 +1
-
-`,
-    register: `• 好友使用你的邀請碼註冊
-`,
-    selectFeature: `請選擇功能：`,
-    settings: `• MBTI：\${mbti}
-`,
-    settings2: `• 星座：\${zodiac}
-
-`,
-    settings3: `未設定`,
-    settings4: `未設定`,
-    short: `免費會員`,
-    stats: `📊 查看邀請統計：/profile`,
-    stats2: `📊 查看邀請統計`,
-    task: `🎯 **下一個任務**
-⏳ \${nextTask.name} (+\${nextTask.reward_amount} 瓶子)
-💡 \${nextTask.description}
-
-`,
-    text: `🏠 **主選單** \${vipBadge}
-
-`,
-    text2: `👋 嗨，\${user.nickname}！
-
-`,
-    text3: `💡 點擊下方按鈕分享給好友：
-`,
-    text4: `💡 選擇你想要的功能：`,
-    text5: `📊 你的狀態：
-`,
-    title: `🏠 **主選單**`,
-    userNotFound: `用戶不存在`,
-    vip: `• 等級：\${isVip ? 'VIP 會員 💎' : '免費會員'}
-`,
-    vip2: `VIP 會員 💎`,
-    yourStatus: `你的狀態`,
-  },
-  messageForward: {
-    blockedUrls: `❌ 訊息包含被禁止的網址`,
-    dailyQuota: `📊 今日已發送：{used}/{limit} 則`,
-    messageSent: `✅ 訊息已發送給 {identifier}
-
-`,
-    quotaExceeded: `❌ 今日訊息配額已用完`,
-    removeLinks: `💡 請移除網址後再試`,
-    replyHint: `💡 請回覆對方的訊息來發送消息`,
-    upgradeVip: `💡 升級 VIP 可獲得更多配額（100 則/天）：/vip
-`,
-    urlNotAllowed: `❌ 訊息包含不被允許的網址
-
-`,
-    urlNotAllowedDesc: `⚠️ 為了安全，對話中只允許特定網址。
-
-`,
-    vipDailyLimit: `💡 VIP 用戶每日可發送 100 則訊息。
-`,
-  },
-  nickname: {
-    cannotGetNickname: `❌ 無法獲取 Telegram 暱稱`,
-    customHint: `⚠️ 注意：
-• 暱稱長度限制 36 個字
-• 對方最多顯示 18 個字
-• 請勿使用暱稱發送廣告`,
-    customPrompt: `✏️ 請輸入你的暱稱：
-
-`,
-    genderHint: `⚠️ 注意：性別設定後無法修改，請謹慎選擇！`,
-    genderSelection: `很好！你的暱稱是：{nickname}
-
-現在請選擇你的性別：
-
-`,
-    nicknameSet: `✅ 暱稱已設定`,
-    userNotFound: `❌ 用戶不存在`,
-  },
-  officialAd: {
-    adNotFound: `❌ 廣告不存在`,
-    allAdsViewed: `✅ 你已經看過所有官方廣告了`,
-    alreadyViewed: `你已經看過此廣告`,
-    buttonClaimReward: `領取獎勵`,
-    buttonJoinGroup: `加入群組`,
-    buttonSubscribeChannel: `訂閱頻道`,
-    buttonVerifyAndClaim: `✅ 驗證並領取`,
-    buttonViewDetails: `查看詳情`,
-    buttonVisitLink: `訪問鏈接`,
-    cannotClaim: `❌ 無法領取此廣告`,
-    claimReward: `✅ 領取獎勵`,
-    claimRewardButton: `✅ 領取獎勵`,
-    claimRewardSuccess: `✅ 領取獎勵成功！獲得 +{quota} 個永久額度！`,
-    communityBenefits: `💡 完成任務可獲得永久額度`,
-    communityThanks: `🙏 感謝支持社群！`,
-    errorRetry: `❌ 發生錯誤，請稍後再試`,
-    moreAdsAvailable: `💡 還有更多官方廣告可以觀看！`,
-    nextAd: `➡️ 下一個廣告`,
-    noAdsAvailable: `❌ 暫無可用的廣告`,
-    noVerificationRequired: `❌ 此廣告不需要驗證`,
-    quotaInfo: `📊 今日剩餘：**{remaining}/20** 次`,
-    requiresVerification: `
-
-✅ 需要驗證：加入群組/頻道後點擊「驗證」按鈕`,
-    reward: `🎁 獎勵：+{quota} 個永久額度`,
-    rewardPermanent: `🎁 完成任務可獲得 **+1 永久額度**`,
-    statsAdNotFound: `❌ 廣告不存在`,
-    statsClicks: `• 點擊次數: {count}
-`,
-    statsCtr: `• 點擊率 (CTR): {rate}%
-`,
-    statsHint: `💡 使用 /ad_stats {id} 查看詳細統計`,
-    statsNoAds: `📊 暫無官方廣告`,
-    statsNoPermission: `❌ 你沒有權限查看廣告統計`,
-    statsRemainingViews: `• 剩餘展示: {remaining}/{total}
-`,
-    statsRewardGranted: `• 獎勵發放: {count}
-`,
-    statsRewardRate: `• 獎勵率: {rate}%
-`,
-    statsRewardSummary: `• 獎勵：{rewards}
-
-`,
-    statsSummary: `• 展示：{views} | 點擊：{clicks} ({ctr}%)
-`,
-    statsTitle: `📊 **官方廣告統計**
-
-`,
-    statsVerificationCount: `• 驗證次數: {count}
-`,
-    statsVerificationRate: `• 驗證率: {rate}%
-`,
-    statsViews: `• 展示次數: {count}
-`,
-    statusDisabled: `停用`,
-    statusEnabled: `啟用`,
-    unlimited: `無限`,
-    userNotFound: `❌ 用戶不存在`,
-    verifySuccess: `✅ 驗證成功！獲得 +{quota} 個永久額度！`,
-  },
-  onboarding: {
-    age: `• 年齡：\${updatedUser.age} 歲
-`,
-    age2: `你的年齡：\${age} 歲
-`,
-    age3: `年齡：\${age} 歲
-`,
-    ageRestriction: `❌ 很抱歉，你必須年滿 18 歲才能使用本服務。
-
-`,
-    agreeTerms: `點擊下方按鈕表示你已閱讀並同意上述條款。`,
-    antiFraudConfirm: `請確認：`,
-    antiFraudFinalStep: `🛡️ 最後一步：反詐騙安全確認
-
-`,
-    antiFraudLearn: `📚 我想了解更多安全知識`,
-    antiFraudPassed: `✅ 反詐騙測驗通過！
-
-`,
-    antiFraudQuestion1: `1. 你了解網路交友的安全風險嗎？
-`,
-    antiFraudQuestion2: `2. 你會保護好自己的個人資訊嗎？
-`,
-    antiFraudQuestion3: `3. 遇到可疑訊息時，你會提高警覺嗎？
-
-`,
-    antiFraudQuestions: `為了保護所有使用者的安全，請確認你了解以下事項：
-
-`,
-    antiFraudYes: `✅ 是的，我了解並會注意安全`,
-    back: `⬅️ 返回`,
-    birthday: `如果你認為這是錯誤，請檢查你的生日格式是否正確（YYYY-MM-DD）。`,
-    birthday2: `請重新輸入你的生日（格式：YYYY-MM-DD）：
-
-`,
-    birthday3: `請輸入你的生日（格式：YYYY-MM-DD）：
-
-`,
-    birthday4: `生日：\${birthday}
-`,
-    birthdayCheck: `如果你認為這是錯誤，請檢查你的生日格式是否正確（YYYY-MM-DD）。`,
-    birthdayError: `❌ {error}
-
-`,
-    birthdayFormatError: `❌ 生日格式錯誤
-
-請重新輸入（格式：YYYY-MM-DD）：`,
-    birthdayRetry: `請重新輸入生日（格式：YYYY-MM-DD）：`,
-    birthdayWarning: `⚠️ 生日設定後無法修改，請確認無誤！`,
-    bloodTypeLabel: `🩸 **請選擇你的血型**
-
-`,
-    complete: `請輸入「是」完成測驗：`,
-    confirm: `為了保護所有使用者的安全，請確認你了解網路交友的風險。
-
-`,
-    confirm2: `🛡️ 現在進行反詐騙安全確認
-
-`,
-    confirm3: `了解後，請確認：`,
-    confirmBirthday: `⚠️ 請確認你的生日資訊：
-
-`,
-    customNickname: `自訂暱稱`,
-    enterYes: `請輸入「是」完成測驗：`,
-    errorRetry: `❌ 發生錯誤，請重新輸入。`,
-    gender2: `• 性別：\${updatedUser.gender ===`,
-    gender3: `[需要翻译]`,
-    genderFemale: `[需要翻译]`,
-    genderMale: `[需要翻译]`,
-    genderWarning: `[需要翻译]`,
-    help: `這將幫助我們為你找到更合適的聊天對象～
-
-`,
-    iHaveRead: `✅ 我已閱讀並同意`,
-    languageSelection: `🌐 **Choose Language**
-
-Please select your preferred language:`,
-    lastStep: `最後一步：請閱讀並同意我們的服務條款
-
-`,
-    legalDocuments: `📋 Legal documents are provided in English only.
-
-`,
-    mbti: `請選擇你的 MBTI 類型：
-
-`,
-    mbti2: `✍️ 我已經知道我的 MBTI`,
-    message: `2. 🚨 識別詐騙訊息
-`,
-    message2: `• 警惕索要金錢的訊息
-`,
-    moreLanguages: `[需要翻译]`,
-    nickname: `• 暱稱：\${updatedUser.nickname}
-`,
-    nickname2: `很好！你的暱稱是：\${nickname}
-
-`,
-    nicknameError: `❌ {error}
-
-請重新輸入暱稱：`,
-    nicknameGood: `[需要翻译]`,
-    notCompleted: `⚠️ 請先完成註冊流程`,
-    nowSelectGender: `[需要翻译]`,
-    otherUserNotFound: `❌ 對方用戶不存在。`,
-    pleaseAnswer: `❌ 請認真回答問題
-
-`,
-    pleaseComeBack: `請成年後再來！
-
-`,
-    privacyPolicy: `📋 隱私權政策
-`,
-    profile: `• 隱私權政策：我們如何保護你的個人資料
-`,
-    profile2: `你的個人資料：
-`,
-    retry: `❌ 重新輸入`,
-    senderInfoError: `❌ 發送者資訊錯誤。`,
-    settings: `💡 提示：你可以隨時使用 /mbti 指令來設定或測驗你的 MBTI 類型。
-
-`,
-    settings2: `🧠 現在讓我們設定你的 MBTI 性格類型！
-
-`,
-    settings3: `好的，你可以稍後再設定 MBTI。
-
-`,
-    settings4: `如果不確定，可以先進行測驗或稍後再設定。`,
-    settings5: `🎉 恭喜！你已經完成所有設定！
-
-`,
-    settings6: `• 生日設定後無法修改
-`,
-    settings7: `你想要如何設定？`,
-    short: `⏭️ 稍後再說`,
-    start: `在開始使用前，請閱讀並同意我們的服務條款：
-
-`,
-    start2: `現在你可以開始使用 XunNi 了！`,
-    startRegistration: `[需要翻译]`,
-    stats: `📊 統計`,
-    stepAntiFraud: `🛡️ 請點擊上方按鈕確認反詐騙安全事項`,
-    stepBirthday: `📅 請輸入你的生日（格式：YYYY-MM-DD，例如：1995-06-15）`,
-    stepDefault: `請按照提示完成註冊`,
-    stepGender: `👤 請點擊上方按鈕選擇你的性別`,
-    stepLanguageSelection: `🌍 請點擊上方按鈕選擇你的語言`,
-    stepMbti: `🧠 請點擊上方按鈕選擇 MBTI 設定方式`,
-    stepNickname: `✏️ 請輸入你的暱稱`,
-    stepTerms: `📜 請點擊上方按鈕同意服務條款`,
-    termsOfService: `📋 使用者條款
-
-`,
-    text: `confirm_birthday_\${birthday}`,
-    text10: `例如：1995-06-15
-
-`,
-    text11: `🛡️ 網路交友安全小貼士
-
-`,
-    text12: `📋 最後一步：服務條款
-
-`,
-    text13: `• 第一次見面選擇公共場所
-`,
-    text14: `1. 🔒 保護個人資訊
-`,
-    text15: `• 不要分享財務資訊
-
-`,
-    text16: `• 不要點擊可疑連結
-
-`,
-    text17: `• 告訴朋友你的行程
-
-`,
-    text18: `3. 🤝 安全交友
-`,
-    text19: `📋 使用者條款
-
-`,
-    text2: `💡 你可以隨時使用 /mbti 指令重新測驗或修改。`,
-    text20: `請成年後再來！
-
-`,
-    text21: `📋 隱私權政策
-`,
-    text3: `gender_confirm_\${gender}`,
-    text4: `最後一步：請閱讀並同意我們的服務條款
-
-`,
-    text5: `📝 進行快速測驗（12 題，僅供參考）`,
-    text6: `• 使用者條款：使用本服務的規範
-
-`,
-    text7: `點擊下方按鈕表示你已閱讀並同意上述條款。`,
-    text8: `• 不要輕易透露真實姓名、地址、電話
-`,
-    text9: `• 必須年滿 18 歲才能使用本服務`,
-    understandRisks: `為了保護所有使用者的安全，請確認你了解網路交友的風險。
-
-`,
-    useTelegramNickname: `使用 Telegram 暱稱`,
-    viewPrivacyPolicy: `📋 View Privacy Policy`,
-    viewTermsOfService: `📋 View Terms of Service`,
-    vip: `💡 填寫血型可用於未來的血型配對功能（VIP 專屬）
-
-`,
-    welcome: `[需要翻译]`,
-    yourAge: `你的年齡：{age} 歲
-`,
-    zodiac: `• 星座：\${updatedUser.zodiac_sign}
-`,
-    zodiac2: `星座：\${zodiacSign}
-
-`,
-    antiFraud: {
-      confirm_button: `✅ 是的，我了解並會注意安全`,
-      learn_button: `📚 我想了解更多安全知識`,
-      question1: `1. 你了解網路交友的安全風險嗎？
-`,
-      question2: `2. 你會保護好自己的個人資訊嗎？
-`,
-      question3: `3. 遇到可疑訊息時，你會提高警覺嗎？
-
-`,
+    "bloodTypeLabel": "🩸 **Vyberte prosím svůj krevní typ**\n\n",
+    "complete": "Prosím, zadejte 'ano' pro dokončení testu:",
+    "confirm": "Abychom zajistili bezpečnost všech uživatelů, prosím potvrďte, že rozumíte rizikům online seznamování.\n\n",
+    "confirm2": "🛡️ Nyní probíhá ověřování bezpečnosti proti podvodům\n\n",
+    "confirm3": "Po pochopení prosím potvrďte:",
+    "confirmBirthday": "⚠️ Prosím potvrďte informace o vašem datu narození:\n\n",
+    "customNickname": "Vlastní přezdívka",
+    "enterYes": "Prosím, zadejte 'ano' pro dokončení testu:",
+    "errorRetry": "❌ Došlo k chybě, prosím zadejte znovu.",
+    "example": {
+      "birthday": "Například: 1995-06-15"
     },
-    bloodType: {
-      select: `請選擇你的血型：`,
+    "gender": {
+      "female": "Žena",
+      "label": "• Pohlaví: ${gender}\n",
+      "male": "Muž"
     },
-    example: {
-      birthday: `例如：1995-06-15`,
+    "gender2": "• Pohlaví: ${updatedUser.gender ===",
+    "gender3": "Vyberte prosím své pohlaví:\n\n",
+    "genderFemale": "👩 Žena",
+    "genderMale": "👨 Muž",
+    "genderWarning": "⚠️ Poznámka: Pohlaví nelze měnit po nastavení, prosím, vybírejte pečlivě!",
+    "help": "To nám pomůže najít vhodnější chatovací partnery pro vás～\n\n",
+    "iHaveRead": "✅ Přečetl/a jsem a souhlasím",
+    "info": {
+      "age18": "• Musíte být starší 18 let, abyste mohli používat tuto službu",
+      "city": "🌍 Region: {city}"
     },
-    gender: {
-      female: `[需要翻译]`,
-      label: `• 性別：\${gender}
-`,
-      male: `[需要翻译]`,
+    "languageSelection": "🌐 **Vyberte jazyk**\n\nProsím, vyberte svůj preferovaný jazyk:",
+    "lastStep": "Poslední krok: Přečtěte si a souhlaste s našimi podmínkami služby\n\n",
+    "legalDocuments": "📋 Právní dokumenty jsou poskytovány pouze v angličtině.\n\n",
+    "mbti": "Vyberte prosím svůj typ MBTI:\n\n",
+    "mbti2": "✍️ Už znám svůj MBTI",
+    "message": "2. 🚨 Identifikujte podvodné zprávy\n",
+    "message2": "• Buďte opatrní na zprávy, které žádají o peníze\n",
+    "moreLanguages": "Více jazyků",
+    "nickname": "• Přezdívka: ${updatedUser.nickname}\n",
+    "nickname2": "Skvělé! Vaše uživatelské jméno je: ${nickname}\n\n",
+    "nicknameError": "❌ {error}\n\nProsím, zadejte znovu svou přezdívku:",
+    "nicknameGood": "Skvělé! Vaše uživatelské jméno je: {nickname}\n\n",
+    "notCompleted": "⚠️ Nejprve prosím dokončete registrační proces",
+    "nowSelectGender": "Nyní prosím vyberte své pohlaví:\n\n",
+    "otherUserNotFound": "❌ Další uživatel neexistuje.",
+    "pleaseAnswer": "❌ Odpovězte prosím vážně na otázky\n\n",
+    "pleaseComeBack": "Prosím vraťte se po dosažení 18 let!\n\n",
+    "privacyPolicy": "📋 Zásady ochrany osobních údajů\n",
+    "profile": "• Zásady ochrany osobních údajů: Jak chráníme vaše osobní informace\n",
+    "profile2": "Vaše osobní informace:\n",
+    "prompt": {
+      "birthday": "Prosím, zadejte své narozeniny (formát: RRRR-MM-DD):"
     },
-    info: {
-      age18: `• 必須年滿 18 歲才能使用本服務`,
-      city: `🌍 地區：{city}`,
+    "retry": "❌ Prosím, zadejte znovu",
+    "senderInfoError": "❌ Informace o odesílateli nejsou správné.",
+    "settings": "💡 Tip: Můžete kdykoli použít příkaz /mbti k nastavení nebo otestování svého typu MBTI.\n\n",
+    "settings2": "🧠 Nyní nastavme váš MBTI osobnostní typ!\n\n",
+    "settings3": "Dobře, můžete nastavit svůj MBTI později.\n\n",
+    "settings4": "Pokud si nejste jisti, můžete si nejprve udělat test nebo to nastavit později.",
+    "settings5": "🎉 Gratulujeme! Úspěšně jste dokončili všechna nastavení!\n\n",
+    "settings6": "• Datum narození nelze po nastavení měnit\n",
+    "settings7": "Jak chcete nastavit?",
+    "short": "⏭️ O tom si promluvíme později",
+    "start": "Než začnete používat, prosím přečtěte si a souhlaste s našimi podmínkami služby:\n\n",
+    "start2": "Nyní můžete začít používat XunNi!",
+    "startRegistration": "Zahájit registraci →",
+    "stats": "📊 Statistiky",
+    "stepAntiFraud": "🛡️ Prosím, klikněte na tlačítko výše pro potvrzení bezpečnostních opatření proti podvodům",
+    "stepBirthday": "📅 Zadejte prosím své datum narození (formát: RRRR-MM-DD, např. 1995-06-15)",
+    "stepDefault": "Prosím, dokončete registraci podle pokynů",
+    "stepGender": "👤 Prosím, klikněte na tlačítko výše pro výběr vašeho pohlaví",
+    "stepLanguageSelection": "🌍 Prosím, klikněte na tlačítko výše pro výběr vašeho jazyka",
+    "stepMbti": "🧠 Prosím, klikněte na tlačítko výše pro výběr metody nastavení MBTI",
+    "stepNickname": "✏️ Prosím, zadejte svou přezdívku",
+    "stepTerms": "📜 Prosím, klikněte na tlačítko výše pro souhlas s Podmínkami služby",
+    "terms": {
+      "agree_button": "✅ Souhlasím",
+      "english_only_note": "📋 Právní dokumenty jsou poskytovány pouze v angličtině.",
+      "privacy_policy_button": "🔒 Zásady ochrany soukromí",
+      "terms_of_service_button": "📋 Podmínky služby"
     },
-    prompt: {
-      birthday: `請輸入你的生日（格式：YYYY-MM-DD）：`,
+    "termsOfService": "📋 Uživatelské podmínky\n\n",
+    "text": "confirm_birthday_${birthday}",
+    "text10": "Například: 1995-06-15\n\n",
+    "text11": "🛡️ Tipy na bezpečnost online seznamování\n\n",
+    "text12": "📋 Závěrečný krok: Podmínky služby\n\n",
+    "text13": "• Vyberte veřejné místo pro první schůzku\n",
+    "text14": "1. 🔒 Chraňte osobní informace\n",
+    "text15": "• Nesdílejte finanční informace\n\n",
+    "text16": "• Neclikejte na podezřelé odkazy\n\n",
+    "text17": "• Informujte přátele o svém itineráři\n\n",
+    "text18": "3. 🤝 Bezpečné seznamování\n",
+    "text19": "📋 Uživatelská smlouva\n\n",
+    "text2": "💡 Můžete kdykoli použít příkaz /mbti k opakovanému testování nebo úpravám.",
+    "text20": "Prosím, vraťte se po dosažení dospělosti!\n\n",
+    "text21": "📋 Zásady ochrany soukromí\n",
+    "text3": "potvrdit_pohlaví_${gender}",
+    "text4": "Konečný krok: Přečtěte si a souhlasíte s našimi Podmínkami služby\n\n",
+    "text5": "📝 Udělejte si rychlý test (12 otázek, pouze pro informaci)",
+    "text6": "• Uživatelovy podmínky: Pokyny k používání této služby\n\n",
+    "text7": "Klikněte na tlačítko níže pro potvrzení, že jste si přečetli a souhlasíte s výše uvedenými podmínkami.",
+    "text8": "• Nezveřejňujte snadno své skutečné jméno, adresu nebo číslo telefonu\n",
+    "text9": "• Musíte být alespoň 18 let, abyste tuto službu mohli používat",
+    "understandRisks": "Abychom ochránili bezpečnost všech uživatelů, prosím, potvrďte, že chápete rizika online seznamování.\n\n",
+    "useTelegramNickname": "Použijte přezdívku na Telegramu",
+    "viewPrivacyPolicy": "📋 Zobrazit zásady ochrany osobních údajů",
+    "viewTermsOfService": "📋 Zobrazit podmínky služby",
+    "vip": "💡 Poskytnutí vašeho krevního typu bude použito pro budoucí funkce shody krevních typů (pouze pro VIP)\n\n",
+    "warning": {
+      "birthday": "⚠️ Datum narození nelze po nastavení změnit. Prosím potvrďte jeho správnost!"
     },
-    terms: {
-      agree_button: `✅ 我同意`,
-      english_only_note: `📋 法律文檔僅提供英文版本。`,
-      privacy_policy_button: `🔒 隱私政策`,
-      terms_of_service_button: `📋 服務條款`,
+    "welcome": "Vítejte v XunNi！\n\nVyberte prosím svůj jazyk:",
+    "yourAge": "Váš věk: {age} let\n",
+    "zodiac": "• Znamení: ${updatedUser.zodiac_sign}\n",
+    "zodiac2": "Znamení zvěrokruhu: ${zodiacSign}\n\n"
+  },
+  "payments": {
+    "empty": "V současnosti nejsou žádné záznamy o platbách.",
+    "product": {
+      "VIP_MONTHLY": "💎 VIP měsíční předplatné"
     },
-    warning: {
-      birthday: `⚠️ 生日設定後無法修改，請確認無誤！`,
+    "status": {
+      "failed": "❌ Platba selhala",
+      "paid": "✅ Platba byla úspěšná",
+      "pending": "⏳ Zpracovává se",
+      "refunded": "↩️ Vráceno"
     },
+    "title": "💳 Záznamy o platbách (Strana {page} / {total})"
   },
-  payments: {
-    empty: `No payment records found.`,
-    title: `💳 Payment History (Page {page} / {total})`,
-    product: {
-      VIP_MONTHLY: `💎 VIP Monthly Subscription`,
+  "profile": {
+    "activatedInvites": "✅ Aktivované pozvánky: {successfulInvites} / {inviteLimit} lidí\n",
+    "age": "🎂 Věk: ${age}\n",
+    "anonymousUser": "Anonymní uživatel",
+    "bloodType": "🩸 Krevní typ: ${bloodType}\n",
+    "bottle": ": permanentníQuota} láhve se zprávou\n\n",
+    "cardAge": "{age} let",
+    "cardBio": "📝 Bio:\n{bio}\n\n",
+    "cardFooter": "💡 Toto je datová karta zobrazená ostatním v konverzaci\n\n",
+    "cardGenderFemale": "♀️ Žena",
+    "cardGenderMale": "♂️ Muž",
+    "cardInterests": "🏷️ Zájmy: {interests}\n\n",
+    "cardLanguage": "🌍 Jazyk: {language}\n\n",
+    "cardMbti": "🧠 MBTI: {mbti}\n",
+    "cardSeparator": "━━━━━━━━━━━━━━━━\n",
+    "cardTitle": "┌─────────────────────────┐\n│ 📇 Profilová karta │\n└─────────────────────────┘\n\n",
+    "cardZodiac": "⭐ Znamení: {zodiac}\n",
+    "completeOnboarding": "⚠️ Prosím nejprve dokončete registrační proces.\n\nPoužijte /start pro pokračování v registraci.",
+    "conversation": "💡 Toto je datová karta, kterou zobrazuješ druhé osobě v konverzaci\n\n",
+    "editProfile": "📝 Upravit profil",
+    "gender": "👤 Pohlaví: ${gender}\n",
+    "hints": "💡 Tip:\n",
+    "invite": "⏳ Čekající pozvánky: ${inviteStats.pending} lidí\n",
+    "invite2": "🎁 **Informace o pozvánce**\n\n",
+    "inviteCodeLabel": "📋 Váš pozvánkový kód: `{inviteCode}`\n",
+    "manual": "Manuální nastavení",
+    "mbti": "• Použijte /mbti pro opakování testu nebo úpravu MBTI\n",
+    "mbtiWithSource": "🧠 MBTI: {mbti}{source}\n",
+    "message": "https://t.me/share/url?url=https://t.me/${botUsername}?start=invite_${inviteCode}&text=Pozvěte do XunNi a společně házíme láhve se zprávami!🍾 Použijte můj pozvánkový kód: ${inviteCode} https://t.me/share/url?url=https://t.me/${botUsername}?start=invite_${inviteCode}&text=Come",
+    "message2": "${inviteLimitWarning}\n\n",
+    "message3": "🌍 Jazyk: ${user.language_pref}\n\n",
+    "message4": "🌍 Jazyk: ${user.language_pref }\n",
+    "message5": "📈 Směnný kurz: ${inviteStats.conversionRate}%\n",
+    "message6": "${gender} • ${age} let • ${city}\n\n",
+    "message7": "https://t.me/share/url?url=https://t.me/${botUsername}?start=invite_${inviteCode}&text=Pozvěte do XunNi a společně házíme láhve se zprávami https://t.me/share/url?url=https://t.me/${botUsername}?start=invite_${inviteCode}&text=Come",
+    "mysterious": "Tato osoba je velmi tajemná, nezanechává nic za sebou～",
+    "nickname": "📛 Přezdívka: ${displayNickname}\n",
+    "notSet": "Nastaveno nebylo",
+    "profile": "│ 📇 Profilová karta │\n",
+    "profile2": "👤 **Profil**\n\n",
+    "quota": "💡 Dokončujte úkoly a získejte další denní kvóty (použijte /tasks pro kontrolu)\n",
+    "quota2": "📦 Aktuální denní kvóta: ${taskBonus > 0 ?",
+    "quotaBottles": "{taskBonus} láhve se zprávou",
+    "quotaTotal": "📦 Aktuální denní kvóta: {quota}\n\n",
+    "returnToMenu": "🏠 Návrat do hlavního menu: /menu",
+    "separator": "━━━━━━━━━━━━━━━━\n\n",
+    "settings": "Nastaveno nebylo",
+    "settings2": "Nastaveno nebylo",
+    "settings3": "Nastaveno nebylo",
+    "settings4": "Nastaveno nebylo",
+    "settings5": "Nastaveno nebylo",
+    "settings6": "Nastaveno nebylo",
+    "settings7": "Nastaveno nebylo",
+    "settings8": "Nastaveno nebylo",
+    "shareInviteCode": "📤 Sdílet pozvánkový kód",
+    "short": "📝 Upravit profil",
+    "short2": "Člen zdarma",
+    "stats": "• Použijte /stats pro zobrazení statistik\n\n",
+    "success": "💡 Získejte +1 denní kvótu trvale za každého úspěšně pozvaného člověka\n",
+    "systemError": "❌ Došlo k systémové chybě, zkuste to prosím znovu později.",
+    "test": "Testovací výsledky",
+    "text": "• Použijte /profile_card pro zobrazení kompletní profilové karty\n",
+    "text2": "🏷️ Zájmy: ${interests}\n\n",
+    "text3": "💎 Členství: ${vipStatus}\n\n",
+    "text4": "📝 Bio:\n${bio}\n\n",
+    "text5": "Tato osoba je velmi tajemná, za sebou nic nezanechává～",
+    "userNotFound": "⚠️ Uživatel neexistuje, prosím zaregistrujte se nejprve pomocí /start.",
+    "vip": "VIP člen (vyprší: ${expireDate})",
+    "vip2": "• Použijte /vip pro upgrade na VIP člena\n",
+    "vipUpgrade": "• Použijte /vip pro upgrade na VIP člena\n",
+    "zodiac": "⭐ Zvěrokruh: ${zodiac}\n"
+  },
+  "refreshAvatar": {
+    "failed": "❌ Nepodařilo se obnovit avatar\n\nProsím zkuste to znovu později nebo kontaktujte administrátora.",
+    "processing": "🔄 Obnovuji avatar...\n\nTo může chvíli trvat.",
+    "success": "✅ **Avatar byl aktualizován!**\n\nVaše cache avatara byla obnovena. Nejnovější avatar se zobrazí v historii chatu při příštím zhlédnutí.\n\n💡 **Tip:**\n• Avatar se automaticky aktualizuje každých 7 dní\n• Pokud změníte svůj Telegram avatar, bude automaticky detekován\n• Můžete také ručně obnovit pomocí tohoto příkazu kdykoli",
+    "userNotFound": "❌ Uživatel neexistuje. Nejprve se prosím registrujte."
+  },
+  "refreshConversations": {
+    "clickButtonHint": "❌ Uživatel neexistuje, prosím zaregistrujte se nejprve",
+    "commandHelp": "💡 **Tip**: Prosím klikněte na tlačítko výše pro začátek",
+    "commandMenu": "• /help - Zobrazit nápovědu",
+    "commandTasks": "• /menu - Hlavní menu",
+    "failed": "❌ Nepodařilo se obnovit historii chatu\n\nZkuste to prosím později nebo kontaktujte administrátora.",
+    "noHistory": "💡 **Nebyla nalezena historie chatu**\n\nDosud nemáte žádné záznamy chatu.\n\nPoužijte /throw pro hod láhve se zprávou a začněte chatovat!",
+    "partialSuccess": "💡 **Nebyly nalezeny žádné záznamy z konverzace**\n\nJeště nemáte žádné záznamy z konverzace.\n\nZačněte chatovat pomocí /throw pro hodit láhev se zprávou! {updated} {failed}",
+    "processing": "🔄 Obnovování celé historie chatu...\n\nTo může chvíli trvat, prosím, čekejte.",
+    "success": "✅ **Historie konverzace byla aktualizována!**\n\nÚspěšně obnoveno {updated} příspěvků z historie konverzace.\n\n💡 **Tip:**\n• VIP uživatelé mohou vidět jasné profilové obrázky\n• Bezplatní uživatelé vidí rozmazané profilové obrázky\n• Upgrade na VIP automaticky obnoví příspěvky historie",
+    "userNotFound": "❌ Uživatel neexistuje. Nejprve se prosím registrujte."
+  },
+  "report": {
+    "aiAutoBan": "❌ Uživatel neexistuje, prosím zaregistrujte se nejprve",
+    "blockHint": "• Dlouhým stisknutím zprávy druhé strany odpovězte /blokujte, abyste zablokovali tohoto uživatele\n",
+    "cancel": "❌ Zrušit",
+    "cancelled": "Zrušeno",
+    "cannotIdentify": "⚠️ Nelze identifikovat chatovacího partnera\n\n",
+    "catchHint": "• Použijte /catch pro vyzvednutí nové lahve se zprávou",
+    "completeOnboarding": "⚠️ Nejprve prosím dokončete registrační proces.\n\nPoužijte /start pro pokračování registrace.",
+    "conversationInfoError": "⚠️ Informace o konverzaci jsou nesprávné.",
+    "conversationInfoError2": "⚠️ Informace o konverzaci jsou nesprávné",
+    "conversationNotExists": "⚠️ Konverzace neexistuje",
+    "conversationNotFound": "⚠️ Nelze najít tuto konverzaci\n\nKonverzace mohla skončit nebo neexistuje.",
+    "ensureReply": "Prosím, ujistěte se, že odpovídáte na zprávu zaslanou druhou stranou (s identifikátorem #).",
+    "hint": "💡 To přesně specifikuje cíl k nahlášení.",
+    "multipleReports": "Více nahlášení",
+    "reasonHarassment": "😡 Obtěžování / Zneužívání",
+    "reasonNsfw": "🔞 Explicitní obsah",
+    "reasonOther": "⚠️ Další porušení",
+    "reasonScam": "💰 Podvod / Phishing",
+    "reasonSpam": "📢 Spam",
+    "replyRequired": "⚠️ Prosím, dlouze stiskněte zprávu, kterou chcete nahlásit, a pak odpovězte příkazem\n\n",
+    "selectReason": "Prosím, vyberte důvod pro nahlášení:",
+    "sessionExpired": "⚠️ Konverzace vypršela, prosím, proveďte akci znovu",
+    "step1": "1️⃣ Dlouhým stisknutím zprávy druhé strany\n",
+    "step2": "2️⃣ Vyberte 'Odpovědět'\n",
+    "step3": "3️⃣ Zadejte /report\n\n",
+    "steps": "**Kroky k provedení:**\n",
+    "submitted": "✅ **Hlášení odesláno** (#{identifier})\n\n",
+    "systemError": "❌ Došlo k systémové chybě",
+    "thanks": "Děkujeme za vaše hlášení, zkontrolujeme ho co nejdříve.\n\n",
+    "tips": "💡 Tip:\n",
+    "title": "🚨 **Hlášení nevhodného obsahu** (#{identifier})\n\n",
+    "userNotFound": "⚠️ Uživatel neexistuje, prosím, použijte /start pro registraci."
+  },
+  "risk": {
+    "containsSensitiveWords": "Obsahuje citlivá slova"
+  },
+  "router": {
+    "replyPrompt": "💬 Odpovědět",
+    "suggestCatch": "❓ Chcete vyzvednout lahev se zprávou?\n\nPoužijte /catch pro vyzvednutí lahve se zprávou\n\n💡 **Běžné příkazy**:\n• /throw - Hoďte lahev se zprávou\n• /catch - Vyzvedněte lahev se zprávou\n• /menu - Hlavní menu\n• /tasks - Centrum úkolů",
+    "suggestMenu": "❓ Příkaz nebyl nalezen\n\n💡 **Běžné příkazy**:\n• /throw - Hoďte lahev se zprávou\n• /catch - Vyzvedněte lahev se zprávou\n• /menu - Hlavní menu\n• /tasks - Centrum úkolů",
+    "suggestThrow": "❓ Chcete hodit lahev se zprávou?\n\nProsím, dlouhým stisknutím předchozí zprávy nebo této zprávy,\nv menu vyberte 'Odpovědět',\na poté zadejte obsah lahve se zprávou, kterou chcete poslat\n\n💡 **Běžné příkazy**:\n• /throw - Hoďte lahev se zprávou\n• /catch - Vyzvedněte lahev se zprávou\n• /menu - Hlavní menu\n• /tasks - Centrum úkolů\n\n#THROW",
+    "throwPrompt": "📝 Prosím, zadejte obsah své lahve se zprávou:"
+  },
+  "session": {
+    "timeoutCatchBottle": "⏰ Proces vyzvednutí lahve vypršel\n\nProsím, použijte /catch pro restart.",
+    "timeoutConversation": "⏰ Konverzace vypršela\n\nDruhá strana mohla odejít. Použijte /catch pro vyzvednutí nové lahve!",
+    "timeoutEditProfile": "⏰ Proces úpravy dat vypršel\n\nProsím, restartujte úpravu.",
+    "timeoutOnboarding": "⏰ Proces registrace vypršel\n\nProsím, použijte /start pro restart registrace.",
+    "timeoutThrowBottle": "⏰ Proces házení lahve vypršel\n\nProsím, použijte /throw pro restart.",
+    "typeCatchBottle": "Proces vyzvednutí lahve",
+    "typeConversation": "Konverzace",
+    "typeEditProfile": "Upravit data",
+    "typeOnboarding": "Registrační proces",
+    "typeThrowBottle": "Proces házení lahve"
+  },
+  "settings": {
+    "back": "Zpět",
+    "changeLanguage": "🌐 Změnit jazyk",
+    "currentSettings": "⚙️ **Současná nastavení**",
+    "languageLabel": "Jazyk: {language}",
+    "languageUpdated": "✅ Jazyk byl aktualizován na: {language}",
+    "message": "🌐 **Vyberte jazyk**\n\nProsím, vyberte svůj preferovaný jazyk:",
+    "returnToMenu": "🏠 Návrat do hlavního menu",
+    "selectOption": "Prosím vyberte možnost:",
+    "settings": "💡 Zvolte nastavení, která chcete upravit:",
+    "settings2": "⚙️ **Nastavení**\n\n",
+    "settings3": "🏠 Návrat do nastavení",
+    "settings4": "Aktuální nastavení:\n",
+    "text": "• Jazyk: ${languageName} 🇹🇼\n\n",
+    "title": "🏠 **Hlavní menu**"
+  },
+  "stats": {
+    "activeUsers": "• Aktivní včera: {active}\n\n",
+    "age": "🎂 **Věk**: ${age} let\n",
+    "avgMatches": "• Průměrné shody za sezení: ${avg} objektů\n",
+    "bottle": "💎 **VIP Statistiky tří lahví** (posledních 30 dní)\n",
+    "bottle2": "🍾 **Láhev se zprávou**\n",
+    "bottle3": "🎈 Statistika láhví se zprávou\n",
+    "bottles": "🍾 **Láhev se zprávou**\n",
+    "bottlesCaught": "• Nalezeno: ${count} lahví\n",
+    "bottlesThrown": "• Zlikvidováno: ${count} lahví\n",
+    "catch": "• Chyceno včera: ${stats.caughtBottles}\n\n",
+    "catch2": "• Nalezeno: ${stats.bottlesCaught} lahví\n",
+    "caught": "• Chyceno včera: {caught}\n\n",
+    "conversation": "• Aktivní konverzace: ${stats.activeConversations}\n",
+    "conversation2": "• Celkem konverzací: ${stats.totalConversations}\n",
+    "conversation3": "• Celkem konverzací: ${stats.totalConversations}",
+    "conversation4": "💬 **Konverzace**\n",
+    "conversation5": "💬 Statistika konverzací\n",
+    "conversations": "💬 **Konverzace**\n",
+    "conversationsActive": "• Aktivní konverzace: ${count}\n",
+    "conversationsTotal": "• Celkem konverzací: ${count}\n",
+    "date": "Datum: {date}\n\n",
+    "dateFormatError": "Chyba formátu data, mělo by být ve formátu RRRR-MM-DD",
+    "match": "🎯 **Shoda**\n",
+    "matchRate": "• Úspěšnost shody: ${rate}%\n",
+    "matchRateValue": "• Míra shody: ${rate}%\n",
+    "matchedSlots": "• Úspěšné shody: ${count}\n",
+    "mbti": "🧠 **MBTI**: ${mbti}\n",
+    "message": "• Čas vypršení: ${expireDate}\n",
+    "message10": "• Celkem zpráv: ${stats.totalMessages}",
+    "message2": "${used}/${permanentQuota}+${taskBonus} (zbývá ${remaining})",
+    "message3": "Zpráva vygenerována: ${new Date().toLocaleString('zh-TW')}",
+    "message4": "${used}/${permanentQuota} (zbývá ${remaining})",
+    "message5": "• Celkem zpráv: ${stats.totalMessages}\n\n",
+    "message6": "• Nové zprávy včera: ${stats.newMessages}\n\n",
+    "message7": "• Celkem slotů na shody: ${vipStats.totalSlots}\n",
+    "message8": "• Průměrná míra odpovědí: ${stats.replyRate}%\n\n",
+    "message9": "• Aktivní uživatelé včera: ${stats.activeUsers}\n\n",
+    "messages": "💬 Statistika konverzací",
+    "messagesTotal": "• Celkem zpráv: ${count}\n",
+    "new": "• Nové včera: {new}",
+    "newMessages": "• Nové zprávy včera: {new}\n\n",
+    "newUsers": "• Nové včera: {new}",
+    "newVip": "• Nové včera: {new}\n\n",
+    "notSet": "Nastaveno není",
+    "quota": "• Dnešní kvóta: ${stats.todayQuota.display}\n\n",
+    "register": "📅 **Datum registrace**: ${new Date(user.created_at).toLocaleDateString('zh-TW')}\n",
+    "register2": "• Celkový počet registrací: ${stats.totalUsers}",
+    "registerTime": "📅 **Datum registrace**: ${date}\n",
+    "replyRate": "• Průměrná míra odpovědi: ${rate}%\n",
+    "reportTime": "Report vygenerován v: {time}",
+    "separator": "---\n",
+    "settings": "🧠 **MBTI**: \\$\n\n",
+    "settings2": "Nastaveno není",
+    "short": "Člen zdarma",
+    "statDateEmpty": "Datum statistik nemůže být prázdné",
+    "stats": "📊 **Moje statistiky**\n\n",
+    "stats2": "💎 VIP statistiky\n",
+    "stats3": "👥 Uživatelské statistiky\n",
+    "stats4": "Datum statistik nemůže být prázdné",
+    "success": "• Úspěšné shody: ${vipStats.matchedSlots}\n",
+    "success2": "• Míra úspěšnosti shod: ${stats.matchRate}%\n",
+    "text": "• Průměrné shody na párování: ${avgMatches} položek\n",
+    "text10": "🎯 **Párování**\n",
+    "text2": "• Nové včera: ${stats.newBottles}\n",
+    "text3": "• Celkem: ${stats.totalBottles}",
+    "text4": "• Nové včera: ${stats.newUsers}\n",
+    "text5": "• Noví VIP včera: ${stats.newVip}\n\n",
+    "text6": "• Míra párování: ${matchRate}%\n",
+    "text7": "📊 XunNi Denní datová zpráva\n",
+    "text8": "Chyba ve formátu data, mělo by být ve formátu YYYY-MM-DD",
+    "text9": "Datum: ${dateStr}\n\n",
+    "throw": "• Láhve hozené: ${stats.bottlesThrown}\n",
+    "throw2": "• Hody: ${vipStats.throws}\n",
+    "throws": "• Hody: ${count}\n",
+    "timeLeftDaysHours": "${days} dní ${hours} hodin",
+    "timeLeftHours": "${hours} hodin",
+    "title": "📊 **Moje statistiky**\n\n",
+    "todayQuota": "• Dnešní kvóta: ${display}\n\n",
+    "total": "• Celkem: {total}",
+    "totalConversations": "• Celkový počet dialogů: {total}",
+    "totalMessages": "• Celkový počet zpráv: {total}",
+    "totalSlots": "• Celkový počet shodných slotů: ${count}\n",
+    "totalUsers": "• Celkový počet registrací: {total}",
+    "totalVip": "• Celkový počet VIP: {total}",
+    "totalWithDiff": "• Celkem: {total} ({diff})",
+    "users": "👥 Uživatelské statistiky",
+    "vip": "⭐ **VIP status**\n",
+    "vip2": "⭐ **VIP status**\n",
+    "vip3": "VIP člen 💎",
+    "vipAvgMatches": "• Průměrné shody na sezení: {avg} protějšků",
+    "vipExpire": "• Čas expirace: ${date}\n",
+    "vipFree": "Bezplatný člen",
+    "vipMatchRate": "• Míra shod: {rate}%",
+    "vipMatchedSlots": "• Úspěšné shody: {count}",
+    "vipMember": "VIP člen 💎",
+    "vipThrows": "• Celkový počet hodů: {count}",
+    "vipTotalSlots": "• Celkový počet matchmakingových slotů: {count}",
+    "vipTriple": "💎 **VIP statistiky trojité láhve** (posledních ${days} dní)",
+    "vipTripleTitle": "💎 **VIP statistiky trojité láhve** (posledních {days} dní)",
+    "zodiac": "🔮 **Znamení**: ${zodiac}\n"
+  },
+  "status": {
+    "cancelled": "Zrušeno",
+    "completed": "Dokončeno",
+    "failed": "Neúspěšné",
+    "pending": "Čeká se",
+    "sending": "Odesílání"
+  },
+  "subscription": {
+    "downgradedToFree": "Váš účet byl vrácen na bezplatného člena.",
+    "expired": "😢 **VIP předplatné vypršelo**",
+    "expiredDate": "Vaše VIP předplatné vypršelo dne ${date}.",
+    "renewVipHint": "💡 Můžete se kdykoliv znovu přihlásit k VIP: /vip",
+    "thankYou": "Děkujeme za vaši podporu!❤️"
+  },
+  "success": {
+    "ad": "✅ Viděli jste všechny oficiální reklamy!",
+    "ad2": "✅ Poskytovatel reklamy aktivován: ${providerName}",
+    "ad3": "✅ Poskytovatel reklamy byl zakázán: ${providerName}\n\n",
+    "ad4": "✅ Oficiální reklama povolena #${adId}\n\n",
+    "ad5": "✅ Oficiální reklama zakázána #${adId}\n\n",
+    "ad6": "✅ Priorita poskytovatele reklamy nastavena\n\n",
+    "ad7": "✅ Dnešní limit reklam byl dosažen",
+    "appeal": "✅ Odvolání ${appealId} bylo schváleno, uživatel byl odblokován",
+    "appeal2": "✅ Odvolání ${appealId} bylo zamítnuto",
+    "appeal3": "✅ Žádná nevyřízená odvolání",
+    "birthday": "✅ Narozeniny uloženy",
+    "bloodType": "✅ Krevní skupina aktualizována na ${getBloodTypeDisplay(bloodType as any)}",
+    "bloodType2": "✅ Krevní skupina vymazána",
+    "bottle": "✅ Odměna udělena! +1 láhev se zprávou",
+    "bottle2": "✅ Zahájena nová láhev se zprávou",
+    "bottle3": "✅ Láhev se zprávou vytvořena\n",
+    "broadcast": "✅ Vyčištěno ${ids.length} uvízlých vysílání\n\n",
+    "broadcast2": "✅ Není potřeba žádné vysílání čistit\n\n",
+    "broadcast3": "✅ Filtrovaná vysílání vytvořena\n\n",
+    "broadcast4": "✅ Vysílání vytvořeno\n\n",
+    "cancel": "✅ Vysílání zrušeno\n\n",
+    "complete": "✅ Zpracování fronty vysílání dokončeno\n\n",
+    "complete2": "✅ Údržba systému dokončena\n\n",
+    "complete3": "✅ Tutorial dokončen!",
+    "complete4": "✅ **Hromadné obnovení dokončeno**\n\n",
+    "complete5": "✅ **Obnovení dokončeno**\n\n",
+    "complete6": "✅ Filtrování dokončeno, vstupní obsah",
+    "complete7": "✅ Filtrování dokončeno",
+    "confirm": "✅ Potvrzeno!",
+    "confirm2": "✅ Kontrola bezpečnosti dokončena",
+    "confirm3": "✅ Potvrdit",
+    "conversation": "✅ **Historie konverzace byla aktualizována!**\n\n",
+    "gender": "✅ Pohlaví bylo uloženo",
+    "invite": "{successfulInvites} {inviteLimit} ${successfulInvites} ${inviteLimit}\n",
+    "mbti": "✅ Váš MBTI typ byl aktualizován na: **${mbtiType}**\n\n",
+    "mbti2": "✅ Váš MBTI typ byl vymazán.\n\n",
+    "mbti3": "✅ MBTI byl vymazán",
+    "mbti4": "✅ Výběr MBTI byl vymazán",
+    "mbti5": "✅ Váš MBTI typ: ${mbtiType}\n\n",
+    "message": "✅ Zpráva byla odeslána ${formatIdentifier(receiverIdentifier)}\n\n",
+    "message2": "{getLanguageDisplay(languageCode)} ${getLanguageDisplay(languageCode)}",
+    "message3": "✅ Uživatel zablokován (#${conversationIdentifier})\n\n",
+    "message4": "{ad.reward_quota} ${ad.reward_quota}",
+    "message5": "{gender} ${gender}",
+    "message6": "{bloodTypeDisplay[bloodType]} ${bloodTypeDisplay[bloodType]}",
+    "message7": "{ZODIAC_NAMES[zodiacSign]} ${ZODIAC_NAMES[zodiacSign]}",
+    "message8": "{gender} ${gender}",
+    "nickname": "{suggestedNickname.substring(0, 18)} ${suggestedNickname.substring(0, 18)}",
+    "nickname2": "✅ Přezdívka byla aktualizována na: ${text}\n\n",
+    "register": "✅ Vývojářský režim: Přeskočit registraci\n\n",
+    "register2": "✅ Rozumím, pokračovat v registraci",
+    "register3": "✅ Registrace dokončena!",
+    "report": "✅ **Hlášení bylo odesláno** (#${conversationIdentifier})\n\n",
+    "report2": "✅ Hlášení bylo odesláno",
+    "report3": "✅ **Uživatel byl nahlášen**\n\n",
+    "report4": "✅ Potvrdit hlášení",
+    "report5": "✅ Nahlášeno",
+    "reportSubmitted": "[Překlad potřebný z zh-TW.ts]",
+    "settings": "{mbtiType} ${mbtiType}",
+    "settings2": "✅ Přezdívka byla nastavena",
+    "settings3": "✅ Kritéria filtrování byla nastavena:\n\n",
+    "settings4": "{getBloodTypeDisplay(bloodType as any)} ${getBloodTypeDisplay(bloodType as any)}",
+    "settings5": "✅ MBTI typ byl nastaven: ${mbtiType}\n\n",
+    "settings6": "✅ Nastavení krevní skupiny bylo přeskočeno",
+    "short": "✅ Odesílání...",
+    "short10": "✅ Načítání...",
+    "short11": "✅ 🌈 Kdokoli",
+    "short12": "✅ 👨 Muž",
+    "short13": "✅ 👩 Žena",
+    "short14": "✅ Pokračovat v úpravách",
+    "short15": "✅ Potvrdit blokaci",
+    "short16": "✅ Blokováno",
+    "short17": "✅ Přečetl(a) jsem si a souhlasím",
+    "short18": "✅ Přeskočeno",
+    "short19": "✅ Uplatnit odměnu",
+    "short2": "✅ Pokračovat v úpravách návrhu",
+    "short20": "✅ V údržbě",
+    "short3": "✅ Návrh byl smazán",
+    "short4": "✅ Ověřit a uplatnit",
+    "short5": "✅ Návrh odeslán",
+    "short6": "✅ Zaznamenáno",
+    "short7": "✅ Správné",
+    "short8": "✅ Povolené",
+    "short9": "✅ Ano",
+    "start": "✅ Klikněte na tlačítko pro zahájení sledování",
+    "start2": "✅ Zahájit rychlý kvíz",
+    "start3": "✅ Zahájit úplný kvíz",
+    "start4": "✅ Zahájit kvíz",
+    "success": {
+      "appeal": "✅ Odvolání \\${appealId} schváleno, uživatel byl odblokován",
+      "appeal2": "✅ Odvolání \\${appealId} zamítnuto",
+      "appeal3": "✅ Žádná čekající odvolání",
+      "birthday": "✅ Narozeniny uloženy",
+      "bloodType": "✅ Krevní skupina aktualizována na \\${getBloodTypeDisplay(bloodType as any)}",
+      "bloodType2": "✅ Krevní skupina vymazána",
+      "bottle": "✅ Ocenění uděleno! +1 láhev se zprávou",
+      "bottle2": "✅ Zahájit novou láhev se zprávou",
+      "bottle3": "✅ Láhev vytvořena\n",
+      "broadcast": "✅ Odstraněno \\${ids.length} zablokovaných vysílání\n\n",
+      "broadcast2": "✅ Není co uklízet\n\n",
+      "broadcast3": "✅ Filtr námi vytvořených vysílání\n\n",
+      "broadcast4": "✅ Vysílání vytvořeno\n\n",
+      "cancel": "✅ Vysílání zrušeno\n\n",
+      "complete": "✅ Zpracování fronty vysílání dokončeno\n\n",
+      "complete2": "✅ Údržba systému dokončena\n\n",
+      "complete3": "✅ Tutoriál dokončen!",
+      "complete4": "✅ **Hromadné obnovení dokončeno**\n\n",
+      "complete5": "✅ **Obnovení dokončeno**\n\n",
+      "complete6": "✅ Filtrování dokončeno, vstupní obsah",
+      "complete7": "✅ Filtrování hotovo",
+      "confirm": "✅ Potvrzeno!",
+      "confirm2": "✅ Bezpečnostní potvrzení dokončeno",
+      "confirm3": "✅ Potvrdit",
+      "conversation": "✅ **Historie chatu byla aktualizována!**\n\n",
+      "gender": "✅ Pohlaví uloženo",
+      "invite": "✅ Aktivní pozvánky: \\${successfulInvites} / \\${inviteLimit} lidí\n",
+      "mbti": "✅ Váš typ MBTI byl aktualizován na: **\\${mbtiType}**\n\n",
+      "mbti2": "✅ Váš typ MBTI byl vymazán.\n\n",
+      "mbti3": "✅ MBTI vymazáno",
+      "mbti4": "✅ Výběr MBTI vymazán",
+      "mbti5": "✅ Váš typ MBTI: \\${mbtiType}\n\n",
+      "message": "✅ Zpráva byla odeslána na \\${formatIdentifier(receiverIdentifier)}\n\n",
+      "message2": "✅ Jazyk aktualizován na: \\${getLanguageDisplay(languageCode)}",
+      "message3": "✅ Tento uživatel byl zablokován (#\\${conversationIdentifier})\n\n",
+      "message4": "✅ Získali jste +\\${ad.reward_quota} trvalých kvót!",
+      "message5": "✅ Vybráno \\${gender}",
+      "message6": "✅ Vybráno \\${bloodTypeDisplay[bloodType]}",
+      "message7": "✅ Vybráno \\${ZODIAC_NAMES[zodiacSign]}",
+      "message8": "✅ Vybrali jste: \\${gender}\n\n",
+      "nickname": "✅ Používání přezdívky na Telegramu: \\${suggestedNickname.substring(0, 18)}",
+      "nickname2": "✅ Přezdívka byla aktualizována na: \\${text}\n\n",
+      "register": "✅ Vývojový režim: Přeskočit registraci\n\n",
+      "register2": "✅ Chápu, pokračovat v registraci",
+      "register3": "✅ Registrace dokončena!",
+      "report": "✅ **Nahlášení odesláno** (#\\${conversationIdentifier})\n\n",
+      "report2": "✅ Hlášení odesláno",
+      "report3": "✅ **Uživatel byl nahlášen**\n\n",
+      "report4": "✅ Potvrdit hlášení",
+      "report5": "✅ Nahlášeno",
+      "settings": "✅ MBTI nastaveno jako \\${mbtiType}",
+      "settings2": "✅ Přezdívka nastavena",
+      "settings3": "✅ Nastavena kritéria filtru:\n\n",
+      "settings4": "✅ Krevní skupina nastavena na \\${getBloodTypeDisplay(bloodType as any)}",
+      "settings5": "✅ Typ MBTI nastaven: \\${mbtiType}\n\n",
+      "settings6": "✅ Nastavení krevní skupiny bylo přeskočeno",
+      "short": "✅ Odesílání...",
+      "short10": "✅ Načítání...",
+      "short11": "✅ 🌈 Kdokoliv",
+      "short12": "✅ 👨 Muž",
+      "short13": "✅ 👩 Žena",
+      "short14": "✅ Pokračovat v úpravách",
+      "short15": "✅ Potvrdit blokaci",
+      "short16": "✅ Zablokováno",
+      "short17": "✅ Přečetl(a) jsem a souhlasím",
+      "short18": "✅ Přeskočeno",
+      "short19": "✅ Uplatnit odměnu",
+      "short2": "✅ Pokračovat v úpravách konceptu",
+      "short20": "✅ Režim údržby",
+      "short3": "✅ Koncept byl smazán",
+      "short4": "✅ Ověřit a uplatnit",
+      "short5": "✅ Odeslat koncept",
+      "short6": "✅ Přihlášeno",
+      "short7": "✅ Správně",
+      "short8": "✅ Aktivováno",
+      "short9": "✅ Ano",
+      "start": "✅ Klikněte na tlačítko pro zahájení sledování",
+      "start2": "✅ Zahájit rychlý test verze",
+      "start3": "✅ Zahájit test plné verze",
+      "start4": "✅ Zahájit test",
+      "text": "✅ Nastaveno na \\${flag} \\${countryName}",
+      "text10": "✅ Ano, rozumím a budu dbát na bezpečnost",
+      "text11": "✅ Režim údržby byl povolen\n\n",
+      "text12": "✅ Režim údržby byl zakázán\n\n",
+      "text13": "✅ Přesnější analýza osobnosti\n",
+      "text14": "✅ Návod byl přeskočen\n\n",
+      "text15": "✅ Všechny příspěvky jsou aktuální (stav bezplatného uživatele je správný)\n",
+      "text16": "✅ **Není třeba obnovovat**\n\n",
+      "text17": "✅ Vybráno \\${gender ===",
+      "text18": "✅ Vybráno \\${mbtiType}",
+      "text19": "✅ **Pravidla**:\n",
+      "text2": "✅ Tagy zájmů byly aktualizovány:\n\n\\${interestsStr}",
+      "text20": "✅ **Uživatel byl zablokován**\n\n",
+      "text21": "✅ **Žádost o vrácení peněz byla odeslána**\n\n",
+      "text22": "✅ **Vrátit peníze schváleno**\n\n",
+      "text23": "✅ Žádné čekající žádosti o vrácení peněz.",
+      "text24": "✅ Připravuje se platba...",
+      "text25": "✅ Vrátit peníze schváleno\n\n",
+      "text26": "✅ Vrátit peníze zamítnuty\n\n",
+      "text27": "✅ Připojil(a) jsem se a nárokoval(a) odměnu",
+      "text28": "✅ Vybrali jste: \\${gender ===",
+      "text29": "✅ Test proti podvodům byl úspěšně vykonán!\n\n",
+      "text3": "✅ Nastavení preferencí bylo aktualizováno na: ${prefText}\n\n",
+      "text30": "✅ Jazyk byl změněn na \\${newLanguageName}",
+      "text4": "✅ Profil byl aktualizován!\n\n\\${text}",
+      "text5": "✅ Vývojový režim: Data byla resetována\n\n",
+      "text6": "✅ Oblast byla aktualizována na: \\${text}",
+      "text7": "✅ Rychlé pochopení základních typů osobnosti\n\n",
+      "text8": "✅ **Avatar byl aktualizován!**\n\n",
+      "text9": "✅ Doporučeno k opětovnému testování\n\n",
+      "vip": "✅ Všechny příspěvky jsou aktuální (VIP status je správný)\n",
+      "zodiac": "✅ Výběr zvěrokruhu byl vymazán"
     },
-    status: {
-      failed: `❌ Payment Failed`,
-      paid: `✅ Payment Successful`,
-      pending: `⏳ Processing`,
-      refunded: `↩️ Refunded`,
+    "success2": "🎉 **Ověření bylo úspěšné!**\n\n✅ Získáno **+${ad.reward_quota} trvalé kvóty**\n💎 Děkujeme, že jste se připojili k naší komunitě!\n\n📊 **Vaše kvóta:**\n• Základní kvóta: ${user.is_vip ? 'Neomezeně' : '10'}/den\n• Trvalá kvóta: +${ad.reward_quota}\n\n💡 V komunitě můžete:\n• Komunikovat s ostatními uživateli\n• Získat nejnovější aktualizace funkcí\n• Účastnit se aktivit pro další odměny",
+    "success3": "Úspěšně obnoveny ${result.updated} historické příspěvky v konverzaci.\n\n",
+    "success4": "Úspěšně obnoven: ${result.updated}\n",
+    "text": "✅ Nastaveno na ${flag} ${countryName}",
+    "text10": "✅ Ano, rozumím a budu věnovat pozornost bezpečnosti",
+    "text11": "✅ Režim údržby byl povolen\n\n",
+    "text12": "✅ Režim údržby byl zakázán\n\n",
+    "text13": "✅ Přesnější analýza osobnosti\n",
+    "text14": "✅ Tutoriál byl přeskočen\n\n",
+    "text15": "✅ Všechny příspěvky jsou aktuální (status běžného uživatele je správný)\n",
+    "text16": "✅ **Není třeba obnovovat**\n\n",
+    "text17": "✅ Vybráno ${gender ===",
+    "text18": "✅ Vybráno ${mbtiType}",
+    "text19": "✅ **Pravidla**:\n",
+    "text2": "✅ Tagy zájmů byly aktualizovány:\n\n${interestsStr}",
+    "text20": "✅ **Uživatel byl zablokován**\n\n",
+    "text21": "✅ **Žádost o vrácení peněz byla odeslána**\n\n",
+    "text22": "✅ **Žádost o vrácení peněz byla schválena**\n\n",
+    "text23": "✅ Žádné čekající žádosti o vrácení peněz.",
+    "text24": "✅ Připravuje se platba...",
+    "text25": "✅ Vrácení peněz bylo schváleno\n\n",
+    "text26": "✅ Vrácení peněz bylo zamítnuto\n\n",
+    "text27": "✅ Připojil(a) jsem se a nárokoval(a) odměnu",
+    "text28": "✅ Vybrali jste: ${gender ===",
+    "text29": "✅ Test proti podvodům byl úspěšně dokončen!\n\n",
+    "text3": "✅ Preference shody byly aktualizovány na: ${prefText}\n\n",
+    "text30": "✅ Jazyk byl změněn na ${newLanguageName}",
+    "text4": "✅ Profil byl aktualizován!\n\n${text}",
+    "text5": "✅ Vývojový režim: Data byla resetována\n\n",
+    "text6": "✅ Oblast byla aktualizována na: ${text}",
+    "text7": "✅ Rychlé pochopení základních typů osobnosti\n\n",
+    "text8": "✅ **Avatar byl aktualizován!**\n\n",
+    "text9": "✅ Doporučeno pro opětovné testování\n\n",
+    "verify": "✅ Ověření úspěšné! Získali jste +${ad.reward_quota} trvalé kvóty!",
+    "verify2": "✅ Ověření úspěšné! Získali jste +\\${ad.reward_quota} trvalé kvóty!",
+    "vip": "✅ Všechny příspěvky jsou aktuální (status VIP je správný)\n",
+    "zodiac": "✅ Vymazána volba znamení zvěrokruhu"
+  },
+  "target": {
+    "all": "Všichni uživatelé",
+    "nonVip": "Ne-VIP uživatelé",
+    "unknown": "Neznámý",
+    "vip": "VIP uživatelé"
+  },
+  "tasks": {
+    "bottle": "Odměna: +${task.reward_amount} lahví se zprávou (${rewardTypeText})\n\n",
+    "bottle2": "Odměna: +${task.reward_amount} lahví se zprávou (${task.reward_type ===",
+    "bottle3": "${icon} ${task.name} (+${task.reward_amount} lahví se zprávou)\n",
+    "bottle4": "• Trvalá odměna: ${inviteProgress.current} lahví se zprávou (denní distribuce)\n",
+    "bottle5": "• Jednorázová odměna: ${todayRewardCount} lahví se zprávou (platná na dnešní den)\n",
+    "bottle6": "📋 **Centrum úkolů**\n\nDokončete úkoly a vydělejte si extra láhve se zprávou!\n\n",
+    "description": {
+      "bio": "Sdílejte svůj příběh (alespoň 20 slov)",
+      "city": "Najděte přátele ve svém městě",
+      "first_bottle": "Začněte svou sociální cestu",
+      "first_catch": "Podívejte se na příběhy ostatních lidí",
+      "first_conversation": "Navázejte první kontakt (dlouhým stisknutím zprávy → vyberte 'Odpovědět')",
+      "interests": "Nechte ostatní vás lépe poznat",
+      "invite_progress": "Získejte +1 trvalou denní kvótu za každou osobu, kterou pozvete (zdarma pro až 10 lidí, VIP až pro 100 lidí)",
+      "join_channel": "Získejte nejnovější zprávy a události"
     },
-  },
-  profile: {
-    activatedInvites: `✅ 已激活邀請：{successfulInvites} / {inviteLimit} 人
-`,
-    age: `🎂 年齡：\${age}
-`,
-    anonymousUser: `匿名用戶`,
-    bloodType: `🩸 血型：\${bloodType}
-`,
-    bottle: `: permanentQuota} 個瓶子
-
-`,
-    cardAge: `{age} 歲`,
-    cardBio: `📝 簡介：
-{bio}
-
-`,
-    cardFooter: `💡 這是你在對話中展示給對方的資料卡片
-
-`,
-    cardGenderFemale: `♀️ 女`,
-    cardGenderMale: `♂️ 男`,
-    cardInterests: `🏷️ 興趣：{interests}
-
-`,
-    cardLanguage: `🌍 語言：{language}
-
-`,
-    cardMbti: `🧠 MBTI：{mbti}
-`,
-    cardSeparator: `━━━━━━━━━━━━━━━━
-`,
-    cardTitle: `┌─────────────────────────┐
-│ 📇 個人資料卡片 │
-└─────────────────────────┘
-
-`,
-    cardZodiac: `⭐ 星座：{zodiac}
-`,
-    completeOnboarding: `⚠️ 請先完成註冊流程。
-
-使用 /start 繼續註冊。`,
-    conversation: `💡 這是你在對話中展示給對方的資料卡片
-
-`,
-    editProfile: `📝 編輯資料`,
-    gender: `👤 性別：\${gender}
-`,
-    hints: `💡 提示：
-`,
-    invite: `⏳ 待激活邀請：\${inviteStats.pending} 人
-`,
-    invite2: `🎁 **邀請資訊**
-
-`,
-    inviteCodeLabel: `📋 你的邀請碼：\`{inviteCode}\`
-`,
-    manual: `手動設定`,
-    mbti: `• 使用 /mbti 重新測驗或修改 MBTI
-`,
-    mbtiWithSource: `🧠 MBTI：{mbti}{source}
-`,
-    message: `https://t.me/share/url?url=https://t.me/\${botUsername}?start=invite_\${inviteCode}&text=來 XunNi 一起丟漂流瓶吧！🍾 使用我的邀請碼：\${inviteCode}`,
-    message2: `\${inviteLimitWarning}
-
-`,
-    message3: `🌍 語言：\${user.language_pref }
-
-`,
-    message4: `🌍 語言：\${user.language_pref }
-`,
-    message5: `📈 轉化率：\${inviteStats.conversionRate}%
-`,
-    message6: `\${gender} • \${age} 歲 • \${city}
-
-`,
-    message7: `https://t.me/share/url?url=https://t.me/\${botUsername}?start=invite_\${inviteCode}&text=來 XunNi 一起丟漂流`,
-    mysterious: `這個人很神秘，什麼都沒有留下～`,
-    nickname: `📛 暱稱：\${displayNickname}
-`,
-    notSet: `未設定`,
-    profile: `│ 📇 個人資料卡片 │
-`,
-    profile2: `👤 **個人資料**
-
-`,
-    quota: `💡 完成任務可獲得當日額外配額（使用 /tasks 查看）
-`,
-    quota2: `📦 當前每日配額：\${taskBonus > 0 ?`,
-    quotaBottles: `{taskBonus} 個瓶子`,
-    quotaTotal: `📦 當前每日配額：{quota}
-
-`,
-    returnToMenu: `🏠 返回主選單：/menu`,
-    separator: `━━━━━━━━━━━━━━━━
-
-`,
-    settings: `未設定`,
-    settings2: `未設定`,
-    settings3: `未設定`,
-    settings4: `未設定`,
-    settings5: `未設定`,
-    settings6: `未設定`,
-    settings7: `未設定`,
-    settings8: `未設定`,
-    shareInviteCode: `📤 分享邀請碼`,
-    short: `📝 編輯資料`,
-    short2: `免費會員`,
-    stats: `• 使用 /stats 查看統計數據
-
-`,
-    success: `💡 每成功邀請 1 人，每日配額永久 +1
-`,
-    systemError: `❌ 系統發生錯誤，請稍後再試。`,
-    test: `測驗結果`,
-    text: `• 使用 /profile_card 查看完整資料卡片
-`,
-    text2: `🏷️ 興趣：\${interests}
-
-`,
-    text3: `💎 會員：\${vipStatus}
-
-`,
-    text4: `📝 簡介：
-\${bio}
-
-`,
-    text5: `這個人很神秘，什麼都沒有留下～`,
-    userNotFound: `⚠️ 用戶不存在，請先使用 /start 註冊。`,
-    vip: `VIP 會員（到期：\${expireDate}）`,
-    vip2: `• 使用 /vip 升級 VIP 會員
-`,
-    vipUpgrade: `• 使用 /vip 升級 VIP 會員
-`,
-    zodiac: `⭐ 星座：\${zodiac}
-`,
-  },
-  refreshAvatar: {
-    failed: `❌ 刷新頭像失敗
-
-請稍後再試，或聯繫管理員。`,
-    processing: `🔄 正在刷新頭像...
-
-這可能需要幾秒鐘時間。`,
-    success: `✅ **頭像已更新！**
-
-您的頭像緩存已刷新，下次查看對話歷史時將顯示最新頭像。
-
-💡 **提示：**
-• 頭像會自動每 7 天更新一次
-• 如果您更換了 Telegram 頭像，系統會自動檢測
-• 您也可以隨時使用此命令手動刷新`,
-    userNotFound: `❌ 用戶不存在，請先註冊`,
-  },
-  refreshConversations: {
-    clickButtonHint: `💡 **提示**：請點擊上方的按鈕來開始使用`,
-    commandHelp: `• /help - 查看幫助`,
-    commandMenu: `• /menu - 主選單`,
-    commandTasks: `• /tasks - 查看任務中心`,
-    failed: `❌ 刷新對話歷史失敗
-
-請稍後再試，或聯繫管理員。`,
-    noHistory: `💡 **沒有找到對話歷史**
-
-您還沒有任何對話記錄。
-
-使用 /throw 丟出漂流瓶開始聊天吧！`,
-    partialSuccess: `⚠️ **對話歷史部分更新**
-
-成功刷新：{updated} 個
-失敗：{failed} 個
-
-部分對話歷史可能未能更新，請稍後再試。`,
-    processing: `🔄 正在刷新所有對話歷史...
-
-這可能需要一些時間，請稍候。`,
-    success: `✅ **對話歷史已更新！**
-
-成功刷新 {updated} 個對話的歷史帖子。
-
-💡 **提示：**
-• VIP 用戶可以看到清晰的對方頭像
-• 免費用戶看到的是模糊頭像
-• 升級 VIP 後會自動刷新歷史帖子`,
-    userNotFound: `❌ 用戶不存在，請先註冊`,
-  },
-  report: {
-    blockHint: `• 長按對方訊息回覆 /block 可封鎖此使用者
-`,
-    cancel: `❌ 取消`,
-    cancelled: `已取消`,
-    cannotIdentify: `⚠️ 無法識別對話對象
-
-`,
-    catchHint: `• 使用 /catch 撿新的漂流瓶`,
-    completeOnboarding: `⚠️ 請先完成註冊流程。
-
-使用 /start 繼續註冊。`,
-    conversationInfoError: `⚠️ 對話資訊錯誤。`,
-    conversationInfoError2: `⚠️ 對話資訊錯誤`,
-    conversationNotExists: `⚠️ 對話不存在`,
-    conversationNotFound: `⚠️ 找不到此對話
-
-對話可能已結束或不存在。`,
-    ensureReply: `請確保回覆的是對方發送的訊息（帶有 # 標識符）。`,
-    hint: `💡 這樣可以準確指定要舉報的對象。`,
-    multipleReports: `多次被舉報 / Multiple reports`,
-    reasonHarassment: `😡 騷擾 / 辱罵`,
-    reasonNsfw: `🔞 色情內容`,
-    reasonOther: `⚠️ 其他違規`,
-    reasonScam: `💰 詐騙 / 釣魚`,
-    reasonSpam: `📢 垃圾廣告`,
-    replyRequired: `⚠️ 請長按你要舉報的訊息後回覆指令
-
-`,
-    selectReason: `請選擇舉報原因：`,
-    sessionExpired: `⚠️ 會話已過期，請重新操作`,
-    step1: `1️⃣ 長按對方的訊息
-`,
-    step2: `2️⃣ 選擇「回覆」
-`,
-    step3: `3️⃣ 輸入 /report
-
-`,
-    steps: `**操作步驟：**
-`,
-    submitted: `✅ **舉報已提交** (#{identifier})
-
-`,
-    systemError: `❌ 系統發生錯誤`,
-    thanks: `感謝你的舉報，我們會盡快審核。
-
-`,
-    tips: `💡 提示：
-`,
-    title: `🚨 **舉報不當內容** (#{identifier})
-
-`,
-    userNotFound: `⚠️ 用戶不存在，請先使用 /start 註冊。`,
-  },
-  risk: {
-    containsSensitiveWords: `包含敏感詞彙`,
-  },
-  router: {
-    replyPrompt: `💬 回覆`,
-    suggestCatch: `❓ 要撿漂流瓶？
-
-使用 /catch 撿起漂流瓶
-
-💡 **常用命令**：
-• /throw - 丟出漂流瓶
-• /catch - 撿起漂流瓶
-• /menu - 主選單
-• /tasks - 任務中心`,
-    suggestMenu: `❓ 找不到此命令
-
-💡 **常用命令**：
-• /throw - 丟出漂流瓶
-• /catch - 撿起漂流瓶
-• /menu - 主選單
-• /tasks - 任務中心`,
-    suggestThrow: `❓ 要丟漂流瓶？
-
-請長按上一則訊息，或本訊息，
-選單上選擇「回覆」後，
-輸入要發送的漂流瓶內容
-
-💡 **常用命令**：
-• /throw - 丟出漂流瓶
-• /catch - 撿起漂流瓶
-• /menu - 主選單
-• /tasks - 任務中心
-
-#THROW`,
-    throwPrompt: `📝 請輸入你的漂流瓶內容：`,
-  },
-  session: {
-    timeoutCatchBottle: `⏰ 撿瓶流程已超時
-
-請使用 /catch 重新開始。`,
-    timeoutConversation: `⏰ 對話已超時
-
-對方可能已離開。使用 /catch 撿新的瓶子吧！`,
-    timeoutEditProfile: `⏰ 編輯資料流程已超時
-
-請重新開始編輯。`,
-    timeoutOnboarding: `⏰ 註冊流程已超時
-
-請使用 /start 重新開始註冊。`,
-    timeoutThrowBottle: `⏰ 丟瓶流程已超時
-
-請使用 /throw 重新開始。`,
-    typeCatchBottle: `撿瓶流程`,
-    typeConversation: `對話`,
-    typeEditProfile: `編輯資料`,
-    typeOnboarding: `註冊流程`,
-    typeThrowBottle: `丟瓶流程`,
-  },
-  settings: {
-    back: `返回`,
-    changeLanguage: `🌐 更改語言`,
-    currentSettings: `⚙️ **當前設定**`,
-    languageLabel: `語言：{language}`,
-    languageUpdated: `✅ Language updated to: {language}`,
-    message: `🌐 **選擇語言 / Choose Language**
-
-請選擇你的偏好語言：`,
-    returnToMenu: `🏠 返回主選單`,
-    selectOption: `請選擇選項：`,
-    settings: `💡 選擇你想要修改的設定：`,
-    settings2: `⚙️ **設定**
-
-`,
-    settings3: `🏠 返回設定`,
-    settings4: `當前設定：
-`,
-    text: `• 語言：\${languageName} 🇹🇼
-
-`,
-    title: `🏠 **主選單**`,
-  },
-  stats: {
-    activeUsers: `• 昨日活躍：{active}
-
-`,
-    age: `🎂 **年齡**：\${age} 歲
-`,
-    avgMatches: `• 平均每次配對：\${avg} 個對象
-`,
-    bottle: `
-💎 **VIP 三倍瓶子統計**（近 30 天）
-`,
-    bottle2: `🍾 **漂流瓶**
-`,
-    bottle3: `🎈 漂流瓶統計
-`,
-    bottles: `🍾 **漂流瓶**
-`,
-    bottlesCaught: `• 撿到：\${count} 個
-`,
-    bottlesThrown: `• 丟出：\${count} 個
-`,
-    catch: `• 昨日被撿：\${stats.caughtBottles}
-
-`,
-    catch2: `• 撿到：\${stats.bottlesCaught} 個
-`,
-    caught: `• 昨日被撿：{caught}
-
-`,
-    conversation: `• 活躍對話：\${stats.activeConversations}
-`,
-    conversation2: `• 總對話數：\${stats.totalConversations}
-`,
-    conversation3: `• 總對話數：\${stats.totalConversations}`,
-    conversation4: `💬 **對話**
-`,
-    conversation5: `💬 對話統計
-`,
-    conversations: `💬 **對話**
-`,
-    conversationsActive: `• 活躍對話：\${count}
-`,
-    conversationsTotal: `• 總對話數：\${count}
-`,
-    date: `日期：{date}
-
-`,
-    dateFormatError: `日期格式錯誤，應為 YYYY-MM-DD`,
-    match: `🎯 **匹配**
-`,
-    matchRate: `• 匹配成功率：\${rate}%
-`,
-    matchRateValue: `• 配對率：\${rate}%
-`,
-    matchedSlots: `• 成功配對：\${count}
-`,
-    mbti: `🧠 **MBTI**：\${mbti}
-`,
-    message: `• 到期時間：\${expireDate}
-`,
-    message10: `• 總訊息數：\${stats.totalMessages}`,
-    message2: `\${used}/\${permanentQuota}+\${taskBonus} (剩餘 \${remaining})`,
-    message3: `報告生成時間：\${new Date().toLocaleString('zh-TW')}`,
-    message4: `\${used}/\${permanentQuota} (剩餘 \${remaining})`,
-    message5: `• 總訊息數：\${stats.totalMessages}
-
-`,
-    message6: `• 昨日新增訊息：\${stats.newMessages}
-
-`,
-    message7: `• 總配對槽位：\${vipStats.totalSlots}
-`,
-    message8: `• 平均回覆率：\${stats.replyRate}%
-
-`,
-    message9: `• 昨日活躍：\${stats.activeUsers}
-
-`,
-    messages: `💬 對話統計`,
-    messagesTotal: `• 總訊息數：\${count}
-`,
-    new: `• 昨日新增：{new}`,
-    newMessages: `• 昨日新增訊息：{new}
-
-`,
-    newUsers: `• 昨日新增：{new}`,
-    newVip: `• 昨日新增：{new}
-
-`,
-    notSet: `未設定`,
-    quota: `• 今日配額：\${stats.todayQuota.display}
-
-`,
-    register: `📅 **註冊時間**：\${new Date(user.created_at).toLocaleDateString('zh-TW')}
-`,
-    register2: `• 總註冊數：\${stats.totalUsers}`,
-    registerTime: `📅 **註冊時間**：\${date}
-`,
-    replyRate: `• 平均回覆率：\${rate}%
-`,
-    reportTime: `報告生成時間：{time}`,
-    separator: `---
-`,
-    settings: `🧠 **MBTI**：\\$
-
-`,
-    settings2: `未設定`,
-    short: `免費會員`,
-    statDateEmpty: `統計日期不能為空`,
-    stats: `📊 **我的統計數據**
-
-`,
-    stats2: `💎 VIP 統計
-`,
-    stats3: `👥 用戶統計
-`,
-    stats4: `統計日期不能為空`,
-    success: `• 成功配對：\${vipStats.matchedSlots}
-`,
-    success2: `• 匹配成功率：\${stats.matchRate}%
-`,
-    text: `• 平均每次配對：\${avgMatches} 個對象
-`,
-    text10: `🎯 **匹配**
-`,
-    text2: `• 昨日新增：\${stats.newBottles}
-`,
-    text3: `• 總數：\${stats.totalBottles}`,
-    text4: `• 昨日新增：\${stats.newUsers}
-`,
-    text5: `• 昨日新增：\${stats.newVip}
-
-`,
-    text6: `• 配對率：\${matchRate}%
-`,
-    text7: `📊 XunNi Bot 每日數據報告
-`,
-    text8: `日期格式錯誤，應為 YYYY-MM-DD`,
-    text9: `日期：\${dateStr}
-
-`,
-    throw: `• 丟出：\${stats.bottlesThrown} 個
-`,
-    throw2: `• 丟出次數：\${vipStats.throws}
-`,
-    throws: `• 丟出次數：\${count}
-`,
-    timeLeftDaysHours: `\${days} 天 \${hours} 小時`,
-    timeLeftHours: `\${hours} 小時`,
-    title: `📊 **我的統計數據**
-
-`,
-    todayQuota: `• 今日配額：\${display}
-
-`,
-    total: `• 總數：{total}`,
-    totalConversations: `• 總對話數：{total}`,
-    totalMessages: `• 總訊息數：{total}`,
-    totalSlots: `• 總配對槽位：\${count}
-`,
-    totalUsers: `• 總註冊數：{total}`,
-    totalVip: `• 總 VIP 數：{total}`,
-    totalWithDiff: `• 總數：{total} ({diff})`,
-    users: `👥 用戶統計`,
-    vip: `⭐ **VIP 狀態**
-`,
-    vip2: `⭐ **VIP 狀態**
-`,
-    vip3: `VIP 會員 💎`,
-    vipAvgMatches: `• 平均每次配對：{avg} 個對象`,
-    vipExpire: `• 到期時間：\${date}
-`,
-    vipFree: `免費會員`,
-    vipMatchRate: `• 配對率：{rate}%`,
-    vipMatchedSlots: `• 成功配對：{count}`,
-    vipMember: `VIP 會員 💎`,
-    vipThrows: `• 丟出次數：{count}`,
-    vipTotalSlots: `• 總配對槽位：{count}`,
-    vipTriple: `💎 **VIP 三倍瓶子統計**（近 \${days} 天）`,
-    vipTripleTitle: `💎 **VIP 三倍瓶子統計**（近 {days} 天）`,
-    zodiac: `🔮 **星座**：\${zodiac}
-`,
-  },
-  status: {
-    cancelled: `已取消`,
-    completed: `已完成`,
-    failed: `失敗`,
-    pending: `等待中`,
-    sending: `發送中`,
-  },
-  subscription: {
-    downgradedToFree: `你的帳號已恢復為免費會員。`,
-    expired: `😢 **VIP 訂閱已到期**`,
-    expiredDate: `你的 VIP 訂閱已於 \${date} 到期。`,
-    renewVipHint: `💡 隨時可以重新訂閱 VIP：/vip`,
-    thankYou: `感謝你的支持！❤️`,
-  },
-  success: {
-    ad: `✅ 你已經看過所有官方廣告了！`,
-    ad2: `✅ 已啟用廣告提供商：\${providerName}
-
-`,
-    ad3: `✅ 已停用廣告提供商：\${providerName}
-
-`,
-    ad4: `✅ 已啟用官方廣告 #\${adId}
-
-`,
-    ad5: `✅ 已停用官方廣告 #\${adId}
-
-`,
-    ad6: `✅ 已設置廣告提供商優先級
-
-`,
-    ad7: `✅ 今日廣告已達上限`,
-    appeal: `✅ 申訴 \${appealId} 已批准，用戶已解封`,
-    appeal2: `✅ 申訴 \${appealId} 已拒絕`,
-    appeal3: `✅ 目前沒有待審核的申訴`,
-    birthday: `✅ 生日已保存`,
-    bloodType: `✅ 血型已更新為 \${getBloodTypeDisplay(bloodType as any)}`,
-    bloodType2: `✅ 血型已清除`,
-    bottle: `✅ 獎勵已發放！+1 瓶子`,
-    bottle2: `✅ 開始新的漂流瓶`,
-    bottle3: `✅ 瓶子已創建
-`,
-    broadcast: `✅ 已清理 \${ids.length} 個卡住的廣播
-
-`,
-    broadcast2: `✅ 沒有需要清理的廣播
-
-`,
-    broadcast3: `✅ 過濾廣播已創建
-
-`,
-    broadcast4: `✅ 廣播已創建
-
-`,
-    cancel: `✅ 廣播已取消
-
-`,
-    complete: `✅ 廣播隊列處理完成
-
-`,
-    complete2: `✅ 系統維護已完成
-
-`,
-    complete3: `✅ 教學已完成！`,
-    complete4: `✅ **批量刷新完成**
-
-`,
-    complete5: `✅ **刷新完成**
-
-`,
-    complete6: `✅ 完成篩選，輸入內容`,
-    complete7: `✅ 篩選完成`,
-    confirm: `✅ 已確認！`,
-    confirm2: `✅ 安全確認完成`,
-    confirm3: `✅ 確認`,
-    conversation: `✅ **對話歷史已更新！**
-
-`,
-    gender: `✅ 性別已保存`,
-    invite: `✅ 已激活邀請：\${successfulInvites} / \${inviteLimit} 人
-`,
-    mbti: `✅ 你的 MBTI 類型已更新為：**\${mbtiType}**
-
-`,
-    mbti2: `✅ 你的 MBTI 類型已清除。
-
-`,
-    mbti3: `✅ MBTI 已清除`,
-    mbti4: `✅ 已清除 MBTI 選擇`,
-    mbti5: `✅ 你的 MBTI 類型：\${mbtiType}
-
-`,
-    message: `✅ 訊息已發送給 \${formatIdentifier(receiverIdentifier)}
-
-`,
-    message2: `✅ 語言已更新為：\${getLanguageDisplay(languageCode)}`,
-    message3: `✅ 已封鎖此使用者 (#\${conversationIdentifier})
-
-`,
-    message4: `✅ 獲得 +\${ad.reward_quota} 個永久額度！`,
-    message5: `✅ 已選擇 \${gender}`,
-    message6: `✅ 已選擇 \${bloodTypeDisplay[bloodType]}`,
-    message7: `✅ 已選擇 \${ZODIAC_NAMES[zodiacSign]}`,
-    message8: `[需要翻译]`,
-    nickname: `✅ 使用 Telegram 暱稱：\${suggestedNickname.substring(0, 18)}`,
-    nickname2: `✅ 暱稱已更新為：\${text}
-
-`,
-    register: `✅ 開發模式：跳過註冊
-
-`,
-    register2: `✅ 我了解了，繼續註冊`,
-    register3: `✅ 註冊完成！`,
-    report: `✅ **舉報已提交** (#\${conversationIdentifier})
-
-`,
-    report2: `✅ 舉報已提交`,
-    report3: `✅ **已舉報此用戶**
-
-`,
-    report4: `✅ 確定舉報`,
-    report5: `✅ 已舉報`,
-    reportSubmitted: `✅ 舉報已提交，感謝你的回報`,
-    settings: `✅ MBTI 已設定為 \${mbtiType}`,
-    settings2: `✅ 暱稱已設定`,
-    settings3: `✅ 篩選條件已設定：
-
-`,
-    settings4: `✅ 血型已設定為 \${getBloodTypeDisplay(bloodType as any)}`,
-    settings5: `✅ MBTI 類型已設定：\${mbtiType}
-
-`,
-    settings6: `✅ 已跳過血型設定`,
-    short: `✅ 正在發送...`,
-    short10: `✅ 正在加載...`,
-    short11: `✅ 🌈 任何人`,
-    short12: `✅ 👨 男生`,
-    short13: `✅ 👩 女生`,
-    short14: `✅ 繼續編輯`,
-    short15: `✅ 確定封鎖`,
-    short16: `✅ 已封鎖`,
-    short17: `✅ 我已閱讀並同意`,
-    short18: `✅ 已跳過`,
-    short19: `✅ 領取獎勵`,
-    short2: `✅ 繼續編輯草稿`,
-    short20: `✅ 維護中`,
-    short3: `✅ 草稿已刪除`,
-    short4: `✅ 驗證並領取`,
-    short5: `✅ 發送草稿`,
-    short6: `✅ 已記錄`,
-    short7: `✅ 正確`,
-    short8: `✅ 啟用`,
-    short9: `✅ 是`,
-    start: `✅ 請點擊按鈕開始觀看`,
-    start2: `✅ 開始快速版測驗`,
-    start3: `✅ 開始完整版測驗`,
-    start4: `✅ 開始測驗`,
-    success2: `🎉 **驗證成功！**
-
-✅ 獲得 **+\${ad.reward_quota} 個永久額度**
-💎 感謝你加入我們的社群！
-
-📊 **你的額度：**
-• 基礎額度：\${user.is_vip ? '無限' : '10'}/天
-• 永久額度：+\${ad.reward_quota}
-
-💡 在社群中你可以：
-• 與其他用戶交流
-• 獲得最新功能更新
-• 參與活動獲得更多獎勵`,
-    success3: `成功刷新 \${result.updated} 個對話的歷史帖子。
-
-`,
-    success4: `成功刷新：\${result.updated} 個
-`,
-    text: `✅ 已設置為 \${flag} \${countryName}`,
-    text10: `✅ 是的，我了解並會注意安全`,
-    text11: `✅ 維護模式已啟用
-
-`,
-    text12: `✅ 維護模式已關閉
-
-`,
-    text13: `✅ 更準確的性格分析
-`,
-    text14: `✅ 已跳過教學
-
-`,
-    text15: `✅ 所有帖子都是最新的（免費用戶狀態正確）
-`,
-    text16: `✅ **無需刷新**
-
-`,
-    text17: `✅ 已選擇 \${gender ===`,
-    text18: `✅ 已選擇 \${mbtiType}`,
-    text19: `✅ **規則**：
-`,
-    text2: `✅ 興趣標籤已更新：
-
-\${interestsStr}`,
-    text20: `✅ **已封鎖此用戶**
-
-`,
-    text21: `✅ **退款申請已提交**
-
-`,
-    text22: `✅ **退款已批准**
-
-`,
-    text23: `✅ 沒有待處理的退款請求。`,
-    text24: `✅ 正在準備支付...`,
-    text25: `✅ 退款已批准
-
-`,
-    text26: `✅ 退款已拒絕
-
-`,
-    text27: `✅ 我已加入，領取獎勵`,
-    text28: `✅ 你選擇了：\${gender ===`,
-    text29: `✅ 反詐騙測驗通過！
-
-`,
-    text3: `✅ 匹配偏好已更新為：\${prefText}
-
-`,
-    text30: `✅ 語言已變更為 \${newLanguageName}`,
-    text4: `✅ 個人簡介已更新！
-
-\${text}`,
-    text5: `✅ 開發模式：數據已重置
-
-`,
-    text6: `✅ 地區已更新為：\${text}`,
-    text7: `✅ 快速了解基本性格類型
-
-`,
-    text8: `✅ **頭像已更新！**
-
-`,
-    text9: `✅ 推薦用於重新測試
-
-`,
-    verify: `✅ 驗證成功！獲得 +\${ad.reward_quota} 個永久額度！`,
-    verify2: `✅ 驗證成功！獲得 +\\\${ad.reward_quota} 個永久額度！`,
-    vip: `✅ 所有帖子都是最新的（VIP 狀態正確）
-`,
-    zodiac: `✅ 已清除星座選擇`,
-    success: {
-      appeal: `✅ 申訴 \\\${appealId} 已批准，用戶已解封`,
-      appeal2: `✅ 申訴 \\\${appealId} 已拒絕`,
-      appeal3: `✅ 目前沒有待審核的申訴`,
-      birthday: `✅ 生日已保存`,
-      bloodType: `✅ 血型已更新為 \\\${getBloodTypeDisplay(bloodType as any)}`,
-      bloodType2: `✅ 血型已清除`,
-      bottle: `✅ 獎勵已發放！+1 瓶子`,
-      bottle2: `✅ 開始新的漂流瓶`,
-      bottle3: `✅ 瓶子已創建
-`,
-      broadcast: `✅ 已清理 \\\${ids.length} 個卡住的廣播
-
-`,
-      broadcast2: `✅ 沒有需要清理的廣播
-
-`,
-      broadcast3: `✅ 過濾廣播已創建
-
-`,
-      broadcast4: `✅ 廣播已創建
-
-`,
-      cancel: `✅ 廣播已取消
-
-`,
-      complete: `✅ 廣播隊列處理完成
-
-`,
-      complete2: `✅ 系統維護已完成
-
-`,
-      complete3: `✅ 教學已完成！`,
-      complete4: `✅ **批量刷新完成**
-
-`,
-      complete5: `✅ **刷新完成**
-
-`,
-      complete6: `✅ 完成篩選，輸入內容`,
-      complete7: `✅ 篩選完成`,
-      confirm: `✅ 已確認！`,
-      confirm2: `✅ 安全確認完成`,
-      confirm3: `✅ 確認`,
-      conversation: `✅ **對話歷史已更新！**
-
-`,
-      gender: `✅ 性別已保存`,
-      invite: `✅ 已激活邀請：\\\${successfulInvites} / \\\${inviteLimit} 人
-`,
-      mbti: `✅ 你的 MBTI 類型已更新為：**\\\${mbtiType}**
-
-`,
-      mbti2: `✅ 你的 MBTI 類型已清除。
-
-`,
-      mbti3: `✅ MBTI 已清除`,
-      mbti4: `✅ 已清除 MBTI 選擇`,
-      mbti5: `✅ 你的 MBTI 類型：\\\${mbtiType}
-
-`,
-      message: `✅ 訊息已發送給 \\\${formatIdentifier(receiverIdentifier)}
-
-`,
-      message2: `✅ 語言已更新為：\\\${getLanguageDisplay(languageCode)}`,
-      message3: `✅ 已封鎖此使用者 (#\\\${conversationIdentifier})
-
-`,
-      message4: `✅ 獲得 +\\\${ad.reward_quota} 個永久額度！`,
-      message5: `✅ 已選擇 \\\${gender}`,
-      message6: `✅ 已選擇 \\\${bloodTypeDisplay[bloodType]}`,
-      message7: `✅ 已選擇 \\\${ZODIAC_NAMES[zodiacSign]}`,
-      message8: `✅ 你選擇了：\\\${gender}
-
-`,
-      nickname: `✅ 使用 Telegram 暱稱：\\\${suggestedNickname.substring(0, 18)}`,
-      nickname2: `✅ 暱稱已更新為：\\\${text}
-
-`,
-      register: `✅ 開發模式：跳過註冊
-
-`,
-      register2: `✅ 我了解了，繼續註冊`,
-      register3: `✅ 註冊完成！`,
-      report: `✅ **舉報已提交** (#\\\${conversationIdentifier})
-
-`,
-      report2: `✅ 舉報已提交`,
-      report3: `✅ **已舉報此用戶**
-
-`,
-      report4: `✅ 確定舉報`,
-      report5: `✅ 已舉報`,
-      settings: `✅ MBTI 已設定為 \\\${mbtiType}`,
-      settings2: `✅ 暱稱已設定`,
-      settings3: `✅ 篩選條件已設定：
-
-`,
-      settings4: `✅ 血型已設定為 \\\${getBloodTypeDisplay(bloodType as any)}`,
-      settings5: `✅ MBTI 類型已設定：\\\${mbtiType}
-
-`,
-      settings6: `✅ 已跳過血型設定`,
-      short: `✅ 正在發送...`,
-      short10: `✅ 正在加載...`,
-      short11: `✅ 🌈 任何人`,
-      short12: `✅ 👨 男生`,
-      short13: `✅ 👩 女生`,
-      short14: `✅ 繼續編輯`,
-      short15: `✅ 確定封鎖`,
-      short16: `✅ 已封鎖`,
-      short17: `✅ 我已閱讀並同意`,
-      short18: `✅ 已跳過`,
-      short19: `✅ 領取獎勵`,
-      short2: `✅ 繼續編輯草稿`,
-      short20: `✅ 維護中`,
-      short3: `✅ 草稿已刪除`,
-      short4: `✅ 驗證並領取`,
-      short5: `✅ 發送草稿`,
-      short6: `✅ 已記錄`,
-      short7: `✅ 正確`,
-      short8: `✅ 啟用`,
-      short9: `✅ 是`,
-      start: `✅ 請點擊按鈕開始觀看`,
-      start2: `✅ 開始快速版測驗`,
-      start3: `✅ 開始完整版測驗`,
-      start4: `✅ 開始測驗`,
-      text: `✅ 已設置為 \\\${flag} \\\${countryName}`,
-      text10: `✅ 是的，我了解並會注意安全`,
-      text11: `✅ 維護模式已啟用
-
-`,
-      text12: `✅ 維護模式已關閉
-
-`,
-      text13: `✅ 更準確的性格分析
-`,
-      text14: `✅ 已跳過教學
-
-`,
-      text15: `✅ 所有帖子都是最新的（免費用戶狀態正確）
-`,
-      text16: `✅ **無需刷新**
-
-`,
-      text17: `✅ 已選擇 \\\${gender ===`,
-      text18: `✅ 已選擇 \\\${mbtiType}`,
-      text19: `✅ **規則**：
-`,
-      text2: `✅ 興趣標籤已更新：
-
-\\\${interestsStr}`,
-      text20: `✅ **已封鎖此用戶**
-
-`,
-      text21: `✅ **退款申請已提交**
-
-`,
-      text22: `✅ **退款已批准**
-
-`,
-      text23: `✅ 沒有待處理的退款請求。`,
-      text24: `✅ 正在準備支付...`,
-      text25: `✅ 退款已批准
-
-`,
-      text26: `✅ 退款已拒絕
-
-`,
-      text27: `✅ 我已加入，領取獎勵`,
-      text28: `✅ 你選擇了：\\\${gender ===`,
-      text29: `✅ 反詐騙測驗通過！
-
-`,
-      text3: `✅ 匹配偏好已更新為：\\\${prefText}
-
-`,
-      text30: `✅ 語言已變更為 \\\${newLanguageName}`,
-      text4: `✅ 個人簡介已更新！
-
-\\\${text}`,
-      text5: `✅ 開發模式：數據已重置
-
-`,
-      text6: `✅ 地區已更新為：\\\${text}`,
-      text7: `✅ 快速了解基本性格類型
-
-`,
-      text8: `✅ **頭像已更新！**
-
-`,
-      text9: `✅ 推薦用於重新測試
-
-`,
-      vip: `✅ 所有帖子都是最新的（VIP 狀態正確）
-`,
-      zodiac: `✅ 已清除星座選擇`,
+    "invite": "🔄 Pozvěte přátele (${inviteProgress.current}/${inviteProgress.max})\n",
+    "invite2": "Pozvěte 1 osobu → Získejte +1 trvalou denní kvótu\n",
+    "message": "${icon} ${task.name} ${status} (+${task.reward_amount} lahví se zprávou)\n",
+    "message2": "Klikněte na tlačítko níže a připojte se k oficiálnímu kanálu XunNi pro nejnovější zprávy a události!\n\n",
+    "name": {
+      "bio": "Dokončete svou sebereflexi",
+      "city": "Nastavte svou oblast",
+      "first_bottle": "Hoďte svou první lahev se zprávou",
+      "first_catch": "Zvedněte svou první lahev se zprávou",
+      "first_conversation": "Začněte svůj první rozhovor",
+      "interests": "Vyplňte značky zájmů",
+      "invite_progress": "Pozvěte přátele",
+      "join_channel": "Připojte se k oficiálnímu kanálu"
     },
+    "profile": "👤 **Úkoly profilu** (${completedCount}/${profileTasks.length})\n",
+    "quota": "Aktuální denní kvóta: ${calculateDailyQuota(user)} jednotek\n",
+    "short": "(K vyřízení)",
+    "short2": "Platné na dnešní den",
+    "short3": "Platné navždy",
+    "task": "• Úkol pozvánka: ${inviteProgress.current}/${inviteProgress.max} v procesu\n\n",
+    "task2": "📱 **Úkoly na sociálních médiích** (${completedCount}/${socialTasks.length})\n",
+    "task3": "🎯 **Úkoly chování** (${completedCount}/${actionTasks.length})\n",
+    "task4": "• Jednorázové úkoly: ${oneTimeCompleted}/${oneTimeTotal} dokončeno\n",
+    "task5": "🎉 Gratulujeme k dokončení úkolu \"${task.name}\"!\n\n",
+    "task6": "👥 **Úkoly pozvání** (probíhá)\n",
+    "task7": "💡 Použijte /tasks pro zobrazení Centra úkolů",
+    "text": "Klikněte na tlačítko \"Připojil jsem se\" pro získání odměn 🎁",
+    "text2": "📢 **Připojte se k oficiálnímu kanálu**\n\n",
+    "text3": "📊 **Celkový Pokrok**\n",
+    "text4": "🎁 **Získané Odměny**\n"
   },
-  target: {
-    all: `所有用戶`,
-    nonVip: `非 VIP 用戶`,
-    unknown: `未知`,
-    vip: `VIP 用戶`,
+  "throw": {
+    "age": "• Věkový rozsah je blízko ✓",
+    "back": "↩️ Návrat do menu filtrů",
+    "bloodType": "🩸 **Filtr krevních skupin**\n\n",
+    "bloodType2": "• Krvná Skupina: Filtrovat konkrétní krevní skupiny\n",
+    "bloodType3": "Vyberte krevní skupinu, se kterou chcete spárovat:",
+    "bloodType4": "🩸 Filtr Krvních Skupin",
+    "bloodType5": "🌈 Jakákoliv krevní skupina",
+    "bottle": "💡 Tato láhev se zprávou je skvělý zápas pro vás!\n\n",
+    "bottle10": "🍾 Láhev se zprávou byla hodena!\n\n",
+    "bottle11": "🍾 Hoďte láhev se zprávou",
+    "bottle2": "🎯 Vaše láhev byla odeslána **3 příjemcům**:\n",
+    "bottle3": "🍾 **Hodím vaši láhev se zprávou...**\n\n",
+    "bottle4": "🍾 **Hodit láhev se zprávou** #THROW\n\n",
+    "bottle5": "ID láhve: #${bottleId}\n\n",
+    "bottle6": "📝 **Zadejte obsah vaší láhve se zprávou**\n\n",
+    "bottle7": "1️⃣ Klikněte na tlačítko \"🍾 Hoďte láhev se zprávou\" níže\n",
+    "bottle8": "📝 Zadejte obsah vaší láhve se zprávou:\n\n",
+    "bottle9": "📝 Prosím, zadejte obsah vaší láhve se zprávou:",
+    "cancel": "💡 Klikněte pro výběr nebo zrušení typu MBTI:",
+    "cancel2": "💡 Klikněte pro výběr nebo zrušení znamení zvěrokruhu:",
+    "catch": "• Slot 3: Veřejný bazén (čeká na vyzvednutí)\n\n",
+    "catch2": "• Slot 2: Veřejný bazén (čeká na vyzvednutí)\n",
+    "catch3": "• Slot 1: Veřejný bazén (čeká na vyzvednutí)\n",
+    "catch4": "🌊 Čekání, až osud vybere...\n",
+    "complete": "⚙️ **Pokročilý Filtr**\n\n${summary}\n💡 Pokračujte v úpravách nebo dokončení filtru:",
+    "complete2": "🎯 **Shoda #1 dokončena:**\n",
+    "complete3": "📝 Máte nedokončený návrh\n\n",
+    "complete4": "⏳ Odhadované dokončení za 3-5 sekund",
+    "complete5": "⏳ Odhadované dokončení za 2-3 sekundy",
+    "complete6": "⏳ Odhadované dokončení za 1-2 sekundy",
+    "conversation": "💬 Identifikátor konverzace: ${vipMatchInfo.conversationIdentifier}\n\n",
+    "conversation2": "💡 Tip: Každá konverzace je nezávislá a může probíhat současně\n\n",
+    "conversation3": "💡 Můžete obdržet **až 3 konverzace**!\n",
+    "conversation4": "💬 Můžete obdržet **až 3 konverzace**!\n",
+    "conversation5": "Použijte /chats pro zobrazení všech konverzací\n\n",
+    "conversation6": "📊 Použijte /chats pro zobrazení všech konverzací",
+    "conversation7": "Použijte /chats pro zobrazení všech konverzací",
+    "currentSelection": "Aktuální výběr: {genderText}",
+    "friendlyContent": "💬 Přátelský obsah má větší pravděpodobnost, že dostane odpověď",
+    "gender": "• Pohlaví: ${selectedGender === 'male' ? '👨 Muž' : selectedGender === 'female' ? '👩 Žena' : '🌈 Kdokoliv'}\n",
+    "gender2": "👤 **Filtr pohlaví**\n\n",
+    "gender3": "• Pohlaví: Filtr podle pohlaví\n\n",
+    "gender4": "💡 Vyberte pohlaví, které chcete:",
+    "gender5": "👤 Filtr Pohlaví",
+    "genderLabel": "• Pohlaví: {gender}\n",
+    "mbti": "• MBTI: ${selectedMBTI.length > 0 ? selectedMBTI.join(', ') : 'Žádný limit'}\n",
+    "mbti2": "Vybráno: ${selectedMBTI.length > 0 ? selectedMBTI.join(', ') : 'Žádný'}\n\n",
+    "mbti3": "Vybráno: ${selectedMBTI.length > 0 ? selectedMBTI.join(",
+    "mbti4": "🧠 **Filtr MBTI**\n\n",
+    "mbti5": "• Vysoká shoda ✓\n",
+    "mbti6": "🧠 MBTI filtr",
+    "mbti7": "• MBTI: {mbti}",
+    "mbtiLabel": "• MBTI: {mbti}\n",
+    "message": "Aktuální výběr: ${currentGender === 'male' ? '👨 Muž' : currentGender === 'female' ? '👩 Žena' : '🌈 Kdokoliv'}\n\n",
+    "message2": "Aktuální výběr: ${currentGender === 'male' ? '👨 Muž' : currentGender === 'female' ? '👩 Žena' : '🌈 Kdokoliv'}\n\n",
+    "message3": "Vybráno: ${selectedZodiac.length > 0 ? selectedZodiac.map((z) => ZODIAC_NAMES[z]).join(",
+    "message4": ") : 'Žádný'} {bloodTypeDisplay[currentBloodType]} ${bloodTypeDisplay[currentBloodType]}\n\n",
+    "message5": "„Ahoj! Jsem někdo, kdo miluje hudbu a filmy, doufám, že potkám podobně smýšlející přátele～“ {vipMatchInfo.matcherNickname} ${vipMatchInfo.matcherNickname}\n",
+    "message6": "\"Ahoj! Jsem někdo, kdo miluje hudbu a filmy, a doufám, že potkám přátele se stejným zaměřením~\"\n\n",
+    "message7": "💡 Můžete upravit své preference shody v /edit_profile\n\n",
+    "message8": "💬 Stiskněte /reply pro zahájení chatování\n",
+    "nickname": "• Více kvóta (30 denně) {matchedUserMaskedNickname} ${matchedUserMaskedNickname}\n",
+    "quota": "• Více kvót (30 za den)\n",
+    "quota2": "Vybráno: {selected}\n",
+    "selected": "Vybráno: {selected}",
+    "settings": "🧠 MBTI: ${mbti}\n",
+    "settings2": "🧠 MBTI: \\$ {zodiac} ${zodiac}\n",
+    "settings3": "⭐ Zvěrokruh: \\$\n",
+    "settings4": "Nastaveno\n",
+    "settings5": "Nastaveno",
+    "settings6": "Nastaveno",
+    "settings7": "Nastaveno",
+    "settings8": "• Stejný jazyk ✓",
+    "short": "♋ Rak",
+    "short10": "♌ Lev",
+    "short11": "♍ Panna",
+    "short12": "♎ Váhy",
+    "short13": "♏ Štír",
+    "short14": "♐ Střelec",
+    "short15": "♑ Kozoroh",
+    "short16": "♒ Vodnář",
+    "short17": "♓ Ryby",
+    "short18": "Porušení",
+    "short19": "🩸 Typ AB",
+    "short2": "Neomezeno",
+    "short20": "Neomezeno",
+    "short21": "Neomezeno",
+    "short22": "Neomezeno",
+    "short23": "🌈 Kdokoliv",
+    "short3": "🩸 Typ A",
+    "short4": "🩸 Typ B",
+    "short5": "🩸 Typ O",
+    "short6": "♈ Beran",
+    "short7": "♉ Býk",
+    "short8": "♊ Blíženci",
+    "short9": "♊ Blíženci",
+    "start": "✍️ Restart",
+    "success": "Hodit jednu láhev se zprávou = 3 objekty, výrazně zvyšuje úspěšnost shody\n\n",
+    "success2": "✨ **VIP privilegium aktivováno! Inteligentní shoda úspěšná!**\n\n",
+    "success3": "🎯 Vaše láhev se zprávou byla úspěšně shodnuta!\n\n",
+    "text": "💝 Kompatibilita: ${matchPercentage}%\n",
+    "text10": "🎯 Hledáme pro vás nejlepší shodu\n\n",
+    "text11": "💬 Čekáme na odpověď druhé strany...\n",
+    "text12": "• Uživatelé zdarma: až +7\n",
+    "text13": "• Nezahrnujte osobní kontaktní informace\n\n",
+    "text14": "💡 **Dva vstupní metody**：\n",
+    "text15": "📊 Uživatelé zdarma: 3 za den\n",
+    "text16": "Vyberte podmínky, které chcete filtrovat:\n\n",
+    "text17": "• Pokročilé filtrování a překlad\n\n",
+    "text18": "Čas vytvoření: ${age}\n",
+    "text19": "Použijte /vip pro vylepšení nyní",
+    "text2": "• 🆕 Trojitá příležitost ke zviditelnění (1x = 3 příjemci)\n",
+    "text20": "💬 **Příklad**：\n",
+    "text21": "Použijte /vip pro více informací",
+    "text22": "Chcete pokračovat v úpravě tohoto návrhu?",
+    "text23": "💡 Můžete kombinovat více podmínek",
+    "text24": "Aktuální podmínky filtru:\n\n",
+    "text3": "💡 To může trvat několik sekund, hledáme pro vás nejvhodnější lidi",
+    "text4": "Současný výběr: ${currentGender ===",
+    "text5": "🎯 Hledám příjemce: ${targetText}\n",
+    "text6": "🎯 Hledáme pro vás 3 nejlepší shody\n\n",
+    "text7": "📨 **2 další místa čekají:**\n",
+    "text8": "🔍 Chytré shodování nejlepších možností...\n\n",
+    "text9": "Náhled obsahu: ${preview}\n\n",
+    "throw": "📊 Dnešní odeslané: ${quotaDisplay}\n\n",
+    "tips": "💡 Tip: Čím podrobněji napíšete, tím snazší je najít vhodné partnery na chatování",
+    "unlimited": "Neomezeně",
+    "vip": "💎 VIP uživatelé: 30 za den (třikrát větší expozice)\n\n",
+    "vip2": "💎 **Získejte VIP pro trojité příležitosti k zviditelnění!**\n",
+    "vip3": "⚙️ **Pokročilé filtrování (exkluzivní pro VIP)**\n\n",
+    "vip4": "• VIP uživatelé: až +70\n\n",
+    "vip5": "✨ **VIP privilegium aktivováno!**\n\n",
+    "vip6": "💡 Vylepšete na VIP a získejte:\n",
+    "vip7": "✨ Aktivace VIP privilegií\n",
+    "zodiac": "• Zvěrokruh: ${selectedZodiac.length > 0 ? selectedZodiac.map((z) => ZODIAC_NAMES[z]).join(', ') : 'Žádný limit'}\n",
+    "zodiac2": "⭐ Zvěrokruh: ${matchResult.user.zodiac ||",
+    "zodiac3": "⭐ Zvěrokruh: ${user.zodiac_sign ||",
+    "zodiac4": "⭐ **Filtr Zvěrokruhu**\n\n",
+    "zodiac5": "• Zodiac: Filtrování konkrétních znamení zvěrokruhu\n",
+    "zodiac6": "• Vysoce kompatibilní se znamením ✓",
+    "zodiac7": "⭐ Filtrování podle znamení zvěrokruhu",
+    "zodiacLabel": "• Zodiac: {zodiac}\n"
   },
-  tasks: {
-    bottle: `獎勵：+\${task.reward_amount} 瓶子（\${rewardTypeText}）
-
-`,
-    bottle2: `獎勵：+\${task.reward_amount} 瓶子（\${task.reward_type ===`,
-    bottle3: `\${icon} \${task.name} (+\${task.reward_amount} 瓶子)
-`,
-    bottle4: `• 永久獎勵：\${inviteProgress.current} 個瓶子（每天發放）
-`,
-    bottle5: `• 一次性獎勵：\${todayRewardCount} 個瓶子（當天有效）
-`,
-    bottle6: `📋 **任務中心**
-
-完成任務獲得額外瓶子！
-
-`,
-    invite: `🔄 邀請好友 (\${inviteProgress.current}/\${inviteProgress.max})
-`,
-    invite2: `每邀請 1 人 → 每日額度永久 +1
-`,
-    message: `\${icon} \${task.name} \${status} (+\${task.reward_amount} 瓶子)
-`,
-    message2: `點擊下方按鈕加入 XunNi 官方頻道，獲取最新消息和活動！
-
-`,
-    profile: `👤 **個人資料任務** (\${completedCount}/\${profileTasks.length})
-`,
-    quota: `當前每日配額：\${calculateDailyQuota(user)} 個
-`,
-    short: `(待領取)`,
-    short2: `當天有效`,
-    short3: `永久有效`,
-    task: `• 邀請任務：\${inviteProgress.current}/\${inviteProgress.max} 進行中
-
-`,
-    task2: `📱 **社交媒體任務** (\${completedCount}/\${socialTasks.length})
-`,
-    task3: `🎯 **行為任務** (\${completedCount}/\${actionTasks.length})
-`,
-    task4: `• 一次性任務：\${oneTimeCompleted}/\${oneTimeTotal} 已完成
-`,
-    task5: `🎉 恭喜完成任務「\${task.name}」！
-
-`,
-    task6: `👥 **邀請任務** (持續進行中)
-`,
-    task7: `💡 使用 /tasks 查看任務中心`,
-    text: `加入後點擊「我已加入」按鈕領取獎勵 🎁`,
-    text2: `📢 **加入官方頻道**
-
-`,
-    text3: `📊 **總進度**
-`,
-    text4: `🎁 **已獲得**
-`,
-    description: {
-      bio: `寫下你的故事（至少 20 字）`,
-      city: `找到同城的朋友`,
-      first_bottle: `開始你的交友之旅`,
-      first_catch: `看看別人的故事`,
-      first_conversation: `建立你的第一個連接（長按訊息 → 選擇「回覆」）`,
-      interests: `讓別人更了解你`,
-      invite_progress: `每邀請 1 人，每日額度永久 +1（免費最多 10 人，VIP 最多 100 人）`,
-      join_channel: `獲取最新消息和活動`,
-    },
-    name: {
-      bio: `完善自我介紹`,
-      city: `設定地區`,
-      first_bottle: `丟出第一個瓶子`,
-      first_catch: `撿起第一個瓶子`,
-      first_conversation: `開始第一次對話`,
-      interests: `填寫興趣標籤`,
-      invite_progress: `邀請好友`,
-      join_channel: `加入官方頻道`,
-    },
+  "tutorial": {
+    "availableCommands": "Můžete použít následující příkazy kdykoli:",
+    "catchBottle": "🎣 **Zvedněte láhev se zprávou**",
+    "catchBottleDesc": "Podívejte se na láhve se zprávou ostatních a pokud máte zájem, odpovězte, abyste začali chatovat",
+    "clickButtonHint": "💡 Prosím, klikněte na tlačítko pro pokračování",
+    "commandCatch": "• /catch - Zvednout láhev se zprávou",
+    "commandHelp": "• /help - Zobrazit nápovědu",
+    "commandMenu": "📋 Nabídka příkazů",
+    "commandTasks": "• /tasks - Zobrazit úkoly",
+    "commandThrow": "• /throw - Hodit láhev se zprávou",
+    "completeTasksForBottles": "💡 Dokončujte úkoly, abyste získali extra láhve",
+    "completed": "✅ Tutoriál dokončen!",
+    "howToBecomeFriends": "💬 **Jak si najít přátele?**",
+    "howToBecomeFriendsDesc": "Zvednete láhev se zprávou → Oni také odpovědí → Začnete anonymní chat",
+    "readyToStart": "🎉 **Hotovo! Začněme si dělat přátele～**",
+    "skip": "Přeskočit",
+    "skipped": "✅ Tutoriál přeskočen",
+    "startUsing": "Začněte používat →",
+    "throwBottle": "📦 **Hodit láhev se zprávou**",
+    "throwBottleDesc": "Napište své pocity nebo myšlenky, systém vám pomůže najít správného člověka",
+    "unknownStep": "❌ Neznámý krok tutoriálu",
+    "viewTasks": "📋 Zobrazit úkoly",
+    "welcome": "🎉 Gratulujeme k dokončení registrace!",
+    "whatIsXunNi": "🌊 **Co je XunNi?**",
+    "whatIsXunNiDesc": "Platforma pro přátelství pomocí anonymních láhví se zprávou, která vám pomůže najít podobně smýšlející přátele pomocí MBTI a znamení zvěrokruhu"
   },
-  throw: {
-    age: `• 年齡區間相近 ✓`,
-    back: `↩️ 返回篩選選單`,
-    bloodType: `🩸 **血型篩選**
-
-`,
-    bloodType2: `• 血型：篩選特定血型
-`,
-    bloodType3: `選擇你想要配對的血型：`,
-    bloodType4: `🩸 血型篩選`,
-    bloodType5: `🌈 任何血型`,
-    bottle: `
-💡 這個瓶子和你非常合拍！
-
-`,
-    bottle10: `🍾 漂流瓶已丟出！
-
-`,
-    bottle11: `🍾 丟漂流瓶`,
-    bottle2: `🎯 你的瓶子已發送給 **3 個對象**：
-`,
-    bottle3: `🍾 **正在丟出你的漂流瓶...**
-
-`,
-    bottle4: `🍾 **丟漂流瓶** #THROW
-
-`,
-    bottle5: `瓶子 ID：#\${bottleId}
-
-`,
-    bottle6: `📝 **請輸入你的漂流瓶內容**
-
-`,
-    bottle7: `1️⃣ 點擊下方「🍾 丟漂流瓶」按鈕
-`,
-    bottle8: `📝 請輸入你的漂流瓶內容：
-
-`,
-    bottle9: `📝 請輸入你的漂流瓶內容：`,
-    cancel: `💡 點擊選擇或取消 MBTI 類型：`,
-    cancel2: `💡 點擊選擇或取消星座：`,
-    catch: `• 槽位 3：公共池（等待撿起）
-
-`,
-    catch2: `• 槽位 2：公共池（等待撿起）
-`,
-    catch3: `• 槽位 1：公共池（等待撿起）
-`,
-    catch4: `🌊 等待有緣人撿起...
-`,
-    complete: `⚙️ **進階篩選**
-
-\${summary}
-💡 繼續調整或完成篩選：`,
-    complete2: `🎯 **第 1 個配對已完成：**
-`,
-    complete3: `📝 你有一個未完成的草稿
-
-`,
-    complete4: `⏳ 預計 3-5 秒完成`,
-    complete5: `⏳ 預計 2-3 秒完成`,
-    complete6: `⏳ 預計 1-2 秒完成`,
-    conversation: `💬 對話標識符：\${vipMatchInfo.conversationIdentifier}
-
-`,
-    conversation2: `💡 提示：每個對話都是獨立的，可以同時進行
-
-`,
-    conversation3: `💡 你可能會收到 **最多 3 個對話**！
-`,
-    conversation4: `💬 你可能會收到 **最多 3 個對話**！
-`,
-    conversation5: `使用 /chats 查看所有對話
-
-`,
-    conversation6: `📊 使用 /chats 查看所有對話`,
-    conversation7: `使用 /chats 查看所有對話`,
-    currentSelection: `當前選擇：{genderText}`,
-    friendlyContent: `💬 友善的內容更容易獲得回應`,
-    gender: `• 性別：\${selectedGender === 'male' ? '👨 男生' : selectedGender === 'female' ? '👩 女生' : '🌈 任何人'}
-`,
-    gender2: `👤 **性別篩選**
-
-`,
-    gender3: `• 性別：篩選性別
-
-`,
-    gender4: `💡 選擇你想要的性別：`,
-    gender5: `👤 性別篩選`,
-    genderLabel: `• 性別：{gender}
-`,
-    mbti: `• MBTI：\${selectedMBTI.length > 0 ? selectedMBTI.join(', ') : '無限制'}
-`,
-    mbti2: `已選擇：\${selectedMBTI.length > 0 ? selectedMBTI.join(', ') : '無'}
-
-`,
-    mbti3: `已選擇：\${selectedMBTI.length > 0 ? selectedMBTI.join(`,
-    mbti4: `🧠 **MBTI 篩選**
-
-`,
-    mbti5: `• MBTI：篩選特定性格類型
-`,
-    mbti6: `• MBTI 高度配對 ✓`,
-    mbti7: `🧠 MBTI 篩選`,
-    mbtiLabel: `• MBTI：{mbti}
-`,
-    message: `已選擇：\${selectedZodiac.length > 0 ? selectedZodiac.map((z) => ZODIAC_NAMES[z]).join(', ') : '無'}
-
-`,
-    message2: `當前選擇：\${currentGender === 'male' ? '👨 男生' : currentGender === 'female' ? '👩 女生' : '🌈 任何人'}
-
-`,
-    message3: `已選擇：\${selectedZodiac.length > 0 ? selectedZodiac.map((z) => ZODIAC_NAMES[z]).join(`,
-    message4: `當前選擇：\${bloodTypeDisplay[currentBloodType]}
-
-`,
-    message5: `👤 對方：\${vipMatchInfo.matcherNickname}
-`,
-    message6: `「你好！我是一個喜歡音樂和電影的人，希望認識志同道合的朋友～」
-
-`,
-    message7: `💡 可在 /edit_profile 中修改匹配偏好
-
-`,
-    message8: `💬 直接按 /reply 回覆訊息開始聊天
-`,
-    nickname: `📝 對方暱稱：\${matchedUserMaskedNickname}
-`,
-    quota: `• 更多配額（30 個/天）
-`,
-    quota2: `🎁 邀請好友可增加配額：
-`,
-    selected: `已選擇：{selected}`,
-    settings: `🧠 MBTI：\${mbti}
-`,
-    settings2: `⭐ 星座：\${zodiac}
-`,
-    settings3: `🧠 MBTI：\\$
-`,
-    settings4: `⭐ 星座：\\$
-`,
-    settings5: `未設定`,
-    settings6: `未設定`,
-    settings7: `未設定`,
-    settings8: `未設定`,
-    short: `• 語言相同 ✓`,
-    short10: `♋ 巨蟹座`,
-    short11: `♌ 獅子座`,
-    short12: `♍ 處女座`,
-    short13: `♎ 天秤座`,
-    short14: `♏ 天蠍座`,
-    short15: `♐ 射手座`,
-    short16: `♑ 摩羯座`,
-    short17: `♒ 水瓶座`,
-    short18: `♓ 雙魚座`,
-    short19: `違規行為`,
-    short2: `🩸 AB 型`,
-    short20: `無限制`,
-    short21: `無限制`,
-    short22: `無限制`,
-    short23: `無限制`,
-    short3: `🌈 任何人`,
-    short4: `🩸 A 型`,
-    short5: `🩸 B 型`,
-    short6: `🩸 O 型`,
-    short7: `♈ 白羊座`,
-    short8: `♉ 金牛座`,
-    short9: `♊ 雙子座`,
-    start: `✍️ 重新開始`,
-    success: `一次丟瓶子 = 3 個對象，大幅提升配對成功率
-
-`,
-    success2: `✨ **VIP 特權啟動！智能配對成功！**
-
-`,
-    success3: `🎯 你的漂流瓶已被配對成功！
-
-`,
-    text: `💝 匹配度：\${matchPercentage}%
-`,
-    text10: `🎯 正在為你尋找最佳配對對象
-
-`,
-    text11: `
-💬 等待對方回覆中...
-`,
-    text12: `• 免費用戶：最多 +7 個
-`,
-    text13: `• 不要包含個人聯絡方式
-
-`,
-    text14: `💡 **兩種輸入方式**：
-`,
-    text15: `📊 免費用戶：3 個/天
-`,
-    text16: `選擇你想要篩選的條件：
-
-`,
-    text17: `• 進階篩選和翻譯
-
-`,
-    text18: `創建時間：\${age}
-`,
-    text19: `使用 /vip 立即升級`,
-    text2: `• 🆕 三倍曝光機會（1 次 = 3 個對象）
-`,
-    text20: `💬 **範例**：
-`,
-    text21: `使用 /vip 了解更多`,
-    text22: `要繼續編輯這個草稿嗎？`,
-    text23: `💡 可以組合多個條件`,
-    text24: `當前篩選條件：
-
-`,
-    text3: `💡 這可能需要幾秒鐘，我們正在為你找到最合適的人`,
-    text4: `當前選擇：\${currentGender ===`,
-    text5: `🎯 尋找對象：\${targetText}
-`,
-    text6: `🎯 正在為你尋找 3 個最佳配對對象
-
-`,
-    text7: `📨 **另外 2 個槽位等待中：**
-`,
-    text8: `🔍 正在智能匹配最佳對象...
-
-`,
-    text9: `內容預覽：\${preview}
-
-`,
-    throw: `📊 今日已丟：\${quotaDisplay}
-
-`,
-    tips: `💡 提示：寫得越詳細，越容易找到合適的聊天對象`,
-    unlimited: `無限制`,
-    vip: `💎 VIP 用戶：30 個/天（三倍曝光）
-
-`,
-    vip2: `💎 **升級 VIP 可獲得三倍曝光機會！**
-`,
-    vip3: `⚙️ **進階篩選（VIP 專屬）**
-
-`,
-    vip4: `• VIP 用戶：最多 +70 個
-
-`,
-    vip5: `✨ **VIP 特權啟動！**
-
-`,
-    vip6: `💡 升級 VIP 獲得：
-`,
-    vip7: `✨ VIP 特權啟動中
-`,
-    zodiac: `• 星座：\${selectedZodiac.length > 0 ? selectedZodiac.map((z) => ZODIAC_NAMES[z]).join(', ') : '無限制'}
-`,
-    zodiac2: `⭐ 星座：\${matchResult.user.zodiac ||`,
-    zodiac3: `⭐ 星座：\${user.zodiac_sign ||`,
-    zodiac4: `⭐ **星座篩選**
-
-`,
-    zodiac5: `• 星座：篩選特定星座
-`,
-    zodiac6: `• 星座高度相容 ✓`,
-    zodiac7: `⭐ 星座篩選`,
-    zodiacLabel: `• 星座：{zodiac}
-`,
+  "vip": {
+    "admin": "⏳ Máte pending žádost o vrácení, prosím buďte trpěliví, než administrátor posoudí.",
+    "bottle": "📝 Obsah láhve se zprávou: ${bottle.content.substring(0, 50)}${bottle.content.length > 50 ? '...' : ''}\n\n",
+    "bottle2": "📝 Obsah láhve: ${bottle.content.substring(0, 50)}${bottle.content.length > 50 ?",
+    "bottle3": "Vaši láhev se zprávou převzal ${maskedMatcherNickname}!\n\n",
+    "bottle4": "Systém našel láhev se zprávou od ${maskedOwnerNickname}!\n\n",
+    "bottle5": "📝 Obsah láhve se zprávou: ${bottle.content}\n\n",
+    "bottle6": "• 🆕 Příležitost k trojitému zasažení! Hodit láhev spouští 3 cíle\n",
+    "cancelReminderButton": "❌ Později",
+    "conversation": "💬 Identifikátor konverzace: ${conversationIdentifier}\n",
+    "conversation2": "🔄 Aktualizujeme vaši historii konverzací, čistý avatar se brzy zobrazí...\n\n",
+    "mbti": "• Filtrujte potenciální shody podle MBTI, znamení zvěrokruhu a krevní skupiny\n",
+    "mbti2": "• Filtrujte potenciální shody podle MBTI a znamení zvěrokruhu\n",
+    "mbti3": "• Filtrujte podle MBTI a znamení zvěrokruhu\n",
+    "message": "Doba vypršení: ${new Date(sub.expire_date).toLocaleDateString('zh-TW')}\n\n",
+    "message10": "Číslo žádosti: #${result.meta.last_row_id}\n",
+    "message11": "Částka vrácení: ${request.amount_stars} ⭐\n",
+    "message12": "💬 **Prosím, dlouze stiskněte tuto zprávu, vyberte 'Odpovědět' a zadejte obsah, abyste začali chatovat s druhou stranou**",
+    "message13": "💡 Bezpečné a pohodlné placení pomocí Telegram Stars\n\n",
+    "message14": "💡 Toto je vaše 1. párování, s 2 rezervovanými místy\n\n",
+    "message2": "Čas žádosti: ${new Date(req.requested_at).toLocaleString('zh-TW')}\n",
+    "message3": "Aktuální výběr: ${bloodTypeDisplay[currentBloodType]} {expireDate} ${expireDate}\n\n",
+    "message4": "Čas vypršení: ${expireDate}\n\n",
+    "message5": "Čas platby: ${paymentDate.toLocaleDateString('zh-TW')}\n",
+    "message6": "📋 **Čekající žádosti o vrácení peněz** (${requests.results.length})\n\n",
+    "message7": "ID platby: ${payment.telegram_payment_charge_id}",
+    "message8": "Cena: ${priceStars} ⭐ Telegram Stars / měsíc\n",
+    "message9": "Čas platby: ${paymentDate.toLocaleDateString(",
+    "purchaseCancelled": "✅ Nákup zrušen",
+    "quota": "• Denní kvóta 30 láhví se zprávou (pozvání přátel ji může zvýšit až na 100 za den)\n",
+    "quota2": "• Denní kvóta 30 láhví se zprávou (až 100 za den)\n",
+    "refundAdminCommands": "Doba vypršení: ${expireDate} <ID> `/admin_approve_refund <ID>` `/admin_reject_refund <ID> ` `/admin_reject_refund <ID> <原因>`",
+    "refundApproved": "✅ **Vrácení peněz schváleno**\n\nČástka vrácení: ${amount} ⭐\nVrácení peněz bude připsáno během 1-3 pracovních dnů.\n\nVaše VIP členství bylo zrušeno.\n\nDěkujeme za vaše pochopení!",
+    "refundApprovedAdmin": "✅ Vrácení peněz schváleno\n\nID žádosti: #${requestId}\nID uživatele: ${userId}\nČástka: ${amount} ⭐",
+    "refundExpired": "❌ Žádost o vrácení peněz přesahuje časový limit\n\nDatum platby: ${paymentDate}\nČasový limit na vrácení: Do 7 dní od platby\n\n💡 V případě zvláštních okolností, kontaktujte prosím zákaznickou podporu.",
+    "refundFailed": "❌ Vrácení peněz se nezdařilo: ${error}",
+    "refundNoPayment": "❌ Záznam o platbě nebyl nalezen.",
+    "refundNoPending": "✅ Žádné čekající žádosti o vrácení peněz.",
+    "refundPending": "⏳ Máte čekající žádost o vrácení peněz, prosím vyčkejte trpělivě na posouzení administrátorem.",
+    "refundPendingList": "📋 **Čekající žádosti o vrácení peněz** (${count})",
+    "refundReasonTooShort": "❌ Důvod vrácení musí mít alespoň 10 znaků, prosím zadejte znovu:",
+    "refundRejected": "❌ **Žádost o vrácení peněz byla odmítnuta**\n\nDůvod: ${reason}\n\nPokud máte otázky, kontaktujte prosím zákaznickou podporu.",
+    "refundRejectedAdmin": "✅ Vrácení peněz odmítnuto\n\nID žádosti: #${requestId}\nID uživatele: ${userId}",
+    "refundRequestItem": "**#${id}** - ${nickname}\nID uživatele: `${userId}`\nČástka: ${amount} ⭐\nDůvod: ${reason}\nPožadováno dne: ${requestedAt}",
+    "refundRequestNotFound": "❌ Žádost o vrácení peněz neexistuje nebo byla zpracována.",
+    "refundRequestReason": "📝 **Žádat o vrácení peněz**\n\nProsím zadejte důvod vrácení (alespoň 10 znaků):",
+    "refundSubmitFailed": "❌ Odeslání se nezdařilo, prosím zkuste to znovu později.",
+    "refundSubmitted": "✅ **Žádost o vrácení peněz byla odeslána**\n\nČíslo žádosti: #${requestId}\nStav: Čeká na posouzení\n\nVaši žádost zpracujeme během 1-3 pracovních dnů.\nVýsledek vám bude oznámen prostřednictvím Bota.\n\nDěkujeme za vaši trpělivost!",
+    "reminderCancelled": "✅ Připomínka zrušena",
+    "reminderDaysLeft": "Vaše VIP členství vyprší za ${days} dnů.",
+    "reminderExpireDate": "Datum vypršení: ${date}",
+    "reminderExpiringToday": "⚠️ **VIP končí dnes**",
+    "reminderExpiringTodayDesc": "Vaše VIP členství vyprší dnes.",
+    "reminderGracePeriod": "📌 Gracia: Služba nebude přerušena, pokud bude obnovena do 3 dnů po vypršení.",
+    "reminderRenewHint": "💡 Obnovte nyní, abyste si užili nepřerušenou VIP službu!",
+    "reminderRenewHint2": "💡 Obnovte nyní, abyste nadále využívali VIP výhody!",
+    "reminderTitle": "⏰ **Připomínka vypršení VIP**",
+    "renewButton": "💳 Obnovit nyní (${stars} ⭐)",
+    "renewalProcessing": "Zpracováváme obnovu...",
+    "settings": "💡 Chcete-li zrušit předplatné, přejděte do Nastavení Telegramu > Správa předplatného\n\n",
+    "settings2": "💡 Chcete-li zrušit své předplatné, přejděte do Nastavení Telegramu > Správa předplatného",
+    "settings3": "💡 Své předplatné můžete zrušit kdykoli v nastavení Telegramu",
+    "short": "(přibližně 5 USD)",
+    "short2": "Děkujeme za vaši trpělivost!",
+    "short3": "Děkujeme za vaše pochopení!",
+    "short4": "• Schválit: \\",
+    "short5": "• Odmítnout: \\",
+    "start": "🚀 Začněte nyní: /throw",
+    "success": "🎯 **VIP chytré shodování úspěšné!**\n\n",
+    "success2": "🎉 **Automatické obnovení úspěšné!**\n\n",
+    "success3": "🎉 **Chytré shodování úspěšné!**\n\n",
+    "success4": "🎉 **Předplatné úspěšné!**\n\n",
+    "text": "- Prioritní přístup k překladům modelu OpenAI GPT (vysoká kvalita)\n",
+    "text10": "Vaši žádost zpracujeme během 1-3 pracovních dnů.\n",
+    "text11": "Doba vypršení: ${expireDate}\n\n",
+    "text12": "Vrácení peněz bude připsáno v průběhu 1-3 pracovních dnů.\n\n",
+    "text13": "ID žádosti: #${requestId}\n",
+    "text14": "└ 1 chytré shodnutí + 2 veřejné bazény\n",
+    "text15": "O výsledcích zpracování vás budeme informovat prostřednictvím Bota.\n\n",
+    "text16": "Prosím zadejte důvod vrácení (alespoň 10 znaků):",
+    "text17": "Důvod: ${req.reason}\n",
+    "text18": "Termín vrácení peněz: do 7 dnů po platbě\n\n",
+    "text19": "Váš účet byl obnoven na bezplatného uživatele.\n\n",
+    "text2": "• Automatický překlad ve 34 jazycích (priorita OpenAI GPT)\n",
+    "text20": "💡 Chcete obnovit nebo upgradovat?\n\n",
+    "text21": "💡 Kontaktujte zákaznickou podporu pro zvláštní případy.",
+    "text22": "Důvod: ${reason}\n\n",
+    "text23": "• Odemkněte jasnější profilový obrázek 🆕\n",
+    "text24": "To může trvat několik sekund, prosím čekejte.",
+    "text25": "📝 **Žádost o vrácení peněz**\n\n",
+    "text26": "• Automatický překlad ve 34 jazycích\n",
+    "text27": "💡 Zpracujte pomocí následujícího příkazu:\n",
+    "text28": "(Cena pro testování)",
+    "text29": "Pro dotazy kontaktujte zákaznickou podporu.",
+    "text3": "Částka: ${request.amount_stars} ⭐",
+    "text30": "Stav: Čeká na posouzení\n\n",
+    "text4": "🔄 **Automatické obnovení**: Automaticky se účtuje měsíčně, není třeba ručního obnovení\n",
+    "text5": "Částka: ${req.amount_stars} ⭐\n",
+    "text6": "ID uživatele: ${request.user_id}\n",
+    "text7": "💳 Obnovte nyní (${priceStars} ⭐)",
+    "text8": "ID uživatele: ${request.user_id}",
+    "text9": "📌 Ochranná lhůta: Obnovení do 3 dnů po vypršení nebude přerušovat službu.",
+    "viewVipCommand": "VIP výhody můžete kdykoli zkontrolovat pomocí příkazu /vip.",
+    "vip": "Vaše VIP členství vypršelo dne ${new Date(sub.expire_date).toLocaleDateString('zh-TW')}\n\n",
+    "vip10": "💎 **Upgrade na VIP členství**\n\n",
+    "vip11": "😢 **VIP členství vypršelo**\n\n",
+    "vip12": "Upgradujte na VIP členství a užívejte si následující výhody:\n",
+    "vip13": "⏰ **Připomenutí vypršení VIP**\n\n",
+    "vip14": "Vaše VIP členství vyprší dnes.\n\n",
+    "vip15": "Vaše VIP předplatné bylo automaticky obnoveno!\n",
+    "vip16": "Vaše VIP členství bylo zrušeno.\n\n",
+    "vip17": "XunNi VIP předplatné (měsíční)",
+    "vip18": "✨ VIP výhody zůstávají aktivní:\n",
+    "vip19": "Nyní jste VIP člen!\n",
+    "vip2": "Vaše VIP členství vypršelo dne ${new Date(sub.expire_date).toLocaleDateString(",
+    "vip20": "✨ VIP výhody byly aktivovány:\n",
+    "vip21": "VIP členství (30 dní)",
+    "vip22": "🎁 VIP výhody:\n",
+    "vip23": "XunNi VIP Obnovení",
+    "vip24": "XunNi VIP Nákup",
+    "vip25": "VIP Předplatné",
+    "vip3": "Vaše VIP členství vyprší za ${daysLeft} dní.\n\n",
+    "vip4": "🔄 Obnovit VIP (${priceStars} ⭐)",
+    "vip5": "💳 Zakoupit VIP (${priceStars} ⭐)",
+    "vip6": "Přihlaste se k VIP členství XunNi s automatickým obnovením každý měsíc!\n\n",
+    "vip7": "💡 Obnovte nyní, abyste si užili nepřerušenou VIP službu!",
+    "vip8": "💡 Obnovte nyní, abyste i nadále užívali VIP výhody!\n",
+    "vip9": "✨ **Jste již VIP členem**\n\n"
   },
-  tutorial: {
-    availableCommands: `你可以隨時使用以下命令：`,
-    catchBottle: `🎣 **撿起漂流瓶**`,
-    catchBottleDesc: `看看別人的漂流瓶，有興趣就回覆開始聊天`,
-    clickButtonHint: `💡 請點擊按鈕繼續`,
-    commandCatch: `• /catch - 撿起漂流瓶`,
-    commandHelp: `• /help - 查看幫助`,
-    commandMenu: `📋 命令選單`,
-    commandTasks: `• /tasks - 查看任務`,
-    commandThrow: `• /throw - 丟出漂流瓶`,
-    completeTasksForBottles: `💡 完成任務可獲得額外瓶子`,
-    completed: `✅ 教學已完成！`,
-    howToBecomeFriends: `💬 **如何成為朋友？**`,
-    howToBecomeFriendsDesc: `你撿瓶回覆 → 對方也回覆 → 開始匿名聊天`,
-    readyToStart: `🎉 **準備好了！開始交朋友吧～**`,
-    skip: `跳過`,
-    skipped: `✅ 已跳過教學`,
-    startUsing: `開始使用 →`,
-    throwBottle: `📦 **丟出漂流瓶**`,
-    throwBottleDesc: `寫下你的心情或想法，系統會幫你找到合適的人`,
-    unknownStep: `❌ 未知的教學步驟`,
-    viewTasks: `📋 查看任務`,
-    welcome: `🎉 恭喜完成註冊！`,
-    whatIsXunNi: `🌊 **XunNi 是什麼？**`,
-    whatIsXunNiDesc: `匿名漂流瓶交友平台，透過 MBTI 和星座幫你找到志同道合的朋友`,
+  "vipTripleBottle": {
+    "bottleContent": "📝 Obsah láhve: {content}\n\n",
+    "bottlePicked": "Vaše láhev se zprávou byla vyzvednuta {maskedMatcherNickname}!\n\n",
+    "conversationIdentifier": "💬 Identifikátor konverzace: {conversationIdentifier}\n",
+    "firstMatch": "💡 Toto je váš 1. zápas, zbývá 2 sloty\n\n",
+    "foundBottle": "Systém našel láhev od {maskedOwnerNickname}!\n\n",
+    "matchSuccess": "🎯 **Úspěšné chytré párování!**\n\n",
+    "replyHint": "💬 **Prosím, dlouze stiskněte tuto zprávu, vyberte 'Odpovědět' a zadejte obsah, abyste začali chatovat s druhou stranou**",
+    "slotsWaiting": "Zbývá {remaining} slotů\n\n",
+    "smartMatch": "🎉 **Úspěšné párování!**\n\n",
+    "viewChats": "Použijte /chats pro zobrazení všech konverzací\n\n"
   },
-  vip: {
-    admin: `⏳ 你已有待處理的退款請求，請耐心等待管理員審核。`,
-    bottle: `📝 瓶子內容：\${bottle.content.substring(0, 50)}\${bottle.content.length > 50 ? '...' : ''}
-
-`,
-    bottle2: `📝 瓶子內容：\${bottle.content.substring(0, 50)}\${bottle.content.length > 50 ?`,
-    bottle3: `你的瓶子已被 \${maskedMatcherNickname} 撿起！
-
-`,
-    bottle4: `系統為你找到了 \${maskedOwnerNickname} 的瓶子！
-
-`,
-    bottle5: `📝 瓶子內容：\${bottle.content}
-
-`,
-    bottle6: `• 🆕 三倍曝光機會！一次丟瓶子觸發 3 個對象
-`,
-    cancelReminderButton: `❌ 稍後再說`,
-    conversation: `💬 對話標識符：\${conversationIdentifier}
-`,
-    conversation2: `🔄 正在更新您的對話歷史，清晰頭像即將顯示...
-
-`,
-    mbti: `• 可篩選配對對象的 MBTI、星座、血型
-`,
-    mbti2: `• 可篩選配對對象的 MBTI 和星座
-`,
-    mbti3: `• 可篩選 MBTI 和星座
-`,
-    message: `到期時間：\${new Date(sub.expire_date).toLocaleDateString('zh-TW')}
-
-`,
-    message10: `申請編號：#\${result.meta.last_row_id}
-`,
-    message11: `退款金額：\${request.amount_stars} ⭐
-`,
-    message12: `💬 **請長按此訊息，選擇「回覆」後輸入內容和對方開始聊天**`,
-    message13: `💡 使用 Telegram Stars 安全便捷支付
-
-`,
-    message14: `💡 這是你的第 1 個配對，還有 2 個槽位等待中
-
-`,
-    message2: `申請時間：\${new Date(req.requested_at).toLocaleString('zh-TW')}
-`,
-    message3: `新到期時間：\${expireDate}
-
-`,
-    message4: `到期時間：\${expireDate}
-
-`,
-    message5: `支付時間：\${paymentDate.toLocaleDateString('zh-TW')}
-`,
-    message6: `📋 **待處理退款請求** (\${requests.results.length})
-
-`,
-    message7: `支付 ID：\${payment.telegram_payment_charge_id}`,
-    message8: `價格：\${priceStars} ⭐ Telegram Stars / 月
-`,
-    message9: `支付時間：\${paymentDate.toLocaleDateString(`,
-    purchaseCancelled: `✅ 已取消購買`,
-    quota: `• 每天 30 個漂流瓶配額（邀請好友可增加，最高 100 個/天）
-`,
-    quota2: `• 每天 30 個漂流瓶配額（最高 100 個/天）
-`,
-    refundAdminCommands: `💡 使用以下命令處理：
-• 批准：\`/admin_approve_refund <ID>\`
-• 拒絕：\`/admin_reject_refund <ID> <原因>\``,
-    refundApproved: `✅ **退款已批准**
-
-退款金額：\${amount} ⭐
-退款將在 1-3 個工作日內到帳。
-
-你的 VIP 會員已取消。
-
-感謝你的理解！`,
-    refundApprovedAdmin: `✅ 退款已批准
-
-請求 ID：#\${requestId}
-用戶 ID：\${userId}
-金額：\${amount} ⭐`,
-    refundExpired: `❌ 退款申請超過時限
-
-支付時間：\${paymentDate}
-退款時限：支付後 7 天內
-
-💡 如有特殊情況，請聯繫客服。`,
-    refundFailed: `❌ 退款失敗：\${error}`,
-    refundNoPayment: `❌ 找不到支付記錄。`,
-    refundNoPending: `✅ 沒有待處理的退款請求。`,
-    refundPending: `⏳ 你已有待處理的退款請求，請耐心等待管理員審核。`,
-    refundPendingList: `📋 **待處理退款請求** (\${count})`,
-    refundReasonTooShort: `❌ 退款原因至少需要 10 個字，請重新輸入：`,
-    refundRejected: `❌ **退款申請已被拒絕**
-
-原因：\${reason}
-
-如有疑問，請聯繫客服。`,
-    refundRejectedAdmin: `✅ 退款已拒絕
-
-請求 ID：#\${requestId}
-用戶 ID：\${userId}`,
-    refundRequestItem: `**#\${id}** - \${nickname}
-用戶 ID：\`\${userId}\`
-金額：\${amount} ⭐
-原因：\${reason}
-申請時間：\${requestedAt}`,
-    refundRequestNotFound: `❌ 退款請求不存在或已處理`,
-    refundRequestReason: `📝 **申請退款**
-
-請輸入退款原因（至少 10 個字）：`,
-    refundSubmitFailed: `❌ 提交失敗，請稍後再試。`,
-    refundSubmitted: `✅ **退款申請已提交**
-
-申請編號：#\${requestId}
-狀態：待審核
-
-我們會在 1-3 個工作日內處理你的申請。
-處理結果會通過 Bot 通知你。
-
-感謝你的耐心等待！`,
-    reminderCancelled: `✅ 已取消提醒`,
-    reminderDaysLeft: `你的 VIP 會員將在 \${days} 天後到期。`,
-    reminderExpireDate: `到期時間：\${date}`,
-    reminderExpiringToday: `⚠️ **VIP 今天到期**`,
-    reminderExpiringTodayDesc: `你的 VIP 會員今天到期。`,
-    reminderGracePeriod: `📌 寬限期：到期後 3 天內續費不會中斷服務。`,
-    reminderRenewHint: `💡 立即續費，享受不間斷的 VIP 服務！`,
-    reminderRenewHint2: `💡 立即續費，繼續享受 VIP 權益！`,
-    reminderTitle: `⏰ **VIP 到期提醒**`,
-    renewButton: `💳 立即續費 (\${stars} ⭐)`,
-    renewalProcessing: `正在處理續費...`,
-    settings: `💡 如需取消訂閱，請前往 Telegram 設定 > 訂閱管理
-
-`,
-    settings2: `💡 如需取消訂閱，請前往 Telegram 設定 > 訂閱管理`,
-    settings3: `💡 可隨時在 Telegram 設定中取消訂閱`,
-    short: `（約 5 USD）`,
-    short2: `感謝你的耐心等待！`,
-    short3: `感謝你的理解！`,
-    short4: `• 批准：\\`,
-    short5: `• 拒絕：\\`,
-    start: `🚀 立即開始使用：/throw`,
-    success: `🎯 **VIP 智能配對成功！**
-
-`,
-    success2: `🎉 **自動續費成功！**
-
-`,
-    success3: `🎉 **智能配對成功！**
-
-`,
-    success4: `🎉 **訂閱成功！**
-
-`,
-    text: `- 優先使用 OpenAI GPT 模型翻譯（高品質）
-`,
-    text10: `我們會在 1-3 個工作日內處理你的申請。
-`,
-    text11: `到期時間：\${expireDate}
-
-`,
-    text12: `退款將在 1-3 個工作日內到帳。
-
-`,
-    text13: `請求 ID：#\${requestId}
-`,
-    text14: `└ 1 個智能配對 + 2 個公共池
-`,
-    text15: `處理結果會通過 Bot 通知你。
-
-`,
-    text16: `請輸入退款原因（至少 10 個字）：`,
-    text17: `原因：\${req.reason}
-`,
-    text18: `退款時限：支付後 7 天內
-
-`,
-    text19: `你的帳號已恢復為免費用戶。
-
-`,
-    text2: `• 34 種語言自動翻譯（OpenAI GPT 優先）
-`,
-    text20: `💡 想要續訂或升級嗎？
-
-`,
-    text21: `💡 如有特殊情況，請聯繫客服。`,
-    text22: `原因：\${reason}
-
-`,
-    text23: `• 解鎖對方清晰頭像 🆕
-`,
-    text24: `這可能需要幾秒鐘時間，請稍候。`,
-    text25: `📝 **申請退款**
-
-`,
-    text26: `• 34 種語言自動翻譯
-`,
-    text27: `💡 使用以下命令處理：
-`,
-    text28: `（Staging 測試價）`,
-    text29: `如有疑問，請聯繫客服。`,
-    text3: `金額：\${request.amount_stars} ⭐`,
-    text30: `狀態：待審核
-
-`,
-    text4: `🔄 **自動續費**：每月自動扣款，無需手動續費
-`,
-    text5: `金額：\${req.amount_stars} ⭐
-`,
-    text6: `用戶 ID：\${request.user_id}
-`,
-    text7: `💳 立即續費 (\${priceStars} ⭐)`,
-    text8: `用戶 ID：\${request.user_id}`,
-    text9: `📌 寬限期：到期後 3 天內續費不會中斷服務。`,
-    viewVipCommand: `你可以隨時使用 /vip 命令查看 VIP 權益。`,
-    vip: `你的 VIP 會員已於 \${new Date(sub.expire_date).toLocaleDateString('zh-TW')} 到期。
-
-`,
-    vip10: `💎 **升級 VIP 會員**
-
-`,
-    vip11: `😢 **VIP 會員已到期**
-
-`,
-    vip12: `升級 VIP 會員，享受以下權益：
-`,
-    vip13: `⏰ **VIP 到期提醒**
-
-`,
-    vip14: `你的 VIP 會員今天到期。
-
-`,
-    vip15: `你的 VIP 訂閱已自動續費！
-`,
-    vip16: `你的 VIP 會員已取消。
-
-`,
-    vip17: `XunNi VIP 訂閱（月費）`,
-    vip18: `✨ VIP 權益持續啟用：
-`,
-    vip19: `你已成為 VIP 會員！
-`,
-    vip2: `你的 VIP 會員已於 \${new Date(sub.expire_date).toLocaleDateString(`,
-    vip20: `✨ VIP 權益已啟用：
-`,
-    vip21: `VIP 會員 (30 天)`,
-    vip22: `🎁 VIP 權益：
-`,
-    vip23: `XunNi VIP 續訂`,
-    vip24: `XunNi VIP 購買`,
-    vip25: `VIP 訂閱`,
-    vip3: `你的 VIP 會員將在 \${daysLeft} 天後到期。
-
-`,
-    vip4: `🔄 續訂 VIP (\${priceStars} ⭐)`,
-    vip5: `💳 購買 VIP (\${priceStars} ⭐)`,
-    vip6: `訂閱 XunNi VIP 會員，每月自動續費！
-
-`,
-    vip7: `💡 立即續費，享受不間斷的 VIP 服務！`,
-    vip8: `💡 立即續費，繼續享受 VIP 權益！
-`,
-    vip9: `✨ **你已經是 VIP 會員**
-
-`,
+  "warning": {
+    "ad": "⚠️ Aktuálně nejsou nakonfigurováni žádní poskytovatelé reklam\n\n",
+    "ad2": "⚠️ Momentálně nejsou k dispozici oficiální reklamy\n\n",
+    "ad3": "⚠️ Žádní dostupní inzerenti",
+    "ad4": "⚠️ Nelze vybrat inzerenta",
+    "ad5": "⚠️ Nelze zobrazit více reklam",
+    "birthday": "⚠️ Aktuálně se nenacházíte v kroku zadání narozenin",
+    "bloodType": "⚠️ Aktuálně se nenacházíte v kroku výběru krevní skupiny",
+    "broadcast": "⚠️ Nalezeno ${stuckBroadcasts.results.length} uvízlých vysílání\n\n",
+    "complete": "⚠️ Prosím, dokončete předchozí reklamu před zahájením nové",
+    "confirm": "⚠️ Prosím potvrďte informace o vašem datu narození:\n\n",
+    "conversation": "⚠️ Chyba informací v konverzaci.",
+    "conversation10": "⚠️ Konverzace neexistuje",
+    "conversation2": "⚠️ Chyba informací v konverzaci",
+    "conversation3": "⚠️ Tento uživatel nemá žádné příspěvky v historii konverzací\n",
+    "conversation4": "⚠️ Nelze najít uvedenou konverzaci, mohla skončit nebo vypršet.",
+    "conversation5": "⚠️ **Sekce historie konverzací byla aktualizována**\n\n",
+    "conversation6": "⚠️ Nelze rozpoznat partnera v konverzaci\n\n",
+    "conversation7": "⚠️ Konverzace nebyla nalezena\n\n",
+    "conversation8": "⚠️ Konverzace neexistuje nebo skončila",
+    "conversation9": "⚠️ Tato konverzace skončila",
+    "end": "⚠️ Test skončil nebo neexistuje",
+    "failed": "⚠️ Ověření platby selhalo, zkuste to prosím znovu později",
+    "gender": "⚠️ Aktuálně se nenacházíte v kroku výběru pohlaví",
+    "invite": "⚠️ Nelze získat pozvánkový kód",
+    "mbti": "⚠️ Aktuálně se nenacházíte v kroku testu MBTI",
+    "mbti2": "⚠️ Neplatný typ MBTI",
+    "message": "⚠️ Nalezeno ${outdatedPosts.length} zastaralých příspěvků, které je potřeba obnovit\n",
+    "message2": "⚠️ Poznámka: Toto je ${testInfo}${testTitle}, ${accuracy}.\n\n",
+    "message3": "⚠️ Prosím dlouze stiskněte zprávu, kterou chcete zablokovat, a odpovězte příkazem\n\n",
+    "message4": "⚠️ Prosím dlouze stiskněte zprávu, kterou chcete nahlásit, a odpovězte příkazem\n\n",
+    "message5": "⚠️ **Zpráva obsahuje zakázané odkazy**\n\n",
+    "register": "⚠️ Nelze najít profil uživatele, prosím, použijte /start pro registraci nejprve.",
+    "register2": "⚠️ Prosím, nejprve dokončete registrační proces.\n\nPoužijte /start pro pokračování registrace.",
+    "register3": "⚠️ Při registračním procesu došlo k problému, prosím restartujte: /start",
+    "register4": "⚠️ Prosím, nejprve dokončete registrační proces",
+    "settings": "⚠️ Připomenutí: Nastavené pohlaví **nikdy nebude moci být změněno** po tomto!\n\n",
+    "settings2": "⚠️ Nastavení narozenin nelze upravit, prosím, potvrďte, že je správné!",
+    "settings3": "⚠️ Poznámka: Jakmile je pohlaví nastaveno, nelze ho změnit, prosím, volte moudře!",
+    "short": "⚠️ Nesprávné pořadí otázek",
+    "short2": "⚠️ Neznámá možnost",
+    "short3": "⚠️ Neplatný požadavek",
+    "short4": "⚠️ Poznámka:\n",
+    "short5": "⚠️ Další porušení",
+    "start": "⚠️ Relace vypršela, prosím restartujte: /throw",
+    "start2": "⚠️ Relace vypršela, prosím restartujte",
+    "task": "⚠️ Neznámý typ úkolu",
+    "text": "⚠️ **Pozor**\n\n",
+    "text10": "⚠️ **Nemožné upravit položky**：\n",
+    "text11": "⚠️ Relace vypršela, prosím proveďte akci znovu",
+    "text12": "⚠️ Návrh neexistuje nebo vypršel",
+    "text2": "⚠️ Neplatný typ platby",
+    "text3": "⚠️ Překladová služba je dočasně nedostupná, zde je původní text\n",
+    "text4": "⚠️ Bezpečnostní tip：\n",
+    "text5": "⚠️ Aktuálně nejste ve fázi anti-fraud kvízu",
+    "text6": "⚠️ Aktuálně nejste ve fázi podmínek služby",
+    "text7": "⚠️ Poznámka: Tato funkce je k dispozici pouze v prostředí Staging.",
+    "text8": "⚠️ **Odesílání obrázků, videí nebo multimédií není povoleno**\n\n",
+    "text9": "⚠️ Tato funkce je k dispozici pouze v prostředí Staging.",
+    "userNotFound": "⚠️ Uživatel neexistuje, prosím nejprve se registrujte pomocí /start.",
+    "userNotFound2": "⚠️ Uživatel neexistuje",
+    "vip": "⚠️ Dosáhli jste limitu pozvánek pro bezplatné uživatele, upgradem na VIP odemknete limit 100 osob!",
+    "vip2": "⚠️ Tato funkce je pouze pro VIP členy",
+    "vip3": "⚠️ **VIP vyprší dnes**\n\n"
   },
-  vipTripleBottle: {
-    bottleContent: `📝 瓶子內容：{content}
-
-`,
-    bottlePicked: `你的瓶子已被 {maskedMatcherNickname} 撿起！
-
-`,
-    conversationIdentifier: `💬 對話標識符：{conversationIdentifier}
-`,
-    firstMatch: `💡 這是你的第 1 個配對，還有 2 個槽位等待中
-
-`,
-    foundBottle: `系統為你找到了 {maskedOwnerNickname} 的瓶子！
-
-`,
-    matchSuccess: `🎯 **VIP 智能配對成功！**
-
-`,
-    replyHint: `💬 **請長按此訊息，選擇「回覆」後輸入內容和對方開始聊天**`,
-    slotsWaiting: `還有 {remaining} 個槽位等待中
-
-`,
-    smartMatch: `🎉 **智能配對成功！**
-
-`,
-    viewChats: `使用 /chats 查看所有對話
-
-`,
-  },
-  warning: {
-    ad: `⚠️ 目前沒有配置任何廣告提供商
-
-`,
-    ad2: `⚠️ 目前沒有官方廣告
-
-`,
-    ad3: `⚠️ 暫無可用的廣告提供商`,
-    ad4: `⚠️ 無法選擇廣告提供商`,
-    ad5: `⚠️ 無法觀看更多廣告`,
-    birthday: `⚠️ 當前不在生日輸入步驟`,
-    bloodType: `⚠️ 當前不在血型選擇步驟`,
-    broadcast: `⚠️ 發現 \${stuckBroadcasts.results.length} 個卡住的廣播
-
-`,
-    complete: `⚠️ 請先完成上一支廣告，再開始新的廣告`,
-    confirm: `⚠️ 請確認你的生日資訊：
-
-`,
-    conversation: `⚠️ 對話資訊錯誤。`,
-    conversation10: `⚠️ 對話不存在`,
-    conversation2: `⚠️ 對話資訊錯誤`,
-    conversation3: `⚠️ 此用戶沒有對話歷史帖子
-`,
-    conversation4: `⚠️ 找不到指定的對話，可能已結束或過期。`,
-    conversation5: `⚠️ **對話歷史部分更新**
-
-`,
-    conversation6: `⚠️ 無法識別對話對象
-
-`,
-    conversation7: `⚠️ 找不到此對話
-
-`,
-    conversation8: `⚠️ 對話不存在或已結束`,
-    conversation9: `⚠️ 此對話已結束`,
-    end: `⚠️ 測驗已結束或不存在`,
-    failed: `⚠️ 支付驗證失敗，請稍後再試`,
-    gender: `⚠️ 當前不在性別選擇步驟`,
-    invite: `⚠️ 無法獲取邀請碼`,
-    mbti: `⚠️ 當前不在 MBTI 測驗步驟`,
-    mbti2: `⚠️ 無效的 MBTI 類型`,
-    message: `⚠️ 發現 \${outdatedPosts.length} 個過時帖子需要刷新
-`,
-    message2: `⚠️ 注意：這是 \${testInfo}\${testTitle}，\${accuracy}。
-
-`,
-    message3: `⚠️ 請長按你要封鎖的訊息後回覆指令
-
-`,
-    message4: `⚠️ 請長按你要舉報的訊息後回覆指令
-
-`,
-    message5: `⚠️ **訊息包含不允許的連結**
-
-`,
-    register: `⚠️ 找不到用戶資料，請先使用 /start 註冊。`,
-    register2: `⚠️ 請先完成註冊流程。
-
-使用 /start 繼續註冊。`,
-    register3: `⚠️ 註冊流程出現問題，請重新開始：/start`,
-    register4: `⚠️ 請先完成註冊流程`,
-    settings: `⚠️ 再次提醒：性別設定後將**永遠不能修改**！
-
-`,
-    settings2: `⚠️ 生日設定後無法修改，請確認無誤！`,
-    settings3: `⚠️ 注意：性別設定後無法修改，請謹慎選擇！`,
-    short: `⚠️ 問題順序錯誤`,
-    short2: `⚠️ 未知的選項`,
-    short3: `⚠️ 無效的請求`,
-    short4: `⚠️ 注意：
-`,
-    short5: `⚠️ 其他違規`,
-    start: `⚠️ 會話已過期，請重新開始：/throw`,
-    start2: `⚠️ 會話已過期，請重新開始`,
-    task: `⚠️ 未知的任務類型`,
-    text: `⚠️ **注意**
-
-`,
-    text10: `⚠️ **不可修改項目**：
-`,
-    text11: `⚠️ 會話已過期，請重新操作`,
-    text12: `⚠️ 草稿不存在或已過期`,
-    text2: `⚠️ 無效的支付類型`,
-    text3: `⚠️ 翻譯服務暫時無法使用，以下為原文
-`,
-    text4: `⚠️ 安全提示：
-`,
-    text5: `⚠️ 當前不在反詐騙測驗步驟`,
-    text6: `⚠️ 當前不在服務條款步驟`,
-    text7: `⚠️ 注意：此功能僅在 Staging 環境可用。`,
-    text8: `⚠️ **不允許發送圖片、影片或多媒體**
-
-`,
-    text9: `⚠️ 此功能僅在 Staging 環境可用。`,
-    userNotFound: `⚠️ 用戶不存在，請先使用 /start 註冊。`,
-    userNotFound2: `⚠️ 用戶不存在`,
-    vip: `⚠️ 已達免費用戶邀請上限，升級 VIP 可解鎖 100 人上限！`,
-    vip2: `⚠️ 此功能僅限 VIP 會員使用`,
-    vip3: `⚠️ **VIP 今天到期**
-
-`,
-  },
-  warnings: {
-    birthday: `⚠️ 生日設定後無法修改，請確認無誤！`,
-    bloodType: `🩸 血型`,
-    gender: `[需要翻译]`,
-    mbti: `🧠 MBTI：\\\\\\\\\\\${mbti}`,
-    register2: `⚠️ 請先完成註冊`,
-    register4: `⚠️ 註冊未完成`,
-    settings: `🧠 MBTI：\\\\\\\\\\\\$`,
-    text5: `📖 簡介：{otherUser.bio}`,
-    text6: `⚠️ 請先完成註冊`,
-    userNotFound: `用戶不存在`,
-    warning: {
-      ad: `⚠️ 目前沒有配置任何廣告提供商
-
-`,
-      ad2: `⚠️ 目前沒有官方廣告
-
-`,
-      ad3: `⚠️ 暫無可用的廣告提供商`,
-      ad4: `⚠️ 無法選擇廣告提供商`,
-      ad5: `⚠️ 無法觀看更多廣告`,
-      birthday: `⚠️ 當前不在生日輸入步驟`,
-      bloodType: `⚠️ 當前不在血型選擇步驟`,
-      broadcast: `⚠️ 發現 \\\${stuckBroadcasts.results.length} 個卡住的廣播
-
-`,
-      complete: `⚠️ 請先完成上一支廣告，再開始新的廣告`,
-      confirm: `⚠️ 請確認你的生日資訊：
-
-`,
-      conversation: `⚠️ 對話資訊錯誤。`,
-      conversation10: `⚠️ 對話不存在`,
-      conversation2: `⚠️ 對話資訊錯誤`,
-      conversation3: `⚠️ 此用戶沒有對話歷史帖子
-`,
-      conversation4: `⚠️ 找不到指定的對話，可能已結束或過期。`,
-      conversation5: `⚠️ **對話歷史部分更新**
-
-`,
-      conversation6: `⚠️ 無法識別對話對象
-
-`,
-      conversation7: `⚠️ 找不到此對話
-
-`,
-      conversation8: `⚠️ 對話不存在或已結束`,
-      conversation9: `⚠️ 此對話已結束`,
-      end: `⚠️ 測驗已結束或不存在`,
-      failed: `⚠️ 支付驗證失敗，請稍後再試`,
-      gender: `⚠️ 當前不在性別選擇步驟`,
-      invite: `⚠️ 無法獲取邀請碼`,
-      mbti: `⚠️ 當前不在 MBTI 測驗步驟`,
-      mbti2: `⚠️ 無效的 MBTI 類型`,
-      message: `⚠️ 發現 \\\${outdatedPosts.length} 個過時帖子需要刷新
-`,
-      message2: `⚠️ 注意：這是 \\\${testInfo}\\\${testTitle}，\\\${accuracy}。
-
-`,
-      message3: `⚠️ 請長按你要封鎖的訊息後回覆指令
-
-`,
-      message4: `⚠️ 請長按你要舉報的訊息後回覆指令
-
-`,
-      message5: `⚠️ **訊息包含不允許的連結**
-
-`,
-      register: `⚠️ 找不到用戶資料，請先使用 /start 註冊。`,
-      register2: `⚠️ 請先完成註冊流程。
-
-使用 /start 繼續註冊。`,
-      register3: `⚠️ 註冊流程出現問題，請重新開始：/start`,
-      register4: `⚠️ 請先完成註冊流程`,
-      settings: `⚠️ 再次提醒：性別設定後將**永遠不能修改**！
-
-`,
-      settings2: `⚠️ 生日設定後無法修改，請確認無誤！`,
-      settings3: `⚠️ 注意：性別設定後無法修改，請謹慎選擇！`,
-      short: `⚠️ 問題順序錯誤`,
-      short2: `⚠️ 未知的選項`,
-      short3: `⚠️ 無效的請求`,
-      short4: `[需要翻译]`,
-      short5: `⚠️ 其他違規`,
-      start: `⚠️ 會話已過期，請重新開始：/throw`,
-      start2: `⚠️ 會話已過期，請重新開始`,
-      task: `⚠️ 未知的任務類型`,
-      text: `⚠️ **注意**
-
-`,
-      text10: `⚠️ **不可修改項目**：
-`,
-      text11: `⚠️ 會話已過期，請重新操作`,
-      text12: `⚠️ 草稿不存在或已過期`,
-      text2: `⚠️ 無效的支付類型`,
-      text3: `⚠️ 翻譯服務暫時無法使用，以下為原文
-`,
-      text4: `⚠️ 安全提示：
-`,
-      text5: `⚠️ 當前不在反詐騙測驗步驟`,
-      text6: `⚠️ 當前不在服務條款步驟`,
-      text7: `⚠️ 注意：此功能僅在 Staging 環境可用。`,
-      text8: `⚠️ **不允許發送圖片、影片或多媒體**
-
-`,
-      text9: `⚠️ 此功能僅在 Staging 環境可用。`,
-      userNotFound: `⚠️ 用戶不存在，請先使用 /start 註冊。`,
-      userNotFound2: `⚠️ 用戶不存在`,
-      vip: `⚠️ 已達免費用戶邀請上限，升級 VIP 可解鎖 100 人上限！`,
-      vip2: `⚠️ 此功能僅限 VIP 會員使用`,
-      vip3: `⚠️ **VIP 今天到期**
-
-`,
-    },
-  },
+  "warnings": {
+    "birthday": "⚠️ Narozeniny nelze upravit po nastavení, prosím potvrďte, že jsou správné!",
+    "bloodType": "🩸 Krevní typ",
+    "gender": "👤 Pohlaví：{otherUser.gender}",
+    "mbti": "🧠 MBTI：\\\\\\\\\\${mbti}",
+    "register2": "[Needs translation: warnings.register2]",
+    "register4": "[Needs translation: warnings.register4]",
+    "settings": "🧠 MBTI：\\\\\\\\\\\\$",
+    "text5": "📖 Biografie：{otherUser.bio}",
+    "text6": "[Needs translation: warnings.text6]",
+    "userNotFound": "Uživatel neexistuje",
+    "warning": {
+      "ad": "⚠️ Aktuálně nejsou nakonfigurováni žádní poskytovatelé reklam\n\n",
+      "ad2": "⚠️ Aktuálně nejsou k dispozici oficiální reklamy\n\n",
+      "ad3": "⚠️ V tuto chvíli nejsou k dispozici žádní poskytovatelé reklam",
+      "ad4": "⚠️ Nelze vybrat poskytovatele reklam",
+      "ad5": "⚠️ Nelze shlédnout další reklamy",
+      "birthday": "⚠️ Aktuálně nejste ve fázi zadávání narozenin",
+      "bloodType": "⚠️ Aktuálně nejste ve fázi výběru krevního typu",
+      "broadcast": "⚠️ Nalezeno \\${stuckBroadcasts.results.length} uvízlých vysílání\n\n",
+      "complete": "⚠️ Prosím dokončete předchozí reklamu před zahájením nové reklamy",
+      "confirm": "⚠️ Prosím potvrďte informace o vašem datu narození:\n\n",
+      "conversation": "⚠️ Chyba informací o konverzaci.",
+      "conversation10": "⚠️ Konverzace neexistuje",
+      "conversation2": "⚠️ Chyba informací o konverzaci",
+      "conversation3": "⚠️ Tento uživatel nemá žádné příspěvky v historii konverzace\n",
+      "conversation4": "⚠️ Nelze najít specifikovanou konverzaci, mohla skončit nebo vypršet.",
+      "conversation5": "⚠️ **Historie konverzací byla částečně aktualizována**\n\n",
+      "conversation6": "⚠️ Nelze identifikovat partnera v konverzaci\n\n",
+      "conversation7": "⚠️ Tuto konverzaci nelze najít\n\n",
+      "conversation8": "⚠️ Konverzace neexistuje nebo skončila",
+      "conversation9": "⚠️ Tato konverzace skončila",
+      "end": "⚠️ Test skončil nebo neexistuje",
+      "failed": "⚠️ Ověření platby selhalo, zkuste to prosím znovu později",
+      "gender": "⚠️ V současnosti nejste ve kroku výběru pohlaví",
+      "invite": "⚠️ Nelze získat pozvánkový kód",
+      "mbti": "⚠️ V současnosti nejste ve kroku MBTI testu",
+      "mbti2": "⚠️ Neplatný typ MBTI",
+      "message": "⚠️ Zjištěno \\${outdatedPosts.length} zastaralých příspěvků, které je potřeba aktualizovat\n",
+      "message2": "⚠️ Poznámka: Toto je \\${testInfo}\\${testTitle}, \\${accuracy}.\n\n",
+      "message3": "⚠️ Prosím dlouze stiskněte zprávu, kterou chcete zablokovat, a odpovězte příkazem\n\n",
+      "message4": "⚠️ Prosím dlouze stiskněte zprávu, kterou chcete nahlásit, a odpovězte příkazem\n\n",
+      "message5": "⚠️ **Zpráva obsahuje zakázané odkazy**\n\n",
+      "register": "⚠️ Uživatelův profil nebyl nalezen, prosím, nejprve se zaregistrujte pomocí /start.",
+      "register2": "⚠️ Nejprve prosím dokončete registrační proces.\n\nPoužijte /start pro pokračování registrace.",
+      "register3": "⚠️ Došlo k problému s registračním procesem, prosím, začněte znovu: /start",
+      "register4": "⚠️ Nejprve prosím dokončete registrační proces",
+      "settings": "⚠️ Připomenutí: Jakmile je nastaveno, pohlaví **nelze změnit** navždy!\n\n",
+      "settings2": "⚠️ Nastavení narozenin nelze měnit, prosím, potvrďte, že je správné!",
+      "settings3": "⚠️ Poznámka: Nastavení pohlaví nelze měnit, prosím, vyberte opatrně!",
+      "short": "⚠️ Nesprávné pořadí otázek",
+      "short2": "⚠️ Neznámá možnost",
+      "short3": "⚠️ Neplatný požadavek",
+      "short4": "⚠️ Délka přezdívky je omezena na 36 znaků",
+      "short5": "⚠️ Další porušení",
+      "start": "⚠️ Seshna vypršela, prosím, restartujte: /throw",
+      "start2": "⚠️ Seshna vypršela, prosím, restartujte",
+      "task": "⚠️ Neznámý typ úkolu",
+      "text": "⚠️ **Poznámka**\n\n",
+      "text10": "⚠️ **Nemodifikovatelné položky**:\n",
+      "text11": "⚠️ Seshna vypršela, prosím, zkuste to znovu",
+      "text12": "⚠️ Návrh neexistuje nebo vypršel",
+      "text2": "⚠️ Neplatný typ platby",
+      "text3": "⚠️ Překladová služba je dočasně nedostupná, zde je původní text\n",
+      "text4": "⚠️ Bezpečnostní připomínka:\n",
+      "text5": "⚠️ V současnosti nejste ve kroku testu proti podvodům",
+      "text6": "⚠️ V současnosti nejste ve kroku podmínek služby",
+      "text7": "⚠️ Poznámka: Tato funkce je dostupná pouze v prostředí Staging.",
+      "text8": "⚠️ **Odesílání obrázků, videí nebo multimédií není povoleno**\n\n",
+      "text9": "⚠️ Tato funkce je dostupná pouze v prostředí Staging.",
+      "userNotFound": "⚠️ Uživatel neexistuje, prosím, nejprve se zaregistrujte pomocí /start.",
+      "userNotFound2": "⚠️ Uživatel neexistuje",
+      "vip": "⚠️ Dosáhli jste limitu pro pozvánky zdarma, přejděte na VIP pro odemčení limitu 100 lidí!",
+      "vip2": "⚠️ Tato funkce je pouze pro VIP členy",
+      "vip3": "⚠️ **VIP vyprší dnes**\n\n"
+    }
+  }
 };

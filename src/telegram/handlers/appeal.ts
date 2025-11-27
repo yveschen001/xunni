@@ -146,6 +146,37 @@ export async function handleAppealReasonInput(message: TelegramMessage, env: Env
     timeZone: user.language_pref === 'en' ? 'UTC' : 'Asia/Taipei',
   });
 
+  // ✨ NEW: AI Analysis & Admin Logging
+  const { ContentModerationService } = await import('~/services/content_moderation');
+  const { AdminLogService } = await import('~/services/admin_log');
+  
+  const aiService = new ContentModerationService(env);
+  const logService = new AdminLogService(env);
+
+  // Analyze appeal
+  const banReason = latestBan ? 'Banned' : 'Unknown'; // TODO: Fetch actual ban reason
+  let aiResult: { verdict: string; reason: string; confidence: number };
+  
+  try {
+    const analysis = await aiService.analyzeAppeal({
+      user: telegramId,
+      banReason: banReason,
+      appealText: reason
+    });
+    aiResult = analysis;
+  } catch (e) {
+    aiResult = { verdict: 'error', reason: 'Analysis failed', confidence: 0 };
+  }
+
+  // Log to Admin Group
+  await logService.logAppeal({
+    userId: telegramId,
+    banReason: banReason,
+    appealText: reason,
+    aiRecommendation: `Verdict: ${aiResult.verdict}\nReason: ${aiResult.reason}`,
+    aiConfidence: aiResult.confidence
+  });
+
   await telegram.sendMessage(
     chatId,
     i18n.t('appeal.submitted', {

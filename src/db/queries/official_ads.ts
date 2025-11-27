@@ -25,8 +25,8 @@ export async function getAllOfficialAds(
   enabledOnly: boolean = false
 ): Promise<OfficialAd[]> {
   const query = enabledOnly
-    ? `SELECT * FROM official_ads WHERE is_enabled = 1 ORDER BY created_at ASC`
-    : `SELECT * FROM official_ads ORDER BY created_at ASC`;
+    ? `SELECT * FROM official_ads WHERE is_enabled = 1 AND deleted_at IS NULL ORDER BY created_at ASC`
+    : `SELECT * FROM official_ads WHERE deleted_at IS NULL ORDER BY created_at ASC`;
 
   const result = await db.prepare(query).all<OfficialAd>();
 
@@ -62,6 +62,7 @@ export async function getActiveOfficialAds(db: D1Database): Promise<OfficialAd[]
     .prepare(
       `SELECT * FROM official_ads 
        WHERE is_enabled = 1
+         AND deleted_at IS NULL
          AND (start_date IS NULL OR start_date <= ?)
          AND (end_date IS NULL OR end_date >= ?)
          AND (max_views IS NULL OR current_views < max_views)
@@ -98,6 +99,8 @@ export async function createOfficialAd(
     start_date?: string;
     end_date?: string;
     max_views?: number;
+    title_i18n?: string;
+    content_i18n?: string;
   }
 ): Promise<number> {
   const result = await db
@@ -105,9 +108,10 @@ export async function createOfficialAd(
       `INSERT INTO official_ads (
         ad_type, title, content, url, target_entity_id,
         reward_quota, requires_verification, is_enabled,
-        start_date, end_date, max_views
+        start_date, end_date, max_views,
+        title_i18n, content_i18n
       )
-      VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`
+      VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`
     )
     .bind(
       ad.ad_type,
@@ -117,10 +121,12 @@ export async function createOfficialAd(
       ad.target_entity_id || null,
       ad.reward_quota ?? 1,
       ad.requires_verification ? 1 : 0,
-      ad.is_enabled ?? 1,
+      ad.is_enabled === false ? 0 : 1,
       ad.start_date || null,
       ad.end_date || null,
-      ad.max_views || null
+      ad.max_views || null,
+      ad.title_i18n || null,
+      ad.content_i18n || null
     )
     .run();
 
@@ -182,6 +188,18 @@ export async function updateOfficialAd(
   if (updates.max_views !== undefined) {
     fields.push('max_views = ?');
     values.push(updates.max_views);
+  }
+  if (updates.title_i18n !== undefined) {
+    fields.push('title_i18n = ?');
+    values.push(updates.title_i18n);
+  }
+  if (updates.content_i18n !== undefined) {
+    fields.push('content_i18n = ?');
+    values.push(updates.content_i18n);
+  }
+  if (updates.deleted_at !== undefined) {
+    fields.push('deleted_at = ?');
+    values.push(updates.deleted_at);
   }
 
   if (fields.length === 0) {

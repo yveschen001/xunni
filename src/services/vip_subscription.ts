@@ -8,6 +8,7 @@ import type { Env } from '~/types';
 import { createDatabaseClient } from '~/db/client';
 import { createTelegramService } from './telegram';
 import { notifySuperAdmin } from './admin_notification';
+import { CacheService } from './cache';
 
 const VIP_PRICE_STARS = 150; // Default price
 
@@ -141,6 +142,7 @@ async function autoDowngradeExpiredVips(
 ): Promise<void> {
   const now = new Date();
   const gracePeriodEnd = new Date(now.getTime() - 3 * 24 * 60 * 60 * 1000); // 3 days ago
+  const cache = new CacheService(env);
 
   try {
     // Query expired subscriptions
@@ -169,13 +171,16 @@ async function autoDowngradeExpiredVips(
             `
           UPDATE users
           SET is_vip = 0,
-              vip_expire_at = NULL,
+          vip_expire_at = NULL,
               updated_at = datetime('now')
           WHERE telegram_id = ?
         `
           )
           .bind(sub.user_id)
           .run();
+
+        // Invalidate cache
+        await cache.delete(`user:profile:${sub.user_id}`);
 
         // 2. Update subscription status
         await db.d1

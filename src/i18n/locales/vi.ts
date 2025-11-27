@@ -1,6720 +1,4079 @@
 import type { Translations } from '../types';
 
-/**
- * vi translations
- * Auto-generated from i18n_for_translation.csv
- */
 export const translations: Translations = {
-  ad: {
-    ad: `💡 繼續觀看廣告可獲得更多額度！（已修正）`,
-    failed: `❌ 廣告載入失敗，請稍後再試`,
+  "ad": {
+    "ad": "💡 Tiếp tục xem quảng cáo để kiếm thêm hạn mức! (Cố định)",
+    "failed": "❌ Tải quảng cáo thất bại, vui lòng thử lại sau"
   },
-  adPrompt: {
-    completeTask: `• ✨ 完成任務（獲得永久配額）`,
-    inviteFriends: `• 🎁 邀請好友（每人 +1 配額）`,
-    quotaExhausted: `❌ 今日漂流瓶配額已用完（\${quotaDisplay}）`,
-    taskButton: `✨ \${taskName} 🎁`,
-    upgradeVip: `• 💎 升級 VIP（每天 30 個配額）`,
-    watchAd: `• 📺 觀看廣告（剩餘 \${remaining}/20 次）`,
-    watchAdLimit: `• 📺 觀看廣告（今日已達上限）`,
-    waysToGetMore: `💡 獲得更多配額的方式：`,
+  "adPrompt": {
+    "completeTask": "• ✨ Hoàn thành nhiệm vụ (kiếm hạn mức vĩnh viễn)",
+    "inviteFriends": "• 🎁 Mời bạn bè (+1 hạn mức/người)",
+    "quotaExhausted": "❌ Hạn mức chai thư hôm nay đã hết (${quotaDisplay})",
+    "taskButton": "✨ ${taskName} 🎁",
+    "upgradeVip": "• 💎 Nâng cấp lên VIP (30 hạn mức mỗi ngày)",
+    "watchAd": "• 📺 Xem quảng cáo (còn lại ${remaining}/20 lần)",
+    "watchAdLimit": "• 📺 Xem quảng cáo (đã đạt giới hạn hôm nay)",
+    "waysToGetMore": "💡 Các cách kiếm thêm hạn mức:"
   },
-  adProvider: {
-    health: {
-      good: `良好`,
-      needsAttention: `需要關注`,
+  "adProvider": {
+    "health": {
+      "good": "Tốt",
+      "needsAttention": "Cần chú ý"
+    }
+  },
+  "adReward": {
+    "adCompleted": "Quảng cáo đã hoàn thành! Kiếm được +${quota} hạn mức",
+    "cannotSelectProvider": "⚠️ Không thể chọn nhà cung cấp quảng cáo",
+    "cannotWatchMore": "⚠️ Không thể xem thêm quảng cáo",
+    "clickButtonHint": "✅ Vui lòng nhấn nút để bắt đầu xem",
+    "completedEarned": "🎁 Hôm nay đã kiếm được: **${earned}** hạn mức",
+    "completedRemaining": "📈 Số lần còn lại: **${remaining}** lần",
+    "completedReward": "✅ Kiếm được **+1 hạn mức**",
+    "completedTitle": "🎉 **Hoàn thành việc xem quảng cáo!**",
+    "completedWatched": "📊 Hôm nay đã xem: **${watched}/20** lần",
+    "continueWatching": "💡 Tiếp tục xem quảng cáo để kiếm thêm hạn mức!",
+    "dailyLimitReached": "Đã đạt giới hạn quảng cáo hôm nay (${max}/${max})",
+    "getStatusFailed": "❌ Không lấy được trạng thái quảng cáo",
+    "noProviders": "⚠️ Không có nhà cung cấp quảng cáo nào khả dụng",
+    "pendingAd": "⚠️ Vui lòng hoàn thành quảng cáo trước đó trước khi bắt đầu một quảng cáo mới",
+    "startWatchButton": "📺 Bắt đầu xem quảng cáo",
+    "vipNoAds": "💎 Người dùng VIP không cần xem quảng cáo",
+    "vipNoAdsReason": "Người dùng VIP có hạn mức không giới hạn, không cần xem quảng cáo",
+    "watchAdClickButton": "👇 Nhấn nút bên dưới để bắt đầu xem",
+    "watchAdRemaining": "📊 Còn lại hôm nay: **${remaining}/20** lần",
+    "watchAdReward": "🎁 Hoàn thành xem để kiếm **+1 quota**",
+    "watchAdTitle": "📺 **Xem quảng cáo để kiếm quota**"
+  },
+  "admin": {
+    "ad": "Sử dụng /official_ads để xem tất cả quảng cáo",
+    "ad2": "Vui lòng sử dụng script cơ sở dữ liệu để thêm nhà cung cấp quảng cáo:\n",
+    "ad3": "📺 **Danh sách Nhà Cung Cấp Quảng Cáo**\n\n",
+    "ad4": "Vui lòng sử dụng script cơ sở dữ liệu để thêm quảng cáo chính thức:\n",
+    "ad5": "📢 **Danh sách Quảng Cáo Chính Thức**\n\n",
+    "adConfig": {
+      "adIdMustBeNumber": "❌ ID quảng cáo phải là một số",
+      "addOfficialAdScript": "Vui lòng sử dụng script cơ sở dữ liệu để thêm quảng cáo chính thức:",
+      "addProviderScript": "Vui lòng sử dụng script cơ sở dữ liệu để thêm nhà cung cấp quảng cáo:",
+      "clicks": "• Đã nhấp: ${count} lần",
+      "correctFormat": "**Định dạng đúng:**",
+      "disableCommand": "• `/ad_provider_disable ` - Vô hiệu hóa `/ad_provider_disable <id>`",
+      "disableFailed": "❌ Không thể vô hiệu hóa nhà cung cấp quảng cáo",
+      "disableOfficialAdCommand": "• `/official_ad_disable ` - Tắt",
+      "disableOfficialAdFailed": "❌ Không thể vô hiệu hóa quảng cáo chính thức",
+      "disabled": "❌ Đã bị vô hiệu hóa",
+      "enableCommand": "• `/ad_provider_enable ` - Kích hoạt",
+      "enableFailed": "❌ Không thể kích hoạt nhà cung cấp quảng cáo",
+      "enableOfficialAdCommand": "• `/official_ad_enable ` - Bật",
+      "enableOfficialAdFailed": "❌ Không thể kích hoạt quảng cáo chính thức",
+      "enabled": "✅ Đã được kích hoạt",
+      "example": "**Ví dụ:**",
+      "getListFailed": "❌ Không thể lấy danh sách nhà cung cấp quảng cáo",
+      "getOfficialAdListFailed": "❌ Không thể lấy danh sách quảng cáo chính thức",
+      "id": "• ID: ${id}",
+      "impressions": "• Hiển thị: ${count} lần",
+      "managementCommands": "**Lệnh Quản Lý:**",
+      "noOfficialAds": "⚠️ Hiện tại không có quảng cáo chính thức",
+      "noProviders": "⚠️ Hiện tại không có nhà cung cấp quảng cáo nào được cấu hình.",
+      "officialAdDisabled": "✅ Quảng cáo chính thức #${id} đã bị vô hiệu hóa.",
+      "officialAdEnabled": "✅ Quảng cáo chính thức #${id} đã được kích hoạt.",
+      "officialAdList": "📢 **Danh sách Quảng Cáo Chính Thức**",
+      "priority": "• Độ ưu tiên: ${priority}",
+      "priorityCommand": "• `/ad_provider_priority ` - Đặt độ ưu tiên",
+      "priorityMustBeNonNegative": "❌ Độ ưu tiên phải là số nguyên không âm.",
+      "prioritySet": "✅ Độ ưu tiên của nhà cung cấp quảng cáo đã được thiết lập.",
+      "priorityValue": "Độ ưu tiên: ${priority}",
+      "provider": "Nhà cung cấp: ${name}",
+      "providerDisabled": "✅ Nhà cung cấp quảng cáo đã bị vô hiệu hóa: ${name}",
+      "providerEnabled": "✅ Nhà cung cấp quảng cáo đã được kích hoạt: ${name}",
+      "providerList": "📺 **Danh sách Nhà Cung Cấp Quảng Cáo**",
+      "reward": "• Thưởng: ${reward} tín dụng",
+      "setPriorityFailed": "❌ Thiết lập độ ưu tiên thất bại",
+      "status": "• Tình trạng: ${status}",
+      "testMode": "• 🧪 Chế độ thử nghiệm",
+      "type": "• Loại: ${type}",
+      "usageError": "❌ Sử dụng không đúng cách",
+      "viewAllOfficialAds": "Sử dụng /official_ads để xem tất cả quảng cáo",
+      "viewAllProviders": "Sử dụng /ad_providers để xem tất cả nhà cung cấp",
+      "viewStatsCommand": "• `/ad_stats ` - Xem thống kê chi tiết",
+      "weight": "• Trọng số: ${weight}"
     },
-  },
-  adReward: {
-    adCompleted: `廣告完成！獲得 +\${quota} 個配額`,
-    cannotSelectProvider: `⚠️ 無法選擇廣告提供商`,
-    cannotWatchMore: `⚠️ 無法觀看更多廣告`,
-    clickButtonHint: `✅ 請點擊按鈕開始觀看`,
-    completedEarned: `🎁 今日已獲得：**\${earned}** 個額度`,
-    completedRemaining: `📈 剩餘次數：**\${remaining}** 次`,
-    completedReward: `✅ 獲得 **+1 個額度**`,
-    completedTitle: `🎉 **廣告觀看完成！**`,
-    completedWatched: `📊 今日已觀看：**\${watched}/20** 次`,
-    continueWatching: `💡 繼續觀看廣告可獲得更多額度！`,
-    dailyLimitReached: `今日廣告已達上限（\${max}/\${max}）`,
-    getStatusFailed: `❌ 獲取廣告狀態失敗`,
-    noProviders: `⚠️ 暫無可用的廣告提供商`,
-    pendingAd: `⚠️ 請先完成上一支廣告，再開始新的廣告`,
-    startWatchButton: `📺 開始觀看廣告`,
-    vipNoAds: `💎 VIP 用戶無需觀看廣告`,
-    vipNoAdsReason: `VIP 用戶擁有無限配額，無需觀看廣告`,
-    watchAdClickButton: `👇 點擊下方按鈕開始觀看`,
-    watchAdRemaining: `📊 今日剩餘：**\${remaining}/20** 次`,
-    watchAdReward: `🎁 完成觀看可獲得 **+1 個額度**`,
-    watchAdTitle: `📺 **觀看廣告獲得額度**`,
-  },
-  admin: {
-    ad: `使用 /official_ads 查看所有廣告`,
-    ad2: `請使用資料庫腳本添加廣告提供商：
-`,
-    ad3: `📺 **廣告提供商列表**
-
-`,
-    ad4: `請使用資料庫腳本添加官方廣告：
-`,
-    ad5: `📢 **官方廣告列表**
-
-`,
-    addAlreadyAdmin: `❌ 此用戶已經是管理員。`,
-    addAlreadySuperAdmin: `❌ 此用戶已經是超級管理員，無需添加。`,
-    addCommand: `\`/admin_add <user_id>\`
-
-`,
-    addExample: `\`/admin_add 123456789\` - 添加為普通管理員
-
-`,
-    addInstructions: `⚠️ **注意**
-
-此命令需要手動修改配置文件。
-
-**步驟：**
-1. 編輯 \`wrangler.toml\`
-2. 找到 \`ADMIN_USER_IDS\` 變數
-3. 添加用戶 ID：\`{userId}\`
-4. 格式：\`ADMIN_USER_IDS = "ID1,ID2,{userId}"\`
-5. 重新部署：\`pnpm deploy:staging\`
-
-**用戶資訊：**
-• ID: \`{userId}\`
-• 暱稱: {nickname}
-• 用戶名: @{username}
-
-💡 或在 Cloudflare Dashboard 中修改環境變數`,
-    addUsageError: `❌ 使用方法錯誤
-
-`,
-    addUserNotFound: `❌ 用戶不存在或未註冊。`,
-    admin: `💡 使用 /admin_list 查看當前管理員列表`,
-    admin2: `管理員封禁 / Admin ban`,
-    admin3: `- 添加為普通管理員
-
-`,
-    admin4: `- 移除普通管理員
-
-`,
-    admin5: `\`/admin_add 123456789\` - 添加為普通管理員
-
-`,
-    admin6: `\`/admin_remove 123456789\` - 移除普通管理員
-
-`,
-    appeal: `申訴 ID: \${appeal.id}
-`,
-    appeal2: `💡 使用以下命令審核申訴：
-`,
-    appeal3: `📋 待審核申訴列表
-
-`,
-    appeal4: `申訴已批准`,
-    appeal5: `申訴被拒絕`,
-    appealAlreadyReviewed: `❌ 申訴 {id} 已經被審核過了`,
-    appealApproveUsageError: `❌ 請提供申訴 ID
-
-用法: /admin_approve <appeal_id> [備註]`,
-    appealApproved: `✅ 申訴 {id} 已批准，用戶已解封`,
-    appealApprovedDefault: `申訴已批准`,
-    appealDivider: `━━━━━━━━━━━━━━━━
-`,
-    appealId: `申訴 ID: {id}
-`,
-    appealNotFound: `❌ 找不到申訴 ID: {id}`,
-    appealReason: `理由: {reason}
-`,
-    appealRejectUsageError: `❌ 請提供申訴 ID
-
-用法: /admin_reject <appeal_id> [備註]`,
-    appealRejected: `✅ 申訴 {id} 已拒絕`,
-    appealRejectedDefault: `申訴被拒絕`,
-    appealReviewCommands: `/admin_approve <appeal_id> [備註]
-/admin_reject <appeal_id> [備註]`,
-    appealReviewHint: `💡 使用以下命令審核申訴：
-`,
-    appealSubmittedAt: `提交時間: {time}
-
-`,
-    appealUser: `用戶: {user}
-`,
-    appealsTitle: `📋 待審核申訴列表
-
-`,
-    ban: `💡 使用 /admin_bans <user_id> 查看特定用戶的封禁歷史`,
-    ban2: `總封禁次數: \${userBans.results.length}
-
-`,
-    ban3: `📊 最近 10 條封禁記錄
-
-`,
-    ban4: `📊 用戶封禁歷史
-
-`,
-    ban5: `📊 目前沒有封禁記錄`,
-    banSuccess: `✅ 已封禁用戶 {userId} ({nickname})
-
-封禁時長：{duration}
-解封時間：{unbanTime}`,
-    banSuccessPermanent: `✅ 已永久封禁用戶 {userId} ({nickname})`,
-    banUsageError: `使用方式错误`,
-    banUserNotFound: `用户不存在`,
-    cannotBanAdmin: `无法封禁管理员`,
-    conversation: `💡 對話歷史帖子只在有新消息時創建
-`,
-    conversation2: `所有 VIP 用戶的對話歷史都是最新的！`,
-    conversation3: `
-💬 **對話歷史帖子：**
-`,
-    conversation4: `請檢查對話歷史是否已更新為清晰頭像。`,
-    conversation5: `🔄 開始刷新您的對話歷史...`,
-    conversation6: `• 無對話歷史帖子
-`,
-    end: `結束: \${banEnd}
-
-`,
-    error: `错误`,
-    failed: `• 失敗帖子：\${results.totalPostsFailed}
-
-`,
-    failed2: `• 失敗：\${results.failedUsers}
-`,
-    failed3: `• 失敗：\${result.failed} 個帖子
-
-`,
-    insufficientPermission: `❌ **權限不足**
-
-此命令僅限超級管理員使用。`,
-    listFooter: `---`,
-    listId: `ID：{id}`,
-    listNickname: `暱稱：{nickname}`,
-    listNotRegistered: `未注册`,
-    listRoleAdmin: `管理员`,
-    listRoleSuperAdmin: `超级管理员`,
-    listTitle: `管理员列表`,
-    listTotal: `總數：{total}`,
-    listUsername: `用戶名：{username}`,
-    message: `• 更新時間：\${new Date(post.updated_at).toLocaleString('zh-TW', { month: '2-digit', day: '2-digit', hour: '2-digit', minute: '2-digit' })}
-
-`,
-    message10: `• 有頭像：\${post.partner_avatar_url ? '✅' : '❌'}
-`,
-    message11: `...還有 \${historyPosts.results.length - 5} 個帖子
-`,
-    message12: `用戶: \${targetUser?.nickname }
-`,
-    message13: `• 用戶名: @\${targetUser?.username }
-
-`,
-    message14: `用戶: \${appeal.nickname }
-`,
-    message15: `
-...還有 \${results.details.length - 10} 個用戶`,
-    message16: `• 用戶名: @\${targetUser.username }
-
-`,
-    message17: `• 總數：\${historyPosts.results.length}
-
-`,
-    message18: `💡 使用 /admin_refresh_vip_avatars 批量刷新
-`,
-    message19: `• 最新：\${post.is_latest ? '✅' : '❌'}
-`,
-    message2: `• 更新時間：\${avatarInfo.avatar_updated_at ? new Date(avatarInfo.avatar_updated_at).toLocaleString('zh-TW') : '未知'}
-`,
-    message20: `• 過時帖子：\${stats.totalOutdatedPosts}
-
-`,
-    message21: `/ad_provider_priority <id> <priority>`,
-    message22: `• 需要刷新：\${stats.usersNeedingRefresh}
-`,
-    message23: `• 更新帖子：\${results.totalPostsUpdated}
-`,
-    message24: `用戶: \${ban.nickname }
-`,
-    message25: `/ad_provider_disable <provider_id>`,
-    message26: `💡 或在 Cloudflare Dashboard 中修改環境變數`,
-    message27: `/ad_provider_enable <provider_id>`,
-    message28: `• 用戶名: @\${targetUser?.username ||`,
-    message29: `/admin_approve <appeal_id> [備註]
-`,
-    message3: `• \${username}: \${detail.postsUpdated} 更新, \${detail.postsFailed} 失敗
-`,
-    message30: `• 展示: \${ad.impression_count} 次
-`,
-    message31: `• 用戶名: @\${targetUser.username ||`,
-    message32: `• 用戶名：@\${user.username }
-`,
-    message33: `/admin_reject <appeal_id> [備註]`,
-    message34: `• 處理用戶：\${results.totalUsers}
-`,
-    message35: `• \`/ad_provider_enable <id>\` - 啟用
-`,
-    message36: `• \`/ad_provider_disable <id>\` - 停用
-`,
-    message37: `• \`/ad_provider_priority <id> <priority>\` - 設置優先級`,
-    message38: `• \`/official_ad_enable <id>\` - 啟用
-`,
-    message39: `• \`/official_ad_disable <id>\` - 停用
-`,
-    message4: `新到期：\${new Date(data.expire_date).toLocaleDateString('zh-TW')}
-`,
-    message40: `• 更新時間：\${new Date(post.updated_at).toLocaleString('zh-TW', { month: '2-digit', day: '2-digit', hour:`,
-    message5: `到期：\${new Date(data.expire_date).toLocaleDateString('zh-TW')}
-`,
-    message6: `錯誤：\${error instanceof Error ? error.message : String(error)}`,
-    message7: `• 原始 URL：\${avatarInfo.avatar_original_url ? '✅' : '❌'}
-`,
-    message8: `• 模糊 URL：\${avatarInfo.avatar_blurred_url ? '✅' : '❌'}
-`,
-    message9: `📝 **帖子 #\${post.identifier}-H\${post.post_number}**
-`,
-    nickname: `• 暱稱: \${targetUser?.nickname ||`,
-    nickname2: `• 暱稱: \${targetUser.nickname ||`,
-    noPendingAppeals: `✅ 目前沒有待審核的申訴`,
-    noPermission: `❌ 你沒有權限使用此命令。`,
-    onlyAdmin: `❌ 只有管理員可以使用此命令。`,
-    onlySuperAdmin: `❌ 只有超級管理員可以使用此命令。`,
-    operationFailed: `❌ 發生錯誤，請稍後再試。`,
-    removeCannotRemoveSuperAdmin: `❌ 無法移除超級管理員。`,
-    removeCommand: `\`/admin_remove <user_id>\`
-
-`,
-    removeExample: `\`/admin_remove 123456789\` - 移除普通管理員
-
-`,
-    removeInstructions: `⚠️ **注意**
-
-此命令需要手動修改配置文件。
-
-**步驟：**
-1. 編輯 \`wrangler.toml\`
-2. 找到 \`ADMIN_USER_IDS\` 變數
-3. 移除用戶 ID：\`{userId}\`
-4. 格式：\`ADMIN_USER_IDS = "ID1,ID2"\`（移除 {userId}）
-5. 重新部署：\`pnpm deploy:staging\`
-
-**用戶資訊：**
-• ID: \`{userId}\`
-• 暱稱: {nickname}
-• 用戶名: @{username}
-
-💡 或在 Cloudflare Dashboard 中修改環境變數`,
-    removeNotAdmin: `❌ 此用戶不是管理員。`,
-    removeUsageError: `❌ 使用方法錯誤
-
-`,
-    settings: `• 暱稱: \${targetUser?.nickname }
-`,
-    settings2: `• 暱稱: \${targetUser.nickname }
-`,
-    settings3: `• 暱稱：\${user.nickname }
-`,
-    settings4: `未設定`,
-    settings5: `未設定`,
-    settings6: `未設定`,
-    short: `**範例：**
-`,
-    short10: `支付 ID：\\`,
-    short11: `變數
-`,
-    short12: `用戶：\\`,
-    short2: `**示例：**
-`,
-    short3: `**步驟：**
-`,
-    short4: `5. 重新部署：\\`,
-    short5: `4. 重新部署：\\`,
-    short6: `1. 編輯 \\`,
-    short7: `2. 找到 \\`,
-    short8: `4. 格式：\\`,
-    short9: `• 無緩存
-`,
-    start: `開始: \${banStart}
-`,
-    stats: `📊 **統計：**
-`,
-    stats2: `• \`/ad_stats <id>\` - 查看詳細統計`,
-    success: `• 成功：\${results.successUsers}
-`,
-    text: `• 優先級: \${provider.priority}
-`,
-    text10: `金額：\${data.amount_stars} ⭐
-`,
-    text11: `請求 ID：#\${data.request_id}
-`,
-    text12: `• 權重: \${provider.weight}
-`,
-    text13: `原因：\${data.error_message}
-`,
-    text14: `/ad_provider_disable <id>`,
-    text15: `/official_ad_disable <id>`,
-    text16: `💡 使用 /admin_refunds 查看詳情`,
-    text17: `/ad_provider_enable <id>`,
-    text18: `使用 /ad_providers 查看所有提供商`,
-    text19: `/official_ad_enable <id>`,
-    text2: `• 獎勵: \${ad.quota_reward} 額度
-`,
-    text20: `剩餘：\${data.days_left} 天
-`,
-    text21: `/admin_remove 123456789`,
-    text22: `理由: \${appeal.reason}
-`,
-    text23: `提交時間: \${createdAt}
-
-`,
-    text24: `提供商：\${providerName}
-`,
-    text25: `• 類型: \${ad.ad_type}
-`,
-    text26: `/admin_add 123456789`,
-    text27: `處理過程中發生錯誤，請查看日誌。
-
-`,
-    text28: `優先級：\${priority}
-
-`,
-    text29: `原因: \${ban.reason}
-`,
-    text3: `/official_ad_disable <ad_id>`,
-    text30: `原因：\${data.reason}
-`,
-    text31: `時間：\${timestamp}
-
-`,
-    text32: `此命令需要手動修改配置文件。
-
-`,
-    text33: `• 狀態: \${status}
-`,
-    text34: `🔍 **頭像診斷報告**
-
-`,
-    text35: `
-📸 **頭像緩存：**
-`,
-    text36: `時間：\${timestamp}`,
-    text37: `🔴 **退款請求**
-
-`,
-    text38: `📢 **系統通知**
-
-`,
-    text39: `/ad_stats <id>`,
-    text4: `風險分數: \${ban.risk_snapshot}
-`,
-    text40: `👤 **用戶信息：**
-`,
-    text41: `
-🔎 **分析：**
-`,
-    text42: `📝 **詳細結果：**
-`,
-    text43: `⏳ 正在處理，請稍候...`,
-    text44: `3. 添加用戶 ID：\\`,
-    text45: `3. 移除用戶 ID：\\`,
-    text46: `📊 **總結：**
-`,
-    text47: `類型：\${type}
-`,
-    text48: `• 🧪 測試模式
-`,
-    text49: `**管理命令：**
-`,
-    text5: `⏱️ **耗時：** \${duration} 秒
-
-`,
-    text50: `**正確格式：**
-`,
-    text51: `\${hours} 小時`,
-    text52: `**用戶資訊：**
-`,
-    text6: `• 更新：\${result.updated} 個帖子
-`,
-    text7: `數據：\${JSON.stringify(data)}
-`,
-    text8: `• 點擊: \${ad.click_count} 次
-`,
-    text9: `/official_ad_enable <ad_id>`,
-    unbanNotBanned: `用户未被封禁`,
-    unbanSuccess: `✅ 已解封用戶 {userId}`,
-    unbanUsageError: `解封使用方式错误`,
-    unbanUserNotFound: `解封用户不存在`,
-    userNotFound: `❌ 用戶不存在。`,
-    vip: `• VIP 到期：\${new Date(user.vip_expire_at).toLocaleString('zh-TW')}
-`,
-    vip2: `• 創建時 VIP：\${post.created_with_vip_status ? '✅' : '❌'}
-`,
-    vip3: `• VIP 狀態：\${isVip ? '✅ 是' : '❌ 否'}
-`,
-    vip4: `• 總 VIP 用戶：\${stats.totalVipUsers}
-`,
-    vip5: `🔄 **開始批量刷新 VIP 頭像**
-
-`,
-    vip6: `⏰ **VIP 到期提醒已發送**
-
-`,
-    vip7: `🎉 **新 VIP 購買**
-
-`,
-    vip8: `⬇️ **VIP 自動降級**
-
-`,
-    vip9: `🔄 **VIP 續費**
-
-`,
-    adConfig: {
-      adIdMustBeNumber: `❌ 廣告 ID 必須是數字`,
-      addOfficialAdScript: `請使用資料庫腳本添加官方廣告：`,
-      addProviderScript: `請使用資料庫腳本添加廣告提供商：`,
-      clicks: `• 點擊: \${count} 次`,
-      correctFormat: `**正確格式：**`,
-      disableCommand: `• \`/ad_provider_disable <id>\` - 停用`,
-      disableFailed: `❌ 停用廣告提供商失敗`,
-      disableOfficialAdCommand: `• \`/official_ad_disable <id>\` - 停用`,
-      disableOfficialAdFailed: `❌ 停用官方廣告失敗`,
-      disabled: `❌ 停用`,
-      enableCommand: `• \`/ad_provider_enable <id>\` - 啟用`,
-      enableFailed: `❌ 啟用廣告提供商失敗`,
-      enableOfficialAdCommand: `• \`/official_ad_enable <id>\` - 啟用`,
-      enableOfficialAdFailed: `❌ 啟用官方廣告失敗`,
-      enabled: `✅ 啟用`,
-      example: `**範例：**`,
-      getListFailed: `❌ 獲取廣告提供商列表失敗`,
-      getOfficialAdListFailed: `❌ 獲取官方廣告列表失敗`,
-      id: `• ID: \${id}`,
-      impressions: `• 展示: \${count} 次`,
-      managementCommands: `**管理命令：**`,
-      noOfficialAds: `⚠️ 目前沒有官方廣告`,
-      noProviders: `⚠️ 目前沒有配置任何廣告提供商`,
-      officialAdDisabled: `✅ 已停用官方廣告 #\${id}`,
-      officialAdEnabled: `✅ 已啟用官方廣告 #\${id}`,
-      officialAdList: `📢 **官方廣告列表**`,
-      priority: `• 優先級: \${priority}`,
-      priorityCommand: `• \`/ad_provider_priority <id> <priority>\` - 設置優先級`,
-      priorityMustBeNonNegative: `❌ 優先級必須是非負整數`,
-      prioritySet: `✅ 已設置廣告提供商優先級`,
-      priorityValue: `優先級：\${priority}`,
-      provider: `提供商：\${name}`,
-      providerDisabled: `✅ 已停用廣告提供商：\${name}`,
-      providerEnabled: `✅ 已啟用廣告提供商：\${name}`,
-      providerList: `📺 **廣告提供商列表**`,
-      reward: `• 獎勵: \${reward} 額度`,
-      setPriorityFailed: `❌ 設置優先級失敗`,
-      status: `• 狀態: \${status}`,
-      testMode: `• 🧪 測試模式`,
-      type: `• 類型: \${type}`,
-      usageError: `❌ 使用方法錯誤`,
-      viewAllOfficialAds: `使用 /official_ads 查看所有廣告`,
-      viewAllProviders: `使用 /ad_providers 查看所有提供商`,
-      viewStatsCommand: `• \`/ad_stats <id>\` - 查看詳細統計`,
-      weight: `• 權重: \${weight}`,
+    "addAlreadyAdmin": "❌ Người dùng này đã là quản trị viên.",
+    "addAlreadySuperAdmin": "❌ Người dùng này đã là siêu quản trị viên, không cần thêm.",
+    "addCommand": "`/admin_add <user_id>`\n\n",
+    "addExample": "`/admin_add 123456789` - Thêm làm quản trị viên thông thường\n\n",
+    "addInstructions": "⚠️ **Lưu Ý**\n\nLệnh này yêu cầu sửa đổi thủ công các tệp cấu hình.\n\n**Các bước:**\n1. Chỉnh sửa `wrangler.toml`\n2. Tìm biến `ADMIN_USER_IDS`\n3. Thêm ID người dùng: `{userId}`\n4. Định dạng: `ADMIN_USER_IDS = \"ID1,ID2,{userId}\"`\n5. Triển khai lại: `pnpm deploy:staging`\n\n**Thông Tin Người Dùng:**\n• ID: `{userId}`\n• Tên hiển thị: {nickname}\n• Tên người dùng: @{username}\n\n💡 Hoặc sửa đổi biến môi trường trong Bảng Điều Khiển Cloudflare",
+    "addUsageError": "❌ Sử dụng không chính xác\n\n",
+    "addUserNotFound": "❌ Người dùng không tồn tại hoặc chưa đăng ký.",
+    "admin": "💡 Sử dụng /admin_list để xem danh sách quản trị viên hiện tại",
+    "admin2": "Quản trị viên bị cấm",
+    "admin3": "- Thêm làm quản trị viên thông thường\n\n",
+    "admin4": "- Xóa quản trị viên thông thường\n\n",
+    "admin5": "`/admin_add 123456789` - Thêm làm quản trị viên bình thường\n\n",
+    "admin6": "`/admin_remove 123456789` - Xóa quản trị viên bình thường\n\n",
+    "analytics": {
+      "getAdDataFailed": "❌ Không thể lấy dữ liệu quảng cáo",
+      "getDataFailed": "❌ Không thể lấy dữ liệu phân tích",
+      "getVipDataFailed": "❌ Không thể lấy dữ liệu VIP funnel",
+      "noPermission": "❌ Bạn không có quyền xem dữ liệu phân tích",
+      "noPermissionAd": "❌ Bạn không có quyền xem dữ liệu quảng cáo",
+      "noPermissionVip": "❌ Bạn không có quyền xem dữ liệu VIP",
+      "onlySuperAdmin": "❌ Chỉ quản trị viên siêu mới có thể sử dụng lệnh này.",
+      "sendReportFailed": "❌ Không thể gửi báo cáo hàng ngày: ${error}",
+      "userNotFound": "❌ Người dùng không tồn tại: ${userId}"
     },
-    analytics: {
-      getAdDataFailed: `❌ 獲取廣告數據失敗`,
-      getDataFailed: `❌ 獲取分析數據失敗`,
-      getVipDataFailed: `❌ 獲取 VIP 漏斗數據失敗`,
-      noPermission: `❌ 你沒有權限查看分析數據`,
-      noPermissionAd: `❌ 你沒有權限查看廣告數據`,
-      noPermissionVip: `❌ 你沒有權限查看 VIP 數據`,
-      onlySuperAdmin: `❌ 只有超級管理員可以使用此命令。`,
-      sendReportFailed: `❌ 發送每日報表失敗：\${error}`,
-      userNotFound: `❌ 用戶不存在：\${userId}`,
+    "appeal": "ID kháng cáo: ${appeal.id}\n",
+    "appeal2": "💡 Sử dụng lệnh sau để xem xét kháng cáo:\n",
+    "appeal3": "📋 Danh sách kháng nghị đang chờ xử lý\n\n",
+    "appeal4": "Kháng cáo đã được phê duyệt",
+    "appeal5": "Kháng cáo bị từ chối",
+    "appealAlreadyReviewed": "❌ Kháng cáo {id} đã được xem xét",
+    "appealApproveUsageError": "❌ Vui lòng cung cấp ID kháng cáo\n\nCách sử dụng: /admin_approve <appeal_id> [ghi chú]",
+    "appealApproved": "✅ Kháng cáo {id} đã được phê duyệt, người dùng đã được bỏ cấm",
+    "appealApprovedDefault": "Kháng cáo đã được phê duyệt",
+    "appealDivider": "━━━━━━━━━━━━━━━━\n",
+    "appealId": "ID kháng cáo: {id}\n",
+    "appealNotFound": "❌ Không thể tìm thấy ID kháng cáo: {id}",
+    "appealReason": "Lý do: {reason}\n",
+    "appealRejectUsageError": "❌ Vui lòng cung cấp ID kháng cáo\n\nCách sử dụng: /admin_reject <appeal_id> [ghi chú]",
+    "appealRejected": "✅ Kháng cáo {id} đã bị từ chối",
+    "appealRejectedDefault": "Khiếu nại bị từ chối",
+    "appealReviewCommands": "/admin_approve <appeal_id> [notes]\n/admin_reject <appeal_id> [notes]",
+    "appealReviewHint": "💡 Sử dụng các lệnh sau để xem xét các khiếu nại:\n",
+    "appealSubmittedAt": "Thời gian gửi: {time}\n\n",
+    "appealUser": "Người dùng: {user}\n",
+    "appealsTitle": "📋 Danh sách Kháng Nghị Đang Chờ Xử Lý\n\n",
+    "ban": {
+      "appealAlreadyReviewed": "❌ Khiếu nại {id} đã được xem xét",
+      "appealApproved": "Khiếu nại được chấp thuận",
+      "appealApprovedUnbanned": "✅ Khiếu nại {id} đã được chấp thuận, người dùng đã được mở khóa",
+      "appealId": "ID khiếu nại: {id}\n",
+      "appealList": "📋 Danh sách Kháng Nghị Đang Chờ Xử Lý\n\n",
+      "appealNotFound": "❌ Không tìm thấy ID khiếu nại: {id}",
+      "appealReason": "Lý do: {reason}\n",
+      "appealRejected": "Khiếu nại bị từ chối",
+      "appealRejectedMessage": "✅ Khiếu nại {id} đã bị từ chối",
+      "appealSubmittedAt": "Thời gian gửi: {time}\n\n",
+      "appealUser": "Người dùng: {user}\n",
+      "banEnd": "Kết thúc: ${end}",
+      "banId": "ID: ${id}",
+      "banReason": "Lý do: ${reason}",
+      "banStart": "Bắt đầu: ${start}",
+      "banUser": "Người dùng: ${user}",
+      "durationDays": "{days} ngày",
+      "durationHours": "{hours} giờ",
+      "durationMustBePositive": "❌ Thời gian phải là một số nguyên dương hoặc \"vĩnh viễn\".",
+      "noAppeals": "✅ Hiện tại không có khiếu nại nào đang chờ xử lý",
+      "noBanRecords": "❌ Người dùng ${userId} không có hồ sơ bị cấm",
+      "noBanRecordsList": "📊 Hiện tại không có hồ sơ bị cấm",
+      "noPermission": "❌ Bạn không có quyền sử dụng lệnh này.",
+      "notAdmin": "❌ Người dùng này không phải là quản trị viên.",
+      "permanent": "Vĩnh viễn",
+      "provideAppealId": "❌ Vui lòng cung cấp ID kháng nghị\n\n",
+      "reason": "Cấm bởi admin",
+      "recentBans": "📊 10 bản ghi cấm gần đây nhất",
+      "riskScore": "Điểm rủi ro: ${score}",
+      "temporaryBan": "🚫 Bạn đã bị cấm tạm thời\n\nThời gian cấm: {duration}\nThời gian mở cấm: {unbanTime}\n\nLý do cấm: Nhiều báo cáo\n\nNếu bạn có bất kỳ câu hỏi nào, vui lòng sử dụng /appeal để gửi kháng cáo.",
+      "totalBans": "Tổng số lần bị cấm: ${count}",
+      "usageApprove": "Cách sử dụng: /admin_approve <appeal_id> [ghi chú]",
+      "usageReject": "Cách sử dụng: /admin_reject <appeal_id> [ghi chú]",
+      "user": "Người dùng: ${user}",
+      "userBanHistory": "📊 Lịch sử cấm của người dùng",
+      "viewHistory": "💡 Sử dụng /admin_bans <user_id> để xem lịch sử cấm của một người dùng cụ thể"
     },
-    ban: {
-      appealAlreadyReviewed: `❌ 申訴 {id} 已經被審核過了`,
-      appealApproved: `申訴已批准`,
-      appealApprovedUnbanned: `✅ 申訴 {id} 已批准，用戶已解封`,
-      appealId: `申訴 ID: {id}
-`,
-      appealList: `📋 待審核申訴列表
-
-`,
-      appealNotFound: `❌ 找不到申訴 ID: {id}`,
-      appealReason: `理由: {reason}
-`,
-      appealRejected: `申訴被拒絕`,
-      appealRejectedMessage: `✅ 申訴 {id} 已拒絕`,
-      appealSubmittedAt: `提交時間: {time}
-
-`,
-      appealUser: `用戶: {user}
-`,
-      banEnd: `結束: \${end}`,
-      banId: `ID: \${id}`,
-      banReason: `原因: \${reason}`,
-      banStart: `開始: \${start}`,
-      banUser: `用戶: \${user}`,
-      durationDays: `{days} 天`,
-      durationHours: `{hours} 小時`,
-      durationMustBePositive: `❌ 時長必須是正整數或 "permanent"。`,
-      noAppeals: `✅ 目前沒有待審核的申訴`,
-      noBanRecords: `❌ 用戶 \${userId} 沒有封禁記錄`,
-      noBanRecordsList: `📊 目前沒有封禁記錄`,
-      noPermission: `❌ 你沒有權限使用此命令。`,
-      notAdmin: `❌ 此用戶不是管理員。`,
-      permanent: `永久`,
-      provideAppealId: `❌ 請提供申訴 ID
-
-`,
-      reason: `管理員封禁 / Admin ban`,
-      recentBans: `📊 最近 10 條封禁記錄`,
-      riskScore: `風險分數: \${score}`,
-      temporaryBan: `🚫 你已被暫時封禁
-
-封禁時長：{duration}
-解封時間：{unbanTime}
-
-封禁原因：多次被舉報
-
-如有疑問，請使用 /appeal 提出申訴。`,
-      totalBans: `總封禁次數: \${count}`,
-      usageApprove: `用法: /admin_approve <appeal_id> [備註]`,
-      usageReject: `用法: /admin_reject <appeal_id> [備註]`,
-      user: `用戶: \${user}`,
-      userBanHistory: `📊 用戶封禁歷史`,
-      viewHistory: `💡 使用 /admin_bans <user_id> 查看特定用戶的封禁歷史`,
+    "ban2": "Tổng số lệnh cấm: ${userBans.results.length}\n\n",
+    "ban3": "📊 10 hồ sơ cấm gần đây\n\n",
+    "ban4": "📊 Lịch sử cấm của người dùng\n\n",
+    "ban5": "📊 Hiện tại không có bản ghi cấm nào",
+    "banSuccess": "✅ Người dùng bị cấm {userId} ({nickname})\n\nThời gian cấm: {duration}\nThời gian mở cấm: {unbanTime}",
+    "banSuccessPermanent": "✅ Người dùng bị cấm vĩnh viễn {userId} ({nickname})",
+    "banUsageError": "Cách sử dụng không chính xác",
+    "banUserNotFound": "Người dùng không tồn tại",
+    "cannotBanAdmin": "Không thể cấm admin",
+    "conversation": "💡 Các bài đăng lịch sử trò chuyện chỉ được tạo ra khi có tin nhắn mới\n",
+    "conversation2": "Tất cả lịch sử trò chuyện của người dùng VIP đều được cập nhật!",
+    "conversation3": "💬 **Lịch Sử Cuộc Trò Chuyện:**\n",
+    "conversation4": "Vui lòng kiểm tra xem lịch sử trò chuyện có được cập nhật với ảnh đại diện rõ ràng hay không.",
+    "conversation5": "🔄 Bắt đầu làm mới lịch sử trò chuyện của bạn...",
+    "conversation6": "• Không có bài đăng lịch sử trò chuyện nào\n",
+    "diagnose": {
+      "allUpToDateFree": "✅ Tất cả bài đăng đều được cập nhật (trạng thái người dùng miễn phí là chính xác)",
+      "allUpToDateVip": "✅ Tất cả bài đăng đều được cập nhật (trạng thái VIP là chính xác)",
+      "analysis": "🔎 **Phân tích:**",
+      "avatarCache": "📸 **Bộ đệm Ảnh Đại Diện:**",
+      "blurredUrl": "• Đường dẫn mờ: ${status}",
+      "createdWithVip": "• Tạo VIP: ${status}",
+      "error": "Lỗi: ${error}",
+      "failed": "❌ **Chẩn Đoán Thất Bại**",
+      "fileId": "• ID Tập Tin: ${fileId}...",
+      "hasAvatar": "• Có Ảnh Đại Diện: ${status}",
+      "historyPosts": "💬 **Lịch Sử Cuộc Hội Thoại:**",
+      "historyPostsHint": "💡 Lịch sử cuộc hội thoại chỉ được tạo khi có tin nhắn mới",
+      "isLatest": "• Mới nhất: ${status}",
+      "morePosts": "...và ${count} bài viết khác",
+      "nickname": "• Biệt danh: ${nickname}",
+      "no": "❌ Không",
+      "noCache": "• Không Có Bộ Đệm",
+      "noHistoryPosts": "• Không Có Bài Viết Lịch Sử Cuộc Hội Thoại",
+      "noHistoryPostsWarning": "⚠️ Người dùng này không có bài viết lịch sử cuộc hội thoại",
+      "none": "Không có",
+      "originalUrl": "• Đường dẫn gốc: ${status}",
+      "outdatedPostsFound": "⚠️ Tìm thấy ${count} bài viết cũ cần làm mới",
+      "postId": "• ID: ${id}",
+      "postTitle": "📝 **Bài Viết #${identifier}-H${postNumber}**",
+      "postUpdatedAt": "• Thời gian Cập Nhật: ${date}",
+      "refreshHint": "💡 Sử dụng /admin_refresh_vip_avatars để làm mới hàng loạt",
+      "title": "🔍 **Báo Cáo Chẩn Đoán Ảnh Đại Diện**",
+      "totalPosts": "• Tổng cộng: ${count}",
+      "unknown": "Không xác định",
+      "updatedAt": "• Thời gian Cập Nhật: ${date}",
+      "userId": "• ID: ${userId}",
+      "userInfo": "👤 **Thông Tin Người Dùng:**",
+      "username": "• Tên người dùng: @${username}",
+      "vipExpire": "• Thời gian hết hạn VIP: ${date}",
+      "vipStatus": "• Trạng thái VIP: ${status}",
+      "yes": "✅ Có"
     },
-    diagnose: {
-      allUpToDateFree: `✅ 所有帖子都是最新的（免費用戶狀態正確）`,
-      allUpToDateVip: `✅ 所有帖子都是最新的（VIP 狀態正確）`,
-      analysis: `🔎 **分析：**`,
-      avatarCache: `📸 **頭像緩存：**`,
-      blurredUrl: `• 模糊 URL：\${status}`,
-      createdWithVip: ` • 創建時 VIP：\${status}`,
-      error: `錯誤：\${error}`,
-      failed: `❌ **診斷失敗**`,
-      fileId: `• File ID：\${fileId}...`,
-      hasAvatar: ` • 有頭像：\${status}`,
-      historyPosts: `💬 **對話歷史帖子：**`,
-      historyPostsHint: `💡 對話歷史帖子只在有新消息時創建`,
-      isLatest: ` • 最新：\${status}`,
-      morePosts: `...還有 \${count} 個帖子`,
-      nickname: `• 暱稱：\${nickname}`,
-      no: `❌ 否`,
-      noCache: `• 無緩存`,
-      noHistoryPosts: `• 無對話歷史帖子`,
-      noHistoryPostsWarning: `⚠️ 此用戶沒有對話歷史帖子`,
-      none: `無`,
-      originalUrl: `• 原始 URL：\${status}`,
-      outdatedPostsFound: `⚠️ 發現 \${count} 個過時帖子需要刷新`,
-      postId: ` • ID：\${id}`,
-      postTitle: `📝 **帖子 #\${identifier}-H\${postNumber}**`,
-      postUpdatedAt: ` • 更新時間：\${date}`,
-      refreshHint: `💡 使用 /admin_refresh_vip_avatars 批量刷新`,
-      title: `🔍 **頭像診斷報告**`,
-      totalPosts: `• 總數：\${count}`,
-      unknown: `未知`,
-      updatedAt: `• 更新時間：\${date}`,
-      userId: `• ID：\${userId}`,
-      userInfo: `👤 **用戶信息：**`,
-      username: `• 用戶名：@\${username}`,
-      vipExpire: `• VIP 到期：\${date}`,
-      vipStatus: `• VIP 狀態：\${status}`,
-      yes: `✅ 是`,
+    "end": "Kết thúc: ${banEnd}\n\n",
+    "error": "Lỗi",
+    "failed": "• Các bài đăng thất bại: ${results.totalPostsFailed}\n\n",
+    "failed2": "• Thất bại: ${results.failedUsers}\n",
+    "failed3": "• Thất bại: ${result.failed} bài đăng\n\n",
+    "insufficientPermission": "❌ **Quyền truy cập không đủ**\n\nLệnh này chỉ dành cho siêu quản trị viên.",
+    "listFooter": "---",
+    "listId": "ID: {id}",
+    "listNickname": "Biệt danh: {nickname}",
+    "listNotRegistered": "Chưa đăng ký",
+    "listRoleAdmin": "Quản trị viên",
+    "listRoleSuperAdmin": "Siêu quản trị viên",
+    "listTitle": "Danh sách quản trị viên",
+    "listTotal": "Tổng cộng: {total}",
+    "listUsername": "Tên đăng nhập: {username}",
+    "message": "• Cập nhật lúc: ${new Date(post.updated_at).toLocaleString('zh-TW', { month: '2-digit', day: '2-digit', hour: '2-digit', minute: '2-digit' })}\n\n",
+    "message10": "• Có ảnh đại diện: ${post.partner_avatar_url ? '✅' : '❌'}\n",
+    "message11": "...và ${historyPosts.results.length - 5} bài đăng khác\n",
+    "message12": "Người dùng: ${targetUser?.nickname }\n",
+    "message13": "• Tên người dùng: @${targetUser?.username}\n\n",
+    "message14": "Người dùng: ${appeal.nickname }\n",
+    "message15": "...và ${results.details.length - 10} người dùng khác",
+    "message16": "• Tên người dùng: @${targetUser.username}\n\n",
+    "message17": "• Tổng cộng: ${historyPosts.results.length}\n\n",
+    "message18": "💡 Sử dụng /admin_refresh_vip_avatars để làm mới hàng loạt\n",
+    "message19": "• Mới nhất: ${post.is_latest ? '✅' : '❌'}\n",
+    "message2": "• Thời gian cập nhật: ${avatarInfo.avatar_updated_at ? new Date(avatarInfo.avatar_updated_at).toLocaleString('zh-TW') : 'Không xác định'}\n",
+    "message20": "• Bài đăng lỗi thời: ${stats.totalOutdatedPosts}\n\n",
+    "message21": "/ad_provider_priority",
+    "message22": "• Cần làm mới: ${stats.usersNeedingRefresh}\n",
+    "message23": "• Bài đăng đã cập nhật: ${results.totalPostsUpdated}\n",
+    "message24": "Người dùng: ${ban.nickname || ban.user_id}\n",
+    "message25": "/ad_provider_disable <provider_id>",
+    "message26": "💡 Hoặc sửa đổi các biến môi trường trong Bảng điều khiển Cloudflare",
+    "message27": "/ad_provider_enable <provider_id>",
+    "message28": "• Tên người dùng: @${targetUser?.username ||",
+    "message29": "/admin_approve <appeal_id> [Ghi chú]\n",
+    "message3": "• ${username}: ${detail.postsUpdated} đã cập nhật, ${detail.postsFailed} thất bại\n",
+    "message30": "• Lượt hiển thị: ${ad.impression_count} lần\n",
+    "message31": "• Tên người dùng: @${targetUser.username ||",
+    "message32": "• Tên người dùng: @${user.username }\n",
+    "message33": "/admin_reject <appeal_id> [Ghi chú]",
+    "message34": "• Người dùng đã xử lý: ${results.totalUsers}\n",
+    "message35": "• `/ad_provider_enable ` - Kích hoạt\n",
+    "message36": "• `/ad_provider_disable` - Vô hiệu hóa `/ad_provider_disable `\n",
+    "message37": "• `/ad_provider_priority <id> <priority>` - Đặt độ ưu tiên",
+    "message38": "• `/official_ad_enable <id>` - Kích hoạt\n",
+    "message39": "• `/official_ad_disable <id>` - Vô hiệu hóa\n",
+    "message4": "Ngày hết hạn mới: ${new Date(data.expire_date).toLocaleDateString('zh-TW')}\n",
+    "message40": "• Thời gian cập nhật: ${new Date(post.updated_at).toLocaleString('en-US', { month: '2-digit', day: '2-digit', hour:",
+    "message5": "Hạn sử dụng: ${new Date(data.expire_date).toLocaleDateString('zh-TW')}\n",
+    "message6": "Lỗi: ${error instanceof Error ? error.message : String(error)}",
+    "message7": "• URL gốc: ${avatarInfo.avatar_original_url ? '✅' : '❌'}\n",
+    "message8": "• URL mờ: ${avatarInfo.avatar_blurred_url ? '✅' : '❌'}\n",
+    "message9": "📝 **Bài #${post.identifier}-H${post.post_number}**\n",
+    "nickname": "• Biệt danh: ${targetUser?.nickname ||",
+    "nickname2": "• Biệt danh: ${targetUser.nickname ||",
+    "noPendingAppeals": "✅ Hiện tại không có yêu cầu nào đang chờ xử lý",
+    "noPermission": "❌ Bạn không có quyền sử dụng lệnh này.",
+    "onlyAdmin": "❌ Chỉ có quản trị viên mới có thể sử dụng lệnh này.",
+    "onlySuperAdmin": "❌ Chỉ có siêu quản trị viên mới có thể sử dụng lệnh này.",
+    "operationFailed": "❌ Đã xảy ra lỗi, vui lòng thử lại sau.",
+    "refresh": {
+      "allUpToDate": "Lịch sử trò chuyện của tất cả người dùng VIP đã được cập nhật!",
+      "batchComplete": "✅ **Hoàn thành làm mới hàng loạt**",
+      "checkHint": "Vui lòng kiểm tra xem lịch sử trò chuyện đã được cập nhật về một ảnh đại diện rõ ràng chưa.",
+      "complete": "✅ **Làm mới hoàn thành**",
+      "details": "📝 **Kết quả chi tiết:**",
+      "duration": "⏱️ **Thời gian thực hiện:** ${duration} giây",
+      "error": "Lỗi: ${error}",
+      "errorOccurred": "Đã xảy ra lỗi trong quá trình xử lý, vui lòng kiểm tra nhật ký.",
+      "failed": "❌ **Làm mới không thành công**",
+      "failedPosts": "• Bài viết không thành công: ${count}",
+      "failedUsers": "• Số lần thất bại: ${count}",
+      "moreUsers": "...và ${count} người dùng khác",
+      "noRefreshNeeded": "✅ **Không cần làm mới**",
+      "outdatedPosts": "• Bài viết hết hạn: ${count}",
+      "processedUsers": "• Người dùng đang xử lý: ${count}",
+      "processing": "⏳ Đang xử lý, vui lòng chờ...",
+      "startingBatchRefresh": "🔄 **Bắt đầu làm mới hàng loạt ảnh đại diện VIP**",
+      "startingRefresh": "🔄 Bắt đầu làm mới lịch sử trò chuyện của bạn...",
+      "stats": "📊 **Thống kê:**",
+      "successUsers": "• Thành công: ${count}",
+      "summary": "📊 **Tóm tắt:**",
+      "totalVipUsers": "• Tổng số người dùng VIP: ${count}",
+      "updated": "• Đã cập nhật: ${count} bài viết",
+      "updatedPosts": "• Các bài viết đã cập nhật: ${count}",
+      "userDetail": "• ${username}: ${updated} đã cập nhật, ${failed} thất bại",
+      "usersNeedingRefresh": "• Cần làm mới: ${count}"
     },
-    refresh: {
-      allUpToDate: `所有 VIP 用戶的對話歷史都是最新的！`,
-      batchComplete: `✅ **批量刷新完成**`,
-      checkHint: `請檢查對話歷史是否已更新為清晰頭像。`,
-      complete: `✅ **刷新完成**`,
-      details: `📝 **詳細結果：**`,
-      duration: `⏱️ **耗時：** \${duration} 秒`,
-      error: `錯誤：\${error}`,
-      errorOccurred: `處理過程中發生錯誤，請查看日誌。`,
-      failed: `❌ **刷新失敗**`,
-      failedPosts: `• 失敗帖子：\${count}`,
-      failedUsers: `• 失敗：\${count}`,
-      moreUsers: `
-...還有 \${count} 個用戶`,
-      noRefreshNeeded: `✅ **無需刷新**`,
-      outdatedPosts: `• 過時帖子：\${count}`,
-      processedUsers: `• 處理用戶：\${count}`,
-      processing: `⏳ 正在處理，請稍候...`,
-      startingBatchRefresh: `🔄 **開始批量刷新 VIP 頭像**`,
-      startingRefresh: `🔄 開始刷新您的對話歷史...`,
-      stats: `📊 **統計：**`,
-      successUsers: `• 成功：\${count}`,
-      summary: `📊 **總結：**`,
-      totalVipUsers: `• 總 VIP 用戶：\${count}`,
-      updated: `• 更新：\${count} 個帖子`,
-      updatedPosts: `• 更新帖子：\${count}`,
-      userDetail: `• \${username}: \${updated} 更新, \${failed} 失敗`,
-      usersNeedingRefresh: `• 需要刷新：\${count}`,
+    "removeCannotRemoveSuperAdmin": "❌ Không thể xóa quản trị viên siêu.",
+    "removeCommand": "`/admin_remove <user_id>`\n\n",
+    "removeExample": "`/admin_remove 123456789` - Gỡ bỏ quản trị viên thường\n\n",
+    "removeInstructions": "⚠️ **Chú ý**\n\nLệnh này yêu cầu chỉnh sửa thủ công tệp cấu hình.\n\n**Các bước:**\n1. Chỉnh sửa `wrangler.toml`\n2. Tìm biến `ADMIN_USER_IDS`\n3. Xóa ID người dùng: `{userId}`\n4. Định dạng: `ADMIN_USER_IDS = \"ID1,ID2\"` (xóa {userId})\n5. Triển khai lại: `pnpm deploy:staging`\n\n**Thông tin người dùng:**\n• ID: `{userId}`\n• Biệt danh: {nickname}\n• Tên người dùng: @{username}\n\n💡 Hoặc chỉnh sửa các biến môi trường trong Bảng điều khiển Cloudflare",
+    "removeNotAdmin": "❌ Người dùng này không phải là quản trị viên.",
+    "removeUsageError": "❌ Sử dụng không đúng\n\n",
+    "settings": "• Biệt danh: ${targetUser?.nickname }\n",
+    "settings2": "• Biệt danh: ${targetUser.nickname }\n",
+    "settings3": "• Biệt danh: ${user.nickname }\n",
+    "settings4": "Chưa được thiết lập",
+    "settings5": "Chưa được thiết lập",
+    "settings6": "Chưa được thiết lập",
+    "short": "**Ví dụ:**\n",
+    "short10": "ID thanh toán: \\",
+    "short11": "Biến số\n",
+    "short12": "Người dùng: \\",
+    "short2": "**Ví dụ:**\n",
+    "short3": "**Các bước:**\n",
+    "short4": "5. Triển khai lại: \\",
+    "short5": "4. Triển khai lại: \\",
+    "short6": "1. Chỉnh sửa \\",
+    "short7": "2. Tìm \\",
+    "short8": "4. Định dạng: \\",
+    "short9": "• Không có bộ nhớ đệm\n",
+    "start": "Bắt đầu: ${banStart}\n",
+    "stats": "📊 **Thống kê:**\n",
+    "stats2": "• `/ad_stats ` - Xem thống kê chi tiết",
+    "success": "• Thành công: ${results.successUsers}\n",
+    "text": "• Ưu tiên: ${provider.priority}\n",
+    "text10": "Số lượng: ${data.amount_stars} ⭐\n",
+    "text11": "Mã yêu cầu: #${data.request_id}\n",
+    "text12": "• Trọng lượng: ${provider.weight}\n",
+    "text13": "Lý do: ${data.error_message}\n",
+    "text14": "/ad_provider_disable",
+    "text15": "/official_ad_disable",
+    "text16": "💡 Sử dụng /admin_refunds để biết thêm chi tiết",
+    "text17": "/ad_provider_enable",
+    "text18": "Sử dụng /ad_providers để xem tất cả nhà cung cấp",
+    "text19": "/official_ad_enable",
+    "text2": "• Phần thưởng: ${ad.quota_reward} phân bổ\n",
+    "text20": "Còn lại: ${data.days_left} ngày\n",
+    "text21": "/admin_remove 123456789",
+    "text22": "Lý do: ${appeal.reason}\n",
+    "text23": "Thời gian gửi: ${createdAt}\n\n",
+    "text24": "Nhà cung cấp: ${providerName}\n",
+    "text25": "• Loại: ${ad.ad_type}\n",
+    "text26": "/admin_add 123456789",
+    "text27": "Đã xảy ra lỗi trong quá trình xử lý, vui lòng kiểm tra nhật ký.\n\n",
+    "text28": "Độ ưu tiên: ${priority}\n\n",
+    "text29": "Lý do: ${ban.reason}\n",
+    "text3": "/official_ad_disable <ad_id>",
+    "text30": "Lý do: ${data.reason}\n",
+    "text31": "Thời gian: ${timestamp}\n\n",
+    "text32": "Lệnh này yêu cầu sửa đổi tệp cấu hình bằng tay.\n\n",
+    "text33": "• Trạng thái: ${status}\n",
+    "text34": "🔍 **Báo cáo Chẩn đoán Avatar**\n\n",
+    "text35": "📸 **Cache Avatar:**\n",
+    "text36": "Thời gian: ${timestamp}",
+    "text37": "🔴 **Yêu cầu Hoàn tiền**\n\n",
+    "text38": "📢 **Thông báo Hệ thống**\n\n",
+    "text39": "/ad_stats",
+    "text4": "Điểm Rủi ro: ${ban.risk_snapshot}\n",
+    "text40": "👤 **Thông tin Người dùng:**\n",
+    "text41": "🔎 **Phân tích:**\n",
+    "text42": "📝 **Kết quả Chi tiết:**\n",
+    "text43": "⏳ Đang xử lý, xin vui lòng chờ...",
+    "text44": "3. Thêm ID Người dùng: \\\\",
+    "text45": "3. Xóa ID Người dùng: \\\\",
+    "text46": "📊 **Tóm tắt:**\n",
+    "text47": "Loại: ${type}\n",
+    "text48": "• 🧪 Chế độ Kiểm tra\n",
+    "text49": "**Lệnh Quản lý:**\n",
+    "text5": "⏱️ **Thời gian:** ${duration} giây\n\n",
+    "text50": "**Định dạng Đúng:**\n",
+    "text51": "${hours} giờ",
+    "text52": "**Thông tin Người dùng:**\n",
+    "text6": "• Đã cập nhật: ${result.updated} bài viết\n",
+    "text7": "Dữ liệu: ${JSON.stringify(data)}\n",
+    "text8": "• Nhấp chuột: ${ad.click_count} lần\n",
+    "text9": "/official_ad_enable <ad_id>",
+    "unbanNotBanned": "Người dùng không bị cấm",
+    "unbanSuccess": "✅ Đã bỏ cấm người dùng {userId}",
+    "unbanUsageError": "Phương pháp bỏ cấm không chính xác",
+    "unbanUserNotFound": "Người dùng không tồn tại để bỏ cấm",
+    "userNotFound": "❌ Người dùng không tồn tại.",
+    "vip": "• Hết hạn VIP: ${new Date(user.vip_expire_at).toLocaleString('en-US')}\n",
+    "vip2": "• Tạo với VIP: ${post.created_with_vip_status ? '✅' : '❌'}\n",
+    "vip3": "• Tình trạng VIP: ${isVip ? '✅ Có' : '❌ Không'}\n",
+    "vip4": "• Tổng số Người dùng VIP: ${stats.totalVipUsers}\n",
+    "vip5": "🔄 **Bắt đầu Làm mới Hàng loạt Avatar VIP**\n\n",
+    "vip6": "⏰ **Nhắc nhở Hạn sử dụng VIP đã được gửi**\n\n",
+    "vip7": "🎉 **Mua VIP Mới**\n\n",
+    "vip8": "⬇️ **Tự động giảm cấp VIP**\n\n",
+    "vip9": "🔄 **Gia hạn VIP**\n\n"
+  },
+  "adminNotification": {
+    "amount": "Số lượng: ${stars} ⭐",
+    "data": "Dữ liệu: ${data}",
+    "daysLeft": "Thời gian còn lại: ${days} ngày",
+    "expireDate": "Hạn sử dụng: ${date}",
+    "newExpireDate": "Ngày hết hạn mới: ${date}",
+    "paymentFailed": "❌ **Thanh toán thất bại**",
+    "paymentId": "Mã thanh toán: `${id}`",
+    "reason": "Lý do: ${reason}",
+    "refundRequest": "🔴 **Yêu cầu Hoàn tiền**",
+    "requestId": "Mã yêu cầu: #${id}",
+    "systemNotification": "📢 **Thông báo hệ thống**",
+    "time": "Thời gian: ${time}",
+    "type": "Loại: ${type}",
+    "user": "Người dùng: `${userId}`",
+    "viewRefundsHint": "💡 Sử dụng /admin_refunds để biết thêm chi tiết",
+    "vipDowngraded": "⬇️ **Giảm cấp tự động VIP**",
+    "vipPurchased": "🎉 **Mua VIP Mới**",
+    "vipReminderSent": "⏰ **Nhắc nhở hết VIP đã được gửi**",
+    "vipRenewed": "🔄 **Gia hạn VIP**"
+  },
+  "age": {
+    "daysAgo": "${days} ngày trước",
+    "hoursAgo": "${hours} giờ trước",
+    "justNow": "Ngay bây giờ"
+  },
+  "analytics": {
+    "ad": "• Quảng cáo chính thức: \n - Số lần hiển thị: {officialImpressions} lần\n - Số lần nhấp: {officialClicks} lần\n - Tỷ lệ nhấp: {officialCtr}%\n - Phần thưởng đã cấp: {officialRewardsGranted} slot\n\n• Lượt xem trang VIP: {vipPageViews} lần\n• Ý định mua: {vipPurchaseIntents} lần\n• Chuyển đổi thành công: {vipConversions} lần\n• Tỷ lệ chuyển đổi: {vipConversionRate}%\n• Doanh thu: \\\\\\\\\\$${vipRevenue}",
+    "ad2": "📊 **Báo cáo hiệu quả quảng cáo**\n📅 Thời gian: {start} ~ {end}\n\n• Tổng số lần hiển thị: {thirdPartyImpressions} lần\n• Tổng số lần hoàn thành: {thirdPartyCompletions} lần\n• Tỷ lệ hoàn thành: {thirdPartyCompletionRate}%\n• Tổng phần thưởng: {thirdPartyRewardsGranted} slot\n\n• Tổng số lần hiển thị: {officialImpressions} lần\n• Tổng số lần nhấp: {officialClicks} lần\n• Tỷ lệ nhấp: {officialCtr}%\n• Tổng phần thưởng: {officialRewardsGranted} slot",
+    "ad3": "📊 **Báo cáo hiệu quả quảng cáo**\n📅 Thời gian: {start} ~ {end}\n\n⚠️ **Chưa có dữ liệu quảng cáo**\n\nCó thể là do: \n• Nhà cung cấp quảng cáo chưa được cấu hình\n• Chưa có người dùng nào xem quảng cáo\n• Không có chiến dịch quảng cáo trong khoảng thời gian đã chọn\n\n💡 **Khi nào dữ liệu sẽ xuất hiện?**\n• Cần hoàn thành các cấu hình sau: \n 1. Cấu hình nhà cung cấp quảng cáo (như GigaPub)\n 2. Tạo quảng cáo chính thức\n 3. Người dùng bắt đầu xem quảng cáo\n\n• Khuyến nghị cấu hình nhà cung cấp quảng cáo trước\n• Sau đó chờ người dùng bắt đầu sử dụng tính năng quảng cáo",
+    "complete": "• Tỷ lệ hoàn thành: ${provider.completion_rate.toFixed(1)}%",
+    "complete2": "• Số lần hoàn thành: ${provider.total_completions} lần",
+    "completion": "• Số lần hoàn thành: {completions} lần",
+    "completionRate": "• Tỷ lệ hoàn thành: {rate}%",
+    "conversionStepsTitle": "[Cần dịch từ zh-TW.ts]",
+    "invite": "• Lời mời đã gửi: {initiated} lần\n• Lời mời đã chấp nhận: {accepted} lần\n• Lời mời đã kích hoạt: {activated} lần\n• Tỷ lệ chuyển đổi: {conversionRate}%\n\n• Số chai thư đã ném: {bottlesThrown} cái\n• Số chai thư đã bắt: {bottlesCaught} cái\n• Số cuộc trò chuyện mới bắt đầu: {conversationsStarted} cái\n• Số vòng trò chuyện trung bình: {avgConversationRounds}\n\n💡 Dữ liệu chi tiết: /analytics",
+    "message": "📊 **Báo cáo hoạt động hàng ngày**\n📅 Ngày: {date}\n\n**👥 Dữ liệu người dùng**\n• Người dùng mới: {newUsers} người\n• Người dùng hoạt động (DAU): {dau} người\n• Tỷ lệ giữ chân (D1): {d1Retention}%\n• Thời gian phiên trung bình: {avgSessionDuration} phút\n\n**📺 Dữ liệu quảng cáo**\n• Quảng cáo bên thứ ba:\n - Lượt hiển thị: {thirdPartyImpressions} lần\n - Số lần hoàn thành: {thirdPartyCompletions} lần\n - Tỷ lệ hoàn thành: {thirdPartyCompletionRate}%\n - Phần thưởng đã cấp: {thirdPartyRewardsGranted} tín dụng",
+    "message2": "📊 **Báo cáo hoạt động hàng ngày**\n📅 Ngày: {date}\n\n⚠️ **Hôm nay không có dữ liệu**\n\nĐiều này có thể do:\n• Hệ thống vừa mới được triển khai, và chưa có hoạt động của người dùng\n• Không có người dùng nào đã tương tác với Bot hôm nay\n• Tính năng theo dõi dữ liệu chưa được kích hoạt\n\n💡 **Khi nào dữ liệu sẽ xuất hiện?**\n• Người dùng cần thực hiện một trong các hành động sau:\n - Gửi /start để đăng ký\n - Ném hoặc bắt chai thư\n - Xem quảng cáo\n - Mua VIP\n\n• Nên chờ đợi cho đến khi người dùng bắt đầu sử dụng trước khi kiểm tra\n• Hoặc mô phỏng hành vi người dùng trong môi trường thử nghiệm",
+    "message3": "**📈 Tỷ lệ chuyển đổi tổng thể: ${report.overall_conversion_rate.toFixed(1)}%**",
+    "message4": "• Tỷ lệ chuyển đổi: ${step.conversion_rate.toFixed(1)}%",
+    "message5": "• Tỷ lệ lỗi: ${provider.error_rate.toFixed(1)}%",
+    "message6": "• Số lần yêu cầu: ${provider.total_requests} lần",
+    "providerComparisonTitle": "[Cần dịch từ zh-TW.ts]",
+    "purchaseSuccess": "[Cần dịch từ zh-TW.ts]",
+    "request": "• Số lần yêu cầu: {requests} lần",
+    "text": "• Số lượng người dùng: ${step.user_count}",
+    "text2": "Ý định mua (Bấm để mua)",
+    "vip": "📊 **Bảng phễu chuyển đổi VIP**\n📅 Thời gian: {start} ~ {end}\n\n⚠️ **Hiện tại không có dữ liệu**\n\nĐiều này có thể do:\n• Hệ thống vừa mới được triển khai, và chưa có hoạt động của người dùng\n• Không có sự kiện liên quan đến VIP trong khoảng thời gian đã chọn\n• Tính năng theo dõi dữ liệu chưa được kích hoạt\n\n💡 **Khi nào dữ liệu sẽ xuất hiện?**\n• Dữ liệu chuyển đổi VIP yêu cầu người dùng thực hiện các hành động sau:\n 1. Xem giới thiệu tính năng VIP\n 2. Bấm để mua VIP\n 3. Hoàn tất mua VIP\n\n• Nên kiểm tra lại sau 24-48 giờ\n• Hoặc mô phỏng hành vi người dùng trong môi trường thử nghiệm",
+    "vip2": "📊 **Bảng phễu chuyển đổi VIP**\n📅 Thời gian: {start} ~ {end}",
+    "vip3": "Nhận thức (Đã xem thông báo VIP)",
+    "vip4": "Cân nhắc (Xem chi tiết VIP)",
+    "vip5": "Quan tâm (Bấm để xem VIP)"
+  },
+  "appeal": {
+    "alreadyExists": "⏳ Bạn có một yêu cầu đang chờ xử lý (ID: #${appealId})\n\nTrạng thái: ${status}\nThời gian gửi: ${time}\n\nVui lòng chờ đợi trong khi quản trị viên xem xét.",
+    "approved": "✅ Yêu cầu của bạn đã được chấp thuận và tài khoản của bạn đã được mở khóa",
+    "noAppeal": "Bạn hiện không có yêu cầu nào đang chờ xử lý",
+    "notBanned": "✅ Tài khoản của bạn không bị cấm, không cần yêu cầu.",
+    "notFound": "❌ Không thể tìm thấy hồ sơ yêu cầu của bạn.",
+    "notes": "Ghi chú:",
+    "prompt": "📝 **Gửi yêu cầu**\n\nVui lòng giải thích lý do tại sao bạn tin rằng tài khoản của bạn bị cấm và bạn muốn giải quyết vấn đề này như thế nào.\n\n💡 Vui lòng mô tả chi tiết tình huống của bạn, điều này sẽ giúp quản trị viên xử lý yêu cầu của bạn nhanh hơn.",
+    "reasonTooLong": "❌ Lý do yêu cầu quá dài, vui lòng giữ lại dưới 500 từ.",
+    "reasonTooShort": "❌ Lý do kháng cáo quá ngắn, vui lòng nhập ít nhất 10 ký tự.",
+    "rejected": "❌ Kháng cáo của bạn đã bị từ chối.",
+    "reviewedAt": "Thời gian xem xét:",
+    "status": "📋 **Trạng thái Kháng cáo**\n\nID kháng cáo: #${appealId}\nTrạng thái: ${status}\nThời gian gửi: ${createdAt}${reviewInfo}",
+    "statusApproved": "Đã được phê duyệt",
+    "statusPending": "Đang chờ xem xét",
+    "statusRejected": "Bị từ chối",
+    "submitted": "✅ **Kháng cáo đã được gửi**\n\nID kháng cáo: #${appealId}\nTrạng thái: Đang chờ xem xét\n\nChúng tôi sẽ xử lý kháng cáo của bạn trong vòng 1-3 ngày làm việc.\nKết quả sẽ được thông báo cho bạn qua Bot."
+  },
+  "block": {
+    "cannotIdentify": "⚠️ Không thể xác định đối tác trò chuyện.",
+    "catchNewBottle": "💡 Sử dụng /catch để nhận một chai thư mới và bắt đầu một cuộc trò chuyện mới.",
+    "conversationInfoError": "⚠️ Thông tin cuộc trò chuyện không chính xác.",
+    "conversationMayEnded": "Cuộc trò chuyện có thể đã kết thúc hoặc không tồn tại.",
+    "conversationNotFound": "⚠️ Không tìm thấy cuộc trò chuyện này.",
+    "ensureReply": "Vui lòng đảm bảo bạn đang trả lời tin nhắn được gửi bởi bên kia (có định danh #).",
+    "hint": "💡 Điều này xác định chính xác mục tiêu mà bạn muốn chặn.",
+    "replyRequired": "⚠️ Vui lòng nhấn giữ lâu tin nhắn mà bạn muốn chặn và trả lời với lệnh.",
+    "step1": "1️⃣ Nhấn giữ lâu tin nhắn của bên kia.",
+    "step2": "2️⃣ Chọn 'Trả lời'.",
+    "step3": "3️⃣ Nhập /block.",
+    "steps": "**Các bước thực hiện:**",
+    "success": "✅ Người dùng này đã bị chặn (#${identifier}).",
+    "willNotMatch": "Bạn sẽ không còn được ghép nối với chai thư của nhau nữa."
+  },
+  "bottle": {
+    "bottle13": "Nội dung chai",
+    "cancelled": "❌ Đã hủy ${zodiac}.",
+    "catch": {
+      "anonymousUser": "Người dùng ẩn danh.",
+      "back": "🏠 Trở về menu chính: /menu",
+      "banned": "❌ Tài khoản của bạn đã bị cấm và không thể nhận chai thư.\n\nNếu bạn có bất kỳ câu hỏi nào, vui lòng sử dụng /appeal để kháng cáo.",
+      "block": "• Nếu bạn không muốn trò chuyện nữa, bạn có thể sử dụng /block để chặn.\n",
+      "bottle": "😔 Hiện tại, không có chai thư nào phù hợp với bạn.\n\n",
+      "bottle2": "• Hoặc tự mình ném một chai: /throw",
+      "bottle3": "🎣 Ai đó đã nhặt chai thư của bạn!\n\n",
+      "bottle4": "🧴 Bạn đã nhặt được một chai thư!\n\n",
+      "bottle5": "💡 Quay lại vào ngày mai để bắt thêm chai thư!",
+      "bottleTaken": "❌ Chai thư này đã được người khác lấy. Vui lòng thử chai thư khác!",
+      "catch": "📊 Lần bắt hôm nay: \\\\$${newCatchesCount}/\\${quota}\n\n",
+      "conversation": "Một cuộc trò chuyện ẩn danh đã được tạo cho bạn, hãy đến và bắt đầu trò chuyện!\n\n",
+      "conversation2": "• Đây là cuộc trò chuyện ẩn danh, vui lòng bảo vệ sự riêng tư của bạn\n",
+      "conversation3": "📊 Xem tất cả cuộc trò chuyện",
+      "language": "🗣️ Ngôn ngữ: \\${language}\n\n",
+      "mbti": "🧠 MBTI: \\${mbti}\n",
+      "message": "💫 Điểm ghép: ${score} điểm (Ghép thông minh)\n\n",
+      "message2": "${catcherGender} | 📅 ${catcherAge} tuổi\n\n",
+      "message3": "conv_reply_\\${conversationIdentifier}",
+      "message4": "2️⃣ Nhấn giữ tin nhắn này, chọn 'Trả lời' và nhập nội dung của bạn\n\n",
+      "message5": "1️⃣ Nhấn nút '💬 Trả lời tin nhắn' bên dưới\n",
+      "message6": "2️⃣ Nhấn và giữ tin nhắn này, chọn 'Trả lời' và nhập nội dung của bạn",
+      "nickname": "📝 Biệt danh: \\${ownerMaskedNickname}\n",
+      "nickname2": "📝 Biệt danh: \\${catcherNickname}\n",
+      "notRegistered": "❌ Vui lòng hoàn tất quy trình đăng ký trước khi bắt chai thư.\n\nSử dụng /start để tiếp tục đăng ký.",
+      "originalContent": "Nội dung gốc: {content}",
+      "originalLanguage": "Ngôn ngữ gốc: {language}",
+      "quotaExhausted": "❌ Hạn mức chai thư hôm nay đã hết (\\${quotaDisplay})",
+      "replyButton": "💬 Trả lời tin nhắn",
+      "replyMethods": "💡 **Hai cách để trả lời**:\n",
+      "report": "• Nếu bạn gặp nội dung không phù hợp, vui lòng sử dụng /report để báo cáo\n",
+      "safetyTips": "⚠️ Mẹo an toàn:\n",
+      "settings": "🧠 MBTI: ${mbti}\n",
+      "settings10": "Chưa thiết lập",
+      "settings11": "Chưa thiết lập",
+      "settings2": "Chưa thiết lập",
+      "settings3": "Chưa được thiết lập",
+      "settings4": "Chưa được thiết lập",
+      "settings5": "Chưa được thiết lập",
+      "settings6": "Chưa được thiết lập",
+      "settings7": "Chưa được thiết lập",
+      "settings8": "Chưa được thiết lập",
+      "settings9": "Chưa được thiết lập",
+      "short": "💡 Mẹo:\n",
+      "short2": "• Vui lòng thử lại sau\n",
+      "short3": "Người dùng ẩn danh",
+      "short4": "♂️ Nam",
+      "short5": "♀️ Nữ",
+      "text": "Ngôn ngữ dịch: \\${catcherLangDisplay}\n",
+      "text2": "Ngôn ngữ gốc: \\${bottleLangDisplay}\n",
+      "text3": "🗣️ Ngôn ngữ: \\${ownerLanguage}\n\n",
+      "text4": "• Để dừng trò chuyện, bạn có thể sử dụng /block để chặn\n\n",
+      "text5": "Nội dung gốc: \\${bottle.content}\n",
+      "text6": "💬 Dịch vụ dịch thuật đang gặp vấn đề tạm thời, sử dụng dịch thuật dự phòng\n",
+      "text7": "Dịch thuật: \\${bottleContent}\n",
+      "text8": "💡 **Hai phương pháp trả lời**:\n",
+      "translatedContent": "Dịch thuật: {content}",
+      "translatedLanguage": "Ngôn ngữ dịch: {language}",
+      "translationServiceFallback": "💬 Dịch vụ dịch thuật đang gặp vấn đề tạm thời, sử dụng dịch thuật dự phòng",
+      "translationServiceUnavailable": "⚠️ Dịch vụ dịch thuật hiện không khả dụng, nội dung gốc bên dưới",
+      "unknown": "Không xác định",
+      "zodiac": "⭐ Cung hoàng đạo: \\${bottle.zodiac }\n",
+      "zodiac2": "⭐ Cung hoàng đạo: \\${catcherZodiac}\n"
     },
-  },
-  adminNotification: {
-    amount: `金額：\${stars} ⭐`,
-    data: `數據：\${data}`,
-    daysLeft: `剩餘：\${days} 天`,
-    expireDate: `到期：\${date}`,
-    newExpireDate: `新到期：\${date}`,
-    paymentFailed: `❌ **支付失敗**`,
-    paymentId: `支付 ID：\`\${id}\``,
-    reason: `原因：\${reason}`,
-    refundRequest: `🔴 **退款請求**`,
-    requestId: `請求 ID：#\${id}`,
-    systemNotification: `📢 **系統通知**`,
-    time: `時間：\${time}`,
-    type: `類型：\${type}`,
-    user: `用戶：\`\${userId}\``,
-    viewRefundsHint: `💡 使用 /admin_refunds 查看詳情`,
-    vipDowngraded: `⬇️ **VIP 自動降級**`,
-    vipPurchased: `🎉 **新 VIP 購買**`,
-    vipReminderSent: `⏰ **VIP 到期提醒已發送**`,
-    vipRenewed: `🔄 **VIP 續費**`,
-  },
-  age: {
-    daysAgo: `\${days} 天前`,
-    hoursAgo: `\${hours} 小時前`,
-    justNow: `剛剛`,
-  },
-  analytics: {
-    ad: `• 官方廣告：
- - 展示：{officialImpressions} 次
- - 點擊：{officialClicks} 次
- - CTR：{officialCtr}%
- - 獎勵發放：{officialRewardsGranted} 個額度
-
-• VIP 頁面訪問：{vipPageViews} 次
-• 購買意向：{vipPurchaseIntents} 次
-• 成功轉化：{vipConversions} 次
-• 轉化率：{vipConversionRate}%
-• 收入：\${vipRevenue}`,
-    ad2: `📊 **廣告效果報表**
-📅 期間：{start} ~ {end}
-
-• 總展示：{thirdPartyImpressions} 次
-• 總完成：{thirdPartyCompletions} 次
-• 完成率：{thirdPartyCompletionRate}%
-• 總獎勵：{thirdPartyRewardsGranted} 個額度
-
-• 總展示：{officialImpressions} 次
-• 總點擊：{officialClicks} 次
-• CTR：{officialCtr}%
-• 總獎勵：{officialRewardsGranted} 個額度`,
-    ad3: `📊 **廣告效果報表**
-📅 期間：{start} ~ {end}
-
-⚠️ **目前還沒有廣告數據**
-
-這可能是因為：
-• 廣告提供商尚未配置
-• 還沒有用戶觀看廣告
-• 選定的時間範圍內沒有廣告活動
-
-💡 **數據何時會出現？**
-• 需要完成以下配置：
- 1. 配置廣告提供商（GigaPub 等）
- 2. 創建官方廣告
- 3. 用戶開始觀看廣告
-
-• 建議先配置廣告提供商
-• 然後等待用戶開始使用廣告功能`,
-    complete: `
-• 完成率：\${provider.completion_rate.toFixed(1)}%`,
-    complete2: `
-• 完成：\${provider.total_completions} 次`,
-    completion: `
-• 完成：{completions} 次`,
-    completionRate: `
-• 完成率：{rate}%`,
-    conversionStepsTitle: `[需要从 zh-TW.ts 获取翻译]`,
-    invite: `• 發起邀請：{initiated} 次
-• 接受邀請：{accepted} 次
-• 激活邀請：{activated} 次
-• 轉化率：{conversionRate}%
-
-• 丟瓶子：{bottlesThrown} 個
-• 撿瓶子：{bottlesCaught} 個
-• 新對話：{conversationsStarted} 個
-• 平均對話輪次：{avgConversationRounds}
-
-💡 詳細數據：/analytics`,
-    message: `📊 **每日運營報表**
-📅 日期：{date}
-
-**👥 用戶數據**
-• 新增用戶：{newUsers} 人
-• 活躍用戶（DAU）：{dau} 人
-• 留存率（D1）：{d1Retention}%
-• 平均使用時長：{avgSessionDuration} 分鐘
-
-**📺 廣告數據**
-• 第三方廣告：
- - 展示：{thirdPartyImpressions} 次
- - 完成：{thirdPartyCompletions} 次
- - 完成率：{thirdPartyCompletionRate}%
- - 獎勵發放：{thirdPartyRewardsGranted} 個額度`,
-    message2: `📊 **每日運營報表**
-📅 日期：{date}
-
-⚠️ **今日還沒有數據**
-
-這可能是因為：
-• 系統剛部署，還沒有用戶活動
-• 今天還沒有用戶使用 Bot
-• 數據追蹤功能尚未啟用
-
-💡 **數據何時會出現？**
-• 需要用戶執行以下任一操作：
- - 發送 /start 註冊
- - 丟瓶子或撿瓶子
- - 觀看廣告
- - 購買 VIP
-
-• 建議等待用戶開始使用後再查看
-• 或者在測試環境中模擬用戶行為`,
-    message3: `
-
-**📈 總轉化率：\${report.overall_conversion_rate.toFixed(1)}%**`,
-    message4: `
-• 轉化率：\${step.conversion_rate.toFixed(1)}%`,
-    message5: `
-• 錯誤率：\${provider.error_rate.toFixed(1)}%`,
-    message6: `
-• 請求：\${provider.total_requests} 次`,
-    providerComparisonTitle: `[需要从 zh-TW.ts 获取翻译]`,
-    purchaseSuccess: `[需要从 zh-TW.ts 获取翻译]`,
-    request: `
-• 請求：{requests} 次`,
-    text: `
-• 用戶數：\${step.user_count}`,
-    text2: `購買意向（點擊購買）`,
-    vip: `📊 **VIP 轉化漏斗**
-📅 期間：{start} ~ {end}
-
-⚠️ **目前還沒有數據**
-
-這可能是因為：
-• 系統剛部署，還沒有用戶活動
-• 選定的時間範圍內沒有 VIP 相關事件
-• 數據追蹤功能尚未啟用
-
-💡 **數據何時會出現？**
-• VIP 轉化數據需要用戶執行以下操作：
- 1. 查看 VIP 功能介紹
- 2. 點擊購買 VIP
- 3. 完成 VIP 購買
-
-• 建議等待 24-48 小時後再查看
-• 或者先在測試環境中模擬用戶行為`,
-    vip2: `📊 **VIP 轉化漏斗**
-📅 期間：{start} ~ {end}`,
-    vip3: `認知（看到 VIP 提示）`,
-    vip4: `考慮（查看 VIP 詳情）`,
-    vip5: `興趣（點擊查看 VIP）`,
-  },
-  appeal: {
-    alreadyExists: `⏳ 你已有一個待處理的申訴（編號：#\${appealId}）
-
-狀態：\${status}
-提交時間：\${time}
-
-請耐心等待管理員審核。`,
-    approved: `✅ 你的申訴已通過，帳號已解封`,
-    noAppeal: `你目前沒有待審核的申訴`,
-    notBanned: `✅ 你的帳號未被封禁，無需申訴。`,
-    notFound: `❌ 找不到你的申訴記錄。`,
-    notes: `備註：`,
-    prompt: `📝 **提交申訴**
-
-請說明你認為帳號被封禁的原因，以及你希望如何解決這個問題。
-
-💡 請詳細描述你的情況，這有助於管理員更快地處理你的申訴。`,
-    reasonTooLong: `❌ 申訴原因太長，請控制在 500 字以內。`,
-    reasonTooShort: `❌ 申訴原因太短，請至少輸入 10 個字。`,
-    rejected: `❌ 你的申訴已被拒絕`,
-    reviewedAt: `審核時間：`,
-    status: `📋 **申訴狀態**
-
-申訴編號：#\${appealId}
-狀態：\${status}
-提交時間：\${createdAt}\${reviewInfo}`,
-    statusApproved: `已批准`,
-    statusPending: `待審核`,
-    statusRejected: `已拒絕`,
-    submitted: `✅ **申訴已提交**
-
-申訴編號：#\${appealId}
-狀態：待審核
-
-我們會在 1-3 個工作日內處理你的申訴。
-處理結果會通過 Bot 通知你。`,
-  },
-  block: {
-    cannotIdentify: `⚠️ 無法識別對話對象`,
-    catchNewBottle: `💡 使用 /catch 撿新的漂流瓶開始新對話。`,
-    conversationInfoError: `⚠️ 對話資訊錯誤。`,
-    conversationMayEnded: `對話可能已結束或不存在。`,
-    conversationNotFound: `⚠️ 找不到此對話`,
-    ensureReply: `請確保回覆的是對方發送的訊息（帶有 # 標識符）。`,
-    hint: `💡 這樣可以準確指定要封鎖的對象。`,
-    replyRequired: `⚠️ 請長按你要封鎖的訊息後回覆指令`,
-    step1: `1️⃣ 長按對方的訊息`,
-    step2: `2️⃣ 選擇「回覆」`,
-    step3: `3️⃣ 輸入 /block`,
-    steps: `**操作步驟：**`,
-    success: `✅ 已封鎖此使用者 (#\${identifier})`,
-    willNotMatch: `你們將不會再被匹配到對方的漂流瓶。`,
-  },
-  bottle: {
-    bottle13: `瓶子内容`,
-    cancelled: `❌ 已取消 \${zodiac}`,
-    containsUrl: `瓶子內容不允許包含任何連結`,
-    empty: `瓶子內容不能為空`,
-    friendlyContent: `• 友善、尊重的內容更容易被撿到哦～`,
-    inappropriate: `瓶子內容包含不適當的內容，請修改後重新提交`,
-    selected: `已選擇：\${selected}`,
-    selectedItem: `✅ 已選擇 \${zodiac}`,
-    tips: `💡 提示：`,
-    tooLong: `瓶子內容太長，最多 \${max} 個字符（目前 \${current} 個字符）`,
-    tooShort: `瓶子內容太短，至少需要 \${min} 個字符（目前 \${current} 個字符）`,
-    catch: {
-      anonymousUser: `匿名用戶`,
-      back: `🏠 返回主選單：/menu`,
-      banned: `❌ 你的帳號已被封禁，無法撿漂流瓶。
-
-如有疑問，請使用 /appeal 申訴。`,
-      block: `• 不想再聊可使用 /block 封鎖
-`,
-      bottle: `😔 目前沒有適合你的漂流瓶
-
-`,
-      bottle2: `• 或者自己丟一個瓶子：/throw`,
-      bottle3: `🎣 有人撿到你的漂流瓶了！
-
-`,
-      bottle4: `🧴 你撿到了一個漂流瓶！
-
-`,
-      bottle5: `💡 明天再來撿更多瓶子吧！`,
-      bottleTaken: `❌ 這個瓶子已經被其他人撿走了，請試試其他瓶子！`,
-      catch: `📊 今日已撿：\\\${newCatchesCount}/\\\${quota}
-
-`,
-      conversation: `已為你們建立了匿名對話，快來開始聊天吧～
-
-`,
-      conversation2: `• 這是匿名對話，請保護個人隱私
-`,
-      conversation3: `📊 查看所有對話`,
-      language: `🗣️ 語言：\\\${language}
-
-`,
-      mbti: `🧠 MBTI：\\\${mbti}
-`,
-      message: `💫 配對度：\\\${score}分 (智能配對)
-
-`,
-      message2: `\\\${catcherGender} | 📅 \\\${catcherAge}歲
-
-`,
-      message3: `conv_reply_\\\${conversationIdentifier}`,
-      message4: `2️⃣ 長按此訊息，選擇「回覆」後輸入內容
-
-`,
-      message5: `1️⃣ 點擊下方「💬 回覆訊息」按鈕
-`,
-      message6: `2️⃣ 長按此訊息，選擇「回覆」後輸入內容`,
-      nickname: `📝 暱稱：\\\${ownerMaskedNickname}
-`,
-      nickname2: `📝 暱稱：\\\${catcherNickname}
-`,
-      notRegistered: `❌ 請先完成註冊流程才能撿漂流瓶。
-
-使用 /start 繼續註冊。`,
-      originalContent: `原文：{content}`,
-      originalLanguage: `原文語言：{language}`,
-      quotaExhausted: `❌ 今日漂流瓶配額已用完（\\\${quotaDisplay}）`,
-      replyButton: `💬 回覆訊息`,
-      replyMethods: `💡 **兩種回覆方式**：
-`,
-      report: `• 遇到不當內容請使用 /report 舉報
-`,
-      safetyTips: `⚠️ 安全提示：
-`,
-      settings: `🧠 MBTI：\${mbti}
-`,
-      settings10: `未設定`,
-      settings11: `未設定`,
-      settings2: `未設定`,
-      settings3: `未設定`,
-      settings4: `未設定`,
-      settings5: `未設定`,
-      settings6: `未設定`,
-      settings7: `未設定`,
-      settings8: `未設定`,
-      settings9: `未設定`,
-      short: `💡 提示：
-`,
-      short2: `• 稍後再試
-`,
-      short3: `匿名用戶`,
-      short4: `♂️ 男`,
-      short5: `♀️ 女`,
-      text: `翻譯語言：\\\${catcherLangDisplay}
-`,
-      text2: `原文語言：\\\${bottleLangDisplay}
-`,
-      text3: `🗣️ 語言：\\\${ownerLanguage}
-
-`,
-      text4: `• 不想再聊可使用 /block 封鎖
-
-`,
-      text5: `原文：\\\${bottle.content}
-`,
-      text6: `💬 翻譯服務暫時有問題，已使用備援翻譯
-`,
-      text7: `翻譯：\\\${bottleContent}
-`,
-      text8: `💡 **兩種回覆方式**：
-`,
-      translatedContent: `翻譯：{content}`,
-      translatedLanguage: `翻譯語言：{language}`,
-      translationServiceFallback: `💬 翻譯服務暫時有問題，已使用備援翻譯`,
-      translationServiceUnavailable: `⚠️ 翻譯服務暫時無法使用，以下為原文`,
-      unknown: `未知`,
-      zodiac: `⭐ 星座：\\\${bottle.zodiac }
-`,
-      zodiac2: `⭐ 星座：\\\${catcherZodiac}
-`,
+    "containsUrl": "Nội dung chai thư không thể chứa bất kỳ liên kết nào",
+    "empty": "Nội dung chai thư không được để trống",
+    "friendlyContent": "• Nội dung thân thiện và tôn trọng có khả năng được chọn nhiều hơn~",
+    "inappropriate": "Chai thư chứa nội dung không phù hợp, vui lòng chỉnh sửa và gửi lại.",
+    "selected": "Đã chọn: ${selected}",
+    "selectedItem": "✅ Đã chọn ${zodiac}",
+    "throw": {
+      "age": "• Độ tuổi tương tự ✓",
+      "aiModerationFailed": "Kiểm tra nội dung AI không thành công",
+      "back": "↩️ Quay lại menu bộ lọc",
+      "bloodType": "🩸 **Lọc Nhóm Máu**\n\n",
+      "bloodType2": "• Nhóm máu: Lọc theo nhóm máu cụ thể\n",
+      "bloodType3": "Chọn nhóm máu bạn muốn kết nối:",
+      "bloodType4": "🩸 Bộ Lọc Nhóm Máu",
+      "bloodType5": "🌈 Bất kỳ nhóm máu nào",
+      "bottle": "💡 Chai thư này rất hợp với bạn!\n\\\n",
+      "bottle10": "🍾 Chai thư đã được ném!\n\n",
+      "bottle11": "🍾 Ném chai thư",
+      "bottle2": "🎯 Chai thư của bạn đã được gửi đến **3 người nhận**:\n",
+      "bottle3": "🍾 **Đang ném chai thư của bạn...**\n\n",
+      "bottle4": "🍾 **Ném Chai Thư** #THROW\n\n",
+      "bottle5": "ID chai: #${bottleId}",
+      "bottle6": "📝 **Vui lòng nhập nội dung của chai thư của bạn**\n\n",
+      "bottle7": "1️⃣ Nhấn nút bên dưới “🍾 Ném chai thư”\n",
+      "bottle8": "📝 Vui lòng nhập nội dung của chai thư của bạn:\n\n",
+      "bottle9": "📝 Vui lòng nhập nội dung chai thư của bạn:",
+      "cancel": "💡 Nhấn để chọn hoặc hủy loại MBTI:",
+      "cancel2": "💡 Nhấn để chọn hoặc hủy cung hoàng đạo:",
+      "catch": "• Slot 3: Hồ bơi công cộng (chờ được nhặt)\n\n",
+      "catch2": "• Khu vực 2: Hồ bơi công cộng (đang chờ được nhặt lên)\n",
+      "catch3": "• Khu vực 1: Hồ bơi công cộng (đang chờ được nhặt lên)\n",
+      "catch4": "🌊 Đang chờ người định mệnh đến nhặt lên...\n",
+      "complete": "⚙️ **Bộ Lọc Nâng Cao**\n\n\\${summary}\n💡 Tiếp tục điều chỉnh hoặc hoàn tất bộ lọc:",
+      "complete2": "🎯 **Ghép cặp 1 hoàn thành:**\n",
+      "complete3": "📝 Bạn có một bản nháp chưa hoàn thành\n\n",
+      "complete4": "⏳ Thời gian hoàn thành dự kiến trong 3-5 giây",
+      "complete5": "⏳ Thời gian hoàn thành dự kiến trong 2-3 giây",
+      "complete6": "⏳ Thời gian hoàn thành dự kiến trong 1-2 giây",
+      "conversation": "💬 Mã cuộc trò chuyện: \\${vipMatchInfo.conversationIdentifier}\n\n",
+      "conversation2": "💡 Mẹo: Mỗi cuộc trò chuyện là độc lập và có thể xảy ra đồng thời\n\n",
+      "conversation3": "💡 Bạn có thể nhận **tối đa 3 cuộc trò chuyện**!\n",
+      "conversation4": "💬 Bạn có thể nhận **tối đa 3 cuộc trò chuyện**!\n",
+      "conversation5": "Sử dụng /chats để xem tất cả cuộc trò chuyện\n\n",
+      "conversation6": "📊 Sử dụng /chats để xem tất cả cuộc trò chuyện",
+      "conversation7": "Sử dụng /chats để xem tất cả cuộc trò chuyện",
+      "currentSelection": "Lựa chọn hiện tại: {genderText}",
+      "gender": "• Giới tính: \\${selectedGender === 'male' ? '👨 Nam' : selectedGender === 'female' ? '👩 Nữ' : '🌈 Bất kỳ ai'}\n",
+      "gender2": "👤 **Lọc Giới Tính**\n\n",
+      "gender3": "• Giới tính: Lọc theo giới tính\n\n",
+      "gender4": "💡 Chọn giới tính bạn mong muốn:",
+      "gender5": "👤 Bộ lọc Giới tính",
+      "genderLabel": "• Giới tính: {gender}\n",
+      "mbti": "• MBTI: \\${selectedMBTI.length > 0 ? selectedMBTI.join(', ') : 'Không giới hạn'}\n",
+      "mbti2": "Đã chọn: \\${selectedMBTI.length > 0 ? selectedMBTI.join(', ') : 'Không có'}\n\n",
+      "mbti3": "Đã chọn: \\${selectedMBTI.length > 0 ? selectedMBTI.join(",
+      "mbti4": "🧠 **Lọc MBTI**\n\n",
+      "mbti5": "• MBTI: Lọc theo các kiểu tính cách cụ thể\n",
+      "mbti6": "• Kết hợp MBTI cao ✓",
+      "mbti7": "🧠 Bộ lọc MBTI",
+      "mbtiLabel": "• MBTI: {mbti}\n",
+      "message": "Đã chọn: \\${selectedZodiac.length > 0 ? selectedZodiac.map((z) => ZODIAC_NAMES[z]).join(', ') : 'Không có'}\n\n",
+      "message2": "Lựa chọn hiện tại: \\${currentGender === 'male' ? '👨 Nam' : currentGender === 'female' ? '👩 Nữ' : '🌈 Bất kỳ'}\n\n",
+      "message3": "Đã chọn: \\${selectedZodiac.length > 0 ? selectedZodiac.map((z) => ZODIAC_NAMES[z]).join(",
+      "message4": "Lựa chọn hiện tại: \\${bloodTypeDisplay[currentBloodType]}\n\n",
+      "message5": "👤 Đối phương: \\${vipMatchInfo.matcherNickname}\n",
+      "message6": "\"Xin chào! Tôi là một người yêu âm nhạc và phim ảnh, hy vọng gặp gỡ những người bạn cùng sở thích!\"\n\n",
+      "message7": "💡 Bạn có thể chỉnh sửa sở thích đánh giá trong /edit_profile\n\n",
+      "message8": "💬 Bấm /reply để phản hồi tin nhắn và bắt đầu trò chuyện\n",
+      "nickname": "📝 Biệt danh của đối phương: \\${matchedUserMaskedNickname}\n",
+      "quota": "• Nhiều hạn ngạch hơn (30 mỗi ngày)\n",
+      "quota2": "🎁 Mời bạn bè để tăng hạn ngạch:\n",
+      "settings": "🧠 MBTI: ${mbti}\n",
+      "settings2": "⭐ Cung hoàng đạo: ${zodiac}\n",
+      "settings3": "🧠 MBTI: \\\\$\n",
+      "settings4": "⭐ Cung hoàng đạo: \\\\$\n",
+      "settings5": "Chưa được đặt",
+      "settings6": "Chưa được đặt",
+      "settings7": "Chưa được đặt",
+      "settings8": "Chưa được đặt",
+      "short": "• Cùng ngôn ngữ ✓",
+      "short10": "♋ Cự Giải",
+      "short11": "♌ Sư Tử",
+      "short12": "♍ Xử Nữ",
+      "short13": "♎ Thiên Bình",
+      "short14": "♏ Bọ Cạp",
+      "short15": "♐ Nhân Mã",
+      "short16": "♑ Ma Kết",
+      "short17": "♒ Bảo Bình",
+      "short18": "♓ Song Ngư",
+      "short19": "Vi phạm",
+      "short2": "🩸 Loại AB",
+      "short20": "Không giới hạn",
+      "short21": "Không giới hạn",
+      "short22": "Không giới hạn",
+      "short23": "Không giới hạn",
+      "short3": "🌈 Bất kỳ ai",
+      "short4": "🩸 Nhóm A",
+      "short5": "🩸 Nhóm B",
+      "short6": "🩸 Nhóm O",
+      "short7": "♈ Bạch Dương",
+      "short8": "♉ Kim Ngưu",
+      "short9": "♊ Song Tử",
+      "start": "✍️ Khởi động lại",
+      "success": "Một chai thư = 3 người nhận, tăng đáng kể tỷ lệ thành công khi kết nối\n\n",
+      "success2": "✨ **Đặc quyền VIP đã được kích hoạt! Kết nối thông minh thành công!**\n\n",
+      "success3": "🎯 Chai thư của bạn đã được kết nối thành công!\n\n",
+      "text": "💝 Độ phù hợp: \\${matchPercentage}%\n",
+      "text10": "🎯 Tìm kiếm người nhận phù hợp nhất cho bạn\n\n",
+      "text11": "💬 Đang chờ phản hồi từ bên kia...\n",
+      "text12": "• Người dùng miễn phí: tối đa +7\n",
+      "text13": "• Không bao gồm thông tin liên lạc cá nhân\n\n",
+      "text14": "💡 **Hai phương pháp nhập**：\n",
+      "text15": "📊 Người dùng miễn phí: 3 mỗi ngày\n",
+      "text16": "Chọn các điều kiện bạn muốn lọc theo:\n\n",
+      "text17": "• Lọc nâng cao và dịch thuật\n\n",
+      "text18": "Thời gian tạo: \\${age}\n",
+      "text19": "Sử dụng /vip để nâng cấp ngay",
+      "text2": "• 🆕 Cơ hội hiển thị gấp ba (1 lần = 3 mục tiêu)\n",
+      "text20": "💬 **Ví dụ**：\n",
+      "text21": "Sử dụng /vip để biết thêm thông tin",
+      "text22": "Bạn có muốn tiếp tục chỉnh sửa bản nháp này không?",
+      "text23": "💡 Bạn có thể kết hợp nhiều điều kiện",
+      "text24": "Điều kiện lọc hiện tại:\n\n",
+      "text3": "💡 Điều này có thể mất vài giây, chúng tôi đang tìm kiếm sự ghép nối tốt nhất cho bạn",
+      "text4": "Lựa chọn hiện tại: \\${currentGender ===",
+      "text5": "🎯 Tìm kiếm: \\${targetText}\n",
+      "text6": "🎯 Tìm 3 ứng cử viên phù hợp nhất cho bạn\n\n",
+      "text7": "📨 **2 slot bổ sung đang chờ:**\n",
+      "text8": "🔍 Đang kết nối thông minh với các ứng cử viên tốt nhất...\n\n",
+      "text9": "Xem trước nội dung: \\${preview}\n\n",
+      "throw": "📊 Số lượng hôm nay đã gửi: \\${quotaDisplay}\n\n",
+      "unlimited": "Không giới hạn",
+      "urlNotAllowed": "❌ Tin nhắn chứa URL bị cấm",
+      "vip": "💎 Người dùng VIP: 30 mỗi ngày (tăng gấp ba lần khả năng hiển thị)\n\n",
+      "vip2": "💎 **Nâng cấp lên VIP để có cơ hội hiển thị gấp ba lần!**\n",
+      "vip3": "⚙️ **Lọc Nâng Cao (Dành Riêng Cho VIP)**\n\n",
+      "vip4": "• Người dùng VIP: Tối đa +70\n\n",
+      "vip5": "✨ **Đặc quyền VIP đã được kích hoạt!**\n\n",
+      "vip6": "💡 Nâng cấp lên VIP để nhận:\n",
+      "vip7": "✨ Đang kích hoạt quyền lợi VIP\n",
+      "zodiac": "• Cung hoàng đạo: \\${selectedZodiac.length > 0 ? selectedZodiac.map((z) => ZODIAC_NAMES[z]).join(', ') : 'Không giới hạn'}\n",
+      "zodiac2": "⭐ Cung hoàng đạo: \\${matchResult.user.zodiac ||",
+      "zodiac3": "⭐ Cung hoàng đạo: \\${user.zodiac_sign ||",
+      "zodiac4": "⭐ **Bộ lọc Cung Hoàng Đạo**\n\n",
+      "zodiac5": "• Cung hoàng đạo: Lọc theo các cung hoàng đạo cụ thể\n",
+      "zodiac6": "• Cung hoàng đạo tương thích cao ✓",
+      "zodiac7": "⭐ Bộ lọc cung hoàng đạo",
+      "zodiacLabel": "• Cung hoàng đạo: {zodiac}\n"
     },
-    throw: {
-      age: `• 年齡區間相近 ✓`,
-      aiModerationFailed: `AI 内容审核失败`,
-      back: `↩️ 返回篩選選單`,
-      bloodType: `🩸 **血型篩選**
-
-`,
-      bloodType2: `• 血型：篩選特定血型
-`,
-      bloodType3: `選擇你想要配對的血型：`,
-      bloodType4: `🩸 血型篩選`,
-      bloodType5: `🌈 任何血型`,
-      bottle: `
-💡 這個瓶子和你非常合拍！
-\\
-`,
-      bottle10: `🍾 漂流瓶已丟出！
-
-`,
-      bottle11: `🍾 丟漂流瓶`,
-      bottle2: `🎯 你的瓶子已發送給 **3 個對象**：
-`,
-      bottle3: `🍾 **正在丟出你的漂流瓶...**
-
-`,
-      bottle4: `🍾 **丟漂流瓶** #THROW
-
-`,
-      bottle5: `瓶子 ID：#\\\${bottleId}
-
-`,
-      bottle6: `📝 **請輸入你的漂流瓶內容**
-
-`,
-      bottle7: `1️⃣ 點擊下方「🍾 丟漂流瓶」按鈕
-`,
-      bottle8: `📝 請輸入你的漂流瓶內容：
-
-`,
-      bottle9: `📝 請輸入你的漂流瓶內容：`,
-      cancel: `💡 點擊選擇或取消 MBTI 類型：`,
-      cancel2: `💡 點擊選擇或取消星座：`,
-      catch: `• 槽位 3：公共池（等待撿起）
-
-`,
-      catch2: `• 槽位 2：公共池（等待撿起）
-`,
-      catch3: `• 槽位 1：公共池（等待撿起）
-`,
-      catch4: `🌊 等待有緣人撿起...
-`,
-      complete: `⚙️ **進階篩選**
-
-\\\${summary}
-💡 繼續調整或完成篩選：`,
-      complete2: `🎯 **第 1 個配對已完成：**
-`,
-      complete3: `📝 你有一個未完成的草稿
-
-`,
-      complete4: `⏳ 預計 3-5 秒完成`,
-      complete5: `⏳ 預計 2-3 秒完成`,
-      complete6: `⏳ 預計 1-2 秒完成`,
-      conversation: `💬 對話標識符：\\\${vipMatchInfo.conversationIdentifier}
-
-`,
-      conversation2: `💡 提示：每個對話都是獨立的，可以同時進行
-
-`,
-      conversation3: `💡 你可能會收到 **最多 3 個對話**！
-`,
-      conversation4: `💬 你可能會收到 **最多 3 個對話**！
-`,
-      conversation5: `使用 /chats 查看所有對話
-
-`,
-      conversation6: `📊 使用 /chats 查看所有對話`,
-      conversation7: `使用 /chats 查看所有對話`,
-      currentSelection: `當前選擇：{genderText}`,
-      gender: `• 性別：\\\${selectedGender === 'male' ? '👨 男生' : selectedGender === 'female' ? '👩 女生' : '🌈 任何人'}
-`,
-      gender2: `👤 **性別篩選**
-
-`,
-      gender3: `• 性別：篩選性別
-
-`,
-      gender4: `💡 選擇你想要的性別：`,
-      gender5: `👤 性別篩選`,
-      genderLabel: `• 性別：{gender}
-`,
-      mbti: `• MBTI：\\\${selectedMBTI.length > 0 ? selectedMBTI.join(', ') : '無限制'}
-`,
-      mbti2: `已選擇：\\\${selectedMBTI.length > 0 ? selectedMBTI.join(', ') : '無'}
-
-`,
-      mbti3: `已選擇：\\\${selectedMBTI.length > 0 ? selectedMBTI.join(`,
-      mbti4: `🧠 **MBTI 篩選**
-
-`,
-      mbti5: `• MBTI：篩選特定性格類型
-`,
-      mbti6: `• MBTI 高度配對 ✓`,
-      mbti7: `🧠 MBTI 篩選`,
-      mbtiLabel: `• MBTI：{mbti}
-`,
-      message: `已選擇：\\\${selectedZodiac.length > 0 ? selectedZodiac.map((z) => ZODIAC_NAMES[z]).join(', ') : '無'}
-
-`,
-      message2: `當前選擇：\\\${currentGender === 'male' ? '👨 男生' : currentGender === 'female' ? '👩 女生' : '🌈 任何人'}
-
-`,
-      message3: `已選擇：\\\${selectedZodiac.length > 0 ? selectedZodiac.map((z) => ZODIAC_NAMES[z]).join(`,
-      message4: `當前選擇：\\\${bloodTypeDisplay[currentBloodType]}
-
-`,
-      message5: `👤 對方：\\\${vipMatchInfo.matcherNickname}
-`,
-      message6: `「你好！我是一個喜歡音樂和電影的人，希望認識志同道合的朋友～」
-
-`,
-      message7: `💡 可在 /edit_profile 中修改匹配偏好
-
-`,
-      message8: `💬 直接按 /reply 回覆訊息開始聊天
-`,
-      nickname: `📝 對方暱稱：\\\${matchedUserMaskedNickname}
-`,
-      quota: `• 更多配額（30 個/天）
-`,
-      quota2: `🎁 邀請好友可增加配額：
-`,
-      settings: `🧠 MBTI：\${mbti}
-`,
-      settings2: `⭐ 星座：\${zodiac}
-`,
-      settings3: `🧠 MBTI：\\\\$
-`,
-      settings4: `⭐ 星座：\\\\$
-`,
-      settings5: `未設定`,
-      settings6: `未設定`,
-      settings7: `未設定`,
-      settings8: `未設定`,
-      short: `• 語言相同 ✓`,
-      short10: `♋ 巨蟹座`,
-      short11: `♌ 獅子座`,
-      short12: `♍ 處女座`,
-      short13: `♎ 天秤座`,
-      short14: `♏ 天蠍座`,
-      short15: `♐ 射手座`,
-      short16: `♑ 摩羯座`,
-      short17: `♒ 水瓶座`,
-      short18: `♓ 雙魚座`,
-      short19: `違規行為`,
-      short2: `🩸 AB 型`,
-      short20: `無限制`,
-      short21: `無限制`,
-      short22: `無限制`,
-      short23: `無限制`,
-      short3: `🌈 任何人`,
-      short4: `🩸 A 型`,
-      short5: `🩸 B 型`,
-      short6: `🩸 O 型`,
-      short7: `♈ 白羊座`,
-      short8: `♉ 金牛座`,
-      short9: `♊ 雙子座`,
-      start: `✍️ 重新開始`,
-      success: `一次丟瓶子 = 3 個對象，大幅提升配對成功率
-
-`,
-      success2: `✨ **VIP 特權啟動！智能配對成功！**
-
-`,
-      success3: `🎯 你的漂流瓶已被配對成功！
-
-`,
-      text: `💝 匹配度：\\\${matchPercentage}%
-`,
-      text10: `🎯 正在為你尋找最佳配對對象
-
-`,
-      text11: `
-💬 等待對方回覆中...
-`,
-      text12: `• 免費用戶：最多 +7 個
-`,
-      text13: `• 不要包含個人聯絡方式
-
-`,
-      text14: `💡 **兩種輸入方式**：
-`,
-      text15: `📊 免費用戶：3 個/天
-`,
-      text16: `選擇你想要篩選的條件：
-
-`,
-      text17: `• 進階篩選和翻譯
-
-`,
-      text18: `創建時間：\\\${age}
-`,
-      text19: `使用 /vip 立即升級`,
-      text2: `• 🆕 三倍曝光機會（1 次 = 3 個對象）
-`,
-      text20: `💬 **範例**：
-`,
-      text21: `使用 /vip 了解更多`,
-      text22: `要繼續編輯這個草稿嗎？`,
-      text23: `💡 可以組合多個條件`,
-      text24: `當前篩選條件：
-
-`,
-      text3: `💡 這可能需要幾秒鐘，我們正在為你找到最合適的人`,
-      text4: `當前選擇：\\\${currentGender ===`,
-      text5: `🎯 尋找對象：\\\${targetText}
-`,
-      text6: `🎯 正在為你尋找 3 個最佳配對對象
-
-`,
-      text7: `📨 **另外 2 個槽位等待中：**
-`,
-      text8: `🔍 正在智能匹配最佳對象...
-
-`,
-      text9: `內容預覽：\\\${preview}
-
-`,
-      throw: `📊 今日已丟：\\\${quotaDisplay}
-
-`,
-      unlimited: `無限制`,
-      urlNotAllowed: `❌ 訊息包含不被允許的網址`,
-      vip: `💎 VIP 用戶：30 個/天（三倍曝光）
-
-`,
-      vip2: `💎 **升級 VIP 可獲得三倍曝光機會！**
-`,
-      vip3: `⚙️ **進階篩選（VIP 專屬）**
-
-`,
-      vip4: `• VIP 用戶：最多 +70 個
-
-`,
-      vip5: `✨ **VIP 特權啟動！**
-
-`,
-      vip6: `💡 升級 VIP 獲得：
-`,
-      vip7: `✨ VIP 特權啟動中
-`,
-      zodiac: `• 星座：\\\${selectedZodiac.length > 0 ? selectedZodiac.map((z) => ZODIAC_NAMES[z]).join(', ') : '無限制'}
-`,
-      zodiac2: `⭐ 星座：\\\${matchResult.user.zodiac ||`,
-      zodiac3: `⭐ 星座：\\\${user.zodiac_sign ||`,
-      zodiac4: `⭐ **星座篩選**
-
-`,
-      zodiac5: `• 星座：篩選特定星座
-`,
-      zodiac6: `• 星座高度相容 ✓`,
-      zodiac7: `⭐ 星座篩選`,
-      zodiacLabel: `• 星座：{zodiac}
-`,
+    "tips": "💡 Mẹo:",
+    "tooLong": "Nội dung chai thư quá dài, tối đa ${max} ký tự (hiện tại ${current} ký tự)",
+    "tooShort": "Nội dung chai thư quá ngắn, tối thiểu ${min} ký tự cần thiết (hiện tại ${current} ký tự)"
+  },
+  "broadcast": {
+    "admin": "Quản trị viên đã hủy thủ công",
+    "admin2": "Quản trị viên đã xóa thủ công (phát sóng bị kẹt)",
+    "allBroadcastsNormal": "Tất cả trạng thái phát sóng đều bình thường.",
+    "broadcastNotFound": "❌ Không tìm thấy bản ghi phát sóng",
+    "cancelCommand": "/broadcast_cancel\n\n",
+    "cancelCorrectFormat": "**Định dạng đúng:**\n",
+    "cancelExample": "**Ví dụ:**\n",
+    "cancelExampleCommand": "/broadcast_cancel 1",
+    "cancelFailed": "❌ Không thể hủy bỏ phát sóng: {error}",
+    "cancelUsageError": "❌ Sử dụng không chính xác\n\n",
+    "cancelled": "✅ Phát sóng đã bị huỷ\n\n",
+    "cancelledId": "ID: {id}\n",
+    "cancelledStatus": "Trạng thái: Đã huỷ\n\n",
+    "checkProgressLater": "Vui lòng sử dụng /broadcast_status sau để kiểm tra tiến độ.",
+    "cleanupFailed": "❌ Không thể dọn dẹp phát sóng: {error}",
+    "cleanupIds": "ID Phát sóng: {ids}\n\n",
+    "cleanupMarkedFailed": "Những phát sóng này đã được đánh dấu là 'thất bại'\n",
+    "cleanupSuccess": "✅ Đã xóa {count} phát sóng bị kẹt\n\n",
+    "cleanupViewStatus": "Sử dụng /broadcast_status để xem các bản ghi đã được cập nhật.",
+    "completedAt": "Thời gian hoàn thành: {time}\n",
+    "correctFormat": "**Định dạng đúng:**\n",
+    "createFailed": "❌ Không thể tạo phát sóng, vui lòng thử lại sau.",
+    "createFailedShort": "❌ Không thể tạo phát sóng.",
+    "created": "✅ Phát sóng đã được tạo\n\n",
+    "empty": "Tin nhắn phát sóng không được để trống",
+    "error": "Lỗi: {error}",
+    "estimate": {
+      "immediate": "Gửi ngay lập tức (khoảng 1-2 giây)",
+      "minutes": "Khoảng \\${minutes} phút",
+      "seconds": "Khoảng \\${seconds} giây"
     },
-  },
-  broadcast: {
-    admin: `管理員手動取消`,
-    admin2: `管理員手動清理（廣播卡住）`,
-    allBroadcastsNormal: `所有廣播狀態正常。`,
-    broadcastNotFound: `❌ 找不到該廣播記錄`,
-    cancelCommand: `/broadcast_cancel <廣播ID>
-
-`,
-    cancelCorrectFormat: `**正確格式：**
-`,
-    cancelExample: `**示例：**
-`,
-    cancelExampleCommand: `/broadcast_cancel 1`,
-    cancelFailed: `❌ 取消廣播失敗：{error}`,
-    cancelUsageError: `❌ 使用方法錯誤
-
-`,
-    cancelled: `✅ 廣播已取消
-
-`,
-    cancelledId: `ID: {id}
-`,
-    cancelledStatus: `狀態: 已取消
-
-`,
-    checkProgressLater: `
-請稍後使用 /broadcast_status 查看進度。`,
-    cleanupFailed: `❌ 清理廣播失敗：{error}`,
-    cleanupIds: `廣播 ID: {ids}
-
-`,
-    cleanupMarkedFailed: `這些廣播已標記為「失敗」狀態
-`,
-    cleanupSuccess: `✅ 已清理 {count} 個卡住的廣播
-
-`,
-    cleanupViewStatus: `使用 /broadcast_status 查看更新後的記錄。`,
-    completedAt: `完成時間: {time}
-`,
-    correctFormat: `**正確格式：**
-`,
-    createFailed: `❌ 創建廣播失敗，請稍後再試。`,
-    createFailedShort: `❌ 創建廣播失敗。`,
-    created: `✅ 廣播已創建
-
-`,
-    empty: `廣播訊息不能為空`,
-    error: `錯誤: {error}`,
-    estimatedTime: `預計時間: {time}
-
-`,
-    example: `**示例：**
-`,
-    exampleMessage: `系統將於今晚 22:00 進行維護`,
-    failed: `失敗: {count}
-`,
-    filterAge: `• age=18-25
-`,
-    filterCommand: `/broadcast_filter <過濾器> <訊息內容>
-
-`,
-    filterConfirmConditions: `**過濾條件：**
-{conditions}
-
-`,
-    filterConfirmMessage: `**訊息內容：**
-{message}
-
-`,
-    filterConfirmTitle: `🔍 **廣播過濾器確認**
-
-`,
-    filterCorrectFormat: `**正確格式：**
-`,
-    filterCountry: `• country=TW|US|JP|...
-`,
-    filterCreateFailed: `❌ 創建過濾廣播失敗
-
-{error}`,
-    filterCreated: `✅ 過濾廣播已創建
-
-`,
-    filterCreatedConditions: `過濾條件: {conditions}
-`,
-    filterCreatedEstimatedTime: `預計時間: {time}
-
-`,
-    filterCreatedId: `ID: {id}
-`,
-    filterCreatedSending: `廣播將在後台發送，使用 /broadcast_status {id} 查看進度。`,
-    filterCreatedUserCount: `符合用戶數: {count} 人
-`,
-    filterExample1: `/broadcast_filter gender=female,age=18-25,country=TW 大家好！
-`,
-    filterExample2: `/broadcast_filter vip=true,mbti=INTJ VIP 專屬活動通知
-`,
-    filterExample3: `/broadcast_filter zodiac=Scorpio 天蠍座專屬訊息`,
-    filterExamples: `**示例：**
-`,
-    filterFormat: `**過濾器格式：**
-`,
-    filterFormatError: `❌ 過濾器格式錯誤
-
-{error}
-
-`,
-    filterGender: `• gender=male|female|other
-`,
-    filterMbti: `• mbti=INTJ|ENFP|...
-`,
-    filterQueryingUsers: `正在查詢符合條件的用戶...`,
-    filterUsageError: `❌ 使用方法錯誤
-
-`,
-    filterViewFormat: `請使用 /broadcast_filter 查看正確格式。`,
-    filterVip: `• vip=true|false
-
-`,
-    filterZodiac: `• zodiac=Aries|Taurus|...
-`,
-    foundStuckBroadcasts: `⚠️ 發現 {count} 個卡住的廣播
-
-`,
-    id: `ID: {id}
-`,
-    idMustBeNumber: `❌ 廣播 ID 必須是數字`,
-    maxUsersExceeded: `❌ 當前廣播系統僅支持 \${max} 個用戶以內的廣播。
-
-目標用戶數：\${current}`,
-    messageContent: `訊息內容`,
-    noPendingBroadcasts: `目前沒有待處理或卡住的廣播。
-
-`,
-    noRecords: `📊 目前沒有廣播記錄`,
-    noStuckBroadcasts: `✅ 沒有需要清理的廣播
-
-`,
-    processQueueFailed: `❌ 處理廣播隊列失敗：{error}`,
-    processingBroadcast: `正在處理廣播 #{id}
-`,
-    progress: `進度: {sent}/{total} ({percentage}%)
-`,
-    queryStatusFailed: `❌ 查詢廣播狀態失敗：{error}`,
-    queueProcessed: `✅ 廣播隊列處理完成
-
-`,
-    queueRemaining: `
-隊列中還有 {count} 個廣播待處理
-`,
-    queueTriggered: `{emoji} 廣播隊列處理已觸發
-
-`,
-    recentRecords: `📊 最近 5 條廣播記錄
-
-`,
-    recordId: `ID: {id}
-`,
-    recordProgress: `進度: {sent}/{total}
-`,
-    recordStatus: `狀態: {status}
-`,
-    recordTarget: `目標: {type}
-`,
-    recordTime: `時間: {time}
-
-`,
-    sendingInBackground: `廣播將在後台發送，使用 /broadcast_status {id} 查看進度。`,
-    short: `待處理`,
-    short2: `等待中`,
-    startedAt: `開始時間: {time}
-`,
-    statusLabel: `狀態：{status}
-`,
-    statusPending: `待處理`,
-    statusStuck: `卡住（重試中）`,
-    statusTitle: `📊 廣播狀態`,
-    stuckBroadcastConfirm: `**確認清理？**
-`,
-    stuckBroadcastConfirmCommand: `使用 \`/broadcast_cleanup confirm\` 確認`,
-    stuckBroadcastDivider: `━━━━━━━━━━━━━━━━
-`,
-    stuckBroadcastId: `**ID: {id}**
-`,
-    stuckBroadcastMessage: `訊息: {message}
-`,
-    stuckBroadcastNoRetry: `不會再被自動處理或重新發送
-
-`,
-    stuckBroadcastProgress: `進度: {sent}/{total}
-`,
-    stuckBroadcastStartTime: `開始時間: {time}
-
-`,
-    stuckBroadcastTarget: `目標: {type}
-`,
-    stuckBroadcastWillMarkFailed: `這些廣播將被標記為「失敗」狀態
-`,
-    targetAll: `所有用戶`,
-    targetLabel: `目標: {target}
-`,
-    targetNonVip: `非 VIP 用戶`,
-    targetType: `目標：{type}
-`,
-    targetVip: `VIP 用戶`,
-    tooLong: `廣播訊息不能超過 \${max} 個字符（目前 \${current} 個字符）`,
-    upgradeRequired: `大規模廣播需要升級系統架構，請參考 BROADCAST_SYSTEM_REDESIGN.md`,
-    usageError: `❌ 使用方法錯誤
-
-`,
-    userCount: `用戶數: {count} 人
-`,
-    userCount2: `用戶數：{count} 人
-`,
-    viewAllRecords: `使用 /broadcast_status 查看所有廣播記錄。`,
-    viewDetailsHint: `💡 使用 /broadcast_status <id> 查看詳細信息`,
-    viewUpdatedStatus: `使用 /broadcast_status 查看更新後的狀態。`,
-    estimate: {
-      immediate: `立即發送（約 1-2 秒）`,
-      minutes: `約 \\\${minutes} 分鐘`,
-      seconds: `約 \\\${seconds} 秒`,
+    "estimatedTime": "Thời gian ước tính: {time}\n\n",
+    "example": "**Ví dụ:**\n",
+    "exampleMessage": "Hệ thống sẽ bảo trì vào tối nay lúc 22:00",
+    "failed": "Sự cố: {count}\n",
+    "filter": {
+      "age": "Tuổi: {min}-{max} tuổi",
+      "atLeastOneRequired": "Ít nhất một bộ lọc là cần thiết",
+      "birthdayToday": "Sinh nhật hôm nay",
+      "country": "Quốc gia: {country}",
+      "genderFemale": "Nữ",
+      "genderMale": "Nam",
+      "genderOther": "Giới tính khác",
+      "invalidAgeFormat": "Khoảng tuổi không hợp lệ: {value} (định dạng phải là min-max, ví dụ: 18-25)",
+      "invalidAgeMinMax": "Khoảng tuổi không hợp lệ: {value} (tuổi tối thiểu không được vượt quá tuổi tối đa)",
+      "invalidAgeRange": "Khoảng tuổi không hợp lệ: {value} (tuổi phải nằm trong khoảng 18-99)",
+      "invalidCountry": "Mã quốc gia không hợp lệ: {value} (phải là 2 chữ cái viết hoa, ví dụ: TW, US, JP)",
+      "invalidFormat": "Định dạng bộ lọc không hợp lệ: {pair}",
+      "invalidGender": "Giá trị giới tính không hợp lệ: {value} (phải là nam, nữ hoặc khác)",
+      "invalidMbti": "Loại MBTI không hợp lệ: {value} (phải là một trong các loại: {mbtis})",
+      "invalidZodiac": "Cung hoàng đạo không hợp lệ: {value} (phải là một trong các cung: {zodiacs})",
+      "mbti": "MBTI: {mbti}",
+      "nonVipUsers": "Người dùng không VIP",
+      "unknownFilter": "Bộ lọc không xác định: {key}",
+      "vipUsers": "Người dùng VIP",
+      "zodiacAquarius": "Bảo Bình",
+      "zodiacAries": "Bạch Dương",
+      "zodiacCancer": "Cự Giải",
+      "zodiacCapricorn": "Ma Kết",
+      "zodiacGemini": "Song Tử",
+      "zodiacLeo": "Sư Tử",
+      "zodiacLibra": "Thiên Bình",
+      "zodiacPisces": "Song Ngư",
+      "zodiacSagittarius": "Nhân Mã",
+      "zodiacScorpio": "Thiên Yết",
+      "zodiacTaurus": "Kim Ngưu",
+      "zodiacVirgo": "Xử Nữ"
     },
-    filter: {
-      age: `年齡：{min}-{max} 歲`,
-      atLeastOneRequired: `至少需要一個過濾器`,
-      birthdayToday: `當天生日`,
-      country: `國家：{country}`,
-      genderFemale: `女性`,
-      genderMale: `男性`,
-      genderOther: `其他性別`,
-      invalidAgeFormat: `無效的年齡範圍：{value}（格式必須是 min-max，如 18-25）`,
-      invalidAgeMinMax: `無效的年齡範圍：{value}（最小年齡不能大於最大年齡）`,
-      invalidAgeRange: `無效的年齡範圍：{value}（年齡必須在 18-99 之間）`,
-      invalidCountry: `無效的國家代碼：{value}（必須是 2 個大寫字母，如 TW, US, JP）`,
-      invalidFormat: `無效的過濾器格式：{pair}`,
-      invalidGender: `無效的性別值：{value}（必須是 male, female 或 other）`,
-      invalidMbti: `無效的 MBTI 類型：{value}（必須是以下之一：{mbtis}）`,
-      invalidZodiac: `無效的星座：{value}（必須是以下之一：{zodiacs}）`,
-      mbti: `MBTI：{mbti}`,
-      nonVipUsers: `非 VIP 用戶`,
-      unknownFilter: `未知的過濾器：{key}`,
-      vipUsers: `VIP 用戶`,
-      zodiacAquarius: `水瓶座`,
-      zodiacAries: `白羊座`,
-      zodiacCancer: `巨蟹座`,
-      zodiacCapricorn: `摩羯座`,
-      zodiacGemini: `雙子座`,
-      zodiacLeo: `獅子座`,
-      zodiacLibra: `天秤座`,
-      zodiacPisces: `雙魚座`,
-      zodiacSagittarius: `射手座`,
-      zodiacScorpio: `天蠍座`,
-      zodiacTaurus: `金牛座`,
-      zodiacVirgo: `處女座`,
+    "filterAge": "• tuổi=18-25\n",
+    "filterCommand": "/broadcast_filter\n\n",
+    "filterConfirmConditions": "**Điều kiện lọc:**\n{conditions}\n\n",
+    "filterConfirmMessage": "**Nội dung tin nhắn:**\n{message}\n\n",
+    "filterConfirmTitle": "🔍 **Xác Nhận Lọc Phát Sóng**\n\n",
+    "filterCorrectFormat": "**Định Dạng Đúng:**\n",
+    "filterCountry": "• quốc gia=TW|US|JP|...\n",
+    "filterCreateFailed": "❌ Không tạo được bộ lọc phát sóng\n\n{error}",
+    "filterCreated": "✅ Lọc phát sóng đã được tạo\n\n",
+    "filterCreatedConditions": "Điều kiện Lọc: {conditions}\n",
+    "filterCreatedEstimatedTime": "Thời gian ước tính: {time}\n\n",
+    "filterCreatedId": "ID: {id}\n",
+    "filterCreatedSending": "Phát sóng sẽ được gửi trong nền. Sử dụng /broadcast_status {id} để kiểm tra tiến độ.",
+    "filterCreatedUserCount": "Số lượng người dùng phù hợp: {count} người\n",
+    "filterExample1": "/broadcast_filter giới tính=nữ,tuổi=18-25, quốc gia=TW Chào mọi người!\n",
+    "filterExample2": "/broadcast_filter vip=true,mbti=INTJ Thông Báo Sự Kiện Đặc Biệt VIP\n",
+    "filterExample3": "/broadcast_filter cung hoàng đạo=Thần Nông Thông Điệp Đặc Biệt Thần Nông",
+    "filterExamples": "**Ví dụ:**\n",
+    "filterFormat": "**Định Dạng Lọc:**\n",
+    "filterFormatError": "❌ Lỗi định dạng lọc\n\n{error}\n\n",
+    "filterGender": "• giới tính=nam|nữ|khác\n",
+    "filterMbti": "• mbti=INTJ|ENFP|...\n",
+    "filterQueryingUsers": "Đang tìm kiếm người dùng phù hợp với tiêu chí...",
+    "filterUsageError": "❌ Sử dụng không chính xác\n\n",
+    "filterViewFormat": "Vui lòng sử dụng /broadcast_filter để xem định dạng chính xác.",
+    "filterVip": "• vip=true|false\n\n",
+    "filterZodiac": "• cung hoàng đạo=Bạch Dương|Kim Ngưu|...\n",
+    "foundStuckBroadcasts": "⚠️ Đã phát hiện {count} phát sóng bị kẹt\n\n",
+    "id": "ID: {id}\n",
+    "idMustBeNumber": "❌ ID phát sóng phải là một số",
+    "maxUsersExceeded": "❌ Hệ thống phát sóng hiện tại chỉ hỗ trợ tối đa ${max} người dùng.\n\nSố người dùng mục tiêu: ${current}",
+    "messageContent": "Nội dung tin nhắn",
+    "noPendingBroadcasts": "Hiện tại, không có phát sóng nào đang chờ xử lý hoặc bị kẹt.\n\n",
+    "noRecords": "📊 Hiện tại, không có bản ghi phát sóng nào",
+    "noStuckBroadcasts": "✅ Không có phát sóng nào cần dọn dẹp\n\n",
+    "processQueueFailed": "❌ Không thể xử lý hàng đợi phát sóng: {error}",
+    "processingBroadcast": "Đang xử lý phát sóng #{id}\n",
+    "progress": "Quá trình: {sent}/{total} ({percentage}%)\n",
+    "queryStatusFailed": "❌ Không thể truy vấn trạng thái phát sóng: {error}",
+    "queueProcessed": "✅ Quy trình xử lý hàng đợi phát sóng đã hoàn tất\n\n",
+    "queueRemaining": "Có {count} phát sóng đang chờ trong hàng đợi để được xử lý\n",
+    "queueTriggered": "{emoji} Đã kích hoạt xử lý hàng đợi phát thanh\n\n",
+    "recentRecords": "📊 5 bản ghi phát thanh gần đây\n\n",
+    "recordId": "ID: {id}\n",
+    "recordProgress": "Quá trình: {sent}/{total}\n",
+    "recordStatus": "Trạng thái: {status}\n",
+    "recordTarget": "Mục tiêu: {type}\n",
+    "recordTime": "Thời gian: {time}\n\n",
+    "sendingInBackground": "Phát sóng sẽ được gửi trong nền, sử dụng /broadcast_status {id} để kiểm tra tiến độ.",
+    "short": "Đang chờ",
+    "short2": "Đang chờ",
+    "startedAt": "Thời gian bắt đầu: {time}\n",
+    "status": {
+      "cancelled": "Đã hủy",
+      "completed": "Hoàn thành",
+      "failed": "Thất bại",
+      "pending": "Đang chờ",
+      "sending": "Đang gửi"
     },
-    status: {
-      cancelled: `已取消`,
-      completed: `已完成`,
-      failed: `失敗`,
-      pending: `等待中`,
-      sending: `發送中`,
+    "statusLabel": "Trạng thái: {status}\n",
+    "statusPending": "Đang chờ",
+    "statusStuck": "Đang bị kẹt (Đang thử lại)",
+    "statusTitle": "📊 Trạng thái phát sóng",
+    "stuckBroadcastConfirm": "**Xác nhận dọn dẹp?**\n",
+    "stuckBroadcastConfirmCommand": "Xác nhận với `/broadcast_cleanup confirm`",
+    "stuckBroadcastDivider": "━━━━━━━━━━━━━━━━\n",
+    "stuckBroadcastId": "**ID: {id}**\n",
+    "stuckBroadcastMessage": "Tin nhắn: {message}\n",
+    "stuckBroadcastNoRetry": "Sẽ không được xử lý tự động hoặc gửi lại\n\n",
+    "stuckBroadcastProgress": "Tiến trình: {sent}/{total}\n",
+    "stuckBroadcastStartTime": "Thời gian bắt đầu: {time}\n\n",
+    "stuckBroadcastTarget": "Mục tiêu: {type}\n",
+    "stuckBroadcastWillMarkFailed": "Những lần phát sóng này sẽ được đánh dấu là trạng thái 'thất bại'\n",
+    "target": {
+      "all": "Tất cả người dùng",
+      "nonVip": "Người dùng không VIP",
+      "unknown": "Không xác định",
+      "vip": "Người dùng VIP"
     },
-    target: {
-      all: `所有用戶`,
-      nonVip: `非 VIP 用戶`,
-      unknown: `未知`,
-      vip: `VIP 用戶`,
+    "targetAll": "Tất cả người dùng",
+    "targetLabel": "Mục tiêu: {target}\n",
+    "targetNonVip": "Người dùng không VIP",
+    "targetType": "Mục tiêu: {type}\n",
+    "targetVip": "Người dùng VIP",
+    "tooLong": "Tin nhắn phát sóng không được vượt quá ${max} ký tự (hiện tại ${current} ký tự)",
+    "upgradeRequired": "Phát sóng quy mô lớn yêu cầu nâng cấp kiến trúc hệ thống, vui lòng tham khảo BROADCAST_SYSTEM_REDESIGN.md",
+    "usageError": "❌ Sử dụng không đúng cách\n\n",
+    "userCount": "Số lượng người dùng: {count} người\n",
+    "userCount2": "Số lượng người dùng: {count} người\n",
+    "viewAllRecords": "Sử dụng /broadcast_status để xem tất cả các bản ghi phát sóng.",
+    "viewDetailsHint": "💡 Sử dụng /broadcast_status để biết thông tin chi tiết",
+    "viewUpdatedStatus": "Sử dụng /broadcast_status để kiểm tra trạng thái đã được cập nhật."
+  },
+  "buttons": {
+    "ad": "➡️ Quảng cáo tiếp theo",
+    "back": "⬅️ Quay lại",
+    "backToVip": "💎 Trở về Menu VIP",
+    "bottle": "📺 Xem quảng cáo để nhận thêm chai thư 🎁 (${remaining}/20)",
+    "bottle2": "💎 Nâng cấp VIP để có thêm chai thư",
+    "bottle3": "🌊 Ném chai thư",
+    "bottle4": "🎣 Nhặt chai thư",
+    "cancel": "Hủy bỏ",
+    "claim": "Nhận",
+    "help": "❓ Trợ giúp",
+    "invite": "👥 Xem mã mời",
+    "invite2": "🎁 Mời bạn bè",
+    "mbtiMenu": "🧠 Menu MBTI",
+    "message": "💬 Trả lời tin nhắn",
+    "profile": "✏️ Chỉnh sửa Hồ sơ",
+    "profile2": "👤 Hồ sơ",
+    "returnToMenu": "🏠 Quay lại Menu Chính",
+    "settings": "⚙️ Cài đặt",
+    "short": "🇲🇾 Malaysia",
+    "short10": "🇺🇸 Hoa Kỳ",
+    "short11": "🇯🇵 Nhật Bản",
+    "short12": "🇰🇷 Hàn Quốc",
+    "short13": "🇬🇧 Vương quốc Anh",
+    "short14": "🇫🇷 Pháp",
+    "short15": "🇩🇪 Đức",
+    "short16": "🇹🇭 Thái Lan",
+    "short17": "🇦🇺 Úc",
+    "short18": "💬 Lịch sử trò chuyện",
+    "short19": "🌐 Đổi ngôn ngữ",
+    "short2": "🇺🇳 Cờ Liên Hợp Quốc",
+    "short20": "🎁 Nhận phần thưởng",
+    "short21": "🔄 Xóa Lựa Chọn",
+    "short22": "Bỏ Qua",
+    "short3": "📢 Tham gia Kênh Chính Thức",
+    "short4": "🇸🇬 Singapore",
+    "short5": "🇨🇦 Canada",
+    "short6": "🇳🇿 New Zealand",
+    "short7": "🇹🇼 Đài Loan",
+    "short8": "🇨🇳 Trung Quốc",
+    "short9": "🇭🇰 Hồng Kông",
+    "stats": "📊 Thống Kê",
+    "targetAdvanced": "⚙️ Bộ Lọc Nâng Cao (MBTI/Cung Hoàng Đạo)",
+    "targetAny": "🌈 Ai cũng có thể tham gia",
+    "targetFemale": "👩 Nữ",
+    "targetMale": "👨 Nam",
+    "text": "👤 Xem Thẻ Hồ Sơ",
+    "verify": "Xác minh",
+    "viewPayments": "💰 Lịch Sử Đăng Ký",
+    "vip": "💎 Nâng cấp lên VIP"
+  },
+  "catch": {
+    "anonymousUser": "Người Dùng Ẩn Danh",
+    "back": "🏠 Trở về Menu Chính: /menu",
+    "banned": "❌ Tài khoản của bạn đã bị cấm và không thể nhận chai thư.\n\nNếu bạn có thắc mắc, vui lòng sử dụng /appeal để kháng cáo.",
+    "block": "• Nếu bạn không muốn trò chuyện nữa, bạn có thể sử dụng /block để chặn\n",
+    "bottle": "😔 Hiện tại, không có chai thư phù hợp nào cho bạn\n\n",
+    "bottle2": "• Hoặc tự mình thả một chai: /throw",
+    "bottle3": "🎣 Ai đó đã tìm thấy chai thư của bạn!\n\n",
+    "bottle4": "🧴 Bạn đã nhặt được một chai thư!\n\n",
+    "bottle5": "💡 Hãy quay lại vào ngày mai để nhận thêm chai thư!",
+    "bottleTaken": "❌ Chai thư này đã bị ai đó nhặt, vui lòng thử chai khác!",
+    "catch": "📊 Hôm nay đã bắt: ${newCatchesCount}/${quota}\n\n",
+    "conversation": "Một cuộc trò chuyện ẩn danh đã được tạo cho bạn, hãy bắt đầu trò chuyện～\n\n",
+    "conversation2": "• Đây là cuộc trò chuyện ẩn danh, xin vui lòng bảo vệ quyền riêng tư cá nhân của bạn\n",
+    "conversation3": "📊 Xem tất cả cuộc trò chuyện",
+    "conversationError": "Tạo cuộc trò chuyện thất bại",
+    "language": "🗣️ Ngôn ngữ: ${language}\n\n",
+    "mbti": "🧠 MBTI: ${mbti}\n",
+    "message": "💫 Điểm Tìm Kiếm: ${score} điểm (Khớp Thông Minh)\n\n",
+    "message2": "${catcherGender} | 📅 ${catcherAge} tuổi\n\n",
+    "message3": "conv_reply_${conversationIdentifier}",
+    "message4": "2️⃣ Nhấn và giữ tin nhắn này, chọn 'Trả lời' và sau đó nhập nội dung của bạn\n\n",
+    "message5": "1️⃣ Nhấn nút '💬 Trả lời tin nhắn' bên dưới\n",
+    "message6": "2️⃣ Nhấn giữ tin nhắn này, chọn 'Trả lời' và nhập nội dung của bạn",
+    "nickname": "📝 Biệt danh: ${ownerMaskedNickname}\n",
+    "nickname2": "📝 Biệt danh: ${catcherNickname}\n",
+    "notRegistered": "❌ Vui lòng hoàn thành quy trình đăng ký trước khi nhặt chai thư.\n\nSử dụng /start để tiếp tục đăng ký.",
+    "originalContent": "Nội dung gốc: {content}",
+    "originalLanguage": "Ngôn ngữ gốc: {language}",
+    "quotaExhausted": "❌ Hạn mức chai thư hôm nay đã hết (${quotaDisplay})",
+    "replyButton": "💬 Trả lời tin nhắn",
+    "replyMethods": "💡 **Hai phương thức trả lời**:\n",
+    "report": "• Nếu bạn gặp nội dung không phù hợp, vui lòng sử dụng /report để báo cáo\n",
+    "safetyTips": "⚠️ Lời nhắc an toàn:\n",
+    "settings": "🧠 MBTI: ${mbti}\n",
+    "settings10": "Chưa được cài đặt",
+    "settings11": "Chưa được cài đặt",
+    "settings2": "Chưa được cài đặt",
+    "settings3": "Chưa được cài đặt",
+    "settings4": "Chưa được cài đặt",
+    "settings5": "Chưa được cài đặt",
+    "settings6": "Chưa được cài đặt",
+    "settings7": "Chưa được cài đặt",
+    "settings8": "Chưa đặt",
+    "settings9": "Chưa đặt",
+    "short": "💡 Mẹo:\n",
+    "short2": "• Vui lòng thử lại sau\n",
+    "short3": "Người dùng ẩn danh",
+    "short4": "♂️ Nam",
+    "short5": "♀️ Nữ",
+    "text": "Ngôn ngữ dịch: ${catcherLangDisplay}\n",
+    "text2": "Ngôn ngữ gốc: ${bottleLangDisplay}\n",
+    "text3": "🗣️ Ngôn ngữ: ${ownerLanguage}\n\n",
+    "text4": "• Để dừng trò chuyện, bạn có thể sử dụng /block để chặn\n\n",
+    "text5": "Văn bản gốc: ${bottle.content}\n",
+    "text6": "💬 Dịch vụ dịch tạm thời gặp sự cố, bản dịch dự phòng đã được sử dụng\n",
+    "text7": "Bản dịch: ${bottleContent}\n",
+    "text8": "💡 **Hai tùy chọn trả lời**:\n",
+    "translatedContent": "Bản dịch: {content}",
+    "translatedLanguage": "Ngôn ngữ dịch: {language}",
+    "translationServiceFallback": "💬 Dịch vụ dịch tạm thời gặp sự cố, bản dịch dự phòng đã được sử dụng",
+    "translationServiceUnavailable": "⚠️ Dịch vụ dịch hiện không khả dụng, sau đây là văn bản gốc",
+    "unknown": "Không rõ",
+    "zodiac": "⭐ Cung hoàng đạo: {zodiac}\n",
+    "zodiac2": "⭐ Cung hoàng đạo: ${catcherZodiac}\n"
+  },
+  "channelMembership": {
+    "claimButton": "✅ Nhận thưởng",
+    "claimReward": "Nhấn nút bên dưới để nhận thưởng của bạn: +1 chai thư",
+    "joined": "🎉 Chúng tôi phát hiện bạn đã tham gia kênh chính thức!",
+    "leftChannel": "❌ Chúng tôi phát hiện bạn đã rời kênh, không thể nhận thưởng.",
+    "notJoined": "❌ Không thể xác định thành viên kênh của bạn, vui lòng tham gia trước khi thử lại",
+    "oneTimeReward": "💡 Đây là phần thưởng một lần, nó sẽ được thêm vào chỉ tiêu hôm nay sau khi nhận.",
+    "rewardAdded": "Phần thưởng: +1 chai thư (được thêm vào chỉ tiêu hôm nay)",
+    "rewardGranted": "✅ Phần thưởng đã được phát hành! +1 chai thư",
+    "taskCompleted": "🎉 Chúc mừng bạn đã hoàn thành nhiệm vụ: Tham gia kênh chính thức!",
+    "viewMoreTasks": "💡 Sử dụng /tasks để xem thêm nhiệm vụ",
+    "viewTaskCenter": "[📋 Xem Trung tâm Nhiệm vụ] → /tasks"
+  },
+  "common": {
+    "ad": "📺 Quảng cáo hôm nay: ${adsWatched}/${AD_REWARD_CONSTANTS.MAX_ADS_PER_DAY} | Đã kiếm được ${quotaEarned} tín dụng | Còn lại ${remaining} lượt xem",
+    "ad2": "📺 Quảng cáo hôm nay: ${adsWatched}/${AD_REWARD_CONSTANTS.MAX_ADS_PER_DAY} ✅ Đã đạt giới hạn | Đã kiếm được ${quotaEarned} tín dụng",
+    "ad3": "📺 Quảng cáo hôm nay: 0/${AD_REWARD_CONSTANTS.MAX_ADS_PER_DAY} | Đã kiếm được 0 tín dụng",
+    "ad4": "• 📺 Xem Quảng cáo (${remaining}/20 lượt xem còn lại)\n",
+    "ad5": "• 📺 Xem Quảng cáo (Đã đạt giới hạn hôm nay)\n",
+    "ad6": "• Tránh quảng cáo hoặc nội dung không phù hợp\n\n",
+    "ad7": "📊 Không có quảng cáo chính thức nào có sẵn",
+    "ad8": "📢 Quảng cáo rác",
+    "ad9": "💡 Có thêm quảng cáo chính thức để xem!",
+    "admin": "Vui lòng thử lại sau hoặc liên hệ với quản trị viên.",
+    "age": "Phạm vi tuổi không hợp lệ: ${trimmedValue} (Định dạng phải là min-max, ví dụ, 18-25)",
+    "age2": "Tuổi: ${filters.age.min}-${filters.age.max} tuổi",
+    "age3": "Phạm vi tuổi không hợp lệ: ${trimmedValue} (Tuổi phải từ 18-99)",
+    "age4": "Phạm vi tuổi không hợp lệ: ${trimmedValue} (Tuổi tối thiểu không được lớn hơn tuổi tối đa)",
+    "anonymous": "Ẩn danh",
+    "anonymousUser": "Người dùng ẩn danh",
+    "anyBloodType": "🌈 Bất kỳ nhóm máu nào",
+    "anyone": "🌈 Bất kỳ ai",
+    "back": "💡 Nhập /menu để quay lại menu chính bất cứ lúc nào",
+    "back2": "↩️ Quay lại Chỉnh sửa Hồ sơ",
+    "back3": "🏠 Quay lại Menu Chính",
+    "back4": "↩️ Quay lại",
+    "backToMainMenu": "Quay lại Menu Chính",
+    "birthday": "🎂 Sinh nhật: ${updatedUser.birthday}\n",
+    "birthday2": "🎂 Sinh nhật: ${user.birthday}\n",
+    "birthday3": "Sinh nhật hôm nay",
+    "bloodType": "🩸 Nhóm máu: ${bloodTypeText}\n\n",
+    "bloodType2": "🩸 **Chỉnh sửa nhóm máu**\n\n",
+    "bloodType3": "Vui lòng chọn nhóm máu của bạn:",
+    "bloodType4": "🩸 Chỉnh sửa Nhóm Máu",
+    "bloodTypeA": "🩸 Nhóm A",
+    "bloodTypeAB": "🩸 Nhóm AB",
+    "bloodTypeB": "🩸 Nhóm B",
+    "bloodTypeO": "🩸 Nhóm O",
+    "bottle": "Nội dung chai thư quá ngắn, phải ít nhất ${MIN_BOTTLE_LENGTH} ký tự (hiện tại ${trimmedContent.length} ký tự)",
+    "bottle10": "Phần thưởng: +1 chai thư (đã thêm vào hạn ngạch hôm nay)\n\n",
+    "bottle11": "Bạn sẽ không còn được ghép với chai thư của nhau nữa.\n\n",
+    "bottle12": "Bạn muốn tìm loại người nào khi ném chai thư?\n\n",
+    "bottle13": "Sử dụng /throw để ném chai thư và bắt đầu trò chuyện!",
+    "bottle14": "Nội dung chai thư chứa nội dung không phù hợp. Vui lòng sửa đổi và nộp lại.",
+    "bottle15": "Nhấn nút bên dưới để nhận phần thưởng: +1 chai thư\n\n",
+    "bottle16": "💡 Cài đặt này sẽ tự động được sử dụng cho lần ném chai thư tiếp theo của bạn.",
+    "bottle17": "🌊 Ném chai thư - /throw\n",
+    "bottle18": "🎣 Nhặt chai thư - /catch\n",
+    "bottle19": "🎉 Xác nhận để nhận phần thưởng +1 chai thư!",
+    "bottle2": "Nội dung chai thư quá dài, có thể lên đến ${MAX_BOTTLE_LENGTH} ký tự (hiện tại ${content.length} ký tự)",
+    "bottle20": "✏️ Vui lòng nhập nội dung chai thư mới:\n\n",
+    "bottle21": "• Sử dụng /catch để nhặt một chai thư mới",
+    "bottle22": "• /throw - Ném chai thư\n",
+    "bottle23": "• /catch - Nhặt một chai thư\n",
+    "bottle24": "• /throw - Ném chai thư\n",
+    "bottle25": "• /catch - Nhặt một chai thư\n",
+    "bottle26": "• Gửi nội dung nháp để ném chai thư",
+    "bottle27": "📦 **Ném Chai Thư**\n",
+    "bottle28": "🎣 **Nhặt Chai Thư**\n",
+    "bottle29": "💡 Hoàn thành nhiệm vụ sẽ giúp bạn kiếm thêm chai thư",
+    "bottle3": "• Chai thư: ${bottlesCount?.count }\n",
+    "bottle30": "Nội dung của chai không được chứa bất kỳ liên kết nào",
+    "bottle31": "🍾 Ném Chai Thư\n\n",
+    "bottle32": "Nội dung chai không thể để trống",
+    "bottle33": "Ném chai thư đầu tiên của bạn",
+    "bottle34": "Nhà mạng xã hội chai thư ẩn danh, giúp bạn tìm bạn bè có cùng sở thích thông qua MBTI và cung hoàng đạo",
+    "bottle4": "⏰ Cuộc trò chuyện đã hết thời gian\n\nBên kia có thể đã rời đi. Sử dụng /catch để nhặt một chai mới!\n\n",
+    "bottle5": "💡 Sử dụng /catch để nhặt một chai thư mới để bắt đầu một cuộc trò chuyện mới.",
+    "bottle6": "🍾 Ném Chai Thư\n\nBạn đang tìm kiếm đối tác trò chuyện như thế nào?",
+    "bottle7": "Hãy ném một chai để gặp gỡ những người bạn mới! /throw",
+    "bottle8": "Xem chai thư của người khác và trả lời nếu bạn hứng thú để bắt đầu trò chuyện\n\n",
+    "bottle9": "Phát thanh sẽ được gửi trong nền, sử dụng /broadcast_status ${broadcastId} để kiểm tra tiến trình.\n\n",
+    "broadcast": "📊 5 Bản Ghi Phát Thanh Gần Đây {broadcastId} ${broadcastId}",
+    "broadcast10": "Thông báo bảo trì đã được phát đi đến tất cả người dùng.\n\n",
+    "broadcast11": "Thông báo khôi phục đã được phát đi đến tất cả người dùng.\n",
+    "broadcast12": "📊 Hiện tại, không có bản ghi phát thanh nào.",
+    "broadcast13": "📊 Tình Trạng Phát Thanh",
+    "broadcast14": "📊 Trạng thái phát sóng\n\n",
+    "broadcast15": "Tất cả trạng thái phát sóng đều bình thường.",
+    "broadcast2": "Các phát sóng quy mô lớn yêu cầu nâng cấp kiến trúc hệ thống, vui lòng tham khảo BROADCAST_SYSTEM_REDESIGN.md",
+    "broadcast3": "Sử dụng /broadcast_status để xem tất cả các bản ghi phát sóng.",
+    "broadcast4": "{statusEmoji} ${statusEmoji}\n\n",
+    "broadcast5": "/broadcast_cancel\n\n",
+    "broadcast6": "ID phát sóng: ${ids.join(', ')}\n\n",
+    "broadcast7": "{broadcast.id} ${broadcast.id}\n",
+    "broadcast8": "Hiện tại, không có phát sóng nào đang chờ hoặc bị kẹt.\n\n",
+    "broadcast9": "ID phát sóng: ${ids.join(",
+    "cancel": ")}",
+    "cancel2": "Vui lòng xóa các liên kết này và nhập lại hoặc hủy chỉnh sửa:\n\n",
+    "cancel3": "Trạng thái: Đã hủy",
+    "cancelled": "Vui lòng nhập lại hoặc hủy chỉnh sửa:",
+    "catch": "⏰ Quá trình bắt chai thư đã hết giờ.\n\nVui lòng sử dụng /catch để khởi động lại.",
+    "catch2": "Bạn bắt được một chai thư → Bên kia trả lời → Bắt đầu trò chuyện ẩn danh",
+    "catch3": "• Nội dung thân thiện và tôn trọng có nhiều khả năng được chọn hơn!",
+    "catch4": "Quá trình bắt chai thư",
+    "close": "❌ Đóng",
+    "complete": "🎉 **Hoàn thành xem quảng cáo!**\n\n✅ Đạt được **+1 hạn mức**\n📊 Quảng cáo đã xem hôm nay: **${updated.ads_watched}/20** lần\n🎁 Hạn mức kiếm được hôm nay: **${updated.quota_earned}**\n📈 Lượt xem còn lại: **${result.remaining_ads}** lần\n\n${result.remaining_ads > 0 ? '💡 Tiếp tục xem quảng cáo để kiếm thêm hạn mức!' : '✅ Đã đạt giới hạn quảng cáo hàng ngày'}",
+    "complete2": "📺 **Kiếm hạn mức bằng cách xem quảng cáo**\n\n🎁 Hoàn thành việc xem sẽ được **+1 hạn mức**\n📊 Còn lại hôm nay: **${remainingAds}/20** lần\n\n👇 Nhấn nút bên dưới để bắt đầu xem",
+    "complete3": "Thời gian hoàn thành: ${new Date(broadcast.completedAt).toLocaleString('zh-TW')}\n",
+    "complete4": "Thời gian hoàn thành ước tính: ${new Date(maintenance.endTime).toLocaleString('zh-TW')}\n",
+    "complete5": "{testTitle} ${testTitle}\n\n",
+    "complete6": "Hoàn thành ngay trước thời hạn",
+    "complete7": "Đang hoàn thành",
+    "complete8": "Hoàn thành càng sớm càng tốt",
+    "confirm": "Để đảm bảo an toàn cho tất cả người dùng, vui lòng xác nhận bạn đã hiểu các điều sau:\n\n",
+    "confirm2": "🌍 **Xác nhận quốc gia/khu vực của bạn**\n\n",
+    "confirm3": "🛡️ Bước cuối cùng: Xác nhận an ninh chống gian lận\n\n",
+    "confirm4": "🔍 **Xác nhận bộ lọc phát sóng**\n\n",
+    "confirm5": "🌍 Xác nhận quốc gia/khu vực của bạn",
+    "confirm6": "**Xác nhận xóa dữ liệu?**\n",
+    "confirm7": "Vui lòng xác nhận:",
+    "conversation": "📨 Cuộc trò chuyện với ${formatIdentifier(conv.identifier)} (${conv.message_count} tin nhắn)\n",
+    "conversation10": "💡 **Không tìm thấy lịch sử trò chuyện**\n\n",
+    "conversation11": "Một số lịch sử trò chuyện có thể chưa được cập nhật, vui lòng thử lại sau.",
+    "conversation12": "📨 **Cuộc trò chuyện gần đây:**\n\n",
+    "conversation13": "💬 Bạn không có ghi chép cuộc trò chuyện nào\n\n",
+    "conversation14": "💬 Tiếp tục cuộc trò chuyện: /reply\n",
+    "conversation15": "Bạn không có ghi chép cuộc trò chuyện nào.\n\n",
+    "conversation16": "Cuộc trò chuyện có thể đã kết thúc hoặc không tồn tại.",
+    "conversation17": "💬 Tiếp tục cuộc trò chuyện",
+    "conversation18": "Bắt đầu cuộc trò chuyện đầu tiên",
+    "conversation2": "{formatIdentifier(identifier)} ${formatIdentifier(identifier)}\n\n",
+    "conversation3": "• Trò chuyện bắt đầu: ${formatDate(stats.first_message_time)}\n",
+    "conversation4": "• Số trò chuyện: ${conversationsCount?.count }\n",
+    "conversation5": "💬 Phản hồi cuộc trò chuyện ${conversationIdentifier}",
+    "conversation6": "Bộ nhớ cache hình đại diện của bạn đã được làm mới. Hình đại diện mới nhất sẽ hiển thị lần tiếp theo bạn kiểm tra lịch sử trò chuyện.\n\n",
+    "conversation7": "💡 Để bảo vệ quyền riêng tư và an ninh, chỉ các tin nhắn văn bản thuần túy được phép trong các cuộc trò chuyện.\n\n",
+    "conversation8": "Sử dụng /history để xem tất cả các cuộc trò chuyện\n\n",
+    "conversation9": "🔄 Đang làm mới tất cả lịch sử trò chuyện...\n\n",
+    "country": "Mã quốc gia không hợp lệ: ${trimmedValue} (phải là 2 chữ cái viết hoa, ví dụ: TW, US, JP)",
+    "country2": "🌍 **Vui lòng chọn quốc gia/khu vực của bạn**\n\n",
+    "country3": "Quốc gia: ${filters.country}",
+    "end": "Kết thúc: ${endTime.toLocaleString('zh-TW')}\n\n",
+    "end2": "Kết thúc: ${endTime.toLocaleString(",
+    "female": "female",
+    "free": "free",
+    "gender": "👤 Giới tính: ${gender}\n",
+    "gender2": "Giá trị giới tính không hợp lệ: ${trimmedValue} (phải là nam, nữ hoặc khác)",
+    "gender3": "👤 Giới tính: ${gender}\n",
+    "gender4": "👤 Giới tính: ${updatedUser.gender ===",
+    "gender5": "👤 Giới tính: ${user.gender ===",
+    "gender6": "Vui lòng chọn giới tính của bạn ngay bây giờ:\n\n",
+    "gender7": "Giới tính khác",
+    "help": "Bài kiểm tra tính cách MBTI có thể giúp chúng tôi tìm kiếm những đối tác trò chuyện phù hợp hơn với bạn～\n\n",
+    "help2": "❓ Xem trợ giúp - /help",
+    "help3": "• /help - Xem trợ giúp",
+    "invite": "• Tổng số hồ sơ mời: ${inviteStats?.total }\n",
+    "invite2": "Mã mời: ${user.invite_code }\n",
+    "invite3": "{user.invited_by} {user.invited_by } ${user.invited_by} ${user.invited_by }\n\n",
+    "loading": "✅ Đang tải......",
+    "login": "Người dùng thông thường sẽ không thể sử dụng dịch vụ, chỉ có quản trị viên mới có thể đăng nhập.",
+    "male": "Nam",
+    "mbti": "Loại MBTI không hợp lệ: ${trimmedValue} (phải là một trong số: ${VALID_MBTI.join(', ')})",
+    "mbti10": "✍️ Nhập MBTI thủ công",
+    "mbti11": "🧠 Menu MBTI",
+    "mbti12": "Hoàn thành bài kiểm tra MBTI",
+    "mbti13": "Bài kiểm tra MBTI nhanh",
+    "mbti2": "{result.type} ${result.type}\n\n",
+    "mbti3": "MBTI hiện tại: **${mbti}**\n",
+    "mbti4": "🧠 **Chọn phiên bản bài kiểm tra MBTI**\n\n",
+    "mbti5": "🧠 **Quản lý loại MBTI**\n\n",
+    "mbti6": "⚙️ Bộ lọc nâng cao (MBTI/Cung hoàng đạo)",
+    "mbti7": "• Chỉnh sửa loại MBTI của bạn",
+    "mbti8": "Vui lòng chọn loại MBTI của bạn:",
+    "mbti9": "🧠 Kiểm tra lại MBTI",
+    "message": "${typeEmoji} **${ad.title}**\n${statusEmoji} Trạng thái: ${status}\n\n📊 **Thống kê**\n• lượt xem: ${stats.total_views}\n• nhấp chuột: ${stats.total_clicks}\n• Tỷ lệ nhấp chuột (CTR): ${stats.ctr}%",
+    "message10": "/broadcast_filter gender=female,age=18-25,country=TW Xin chào mọi người!\n",
+    "message11": "{banHours} ${banHours}",
+    "message12": "Thời gian: ${new Date(b.created_at).toLocaleString('zh-TW')}\n\n",
+    "message13": "{pendingBroadcasts.results.length - 1} ${pendingBroadcasts.results.length - 1}\n",
+    "message14": "Tiến trình: ${broadcast.sent_count}/${broadcast.total_users}\n",
+    "message15": "${days} ${user.language_pref === 'en' ? 'ngày' : '天'}",
+    "message16": "Mục tiêu: ${getBroadcastTargetName(broadcast.targetType)}\n",
+    "message17": "Trạng thái: ${maintenance.isActive ? '✅ Đang bảo trì' : '❌ Không hoạt động'}\n",
+    "message18": "🚫 URL bị chặn:\n${urlCheck.blockedUrls?.map((url) =>",
+    "message19": "• Tin nhắn cuối cùng: ${formatDate(stats.last_message_time)}\n",
+    "message2": "ngày sinh = '2000-01-01',\n tuổi = 25,\n cung hoàng đạo = 'Ma Kết',\n điểm chống gian lận = 100,\n đồng ý các điều khoản = 1",
+    "message20": "{formatDate(conv.last_message_time)} ${formatDate(conv.last_message_time)}\n\n",
+    "message21": "Thời gian ước tính: ${maintenance.estimatedDuration} phút\n",
+    "message22": "Sử dụng /broadcast_status ${broadcastId} để kiểm tra tiến trình.",
+    "message23": "💡 Vui lòng nhấn giữ tin nhắn bạn muốn trả lời, chọn 'Trả lời' từ menu xuất hiện, sau đó nhập phản hồi của bạn trong hộp chat.",
+    "message24": "{usedToday + 1} {dailyLimit} ${usedToday + 1} ${dailyLimit}",
+    "message25": "Đã hủy",
+    "message26": "/broadcast_filter zodiac=Scorpio Tin nhắn dành riêng cho Scorpio\n",
+    "message27": "• Đã kích hoạt: ${inviteStats?.activated || 0}\n\n",
+    "message28": "• Đang chờ: ${inviteStats?.pending || 0}\n\n",
+    "message29": "{b.sent_count} {b.total_users} ${b.sent_count} ${b.total_users}\n",
+    "message3": "{broadcast.sentCount} {broadcast.totalUsers} {progress.percentage} ${broadcast.sentCount} ${broadcast.totalUsers} ${progress.percentage}\n",
+    "message30": "/maintenance_enable [tin nhắn bảo trì]\n\n",
+    "message31": "{stats.partner_messages} ${stats.partner_messages}\n",
+    "message32": "• Tin nhắn: ${messagesCount?.count || 0}",
+    "message33": "<id>",
+    "message34": "🏷️ Thẻ sở thích: ${updatedUser.interests ||",
+    "message35": "Thống đốc - Những cá nhân đầy lòng nhân ái, nổi bật và hữu ích, luôn sẵn lòng đóng góp cho cộng đồng.",
+    "message36": "/broadcast_filter\n\n",
+    "message37": "**Nội dung tin nhắn:**\n${broadcastMessage}\n\n",
+    "message38": "• Tổng số tin nhắn: ${stats.total_messages} tin nhắn\n",
+    "message39": "Người vận động - Những tâm hồn sáng tạo, đam mê và xã hội, luôn tìm lý do để mỉm cười.",
+    "message4": "💡 Sử dụng /history ${formatIdentifier(conversations[0].identifier)} để xem toàn bộ cuộc trò chuyện\n\n",
+    "message40": "Thời gian còn lại: ${remaining.remainingText}\n",
+    "message41": "Người biểu diễn - Những cá nhân năng động, đầy năng lượng và nhiệt huyết, không bao giờ để cuộc sống nhàm chán.",
+    "message42": "Tổng số người dùng: ${broadcast.total_users} người\n",
+    "message43": "• Bạn đã gửi: ${stats.user_messages} tin nhắn\n",
+    "message44": "Người hòa giải - Những nhà thơ, người nhân ái tốt bụng, luôn nhiệt tình làm việc vì công lý.",
+    "message45": "Vui lòng sử dụng /broadcast_status sau để kiểm tra tiến độ.",
+    "message46": "Biệt danh: ${user.nickname }\n",
+    "message47": "• Phần thưởng: ${stats.total_rewards}\n\n",
+    "message48": "Doanh nhân - Những cá nhân thông minh, năng động và sâu sắc, thực sự thích sống mạo hiểm.",
+    "message49": "🎁 Phần thưởng: +${ad.reward_quota} hạn ngạch vĩnh viễn",
+    "message5": "Thời gian: ${new Date().toLocaleString('zh-TW', { timeZone: 'Asia/Taipei' })}\n",
+    "message50": "Thời gian: ${new Date().toLocaleString(",
+    "message51": "Sử dụng /broadcast_status để kiểm tra trạng thái đã cập nhật.",
+    "message52": "Mục tiêu: ${broadcast.target_type}\n",
+    "message53": "Sử dụng /broadcast_status để kiểm tra các bản ghi đã cập nhật.",
+    "message54": "• Nếu bạn thay đổi ảnh đại diện Telegram của mình, hệ thống sẽ tự động phát hiện nó.\n",
+    "message55": "Khoảng ${Math.ceil(totalSeconds)} giây",
+    "message56": "Được kích hoạt bởi: ${maintenance.enabledBy}\n",
+    "message57": "Logic viên - Một nhà phát minh sáng tạo với khát khao kiến thức không thể thỏa mãn.",
+    "message58": "Người bênh vực - Một lý tưởng gia trầm lặng và bí ẩn nhưng đầy cảm hứng và kiên trì.",
+    "message59": "Người bảo vệ - Một người bảo vệ ấm áp và tập trung, luôn sẵn sàng bảo vệ những người yêu thương.",
+    "message6": "• Lượt xem: ${stats.total_views} | Nhấp chuột: ${stats.total_clicks} (${stats.ctr}%)\n",
+    "message60": "Nhà khám phá - Một nghệ sĩ linh hoạt và quyến rũ, luôn sẵn sàng khám phá và trải nghiệm những điều mới.",
+    "message61": "• Nhấn giữ tin nhắn của bên kia để trả lời /block để chặn người dùng này.\n",
+    "message62": "Vui lòng đảm bảo bạn trả lời tin nhắn được gửi bởi bên kia (với định danh #).",
+    "message63": "/broadcast_non_vip",
+    "message64": "Tạo kết nối đầu tiên của bạn (nhấn giữ tin nhắn → chọn 'Trả lời')",
+    "message65": "Tin nhắn: ${messagePreview}\n",
+    "message66": "3. Bạn có cảnh giác hơn khi gặp những tin nhắn nghi ngờ không?\n\n",
+    "message67": "💡 Người dùng VIP có thể gửi 100 tin nhắn hàng ngày.",
+    "message68": "/broadcast\n\n",
+    "message69": "/broadcast_vip",
+    "message7": "• Số lần xác minh: ${stats.total_verified}\n• Tỉ lệ xác minh: ${stats.verification_rate}%",
+    "message70": "Tin nhắn cuối: ${preview}\n",
+    "message71": "Tin nhắn phát sóng không được vượt quá 4000 ký tự.",
+    "message72": "1️⃣ Nhấn giữ tin nhắn của bên kia.\n",
+    "message73": "Vui lòng sử dụng tin nhắn văn bản để giao tiếp với bên kia.",
+    "message74": "(Không có tin nhắn)\n\n",
+    "message75": "Nhận tin tức và sự kiện mới nhất",
+    "message76": "Tin nhắn phát sóng không được để trống.",
+    "message77": "(Không có tin nhắn)",
+    "message8": "• Phân phối thưởng: ${stats.total_rewards}\n• Tỉ lệ thưởng: ${stats.reward_rate}%",
+    "message9": "• Số lượt xem còn lại: ${ad.max_views - ad.current_views}/${ad.max_views}",
+    "newUser": "Người dùng mới",
+    "next": "Trang tiếp theo",
+    "nickname": "💡 Vui lòng nhập một biệt danh đơn giản, không bao gồm các liên kết như http:// hoặc https://.\n\n",
+    "nickname10": "Vui lòng nhập biệt danh mới:\n\n",
+    "nickname11": "• Không sử dụng biệt danh để gửi quảng cáo",
+    "nickname12": "📝 Chỉnh sửa biệt danh",
+    "nickname13": "✍️ Tùy chỉnh biệt danh",
+    "nickname2": "Tuyệt vời! Biệt danh của bạn là: ${truncatedNickname}\n\n",
+    "nickname3": "📝 Biệt danh: ${updatedUser.nickname}\n",
+    "nickname4": "📝 Biệt danh: ${user.nickname}\n",
+    "nickname5": "• Giới hạn độ dài biệt danh là 36 ký tự\n",
+    "nickname6": "📝 **Chỉnh sửa Biệt danh**\n\n",
+    "nickname7": "✏️ Vui lòng chọn biệt danh của bạn:\n\n",
+    "nickname8": "✏️ Vui lòng nhập biệt danh của bạn:\n\n",
+    "nickname9": "Vui lòng cho tôi biết biệt danh của bạn (tên hiển thị):",
+    "no": "Không",
+    "none": "Không có",
+    "notRegistered": "Chưa đăng ký",
+    "notSet": "Chưa đặt",
+    "open": "Mở",
+    "operationFailed": "❌ Đã xảy ra lỗi",
+    "pageInfo": "Trang {current} / {total}",
+    "prev": "Trang trước",
+    "profile": "👤 Xem hồ sơ - /profile\n",
+    "profile2": "✏️ **Chỉnh sửa Hồ sơ**\n\n",
+    "profile3": "(Bạn cũng có thể thiết lập sau trong hồ sơ)",
+    "quota": "💡 Nâng cấp lên VIP sẽ mang lại cho bạn nhiều hạn ngạch hơn (100 tin nhắn/ngày): /vip",
+    "quota2": "• 💎 Nâng cấp lên VIP (30 hạn ngạch mỗi ngày)",
+    "quota3": "• 🎁 Mời bạn bè ( +1 hạn ngạch mỗi người)\n",
+    "quota4": "• ✨ Hoàn thành nhiệm vụ (nhận định mức vĩnh viễn)\n",
+    "register": "💡 Đây là một bài kiểm tra nhanh (${testInfo}), kết quả chỉ mang tính tham khảo.\nSau khi đăng ký, bạn có thể làm lại với /mbti.\n\n",
+    "register10": "🎉 Chúc mừng bạn đã hoàn thành đăng ký!\n\n",
+    "register2": "💡 Đây là một bài kiểm tra đầy đủ (${testInfo}), kết quả chính xác hơn.\nSau khi đăng ký, bạn có thể làm lại với /mbti.\n\n",
+    "register3": "Các bước đăng ký: ${user.onboarding_step}\n",
+    "register4": "⏰ Quá trình đăng ký đã hết thời gian\n\nVui lòng sử dụng /start để khởi động lại đăng ký.",
+    "register5": "Hoặc sử dụng: /dev_restart (bắt đầu tự động đăng ký)\n\n",
+    "register6": "💡 Bây giờ bạn có thể khởi động lại quy trình đăng ký kiểm tra.\n\n",
+    "register7": "🔄 Đăng ký lại: /start\n",
+    "register8": "💡 Sau khi hoàn thành đăng ký, bạn có thể:\n",
+    "register9": "Quy trình đăng ký đã hoàn tất tự động.\n\n",
+    "report": "🚨 **Báo cáo nội dung không phù hợp** (#${conversationIdentifier})\n\n",
+    "report2": "Nhiều báo cáo",
+    "report3": "💡 Điều này cho phép bạn chỉ rõ ai để báo cáo một cách chính xác.",
+    "report4": "Vui lòng chọn lý do báo cáo:",
+    "selected": "Đã chọn",
+    "settings": "🧠 MBTI: ${updatedUser.mbti_result} (có thể làm lại)",
+    "settings10": "Bạn chưa thiết lập loại MBTI của mình.\n\n",
+    "settings11": "Đặt khu vực",
+    "settings12": "Chưa thiết lập",
+    "settings13": "Chưa thiết lập",
+    "settings14": "Chưa thiết lập",
+    "settings15": "Chưa thiết lập",
+    "settings16": "Chưa thiết lập",
+    "settings17": "Chưa thiết lập",
+    "settings18": "Chưa thiết lập",
+    "settings19": "Chưa thiết lập",
+    "settings2": "🏷️ Nhãn quan tâm: ${updatedUser.interests}\n",
+    "settings20": "Chưa thiết lập",
+    "settings21": "Chưa thiết lập",
+    "settings22": "Chưa đặt",
+    "settings23": "Chưa đặt",
+    "settings24": "Chưa đặt",
+    "settings25": "Chưa đặt",
+    "settings26": "Chưa đặt",
+    "settings27": "Chưa đặt",
+    "settings28": "Chưa đặt",
+    "settings29": "Chưa đặt",
+    "settings3": "🧠 MBTI: \\$ (có thể làm lại)",
+    "settings30": "Chưa đặt",
+    "settings31": "Chưa đặt",
+    "settings32": "Chưa đặt",
+    "settings33": "Chưa đặt",
+    "settings34": "Chưa đặt",
+    "settings35": "Chưa đặt",
+    "settings4": "🏷️ Thẻ sở thích: ${user.interests }\n",
+    "settings5": "📖 Tiểu sử cá nhân: ${updatedUser.bio}\n",
+    "settings6": "🌍 Khu vực: ${updatedUser.city}\n",
+    "settings7": "📖 Tiểu sử cá nhân: ${user.bio}\n",
+    "settings8": "🌍 Khu vực: ${user.city }\n",
+    "settings9": "Bạn có thể đặt lại bất cứ lúc nào bằng lệnh /mbti.",
+    "short": "💡 Bạn có thể:\n",
+    "short10": "Khi làm việc, bạn thích:",
+    "short100": "Cảm xúc và Câu chuyện",
+    "short101": "Hiệu quả và Kết quả",
+    "short102": "Tính đồng thuận và Đoàn kết",
+    "short103": "Tự do và Linh hoạt",
+    "short104": "Giữ tính tùy chọn",
+    "short105": "Thêm vào Line",
+    "short106": "Kết quả kiểm tra",
+    "short107": "Lắng nghe trước khi nói",
+    "short108": "Nhỏ và thân mật",
+    "short109": "Hợp tác nhóm",
+    "short11": "Khi đọc, bạn thích:",
+    "short110": "Công việc độc lập",
+    "short111": "Suy nghĩ khi nói",
+    "short112": "Tiêu hóa một mình",
+    "short113": "Ứng dụng thực tiễn",
+    "short114": "Ý tưởng đổi mới",
+    "short115": "Những cố gắng mới",
+    "short116": "Có hợp lý không?",
+    "short117": "Có lợi ích không?",
+    "short118": "Tuân thủ nguyên tắc",
+    "short119": "Duy trì mối quan hệ",
+    "short12": "Tại nơi làm việc, bạn coi trọng:",
+    "short120": "Công bằng và quyết đoán",
+    "short121": "Chu đáo và quan tâm",
+    "short122": "Gọn gàng và ngăn nắp",
+    "short123": "Thư giãn và thoải mái",
+    "short124": "Quyết định nhanh chóng",
+    "short125": "Cảm thấy không thoải mái",
+    "short126": "Cảm thấy phấn khích",
+    "short127": "Truy cập liên kết",
+    "short128": "Đăng ký kênh",
+    "short129": "Tài khoản ngân hàng",
+    "short13": "Khi lập kế hoạch cho tương lai, bạn sẽ:",
+    "short130": "Lưu ý:",
+    "short131": "Đang gửi",
+    "short132": "Thẻ tín dụng",
+    "short133": "Bitcoin",
+    "short134": "Thêm WeChat",
+    "short135": "Thêm QQ",
+    "short136": "Số điện thoại",
+    "short137": "Liên hệ với tôi",
+    "short138": "Đêm tình một đêm",
+    "short139": "Dịch vụ tình dục",
+    "short14": "Phân tích vấn đề và cung cấp gợi ý",
+    "short140": "Lừa đảo",
+    "short141": "Đầu tư",
+    "short142": "Kiếm tiền",
+    "short143": "Chuyển tiền",
+    "short144": "Chuyển khoản",
+    "short145": "Mật khẩu",
+    "short146": "Hệ thống đa cấp",
+    "short147": "Tài chính",
+    "short148": "Quản lý tài sản",
+    "short149": "Cổ phiếu",
+    "short15": "Khi đối mặt với những thay đổi, bạn thường:",
+    "short150": "Hợp đồng tương lai",
+    "short151": "Ngoại hối",
+    "short152": "Điện thoại",
+    "short153": "Kết đôi",
+    "short154": "Dịch vụ hộ tống",
+    "short155": "Tự sát",
+    "short156": "Nhảy khỏi tòa nhà",
+    "short157": "Bạo lực",
+    "short158": "Chưa được cài đặt",
+    "short159": "Chưa được tạo",
+    "short16": "Cảm ơn bạn vì sự hỗ trợ!❤️",
+    "short160": "Người dùng thử",
+    "short161": "Người dùng thử",
+    "short162": "Kết quả chính xác hơn",
+    "short163": "Cần chú ý",
+    "short164": "Tham gia nhóm",
+    "short165": "Xem chi tiết",
+    "short17": "Giúp người dùng khác hiểu bạn hơn",
+    "short18": "Điều này có đúng không?\n\n",
+    "short19": "🗑️ Xóa bản nháp",
+    "short2": "🌈 Bất kỳ ai cũng có thể",
+    "short20": "🏷️ Chỉnh sửa sở thích",
+    "short21": "Vui lòng chọn phiên bản bài kiểm tra:",
+    "short22": "Phong cách làm việc của bạn là:",
+    "short23": "Có thời hạn rõ ràng",
+    "short24": "Sẽ làm quen nhanh chóng",
+    "short25": "Cần thời gian để thích nghi",
+    "short26": "Khi bị căng thẳng, bạn sẽ:",
+    "short27": "Làm một danh sách và mua sắm như đã dự định",
+    "short28": "Bị kẹt (thử lại)",
+    "short29": "✏️ Chỉnh sửa nội dung",
+    "short3": "✏️ Tiếp tục chỉnh sửa hồ sơ",
+    "short30": "📖 Chỉnh sửa hồ sơ",
+    "short31": "🌍 Chỉnh sửa vị trí",
+    "short32": "💝 Sở thích phù hợp",
+    "short33": "Đang cập nhật...",
+    "short34": "🔞 Nội dung người lớn",
+    "short35": "Khởi xướng cuộc trò chuyện với người khác",
+    "short36": "Chờ người khác tiếp cận tôi",
+    "short37": "Cuối tuần bạn thích:",
+    "short38": "Kinh nghiệm thực tế và sự thật",
+    "short39": "Cách tiếp cận từng bước",
+    "short4": "📝 Làm lại bài kiểm tra",
+    "short40": "Khám phá những cách sáng tạo",
+    "short41": "Phân tích logic và mục tiêu",
+    "short42": "Cảm xúc và hài hòa giữa các cá nhân",
+    "short43": "Lập kế hoạch và chuẩn bị trước",
+    "short44": "Thích ứng và linh hoạt",
+    "short45": "Giữ các tùy chọn mở",
+    "short46": "Sử dụng phép ẩn dụ và so sánh",
+    "short47": "Lắng nghe và cung cấp sự an ủi",
+    "short48": "Phòng của bạn thường:",
+    "short49": "Khi mua sắm, bạn:",
+    "short5": "📝 Thực hiện bài kiểm tra nhanh",
+    "short50": "Để người khác hiểu bạn hơn",
+    "short51": "Tìm bạn bè ở cùng thành phố",
+    "short52": "Xem câu chuyện của người khác",
+    "short53": "Tối thiểu 20 ký tự",
+    "short54": ": Kết nối tích cực,",
+    "short55": "Nữ (mặc định)",
+    "short56": "Nam (mặc định)",
+    "short57": "Kết quả chỉ để tham khảo",
+    "short58": "Bạn có thể:\n",
+    "short59": "Ra ngoài với bạn bè",
+    "short6": "Tối thiểu một bộ lọc là bắt buộc",
+    "short60": "Nghỉ một mình ở nhà",
+    "short61": "Cảm thấy tràn đầy năng lượng",
+    "short62": "Cảm thấy cần nghỉ ngơi",
+    "short63": "Trực giác và khả năng",
+    "short64": "Tập trung vào chi tiết cụ thể",
+    "short65": "Tập trung vào khái niệm tổng thể",
+    "short66": "Chỉ ra vấn đề một cách trực tiếp",
+    "short67": "Xem xét cảm xúc của người khác",
+    "short68": "Tạo kế hoạch chi tiết",
+    "short69": "Khám phá tự do",
+    "short7": "Người dùng mới******",
+    "short70": "Chia sẻ ý kiến một cách tích cực",
+    "short71": "Vòng bạn bè của bạn:",
+    "short72": "Rộng nhưng không sâu",
+    "short73": "Tương lai và khả năng",
+    "short74": "Sử dụng ví dụ cụ thể",
+    "short75": "Phương pháp đã được xác nhận",
+    "short76": "Dựa trên điều kiện thực tế",
+    "short77": "Tưởng tượng nhiều khả năng khác nhau",
+    "short78": "Tính thường xuyên và cấu trúc",
+    "short79": "Bao gồm từ vựng nhạy cảm",
+    "short8": "Khi chỉ trích người khác, bạn sẽ:",
+    "short80": "Điền vào thẻ sở thích",
+    "short81": "Hoàn thiện phần giới thiệu bản thân",
+    "short82": "Tham gia kênh chính thức",
+    "short83": "Ghi lại câu chuyện của bạn",
+    "short84": "👨 Nam",
+    "short85": "👩 Nữ",
+    "short86": "👨 Nam",
+    "short87": "👩 Nữ",
+    "short88": "Thời gian đánh giá:",
+    "short89": "❓ Không chắc chắn",
+    "short9": "Khi đi du lịch, bạn có xu hướng:",
+    "short90": "Bạn coi trọng hơn:",
+    "short91": "Sự công bằng và chính nghĩa",
+    "short92": "Lòng từ bi và sự thấu hiểu",
+    "short93": "Suy nghĩ trước khi nói",
+    "short94": "Tìm bạn để trò chuyện",
+    "short95": "Hướng dẫn thực tiễn",
+    "short96": "Lý thuyết và khái niệm",
+    "short97": "Thỉnh thoảng",
+    "short98": "Bạn tin tưởng ai hơn:",
+    "short99": "Sự thật và dữ liệu",
+    "start": "Thời gian bắt đầu: ${new Date(maintenance.startTime).toLocaleString('zh-TW')}\n",
+    "start10": "Bắt đầu →",
+    "start2": "Thời gian bắt đầu: ${new Date(broadcast.startedAt).toLocaleString('zh-TW')}\n",
+    "start3": "Bắt đầu: ${startTime.toLocaleString('zh-TW')}\n",
+    "start4": "Thời gian bắt đầu: ${broadcast.started_at}\n\n",
+    "start5": "Bắt đầu: ${startTime.toLocaleString(",
+    "start6": "🎉 **Sẵn sàng! Hãy bắt đầu làm bạn ngay nào～**\n\n",
+    "start7": "📺 Bắt đầu xem quảng cáo\n",
+    "start8": "Bắt đầu hành trình kết bạn của bạn",
+    "start9": "Bắt đầu hành trình kết bạn của bạn",
+    "stats": "💡 Sử dụng /ad_stats {id} để xem thống kê chi tiết",
+    "stats2": "• /stats - Xem thống kê\n\n",
+    "stats3": "📊 **Thống kê Quảng cáo Chính thức**\n",
+    "stats4": "📊 **Thống kê Quảng cáo Chính thức**\n\n",
+    "stats5": "Thống kê:\n",
+    "stats6": "Mua thành công\n",
+    "success": "❌ Đã xảy ra lỗi trong hệ thống",
+    "systemError": "🎉 Chúc mừng bạn đã hoàn thành nhiệm vụ: Tham gia kênh chính thức!",
+    "task": "🎉 Chúc mừng bạn đã hoàn thành nhiệm vụ: Tham gia kênh chính thức!\n\n",
+    "task2": "• /tasks - Xem Trung tâm Nhiệm vụ",
+    "task3": "💡 Sử dụng /tasks để xem thêm nhiệm vụ\n",
+    "task4": "Khi xử lý nhiệm vụ, bạn sẽ:",
+    "task5": "📋 Xem nhiệm vụ",
+    "task6": "📋 Xem các nhiệm vụ",
+    "text": "Mục tiêu: ${broadcast.target_type}\n",
+    "text10": "📖 Hồ sơ: ${updatedUser.bio ||",
+    "text100": "💡 Vui lòng nhập nội dung trong hộp bên dưới",
+    "text101": "Điều này có thể mất một chút thời gian, vui lòng chờ.",
+    "text102": "Bạn có thể sử dụng các lệnh sau bất cứ lúc nào:\n",
+    "text103": "🛠️ Thông báo bảo trì hệ thống\n\n",
+    "text104": "🛠️ Trạng thái chế độ bảo trì\n\n",
+    "text105": "Khi đánh giá một ý tưởng, bạn trước tiên hãy xem xét:",
+    "text106": "⏱️ Khoảng 2-3 phút\n",
+    "text107": "⏱️ Khoảng 5-8 phút\n",
+    "text108": "📚 Tôi muốn tìm hiểu thêm về kiến thức an toàn",
+    "text109": "Gửi ngay (khoảng 1-2 giây)",
+    "text11": "${daysAgo} ngày trước",
+    "text110": "2️⃣ Chọn 'Phản hồi'\n",
+    "text111": "**Định dạng bộ lọc:**\n",
+    "text112": "• Tối thiểu 5 ký tự\n",
+    "text113": "• Không được chứa URL\n",
+    "text114": "Vui lòng nhập khu vực của bạn:\n\n",
+    "text115": "• Bạn có thể sửa đổi cài đặt này bất cứ lúc nào",
+    "text116": "• Tối đa 5 thẻ\n",
+    "text117": "📋 Phiên bản Nhanh (12 câu hỏi)",
+    "text118": "📚 Phiên bản Đầy đủ (36 câu hỏi)",
+    "text119": "• Tham gia một bài kiểm tra chi tiết hơn\n",
+    "text12": "Giám đốc Điều hành - Một quản lý xuất sắc, vô song trong quản lý công việc hoặc nhân sự.",
+    "text120": "💡 **Mẹo:**\n",
+    "text121": "Khi học điều gì đó mới, bạn thích:",
+    "text122": "**Các bước thực hiện:**\n",
+    "text123": "🇺🇳 Sử dụng cờ Liên Hiệp Quốc",
+    "text124": "Bạn có muốn gửi bản nháp này ngay không?",
+    "text125": "Điều này có thể mất vài giây.",
+    "text126": "Cảm ơn bạn đã kiên nhẫn!",
+    "text127": "Thời gian bảo trì ít nhất là 5 phút.",
+    "text128": "Trong các tình huống xã hội, bạn thường:",
+    "text129": "Khi giải quyết vấn đề, bạn phụ thuộc nhiều hơn vào:",
+    "text13": "💡 Điều này sẽ được hiển thị trên thẻ hồ sơ của bạn để giúp người dùng khác hiểu bạn tốt hơn.\n",
+    "text130": "Trong một nhóm, bạn có xu hướng:",
+    "text131": "Khi suy nghĩ về các vấn đề, bạn có xu hướng:",
+    "text132": "Khi mô tả sự vật, bạn có xu hướng:",
+    "text133": "Khi bạn bè tâm sự với bạn, bạn sẽ:",
+    "text134": "Trong các quyết định nhóm, bạn tập trung nhiều hơn vào:",
+    "text135": "Bạn tin rằng những nhà lãnh đạo tốt nên:",
+    "text136": "Mục tiêu: Tất cả người dùng\n",
+    "text137": "✏️ Vui lòng nhập nội dung mới",
+    "text138": "💰 Gian lận / Lừa đảo",
+    "text139": "😡 Quấy rối / Lạm dụng",
+    "text14": "Ngôn ngữ: ${user.language_pref}\n",
+    "text140": "Sau khi tham gia một buổi tụ tập, bạn thường:",
+    "text141": "Khi đưa ra quyết định, bạn đặt tầm quan trọng nhiều hơn vào:",
+    "text142": "Khi gặp gỡ bạn mới, bạn sẽ:",
+    "text143": "Trong các xung đột, bạn có xu hướng:",
+    "text144": "Bạn dễ bị thuyết phục hơn bởi:",
+    "text145": "Lối sống mà bạn ưa thích:",
+    "text146": "Khi đưa ra quyết định, bạn có xu hướng:",
+    "text147": "Duyệt qua và mua những gì bạn thích một cách thoải mái",
+    "text148": ")} hết hạn.\n\n",
+    "text149": "📋 Tài liệu pháp lý chỉ được cung cấp bằng tiếng Anh.",
+    "text15": "🌍 Khu vực: ${updatedUser.city ||",
+    "text150": "📋 Tài liệu pháp lý chỉ có sẵn bằng tiếng Anh.",
+    "text16": "✅ Cần xác minh: Nhấp vào nút 'Xác minh' sau khi tham gia nhóm/kanal",
+    "text17": "Số người dùng mục tiêu: ${userIds.length}\n\n",
+    "text18": "Thời gian ước tính: ${estimatedTime}\n\n",
+    "text19": "/broadcast_cleanup xác nhận",
+    "text2": "Vui lòng sử dụng /broadcast_filter để xem định dạng chính xác.",
+    "text20": "💝 Sở thích khớp: ${matchPrefText}\n",
+    "text21": "Người tranh luận - Một người suy nghĩ thông minh và tò mò, không thể cưỡng lại các thử thách trí tuệ.",
+    "text22": "Ghi lại cảm xúc hoặc suy nghĩ của bạn, và hệ thống sẽ giúp bạn tìm người phù hợp\n\n",
+    "text23": "Nhà logistics - Một cá nhân thực tế và tập trung vào sự thật, chắc chắn đáng tin cậy.",
+    "text24": "Nhà sành điệu - Một nhà thử nghiệm táo bạo và thực tế, thành thạo sử dụng nhiều công cụ.",
+    "text25": "💡 Đây là một phần thưởng một lần, sẽ được thêm vào hạn ngạch hôm nay sau khi yêu cầu.",
+    "text26": "Số lượng người dùng: ${totalUsers} người\n",
+    "text27": "• Mặc định là giới tính đối diện (nam tìm nữ, nữ tìm nam)\n",
+    "text28": "Trạng thái: ${progress.status}\n",
+    "text29": "${daysAgo} giờ trước",
+    "text3": "**Điều kiện lọc:**\n${filtersDesc}\n\n",
+    "text30": "Còn khoảng ${remainingMinutes} phút",
+    "text31": "Còn khoảng ${hours} giờ ${mins} phút",
+    "text32": "Thời gian bảo trì không được vượt quá 24 giờ (1440 phút)",
+    "text33": "Số lượng người dùng: ${totalUsers} người\n",
+    "text34": "Mục tiêu: ${b.target_type}\n",
+    "text35": "Tiêu chí lọc: ${filtersDesc}\n",
+    "text36": "• Tối thiểu 4 ký tự, tối đa 36 ký tự\n",
+    "text37": "🇺🇳 Nếu không tìm thấy, bạn có thể chọn 'cờ Liên Hợp Quốc'",
+    "text38": "📖 Hồ sơ cá nhân: ${user.bio ||",
+    "text39": "Vui lòng nhập thẻ sở thích của bạn (phân cách bằng dấu phẩy):\n\n",
+    "text4": "/maintenance_enable 60 bảo trì nâng cấp hệ thống",
+    "text40": "• Ví dụ: âm nhạc, phim ảnh, du lịch, ẩm thực\n",
+    "text41": "Dịch vụ đã hoạt động bình thường trở lại, cảm ơn bạn đã kiên nhẫn!\n\n",
+    "text42": "🌍 Khu vực: ${user.city ||",
+    "text43": "Nguồn: ${sourceText}\n\n",
+    "text44": "Lọc không xác định: ${trimmedKey}",
+    "text45": "Hệ thống đang bảo trì và tạm thời không khả dụng.\n\n",
+    "text46": "Chúng tôi suy ra rằng bạn đến từ:\n",
+    "text47": "• Mỗi thẻ có tối đa 20 ký tự\n\n",
+    "text48": "Thời gian: ${duration} phút\n",
+    "text49": "1. Bạn có biết về các rủi ro an toàn của việc hẹn hò trực tuyến không?\n",
+    "text5": "👋 Chào mừng bạn trở lại, ${user.nickname}!\n\n",
+    "text50": "2. Bạn sẽ bảo vệ thông tin cá nhân của mình chứ?\n",
+    "text51": "Tuyệt vời! Bây giờ vui lòng tải lên ảnh đại diện của bạn:\n\n",
+    "text52": "🌊 **XunNi là gì?**\n",
+    "text53": "🎉 Đã phát hiện bạn đã tham gia kênh chính thức!\n\n",
+    "text54": "💡 Điều này cho phép bạn xác định chính xác ai sẽ bị chặn.",
+    "text55": "Tình trạng: ${statusText}\n",
+    "text56": "💡 Bạn có thể thử nghiệm trực tiếp các tính năng cốt lõi:\n",
+    "text57": "Bạn đang tìm kiếm loại đối tác trò chuyện nào?\n\n",
+    "text58": "• Giới thiệu sở thích, tính cách hoặc những điều bạn muốn nói\n",
+    "text59": "🏷️ **Chỉnh sửa thẻ sở thích**\n\n",
+    "text6": "Kiến trúc sư - Một người tư duy sáng tạo và chiến lược, mọi thứ đều có kế hoạch.",
+    "text60": "Để đảm bảo an toàn, các liên kết từ các miền sau được phép:\n",
+    "text61": "📋 **Phiên bản Nhanh (12 câu hỏi)**\n",
+    "text62": "📚 **Phiên bản Đầy đủ (36 câu hỏi)**\n",
+    "text63": "• Hình đại diện của bạn sẽ tự động cập nhật mỗi 7 ngày\n",
+    "text64": "3️⃣ Nhập /report\n\n",
+    "text65": "3️⃣ Nhập /block\n\n",
+    "text66": "Tình trạng: ${b.status}\n",
+    "text67": "Sẽ không còn được xử lý tự động hoặc gửi lại\n\n",
+    "text68": "📖 **Chỉnh sửa Hồ sơ**\n\n",
+    "text69": "💝 **Cài đặt sở thích kết nối**\n\n",
+    "text7": "Nhân vật chính - Một nhà lãnh đạo quyến rũ và truyền cảm hứng, có khả năng thu hút khán giả.",
+    "text70": "💬 **Lịch sử trò chuyện của bạn**\n\n",
+    "text71": "• Bạn cũng có thể làm mới thủ công bất cứ lúc nào bằng lệnh này.",
+    "text72": "📊 **Báo cáo phân tích dữ liệu hàng ngày**\n",
+    "text73": "Tài khoản của bạn đã được phục hồi thành thành viên miễn phí.\n\n",
+    "text74": "💡 Điều này sẽ được hiển thị trên thẻ hồ sơ của bạn\n",
+    "text75": "🔧 Chế độ nhà phát triển: Thông tin người dùng\n\n",
+    "text76": "• Nhập trực tiếp nội dung mới để thay thế bản nháp\n",
+    "text77": "• Liên kết, hình ảnh và đa phương tiện không được phép\n",
+    "text78": "• Tối đa 18 ký tự hiển thị\n",
+    "text79": "• Tối đa 18 ký tự hiển thị bởi đối phương\n",
+    "text8": "/broadcast hệ thống sẽ bảo trì vào tối nay lúc 22:00",
+    "text80": "💡 Vui lòng xóa những liên kết này và gửi lại.",
+    "text81": "🔄 Đang làm mới ảnh đại diện...\n\n",
+    "text82": "• Người dùng miễn phí thấy ảnh hồ sơ bị mờ\n",
+    "text83": "💬 **Cách để kết bạn?**\n",
+    "text84": "Định dạng bộ lọc không hợp lệ: ${pair}",
+    "text85": "Tất cả dữ liệu của bạn đã bị xóa.\n\n",
+    "text86": "📝 **Nội dung nháp**\n\n",
+    "text87": "🌍 **Chỉnh sửa vị trí**\n\n",
+    "text88": "• Ví dụ: Đài Bắc, Hồng Kông, Tokyo\n",
+    "text89": "• Tối đa 50 ký tự\n\n",
+    "text9": "🏷️ Thẻ sở thích: ${user.interests ||",
+    "text90": "Về ${minutes} phút",
+    "text91": "Viết câu chuyện của bạn (tối thiểu 20 ký tự)",
+    "text92": "Đang truy vấn người dùng đáp ứng tiêu chí...",
+    "text93": "• Tối đa 250 ký tự\n",
+    "text94": "• Không bao gồm thông tin liên lạc cá nhân\n",
+    "text95": "Vui lòng chọn mục để chỉnh sửa:\n\n",
+    "text96": "Vui lòng nhập hồ sơ cá nhân của bạn:\n\n",
+    "text97": "• Tối đa 200 ký tự\n",
+    "text98": "• Tránh bao gồm thông tin liên lạc\n\n",
+    "text99": "Tất cả chức năng hiện đã sẵn sàng để sử dụng.",
+    "throw": "⏰ Quá trình chai thư đã hết thời gian chờ.\n\nVui lòng sử dụng /throw để bắt đầu lại.",
+    "throw2": "Quá trình chai thư",
+    "uncertain": "❓ Không chắc chắn",
+    "unknownOption": "⚠️ Tùy chọn không xác định",
+    "unlimited": "Không giới hạn",
+    "userNotFound": "❌ Người dùng không tồn tại",
+    "vip": "Thành viên VIP của bạn đã hết hạn vào ngày ${expireDate}.\n\n",
+    "vip10": "😢 **Thành viên VIP đã hết hạn**\n\n",
+    "vip11": "• Nâng cấp lên VIP sẽ tự động làm mới các bài viết lịch sử",
+    "vip12": "⭐ Nâng cấp lên VIP - /vip\n",
+    "vip13": "💎 Người dùng VIP không cần xem quảng cáo",
+    "vip14": "Mục tiêu: Người dùng không phải VIP\n",
+    "vip15": "Mục tiêu: Người dùng VIP\n",
+    "vip16": "Người dùng không phải VIP",
+    "vip17": "Người dùng VIP",
+    "vip2": "Thành viên VIP của bạn sẽ hết hạn vào ${new Date(user.vip_expire_at).toLocaleDateString(",
+    "vip3": "/broadcast_filter vip=true, mbti=INTJ thông báo sự kiện độc quyền cho VIP\n",
+    "vip4": "Mỗi người bạn mời, giới hạn hàng ngày sẽ tăng lên +1 vĩnh viễn (miễn phí tối đa 10 người, VIP tối đa 100 người)",
+    "vip5": "VIP: ${user.is_vip ? 'Có' : 'Không'}\n",
+    "vip6": "💡 Nâng cấp lên VIP để lọc nâng cao (MBTI/Bạch Dương): /vip",
+    "vip7": "💡 Bạn có thể đăng ký lại VIP bất cứ lúc nào: /vip\n\n",
+    "vip8": "💡 Nhóm máu có thể được sử dụng cho tính năng ghép loại máu VIP\n\n",
+    "vip9": "• Người dùng VIP có thể thấy hình đại diện rõ ràng của người khác\n",
+    "yes": "Có",
+    "zodiac": "Bạch Dương không hợp lệ: ${trimmedValue} (phải là một trong những giá trị sau: ${VALID_ZODIACS.join(', ')})"
+  },
+  "conversation": {
+    "age": "🎂 Độ tuổi: ${ageRange} tuổi\n",
+    "anonymousCardHint": "💡 Đây là thẻ dữ liệu ẩn danh và sẽ không hiển thị thông tin danh tính thực sự của người khác.",
+    "backToMenuCommand": "🏠 Trở về menu chính: /menu",
+    "ban": "• Nhiều báo cáo có thể dẫn đến việc bị cấm\n",
+    "blockConfirmButton": "✅ Xác nhận chặn",
+    "blockConfirmMessage": "Đã chặn:\n• Người khác không thể gửi tin nhắn cho bạn nữa\n• Bạn sẽ không được ghép cặp lại\n• Cuộc trò chuyện này sẽ kết thúc ngay lập tức\n\n💡 Điều này không báo cáo người khác; chỉ đơn giản có nghĩa là bạn không muốn trò chuyện nữa.",
+    "blockConfirmTitle": "🚫 **Bạn có chắc chắn muốn chặn người dùng này không?**",
+    "blockSuccessMessage": "Người khác đã bị chặn; bạn sẽ không được ghép cặp lại.\n\n💡 Muốn bắt đầu một cuộc trò chuyện mới không?\n• Sử dụng /catch để lấy một chai thư mới",
+    "blockSuccessNewConversation": "💬 **Cuộc trò chuyện đã kết thúc**\n\nNgười khác đã kết thúc cuộc trò chuyện này.\n\n💡 Muốn bắt đầu một cuộc trò chuyện mới không?\n• Sử dụng /catch để lấy một chai thư mới",
+    "blockSuccessTitle": "✅ **Người dùng đã bị chặn**",
+    "blocked": "✅ Đã chặn",
+    "bloodType": "🩸 Nhóm máu: ${partnerInfo.bloodType}\n",
+    "bloodType2": "🩸 Nhóm máu: ${bloodTypeText}\n",
+    "bottle": "Sử dụng /catch để nhặt một chai thư và bắt đầu trò chuyện!\n\n",
+    "bottle2": "• Sử dụng /catch để lấy một chai thư mới",
+    "cancelButton": "❌ Hủy",
+    "cancelSuccess": "Đã hủy",
+    "conversation": "💬 Lịch sử trò chuyện với #${identifier} (Trang ${postNumber})\n\n",
+    "conversation10": "Hiện tại, không có cuộc trò chuyện nào.\n\n",
+    "conversation11": "• Cuộc trò chuyện này sẽ kết thúc ngay lập tức\n",
+    "conversation2": "💬 **Danh sách cuộc trò chuyện của tôi** (${conversations.length})\n\n",
+    "conversation3": "💡 Nhấp vào nút 'Trả lời' trên tin nhắn của người khác để tiếp tục cuộc trò chuyện\n",
+    "conversation4": "💬 **Cuộc trò chuyện đã kết thúc**\n\n",
+    "conversation5": "💬 **Cuộc trò chuyện của tôi**\n\n",
+    "conversation6": "💡 Muốn bắt đầu một cuộc trò chuyện mới không?\n",
+    "conversation7": "• Cuộc trò chuyện này sẽ kết thúc ngay lập tức\n\n",
+    "conversation8": "Bên kia đã kết thúc cuộc trò chuyện này.\n\n",
+    "conversation9": "💡 Đây là lịch sử của cuộc trò chuyện\n",
+    "conversationEnded": "❌ Cuộc trò chuyện này đã kết thúc.\n\nSử dụng /catch để lấy một chai thư mới để bắt đầu một cuộc trò chuyện mới.",
+    "conversationInfoError": "❌ Thông tin cuộc trò chuyện không chính xác.",
+    "editProfileCommand": "✏️ Chỉnh sửa hồ sơ: /edit_profile",
+    "endedMessage": "Người khác đã kết thúc cuộc trò chuyện này.\n\n💡 Muốn bắt đầu một cuộc trò chuyện mới không?\n• Sử dụng /catch để lấy một chai thư mới",
+    "endedNewConversation": "💬 **Cuộc trò chuyện đã kết thúc**\n\nNgười khác đã kết thúc cuộc trò chuyện này.\n\n💡 Muốn bắt đầu một cuộc trò chuyện mới không?\n• Sử dụng /catch để lấy một chai thư mới",
+    "endedTitle": "💬 **Cuộc trò chuyện đã kết thúc**",
+    "gender": "👤 Giới tính: ${gender}\n",
+    "mediaRestriction": "⚠️ **Không được phép gửi hình ảnh, video hoặc đa phương tiện**\n\n💡 Để bảo vệ quyền riêng tư và an ninh, chỉ các tin nhắn văn bản thuần túy được phép trong các cuộc trò chuyện.\n\nVui lòng sử dụng tin nhắn văn bản để giao tiếp với người khác.",
+    "message": "💫 Điểm kết nối: ${score} điểm\n",
+    "message10": "conv_profile_${conversationId}",
+    "message11": "• Tin nhắn cuối: ${lastMessageTime}\n\n",
+    "message12": "📊 Tổng số tin nhắn: ${totalMessages} tin nhắn\n",
+    "message13": "💬 Trả lời trực tiếp bằng cách sử dụng /reply để tham gia cuộc trò chuyện\n",
+    "message14": "• Bên kia không còn có thể gửi tin nhắn cho bạn\n",
+    "message2": "📜 Tiếp tục xem: #${identifier}-H${newPostNumber}",
+    "message3": "📅 Cập nhật lần cuối: ${formatDateTime(new Date())}\n\n",
+    "message4": "[${timeStr}] Từ: \n${messageContent}\n\n",
+    "message5": "conv_report_confirm_${conversationId}",
+    "message6": "conv_block_confirm_${conversationId}",
+    "message7": "• Số lượng tin nhắn: ${conv.message_count} tin nhắn\n",
+    "message77": "💬 Trả lời tin nhắn bằng cách sử dụng /reply",
+    "message8": "🏷️ Sở thích: ${otherUser.interests}\n",
+    "message9": "💬 Tin nhắn mới từ #${identifier}:\n\n",
+    "nickname": "📝 Biệt danh: ${partnerInfo.maskedNickname}\n",
+    "nickname2": "📝 Biệt danh: ${displayNickname}\n",
+    "noHistory": "💬 Bạn hiện tại không có lịch sử trò chuyện\n\nHãy ném một chai thư để gặp gỡ bạn bè mới! /throw\n\n🏠 Quay về menu chính: /menu",
+    "profile": "✏️ Chỉnh sửa hồ sơ: /edit_profile\n",
+    "profileCardTitle": "👤 **Thẻ hồ sơ bên kia**",
+    "replyButton": "💬 Tin nhắn trả lời",
+    "replyConversation": "💬 Trả lời cuộc trò chuyện {identifier}",
+    "replyHint": "💡 Vui lòng nhập tin nhắn của bạn vào ô nhập bên dưới",
+    "replyMethod1": "1️⃣ Nhấn vào nút '💬 Tin nhắn trả lời' bên dưới",
+    "replyMethod2": "2️⃣ Nhấn và giữ tin nhắn này, chọn 'Trả lời', sau đó nhập tin nhắn của bạn",
+    "replyMethodsTitle": "💡 **Hai cách để trả lời**:",
+    "report": "🚨 **Bạn có chắc chắn muốn báo cáo người dùng này không?**\n\n",
+    "report2": "💡 Điều này sẽ không báo cáo bên kia, chỉ là bạn không còn muốn trò chuyện.",
+    "report3": "Cảm ơn bạn đã báo cáo, chúng tôi sẽ xem xét ngay khi có thể.\n\n",
+    "report4": "Sau khi báo cáo:\n",
+    "reportConfirmButton": "✅ Xác nhận báo cáo",
+    "reportConfirmMessage": "Sau khi báo cáo:\n• Chúng tôi sẽ xem xét hành vi của người dùng này\n• Nhiều báo cáo có thể dẫn đến việc cấm\n• Cuộc trò chuyện này sẽ kết thúc ngay lập tức\n• Bạn sẽ không được ghép đôi với người dùng này trong vòng 24 giờ\n\n💡 Vui lòng đảm bảo rằng bên kia thực sự đã tham gia vào hành vi không đúng mực.",
+    "reportConfirmTitle": "🚨 **Bạn có chắc chắn muốn báo cáo người dùng này không?**",
+    "reportSuccessMessage": "Cảm ơn bạn đã báo cáo, chúng tôi sẽ xem xét ngay khi có thể.\n\n💡 Muốn bắt đầu một cuộc trò chuyện mới?\n• Sử dụng /catch để nhận một chai thư mới",
+    "reportSuccessNewConversation": "💬 **Cuộc trò chuyện đã kết thúc**\n\nBên kia đã kết thúc cuộc trò chuyện này.\n\n💡 Muốn bắt đầu một cuộc trò chuyện mới?\n• Sử dụng /catch để nhận một chai thư mới",
+    "reportSuccessTitle": "✅ **Người dùng đã được báo cáo**",
+    "reported": "✅ Đã báo cáo",
+    "separator": "━━━━━━━━━━━━━━━━",
+    "settings": "🧠 MBTI: ${otherUser.mbti_result}\n",
+    "settings2": "Chưa được thiết lập",
+    "settings3": "Chưa được thiết lập",
+    "settings4": "Chưa được thiết lập",
+    "settings5": "Chưa được thiết lập",
+    "short": "Sau khi chặn:\n",
+    "short2": "Người dùng không xác định",
+    "short3": "Vừa mới đây",
+    "stats": "📊 Sử dụng /stats để xem thống kê chi tiết\n",
+    "text": "💡 Đây là một thẻ dữ liệu ẩn danh và sẽ không tiết lộ thông tin danh tính thực sự của bên kia.\n\n",
+    "text10": "💎 Sử dụng /vip để tìm hiểu thêm\n\n",
+    "text11": "👤 **Thẻ dữ liệu của bên kia**\n\n",
+    "text12": "${diffHours} giờ trước",
+    "text13": "💡 Vui lòng đảm bảo rằng bên kia thực sự đã tham gia vào hành vi không đúng mực.",
+    "text14": "${diffMins} phút trước",
+    "text15": "• Chúng tôi sẽ xem xét hành vi của người dùng này\n",
+    "text16": "💎 Sử dụng /vip để tìm hiểu thêm",
+    "text17": "${diffDays} ngày trước",
+    "text18": "• Bạn sẽ không được ghép đôi lại\n",
+    "text19": "👤 Thông tin của bên kia:\n",
+    "text2": "📜 Xem lịch sử: #${identifier}\n",
+    "text3": "🗣️ Ngôn ngữ: ${languageLabel}\n",
+    "text4": "🌍 Khu vực: ${otherUser.city}\n",
+    "text5": "📖 Giới thiệu: ${otherUser.bio}\n",
+    "text6": "conv_reply_${identifier}",
+    "text7": "🚫 **Bạn có chắc chắn muốn chặn người dùng này không?**\n\n",
+    "text8": "Người dùng khác đã bị chặn, và bạn sẽ không còn được ghép nối nữa.\n\n",
+    "text9": "• Bạn sẽ không được ghép nối với người dùng này trong 24 giờ tới\n\n",
+    "vip": "🔒 Nâng cấp lên VIP để mở khóa hình ảnh hồ sơ rõ nét hơn của người dùng khác\n",
+    "vip2": "🔒 Nâng cấp lên VIP để mở khóa hình ảnh hồ sơ rõ ràng của bên kia\n",
+    "vipLearnMore": "💎 Sử dụng /vip để biết thêm thông tin",
+    "vipUnlockAvatar": "🔒 Nâng cấp lên VIP để mở khóa hình ảnh hồ sơ rõ ràng của bên kia",
+    "zodiac": "⭐ Cung hoàng đạo: ${partnerInfo.zodiac}\n",
+    "zodiac2": "⭐ Cung hoàng đạo: ${zodiacLabel}\n"
+  },
+  "conversationHistory": {
+    "backToMenu": "🏠 Trở về menu chính: /menu",
+    "bloodType": "🩸 Nhóm máu: ${bloodType}",
+    "continueView": "📜 Tiếp tục xem: #${identifier}-H${postNumber}",
+    "historyNote": "💡 Đây là lịch sử trò chuyện",
+    "lastUpdated": "📅 Cập nhật lần cuối: ${time}",
+    "matchScore": "💫 Điểm ghép nối: ${score} điểm",
+    "mbti": "🧠 MBTI: ${mbti}",
+    "messageEntry": "[${time}] Bên kia:\n${content}",
+    "newMessage": "💬 Tin nhắn mới từ #${identifier}:",
+    "nickname": "📝 Biệt danh: ${nickname}",
+    "other": "Bên kia",
+    "partnerInfo": "👤 Thông tin bên kia:",
+    "replyButton": "💬 Tin nhắn trả lời",
+    "replyHint": "💬 Nhấn /reply để phản hồi trong chat",
+    "title": "💬 Lịch sử trò chuyện với #${identifier} (Trang ${postNumber})",
+    "totalMessages": "📊 Tổng số tin nhắn: ${count}",
+    "viewAllConversations": "📊 Xem tất cả các cuộc trò chuyện",
+    "viewHistory": "📜 Xem lịch sử: #${identifier}",
+    "viewProfileCard": "👤 Xem thẻ hồ sơ",
+    "vipLearnMore": "💎 Sử dụng /vip để tìm hiểu thêm",
+    "vipUnlockAvatar": "🔒 Nâng cấp lên VIP để mở khóa ảnh hồ sơ rõ hơn",
+    "you": "Bạn",
+    "zodiac": "⭐ Cung hoàng đạo: ${zodiac}"
+  },
+  "countries": {
+    "ae": "Các Tiểu Vương Quốc Ả Rập Thống Nhất",
+    "al": "Albania",
+    "am": "Armenia",
+    "ar": "Argentina",
+    "at": "Áo",
+    "au": "Úc",
+    "az": "Azerbaijan",
+    "ba": "Bosna",
+    "bb": "Barbados",
+    "bd": "Bangladesh",
+    "be": "Bỉ",
+    "bg": "Bulgaria",
+    "bh": "Bahrain",
+    "bo": "Bolivia",
+    "br": "Brazil",
+    "ca": "Canada",
+    "ch": "Thụy Sĩ",
+    "ci": "Bờ Biển Ngà",
+    "cl": "Chile",
+    "cm": "Cameroon",
+    "cn": "Trung Quốc",
+    "co": "Colombia",
+    "cr": "Costa Rica",
+    "cu": "Cuba",
+    "cz": "Cộng hòa Séc",
+    "de": "Đức",
+    "dk": "Đan Mạch",
+    "do": "Cộng hòa Dominica",
+    "dz": "Algeria",
+    "ec": "Ecuador",
+    "ee": "Estonia",
+    "eg": "Ai Cập",
+    "es": "Tây Ban Nha",
+    "et": "Ethiopia",
+    "fi": "Phần Lan",
+    "fr": "Pháp",
+    "gb": "Vương quốc Anh",
+    "ge": "Georgia",
+    "gh": "Ghana",
+    "gr": "Hy Lạp",
+    "gt": "Guatemala",
+    "hk": "Hồng Kông",
+    "hn": "Honduras",
+    "hr": "Croatia",
+    "hu": "Hungary",
+    "id": "Indonesia",
+    "ie": "Ireland",
+    "il": "Israel",
+    "in": "Ấn Độ",
+    "iq": "Iraq",
+    "ir": "Iran",
+    "is": "Iceland",
+    "it": "Ý",
+    "jm": "Jamaica",
+    "jo": "Jordan",
+    "jp": "Nhật Bản",
+    "ke": "Kenya",
+    "kh": "Campuchia",
+    "kr": "Hàn Quốc",
+    "kw": "Kuwait",
+    "kz": "Kazakhstan",
+    "la": "Lào",
+    "lb": "Liban",
+    "lk": "Sri Lanka",
+    "lt": "Litva",
+    "lv": "Latvia",
+    "ly": "Libya",
+    "ma": "Maroc",
+    "mk": "Nam Macedonia",
+    "mm": "Myanmar",
+    "mn": "Mông Cổ",
+    "mo": "Ma Cao",
+    "mt": "Malta",
+    "mx": "Mexico",
+    "my": "Malaysia",
+    "ng": "Nigeria",
+    "ni": "Nicaragua",
+    "nl": "Hà Lan",
+    "no": "Na Uy",
+    "np": "Nepal",
+    "nz": "New Zealand",
+    "om": "Oman",
+    "pa": "Panama",
+    "pe": "Peru",
+    "ph": "Philippines",
+    "pk": "Pakistan",
+    "pl": "Ba Lan",
+    "pt": "Bồ Đào Nha",
+    "py": "Paraguay",
+    "qa": "Qatar",
+    "ro": "Romania",
+    "rs": "Serbia",
+    "ru": "Nga",
+    "rw": "Rwanda",
+    "sa": "Ả Rập Saudi",
+    "sd": "Sudan",
+    "se": "Thụy Điển",
+    "sg": "Singapore",
+    "si": "Slovenia",
+    "sk": "Slovakia",
+    "sn": "Senegal",
+    "sv": "El Salvador",
+    "sy": "Syria",
+    "th": "Thái Lan",
+    "tn": "Tunisia",
+    "tr": "Thổ Nhĩ Kỳ",
+    "tt": "Trinidad",
+    "tw": "Đài Loan",
+    "tz": "Tanzani",
+    "ua": "Ukraine",
+    "ug": "Uganda",
+    "un": "Liên Hợp Quốc",
+    "us": "Hoa Kỳ",
+    "uy": "Uruguay",
+    "uz": "Uzbekistan",
+    "ve": "Venezuela",
+    "vn": "Việt Nam",
+    "ye": "Yemen",
+    "za": "Nam Phi",
+    "zw": "Zimbabwe"
+  },
+  "country": {
+    "buttonAU": "🇦🇺 Úc",
+    "buttonCA": "🇨🇦 Canada",
+    "buttonCN": "🇨🇳 Trung Quốc",
+    "buttonDE": "🇩🇪 Đức",
+    "buttonFR": "🇫🇷 Pháp",
+    "buttonGB": "🇬🇧 Vương quốc Anh",
+    "buttonHK": "🇭🇰 Hồng Kông",
+    "buttonJP": "🇯🇵 Nhật Bản",
+    "buttonKR": "🇰🇷 Hàn Quốc",
+    "buttonMY": "🇲🇾 Malaysia",
+    "buttonNZ": "🇳🇿 New Zealand",
+    "buttonSG": "🇸🇬 Singapore",
+    "buttonTH": "🇹🇭 Thailand",
+    "buttonTW": "🇹🇼 Taiwan",
+    "buttonUS": "🇺🇸 United States",
+    "confirmButton": "✅ Chính xác",
+    "confirmDetected": "Chúng tôi đã suy luận vị trí của bạn dựa trên cài đặt ngôn ngữ của bạn:\n",
+    "confirmFailed": "❌ Xác nhận thất bại",
+    "confirmHint": "💡 Điều này sẽ được hiển thị trên thẻ hồ sơ của bạn để giúp người dùng khác tìm hiểu thêm về bạn.\n",
+    "confirmQuestion": "Điều này có đúng không?\n\n",
+    "confirmReward": "🎉 Việc xác nhận sẽ giúp bạn nhận +1 phần thưởng chai thư!",
+    "confirmTitle": "🌍 **Xác nhận quốc gia/khu vực của bạn**\n\n",
+    "confirmed": "✅ Đã xác nhận!",
+    "notCorrectButton": "❌ Không đúng",
+    "selectHint": "💡 Điều này sẽ hiển thị trên thẻ hồ sơ của bạn\n",
+    "selectTitle": "🌍 **Vui lòng chọn quốc gia/khu vực của bạn**\n\n",
+    "selectUnFlagHint": "🇺🇳 Nếu không tìm thấy, bạn có thể chọn 'Cờ Liên hợp Quốc'",
+    "setFailed": "❌ Thiết lập thất bại",
+    "setTo": "✅ Đặt thành {flag} {country}",
+    "unFlagButton": "🇺🇳 Cờ Liên hợp Quốc",
+    "useUnFlagButton": "🇺🇳 Sử dụng Cờ Liên hợp Quốc"
+  },
+  "dailyReports": {
+    "header": "📊 **Báo cáo phân tích dữ liệu hàng ngày**",
+    "time": "Thời gian: ${time}"
+  },
+  "dev": {
+    "autoCompleted": "Quá trình đăng ký đã được hoàn thành tự động.\n\n",
+    "bottles": "• Chai thư: {count}\n",
+    "catchCommand": "• /catch - Bắt chai thư\n",
+    "conversations": "• Cuộc trò chuyện: {count}\n",
+    "dataReset": "✅ Chế độ nhà phát triển: Dữ liệu đã được đặt lại\n\nTất cả dữ liệu của bạn đã bị xóa.\n\n💡 Bạn có thể bắt đầu lại quá trình đăng ký thử nghiệm.\n\n🔄 Đăng ký lại: /start\nhoặc sử dụng: /dev_restart (tự động bắt đầu đăng ký)\n\n⚠️ Lưu ý: Tính năng này chỉ khả dụng trong môi trường Staging.",
+    "getUserInfoFailed": "❌ Không thể lấy thông tin",
+    "inviteActivated": "• Đã kích hoạt: {count}\n",
+    "inviteCode": "Mã mời: {code}\n",
+    "invitePending": "{count}\n\n",
+    "inviteStats": "Thống kê lời mời:\n",
+    "inviteTotal": "• Tổng số hồ sơ mời: {count}\n",
+    "invitedBy": "{invitedBy}\n\n",
+    "language": "Ngôn ngữ: {lang}\n",
+    "messages": "{count}\n\n",
+    "nickname": "Biệt danh: {nickname}\n",
+    "no": "Không",
+    "none": "Không có",
+    "notAvailableInProduction": "❌ Lệnh này không khả dụng trong môi trường sản xuất.\n\nLệnh này không khả dụng trong môi trường sản xuất.",
+    "notGenerated": "Chưa được tạo",
+    "notSet": "Chưa được thiết lập",
+    "onboardingStep": "Bước đăng ký: {step}\n",
+    "resetFailed": "❌ Đặt lại không thành công: {error}\n\nVui lòng thử lại sau.",
+    "skipFailed": "❌ Bỏ qua không thành công",
+    "skipRegistration": "✅ Chế độ phát triển: bỏ qua đăng ký\n\n",
+    "stagingOnly": "⚠️ Tính năng này chỉ có sẵn trong môi trường Staging.",
+    "stats": "Thông kê:\n",
+    "statsCommand": "• /stats - Xem thống kê\n\n",
+    "successfulInvites": "• lượt mời thành công: {count}\n",
+    "telegramId": "ID Telegram: {id}\n",
+    "testCoreFeatures": "💡 Bạn hiện có thể thử nghiệm trực tiếp các tính năng cốt lõi:\n",
+    "testUser": "Người dùng thử",
+    "throwCommand": "• /throw - Ném chai thư\n",
+    "userInfo": "🔧 Chế độ phát triển: Thông tin người dùng\n\n",
+    "userNotFound": "❌ Người dùng không tồn tại",
+    "vip": "{status}\n",
+    "yes": "Có"
+  },
+  "draft": {
+    "age": {
+      "daysAgo": "\\${days} ngày trước",
+      "hoursAgo": "\\${hours} giờ trước",
+      "justNow": "Ngay bây giờ"
     },
+    "contentHint": "💡 Bạn có thể:\n• Nhập nội dung mới để thay thế bản nháp\n• Sử dụng /throw để bắt đầu lại\n• Gửi nội dung bản nháp để ném một chai thư",
+    "contentTitle": "📝 **Nội dung bản nháp**\n\n",
+    "continueEditing": "✅ Tiếp tục chỉnh sửa bản nháp",
+    "deleteButton": "🗑️ Xóa bản nháp",
+    "deleted": "✅ Bản nháp đã được xóa",
+    "editButton": "✏️ Chỉnh sửa nội dung",
+    "editInput": "✏️ Vui lòng nhập nội dung chai thư mới:\n\n💡 Mẹo:\n• Tối thiểu 5 ký tự\n• Tối đa 250 ký tự\n• Không cho phép liên kết, hình ảnh hoặc đa phương tiện\n• Không bao gồm thông tin liên lạc cá nhân\n• Nội dung thân thiện và tôn trọng dễ được chọn hơn~",
+    "editPrompt": "✏️ Vui lòng nhập nội dung mới",
+    "newBottle": "✅ Bắt đầu một chai thư mới",
+    "notFound": "⚠️ Bản nháp không tồn tại hoặc đã hết hạn",
+    "sendButton": "✅ Gửi bản nháp",
+    "sendQuestion": "Bạn có muốn gửi bản nháp này trực tiếp không?",
+    "sending": "✅ Đang gửi...",
+    "targetGender": "Bạn đang tìm kiếm đối tác trò chuyện kiểu gì?\n\n",
+    "targetGenderHint": "💡 Nâng cấp lên VIP để truy cập bộ lọc nâng cao (MBTI/Bao Chòm): /vip",
+    "throwBottle": "🍾 Ném chai thư\n\nBạn đang tìm kiếm đối tác trò chuyện kiểu gì?"
   },
-  buttons: {
-    ad: `➡️ 下一個廣告`,
-    back: `⬅️ 返回 / Back`,
-    backToVip: `💎 Back to VIP Menu`,
-    bottle: `📺 看廣告獲取更多瓶子 🎁 (\${remaining}/20)`,
-    bottle2: `💎 升級 VIP 獲得更多瓶子`,
-    bottle3: `🌊 丟出漂流瓶`,
-    bottle4: `🎣 撿起漂流瓶`,
-    cancel: `取消`,
-    help: `❓ 幫助`,
-    invite: `👥 查看邀請碼`,
-    invite2: `🎁 邀請好友`,
-    mbtiMenu: `🧠 MBTI 選單`,
-    message: `💬 回覆訊息`,
-    profile: `✏️ 編輯個人資料`,
-    profile2: `👤 個人資料`,
-    returnToMenu: `🏠 返回主選單`,
-    settings: `⚙️ 設定`,
-    short: `🇲🇾 馬來西亞`,
-    short10: `🇺🇸 美國`,
-    short11: `🇯🇵 日本`,
-    short12: `🇰🇷 韓國`,
-    short13: `🇬🇧 英國`,
-    short14: `🇫🇷 法國`,
-    short15: `🇩🇪 德國`,
-    short16: `🇹🇭 泰國`,
-    short17: `🇦🇺 澳洲`,
-    short18: `💬 聊天記錄`,
-    short19: `🌐 變更語言`,
-    short2: `🇺🇳 聯合國旗`,
-    short20: `🎁 領取獎勵`,
-    short21: `🔄 清除選擇`,
-    short22: `跳過`,
-    short3: `📢 加入官方頻道`,
-    short4: `🇸🇬 新加坡`,
-    short5: `🇨🇦 加拿大`,
-    short6: `🇳🇿 紐西蘭`,
-    short7: `🇹🇼 台灣`,
-    short8: `🇨🇳 中國`,
-    short9: `🇭🇰 香港`,
-    stats: `📊 統計數據`,
-    targetAdvanced: `⚙️ 進階篩選（MBTI/星座）`,
-    targetAny: `🌈 任何人都可以`,
-    targetFemale: `👩 女生`,
-    targetMale: `👨 男生`,
-    text: `👤 查看對方資料卡`,
-    viewPayments: `💰 Subscription History`,
-    vip: `💎 升級 VIP`,
+  "edit_profile": {
+    "nickname": "👤 Biệt danh: ${ownerMaskedNickname}",
+    "short19": "✏️ Chỉnh sửa Hồ sơ"
   },
-  catch: {
-    anonymousUser: `匿名用戶`,
-    back: `🏠 返回主選單：/menu`,
-    banned: `❌ 你的帳號已被封禁，無法撿漂流瓶。
-
-如有疑問，請使用 /appeal 申訴。`,
-    block: `• 不想再聊可使用 /block 封鎖
-`,
-    bottle: `😔 目前沒有適合你的漂流瓶
-
-`,
-    bottle2: `• 或者自己丟一個瓶子：/throw`,
-    bottle3: `🎣 有人撿到你的漂流瓶了！
-
-`,
-    bottle4: `🧴 你撿到了一個漂流瓶！
-
-`,
-    bottle5: `💡 明天再來撿更多瓶子吧！`,
-    bottleTaken: `❌ 這個瓶子已經被其他人撿走了，請試試其他瓶子！`,
-    catch: `📊 今日已撿：\${newCatchesCount}/\${quota}
-
-`,
-    conversation: `已為你們建立了匿名對話，快來開始聊天吧～
-
-`,
-    conversation2: `• 這是匿名對話，請保護個人隱私
-`,
-    conversation3: `📊 查看所有對話`,
-    conversationError: `对话创建失败`,
-    language: `🗣️ 語言：\${language}
-
-`,
-    mbti: `🧠 MBTI：\${mbti}
-`,
-    message: `💫 配對度：\${score}分 (智能配對)
-
-`,
-    message2: `\${catcherGender} | 📅 \${catcherAge}歲
-
-`,
-    message3: `conv_reply_\${conversationIdentifier}`,
-    message4: `2️⃣ 長按此訊息，選擇「回覆」後輸入內容
-
-`,
-    message5: `1️⃣ 點擊下方「💬 回覆訊息」按鈕
-`,
-    message6: `2️⃣ 長按此訊息，選擇「回覆」後輸入內容`,
-    nickname: `📝 暱稱：\${ownerMaskedNickname}
-`,
-    nickname2: `📝 暱稱：\${catcherNickname}
-`,
-    notRegistered: `❌ 請先完成註冊流程才能撿漂流瓶。
-
-使用 /start 繼續註冊。`,
-    originalContent: `原文：{content}`,
-    originalLanguage: `原文語言：{language}`,
-    quotaExhausted: `❌ 今日漂流瓶配額已用完（\${quotaDisplay}）`,
-    replyButton: `💬 回覆訊息`,
-    replyMethods: `💡 **兩種回覆方式**：
-`,
-    report: `• 遇到不當內容請使用 /report 舉報
-`,
-    safetyTips: `⚠️ 安全提示：
-`,
-    settings: `🧠 MBTI：\${mbti}
-`,
-    settings10: `未設定`,
-    settings11: `未設定`,
-    settings2: `未設定`,
-    settings3: `未設定`,
-    settings4: `未設定`,
-    settings5: `未設定`,
-    settings6: `未設定`,
-    settings7: `未設定`,
-    settings8: `未設定`,
-    settings9: `未設定`,
-    short: `💡 提示：
-`,
-    short2: `• 稍後再試
-`,
-    short3: `匿名用戶`,
-    short4: `♂️ 男`,
-    short5: `♀️ 女`,
-    text: `翻譯語言：\${catcherLangDisplay}
-`,
-    text2: `原文語言：\${bottleLangDisplay}
-`,
-    text3: `🗣️ 語言：\${ownerLanguage}
-
-`,
-    text4: `• 不想再聊可使用 /block 封鎖
-
-`,
-    text5: `原文：\${bottle.content}
-`,
-    text6: `💬 翻譯服務暫時有問題，已使用備援翻譯
-`,
-    text7: `翻譯：\${bottleContent}
-`,
-    text8: `💡 **兩種回覆方式**：
-`,
-    translatedContent: `翻譯：{content}`,
-    translatedLanguage: `翻譯語言：{language}`,
-    translationServiceFallback: `💬 翻譯服務暫時有問題，已使用備援翻譯`,
-    translationServiceUnavailable: `⚠️ 翻譯服務暫時無法使用，以下為原文`,
-    unknown: `未知`,
-    zodiac: `⭐ 星座：{zodiac}
-`,
-    zodiac2: `⭐ 星座：\${catcherZodiac}
-`,
+  "error": {
+    "ad": "❌ Quảng cáo này không yêu cầu xác minh",
+    "ad2": "❌ Hiện tại không có quảng cáo nào",
+    "ad3": "❌ Không thể yêu cầu quảng cáo này",
+    "ad4": "❌ Quảng cáo không tồn tại",
+    "ad5": "❌ ID quảng cáo phải là số",
+    "ad6": "❌ Bạn không có quyền xem dữ liệu quảng cáo",
+    "admin": "❌ Đã xảy ra lỗi trong hệ thống, vui lòng thử lại sau.\n\nNếu sự cố vẫn tiếp diễn, vui lòng liên hệ với quản trị viên.",
+    "admin2": "❌ **Quyền hạn không đủ**\n\nLệnh này chỉ dành cho siêu quản trị viên.",
+    "admin3": "❌ Người dùng này đã là siêu quản trị viên, không cần thêm họ.",
+    "admin4": "❌ Chỉ siêu quản trị viên mới có thể sử dụng lệnh này.",
+    "admin5": "❌ Người dùng này đã là quản trị viên.",
+    "admin6": "❌ Không thể xóa siêu quản trị viên.",
+    "admin7": "❌ Người dùng này không phải là quản trị viên.",
+    "appeal": "❌ Vui lòng cung cấp ID kháng cáo\n\nCách sử dụng: /admin_approve <appeal_id> [note]",
+    "appeal2": "❌ Vui lòng cung cấp ID kháng cáo\n\nCách sử dụng: /admin_reject <appeal_id> [note]",
+    "appeal3": "❌ Kháng cáo ${appealId} đã được xem xét",
+    "appeal4": "❌ Không thể tìm thấy ID kháng cáo: ${appealId}",
+    "ban": "❌ Người dùng ${targetUserId} không có bản ghi cấm",
+    "birthday": "❌ ${validation.error}\n\nVui lòng nhập lại ngày sinh của bạn (định dạng: YYYY-MM-DD):",
+    "birthday2": "❌ Định dạng ngày sinh không hợp lệ\n\nVui lòng nhập lại (định dạng: YYYY-MM-DD):",
+    "birthday3": "❌ Định dạng ngày sinh không hợp lệ",
+    "bottle": "❌ Cuộc trò chuyện này đã kết thúc.\n\nSử dụng /catch để chọn một chai thư mới để bắt đầu cuộc trò chuyện mới.",
+    "bottle2": "❌ Tài khoản của bạn đã bị cấm, không thể chọn chai thư.\n\nNếu bạn có câu hỏi, vui lòng sử dụng /appeal để gửi kháng cáo.",
+    "bottle3": "❌ Chai này đã được người khác chọn, vui lòng thử các chai khác!",
+    "broadcast": "{MAX_SAFE_USERS} ${MAX_SAFE_USERS}\n\n",
+    "broadcast2": "❌ ID phát sóng phải là một số.",
+    "broadcast3": "❌ Không tìm thấy bản ghi phát sóng.",
+    "cancel": "❌ Biệt danh quá dài, vui lòng nhập biệt danh không dài quá 36 ký tự.\n\nVui lòng nhập lại hoặc hủy chỉnh sửa:",
+    "cancel2": "❌ Hồ sơ cá nhân quá dài, vui lòng nhập hồ sơ không dài quá 200 ký tự.\n\nVui lòng nhập lại hoặc hủy chỉnh sửa:",
+    "cancel3": "❌ Tên vùng quá dài, vui lòng nhập tên không dài quá 50 ký tự.\n\nVui lòng nhập lại hoặc hủy chỉnh sửa:",
+    "cancel4": "❌ Biệt danh quá ngắn, yêu cầu ít nhất 4 ký tự.\n\nVui lòng nhập lại hoặc hủy chỉnh sửa:",
+    "cancel5": "❌ Mỗi thẻ có thể dài tối đa 20 ký tự.\n\nVui lòng nhập lại hoặc hủy chỉnh sửa:",
+    "cancel6": "❌ Hủy chỉnh sửa.",
+    "cancel7": "❌ Đã hủy ${ZODIAC_NAMES[zodiacSign]}",
+    "cancel8": "❌ Đã hủy ${mbtiType}",
+    "cancel9": "❌ Đã hủy",
+    "conversation": "{formatIdentifier(identifier)} ${formatIdentifier(identifier)}\n\n",
+    "conversation2": "❌ Thông tin cuộc trò chuyện không chính xác.",
+    "conversation3": "❌ Thông tin cuộc trò chuyện không chính xác.",
+    "conversation4": "❌ Cuộc trò chuyện không tồn tại.",
+    "conversationInfoError": "❌ Thông tin cuộc trò chuyện không chính xác.",
+    "conversationNotFound": "❌ Cuộc trò chuyện không tồn tại.",
+    "failed": "❌ **Tải quảng cáo không thành công**\n\nChúng tôi xin lỗi, quảng cáo không thể phát đúng cách.\n\n💡 **Lý do có thể:**\n• Kết nối mạng không ổn định\n• Nhà cung cấp quảng cáo tạm thời không khả dụng\n• Trình duyệt không được hỗ trợ\n\n🔄 **Gợi ý:**\n• Kiểm tra kết nối mạng\n• Thử lại sau\n• Hoặc sử dụng các cách khác để nhận tín dụng (mời bạn bè)",
+    "failed10": "❌ Không thể truy vấn trạng thái chế độ bảo trì.",
+    "failed11": "❌ Không thể làm mới avatar\n\n",
+    "failed12": "❌ Xác minh không thành công, vui lòng thử lại sau.",
+    "failed13": "❌ Không thể bật chế độ bảo trì.",
+    "failed14": "❌ Không thể tắt chế độ bảo trì.",
+    "failed15": "❌ Không thể lấy trạng thái quảng cáo.",
+    "failed16": "❌ Không thể lấy thông tin thống kê.",
+    "failed17": "❌ Không thể tạo phát sóng.",
+    "failed18": "❌ Không thể lấy thông tin.",
+    "failed19": "❌ Không thể claim phần thưởng.",
+    "failed2": "❌ Không thể tạo phát sóng đã lọc\n\n${error instanceof Error ? error.message : String(error)}",
+    "failed20": "❌ Xác nhận không thành công",
+    "failed21": "❌ Cài đặt không thành công",
+    "failed22": "❌ Bỏ qua không thành công",
+    "failed23": "❌ Hoạt động không thành công",
+    "failed24": "❌ Gửi báo cáo hàng ngày không thành công: ${error instanceof Error ? error.message : String(error)}",
+    "failed25": "❌ Lấy dữ liệu phễu VIP không thành công",
+    "failed26": "❌ **Chẩn đoán không thành công**\n\n",
+    "failed27": "❌ **Làm mới không thành công**\n\n",
+    "failed28": "❌ **Thanh toán không thành công**\n\n",
+    "failed29": "❌ Lấy danh sách nhà cung cấp quảng cáo không thành công",
+    "failed3": "❌ Xử lý hàng đợi phát sóng không thành công: ${error instanceof Error ? error.message : String(error)}",
+    "failed30": "❌ Lấy danh sách quảng cáo chính thức không thành công",
+    "failed31": "❌ Kích hoạt nhà cung cấp quảng cáo không thành công",
+    "failed32": "❌ Vô hiệu hóa nhà cung cấp quảng cáo không thành công",
+    "failed33": "❌ Kích hoạt quảng cáo chính thức không thành công",
+    "failed34": "❌ Vô hiệu hóa quảng cáo chính thức không thành công",
+    "failed35": "❌ Lấy dữ liệu phân tích không thành công",
+    "failed36": "❌ Lấy dữ liệu quảng cáo không thành công",
+    "failed37": "❌ Đặt mức độ ưu tiên không thành công",
+    "failed38": "❌ Hoàn tiền không thành công: ${error instanceof Error ? error.message : String(error)}",
+    "failed39": "❌ Hoạt động không thành công: ${error instanceof Error ? error.message : String(error)}",
+    "failed4": "❌ Truy vấn trạng thái phát sóng không thành công: ${error instanceof Error ? error.message : String(error)}",
+    "failed40": "❌ Gửi không thành công, vui lòng thử lại sau.",
+    "failed41": "❌ Tạo cuộc trò chuyện không thành công, vui lòng thử lại sau.",
+    "failed5": "❌ Hủy phát sóng không thành công: ${error instanceof Error ? error.message : String(error)}",
+    "failed6": "❌ Dọn dẹp phát sóng không thành công: ${error instanceof Error ? error.message : String(error)}",
+    "failed7": "❌ Đặt lại không thành công: ${errorMessage}\n\nVui lòng thử lại sau.",
+    "failed8": "❌ Tạo phát sóng không thành công, vui lòng thử lại sau.",
+    "failed9": "❌ Làm mới lịch sử trò chuyện không thành công\n\n",
+    "mbti": "❌ Loại MBTI không hợp lệ",
+    "message": "❌ Định dạng bộ lọc không chính xác\n\n${error instanceof Error ? error.message : String(error)}\n\n",
+    "message2": "❌ Lệnh này không có sẵn trong môi trường sản xuất.",
+    "message3": "❌ Đã xảy ra lỗi, vui lòng thử lại sau.\n\nThông báo lỗi: ${error instanceof Error ? error.message : String(error)}",
+    "message4": "❌ Chúng tôi xin lỗi, bạn phải ít nhất 18 tuổi để sử dụng dịch vụ này.\n\nVui lòng quay lại khi bạn đã trưởng thành!",
+    "nickname": "❌ Không thể lấy tên người dùng Telegram",
+    "nickname2": "❌ Tên người dùng không được chứa liên kết URL\n\n",
+    "nickname3": "❌ ${validation.error}\n\nVui lòng nhập lại tên người dùng của bạn:",
+    "quota": "❌ Hạn ngạch chai thư hôm nay đã hết (${quotaDisplay})\n\n💡 Cách để có thêm hạn ngạch:\n",
+    "quota2": "{usedToday} {dailyLimit} ${usedToday} ${dailyLimit}\n\n",
+    "quota3": "{quotaDisplay} ${quotaDisplay}\n\n",
+    "register": "❌ Vui lòng hoàn tất quy trình đăng ký trước.\n\nSử dụng /start để tiếp tục đăng ký.",
+    "register2": "❌ Không tìm thấy dữ liệu người dùng, vui lòng sử dụng /start để đăng ký trước.",
+    "register3": "❌ Bạn phải hoàn tất quy trình đăng ký để nhận chai thư.\n\nSử dụng /start để tiếp tục đăng ký.",
+    "settings": "❌ Bạn có thể đặt tối đa 5 thẻ quan tâm.\n\nVui lòng nhập lại hoặc hủy sửa đổi:",
+    "short": "❌ Mã ngôn ngữ không hợp lệ",
+    "short10": "❌ Quyền truy cập không đủ",
+    "short11": "❌ Chúng ta hãy nói chuyện sau",
+    "short12": "❌ Chọn lại",
+    "short13": "❌ Nhập lại",
+    "short14": "❌ Đóng",
+    "short15": "❌ Chưa được bật",
+    "short2": "❌ Không tìm thấy dữ liệu người dùng",
+    "short3": "❌ Bước hướng dẫn không xác định",
+    "short4": "❌ Lỗi hệ thống",
+    "short5": "❌ Lỗi cấu hình kênh",
+    "short6": "❌ Hoạt động không xác định",
+    "short7": "❌ Không đúng",
+    "short8": "❌ Không",
+    "short9": "❌ Đã xảy ra lỗi",
+    "start": "❌ Đã xảy ra lỗi, vui lòng bắt đầu lại: /start",
+    "stats": "❌ Bạn không có quyền xem thống kê quảng cáo.",
+    "task": "❌ Đã xảy ra lỗi khi xem trung tâm nhiệm vụ, vui lòng thử lại sau.",
+    "text": "❌ Đã xảy ra lỗi khi tính toán kết quả, vui lòng thử lại sau.\n\n",
+    "text10": "❌ Thông tin người gửi không chính xác.",
+    "text11": "❌ Bạn không có quyền xem dữ liệu phân tích.",
+    "text12": "❌ Đã xảy ra lỗi, vui lòng thử lại sau.",
+    "text13": "❌ Bạn không có quyền sử dụng lệnh này.",
+    "text14": "❌ Cách sử dụng không đúng\n\n",
+    "text15": "❌ Độ ưu tiên phải là số nguyên không âm.",
+    "text16": "❌ Thời gian phải là số nguyên dương hoặc",
+    "text17": "❌ Đã xảy ra lỗi trong quá trình xử lý thanh toán, vui lòng liên hệ với bộ phận hỗ trợ khách hàng.\n\n",
+    "text18": "❌ Lý do yêu cầu hoàn tiền phải chứa ít nhất 10 ký tự, vui lòng nhập lại:",
+    "text19": "❌ **Yêu cầu hoàn tiền đã bị từ chối**\n\n",
+    "text2": "❌ Hồ sơ cá nhân chứa các liên kết không cho phép.\n\n",
+    "text20": "❌ Yêu cầu hoàn tiền đã vượt quá thời gian quy định\n\n",
+    "text21": "❌ Yêu cầu hoàn tiền không tồn tại hoặc đã được xử lý.",
+    "text22": "❌ Không tìm thấy hồ sơ thanh toán.",
+    "text23": "❌ Chúng tôi rất tiếc, bạn phải ít nhất 18 tuổi để sử dụng dịch vụ này.\n\n",
+    "text24": "❌ Đã xảy ra lỗi, vui lòng nhập lại.",
+    "text25": "❌ Vui lòng trả lời câu hỏi một cách nghiêm túc\n\n",
+    "text3": "❌ Không phát hiện bạn tham gia kênh, vui lòng tham gia trước khi thử lại.",
+    "text4": "❌ Đã phát hiện bạn đã rời kênh, không thể nhận thưởng.",
+    "text5": "❌ Đã xảy ra lỗi khi bắt đầu hướng dẫn, vui lòng thử lại sau.",
+    "text6": "❌ Đã xảy ra lỗi trong hệ thống, vui lòng thử lại sau.",
+    "text7": "❌ Thời gian phải là một số (phút).",
+    "text8": "❌ Đã xảy ra lỗi, vui lòng thử lại sau.",
+    "text9": "❌ Không thể lấy trạng thái chế độ bảo trì.",
+    "userNotFound": "❌ Người dùng không tồn tại, vui lòng sử dụng /start để đăng ký trước.",
+    "userNotFound2": "❌ Người dùng không tồn tại, vui lòng đăng ký trước.",
+    "userNotFound3": "❌ Người dùng khác không tồn tại.",
+    "userNotFound4": "❌ Người dùng không tồn tại",
+    "userNotFound5": "❌ Người dùng không tồn tại: ${userId}",
+    "userNotFound6": "❌ Người dùng không tồn tại hoặc chưa đăng ký.",
+    "userNotFound7": "❌ Người dùng không tồn tại.",
+    "vip": "❌ Bạn không có quyền xem dữ liệu VIP",
+    "vip2": "❌ Bạn không phải là người dùng VIP và không thể yêu cầu hoàn tiền."
   },
-  channelMembership: {
-    claimButton: `✅ 領取獎勵`,
-    claimReward: `點擊下方按鈕領取獎勵：+1 瓶子`,
-    joined: `🎉 檢測到你已加入官方頻道！`,
-    leftChannel: `❌ 檢測到你已離開頻道，無法領取獎勵。`,
-    notJoined: `❌ 未檢測到你加入頻道，請先加入後再試`,
-    oneTimeReward: `💡 這是一次性獎勵，領取後會追加到今天的額度中。`,
-    rewardAdded: `獎勵：+1 瓶子（已追加到今天的額度）`,
-    rewardGranted: `✅ 獎勵已發放！+1 瓶子`,
-    taskCompleted: `🎉 恭喜完成任務：加入官方頻道！`,
-    viewMoreTasks: `💡 使用 /tasks 查看更多任務`,
-    viewTaskCenter: `[📋 查看任務中心] → /tasks`,
-  },
-  common: {
-    ad: `📺 今日廣告：\${adsWatched}/\${AD_REWARD_CONSTANTS.MAX_ADS_PER_DAY} | 已獲得 \${quotaEarned} 個額度 | 剩餘 \${remaining} 次`,
-    ad2: `📺 今日廣告：\${adsWatched}/\${AD_REWARD_CONSTANTS.MAX_ADS_PER_DAY} ✅ 已達上限 | 已獲得 \${quotaEarned} 個額度`,
-    ad3: `📺 今日廣告：0/\${AD_REWARD_CONSTANTS.MAX_ADS_PER_DAY} | 已獲得 0 個額度`,
-    ad4: `• 📺 觀看廣告（剩餘 \${remaining}/20 次）
-`,
-    ad5: `• 📺 觀看廣告（今日已達上限）
-`,
-    ad6: `• 避免廣告或不當內容
-
-`,
-    ad7: `📊 暫無官方廣告`,
-    ad8: `📢 垃圾廣告`,
-    ad9: `💡 還有更多官方廣告可以觀看！`,
-    admin: `請稍後再試，或聯繫管理員。`,
-    age: `無效的年齡範圍：\${trimmedValue}（格式必須是 min-max，如 18-25）`,
-    age2: `年齡：\${filters.age.min}-\${filters.age.max} 歲`,
-    age3: `無效的年齡範圍：\${trimmedValue}（年齡必須在 18-99 之間）`,
-    age4: `無效的年齡範圍：\${trimmedValue}（最小年齡不能大於最大年齡）`,
-    anonymous: `匿名`,
-    anonymousUser: `匿名用戶`,
-    anyBloodType: `🌈 任何血型`,
-    anyone: `🌈 任何人`,
-    back: `💡 輸入 /menu 可隨時返回主選單`,
-    back2: `↩️ 返回編輯資料`,
-    back3: `🏠 返回主選單`,
-    back4: `↩️ 返回`,
-    backToMainMenu: `返回主选单`,
-    birthday: `🎂 生日：\${updatedUser.birthday}
-`,
-    birthday2: `🎂 生日：\${user.birthday}
-`,
-    birthday3: `當天生日`,
-    bloodType: `🩸 血型：\${bloodTypeText}
-
-`,
-    bloodType2: `🩸 **編輯血型**
-
-`,
-    bloodType3: `請選擇你的血型：`,
-    bloodType4: `🩸 編輯血型`,
-    bloodTypeA: `🩸 A 型`,
-    bloodTypeAB: `🩸 AB 型`,
-    bloodTypeB: `🩸 B 型`,
-    bloodTypeO: `🩸 O 型`,
-    bottle: `瓶子內容太短，至少需要 \${MIN_BOTTLE_LENGTH} 個字符（目前 \${trimmedContent.length} 個字符）`,
-    bottle10: `獎勵：+1 瓶子（已追加到今天的額度）
-
-`,
-    bottle11: `你們將不會再被匹配到對方的漂流瓶。
-
-`,
-    bottle12: `你想在丟漂流瓶時尋找什麼樣的對象？
-
-`,
-    bottle13: `使用 /throw 丟出漂流瓶開始聊天吧！`,
-    bottle14: `瓶子內容包含不適當的內容，請修改後重新提交`,
-    bottle15: `點擊下方按鈕領取獎勵：+1 瓶子
-
-`,
-    bottle16: `💡 下次丟漂流瓶時將自動使用此設置。`,
-    bottle17: `🌊 丟出漂流瓶 - /throw
-`,
-    bottle18: `🎣 撿起漂流瓶 - /catch
-`,
-    bottle19: `🎉 確認後可獲得 +1 瓶子獎勵！`,
-    bottle2: `瓶子內容太長，最多 \${MAX_BOTTLE_LENGTH} 個字符（目前 \${content.length} 個字符）`,
-    bottle20: `✏️ 請輸入新的漂流瓶內容：
-
-`,
-    bottle21: `• 使用 /catch 撿新的漂流瓶`,
-    bottle22: `• /throw - 丟出漂流瓶
-`,
-    bottle23: `• /catch - 撿起漂流瓶
-`,
-    bottle24: `• /throw - 丟漂流瓶
-`,
-    bottle25: `• /catch - 撿漂流瓶
-`,
-    bottle26: `• 發送草稿內容來丟出漂流瓶`,
-    bottle27: `📦 **丟出漂流瓶**
-`,
-    bottle28: `🎣 **撿起漂流瓶**
-`,
-    bottle29: `💡 完成任務可獲得額外瓶子`,
-    bottle3: `• 漂流瓶: \${bottlesCount?.count }
-`,
-    bottle30: `瓶子內容不允許包含任何連結`,
-    bottle31: `🍾 丟漂流瓶
-
-`,
-    bottle32: `瓶子內容不能為空`,
-    bottle33: `丟出第一個瓶子`,
-    bottle34: `撿起第一個瓶子`,
-    bottle4: `匿名漂流瓶交友平台，透過 MBTI 和星座幫你找到志同道合的朋友
-
-`,
-    bottle5: `⏰ 對話已超時
-
-對方可能已離開。使用 /catch 撿新的瓶子吧！`,
-    bottle6: `💡 使用 /catch 撿新的漂流瓶開始新對話。`,
-    bottle7: `🍾 丟漂流瓶
-
-你想要尋找什麼樣的聊天對象？`,
-    bottle8: `快去丟瓶子認識新朋友吧！ /throw
-
-`,
-    bottle9: `看看別人的漂流瓶，有興趣就回覆開始聊天
-
-`,
-    broadcast: `廣播將在後台發送，使用 /broadcast_status \${broadcastId} 查看進度。`,
-    broadcast10: `📊 最近 5 條廣播記錄
-
-`,
-    broadcast11: `維護通知已廣播給所有用戶。
-`,
-    broadcast12: `恢復通知已廣播給所有用戶。`,
-    broadcast13: `📊 目前沒有廣播記錄`,
-    broadcast14: `📊 廣播狀態
-
-`,
-    broadcast15: `所有廣播狀態正常。`,
-    broadcast2: `大規模廣播需要升級系統架構，請參考 BROADCAST_SYSTEM_REDESIGN.md`,
-    broadcast3: `使用 /broadcast_status 查看所有廣播記錄。`,
-    broadcast4: `\${statusEmoji} 廣播隊列處理已觸發
-
-`,
-    broadcast5: `/broadcast_cancel <廣播ID>
-
-`,
-    broadcast6: `廣播 ID: \${ids.join(', ')}
-
-`,
-    broadcast7: `正在處理廣播 #\${broadcast.id}
-`,
-    broadcast8: `目前沒有待處理或卡住的廣播。
-
-`,
-    broadcast9: `廣播 ID: \${ids.join(`,
-    cancel: `請移除這些連結後重新輸入或取消編輯：`,
-    cancel2: `狀態: 已取消
-
-`,
-    cancel3: `請重新輸入或取消編輯：`,
-    cancelled: `已取消`,
-    catch: `⏰ 撿瓶流程已超時
-
-請使用 /catch 重新開始。`,
-    catch2: `你撿瓶回覆 → 對方也回覆 → 開始匿名聊天`,
-    catch3: `• 友善、尊重的內容更容易被撿到哦～`,
-    catch4: `撿瓶流程`,
-    close: `❌ 關閉`,
-    complete: `🎉 **廣告觀看完成！**
-
-✅ 獲得 **+1 個額度**
-📊 今日已觀看：**\${updated.ads_watched}/20** 次
-🎁 今日已獲得：**\${updated.quota_earned}** 個額度
-📈 剩餘次數：**\${result.remaining_ads}** 次
-
-\${result.remaining_ads > 0 ? '💡 繼續觀看廣告可獲得更多額度！' : '✅ 今日廣告已達上限'}`,
-    complete2: `📺 **觀看廣告獲得額度**
-
-🎁 完成觀看可獲得 **+1 個額度**
-📊 今日剩餘：**\${remainingAds}/20** 次
-
-👇 點擊下方按鈕開始觀看`,
-    complete3: `完成時間: \${new Date(broadcast.completedAt).toLocaleString('zh-TW')}
-`,
-    complete4: `預計完成：\${new Date(maintenance.endTime).toLocaleString('zh-TW')}
-`,
-    complete5: `🎉 \${testTitle}完成！
-
-`,
-    complete6: `接近截止日期才完成`,
-    complete7: `即將完成`,
-    complete8: `盡早完成`,
-    confirm: `為了保護所有使用者的安全，請確認你了解以下事項：
-
-`,
-    confirm2: `🌍 **確認你的國家/地區**
-
-`,
-    confirm3: `🛡️ 最後一步：反詐騙安全確認
-
-`,
-    confirm4: `🔍 **廣播過濾器確認**
-
-`,
-    confirm5: `🌍 確認你的國家/地區`,
-    confirm6: `**確認清理？**
-`,
-    confirm7: `請確認：`,
-    conversation: `📨 \${formatIdentifier(conv.identifier)} 的對話（\${conv.message_count} 則訊息）
-`,
-    conversation10: `💡 **沒有找到對話歷史**
-
-`,
-    conversation11: `部分對話歷史可能未能更新，請稍後再試。`,
-    conversation12: `
-📨 **最近對話：**
-
-`,
-    conversation13: `💬 你還沒有任何對話記錄
-
-`,
-    conversation14: `💬 繼續對話：/reply
-`,
-    conversation15: `您還沒有任何對話記錄。
-
-`,
-    conversation16: `對話可能已結束或不存在。`,
-    conversation17: `💬 繼續對話`,
-    conversation18: `開始第一次對話`,
-    conversation2: `💬 **與 \${formatIdentifier(identifier)} 的對話**
-
-`,
-    conversation3: `• 對話開始：\${formatDate(stats.first_message_time)}
-`,
-    conversation4: `• 對話: \${conversationsCount?.count }
-`,
-    conversation5: `💬 回覆對話 \${conversationIdentifier}`,
-    conversation6: `您的頭像緩存已刷新，下次查看對話歷史時將顯示最新頭像。
-
-`,
-    conversation7: `💡 為了保護隱私和安全，對話中只允許純文字訊息。
-
-`,
-    conversation8: `使用 /history 查看所有對話
-
-`,
-    conversation9: `🔄 正在刷新所有對話歷史...
-
-`,
-    country: `無效的國家代碼：\${trimmedValue}（必須是 2 個大寫字母，如 TW, US, JP）`,
-    country2: `🌍 **請選擇你的國家/地區**
-
-`,
-    country3: `國家：\${filters.country}`,
-    end: `結束：\${endTime.toLocaleString('zh-TW')}
-
-`,
-    end2: `結束：\${endTime.toLocaleString(`,
-    female: `女`,
-    free: `免費`,
-    gender: `👤 性別：\${gender}
-`,
-    gender2: `無效的性別值：\${trimmedValue}（必須是 male, female 或 other）`,
-    gender3: `👤 性別：\${gender}
-`,
-    gender4: `👤 性別：\${updatedUser.gender ===`,
-    gender5: `👤 性別：\${user.gender ===`,
-    gender6: `現在請選擇你的性別：
-
-`,
-    gender7: `其他性別`,
-    help: `MBTI 性格測驗可以幫助我們為你找到更合適的聊天對象～
-
-`,
-    help2: `❓ 查看幫助 - /help`,
-    help3: `• /help - 查看幫助`,
-    invite: `• 邀請記錄總數: \${inviteStats?.total }
-`,
-    invite2: `邀請碼: \${user.invite_code }
-`,
-    invite3: `被誰邀請: \${user.invited_by }
-
-`,
-    loading: `✅ 正在加載......`,
-    login: `一般用戶將無法使用服務，只有管理員可以登入。`,
-    male: `男`,
-    mbti: `無效的 MBTI 類型：\${trimmedValue}（必須是以下之一：\${VALID_MBTI.join(', ')}）`,
-    mbti10: `✍️ 手動輸入 MBTI`,
-    mbti11: `🧠 MBTI 選單`,
-    mbti12: `MBTI 完整測驗`,
-    mbti13: `MBTI 快速測驗`,
-    mbti2: `你的 MBTI 類型是：**\${result.type}**
-
-`,
-    mbti3: `當前 MBTI：**\${mbti}**
-`,
-    mbti4: `🧠 **選擇 MBTI 測驗版本**
-
-`,
-    mbti5: `🧠 **MBTI 性格類型管理**
-
-`,
-    mbti6: `⚙️ 進階篩選（MBTI/星座）`,
-    mbti7: `• 手動修改你的 MBTI 類型`,
-    mbti8: `請選擇你的 MBTI 類型：`,
-    mbti9: `🧠 重新測試 MBTI`,
-    message: `\${typeEmoji} **\${ad.title}**
-\${statusEmoji} 狀態: \${status}
-
-📊 **統計數據**
-• 展示次數: \${stats.total_views}
-• 點擊次數: \${stats.total_clicks}
-• 點擊率 (CTR): \${stats.ctr}%`,
-    message10: `/broadcast_filter gender=female,age=18-25,country=TW 大家好！
-`,
-    message11: `\${banHours} \${user.language_pref === 'en' ? 'hours' : '小時'}`,
-    message12: `時間: \${new Date(b.created_at).toLocaleString('zh-TW')}
-
-`,
-    message13: `
-隊列中還有 \${pendingBroadcasts.results.length - 1} 個廣播待處理
-`,
-    message14: `進度: \${broadcast.sent_count}/\${broadcast.total_users}
-`,
-    message15: `\${days} \${user.language_pref === 'en' ? 'days' : '天'}`,
-    message16: `目標: \${getBroadcastTargetName(broadcast.targetType)}
-`,
-    message17: `狀態：\${maintenance.isActive ? '✅ 維護中' : '❌ 未啟用'}
-`,
-    message18: `🚫 禁止的網址：
-\${urlCheck.blockedUrls?.map((url) =>`,
-    message19: `• 最後訊息：\${formatDate(stats.last_message_time)}
-`,
-    message2: `birthday = '2000-01-01',
- age = 25,
- zodiac_sign = 'Capricorn',
- anti_fraud_score = 100,
- terms_agreed = 1`,
-    message20: `時間：\${formatDate(conv.last_message_time)}
-
-`,
-    message21: `預計時長：\${maintenance.estimatedDuration} 分鐘
-`,
-    message22: `使用 /broadcast_status \${broadcastId} 查看進度。`,
-    message23: `💡 請長按你要回復的消息，在出現的選單中選擇「回覆」後，在聊天框中輸入回復內容。`,
-    message24: `📊 今日已發送：\${usedToday + 1}/\${dailyLimit} 則`,
-    message25: `/broadcast_filter zodiac=Scorpio 天蠍座專屬訊息`,
-    message26: `• 已激活: \${inviteStats?.activated }
-`,
-    message27: `• 待激活: \${inviteStats?.pending }
-
-`,
-    message28: `/maintenance_enable <時長(分鐘)> [維護訊息]
-
-`,
-    message29: `進度: \${b.sent_count}/\${b.total_users}
-`,
-    message3: `進度: \${broadcast.sentCount}/\${broadcast.totalUsers} (\${progress.percentage}%)
-`,
-    message30: `• 訊息: \${messagesCount?.count }
-
-`,
-    message31: `• 對方發送：\${stats.partner_messages} 則
-`,
-    message32: `指揮官 - 大膽、富有想像力且意志強大的領導者，總能找到或創造解決方法。`,
-    message33: `💡 使用 /broadcast_status <id> 查看詳細信息`,
-    message34: `🏷️ 興趣標籤：\${updatedUser.interests ||`,
-    message35: `執政官 - 極有同情心、受歡迎且樂於助人的人，總是渴望為社群做出貢獻。`,
-    message36: `/broadcast_filter <過濾器> <訊息內容>
-
-`,
-    message37: `**訊息內容：**
-\${broadcastMessage}
-
-`,
-    message38: `• 總訊息數：\${stats.total_messages} 則
-`,
-    message39: `競選者 - 熱情、有創造力且社交能力強的自由精神，總能找到理由微笑。`,
-    message4: `💡 使用 /history \${formatIdentifier(conversations[0].identifier)} 查看完整對話
-
-`,
-    message40: `剩餘時間：\${remaining.remainingText}
-`,
-    message41: `表演者 - 自發、精力充沛且熱情的表演者，生活在他們周圍從不無聊。`,
-    message42: `用戶數：\${broadcast.total_users} 人
-`,
-    message43: `• 你發送：\${stats.user_messages} 則
-`,
-    message44: `調停者 - 詩意、善良的利他主義者，總是熱情地為正義事業而努力。`,
-    message45: `
-請稍後使用 /broadcast_status 查看進度。`,
-    message46: `昵稱: \${user.nickname }
-`,
-    message47: `• 獎勵：\${stats.total_rewards}
-
-`,
-    message48: `企業家 - 聰明、精力充沛且善於洞察的人，真正享受生活在邊緣。`,
-    message49: `🎁 獎勵：+\${ad.reward_quota} 個永久額度`,
-    message5: `時間：\${new Date().toLocaleString('zh-TW', { timeZone: 'Asia/Taipei' })}
-`,
-    message50: `時間：\${new Date().toLocaleString(`,
-    message51: `使用 /broadcast_status 查看更新後的狀態。`,
-    message52: `目標: \${broadcast.target_type}
-`,
-    message53: `使用 /broadcast_status 查看更新後的記錄。`,
-    message54: `• 如果您更換了 Telegram 頭像，系統會自動檢測
-`,
-    message55: `約 \${Math.ceil(totalSeconds)} 秒`,
-    message56: `啟用者：\${maintenance.enabledBy}
-`,
-    message57: `邏輯學家 - 具有創新精神的發明家，對知識有著止不住的渴望。`,
-    message58: `提倡者 - 安靜而神秘，同時鼓舞人心且不知疲倦的理想主義者。`,
-    message59: `守衛者 - 非常專注且溫暖的守護者，時刻準備著保護所愛之人。`,
-    message6: `• 展示：\${stats.total_views} | 點擊：\${stats.total_clicks} (\${stats.ctr}%)
-`,
-    message60: `探險家 - 靈活且迷人的藝術家，時刻準備著探索和體驗新事物。`,
-    message61: `• 長按對方訊息回覆 /block 可封鎖此使用者
-`,
-    message62: `請確保回覆的是對方發送的訊息（帶有 # 標識符）。`,
-    message63: `/broadcast_non_vip <訊息內容>`,
-    message64: `建立你的第一個連接（長按訊息 → 選擇「回覆」）`,
-    message65: `訊息: \${messagePreview}
-`,
-    message66: `3. 遇到可疑訊息時，你會提高警覺嗎？
-
-`,
-    message67: `💡 VIP 用戶每日可發送 100 則訊息。`,
-    message68: `/broadcast <訊息內容>
-
-`,
-    message69: `/broadcast_vip <訊息內容>`,
-    message7: `
-• 驗證次數: \${stats.total_verified}
-• 驗證率: \${stats.verification_rate}%`,
-    message70: `最後訊息：\${preview}
-`,
-    message71: `廣播訊息不能超過 4000 個字符`,
-    message72: `1️⃣ 長按對方的訊息
-`,
-    message73: `請使用文字訊息與對方交流。`,
-    message74: `(尚無訊息)
-
-`,
-    message75: `獲取最新消息和活動`,
-    message76: `廣播訊息不能為空`,
-    message77: `(無訊息)`,
-    message8: `
-• 獎勵發放: \${stats.total_rewards}
-• 獎勵率: \${stats.reward_rate}%`,
-    message9: `
-• 剩餘展示: \${ad.max_views - ad.current_views}/\${ad.max_views}`,
-    newUser: `新用戶`,
-    next: `下一頁`,
-    nickname: `💡 請輸入一個簡單的暱稱，不要包含 http:// 或 https:// 等連結。
-
-`,
-    nickname10: `請輸入新的暱稱：
-
-`,
-    nickname11: `• 請勿使用暱稱發送廣告`,
-    nickname12: `📝 編輯暱稱`,
-    nickname13: `✍️ 自訂暱稱`,
-    nickname2: `很好！你的暱稱是：\${truncatedNickname}
-
-`,
-    nickname3: `📝 暱稱：\${updatedUser.nickname}
-`,
-    nickname4: `📝 暱稱：\${user.nickname}
-`,
-    nickname5: `• 暱稱長度限制 36 個字
-`,
-    nickname6: `📝 **編輯暱稱**
-
-`,
-    nickname7: `✏️ 請選擇你的暱稱：
-
-`,
-    nickname8: `✏️ 請輸入你的暱稱：
-
-`,
-    nickname9: `請告訴我你的暱稱（顯示名稱）：`,
-    no: `否`,
-    none: `無`,
-    notRegistered: `未注册`,
-    notSet: `未設定`,
-    operationFailed: `❌ 發生錯誤`,
-    pageInfo: `第 {current} / {total} 頁`,
-    prev: `上一頁`,
-    profile: `👤 查看個人資料 - /profile
-`,
-    profile2: `✏️ **編輯個人資料**
-
-`,
-    profile3: `（你也可以稍後在個人資料中設置）`,
-    quota: `💡 升級 VIP 可獲得更多配額（100 則/天）：/vip`,
-    quota2: `• 💎 升級 VIP（每天 30 個配額）`,
-    quota3: `• 🎁 邀請好友（每人 +1 配額）
-`,
-    quota4: `• ✨ 完成任務（獲得永久配額）
-`,
-    register: `
-
-💡 這是快速測驗（\${testInfo}），結果僅供參考。
-完成註冊後，可使用 /mbti 重新測驗。
-
-`,
-    register10: `🎉 恭喜完成註冊！
-
-`,
-    register2: `
-
-💡 這是完整測驗（\${testInfo}），結果更準確。
-完成註冊後，可使用 /mbti 重新測驗。
-
-`,
-    register3: `註冊步驟: \${user.onboarding_step}
-`,
-    register4: `⏰ 註冊流程已超時
-
-請使用 /start 重新開始註冊。`,
-    register5: `或使用：/dev_restart（自動開始註冊）
-
-`,
-    register6: `💡 現在可以重新開始測試註冊流程。
-
-`,
-    register7: `🔄 重新註冊：/start
-`,
-    register8: `💡 完成註冊後，你可以：
-`,
-    register9: `已自動完成註冊流程。
-
-`,
-    report: `🚨 **舉報不當內容** (#\${conversationIdentifier})
-
-`,
-    report2: `多次被舉報 / Multiple reports`,
-    report3: `💡 這樣可以準確指定要舉報的對象。`,
-    report4: `請選擇舉報原因：`,
-    selected: `已選擇`,
-    settings: `🧠 MBTI：\${updatedUser.mbti_result }（可重新測試）`,
-    settings10: `你還沒有設定 MBTI 類型。
-
-`,
-    settings11: `設定地區`,
-    settings12: `未設定`,
-    settings13: `未設定`,
-    settings14: `未設定`,
-    settings15: `未設定`,
-    settings16: `未設定`,
-    settings17: `未設定`,
-    settings18: `未設定`,
-    settings19: `未設定`,
-    settings2: `🏷️ 興趣標籤：\${updatedUser.interests}
-`,
-    settings20: `未設定`,
-    settings21: `未設定`,
-    settings22: `未設定`,
-    settings23: `未設定`,
-    settings24: `未設定`,
-    settings25: `未設定`,
-    settings26: `未設定`,
-    settings27: `未設定`,
-    settings28: `未設定`,
-    settings29: `未設定`,
-    settings3: `🧠 MBTI：\\$（可重新測試）`,
-    settings30: `未設定`,
-    settings31: `未設定`,
-    settings32: `未設定`,
-    settings33: `未設定`,
-    settings34: `未設定`,
-    settings35: `未設定`,
-    settings4: `🏷️ 興趣標籤：\${user.interests }
-`,
-    settings5: `📖 個人簡介：\${updatedUser.bio}
-`,
-    settings6: `🌍 地區：\${updatedUser.city}
-`,
-    settings7: `📖 個人簡介：\${user.bio}
-`,
-    settings8: `🌍 地區：\${user.city }
-`,
-    settings9: `你可以隨時使用 /mbti 指令重新設定。`,
-    short: `💡 你可以：
-`,
-    short10: `工作時，你更喜歡：`,
-    short100: `情感和故事`,
-    short101: `效率和結果`,
-    short102: `共識和團結`,
-    short103: `自由和彈性`,
-    short104: `保留選擇權`,
-    short105: `加line`,
-    short106: `測驗結果`,
-    short107: `先聽後說`,
-    short108: `小而親密`,
-    short109: `團隊合作`,
-    short11: `閱讀時，你更喜歡：`,
-    short110: `獨立工作`,
-    short111: `邊說邊想`,
-    short112: `獨自消化`,
-    short113: `實際應用`,
-    short114: `創新想法`,
-    short115: `新的嘗試`,
-    short116: `是否合理`,
-    short117: `是否有益`,
-    short118: `堅持原則`,
-    short119: `維持關係`,
-    short12: `工作中，你更重視：`,
-    short120: `公正果斷`,
-    short121: `體貼關懷`,
-    short122: `整齊有序`,
-    short123: `隨性自在`,
-    short124: `快速決定`,
-    short125: `感到不安`,
-    short126: `感到興奮`,
-    short127: `訪問鏈接`,
-    short128: `訂閱頻道`,
-    short129: `銀行帳號`,
-    short13: `規劃未來時，你會：`,
-    short130: `備註：`,
-    short131: `發送中`,
-    short132: `信用卡`,
-    short133: `比特币`,
-    short134: `加微信`,
-    short135: `加qq`,
-    short136: `手机号`,
-    short137: `联系我`,
-    short138: `一夜情`,
-    short139: `性服务`,
-    short14: `分析問題並提供建議`,
-    short140: `騙錢`,
-    short141: `投資`,
-    short142: `賺錢`,
-    short143: `匯款`,
-    short144: `轉帳`,
-    short145: `密碼`,
-    short146: `传销`,
-    short147: `金融`,
-    short148: `理财`,
-    short149: `股票`,
-    short15: `面對變化，你通常：`,
-    short150: `期货`,
-    short151: `外汇`,
-    short152: `电话`,
-    short153: `约炮`,
-    short154: `援交`,
-    short155: `自杀`,
-    short156: `跳楼`,
-    short157: `暴力`,
-    short158: `未設置`,
-    short159: `未生成`,
-    short16: `感謝你的支持！❤️`,
-    short160: `測試用戶`,
-    short161: `測試用戶`,
-    short162: `結果更準確`,
-    short163: `需要關注`,
-    short164: `加入群組`,
-    short165: `查看詳情`,
-    short17: `讓其他用戶更了解你`,
-    short18: `這正確嗎？
-
-`,
-    short19: `🗑️ 刪除草稿`,
-    short2: `🌈 任何人都可以`,
-    short20: `🏷️ 編輯興趣`,
-    short21: `請選擇測驗版本：`,
-    short22: `你的工作方式是：`,
-    short23: `有明確的截止日期`,
-    short24: `很快就能熟絡起來`,
-    short25: `需要時間慢慢熟悉`,
-    short26: `壓力大時，你會：`,
-    short27: `列清單按計劃購買`,
-    short28: `卡住（重試中）`,
-    short29: `✏️ 修改內容`,
-    short3: `✏️ 繼續編輯資料`,
-    short30: `📖 編輯簡介`,
-    short31: `🌍 編輯地區`,
-    short32: `💝 匹配偏好`,
-    short33: `正在更新...`,
-    short34: `🔞 色情內容`,
-    short35: `主動與他人交談`,
-    short36: `等待他人來找我`,
-    short37: `週末你更喜歡：`,
-    short38: `實際經驗和事實`,
-    short39: `按部就班的方法`,
-    short4: `📝 重新進行測驗`,
-    short40: `探索創新的方式`,
-    short41: `邏輯和客觀分析`,
-    short42: `情感和人際和諧`,
-    short43: `提前計劃和準備`,
-    short44: `隨機應變和靈活`,
-    short45: `保持開放的選擇`,
-    short46: `使用比喻和類比`,
-    short47: `傾聽並給予安慰`,
-    short48: `你的房間通常：`,
-    short49: `購物時，你會：`,
-    short5: `📝 進行快速測驗`,
-    short50: `讓別人更了解你`,
-    short51: `找到同城的朋友`,
-    short52: `看看別人的故事`,
-    short53: `至少 20 字`,
-    short54: `: 主動配對,`,
-    short55: `女生（默認）`,
-    short56: `男生（默認）`,
-    short57: `結果僅供參考`,
-    short58: `你可以：
-`,
-    short59: `和朋友出去玩`,
-    short6: `至少需要一個過濾器`,
-    short60: `在家獨處休息`,
-    short61: `感到充滿活力`,
-    short62: `感到需要休息`,
-    short63: `直覺和可能性`,
-    short64: `關注具體細節`,
-    short65: `關注整體概念`,
-    short66: `直接指出問題`,
-    short67: `考慮對方感受`,
-    short68: `制定詳細行程`,
-    short69: `隨心所欲探索`,
-    short7: `新用戶******`,
-    short70: `積極發表意見`,
-    short71: `你的朋友圈：`,
-    short72: `廣泛但不深入`,
-    short73: `未來和可能性`,
-    short74: `使用具體例子`,
-    short75: `已驗證的方法`,
-    short76: `基於現實條件`,
-    short77: `想像各種可能`,
-    short78: `有規律和結構`,
-    short79: `包含敏感詞彙`,
-    short8: `批評他人時，你會：`,
-    short80: `填寫興趣標籤`,
-    short81: `完善自我介紹`,
-    short82: `加入官方頻道`,
-    short83: `寫下你的故事`,
-    short84: `👨 男生`,
-    short85: `👩 女生`,
-    short86: `👨 男性`,
-    short87: `👩 女性`,
-    short88: `審核時間：`,
-    short89: `❓ 不確定`,
-    short9: `旅行時，你傾向於：`,
-    short90: `你更看重：`,
-    short91: `公平和正義`,
-    short92: `同情和理解`,
-    short93: `先想好再說`,
-    short94: `找朋友聊天`,
-    short95: `實用的指南`,
-    short96: `理論和概念`,
-    short97: `現在和過去`,
-    short98: `你更信任：`,
-    short99: `事實和數據`,
-    start: `開始時間：\${new Date(maintenance.startTime).toLocaleString('zh-TW')}
-`,
-    start10: `開始使用 →`,
-    start2: `開始時間: \${new Date(broadcast.startedAt).toLocaleString('zh-TW')}
-`,
-    start3: `開始：\${startTime.toLocaleString('zh-TW')}
-`,
-    start4: `開始時間: \${broadcast.started_at}
-
-`,
-    start5: `開始：\${startTime.toLocaleString(`,
-    start6: `🎉 **準備好了！開始交朋友吧～**
-
-`,
-    start7: `• 使用 /throw 重新開始
-`,
-    start8: `📺 開始觀看廣告`,
-    start9: `開始你的交友之旅`,
-    stats: `💡 使用 /ad_stats {id} 查看詳細統計`,
-    stats2: `• /stats - 查看統計
-
-`,
-    stats3: `📊 查看統計 - /stats
-`,
-    stats4: `📊 **官方廣告統計**
-
-`,
-    stats5: `邀請統計:
-`,
-    stats6: `統計:
-`,
-    success: `購買成功`,
-    systemError: `❌ 系統發生錯誤`,
-    task: `🎉 恭喜完成任務：加入官方頻道！
-
-`,
-    task2: `[📋 查看任務中心] → /tasks`,
-    task3: `• /tasks - 查看任務中心
-`,
-    task4: `💡 使用 /tasks 查看更多任務`,
-    task5: `處理任務時，你會：`,
-    task6: `📋 查看任務`,
-    text: `目標：\${broadcast.target_type}
-`,
-    text10: `📖 個人簡介：\${updatedUser.bio ||`,
-    text100: `💡 請在下方輸入框輸入內容`,
-    text101: `這可能需要一些時間，請稍候。`,
-    text102: `你可以隨時使用以下命令：
-`,
-    text103: `🛠️ 系統維護通知
-
-`,
-    text104: `🛠️ 維護模式狀態
-
-`,
-    text105: `評價一個想法時，你首先考慮：`,
-    text106: `⏱️ 約 2-3 分鐘
-`,
-    text107: `⏱️ 約 5-8 分鐘
-`,
-    text108: `📚 我想了解更多安全知識`,
-    text109: `立即發送（約 1-2 秒）`,
-    text11: `\${daysAgo} 天前`,
-    text110: `2️⃣ 選擇「回覆」
-`,
-    text111: `**過濾器格式：**
-`,
-    text112: `• 最短 5 個字符
-`,
-    text113: `• 不能包含網址連結
-`,
-    text114: `請輸入你的地區：
-
-`,
-    text115: `• 你可以隨時修改此設置`,
-    text116: `• 最多 5 個標籤
-`,
-    text117: `📋 快速版（12 題）`,
-    text118: `📚 完整版（36 題）`,
-    text119: `• 進行更詳細的測驗
-`,
-    text12: `總經理 - 出色的管理者，在管理事務或人員方面無與倫比。`,
-    text120: `💡 **提示：**
-`,
-    text121: `學習新事物時，你更喜歡：`,
-    text122: `**操作步驟：**
-`,
-    text123: `🇺🇳 使用聯合國旗`,
-    text124: `要直接發送這個草稿嗎？`,
-    text125: `這可能需要幾秒鐘時間。`,
-    text126: `
-感謝您的耐心等待！`,
-    text127: `維護時長最少 5 分鐘`,
-    text128: `在社交場合中，你通常：`,
-    text129: `解決問題時，你更依賴：`,
-    text13: `💡 這將顯示在你的資料卡上，讓其他用戶更了解你。
-`,
-    text130: `在團隊中，你更傾向於：`,
-    text131: `思考問題時，你傾向於：`,
-    text132: `描述事物時，你傾向於：`,
-    text133: `朋友向你傾訴時，你會：`,
-    text134: `團隊決策時，你更關注：`,
-    text135: `你認為好的領導者應該：`,
-    text136: `目標: 所有用戶
-`,
-    text137: `✏️ 請輸入新的內容`,
-    text138: `💰 詐騙 / 釣魚`,
-    text139: `😡 騷擾 / 辱罵`,
-    text14: `語言: \${user.language_pref}
-`,
-    text140: `參加聚會後，你通常：`,
-    text141: `做決定時，你更重視：`,
-    text142: `遇到新朋友時，你會：`,
-    text143: `衝突中，你更傾向於：`,
-    text144: `你更容易被說服通過：`,
-    text145: `你更喜歡的生活方式：`,
-    text146: `做決定時，你傾向於：`,
-    text147: `隨意逛逛看到喜歡就買`,
-    text148: `)} 到期。
-
-`,
-    text149: `📋 法律文檔僅提供英文版本。`,
-    text15: `🌍 地區：\${updatedUser.city ||`,
-    text150: `📋 法的文書は英語版のみ提供されています。`,
-    text16: `
-
-✅ 需要驗證：加入群組/頻道後點擊「驗證」按鈕`,
-    text17: `目標用戶數：\${userIds.length}
-
-`,
-    text18: `預計時間: \${estimatedTime}
-
-`,
-    text19: `/broadcast_cleanup confirm`,
-    text2: `請使用 /broadcast_filter 查看正確格式。`,
-    text20: `💝 匹配偏好：\${matchPrefText}
-`,
-    text21: `辯論家 - 聰明好奇的思想家，無法抗拒智力上的挑戰。`,
-    text22: `寫下你的心情或想法，系統會幫你找到合適的人
-
-`,
-    text23: `物流師 - 實際且注重事實的個人，可靠性不容懷疑。`,
-    text24: `鑒賞家 - 大膽而實際的實驗者，擅長使用各種工具。`,
-    text25: `💡 這是一次性獎勵，領取後會追加到今天的額度中。`,
-    text26: `符合用戶數: \${totalUsers} 人
-`,
-    text27: `• 默認為異性（男生尋找女生，女生尋找男生）
-`,
-    text28: `狀態: \${progress.status}
-`,
-    text29: `\${daysAgo} 小時前`,
-    text3: `**過濾條件：**
-\${filtersDesc}
-
-`,
-    text30: `約 \${remainingMinutes} 分鐘`,
-    text31: `約 \${hours} 小時 \${mins} 分鐘`,
-    text32: `維護時長不能超過 24 小時（1440 分鐘）`,
-    text33: `用戶數: \${totalUsers} 人
-`,
-    text34: `目標: \${b.target_type}
-`,
-    text35: `過濾條件: \${filtersDesc}
-`,
-    text36: `• 最少 4 個字符，最多 36 個字符
-`,
-    text37: `🇺🇳 如果找不到，可以選擇「聯合國旗」`,
-    text38: `📖 個人簡介：\${user.bio ||`,
-    text39: `請輸入你的興趣標籤（用逗號分隔）：
-
-`,
-    text4: `/maintenance_enable 60 系統升級維護`,
-    text40: `• 例如：音樂, 電影, 旅行, 美食
-`,
-    text41: `服務已恢復正常，感謝您的耐心等待！
-
-`,
-    text42: `🌍 地區：\${user.city ||`,
-    text43: `來源：\${sourceText}
-
-`,
-    text44: `未知的過濾器：\${trimmedKey}`,
-    text45: `系統正在進行維護，暫時無法使用。
-
-`,
-    text46: `我們根據你的語言設置，推測你來自：
-`,
-    text47: `• 每個標籤最多 20 個字符
-
-`,
-    text48: `時長：\${duration} 分鐘
-`,
-    text49: `1. 你了解網路交友的安全風險嗎？
-`,
-    text5: `👋 歡迎回來，\${user.nickname}！
-
-`,
-    text50: `2. 你會保護好自己的個人資訊嗎？
-`,
-    text51: `很好！現在請上傳你的頭像照片：
-
-`,
-    text52: `🌊 **XunNi 是什麼？**
-`,
-    text53: `🎉 檢測到你已加入官方頻道！
-
-`,
-    text54: `💡 這樣可以準確指定要封鎖的對象。`,
-    text55: `狀態：\${statusText}
-`,
-    text56: `💡 現在可以直接測試核心功能：
-`,
-    text57: `你想要尋找什麼樣的聊天對象？
-
-`,
-    text58: `• 介紹你的興趣、性格或想說的話
-`,
-    text59: `🏷️ **編輯興趣標籤**
-
-`,
-    text6: `建築師 - 富有想像力和戰略性的思想家，一切皆在計劃之中。`,
-    text60: `為了安全，只允許以下網域的連結：
-`,
-    text61: `📋 **快速版（12 題）**
-`,
-    text62: `📚 **完整版（36 題）**
-`,
-    text63: `• 頭像會自動每 7 天更新一次
-`,
-    text64: `3️⃣ 輸入 /report
-
-`,
-    text65: `3️⃣ 輸入 /block
-
-`,
-    text66: `狀態: \${b.status}
-`,
-    text67: `不會再被自動處理或重新發送
-
-`,
-    text68: `📖 **編輯個人簡介**
-
-`,
-    text69: `💝 **設置匹配偏好**
-
-`,
-    text7: `主人公 - 富有魅力且鼓舞人心的領導者，有能力使聽眾著迷。`,
-    text70: `💬 **你的聊天記錄**
-
-`,
-    text71: `• 您也可以隨時使用此命令手動刷新`,
-    text72: `📊 **每日數據分析報表**
-`,
-    text73: `你的帳號已恢復為免費會員。
-
-`,
-    text74: `💡 這將顯示在你的資料卡上
-`,
-    text75: `🔧 開發模式：用戶信息
-
-`,
-    text76: `• 直接輸入新內容來替換草稿
-`,
-    text77: `• 不允許連結、圖片、多媒體
-`,
-    text78: `• 顯示時最多 18 個字符
-`,
-    text79: `• 對方最多顯示 18 個字
-`,
-    text8: `/broadcast 系統將於今晚 22:00 進行維護`,
-    text80: `💡 請移除這些連結後重新發送。`,
-    text81: `🔄 正在刷新頭像...
-
-`,
-    text82: `• 免費用戶看到的是模糊頭像
-`,
-    text83: `💬 **如何成為朋友？**
-`,
-    text84: `無效的過濾器格式：\${pair}`,
-    text85: `你的所有數據已被刪除。
-
-`,
-    text86: `📝 **草稿內容**
-
-`,
-    text87: `🌍 **編輯地區**
-
-`,
-    text88: `• 例如：台北、香港、東京
-`,
-    text89: `• 最多 50 個字符
-
-`,
-    text9: `🏷️ 興趣標籤：\${user.interests ||`,
-    text90: `約 \${minutes} 分鐘`,
-    text91: `寫下你的故事（至少 20 字）`,
-    text92: `正在查詢符合條件的用戶...`,
-    text93: `• 最多 250 個字符
-`,
-    text94: `• 不要包含個人聯絡方式
-`,
-    text95: `請選擇要編輯的項目：
-
-`,
-    text96: `請輸入你的個人簡介：
-
-`,
-    text97: `• 最多 200 個字符
-`,
-    text98: `• 避免包含聯絡方式
-
-`,
-    text99: `現在可以正常使用所有功能了。`,
-    throw: `⏰ 丟瓶流程已超時
-
-請使用 /throw 重新開始。`,
-    throw2: `丟瓶流程`,
-    uncertain: `❓ 不確定`,
-    unknownOption: `⚠️ 未知的選項`,
-    unlimited: `無限制`,
-    userNotFound: `❌ 用戶不存在`,
-    vip: `你的 VIP 訂閱已於 \${expireDate} 到期。
-
-`,
-    vip10: `😢 **VIP 訂閱已到期**
-
-`,
-    vip11: `• 升級 VIP 後會自動刷新歷史帖子`,
-    vip12: `⭐ 升級 VIP - /vip
-`,
-    vip13: `💎 VIP 用戶無需觀看廣告`,
-    vip14: `目標: 非 VIP 用戶
-`,
-    vip15: `目標: VIP 用戶
-`,
-    vip16: `非 VIP 用戶`,
-    vip17: `VIP 用戶`,
-    vip2: `你的 VIP 訂閱已於 \${new Date(user.vip_expire_at).toLocaleDateString(`,
-    vip3: `/broadcast_filter vip=true,mbti=INTJ VIP 專屬活動通知
-`,
-    vip4: `每邀請 1 人，每日額度永久 +1（免費最多 10 人，VIP 最多 100 人）`,
-    vip5: `VIP: \${user.is_vip ? '是' : '否'}
-`,
-    vip6: `💡 升級 VIP 可使用進階篩選（MBTI/星座）：/vip`,
-    vip7: `💡 隨時可以重新訂閱 VIP：/vip
-
-`,
-    vip8: `💡 血型可用於 VIP 血型配對功能
-
-`,
-    vip9: `• VIP 用戶可以看到清晰的對方頭像
-`,
-    yes: `是`,
-    zodiac: `無效的星座：\${trimmedValue}（必須是以下之一：\${VALID_ZODIACS.join(', ')}）`,
-  },
-  conversation: {
-    age: `🎂 年齡範圍：\${ageRange} 歲
-`,
-    anonymousCardHint: `💡 這是匿名資料卡，不會顯示對方的真實身份資訊。`,
-    backToMenuCommand: `🏠 返回主選單：/menu`,
-    ban: `• 多次被舉報會導致封禁
-`,
-    blockConfirmButton: `✅ 確定封鎖`,
-    blockConfirmMessage: `封鎖後：
-• 對方無法再向你發送訊息
-• 你們不會再被匹配到
-• 此對話將立即結束
-
-💡 這不會舉報對方，只是不想再聊天。`,
-    blockConfirmTitle: `🚫 **確定要封鎖這位用戶嗎？**`,
-    blockSuccessMessage: `對方已被封鎖，你們不會再被匹配到。
-
-💡 想要開始新的對話嗎？
-• 使用 /catch 撿起新的漂流瓶`,
-    blockSuccessNewConversation: `💬 **對話已結束**
-
-對方結束了這個對話。
-
-💡 想要開始新的對話嗎？
-• 使用 /catch 撿起新的漂流瓶`,
-    blockSuccessTitle: `✅ **已封鎖此用戶**`,
-    blocked: `✅ 已封鎖`,
-    bloodType: `🩸 血型：\${partnerInfo.bloodType}
-`,
-    bloodType2: `🩸 血型：\${bloodTypeText}
-`,
-    bottle: `使用 /catch 撿漂流瓶開始聊天吧！
-
-`,
-    bottle2: `• 使用 /catch 撿起新的漂流瓶`,
-    cancelButton: `❌ 取消`,
-    cancelSuccess: `已取消`,
-    conversation: `💬 與 #\${identifier} 的對話記錄（第 \${postNumber} 頁）
-
-`,
-    conversation10: `目前沒有任何對話。
-
-`,
-    conversation11: `• 此對話將立即結束
-`,
-    conversation2: `💬 **我的對話列表** (\${conversations.length})
-
-`,
-    conversation3: `💡 點擊對方訊息的「回覆」按鈕即可繼續對話
-`,
-    conversation4: `💬 **對話已結束**
-
-`,
-    conversation5: `💬 **我的對話**
-
-`,
-    conversation6: `💡 想要開始新的對話嗎？
-`,
-    conversation7: `• 此對話將立即結束
-
-`,
-    conversation8: `對方結束了這個對話。
-
-`,
-    conversation9: `💡 這是對話的歷史記錄
-`,
-    conversationEnded: `❌ 此對話已結束。
-
-使用 /catch 撿新的漂流瓶開始新對話。`,
-    conversationInfoError: `❌ 對話資訊錯誤。`,
-    editProfileCommand: `✏️ 編輯個人資料：/edit_profile`,
-    endedMessage: `對方結束了這個對話。
-
-💡 想要開始新的對話嗎？
-• 使用 /catch 撿起新的漂流瓶`,
-    endedNewConversation: `💬 **對話已結束**
-
-對方結束了這個對話。
-
-💡 想要開始新的對話嗎？
-• 使用 /catch 撿起新的漂流瓶`,
-    endedTitle: `💬 **對話已結束**`,
-    gender: `👤 性別：\${gender}
-`,
-    mediaRestriction: `⚠️ **不允許發送圖片、影片或多媒體**
-
-💡 為了保護隱私和安全，對話中只允許純文字訊息。
-
-請使用文字訊息與對方交流。`,
-    message: `💫 配對度：\${score}分
-`,
-    message10: `conv_profile_\${conversationId}`,
-    message11: `• 最後訊息：\${lastMessageTime}
-
-`,
-    message12: `📊 總訊息數：\${totalMessages} 則
-`,
-    message13: `💬 直接按 /reply 回覆訊息聊天
-`,
-    message14: `• 對方無法再向你發送訊息
-`,
-    message2: `
-📜 繼續查看：#\${identifier}-H\${newPostNumber}`,
-    message3: `📅 最後更新：\${formatDateTime(new Date())}
-
-`,
-    message4: `[\${timeStr}] 對方：
-\${messageContent}
-
-`,
-    message5: `conv_report_confirm_\${conversationId}`,
-    message6: `conv_block_confirm_\${conversationId}`,
-    message7: `• 訊息數：\${conv.message_count} 則
-`,
-    message77: `💬 使用 /reply 回覆訊息`,
-    message8: `🏷️ 興趣：\${otherUser.interests}
-`,
-    message9: `💬 來自 #\${identifier} 的新訊息：
-
-`,
-    nickname: `📝 暱稱：\${partnerInfo.maskedNickname}
-`,
-    nickname2: `📝 暱稱：\${displayNickname}
-`,
-    noHistory: `💬 你還沒有任何對話記錄
-
-快去丟瓶子認識新朋友吧！ /throw
-
-🏠 返回主選單：/menu`,
-    profile: `✏️ 編輯個人資料：/edit_profile
-`,
-    profileCardTitle: `👤 **對方的資料卡**`,
-    replyButton: `💬 回覆訊息`,
-    replyConversation: `💬 回覆對話 {identifier}`,
-    replyHint: `💡 請在下方輸入框輸入內容`,
-    replyMethod1: `1️⃣ 點擊下方「💬 回覆訊息」按鈕`,
-    replyMethod2: `2️⃣ 長按此訊息，選擇「回覆」後輸入內容`,
-    replyMethodsTitle: `💡 **兩種回覆方式**：`,
-    report: `🚨 **確定要舉報這位用戶嗎？**
-
-`,
-    report2: `💡 這不會舉報對方，只是不想再聊天。`,
-    report3: `感謝你的舉報，我們會盡快審核。
-
-`,
-    report4: `舉報後：
-`,
-    reportConfirmButton: `✅ 確定舉報`,
-    reportConfirmMessage: `舉報後：
-• 我們會審核此用戶的行為
-• 多次被舉報會導致封禁
-• 此對話將立即結束
-• 24小時內不會再匹配到此用戶
-
-💡 請確保對方確實有不當行為。`,
-    reportConfirmTitle: `🚨 **確定要舉報這位用戶嗎？**`,
-    reportSuccessMessage: `感謝你的舉報，我們會盡快審核。
-
-💡 想要開始新的對話嗎？
-• 使用 /catch 撿起新的漂流瓶`,
-    reportSuccessNewConversation: `💬 **對話已結束**
-
-對方結束了這個對話。
-
-💡 想要開始新的對話嗎？
-• 使用 /catch 撿起新的漂流瓶`,
-    reportSuccessTitle: `✅ **已舉報此用戶**`,
-    reported: `✅ 已舉報`,
-    separator: `━━━━━━━━━━━━━━━━`,
-    settings: `🧠 MBTI：\${otherUser.mbti_result }
-`,
-    settings2: `未設定`,
-    settings3: `未設定`,
-    settings4: `未設定`,
-    settings5: `未設定`,
-    short: `封鎖後：
-`,
-    short2: `未知用戶`,
-    short3: `剛剛`,
-    stats: `📊 使用 /stats 查看詳細統計
-`,
-    text: `💡 這是匿名資料卡，不會顯示對方的真實身份資訊。
-
-`,
-    text10: `💎 使用 /vip 了解更多
-
-`,
-    text11: `👤 **對方的資料卡**
-
-`,
-    text12: `\${diffHours} 小時前`,
-    text13: `💡 請確保對方確實有不當行為。`,
-    text14: `\${diffMins} 分鐘前`,
-    text15: `• 我們會審核此用戶的行為
-`,
-    text16: `💎 使用 /vip 了解更多`,
-    text17: `\${diffDays} 天前`,
-    text18: `• 你們不會再被匹配到
-`,
-    text19: `👤 對方資料：
-`,
-    text2: `📜 查看歷史記錄：#\${identifier}
-`,
-    text3: `🗣️ 語言：\${languageLabel}
-`,
-    text4: `🌍 地區：\${otherUser.city}
-`,
-    text5: `📖 簡介：\${otherUser.bio}
-`,
-    text6: `conv_reply_\${identifier}`,
-    text7: `🚫 **確定要封鎖這位用戶嗎？**
-
-`,
-    text8: `對方已被封鎖，你們不會再被匹配到。
-
-`,
-    text9: `• 24小時內不會再匹配到此用戶
-
-`,
-    vip: `
-🔒 升級 VIP 解鎖對方清晰頭像
-`,
-    vip2: `🔒 升級 VIP 解鎖對方清晰頭像
-`,
-    vipLearnMore: `💎 使用 /vip 了解更多`,
-    vipUnlockAvatar: `🔒 升級 VIP 解鎖對方清晰頭像`,
-    zodiac: `⭐ 星座：\${partnerInfo.zodiac}
-`,
-    zodiac2: `⭐ 星座：\${zodiacLabel}
-`,
-  },
-  conversationHistory: {
-    backToMenu: `🏠 返回主選單：/menu`,
-    bloodType: `🩸 血型：\${bloodType}`,
-    continueView: `📜 繼續查看：#\${identifier}-H\${postNumber}`,
-    historyNote: `💡 這是對話的歷史記錄`,
-    lastUpdated: `📅 最後更新：\${time}`,
-    matchScore: `💫 配對度：\${score}分`,
-    mbti: `🧠 MBTI：\${mbti}`,
-    messageEntry: `[\${time}] 對方：
-\${content}`,
-    newMessage: `💬 來自 #\${identifier} 的新訊息：`,
-    nickname: `📝 暱稱：\${nickname}`,
-    other: `對方`,
-    partnerInfo: `👤 對方資料：`,
-    replyButton: `💬 回覆訊息`,
-    replyHint: `💬 直接按 /reply 回覆訊息聊天`,
-    title: `💬 與 #\${identifier} 的對話記錄（第 \${postNumber} 頁）`,
-    totalMessages: `📊 總訊息數：\${count} 則`,
-    viewAllConversations: `📊 查看所有對話`,
-    viewHistory: `📜 查看歷史記錄：#\${identifier}`,
-    viewProfileCard: `👤 查看對方資料卡`,
-    vipLearnMore: `💎 使用 /vip 了解更多`,
-    vipUnlockAvatar: `🔒 升級 VIP 解鎖對方清晰頭像`,
-    you: `你`,
-    zodiac: `⭐ 星座：\${zodiac}`,
-  },
-  countries: {
-    ae: `阿聯酋`,
-    al: `阿爾巴尼亞`,
-    am: `亞美尼亞`,
-    ar: `阿根廷`,
-    at: `奧地利`,
-    au: `澳洲`,
-    az: `亞塞拜然`,
-    ba: `波斯尼亞`,
-    bb: `巴貝多`,
-    bd: `孟加拉`,
-    be: `比利時`,
-    bg: `保加利亞`,
-    bh: `巴林`,
-    bo: `玻利維亞`,
-    br: `巴西`,
-    ca: `加拿大`,
-    ch: `瑞士`,
-    ci: `象牙海岸`,
-    cl: `智利`,
-    cm: `喀麥隆`,
-    cn: `中國`,
-    co: `哥倫比亞`,
-    cr: `哥斯大黎加`,
-    cu: `古巴`,
-    cz: `捷克`,
-    de: `德國`,
-    dk: `丹麥`,
-    do: `多明尼加`,
-    dz: `阿爾及利亞`,
-    ec: `厄瓜多`,
-    ee: `愛沙尼亞`,
-    eg: `埃及`,
-    es: `西班牙`,
-    et: `衣索比亞`,
-    fi: `芬蘭`,
-    fr: `法國`,
-    gb: `英國`,
-    ge: `喬治亞`,
-    gh: `迦納`,
-    gr: `希臘`,
-    gt: `瓜地馬拉`,
-    hk: `香港`,
-    hn: `宏都拉斯`,
-    hr: `克羅地亞`,
-    hu: `匈牙利`,
-    id: `印尼`,
-    ie: `愛爾蘭`,
-    il: `以色列`,
-    in: `印度`,
-    iq: `伊拉克`,
-    ir: `伊朗`,
-    is: `冰島`,
-    it: `意大利`,
-    jm: `牙買加`,
-    jo: `約旦`,
-    jp: `日本`,
-    ke: `肯亞`,
-    kh: `柬埔寨`,
-    kr: `韓國`,
-    kw: `科威特`,
-    kz: `哈薩克`,
-    la: `寮國`,
-    lb: `黎巴嫩`,
-    lk: `斯里蘭卡`,
-    lt: `立陶宛`,
-    lv: `拉脫維亞`,
-    ly: `利比亞`,
-    ma: `摩洛哥`,
-    mk: `北馬其頓`,
-    mm: `緬甸`,
-    mn: `蒙古`,
-    mo: `澳門`,
-    mt: `馬爾他`,
-    mx: `墨西哥`,
-    my: `馬來西亞`,
-    ng: `奈及利亞`,
-    ni: `尼加拉瓜`,
-    nl: `荷蘭`,
-    no: `挪威`,
-    np: `尼泊爾`,
-    nz: `紐西蘭`,
-    om: `阿曼`,
-    pa: `巴拿馬`,
-    pe: `秘魯`,
-    ph: `菲律賓`,
-    pk: `巴基斯坦`,
-    pl: `波蘭`,
-    pt: `葡萄牙`,
-    py: `巴拉圭`,
-    qa: `卡達`,
-    ro: `羅馬尼亞`,
-    rs: `塞爾維亞`,
-    ru: `俄羅斯`,
-    rw: `盧安達`,
-    sa: `沙特阿拉伯`,
-    sd: `蘇丹`,
-    se: `瑞典`,
-    sg: `新加坡`,
-    si: `斯洛維尼亞`,
-    sk: `斯洛伐克`,
-    sn: `塞內加爾`,
-    sv: `薩爾瓦多`,
-    sy: `敘利亞`,
-    th: `泰國`,
-    tn: `突尼西亞`,
-    tr: `土耳其`,
-    tt: `千里達`,
-    tw: `台灣`,
-    tz: `坦尚尼亞`,
-    ua: `烏克蘭`,
-    ug: `烏干達`,
-    un: `聯合國`,
-    us: `美國`,
-    uy: `烏拉圭`,
-    uz: `烏茲別克`,
-    ve: `委內瑞拉`,
-    vn: `越南`,
-    ye: `葉門`,
-    za: `南非`,
-    zw: `辛巴威`,
-  },
-  country: {
-    buttonAU: `🇦🇺 澳洲`,
-    buttonCA: `🇨🇦 加拿大`,
-    buttonCN: `🇨🇳 中國`,
-    buttonDE: `🇩🇪 德國`,
-    buttonFR: `🇫🇷 法國`,
-    buttonGB: `🇬🇧 英國`,
-    buttonHK: `🇭🇰 香港`,
-    buttonJP: `🇯🇵 日本`,
-    buttonKR: `🇰🇷 韓國`,
-    buttonMY: `🇲🇾 馬來西亞`,
-    buttonNZ: `🇳🇿 紐西蘭`,
-    buttonSG: `🇸🇬 新加坡`,
-    buttonTH: `🇹🇭 泰國`,
-    buttonTW: `🇹🇼 台灣`,
-    buttonUS: `🇺🇸 美國`,
-    confirmButton: `✅ 正確`,
-    confirmDetected: `我們根據你的語言設置，推測你來自：
-`,
-    confirmFailed: `❌ 確認失敗`,
-    confirmHint: `💡 這將顯示在你的資料卡上，讓其他用戶更了解你。
-`,
-    confirmQuestion: `這正確嗎？
-
-`,
-    confirmReward: `🎉 確認後可獲得 +1 瓶子獎勵！`,
-    confirmTitle: `🌍 **確認你的國家/地區**
-
-`,
-    confirmed: `✅ 已確認！`,
-    notCorrectButton: `❌ 不正確`,
-    selectHint: `💡 這將顯示在你的資料卡上
-`,
-    selectTitle: `🌍 **請選擇你的國家/地區**
-
-`,
-    selectUnFlagHint: `🇺🇳 如果找不到，可以選擇「聯合國旗」`,
-    setFailed: `❌ 設置失敗`,
-    setTo: `✅ 已設置為 {flag} {country}`,
-    unFlagButton: `🇺🇳 聯合國旗`,
-    useUnFlagButton: `🇺🇳 使用聯合國旗`,
-  },
-  dailyReports: {
-    header: `📊 **每日數據分析報表**`,
-    time: `時間：\${time}`,
-  },
-  dev: {
-    autoCompleted: `已自動完成註冊流程。
-
-`,
-    bottles: `• 漂流瓶: {count}
-`,
-    catchCommand: `• /catch - 撿漂流瓶
-`,
-    conversations: `• 對話: {count}
-`,
-    dataReset: `✅ 開發模式：數據已重置
-
-你的所有數據已被刪除。
-
-💡 現在可以重新開始測試註冊流程。
-
-🔄 重新註冊：/start
-或使用：/dev_restart（自動開始註冊）
-
-⚠️ 注意：此功能僅在 Staging 環境可用。`,
-    getUserInfoFailed: `❌ 獲取信息失敗`,
-    inviteActivated: `• 已激活: {count}
-`,
-    inviteCode: `邀請碼: {code}
-`,
-    invitePending: `• 待激活: {count}
-
-`,
-    inviteStats: `邀請統計:
-`,
-    inviteTotal: `• 邀請記錄總數: {count}
-`,
-    invitedBy: `被誰邀請: {invitedBy}
-
-`,
-    language: `語言: {lang}
-`,
-    messages: `• 訊息: {count}
-
-`,
-    nickname: `昵稱: {nickname}
-`,
-    no: `否`,
-    none: `無`,
-    notAvailableInProduction: `❌ 此命令在生產環境中不可用。
-
-This command is not available in production.`,
-    notGenerated: `未生成`,
-    notSet: `未設置`,
-    onboardingStep: `註冊步驟: {step}
-`,
-    resetFailed: `❌ 重置失敗：{error}
-
-請稍後再試。`,
-    skipFailed: `❌ 跳過失敗`,
-    skipRegistration: `✅ 開發模式：跳過註冊
-
-`,
-    stagingOnly: `⚠️ 此功能僅在 Staging 環境可用。`,
-    stats: `統計:
-`,
-    statsCommand: `• /stats - 查看統計
-
-`,
-    successfulInvites: `• successful_invites: {count}
-`,
-    telegramId: `Telegram ID: {id}
-`,
-    testCoreFeatures: `💡 現在可以直接測試核心功能：
-`,
-    testUser: `測試用戶`,
-    throwCommand: `• /throw - 丟漂流瓶
-`,
-    userInfo: `🔧 開發模式：用戶信息
-
-`,
-    userNotFound: `❌ 用戶不存在`,
-    vip: `VIP: {status}
-`,
-    yes: `是`,
-  },
-  draft: {
-    contentHint: `💡 你可以：
-• 直接輸入新內容來替換草稿
-• 使用 /throw 重新開始
-• 發送草稿內容來丟出漂流瓶`,
-    contentTitle: `📝 **草稿內容**
-
-`,
-    continueEditing: `✅ 繼續編輯草稿`,
-    deleteButton: `🗑️ 刪除草稿`,
-    deleted: `✅ 草稿已刪除`,
-    editButton: `✏️ 修改內容`,
-    editInput: `✏️ 請輸入新的漂流瓶內容：
-
-💡 提示：
-• 最短 5 個字符
-• 最多 250 個字符
-• 不允許連結、圖片、多媒體
-• 不要包含個人聯絡方式
-• 友善、尊重的內容更容易被撿到哦～`,
-    editPrompt: `✏️ 請輸入新的內容`,
-    newBottle: `✅ 開始新的漂流瓶`,
-    notFound: `⚠️ 草稿不存在或已過期`,
-    sendButton: `✅ 發送草稿`,
-    sendQuestion: `要直接發送這個草稿嗎？`,
-    sending: `✅ 正在發送...`,
-    targetGender: `你想要尋找什麼樣的聊天對象？
-
-`,
-    targetGenderHint: `💡 升級 VIP 可使用進階篩選（MBTI/星座）：/vip`,
-    throwBottle: `🍾 丟漂流瓶
-
-你想要尋找什麼樣的聊天對象？`,
-    age: {
-      daysAgo: `\\\${days} 天前`,
-      hoursAgo: `\\\${hours} 小時前`,
-      justNow: `剛剛`,
+  "errors": {
+    "banned": "❌ Tài khoản của bạn đã bị cấm\n\nLý do: {reason}",
+    "channelConfigError": "❌ Lỗi cấu hình kênh",
+    "claimRewardFailed": "❌ Không thể yêu cầu thưởng",
+    "completeOnboarding": "⚠️ Vui lòng hoàn tất quá trình đăng ký trước.",
+    "conversationInfoError": "❌ Lỗi thông tin cuộc trò chuyện.",
+    "conversationNotFound": "❌ Không tìm thấy cuộc trò chuyện",
+    "error": {
+      "ad": "❌ Quảng cáo này không cần xác minh",
+      "ad2": "❌ Hiện tại không có quảng cáo nào khả dụng",
+      "ad3": "❌ Không thể yêu cầu quảng cáo này",
+      "ad4": "❌ Quảng cáo không tồn tại",
+      "ad5": "❌ ID quảng cáo phải là một số",
+      "ad6": "❌ Bạn không có quyền xem dữ liệu quảng cáo",
+      "admin": "❌ Lỗi hệ thống, vui lòng thử lại sau.\n\nNếu vấn đề vẫn tiếp diễn, vui lòng liên hệ với quản trị viên.",
+      "admin2": "❌ **Quyền truy cập không đủ**\n\nLệnh này chỉ dành cho siêu quản trị viên.",
+      "admin3": "❌ Người dùng này đã là siêu quản trị viên, không cần thêm.",
+      "admin4": "❌ Chỉ siêu quản trị viên mới có thể sử dụng lệnh này.",
+      "admin5": "❌ Người dùng này đã là quản trị viên.",
+      "admin6": "❌ Không thể xóa siêu quản trị viên.",
+      "admin7": "❌ Người dùng này không phải là quản trị viên.",
+      "appeal": "❌ Vui lòng cung cấp ID kháng cáo\n\nCách sử dụng: /admin_approve <appeal_id> [note]",
+      "appeal2": "❌ Vui lòng cung cấp ID kháng cáo\n\nCách sử dụng: /admin_reject <appeal_id> [note]",
+      "appeal3": "❌ Kháng cáo \\${appealId} đã được xem xét",
+      "appeal4": "❌ Không tìm thấy ID kháng cáo: \\${appealId}",
+      "ban": "❌ Người dùng \\${targetUserId} không có hồ sơ cấm",
+      "birthday": "{validation.error} ${validation.error}",
+      "birthday2": "Tư lệnh - Những nhà lãnh đạo dũng cảm, sáng tạo và mạnh mẽ luôn tìm hoặc tạo ra giải pháp.",
+      "birthday3": "❌ Định dạng ngày sinh không đúng\n\nVui lòng nhập lại (định dạng: YYYY-MM-DD):",
+      "bottle": "❌ Định dạng ngày sinh không đúng",
+      "bottle2": "❌ Cuộc trò chuyện này đã kết thúc.\n\nSử dụng /catch để chọn một chai thư mới và bắt đầu một cuộc trò chuyện mới.",
+      "bottle3": "❌ Tài khoản của bạn đã bị cấm và bạn không thể nhận chai thư.",
+      "broadcast": "{MAX_SAFE_USERS} ${MAX_SAFE_USERS}\n\n",
+      "broadcast2": "Nếu bạn có câu hỏi, vui lòng sử dụng /appeal để khiếu nại.",
+      "broadcast3": "❌ Chai này đã được người khác nhặt.",
+      "cancel": "Vui lòng thử các chai khác!",
+      "cancel2": "❌ ID phát sóng phải là một số",
+      "cancel3": "❌ Tên vùng quá dài, vui lòng nhập không quá 50 ký tự.\n\nVui lòng nhập lại hoặc hủy chỉnh sửa:",
+      "cancel4": "❌ Biệt danh quá ngắn, ít nhất yêu cầu 4 ký tự.\n\nVui lòng nhập lại hoặc hủy chỉnh sửa:",
+      "cancel5": "❌ Mỗi thẻ bị giới hạn tối đa 20 ký tự.\n\nVui lòng nhập lại hoặc hủy chỉnh sửa:",
+      "cancel6": "❌ Hủy chỉnh sửa",
+      "cancel7": "❌ Đã hủy \\${ZODIAC_NAMES[zodiacSign]}",
+      "cancel8": "❌ Đã hủy \\${mbtiType}",
+      "cancel9": "❌ Hủy",
+      "conversation": "❌ Không tìm thấy cuộc trò chuyện với mã định danh \\${formatIdentifier(identifier)}\n\n",
+      "conversation2": "❌ Lỗi thông tin cuộc trò chuyện.",
+      "conversation3": "❌ Lỗi thông tin cuộc trò chuyện",
+      "conversation4": "❌ Cuộc trò chuyện không tồn tại",
+      "conversationInfoError": "❌ Thông tin cuộc trò chuyện không chính xác",
+      "conversationNotFound": "❌ Cuộc trò chuyện không tồn tại",
+      "failed": "❌ **Tải quảng cáo thất bại**\n\nXin lỗi, quảng cáo không thể phát đúng cách.\n\n💡 **Nguyên nhân có thể:**\n• Kết nối mạng không ổn định\n• Nhà cung cấp quảng cáo tạm thời không khả dụng\n• Trình duyệt không được hỗ trợ\n\n🔄 **Gợi ý:**\n• Kiểm tra kết nối mạng\n• Thử lại sau\n• Hoặc sử dụng các phương pháp khác để kiếm tín dụng (mời bạn bè)",
+      "failed10": "❌ Không truy vấn được trạng thái chế độ bảo trì.",
+      "failed11": "❌ Làm mới ảnh đại diện không thành công\n\n",
+      "failed12": "❌ Xác minh không thành công, vui lòng thử lại sau.",
+      "failed13": "❌ Bật chế độ bảo trì không thành công.",
+      "failed14": "❌ Tắt chế độ bảo trì không thành công.",
+      "failed15": "❌ Không thể lấy trạng thái quảng cáo",
+      "failed16": "❌ Không thể lấy thống kê",
+      "failed17": "❌ Không thể tạo phát sóng.",
+      "failed18": "❌ Không thể lấy thông tin",
+      "failed19": "❌ Không thể yêu cầu thưởng",
+      "failed2": "❌ Không thể tạo phát sóng đã lọc\n\n\\${error instanceof Error ? error.message : String(error)}",
+      "failed20": "❌ Xác nhận không thành công",
+      "failed21": "❌ Thiết lập không thành công",
+      "failed22": "❌ Bỏ qua không thành công",
+      "failed23": "❌ Hoạt động không thành công",
+      "failed24": "❌ Không thể gửi báo cáo hàng ngày: \\${error instanceof Error ? error.message : String(error)}",
+      "failed25": "❌ Không thể lấy dữ liệu phễu VIP",
+      "failed26": "❌ **Chẩn đoán không thành công**\n\n",
+      "failed27": "❌ **Làm mới không thành công**\n\n",
+      "failed28": "❌ **Thanh toán không thành công**\n\n",
+      "failed29": "❌ Không thể lấy danh sách nhà cung cấp quảng cáo",
+      "failed3": "❌ Không thể xử lý hàng đợi phát sóng: \\${error instanceof Error ? error.message : String(error)}",
+      "failed30": "❌ Không thể lấy danh sách quảng cáo chính thức",
+      "failed31": "❌ Không thể kích hoạt nhà cung cấp quảng cáo",
+      "failed32": "❌ Không thể vô hiệu hóa nhà cung cấp quảng cáo",
+      "failed33": "❌ Không thể kích hoạt quảng cáo chính thức",
+      "failed34": "❌ Không thể vô hiệu hóa quảng cáo chính thức",
+      "failed35": "❌ Không thể lấy dữ liệu phân tích",
+      "failed36": "❌ Không thể lấy dữ liệu quảng cáo",
+      "failed37": "❌ Không thể đặt ưu tiên",
+      "failed38": "❌ Hoàn tiền không thành công: \\${error instanceof Error ? error.message : String(error)}",
+      "failed39": "❌ Hoạt động không thành công: \\${error instanceof Error ? error.message : String(error)}",
+      "failed4": "❌ Không thể truy vấn trạng thái phát sóng: \\${error instanceof Error ? error.message : String(error)}",
+      "failed40": "❌ Đã gửi không thành công, vui lòng thử lại sau.",
+      "failed41": "❌ Không thể tạo cuộc trò chuyện, vui lòng thử lại sau.",
+      "failed5": "❌ Hủy phát sóng không thành công: \\${error instanceof Error ? error.message : String(error)}",
+      "failed6": "❌ Dọn dẹp phát sóng không thành công: \\${error instanceof Error ? error.message : String(error)}",
+      "failed7": "❌ Đặt lại không thành công: \\${errorMessage}\n\nVui lòng thử lại sau.",
+      "failed8": "❌ Tạo phát sóng không thành công, vui lòng thử lại sau.",
+      "failed9": "❌ Làm mới lịch sử cuộc trò chuyện không thành công\n\n",
+      "mbti": "❌ Loại MBTI không hợp lệ",
+      "message": "❌ Lỗi định dạng bộ lọc\n\n\\${error instanceof Error ? error.message : String(error)}\n\n",
+      "message2": "❌ Lệnh này không khả dụng trong môi trường sản xuất.\n\nLệnh này không khả dụng trong môi trường sản xuất.",
+      "message3": "❌ Đã có lỗi xảy ra, vui lòng thử lại sau.\n\nThông điệp lỗi: \\${error instanceof Error ? error.message : String(error)}",
+      "message4": "❌ Xin lỗi, bạn phải tối thiểu 18 tuổi để sử dụng dịch vụ này.\n\nVui lòng quay lại khi bạn đã trưởng thành!",
+      "nickname": "❌ Không thể lấy biệt danh Telegram",
+      "nickname2": "❌ Tên người dùng không thể chứa liên kết trang web\n\n",
+      "nickname3": "❌ \\${validation.error}\n\nVui lòng nhập lại biệt danh của bạn:",
+      "quota": "❌ Hạn mức chai thư hàng ngày đã sử dụng hết (\\${quotaDisplay})\n\n💡 Cách để nhận thêm hạn mức:\n",
+      "quota2": "❌ Hạn ngạch tin nhắn cuộc trò chuyện hôm nay đã được sử dụng hết (\\${usedToday}/\\${dailyLimit})\n\n",
+      "quota3": "❌ Hạn ngạch chai thư hôm nay đã được sử dụng hết (\\${quotaDisplay})\n\n",
+      "register": "❌ Vui lòng hoàn tất quy trình đăng ký trước.\n\nSử dụng /start để tiếp tục đăng ký.",
+      "register2": "❌ Không tìm thấy dữ liệu người dùng, vui lòng sử dụng /start để đăng ký trước.",
+      "register3": "❌ Vui lòng hoàn tất quy trình đăng ký để nhận chai thư.\n\nSử dụng /start để tiếp tục đăng ký.",
+      "settings": "❌ Tối đa 5 thẻ sở thích có thể được thiết lập.\n\nVui lòng nhập lại hoặc hủy chỉnh sửa:",
+      "short": "❌ Mã ngôn ngữ không hợp lệ",
+      "short10": "❌ Quyền truy cập không đủ",
+      "short11": "❌ Sẽ thảo luận sau",
+      "short12": "❌ Chọn lại",
+      "short13": "❌ Nhập lại",
+      "short14": "❌ Đóng",
+      "short15": "❌ Chưa được kích hoạt",
+      "short2": "❌ Không tìm thấy dữ liệu người dùng",
+      "short3": "❌ Bước hướng dẫn không xác định",
+      "short4": "❌ Đã xảy ra lỗi hệ thống",
+      "short5": "❌ Lỗi cấu hình kênh",
+      "short6": "❌ Hoạt động không xác định",
+      "short7": "❌ Không chính xác",
+      "short8": "❌ Không",
+      "short9": "❌ Đã xảy ra lỗi",
+      "start": "❌ Đã xảy ra lỗi, vui lòng khởi động lại: /start",
+      "stats": "❌ Bạn không có quyền xem thống kê quảng cáo",
+      "task": "❌ Đã xảy ra lỗi khi kiểm tra trung tâm nhiệm vụ, vui lòng thử lại sau.",
+      "text": "❌ Đã xảy ra lỗi hệ thống trong khi tính toán kết quả, vui lòng thử lại sau.\n\n",
+      "text10": "❌ Lỗi thông tin người gửi.",
+      "text11": "❌ Bạn không có quyền xem dữ liệu phân tích",
+      "text12": "❌ Đã xảy ra lỗi, vui lòng thử lại sau.",
+      "text13": "❌ Bạn không có quyền sử dụng lệnh này.",
+      "text14": "❌ Phương pháp sử dụng không đúng\n\n",
+      "text15": "❌ Độ ưu tiên phải là một số nguyên không âm",
+      "text16": "❌ Thời gian phải là một số nguyên dương hoặc",
+      "text17": "❌ Đã xảy ra lỗi hệ thống trong khi xử lý thanh toán, vui lòng liên hệ bộ phận hỗ trợ khách hàng.\n\n",
+      "text18": "❌ Lý do hoàn tiền phải ít nhất 10 ký tự, vui lòng nhập lại:",
+      "text19": "❌ **Yêu cầu hoàn tiền đã bị từ chối**\n\n",
+      "text2": "❌ Hồ sơ chứa liên kết không cho phép.\n\n",
+      "text20": "❌ Yêu cầu hoàn tiền vượt quá thời gian quy định\n\n",
+      "text21": "❌ Yêu cầu hoàn tiền không tồn tại hoặc đã được xử lý",
+      "text22": "❌ Không tìm thấy hồ sơ thanh toán.",
+      "text23": "❌ Chúng tôi rất tiếc, bạn phải trên 18 tuổi để sử dụng dịch vụ này.\n\n",
+      "text24": "❌ Đã xảy ra lỗi, vui lòng nhập lại.",
+      "text25": "❌ Vui lòng trả lời câu hỏi một cách nghiêm túc\n\n",
+      "text3": "❌ Không phát hiện được tư cách thành viên kênh của bạn, vui lòng tham gia trước và thử lại",
+      "text4": "❌ Phát hiện bạn đã rời khỏi kênh, không thể nhận thưởng.",
+      "text5": "❌ Đã xảy ra lỗi khi bắt đầu hướng dẫn, vui lòng thử lại sau.",
+      "text6": "❌ Đã xảy ra lỗi trong hệ thống, vui lòng thử lại sau.",
+      "text7": "❌ Thời gian phải là một số (tính bằng phút)",
+      "text8": "❌ Đã xảy ra lỗi, vui lòng thử lại sau",
+      "text9": "❌ Không thể lấy trạng thái chế độ bảo trì",
+      "userNotFound": "❌ Người dùng không tồn tại, vui lòng đăng ký trước bằng /start.",
+      "userNotFound2": "❌ Người dùng không tồn tại, vui lòng đăng ký trước",
+      "userNotFound3": "❌ Người dùng khác không tồn tại.",
+      "userNotFound4": "❌ Người dùng không tồn tại",
+      "userNotFound5": "❌ Người dùng không tồn tại: \\${userId}",
+      "userNotFound6": "❌ Người dùng không tồn tại hoặc chưa đăng ký.",
+      "userNotFound7": "❌ Người dùng không tồn tại.",
+      "vip": "❌ Bạn không có quyền xem dữ liệu VIP",
+      "vip2": "❌ Bạn không phải là người dùng VIP và không thể yêu cầu hoàn tiền."
     },
+    "errorDetails": "Thông báo lỗi: {error}",
+    "failed": "Thất bại: ${broadcast.failedCount}\n",
+    "failed2": "Thất bại: ${result.failed} mục\n\n",
+    "failed3": "Các phát sóng này sẽ được đánh dấu là trạng thái 'thất bại'\n",
+    "failed4": "Các phát sóng này đã được đánh dấu là trạng thái 'thất bại'\n",
+    "generic": "❌ Đã xảy ra lỗi, vui lòng thử lại sau.",
+    "invalidRequest": "❌ Yêu cầu không hợp lệ",
+    "message": "${statusEmoji} **${provider.provider_display_name}**\n${healthEmoji} Trạng thái sức khỏe: ${health.is_healthy ? 'Tốt' : 'Cần chú ý'}\n📊 Tỷ lệ hoàn thành: ${stats.completion_rate}%\n❌ Tỷ lệ lỗi: ${stats.error_rate}%\n📈 Tổng yêu cầu: ${stats.total_requests}\n✅ Tổng hoàn thành: ${stats.total_completions}\n💡 Khuyến nghị: ${health.recommendation}",
+    "message2": "Thông báo lỗi: ${error instanceof Error ? error.message : String(error)}",
+    "message3": "Lỗi: ${broadcast.errorMessage}",
+    "operationFailed": "❌ Hoạt động thất bại",
+    "processError": "❌ Đã xảy ra lỗi trong quá trình xử lý",
+    "sessionExpired": "❌ Phiên đã hết hạn, vui lòng khởi động lại",
+    "systemError": "Lỗi hệ thống",
+    "systemErrorRetry": "❌ Đã xảy ra lỗi hệ thống, vui lòng thử lại sau.",
+    "unknownAction": "❌ Hoạt động không xác định",
+    "unknownError": "🎨 UX: Thông báo lỗi thân thiện",
+    "userNotFound": "Người dùng không tồn tại",
+    "userNotFound4": "❌ Người dùng không tồn tại",
+    "userNotFoundRegister": "⚠️ Người dùng không tồn tại, vui lòng đăng ký bằng cách sử dụng /start trước.",
+    "verificationFailed": "❌ Xác minh không thành công, vui lòng thử lại sau"
   },
-  edit_profile: {
-    nickname: `👤 昵称：\${ownerMaskedNickname}`,
-    short19: `✏️ 編輯個人資料`,
+  "estimate": {
+    "immediate": "Gửi ngay (khoảng 1-2 giây)",
+    "minutes": "Khoảng ${minutes} phút",
+    "seconds": "Khoảng ${seconds} giây"
   },
-  error: {
-    ad: `❌ 此廣告不需要驗證`,
-    ad2: `❌ 暫無可用的廣告`,
-    ad3: `❌ 無法領取此廣告`,
-    ad4: `❌ 廣告不存在`,
-    ad5: `❌ 廣告 ID 必須是數字`,
-    ad6: `❌ 你沒有權限查看廣告數據`,
-    admin: `❌ 系統發生錯誤，請稍後再試。
-
-如果問題持續，請聯繫管理員。`,
-    admin2: `❌ **權限不足**
-
-此命令僅限超級管理員使用。`,
-    admin3: `❌ 此用戶已經是超級管理員，無需添加。`,
-    admin4: `❌ 只有超級管理員可以使用此命令。`,
-    admin5: `❌ 此用戶已經是管理員。`,
-    admin6: `❌ 無法移除超級管理員。`,
-    admin7: `❌ 此用戶不是管理員。`,
-    appeal: `❌ 請提供申訴 ID
-
-用法: /admin_approve <appeal_id> [備註]`,
-    appeal2: `❌ 請提供申訴 ID
-
-用法: /admin_reject <appeal_id> [備註]`,
-    appeal3: `❌ 申訴 \${appealId} 已經被審核過了`,
-    appeal4: `❌ 找不到申訴 ID: \${appealId}`,
-    ban: `❌ 用戶 \${targetUserId} 沒有封禁記錄`,
-    birthday: `❌ \${validation.error}
-
-請重新輸入生日（格式：YYYY-MM-DD）：`,
-    birthday2: `❌ 生日格式錯誤
-
-請重新輸入（格式：YYYY-MM-DD）：`,
-    birthday3: `❌ 生日格式錯誤`,
-    bottle: `❌ 此對話已結束。
-
-使用 /catch 撿新的漂流瓶開始新對話。`,
-    bottle2: `❌ 你的帳號已被封禁，無法撿漂流瓶。
-
-如有疑問，請使用 /appeal 申訴。`,
-    bottle3: `❌ 這個瓶子已經被其他人撿走了，請試試其他瓶子！`,
-    broadcast: `❌ 當前廣播系統僅支持 \${MAX_SAFE_USERS} 個用戶以內的廣播。
-
-`,
-    broadcast2: `❌ 廣播 ID 必須是數字`,
-    broadcast3: `❌ 找不到該廣播記錄`,
-    cancel: `❌ 暱稱太長，請輸入不超過 36 個字符的暱稱。
-
-請重新輸入或取消編輯：`,
-    cancel2: `❌ 個人簡介太長，請輸入不超過 200 個字符。
-
-請重新輸入或取消編輯：`,
-    cancel3: `❌ 地區名稱太長，請輸入不超過 50 個字符。
-
-請重新輸入或取消編輯：`,
-    cancel4: `❌ 暱稱太短，至少需要 4 個字符。
-
-請重新輸入或取消編輯：`,
-    cancel5: `❌ 每個標籤最多 20 個字符。
-
-請重新輸入或取消編輯：`,
-    cancel6: `❌ 取消編輯`,
-    cancel7: `❌ 已取消 \${ZODIAC_NAMES[zodiacSign]}`,
-    cancel8: `❌ 已取消 \${mbtiType}`,
-    cancel9: `❌ 取消`,
-    conversation: `❌ 找不到標識符 \${formatIdentifier(identifier)} 的對話
-
-`,
-    conversation2: `❌ 對話資訊錯誤。`,
-    conversation3: `❌ 對話資訊錯誤`,
-    conversation4: `❌ 對話不存在`,
-    conversationInfoError: `❌ 對話資訊錯誤`,
-    conversationNotFound: `❌ 對話不存在`,
-    failed: `❌ **廣告加載失敗**
-
-很抱歉，廣告無法正常播放。
-
-💡 **可能的原因：**
-• 網絡連接不穩定
-• 廣告提供商暫時不可用
-• 瀏覽器不支持
-
-🔄 **建議：**
-• 檢查網絡連接
-• 稍後再試
-• 或使用其他方式獲得額度（邀請朋友）`,
-    failed10: `❌ 查詢維護模式狀態失敗。`,
-    failed11: `❌ 刷新頭像失敗
-
-`,
-    failed12: `❌ 驗證失敗，請稍後再試`,
-    failed13: `❌ 啟用維護模式失敗。`,
-    failed14: `❌ 關閉維護模式失敗。`,
-    failed15: `❌ 獲取廣告狀態失敗`,
-    failed16: `❌ 獲取統計數據失敗`,
-    failed17: `❌ 創建廣播失敗。`,
-    failed18: `❌ 獲取信息失敗`,
-    failed19: `❌ 領取獎勵失敗`,
-    failed2: `❌ 創建過濾廣播失敗
-
-\${error instanceof Error ? error.message : String(error)}`,
-    failed20: `❌ 確認失敗`,
-    failed21: `❌ 設置失敗`,
-    failed22: `❌ 跳過失敗`,
-    failed23: `❌ 操作失敗`,
-    failed24: `❌ 發送每日報表失敗：\${error instanceof Error ? error.message : String(error)}`,
-    failed25: `❌ 獲取 VIP 漏斗數據失敗`,
-    failed26: `❌ **診斷失敗**
-
-`,
-    failed27: `❌ **刷新失敗**
-
-`,
-    failed28: `❌ **支付失敗**
-
-`,
-    failed29: `❌ 獲取廣告提供商列表失敗`,
-    failed3: `❌ 處理廣播隊列失敗：\${error instanceof Error ? error.message : String(error)}`,
-    failed30: `❌ 獲取官方廣告列表失敗`,
-    failed31: `❌ 啟用廣告提供商失敗`,
-    failed32: `❌ 停用廣告提供商失敗`,
-    failed33: `❌ 啟用官方廣告失敗`,
-    failed34: `❌ 停用官方廣告失敗`,
-    failed35: `❌ 獲取分析數據失敗`,
-    failed36: `❌ 獲取廣告數據失敗`,
-    failed37: `❌ 設置優先級失敗`,
-    failed38: `❌ 退款失敗：\${error instanceof Error ? error.message : String(error)}`,
-    failed39: `❌ 操作失敗：\${error instanceof Error ? error.message : String(error)}`,
-    failed4: `❌ 查詢廣播狀態失敗：\${error instanceof Error ? error.message : String(error)}`,
-    failed40: `❌ 提交失敗，請稍後再試。`,
-    failed41: `❌ 建立對話失敗，請稍後再試。`,
-    failed5: `❌ 取消廣播失敗：\${error instanceof Error ? error.message : String(error)}`,
-    failed6: `❌ 清理廣播失敗：\${error instanceof Error ? error.message : String(error)}`,
-    failed7: `❌ 重置失敗：\${errorMessage}
-
-請稍後再試。`,
-    failed8: `❌ 創建廣播失敗，請稍後再試。`,
-    failed9: `❌ 刷新對話歷史失敗
-
-`,
-    mbti: `❌ 無效的 MBTI 類型`,
-    message: `❌ 過濾器格式錯誤
-
-\${error instanceof Error ? error.message : String(error)}
-
-`,
-    message2: `❌ 此命令在生產環境中不可用。
-
-This command is not available in production.`,
-    message3: `❌ 發生錯誤，請稍後再試。
-
-錯誤信息：\${error instanceof Error ? error.message : String(error)}`,
-    message4: `❌ 很抱歉，你必須年滿 18 歲才能使用本服務。
-
-請成年後再來！`,
-    nickname: `❌ 無法獲取 Telegram 暱稱`,
-    nickname2: `❌ 暱稱不能包含網址連結
-
-`,
-    nickname3: `❌ \${validation.error}
-
-請重新輸入暱稱：`,
-    quota: `❌ 今日漂流瓶配額已用完（\${quotaDisplay}）
-
-💡 獲得更多配額的方式：
-`,
-    quota2: `❌ 今日對話訊息配額已用完（\${usedToday}/\${dailyLimit}）
-
-`,
-    quota3: `❌ 今日漂流瓶配額已用完（\${quotaDisplay}）
-
-`,
-    register: `❌ 請先完成註冊流程。
-
-使用 /start 繼續註冊。`,
-    register2: `❌ 找不到用戶資料，請先使用 /start 註冊。`,
-    register3: `❌ 請先完成註冊流程才能撿漂流瓶。
-
-使用 /start 繼續註冊。`,
-    settings: `❌ 最多只能設定 5 個興趣標籤。
-
-請重新輸入或取消編輯：`,
-    short: `❌ 無效的語言代碼`,
-    short10: `❌ 權限不足`,
-    short11: `❌ 稍後再說`,
-    short12: `❌ 重新選擇`,
-    short13: `❌ 重新輸入`,
-    short14: `❌ 關閉`,
-    short15: `❌ 未啟用`,
-    short2: `❌ 找不到用戶資料`,
-    short3: `❌ 未知的教學步驟`,
-    short4: `❌ 系統發生錯誤`,
-    short5: `❌ 頻道配置錯誤`,
-    short6: `❌ 未知操作`,
-    short7: `❌ 不正確`,
-    short8: `❌ 否`,
-    short9: `❌ 發生錯誤`,
-    start: `❌ 發生錯誤，請重新開始：/start`,
-    stats: `❌ 你沒有權限查看廣告統計`,
-    task: `❌ 查看任務中心時系統發生錯誤，請稍後再試。`,
-    text: `❌ 計算結果時系統發生錯誤，請稍後再試。
-
-`,
-    text10: `❌ 發送者資訊錯誤。`,
-    text11: `❌ 你沒有權限查看分析數據`,
-    text12: `❌ 發生錯誤，請稍後再試。`,
-    text13: `❌ 你沒有權限使用此命令。`,
-    text14: `❌ 使用方法錯誤
-
-`,
-    text15: `❌ 優先級必須是非負整數`,
-    text16: `❌ 時長必須是正整數或`,
-    text17: `❌ 處理支付時系統發生錯誤，請聯繫客服。
-
-`,
-    text18: `❌ 退款原因至少需要 10 個字，請重新輸入：`,
-    text19: `❌ **退款申請已被拒絕**
-
-`,
-    text2: `❌ 個人簡介包含不允許的連結。
-
-`,
-    text20: `❌ 退款申請超過時限
-
-`,
-    text21: `❌ 退款請求不存在或已處理`,
-    text22: `❌ 找不到支付記錄。`,
-    text23: `❌ 很抱歉，你必須年滿 18 歲才能使用本服務。
-
-`,
-    text24: `❌ 發生錯誤，請重新輸入。`,
-    text25: `❌ 請認真回答問題
-
-`,
-    text3: `❌ 未檢測到你加入頻道，請先加入後再試`,
-    text4: `❌ 檢測到你已離開頻道，無法領取獎勵。`,
-    text5: `❌ 啟動教學時發生錯誤，請稍後再試。`,
-    text6: `❌ 系統發生錯誤，請稍後再試。`,
-    text7: `❌ 時長必須是數字（分鐘）`,
-    text8: `❌ 發生錯誤，請稍後再試`,
-    text9: `❌ 無法獲取維護模式狀態`,
-    userNotFound: `❌ 用戶不存在，請先使用 /start 註冊。`,
-    userNotFound2: `❌ 用戶不存在，請先註冊`,
-    userNotFound3: `❌ 對方用戶不存在。`,
-    userNotFound4: `❌ 用戶不存在`,
-    userNotFound5: `❌ 用戶不存在：\${userId}`,
-    userNotFound6: `❌ 用戶不存在或未註冊。`,
-    userNotFound7: `❌ 用戶不存在。`,
-    vip: `❌ 你沒有權限查看 VIP 數據`,
-    vip2: `❌ 你不是 VIP 用戶，無法申請退款。`,
+  "gender": {
+    "female": "Nữ",
+    "label": "👤 Giới tính: {otherUser.gender}",
+    "male": "Nam"
   },
-  errors: {
-    banned: `❌ 你的帳號已被封禁
-
-原因：{reason}`,
-    channelConfigError: `❌ 頻道配置錯誤`,
-    claimRewardFailed: `❌ 領取獎勵失敗`,
-    completeOnboarding: `⚠️ 請先完成註冊流程。`,
-    conversationInfoError: `❌ 對話資訊錯誤。`,
-    conversationNotFound: `❌ 找不到此對話`,
-    errorDetails: `錯誤信息：{error}`,
-    failed: `失敗: \${broadcast.failedCount}
-`,
-    failed2: `失敗：\${result.failed} 個
-
-`,
-    failed3: `這些廣播將被標記為「失敗」狀態
-`,
-    failed4: `這些廣播已標記為「失敗」狀態
-`,
-    generic: `❌ 發生錯誤，請稍後再試。`,
-    invalidRequest: `❌ 無效的請求`,
-    message: `\${statusEmoji} **\${provider.provider_display_name}**
-\${healthEmoji} 健康狀態: \${health.is_healthy ? '良好' : '需要關注'}
-📊 完成率: \${stats.completion_rate}%
-❌ 錯誤率: \${stats.error_rate}%
-📈 總請求: \${stats.total_requests}
-✅ 總完成: \${stats.total_completions}
-💡 建議: \${health.recommendation}`,
-    message2: `錯誤信息：\${error instanceof Error ? error.message : String(error)}`,
-    message3: `
-錯誤: \${broadcast.errorMessage}`,
-    operationFailed: `❌ 操作失敗`,
-    processError: `❌ 處理過程中發生錯誤`,
-    sessionExpired: `❌ 會話已過期，請重新開始`,
-    systemError: `系统错误`,
-    systemErrorRetry: `❌ 系統發生錯誤，請稍後再試。`,
-    unknownAction: `❌ 未知操作`,
-    unknownError: `🎨 UX: 友善的錯誤提示`,
-    userNotFound: `用戶不存在`,
-    userNotFound4: `[需要翻译]`,
-    userNotFoundRegister: `⚠️ 用戶不存在，請先使用 /start 註冊。`,
-    verificationFailed: `❌ 驗證失敗，請稍後再試`,
-    error: {
-      ad: `❌ 此廣告不需要驗證`,
-      ad2: `❌ 暫無可用的廣告`,
-      ad3: `❌ 無法領取此廣告`,
-      ad4: `❌ 廣告不存在`,
-      ad5: `❌ 廣告 ID 必須是數字`,
-      ad6: `❌ 你沒有權限查看廣告數據`,
-      admin: `❌ 系統發生錯誤，請稍後再試。
-
-如果問題持續，請聯繫管理員。`,
-      admin2: `❌ **權限不足**
-
-此命令僅限超級管理員使用。`,
-      admin3: `❌ 此用戶已經是超級管理員，無需添加。`,
-      admin4: `❌ 只有超級管理員可以使用此命令。`,
-      admin5: `❌ 此用戶已經是管理員。`,
-      admin6: `❌ 無法移除超級管理員。`,
-      admin7: `❌ 此用戶不是管理員。`,
-      appeal: `❌ 請提供申訴 ID
-
-用法: /admin_approve <appeal_id> [備註]`,
-      appeal2: `❌ 請提供申訴 ID
-
-用法: /admin_reject <appeal_id> [備註]`,
-      appeal3: `❌ 申訴 \\\${appealId} 已經被審核過了`,
-      appeal4: `❌ 找不到申訴 ID: \\\${appealId}`,
-      ban: `❌ 用戶 \\\${targetUserId} 沒有封禁記錄`,
-      birthday: `❌ \\\${validation.error}
-
-請重新輸入生日（格式：YYYY-MM-DD）：`,
-      birthday2: `❌ 生日格式錯誤
-
-請重新輸入（格式：YYYY-MM-DD）：`,
-      birthday3: `❌ 生日格式錯誤`,
-      bottle: `❌ 此對話已結束。
-
-使用 /catch 撿新的漂流瓶開始新對話。`,
-      bottle2: `❌ 你的帳號已被封禁，無法撿漂流瓶。
-
-如有疑問，請使用 /appeal 申訴。`,
-      bottle3: `❌ 這個瓶子已經被其他人撿走了，請試試其他瓶子！`,
-      broadcast: `❌ 當前廣播系統僅支持 \\\${MAX_SAFE_USERS} 個用戶以內的廣播。
-
-`,
-      broadcast2: `❌ 廣播 ID 必須是數字`,
-      broadcast3: `❌ 找不到該廣播記錄`,
-      cancel: `❌ 暱稱太長，請輸入不超過 36 個字符的暱稱。
-
-請重新輸入或取消編輯：`,
-      cancel2: `❌ 個人簡介太長，請輸入不超過 200 個字符。
-
-請重新輸入或取消編輯：`,
-      cancel3: `❌ 地區名稱太長，請輸入不超過 50 個字符。
-
-請重新輸入或取消編輯：`,
-      cancel4: `❌ 暱稱太短，至少需要 4 個字符。
-
-請重新輸入或取消編輯：`,
-      cancel5: `❌ 每個標籤最多 20 個字符。
-
-請重新輸入或取消編輯：`,
-      cancel6: `❌ 取消編輯`,
-      cancel7: `❌ 已取消 \\\${ZODIAC_NAMES[zodiacSign]}`,
-      cancel8: `❌ 已取消 \\\${mbtiType}`,
-      cancel9: `❌ 取消`,
-      conversation: `❌ 找不到標識符 \\\${formatIdentifier(identifier)} 的對話
-
-`,
-      conversation2: `❌ 對話資訊錯誤。`,
-      conversation3: `❌ 對話資訊錯誤`,
-      conversation4: `❌ 對話不存在`,
-      conversationInfoError: `❌ 對話資訊錯誤`,
-      conversationNotFound: `❌ 對話不存在`,
-      failed: `❌ **廣告加載失敗**
-
-很抱歉，廣告無法正常播放。
-
-💡 **可能的原因：**
-• 網絡連接不穩定
-• 廣告提供商暫時不可用
-• 瀏覽器不支持
-
-🔄 **建議：**
-• 檢查網絡連接
-• 稍後再試
-• 或使用其他方式獲得額度（邀請朋友）`,
-      failed10: `❌ 查詢維護模式狀態失敗。`,
-      failed11: `❌ 刷新頭像失敗
-
-`,
-      failed12: `❌ 驗證失敗，請稍後再試`,
-      failed13: `❌ 啟用維護模式失敗。`,
-      failed14: `❌ 關閉維護模式失敗。`,
-      failed15: `❌ 獲取廣告狀態失敗`,
-      failed16: `❌ 獲取統計數據失敗`,
-      failed17: `❌ 創建廣播失敗。`,
-      failed18: `❌ 獲取信息失敗`,
-      failed19: `❌ 領取獎勵失敗`,
-      failed2: `❌ 創建過濾廣播失敗
-
-\\\${error instanceof Error ? error.message : String(error)}`,
-      failed20: `❌ 確認失敗`,
-      failed21: `❌ 設置失敗`,
-      failed22: `❌ 跳過失敗`,
-      failed23: `❌ 操作失敗`,
-      failed24: `❌ 發送每日報表失敗：\\\${error instanceof Error ? error.message : String(error)}`,
-      failed25: `❌ 獲取 VIP 漏斗數據失敗`,
-      failed26: `❌ **診斷失敗**
-
-`,
-      failed27: `❌ **刷新失敗**
-
-`,
-      failed28: `❌ **支付失敗**
-
-`,
-      failed29: `❌ 獲取廣告提供商列表失敗`,
-      failed3: `❌ 處理廣播隊列失敗：\\\${error instanceof Error ? error.message : String(error)}`,
-      failed30: `❌ 獲取官方廣告列表失敗`,
-      failed31: `❌ 啟用廣告提供商失敗`,
-      failed32: `❌ 停用廣告提供商失敗`,
-      failed33: `❌ 啟用官方廣告失敗`,
-      failed34: `❌ 停用官方廣告失敗`,
-      failed35: `❌ 獲取分析數據失敗`,
-      failed36: `❌ 獲取廣告數據失敗`,
-      failed37: `❌ 設置優先級失敗`,
-      failed38: `❌ 退款失敗：\\\${error instanceof Error ? error.message : String(error)}`,
-      failed39: `❌ 操作失敗：\\\${error instanceof Error ? error.message : String(error)}`,
-      failed4: `❌ 查詢廣播狀態失敗：\\\${error instanceof Error ? error.message : String(error)}`,
-      failed40: `❌ 提交失敗，請稍後再試。`,
-      failed41: `❌ 建立對話失敗，請稍後再試。`,
-      failed5: `❌ 取消廣播失敗：\\\${error instanceof Error ? error.message : String(error)}`,
-      failed6: `❌ 清理廣播失敗：\\\${error instanceof Error ? error.message : String(error)}`,
-      failed7: `❌ 重置失敗：\\\${errorMessage}
-
-請稍後再試。`,
-      failed8: `❌ 創建廣播失敗，請稍後再試。`,
-      failed9: `❌ 刷新對話歷史失敗
-
-`,
-      mbti: `❌ 無效的 MBTI 類型`,
-      message: `❌ 過濾器格式錯誤
-
-\\\${error instanceof Error ? error.message : String(error)}
-
-`,
-      message2: `❌ 此命令在生產環境中不可用。
-
-This command is not available in production.`,
-      message3: `❌ 發生錯誤，請稍後再試。
-
-錯誤信息：\\\${error instanceof Error ? error.message : String(error)}`,
-      message4: `❌ 很抱歉，你必須年滿 18 歲才能使用本服務。
-
-請成年後再來！`,
-      nickname: `❌ 無法獲取 Telegram 暱稱`,
-      nickname2: `❌ 暱稱不能包含網址連結
-
-`,
-      nickname3: `❌ \\\${validation.error}
-
-請重新輸入暱稱：`,
-      quota: `❌ 今日漂流瓶配額已用完（\\\${quotaDisplay}）
-
-💡 獲得更多配額的方式：
-`,
-      quota2: `❌ 今日對話訊息配額已用完（\\\${usedToday}/\\\${dailyLimit}）
-
-`,
-      quota3: `❌ 今日漂流瓶配額已用完（\\\${quotaDisplay}）
-
-`,
-      register: `❌ 請先完成註冊流程。
-
-使用 /start 繼續註冊。`,
-      register2: `❌ 找不到用戶資料，請先使用 /start 註冊。`,
-      register3: `❌ 請先完成註冊流程才能撿漂流瓶。
-
-使用 /start 繼續註冊。`,
-      settings: `❌ 最多只能設定 5 個興趣標籤。
-
-請重新輸入或取消編輯：`,
-      short: `❌ 無效的語言代碼`,
-      short10: `❌ 權限不足`,
-      short11: `❌ 稍後再說`,
-      short12: `❌ 重新選擇`,
-      short13: `❌ 重新輸入`,
-      short14: `❌ 關閉`,
-      short15: `❌ 未啟用`,
-      short2: `❌ 找不到用戶資料`,
-      short3: `❌ 未知的教學步驟`,
-      short4: `❌ 系統發生錯誤`,
-      short5: `❌ 頻道配置錯誤`,
-      short6: `❌ 未知操作`,
-      short7: `❌ 不正確`,
-      short8: `❌ 否`,
-      short9: `❌ 發生錯誤`,
-      start: `❌ 發生錯誤，請重新開始：/start`,
-      stats: `❌ 你沒有權限查看廣告統計`,
-      task: `❌ 查看任務中心時系統發生錯誤，請稍後再試。`,
-      text: `❌ 計算結果時系統發生錯誤，請稍後再試。
-
-`,
-      text10: `❌ 發送者資訊錯誤。`,
-      text11: `❌ 你沒有權限查看分析數據`,
-      text12: `❌ 發生錯誤，請稍後再試。`,
-      text13: `❌ 你沒有權限使用此命令。`,
-      text14: `❌ 使用方法錯誤
-
-`,
-      text15: `❌ 優先級必須是非負整數`,
-      text16: `❌ 時長必須是正整數或`,
-      text17: `❌ 處理支付時系統發生錯誤，請聯繫客服。
-
-`,
-      text18: `❌ 退款原因至少需要 10 個字，請重新輸入：`,
-      text19: `❌ **退款申請已被拒絕**
-
-`,
-      text2: `❌ 個人簡介包含不允許的連結。
-
-`,
-      text20: `❌ 退款申請超過時限
-
-`,
-      text21: `❌ 退款請求不存在或已處理`,
-      text22: `❌ 找不到支付記錄。`,
-      text23: `❌ 很抱歉，你必須年滿 18 歲才能使用本服務。
-
-`,
-      text24: `❌ 發生錯誤，請重新輸入。`,
-      text25: `❌ 請認真回答問題
-
-`,
-      text3: `❌ 未檢測到你加入頻道，請先加入後再試`,
-      text4: `❌ 檢測到你已離開頻道，無法領取獎勵。`,
-      text5: `❌ 啟動教學時發生錯誤，請稍後再試。`,
-      text6: `❌ 系統發生錯誤，請稍後再試。`,
-      text7: `❌ 時長必須是數字（分鐘）`,
-      text8: `❌ 發生錯誤，請稍後再試`,
-      text9: `❌ 無法獲取維護模式狀態`,
-      userNotFound: `❌ 用戶不存在，請先使用 /start 註冊。`,
-      userNotFound2: `❌ 用戶不存在，請先註冊`,
-      userNotFound3: `❌ 對方用戶不存在。`,
-      userNotFound4: `❌ 用戶不存在`,
-      userNotFound5: `❌ 用戶不存在：\\\${userId}`,
-      userNotFound6: `❌ 用戶不存在或未註冊。`,
-      userNotFound7: `❌ 用戶不存在。`,
-      vip: `❌ 你沒有權限查看 VIP 數據`,
-      vip2: `❌ 你不是 VIP 用戶，無法申請退款。`,
+  "help": {
+    "ad": "• Xem quảng cáo: +1 hạn mức mỗi lần (tối đa 20 lần mỗi ngày)\n",
+    "ad2": "/ad_performance - Báo cáo hiệu suất quảng cáo\n",
+    "ad3": "• Nhận hạn mức bằng cách xem quảng cáo (xuất hiện khi hạn mức cạn kiệt)\n",
+    "ad4": "• Xem quảng cáo chính thức để có hạn ngạch vĩnh viễn\n\n",
+    "ad5": "• Quảng cáo chính thức: Phần thưởng hạn mức vĩnh viễn\n",
+    "ad6": "• Trải nghiệm không có quảng cáo\n\n",
+    "admin": "/admin_remove <user_id> - Xóa quyền quản trị\n\n",
+    "admin2": "/admin_add <user_id> - Thêm quản trị viên\n",
+    "admin3": "/admin_list - Xem danh sách quản trị viên\n",
+    "admin4": "🔱 **Các tính năng của Quản trị viên Siêu**\n\n",
+    "admin5": "👮 **Các tính năng của Quản trị viên**\n\n",
+    "admin6": "**Quản lý Quản trị viên**\n",
+    "admin_ads": "/admin_ads - Quản lý quảng cáo chính thức\n",
+    "admin_tasks": "/admin_tasks - Quản lý nhiệm vụ cộng đồng",
+    "appeal": "/admin_reject [remarks] - Từ chối kháng nghị\n\n",
+    "appeal2": "/admin_approve [ghi chú] - Chấp thuận kháng cáo\n",
+    "appeal3": "/appeal_status - Kiểm tra trạng thái kháng nghị\n\n",
+    "appeal4": "/admin_appeals - Xem các kháng cáo đang chờ xử lý\n",
+    "appeal5": "🛡️ **An toàn và Kháng cáo**\n",
+    "appeal6": "**Xem xét Kháng cáo**\n",
+    "ban": "/admin_ban <user_id> [giờ|vĩnh viễn] - Cấm người dùng\n",
+    "ban2": "/admin_bans <user_id> - Xem lịch sử cấm người dùng\n\n",
+    "ban3": "/admin_unban <user_id> - Gỡ cấm người dùng\n",
+    "ban4": "/admin_bans - Xem hồ sơ cấm\n",
+    "ban5": "/appeal - Kháng nghị cấm\n",
+    "ban6": "• Các vi phạm sẽ dẫn đến việc cấm\n\n",
+    "birthday": "• Hôm nay là sinh nhật: is_birthday=true\n\n",
+    "bottle": "• Hoàn thành nhiệm vụ: Kiếm thêm chai thư (sử dụng /tasks để xem)\n",
+    "bottle2": "/tasks - Trung tâm Nhiệm vụ (Hoàn thành nhiệm vụ để kiếm thêm chai thư)\n",
+    "bottle3": "• Bạn có thể ném và bắt một số lượng chai thư giới hạn mỗi ngày\n",
+    "bottle4": "• Người dùng VIP: 30 chai thư mỗi ngày\n",
+    "bottle5": "• Chai thư có hiệu lực trong 24 giờ\n\n",
+    "bottle6": "• Người dùng miễn phí: 3 chai thư mỗi ngày\n",
+    "bottle7": "/throw - Ném chai thư\n",
+    "bottle8": "/catch - Bắt chai thư\n",
+    "bottle9": "🍾 **Hệ thống Chai Thư**\n",
+    "broadcast": "/broadcast_status - Xem chi tiết phát sóng\n",
+    "broadcast2": "/broadcast_process - Xử lý hàng đợi phát sóng thủ công\n",
+    "broadcast3": "/broadcast_cleanup - Dọn dẹp các phát sóng bị kẹt\n",
+    "broadcast4": "/broadcast_status - Xem danh sách phát sóng\n",
+    "broadcast5": "**Giám sát Phát sóng**\n",
+    "broadcast6": "**Gửi Phát sóng**\n",
+    "cancel": "/broadcast_cancel - Hủy phát sóng\n\n",
+    "conversation": "/chats - Danh sách Cuộc trò chuyện của tôi\n\n",
+    "conversation2": "• Tất cả các cuộc trò chuyện đều ẩn danh\n",
+    "help2": "💡 Sử dụng /help để xem trợ giúp",
+    "invite": "• Mời bạn bè: +1 chỉ tiêu mỗi người (tối đa 10/100)\n",
+    "invite2": "/invite - Mời bạn bè để có chỉ tiêu\n",
+    "mbti": "• Lọc theo MBTI, cung hoàng đạo, nhóm máu\n",
+    "mbti2": "/mbti - Quản lý MBTI\n",
+    "message": "/maintenance_enable - Bật chế độ bảo trì\n",
+    "message2": "/broadcast_non_vip - Phát sóng đến người dùng không VIP\n",
+    "message3": "• Phụ nữ từ 18-25 tuổi: giới tính= nữ , tuổi=18-25\n",
+    "message4": "/broadcast_filter - Phát sóng chính xác\n",
+    "message5": "/broadcast_vip - Phát sóng đến người dùng VIP\n",
+    "message6": "/maintenance_disable - Tắt chế độ bảo trì\n\n",
+    "message7": "/maintenance_status - Kiểm tra trạng thái bảo trì\n",
+    "message8": "/broadcast - Phát sóng đến tất cả người dùng\n",
+    "profile": "/edit_profile - Chỉnh sửa hồ sơ\n",
+    "profile2": "/profile - Xem hồ sơ\n",
+    "profile3": "👤 **Hồ Sơ**\n",
+    "quota": "• Mời bạn bè có thể tăng hạn ngạch (tối đa 10/100)\n",
+    "quota2": "• 30 chai thư mỗi ngày\n",
+    "register": "/start - Bắt đầu / Tiếp tục đăng ký\n",
+    "report": "/report - Báo cáo nội dung không phù hợp\n",
+    "settings": "/settings - Cài đặt thông báo",
+    "settings2": "📖 **Trợ Giúp và Cài Đặt**\n",
+    "stats": "/stats - Thống kê của tôi\n\n",
+    "success": "└ Tăng đáng kể tỷ lệ thành công trong việc ghép đôi\n",
+    "text": "/maintenance_status - Kiểm tra trạng thái bảo trì",
+    "text10": "📖 **Danh sách Lệnh XunNi**\n\n",
+    "text11": "/analytics - Báo cáo hoạt động hàng ngày\n",
+    "text12": "/dev_restart - Đặt lại hoàn toàn tài khoản",
+    "text13": "📜 **Quy tắc Chơi XunNi**\n\n",
+    "text14": "• Chỉ có thể gửi văn bản và Emoji chính thức\n",
+    "text15": "/dev_info - Thông tin hệ thống\n",
+    "text16": "/quota - Kiểm tra trạng thái hạn ngạch\n",
+    "text17": "/rules - Xem quy tắc trò chơi\n",
+    "text18": "/block - Chặn người dùng\n",
+    "text19": "/help - Hiển thị danh sách này\n",
+    "text2": "/refresh_avatar - Làm mới bộ nhớ đệm ảnh đại diện\n",
+    "text20": "• Tôn trọng người khác, giao tiếp thân thiện\n\n",
+    "text21": "🎁 **Phương thức nhận hạn ngạch**\n",
+    "text22": "• Không chia sẻ thông tin liên lạc cá nhân\n",
+    "text23": "🛡️ **Quy tắc an toàn**\n",
+    "text24": "🎮 **Tính năng chính**\n",
+    "text25": "/menu - Menu chính\n",
+    "text26": "💬 **Chat ẩn danh**\n",
+    "text27": "• Hành vi quấy rối và lạm dụng bị cấm\n",
+    "text28": "• Gửi nội dung không phù hợp bị cấm\n",
+    "text29": "• Mở khóa hình ảnh đại diện rõ ràng của bên kia\n",
+    "text3": "• Gửi chỉ đến nữ: gender=female\n",
+    "text30": "• Lừa đảo và lừa gạt bị cấm\n",
+    "text31": "**Quản lý người dùng**\n",
+    "text32": "**Bảo trì hệ thống**\n",
+    "text33": "**Phân tích dữ liệu**\n",
+    "text34": "**Công cụ phát triển**\n",
+    "text4": "• Dịch tự động sang 34 ngôn ngữ (ưu tiên OpenAI)\n",
+    "text5": "/profile_card - Xem thẻ hồ sơ\n",
+    "text6": "/dev_reset - Đặt lại tài khoản (dành cho thử nghiệm)\n",
+    "text7": "• Gửi chỉ đến nam: gender=male\n",
+    "text8": "💡 Gặp vấn đề? Sử dụng /help để xem danh sách lệnh",
+    "text9": "• Sử dụng /quota để kiểm tra trạng thái hạn mức của bạn\n\n",
+    "throw": "• 🆕 Cơ hội tiếp xúc gấp ba (1 chai thư = 3 mục tiêu)\n",
+    "vip": "• VIP ở Đài Loan: country=TW,vip=true\n",
+    "vip2": "• Hạn ngạch miễn phí hàng ngày: 3 (VIP: 30)\n",
+    "vip3": "/funnel - Quy trình chuyển đổi VIP\n\n",
+    "vip4": "🎁 **Hạn ngạch và VIP**\n",
+    "vip5": "/vip - Đăng ký VIP\n",
+    "vip6": "💎 **Lợi ích VIP**\n"
+  },
+  "history": {
+    "chatHistory": "💬 **Lịch sử Trò chuyện của Bạn**\n\n",
+    "continueChatButton": "💬 Tiếp tục cuộc trò chuyện",
+    "continueConversation": "💬 Tiếp tục cuộc trò chuyện: /reply\n",
+    "conversationEnd": "• Tin nhắn cuối: {time}\n",
+    "conversationNotFound": "❌ Không tìm thấy cuộc trò chuyện với mã định danh {identifier}\n\nSử dụng /history để xem tất cả các cuộc trò chuyện\n\n🏠 Trở về menu chính: /menu",
+    "conversationStart": "• Cuộc trò chuyện bắt đầu: {time}\n",
+    "conversationTitle": "📨 Cuộc trò chuyện với {identifier} ({count} tin nhắn)\n",
+    "conversationWith": "💬 **Cuộc trò chuyện với {identifier}**\n\n",
+    "daysAgo": "{days} ngày trước",
+    "errorRetry": "❌ Đã xảy ra lỗi, vui lòng thử lại sau.",
+    "hoursAgo": "{hours} giờ trước",
+    "justNow": "Ngay bây giờ",
+    "lastMessage": "Tin nhắn cuối: {preview}\n",
+    "messageSender": "{sender}: {content}\n\n",
+    "messageTime": "📨 {time}\n",
+    "minutesAgo": "{minutes} phút trước",
+    "noHistory": "💬 Bạn chưa có hồ sơ cuộc trò chuyện nào\n\nHãy ném một chai thư để gặp gỡ bạn mới! /throw\n\n🏠 Trở về menu chính: /menu",
+    "noMessages": "(Không có tin nhắn)",
+    "partnerMessages": "• Đối thủ đã gửi: {count} tin nhắn\n",
+    "recentMessages": "📨 **Các Cuộc trò chuyện Gần đây:**\n\n",
+    "returnToMenu": "🏠 Trở về menu chính: /menu",
+    "returnToMenuButton": "🏠 Trở về menu chính",
+    "stats": "📊 **Thống kê:**\n",
+    "time": "Thời gian: {time}\n\n",
+    "totalMessages": "• Tổng số tin nhắn: {total} tin nhắn\n",
+    "userMessages": "• Bạn đã gửi: {count} tin nhắn\n",
+    "viewFull": "💡 Sử dụng /history {identifier} để xem cuộc trò chuyện hoàn chỉnh\n\nBạn\n\n",
+    "you": "Bạn"
+  },
+  "invite": {
+    "codeAccepted": "✅ Mã mời đã được chấp nhận! Cảm ơn {inviterName} đã mời",
+    "inviteeSuccess": "✅ Mời thành công! Bạn đã nhận được +1 chỉ tiêu vĩnh viễn.",
+    "inviterSuccess": "✅ Mời thành công! Bạn đã nhận được +1 hạn mức vĩnh viễn",
+    "limitReached": "❌ Bạn đã đạt giới hạn lời mời ({max} người)",
+    "limitWarning": "⚠️ Bạn đã mời {count} người và có thể mời thêm {remaining} người nữa",
+    "selfInviteError": "❌ Bạn không thể mời chính mình",
+    "upgradePrompt": "💎 Nâng cấp lên VIP để có thêm chỗ mời",
+    "userType": "{type}"
+  },
+  "maintenance": {
+    "allFeaturesAvailable": "Tất cả tính năng hiện đã sẵn sàng để sử dụng.",
+    "completed": "✅ Việc bảo trì hệ thống đã hoàn tất",
+    "completingSoon": "Sắp hoàn thành",
+    "correctFormat": "**Định dạng Đúng:**\n/maintenance_enable [tin nhắn bảo trì]\n\n",
+    "defaultMessage": "Hệ thống đang được bảo trì và tạm thời không khả dụng.",
+    "disableFailed": "❌ Không thể tắt chế độ bảo trì.",
+    "disableSuccess": "✅ Chế độ bảo trì đã được tắt\n\nThông báo phục hồi đã được gửi đến tất cả người dùng.",
+    "durationMax": "Thời gian bảo trì không được vượt quá 24 giờ (1440 phút)",
+    "durationMin": "Thời gian bảo trì phải tối thiểu 5 phút",
+    "durationMustBeNumber": "❌ Thời gian phải là một số (tính bằng phút)",
+    "enableFailed": "❌ Không thể kích hoạt chế độ bảo trì.",
+    "enableSuccess": "✅ Chế độ bảo trì đã được kích hoạt\n\nThời gian: {duration} phút\nBắt đầu: {startTime}\nKết thúc: {endTime}\n\nThông báo bảo trì đã được gửi đến tất cả người dùng.\nNgười dùng thông thường sẽ không thể sử dụng dịch vụ, chỉ có quản trị viên mới có thể đăng nhập.",
+    "enabledBy": "Được kích hoạt bởi: {user}\n",
+    "estimatedDuration": "Thời gian ước tính: {duration} phút\n",
+    "estimatedEnd": "Thời gian hoàn thành ước tính: {time}\n",
+    "example": "**Ví dụ:**\n/maintenance_enable 60 bảo trì nâng cấp hệ thống",
+    "notificationTitle": "🛠️ Thông báo bảo trì hệ thống",
+    "remainingHours": "Khoảng {hours} giờ {minutes} phút",
+    "remainingMinutes": "Khoảng {minutes} phút",
+    "remainingTime": "Thời gian còn lại: {time}\n",
+    "serviceRestored": "Dịch vụ đã trở lại bình thường, cảm ơn bạn đã kiên nhẫn!",
+    "startTime": "Thời gian bắt đầu: {time}\n",
+    "status": "Trạng thái: {status}\n",
+    "statusActive": "✅ Đang bảo trì",
+    "statusFailed": "❌ Không thể truy xuất trạng thái chế độ bảo trì",
+    "statusInactive": "❌ Chưa được kích hoạt",
+    "statusTitle": "🛠️ Trạng thái chế độ bảo trì",
+    "thanks": "Cảm ơn bạn đã kiên nhẫn!",
+    "unknown": "Không xác định",
+    "usageError": "❌ Sử dụng không đúng\n\n"
+  },
+  "mbti": {
+    "description": {
+      "ENFJ": "Người anh hùng - Một nhà lãnh đạo thu hút và truyền cảm hứng, có khả năng cuốn hút khán giả.",
+      "ENFP": "Ứng viên - Một tinh thần tự do đam mê, sáng tạo và hòa đồng luôn tìm thấy lý do để cười.",
+      "ENTJ": "Tư lệnh - Một nhà lãnh đạo dũng cảm, sáng tạo và có ý chí mạnh mẽ, luôn tìm ra hoặc tạo ra giải pháp.",
+      "ENTP": "Người tranh luận - Một tư duy thông minh và tò mò không thể cưỡng lại các thử thách trí tuệ.",
+      "ESFJ": "Thống đốc - Một người đầy lòng từ bi, nổi tiếng và hữu ích, luôn mong muốn đóng góp cho cộng đồng.",
+      "ESFP": "Người biểu diễn - Một nghệ sĩ tự phát, năng lượng và nhiệt tình, không bao giờ chán nản trong môi trường xung quanh.",
+      "ESTJ": "Giám đốc điều hành - Một nhà quản lý xuất sắc, không ai sánh kịp trong việc xử lý công việc hoặc nhân sự.",
+      "ESTP": "Doanh nhân - Một người thông minh, năng động và sâu sắc, thật sự thích thú với việc sống mạo hiểm.",
+      "INFJ": "Luật sư - Người bí ẩn và trầm lặng, nhưng là một người lý tưởng truyền cảm hứng và không biết mệt mỏi.",
+      "INFP": "Người hòa giải - Một người vị tha thơ mộng và nhân hậu, luôn nhiệt tình phấn đấu cho công lý.",
+      "INTJ": "Kiến trúc sư - Nhà tư duy sáng tạo và chiến lược, mọi thứ được lên kế hoạch tỉ mỉ.",
+      "INTP": "Nhà logic - Một nhà phát minh sáng tạo với khát vọng tột độ đối với tri thức.",
+      "ISFJ": "Người bảo vệ - Một người bảo vệ có trọng tâm cao và ấm áp, luôn sẵn sàng bảo vệ những người mình yêu thương.",
+      "ISFP": "Nhà thám hiểm - Một nghệ sĩ linh hoạt và quyến rũ, luôn chuẩn bị khám phá và trải nghiệm những điều mới mẻ.",
+      "ISTJ": "Nhà logistics - Một cá nhân thực tế và hướng đến sự thật, có độ tin cậy không thể nghi ngờ.",
+      "ISTP": "Người thưởng thức - Một người dũng cảm và thực dụng, thành thạo trong việc sử dụng các công cụ khác nhau."
     },
-  },
-  estimate: {
-    immediate: `立即發送（約 1-2 秒）`,
-    minutes: `約 \${minutes} 分鐘`,
-    seconds: `約 \${seconds} 秒`,
-  },
-  gender: {
-    female: `[需要翻译]`,
-    label: `👤 性別：{otherUser.gender}`,
-    male: `[需要翻译]`,
-  },
-  help: {
-    ad: `• 觀看廣告：每次 +1 額度（每日最多 20 次）
-`,
-    ad2: `/ad_performance - 廣告效果報表
-`,
-    ad3: `• 觀看廣告獲得額度（額度用完時顯示）
-`,
-    ad4: `• 查看官方廣告獲得永久額度
-
-`,
-    ad5: `• 官方廣告：永久額度獎勵
-`,
-    ad6: `• 無廣告體驗
-
-`,
-    admin: `/admin_remove <user_id> - 移除管理員
-
-`,
-    admin2: `/admin_add <user_id> - 添加管理員
-`,
-    admin3: `/admin_list - 查看管理員列表
-`,
-    admin4: `🔱 **超級管理員功能**
-
-`,
-    admin5: `👮 **管理員功能**
-
-`,
-    admin6: `**管理員管理**
-`,
-    appeal: `/admin_reject <id> [備註] - 拒絕申訴
-
-`,
-    appeal2: `/admin_approve <id> [備註] - 批准申訴
-`,
-    appeal3: `/appeal_status - 查詢申訴狀態
-
-`,
-    appeal4: `/admin_appeals - 查看待審核申訴
-`,
-    appeal5: `🛡️ **安全與申訴**
-`,
-    appeal6: `**申訴審核**
-`,
-    ban: `/admin_ban <user_id> [hours|permanent] - 封禁用戶
-`,
-    ban2: `/admin_bans <user_id> - 查看用戶封禁歷史
-
-`,
-    ban3: `/admin_unban <user_id> - 解除封禁
-`,
-    ban4: `/admin_bans - 查看封禁記錄
-`,
-    ban5: `/appeal - 申訴封禁
-`,
-    ban6: `• 違規將被封禁
-
-`,
-    birthday: `• 今天生日：is_birthday=true
-
-`,
-    bottle: `• 完成任務：獲得額外瓶子（使用 /tasks 查看）
-`,
-    bottle2: `/tasks - 任務中心（完成任務獲得額外瓶子）
-`,
-    bottle3: `• 每天可以丟出和撿起有限數量的漂流瓶
-`,
-    bottle4: `• VIP 用戶：每天 30 個瓶子
-`,
-    bottle5: `• 瓶子在 24 小時內有效
-
-`,
-    bottle6: `• 免費用戶：每天 3 個瓶子
-`,
-    bottle7: `/throw - 丟出漂流瓶
-`,
-    bottle8: `/catch - 撿起漂流瓶
-`,
-    bottle9: `🍾 **漂流瓶系統**
-`,
-    broadcast: `/broadcast_status <id> - 查看廣播詳情
-`,
-    broadcast2: `/broadcast_process - 手動處理廣播隊列
-`,
-    broadcast3: `/broadcast_cleanup - 清理卡住的廣播
-`,
-    broadcast4: `/broadcast_status - 查看廣播列表
-`,
-    broadcast5: `**廣播監控**
-`,
-    broadcast6: `**廣播發送**
-`,
-    cancel: `/broadcast_cancel <id> - 取消廣播
-
-`,
-    conversation: `/chats - 我的對話列表
-
-`,
-    conversation2: `• 所有對話都是匿名的
-`,
-    help2: `💡 使用 /help 查看幫助`,
-    invite: `• 邀請好友：每人 +1 額度（最多 10/100）
-`,
-    invite2: `/invite - 邀請好友獲得額度
-`,
-    mbti: `• 可篩選 MBTI、星座、血型
-`,
-    mbti2: `/mbti - MBTI 管理
-`,
-    message: `/maintenance_enable <分鐘> <訊息> - 啟用維護模式
-`,
-    message2: `/broadcast_non_vip <訊息> - 群發給非 VIP 用戶
-`,
-    message3: `• 18-25歲女性：gender=female,age=18-25
-`,
-    message4: `/broadcast_filter <過濾器> <訊息> - 精準廣播
-`,
-    message5: `/broadcast_vip <訊息> - 群發給 VIP 用戶
-`,
-    message6: `/maintenance_disable - 關閉維護模式
-
-`,
-    message7: `/maintenance_status - 查看維護狀態
-`,
-    message8: `/broadcast <訊息> - 群發給所有用戶
-`,
-    profile: `/edit_profile - 編輯個人資料
-`,
-    profile2: `/profile - 查看個人資料
-`,
-    profile3: `👤 **個人資料**
-`,
-    quota: `• 邀請好友可增加配額（最多 10/100）
-`,
-    quota2: `• 每天 30 個漂流瓶配額
-`,
-    register: `/start - 開始使用 / 繼續註冊
-`,
-    report: `/report - 舉報不當內容
-`,
-    settings: `/settings - 推送設定`,
-    settings2: `📖 **幫助與設定**
-`,
-    stats: `/stats - 我的統計數據
-
-`,
-    success: `└ 大幅提升配對成功率
-`,
-    text: `/maintenance_status - 查看維護狀態`,
-    text10: `📖 **XunNi 指令列表**
-
-`,
-    text11: `/analytics - 每日運營報表
-`,
-    text12: `/dev_restart - 完全重置帳號`,
-    text13: `📜 **XunNi 遊戲規則**
-
-`,
-    text14: `• 只能發送文字和官方 Emoji
-`,
-    text15: `/dev_info - 系統信息
-`,
-    text16: `/quota - 查看額度狀態
-`,
-    text17: `/rules - 查看遊戲規則
-`,
-    text18: `/block - 封鎖使用者
-`,
-    text19: `/help - 顯示此列表
-`,
-    text2: `/refresh_avatar - 刷新頭像緩存
-`,
-    text20: `• 尊重對方，友善交流
-
-`,
-    text21: `🎁 **額度獲取方式**
-`,
-    text22: `• 不要分享個人聯絡方式
-`,
-    text23: `🛡️ **安全規則**
-`,
-    text24: `🎮 **核心功能**
-`,
-    text25: `/menu - 主選單
-`,
-    text26: `💬 **匿名聊天**
-`,
-    text27: `• 禁止騷擾、辱罵他人
-`,
-    text28: `• 禁止發送不當內容
-`,
-    text29: `• 解鎖對方清晰頭像
-`,
-    text3: `• 只發給女性：gender=female
-`,
-    text30: `• 禁止詐騙、釣魚
-`,
-    text31: `**用戶管理**
-`,
-    text32: `**系統維護**
-`,
-    text33: `**數據分析**
-`,
-    text34: `**開發工具**
-`,
-    text4: `• 34 種語言自動翻譯（OpenAI 優先）
-`,
-    text5: `/profile_card - 查看資料卡片
-`,
-    text6: `/dev_reset - 重置帳號（測試用）
-`,
-    text7: `• 只發給男性：gender=male
-`,
-    text8: `💡 遇到問題？使用 /help 查看指令列表`,
-    text9: `• 使用 /quota 查看額度狀態
-
-`,
-    throw: `• 🆕 三倍曝光機會（1 次丟瓶 = 3 個對象）
-`,
-    vip: `• 台灣的VIP：country=TW,vip=true
-`,
-    vip2: `• 每日免費額度：3 個（VIP：30 個）
-`,
-    vip3: `/funnel - VIP 轉化漏斗
-
-`,
-    vip4: `🎁 **額度與 VIP**
-`,
-    vip5: `/vip - VIP 訂閱
-`,
-    vip6: `💎 **VIP 權益**
-`,
-  },
-  history: {
-    chatHistory: `💬 **你的聊天記錄**
-
-`,
-    continueChatButton: `💬 繼續對話`,
-    continueConversation: `💬 繼續對話：/reply
-`,
-    conversationEnd: `• 最後訊息：{time}
-`,
-    conversationNotFound: `❌ 找不到標識符 {identifier} 的對話
-
-使用 /history 查看所有對話
-
-🏠 返回主選單：/menu`,
-    conversationStart: `• 對話開始：{time}
-`,
-    conversationTitle: `📨 {identifier} 的對話（{count} 則訊息）
-`,
-    conversationWith: `💬 **與 {identifier} 的對話**
-
-`,
-    daysAgo: `{days} 天前`,
-    errorRetry: `❌ 發生錯誤，請稍後再試。`,
-    hoursAgo: `{hours} 小時前`,
-    justNow: `剛剛`,
-    lastMessage: `最後訊息：{preview}
-`,
-    messageSender: `{sender}：{content}
-
-`,
-    messageTime: `📨 {time}
-`,
-    minutesAgo: `{minutes} 分鐘前`,
-    noHistory: `💬 你還沒有任何對話記錄
-
-快去丟瓶子認識新朋友吧！ /throw
-
-🏠 返回主選單：/menu`,
-    noMessages: `(無訊息)`,
-    partnerMessages: `• 對方發送：{count} 則
-`,
-    recentMessages: `
-📨 **最近對話：**
-
-`,
-    returnToMenu: `🏠 返回主選單：/menu`,
-    returnToMenuButton: `🏠 返回主選單`,
-    stats: `📊 **統計：**
-`,
-    time: `時間：{time}
-
-`,
-    totalMessages: `• 總訊息數：{total} 則
-`,
-    userMessages: `• 你發送：{count} 則
-`,
-    viewFull: `💡 使用 /history {identifier} 查看完整對話
-
-`,
-    you: `你`,
-  },
-  invite: {
-    codeAccepted: `✅ 邀請碼已接受！感謝 {inviterName} 的邀請`,
-    inviteeSuccess: `✅ 你已成功接受邀請！`,
-    inviterSuccess: `✅ 邀請成功！你獲得了 +1 永久額度`,
-    limitReached: `❌ 你已達到邀請上限（{max} 人）`,
-    limitWarning: `⚠️ 你已邀請 {count} 人，還可邀請 {remaining} 人`,
-    selfInviteError: `❌ 不能邀請自己`,
-    upgradePrompt: `💎 升級 VIP 可獲得更多邀請名額`,
-    userType: `{type}`,
-  },
-  maintenance: {
-    allFeaturesAvailable: `現在可以正常使用所有功能了。`,
-    completed: `✅ 系統維護已完成`,
-    completingSoon: `即將完成`,
-    correctFormat: `**正確格式：**
-/maintenance_enable <時長(分鐘)> [維護訊息]
-
-`,
-    defaultMessage: `系統正在進行維護，暫時無法使用。`,
-    disableFailed: `❌ 關閉維護模式失敗。`,
-    disableSuccess: `✅ 維護模式已關閉
-
-恢復通知已廣播給所有用戶。`,
-    durationMax: `維護時長不能超過 24 小時（1440 分鐘）`,
-    durationMin: `維護時長最少 5 分鐘`,
-    durationMustBeNumber: `❌ 時長必須是數字（分鐘）`,
-    enableFailed: `❌ 啟用維護模式失敗。`,
-    enableSuccess: `✅ 維護模式已啟用
-
-時長：{duration} 分鐘
-開始：{startTime}
-結束：{endTime}
-
-維護通知已廣播給所有用戶。
-一般用戶將無法使用服務，只有管理員可以登入。`,
-    enabledBy: `啟用者：{user}
-`,
-    estimatedDuration: `預計時長：{duration} 分鐘
-`,
-    estimatedEnd: `預計完成：{time}
-`,
-    example: `**示例：**
-/maintenance_enable 60 系統升級維護`,
-    notificationTitle: `🛠️ 系統維護通知`,
-    remainingHours: `約 {hours} 小時 {minutes} 分鐘`,
-    remainingMinutes: `約 {minutes} 分鐘`,
-    remainingTime: `剩餘時間：{time}
-`,
-    serviceRestored: `服務已恢復正常，感謝您的耐心等待！`,
-    startTime: `開始時間：{time}
-`,
-    status: `狀態：{status}
-`,
-    statusActive: `✅ 維護中`,
-    statusFailed: `❌ 無法獲取維護模式狀態`,
-    statusInactive: `❌ 未啟用`,
-    statusTitle: `🛠️ 維護模式狀態`,
-    thanks: `感謝您的耐心等待！`,
-    unknown: `未知`,
-    usageError: `❌ 使用方法錯誤
-
-`,
-  },
-  mbti: {
-    description: {
-      ENFJ: `主人公 - 富有魅力且鼓舞人心的領導者，有能力使聽眾著迷。`,
-      ENFP: `競選者 - 熱情、有創造力且社交能力強的自由精神，總能找到理由微笑。`,
-      ENTJ: `指揮官 - 大膽、富有想像力且意志強大的領導者，總能找到或創造解決方法。`,
-      ENTP: `辯論家 - 聰明好奇的思想家，無法抗拒智力上的挑戰。`,
-      ESFJ: `執政官 - 極有同情心、受歡迎且樂於助人的人，總是渴望為社群做出貢獻。`,
-      ESFP: `表演者 - 自發、精力充沛且熱情的表演者，生活在他們周圍從不無聊。`,
-      ESTJ: `總經理 - 出色的管理者，在管理事務或人員方面無與倫比。`,
-      ESTP: `企業家 - 聰明、精力充沛且善於洞察的人，真正享受生活在邊緣。`,
-      INFJ: `提倡者 - 安靜而神秘，同時鼓舞人心且不知疲倦的理想主義者。`,
-      INFP: `調停者 - 詩意、善良的利他主義者，總是熱情地為正義事業而努力。`,
-      INTJ: `建築師 - 富有想像力和戰略性的思想家，一切皆在計劃之中。`,
-      INTP: `邏輯學家 - 具有創新精神的發明家，對知識有著止不住的渴望。`,
-      ISFJ: `守衛者 - 非常專注且溫暖的守護者，時刻準備著保護所愛之人。`,
-      ISFP: `探險家 - 靈活且迷人的藝術家，時刻準備著探索和體驗新事物。`,
-      ISTJ: `物流師 - 實際且注重事實的個人，可靠性不容懷疑。`,
-      ISTP: `鑒賞家 - 大膽而實際的實驗者，擅長使用各種工具。`,
+    "full": {
+      "question1": "Trong các tình huống xã hội, bạn thường:",
+      "question1.option1": "Khởi xướng cuộc trò chuyện với người khác",
+      "question1.option2": "Chờ người khác tiếp cận tôi",
+      "question10": "Khi giải quyết vấn đề, bạn thường dựa vào:",
+      "question10.option1": "Kinh nghiệm thực tế và sự thật",
+      "question10.option2": "Trực giác và khả năng",
+      "question11": "Bạn thích:",
+      "question11.option1": "Tập trung vào các chi tiết cụ thể",
+      "question11.option2": "Tập trung vào khái niệm tổng thể",
+      "question12": "Khi học những điều mới, bạn thích:",
+      "question12.option1": "Một cách tiếp cận từng bước",
+      "question12.option2": "Khám phá những cách sáng tạo",
+      "question13": "Khi đọc, bạn thích:",
+      "question13.option1": "Hướng dẫn thực tiễn",
+      "question13.option2": "Lý thuyết và khái niệm",
+      "question14": "Bạn tập trung nhiều hơn vào:",
+      "question14.option1": "Hiện tại và quá khứ",
+      "question14.option2": "Tương lai và những khả năng",
+      "question15": "Khi mô tả sự vật, bạn có xu hướng:",
+      "question15.option1": "Sử dụng ví dụ cụ thể",
+      "question15.option2": "Sử dụng phép ẩn dụ và sự so sánh",
+      "question16": "Tại nơi làm việc, bạn coi trọng hơn:",
+      "question16.option1": "Ứng dụng thực tiễn",
+      "question16.option2": "Ý tưởng sáng tạo",
+      "question17": "Bạn tin tưởng hơn:",
+      "question17.option1": "Phương pháp đã được chứng minh",
+      "question17.option2": "Những nỗ lực mới",
+      "question18": "Khi lập kế hoạch cho tương lai, bạn:",
+      "question18.option1": "Dựa trên điều kiện thực tế",
+      "question18.option2": "Hình dung nhiều khả năng khác nhau",
+      "question19": "Khi đưa ra quyết định, bạn coi trọng hơn:",
+      "question19.option1": "Phân tích logic và khách quan",
+      "question19.option2": "Cảm xúc và sự hòa hợp giữa các mối quan hệ",
+      "question2": "Cuối tuần, bạn thích:",
+      "question2.option1": "Ra ngoài với bạn bè",
+      "question2.option2": "Ở nhà để thư giãn",
+      "question20": "Khi chỉ trích người khác, bạn:",
+      "question20.option1": "Chỉ ra vấn đề một cách trực tiếp",
+      "question20.option2": "Xem xét cảm xúc của người khác",
+      "question21": "Điều gì quan trọng hơn đối với bạn:",
+      "question21.option1": "Sự công bằng và công lý",
+      "question21.option2": "Sự cảm thông và thấu hiểu",
+      "question22": "Khi đánh giá một ý tưởng, bạn xem xét điều gì đầu tiên:",
+      "question22.option1": "Điều đó có hợp lý không",
+      "question22.option2": "Điều đó có lợi không",
+      "question23": "Khi một người bạn chia sẻ với bạn, bạn:",
+      "question23.option1": "Phân tích vấn đề và đưa ra lời khuyên",
+      "question23.option2": "Lắng nghe và đưa ra sự an ủi",
+      "question24": "Trong một cuộc xung đột, bạn có xu hướng:",
+      "question24.option1": "Đứng vững vào nguyên tắc của mình",
+      "question24.option2": "Duy trì mối quan hệ",
+      "question25": "Bạn dễ bị thuyết phục bởi:",
+      "question25.option1": "Sự thật và dữ liệu",
+      "question25.option2": "Cảm xúc và câu chuyện",
+      "question26": "Trong quyết định của nhóm, bạn tập trung nhiều hơn vào:",
+      "question26.option1": "Hiệu quả và kết quả",
+      "question26.option2": "Sự đồng thuận và thống nhất",
+      "question27": "Bạn tin rằng một nhà lãnh đạo giỏi nên:",
+      "question27.option1": "Công bằng và quyết đoán",
+      "question27.option2": "Chăm sóc và chu đáo",
+      "question28": "Phong cách làm việc của bạn là:",
+      "question28.option1": "Lập kế hoạch và chuẩn bị trước",
+      "question28.option2": "Thích ứng và linh hoạt",
+      "question29": "Bạn thích:",
+      "question29.option1": "Có thời hạn rõ ràng",
+      "question29.option2": "Giữ các tùy chọn mở",
+      "question3": "Sau khi tham dự một buổi gặp gỡ, bạn thường:",
+      "question3.option1": "Cảm thấy tràn đầy năng lượng",
+      "question3.option2": "Cảm thấy cần nghỉ ngơi",
+      "question30": "Khi du lịch, bạn có khuynh hướng:",
+      "question30.option1": "Tạo một lịch trình chi tiết",
+      "question30.option2": "Khám phá một cách tự do",
+      "question31": "Phòng của bạn thường thì:",
+      "question31.option1": "Gọn gàng và ngăn nắp",
+      "question31.option2": "Thoải mái và dễ chịu",
+      "question32": "Khi xử lý nhiệm vụ, bạn:",
+      "question32.option1": "Hoàn thành chúng càng sớm càng tốt",
+      "question32.option2": "Hoàn thành gần với thời hạn",
+      "question33": "Phong cách sống ưa thích của bạn:",
+      "question33.option1": "Thường xuyên và có cấu trúc",
+      "question33.option2": "Tự do và linh hoạt",
+      "question34": "Khi đưa ra quyết định, bạn có khuynh hướng:",
+      "question34.option1": "Quyết định nhanh chóng",
+      "question34.option2": "Giữ các lựa chọn mở",
+      "question35": "Khi mua sắm, bạn:",
+      "question35.option1": "Lập danh sách và tuân theo nó",
+      "question35.option2": "Lướt qua một cách thoải mái và mua những thứ bạn thích",
+      "question36": "Khi đối mặt với thay đổi, bạn thường:",
+      "question36.option1": "Cảm thấy không thoải mái",
+      "question36.option2": "Cảm thấy hào hứng",
+      "question4": "Trong một nhóm, bạn có khuynh hướng:",
+      "question4.option1": "Chia sẻ ý kiến của mình một cách tích cực",
+      "question4.option2": "Lắng nghe trước và nói sau",
+      "question5": "Khi gặp gỡ bạn mới, bạn:",
+      "question5.option1": "Làm quen nhanh chóng",
+      "question5.option2": "Cần thời gian để thích nghi",
+      "question6": "Vòng tròn xã hội của bạn:",
+      "question6.option1": "Rộng nhưng không sâu",
+      "question6.option2": "Nhỏ và gắn kết",
+      "question7": "Trong công việc, bạn thích:",
+      "question7.option1": "Hợp tác nhóm",
+      "question7.option2": "Làm việc độc lập",
+      "question8": "Khi suy nghĩ về vấn đề, bạn có xu hướng:",
+      "question8.option1": "Nói trong khi suy nghĩ",
+      "question8.option2": "Suy nghĩ kỹ trước khi nói",
+      "question9": "Khi bị áp lực, bạn:",
+      "question9.option1": "Trò chuyện với bạn bè",
+      "question9.option2": "Giải quyết một mình"
     },
-    full: {
-      question1: `在社交場合中，你通常：`,
-      'question1.option1': `主動與他人交談`,
-      'question1.option2': `等待他人來找我`,
-      question10: `解決問題時，你更依賴：`,
-      'question10.option1': `實際經驗和事實`,
-      'question10.option2': `直覺和可能性`,
-      question11: `你更喜歡：`,
-      'question11.option1': `關注具體細節`,
-      'question11.option2': `關注整體概念`,
-      question12: `學習新事物時，你更喜歡：`,
-      'question12.option1': `按部就班的方法`,
-      'question12.option2': `探索創新的方式`,
-      question13: `閱讀時，你更喜歡：`,
-      'question13.option1': `實用的指南`,
-      'question13.option2': `理論和概念`,
-      question14: `你更關注：`,
-      'question14.option1': `現在和過去`,
-      'question14.option2': `未來和可能性`,
-      question15: `描述事物時，你傾向於：`,
-      'question15.option1': `使用具體例子`,
-      'question15.option2': `使用比喻和類比`,
-      question16: `工作中，你更重視：`,
-      'question16.option1': `實際應用`,
-      'question16.option2': `創新想法`,
-      question17: `你更信任：`,
-      'question17.option1': `已驗證的方法`,
-      'question17.option2': `新的嘗試`,
-      question18: `規劃未來時，你會：`,
-      'question18.option1': `基於現實條件`,
-      'question18.option2': `想像各種可能`,
-      question19: `做決定時，你更重視：`,
-      'question19.option1': `邏輯和客觀分析`,
-      'question19.option2': `情感和人際和諧`,
-      question2: `週末你更喜歡：`,
-      'question2.option1': `和朋友出去玩`,
-      'question2.option2': `在家獨處休息`,
-      question20: `批評他人時，你會：`,
-      'question20.option1': `直接指出問題`,
-      'question20.option2': `考慮對方感受`,
-      question21: `你更看重：`,
-      'question21.option1': `公平和正義`,
-      'question21.option2': `同情和理解`,
-      question22: `評價一個想法時，你首先考慮：`,
-      'question22.option1': `是否合理`,
-      'question22.option2': `是否有益`,
-      question23: `朋友向你傾訴時，你會：`,
-      'question23.option1': `分析問題並提供建議`,
-      'question23.option2': `傾聽並給予安慰`,
-      question24: `衝突中，你更傾向於：`,
-      'question24.option1': `堅持原則`,
-      'question24.option2': `維持關係`,
-      question25: `你更容易被說服通過：`,
-      'question25.option1': `事實和數據`,
-      'question25.option2': `情感和故事`,
-      question26: `團隊決策時，你更關注：`,
-      'question26.option1': `效率和結果`,
-      'question26.option2': `共識和團結`,
-      question27: `你認為好的領導者應該：`,
-      'question27.option1': `公正果斷`,
-      'question27.option2': `體貼關懷`,
-      question28: `你的工作方式是：`,
-      'question28.option1': `提前計劃和準備`,
-      'question28.option2': `隨機應變和靈活`,
-      question29: `你更喜歡：`,
-      'question29.option1': `有明確的截止日期`,
-      'question29.option2': `保持開放的選擇`,
-      question3: `參加聚會後，你通常：`,
-      'question3.option1': `感到充滿活力`,
-      'question3.option2': `感到需要休息`,
-      question30: `旅行時，你傾向於：`,
-      'question30.option1': `制定詳細行程`,
-      'question30.option2': `隨心所欲探索`,
-      question31: `你的房間通常：`,
-      'question31.option1': `整齊有序`,
-      'question31.option2': `隨性自在`,
-      question32: `處理任務時，你會：`,
-      'question32.option1': `盡早完成`,
-      'question32.option2': `接近截止日期才完成`,
-      question33: `你更喜歡的生活方式：`,
-      'question33.option1': `有規律和結構`,
-      'question33.option2': `自由和彈性`,
-      question34: `做決定時，你傾向於：`,
-      'question34.option1': `快速決定`,
-      'question34.option2': `保留選擇權`,
-      question35: `購物時，你會：`,
-      'question35.option1': `列清單按計劃購買`,
-      'question35.option2': `隨意逛逛看到喜歡就買`,
-      question36: `面對變化，你通常：`,
-      'question36.option1': `感到不安`,
-      'question36.option2': `感到興奮`,
-      question4: `在團隊中，你更傾向於：`,
-      'question4.option1': `積極發表意見`,
-      'question4.option2': `先聽後說`,
-      question5: `遇到新朋友時，你會：`,
-      'question5.option1': `很快就能熟絡起來`,
-      'question5.option2': `需要時間慢慢熟悉`,
-      question6: `你的朋友圈：`,
-      'question6.option1': `廣泛但不深入`,
-      'question6.option2': `小而親密`,
-      question7: `工作時，你更喜歡：`,
-      'question7.option1': `團隊合作`,
-      'question7.option2': `獨立工作`,
-      question8: `思考問題時，你傾向於：`,
-      'question8.option1': `邊說邊想`,
-      'question8.option2': `先想好再說`,
-      question9: `壓力大時，你會：`,
-      'question9.option1': `找朋友聊天`,
-      'question9.option2': `獨自消化`,
+    "quick": {
+      "question1": "Trong các tình huống xã hội, bạn thường:",
+      "question1.option1": "Khởi xướng cuộc trò chuyện với người khác",
+      "question1.option2": "Chờ người khác đến gần mình",
+      "question10": "Phong cách làm việc của bạn là:",
+      "question10.option1": "Lập kế hoạch và chuẩn bị trước",
+      "question10.option2": "Thích nghi và linh hoạt",
+      "question11": "Bạn thích:",
+      "question11.option1": "Có thời hạn rõ ràng",
+      "question11.option2": "Giữ nhiều lựa chọn mở",
+      "question12": "Khi đi du lịch, bạn có xu hướng:",
+      "question12.option1": "Tạo lịch trình chi tiết",
+      "question12.option2": "Khám phá tự do",
+      "question2": "Vào cuối tuần, bạn thích:",
+      "question2.option1": "Đi chơi với bạn bè",
+      "question2.option2": "Ở nhà để nghỉ ngơi",
+      "question3": "Sau khi tham dự một bữa tiệc, bạn thường:",
+      "question3.option1": "Cảm thấy tràn đầy năng lượng",
+      "question3.option2": "Cảm thấy cần nghỉ ngơi",
+      "question4": "Khi giải quyết vấn đề, bạn dựa nhiều vào:",
+      "question4.option1": "Kinh nghiệm thực tiễn và sự thật",
+      "question4.option2": "Trực giác và khả năng",
+      "question5": "Bạn thích gì hơn:",
+      "question5.option1": "Tập trung vào những chi tiết cụ thể",
+      "question5.option2": "Tập trung vào khái niệm tổng thể",
+      "question6": "Khi học một cái gì đó mới, bạn thích:",
+      "question6.option1": "Phương pháp từng bước một",
+      "question6.option2": "Khám phá các phương pháp sáng tạo",
+      "question7": "Khi đưa ra quyết định, bạn coi trọng:",
+      "question7.option1": "Lý luận và phân tích khách quan",
+      "question7.option2": "Cảm xúc và sự hòa hợp giữa các cá nhân",
+      "question8": "Khi chỉ trích người khác, bạn:",
+      "question8.option1": "Chỉ ra vấn đề một cách trực tiếp",
+      "question8.option2": "Xem xét cảm xúc của người khác",
+      "question9": "Bạn coi trọng gì hơn:",
+      "question9.option1": "Sự công bằng và chính nghĩa",
+      "question9.option2": "Sự đồng cảm và thấu hiểu"
+    }
+  },
+  "mbtiTest": {
+    "afterRegistration": "💡 Sau khi hoàn tất đăng ký, bạn có thể:\n",
+    "answerRecorded": "✅ Đã ghi lại",
+    "completion": "🎉 {testTitle} Đã hoàn thành!\n\n",
+    "fullAccuracy": "Kết quả chính xác hơn",
+    "fullQuestions": "36 câu hỏi",
+    "fullTest": "Bài kiểm tra MBTI đầy đủ",
+    "fullTestInfo": "💡 Đây là một bài kiểm tra hoàn chỉnh ({questions}), kết quả chính xác hơn.\nSau khi đăng ký xong, bạn có thể sử dụng /mbti để làm lại bài kiểm tra.\n\n",
+    "fullTestTitle": "Bài kiểm tra đầy đủ",
+    "manualModify": "• Chỉnh sửa loại MBTI của bạn thủ công",
+    "moreDetailedTest": "• Thực hiện bài kiểm tra chi tiết hơn\n",
+    "note": "⚠️ Lưu ý: Đây là {testInfo}{testTitle}, {accuracy}.\n\n",
+    "questionOrderError": "⚠️ Thứ tự câu hỏi không đúng",
+    "questions12": "12 câu hỏi",
+    "questions36": "36 câu hỏi",
+    "quickAccuracy": "Kết quả chỉ mang tính tham khảo",
+    "quickQuestions": "12 câu hỏi",
+    "quickTest": "Bài kiểm tra MBTI nhanh",
+    "quickTestInfo": "💡 Đây là một bài kiểm tra nhanh ({questions}), kết quả chỉ để tham khảo.\nSau khi đăng ký xong, bạn có thể sử dụng /mbti để làm lại bài kiểm tra.\n\n",
+    "quickTestTitle": "Bài kiểm tra nhanh",
+    "yourMbtiType": "Loại MBTI của bạn là: **{type}**\n\n"
+  },
+  "menu": {
+    "bottle": "• Kích hoạt sau khi bạn bè ném chai thư đầu tiên\n",
+    "buttonCatch": "🎣 Nhặt chai thư",
+    "buttonChats": "💬 Các cuộc trò chuyện của tôi",
+    "buttonHelp": "❓ Trợ giúp",
+    "buttonInvite": "👥 Mời bạn bè",
+    "buttonProfile": "👤 Hồ sơ",
+    "buttonSettings": "⚙️ Cài đặt",
+    "buttonStats": "📊 Thống kê",
+    "buttonThrow": "🌊 Ném chai thư",
+    "buttonVip": "💎 VIP",
+    "invite": "🎁 **Mời Bạn Bè**\n\n",
+    "invite2": "📋 Mã mời của bạn: {inviteCode}",
+    "invite3": "📤 Chia sẻ mã mời",
+    "levelFree": "🆓 Thành viên miễn phí",
+    "levelVip": "💎 Thành viên VIP",
+    "message": "https://t.me/share/url?url=https://t.me/${botUsername}?start=invite_${inviteCode}&text=Hãy đến XunNi và cùng ném chai thư!🍾 Sử dụng mã mời của tôi để tham gia, và chúng ta có thể nhận thêm nhiều chỉ tiêu hơn! https://t.me/share/url?url=https://t.me/${botUsername}?start=invite_${inviteCode}&text=Come",
+    "message2": "https://t.me/share/url?url=https://t.me/${botUsername}?start=invite_${inviteCode}&text=Hãy đến XunNi và cùng ném chai thư https://t.me/share/url?url=https://t.me/${botUsername}?start=invite_${inviteCode}&text=Come",
+    "notRegistered": "Chưa đăng ký",
+    "notSet": "Chưa được đặt",
+    "quota": "• Cả hai đều nhận được hạn mức hàng ngày +1\n\n",
+    "register": "• Bạn bè đăng ký bằng mã mời của bạn\n",
+    "selectFeature": "Vui lòng chọn một tính năng:",
+    "settings": "• MBTI: ${mbti}\n",
+    "settings2": "• Cung hoàng đạo: ${zodiac}\n\n",
+    "settings3": "Chưa được đặt",
+    "settings4": "Chưa thiết lập",
+    "short": "Thành viên miễn phí",
+    "stats": "📊 Xem thống kê lời mời: /profile",
+    "stats2": "📊 Xem thống kê lời mời",
+    "task": "🎯 **Nhiệm Vụ Tiếp Theo**\n⏳ ${nextTask.name} (+${nextTask.reward_amount} chai thư)\n💡 ${nextTask.description}\n\n",
+    "text": "🏠 **Menu Chính** ${vipBadge}\n\n",
+    "text2": "👋 Chào, ${user.nickname}!\n\n",
+    "text3": "💡 Nhấn nút dưới đây để chia sẻ với bạn bè:\n",
+    "text4": "💡 Chọn các tính năng bạn muốn:",
+    "text5": "📊 Tình trạng của bạn:\n",
+    "title": "🏠 **Menu chính**",
+    "userNotFound": "Người dùng không tồn tại",
+    "vip": "• Cấp độ: ${isVip ? 'Thành viên VIP 💎' : 'Thành viên miễn phí'}\n",
+    "vip2": "Thành viên VIP 💎",
+    "yourStatus": "Tình trạng của bạn"
+  },
+  "messageForward": {
+    "blockedUrls": "❌ Tin nhắn chứa URL bị cấm",
+    "dailyQuota": "📊 Tin nhắn đã gửi hôm nay: {used}/{limit} tin nhắn",
+    "messageSent": "✅ Tin nhắn đã được gửi đến {identifier}\n\n",
+    "quotaExceeded": "❌ Hạn mức tin nhắn hôm nay đã sử dụng hết",
+    "removeLinks": "💡 Vui lòng xóa URL và thử lại",
+    "replyHint": "💡 Vui lòng trả lời tin nhắn của bên kia để gửi một tin nhắn",
+    "upgradeVip": "💡 Nâng cấp lên VIP để nhận thêm hạn mức (100 tin nhắn/ngày): /vip\n",
+    "urlNotAllowed": "❌ Tin nhắn chứa URL không được phép\n\n",
+    "urlNotAllowedDesc": "⚠️ Để đảm bảo an toàn, chỉ cho phép một số URL nhất định trong các cuộc trò chuyện.\n\n",
+    "vipDailyLimit": "💡 Người dùng VIP có thể gửi 100 tin nhắn mỗi ngày.\n"
+  },
+  "nickname": {
+    "cannotGetNickname": "❌ Không thể lấy tên nick Telegram",
+    "customHint": "⚠️ Lưu ý:\n• Giới hạn chiều dài tên nick là 36 ký tự\n• Bên kia có thể thấy tối đa 18 ký tự\n• Không sử dụng tên nick của bạn để gửi quảng cáo",
+    "customPrompt": "✏️ Vui lòng nhập biệt danh của bạn:\n\n",
+    "genderHint": "⚠️ Lưu ý: Giới tính không thể thay đổi sau khi đã đặt, vui lòng chọn cẩn thận!",
+    "genderSelection": "Tuyệt vời! Biệt danh của bạn là: {nickname}\n\nBây giờ vui lòng chọn giới tính của bạn:\n\n",
+    "nicknameSet": "✅ Biệt danh đã được thiết lập",
+    "userNotFound": "❌ Người dùng không tồn tại"
+  },
+  "officialAd": {
+    "adNotFound": "❌ Quảng cáo không tồn tại",
+    "allAdsViewed": "✅ Bạn đã xem tất cả quảng cáo chính thức",
+    "alreadyViewed": "Bạn đã xem quảng cáo này rồi",
+    "buttonClaimReward": "Nhận thưởng",
+    "buttonJoinGroup": "Tham gia nhóm",
+    "buttonSubscribeChannel": "Đăng ký kênh",
+    "buttonVerifyAndClaim": "✅ Xác minh và nhận",
+    "buttonViewDetails": "Xem chi tiết",
+    "buttonVisitLink": "Ghé thăm link",
+    "cannotClaim": "❌ Không thể nhận quảng cáo này",
+    "claimReward": "✅ Nhận thưởng",
+    "claimRewardButton": "✅ Nhận thưởng",
+    "claimRewardSuccess": "✅ Nhận thưởng thành công! Đã nhận +{quota} hạn mức vĩnh viễn!",
+    "communityBenefits": "💡 Hoàn thành nhiệm vụ để kiếm hạn mức vĩnh viễn",
+    "communityThanks": "🙏 Cảm ơn bạn đã ủng hộ cộng đồng!",
+    "errorRetry": "❌ Đã xảy ra lỗi, xin vui lòng thử lại sau",
+    "moreAdsAvailable": "💡 Còn nhiều quảng cáo chính thức để xem hơn!",
+    "nextAd": "➡️ Quảng cáo tiếp theo",
+    "noAdsAvailable": "❌ Hiện không có quảng cáo nào khả dụng",
+    "noVerificationRequired": "❌ Quảng cáo này không yêu cầu xác minh",
+    "quotaInfo": "📊 Còn lại hôm nay: **{remaining}/20** lần",
+    "requiresVerification": "✅ Cần xác minh: Nhấn nút 'Xác minh' sau khi tham gia nhóm/kanal",
+    "reward": "🎁 Thưởng: +{quota} hạn mức vĩnh viễn",
+    "rewardPermanent": "🎁 Hoàn thành nhiệm vụ có thể kiếm **+1 hạn mức vĩnh viễn**",
+    "rewardTemporary": "🎁 Chúc mừng, bạn đã kiếm được +1 hạn mức tạm thời (có hiệu lực hôm nay)",
+    "statsAdNotFound": "❌ Quảng cáo không tồn tại",
+    "statsClicks": "• Nhấp chuột: {count}\n",
+    "statsCtr": "• Tỷ lệ nhấp chuột (CTR): {rate}%\n",
+    "statsHint": "💡 Sử dụng /ad_stats {id} để xem thống kê chi tiết",
+    "statsNoAds": "📊 Không có quảng cáo chính thức nào",
+    "statsNoPermission": "❌ Bạn không có quyền xem thống kê quảng cáo",
+    "statsRemainingViews": "• Số lần hiển thị còn lại: {remaining}/{total}\n",
+    "statsRewardGranted": "• Số phần thưởng đã phát: {count}\n",
+    "statsRewardRate": "• Tỷ lệ phần thưởng: {rate}%\n",
+    "statsRewardSummary": "• Phần thưởng: {rewards}\n\n",
+    "statsSummary": "• Số lần hiển thị: {views} | Số lần nhấp: {clicks} ({ctr}%)\n",
+    "statsTitle": "📊 **Thống kê Quảng cáo Chính thức**\n\n",
+    "statsVerificationCount": "• Số lần xác minh: {count}\n",
+    "statsVerificationRate": "• Tỷ lệ xác minh: {rate}%\n",
+    "statsViews": "• Số lần hiển thị: {count}\n",
+    "statusDisabled": "Vô hiệu hóa",
+    "statusEnabled": "Kích hoạt",
+    "unlimited": "Không giới hạn",
+    "userNotFound": "❌ Người dùng không tồn tại",
+    "verifySuccess": "✅ Xác minh thành công! Bạn đã nhận được +{quota} chỉ tiêu vĩnh viễn!"
+  },
+  "onboarding": {
+    "age": "• Tuổi: ${updatedUser.age} tuổi\n",
+    "age2": "Tuổi của bạn: ${age} tuổi\n",
+    "age3": "Tuổi: ${age} tuổi\n",
+    "ageRestriction": "❌ Chúng tôi xin lỗi, bạn phải ít nhất 18 tuổi để sử dụng dịch vụ này.\n\n",
+    "agreeTerms": "Nhấn nút bên dưới để xác nhận rằng bạn đã đọc và đồng ý với các điều khoản trên.",
+    "antiFraud": {
+      "confirm_button": "✅ Có, tôi hiểu và sẽ chú ý đến an toàn",
+      "learn_button": "📚 Tôi muốn tìm hiểu thêm về an toàn",
+      "question1": "1. Bạn có nhận ra những rủi ro an toàn của việc hẹn hò trực tuyến không?\n",
+      "question2": "2. Bạn sẽ bảo vệ thông tin cá nhân của mình chứ?\n",
+      "question3": "3. Khi gặp tin nhắn đáng ngờ, bạn có sẽ cảnh giác không?\n\n"
     },
-    quick: {
-      question1: `在社交場合中，你通常：`,
-      'question1.option1': `主動與他人交談`,
-      'question1.option2': `等待他人來找我`,
-      question10: `你的工作方式是：`,
-      'question10.option1': `提前計劃和準備`,
-      'question10.option2': `隨機應變和靈活`,
-      question11: `你更喜歡：`,
-      'question11.option1': `有明確的截止日期`,
-      'question11.option2': `保持開放的選擇`,
-      question12: `旅行時，你傾向於：`,
-      'question12.option1': `制定詳細行程`,
-      'question12.option2': `隨心所欲探索`,
-      question2: `週末你更喜歡：`,
-      'question2.option1': `和朋友出去玩`,
-      'question2.option2': `在家獨處休息`,
-      question3: `參加聚會後，你通常：`,
-      'question3.option1': `感到充滿活力`,
-      'question3.option2': `感到需要休息`,
-      question4: `解決問題時，你更依賴：`,
-      'question4.option1': `實際經驗和事實`,
-      'question4.option2': `直覺和可能性`,
-      question5: `你更喜歡：`,
-      'question5.option1': `關注具體細節`,
-      'question5.option2': `關注整體概念`,
-      question6: `學習新事物時，你更喜歡：`,
-      'question6.option1': `按部就班的方法`,
-      'question6.option2': `探索創新的方式`,
-      question7: `做決定時，你更重視：`,
-      'question7.option1': `邏輯和客觀分析`,
-      'question7.option2': `情感和人際和諧`,
-      question8: `批評他人時，你會：`,
-      'question8.option1': `直接指出問題`,
-      'question8.option2': `考慮對方感受`,
-      question9: `你更看重：`,
-      'question9.option1': `公平和正義`,
-      'question9.option2': `同情和理解`,
+    "antiFraudConfirm": "Vui lòng xác nhận:",
+    "antiFraudFinalStep": "🛡️ Bước cuối: xác nhận an ninh chống gian lận\n\n",
+    "antiFraudLearn": "📚 Tôi muốn tìm hiểu thêm về kiến thức an toàn",
+    "antiFraudPassed": "✅ Bài kiểm tra chống gian lận đã vượt qua!\n\n",
+    "antiFraudQuestion1": "1. Bạn có nhận thức về các rủi ro an toàn của việc hẹn hò trực tuyến không?\n",
+    "antiFraudQuestion2": "2. Bạn sẽ bảo vệ thông tin cá nhân của mình chứ?\n",
+    "antiFraudQuestion3": "3. Khi gặp tin nhắn đáng ngờ, bạn có sẽ cảnh giác không?\n\n",
+    "antiFraudQuestions": "Để bảo vệ sự an toàn của tất cả người dùng, vui lòng xác nhận rằng bạn hiểu những điều sau:\n\n",
+    "antiFraudYes": "✅ Vâng, tôi hiểu và sẽ chú ý đến an toàn",
+    "back": "⬅️ Quay lại",
+    "birthday": "Nếu bạn nghĩ đây là sai lầm, vui lòng kiểm tra xem định dạng ngày sinh của bạn có chính xác không (YYYY-MM-DD).",
+    "birthday2": "Vui lòng nhập lại ngày sinh của bạn (định dạng: YYYY-MM-DD):\n\n",
+    "birthday3": "Vui lòng nhập ngày sinh của bạn (định dạng: YYYY-MM-DD):\n\n",
+    "birthday4": "Ngày sinh: ${birthday}\n",
+    "birthdayCheck": "Nếu bạn nghĩ đây là sai lầm, vui lòng kiểm tra xem định dạng ngày sinh của bạn có chính xác không (YYYY-MM-DD).",
+    "birthdayError": "❌ {error}\n\n",
+    "birthdayFormatError": "❌ Định dạng ngày sinh không chính xác\n\nVui lòng nhập lại (định dạng: YYYY-MM-DD):",
+    "birthdayRetry": "Vui lòng nhập lại ngày sinh của bạn (định dạng: YYYY-MM-DD):",
+    "birthdayWarning": "⚠️ Ngày sinh không thể được sửa đổi sau khi đã thiết lập, vui lòng xác nhận là chính xác!",
+    "bloodType": {
+      "select": "Vui lòng chọn nhóm máu của bạn:"
     },
-  },
-  mbtiTest: {
-    afterRegistration: `💡 完成註冊後，你可以：
-`,
-    answerRecorded: `✅ 已記錄`,
-    completion: `🎉 {testTitle}完成！
-
-`,
-    fullAccuracy: `結果更準確`,
-    fullQuestions: `36 題`,
-    fullTest: `MBTI 完整測驗`,
-    fullTestInfo: `
-
-💡 這是完整測驗（{questions}），結果更準確。
-完成註冊後，可使用 /mbti 重新測驗。
-
-`,
-    fullTestTitle: `完整測驗`,
-    manualModify: `• 手動修改你的 MBTI 類型`,
-    moreDetailedTest: `• 進行更詳細的測驗
-`,
-    note: `⚠️ 注意：這是 {testInfo}{testTitle}，{accuracy}。
-
-`,
-    questionOrderError: `⚠️ 問題順序錯誤`,
-    questions12: `12 題`,
-    questions36: `36 題`,
-    quickAccuracy: `結果僅供參考`,
-    quickQuestions: `12 題`,
-    quickTest: `MBTI 快速測驗`,
-    quickTestInfo: `
-
-💡 這是快速測驗（{questions}），結果僅供參考。
-完成註冊後，可使用 /mbti 重新測驗。
-
-`,
-    quickTestTitle: `快速測驗`,
-    yourMbtiType: `你的 MBTI 類型是：**{type}**
-
-`,
-  },
-  menu: {
-    bottle: `• 好友丟出第一個瓶子後激活
-`,
-    buttonCatch: `🎣 撿起漂流瓶`,
-    buttonChats: `💬 我的對話`,
-    buttonHelp: `❓ 幫助`,
-    buttonInvite: `👥 邀請好友`,
-    buttonProfile: `👤 個人資料`,
-    buttonSettings: `⚙️ 設定`,
-    buttonStats: `📊 統計`,
-    buttonThrow: `🌊 丟出漂流瓶`,
-    buttonVip: `💎 VIP`,
-    invite: `🎁 **邀請好友**
-
-`,
-    invite2: `📋 你的邀請碼：\\`,
-    invite3: `📤 分享邀請碼`,
-    levelFree: `🆓 免費會員`,
-    levelVip: `💎 VIP 會員`,
-    message: `https://t.me/share/url?url=https://t.me/\${botUsername}?start=invite_\${inviteCode}&text=來 XunNi 一起丟漂流瓶吧！🍾 使用我的邀請碼加入，我們都能獲得更多配額！`,
-    message2: `https://t.me/share/url?url=https://t.me/\${botUsername}?start=invite_\${inviteCode}&text=來 XunNi 一起丟漂流`,
-    notRegistered: `未注册`,
-    notSet: `未设定`,
-    quota: `• 你們都獲得每日配額 +1
-
-`,
-    register: `• 好友使用你的邀請碼註冊
-`,
-    selectFeature: `請選擇功能：`,
-    settings: `• MBTI：\${mbti}
-`,
-    settings2: `• 星座：\${zodiac}
-
-`,
-    settings3: `未設定`,
-    settings4: `未設定`,
-    short: `免費會員`,
-    stats: `📊 查看邀請統計：/profile`,
-    stats2: `📊 查看邀請統計`,
-    task: `🎯 **下一個任務**
-⏳ \${nextTask.name} (+\${nextTask.reward_amount} 瓶子)
-💡 \${nextTask.description}
-
-`,
-    text: `🏠 **主選單** \${vipBadge}
-
-`,
-    text2: `👋 嗨，\${user.nickname}！
-
-`,
-    text3: `💡 點擊下方按鈕分享給好友：
-`,
-    text4: `💡 選擇你想要的功能：`,
-    text5: `📊 你的狀態：
-`,
-    title: `🏠 **主選單**`,
-    userNotFound: `用戶不存在`,
-    vip: `• 等級：\${isVip ? 'VIP 會員 💎' : '免費會員'}
-`,
-    vip2: `VIP 會員 💎`,
-    yourStatus: `你的狀態`,
-  },
-  messageForward: {
-    blockedUrls: `❌ 訊息包含被禁止的網址`,
-    dailyQuota: `📊 今日已發送：{used}/{limit} 則`,
-    messageSent: `✅ 訊息已發送給 {identifier}
-
-`,
-    quotaExceeded: `❌ 今日訊息配額已用完`,
-    removeLinks: `💡 請移除網址後再試`,
-    replyHint: `💡 請回覆對方的訊息來發送消息`,
-    upgradeVip: `💡 升級 VIP 可獲得更多配額（100 則/天）：/vip
-`,
-    urlNotAllowed: `❌ 訊息包含不被允許的網址
-
-`,
-    urlNotAllowedDesc: `⚠️ 為了安全，對話中只允許特定網址。
-
-`,
-    vipDailyLimit: `💡 VIP 用戶每日可發送 100 則訊息。
-`,
-  },
-  nickname: {
-    cannotGetNickname: `❌ 無法獲取 Telegram 暱稱`,
-    customHint: `⚠️ 注意：
-• 暱稱長度限制 36 個字
-• 對方最多顯示 18 個字
-• 請勿使用暱稱發送廣告`,
-    customPrompt: `✏️ 請輸入你的暱稱：
-
-`,
-    genderHint: `⚠️ 注意：性別設定後無法修改，請謹慎選擇！`,
-    genderSelection: `很好！你的暱稱是：{nickname}
-
-現在請選擇你的性別：
-
-`,
-    nicknameSet: `✅ 暱稱已設定`,
-    userNotFound: `❌ 用戶不存在`,
-  },
-  officialAd: {
-    adNotFound: `❌ 廣告不存在`,
-    allAdsViewed: `✅ 你已經看過所有官方廣告了`,
-    alreadyViewed: `你已經看過此廣告`,
-    buttonClaimReward: `領取獎勵`,
-    buttonJoinGroup: `加入群組`,
-    buttonSubscribeChannel: `訂閱頻道`,
-    buttonVerifyAndClaim: `✅ 驗證並領取`,
-    buttonViewDetails: `查看詳情`,
-    buttonVisitLink: `訪問鏈接`,
-    cannotClaim: `❌ 無法領取此廣告`,
-    claimReward: `✅ 領取獎勵`,
-    claimRewardButton: `✅ 領取獎勵`,
-    claimRewardSuccess: `✅ 領取獎勵成功！獲得 +{quota} 個永久額度！`,
-    communityBenefits: `💡 完成任務可獲得永久額度`,
-    communityThanks: `🙏 感謝支持社群！`,
-    errorRetry: `❌ 發生錯誤，請稍後再試`,
-    moreAdsAvailable: `💡 還有更多官方廣告可以觀看！`,
-    nextAd: `➡️ 下一個廣告`,
-    noAdsAvailable: `❌ 暫無可用的廣告`,
-    noVerificationRequired: `❌ 此廣告不需要驗證`,
-    quotaInfo: `📊 今日剩餘：**{remaining}/20** 次`,
-    requiresVerification: `
-
-✅ 需要驗證：加入群組/頻道後點擊「驗證」按鈕`,
-    reward: `🎁 獎勵：+{quota} 個永久額度`,
-    rewardPermanent: `🎁 完成任務可獲得 **+1 永久額度**`,
-    statsAdNotFound: `❌ 廣告不存在`,
-    statsClicks: `• 點擊次數: {count}
-`,
-    statsCtr: `• 點擊率 (CTR): {rate}%
-`,
-    statsHint: `💡 使用 /ad_stats {id} 查看詳細統計`,
-    statsNoAds: `📊 暫無官方廣告`,
-    statsNoPermission: `❌ 你沒有權限查看廣告統計`,
-    statsRemainingViews: `• 剩餘展示: {remaining}/{total}
-`,
-    statsRewardGranted: `• 獎勵發放: {count}
-`,
-    statsRewardRate: `• 獎勵率: {rate}%
-`,
-    statsRewardSummary: `• 獎勵：{rewards}
-
-`,
-    statsSummary: `• 展示：{views} | 點擊：{clicks} ({ctr}%)
-`,
-    statsTitle: `📊 **官方廣告統計**
-
-`,
-    statsVerificationCount: `• 驗證次數: {count}
-`,
-    statsVerificationRate: `• 驗證率: {rate}%
-`,
-    statsViews: `• 展示次數: {count}
-`,
-    statusDisabled: `停用`,
-    statusEnabled: `啟用`,
-    unlimited: `無限`,
-    userNotFound: `❌ 用戶不存在`,
-    verifySuccess: `✅ 驗證成功！獲得 +{quota} 個永久額度！`,
-  },
-  onboarding: {
-    age: `• 年齡：\${updatedUser.age} 歲
-`,
-    age2: `你的年齡：\${age} 歲
-`,
-    age3: `年齡：\${age} 歲
-`,
-    ageRestriction: `❌ 很抱歉，你必須年滿 18 歲才能使用本服務。
-
-`,
-    agreeTerms: `點擊下方按鈕表示你已閱讀並同意上述條款。`,
-    antiFraudConfirm: `請確認：`,
-    antiFraudFinalStep: `🛡️ 最後一步：反詐騙安全確認
-
-`,
-    antiFraudLearn: `📚 我想了解更多安全知識`,
-    antiFraudPassed: `✅ 反詐騙測驗通過！
-
-`,
-    antiFraudQuestion1: `1. 你了解網路交友的安全風險嗎？
-`,
-    antiFraudQuestion2: `2. 你會保護好自己的個人資訊嗎？
-`,
-    antiFraudQuestion3: `3. 遇到可疑訊息時，你會提高警覺嗎？
-
-`,
-    antiFraudQuestions: `為了保護所有使用者的安全，請確認你了解以下事項：
-
-`,
-    antiFraudYes: `✅ 是的，我了解並會注意安全`,
-    back: `⬅️ 返回`,
-    birthday: `如果你認為這是錯誤，請檢查你的生日格式是否正確（YYYY-MM-DD）。`,
-    birthday2: `請重新輸入你的生日（格式：YYYY-MM-DD）：
-
-`,
-    birthday3: `請輸入你的生日（格式：YYYY-MM-DD）：
-
-`,
-    birthday4: `生日：\${birthday}
-`,
-    birthdayCheck: `如果你認為這是錯誤，請檢查你的生日格式是否正確（YYYY-MM-DD）。`,
-    birthdayError: `❌ {error}
-
-`,
-    birthdayFormatError: `❌ 生日格式錯誤
-
-請重新輸入（格式：YYYY-MM-DD）：`,
-    birthdayRetry: `請重新輸入生日（格式：YYYY-MM-DD）：`,
-    birthdayWarning: `⚠️ 生日設定後無法修改，請確認無誤！`,
-    bloodTypeLabel: `🩸 **請選擇你的血型**
-
-`,
-    complete: `請輸入「是」完成測驗：`,
-    confirm: `為了保護所有使用者的安全，請確認你了解網路交友的風險。
-
-`,
-    confirm2: `🛡️ 現在進行反詐騙安全確認
-
-`,
-    confirm3: `了解後，請確認：`,
-    confirmBirthday: `⚠️ 請確認你的生日資訊：
-
-`,
-    customNickname: `自訂暱稱`,
-    enterYes: `請輸入「是」完成測驗：`,
-    errorRetry: `❌ 發生錯誤，請重新輸入。`,
-    gender2: `• 性別：\${updatedUser.gender ===`,
-    gender3: `[需要翻译]`,
-    genderFemale: `[需要翻译]`,
-    genderMale: `[需要翻译]`,
-    genderWarning: `[需要翻译]`,
-    help: `這將幫助我們為你找到更合適的聊天對象～
-
-`,
-    iHaveRead: `✅ 我已閱讀並同意`,
-    languageSelection: `🌐 **Choose Language**
-
-Please select your preferred language:`,
-    lastStep: `最後一步：請閱讀並同意我們的服務條款
-
-`,
-    legalDocuments: `📋 Legal documents are provided in English only.
-
-`,
-    mbti: `請選擇你的 MBTI 類型：
-
-`,
-    mbti2: `✍️ 我已經知道我的 MBTI`,
-    message: `2. 🚨 識別詐騙訊息
-`,
-    message2: `• 警惕索要金錢的訊息
-`,
-    moreLanguages: `[需要翻译]`,
-    nickname: `• 暱稱：\${updatedUser.nickname}
-`,
-    nickname2: `很好！你的暱稱是：\${nickname}
-
-`,
-    nicknameError: `❌ {error}
-
-請重新輸入暱稱：`,
-    nicknameGood: `[需要翻译]`,
-    notCompleted: `⚠️ 請先完成註冊流程`,
-    nowSelectGender: `[需要翻译]`,
-    otherUserNotFound: `❌ 對方用戶不存在。`,
-    pleaseAnswer: `❌ 請認真回答問題
-
-`,
-    pleaseComeBack: `請成年後再來！
-
-`,
-    privacyPolicy: `📋 隱私權政策
-`,
-    profile: `• 隱私權政策：我們如何保護你的個人資料
-`,
-    profile2: `你的個人資料：
-`,
-    retry: `❌ 重新輸入`,
-    senderInfoError: `❌ 發送者資訊錯誤。`,
-    settings: `💡 提示：你可以隨時使用 /mbti 指令來設定或測驗你的 MBTI 類型。
-
-`,
-    settings2: `🧠 現在讓我們設定你的 MBTI 性格類型！
-
-`,
-    settings3: `好的，你可以稍後再設定 MBTI。
-
-`,
-    settings4: `如果不確定，可以先進行測驗或稍後再設定。`,
-    settings5: `🎉 恭喜！你已經完成所有設定！
-
-`,
-    settings6: `• 生日設定後無法修改
-`,
-    settings7: `你想要如何設定？`,
-    short: `⏭️ 稍後再說`,
-    start: `在開始使用前，請閱讀並同意我們的服務條款：
-
-`,
-    start2: `現在你可以開始使用 XunNi 了！`,
-    startRegistration: `[需要翻译]`,
-    stats: `📊 統計`,
-    stepAntiFraud: `🛡️ 請點擊上方按鈕確認反詐騙安全事項`,
-    stepBirthday: `📅 請輸入你的生日（格式：YYYY-MM-DD，例如：1995-06-15）`,
-    stepDefault: `請按照提示完成註冊`,
-    stepGender: `👤 請點擊上方按鈕選擇你的性別`,
-    stepLanguageSelection: `🌍 請點擊上方按鈕選擇你的語言`,
-    stepMbti: `🧠 請點擊上方按鈕選擇 MBTI 設定方式`,
-    stepNickname: `✏️ 請輸入你的暱稱`,
-    stepTerms: `📜 請點擊上方按鈕同意服務條款`,
-    termsOfService: `📋 使用者條款
-
-`,
-    text: `confirm_birthday_\${birthday}`,
-    text10: `例如：1995-06-15
-
-`,
-    text11: `🛡️ 網路交友安全小貼士
-
-`,
-    text12: `📋 最後一步：服務條款
-
-`,
-    text13: `• 第一次見面選擇公共場所
-`,
-    text14: `1. 🔒 保護個人資訊
-`,
-    text15: `• 不要分享財務資訊
-
-`,
-    text16: `• 不要點擊可疑連結
-
-`,
-    text17: `• 告訴朋友你的行程
-
-`,
-    text18: `3. 🤝 安全交友
-`,
-    text19: `📋 使用者條款
-
-`,
-    text2: `💡 你可以隨時使用 /mbti 指令重新測驗或修改。`,
-    text20: `請成年後再來！
-
-`,
-    text21: `📋 隱私權政策
-`,
-    text3: `gender_confirm_\${gender}`,
-    text4: `最後一步：請閱讀並同意我們的服務條款
-
-`,
-    text5: `📝 進行快速測驗（12 題，僅供參考）`,
-    text6: `• 使用者條款：使用本服務的規範
-
-`,
-    text7: `點擊下方按鈕表示你已閱讀並同意上述條款。`,
-    text8: `• 不要輕易透露真實姓名、地址、電話
-`,
-    text9: `• 必須年滿 18 歲才能使用本服務`,
-    understandRisks: `為了保護所有使用者的安全，請確認你了解網路交友的風險。
-
-`,
-    useTelegramNickname: `使用 Telegram 暱稱`,
-    viewPrivacyPolicy: `📋 View Privacy Policy`,
-    viewTermsOfService: `📋 View Terms of Service`,
-    vip: `💡 填寫血型可用於未來的血型配對功能（VIP 專屬）
-
-`,
-    welcome: `[需要翻译]`,
-    yourAge: `你的年齡：{age} 歲
-`,
-    zodiac: `• 星座：\${updatedUser.zodiac_sign}
-`,
-    zodiac2: `星座：\${zodiacSign}
-
-`,
-    antiFraud: {
-      confirm_button: `✅ 是的，我了解並會注意安全`,
-      learn_button: `📚 我想了解更多安全知識`,
-      question1: `1. 你了解網路交友的安全風險嗎？
-`,
-      question2: `2. 你會保護好自己的個人資訊嗎？
-`,
-      question3: `3. 遇到可疑訊息時，你會提高警覺嗎？
-
-`,
+    "bloodTypeLabel": "🩸 **Vui lòng chọn nhóm máu của bạn**\n\n",
+    "complete": "Vui lòng nhập 'yes' để hoàn thành bài kiểm tra:",
+    "confirm": "Để bảo vệ sự an toàn của tất cả người dùng, vui lòng xác nhận rằng bạn hiểu rủi ro của việc hẹn hò trực tuyến.\n\n",
+    "confirm2": "🛡️ Đang tiến hành xác nhận an ninh chống gian lận\n\n",
+    "confirm3": "Sau khi hiểu rõ, vui lòng xác nhận:",
+    "confirmBirthday": "⚠️ Vui lòng xác nhận thông tin ngày sinh của bạn:\n\n",
+    "customNickname": "Biệt danh tùy chỉnh",
+    "enterYes": "Vui lòng nhập 'yes' để hoàn thành bài kiểm tra:",
+    "errorRetry": "❌ Đã xảy ra lỗi, vui lòng nhập lại.",
+    "example": {
+      "birthday": "Ví dụ: 1995-06-15"
     },
-    bloodType: {
-      select: `請選擇你的血型：`,
+    "gender": {
+      "female": "Nữ",
+      "label": "• Giới tính: ${gender}\n",
+      "male": "Nam"
     },
-    example: {
-      birthday: `例如：1995-06-15`,
+    "gender2": "• Giới tính: ${updatedUser.gender ===",
+    "gender3": "Xin hãy chọn giới tính của bạn:\n\n",
+    "genderFemale": "👩 Nữ",
+    "genderMale": "👨 Nam",
+    "genderWarning": "⚠️ Lưu ý: Giới tính không thể thay đổi sau khi đã xác định, vui lòng lựa chọn cẩn thận!",
+    "help": "Điều này sẽ giúp chúng tôi tìm kiếm những người bạn trò chuyện phù hợp hơn với bạn～\n\n",
+    "iHaveRead": "✅ Tôi đã đọc và đồng ý",
+    "info": {
+      "age18": "• Bạn phải từ 18 tuổi trở lên để sử dụng dịch vụ này",
+      "city": "🌍 Khu vực: {city}"
     },
-    gender: {
-      female: `[需要翻译]`,
-      label: `• 性別：\${gender}
-`,
-      male: `[需要翻译]`,
+    "languageSelection": "🌐 **Chọn Ngôn Ngữ**\n\nVui lòng chọn ngôn ngữ ưa thích của bạn:",
+    "lastStep": "Bước cuối: Vui lòng đọc và đồng ý với Điều khoản Dịch vụ của chúng tôi\n\n",
+    "legalDocuments": "📋 Tài liệu pháp lý được cung cấp bằng tiếng Anh.\n\n",
+    "mbti": "Xin hãy chọn kiểu MBTI của bạn:\n\n",
+    "mbti2": "✍️ Tôi đã biết loại MBTI của mình",
+    "message": "2. 🚨 Nhận biết tin nhắn lừa đảo\n",
+    "message2": "• Cảnh giác với những tin nhắn yêu cầu tiền\n",
+    "moreLanguages": "Nhiều ngôn ngữ hơn",
+    "nickname": "• Biệt danh: ${updatedUser.nickname}\n",
+    "nickname2": "Tuyệt vời! Biệt danh của bạn là: ${nickname}\n\n",
+    "nicknameError": "❌ {error}\n\nVui lòng nhập lại biệt danh của bạn:",
+    "nicknameGood": "Tuyệt vời! Biệt danh của bạn là: {nickname}\n\n",
+    "notCompleted": "⚠️ Vui lòng hoàn tất quy trình đăng ký trước",
+    "nowSelectGender": "Bây giờ xin hãy chọn giới tính của bạn:\n\n",
+    "otherUserNotFound": "❌ Người dùng khác không tồn tại.",
+    "pleaseAnswer": "❌ Vui lòng trả lời các câu hỏi một cách nghiêm túc\n\n",
+    "pleaseComeBack": "Xin hãy quay lại sau khi bạn đủ 18 tuổi!\n\n",
+    "privacyPolicy": "📋 Chính Sách Bảo Mật\n",
+    "profile": "• Chính Sách Bảo Mật: Cách chúng tôi bảo vệ dữ liệu cá nhân của bạn\n",
+    "profile2": "Dữ liệu cá nhân của bạn:\n",
+    "prompt": {
+      "birthday": "Vui lòng nhập ngày sinh của bạn (định dạng: YYYY-MM-DD):"
     },
-    info: {
-      age18: `• 必須年滿 18 歲才能使用本服務`,
-      city: `🌍 地區：{city}`,
+    "retry": "❌ Vui lòng nhập lại",
+    "senderInfoError": "❌ Thông tin người gửi không chính xác.",
+    "settings": "💡 Mẹo: Bạn có thể sử dụng lệnh /mbti bất cứ lúc nào để thiết lập hoặc kiểm tra kiểu MBTI của mình.\n\n",
+    "settings2": "🧠 Bây giờ chúng ta hãy thiết lập kiểu tính cách MBTI của bạn!\n\n",
+    "settings3": "Được rồi, bạn có thể thiết lập MBTI sau.\n\n",
+    "settings4": "Nếu không chắc chắn, bạn có thể làm bài test trước hoặc xác định sau.",
+    "settings5": "🎉 Chúc mừng! Bạn đã hoàn thành tất cả các cài đặt!\n\n",
+    "settings6": "• Ngày sinh không thể thay đổi sau khi đã thiết lập\n",
+    "settings7": "Bạn muốn thiết lập nó như thế nào?",
+    "short": "⏭️ Thảo luận sau",
+    "start": "Trước khi bạn bắt đầu sử dụng, xin vui lòng đọc và đồng ý với Điều khoản Dịch vụ của chúng tôi:\n\n",
+    "start2": "Bây giờ bạn có thể bắt đầu sử dụng XunNi!",
+    "startRegistration": "Bắt đầu Đăng ký →",
+    "stats": "📊 Thống kê",
+    "stepAntiFraud": "🛡️ Vui lòng nhấp vào nút trên để xác nhận các vấn đề an toàn chống gian lận",
+    "stepBirthday": "📅 Vui lòng nhập ngày sinh của bạn (định dạng: YYYY-MM-DD, ví dụ: 1995-06-15)",
+    "stepDefault": "Vui lòng hoàn thành đăng ký theo hướng dẫn",
+    "stepGender": "👤 Vui lòng nhấp vào nút trên để chọn giới tính của bạn",
+    "stepLanguageSelection": "🌍 Vui lòng nhấp vào nút trên để chọn ngôn ngữ của bạn",
+    "stepMbti": "🧠 Vui lòng nhấp vào nút trên để chọn phương pháp cài đặt MBTI",
+    "stepNickname": "✏️ Vui lòng nhập biệt danh của bạn",
+    "stepTerms": "📜 Vui lòng nhấp vào nút trên để đồng ý với điều khoản dịch vụ",
+    "terms": {
+      "agree_button": "✅ Tôi đồng ý",
+      "english_only_note": "📋 Tài liệu pháp lý được cung cấp chỉ bằng tiếng Anh.",
+      "privacy_policy_button": "🔒 Chính sách Bảo mật",
+      "terms_of_service_button": "📋 Điều khoản Dịch vụ"
     },
-    prompt: {
-      birthday: `請輸入你的生日（格式：YYYY-MM-DD）：`,
+    "termsOfService": "📋 Điều khoản người dùng\n\n",
+    "text": "confirm_birthday_${birthday}",
+    "text10": "Ví dụ: 1995-06-15\n\n",
+    "text11": "🛡️ Mẹo an toàn khi hẹn hò trực tuyến\n\n",
+    "text12": "📋 Bước cuối: Điều khoản dịch vụ\n\n",
+    "text13": "• Chọn một địa điểm công cộng cho cuộc hẹn đầu tiên\n",
+    "text14": "1. 🔒 Bảo vệ thông tin cá nhân\n",
+    "text15": "• Không chia sẻ thông tin tài chính\n\n",
+    "text16": "• Không nhấp vào các liên kết đáng ngờ\n\n",
+    "text17": "• Thông báo cho bạn bè về hành trình của bạn\n\n",
+    "text18": "3. 🤝 An toàn khi kết bạn\n",
+    "text19": "📋 Thỏa thuận người dùng\n\n",
+    "text2": "💡 Bạn có thể sử dụng lệnh /mbti bất cứ lúc nào để làm lại bài kiểm tra hoặc chỉnh sửa nó.",
+    "text20": "Xin vui lòng quay lại sau khi trở thành người trưởng thành!\n\n",
+    "text21": "📋 Chính sách Bảo mật\n",
+    "text3": "gender_confirm_${gender}",
+    "text4": "Bước cuối: Vui lòng đọc và đồng ý với Điều khoản Dịch vụ của chúng tôi\n\n",
+    "text5": "📝 Làm một bài kiểm tra nhanh (12 câu hỏi, chỉ để tham khảo)",
+    "text6": "• Điều khoản người dùng: Hướng dẫn sử dụng dịch vụ này\n\n",
+    "text7": "Nhấp vào nút bên dưới để xác nhận rằng bạn đã đọc và đồng ý với các điều khoản trên.",
+    "text8": "• Không dễ dàng tiết lộ tên thật, địa chỉ hoặc số điện thoại của bạn\n",
+    "text9": "• Phải từ 18 tuổi trở lên để sử dụng dịch vụ này",
+    "understandRisks": "Để bảo vệ sự an toàn của tất cả người dùng, vui lòng xác nhận rằng bạn hiểu những rủi ro khi hẹn hò trực tuyến.\n\n",
+    "useTelegramNickname": "Sử dụng bí danh Telegram",
+    "viewPrivacyPolicy": "📋 Xem Chính sách Bảo mật",
+    "viewTermsOfService": "📋 Xem Điều khoản Dịch vụ",
+    "vip": "💡 Cung cấp nhóm máu của bạn sẽ được sử dụng cho các tính năng ghép nhóm máu trong tương lai (dành riêng cho VIP)\n\n",
+    "warning": {
+      "birthday": "⚠️ Ngày sinh không thể sửa đổi sau khi thiết lập, vui lòng xác nhận rằng nó là đúng!"
     },
-    terms: {
-      agree_button: `✅ 我同意`,
-      english_only_note: `📋 法律文檔僅提供英文版本。`,
-      privacy_policy_button: `🔒 隱私政策`,
-      terms_of_service_button: `📋 服務條款`,
+    "welcome": "Chào mừng đến với XunNi!\n\nVui lòng chọn ngôn ngữ của bạn:",
+    "yourAge": "Tuổi của bạn: {age} tuổi\n",
+    "zodiac": "• Cung hoàng đạo: ${updatedUser.zodiac_sign}\n",
+    "zodiac2": "Cung hoàng đạo: ${zodiacSign}\n\n"
+  },
+  "payments": {
+    "empty": "Hiện tại, không có bản ghi thanh toán nào.",
+    "product": {
+      "VIP_MONTHLY": "💎 Đăng ký VIP hàng tháng"
     },
-    warning: {
-      birthday: `⚠️ 生日設定後無法修改，請確認無誤！`,
+    "status": {
+      "failed": "❌ Thanh toán thất bại",
+      "paid": "✅ Thanh toán thành công",
+      "pending": "⏳ Đang xử lý",
+      "refunded": "↩️ Đã hoàn tiền"
     },
+    "title": "💳 Lịch sử thanh toán (Trang {page} của {total})"
   },
-  payments: {
-    empty: `No payment records found.`,
-    title: `💳 Payment History (Page {page} / {total})`,
-    product: {
-      VIP_MONTHLY: `💎 VIP Monthly Subscription`,
+  "profile": {
+    "activatedInvites": "✅ Lời mời đã kích hoạt: {successfulInvites} / {inviteLimit}\n",
+    "age": "🎂 Tuổi: ${age}\n",
+    "anonymousUser": "Người dùng ẩn danh",
+    "bloodType": "🩸 Nhóm máu: ${bloodType}\n",
+    "bottle": ": permanentQuota} chai thư\n\n",
+    "cardAge": "{age} tuổi",
+    "cardBio": "📝 Tiểu sử:\n{bio}\n\n",
+    "cardFooter": "💡 Đây là thẻ dữ liệu hiển thị cho người khác trong cuộc trò chuyện\n\n",
+    "cardGenderFemale": "♀️ Nữ",
+    "cardGenderMale": "♂️ Nam",
+    "cardInterests": "🏷️ Sở thích: {interests}\n\n",
+    "cardLanguage": "🌍 Ngôn ngữ: {language}\n\n",
+    "cardMbti": "🧠 MBTI: {mbti}\n",
+    "cardSeparator": "━━━━━━━━━━━━━━━━\n",
+    "cardTitle": "┌─────────────────────────┐\n│ 📇 Thẻ hồ sơ │\n└─────────────────────────┘\n\n",
+    "cardZodiac": "⭐ Cung hoàng đạo: {zodiac}\n",
+    "completeOnboarding": "⚠️ Vui lòng hoàn thành quy trình đăng ký trước.\n\nSử dụng /start để tiếp tục đăng ký.",
+    "conversation": "💡 Đây là thẻ dữ liệu bạn hiển thị cho người khác trong cuộc trò chuyện\n\n",
+    "editProfile": "📝 Chỉnh sửa hồ sơ",
+    "gender": "👤 Giới tính: ${gender}\n",
+    "hints": "💡 Mẹo:\n",
+    "invite": "⏳ Lời mời đang chờ: ${inviteStats.pending} người\n",
+    "invite2": "🎁 **Thông tin mời**\n\n",
+    "inviteCodeLabel": "📋 Mã lời mời của bạn: `{inviteCode}`\n",
+    "manual": "Cài đặt thủ công",
+    "mbti": "• Sử dụng /mbti để làm lại hoặc chỉnh sửa MBTI\n",
+    "mbtiWithSource": "🧠 MBTI: {mbti}{source}\n",
+    "message": "https://t.me/share/url?url=https://t.me/${botUsername}?start=invite_${inviteCode}&text=Hãy cùng nhau ném chai thư trên XunNi! 🍾 Sử dụng mã mời của tôi: ${inviteCode} https://t.me/share/url?url=https://t.me/${botUsername}?start=invite_${inviteCode}&text=Let's",
+    "message2": "${inviteLimitWarning}\n\n",
+    "message3": "🌍 Ngôn ngữ: ${user.language_pref}\n\n",
+    "message4": "🌍 Ngôn ngữ: ${user.language_pref }\n",
+    "message5": "📈 Tỷ lệ chuyển đổi: ${inviteStats.conversionRate}%\n",
+    "message6": "${gender} • ${age} tuổi • ${city}\n\n",
+    "message7": "https://t.me/share/url?url=https://t.me/${botUsername}?start=invite_${inviteCode}&text=Hãy cùng nhau ném chai thư trên XunNi https://t.me/share/url?url=https://t.me/${botUsername}?start=invite_${inviteCode}&text=Let's",
+    "mysterious": "Người này rất bí ẩn, không để lại gì cả~",
+    "nickname": "📛 Biệt danh: ${displayNickname}\n",
+    "notSet": "Chưa được thiết lập",
+    "profile": "│ 📇 Thẻ hồ sơ │\n",
+    "profile2": "👤 **Hồ sơ**\n\n",
+    "quota": "💡 Hoàn thành nhiệm vụ để kiếm thêm hạn mức hàng ngày (sử dụng /tasks để kiểm tra)\n",
+    "quota2": "📦 Hạn mức hàng ngày hiện tại: ${taskBonus > 0 ?",
+    "quotaBottles": "{taskBonus} chai thư",
+    "quotaTotal": "📦 Số lượng hàng ngày hiện tại: {quota}\n\n",
+    "returnToMenu": "🏠 Trở về menu chính: /menu",
+    "separator": "━━━━━━━━━━━━━━━━\n\n",
+    "settings": "Chưa được thiết lập",
+    "settings2": "Chưa được thiết lập",
+    "settings3": "Chưa được thiết lập",
+    "settings4": "Chưa được thiết lập",
+    "settings5": "Chưa được thiết lập",
+    "settings6": "Chưa được thiết lập",
+    "settings7": "Chưa được thiết lập",
+    "settings8": "Chưa được thiết lập",
+    "shareInviteCode": "📤 Chia sẻ mã mời",
+    "short": "📝 Chỉnh sửa hồ sơ",
+    "short2": "Thành viên miễn phí",
+    "stats": "• Sử dụng /stats để xem thống kê\n\n",
+    "success": "💡 Mỗi lần mời thành công 1 người sẽ tăng chỉ tiêu hàng ngày của bạn thêm +1 vĩnh viễn.\n",
+    "systemError": "❌ Đã xảy ra lỗi trong hệ thống, vui lòng thử lại sau.",
+    "test": "Kết quả thử nghiệm",
+    "text": "• Sử dụng /profile_card để xem thẻ hồ sơ đầy đủ\n",
+    "text2": "🏷️ Sở thích: ${interests}\n\n",
+    "text3": "💎 Thành viên: ${vipStatus}\n\n",
+    "text4": "📝 Tiểu sử:\n${bio}\n\n",
+    "text5": "Người này thật bí ẩn, không để lại gì cả～",
+    "userNotFound": "⚠️ Người dùng không tồn tại, vui lòng đăng ký trước bằng cách sử dụng /start.",
+    "vip": "Thành viên VIP (Hết hạn: ${expireDate})",
+    "vip2": "• Sử dụng /vip để nâng cấp thành viên VIP\n",
+    "vipUpgrade": "• Sử dụng /vip để nâng cấp thành viên VIP\n",
+    "zodiac": "⭐ Cung hoàng đạo: ${zodiac}\n"
+  },
+  "refreshAvatar": {
+    "failed": "❌ Đã không thể làm mới hình đại diện.\n\nVui lòng thử lại sau hoặc liên hệ với quản trị viên.",
+    "processing": "🔄 Đang làm mới hình đại diện...\n\nĐiều này có thể mất vài giây.",
+    "success": "✅ **Hình đại diện đã được cập nhật!**\n\nBộ nhớ cache hình đại diện của bạn đã được làm mới, và hình ảnh mới nhất sẽ hiển thị vào lần tiếp theo bạn xem lịch sử trò chuyện.\n\n💡 **Mẹo:**\n• Hình đại diện sẽ tự động cập nhật mỗi 7 ngày\n• Nếu bạn thay đổi hình đại diện Telegram, hệ thống sẽ tự động nhận diện\n• Bạn cũng có thể sử dụng lệnh này để làm mới thủ công bất kỳ lúc nào",
+    "userNotFound": "❌ Người dùng không tồn tại, vui lòng đăng ký trước"
+  },
+  "refreshConversations": {
+    "clickButtonHint": "💡 **Mẹo**: Vui lòng nhấp vào nút phía trên để bắt đầu sử dụng",
+    "commandHelp": "• /help - Xem Trợ giúp",
+    "commandMenu": "• /menu - Menu chính",
+    "commandTasks": "• /tasks - Xem Trung tâm tác vụ",
+    "failed": "❌ Đã không thể làm mới lịch sử trò chuyện.\n\nVui lòng thử lại sau hoặc liên hệ với quản trị viên.",
+    "noHistory": "💡 **Không tìm thấy lịch sử trò chuyện**\n\nBạn chưa có hồ sơ trò chuyện nào.\n\nSử dụng /throw để ném một chai thư và bắt đầu trò chuyện!",
+    "partialSuccess": "⚠️ **Cập nhật một phần lịch sử trò chuyện**\n\nĐã làm mới thành công: {updated} mục\nThất bại: {failed} mục\n\nMột số lịch sử trò chuyện có thể chưa được cập nhật, vui lòng thử lại sau.",
+    "processing": "🔄 Đang làm mới toàn bộ lịch sử trò chuyện...\n\nĐiều này có thể mất một chút thời gian, xin vui lòng chờ.",
+    "success": "✅ **Lịch sử trò chuyện đã được cập nhật!**\n\nĐã làm mới thành công {updated} bài đăng lịch sử trò chuyện.\n\n💡 **Mẹo:**\n• Người dùng VIP có thể xem hình đại diện rõ nét của người khác\n• Người dùng miễn phí thấy hình đại diện bị mờ\n• Các bài đăng lịch sử sẽ tự động làm mới khi nâng cấp lên VIP",
+    "userNotFound": "❌ Người dùng không tồn tại, vui lòng đăng ký trước"
+  },
+  "report": {
+    "aiAutoBan": "🤖 AI tự động bị cấm",
+    "blockHint": "• Nhấn và giữ tin nhắn của người khác để trả lời /chặn để chặn người dùng này\n",
+    "cancel": "❌ Hủy",
+    "cancelled": "Đã hủy",
+    "cannotIdentify": "⚠️ Không thể xác định đối tác trò chuyện\n\n",
+    "catchHint": "• Sử dụng /catch để chọn một chai thư mới",
+    "completeOnboarding": "⚠️ Vui lòng hoàn thành quy trình đăng ký trước.\n\nSử dụng /start để tiếp tục đăng ký.",
+    "conversationInfoError": "⚠️ Thông tin cuộc trò chuyện không chính xác.",
+    "conversationInfoError2": "⚠️ Thông tin cuộc trò chuyện không chính xác",
+    "conversationNotExists": "⚠️ Cuộc trò chuyện không tồn tại",
+    "conversationNotFound": "⚠️ Không thể tìm thấy cuộc trò chuyện này\n\nCuộc trò chuyện có thể đã kết thúc hoặc không tồn tại.",
+    "ensureReply": "Vui lòng đảm bảo bạn đang trả lời tin nhắn được gửi bởi bên kia (với ký hiệu #).",
+    "hint": "💡 Điều này giúp xác định chính xác chủ đề của báo cáo.",
+    "multipleReports": "Nhiều báo cáo",
+    "reasonHarassment": "😡 Quấy rối / Hành vi lạm dụng",
+    "reasonNsfw": "🔞 Nội dung người lớn",
+    "reasonOther": "⚠️ Vi phạm khác",
+    "reasonScam": "💰 Lừa đảo / Lừa đảo trực tuyến",
+    "reasonSpam": "📢 Thư rác",
+    "replyRequired": "⚠️ Vui lòng nhấn lâu vào tin nhắn bạn muốn báo cáo sau đó trả lời bằng lệnh\n\n",
+    "selectReason": "Vui lòng chọn lý do báo cáo:",
+    "sessionExpired": "⚠️ Cuộc trò chuyện đã hết hạn, vui lòng thực hiện lại",
+    "step1": "1️⃣ Nhấn và giữ tin nhắn của người khác\n",
+    "step2": "2️⃣ Chọn 'Trả lời'\n",
+    "step3": "3️⃣ Nhập /report\n\n",
+    "steps": "**Các bước cần thực hiện:**\n",
+    "submitted": "✅ **Đã gửi báo cáo** (#{identifier})\n\n",
+    "systemError": "❌ Đã xảy ra lỗi hệ thống",
+    "thanks": "Cảm ơn bạn đã báo cáo, chúng tôi sẽ xem xét nó càng sớm càng tốt.\n\n",
+    "tips": "💡 Mẹo:\n",
+    "title": "🚨 **Báo cáo nội dung không phù hợp** (#{identifier})\n\n",
+    "userNotFound": "⚠️ Người dùng không tồn tại, vui lòng đăng ký trước bằng cách sử dụng /start."
+  },
+  "risk": {
+    "containsSensitiveWords": "Chứa từ nhạy cảm"
+  },
+  "router": {
+    "replyPrompt": "💬 Trả lời",
+    "suggestCatch": "❓ Bạn muốn nhận chai thư?\n\nSử dụng /catch để nhặt chai thư\n\n💡 **Lệnh Thường Gặp**:\n• /throw - Thả chai thư\n• /catch - Nhặt chai thư\n• /menu - Menu Chính\n• /tasks - Trung Tâm Nhiệm Vụ",
+    "suggestMenu": "❓ Không tìm thấy lệnh\n\n💡 **Lệnh Thường Gặp**:\n• /throw - Thả chai thư\n• /catch - Nhặt chai thư\n• /menu - Menu Chính\n• /tasks - Trung Tâm Nhiệm Vụ",
+    "suggestThrow": "❓ Bạn muốn thả chai thư?\n\nVui lòng nhấn giữ tin nhắn trước đó hoặc tin nhắn này,\nchọn 'Trả lời' từ menu,\nvà nhập nội dung để gửi chai thư\n\n💡 **Lệnh Thường Gặp**:\n• /throw - Thả chai thư\n• /catch - Nhặt chai thư\n• /menu - Menu Chính\n• /tasks - Trung Tâm Nhiệm Vụ\n\n#THROW",
+    "throwPrompt": "📝 Vui lòng nhập nội dung chai thư của bạn:"
+  },
+  "session": {
+    "timeoutCatchBottle": "⏰ Quá trình nhặt chai đã hết thời gian\n\nVui lòng sử dụng /catch để khởi động lại.",
+    "timeoutConversation": "⏰ Cuộc trò chuyện đã hết thời gian\n\nBên kia có thể đã rời đi. Sử dụng /catch để nhặt chai mới!",
+    "timeoutEditProfile": "⏰ Quá trình chỉnh sửa dữ liệu đã hết thời gian\n\nVui lòng khởi động lại quá trình chỉnh sửa.",
+    "timeoutOnboarding": "⏰ Quá trình đăng ký đã hết thời gian\n\nVui lòng sử dụng /start để khởi động lại đăng ký.",
+    "timeoutThrowBottle": "⏰ Quá trình thả chai đã hết thời gian\n\nVui lòng sử dụng /throw để khởi động lại.",
+    "typeCatchBottle": "Quá trình nhặt chai",
+    "typeConversation": "Cuộc trò chuyện",
+    "typeEditProfile": "Chỉnh sửa dữ liệu",
+    "typeOnboarding": "Quá trình đăng ký",
+    "typeThrowBottle": "Quá trình thả chai"
+  },
+  "settings": {
+    "back": "Quay lại",
+    "changeLanguage": "🌐 Thay đổi ngôn ngữ",
+    "currentSettings": "⚙️ **Cài Đặt Hiện Tại**",
+    "languageLabel": "Ngôn ngữ: {language}",
+    "languageUpdated": "✅ Ngôn ngữ đã được cập nhật thành: {language}",
+    "message": "🌐 **Chọn Ngôn Ngữ**\n\nVui lòng chọn ngôn ngữ bạn thích:",
+    "returnToMenu": "🏠 Quay lại menu chính",
+    "selectOption": "Vui lòng chọn một tùy chọn:",
+    "settings": "💡 Chọn cài đặt bạn muốn sửa đổi:",
+    "settings2": "⚙️ **Cài đặt**\n\n",
+    "settings3": "🏠 Quay lại cài đặt",
+    "settings4": "Cài đặt hiện tại:\n",
+    "text": "• Ngôn ngữ：${languageName} 🇹🇼\n\n",
+    "title": "🏠 **Menu Chính**"
+  },
+  "stats": {
+    "activeUsers": "• Hoạt động hôm qua: {active}\n\n",
+    "age": "🎂 **Tuổi**: ${age} tuổi\n",
+    "avgMatches": "• Số Lượng Trung Bình Mỗi Lần Kết Nối: ${avg} vật phẩm\n",
+    "bottle": "💎 **Thống kê chai thư VIP Triple** (30 ngày qua)\n",
+    "bottle2": "🍾 **Chai Thư**\n",
+    "bottle3": "🎈 Thống Kê Chai Thư\n",
+    "bottles": "🍾 **Chai Thư**\n",
+    "bottlesCaught": "• Đã Tìm Thấy: ${count} vật phẩm\n",
+    "bottlesThrown": "• Đã Xử Lý: ${count} vật phẩm\n",
+    "catch": "• Số chai thư đã bắt hôm qua：${stats.caughtBottles}\n\n",
+    "catch2": "• Đã Tìm Thấy: ${stats.bottlesCaught} vật phẩm\n",
+    "caught": "• Số chai đã bắt hôm qua: {caught}\n\n",
+    "conversation": "• Cuộc Hội Thoại Hoạt Động: ${stats.activeConversations}\n",
+    "conversation2": "• Tổng Số Cuộc Hội Thoại: ${stats.totalConversations}\n",
+    "conversation3": "• Tổng Số Cuộc Hội Thoại: ${stats.totalConversations}",
+    "conversation4": "💬 **Cuộc Hội Thoại**\n",
+    "conversation5": "💬 Thống Kê Cuộc Hội Thoại\n",
+    "conversations": "💬 **Cuộc Hội Thoại**\n",
+    "conversationsActive": "• Cuộc Hội Thoại Hoạt Động: ${count}\n",
+    "conversationsTotal": "• Tổng Số Cuộc Hội Thoại: ${count}\n",
+    "date": "Ngày: {date}\n\n",
+    "dateFormatError": "Lỗi định dạng ngày, nên là YYYY-MM-DD",
+    "match": "🎯 **Kết Nối**\n",
+    "matchRate": "• Tỉ Lệ Thành Công Kết Nối: ${rate}%\n",
+    "matchRateValue": "• Tỉ Lệ Kết Nối: ${rate}%\n",
+    "matchedSlots": "• Kết Nối Thành Công: ${count}\n",
+    "mbti": "🧠 **MBTI**: ${mbti}\n",
+    "message": "• Thời Gian Hết Hạn: ${expireDate}\n",
+    "message10": "• Tổng Số Tin Nhắn: ${stats.totalMessages}",
+    "message2": "${used}/${permanentQuota}+${taskBonus} (Còn lại ${remaining})",
+    "message3": "Báo cáo được tạo vào lúc: ${new Date().toLocaleString('zh-TW')}",
+    "message4": "${used}/${permanentQuota} (Còn lại ${remaining})",
+    "message5": "• Tổng số tin nhắn: ${stats.totalMessages}\n\n",
+    "message6": "• Tin nhắn mới hôm qua: ${stats.newMessages}\n\n",
+    "message7": "• Tổng số slot ghép đôi: ${vipStats.totalSlots}\n",
+    "message8": "• Tỷ lệ phản hồi trung bình: ${stats.replyRate}%\n\n",
+    "message9": "• Người dùng hoạt động hôm qua: ${stats.activeUsers}\n\n",
+    "messages": "💬 Thống kê cuộc trò chuyện",
+    "messagesTotal": "• Tổng số tin nhắn: ${count}\n",
+    "new": "• Thêm vào hôm qua: {new}",
+    "newMessages": "• Tin nhắn mới hôm qua: {new}\n\n",
+    "newUsers": "• Thêm vào hôm qua: {new}",
+    "newVip": "• Tin nhắn mới hôm qua: {new}\n\n",
+    "notSet": "Chưa được thiết lập",
+    "quota": "• Hạn mức hôm nay: ${stats.todayQuota.display}\n\n",
+    "register": "📅 **Ngày đăng ký**: ${new Date(user.created_at).toLocaleDateString('zh-TW')}\n",
+    "register2": "• Tổng số người đăng ký: ${stats.totalUsers}",
+    "registerTime": "📅 **Ngày đăng ký**: ${date}\n",
+    "replyRate": "• Tỷ lệ trả lời trung bình: ${rate}%\n",
+    "reportTime": "Báo cáo được tạo vào: {time}",
+    "separator": "---\n",
+    "settings": "🧠 **MBTI**：\\$\n\n",
+    "settings2": "Chưa được thiết lập",
+    "short": "Thành viên miễn phí",
+    "statDateEmpty": "Ngày thống kê không thể để trống",
+    "stats": "📊 **Thống kê của tôi**\n\n",
+    "stats2": "💎 Thống kê VIP\n",
+    "stats3": "👥 Thống kê người dùng\n",
+    "stats4": "Ngày thống kê không thể để trống",
+    "success": "• Số lượt ghép thành công: ${vipStats.matchedSlots}\n",
+    "success2": "• Tỉ lệ thành công khi ghép: ${stats.matchRate}%\n",
+    "text": "• Số lượt ghép trung bình mỗi cặp: ${avgMatches} đối tượng\n",
+    "text10": "🎯 **Ghép Nối**\n",
+    "text2": "• Mới hôm qua: ${stats.newBottles}\n",
+    "text3": "• Tổng: ${stats.totalBottles}",
+    "text4": "• Người dùng mới hôm qua: ${stats.newUsers}\n",
+    "text5": "• VIP mới hôm qua: ${stats.newVip}\n\n",
+    "text6": "• Tỉ lệ ghép nối: ${matchRate}%\n",
+    "text7": "📊 Báo cáo dữ liệu hàng ngày XunNi Bot\n",
+    "text8": "Lỗi định dạng ngày, nên là YYYY-MM-DD",
+    "text9": "Ngày: ${dateStr}\n\n",
+    "throw": "• Chai thư đã ném: ${stats.bottlesThrown}\n",
+    "throw2": "• Số lần ném: ${vipStats.throws}\n",
+    "throws": "• Số lần ném: ${count}\n",
+    "timeLeftDaysHours": "${days} ngày ${hours} giờ",
+    "timeLeftHours": "${hours} giờ",
+    "title": "📊 **Thống kê của tôi**\n\n",
+    "todayQuota": "• Hạn mức hôm nay: ${display}\n\n",
+    "total": "• Tổng: {total}",
+    "totalConversations": "• Tổng số cuộc trò chuyện: {total}",
+    "totalMessages": "• Tổng số tin nhắn: {total}",
+    "totalSlots": "• Tổng số chỗ ghép: ${count}\n",
+    "totalUsers": "• Tổng số đăng ký: {total}",
+    "totalVip": "• Tổng số VIP: {total}",
+    "totalWithDiff": "• Tổng: {total} ({diff})",
+    "users": "👥 Thống kê người dùng",
+    "vip": "⭐ **Trạng thái VIP**\n",
+    "vip2": "⭐ **Trạng thái VIP**\n",
+    "vip3": "Thành viên VIP 💎",
+    "vipAvgMatches": "• Số trận trung bình mỗi lần ghép: {avg}",
+    "vipExpire": "• Thời gian hết hạn: ${date}\n",
+    "vipFree": "Thành viên miễn phí",
+    "vipMatchRate": "• Tỉ lệ ghép đôi: {rate}%",
+    "vipMatchedSlots": "• Số trận thành công: {count}",
+    "vipMember": "Thành viên VIP 💎",
+    "vipThrows": "• Chai thư đã ném: {count}",
+    "vipTotalSlots": "• Tổng số vị trí ghép: {count}",
+    "vipTriple": "💎 **Thống kê chai thư VIP Triple** (Trong ${days} Ngày Qua)",
+    "vipTripleTitle": "💎 **Thống kê chai thư VIP Triple** (Trong {days} Ngày Qua)",
+    "zodiac": "🔮 **Cung Hoàng Đạo**: ${zodiac}\n"
+  },
+  "status": {
+    "cancelled": "Đã hủy",
+    "completed": "Đã hoàn thành",
+    "failed": "Thất bại",
+    "pending": "Đang tiến hành",
+    "sending": "Đang gửi"
+  },
+  "subscription": {
+    "downgradedToFree": "Tài khoản của bạn đã được phục hồi thành thành viên miễn phí.",
+    "expired": "😢 **Đăng ký VIP đã hết hạn**",
+    "expiredDate": "Đăng ký VIP của bạn đã hết hạn vào ${date}.",
+    "renewVipHint": "💡 Bạn có thể đăng ký lại VIP bất cứ lúc nào: /vip",
+    "thankYou": "Cảm ơn bạn đã ủng hộ!❤️"
+  },
+  "success": {
+    "ad": "✅ Bạn đã xem tất cả quảng cáo chính thức!",
+    "ad2": "✅ Nhà quảng cáo đã được kích hoạt: ${providerName}",
+    "ad3": "✅ Nhà cung cấp quảng cáo đã tắt: ${providerName}\n\n",
+    "ad4": "✅ Quảng cáo chính thức đã bật #${adId}\n\n",
+    "ad5": "✅ Quảng cáo chính thức đã tắt #${adId}\n\n",
+    "ad6": "✅ Đã đặt mức ưu tiên cho nhà cung cấp quảng cáo\n\n",
+    "ad7": "✅ Đã đạt giới hạn quảng cáo hôm nay",
+    "appeal": "✅ Đơn kháng cáo ${appealId} đã được chấp thuận, người dùng đã được mở khóa",
+    "appeal2": "✅ Đơn kháng cáo ${appealId} đã bị từ chối",
+    "appeal3": "✅ Không có đơn kháng cáo nào đang chờ xử lý",
+    "birthday": "✅ Ngày sinh đã được lưu",
+    "bloodType": "✅ Nhóm máu đã được cập nhật thành ${getBloodTypeDisplay(bloodType as any)}",
+    "bloodType2": "✅ Nhóm máu đã được xóa",
+    "bottle": "✅ Phần thưởng đã được phân phát! +1 chai thư",
+    "bottle2": "✅ Bắt đầu một chai thư mới",
+    "bottle3": "✅ Chai thư đã được tạo\n",
+    "broadcast": "✅ Đã xóa ${ids.length} đợt phát thanh bị kẹt\n\n",
+    "broadcast2": "✅ Không có đợt phát thanh nào cần xóa\n\n",
+    "broadcast3": "✅ Đã tạo các đợt phát thanh được lọc\n\n",
+    "broadcast4": "✅ Đợt phát thanh đã được tạo\n\n",
+    "cancel": "✅ Đợt phát thanh đã bị hủy\n\n",
+    "complete": "✅ Hoàn tất xử lý hàng đợi phát thanh\n\n",
+    "complete2": "✅ Bảo trì hệ thống đã hoàn tất\n\n",
+    "complete3": "✅ Hướng dẫn đã hoàn thành!",
+    "complete4": "✅ **Đã hoàn thành làm mới toàn bộ**\n\n",
+    "complete5": "✅ **Đã hoàn thành làm mới**\n\n",
+    "complete6": "✅ Lọc hoàn tất, nhập nội dung",
+    "complete7": "✅ Lọc hoàn tất",
+    "confirm": "✅ Đã xác nhận!",
+    "confirm2": "✅ Xác nhận bảo mật đã hoàn tất",
+    "confirm3": "✅ Xác nhận",
+    "conversation": "✅ **Lịch sử trò chuyện đã được cập nhật!**\n\n",
+    "gender": "✅ Giới tính đã được lưu",
+    "invite": "✅ Lời mời đã được kích hoạt: ${successfulInvites} / ${inviteLimit} người\n",
+    "mbti": "✅ Loại MBTI của bạn đã được cập nhật thành: **${mbtiType}**\n\n",
+    "mbti2": "✅ Loại MBTI của bạn đã được xóa.\n\n",
+    "mbti3": "✅ MBTI đã được xóa",
+    "mbti4": "✅ Lựa chọn MBTI đã được xóa",
+    "mbti5": "✅ Loại MBTI của bạn: ${mbtiType}\n\n",
+    "message": "✅ Tin nhắn đã được gửi đến ${formatIdentifier(receiverIdentifier)}\n\n",
+    "message2": "✅ Ngôn ngữ đã được cập nhật thành: ${getLanguageDisplay(languageCode)}",
+    "message3": "✅ Người dùng đã bị chặn (#${conversationIdentifier})\n\n",
+    "message4": "✅ Đã nhận +${ad.reward_quota} hạn ngạch vĩnh viễn!",
+    "message5": "✅ Đã chọn ${gender}",
+    "message6": "✅ Đã chọn ${bloodTypeDisplay[bloodType]}",
+    "message7": "✅ Đã chọn ${ZODIAC_NAMES[zodiacSign]}",
+    "message8": "Bạn đã chọn: ${gender}",
+    "nickname": "✅ Đang sử dụng bí danh Telegram: ${suggestedNickname.substring(0, 18)}",
+    "nickname2": "✅ Tên hiển thị đã được cập nhật thành: ${text}\n\n",
+    "register": "✅ Chế độ nhà phát triển: Bỏ qua đăng ký\n\n",
+    "register2": "✅ Tôi hiểu, tiếp tục đăng ký",
+    "register3": "✅ Đăng ký đã hoàn tất!",
+    "report": "✅ **Báo cáo đã được gửi** (#${conversationIdentifier})\n\n",
+    "report2": "✅ Đơn báo cáo đã được gửi",
+    "report3": "✅ **Người dùng đã được báo cáo**\n\n",
+    "report4": "✅ Xác nhận báo cáo",
+    "report5": "✅ Đã báo cáo",
+    "reportSubmitted": "✅ Đơn báo cáo đã được gửi, cảm ơn bạn đã phản hồi",
+    "settings": "✅ MBTI đã được thiết lập thành ${mbtiType}",
+    "settings2": "✅ Bí danh đã được thiết lập",
+    "settings3": "✅ Các tiêu chí lọc đã được thiết lập:\n\n",
+    "settings4": "✅ Nhóm máu đã được thiết lập thành ${getBloodTypeDisplay(bloodType as any)}",
+    "settings5": "✅ Loại MBTI đã được thiết lập: ${mbtiType}\n\n",
+    "settings6": "✅ Cài đặt nhóm máu đã bị bỏ qua",
+    "short": "✅ Đang gửi...",
+    "short10": "✅ Đang tải...",
+    "short11": "✅ 🌈 Mọi người",
+    "short12": "✅ 👨 Nam",
+    "short13": "✅ 👩 Nữ",
+    "short14": "✅ Tiếp tục chỉnh sửa",
+    "short15": "✅ Xác nhận chặn",
+    "short16": "✅ Đã bị chặn",
+    "short17": "✅ Tôi đã đọc và đồng ý",
+    "short18": "✅ Đã bỏ qua",
+    "short19": "✅ Nhận thưởng",
+    "short2": "✅ Tiếp tục chỉnh sửa bản nháp",
+    "short20": "✅ Bảo trì",
+    "short3": "✅ Bản nháp đã bị xóa",
+    "short4": "✅ Xác minh và nhận",
+    "short5": "✅ Gửi bản nháp",
+    "short6": "✅ Đã ghi lại",
+    "short7": "✅ Đúng",
+    "short8": "✅ Bật",
+    "short9": "✅ Có",
+    "start": "✅ Vui lòng nhấn nút để bắt đầu xem",
+    "start2": "✅ Bắt đầu kiểm tra phiên bản nhanh",
+    "start3": "✅ Bắt đầu kiểm tra phiên bản đầy đủ",
+    "start4": "✅ Bắt đầu kiểm tra",
+    "success": {
+      "appeal": "✅ Đơn kháng nghị \\${appealId} đã được chấp thuận, người dùng đã được mở khóa",
+      "appeal2": "✅ Đơn kháng nghị \\${appealId} đã bị từ chối",
+      "appeal3": "✅ Không có đơn kháng nghị đang chờ xử lý",
+      "birthday": "✅ Sinh nhật đã được lưu",
+      "bloodType": "✅ Nhóm máu đã được cập nhật sang \\${getBloodTypeDisplay(bloodType as any)}",
+      "bloodType2": "✅ Nhóm máu đã được xóa",
+      "bottle": "✅ Phần thưởng đã được phân phát! +1 chai thư",
+      "bottle2": "✅ Bắt đầu chai thư mới",
+      "bottle3": "✅ Chai thư đã được tạo\n",
+      "broadcast": "✅ Đã xóa \\${ids.length} phát sóng bị kẹt\n\n",
+      "broadcast2": "✅ Không còn phát sóng để dọn dẹp\n\n",
+      "broadcast3": "✅ Đã lọc các phát sóng đã tạo\n\n",
+      "broadcast4": "✅ Phát sóng đã được tạo\n\n",
+      "cancel": "✅ Phát sóng đã bị hủy\n\n",
+      "complete": "✅ Hoàn tất xử lý hàng đợi phát sóng\n\n",
+      "complete2": "✅ Bảo trì hệ thống đã hoàn tất\n\n",
+      "complete3": "✅ Hướng dẫn đã hoàn tất!",
+      "complete4": "✅ **Đã hoàn thành làm mới hàng loạt**\n\n",
+      "complete5": "✅ **Đã hoàn thành làm mới**\n\n",
+      "complete6": "✅ Hoàn tất lọc, nhập nội dung",
+      "complete7": "✅ Hoàn tất lọc",
+      "confirm": "✅ Đã xác nhận!",
+      "confirm2": "✅ Xác nhận bảo mật đã hoàn tất",
+      "confirm3": "✅ Xác nhận",
+      "conversation": "✅ **Lịch sử trò chuyện đã được cập nhật!**\n\n",
+      "gender": "✅ Giới tính đã được lưu",
+      "invite": "✅ Kích hoạt lời mời: \\${successfulInvites} / \\${inviteLimit} người\n",
+      "mbti": "✅ Loại MBTI của bạn đã được cập nhật thành: **\\${mbtiType}**\n\n",
+      "mbti2": "✅ Loại MBTI của bạn đã được xóa.\n\n",
+      "mbti3": "✅ MBTI đã được xóa",
+      "mbti4": "✅ Lựa chọn MBTI đã được xóa",
+      "mbti5": "✅ Loại MBTI của bạn: \\${mbtiType}\n\n",
+      "message": "✅ Tin nhắn đã được gửi đến \\${formatIdentifier(receiverIdentifier)}\n\n",
+      "message2": "✅ Ngôn ngữ đã được cập nhật thành: \\${getLanguageDisplay(languageCode)}",
+      "message3": "✅ Người dùng này đã bị chặn (#\\${conversationIdentifier})\n\n",
+      "message4": "✅ Đã kiếm được +\\${ad.reward_quota} quota vĩnh viễn!",
+      "message5": "✅ Đã chọn \\${gender}",
+      "message6": "✅ Đã chọn \\${bloodTypeDisplay[bloodType]}",
+      "message7": "✅ Đã chọn \\${ZODIAC_NAMES[zodiacSign]}",
+      "message8": "✅ Bạn đã chọn: \\${gender}\n\n",
+      "nickname": "✅ Sử dụng nickname Telegram: \\${suggestedNickname.substring(0, 18)}",
+      "nickname2": "✅ Biệt danh đã được cập nhật thành: \\${text}\n\n",
+      "register": "✅ Chế độ phát triển: Bỏ qua đăng ký\n\n",
+      "register2": "✅ Tôi hiểu, tiếp tục đăng ký",
+      "register3": "✅ Đăng ký đã hoàn tất!",
+      "report": "✅ **Đã gửi báo cáo** (#\\${conversationIdentifier})\n\n",
+      "report2": "✅ Báo cáo đã được gửi",
+      "report3": "✅ **Người dùng đã được báo cáo**\n\n",
+      "report4": "✅ Xác nhận báo cáo",
+      "report5": "✅ Đã báo cáo",
+      "settings": "✅ MBTI đã được thiết lập thành \\${mbtiType}",
+      "settings2": "✅ Tên hiển thị đã được thiết lập",
+      "settings3": "✅ Tiêu chí lọc đã được thiết lập:\n\n",
+      "settings4": "✅ Nhóm máu đã được thiết lập thành \\${getBloodTypeDisplay(bloodType as any)}",
+      "settings5": "✅ Loại MBTI đã được thiết lập: \\${mbtiType}\n\n",
+      "settings6": "✅ Thiết lập nhóm máu đã bị bỏ qua",
+      "short": "✅ Đang gửi...",
+      "short10": "✅ Đang tải...",
+      "short11": "✅ 🌈 Bất kỳ ai",
+      "short12": "✅ 👨 Nam",
+      "short13": "✅ 👩 Nữ",
+      "short14": "✅ Tiếp tục chỉnh sửa",
+      "short15": "✅ Xác nhận chặn",
+      "short16": "✅ Đã bị chặn",
+      "short17": "✅ Tôi đã đọc và đồng ý",
+      "short18": "✅ Đã bỏ qua",
+      "short19": "✅ Nhận thưởng",
+      "short2": "✅ Tiếp tục chỉnh sửa bản nháp",
+      "short20": "✅ Đang bảo trì",
+      "short3": "✅ Bản nháp đã bị xóa",
+      "short4": "✅ Xác minh và nhận thưởng",
+      "short5": "✅ Dự thảo đã được gửi",
+      "short6": "✅ Đã ghi lại",
+      "short7": "✅ Đúng",
+      "short8": "✅ Đã kích hoạt",
+      "short9": "✅ Có",
+      "start": "✅ Vui lòng nhấn nút để bắt đầu xem",
+      "start2": "✅ Bắt đầu quiz phiên bản nhanh",
+      "start3": "✅ Bắt đầu quiz phiên bản đầy đủ",
+      "start4": "✅ Bắt đầu quiz",
+      "text": "✅ Đặt thành \\${flag} \\${countryName}",
+      "text10": "✅ Có, tôi hiểu và sẽ chú ý đến an toàn",
+      "text11": "✅ Đã bật Chế độ bảo trì\n\n",
+      "text12": "✅ Đã tắt Chế độ bảo trì\n\n",
+      "text13": "✅ Phân tích tính cách chính xác hơn\n",
+      "text14": "✅ Hướng dẫn đã bị bỏ qua\n\n",
+      "text15": "✅ Tất cả bài viết đã được cập nhật (trạng thái người dùng miễn phí là chính xác)\n",
+      "text16": "✅ **Không cần làm mới**\n\n",
+      "text17": "✅ Đã chọn \\${gender ===",
+      "text18": "✅ Đã chọn \\${mbtiType}",
+      "text19": "✅ **Quy tắc**:\n",
+      "text2": "✅ Thẻ sở thích đã được cập nhật:\n\n\\${interestsStr}",
+      "text20": "✅ **Người dùng đã bị chặn**\n\n",
+      "text21": "✅ **Yêu cầu hoàn tiền đã được gửi**\n\n",
+      "text22": "✅ **Yêu cầu hoàn tiền đã được phê duyệt**\n\n",
+      "text23": "✅ Không có yêu cầu hoàn tiền đang chờ.",
+      "text24": "✅ Đang chuẩn bị thanh toán...",
+      "text25": "✅ Yêu cầu hoàn tiền đã được phê duyệt\n\n",
+      "text26": "✅ Yêu cầu hoàn tiền đã bị từ chối\n\n",
+      "text27": "✅ Tôi đã tham gia và nhận thưởng",
+      "text28": "✅ Bạn đã chọn: \\${gender ===",
+      "text29": "✅ Kiểm tra chống gian lận đã được vượt qua!\n\n",
+      "text3": "✅ Sở thích ghép nối đã được cập nhật thành: ${prefText}\n\n",
+      "text30": "✅ Ngôn ngữ đã được thay đổi thành \\${newLanguageName}",
+      "text4": "✅ Hồ sơ đã được cập nhật!\n\n\\${text}",
+      "text5": "✅ Chế độ phát triển: Dữ liệu đã được thiết lập lại\n\n",
+      "text6": "✅ Khu vực đã được cập nhật thành: \\${text}",
+      "text7": "✅ Hiểu nhanh các loại tính cách cơ bản\n\n",
+      "text8": "✅ **Ảnh đại diện đã được cập nhật!**\n\n",
+      "text9": "✅ Được khuyến nghị để kiểm tra lại\n\n",
+      "vip": "✅ Tất cả bài viết đều được cập nhật (trạng thái VIP là chính xác)\n",
+      "zodiac": "✅ Lựa chọn cung hoàng đạo đã được xóa"
     },
-    status: {
-      failed: `❌ Payment Failed`,
-      paid: `✅ Payment Successful`,
-      pending: `⏳ Processing`,
-      refunded: `↩️ Refunded`,
+    "success2": "🎉 **Xác minh thành công!**\n\n✅ Đã kiếm được **+${ad.reward_quota} hạn mức vĩnh viễn**\n💎 Cảm ơn bạn đã tham gia cộng đồng của chúng tôi!\n\n📊 **Hạn mức của bạn:**\n• Hạn mức cơ bản: ${user.is_vip ? 'Không giới hạn' : '10'}/ngày\n• Hạn mức vĩnh viễn: +${ad.reward_quota}\n\n💡 Trong cộng đồng, bạn có thể:\n• Giao tiếp với các người dùng khác\n• Nhận thông tin cập nhật tính năng mới nhất\n• Tham gia sự kiện để nhận thêm phần thưởng",
+    "success3": "Đã làm mới thành công ${result.updated} bài viết lịch sử trong cuộc trò chuyện.\n\n",
+    "success4": "Đã làm mới thành công: ${result.updated} bài viết\n",
+    "text": "✅ Đã đặt thành ${flag} ${countryName}",
+    "text10": "✅ Vâng, tôi hiểu và sẽ chú ý đến an toàn",
+    "text11": "✅ Chế độ bảo trì đã được bật\n\n",
+    "text12": "✅ Chế độ bảo trì đã được tắt\n\n",
+    "text13": "✅ Phân tích tính cách chính xác hơn\n",
+    "text14": "✅ Hướng dẫn đã bị bỏ qua\n\n",
+    "text15": "✅ Tất cả bài viết đều được cập nhật (trạng thái người dùng miễn phí là chính xác)\n",
+    "text16": "✅ **Không cần làm mới**\n\n",
+    "text17": "✅ ${gender ===",
+    "text18": "✅ ${mbtiType} đã được chọn",
+    "text19": "✅ **Quy tắc**:\n",
+    "text2": "✅ Thẻ sở thích đã được cập nhật:\n\n${interestsStr}",
+    "text20": "✅ **Người dùng đã bị chặn**\n\n",
+    "text21": "✅ **Yêu cầu hoàn tiền đã được gửi**\n\n",
+    "text22": "✅ **Hoàn tiền đã được phê duyệt**\n\n",
+    "text23": "✅ Không có yêu cầu hoàn tiền nào đang chờ.",
+    "text24": "✅ Đang chuẩn bị thanh toán...",
+    "text25": "✅ Hoàn tiền đã được phê duyệt\n\n",
+    "text26": "✅ Hoàn tiền đã bị từ chối\n\n",
+    "text27": "✅ Tôi đã tham gia và nhận thưởng",
+    "text28": "✅ Bạn đã chọn: ${gender ===",
+    "text29": "✅ Kiểm tra chống gian lận đã được vượt qua!\n\n",
+    "text3": "✅ Sở thích ghép nối đã được cập nhật thành: ${prefText}\n\n",
+    "text30": "✅ Ngôn ngữ đã được thay đổi thành ${newLanguageName}",
+    "text4": "✅ Hồ sơ đã được cập nhật!\n\n${text}",
+    "text5": "✅ Chế độ phát triển: Dữ liệu đã được thiết lập lại\n\n",
+    "text6": "✅ Khu vực đã được cập nhật thành: ${text}",
+    "text7": "✅ Hiểu nhanh các loại tính cách cơ bản\n\n",
+    "text8": "✅ **Avatar đã được cập nhật!**\n\n",
+    "text9": "✅ Đề xuất kiểm tra lại\n\n",
+    "verify": "✅ Xác minh thành công! Nhận được +${ad.reward_quota} hạn mức vĩnh viễn!",
+    "verify2": "✅ Xác minh thành công! Nhận được +\\${ad.reward_quota} hạn mức vĩnh viễn!",
+    "vip": "✅ Tất cả bài viết đã được cập nhật (trạng thái VIP đúng)\n",
+    "zodiac": "✅ Đã xóa lựa chọn chiêm tinh"
+  },
+  "target": {
+    "all": "Tất cả người dùng",
+    "nonVip": "Người dùng không VIP",
+    "unknown": "Không xác định",
+    "vip": "Người dùng VIP"
+  },
+  "tasks": {
+    "bottle": "Phần thưởng: +${task.reward_amount} chai thư (${rewardTypeText})\n\n",
+    "bottle2": "Phần thưởng: +${task.reward_amount} chai thư (${task.reward_type ===",
+    "bottle3": "${icon} ${task.name} (+${task.reward_amount} chai thư)\n",
+    "bottle4": "• Phần thưởng vĩnh viễn: ${inviteProgress.current} chai thư (được phát hàng ngày)\n",
+    "bottle5": "• Phần thưởng một lần: ${todayRewardCount} chai thư (có hiệu lực trong ngày)\n",
+    "bottle6": "📋 **Trung Tâm Nhiệm Vụ**\n\nHoàn thành nhiệm vụ để kiếm thêm chai thư!\n\n",
+    "description": {
+      "bio": "Ghi lại câu chuyện của bạn (ít nhất 20 ký tự)",
+      "city": "Tìm bạn bè trong thành phố của bạn",
+      "first_bottle": "Bắt đầu hành trình xã hội của bạn",
+      "first_catch": "Khám phá câu chuyện của người khác",
+      "first_conversation": "Thiết lập kết nối đầu tiên của bạn (nhấn giữ tin nhắn → chọn 'Trả lời')",
+      "interests": "Để người khác biết bạn hơn",
+      "invite_progress": "Mời 1 người để tăng vĩnh viễn hạn mức hàng ngày thêm +1 (miễn phí cho tối đa 10 người, VIP lên tới 100 người)",
+      "join_channel": "Nhận tin tức và sự kiện mới nhất"
     },
-  },
-  profile: {
-    activatedInvites: `✅ 已激活邀請：{successfulInvites} / {inviteLimit} 人
-`,
-    age: `🎂 年齡：\${age}
-`,
-    anonymousUser: `匿名用戶`,
-    bloodType: `🩸 血型：\${bloodType}
-`,
-    bottle: `: permanentQuota} 個瓶子
-
-`,
-    cardAge: `{age} 歲`,
-    cardBio: `📝 簡介：
-{bio}
-
-`,
-    cardFooter: `💡 這是你在對話中展示給對方的資料卡片
-
-`,
-    cardGenderFemale: `♀️ 女`,
-    cardGenderMale: `♂️ 男`,
-    cardInterests: `🏷️ 興趣：{interests}
-
-`,
-    cardLanguage: `🌍 語言：{language}
-
-`,
-    cardMbti: `🧠 MBTI：{mbti}
-`,
-    cardSeparator: `━━━━━━━━━━━━━━━━
-`,
-    cardTitle: `┌─────────────────────────┐
-│ 📇 個人資料卡片 │
-└─────────────────────────┘
-
-`,
-    cardZodiac: `⭐ 星座：{zodiac}
-`,
-    completeOnboarding: `⚠️ 請先完成註冊流程。
-
-使用 /start 繼續註冊。`,
-    conversation: `💡 這是你在對話中展示給對方的資料卡片
-
-`,
-    editProfile: `📝 編輯資料`,
-    gender: `👤 性別：\${gender}
-`,
-    hints: `💡 提示：
-`,
-    invite: `⏳ 待激活邀請：\${inviteStats.pending} 人
-`,
-    invite2: `🎁 **邀請資訊**
-
-`,
-    inviteCodeLabel: `📋 你的邀請碼：\`{inviteCode}\`
-`,
-    manual: `手動設定`,
-    mbti: `• 使用 /mbti 重新測驗或修改 MBTI
-`,
-    mbtiWithSource: `🧠 MBTI：{mbti}{source}
-`,
-    message: `https://t.me/share/url?url=https://t.me/\${botUsername}?start=invite_\${inviteCode}&text=來 XunNi 一起丟漂流瓶吧！🍾 使用我的邀請碼：\${inviteCode}`,
-    message2: `\${inviteLimitWarning}
-
-`,
-    message3: `🌍 語言：\${user.language_pref }
-
-`,
-    message4: `🌍 語言：\${user.language_pref }
-`,
-    message5: `📈 轉化率：\${inviteStats.conversionRate}%
-`,
-    message6: `\${gender} • \${age} 歲 • \${city}
-
-`,
-    message7: `https://t.me/share/url?url=https://t.me/\${botUsername}?start=invite_\${inviteCode}&text=來 XunNi 一起丟漂流`,
-    mysterious: `這個人很神秘，什麼都沒有留下～`,
-    nickname: `📛 暱稱：\${displayNickname}
-`,
-    notSet: `未設定`,
-    profile: `│ 📇 個人資料卡片 │
-`,
-    profile2: `👤 **個人資料**
-
-`,
-    quota: `💡 完成任務可獲得當日額外配額（使用 /tasks 查看）
-`,
-    quota2: `📦 當前每日配額：\${taskBonus > 0 ?`,
-    quotaBottles: `{taskBonus} 個瓶子`,
-    quotaTotal: `📦 當前每日配額：{quota}
-
-`,
-    returnToMenu: `🏠 返回主選單：/menu`,
-    separator: `━━━━━━━━━━━━━━━━
-
-`,
-    settings: `未設定`,
-    settings2: `未設定`,
-    settings3: `未設定`,
-    settings4: `未設定`,
-    settings5: `未設定`,
-    settings6: `未設定`,
-    settings7: `未設定`,
-    settings8: `未設定`,
-    shareInviteCode: `📤 分享邀請碼`,
-    short: `📝 編輯資料`,
-    short2: `免費會員`,
-    stats: `• 使用 /stats 查看統計數據
-
-`,
-    success: `💡 每成功邀請 1 人，每日配額永久 +1
-`,
-    systemError: `❌ 系統發生錯誤，請稍後再試。`,
-    test: `測驗結果`,
-    text: `• 使用 /profile_card 查看完整資料卡片
-`,
-    text2: `🏷️ 興趣：\${interests}
-
-`,
-    text3: `💎 會員：\${vipStatus}
-
-`,
-    text4: `📝 簡介：
-\${bio}
-
-`,
-    text5: `這個人很神秘，什麼都沒有留下～`,
-    userNotFound: `⚠️ 用戶不存在，請先使用 /start 註冊。`,
-    vip: `VIP 會員（到期：\${expireDate}）`,
-    vip2: `• 使用 /vip 升級 VIP 會員
-`,
-    vipUpgrade: `• 使用 /vip 升級 VIP 會員
-`,
-    zodiac: `⭐ 星座：\${zodiac}
-`,
-  },
-  refreshAvatar: {
-    failed: `❌ 刷新頭像失敗
-
-請稍後再試，或聯繫管理員。`,
-    processing: `🔄 正在刷新頭像...
-
-這可能需要幾秒鐘時間。`,
-    success: `✅ **頭像已更新！**
-
-您的頭像緩存已刷新，下次查看對話歷史時將顯示最新頭像。
-
-💡 **提示：**
-• 頭像會自動每 7 天更新一次
-• 如果您更換了 Telegram 頭像，系統會自動檢測
-• 您也可以隨時使用此命令手動刷新`,
-    userNotFound: `❌ 用戶不存在，請先註冊`,
-  },
-  refreshConversations: {
-    clickButtonHint: `💡 **提示**：請點擊上方的按鈕來開始使用`,
-    commandHelp: `• /help - 查看幫助`,
-    commandMenu: `• /menu - 主選單`,
-    commandTasks: `• /tasks - 查看任務中心`,
-    failed: `❌ 刷新對話歷史失敗
-
-請稍後再試，或聯繫管理員。`,
-    noHistory: `💡 **沒有找到對話歷史**
-
-您還沒有任何對話記錄。
-
-使用 /throw 丟出漂流瓶開始聊天吧！`,
-    partialSuccess: `⚠️ **對話歷史部分更新**
-
-成功刷新：{updated} 個
-失敗：{failed} 個
-
-部分對話歷史可能未能更新，請稍後再試。`,
-    processing: `🔄 正在刷新所有對話歷史...
-
-這可能需要一些時間，請稍候。`,
-    success: `✅ **對話歷史已更新！**
-
-成功刷新 {updated} 個對話的歷史帖子。
-
-💡 **提示：**
-• VIP 用戶可以看到清晰的對方頭像
-• 免費用戶看到的是模糊頭像
-• 升級 VIP 後會自動刷新歷史帖子`,
-    userNotFound: `❌ 用戶不存在，請先註冊`,
-  },
-  report: {
-    blockHint: `• 長按對方訊息回覆 /block 可封鎖此使用者
-`,
-    cancel: `❌ 取消`,
-    cancelled: `已取消`,
-    cannotIdentify: `⚠️ 無法識別對話對象
-
-`,
-    catchHint: `• 使用 /catch 撿新的漂流瓶`,
-    completeOnboarding: `⚠️ 請先完成註冊流程。
-
-使用 /start 繼續註冊。`,
-    conversationInfoError: `⚠️ 對話資訊錯誤。`,
-    conversationInfoError2: `⚠️ 對話資訊錯誤`,
-    conversationNotExists: `⚠️ 對話不存在`,
-    conversationNotFound: `⚠️ 找不到此對話
-
-對話可能已結束或不存在。`,
-    ensureReply: `請確保回覆的是對方發送的訊息（帶有 # 標識符）。`,
-    hint: `💡 這樣可以準確指定要舉報的對象。`,
-    multipleReports: `多次被舉報 / Multiple reports`,
-    reasonHarassment: `😡 騷擾 / 辱罵`,
-    reasonNsfw: `🔞 色情內容`,
-    reasonOther: `⚠️ 其他違規`,
-    reasonScam: `💰 詐騙 / 釣魚`,
-    reasonSpam: `📢 垃圾廣告`,
-    replyRequired: `⚠️ 請長按你要舉報的訊息後回覆指令
-
-`,
-    selectReason: `請選擇舉報原因：`,
-    sessionExpired: `⚠️ 會話已過期，請重新操作`,
-    step1: `1️⃣ 長按對方的訊息
-`,
-    step2: `2️⃣ 選擇「回覆」
-`,
-    step3: `3️⃣ 輸入 /report
-
-`,
-    steps: `**操作步驟：**
-`,
-    submitted: `✅ **舉報已提交** (#{identifier})
-
-`,
-    systemError: `❌ 系統發生錯誤`,
-    thanks: `感謝你的舉報，我們會盡快審核。
-
-`,
-    tips: `💡 提示：
-`,
-    title: `🚨 **舉報不當內容** (#{identifier})
-
-`,
-    userNotFound: `⚠️ 用戶不存在，請先使用 /start 註冊。`,
-  },
-  risk: {
-    containsSensitiveWords: `包含敏感詞彙`,
-  },
-  router: {
-    replyPrompt: `💬 回覆`,
-    suggestCatch: `❓ 要撿漂流瓶？
-
-使用 /catch 撿起漂流瓶
-
-💡 **常用命令**：
-• /throw - 丟出漂流瓶
-• /catch - 撿起漂流瓶
-• /menu - 主選單
-• /tasks - 任務中心`,
-    suggestMenu: `❓ 找不到此命令
-
-💡 **常用命令**：
-• /throw - 丟出漂流瓶
-• /catch - 撿起漂流瓶
-• /menu - 主選單
-• /tasks - 任務中心`,
-    suggestThrow: `❓ 要丟漂流瓶？
-
-請長按上一則訊息，或本訊息，
-選單上選擇「回覆」後，
-輸入要發送的漂流瓶內容
-
-💡 **常用命令**：
-• /throw - 丟出漂流瓶
-• /catch - 撿起漂流瓶
-• /menu - 主選單
-• /tasks - 任務中心
-
-#THROW`,
-    throwPrompt: `📝 請輸入你的漂流瓶內容：`,
-  },
-  session: {
-    timeoutCatchBottle: `⏰ 撿瓶流程已超時
-
-請使用 /catch 重新開始。`,
-    timeoutConversation: `⏰ 對話已超時
-
-對方可能已離開。使用 /catch 撿新的瓶子吧！`,
-    timeoutEditProfile: `⏰ 編輯資料流程已超時
-
-請重新開始編輯。`,
-    timeoutOnboarding: `⏰ 註冊流程已超時
-
-請使用 /start 重新開始註冊。`,
-    timeoutThrowBottle: `⏰ 丟瓶流程已超時
-
-請使用 /throw 重新開始。`,
-    typeCatchBottle: `撿瓶流程`,
-    typeConversation: `對話`,
-    typeEditProfile: `編輯資料`,
-    typeOnboarding: `註冊流程`,
-    typeThrowBottle: `丟瓶流程`,
-  },
-  settings: {
-    back: `返回`,
-    changeLanguage: `🌐 更改語言`,
-    currentSettings: `⚙️ **當前設定**`,
-    languageLabel: `語言：{language}`,
-    languageUpdated: `✅ Language updated to: {language}`,
-    message: `🌐 **選擇語言 / Choose Language**
-
-請選擇你的偏好語言：`,
-    returnToMenu: `🏠 返回主選單`,
-    selectOption: `請選擇選項：`,
-    settings: `💡 選擇你想要修改的設定：`,
-    settings2: `⚙️ **設定**
-
-`,
-    settings3: `🏠 返回設定`,
-    settings4: `當前設定：
-`,
-    text: `• 語言：\${languageName} 🇹🇼
-
-`,
-    title: `🏠 **主選單**`,
-  },
-  stats: {
-    activeUsers: `• 昨日活躍：{active}
-
-`,
-    age: `🎂 **年齡**：\${age} 歲
-`,
-    avgMatches: `• 平均每次配對：\${avg} 個對象
-`,
-    bottle: `
-💎 **VIP 三倍瓶子統計**（近 30 天）
-`,
-    bottle2: `🍾 **漂流瓶**
-`,
-    bottle3: `🎈 漂流瓶統計
-`,
-    bottles: `🍾 **漂流瓶**
-`,
-    bottlesCaught: `• 撿到：\${count} 個
-`,
-    bottlesThrown: `• 丟出：\${count} 個
-`,
-    catch: `• 昨日被撿：\${stats.caughtBottles}
-
-`,
-    catch2: `• 撿到：\${stats.bottlesCaught} 個
-`,
-    caught: `• 昨日被撿：{caught}
-
-`,
-    conversation: `• 活躍對話：\${stats.activeConversations}
-`,
-    conversation2: `• 總對話數：\${stats.totalConversations}
-`,
-    conversation3: `• 總對話數：\${stats.totalConversations}`,
-    conversation4: `💬 **對話**
-`,
-    conversation5: `💬 對話統計
-`,
-    conversations: `💬 **對話**
-`,
-    conversationsActive: `• 活躍對話：\${count}
-`,
-    conversationsTotal: `• 總對話數：\${count}
-`,
-    date: `日期：{date}
-
-`,
-    dateFormatError: `日期格式錯誤，應為 YYYY-MM-DD`,
-    match: `🎯 **匹配**
-`,
-    matchRate: `• 匹配成功率：\${rate}%
-`,
-    matchRateValue: `• 配對率：\${rate}%
-`,
-    matchedSlots: `• 成功配對：\${count}
-`,
-    mbti: `🧠 **MBTI**：\${mbti}
-`,
-    message: `• 到期時間：\${expireDate}
-`,
-    message10: `• 總訊息數：\${stats.totalMessages}`,
-    message2: `\${used}/\${permanentQuota}+\${taskBonus} (剩餘 \${remaining})`,
-    message3: `報告生成時間：\${new Date().toLocaleString('zh-TW')}`,
-    message4: `\${used}/\${permanentQuota} (剩餘 \${remaining})`,
-    message5: `• 總訊息數：\${stats.totalMessages}
-
-`,
-    message6: `• 昨日新增訊息：\${stats.newMessages}
-
-`,
-    message7: `• 總配對槽位：\${vipStats.totalSlots}
-`,
-    message8: `• 平均回覆率：\${stats.replyRate}%
-
-`,
-    message9: `• 昨日活躍：\${stats.activeUsers}
-
-`,
-    messages: `💬 對話統計`,
-    messagesTotal: `• 總訊息數：\${count}
-`,
-    new: `• 昨日新增：{new}`,
-    newMessages: `• 昨日新增訊息：{new}
-
-`,
-    newUsers: `• 昨日新增：{new}`,
-    newVip: `• 昨日新增：{new}
-
-`,
-    notSet: `未設定`,
-    quota: `• 今日配額：\${stats.todayQuota.display}
-
-`,
-    register: `📅 **註冊時間**：\${new Date(user.created_at).toLocaleDateString('zh-TW')}
-`,
-    register2: `• 總註冊數：\${stats.totalUsers}`,
-    registerTime: `📅 **註冊時間**：\${date}
-`,
-    replyRate: `• 平均回覆率：\${rate}%
-`,
-    reportTime: `報告生成時間：{time}`,
-    separator: `---
-`,
-    settings: `🧠 **MBTI**：\\$
-
-`,
-    settings2: `未設定`,
-    short: `免費會員`,
-    statDateEmpty: `統計日期不能為空`,
-    stats: `📊 **我的統計數據**
-
-`,
-    stats2: `💎 VIP 統計
-`,
-    stats3: `👥 用戶統計
-`,
-    stats4: `統計日期不能為空`,
-    success: `• 成功配對：\${vipStats.matchedSlots}
-`,
-    success2: `• 匹配成功率：\${stats.matchRate}%
-`,
-    text: `• 平均每次配對：\${avgMatches} 個對象
-`,
-    text10: `🎯 **匹配**
-`,
-    text2: `• 昨日新增：\${stats.newBottles}
-`,
-    text3: `• 總數：\${stats.totalBottles}`,
-    text4: `• 昨日新增：\${stats.newUsers}
-`,
-    text5: `• 昨日新增：\${stats.newVip}
-
-`,
-    text6: `• 配對率：\${matchRate}%
-`,
-    text7: `📊 XunNi Bot 每日數據報告
-`,
-    text8: `日期格式錯誤，應為 YYYY-MM-DD`,
-    text9: `日期：\${dateStr}
-
-`,
-    throw: `• 丟出：\${stats.bottlesThrown} 個
-`,
-    throw2: `• 丟出次數：\${vipStats.throws}
-`,
-    throws: `• 丟出次數：\${count}
-`,
-    timeLeftDaysHours: `\${days} 天 \${hours} 小時`,
-    timeLeftHours: `\${hours} 小時`,
-    title: `📊 **我的統計數據**
-
-`,
-    todayQuota: `• 今日配額：\${display}
-
-`,
-    total: `• 總數：{total}`,
-    totalConversations: `• 總對話數：{total}`,
-    totalMessages: `• 總訊息數：{total}`,
-    totalSlots: `• 總配對槽位：\${count}
-`,
-    totalUsers: `• 總註冊數：{total}`,
-    totalVip: `• 總 VIP 數：{total}`,
-    totalWithDiff: `• 總數：{total} ({diff})`,
-    users: `👥 用戶統計`,
-    vip: `⭐ **VIP 狀態**
-`,
-    vip2: `⭐ **VIP 狀態**
-`,
-    vip3: `VIP 會員 💎`,
-    vipAvgMatches: `• 平均每次配對：{avg} 個對象`,
-    vipExpire: `• 到期時間：\${date}
-`,
-    vipFree: `免費會員`,
-    vipMatchRate: `• 配對率：{rate}%`,
-    vipMatchedSlots: `• 成功配對：{count}`,
-    vipMember: `VIP 會員 💎`,
-    vipThrows: `• 丟出次數：{count}`,
-    vipTotalSlots: `• 總配對槽位：{count}`,
-    vipTriple: `💎 **VIP 三倍瓶子統計**（近 \${days} 天）`,
-    vipTripleTitle: `💎 **VIP 三倍瓶子統計**（近 {days} 天）`,
-    zodiac: `🔮 **星座**：\${zodiac}
-`,
-  },
-  status: {
-    cancelled: `已取消`,
-    completed: `已完成`,
-    failed: `失敗`,
-    pending: `等待中`,
-    sending: `發送中`,
-  },
-  subscription: {
-    downgradedToFree: `你的帳號已恢復為免費會員。`,
-    expired: `😢 **VIP 訂閱已到期**`,
-    expiredDate: `你的 VIP 訂閱已於 \${date} 到期。`,
-    renewVipHint: `💡 隨時可以重新訂閱 VIP：/vip`,
-    thankYou: `感謝你的支持！❤️`,
-  },
-  success: {
-    ad: `✅ 你已經看過所有官方廣告了！`,
-    ad2: `✅ 已啟用廣告提供商：\${providerName}
-
-`,
-    ad3: `✅ 已停用廣告提供商：\${providerName}
-
-`,
-    ad4: `✅ 已啟用官方廣告 #\${adId}
-
-`,
-    ad5: `✅ 已停用官方廣告 #\${adId}
-
-`,
-    ad6: `✅ 已設置廣告提供商優先級
-
-`,
-    ad7: `✅ 今日廣告已達上限`,
-    appeal: `✅ 申訴 \${appealId} 已批准，用戶已解封`,
-    appeal2: `✅ 申訴 \${appealId} 已拒絕`,
-    appeal3: `✅ 目前沒有待審核的申訴`,
-    birthday: `✅ 生日已保存`,
-    bloodType: `✅ 血型已更新為 \${getBloodTypeDisplay(bloodType as any)}`,
-    bloodType2: `✅ 血型已清除`,
-    bottle: `✅ 獎勵已發放！+1 瓶子`,
-    bottle2: `✅ 開始新的漂流瓶`,
-    bottle3: `✅ 瓶子已創建
-`,
-    broadcast: `✅ 已清理 \${ids.length} 個卡住的廣播
-
-`,
-    broadcast2: `✅ 沒有需要清理的廣播
-
-`,
-    broadcast3: `✅ 過濾廣播已創建
-
-`,
-    broadcast4: `✅ 廣播已創建
-
-`,
-    cancel: `✅ 廣播已取消
-
-`,
-    complete: `✅ 廣播隊列處理完成
-
-`,
-    complete2: `✅ 系統維護已完成
-
-`,
-    complete3: `✅ 教學已完成！`,
-    complete4: `✅ **批量刷新完成**
-
-`,
-    complete5: `✅ **刷新完成**
-
-`,
-    complete6: `✅ 完成篩選，輸入內容`,
-    complete7: `✅ 篩選完成`,
-    confirm: `✅ 已確認！`,
-    confirm2: `✅ 安全確認完成`,
-    confirm3: `✅ 確認`,
-    conversation: `✅ **對話歷史已更新！**
-
-`,
-    gender: `✅ 性別已保存`,
-    invite: `✅ 已激活邀請：\${successfulInvites} / \${inviteLimit} 人
-`,
-    mbti: `✅ 你的 MBTI 類型已更新為：**\${mbtiType}**
-
-`,
-    mbti2: `✅ 你的 MBTI 類型已清除。
-
-`,
-    mbti3: `✅ MBTI 已清除`,
-    mbti4: `✅ 已清除 MBTI 選擇`,
-    mbti5: `✅ 你的 MBTI 類型：\${mbtiType}
-
-`,
-    message: `✅ 訊息已發送給 \${formatIdentifier(receiverIdentifier)}
-
-`,
-    message2: `✅ 語言已更新為：\${getLanguageDisplay(languageCode)}`,
-    message3: `✅ 已封鎖此使用者 (#\${conversationIdentifier})
-
-`,
-    message4: `✅ 獲得 +\${ad.reward_quota} 個永久額度！`,
-    message5: `✅ 已選擇 \${gender}`,
-    message6: `✅ 已選擇 \${bloodTypeDisplay[bloodType]}`,
-    message7: `✅ 已選擇 \${ZODIAC_NAMES[zodiacSign]}`,
-    message8: `[需要翻译]`,
-    nickname: `✅ 使用 Telegram 暱稱：\${suggestedNickname.substring(0, 18)}`,
-    nickname2: `✅ 暱稱已更新為：\${text}
-
-`,
-    register: `✅ 開發模式：跳過註冊
-
-`,
-    register2: `✅ 我了解了，繼續註冊`,
-    register3: `✅ 註冊完成！`,
-    report: `✅ **舉報已提交** (#\${conversationIdentifier})
-
-`,
-    report2: `✅ 舉報已提交`,
-    report3: `✅ **已舉報此用戶**
-
-`,
-    report4: `✅ 確定舉報`,
-    report5: `✅ 已舉報`,
-    reportSubmitted: `✅ 舉報已提交，感謝你的回報`,
-    settings: `✅ MBTI 已設定為 \${mbtiType}`,
-    settings2: `✅ 暱稱已設定`,
-    settings3: `✅ 篩選條件已設定：
-
-`,
-    settings4: `✅ 血型已設定為 \${getBloodTypeDisplay(bloodType as any)}`,
-    settings5: `✅ MBTI 類型已設定：\${mbtiType}
-
-`,
-    settings6: `✅ 已跳過血型設定`,
-    short: `✅ 正在發送...`,
-    short10: `✅ 正在加載...`,
-    short11: `✅ 🌈 任何人`,
-    short12: `✅ 👨 男生`,
-    short13: `✅ 👩 女生`,
-    short14: `✅ 繼續編輯`,
-    short15: `✅ 確定封鎖`,
-    short16: `✅ 已封鎖`,
-    short17: `✅ 我已閱讀並同意`,
-    short18: `✅ 已跳過`,
-    short19: `✅ 領取獎勵`,
-    short2: `✅ 繼續編輯草稿`,
-    short20: `✅ 維護中`,
-    short3: `✅ 草稿已刪除`,
-    short4: `✅ 驗證並領取`,
-    short5: `✅ 發送草稿`,
-    short6: `✅ 已記錄`,
-    short7: `✅ 正確`,
-    short8: `✅ 啟用`,
-    short9: `✅ 是`,
-    start: `✅ 請點擊按鈕開始觀看`,
-    start2: `✅ 開始快速版測驗`,
-    start3: `✅ 開始完整版測驗`,
-    start4: `✅ 開始測驗`,
-    success2: `🎉 **驗證成功！**
-
-✅ 獲得 **+\${ad.reward_quota} 個永久額度**
-💎 感謝你加入我們的社群！
-
-📊 **你的額度：**
-• 基礎額度：\${user.is_vip ? '無限' : '10'}/天
-• 永久額度：+\${ad.reward_quota}
-
-💡 在社群中你可以：
-• 與其他用戶交流
-• 獲得最新功能更新
-• 參與活動獲得更多獎勵`,
-    success3: `成功刷新 \${result.updated} 個對話的歷史帖子。
-
-`,
-    success4: `成功刷新：\${result.updated} 個
-`,
-    text: `✅ 已設置為 \${flag} \${countryName}`,
-    text10: `✅ 是的，我了解並會注意安全`,
-    text11: `✅ 維護模式已啟用
-
-`,
-    text12: `✅ 維護模式已關閉
-
-`,
-    text13: `✅ 更準確的性格分析
-`,
-    text14: `✅ 已跳過教學
-
-`,
-    text15: `✅ 所有帖子都是最新的（免費用戶狀態正確）
-`,
-    text16: `✅ **無需刷新**
-
-`,
-    text17: `✅ 已選擇 \${gender ===`,
-    text18: `✅ 已選擇 \${mbtiType}`,
-    text19: `✅ **規則**：
-`,
-    text2: `✅ 興趣標籤已更新：
-
-\${interestsStr}`,
-    text20: `✅ **已封鎖此用戶**
-
-`,
-    text21: `✅ **退款申請已提交**
-
-`,
-    text22: `✅ **退款已批准**
-
-`,
-    text23: `✅ 沒有待處理的退款請求。`,
-    text24: `✅ 正在準備支付...`,
-    text25: `✅ 退款已批准
-
-`,
-    text26: `✅ 退款已拒絕
-
-`,
-    text27: `✅ 我已加入，領取獎勵`,
-    text28: `✅ 你選擇了：\${gender ===`,
-    text29: `✅ 反詐騙測驗通過！
-
-`,
-    text3: `✅ 匹配偏好已更新為：\${prefText}
-
-`,
-    text30: `✅ 語言已變更為 \${newLanguageName}`,
-    text4: `✅ 個人簡介已更新！
-
-\${text}`,
-    text5: `✅ 開發模式：數據已重置
-
-`,
-    text6: `✅ 地區已更新為：\${text}`,
-    text7: `✅ 快速了解基本性格類型
-
-`,
-    text8: `✅ **頭像已更新！**
-
-`,
-    text9: `✅ 推薦用於重新測試
-
-`,
-    verify: `✅ 驗證成功！獲得 +\${ad.reward_quota} 個永久額度！`,
-    verify2: `✅ 驗證成功！獲得 +\\\${ad.reward_quota} 個永久額度！`,
-    vip: `✅ 所有帖子都是最新的（VIP 狀態正確）
-`,
-    zodiac: `✅ 已清除星座選擇`,
-    success: {
-      appeal: `✅ 申訴 \\\${appealId} 已批准，用戶已解封`,
-      appeal2: `✅ 申訴 \\\${appealId} 已拒絕`,
-      appeal3: `✅ 目前沒有待審核的申訴`,
-      birthday: `✅ 生日已保存`,
-      bloodType: `✅ 血型已更新為 \\\${getBloodTypeDisplay(bloodType as any)}`,
-      bloodType2: `✅ 血型已清除`,
-      bottle: `✅ 獎勵已發放！+1 瓶子`,
-      bottle2: `✅ 開始新的漂流瓶`,
-      bottle3: `✅ 瓶子已創建
-`,
-      broadcast: `✅ 已清理 \\\${ids.length} 個卡住的廣播
-
-`,
-      broadcast2: `✅ 沒有需要清理的廣播
-
-`,
-      broadcast3: `✅ 過濾廣播已創建
-
-`,
-      broadcast4: `✅ 廣播已創建
-
-`,
-      cancel: `✅ 廣播已取消
-
-`,
-      complete: `✅ 廣播隊列處理完成
-
-`,
-      complete2: `✅ 系統維護已完成
-
-`,
-      complete3: `✅ 教學已完成！`,
-      complete4: `✅ **批量刷新完成**
-
-`,
-      complete5: `✅ **刷新完成**
-
-`,
-      complete6: `✅ 完成篩選，輸入內容`,
-      complete7: `✅ 篩選完成`,
-      confirm: `✅ 已確認！`,
-      confirm2: `✅ 安全確認完成`,
-      confirm3: `✅ 確認`,
-      conversation: `✅ **對話歷史已更新！**
-
-`,
-      gender: `✅ 性別已保存`,
-      invite: `✅ 已激活邀請：\\\${successfulInvites} / \\\${inviteLimit} 人
-`,
-      mbti: `✅ 你的 MBTI 類型已更新為：**\\\${mbtiType}**
-
-`,
-      mbti2: `✅ 你的 MBTI 類型已清除。
-
-`,
-      mbti3: `✅ MBTI 已清除`,
-      mbti4: `✅ 已清除 MBTI 選擇`,
-      mbti5: `✅ 你的 MBTI 類型：\\\${mbtiType}
-
-`,
-      message: `✅ 訊息已發送給 \\\${formatIdentifier(receiverIdentifier)}
-
-`,
-      message2: `✅ 語言已更新為：\\\${getLanguageDisplay(languageCode)}`,
-      message3: `✅ 已封鎖此使用者 (#\\\${conversationIdentifier})
-
-`,
-      message4: `✅ 獲得 +\\\${ad.reward_quota} 個永久額度！`,
-      message5: `✅ 已選擇 \\\${gender}`,
-      message6: `✅ 已選擇 \\\${bloodTypeDisplay[bloodType]}`,
-      message7: `✅ 已選擇 \\\${ZODIAC_NAMES[zodiacSign]}`,
-      message8: `✅ 你選擇了：\\\${gender}
-
-`,
-      nickname: `✅ 使用 Telegram 暱稱：\\\${suggestedNickname.substring(0, 18)}`,
-      nickname2: `✅ 暱稱已更新為：\\\${text}
-
-`,
-      register: `✅ 開發模式：跳過註冊
-
-`,
-      register2: `✅ 我了解了，繼續註冊`,
-      register3: `✅ 註冊完成！`,
-      report: `✅ **舉報已提交** (#\\\${conversationIdentifier})
-
-`,
-      report2: `✅ 舉報已提交`,
-      report3: `✅ **已舉報此用戶**
-
-`,
-      report4: `✅ 確定舉報`,
-      report5: `✅ 已舉報`,
-      settings: `✅ MBTI 已設定為 \\\${mbtiType}`,
-      settings2: `✅ 暱稱已設定`,
-      settings3: `✅ 篩選條件已設定：
-
-`,
-      settings4: `✅ 血型已設定為 \\\${getBloodTypeDisplay(bloodType as any)}`,
-      settings5: `✅ MBTI 類型已設定：\\\${mbtiType}
-
-`,
-      settings6: `✅ 已跳過血型設定`,
-      short: `✅ 正在發送...`,
-      short10: `✅ 正在加載...`,
-      short11: `✅ 🌈 任何人`,
-      short12: `✅ 👨 男生`,
-      short13: `✅ 👩 女生`,
-      short14: `✅ 繼續編輯`,
-      short15: `✅ 確定封鎖`,
-      short16: `✅ 已封鎖`,
-      short17: `✅ 我已閱讀並同意`,
-      short18: `✅ 已跳過`,
-      short19: `✅ 領取獎勵`,
-      short2: `✅ 繼續編輯草稿`,
-      short20: `✅ 維護中`,
-      short3: `✅ 草稿已刪除`,
-      short4: `✅ 驗證並領取`,
-      short5: `✅ 發送草稿`,
-      short6: `✅ 已記錄`,
-      short7: `✅ 正確`,
-      short8: `✅ 啟用`,
-      short9: `✅ 是`,
-      start: `✅ 請點擊按鈕開始觀看`,
-      start2: `✅ 開始快速版測驗`,
-      start3: `✅ 開始完整版測驗`,
-      start4: `✅ 開始測驗`,
-      text: `✅ 已設置為 \\\${flag} \\\${countryName}`,
-      text10: `✅ 是的，我了解並會注意安全`,
-      text11: `✅ 維護模式已啟用
-
-`,
-      text12: `✅ 維護模式已關閉
-
-`,
-      text13: `✅ 更準確的性格分析
-`,
-      text14: `✅ 已跳過教學
-
-`,
-      text15: `✅ 所有帖子都是最新的（免費用戶狀態正確）
-`,
-      text16: `✅ **無需刷新**
-
-`,
-      text17: `✅ 已選擇 \\\${gender ===`,
-      text18: `✅ 已選擇 \\\${mbtiType}`,
-      text19: `✅ **規則**：
-`,
-      text2: `✅ 興趣標籤已更新：
-
-\\\${interestsStr}`,
-      text20: `✅ **已封鎖此用戶**
-
-`,
-      text21: `✅ **退款申請已提交**
-
-`,
-      text22: `✅ **退款已批准**
-
-`,
-      text23: `✅ 沒有待處理的退款請求。`,
-      text24: `✅ 正在準備支付...`,
-      text25: `✅ 退款已批准
-
-`,
-      text26: `✅ 退款已拒絕
-
-`,
-      text27: `✅ 我已加入，領取獎勵`,
-      text28: `✅ 你選擇了：\\\${gender ===`,
-      text29: `✅ 反詐騙測驗通過！
-
-`,
-      text3: `✅ 匹配偏好已更新為：\\\${prefText}
-
-`,
-      text30: `✅ 語言已變更為 \\\${newLanguageName}`,
-      text4: `✅ 個人簡介已更新！
-
-\\\${text}`,
-      text5: `✅ 開發模式：數據已重置
-
-`,
-      text6: `✅ 地區已更新為：\\\${text}`,
-      text7: `✅ 快速了解基本性格類型
-
-`,
-      text8: `✅ **頭像已更新！**
-
-`,
-      text9: `✅ 推薦用於重新測試
-
-`,
-      vip: `✅ 所有帖子都是最新的（VIP 狀態正確）
-`,
-      zodiac: `✅ 已清除星座選擇`,
+    "invite": "🔄 Mời bạn bè (${inviteProgress.current}/${inviteProgress.max})\n",
+    "invite2": "Mời 1 người → tăng vĩnh viễn hạn mức hàng ngày thêm +1\n",
+    "message": "${icon} ${task.name} ${status} (+${task.reward_amount} chai thư)\n",
+    "message2": "Nhấn nút bên dưới để tham gia kênh chính thức của XunNi để cập nhật tin tức và sự kiện mới nhất!\n\n",
+    "name": {
+      "bio": "Hoàn thành hồ sơ của bạn",
+      "city": "Đặt khu vực",
+      "first_bottle": "Ném chai thư đầu tiên của bạn",
+      "first_catch": "Nhặt chai thư đầu tiên của bạn",
+      "first_conversation": "Bắt đầu cuộc trò chuyện đầu tiên của bạn",
+      "interests": "Điền vào thẻ sở thích",
+      "invite_progress": "Mời bạn bè",
+      "join_channel": "Tham gia kênh chính thức"
     },
+    "profile": "👤 **Nhiệm vụ Hồ Sơ** (${completedCount}/${profileTasks.length})\n",
+    "quota": "Hạn mức hàng ngày hiện tại: ${calculateDailyQuota(user)} mục\n",
+    "short": "(Chưa được nhận)",
+    "short2": "Có hiệu lực trong ngày",
+    "short3": "Có hiệu lực vĩnh viễn",
+    "task": "• Nhiệm vụ mời: ${inviteProgress.current}/${inviteProgress.max} đang tiến hành\n\n",
+    "task2": "📱 **Nhiệm vụ Mạng Xã Hội** (${completedCount}/${socialTasks.length})\n",
+    "task3": "🎯 **Nhiệm vụ Hành Động** (${completedCount}/${actionTasks.length})\n",
+    "task4": "• Nhiệm vụ một lần: ${oneTimeCompleted}/${oneTimeTotal} đã hoàn thành\n",
+    "task5": "🎉 Chúc mừng bạn đã hoàn thành nhiệm vụ \"${task.name}\"!\n\n",
+    "task6": "👥 **Nhiệm Vụ Mời** (Đang diễn ra)\n",
+    "task7": "💡 Sử dụng /tasks để xem trung tâm nhiệm vụ",
+    "text": "Bấm nút 'Tôi đã tham gia' để nhận phần thưởng của bạn 🎁",
+    "text2": "📢 **Tham gia Kênh Chính Thức**\n\n",
+    "text3": "📊 **Tiến trình tổng thể**\n",
+    "text4": "🎁 **Phần thưởng đã nhận**\n"
   },
-  target: {
-    all: `所有用戶`,
-    nonVip: `非 VIP 用戶`,
-    unknown: `未知`,
-    vip: `VIP 用戶`,
+  "throw": {
+    "age": "• Nhóm tuổi tương tự ✓",
+    "back": "↩️ Trở về menu lọc",
+    "bloodType": "🩸 **Bộ Lọc Nhóm Máu**\n\n",
+    "bloodType2": "• Nhóm Máu: Lọc theo nhóm máu cụ thể\n",
+    "bloodType3": "Chọn nhóm máu mà bạn muốn khớp với:",
+    "bloodType4": "🩸 Lọc Nhóm Máu",
+    "bloodType5": "🌈 Bất kỳ nhóm máu nào",
+    "bottle": "💡 Chai thư này rất phù hợp với bạn!\n\n",
+    "bottle10": "🍾 Chai thư đã được thả!\n\n",
+    "bottle11": "🍾 Thả chai thư",
+    "bottle2": "🎯 Chai của bạn đã được gửi đến **3 người nhận**:\n",
+    "bottle3": "🍾 **Đang thả chai thư của bạn...**\n\n",
+    "bottle4": "🍾 **Thả Chai Thư** #THROW\n\n",
+    "bottle5": "ID Chai: #${bottleId}\n\n",
+    "bottle6": "📝 **Vui lòng nhập nội dung của chai thư**\n\n",
+    "bottle7": "1️⃣ Bấm nút '🍾 Thả Chai Thư' bên dưới\n",
+    "bottle8": "📝 Vui lòng nhập nội dung của chai thư:\n\n",
+    "bottle9": "📝 Vui lòng nhập nội dung của chai thư của bạn:",
+    "cancel": "💡 Bấm để chọn hoặc hủy loại MBTI:",
+    "cancel2": "💡 Bấm để chọn hoặc hủy cung hoàng đạo:",
+    "catch": "• Khu vực 3: Hồ công khai (đang chờ được nhặt lên)\n\n",
+    "catch2": "• Khu vực 2: Hồ Bơi Công Cộng (Đang chờ được nhặt lên)\n",
+    "catch3": "• Khu vực 1: Hồ Bơi Công Cộng (Đang chờ được nhặt lên)\n",
+    "catch4": "🌊 Đang chờ một cuộc gặp gỡ tình cờ...\n",
+    "complete": "⚙️ **Lọc Nâng Cao**\n\n${summary}\n💡 Tiếp tục điều chỉnh hoặc hoàn thành việc lọc:",
+    "complete2": "🎯 **Khớp lần 1 hoàn thành:**\n",
+    "complete3": "📝 Bạn có một bản nháp chưa hoàn thành\n\n",
+    "complete4": "⏳ Dự kiến hoàn thành trong 3-5 giây",
+    "complete5": "⏳ Dự kiến hoàn thành trong 2-3 giây",
+    "complete6": "⏳ Dự kiến hoàn thành trong 1-2 giây",
+    "conversation": "💬 Mã số cuộc trò chuyện: ${vipMatchInfo.conversationIdentifier}\n\n",
+    "conversation2": "💡 Mẹo: Mỗi cuộc trò chuyện là độc lập và có thể diễn ra đồng thời\n\n",
+    "conversation3": "💡 Bạn có thể nhận **tối đa 3 cuộc trò chuyện**!\n",
+    "conversation4": "💬 Bạn có thể nhận **tối đa 3 cuộc trò chuyện**!\n",
+    "conversation5": "Sử dụng /chats để xem tất cả cuộc trò chuyện\n\n",
+    "conversation6": "📊 Sử dụng /chats để xem tất cả cuộc trò chuyện",
+    "conversation7": "Sử dụng /chats để xem tất cả cuộc trò chuyện",
+    "currentSelection": "{genderText}",
+    "friendlyContent": "[Cần dịch từ zh-TW.ts]",
+    "gender": "• Giới tính: ${selectedGender === 'male' ? '👨 Nam' : selectedGender === 'female' ? '👩 Nữ' : '🌈 Bất kỳ'}\n",
+    "gender2": "👤 **Bộ Lọc Giới Tính**\n\n",
+    "gender3": "• Giới tính: Lọc theo giới tính\n\n",
+    "gender4": "💡 Chọn giới tính bạn ưu thích:",
+    "gender5": "👤 Bộ Lọc Giới Tính",
+    "genderLabel": "{gender}\n",
+    "mbti": "• MBTI: ${selectedMBTI.length > 0 ? selectedMBTI.join(', ') : 'Không giới hạn'}\n",
+    "mbti2": "Đã chọn: ${selectedMBTI.length > 0 ? selectedMBTI.join(', ') : 'Không có'}\n\n",
+    "mbti3": "Đã chọn: ${selectedMBTI.length > 0 ? selectedMBTI.join(",
+    "mbti4": "🧠 **Bộ Lọc MBTI**\n\n",
+    "mbti5": "• MBTI: Lọc theo các loại tính cách cụ thể\n",
+    "mbti6": "• Tương thích cao với MBTI ✓",
+    "mbti7": "🧠 Bộ Lọc MBTI",
+    "mbtiLabel": "{mbti}\n",
+    "message": "Lựa chọn hiện tại: ${currentGender === 'male' ? '👨 Nam' : currentGender === 'female' ? '👩 Nữ' : '🌈 Bất kỳ'}\n\n",
+    "message2": "Lựa chọn hiện tại: ${currentGender === 'male' ? '👨 Nam' : currentGender === 'female' ? '👩 Nữ' : '🌈 Bất kỳ'}\n\n",
+    "message3": "Đã chọn: ${selectedZodiac.length > 0 ? selectedZodiac.map((z) => ZODIAC_NAMES[z]).join(\" \") : \"Không có\"}",
+    "message4": "{bloodTypeDisplay[currentBloodType]} ${bloodTypeDisplay[currentBloodType]}\n\n",
+    "message5": "👤 Đối thủ: ${vipMatchInfo.matcherNickname}\n",
+    "message6": "\"Xin chào! Tôi là người yêu âm nhạc và điện ảnh, và tôi hy vọng sẽ gặp những người bạn cùng sở thích~\"\n\n",
+    "message7": "💡 Bạn có thể điều chỉnh sở thích ghép cặp của mình trong /edit_profile\n\n",
+    "message8": "💬 Nhấn /reply để bắt đầu trò chuyện\n",
+    "nickname": "📝 Biệt danh của đối thủ: ${matchedUserMaskedNickname}\n",
+    "quota": "• Nhiều chỉ tiêu hơn (30/ngày)\n",
+    "quota2": "🎁 Mời bạn bè để tăng chỉ tiêu của bạn:\n",
+    "selected": "Đã chọn: {selected}",
+    "settings": "🧠 MBTI: ${mbti}\n",
+    "settings2": "⭐ Cung hoàng đạo: ${zodiac}\n",
+    "settings3": "🧠 MBTI: \\$\n",
+    "settings4": "⭐ Cung hoàng đạo: \\$\n",
+    "settings5": "Chưa đặt",
+    "settings6": "Chưa đặt",
+    "settings7": "Chưa đặt",
+    "settings8": "Chưa đặt",
+    "short": "• Cùng ngôn ngữ ✓",
+    "short10": "♋ Cự Giải",
+    "short11": "♌ Sư Tử",
+    "short12": "♍ Xử Nữ",
+    "short13": "♎ Thiên Bình",
+    "short14": "♏ Bọ Cạp",
+    "short15": "♐ Nhân Mã",
+    "short16": "♑ Ma Kết",
+    "short17": "♒ Bảo Bình",
+    "short18": "♓ Song Ngư",
+    "short19": "Vi phạm",
+    "short2": "🩸 Loại AB",
+    "short20": "Không giới hạn",
+    "short21": "Không giới hạn",
+    "short22": "Không giới hạn",
+    "short23": "Không giới hạn",
+    "short3": "🌈 Bất kỳ ai",
+    "short4": "🩸 Nhóm A",
+    "short5": "🩸 Nhóm B",
+    "short6": "🩸 Nhóm O",
+    "short7": "♈ Bạch Dương",
+    "short8": "♉ Kim Ngưu",
+    "short9": "♊ Song Tử",
+    "start": "✍️ Khởi động lại",
+    "success": "Thả một chai thư = 3 vật phẩm, làm tăng tỷ lệ thành công trong đối sánh\n\n",
+    "success2": "✨ **Đặc quyền VIP đã được kích hoạt! Ghép đôi thông minh thành công!**\n\n",
+    "success3": "🎯 Chai thư của bạn đã được ghép đôi thành công!\n\n",
+    "text": "💝 Tỷ lệ ghép đôi: ${matchPercentage}%\n",
+    "text10": "🎯 Đang tìm kiếm ghép đôi tốt nhất cho bạn\n\n",
+    "text11": "💬 Đang chờ phản hồi từ bên kia...\n",
+    "text12": "• Người dùng miễn phí: tối đa +7 lần ghép đôi\n",
+    "text13": "• Không bao gồm thông tin liên hệ cá nhân\n\n",
+    "text14": "💡 **Hai phương thức nhập**：\n",
+    "text15": "📊 Người dùng miễn phí: 3 mỗi ngày\n",
+    "text16": "Chọn các điều kiện bạn muốn lọc:\n\n",
+    "text17": "• Lọc nâng cao và dịch thuật\n\n",
+    "text18": "Ngày tạo: ${age}\n",
+    "text19": "Sử dụng /vip để nâng cấp ngay",
+    "text2": "• 🆕 Cơ hội tiếp cận gấp ba lần (1 lần = 3 ghép đôi)\n",
+    "text20": "💬 **Ví dụ**：\n",
+    "text21": "Sử dụng /vip để tìm hiểu thêm",
+    "text22": "Bạn có muốn tiếp tục chỉnh sửa bản nháp này không?",
+    "text23": "💡 Nhiều tiêu chí có thể được kết hợp",
+    "text24": "Điều kiện lọc hiện tại:\n\n",
+    "text3": "💡 Điều này có thể mất vài giây, chúng tôi đang tìm những người phù hợp nhất cho bạn",
+    "text4": "Lựa chọn hiện tại: ${currentGender ===",
+    "text5": "🎯 Đối tượng tìm kiếm: ${targetText}\n",
+    "text6": "🎯 Chúng tôi đang tìm 3 ghép đôi tốt nhất cho bạn\n\n",
+    "text7": "📨 **Có 2 vị trí bổ sung đang chờ:**\n",
+    "text8": "🔍 Ghép đôi thông minh những tùy chọn tốt nhất...\n\n",
+    "text9": "Xem trước nội dung: ${preview}\n\n",
+    "throw": "📊 Số đã gửi hôm nay: ${quotaDisplay}\n\n",
+    "tips": "💡 Mẹo: Bạn viết chi tiết hơn, sẽ dễ dàng hơn để tìm các đối tác trò chuyện phù hợp",
+    "unlimited": "Không giới hạn",
+    "vip": "💎 Người dùng VIP: 30 mỗi ngày (ba lần tiếp xúc)\n\n",
+    "vip2": "💎 **Nâng cấp lên VIP để có ba lần cơ hội hiển thị!**\n",
+    "vip3": "⚙️ **Lọc nâng cao (dành riêng cho VIP)**\n\n",
+    "vip4": "• Người dùng VIP: lên tới +70\n\n",
+    "vip5": "✨ **Đặc quyền VIP đã được kích hoạt!**\n\n",
+    "vip6": "💡 Nâng cấp lên VIP để nhận:\n",
+    "vip7": "✨ Kích hoạt quyền lợi VIP\n",
+    "zodiac": "• Cung Hoàng Đạo: ${selectedZodiac.length > 0 ? selectedZodiac.map((z) => ZODIAC_NAMES[z]).join(', ') : 'Không giới hạn'}\n",
+    "zodiac2": "⭐ Cung Hoàng Đạo: ${matchResult.user.zodiac ||",
+    "zodiac3": "⭐ Cung Hoàng Đạo: ${user.zodiac_sign ||",
+    "zodiac4": "⭐ **Lọc theo cung hoàng đạo**\n\n",
+    "zodiac5": "• Cung Hoàng Đạo: Lọc theo các cung hoàng đạo cụ thể\n",
+    "zodiac6": "• Cung Hoàng Đạo tương thích cao ✓",
+    "zodiac7": "⭐ Lọc Cung Hoàng Đạo",
+    "zodiacLabel": "• Cung Hoàng Đạo: {zodiac}\n"
   },
-  tasks: {
-    bottle: `獎勵：+\${task.reward_amount} 瓶子（\${rewardTypeText}）
-
-`,
-    bottle2: `獎勵：+\${task.reward_amount} 瓶子（\${task.reward_type ===`,
-    bottle3: `\${icon} \${task.name} (+\${task.reward_amount} 瓶子)
-`,
-    bottle4: `• 永久獎勵：\${inviteProgress.current} 個瓶子（每天發放）
-`,
-    bottle5: `• 一次性獎勵：\${todayRewardCount} 個瓶子（當天有效）
-`,
-    bottle6: `📋 **任務中心**
-
-完成任務獲得額外瓶子！
-
-`,
-    invite: `🔄 邀請好友 (\${inviteProgress.current}/\${inviteProgress.max})
-`,
-    invite2: `每邀請 1 人 → 每日額度永久 +1
-`,
-    message: `\${icon} \${task.name} \${status} (+\${task.reward_amount} 瓶子)
-`,
-    message2: `點擊下方按鈕加入 XunNi 官方頻道，獲取最新消息和活動！
-
-`,
-    profile: `👤 **個人資料任務** (\${completedCount}/\${profileTasks.length})
-`,
-    quota: `當前每日配額：\${calculateDailyQuota(user)} 個
-`,
-    short: `(待領取)`,
-    short2: `當天有效`,
-    short3: `永久有效`,
-    task: `• 邀請任務：\${inviteProgress.current}/\${inviteProgress.max} 進行中
-
-`,
-    task2: `📱 **社交媒體任務** (\${completedCount}/\${socialTasks.length})
-`,
-    task3: `🎯 **行為任務** (\${completedCount}/\${actionTasks.length})
-`,
-    task4: `• 一次性任務：\${oneTimeCompleted}/\${oneTimeTotal} 已完成
-`,
-    task5: `🎉 恭喜完成任務「\${task.name}」！
-
-`,
-    task6: `👥 **邀請任務** (持續進行中)
-`,
-    task7: `💡 使用 /tasks 查看任務中心`,
-    text: `加入後點擊「我已加入」按鈕領取獎勵 🎁`,
-    text2: `📢 **加入官方頻道**
-
-`,
-    text3: `📊 **總進度**
-`,
-    text4: `🎁 **已獲得**
-`,
-    description: {
-      bio: `寫下你的故事（至少 20 字）`,
-      city: `找到同城的朋友`,
-      first_bottle: `開始你的交友之旅`,
-      first_catch: `看看別人的故事`,
-      first_conversation: `建立你的第一個連接（長按訊息 → 選擇「回覆」）`,
-      interests: `讓別人更了解你`,
-      invite_progress: `每邀請 1 人，每日額度永久 +1（免費最多 10 人，VIP 最多 100 人）`,
-      join_channel: `獲取最新消息和活動`,
-    },
-    name: {
-      bio: `完善自我介紹`,
-      city: `設定地區`,
-      first_bottle: `丟出第一個瓶子`,
-      first_catch: `撿起第一個瓶子`,
-      first_conversation: `開始第一次對話`,
-      interests: `填寫興趣標籤`,
-      invite_progress: `邀請好友`,
-      join_channel: `加入官方頻道`,
-    },
+  "tutorial": {
+    "availableCommands": "Bạn có thể sử dụng các lệnh sau bất kỳ lúc nào:",
+    "catchBottle": "🎣 **Nhặt chai thư**",
+    "catchBottleDesc": "Xem chai thư của người khác, trả lời nếu bạn quan tâm để bắt đầu trò chuyện",
+    "clickButtonHint": "💡 Vui lòng nhấp vào nút để tiếp tục",
+    "commandCatch": "• /catch - Nhặt chai thư",
+    "commandHelp": "• /help - Xem trợ giúp",
+    "commandMenu": "📋 Menu lệnh",
+    "commandTasks": "• /tasks - Xem nhiệm vụ",
+    "commandThrow": "• /throw - Ném chai thư",
+    "completeTasksForBottles": "💡 Hoàn thành nhiệm vụ để nhận thêm chai thư",
+    "completed": "✅ Hướng dẫn đã hoàn thành!",
+    "howToBecomeFriends": "💬 **Cách kết bạn?**",
+    "howToBecomeFriendsDesc": "Bạn nhặt chai thư và trả lời → Họ trả lời → Bắt đầu trò chuyện ẩn danh",
+    "readyToStart": "🎉 **Sẵn sàng! Hãy kết bạn nào～**",
+    "skip": "Bỏ qua",
+    "skipped": "✅ Hướng dẫn đã bị bỏ qua",
+    "startUsing": "Bắt đầu sử dụng →",
+    "throwBottle": "📦 **Ném chai thư**",
+    "throwBottleDesc": "Viết cảm xúc hoặc suy nghĩ của bạn, hệ thống sẽ tìm người phù hợp cho bạn",
+    "unknownStep": "❌ Bước hướng dẫn không xác định",
+    "viewTasks": "📋 Xem nhiệm vụ",
+    "welcome": "🎉 Chúc mừng bạn đã hoàn thành đăng ký!",
+    "whatIsXunNi": "🌊 **XunNi là gì?**",
+    "whatIsXunNiDesc": "Một nền tảng xã hội chai thư ẩn danh giúp bạn tìm bạn bè đồng điệu qua MBTI và cung hoàng đạo"
   },
-  throw: {
-    age: `• 年齡區間相近 ✓`,
-    back: `↩️ 返回篩選選單`,
-    bloodType: `🩸 **血型篩選**
-
-`,
-    bloodType2: `• 血型：篩選特定血型
-`,
-    bloodType3: `選擇你想要配對的血型：`,
-    bloodType4: `🩸 血型篩選`,
-    bloodType5: `🌈 任何血型`,
-    bottle: `
-💡 這個瓶子和你非常合拍！
-
-`,
-    bottle10: `🍾 漂流瓶已丟出！
-
-`,
-    bottle11: `🍾 丟漂流瓶`,
-    bottle2: `🎯 你的瓶子已發送給 **3 個對象**：
-`,
-    bottle3: `🍾 **正在丟出你的漂流瓶...**
-
-`,
-    bottle4: `🍾 **丟漂流瓶** #THROW
-
-`,
-    bottle5: `瓶子 ID：#\${bottleId}
-
-`,
-    bottle6: `📝 **請輸入你的漂流瓶內容**
-
-`,
-    bottle7: `1️⃣ 點擊下方「🍾 丟漂流瓶」按鈕
-`,
-    bottle8: `📝 請輸入你的漂流瓶內容：
-
-`,
-    bottle9: `📝 請輸入你的漂流瓶內容：`,
-    cancel: `💡 點擊選擇或取消 MBTI 類型：`,
-    cancel2: `💡 點擊選擇或取消星座：`,
-    catch: `• 槽位 3：公共池（等待撿起）
-
-`,
-    catch2: `• 槽位 2：公共池（等待撿起）
-`,
-    catch3: `• 槽位 1：公共池（等待撿起）
-`,
-    catch4: `🌊 等待有緣人撿起...
-`,
-    complete: `⚙️ **進階篩選**
-
-\${summary}
-💡 繼續調整或完成篩選：`,
-    complete2: `🎯 **第 1 個配對已完成：**
-`,
-    complete3: `📝 你有一個未完成的草稿
-
-`,
-    complete4: `⏳ 預計 3-5 秒完成`,
-    complete5: `⏳ 預計 2-3 秒完成`,
-    complete6: `⏳ 預計 1-2 秒完成`,
-    conversation: `💬 對話標識符：\${vipMatchInfo.conversationIdentifier}
-
-`,
-    conversation2: `💡 提示：每個對話都是獨立的，可以同時進行
-
-`,
-    conversation3: `💡 你可能會收到 **最多 3 個對話**！
-`,
-    conversation4: `💬 你可能會收到 **最多 3 個對話**！
-`,
-    conversation5: `使用 /chats 查看所有對話
-
-`,
-    conversation6: `📊 使用 /chats 查看所有對話`,
-    conversation7: `使用 /chats 查看所有對話`,
-    currentSelection: `當前選擇：{genderText}`,
-    friendlyContent: `💬 友善的內容更容易獲得回應`,
-    gender: `• 性別：\${selectedGender === 'male' ? '👨 男生' : selectedGender === 'female' ? '👩 女生' : '🌈 任何人'}
-`,
-    gender2: `👤 **性別篩選**
-
-`,
-    gender3: `• 性別：篩選性別
-
-`,
-    gender4: `💡 選擇你想要的性別：`,
-    gender5: `👤 性別篩選`,
-    genderLabel: `• 性別：{gender}
-`,
-    mbti: `• MBTI：\${selectedMBTI.length > 0 ? selectedMBTI.join(', ') : '無限制'}
-`,
-    mbti2: `已選擇：\${selectedMBTI.length > 0 ? selectedMBTI.join(', ') : '無'}
-
-`,
-    mbti3: `已選擇：\${selectedMBTI.length > 0 ? selectedMBTI.join(`,
-    mbti4: `🧠 **MBTI 篩選**
-
-`,
-    mbti5: `• MBTI：篩選特定性格類型
-`,
-    mbti6: `• MBTI 高度配對 ✓`,
-    mbti7: `🧠 MBTI 篩選`,
-    mbtiLabel: `• MBTI：{mbti}
-`,
-    message: `已選擇：\${selectedZodiac.length > 0 ? selectedZodiac.map((z) => ZODIAC_NAMES[z]).join(', ') : '無'}
-
-`,
-    message2: `當前選擇：\${currentGender === 'male' ? '👨 男生' : currentGender === 'female' ? '👩 女生' : '🌈 任何人'}
-
-`,
-    message3: `已選擇：\${selectedZodiac.length > 0 ? selectedZodiac.map((z) => ZODIAC_NAMES[z]).join(`,
-    message4: `當前選擇：\${bloodTypeDisplay[currentBloodType]}
-
-`,
-    message5: `👤 對方：\${vipMatchInfo.matcherNickname}
-`,
-    message6: `「你好！我是一個喜歡音樂和電影的人，希望認識志同道合的朋友～」
-
-`,
-    message7: `💡 可在 /edit_profile 中修改匹配偏好
-
-`,
-    message8: `💬 直接按 /reply 回覆訊息開始聊天
-`,
-    nickname: `📝 對方暱稱：\${matchedUserMaskedNickname}
-`,
-    quota: `• 更多配額（30 個/天）
-`,
-    quota2: `🎁 邀請好友可增加配額：
-`,
-    selected: `已選擇：{selected}`,
-    settings: `🧠 MBTI：\${mbti}
-`,
-    settings2: `⭐ 星座：\${zodiac}
-`,
-    settings3: `🧠 MBTI：\\$
-`,
-    settings4: `⭐ 星座：\\$
-`,
-    settings5: `未設定`,
-    settings6: `未設定`,
-    settings7: `未設定`,
-    settings8: `未設定`,
-    short: `• 語言相同 ✓`,
-    short10: `♋ 巨蟹座`,
-    short11: `♌ 獅子座`,
-    short12: `♍ 處女座`,
-    short13: `♎ 天秤座`,
-    short14: `♏ 天蠍座`,
-    short15: `♐ 射手座`,
-    short16: `♑ 摩羯座`,
-    short17: `♒ 水瓶座`,
-    short18: `♓ 雙魚座`,
-    short19: `違規行為`,
-    short2: `🩸 AB 型`,
-    short20: `無限制`,
-    short21: `無限制`,
-    short22: `無限制`,
-    short23: `無限制`,
-    short3: `🌈 任何人`,
-    short4: `🩸 A 型`,
-    short5: `🩸 B 型`,
-    short6: `🩸 O 型`,
-    short7: `♈ 白羊座`,
-    short8: `♉ 金牛座`,
-    short9: `♊ 雙子座`,
-    start: `✍️ 重新開始`,
-    success: `一次丟瓶子 = 3 個對象，大幅提升配對成功率
-
-`,
-    success2: `✨ **VIP 特權啟動！智能配對成功！**
-
-`,
-    success3: `🎯 你的漂流瓶已被配對成功！
-
-`,
-    text: `💝 匹配度：\${matchPercentage}%
-`,
-    text10: `🎯 正在為你尋找最佳配對對象
-
-`,
-    text11: `
-💬 等待對方回覆中...
-`,
-    text12: `• 免費用戶：最多 +7 個
-`,
-    text13: `• 不要包含個人聯絡方式
-
-`,
-    text14: `💡 **兩種輸入方式**：
-`,
-    text15: `📊 免費用戶：3 個/天
-`,
-    text16: `選擇你想要篩選的條件：
-
-`,
-    text17: `• 進階篩選和翻譯
-
-`,
-    text18: `創建時間：\${age}
-`,
-    text19: `使用 /vip 立即升級`,
-    text2: `• 🆕 三倍曝光機會（1 次 = 3 個對象）
-`,
-    text20: `💬 **範例**：
-`,
-    text21: `使用 /vip 了解更多`,
-    text22: `要繼續編輯這個草稿嗎？`,
-    text23: `💡 可以組合多個條件`,
-    text24: `當前篩選條件：
-
-`,
-    text3: `💡 這可能需要幾秒鐘，我們正在為你找到最合適的人`,
-    text4: `當前選擇：\${currentGender ===`,
-    text5: `🎯 尋找對象：\${targetText}
-`,
-    text6: `🎯 正在為你尋找 3 個最佳配對對象
-
-`,
-    text7: `📨 **另外 2 個槽位等待中：**
-`,
-    text8: `🔍 正在智能匹配最佳對象...
-
-`,
-    text9: `內容預覽：\${preview}
-
-`,
-    throw: `📊 今日已丟：\${quotaDisplay}
-
-`,
-    tips: `💡 提示：寫得越詳細，越容易找到合適的聊天對象`,
-    unlimited: `無限制`,
-    vip: `💎 VIP 用戶：30 個/天（三倍曝光）
-
-`,
-    vip2: `💎 **升級 VIP 可獲得三倍曝光機會！**
-`,
-    vip3: `⚙️ **進階篩選（VIP 專屬）**
-
-`,
-    vip4: `• VIP 用戶：最多 +70 個
-
-`,
-    vip5: `✨ **VIP 特權啟動！**
-
-`,
-    vip6: `💡 升級 VIP 獲得：
-`,
-    vip7: `✨ VIP 特權啟動中
-`,
-    zodiac: `• 星座：\${selectedZodiac.length > 0 ? selectedZodiac.map((z) => ZODIAC_NAMES[z]).join(', ') : '無限制'}
-`,
-    zodiac2: `⭐ 星座：\${matchResult.user.zodiac ||`,
-    zodiac3: `⭐ 星座：\${user.zodiac_sign ||`,
-    zodiac4: `⭐ **星座篩選**
-
-`,
-    zodiac5: `• 星座：篩選特定星座
-`,
-    zodiac6: `• 星座高度相容 ✓`,
-    zodiac7: `⭐ 星座篩選`,
-    zodiacLabel: `• 星座：{zodiac}
-`,
+  "vip": {
+    "admin": "⏳ Bạn có một yêu cầu hoàn tiền đang chờ, vui lòng kiên nhẫn trong khi quản trị viên xem xét.",
+    "bottle": "📝 Nội dung chai thư: ${bottle.content.substring(0, 50)}${bottle.content.length > 50 ? '...' : ''}\n\n",
+    "bottle2": "📝 Nội dung chai: ${bottle.content.substring(0, 50)}${bottle.content.length > 50 ?",
+    "bottle3": "Chai thư của bạn đã được ${maskedMatcherNickname} nhận!\n\n",
+    "bottle4": "Hệ thống đã tìm thấy một chai thư từ ${maskedOwnerNickname}!\n\n",
+    "bottle5": "📝 Nội dung chai thư: ${bottle.content}\n\n",
+    "bottle6": "• 🆕 Cơ hội tiếp xúc gấp ba! Ném một chai kích hoạt 3 mục tiêu\n",
+    "cancelReminderButton": "❌ Sau",
+    "conversation": "💬 Mã định danh cuộc trò chuyện: ${conversationIdentifier}\n",
+    "conversation2": "🔄 Đang cập nhật lịch sử trò chuyện của bạn, ảnh đại diện sẽ được hiển thị sớm...\n\n",
+    "mbti": "• Lọc đối tác phù hợp theo MBTI, cung hoàng đạo và nhóm máu\n",
+    "mbti2": "• Lọc đối tác phù hợp theo MBTI và cung hoàng đạo\n",
+    "mbti3": "• Lọc theo MBTI và cung hoàng đạo\n",
+    "message": "Thời gian hết hạn: ${new Date(sub.expire_date).toLocaleDateString('zh-TW')}\n\n",
+    "message10": "Số đơn ứng dụng: #${result.meta.last_row_id}\n",
+    "message11": "Số tiền hoàn lại: ${request.amount_stars} ⭐\n",
+    "message12": "💬 **Vui lòng nhấn giữ tin nhắn này, chọn 'Trả lời', và bắt đầu trò chuyện với đối phương**",
+    "message13": "💡 Thanh toán an toàn và tiện lợi bằng Telegram Stars\n\n",
+    "message14": "💡 Đây là ghép đôi đầu tiên của bạn, với 2 vị trí đang chờ\n\n",
+    "message2": "Thời gian ứng dụng: ${new Date(req.requested_at).toLocaleString('zh-TW')}\n",
+    "message3": "Thời gian hết hạn mới: ${expireDate}\n\n",
+    "message4": "Thời gian hết hạn: ${expireDate}\n\n",
+    "message5": "Thời gian thanh toán: ${paymentDate.toLocaleDateString('zh-TW')}\n",
+    "message6": "📋 **Yêu cầu hoàn tiền đang chờ** (${requests.results.length})\n\n",
+    "message7": "Mã thanh toán: ${payment.telegram_payment_charge_id}",
+    "message8": "Giá: ${priceStars} ⭐ Telegram Stars / tháng\n",
+    "message9": "Thời gian thanh toán: ${paymentDate.toLocaleDateString(",
+    "purchaseCancelled": "✅ Đơn hàng đã bị hủy",
+    "quota": "• Hạn ngạch hàng ngày là 30 chai thư (mời bạn bè để tăng, tối đa 100 mỗi ngày)\n",
+    "quota2": "• Hạn ngạch hàng ngày là 30 chai thư (tối đa 100 mỗi ngày)\n",
+    "refundAdminCommands": "💡 Sử dụng các lệnh sau:\n• Chấp thuận: `/admin_approve_refund `\n• Từ chối: `/admin_reject_refund ` `/admin_approve_refund <ID>` `/admin_reject_refund <ID> ` `/admin_reject_refund <ID> <原因>`",
+    "refundApproved": "✅ **Hoàn lại đã được phê duyệt**\n\nSố tiền hoàn lại: ${amount} ⭐\nHoàn lại sẽ được ghi có trong vòng 1-3 ngày làm việc.\n\nThành viên VIP của bạn đã bị hủy.\n\nCảm ơn bạn đã thông cảm!",
+    "refundApprovedAdmin": "✅ Hoàn lại đã được phê duyệt\n\nMã yêu cầu: #${requestId}\nMã người dùng: ${userId}\nSố tiền: ${amount} ⭐",
+    "refundExpired": "❌ Yêu cầu hoàn lại đã vượt quá thời gian cho phép\n\nThời gian thanh toán: ${paymentDate}\nThời hạn hoàn lại: trong vòng 7 ngày sau khi thanh toán\n\n💡 Nếu có hoàn cảnh đặc biệt, vui lòng liên hệ với bộ phận hỗ trợ khách hàng.",
+    "refundFailed": "❌ Hoàn lại thất bại: ${error}",
+    "refundNoPayment": "❌ Không tìm thấy hồ sơ thanh toán.",
+    "refundNoPending": "✅ Không có yêu cầu hoàn lại đang chờ xử lý.",
+    "refundPending": "⏳ Bạn có một yêu cầu hoàn lại đang chờ, vui lòng đợi đánh giá từ quản trị viên.",
+    "refundPendingList": "📋 **Yêu cầu hoàn lại đang chờ xử lý** (${count})",
+    "refundReasonTooShort": "❌ Lý do hoàn lại phải ít nhất 10 ký tự, vui lòng nhập lại:",
+    "refundRejected": "❌ **Yêu cầu hoàn tiền đã bị từ chối**\n\nLý do: ${reason}\n\nNếu bạn có bất kỳ câu hỏi nào, vui lòng liên hệ bộ phận hỗ trợ khách hàng.",
+    "refundRejectedAdmin": "✅ Yêu cầu hoàn tiền đã bị từ chối\n\nMã yêu cầu: #${requestId}\nID người dùng: ${userId}",
+    "refundRequestItem": "**#${id}** - ${nickname}\nID người dùng: `${userId}`\nSố tiền: ${amount} ⭐\nLý do: ${reason}\nThời gian yêu cầu: ${requestedAt}",
+    "refundRequestNotFound": "❌ Yêu cầu hoàn tiền không tồn tại hoặc đã được xử lý",
+    "refundRequestReason": "📝 **Đăng ký hoàn tiền**\n\nVui lòng nhập lý do hoàn tiền (ít nhất 10 ký tự):",
+    "refundSubmitFailed": "❌ Gửi không thành công, vui lòng thử lại sau.",
+    "refundSubmitted": "✅ **Yêu cầu hoàn tiền đã được gửi**\n\nSố hồ sơ: #${requestId}\nTrạng thái: Đang chờ xem xét\n\nChúng tôi sẽ xử lý yêu cầu của bạn trong vòng 1-3 ngày làm việc.\nBạn sẽ được thông báo kết quả qua Bot.\n\nCảm ơn bạn đã kiên nhẫn!",
+    "reminderCancelled": "✅ Nhắc nhở đã bị hủy",
+    "reminderDaysLeft": "Thành viên VIP của bạn sẽ hết hạn trong ${days} ngày.",
+    "reminderExpireDate": "Thời gian hết hạn: ${date}",
+    "reminderExpiringToday": "⚠️ **VIP hết hạn hôm nay**",
+    "reminderExpiringTodayDesc": "Thành viên VIP của bạn hết hạn hôm nay.",
+    "reminderGracePeriod": "📌 Thời gian ân hạn: Gia hạn trong vòng 3 ngày sau khi hết hạn sẽ không làm gián đoạn dịch vụ.",
+    "reminderRenewHint": "💡 Gia hạn ngay để tận hưởng dịch vụ VIP không bị gián đoạn!",
+    "reminderRenewHint2": "💡 Gia hạn ngay để tiếp tục tận hưởng lợi ích VIP!",
+    "reminderTitle": "⏰ **Nhắc nhở hết hạn VIP**",
+    "renewButton": "💳 Gia hạn ngay (${stars} ⭐)",
+    "renewalProcessing": "Đang xử lý gia hạn...",
+    "settings": "💡 Để hủy đăng ký của bạn, vui lòng vào Cài đặt Telegram > Quản lý Đăng ký\n\n",
+    "settings2": "💡 Để hủy đăng ký của bạn, vui lòng vào Cài đặt Telegram > Quản lý Đăng ký",
+    "settings3": "💡 Bạn có thể hủy đăng ký bất kỳ lúc nào trong Cài đặt Telegram",
+    "short": "(khoảng 5 USD)",
+    "short2": "Cảm ơn bạn đã kiên nhẫn!",
+    "short3": "Cảm ơn bạn đã hiểu!",
+    "short4": "• Được phê duyệt: \\",
+    "short5": "• Bị từ chối: \\",
+    "start": "🚀 Bắt đầu sử dụng ngay: /throw",
+    "success": "🎯 **Ghép đôi thông minh VIP thành công!**\n\n",
+    "success2": "🎉 **Gia hạn tự động thành công!**\n\n",
+    "success3": "🎉 **Ghép đôi thông minh thành công!**\n\n",
+    "success4": "🎉 **Đăng ký thành công!**\n\n",
+    "text": "- Truy cập ưu tiên vào mô hình dịch thuật OpenAI GPT (chất lượng cao)\n",
+    "text10": "Chúng tôi sẽ xử lý yêu cầu của bạn trong vòng 1-3 ngày làm việc.\n",
+    "text11": "Thời gian hết hạn: ${expireDate}\n\n",
+    "text12": "Hoàn tiền sẽ được ghi có trong vòng 1-3 ngày làm việc.\n\n",
+    "text13": "Mã yêu cầu: #${requestId}\n",
+    "text14": "└ 1 kết hợp thông minh + 2 hồ bơi công khai\n",
+    "text15": "Bạn sẽ được thông báo về kết quả xử lý qua Bot.\n\n",
+    "text16": "Vui lòng nhập lý do hoàn tiền (ít nhất 10 ký tự):",
+    "text17": "Lý do: ${req.reason}\n",
+    "text18": "Thời hạn hoàn tiền: trong vòng 7 ngày sau khi thanh toán\n\n",
+    "text19": "Tài khoản của bạn đã được khôi phục thành người dùng miễn phí.\n\n",
+    "text2": "• Dịch tự động bằng 34 ngôn ngữ (ưu tiên OpenAI GPT)\n",
+    "text20": "💡 Bạn có muốn gia hạn hoặc nâng cấp không?\n\n",
+    "text21": "💡 Trong trường hợp đặc biệt, vui lòng liên hệ với dịch vụ khách hàng.",
+    "text22": "Lý do: ${reason}\n\n",
+    "text23": "• Mở khóa ảnh đại diện rõ ràng 🆕\n",
+    "text24": "Điều này có thể mất vài giây, vui lòng chờ.",
+    "text25": "📝 **Yêu cầu Hoàn tiền**\n\n",
+    "text26": "• Dịch tự động bằng 34 ngôn ngữ\n",
+    "text27": "💡 Sử dụng các lệnh sau để xử lý:\n",
+    "text28": "(Giá thử nghiệm giai đoạn)",
+    "text29": "Nếu bạn có bất kỳ câu hỏi nào, vui lòng liên hệ dịch vụ khách hàng.",
+    "text3": "Số tiền: ${request.amount_stars} ⭐",
+    "text30": "Tình trạng: Đang chờ xem xét\n\n",
+    "text4": "🔄 **Gia hạn tự động**: Khấu trừ tự động hàng tháng, không cần gia hạn thủ công\n",
+    "text5": "Số tiền: ${req.amount_stars} ⭐\n",
+    "text6": "ID người dùng: ${request.user_id}\n",
+    "text7": "💳 Gia hạn ngay (${priceStars} ⭐)",
+    "text8": "ID người dùng: ${request.user_id}",
+    "text9": "📌 Thời gian ân hạn: Gia hạn trong vòng 3 ngày sau khi hết hạn sẽ không làm gián đoạn dịch vụ.",
+    "viewVipCommand": "Bạn có thể sử dụng lệnh /vip bất cứ lúc nào để xem lợi ích VIP.",
+    "vip": "Thành viên VIP của bạn đã hết hạn vào ${new Date(sub.expire_date).toLocaleDateString('zh-TW')}\n\n",
+    "vip10": "💎 **Nâng cấp thành Hội viên VIP**\n\n",
+    "vip11": "😢 **Thành viên VIP đã hết hạn**\n\n",
+    "vip12": "Nâng cấp thành viên VIP để tận hưởng những lợi ích sau:\n",
+    "vip13": "⏰ **Nhắc nhở hết hạn VIP**\n\n",
+    "vip14": "Thành viên VIP của bạn hết hạn hôm nay.\n\n",
+    "vip15": "Gói VIP của bạn đã được gia hạn tự động!\n",
+    "vip16": "Thành viên VIP của bạn đã bị hủy.\n\n",
+    "vip17": "Gói VIP XunNi (Hàng tháng)",
+    "vip18": "✨ Lợi ích VIP vẫn còn hoạt động:\n",
+    "vip19": "Bạn hiện là thành viên VIP!\n",
+    "vip2": "Thành viên VIP của bạn đã hết hạn vào ${new Date(sub.expire_date).toLocaleDateString(",
+    "vip20": "✨ Các lợi ích VIP đã được kích hoạt:\n",
+    "vip21": "Thẻ VIP (30 Ngày)",
+    "vip22": "🎁 Lợi ích VIP:\n",
+    "vip23": "Gia hạn VIP XunNi",
+    "vip24": "Mua VIP XunNi",
+    "vip25": "Gói VIP",
+    "vip3": "Thành viên VIP của bạn sẽ hết hạn trong ${daysLeft} ngày.\n\n",
+    "vip4": "🔄 Gia hạn VIP (${priceStars} ⭐)",
+    "vip5": "💳 Mua VIP (${priceStars} ⭐)",
+    "vip6": "Đăng ký thành viên VIP XunNi với gia hạn tự động hàng tháng!\n\n",
+    "vip7": "💡 Gia hạn ngay bây giờ để tận hưởng dịch vụ VIP không gián đoạn!",
+    "vip8": "💡 Gia hạn ngay bây giờ để tiếp tục tận hưởng lợi ích VIP!\n",
+    "vip9": "✨ **Bạn đã là thành viên VIP**\n\n"
   },
-  tutorial: {
-    availableCommands: `你可以隨時使用以下命令：`,
-    catchBottle: `🎣 **撿起漂流瓶**`,
-    catchBottleDesc: `看看別人的漂流瓶，有興趣就回覆開始聊天`,
-    clickButtonHint: `💡 請點擊按鈕繼續`,
-    commandCatch: `• /catch - 撿起漂流瓶`,
-    commandHelp: `• /help - 查看幫助`,
-    commandMenu: `📋 命令選單`,
-    commandTasks: `• /tasks - 查看任務`,
-    commandThrow: `• /throw - 丟出漂流瓶`,
-    completeTasksForBottles: `💡 完成任務可獲得額外瓶子`,
-    completed: `✅ 教學已完成！`,
-    howToBecomeFriends: `💬 **如何成為朋友？**`,
-    howToBecomeFriendsDesc: `你撿瓶回覆 → 對方也回覆 → 開始匿名聊天`,
-    readyToStart: `🎉 **準備好了！開始交朋友吧～**`,
-    skip: `跳過`,
-    skipped: `✅ 已跳過教學`,
-    startUsing: `開始使用 →`,
-    throwBottle: `📦 **丟出漂流瓶**`,
-    throwBottleDesc: `寫下你的心情或想法，系統會幫你找到合適的人`,
-    unknownStep: `❌ 未知的教學步驟`,
-    viewTasks: `📋 查看任務`,
-    welcome: `🎉 恭喜完成註冊！`,
-    whatIsXunNi: `🌊 **XunNi 是什麼？**`,
-    whatIsXunNiDesc: `匿名漂流瓶交友平台，透過 MBTI 和星座幫你找到志同道合的朋友`,
+  "vipTripleBottle": {
+    "bottleContent": "{content}\n\n",
+    "bottlePicked": "{maskedMatcherNickname}\n\n",
+    "conversationIdentifier": "💬 Mã xác định cuộc trò chuyện: {conversationIdentifier}\n",
+    "firstMatch": "💡 Đây là trận đấu đầu tiên của bạn, có 2 chai thư đang chờ\n\n",
+    "foundBottle": "{maskedOwnerNickname}\n\n",
+    "matchSuccess": "🎯 **Ghép đôi thông minh VIP thành công!**\n\n",
+    "replyHint": "💬 **Vui lòng nhấn giữ tin nhắn này, chọn 'Trả lời', sau đó nhập nội dung để bắt đầu trò chuyện với bên kia**",
+    "slotsWaiting": "{remaining}\n\n",
+    "smartMatch": "🎉 **Ghép đôi thông minh thành công!**\n\n",
+    "viewChats": "Sử dụng /chats để xem tất cả các cuộc hội thoại\n\n"
   },
-  vip: {
-    admin: `⏳ 你已有待處理的退款請求，請耐心等待管理員審核。`,
-    bottle: `📝 瓶子內容：\${bottle.content.substring(0, 50)}\${bottle.content.length > 50 ? '...' : ''}
-
-`,
-    bottle2: `📝 瓶子內容：\${bottle.content.substring(0, 50)}\${bottle.content.length > 50 ?`,
-    bottle3: `你的瓶子已被 \${maskedMatcherNickname} 撿起！
-
-`,
-    bottle4: `系統為你找到了 \${maskedOwnerNickname} 的瓶子！
-
-`,
-    bottle5: `📝 瓶子內容：\${bottle.content}
-
-`,
-    bottle6: `• 🆕 三倍曝光機會！一次丟瓶子觸發 3 個對象
-`,
-    cancelReminderButton: `❌ 稍後再說`,
-    conversation: `💬 對話標識符：\${conversationIdentifier}
-`,
-    conversation2: `🔄 正在更新您的對話歷史，清晰頭像即將顯示...
-
-`,
-    mbti: `• 可篩選配對對象的 MBTI、星座、血型
-`,
-    mbti2: `• 可篩選配對對象的 MBTI 和星座
-`,
-    mbti3: `• 可篩選 MBTI 和星座
-`,
-    message: `到期時間：\${new Date(sub.expire_date).toLocaleDateString('zh-TW')}
-
-`,
-    message10: `申請編號：#\${result.meta.last_row_id}
-`,
-    message11: `退款金額：\${request.amount_stars} ⭐
-`,
-    message12: `💬 **請長按此訊息，選擇「回覆」後輸入內容和對方開始聊天**`,
-    message13: `💡 使用 Telegram Stars 安全便捷支付
-
-`,
-    message14: `💡 這是你的第 1 個配對，還有 2 個槽位等待中
-
-`,
-    message2: `申請時間：\${new Date(req.requested_at).toLocaleString('zh-TW')}
-`,
-    message3: `新到期時間：\${expireDate}
-
-`,
-    message4: `到期時間：\${expireDate}
-
-`,
-    message5: `支付時間：\${paymentDate.toLocaleDateString('zh-TW')}
-`,
-    message6: `📋 **待處理退款請求** (\${requests.results.length})
-
-`,
-    message7: `支付 ID：\${payment.telegram_payment_charge_id}`,
-    message8: `價格：\${priceStars} ⭐ Telegram Stars / 月
-`,
-    message9: `支付時間：\${paymentDate.toLocaleDateString(`,
-    purchaseCancelled: `✅ 已取消購買`,
-    quota: `• 每天 30 個漂流瓶配額（邀請好友可增加，最高 100 個/天）
-`,
-    quota2: `• 每天 30 個漂流瓶配額（最高 100 個/天）
-`,
-    refundAdminCommands: `💡 使用以下命令處理：
-• 批准：\`/admin_approve_refund <ID>\`
-• 拒絕：\`/admin_reject_refund <ID> <原因>\``,
-    refundApproved: `✅ **退款已批准**
-
-退款金額：\${amount} ⭐
-退款將在 1-3 個工作日內到帳。
-
-你的 VIP 會員已取消。
-
-感謝你的理解！`,
-    refundApprovedAdmin: `✅ 退款已批准
-
-請求 ID：#\${requestId}
-用戶 ID：\${userId}
-金額：\${amount} ⭐`,
-    refundExpired: `❌ 退款申請超過時限
-
-支付時間：\${paymentDate}
-退款時限：支付後 7 天內
-
-💡 如有特殊情況，請聯繫客服。`,
-    refundFailed: `❌ 退款失敗：\${error}`,
-    refundNoPayment: `❌ 找不到支付記錄。`,
-    refundNoPending: `✅ 沒有待處理的退款請求。`,
-    refundPending: `⏳ 你已有待處理的退款請求，請耐心等待管理員審核。`,
-    refundPendingList: `📋 **待處理退款請求** (\${count})`,
-    refundReasonTooShort: `❌ 退款原因至少需要 10 個字，請重新輸入：`,
-    refundRejected: `❌ **退款申請已被拒絕**
-
-原因：\${reason}
-
-如有疑問，請聯繫客服。`,
-    refundRejectedAdmin: `✅ 退款已拒絕
-
-請求 ID：#\${requestId}
-用戶 ID：\${userId}`,
-    refundRequestItem: `**#\${id}** - \${nickname}
-用戶 ID：\`\${userId}\`
-金額：\${amount} ⭐
-原因：\${reason}
-申請時間：\${requestedAt}`,
-    refundRequestNotFound: `❌ 退款請求不存在或已處理`,
-    refundRequestReason: `📝 **申請退款**
-
-請輸入退款原因（至少 10 個字）：`,
-    refundSubmitFailed: `❌ 提交失敗，請稍後再試。`,
-    refundSubmitted: `✅ **退款申請已提交**
-
-申請編號：#\${requestId}
-狀態：待審核
-
-我們會在 1-3 個工作日內處理你的申請。
-處理結果會通過 Bot 通知你。
-
-感謝你的耐心等待！`,
-    reminderCancelled: `✅ 已取消提醒`,
-    reminderDaysLeft: `你的 VIP 會員將在 \${days} 天後到期。`,
-    reminderExpireDate: `到期時間：\${date}`,
-    reminderExpiringToday: `⚠️ **VIP 今天到期**`,
-    reminderExpiringTodayDesc: `你的 VIP 會員今天到期。`,
-    reminderGracePeriod: `📌 寬限期：到期後 3 天內續費不會中斷服務。`,
-    reminderRenewHint: `💡 立即續費，享受不間斷的 VIP 服務！`,
-    reminderRenewHint2: `💡 立即續費，繼續享受 VIP 權益！`,
-    reminderTitle: `⏰ **VIP 到期提醒**`,
-    renewButton: `💳 立即續費 (\${stars} ⭐)`,
-    renewalProcessing: `正在處理續費...`,
-    settings: `💡 如需取消訂閱，請前往 Telegram 設定 > 訂閱管理
-
-`,
-    settings2: `💡 如需取消訂閱，請前往 Telegram 設定 > 訂閱管理`,
-    settings3: `💡 可隨時在 Telegram 設定中取消訂閱`,
-    short: `（約 5 USD）`,
-    short2: `感謝你的耐心等待！`,
-    short3: `感謝你的理解！`,
-    short4: `• 批准：\\`,
-    short5: `• 拒絕：\\`,
-    start: `🚀 立即開始使用：/throw`,
-    success: `🎯 **VIP 智能配對成功！**
-
-`,
-    success2: `🎉 **自動續費成功！**
-
-`,
-    success3: `🎉 **智能配對成功！**
-
-`,
-    success4: `🎉 **訂閱成功！**
-
-`,
-    text: `- 優先使用 OpenAI GPT 模型翻譯（高品質）
-`,
-    text10: `我們會在 1-3 個工作日內處理你的申請。
-`,
-    text11: `到期時間：\${expireDate}
-
-`,
-    text12: `退款將在 1-3 個工作日內到帳。
-
-`,
-    text13: `請求 ID：#\${requestId}
-`,
-    text14: `└ 1 個智能配對 + 2 個公共池
-`,
-    text15: `處理結果會通過 Bot 通知你。
-
-`,
-    text16: `請輸入退款原因（至少 10 個字）：`,
-    text17: `原因：\${req.reason}
-`,
-    text18: `退款時限：支付後 7 天內
-
-`,
-    text19: `你的帳號已恢復為免費用戶。
-
-`,
-    text2: `• 34 種語言自動翻譯（OpenAI GPT 優先）
-`,
-    text20: `💡 想要續訂或升級嗎？
-
-`,
-    text21: `💡 如有特殊情況，請聯繫客服。`,
-    text22: `原因：\${reason}
-
-`,
-    text23: `• 解鎖對方清晰頭像 🆕
-`,
-    text24: `這可能需要幾秒鐘時間，請稍候。`,
-    text25: `📝 **申請退款**
-
-`,
-    text26: `• 34 種語言自動翻譯
-`,
-    text27: `💡 使用以下命令處理：
-`,
-    text28: `（Staging 測試價）`,
-    text29: `如有疑問，請聯繫客服。`,
-    text3: `金額：\${request.amount_stars} ⭐`,
-    text30: `狀態：待審核
-
-`,
-    text4: `🔄 **自動續費**：每月自動扣款，無需手動續費
-`,
-    text5: `金額：\${req.amount_stars} ⭐
-`,
-    text6: `用戶 ID：\${request.user_id}
-`,
-    text7: `💳 立即續費 (\${priceStars} ⭐)`,
-    text8: `用戶 ID：\${request.user_id}`,
-    text9: `📌 寬限期：到期後 3 天內續費不會中斷服務。`,
-    viewVipCommand: `你可以隨時使用 /vip 命令查看 VIP 權益。`,
-    vip: `你的 VIP 會員已於 \${new Date(sub.expire_date).toLocaleDateString('zh-TW')} 到期。
-
-`,
-    vip10: `💎 **升級 VIP 會員**
-
-`,
-    vip11: `😢 **VIP 會員已到期**
-
-`,
-    vip12: `升級 VIP 會員，享受以下權益：
-`,
-    vip13: `⏰ **VIP 到期提醒**
-
-`,
-    vip14: `你的 VIP 會員今天到期。
-
-`,
-    vip15: `你的 VIP 訂閱已自動續費！
-`,
-    vip16: `你的 VIP 會員已取消。
-
-`,
-    vip17: `XunNi VIP 訂閱（月費）`,
-    vip18: `✨ VIP 權益持續啟用：
-`,
-    vip19: `你已成為 VIP 會員！
-`,
-    vip2: `你的 VIP 會員已於 \${new Date(sub.expire_date).toLocaleDateString(`,
-    vip20: `✨ VIP 權益已啟用：
-`,
-    vip21: `VIP 會員 (30 天)`,
-    vip22: `🎁 VIP 權益：
-`,
-    vip23: `XunNi VIP 續訂`,
-    vip24: `XunNi VIP 購買`,
-    vip25: `VIP 訂閱`,
-    vip3: `你的 VIP 會員將在 \${daysLeft} 天後到期。
-
-`,
-    vip4: `🔄 續訂 VIP (\${priceStars} ⭐)`,
-    vip5: `💳 購買 VIP (\${priceStars} ⭐)`,
-    vip6: `訂閱 XunNi VIP 會員，每月自動續費！
-
-`,
-    vip7: `💡 立即續費，享受不間斷的 VIP 服務！`,
-    vip8: `💡 立即續費，繼續享受 VIP 權益！
-`,
-    vip9: `✨ **你已經是 VIP 會員**
-
-`,
+  "warning": {
+    "ad": "⚠️ Hiện tại, không có nhà quảng cáo nào được cấu hình\n\n",
+    "ad2": "⚠️ Hiện tại, không có quảng cáo chính thức\n\n",
+    "ad3": "⚠️ Không có nhà cung cấp quảng cáo nào khả dụng tại thời điểm này",
+    "ad4": "⚠️ Không thể chọn nhà cung cấp quảng cáo",
+    "ad5": "⚠️ Không thể xem thêm quảng cáo",
+    "birthday": "⚠️ Hiện tại không ở bước nhập ngày sinh",
+    "bloodType": "⚠️ Hiện tại không ở bước chọn nhóm máu",
+    "broadcast": "{stuckBroadcasts.results.length} ${stuckBroadcasts.results.length}\n\n",
+    "complete": "⚠️ Vui lòng hoàn thành quảng cáo trước đó trước khi bắt đầu quảng cáo mới",
+    "confirm": "⚠️ Vui lòng xác nhận thông tin ngày sinh của bạn:\n\n",
+    "conversation": "⚠️ Thông tin cuộc hội thoại không chính xác.",
+    "conversation10": "⚠️ Cuộc hội thoại không tồn tại",
+    "conversation2": "⚠️ Thông tin cuộc hội thoại không chính xác",
+    "conversation3": "⚠️ Người dùng này không có bài viết lịch sử hội thoại\n",
+    "conversation4": "⚠️ Cuộc hội thoại được chỉ định không thể tìm thấy, có thể đã kết thúc hoặc hết hạn.",
+    "conversation5": "⚠️ **Phần lịch sử hội thoại đã được cập nhật**\n\n",
+    "conversation6": "⚠️ Không thể xác định mục tiêu cuộc hội thoại\n\n",
+    "conversation7": "⚠️ Không thể tìm thấy cuộc hội thoại này\n\n",
+    "conversation8": "⚠️ Cuộc hội thoại không tồn tại hoặc đã kết thúc",
+    "conversation9": "⚠️ Cuộc hội thoại này đã kết thúc",
+    "end": "⚠️ Bài kiểm tra đã kết thúc hoặc không tồn tại",
+    "failed": "⚠️ Xác thực thanh toán không thành công, vui lòng thử lại sau",
+    "gender": "⚠️ Hiện tại không ở bước chọn giới tính",
+    "invite": "⚠️ Không thể lấy mã lời mời",
+    "mbti": "⚠️ Hiện tại không ở bước kiểm tra MBTI",
+    "mbti2": "⚠️ Loại MBTI không hợp lệ",
+    "message": "⚠️ Đã tìm thấy ${outdatedPosts.length} bài viết lỗi thời cần được làm mới\n",
+    "message2": "{testInfo} {testTitle} {accuracy} ${testInfo} ${testTitle} ${accuracy}\n\n",
+    "message3": "⚠️ Vui lòng nhấn giữ tin nhắn bạn muốn chặn và trả lời bằng lệnh\n\n",
+    "message4": "⚠️ Vui lòng nhấn giữ tin nhắn bạn muốn báo cáo và trả lời bằng lệnh\n\n",
+    "message5": "⚠️ **Tin nhắn chứa liên kết bị cấm**\n\n",
+    "register": "⚠️ Không tìm thấy hồ sơ người dùng, vui lòng sử dụng /start để đăng ký trước.",
+    "register2": "⚠️ Vui lòng hoàn thành quy trình đăng ký trước.\n\nSử dụng /start để tiếp tục đăng ký.",
+    "register3": "⚠️ Đã xảy ra sự cố với quy trình đăng ký, vui lòng khởi động lại: /start",
+    "register4": "⚠️ Vui lòng hoàn thành quy trình đăng ký trước",
+    "settings": "⚠️ Nhắc nhở: Cài đặt giới tính sẽ **không thể sửa đổi** sau khi đã được cài đặt!\n\n",
+    "settings2": "⚠️ Cài đặt ngày sinh không thể sửa đổi, vui lòng kiểm tra lại!",
+    "settings3": "⚠️ Lưu ý: Cài đặt giới tính không thể sửa đổi sau khi đã được cài đặt, vui lòng lựa chọn cẩn thận!",
+    "short": "⚠️ Thứ tự câu hỏi không chính xác",
+    "short2": "⚠️ Tùy chọn không xác định",
+    "short3": "⚠️ Yêu cầu không hợp lệ",
+    "short4": "⚠️ Lưu ý:\n",
+    "short5": "⚠️ Các vi phạm khác",
+    "start": "⚠️ Phiên đã hết hạn, vui lòng khởi động lại: /throw",
+    "start2": "⚠️ Phiên đã hết hạn, vui lòng khởi động lại",
+    "task": "⚠️ Loại nhiệm vụ không xác định",
+    "text": "⚠️ **Chú ý**\n\n",
+    "text10": "⚠️ **Các mục không thể thay đổi**:\n",
+    "text11": "⚠️ Phiên đã hết hạn, vui lòng thử lại",
+    "text12": "⚠️ Bản nháp không tồn tại hoặc đã hết hạn",
+    "text2": "⚠️ Loại thanh toán không hợp lệ",
+    "text3": "⚠️ Dịch vụ dịch tạm thời không khả dụng, văn bản gốc như sau\n",
+    "text4": "❌ Bản ghi phát sóng không tìm thấy\n",
+    "text5": "❌ Tên hiển thị quá dài, vui lòng nhập tên hiển thị không quá 36 ký tự.\n\nVui lòng nhập lại hoặc hủy chỉnh sửa:",
+    "text6": "❌ Hồ sơ cá nhân quá dài, vui lòng nhập không quá 200 ký tự.\n\nVui lòng nhập lại hoặc hủy chỉnh sửa:",
+    "text7": "⚠️ Thông báo bảo mật:",
+    "text8": "⚠️ Hiện tại không ở trong bước kiểm tra chống gian lận\n\n",
+    "text9": "⚠️ Hiện tại không ở trong bước điều khoản dịch vụ",
+    "userNotFound": "⚠️ Lưu ý: Tính năng này chỉ khả dụng trong môi trường Staging.",
+    "userNotFound2": "⚠️ **Không được gửi hình ảnh, video hoặc đa phương tiện**",
+    "vip": "⚠️ Tính năng này chỉ khả dụng trong môi trường Staging.",
+    "vip2": "⚠️ Người dùng không tồn tại, vui lòng đăng ký bằng cách sử dụng /start trước.",
+    "vip3": "⚠️ Người dùng không tồn tại\n\n"
   },
-  vipTripleBottle: {
-    bottleContent: `📝 瓶子內容：{content}
-
-`,
-    bottlePicked: `你的瓶子已被 {maskedMatcherNickname} 撿起！
-
-`,
-    conversationIdentifier: `💬 對話標識符：{conversationIdentifier}
-`,
-    firstMatch: `💡 這是你的第 1 個配對，還有 2 個槽位等待中
-
-`,
-    foundBottle: `系統為你找到了 {maskedOwnerNickname} 的瓶子！
-
-`,
-    matchSuccess: `🎯 **VIP 智能配對成功！**
-
-`,
-    replyHint: `💬 **請長按此訊息，選擇「回覆」後輸入內容和對方開始聊天**`,
-    slotsWaiting: `還有 {remaining} 個槽位等待中
-
-`,
-    smartMatch: `🎉 **智能配對成功！**
-
-`,
-    viewChats: `使用 /chats 查看所有對話
-
-`,
-  },
-  warning: {
-    ad: `⚠️ 目前沒有配置任何廣告提供商
-
-`,
-    ad2: `⚠️ 目前沒有官方廣告
-
-`,
-    ad3: `⚠️ 暫無可用的廣告提供商`,
-    ad4: `⚠️ 無法選擇廣告提供商`,
-    ad5: `⚠️ 無法觀看更多廣告`,
-    birthday: `⚠️ 當前不在生日輸入步驟`,
-    bloodType: `⚠️ 當前不在血型選擇步驟`,
-    broadcast: `⚠️ 發現 \${stuckBroadcasts.results.length} 個卡住的廣播
-
-`,
-    complete: `⚠️ 請先完成上一支廣告，再開始新的廣告`,
-    confirm: `⚠️ 請確認你的生日資訊：
-
-`,
-    conversation: `⚠️ 對話資訊錯誤。`,
-    conversation10: `⚠️ 對話不存在`,
-    conversation2: `⚠️ 對話資訊錯誤`,
-    conversation3: `⚠️ 此用戶沒有對話歷史帖子
-`,
-    conversation4: `⚠️ 找不到指定的對話，可能已結束或過期。`,
-    conversation5: `⚠️ **對話歷史部分更新**
-
-`,
-    conversation6: `⚠️ 無法識別對話對象
-
-`,
-    conversation7: `⚠️ 找不到此對話
-
-`,
-    conversation8: `⚠️ 對話不存在或已結束`,
-    conversation9: `⚠️ 此對話已結束`,
-    end: `⚠️ 測驗已結束或不存在`,
-    failed: `⚠️ 支付驗證失敗，請稍後再試`,
-    gender: `⚠️ 當前不在性別選擇步驟`,
-    invite: `⚠️ 無法獲取邀請碼`,
-    mbti: `⚠️ 當前不在 MBTI 測驗步驟`,
-    mbti2: `⚠️ 無效的 MBTI 類型`,
-    message: `⚠️ 發現 \${outdatedPosts.length} 個過時帖子需要刷新
-`,
-    message2: `⚠️ 注意：這是 \${testInfo}\${testTitle}，\${accuracy}。
-
-`,
-    message3: `⚠️ 請長按你要封鎖的訊息後回覆指令
-
-`,
-    message4: `⚠️ 請長按你要舉報的訊息後回覆指令
-
-`,
-    message5: `⚠️ **訊息包含不允許的連結**
-
-`,
-    register: `⚠️ 找不到用戶資料，請先使用 /start 註冊。`,
-    register2: `⚠️ 請先完成註冊流程。
-
-使用 /start 繼續註冊。`,
-    register3: `⚠️ 註冊流程出現問題，請重新開始：/start`,
-    register4: `⚠️ 請先完成註冊流程`,
-    settings: `⚠️ 再次提醒：性別設定後將**永遠不能修改**！
-
-`,
-    settings2: `⚠️ 生日設定後無法修改，請確認無誤！`,
-    settings3: `⚠️ 注意：性別設定後無法修改，請謹慎選擇！`,
-    short: `⚠️ 問題順序錯誤`,
-    short2: `⚠️ 未知的選項`,
-    short3: `⚠️ 無效的請求`,
-    short4: `⚠️ 注意：
-`,
-    short5: `⚠️ 其他違規`,
-    start: `⚠️ 會話已過期，請重新開始：/throw`,
-    start2: `⚠️ 會話已過期，請重新開始`,
-    task: `⚠️ 未知的任務類型`,
-    text: `⚠️ **注意**
-
-`,
-    text10: `⚠️ **不可修改項目**：
-`,
-    text11: `⚠️ 會話已過期，請重新操作`,
-    text12: `⚠️ 草稿不存在或已過期`,
-    text2: `⚠️ 無效的支付類型`,
-    text3: `⚠️ 翻譯服務暫時無法使用，以下為原文
-`,
-    text4: `⚠️ 安全提示：
-`,
-    text5: `⚠️ 當前不在反詐騙測驗步驟`,
-    text6: `⚠️ 當前不在服務條款步驟`,
-    text7: `⚠️ 注意：此功能僅在 Staging 環境可用。`,
-    text8: `⚠️ **不允許發送圖片、影片或多媒體**
-
-`,
-    text9: `⚠️ 此功能僅在 Staging 環境可用。`,
-    userNotFound: `⚠️ 用戶不存在，請先使用 /start 註冊。`,
-    userNotFound2: `⚠️ 用戶不存在`,
-    vip: `⚠️ 已達免費用戶邀請上限，升級 VIP 可解鎖 100 人上限！`,
-    vip2: `⚠️ 此功能僅限 VIP 會員使用`,
-    vip3: `⚠️ **VIP 今天到期**
-
-`,
-  },
-  warnings: {
-    birthday: `⚠️ 生日設定後無法修改，請確認無誤！`,
-    bloodType: `🩸 血型`,
-    gender: `[需要翻译]`,
-    mbti: `🧠 MBTI：\\\\\\\\\\\${mbti}`,
-    register2: `⚠️ 請先完成註冊`,
-    register4: `⚠️ 註冊未完成`,
-    settings: `🧠 MBTI：\\\\\\\\\\\\$`,
-    text5: `📖 簡介：{otherUser.bio}`,
-    text6: `⚠️ 請先完成註冊`,
-    userNotFound: `用戶不存在`,
-    warning: {
-      ad: `⚠️ 目前沒有配置任何廣告提供商
-
-`,
-      ad2: `⚠️ 目前沒有官方廣告
-
-`,
-      ad3: `⚠️ 暫無可用的廣告提供商`,
-      ad4: `⚠️ 無法選擇廣告提供商`,
-      ad5: `⚠️ 無法觀看更多廣告`,
-      birthday: `⚠️ 當前不在生日輸入步驟`,
-      bloodType: `⚠️ 當前不在血型選擇步驟`,
-      broadcast: `⚠️ 發現 \\\${stuckBroadcasts.results.length} 個卡住的廣播
-
-`,
-      complete: `⚠️ 請先完成上一支廣告，再開始新的廣告`,
-      confirm: `⚠️ 請確認你的生日資訊：
-
-`,
-      conversation: `⚠️ 對話資訊錯誤。`,
-      conversation10: `⚠️ 對話不存在`,
-      conversation2: `⚠️ 對話資訊錯誤`,
-      conversation3: `⚠️ 此用戶沒有對話歷史帖子
-`,
-      conversation4: `⚠️ 找不到指定的對話，可能已結束或過期。`,
-      conversation5: `⚠️ **對話歷史部分更新**
-
-`,
-      conversation6: `⚠️ 無法識別對話對象
-
-`,
-      conversation7: `⚠️ 找不到此對話
-
-`,
-      conversation8: `⚠️ 對話不存在或已結束`,
-      conversation9: `⚠️ 此對話已結束`,
-      end: `⚠️ 測驗已結束或不存在`,
-      failed: `⚠️ 支付驗證失敗，請稍後再試`,
-      gender: `⚠️ 當前不在性別選擇步驟`,
-      invite: `⚠️ 無法獲取邀請碼`,
-      mbti: `⚠️ 當前不在 MBTI 測驗步驟`,
-      mbti2: `⚠️ 無效的 MBTI 類型`,
-      message: `⚠️ 發現 \\\${outdatedPosts.length} 個過時帖子需要刷新
-`,
-      message2: `⚠️ 注意：這是 \\\${testInfo}\\\${testTitle}，\\\${accuracy}。
-
-`,
-      message3: `⚠️ 請長按你要封鎖的訊息後回覆指令
-
-`,
-      message4: `⚠️ 請長按你要舉報的訊息後回覆指令
-
-`,
-      message5: `⚠️ **訊息包含不允許的連結**
-
-`,
-      register: `⚠️ 找不到用戶資料，請先使用 /start 註冊。`,
-      register2: `⚠️ 請先完成註冊流程。
-
-使用 /start 繼續註冊。`,
-      register3: `⚠️ 註冊流程出現問題，請重新開始：/start`,
-      register4: `⚠️ 請先完成註冊流程`,
-      settings: `⚠️ 再次提醒：性別設定後將**永遠不能修改**！
-
-`,
-      settings2: `⚠️ 生日設定後無法修改，請確認無誤！`,
-      settings3: `⚠️ 注意：性別設定後無法修改，請謹慎選擇！`,
-      short: `⚠️ 問題順序錯誤`,
-      short2: `⚠️ 未知的選項`,
-      short3: `⚠️ 無效的請求`,
-      short4: `[需要翻译]`,
-      short5: `⚠️ 其他違規`,
-      start: `⚠️ 會話已過期，請重新開始：/throw`,
-      start2: `⚠️ 會話已過期，請重新開始`,
-      task: `⚠️ 未知的任務類型`,
-      text: `⚠️ **注意**
-
-`,
-      text10: `⚠️ **不可修改項目**：
-`,
-      text11: `⚠️ 會話已過期，請重新操作`,
-      text12: `⚠️ 草稿不存在或已過期`,
-      text2: `⚠️ 無效的支付類型`,
-      text3: `⚠️ 翻譯服務暫時無法使用，以下為原文
-`,
-      text4: `⚠️ 安全提示：
-`,
-      text5: `⚠️ 當前不在反詐騙測驗步驟`,
-      text6: `⚠️ 當前不在服務條款步驟`,
-      text7: `⚠️ 注意：此功能僅在 Staging 環境可用。`,
-      text8: `⚠️ **不允許發送圖片、影片或多媒體**
-
-`,
-      text9: `⚠️ 此功能僅在 Staging 環境可用。`,
-      userNotFound: `⚠️ 用戶不存在，請先使用 /start 註冊。`,
-      userNotFound2: `⚠️ 用戶不存在`,
-      vip: `⚠️ 已達免費用戶邀請上限，升級 VIP 可解鎖 100 人上限！`,
-      vip2: `⚠️ 此功能僅限 VIP 會員使用`,
-      vip3: `⚠️ **VIP 今天到期**
-
-`,
-    },
-  },
+  "warnings": {
+    "birthday": "⚠️ Đã đạt giới hạn mời người dùng miễn phí, nâng cấp lên VIP để mở khóa giới hạn 100 người!",
+    "bloodType": "⚠️ Tính năng này chỉ dành cho thành viên VIP",
+    "gender": "{otherUser.gender}",
+    "mbti": "{mbti} ${mbti}",
+    "register2": "⚠️ **VIP hết hạn hôm nay**",
+    "register4": "⚠️ Ngày sinh không thể chỉnh sửa một khi đã đặt, vui lòng xác nhận là chính xác!",
+    "settings": "🩸 Nhóm máu",
+    "text5": "{otherUser.bio}",
+    "text6": "[Cần dịch: warnings.register2]",
+    "userNotFound": "[Cần dịch: warnings.register4]",
+    "warning": {
+      "ad": "🧠 MBTI: \\\\\\\\\\\\$\n\n",
+      "ad2": "[Cần dịch: warnings.text6]\n\n",
+      "ad3": "Người dùng không tồn tại",
+      "ad4": "⚠️ Hiện tại không có nhà cung cấp quảng cáo nào được cấu hình",
+      "ad5": "⚠️ Không thể xem thêm quảng cáo",
+      "birthday": "⚠️ Hiện tại không ở bước nhập sinh nhật",
+      "bloodType": "⚠️ Hiện tại không ở bước chọn nhóm máu",
+      "broadcast": "⚠️ Đã tìm thấy \\${stuckBroadcasts.results.length} phát sóng bị kẹt\n\n",
+      "complete": "⚠️ Vui lòng hoàn thành quảng cáo trước đó trước khi bắt đầu quảng cáo mới",
+      "confirm": "⚠️ Vui lòng xác nhận thông tin ngày sinh của bạn:\n\n",
+      "conversation": "⚠️ Thông tin cuộc trò chuyện không chính xác.",
+      "conversation10": "⚠️ Cuộc trò chuyện không tồn tại.",
+      "conversation2": "⚠️ Thông tin cuộc trò chuyện không chính xác.",
+      "conversation3": "⚠️ Người dùng này không có bài viết lịch sử trò chuyện\n",
+      "conversation4": "⚠️ Không thể tìm thấy cuộc trò chuyện đã chỉ định, nó có thể đã kết thúc hoặc hết hạn.",
+      "conversation5": "⚠️ **Lịch sử trò chuyện đã được cập nhật một phần**\n\n",
+      "conversation6": "⚠️ Không thể xác định đối tác trò chuyện\n\n",
+      "conversation7": "⚠️ Không thể tìm thấy cuộc trò chuyện này\n\n",
+      "conversation8": "⚠️ Cuộc trò chuyện không tồn tại hoặc đã kết thúc",
+      "conversation9": "⚠️ Cuộc trò chuyện này đã kết thúc",
+      "end": "⚠️ Bài khảo sát đã kết thúc hoặc không tồn tại",
+      "failed": "⚠️ Xác minh thanh toán không thành công, vui lòng thử lại sau.",
+      "gender": "⚠️ Hiện tại không ở bước chọn giới tính",
+      "invite": "⚠️ Không thể lấy mã mời",
+      "mbti": "⚠️ Hiện tại không ở bước bài kiểm tra MBTI",
+      "mbti2": "⚠️ Loại MBTI không hợp lệ",
+      "message": "⚠️ Đã tìm thấy \\${outdatedPosts.length} bài viết cũ cần làm mới\n",
+      "message2": "⚠️ Lưu ý: Đây là \\${testInfo}\\${testTitle}, \\${accuracy}.\n\n",
+      "message3": "⚠️ Vui lòng giữ lâu tin nhắn bạn muốn chặn và phản hồi bằng lệnh\n\n",
+      "message4": "⚠️ Vui lòng giữ lâu tin nhắn bạn muốn báo cáo và phản hồi bằng lệnh\n\n",
+      "message5": "⚠️ **Tin nhắn chứa liên kết bị cấm**\n\n",
+      "register": "⚠️ Không thể tìm thấy thông tin người dùng, vui lòng đăng ký trước bằng /start.",
+      "register2": "⚠️ Vui lòng hoàn tất quy trình đăng ký trước.\n\nSử dụng /start để tiếp tục đăng ký.",
+      "register3": "⚠️ Đã xảy ra sự cố với quy trình đăng ký, vui lòng khởi động lại: /start",
+      "register4": "⚠️ Vui lòng hoàn tất quy trình đăng ký trước",
+      "settings": "⚠️ Nhắc nhở: Khi đã thiết lập, giới tính **không thể thay đổi** mãi mãi!\n\n",
+      "settings2": "⚠️ Cài đặt ngày sinh không thể được sửa đổi, vui lòng xác nhận rằng nó chính xác!",
+      "settings3": "⚠️ Lưu ý: Cài đặt giới tính không thể được sửa đổi, vui lòng lựa chọn cẩn thận!",
+      "short": "⚠️ Thứ tự câu hỏi không đúng",
+      "short2": "⚠️ Lựa chọn không xác định",
+      "short3": "⚠️ Yêu cầu không hợp lệ",
+      "short4": "⚠️ Giới hạn độ dài biệt danh là 36 ký tự",
+      "short5": "⚠️ Vi phạm khác",
+      "start": "⚠️ Phiên đã hết hạn, vui lòng khởi động lại: /throw",
+      "start2": "⚠️ Phiên đã hết hạn, vui lòng khởi động lại",
+      "task": "⚠️ Loại tác vụ không xác định",
+      "text": "⚠️ **Lưu ý**\n\n",
+      "text10": "⚠️ **Các mục không thể thay đổi**：\n",
+      "text11": "⚠️ Phiên đã hết hạn, vui lòng thử lại",
+      "text12": "⚠️ Bản nháp không tồn tại hoặc đã hết hạn",
+      "text2": "⚠️ Loại thanh toán không hợp lệ",
+      "text3": "⚠️ Dịch vụ dịch thuật tạm thời không khả dụng, bên dưới là văn bản gốc\n",
+      "text4": "⚠️ Lời nhắc an toàn：\n",
+      "text5": "⚠️ Hiện tại không ở bước kiểm tra chống gian lận",
+      "text6": "⚠️ Hiện tại không ở bước điều khoản dịch vụ",
+      "text7": "⚠️ Lưu ý: Tính năng này chỉ khả dụng trong môi trường Staging.",
+      "text8": "⚠️ **Gửi ảnh, video hoặc multimedia là không được phép**\n\n",
+      "text9": "⚠️ Tính năng này chỉ khả dụng trong môi trường Staging.",
+      "userNotFound": "⚠️ Người dùng không tồn tại, vui lòng sử dụng /start để đăng ký trước.",
+      "userNotFound2": "⚠️ Người dùng không tồn tại",
+      "vip": "⚠️ Đã đạt giới hạn mời người dùng miễn phí, nâng cấp lên VIP để mở khóa giới hạn 100 người!",
+      "vip2": "⚠️ Tính năng này chỉ dành cho thành viên VIP",
+      "vip3": "⚠️ **VIP hết hạn hôm nay**\n\n"
+    }
+  }
 };

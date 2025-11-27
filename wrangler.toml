@@ -19,6 +19,7 @@ BROADCAST_BATCH_SIZE = "25"
 BROADCAST_MAX_JOBS = "3"
 ENABLE_AI_MODERATION = "true"
 ENABLE_TRANSLATION = "true"
+ADMIN_LOG_GROUP_ID = "-4917557179"
 
 # Staging environment
 [env.staging]
@@ -31,6 +32,7 @@ BROADCAST_BATCH_SIZE = "25"
 BROADCAST_MAX_JOBS = "3"
 ENABLE_AI_MODERATION = "true"
 ENABLE_TRANSLATION = "true"
+ADMIN_LOG_GROUP_ID = "-4917557179"
 GEMINI_PROJECT_ID = "gen-lang-client-0526946218"
 GEMINI_LOCATION = "us-central1"
 GEMINI_MODELS = "gemini-2.0-flash-exp,gemini-2.5-flash-lite"
@@ -51,6 +53,8 @@ ENABLE_VIP_SUBSCRIPTION = "false"
 # Smart Matching Configuration
 ENABLE_SMART_MATCHING = "true"
 SMART_MATCHING_THRESHOLD = "70"  # Minimum score for smart recommendation
+# MoonPacket API Configuration (Dev/Staging only - move to secrets for prod)
+MOONPACKET_API_KEY = "HvQ/2z53aaqfuOyfAxqsnq1YpQWwZuPdxFWDmbXaTKM="
 
 # Staging D1 Database
 [[env.staging.d1_databases]]
@@ -81,6 +85,7 @@ name = "xunni-bot"
 [env.production.vars]
 ENVIRONMENT = "production"
 LOG_LEVEL = "warn"
+ADMIN_LOG_GROUP_ID = "-4917557179"
 # Super Admin Configuration
 SUPER_ADMIN_USER_ID = "396943893"
 ADMIN_USER_IDS = ""
@@ -96,6 +101,7 @@ ENABLE_VIP_SUBSCRIPTION = "false"
 # Smart Matching Configuration
 ENABLE_SMART_MATCHING = "true"
 SMART_MATCHING_THRESHOLD = "70"  # Minimum score for smart recommendation
+# MoonPacket API Key should be set via secrets for production
 
 # Production D1 Database
 # Run: wrangler d1 create xunni-db-production
@@ -151,4 +157,4 @@ cron = "30 18 * * *"  # Every day at 18:30 UTC = 02:30 Taipei (Birthday greeting
 # wrangler secret put OPENAI_API_KEY --env production
 # wrangler secret put TELEGRAM_WEBHOOK_SECRET --env staging
 # wrangler secret put TELEGRAM_WEBHOOK_SECRET --env production
-
+# wrangler secret put MOONPACKET_API_KEY --env production

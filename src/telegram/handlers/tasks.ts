@@ -4,6 +4,7 @@
  */
 
 import type { Env, TelegramMessage, User } from '~/types';
+import type { Task } from '~/domain/task';
 import { createTelegramService } from '~/services/telegram';
 import { createDatabaseClient } from '~/db/client';
 import { findUserByTelegramId } from '~/db/queries/users';
@@ -91,7 +92,20 @@ export async function handleTasks(message: TelegramMessage, env: Env): Promise<v
         const pending = userTask?.status === 'pending_claim';
         const icon = completed ? '✅' : pending ? '🎁' : '⏳';
         const status = completed ? '' : pending ? i18n.t('tasks.short') : '';
-        const taskName = task.name.startsWith('tasks.name.') ? i18n.t(task.name) : task.name;
+        
+        // Handle dynamic translations for new social tasks
+        let taskName = task.name;
+        if (task.name_i18n) {
+          try {
+            const nameI18n = JSON.parse(task.name_i18n);
+            taskName = nameI18n[user.language_pref || 'zh-TW'] || nameI18n['zh-TW'] || task.name;
+          } catch (e) {
+            // fallback to default name
+          }
+        } else if (task.name.startsWith('tasks.name.')) {
+          taskName = i18n.t(task.name);
+        }
+
         message_text += i18n.t('tasks.message', { icon, task: { name: taskName, reward_amount: task.reward_amount }, status });
       }
       message_text += '\n';
@@ -165,15 +179,65 @@ export async function handleTasks(message: TelegramMessage, env: Env): Promise<v
     }
     if (profileRow.length > 0) keyboard.push(profileRow);
 
-    // Row 2: Social tasks
-    const socialRow = [];
-    const joinChannelTask = userTaskMap.get('task_join_channel');
-    if (!joinChannelTask || joinChannelTask.status === 'available') {
-      socialRow.push({ text: i18n.t('buttons.short3'), url: 'https://t.me/xunnichannel' });
-    } else if (joinChannelTask.status === 'pending_claim') {
-      socialRow.push({ text: i18n.t('buttons.short20'), callback_data: 'claim_task_task_join_channel' });
+    // Row 2: Social tasks (Dynamic)
+    for (const task of socialTasks) {
+      const userTask = userTaskMap.get(task.id);
+        
+      // Skip completed tasks (optional, maybe we want to keep them visible but disabled?)
+      // Design doc says "completed tasks can be hidden or marked".
+      // Current logic hides completed tasks from buttons usually, but let's check.
+      if (userTask?.status === 'completed') continue;
+
+      let label = task.name;
+      if (task.name_i18n) {
+        try {
+          const nameI18n = JSON.parse(task.name_i18n);
+          label = nameI18n[user.language_pref || 'zh-TW'] || nameI18n['zh-TW'] || task.name;
+        } catch (e) {
+          // Ignore parsing error, use default name
+        }
+      } else if (task.name.startsWith('tasks.name.')) {
+        label = i18n.t(task.name);
+      }
+
+      // Special handling for legacy join channel
+      if (task.id === 'task_join_channel') {
+        if (userTask?.status === 'pending_claim') {
+          keyboard.push([{ text: `🎁 ${i18n.t('buttons.short20')}`, callback_data: 'claim_task_task_join_channel' }]);
+        } else {
+          keyboard.push([{ text: `📢 ${i18n.t('buttons.short3')}`, url: 'https://t.me/xunnichannel' }]);
+          // Add Verify Button for legacy task if not pending claim
+          // Actually, legacy logic had a button in handleNextTaskCallback, but here it was just the link?
+          // Let's align with new system: click link -> then show verify button?
+          // Or just show both?
+          // In the old code:
+          // if (!joinChannelTask || joinChannelTask.status === 'available') {
+          //   socialRow.push({ text: i18n.t('buttons.short3'), url: 'https://t.me/xunnichannel' });
+          // } 
+          // So only link. But how do they verify? The system relies on "next_task_task_join_channel" callback usually?
+          // Or maybe handleVerifyChannelJoin is triggered by user explicitly?
+          // Let's keep legacy behavior for 'task_join_channel' but use new logic for others.
+        }
+        continue;
+      }
+
+      // New Social Tasks
+      if (task.action_url) {
+        // Row with URL button and Verify/Claim button
+        const row = [];
+        row.push({ text: `🔗 ${label}`, url: task.action_url });
+            
+        if (task.verification_type === 'none') {
+          // Click-to-claim style
+          row.push({ text: `🎁 ${i18n.t('buttons.claim')}`, callback_data: `claim_task_${task.id}` });
+        } else if (task.verification_type === 'telegram_chat') {
+          // Verify membership style
+          row.push({ text: `🔄 ${i18n.t('buttons.verify')}`, callback_data: `verify_task_${task.id}` });
+        }
+        keyboard.push(row);
+      }
     }
-    if (socialRow.length > 0) keyboard.push(socialRow);
+
 
     // Row 3: Action tasks
     const actionRow = [];
@@ -260,7 +324,19 @@ export async function checkAndCompleteTask(
     // Send completion message
     const { createI18n } = await import('~/i18n');
     const i18n = createI18n(user.language_pref || 'zh-TW');
-    const taskName = task.name.startsWith('tasks.name.') ? i18n.t(task.name) : task.name;
+    
+    let taskName = task.name;
+    if (task.name_i18n) {
+      try {
+        const nameI18n = JSON.parse(task.name_i18n);
+        taskName = nameI18n[user.language_pref || 'zh-TW'] || nameI18n['zh-TW'] || task.name;
+      } catch (e) {
+        // Ignore parsing error
+      }
+    } else if (task.name.startsWith('tasks.name.')) {
+      taskName = i18n.t(task.name);
+    }
+
     const rewardTypeText = task.reward_type === 'daily' ? i18n.t('tasks.short2') : i18n.t('tasks.short3');
     console.error(`[checkAndCompleteTask] Sending completion message for task: ${taskName}`);
     await telegram.sendMessage(
@@ -370,6 +446,8 @@ export async function handleNextTaskCallback(
       from: { id: callbackQuery.from.id },
       text: '',
     } as TelegramMessage;
+    
+    const task = await getTaskById(db, taskId);
 
     switch (taskId) {
       case 'task_interests': {
@@ -465,11 +543,46 @@ export async function handleNextTaskCallback(
       }
 
       default: {
-        const { createI18n } = await import('~/i18n');
-        const { findUserByTelegramId } = await import('~/db/queries/users');
-        const db = createDatabaseClient(env.DB);
-        const user = await findUserByTelegramId(db, callbackQuery.from.id.toString());
-        const i18n = createI18n(user?.language_pref || 'zh-TW');
+        // Dynamic Social Tasks Handling
+        if (task && task.category === 'social' && task.action_url) {
+          let label = task.name;
+          if (task.name_i18n) {
+            try {
+              const nameI18n = JSON.parse(task.name_i18n);
+              label = nameI18n[user?.language_pref || 'zh-TW'] || nameI18n['zh-TW'] || task.name;
+            } catch (e) {
+              // Ignore parsing error
+            }
+          }
+             
+          let desc = task.description;
+          if (task.description_i18n) {
+            try {
+              const descI18n = JSON.parse(task.description_i18n);
+              desc = descI18n[user?.language_pref || 'zh-TW'] || descI18n['zh-TW'] || task.description;
+            } catch (e) {
+              // Ignore parsing error
+            }
+          }
+
+          const buttons = [];
+          buttons.push([{ text: `🔗 ${i18n.t('common.open')}`, url: task.action_url }]);
+             
+          if (task.verification_type === 'none') {
+            buttons.push([{ text: `🎁 ${i18n.t('buttons.claim')}`, callback_data: `claim_task_${task.id}` }]);
+          } else if (task.verification_type === 'telegram_chat') {
+            buttons.push([{ text: `🔄 ${i18n.t('buttons.verify')}`, callback_data: `verify_task_${task.id}` }]);
+          }
+          buttons.push([{ text: i18n.t('common.back3'), callback_data: 'return_to_menu' }]);
+
+          await telegram.sendMessageWithButtons(
+            chatId,
+            `📋 **${label}**\n\n${desc}`,
+            buttons
+          );
+          return;
+        }
+
         await telegram.sendMessage(chatId, i18n.t('errors.invalidRequest'));
       }
     }

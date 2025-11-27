@@ -52,6 +52,9 @@ export interface OfficialAd {
   reward_quota: number;
   requires_verification: boolean;
   is_enabled: boolean;
+  title_i18n?: string; // JSON string
+  content_i18n?: string; // JSON string
+  deleted_at?: string;
   start_date?: string;
   end_date?: string;
   max_views?: number;
@@ -246,7 +249,7 @@ export function processAdClick(
   return {
     success: true,
     quota_earned: ad.reward_quota,
-    message: `Claimed +${ad.reward_quota} permanent quota!`,
+    message: `Claimed +${ad.reward_quota} temporary quota!`,
     requires_verification: false,
   };
 }
@@ -271,7 +274,7 @@ export function processAdVerification(ad: OfficialAd, isVerified: boolean): Offi
   return {
     success: true,
     quota_earned: ad.reward_quota,
-    message: `Verified! Claimed +${ad.reward_quota} permanent quota!`,
+    message: `Verified! Claimed +${ad.reward_quota} temporary quota!`,
     requires_verification: false,
   };
 }
@@ -298,7 +301,7 @@ export function calculateTotalQuotaEarned(adViews: OfficialAdView[]): number {
  */
 export function formatAdMessage(ad: OfficialAd, i18n?: any): string {
   const typeEmoji = getAdTypeEmoji(ad.ad_type);
-  const rewardText = i18n?.t('officialAd.reward', { quota: ad.reward_quota }) || `🎁 獎勵：+${ad.reward_quota} 個永久額度`;
+  const rewardText = i18n?.t('officialAd.reward', { quota: ad.reward_quota }) || `🎁 獎勵：+${ad.reward_quota} 個當日額度`;
 
   let message = `${typeEmoji} **${ad.title}**\n\n${ad.content}\n\n${rewardText}`;
 

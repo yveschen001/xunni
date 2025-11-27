@@ -13,6 +13,8 @@
 import type { D1Database } from '@cloudflare/workers-types';
 import type { AdReward } from '~/domain/ad_reward';
 import { getTodayDateString } from '~/domain/ad_reward';
+import { incrementAdsWatched } from './daily_usage'; // Import daily usage updater
+import { createDatabaseClient } from '../client'; // Need client to wrap d1 for daily_usage
 
 // ============================================================================
 // Read Operations
@@ -229,6 +231,14 @@ export async function incrementAdCompletion(
   const newQuotaEarned = current.quota_earned + 1;
   const newAdCompletions = current.ad_completions + 1;
 
+  // ✨ NEW: Increment daily usage counter (fire and forget for speed, but await for safety)
+  try {
+    const client = createDatabaseClient({ DB: db } as any); // Wrap D1
+    await incrementAdsWatched(client, telegramId, rewardDate);
+  } catch (e) {
+    console.error('[incrementAdCompletion] Failed to update daily usage:', e);
+  }
+
   return upsertAdReward(
     db,
     telegramId,
@@ -237,6 +247,41 @@ export async function incrementAdCompletion(
     newQuotaEarned,
     current.ad_views,
     newAdCompletions
+  );
+}
+
+/**
+ * Grant temporary quota (without incrementing ad watch count)
+ *
+ * @param db - D1 database instance
+ * @param telegramId - User's Telegram ID
+ * @param quotaAmount - Amount of quota to grant
+ * @returns Updated ad reward record
+ */
+export async function grantTemporaryQuota(
+  db: D1Database,
+  telegramId: string,
+  quotaAmount: number
+): Promise<AdReward> {
+  const today = getTodayDateString();
+  const current = await getAdReward(db, telegramId, today);
+  
+  // ✨ NEW: Increment daily usage counter for official ads
+  try {
+    const client = createDatabaseClient({ DB: db } as any);
+    await incrementAdsWatched(client, telegramId, today);
+  } catch (e) {
+    console.error('[grantTemporaryQuota] Failed to update daily usage:', e);
+  }
+
+  return upsertAdReward(
+    db,
+    telegramId,
+    today,
+    current?.ads_watched || 0,
+    (current?.quota_earned || 0) + quotaAmount,
+    current?.ad_views || 0,
+    current?.ad_completions || 0
   );
 }
 

@@ -18,6 +18,13 @@ export interface Task {
   reward_type: RewardType;
   sort_order: number;
   is_enabled: boolean;
+  action_url?: string;
+  verification_type?: 'none' | 'telegram_chat';
+  target_id?: string;
+  name_i18n?: string; // JSON string
+  description_i18n?: string; // JSON string
+  icon?: string;
+  deleted_at?: string;
 }
 
 export interface UserTask {

@@ -144,10 +144,14 @@ export async function createBroadcast(
 
 /**
  * Process a broadcast (send to all users)
+ * Uses cursor pagination to prevent OOM and support large broadcasts
  */
 async function processBroadcast(env: Env, broadcastId: number): Promise<void> {
   const db = createDatabaseClient(env.DB);
   const telegram = createTelegramService(env);
+  const BATCH_SIZE = 100; // Users per loop iteration
+  const MAX_EXECUTION_TIME_MS = 45000; // 45 seconds limit for Worker
+  const startTime = Date.now();
 
   try {
     // Get broadcast
@@ -156,97 +160,96 @@ async function processBroadcast(env: Env, broadcastId: number): Promise<void> {
       throw new Error(`Broadcast ${broadcastId} not found`);
     }
 
-    // Allow retry for 'sending' status (in case of previous failure)
-    // Skip only 'completed', 'failed', or 'cancelled'
-    if (
-      broadcast.status === 'completed' ||
-      broadcast.status === 'failed' ||
-      broadcast.status === 'cancelled'
-    ) {
-      console.log(
-        `[processBroadcast] Broadcast ${broadcastId} already in final state: ${broadcast.status}`
-      );
+    // Skip finished broadcasts
+    if (['completed', 'failed', 'cancelled'].includes(broadcast.status)) {
       return;
     }
 
     // Update status to sending
     await updateBroadcastStatus(db, broadcastId, 'sending', new Date().toISOString());
 
-    // Get target users
-    let userIds: string[];
-    if (broadcast.targetType === 'filtered' && broadcast.filterJson) {
-      // Use filtered query
-      const filters: BroadcastFilters = JSON.parse(broadcast.filterJson);
-      userIds = await getFilteredUserIds(db, filters);
-    } else {
-      // Use traditional query
-      userIds = await getTargetUserIds(db, broadcast.targetType as 'all' | 'vip' | 'non_vip');
-    }
+    let cursor = broadcast.lastProcessedId || 0;
+    let hasMore = true;
+    let totalSent = broadcast.sentCount;
+    let totalFailed = broadcast.failedCount;
+    let processedInRun = 0;
 
-    // Calculate batches (使用低優先級，不影響瓶子推送)
-    const { batchSize, delayMs } = calculateBatchSize(userIds.length, 'low');
+    while (hasMore) {
+      // Check execution time
+      if (Date.now() - startTime > MAX_EXECUTION_TIME_MS) {
+        console.log(`[processBroadcast] Time limit reached, stopping for now. Cursor: ${cursor}`);
+        break;
+      }
 
-    let sentCount = 0;
-    let failedCount = 0;
-    // ✨ NEW: Detailed error statistics
-    let blockedCount = 0;
-    let deletedCount = 0;
-    let invalidCount = 0;
+      // Fetch next batch
+      let users: { id: number; telegram_id: string }[] = [];
+      if (broadcast.targetType === 'filtered' && broadcast.filterJson) {
+        const filters: BroadcastFilters = JSON.parse(broadcast.filterJson);
+        users = await getFilteredUserIds(db, filters, cursor, BATCH_SIZE);
+      } else {
+        users = await getTargetUserIds(
+          db, 
+          broadcast.targetType as 'all' | 'vip' | 'non_vip', 
+          cursor, 
+          BATCH_SIZE
+        );
+      }
 
-    // Send in batches
-    for (let i = 0; i < userIds.length; i += batchSize) {
-      const batch = userIds.slice(i, i + batchSize);
+      if (users.length === 0) {
+        hasMore = false;
+        break;
+      }
 
-      // Send to each user in batch
+      console.log(`[processBroadcast] Processing batch of ${users.length} users starting from ID ${cursor}`);
+
+      // Send messages
       await Promise.all(
-        batch.map(async (userId) => {
+        users.map(async (user) => {
           try {
-            await telegram.sendMessage(parseInt(userId), broadcast.message);
-            sentCount++;
+            await telegram.sendMessage(parseInt(user.telegram_id), broadcast.message);
+            totalSent++;
           } catch (error) {
-            console.error(`[processBroadcast] Failed to send to ${userId}:`, error);
-
-            // ✨ NEW: Handle error and classify (non-blocking)
+            // Basic error handling, stats update later
+            totalFailed++;
             try {
-              const { handleBroadcastError } = await import('./telegram_error_handler');
-              const { errorType } = await handleBroadcastError(db, userId, error);
-
-              if (errorType === 'blocked') {
-                blockedCount++;
-              } else if (errorType === 'deleted') {
-                deletedCount++;
-              } else if (errorType === 'invalid') {
-                invalidCount++;
-              } else {
-                failedCount++;
-              }
-            } catch (handlerError) {
-              // If error handler fails, fall back to original behavior
-              console.error(`[processBroadcast] Error handler failed:`, handlerError);
-              failedCount++;
+                // Handle error classification
+                const { handleBroadcastError } = await import('./telegram_error_handler');
+                await handleBroadcastError(db, user.telegram_id, error);
+            } catch (e) {
+                console.error('Error handler failed', e);
             }
           }
         })
       );
 
-      // Update progress
-      await updateBroadcastProgress(db, broadcastId, sentCount, failedCount);
+      // Update cursor
+      cursor = users[users.length - 1].id;
+      processedInRun += users.length;
 
-      // Delay between batches (except last batch)
-      if (i + batchSize < userIds.length) {
-        await sleep(delayMs);
-      }
+      // Update progress in DB
+      await db.d1
+        .prepare(`
+          UPDATE broadcasts 
+          SET sent_count = ?, 
+              failed_count = ?, 
+              last_processed_id = ? 
+          WHERE id = ?
+        `)
+        .bind(totalSent, totalFailed, cursor, broadcastId)
+        .run();
+      
+      // Small delay to be nice to Telegram API
+      await sleep(500);
     }
 
-    // Mark as completed
-    await updateBroadcastStatus(db, broadcastId, 'completed', undefined, new Date().toISOString());
+    // If we finished all users
+    if (!hasMore) {
+      await updateBroadcastStatus(db, broadcastId, 'completed', undefined, new Date().toISOString());
+      console.log(`[processBroadcast] Completed broadcast ${broadcastId}. Total sent: ${totalSent}`);
+    } else {
+        console.log(`[processBroadcast] Paused broadcast ${broadcastId} at cursor ${cursor}`);
+    }
 
-    // ✨ NEW: Detailed completion log
-    console.log(
-      `[processBroadcast] Completed broadcast ${broadcastId}: ` +
-        `${sentCount} sent, ${failedCount} failed ` +
-        `(blocked: ${blockedCount}, deleted: ${deletedCount}, invalid: ${invalidCount})`
-    );
   } catch (error) {
     console.error(`[processBroadcast] Error:`, error);
     await updateBroadcastStatus(
@@ -319,19 +322,19 @@ export async function getBroadcast(
     completedAt: result.completed_at,
     errorMessage: result.error_message,
     filterJson: result.filter_json,
+    lastProcessedId: result.last_processed_id,
   };
 }
 
 /**
- * Get target user IDs based on type
+ * Get target user count
  */
-async function getTargetUserIds(
+async function countTargetUsers(
   db: ReturnType<typeof createDatabaseClient>,
   targetType: 'all' | 'vip' | 'non_vip'
-): Promise<string[]> {
-  // ✨ SMART FILTERING: Only include active users from last 30 days
+): Promise<number> {
   let query = `
-    SELECT telegram_id 
+    SELECT COUNT(*) as count
     FROM users 
     WHERE onboarding_step = 'completed'
       AND deleted_at IS NULL
@@ -345,36 +348,51 @@ async function getTargetUserIds(
     query += ` AND (is_vip = 0 OR vip_expires_at <= datetime('now'))`;
   }
 
-  const result = await db.d1.prepare(query).all<{ telegram_id: string }>();
-  const userIds = result.results?.map((r) => r.telegram_id) || [];
-
-  console.log(
-    `[getTargetUserIds] Found ${userIds.length} active users for ${targetType} broadcast`
-  );
-
-  return userIds;
+  const result = await db.d1.prepare(query).first<{ count: number }>();
+  return result?.count || 0;
 }
 
 /**
- * Get filtered user IDs based on custom filters
- *
- * @param db - Database client
- * @param filters - Broadcast filters (gender, zodiac, country, age, mbti, vip, is_birthday)
- * @returns Array of telegram IDs
- *
- * ⚠️ SAFETY: Always includes mandatory filters:
- * - onboarding_step = 'completed'
- * - deleted_at IS NULL
- * - bot_status = 'active'
- * - last_active_at >= datetime('now', '-30 days')
+ * Get target user IDs based on type with cursor pagination
  */
-export async function getFilteredUserIds(
+async function getTargetUserIds(
+  db: ReturnType<typeof createDatabaseClient>,
+  targetType: 'all' | 'vip' | 'non_vip',
+  cursor: number = 0,
+  limit: number = 1000
+): Promise<{ id: number; telegram_id: string }[]> {
+  // ✨ SMART FILTERING: Only include active users from last 30 days
+  let query = `
+    SELECT id, telegram_id 
+    FROM users 
+    WHERE onboarding_step = 'completed'
+      AND deleted_at IS NULL
+      AND bot_status = 'active'
+      AND last_active_at >= datetime('now', '-30 days')
+      AND id > ?
+  `;
+
+  if (targetType === 'vip') {
+    query += ` AND is_vip = 1 AND vip_expires_at > datetime('now')`;
+  } else if (targetType === 'non_vip') {
+    query += ` AND (is_vip = 0 OR vip_expires_at <= datetime('now'))`;
+  }
+
+  query += ` ORDER BY id ASC LIMIT ?`;
+
+  const result = await db.d1.prepare(query).bind(cursor, limit).all<{ id: number; telegram_id: string }>();
+  return result.results || [];
+}
+
+/**
+ * Get filtered user count
+ */
+async function countFilteredUsers(
   db: ReturnType<typeof createDatabaseClient>,
   filters: BroadcastFilters
-): Promise<string[]> {
-  // ✅ BASE QUERY: Always include mandatory safety filters
+): Promise<number> {
   let query = `
-    SELECT telegram_id 
+    SELECT COUNT(*) as count
     FROM users 
     WHERE onboarding_step = 'completed'
       AND deleted_at IS NULL
@@ -384,6 +402,72 @@ export async function getFilteredUserIds(
 
   const params: (string | number)[] = [];
 
+  if (filters.gender) {
+    query += ` AND gender = ?`;
+    params.push(filters.gender);
+  }
+  if (filters.zodiac) {
+    query += ` AND zodiac_sign = ?`; // Fixed column name from 'zodiac' to 'zodiac_sign'
+    params.push(filters.zodiac);
+  }
+  if (filters.country) {
+    query += ` AND country_code = ?`;
+    params.push(filters.country);
+  }
+  if (filters.age) {
+    const currentYear = new Date().getFullYear();
+    const maxBirthYear = currentYear - filters.age.min;
+    const minBirthYear = currentYear - filters.age.max;
+    query += ` AND CAST(strftime('%Y', birthday) AS INTEGER) BETWEEN ? AND ?`;
+    params.push(minBirthYear, maxBirthYear);
+  }
+  if (filters.mbti) {
+    query += ` AND mbti_result = ?`; // Fixed column name from 'mbti' to 'mbti_result'
+    params.push(filters.mbti);
+  }
+  if (filters.vip !== undefined) {
+    if (filters.vip) {
+      query += ` AND is_vip = 1 AND vip_expires_at > datetime('now')`;
+    } else {
+      query += ` AND (is_vip = 0 OR vip_expires_at <= datetime('now'))`;
+    }
+  }
+  if (filters.is_birthday) {
+    query += ` AND strftime('%m-%d', birthday) = strftime('%m-%d', 'now')`;
+  }
+
+  const result = await db.d1.prepare(query).bind(...params).first<{ count: number }>();
+  return result?.count || 0;
+}
+
+/**
+ * Get filtered user IDs based on custom filters with cursor pagination
+ *
+ * @param db - Database client
+ * @param filters - Broadcast filters
+ * @param cursor - Last processed ID (exclusive)
+ * @param limit - Number of records to fetch
+ * @returns Array of users with id and telegram_id
+ */
+export async function getFilteredUserIds(
+  db: ReturnType<typeof createDatabaseClient>,
+  filters: BroadcastFilters,
+  cursor: number = 0,
+  limit: number = 1000
+): Promise<{ id: number; telegram_id: string }[]> {
+  // ✅ BASE QUERY: Always include mandatory safety filters
+  let query = `
+    SELECT id, telegram_id 
+    FROM users 
+    WHERE onboarding_step = 'completed'
+      AND deleted_at IS NULL
+      AND bot_status = 'active'
+      AND last_active_at >= datetime('now', '-30 days')
+      AND id > ?
+  `;
+
+  const params: (string | number)[] = [cursor];
+
   // ✅ GENDER FILTER
   if (filters.gender) {
     query += ` AND gender = ?`;
@@ -392,7 +476,7 @@ export async function getFilteredUserIds(
 
   // ✅ ZODIAC FILTER
   if (filters.zodiac) {
-    query += ` AND zodiac = ?`;
+    query += ` AND zodiac_sign = ?`; // Fixed column name
     params.push(filters.zodiac);
   }
 
@@ -404,12 +488,9 @@ export async function getFilteredUserIds(
 
   // ✅ AGE FILTER
   if (filters.age) {
-    // Calculate birth year range from age range
-    // age = current_year - birth_year
-    // birth_year = current_year - age
     const currentYear = new Date().getFullYear();
-    const maxBirthYear = currentYear - filters.age.min; // Youngest (min age)
-    const minBirthYear = currentYear - filters.age.max; // Oldest (max age)
+    const maxBirthYear = currentYear - filters.age.min; 
+    const minBirthYear = currentYear - filters.age.max; 
 
     query += ` AND CAST(strftime('%Y', birthday) AS INTEGER) BETWEEN ? AND ?`;
     params.push(minBirthYear, maxBirthYear);
@@ -417,39 +498,34 @@ export async function getFilteredUserIds(
 
   // ✅ MBTI FILTER
   if (filters.mbti) {
-    query += ` AND mbti = ?`;
+    query += ` AND mbti_result = ?`; // Fixed column name
     params.push(filters.mbti);
   }
 
   // ✅ VIP FILTER
   if (filters.vip !== undefined) {
     if (filters.vip) {
-      // VIP users only
       query += ` AND is_vip = 1 AND vip_expires_at > datetime('now')`;
     } else {
-      // Non-VIP users only
       query += ` AND (is_vip = 0 OR vip_expires_at <= datetime('now'))`;
     }
   }
 
   // ✅ BIRTHDAY FILTER (for automated birthday greetings)
   if (filters.is_birthday) {
-    // Match users whose birthday is today (month and day)
     query += ` AND strftime('%m-%d', birthday) = strftime('%m-%d', 'now')`;
   }
+
+  query += ` ORDER BY id ASC LIMIT ?`;
+  params.push(limit);
 
   // Execute query
   const result = await db.d1
     .prepare(query)
     .bind(...params)
-    .all<{ telegram_id: string }>();
-  const userIds = result.results?.map((r) => r.telegram_id) || [];
-
-  console.log(
-    `[getFilteredUserIds] Found ${userIds.length} users matching filters: ${JSON.stringify(filters)}`
-  );
-
-  return userIds;
+    .all<{ id: number; telegram_id: string }>();
+  
+  return result.results || [];
 }
 
 /**
