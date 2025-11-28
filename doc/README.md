@@ -90,6 +90,16 @@
   - 查看漂流瓶原始內容
   - 匿名保護
 
+- **[PUBLIC_STATS_API.md](./PUBLIC_STATS_API.md)** - 公開統計 API ⭐ **新增**
+  - API 端點與資料結構
+  - 緩存策略 (Cache-Control)
+  - 安全性考量
+
+- **[TRANSLATION_MONITORING.md](./TRANSLATION_MONITORING.md)** - 翻譯監控與日報 ⭐ **新增**
+  - 翻譯成本每日統計
+  - 異常監控 (Fallback)
+  - 管理員日報機制
+
 - **[ROADMAP.md](./ROADMAP.md)** - 專案路線圖 ⭐ **新增**
   - M1: Telegram Mini App
   - M2: WeChat / Line 插件

@@ -670,6 +670,18 @@ export async function routeUpdate(update: TelegramUpdate, env: Env): Promise<voi
       return;
     }
 
+    // Admin Report Test
+    if (text === '/admin_report_test') {
+      const adminBanModule = await import('./telegram/handlers/admin_ban');
+      if (!adminBanModule.isAdmin(telegramId, env)) {
+        return;
+      }
+      const { handleAdminDailyReport } = await import('./telegram/handlers/admin_report');
+      await telegram.sendMessage(chatId, 'Generating daily report...');
+      await handleAdminDailyReport(env, telegramId);
+      return;
+    }
+
     // Test Smart Match Push (Admin only)
     if (text === '/admin_test_match_push') {
       const adminBanModule = await import('./telegram/handlers/admin_ban');

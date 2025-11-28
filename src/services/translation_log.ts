@@ -1,84 +1,76 @@
-import { DatabaseClient } from '~/db/client';
+import type { D1Database } from '@cloudflare/workers-types';
 
-export interface DailyTranslationStats {
-  date: string;
-  provider: string;
-  total_tokens: number;
-  total_characters: number;
-  request_count: number;
-  error_count: number;
+export interface TranslationLogParams {
+  provider: 'openai' | 'gemini' | 'google';
+  tokens?: number;
+  characters?: number;
+  isError?: boolean;
 }
 
 export class TranslationLogService {
-  constructor(private db: DatabaseClient) {}
+  constructor(private db: D1Database) {}
 
   /**
-   * Log translation usage stats (aggregated daily)
+   * Log daily translation stats (aggregated)
+   * This is designed to be called via ctx.waitUntil
    */
-  async logUsage(
-    provider: string,
-    usage: { tokens?: number; characters?: number; success: boolean }
-  ): Promise<void> {
+  async logStats(params: TranslationLogParams): Promise<void> {
     const today = new Date().toISOString().split('T')[0];
-    const tokens = usage.tokens || 0;
-    const chars = usage.characters || 0;
-    const errors = usage.success ? 0 : 1;
+    const tokens = params.tokens || 0;
+    const chars = params.characters || 0;
+    const errorCount = params.isError ? 1 : 0;
+    const requestCount = 1;
+    
+    // Simple cost estimation (can be refined)
+    // OpenAI gpt-4o-mini: $0.15 / 1M input tokens, $0.60 / 1M output tokens
+    // Gemini Flash: Free tier or low cost
+    // Google Translate: $20 / 1M chars
+    let estimatedCost = 0;
+    if (params.provider === 'openai') {
+        // Rough avg of input/output mix: $0.40 / 1M tokens
+        estimatedCost = (tokens / 1000000) * 0.4;
+    } else if (params.provider === 'google') {
+        estimatedCost = (chars / 1000000) * 20;
+    }
 
     try {
-      await this.db.d1.prepare(`
+      await this.db.prepare(`
         INSERT INTO daily_translation_stats 
-          (date, provider, total_tokens, total_characters, request_count, error_count)
-        VALUES (?, ?, ?, ?, 1, ?)
-        ON CONFLICT(date, provider) DO UPDATE SET
+          (stat_date, provider, total_tokens, total_characters, request_count, error_count, cost_usd)
+        VALUES 
+          (?, ?, ?, ?, ?, ?, ?)
+        ON CONFLICT(stat_date, provider) DO UPDATE SET
           total_tokens = total_tokens + excluded.total_tokens,
           total_characters = total_characters + excluded.total_characters,
-          request_count = request_count + 1,
+          request_count = request_count + excluded.request_count,
           error_count = error_count + excluded.error_count,
+          cost_usd = cost_usd + excluded.cost_usd,
           updated_at = CURRENT_TIMESTAMP
-      `).bind(today, provider, tokens, chars, errors).run();
+      `).bind(
+        today, 
+        params.provider, 
+        tokens, 
+        chars, 
+        requestCount, 
+        errorCount, 
+        estimatedCost
+      ).run();
     } catch (error) {
-      console.error('[TranslationLogService] Failed to log usage:', error);
+      console.error('[TranslationLogService] Failed to log stats:', error);
     }
   }
 
   /**
    * Log fallback event
    */
-  async logFallback(
-    userId: string,
-    fromProvider: string,
-    toProvider: string,
-    error: string
-  ): Promise<void> {
+  async logFallback(userId: string | null, fromProvider: string, toProvider: string, error: string): Promise<void> {
     try {
-      await this.db.d1.prepare(`
+      await this.db.prepare(`
         INSERT INTO translation_fallbacks (user_id, from_provider, to_provider, error_message)
         VALUES (?, ?, ?, ?)
       `).bind(userId, fromProvider, toProvider, error).run();
-    } catch (error) {
-      console.error('[TranslationLogService] Failed to log fallback:', error);
+    } catch (err) {
+      console.error('[TranslationLogService] Failed to log fallback:', err);
     }
   }
-
-  /**
-   * Get stats for a specific date
-   */
-  async getDailyStats(date: string): Promise<DailyTranslationStats[]> {
-    const result = await this.db.d1.prepare(`
-      SELECT * FROM daily_translation_stats WHERE date = ?
-    `).bind(date).all<DailyTranslationStats>();
-    return result.results || [];
-  }
-
-  /**
-   * Get fallback count for a specific date
-   */
-  async getFallbackCount(date: string): Promise<number> {
-    const result = await this.db.d1.prepare(`
-      SELECT COUNT(*) as count FROM translation_fallbacks 
-      WHERE date(created_at) = ?
-    `).bind(date).first<{ count: number }>();
-    return result?.count || 0;
-  }
 }
-

@@ -329,7 +329,18 @@ export default {
         }
       }
 
-      // Smart Match Push (Every Monday at 09:00 UTC+8 = 01:00 UTC)
+        // Admin Daily Report (09:00 UTC+8 = 01:00 UTC)
+        if (event.cron === '0 1 * * *') {
+          try {
+            console.log('[Worker] Running Admin Daily Report...');
+            const { handleAdminDailyReport } = await import('./telegram/handlers/admin_report');
+            await handleAdminDailyReport(env);
+          } catch (err) {
+            console.error('[Worker] Admin Daily Report failed:', err);
+          }
+        }
+
+        // Smart Match Push (Every Monday at 09:00 UTC+8 = 01:00 UTC)
       if (event.cron === '0 1 * * 1') {
         try {
           // eslint-disable-next-line no-console

@@ -5,6 +5,7 @@ import { pushSystemTests } from './features/push_system';
 import { pushInteractionTests } from './features/push_interaction';
 import { settingsQuietTests } from './features/settings_quiet';
 import { mbtiShareTests } from './features/mbti_share';
+import { adminReportTests } from './features/admin_report';
 
 // Reusing the logic from verified script
 function generateMoonPacketHeaders(secret: string, body: object = {}) {
@@ -131,6 +132,27 @@ export async function runFeatureSuites(runner: SmartRunner, baseUrl: string, con
   // 6. MBTI Share Deep Link
   for (const test of mbtiShareTests.tests) {
       await runner.runSuite('feature', `${mbtiShareTests.name}: ${test.name}`, async (ctx) => {
+          await test.fn({
+            ...ctx,
+            sendWebhook: async (payload: any) => {
+                const secret = process.env.TELEGRAM_WEBHOOK_SECRET || 'xunni_webhook_secret_staging_2025';
+                const res = await fetch(`${baseUrl}/webhook`, {
+                    method: 'POST',
+                    body: JSON.stringify(payload),
+                    headers: { 
+                        'Content-Type': 'application/json',
+                        'X-Telegram-Bot-Api-Secret-Token': secret
+                    }
+                });
+                return { status: res.status, body: await res.text() };
+            }
+          });
+      });
+  }
+
+  // 7. Admin Daily Report
+  for (const test of adminReportTests.tests) {
+      await runner.runSuite('feature', `${adminReportTests.name}: ${test.name}`, async (ctx) => {
           await test.fn({
             ...ctx,
             sendWebhook: async (payload: any) => {
