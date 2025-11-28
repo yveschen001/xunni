@@ -525,6 +525,9 @@ export const translations: Translations = {
       weight: `• 權重: \${weight}`,
     },
     analytics: {
+    message5: `
+• 錯誤率：{rate}%`,
+
       getAdDataFailed: `❌ 獲取廣告數據失敗`,
       getDataFailed: `❌ 獲取分析數據失敗`,
       getVipDataFailed: `❌ 獲取 VIP 漏斗數據失敗`,
@@ -603,6 +606,9 @@ export const translations: Translations = {
       testRetentionPush: '測試留存推送',
       testMatchPush: '測試配對推送',
       analytics: {
+    message5: `
+• 錯誤率：{rate}%`,
+
         noPermission: '❌ 您沒有權限查看分析數據',
         getDataFailed: '❌ 獲取分析數據失敗',
         noPermissionAd: '❌ 您沒有權限查看廣告數據',
@@ -708,6 +714,9 @@ export const translations: Translations = {
     justNow: `剛剛`,
   },
   analytics: {
+    message5: `
+• 錯誤率：{rate}%`,
+
     ad: `• 官方廣告：
  - 展示：{officialImpressions} 次
  - 點擊：{officialClicks} 次
@@ -812,8 +821,8 @@ export const translations: Translations = {
 • 錯誤率：\${provider.error_rate.toFixed(1)}%`,
     message6: `
 • 請求：\${provider.total_requests} 次`,
-    providerComparisonTitle: `[需要从 zh-TW.ts 获取翻译]`,
-    purchaseSuccess: `[需要从 zh-TW.ts 获取翻译]`,
+    providerComparisonTitle: `📊 **提供商對比**`,
+    purchaseSuccess: `✅ 購買成功`,
     request: `
 • 請求：{requests} 次`,
     text: `
