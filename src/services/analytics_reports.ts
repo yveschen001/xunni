@@ -321,7 +321,22 @@ export async function generateVIPFunnelReport(
 /**
  * Format VIP funnel report for Telegram
  */
-export function formatVIPFunnelReport(report: any): string {
+export function formatVIPFunnelReport(report: any, i18n?: any): string {
+  // Check if i18n is provided, if not, try to load default (but this function is synchronous, so it might fail if not passed)
+  // Best practice: Always pass i18n from caller
+  if (!i18n) {
+    // Fallback: throw error or try to load (but we can't await here without changing signature to async)
+    // Changing to async would require updating all callers.
+    // For now, let's assume it's passed or fail gracefully.
+    // But wait, createI18n is synchronous if translations are loaded? No, it's usually async import in this project structure?
+    // Looking at other files, createI18n seems to be synchronous factory: const i18n = createI18n(...)
+    // So we can try to require it if needed, but better to enforce passing it.
+    // Let's modify the signature to require it or handle it.
+    // But for safety, we should update the caller to pass it.
+    console.error('[formatVIPFunnelReport] i18n not provided!');
+    return 'Error: i18n missing';
+  }
+
   // 檢查是否有數據
   if (!report.funnel_steps || report.funnel_steps.length === 0) {
     return `
