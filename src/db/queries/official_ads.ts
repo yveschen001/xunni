@@ -581,6 +581,62 @@ export async function getDailyOfficialAdStats(
 }
 
 /**
+ * Get official ad statistics for a date range
+ *
+ * @param db - D1 database instance
+ * @param startDate - Start date (YYYY-MM-DD)
+ * @param endDate - End date (YYYY-MM-DD)
+ * @returns Aggregated statistics
+ */
+export async function getOfficialAdStatsInRange(
+  db: D1Database,
+  startDate: string,
+  endDate: string
+): Promise<{
+  total_impressions: number;
+  total_clicks: number;
+  total_rewards: number;
+  unique_users: number;
+  ctr: number;
+}> {
+  const result = await db
+    .prepare(
+      `SELECT 
+        COUNT(*) as total_impressions,
+        SUM(CASE WHEN clicked = 1 THEN 1 ELSE 0 END) as total_clicks,
+        SUM(CASE WHEN reward_granted = 1 THEN 1 ELSE 0 END) as total_rewards,
+        COUNT(DISTINCT telegram_id) as unique_users
+       FROM official_ad_views 
+       WHERE DATE(viewed_at) >= ? AND DATE(viewed_at) <= ?`
+    )
+    .bind(startDate, endDate)
+    .first<{
+      total_impressions: number;
+      total_clicks: number;
+      total_rewards: number;
+      unique_users: number;
+    }>();
+
+  if (!result) {
+    return {
+      total_impressions: 0,
+      total_clicks: 0,
+      total_rewards: 0,
+      unique_users: 0,
+      ctr: 0,
+    };
+  }
+
+  const ctr =
+    result.total_impressions > 0 ? (result.total_clicks / result.total_impressions) * 100 : 0;
+
+  return {
+    ...result,
+    ctr: Math.round(ctr * 100) / 100,
+  };
+}
+
+/**
  * Update official ad status (enable/disable)
  */
 export async function updateOfficialAdStatus(

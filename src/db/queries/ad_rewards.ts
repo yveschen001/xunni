@@ -348,6 +348,66 @@ export async function getDailyAdStats(
 }
 
 /**
+ * Get ad statistics for a date range
+ *
+ * @param db - D1 database instance
+ * @param startDate - Start date (YYYY-MM-DD)
+ * @param endDate - End date (YYYY-MM-DD)
+ * @returns Aggregated statistics
+ */
+export async function getAdStatsInRange(
+  db: D1Database,
+  startDate: string,
+  endDate: string
+): Promise<{
+  total_users: number;
+  total_ad_views: number;
+  total_ad_completions: number;
+  total_quota_earned: number;
+  avg_ads_per_user: number;
+  completion_rate: number;
+}> {
+  const result = await db
+    .prepare(
+      `SELECT 
+        COUNT(DISTINCT telegram_id) as total_users,
+        SUM(ad_views) as total_ad_views,
+        SUM(ad_completions) as total_ad_completions,
+        SUM(quota_earned) as total_quota_earned,
+        AVG(ads_watched) as avg_ads_per_user
+       FROM ad_rewards 
+       WHERE reward_date >= ? AND reward_date <= ?`
+    )
+    .bind(startDate, endDate)
+    .first<{
+      total_users: number;
+      total_ad_views: number;
+      total_ad_completions: number;
+      total_quota_earned: number;
+      avg_ads_per_user: number;
+    }>();
+
+  if (!result) {
+    return {
+      total_users: 0,
+      total_ad_views: 0,
+      total_ad_completions: 0,
+      total_quota_earned: 0,
+      avg_ads_per_user: 0,
+      completion_rate: 0,
+    };
+  }
+
+  const completionRate =
+    result.total_ad_views > 0 ? (result.total_ad_completions / result.total_ad_views) * 100 : 0;
+
+  return {
+    ...result,
+    completion_rate: Math.round(completionRate * 100) / 100,
+  };
+}
+
+/**
  * Get top ad watchers (leaderboard)
  *
  * @param db - D1 database instance

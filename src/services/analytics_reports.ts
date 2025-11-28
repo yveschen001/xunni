@@ -7,9 +7,9 @@
  */
 
 import type { D1Database } from '@cloudflare/workers-types';
-import { getDailyAdStats } from '~/db/queries/ad_rewards';
+import { getDailyAdStats, getAdStatsInRange } from '~/db/queries/ad_rewards';
 import { getProviderPerformanceComparison } from '~/db/queries/ad_providers';
-import { getDailyOfficialAdStats } from '~/db/queries/official_ads';
+import { getDailyOfficialAdStats, getOfficialAdStatsInRange } from '~/db/queries/official_ads';
 import { getFunnelConversionRate } from '~/db/queries/analytics';
 import { calculateDailyStats } from '~/services/stats';
 import { createDatabaseClient } from '~/db/client';
@@ -217,6 +217,10 @@ export async function generateAdPerformanceReport(
   // Get provider comparison
   const providerComparison = await getProviderPerformanceComparison(db);
 
+  // Get aggregated stats for the range
+  const thirdPartyStats = await getAdStatsInRange(db, startDate, endDate);
+  const officialStats = await getOfficialAdStatsInRange(db, startDate, endDate);
+
   // Build report
   const report: AdPerformanceReport = {
     period: {
@@ -224,16 +228,16 @@ export async function generateAdPerformanceReport(
       end: endDate,
     },
     third_party: {
-      total_impressions: 0,
-      total_completions: 0,
-      completion_rate: 0,
-      total_rewards: 0,
+      total_impressions: thirdPartyStats.total_ad_views,
+      total_completions: thirdPartyStats.total_ad_completions,
+      completion_rate: thirdPartyStats.completion_rate,
+      total_rewards: thirdPartyStats.total_quota_earned,
     },
     official: {
-      total_impressions: 0,
-      total_clicks: 0,
-      ctr: 0,
-      total_rewards: 0,
+      total_impressions: officialStats.total_impressions,
+      total_clicks: officialStats.total_clicks,
+      ctr: officialStats.ctr,
+      total_rewards: officialStats.total_rewards,
     },
     provider_comparison: providerComparison,
   };
