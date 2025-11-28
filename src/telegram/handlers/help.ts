@@ -83,7 +83,8 @@ export async function handleHelp(message: TelegramMessage, env: Env): Promise<vo
         i18n.t('help.text32') +
         i18n.t('help.text') +
         i18n.t('help.admin_ads') +
-        i18n.t('help.admin_tasks');
+        i18n.t('help.admin_tasks') +
+        '\n\n/admin_report - ' + i18n.t('admin.dailyReportTitle');
     }
 
     // Add super admin commands (only for super admin)

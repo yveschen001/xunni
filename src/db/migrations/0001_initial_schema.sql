@@ -67,12 +67,12 @@ CREATE TABLE IF NOT EXISTS users (
   updated_at TEXT DEFAULT CURRENT_TIMESTAMP
 );
 
-CREATE INDEX idx_users_telegram_id ON users(telegram_id);
-CREATE INDEX idx_users_invite_code ON users(invite_code);
-CREATE INDEX idx_users_invited_by ON users(invited_by);
-CREATE INDEX idx_users_is_banned ON users(is_banned);
-CREATE INDEX idx_users_role ON users(role);
-CREATE INDEX idx_users_deleted_at ON users(deleted_at);
+CREATE INDEX IF NOT EXISTS idx_users_telegram_id ON users(telegram_id);
+CREATE INDEX IF NOT EXISTS idx_users_invite_code ON users(invite_code);
+CREATE INDEX IF NOT EXISTS idx_users_invited_by ON users(invited_by);
+CREATE INDEX IF NOT EXISTS idx_users_is_banned ON users(is_banned);
+CREATE INDEX IF NOT EXISTS idx_users_role ON users(role);
+CREATE INDEX IF NOT EXISTS idx_users_deleted_at ON users(deleted_at);
 
 -- ============================================================================
 -- 2. Bottles Table (漂流瓶)
@@ -102,10 +102,10 @@ CREATE TABLE IF NOT EXISTS bottles (
   deleted_at TEXT
 );
 
-CREATE INDEX idx_bottles_owner ON bottles(owner_telegram_id);
-CREATE INDEX idx_bottles_status ON bottles(status);
-CREATE INDEX idx_bottles_expires_at ON bottles(expires_at);
-CREATE INDEX idx_bottles_matched_with ON bottles(matched_with_telegram_id);
+CREATE INDEX IF NOT EXISTS idx_bottles_owner ON bottles(owner_telegram_id);
+CREATE INDEX IF NOT EXISTS idx_bottles_status ON bottles(status);
+CREATE INDEX IF NOT EXISTS idx_bottles_expires_at ON bottles(expires_at);
+CREATE INDEX IF NOT EXISTS idx_bottles_matched_with ON bottles(matched_with_telegram_id);
 
 -- ============================================================================
 -- 3. Conversations Table (對話)
@@ -127,10 +127,10 @@ CREATE TABLE IF NOT EXISTS conversations (
   FOREIGN KEY (bottle_id) REFERENCES bottles(id)
 );
 
-CREATE INDEX idx_conversations_user_a ON conversations(user_a_telegram_id);
-CREATE INDEX idx_conversations_user_b ON conversations(user_b_telegram_id);
-CREATE INDEX idx_conversations_bottle_id ON conversations(bottle_id);
-CREATE INDEX idx_conversations_status ON conversations(status);
+CREATE INDEX IF NOT EXISTS idx_conversations_user_a ON conversations(user_a_telegram_id);
+CREATE INDEX IF NOT EXISTS idx_conversations_user_b ON conversations(user_b_telegram_id);
+CREATE INDEX IF NOT EXISTS idx_conversations_bottle_id ON conversations(bottle_id);
+CREATE INDEX IF NOT EXISTS idx_conversations_status ON conversations(status);
 
 -- ============================================================================
 -- 4. Conversation Messages Table (對話訊息)
@@ -156,9 +156,9 @@ CREATE TABLE IF NOT EXISTS conversation_messages (
   FOREIGN KEY (conversation_id) REFERENCES conversations(id)
 );
 
-CREATE INDEX idx_conv_messages_conversation ON conversation_messages(conversation_id);
-CREATE INDEX idx_conv_messages_sender ON conversation_messages(sender_telegram_id);
-CREATE INDEX idx_conv_messages_created_at ON conversation_messages(created_at);
+CREATE INDEX IF NOT EXISTS idx_conv_messages_conversation ON conversation_messages(conversation_id);
+CREATE INDEX IF NOT EXISTS idx_conv_messages_sender ON conversation_messages(sender_telegram_id);
+CREATE INDEX IF NOT EXISTS idx_conv_messages_created_at ON conversation_messages(created_at);
 
 -- ============================================================================
 -- 5. Daily Usage Table (每日使用次數)
@@ -183,7 +183,7 @@ CREATE TABLE IF NOT EXISTS daily_usage (
   UNIQUE(telegram_id, date)
 );
 
-CREATE INDEX idx_daily_usage_telegram_id_date ON daily_usage(telegram_id, date);
+CREATE INDEX IF NOT EXISTS idx_daily_usage_telegram_id_date ON daily_usage(telegram_id, date);
 
 -- ============================================================================
 -- 6. User Blocks Table (使用者封鎖)
@@ -199,8 +199,8 @@ CREATE TABLE IF NOT EXISTS user_blocks (
   UNIQUE(blocker_telegram_id, blocked_telegram_id)
 );
 
-CREATE INDEX idx_user_blocks_blocker ON user_blocks(blocker_telegram_id);
-CREATE INDEX idx_user_blocks_blocked ON user_blocks(blocked_telegram_id);
+CREATE INDEX IF NOT EXISTS idx_user_blocks_blocker ON user_blocks(blocker_telegram_id);
+CREATE INDEX IF NOT EXISTS idx_user_blocks_blocked ON user_blocks(blocked_telegram_id);
 
 -- ============================================================================
 -- 7. Reports Table (舉報)
@@ -227,10 +227,10 @@ CREATE TABLE IF NOT EXISTS reports (
   FOREIGN KEY (conversation_id) REFERENCES conversations(id)
 );
 
-CREATE INDEX idx_reports_reporter ON reports(reporter_telegram_id);
-CREATE INDEX idx_reports_reported ON reports(reported_telegram_id);
-CREATE INDEX idx_reports_status ON reports(status);
-CREATE INDEX idx_reports_created_at ON reports(created_at);
+CREATE INDEX IF NOT EXISTS idx_reports_reporter ON reports(reporter_telegram_id);
+CREATE INDEX IF NOT EXISTS idx_reports_reported ON reports(reported_telegram_id);
+CREATE INDEX IF NOT EXISTS idx_reports_status ON reports(status);
+CREATE INDEX IF NOT EXISTS idx_reports_created_at ON reports(created_at);
 
 -- ============================================================================
 -- 8. Appeals Table (申訴)
@@ -253,9 +253,9 @@ CREATE TABLE IF NOT EXISTS appeals (
   created_at TEXT DEFAULT CURRENT_TIMESTAMP
 );
 
-CREATE INDEX idx_appeals_telegram_id ON appeals(telegram_id);
-CREATE INDEX idx_appeals_status ON appeals(status);
-CREATE INDEX idx_appeals_created_at ON appeals(created_at);
+CREATE INDEX IF NOT EXISTS idx_appeals_telegram_id ON appeals(telegram_id);
+CREATE INDEX IF NOT EXISTS idx_appeals_status ON appeals(status);
+CREATE INDEX IF NOT EXISTS idx_appeals_created_at ON appeals(created_at);
 
 -- ============================================================================
 -- 9. Payments Table (付款記錄)
@@ -282,9 +282,9 @@ CREATE TABLE IF NOT EXISTS payments (
   completed_at TEXT
 );
 
-CREATE INDEX idx_payments_telegram_id ON payments(telegram_id);
-CREATE INDEX idx_payments_telegram_payment_id ON payments(telegram_payment_id);
-CREATE INDEX idx_payments_status ON payments(status);
+CREATE INDEX IF NOT EXISTS idx_payments_telegram_id ON payments(telegram_id);
+CREATE INDEX IF NOT EXISTS idx_payments_telegram_payment_id ON payments(telegram_payment_id);
+CREATE INDEX IF NOT EXISTS idx_payments_status ON payments(status);
 
 -- ============================================================================
 -- 10. Broadcast Queue Table (群發隊列)
@@ -316,8 +316,8 @@ CREATE TABLE IF NOT EXISTS broadcast_queue (
   completed_at TEXT
 );
 
-CREATE INDEX idx_broadcast_queue_status ON broadcast_queue(status);
-CREATE INDEX idx_broadcast_queue_admin ON broadcast_queue(admin_telegram_id);
+CREATE INDEX IF NOT EXISTS idx_broadcast_queue_status ON broadcast_queue(status);
+CREATE INDEX IF NOT EXISTS idx_broadcast_queue_admin ON broadcast_queue(admin_telegram_id);
 
 -- ============================================================================
 -- 11. Admin Logs Table (管理員操作日誌)
@@ -335,10 +335,10 @@ CREATE TABLE IF NOT EXISTS admin_logs (
   created_at TEXT DEFAULT CURRENT_TIMESTAMP
 );
 
-CREATE INDEX idx_admin_logs_admin ON admin_logs(admin_telegram_id);
-CREATE INDEX idx_admin_logs_action ON admin_logs(action);
-CREATE INDEX idx_admin_logs_target ON admin_logs(target_telegram_id);
-CREATE INDEX idx_admin_logs_created_at ON admin_logs(created_at);
+CREATE INDEX IF NOT EXISTS idx_admin_logs_admin ON admin_logs(admin_telegram_id);
+CREATE INDEX IF NOT EXISTS idx_admin_logs_action ON admin_logs(action);
+CREATE INDEX IF NOT EXISTS idx_admin_logs_target ON admin_logs(target_telegram_id);
+CREATE INDEX IF NOT EXISTS idx_admin_logs_created_at ON admin_logs(created_at);
 
 -- ============================================================================
 -- 12. Feature Flags Table (功能開關)
@@ -354,7 +354,7 @@ CREATE TABLE IF NOT EXISTS feature_flags (
   updated_at TEXT DEFAULT CURRENT_TIMESTAMP
 );
 
-CREATE INDEX idx_feature_flags_name ON feature_flags(flag_name);
+CREATE INDEX IF NOT EXISTS idx_feature_flags_name ON feature_flags(flag_name);
 
 -- ============================================================================
 -- 13. Horoscope Push History Table (星座運勢推送記錄)
@@ -374,8 +374,8 @@ CREATE TABLE IF NOT EXISTS horoscope_push_history (
   UNIQUE(telegram_id, week_start)
 );
 
-CREATE INDEX idx_horoscope_push_telegram_id ON horoscope_push_history(telegram_id);
-CREATE INDEX idx_horoscope_push_week_start ON horoscope_push_history(week_start);
+CREATE INDEX IF NOT EXISTS idx_horoscope_push_telegram_id ON horoscope_push_history(telegram_id);
+CREATE INDEX IF NOT EXISTS idx_horoscope_push_week_start ON horoscope_push_history(week_start);
 
 -- ============================================================================
 -- Initial Data

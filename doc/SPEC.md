@@ -51,6 +51,9 @@
   - 優先使用 **OpenAI GPT-4o-mini**（高品質）
   - 失敗時自動降級到 **Google Translate**（並提示）
   - 翻譯失敗時發送原文 + 提示
+- **自定義安靜時段**：
+  - VIP 可自由設定不被打擾的時段
+  - 免費用戶固定為 00:00 - 08:00
 - 無廣告
 
 #### 所有聊天
@@ -324,6 +327,46 @@ CREATE INDEX idx_admin_actions_created_at ON admin_actions(created_at);
 - 可透過管理後台查詢操作歷史
 - 詳細設計見 `@doc/ADMIN_PANEL.md`
 
+### 3.17 user_push_preferences（推送偏好設定）
+
+**用途**：儲存使用者的主動推送設定。
+**注意**：前端 UI 不再提供細粒度開關，後端預設全部開啟，僅提供安靜時段設定。
+
+```sql
+CREATE TABLE user_push_preferences (
+  id INTEGER PRIMARY KEY AUTOINCREMENT,
+  user_id TEXT NOT NULL UNIQUE,
+  throw_reminder_enabled INTEGER DEFAULT 1,   -- 後端預設開啟，UI 不顯示
+  catch_reminder_enabled INTEGER DEFAULT 1,   -- 後端預設開啟，UI 不顯示
+  message_reminder_enabled INTEGER DEFAULT 1, -- 後端預設開啟，UI 不顯示
+  quiet_hours_start INTEGER DEFAULT 0,        -- UTC 小時 (0-23)，僅 VIP 可修改
+  quiet_hours_end INTEGER DEFAULT 0,          -- UTC 小時 (0-23)，僅 VIP 可修改
+  created_at TEXT DEFAULT CURRENT_TIMESTAMP,
+  updated_at TEXT DEFAULT CURRENT_TIMESTAMP
+);
+
+CREATE INDEX idx_user_push_preferences_user_id ON user_push_preferences(user_id);
+```
+
+### 3.18 push_notifications（推送記錄）
+
+**用途**：記錄主動推送的歷史，用於頻率控制和分析
+
+```sql
+CREATE TABLE push_notifications (
+  id INTEGER PRIMARY KEY AUTOINCREMENT,
+  user_id TEXT NOT NULL,
+  type TEXT NOT NULL,         -- 'throw_reminder', 'catch_reminder', 'onboarding_reminder'
+  status TEXT DEFAULT 'sent', -- 'sent', 'failed', 'blocked'
+  sent_at TEXT DEFAULT CURRENT_TIMESTAMP,
+  FOREIGN KEY (user_id) REFERENCES users(telegram_id)
+);
+
+CREATE INDEX idx_push_notifications_user_id ON push_notifications(user_id);
+CREATE INDEX idx_push_notifications_type ON push_notifications(type);
+CREATE INDEX idx_push_notifications_sent_at ON push_notifications(sent_at);
+```
+
 ### 3.2 bottles（漂流瓶）
 
 ```sql
@@ -355,6 +398,7 @@ CREATE TABLE conversations (
   user_b_id TEXT,         -- FK -> users.telegram_id
   created_at DATETIME,
   last_message_at DATETIME,
+  last_sender_id TEXT,    -- 用於追蹤「輪到誰回覆」 (Migration 0059)
   status TEXT,            -- active / closed / blocked
 
   max_rounds INTEGER,     -- 可選：限制對話壽命內總訊息數
@@ -489,7 +533,7 @@ CREATE TABLE broadcast_jobs (
   id INTEGER PRIMARY KEY AUTOINCREMENT,
   created_by TEXT,
   role TEXT,                -- 'god' / 'angel'
-  filters_json TEXT,        -- JSON 條件
+  filters_json TEXT,        -- JSON 條件，如 {"gender":"female", "country":"TW"}
   message TEXT,
   status TEXT,              -- pending / running / completed / cancelled
   total_targets INTEGER,
@@ -738,6 +782,45 @@ CREATE INDEX idx_behavior_logs_user_id ON behavior_logs(user_id);
 CREATE INDEX idx_behavior_logs_action_type ON behavior_logs(action_type);
 CREATE INDEX idx_behavior_logs_created_at ON behavior_logs(created_at);
 ```
+
+### 4.4 主動推送與召回機制
+
+**核心目標**：在不打擾使用者的前提下，提升留存率（Retention）和活躍度（DAU）。
+
+**架構組件**：
+1. **UserPreferencesService**: 管理使用者偏好（`user_push_preferences`）。
+2. **PushStrategyService**: 決策引擎，根據活躍度、頻率限制、安靜時段決定是否推送。
+3. **Cron Job**: 定時觸發檢查（如 `/cron/push_reminders`）。
+
+#### 4.4.1 使用者活躍度分級 (User Activity Level)
+根據 `last_active_at` 計算：
+- **VERY_ACTIVE**: < 24 小時
+- **ACTIVE**: 1 - 3 天
+- **MODERATE**: 3 - 7 天
+- **INACTIVE**: 7 - 30 天
+- **DORMANT**: > 30 天
+
+**策略**：
+- **活躍用戶**：適度提醒（如 "今日還沒丟瓶子"），頻率較高。
+- **休眠用戶**：低頻召回（如 "好久不見"），避免騷擾導致封鎖 Bot。
+- **Dormant 用戶**：暫不主動推送，或僅在重大活動時推送。
+
+#### 4.4.2 推送類型與規則
+| 類型 | 觸發條件 | 頻率限制 | 檢查邏輯 |
+|------|---------|---------|---------|
+| **throw_reminder** | 活躍用戶 > 24h 未丟瓶 | 24h 一次 | `!hasThrownBottleIn24h` AND `isActive` |
+| **catch_reminder** | 活躍用戶 > 24h 未撿瓶 | 24h 一次 | `!hasCaughtBottleToday` AND `isActive` |
+| **onboarding_reminder** | 註冊未完成 (Step != 'completed') | 24h 一次 (Max 3) | `created_at` 在 7 天內 |
+| **message_reminder** | 有未讀訊息 (Future) | 視策略定 | (待實作) |
+
+#### 4.4.3 安靜時段 (Quiet Hours)
+- **VIP 使用者**：
+  - 可在 `/settings` 中自定義開始與結束時間
+  - 避免在休息時間收到非緊急通知
+- **免費使用者**：
+  - 強制固定：00:00 - 08:00 (UTC+8)
+  - 不可修改（顯示鎖定圖標，引導升級 VIP）
+- **強制執行**：除緊急通知（如帳號安全、申訴結果）外，安靜時段內不發送 Marketing 類推送。
 
 ---
 
@@ -1016,7 +1099,7 @@ CREATE INDEX idx_behavior_logs_created_at ON behavior_logs(created_at);
 /admin_ban - 封禁管理
 /admin_vip - VIP 管理
 /admin_appeal - 申訴審核
-/broadcast - 群發訊息（需指定篩選條件）
+/broadcast_filter - 群發訊息（需指定篩選條件）
 
 📖 幫助
 /rules - 查看完整遊戲規則
@@ -1044,7 +1127,7 @@ CREATE INDEX idx_behavior_logs_created_at ON behavior_logs(created_at);
 /admin_ban - 封禁管理
 /admin_vip - VIP 管理
 /admin_appeal - 申訴審核
-/broadcast - 群發訊息（可無條件群發）
+/broadcast_filter - 群發訊息（可無條件群發）
 
 📖 幫助
 /rules - 查看完整遊戲規則
@@ -1087,7 +1170,7 @@ export async function handleHelp(
         '/vip', '/appeal', '/rules', '/help',
         // 管理指令（god 權限）
         '/admin', '/admin_stats', '/admin_user', '/admin_ban',
-        '/admin_vip', '/admin_appeal', '/broadcast'
+        '/admin_vip', '/admin_appeal', '/broadcast_filter'
       ];
       break;
       
@@ -1099,7 +1182,7 @@ export async function handleHelp(
         '/vip', '/appeal', '/rules', '/help',
         // 管理指令（angel 權限）
         '/admin', '/admin_stats', '/admin_user', '/admin_ban',
-        '/admin_vip', '/admin_appeal', '/broadcast'
+        '        /admin_vip', '/admin_appeal', '/broadcast_filter'
       ];
       break;
       
@@ -1383,28 +1466,29 @@ export async function handleHelp(
 
 **資料庫欄位**：`users.deleted_at`、`users.anonymized_at`、`users.deletion_requested_at`
 
-### 5.13 /broadcast（群發訊息）
+### 5.13 /broadcast_filter（精準廣播）
 
 **權限要求**：僅 `role` 為 `angel` 或 `god` 的使用者可用。
 
-**指令可見性**：
-- **一般使用者（user）**：此指令**不會出現在** `/help` 列表中
-- **群組管理員（group_admin）**：此指令**不會出現在** `/help` 列表中
-- **平台管理員（angel）**：可以看到此指令，但必須至少指定一項篩選條件
-- **平台所有者（god）**：可以看到此指令，可無條件群發
+**功能說明**：
+支援基於多種條件篩選目標用戶，進行精準訊息推送。系統包含「乾跑模式 (Dry Run)」，可先預覽受眾人數。
 
-**技術實作**：
-- 在 `handleHelp()` 中根據使用者 `role` 決定是否顯示此指令
-- 在 Domain Service 層進行權限檢查，拒絕未授權訪問
+**篩選條件 (Filters)**：
+- **基本屬性**：性別 (`gender`)、年齡區間 (`age_range`)、國家 (`country`)
+- **心理屬性**：MBTI 類型 (`mbti`)、星座 (`zodiac`)
+- **系統屬性**：語言 (`language`)、是否 VIP (`is_vip`)
+- **活躍度**：最後活躍時間 (`last_active_days`)
 
 **流程**:
+1. 管理員輸入 `/broadcast_filter`。
+2. 系統引導輸入篩選條件（JSON 格式或互動式按鈕）。
+3. **Dry Run**：系統計算符合條件的用戶數，回報給管理員（不發送）。
+4. **確認發送**：管理員確認後，建立 `broadcast_job` 並寫入隊列。
+5. **後台發送**：Worker 的 Cron Job 處理隊列，分批發送，避免觸發 Telegram 限流。
 
-1. 選擇廣播文字內容（文字 + emoji）
-2. 設定篩選條件：
-   - 性別、年齡區間、星座、語言、VIP、邀請數、國家等
-3. 寫入 broadcast_jobs + 對應的 broadcast_queue
-4. god 可對所有人廣播（filters_json 可為空）
-5. angel 必須至少指定一項篩選條件（程式層限制）
+**權限差異**：
+- **god**：可發送無條件全體廣播（filters 為空）。
+- **angel**：必須指定至少一項篩選條件，避免誤操作全體廣播。
 
 ---
 
@@ -2364,6 +2448,8 @@ BROADCAST_MAX_JOBS = "3"
 - **Appeal（申訴）**：被封禁的使用者申請解除封禁的流程。
 - **Permission（權限）**：指令和功能的訪問控制。一般使用者（user）無法看到或使用管理指令（`/admin*`、`/broadcast` 等）。
 - **Command Visibility（指令可見性）**：根據使用者角色決定在 `/help` 中顯示哪些指令。一般使用者（user）絕對看不到管理指令。
+- **Active Push（主動推送）**：系統根據用戶行為主動發送的提醒（如未丟瓶提醒、召回通知），需遵守安靜時段和頻率限制。
+- **Broadcast Filter（精準廣播篩選）**：管理員群發訊息時使用的過濾條件（如性別、MBTI、活躍度），用於精準觸達目標用戶。
 
 **使用規範**：
 - 在代碼、註釋和文檔中，統一使用上述術語

@@ -77,5 +77,8 @@
     "typescript": "^5.3.3",
     "vitest": "^1.6.1",
     "wrangler": "^3.114.15"
+  },
+  "dependencies": {
+    "@google/generative-ai": "^0.24.1"
   }
 }

@@ -305,6 +305,18 @@ export const translations: Translations = {
     removeUsageError: `❌ 使用方法錯誤
 
 `,
+    dailyReport: `📊 每日運營報告 ({date})
+
+💰 翻譯成本估算：
+{costDetails}
+
+⚠️ 異常監控：
+• 翻譯降級：{fallbackCount} 次
+• 翻譯失敗：{errorCount} 次
+
+📈 活躍數據：
+• 新增用戶：{newUsers}
+• 活躍對話：{activeConversations}`,
     settings: `• 暱稱: \${targetUser?.nickname }
 `,
     settings2: `• 暱稱: \${targetUser.nickname }
@@ -4040,6 +4052,7 @@ This command is not available in production.`,
 `,
     text: `/maintenance_status - 查看維護狀態`,
     admin_ads: `\n/admin_ads - 管理官方廣告\n`,
+    dailyReportTitle: `獲取每日運營報告`,
     admin_tasks: `\n/admin_tasks - 管理社群任務`,
     text10: `📖 **XunNi 指令列表**
 
@@ -4270,6 +4283,12 @@ This command is not available in production.`,
       ISFP: `探險家 - 靈活且迷人的藝術家，時刻準備著探索和體驗新事物。`,
       ISTJ: `物流師 - 實際且注重事實的個人，可靠性不容懷疑。`,
       ISTP: `鑒賞家 - 大膽而實際的實驗者，擅長使用各種工具。`,
+    },
+    share: {
+      welcome: '👋 你的好友邀請你來測 MBTI！\n\n快來看看你的性格類型吧～',
+      startButton: '📊 開始測驗',
+      resultTitle: '我的 MBTI 測驗結果是 {type}！',
+      resultDesc: '你也來測測吧～',
     },
     full: {
       question1: `在社交場合中，你通常：`,
@@ -5224,6 +5243,21 @@ This command is not available in production.`,
 請選擇你的偏好語言：`,
     returnToMenu: `🏠 返回主選單`,
     selectOption: `請選擇選項：`,
+    throwReminder: `丟瓶提醒`,
+    catchReminder: `撿瓶提醒`,
+    messageReminder: `對話提醒`,
+    toggleThrow: `切換丟瓶提醒`,
+    toggleCatch: `切換撿瓶提醒`,
+    toggleMessage: `切換對話提醒`,
+    quietHours: `安靜時段`,
+    editQuietHours: `✏️ 修改安靜時段`,
+    quietDisable: `🚫 停用安靜時段`,
+    quietHoursHint: `在此時段內不會收到非緊急通知`,
+    selectStartHour: `🌙 請選擇安靜時段的「開始時間」：\n(例如：若要在 23:00 開始，請點選 23:00)`,
+    selectEndHour: `☀️ 開始時間已設定為 {start}:00。\n請選擇安靜時段的「結束時間」：\n(在此時間後恢復通知)`,
+    saved: `✅ 設定已保存`,
+    disabled: `🚫 安靜時段已停用`,
+    saved: `設定已儲存`,
     settings: `💡 選擇你想要修改的設定：`,
     settings2: `⚙️ **設定**
 
@@ -5457,6 +5491,7 @@ This command is not available in production.`,
     bloodType: `✅ 血型已更新為 \${getBloodTypeDisplay(bloodType as any)}`,
     bloodType2: `✅ 血型已清除`,
     bottle: `✅ 獎勵已發放！+1 瓶子`,
+    bottleThrown: `🍾 漂流瓶已丟出！`,
     bottle2: `✅ 開始新的漂流瓶`,
     bottle3: `✅ 瓶子已創建
 `,
@@ -5934,10 +5969,12 @@ This command is not available in production.`,
       interests: `讓別人更了解你`,
       invite_progress: `每邀請 1 人，每日額度永久 +1（免費最多 10 人，VIP 最多 100 人）`,
       join_channel: `獲取最新消息和活動`,
+      confirm_country: `讓其他用戶更了解你`,
     },
     name: {
       bio: `完善自我介紹`,
       city: `設定地區`,
+      confirm_country: `確認所屬國家`,
       first_bottle: `丟出第一個瓶子`,
       first_catch: `撿起第一個瓶子`,
       first_conversation: `開始第一次對話`,
@@ -6752,6 +6789,59 @@ This command is not available in production.`,
       vip3: `⚠️ **VIP 今天到期**
 
 `,
+    },
+    BROADCAST: {
+      FILTER_ERROR: '❌ 格式錯誤。\n範例：`/broadcast_filter gender=female,country=TW 測試訊息`',
+      NO_CONTENT: '❌ 請輸入廣播內容。',
+      NO_MATCHES: '⚠️ 找不到符合條件的用戶。\n過濾條件：{filters}',
+      TOO_MANY_USERS: '⚠️ 目標用戶過多 ({count} 人)，目前限制單次發送 {max} 人。',
+      START_SENDING: '🚀 開始發送廣播 #{id}\n🎯 目標：{filters}\n👥 人數：{count} 人',
+      COMPLETED: '✅ 廣播 #{id} 完成！\n成功：{sent}\n失敗：{failed}\n封鎖：{blocked}',
+    },
+    push: {
+      throwReminder: '🌊 嘿！好久沒丟瓶子了，海邊很安靜呢...',
+      catchReminder: '🎣 海邊漂來了一些新瓶子，要不要去看看？',
+      onboardingReminder: '👋 你的註冊還沒完成，只差一點點了！(步驟: {step})',
+      messageReminderA: '👋 Hey {masked_partner_name} 還在等你回覆喔！別讓對話冷掉了～',
+      messageReminderB: '📩 你有一則來自 {masked_partner_name} 的未讀訊息：\n> "{last_message_preview}..."\n(已經過了 24 小時囉！)',
+      messageReminderC: '⏳ {masked_partner_name} 正在等待你的回覆...',
+      actionReply: '💬 回覆 {masked_partner_name}',
+      actionHistory: '📜 查看上下文',
+    },
+    match: {
+      header: {
+        zodiac: '🌟 星座配對揭秘',
+        mbti: '🧠 MBTI 性格共鳴',
+        blood: '🩸 血型密碼分析',
+      },
+      reason: {
+        zodiac: {
+          fire_affinity: '同樣身為火象星座的你們，熱情如火，默契十足！',
+          earth_affinity: '土象的穩重與水象的溫柔，是細水長流的最佳組合。',
+          air_affinity: '風象的靈動遇上火象的熱情，靈感源源不絕！',
+          water_affinity: '水象的情感與土象的踏實，構築最溫暖的依靠。',
+        },
+        mbti: {
+          sj_affinity: '社群人(SJ)與探險家(SP)，穩定與刺激的完美互補！',
+          sp_affinity: '探險家(SP)與社群人(SJ)，玩伴與照顧者的最佳拍檔！',
+          nf_affinity: '理想主義者(NF)與理性者(NT)，靈魂與智慧的深度碰撞！',
+          nt_affinity: '理性者(NT)與理想主義者(NF)，思想與情感的共鳴！',
+        },
+        blood: {
+          a_affinity: 'A型的細心遇上O型的包容，相處最自在。',
+          b_affinity: 'B型的自我遇上O型的隨和，輕鬆無壓力。',
+          o_affinity: 'O型與B型/A型都是互補的好拍檔！',
+          ab_affinity: 'AB型的獨特頻率，只有同類最懂。',
+        },
+      },
+      template: {
+        body: '\n{userAttribute} 的你，\n根據分析，你與 {recommendedAttributes} 最有緣份！\n\n💡 {reason}\n\n👇 試試運氣？',
+      },
+      btn: {
+        throw: '🌊 丟個瓶子碰運氣',
+        vip_throw: '🎯 丟給 {target}',
+        vip_upsell: '💡 升級 VIP 即可指定投遞給 {target}，精準脫單！',
+      },
     },
   },
 };

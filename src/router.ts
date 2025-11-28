@@ -46,7 +46,9 @@ export async function handleWebhook(request: Request, env: Env): Promise<Respons
     return new Response('OK', { status: 200 });
   } catch (error) {
     console.error('[Router] Webhook error:', error);
-    return new Response('Internal Server Error', { status: 500 });
+    // ⚠️ Prevent Telegram retry loop by returning 200 OK even on error
+    // We log the error above for debugging
+    return new Response('OK', { status: 200 });
   }
 }
 
@@ -97,6 +99,7 @@ export async function routeUpdate(update: TelegramUpdate, env: Env): Promise<voi
   if (update.message) {
     const message = update.message;
     const text = message.text || '';
+    const lowerText = text.toLowerCase(); // Define lowerText early
     const chatId = message.chat.id;
     const telegramId = message.from!.id.toString();
 
@@ -254,6 +257,10 @@ export async function routeUpdate(update: TelegramUpdate, env: Env): Promise<voi
     if (user.onboarding_step === 'completed') {
       const _isCommand = text.startsWith('/');
 
+      // Load i18n for router logic
+      const { createI18n } = await import('./i18n');
+      const routerI18n = createI18n(user.language_pref || 'zh-TW');
+
       // Try appeal reason input first
       if (user.session_state === 'awaiting_appeal_reason') {
         const { handleAppealReasonInput } = await import('./telegram/handlers/appeal');
@@ -276,8 +283,7 @@ export async function routeUpdate(update: TelegramUpdate, env: Env): Promise<voi
         const replyToText = message.reply_to_message.text || '';
 
         // Check if replying to throw bottle prompt (#THROW tag or ForceReply prompt)
-        const { createI18n } = await import('~/i18n');
-        const routerI18n = createI18n(user.language_pref || 'zh-TW');
+
         
         if (replyToText.includes('#THROW') || replyToText.includes(routerI18n.t('router.throwPrompt'))) {
           console.error('[router] Detected reply to throw bottle prompt:', {
@@ -664,6 +670,22 @@ export async function routeUpdate(update: TelegramUpdate, env: Env): Promise<voi
       return;
     }
 
+    // Test Smart Match Push (Admin only)
+    if (text === '/admin_test_match_push') {
+      const adminBanModule = await import('./telegram/handlers/admin_ban');
+      if (!adminBanModule.isAdmin(telegramId, env)) {
+        return;
+      }
+      
+      const { handleMatchPush } = await import('./telegram/handlers/cron_match_push');
+      // const { createDatabaseClient } = await import('./db/client');
+      // const db = createDatabaseClient(env.DB);
+      
+      await telegram.sendMessage(chatId, 'Testing Smart Match Push for your user...');
+      await handleMatchPush(env, env.DB, telegramId);
+      return;
+    }
+
     // Broadcast process command (Admin only) - Manual trigger
     if (text === '/broadcast_process') {
       const adminBanModule = await import('./telegram/handlers/admin_ban');
@@ -676,6 +698,22 @@ export async function routeUpdate(update: TelegramUpdate, env: Env): Promise<voi
       }
       const { handleBroadcastProcess } = await import('./telegram/handlers/broadcast');
       await handleBroadcastProcess(message, env);
+      return;
+    }
+
+    // New Broadcast Filter command
+    if (text.startsWith('/broadcast_filter')) {
+      // Check super admin permission
+      const { isSuperAdmin } = await import('./telegram/handlers/admin_ban');
+      if (!isSuperAdmin(telegramId)) {
+        const { createI18n } = await import('./i18n');
+        const i18n = createI18n(user?.language_pref || 'zh-TW');
+        await telegram.sendMessage(chatId, i18n.t('error.admin4'));
+        return;
+      }
+
+      const { handleBroadcastFilter } = await import('./telegram/handlers/broadcast_v2');
+      await handleBroadcastFilter(message, env);
       return;
     }
 
@@ -821,6 +859,12 @@ export async function routeUpdate(update: TelegramUpdate, env: Env): Promise<voi
       return;
     }
 
+    if (text === '/admin_report') {
+      const { handleAdminReportCommand } = await import('./telegram/handlers/admin_report');
+      await handleAdminReportCommand(message, env);
+      return;
+    }
+
     if (text.startsWith('/admin_approve_refund ')) {
       const requestId = text.split(' ')[1];
       if (requestId) {
@@ -905,8 +949,8 @@ export async function routeUpdate(update: TelegramUpdate, env: Env): Promise<voi
     }
 
     // Unknown command for completed users - provide smart suggestions
-    const lowerText = text.toLowerCase();
-
+    // lowerText is already defined at the top
+    
     // Check if user is trying to throw a bottle
     // Note: These are keyword matches for smart suggestions, not display strings
     // They match user input in any language to provide helpful suggestions
@@ -1623,6 +1667,22 @@ export async function routeUpdate(update: TelegramUpdate, env: Env): Promise<voi
       return;
     }
 
+    // Handle conversation history button (from push notifications)
+    if (data.startsWith('conv_history_')) {
+      const conversationIdentifier = data.replace('conv_history_', '');
+      const { handleHistory } = await import('./telegram/handlers/history');
+      // Construct a fake message to invoke handleHistory
+      const fakeMessage = {
+        ...callbackQuery.message!,
+        from: callbackQuery.from,
+        text: `/history ${conversationIdentifier}`,
+        chat: callbackQuery.message!.chat
+      };
+      await handleHistory(fakeMessage as any, env);
+      await telegram.answerCallbackQuery(callbackQuery.id);
+      return;
+    }
+
     if (data === 'catch') {
       await telegram.answerCallbackQuery(callbackQuery.id);
       const { handleCatch } = await import('./telegram/handlers/catch');
@@ -1710,6 +1770,29 @@ export async function routeUpdate(update: TelegramUpdate, env: Env): Promise<voi
     if (data === 'return_to_menu') {
       const { handleReturnToMenu } = await import('./telegram/handlers/menu');
       await handleReturnToMenu(callbackQuery, env);
+      return;
+    }
+
+    // Quiet Hours Grid Callbacks
+    if (data.startsWith('quiet_start_')) {
+      const { handleQuietHoursStartSelection } = await import('./telegram/handlers/settings_quiet');
+      const startHour = parseInt(data.replace('quiet_start_', ''), 10);
+      await handleQuietHoursStartSelection(callbackQuery, startHour, env);
+      return;
+    }
+
+    if (data.startsWith('quiet_save_')) {
+      const { handleQuietHoursSave } = await import('./telegram/handlers/settings_quiet');
+      const parts = data.replace('quiet_save_', '').split('_');
+      const startHour = parseInt(parts[0], 10);
+      const endHour = parseInt(parts[1], 10);
+      await handleQuietHoursSave(callbackQuery, startHour, endHour, env);
+      return;
+    }
+
+    if (data === 'quiet_disable') {
+      const { handleQuietHoursDisable } = await import('./telegram/handlers/settings_quiet');
+      await handleQuietHoursDisable(callbackQuery, env);
       return;
     }
 
@@ -1837,6 +1920,30 @@ export async function routeUpdate(update: TelegramUpdate, env: Env): Promise<voi
         await handleAdminOpsCallback(callbackQuery, action, targetId, env);
         return;
       }
+    }
+
+    // ✨ NEW: Match Push Callbacks
+    if (data.startsWith('match_vip_')) {
+      const { handleMatchVip } = await import('./telegram/handlers/match_callback');
+      // Format: match_vip_TOPIC_TARGET
+      const parts = data.replace('match_vip_', '').split('_');
+      // parts[0] is topic, parts[1] is target
+      // WARNING: If target contains underscores, this split is dangerous.
+      // Zodiac/MBTI/Blood targets usually don't have underscores.
+      // zodiac: aries, leo...
+      // mbti: INTJ, NF...
+      // blood: A, B...
+      const topic = parts[0];
+      const target = parts.slice(1).join('_'); // Rejoin rest in case target has _ (unlikely but safe)
+      
+      await handleMatchVip(callbackQuery, topic, target, env);
+      return;
+    }
+
+    if (data === 'match_throw') {
+      const { handleMatchThrow } = await import('./telegram/handlers/match_callback');
+      await handleMatchThrow(callbackQuery, env);
+      return;
     }
 
     // Unknown callback

@@ -9,8 +9,9 @@ import type { Env, TelegramMessage, User } from '~/types';
 import { createDatabaseClient } from '~/db/client';
 import { findUserByTelegramId, createUser } from '~/db/queries/users';
 import { generateInviteCode, hasCompletedOnboarding } from '~/domain/user';
-import { extractInviteCode, validateInviteCode } from '~/domain/invite';
+import { extractInviteCode, validateInviteCode, extractMbtiShareCode } from '~/domain/invite';
 import { createInvite } from '~/db/queries/invites';
+import { createReferralSource } from '~/db/queries/referral';
 import { createTelegramService } from '~/services/telegram';
 import { getPopularLanguageButtons } from '~/i18n/languages';
 import { LEGAL_URLS } from '~/config/legal_urls';
@@ -34,14 +35,16 @@ export async function handleStart(message: TelegramMessage, env: Env): Promise<v
       console.error('[handleStart] Failed to update user activity:', activityError);
     }
 
-    // Extract invite code from /start command
+    // Extract codes from /start command
     const inviteCode = extractInviteCode(message.text || '');
+    const mbtiShareCode = extractMbtiShareCode(message.text || '');
     let inviterTelegramId: string | null = null;
 
     console.error('[handleStart] Processing:', {
       telegramId,
       messageText: message.text,
       extractedInviteCode: inviteCode,
+      extractedMbtiShareCode: mbtiShareCode,
     });
 
     // Validate and process invite code
@@ -129,6 +132,18 @@ export async function handleStart(message: TelegramMessage, env: Env): Promise<v
 
       const { createI18n } = await import('~/i18n');
       const i18n = createI18n(user.language_pref || 'zh-TW');
+
+      // MBTI Share Link Handling (New User)
+      if (mbtiShareCode) {
+        await createReferralSource(db, user.telegram_id, 'mbti_share', mbtiShareCode, null);
+        await telegram.sendMessageWithButtons(
+          chatId,
+          i18n.t('mbti.share.welcome'),
+          [[{ text: i18n.t('mbti.share.startButton'), callback_data: 'mbti_test_full' }]]
+        );
+        return;
+      }
+
       await telegram.sendMessageWithButtons(
         chatId,
         i18n.t('onboarding.welcome'),
@@ -139,6 +154,19 @@ export async function handleStart(message: TelegramMessage, env: Env): Promise<v
     }
 
     // Existing user
+    // MBTI Share Link Handling (Existing User)
+    if (mbtiShareCode) {
+      await createReferralSource(db, user.telegram_id, 'mbti_share', mbtiShareCode, null);
+      const { createI18n } = await import('~/i18n');
+      const i18n = createI18n(user.language_pref || 'zh-TW');
+      await telegram.sendMessageWithButtons(
+        chatId,
+        i18n.t('mbti.share.welcome'),
+        [[{ text: i18n.t('mbti.share.startButton'), callback_data: 'mbti_test_full' }]]
+      );
+      return;
+    }
+
     if (hasCompletedOnboarding(user)) {
       // Already completed onboarding
       const { createI18n } = await import('~/i18n');

@@ -5,7 +5,7 @@
  */
 
 import type { Env, TelegramMessage, CallbackQuery } from '~/types';
-import { createDatabaseClient } from '~/db/client';
+// import { createDatabaseClient } from '~/db/client'; // Moved to dynamic import to avoid ReferenceError
 import { createTelegramService } from '~/services/telegram';
 import { findUserByTelegramId } from '~/db/queries/users';
 import { createI18n } from '~/i18n';
@@ -14,6 +14,7 @@ import { createI18n } from '~/i18n';
  * Show main menu
  */
 export async function handleMenu(message: TelegramMessage, env: Env): Promise<void> {
+  const { createDatabaseClient } = await import('~/db/client');
   const db = createDatabaseClient(env.DB);
   const telegram = createTelegramService(env);
   const chatId = message.chat.id;
@@ -177,6 +178,7 @@ export async function handleMenu(message: TelegramMessage, env: Env): Promise<vo
  */
 export async function handleMenuCallback(callbackQuery: CallbackQuery, env: Env): Promise<void> {
   const telegram = createTelegramService(env);
+  const { createDatabaseClient } = await import('~/db/client');
   const db = createDatabaseClient(env.DB);
   const chatId = callbackQuery.message!.chat.id;
   const telegramId = callbackQuery.from.id.toString();
@@ -331,6 +333,7 @@ export async function handleReturnToMenu(callbackQuery: CallbackQuery, env: Env)
 
   try {
     // Answer callback with immediate feedback
+    const { createDatabaseClient } = await import('~/db/client');
     const db = createDatabaseClient(env.DB);
     const telegramId = callbackQuery.from.id.toString();
     const user = await findUserByTelegramId(db, telegramId);
@@ -349,6 +352,7 @@ export async function handleReturnToMenu(callbackQuery: CallbackQuery, env: Env)
     await handleMenu(fakeMessage as any, env);
   } catch (error) {
     console.error('[handleReturnToMenu] Error:', error);
+    const { createDatabaseClient } = await import('~/db/client');
     const db = createDatabaseClient(env.DB);
     const telegramId = callbackQuery.from.id.toString();
     const user = await findUserByTelegramId(db, telegramId);

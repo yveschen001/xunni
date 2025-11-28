@@ -53,8 +53,9 @@ ENABLE_VIP_SUBSCRIPTION = "false"
 # Smart Matching Configuration
 ENABLE_SMART_MATCHING = "true"
 SMART_MATCHING_THRESHOLD = "70"  # Minimum score for smart recommendation
-# MoonPacket API Configuration (Dev/Staging only - move to secrets for prod)
-MOONPACKET_API_KEY = "HvQ/2z53aaqfuOyfAxqsnq1YpQWwZuPdxFWDmbXaTKM="
+  # MoonPacket API Configuration (Dev/Staging only - move to secrets for prod)
+  MOONPACKET_API_KEY = "mock-api-key"
+  MOONPACKET_API_SECRET = "your_secret_here"
 
 # Staging D1 Database
 [[env.staging.d1_databases]]
@@ -158,3 +159,4 @@ cron = "30 18 * * *"  # Every day at 18:30 UTC = 02:30 Taipei (Birthday greeting
 # wrangler secret put TELEGRAM_WEBHOOK_SECRET --env staging
 # wrangler secret put TELEGRAM_WEBHOOK_SECRET --env production
 # wrangler secret put MOONPACKET_API_KEY --env production
+MOONPACKET_API_SECRET = "your_secret_here"

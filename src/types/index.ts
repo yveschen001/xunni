@@ -39,6 +39,11 @@ export interface Env {
   VIP_PRICE_STARS?: string; // VIP Price in Stars
   OFFICIAL_CHANNEL_ID?: string; // Official Channel ID
   PUBLIC_URL?: string; // Public URL of the worker
+  ENABLE_VIP_SUBSCRIPTION?: string; // Enable VIP subscription
+  ENABLE_SMART_MATCHING?: string; // Enable Smart Matching
+  SMART_MATCHING_THRESHOLD?: string; // Smart Matching Threshold
+  MOONPACKET_API_KEY?: string; // MoonPacket API Key
+  MOONPACKET_API_SECRET?: string; // MoonPacket API Secret for signature verification
 }
 
 // ============================================================================
@@ -417,6 +422,21 @@ export interface TelegramUser {
   last_name?: string;
   username?: string;
   language_code?: string;
+}
+
+export interface InlineKeyboardButton {
+  text: string;
+  url?: string;
+  callback_data?: string;
+  web_app?: { url: string };
+  login_url?: { url: string; forward_text?: string; bot_username?: string; request_write_access?: boolean };
+  switch_inline_query?: string;
+  switch_inline_query_current_chat?: string;
+  pay?: boolean;
+}
+
+export interface InlineKeyboardMarkup {
+  inline_keyboard: InlineKeyboardButton[][];
 }
 
 export interface TelegramChat {

@@ -135,16 +135,17 @@ export async function saveConversationMessage(
     )
     .run();
 
-  // Update last_message_at
+  // Update last_message_at and last_sender_id
   await db.d1
     .prepare(
       `
     UPDATE conversations
-    SET last_message_at = datetime('now')
+    SET last_message_at = datetime('now'),
+        last_sender_id = ?
     WHERE id = ?
   `
     )
-    .bind(conversationId)
+    .bind(senderId, conversationId)
     .run();
 
   return result.meta.last_row_id as number;

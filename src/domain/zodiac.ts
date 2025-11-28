@@ -14,6 +14,9 @@ export function getZodiacDisplay(zodiac: string | null | undefined, i18n: I18n):
     return i18n.t('common.notSet');
   }
 
+  // Normalize input to PascalCase for map lookup, or handle lowercase map
+  const normalizedZodiac = zodiac.charAt(0).toUpperCase() + zodiac.slice(1).toLowerCase();
+
   // Map English zodiac names to i18n keys
   // Using bottle.throw.short7 - short18 as they contain the zodiac names with emojis
   const zodiacMap: Record<string, string> = {
@@ -31,6 +34,5 @@ export function getZodiacDisplay(zodiac: string | null | undefined, i18n: I18n):
     'Pisces': i18n.t('bottle.throw.short18'),
   };
 
-  return zodiacMap[zodiac] || zodiac;
+  return zodiacMap[normalizedZodiac] || zodiac;
 }
-

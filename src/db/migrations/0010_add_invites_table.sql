@@ -1,6 +1,8 @@
 -- Migration: Add invites table for invite fission feature
--- Date: 2025-11-16
--- Description: Create invites table to track user invitations and rewards
+-- FIXED: Remove ALTER TABLE if column exists (though SQLite doesn't support IF NOT EXISTS on column add)
+-- Since 0001 already adds successful_invites, we can comment this out or wrap it?
+-- SQLite ALTER TABLE doesn't support IF NOT EXISTS. 
+-- Best practice here: Just comment out the ALTER TABLE since we know 0001 has it.
 
 -- Create invites table
 CREATE TABLE IF NOT EXISTS invites (
@@ -23,6 +25,5 @@ CREATE INDEX IF NOT EXISTS idx_invites_status ON invites(status);
 CREATE INDEX IF NOT EXISTS idx_invites_invite_code ON invites(invite_code);
 
 -- Add successful_invites column to users table if not exists
--- This tracks the number of successfully activated invites
-ALTER TABLE users ADD COLUMN successful_invites INTEGER DEFAULT 0;
-
+-- ALREADY IN 0001_initial_schema.sql
+-- ALTER TABLE users ADD COLUMN successful_invites INTEGER DEFAULT 0;

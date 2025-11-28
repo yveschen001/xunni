@@ -104,13 +104,33 @@ export function getTranslations(languageCode: string): Translations {
   return translationCache.get('zh-TW')!;
 }
 
+function replaceParams(text: string, params: Record<string, any>): string {
+  let result = text;
+  result = result.replace(/(?:\\\$\{|\$\{)([^}]+)\}/g, (match, expr) => {
+    const keys = expr.trim().split('.');
+    let value: any = params;
+    for (const key of keys) {
+      if (value && typeof value === 'object' && key in value) {
+        value = value[key];
+      } else {
+        return match;
+      }
+    }
+    return String(value ?? match);
+  });
+  result = result.replace(/\{(\w+)\}/g, (match, paramKey) => {
+    return paramKey in params ? String(params[paramKey]) : match;
+  });
+  return result;
+}
+
 /**
  * Translate a key with parameters
  */
 export function t(
   languageCode: string,
   key: string,
-  params?: Record<string, string | number>
+  params?: Record<string, string | number | undefined>
 ): string {
   const translations = getTranslations(languageCode);
 
@@ -132,53 +152,54 @@ export function t(
         }
         value = nextValue;
       } else if (i < keys.length - 1) {
-        const combinedKey = `${k}.${keys[i + 1]}`;
-        if (combinedKey in value) {
-          value = (value as Record<string, unknown>)[combinedKey] as Record<string, unknown> | string;
-          i++;
-        } else {
+          // Check combined key for current level (e.g. settings.quietHoursHint where settings is object)
+          // But here value is object and k is not in it.
+          // Try next key combined?
+          const combinedKey = `${k}.${keys[i + 1]}`;
+          if (combinedKey in value) {
+               value = (value as Record<string, unknown>)[combinedKey] as Record<string, unknown> | string;
+               i++;
+               continue;
+          }
+          
           // Key not found
-          // console.error(`[i18n] Translation key not found: ${key} for language: ${languageCode} (failed at: ${k})`);
+          if (params?.defaultValue) {
+              return replaceParams(params.defaultValue as string, params);
+          }
           return `[${key}]`;
-        }
       } else {
         // Key not found
-        // console.error(`[i18n] Translation key not found: ${key} for language: ${languageCode} (failed at: ${k})`);
+        if (params?.defaultValue) {
+             return replaceParams(params.defaultValue as string, params);
+        }
         return `[${key}]`;
       }
     } else {
       // Key not found
-      // console.error(`[i18n] Translation key not found: ${key} for language: ${languageCode}`);
+      if (params?.defaultValue) {
+           return replaceParams(params.defaultValue as string, params);
+      }
       return `[${key}]`;
     }
   }
 
-  if (typeof value === 'string' && params) {
-    let result = value;
-    result = result.replace(/(?:\\\$\{|\$\{)([^}]+)\}/g, (match, expr) => {
-      const keys = expr.trim().split('.');
-      let value: any = params;
-      for (const key of keys) {
-        if (value && typeof value === 'object' && key in value) {
-          value = value[key];
-        } else {
-          return match;
-        }
-      }
-      return String(value ?? match);
-    });
-    result = result.replace(/\{(\w+)\}/g, (match, paramKey) => {
-      return paramKey in params ? String(params[paramKey]) : match;
-    });
-    return result;
+  if (typeof value === 'string') {
+    if (params) {
+      return replaceParams(value, params);
+    }
+    return value;
   }
 
-  return typeof value === 'string' ? value : `[${key}]`;
+  // If it's an object, it means the key path was incomplete or pointed to an object
+  if (params?.defaultValue) {
+       return replaceParams(params.defaultValue as string, params);
+  }
+  return `[${key}]`;
 }
 
 export function createI18n(languageCode: string) {
   return {
-    t: (key: string, params?: Record<string, string | number>) => t(languageCode, key, params),
+    t: (key: string, params?: Record<string, string | number | undefined>) => t(languageCode, key, params),
     translations: getTranslations(languageCode),
   };
 }

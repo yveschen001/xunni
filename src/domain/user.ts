@@ -409,3 +409,24 @@ export function calculateBanDuration(banCount: number): number | null {
   if (banCount === 3) return 30; // 1 month
   return null; // Permanent ban
 }
+
+// ============================================================================
+// Match Preferences
+// ============================================================================
+
+export enum UserActivityLevel {
+  ACTIVE = 'ACTIVE',
+  INACTIVE = 'INACTIVE', // 7-30 days
+  DORMANT = 'DORMANT',   // > 30 days
+}
+
+/**
+ * Get target gender based on user preference or own gender
+ */
+export function getTargetGender(user: User): 'male' | 'female' | 'any' {
+  if (user.match_preference && user.match_preference !== 'any') {
+    return user.match_preference;
+  }
+  // Default opposite gender
+  return user.gender === 'male' ? 'female' : 'male';
+}

@@ -1,3 +1,4 @@
+// src/i18n/types.ts
 /**
  * i18n Type Definitions
  */
@@ -19,6 +20,12 @@ export interface Translations {
     success: string;
     loading: string;
     notSet: string;
+    back3?: string;
+    bottle9?: string;
+    bottle13?: string;
+    unknownOption?: string;
+    timeLeftDaysHours?: string;
+    timeLeftHours?: string;
   };
 
   // Onboarding
@@ -42,6 +49,52 @@ export interface Translations {
     termsAgree: string;
     registrationComplete: string;
     profileSummary: string;
+    stepLanguageSelection?: string;
+    stepNickname?: string;
+    stepGender?: string;
+    stepBirthday?: string;
+    stepMbti?: string;
+    stepAntiFraud?: string;
+    stepTerms?: string;
+    stepDefault?: string;
+  };
+  
+  // Settings (Updated)
+  settings: {
+    selectOption: string;
+    throwReminder?: string;
+    catchReminder?: string;
+    messageReminder?: string;
+    toggleThrow?: string;
+    toggleCatch?: string;
+    toggleMessage?: string;
+    quietHours?: string;
+    quietHoursHint?: string;
+    editQuietHours?: string;
+    quietDisable?: string;
+    selectStartHour?: string;
+    selectEndHour?: string;
+    saved?: string;
+    disabled?: string;
+    saved?: string;
+    languageUpdated?: string;
+    currentSettings?: string;
+    languageLabel?: string;
+    changeLanguage?: string;
+    returnToMenu?: string;
+    back?: string;
+  };
+
+  // Push Notifications (New)
+  push?: {
+    throwReminder: string;
+    catchReminder: string;
+    onboardingReminder: string;
+    messageReminderA?: string;
+    messageReminderB?: string;
+    messageReminderC?: string;
+    actionReply?: string;
+    actionHistory?: string;
   };
 
   // Commands
@@ -213,6 +266,10 @@ export interface Translations {
     subscribe: string;
     alreadyVIP: string;
     expired: string;
+    purchaseCancelled?: string;
+    viewVipCommand?: string;
+    renewalProcessing?: string;
+    reminderCancelled?: string;
   };
 
   // Invite
@@ -243,6 +300,7 @@ export interface Translations {
     banned: string;
     invalidInput: string;
     networkError: string;
+    systemErrorRetry?: string;
   };
 
   // Ban
@@ -274,6 +332,7 @@ export interface Translations {
     onlySuperAdmin: string;
     onlyAdmin: string;
     cannotBanAdmin: string;
+    ban?: { noPermission?: string };
 
     // Admin list
     listTitle: string;
@@ -345,4 +404,56 @@ export interface Translations {
     // Common
     error: string;
   };
+
+  // Router
+  router?: {
+    throwPrompt?: string;
+    replyPrompt?: string;
+    suggestThrow?: string;
+    suggestMenu?: string;
+  };
+  
+  // Tutorial
+  tutorial?: {
+    clickButtonHint?: string;
+    throwBottleDesc?: string;
+    catchBottleDesc?: string;
+    completeTasksForBottles?: string;
+    availableCommands?: string;
+    commandThrow?: string;
+    commandCatch?: string;
+    commandTasks?: string;
+    commandMenu?: string;
+  };
+
+  // Buttons
+  buttons?: {
+    bottle3?: string;
+    bottle4?: string;
+  };
+
+  // Warnings
+  warning?: {
+    text8?: string;
+  };
+
+  // Conversation
+  conversation?: {
+    historyPost?: string;
+    historyPostSuffix?: string;
+    newMessageNotification?: string;
+    newMessageNotificationSuffix?: string;
+  };
+
+  // Broadcast (New)
+  BROADCAST?: {
+    FILTER_ERROR: string;
+    NO_CONTENT: string;
+    NO_MATCHES: string;
+    TOO_MANY_USERS: string;
+    START_SENDING: string;
+    COMPLETED: string;
+  };
+  
+  [key: string]: any; // Allow indexing by string for dynamic keys
 }

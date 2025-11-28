@@ -1,7 +1,6 @@
-/**
- * Broadcast Command Handlers
- * Handle admin broadcast commands
- */
+// src/telegram/handlers/broadcast.ts
+// Fix: Remove dependency on removed filter functions
+// Replaced with new filter engine imports where needed or simplified
 
 import type { Env, TelegramMessage } from '~/types';
 import { createDatabaseClient } from '~/db/client';
@@ -10,8 +9,7 @@ import { validateBroadcastMessage, formatBroadcastStatus } from '~/domain/broadc
 import { createBroadcast, getBroadcast, createFilteredBroadcast } from '~/services/broadcast';
 import {
   parseFilters,
-  validateFilters,
-  formatFiltersDescription,
+  formatFilters
 } from '~/domain/broadcast_filters';
 import { findUserByTelegramId } from '~/db/queries/users';
 import { createI18n } from '~/i18n';
@@ -547,130 +545,11 @@ export async function handleBroadcastCleanup(message: TelegramMessage, env: Env)
 
 /**
  * Handle /broadcast_filter command
- * Usage: /broadcast_filter <filters> <message>
- *
- * Example: /broadcast_filter gender=female,age=18-25,country=TW 大家好！
- *
- * Supported filters:
- * - gender: male | female | other
- * - zodiac: Aries | Taurus | ... (12 zodiacs)
- * - country: TW | US | ... (ISO 3166-1 alpha-2)
- * - age: min-max (e.g., 18-25)
- * - mbti: INTJ | ENFP | ... (16 types)
- * - vip: true | false
+ * LEGACY FUNCTION: Use handleBroadcastFilter in broadcast_v2.ts instead
+ * Re-implemented here briefly to avoid compile error if called directly,
+ * but should be routed to v2.
  */
 export async function handleBroadcastFilter(message: TelegramMessage, env: Env): Promise<void> {
-  const telegram = createTelegramService(env);
-  const db = createDatabaseClient(env.DB);
-  const chatId = message.chat.id;
-  const telegramId = message.from!.id.toString();
-  const text = message.text || '';
-
-  try {
-    // Parse command: /broadcast_filter <filters> <message>
-    const parts = text.split(' ');
-    if (parts.length < 3) {
-      const user = await findUserByTelegramId(db, telegramId);
-      const i18n = createI18n(user?.language_pref || 'zh-TW');
-      await telegram.sendMessage(
-        chatId,
-        i18n.t('broadcast.filterUsageError') +
-          i18n.t('broadcast.filterCorrectFormat') +
-          i18n.t('broadcast.filterCommand') +
-          i18n.t('broadcast.filterFormat') +
-          i18n.t('broadcast.filterGender') +
-          i18n.t('broadcast.filterZodiac') +
-          i18n.t('broadcast.filterCountry') +
-          i18n.t('broadcast.filterAge') +
-          i18n.t('broadcast.filterMbti') +
-          i18n.t('broadcast.filterVip') +
-          i18n.t('broadcast.filterExamples') +
-          i18n.t('broadcast.filterExample1') +
-          i18n.t('broadcast.filterExample2') +
-          i18n.t('broadcast.filterExample3')
-      );
-      return;
-    }
-
-    // Extract filters and message
-    const filtersStr = parts[1];
-    const broadcastMessage = text.substring(text.indexOf(parts[2]));
-
-    // Parse filters
-    let filters;
-    try {
-      const user = await findUserByTelegramId(db, telegramId);
-      const i18n = createI18n(user?.language_pref || 'zh-TW');
-      filters = parseFilters(filtersStr, i18n);
-    } catch (error) {
-      const user = await findUserByTelegramId(db, telegramId);
-      const i18n = createI18n(user?.language_pref || 'zh-TW');
-      await telegram.sendMessage(
-        chatId,
-        i18n.t('broadcast.filterFormatError', { error: error instanceof Error ? error.message : String(error) }) +
-          i18n.t('broadcast.filterViewFormat')
-      );
-      return;
-    }
-
-    // Validate filters
-    const user = await findUserByTelegramId(db, telegramId);
-    const i18n = createI18n(user?.language_pref || 'zh-TW');
-    const filterValidation = validateFilters(filters, i18n);
-    if (!filterValidation.valid) {
-      await telegram.sendMessage(chatId, `❌ ${filterValidation.error}`);
-      return;
-    }
-
-    // Validate message
-    const messageValidation = validateBroadcastMessage(broadcastMessage);
-    if (!messageValidation.valid) {
-      await telegram.sendMessage(chatId, `❌ ${messageValidation.error}`);
-      return;
-    }
-
-    // Format filters description for confirmation
-    const filtersDesc = formatFiltersDescription(filters, i18n);
-
-    // Send confirmation
-    // (user and i18n already fetched above)
-    await telegram.sendMessage(
-      chatId,
-      i18n.t('broadcast.filterConfirmTitle') +
-        i18n.t('broadcast.filterConfirmConditions', { conditions: filtersDesc }) +
-        i18n.t('broadcast.filterConfirmMessage', { message: broadcastMessage }) +
-        i18n.t('broadcast.filterQueryingUsers')
-    );
-
-    // Create filtered broadcast
-    const { broadcastId, totalUsers } = await createFilteredBroadcast(
-      env,
-      broadcastMessage,
-      filters,
-      message.from!.id.toString()
-    );
-
-    // Calculate estimated time
-    const { estimateBroadcastTime } = await import('~/domain/broadcast');
-    const estimatedTime = estimateBroadcastTime(totalUsers);
-
-    // Confirm to admin
-    await telegram.sendMessage(
-      chatId,
-      i18n.t('broadcast.filterCreated') +
-        i18n.t('broadcast.filterCreatedId', { id: broadcastId }) +
-        i18n.t('broadcast.filterCreatedConditions', { conditions: filtersDesc }) +
-        i18n.t('broadcast.filterCreatedUserCount', { count: totalUsers }) +
-        i18n.t('broadcast.filterCreatedEstimatedTime', { time: estimatedTime }) +
-        i18n.t('broadcast.filterCreatedSending', { id: broadcastId })
-    );
-  } catch (error) {
-    console.error('[handleBroadcastFilter] Error:', error);
-    const user = await findUserByTelegramId(db, telegramId);
-    const i18n = createI18n(user?.language_pref || 'zh-TW');
-    await telegram.sendMessage(
-      chatId,
-      i18n.t('broadcast.filterCreateFailed', { error: error instanceof Error ? error.message : String(error) })
-    );
-  }
+    const { handleBroadcastFilter: v2 } = await import('./broadcast_v2');
+    return v2(message, env);
 }

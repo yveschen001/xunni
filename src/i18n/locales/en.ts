@@ -3210,7 +3210,15 @@ export const translations: Translations = {
     "settings3": "🏠 Back to Settings",
     "settings4": "Current Settings：\n",
     "text": "• Language：${languageName} 🇹🇼\n\n",
-    "title": "🏠 **Main Menu**"
+    "title": "🏠 **Main Menu**",
+    "throwReminder": "Message bottle reminder",
+    "catchReminder": "Message bottle pickup reminder",
+    "messageReminder": "Conversation reminder",
+    "toggleThrow": "Switch message bottle reminder",
+    "toggleCatch": "Switch message bottle pickup reminder",
+    "toggleMessage": "Switch conversation reminder",
+    "quietHours": "Quiet time",
+    "saved": "Settings saved"
   },
   "stats": {
     "activeUsers": "• Active Yesterday: {active}\n\n",
@@ -3567,7 +3575,9 @@ export const translations: Translations = {
     "verify": "✅ Verification successful! Earned +${ad.reward_quota} permanent credits!",
     "verify2": "✅ Verification Successful! You have received +\\${ad.reward_quota} permanent credits!",
     "vip": "✅ All posts are up to date (VIP status is correct)\n",
-    "zodiac": "✅ Zodiac selection cleared"
+    "zodiac": "✅ Zodiac selection cleared",
+    "bottleThrown": "🍾 Message bottle has been tossed!",
+    "saved": "✅ Settings saved"
   },
   "target": {
     "all": "All Users",
@@ -3590,7 +3600,8 @@ export const translations: Translations = {
       "first_conversation": "Make your first connection (long press message → select 'Reply')",
       "interests": "Let others get to know you better",
       "invite_progress": "For each person invited, permanent daily quota +1 (free for up to 10 people, VIP up to 100 people)",
-      "join_channel": "Get the latest news and events"
+      "join_channel": "Get the latest news and events",
+      "confirm_country": "Help other users understand you better"
     },
     "invite": "🔄 Invite friends (${inviteProgress.current}/${inviteProgress.max})\n",
     "invite2": "For each person invited → permanent daily quota +1\n",
@@ -3604,7 +3615,8 @@ export const translations: Translations = {
       "first_conversation": "Start the first conversation",
       "interests": "Fill in interest tags",
       "invite_progress": "Invite friends",
-      "join_channel": "Join the official channel"
+      "join_channel": "Join the official channel",
+      "confirm_country": "Confirm your country"
     },
     "profile": "👤 **Profile Tasks** (${completedCount}/${profileTasks.length})\n",
     "quota": "Current daily quota: ${calculateDailyQuota(user)} bottles\n",
@@ -4004,11 +4016,11 @@ export const translations: Translations = {
     "bloodType": "🩸 Blood Type",
     "gender": "👤 Gender: {otherUser.gender}",
     "mbti": "🧠 MBTI: \\\\\\\\\\${mbti}",
-    "register2": "[Needs translation: warnings.register2]",
-    "register4": "[Needs translation: warnings.register4]",
+    "register2": "⚠️ Please complete registration first",
+    "register4": "⚠️ Registration not completed",
     "settings": "🧠 MBTI: \\\\\\\\\\\\$",
     "text5": "📖 Bio: {otherUser.bio}",
-    "text6": "[Needs translation: warnings.text6]",
+    "text6": "⚠️ Please complete registration first",
     "userNotFound": "User does not exist",
     "warning": {
       "ad": "⚠️ Currently no ad providers configured\n\n",
@@ -4074,6 +4086,29 @@ export const translations: Translations = {
       "vip": "⚠️ Reached the limit for free user invitations; upgrade to VIP to unlock a limit of 100 people!",
       "vip2": "⚠️ This feature is for VIP members only",
       "vip3": "⚠️ **VIP expires today**\n\n"
+    },
+    "BROADCAST": {
+      "FILTER_ERROR": "❌ Format error.\nExample: `/broadcast_filter gender=female,country=TW test message` `/broadcast_filter gender=female,country=TW 測試訊息`",
+      "NO_CONTENT": "❌ Please enter broadcast content.",
+      "NO_MATCHES": "⚠️ No users matching the criteria were found.\nFilter criteria: {filters}",
+      "TOO_MANY_USERS": "⚠️ Too many target users ({count} people), currently limited to sending to {max} people at once.",
+      "START_SENDING": "🚀 Starting broadcast #{id}\n🎯 Target: {filters}\n👥 Number of people: {count}",
+      "COMPLETED": "✅ Broadcast #{id} completed!\nSuccess: {sent}\nFailed: {failed}\nBlocked: {blocked}"
+    },
+    "push": {
+      "throwReminder": "🌊 Hey! It’s been a while since you tossed a message bottle, the beach is very quiet...",
+      "catchReminder": "🎣 Some new message bottles have washed up at the beach, want to go check them out?",
+      "onboardingReminder": "👋 Your registration is not yet complete, you're almost there! (Step: {step})"
     }
+  },
+  "push": {
+    "actionHistory": "📜 View context",
+    "actionReply": "💬 Reply to {masked_partner_name}",
+    "throwReminder": "🌊 Hey! It's been a while since you tossed a message bottle, the beach is so quiet...",
+    "catchReminder": "🎣 Some new bottles have drifted to the shore, want to take a look?",
+    "onboardingReminder": "👋 Your registration is not yet complete, just a little bit more! (Step: {step})",
+    "messageReminderA": "👋 Hey {masked_partner_name}, we're still waiting for your reply! Don't let the conversation go cold～",
+    "messageReminderB": "📩 You have an unread message from {masked_partner_name}:\n> \"{last_message_preview}...\"\n(It’s been 24 hours already!)",
+    "messageReminderC": "⏳ {masked_partner_name} is waiting for your reply..."
   }
 };

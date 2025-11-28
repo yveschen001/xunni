@@ -3,10 +3,16 @@
 > **最後更新**：2025-11-21  
 > **版本**：v2.0（整合廣播系統）  
 > **總覽文檔**：[`doc/PUSH_SYSTEM_MASTER.md`](./PUSH_SYSTEM_MASTER.md)
+> **設計規範**：[`@doc/DESIGN_STANDARDS.md`](./DESIGN_STANDARDS.md) (隱私、i18n、UX 標準)
 
 ## 1. 概述
 
 設計智能的主動推送機制，在合適的時機提醒使用者，提高活躍度，同時避免打擾使用者。
+
+**設計合規性 (Compliance)**：
+- ✅ **隱私優先**：所有推送中的他人暱稱必須經過 `maskNickname()` 處理（詳見 Design Standards 1.1）。
+- ✅ **強制 i18n**：所有文案必須使用 `i18n.t()`，禁止硬編碼。
+- ✅ **可操作性**：每條通知都必須包含下一步動作按鈕（Actionable Notifications）。
 
 **推送語言規範**：
 - 所有推送訊息**必須使用 i18n 系統**
@@ -14,10 +20,13 @@
 - 推送內容使用 `@src/i18n/keys.ts` 中定義的鍵值
 - 實作範例：`t(user.language_pref, I18N_KEYS.PUSH.MATCH_SUCCESS)`
 
-**與廣播系統的整合**：
-- 💡 本系統可**復用廣播系統的 Filter 引擎**（`getFilteredUserIds`）
-- 💡 本系統可**復用廣播系統的發送器**（`processBroadcast`）
-- 💡 詳見 [`doc/BROADCAST_SYSTEM_DESIGN.md`](./BROADCAST_SYSTEM_DESIGN.md) 第 12 章
+**與廣播系統的整合架構 (Integration Architecture)**：
+- 🏗 **基礎設施復用**：本系統**不再重複開發**底層發送邏輯。
+- 🔄 **發送器復用**：必須調用廣播系統的 `NotificationService` (或 `SafeSender`) 處理發送與錯誤標記。
+- 🔍 **過濾器復用**：必須調用廣播系統的 `FilterEngine` 處理用戶篩選。
+- 🚀 **批量任務外包**：對於批量推送（如生日祝福），應建立 `System Broadcast` 任務，交由廣播隊列處理。
+- ⚡️ **即時任務**：對於匹配成功等即時通知，直接調用 `NotificationService.sendImmediate()`。
+- 詳見 [`doc/BROADCAST_SYSTEM_DESIGN.md`](./BROADCAST_SYSTEM_DESIGN.md) 第 12 章與架構圖。
 
 **⚠️ Telegram 政策與安全規範**：
 - ❌ **絕對禁止**向 `bot_status != 'active'` 的用戶發送訊息
@@ -109,25 +118,38 @@
 - 使用 `users.language_pref` 決定推送語言（i18n）
 - 尊重使用者的 `user_push_preferences.message_reminder_enabled` 設定
 
-#### 2.2.4 對話提醒（Message Reminder）
+#### 2.2.2 未回覆訊息喚醒 (Message Retention)
+
+**設計目標**：喚醒「忘記回覆」的用戶，挽救瀕臨死亡的對話。
 
 **觸發條件**：
-- 使用者有未讀訊息的對話
-- 超過 2 小時未回覆
+- 對話狀態為 `active`
+- 用戶是「下一位發言者」（Last Sender 是對方）
+- 距離上一條訊息超過 **24 小時**（黃金喚醒點）
+- 距離上一條訊息不超過 **30 天**（30 天後視為死亡對話，放棄治療）
 
-**推送頻率**：
-- 每 4 小時最多 1 次
-- 同一對話最多提醒 2 次
+**頻率限制**：
+- **每條訊息只提醒一次**（避免對同一句話重複嘮叨）
+- **每 3 天**最多收到一次此類提醒（如果有多個對話同時冷掉）
 
-**推送內容**：
-```
-💬 有人回覆你了！
+**文案策略 (動態隨機 + 隱私遮罩)**：
+- **隱私原則**：推送通知中的對方暱稱**必須去識別化**（如 `Alic***`），保護用戶隱私。
+- *文案 A (溫情)*: "👋 Hey **{masked_partner_name}** 還在等你回覆喔！別讓對話冷掉了～"
+- *文案 B (好奇)*: "📩 你有一則來自 **{masked_partner_name}** 的未讀訊息："
+  > *"{last_message_preview}..."*
+  > (已經過了 24 小時囉！)
+- *文案 C (直接)*: "⏳ **{masked_partner_name}** 正在等待你的回覆..."
 
-你有 {count} 個未讀訊息
-快去看看是誰吧～ 👀
+**增強型操作 (Actionable)**：
+推送訊息需附帶 Inline Keyboard，方便用戶一鍵處理：
+- **[💬 回覆 {masked_partner_name}]**：點擊觸發 `/reply {conversation_id}`，直接進入該對話。
+- **[📜 查看上下文]**：點擊觸發 `/history {conversation_id} 3`，顯示最後 3 則訊息幫助回憶。
 
-[💬 查看對話] [稍後提醒我]
-```
+**技術實作要求**：
+- 需在 `conversations` 表新增 `last_sender_id` 欄位以追蹤發言權。
+- 推送前需調用 `maskNickname()` 處理對方暱稱。
+- 需截取 `last_message` 的前 15 個字作為預覽（注意過濾敏感詞）。
+- Cron Job 每小時掃描一次。
 
 #### 2.2.5 Onboarding 未完成提醒
 
@@ -231,15 +253,19 @@ enum UserActivityLevel {
 
 ### 3.3 使用者偏好設定
 
+**變更說明**：
+- **移除前端開關**：UI 上不再提供 `throw/catch/message` 的開關。
+- **後端保留欄位**：資料庫 `user_push_preferences` 仍保留這些欄位（預設為 1），以便未來運營需要時可從後端調整，或作為 A/B Test 的控制項。
+- **安靜時段**：保留安靜時段設定，這是對用戶友好的必要功能。
+
 ```sql
 CREATE TABLE user_push_preferences (
   user_id TEXT PRIMARY KEY,
-  throw_reminder_enabled INTEGER DEFAULT 1,
-  catch_reminder_enabled INTEGER DEFAULT 1,
-  message_reminder_enabled INTEGER DEFAULT 1,
-  quiet_hours_start INTEGER DEFAULT 22,  -- 22:00
-  quiet_hours_end INTEGER DEFAULT 8,    -- 08:00
-  timezone TEXT DEFAULT 'UTC',
+  throw_reminder_enabled INTEGER DEFAULT 1,   -- UI 不顯示，後端預設 1
+  catch_reminder_enabled INTEGER DEFAULT 1,   -- UI 不顯示，後端預設 1
+  message_reminder_enabled INTEGER DEFAULT 1, -- UI 不顯示，後端預設 1
+  quiet_hours_start INTEGER DEFAULT 0,        -- 預設 00:00 (UTC)
+  quiet_hours_end INTEGER DEFAULT 8,          -- 預設 08:00 (UTC)
   updated_at DATETIME
 );
 ```
@@ -248,18 +274,25 @@ CREATE TABLE user_push_preferences (
 
 ## 4. 資料庫設計
 
-### 4.1 push_notifications（推送記錄）
+### 4.1 conversations 表變更 (Migration 0059)
+
+為了支援「未回覆喚醒」，必須知道最後一句話是誰說的。
+
+```sql
+ALTER TABLE conversations ADD COLUMN last_sender_id TEXT;
+CREATE INDEX IF NOT EXISTS idx_conversations_remind_check ON conversations(status, last_message_at, last_sender_id);
+```
+
+### 4.2 push_notifications（推送記錄）
 
 ```sql
 CREATE TABLE push_notifications (
   id INTEGER PRIMARY KEY AUTOINCREMENT,
   user_id TEXT,
-  notification_type TEXT,         -- 'throw_reminder' / 'catch_reminder' / 'message_reminder'
-  content TEXT,
-  status TEXT,                   -- 'sent' / 'dismissed' / 'clicked'
-  sent_at DATETIME,
-  clicked_at DATETIME,
-  dismissed_at DATETIME
+  type TEXT,         -- 'throw_reminder' / 'catch_reminder' / 'message_reminder'
+  status TEXT DEFAULT 'sent', -- 'sent', 'failed', 'blocked'
+  sent_at TEXT DEFAULT CURRENT_TIMESTAMP,
+  FOREIGN KEY (user_id) REFERENCES users(telegram_id)
 );
 
 CREATE INDEX idx_push_notifications_user_id ON push_notifications(user_id);
@@ -424,22 +457,24 @@ if (metrics.conversionRate < 0.1) {
 
 ---
 
-## 8. 使用者控制
+## 8. 使用者控制 (UI 變更)
 
 ### 8.1 /settings（設定）
 
+**移除細粒度開關，簡化為**：
+
 ```
-⚙️ 推送設定
+⚙️ 設定
 
-📦 丟瓶提醒：{enabled ? '✅ 開啟' : '❌ 關閉'}
-🔍 撿瓶提醒：{enabled ? '✅ 開啟' : '❌ 關閉'}
-💬 對話提醒：{enabled ? '✅ 開啟' : '❌ 關閉'}
+🌐 語言：繁體中文
+🌙 安靜時段：22:00 - 08:00
+   (在此時段內不會收到非緊急通知)
 
-🌙 安靜時段：{start} - {end}
-   在此時段內不會收到推送
-
-[修改設定] [返回]
+[修改語言] [修改安靜時段]
+[返回]
 ```
+
+**理由**：減少決策負擔，鼓勵用戶使用 Telegram 的 Mute 功能來管理干擾，從而最大化我們的觸達率。
 
 ---
 

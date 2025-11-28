@@ -1,0 +1,20 @@
+{
+  "testName": "MoonPacket API (Mode B)",
+  "error": {
+    "message": "fetch failed",
+    "stack": "TypeError: fetch failed\n    at node:internal/deps/undici/undici:12637:11\n    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)\n    at <anonymous> (/Users/yichen/Downloads/cursor/XunNi/scripts/smoke-test-v2/features.ts:55:19)\n    at SmartRunner.enterAutoFixLoop (/Users/yichen/Downloads/cursor/XunNi/scripts/smoke-test-v2/runner.ts:106:15)\n    at SmartRunner.runSuite (/Users/yichen/Downloads/cursor/XunNi/scripts/smoke-test-v2/runner.ts:85:16)\n    at runFeatureSuites (/Users/yichen/Downloads/cursor/XunNi/scripts/smoke-test-v2/features.ts:51:3)\n    at main (/Users/yichen/Downloads/cursor/XunNi/scripts/smoke-test-v2/index.ts:44:5)"
+  },
+  "config": {
+    "targetUrl": "http://127.0.0.1:8787",
+    "maxRetries": 2,
+    "timeout": 5000,
+    "isLocal": true,
+    "autoFix": true
+  },
+  "timestamp": "2025-11-27T15:35:45.344Z",
+  "systemInfo": {
+    "nodeVersion": "v18.20.8",
+    "platform": "darwin",
+    "cwd": "/Users/yichen/Downloads/cursor/XunNi"
+  }
+}

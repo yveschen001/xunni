@@ -55,6 +55,17 @@ export function extractInviteCode(text: string): string | null {
 }
 
 /**
+ * Extract MBTI share code from /start command
+ *
+ * @param text Command text (e.g., "/start share_mbti_XYZ123")
+ * @returns MBTI share code or null
+ */
+export function extractMbtiShareCode(text: string): string | null {
+  const match = text.match(/^\/start\s+share_mbti_(.+)$/);
+  return match ? match[1] : null;
+}
+
+/**
  * Validate invite code format
  *
  * @param code Invite code

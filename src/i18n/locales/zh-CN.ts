@@ -58,10 +58,10 @@ export const translations: Translations = {
       "correctFormat": "**正确格式：**",
       "disableCommand": "• `/ad_provider_disable ` - 停用 `/ad_provider_disable <id>`",
       "disableFailed": "❌ 停用广告提供商失败",
-      "disableOfficialAdCommand": "• `/official_ad_disable ` - 停用 ",
+      "disableOfficialAdCommand": "• `/official_ad_disable ` - 停用",
       "disableOfficialAdFailed": "❌ 停用官方广告失败",
       "disabled": "❌ 停用",
-      "enableCommand": "• `/ad_provider_enable ` - 启用 ",
+      "enableCommand": "• `/ad_provider_enable ` - 启用",
       "enableFailed": "❌ 启用广告提供商失败",
       "enableOfficialAdCommand": "• `/official_ad_enable ` - 启用",
       "enableOfficialAdFailed": "❌ 启用官方广告失败",
@@ -3210,7 +3210,15 @@ export const translations: Translations = {
     "settings3": "🏠 返回设定",
     "settings4": "当前设定：\n",
     "text": "• 语言：${languageName} 🇹🇼\n\n",
-    "title": "🏠 **主选单**"
+    "title": "🏠 **主选单**",
+    "throwReminder": "丢瓶提醒",
+    "catchReminder": "捡瓶提醒",
+    "messageReminder": "对话提醒",
+    "toggleThrow": "切换丢瓶提醒",
+    "toggleCatch": "切换捡瓶提醒",
+    "toggleMessage": "切换对话提醒",
+    "quietHours": "安静时段",
+    "saved": "设定已储存"
   },
   "stats": {
     "activeUsers": "• 昨日活跃：{active}\n\n",
@@ -3567,7 +3575,9 @@ export const translations: Translations = {
     "verify": "✅ 验证成功！获得 +${ad.reward_quota} 个永久额度！",
     "verify2": "✅ 验证成功！获得 +\\${ad.reward_quota} 个永久额度！",
     "vip": "✅ 所有帖子都是最新的（VIP 状态正确）\n",
-    "zodiac": "✅ 已清除星座选择"
+    "zodiac": "✅ 已清除星座选择",
+    "bottleThrown": "🍾 漂流瓶已丢出！",
+    "saved": "✅ 设定已保存"
   },
   "target": {
     "all": "所有用户",
@@ -3590,7 +3600,8 @@ export const translations: Translations = {
       "first_conversation": "建立你的第一个连接（长按讯息 → 选择「回覆」）",
       "interests": "让别人更了解你",
       "invite_progress": "每邀请 1 人，每日额度永久 +1（免费最多 10 人，VIP 最多 100 人）",
-      "join_channel": "获取最新消息和活动"
+      "join_channel": "获取最新消息和活动",
+      "confirm_country": "让其他用户更了解你"
     },
     "invite": "🔄 邀请好友 (${inviteProgress.current}/${inviteProgress.max})\n",
     "invite2": "每邀请 1 人 → 每日额度永久 +1\n",
@@ -3604,7 +3615,8 @@ export const translations: Translations = {
       "first_conversation": "开始第一次对话",
       "interests": "填写兴趣标签",
       "invite_progress": "邀请好友",
-      "join_channel": "加入官方频道"
+      "join_channel": "加入官方频道",
+      "confirm_country": "确认所属国家"
     },
     "profile": "👤 **个人资料任务** (${completedCount}/${profileTasks.length})\n",
     "quota": "当前每日配额：${calculateDailyQuota(user)} 个\n",
@@ -4074,6 +4086,29 @@ export const translations: Translations = {
       "vip": "⚠️ 已达免费用户邀请上限，升级 VIP 可解锁 100 人上限！",
       "vip2": "⚠️ 此功能仅限 VIP 会员使用",
       "vip3": "⚠️ **VIP 今天到期**\n\n"
+    },
+    "BROADCAST": {
+      "FILTER_ERROR": "❌ 格式错误。\n范例：`/broadcast_filter gender=female,country=TW 测试讯息` `/broadcast_filter gender=female,country=TW 測試訊息`",
+      "NO_CONTENT": "❌ 请输入广播内容。",
+      "NO_MATCHES": "⚠️ 找不到符合条件的用户。\n过滤条件：{filters}",
+      "TOO_MANY_USERS": "⚠️ 目标用户过多 ({count} 人)，目前限制单次发送 {max} 人。",
+      "START_SENDING": "🚀 开始发送广播 #{id}\n🎯 目标：{filters}\n👥 人数：{count} 人",
+      "COMPLETED": "✅ 广播 #{id} 完成！\n成功：{sent}\n失败：{failed}\n封锁：{blocked}"
+    },
+    "push": {
+      "throwReminder": "🌊 嘿！好久没丢瓶子了，海边很安静呢...",
+      "catchReminder": "🎣 海边漂来了一些新瓶子，要不要去看看？",
+      "onboardingReminder": "👋 你的注册还没完成，只差一点点了！ (步骤: {step})"
     }
+  },
+  "push": {
+    "actionHistory": "📜 查看上下文",
+    "actionReply": "💬 回覆 {masked_pa​​rtner_name} {masked_partner_name}",
+    "throwReminder": "🌊 嘿！好久没丢瓶子了，海边很安静呢...",
+    "catchReminder": "🎣 海边漂来了一些新瓶子，要不要去看看？",
+    "onboardingReminder": "👋 你的注册还没完成，只差一点点了！ (步骤: {step})",
+    "messageReminderA": "👋 Hey {masked_pa​​rtner_name} 还在等你回覆喔！别让对话冷掉了～ {masked_partner_name}",
+    "messageReminderB": "📩 你有一则来自 {masked_pa​​rtner_name} 的未读讯息：\n> \"{last_message_preview}...\"\n(已经过了 24 小时啰！) {masked_partner_name}",
+    "messageReminderC": "⏳ {masked_pa​​rtner_name} 正在等待你的回覆... {masked_partner_name}"
   }
 };

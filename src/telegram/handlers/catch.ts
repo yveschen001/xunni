@@ -357,7 +357,8 @@ export async function handleCatch(message: TelegramMessage, env: Env): Promise<v
           catcherLanguage,
           bottleLanguage,
           catcherIsVip,
-          env
+          env,
+          telegramId // Pass userId for logging
         );
 
         bottleContent = result.text;

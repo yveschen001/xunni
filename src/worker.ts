@@ -165,6 +165,12 @@ export default {
           return await handleMoonPacketCheck(request, env);
         }
 
+        // Public Stats API
+        if (url.pathname === '/api/stats' && request.method === 'GET') {
+          const { handleStats } = await import('./api/stats');
+          return await handleStats(request, env);
+        }
+
         return new Response(
           JSON.stringify({
             error: 'API endpoint not found',
@@ -235,34 +241,59 @@ export default {
 
       // AI Moderation Patrol (Every hour)
       if (event.cron === '0 * * * *') {
-        // eslint-disable-next-line no-console
-        console.log('[Worker] Running AI Moderation Patrol...');
-        const { runAiModerationPatrol } = await import('./cron/ai_moderation_patrol');
-        await runAiModerationPatrol(env);
+        try {
+          // eslint-disable-next-line no-console
+          console.log('[Worker] Running AI Moderation Patrol...');
+          const { runAiModerationPatrol } = await import('./cron/ai_moderation_patrol');
+          await runAiModerationPatrol(env);
+        } catch (err) {
+          console.error('[Worker] AI Moderation Patrol failed:', err);
+        }
       }
 
       // Check channel membership (Every hour)
       if (event.cron === '0 * * * *') {
-        // eslint-disable-next-line no-console
-        console.log('[Worker] Checking channel membership...');
-        const { checkChannelMembership } = await import('./services/channel_membership_check');
-        await checkChannelMembership(env);
+        try {
+          // eslint-disable-next-line no-console
+          console.log('[Worker] Checking channel membership...');
+          const { checkChannelMembership } = await import('./services/channel_membership_check');
+          await checkChannelMembership(env);
+        } catch (err) {
+          console.error('[Worker] Channel membership check failed:', err);
+        }
       }
 
       // Check VIP expirations (Every day at 10:00 UTC = 18:00 Taipei)
       if (event.cron === '0 10 * * *') {
-        // eslint-disable-next-line no-console
-        console.log('[Worker] Checking VIP expirations...');
-        const { checkVipExpirations } = await import('./services/vip_subscription');
-        await checkVipExpirations(env);
+        try {
+          // eslint-disable-next-line no-console
+          console.log('[Worker] Checking VIP expirations...');
+          const { checkVipExpirations } = await import('./services/vip_subscription');
+          await checkVipExpirations(env);
+        } catch (err) {
+          console.error('[Worker] VIP expirations check failed:', err);
+        }
       }
 
       // Check expired subscriptions (Every hour)
       if (event.cron === '0 * * * *') {
-        // eslint-disable-next-line no-console
-        console.log('[Worker] Checking expired subscriptions...');
-        const { checkExpiredSubscriptions } = await import('./services/subscription_checker');
-        await checkExpiredSubscriptions(env);
+        try {
+          // eslint-disable-next-line no-console
+          console.log('[Worker] Checking expired subscriptions...');
+          const { checkExpiredSubscriptions } = await import('./services/subscription_checker');
+          await checkExpiredSubscriptions(env);
+        } catch (err) {
+          console.error('[Worker] Subscription checker failed:', err);
+        }
+
+        try {
+          // New: Push Reminders (also every hour)
+          console.log('[Worker] Checking push reminders...');
+          const { handlePushReminders } = await import('./telegram/handlers/cron_push');
+          await handlePushReminders(env);
+        } catch (err) {
+          console.error('[Worker] Push reminders failed:', err);
+        }
       }
 
       // Batch update expired avatar caches (Every day at 03:00 UTC = 11:00 Taipei)
@@ -285,6 +316,31 @@ export default {
         console.log('[Worker] Sending birthday greetings...');
         const { handleBirthdayGreetings } = await import('./cron/birthday_greetings');
         await handleBirthdayGreetings(env);
+      }
+
+      // Daily Translation Report (Daily 09:00 UTC+8 = 01:00 UTC)
+      if (event.cron === '0 1 * * *') {
+        try {
+          console.log('[Worker] Running Admin Daily Report...');
+          const { handleAdminDailyReport } = await import('./telegram/handlers/admin_report');
+          await handleAdminDailyReport(env);
+        } catch (err) {
+          console.error('[Worker] Admin Daily Report failed:', err);
+        }
+      }
+
+      // Smart Match Push (Every Monday at 09:00 UTC+8 = 01:00 UTC)
+      if (event.cron === '0 1 * * 1') {
+        try {
+          // eslint-disable-next-line no-console
+          console.log('[Worker] Running Smart Match Push...');
+          // const { createDatabaseClient } = await import('./db/client');
+          // const db = createDatabaseClient(env);
+          const { handleMatchPush } = await import('./telegram/handlers/cron_match_push');
+          await handleMatchPush(env, env.DB);
+        } catch (err) {
+          console.error('[Worker] Smart Match Push failed:', err);
+        }
       }
     } catch (error) {
       console.error('[Worker] Scheduled event error:', error);

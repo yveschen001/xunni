@@ -258,7 +258,8 @@ export async function handleMessageForward(
           receiverLanguage,
           senderLanguage,
           isVip,
-          env
+          env,
+          telegramId // Pass userId for logging
         );
 
         finalMessage = result.text;
@@ -418,6 +419,8 @@ export async function handleConversationReplyButton(
   const chatId = callbackQuery.message!.chat.id;
   const telegramId = callbackQuery.from.id.toString();
 
+  console.log(`[handleConversationReplyButton] Processing reply for identifier: ${conversationIdentifier}, userId: ${telegramId}`);
+
   try {
     // Get user
     const user = await findUserByTelegramId(db, telegramId);
@@ -425,6 +428,7 @@ export async function handleConversationReplyButton(
     const i18n = createI18n(user?.language_pref || 'zh-TW');
     
     if (!user) {
+      console.warn(`[handleConversationReplyButton] User not found: ${telegramId}`);
       await telegram.answerCallbackQuery(callbackQuery.id, i18n.t('errors.userNotFoundRegister'));
       return;
     }
@@ -441,6 +445,7 @@ export async function handleConversationReplyButton(
       .first<{ partner_telegram_id: string }>();
 
     if (!identifierInfo) {
+      console.warn(`[handleConversationReplyButton] Identifier not found: ${conversationIdentifier}`);
       await telegram.answerCallbackQuery(callbackQuery.id, i18n.t('conversation.conversationEnded'));
       return;
     }
@@ -465,12 +470,14 @@ export async function handleConversationReplyButton(
       .first();
 
     if (!conversation) {
+      console.warn(`[handleConversationReplyButton] Conversation not found or not active`);
       await telegram.answerCallbackQuery(callbackQuery.id, i18n.t('conversation.conversationEnded'));
       return;
     }
 
     // Check if conversation is active
     if (conversation.status !== 'active') {
+      console.warn(`[handleConversationReplyButton] Conversation status is ${conversation.status}`);
       await telegram.answerCallbackQuery(callbackQuery.id, i18n.t('conversation.conversationEnded'));
       return;
     }
