@@ -11,7 +11,7 @@ import { getDailyAdStats, getAdStatsInRange } from '~/db/queries/ad_rewards';
 import { getProviderPerformanceComparison } from '~/db/queries/ad_providers';
 import { getDailyOfficialAdStats, getOfficialAdStatsInRange } from '~/db/queries/official_ads';
 import { getFunnelConversionRate } from '~/db/queries/analytics';
-import { calculateDailyStats } from '~/services/stats';
+import { calculateDetailedDailyStats } from '~/services/stats';
 import { createDatabaseClient } from '~/db/client';
 
 // ============================================================================
@@ -103,7 +103,7 @@ export async function generateDailyReport(db: D1Database, date: string): Promise
   // Get operational stats using the shared stats service
   // Create a wrapper for the stats service which expects createDatabaseClient return type
   const dbClient = createDatabaseClient(db);
-  const dailyStats = await calculateDailyStats(dbClient, date);
+  const dailyStats = await calculateDetailedDailyStats(dbClient, date);
 
   // Build report
   const report: DailyReport = {
@@ -111,8 +111,8 @@ export async function generateDailyReport(db: D1Database, date: string): Promise
     user_metrics: {
       new_users: dailyStats.newUsers,
       dau: dailyStats.activeUsers,
-      d1_retention: 0, // TODO: Implement retention calculation logic in stats service
-      avg_session_duration: 0, // TODO: Implement session tracking
+      d1_retention: dailyStats.d1Retention,
+      avg_session_duration: dailyStats.avgSessionDuration,
     },
     ad_metrics: {
       third_party: {
@@ -133,13 +133,13 @@ export async function generateDailyReport(db: D1Database, date: string): Promise
       purchase_intents: 0, // TODO: Add tracking for purchase intents
       conversions: dailyStats.newVip,
       conversion_rate: dailyStats.activeUsers > 0 ? (dailyStats.newVip / dailyStats.activeUsers) * 100 : 0,
-      revenue: 0, // TODO: Calculate from payment history
+      revenue: dailyStats.revenue,
     },
     invite_metrics: {
-      initiated: 0, // TODO: Query from invites table
-      accepted: 0, // TODO: Query from invites table
-      activated: 0, // TODO: Query from invites table
-      conversion_rate: 0,
+      initiated: dailyStats.inviteInitiated,
+      accepted: dailyStats.inviteAccepted,
+      activated: dailyStats.inviteActivated,
+      conversion_rate: dailyStats.inviteAccepted > 0 ? (dailyStats.inviteActivated / dailyStats.inviteAccepted) * 100 : 0,
     },
     content_metrics: {
       bottles_thrown: dailyStats.newBottles,

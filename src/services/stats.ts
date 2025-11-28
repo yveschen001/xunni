@@ -8,6 +8,20 @@ import { createDatabaseClient } from '~/db/client';
 import { createTelegramService } from '~/services/telegram';
 import type { DailyStats } from '~/domain/stats';
 import { formatDailyStatsReport, getYesterdayDateString } from '~/domain/stats';
+import { getDailyPaymentStats } from '~/db/queries/payments';
+import { getDailyInviteStats } from '~/db/queries/invites';
+
+/**
+ * Extended Daily Stats for Report (includes revenue, invites, etc.)
+ */
+export interface ExtendedDailyStats extends DailyStats {
+  revenue: number;
+  inviteInitiated: number;
+  inviteAccepted: number;
+  inviteActivated: number;
+  d1Retention: number;
+  avgSessionDuration: number;
+}
 
 /**
  * Generate daily statistics
@@ -20,7 +34,7 @@ export async function generateDailyStats(env: Env): Promise<DailyStats> {
     // Calculate statistics
     const stats = await calculateDailyStats(db, yesterday);
 
-    // Save to database
+    // Save to database (only basic stats for now)
     await saveDailyStats(db, stats);
 
     // Send to admins
@@ -32,6 +46,40 @@ export async function generateDailyStats(env: Env): Promise<DailyStats> {
     console.error('[generateDailyStats] Error:', error);
     throw error;
   }
+}
+
+/**
+ * Calculate detailed daily statistics (for analytics report)
+ */
+export async function calculateDetailedDailyStats(
+  db: ReturnType<typeof createDatabaseClient>,
+  date: string
+): Promise<ExtendedDailyStats> {
+  // 1. Basic Stats
+  const basicStats = await calculateDailyStats(db, date);
+
+  // 2. Payment Stats (Revenue)
+  const paymentStats = await getDailyPaymentStats(db.d1, date);
+
+  // 3. Invite Stats
+  const inviteStats = await getDailyInviteStats(db, date);
+
+  // 4. Retention (Placeholder for now, requires complex cohort query)
+  // const retention = await getD1Retention(db, date); 
+  const d1Retention = 0;
+
+  // 5. Session Duration (Placeholder)
+  const avgSessionDuration = 0;
+
+  return {
+    ...basicStats,
+    revenue: paymentStats.revenue,
+    inviteInitiated: inviteStats.initiated,
+    inviteAccepted: inviteStats.accepted,
+    inviteActivated: inviteStats.activated,
+    d1Retention,
+    avgSessionDuration,
+  };
 }
 
 /**

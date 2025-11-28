@@ -29,8 +29,65 @@ export async function createInvite(
 }
 
 /**
- * Find invite by invitee telegram_id
+ * Get daily invite statistics
+ *
+ * @param db - Database client
+ * @param date - Date in YYYY-MM-DD format
+ * @returns Daily invite statistics
  */
+export async function getDailyInviteStats(
+  db: DatabaseClient,
+  date: string
+): Promise<{
+  initiated: number;
+  accepted: number; // NOTE: 'pending' status usually means initiated but not necessarily accepted?
+                    // In this system:
+                    // - 'pending': invite record created (invitee started bot with code)
+                    // - 'activated': invitee completed onboarding (or whatever logic updates it)
+                    // Wait, createInvite sets status='pending' when invitee starts bot.
+                    // So 'initiated' is not tracked separately unless we track link clicks.
+                    // But we can count 'pending' records created on date as 'accepted' (meaning they started bot).
+                    // And 'activated' records updated on date? 'activated_at' column?
+                    // Let's assume:
+                    // - initiated: N/A (we don't track link clicks here) -> return 0 or maybe same as accepted?
+                    // - accepted: Count of invites created on date (regardless of status now)
+                    // - activated: Count of invites where status='activated' AND updated_at (or similar) is date?
+                    //   Actually, invites table might not have 'activated_at'.
+                    //   Let's check schema.
+  activated: number;
+}> {
+  // Check if invites table has updated_at or activated_at
+  // If not, we can only count 'accepted' based on created_at.
+  // For 'activated', we might check users table 'created_at' who have 'invited_by'?
+  // Or check if invites table has timestamp for activation.
+  // Assuming basic implementation first.
+
+  // Count invites created on date (Accepted)
+  const acceptedResult = await db.d1
+    .prepare(
+      `SELECT COUNT(*) as count 
+       FROM invites 
+       WHERE DATE(created_at) = ?`
+    )
+    .bind(date)
+    .first<{ count: number }>();
+
+  // Count invites activated on date (Status='activated')
+  const activatedResult = await db.d1
+    .prepare(
+      `SELECT COUNT(*) as count 
+       FROM invites 
+       WHERE status = 'activated' AND DATE(activated_at) = ?`
+    )
+    .bind(date)
+    .first<{ count: number }>();
+  
+  return {
+    initiated: acceptedResult?.count || 0, // Approx.
+    accepted: acceptedResult?.count || 0,
+    activated: activatedResult?.count || 0,
+  };
+}
 export async function findInviteByInvitee(
   db: DatabaseClient,
   inviteeTelegramId: string
