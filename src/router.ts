@@ -698,6 +698,23 @@ export async function routeUpdate(update: TelegramUpdate, env: Env): Promise<voi
       return;
     }
 
+    // Test Retention Push (Admin only)
+    if (text === '/admin_test_retention_push') {
+      const adminBanModule = await import('./telegram/handlers/admin_ban');
+      if (!adminBanModule.isAdmin(telegramId, env)) {
+        return;
+      }
+      
+      const { handlePushReminders } = await import('./telegram/handlers/cron_push');
+      
+      await telegram.sendMessage(chatId, 'Testing Retention Pushes (Throw/Catch/Message) for all eligible users...');
+      // Note: handlePushReminders processes batches of users. It doesn't target a specific user yet.
+      // But we can run it to see if it triggers for anyone (including the admin if eligible).
+      await handlePushReminders(env);
+      await telegram.sendMessage(chatId, 'Retention Pushes check completed. Check logs for details.');
+      return;
+    }
+
     // Broadcast process command (Admin only) - Manual trigger
     if (text === '/broadcast_process') {
       const adminBanModule = await import('./telegram/handlers/admin_ban');
