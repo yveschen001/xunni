@@ -103,7 +103,7 @@ async function showPaymentHistory(
 
     text += `📅 ${date}\n`;
     text += `${productName}\n`;
-    text += `💰 ${record.amount} Stars\n`;
+    text += `💰 ${record.amount_stars} Stars\n`;
     text += `${statusText}\n\n`;
   }
 

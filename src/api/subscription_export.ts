@@ -89,14 +89,13 @@ export async function handleSubscriptionExport(request: Request, env: Env): Prom
       .all();
 
     // Get user's payments
-    // Note: Using 'telegram_id' and 'amount' fields (exist in all schemas)
     const payments = await db.d1
       .prepare(
         `
         SELECT 
           id,
           telegram_payment_id,
-          amount as amount_stars,
+          amount_stars,
           currency,
           status,
           created_at

@@ -396,14 +396,13 @@ export async function handleSuccessfulPayment(
       .run();
 
     // Create payment record
-    // Note: Using 'telegram_id' and 'amount' fields (exist in all schemas)
     await db.d1
       .prepare(
         `
       INSERT INTO payments (
         telegram_id,
         telegram_payment_id,
-        amount,
+        amount_stars,
         currency,
         status
       ) VALUES (?, ?, ?, ?, 'completed')
