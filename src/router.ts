@@ -614,14 +614,21 @@ export async function routeUpdate(update: TelegramUpdate, env: Env): Promise<voi
 
     // Analytics commands (Super Admin only)
     if (text === '/analytics') {
+      console.log(`[Router] Handling /analytics for ${telegramId}`);
       const { isSuperAdmin } = await import('./telegram/handlers/admin_ban');
       const user = await findUserByTelegramId(db, telegramId);
       const { createI18n } = await import('./i18n');
       const i18n = createI18n(user?.language_pref || 'zh-TW');
-      if (!isSuperAdmin(telegramId)) {
-        await telegram.sendMessage(chatId, i18n.t('admin.onlySuperAdmin'));
+      
+      const isUserSuperAdmin = isSuperAdmin(telegramId); // Check purely by ID first (fast check)
+      console.log(`[Router] isSuperAdmin(${telegramId}) = ${isUserSuperAdmin}`);
+
+      if (!isUserSuperAdmin) {
+        console.warn(`[Router] /analytics blocked: User ${telegramId} is not SuperAdmin`);
+        await telegram.sendMessage(chatId, i18n.t('admin.analytics.onlySuperAdmin')); // Use new key
         return;
       }
+      console.log(`[Router] Delegating to handleAnalytics`);
       const { handleAnalytics } = await import('./telegram/handlers/admin_analytics');
       await handleAnalytics(message, env);
       return;

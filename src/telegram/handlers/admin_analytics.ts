@@ -34,29 +34,38 @@ import {
  * Show daily operations report
  */
 export async function handleAnalytics(message: any, env: Env): Promise<void> {
+  console.log('[handleAnalytics] Triggered'); // Log entry
   const telegram = createTelegramService(env);
   const db = createDatabaseClient(env.DB);
 
   const chatId = message.chat.id;
   const telegramId = message.from.id.toString();
+  console.log(`[handleAnalytics] User: ${telegramId}, Chat: ${chatId}`);
 
   try {
     const i18n = createI18n('zh-TW'); // Admin commands use Chinese
     // Check if user is super admin (role = 'god')
     const user = await findUserByTelegramId(db, telegramId);
+    console.log(`[handleAnalytics] Found user: ${user?.telegram_id}, Role: ${user?.role}`);
+
     if (!user || user.role !== 'god') {
+      console.warn(`[handleAnalytics] Permission denied. Role: ${user?.role}`);
       await telegram.sendMessage(chatId, i18n.t('admin.analytics.noPermission'));
       return;
     }
 
     // Get today's date
     const today = new Date().toISOString().split('T')[0];
+    console.log(`[handleAnalytics] Generating report for date: ${today}`);
 
     // Generate report
     const report = await generateDailyReport(db.d1, today);
+    console.log('[handleAnalytics] Report generated');
     const message_text = await formatDailyReport(report, i18n);
-
+    
+    console.log('[handleAnalytics] Sending report...');
     await telegram.sendMessage(chatId, message_text);
+    console.log('[handleAnalytics] Report sent successfully');
   } catch (error) {
     console.error('[handleAnalytics] Error:', error);
     const i18n = createI18n('zh-TW');
