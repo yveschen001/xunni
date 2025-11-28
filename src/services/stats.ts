@@ -64,11 +64,47 @@ export async function calculateDetailedDailyStats(
   // 3. Invite Stats
   const inviteStats = await getDailyInviteStats(db, date);
 
-  // 4. Retention (Placeholder for now, requires complex cohort query)
-  // const retention = await getD1Retention(db, date); 
-  const d1Retention = 0;
+  // 4. Retention (D1)
+  // Logic: Users created 'date - 1 day' who were active on 'date'
+  // Note: last_active_at is updated on every interaction.
+  // To get exact daily retention, we should use daily_user_summary or analytics_events.
+  // Using users table is an approximation (last_active_at >= date means they were active ON or AFTER date).
+  // But if date is "yesterday", last_active_at >= yesterday is correct.
+  // Wait, if date is yesterday (e.g. 25th), and we check today (26th), last_active_at might be 26th.
+  // But user created on 24th (D1 for 25th) who is active on 26th MUST have been active on 26th.
+  // But we want to know if they were active on 25th specifically.
+  // If we only have `last_active_at`, we can't distinguish if they were active on 25th or 26th if date > 25th.
+  // However, for "yesterday's report", we run this at 01:00 today. So last_active_at being yesterday is a good signal.
+  // Query:
+  //   Cohort: Users created on (date - 1 day)
+  //   Retained: Cohort users where last_active_at >= date (approx)
+  //   Wait, if they were active today (date+1), they are retained D1? Yes, effectively.
+  //   But strictly D1 retention means "returned on Day 1".
+  //   Let's use a simple query for now.
+  const oneDayBefore = new Date(date);
+  oneDayBefore.setDate(oneDayBefore.getDate() - 1);
+  const oneDayBeforeStr = oneDayBefore.toISOString().split('T')[0];
 
-  // 5. Session Duration (Placeholder)
+  const cohortCountResult = await db.d1.prepare(`
+    SELECT COUNT(*) as count FROM users WHERE DATE(created_at) = ?
+  `).bind(oneDayBeforeStr).first<{ count: number }>();
+  
+  const cohortCount = cohortCountResult?.count || 0;
+  
+  let d1Retention = 0;
+  if (cohortCount > 0) {
+    const retainedCountResult = await db.d1.prepare(`
+      SELECT COUNT(*) as count 
+      FROM users 
+      WHERE DATE(created_at) = ? 
+        AND DATE(last_active_at) >= ?
+    `).bind(oneDayBeforeStr, date).first<{ count: number }>();
+    
+    const retainedCount = retainedCountResult?.count || 0;
+    d1Retention = (retainedCount / cohortCount) * 100;
+  }
+
+  // 5. Session Duration (Placeholder for now)
   const avgSessionDuration = 0;
 
   return {

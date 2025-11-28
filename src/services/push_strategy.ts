@@ -68,11 +68,8 @@ export class PushStrategyService {
     }
 
     // 2. Check Quiet Hours
-    // Simple check: Convert current UTC time to user's local hour (approximate if timezone string)
-    // For MVP, we use the stored start/end hour against current UTC + offset if available
-    // Assuming timezone is stored as 'Asia/Taipei' or offset '+8'. 
-    // If timezone support is complex, we might skip precise local time for now and use UTC+8 default.
-    // Let's implement a basic check assuming user provided hours are in their local time.
+    // Use user's preferred timezone if set, otherwise default to UTC+8 (Taiwan/China)
+    // The isQuietHours function now handles timezone parsing from prefs.timezone
     if (this.isInQuietHours(now, prefs)) {
         return false;
     }
@@ -140,21 +137,9 @@ export class PushStrategyService {
   }
 
   private isInQuietHours(now: Date, prefs: UserPushPreferences): boolean {
-    // TODO: Implement proper timezone handling. 
-    // For now, assume most users are in Taiwan/China (UTC+8) if timezone is default
-    const utcHour = now.getUTCHours();
-    const localHour = (utcHour + 8) % 24; // Simple UTC+8 hardcode for MVP stability
-
-    const start = prefs.quiet_hours_start;
-    const end = prefs.quiet_hours_end;
-
-    if (start > end) {
-        // e.g. 22:00 to 08:00 (spans midnight)
-        return localHour >= start || localHour < end;
-    } else {
-        // e.g. 01:00 to 05:00
-        return localHour >= start && localHour < end;
-    }
+    // Determine timezone offset using domain logic
+    // Default to +8 (Asia/Taipei) if not set
+    return isQuietHours(now, prefs, 8);
   }
 
   private async getDailyPushCount(userId: string): Promise<number> {
