@@ -11,6 +11,8 @@ import { getDailyAdStats } from '~/db/queries/ad_rewards';
 import { getProviderPerformanceComparison } from '~/db/queries/ad_providers';
 import { getDailyOfficialAdStats } from '~/db/queries/official_ads';
 import { getFunnelConversionRate } from '~/db/queries/analytics';
+import { calculateDailyStats } from '~/services/stats';
+import { createDatabaseClient } from '~/db/client';
 
 // ============================================================================
 // Report Types
@@ -98,14 +100,19 @@ export async function generateDailyReport(db: D1Database, date: string): Promise
   const thirdPartyAdStats = await getDailyAdStats(db, date);
   const officialAdStats = await getDailyOfficialAdStats(db, date);
 
+  // Get operational stats using the shared stats service
+  // Create a wrapper for the stats service which expects createDatabaseClient return type
+  const dbClient = createDatabaseClient(db);
+  const dailyStats = await calculateDailyStats(dbClient, date);
+
   // Build report
   const report: DailyReport = {
     date,
     user_metrics: {
-      new_users: 0, // TODO: Query from analytics_events
-      dau: 0, // TODO: Query from daily_user_summary
-      d1_retention: 0, // TODO: Calculate from daily_user_summary
-      avg_session_duration: 0, // TODO: Query from user_sessions
+      new_users: dailyStats.newUsers,
+      dau: dailyStats.activeUsers,
+      d1_retention: 0, // TODO: Implement retention calculation logic in stats service
+      avg_session_duration: 0, // TODO: Implement session tracking
     },
     ad_metrics: {
       third_party: {
@@ -122,23 +129,23 @@ export async function generateDailyReport(db: D1Database, date: string): Promise
       },
     },
     vip_metrics: {
-      page_views: 0, // TODO: Query from analytics_events
-      purchase_intents: 0, // TODO: Query from funnel_events
-      conversions: 0, // TODO: Query from funnel_events
-      conversion_rate: 0,
-      revenue: 0, // TODO: Calculate from VIP purchases
+      page_views: 0, // TODO: Add tracking for VIP page views
+      purchase_intents: 0, // TODO: Add tracking for purchase intents
+      conversions: dailyStats.newVip,
+      conversion_rate: dailyStats.activeUsers > 0 ? (dailyStats.newVip / dailyStats.activeUsers) * 100 : 0,
+      revenue: 0, // TODO: Calculate from payment history
     },
     invite_metrics: {
-      initiated: 0, // TODO: Query from analytics_events
-      accepted: 0, // TODO: Query from analytics_events
-      activated: 0, // TODO: Query from analytics_events
+      initiated: 0, // TODO: Query from invites table
+      accepted: 0, // TODO: Query from invites table
+      activated: 0, // TODO: Query from invites table
       conversion_rate: 0,
     },
     content_metrics: {
-      bottles_thrown: 0, // TODO: Query from bottles table
-      bottles_caught: 0, // TODO: Query from bottles table
-      conversations_started: 0, // TODO: Query from conversations table
-      avg_conversation_rounds: 0, // TODO: Calculate from conversations
+      bottles_thrown: dailyStats.newBottles,
+      bottles_caught: dailyStats.caughtBottles,
+      conversations_started: dailyStats.newConversations,
+      avg_conversation_rounds: 0, // TODO: Calculate
     },
   };
 

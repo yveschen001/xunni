@@ -37,7 +37,7 @@ export async function generateDailyStats(env: Env): Promise<DailyStats> {
 /**
  * Calculate daily statistics
  */
-async function calculateDailyStats(
+export async function calculateDailyStats(
   db: ReturnType<typeof createDatabaseClient>,
   date: string
 ): Promise<DailyStats> {
