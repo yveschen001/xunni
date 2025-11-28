@@ -44,12 +44,16 @@ export async function handleAnalytics(message: any, env: Env): Promise<void> {
 
   try {
     const i18n = createI18n('zh-TW'); // Admin commands use Chinese
-    // Check if user is super admin (role = 'god')
+    
+    // Check if user is super admin using centralized logic
+    const { isSuperAdmin } = await import('./admin_ban');
     const user = await findUserByTelegramId(db, telegramId);
     console.log(`[handleAnalytics] Found user: ${user?.telegram_id}, Role: ${user?.role}`);
 
-    if (!user || user.role !== 'god') {
-      console.warn(`[handleAnalytics] Permission denied. Role: ${user?.role}`);
+    const isSuper = isSuperAdmin(telegramId) || (user && user.role === 'god');
+
+    if (!isSuper) {
+      console.warn(`[handleAnalytics] Permission denied. Role: ${user?.role}, ID: ${telegramId}`);
       await telegram.sendMessage(chatId, i18n.t('admin.analytics.noPermission'));
       return;
     }
@@ -91,8 +95,12 @@ export async function handleAdPerformance(message: any, env: Env): Promise<void>
 
   try {
     // Check if user is super admin (role = 'god')
+    const { isSuperAdmin } = await import('./admin_ban');
     const user = await findUserByTelegramId(db, telegramId);
-    if (!user || user.role !== 'god') {
+    
+    const isSuper = isSuperAdmin(telegramId) || (user && user.role === 'god');
+
+    if (!isSuper) {
       const i18n = createI18n('zh-TW');
       await telegram.sendMessage(chatId, i18n.t('admin.analytics.noPermissionAd'));
       return;
@@ -140,10 +148,13 @@ export async function handleVIPFunnel(message: any, env: Env): Promise<void> {
 
   try {
     // Check if user is super admin (role = 'god')
+    const { isSuperAdmin } = await import('./admin_ban');
     const user = await findUserByTelegramId(db, telegramId);
     console.error('[handleVIPFunnel] User role:', user?.role);
 
-    if (!user || user.role !== 'god') {
+    const isSuper = isSuperAdmin(telegramId) || (user && user.role === 'god');
+
+    if (!isSuper) {
       console.error('[handleVIPFunnel] Permission denied for user:', telegramId);
       const i18n = createI18n('zh-TW');
       await telegram.sendMessage(chatId, i18n.t('admin.analytics.noPermissionVip'));
