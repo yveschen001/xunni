@@ -119,7 +119,8 @@ export const translations: Translations = {
       "noPermissionVip": "❌ آپ کو VIP کے ڈیٹا تک رسائی حاصل کرنے کی اجازت نہیں ہے",
       "onlySuperAdmin": "❌ صرف سپر ایڈمنز ہی اس کمانڈ کا استعمال کر سکتے ہیں۔",
       "sendReportFailed": "❌ روزانہ کی رپورٹ بھیجنے میں ناکامی: ${error}",
-      "userNotFound": "❌ صارف موجود نہیں ہے: ${userId}"
+      "userNotFound": "❌ صارف موجود نہیں ہے: ${userId}",
+      "message5": "• غلطی کی شرح: {rate}%"
     },
     "appeal": "اپیل ID: ${appeal.id}\n",
     "appeal2": "💡 اپیل کا جائزہ لینے کے لیے مندرجہ ذیل کمانڈ استعمال کریں:\n",
@@ -178,7 +179,32 @@ export const translations: Translations = {
       "usageReject": "استعمال: /admin_reject <appeal_id> [نوٹس]",
       "user": "صارف: ${user}",
       "userBanHistory": "📊 صارف کی پابندی کی تاریخ",
-      "viewHistory": "💡 مخصوص صارف کی پابندی کی تاریخ دیکھنے کے لیے /admin_bans <user_id> کا استعمال کریں"
+      "viewHistory": "💡 مخصوص صارف کی پابندی کی تاریخ دیکھنے کے لیے /admin_bans <user_id> کا استعمال کریں",
+      "onlyAdmin": "❌ صرف منتظمین اس کمانڈ کا استعمال کر سکتے ہیں",
+      "onlySuperAdmin": "❌ صرف سپر منتظمین اس کمانڈ کا استعمال کر سکتے ہیں",
+      "banUsageError": "استعمال: /admin_ban <user_id> [hours|permanent]",
+      "cannotBanAdmin": "❌ منتظمین کو پابند نہیں کیا جا سکتا",
+      "banUserNotFound": "❌ صارف نہیں ملا",
+      "operationFailed": "عمل ناکام ہوگیا",
+      "userNotFound": "❌ صارف نہیں ملا",
+      "analyticsTitle": "روزانہ کی عملیاتی ڈیٹا کا تجزیہ",
+      "adPerformanceTitle": "اشتہار کی کارکردگی کا تجزیہ",
+      "vipFunnelTitle": "VIP تبدیلی کا funnel تجزیہ",
+      "dailyReportTitle": "روزانہ کا ترجمہ اور عملیاتی رپورٹ",
+      "testDailyReport": "روزانہ کی رپورٹ کا جانچ بھیجیں",
+      "testRetentionPush": "رکھنے کے لیے جانچ کریں",
+      "testMatchPush": "میچنگ کے لیے جانچ کریں",
+      "analytics": {
+        "message5": "• غلطی کی شرح: {rate}%",
+        "noPermission": "❌ آپ کو تجزیاتی ڈیٹا دیکھنے کی اجازت نہیں ہے",
+        "getDataFailed": "❌ تجزیاتی ڈیٹا کی بازیافت میں ناکامی",
+        "noPermissionAd": "❌ آپ کو اشتہاری ڈیٹا دیکھنے کی اجازت نہیں ہے",
+        "getAdDataFailed": "❌ اشتہاری ڈیٹا کی بازیافت میں ناکامی",
+        "noPermissionVip": "❌ آپ کو VIP ڈیٹا دیکھنے کی اجازت نہیں ہے",
+        "getVipDataFailed": "❌ VIP ڈیٹا حاصل کرنے میں ناکامی",
+        "sendReportFailed": "❌ رپورٹ بھیجنے میں ناکامی: {error}",
+        "onlySuperAdmin": "❌ صرف سپر ایڈمنسٹریٹر اس کمانڈ کا استعمال کر سکتے ہیں"
+      }
     },
     "ban2": "کل پابندیاں: ${userBans.results.length}\n\n",
     "ban3": "📊 حالیہ 10 پابندی ریکارڈ\n\n",
@@ -410,13 +436,14 @@ export const translations: Translations = {
     "userNotFound": "❌ صارف نہیں ملا۔",
     "vip": "• وی آئی پی کی میعاد: ${new Date(user.vip_expire_at).toLocaleString('zh-TW')}\n",
     "vip2": "• وی آئی پی کے ساتھ بنایا گیا: ${post.created_with_vip_status ? '✅' : '❌'}\n",
-    "vip3": "• وی آئی پی حیثیت: ${isVip ? '✅ ہاں' : '❌ نہیں'}",
+    "vip3": "• VIP حیثیت: ${isVip ? '✅ جی ہاں' : '❌ نہیں'}",
     "vip4": "• کل وی آئی پی صارفین: ${stats.totalVipUsers}\n",
     "vip5": "🔄 **VIP اوتار کی بڑے پیمانے پر تازہ کاری شروع کریں**\n\n",
     "vip6": "⏰ **VIP کی میعاد ختم ہونے کی یاد دہانی بھیجی گئی**\n\n",
     "vip7": "🎉 **نئی VIP خریداری**\n\n",
     "vip8": "⬇️ **وی آئی پی خودکار تنزلی**\n\n",
-    "vip9": "🔄 **وی آئی پی تجدید**\n\n"
+    "vip9": "🔄 **وی آئی پی تجدید**\n\n",
+    "dailyReport": "📊 روزانہ آپریشنل رپورٹ ({date})\n\n💰 تخمینی ترجمہ لاگت:\n{costDetails}\n\n⚠️ بے ضابطگی کی نگرانی:\n• ترجمہ کی تنزلی: {fallbackCount} بار\n• ترجمہ کی ناکامیاں: {errorCount} بار\n\n📈 فعال ڈیٹا:\n• نئے صارفین: {newUsers}\n• فعال گفتگوئیں: {activeConversations}"
   },
   "adminNotification": {
     "amount": "رقم: ${stars} ⭐",
@@ -456,7 +483,7 @@ export const translations: Translations = {
     "invite": "• دعوتیں شروع کی گئیں: {initiated}\n• دعوتیں قبول کی گئیں: {accepted}\n• دعوتیں فعال کی گئیں: {activated}\n• تبدیلی کی شرح: {conversionRate}%\n\n• پیغام کی بوتلیں پھینکی گئیں: {bottlesThrown}\n• پیغام کی بوتلیں پکڑی گئیں: {bottlesCaught}\n• نئی گفتگوئیں شروع کی گئیں: {conversationsStarted}\n• اوسط گفتگو کے دور: {avgConversationRounds}\n\n💡 تفصیلی معلومات: /analytics",
     "message": "📊 **روزانہ کی کارروائیوں کی رپورٹ**\n📅 تاریخ: {date}\n\n**👥 صارفین کا ڈیٹا**\n• نئے صارفین: {newUsers}\n• فعال صارفین (DAU): {dau}\n• برقرار رکھنے کی شرح (D1): {d1Retention}%\n• اوسط سیشن کی مدت: {avgSessionDuration} منٹ\n\n**📺 اشتہاری ڈیٹا**\n• تیسری پارٹی کے اشتہارات:\n - تاثرات: {thirdPartyImpressions}\n - مکمل ہونے: {thirdPartyCompletions}\n - تکمیل کی شرح: {thirdPartyCompletionRate}%\n - دیے گئے انعامات: {thirdPartyRewardsGranted} کریڈٹس",
     "message2": "📊 **روزانہ کی کارروائیوں کی رپورٹ**\n📅 تاریخ: {date}\n\n⚠️ **آج کے لیے کوئی ڈیٹا دستیاب نہیں**\n\nیہ مندرجہ ذیل وجوہات کی بنا پر ہو سکتا ہے:\n• نظام حال ہی میں متعین کیا گیا، ابھی کوئی صارف کی سرگرمی نہیں\n• آج کوئی صارفین نے بوٹ استعمال نہیں کیا\n• ڈیٹا ٹریکنگ کی خصوصیت ابھی فعال نہیں ہوئی\n\n💡 **ڈیٹا کب ظاہر ہوگا؟**\n• صارفین کو مندرجہ ذیل اعمال میں سے کوئی بھی انجام دینا ہوگا:\n - رجسٹر کرنے کے لیے /start بھیجیں\n - پیغام کی بوتلیں پھینکیں یا پکڑیں\n - اشتہارات دیکھیں\n - VIP خریدیں\n\n• چیک کرنے سے پہلے صارفین کے ایپ کا استعمال شروع کرنے کا انتظار کرنے کی تجویز دی جاتی ہے\n• یا کسی ٹیسٹ کے ماحول میں صارفین کے برتاؤ کی نقل کریں",
-    "message3": "**📈 مجموع تبدیلی کی شرح: ${report.overall_conversion_rate.toFixed(1)}%**",
+    "message3": "**📈 مجموعی تبدیلی کی شرح: ${report.overall_conversion_rate.toFixed(1)}%**",
     "message4": "• تبدیلی کی شرح: ${step.conversion_rate.toFixed(1)}%",
     "message5": "• خرابی کی شرح: ${provider.error_rate.toFixed(1)}%",
     "message6": "• درخواستیں: ${provider.total_requests}",
@@ -626,14 +653,14 @@ export const translations: Translations = {
       "gender5": "👤 جنس کی فلٹر",
       "genderLabel": "• جنس: {gender}\n",
       "mbti": "• MBTI: \\${selectedMBTI.length > 0 ? selectedMBTI.join(', ') : 'لامحدود'}",
-      "mbti2": "منتخب شدہ: \\${selectedMBTI.length > 0 ? selectedMBTI.join(', ') : 'کوئی نہیں'}",
+      "mbti2": "منتخب کردہ: \\${selectedMBTI.length > 0 ? selectedMBTI.join(', ') : 'کچھ نہیں'}",
       "mbti3": "منتخب کردہ: \\${selectedMBTI.length > 0 ? selectedMBTI.join(",
       "mbti4": "🧠 **MBTI فلٹر**\n\n",
       "mbti5": "• MBTI: مخصوص شخصیت کی اقسام کو فلٹر کریں\n",
       "mbti6": "• اعلی MBTI میچ ✓",
       "mbti7": "🧠 MBTI فلٹر",
       "mbtiLabel": "• MBTI: {mbti}",
-      "message": "منتخب شدہ: \\${selectedZodiac.length > 0 ? selectedZodiac.map((z) => ZODIAC_NAMES[z]).join(', ') : 'کوئی نہیں'}",
+      "message": "منتخب کردہ: \\${selectedZodiac.length > 0 ? selectedZodiac.map((z) => ZODIAC_NAMES[z]).join(', ') : 'کچھ نہیں'}",
       "message2": "موجودہ انتخاب: \\${currentGender === 'male' ? '👨 مرد' : currentGender === 'female' ? '👩 عورت' : '🌈 کوئی بھی'}",
       "message3": "منتخب کردہ: \\${selectedZodiac.length > 0 ? selectedZodiac.map((z) => ZODIAC_NAMES[z]).join(",
       "message4": "موجودہ انتخاب: \\${bloodTypeDisplay[currentBloodType]}\n\n",
@@ -713,7 +740,7 @@ export const translations: Translations = {
       "vip5": "✨ **VIP مراعات فعال ہو گئیں!**\n\n",
       "vip6": "💡 VIP میں اپ گریڈ کریں تاکہ:\n",
       "vip7": "✨ VIP مراعات فعال ہو رہی ہیں\n",
-      "zodiac": "• زائچہ: \\${selectedZodiac.length > 0 ? selectedZodiac.map((z) => ZODIAC_NAMES[z]).join(', ') : 'کوئی پابندیاں نہیں'}",
+      "zodiac": "• زائچہ: \\${selectedZodiac.length > 0 ? selectedZodiac.map((z) => ZODIAC_NAMES[z]).join(', ') : 'کوئی پابندی نہیں'}",
       "zodiac2": "⭐ زودیاک: \\${matchResult.user.zodiac ||",
       "zodiac3": "⭐ زودیاک: \\${user.zodiac_sign ||",
       "zodiac4": "⭐ **زودک فلٹر**\n\n",
@@ -1002,8 +1029,8 @@ export const translations: Translations = {
     "translationServiceFallback": "💬 ترجمعہ سروس عارضی طور پر مسائل کا شکار ہے، بیک اپ ترجمہ استعمال کیا گیا ہے",
     "translationServiceUnavailable": "⚠️ ترجمہ سروس عارضی طور پر دستیاب نہیں ہے، نیچے اصل متن ہے",
     "unknown": "نامعلوم",
-    "zodiac": "⭐ Zodiac: {zodiac}\n",
-    "zodiac2": "⭐ Zodiac: ${catcherZodiac}\n"
+    "zodiac": "⭐ زائچہ: {zodiac}",
+    "zodiac2": "⭐ زائچہ: ${catcherZodiac}"
   },
   "channelMembership": {
     "claimButton": "✅ انعام حاصل کریں",
@@ -1111,7 +1138,7 @@ export const translations: Translations = {
     "catch3": "• دوستانہ اور باعزت مواد اٹھائے جانے کے امکانات کو بڑھاتا ہے~",
     "catch4": "پیغام کی بوتل کا عمل",
     "close": "پیغام کی بوتل کا عمل",
-    "complete": "🎉 **اشتہارات دیکھنے کا عمل مکمل ہوا!**\n\n✅ حاصل کیا **+1 کوٹہ**\n📊 آج دیکھا: **${updated.ads_watched}/20** بار\n🎁 آج کا حاصل کردہ کوٹہ: **${updated.quota_earned}**\n📈 باقی رہ جانے والے مشاہدات: **${result.remaining_ads}** بار\n\n${result.remaining_ads > 0 ? '💡 مزید کوٹہ حاصل کرنے کے لیے اشتہارات دیکھنا جاری رکھیں!' : '✅ روزانہ کا اشتہار محدودہ تک پہنچ گیا'}",
+    "complete": "🎉 **اشتہار دیکھنا مکمل ہوا!**\n\n✅ حاصل کیا **+1 کوٹا**\n📊 آج دیکھا: **${updated.ads_watched}/20** بار\n🎁 آج کوٹا حاصل کیا: **${updated.quota_earned}**\n📈 باقی ماندہ مشاہدے: **${result.remaining_ads}** بار\n\n${result.remaining_ads > 0 ? '💡 مزید کوٹا حاصل کرنے کے لیے اشتہارات دیکھتے رہیں!' : '✅ روزانہ کا اشتہار حد حاصل ہو گئی'}",
     "complete2": "📺 **اسکروڈ ڈو دیکھ کر کریڈٹ کمائیں**\n\n🎁 دیکھنے کی تکمیل سے **+1 کریڈٹ** حاصل ہوگا\n📊 آج باقی: **${remainingAds}/20** بار\n\n👇 دیکھنا شروع کرنے کے لیے نیچے بٹن پر کلک کریں",
     "complete3": "تکمیل کا وقت: ${new Date(broadcast.completedAt).toLocaleString('zh-TW')}",
     "complete4": "تخمینی تکمیل: ${new Date(maintenance.endTime).toLocaleString('zh-TW')}",
@@ -1188,7 +1215,7 @@ export const translations: Translations = {
     "message14": "ترقی: ${broadcast.sent_count}/${broadcast.total_users}\n",
     "message15": "${days} ${user.language_pref === 'en' ? 'دن' : '天'}",
     "message16": "ہدف: ${getBroadcastTargetName(broadcast.targetType)}\n",
-    "message17": "حالت: ${maintenance.isActive ? '✅ زیر مرمت' : '❌ غیر فعال'}",
+    "message17": "حالت: ${maintenance.isActive ? '✅ مرمت میں ہے' : '❌ سرگرم نہیں'}",
     "message18": "🚫 ممنوعہ یو آر ایل:\n${urlCheck.blockedUrls?.map((url) =>",
     "message19": "• آخری پیغام: ${formatDate(stats.last_message_time)}\n",
     "message2": "سالگرہ = '2000-01-01',\n عمر = 25,\n زودیک_sign = 'Capricorn',\n فراڈ کی خلاف سکور = 100,\n شرائط سے اتفاق کیا = 1",
@@ -1287,9 +1314,9 @@ export const translations: Translations = {
     "quota2": "• 💎 VIP میں اپ گریڈ کریں (روزانہ 30 کوٹے)",
     "quota3": "• 🎁 دوستوں کو مدعو کریں (ہر شخص کے لئے 1 کوٹا)\n",
     "quota4": "• ✨ کام مکمل کریں (مستقل کوٹے حاصل کریں)\n",
-    "register": "💡 یہ ایک جلدی ٹیسٹ ہے (${testInfo}), نتائج صرف حوالہ کے لیے ہیں۔\nرجسٹریشن کے بعد، آپ /mbti کے ذریعے دوبارہ کر سکتے ہیں۔",
+    "register": "💡 یہ ایک فوری ٹیسٹ ہے (${testInfo}), نتائج صرف حوالہ کے لیے ہیں۔\nرجسٹریشن کے بعد، آپ /mbti کے ساتھ دوبارہ ٹیسٹ لے سکتے ہیں۔",
     "register10": "🎉 رجسٹریشن مکمل کرنے پر مبارک ہو!\n\n",
-    "register2": "💡 یہ ایک مکمل ٹیسٹ ہے (${testInfo}), نتائج زیادہ درست ہیں۔\nرجسٹریشن کے بعد، آپ /mbti کے ذریعے دوبارہ کر سکتے ہیں۔",
+    "register2": "💡 یہ ایک مکمل ٹیسٹ ہے (${testInfo}), نتائج زیادہ درست ہیں۔\nرجسٹریشن کے بعد، آپ /mbti کے ساتھ دوبارہ ٹیسٹ لے سکتے ہیں۔",
     "register3": "رجسٹریشن کا مرحلہ: ${user.onboarding_step}\n",
     "register4": "⏰ رجسٹریشن کا عمل وقت سے ختم ہو گیا ہے\n\nبراہ کرم /start کا استعمال کرکے رجسٹریشن کو دوبارہ شروع کریں۔",
     "register5": "یا استعمال کریں: /dev_restart (خودکار رجسٹریشن آغاز)\n\n",
@@ -2379,7 +2406,7 @@ export const translations: Translations = {
     "failed4": "یہ نشریات 'ناکام' حیثیت کے طور پر نشان زد کر دی گئی ہیں\n",
     "generic": "❌ ایک خرابی پیش آئی، براہ کرم بعد میں دوبارہ کوشش کریں۔",
     "invalidRequest": "❌ غلط درخواست",
-    "message": "${statusEmoji} **${provider.provider_display_name}**\n${healthEmoji} صحت کی حالت: ${health.is_healthy ? 'اچھا' : 'توجہ کی ضرورت ہے'}\n📊 مکمل کرنے کی شرح: ${stats.completion_rate}%\n❌ غلطی کی شرح: ${stats.error_rate}%\n📈 کل درخواستیں: ${stats.total_requests}\n✅ کل تکمیل: ${stats.total_completions}\n💡 سفارش: ${health.recommendation}",
+    "message": "${statusEmoji} **${provider.provider_display_name}**\n${healthEmoji} صحت کی حیثیت: ${health.is_healthy ? 'اچھا' : 'توجہ کی ضرورت'}\n📊 تکمیلی شرح: ${stats.completion_rate}%\n❌ غلطی کی شرح: ${stats.error_rate}%\n📈 کل درخواستیں: ${stats.total_requests}\n✅ کل تکمیلی: ${stats.total_completions}\n💡 سفارش: ${health.recommendation}",
     "message2": "خطا کا پیغام: ${error instanceof Error ? error.message : String(error)}",
     "message3": "\\nخطا: ${broadcast.errorMessage}",
     "operationFailed": "❌ عمل ناکام ہوگیا",
@@ -2514,7 +2541,8 @@ export const translations: Translations = {
     "vip3": "/funnel - VIP تبدیلی کا راستہ\n\n",
     "vip4": "🎁 **کوٹا اور VIP**\n",
     "vip5": "/vip - VIP سبسکرپشن\n",
-    "vip6": "💎 **VIP فوائد**\n"
+    "vip6": "💎 **VIP فوائد**\n",
+    "dailyReportTitle": "روزانہ آپریشنل رپورٹ حاصل کریں"
   },
   "history": {
     "chatHistory": "💬 **آپ کی گفتگو کی تاریخ**\n\n",
@@ -2754,6 +2782,12 @@ export const translations: Translations = {
       "question9": "آپ کے لیے کیا زیادہ اہم ہے:",
       "question9.option1": "انصاف اور عدل",
       "question9.option2": "ہمدردی اور سمجھ بوجھ"
+    },
+    "share": {
+      "welcome": "👋 آپ کے دوست آپ کو MBTI ٹیسٹ لینے کے لیے مدعو کرتے ہیں!\n\nآئیں اور اپنی شخصیت کی قسم دیکھیں～",
+      "startButton": "📊 ٹیسٹ شروع کریں",
+      "resultTitle": "میرا MBTI ٹیسٹ کا نتیجہ {type} ہے!",
+      "resultDesc": "آپ کو بھی ٹیسٹ کرنے کی کوشش کرنی چاہیے～"
     }
   },
   "mbtiTest": {
@@ -2763,7 +2797,7 @@ export const translations: Translations = {
     "fullAccuracy": "زیادہ درست نتائج",
     "fullQuestions": "36 سوالات",
     "fullTest": "MBTI ٹیسٹ مکمل کریں",
-    "fullTestInfo": "💡 یہ ایک مکمل ٹیسٹ ہے ({questions})، نتیجہ زیادہ درست ہے۔\nرجسٹر کرنے کے بعد، آپ دوبارہ ٹیسٹ لینے کے لئے /mbti استعمال کر سکتے ہیں۔",
+    "fullTestInfo": "💡 یہ ایک مکمل ٹیسٹ ہے ({questions}), نتیجہ زیادہ درست ہے۔\nرجسٹریشن مکمل کرنے کے بعد، آپ دوبارہ /mbti کا استعمال کر سکتے ہیں۔",
     "fullTestTitle": "ٹیسٹ مکمل کریں",
     "manualModify": "• اپنے MBTI قسم کو دستی طور پر تبدیل کریں",
     "moreDetailedTest": "• مزید تفصیلی ٹیسٹ لیں\n",
@@ -2774,7 +2808,7 @@ export const translations: Translations = {
     "quickAccuracy": "نتائج صرف حوالہ کے لیے",
     "quickQuestions": "12 سوالات",
     "quickTest": "جلدی MBTI ٹیسٹ",
-    "quickTestInfo": "💡 یہ ایک فوری ٹیسٹ ہے ({questions})، نتیجہ صرف حوالہ کے لئے ہے۔\nرجسٹر کرنے کے بعد، آپ دوبارہ ٹیسٹ لینے کے لئے /mbti استعمال کر سکتے ہیں۔",
+    "quickTestInfo": "💡 یہ ایک فوری ٹیسٹ ہے ({questions}), نتیجہ صرف حوالہ کے لیے ہے۔\nرجسٹریشن مکمل کرنے کے بعد، آپ دوبارہ /mbti کا استعمال کر سکتے ہیں۔",
     "quickTestTitle": "جلدی ٹیسٹ",
     "yourMbtiType": "آپ کا MBTI قسم ہے: **{type}**\n\n"
   },
@@ -2794,8 +2828,8 @@ export const translations: Translations = {
     "invite3": "📤 مدعو کوڈ شیئر کریں",
     "levelFree": "🆓 مفت رکن",
     "levelVip": "💎 VIP رکن",
-    "message": "https://t.me/share/url?url=https://t.me/${botUsername}?start=invite_${inviteCode}&text=XunNi میں آئیں اور پیغام کی بوتل پھینکیں!🍾 میرے دعوتی کوڈ کا استعمال کریں، ہم دونوں زیادہ کوٹہ حاصل کر سکتے ہیں! https://t.me/share/url?url=https://t.me/${botUsername}?start=invite_${inviteCode}&text=來 https://t.me/share/url?url=https://t.me/${botUsername}?start=invite_${inviteCode}&text=Come",
-    "message2": "https://t.me/share/url?url=https://t.me/${botUsername}?start=invite_${inviteCode}&text=XunNi میں شامل ہوں اور پیغام کی بوتل پھینکوں https://t.me/share/url?url=https://t.me/${botUsername}?start=invite_${inviteCode}&text=來 https://t.me/share/url?url=https://t.me/${botUsername}?start=invite_${inviteCode}&text=Come",
+    "message": "https://t.me/share/url?url=https://t.me/${botUsername}?start=invite_${inviteCode}&text=آئیں XunNi میں آئیں اور ایک پیغام کی بوتل پھینکیں!🍾 میرے دعوت نامے کا کوڈ استعمال کریں تاکہ شامل ہوں، اور ہم دونوں مزید کوٹا حاصل کر سکیں! https://t.me/share/url?url=https://t.me/${botUsername}?start=invite_${inviteCode}&text=來 https://t.me/share/url?url=https://t.me/${botUsername}?start=invite_${inviteCode}&text=Come",
+    "message2": "https://t.me/share/url?url=https://t.me/${botUsername}?start=invite_${inviteCode}&text=آئیں XunNi میں شامل ہوں اور ایک پیغام کی بوتل پھینکیں https://t.me/share/url?url=https://t.me/${botUsername}?start=invite_${inviteCode}&text=來 https://t.me/share/url?url=https://t.me/${botUsername}?start=invite_${inviteCode}&text=Come",
     "notRegistered": "رجسٹر نہیں ہوا",
     "notSet": "سیٹ نہیں کیا",
     "quota": "• آپ دونوں کو روزانہ کا کوٹہ +1 ملتا ہے\n\n",
@@ -2816,7 +2850,7 @@ export const translations: Translations = {
     "text5": "📊 آپ کی حیثیت:\n",
     "title": "🏠 **اہم مینو**",
     "userNotFound": "صارف موجود نہیں ہے",
-    "vip": "• سطح: ${isVip ? 'وی آئی پی رکن 💎' : 'مفت رکن'}",
+    "vip": "• سطح: ${isVip ? 'VIP رکن 💎' : 'مفت رکن'}",
     "vip2": "VIP رکن 💎",
     "yourStatus": "آپ کی حیثیت"
   },
@@ -2863,7 +2897,7 @@ export const translations: Translations = {
     "noAdsAvailable": "❌ اس وقت کوئی دستیاب اشتہارات نہیں ہیں۔",
     "noVerificationRequired": "❌ اس اشتہار کی تصدیق کی ضرورت نہیں ہے۔",
     "quotaInfo": "📊 آج باقی: **{remaining}/20** بار",
-    "requiresVerification": "✅ تصدیق کی ضرورت ہے: گروپ/چینل میں شامل ہونے کے بعد 'تصدیق کریں' بٹن پر کلک کریں",
+    "requiresVerification": "✅ تصدیق درکار: گروپ/چینل میں شامل ہونے کے بعد 'تصدیق کریں' بٹن پر کلک کریں",
     "reward": "🎁 انعام: +{quota} مستقل کوٹہ۔",
     "rewardPermanent": "🎁 کام مکمل کریں اور **+1 مستقل کوٹہ** حاصل کریں۔",
     "rewardTemporary": "🎁 مبارک ہو! آپ نے +1 عارضی کوٹہ حاصل کیا ہے (آج کے لئے قابل قبول)۔",
@@ -3218,7 +3252,13 @@ export const translations: Translations = {
     "toggleCatch": "پیغام کی بوتل اٹھانے کی یاد دہانی تبدیل کریں",
     "toggleMessage": "بات چیت کی یاد دہانی تبدیل کریں",
     "quietHours": "خاموش وقت",
-    "saved": "ترتیبات محفوظ کی گئی ہیں"
+    "saved": "ترتیبات محفوظ کی گئی ہیں",
+    "editQuietHours": "✏️ خاموشی کے اوقات میں ترمیم کریں",
+    "quietDisable": "🚫 خاموشی کے اوقات کو غیر فعال کریں",
+    "selectStartHour": "🌙 براہ کرم خاموشی کے اوقات کے لیے آغاز کا وقت منتخب کریں:\n(مثال کے طور پر: 23:00 پر شروع کرنے کے لیے، براہ کرم 23:00 منتخب کریں)",
+    "selectEndHour": "☀️ آغاز کا وقت {start}:00 پر مقرر کیا گیا۔\nبراہ کرم خاموشی کے اوقات کے لیے اختتام کا وقت منتخب کریں:\n(اس وقت کے بعد نوٹیفیکیشن دوبارہ شروع ہوں گے)",
+    "disabled": "🚫 خاموشی کے اوقات غیر فعال کیے گئے ہیں",
+    "quietHoursHint": "آپ اس مدت کے دوران غیر اہم نوٹیفیکیشن نہیں وصول کریں گے"
   },
   "stats": {
     "activeUsers": "• کل فعال: {active}\n\n",
@@ -3539,7 +3579,7 @@ export const translations: Translations = {
       "vip": "✅ تمام پوسٹس اپ ڈیٹ ہیں (VIP حیثیت درست ہے)\n",
       "zodiac": "✅ زودیاک کا انتخاب صاف کر دیا گیا"
     },
-    "success2": "🎉 **تصدیق کامیاب!**\n\n✅ حاصل کیا **+${ad.reward_quota} مستقل کوٹہ**\n💎 ہمارے کمیونٹی میں شامل ہونے کا شکریہ!\n\n📊 **آپ کا کوٹہ:**\n• بنیادی کوٹہ: ${user.is_vip ? 'لامحدود' : '10'}/دن\n• مستقل کوٹہ: +${ad.reward_quota}\n\n💡 کمیونٹی میں آپ کر سکتے ہیں:\n• دوسرے صارفین کے ساتھ تبادلہ خیال کریں\n• تازہ ترین خصوصیات کی معلومات حاصل کریں\n• مزید انعامات کے لیے سرگرمیوں میں حصہ لیں",
+    "success2": "🎉 **تصدیق کامیاب!**\n\n✅ کمائی ہوئی **+${ad.reward_quota} مستقل کوٹہ**\n💎 ہماری کمیونٹی میں شامل ہونے کا شکریہ!\n\n📊 **آپ کا کوٹہ:**\n• بنیادی کوٹہ: ${user.is_vip ? 'لا محدود' : '10'}/دن\n• مستقل کوٹہ: +${ad.reward_quota}\n\n💡 کمیونٹی میں آپ:\n• دوسرے صارفین سے بات چیت کر سکتے ہیں\n• تازہ ترین فیچر اپ ڈیٹس حاصل کر سکتے ہیں\n• مزید انعامات کے لئے سرگرمیوں میں حصہ لے سکتے ہیں",
     "success3": "کامیابی سے گفتگو میں ${result.updated} تاریخی پوسٹس کو تازہ کیا گیا۔\n\n",
     "success4": "کامیابی سے تازہ کیا گیا: ${result.updated} اشیاء\n",
     "text": "✅ ${flag} ${countryName} پر سیٹ کیا گیا",
@@ -3690,7 +3730,7 @@ export const translations: Translations = {
     "mbti7": "🧠 MBTI فلٹر",
     "mbtiLabel": "• MBTI: {mbti}",
     "message": "موجودہ انتخاب: ${currentGender === 'male' ? '👨 مرد' : currentGender === 'female' ? '👩 عورت' : '🌈 کوئی بھی'}",
-    "message2": "موجودہ انتخاب: ${currentGender === 'male' ? '👨 مرد' : currentGender === 'female' ? '👩 عورت' : '🌈 کوئی بھی'}",
+    "message2": "موجودہ انتخاب: ${currentGender === 'male' ? '👨 مرد' : currentGender === 'female' ? '👩 عورت' : '🌈 کوئی'}",
     "message3": "منتخب: ${selectedZodiac.length > 0 ? selectedZodiac.map((z) => ZODIAC_NAMES[z]).join(",
     "message4": ") : 'کوئی نہیں'} {bloodTypeDisplay[currentBloodType]} ${bloodTypeDisplay[currentBloodType]}\n\n",
     "message5": "👤 ساتھی: ${vipMatchInfo.matcherNickname}\n",
@@ -3770,7 +3810,7 @@ export const translations: Translations = {
     "vip5": "✨ **VIP مراعات فعال ہو گئیں!**\n\n",
     "vip6": "💡 VIP میں اپ گریڈ کرنے سے آپ کو ملے گا:\n",
     "vip7": "✨ VIP مراعات فعال کی جا رہی ہیں\n",
-    "zodiac": "• زائچہ: ${selectedZodiac.length > 0 ? selectedZodiac.map((z) => ZODIAC_NAMES[z]).join(', ') : 'کوئی حد نہیں'}",
+    "zodiac": "• زودک: ${selectedZodiac.length > 0 ? selectedZodiac.map((z) => ZODIAC_NAMES[z]).join(', ') : 'کوئی حد نہیں'}",
     "zodiac2": "⭐ زائچہ: ${matchResult.user.zodiac ||",
     "zodiac3": "⭐ زائچہ: ${user.zodiac_sign ||",
     "zodiac4": "⭐ **زائچہ فلٹر**\n\n",
@@ -3836,7 +3876,7 @@ export const translations: Translations = {
     "purchaseCancelled": "✅ خریداری منسوخ کر دی گئی",
     "quota": "• روزانہ 30 پیغام کی بوتلوں کا کوٹہ (دوستوں کو مدعو کریں تاکہ بڑھ سکے، روزانہ 100 تک)\n",
     "quota2": "• روزانہ 30 پیغام کی بوتلوں کا کوٹہ (روزانہ 100 تک)\n",
-    "refundAdminCommands": "میعاد ختم ہونے کا وقت: ${expireDate} <ID> `/admin_approve_refund <ID>` `/admin_reject_refund <ID> ` `/admin_reject_refund <ID> <原因>`",
+    "refundAdminCommands": "خاتمے کا وقت: ${expireDate} <ID> `/admin_approve_refund <ID>` `/admin_reject_refund <ID> ` `/admin_reject_refund <ID> <原因>`",
     "refundApproved": "✅ **ریفنڈ منظور**\n\nریفنڈ کی رقم: ${amount} ⭐\nریفنڈ 1-3 کاروباری دنوں میں مقرر کیا جائے گا۔\n\nآپ کی VIP رکنیت منسوخ کر دی گئی ہے۔\n\nآپ کے سمجھنے کے لئے شکریہ!",
     "refundApprovedAdmin": "✅ ریفنڈ منظور\n\nدرخواست ID: #${requestId}\nصارف ID: ${userId}\nرقم: ${amount} ⭐",
     "refundExpired": "❌ ریفنڈ کی درخواست نے وقت کی حد تجاوز کر لی ہے\n\nادائیگی کا وقت: ${paymentDate}\nریفنڈ کی آخری تاریخ: ادائیگی کے 7 دن کے اندر\n\n💡 اگر خصوصی حالات ہیں تو براہ کرم کسٹمر سپورٹ سے رابطہ کریں۔",
@@ -4088,7 +4128,7 @@ export const translations: Translations = {
       "vip3": "⚠️ **VIP آج ختم ہو رہا ہے**\n\n"
     },
     "BROADCAST": {
-      "FILTER_ERROR": "❌ شکل کی غلطی۔\nمثال: `/broadcast_filter gender=female,country=TW test message` `/broadcast_filter gender=female,country=TW 測試訊息`",
+      "FILTER_ERROR": "❌ شکل کی خرابی۔\nمثال: `/broadcast_filter gender=female,country=TW test message`",
       "NO_CONTENT": "❌ براہ کرم براڈکاسٹ مواد درج کریں۔",
       "NO_MATCHES": "⚠️ کوئی صارف نہیں ملا جو معیار کے مطابق ہو۔\nفلٹر کے معیار: {filters}",
       "TOO_MANY_USERS": "⚠️ ہدف صارفین کی تعداد بہت زیادہ ہے ({count} افراد)، فی الوقت {max} افراد کو ایک ساتھ بھیجنے کی حد ہے۔",
@@ -4098,7 +4138,47 @@ export const translations: Translations = {
     "push": {
       "throwReminder": "🌊 ہیلو! آپ نے پیغام کی بوتل کافی عرصے پہلے پھینکی تھی، ساحل بہت خاموش ہے...",
       "catchReminder": "🎣 کچھ نئی پیغام کی بوتلیں ساحل پر آئی ہیں، کیا آپ ان کو دیکھنا چاہیں گے؟",
-      "onboardingReminder": "👋 آپ کی رجسٹریشن ابھی مکمل نہیں ہوئی، آپ قریب ہیں! (مرحلہ: {step})"
+      "onboardingReminder": "👋 آپ کی رجسٹریشن ابھی مکمل نہیں ہوئی، آپ قریب ہیں! (مرحلہ: {step})",
+      "messageReminderA": "👋 ہیllo {masked_partner_name} ابھی بھی آپ کے جواب کا انتظار کر رہی ہے! بات چیت کو ٹھنڈا نہ ہونے دیں～",
+      "messageReminderB": "📩 آپ کے پاس {masked_partner_name} سے ایک غیر پڑھا ہوا پیغام ہے:\n> \"{last_message_preview}...\"\n(یہ 24 گھنٹے سے زیادہ ہونے جا رہا ہے!)",
+      "messageReminderC": "⏳ {masked_partner_name} آپ کے جواب کا انتظار کر رہی ہے...",
+      "actionReply": "💬 {masked_partner_name} کو جواب دیں",
+      "actionHistory": "📜 سیاق و سباق دیکھیں"
+    },
+    "match": {
+      "header": {
+        "zodiac": "🌟 زودیک میچ کا انکشاف ہوا",
+        "mbti": "🧠 MBTI شخصیت کی ہم آہنگی",
+        "blood": "🩸 خون کے گروپ کا کوڈ تجزیہ"
+      },
+      "reason": {
+        "zodiac": {
+          "fire_affinity": "آگ کے علامتوں کے طور پر، آپ کا جذبہ چمکتا ہے اور آپ کا تعلق مضبوط ہے!",
+          "earth_affinity": "زمین کے علامتوں کی استحکام اور پانی کے علامتوں کی نرمی بہترین بہاؤ پیدا کرتی ہے۔",
+          "air_affinity": "ہوا کے علامتوں کی چالاکی آگ کے علامتوں کے جذبے سے مل کر لامتناہی تخلیقی صلاحیت کو متاثر کرتی ہے!",
+          "water_affinity": "پانی کے علامتوں کے جذبات اور زمین کے علامتوں کی عملی نوعیت سب سے گرم حمایت بناتی ہیں۔"
+        },
+        "mbti": {
+          "sj_affinity": "سماجی لوگ (SJ) اور مہم جو (SP)، استحکام اور جوش کا بہترین ملاپ!",
+          "sp_affinity": "مہم جو (SP) اور سماجی لوگ (SJ)، کھیلنے والے اور دیکھ بھال کرنے والوں کے بہترین ساتھی!",
+          "nf_affinity": "آئڈیلسٹس (NF) اور ریاضی کے ماہرین (NT)، روح اور حکمت کی گہری ٹکر!",
+          "nt_affinity": "ریاضی کے ماہرین (NT) اور آئڈیلسٹس (NF)، خیالات اور جذبات کی ہم آہنگی!"
+        },
+        "blood": {
+          "a_affinity": "ٹائپ A کی باریک بینی ٹائپ O کی برداشت سے ملتی ہے، سب سے آرام دہ بات چیت تخلیق کرتی ہے۔",
+          "b_affinity": "ٹائپ B کا خود اعتمادی ٹائپ O کی آسان فطرت سے ملتا ہے، بے تکلف اور آرام دہ۔",
+          "o_affinity": "ٹائپ O اور ٹائپ B/A بہترین تکمیلی ساتھی ہیں!",
+          "ab_affinity": "AB کی منفرد فریکوئنسی کو اس کی قسم بہترین طور پر سمجھتی ہے۔"
+        }
+      },
+      "template": {
+        "body": "{userAttribute},\nتجزیے کے مطابق، آپ کی {recommendedAttributes} کے ساتھ سب سے مضبوط وابستگی ہے!\n\n💡 {reason}\n\n👇 کیا آپ خوش قسمت محسوس کر رہے ہیں؟"
+      },
+      "btn": {
+        "throw": "🌊 ایک بوتل پھینکیں اور موقع لیں",
+        "vip_throw": "🎯 {target} کی جانب پھینکیں",
+        "vip_upsell": "💡 VIP میں اپ گریڈ کریں تاکہ {target} کو مخصوص طور پر ڈیلیوری کرنے کے لیے منتخب کریں، درست ملاپ کے لیے!"
+      }
     }
   },
   "push": {

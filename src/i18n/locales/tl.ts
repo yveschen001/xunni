@@ -119,7 +119,8 @@ export const translations: Translations = {
       "noPermissionVip": "❌ Wala kang pahintulot na makita ang datos ng VIP",
       "onlySuperAdmin": "❌ Tanging mga super administrator lamang ang maaaring gumamit ng utos na ito.",
       "sendReportFailed": "❌ Nabigo ang pagpapadala ng pang-araw-araw na ulat: ${error}",
-      "userNotFound": "❌ Hindi umiiral ang gumagamit: ${userId}"
+      "userNotFound": "❌ Hindi umiiral ang gumagamit: ${userId}",
+      "message5": "• Rate ng error: {rate}%"
     },
     "appeal": "ID ng Apela: ${appeal.id}\n",
     "appeal2": "💡 Gamitin ang sumusunod na utos upang suriin ang apela:\n",
@@ -178,7 +179,32 @@ export const translations: Translations = {
       "usageReject": "Gamit: /admin_reject <appeal_id> [remarks]",
       "user": "Gumagamit: ${user}",
       "userBanHistory": "📊 Kasaysayan ng Bawal ng Gumagamit",
-      "viewHistory": "💡 Gamitin ang /admin_bans <user_id> upang makita ang kasaysayan ng pagbabawal ng isang tiyak na gumagamit"
+      "viewHistory": "💡 Gamitin ang /admin_bans <user_id> upang makita ang kasaysayan ng pagbabawal ng isang tiyak na gumagamit",
+      "onlyAdmin": "❌ Tanging mga administrador lamang ang makakagamit ng utos na ito",
+      "onlySuperAdmin": "❌ Tanging mga super administrador lamang ang makakagamit ng utos na ito",
+      "banUsageError": "Paggamit: /admin_ban <user_id> [hours|permanent]",
+      "cannotBanAdmin": "❌ Hindi ma-bawal ang mga administrador",
+      "banUserNotFound": "❌ Hindi natagpuan ang gumagamit",
+      "operationFailed": "Nabigong operasyon",
+      "userNotFound": "❌ Hindi natagpuan ang gumagamit",
+      "analyticsTitle": "Pagsusuri sa pang-araw-araw na data ng operasyon",
+      "adPerformanceTitle": "Pagsusuri sa performance ng advertising",
+      "vipFunnelTitle": "Pagsusuri sa funnel ng conversion ng VIP",
+      "dailyReportTitle": "Pagsusuri sa pang-araw-araw na pagsasalin at operasyon",
+      "testDailyReport": "Sinubok na ipadala ang pang-araw-araw na ulat",
+      "testRetentionPush": "Sinubok na retention push",
+      "testMatchPush": "Sinubok na matching push",
+      "analytics": {
+        "message5": "• Rate ng error: {rate}%",
+        "noPermission": "❌ Wala kang pahintulot na tingnan ang data ng pagsusuri",
+        "getDataFailed": "❌ Nabigong makuha ang data ng pagsusuri",
+        "noPermissionAd": "❌ Wala kang pahintulot na tingnan ang data ng advertising",
+        "getAdDataFailed": "❌ Nabigong makuha ang data ng advertising",
+        "noPermissionVip": "❌ Wala kang pahintulot na tingnan ang data ng VIP",
+        "getVipDataFailed": "❌ Nabigong makuha ang VIP na data",
+        "sendReportFailed": "❌ Nabigong magpadala ng ulat: {error}",
+        "onlySuperAdmin": "❌ Tanging mga super administrator lamang ang maaaring gumamit ng utos na ito"
+      }
     },
     "ban2": "Kabuuang pagbabawal: ${userBans.results.length}\n\n",
     "ban3": "📊 Kamakailang 10 Tala ng Pagbabawal\n\n",
@@ -259,7 +285,7 @@ export const translations: Translations = {
     "message17": "{historyPosts.results.length} ${historyPosts.results.length}\n\n",
     "message18": "💡 Gumamit ng /admin_refresh_vip_avatars upang mag-refresh nang maramihan\n",
     "message19": "• Pinakabago: ${post.is_latest ? '✅' : '❌'}\n",
-    "message2": "• Updated at: ${avatarInfo.avatar_updated_at ? new Date(avatarInfo.avatar_updated_at).toLocaleString('zh-TW') : 'Hindi Kilala'}",
+    "message2": "• Updated at: ${avatarInfo.avatar_updated_at ? new Date(avatarInfo.avatar_updated_at).toLocaleString('zh-TW') : 'Unknown'}",
     "message20": "{stats.totalOutdatedPosts} ${stats.totalOutdatedPosts}\n\n",
     "message21": "<id> <priority>",
     "message22": "• Kailangan ng Refresh: ${stats.usersNeedingRefresh}\n",
@@ -273,7 +299,7 @@ export const translations: Translations = {
     "message3": "• ${username}: ${detail.postsUpdated} na-update, ${detail.postsFailed} nabigo\n",
     "message30": "• Impression: ${ad.impression_count} beses\n",
     "message31": "• Username: @${targetUser.username ||",
-    "message32": "• Username: @${user.username }\n",
+    "message32": "• Username: @${user.username }",
     "message33": "/admin_reject <appeal_id> [Mga Tala]",
     "message34": "• Mga gumagamit na nai-proseso: ${results.totalUsers}\n",
     "message35": "• `/ad_provider_enable <id>` - I-enable\n",
@@ -410,13 +436,14 @@ export const translations: Translations = {
     "userNotFound": "❌ Hindi umiiral ang user.",
     "vip": "• Pagtatapos ng VIP: ${new Date(user.vip_expire_at).toLocaleString('zh-TW')}\n",
     "vip2": "• Nilikha na may VIP: ${post.created_with_vip_status ? '✅' : '❌'}\n",
-    "vip3": "• VIP Status: ${isVip ? '✅ Oo' : '❌ Hindi'}",
+    "vip3": "• VIP Status: ${isVip ? '✅ Yes' : '❌ No'}",
     "vip4": "• Kabuuang VIP Users: ${stats.totalVipUsers}\n",
     "vip5": "🔄 **Simulan ang Bulk Refresh ng mga VIP Avatar**\n\n",
     "vip6": "⏰ **Paalaala sa Pagtatapos ng VIP Ay Naipadala**\n\n",
     "vip7": "🎉 **Bagong Bili ng VIP**\n\n",
     "vip8": "⬇️ **Awtomatikong Pagbaba ng VIP**\n\n",
-    "vip9": "🔄 **Pag-renew ng VIP**\n\n"
+    "vip9": "🔄 **Pag-renew ng VIP**\n\n",
+    "dailyReport": "📊 Pang-araw-araw na Ulat sa Operasyon ({date})\n\n💰 Tinatayang Gastos sa Pagsasalin:\n{costDetails}\n\n⚠️ Pagsubok sa Anomalya:\n• Mga pag-baba ng kalidad ng pagsasalin: {fallbackCount} beses\n• Mga kabiguan sa pagsasalin: {errorCount} beses\n\n📈 Aktibong Data:\n• Mga Bagong Gumagamit: {newUsers}\n• Aktibong Usapan: {activeConversations}"
   },
   "adminNotification": {
     "amount": "Halaga: ${stars} ⭐",
@@ -456,7 +483,7 @@ export const translations: Translations = {
     "invite": "• Mga Invitations na Nagsimula: {initiated} na beses\n• Mga Invitations na Tinanggap: {accepted} na beses\n• Mga Invitations na Na-activate: {activated} na beses\n• Conversion Rate: {conversionRate}%\n\n• Mga Bote na Inihagis: {bottlesThrown} na beses\n• Mga Bote na Nahuli: {bottlesCaught} na beses\n• Mga Bagong Pag-uusap na Nagsimula: {conversationsStarted} na beses\n• Average na Bilang ng Pag-uusap: {avgConversationRounds}\n\n💡 Detalyadong Data: /analytics",
     "message": "📊 **Ulat ng Araw-araw na Operasyon**\n📅 Petsa: {date}\n\n**👥 Data ng Gumagamit**\n• Mga Bagong Gumagamit: {newUsers} tao\n• Aktibong Gumagamit (DAU): {dau} tao\n• Antas ng Pagsasalin: (D1): {d1Retention}%\n• Average na Tagal ng Session: {avgSessionDuration} minuto\n\n**📺 Data ng Advertising**\n• Mga Ads mula sa Ikatlong Partido:\n - Impressions: {thirdPartyImpressions} na beses\n - Kumpleto: {thirdPartyCompletions} na beses\n - Completion Rate: {thirdPartyCompletionRate}%\n - Mga Naihandog na Gantimpala: {thirdPartyRewardsGranted} quota",
     "message2": "📊 **Ulat ng Araw-araw na Operasyon**\n📅 Petsa: {date}\n\n⚠️ **Walang Data Ngayon**\n\nMaaaring ito ay dahil sa:\n• Tayo ay bagong na-deploy ito, walang aktibidad ng gumagamit pa\n• Walang gumagamit na gumamit ng Bot ngayon\n• Ang tampok na pagsubaybay sa data ay hindi pa na-enable\n\n💡 **Kailan lilitaw ang data?**\n• Kailangan na gumawa ang mga gumagamit ng alinman sa mga sumusunod na aksyon:\n - Mag-send ng /start para magrehistro\n - Maghagis o pumili ng bote ng mensahe\n - Manood ng advertisement\n - Bumili ng VIP\n\n• Inirerekomenda na hintayin ang mga gumagamit na simulan ang paggamit bago mag-check\n• O i-simulate ang pag-uugali ng gumagamit sa test environment",
-    "message3": "**📈 Kabuuang Rate ng Pag-convert: ${report.overall_conversion_rate.toFixed(1)}%**",
+    "message3": "**📈 Overall Conversion Rate: ${report.overall_conversion_rate.toFixed(1)}%**",
     "message4": "• Conversion Rate: ${step.conversion_rate.toFixed(1)}%",
     "message5": "• Error Rate: ${provider.error_rate.toFixed(1)}%",
     "message6": "• Requests: ${provider.total_requests} na beses",
@@ -619,22 +646,22 @@ export const translations: Translations = {
       "conversation6": "📊 Gumamit ng /chats upang makita ang lahat ng pag-uusap",
       "conversation7": "Gumamit ng /chats upang makita ang lahat ng pag-uusap",
       "currentSelection": "Kasalukuyang seleksyon: {genderText}",
-      "gender": "• Kasarian: \\${selectedGender === 'male' ? '👨 Lalaki' : selectedGender === 'female' ? '👩 Babae' : '🌈 Sinuman'}",
+      "gender": "• Gender: \\${selectedGender === 'male' ? '👨 Male' : selectedGender === 'female' ? '👩 Female' : '🌈 Anyone'}",
       "gender2": "👤 **Filter ng Kasarian**\n\n",
       "gender3": "• Kasarian: Salain ayon sa kasarian\n\n",
       "gender4": "💡 Pumili ng kasarian na nais mo:",
       "gender5": "👤 Filter ng Kasarian",
       "genderLabel": "• Kasarian: {gender}\n",
-      "mbti": "• MBTI: \\${selectedMBTI.length > 0 ? selectedMBTI.join(', ') : 'Walang limit'}",
-      "mbti2": "Napili: \\${selectedMBTI.length > 0 ? selectedMBTI.join(', ') : 'Wala'}",
+      "mbti": "• MBTI: \\${selectedMBTI.length > 0 ? selectedMBTI.join(', ') : 'Unlimited'}",
+      "mbti2": "Selected: \\${selectedMBTI.length > 0 ? selectedMBTI.join(', ') : 'None'}",
       "mbti3": "Napili: \\${selectedMBTI.length > 0 ? selectedMBTI.join(",
       "mbti4": "🧠 **Filter ng MBTI**\n\n",
       "mbti5": "• MBTI: I-filter ang mga tiyak na uri ng personalidad\n",
       "mbti6": "• Mataas na Tugma ng MBTI ✓",
       "mbti7": "🧠 Filter ng MBTI",
       "mbtiLabel": "• MBTI: {mbti}",
-      "message": "Napili: \\${selectedZodiac.length > 0 ? selectedZodiac.map((z) => ZODIAC_NAMES[z]).join(', ') : 'Wala'}",
-      "message2": "Kasalukuyang pagpili: \\${currentGender === 'male' ? '👨 Lalaki' : currentGender === 'female' ? '👩 Babae' : '🌈 Sinuman'}",
+      "message": "Selected: \\${selectedZodiac.length > 0 ? selectedZodiac.map((z) => ZODIAC_NAMES[z]).join(', ') : 'None'}",
+      "message2": "Current selection: \\${currentGender === 'male' ? '👨 Male' : currentGender === 'female' ? '👩 Female' : '🌈 Anyone'}",
       "message3": "Napili: \\${selectedZodiac.length > 0 ? selectedZodiac.map((z) => ZODIAC_NAMES[z]).join(",
       "message4": "Kasalukuyang seleksyon: \\${bloodTypeDisplay[currentBloodType]}\n\n",
       "message5": "👤 Kasosyo: \\${vipMatchInfo.matcherNickname}\n",
@@ -647,7 +674,7 @@ export const translations: Translations = {
       "settings": "🧠 MBTI: ${mbti}",
       "settings2": "⭐ Zodiac: ${zodiac}",
       "settings3": "🧠 MBTI: \\\\$",
-      "settings4": "⭐ Zodiac: \\\\$\n",
+      "settings4": "⭐ Zodiac: \\\\$",
       "settings5": "Hindi nakatakda",
       "settings6": "Hindi nakatakda",
       "settings7": "Hindi nakatakda",
@@ -690,7 +717,7 @@ export const translations: Translations = {
       "text17": "• Advanced filtering at translation\n\n",
       "text18": "Oras ng paglikha: \\${age}\n",
       "text19": "Gumamit ng /vip para agad na mag-upgrade",
-      "text2": "• 🆕 Triple exposure opportunity (1 entry = 3 targets)\n",
+      "text2": "• 🆕 Triple exposure opportunity (1 entry = 3 targets)",
       "text20": "💬 **Halimbawa**:\n",
       "text21": "Gumamit ng /vip para matuto nang higit pa",
       "text22": "Gusto mo bang ipagpatuloy ang pag-edit ng draft na ito?",
@@ -713,7 +740,7 @@ export const translations: Translations = {
       "vip5": "✨ **Aktibo ang mga VIP Privileges!**\n\n",
       "vip6": "💡 Mag-upgrade sa VIP upang makatanggap:\n",
       "vip7": "✨ Ang pag-activate ng VIP Pribilehiyo\n",
-      "zodiac": "• Zodiac: \\${selectedZodiac.length > 0 ? selectedZodiac.map((z) => ZODIAC_NAMES[z]).join(', ') : 'Walang mga limitasyon'}",
+      "zodiac": "• Zodiac: \\${selectedZodiac.length > 0 ? selectedZodiac.map((z) => ZODIAC_NAMES[z]).join(', ') : 'Walang mga paghihigpit'}",
       "zodiac2": "⭐ Zodiac: \\\\$\\{matchResult.user.zodiac ||",
       "zodiac3": "⭐ Zodiac: \\\\$\\{user.zodiac_sign ||",
       "zodiac4": "⭐ **Zodiac Filter**",
@@ -1002,8 +1029,8 @@ export const translations: Translations = {
     "translationServiceFallback": "💬 Ang serbisyo sa pagsasalin ay pansamantalang may isyu, ginagamit ang fallback na pagsasalin",
     "translationServiceUnavailable": "⚠️ Ang serbisyo sa pagsasalin ay pansamantalang hindi magagamit, narito ang orihinal na teksto",
     "unknown": "Hindi alam",
-    "zodiac": "⭐ Zodiac: {zodiac}\n",
-    "zodiac2": "⭐ Zodiac: ${catcherZodiac}\n"
+    "zodiac": "⭐ Zodiac: {zodiac}",
+    "zodiac2": "⭐ Zodiac: ${catcherZodiac}"
   },
   "channelMembership": {
     "claimButton": "✅ Kunin ang gantimpala",
@@ -1111,7 +1138,7 @@ export const translations: Translations = {
     "catch3": "Proseso ng Bote ng Mensahe",
     "catch4": "Proseso ng bote ng mensahe",
     "close": "❌ Isara",
-    "complete": "🎉 **Natapos ang pagtingin sa ad!**\n\n✅ Nakakuha ng **+1 quota**\n📊 Napanood ngayon: **${updated.ads_watched}/20** na beses\n🎁 Quota na nakuha ngayon: **${updated.quota_earned}**\n📈 Natitirang mga pagtingin: **${result.remaining_ads}** na beses\n\n${result.remaining_ads > 0 ? '💡 Magpatuloy sa panonood ng mga ad para kumita ng higit pang quota!' : '✅ Naabot ang pang-araw-araw na limitasyon ng ad'}",
+    "complete": "🎉 **Natapos na ang pagtingin sa ad!**\n\n✅ Nakakuha ng **+1 quota**\n📊 Napanood ngayon: **${updated.ads_watched}/20** beses\n🎁 Quota na nakuha ngayon: **${updated.quota_earned}**\n📈 Natitirang mga pagtingin: **${result.remaining_ads}** beses\n\n${result.remaining_ads > 0 ? '💡 Magpatuloy sa panonood ng ads upang kumita ng higit pang quota!' : '✅ Naabot na ang pang-araw-araw na limitasyon ng ad'}",
     "complete2": "📺 **Manood ng mga patalastas para kumita ng kredito**\n\n🎁 Ang pagpapanood ay magdadala ng **+1 kredito**\n📊 Natitira ngayon: **${remainingAds}/20** beses\n\n👇 I-click ang button sa ibaba upang simulan ang panonood",
     "complete3": "Oras ng pagkumpleto: ${new Date(broadcast.completedAt).toLocaleString('zh-TW')}\n",
     "complete4": "Tinatayang pagkumpleto: ${new Date(maintenance.endTime).toLocaleString('zh-TW')}\n",
@@ -1287,9 +1314,9 @@ export const translations: Translations = {
     "quota2": "• 💎 Mag-upgrade sa VIP (30 mensahe/araw)",
     "quota3": "• 🎁 Mag-imbita ng mga kaibigan (+1 kuota bawat tao)\n",
     "quota4": "• ✨ Kumpletuhin ang mga gawain (makakuha ng permanenteng kuota)\n",
-    "register": "💡 Ito ay isang mabilis na pagsubok (${testInfo}), ang mga resulta ay para sa sanggunian lamang.\nPagkatapos ng rehistrasyon, maaari mong ulitin gamit ang /mbti.",
+    "register": "💡 Ito ay isang mabilis na pagsubok (${testInfo}), ang mga resulta ay para sa sanggunian lamang.\nMatapos ang pagpaparehistro, maaari mong ulitin gamit ang /mbti.",
     "register10": "🎉 Binabati kita sa pagkumpleto ng pagpaparehistro!\n\n",
-    "register2": "💡 Ito ay isang kumpletong pagsubok (${testInfo}), ang mga resulta ay mas tumpak.\nPagkatapos ng rehistrasyon, maaari mong ulitin gamit ang /mbti.",
+    "register2": "💡 Ito ay isang kumpletong pagsubok (${testInfo}), mas tumpak ang mga resulta.\nMatapos ang pagpaparehistro, maaari mong ulitin gamit ang /mbti.",
     "register3": "Mga hakbang ng pagpaparehistro: ${user.onboarding_step}\n",
     "register4": "⏰ Ang proseso ng pagpaparehistro ay nag-timeout\n\nMangyaring gamitin ang /start upang i-restart ang pagpaparehistro.",
     "register5": "O gamitin: /dev_restart (automatikong simula ng pagpaparehistro)\n\n",
@@ -1584,7 +1611,7 @@ export const translations: Translations = {
     "text149": "📋 Ang mga legal na dokumento ay ibinibigay sa Ingles lamang.",
     "text15": "🌍 Rehiyon: ${updatedUser.city ||",
     "text150": "📋 Ang mga legal na dokumento ay available lamang sa bersyon sa Ingles.",
-    "text16": "✅ Kailangan ng Beripikasyon: I-click ang 'Beripikahin' na pindutan pagkatapos sumali sa grupo/channel",
+    "text16": "✅ Kailangan ng Beripikasyon: I-click ang pindutang 'Beripikahin' pagkatapos sumali sa grupo/channel",
     "text17": "Target na bilang ng user: ${userIds.length}\n\n",
     "text18": "Tinatayang oras: ${estimatedTime}\n\n",
     "text19": "/broadcast_cleanup kumpirmahin",
@@ -2379,7 +2406,7 @@ export const translations: Translations = {
     "failed4": "Ang mga broadcast na ito ay naitala bilang 'nabigo' na katayuan\n",
     "generic": "❌ Nagkaroon ng error, mangyaring subukan muli mamaya.",
     "invalidRequest": "❌ Hindi wastong kahilingan",
-    "message": "${statusEmoji} **${provider.provider_display_name}**\n${healthEmoji} Kalagayan ng Kalusugan: ${health.is_healthy ? 'Mabuti' : 'Kailangan ng Pansin'}\n📊 Antas ng Kumpletong Gawain: ${stats.completion_rate}%\n❌ Antas ng Error: ${stats.error_rate}%\n📈 Kabuuang Kahilingan: ${stats.total_requests}\n✅ Kabuuang Kumpletong Gawain: ${stats.total_completions}\n💡 Rekomendasyon: ${health.recommendation}",
+    "message": "${statusEmoji} **${provider.provider_display_name}**\n${healthEmoji} Kalagayan ng Kalusugan: ${health.is_healthy ? 'Maganda' : 'Kailangang Pansinin'}\n📊 Rate ng Pagtatapos: ${stats.completion_rate}%\n❌ Rate ng Error: ${stats.error_rate}%\n📈 Kabuuang Kahilingan: ${stats.total_requests}\n✅ Kabuuang Natapos: ${stats.total_completions}\n💡 Rekomendasyon: ${health.recommendation}",
     "message2": "Mensahe ng error: ${error instanceof Error ? error.message : String(error)}",
     "message3": "\\nError: ${broadcast.errorMessage}",
     "operationFailed": "❌ Nabigong operasyon.",
@@ -2514,7 +2541,8 @@ export const translations: Translations = {
     "vip3": "/funnel - VIP conversion funnel",
     "vip4": "🎁 **Quota at VIP**\n",
     "vip5": "/vip - VIP subscription",
-    "vip6": "💎 **Mga Benepisyo ng VIP**\n"
+    "vip6": "💎 **Mga Benepisyo ng VIP**\n",
+    "dailyReportTitle": "Kuhanin ang Pang-araw-araw na Ulat sa Operasyon"
   },
   "history": {
     "chatHistory": "💬 **Iyong Kasaysayan ng Usapan**\n\n",
@@ -2754,6 +2782,12 @@ export const translations: Translations = {
       "question9": "Mas pinahahalagahan mo:",
       "question9.option1": "Katarungan at hustisya",
       "question9.option2": "Habag at pag-unawa"
+    },
+    "share": {
+      "welcome": "👋 Inaanyayahan ka ng iyong kaibigan na isagawa ang MBTI test!\n\nHalika at tingnan ang iyong uri ng personalidad～",
+      "startButton": "📊 Simulan ang pagsusulit",
+      "resultTitle": "Ang resulta ng aking MBTI test ay {type}!",
+      "resultDesc": "Dapat mo rin subukan ang pagsusulit～"
     }
   },
   "mbtiTest": {
@@ -2763,7 +2797,7 @@ export const translations: Translations = {
     "fullAccuracy": "Mas tumpak ang mga resulta",
     "fullQuestions": "36 na tanong",
     "fullTest": "Kompletuhin ang MBTI test",
-    "fullTestInfo": "💡 Ito ay isang kumpletong pagsubok ({questions}), mas tumpak ang resulta.\nPagkatapos ng pagrehistro, maaari mong gamitin ang /mbti upang ulitin ang pagsubok.",
+    "fullTestInfo": "💡 Ito ay isang kumpletong pagsusulit ({questions}), mas tumpak ang resulta.\nMatapos ang kumpletong pagpaparehistro, maaari mong gamitin ang /mbti upang ulitin ang pagsusulit.",
     "fullTestTitle": "Buong pagsusulit",
     "manualModify": "• Manwal na baguhin ang iyong uri ng MBTI",
     "moreDetailedTest": "• Gumawa ng mas detalyadong pagsusulit\n",
@@ -2774,7 +2808,7 @@ export const translations: Translations = {
     "quickAccuracy": "Ang mga resulta ay para sa sanggunian lamang",
     "quickQuestions": "12 na tanong",
     "quickTest": "Mabilis na MBTI test",
-    "quickTestInfo": "💡 Ito ay isang mabilis na pagsubok ({questions}), ang resulta ay para sa sanggunian lamang.\nPagkatapos ng pagrehistro, maaari mong gamitin ang /mbti upang ulitin ang pagsubok.",
+    "quickTestInfo": "💡 Ito ay isang mabilis na pagsusulit ({questions}), ang resulta ay para sa sanggunian lamang.\nMatapos ang kumpletong pagpaparehistro, maaari mong gamitin ang /mbti upang ulitin ang pagsusulit.",
     "quickTestTitle": "Mabilis na pagsusulit",
     "yourMbtiType": "Ang iyong MBTI uri ay: **{type}**\n\n"
   },
@@ -2795,7 +2829,7 @@ export const translations: Translations = {
     "levelFree": "🆓 Libreng Miyembro",
     "levelVip": "💎 Miyembro ng VIP",
     "message": "https://t.me/share/url?url=https://t.me/${botUsername}?start=invite_${inviteCode}&text=Halika sumali sa XunNi upang magtapon ng mga bote ng mensahe nang sab together! 🍾 Gamitin ang aking invitation code upang sumali, at makakakuha tayong lahat ng higit pang quota! https://t.me/share/url?url=https://t.me/${botUsername}?start=invite_${inviteCode}&text=Come",
-    "message2": "https://t.me/share/url?url=https://t.me/${botUsername}?start=invite_${inviteCode}&text=Sumali sa XunNi at magtapon ng bote ng mensahe https://t.me/share/url?url=https://t.me/${botUsername}?start=invite_${inviteCode}&text=來 https://t.me/share/url?url=https://t.me/${botUsername}?start=invite_${inviteCode}&text=Come",
+    "message2": "https://t.me/share/url?url=https://t.me/${botUsername}?start=invite_${inviteCode}&text=Sumama sa XunNi at magtapon ng bote ng mensahe https://t.me/share/url?url=https://t.me/${botUsername}?start=invite_${inviteCode}&text=來 https://t.me/share/url?url=https://t.me/${botUsername}?start=invite_${inviteCode}&text=Come",
     "notRegistered": "Hindi Nakarehistro",
     "notSet": "Hindi Itinakda",
     "quota": "• Pareho kayong makakakuha ng daily quota +1\n\n",
@@ -2863,7 +2897,7 @@ export const translations: Translations = {
     "noAdsAvailable": "❌ Walang magagamit na anunsyo",
     "noVerificationRequired": "❌ Ang anunsyong ito ay hindi nangangailangan ng beripikasyon",
     "quotaInfo": "📊 Natitira ngayon: **{remaining}/20** na beses",
-    "requiresVerification": "✅ Kinakailangan ang Beripikasyon: I-click ang 'Beripikahin' na button pagkatapos sumali sa grupo/channel",
+    "requiresVerification": "✅ Kinakailangan ang Beripikasyon: I-click ang 'Beripika' na buton matapos sumali sa grupo/channel",
     "reward": "🎁 Gantimpala: +{quota} permanenteng quota",
     "rewardPermanent": "🎁 Kumpletuhin ang mga gawain upang kumita ng **+1 permanenteng quota**.",
     "rewardTemporary": "🎁 Binabati kita sa pagtanggap ng +1 pansamantalang quota (balido ngayon).",
@@ -3078,13 +3112,13 @@ export const translations: Translations = {
     "manual": "Manwal na Mga Setting",
     "mbti": "• Gamitin ang /mbti para muling kumuha o baguhin ang MBTI\n",
     "mbtiWithSource": "🧠 MBTI: {mbti}{source}",
-    "message": "https://t.me/share/url?url=https://t.me/${botUsername}?start=invite_${inviteCode}&text=Halika sa XunNi at magtapon ng bote ng mensahe!🍾 Gamitin ang aking invitation code: ${inviteCode} https://t.me/share/url?url=https://t.me/${botUsername}?start=invite_${inviteCode}&text=來 https://t.me/share/url?url=https://t.me/${botUsername}?start=invite_${inviteCode}&text=Come",
+    "message": "https://t.me/share/url?url=https://t.me/${botUsername}?start=invite_${inviteCode}&text=Sumama sa XunNi at magtapon ng bote ng mensahe!🍾 Gamitin ang aking invitation code: ${inviteCode} https://t.me/share/url?url=https://t.me/${botUsername}?start=invite_${inviteCode}&text=來 https://t.me/share/url?url=https://t.me/${botUsername}?start=invite_${inviteCode}&text=Come",
     "message2": "${inviteLimitWarning}\n\n",
     "message3": "🌍 Wika: ${user.language_pref}\n\n",
     "message4": "🌍 Wika: ${user.language_pref}\n",
     "message5": "📈 Conversion Rate: ${inviteStats.conversionRate}%",
     "message6": "${gender} • ${age} taong gulang • ${city}\n\n",
-    "message7": "https://t.me/share/url?url=https://t.me/${botUsername}?start=invite_${inviteCode}&text=Halika sa XunNi at magtapon ng bote ng mensahe https://t.me/share/url?url=https://t.me/${botUsername}?start=invite_${inviteCode}&text=來 https://t.me/share/url?url=https://t.me/${botUsername}?start=invite_${inviteCode}&text=Come",
+    "message7": "https://t.me/share/url?url=https://t.me/${botUsername}?start=invite_${inviteCode}&text=Sumama sa XunNi at magtapon ng bote ng mensahe https://t.me/share/url?url=https://t.me/${botUsername}?start=invite_${inviteCode}&text=來 https://t.me/share/url?url=https://t.me/${botUsername}?start=invite_${inviteCode}&text=Come",
     "mysterious": "Ang taong ito ay medyo mahiwaga, walang naiwan～",
     "nickname": "📛 Palayaw: ${displayNickname}\n",
     "notSet": "Hindi Naka-set",
@@ -3218,7 +3252,13 @@ export const translations: Translations = {
     "toggleCatch": "Palitan ang paalala sa pagkuha ng bote ng mensahe",
     "toggleMessage": "Palitan ang paalala sa pag-uusap",
     "quietHours": "Tahimik na oras",
-    "saved": "Naka-save ang mga setting"
+    "saved": "Naka-save ang mga setting",
+    "editQuietHours": "✏️ I-edit ang Tahimik na Oras",
+    "quietDisable": "🚫 I-disable ang Tahimik na Oras",
+    "selectStartHour": "🌙 Paki piliin ang oras ng simula para sa tahimik na oras:\n(Para sa halimbawa: upang magsimula sa 23:00, paki piliin ang 23:00)",
+    "selectEndHour": "☀️ Itinakdang oras ng simula sa {start}:00.\nPaki piliin ang oras ng pagtatapos para sa tahimik na oras:\n(Magbabalik ang mga abiso pagkatapos ng oras na ito)",
+    "disabled": "🚫 Na-disable na ang tahimik na oras",
+    "quietHoursHint": "Hindi ka makakatanggap ng mga di-mahalagang abiso sa panahong ito"
   },
   "stats": {
     "activeUsers": "• Aktibo Kahapon: {active}\n\n",
@@ -3539,7 +3579,7 @@ export const translations: Translations = {
       "vip": "✅ Lahat ng mga post ay na-update (tama ang VIP status)\n",
       "zodiac": "✅ Nilinis ang pagpili ng zodiac"
     },
-    "success2": "{ad.reward_quota} ${ad.reward_quota}",
+    "success2": "🎉 **Matagumpay ang Beripikasyon!**\n\n✅ Nakuha **+${ad.reward_quota} permanenteng quota**\n💎 Salamat sa pagsali sa aming komunidad!\n\n📊 **Ang iyong quota:**\n• Pangunahing quota: ${user.is_vip ? 'Walang Hanggan' : '10'}/araw\n• Permanenteng quota: +${ad.reward_quota}\n\n💡 Sa komunidad maaari mong:\n• Makipag-ugnayan sa ibang mga gumagamit\n• Kumuha ng mga pinakabagong updates sa feature\n• Makilahok sa mga aktibidad para sa higit pang mga gantimpala",
     "success3": "Matagumpay na na-refresh ang ${result.updated} makasuyang post sa pag-uusap.\n\n",
     "success4": "Matagumpay na na-refresh: ${result.updated}\n",
     "text": "✅ Nakatakda sa ${flag} ${countryName}",
@@ -3674,7 +3714,7 @@ export const translations: Translations = {
     "conversation6": "📊 Gamitin ang /chats upang tingnan ang lahat ng pag-uusap",
     "conversation7": "Gamitin ang /chats upang tingnan ang lahat ng pag-uusap",
     "currentSelection": "Kasalukuyang seleksyon: {genderText}",
-    "friendlyContent": ")}",
+    "friendlyContent": "[Translation needed from zh-TW.ts]",
     "gender": "• Kasarian: ${selectedGender === 'male' ? '👨 Lalaki' : selectedGender === 'female' ? '👩 Babae' : '🌈 Sinuman'}",
     "gender2": "👤 **Filter ng Kasarian**\n\n",
     "gender3": "• Kasarian: Salain ayon sa kasarian\n\n",
@@ -3770,10 +3810,10 @@ export const translations: Translations = {
     "vip5": "✨ **Na-activate ang VIP pribilehiyo!**\n\n",
     "vip6": "💡 I-upgrade sa VIP para makuha:\n",
     "vip7": "✨ Nag-aactivate ng mga pribilehiyo ng VIP\n",
-    "zodiac": "• Zodiac: ${selectedZodiac.length > 0 ? selectedZodiac.map((z) => ZODIAC_NAMES[z]).join(', ') : 'Walang Hanggan'}",
+    "zodiac": "• Zodiac: ${selectedZodiac.length > 0 ? selectedZodiac.map((z) => ZODIAC_NAMES[z]).join(', ') : 'Walang Hangganan'}",
     "zodiac2": "⭐ Zodiac: ${matchResult.user.zodiac ||",
     "zodiac3": "⭐ Zodiac: ${user.zodiac_sign ||",
-    "zodiac4": "⭐ **Filtrong zodiac**",
+    "zodiac4": "⭐ **S filtro ng Zodiac**",
     "zodiac5": "• Zodiac: salain ayon sa tiyak na mga sign ng zodiac\n",
     "zodiac6": "• Sobrang tugma sa zodiac ✓",
     "zodiac7": "⭐ Filtrong zodiac",
@@ -3819,7 +3859,7 @@ export const translations: Translations = {
     "mbti": "• Maaaring i-filter ang mga angkop na kandidato ayon sa MBTI, zodiac, at uri ng dugo\n",
     "mbti2": "• Maaaring i-filter ang mga angkop na kandidato ayon sa MBTI at zodiac\n",
     "mbti3": "• Maaaring i-filter ayon sa MBTI at zodiac\n",
-    "message": "Panahon ng bisa: ${new Date(sub.expire_date).toLocaleDateString('zh-TW')}",
+    "message": "Petsa ng pag-expire: ${new Date(sub.expire_date).toLocaleDateString('zh-TW')}",
     "message10": "Numero ng aplikasyon: #${result.meta.last_row_id}\n",
     "message11": "Halaga ng refund: ${request.amount_stars} ⭐\n",
     "message12": "💬 **Mangyaring mahaba ang pindutin ang mensaheng ito, piliin ang 'Tumugon', at ilagay ang iyong nilalaman upang simsulong ng pag-uusap sa kabilang partido**",
@@ -3836,7 +3876,7 @@ export const translations: Translations = {
     "purchaseCancelled": "✅ Kanseladong pagbili",
     "quota": "• 30 quota ng bote ng mensahe sa bawat araw (anyayahan ang mga kaibigan upang madagdagan, hanggang 100 sa bawat araw)\n",
     "quota2": "• 30 quota ng bote ng mensahe sa bawat araw (hanggang 100 sa bawat araw)\n",
-    "refundAdminCommands": "Panahon ng bisa: ${expireDate} <ID> `/admin_approve_refund <ID>` `/admin_reject_refund <ID> <dahilan>` `/admin_reject_refund <ID> <原因>`",
+    "refundAdminCommands": "Petsa ng pag-expire: ${expireDate} <ID> `/admin_approve_refund <ID>` `/admin_reject_refund <ID> ` `/admin_reject_refund <ID> <原因>`",
     "refundApproved": "✅ **Naaprubahan ang refund**\n\nHalaga ng refund: ${amount} ⭐\nAng refund ay kredito sa loob ng 1-3 araw ng negosyo.\n\nAng iyong VIP membership ay kinansela na.\n\nSalamat sa iyong pang-unawa!",
     "refundApprovedAdmin": "✅ Naaprubahan ang refund\n\nRequest ID: #${requestId}\nUser ID: ${userId}\nHalaga: ${amount} ⭐",
     "refundExpired": "❌ Lumampas ang request ng refund sa oras ng limitasyon\n\nOras ng pagbabayad: ${paymentDate}\nLimitasyon ng refund: loob ng 7 araw matapos ang pagbabayad\n\n💡 Para sa mga espesyal na sitwasyon, mangyaring makipag-ugnayan sa customer support.",
@@ -3879,7 +3919,7 @@ export const translations: Translations = {
     "success4": "🎉 **Matagumpay ang subscription!**\n\n",
     "text": "- Priority access sa mga pagsasalin ng OpenAI GPT model (mataas na kalidad)\n",
     "text10": "Ipaproseso namin ang iyong aplikasyon sa loob ng 1-3 araw ng negosyo.\n",
-    "text11": "Panahon ng bisa: ${expireDate}",
+    "text11": "Petsa ng pag-expire: ${expireDate}",
     "text12": "Ang mga refund ay magkakredit sa loob ng 1-3 araw ng negosyo.\n\n",
     "text13": "Request ID: #${requestId}",
     "text14": "└ 1 Smart Match + 2 Pampublikong Pools",
@@ -4088,7 +4128,7 @@ export const translations: Translations = {
       "vip3": "⚠️ **Nag-e-expire ang VIP ngayon**\n\n"
     },
     "BROADCAST": {
-      "FILTER_ERROR": "❌ Error sa format.\nHalimbawa: `/broadcast_filter gender=female,country=TW test message` `/broadcast_filter gender=female,country=TW 測試訊息`",
+      "FILTER_ERROR": "❌ error sa format.\nHalimbawa: `/broadcast_filter gender=female,country=TW test message`",
       "NO_CONTENT": "❌ Pakisuyong ilagay ang nilalaman ng broadcast.",
       "NO_MATCHES": "⚠️ Walang mga gumagamit na tumutugma sa mga pamantayan.\nPamantayan ng filter: {filters}",
       "TOO_MANY_USERS": "⚠️ Masyadong maraming target na gumagamit ({count} na tao), kasalukuyang limitado sa pagpapadala sa {max} na tao nang sabay.",
@@ -4098,7 +4138,47 @@ export const translations: Translations = {
     "push": {
       "throwReminder": "🌊 Hey! Matagal na simula nang huli mong itapon ang isang bote ng mensahe, napakatahimik sa dalampasigan...",
       "catchReminder": "🎣 May ilang bagong bote ng mensahe na lumutang sa dalampasigan, gusto mo bang tingnan ang mga ito?",
-      "onboardingReminder": "👋 Ang iyong pagpaparehistro ay hindi pa kumpleto, malapit na! (Hakbang: {step})"
+      "onboardingReminder": "👋 Ang iyong pagpaparehistro ay hindi pa kumpleto, malapit na! (Hakbang: {step})",
+      "messageReminderA": "👋 Hey {masked_partner_name} ay nag-aantay pa rin ng iyong sagot! Huwag hayaang lumamig ang pag-uusap～",
+      "messageReminderB": "📩 Mayroon kang unread na mensahe mula kay {masked_partner_name}:\n> \"{last_message_preview}...\"\n(Nagdaan na ang higit sa 24 na oras!)",
+      "messageReminderC": "⏳ {masked_partner_name} ay nag-aantay ng iyong sagot...",
+      "actionReply": "💬 Sagutin si {masked_partner_name}",
+      "actionHistory": "📜 Tingnan ang Konteksto"
+    },
+    "match": {
+      "header": {
+        "zodiac": "🌟 Nahayag ang Zodiac Match",
+        "mbti": "🧠 Resonans ng MBTI Personalidad",
+        "blood": "🩸 Pagsusuri ng Code ng Uri ng Dugo"
+      },
+      "reason": {
+        "zodiac": {
+          "fire_affinity": "Bilang mga kapwa apoy na tanda, ang iyong sigasig ay nagniningning at ang iyong koneksyon ay malakas!",
+          "earth_affinity": "Ang katatagan ng mga tanda ng lupa ay pinagsama sa lambing ng mga tanda ng tubig na bumubuo ng perpektong daloy.",
+          "air_affinity": "Ang liksi ng mga tanda ng hangin ay nakakatugon sa sigasig ng mga tanda ng apoy, na nag-uudyok ng walang katapusang pagkamalikhain!",
+          "water_affinity": "Ang emosyon ng mga tanda ng tubig at ang praktikalidad ng mga tanda ng lupa ay bumubuo ng pinakamainit na suporta."
+        },
+        "mbti": {
+          "sj_affinity": "Mga Socializer (SJ) at Explorers (SP), perpektong pagsasama ng katatagan at kasiyahan!",
+          "sp_affinity": "Mga Explorers (SP) at Socializer (SJ), ang pinakamahusay na kasama ng mga kalaro at tagapag-alaga!",
+          "nf_affinity": "Mga Idealista (NF) at mga Rasyonalista (NT), isang malalim na pagkakasalungat ng kaluluwa at karunungan!",
+          "nt_affinity": "Mga Rasyonalista (NT) at mga Idealista (NF), isang resonans ng mga ideya at damdamin!"
+        },
+        "blood": {
+          "a_affinity": "Ang masusing pagkakaayos ng Type A ay nakakatugon sa pagpapahalaga ng Type O, na lumilikha ng pinaka-komportableng interaksyon.",
+          "b_affinity": "Ang pansariling pagkaka-assert ng Type B ay nakakatugon sa madaling pakikitungo ng Type O, walang stress at nakakarelaks.",
+          "o_affinity": "Ang Type O at Type B/A ay mahusay na mga kapareha!",
+          "ab_affinity": "Ang natatanging dalas ng AB ay pinakamahusay na nauunawaan ng mga kapwa nito."
+        }
+      },
+      "template": {
+        "body": "{userAttribute},\nAyon sa pagsusuri, mayroon kang pinakamalakas na pagkakaangkop sa {recommendedAttributes}!\n\n💡 {reason}\n\n👇 Nakakaramdam ng suwerte?"
+      },
+      "btn": {
+        "throw": "🌊 Magtapon ng bote at subukan ang iyong swerte",
+        "vip_throw": "🎯 Magtapon sa {target}",
+        "vip_upsell": "💡 I-upgrade sa VIP upang italaga ang paghahatid sa {target}, para sa tumpak na pagsasama!"
+      }
     }
   },
   "push": {

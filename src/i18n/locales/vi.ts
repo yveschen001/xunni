@@ -119,7 +119,8 @@ export const translations: Translations = {
       "noPermissionVip": "❌ Bạn không có quyền xem dữ liệu VIP",
       "onlySuperAdmin": "❌ Chỉ quản trị viên siêu mới có thể sử dụng lệnh này.",
       "sendReportFailed": "❌ Không thể gửi báo cáo hàng ngày: ${error}",
-      "userNotFound": "❌ Người dùng không tồn tại: ${userId}"
+      "userNotFound": "❌ Người dùng không tồn tại: ${userId}",
+      "message5": "• Tỷ lệ lỗi: {rate}%"
     },
     "appeal": "ID kháng cáo: ${appeal.id}\n",
     "appeal2": "💡 Sử dụng lệnh sau để xem xét kháng cáo:\n",
@@ -178,7 +179,32 @@ export const translations: Translations = {
       "usageReject": "Cách sử dụng: /admin_reject <appeal_id> [ghi chú]",
       "user": "Người dùng: ${user}",
       "userBanHistory": "📊 Lịch sử cấm của người dùng",
-      "viewHistory": "💡 Sử dụng /admin_bans <user_id> để xem lịch sử cấm của một người dùng cụ thể"
+      "viewHistory": "💡 Sử dụng /admin_bans <user_id> để xem lịch sử cấm của một người dùng cụ thể",
+      "onlyAdmin": "❌ Chỉ có quản trị viên mới có thể sử dụng lệnh này",
+      "onlySuperAdmin": "❌ Chỉ có quản trị viên siêu mới có thể sử dụng lệnh này",
+      "banUsageError": "Cách sử dụng: /admin_ban <user_id> [giờ|vĩnh viễn]",
+      "cannotBanAdmin": "❌ Không thể cấm quản trị viên",
+      "banUserNotFound": "❌ Không tìm thấy người dùng",
+      "operationFailed": "Hoạt động không thành công",
+      "userNotFound": "❌ Không tìm thấy người dùng",
+      "analyticsTitle": "Phân tích dữ liệu hoạt động hàng ngày",
+      "adPerformanceTitle": "Phân tích hiệu suất quảng cáo",
+      "vipFunnelTitle": "Phân tích kênh chuyển đổi VIP",
+      "dailyReportTitle": "Báo cáo dịch thuật và hoạt động hàng ngày",
+      "testDailyReport": "Gửi thử báo cáo hàng ngày",
+      "testRetentionPush": "Gửi thử đẩy giữ chân",
+      "testMatchPush": "Gửi thử đẩy ghép đôi",
+      "analytics": {
+        "message5": "• Tỷ lệ lỗi: {rate}%",
+        "noPermission": "❌ Bạn không có quyền xem dữ liệu phân tích",
+        "getDataFailed": "❌ Không thể truy xuất dữ liệu phân tích",
+        "noPermissionAd": "❌ Bạn không có quyền xem dữ liệu quảng cáo",
+        "getAdDataFailed": "❌ Không thể truy xuất dữ liệu quảng cáo",
+        "noPermissionVip": "❌ Bạn không có quyền xem dữ liệu VIP",
+        "getVipDataFailed": "❌ Không thể lấy dữ liệu VIP",
+        "sendReportFailed": "❌ Không thể gửi báo cáo: {error}",
+        "onlySuperAdmin": "❌ Chỉ có quản trị viên siêu cấp mới có thể sử dụng lệnh này"
+      }
     },
     "ban2": "Tổng số lệnh cấm: ${userBans.results.length}\n\n",
     "ban3": "📊 10 hồ sơ cấm gần đây\n\n",
@@ -410,13 +436,14 @@ export const translations: Translations = {
     "userNotFound": "❌ Người dùng không tồn tại.",
     "vip": "• Thời gian hết hạn VIP: ${new Date(user.vip_expire_at).toLocaleString('zh-TW')}",
     "vip2": "• Tạo với VIP: ${post.created_with_vip_status ? '✅' : '❌'}\n",
-    "vip3": "• Trạng thái VIP: ${isVip ? '✅ Có' : '❌ Không'}",
+    "vip3": "• Tình trạng VIP: ${isVip ? '✅ Có' : '❌ Không'}",
     "vip4": "• Tổng số Người dùng VIP: ${stats.totalVipUsers}\n",
     "vip5": "🔄 **Bắt đầu Làm mới Hàng loạt Avatar VIP**\n\n",
     "vip6": "⏰ **Nhắc nhở Hạn sử dụng VIP đã được gửi**\n\n",
     "vip7": "🎉 **Mua VIP Mới**\n\n",
     "vip8": "⬇️ **Tự động giảm cấp VIP**\n\n",
-    "vip9": "🔄 **Gia hạn VIP**\n\n"
+    "vip9": "🔄 **Gia hạn VIP**\n\n",
+    "dailyReport": "📊 Báo cáo hoạt động hàng ngày ({date})\n\n💰 Dự kiến chi phí dịch thuật:\n{costDetails}\n\n⚠️ Giám sát bất thường:\n• Giảm chất lượng dịch thuật: {fallbackCount} lần\n• Thất bại trong dịch thuật: {errorCount} lần\n\n📈 Dữ liệu hoạt động:\n• Người dùng mới: {newUsers}\n• Cuộc trò chuyện đang hoạt động: {activeConversations}"
   },
   "adminNotification": {
     "amount": "Số lượng: ${stars} ⭐",
@@ -713,7 +740,7 @@ export const translations: Translations = {
       "vip5": "✨ **Đặc quyền VIP đã được kích hoạt!**\n\n",
       "vip6": "💡 Nâng cấp lên VIP để nhận:\n",
       "vip7": "✨ Đang kích hoạt quyền lợi VIP\n",
-      "zodiac": "• Cung hoàng đạo: \\${selectedZodiac.length > 0 ? selectedZodiac.map((z) => ZODIAC_NAMES[z]).join(', ') : 'Không có hạn chế'}",
+      "zodiac": "• Cung hoàng đạo: \\${selectedZodiac.length > 0 ? selectedZodiac.map((z) => ZODIAC_NAMES[z]).join(', ') : 'Không có giới hạn'}",
       "zodiac2": "⭐ Cung hoàng đạo: \\${matchResult.user.zodiac ||",
       "zodiac3": "⭐ Cung hoàng đạo: \\${user.zodiac_sign ||",
       "zodiac4": "⭐ **Bộ lọc Cung Hoàng Đạo**\n\n",
@@ -1081,14 +1108,14 @@ export const translations: Translations = {
     "bottle32": "Nội dung chai không thể để trống",
     "bottle33": "Ném chai thư đầu tiên của bạn",
     "bottle34": "Nhà mạng xã hội chai thư ẩn danh, giúp bạn tìm bạn bè có cùng sở thích thông qua MBTI và cung hoàng đạo",
-    "bottle4": "⏰ Cuộc trò chuyện đã hết thời gian\n\nBên kia có thể đã rời đi. Sử dụng /catch để nhặt một chai mới!\n\n",
-    "bottle5": "💡 Sử dụng /catch để nhặt một chai thư mới để bắt đầu một cuộc trò chuyện mới.",
-    "bottle6": "🍾 Ném Chai Thư\n\nBạn đang tìm kiếm đối tác trò chuyện như thế nào?",
-    "bottle7": "Hãy ném một chai để gặp gỡ những người bạn mới! /throw",
+    "bottle4": "Một nền tảng chai thư ẩn danh, giúp bạn tìm những người bạn cùng chí hướng thông qua MBTI và các cung hoàng đạo",
+    "bottle5": "⏰ Cuộc trò chuyện đã hết thời gian chờ\n\nBên kia có thể đã rời đi. Sử dụng /catch để nhặt một chai mới!",
+    "bottle6": "💡 Sử dụng /catch để nhặt một chai thư mới để bắt đầu cuộc trò chuyện mới.",
+    "bottle7": "🍾 Ném Chai Thư\n\nBạn đang tìm kiếm loại đối tác trò chuyện nào?",
     "bottle8": "Xem chai thư của người khác và trả lời nếu bạn hứng thú để bắt đầu trò chuyện\n\n",
-    "bottle9": "Hãy xem các chai thư của người khác và trả lời nếu bạn muốn bắt đầu trò chuyện",
+    "bottle9": "Xem các chai thư của người khác và trả lời nếu bạn quan tâm để bắt đầu trò chuyện",
     "broadcast": "📊 5 Bản Ghi Phát Thanh Gần Đây {broadcastId} ${broadcastId}",
-    "broadcast10": "📊 5 Bản Ghi Phát Sóng Gần Đây",
+    "broadcast10": "📊 5 Lịch sử Phát sóng Gần đây",
     "broadcast11": "Thông báo khôi phục đã được phát đi đến tất cả người dùng.\n",
     "broadcast12": "📊 Hiện tại, không có bản ghi phát thanh nào.",
     "broadcast13": "📊 Tình Trạng Phát Thanh",
@@ -1111,7 +1138,7 @@ export const translations: Translations = {
     "catch3": "• Nội dung thân thiện và tôn trọng có nhiều khả năng được chọn hơn!",
     "catch4": "Quá trình bắt chai thư",
     "close": "❌ Đóng",
-    "complete": "🎉 **Xem quảng cáo hoàn tất!**\n\n✅ Đã kiếm được **+1 chỉ tiêu**\n📊 Đã xem hôm nay: **${updated.ads_watched}/20** lần\n🎁 Chỉ tiêu kiếm được hôm nay: **${updated.quota_earned}**\n📈 Số lần xem còn lại: **${result.remaining_ads}** lần\n\n${result.remaining_ads > 0 ? '💡 Tiếp tục xem quảng cáo để kiếm thêm chỉ tiêu!' : '✅ Đã đạt giới hạn quảng cáo hàng ngày'}",
+    "complete": "🎉 **Xem quảng cáo đã hoàn thành!**\n\n✅ Đã nhận **+1 chỉ tiêu**\n📊 Đã xem hôm nay: **${updated.ads_watched}/20** lần\n🎁 Chỉ tiêu kiếm được hôm nay: **${updated.quota_earned}**\n📈 Lượt xem còn lại: **${result.remaining_ads}** lần\n\n${result.remaining_ads > 0 ? '💡 Tiếp tục xem quảng cáo để kiếm thêm chỉ tiêu!' : '✅ Đã đạt giới hạn quảng cáo hàng ngày'}",
     "complete2": "📺 **Kiếm hạn mức bằng cách xem quảng cáo**\n\n🎁 Hoàn thành việc xem sẽ được **+1 hạn mức**\n📊 Còn lại hôm nay: **${remainingAds}/20** lần\n\n👇 Nhấn nút bên dưới để bắt đầu xem",
     "complete3": "Thời gian hoàn thành: ${new Date(broadcast.completedAt).toLocaleString('zh-TW')}\n",
     "complete4": "Thời gian hoàn thành ước tính: ${new Date(maintenance.endTime).toLocaleString('zh-TW')}\n",
@@ -1188,7 +1215,7 @@ export const translations: Translations = {
     "message14": "Tiến trình: ${broadcast.sent_count}/${broadcast.total_users}\n",
     "message15": "${days} ${user.language_pref === 'en' ? 'ngày' : '天'}",
     "message16": "Mục tiêu: ${getBroadcastTargetName(broadcast.targetType)}\n",
-    "message17": "Trạng thái: ${maintenance.isActive ? '✅ Đang bảo trì' : '❌ Không hoạt động'}",
+    "message17": "Tình trạng: ${maintenance.isActive ? '✅ Đang bảo trì' : '❌ Không hoạt động'}",
     "message18": "🚫 URL bị chặn:\n${urlCheck.blockedUrls?.map((url) =>",
     "message19": "• Tin nhắn cuối cùng: ${formatDate(stats.last_message_time)}\n",
     "message2": "ngày sinh = '2000-01-01',\n tuổi = 25,\n cung hoàng đạo = 'Ma Kết',\n điểm chống gian lận = 100,\n đồng ý các điều khoản = 1",
@@ -1200,7 +1227,7 @@ export const translations: Translations = {
     "message25": "Đã hủy",
     "message26": "• Đã kích hoạt: ${inviteStats?.activated || 0}",
     "message27": "• Đang chờ: ${inviteStats?.pending || 0}",
-    "message28": "/maintenance_enable [tin nhắn bảo trì]",
+    "message28": "/maintenance_enable [thông điệp bảo trì]",
     "message29": "{b.sent_count} {b.total_users} ${b.sent_count} ${b.total_users}\n",
     "message3": "{broadcast.sentCount} {broadcast.totalUsers} {progress.percentage} ${broadcast.sentCount} ${broadcast.totalUsers} ${progress.percentage}\n",
     "message30": "• Tin nhắn: ${messagesCount?.count || 0}",
@@ -1972,7 +1999,7 @@ export const translations: Translations = {
     "buttonMY": "🇲🇾 Malaysia",
     "buttonNZ": "🇳🇿 New Zealand",
     "buttonSG": "🇸🇬 Singapore",
-    "buttonTH": "🇹🇭 Thailand",
+    "buttonTH": "🇹🇭 Thái Lan",
     "buttonTW": "🇹🇼 Đài Loan",
     "buttonUS": "🇺🇸 United States",
     "confirmButton": "✅ Chính xác",
@@ -2379,7 +2406,7 @@ export const translations: Translations = {
     "failed4": "Các phát sóng này đã được đánh dấu là trạng thái 'thất bại'\n",
     "generic": "❌ Đã xảy ra lỗi, vui lòng thử lại sau.",
     "invalidRequest": "❌ Yêu cầu không hợp lệ",
-    "message": "${statusEmoji} **${provider.provider_display_name}**\n${healthEmoji} Tình trạng sức khỏe: ${health.is_healthy ? 'Tốt' : 'Cần chú ý'}\n📊 Tỷ lệ hoàn thành: ${stats.completion_rate}%\n❌ Tỷ lệ lỗi: ${stats.error_rate}%\n📈 Tổng số yêu cầu: ${stats.total_requests}\n✅ Tổng số hoàn thành: ${stats.total_completions}\n💡 Gợi ý: ${health.recommendation}",
+    "message": "${statusEmoji} **${provider.provider_display_name}**\n${healthEmoji} Tình trạng sức khỏe: ${health.is_healthy ? 'Tốt' : 'Cần chú ý'}\n📊 Tỷ lệ hoàn thành: ${stats.completion_rate}%\n❌ Tỷ lệ lỗi: ${stats.error_rate}%\n📈 Tổng số yêu cầu: ${stats.total_requests}\n✅ Tổng số hoàn thành: ${stats.total_completions}\n💡 Khuyến nghị: ${health.recommendation}",
     "message2": "Thông báo lỗi: ${error instanceof Error ? error.message : String(error)}",
     "message3": "Lỗi: ${broadcast.errorMessage}",
     "operationFailed": "❌ Hoạt động thất bại",
@@ -2419,7 +2446,7 @@ export const translations: Translations = {
     "admin6": "**Quản lý Quản trị viên**\n",
     "admin_ads": "/admin_ads - Quản lý quảng cáo chính thức\n",
     "admin_tasks": "/admin_tasks - Quản lý nhiệm vụ cộng đồng",
-    "appeal": "/admin_reject <id> [note] - Từ chối yêu cầu",
+    "appeal": "/admin_reject <id> [ghi chú] - Từ chối kháng nghị",
     "appeal2": "/admin_approve <id> [note] - Chấp thuận yêu cầu",
     "appeal3": "/appeal_status - Kiểm tra trạng thái kháng nghị\n\n",
     "appeal4": "/admin_appeals - Xem các kháng cáo đang chờ xử lý\n",
@@ -2514,7 +2541,8 @@ export const translations: Translations = {
     "vip3": "/funnel - Quy trình chuyển đổi VIP\n\n",
     "vip4": "🎁 **Hạn ngạch và VIP**\n",
     "vip5": "/vip - Đăng ký VIP\n",
-    "vip6": "💎 **Lợi ích VIP**\n"
+    "vip6": "💎 **Lợi ích VIP**\n",
+    "dailyReportTitle": "Lấy báo cáo hoạt động hàng ngày"
   },
   "history": {
     "chatHistory": "💬 **Lịch sử Trò chuyện của Bạn**\n\n",
@@ -2543,7 +2571,7 @@ export const translations: Translations = {
     "time": "Thời gian: {time}\n\n",
     "totalMessages": "• Tổng số tin nhắn: {total} tin nhắn\n",
     "userMessages": "• Bạn đã gửi: {count} tin nhắn\n",
-    "viewFull": "💡 Sử dụng /history {identifier} để xem toàn bộ cuộc hội thoại",
+    "viewFull": "💡 Sử dụng /history {identifier} để xem toàn bộ cuộc trò chuyện",
     "you": "Bạn"
   },
   "invite": {
@@ -2754,6 +2782,12 @@ export const translations: Translations = {
       "question9": "Bạn coi trọng gì hơn:",
       "question9.option1": "Sự công bằng và chính nghĩa",
       "question9.option2": "Sự đồng cảm và thấu hiểu"
+    },
+    "share": {
+      "welcome": "👋 Bạn của bạn mời bạn tham gia bài kiểm tra MBTI!\n\nHãy đến và xem kiểu tính cách của bạn～",
+      "startButton": "📊 Bắt đầu bài kiểm tra",
+      "resultTitle": "Kết quả bài kiểm tra MBTI của tôi là {type}!",
+      "resultDesc": "Bạn cũng nên thử bài kiểm tra～"
     }
   },
   "mbtiTest": {
@@ -2763,7 +2797,7 @@ export const translations: Translations = {
     "fullAccuracy": "Kết quả chính xác hơn",
     "fullQuestions": "36 câu hỏi",
     "fullTest": "Bài kiểm tra MBTI đầy đủ",
-    "fullTestInfo": "💡 Đây là một bài kiểm tra hoàn chỉnh ({questions}), kết quả chính xác hơn.\nSau khi hoàn tất đăng ký, bạn có thể sử dụng /mbti để làm lại bài kiểm tra.",
+    "fullTestInfo": "💡 Đây là một bài kiểm tra hoàn chỉnh ({questions}), kết quả sẽ chính xác hơn.\nSau khi hoàn tất đăng ký, bạn có thể sử dụng /mbti để làm lại bài kiểm tra.",
     "fullTestTitle": "Bài kiểm tra đầy đủ",
     "manualModify": "• Chỉnh sửa loại MBTI của bạn thủ công",
     "moreDetailedTest": "• Thực hiện bài kiểm tra chi tiết hơn\n",
@@ -2863,7 +2897,7 @@ export const translations: Translations = {
     "noAdsAvailable": "❌ Hiện không có quảng cáo nào khả dụng",
     "noVerificationRequired": "❌ Quảng cáo này không yêu cầu xác minh",
     "quotaInfo": "📊 Còn lại hôm nay: **{remaining}/20** lần",
-    "requiresVerification": "✅ Yêu cầu xác minh: Nhấn nút 'Xác minh' sau khi tham gia nhóm/kênh",
+    "requiresVerification": "✅ Cần xác minh: Nhấn nút 'Xác minh' sau khi tham gia nhóm/kanal",
     "reward": "🎁 Thưởng: +{quota} hạn mức vĩnh viễn",
     "rewardPermanent": "🎁 Hoàn thành nhiệm vụ có thể kiếm **+1 hạn mức vĩnh viễn**",
     "rewardTemporary": "🎁 Chúc mừng, bạn đã kiếm được +1 hạn mức tạm thời (có hiệu lực hôm nay)",
@@ -3218,7 +3252,13 @@ export const translations: Translations = {
     "toggleCatch": "Chuyển đổi nhắc nhở nhặt chai thư",
     "toggleMessage": "Chuyển đổi nhắc nhở cuộc trò chuyện",
     "quietHours": "Thời gian yên tĩnh",
-    "saved": "Cài đặt đã được lưu"
+    "saved": "Cài đặt đã được lưu",
+    "editQuietHours": "✏️ Chỉnh sửa Giờ yên tĩnh",
+    "quietDisable": "🚫 Vô hiệu hóa Giờ yên tĩnh",
+    "selectStartHour": "🌙 Vui lòng chọn thời gian bắt đầu cho giờ yên tĩnh:\n(Ngày bắt đầu lúc 23:00, vui lòng chọn 23:00)",
+    "selectEndHour": "☀️ Thời gian bắt đầu được thiết lập là {start}:00.\nVui lòng chọn thời gian kết thúc cho giờ yên tĩnh:\n(Các thông báo sẽ trở lại sau thời gian này)",
+    "disabled": "🚫 Giờ yên tĩnh đã bị vô hiệu hóa",
+    "quietHoursHint": "Bạn sẽ không nhận được thông báo không khẩn trong thời gian này"
   },
   "stats": {
     "activeUsers": "• Hoạt động hôm qua: {active}\n\n",
@@ -3539,7 +3579,7 @@ export const translations: Translations = {
       "vip": "✅ Tất cả bài viết đều được cập nhật (trạng thái VIP là chính xác)\n",
       "zodiac": "✅ Lựa chọn cung hoàng đạo đã được xóa"
     },
-    "success2": "{ad.reward_quota} ${ad.reward_quota}",
+    "success2": "🎉 **Xác minh thành công!**\n\n✅ Đã nhận **+${ad.reward_quota} chỉ tiêu vĩnh viễn**\n💎 Cảm ơn bạn đã tham gia cộng đồng của chúng tôi!\n\n📊 **Chỉ tiêu của bạn:**\n• Chỉ tiêu cơ bản: ${user.is_vip ? 'Không giới hạn' : '10'}/ngày\n• Chỉ tiêu vĩnh viễn: +${ad.reward_quota}\n\n💡 Trong cộng đồng bạn có thể:\n• Giao tiếp với những người dùng khác\n• Nhận bản cập nhật tính năng mới nhất\n• Tham gia các hoạt động để nhận thêm phần thưởng",
     "success3": "Đã làm mới thành công ${result.updated} bài viết lịch sử trong cuộc trò chuyện.\n\n",
     "success4": "Đã làm mới thành công: ${result.updated} bài viết\n",
     "text": "✅ Đã đặt thành ${flag} ${countryName}",
@@ -3675,17 +3715,23 @@ export const translations: Translations = {
     "conversation7": "Sử dụng /chats để xem tất cả cuộc trò chuyện",
     "currentSelection": "{genderText}",
     "friendlyContent": "[Cần dịch từ zh-TW.ts]",
+    "gender": "• Giới tính: ${selectedGender === 'male' ? '👨 Nam' : selectedGender === 'female' ? '👩 Nữ' : '🌈 Bất kỳ'}",
     "gender2": "👤 **Bộ Lọc Giới Tính**\n\n",
     "gender3": "• Giới tính: Lọc theo giới tính\n\n",
     "gender4": "💡 Chọn giới tính bạn ưu thích:",
     "gender5": "👤 Bộ Lọc Giới Tính",
     "genderLabel": "{gender}\n",
+    "mbti": "• MBTI: ${selectedMBTI.length > 0 ? selectedMBTI.join(', ') : 'Không giới hạn'}",
+    "mbti2": "Đã chọn: ${selectedMBTI.length > 0 ? selectedMBTI.join(', ') : 'Không có'}",
     "mbti3": "Đã chọn: ${selectedMBTI.length > 0 ? selectedMBTI.join(",
     "mbti4": "🧠 **Bộ Lọc MBTI**\n\n",
     "mbti5": "• MBTI: Lọc theo các loại tính cách cụ thể\n",
     "mbti6": "• Tương thích cao với MBTI ✓",
     "mbti7": "🧠 Bộ Lọc MBTI",
     "mbtiLabel": "{mbti}\n",
+    "message": "Lựa chọn hiện tại: ${currentGender === 'male' ? '👨 Nam' : currentGender === 'female' ? '👩 Nữ' : '🌈 Bất kỳ'}",
+    "message2": "Lựa chọn hiện tại: ${currentGender === 'male' ? '👨 Nam' : currentGender === 'female' ? '👩 Nữ' : '🌈 Bất kỳ'}",
+    "message3": "Đã chọn: ${selectedZodiac.length > 0 ? selectedZodiac.map((z) => ZODIAC_NAMES[z]).join(",
     "message4": "{bloodTypeDisplay[currentBloodType]} ${bloodTypeDisplay[currentBloodType]}\n\n",
     "message5": "👤 Đối thủ: ${vipMatchInfo.matcherNickname}\n",
     "message6": "\"Xin chào! Tôi là người yêu âm nhạc và điện ảnh, và tôi hy vọng sẽ gặp những người bạn cùng sở thích~\"\n\n",
@@ -3697,6 +3743,7 @@ export const translations: Translations = {
     "selected": "Đã chọn: {selected}",
     "settings": "{mbti} ${mbti}",
     "settings2": "⭐ Cung hoàng đạo: ${zodiac}\n",
+    "settings3": ") : 'Không giới hạn'}",
     "settings4": "⭐ Cung hoàng đạo: \\$\n",
     "settings5": "Chưa đặt",
     "settings6": "Chưa đặt",
@@ -4081,7 +4128,7 @@ export const translations: Translations = {
       "vip3": "⚠️ **VIP hết hạn hôm nay**\n\n"
     },
     "BROADCAST": {
-      "FILTER_ERROR": "❌ Lỗi định dạng.\nVí dụ: `/broadcast_filter gender=female,country=TW test message` `/broadcast_filter gender=female,country=TW 測試訊息`",
+      "FILTER_ERROR": "❌ Lỗi định dạng.\nVí dụ: `/broadcast_filter gender=female,country=TW test message`",
       "NO_CONTENT": "❌ Vui lòng nhập nội dung phát sóng.",
       "NO_MATCHES": "⚠️ Không tìm thấy người dùng nào phù hợp với tiêu chí.\nTiêu chí lọc: {filters}",
       "TOO_MANY_USERS": "⚠️ Quá nhiều người dùng mục tiêu ({count} người), hiện tại giới hạn gửi tới {max} người cùng một lúc.",
@@ -4091,7 +4138,47 @@ export const translations: Translations = {
     "push": {
       "throwReminder": "🌊 Chào bạn! Đã lâu rồi bạn không thả chai thư, bãi biển rất yên tĩnh...",
       "catchReminder": "🎣 Một số chai thư mới đã trôi dạt vào bãi biển, bạn có muốn đi xem không?",
-      "onboardingReminder": "👋 Đăng ký của bạn chưa hoàn tất, bạn gần hoàn thành rồi! (Bước: {step})"
+      "onboardingReminder": "👋 Đăng ký của bạn chưa hoàn tất, bạn gần hoàn thành rồi! (Bước: {step})",
+      "messageReminderA": "👋 Chào {masked_partner_name}, vẫn đang chờ phản hồi của bạn! Đừng để cuộc trò chuyện nguội lạnh～",
+      "messageReminderB": "📩 Bạn có một tin nhắn chưa đọc từ {masked_partner_name}:\n> \"{last_message_preview}...\"\n(Đã qua hơn 24 giờ!)",
+      "messageReminderC": "⏳ {masked_partner_name} đang chờ phản hồi của bạn...",
+      "actionReply": "💬 Phản hồi cho {masked_partner_name}",
+      "actionHistory": "📜 Xem Ngữ cảnh"
+    },
+    "match": {
+      "header": {
+        "zodiac": "🌟 Tiết lộ Khám Phá Cung Hoàng Đạo",
+        "mbti": "🧠 Tương Tác Tính Cách MBTI",
+        "blood": "🩸 Phân Tích Mã Nhóm Máu"
+      },
+      "reason": {
+        "zodiac": {
+          "fire_affinity": "Là những cung lửa, đam mê của bạn tỏa sáng rực rỡ và kết nối của bạn mạnh mẽ!",
+          "earth_affinity": "Sự ổn định của các cung đất kết hợp với sự nhẹ nhàng của các cung nước tạo nên dòng chảy hoàn hảo.",
+          "air_affinity": "Sự linh hoạt của các cung khí gặp gỡ đam mê của các cung lửa, truyền cảm hứng cho sự sáng tạo vô tận!",
+          "water_affinity": "Cảm xúc của các cung nước và tính thực tế của các cung đất tạo nên sự hỗ trợ ấm áp nhất."
+        },
+        "mbti": {
+          "sj_affinity": "Những người xã hội (SJ) và Khám phá (SP), sự kết hợp hoàn hảo giữa ổn định và hồi hộp!",
+          "sp_affinity": "Khám phá (SP) và xã hội (SJ), những bạn đồng hành tốt nhất của bạn và người chăm sóc!",
+          "nf_affinity": "Nhà lý tưởng (NF) và Nhà lý trí (NT), sự va chạm sâu sắc giữa linh hồn và trí tuệ!",
+          "nt_affinity": "Nhà lý trí (NT) và Nhà lý tưởng (NF), sự cộng hưởng của suy nghĩ và cảm xúc!"
+        },
+        "blood": {
+          "a_affinity": "Sự tỉ mỉ của loại A gặp gỡ sự khoan dung của loại O, tạo ra tương tác thoải mái nhất.",
+          "b_affinity": "Sự khẳng định của loại B gặp gỡ tính dễ chịu của loại O, không căng thẳng và thư giãn.",
+          "o_affinity": "Loại O và loại B/A là những đối tác bổ sung tuyệt vời!",
+          "ab_affinity": "Tần số độc đáo của loại AB chỉ được hiểu tốt nhất bởi những người cùng loại."
+        }
+      },
+      "template": {
+        "body": "{userAttribute},\nTheo phân tích, bạn có sự gắn kết mạnh mẽ nhất với {recommendedAttributes}!\n\n💡 {reason}\n\n👇 Cảm thấy may mắn?"
+      },
+      "btn": {
+        "throw": "🌊 Ném một chai thư và thử vận may",
+        "vip_throw": "🎯 Ném đến {target}",
+        "vip_upsell": "💡 Nâng cấp lên VIP để chỉ định giao hàng đến {target}, cho sự ghép đôi chính xác!"
+      }
     }
   },
   "push": {

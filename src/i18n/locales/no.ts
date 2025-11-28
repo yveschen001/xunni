@@ -119,7 +119,8 @@ export const translations: Translations = {
       "noPermissionVip": "❌ Du har ikke tillatelse til å se VIP-data",
       "onlySuperAdmin": "❌ Kun superadministratører kan bruke denne kommandoen.",
       "sendReportFailed": "❌ Klarte ikke å sende daglig rapport: ${error}",
-      "userNotFound": "❌ Bruker finnes ikke: ${userId}"
+      "userNotFound": "❌ Bruker finnes ikke: ${userId}",
+      "message5": "• Feilrate: {rate}%"
     },
     "appeal": "Appell-ID: ${appeal.id}\n",
     "appeal2": "💡 Bruk følgende kommando for å gjennomgå appellen:\n",
@@ -178,7 +179,32 @@ export const translations: Translations = {
       "usageReject": "Bruk: /admin_reject <appeal_id> [merknader]",
       "user": "Bruker: ${user}",
       "userBanHistory": "📊 Bruker utestengelseshistorikk",
-      "viewHistory": "💡 Bruk /admin_bans <user_id> for å se utestengelseshistorikken til en spesifikk bruker"
+      "viewHistory": "💡 Bruk /admin_bans <user_id> for å se utestengelseshistorikken til en spesifikk bruker",
+      "onlyAdmin": "❌ Kun administratorer kan bruke denne kommandoen",
+      "onlySuperAdmin": "❌ Kun superadministratorer kan bruke denne kommandoen",
+      "banUsageError": "Bruk: /admin_ban <user_id> [timer|permanent]",
+      "cannotBanAdmin": "❌ Kan ikke utestenge administratorer",
+      "banUserNotFound": "❌ Bruker ikke funnet",
+      "operationFailed": "Operasjonen mislyktes",
+      "userNotFound": "❌ Bruker ikke funnet",
+      "analyticsTitle": "Daglig driftsdataanalyse",
+      "adPerformanceTitle": "Analyser av annonseytelse",
+      "vipFunnelTitle": "Analyse av VIP-konverteringsfunnet",
+      "dailyReportTitle": "Daglig oversettelse- og driftsrapport",
+      "testDailyReport": "Test send daglig rapport",
+      "testRetentionPush": "Test for bevaring",
+      "testMatchPush": "Test for matching",
+      "analytics": {
+        "message5": "• Feilrate: {rate}%",
+        "noPermission": "❌ Du har ikke tillatelse til å se analyse data",
+        "getDataFailed": "❌ Mislyktes å hente analyse data",
+        "noPermissionAd": "❌ Du har ikke tillatelse til å se annonse data",
+        "getAdDataFailed": "❌ Mislyktes å hente annonse data",
+        "noPermissionVip": "❌ Du har ikke tillatelse til å se VIP-data",
+        "getVipDataFailed": "❌ Kunne ikke hente VIP-data",
+        "sendReportFailed": "❌ Kunne ikke sende rapport: {error}",
+        "onlySuperAdmin": "❌ Kun superadministratorer kan bruke denne kommandoen"
+      }
     },
     "ban2": "Totalt antall utestengelser: ${userBans.results.length}\n\n",
     "ban3": "📊 Nylige 10 utestengelser\n\n",
@@ -324,7 +350,7 @@ export const translations: Translations = {
       "usersNeedingRefresh": "• Trenger oppfriskning: ${count}"
     },
     "removeCannotRemoveSuperAdmin": "❌ Kunne ikke fjerne superadmin.",
-    "removeCommand": "`/admin_fjern <user_id>` `/admin_remove <user_id>`",
+    "removeCommand": "`/admin_remove <user_id>`",
     "removeExample": "`/admin_remove 123456789` - Fjern vanlig administrator\n\n",
     "removeInstructions": "⚠️ **Merk**\n\nDenne kommandoen krever manuell endring av konfigurasjonsfilen.\n\n**Trinn:**\n1. Rediger `wrangler.toml`\n2. Finn variabelen `ADMIN_USER_IDS`\n3. Fjern bruker ID: `{userId}`\n4. Format: `ADMIN_USER_IDS = \"ID1,ID2\"` (Fjern {userId})\n5. Gjenutplassér: `pnpm deploy:staging`\n\n**Brukerinformasjon:**\n• ID: `{userId}`\n• Kallenavn: {nickname}\n• Brukernavn: @{username}\n\n💡 Eller endre miljøvariabler i Cloudflare Dashboard",
     "removeNotAdmin": "❌ Denne brukeren er ikke admin.",
@@ -373,7 +399,7 @@ export const translations: Translations = {
     "text27": "Det oppstod en feil under behandling, vennligst sjekk loggene.\n\n",
     "text28": "Prioritet: ${priority}\n\n",
     "text29": "Årsak: ${ban.reason}\n",
-    "text3": "/offisiell_annons_fjern <ad_id>",
+    "text3": "/official_ad_disable <ad_id>",
     "text30": "Årsak: ${data.reason}\n",
     "text31": "Tid: ${timestamp}\n\n",
     "text32": "Denne kommandoen krever manuell modifikasjon av konfigurasjonsfilen.\n\n",
@@ -416,7 +442,8 @@ export const translations: Translations = {
     "vip6": "⏰ **VIP utløpspåminnelse sendt**\n\n",
     "vip7": "🎉 **Ny VIP-kjøp**\n\n",
     "vip8": "⬇️ **VIP automatisk nedgradering**\n\n",
-    "vip9": "🔄 **VIP fornyelse**\n\n"
+    "vip9": "🔄 **VIP fornyelse**\n\n",
+    "dailyReport": "📊 Daglig driftsrapport ({date})\n\n💰 Estimerte oversettelseskostnader:\n{costDetails}\n\n⚠️ Anomaliovervåking:\n• Oversettelsesnedgraderinger: {fallbackCount} ganger\n• Oversettelsesfeil: {errorCount} ganger\n\n📈 Aktiv data:\n• Nye brukere: {newUsers}\n• Aktive samtaler: {activeConversations}"
   },
   "adminNotification": {
     "amount": "Beløp: ${stars} ⭐",
@@ -456,7 +483,7 @@ export const translations: Translations = {
     "invite": "• Invitasjoner Initiert: {initiated} ganger\n• Invitasjoner Akseptert: {accepted} ganger\n• Invitasjoner Aktivert: {activated} ganger\n• Konverteringsrate: {conversionRate}%\n\n• Flaskeposter Kastet: {bottlesThrown} ganger\n• Flaskeposter Fanget: {bottlesCaught} ganger\n• Nye Samtaler: {conversationsStarted} ganger\n• Gjennomsnittlige Samtale Runder: {avgConversationRounds}\n\n💡 Detaljert Data: /analytics",
     "message": "📊 **Daglig Driftsrapport**\n📅 Dato: {date}\n\n**👥 Brukerdata**\n• Nye Brukere: {newUsers} personer\n• Aktive Brukere (DAU): {dau} personer\n• Retensjonsrate (D1): {d1Retention}%\n• Gjennomsnittlig Sesjonsvarighet: {avgSessionDuration} minutter\n\n**📺 Annonse Data**\n• Tredjeparts Annonser:\n - Visninger: {thirdPartyImpressions} ganger\n - Fullføringer: {thirdPartyCompletions} ganger\n - Fullføringsrate: {thirdPartyCompletionRate}%\n - Belønninger Tildelt: {thirdPartyRewardsGranted} kreditter",
     "message2": "📊 **Daglig Driftsrapport**\n📅 Dato: {date}\n\n⚠️ **Ingen data tilgjengelig for i dag**\n\nDette kan være fordi:\n• Systemet er nyopprettet, ingen brukeraktivitet ennå\n• Ingen brukere har brukt Bot i dag\n• Datasporsfunksjoner er ikke aktivert ennå\n\n💡 **Når vil data vises?**\n• Brukere må utføre noen av følgende handlinger:\n - Send /start for å registrere deg\n - Kaste eller fange flaskeposter\n - Se annonser\n - Kjøpe VIP\n\n• Det anbefales å vente til brukere begynner å bruke før du sjekker\n• Eller simulere brukeradferd i et testmiljø.",
-    "message3": "**📈 Samlet konverteringsrate: ${report.overall_conversion_rate.toFixed(1)}%**",
+    "message3": "**📈 Total konverteringsrate: ${report.overall_conversion_rate.toFixed(1)}%**",
     "message4": "• Konverteringsrate: ${step.conversion_rate.toFixed(1)}%",
     "message5": "• Feilrate: ${provider.error_rate.toFixed(1)}%",
     "message6": "• Forespørsel: ${provider.total_requests} ganger",
@@ -639,7 +666,7 @@ export const translations: Translations = {
       "message4": "Nåværende valg: \\${bloodTypeDisplay[currentBloodType]}",
       "message5": "👤 Annen part: \\${vipMatchInfo.matcherNickname}\n",
       "message6": "💡 Du kan endre matchpreferanser i /edit_profile\n\n",
-      "message7": "💡 Du kan endre matchingspreferanser i /edit_profile",
+      "message7": "💡 Du kan endre matchpreferanser i /edit_profile",
       "message8": "💬 Trykk /reply for å svare på meldingen og begynne å chatte\n",
       "nickname": "📝 Annen parts kallenavn: \\${matchedUserMaskedNickname}\n",
       "quota": "• Flere kvoter (30 per dag)\n",
@@ -713,7 +740,7 @@ export const translations: Translations = {
       "vip5": "✨ **VIP-rettigheter aktivert!**\n\n",
       "vip6": "💡 Oppgrader til VIP for å motta:\n",
       "vip7": "✨ Aktiverer VIP-rettigheter\n",
-      "zodiac": "• Stjernetegn: \\${selectedZodiac.length > 0 ? selectedZodiac.map((z) => ZODIAC_NAMES[z]).join(', ') : 'Ingen restriksjoner'}",
+      "zodiac": "• Stjernetegn: \\${selectedZodiac.length > 0 ? selectedZodiac.map((z) => ZODIAC_NAMES[z]).join(', ') : 'Ingen begrensninger'}",
       "zodiac2": "⭐ Stjernetegn: \\${matchResult.user.zodiac ||",
       "zodiac3": "⭐ Stjernetegn: \\${user.zodiac_sign ||",
       "zodiac4": "⭐ **Stjernetegnfilter**\n\n",
@@ -1111,7 +1138,7 @@ export const translations: Translations = {
     "catch3": "Prosess for flaskepost",
     "catch4": "Prosess for flaskepost",
     "close": "❌ Lukk",
-    "complete": "🎉 **Visning av annonser fullført!**\n\n✅ Tjent **+1 kvote**\n📊 Sett i dag: **${updated.ads_watched}/20** ganger\n🎁 Kvote tjent i dag: **${updated.quota_earned}**\n📈 Gjenstående visninger: **${result.remaining_ads}** ganger\n\n${result.remaining_ads > 0 ? '💡 Fortsett å se annonser for å tjene mer kvote!' : '✅ Daglig annonsetak nådd'}",
+    "complete": "🎉 **Visning av annonser fullført!**\n\n✅ Tjent **+1 kvote**\n📊 Visninger i dag: **${updated.ads_watched}/20** ganger\n🎁 Kvote tjent i dag: **${updated.quota_earned}**\n📈 Gjenstående visninger: **${result.remaining_ads}** ganger\n\n${result.remaining_ads > 0 ? '💡 Fortsett å se annonser for å tjene mer kvote!' : '✅ Dagsgrensen for annonser nådd'}",
     "complete2": "📺 **Se annonser for å tjene kreditter**\n\n🎁 Fullføring av visningen vil tjene **+1 kreditt**\n📊 Gjenværende i dag: **${remainingAds}/20** ganger\n\n👇 Klikk knappen nedenfor for å begynne å se",
     "complete3": "Fullføringstid: ${new Date(broadcast.completedAt).toLocaleString('zh-TW')}\n",
     "complete4": "Estimert fullføring: ${new Date(maintenance.endTime).toLocaleString('zh-TW')}\n",
@@ -1182,11 +1209,11 @@ export const translations: Translations = {
     "mbti9": "🧠 Ta MBTI-testen på nytt",
     "message": "${typeEmoji} **${ad.title}**\n${statusEmoji} Status: ${status}\n\n📊 **Statistikk**\n• Visninger: ${stats.total_views}\n• Klikk: ${stats.total_clicks}\n• Klikkfrekvens (CTR): ${stats.ctr}%",
     "message10": "/broadcast_filter gender=female,age=18-25,country=TW Hei alle sammen!\n",
-    "message11": "${banHours} timer",
+    "message11": "${banHours} ${user.language_pref === 'en' ? 'timer' : '小時'}",
     "message12": "Tid: ${new Date(b.created_at).toLocaleString('zh-TW')}\n\n",
     "message13": "Det er ${pendingBroadcasts.results.length - 1} kringkastinger som venter i køen\n",
     "message14": "Fremdrift: ${broadcast.sent_count}/${broadcast.total_users}\n",
-    "message15": "${days} dager",
+    "message15": "${days} ${user.language_pref === 'en' ? 'dager' : '天'}",
     "message16": "Mål: ${getBroadcastTargetName(broadcast.targetType)}\n",
     "message17": "Status: ${maintenance.isActive ? '✅ Under vedlikehold' : '❌ Ikke aktiv'}",
     "message18": "🚫 Blokkerte URL-er:\n${urlCheck.blockedUrls?.map((url) =>",
@@ -1287,9 +1314,9 @@ export const translations: Translations = {
     "quota2": "• 💎 Oppgrader til VIP (30 meldinger/dag)",
     "quota3": "• 🎁 Inviter venner (+1 kvote per person)\n",
     "quota4": "• ✨ Fullfør oppgaver (få permanente kvoter)\n",
-    "register": "💡 Dette er en rask test (${testInfo}), resultatene er kun til referanse.\nEtter registrering kan du ta testen på nytt med /mbti.",
+    "register": "💡 Dette er en rask test (${testInfo}), resultatene er kun til referanse.\nEtter registrering kan du ta den igjen med /mbti.",
     "register10": "🎉 Gratulerer med å ha fullført registreringen!\n\n",
-    "register2": "💡 Dette er en full test (${testInfo}), resultatene er mer nøyaktige.\nEtter registrering kan du ta testen på nytt med /mbti.",
+    "register2": "💡 Dette er en full test (${testInfo}), resultatene er mer nøyaktige.\nEtter registrering kan du ta den igjen med /mbti.",
     "register3": "Registreringstrinn: ${user.onboarding_step}\n",
     "register4": "⏰ Registreringsprosessen har timed ut\n\nVennligst bruk /start for å starte registreringen på nytt.",
     "register5": "Eller bruk: /dev_restart (automatisk registrering start)\n\n",
@@ -1584,7 +1611,7 @@ export const translations: Translations = {
     "text149": "📋 Juridiske dokumenter leveres kun på engelsk.",
     "text15": "🌍 Region: ${updatedUser.city ||",
     "text150": "📋 Juridiske dokumenter leveres kun på engelsk.",
-    "text16": "✅ Bekreftelse nødvendig: Klikk på 'Bekreft' knappen etter at du har blitt med i gruppen/kanalen",
+    "text16": "✅ Verifisering nødvendig: Klikk på 'Verifiser'-knappen etter å ha blitt med i gruppen/kanalen",
     "text17": "Målbrukertall: ${userIds.length}\n\n",
     "text18": "Estimert tid: ${estimatedTime}\n\n",
     "text19": "/broadcast_cleanup bekreft",
@@ -1909,7 +1936,7 @@ export const translations: Translations = {
     "mk": "Nord-Makedonia",
     "mm": "Myanmar",
     "mn": "Mongolia",
-    "mo": "Macau",
+    "mo": "Macao",
     "mt": "Malta",
     "mx": "Mexico",
     "my": "Malaysia",
@@ -2379,7 +2406,7 @@ export const translations: Translations = {
     "failed4": "Disse sendingene har blitt merket som 'mislyktes' status\n",
     "generic": "❌ En feil oppstod, vennligst prøv igjen senere.",
     "invalidRequest": "❌ Ugyldig forespørsel",
-    "message": "${statusEmoji} **${provider.provider_display_name}**\n${healthEmoji} Helsestatus: ${health.is_healthy ? 'Bra' : 'Trenger Oppmerksomhet'}\n📊 Fullføringsrate: ${stats.completion_rate}%\n❌ Feilrate: ${stats.error_rate}%\n📈 Totalt Antall Forespørsel: ${stats.total_requests}\n✅ Totalt Antall Fullføringer: ${stats.total_completions}\n💡 Anbefaling: ${health.recommendation}",
+    "message": "${statusEmoji} **${provider.provider_display_name}**\n${healthEmoji} Helse Status: ${health.is_healthy ? 'God' : 'Trenger oppmerksomhet'}\n📊 Fullføringsrate: ${stats.completion_rate}%\n❌ Feilrate: ${stats.error_rate}%\n📈 Totale forespørsel: ${stats.total_requests}\n✅ Totale fullføringer: ${stats.total_completions}\n💡 Anbefaling: ${health.recommendation}",
     "message2": "Feilmelding: ${error instanceof Error ? error.message : String(error)}",
     "message3": "Feil: ${broadcast.errorMessage}",
     "operationFailed": "❌ Operasjonen feilet",
@@ -2514,7 +2541,8 @@ export const translations: Translations = {
     "vip3": "/funnel - VIP konverteringstrakt\n\n",
     "vip4": "🎁 **Kvote og VIP**\n",
     "vip5": "/vip - VIP-abonnement\n",
-    "vip6": "💎 **VIP-fordeler**\n"
+    "vip6": "💎 **VIP-fordeler**\n",
+    "dailyReportTitle": "Hent daglig driftsrapport"
   },
   "history": {
     "chatHistory": "💬 **Din chattehistorikk**\n\n",
@@ -2754,6 +2782,12 @@ export const translations: Translations = {
       "question9": "Hva verdsetter du mer:",
       "question9.option1": "Rettferdighet og jus",
       "question9.option2": "Empati og forståelse"
+    },
+    "share": {
+      "welcome": "👋 Vennen din inviterer deg til å ta MBTI-testen!\n\nKom og se hvilken personlighetstype du har～",
+      "startButton": "📊 Start testen",
+      "resultTitle": "Min MBTI-testresultat er {type}!",
+      "resultDesc": "Du bør også prøve testen～"
     }
   },
   "mbtiTest": {
@@ -2763,7 +2797,7 @@ export const translations: Translations = {
     "fullAccuracy": "Mer nøyaktige resultater",
     "fullQuestions": "36 spørsmål",
     "fullTest": "Fullfør MBTI-testen",
-    "fullTestInfo": "💡 Dette er en komplett test ({questions}), resultatet er mer nøyaktig.\nEtter at du har fullført registreringen, kan du bruke /mbti for å ta testen på nytt.",
+    "fullTestInfo": "💡 Dette er en fullstendig test ({questions}), resultatet er mer nøyaktig.\nEtter å ha fullført registreringen kan du bruke /mbti for å ta testen på nytt.",
     "fullTestTitle": "Fullfør testen",
     "manualModify": "• Endre MBTI-typen din manuelt",
     "moreDetailedTest": "• Ta en mer detaljert test\n",
@@ -2774,7 +2808,7 @@ export const translations: Translations = {
     "quickAccuracy": "Resultater til referanse kun",
     "quickQuestions": "12 spørsmål",
     "quickTest": "Rask MBTI-test",
-    "quickTestInfo": "💡 Dette er en rask test ({questions}), resultatet er kun til referanse.\nEtter at du har fullført registreringen, kan du bruke /mbti for å ta testen på nytt.",
+    "quickTestInfo": "💡 Dette er en rask test ({questions}), resultatet er kun til referanse.\nEtter å ha fullført registreringen kan du bruke /mbti for å ta testen på nytt.",
     "quickTestTitle": "Rask test",
     "yourMbtiType": "Din MBTI-type er: **{type}**\n\n"
   },
@@ -2816,7 +2850,7 @@ export const translations: Translations = {
     "text5": "📊 Din status:\n",
     "title": "🏠 **Hovedmeny**",
     "userNotFound": "Bruker eksisterer ikke",
-    "vip": "• Nivå: ${isVip ? 'VIP Medlem 💎' : 'Gratis Medlem'}",
+    "vip": "• Nivå: ${isVip ? 'VIP-medlem 💎' : 'Gratis medlem'}",
     "vip2": "VIP medlem 💎",
     "yourStatus": "Din status"
   },
@@ -2863,7 +2897,7 @@ export const translations: Translations = {
     "noAdsAvailable": "❌ Ingen tilgjengelige annonser for øyeblikket",
     "noVerificationRequired": "❌ Denne annonsen krever ikke verifisering",
     "quotaInfo": "📊 Gjenstående i dag: **{remaining}/20** ganger",
-    "requiresVerification": "✅ Verifisering kreves: Klikk på 'Verifiser' knappen etter å ha blitt med i gruppen/kanalen",
+    "requiresVerification": "\\n\\n✅ Verifisering kreves: Klikk på 'Verifiser'-knappen etter at du har blitt med i gruppen/kanalen",
     "reward": "🎁 Belønning: +{quota} permanente kvoter",
     "rewardPermanent": "🎁 Fullfør oppgaven for å tjene **+1 permanent kvote**",
     "rewardTemporary": "🎁 Gratulerer! Du har mottatt +1 midlertidig kvote (gyldig i dag)",
@@ -2916,7 +2950,7 @@ export const translations: Translations = {
     "birthday3": "Vennligst skriv inn bursdagen din (format: YYYY-MM-DD):\n\n",
     "birthday4": "Bursdag: ${birthday}\n",
     "birthdayCheck": "Hvis du mener dette er en feil, vennligst sjekk om bursdagsformatet ditt er korrekt (ÅÅÅÅ-MM-DD).",
-    "birthdayError": "❌ {error}",
+    "birthdayError": "❌ {error}\n\\n",
     "birthdayFormatError": "❌ Ugyldig bursdagsformat\n\nVennligst skriv inn på nytt (format: ÅÅÅÅ-MM-DD):",
     "birthdayRetry": "Vennligst skriv inn bursdagen din på nytt (format: ÅÅÅÅ-MM-DD):",
     "birthdayWarning": "⚠️ Bursdag kan ikke endres etter at den er satt, vennligst bekreft at den er korrekt!",
@@ -3218,7 +3252,13 @@ export const translations: Translations = {
     "toggleCatch": "Bytt påminnelse om henting av flaskepost",
     "toggleMessage": "Bytt påminnelse om samtale",
     "quietHours": "Stille tid",
-    "saved": "Innstillinger lagret"
+    "saved": "Innstillinger lagret",
+    "editQuietHours": "✏️ Rediger stille timer",
+    "quietDisable": "🚫 Deaktiver stille timer",
+    "selectStartHour": "🌙 Vennligst velg starttidspunkt for stille timer:\n(F.eks: for å starte kl. 23:00, vennligst velg 23:00)",
+    "selectEndHour": "☀️ Starttidspunkt satt til {start}:00.\nVennligst velg sluttidspunkt for stille timer:\n(Meldinger vil gjenopptas etter dette tidspunktet)",
+    "disabled": "🚫 Stille timer har blitt deaktivert",
+    "quietHoursHint": "Du vil ikke motta ikke-hastemeldinger i denne perioden"
   },
   "stats": {
     "activeUsers": "• Aktiv i går: {active}\n\n",
@@ -3539,7 +3579,7 @@ export const translations: Translations = {
       "vip": "✅ Alle innlegg er oppdaterte (VIP-status er korrekt)\n",
       "zodiac": "✅ Stjernetegn-valget har blitt tømt"
     },
-    "success2": "🎉 **Verifisering vellykket!**\n\n✅ Tjent **+${ad.reward_quota} permanent kvote**\n💎 Takk for at du ble med i fellesskapet vårt!\n\n📊 **Din kvote:**\n• Grunnkvote: ${user.is_vip ? 'Ubegrenset' : '10'}/dag\n• Permanent kvote: +${ad.reward_quota}\n\n💡 I fellesskapet kan du:\n• Kommunisere med andre brukere\n• Få de nyeste oppdateringene om funksjoner\n• Delta i aktiviteter for flere belønninger",
+    "success2": "🎉 **Verifisering vellykket!**\n\\n✅ Tjent **+${ad.reward_quota} permanent kvote**\n💎 Takk for at du ble med i vårt fellesskap!\n\\n📊 **Din kvote:**\n• Grunnkvote: ${user.is_vip ? 'Ubegrenset' : '10'}/dag\n• Permanent kvote: +${ad.reward_quota}\n\\n💡 I fellesskapet kan du:\n• Kommunisere med andre brukere\n• Få de nyeste funksjonsoppdateringene\n• Delta i aktiviteter for mer belønning",
     "success3": "Vellykket oppdatert ${result.updated} historiske innlegg i samtalen.\n\n",
     "success4": "Suksessfullt oppdatert: ${result.updated}\n",
     "text": "✅ Angitt som ${flag} ${countryName}",
@@ -3681,16 +3721,16 @@ export const translations: Translations = {
     "gender4": "💡 Velg kjønn du ønsker:",
     "gender5": "👤 Kjønnfilter",
     "genderLabel": "• Kjønn: {gender}\n",
-    "mbti": "• MBTI: ${selectedMBTI.length > 0 ? selectedMBTI.join(', ') : 'Ingen begrensning'}",
-    "mbti2": "Valgt: ${selectedMBTI.length > 0 ? selectedMBTI.join(', ') : 'Ingen'}",
+    "mbti": "• MBTI: ${selectedMBTI.length > 0 ? selectedMBTI.join(', ') : 'Ingen Grense'}",
+    "mbti2": "Valgt: ${selectedMBTI.length > 0 ? selectedMBTI.join(', ') : 'Ingen'}\n\\n",
     "mbti3": "Valgt: ${selectedMBTI.length > 0 ? selectedMBTI.join(",
     "mbti4": "🧠 **MBTI-filter**\n\n",
     "mbti5": "• MBTI: Filtrer spesifikke personlighetstyper\n",
     "mbti6": "• Høy MBTI-matching ✓",
     "mbti7": "🧠 MBTI-filter",
     "mbtiLabel": "• MBTI: {mbti}",
-    "message": "Nåværende valg: ${currentGender === 'male' ? '👨 Mann' : currentGender === 'female' ? '👩 Kvinne' : '🌈 Alle'}",
-    "message2": "Nåværende valg: ${currentGender === 'male' ? '👨 Mann' : currentGender === 'female' ? '👩 Kvinne' : '🌈 Enhver'}",
+    "message": "Nåværende utvalg: ${currentGender === 'male' ? '👨 Mann' : currentGender === 'female' ? '👩 Kvinne' : '🌈 Alle'}\n\\n",
+    "message2": "Nåværende utvalg: ${currentGender === 'male' ? '👨 Mann' : currentGender === 'female' ? '👩 Kvinne' : '🌈 Alle'}\n\\n",
     "message3": "Valgt: ${selectedZodiac.length > 0 ? selectedZodiac.map((z) => ZODIAC_NAMES[z]).join(",
     "message4": ") : 'Ingen'} {bloodTypeDisplay[currentBloodType]} ${bloodTypeDisplay[currentBloodType]}\n\n",
     "message5": "👤 Motstander: ${vipMatchInfo.matcherNickname}\n",
@@ -3770,7 +3810,7 @@ export const translations: Translations = {
     "vip5": "✨ **VIP-rettigheter aktivert!**\n\n",
     "vip6": "💡 Oppgrader til VIP for å motta:\n",
     "vip7": "✨ Aktiverer VIP-rettigheter\n",
-    "zodiac": "• Stjernetegn: ${selectedZodiac.length > 0 ? selectedZodiac.map((z) => ZODIAC_NAMES[z]).join(', ') : 'Ingen begrensning'}",
+    "zodiac": "• Stjernetegn: ${selectedZodiac.length > 0 ? selectedZodiac.map((z) => ZODIAC_NAMES[z]).join(', ') : 'Ingen Grense'}",
     "zodiac2": "⭐ Stjernetegn: ${matchResult.user.zodiac ||",
     "zodiac3": "⭐ Stjernetegn: ${user.zodiac_sign ||",
     "zodiac4": "⭐ **Stjernetegn-filter**\n\n",
@@ -4088,7 +4128,7 @@ export const translations: Translations = {
       "vip3": "⚠️ **VIP utløper i dag**\n\n"
     },
     "BROADCAST": {
-      "FILTER_ERROR": "❌ Formatfeil.\nEksempel: `/broadcast_filter gender=female,country=TW test message` `/broadcast_filter gender=female,country=TW 測試訊息`",
+      "FILTER_ERROR": "❌ Formatfeil.\nEksempel: `/broadcast_filter gender=female,country=TW test message`",
       "NO_CONTENT": "❌ Vennligst skriv inn sendingsinnhold.",
       "NO_MATCHES": "⚠️ Ingen brukere som matcher kriteriene ble funnet.\nFilterkriterier: {filters}",
       "TOO_MANY_USERS": "⚠️ For mange målbrukere ({count} personer), for øyeblikket begrenset til å sende til {max} personer om gangen.",
@@ -4098,7 +4138,47 @@ export const translations: Translations = {
     "push": {
       "throwReminder": "🌊 Hei! Det har vært en stund siden du kastet en flaskepost, stranden er veldig stille...",
       "catchReminder": "🎣 Noen nye flaskeposter har vasket opp på stranden, vil du gå og sjekke dem ut?",
-      "onboardingReminder": "👋 Registreringen din er fremdeles ikke fullført, du er nesten der! (Steg: {step})"
+      "onboardingReminder": "👋 Registreringen din er fremdeles ikke fullført, du er nesten der! (Steg: {step})",
+      "messageReminderA": "👋 Hei {masked_partner_name} venter fortsatt på ditt svar! Ikke la samtalen kjøle seg ned～",
+      "messageReminderB": "📩 Du har en ulest melding fra {masked_partner_name}:\n> \"{last_message_preview}...\"\n(Det har gått over 24 timer!)",
+      "messageReminderC": "⏳ {masked_partner_name} venter på ditt svar...",
+      "actionReply": "💬 Svar til {masked_partner_name}",
+      "actionHistory": "📜 Vis kontekst"
+    },
+    "match": {
+      "header": {
+        "zodiac": "🌟 Dyrekretsmatch avslørt",
+        "mbti": "🧠 MBTI-personlighet resonans",
+        "blood": "🩸 Blodtypekodeanalyse"
+      },
+      "reason": {
+        "zodiac": {
+          "fire_affinity": "Som medelemer av ildtegn, brenner din lidenskap klart og forbindelsen er sterk!",
+          "earth_affinity": "Stabiliteten til jordtegn kombinert med mildheten til vanndrag gir den perfekte flyten.",
+          "air_affinity": "Smidigheten til lufttegn møter lidenskapen til ildtegn, og inspirerer til endeløs kreativitet!",
+          "water_affinity": "Følelsene til vanndrag og praktisk tilnærming av jordtegn bygger den varmeste støtten."
+        },
+        "mbti": {
+          "sj_affinity": "Sosialiserere (SJ) og utforskere (SP), en perfekt komplement av stabilitet og spenning!",
+          "sp_affinity": "Utforskere (SP) og sosialiserere (SJ), de beste partnerne for lekekamerater og omsorgspersoner!",
+          "nf_affinity": "Idealister (NF) og rasjonalister (NT), en dyp kollisjon av sjel og visdom!",
+          "nt_affinity": "Rasjonalister (NT) og idealister (NF), en resonans av tanker og følelser!"
+        },
+        "blood": {
+          "a_affinity": "Type A's grundighet møter Type O's toleranse, og skaper de mest komfortable interaksjonene.",
+          "b_affinity": "Type B's selvhevdelse møter Type O's avslappede natur, stressfritt og behagelig.",
+          "o_affinity": "Type O og Type B/A er flotte komplementære partnere!",
+          "ab_affinity": "AB's unike frekvens blir best forstått av sin egen type."
+        }
+      },
+      "template": {
+        "body": "{userAttribute},\nI henhold til analysen har du den sterkeste affiniteten med {recommendedAttributes}!\n\n💡 {reason}\n\n👇 Føler du deg heldig?"
+      },
+      "btn": {
+        "throw": "🌊 Kast en flaske og ta en sjanse",
+        "vip_throw": "🎯 Kast til {target}",
+        "vip_upsell": "💡 Oppgrader til VIP for å spesifisere levering til {target}, for presis matching!"
+      }
     }
   },
   "push": {

@@ -119,7 +119,8 @@ export const translations: Translations = {
       "noPermissionVip": "❌ Nemáte oprávnění zobrazit údaje o VIP",
       "onlySuperAdmin": "❌ Tento příkaz mohou použít pouze super administrátoři.",
       "sendReportFailed": "❌ Nepodařilo se odeslat denní zprávu: ${error}",
-      "userNotFound": "❌ Uživatel nebyl nalezen: ${userId}"
+      "userNotFound": "❌ Uživatel nebyl nalezen: ${userId}",
+      "message5": "• Míra chyb: {rate}%"
     },
     "appeal": "ID odvolání: ${appeal.id}\n",
     "appeal2": "💡 Použijte následující příkaz k přezkoumání odvolání:\n",
@@ -178,7 +179,32 @@ export const translations: Translations = {
       "usageReject": "Použití: /admin_reject <appeal_id> [poznámky]",
       "user": "Uživatel: ${user}",
       "userBanHistory": "📊 Historie zákazů uživatele",
-      "viewHistory": "💡 Použijte /admin_bans <user_id> pro zobrazení historie zákazů konkrétního uživatele"
+      "viewHistory": "💡 Použijte /admin_bans <user_id> pro zobrazení historie zákazů konkrétního uživatele",
+      "onlyAdmin": "❌ Tento příkaz mohou používat pouze administrátoři",
+      "onlySuperAdmin": "❌ Tento příkaz mohou používat pouze super administrátoři",
+      "banUsageError": "Použití: /admin_ban <user_id> [hodiny|trvale]",
+      "cannotBanAdmin": "❌ Nelze zakázat administrátory",
+      "banUserNotFound": "❌ Uživatel nebyl nalezen",
+      "operationFailed": "Operace selhala",
+      "userNotFound": "❌ Uživatel nebyl nalezen",
+      "analyticsTitle": "Denní analýza provozních dat",
+      "adPerformanceTitle": "Analýza výkonu reklamy",
+      "vipFunnelTitle": "Analýza konverze VIP",
+      "dailyReportTitle": "Denní zpráva o překladu a provozu",
+      "testDailyReport": "Test poslat denní zprávu",
+      "testRetentionPush": "Test retenčního push",
+      "testMatchPush": "Test párování push",
+      "analytics": {
+        "message5": "• Míra chyb: {rate}%",
+        "noPermission": "❌ Nemáte oprávnění k zobrazení analytických dat",
+        "getDataFailed": "❌ Nepodařilo se načíst analytická data",
+        "noPermissionAd": "❌ Nemáte oprávnění k zobrazení reklamních dat",
+        "getAdDataFailed": "❌ Nepodařilo se načíst reklamní data",
+        "noPermissionVip": "❌ Nemáte oprávnění k zobrazení VIP dat",
+        "getVipDataFailed": "❌ Nepodařilo se načíst data VIP",
+        "sendReportFailed": "❌ Nepodařilo se odeslat zprávu: {error}",
+        "onlySuperAdmin": "❌ Pouze super administrátoři mohou používat tento příkaz"
+      }
     },
     "ban2": "Celkový počet zákazů: ${userBans.results.length}\n\n",
     "ban3": "📊 Posledních 10 záznamů o zákazu\n\n",
@@ -373,7 +399,7 @@ export const translations: Translations = {
     "text27": "Došlo k chybě při zpracování, prosím zkontrolujte protokoly.\n\n",
     "text28": "Priorita: ${priority}\n\n",
     "text29": "Důvod: ${ban.reason}\n",
-    "text3": "/oficiální_ad_vypnout <ad_id>",
+    "text3": "/official_ad_disable <ad_id>",
     "text30": "Důvod: ${data.reason}\n",
     "text31": "Čas: ${timestamp}\n\n",
     "text32": "Tento příkaz vyžaduje ruční úpravu konfiguračního souboru.\n\n",
@@ -410,13 +436,14 @@ export const translations: Translations = {
     "userNotFound": "❌ Uživatel neexistuje.",
     "vip": "• VIP expirace: ${new Date(user.vip_expire_at).toLocaleString('zh-TW')}\n",
     "vip2": "• Vytvořeno s VIP: ${post.created_with_vip_status ? '✅' : '❌'}\n",
-    "vip3": "• VIP Status: ${isVip ? '✅ Ano' : '❌ Ne'}",
+    "vip3": "• VIP status: ${isVip ? '✅ Ano' : '❌ Ne'}",
     "vip4": "• Celkem VIP uživatelů: ${stats.totalVipUsers}\n",
     "vip5": "🔄 **Spustit hromadné obnovení VIP avatarů**\n\n",
     "vip6": "⏰ **Připomenutí konce VIP členství odesláno**\n\n",
     "vip7": "🎉 **Nový VIP nákup**\n\n",
     "vip8": "⬇️ **Automatické snížení VIP**\n\n",
-    "vip9": "🔄 **Obnovení VIP**\n\n"
+    "vip9": "🔄 **Obnovení VIP**\n\n",
+    "dailyReport": "📊 Denní operační zpráva ({date})\n\n💰 Odhadované náklady na překlad:\n{costDetails}\n\n⚠️ Sledování anomálií:\n• Snížení kvality překladu: {fallbackCount} krát\n• Selhání překladu: {errorCount} krát\n\n📈 Aktivní data:\n• Noví uživatelé: {newUsers}\n• Aktivní konverzace: {activeConversations}"
   },
   "adminNotification": {
     "amount": "Částka: ${stars} ⭐",
@@ -452,7 +479,7 @@ export const translations: Translations = {
     "complete2": "• Dokončení: ${provider.total_completions}",
     "completion": "• Dokončení: {completions}",
     "completionRate": "• Míra dokončení: {rate}%",
-    "conversionStepsTitle": "[Translation needed from zh-TW.ts]",
+    "conversionStepsTitle": "[Překlad potřebný z zh-TW.ts]",
     "invite": "• Iniciované pozvánky: {initiated}\n• Přijaté pozvánky: {accepted}\n• Aktivované pozvánky: {activated}\n• Míra konverze: {conversionRate}%\n\n• Láhve hozené: {bottlesThrown}\n• Láhve zachycené: {bottlesCaught}\n• Nové konverzace: {conversationsStarted}\n• Průměrné kola konverzace: {avgConversationRounds}\n\n💡 Podrobné údaje: /analytics",
     "message": "📊 **Zpráva o denním provozu**\n📅 Datum: {date}\n\n**👥 Uživatelští data**\n• Noví uživatelé: {newUsers}\n• Aktivní uživatelé (DAU): {dau}\n• Míra udržení (D1): {d1Retention}%\n• Průměrná doba sezení: {avgSessionDuration} minut\n\n**📺 Údaje o reklamě**\n• Reklamy třetích stran:\n - Zobrazení: {thirdPartyImpressions}\n - Dokončení: {thirdPartyCompletions}\n - Míra dokončení: {thirdPartyCompletionRate}%\n - Udělené odměny: {thirdPartyRewardsGranted} kredity",
     "message2": "📊 **Zpráva o denním provozu**\n📅 Datum: {date}\n\n⚠️ **Dnes nejsou k dispozici žádná data**\n\nTo může být způsobeno:\n• Systém byl právě nasazen, žádná aktivita uživatelů ještě nebyla\n• Dnes žádní uživatelé nepoužívali Bot\n• Funkce sledování dat nebyla ještě povolena\n\n💡 **Kdy se data objeví?**\n• Uživatelé musí provést jednu z následujících akcí:\n - Odeslat /start pro registraci\n - Hodit nebo chytit láhev\n - Sledovat reklamy\n - Koupit VIP\n\n• Doporučuje se počkat, až uživatelé začnou používat, než přezkoumáte\n• Nebo simulovat chování uživatelů v testovacím prostředí",
@@ -460,8 +487,8 @@ export const translations: Translations = {
     "message4": "• Míra konverze: ${step.conversion_rate.toFixed(1)}%",
     "message5": "• Míra chyb: ${provider.error_rate.toFixed(1)}%",
     "message6": "• Požadavky: ${provider.total_requests}",
-    "providerComparisonTitle": "[Translation needed from zh-TW.ts]",
-    "purchaseSuccess": "[Translation needed from zh-TW.ts]",
+    "providerComparisonTitle": "[Překlad potřebný z zh-TW.ts]",
+    "purchaseSuccess": "[Překlad potřebný z zh-TW.ts]",
     "request": "• Požadavky: {requests}",
     "text": "• Počet uživatelů: ${step.user_count}",
     "text2": "Úmysly nákupu (klikněte k nákupu)",
@@ -619,22 +646,22 @@ export const translations: Translations = {
       "conversation6": "📊 Použijte /chats pro zobrazení všech konverzací",
       "conversation7": "Použijte /chats pro zobrazení všech konverzací",
       "currentSelection": "Aktuální výběr: {genderText}",
-      "gender": "• Pohlaví: \\${selectedGender === 'male' ? '👨 Muž' : selectedGender === 'female' ? '👩 Žena' : '🌈 Kdokoli'}",
+      "gender": "• Pohlaví: \\${selectedGender === 'male' ? '👨 Muž' : selectedGender === 'female' ? '👩 Žena' : '🌈 Kdokoliv'}",
       "gender2": "👤 **Filtr pohlaví**\n\n",
       "gender3": "• Pohlaví: Filtrujte podle pohlaví\n\n",
       "gender4": "💡 Vyberte požadované pohlaví:",
       "gender5": "👤 Filtr pohlaví",
       "genderLabel": "• Pohlaví: {gender}\n",
-      "mbti": "• MBTI: \\${selectedMBTI.length > 0 ? selectedMBTI.join(', ') : 'Neomezeno'}",
-      "mbti2": "Vybráno: \\${selectedMBTI.length > 0 ? selectedMBTI.join(', ') : 'Žádný'}",
+      "mbti": "• MBTI: \\${selectedMBTI.length > 0 ? selectedMBTI.join(', ') : 'Neomezeně'}",
+      "mbti2": "Vybráno: \\${selectedMBTI.length > 0 ? selectedMBTI.join(', ') : 'Žádné'}",
       "mbti3": "Vybráno: \\${selectedMBTI.length > 0 ? selectedMBTI.join(",
       "mbti4": "🧠 **Filtr MBTI**\n\n",
       "mbti5": "• MBTI: Filtrujte specifické osobnostní typy\n",
       "mbti6": "• Vysoká shoda MBTI ✓",
       "mbti7": "🧠 Filtr MBTI",
       "mbtiLabel": "• MBTI: {mbti}",
-      "message": "Vybráno: \\${selectedZodiac.length > 0 ? selectedZodiac.map((z) => ZODIAC_NAMES[z]).join(', ') : 'Žádný'}",
-      "message2": "Aktuální výběr: \\${currentGender === 'male' ? '👨 Muž' : currentGender === 'female' ? '👩 Žena' : '🌈 Kdokoli'}",
+      "message": "Vybráno: \\${selectedZodiac.length > 0 ? selectedZodiac.map((z) => ZODIAC_NAMES[z]).join(', ') : 'Žádné'}",
+      "message2": "Aktuální výběr: \\${currentGender === 'male' ? '👨 Muž' : currentGender === 'female' ? '👩 Žena' : '🌈 Kdokoliv'}",
       "message3": "Vybráno: \\${selectedZodiac.length > 0 ? selectedZodiac.map((z) => ZODIAC_NAMES[z]).join(",
       "message4": "Aktuální výběr: \\${bloodTypeDisplay[currentBloodType]}\n\n",
       "message5": "👤 Druhá strana: \\${vipMatchInfo.matcherNickname}\n",
@@ -713,7 +740,7 @@ export const translations: Translations = {
       "vip5": "✨ **VIP výhody aktivovány!**\n\n",
       "vip6": "💡 Vylepšete na VIP, abyste získali:\n",
       "vip7": "✨ Aktivace VIP výhod\n",
-      "zodiac": "• Znamení: \\${selectedZodiac.length > 0 ? selectedZodiac.map((z) => ZODIAC_NAMES[z]).join(', ') : 'Bez omezení'}",
+      "zodiac": "• Znamení: \\${selectedZodiac.length > 0 ? selectedZodiac.map((z) => ZODIAC_NAMES[z]).join(', ') : 'Žádná omezení'}",
       "zodiac2": "⭐ Zvěrokruh: \\${matchResult.user.zodiac ||",
       "zodiac3": "⭐ Zvěrokruh: \\${user.zodiac_sign ||",
       "zodiac4": "⭐ **Filtr zvěrokruhu**\n\n",
@@ -1002,8 +1029,8 @@ export const translations: Translations = {
     "translationServiceFallback": "💬 Služba překladu dočasně má problémy, byla použita záložní překlad",
     "translationServiceUnavailable": "⚠️ Služba překladu je dočasně nedostupná, níže je původní text",
     "unknown": "Neznámý",
-    "zodiac": "⭐ Zodiac: {zodiac}\n",
-    "zodiac2": "⭐ Zodiac: ${catcherZodiac}\n"
+    "zodiac": "⭐ Znamení: {zodiac}",
+    "zodiac2": "⭐ Znamení: ${catcherZodiac}"
   },
   "channelMembership": {
     "claimButton": "✅ Vyžádat odměnu",
@@ -1111,7 +1138,7 @@ export const translations: Translations = {
     "catch3": "• Přátelský a respektující obsah má větší šanci na úspěch!",
     "catch4": "Proces láhve se zprávou",
     "close": "❌ Zavřít",
-    "complete": "🎉 **Zobrazení reklamy bylo dokončeno!**\n\n✅ Získáno **+1 kvóta**\n📊 Dnes zobrazeno: **${updated.ads_watched}/20** krát\n🎁 Kvóta získaná dnes: **${updated.quota_earned}**\n📈 Zbývající zobrazení: **${result.remaining_ads}** krát\n\n${result.remaining_ads > 0 ? '💡 Pokračujte ve sledování reklam, abyste získali více kvót!' : '✅ Denní limit reklam byl dosažen'}",
+    "complete": "🎉 **Zobrazení reklamy dokončeno!**\n\n✅ Vyděleno **+1 kvóta**\n📊 Zobrazeno dnes: **${updated.ads_watched}/20** krát\n🎁 Kvóta vydělená dnes: **${updated.quota_earned}**\n📈 Zbývající zobrazení: **${result.remaining_ads}** krát\n\n${result.remaining_ads > 0 ? '💡 Pokračujte ve sledování reklam pro vydělání více kvót!' : '✅ Denní limit reklam dosažen'}",
     "complete2": "📺 **Sledujte reklamy, abyste získali kvóty**\n\n🎁 Dokončené zobrazení přináší **+1 kvóta**\n📊 Zbývá dnes: **${remainingAds}/20**x\n\n👇 Klikněte na tlačítko níže pro zahájení sledování",
     "complete3": "Čas dokončení: ${new Date(broadcast.completedAt).toLocaleString('zh-TW')}\n",
     "complete4": "Odhadované dokončení: ${new Date(maintenance.endTime).toLocaleString('zh-TW')}\n",
@@ -1188,7 +1215,7 @@ export const translations: Translations = {
     "message14": "Pokrok: ${broadcast.sent_count}/${broadcast.total_users}\n",
     "message15": "${days} ${user.language_pref === 'en' ? 'days' : '天'}",
     "message16": "Cíl: ${getBroadcastTargetName(broadcast.targetType)}\n",
-    "message17": "Stav: ${maintenance.isActive ? '✅ Údržba probíhá' : '❌ Neaktivní'}",
+    "message17": "Status: ${maintenance.isActive ? '✅ Provozuje se údržba' : '❌ Neaktivní'}",
     "message18": "🚫 Zablokované URL:\n${urlCheck.blockedUrls?.map((url) =>",
     "message19": "• Poslední zpráva: ${formatDate(stats.last_message_time)}\n",
     "message2": "narození = '2000-01-01',\n věk = 25,\n znamení zvěrokruhu = 'Kozoroh',\n skóre proti podvodům = 100,\n souhlas s podmínkami = 1",
@@ -1287,9 +1314,9 @@ export const translations: Translations = {
     "quota2": "• 💎 Upgradujte na VIP (30 kvót za den)",
     "quota3": "• 🎁 Pozvěte přátele (+1 kvóta na osobu)\n",
     "quota4": "• ✨ Plňte úkoly (získejte trvalé kvóty)\n",
-    "register": "💡 Toto je rychlý test (${testInfo}), výsledky slouží pouze pro referenci.\nPo registraci si můžete znovu udělat test pomocí /mbti.",
+    "register": "💡 Toto je rychlý test (${testInfo}), výsledky jsou pouze pro referenci.\nPo registraci si můžete test zopakovat pomocí /mbti.",
     "register10": "🎉 Gratulujeme k dokončení registrace!\n\n",
-    "register2": "💡 Toto je úplný test (${testInfo}), výsledky jsou přesnější.\nPo registraci si můžete znovu udělat test pomocí /mbti.",
+    "register2": "💡 Toto je úplný test (${testInfo}), výsledky jsou přesnější.\nPo registraci si můžete test zopakovat pomocí /mbti.",
     "register3": "Kroky registrace: ${user.onboarding_step}\n",
     "register4": "⏰ Proces registrace vypršel\n\nProsím, použijte /start k opětovnému spuštění registrace.",
     "register5": "Nebo použijte: /dev_restart (automatické zahájení registrace)\n\n",
@@ -1584,7 +1611,7 @@ export const translations: Translations = {
     "text149": "📋 Právní dokumenty jsou k dispozici pouze v angličtině.",
     "text15": "🌍 Umístění: ${updatedUser.city ||",
     "text150": "📋 Právní dokumenty jsou k dispozici pouze v angličtině.",
-    "text16": "✅ Ověření je vyžadováno: Po připojení do skupiny/média klikněte na tlačítko 'Ověřit'",
+    "text16": "✅ Ověření potřebné: Klikněte na tlačítko 'Ověřit' po připojení ke skupině/canálu",
     "text17": "Cílový počet uživatelů: ${userIds.length}\n\n",
     "text18": "Odhadovaný čas: ${estimatedTime}\n\n",
     "text19": "/broadcast_cleanup potvrdit",
@@ -2379,7 +2406,7 @@ export const translations: Translations = {
     "failed4": "Tyto vysílání byly označeny jako 'neúspěšné'\n",
     "generic": "❌ Došlo k chybě, prosím zkuste to později.",
     "invalidRequest": "❌ Neplatná žádost",
-    "message": "${statusEmoji} **${provider.provider_display_name}**\n${healthEmoji} Stav zdraví: ${health.is_healthy ? 'Dobrý' : 'Vyžaduje pozornost'}\n📊 Míra dokončení: ${stats.completion_rate}%\n❌ Míra chyb: ${stats.error_rate}%\n📈 Celkový počet požadavků: ${stats.total_requests}\n✅ Celkový počet dokončení: ${stats.total_completions}\n💡 Doporučení: ${health.recommendation}",
+    "message": "${statusEmoji} **${provider.provider_display_name}**\n${healthEmoji} Stav zdraví: ${health.is_healthy ? 'Dobré' : 'Potřebuje pozornost'}\n📊 Míra dokončení: ${stats.completion_rate}%\n❌ Míra chyb: ${stats.error_rate}%\n📈 Celkový počet požadavků: ${stats.total_requests}\n✅ Celkový počet dokončení: ${stats.total_completions}\n💡 Doporučení: ${health.recommendation}",
     "message2": "Chybová zpráva: ${error instanceof Error ? error.message : String(error)}",
     "message3": "Chyba: ${broadcast.errorMessage}",
     "operationFailed": "❌ Operace selhala",
@@ -2514,7 +2541,8 @@ export const translations: Translations = {
     "vip3": "/funnel - VIP konverzní trychtýř\n\n",
     "vip4": "🎁 **Kvóta a VIP**\n",
     "vip5": "/vip - VIP předplatné\n",
-    "vip6": "💎 **Výhody VIP**\n"
+    "vip6": "💎 **Výhody VIP**\n",
+    "dailyReportTitle": "Načíst denní operační zprávu"
   },
   "history": {
     "chatHistory": "💬 **Vaše historie chatu**\n\n",
@@ -2530,7 +2558,7 @@ export const translations: Translations = {
     "hoursAgo": "{hours} hodiny zpět",
     "justNow": "Právě teď",
     "lastMessage": "Poslední zpráva: {preview}\n",
-    "messageSender": "{odesílatel}: {obsah} {sender} {content}",
+    "messageSender": "{sender}: {content}",
     "messageTime": "📨 {čas} {time}",
     "minutesAgo": "{minutes} minut zpět",
     "noHistory": "💬 Ještě nemáte žádnou historii chatu.\n\nZkuste hodit láhev se zprávou, abyste potkali nové přátele! /throw\n\n🏠 Návrat do hlavního menu: /menu",
@@ -2754,6 +2782,12 @@ export const translations: Translations = {
       "question9": "Co si více vážíte:",
       "question9.option1": "Spravedlnost a právo",
       "question9.option2": "Soucit a porozumění"
+    },
+    "share": {
+      "welcome": "👋 Váš přítel vás zve k vyzkoušení MBTI testu!\n\nPřijďte a zjistěte svůj typ osobnosti～",
+      "startButton": "📊 Začít test",
+      "resultTitle": "Můj výsledek MBTI testu je {type}!",
+      "resultDesc": "Měli byste také zkusit test～"
     }
   },
   "mbtiTest": {
@@ -2763,7 +2797,7 @@ export const translations: Translations = {
     "fullAccuracy": "Přesnější výsledky",
     "fullQuestions": "36 otázek",
     "fullTest": "Dokončit MBTI test",
-    "fullTestInfo": "💡 Toto je úplný test ({questions}), výsledek je přesnější.\nPo dokončení registrace můžete použít /mbti k opětovnému provedení testu.",
+    "fullTestInfo": "💡 Toto je kompletní test ({questions}), výsledek je přesnější.\nPo dokončení registrace můžete použít /mbti pro opakování testu.",
     "fullTestTitle": "Dokončit test",
     "manualModify": "• Manuálně upravit svůj typ MBTI",
     "moreDetailedTest": "• Provést podrobnější test\n",
@@ -2774,7 +2808,7 @@ export const translations: Translations = {
     "quickAccuracy": "Výsledky pouze pro referenci",
     "quickQuestions": "12 otázek",
     "quickTest": "Rychlý MBTI test",
-    "quickTestInfo": "💡 Toto je rychlý test ({questions}), výsledek je pouze pro orientaci.\nPo dokončení registrace můžete použít /mbti k opětovnému provedení testu.",
+    "quickTestInfo": "💡 Toto je rychlý test ({questions}), výsledek je pouze orientační.\nPo dokončení registrace můžete použít /mbti pro opakování testu.",
     "quickTestTitle": "Rychlý test",
     "yourMbtiType": "Tvůj MBTI typ je: **{type}**\n\n"
   },
@@ -2816,7 +2850,7 @@ export const translations: Translations = {
     "text5": "📊 Váš stav:\n",
     "title": "🏠 **Hlavní menu**",
     "userNotFound": "Uživatel neexistuje",
-    "vip": "• Úroveň: ${isVip ? 'VIP člen 💎' : 'Bezplatný člen'}",
+    "vip": "• Úroveň: ${isVip ? 'VIP Člen 💎' : 'Bezplatný člen'}",
     "vip2": "VIP Člen 💎",
     "yourStatus": "Váš stav"
   },
@@ -2863,7 +2897,7 @@ export const translations: Translations = {
     "noAdsAvailable": "❌ Žádné dostupné inzeráty",
     "noVerificationRequired": "❌ Tento inzerát nevyžaduje ověření",
     "quotaInfo": "📊 Zbývá dnes: **{remaining}/20**krát",
-    "requiresVerification": "✅ Ověření vyžadováno: Klikněte na tlačítko 'Ověřit' po připojení k skupině/kanálu",
+    "requiresVerification": "✅ Ověření vyžadováno: Klikněte na tlačítko 'Ověřit' po připojení ke skupině/kanálu",
     "reward": "🎁 Odměna: +{quota} trvalá kvóta",
     "rewardPermanent": "🎁 Dokončete úkol a získejte **+1 trvalou kvótu**",
     "rewardTemporary": "🎁 Gratulujeme! Obdrželi jste +1 dočasnou kvótu (platnou dnes)",
@@ -3218,7 +3252,13 @@ export const translations: Translations = {
     "toggleCatch": "Přepnout připomínku pro vyzvednutí láhve se zprávou",
     "toggleMessage": "Přepnout připomínku konverzace",
     "quietHours": "Klidný čas",
-    "saved": "Nastavení uložena"
+    "saved": "Nastavení uložena",
+    "editQuietHours": "✏️ Upravit Tichou hodinu",
+    "quietDisable": "🚫 Zakázat Tichou hodinu",
+    "selectStartHour": "🌙 Prosím, vyberte čas začátku tichých hodin:\n(Příklad: pro začátek v 23:00 vyberte 23:00)",
+    "selectEndHour": "☀️ Čas začátku nastaven na {start}:00.\nProsím, vyberte čas konce tichých hodin:\n(Oznámení se obnoví po tomto čase)",
+    "disabled": "🚫 Tichá hodina byla zakázána",
+    "quietHoursHint": "Během tohoto období nebudete přijímat neurgentní oznámení"
   },
   "stats": {
     "activeUsers": "• Aktivní včera: {active}\n\n",
@@ -3539,7 +3579,7 @@ export const translations: Translations = {
       "vip": "✅ Všechny příspěvky jsou aktuální (VIP status je správný)\n",
       "zodiac": "✅ Výběr zvěrokruhu byl vymazán"
     },
-    "success2": "🎉 **Ověření úspěšné!**\n\n✅ Získáno **+${ad.reward_quota} trvalé kvóty**\n💎 Děkujeme za připojení k naší komunitě!\n\n📊 **Vaše kvóta:**\n• Základní kvóta: ${user.is_vip ? 'Neomezeno' : '10'}/den\n• Trvalá kvóta: +${ad.reward_quota}\n\n💡 V komunitě můžete:\n• Komunikovat s ostatními uživateli\n• Získávat nejnovější aktualizace funkcí\n• Účastnit se aktivit pro více odměn",
+    "success2": "🎉 **Ověření úspěšné!**\n\n✅ Získáno **+${ad.reward_quota} trvalé kvóty**\n💎 Děkujeme za připojení k naší komunitě!\n\n📊 **Vaše kvóta:**\n• Základní kvóta: ${user.is_vip ? 'Neomezená' : '10'}/den\n• Trvalá kvóta: +${ad.reward_quota}\n\n💡 V komunitě můžete:\n• Komunikovat s ostatními uživateli\n• Získávat nejnovější aktualizace funkcí\n• Účastnit se aktivit pro více odměn",
     "success3": "Úspěšně obnoveny ${result.updated} historické příspěvky v konverzaci.\n\n",
     "success4": "Úspěšně obnoven: ${result.updated}\n",
     "text": "✅ Nastaveno na ${flag} ${countryName}",
@@ -3690,7 +3730,7 @@ export const translations: Translations = {
     "mbti7": "• MBTI: {mbti}",
     "mbtiLabel": "• MBTI: {mbti}",
     "message": "Aktuální výběr: ${currentGender === 'male' ? '👨 Muž' : currentGender === 'female' ? '👩 Žena' : '🌈 Kdokoli'}",
-    "message2": "Aktuální výběr: ${currentGender === 'male' ? '👨 Muž' : currentGender === 'female' ? '👩 Žena' : '🌈 Kdokoli'}",
+    "message2": "Aktuální výběr: ${currentGender === 'male' ? '👨 Muž' : currentGender === 'female' ? '👩 Žena' : '🌈 Kdokoliv'}",
     "message3": "Vybráno: ${selectedZodiac.length > 0 ? selectedZodiac.map((z) => ZODIAC_NAMES[z]).join(",
     "message4": ") : 'Žádný'} {bloodTypeDisplay[currentBloodType]} ${bloodTypeDisplay[currentBloodType]}\n\n",
     "message5": "„Ahoj! Jsem někdo, kdo miluje hudbu a filmy, doufám, že potkám podobně smýšlející přátele～“ {vipMatchInfo.matcherNickname} ${vipMatchInfo.matcherNickname}\n",
@@ -3732,7 +3772,7 @@ export const translations: Translations = {
     "short7": "♉ Býk",
     "short8": "♊ Blíženci",
     "short9": "♊ Blíženci",
-    "start": "✍️ Restart",
+    "start": "✍️ Restartovat",
     "success": "Hodit jednu láhev se zprávou = 3 objekty, výrazně zvyšuje úspěšnost shody\n\n",
     "success2": "✨ **VIP privilegium aktivováno! Inteligentní shoda úspěšná!**\n\n",
     "success3": "🎯 Vaše láhev se zprávou byla úspěšně shodnuta!\n\n",
@@ -3770,7 +3810,7 @@ export const translations: Translations = {
     "vip5": "✨ **VIP privilegium aktivováno!**\n\n",
     "vip6": "💡 Vylepšete na VIP a získejte:\n",
     "vip7": "✨ Aktivace VIP privilegií\n",
-    "zodiac": "• Znamení: ${selectedZodiac.length > 0 ? selectedZodiac.map((z) => ZODIAC_NAMES[z]).join(', ') : 'Žádné omezení'}",
+    "zodiac": "• Horoskop: ${selectedZodiac.length > 0 ? selectedZodiac.map((z) => ZODIAC_NAMES[z]).join(', ') : 'Žádný limit'}",
     "zodiac2": "⭐ Zvěrokruh: ${matchResult.user.zodiac ||",
     "zodiac3": "⭐ Zvěrokruh: ${user.zodiac_sign ||",
     "zodiac4": "⭐ **Filtr Zvěrokruhu**\n\n",
@@ -3836,7 +3876,7 @@ export const translations: Translations = {
     "purchaseCancelled": "✅ Nákup zrušen",
     "quota": "• Denní kvóta 30 láhví se zprávou (pozvání přátel ji může zvýšit až na 100 za den)\n",
     "quota2": "• Denní kvóta 30 láhví se zprávou (až 100 za den)\n",
-    "refundAdminCommands": "Doba vypršení: ${expireDate} <ID> `/admin_approve_refund <ID>` `/admin_reject_refund <ID> ` `/admin_reject_refund <ID> <原因>`",
+    "refundAdminCommands": "Datum vypršení: ${expireDate} <ID> `/admin_approve_refund <ID>` `/admin_reject_refund <ID> ` `/admin_reject_refund <ID> <原因>`",
     "refundApproved": "✅ **Vrácení peněz schváleno**\n\nČástka vrácení: ${amount} ⭐\nVrácení peněz bude připsáno během 1-3 pracovních dnů.\n\nVaše VIP členství bylo zrušeno.\n\nDěkujeme za vaše pochopení!",
     "refundApprovedAdmin": "✅ Vrácení peněz schváleno\n\nID žádosti: #${requestId}\nID uživatele: ${userId}\nČástka: ${amount} ⭐",
     "refundExpired": "❌ Žádost o vrácení peněz přesahuje časový limit\n\nDatum platby: ${paymentDate}\nČasový limit na vrácení: Do 7 dní od platby\n\n💡 V případě zvláštních okolností, kontaktujte prosím zákaznickou podporu.",
@@ -4088,7 +4128,7 @@ export const translations: Translations = {
       "vip3": "⚠️ **VIP vyprší dnes**\n\n"
     },
     "BROADCAST": {
-      "FILTER_ERROR": "❌ Chyba formátu.\nPříklad: `/broadcast_filter gender=female,country=TW test message` `/broadcast_filter gender=female,country=TW 測試訊息`",
+      "FILTER_ERROR": "❌ Chyba formátu.\nPříklad: `/broadcast_filter gender=female,country=TW test message`",
       "NO_CONTENT": "❌ Prosím, zadejte obsah vysílání.",
       "NO_MATCHES": "⚠️ Nebyli nalezeni žádní uživatelé odpovídající kritériím.\nKritéria filtru: {filters}",
       "TOO_MANY_USERS": "⚠️ Příliš mnoho cílových uživatelů ({count} lidí), momentálně je omezeno na odeslání {max} lidem najednou.",
@@ -4098,7 +4138,47 @@ export const translations: Translations = {
     "push": {
       "throwReminder": "🌊 Ahoj! Už je to chvíli, co jsi hodil láhev se zprávou, pláž je velmi tichá...",
       "catchReminder": "🎣 Na pláži se objevilo několik nových lahví se zprávou, chceš se na ně jít podívat?",
-      "onboardingReminder": "👋 Tvoje registrace ještě není dokončena, jsi téměř u cíle! (Krok: {step})"
+      "onboardingReminder": "👋 Tvoje registrace ještě není dokončena, jsi téměř u cíle! (Krok: {step})",
+      "messageReminderA": "👋 Ahoj {masked_partner_name}, stále čeká na vaši odpověď! Nenechte konverzaci vychladnout～",
+      "messageReminderB": "📩 Máte nepřečtenou zprávu od {masked_partner_name}:\n> \"{last_message_preview}...\"\n(Už to trvá více než 24 hodin!)",
+      "messageReminderC": "⏳ {masked_partner_name} čeká na vaši odpověď...",
+      "actionReply": "💬 Odpovědět {masked_partner_name}",
+      "actionHistory": "📜 Zobrazit kontext"
+    },
+    "match": {
+      "header": {
+        "zodiac": "🌟 Odhalený znamení zvěrokruhu",
+        "mbti": "🧠 Resonance MBTI osobnosti",
+        "blood": "🩸 Analýza krevní skupiny"
+      },
+      "reason": {
+        "zodiac": {
+          "fire_affinity": "Jakožto ohnivé znamení, vaše vášeň jasně hoří a vaše spojení je silné!",
+          "earth_affinity": "Stabilita zemských znamení v kombinaci s jemností vodních znamení vytváří dokonalý proud.",
+          "air_affinity": "Obratnost vzdušných znamení se setkává s vášní ohnivých znamení, což inspirová nekonečnou kreativitu!",
+          "water_affinity": "Emoce vodních znamení a praktičnost zemských znamení vytvářejí nejteplejší podporu."
+        },
+        "mbti": {
+          "sj_affinity": "Společenské (SJ) a Objevitelé (SP), dokonalý doplněk stability a vzrušení!",
+          "sp_affinity": "Objevitelé (SP) a Společenské (SJ), nejlepší partneři pro kamarády a pečovatele!",
+          "nf_affinity": "Idealisté (NF) a Racionalisté (NT), hluboké kolize duše a moudrosti!",
+          "nt_affinity": "Racionalisté (NT) a Idealisté (NF), rezonance myšlenek a pocitů!"
+        },
+        "blood": {
+          "a_affinity": "Pečlivost typu A se setkává s tolerancí typu O, což vytváří nejpohodlnější interakce.",
+          "b_affinity": "Sebevědomí typu B se setkává se snadnou povahou typu O, bez stresu a uvolněné.",
+          "o_affinity": "Typ O a Typ B/A jsou skvělí doplňkoví partneři!",
+          "ab_affinity": "Unikátní frekvence AB je nejlépe pochopena jeho druhem."
+        }
+      },
+      "template": {
+        "body": "{userAttribute},\nPodle analýzy máte nejsilnější afinitu s {recommendedAttributes}!\n\n💡 {reason}\n\n👇 Cítíte se šťastní?"
+      },
+      "btn": {
+        "throw": "🌊 Hoďte láhev se zprávou a vezměte šanci",
+        "vip_throw": "🎯 Hoďte na {target}",
+        "vip_upsell": "💡 Upgradujte na VIP a určete dodání na {target}, pro přesné párování!"
+      }
     }
   },
   "push": {

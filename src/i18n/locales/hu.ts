@@ -119,7 +119,8 @@ export const translations: Translations = {
       "noPermissionVip": "❌ Nincs jogosultsága VIP adatok megtekintésére",
       "onlySuperAdmin": "❌ Csak szuper adminisztrátorok használhatják ezt a parancsot.",
       "sendReportFailed": "❌ Nem sikerült elküldeni a napi jelentést: ${error}",
-      "userNotFound": "❌ Felhasználó nem található: ${userId}"
+      "userNotFound": "❌ Felhasználó nem található: ${userId}",
+      "message5": "• Hibaarány: {rate}%"
     },
     "appeal": "Fellebbezés azonosító: ${appeal.id}\n",
     "appeal2": "💡 Használja a következő parancsot a fellebbezés áttekintéséhez:\n",
@@ -178,7 +179,32 @@ export const translations: Translations = {
       "usageReject": "Használat: /admin_reject <appeal_id> [megjegyzések]",
       "user": "Felhasználó: ${user}",
       "userBanHistory": "📊 Felhasználó kitiltási előzményei",
-      "viewHistory": "💡 Használja a /admin_bans <user_id> parancsot egy adott felhasználó kitiltási előzményeinek megtekintéséhez"
+      "viewHistory": "💡 Használja a /admin_bans <user_id> parancsot egy adott felhasználó kitiltási előzményeinek megtekintéséhez",
+      "onlyAdmin": "❌ Csak az adminisztrátorok használhatják ezt a parancsot",
+      "onlySuperAdmin": "❌ Csak a szuperadminisztrátorok használhatják ezt a parancsot",
+      "banUsageError": "Használat: /admin_ban <user_id> [hours|permanent]",
+      "cannotBanAdmin": "❌ Nem lehet adminisztrátorokat kitiltani",
+      "banUserNotFound": "❌ Felhasználó nem található",
+      "operationFailed": "Művelet nem sikerült",
+      "userNotFound": "❌ Felhasználó nem található",
+      "analyticsTitle": "Napi működési adatainak elemzése",
+      "adPerformanceTitle": "Hirdetési teljesítmény elemzése",
+      "vipFunnelTitle": "VIP konverziós tölcsér elemzése",
+      "dailyReportTitle": "Napi fordítási és működési jelentés",
+      "testDailyReport": "Tesztelés napi jelentés küldése",
+      "testRetentionPush": "Tesztelés megtartási értesítő",
+      "testMatchPush": "Tesztelés összepárosítás értesítő",
+      "analytics": {
+        "message5": "• Hibaarány: {rate}%",
+        "noPermission": "❌ Nincs engedélyed az elemzési adatok megtekintésére",
+        "getDataFailed": "❌ Az elemzési adatok lekérése nem sikerült",
+        "noPermissionAd": "❌ Nincs engedélyed a hirdetési adatok megtekintésére",
+        "getAdDataFailed": "❌ A hirdetési adatok lekérése nem sikerült",
+        "noPermissionVip": "❌ Nincs engedélyed a VIP adatok megtekintésére",
+        "getVipDataFailed": "❌ Nem sikerült lekérni a VIP adatokat",
+        "sendReportFailed": "❌ Jelentés küldése nem sikerült: {error}",
+        "onlySuperAdmin": "❌ Csak szuperadminisztrátorok használhatják ezt a parancsot"
+      }
     },
     "ban2": "Összes kitiltás: ${userBans.results.length}\n\n",
     "ban3": "📊 Utolsó 10 Kitiltási Nyilvántartás\n\n",
@@ -259,7 +285,7 @@ export const translations: Translations = {
     "message17": "• Összesen: ${historyPosts.results.length}\n\n",
     "message18": "💡 Használja a /admin_refresh_vip_avatars parancsot a tömeges frissítéshez\n",
     "message19": "• Legújabb: ${post.is_latest ? '✅' : '❌'}\n",
-    "message2": "• Frissítve: ${avatarInfo.avatar_updated_at ? new Date(avatarInfo.avatar_updated_at).toLocaleString('zh-TW') : 'Ismeretlen'}",
+    "message2": "• Frissítve: ${avatarInfo.avatar_updated_at ? new Date(avatarInfo.avatar_updated_at).toLocaleString('hu-HU') : 'Ismeretlen'}",
     "message20": "• Elavult posztok: ${stats.totalOutdatedPosts}\n\n",
     "message21": "/ad_provider_priority <id> <priority>",
     "message22": "• Frissítés szükséges: ${stats.usersNeedingRefresh}\n",
@@ -416,7 +442,8 @@ export const translations: Translations = {
     "vip6": "⏰ **VIP Lejárati Emlékeztető Küldve**\n\n",
     "vip7": "🎉 **Új VIP Vásárlás**\n\n",
     "vip8": "⬇️ **VIP Automatikus Leépítés**\n\n",
-    "vip9": "🔄 **VIP Megújítás**\n\n"
+    "vip9": "🔄 **VIP Megújítás**\n\n",
+    "dailyReport": "📊 Napi Működési Jelentés ({date})\n\n💰 Becslés a Fordítási Költségekről:\n{costDetails}\n\n⚠️ Anomália Figyelés:\n• Fordítási visszaesések: {fallbackCount} alkalommal\n• Fordítási hibák: {errorCount} alkalommal\n\n📈 Aktív Adatok:\n• Új Felhasználók: {newUsers}\n• Aktív Beszélgetések: {activeConversations}"
   },
   "adminNotification": {
     "amount": "Összeg: ${stars} ⭐",
@@ -456,7 +483,7 @@ export const translations: Translations = {
     "invite": "• Meghívások Kezdve: {initiated} alkalommal\n• Meghívások Elfogadva: {accepted} alkalommal\n• Meghívások Aktiválva: {activated} alkalommal\n• Átalakítási Arány: {conversionRate}%\n\n• Üveg Üzenetek Dobás: {bottlesThrown} alkalommal\n• Üveg Üzenetek Elfogás: {bottlesCaught} alkalommal\n• Új Beszélgetések Kezdve: {conversationsStarted} alkalommal\n• Átlagos Beszélgetéskörök: {avgConversationRounds}\n\n💡 Részletes Adatok: /analytics",
     "message": "📊 **Napi Működési Jelentés**\n📅 Dátum: {date}\n\n**👥 Felhasználói Adatok**\n• Új Felhasználók: {newUsers} fő\n• Aktív Felhasználók (DAU): {dau} fő\n• Megtartási Arány (D1): {d1Retention}%\n• Átlagos Ülésidő: {avgSessionDuration} perc\n\n**📺 Hirdetési Adatok**\n• Harmadik Fél Hirdetések:\n - Megjelenítések: {thirdPartyImpressions} alkalommal\n - Teljesítések: {thirdPartyCompletions} alkalommal\n - Teljesítési Arány: {thirdPartyCompletionRate}%\n - Jutalmak: {thirdPartyRewardsGranted} kvóta",
     "message2": "📊 **Napi Működési Jelentés**\n📅 Dátum: {date}\n\n⚠️ **Nincs Adat Ma**\n\nEz a következő okok miatt lehet:\n• A rendszert most telepítették, nincs felhasználói aktivitás\n• Nincsenek felhasználók, akik ma használták a Bot-ot\n• Az adatkövetési funkció nincs engedélyezve\n\n💡 **Mikor fognak megjelenni az adatok?**\n• A felhasználóknak bármelyik következő lépést kell végrehajtaniuk:\n - Küldeni /start a regisztráláshoz\n - Dobni vagy elkapni egy üzenetpalackot\n - Nézni egy hirdetést\n - VIP vásárlás\n\n• Ajánlott várni a felhasználók használatáig, mielőtt ellenőriznénk\n• Vagy szimulálni a felhasználói viselkedést a tesztkörnyezetben",
-    "message3": "**📈 Összesített Átváltási Arány: ${report.overall_conversion_rate.toFixed(1)}%**",
+    "message3": "**📈 Összesített átváltási arány: ${report.overall_conversion_rate.toFixed(1)}%**",
     "message4": "{step.conversion_rate.toFixed(1)} ${step.conversion_rate.toFixed(1)}",
     "message5": "{provider.error_rate.toFixed(1)} ${provider.error_rate.toFixed(1)}",
     "message6": "{provider.total_requests} ${provider.total_requests}",
@@ -619,22 +646,22 @@ export const translations: Translations = {
       "conversation6": "📊 Használj /chats parancsot az összes beszélgetés megtekintéséhez",
       "conversation7": "Használj /chats parancsot az összes beszélgetés megtekintéséhez",
       "currentSelection": "Jelenlegi választás: {genderText}",
-      "gender": "• Neme: \\${selectedGender === 'male' ? '👨 Férfi' : selectedGender === 'female' ? '👩 Nő' : '🌈 Bárki'}",
+      "gender": "• Nem: \\${selectedGender === 'male' ? '👨 Férfi' : selectedGender === 'female' ? '👩 Nő' : '🌈 Bárki'}",
       "gender2": "👤 **Nemi szűrő**\n\n",
       "gender3": "• Neme: Szűrés nem szerint\n\n",
       "gender4": "💡 Válaszd ki a kívánt nemet:",
       "gender5": "👤 Nemi szűrő",
       "genderLabel": "• Neme: {gender}\n",
       "mbti": "• MBTI: \\${selectedMBTI.length > 0 ? selectedMBTI.join(', ') : 'Korlátlan'}",
-      "mbti2": "Kiválasztva: \\${selectedMBTI.length > 0 ? selectedMBTI.join(', ') : 'Egyik sem'}",
+      "mbti2": "Kiválasztva: \\${selectedMBTI.length > 0 ? selectedMBTI.join(', ') : 'Semmi'}",
       "mbti3": "Kiválasztott: \\${selectedMBTI.length > 0 ? selectedMBTI.join(",
       "mbti4": "🧠 **MBTI szűrő**\n\n",
       "mbti5": "• MBTI: Szűrés specifikus személyiségtípusok szerint\n",
       "mbti6": "• Magas MBTI megfelelés ✓",
       "mbti7": "🧠 MBTI szűrő",
       "mbtiLabel": "• MBTI: {mbti}",
-      "message": "Kiválasztva: \\${selectedZodiac.length > 0 ? selectedZodiac.map((z) => ZODIAC_NAMES[z]).join(', ') : 'Egyik sem'}",
-      "message2": "Aktuális kiválasztás: \\${currentGender === 'male' ? '👨 Férfi' : currentGender === 'female' ? '👩 Nő' : '🌈 Bárki'}",
+      "message": "Kiválasztva: \\${selectedZodiac.length > 0 ? selectedZodiac.map((z) => ZODIAC_NAMES[z]).join(', ') : 'Semmi'}",
+      "message2": "Jelenlegi választás: \\${currentGender === 'male' ? '👨 Férfi' : currentGender === 'female' ? '👩 Nő' : '🌈 Bárki'}",
       "message3": "Kiválasztott: \\${selectedZodiac.length > 0 ? selectedZodiac.map((z) => ZODIAC_NAMES[z]).join(",
       "message4": "Jelenlegi választás: \\${bloodTypeDisplay[currentBloodType]}\n\n",
       "message5": "👤 Másik fél: \\${vipMatchInfo.matcherNickname}\n",
@@ -1111,7 +1138,7 @@ export const translations: Translations = {
     "catch3": "• A barátságos és tiszteletteljes tartalom nagyobb valószínűséggel lesz elkapva!",
     "catch4": "Message bottle folyamat",
     "close": "❌ Bezárás",
-    "complete": "🎉 **Hirdetés megtekintése befejeződött!**\n\n✅ Megszerzett **+1 kvóta**\n📊 Ma megtekintve: **${updated.ads_watched}/20** alkalommal\n🎁 Ma megszerzett kvóta: **${updated.quota_earned}**\n📈 Hátralévő megtekintések: **${result.remaining_ads}** alkalommal\n\n${result.remaining_ads > 0 ? '💡 Folytassa a hirdetések nézését, hogy több kvótát szerezzen!' : '✅ Napi hirdetési limit elérve'}",
+    "complete": "🎉 **Hirdetés megtekintése befejeződött!**\n\n✅ Megszerzett **+1 kvóta**\n📊 Megtekintve ma: **${updated.ads_watched}/20** alkalommal\n🎁 Ma megszerzett kvóta: **${updated.quota_earned}**\n📈 Hátralévő megtekintések: **${result.remaining_ads}** alkalommal\n\n${result.remaining_ads > 0 ? '💡 Folytassa a hirdetések nézését a további kvóták megszerzéséhez!' : '✅ Napi hirdetési limitek elérve'}",
     "complete2": "📺 **Hirdetések megtekintése kvótákért**\n\n🎁 A megtekintések teljesítése **+1 kvótát** ad\n📊 Hátralévő ma: **${remainingAds}/20** alkalom\n\n👇 Kattints az alábbi gombra a hirdetések nézésének megkezdéséhez",
     "complete3": "Befejezési idő: ${new Date(broadcast.completedAt).toLocaleString('zh-TW')}\n",
     "complete4": "Becsült befejezés: ${new Date(maintenance.endTime).toLocaleString('zh-TW')}\n",
@@ -1144,7 +1171,7 @@ export const translations: Translations = {
     "conversation7": "💡 A magánélet és a biztonság védelme érdekében csak sima szöveges üzenetek engedélyezettek a beszélgetésekben.\n\n",
     "conversation8": "Használj /history parancsot, hogy megtekinthesd az összes beszélgetést\n\n",
     "conversation9": "🔄 Minden beszélgetési előzmény frissítése...\n\n",
-    "country": "Érvénytelen országkód: ${trimmedValue} (két nagybetűs kell legyen, pl.: TW, US, JP)",
+    "country": "Érvénytelen országkód: ${trimmedValue} (2 nagybetűs betű kell, pl. TW, US, JP)",
     "country2": "🌍 **Kérjük, válaszd ki az országodat/régiódat**\n\n",
     "country3": "Ország: ${filters.country}",
     "end": "Vége: ${endTime.toLocaleString('zh-TW')}\n\n",
@@ -1188,7 +1215,7 @@ export const translations: Translations = {
     "message14": "Haladás: ${broadcast.sent_count}/${broadcast.total_users}\n",
     "message15": "${days} ${user.language_pref === 'en' ? 'days' : '天'}",
     "message16": "Cél: ${getBroadcastTargetName(broadcast.targetType)}\n",
-    "message17": "Állapot: ${maintenance.isActive ? '✅ Karbantartás alatt' : '❌ Nem aktív'}",
+    "message17": "Státusz: ${maintenance.isActive ? '✅ Karbantartás alatt' : '❌ Nincs aktív'}",
     "message18": "🚫 Tiltott URL-ek:\n${urlCheck.blockedUrls?.map((url) =>",
     "message19": "• Utolsó üzenet: ${formatDate(stats.last_message_time)}\n",
     "message2": "születésnap = '2000-01-01',\n életkor = 25,\n csillagjegy = 'Bak',\n csalásellenes pontszám = 100,\n feltételek elfogadva = 1",
@@ -1287,9 +1314,9 @@ export const translations: Translations = {
     "quota2": "• 💎 Frissítse VIP-ra (30 kvóta naponta)",
     "quota3": "• 🎁 Barátok Meghívása (+1 kvóta személyenként)\n",
     "quota4": "• ✨ Feladatok Teljesítése (állandó kvóták megszerzése)\n",
-    "register": "💡 Ez egy gyors teszt (${testInfo}), az eredmények csak tájékoztató jellegűek.\nRegisztráció után újra vehetsz vele /mbti.",
+    "register": "💡 Ez egy gyors teszt (${testInfo}), az eredmények csak tájékoztató jellegűek.\nRegisztráció után újra megteheti a /mbti segítségével.",
     "register10": "🎉 Gratulálunk a regisztráció befejezéséhez!\n\n",
-    "register2": "💡 Ez egy teljes teszt (${testInfo}), az eredmények pontosabbak.\nRegisztráció után újra vehetsz vele /mbti.",
+    "register2": "💡 Ez egy teljes teszt (${testInfo}), az eredmények pontosabbak.\nRegisztráció után újra megteheti a /mbti segítségével.",
     "register3": "Regisztrációs Lépések: ${user.onboarding_step}\n",
     "register4": "⏰ A regisztrációs folyamat lejárt\n\nKérjük, használja a /start parancsot a regisztráció újraindításához.",
     "register5": "Vagy használd: /dev_restart (automatikus regisztráció indítása)\n\n",
@@ -1297,7 +1324,7 @@ export const translations: Translations = {
     "register7": "🔄 Újra-regisztrálás: /start\n",
     "register8": "💡 A regisztráció befejezése után:\n",
     "register9": "A regisztrációs folyamat automatikusan befejeződött.\n\n",
-    "report": "🚨 **Jelentsd a nem megfelelő tartalmat** (#${conversationIdentifier})",
+    "report": "🚨 **Jelentse a nem megfelelő tartalmat** (#${conversationIdentifier})",
     "report2": "Több jelentés",
     "report3": "💡 Ez pontosan meghatározza a jelenteni kívánt objektumot.",
     "report4": "Kérjük, válasszon jelentési okot:",
@@ -1412,7 +1439,7 @@ export const translations: Translations = {
     "short164": "Csatlakozás a csoporthoz",
     "short165": "Részletek megtekintése",
     "short17": "Hagyd, hogy más felhasználók jobban megismerjenek",
-    "short18": "Kezdési idő: ${broadcast.started_at}\n\n",
+    "short18": "Ez helyes?",
     "short19": "🗑️ Piszkozat törlése",
     "short2": "🌈 Bárki megteheti",
     "short20": "🏷️ Érdeklődések szerkesztése",
@@ -1543,7 +1570,7 @@ export const translations: Translations = {
     "text111": "**Szűrési Formátum:**\n",
     "text112": "• Minimum 5 karakter\n",
     "text113": "• Nem tartalmazhat URL-eket\n",
-    "text114": "Kérjük, adja meg a régióját:",
+    "text114": "Kérem, adja meg a régióját:",
     "text115": "• Bármikor módosíthatja ezt a beállítást",
     "text116": "• Legfeljebb 5 címke\n",
     "text117": "📋 Gyors Verzió (12 Kérdés)",
@@ -1584,8 +1611,8 @@ export const translations: Translations = {
     "text149": "📋 A jogi dokumentumok csak angol nyelven elérhetőek.",
     "text15": "🌍 Helyszín: ${updatedUser.city ||",
     "text150": "📋 A jogi dokumentumok csak angol nyelven elérhetőek.",
-    "text16": "✅ Ellenőrzés szükséges: Kattintson a 'Verifikálás' gombra a csoport/csatorna csatlakozása után",
-    "text17": "Célzott felhasználók száma: ${userIds.length}",
+    "text16": "✅ Ellenőrzés szükséges: Kattintson a 'Hitelesítés' gombra a csoport/csatorna csatlakozása után",
+    "text17": "Célzott felhasználószám: ${userIds.length}",
     "text18": "Írd le érzéseidet vagy gondolataidat, és a rendszer segít megtalálni a megfelelő embert {estimatedTime} ${estimatedTime}\n\n",
     "text19": "/broadcast_cleanup megerősítés",
     "text2": "Kérlek, használd a /broadcast_filter parancsot a helyes formátum megtekintéséhez.",
@@ -2379,7 +2406,7 @@ export const translations: Translations = {
     "failed4": "Ezek a közvetítések 'sikertelen' státuszra lettek jelölve\n",
     "generic": "❌ Hiba történt, kérlek próbáld meg később újra.",
     "invalidRequest": "❌ Érvénytelen kérés",
-    "message": "${statusEmoji} **${provider.provider_display_name}**\n${healthEmoji} Egészségi állapot: ${health.is_healthy ? 'Jó' : 'Figyelmet igényel'}\n📊 Teljesítési arány: ${stats.completion_rate}%\n❌ Hibaarány: ${stats.error_rate}%\n📈 Összes kérés: ${stats.total_requests}\n✅ Összes teljesítés: ${stats.total_completions}\n💡 Ajánlás: ${health.recommendation}",
+    "message": "${statusEmoji} **${provider.provider_display_name}**\n${healthEmoji} Egészségi állapot: ${health.is_healthy ? 'Jó' : 'Figyelmet igényel'}\n📊 Teljesítési arány: ${stats.completion_rate}%\n❌ Hiba arány: ${stats.error_rate}%\n📈 Összes kérelem: ${stats.total_requests}\n✅ Összes teljesítés: ${stats.total_completions}\n💡 Ajánlás: ${health.recommendation}",
     "message2": "Hibaüzenet: ${error instanceof Error ? error.message : String(error)}",
     "message3": "Hiba: ${broadcast.errorMessage}",
     "operationFailed": "❌ Művelet nem sikerült",
@@ -2514,7 +2541,8 @@ export const translations: Translations = {
     "vip3": "/funnel - VIP átváltási tölcsér\n\n",
     "vip4": "🎁 **Kvóta és VIP**\n",
     "vip5": "/vip - VIP Előfizetés\n",
-    "vip6": "💎 **VIP Előnyök**\n"
+    "vip6": "💎 **VIP Előnyök**\n",
+    "dailyReportTitle": "Napi Működési Jelentés Lekérése"
   },
   "history": {
     "chatHistory": "💬 **Csevegési Történeted**\n\n",
@@ -2754,6 +2782,12 @@ export const translations: Translations = {
       "question9": "Mit értékelsz jobban:",
       "question9.option1": "Igazságosság és Méltányosság",
       "question9.option2": "Empátia és Megértés"
+    },
+    "share": {
+      "welcome": "👋 A barátod meghív, hogy tedd meg az MBTI tesztet!\n\nGyere és nézd meg a személyiségtípusodat～",
+      "startButton": "📊 Teszt indítása",
+      "resultTitle": "Az MBTI teszt eredményem: {type}!",
+      "resultDesc": "Neked is érdemes megpróbálnod a tesztet～"
     }
   },
   "mbtiTest": {
@@ -2763,7 +2797,7 @@ export const translations: Translations = {
     "fullAccuracy": "Pontosabb eredmények",
     "fullQuestions": "36 kérdés",
     "fullTest": "Teljes MBTI teszt",
-    "fullTestInfo": "💡 Ez egy teljes teszt ({questions}), az eredmény pontosabb.\nA regisztráció befejezése után használhatja a /mbti parancsot a teszt újraelvégzéséhez.",
+    "fullTestInfo": "💡 Ez egy teljes teszt ({questions}), az eredmény pontosabb.\nA regisztráció befejezése után használhatja a /mbti parancsot a teszt újbóli elvégzéséhez.",
     "fullTestTitle": "Teljes teszt",
     "manualModify": "• Kézi módosítás a MBTI típusodon",
     "moreDetailedTest": "• Végezzen el egy részletesebb tesztet\n",
@@ -2774,7 +2808,7 @@ export const translations: Translations = {
     "quickAccuracy": "Eredmények csak tájékoztatásul",
     "quickQuestions": "12 kérdés",
     "quickTest": "Gyors MBTI teszt",
-    "quickTestInfo": "💡 Ez egy gyors teszt ({questions}), az eredmény csak tájékoztató jellegű.\nA regisztráció befejezése után használhatja a /mbti parancsot a teszt újraelvégzéséhez.",
+    "quickTestInfo": "💡 Ez egy gyors teszt ({questions}), az eredmény csak tájékoztató jellegű.\nA regisztráció befejezése után használhatja a /mbti parancsot a teszt újbóli elvégzéséhez.",
     "quickTestTitle": "Gyors teszt",
     "yourMbtiType": "{type}\n\n"
   },
@@ -2808,7 +2842,7 @@ export const translations: Translations = {
     "short": "Ingyenes tag",
     "stats": "📊 Meghívási statisztikák megtekintése: /profile",
     "stats2": "📊 Meghívási statisztikák megtekintése",
-    "task": "🎯 **Következő Feladat**\n⏳ ${nextTask.name} (+${nextTask.reward_amount} message bottle)\n💡 ${nextTask.description}",
+    "task": "🎯 **Következő feladat**\n⏳ ${nextTask.name} (+${nextTask.reward_amount} message bottles)\n💡 ${nextTask.description}",
     "text": "{vipBadge} ${vipBadge}\n\n",
     "text2": "{user.nickname} ${user.nickname}\n\n",
     "text3": "💡 Kattints az alábbi gombra, hogy megoszd a barátaiddal:\n",
@@ -2863,7 +2897,7 @@ export const translations: Translations = {
     "noAdsAvailable": "❌ Nincsenek elérhető hirdetések",
     "noVerificationRequired": "❌ Ez a hirdetés nem igényel ellenőrzést",
     "quotaInfo": "📊 Maradt ma: **{remaining}/20** alkalom",
-    "requiresVerification": "✅ Ellenőrzés szükséges: Kattints a 'Verifikálás' gombra a csoport/csatorna csatlakozása után.",
+    "requiresVerification": "✅ Ellenőrzés szükséges: Kattints az 'Ellenőrzés' gombra a csoport/csatorna csatlakozása után",
     "reward": "🎁 Jutalom: +{quota} állandó kvóta",
     "rewardPermanent": "🎁 A feladat teljesítésével **+1 állandó kvótát** nyerhetsz",
     "rewardTemporary": "🎁 Gratulálunk! +1 ideiglenes kvótát kaptál (érvényes ma)",
@@ -3159,7 +3193,7 @@ export const translations: Translations = {
     "reasonNsfw": "🔞 Explicit tartalom",
     "reasonOther": "⚠️ Egyéb megsértések",
     "reasonScam": "💰 Csalás / Adathalászat",
-    "reasonSpam": "📢 Spam",
+    "reasonSpam": "📢 Spamelés",
     "replyRequired": "⚠️ Kérlek, hosszan nyomd meg a jelenteni kívánt üzenetet, majd válaszolj a paranccsal\n\n",
     "selectReason": "Kérjük, válassza ki a jelentés okát:",
     "sessionExpired": "⚠️ A beszélgetés lejárt, kérjük, végezze el újra",
@@ -3218,7 +3252,13 @@ export const translations: Translations = {
     "toggleCatch": "Üzenetpalack felvételi emlékeztető váltás",
     "toggleMessage": "Beszélgetés emlékeztető váltás",
     "quietHours": "Csendes időszak",
-    "saved": "Beállítások mentve"
+    "saved": "Beállítások mentve",
+    "editQuietHours": "✏️ Csendes órák szerkesztése",
+    "quietDisable": "🚫 Csendes órák letiltása",
+    "selectStartHour": "🌙 Kérjük, válassza ki a csendes órák kezdési idejét:\n(Például: ha 23:00-kor szeretné kezdeni, válassza a 23:00-t)",
+    "selectEndHour": "☀️ A kezdési idő {start}:00-ra van beállítva.\nKérjük, válassza ki a csendes órák befejezési idejét:\n(Az értesítések ezen időpont után folytatódnak)",
+    "disabled": "🚫 A csendes órák le lettek tiltva",
+    "quietHoursHint": "Ebben az időszakban nem kapsz nem sürgős értesítéseket"
   },
   "stats": {
     "activeUsers": "• Aktív tegnap: {active}\n\n",
@@ -3539,7 +3579,7 @@ export const translations: Translations = {
       "vip": "✅ Minden bejegyzés naprakész (a VIP státusz helyes)\n",
       "zodiac": "✅ A csillagjegy kiválasztása törölve"
     },
-    "success2": "🎉 **Sikeres Ellenőrzés!**\n\n✅ Kaptál **+${ad.reward_quota} állandó kvótát**\n💎 Köszönjük, hogy csatlakoztál közösségünkhöz!\n\n📊 **A te kvótád:**\n• Alap kvóta: ${user.is_vip ? 'Korlátlan' : '10'}/nap\n• Állandó kvóta: +${ad.reward_quota}\n\n💡 A közösségben tudsz:\n• Kommunikálni más felhasználókkal\n• Megkapni a legfrissebb funkciófrissítéseket\n• Részt venni aktivitásokban több jutalomért",
+    "success2": "🎉 **Ellenőrzés sikeres!**\n\n✅ Megszerzett **+${ad.reward_quota} állandó kvóta**\n💎 Köszönjük, hogy csatlakoztál közösségünkhöz!\n\n📊 **A kvótád:**\n• Alap kvóta: ${user.is_vip ? 'Korlátlan' : '10'}/nap\n• Állandó kvóta: +${ad.reward_quota}\n\n💡 A közösségben teheted:\n• Kommunikálhatsz más felhasználókkal\n• Megkaphatod a legújabb funkciófrissítéseket\n• Részt vehetsz tevékenységekben több jutalomért",
     "success3": "Sikeresen frissítve ${result.updated} történeti poszt a beszélgetésben.\n\n",
     "success4": "Sikeresen frissítve: ${result.updated}\n",
     "text": "✅ Beállítva: ${flag} ${countryName}",
@@ -3675,7 +3715,7 @@ export const translations: Translations = {
     "conversation7": "Használj /chats-t az összes beszélgetés megtekintéséhez",
     "currentSelection": "Jelenlegi kiválasztás: {genderText}",
     "friendlyContent": "💬 A barátságos tartalom valószínűbb, hogy választ kap",
-    "gender": "• Nem: ${selectedGender === 'male' ? '👨 Férfi' : selectedGender === 'female' ? '👩 Nő' : '🌈 Bárki'}",
+    "gender": "• Neme: ${selectedGender === 'male' ? '👨 Férfi' : selectedGender === 'female' ? '👩 Nő' : '🌈 Bárki'}",
     "gender2": "👤 **Nem szűrő**\n\n",
     "gender3": "• Nem: Szűrés nem szerint\n\n",
     "gender4": "💡 Válaszd ki a kívánt nemet:",
@@ -3690,11 +3730,11 @@ export const translations: Translations = {
     "mbti7": "• MBTI: {mbti}",
     "mbtiLabel": "• MBTI: {mbti}",
     "message": "Jelenlegi választás: ${currentGender === 'male' ? '👨 Férfi' : currentGender === 'female' ? '👩 Nő' : '🌈 Bárki'}",
-    "message2": "Jelenlegi választás: ${currentGender === 'male' ? '👨 Férfi' : currentGender === 'female' ? '👩 Nő' : '🌈 Bárki'}",
+    "message2": "Jelenlegi választás: ${currentGender === 'male' ? '👨 Férfi' : currentGender === 'female' ? '👩 Nő' : '🌈 Akárki'}",
     "message3": "Kiválasztva: ${selectedZodiac.length > 0 ? selectedZodiac.map((z) => ZODIAC_NAMES[z]).join(",
     "message4": "„Helló! Olyan valaki vagyok, aki szereti a zenét és a filmeket, remélem, hasonló gondolkodású barátokra találok～” {bloodTypeDisplay[currentBloodType]} ${bloodTypeDisplay[currentBloodType]}\n\n",
     "message5": "💡 Módosíthatod a párkeresési preferenciáidat a /edit_profile-n {vipMatchInfo.matcherNickname} ${vipMatchInfo.matcherNickname}\n",
-    "message6": "\"Helló! Olyan valaki vagyok, aki szereti a zenét és a filmeket, és remélem, hogy hasonló érdeklődésű barátokat találok~\"",
+    "message6": "\"Helló! Olyan ember vagyok, aki szereti a zenét és a filmeket, és remélem, hogy hasonló gondolkodású barátokat találok~\"",
     "message7": "💡 Módosíthatod a matchmaking preferenciáidat a /edit_profile parancsban\n\n",
     "message8": "• További kvóta (naponta 30)\n",
     "nickname": "🎁 Barátok meghívása növelheti a kvótádat: {matchedUserMaskedNickname} ${matchedUserMaskedNickname}\n",
@@ -3770,7 +3810,7 @@ export const translations: Translations = {
     "vip5": "✨ **VIP privilegiumok aktiválva!**\n\n",
     "vip6": "💡 Frissíts VIP-ra, hogy megkapd:\n",
     "vip7": "✨ VIP kiváltságok aktiválása\n",
-    "zodiac": "• Csillagjegy: ${selectedZodiac.length > 0 ? selectedZodiac.map((z) => ZODIAC_NAMES[z]).join(', ') : 'Nincs korlátozás'}",
+    "zodiac": "• Csillagjegy: ${selectedZodiac.length > 0 ? selectedZodiac.map((z) => ZODIAC_NAMES[z]).join(', ') : 'Nincs Korlát'}",
     "zodiac2": "⭐ Csillagjegy: ${matchResult.user.zodiac ||",
     "zodiac3": "⭐ Csillagjegy: ${user.zodiac_sign ||",
     "zodiac4": "⭐ **Zodiákus szűrő**\n\n",
@@ -4088,7 +4128,7 @@ export const translations: Translations = {
       "vip3": "⚠️ **A VIP ma lejár**\n\n"
     },
     "BROADCAST": {
-      "FILTER_ERROR": "❌ Formátum hiba.\nPélda: `/broadcast_filter gender=female,country=TW test message` `/broadcast_filter gender=female,country=TW 測試訊息`",
+      "FILTER_ERROR": "❌ Formátum hiba.\nPélda: `/broadcast_filter gender=female,country=TW teszt üzenet` `/broadcast_filter gender=female,country=TW test message`",
       "NO_CONTENT": "❌ Kérjük, adja meg a közvetítési tartalmat.",
       "NO_MATCHES": "⚠️ Nincsenek felhasználók, akik megfelelnek a kritériumoknak.\nSzűrési kritériumok: {filters}",
       "TOO_MANY_USERS": "⚠️ Túl sok célfelhasználó ({count} fő), jelenleg maximum {max} főnek lehet egyszerre küldeni.",
@@ -4098,7 +4138,47 @@ export const translations: Translations = {
     "push": {
       "throwReminder": "🌊 Hé! Régóta nem dobtál el üzenetpalackot, a tengerpart nagyon csendes...",
       "catchReminder": "🎣 Új üzenetpalackok érkeztek a partra, meg akarod nézni őket?",
-      "onboardingReminder": "👋 A regisztrációd még nem teljes, majdnem készen vagy! (Lépés: {step})"
+      "onboardingReminder": "👋 A regisztrációd még nem teljes, majdnem készen vagy! (Lépés: {step})",
+      "messageReminderA": "👋 Hé {masked_partner_name}, még mindig várom a válaszodat! Ne hagyd, hogy a beszélgetés lelohasson～",
+      "messageReminderB": "📩 Van egy olvasatlan üzeneted {masked_partner_name}tól:\n> \"{last_message_preview}...\"\n(Ez már több mint 24 órája történt!)",
+      "messageReminderC": "⏳ {masked_partner_name} a válaszodra vár...",
+      "actionReply": "💬 Válaszolj {masked_partner_name}nak",
+      "actionHistory": "📜 Nézd meg a kontextust"
+    },
+    "match": {
+      "header": {
+        "zodiac": "🌟 Megtudtuk a csillagjegy egyezést",
+        "mbti": "🧠 MBTI személyiségi rezonancia",
+        "blood": "🩸 Vértípus kód elemzés"
+      },
+      "reason": {
+        "zodiac": {
+          "fire_affinity": "Tűzjeleként a szenvedélyetek ragyog, és a kapcsolatotok erős!",
+          "earth_affinity": "A földjelek stabilitása és a vízjelek gyengédsége tökéletes áramlást teremt.",
+          "air_affinity": "A levegőjelek agilitása találkozik a tűzjelek szenvedélyével, végtelen kreativitást inspirálva!",
+          "water_affinity": "A vízjelek érzelmei és a földjelek praktikussága építi a legmelegebb támogatást."
+        },
+        "mbti": {
+          "sj_affinity": "Társadalmi típusok (SJ) és felfedezők (SP), a stabilitás és izgalom tökéletes kiegészítése!",
+          "sp_affinity": "Felfedezők (SP) és társadalmi típusok (SJ), a játékosok és gondoskodók legjobb partnerei!",
+          "nf_affinity": "Idealisták (NF) és Racionalisták (NT), a lélek és bölcsesség mély ütközése!",
+          "nt_affinity": "Racionalisták (NT) és Idealisták (NF), a gondolatok és érzelmek rezonanciája!"
+        },
+        "blood": {
+          "a_affinity": "A típus A precizitása találkozik a típus O toleranciájával, a legkényelmesebb interakciókat teremtve.",
+          "b_affinity": "A típus B önérvényesítése találkozik a típus O laza természetével, stresszmentes és nyugodt.",
+          "o_affinity": "A típus O és a típus B/A nagyszerűen kiegészítik egymást!",
+          "ab_affinity": "Az AB különleges frekvenciáját a saját fajtája érti meg a legjobban."
+        }
+      },
+      "template": {
+        "body": "{userAttribute},\nAz elemzés szerint a legnagyobb affinításod van a {recommendedAttributes}val!\n\n💡 {reason}\n\n👇 Szerencsésnek érzed magad?"
+      },
+      "btn": {
+        "throw": "🌊 Dobj egy üveget és kockáztass",
+        "vip_throw": "🎯 Dobj {target} felé",
+        "vip_upsell": "💡 Frissíts VIP-re, hogy az {target} számára jelölj szállítást, a pontos kapcsolatteremtés érdekében!"
+      }
     }
   },
   "push": {

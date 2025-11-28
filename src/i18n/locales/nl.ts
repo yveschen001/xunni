@@ -119,7 +119,8 @@ export const translations: Translations = {
       "noPermissionVip": "❌ U heeft geen toestemming om VIP-gegevens te bekijken",
       "onlySuperAdmin": "❌ Alleen superbeheerders kunnen dit commando gebruiken.",
       "sendReportFailed": "❌ Verzend rapport voor vandaag mislukt: ${error}",
-      "userNotFound": "❌ Gebruiker bestaat niet: ${userId}"
+      "userNotFound": "❌ Gebruiker bestaat niet: ${userId}",
+      "message5": "• Foutpercentage: {rate}%"
     },
     "appeal": "Beroep ID: ${appeal.id}\n",
     "appeal2": "💡 Gebruik het volgende commando om het beroep te bekijken:\n",
@@ -178,7 +179,32 @@ export const translations: Translations = {
       "usageReject": "Gebruik: /admin_reject <appeal_id> [opmerkingen]",
       "user": "Gebruiker: ${user}",
       "userBanHistory": "📊 Gebruikersverbanningsgeschiedenis",
-      "viewHistory": "💡 Gebruik /admin_bans <user_id> om de verbanningsgeschiedenis van een specifieke gebruiker te bekijken"
+      "viewHistory": "💡 Gebruik /admin_bans <user_id> om de verbanningsgeschiedenis van een specifieke gebruiker te bekijken",
+      "onlyAdmin": "❌ Alleen beheerders kunnen dit commando gebruiken",
+      "onlySuperAdmin": "❌ Alleen superbeheerders kunnen dit commando gebruiken",
+      "banUsageError": "Gebruik: /admin_ban <user_id> [uren|permanent]",
+      "cannotBanAdmin": "❌ Kan geen beheerders verbannen",
+      "banUserNotFound": "❌ Gebruiker niet gevonden",
+      "operationFailed": "Operatie mislukt",
+      "userNotFound": "❌ Gebruiker niet gevonden",
+      "analyticsTitle": "Dagelijkse operationele data-analyse",
+      "adPerformanceTitle": "Advertentieprestatieanalyse",
+      "vipFunnelTitle": "VIP conversietrechteranalyse",
+      "dailyReportTitle": "Dagelijkse vertaal- en operationele rapport",
+      "testDailyReport": "Test verzenden dagelijks rapport",
+      "testRetentionPush": "Test retentie push",
+      "testMatchPush": "Test overeenkomende push",
+      "analytics": {
+        "message5": "• Foutpercentage: {rate}%",
+        "noPermission": "❌ Je hebt geen toestemming om analysegegevens te bekijken",
+        "getDataFailed": "❌ Mislukt om analysegegevens te verkrijgen",
+        "noPermissionAd": "❌ Je hebt geen toestemming om advertentiegegevens te bekijken",
+        "getAdDataFailed": "❌ Mislukt om advertentiegegevens te verkrijgen",
+        "noPermissionVip": "❌ Je hebt geen toestemming om VIP-gegevens te bekijken",
+        "getVipDataFailed": "❌ Kan VIP-gegevens niet ophalen",
+        "sendReportFailed": "❌ Rapport verzenden mislukt: {error}",
+        "onlySuperAdmin": "❌ Alleen superbeheerders kunnen deze opdracht gebruiken"
+      }
     },
     "ban2": "Totaal aantal verbannen: ${userBans.results.length}\n\n",
     "ban3": "📊 Onlangs 10 Verbanning Records\n\n",
@@ -324,7 +350,7 @@ export const translations: Translations = {
       "usersNeedingRefresh": "• Verversing nodig: ${count}"
     },
     "removeCannotRemoveSuperAdmin": "❌ Kan superadmin niet verwijderen.",
-    "removeCommand": "`/admin_verwijder <user_id>` `/admin_remove <user_id>`",
+    "removeCommand": "`/admin_remove <user_id>`",
     "removeExample": "`/admin_remove 123456789` - Verwijder reguliere administrator\n\n",
     "removeInstructions": "⚠️ **Opmerking**\n\nDeze opdracht vereist handmatige wijziging van het configuratiebestand.\n\n**Stappen:**\n1. Bewerken `wrangler.toml`\n2. Zoek de variabele `ADMIN_USER_IDS`\n3. Verwijder gebruikers-ID: `{userId}`\n4. Formaat: `ADMIN_USER_IDS = \"ID1,ID2\"` (Verwijder {userId})\n5. Herimplementatie: `pnpm deploy:staging`\n\n**Gebruikersinformatie:**\n• ID: `{userId}`\n• Weergavenaam: {nickname}\n• Gebruikersnaam: @{username}\n\n💡 Of wijzig omgevingsvariabelen in het Cloudflare-dashboard",
     "removeNotAdmin": "❌ Deze gebruiker is geen admin.",
@@ -416,7 +442,8 @@ export const translations: Translations = {
     "vip6": "⏰ **VIP Vervaldatum Herinnering Verzonden**\n\n",
     "vip7": "🎉 **Nieuwe VIP Aankoop**\n\n",
     "vip8": "⬇️ **VIP Automatische Downgrade**\n\n",
-    "vip9": "🔄 **VIP Vernieuwing**\n\n"
+    "vip9": "🔄 **VIP Vernieuwing**\n\n",
+    "dailyReport": "📊 Dagelijks operationeel rapport ({date})\n\n💰 Geschatte vertaalkosten:\n{costDetails}\n\n⚠️ Anomalie-monitoring:\n• Vertaaldegradaties: {fallbackCount} keer\n• Vertaalfouten: {errorCount} keer\n\n📈 Actieve gegevens:\n• Nieuwe gebruikers: {newUsers}\n• Actieve gesprekken: {activeConversations}"
   },
   "adminNotification": {
     "amount": "Bedrag: ${stars} ⭐",
@@ -456,7 +483,7 @@ export const translations: Translations = {
     "invite": "• Geinitieerde Uitnodigingen: {initiated} keer\n• Geaccepteerde Uitnodigingen: {accepted} keer\n• Geactiveerde Uitnodigingen: {activated} keer\n• Conversieratio: {conversionRate}%\n\n• Flessen Gegeven: {bottlesThrown} keer\n• Flessen Gepakt: {bottlesCaught} keer\n• Nieuwe Gesprekken Gestart: {conversationsStarted} keer\n• Gemiddelde Gesprek Ronden: {avgConversationRounds}\n\n💡 Gedetailleerde Data: /analytics",
     "message": "📊 **Dagelijks Operationeel Rapport**\n📅 Datum: {date}\n\n**👥 Gebruikersdata**\n• Nieuwe Gebruikers: {newUsers} mensen\n• Actieve Gebruikers (DAU): {dau} mensen\n• Retentiegraad (D1): {d1Retention}%\n• Gemiddelde Sessie Duur: {avgSessionDuration} minuten\n\n**📺 Advertentiegegevens**\n• Derde partij advertenties:\n - Vertoningen: {thirdPartyImpressions} keer\n - Voltooiingen: {thirdPartyCompletions} keer\n - Voltooiingsgraad: {thirdPartyCompletionRate}%\n - Toegekende Beloningen: {thirdPartyRewardsGranted} quota",
     "message2": "📊 **Dagelijks Operationeel Rapport**\n📅 Datum: {date}\n\n⚠️ **Vandaag Geen Gegevens**\n\nDit kan door het volgende komen:\n• Het systeem is net geïmplementeerd, nog geen gebruikersactiviteit\n• Geen gebruikers hebben vandaag de Bot gebruikt\n• Functie voor gegevensverzameling is niet ingeschakeld\n\n💡 **Wanneer Verschijnen Gegevens?**\n• Gebruikers moeten een van de volgende acties uitvoeren:\n - Stuur /start om te registreren\n - Gooi of pak een berichtfles\n - Bekijk een advertentie\n - Koop VIP\n\n• Het wordt aanbevolen te wachten tot gebruikers beginnen met gebruik voordat u controleert\n• Of simuleer gebruikersgedrag in de testomgeving",
-    "message3": "**📈 Totale Conversieratio: ${report.overall_conversion_rate.toFixed(1)}%**",
+    "message3": "**📈 Totale Conversiepercentage: ${report.overall_conversion_rate.toFixed(1)}%**",
     "message4": "{step.conversion_rate.toFixed(1)} ${step.conversion_rate.toFixed(1)}",
     "message5": "{provider.error_rate.toFixed(1)} ${provider.error_rate.toFixed(1)}",
     "message6": "{provider.total_requests} ${provider.total_requests}",
@@ -1111,7 +1138,7 @@ export const translations: Translations = {
     "catch3": "Berichtflesproces",
     "catch4": "Berichtflesproces",
     "close": "❌ Sluiten",
-    "complete": "🎉 **Advertentie bekijken voltooid!**\n\n✅ Verdiend **+1 quotum**\n📊 Vandaag bekeken: **${updated.ads_watched}/20** keer\n🎁 Verdiend quotum vandaag: **${updated.quota_earned}**\n📈 Overige weergaven: **${result.remaining_ads}** keer\n\n${result.remaining_ads > 0 ? '💡 Blijf advertenties bekijken om meer quotum te verdienen!' : '✅ Daglimiet voor advertenties bereikt'}",
+    "complete": "🎉 **Advertentie-weergave voltooid!**\n\n✅ Verdient **+1 quotum**\n📊 Vandaag bekeken: **${updated.ads_watched}/20** keer\n🎁 Quotum verdiend vandaag: **${updated.quota_earned}**\n📈 Overige weergaven: **${result.remaining_ads}** keer\n\n${result.remaining_ads > 0 ? '💡 Blijf advertenties bekijken om meer quotum te verdienen!' : '✅ Daglijkse advertentielimiet bereikt'}",
     "complete2": "📺 **Bekijk advertenties om credits te verdienen**\n\n🎁 Het voltooien van de weergave levert **+1 credit** op\n📊 Resterende vandaag: **${remainingAds}/20** keer\n\n👇 Klik op de knop hieronder om te beginnen met kijken",
     "complete3": "Voltooiingstijd: ${new Date(broadcast.completedAt).toLocaleString('zh-TW')}\n",
     "complete4": "Geschatte voltooiing: ${new Date(maintenance.endTime).toLocaleString('zh-TW')}\n",
@@ -1287,9 +1314,9 @@ export const translations: Translations = {
     "quota2": "• 💎 Upgrade naar VIP (30 berichten/dag)",
     "quota3": "• 🎁 Nodig vrienden uit (+1 quota per persoon)\n",
     "quota4": "• ✨ Voltooi taken (krijg permanente quota)\n",
-    "register": "💡 Dit is een snelle test (${testInfo}), de resultaten zijn alleen ter referentie.\nNa registratie kun je opnieuw maken met /mbti.",
+    "register": "💡 Dit is een snelle test (${testInfo}), resultaten zijn alleen ter referentie.\nNa registratie kun je opnieuw testen met /mbti.",
     "register10": "🎉 Gefeliciteerd met het voltooien van de registratie!\n\n",
-    "register2": "💡 Dit is een volledige test (${testInfo}), de resultaten zijn nauwkeuriger.\nNa registratie kun je opnieuw maken met /mbti.",
+    "register2": "💡 Dit is een volledige test (${testInfo}), de resultaten zijn nauwkeuriger.\nNa registratie kun je opnieuw testen met /mbti.",
     "register3": "Registratiestappen: ${user.onboarding_step}\n",
     "register4": "⏰ Het registratieproces is verlopen\n\nGebruik alsjeblieft /start om de registratie opnieuw te starten.",
     "register5": "Of gebruik: /dev_restart (automatisch registratiesysteem starten)\n\n",
@@ -1584,7 +1611,7 @@ export const translations: Translations = {
     "text149": "📋 Juridische documenten worden alleen in het Engels verstrekt.",
     "text15": "🌍 Regio: ${updatedUser.city ||",
     "text150": "📋 Juridische documenten worden alleen in het Engels verstrekt.",
-    "text16": "✅ Verificatie nodig: Klik op de 'Verifieren' knop na het joinen van de groep/kanaal",
+    "text16": "✅ Verificatie nodig: Klik op de knop 'Verifieer' na het joinen van de groep/kanaal",
     "text17": "Doelgebruikersaantal: ${userIds.length}\n\n",
     "text18": "Geschatte tijd: ${estimatedTime}\n\n",
     "text19": "/broadcast_cleanup bevestigen",
@@ -2379,7 +2406,7 @@ export const translations: Translations = {
     "failed4": "Deze uitzendingen zijn gemarkeerd als 'mislukt' status\n",
     "generic": "❌ Er is een fout opgetreden, probeer het later opnieuw.",
     "invalidRequest": "❌ Ongeldig verzoek",
-    "message": "${statusEmoji} **${provider.provider_display_name}**\n${healthEmoji} Gezondheidsstatus: ${health.is_healthy ? 'Goed' : 'Vereist Aandacht'}\n📊 Voltooiingspercentage: ${stats.completion_rate}%\n❌ Foutpercentage: ${stats.error_rate}%\n📈 Totaal aantal verzoeken: ${stats.total_requests}\n✅ Totaal aantal voltooiingen: ${stats.total_completions}\n💡 Aanbeveling: ${health.recommendation}",
+    "message": "${statusEmoji} **${provider.provider_display_name}**\n${healthEmoji} Gezondheidsstatus: ${health.is_healthy ? 'Goed' : 'Vereist Aandacht'}\n📊 Voltooiingspercentage: ${stats.completion_rate}%\n❌ Foutpercentage: ${stats.error_rate}%\n📈 Totaal Aantal Verzoeken: ${stats.total_requests}\n✅ Totaal Aantal Voltooiingen: ${stats.total_completions}\n💡 Aanbeveling: ${health.recommendation}",
     "message2": "Foutmelding: ${error instanceof Error ? error.message : String(error)}",
     "message3": "Fout: ${broadcast.errorMessage}",
     "operationFailed": "❌ Operatie mislukt",
@@ -2514,7 +2541,8 @@ export const translations: Translations = {
     "vip3": "/funnel - VIP-conversiefunnel\n\n",
     "vip4": "🎁 **Quota en VIP**\n",
     "vip5": "/vip - VIP Abonnement\n",
-    "vip6": "💎 **VIP Voordelen**\n"
+    "vip6": "💎 **VIP Voordelen**\n",
+    "dailyReportTitle": "Haal dagelijks operationeel rapport op"
   },
   "history": {
     "chatHistory": "💬 **Jouw chatgeschiedenis**\n\n",
@@ -2754,6 +2782,12 @@ export const translations: Translations = {
       "question9": "Wat waardeer je meer:",
       "question9.option1": "Eerlijkheid en rechtvaardigheid",
       "question9.option2": "Empathie en begrip"
+    },
+    "share": {
+      "welcome": "👋 Je vriend nodigt je uit om de MBTI-test te doen!\n\nKom en zie je persoonlijkheidstype～",
+      "startButton": "📊 Start de test",
+      "resultTitle": "Mijn MBTI-testresultaat is {type}!",
+      "resultDesc": "Je zou de test ook moeten proberen～"
     }
   },
   "mbtiTest": {
@@ -2863,7 +2897,7 @@ export const translations: Translations = {
     "noAdsAvailable": "❌ Geen beschikbare advertenties op dit moment",
     "noVerificationRequired": "❌ Deze advertentie vereist geen verificatie",
     "quotaInfo": "📊 Nog over vandaag: **{remaining}/20** keer",
-    "requiresVerification": "✅ Verificatie vereist: Klik op de 'Verifieer' knop na het toetreden tot de groep/kanaal",
+    "requiresVerification": "✅ Verificatie vereist: Klik op de 'Verifiëren' knop na het toetreden tot de groep/kanaal",
     "reward": "🎁 Beloning: +{quota} permanente quotas",
     "rewardPermanent": "🎁 Voltooi de taak om **+1 permanente quota** te verdienen",
     "rewardTemporary": "🎁 Gefeliciteerd! Je hebt +1 tijdelijke quota ontvangen (geldigt vandaag)",
@@ -3218,7 +3252,13 @@ export const translations: Translations = {
     "toggleCatch": "Schakel herinnering voor ophalen van berichtfles in",
     "toggleMessage": "Schakel herinnering voor gesprek in",
     "quietHours": "Rustige tijd",
-    "saved": "Instellingen opgeslagen"
+    "saved": "Instellingen opgeslagen",
+    "editQuietHours": "✏️ Wijzig Stille Uren",
+    "quietDisable": "🚫 Schakel Stille Uren uit",
+    "selectStartHour": "🌙 Kies alstublieft de starttijd voor de stille uren:\n(Bijvoorbeeld: om te beginnen om 23:00, selecteer dan 23:00)",
+    "selectEndHour": "☀️ Starttijd ingesteld op {start}:00.\nKies alstublieft de eindtijd voor de stille uren:\n(Notificaties worden na deze tijd hervat)",
+    "disabled": "🚫 Stille uren zijn uitgeschakeld",
+    "quietHoursHint": "Je ontvangt tijdens deze periode geen niet-dringende notificaties"
   },
   "stats": {
     "activeUsers": "• Actief gisteren: {active}\n\n",
@@ -3539,7 +3579,7 @@ export const translations: Translations = {
       "vip": "✅ Alle berichten zijn up-to-date (VIP-status is correct)\n",
       "zodiac": "✅ Dierenteken selectie is gewist"
     },
-    "success2": "{ad.reward_quota} ${ad.reward_quota}",
+    "success2": "🎉 **Verificatie Succesvol!**\n\n✅ Verdiende **+${ad.reward_quota} permanente quotum**\n💎 Bedankt voor het lid worden van onze gemeenschap!\n\n📊 **Jouw quotum:**\n• Basisquotum: ${user.is_vip ? 'Onbeperkt' : '10'}/dag\n• Permanente quotum: +${ad.reward_quota}\n\n💡 In de gemeenschap kun je:\n• Communiceren met andere gebruikers\n• De laatste functie-updates ontvangen\n• Deelnemen aan activiteiten voor meer beloningen",
     "success3": "Met succes ${result.updated} historische berichten in het gesprek ververst.\n\n",
     "success4": "Succesvol ververst: ${result.updated}\n",
     "text": "✅ Ingesteld als ${flag} ${countryName}",
@@ -3675,13 +3715,13 @@ export const translations: Translations = {
     "conversation7": "Gebruik /chats om alle gesprekken te bekijken",
     "currentSelection": "Huidige selectie: {genderText}",
     "friendlyContent": "💬 Vriendelijke inhoud krijgt waarschijnlijk meer reacties",
-    "gender": "• Geslacht: ${selectedGender === 'male' ? '👨 Man' : selectedGender === 'female' ? '👩 Vrouw' : '🌈 Iedereen'}",
+    "gender": "• Geslacht: ${selectedGender === 'male' ? '👨 Man' : selectedGender === 'female' ? '👩 Vrouw' : '🌈 Iemand'}",
     "gender2": "👤 **Geslachtfilter**\n\n",
     "gender3": "• Geslacht: Filter op geslacht\n\n",
     "gender4": "💡 Selecteer het geslacht dat je wilt:",
     "gender5": "👤 Geslachtfilter",
     "genderLabel": "• Geslacht: {gender}\n",
-    "mbti": "• MBTI: ${selectedMBTI.length > 0 ? selectedMBTI.join(', ') : 'Geen beperking'}",
+    "mbti": "• MBTI: ${selectedMBTI.length > 0 ? selectedMBTI.join(', ') : 'Geen Limiet'}",
     "mbti2": "Geselecteerd: ${selectedMBTI.length > 0 ? selectedMBTI.join(', ') : 'Geen'}",
     "mbti3": "Geselecteerd: ${selectedMBTI.length > 0 ? selectedMBTI.join(",
     "mbti4": "🧠 **MBTI-filter**\n\n",
@@ -3689,7 +3729,7 @@ export const translations: Translations = {
     "mbti6": "• Hoge MBTI-overeenstemming ✓",
     "mbti7": "🧠 MBTI-filter",
     "mbtiLabel": "{mbti}",
-    "message": "Huidige selectie: ${currentGender === 'male' ? '👨 Man' : currentGender === 'female' ? '👩 Vrouw' : '🌈 Iedereen'}",
+    "message": "Huidige selectie: ${currentGender === 'male' ? '👨 Man' : currentGender === 'female' ? '👩 Vrouw' : '🌈 Iemand'}",
     "message2": "Huidige selectie: ${currentGender === 'male' ? '👨 Man' : currentGender === 'female' ? '👩 Vrouw' : '🌈 Iemand'}",
     "message3": "Geselecteerd: ${selectedZodiac.length > 0 ? selectedZodiac.map((z) => ZODIAC_NAMES[z]).join(",
     "message4": ") : 'Geen'} {bloodTypeDisplay[currentBloodType]} ${bloodTypeDisplay[currentBloodType]}\n\n",
@@ -4088,7 +4128,7 @@ export const translations: Translations = {
       "vip3": "⚠️ **VIP verloopt vandaag**\n\n"
     },
     "BROADCAST": {
-      "FILTER_ERROR": "❌ Formaatfout.\nVoorbeeld: `/broadcast_filter gender=female,country=TW test message` `/broadcast_filter gender=female,country=TW 測試訊息`",
+      "FILTER_ERROR": "❌ Fout in het formaat.\nVoorbeeld: `/broadcast_filter gender=female,country=TW test message`",
       "NO_CONTENT": "❌ Voer broadcast inhoud in.",
       "NO_MATCHES": "⚠️ Er zijn geen gebruikers gevonden die aan de criteria voldoen.\nFiltercriteria: {filters}",
       "TOO_MANY_USERS": "⚠️ Te veel doelgebruikers ({count} personen), momenteel is het beperkt tot het versturen naar {max} personen tegelijk.",
@@ -4098,7 +4138,47 @@ export const translations: Translations = {
     "push": {
       "throwReminder": "🌊 Hé! Het is een tijdje geleden dat je een berichtfles hebt gegooid, het strand is erg rustig...",
       "catchReminder": "🎣 Er zijn enkele nieuwe berichtflessen op het strand aangespoeld, wil je ze gaan bekijken?",
-      "onboardingReminder": "👋 Je registratie is nog niet compleet, je bent bijna daar! (Stap: {step})"
+      "onboardingReminder": "👋 Je registratie is nog niet compleet, je bent bijna daar! (Stap: {step})",
+      "messageReminderA": "👋 Hey {masked_partner_name} wacht nog steeds op je reactie! Laat het gesprek niet afkoelen～",
+      "messageReminderB": "📩 Je hebt een ongelezen bericht van {masked_partner_name}:\n> \"{last_message_preview}...\"\n(Het is al meer dan 24 uur!)",
+      "messageReminderC": "⏳ {masked_partner_name} wacht op je reactie...",
+      "actionReply": "💬 Beantwoord {masked_partner_name}",
+      "actionHistory": "📜 Bekijk Context"
+    },
+    "match": {
+      "header": {
+        "zodiac": "🌟 Dierenriem Match Onthuld",
+        "mbti": "🧠 MBTI Persoonlijkheid Resonantie",
+        "blood": "🩸 Bloedgroep Code Analyse"
+      },
+      "reason": {
+        "zodiac": {
+          "fire_affinity": "Als mede-vuurttekens brandt jullie passie helder en is jullie verbinding sterk!",
+          "earth_affinity": "De stabiliteit van aardetekens gecombineerd met de zachtheid van watertekens creëert de perfecte stroom.",
+          "air_affinity": "De behendigheid van luchttekens ontmoet de passie van vuurttekens, wat eindeloze creativiteit inspireert!",
+          "water_affinity": "De emotie van watertekens en de praktische kant van aardetekens bouwen de warmste ondersteuning."
+        },
+        "mbti": {
+          "sj_affinity": "Socializers (SJ) en Ontdekkers (SP), een perfecte aanvulling van stabiliteit en opwinding!",
+          "sp_affinity": "Ontdekkers (SP) en Socializers (SJ), de beste partners van speelmaatjes en verzorgers!",
+          "nf_affinity": "Idealisten (NF) en Rationalisten (NT), een diepe botsing van ziel en wijsheid!",
+          "nt_affinity": "Rationalisten (NT) en Idealisten (NF), een resonantie van gedachten en gevoelens!"
+        },
+        "blood": {
+          "a_affinity": "Type A's nauwgezetheid ontmoet Type O's tolerantie, wat de meest comfortabele interacties creëert.",
+          "b_affinity": "Type B's zelfassertie ontmoet Type O's gemakkelijke aard, stressvrij en ontspannen.",
+          "o_affinity": "Type O en Type B/A zijn geweldige complementaire partners!",
+          "ab_affinity": "De unieke frequentie van AB wordt het beste begrepen door zijn soort."
+        }
+      },
+      "template": {
+        "body": "{userAttribute},\nVolgens de analyse heb je de sterkste affiniteit met {recommendedAttributes}!\n\n💡 {reason}\n\n👇 Voel je je gelukkig?"
+      },
+      "btn": {
+        "throw": "🌊 Gooi een fles en waag een kans",
+        "vip_throw": "🎯 Gooi naar {target}",
+        "vip_upsell": "💡 Upgrade naar VIP om de bezorging naar {target} te specificeren, voor nauwkeurige matchmaking!"
+      }
     }
   },
   "push": {

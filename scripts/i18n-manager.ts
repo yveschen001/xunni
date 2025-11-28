@@ -146,7 +146,8 @@ async function importCsv() {
 
   // Group by language
   // HEADER_ORDER includes 'key', 'zh-TW', ...
-  const languages = HEADER_ORDER.filter(h => h !== 'key' && h !== 'zh-TW');
+  // Allow updating zh-TW as well to sync back changes/fixes from CSV
+  const languages = HEADER_ORDER.filter(h => h !== 'key');
 
   // We also need to update zh-TW if we want the CSV to be the source of truth for text changes
   // But usually zh-TW source comes from code. 

@@ -119,7 +119,8 @@ export const translations: Translations = {
       "noPermissionVip": "❌ Anda tidak mempunyai kebenaran untuk melihat data VIP",
       "onlySuperAdmin": "❌ Hanya pentadbir super yang boleh menggunakan arahan ini.",
       "sendReportFailed": "❌ Gagal menghantar laporan harian: ${error}",
-      "userNotFound": "❌ Pengguna tidak wujud: ${userId}"
+      "userNotFound": "❌ Pengguna tidak wujud: ${userId}",
+      "message5": "• Kadar ralat: {rate}%"
     },
     "appeal": "ID Rayuan: ${appeal.id}\n",
     "appeal2": "💡 Gunakan arahan berikut untuk menyemak rayuan:\n",
@@ -178,7 +179,32 @@ export const translations: Translations = {
       "usageReject": "Penggunaan: /admin_reject <appeal_id> [catatan]",
       "user": "Pengguna: ${user}",
       "userBanHistory": "📊 Sejarah Larangan Pengguna",
-      "viewHistory": "💡 Gunakan /admin_bans <user_id> untuk melihat sejarah larangan pengguna tertentu"
+      "viewHistory": "💡 Gunakan /admin_bans <user_id> untuk melihat sejarah larangan pengguna tertentu",
+      "onlyAdmin": "❌ Hanya pentadbir yang boleh menggunakan arahan ini",
+      "onlySuperAdmin": "❌ Hanya pentadbir super yang boleh menggunakan arahan ini",
+      "banUsageError": "Penggunaan: /admin_ban <user_id> [jam|tetap]",
+      "cannotBanAdmin": "❌ Tidak boleh mengharamkan pentadbir",
+      "banUserNotFound": "❌ Pengguna tidak ditemui",
+      "operationFailed": "Operasi gagal",
+      "userNotFound": "❌ Pengguna tidak ditemui",
+      "analyticsTitle": "Analisis data operasi harian",
+      "adPerformanceTitle": "Analisis prestasi pengiklanan",
+      "vipFunnelTitle": "Analisis corong penukaran VIP",
+      "dailyReportTitle": "Laporan operasi dan terjemahan harian",
+      "testDailyReport": "Ujian hantaran laporan harian",
+      "testRetentionPush": "Ujian dorongan pengekalan",
+      "testMatchPush": "Ujian dorongan padanan",
+      "analytics": {
+        "message5": "• Kadar ralat: {rate}%",
+        "noPermission": "❌ Anda tidak mempunyai kebenaran untuk melihat data analisis",
+        "getDataFailed": "❌ Gagal mengambil data analisis",
+        "noPermissionAd": "❌ Anda tidak mempunyai kebenaran untuk melihat data pengiklanan",
+        "getAdDataFailed": "❌ Gagal mengambil data pengiklanan",
+        "noPermissionVip": "❌ Anda tidak mempunyai kebenaran untuk melihat data VIP",
+        "getVipDataFailed": "❌ Gagal untuk mengambil data VIP",
+        "sendReportFailed": "❌ Gagal untuk menghantar laporan: {error}",
+        "onlySuperAdmin": "❌ Hanya pentadbir super yang boleh menggunakan arahan ini"
+      }
     },
     "ban2": "Jumlah larangan: ${userBans.results.length}\n\n",
     "ban3": "📊 10 Rekod Larangan Terbaru\n\n",
@@ -416,7 +442,8 @@ export const translations: Translations = {
     "vip6": "⏰ **Peringatan Tamat VIP Dihantar**\n\n",
     "vip7": "🎉 **Pembelian VIP Baharu**\n\n",
     "vip8": "⬇️ **Penurunan Automatik VIP**\n\n",
-    "vip9": "🔄 **Pembaharuan VIP**\n\n"
+    "vip9": "🔄 **Pembaharuan VIP**\n\n",
+    "dailyReport": "📊 Laporan Operasi Harian ({date})\n\n💰 Anggaran Kos Terjemahan:\n{costDetails}\n\n⚠️ Pemantauan Anomali:\n• Penurunan terjemahan: {fallbackCount} kali\n• Kegagalan terjemahan: {errorCount} kali\n\n📈 Data Aktif:\n• Pengguna Baru: {newUsers}\n• Perbualan Aktif: {activeConversations}"
   },
   "adminNotification": {
     "amount": "Jumlah: ${stars} ⭐",
@@ -1111,7 +1138,7 @@ export const translations: Translations = {
     "catch3": "Proses Botol Mesej",
     "catch4": "Proses botol mesej",
     "close": "❌ Tutup",
-    "complete": "🎉 **Tontonan iklan selesai!**\n\n✅ Diperoleh **+1 kuota**\n📊 Ditonton hari ini: **${updated.ads_watched}/20** kali\n🎁 Kuota diperoleh hari ini: **${updated.quota_earned}**\n📈 Tontonan tinggal: **${result.remaining_ads}** kali\n\n${result.remaining_ads > 0 ? '💡 Teruskan menonton iklan untuk memperoleh lebih banyak kuota!' : '✅ Had harian iklan dicapai'}",
+    "complete": "🎉 **Penonton iklan selesai!**\n\n✅ Diperoleh **+1 kuota**\n📊 Dilihat hari ini: **${updated.ads_watched}/20** kali\n🎁 Kuota diperoleh hari ini: **${updated.quota_earned}**\n📈 Tiga kali tinggal: **${result.remaining_ads}** kali\n\n${result.remaining_ads > 0 ? '💡 Teruskan menonton iklan untuk memperoleh lebih banyak kuota!' : '✅ Had iklan harian telah dicapai'}",
     "complete2": "📺 **Tonton iklan untuk mendapatkan kredit**\n\n🎁 Menyelesaikan tontonan akan mendapat **+1 kredit**\n📊 Sisa hari ini: **${remainingAds}/20** kali\n\n👇 Klik butang di bawah untuk mula menonton",
     "complete3": "Masa penyelesaian: ${new Date(broadcast.completedAt).toLocaleString('zh-TW')}\n",
     "complete4": "Anggaran penyelesaian: ${new Date(maintenance.endTime).toLocaleString('zh-TW')}\n",
@@ -1182,11 +1209,11 @@ export const translations: Translations = {
     "mbti9": "🧠 Uji semula MBTI",
     "message": "${typeEmoji} **${ad.title}**\n${statusEmoji} Status: ${status}\n\n📊 **Statistik**\n• Paparan: ${stats.total_views}\n• Klik: ${stats.total_clicks}\n• Kadar klik (CTR): ${stats.ctr}%",
     "message10": "/broadcast_filter gender=female,age=18-25,country=TW Hai semua!\n",
-    "message11": "${banHours} jam",
+    "message11": "${banHours} ${user.language_pref === 'en' ? 'jam' : '小時'}",
     "message12": "Masa: ${new Date(b.created_at).toLocaleString('zh-TW')}\n\n",
     "message13": "Terdapat ${pendingBroadcasts.results.length - 1} siaran yang menunggu dalam barisan\n",
     "message14": "Kemajuan: ${broadcast.sent_count}/${broadcast.total_users}\n",
-    "message15": "${days} hari",
+    "message15": "${days} ${user.language_pref === 'en' ? 'hari' : '天'}",
     "message16": "Sasaran: ${getBroadcastTargetName(broadcast.targetType)}\n",
     "message17": "Status: ${maintenance.isActive ? '✅ Dalam penyelenggaraan' : '❌ Tidak aktif'}",
     "message18": "🚫 URL yang disekat: \n${urlCheck.blockedUrls?.map((url) =>",
@@ -1287,9 +1314,9 @@ export const translations: Translations = {
     "quota2": "• 💎 Tingkatkan ke VIP (30 mesej/hari)",
     "quota3": "• 🎁 Jemput rakan (+1 kuota per orang)\n",
     "quota4": "• ✨ Lengkapkan tugas (dapatkan kuota tetap)\n",
-    "register": "💡 Ini adalah ujian cepat (${testInfo}), keputusan adalah untuk rujukan sahaja.\nSelepas pendaftaran, anda boleh ulang semula dengan /mbti.",
+    "register": "💡 Ini adalah ujian cepat (${testInfo}), keputusan adalah untuk rujukan sahaja.\nSelepas pendaftaran, anda boleh menjawab semula dengan /mbti.",
     "register10": "🎉 Tahniah kerana telah menyelesaikan pendaftaran!\n\n",
-    "register2": "💡 Ini adalah ujian penuh (${testInfo}), keputusan adalah lebih tepat.\nSelepas pendaftaran, anda boleh ulang semula dengan /mbti.",
+    "register2": "💡 Ini adalah ujian penuh (${testInfo}), keputusan adalah lebih tepat.\nSelepas pendaftaran, anda boleh menjawab semula dengan /mbti.",
     "register3": "Langkah pendaftaran: ${user.onboarding_step}\n",
     "register4": "⏰ Proses pendaftaran telah tamat\n\nSila gunakan /start untuk memulakan semula pendaftaran.",
     "register5": "Atau gunakan: /dev_restart (mula pendaftaran automatik)\n\n",
@@ -2379,7 +2406,7 @@ export const translations: Translations = {
     "failed4": "Siaran ini telah ditandakan sebagai status 'gagal'\n",
     "generic": "❌ Ralat berlaku, sila cuba lagi kemudian.",
     "invalidRequest": "❌ Permintaan tidak sah",
-    "message": "${statusEmoji} **${provider.provider_display_name}**\n${healthEmoji} Status Kesihatan: ${health.is_healthy ? 'Baik' : 'Memerlukan Perhatian'}\n📊 Kadar Penyelesaian: ${stats.completion_rate}%\n❌ Kadar Ralat: ${stats.error_rate}%\n📈 Jumlah Permintaan: ${stats.total_requests}\n✅ Jumlah Penyelesaian: ${stats.total_completions}\n💡 Cadangan: ${health.recommendation}",
+    "message": "${statusEmoji} **${provider.provider_display_name}**\n${healthEmoji} Status Kesihatan: ${health.is_healthy ? 'Baik' : 'Perlu Perhatian'}\n📊 Kadar Penyelesaian: ${stats.completion_rate}%\n❌ Kadar Ralat: ${stats.error_rate}%\n📈 Jumlah Permintaan: ${stats.total_requests}\n✅ Jumlah Penyelesaian: ${stats.total_completions}\n💡 Cadangan: ${health.recommendation}",
     "message2": "Mesej ralat: ${error instanceof Error ? error.message : String(error)}",
     "message3": "\\nRalat: ${broadcast.errorMessage}",
     "operationFailed": "❌ Operasi gagal.",
@@ -2514,7 +2541,8 @@ export const translations: Translations = {
     "vip3": "/funnel - Corong penukaran VIP\n\n",
     "vip4": "🎁 **Kuota dan VIP**\n",
     "vip5": "/vip - Langganan VIP\n",
-    "vip6": "💎 **Manfaat VIP**\n"
+    "vip6": "💎 **Manfaat VIP**\n",
+    "dailyReportTitle": "Ambil Laporan Operasi Harian"
   },
   "history": {
     "chatHistory": "💬 **Sejarah Perbualan Anda**\n\n",
@@ -2754,6 +2782,12 @@ export const translations: Translations = {
       "question9": "Anda lebih menghargai:",
       "question9.option1": "Keadilan dan keadilan",
       "question9.option2": "Belas kasihan dan pemahaman"
+    },
+    "share": {
+      "welcome": "👋 Rakan anda mengajak anda untuk mengambil ujian MBTI!\n\nDatang dan lihat jenis personaliti anda～",
+      "startButton": "📊 Mulakan ujian",
+      "resultTitle": "Keputusan ujian MBTI saya adalah {type}!",
+      "resultDesc": "Anda juga patut mencuba ujian itu～"
     }
   },
   "mbtiTest": {
@@ -2763,7 +2797,7 @@ export const translations: Translations = {
     "fullAccuracy": "Keputusan adalah lebih tepat",
     "fullQuestions": "36 soalan",
     "fullTest": "Lengkapkan ujian MBTI",
-    "fullTestInfo": "💡 Ini adalah ujian lengkap ({questions}), hasilnya lebih tepat.\nSetelah menyelesaikan pendaftaran, anda boleh menggunakan /mbti untuk mengambil semula ujian.",
+    "fullTestInfo": "💡 Ini adalah ujian lengkap ({questions}), keputusan adalah lebih tepat.\nSetelah menyelesaikan pendaftaran, anda boleh menggunakan /mbti untuk mengambil semula ujian.",
     "fullTestTitle": "Ujian penuh",
     "manualModify": "• Ubah jenis MBTI anda secara manual",
     "moreDetailedTest": "• Ambil ujian yang lebih terperinci\n",
@@ -2774,7 +2808,7 @@ export const translations: Translations = {
     "quickAccuracy": "Keputusan adalah untuk rujukan sahaja",
     "quickQuestions": "12 soalan",
     "quickTest": "Ujian MBTI Pantas",
-    "quickTestInfo": "💡 Ini adalah ujian cepat ({questions}), hasilnya hanya untuk rujukan.\nSetelah menyelesaikan pendaftaran, anda boleh menggunakan /mbti untuk mengambil semula ujian.",
+    "quickTestInfo": "💡 Ini adalah ujian cepat ({questions}), keputusan adalah untuk rujukan sahaja.\nSetelah menyelesaikan pendaftaran, anda boleh menggunakan /mbti untuk mengambil semula ujian.",
     "quickTestTitle": "Ujian pantas",
     "yourMbtiType": "Jenis MBTI anda ialah: **{type}**\n\n"
   },
@@ -2794,8 +2828,8 @@ export const translations: Translations = {
     "invite3": "📤 Kongsikan Kod Jemputan",
     "levelFree": "🆓 Ahli Percuma",
     "levelVip": "💎 Ahli VIP",
-    "message": "https://t.me/share/url?url=https://t.me/${botUsername}?start=invite_${inviteCode}&text=Datang ke XunNi dan lontarkan botol mesej!🍾 Gunakan kod jemputan saya untuk menyertai, dan kita berdua dapat lebih kuota! https://t.me/share/url?url=https://t.me/${botUsername}?start=invite_${inviteCode}&text=來 https://t.me/share/url?url=https://t.me/${botUsername}?start=invite_${inviteCode}&text=Come",
-    "message2": "https://t.me/share/url?url=https://t.me/${botUsername}?start=invite_${inviteCode}&text=Datang sertai XunNi dan lontarkan botol mesej https://t.me/share/url?url=https://t.me/${botUsername}?start=invite_${inviteCode}&text=來 https://t.me/share/url?url=https://t.me/${botUsername}?start=invite_${inviteCode}&text=Come",
+    "message": "https://t.me/share/url?url=https://t.me/${botUsername}?start=invite_${inviteCode}&text=Datang ke XunNi dan lempar botol mesej!🍾 Gunakan kod undangan saya untuk bergabung, dan kita berdua boleh mendapatkan lebih banyak kuota! https://t.me/share/url?url=https://t.me/${botUsername}?start=invite_${inviteCode}&text=來 https://t.me/share/url?url=https://t.me/${botUsername}?start=invite_${inviteCode}&text=Come",
+    "message2": "https://t.me/share/url?url=https://t.me/${botUsername}?start=invite_${inviteCode}&text=Datang sertai XunNi dan lempar botol mesej https://t.me/share/url?url=https://t.me/${botUsername}?start=invite_${inviteCode}&text=來 https://t.me/share/url?url=https://t.me/${botUsername}?start=invite_${inviteCode}&text=Come",
     "notRegistered": "Tidak Berdaftar",
     "notSet": "Tidak Ditetapkan",
     "quota": "• Kalian berdua mendapat kuota harian +1\n\n",
@@ -2863,7 +2897,7 @@ export const translations: Translations = {
     "noAdsAvailable": "❌ Tiada iklan tersedia",
     "noVerificationRequired": "❌ Iklan ini tidak memerlukan pengesahan",
     "quotaInfo": "📊 Sisa hari ini: **{remaining}/20** kali",
-    "requiresVerification": "✅ Pengesahan diperlukan: Klik butang 'Sahkan' selepas menyertai kumpulan/saluran",
+    "requiresVerification": "✅ Pengesahan diperlukan: Klik butang 'Pengesahan' selepas menyertai kumpulan/saluran",
     "reward": "🎁 Ganjaran: +{quota} kuota tetap",
     "rewardPermanent": "🎁 Lengkapkan tugas untuk mendapat **+1 kuota tetap**.",
     "rewardTemporary": "🎁 Tahniah atas penerimaan +1 kuota sementara (sah hari ini).",
@@ -3078,13 +3112,13 @@ export const translations: Translations = {
     "manual": "Tetapan Manual",
     "mbti": "• Gunakan /mbti untuk mengambil semula atau mengubahsuai MBTI\n",
     "mbtiWithSource": "🧠 MBTI: {mbti}{source}",
-    "message": "https://t.me/share/url?url=https://t.me/${botUsername}?start=invite_${inviteCode}&text=Datang ke XunNi dan campakkan botol mesej!🍾 Gunakan kod jemputan saya: ${inviteCode} https://t.me/share/url?url=https://t.me/${botUsername}?start=invite_${inviteCode}&text=Come https://t.me/share/url?url=https://t.me/${botUsername}?start=invite_${inviteCode}&text=來",
+    "message": "https://t.me/share/url?url=https://t.me/${botUsername}?start=invite_${inviteCode}&text=Datang ke XunNi dan lempar botol mesej!🍾 Gunakan kod undangan saya: ${inviteCode} https://t.me/share/url?url=https://t.me/${botUsername}?start=invite_${inviteCode}&text=來 https://t.me/share/url?url=https://t.me/${botUsername}?start=invite_${inviteCode}&text=Come",
     "message2": "${inviteLimitWarning}\n\n",
     "message3": "🌍 Bahasa: ${user.language_pref}\n\n",
     "message4": "🌍 Bahasa: ${user.language_pref}\n",
     "message5": "📈 Kadar Penukaran: ${inviteStats.conversionRate}%\n",
     "message6": "${gender} • ${age} tahun • ${city}\n\n",
-    "message7": "https://t.me/share/url?url=https://t.me/${botUsername}?start=invite_${inviteCode}&text=Datang ke XunNi dan campakkan botol mesej https://t.me/share/url?url=https://t.me/${botUsername}?start=invite_${inviteCode}&text=Come https://t.me/share/url?url=https://t.me/${botUsername}?start=invite_${inviteCode}&text=來",
+    "message7": "https://t.me/share/url?url=https://t.me/${botUsername}?start=invite_${inviteCode}&text=Datang ke XunNi dan lempar botol mesej https://t.me/share/url?url=https://t.me/${botUsername}?start=invite_${inviteCode}&text=來 https://t.me/share/url?url=https://t.me/${botUsername}?start=invite_${inviteCode}&text=Come",
     "mysterious": "Orang ini agak misteri, tidak meninggalkan apa-apa～",
     "nickname": "📛 Nama Panggilan: ${displayNickname}\n",
     "notSet": "Tidak Ditetapkan",
@@ -3218,7 +3252,13 @@ export const translations: Translations = {
     "toggleCatch": "Tukar peringatan pengambilan botol mesej",
     "toggleMessage": "Tukar peringatan perbualan",
     "quietHours": "Waktu senyap",
-    "saved": "Tetapan disimpan"
+    "saved": "Tetapan disimpan",
+    "editQuietHours": "✏️ Edit Waktu Senyap",
+    "quietDisable": "🚫 Nyahaktifkan Waktu Senyap",
+    "selectStartHour": "🌙 Sila pilih waktu mula untuk waktu senyap:\n(Contohnya: untuk mula pada 23:00, sila pilih 23:00)",
+    "selectEndHour": "☀️ Waktu mula ditetapkan pada {start}:00.\nSila pilih waktu tamat untuk waktu senyap:\n(Pemberitahuan akan disambung semula selepas waktu ini)",
+    "disabled": "🚫 Waktu senyap telah dinyahaktifkan",
+    "quietHoursHint": "Anda tidak akan menerima pemberitahuan tidak mendesak sepanjang tempoh ini"
   },
   "stats": {
     "activeUsers": "• Aktif Semalam: {active}\n\n",
@@ -3539,7 +3579,7 @@ export const translations: Translations = {
       "vip": "✅ Semua pos telah dikemas kini (status VIP tepat)\n",
       "zodiac": "✅ Pilihan zodiak telah dibersihkan"
     },
-    "success2": "{ad.reward_quota} ${ad.reward_quota}",
+    "success2": "🎉 **Pengesahan Berjaya!**\n\n✅ Diperolehi **+${ad.reward_quota} kuota tetap**\n💎 Terima kasih kerana menyertai komuniti kami!\n\n📊 **Kuota anda:**\n• Kuota asas: ${user.is_vip ? 'Tanpa Had' : '10'}/hari\n• Kuota tetap: +${ad.reward_quota}\n\n💡 Dalam komuniti anda boleh:\n• Berkomunikasi dengan pengguna lain\n• Mendapatkan kemas kini ciri terkini\n• Menyertai aktiviti untuk lebih banyak ganjaran",
     "success3": "Berjaya menyegarkan ${result.updated} pos sejarah dalam perbualan.\n\n",
     "success4": "Berjaya disegarkan: ${result.updated}\n",
     "text": "✅ Ditetapkan kepada ${flag} ${countryName}",
@@ -3674,7 +3714,7 @@ export const translations: Translations = {
     "conversation6": "📊 Gunakan /chats untuk melihat semua perbualan",
     "conversation7": "Gunakan /chats untuk melihat semua perbualan",
     "currentSelection": "Pemilihan semasa: {genderText}",
-    "friendlyContent": "[Translation needed from zh-TW.ts]",
+    "friendlyContent": "[Terjemahan diperlukan dari zh-TW.ts]",
     "gender": "• Jantina: ${selectedGender === 'male' ? '👨 Lelaki' : selectedGender === 'female' ? '👩 Perempuan' : '🌈 Sesiapa'}",
     "gender2": "👤 **Penapis Jantina**\n\n",
     "gender3": "• Jantina: Penapis mengikut jantina\n\n",
@@ -3682,15 +3722,15 @@ export const translations: Translations = {
     "gender5": "👤 Penapis Jantina",
     "genderLabel": "• Jantina: {gender}\n",
     "mbti": "• MBTI: ${selectedMBTI.length > 0 ? selectedMBTI.join(', ') : 'Tiada Had'}",
-    "mbti2": "Terpilih: ${selectedMBTI.length > 0 ? selectedMBTI.join(', ') : 'Tiada'}",
+    "mbti2": "Dipilih: ${selectedMBTI.length > 0 ? selectedMBTI.join(', ') : 'Tiada'}",
     "mbti3": "Dipilih: ${selectedMBTI.length > 0 ? selectedMBTI.join(",
     "mbti4": "🧠 **Penapis MBTI**\n\n",
     "mbti5": "• MBTI: Penapis mengikut jenis personaliti tertentu\n",
     "mbti6": "• Keserasian tinggi dengan MBTI ✓",
     "mbti7": "🧠 Penapis MBTI",
     "mbtiLabel": "{mbti}",
-    "message": "Pilihan semasa: ${currentGender === 'male' ? '👨 Lelaki' : currentGender === 'female' ? '👩 Perempuan' : '🌈 Sesiapa'}",
-    "message2": "Pilihan semasa: ${currentGender === 'male' ? '👨 Lelaki' : currentGender === 'female' ? '👩 Perempuan' : '🌈 Sesiapa'}",
+    "message": "Pemilihan semasa: ${currentGender === 'male' ? '👨 Lelaki' : currentGender === 'female' ? '👩 Perempuan' : '🌈 Sesiapa'}",
+    "message2": "Pemilihan semasa: ${currentGender === 'male' ? '👨 Lelaki' : currentGender === 'female' ? '👩 Perempuan' : '🌈 Sesiapa'}",
     "message3": "Dipilih: ${selectedZodiac.length > 0 ? selectedZodiac.map((z) => ZODIAC_NAMES[z]).join(",
     "message4": ") : 'Tiada'} {bloodTypeDisplay[currentBloodType]} ${bloodTypeDisplay[currentBloodType]}\n\n",
     "message5": "👤 Lawan: ${vipMatchInfo.matcherNickname}\n",
@@ -4088,7 +4128,7 @@ export const translations: Translations = {
       "vip3": "⚠️ **VIP tamat hari ini**\n\n"
     },
     "BROADCAST": {
-      "FILTER_ERROR": "❌ Ralat format.\nContoh: `/broadcast_filter gender=female,country=TW test message` `/broadcast_filter gender=female,country=TW 測試訊息`",
+      "FILTER_ERROR": "❌ Ralat format.\nContoh: `/broadcast_filter gender=female,country=TW test message`",
       "NO_CONTENT": "❌ Sila masukkan kandungan siaran.",
       "NO_MATCHES": "⚠️ Tiada pengguna yang memenuhi kriteria ditemui.\nKriteria penapisan: {filters}",
       "TOO_MANY_USERS": "⚠️ Terlalu banyak pengguna sasaran ({count} orang), sekarang terhad kepada menghantar kepada {max} orang pada satu masa.",
@@ -4098,7 +4138,47 @@ export const translations: Translations = {
     "push": {
       "throwReminder": "🌊 Hai! Sudah lama sejak anda melemparkan botol mesej, pantai ini sangat tenang...",
       "catchReminder": "🎣 Beberapa botol mesej baru telah terdampar di pantai, mahu pergi melihatnya?",
-      "onboardingReminder": "👋 Pendaftaran anda belum lengkap, anda hampir selesai! (Langkah: {step})"
+      "onboardingReminder": "👋 Pendaftaran anda belum lengkap, anda hampir selesai! (Langkah: {step})",
+      "messageReminderA": "👋 Hai {masked_partner_name} masih menunggu jawapan anda! Jangan biarkan perbualan sejuk～",
+      "messageReminderB": "📩 Anda mempunyai mesej yang tidak dibaca dari {masked_partner_name}:\n> \"{last_message_preview}...\"\n(Ia telah melebihi 24 jam!)",
+      "messageReminderC": "⏳ {masked_partner_name} sedang menunggu jawapan anda...",
+      "actionReply": "💬 Balas kepada {masked_partner_name}",
+      "actionHistory": "📜 Lihat Konteks"
+    },
+    "match": {
+      "header": {
+        "zodiac": "🌟 Padanan Zodiak Didedahkan",
+        "mbti": "🧠 Resonansi Keperibadian MBTI",
+        "blood": "🩸 Analisis Kod Jenis Darah"
+      },
+      "reason": {
+        "zodiac": {
+          "fire_affinity": "Sebagai tanda api yang seiring, semangat anda bersinar terang dan hubungan anda kuat!",
+          "earth_affinity": "Stabiliti tanda bumi digabungkan dengan kelembutan tanda air mencipta aliran yang sempurna.",
+          "air_affinity": "Kelincahan tanda udara bertemu dengan semangat tanda api, memberi inspirasi kepada kreativiti tanpa henti!",
+          "water_affinity": "Emosi tanda air dan kepraktisan tanda bumi membina sokongan yang paling hangat."
+        },
+        "mbti": {
+          "sj_affinity": "Sosialis (SJ) dan Penjelajah (SP), pelengkap yang sempurna antara kestabilan dan keterujaan!",
+          "sp_affinity": "Penjelajah (SP) dan Sosialis (SJ), rakan kongsi terbaik untuk teman bermain dan penjaga!",
+          "nf_affinity": "Idealis (NF) dan Rasionalis (NT), pertembungan mendalam antara jiwa dan kebijaksanaan!",
+          "nt_affinity": "Rasionalis (NT) dan Idealistis (NF), resonansi antara pemikiran dan perasaan!"
+        },
+        "blood": {
+          "a_affinity": "Ketelitian Jenis A bertemu dengan toleransi Jenis O, mencipta interaksi yang paling selesa.",
+          "b_affinity": "Pengesahan diri Jenis B bertemu dengan sikap santai Jenis O, bebas stres dan santai.",
+          "o_affinity": "Jenis O dan Jenis B/A adalah pasangan pelengkap yang hebat!",
+          "ab_affinity": "Frekuesi unik AB paling difahami oleh golongannya."
+        }
+      },
+      "template": {
+        "body": "{userAttribute},\nMenurut analisis, anda mempunyai ikatan terkuat dengan {recommendedAttributes}!\n\n💡 {reason}\n\n👇 Merasa bertuah?"
+      },
+      "btn": {
+        "throw": "🌊 Balas botol dan ambil peluang",
+        "vip_throw": "🎯 Buang kepada {target}",
+        "vip_upsell": "💡 Tingkatkan ke VIP untuk menandakan penghantaran kepada {target}, untuk padanan yang tepat!"
+      }
     }
   },
   "push": {

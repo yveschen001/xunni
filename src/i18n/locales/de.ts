@@ -119,7 +119,8 @@ export const translations: Translations = {
       "noPermissionVip": "❌ Sie haben keine Berechtigung, die VIP-Daten anzuzeigen",
       "onlySuperAdmin": "❌ Nur Superadministratoren können diesen Befehl verwenden.",
       "sendReportFailed": "❌ Versand des täglichen Berichts fehlgeschlagen: ${error}",
-      "userNotFound": "❌ Benutzer existiert nicht: ${userId}"
+      "userNotFound": "❌ Benutzer existiert nicht: ${userId}",
+      "message5": "• Fehlerquote: {rate}%"
     },
     "appeal": "Beschwerde-ID: ${appeal.id}\n",
     "appeal2": "💡 Verwenden Sie den folgenden Befehl, um die Beschwerde zu überprüfen:\n",
@@ -178,7 +179,32 @@ export const translations: Translations = {
       "usageReject": "Verwendung: /admin_reject <appeal_id> [Bemerkungen]",
       "user": "Benutzer: ${user}",
       "userBanHistory": "📊 Benutzer-Sperrverlauf",
-      "viewHistory": "💡 Verwenden Sie /admin_bans <user_id>, um den Sperrverlauf eines bestimmten Benutzers anzuzeigen"
+      "viewHistory": "💡 Verwenden Sie /admin_bans <user_id>, um den Sperrverlauf eines bestimmten Benutzers anzuzeigen",
+      "onlyAdmin": "❌ Nur Administratoren können diesen Befehl verwenden",
+      "onlySuperAdmin": "❌ Nur Super-Administratoren können diesen Befehl verwenden",
+      "banUsageError": "Nutzung: /admin_ban <user_id> [stunden|permanent]",
+      "cannotBanAdmin": "❌ Administratoren können nicht gesperrt werden",
+      "banUserNotFound": "❌ Benutzer nicht gefunden",
+      "operationFailed": "Betrieb fehlgeschlagen",
+      "userNotFound": "❌ Benutzer nicht gefunden",
+      "analyticsTitle": "Tägliche Betriebsdatenanalyse",
+      "adPerformanceTitle": "Werbeperformance-Analyse",
+      "vipFunnelTitle": "VIP-Konversions-Trichteranalyse",
+      "dailyReportTitle": "Täglicher Übersetzungs- und Betriebsbericht",
+      "testDailyReport": "Test sende täglichen Bericht",
+      "testRetentionPush": "Test Verbleib-Push",
+      "testMatchPush": "Test Matching-Push",
+      "analytics": {
+        "message5": "• Fehlerrate: {rate}%",
+        "noPermission": "❌ Du hast keine Berechtigung, Analysedaten einzusehen",
+        "getDataFailed": "❌ Abrufen der Analysedaten fehlgeschlagen",
+        "noPermissionAd": "❌ Du hast keine Berechtigung, Werbedaten einzusehen",
+        "getAdDataFailed": "❌ Abrufen der Werbedaten fehlgeschlagen",
+        "noPermissionVip": "❌ Du hast keine Berechtigung, VIP-Daten einzusehen",
+        "getVipDataFailed": "❌ Fehler beim Abrufen der VIP-Daten",
+        "sendReportFailed": "❌ Fehler beim Senden des Berichts: {error}",
+        "onlySuperAdmin": "❌ Nur Superadministratoren können diesen Befehl verwenden"
+      }
     },
     "ban2": "Gesamtanzahl der Sperren: ${userBans.results.length}\n\n",
     "ban3": "📊 Letzte 10 Sperrdatensätze\n\n",
@@ -370,10 +396,10 @@ export const translations: Translations = {
     "text24": "Anbieter: ${providerName}\n",
     "text25": "• Typ: ${ad.ad_type}\n",
     "text26": "/admin_add 123456789",
-    "text27": "/official_ad_disable <ad_id>\n\n",
-    "text28": "Zeit: ${timestamp} {priority} ${priority}\n\n",
+    "text27": "Ein Fehler ist während der Verarbeitung aufgetreten, bitte überprüfen Sie die Protokolle.",
+    "text28": "Priorität: ${priority}",
     "text29": "Grund: ${ban.reason}\n",
-    "text3": "Dieser Befehl erfordert eine manuelle Anpassung der Konfigurationsdatei. <ad_id>",
+    "text3": "/official_ad_disable <ad_id>",
     "text30": "Grund: ${data.reason}\n",
     "text31": "🔍 **Avatar-Diagnosereport** {timestamp} ${timestamp}\n\n",
     "text32": "📸 **Avatar-Cache:**\n\n",
@@ -381,7 +407,7 @@ export const translations: Translations = {
     "text34": "🔴 **Rückerstattungsantrag**\n\n",
     "text35": "📢 **Systembenachrichtigung**\n",
     "text36": "Zeit: ${timestamp}",
-    "text37": "🔴 **Rückerstattungsantrag**",
+    "text37": "🔴 **Rückerstattungsanforderung**",
     "text38": "🔎 **Analyse:**\n\n",
     "text39": "<id>",
     "text4": "Risikobewertung: ${ban.risk_snapshot}\n",
@@ -416,7 +442,8 @@ export const translations: Translations = {
     "vip6": "⏰ **VIP-Ablauf-Erinnerung gesendet**\n\n",
     "vip7": "🎉 **Neuer VIP-Kauf**\n\n",
     "vip8": "⬇️ **Automatische Herabstufung des VIPs**\n\n",
-    "vip9": "🔄 **VIP-Erneuerung**\n\n"
+    "vip9": "🔄 **VIP-Erneuerung**\n\n",
+    "dailyReport": "📊 Täglicher Betriebsbericht ({date})\n\n💰 Geschätzte Übersetzungskosten:\n{costDetails}\n\n⚠️ Anomalieüberwachung:\n• Übersetzungsherabstufungen: {fallbackCount} Mal\n• Übersetzungsfehler: {errorCount} Mal\n\n📈 Aktive Daten:\n• Neue Benutzer: {newUsers}\n• Aktive Konversationen: {activeConversations}"
   },
   "adminNotification": {
     "amount": "Betrag: ${stars} ⭐",
@@ -456,7 +483,7 @@ export const translations: Translations = {
     "invite": "• Einladungen gestartet: {initiated} Mal\n• Einladungen akzeptiert: {accepted} Mal\n• Einladungen aktiviert: {activated} Mal\n• Konversionsrate: {conversionRate}%\n\n• Flaschen geworfen: {bottlesThrown} Mal\n• Flaschen gefangen: {bottlesCaught} Mal\n• Neue Gespräche: {conversationsStarted} Mal\n• Durchschnittliche Gesprächsrunden: {avgConversationRounds}\n\n💡 Detaillierte Daten: /analytics",
     "message": "📊 **Täglicher Betriebsbericht**\n📅 Datum: {date}\n\n**👥 Benutzerdaten**\n• Neue Benutzer: {newUsers} Personen\n• Aktive Benutzer (DAU): {dau} Personen\n• Rückhalt-Rate (D1): {d1Retention}%\n• Durchschnittliche Sitzungsdauer: {avgSessionDuration} Minuten\n\n**📺 Anzeigendaten**\n• Drittanbieter-Anzeigen:\n - Impressionen: {thirdPartyImpressions} Mal\n - Abschlüsse: {thirdPartyCompletions} Mal\n - Abschlussquote: {thirdPartyCompletionRate}%\n - Gewährte Belohnungen: {thirdPartyRewardsGranted} Credits",
     "message2": "📊 **Täglicher Betriebsbericht**\n📅 Datum: {date}\n\n⚠️ **Heute keine Daten verfügbar**\n\nDies kann daran liegen:\n• Das System ist neu implementiert, keine Benutzeraktivität bisher\n• Keine Benutzer haben den Bot heute verwendet\n• Datenerfassungsfunktionen wurden noch nicht aktiviert\n\n💡 **Wann erscheinen Daten?**\n• Benutzer müssen eine der folgenden Aktionen ausführen:\n - Senden Sie /start zur Registrierung\n - Flaschen werfen oder fangen\n - Anzeigen ansehen\n - VIP kaufen\n\n• Es wird vorgeschlagen, zu warten, bis Benutzer beginnen, bevor Sie überprüfen\n• Oder Benutzerverhalten in einer Testumgebung simulieren.",
-    "message3": "**📈 Gesamte Konversionsrate: ${report.overall_conversion_rate.toFixed(1)}%**",
+    "message3": "**📈 Gesamtumwandlungsrate: ${report.overall_conversion_rate.toFixed(1)}%**",
     "message4": "• Konversionsrate: ${step.conversion_rate.toFixed(1)}%",
     "message5": "• Fehlerquote: ${provider.error_rate.toFixed(1)}%",
     "message6": "• Anfragen: ${provider.total_requests} Mal",
@@ -713,7 +740,7 @@ export const translations: Translations = {
       "vip5": "✨ **VIP-Privilegien aktiviert!**\n\n",
       "vip6": "💡 Upgrade auf VIP, um zu erhalten:\n",
       "vip7": "✨ Aktivierung der VIP-Rechte\n",
-      "zodiac": "• Tierkreiszeichen: \\${selectedZodiac.length > 0 ? selectedZodiac.map((z) => ZODIAC_NAMES[z]).join(', ') : 'Keine Einschränkungen'}",
+      "zodiac": "• Sternzeichen: \\${selectedZodiac.length > 0 ? selectedZodiac.map((z) => ZODIAC_NAMES[z]).join(', ') : 'Keine Einschränkungen'}",
       "zodiac2": "⭐ Sternzeichen: \\${matchResult.user.zodiac ||",
       "zodiac3": "⭐ Sternzeichen: \\${user.zodiac_sign ||",
       "zodiac4": "⭐ **Sternzeichenfilter**\n\n",
@@ -1111,7 +1138,7 @@ export const translations: Translations = {
     "catch3": "Prozess der Nachrichtenflasche",
     "catch4": "Prozess der Nachrichtenflasche",
     "close": "❌ Schließen",
-    "complete": "🎉 **Anzeigeansicht abgeschlossen!**\n\n✅ Verdient **+1 Quota**\n📊 Heute angesehen: **${updated.ads_watched}/20** mal\n🎁 Heute verdiente Quota: **${updated.quota_earned}**\n📈 Verbleibende Ansichten: **${result.remaining_ads}** mal\n\n${result.remaining_ads > 0 ? '💡 Weiter Anzeigen ansehen, um mehr Quota zu verdienen!' : '✅ Tägliches Anzeigenlimit erreicht'}",
+    "complete": "🎉 **Anzeige der Werbung abgeschlossen!**\n\n✅ Verdient **+1 Quota**\n📊 Heute angesehen: **${updated.ads_watched}/20** Mal\n🎁 Heute verdiente Quota: **${updated.quota_earned}**\n📈 Verbleibende Ansichten: **${result.remaining_ads}** Mal\n\n${result.remaining_ads > 0 ? '💡 Weiterhin Werbung ansehen, um mehr Quota zu verdienen!' : '✅ Tägliches Werbelimit erreicht'}",
     "complete2": "📺 **Sieh dir Anzeigen an, um Credits zu verdienen**\n\n🎁 Das Ansehen abschließen wird **+1 Credit** einbringen\n📊 Verbleibend heute: **${remainingAds}/20** Male\n\n👇 Klicke auf die Schaltfläche unten, um mit dem Ansehen zu beginnen",
     "complete3": "Abschlusszeit: ${new Date(broadcast.completedAt).toLocaleString('zh-TW')}\n",
     "complete4": "Geschätzter Abschluss: ${new Date(maintenance.endTime).toLocaleString('zh-TW')}\n",
@@ -1182,11 +1209,11 @@ export const translations: Translations = {
     "mbti9": "🧠 MBTI-Test erneut machen",
     "message": "${typeEmoji} **${ad.title}**\n${statusEmoji} Status: ${status}\n\n📊 **Statistiken**\n• Aufrufe: ${stats.total_views}\n• Klicks: ${stats.total_clicks}\n• Klickrate (CTR): ${stats.ctr}%",
     "message10": "/broadcast_filter gender=female,age=18-25,country=TW Hallo zusammen!\n",
-    "message11": "${banHours} Stunden",
+    "message11": "${banHours} ${user.language_pref === 'en' ? 'Stunden' : '小時'}",
     "message12": "Zeit: ${new Date(b.created_at).toLocaleString('zh-TW')}\n\n",
     "message13": "Es gibt ${pendingBroadcasts.results.length - 1} Sendungen in der Warteschlange\n",
     "message14": "Fortschritt: ${broadcast.sent_count}/${broadcast.total_users}\n",
-    "message15": "${days} Tage",
+    "message15": "${days} ${user.language_pref === 'en' ? 'Tage' : '天'}",
     "message16": "Ziel: ${getBroadcastTargetName(broadcast.targetType)}\n",
     "message17": "Status: ${maintenance.isActive ? '✅ In Wartung' : '❌ Nicht aktiv'}",
     "message18": "🚫 Blockierte URLs:\n${urlCheck.blockedUrls?.map((url) =>",
@@ -1287,9 +1314,9 @@ export const translations: Translations = {
     "quota2": "• 💎 Upgrade auf VIP (30 Nachrichten/Tag)",
     "quota3": "• 🎁 Freunde einladen (+1 Quote pro Person)\n",
     "quota4": "• ✨ Aufgaben abschließen (dauerhafte Quoten erhalten)\n",
-    "register": "💡 Dies ist ein schneller Test (${testInfo}), die Ergebnisse dienen nur als Referenz.\nNach der Registrierung können Sie mit /mbti einen neuen Test durchführen.",
+    "register": "💡 Dies ist ein schneller Test (${testInfo}), die Ergebnisse sind nur zur Referenz.\nNach der Registrierung können Sie mit /mbti erneut testen.",
     "register10": "🎉 Glückwunsch zur abgeschlossenen Registrierung!\n\n",
-    "register2": "💡 Dies ist ein vollständiger Test (${testInfo}), die Ergebnisse sind genauer.\nNach der Registrierung können Sie mit /mbti einen neuen Test durchführen.",
+    "register2": "💡 Dies ist ein vollständiger Test (${testInfo}), die Ergebnisse sind genauer.\nNach der Registrierung können Sie mit /mbti erneut testen.",
     "register3": "Registrierungsschritte: ${user.onboarding_step}\n",
     "register4": "⏰ Der Registrierungsprozess ist abgelaufen\n\nBitte verwenden Sie /start, um die Registrierung neu zu starten.",
     "register5": "Oder verwenden Sie: /dev_restart (automatischer Registrierungsstart)\n\n",
@@ -1584,7 +1611,7 @@ export const translations: Translations = {
     "text149": "📋 Rechtliche Dokumente sind nur auf Englisch verfügbar.",
     "text15": "✅ Überprüfung erforderlich: Klicken Sie nach dem Beitritt zur Gruppe/zum Kanal auf die Schaltfläche 'Verifizieren'",
     "text150": "📋 Rechtliche Dokumente sind nur auf Englisch verfügbar.",
-    "text16": "✅ Verifizierung erforderlich: Klicken Sie nach dem Beitritt zur Gruppe/dem Kanal auf die Schaltfläche 'Verifizieren'",
+    "text16": "✅ Verifizierung erforderlich: Klicken Sie auf die Schaltfläche 'Überprüfen', nachdem Sie der Gruppe/dem Kanal beigetreten sind",
     "text17": "Zielbenutzeranzahl: ${userIds.length}\n\n",
     "text18": "Geschätzte Zeit: ${estimatedTime}\n\n",
     "text19": "/broadcast_cleanup bestätigen",
@@ -2379,7 +2406,7 @@ export const translations: Translations = {
     "failed4": "Diese Übertragungen wurden als 'fehlgeschlagen' markiert\n",
     "generic": "❌ Ein Fehler ist aufgetreten, bitte versuchen Sie es später erneut.",
     "invalidRequest": "❌ Ungültige Anfrage",
-    "message": "${statusEmoji} **${provider.provider_display_name}**\n${healthEmoji} Gesundheitsstatus: ${health.is_healthy ? 'Gut' : 'Benötigt Aufmerksamkeit'}\n📊 Abschlussquote: ${stats.completion_rate}%\n❌ Fehlerquote: ${stats.error_rate}%\n📈 Gesamtanfragen: ${stats.total_requests}\n✅ Gesamtabschlüsse: ${stats.total_completions}\n💡 Empfehlung: ${health.recommendation}",
+    "message": "${statusEmoji} **${provider.provider_display_name}**\n${healthEmoji} Gesundheitsstatus: ${health.is_healthy ? 'Gut' : 'Benötigt Aufmerksamkeit'}\n📊 Abschlussrate: ${stats.completion_rate}%\n❌ Fehlerquote: ${stats.error_rate}%\n📈 Gesamte Anfragen: ${stats.total_requests}\n✅ Gesamte Abschlüsse: ${stats.total_completions}\n💡 Empfehlung: ${health.recommendation}",
     "message2": "Fehlermeldung: ${error instanceof Error ? error.message : String(error)}",
     "message3": "Fehler: ${broadcast.errorMessage}",
     "operationFailed": "❌ Vorgang fehlgeschlagen",
@@ -2514,7 +2541,8 @@ export const translations: Translations = {
     "vip3": "/funnel - VIP-Konversionsfunnel\n\n",
     "vip4": "🎁 **Quota und VIP**\n",
     "vip5": "/vip - VIP-Abonnement\n",
-    "vip6": "💎 **VIP-Vorteile**\n"
+    "vip6": "💎 **VIP-Vorteile**\n",
+    "dailyReportTitle": "Täglichen Betriebsbericht abrufen"
   },
   "history": {
     "chatHistory": "💬 **Dein Chatverlauf**\n\n",
@@ -2754,6 +2782,12 @@ export const translations: Translations = {
       "question9": "Was schätzen Sie mehr:",
       "question9.option1": "Fairness und Gerechtigkeit",
       "question9.option2": "Einfühlungsvermögen und Verständnis"
+    },
+    "share": {
+      "welcome": "👋 Dein Freund lädt dich ein, den MBTI-Test zu machen!\n\nKomm und finde deinen Persönlichkeitstyp heraus～",
+      "startButton": "📊 Test starten",
+      "resultTitle": "Mein MBTI-Testresultat ist {type}!",
+      "resultDesc": "Du solltest den Test auch versuchen～"
     }
   },
   "mbtiTest": {
@@ -2763,7 +2797,7 @@ export const translations: Translations = {
     "fullAccuracy": "Genauere Ergebnisse",
     "fullQuestions": "36 Fragen",
     "fullTest": "MBTI-Test abschließen",
-    "fullTestInfo": "💡 Dies ist ein vollständiger Test ({questions}), das Ergebnis ist genauer.\nNach Abschluss der Registrierung können Sie /mbti verwenden, um den Test erneut zu machen.",
+    "fullTestInfo": "💡 Dies ist ein vollständiger Test ({questions}), das Ergebnis ist genauer.\nNach Abschluss der Registrierung können Sie /mbti verwenden, um den Test zu wiederholen.",
     "fullTestTitle": "Test abschließen",
     "manualModify": "• MBTI-Typ manuell ändern",
     "moreDetailedTest": "• Einen detaillierteren Test machen\n",
@@ -2774,7 +2808,7 @@ export const translations: Translations = {
     "quickAccuracy": "Ergebnisse nur zur Orientierung",
     "quickQuestions": "12 Fragen",
     "quickTest": "Schneller MBTI-Test",
-    "quickTestInfo": "💡 Dies ist ein kurzer Test ({questions}), das Ergebnis dient nur zur Orientierung.\nNach Abschluss der Registrierung können Sie /mbti verwenden, um den Test erneut zu machen.",
+    "quickTestInfo": "💡 Dies ist ein schneller Test ({questions}), das Ergebnis dient nur zur Orientierung.\nNach Abschluss der Registrierung können Sie /mbti verwenden, um den Test zu wiederholen.",
     "quickTestTitle": "Schnelltest",
     "yourMbtiType": "Dein MBTI-Typ ist: **{type}**\n\n"
   },
@@ -2816,7 +2850,7 @@ export const translations: Translations = {
     "text5": "📊 Ihr Status:\n",
     "title": "🏠 **Hauptmenü**",
     "userNotFound": "Benutzer existiert nicht",
-    "vip": "• Niveau: ${isVip ? 'VIP-Mitglied 💎' : 'Kostenloses Mitglied'}",
+    "vip": "• Stufe: ${isVip ? 'VIP Mitglied 💎' : 'Kostenloses Mitglied'}",
     "vip2": "VIP-Mitglied 💎",
     "yourStatus": "Ihr Status"
   },
@@ -2863,7 +2897,7 @@ export const translations: Translations = {
     "noAdsAvailable": "❌ Momentan keine verfügbaren Anzeigen",
     "noVerificationRequired": "❌ Diese Anzeige erfordert keine Verifizierung",
     "quotaInfo": "📊 Verbleibend für heute: **{remaining}/20** Mal",
-    "requiresVerification": "✅ Verifizierung erforderlich: Klicken Sie auf die Schaltfläche 'Verifizieren', nachdem Sie der Gruppe/dem Kanal beigetreten sind",
+    "requiresVerification": "✅ Verifizierung erforderlich: Klicken Sie auf die Schaltfläche 'Verifizieren', nachdem Sie der Gruppe/ dem Kanal beigetreten sind",
     "reward": "🎁 Belohnung: +{quota} permanente Quoten",
     "rewardPermanent": "🎁 Erledigen Sie die Aufgabe, um **+1 permanente Quote** zu verdienen",
     "rewardTemporary": "🎁 Herzlichen Glückwunsch! Sie haben +1 temporäre Quote erhalten (gültig heute)",
@@ -3218,7 +3252,13 @@ export const translations: Translations = {
     "toggleCatch": "Erinnerung zur Abholung der Nachrichtenflasche umschalten",
     "toggleMessage": "Erinnerung am Gespräch umschalten",
     "quietHours": "Ruhige Zeit",
-    "saved": "Einstellungen gespeichert"
+    "saved": "Einstellungen gespeichert",
+    "editQuietHours": "✏️ Ruhige Zeiten bearbeiten",
+    "quietDisable": "🚫 Ruhige Zeiten deaktivieren",
+    "selectStartHour": "🌙 Bitte wählen Sie die Startzeit für ruhige Zeiten:\n(Zum Beispiel: Um um 23:00 Uhr zu beginnen, bitte 23:00 auswählen)",
+    "selectEndHour": "☀️ Startzeit auf {start}:00 gesetzt.\nBitte wählen Sie die Endzeit für ruhige Zeiten:\n(Benachrichtigungen werden nach dieser Zeit wieder aufgenommen)",
+    "disabled": "🚫 Ruhige Zeiten wurden deaktiviert",
+    "quietHoursHint": "Du wirst in dieser Zeit keine nicht dringenden Benachrichtigungen erhalten"
   },
   "stats": {
     "activeUsers": "• Gestern aktiv: {active}\n\n",
@@ -3539,7 +3579,7 @@ export const translations: Translations = {
       "vip": "✅ Alle Beiträge sind auf dem neuesten Stand (VIP-Status ist korrekt)\n",
       "zodiac": "✅ Auswahl des Sternzeichens wurde zurückgesetzt"
     },
-    "success2": "🎉 **Verifizierung Erfolgreich!**\n\n✅ Erhaltene **+${ad.reward_quota} permanente Quote**\n💎 Vielen Dank, dass Sie Teil unserer Gemeinschaft sind!\n\n📊 **Ihre Quote:**\n• Basisquote: ${user.is_vip ? 'Unbegrenzt' : '10'}/Tag\n• Permanente Quote: +${ad.reward_quota}\n\n💡 In der Gemeinschaft können Sie:\n• Mit anderen Nutzern kommunizieren\n• Die neuesten Funktionen-Updates erhalten\n• An Aktivitäten für weitere Belohnungen teilnehmen",
+    "success2": "🎉 **Verifizierung erfolgreich!**\n\n✅ Erhaltene **+${ad.reward_quota} permanente Quote**\n💎 Vielen Dank, dass Sie unserer Community beigetreten sind!\n\n📊 **Ihr Kontingent:**\n• Basisquote: ${user.is_vip ? 'Unbegrenzt' : '10'}/Tag\n• Permanente Quote: +${ad.reward_quota}\n\n💡 In der Community können Sie:\n• Mit anderen Benutzern kommunizieren\n• Die neuesten Funktionsupdates erhalten\n• An Aktivitäten für mehr Belohnungen teilnehmen",
     "success3": "Erfolgreich ${result.updated} historische Beiträge im Gespräch aktualisiert.\n\n",
     "success4": "Erfolgreich aktualisiert: ${result.updated}\n",
     "text": "✅ Festgelegt als ${flag} ${countryName}",
@@ -3681,7 +3721,7 @@ export const translations: Translations = {
     "gender4": "💡 Wählen Sie das Geschlecht aus, das Sie möchten:",
     "gender5": "👤 Geschlechtsfilter",
     "genderLabel": "• Geschlecht: {gender}\n",
-    "mbti": "• MBTI: ${selectedMBTI.length > 0 ? selectedMBTI.join(', ') : 'Keine Begrenzung'}",
+    "mbti": "• MBTI: ${selectedMBTI.length > 0 ? selectedMBTI.join(', ') : 'Keine Einschränkung'}",
     "mbti2": "Ausgewählt: ${selectedMBTI.length > 0 ? selectedMBTI.join(', ') : 'Keine'}",
     "mbti3": "Ausgewählt: ${selectedMBTI.length > 0 ? selectedMBTI.join(",
     "mbti4": "🧠 **MBTI-Filter**\n\n",
@@ -3836,7 +3876,7 @@ export const translations: Translations = {
     "purchaseCancelled": "✅ Kauf storniert",
     "quota": "• Tägliches Kontingent von 30 Nachrichtenflaschen (Freunde einladen, um zu erhöhen, max. 100 pro Tag)\n",
     "quota2": "• Tägliches Kontingent von 30 Nachrichtenflaschen (max. 100 pro Tag)\n",
-    "refundAdminCommands": "Ablaufzeit: ${expireDate} <ID> `/admin_approve_refund <ID>` `/admin_reject_refund <ID> ` `/admin_reject_refund <ID> <原因>`",
+    "refundAdminCommands": "Ablaufdatum: ${expireDate} <ID> `/admin_approve_refund <ID>` `/admin_reject_refund <ID> ` `/admin_reject_refund <ID> <原因>`",
     "refundApproved": "✅ **Rückerstattung genehmigt**\n\nRückerstattungsbetrag: ${amount} ⭐\nDie Rückerstattung wird innerhalb von 1-3 Werktagen gutgeschrieben.\n\nIhre VIP-Mitgliedschaft wurde gekündigt.\n\nDanke für Ihr Verständnis!",
     "refundApprovedAdmin": "✅ Rückerstattung genehmigt\n\nAnforderungs-ID: #${requestId}\nBenutzer-ID: ${userId}\nBetrag: ${amount} ⭐",
     "refundExpired": "❌ Rückerstattungsanfrage überschreitet die Frist\n\nZahlungsdatum: ${paymentDate}\nRückerstattungsfrist: Innerhalb von 7 Tagen nach der Zahlung\n\n💡 Bei besonderen Umständen wenden Sie sich bitte an den Kundensupport.",
@@ -4088,7 +4128,7 @@ export const translations: Translations = {
       "vip3": "⚠️ **VIP läuft heute ab**\n\n"
     },
     "BROADCAST": {
-      "FILTER_ERROR": "❌ Formatfehler.\nBeispiel: `/broadcast_filter gender=female,country=TW test message` `/broadcast_filter gender=female,country=TW 測試訊息`",
+      "FILTER_ERROR": "❌ Formatfehler.\nBeispiel: `/broadcast_filter gender=female,country=TW test message`",
       "NO_CONTENT": "❌ Bitte geben Sie den Broadcast-Inhalt ein.",
       "NO_MATCHES": "⚠️ Es wurden keine Benutzer gefunden, die den Kriterien entsprechen.\nFilterkriterien: {filters}",
       "TOO_MANY_USERS": "⚠️ Zu viele Zielbenutzer ({count} Personen), derzeit auf {max} Personen gleichzeitig beschränkt.",
@@ -4098,7 +4138,47 @@ export const translations: Translations = {
     "push": {
       "throwReminder": "🌊 Hey! Es ist eine Weile her, seit du eine Nachrichtenflasche geworfen hast, der Strand ist sehr ruhig...",
       "catchReminder": "🎣 Einige neue Nachrichtenflaschen sind am Strand angespült worden, möchtest du sie dir ansehen?",
-      "onboardingReminder": "👋 Deine Registrierung ist noch nicht abgeschlossen, du bist fast da! (Schritt: {step})"
+      "onboardingReminder": "👋 Deine Registrierung ist noch nicht abgeschlossen, du bist fast da! (Schritt: {step})",
+      "messageReminderA": "👋 Hey {masked_partner_name} wartet immer noch auf deine Antwort! Lass das Gespräch nicht abkühlen～",
+      "messageReminderB": "📩 Du hast eine ungelesene Nachricht von {masked_partner_name}:\n> \"{last_message_preview}...\"\n(Sie ist über 24 Stunden alt!)",
+      "messageReminderC": "⏳ {masked_partner_name} wartet auf deine Antwort...",
+      "actionReply": "💬 Antworte an {masked_partner_name}",
+      "actionHistory": "📜 Kontext anzeigen"
+    },
+    "match": {
+      "header": {
+        "zodiac": "🌟 Tierkreiszeichen-Match enthüllt",
+        "mbti": "🧠 MBTI-Persönlichkeit Resonanz",
+        "blood": "🩸 Blutgruppencode-Analyse"
+      },
+      "reason": {
+        "zodiac": {
+          "fire_affinity": "Als Gleichgesinnte Feuerzeichen brennt eure Leidenschaft hell und eure Verbindung ist stark!",
+          "earth_affinity": "Die Stabilität der Erdzeichen kombiniert mit der Sanftheit der Wasserzeichen schafft den perfekten Fluss.",
+          "air_affinity": "Die Beweglichkeit der Luftzeichen trifft auf die Leidenschaft der Feuerzeichen und inspiriert endlose Kreativität!",
+          "water_affinity": "Die Emotionen der Wasserzeichen und die Praktikabilität der Erdzeichen bilden die wärmste Unterstützung."
+        },
+        "mbti": {
+          "sj_affinity": "Sozializer (SJ) und Explorer (SP), eine perfekte Ergänzung von Stabilität und Aufregung!",
+          "sp_affinity": "Explorer (SP) und Sozializer (SJ), die besten Partner für Spielkameraden und Betreuer!",
+          "nf_affinity": "Idealisten (NF) und Rationalisten (NT), eine tiefe Kollision von Seele und Weisheit!",
+          "nt_affinity": "Rationalisten (NT) und Idealisten (NF), eine Resonanz von Gedanken und Gefühlen!"
+        },
+        "blood": {
+          "a_affinity": "Die Sorgfalt von Typ A trifft auf die Toleranz von Typ O und schafft die angenehmsten Interaktionen.",
+          "b_affinity": "Die Durchsetzungskraft von Typ B trifft auf die entspanntere Natur von Typ O, stressfrei und entspannt.",
+          "o_affinity": "Typ O und Typ B/A sind großartige ergänzende Partner!",
+          "ab_affinity": "Die einzigartige Frequenz von AB wird am besten von Gleichgesinnten verstanden."
+        }
+      },
+      "template": {
+        "body": "{userAttribute},\nLaut der Analyse hast du die größte Affinität zu {recommendedAttributes}!\n\n💡 {reason}\n\n👇 Fühlst du dich glücklich?"
+      },
+      "btn": {
+        "throw": "🌊 Wirf eine Flasche und versuche dein Glück",
+        "vip_throw": "🎯 Werfen auf {target}",
+        "vip_upsell": "💡 Upgrade auf VIP, um die Zustellung an {target} zu bestimmen, für präzises Matching!"
+      }
     }
   },
   "push": {

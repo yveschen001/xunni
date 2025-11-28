@@ -99,7 +99,7 @@ export const translations: Translations = {
     },
     "addAlreadyAdmin": "❌ Acest utilizator este deja admin.",
     "addAlreadySuperAdmin": "❌ Acest utilizator este deja super admin, nu este nevoie să fie adăugat.",
-    "addCommand": "`/admin_adaugă <user_id>` `/admin_add <user_id>`",
+    "addCommand": "`/admin_add <user_id>`",
     "addExample": "`/admin_add 123456789` - Adaugă ca administrator obișnuit\n\n",
     "addInstructions": "⚠️ **Notă**\n\nAceastă comandă necesită modificarea manuală a fișierului de configurare.\n\n**Pași:**\n1. Editează `wrangler.toml`\n2. Găsește variabila `ADMIN_USER_IDS`\n3. Adaugă ID-ul utilizatorului: `{userId}`\n4. Format: `ADMIN_USER_IDS = \"ID1,ID2,{userId}\"`\n5. Redeploy: `pnpm deploy:staging`\n\n**Informații Utilizator:**\n• ID: `{userId}`\n• Nickname: {nickname}\n• Username: @{username}\n\n💡 Sau modifică variabilele de mediu în Cloudflare Dashboard",
     "addUsageError": "❌ Utilizare incorectă\n\n",
@@ -119,7 +119,8 @@ export const translations: Translations = {
       "noPermissionVip": "❌ Nu aveți permisiunea de a vizualiza datele VIP",
       "onlySuperAdmin": "❌ Numai superadministratori pot folosi această comandă.",
       "sendReportFailed": "❌ Trimiterea raportului zilnic a eșuat: ${error}",
-      "userNotFound": "❌ Utilizatorul nu a fost găsit: ${userId}"
+      "userNotFound": "❌ Utilizatorul nu a fost găsit: ${userId}",
+      "message5": "• Rata de eroare: {rate}%"
     },
     "appeal": "ID apel: ${appeal.id}\n",
     "appeal2": "💡 Utilizați următoarea comandă pentru a revizui apelul:\n",
@@ -178,7 +179,32 @@ export const translations: Translations = {
       "usageReject": "Utilizare: /admin_reject <appeal_id> [observații]",
       "user": "Utilizator: ${user}",
       "userBanHistory": "📊 Istoricul interdicțiilor utilizatorului",
-      "viewHistory": "💡 Folosește /admin_bans <user_id> pentru a vizualiza istoricul interdicțiilor unui utilizator specific"
+      "viewHistory": "💡 Folosește /admin_bans <user_id> pentru a vizualiza istoricul interdicțiilor unui utilizator specific",
+      "onlyAdmin": "❌ Numai administratorii pot folosi această comandă",
+      "onlySuperAdmin": "❌ Numai super administratorii pot folosi această comandă",
+      "banUsageError": "Utilizare: /admin_ban <user_id> [ore|permanent]",
+      "cannotBanAdmin": "❌ Nu se poate interzice administratorii",
+      "banUserNotFound": "❌ Utilizatorul nu a fost găsit",
+      "operationFailed": "Operațiunea a eșuat",
+      "userNotFound": "❌ Utilizatorul nu a fost găsit",
+      "analyticsTitle": "Analiza datelor operaționale zilnice",
+      "adPerformanceTitle": "Analiza performanței publicitare",
+      "vipFunnelTitle": "Analiza canalului de conversie VIP",
+      "dailyReportTitle": "Raport zilnic de traducere și operațiuni",
+      "testDailyReport": "Test de trimitere a raportului zilnic",
+      "testRetentionPush": "Test de împingere a retenției",
+      "testMatchPush": "Test de împingere a potrivirii",
+      "analytics": {
+        "message5": "• Rata de eroare: {rate}%",
+        "noPermission": "❌ Nu ai permisiunea de a vizualiza datele de analiză",
+        "getDataFailed": "❌ Eșec la recuperarea datelor de analiză",
+        "noPermissionAd": "❌ Nu ai permisiunea de a vizualiza datele publicitare",
+        "getAdDataFailed": "❌ Eșec la recuperarea datelor publicitare",
+        "noPermissionVip": "❌ Nu ai permisiunea de a vizualiza datele VIP",
+        "getVipDataFailed": "❌ Nu s-a putut recupera datele VIP",
+        "sendReportFailed": "❌ Nu s-a putut trimite raportul: {error}",
+        "onlySuperAdmin": "❌ Numai super administratorii pot folosi această comandă"
+      }
     },
     "ban2": "Total interdicții: ${userBans.results.length}\n\n",
     "ban3": "📊 Ultimele 10 Înregistrări de Interdicție\n\n",
@@ -261,7 +287,7 @@ export const translations: Translations = {
     "message19": "• Ultimul: ${post.is_latest ? '✅' : '❌'}\n",
     "message2": "• Actualizat la: ${avatarInfo.avatar_updated_at ? new Date(avatarInfo.avatar_updated_at).toLocaleString('zh-TW') : 'Necunoscut'}",
     "message20": "• Postări învechite: ${stats.totalOutdatedPosts}\n\n",
-    "message21": "/ad_provider_priority <id> <prioritate> <priority>",
+    "message21": "/ad_provider_priority <id> <priority>",
     "message22": "• Necesită Actualizare: ${stats.usersNeedingRefresh}\n",
     "message23": "• Postări Actualizate: ${results.totalPostsUpdated}\n",
     "message24": "Utilizator: ${ban.nickname || ban.user_id}\n",
@@ -410,13 +436,14 @@ export const translations: Translations = {
     "userNotFound": "❌ Utilizatorul nu există.",
     "vip": "• Expirarea VIP: ${new Date(user.vip_expire_at).toLocaleString('zh-TW')}\n",
     "vip2": "• Creat cu VIP: ${post.created_with_vip_status ? '✅' : '❌'}\n",
-    "vip3": "• VIP Status: ${isVip ? '✅ Da' : '❌ Nu'}",
+    "vip3": "• Status VIP: ${isVip ? '✅ Da' : '❌ Nu'}",
     "vip4": "• Utilizatori VIP în total: ${stats.totalVipUsers}\n",
     "vip5": "🔄 **Începeți reîmprospătarea în masă a avatarelor VIP**\n\n",
     "vip6": "⏰ **Aducerea aminte a expirării VIP a fost trimisă**\n\n",
     "vip7": "🎉 **Nouă achiziție VIP**\n\n",
     "vip8": "⬇️ **Retrogradare automată VIP**\n\n",
-    "vip9": "🔄 **Reînnoire VIP**\n\n"
+    "vip9": "🔄 **Reînnoire VIP**\n\n",
+    "dailyReport": "📊 Raport operațional zilnic ({date})\n\n💰 Costuri estimate de traducere:\n{costDetails}\n\n⚠️ Monitorizarea anomaliilor:\n• Scăderi de traducere: {fallbackCount} ori\n• Eșecuri de traducere: {errorCount} ori\n\n📈 Date active:\n• Utilizatori noi: {newUsers}\n• Conversații active: {activeConversations}"
   },
   "adminNotification": {
     "amount": "Sumă: ${stars} ⭐",
@@ -1111,7 +1138,7 @@ export const translations: Translations = {
     "catch3": "Proces sticlă cu mesaj",
     "catch4": "Procesul sticlei cu mesaj",
     "close": "❌ Închide",
-    "complete": "🎉 **Vizionarea anunțului s-a încheiat!**\n\n✅ Ai câștigat **+1 cotă**\n📊 Vizionate astăzi: **${updated.ads_watched}/20** ori\n🎁 Cotă câștigată astăzi: **${updated.quota_earned}**\n📈 Vizionări rămase: **${result.remaining_ads}** ori\n\n${result.remaining_ads > 0 ? '💡 Continuă să vizionezi anunțuri pentru a câștiga mai multe cote!' : '✅ Limita zilnică a anunțurilor a fost atinsă'}",
+    "complete": "🎉 **Vizionarea reclamei s-a finalizat!**\n\n✅ A câștigat **+1 cotă**\n📊 Vizualizate astăzi: **${updated.ads_watched}/20** ori\n🎁 Cotă câștigată astăzi: **${updated.quota_earned}**\n📈 Vizualizări rămase: **${result.remaining_ads}** ori\n\n${result.remaining_ads > 0 ? '💡 Continuă să vizionezi reclame pentru a câștiga mai multă cotă!' : '✅ Limita zilnică de reclame a fost atinsă'}",
     "complete2": "📺 **Vizionați anunțuri pentru a câștiga credite**\n\n🎁 Finalizarea vizionării va câștiga **+1 credit**\n📊 Rămase astăzi: **${remainingAds}/20** ori\n\n👇 Fă clic pe butonul de mai jos pentru a începe să vizionezi",
     "complete3": "Timp de completare: ${new Date(broadcast.completedAt).toLocaleString('zh-TW')}\n",
     "complete4": "Estimare completare: ${new Date(maintenance.endTime).toLocaleString('zh-TW')}\n",
@@ -1182,13 +1209,13 @@ export const translations: Translations = {
     "mbti9": "🧠 Re-Test MBTI",
     "message": "${typeEmoji} **${ad.title}**\n${statusEmoji} Stare: ${status}\n\n📊 **Statistici**\n• Vizualizări: ${stats.total_views}\n• Clickuri: ${stats.total_clicks}\n• Rata de clic (CTR): ${stats.ctr}%",
     "message10": "/broadcast_filter gender=female,age=18-25,country=TW Bună tuturor!\n",
-    "message11": "${banHours} ore",
+    "message11": "${banHours} ${user.language_pref === 'en' ? 'ore' : '小時'}",
     "message12": "Timp: ${new Date(b.created_at).toLocaleString('zh-TW')}\n\n",
     "message13": "Există ${pendingBroadcasts.results.length - 1} transmisii în așteptare în coadă\n",
     "message14": "Progres: ${broadcast.sent_count}/${broadcast.total_users}\n",
-    "message15": "${days} zile",
+    "message15": "${days} ${user.language_pref === 'en' ? 'zile' : '天'}",
     "message16": "Țintă: ${getBroadcastTargetName(broadcast.targetType)}\n",
-    "message17": "Status: ${maintenance.isActive ? '✅ În mentenanță' : '❌ Inactiv'}",
+    "message17": "Status: ${maintenance.isActive ? '✅ Întreținere activă' : '❌ Nu este activ'}",
     "message18": "🚫 URL-uri blocate:\n${urlCheck.blockedUrls?.map((url) =>",
     "message19": "• Ultima mesaj: ${formatDate(stats.last_message_time)}\n",
     "message2": "data nașterii = '2000-01-01',\n vârsta = 25,\n semn zodiacal = 'Capricorni',\n punctaj anti-fraudă = 100,\n acordul termenilor = 1",
@@ -1265,8 +1292,8 @@ export const translations: Translations = {
     "nickname12": "📝 Editează Nickname",
     "nickname13": "✍️ Customizează Nickname",
     "nickname2": "Groza! Nickname-ul tău este: ${truncatedNickname}\n\n",
-    "nickname3": "📝 Nickname: ${updatedUser.nickname}\n",
-    "nickname4": "📝 Nickname: ${user.nickname}\n",
+    "nickname3": "📝 Pseudonim: ${updatedUser.nickname}",
+    "nickname4": "📝 Pseudonim: ${user.nickname}",
     "nickname5": "• Limita de lungime a nickname-ului este de 36 de caractere\n",
     "nickname6": "📝 **Editează Nickname-ul**\n\n",
     "nickname7": "✏️ Te rugăm să selectezi nickname-ul tău:\n\n",
@@ -1287,9 +1314,9 @@ export const translations: Translations = {
     "quota2": "• 💎 Upgradează la VIP (30 cote pe zi)",
     "quota3": "• 🎁 Invitează Prieteni (+1 cotă per persoană)\n",
     "quota4": "• ✨ Completează Sarcini (primi cote permanente)\n",
-    "register": "💡 Acesta este un test rapid (${testInfo}), rezultatele sunt doar pentru referință.\nDupă înregistrare, poți relua cu /mbti.",
+    "register": "💡 Aceasta este un test rapid (${testInfo}), rezultatele sunt doar pentru referință.\nDupă înregistrare, poți relua cu /mbti.",
     "register10": "🎉 Felicitări pentru completarea înregistrării!\n\n",
-    "register2": "💡 Acesta este un test complet (${testInfo}), rezultatele sunt mai precise.\nDupă înregistrare, poți relua cu /mbti.",
+    "register2": "💡 Aceasta este un test complet (${testInfo}), rezultatele sunt mai precise.\nDupă înregistrare, poți relua cu /mbti.",
     "register3": "Pașii Înregistrării: ${user.onboarding_step}\n",
     "register4": "⏰ Procesul de înregistrare a expirat\n\nTe rog să folosești /start pentru a reporni înregistrarea.",
     "register5": "Sau folosește: /dev_restart (pornire automată a înregistrării)\n\n",
@@ -1584,7 +1611,7 @@ export const translations: Translations = {
     "text149": "📋 Documentele legale sunt disponibile doar în engleză.",
     "text15": "🌍 Locație: ${updatedUser.city ||",
     "text150": "📋 Documentele legale sunt disponibile doar în engleză.",
-    "text16": "✅ Verificare necesară: Faceți clic pe butonul 'Verificare' după ce ați aderat la grup/canal",
+    "text16": "✅ Verificare necesară: Apasă butonul 'Verifică' după ce te-ai alăturat grupului/canalului",
     "text17": "Numărul de utilizatori țintiți: ${userIds.length}\n\n",
     "text18": "Timp estimat: ${estimatedTime}\n\n",
     "text19": "/broadcast_cleanup confirm",
@@ -1894,7 +1921,7 @@ export const translations: Translations = {
     "jm": "Jamaica",
     "jo": "Iordania",
     "jp": "Japonia",
-    "ke": "Kenya",
+    "ke": "Kenia",
     "kh": "Cambodgia",
     "kr": "Coreea de Sud",
     "kw": "Kuwait",
@@ -2379,7 +2406,7 @@ export const translations: Translations = {
     "failed4": "Aceste transmisiuni au fost marcate ca având statut 'eșuat'\n",
     "generic": "❌ A apărut o eroare, vă rugăm să încercați din nou mai târziu.",
     "invalidRequest": "❌ Cerere invalidă",
-    "message": "${statusEmoji} **${provider.provider_display_name}**\n${healthEmoji} Starea Sănătății: ${health.is_healthy ? 'Bună' : 'Necesită Atenție'}\n📊 Rata de Finalizare: ${stats.completion_rate}%\n❌ Rata de Erori: ${stats.error_rate}%\n📈 Cereri Totale: ${stats.total_requests}\n✅ Finalizări Totale: ${stats.total_completions}\n💡 Recomandare: ${health.recommendation}",
+    "message": "${statusEmoji} **${provider.provider_display_name}**\n${healthEmoji} Starea sănătății: ${health.is_healthy ? 'Bună' : 'Necesită atenție'}\n📊 Rata de completare: ${stats.completion_rate}%\n❌ Rata de erori: ${stats.error_rate}%\n📈 Cereri totale: ${stats.total_requests}\n✅ Completări totale: ${stats.total_completions}\n💡 Recomandare: ${health.recommendation}",
     "message2": "Mesaj de eroare: ${error instanceof Error ? error.message : String(error)}",
     "message3": "Eroare: ${broadcast.errorMessage}",
     "operationFailed": "❌ Operațiune eșuată",
@@ -2514,7 +2541,8 @@ export const translations: Translations = {
     "vip3": "/funnel - Funel de conversie VIP\n\n",
     "vip4": "🎁 **Cota și VIP**\n",
     "vip5": "/vip - Abonament VIP\n",
-    "vip6": "💎 **Beneficiile VIP**\n"
+    "vip6": "💎 **Beneficiile VIP**\n",
+    "dailyReportTitle": "Recuperează raportul operațional zilnic"
   },
   "history": {
     "chatHistory": "💬 **Istoricul conversațiilor dumneavoastră**\n\n",
@@ -2754,6 +2782,12 @@ export const translations: Translations = {
       "question9": "Ce apreciezi mai mult:",
       "question9.option1": "Corectitudine și Justiție",
       "question9.option2": "Compasiune și Înțelegere"
+    },
+    "share": {
+      "welcome": "👋 Prietenul tău te invită să faci testul MBTI!\n\nVino să vezi tipul tău de personalitate～",
+      "startButton": "📊 Începe testul",
+      "resultTitle": "Rezultatul meu la testul MBTI este {type}!",
+      "resultDesc": "Ar trebui să încerci și tu testul～"
     }
   },
   "mbtiTest": {
@@ -2763,7 +2797,7 @@ export const translations: Translations = {
     "fullAccuracy": "Rezultate mai precise",
     "fullQuestions": "36 întrebări",
     "fullTest": "Completează testul MBTI",
-    "fullTestInfo": "💡 Acesta este un test complet ({questions}), rezultatul este mai precis.\nDupă completarea înregistrării, poți folosi /mbti pentru a repeta testul.",
+    "fullTestInfo": "💡 Acesta este un test complet ({questions}), rezultatul este mai precis.\nDupă finalizarea înregistrării, poți folosi /mbti pentru a relua testul.",
     "fullTestTitle": "Completează testul",
     "manualModify": "• Modifică manual tipul tău MBTI",
     "moreDetailedTest": "• Fă un test mai detaliat\n",
@@ -2774,7 +2808,7 @@ export const translations: Translations = {
     "quickAccuracy": "Rezultatele sunt doar pentru referință",
     "quickQuestions": "12 întrebări",
     "quickTest": "Test rapid MBTI",
-    "quickTestInfo": "💡 Acesta este un test rapid ({questions}), rezultatul este doar pentru referință.\nDupă completarea înregistrării, poți folosi /mbti pentru a repeta testul.",
+    "quickTestInfo": "💡 Acesta este un test rapid ({questions}), rezultatul este doar pentru referință.\nDupă finalizarea înregistrării, poți folosi /mbti pentru a relua testul.",
     "quickTestTitle": "Test rapid",
     "yourMbtiType": "Tipul dumneavoastră MBTI este: **{type}**\n\n"
   },
@@ -2863,7 +2897,7 @@ export const translations: Translations = {
     "noAdsAvailable": "❌ Nu sunt anunțuri disponibile",
     "noVerificationRequired": "❌ Acest anunț nu necesită verificare",
     "quotaInfo": "📊 Rămase astăzi: **{remaining}/20** ori",
-    "requiresVerification": "✅ Verificare necesară: Fă clic pe butonul 'Verifică' după ce ai intrat în grup/canal",
+    "requiresVerification": "✅ Verificare necesară: Apasă pe butonul 'Verifică' după ce te-ai alăturat grupului/canalului",
     "reward": "🎁 Recompensă: +{quota} cotă permanentă",
     "rewardPermanent": "🎁 Finalizați sarcina pentru a câștiga **+1 cotă permanentă**",
     "rewardTemporary": "🎁 Felicitări! Ați primit +1 cotă temporară (valabilă astăzi)",
@@ -3057,7 +3091,7 @@ export const translations: Translations = {
     "bloodType": "🩸 Tip de sânge: ${bloodType}\n",
     "bottle": ": permanentQuota} sticle cu mesaj\n\n",
     "cardAge": "{age} ani",
-    "cardBio": "📝 Biografie:\n{bio}",
+    "cardBio": "📝 Bio:\n{bio}",
     "cardFooter": "💡 Aceasta este cartea de date afișată altora în conversație\n\n",
     "cardGenderFemale": "♀️ Femeie",
     "cardGenderMale": "♂️ Bărbat",
@@ -3218,7 +3252,13 @@ export const translations: Translations = {
     "toggleCatch": "Schimbare reminder ridicare sticlă cu mesaj",
     "toggleMessage": "Schimbare reminder conversație",
     "quietHours": "Timp de liniște",
-    "saved": "Setări salvate"
+    "saved": "Setări salvate",
+    "editQuietHours": "✏️ Editează Orele de Liniște",
+    "quietDisable": "🚫 Dezactivați Orele de Liniște",
+    "selectStartHour": "🌙 Vă rugăm să alegeți ora de început pentru orele de liniște:\n(De exemplu: pentru a începe la 23:00, alegeți 23:00)",
+    "selectEndHour": "☀️ Ora de început setată la {start}:00.\nVă rugăm să alegeți ora de final pentru orele de liniște:\n(Notificările vor relua după această oră)",
+    "disabled": "🚫 Orele de liniște au fost dezactivate",
+    "quietHoursHint": "Nu vei primi notificări neurgente în această perioadă"
   },
   "stats": {
     "activeUsers": "• Activ ieri: {active}\n\n",
@@ -3539,7 +3579,7 @@ export const translations: Translations = {
       "vip": "✅ Toate postările sunt actualizate (starea VIP este corectă)\n",
       "zodiac": "✅ Selecția zodiacului a fost ștersă"
     },
-    "success2": "🎉 **Verificare reușită!**\n\n✅ Obținut **+${ad.reward_quota} cotă permanentă**\n💎 Îți mulțumim că te-ai alăturat comunității noastre!\n\n📊 **Cota ta:**\n• Cotă de bază: ${user.is_vip ? 'Nelimitată' : '10'}/zi\n• Cotă permanentă: +${ad.reward_quota}\n\n💡 În comunitate poți:\n• Comunica cu alți utilizatori\n• Obține cele mai recente actualizări de funcții\n• Participa la activități pentru mai multe recompense",
+    "success2": "🎉 **Verificare reușită!**\n\n✅ Obținut **+${ad.reward_quota} cotă permanentă**\n💎 Îți mulțumim că te-ai alăturat comunității noastre!\n\n📊 **Cota ta:**\n• Cotă de bază: ${user.is_vip ? 'Nelimitată' : '10'}/zi\n• Cotă permanentă: +${ad.reward_quota}\n\n💡 În comunitate poți:\n• Comunica cu alți utilizatori\n• Obține cele mai recente actualizări de funcționalitate\n• Participa la activități pentru mai multe recompense",
     "success3": "Postările istorice în conversație au fost reîmprospărate cu succes ${result.updated}.\n\n",
     "success4": "Actualizare reușită: ${result.updated}\n",
     "text": "✅ Setat pe ${flag} ${countryName}",
@@ -3681,7 +3721,7 @@ export const translations: Translations = {
     "gender4": "💡 Selectează genul pe care îl dorești:",
     "gender5": "👤 Filtru de gen",
     "genderLabel": "• Gen: {gender}\n",
-    "mbti": "• MBTI: ${selectedMBTI.length > 0 ? selectedMBTI.join(', ') : 'Fără limită'}",
+    "mbti": "• MBTI: ${selectedMBTI.length > 0 ? selectedMBTI.join(', ') : 'Fără Limită'}",
     "mbti2": "Selectat: ${selectedMBTI.length > 0 ? selectedMBTI.join(', ') : 'Nimic'}",
     "mbti3": "Selectat: ${selectedMBTI.length > 0 ? selectedMBTI.join(",
     "mbti4": "🧠 **Filtru MBTI**\n\n",
@@ -3690,7 +3730,7 @@ export const translations: Translations = {
     "mbti7": "• MBTI: {mbti}",
     "mbtiLabel": "• MBTI: {mbti}",
     "message": "Selecție curentă: ${currentGender === 'male' ? '👨 Bărbat' : currentGender === 'female' ? '👩 Femeie' : '🌈 Oricine'}",
-    "message2": "Selecție curentă: ${currentGender === 'male' ? '👨 Bărbat' : currentGender === 'female' ? '👩 Femeie' : '🌈 Oricine'}",
+    "message2": "Selecție curentă: ${currentGender === 'male' ? '👨 Bărbat' : currentGender === 'female' ? '👩 Femeie' : '🌈 Orice'}",
     "message3": "Selectat: ${selectedZodiac.length > 0 ? selectedZodiac.map((z) => ZODIAC_NAMES[z]).join(",
     "message4": "“Bună! Sunt cineva care iubește muzica și filmele, sperând să întâlnesc prieteni cu idei asemănătoare～” {bloodTypeDisplay[currentBloodType]} ${bloodTypeDisplay[currentBloodType]}\n\n",
     "message5": "💡 Poți modifica preferințele de potrivire în /edit_profile {vipMatchInfo.matcherNickname} ${vipMatchInfo.matcherNickname}\n",
@@ -3836,7 +3876,7 @@ export const translations: Translations = {
     "purchaseCancelled": "✅ Achiziția anulată",
     "quota": "• Cota zilnică de 30 de sticle cu mesaj (invitațiile prietenilor pot crește această cotă, până la 100 pe zi)\n",
     "quota2": "• Cota zilnică de 30 de sticle cu mesaj (până la 100 pe zi)\n",
-    "refundAdminCommands": "Expiration time: ${expireDate} <ID> `/admin_approve_refund <ID>` `/admin_reject_refund <ID> ` `/admin_reject_refund <ID> <原因>`",
+    "refundAdminCommands": "Data expirării: ${expireDate} <ID> `/admin_approve_refund <ID>` `/admin_reject_refund <ID> ` `/admin_reject_refund <ID> <原因>`",
     "refundApproved": "✅ **Refundare Aprobată**\n\nSumă Refundare: ${amount} ⭐\nRefundarea va fi creditată în termen de 1-3 zile lucrătoare.\n\nAbonamentul dvs. VIP a fost anulat.\n\nVă mulțumim pentru înțelegere!",
     "refundApprovedAdmin": "✅ Refundare Aprobată\n\nID Cerere: #${requestId}\nID Utilizator: ${userId}\nSumă: ${amount} ⭐",
     "refundExpired": "❌ Cererea de refundare depășește limita de timp\n\nData Plății: ${paymentDate}\nLimita de timp pentru refundare: În termen de 7 zile de la plată\n\n💡 Pentru circumstanțe speciale, vă rugăm să contactați suportul pentru clienți.",
@@ -4088,7 +4128,7 @@ export const translations: Translations = {
       "vip3": "⚠️ **VIP expiră astăzi**\n\n"
     },
     "BROADCAST": {
-      "FILTER_ERROR": "❌ Eroare de format.\nExemplu: `/broadcast_filter gender=female,country=TW test message` `/broadcast_filter gender=female,country=TW 測試訊息`",
+      "FILTER_ERROR": "❌ Eroare de format.\nExemplu: `/broadcast_filter gender=female,country=TW test message`",
       "NO_CONTENT": "❌ Vă rugăm să introduceți conținutul difuzării.",
       "NO_MATCHES": "⚠️ Nu au fost găsiți utilizatori care să corespundă criteriilor.\nCriterii de filtrare: {filters}",
       "TOO_MANY_USERS": "⚠️ Prea mulți utilizatori țintiți ({count} persoane), în prezent, este limitat la trimiterea către {max} persoane simultan.",
@@ -4098,7 +4138,47 @@ export const translations: Translations = {
     "push": {
       "throwReminder": "🌊 Hei! A trecut ceva timp de când ai aruncat o sticlă cu mesaj, plaja este foarte liniștită...",
       "catchReminder": "🎣 Au apărut unele sticle cu mesaje noi pe plajă, vrei să mergi să le verifici?",
-      "onboardingReminder": "👋 Înregistrarea ta nu este încă completă, ești aproape! (Pas: {step})"
+      "onboardingReminder": "👋 Înregistrarea ta nu este încă completă, ești aproape! (Pas: {step})",
+      "messageReminderA": "👋 Hei {masked_partner_name} așteaptă încă răspunsul tău! Nu lăsa conversația să se răcească～",
+      "messageReminderB": "📩 Ai un mesaj necitit de la {masked_partner_name}:\n> \"{last_message_preview}...\"\n(A trecut peste 24 de ore!)",
+      "messageReminderC": "⏳ {masked_partner_name} așteaptă răspunsul tău...",
+      "actionReply": "💬 Răspunde lui {masked_partner_name}",
+      "actionHistory": "📜 Vezi Contextul"
+    },
+    "match": {
+      "header": {
+        "zodiac": "🌟 Potrivirea Zodiacală Revelată",
+        "mbti": "🧠 Rezonanța Personalității MBTI",
+        "blood": "🩸 Analiza Codului Grupi de Sânge"
+      },
+      "reason": {
+        "zodiac": {
+          "fire_affinity": "Ca semne de foc, pasiunea voastră arde puternic și conexiunea este solidă!",
+          "earth_affinity": "Stabilitatea semnelor de pământ combinată cu blândețea semnelor de apă creează fluxul perfect.",
+          "air_affinity": "Agilitatea semnelor de aer se întâlnește cu pasiunea semnelor de foc, inspirând o creativitate fără sfârșit!",
+          "water_affinity": "Emoțiile semnelor de apă și practicitatea semnelor de pământ construiesc cel mai cald suport."
+        },
+        "mbti": {
+          "sj_affinity": "Socializatorii (SJ) și Exploratorii (SP), un complement perfect de stabilitate și entuziasm!",
+          "sp_affinity": "Exploratorii (SP) și Socializatorii (SJ), cei mai buni parteneri de jucărie și îngrijire!",
+          "nf_affinity": "Idealistii (NF) și Raționaliștii (NT), o coliziune profundă a sufletului și înțelepciunii!",
+          "nt_affinity": "Raționaliștii (NT) și Idealistii (NF), o rezonanță a gândurilor și emoțiilor!"
+        },
+        "blood": {
+          "a_affinity": "Meticulozitatea Tipului A se întâlnește cu toleranța Tipului O, creând cele mai confortabile interacțiuni.",
+          "b_affinity": "Afirmarea de sine a Tipului B se întâlnește cu natura relaxată a Tipului O, fără stres și dezvoltată.",
+          "o_affinity": "Tipul O și Tipul B/A sunt parteneri complementari excelenti!",
+          "ab_affinity": "Frecvența unică a AB-ului este cel mai bine înțeleasă de semeni."
+        }
+      },
+      "template": {
+        "body": "{userAttribute},\nConform analizei, ai cea mai puternică afinitate cu {recommendedAttributes}!\n\n💡 {reason}\n\n👇 Te simți norocos?"
+      },
+      "btn": {
+        "throw": "🌊 Aruncă o sticlă cu mesaj și ia o șansă",
+        "vip_throw": "🎯 Aruncă către {target}",
+        "vip_upsell": "💡 Upgrade la VIP pentru a desemna livrarea către {target}, pentru un potrivire precisă!"
+      }
     }
   },
   "push": {
@@ -4108,7 +4188,7 @@ export const translations: Translations = {
     "catchReminder": "🎣 Unele sticle noi au ajuns la mal, vrei să le vezi?",
     "onboardingReminder": "👋 Înregistrarea ta nu este încă completă, mai este puțin! (Pas: {step})",
     "messageReminderA": "👋 Hei {masked_partner_name}, încă așteptăm răspunsul tău! Nu lăsa conversația să se răcească～",
-    "messageReminderB": "📩 Ai un mesaj necitit de la {masked_partner_name}:\n> \"{last_message_preview}...\"\n(A trecut deja o oră!)",
+    "messageReminderB": "📩 Ai un mesaj necitit de la {masked_partner_name}:\n> \"{last_message_preview}...\"\n(A trecut deja 24 de ore!)",
     "messageReminderC": "⏳ {masked_partner_name} așteaptă răspunsul tău..."
   }
 };

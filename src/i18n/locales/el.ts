@@ -119,7 +119,8 @@ export const translations: Translations = {
       "noPermissionVip": "❌ Δεν έχετε άδεια να δείτε δεδομένα VIP",
       "onlySuperAdmin": "❌ Μόνο οι υπερδιαχειριστές μπορούν να χρησιμοποιήσουν αυτή την εντολή.",
       "sendReportFailed": "❌ Αποτυχία αποστολής καθημερινής αναφοράς: ${error}",
-      "userNotFound": "❌ Ο χρήστης δεν υπάρχει: ${userId}"
+      "userNotFound": "❌ Ο χρήστης δεν υπάρχει: ${userId}",
+      "message5": "• Ποσοστό σφάλματος: {rate}%"
     },
     "appeal": "Κωδικός έφεσης: ${appeal.id}\n",
     "appeal2": "💡 Χρησιμοποιήστε την παρακάτω εντολή για να εξετάσετε την έφεση:\n",
@@ -178,7 +179,32 @@ export const translations: Translations = {
       "usageReject": "Χρήση: /admin_reject <appeal_id> [remarks]",
       "user": "Χρήστης: ${user}",
       "userBanHistory": "📊 Ιστορικό απαγορεύσεων χρήστη",
-      "viewHistory": "💡 Χρησιμοποιήστε το /admin_bans <user_id> για να δείτε το ιστορικό απαγορεύσεων ενός συγκεκριμένου χρήστη"
+      "viewHistory": "💡 Χρησιμοποιήστε το /admin_bans <user_id> για να δείτε το ιστορικό απαγορεύσεων ενός συγκεκριμένου χρήστη",
+      "onlyAdmin": "❌ Μόνο οι διαχειριστές μπορούν να χρησιμοποιούν αυτή την εντολή",
+      "onlySuperAdmin": "❌ Μόνο οι υπερδιαχειριστές μπορούν να χρησιμοποιούν αυτή την εντολή",
+      "banUsageError": "Χρήση: /admin_ban <user_id> [ώρες|μόνιμο]",
+      "cannotBanAdmin": "❌ Δεν μπορείς να απαγορεύσεις τους διαχειριστές",
+      "banUserNotFound": "❌ Ο χρήστης δεν βρέθηκε",
+      "operationFailed": "Αποτυχία λειτουργίας",
+      "userNotFound": "❌ Ο χρήστης δεν βρέθηκε",
+      "analyticsTitle": "Ημερήσια ανάλυση δεδομένων λειτουργίας",
+      "adPerformanceTitle": "Ανάλυση απόδοσης διαφημίσεων",
+      "vipFunnelTitle": "Ανάλυση σωλήνα μετατροπής VIP",
+      "dailyReportTitle": "Ημερήσια αναφορά μετάφρασης και λειτουργίας",
+      "testDailyReport": "Δοκιμαστική αποστολή ημερήσιας αναφοράς",
+      "testRetentionPush": "Δοκιμαστική προώθηση retention",
+      "testMatchPush": "Δοκιμαστική προώθηση ταίριασμα",
+      "analytics": {
+        "message5": "• Ποσοστό σφάλματος: {rate}%",
+        "noPermission": "❌ Δεν έχεις άδεια να δεις τα δεδομένα ανάλυσης",
+        "getDataFailed": "❌ Αποτυχία ανάκτησης δεδομένων ανάλυσης",
+        "noPermissionAd": "❌ Δεν έχεις άδεια να δεις τα δεδομένα διαφημίσεων",
+        "getAdDataFailed": "❌ Αποτυχία ανάκτησης δεδομένων διαφημίσεων",
+        "noPermissionVip": "❌ Δεν έχεις άδεια να δεις τα δεδομένα VIP",
+        "getVipDataFailed": "❌ Απέτυχε η ανάκτηση δεδομένων VIP",
+        "sendReportFailed": "❌ Απέτυχε η αποστολή αναφοράς: {error}",
+        "onlySuperAdmin": "❌ Μόνο οι υπερδιαχειριστές μπορούν να χρησιμοποιήσουν αυτή την εντολή"
+      }
     },
     "ban2": "Συνολικοί αποκλεισμοί: ${userBans.results.length}\n\n",
     "ban3": "📊 Πρόσφατα 10 Αρχεία Αποκλεισμού\n\n",
@@ -410,13 +436,14 @@ export const translations: Translations = {
     "userNotFound": "❌ Ο χρήστης δεν υπάρχει.",
     "vip": "• Λήξη VIP: ${new Date(user.vip_expire_at).toLocaleString('zh-TW')}\n",
     "vip2": "• Δημιουργήθηκε με VIP: ${post.created_with_vip_status ? '✅' : '❌'}\n",
-    "vip3": "• Κατάσταση VIP: ${isVip ? '✅ Ναι' : '❌ Όχι'}",
+    "vip3": "• VIP Status: ${isVip ? '✅ Ναι' : '❌ Όχι'}",
     "vip4": "• Συνολικοί Χρήστες VIP: ${stats.totalVipUsers}\n",
     "vip5": "🔄 **Ξεκίνημα Μαζικής ΑναRefreshing Αβατάρ VIP**\n\n",
     "vip6": "⏰ **Υπενθύμιση Λήξης VIP Αποστάλθηκε**\n\n",
     "vip7": "🎉 **Νέα Αγορά VIP**\n\n",
     "vip8": "⬇️ **Αυτόματη Υποβάθμιση VIP**\n\n",
-    "vip9": "🔄 **Ανανέωση VIP**\n\n"
+    "vip9": "🔄 **Ανανέωση VIP**\n\n",
+    "dailyReport": "📊 Καθημερινή Έκθεση Λειτουργίας ({date})\n\n💰 Εκτιμώμενα Κόστη Μετάφρασης:\n{costDetails}\n\n⚠️ Παρακολούθηση Ανωμαλιών:\n• Υποβαθμίσεις Μετάφρασης: {fallbackCount} φορές\n• Αποτυχίες Μετάφρασης: {errorCount} φορές\n\n📈 Ενεργά Δεδομένα:\n• Νέοι Χρήστες: {newUsers}\n• Ενεργές Συζητήσεις: {activeConversations}"
   },
   "adminNotification": {
     "amount": "Ποσό: ${stars} ⭐",
@@ -456,7 +483,7 @@ export const translations: Translations = {
     "invite": "• Προσκλήσεις που Ξεκίνησαν: {initiated} φορές\n• Προσκλήσεις που Γίναν Αποδεκτές: {accepted} φορές\n• Προσκλήσεις που Ενεργοποιήθηκαν: {activated} φορές\n• Ποσοστό Μετατροπής: {conversionRate}%\n\n• Μπουκάλια που Ρίχτηκαν: {bottlesThrown} φορές\n• Μπουκάλια που Πιάστηκαν: {bottlesCaught} φορές\n• Νέες Συ συνομιλίες: {conversationsStarted} φορές\n• Μέσοι Γύροι Συνομιλίας: {avgConversationRounds}\n\n💡 Λεπτομερή Δεδομένα: /analytics",
     "message": "📊 **Αναφορά Ημερήσιων Λειτουργιών**\n📅 Ημερομηνία: {date}\n\n**👥 Δεδομένα Χρηστών**\n• Νέοι Χρήστες: {newUsers} άτομα\n• Ενεργοί Χρήστες (DAU): {dau} άτομα\n• Ποσοστό Διατήρησης (D1): {d1Retention}%\n• Μέση Διάρκεια Συνεδρίας: {avgSessionDuration} λεπτά\n\n**📺 Δεδομένα Διαφημίσεων**\n• Διαφημίσεις Τρίτων:\n - Εμφανίσεις: {thirdPartyImpressions} φορές\n - Ολοκληρώσεις: {thirdPartyCompletions} φορές\n - Ποσοστό Ολοκλήρωσης: {thirdPartyCompletionRate}%\n - Επιβραβεύσεις: {thirdPartyRewardsGranted} πιστώσεις",
     "message2": "📊 **Έκθεση Καθημερινής Λειτουργίας**\n📅 Ημερομηνία: {date}\n\n⚠️ **Δεν είναι διαθέσιμα δεδομένα για σήμερα**\n\nΑυτό μπορεί να οφείλεται σε:\n• Το σύστημα μόλις αναπτύχθηκε και δεν έχει υπάρξει ακόμη δραστηριότητα χρηστών\n• Δεν έχουν χρησιμοποιήσει οι χρήστες το Bot σήμερα\n• Η δυνατότητα παρακολούθησης δεδομένων δεν έχει ενεργοποιηθεί ακόμη\n\n💡 **Πότε θα εμφανιστούν τα δεδομένα;**\n• Οι χρήστες πρέπει να εκτελέσουν κάποια από τις παρακάτω ενέργειες:\n - Στείλτε /start για εγγραφή\n - Ρίξτε ένα μπουκάλι μηνύματος ή μαζέψτε ένα μπουκάλι μηνύματος\n - Παρακολουθήστε μια διαφήμιση\n - Αγορά VIP\n\n• Συνιστάται να περιμένετε μέχρι οι χρήστες να αρχίσουν να αλληλεπιδρούν πριν ελέγξετε\n• Ή να προσομοιώσετε τη συμπεριφορά των χρηστών σε ένα δοκιμαστικό περιβάλλον",
-    "message3": "**📈 Γενικό Ποσοστό Μετατροπής: ${report.overall_conversion_rate.toFixed(1)}%**",
+    "message3": "**📈 Συνολικό Ποσοστό Μετατροπής: ${report.overall_conversion_rate.toFixed(1)}%**",
     "message4": "• Ποσοστό Μετατροπής: ${step.conversion_rate.toFixed(1)}%",
     "message5": "• Ποσοστό Σφαλμάτων: ${provider.error_rate.toFixed(1)}%",
     "message6": "• Αιτήματα: ${provider.total_requests} φορές",
@@ -619,7 +646,7 @@ export const translations: Translations = {
       "conversation6": "📊 Χρησιμοποιήστε το /chats για να δείτε όλες τις συνομιλίες",
       "conversation7": "Χρησιμοποιήστε το /chats για να δείτε όλες τις συνομιλίες",
       "currentSelection": "Τρέχουσα επιλογή: {genderText}",
-      "gender": "• Φύλο: \\${selectedGender === 'male' ? '👨 Άνδρας' : selectedGender === 'female' ? '👩 Γυναίκα' : '🌈 Οποιοσδήποτε'}",
+      "gender": "• Φύλο: \\${selectedGender === 'male' ? '👨 Άνδρας' : selectedGender === 'female' ? '👩 Γυναίκα' : '🌈 Κανείς'}",
       "gender2": "👤 **Φίλτρο Φύλου**\n\n",
       "gender3": "• Φύλο: Φιλτράρισμα κατά φύλο\n\n",
       "gender4": "💡 Επιλέξτε το φύλο που θέλετε:",
@@ -634,7 +661,7 @@ export const translations: Translations = {
       "mbti7": "🧠 Φίλτρο MBTI",
       "mbtiLabel": "• MBTI: {mbti}",
       "message": "Επιλεγμένο: \\${selectedZodiac.length > 0 ? selectedZodiac.map((z) => ZODIAC_NAMES[z]).join(', ') : 'Κανένα'}",
-      "message2": "Τρέχουσα επιλογή: \\${currentGender === 'male' ? '👨 Άνδρας' : currentGender === 'female' ? '👩 Γυναίκα' : '🌈 Οποιοσδήποτε'}",
+      "message2": "Τρέχουσα επιλογή: \\${currentGender === 'male' ? '👨 Άνδρας' : currentGender === 'female' ? '👩 Γυναίκα' : '🌈 Κανείς'}",
       "message3": "Επιλεγμένο: \\${selectedZodiac.length > 0 ? selectedZodiac.map((z) => ZODIAC_NAMES[z]).join(",
       "message4": "Τρέχουσα επιλογή: \\${bloodTypeDisplay[currentBloodType]}\n\n",
       "message5": "👤 Άλλη πλευρά: \\${vipMatchInfo.matcherNickname}\n",
@@ -1111,7 +1138,7 @@ export const translations: Translations = {
     "catch3": "Διαδικασία Μπουκαλιού Μηνύματος",
     "catch4": "Διαδικασία μπουκαλιού μηνύματος",
     "close": "❌ Κλείσιμο",
-    "complete": "🎉 **Η παρακολούθηση διαφήμισης ολοκληρώθηκε!**\n\n✅ Κερδίσατε **+1 ποσοστό**\n📊 Προβολές σήμερα: **${updated.ads_watched}/20** φορές\n🎁 Ποσοστό που κερδίθηκε σήμερα: **${updated.quota_earned}**\n📈 Υπολειπόμενες προβολές: **${result.remaining_ads}** φορές\n\n${result.remaining_ads > 0 ? '💡 Συνεχίστε να παρακολουθείτε διαφημίσεις για να κερδίσετε περισσότερα ποσοστά!' : '✅ Έχετε φτάσει το ημερήσιο όριο διαφημίσεων'}",
+    "complete": "🎉 **Η προβολή της διαφήμισης ολοκληρώθηκε!**\n\n✅ Κέρδισα **+1 ποσοστό**\n📊 Προβλήθηκε σήμερα: **${updated.ads_watched}/20** φορές\n🎁 Ποσοστό κερδισμένο σήμερα: **${updated.quota_earned}**\n📈 Υπολειπόμενες προβολές: **${result.remaining_ads}** φορές\n\n${result.remaining_ads > 0 ? '💡 Συνεχίστε να παρακολουθείτε διαφημίσεις για να κερδίσετε περισσότερα ποσοστά!' : '✅ Έχει επιτευχθεί το ημερήσιο όριο διαφημίσεων'}",
     "complete2": "📺 **Παρακολούθησε διαφημίσεις για να κερδίσεις πιστώσεις**\n\n🎁 Ολοκληρώνοντας την προβολή θα κερδίσεις **+1 πίστωση**\n📊 Απομένουσες σήμερα: **${remainingAds}/20** φορές\n\n👇 Πάτησε το κουμπί παρακάτω για να ξεκινήσεις την παρακολούθηση",
     "complete3": "Χρόνος ολοκλήρωσης: ${new Date(broadcast.completedAt).toLocaleString('zh-TW')}\n",
     "complete4": "Εκτιμώμενος χρόνος ολοκλήρωσης: ${new Date(maintenance.endTime).toLocaleString('zh-TW')}\n",
@@ -1287,9 +1314,9 @@ export const translations: Translations = {
     "quota2": "• 💎 Ανεβάστε σε VIP (30 μηνύματα/ημέρα)",
     "quota3": "• 🎁 Προσκαλέστε φίλους (+1 ποσοστώσει ανά άτομο)\n",
     "quota4": "• ✨ Ολοκληρώστε εργασίες (κερδίστε μόνιμες ποσοστώσεις)\n",
-    "register": "💡 Αυτό είναι ένα γρήγορο τεστ (${testInfo}), τα αποτελέσματα είναι μόνο για αναφορά.\nΑφού εγγραφείτε, μπορείτε να το επαναλάβετε με /mbti.",
+    "register": "💡 Αυτό είναι ένα γρήγορο τεστ (${testInfo}), τα αποτελέσματα είναι μόνο για αναφορά.\nΜετά την εγγραφή, μπορείτε να ξαναδοκιμάσετε με /mbti.",
     "register10": "🎉 Συγχαρητήρια που ολοκληρώσατε την καταχώριση!\n\n",
-    "register2": "💡 Αυτό είναι ένα πλήρες τεστ (${testInfo}), τα αποτελέσματα είναι πιο ακριβή.\nΑφού εγγραφείτε, μπορείτε να το επαναλάβετε με /mbti.",
+    "register2": "💡 Αυτό είναι ένα πλήρες τεστ (${testInfo}), τα αποτελέσματα είναι πιο ακριβή.\nΜετά την εγγραφή, μπορείτε να ξαναδοκιμάσετε με /mbti.",
     "register3": "Βήματα καταχώρισης: ${user.onboarding_step}\n",
     "register4": "⏰ Η διαδικασία καταχώρισης έχει λήξει\n\nΠαρακαλώ χρησιμοποιήστε /start για να επανεκκινήσετε την καταχώριση.",
     "register5": "Ή χρησιμοποιήστε: /dev_restart (αυτόματη εκκίνηση καταχώρισης)\n\n",
@@ -1584,7 +1611,7 @@ export const translations: Translations = {
     "text149": "📋 Νομικά έγγραφα παρέχονται μόνο στην αγγλική γλώσσα.",
     "text15": "🌍 Περιοχή: ${updatedUser.city ||",
     "text150": "📋 Νομικά έγγραφα παρέχονται μόνο στην αγγλική γλώσσα.",
-    "text16": "✅ Απαιτείται επιβεβαίωση: Κάντε κλικ στο κουμπί 'Επιβεβαίωση' αφού συμμετάσχετε στην ομάδα/κανάλι",
+    "text16": "✅ Απαιτείται επιβεβαίωση: Κάντε κλικ στο κουμπί 'Επιβεβαίωση' μετά την είσοδο στην ομάδα/κανάλι",
     "text17": "Στόχος αριθμού χρηστών: ${userIds.length}\n\n",
     "text18": "Εκτιμώμενος χρόνος: ${estimatedTime}\n\n",
     "text19": "/broadcast_cleanup επιβεβαίωση",
@@ -2379,7 +2406,7 @@ export const translations: Translations = {
     "failed4": "Αυτές οι μεταδόσεις έχουν χαρακτηριστεί ως 'αποτυχία'\n",
     "generic": "❌ Πα occurred λάθος, παρακαλώ δοκιμάστε ξανά αργότερα.",
     "invalidRequest": "❌ Μη έγκυρη αίτηση",
-    "message": "${statusEmoji} **${provider.provider_display_name}**\n${healthEmoji} Κατάσταση Υγείας: ${health.is_healthy ? 'Καλή' : 'Χρειάζεται Προσοχή'}\n📊 Ποσοστό Ολοκλήρωσης: ${stats.completion_rate}%\n❌ Ποσοστό Σφαλμάτων: ${stats.error_rate}%\n📈 Συνολικές Αιτήσεις: ${stats.total_requests}\n✅ Συνολικές Ολοκληρώσεις: ${stats.total_completions}\n💡 Σύσταση: ${health.recommendation}",
+    "message": "${statusEmoji} **${provider.provider_display_name}**\n${healthEmoji} Κατάσταση Υγείας: ${health.is_healthy ? 'Καλή' : 'Χρειάζεται Προσοχή'}\n📊 Ποσοστό Ολοκλήρωσης: ${stats.completion_rate}%\n❌ Ποσοστό Σφάλματος: ${stats.error_rate}%\n📈 Σύνολο Αιτήσεων: ${stats.total_requests}\n✅ Σύνολο Ολοκληρώσεων: ${stats.total_completions}\n💡 Συστάσεις: ${health.recommendation}",
     "message2": "Μήνυμα σφάλματος: ${error instanceof Error ? error.message : String(error)}",
     "message3": "Σφάλμα: ${broadcast.errorMessage}",
     "operationFailed": "❌ Αποτυχία λειτουργίας",
@@ -2514,7 +2541,8 @@ export const translations: Translations = {
     "vip3": "/χωνί - Χωνί μετατροπής VIP\n\n",
     "vip4": "🎁 **Ποσοστώσεις και VIP**\n",
     "vip5": "/vip - Συνδρομή VIP\n",
-    "vip6": "💎 **Οφέλη VIP**\n"
+    "vip6": "💎 **Οφέλη VIP**\n",
+    "dailyReportTitle": "Ανάκτηση Καθημερινής Έκθεσης Λειτουργίας"
   },
   "history": {
     "chatHistory": "💬 **Ιστορικό Συνομιλιών σου**\n\n",
@@ -2754,6 +2782,12 @@ export const translations: Translations = {
       "question9": "Τι εκτιμάτε περισσότερο:",
       "question9.option1": "Δικαιοσύνη και ισότητα",
       "question9.option2": "Ενσυναίσθηση και κατανόηση"
+    },
+    "share": {
+      "welcome": "👋 Ο φίλος σας σας προσκαλεί να κάνετε το τεστ MBTI!\n\nΕλάτε να δείτε τον τύπο προσωπικότητάς σας～",
+      "startButton": "📊 Ξεκινήστε το τεστ",
+      "resultTitle": "Το αποτέλεσμα του τεστ MBTI είναι {type}!",
+      "resultDesc": "Πρέπει και εσείς να δοκιμάσετε το τεστ～"
     }
   },
   "mbtiTest": {
@@ -2763,7 +2797,7 @@ export const translations: Translations = {
     "fullAccuracy": "Περισσότερο ακριβή αποτελέσματα",
     "fullQuestions": "36 ερωτήσεις",
     "fullTest": "Ολοκληρώστε το τεστ MBTI",
-    "fullTestInfo": "💡 Αυτό είναι ένα πλήρες τεστ ({questions}), το αποτέλεσμα είναι πιο ακριβές.\nΑφού ολοκληρώσετε την εγγραφή, μπορείτε να χρησιμοποιήσετε /mbti για να ξανακάνετε το τεστ.",
+    "fullTestInfo": "💡 Αυτό είναι ένα ολοκληρωμένο τεστ ({questions}), το αποτέλεσμα είναι πιο ακριβές.\nΜετά την ολοκλήρωση της εγγραφής, μπορείτε να χρησιμοποιήσετε /mbti για να ξαναδοκιμάσετε το τεστ.",
     "fullTestTitle": "Ολοκληρώστε το τεστ",
     "manualModify": "• Χειροκίνητη τροποποίηση του τύπου MBTI σας",
     "moreDetailedTest": "• Κάντε ένα πιο λεπτομερές τεστ\n",
@@ -2774,7 +2808,7 @@ export const translations: Translations = {
     "quickAccuracy": "Αποτελέσματα για αναφορά μόνο",
     "quickQuestions": "12 ερωτήσεις",
     "quickTest": "Γρήγορο τεστ MBTI",
-    "quickTestInfo": "💡 Αυτό είναι ένα γρήγορο τεστ ({questions}), το αποτέλεσμα είναι μόνο για αναφορά.\nΑφού ολοκληρώσετε την εγγραφή, μπορείτε να χρησιμοποιήσετε /mbti για να ξανακάνετε το τεστ.",
+    "quickTestInfo": "💡 Αυτό είναι ένα γρήγορο τεστ ({questions}), το αποτέλεσμα είναι μόνο για αναφορά.\nΜετά την ολοκλήρωση της εγγραφής, μπορείτε να χρησιμοποιήσετε /mbti για να ξαναδοκιμάσετε το τεστ.",
     "quickTestTitle": "Γρήγορο τεστ",
     "yourMbtiType": "Ο τύπος MBTI σου είναι: **{type}**\n\n"
   },
@@ -2795,7 +2829,7 @@ export const translations: Translations = {
     "levelFree": "🆓 Δωρεάν μέλος",
     "levelVip": "💎 Μέλος VIP",
     "message": "https://t.me/share/url?url=https://t.me/${botUsername}?start=invite_${inviteCode}&text=Ας ρίξουμε μερικά μπουκάλια μηνύματος στο XunNi μαζί! 🍾 Χρησιμοποιήστε τον κωδικό πρόσκλησής μου για να συμμετάσχετε, και μπορούμε όλοι να έχουμε περισσότερη ποσότητα! https://t.me/share/url?url=https://t.me/${botUsername}?start=invite_${inviteCode}&text=Let's",
-    "message2": "https://t.me/share/url?url=https://t.me/${botUsername}?start=invite_${inviteCode}&text=Έλα να ενωθείς με τον XunNi και να ρίξεις ένα μπουκάλι μηνύματος https://t.me/share/url?url=https://t.me/${botUsername}?start=invite_${inviteCode}&text=Come https://t.me/share/url?url=https://t.me/${botUsername}?start=invite_${inviteCode}&text=來",
+    "message2": "https://t.me/share/url?url=https://t.me/${botUsername}?start=invite_${inviteCode}&text=Ελάτε να ενωθείτε με το XunNi και να ρίξετε ένα μπουκάλι μηνύματος https://t.me/share/url?url=https://t.me/${botUsername}?start=invite_${inviteCode}&text=Come https://t.me/share/url?url=https://t.me/${botUsername}?start=invite_${inviteCode}&text=來",
     "notRegistered": "Δεν έχει εγγραφεί",
     "notSet": "Δεν έχει ρυθμιστεί",
     "quota": "• Και οι δύο αποκτάτε ένα ημερήσιο ποσοστό +1\n\n",
@@ -2863,7 +2897,7 @@ export const translations: Translations = {
     "noAdsAvailable": "❌ Δεν υπάρχουν διαθέσιμες διαφημίσεις αυτή τη στιγμή",
     "noVerificationRequired": "❌ Αυτή η διαφήμιση δεν απαιτεί επαλήθευση",
     "quotaInfo": "📊 Υπόλοιπο σήμερα: **{remaining}/20** φορές",
-    "requiresVerification": "✅ Απαιτείται επαλήθευση: Κάντε κλικ στο κουμπί 'Επαλήθευση' αφού ενταχθείτε στην ομάδα/κανάλι",
+    "requiresVerification": "✅ Απαιτείται επαλήθευση: Πατήστε το κουμπί 'Επαλήθευση' μετά την ένταξή σας στην ομάδα/κανάλι",
     "reward": "🎁 Ανταμοιβή: +{quota} μόνιμες ποσοστά",
     "rewardPermanent": "🎁 Ολοκληρώστε την εργασία για να κερδίσετε **+1 μόνιμο ποσοστό**",
     "rewardTemporary": "🎁 Συγχαρητήρια! Λάβατε +1 προσωρινό ποσοστό (έγκυρο σήμερα)",
@@ -2967,7 +3001,7 @@ export const translations: Translations = {
     "nowSelectGender": "Τώρα παρακαλώ επιλέξτε το φύλο σας:\n\n",
     "otherUserNotFound": "❌ Ο άλλος χρήστης δεν υπάρχει.",
     "pleaseAnswer": "❌ Παρακαλώ απαντήστε στις ερωτήσεις σοβαρά\n\n",
-    "pleaseComeBack": "Παρακαλώ επιστρέψτε μετά τα 18 σας χρόνια!",
+    "pleaseComeBack": "Παρακαλώ επιστρέψτε όταν γίνετε 18!",
     "privacyPolicy": "📋 Πολιτική Απορρήτου\n",
     "profile": "• Πολιτική Απορρήτου: Πώς προστατεύουμε τα προσωπικά σας στοιχεία\n",
     "profile2": "Τα προσωπικά σας στοιχεία:\n",
@@ -3218,7 +3252,13 @@ export const translations: Translations = {
     "toggleCatch": "Εναλλαγή υπενθύμισης παραλαβής μπουκαλιού μηνύματος",
     "toggleMessage": "Εναλλαγή υπενθύμισης συνομιλίας",
     "quietHours": "Ώρα ησυχίας",
-    "saved": "Ρυθμίσεις αποθηκεύτηκαν"
+    "saved": "Ρυθμίσεις αποθηκεύτηκαν",
+    "editQuietHours": "✏️ Επεξεργασία Ώρες Ησυχίας",
+    "quietDisable": "🚫 Απενεργοποίηση Ωρών Ησυχίας",
+    "selectStartHour": "🌙 Παρακαλώ επιλέξτε την ώρα έναρξης για τις ώρες ησυχίας:\n(Για παράδειγμα: για να ξεκινήσετε στις 23:00, παρακαλώ επιλέξτε 23:00)",
+    "selectEndHour": "☀️ Η ώρα έναρξης έχει οριστεί σε {start}:00.\nΠαρακαλώ επιλέξτε την ώρα λήξης για τις ώρες ησυχίας:\n(Οι ειδοποιήσεις θα επανέλθουν μετά από αυτή την ώρα)",
+    "disabled": "🚫 Οι ώρες ησυχίας έχουν απενεργοποιηθεί",
+    "quietHoursHint": "Δεν θα λάβεις μη επείγουσες ειδοποιήσεις κατά την περίοδο αυτή"
   },
   "stats": {
     "activeUsers": "• Ενεργός χτες: {active}\n\n",
@@ -3508,7 +3548,7 @@ export const translations: Translations = {
       "start4": "✅ Ξεκινήστε δοκιμή",
       "text": "✅ Ορισμός σε \\${flag} \\${countryName}",
       "text10": "✅ Ναι, κατανοώ και θα προσέξω την ασφάλεια",
-      "text11": "✅ Λειτουργία Συντήρησης Ενεργοποιημένη",
+      "text11": "✅ Ενεργοποιημένη Λειτουργία Συντήρησης",
       "text12": "✅ Η λειτουργία συντήρησης έχει ενεργοποιηθεί\n\n",
       "text13": "✅ Πιο ακριβής ανάλυση προσωπικότητας\n",
       "text14": "✅ Η λειτουργία συντήρησης έχει απενεργοποιηθεί\n\n",
@@ -3539,7 +3579,7 @@ export const translations: Translations = {
       "vip": "✅ Όλες οι αναρτήσεις είναι ενημερωμένες (η κατάσταση VIP είναι σωστή)\n",
       "zodiac": "✅ Η επιλογή ζωδίου έχει καθαριστεί"
     },
-    "success2": "🎉 **Επαλήθευση Επιτυχής!**\n\n✅ Κερδίσατε **+${ad.reward_quota} μόνιμη ποσόστωση**\n💎 Ευχαριστούμε που ενταχθήκατε στην κοινότητά μας!\n\n📊 **Η ποσόστωση σας:**\n• Βασική ποσόστωση: ${user.is_vip ? 'Απεριόριστο' : '10'}/ημέρα\n• Μόνιμη ποσόστωση: +${ad.reward_quota}\n\n💡 Στην κοινότητα μπορείτε να:\n• Επικοινωνείτε με άλλους χρήστες\n• Λαμβάνετε τις τελευταίες ενημερώσεις χαρακτηριστικών\n• Συμμετέχετε σε δραστηριότητες για περισσότερες ανταμοιβές",
+    "success2": "🎉 **Επιτυχής Επαλήθευση!**\n\n✅ Κερδίσατε **+${ad.reward_quota} μόνιμες ποσοστώσεις**\n💎 Ευχαριστούμε που ενωθήκατε με την κοινότητά μας!\n\n📊 **Η ποσοστώσεις σας:**\n• Βασική ποσοστώση: ${user.is_vip ? 'Απεριόριστο' : '10'}/ημέρα\n• Μόνιμη ποσοστώση: +${ad.reward_quota}\n\n💡 Στην κοινότητα μπορείτε να:\n• Επικοινωνείτε με άλλους χρήστες\n• Λαμβάνετε τις τελευταίες ενημερώσεις λειτουργιών\n• Συμμετέχετε σε δραστηριότητες για περισσότερες ανταμοιβές",
     "success3": "{result.updated} ${result.updated}\n\n",
     "success4": "Επιτυχής ανανέωση: ${result.updated}\n",
     "text": "✅ Ρυθμίστηκε ως ${flag} ${countryName}",
@@ -3681,7 +3721,7 @@ export const translations: Translations = {
     "gender4": "💡 Επιλέξτε το φύλο που θέλετε:",
     "gender5": "👤 Φίλτρο Φύλου",
     "genderLabel": "• Φύλο: {gender}\n",
-    "mbti": "• MBTI: ${selectedMBTI.length > 0 ? selectedMBTI.join(', ') : 'Χωρίς Όριο'}",
+    "mbti": "• MBTI: ${selectedMBTI.length > 0 ? selectedMBTI.join(', ') : 'Χωρίς Περιορισμούς'}",
     "mbti2": "Επιλεγμένο: ${selectedMBTI.length > 0 ? selectedMBTI.join(', ') : 'Κανένα'}",
     "mbti3": "Επιλεγμένο: ${selectedMBTI.length > 0 ? selectedMBTI.join(",
     "mbti4": "🧠 **Φίλτρο MBTI**\n\n",
@@ -3770,7 +3810,7 @@ export const translations: Translations = {
     "vip5": "✨ **Ενεργοποιήθηκαν τα προνόμια VIP!**\n\n",
     "vip6": "💡 Αναβαθμίστε σε VIP για να λάβετε:\n",
     "vip7": "✨ Ενεργοποίηση προνομίων VIP\n",
-    "zodiac": "• Ζώδιο: ${selectedZodiac.length > 0 ? selectedZodiac.map((z) => ZODIAC_NAMES[z]).join(', ') : 'Χωρίς Όριο'}",
+    "zodiac": "• Ζώδιο: ${selectedZodiac.length > 0 ? selectedZodiac.map((z) => ZODIAC_NAMES[z]).join(', ') : 'Χωρίς Περιορισμούς'}",
     "zodiac2": "⭐ Ζώδιο: ${matchResult.user.zodiac ||",
     "zodiac3": "⭐ Ζώδιο: ${user.zodiac_sign ||",
     "zodiac4": "⭐ **Φίλτρο Ζωδίου**\n\n",
@@ -4088,7 +4128,7 @@ export const translations: Translations = {
       "vip3": "⚠️ **Το VIP λήγει σήμερα**\n\n"
     },
     "BROADCAST": {
-      "FILTER_ERROR": "❌ Σφάλμα μορφοποίησης.\nΠαράδειγμα: `/broadcast_filter gender=female,country=TW test message` `/broadcast_filter gender=female,country=TW 測試訊息`",
+      "FILTER_ERROR": "❌ Σφάλμα μορφοποίησης.\nΠαράδειγμα: `/broadcast_filter gender=female,country=TW test message`",
       "NO_CONTENT": "❌ Παρακαλώ εισάγετε περιεχόμενο μετάδοσης.",
       "NO_MATCHES": "⚠️ Δεν βρέθηκαν χρήστες που να ταιριάζουν με τα κριτήρια.\nΚριτήρια φίλτρου: {filters}",
       "TOO_MANY_USERS": "⚠️ Πάρα πολλοί στόχοι χρήστες ({count} άτομα), αυτή τη στιγμή περιορίζεται να σταλεί σε {max} άτομα ταυτόχρονα.",
@@ -4098,7 +4138,47 @@ export const translations: Translations = {
     "push": {
       "throwReminder": "🌊 Γεια σου! Έχει περάσει καιρός από τότε που πέταξες ένα μπουκάλι μηνύματος, η παραλία είναι πολύ ήσυχη...",
       "catchReminder": "🎣 Μερικά νέα μπουκάλια μηνυμάτων έχουν πλυθεί στην παραλία, θέλεις να τα δεις;",
-      "onboardingReminder": "👋 Η εγγραφή σου δεν έχει ολοκληρωθεί ακόμα, είσαι σχεδόν εκεί! (Βήμα: {step})"
+      "onboardingReminder": "👋 Η εγγραφή σου δεν έχει ολοκληρωθεί ακόμα, είσαι σχεδόν εκεί! (Βήμα: {step})",
+      "messageReminderA": "👋 Γεια σου, {masked_partner_name} περιμένει ακόμα την απάντησή σου! Μην αφήσεις τη συζήτηση να κρυώσει～",
+      "messageReminderB": "📩 Έχεις ένα μη αναγνωσμένο μήνυμα από τον {masked_partner_name}:\n> \"{last_message_preview}...\"\n(Έχουν περάσει περισσότερες από 24 ώρες!)",
+      "messageReminderC": "⏳ Ο {masked_partner_name} περιμένει την απάντησή σου...",
+      "actionReply": "💬 Απάντησε στον {masked_partner_name}",
+      "actionHistory": "📜 Δες το Πλαίσιο"
+    },
+    "match": {
+      "header": {
+        "zodiac": "🌟 Αποκαλύφθηκε η Ταιριάσματος Ζωδίου",
+        "mbti": "🧠 Αν Resonance Προσωπικότητας MBTI",
+        "blood": "🩸 Ανάλυση Κωδικού Τύπου Αίματος"
+      },
+      "reason": {
+        "zodiac": {
+          "fire_affinity": "Ως αδέλφια φωτιάς, το πάθος σας καίει φωτεινά και η σύνδεσή σας είναι ισχυρή!",
+          "earth_affinity": "Η σταθερότητα των γήινων σημείων συνδυάζεται με την ευγένεια των υδάτινων σημείων και δημιουργεί την τέλεια ροή.",
+          "air_affinity": "Η ευελιξία των αερίων σημείων συναντά το πάθος των φωτεινών σημείων, εμπνέοντας ατελείωτη δημιουργικότητα!",
+          "water_affinity": "Τα συναισθήματα των υδάτινων σημείων και η πρακτικότητα των γήινων σημείων οικοδομούν την θερμότερη υποστήριξη."
+        },
+        "mbti": {
+          "sj_affinity": "Κοινωνικοί (SJ) και Εξερευνητές (SP), μια τέλεια συμπλήρωση σταθερότητας και ενθ excitement να!",
+          "sp_affinity": "Εξερευνητές (SP) και Κοινωνικοί (SJ), οι καλύτεροι συνεργάτες παικτών και φροντιστών!",
+          "nf_affinity": "Ιδεαλιστές (NF) και Ρεαλιστές (NT), μια βαθιά σύγκρουση ψυχής και σοφίας!",
+          "nt_affinity": "Ρεαλιστές (NT) και Ιδεαλιστές (NF), μια αντήχηση σκέψεων και συναισθημάτων!"
+        },
+        "blood": {
+          "a_affinity": "Η επιμελημένη φύση του Τύπου A συναντά την ανοχή του Τύπου O, δημιουργώντας τις πιο άνετες αλληλεπιδράσεις.",
+          "b_affinity": "Η αυτοπεποίθηση του Τύπου B συναντά τη χαλαρή φύση του Τύπου O, χωρίς άγχος και χαλαρή.",
+          "o_affinity": "Ο Τύπος O και οι Τύποι B/A είναι εξαιρετικοί συμπληρωματικοί συνεργάτες!",
+          "ab_affinity": "Η μοναδική συχνότητα του AB κατανοείται καλύτερα από το ίδιο του το είδος."
+        }
+      },
+      "template": {
+        "body": "{userAttribute},\nΣύμφωνα με την ανάλυση, έχεις την πιο ισχυρή συγγένεια με {recommendedAttributes}!\n\n💡 {reason}\n\n👇 Νιώθεις τυχερός;"
+      },
+      "btn": {
+        "throw": "🌊 Ρίξε ένα μπουκάλι και πάρε μια ευκαιρία",
+        "vip_throw": "🎯 Ρίξε προς {target}",
+        "vip_upsell": "💡 Αναβάθμισε σε VIP για να καθορίσεις την παράδοση προς {target}, για ακριβή ταίριασμα!"
+      }
     }
   },
   "push": {

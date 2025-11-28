@@ -119,7 +119,8 @@ export const translations: Translations = {
       "noPermissionVip": "❌ VIP verisini görüntülemek için izniniz yok",
       "onlySuperAdmin": "❌ Bu komutu yalnızca süper yöneticiler kullanabilir.",
       "sendReportFailed": "❌ Günlük raporu göndermede hata: ${error}",
-      "userNotFound": "❌ Kullanıcı mevcut değil: ${userId}"
+      "userNotFound": "❌ Kullanıcı mevcut değil: ${userId}",
+      "message5": "• Hata oranı: {rate}%"
     },
     "appeal": "İtiraz ID: ${appeal.id}\n",
     "appeal2": "💡 İtirazı gözden geçirmek için aşağıdaki komutu kullanın:\n",
@@ -178,7 +179,32 @@ export const translations: Translations = {
       "usageReject": "Kullanım: /admin_reject <appeal_id> [notlar]",
       "user": "Kullanıcı: ${user}",
       "userBanHistory": "📊 Kullanıcı yasak geçmişi",
-      "viewHistory": "💡 Belirli bir kullanıcının yasak geçmişini görüntülemek için /admin_bans <user_id> kullanın"
+      "viewHistory": "💡 Belirli bir kullanıcının yasak geçmişini görüntülemek için /admin_bans <user_id> kullanın",
+      "onlyAdmin": "❌ Bu komutu yalnızca yöneticiler kullanabilir",
+      "onlySuperAdmin": "❌ Bu komutu yalnızca süper yöneticiler kullanabilir",
+      "banUsageError": "Kullanım: /admin_ban <user_id> [saat|kalıcı]",
+      "cannotBanAdmin": "❌ Yöneticileri yasaklayamazsınız",
+      "banUserNotFound": "❌ Kullanıcı bulunamadı",
+      "operationFailed": "İşlem başarısız oldu",
+      "userNotFound": "❌ Kullanıcı bulunamadı",
+      "analyticsTitle": "Günlük operasyonel veri analizi",
+      "adPerformanceTitle": "Reklam performansı analizi",
+      "vipFunnelTitle": "VIP dönüşüm hunisi analizi",
+      "dailyReportTitle": "Günlük çeviri ve operasyon raporu",
+      "testDailyReport": "Test gönderim günlük raporu",
+      "testRetentionPush": "Test tutma itmesi",
+      "testMatchPush": "Test eşleştirme itmesi",
+      "analytics": {
+        "message5": "• Hata oranı: {rate}%",
+        "noPermission": "❌ Analiz verilerini görüntüleme izniniz yok",
+        "getDataFailed": "❌ Analiz verilerini alırken hata oluştu",
+        "noPermissionAd": "❌ Reklam verilerini görüntüleme izniniz yok",
+        "getAdDataFailed": "❌ Reklam verilerini alırken hata oluştu",
+        "noPermissionVip": "❌ VIP verilerini görüntüleme izniniz yok",
+        "getVipDataFailed": "❌ VIP verilerini almak başarısız oldu",
+        "sendReportFailed": "❌ Rapor gönderirken hata: {error}",
+        "onlySuperAdmin": "❌ Bu komutu yalnızca süper yöneticiler kullanabilir"
+      }
     },
     "ban2": "Toplam yasaklar: ${userBans.results.length}\n\n",
     "ban3": "📊 Son 10 Yasak Kaydı\n\n",
@@ -324,7 +350,7 @@ export const translations: Translations = {
       "usersNeedingRefresh": "• Yenileme gerekiyor: ${count}"
     },
     "removeCannotRemoveSuperAdmin": "❌ Süper yönetici kaldırılamıyor.",
-    "removeCommand": "`/admin_kaldır <user_id>` `/admin_remove <user_id>`",
+    "removeCommand": "`/admin_remove <user_id>`",
     "removeExample": "`/admin_remove 123456789` - Normal yöneticiyi çıkar\n\n",
     "removeInstructions": "⚠️ **Not**\n\nBu komut, yapılandırma dosyasının manuel olarak değiştirilmesini gerektirir.\n\n**Adımlar:**\n1. `wrangler.toml` dosyasını düzenleyin\n2. `ADMIN_USER_IDS` değişkenini bulun\n3. Kullanıcı kimliğini kaldırın: `{userId}`\n4. Format: `ADMIN_USER_IDS = \"ID1,ID2\"` (kaldırın {userId})\n5. Yeniden dağıtım: `pnpm deploy:staging`\n\n**Kullanıcı Bilgileri:**\n• ID: `{userId}`\n• Takma İsim: {nickname}\n• Kullanıcı Adı: @{username}\n\n💡 veya Cloudflare Dashboard'daki ortam değişkenlerini değiştirin",
     "removeNotAdmin": "❌ Bu kullanıcı yönetici değil.",
@@ -416,7 +442,8 @@ export const translations: Translations = {
     "vip6": "⏰ **VIP Süre Sonu Hatırlatıcısı Gönderildi**\n\n",
     "vip7": "🎉 **Yeni VIP Satın Alma**\n\n",
     "vip8": "⬇️ **VIP Otomatik Düşürme**\n\n",
-    "vip9": "🔄 **VIP Yenileme**\n\n"
+    "vip9": "🔄 **VIP Yenileme**\n\n",
+    "dailyReport": "📊 Günlük Operasyon Raporu ({date})\n\n💰 Tahmini Çeviri Maliyetleri:\n{costDetails}\n\n⚠️ Anomali İzleme:\n• Çeviri düşüşleri: {fallbackCount} kez\n• Çeviri hataları: {errorCount} kez\n\n📈 Aktif Veriler:\n• Yeni Kullanıcılar: {newUsers}\n• Aktif Sohbetler: {activeConversations}"
   },
   "adminNotification": {
     "amount": "Miktar: ${stars} ⭐",
@@ -626,14 +653,14 @@ export const translations: Translations = {
       "gender5": "👤 Cinsiyet Filtreleme",
       "genderLabel": "• Cinsiyet: {gender}\n",
       "mbti": "• MBTI: \\${selectedMBTI.length > 0 ? selectedMBTI.join(', ') : 'Sınırsız'}",
-      "mbti2": "Seçilen: \\${selectedMBTI.length > 0 ? selectedMBTI.join(', ') : 'Hiçbiri'}",
+      "mbti2": "Seçili: \\${selectedMBTI.length > 0 ? selectedMBTI.join(', ') : 'Yok'}",
       "mbti3": "Seçilen: \\${selectedMBTI.length > 0 ? selectedMBTI.join(",
       "mbti4": "🧠 **MBTI Filtreleme**\n\n",
       "mbti5": "• MBTI: Belirli kişilik türlerini filtrele\n",
       "mbti6": "• Yüksek MBTI Eşleşmesi ✓",
       "mbti7": "🧠 MBTI Filtreleme",
       "mbtiLabel": "• MBTI: {mbti}",
-      "message": "Seçilen: \\${selectedZodiac.length > 0 ? selectedZodiac.map((z) => ZODIAC_NAMES[z]).join(', ') : 'Hiçbiri'}",
+      "message": "Seçili: \\${selectedZodiac.length > 0 ? selectedZodiac.map((z) => ZODIAC_NAMES[z]).join(', ') : 'Yok'}",
       "message2": "Mevcut seçim: \\${currentGender === 'male' ? '👨 Erkek' : currentGender === 'female' ? '👩 Kadın' : '🌈 Herkes'}",
       "message3": "Seçilen: \\${selectedZodiac.length > 0 ? selectedZodiac.map((z) => ZODIAC_NAMES[z]).join(",
       "message4": "Mevcut seçim: \\${bloodTypeDisplay[currentBloodType]}\n\n",
@@ -1111,7 +1138,7 @@ export const translations: Translations = {
     "catch3": "Mesaj Şişesi Süreci",
     "catch4": "Mesaj şişesi süreci",
     "close": "❌ Kapat",
-    "complete": "🎉 **Reklam görüntüleme tamamlandı!**\n\n✅ Kazanılan **+1 kota**\n📊 Bugün görüntüleme: **${updated.ads_watched}/20** kez\n🎁 Bugün kazanılan kota: **${updated.quota_earned}**\n📈 Kalan görüntülemeler: **${result.remaining_ads}** kez\n\n${result.remaining_ads > 0 ? '💡 Daha fazla kota kazanmak için reklamlara devam edin!' : '✅ Günlük reklam limiti aşıldı'}",
+    "complete": "🎉 **Reklam izleme tamamlandı!**\n\n✅ Kazanılan **+1 kota**\n📊 Bugün izlenen: **${updated.ads_watched}/20** kez\n🎁 Bugün kazanılan kota: **${updated.quota_earned}**\n📈 Kalan izlemeler: **${result.remaining_ads}** kez\n\n${result.remaining_ads > 0 ? '💡 Daha fazla kota kazanmak için reklamlara devam edin!' : '✅ Günlük reklam limiti aşıldı'}",
     "complete2": "📺 **Kredi kazanmak için reklamları izleyin**\n\n🎁 Görüntülemeyi tamamlarsanız **+1 kredi** kazanacaksınız\n📊 Bugün kalan: **${remainingAds}/20** kez\n\n👇 İzlemeye başlamak için aşağıdaki düğmeye tıklayın",
     "complete3": "Tamamlanma süresi: ${new Date(broadcast.completedAt).toLocaleString('zh-TW')}\n",
     "complete4": "Tahmini tamamlanma: ${new Date(maintenance.endTime).toLocaleString('zh-TW')}\n",
@@ -1158,7 +1185,7 @@ export const translations: Translations = {
     "gender5": "👤 Cinsiyet: ${user.gender ===",
     "gender6": "Lütfen cinsiyetinizi şimdi seçin:\n\n",
     "gender7": "Diğer",
-    "help": "MBTI kişilik testi, sizin için daha uygun sohbet partnerleri bulmamıza yardımcı olabilir～",
+    "help": "MBTI kişilik testi, sizin için daha uygun sohbet partnerlerini bulmamıza yardımcı olabilir～",
     "help2": "❓ Yardımı Görüntüle - /help",
     "help3": "• /help - Yardımı Görüntüle",
     "invite": "• Toplam davet sayısı: ${inviteStats?.total || 0}",
@@ -1192,14 +1219,14 @@ export const translations: Translations = {
     "message18": "🚫 Yasaklı URL'ler:\n${urlCheck.blockedUrls?.map((url) =>",
     "message19": "• Son mesaj: ${formatDate(stats.last_message_time)}\n",
     "message2": "doğum tarihi = '2000-01-01',\n yaş = 25,\n burç = 'Oğlak',\n dolandırıcılık karşıtı puan = 100,\n koşulları kabul etti = 1",
-    "message20": "• Aktif olan: ${inviteStats?.activated || 0} {formatDate(conv.last_message_time)} ${formatDate(conv.last_message_time)}\n\n",
+    "message20": "Zaman: ${formatDate(conv.last_message_time)}",
     "message21": "Tahmini süre: ${maintenance.estimatedDuration} dakika\n",
     "message22": "İlerlemeyi kontrol etmek için /broadcast_status ${broadcastId} kullanın.",
     "message23": "💡 Cevap vermek istediğiniz mesajı basılı tutun, açılan menüden 'Cevapla' seçeneğini seçin ve ardından yanıtınızı sohbet kutusuna girin.",
     "message24": "📊 Bugün gönderilen: ${usedToday + 1}/${dailyLimit} mesajlar",
     "message25": "/broadcast_filter zodiac=Scorpio Akrep'e özel mesaj",
     "message26": "• Aktif: ${inviteStats?.activated || 0}",
-    "message27": "• Beklemede: ${inviteStats?.pending || 0}",
+    "message27": "• Bekleyen: ${inviteStats?.pending || 0}",
     "message28": "/maintenance_enable [bakım mesajı]",
     "message29": "İlerleme: ${b.sent_count}/${b.total_users}\n",
     "message3": "İlerleme: ${broadcast.sentCount}/${broadcast.totalUsers} (${progress.percentage}%)\n",
@@ -1213,7 +1240,7 @@ export const translations: Translations = {
     "message37": "**Mesaj içeriği:**\n${broadcastMessage}",
     "message38": "• Toplam mesajlar: ${stats.total_messages} mesaj\n",
     "message39": "Adaylar - Tutkulu, yaratıcı ve sosyal açıdan yetenekli serbest ruhlar, her zaman gülümseyecek bir neden bulurlar.",
-    "message4": "💡 Tam konuşmayı görüntülemek için /history ${formatIdentifier(conversations[0].identifier)} kullanın.",
+    "message4": "💡 Tam konuşmayı görüntülemek için /history ${formatIdentifier(conversations[0].identifier)}'i kullanın",
     "message40": "Kalan süre: ${remaining.remainingText}\n",
     "message41": "Sanatçılar - Spontane, enerjik ve heyecanlı eğlenceler, hayatı asla sıkıcı bulmazlar.",
     "message42": "Kullanıcı sayısı: ${broadcast.total_users} kişi\n",
@@ -1260,7 +1287,7 @@ export const translations: Translations = {
     "newUser": "Yeni Kullanıcı",
     "next": "Sonraki Sayfa",
     "nickname": "Lütfen yeni bir takma ad girin: https://.\n\n",
-    "nickname10": "Harika! Takma adınız: ${truncatedNickname}\n\n",
+    "nickname10": "Lütfen yeni bir takma ad girin:",
     "nickname11": "• Reklam göndermek için takma adınızı kullanmayın",
     "nickname12": "📝 Takma Adı Düzenle",
     "nickname13": "✍️ Takma Adı Özelleştir",
@@ -1281,15 +1308,15 @@ export const translations: Translations = {
     "pageInfo": "Sayfa {current} / {total}",
     "prev": "Önceki Sayfa",
     "profile": "👤 Profil Görüntüle - /profile\n",
-    "profile2": "💡 Bu hızlı bir testtir (${testInfo}), sonuçlar yalnızca referans içindir.\nKayıttan sonra /mbti ile tekrar alabilirsiniz.\n\n",
+    "profile2": "✏️ **Profil Düzenle**",
     "profile3": "(Bunu profilinizde daha sonra da ayarlayabilirsiniz)",
     "quota": "💡 Daha fazla kot için VIP'ye yükseltin (günde 100 mesaj): /vip",
     "quota2": "• 💎 VIP'ye yükseltin (günde 30 kota)",
     "quota3": "• 🎁 Arkadaş Davet Edin (kişi başına 1 kota)\n",
     "quota4": "• ✨ Görevleri Tamamlayın (kalıcı kotalar elde edin)\n",
-    "register": "💡 Bu hızlı bir testtir (${testInfo}), sonuçlar yalnızca referans içindir.\nKayıttan sonra /mbti ile yeniden yapabilirsiniz.",
-    "register10": "🎉 Kayıt işleminde başarıyla tamamladınız!",
-    "register2": "💡 Bu kapsamlı bir testtir (${testInfo}), sonuçlar daha doğrudur.\nKayıttan sonra /mbti ile yeniden yapabilirsiniz.",
+    "register": "💡 Bu hızlı bir testtir (${testInfo}), sonuçlar yalnızca referans içindir.\nKaydolduktan sonra /mbti ile tekrar alabilirsiniz.",
+    "register10": "🎉 Kaydı tamamladığınız için tebrikler!",
+    "register2": "💡 Bu tam bir testtir (${testInfo}), sonuçlar daha doğrudur.\nKaydolduktan sonra /mbti ile tekrar alabilirsiniz.",
     "register3": "Kayıt adımı: ${user.onboarding_step}\n",
     "register4": "⏰ Kayıt süreci zaman aşımına uğradı\n\nLütfen kayıt işlemini başlatmak için /start kullanın.",
     "register5": "💡 Artık test kayıt sürecini yeniden başlatabilirsiniz.\n\n",
@@ -1297,7 +1324,7 @@ export const translations: Translations = {
     "register7": "🔄 Yeniden kayıt: /start\n",
     "register8": "💡 Kayıt işlemini tamamladıktan sonra şunları yapabilirsiniz:\n",
     "register9": "Seçildi\n\n",
-    "report": "🚨 **Uygunsuz içeriği bildir** (#${conversationIdentifier})",
+    "report": "🚨 **Uygunsuz içeriği bildirin** (#${conversationIdentifier})",
     "report2": "💡 Bu, bildirilecek nesneyi doğru bir şekilde belirtir.",
     "report3": "Lütfen bir rapor nedeni seçin:",
     "report4": "Seçildi",
@@ -1412,7 +1439,7 @@ export const translations: Translations = {
     "short164": "Gruba katıl",
     "short165": "Detayları görüntüle",
     "short17": "Diğer kullanıcılara kendin hakkında daha fazla bilgi ver",
-    "short18": "Başlangıç zamanı: ${broadcast.started_at}\n\n",
+    "short18": "Bu doğru mu?",
     "short19": "🗑️ Taslağı sil",
     "short2": "🌈 Herkes yapabilir",
     "short20": "🏷️ İlgi alanlarını düzenle",
@@ -1584,7 +1611,7 @@ export const translations: Translations = {
     "text149": "📋 Hukuki belgeler yalnızca İngilizce olarak sağlanmaktadır.",
     "text15": "🌍 Bölge: ${updatedUser.city ||",
     "text150": "📋 Hukuki belgeler yalnızca İngilizce olarak sağlanmaktadır.",
-    "text16": "✅ Doğrulama gerekli: Grupla/kanalla katıldıktan sonra 'Doğrula' butonuna tıklayın.",
+    "text16": "✅ Doğrulama gerekli: Gruba/kanala katıldıktan sonra 'Doğrula' butonuna tıklayın",
     "text17": "Hedef kullanıcı sayısı: ${userIds.length}\n\n",
     "text18": "Tahmini süre: ${estimatedTime}\n\n",
     "text19": "/broadcast_cleanup onayla",
@@ -2379,7 +2406,7 @@ export const translations: Translations = {
     "failed4": "Bu yayınlar 'başarısız' durumu ile işaretlendi\n",
     "generic": "❌ Bir hata oluştu, lütfen daha sonra tekrar deneyin.",
     "invalidRequest": "❌ Geçersiz istek",
-    "message": "${statusEmoji} **${provider.provider_display_name}**\n${healthEmoji} Sağlık Durumu: ${health.is_healthy ? 'İyi' : 'Dikkat Gerektiriyor'}\n📊 Tamamlanma Oranı: ${stats.completion_rate}%\n❌ Hata Oranı: ${stats.error_rate}%\n📈 Toplam İstek: ${stats.total_requests}\n✅ Toplam Tamamlamalar: ${stats.total_completions}\n💡 Öneri: ${health.recommendation}",
+    "message": "${statusEmoji} **${provider.provider_display_name}**\n${healthEmoji} Sağlık Durumu: ${health.is_healthy ? 'İyi' : 'Dikkat Gerektiriyor'}\n📊 Tamamlanma Oranı: ${stats.completion_rate}%\n❌ Hata Oranı: ${stats.error_rate}%\n📈 Toplam Talep: ${stats.total_requests}\n✅ Toplam Tamamlanma: ${stats.total_completions}\n💡 Öneri: ${health.recommendation}",
     "message2": "Hata mesajı: ${error instanceof Error ? error.message : String(error)}",
     "message3": "\\nHata: ${broadcast.errorMessage}",
     "operationFailed": "❌ İşlem başarısız oldu",
@@ -2514,7 +2541,8 @@ export const translations: Translations = {
     "vip3": "/funnel - VIP dönüşüm hunisi\n\n",
     "vip4": "🎁 **Kota ve VIP**\n",
     "vip5": "/vip - VIP Aboneliği\n",
-    "vip6": "💎 **VIP Avantajları**\n"
+    "vip6": "💎 **VIP Avantajları**\n",
+    "dailyReportTitle": "Günlük Operasyon Raporunu Al"
   },
   "history": {
     "chatHistory": "💬 **Sohbet Geçmişiniz**\n\n",
@@ -2754,6 +2782,12 @@ export const translations: Translations = {
       "question9": "Neyi daha çok değerli buluyorsunuz:",
       "question9.option1": "Adalet ve eşitlik",
       "question9.option2": "Şefkat ve anlayış"
+    },
+    "share": {
+      "welcome": "👋 Arkadaşın seni MBTI testine davet ediyor!\n\nKişilik tipini görmeye gel～",
+      "startButton": "📊 Testi Başlat",
+      "resultTitle": "Benim MBTI test sonucum {type}!",
+      "resultDesc": "Sen de testi denemelisin～"
     }
   },
   "mbtiTest": {
@@ -2763,7 +2797,7 @@ export const translations: Translations = {
     "fullAccuracy": "Daha doğru sonuçlar",
     "fullQuestions": "36 soru",
     "fullTest": "MBTI testi tamamlayın",
-    "fullTestInfo": "💡 Bu tamamlayıcı bir testtir ({questions}), sonuç daha doğrudur.\nKayıt işlemini tamamladıktan sonra, testi tekrar almak için /mbti komutunu kullanabilirsiniz.",
+    "fullTestInfo": "💡 Bu, bir tam testtir ({questions}), sonuç daha kesin olacaktır.\nKayıt işlemini tamamladıktan sonra /mbti ile testi tekrar yapabilirsiniz.",
     "fullTestTitle": "Testi tamamla",
     "manualModify": "• MBTI türünüzü manuel olarak değiştirin",
     "moreDetailedTest": "• Daha detaylı bir test yapın\n",
@@ -2774,7 +2808,7 @@ export const translations: Translations = {
     "quickAccuracy": "Sonuçlar sadece referans içindir",
     "quickQuestions": "12 soru",
     "quickTest": "Hızlı MBTI testi",
-    "quickTestInfo": "💡 Bu hızlı bir testtir ({questions}), sonuç sadece referans içindir.\nKayıt işlemini tamamladıktan sonra, testi tekrar almak için /mbti komutunu kullanabilirsiniz.",
+    "quickTestInfo": "💡 Bu, hızlı bir testtir ({questions}), sonuç yalnızca referans içindir.\nKayıt işlemini tamamladıktan sonra /mbti ile testi tekrar yapabilirsiniz.",
     "quickTestTitle": "Hızlı test",
     "yourMbtiType": "MBTI türünüz: **{type}**\n\n"
   },
@@ -2816,7 +2850,7 @@ export const translations: Translations = {
     "text5": "📊 Durumun:\n",
     "title": "🏠 **Ana menü**",
     "userNotFound": "Kullanıcı mevcut değil",
-    "vip": "• Seviye: ${isVip ? 'VIP Üye 💎' : 'Ücretsiz Üye'}",
+    "vip": "• Seviye: ${isVip ? 'VIP Üyesi 💎' : 'Ücretsiz Üye'}",
     "vip2": "VIP üye 💎",
     "yourStatus": "Durumun"
   },
@@ -3218,7 +3252,13 @@ export const translations: Translations = {
     "toggleCatch": "Mesaj şişesi alma hatırlatıcısını değiştir",
     "toggleMessage": "Soğuk konuşma hatırlatıcısını değiştir",
     "quietHours": "Sakin zaman",
-    "saved": "Ayarlar kaydedildi"
+    "saved": "Ayarlar kaydedildi",
+    "editQuietHours": "✏️ Sessiz Saatleri Düzenle",
+    "quietDisable": "🚫 Sessiz Saatleri Devre Dışı Bırak",
+    "selectStartHour": "🌙 Lütfen sessiz saatler için başlangıç zamanını seçin:\n(Örneğin: 23:00'de başlamak için, lütfen 23:00'yi seçin)",
+    "selectEndHour": "☀️ Başlangıç zamanı {start}:00 olarak ayarlandı.\nLütfen sessiz saatler için bitiş zamanını seçin:\n(Bu zamandan sonra bildirimler yeniden başlayacaktır)",
+    "disabled": "🚫 Sessiz saatler devre dışı bırakıldı",
+    "quietHoursHint": "Bu süre zarfında acil olmayan bildirimler almayacaksınız"
   },
   "stats": {
     "activeUsers": "• Dünkü Aktif: {active}\n\n",
@@ -3539,7 +3579,7 @@ export const translations: Translations = {
       "vip": "✅ Tüm gönderiler güncel (VIP durumu doğru)\n",
       "zodiac": "✅ Burç seçimi temizlendi"
     },
-    "success2": "🎉 **Doğrulama Başarılı!**\n\n✅ Kazanılan **+${ad.reward_quota} sürekli kota**\n💎 Topluluğumuza katıldığınız için teşekkür ederiz!\n\n📊 **Kota:**\n• Temel kota: ${user.is_vip ? 'Sonsuz' : '10'}/gün\n• Sürekli kota: +${ad.reward_quota}\n\n💡 Toplulukta şunları yapabilirsiniz:\n• Diğer kullanıcılarla iletişim kurun\n• En son özellik güncellemelerini alın\n• Daha fazla ödül için etkinliklere katılın",
+    "success2": "🎉 **Doğrulama Başarılı!**\n\n✅ Kazandınız **+${ad.reward_quota} kalıcı kota**\n💎 Topluluğumuza katıldığınız için teşekkür ederiz!\n\n📊 **Kotanız:**\n• Temel kota: ${user.is_vip ? 'Sınırsız' : '10'}/gün\n• Kalıcı kota: +${ad.reward_quota}\n\n💡 Toplulukta şunları yapabilirsiniz:\n• Diğer kullanıcılarla iletişim kurabilirsiniz\n• En son özellik güncellemelerini alabilirsiniz\n• Daha fazla ödül için etkinliklere katılabilirsiniz",
     "success3": "Başarıyla ${result.updated} tarihi gönderi güncellendi.\n\n",
     "success4": "Başarıyla güncellendi: ${result.updated} öğe\n",
     "text": "✅ ${flag} ${countryName} olarak ayarlandı",
@@ -3681,7 +3721,7 @@ export const translations: Translations = {
     "gender4": "💡 İstediğiniz cinsiyeti seçin:",
     "gender5": "👤 Cinsiyet Filtre",
     "genderLabel": "• Cinsiyet: {gender}\n",
-    "mbti": "• MBTI: ${selectedMBTI.length > 0 ? selectedMBTI.join(', ') : 'Sınırsız'}",
+    "mbti": "• MBTI: ${selectedMBTI.length > 0 ? selectedMBTI.join(', ') : 'Sınırlama Yok'}",
     "mbti2": "Seçilen: ${selectedMBTI.length > 0 ? selectedMBTI.join(', ') : 'Yok'}",
     "mbti3": "Seçilen: ${selectedMBTI.length > 0 ? selectedMBTI.join(",
     "mbti4": "🧠 **MBTI Filtre**\n\n",
@@ -3770,7 +3810,7 @@ export const translations: Translations = {
     "vip5": "✨ **VIP ayrıcalıkları aktif edildi!**\n\n",
     "vip6": "💡 Şunları almak için VIP'ye yükseltin:\n",
     "vip7": "✨ VIP ayrıcalıkları etkinleştiriliyor\n",
-    "zodiac": "• Burç: ${selectedZodiac.length > 0 ? selectedZodiac.map((z) => ZODIAC_NAMES[z]).join(', ') : 'Sınırsız'}",
+    "zodiac": "• Burç: ${selectedZodiac.length > 0 ? selectedZodiac.map((z) => ZODIAC_NAMES[z]).join(', ') : 'Sınırlama Yok'}",
     "zodiac2": "⭐ Astroloji: ${matchResult.user.zodiac ||",
     "zodiac3": "⭐ Astroloji: ${user.zodiac_sign ||",
     "zodiac4": "⭐ **Burç filtresi**\n\n",
@@ -3836,7 +3876,7 @@ export const translations: Translations = {
     "purchaseCancelled": "✅ Satın alma iptal edildi",
     "quota": "• Günlük 30 mesaj şişesi kotası (Arkadaş davet ederek artırın, günde 100'e kadar)\n",
     "quota2": "• Günlük 30 mesaj şişesi kotası (günde 100'e kadar)\n",
-    "refundAdminCommands": "Son kullanım süresi: ${expireDate} <ID> `/admin_approve_refund <ID>` `/admin_reject_refund <ID> ` `/admin_reject_refund <ID> <原因>`",
+    "refundAdminCommands": "Son tarih: ${expireDate} <ID> `/admin_approve_refund <ID>` `/admin_reject_refund <ID> ` `/admin_reject_refund <ID> <原因>`",
     "refundApproved": "✅ **İade Onaylandı**\n\nİade Tutarı: ${amount} ⭐\nİade, 1-3 iş günü içinde hesabınıza aktarılacaktır.\n\nVIP üyeliğiniz iptal edilmiştir.\n\nAnlayışınız için teşekkür ederiz!",
     "refundApprovedAdmin": "✅ İade Onaylandı\n\nTalep ID: #${requestId}\nKullanıcı ID: ${userId}\nTutar: ${amount} ⭐",
     "refundExpired": "❌ İade talebi zaman sınırını aştı\n\nÖdeme Zamanı: ${paymentDate}\nİade Son Tarihi: Ödeme tarihinden itibaren 7 gün içinde\n\n💡 Özel durumlar varsa, lütfen müşteri desteğiyle iletişime geçin.",
@@ -4088,7 +4128,7 @@ export const translations: Translations = {
       "vip3": "⚠️ **VIP bugün sona eriyor**\n\n"
     },
     "BROADCAST": {
-      "FILTER_ERROR": "❌ Format hatası.\nÖrnek: `/broadcast_filter gender=female,country=TW test message` `/broadcast_filter gender=female,country=TW 測試訊息`",
+      "FILTER_ERROR": "❌ Biçim hatası.\nÖrnek: `/broadcast_filter gender=female,country=TW test message`",
       "NO_CONTENT": "❌ Lütfen yayın içeriğini girin.",
       "NO_MATCHES": "⚠️ Kriterlere uyan kullanıcı bulunamadı.\nFiltre kriterleri: {filters}",
       "TOO_MANY_USERS": "⚠️ Hedef kullanıcı sayısı fazla ({count} kişi), şu anda aynı anda {max} kişiye gönderim ile sınırlıdır.",
@@ -4098,7 +4138,47 @@ export const translations: Translations = {
     "push": {
       "throwReminder": "🌊 Merhaba! Bir süre önce mesaj şişesi attın, plaj çok sessiz...",
       "catchReminder": "🎣 Plaja bazı yeni mesaj şişeleri vurdu, onlara bakmaya gitmek ister misin?",
-      "onboardingReminder": "👋 Kaydınız henüz tamamlanmadı, neredeyse oradasınız! (Adım: {step})"
+      "onboardingReminder": "👋 Kaydınız henüz tamamlanmadı, neredeyse oradasınız! (Adım: {step})",
+      "messageReminderA": "👋 Hey {masked_partner_name}, hâlâ cevabını bekliyor! Sohbetin soğumasına izin verme～",
+      "messageReminderB": "📩 {masked_partner_name}'dan okumadığınız bir mesaj var:\n> \"{last_message_preview}...\"\n(Bu zamandan beri 24 saatten fazla oldu!)",
+      "messageReminderC": "⏳ {masked_partner_name} cevabınızı bekliyor...",
+      "actionReply": "💬 {masked_partner_name}’a cevap ver",
+      "actionHistory": "📜 Bağlamı Gör"
+    },
+    "match": {
+      "header": {
+        "zodiac": "🌟 Burç Uyumu Açıklandı",
+        "mbti": "🧠 MBTI Kişilik Rezonansı",
+        "blood": "🩸 Kan Grubu Kod Analizi"
+      },
+      "reason": {
+        "zodiac": {
+          "fire_affinity": "Ateş burçları olarak tutkunuz parlak yanıyor ve bağlantınız güçlü!",
+          "earth_affinity": "Toprak burçlarının istikrarı, su burçlarının nazikliği ile birleştiğinde mükemmel bir akış yaratır.",
+          "air_affinity": "Hava burçlarının çevikliği, ateş burçlarının tutkusuyla buluşarak sonsuz yaratıcılık ilhamı verir!",
+          "water_affinity": "Su burçlarının duyguları ve toprak burçlarının pratikliliği en sıcak desteği oluşturur."
+        },
+        "mbti": {
+          "sj_affinity": "Sosyalistler (SJ) ve Keşifçiler (SP), istikrar ve heyecanın mükemmel bir birleşimi!",
+          "sp_affinity": "Keşifçiler (SP) ve Sosyalistler (SJ), oyun arkadaşları ve bakıcıların en iyi partnerleri!",
+          "nf_affinity": "İdealistler (NF) ve Rasyonalistler (NT), ruh ve bilgelik arasında derin bir çarpışma!",
+          "nt_affinity": "Rasyonalistler (NT) ve İdealistler (NF), düşüncelerin ve duyguların rezonansı!"
+        },
+        "blood": {
+          "a_affinity": "Tip A'nın titizliği, Tip O'nun hoşgörüsüyle buluşarak en konforlu etkileşimleri yaratır.",
+          "b_affinity": "Tip B'nin kendine güveni, Tip O'nun rahat doğasıyla buluşur, stresiz ve gevşek.",
+          "o_affinity": "Tip O ve Tip B/A harika tamamlayıcı partnerlerdir!",
+          "ab_affinity": "AB'nin benzersiz frekansı, yalnızca kendi türü tarafından en iyi anlaşılır."
+        }
+      },
+      "template": {
+        "body": "{userAttribute},\nAnalizlere göre, en güçlü çekim gücüne sahip olduğunuz {recommendedAttributes} ile uyumlusunuz!\n\n💡 {reason}\n\n👇 Şanslı hissetmek mi?"
+      },
+      "btn": {
+        "throw": "🌊 Bir şişe at ve şansını dene",
+        "vip_throw": "🎯 {target}'a at",
+        "vip_upsell": "💡 Hedefe teslimat belirlemek için VIP'ye yükselin, tam eşleştirme için! {target}"
+      }
     }
   },
   "push": {

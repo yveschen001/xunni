@@ -119,7 +119,8 @@ export const translations: Translations = {
       "noPermissionVip": "❌ Nimate dovoljenja za ogled VIP podatkov",
       "onlySuperAdmin": "❌ Samo super administratorji lahko uporabljajo to ukaz.",
       "sendReportFailed": "❌ Pošiljanje dnevnega poročila je spodletelo: ${error}",
-      "userNotFound": "❌ Uporabnik ni bil najden: ${userId}"
+      "userNotFound": "❌ Uporabnik ni bil najden: ${userId}",
+      "message5": "• Stopnja napak: {rate}%"
     },
     "appeal": "ID pritožbe: ${appeal.id}\n",
     "appeal2": "💡 Uporabite naslednji ukaz za pregled pritožbe:\n",
@@ -178,7 +179,32 @@ export const translations: Translations = {
       "usageReject": "Uporaba: /admin_reject <appeal_id> [opombe]",
       "user": "Uporabnik: ${user}",
       "userBanHistory": "📊 Zgodovina prepovedi uporabnika",
-      "viewHistory": "💡 Uporabite /admin_bans <user_id> za ogled zgodovine prepovedi posameznega uporabnika"
+      "viewHistory": "💡 Uporabite /admin_bans <user_id> za ogled zgodovine prepovedi posameznega uporabnika",
+      "onlyAdmin": "❌ Le skrbniki lahko uporabljajo to ukaz",
+      "onlySuperAdmin": "❌ Le super skrbniki lahko uporabljajo to ukaz",
+      "banUsageError": "Uporaba: /admin_ban <user_id> [ure|trajna]",
+      "cannotBanAdmin": "❌ Ni mogoče prepovedati skrbnikov",
+      "banUserNotFound": "❌ Uporabnik ni bil najden",
+      "operationFailed": "Operacija je spodletela",
+      "userNotFound": "❌ Uporabnik ni bil najden",
+      "analyticsTitle": "Dnevna analiza operativnih podatkov",
+      "adPerformanceTitle": "Analiza uspešnosti oglaševanja",
+      "vipFunnelTitle": "Analiza VIP konverzijskega lijaka",
+      "dailyReportTitle": "Dnevno poročilo o prevodih in operacijah",
+      "testDailyReport": "Testni pošilj dnevnega poročila",
+      "testRetentionPush": "Testiranje potiska zadrževanja",
+      "testMatchPush": "Testni potisk ujemanja",
+      "analytics": {
+        "message5": "• Stopnja napak: {rate}%",
+        "noPermission": "❌ Nimate dovoljenja za ogled analiznih podatkov",
+        "getDataFailed": "❌ Pridobitev analiznih podatkov je spodletela",
+        "noPermissionAd": "❌ Nimate dovoljenja za ogled podatkov o oglaševanju",
+        "getAdDataFailed": "❌ Pridobitev oglaševalskih podatkov je spodletela",
+        "noPermissionVip": "❌ Nimate dovoljenja za ogled VIP podatkov",
+        "getVipDataFailed": "❌ Ni uspelo pridobiti VIP podatkov",
+        "sendReportFailed": "❌ Ni uspelo poslati poročila: {error}",
+        "onlySuperAdmin": "❌ Samo super administratorji lahko uporabljajo to ukaz"
+      }
     },
     "ban2": "Skupaj prepovedi: ${userBans.results.length}\n\n",
     "ban3": "📊 Zadnjih 10 zapisov prepovedi\n\n",
@@ -416,7 +442,8 @@ export const translations: Translations = {
     "vip6": "⏰ **Opomnik o poteku VIP poslan**\n\n",
     "vip7": "🎉 **Nova VIP Naročnina**\n\n",
     "vip8": "⬇️ **Samodejno Zmanjšanje VIP-a**\n\n",
-    "vip9": "🔄 **Obnova VIP-a**\n\n"
+    "vip9": "🔄 **Obnova VIP-a**\n\n",
+    "dailyReport": "📊 Dnevno operativno poročilo ({date})\n\n💰 Ocenjeni stroški prevajanja:\n{costDetails}\n\n⚠️ Nadzor anomaliij:\n• Zmanjšanja v prevodih: {fallbackCount} krat\n• Napake v prevodih: {errorCount} krat\n\n📈 Aktivni podatki:\n• Novi uporabniki: {newUsers}\n• Aktivni pogovori: {activeConversations}"
   },
   "adminNotification": {
     "amount": "Znesek: ${stars} ⭐",
@@ -452,7 +479,7 @@ export const translations: Translations = {
     "complete2": "{provider.total_completions} ${provider.total_completions}",
     "completion": "{completions}",
     "completionRate": "{rate}",
-    "conversionStepsTitle": "[Translation needed from zh-TW.ts]",
+    "conversionStepsTitle": "[Prevod potreben iz zh-TW.ts]",
     "invite": "• Začetene Vabljive: {initiated} krat\n• Sprejete Vabljive: {accepted} krat\n• Aktivirane Vabljive: {activated} krat\n• Stopnja Konverzije: {conversionRate}%\n\n• Steklenice Prenešene: {bottlesThrown} krat\n• Steklenice Ujete: {bottlesCaught} krat\n• Nova Pogovora Začeta: {conversationsStarted} krat\n• Povprečne Krogi Pogovorov: {avgConversationRounds}\n\n💡 Podrobni Podatki: /analytics",
     "message": "📊 **Dnevno Poročilo o Delovanju**\n📅 Datum: {date}\n\n**👥 Podatki o Uporabnikih**\n• Novi Uporabniki: {newUsers} ljudi\n• Aktivni Uporabniki (DAU): {dau} ljudi\n• Stopnja Zadržanja (D1): {d1Retention}%\n• Povprečno Trajanje Seje: {avgSessionDuration} minut\n\n**📺 Podatki o Oglasih**\n• Oglasi Tretjih Oseb:\n - Prikazi: {thirdPartyImpressions} krat\n - Dokončanja: {thirdPartyCompletions} krat\n - Stopnja Dokončanja: {thirdPartyCompletionRate}%\n - Dodeljene Nagrade: {thirdPartyRewardsGranted} kvote",
     "message2": "📊 **Dnevno Poročilo o Delovanju**\n📅 Datum: {date}\n\n⚠️ **Danes Ni Podatkov**\n\nTo je lahko zaradi:\n• Sistem je šele bil nameščen, še ni uporabniških aktivnosti\n• Noben uporabnik ni uporabljal Bota danes\n• Funkcija sledenja podatkom še ni bila omogočena\n\n💡 **Kdaj bodo podatki na voljo?**\n• Uporabniki morajo izvesti katero od naslednjih dejanj:\n - Pošlji /start za registracijo\n - Vrzi ali ujami sporočilno steklenico\n - Oglej si oglas\n - Kupi VIP\n\n• Priporočljivo je, da počakate, da uporabniki začnejo uporabljati pred preverjanjem\n• Ali simulirati vedenje uporabnikov v testnem okolju",
@@ -460,8 +487,8 @@ export const translations: Translations = {
     "message4": "{step.conversion_rate.toFixed(1)} ${step.conversion_rate.toFixed(1)}",
     "message5": "{provider.error_rate.toFixed(1)} ${provider.error_rate.toFixed(1)}",
     "message6": "{provider.total_requests} ${provider.total_requests}",
-    "providerComparisonTitle": "[Translation needed from zh-TW.ts]",
-    "purchaseSuccess": "[Translation needed from zh-TW.ts]",
+    "providerComparisonTitle": "[Prevod potreben iz zh-TW.ts]",
+    "purchaseSuccess": "[Prevod potreben iz zh-TW.ts]",
     "request": "{requests}",
     "text": "{step.user_count} ${step.user_count}",
     "text2": "Namera Nakupa (kliknite za nakup)",
@@ -619,22 +646,22 @@ export const translations: Translations = {
       "conversation6": "📊 Uporabite /chats za pregled vseh pogovorov",
       "conversation7": "Uporabite /chats za pregled vseh pogovorov",
       "currentSelection": "Trenutna izbira: {genderText}",
-      "gender": "• Spol: \\${selectedGender === 'male' ? '👨 Moški' : selectedGender === 'female' ? '👩 Ženska' : '🌈 Kdor koli'}",
+      "gender": "• Spol: \\${selectedGender === 'male' ? '👨 Moški' : selectedGender === 'female' ? '👩 Ženska' : '🌈 Kdo koli'}",
       "gender2": "👤 **Filter po spolu**\n\n",
       "gender3": "• Spol: Filtriraj po spolu\n\n",
       "gender4": "💡 Izberite želeni spol:",
       "gender5": "👤 Filter po spolu",
       "genderLabel": "• Spol: {gender}\n",
-      "mbti": "• MBTI: \\${selectedMBTI.length > 0 ? selectedMBTI.join(', ') : 'Nepomebno'}",
-      "mbti2": "Izbrano: \\${selectedMBTI.length > 0 ? selectedMBTI.join(', ') : 'Nobeno'}",
+      "mbti": "• MBTI: \\${selectedMBTI.length > 0 ? selectedMBTI.join(', ') : 'Brez omejitev'}",
+      "mbti2": "Izbrano: \\${selectedMBTI.length > 0 ? selectedMBTI.join(', ') : 'Nič'}",
       "mbti3": "Izbrano: \\${selectedMBTI.length > 0 ? selectedMBTI.join(",
       "mbti4": "🧠 **MBTI filter**\n\n",
       "mbti5": "• MBTI: Filtriraj specifične tipe osebnosti\n",
       "mbti6": "• Visoko ujemanje MBTI ✓",
       "mbti7": "🧠 MBTI filter",
       "mbtiLabel": "• MBTI: {mbti}",
-      "message": "Izbrano: \\${selectedZodiac.length > 0 ? selectedZodiac.map((z) => ZODIAC_NAMES[z]).join(', ') : 'Nobeno'}",
-      "message2": "Trenutna izbira: \\${currentGender === 'male' ? '👨 Moški' : currentGender === 'female' ? '👩 Ženska' : '🌈 Kdor koli'}",
+      "message": "Izbrano: \\${selectedZodiac.length > 0 ? selectedZodiac.map((z) => ZODIAC_NAMES[z]).join(', ') : 'Nič'}",
+      "message2": "Trenutna izbira: \\${currentGender === 'male' ? '👨 Moški' : currentGender === 'female' ? '👩 Ženska' : '🌈 Kdo koli'}",
       "message3": "Izbrano: \\${selectedZodiac.length > 0 ? selectedZodiac.map((z) => ZODIAC_NAMES[z]).join(",
       "message4": "Trenutna izbira: \\${bloodTypeDisplay[currentBloodType]}\n\n",
       "message5": "👤 Druga stranka: \\${vipMatchInfo.matcherNickname}\n",
@@ -1080,7 +1107,7 @@ export const translations: Translations = {
     "bottle31": "🍾 Vrzi sporočilno steklenico\n\n",
     "bottle32": "Vsebina steklenice ne more biti prazna",
     "bottle33": "Vrži svojo prvo steklenico",
-    "bottle34": "Pick up your first bottle",
+    "bottle34": "Poberite svojo prvo message bottle",
     "bottle4": "Anonimna platforma za sporočilne steklenice, ki vam pomaga najti sorodne prijatelje prek MBTI in zodiakalnih znakov\n\n",
     "bottle5": "⏰ Pogovor je potekel\n\nDruga stran je morda odšla. Uporabite /catch, da pobereš novo steklenico!",
     "bottle6": "💡 Uporabite /catch, da pobereš novo sporočilno steklenico in začneš nov pogovor.",
@@ -1111,7 +1138,7 @@ export const translations: Translations = {
     "catch3": "• Prijazen in spoštljiv sadržaj je bolj verjetno, da bo ujet!",
     "catch4": "Postopek message bottle",
     "close": "❌ Zapri",
-    "complete": "🎉 **Ogled oglasov je bil zaključen!**\n\n✅ Pridobljena je **+1 kvota**\n📊 Ogledano danes: **${updated.ads_watched}/20**-krat\n🎁 Kvota pridobljena danes: **${updated.quota_earned}**\n📈 Preostali ogledi: **${result.remaining_ads}**-krat\n\n${result.remaining_ads > 0 ? '💡 Nadaljujte z ogledom oglasov, da pridobite več kvote!' : '✅ Dosežen dnevni limit oglasov'}",
+    "complete": "🎉 **Ogled oglasa zaključen!**\n\n✅ Preneseno **+1 kvota**\n📊 Danes ogledano: **${updated.ads_watched}/20** krat\n🎁 Kvota pridobljena danes: **${updated.quota_earned}**\n📈 Preostali ogledi: **${result.remaining_ads}** krat\n\n${result.remaining_ads > 0 ? '💡 Nadaljujte z ogledom oglasov, da pridobite več kvote!' : '✅ Dosežen dnevni limit oglasov'}",
     "complete2": "📺 **Glejte oglase, da zaslužite kvote**\n\n🎁 Dokončanje ogledov prinaša **+1 kvota**\n📊 Preostalo danes: **${remainingAds}/20** krat\n\n👇 Kliknite gumb spodaj, da začnete gledati",
     "complete3": "Čas dokončanja: ${new Date(broadcast.completedAt).toLocaleString('zh-TW')}\n",
     "complete4": "Predvideno dokončanje: ${new Date(maintenance.endTime).toLocaleString('zh-TW')}\n",
@@ -1182,11 +1209,11 @@ export const translations: Translations = {
     "mbti9": "🧠 Ponovno testiranje MBTI",
     "message": "${typeEmoji} **${ad.title}**\n${statusEmoji} Status: ${status}\n\n📊 **Statistika**\n• Impressions: ${stats.total_views}\n• Kliki: ${stats.total_clicks}\n• Stopnja klikov (CTR): ${stats.ctr}%",
     "message10": "/broadcast_filter gender=female,age=18-25,country=TW Pozdravljeni vsi!\n",
-    "message11": "${banHours} ${user.language_pref === 'en' ? 'ur' : 'ur'}",
+    "message11": "${banHours} ${user.language_pref === 'en' ? 'ur' : '小時'}",
     "message12": "Čas: ${new Date(b.created_at).toLocaleString('zh-TW')}\n\n",
     "message13": "V čakalni vrsti je ${pendingBroadcasts.results.length - 1} oddajanj v čakanju\n",
     "message14": "Napredek: ${broadcast.sent_count}/${broadcast.total_users}\n",
-    "message15": "${days} ${user.language_pref === 'en' ? 'dni' : 'dni'}",
+    "message15": "${days} ${user.language_pref === 'en' ? 'dni' : '天'}",
     "message16": "Cilj: ${getBroadcastTargetName(broadcast.targetType)}\n",
     "message17": "Status: ${maintenance.isActive ? '✅ V vzdrževanju' : '❌ Ni aktivno'}",
     "message18": "🚫 Zblokirani URL-ji:\n${urlCheck.blockedUrls?.map((url) =>",
@@ -1287,9 +1314,9 @@ export const translations: Translations = {
     "quota2": "• 💎 Nadgradite na VIP (30 kvot na dan)",
     "quota3": "• 🎁 Povabite prijatelje (+1 kvota na osebo)\n",
     "quota4": "• ✨ Določite naloge (pridobite trajne kvote)\n",
-    "register": "💡 To je hiter test (${testInfo}), rezultati so samo za referenco.\nPo registraciji lahko ponovite s /mbti.",
+    "register": "💡 To je hitri test (${testInfo}), rezultati so samo za referenco.\nPo registraciji lahko test ponovite z /mbti.",
     "register10": "🎉 Čestitamo, da ste uspešno zaključili registracijo!\n\n",
-    "register2": "💡 To je celoten test (${testInfo}), rezultati so bolj natančni.\nPo registraciji lahko ponovite s /mbti.",
+    "register2": "💡 To je obsežen test (${testInfo}), rezultati so bolj natančni.\nPo registraciji lahko test ponovite z /mbti.",
     "register3": "Koraki registracije: ${user.onboarding_step}\n",
     "register4": "⏰ Postopek registracije je potečen\n\nProsim, uporabite /start za ponovni zagon registracije.",
     "register5": "Ali uporabite: /dev_restart (samodejni začetek registracije)\n\n",
@@ -1584,7 +1611,7 @@ export const translations: Translations = {
     "text149": "📋 Pravni dokumenti so na voljo samo v angleščini.",
     "text15": "🌍 Lokacija: ${updatedUser.city ||",
     "text150": "📋 Pravni dokumenti so na voljo samo v angleščini.",
-    "text16": "✅ Potrebna je verifikacija: Kliknite na gumb 'Verificiraj' po pridružitvi skupini/kanalu",
+    "text16": "✅ Potritev potrebna: Kliknite na gumb 'Potrdi' po pridružitvi skupini/kanalu",
     "text17": "Ciljna številka uporabnikov: ${userIds.length}\n\n",
     "text18": "Ocena časa: ${estimatedTime}\n\n",
     "text19": "/broadcast_cleanup potrdi",
@@ -2379,7 +2406,7 @@ export const translations: Translations = {
     "failed4": "Ti prenosi so bili označeni kot 'neuspešni' status\n",
     "generic": "❌ Prišlo je do napake, prosimo poskusite znova kasneje.",
     "invalidRequest": "❌ Neveljavna zahteva",
-    "message": "${statusEmoji} **${provider.provider_display_name}**\n${healthEmoji} Zdravstveni status: ${health.is_healthy ? 'Dober' : 'Potrebuje pozornost'}\n📊 Stopnja dokončanja: ${stats.completion_rate}%\n❌ Stopnja napak: ${stats.error_rate}%\n📈 Skupno število zahtevkov: ${stats.total_requests}\n✅ Skupno število dokončanj: ${stats.total_completions}\n💡 Priporočilo: ${health.recommendation}",
+    "message": "${statusEmoji} **${provider.provider_display_name}**\n${healthEmoji} Zdravstveni status: ${health.is_healthy ? 'Dobro' : 'Potrebna pozornost'}\n📊 Stopnja dokončanja: ${stats.completion_rate}%\n❌ Stopnja napak: ${stats.error_rate}%\n📈 Skupaj zahtevkov: ${stats.total_requests}\n✅ Skupaj dokončanj: ${stats.total_completions}\n💡 Priporočilo: ${health.recommendation}",
     "message2": "Sporočilo o napaki: ${error instanceof Error ? error.message : String(error)}",
     "message3": "Napaka: ${broadcast.errorMessage}",
     "operationFailed": "❌ Operacija ni uspela",
@@ -2514,7 +2541,8 @@ export const translations: Translations = {
     "vip3": "/funnel - VIP konverzijski lijak\n\n",
     "vip4": "🎁 **Kvota in VIP**\n",
     "vip5": "/vip - VIP naročnina\n",
-    "vip6": "💎 **VIP ugodnosti**\n"
+    "vip6": "💎 **VIP ugodnosti**\n",
+    "dailyReportTitle": "Pridobi dnevno operativno poročilo"
   },
   "history": {
     "chatHistory": "💬 **Vaša zgodovina klepetov**\n\n",
@@ -2754,6 +2782,12 @@ export const translations: Translations = {
       "question9": "Kaj vam je bolj pomembno:",
       "question9.option1": "Poštenje in pravičnost",
       "question9.option2": "Sočutje in razumevanje"
+    },
+    "share": {
+      "welcome": "👋 Tvoj prijatelj te vabi, da opraviš MBTI test!\n\nPridi in poglej svoj tip osebnosti～",
+      "startButton": "📊 Začni test",
+      "resultTitle": "Moj rezultat MBTI testa je {type}!",
+      "resultDesc": "Tudi ti bi moral poskusiti test～"
     }
   },
   "mbtiTest": {
@@ -2763,7 +2797,7 @@ export const translations: Translations = {
     "fullAccuracy": "Natančnejši rezultati",
     "fullQuestions": "36 vprašanj",
     "fullTest": "Dokončajte MBTI test",
-    "fullTestInfo": "💡 To je popoln test ({questions}), rezultat je natančnejši.\nPo zaključku registracije lahko uporabite /mbti za ponovni test.",
+    "fullTestInfo": "💡 To je celoten test ({questions}), rezultat je bolj natančen.\nPo zaključku registracije lahko uporabite /mbti za ponovno opravljanje testa.",
     "fullTestTitle": "Dokončajte test",
     "manualModify": "• Ročno spremenite svoj MBTI tip",
     "moreDetailedTest": "• Opravljajte bolj podroben test\n",
@@ -2774,7 +2808,7 @@ export const translations: Translations = {
     "quickAccuracy": "Rezultati so samo za referenco",
     "quickQuestions": "12 vprašanj",
     "quickTest": "Hitri MBTI test",
-    "quickTestInfo": "💡 To je hitri test ({questions}), rezultat je le za referenco.\nPo zaključku registracije lahko uporabite /mbti za ponovni test.",
+    "quickTestInfo": "💡 To je hiter test ({questions}), rezultat je le za referenco.\nPo zaključku registracije lahko uporabite /mbti za ponovno opravljanje testa.",
     "quickTestTitle": "Hiter test",
     "yourMbtiType": "Vaš MBTI tip je: **{type}**\n\n"
   },
@@ -2816,7 +2850,7 @@ export const translations: Translations = {
     "text5": "📊 Vaš status:\n",
     "title": "🏠 **Glavni meni**",
     "userNotFound": "Uporabnik ne obstaja",
-    "vip": "• Raven: ${isVip ? 'VIP član 💎' : 'Brezplačen član'}",
+    "vip": "• Raven: ${isVip ? 'VIP Član 💎' : 'Brezplačni član'}",
     "vip2": "VIP član 💎",
     "yourStatus": "Vaš status"
   },
@@ -3055,7 +3089,7 @@ export const translations: Translations = {
     "age": "🎂 Starost: ${age}\n",
     "anonymousUser": "Anonimni uporabnik",
     "bloodType": "🩸 Krvna skupina: ${bloodType}\n",
-    "bottle": ": trajna kvota} sporočilne steklenice",
+    "bottle": ": permanentQuota} sporočilne steklenice",
     "cardAge": "{age} let",
     "cardBio": "📝 Biografija:\n{bio}\n\n",
     "cardFooter": "💡 To je podatkovna kartica, ki se prikaže drugim v pogovoru\n\n",
@@ -3218,7 +3252,13 @@ export const translations: Translations = {
     "toggleCatch": "Preklopite opomnik za dvig message bottle",
     "toggleMessage": "Preklopite opomnik za pogovor",
     "quietHours": "Tiho čas",
-    "saved": "Nastavitve so shranjene"
+    "saved": "Nastavitve so shranjene",
+    "editQuietHours": "✏️ Uredi Tihe Ure",
+    "quietDisable": "🚫 Onemogoči Tihe Ure",
+    "selectStartHour": "🌙 Izberite čas začetka tihe ure:\n(Na primer: za začetek ob 23:00, izberite 23:00)",
+    "selectEndHour": "☀️ Čas začetka je nastavljen na {start}:00.\nIzberite čas konca tihe ure:\n(Obvestila se bodo ponovno prikazala po tem času)",
+    "disabled": "🚫 Tihe ure so bile onemogočene",
+    "quietHoursHint": "V tem obdobju ne boste prejemali nujnih obvestil"
   },
   "stats": {
     "activeUsers": "• Aktivni včeraj: {active}\n\n",
@@ -3539,7 +3579,7 @@ export const translations: Translations = {
       "vip": "✅ Vsi prispevki so posodobljeni (VIP status je pravilno nastavljen)\n",
       "zodiac": "✅ Izbira zodiaka je bila očiščena"
     },
-    "success2": "🎉 **Verifikacija uspešna!**\n\n✅ Zasluženo **+${ad.reward_quota} trajno kvoto**\n💎 Hvala, da ste se pridružili naši skupnosti!\n\n📊 **Vaša kvota:**\n• Osnovna kvota: ${user.is_vip ? 'Brez omejitev' : '10'}/dan\n• Trajna kvota: +${ad.reward_quota}\n\n💡 V skupnosti lahko:\n• Komunicirate z drugimi uporabniki\n• Prejmete najnovejše posodobitve funkcij\n• Sodelujete v aktivnostih za še več nagrad",
+    "success2": "🎉 **Preverjanje uspešno!**\n\n✅ Zaslužili **+${ad.reward_quota} trajno kvoto**\n💎 Hvala, da ste se pridružili naši skupnosti!\n\n📊 **Vaša kvota:**\n• Osnovna kvota: ${user.is_vip ? 'Brez omejitev' : '10'}/dan\n• Trajna kvota: +${ad.reward_quota}\n\n💡 V skupnosti lahko:\n• Komunicirate z drugimi uporabniki\n• Prejmete najnovejše posodobitve funkcij\n• Sodelujete v aktivnostih za več nagrad",
     "success3": "Z uspešno osveženimi ${result.updated} zgodovinskimi objavami v klepetu.\n\n",
     "success4": "Uspešno osveženo: ${result.updated}\n",
     "text": "✅ Nastavljeno na ${flag} ${countryName}",
@@ -3682,7 +3722,7 @@ export const translations: Translations = {
     "gender5": "👤 Filter po spolu",
     "genderLabel": "• Spol: {gender}\n",
     "mbti": "• MBTI: ${selectedMBTI.length > 0 ? selectedMBTI.join(', ') : 'Brez omejitev'}",
-    "mbti2": "Izbrano: ${selectedMBTI.length > 0 ? selectedMBTI.join(', ') : 'Nič'}",
+    "mbti2": "Izbrano: ${selectedMBTI.length > 0 ? selectedMBTI.join(', ') : 'Noben'}",
     "mbti3": "Izbrano: ${selectedMBTI.length > 0 ? selectedMBTI.join(",
     "mbti4": "🧠 **Filtriraj MBTI**\n\n",
     "mbti5": "• Močno ujemanje ✓\n",
@@ -3770,7 +3810,7 @@ export const translations: Translations = {
     "vip5": "✨ **VIP privilegiji so aktivirani!**\n\n",
     "vip6": "💡 Nadgradite na VIP, da prejmete:\n",
     "vip7": "✨ Aktiviranje VIP privilegijev\n",
-    "zodiac": "• Zodiak: ${selectedZodiac.length > 0 ? selectedZodiac.map((z) => ZODIAC_NAMES[z]).join(', ') : 'Brez omejitve'}",
+    "zodiac": "• Zodiak: ${selectedZodiac.length > 0 ? selectedZodiac.map((z) => ZODIAC_NAMES[z]).join(', ') : 'Brez omejitev'}",
     "zodiac2": "⭐ Zodiak: ${matchResult.user.zodiac ||",
     "zodiac3": "⭐ Zodiak: ${user.zodiac_sign ||",
     "zodiac4": "⭐ **Filter za zodiak**\n\n",
@@ -4088,7 +4128,7 @@ export const translations: Translations = {
       "vip3": "⚠️ **VIP se izteče danes**\n\n"
     },
     "BROADCAST": {
-      "FILTER_ERROR": "❌ Napaka formata.\nPrimer: `/broadcast_filter gender=female,country=TW test message` `/broadcast_filter gender=female,country=TW 測試訊息`",
+      "FILTER_ERROR": "❌ Napaka formata.\nPrimer: `/broadcast_filter gender=female,country=TW test message`",
       "NO_CONTENT": "❌ Vnesite vsebino za oddajanje.",
       "NO_MATCHES": "⚠️ Ni uporabnikov, ki bi ustrezali kriterijem.\nKriteriji filtra: {filters}",
       "TOO_MANY_USERS": "⚠️ Preveč ciljnih uporabnikov ({count} ljudi), trenutno je omejeno na pošiljanje {max} ljudem naenkrat.",
@@ -4098,7 +4138,47 @@ export const translations: Translations = {
     "push": {
       "throwReminder": "🌊 Živjo! Minilo je nekaj časa, odkar si vrgel message bottle, plaža je zelo tiha...",
       "catchReminder": "🎣 Nekatere nove message bottles so priplavale na plažo, želiš iti pogledat?",
-      "onboardingReminder": "👋 Tvoja registracija še ni končana, skoraj si tam! (Korak: {step})"
+      "onboardingReminder": "👋 Tvoja registracija še ni končana, skoraj si tam! (Korak: {step})",
+      "messageReminderA": "👋 Hey {masked_partner_name} še vedno čaka na vaš odgovor! Ne pustite, da se pogovor ohladi～",
+      "messageReminderB": "📩 Imate neprebrano sporočilo od {masked_partner_name}:\n> \"{last_message_preview}...\"\n(To je že več kot 24 ur!)",
+      "messageReminderC": "⏳ {masked_partner_name} čaka na vaš odgovor...",
+      "actionReply": "💬 Odgovorite {masked_partner_name}",
+      "actionHistory": "📜 Oglejte si Kontekst"
+    },
+    "match": {
+      "header": {
+        "zodiac": "🌟 Razkrita Zodiakalna Ujemanja",
+        "mbti": "🧠 MBTI Osebnostna Resonanca",
+        "blood": "🩸 Analiza Krvne Skupine"
+      },
+      "reason": {
+        "zodiac": {
+          "fire_affinity": "Kot sorodne ognjene znamenja, vaša strast sveti svetlo in vaša povezanost je močna!",
+          "earth_affinity": "Stabilnost zemeljskih znamenj v kombinaciji z nežnostjo vodnih znamenj ustvarja popoln tok.",
+          "air_affinity": "Hitra narava zračnih znamenj se srečuje s strastjo ognjenih znamenj, kar navdihuje neskončno ustvarjalnost!",
+          "water_affinity": "čustva vodnih znamenj in praktičnost zemeljskih znamenj gradijo najtoplejšo podporo."
+        },
+        "mbti": {
+          "sj_affinity": "Družabniki (SJ) in Raziskovalci (SP), popoln dodatek stabilnosti in vznemirjenja!",
+          "sp_affinity": "Raziskovalci (SP) in Družabniki (SJ), najboljši partnerji za igralce in skrbnike!",
+          "nf_affinity": "Idealisti (NF) in Racionalisti (NT), globok trk duše in modrosti!",
+          "nt_affinity": "Racionalisti (NT) in Idealisti (NF), resonanca misli in občutkov!"
+        },
+        "blood": {
+          "a_affinity": "Natančnost tipa A se sreča z toleranco tipa O, kar ustvarja najbolj udobne interakcije.",
+          "b_affinity": "Samozaščita tipa B se sreča z brezskrbnostjo tipa O, brez stresa in sproščeno.",
+          "o_affinity": "Tip O in Tip B/A sta odlična dopolnilna partnerja!",
+          "ab_affinity": "Unikatna frekvenca AB najbolje razumejo njegovi vrstniki."
+        }
+      },
+      "template": {
+        "body": "{userAttribute},\nPo analizi imate najmočnejšo afiniteto z {recommendedAttributes}!\n\n💡 {reason}\n\n👇 Se počutite srečne?"
+      },
+      "btn": {
+        "throw": "🌊 Vrhni steklenico in poskusite srečo",
+        "vip_throw": "🎯 Vrzi na {target}",
+        "vip_upsell": "💡 Nadgradite na VIP, da določite dostavo na {target}, za natančno ujemanje!"
+      }
     }
   },
   "push": {

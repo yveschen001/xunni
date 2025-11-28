@@ -119,7 +119,8 @@ export const translations: Translations = {
       "noPermissionVip": "❌ VIP 데이터에 대한 권한이 없습니다",
       "onlySuperAdmin": "❌ 슈퍼 관리자만 이 명령어를 사용할 수 있습니다.",
       "sendReportFailed": "❌ 일일 보고서 전송 실패: ${error}",
-      "userNotFound": "❌ 사용자를 찾을 수 없습니다: ${userId}"
+      "userNotFound": "❌ 사용자를 찾을 수 없습니다: ${userId}",
+      "message5": "• 오류 비율: {rate}%"
     },
     "appeal": "항소 ID: ${appeal.id}\n",
     "appeal2": "💡 항소를 검토하려면 다음 명령어를 사용하세요:\n",
@@ -178,7 +179,32 @@ export const translations: Translations = {
       "usageReject": "사용법: /admin_reject <appeal_id> [비고]",
       "user": "사용자: ${user}",
       "userBanHistory": "📊 사용자 차단 기록",
-      "viewHistory": "💡 /admin_bans <user_id>를 사용하여 특정 사용자의 차단 기록을 조회하세요"
+      "viewHistory": "💡 /admin_bans <user_id>를 사용하여 특정 사용자의 차단 기록을 조회하세요",
+      "onlyAdmin": "❌ 관리자만 이 명령을 사용할 수 있습니다",
+      "onlySuperAdmin": "❌ 슈퍼 관리자가 이 명령을 사용할 수 있습니다",
+      "banUsageError": "사용법: /admin_ban <user_id> [시간|영구]",
+      "cannotBanAdmin": "❌ 관리자를 금지할 수 없습니다",
+      "banUserNotFound": "❌ 사용자를 찾을 수 없습니다",
+      "operationFailed": "작동 실패",
+      "userNotFound": "❌ 사용자를 찾을 수 없습니다",
+      "analyticsTitle": "일일 운영 데이터 분석",
+      "adPerformanceTitle": "광고 성과 분석",
+      "vipFunnelTitle": "VIP 전환 퍼널 분석",
+      "dailyReportTitle": "일일 번역 및 운영 보고서",
+      "testDailyReport": "일일 보고서 테스트 발송",
+      "testRetentionPush": "테스트 유지 보수 푸시",
+      "testMatchPush": "테스트 매칭 푸시",
+      "analytics": {
+        "message5": "• 오류율: {rate}%",
+        "noPermission": "❌ 분석 데이터를 볼 권한이 없습니다",
+        "getDataFailed": "❌ 분석 데이터를 가져오는 데 실패했습니다",
+        "noPermissionAd": "❌ 광고 데이터를 볼 권한이 없습니다",
+        "getAdDataFailed": "❌ 광고 데이터를 가져오는 데 실패했습니다",
+        "noPermissionVip": "❌ VIP 데이터를 볼 권한이 없습니다",
+        "getVipDataFailed": "❌ VIP 데이터 가져오기 실패",
+        "sendReportFailed": "❌ 보고서 전송 실패: {error}",
+        "onlySuperAdmin": "❌ 오직 슈퍼 관리者만 이 명령을 사용할 수 있습니다"
+      }
     },
     "ban2": "총 정지 수: ${userBans.results.length}\n\n",
     "ban3": "📊 최근 10개 정지 기록\n\n",
@@ -259,12 +285,12 @@ export const translations: Translations = {
     "message17": "• 총: ${historyPosts.results.length}\n\n",
     "message18": "💡 /admin_refresh_vip_avatars를 사용하여 일괄 새로 고침하세요\n",
     "message19": "• 최신: ${post.is_latest ? '✅' : '❌'}\n",
-    "message2": "• 업데이트 시간: ${avatarInfo.avatar_updated_at ? new Date(avatarInfo.avatar_updated_at).toLocaleString('zh-TW') : '알 수 없음'}",
+    "message2": "• 업데이트: ${avatarInfo.avatar_updated_at ? new Date(avatarInfo.avatar_updated_at).toLocaleString('zh-TW') : '알 수 없음'}",
     "message20": "• 구식 게시물: ${stats.totalOutdatedPosts}\n\n",
     "message21": "/ad_provider_priority <id> <priority>",
     "message22": "• 새로 고침 필요: ${stats.usersNeedingRefresh}\n",
     "message23": "• 업데이트된 게시물: ${results.totalPostsUpdated}\n",
-    "message24": "사용자: ${ban.nickname }\n",
+    "message24": "사용자: ${ban.nickname || ban.user_id}",
     "message25": "/ad_provider_disable <provider_id>",
     "message26": "💡 또는 Cloudflare 대시보드에서 환경 변수를 수정하세요",
     "message27": "/ad_provider_enable <provider_id>",
@@ -373,7 +399,7 @@ export const translations: Translations = {
     "text27": "처리 중 오류가 발생했습니다. 로그를 확인해주세요.\n\n",
     "text28": "우선순위: ${priority}\n\n",
     "text29": "사유: ${ban.reason}\n",
-    "text3": "<ad_id>",
+    "text3": "/official_ad_disable <ad_id>",
     "text30": "사유: ${data.reason}\n",
     "text31": "{timestamp} ${timestamp}\n\n",
     "text32": "이 명령은 구성 파일의 수동 수정을 필요로 합니다.\n\n",
@@ -416,7 +442,8 @@ export const translations: Translations = {
     "vip6": "⏰ **VIP 만료 알림이 전송되었습니다**\n\n",
     "vip7": "🎉 **새 VIP 구매**\n\n",
     "vip8": "⬇️ **VIP 자동 강등**\n\n",
-    "vip9": "🔄 **VIP 갱신**\n\n"
+    "vip9": "🔄 **VIP 갱신**\n\n",
+    "dailyReport": "📊 일일 운영 보고서 ({date})\n\n💰 예상 번역 비용:\n{costDetails}\n\n⚠️ 이상 모니터링:\n• 번역 내역 하강: {fallbackCount}회\n• 번역 실패: {errorCount}회\n\n📈 활성 데이터:\n• 신규 사용자: {newUsers}\n• 활성 대화: {activeConversations}"
   },
   "adminNotification": {
     "amount": "금액: ${stars} ⭐",
@@ -820,7 +847,7 @@ export const translations: Translations = {
     "filterQueryingUsers": "조건에 맞는 사용자를 검색 중입니다...",
     "filterUsageError": "❌ 잘못된 사용\n\n",
     "filterViewFormat": "올바른 형식을 보려면 /broadcast_filter를 사용하세요.",
-    "filterVip": "• vip=참|거짓",
+    "filterVip": "• vip=true|false",
     "filterZodiac": "• 별자리=양자리|황소자리|...",
     "foundStuckBroadcasts": "⚠️ {count}개의 특정 방송이 감지되었습니다\n\n",
     "id": "아이디: {id}",
@@ -1105,13 +1132,13 @@ export const translations: Translations = {
     "cancel": "상태: 취소됨",
     "cancel2": "다시 입력하거나 편집을 취소하세요:\n\n",
     "cancel3": "취소됨",
-    "cancelled": ")}",
+    "cancelled": "취소됨",
     "catch": "⏰ 메시지 병 프로세스가 시간 초과되었습니다.\n\n/캐치로 다시 시작해주세요.",
     "catch2": "• 친근하고 존중하는 내용이 더 많이 발견될 가능성이 높습니다～",
     "catch3": "메시지 병 수집 프로세스",
     "catch4": "❌ 닫기",
     "close": "❌ 닫기",
-    "complete": "🎉 **광고 시청 완료!**\n\n✅ **+1 쿼터** 획득\n📊 오늘 시청한 횟수: **${updated.ads_watched}/20** 번\n🎁 오늘 획득한 쿼터: **${updated.quota_earned}**\n📈 남은 시청 가능 횟수: **${result.remaining_ads}** 번\n\n${result.remaining_ads > 0 ? '💡 더 많은 쿼터를 얻으려면 광고를 계속 시청하세요!' : '✅ 일일 광고 한도에 도달했습니다'}",
+    "complete": "🎉 **광고 시청 완료!**\n\n✅ **+1 할당량** 획득\n📊 오늘의 시청: **${updated.ads_watched}/20** 회\n🎁 오늘의 할당량: **${updated.quota_earned}**\n📈 남은 시청: **${result.remaining_ads}** 회\n\n${result.remaining_ads > 0 ? '💡 더 많은 할당량을 얻으려면 광고 시청을 계속하세요!' : '✅ 일일 광고 제한에 도달했습니다'}",
     "complete2": "📺 **광고를 시청하여 크레딧을 얻으세요**\n\n🎁 시청 완료 시 **+1 크레딧**을 얻습니다\n📊 오늘 남은 횟수: **${remainingAds}/20** 번\n\n👇 아래 버튼을 클릭하여 시청을 시작하세요",
     "complete3": "완료 시간: ${new Date(broadcast.completedAt).toLocaleString('zh-TW')}",
     "complete4": "예상 완료: ${new Date(maintenance.endTime).toLocaleString('zh-TW')}",
@@ -1163,7 +1190,7 @@ export const translations: Translations = {
     "help3": "• /help - 도움 보기",
     "invite": "• 초대 총 수: ${inviteStats?.total || 0}",
     "invite2": "초대 코드: ${user.invite_code }\n",
-    "invite3": "초대한 사람: ${user.invited_by }",
+    "invite3": "초대됨: ${user.invited_by }",
     "loading": "✅ 로딩 중......",
     "login": "일반 사용자는 서비스를 사용할 수 없으며, 관리자만 로그인할 수 있습니다.",
     "male": "남성",
@@ -1287,9 +1314,9 @@ export const translations: Translations = {
     "quota2": "• 💎 VIP로 업그레이드 (하루 30 할당량)",
     "quota3": "• 🎁 친구 초대 (+1 할당량/각 사람)\n",
     "quota4": "• ✨ 작업 완료 (영구 할당량 획득)\n",
-    "register": "💡 이는 간단한 테스트입니다 (${testInfo}), 결과는 참고용입니다.\n등록 후 /mbti로 다시 진행할 수 있습니다.",
+    "register": "💡 이것은 빠른 테스트입니다 (${testInfo}), 결과는 참고용입니다.\n등록 후 /mbti로 다시 테스트할 수 있습니다.",
     "register10": "🎉 등록 완료를 축하합니다!\n\n",
-    "register2": "💡 이는 전체 테스트입니다 (${testInfo}), 결과는 더 정확합니다.\n등록 후 /mbti로 다시 진행할 수 있습니다.",
+    "register2": "💡 이것은 전체 테스트입니다 (${testInfo}), 결과가 더 정확합니다.\n등록 후 /mbti로 다시 테스트할 수 있습니다.",
     "register3": "등록 단계: ${user.onboarding_step}\n",
     "register4": "⏰ 등록 과정이 시간 초과되었습니다\n\n/start를 사용하여 등록을 다시 시작하세요.",
     "register5": "또는 사용하세요: /dev_restart (자동 등록 시작)\n\n",
@@ -1584,7 +1611,7 @@ export const translations: Translations = {
     "text149": "📋 법적 문서는 영어로만 제공됩니다.",
     "text15": "🌍 지역: ${updatedUser.city ||",
     "text150": "📋 법적 문서는 영어로만 제공됩니다.",
-    "text16": "✅ 인증 필요: 그룹/채널에 가입한 후 '인증하기' 버튼을 클릭하세요.",
+    "text16": "✅ 확인 필요: 그룹/채널에 가입한 후 '검증' 버튼을 클릭하세요",
     "text17": "목표 사용자 수: ${userIds.length}\n\n",
     "text18": "예상 시간: ${estimatedTime}\n\n",
     "text19": "/broadcast_cleanup 확인",
@@ -1691,7 +1718,7 @@ export const translations: Translations = {
     "vip15": "대상: VIP 사용자\n",
     "vip16": "비-VIP 사용자",
     "vip17": "VIP 사용자",
-    "vip2": "당신의 VIP 구독은 ${new Date(user.vip_expire_at).toLocaleDateString()}에 만료됩니다.",
+    "vip2": "귀하의 VIP 구독은 ${new Date(user.vip_expire_at).toLocaleDateString()}에 만료됩니다.",
     "vip3": "/broadcast_filter vip=true,mbti=INTJ VIP 전용 이벤트 알림\n",
     "vip4": "초대된 각 인원에 대해, 일일 할당량이 영구적으로 +1 증가합니다 (무료 최대 10, VIP 최대 100)",
     "vip5": "VIP: ${user.is_vip ? '예' : '아니오'}",
@@ -2379,7 +2406,7 @@ export const translations: Translations = {
     "failed4": "이 방송은 '실패' 상태로 표시되었습니다.\n",
     "generic": "❌ 오류가 발생했습니다. 나중에 다시 시도해 주세요.",
     "invalidRequest": "❌ 잘못된 요청입니다.",
-    "message": "${statusEmoji} **${provider.provider_display_name}**\n${healthEmoji} 건강 상태: ${health.is_healthy ? '양호' : '주의 필요'}\n📊 완료 비율: ${stats.completion_rate}%\n❌ 오류 비율: ${stats.error_rate}%\n📈 총 요청 수: ${stats.total_requests}\n✅ 총 완료 수: ${stats.total_completions}\n💡 권장 사항: ${health.recommendation}",
+    "message": "${statusEmoji} **${provider.provider_display_name}**\n${healthEmoji} 건강 상태: ${health.is_healthy ? '양호' : '주의 필요'}\n📊 완료율: ${stats.completion_rate}%\n❌ 오류율: ${stats.error_rate}%\n📈 총 요청: ${stats.total_requests}\n✅ 총 완료: ${stats.total_completions}\n💡 권장 사항: ${health.recommendation}",
     "message2": "오류 메시지: ${error instanceof Error ? error.message : String(error)}",
     "message3": "오류: ${broadcast.errorMessage}",
     "operationFailed": "❌ 작업 실패",
@@ -2419,7 +2446,7 @@ export const translations: Translations = {
     "admin6": "**관리자 관리**\n",
     "admin_ads": "/admin_ads - 공식 광고 관리\n",
     "admin_tasks": "/admin_tasks - 커뮤니티 과제 관리",
-    "appeal": "/admin_reject <id> [note] - 항소 거절하기",
+    "appeal": "<id>",
     "appeal2": "/admin_approve <id> [note] - 항소 승인하기",
     "appeal3": "/appeal_status - 항소 상태 확인\n\n",
     "appeal4": "/admin_appeals - 대기 중인 항소 보기\n",
@@ -2447,7 +2474,7 @@ export const translations: Translations = {
     "broadcast4": "/broadcast_status - 방송 목록 보기\n",
     "broadcast5": "**방송 모니터링**\n",
     "broadcast6": "**전파 전송**\n",
-    "cancel": "/broadcast_cancel <id> - 방송 취소하기",
+    "cancel": "<id>",
     "conversation": "/chats - 내 대화 목록\n\n",
     "conversation2": "• 모든 대화는 익명입니다\n",
     "help2": "💡 도움을 보려면 /help를 사용하세요",
@@ -2514,7 +2541,8 @@ export const translations: Translations = {
     "vip3": "/funnel - VIP 전환 퍼널\n\n",
     "vip4": "🎁 **쿼타 및 VIP**\n",
     "vip5": "/vip - VIP 구독\n",
-    "vip6": "💎 **VIP 혜택**\n"
+    "vip6": "💎 **VIP 혜택**\n",
+    "dailyReportTitle": "일일 운영 보고서 가져오기"
   },
   "history": {
     "chatHistory": "💬 **내 채팅 기록**\n\n",
@@ -2530,7 +2558,7 @@ export const translations: Translations = {
     "hoursAgo": "{hours}시간 전",
     "justNow": "방금",
     "lastMessage": "마지막 메시지: {preview}\n",
-    "messageSender": "{sender}: {content}",
+    "messageSender": "{sender} {content}",
     "messageTime": "📨 {time}",
     "minutesAgo": "{minutes} 분 전",
     "noHistory": "💬 아직 대화 기록이 없습니다\n\n새로운 친구를 만나기 위해 메시지 병을 던져보세요! /throw\n\n🏠 메인 메뉴로 돌아가기: /menu",
@@ -2543,7 +2571,7 @@ export const translations: Translations = {
     "time": "시간: {time}\n\n",
     "totalMessages": "• 총 메시지: {total} 개\n",
     "userMessages": "• 당신이 보낸 메시지: {count} 개\n",
-    "viewFull": "💡 /history {identifier}를 사용하여 전체 대화 보기",
+    "viewFull": "{identifier}",
     "you": "당신"
   },
   "invite": {
@@ -2754,6 +2782,12 @@ export const translations: Translations = {
       "question9": "더 중시하는 것은:",
       "question9.option1": "공정성과 정의",
       "question9.option2": "연민과 이해"
+    },
+    "share": {
+      "welcome": "👋 당신의 친구가 MBTI 테스트를 받으라고 초대합니다!\n\n와서 당신의 성격 유형을 확인하세요～",
+      "startButton": "📊 테스트 시작",
+      "resultTitle": "내 MBTI 테스트 결과는 {type}입니다!",
+      "resultDesc": "당신도 테스트를 해보세요～"
     }
   },
   "mbtiTest": {
@@ -2763,7 +2797,7 @@ export const translations: Translations = {
     "fullAccuracy": "더 정확한 결과",
     "fullQuestions": "36문항",
     "fullTest": "MBTI 전체 테스트",
-    "fullTestInfo": "💡 이것은 완전한 테스트입니다 ({questions}), 결과가 더 정확합니다.\n등록을 완료한 후, /mbti를 사용하여 다시 테스트할 수 있습니다.",
+    "fullTestInfo": "{questions}",
     "fullTestTitle": "전체 테스트",
     "manualModify": "• 수동으로 MBTI 유형 수정",
     "moreDetailedTest": "• 더 자세한 테스트 진행\n",
@@ -2774,7 +2808,7 @@ export const translations: Translations = {
     "quickAccuracy": "결과는 참고용입니다",
     "quickQuestions": "12 질문",
     "quickTest": "MBTI 간편 테스트",
-    "quickTestInfo": "💡 이것은 간단한 테스트입니다 ({questions}), 결과는 참고용입니다.\n등록을 완료한 후, /mbti를 사용하여 다시 테스트할 수 있습니다.",
+    "quickTestInfo": "{questions}",
     "quickTestTitle": "간편 테스트",
     "yourMbtiType": "당신의 MBTI 유형은: **{type}**\n\n"
   },
@@ -2788,7 +2822,6 @@ export const translations: Translations = {
     "buttonSettings": "⚙️ 설정",
     "buttonStats": "📊 통계",
     "buttonThrow": "🌊 메시지 병 던지기",
-    "buttonVip": "💎 VIP",
     "invite": "🎁 **친구 초대**\n\n",
     "invite2": "📋 당신의 초대 코드: {inviteCode}",
     "invite3": "📤 초대 코드 공유",
@@ -2816,7 +2849,6 @@ export const translations: Translations = {
     "text5": "📊 귀하의 상태:\n",
     "title": "🏠 **메인 메뉴**",
     "userNotFound": "사용자가 존재하지 않습니다",
-    "vip": "• 레벨: ${isVip ? 'VIP 회원 💎' : '무료 회원'}",
     "vip2": "VIP 회원 💎",
     "yourStatus": "귀하의 상태"
   },
@@ -2863,7 +2895,6 @@ export const translations: Translations = {
     "noAdsAvailable": "❌ 사용 가능한 광고가 없습니다",
     "noVerificationRequired": "❌ 이 광고는 인증이 필요하지 않습니다",
     "quotaInfo": "📊 오늘 남은 횟수: **{remaining}/20** 회",
-    "requiresVerification": "✅ 확인이 필요합니다: 그룹/채널에 가입한 후 '확인' 버튼을 클릭하세요.",
     "reward": "🎁 보상: +{quota} 영구 할당량",
     "rewardPermanent": "🎁 작업을 완료하여 **+1 영구 할당량**을 받으세요",
     "rewardTemporary": "🎁 축하합니다! +1 임시 할당량을 받았습니다 (오늘 유효)",
@@ -2916,7 +2947,7 @@ export const translations: Translations = {
     "birthday3": "생년월일을 입력하세요 (형식: YYYY-MM-DD):\n\n",
     "birthday4": "생일: ${birthday}\n",
     "birthdayCheck": "이 정보가 올바르지 않다고 생각되면 생일 형식이 올바른지 확인해 주세요 (YYYY-MM-DD).",
-    "birthdayError": "❌ {error}",
+    "birthdayError": "{error}",
     "birthdayFormatError": "❌ 잘못된 생일 형식\n\n다시 입력해 주세요 (형식: YYYY-MM-DD):",
     "birthdayRetry": "생일을 다시 입력해 주세요 (형식: YYYY-MM-DD):",
     "birthdayWarning": "⚠️ 설정된 후에는 생일을 수정할 수 없습니다. 올바른지 확인해 주세요!",
@@ -3218,7 +3249,13 @@ export const translations: Translations = {
     "toggleCatch": "메시지 병 수거 알림 전환",
     "toggleMessage": "대화 알림 전환",
     "quietHours": "조용한 시간",
-    "saved": "설정이 저장되었습니다"
+    "saved": "설정이 저장되었습니다",
+    "editQuietHours": "✏️ 조용한 시간 수정",
+    "quietDisable": "🚫 조용한 시간 비활성화",
+    "selectStartHour": "🌙 조용한 시간의 시작 시간을 선택해 주세요:\n(예: 23:00에서 시작하려면 23:00을 선택하세요)",
+    "selectEndHour": "☀️ 시작 시간이 {start}:00으로 설정되었습니다.\n조용한 시간의 종료 시간을 선택해 주세요:\n(이 시간이 지나면 알림이 다시 시작됩니다)",
+    "disabled": "🚫 조용한 시간이 비활성화되었습니다",
+    "quietHoursHint": "이 기간 동안 비긴급 알림을 받지 않습니다"
   },
   "stats": {
     "activeUsers": "• 어제 활동: {active}\n\n",
@@ -3675,22 +3712,17 @@ export const translations: Translations = {
     "conversation7": "모든 대화를 보려면 /chats를 사용하세요.",
     "currentSelection": "현재 선택: {genderText}",
     "friendlyContent": "💬 친근한 내용이 응답을 받을 가능성이 높습니다.",
-    "gender": "• 성별: ${selectedGender === 'male' ? '👨 남성' : selectedGender === 'female' ? '👩 여성' : '🌈 누구나'}",
     "gender2": "👤 **성별 필터**\n\n",
     "gender3": "• 성별: 성별로 필터링\n\n",
     "gender4": "💡 원하는 성별을 선택하세요:",
     "gender5": "👤 성별 필터",
     "genderLabel": "• 성별: {gender}\n",
-    "mbti": "• MBTI: ${selectedMBTI.length > 0 ? selectedMBTI.join(', ') : '제한 없음'}",
-    "mbti2": "선택됨: ${selectedMBTI.length > 0 ? selectedMBTI.join(', ') : '없음'}",
     "mbti3": "선택됨: ${selectedMBTI.length > 0 ? selectedMBTI.join(",
     "mbti4": "🧠 **MBTI 필터**\n\n",
     "mbti5": "• 높은 매치 ✓\n",
     "mbti6": "🧠 MBTI 필터",
     "mbti7": "🧠 MBTI 필터",
     "mbtiLabel": "{mbti}",
-    "message": "현재 선택: ${currentGender === 'male' ? '👨 남성' : currentGender === 'female' ? '👩 여성' : '🌈 누구나'}",
-    "message2": "현재 선택: ${currentGender === 'male' ? '👨 남성' : currentGender === 'female' ? '👩 여성' : '🌈 아무나'}",
     "message3": "선택됨: ${selectedZodiac.length > 0 ? selectedZodiac.map((z) => ZODIAC_NAMES[z]).join(",
     "message4": "“안녕하세요! 저는 음악과 영화를 사랑하는 사람으로, 같은 생각을 가진 친구를 만나고 싶어요～” {bloodTypeDisplay[currentBloodType]} ${bloodTypeDisplay[currentBloodType]}\n\n",
     "message5": "👤 상대: ${vipMatchInfo.matcherNickname}\n",
@@ -3703,7 +3735,6 @@ export const translations: Translations = {
     "selected": "{selected}",
     "settings": "{mbti} ${mbti}",
     "settings2": "⭐ 별자리: ${zodiac}\n",
-    "settings3": ")}🧠 MBTI: \\$",
     "settings4": "⭐ 별자리: \\$\n",
     "settings5": "설정되지 않음",
     "settings6": "설정되지 않음",
@@ -3770,7 +3801,6 @@ export const translations: Translations = {
     "vip5": "✨ **VIP 특권이 활성화되었습니다!**\n\n",
     "vip6": "💡 VIP로 업그레이드하여 다음을 얻으세요:\n",
     "vip7": "✨ VIP 특권 활성화 중\n",
-    "zodiac": "• 별자리: ${selectedZodiac.length > 0 ? selectedZodiac.map((z) => ZODIAC_NAMES[z]).join(', ') : '제한 없음'}",
     "zodiac2": "⭐ 별자리: ${matchResult.user.zodiac ||",
     "zodiac3": "⭐ 별자리: ${user.zodiac_sign ||",
     "zodiac4": "⭐ **별자리 필터**\n\n",
@@ -3826,7 +3856,7 @@ export const translations: Translations = {
     "message13": "💡 텔레그램 스타를 통한 안전하고 편리한 결제\n\n",
     "message14": "💡 이는 당신의 첫 짝짓기로, 2개의 슬롯이 남아 있습니다\n\n",
     "message2": "신청 시간: ${new Date(req.requested_at).toLocaleString('zh-TW')}\n",
-    "message3": "현재 선택: ${bloodTypeDisplay[currentBloodType]} {expireDate} ${expireDate}",
+    "message3": "{bloodTypeDisplay[currentBloodType]} {expireDate} ${bloodTypeDisplay[currentBloodType]} ${expireDate}",
     "message4": "만료 시간: ${expireDate}\n\n",
     "message5": "결제 시간: ${paymentDate.toLocaleDateString('zh-TW')}\n",
     "message6": "📋 **대기 중인 환불 요청** (${requests.results.length})\n\n",
@@ -3836,7 +3866,7 @@ export const translations: Translations = {
     "purchaseCancelled": "✅ 구매가 취소되었습니다",
     "quota": "• 일일 30개의 메시지 병 할당량 (친구 초대 시 최대 100개까지 증가 가능)\n",
     "quota2": "• 일일 30개의 메시지 병 할당량 (최대 100개까지)\n",
-    "refundAdminCommands": "만료 시간: ${expireDate} <ID> `/admin_approve_refund <ID>` `/admin_reject_refund <ID> ` `/admin_reject_refund <ID> <原因>`",
+    "refundAdminCommands": "{expireDate} ${expireDate} <ID> `/admin_approve_refund <ID>` `/admin_reject_refund <ID> <原因>`",
     "refundApproved": "✅ **환불 승인**\n\n환불 금액: ${amount} ⭐\n환불은 1-3 영업일 이내에 처리됩니다.\n\n귀하의 VIP 멤버십이 취소되었습니다.\n\n이해해 주셔서 감사합니다!",
     "refundApprovedAdmin": "✅ 환불 승인\n\n요청 ID: #${requestId}\n사용자 ID: ${userId}\n금액: ${amount} ⭐",
     "refundExpired": "❌ 환불 요청이 시간 한도를 초과했습니다\n\n결제 시간: ${paymentDate}\n환불 한도: 결제 후 7일 이내\n\n💡 특별한 상황은 고객 지원에 문의해 주세요.",
@@ -4088,7 +4118,7 @@ export const translations: Translations = {
       "vip3": "⚠️ **VIP가 오늘 만료됩니다**\n\n"
     },
     "BROADCAST": {
-      "FILTER_ERROR": "❌ 형식 오류.\n예시: `/broadcast_filter gender=female,country=TW test message` `/broadcast_filter gender=female,country=TW 測試訊息`",
+      "FILTER_ERROR": "❌ 형식 오류.\n예시: `/broadcast_filter gender=female,country=TW test message`",
       "NO_CONTENT": "❌ 방송 내용을 입력해 주세요.",
       "NO_MATCHES": "⚠️ 조건에 맞는 사용자가 발견되지 않았습니다.\n필터 조건: {filters}",
       "TOO_MANY_USERS": "⚠️ 대상 사용자가 너무 많습니다 ({count}명), 현재 한 번에 {max}명에게 전송할 수 있습니다.",
@@ -4098,7 +4128,47 @@ export const translations: Translations = {
     "push": {
       "throwReminder": "🌊 안녕하세요! 메시지 병을 던진 지 한동안 되어서 해변이 매우 조용하네요...",
       "catchReminder": "🎣 해변에 새로운 메시지 병이 씻겨왔습니다, 한번 확인해 보시겠어요?",
-      "onboardingReminder": "👋 아직 등록이 완료되지 않았습니다, 거의 다 오셨습니다! (단계: {step})"
+      "onboardingReminder": "👋 아직 등록이 완료되지 않았습니다, 거의 다 오셨습니다! (단계: {step})",
+      "messageReminderA": "👋 안녕하세요 {masked_partner_name}님, 아직 답장이 기다리고 있습니다! 대화가 식지 않도록 해주세요～",
+      "messageReminderB": "📩 {masked_partner_name}님으로부터 읽지 않은 메시지가 있습니다:\n> \"{last_message_preview}...\"\n(24시간이 넘었습니다!)",
+      "messageReminderC": "⏳ {masked_partner_name}님이 답장을 기다리고 있습니다...",
+      "actionReply": "💬 {masked_partner_name}님에게 답장하기",
+      "actionHistory": "📜 맥락 보기"
+    },
+    "match": {
+      "header": {
+        "zodiac": "🌟 별자리 매치 공개",
+        "mbti": "🧠 MBTI 성격 공명",
+        "blood": "🩸 혈액형 코드 분석"
+      },
+      "reason": {
+        "zodiac": {
+          "fire_affinity": "같은 불의 내기들로서, 당신의 열정은 밝고 관계는 강합니다!",
+          "earth_affinity": "지구형의 안정성과 수水형의 부드러움이 완벽한 흐름을 만들어냅니다.",
+          "air_affinity": "공기형의 민첩함과 불의 열정이 만나 무한한 창의력을 자극합니다!",
+          "water_affinity": "물의 감정과 지구의 실용성이 따뜻한 지지를 만듭니다."
+        },
+        "mbti": {
+          "sj_affinity": "사회형(SJ)과 탐험가(SP)는 안정성과 흥분의 완벽한 조화입니다!",
+          "sp_affinity": "탐험가(SP)와 사회형(SJ)는 놀이 친구와 돌보미의 최고의 파트너입니다!",
+          "nf_affinity": "이상주의자(NF)와 이성주의자(NT)는 영혼과 지혜의 깊은 충돌입니다!",
+          "nt_affinity": "이성주의자(NT)와 이상주의자(NF)는 사고와 감정의 공명입니다!"
+        },
+        "blood": {
+          "a_affinity": "A형의 세심함과 O형의 관용이 만나 가장 편안한 상호작용을 만들어냅니다.",
+          "b_affinity": "B형의 자기주장이 O형의 느긋함과 만나 스트레스 없는 편안함을 느낍니다.",
+          "o_affinity": "O형과 B/A형은 훌륭한 상호 보완 파트너입니다!",
+          "ab_affinity": "AB형의 독특한 주파수는 같은 종류에 의해 가장 잘 이해됩니다."
+        }
+      },
+      "template": {
+        "body": "{userAttribute},\n분석에 따르면, 당신은 {recommendedAttributes}와 가장 강한 친화력을 가지고 있습니다!\n\n💡 {reason}\n\n👇 운이 좋다고 느끼세요?"
+      },
+      "btn": {
+        "throw": "🌊 병을 던져 보고 기회를 잡으세요",
+        "vip_throw": "🎯 {target}에게 던지기",
+        "vip_upsell": "💡 VIP로 업그레이드하여 {target}에게 배달을 지정하여 정밀한 매칭을 하세요!"
+      }
     }
   },
   "push": {
