@@ -27,6 +27,33 @@ import { generateInviteCode } from './domain/user';
 
 export async function handleWebhook(request: Request, env: Env): Promise<Response> {
   try {
+    // 🌐 Serve Legal Documents (GET requests)
+    if (request.method === 'GET') {
+      const url = new URL(request.url);
+      const path = url.pathname;
+      
+      if (path === '/privacy' || path === '/privacy.html') {
+        const { serveLegalDocument } = await import('~/legal/documents');
+        return serveLegalDocument('privacy');
+      }
+      if (path === '/terms' || path === '/terms.html') {
+        const { serveLegalDocument } = await import('~/legal/documents');
+        return serveLegalDocument('terms');
+      }
+      if (path === '/community' || path === '/community.html') {
+        const { serveLegalDocument } = await import('~/legal/documents');
+        return serveLegalDocument('community');
+      }
+      
+      // Default root greeting
+      if (path === '/') {
+        return new Response('XunNi Bot is running. Visit /privacy, /terms, or /community for legal info.', {
+          status: 200,
+          headers: { 'Content-Type': 'text/plain' }
+        });
+      }
+    }
+
     // Verify webhook secret (if configured)
     if (env.TELEGRAM_WEBHOOK_SECRET) {
       const secretToken = request.headers.get('X-Telegram-Bot-Api-Secret-Token');

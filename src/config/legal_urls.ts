@@ -21,33 +21,34 @@
  *    'https://xunni-legal.pages.dev'
  */
 
-// Base URL for legal documents (hosted on GitHub Pages)
-const BASE_URL = 'https://yveschen001.github.io/xunni-web/en';
+// Base URL for legal documents (hosted on Cloudflare Workers)
+// Default: Production Worker URL. Update if you use a custom domain.
+const BASE_URL = 'https://xunni-bot.yves221.workers.dev';
 
 /**
  * Legal document URLs
  *
  * These URLs point to the English-only legal documents.
- * All documents are hosted as static HTML files in the public/ directory.
+ * All documents are hosted as static HTML files served by the Worker.
  */
 export const LEGAL_URLS = {
   /**
    * Privacy Policy
    * Explains data collection, usage, and user rights (GDPR/CCPA compliant)
    */
-  PRIVACY_POLICY: `${BASE_URL}/privacy.html`,
+  PRIVACY_POLICY: `${BASE_URL}/privacy`,
 
   /**
    * Terms of Service
    * Defines service rules, disclaimers, and limitation of liability
    */
-  TERMS_OF_SERVICE: `${BASE_URL}/terms.html`,
+  TERMS_OF_SERVICE: `${BASE_URL}/terms`,
 
   /**
    * Community Guidelines
    * Outlines acceptable behavior, prohibited conduct, and penalties
    */
-  COMMUNITY_GUIDELINES: `${BASE_URL}/community.html`,
+  COMMUNITY_GUIDELINES: `${BASE_URL}/community`,
 } as const;
 
 /**

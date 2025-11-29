@@ -5,6 +5,7 @@
   "type": "module",
   "main": "src/worker.ts",
   "scripts": {
+    "switch-repo": "tsx scripts/switch-repo.ts",
     "dev": "wrangler dev",
     "dev:polling": "tsx scripts/load-env-and-run.ts",
     "dev:inspector": "wrangler dev --inspector",
