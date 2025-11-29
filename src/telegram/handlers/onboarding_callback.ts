@@ -954,6 +954,35 @@ export async function handleTermsAgreement(callbackQuery: CallbackQuery, env: En
       return;
     }
 
+    // Check Invite Reward (Chain) for Fortune Bottle
+    if (updatedUser.invited_by) {
+      try {
+        // Find Inviter (B)
+        const inviter = await findUserByTelegramId(db, updatedUser.invited_by);
+        if (inviter && inviter.invited_by) {
+          // Find Grand-Inviter (A)
+          const grandInviterId = inviter.invited_by;
+          
+          // Grant Reward to A
+          await db.d1.prepare(`
+            INSERT INTO fortune_quota (telegram_id, additional_quota) 
+            VALUES (?, 1) 
+            ON CONFLICT(telegram_id) DO UPDATE SET additional_quota = additional_quota + 1
+          `).bind(grandInviterId).run();
+          
+          // Notify A
+          const grandInviter = await findUserByTelegramId(db, grandInviterId);
+          if (grandInviter) {
+            const { createI18n } = await import('~/i18n');
+            const grandI18n = createI18n(grandInviter.language_pref || 'zh-TW');
+            await telegram.sendMessage(Number(grandInviterId), grandI18n.t('fortune.inviteChainReward'));
+          }
+        }
+      } catch (e) {
+        console.error('Error processing fortune invite chain reward:', e);
+      }
+    }
+
     const updatedI18n = createI18n(updatedUser.language_pref || 'zh-TW');
 
     // Check if tutorial should auto-trigger

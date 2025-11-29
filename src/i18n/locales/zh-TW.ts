@@ -4255,11 +4255,13 @@ export const translations: Translations = {
     "addProfile": "新增命盤檔案",
     "quotaDisplay": "🔮 算命瓶: {total} (本週免費: {weekly}/{limit} | 額外: {additional})",
     "getMore": "獲取更多算命瓶",
-    "getMoreInfo": "🔮 *如何獲取算命瓶？*\n\n1. **每週免費**：普通用戶每週 1 個，VIP 每日 1 個。\n2. **邀請獎勵**：邀請朋友加入，可獲得獎勵。\n3. **漂流瓶獎勵**：發送 10 個漂流瓶，有機會獲得算命瓶。\n4. **直接購買**：\n   • 小包 {smallAmount} 個 - {smallPrice} Stars\n   • 大包 {largeAmount} 個 - {largePrice} Stars",
+    "getMoreInfo": "🔮 *如何獲取算命瓶？*\n\n1. **每週免費**：普通用戶每週 1 個，VIP 每日 1 個。\n2. **邀請獎勵**：邀請一位朋友加入，而該朋友也成功邀請一位朋友加入時，您將獲得獎勵（朋友的朋友）。\n3. **漂流瓶獎勵**：每發送 10 個漂流瓶，必得 1 個算命瓶。\n4. **直接購買**：\n   • 小包 {smallAmount} 個 - {smallPrice} Stars\n   • 大包 {largeAmount} 個 - {largePrice} Stars",
     "buySmall": "購買 {amount} 個 ({price} Stars)",
     "buyLarge": "購買 {amount} 個 ({price} Stars)",
     "invoiceTitle": "購買 {amount} 個算命瓶",
     "invoiceDesc": "購買後可立即使用 AI 算命服務，額度永久有效。",
-    "purchaseSuccess": "🎉 購買成功！已增加 {amount} 個算命瓶。"
+    "purchaseSuccess": "🎉 購買成功！已增加 {amount} 個算命瓶。",
+    "bottleReward": "🎉 恭喜！您已發送 {count} 個漂流瓶，獲得 1 個算命瓶獎勵！",
+    "inviteChainReward": "🎉 恭喜！您邀請的朋友成功邀請了新朋友加入，您獲得 1 個算命瓶獎勵！"
   }
 };

@@ -461,6 +461,26 @@ export async function processBottleContent(
       await deleteSession(db, user.telegram_id, 'throw_bottle');
     }
 
+    // Check for Fortune Reward (Every 10 bottles)
+    try {
+      const result = await db.d1.prepare('SELECT COUNT(*) as count FROM bottles WHERE owner_telegram_id = ?').bind(user.telegram_id).first<{ count: number }>();
+      const totalBottles = result?.count || 0;
+      
+      if (totalBottles > 0 && totalBottles % 10 === 0) {
+         // Grant Reward
+         await db.d1.prepare(`
+          INSERT INTO fortune_quota (telegram_id, additional_quota) 
+          VALUES (?, 1) 
+          ON CONFLICT(telegram_id) DO UPDATE SET additional_quota = additional_quota + 1
+        `).bind(user.telegram_id).run();
+        
+        // Notify User
+        await telegram.sendMessage(Number(user.telegram_id), i18n.t('fortune.bottleReward', { count: totalBottles }));
+      }
+    } catch (e) {
+      console.error('Error checking fortune bottle reward:', e);
+    }
+
     // Success message
     const { showReturnToMenuButton } = await import('./menu');
     await showReturnToMenuButton(
