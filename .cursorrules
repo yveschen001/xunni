@@ -25,6 +25,7 @@ The following files are considered **protected**:
 - `@doc/SPEC.md`
 - `@doc/ENV_CONFIG.md`
 - `@doc/DEVELOPMENT_STANDARDS.md`
+- `@doc/TESTING.md`
 - `@doc/DEPLOYMENT.md`
 - `@doc/BACKUP_STRATEGY.md`
 
@@ -49,9 +50,10 @@ The following files are considered **protected**:
 1. ✅ **確認 remote 資料庫 schema 最新** - 檢查 migration 是否已執行
 2. ✅ **執行 `pnpm lint`** - 確保 0 錯誤
 3. ✅ **執行 `pnpm test`** - 確保所有測試通過
-4. ✅ **核對 SPEC.md** - 確認完整需求（如：34 種語言）
-5. ✅ **執行完整 Smoke Test** - 測試所有核心功能
-6. ✅ **檢查 UI 顯示** - 暱稱擾碼、統計數據、按鈕提示
+4. ✅ **執行完整 Local Simulation** - 確保關鍵功能 CRUD 正常（`./scripts/run-local-sim.sh`）
+5. ✅ **核對 SPEC.md** - 確認完整需求（如：34 種語言）
+6. ✅ **執行完整 Smoke Test** - 測試所有核心功能
+7. ✅ **檢查 UI 顯示** - 暱稱擾碼、統計數據、按鈕提示
 
 ### 常見錯誤預防
 - ❌ **資料庫 Migration 未在 Remote 執行** → 部署前確認表存在
@@ -144,8 +146,9 @@ The following files are considered **protected**:
 - Domain 層：目標 90%+ 覆蓋率（`@tests/domain/`）
 - Utils：目標 80%+ 覆蓋率（`@tests/utils/`）
 - Handlers：目標 60%+ 覆蓋率（`@tests/telegram/handlers/`）
+- **關鍵功能**：100% 通過 Local Simulation（`scripts/local-simulation.ts`）
 
-**測試命令**：`pnpm test`
+**測試命令**：`pnpm test` && `./scripts/run-local-sim.sh admin`
 
 ## 受保護的文件/目錄
 
