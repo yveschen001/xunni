@@ -18,7 +18,7 @@ CREATE TABLE IF NOT EXISTS daily_translation_stats (
   UNIQUE(stat_date, provider)
 );
 
-CREATE INDEX idx_daily_translation_stats_date ON daily_translation_stats(stat_date);
+CREATE INDEX IF NOT EXISTS idx_daily_translation_stats_date ON daily_translation_stats(stat_date);
 
 -- Ensure translation_fallbacks exists (from original plan, but verify)
 CREATE TABLE IF NOT EXISTS translation_fallbacks (
@@ -30,4 +30,4 @@ CREATE TABLE IF NOT EXISTS translation_fallbacks (
   created_at TEXT DEFAULT CURRENT_TIMESTAMP
 );
 
-CREATE INDEX idx_translation_fallbacks_created_at ON translation_fallbacks(created_at);
+CREATE INDEX IF NOT EXISTS idx_translation_fallbacks_created_at ON translation_fallbacks(created_at);
