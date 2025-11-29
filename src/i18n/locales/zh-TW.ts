@@ -4218,11 +4218,11 @@ export const translations: Translations = {
     "deep": "深度批命",
     "manageProfiles": "管理檔案",
     "onboarding": {
-      "askName": "請輸入您的名字（或暱稱）：",
-      "askGender": "請選擇性別：",
-      "askDate": "請輸入出生日期 (YYYY-MM-DD)：",
-      "askTime": "請輸入出生時間 (HH:mm)，若不確定請點擊下方按鈕：",
-      "askCity": "請選擇您的出生城市："
+      "askName": "請輸入欲算命對象的名字（或暱稱）：",
+      "askGender": "請選擇該對象的性別：",
+      "askDate": "請輸入該對象的出生日期 (YYYY-MM-DD)：",
+      "askTime": "請輸入該對象的出生時間 (HH:mm)，若不確定請點擊下方按鈕：",
+      "askCity": "請選擇該對象的出生城市："
     },
     "unknownTime": "我不確定出生時間",
     "profileCreated": "✅ 命理檔案已建立！",
