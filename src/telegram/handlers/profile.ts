@@ -130,7 +130,9 @@ export async function handleProfile(message: TelegramMessage, env: Env): Promise
       i18n.t('profile.returnToMenu');
 
     const botUsername = env.ENVIRONMENT === 'production' ? 'xunnibot' : 'xunni_dev_bot';
-    const shareUrl = i18n.t('profile.message', { botUsername, inviteCode });
+    const shareText = i18n.t('profile.message', { botUsername, inviteCode });
+    const botLink = `https://t.me/${botUsername}?start=${inviteCode}`;
+    const shareUrl = `https://t.me/share/url?url=${encodeURIComponent(botLink)}&text=${encodeURIComponent(shareText)}`;
 
     await telegram.sendMessageWithButtons(chatId, profileMessage, [
       [{ text: i18n.t('profile.shareInviteCode'), url: shareUrl }],

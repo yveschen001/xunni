@@ -4251,6 +4251,14 @@ export const translations: Translations = {
     },
     "dailyPush": "📅 今日運勢已送達！",
     "dailyPushBtn": "👇 點擊查看",
-    "addProfile": "新增命盤檔案"
+    "addProfile": "新增命盤檔案",
+    "quotaDisplay": "🔮 算命瓶: {{total}} (本週免費: {{weekly}}/{{limit}} | 額外: {{additional}})",
+    "getMore": "獲取更多算命瓶",
+    "getMoreInfo": "🔮 *如何獲取算命瓶？*\n\n1. **每週免費**：普通用戶每週 1 個，VIP 每日 1 個。\n2. **邀請獎勵**：邀請朋友加入，可獲得獎勵。\n3. **漂流瓶獎勵**：發送 10 個漂流瓶，有機會獲得算命瓶。\n4. **觀看廣告**：觀看廣告可獲得臨時額度。\n5. **直接購買**：\n   • 小包 {{smallAmount}} 個 - {{smallPrice}} Stars\n   • 大包 {{largeAmount}} 個 - {{largePrice}} Stars",
+    "buySmall": "購買 {{amount}} 個 ({{price}} Stars)",
+    "buyLarge": "購買 {{amount}} 個 ({{price}} Stars)",
+    "invoiceTitle": "購買 {{amount}} 個算命瓶",
+    "invoiceDesc": "購買後可立即使用 AI 算命服務，額度永久有效。",
+    "purchaseSuccess": "🎉 購買成功！已增加 {{amount}} 個算命瓶。"
   }
 };

@@ -10,6 +10,15 @@ import { startGeoFlow, handleContinentSelection, handleCountrySelection, handleC
 import { createGeoService } from '~/services/geo';
 
 // ============================================================================
+// Constants
+// ============================================================================
+
+const FORTUNE_PACK_SMALL_STARS = 100;
+const FORTUNE_PACK_LARGE_STARS = 385;
+const FORTUNE_PACK_SMALL_AMOUNT = 10;
+const FORTUNE_PACK_LARGE_AMOUNT = 50;
+
+// ============================================================================
 // Command Handler
 // ============================================================================
 
@@ -60,9 +69,24 @@ export async function handleFortune(message: TelegramMessage, env: Env): Promise
 
 async function showFortuneMenu(chatId: number, profile: FortuneProfile, env: Env, i18n: any) {
   const telegram = createTelegramService(env);
+  const db = createDatabaseClient(env.DB);
+  const service = new FortuneService(env, db.d1);
+  const user = await findUserByTelegramId(db, profile.user_id);
   
+  // Refresh and get quota
+  const quota = await service.refreshQuota(profile.user_id, !!user?.is_vip);
+  const totalQuota = quota.weekly_free_quota + quota.additional_quota;
+  
+  const quotaText = i18n.t('fortune.quotaDisplay', {
+    total: totalQuota,
+    weekly: quota.weekly_free_quota,
+    limit: user?.is_vip ? 7 : 1, // 1/week free or 1/day VIP (logic in service)
+    additional: quota.additional_quota
+  });
+
   const text = `🔮 *${i18n.t('fortune.menuTitle')}*\n` +
-               `${i18n.t('fortune.currentProfile')}: ${profile.name}\n\n` +
+               `${i18n.t('fortune.currentProfile')}: ${profile.name}\n` +
+               `${quotaText}\n\n` +
                `${i18n.t('fortune.selectOption')}`;
 
   const buttons = [
@@ -76,7 +100,8 @@ async function showFortuneMenu(chatId: number, profile: FortuneProfile, env: Env
           ? `🔕 ${i18n.t('fortune.unsubscribe')}` 
           : `🔔 ${i18n.t('fortune.subscribe')}`, 
         callback_data: 'fortune_subscribe_toggle' 
-      }
+      },
+      { text: `🛒 ${i18n.t('fortune.getMore')}`, callback_data: 'fortune_get_more' }
     ],
     [
       { text: `⚙️ ${i18n.t('fortune.manageProfiles')}`, callback_data: 'fortune_profiles' }
@@ -624,6 +649,103 @@ export async function handleFortuneCallback(callbackQuery: TelegramCallbackQuery
   // Add Profile
   if (data === 'fortune_add_profile') {
     await startNewProfileWizard(chatId, telegramId, env, i18n);
+    await telegram.answerCallbackQuery(callbackQuery.id);
+    return;
+  }
+
+  // Get More (Shop/Info)
+  if (data === 'fortune_get_more') {
+    const isStaging = env.ENVIRONMENT === 'staging';
+    // Staging override: 1 Star = 50 Bottles
+    const smallPrice = isStaging ? 1 : FORTUNE_PACK_SMALL_STARS;
+    const largePrice = isStaging ? 1 : FORTUNE_PACK_LARGE_STARS;
+    const smallAmount = isStaging ? 50 : FORTUNE_PACK_SMALL_AMOUNT; // Use 50 for staging small pack too if user wants cheap testing
+    const largeAmount = FORTUNE_PACK_LARGE_AMOUNT;
+
+    const text = i18n.t('fortune.getMoreInfo', {
+      smallAmount,
+      smallPrice,
+      largeAmount,
+      largePrice
+    });
+
+    // TODO: Implement actual payment invoices
+    // For now we just explain how to get more
+    const buttons = [
+      [
+        { text: `📺 ${i18n.t('adReward.watchAdButton')}`, callback_data: 'watch_ad:fortune' }
+      ],
+      [
+        { text: `💎 ${i18n.t('fortune.buySmall', { amount: smallAmount, price: smallPrice })}`, callback_data: 'fortune_buy_small' },
+        { text: `💎 ${i18n.t('fortune.buyLarge', { amount: largeAmount, price: largePrice })}`, callback_data: 'fortune_buy_large' }
+      ],
+      [
+        { text: `👑 ${i18n.t('vip.upgrade')}`, callback_data: 'menu_vip' },
+        { text: `👥 ${i18n.t('menu.invite')}`, callback_data: 'menu_invite' }
+      ],
+      [{ text: i18n.t('common.back'), callback_data: 'menu_fortune' }]
+    ];
+
+    await telegram.editMessageText(chatId, callbackQuery.message!.message_id, text, {
+      reply_markup: { inline_keyboard: buttons },
+      parse_mode: 'Markdown'
+    });
+    await telegram.answerCallbackQuery(callbackQuery.id);
+    return;
+  }
+
+  // Buy Handlers (Invoice)
+  if (data === 'fortune_buy_small' || data === 'fortune_buy_large') {
+    const isSmall = data === 'fortune_buy_small';
+    const isStaging = env.ENVIRONMENT === 'staging';
+    
+    // Config
+    const price = isSmall 
+      ? (isStaging ? 1 : FORTUNE_PACK_SMALL_STARS) 
+      : (isStaging ? 1 : FORTUNE_PACK_LARGE_STARS); // Maybe large in staging is also cheap or normal? User said "1 Star can buy 50". Let's make small 50 for 1 star.
+    
+    const amount = isSmall
+      ? (isStaging ? 50 : FORTUNE_PACK_SMALL_AMOUNT)
+      : FORTUNE_PACK_LARGE_AMOUNT;
+
+    const title = i18n.t('fortune.invoiceTitle', { amount });
+    const description = i18n.t('fortune.invoiceDesc', { amount });
+    
+    const invoice = {
+      chat_id: chatId,
+      title,
+      description,
+      payload: JSON.stringify({
+        user_id: telegramId,
+        type: 'fortune_pack',
+        amount: amount
+      }),
+      provider_token: '', // Stars
+      currency: 'XTR',
+      prices: [{ label: title, amount: price }]
+    };
+
+    console.log('[Fortune] Sending invoice:', invoice);
+    // Send invoice
+    // telegram service doesn't have sendInvoice yet? It usually uses raw fetch or we add it.
+    // Let's use raw fetch here if needed or check if telegram service has it.
+    // Checked createTelegramService, it might not have sendInvoice.
+    // src/telegram/handlers/vip.ts uses raw fetch construction inside `sendVipInvoice` but calls `telegram.callApi('sendInvoice', ...)`? 
+    // Wait, vip.ts `sendVipInvoice` implementation:
+    // It creates `invoice` object but how does it send? 
+    // Ah, I missed the end of `sendVipInvoice` in the search result.
+    
+    // Let's try to call sendInvoice via telegram service's generic method if available, or just implement it here.
+    const apiRoot = env.TELEGRAM_API_ROOT || 'https://api.telegram.org';
+    const token = env.TELEGRAM_BOT_TOKEN;
+    const url = `${apiRoot}/bot${token}/sendInvoice`;
+    
+    await fetch(url, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(invoice)
+    });
+    
     await telegram.answerCallbackQuery(callbackQuery.id);
     return;
   }

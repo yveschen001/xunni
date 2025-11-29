@@ -360,6 +360,28 @@ export async function handleSuccessfulPayment(
   try {
     // Parse payload
     const payload = JSON.parse(payment.invoice_payload);
+    
+    // Handle Fortune Pack
+    if (payload.type === 'fortune_pack') {
+      const amount = payload.amount;
+      
+      // Update quota
+      await db.d1.prepare(`
+        INSERT INTO fortune_quota (telegram_id, additional_quota) 
+        VALUES (?, ?) 
+        ON CONFLICT(telegram_id) DO UPDATE SET additional_quota = additional_quota + ?
+      `).bind(telegramId, amount, amount).run();
+
+      // Create payment record
+      await db.d1.prepare(`
+        INSERT INTO payments (
+          telegram_id, telegram_payment_id, amount_stars, currency, status
+        ) VALUES (?, ?, ?, ?, 'completed')
+      `).bind(telegramId, payment.telegram_payment_charge_id, payment.total_amount, payment.currency).run();
+
+      await telegram.sendMessage(chatId, i18n.t('fortune.purchaseSuccess', { amount }));
+      return;
+    }
 
     // Check if this is an auto-renewal (recurring payment)
     const isRecurring = (payment as any).is_recurring === true;
