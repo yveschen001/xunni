@@ -585,7 +585,7 @@ export async function handleFortuneCallback(callbackQuery: TelegramCallbackQuery
           chatId,
           i18n.t('fortune.quotaExceeded'),
           [
-            [{ text: i18n.t('adReward.watchAdButton'), callback_data: 'watch_ad:fortune' }]
+            [{ text: `🛒 ${i18n.t('fortune.getMore')}`, callback_data: 'fortune_get_more' }]
           ]
         );
       } else {
@@ -672,9 +672,6 @@ export async function handleFortuneCallback(callbackQuery: TelegramCallbackQuery
     // TODO: Implement actual payment invoices
     // For now we just explain how to get more
     const buttons = [
-      [
-        { text: `📺 ${i18n.t('adReward.watchAdButton')}`, callback_data: 'watch_ad:fortune' }
-      ],
       [
         { text: `💎 ${i18n.t('fortune.buySmall', { amount: smallAmount, price: smallPrice })}`, callback_data: 'fortune_buy_small' },
         { text: `💎 ${i18n.t('fortune.buyLarge', { amount: largeAmount, price: largePrice })}`, callback_data: 'fortune_buy_large' }
