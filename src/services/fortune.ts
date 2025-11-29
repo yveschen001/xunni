@@ -248,7 +248,7 @@ export class FortuneService {
   // Fortune Generation
   // ==========================================================
 
-  private async callGemini(prompt: string, model = 'gemini-1.5-pro-latest'): Promise<string> {
+  private async callGemini(prompt: string, model = 'gemini-1.5-flash'): Promise<string> {
     const apiKey = this.env.GOOGLE_GEMINI_API_KEY;
     if (!apiKey) throw new Error('Gemini API Key missing');
     
