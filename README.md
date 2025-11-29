@@ -145,7 +145,7 @@ pnpm backup:push
 
 ### 遠程倉庫
 
-**倉庫 URL**：https://github.com/yveschen001/xunni  
+**倉庫 URL**：https://github.com/crealizellc/XunNi  
 **分支**：main  
 **權限**：私有倉庫
 

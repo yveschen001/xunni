@@ -313,6 +313,6 @@ Database: xunni-db-staging
 ---
 
 **版本標記**：`v1.5.0-avatar-feature`  
-**GitHub 倉庫**：https://github.com/yveschen001/xunni  
+**GitHub 倉庫**：https://github.com/crealizellc/XunNi  
 **發布日期**：2025-11-21
 

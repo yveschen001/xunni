@@ -19,7 +19,7 @@
 ### 🔗 重要連結
 - **Staging Bot**: @xunni_dev_bot
 - **Worker URL**: https://xunni-bot-staging.yves221.workers.dev
-- **GitHub**: https://github.com/yveschen001/xunni
+- **GitHub**: https://github.com/crealizellc/XunNi
 - **最新 Commit**: e2ee9b4
 
 ---
@@ -226,7 +226,7 @@ pnpm deploy:staging
 
 - **開發者**: Yichen
 - **Staging Bot**: @xunni_dev_bot
-- **GitHub**: https://github.com/yveschen001/xunni
+- **GitHub**: https://github.com/crealizellc/XunNi
 
 ---
 

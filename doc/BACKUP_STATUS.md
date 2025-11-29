@@ -5,7 +5,7 @@
 ### 1.1 Git 倉庫設置
 
 - ✅ Git 倉庫已初始化
-- ✅ 遠程倉庫已設置：https://github.com/yveschen001/xunni
+- ✅ 遠程倉庫已設置：https://github.com/crealizellc/XunNi
 - ✅ 分支設置：main
 - ✅ GPG 簽名已關閉（避免簽名問題）
 
@@ -77,7 +77,7 @@ d389cfd feat: 初始專案設置
 
 ### 3.2 遠程倉庫
 
-- **URL**：https://github.com/yveschen001/xunni
+- **URL**：https://github.com/crealizellc/XunNi
 - **分支**：main
 - **狀態**：✅ 已同步
 
