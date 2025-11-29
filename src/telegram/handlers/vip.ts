@@ -396,9 +396,9 @@ export async function handleSuccessfulPayment(
       // Create payment record
       await db.d1.prepare(`
         INSERT INTO payments (
-          telegram_id, telegram_payment_id, amount_stars, currency, status
-        ) VALUES (?, ?, ?, ?, 'completed')
-      `).bind(telegramId, payment.telegram_payment_charge_id, payment.total_amount, payment.currency).run();
+          telegram_id, telegram_payment_id, amount, amount_stars, currency, status
+        ) VALUES (?, ?, ?, ?, ?, 'completed')
+      `).bind(telegramId, payment.telegram_payment_charge_id, payment.total_amount, payment.total_amount, payment.currency).run();
 
       await telegram.sendMessage(chatId, i18n.t('fortune.purchaseSuccess', { amount }));
       return;
@@ -454,13 +454,14 @@ export async function handleSuccessfulPayment(
       INSERT INTO payments (
         telegram_id,
         telegram_payment_id,
+        amount,
         amount_stars,
         currency,
         status
-      ) VALUES (?, ?, ?, ?, 'completed')
+      ) VALUES (?, ?, ?, ?, ?, 'completed')
     `
       )
-      .bind(telegramId, payment.telegram_payment_charge_id, priceStars, 'XTR')
+      .bind(telegramId, payment.telegram_payment_charge_id, priceStars, priceStars, 'XTR')
       .run();
 
     // Create or update subscription record
