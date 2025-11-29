@@ -3976,7 +3976,8 @@ export const translations: Translations = {
     "vip6": "訂閱 XunNi VIP 會員，每月自動續費！\n\n",
     "vip7": "💡 立即續費，享受不間斷的 VIP 服務！",
     "vip8": "💡 立即續費，繼續享受 VIP 權益！\n",
-    "vip9": "✨ **你已經是 VIP 會員**\n\n"
+    "vip9": "✨ **你已經是 VIP 會員**\n\n",
+    "upgrade": "升級 VIP"
   },
   "vipTripleBottle": {
     "bottleContent": "📝 瓶子內容：{content}\n\n",
@@ -4252,13 +4253,13 @@ export const translations: Translations = {
     "dailyPush": "📅 今日運勢已送達！",
     "dailyPushBtn": "👇 點擊查看",
     "addProfile": "新增命盤檔案",
-    "quotaDisplay": "🔮 算命瓶: {{total}} (本週免費: {{weekly}}/{{limit}} | 額外: {{additional}})",
+    "quotaDisplay": "🔮 算命瓶: {total} (本週免費: {weekly}/{limit} | 額外: {additional})",
     "getMore": "獲取更多算命瓶",
-    "getMoreInfo": "🔮 *如何獲取算命瓶？*\n\n1. **每週免費**：普通用戶每週 1 個，VIP 每日 1 個。\n2. **邀請獎勵**：邀請朋友加入，可獲得獎勵。\n3. **漂流瓶獎勵**：發送 10 個漂流瓶，有機會獲得算命瓶。\n4. **直接購買**：\n   • 小包 {{smallAmount}} 個 - {{smallPrice}} Stars\n   • 大包 {{largeAmount}} 個 - {{largePrice}} Stars",
-    "buySmall": "購買 {{amount}} 個 ({{price}} Stars)",
-    "buyLarge": "購買 {{amount}} 個 ({{price}} Stars)",
-    "invoiceTitle": "購買 {{amount}} 個算命瓶",
+    "getMoreInfo": "🔮 *如何獲取算命瓶？*\n\n1. **每週免費**：普通用戶每週 1 個，VIP 每日 1 個。\n2. **邀請獎勵**：邀請朋友加入，可獲得獎勵。\n3. **漂流瓶獎勵**：發送 10 個漂流瓶，有機會獲得算命瓶。\n4. **直接購買**：\n   • 小包 {smallAmount} 個 - {smallPrice} Stars\n   • 大包 {largeAmount} 個 - {largePrice} Stars",
+    "buySmall": "購買 {amount} 個 ({price} Stars)",
+    "buyLarge": "購買 {amount} 個 ({price} Stars)",
+    "invoiceTitle": "購買 {amount} 個算命瓶",
     "invoiceDesc": "購買後可立即使用 AI 算命服務，額度永久有效。",
-    "purchaseSuccess": "🎉 購買成功！已增加 {{amount}} 個算命瓶。"
+    "purchaseSuccess": "🎉 購買成功！已增加 {amount} 個算命瓶。"
   }
 };
