@@ -92,39 +92,83 @@ export async function handleAdminDiagnoseAvatar(
     let message = i18n.t('admin.diagnose.title') + '\n\n';
     message += i18n.t('admin.diagnose.userInfo') + '\n';
     message += i18n.t('admin.diagnose.userId', { userId }) + '\n';
-    message += i18n.t('admin.diagnose.nickname', { nickname: user.nickname || i18n.t('common.notSet') }) + '\n';
-    message += i18n.t('admin.diagnose.username', { username: user.username || i18n.t('admin.diagnose.none') }) + '\n';
-    message += i18n.t('admin.diagnose.vipStatus', { status: isVip ? i18n.t('admin.diagnose.yes') : i18n.t('admin.diagnose.no') }) + '\n';
+    message +=
+      i18n.t('admin.diagnose.nickname', { nickname: user.nickname || i18n.t('common.notSet') }) +
+      '\n';
+    message +=
+      i18n.t('admin.diagnose.username', {
+        username: user.username || i18n.t('admin.diagnose.none'),
+      }) + '\n';
+    message +=
+      i18n.t('admin.diagnose.vipStatus', {
+        status: isVip ? i18n.t('admin.diagnose.yes') : i18n.t('admin.diagnose.no'),
+      }) + '\n';
 
     if (user.vip_expire_at) {
-      message += i18n.t('admin.diagnose.vipExpire', { date: new Date(user.vip_expire_at).toLocaleString('zh-TW') }) + '\n';
+      message +=
+        i18n.t('admin.diagnose.vipExpire', {
+          date: new Date(user.vip_expire_at).toLocaleString('zh-TW'),
+        }) + '\n';
     }
 
     message += `\n` + i18n.t('admin.diagnose.avatarCache') + '\n';
     if (avatarInfo?.avatar_file_id) {
-      message += i18n.t('admin.diagnose.fileId', { fileId: avatarInfo.avatar_file_id.substring(0, 20) }) + '\n';
-      message += i18n.t('admin.diagnose.originalUrl', { status: avatarInfo.avatar_original_url ? '✅' : '❌' }) + '\n';
-      message += i18n.t('admin.diagnose.blurredUrl', { status: avatarInfo.avatar_blurred_url ? '✅' : '❌' }) + '\n';
-      message += i18n.t('admin.diagnose.updatedAt', { date: avatarInfo.avatar_updated_at ? new Date(avatarInfo.avatar_updated_at).toLocaleString('zh-TW') : i18n.t('admin.diagnose.unknown') }) + '\n';
+      message +=
+        i18n.t('admin.diagnose.fileId', { fileId: avatarInfo.avatar_file_id.substring(0, 20) }) +
+        '\n';
+      message +=
+        i18n.t('admin.diagnose.originalUrl', {
+          status: avatarInfo.avatar_original_url ? '✅' : '❌',
+        }) + '\n';
+      message +=
+        i18n.t('admin.diagnose.blurredUrl', {
+          status: avatarInfo.avatar_blurred_url ? '✅' : '❌',
+        }) + '\n';
+      message +=
+        i18n.t('admin.diagnose.updatedAt', {
+          date: avatarInfo.avatar_updated_at
+            ? new Date(avatarInfo.avatar_updated_at).toLocaleString('zh-TW')
+            : i18n.t('admin.diagnose.unknown'),
+        }) + '\n';
     } else {
       message += i18n.t('admin.diagnose.noCache') + '\n';
     }
 
     message += `\n` + i18n.t('admin.diagnose.historyPosts') + '\n';
     if (historyPosts.results && historyPosts.results.length > 0) {
-      message += i18n.t('admin.diagnose.totalPosts', { count: historyPosts.results.length }) + '\n\n';
+      message +=
+        i18n.t('admin.diagnose.totalPosts', { count: historyPosts.results.length }) + '\n\n';
 
       for (const post of historyPosts.results.slice(0, 5)) {
-        message += i18n.t('admin.diagnose.postTitle', { identifier: post.identifier, postNumber: post.post_number }) + '\n';
+        message +=
+          i18n.t('admin.diagnose.postTitle', {
+            identifier: post.identifier,
+            postNumber: post.post_number,
+          }) + '\n';
         message += i18n.t('admin.diagnose.postId', { id: post.id }) + '\n';
-        message += i18n.t('admin.diagnose.isLatest', { status: post.is_latest ? '✅' : '❌' }) + '\n';
-        message += i18n.t('admin.diagnose.createdWithVip', { status: post.created_with_vip_status ? '✅' : '❌' }) + '\n';
-        message += i18n.t('admin.diagnose.hasAvatar', { status: post.partner_avatar_url ? '✅' : '❌' }) + '\n';
-        message += i18n.t('admin.diagnose.postUpdatedAt', { date: new Date(post.updated_at).toLocaleString('zh-TW', { month: '2-digit', day: '2-digit', hour: '2-digit', minute: '2-digit' }) }) + '\n\n';
+        message +=
+          i18n.t('admin.diagnose.isLatest', { status: post.is_latest ? '✅' : '❌' }) + '\n';
+        message +=
+          i18n.t('admin.diagnose.createdWithVip', {
+            status: post.created_with_vip_status ? '✅' : '❌',
+          }) + '\n';
+        message +=
+          i18n.t('admin.diagnose.hasAvatar', { status: post.partner_avatar_url ? '✅' : '❌' }) +
+          '\n';
+        message +=
+          i18n.t('admin.diagnose.postUpdatedAt', {
+            date: new Date(post.updated_at).toLocaleString('zh-TW', {
+              month: '2-digit',
+              day: '2-digit',
+              hour: '2-digit',
+              minute: '2-digit',
+            }),
+          }) + '\n\n';
       }
 
       if (historyPosts.results.length > 5) {
-        message += i18n.t('admin.diagnose.morePosts', { count: historyPosts.results.length - 5 }) + '\n';
+        message +=
+          i18n.t('admin.diagnose.morePosts', { count: historyPosts.results.length - 5 }) + '\n';
       }
     } else {
       message += i18n.t('admin.diagnose.noHistoryPosts') + '\n';
@@ -142,7 +186,8 @@ export async function handleAdminDiagnoseAvatar(
       );
 
       if (outdatedPosts.length > 0) {
-        message += i18n.t('admin.diagnose.outdatedPostsFound', { count: outdatedPosts.length }) + '\n';
+        message +=
+          i18n.t('admin.diagnose.outdatedPostsFound', { count: outdatedPosts.length }) + '\n';
         message += i18n.t('admin.diagnose.refreshHint') + '\n';
       } else if (isVip) {
         message += i18n.t('admin.diagnose.allUpToDateVip') + '\n';
@@ -158,7 +203,11 @@ export async function handleAdminDiagnoseAvatar(
     console.error('[AdminDiagnoseAvatar] Error:', error);
     await telegram.sendMessage(
       chatId,
-      i18n.t('admin.diagnose.failed') + '\n\n' + i18n.t('admin.diagnose.error', { error: error instanceof Error ? error.message : String(error) })
+      i18n.t('admin.diagnose.failed') +
+        '\n\n' +
+        i18n.t('admin.diagnose.error', {
+          error: error instanceof Error ? error.message : String(error),
+        })
     );
   }
 }

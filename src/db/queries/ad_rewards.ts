@@ -265,7 +265,7 @@ export async function grantTemporaryQuota(
 ): Promise<AdReward> {
   const today = getTodayDateString();
   const current = await getAdReward(db, telegramId, today);
-  
+
   // ✨ NEW: Increment daily usage counter for official ads
   try {
     const client = createDatabaseClient({ DB: db } as any);

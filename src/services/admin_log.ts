@@ -1,4 +1,3 @@
-
 import type { Env } from '~/types';
 import { createTelegramService } from '~/services/telegram';
 
@@ -48,17 +47,15 @@ ${details}
   /**
    * Log a new report with AI analysis
    */
-  async logReport(
-    data: {
-      reporterId: string;
-      suspectId: string;
-      reason: string;
-      evidence: string[];
-      aiVerdict: string;
-      aiConfidence: number;
-      actionTaken: string;
-    }
-  ): Promise<void> {
+  async logReport(data: {
+    reporterId: string;
+    suspectId: string;
+    reason: string;
+    evidence: string[];
+    aiVerdict: string;
+    aiConfidence: number;
+    actionTaken: string;
+  }): Promise<void> {
     const title = '🚨 **New Report / Incident**';
     const details = `
 **Reporter**: \`${data.reporterId}\`
@@ -76,8 +73,8 @@ Action: **${data.actionTaken}**
     const buttons = [
       [
         { text: '🔓 Unban (False Positive)', callback_data: `admin_ops_unban_${data.suspectId}` },
-        { text: '📜 History', callback_data: `admin_ops_history_${data.suspectId}` }
-      ]
+        { text: '📜 History', callback_data: `admin_ops_history_${data.suspectId}` },
+      ],
     ];
 
     await this.logEvent(title, details, buttons);
@@ -86,15 +83,13 @@ Action: **${data.actionTaken}**
   /**
    * Log a new appeal
    */
-  async logAppeal(
-    data: {
-      userId: string;
-      banReason: string;
-      appealText: string;
-      aiRecommendation: string;
-      aiConfidence: number;
-    }
-  ): Promise<void> {
+  async logAppeal(data: {
+    userId: string;
+    banReason: string;
+    appealText: string;
+    aiRecommendation: string;
+    aiConfidence: number;
+  }): Promise<void> {
     const title = '📝 **New Appeal Received**';
     const details = `
 **User**: \`${data.userId}\`
@@ -108,11 +103,10 @@ ${data.aiRecommendation} (Conf: ${data.aiConfidence}%)
     const buttons = [
       [
         { text: '✅ Approve (Unban)', callback_data: `admin_ops_approve_${data.userId}` },
-        { text: '❌ Reject', callback_data: `admin_ops_reject_${data.userId}` }
-      ]
+        { text: '❌ Reject', callback_data: `admin_ops_reject_${data.userId}` },
+      ],
     ];
 
     await this.logEvent(title, details, buttons);
   }
 }
-

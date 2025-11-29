@@ -28,7 +28,10 @@ export interface BroadcastTarget {
 /**
  * Validate broadcast message
  */
-export function validateBroadcastMessage(message: string, i18n?: any): {
+export function validateBroadcastMessage(
+  message: string,
+  i18n?: any
+): {
   valid: boolean;
   error?: string;
   errorCode?: string;
@@ -45,7 +48,9 @@ export function validateBroadcastMessage(message: string, i18n?: any): {
   if (message.length > 4000) {
     return {
       valid: false,
-      error: i18n?.t('broadcast.tooLong', { max: 4000, current: message.length }) || '廣播訊息不能超過 4000 個字符', // 保留
+      error:
+        i18n?.t('broadcast.tooLong', { max: 4000, current: message.length }) ||
+        '廣播訊息不能超過 4000 個字符', // 保留
       errorCode: 'broadcast.tooLong', // 新增
       errorParams: { max: 4000, current: message.length }, // 新增
     };
@@ -57,7 +62,10 @@ export function validateBroadcastMessage(message: string, i18n?: any): {
 /**
  * Calculate broadcast progress
  */
-export function calculateBroadcastProgress(broadcast: Broadcast, i18n?: any): {
+export function calculateBroadcastProgress(
+  broadcast: Broadcast,
+  i18n?: any
+): {
   percentage: number;
   remaining: number;
   status: string;
@@ -98,18 +106,29 @@ export function formatBroadcastStatus(broadcast: Broadcast, i18n?: any): string 
     message += i18n.t('broadcast.id', { id: broadcast.id }) + '\n';
     message += i18n.t('broadcast.status', { status: progress.status }) + '\n';
     message += i18n.t('broadcast.target', { target: targetName }) + '\n';
-    message += i18n.t('broadcast.progress', { sent: broadcast.sentCount, total: broadcast.totalUsers, percentage: progress.percentage }) + '\n';
+    message +=
+      i18n.t('broadcast.progress', {
+        sent: broadcast.sentCount,
+        total: broadcast.totalUsers,
+        percentage: progress.percentage,
+      }) + '\n';
 
     if (broadcast.failedCount > 0) {
       message += i18n.t('broadcast.failed', { count: broadcast.failedCount }) + '\n';
     }
 
     if (broadcast.startedAt) {
-      message += i18n.t('broadcast.startedAt', { time: new Date(broadcast.startedAt).toLocaleString(language) }) + '\n';
+      message +=
+        i18n.t('broadcast.startedAt', {
+          time: new Date(broadcast.startedAt).toLocaleString(language),
+        }) + '\n';
     }
 
     if (broadcast.completedAt) {
-      message += i18n.t('broadcast.completedAt', { time: new Date(broadcast.completedAt).toLocaleString(language) }) + '\n';
+      message +=
+        i18n.t('broadcast.completedAt', {
+          time: new Date(broadcast.completedAt).toLocaleString(language),
+        }) + '\n';
     }
 
     if (broadcast.errorMessage) {
@@ -122,25 +141,42 @@ export function formatBroadcastStatus(broadcast: Broadcast, i18n?: any): string 
   // Fallback to default Chinese (向后兼容)
   const fallbackLanguage = 'zh-TW';
   let message = (i18n?.t('broadcast.statusTitle') || '📊 廣播狀態') + '\n\n';
-  message += (i18n?.t('broadcast.id', { id: broadcast.id }) || `ID: ${broadcast.id}\n`);
-  message += (i18n?.t('broadcast.status', { status: progress.status }) || `狀態: ${progress.status}\n`);
-  message += (i18n?.t('broadcast.target', { target: targetName }) || `目標: ${targetName}\n`);
-  message += (i18n?.t('broadcast.progress', { sent: broadcast.sentCount, total: broadcast.totalUsers, percentage: progress.percentage }) || `進度: ${broadcast.sentCount}/${broadcast.totalUsers} (${progress.percentage}%)\n`);
+  message += i18n?.t('broadcast.id', { id: broadcast.id }) || `ID: ${broadcast.id}\n`;
+  message +=
+    i18n?.t('broadcast.status', { status: progress.status }) || `狀態: ${progress.status}\n`;
+  message += i18n?.t('broadcast.target', { target: targetName }) || `目標: ${targetName}\n`;
+  message +=
+    i18n?.t('broadcast.progress', {
+      sent: broadcast.sentCount,
+      total: broadcast.totalUsers,
+      percentage: progress.percentage,
+    }) || `進度: ${broadcast.sentCount}/${broadcast.totalUsers} (${progress.percentage}%)\n`;
 
   if (broadcast.failedCount > 0) {
-    message += (i18n?.t('broadcast.failed', { count: broadcast.failedCount }) || `失敗: ${broadcast.failedCount}\n`);
+    message +=
+      i18n?.t('broadcast.failed', { count: broadcast.failedCount }) ||
+      `失敗: ${broadcast.failedCount}\n`;
   }
 
   if (broadcast.startedAt) {
-    message += (i18n?.t('broadcast.startedAt', { time: new Date(broadcast.startedAt).toLocaleString(fallbackLanguage) }) || `開始時間: ${new Date(broadcast.startedAt).toLocaleString(fallbackLanguage)}\n`);
+    message +=
+      i18n?.t('broadcast.startedAt', {
+        time: new Date(broadcast.startedAt).toLocaleString(fallbackLanguage),
+      }) || `開始時間: ${new Date(broadcast.startedAt).toLocaleString(fallbackLanguage)}\n`;
   }
 
   if (broadcast.completedAt) {
-    message += (i18n?.t('broadcast.completedAt', { time: new Date(broadcast.completedAt).toLocaleString(fallbackLanguage) }) || `完成時間: ${new Date(broadcast.completedAt).toLocaleString(fallbackLanguage)}\n`);
+    message +=
+      i18n?.t('broadcast.completedAt', {
+        time: new Date(broadcast.completedAt).toLocaleString(fallbackLanguage),
+      }) || `完成時間: ${new Date(broadcast.completedAt).toLocaleString(fallbackLanguage)}\n`;
   }
 
   if (broadcast.errorMessage) {
-    message += '\n' + (i18n?.t('broadcast.error', { error: broadcast.errorMessage }) || `錯誤: ${broadcast.errorMessage}`);
+    message +=
+      '\n' +
+      (i18n?.t('broadcast.error', { error: broadcast.errorMessage }) ||
+        `錯誤: ${broadcast.errorMessage}`);
   }
 
   return message;

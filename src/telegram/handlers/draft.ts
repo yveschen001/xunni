@@ -23,7 +23,7 @@ export async function handleDraftContinue(callbackQuery: any, env: Env): Promise
   try {
     const user = await findUserByTelegramId(db, telegramId);
     const i18n = createI18n(user?.language_pref || 'zh-TW');
-    
+
     await telegram.answerCallbackQuery(callbackQuery.id, i18n.t('draft.continueEditing'));
     await telegram.deleteMessage(chatId, callbackQuery.message!.message_id);
 
@@ -71,7 +71,7 @@ export async function handleDraftDelete(callbackQuery: any, env: Env): Promise<v
   try {
     const user = await findUserByTelegramId(db, telegramId);
     const i18n = createI18n(user?.language_pref || 'zh-TW');
-    
+
     if (!user) {
       await telegram.answerCallbackQuery(callbackQuery.id, i18n.t('errors.userNotFound'));
       return;
@@ -101,7 +101,8 @@ export async function handleDraftDelete(callbackQuery: any, env: Env): Promise<v
     } else {
       await telegram.sendMessageWithButtons(
         chatId,
-        i18n.t('draft.throwBottle') + '\n\n' +
+        i18n.t('draft.throwBottle') +
+          '\n\n' +
           i18n.t('draft.targetGender') +
           i18n.t('draft.targetGenderHint'),
         [
@@ -134,7 +135,7 @@ export async function handleDraftNew(callbackQuery: any, env: Env): Promise<void
 
     const user = await findUserByTelegramId(db, telegramId);
     const i18n = createI18n(user?.language_pref || 'zh-TW');
-    
+
     if (!user) {
       await telegram.answerCallbackQuery(callbackQuery.id, i18n.t('errors.userNotFound'));
       return;
@@ -161,7 +162,8 @@ export async function handleDraftNew(callbackQuery: any, env: Env): Promise<void
     } else {
       await telegram.sendMessageWithButtons(
         chatId,
-        i18n.t('draft.throwBottle') + '\n\n' +
+        i18n.t('draft.throwBottle') +
+          '\n\n' +
           i18n.t('draft.targetGender') +
           i18n.t('draft.targetGenderHint'),
         [
@@ -193,7 +195,7 @@ export async function handleDraftSend(callbackQuery: any, env: Env): Promise<voi
   try {
     const user = await findUserByTelegramId(db, telegramId);
     const i18n = createI18n(user?.language_pref || 'zh-TW');
-    
+
     if (!user) {
       await telegram.answerCallbackQuery(callbackQuery.id, i18n.t('errors.userNotFound'));
       return;
@@ -235,7 +237,7 @@ export async function handleDraftEdit(callbackQuery: any, env: Env): Promise<voi
     const telegramId = callbackQuery.from.id.toString();
     const user = await findUserByTelegramId(db, telegramId);
     const i18n = createI18n(user?.language_pref || 'zh-TW');
-    
+
     await telegram.answerCallbackQuery(callbackQuery.id, i18n.t('draft.editPrompt'));
     await telegram.deleteMessage(chatId, callbackQuery.message!.message_id);
 

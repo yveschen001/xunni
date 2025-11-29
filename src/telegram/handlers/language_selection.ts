@@ -85,7 +85,10 @@ export async function handleLanguageSelection(
   try {
     // Validate language code
     if (!isValidLanguage(languageCode)) {
-      await telegram.answerCallbackQuery(callbackQuery.id, currentI18n.t('errors.invalidLanguageCode'));
+      await telegram.answerCallbackQuery(
+        callbackQuery.id,
+        currentI18n.t('errors.invalidLanguageCode')
+      );
       return;
     }
 
@@ -134,11 +137,13 @@ export async function handleLanguageSelection(
       // Existing user - just confirm language change
       // Use the newly selected language for confirmation message
       const confirmI18n = createI18n(languageCode);
-      const confirmMessage = confirmI18n.t('settings.languageUpdated', { language: getLanguageDisplay(languageCode) });
+      const confirmMessage = confirmI18n.t('settings.languageUpdated', {
+        language: getLanguageDisplay(languageCode),
+      });
       const sentMessage = await telegram.sendMessage(chatId, confirmMessage);
 
       // Wait 2 seconds, then automatically return to menu
-      await new Promise(resolve => setTimeout(resolve, 2000));
+      await new Promise((resolve) => setTimeout(resolve, 2000));
 
       // Delete confirmation message and show menu
       try {
@@ -190,20 +195,18 @@ async function startOnboarding(
       i18n.t('common.nickname5') +
       i18n.t('common.text79') +
       i18n.t('common.nickname11');
-    
-    await telegram.sendMessageWithButtons(
-      chatId,
-      nicknameMessage,
+
+    await telegram.sendMessageWithButtons(chatId, nicknameMessage, [
       [
-        [
-          {
-            text: i18n.t('onboarding.useTelegramNickname', { nickname: suggestedNickname.substring(0, 18) }),
-            callback_data: `nickname_use_telegram`,
-          },
-        ],
-        [{ text: i18n.t('onboarding.customNickname'), callback_data: 'nickname_custom' }],
-      ]
-    );
+        {
+          text: i18n.t('onboarding.useTelegramNickname', {
+            nickname: suggestedNickname.substring(0, 18),
+          }),
+          callback_data: `nickname_use_telegram`,
+        },
+      ],
+      [{ text: i18n.t('onboarding.customNickname'), callback_data: 'nickname_custom' }],
+    ]);
   } else {
     // No Telegram nickname, ask for custom nickname
     const nicknameMessage =
@@ -212,7 +215,7 @@ async function startOnboarding(
       i18n.t('common.nickname5') +
       i18n.t('common.text79') +
       i18n.t('common.nickname11');
-    
+
     await telegram.sendMessage(chatId, nicknameMessage);
   }
 }

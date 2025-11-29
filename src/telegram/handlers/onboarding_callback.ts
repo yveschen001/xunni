@@ -46,7 +46,9 @@ export async function handleGenderSelection(
     await telegram.editMessageText(
       chatId,
       callbackQuery.message!.message_id,
-      i18n.t('success.message8', { gender: gender === 'male' ? i18n.t('common.male') : i18n.t('common.female') }) +
+      i18n.t('success.message8', {
+        gender: gender === 'male' ? i18n.t('common.male') : i18n.t('common.female'),
+      }) +
         '\n\n' +
         i18n.t('onboarding.genderWarning') +
         '\n\n' +
@@ -110,7 +112,7 @@ export async function handleGenderConfirmation(
     // Format values before passing to i18n
     const notSetText = i18n.t('common.notSet');
     const cityDisplay = user.city || notSetText;
-    
+
     await telegram.sendMessage(
       chatId,
       i18n.t('onboarding.prompt.birthday') +
@@ -151,9 +153,7 @@ export async function handleGenderReselection(
     await telegram.editMessageText(
       chatId,
       callbackQuery.message!.message_id,
-      i18n.t('common.gender3') +
-        '\n\n' +
-        i18n.t('onboarding.genderWarning'),
+      i18n.t('common.gender3') + '\n\n' + i18n.t('onboarding.genderWarning'),
       {
         reply_markup: {
           inline_keyboard: [
@@ -223,9 +223,7 @@ export async function handleBirthdayConfirmation(
       await telegram.editMessageText(
         chatId,
         callbackQuery.message!.message_id,
-        i18n.t('errors.error.text23') +
-          '\n\n' +
-          i18n.t('common.text20')
+        i18n.t('errors.error.text23') + '\n\n' + i18n.t('common.text20')
       );
       return;
     }
@@ -321,7 +319,14 @@ export async function handleBloodTypeSelection(
     // Answer callback
     const { getBloodTypeDisplay } = await import('~/domain/blood_type');
     const displayText = bloodType
-      ? i18n.t('success.settings4', { getBloodTypeDisplay: () => getBloodTypeDisplay(bloodType as any) }).replace(/\$\{getBloodTypeDisplay\(bloodType as any\)\}/, getBloodTypeDisplay(bloodType as any))
+      ? i18n
+          .t('success.settings4', {
+            getBloodTypeDisplay: () => getBloodTypeDisplay(bloodType as any),
+          })
+          .replace(
+            /\$\{getBloodTypeDisplay\(bloodType as any\)\}/,
+            getBloodTypeDisplay(bloodType as any)
+          )
       : i18n.t('success.settings6');
     await telegram.answerCallbackQuery(callbackQuery.id, displayText);
 
@@ -370,7 +375,7 @@ export async function handleBirthdayRetry(callbackQuery: CallbackQuery, env: Env
     // Format values before passing to i18n
     const notSetText = i18n.t('common.notSet');
     const cityDisplay = user.city || notSetText;
-    
+
     await telegram.sendMessage(
       chatId,
       i18n.t('common.birthday2') +
@@ -428,9 +433,7 @@ export async function handleMBTIChoiceManual(
     // Show 16 MBTI type buttons
     await telegram.sendMessageWithButtons(
       chatId,
-      i18n.t('common.mbti8') +
-        '\n\n' +
-        i18n.t('common.settings4'),
+      i18n.t('common.mbti8') + '\n\n' + i18n.t('common.settings4'),
       [
         [
           { text: 'INTJ', callback_data: 'mbti_manual_INTJ' },
@@ -668,10 +671,7 @@ export async function handleMBTIManualSelection(
     // Show result and continue to anti-fraud
     await telegram.sendMessage(
       chatId,
-      i18n.t('success.mbti', { mbtiType }) +
-        '\n\n' +
-        `${description}\n\n` +
-        i18n.t('common.text2')
+      i18n.t('success.mbti', { mbtiType }) + '\n\n' + `${description}\n\n` + i18n.t('common.text2')
     );
 
     // Show anti-fraud test
@@ -821,18 +821,28 @@ export async function handleAntiFraudConfirmation(
       i18n.t('success.text29') +
         '\n\n' +
         i18n.t('onboarding.start') +
-          '\n\n' +
-          i18n.t('onboarding.text21') +
-          '\n' +
-          i18n.t('onboarding.text19') +
-          '\n\n' +
-          i18n.t('onboarding.terms.english_only_note') +
-          '\n\n' +
-          i18n.t('onboarding.text7'),
+        '\n\n' +
+        i18n.t('onboarding.text21') +
+        '\n' +
+        i18n.t('onboarding.text19') +
+        '\n\n' +
+        i18n.t('onboarding.terms.english_only_note') +
+        '\n\n' +
+        i18n.t('onboarding.text7'),
       [
         [{ text: i18n.t('onboarding.terms.agree_button'), callback_data: 'agree_terms' }],
-        [{ text: i18n.t('onboarding.terms.privacy_policy_button'), url: LEGAL_URLS.PRIVACY_POLICY }],
-        [{ text: i18n.t('onboarding.terms.terms_of_service_button'), url: LEGAL_URLS.TERMS_OF_SERVICE }],
+        [
+          {
+            text: i18n.t('onboarding.terms.privacy_policy_button'),
+            url: LEGAL_URLS.PRIVACY_POLICY,
+          },
+        ],
+        [
+          {
+            text: i18n.t('onboarding.terms.terms_of_service_button'),
+            url: LEGAL_URLS.TERMS_OF_SERVICE,
+          },
+        ],
       ]
     );
   } catch (error) {
@@ -886,7 +896,9 @@ export async function handleAntiFraudLearnMore(
         i18n.t('common.confirm3'),
       {
         reply_markup: {
-          inline_keyboard: [[{ text: i18n.t('success.register2'), callback_data: 'anti_fraud_yes' }]],
+          inline_keyboard: [
+            [{ text: i18n.t('success.register2'), callback_data: 'anti_fraud_yes' }],
+          ],
         },
       }
     );
@@ -960,9 +972,12 @@ export async function handleTermsAgreement(callbackQuery: CallbackQuery, env: En
       const bioDisplay = updatedUser.bio || notSetText;
       const cityDisplay = updatedUser.city || notSetText;
       const interestsDisplay = updatedUser.interests || notSetText;
-      const genderDisplay = updatedUser.gender === 'male' ? updatedI18n.t('common.male') : updatedI18n.t('common.female');
+      const genderDisplay =
+        updatedUser.gender === 'male'
+          ? updatedI18n.t('common.male')
+          : updatedI18n.t('common.female');
       const mbtiDisplay = updatedUser.mbti_result || notSetText;
-      
+
       await telegram.sendMessageWithButtons(
         chatId,
         updatedI18n.t('success.register3') +
@@ -981,7 +996,9 @@ export async function handleTermsAgreement(callbackQuery: CallbackQuery, env: En
           '\n' +
           updatedI18n.t('onboarding.age', { updatedUser: { age: updatedUser.age } }) +
           '\n' +
-          updatedI18n.t('onboarding.zodiac', { updatedUser: { zodiac_sign: updatedUser.zodiac_sign } }) +
+          updatedI18n.t('onboarding.zodiac', {
+            updatedUser: { zodiac_sign: updatedUser.zodiac_sign },
+          }) +
           '\n' +
           updatedI18n.t('common.mbti3', { user: { mbti_result: mbtiDisplay } }) +
           '\n\n' +

@@ -20,21 +20,23 @@ export class TranslationLogService {
     const chars = params.characters || 0;
     const errorCount = params.isError ? 1 : 0;
     const requestCount = 1;
-    
+
     // Simple cost estimation (can be refined)
     // OpenAI gpt-4o-mini: $0.15 / 1M input tokens, $0.60 / 1M output tokens
     // Gemini Flash: Free tier or low cost
     // Google Translate: $20 / 1M chars
     let estimatedCost = 0;
     if (params.provider === 'openai') {
-        // Rough avg of input/output mix: $0.40 / 1M tokens
-        estimatedCost = (tokens / 1000000) * 0.4;
+      // Rough avg of input/output mix: $0.40 / 1M tokens
+      estimatedCost = (tokens / 1000000) * 0.4;
     } else if (params.provider === 'google') {
-        estimatedCost = (chars / 1000000) * 20;
+      estimatedCost = (chars / 1000000) * 20;
     }
 
     try {
-      await this.db.prepare(`
+      await this.db
+        .prepare(
+          `
         INSERT INTO daily_translation_stats 
           (stat_date, provider, total_tokens, total_characters, request_count, error_count, cost_usd)
         VALUES 
@@ -46,15 +48,10 @@ export class TranslationLogService {
           error_count = error_count + excluded.error_count,
           cost_usd = cost_usd + excluded.cost_usd,
           updated_at = CURRENT_TIMESTAMP
-      `).bind(
-        today, 
-        params.provider, 
-        tokens, 
-        chars, 
-        requestCount, 
-        errorCount, 
-        estimatedCost
-      ).run();
+      `
+        )
+        .bind(today, params.provider, tokens, chars, requestCount, errorCount, estimatedCost)
+        .run();
     } catch (error) {
       console.error('[TranslationLogService] Failed to log stats:', error);
     }
@@ -63,12 +60,22 @@ export class TranslationLogService {
   /**
    * Log fallback event
    */
-  async logFallback(userId: string | null, fromProvider: string, toProvider: string, error: string): Promise<void> {
+  async logFallback(
+    userId: string | null,
+    fromProvider: string,
+    toProvider: string,
+    error: string
+  ): Promise<void> {
     try {
-      await this.db.prepare(`
+      await this.db
+        .prepare(
+          `
         INSERT INTO translation_fallbacks (user_id, from_provider, to_provider, error_message)
         VALUES (?, ?, ?, ?)
-      `).bind(userId, fromProvider, toProvider, error).run();
+      `
+        )
+        .bind(userId, fromProvider, toProvider, error)
+        .run();
     } catch (err) {
       console.error('[TranslationLogService] Failed to log fallback:', err);
     }

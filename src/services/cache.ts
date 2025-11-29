@@ -3,7 +3,7 @@ import type { Env } from '~/types';
 
 /**
  * Cache Service
- * 
+ *
  * Provides a standardized way to cache data using Cloudflare KV.
  * Implements the "Read-Through" pattern:
  * 1. Check cache for key
@@ -29,11 +29,7 @@ export class CacheService {
    * @param ttlInSeconds Time to live in seconds
    * @param fetchFn Function to fetch data if cache miss
    */
-  async getOrSet<T>(
-    key: string,
-    ttlInSeconds: number,
-    fetchFn: () => Promise<T>
-  ): Promise<T> {
+  async getOrSet<T>(key: string, ttlInSeconds: number, fetchFn: () => Promise<T>): Promise<T> {
     // If caching is disabled, just fetch directly
     if (!this.kv) {
       return fetchFn();
@@ -63,7 +59,7 @@ export class CacheService {
         // Ensure TTL is valid (Cloudflare KV requires TTL >= 60s)
         // If we need shorter TTL, we might handle it in application logic or accept min 60s
         const validTTL = Math.max(60, ttlInSeconds);
-        
+
         await this.kv.put(fullKey, JSON.stringify(value), {
           expirationTtl: validTTL,
         });
@@ -89,4 +85,3 @@ export class CacheService {
     }
   }
 }
-

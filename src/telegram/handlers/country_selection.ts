@@ -13,10 +13,14 @@ import { createI18n } from '~/i18n';
 /**
  * Show country selection menu
  */
-export async function showCountrySelection(chatId: number, env: Env, telegramId?: string): Promise<void> {
+export async function showCountrySelection(
+  chatId: number,
+  env: Env,
+  telegramId?: string
+): Promise<void> {
   const telegram = createTelegramService(env);
   const db = createDatabaseClient(env.DB);
-  
+
   // Get user for i18n
   let user = null;
   if (telegramId) {

@@ -14,7 +14,7 @@ export async function handleMoonPacketCheck(request: Request, env: Env): Promise
     if (!apiKey || !timestamp || !nonce || !signature) {
       return new Response(JSON.stringify({ error: 'Unauthorized: Missing Headers' }), {
         status: 401,
-        headers: { 'Content-Type': 'application/json' }
+        headers: { 'Content-Type': 'application/json' },
       });
     }
 
@@ -22,19 +22,25 @@ export async function handleMoonPacketCheck(request: Request, env: Env): Promise
     if (apiKey !== env.MOONPACKET_API_KEY) {
       return new Response(JSON.stringify({ error: 'Unauthorized: Invalid API Key' }), {
         status: 401,
-        headers: { 'Content-Type': 'application/json' }
+        headers: { 'Content-Type': 'application/json' },
       });
     }
 
     // 3. Signature Verification
     // For GET request, body is considered empty object {} for signature calculation per doc
-    const body = {}; 
-    const isValid = await verifySignature(env.MOONPACKET_API_SECRET || '', body, timestamp, nonce, signature);
+    const body = {};
+    const isValid = await verifySignature(
+      env.MOONPACKET_API_SECRET || '',
+      body,
+      timestamp,
+      nonce,
+      signature
+    );
 
     if (!isValid) {
       return new Response(JSON.stringify({ error: 'Unauthorized: Invalid Signature' }), {
         status: 401,
-        headers: { 'Content-Type': 'application/json' }
+        headers: { 'Content-Type': 'application/json' },
       });
     }
 
@@ -52,22 +58,21 @@ export async function handleMoonPacketCheck(request: Request, env: Env): Promise
       const profile = await service.getUserProfile(userId);
       return new Response(JSON.stringify(profile), {
         status: 200,
-        headers: { 'Content-Type': 'application/json' }
+        headers: { 'Content-Type': 'application/json' },
       });
     } else {
       // Mode A: Get Rules (Configuration)
       const rules = await service.getRules();
       return new Response(JSON.stringify(rules), {
         status: 200,
-        headers: { 'Content-Type': 'application/json' }
+        headers: { 'Content-Type': 'application/json' },
       });
     }
-
   } catch (error) {
     console.error('[API] MoonPacket Error:', error);
     return new Response(JSON.stringify({ error: 'Internal Server Error' }), {
       status: 500,
-      headers: { 'Content-Type': 'application/json' }
+      headers: { 'Content-Type': 'application/json' },
     });
   }
 }

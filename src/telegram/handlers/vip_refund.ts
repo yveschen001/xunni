@@ -243,14 +243,15 @@ export async function handleAdminRefunds(message: TelegramMessage, env: Env): Pr
     let msg = i18n.t('vip.refundPendingList', { count: requests.results.length }) + '\n\n';
 
     for (const req of requests.results as any[]) {
-      msg += i18n.t('vip.refundRequestItem', {
-        id: req.id,
-        nickname: req.nickname,
-        userId: req.user_id,
-        amount: req.amount_stars,
-        reason: req.reason,
-        requestedAt: new Date(req.requested_at).toLocaleString(user.language_pref || 'zh-TW'),
-      }) + '\n\n';
+      msg +=
+        i18n.t('vip.refundRequestItem', {
+          id: req.id,
+          nickname: req.nickname,
+          userId: req.user_id,
+          amount: req.amount_stars,
+          reason: req.reason,
+          requestedAt: new Date(req.requested_at).toLocaleString(user.language_pref || 'zh-TW'),
+        }) + '\n\n';
     }
 
     msg += i18n.t('vip.refundAdminCommands');

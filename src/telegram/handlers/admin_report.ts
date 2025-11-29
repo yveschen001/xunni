@@ -18,9 +18,11 @@ export async function handleAdminDailyReport(
   try {
     // 1. Get yesterday's stats
     const yesterday = new Date(Date.now() - 24 * 60 * 60 * 1000).toISOString().split('T')[0];
-    
+
     // Translation stats
-    const translationStats = await db.d1.prepare(`
+    const translationStats = await db.d1
+      .prepare(
+        `
       SELECT 
         provider,
         SUM(total_tokens) as tokens,
@@ -31,18 +33,31 @@ export async function handleAdminDailyReport(
       FROM daily_translation_stats
       WHERE stat_date = ?
       GROUP BY provider
-    `).bind(yesterday).all<any>();
+    `
+      )
+      .bind(yesterday)
+      .all<any>();
 
     // Activity stats (reusing existing daily_stats table)
-    const activityStats = await db.d1.prepare(`
+    const activityStats = await db.d1
+      .prepare(
+        `
       SELECT * FROM daily_stats WHERE stat_date = ?
-    `).bind(yesterday).first<any>();
+    `
+      )
+      .bind(yesterday)
+      .first<any>();
 
     // Fallbacks count
-    const fallbackCount = await db.d1.prepare(`
+    const fallbackCount = await db.d1
+      .prepare(
+        `
       SELECT COUNT(*) as count FROM translation_fallbacks 
       WHERE date(created_at) = ?
-    `).bind(yesterday).first<{ count: number }>();
+    `
+      )
+      .bind(yesterday)
+      .first<{ count: number }>();
 
     // 2. Format Report
     let report = `📊 **昨日運營日報** (${yesterday})\n\n`;
@@ -54,10 +69,11 @@ export async function handleAdminDailyReport(
       for (const stat of translationStats.results) {
         const cost = stat.cost || 0;
         totalCost += cost;
-        const usage = stat.provider === 'openai' 
-          ? `${(stat.tokens / 1000).toFixed(1)}k Tokens`
-          : `${(stat.chars / 1000).toFixed(1)}k Chars`;
-        
+        const usage =
+          stat.provider === 'openai'
+            ? `${(stat.tokens / 1000).toFixed(1)}k Tokens`
+            : `${(stat.chars / 1000).toFixed(1)}k Chars`;
+
         report += `• ${stat.provider.toUpperCase()}: $${cost.toFixed(4)} (${usage})\n`;
       }
       report += `👉 **總計**: $${totalCost.toFixed(4)}\n\n`;
@@ -91,9 +107,13 @@ export async function handleAdminDailyReport(
 
     // Otherwise send to all GOD users
     // Need to find god users. For now, use env var or query users table
-    const gods = await db.d1.prepare(`
+    const gods = await db.d1
+      .prepare(
+        `
       SELECT telegram_id FROM users WHERE role = 'god'
-    `).all<{ telegram_id: string }>();
+    `
+      )
+      .all<{ telegram_id: string }>();
 
     if (gods.results.length > 0) {
       for (const god of gods.results) {
@@ -102,7 +122,6 @@ export async function handleAdminDailyReport(
     } else {
       console.warn('[AdminReport] No GOD users found to receive report');
     }
-
   } catch (error) {
     console.error('[AdminReport] Failed to generate report:', error);
     if (targetChatId) {

@@ -142,7 +142,11 @@ export function getAvailableAds(allAds: OfficialAd[], viewedAdIds: number[]): Of
  * @param hasViewedAd - Whether user has viewed this ad
  * @returns Eligibility result
  */
-export function checkAdEligibility(ad: OfficialAd, hasViewedAd: boolean, i18n?: any): OfficialAdEligibility {
+export function checkAdEligibility(
+  ad: OfficialAd,
+  hasViewedAd: boolean,
+  i18n?: any
+): OfficialAdEligibility {
   // Check if already viewed
   if (hasViewedAd) {
     return {
@@ -301,12 +305,16 @@ export function calculateTotalQuotaEarned(adViews: OfficialAdView[]): number {
  */
 export function formatAdMessage(ad: OfficialAd, i18n?: any): string {
   const typeEmoji = getAdTypeEmoji(ad.ad_type);
-  const rewardText = i18n?.t('officialAd.reward', { quota: ad.reward_quota }) || `🎁 獎勵：+${ad.reward_quota} 個當日額度`;
+  const rewardText =
+    i18n?.t('officialAd.reward', { quota: ad.reward_quota }) ||
+    `🎁 獎勵：+${ad.reward_quota} 個當日額度`;
 
   let message = `${typeEmoji} **${ad.title}**\n\n${ad.content}\n\n${rewardText}`;
 
   if (ad.requires_verification) {
-    message += i18n?.t('officialAd.requiresVerification') || '\n\n✅ 需要驗證：加入群組/頻道後點擊「驗證」按鈕';
+    message +=
+      i18n?.t('officialAd.requiresVerification') ||
+      '\n\n✅ 需要驗證：加入群組/頻道後點擊「驗證」按鈕';
   }
 
   return message;
@@ -490,12 +498,16 @@ export function calculateAdStats(ad: OfficialAd, views: OfficialAdView[]) {
  * @param stats - Ad statistics
  * @returns Formatted stats string
  */
-export function formatAdStats(ad: OfficialAd, stats: ReturnType<typeof calculateAdStats>, i18n?: any): string {
+export function formatAdStats(
+  ad: OfficialAd,
+  stats: ReturnType<typeof calculateAdStats>,
+  i18n?: any
+): string {
   const typeEmoji = getAdTypeEmoji(ad.ad_type);
   const statusEmoji = ad.is_enabled ? '✅' : '❌';
-  const statusText = ad.is_enabled 
-    ? (i18n?.t('officialAd.statusEnabled') || '啟用')
-    : (i18n?.t('officialAd.statusDisabled') || '停用');
+  const statusText = ad.is_enabled
+    ? i18n?.t('officialAd.statusEnabled') || '啟用'
+    : i18n?.t('officialAd.statusDisabled') || '停用';
 
   const statsTitle = i18n?.t('stats.title') || '📊 **統計數據**';
   let message = `

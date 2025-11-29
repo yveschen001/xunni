@@ -87,9 +87,9 @@ export async function translateWithGemini(
           candidate.content.parts[0].text.trim()) ||
         (Array.isArray(candidate?.content?.parts)
           ? candidate.content.parts
-            .map((part: { text?: string }) => part.text || '')
-            .join(' ')
-            .trim()
+              .map((part: { text?: string }) => part.text || '')
+              .join(' ')
+              .trim()
           : '') ||
         (typeof candidate?.content === 'string' && candidate.content.trim()) ||
         '';

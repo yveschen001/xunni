@@ -57,7 +57,7 @@ export async function handleEditProfile(message: TelegramMessage, env: Env): Pro
     const bloodTypeText = getBloodTypeDisplay(user.blood_type as any, i18n);
 
     const notSetText = i18n.t('common.notSet');
-    
+
     // Format all values before passing to i18n (handle fallbacks and translations)
     const bioDisplay = user.bio || notSetText;
     const cityDisplay = user.city || notSetText;
@@ -164,7 +164,7 @@ export async function handleEditProfileCallback(
     const bloodTypeText = getBloodTypeDisplay(user.blood_type as any, i18n);
 
     const notSetText = i18n.t('common.notSet');
-    
+
     // Format all values before passing to i18n (handle fallbacks and translations)
     const bioDisplay = user.bio || notSetText;
     const cityDisplay = user.city || notSetText;
@@ -217,7 +217,10 @@ export async function handleEditProfileCallback(
     );
   } catch (error) {
     console.error('[handleEditProfileCallback] Error:', error);
-    console.error('[handleEditProfileCallback] Error stack:', error instanceof Error ? error.stack : 'No stack');
+    console.error(
+      '[handleEditProfileCallback] Error stack:',
+      error instanceof Error ? error.stack : 'No stack'
+    );
     const errorI18n = createI18n('zh-TW');
     await telegram.answerCallbackQuery(callbackQuery.id, errorI18n.t('errors.error.short4'));
   }
@@ -264,9 +267,7 @@ export async function handleEditNickname(
         i18n.t('common.ad6') +
         '\n\n' +
         i18n.t('common.back'),
-      [
-        [{ text: i18n.t('buttons.back'), callback_data: 'edit_profile_callback' }],
-      ]
+      [[{ text: i18n.t('buttons.back'), callback_data: 'edit_profile_callback' }]]
     );
   } catch (error) {
     console.error('[handleEditNickname] Error:', error);
@@ -309,9 +310,7 @@ export async function handleEditBio(callbackQuery: TelegramCallbackQuery, env: E
         i18n.t('common.text98') +
         '\n\n' +
         i18n.t('common.back'),
-      [
-        [{ text: i18n.t('buttons.back'), callback_data: 'edit_profile_callback' }],
-      ]
+      [[{ text: i18n.t('buttons.back'), callback_data: 'edit_profile_callback' }]]
     );
   } catch (error) {
     console.error('[handleEditBio] Error:', error);
@@ -357,9 +356,7 @@ export async function handleEditRegion(
         i18n.t('common.text89') +
         '\n\n' +
         i18n.t('common.back'),
-      [
-        [{ text: i18n.t('buttons.back'), callback_data: 'edit_profile_callback' }],
-      ]
+      [[{ text: i18n.t('buttons.back'), callback_data: 'edit_profile_callback' }]]
     );
   } catch (error) {
     console.error('[handleEditRegion] Error:', error);
@@ -446,12 +443,15 @@ export async function handleMatchPrefSelection(
 
     await telegram.deleteMessage(chatId, callbackQuery.message!.message_id);
 
-    const prefText = preference === 'male' ? i18n.t('common.short84') : preference === 'female' ? i18n.t('common.short85') : i18n.t('common.short2');
+    const prefText =
+      preference === 'male'
+        ? i18n.t('common.short84')
+        : preference === 'female'
+          ? i18n.t('common.short85')
+          : i18n.t('common.short2');
     await telegram.sendMessageWithButtons(
       chatId,
-      i18n.t('success.text3', { prefText }) +
-        '\n\n' +
-        i18n.t('common.bottle16'),
+      i18n.t('success.text3', { prefText }) + '\n\n' + i18n.t('common.bottle16'),
       [
         [{ text: i18n.t('common.short3'), callback_data: 'edit_profile_callback' }],
         [{ text: i18n.t('common.back3'), callback_data: 'return_to_menu' }],
@@ -501,9 +501,7 @@ export async function handleEditInterests(
         i18n.t('common.text47') +
         '\n\n' +
         i18n.t('common.back'),
-      [
-        [{ text: i18n.t('buttons.back'), callback_data: 'edit_profile_callback' }],
-      ]
+      [[{ text: i18n.t('buttons.back'), callback_data: 'edit_profile_callback' }]]
     );
   } catch (error) {
     console.error('[handleEditInterests] Error:', error);
@@ -592,7 +590,9 @@ export async function handleEditBloodTypeSelection(
     const { getBloodTypeDisplay } = await import('~/domain/blood_type');
     const bloodTypeDisplay = bloodType ? getBloodTypeDisplay(bloodType as any, i18n) : '';
     const displayText = bloodType
-      ? i18n.t('success.bloodType').replace(/\$\{getBloodTypeDisplay\(bloodType as any\)\}/, bloodTypeDisplay)
+      ? i18n
+          .t('success.bloodType')
+          .replace(/\$\{getBloodTypeDisplay\(bloodType as any\)\}/, bloodTypeDisplay)
       : i18n.t('success.bloodType2');
 
     await telegram.answerCallbackQuery(callbackQuery.id, displayText);
@@ -659,9 +659,7 @@ export async function handleProfileEditInput(message: TelegramMessage, env: Env)
         if (text.length < 4) {
           await telegram.sendMessageWithButtons(
             chatId,
-            i18n.t('errors.error.cancel4') +
-              '\n\n' +
-              i18n.t('common.cancel3'),
+            i18n.t('errors.error.cancel4') + '\n\n' + i18n.t('common.cancel3'),
             [[{ text: i18n.t('errors.error.cancel6'), callback_data: 'edit_profile_callback' }]]
           );
           return true;
@@ -670,9 +668,7 @@ export async function handleProfileEditInput(message: TelegramMessage, env: Env)
         if (text.length > 36) {
           await telegram.sendMessageWithButtons(
             chatId,
-            i18n.t('errors.error.cancel') +
-              '\n\n' +
-              i18n.t('common.cancel3'),
+            i18n.t('errors.error.cancel') + '\n\n' + i18n.t('common.cancel3'),
             [[{ text: i18n.t('errors.error.cancel6'), callback_data: 'edit_profile_callback' }]]
           );
           return true;
@@ -728,12 +724,15 @@ export async function handleProfileEditInput(message: TelegramMessage, env: Env)
         const bloodTypeText = getBloodTypeDisplay(updatedUser.blood_type as any, updatedI18n);
 
         const notSetText = updatedI18n.t('common.notSet');
-        
+
         // Format all values before passing to i18n (handle fallbacks and translations)
         const bioDisplay = updatedUser.bio || notSetText;
         const cityDisplay = updatedUser.city || notSetText;
         const interestsDisplay = updatedUser.interests || notSetText;
-        const genderDisplay = updatedUser.gender === 'male' ? updatedI18n.t('common.male') : updatedI18n.t('common.female');
+        const genderDisplay =
+          updatedUser.gender === 'male'
+            ? updatedI18n.t('common.male')
+            : updatedI18n.t('common.female');
         const mbtiDisplay = updatedUser.mbti_result || notSetText;
 
         // Show success message and editing menu
@@ -787,9 +786,7 @@ export async function handleProfileEditInput(message: TelegramMessage, env: Env)
         if (text.length > 200) {
           await telegram.sendMessageWithButtons(
             chatId,
-            i18n.t('errors.error.cancel2') +
-              '\n\n' +
-              i18n.t('common.cancel3'),
+            i18n.t('errors.error.cancel2') + '\n\n' + i18n.t('common.cancel3'),
             [[{ text: i18n.t('errors.error.cancel6'), callback_data: 'edit_profile_callback' }]]
           );
           return true;
@@ -845,9 +842,7 @@ export async function handleProfileEditInput(message: TelegramMessage, env: Env)
         if (text.length > 50) {
           await telegram.sendMessageWithButtons(
             chatId,
-            i18n.t('errors.error.cancel3') +
-              '\n\n' +
-              i18n.t('common.cancel3'),
+            i18n.t('errors.error.cancel3') + '\n\n' + i18n.t('common.cancel3'),
             [[{ text: i18n.t('errors.error.cancel6'), callback_data: 'edit_profile_callback' }]]
           );
           return true;
@@ -886,9 +881,7 @@ export async function handleProfileEditInput(message: TelegramMessage, env: Env)
         if (interests.length > 5) {
           await telegram.sendMessageWithButtons(
             chatId,
-            i18n.t('errors.error.cancel5') +
-              '\n\n' +
-              i18n.t('common.cancel3'),
+            i18n.t('errors.error.cancel5') + '\n\n' + i18n.t('common.cancel3'),
             [[{ text: i18n.t('errors.error.cancel6'), callback_data: 'edit_profile_callback' }]]
           );
           return true;
@@ -897,9 +890,7 @@ export async function handleProfileEditInput(message: TelegramMessage, env: Env)
         if (interests.some((i) => i.length > 20)) {
           await telegram.sendMessageWithButtons(
             chatId,
-            i18n.t('errors.error.cancel5') +
-              '\n\n' +
-              i18n.t('common.cancel3'),
+            i18n.t('errors.error.cancel5') + '\n\n' + i18n.t('common.cancel3'),
             [[{ text: i18n.t('errors.error.cancel6'), callback_data: 'edit_profile_callback' }]]
           );
           return true;

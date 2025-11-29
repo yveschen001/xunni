@@ -192,7 +192,9 @@ export async function handleFilterMBTI(callbackQuery: any, env: Env): Promise<vo
       callbackQuery.message!.message_id,
       i18n.t('throw.mbti4') +
         '\n\n' +
-        i18n.t('throw.selected', { selected: selectedMBTI.length > 0 ? selectedMBTI.join(', ') : i18n.t('common.none') }) +
+        i18n.t('throw.selected', {
+          selected: selectedMBTI.length > 0 ? selectedMBTI.join(', ') : i18n.t('common.none'),
+        }) +
         '\n\n' +
         i18n.t('throw.cancel'),
       {
@@ -312,7 +314,9 @@ export async function handleFilterZodiac(callbackQuery: any, env: Env): Promise<
     const zodiacButtons: any[][] = [];
     for (let i = 0; i < ZODIAC_SIGNS.length; i += 3) {
       const row = ZODIAC_SIGNS.slice(i, i + 3).map((zodiac) => ({
-        text: selectedZodiac.includes(zodiac) ? `✅ ${getZodiacName(zodiac, i18n)}` : getZodiacName(zodiac, i18n),
+        text: selectedZodiac.includes(zodiac)
+          ? `✅ ${getZodiacName(zodiac, i18n)}`
+          : getZodiacName(zodiac, i18n),
         callback_data: `select_zodiac_${zodiac}`,
       }));
       zodiacButtons.push(row);
@@ -329,7 +333,12 @@ export async function handleFilterZodiac(callbackQuery: any, env: Env): Promise<
       callbackQuery.message!.message_id,
       i18n.t('throw.zodiac4') +
         '\n\n' +
-        i18n.t('throw.selected', { selected: selectedZodiac.length > 0 ? selectedZodiac.map((z) => getZodiacName(z, i18n)).join(', ') : i18n.t('common.none') }) +
+        i18n.t('throw.selected', {
+          selected:
+            selectedZodiac.length > 0
+              ? selectedZodiac.map((z) => getZodiacName(z, i18n)).join(', ')
+              : i18n.t('common.none'),
+        }) +
         '\n\n' +
         i18n.t('throw.cancel2'),
       {
@@ -448,10 +457,22 @@ export async function handleFilterGender(callbackQuery: any, env: Env): Promise<
     const sessionData = parseSessionData(session);
     const currentGender = sessionData.data?.target_gender || 'any';
 
-    const genderText = currentGender === 'male' ? i18n.t('onboarding.gender.male') : currentGender === 'female' ? i18n.t('onboarding.gender.female') : '🌈 任何人';
-    const maleText = currentGender === 'male' ? `✅ ${i18n.t('onboarding.gender.male')}` : i18n.t('onboarding.gender.male');
-    const femaleText = currentGender === 'female' ? `✅ ${i18n.t('onboarding.gender.female')}` : i18n.t('onboarding.gender.female');
-    const anyText = currentGender === 'any' ? `✅ ${i18n.t('throw.short3')}` : i18n.t('throw.short3');
+    const genderText =
+      currentGender === 'male'
+        ? i18n.t('onboarding.gender.male')
+        : currentGender === 'female'
+          ? i18n.t('onboarding.gender.female')
+          : '🌈 任何人';
+    const maleText =
+      currentGender === 'male'
+        ? `✅ ${i18n.t('onboarding.gender.male')}`
+        : i18n.t('onboarding.gender.male');
+    const femaleText =
+      currentGender === 'female'
+        ? `✅ ${i18n.t('onboarding.gender.female')}`
+        : i18n.t('onboarding.gender.female');
+    const anyText =
+      currentGender === 'any' ? `✅ ${i18n.t('throw.short3')}` : i18n.t('throw.short3');
 
     await telegram.editMessageText(
       chatId,
@@ -534,7 +555,9 @@ export async function handleSetGender(
 
     await telegram.answerCallbackQuery(
       callbackQuery.id,
-      i18n.t('success.message5', { gender: gender === 'male' ? 'male' : gender === 'female' ? 'female' : 'any' })
+      i18n.t('success.message5', {
+        gender: gender === 'male' ? 'male' : gender === 'female' ? 'female' : 'any',
+      })
     );
 
     // Refresh gender selection UI
@@ -584,10 +607,19 @@ export async function handleBackToFilter(callbackQuery: any, env: Env): Promise<
     const selectedGender = sessionData.data?.target_gender || 'any';
 
     // Show filter summary
-    const genderText = selectedGender === 'male' ? i18n.t('onboarding.gender.male') : selectedGender === 'female' ? i18n.t('onboarding.gender.female') : '🌈 任何人';
+    const genderText =
+      selectedGender === 'male'
+        ? i18n.t('onboarding.gender.male')
+        : selectedGender === 'female'
+          ? i18n.t('onboarding.gender.female')
+          : '🌈 任何人';
     const mbtiText = selectedMBTI.length > 0 ? selectedMBTI.join(', ') : i18n.t('throw.unlimited');
-    const zodiacText = selectedZodiac.length > 0 ? selectedZodiac.map((z) => getZodiacName(z, i18n)).join(', ') : i18n.t('throw.unlimited');
-    const summary = i18n.t('throw.text24') +
+    const zodiacText =
+      selectedZodiac.length > 0
+        ? selectedZodiac.map((z) => getZodiacName(z, i18n)).join(', ')
+        : i18n.t('throw.unlimited');
+    const summary =
+      i18n.t('throw.text24') +
       '\n\n' +
       i18n.t('throw.genderLabel', { gender: genderText }) +
       i18n.t('throw.mbtiLabel', { mbti: mbtiText }) +
@@ -596,11 +628,7 @@ export async function handleBackToFilter(callbackQuery: any, env: Env): Promise<
     await telegram.editMessageText(
       chatId,
       callbackQuery.message!.message_id,
-      i18n.t('throw.vip3') +
-        '\n\n' +
-        summary +
-        '\n' +
-        i18n.t('throw.text23'),
+      i18n.t('throw.vip3') + '\n\n' + summary + '\n' + i18n.t('throw.text23'),
       {
         reply_markup: {
           inline_keyboard: [
@@ -661,10 +689,19 @@ export async function handleFilterDone(callbackQuery: any, env: Env): Promise<vo
     const selectedGender = sessionData.data?.target_gender || 'any';
 
     // Show filter summary and ask for content
-    const genderText = selectedGender === 'male' ? i18n.t('onboarding.gender.male') : selectedGender === 'female' ? i18n.t('onboarding.gender.female') : '🌈 任何人';
+    const genderText =
+      selectedGender === 'male'
+        ? i18n.t('onboarding.gender.male')
+        : selectedGender === 'female'
+          ? i18n.t('onboarding.gender.female')
+          : '🌈 任何人';
     const mbtiText = selectedMBTI.length > 0 ? selectedMBTI.join(', ') : i18n.t('throw.unlimited');
-    const zodiacText = selectedZodiac.length > 0 ? selectedZodiac.map((z) => getZodiacName(z, i18n)).join(', ') : i18n.t('throw.unlimited');
-    const summary = i18n.t('success.settings3') +
+    const zodiacText =
+      selectedZodiac.length > 0
+        ? selectedZodiac.map((z) => getZodiacName(z, i18n)).join(', ')
+        : i18n.t('throw.unlimited');
+    const summary =
+      i18n.t('success.settings3') +
       i18n.t('throw.genderLabel', { gender: genderText }) +
       i18n.t('throw.mbtiLabel', { mbti: mbtiText }) +
       i18n.t('throw.zodiacLabel', { zodiac: zodiacText });
@@ -820,7 +857,8 @@ export async function handleFilterBloodType(callbackQuery: any, env: Env): Promi
     const sessionData = parseSessionData(session);
     const currentBloodType = sessionData.data?.target_blood_type || 'any';
 
-    const bloodTypeText = currentBloodType === 'any' ? i18n.t('throw.bloodType5') : `🩸 ${currentBloodType} 型`;
+    const bloodTypeText =
+      currentBloodType === 'any' ? i18n.t('throw.bloodType5') : `🩸 ${currentBloodType} 型`;
 
     await telegram.sendMessageWithButtons(
       chatId,

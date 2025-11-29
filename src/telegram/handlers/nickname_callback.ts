@@ -26,7 +26,7 @@ export async function handleNicknameUseTelegram(
     // Get user
     const user = await findUserByTelegramId(db, telegramId);
     const i18n = createI18n(user?.language_pref || 'zh-TW');
-    
+
     if (!user) {
       await telegram.answerCallbackQuery(callbackQuery.id, i18n.t('nickname.userNotFound'));
       return;
@@ -46,7 +46,10 @@ export async function handleNicknameUseTelegram(
     // Validate nickname
     const validation = validateNickname(truncatedNickname);
     if (!validation.valid) {
-      await telegram.answerCallbackQuery(callbackQuery.id, i18n.t('error.nickname3', { error: validation.error }));
+      await telegram.answerCallbackQuery(
+        callbackQuery.id,
+        i18n.t('error.nickname3', { error: validation.error })
+      );
       return;
     }
 
@@ -94,7 +97,7 @@ export async function handleNicknameCustom(callbackQuery: CallbackQuery, env: En
     const telegramId = callbackQuery.from.id.toString();
     const user = await findUserByTelegramId(db, telegramId);
     const i18n = createI18n(user?.language_pref || 'zh-TW');
-    
+
     // Answer callback
     await telegram.answerCallbackQuery(callbackQuery.id);
 
@@ -104,8 +107,7 @@ export async function handleNicknameCustom(callbackQuery: CallbackQuery, env: En
     // Ask for custom nickname
     await telegram.sendMessage(
       chatId,
-      i18n.t('nickname.customPrompt') +
-        i18n.t('nickname.customHint')
+      i18n.t('nickname.customPrompt') + i18n.t('nickname.customHint')
     );
   } catch (error) {
     console.error('[handleNicknameCustom] Error:', error);

@@ -82,7 +82,7 @@ export async function handleMenu(message: TelegramMessage, env: Env): Promise<vo
         // Fallback to database name (backward compatibility)
         taskName = nextTask.name;
       }
-      
+
       // Get task description: use i18n key based on task ID, or fallback to database description
       let taskDescription: string;
       const descI18nKey = `tasks.description.${nextTask.id.replace('task_', '')}`;
@@ -98,7 +98,7 @@ export async function handleMenu(message: TelegramMessage, env: Env): Promise<vo
         // Fallback to database description (backward compatibility)
         taskDescription = nextTask.description;
       }
-      
+
       menuMessage +=
         i18n.t('menu.task', {
           nextTask: {
@@ -193,7 +193,7 @@ export async function handleMenuCallback(callbackQuery: CallbackQuery, env: Env)
   try {
     // Debug: Log callback data
     console.error('[handleMenuCallback] Received callback:', data);
-    
+
     // Answer callback
     await telegram.answerCallbackQuery(callbackQuery.id);
 
@@ -250,12 +250,18 @@ export async function handleMenuCallback(callbackQuery: CallbackQuery, env: Env)
 
         await telegram.sendMessageWithButtons(
           chatId,
-          i18n.t('menu.invite') + '\n\n' +
-            i18n.t('menu.invite2', { inviteCode }) + '\n\n' +
-            i18n.t('menu.text3') + '\n' +
-            i18n.t('menu.register') + '\n' +
-            i18n.t('menu.bottle') + '\n' +
-            i18n.t('menu.quota') + '\n\n' +
+          i18n.t('menu.invite') +
+            '\n\n' +
+            i18n.t('menu.invite2', { inviteCode }) +
+            '\n\n' +
+            i18n.t('menu.text3') +
+            '\n' +
+            i18n.t('menu.register') +
+            '\n' +
+            i18n.t('menu.bottle') +
+            '\n' +
+            i18n.t('menu.quota') +
+            '\n\n' +
             i18n.t('menu.stats'),
           [
             [{ text: i18n.t('menu.invite3'), url: shareUrl }],

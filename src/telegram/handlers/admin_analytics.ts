@@ -44,7 +44,7 @@ export async function handleAnalytics(message: any, env: Env): Promise<void> {
 
   try {
     const i18n = createI18n('zh-TW'); // Admin commands use Chinese
-    
+
     // Check if user is super admin using centralized logic
     const { isSuperAdmin } = await import('./admin_ban');
     const user = await findUserByTelegramId(db, telegramId);
@@ -66,7 +66,7 @@ export async function handleAnalytics(message: any, env: Env): Promise<void> {
     const report = await generateDailyReport(db.d1, today);
     console.log('[handleAnalytics] Report generated');
     const message_text = await formatDailyReport(report, i18n);
-    
+
     console.log('[handleAnalytics] Sending report...');
     await telegram.sendMessage(chatId, message_text);
     console.log('[handleAnalytics] Report sent successfully');
@@ -97,7 +97,7 @@ export async function handleAdPerformance(message: any, env: Env): Promise<void>
     // Check if user is super admin (role = 'god')
     const { isSuperAdmin } = await import('./admin_ban');
     const user = await findUserByTelegramId(db, telegramId);
-    
+
     const isSuper = isSuperAdmin(telegramId) || (user && user.role === 'god');
 
     if (!isSuper) {
@@ -225,7 +225,9 @@ export async function handleTestDailyReports(message: TelegramMessage, env: Env)
     const i18n = createI18n('zh-TW');
     await telegram.sendMessage(
       chatId,
-      i18n.t('admin.analytics.sendReportFailed', { error: error instanceof Error ? error.message : String(error) })
+      i18n.t('admin.analytics.sendReportFailed', {
+        error: error instanceof Error ? error.message : String(error),
+      })
     );
   }
 }

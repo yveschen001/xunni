@@ -153,9 +153,13 @@ export async function handleWatchAd(callbackQuery: CallbackQuery, env: Env): Pro
 
     // Send message with ad link
     const remainingAds = checkResult.remaining_ads;
-    const message = i18n.t('adReward.watchAdTitle') + '\n\n' +
-      i18n.t('adReward.watchAdReward') + '\n' +
-      i18n.t('adReward.watchAdRemaining', { remaining: remainingAds }) + '\n\n' +
+    const message =
+      i18n.t('adReward.watchAdTitle') +
+      '\n\n' +
+      i18n.t('adReward.watchAdReward') +
+      '\n' +
+      i18n.t('adReward.watchAdRemaining', { remaining: remainingAds }) +
+      '\n\n' +
       i18n.t('adReward.watchAdClickButton');
 
     await telegram.sendMessage(chatId, message, {
@@ -382,12 +386,20 @@ export async function handleAdComplete(
     await trackAdCompletion(env, telegramId, providerName, updated.ads_watched);
 
     // Send notification to user
-    const notificationMessage = i18n.t('adReward.completedTitle') + '\n\n' +
-      i18n.t('adReward.completedReward') + '\n' +
-      i18n.t('adReward.completedWatched', { watched: updated.ads_watched }) + '\n' +
-      i18n.t('adReward.completedEarned', { earned: updated.quota_earned }) + '\n' +
-      i18n.t('adReward.completedRemaining', { remaining: result.remaining_ads }) + '\n\n' +
-      (result.remaining_ads > 0 ? i18n.t('adReward.continueWatching') : i18n.t('adReward.dailyLimitReached'));
+    const notificationMessage =
+      i18n.t('adReward.completedTitle') +
+      '\n\n' +
+      i18n.t('adReward.completedReward') +
+      '\n' +
+      i18n.t('adReward.completedWatched', { watched: updated.ads_watched }) +
+      '\n' +
+      i18n.t('adReward.completedEarned', { earned: updated.quota_earned }) +
+      '\n' +
+      i18n.t('adReward.completedRemaining', { remaining: result.remaining_ads }) +
+      '\n\n' +
+      (result.remaining_ads > 0
+        ? i18n.t('adReward.continueWatching')
+        : i18n.t('adReward.dailyLimitReached'));
 
     await telegram.sendMessage(user.telegram_id, notificationMessage);
 
@@ -466,7 +478,7 @@ export async function handleAdError(
     const db = createDatabaseClient(env.DB);
     const user = await findUserByTelegramId(db, telegramId);
     const i18n = createI18n(user?.language_pref || 'zh-TW');
-    
+
     await telegram.sendMessage(telegramId, i18n.t('ad.failed'));
   } catch (error) {
     console.error('[handleAdError] Error:', error);

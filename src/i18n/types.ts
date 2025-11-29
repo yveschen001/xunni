@@ -58,7 +58,7 @@ export interface Translations {
     stepTerms?: string;
     stepDefault?: string;
   };
-  
+
   // Settings (Updated)
   settings: {
     selectOption: string;
@@ -412,7 +412,7 @@ export interface Translations {
     suggestThrow?: string;
     suggestMenu?: string;
   };
-  
+
   // Tutorial
   tutorial?: {
     clickButtonHint?: string;
@@ -454,6 +454,6 @@ export interface Translations {
     START_SENDING: string;
     COMPLETED: string;
   };
-  
+
   [key: string]: any; // Allow indexing by string for dynamic keys
 }

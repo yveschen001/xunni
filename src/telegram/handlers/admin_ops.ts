@@ -1,4 +1,3 @@
-
 import type { Env } from '~/types';
 import { createDatabaseClient } from '~/db/client';
 import { createTelegramService } from '~/services/telegram';
@@ -37,12 +36,12 @@ export async function handleAdminOpsCallback(
           {
             chat: { id: chatId },
             from: { id: parseInt(adminId) },
-            text: `/admin_unban ${targetId}`
+            text: `/admin_unban ${targetId}`,
           } as any,
           env
         );
         await telegram.answerCallbackQuery(callbackQuery.id, '✅ User unbanned.');
-        
+
         // Update message to show who actioned
         await telegram.editMessageText(
           chatId,
@@ -52,10 +51,14 @@ export async function handleAdminOpsCallback(
         break;
       }
 
-      case 'approve': { // Approve appeal (Unban)
+      case 'approve': {
+        // Approve appeal (Unban)
         // Need to find the pending appeal ID for this user first
-        const appeal = await db.d1.prepare('SELECT id FROM appeals WHERE user_id = ? AND status = "pending"').bind(targetId).first<{id: number}>();
-        
+        const appeal = await db.d1
+          .prepare('SELECT id FROM appeals WHERE user_id = ? AND status = "pending"')
+          .bind(targetId)
+          .first<{ id: number }>();
+
         if (!appeal) {
           await telegram.answerCallbackQuery(callbackQuery.id, '❌ No pending appeal found.');
           return;
@@ -65,12 +68,12 @@ export async function handleAdminOpsCallback(
           {
             chat: { id: chatId },
             from: { id: parseInt(adminId) },
-            text: `/admin_approve ${appeal.id} Approved via Admin Ops`
+            text: `/admin_approve ${appeal.id} Approved via Admin Ops`,
           } as any,
           env
         );
         await telegram.answerCallbackQuery(callbackQuery.id, '✅ Appeal approved.');
-        
+
         await telegram.editMessageText(
           chatId,
           messageId,
@@ -79,9 +82,13 @@ export async function handleAdminOpsCallback(
         break;
       }
 
-      case 'reject': { // Reject appeal
-        const appealReject = await db.d1.prepare('SELECT id FROM appeals WHERE user_id = ? AND status = "pending"').bind(targetId).first<{id: number}>();
-        
+      case 'reject': {
+        // Reject appeal
+        const appealReject = await db.d1
+          .prepare('SELECT id FROM appeals WHERE user_id = ? AND status = "pending"')
+          .bind(targetId)
+          .first<{ id: number }>();
+
         if (!appealReject) {
           await telegram.answerCallbackQuery(callbackQuery.id, '❌ No pending appeal found.');
           return;
@@ -91,7 +98,7 @@ export async function handleAdminOpsCallback(
           {
             chat: { id: chatId },
             from: { id: parseInt(adminId) },
-            text: `/admin_reject ${appealReject.id} Rejected via Admin Ops`
+            text: `/admin_reject ${appealReject.id} Rejected via Admin Ops`,
           } as any,
           env
         );
@@ -104,12 +111,18 @@ export async function handleAdminOpsCallback(
         );
         break;
       }
-        
+
       case 'history': {
         // Show history (fetch last 5 bans)
-        const bans = await db.d1.prepare('SELECT reason, created_at FROM bans WHERE user_id = ? ORDER BY created_at DESC LIMIT 5').bind(targetId).all<{reason: string, created_at: string}>();
-        const historyText = bans.results?.map(b => `- ${b.created_at}: ${b.reason}`).join('\n') || 'No history';
-        
+        const bans = await db.d1
+          .prepare(
+            'SELECT reason, created_at FROM bans WHERE user_id = ? ORDER BY created_at DESC LIMIT 5'
+          )
+          .bind(targetId)
+          .all<{ reason: string; created_at: string }>();
+        const historyText =
+          bans.results?.map((b) => `- ${b.created_at}: ${b.reason}`).join('\n') || 'No history';
+
         await telegram.sendMessage(chatId, `📜 **History for ${targetId}**:\n${historyText}`);
         await telegram.answerCallbackQuery(callbackQuery.id);
         break;
@@ -123,4 +136,3 @@ export async function handleAdminOpsCallback(
     await telegram.answerCallbackQuery(callbackQuery.id, '⚠️ Error executing action.');
   }
 }
-

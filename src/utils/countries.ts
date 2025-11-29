@@ -51,4 +51,3 @@ export function getCountryFlag(code: string | null): string {
 export function isValidCountryCode(code: string): boolean {
   return !!countryFlags[code.toUpperCase()];
 }
-

@@ -6,7 +6,6 @@ import { createI18n } from '~/i18n';
 import { getOrCreateIdentifier } from '~/db/queries/conversation_identifiers';
 import { formatIdentifier } from '~/domain/conversation_identifier';
 
-
 /**
  * Handle Push Reminders Cron Job
  * Triggered every hour by Cloudflare Workers
@@ -35,7 +34,9 @@ export async function handlePushReminders(env: Env): Promise<void> {
 async function processThrowReminders(db: any, pushService: PushStrategyService) {
   // Find users active in last 3 days but haven't thrown today
   // And have quota remaining (simplified: assumes quota > 0 if not thrown)
-  const users = await db.d1.prepare(`
+  const users = await db.d1
+    .prepare(
+      `
     SELECT u.telegram_id, u.language_pref, u.last_active_at
     FROM users u
     LEFT JOIN daily_usage d ON u.telegram_id = d.telegram_id AND d.date = date('now')
@@ -45,34 +46,38 @@ async function processThrowReminders(db: any, pushService: PushStrategyService) 
       AND u.last_active_at >= datetime('now', '-3 days')
       AND (d.throws_count IS NULL OR d.throws_count = 0)
     LIMIT 50 -- Batch limit for safety
-  `).all();
+  `
+    )
+    .all();
 
   if (!users.results) return;
 
   for (const user of users.results) {
     const shouldSend = await pushService.shouldSendPush(
-        user.telegram_id, 
-        PushType.THROW_REMINDER, 
-        user.last_active_at,
-        user.language_pref
+      user.telegram_id,
+      PushType.THROW_REMINDER,
+      user.last_active_at,
+      user.language_pref
     );
 
     if (shouldSend) {
-        await pushService.sendPush(
-            user.telegram_id,
-            PushType.THROW_REMINDER,
-            'push.throwReminder', // i18n key needed
-            { remaining: 3 }, // Simplified placeholder
-            user.language_pref
-        );
+      await pushService.sendPush(
+        user.telegram_id,
+        PushType.THROW_REMINDER,
+        'push.throwReminder', // i18n key needed
+        { remaining: 3 }, // Simplified placeholder
+        user.language_pref
+      );
     }
   }
 }
 
 async function processCatchReminders(db: any, pushService: PushStrategyService) {
-    // Similar logic for catch
-    // Find users active in last 3 days but haven't caught today
-    const users = await db.d1.prepare(`
+  // Similar logic for catch
+  // Find users active in last 3 days but haven't caught today
+  const users = await db.d1
+    .prepare(
+      `
       SELECT u.telegram_id, u.language_pref, u.last_active_at
       FROM users u
       LEFT JOIN daily_usage d ON u.telegram_id = d.telegram_id AND d.date = date('now')
@@ -82,33 +87,37 @@ async function processCatchReminders(db: any, pushService: PushStrategyService) 
         AND u.last_active_at >= datetime('now', '-3 days')
         AND (d.catches_count IS NULL OR d.catches_count = 0)
       LIMIT 50
-    `).all();
-  
-    if (!users.results) return;
-  
-    for (const user of users.results) {
-      const shouldSend = await pushService.shouldSendPush(
-          user.telegram_id, 
-          PushType.CATCH_REMINDER, 
-          user.last_active_at,
-          user.language_pref
+    `
+    )
+    .all();
+
+  if (!users.results) return;
+
+  for (const user of users.results) {
+    const shouldSend = await pushService.shouldSendPush(
+      user.telegram_id,
+      PushType.CATCH_REMINDER,
+      user.last_active_at,
+      user.language_pref
+    );
+
+    if (shouldSend) {
+      await pushService.sendPush(
+        user.telegram_id,
+        PushType.CATCH_REMINDER,
+        'push.catchReminder', // i18n key needed
+        { count: 1 }, // Placeholder
+        user.language_pref
       );
-  
-      if (shouldSend) {
-          await pushService.sendPush(
-              user.telegram_id,
-              PushType.CATCH_REMINDER,
-              'push.catchReminder', // i18n key needed
-              { count: 1 }, // Placeholder
-              user.language_pref
-          );
-      }
     }
+  }
 }
 
 async function processOnboardingReminders(db: any, pushService: PushStrategyService) {
-    // Find users stuck in onboarding for > 24h but < 7 days
-    const users = await db.d1.prepare(`
+  // Find users stuck in onboarding for > 24h but < 7 days
+  const users = await db.d1
+    .prepare(
+      `
         SELECT telegram_id, language_pref, last_active_at, onboarding_step
         FROM users
         WHERE onboarding_step != 'completed'
@@ -116,33 +125,35 @@ async function processOnboardingReminders(db: any, pushService: PushStrategyServ
           AND created_at < datetime('now', '-24 hours')
           AND created_at > datetime('now', '-7 days')
         LIMIT 20
-    `).all();
+    `
+    )
+    .all();
 
-    if (!users.results) return;
+  if (!users.results) return;
 
-    for (const user of users.results) {
-        const shouldSend = await pushService.shouldSendPush(
-            user.telegram_id,
-            PushType.ONBOARDING_REMINDER,
-            user.last_active_at, // might be null or old
-            user.language_pref
-        );
+  for (const user of users.results) {
+    const shouldSend = await pushService.shouldSendPush(
+      user.telegram_id,
+      PushType.ONBOARDING_REMINDER,
+      user.last_active_at, // might be null or old
+      user.language_pref
+    );
 
-        if (shouldSend) {
-            await pushService.sendPush(
-                user.telegram_id,
-                PushType.ONBOARDING_REMINDER,
-                'push.onboardingReminder',
-                { step: user.onboarding_step },
-                user.language_pref
-            );
-        }
+    if (shouldSend) {
+      await pushService.sendPush(
+        user.telegram_id,
+        PushType.ONBOARDING_REMINDER,
+        'push.onboardingReminder',
+        { step: user.onboarding_step },
+        user.language_pref
+      );
     }
+  }
 }
 
 /**
  * Process Unreplied Message Reminders
- * 
+ *
  * Logic:
  * 1. Find ACTIVE conversations where:
  *    - Last message was > 24 hours ago
@@ -153,15 +164,17 @@ async function processOnboardingReminders(db: any, pushService: PushStrategyServ
  * 3. Send notification with Masked Nickname + Deep Link
  */
 async function processMessageReminders(db: any, pushService: PushStrategyService, env: Env) {
-    // We need to find conversations where it's "your turn" to reply
-    // i.e., you are NOT the last_sender_id
-    // And it's been > 24 hours since last_message_at
-    
-    // We query conversations directly. Since we need to join with user table to get language/active status,
-    // we iterate conversations.
-    // Optimization: Use index on (status, last_message_at)
-    
-    const conversations = await db.d1.prepare(`
+  // We need to find conversations where it's "your turn" to reply
+  // i.e., you are NOT the last_sender_id
+  // And it's been > 24 hours since last_message_at
+
+  // We query conversations directly. Since we need to join with user table to get language/active status,
+  // we iterate conversations.
+  // Optimization: Use index on (status, last_message_at)
+
+  const conversations = await db.d1
+    .prepare(
+      `
         SELECT 
             c.id as conversation_id,
             c.user_a_telegram_id,
@@ -182,101 +195,113 @@ async function processMessageReminders(db: any, pushService: PushStrategyService
           AND c.last_message_at > datetime('now', '-30 days') -- Don't remind for very old abandoned chats
           AND c.last_sender_id IS NOT NULL -- Must have at least one message
         LIMIT 50
-    `).all();
+    `
+    )
+    .all();
 
-    if (!conversations.results) return;
+  if (!conversations.results) return;
 
-    for (const conv of conversations.results) {
-        // Determine who needs to reply
-        let targetUserId: string;
-        let partnerUserId: string;
-        let partnerNickname: string;
-        let targetLang: string;
-        let targetLastActive: string;
+  for (const conv of conversations.results) {
+    // Determine who needs to reply
+    let targetUserId: string;
+    let partnerUserId: string;
+    let partnerNickname: string;
+    let targetLang: string;
+    let targetLastActive: string;
 
-        if (conv.last_sender_id === conv.user_a_telegram_id) {
-            // A sent last, B needs to reply
-            targetUserId = conv.user_b_telegram_id;
-            partnerUserId = conv.user_a_telegram_id;
-            partnerNickname = conv.ua_nickname;
-            targetLang = conv.ub_lang;
-            targetLastActive = conv.ub_active;
-        } else {
-            // B sent last, A needs to reply
-            targetUserId = conv.user_a_telegram_id;
-            partnerUserId = conv.user_b_telegram_id;
-            partnerNickname = conv.ub_nickname;
-            targetLang = conv.ua_lang;
-            targetLastActive = conv.ua_active;
-        }
+    if (conv.last_sender_id === conv.user_a_telegram_id) {
+      // A sent last, B needs to reply
+      targetUserId = conv.user_b_telegram_id;
+      partnerUserId = conv.user_a_telegram_id;
+      partnerNickname = conv.ua_nickname;
+      targetLang = conv.ub_lang;
+      targetLastActive = conv.ub_active;
+    } else {
+      // B sent last, A needs to reply
+      targetUserId = conv.user_a_telegram_id;
+      partnerUserId = conv.user_b_telegram_id;
+      partnerNickname = conv.ub_nickname;
+      targetLang = conv.ua_lang;
+      targetLastActive = conv.ua_active;
+    }
 
-        // Check if we should send push
-        const shouldSend = await pushService.shouldSendPush(
-            targetUserId,
-            PushType.MESSAGE_REMINDER,
-            targetLastActive,
-            targetLang
-        );
+    // Check if we should send push
+    const shouldSend = await pushService.shouldSendPush(
+      targetUserId,
+      PushType.MESSAGE_REMINDER,
+      targetLastActive,
+      targetLang
+    );
 
-        if (shouldSend) {
-            // Prepare content
-            const i18n = createI18n(targetLang || 'zh-TW');
-            
-            // Mask partner nickname (Privacy)
-            // Note: maskNickname function might need update to support country flag if not passed
-            // We'll import a helper or just use maskNickname as is.
-            const maskedName = maskNickname(partnerNickname || i18n.t('common.anonymousUser'));
-            
-            // Get conversation identifier for deep linking
-            const identifier = await getOrCreateIdentifier(db, targetUserId, partnerUserId, conv.conversation_id);
-            const formattedId = formatIdentifier(identifier);
+    if (shouldSend) {
+      // Prepare content
+      const i18n = createI18n(targetLang || 'zh-TW');
 
-            // Get last message content for preview (Context)
-            const lastMsg = await db.d1.prepare(`
+      // Mask partner nickname (Privacy)
+      // Note: maskNickname function might need update to support country flag if not passed
+      // We'll import a helper or just use maskNickname as is.
+      const maskedName = maskNickname(partnerNickname || i18n.t('common.anonymousUser'));
+
+      // Get conversation identifier for deep linking
+      const identifier = await getOrCreateIdentifier(
+        db,
+        targetUserId,
+        partnerUserId,
+        conv.conversation_id
+      );
+      const formattedId = formatIdentifier(identifier);
+
+      // Get last message content for preview (Context)
+      const lastMsg = await db.d1
+        .prepare(
+          `
                 SELECT original_text FROM conversation_messages 
                 WHERE conversation_id = ? 
                 ORDER BY created_at DESC LIMIT 1
-            `).bind(conv.conversation_id).first<{ original_text: string }>();
-            
-            const preview = lastMsg?.original_text 
-                ? (lastMsg.original_text.substring(0, 15) + (lastMsg.original_text.length > 15 ? '...' : ''))
-                : '...';
+            `
+        )
+        .bind(conv.conversation_id)
+        .first<{ original_text: string }>();
 
-            // Randomize message variation (A, B, C)
-            const variations = ['A', 'B', 'C'];
-            const variation = variations[Math.floor(Math.random() * variations.length)];
-            const messageKey = `push.messageReminder${variation}`;
+      const preview = lastMsg?.original_text
+        ? lastMsg.original_text.substring(0, 15) + (lastMsg.original_text.length > 15 ? '...' : '')
+        : '...';
 
-            // Send Push with Action Buttons
-            await pushService.sendPush(
-                targetUserId,
-                PushType.MESSAGE_REMINDER,
-                messageKey,
-                { 
-                    masked_partner_name: maskedName,
-                    last_message_preview: preview
-                },
-                targetLang,
+      // Randomize message variation (A, B, C)
+      const variations = ['A', 'B', 'C'];
+      const variation = variations[Math.floor(Math.random() * variations.length)];
+      const messageKey = `push.messageReminder${variation}`;
+
+      // Send Push with Action Buttons
+      await pushService.sendPush(
+        targetUserId,
+        PushType.MESSAGE_REMINDER,
+        messageKey,
+        {
+          masked_partner_name: maskedName,
+          last_message_preview: preview,
+        },
+        targetLang,
+        {
+          // Action Buttons (Interactive)
+          reply_markup: {
+            inline_keyboard: [
+              [
                 {
-                    // Action Buttons (Interactive)
-                    reply_markup: {
-                        inline_keyboard: [
-                            [
-                                { 
-                                    text: i18n.t('push.actionReply', { masked_partner_name: maskedName }), 
-                                    callback_data: `conv_reply_${formattedId}` 
-                                }
-                            ],
-                            [
-                                {
-                                    text: i18n.t('push.actionHistory'),
-                                    callback_data: `conv_history_${formattedId}` // Needs router support
-                                }
-                            ]
-                        ]
-                    }
-                }
-            );
+                  text: i18n.t('push.actionReply', { masked_partner_name: maskedName }),
+                  callback_data: `conv_reply_${formattedId}`,
+                },
+              ],
+              [
+                {
+                  text: i18n.t('push.actionHistory'),
+                  callback_data: `conv_history_${formattedId}`, // Needs router support
+                },
+              ],
+            ],
+          },
         }
+      );
     }
+  }
 }

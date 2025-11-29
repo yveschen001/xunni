@@ -39,7 +39,8 @@ export async function createFilteredBroadcast(
     const { createI18n } = await import('~/i18n');
     const i18n = createI18n('zh-TW');
     throw new Error(
-      i18n.t('broadcast.maxUsersExceeded', { max: MAX_SAFE_USERS, current: userIds.length }) + '\n\n' +
+      i18n.t('broadcast.maxUsersExceeded', { max: MAX_SAFE_USERS, current: userIds.length }) +
+        '\n\n' +
         i18n.t('broadcast.upgradeRequired')
     );
   }
@@ -102,7 +103,8 @@ export async function createBroadcast(
     const { createI18n } = await import('~/i18n');
     const i18n = createI18n('zh-TW');
     throw new Error(
-      i18n.t('broadcast.maxUsersExceeded', { max: MAX_SAFE_USERS, current: userIds.length }) + '\n\n' +
+      i18n.t('broadcast.maxUsersExceeded', { max: MAX_SAFE_USERS, current: userIds.length }) +
+        '\n\n' +
         i18n.t('broadcast.upgradeRequired')
     );
   }
@@ -188,9 +190,9 @@ async function processBroadcast(env: Env, broadcastId: number): Promise<void> {
         users = await getFilteredUserIds(db, filters, cursor, BATCH_SIZE);
       } else {
         users = await getTargetUserIds(
-          db, 
-          broadcast.targetType as 'all' | 'vip' | 'non_vip', 
-          cursor, 
+          db,
+          broadcast.targetType as 'all' | 'vip' | 'non_vip',
+          cursor,
           BATCH_SIZE
         );
       }
@@ -200,7 +202,9 @@ async function processBroadcast(env: Env, broadcastId: number): Promise<void> {
         break;
       }
 
-      console.log(`[processBroadcast] Processing batch of ${users.length} users starting from ID ${cursor}`);
+      console.log(
+        `[processBroadcast] Processing batch of ${users.length} users starting from ID ${cursor}`
+      );
 
       // Send messages
       await Promise.all(
@@ -212,11 +216,11 @@ async function processBroadcast(env: Env, broadcastId: number): Promise<void> {
             // Basic error handling, stats update later
             totalFailed++;
             try {
-                // Handle error classification
-                const { handleBroadcastError } = await import('./telegram_error_handler');
-                await handleBroadcastError(db, user.telegram_id, error);
+              // Handle error classification
+              const { handleBroadcastError } = await import('./telegram_error_handler');
+              await handleBroadcastError(db, user.telegram_id, error);
             } catch (e) {
-                console.error('Error handler failed', e);
+              console.error('Error handler failed', e);
             }
           }
         })
@@ -228,28 +232,37 @@ async function processBroadcast(env: Env, broadcastId: number): Promise<void> {
 
       // Update progress in DB
       await db.d1
-        .prepare(`
+        .prepare(
+          `
           UPDATE broadcasts 
           SET sent_count = ?, 
               failed_count = ?, 
               last_processed_id = ? 
           WHERE id = ?
-        `)
+        `
+        )
         .bind(totalSent, totalFailed, cursor, broadcastId)
         .run();
-      
+
       // Small delay to be nice to Telegram API
       await sleep(500);
     }
 
     // If we finished all users
     if (!hasMore) {
-      await updateBroadcastStatus(db, broadcastId, 'completed', undefined, new Date().toISOString());
-      console.log(`[processBroadcast] Completed broadcast ${broadcastId}. Total sent: ${totalSent}`);
+      await updateBroadcastStatus(
+        db,
+        broadcastId,
+        'completed',
+        undefined,
+        new Date().toISOString()
+      );
+      console.log(
+        `[processBroadcast] Completed broadcast ${broadcastId}. Total sent: ${totalSent}`
+      );
     } else {
-        console.log(`[processBroadcast] Paused broadcast ${broadcastId} at cursor ${cursor}`);
+      console.log(`[processBroadcast] Paused broadcast ${broadcastId} at cursor ${cursor}`);
     }
-
   } catch (error) {
     console.error(`[processBroadcast] Error:`, error);
     await updateBroadcastStatus(
@@ -380,7 +393,10 @@ async function getTargetUserIds(
 
   query += ` ORDER BY id ASC LIMIT ?`;
 
-  const result = await db.d1.prepare(query).bind(cursor, limit).all<{ id: number; telegram_id: string }>();
+  const result = await db.d1
+    .prepare(query)
+    .bind(cursor, limit)
+    .all<{ id: number; telegram_id: string }>();
   return result.results || [];
 }
 
@@ -436,7 +452,10 @@ async function countFilteredUsers(
     query += ` AND strftime('%m-%d', birthday) = strftime('%m-%d', 'now')`;
   }
 
-  const result = await db.d1.prepare(query).bind(...params).first<{ count: number }>();
+  const result = await db.d1
+    .prepare(query)
+    .bind(...params)
+    .first<{ count: number }>();
   return result?.count || 0;
 }
 
@@ -489,8 +508,8 @@ export async function getFilteredUserIds(
   // ✅ AGE FILTER
   if (filters.age) {
     const currentYear = new Date().getFullYear();
-    const maxBirthYear = currentYear - filters.age.min; 
-    const minBirthYear = currentYear - filters.age.max; 
+    const maxBirthYear = currentYear - filters.age.min;
+    const minBirthYear = currentYear - filters.age.max;
 
     query += ` AND CAST(strftime('%Y', birthday) AS INTEGER) BETWEEN ? AND ?`;
     params.push(minBirthYear, maxBirthYear);
@@ -524,7 +543,7 @@ export async function getFilteredUserIds(
     .prepare(query)
     .bind(...params)
     .all<{ id: number; telegram_id: string }>();
-  
+
   return result.results || [];
 }
 

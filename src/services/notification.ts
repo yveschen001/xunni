@@ -10,7 +10,7 @@ export interface SendResult {
 
 /**
  * Notification Service (SafeSender)
- * 
+ *
  * Centralized service for sending messages with:
  * 1. Automatic Block Detection (403 Forbidden)
  * 2. User Status Updates (Active -> Blocked)
@@ -51,11 +51,11 @@ export class NotificationService {
    */
   private async handleSendError(userId: string, error: any): Promise<SendResult> {
     const errorMsg = error.message || String(error);
-    
+
     // Check for "Blocked" or "Deactivated" errors
-    const isBlocked = 
+    const isBlocked =
       errorMsg.includes('Forbidden: bot was blocked by the user') ||
-      errorMsg.includes('Forbidden: user is deactivated') || 
+      errorMsg.includes('Forbidden: user is deactivated') ||
       errorMsg.includes('PEER_ID_INVALID'); // Sometimes implies deleted account
 
     if (isBlocked) {
@@ -73,12 +73,17 @@ export class NotificationService {
    */
   private async markUserAsBlocked(userId: string) {
     try {
-      await this.db.prepare(`
+      await this.db
+        .prepare(
+          `
         UPDATE users 
         SET bot_status = 'blocked', 
             updated_at = CURRENT_TIMESTAMP
         WHERE telegram_id = ?
-      `).bind(userId).run();
+      `
+        )
+        .bind(userId)
+        .run();
     } catch (dbError) {
       console.error(`[SafeSender] DB Update Failed for ${userId}:`, dbError);
     }

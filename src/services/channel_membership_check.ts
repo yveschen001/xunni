@@ -49,10 +49,19 @@ export async function checkChannelMembership(env: Env): Promise<void> {
           // Send notification with claim button
           await telegram.sendMessageWithButtons(
             parseInt(user.telegram_id),
-            i18n.t('channelMembership.joined') + '\n\n' +
-              i18n.t('channelMembership.claimReward') + '\n\n' +
+            i18n.t('channelMembership.joined') +
+              '\n\n' +
+              i18n.t('channelMembership.claimReward') +
+              '\n\n' +
               i18n.t('channelMembership.oneTimeReward'),
-            [[{ text: i18n.t('channelMembership.claimButton'), callback_data: 'claim_task_join_channel' }]]
+            [
+              [
+                {
+                  text: i18n.t('channelMembership.claimButton'),
+                  callback_data: 'claim_task_join_channel',
+                },
+              ],
+            ]
           );
 
           console.log(
@@ -86,7 +95,7 @@ async function isUserInChannel(
       const parts = channelId.split('/');
       target = '@' + parts[parts.length - 1];
     }
-    
+
     const member = await telegram.getChatMember(target, userId);
 
     // Check user status
@@ -174,15 +183,19 @@ export async function handleVerifyChannelJoin(
       await telegram.editMessageText(
         chatId,
         messageId,
-        i18n.t('channelMembership.taskCompleted') + '\n\n' +
-          i18n.t('channelMembership.rewardAdded') + '\n\n' +
+        i18n.t('channelMembership.taskCompleted') +
+          '\n\n' +
+          i18n.t('channelMembership.rewardAdded') +
+          '\n\n' +
           i18n.t('channelMembership.viewMoreTasks')
       );
     } else {
       await telegram.sendMessage(
         parseInt(userId),
-        i18n.t('channelMembership.taskCompleted') + '\n\n' +
-          i18n.t('channelMembership.rewardAdded') + '\n\n' +
+        i18n.t('channelMembership.taskCompleted') +
+          '\n\n' +
+          i18n.t('channelMembership.rewardAdded') +
+          '\n\n' +
           i18n.t('channelMembership.viewMoreTasks')
       );
     }
@@ -252,8 +265,10 @@ export async function handleClaimTaskReward(
 
     await telegram.sendMessage(
       parseInt(userId),
-      i18n.t('channelMembership.taskCompleted') + '\n\n' +
-        i18n.t('channelMembership.rewardAdded') + '\n\n' +
+      i18n.t('channelMembership.taskCompleted') +
+        '\n\n' +
+        i18n.t('channelMembership.rewardAdded') +
+        '\n\n' +
         i18n.t('channelMembership.viewTaskCenter')
     );
   } catch (error) {

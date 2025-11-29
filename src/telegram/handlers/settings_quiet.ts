@@ -12,12 +12,13 @@ import { handleSettings } from './settings';
 function generateHourGrid(callbackPrefix: string): InlineKeyboardButton[][] {
   const grid: InlineKeyboardButton[][] = [];
   let row: InlineKeyboardButton[] = [];
-  
+
   for (let i = 0; i < 24; i++) {
     const hourStr = i.toString().padStart(2, '0');
     row.push({ text: `${hourStr}:00`, callback_data: `${callbackPrefix}${i}` });
-    
-    if (row.length === 4) { // 4 columns looks better on mobile
+
+    if (row.length === 4) {
+      // 4 columns looks better on mobile
       grid.push(row);
       row = [];
     }
@@ -30,7 +31,7 @@ function generateHourGrid(callbackPrefix: string): InlineKeyboardButton[][] {
  * Step 1: Show Start Hour Selection
  */
 export async function showQuietHoursStartSelection(
-  callbackQuery: TelegramCallbackQuery, 
+  callbackQuery: TelegramCallbackQuery,
   env: Env
 ): Promise<void> {
   const telegram = createTelegramService(env);
@@ -42,21 +43,28 @@ export async function showQuietHoursStartSelection(
   const i18n = createI18n(user?.language_pref || 'zh-TW');
 
   const grid = generateHourGrid('quiet_start_');
-  
+
   // Add specific control buttons
   const controls: InlineKeyboardButton[][] = [
-    [{ text: i18n.t('settings.quietDisable', { defaultValue: '🚫 停用安靜時段' }), callback_data: 'quiet_disable' }],
-    [{ text: i18n.t('common.back', { defaultValue: '返回' }), callback_data: 'back_to_settings' }]
+    [
+      {
+        text: i18n.t('settings.quietDisable', { defaultValue: '🚫 停用安靜時段' }),
+        callback_data: 'quiet_disable',
+      },
+    ],
+    [{ text: i18n.t('common.back', { defaultValue: '返回' }), callback_data: 'back_to_settings' }],
   ];
 
   await telegram.editMessageText(
     chatId,
     callbackQuery.message!.message_id,
-    i18n.t('settings.selectStartHour', { defaultValue: '🌙 請選擇安靜時段的「開始時間」：\n(例如：若要在 23:00 開始，請點選 23:00)' }),
+    i18n.t('settings.selectStartHour', {
+      defaultValue: '🌙 請選擇安靜時段的「開始時間」：\n(例如：若要在 23:00 開始，請點選 23:00)',
+    }),
     {
       reply_markup: {
-        inline_keyboard: [...grid, ...controls]
-      }
+        inline_keyboard: [...grid, ...controls],
+      },
     }
   );
 }
@@ -65,7 +73,7 @@ export async function showQuietHoursStartSelection(
  * Step 2: Handle Start Hour -> Show End Hour Selection
  */
 export async function handleQuietHoursStartSelection(
-  callbackQuery: TelegramCallbackQuery, 
+  callbackQuery: TelegramCallbackQuery,
   startHour: number,
   env: Env
 ): Promise<void> {
@@ -79,22 +87,28 @@ export async function handleQuietHoursStartSelection(
 
   // Prefix for end hour selection: quiet_save_{startHour}_{endHour}
   const grid = generateHourGrid(`quiet_save_${startHour}_`);
-  
+
   const controls: InlineKeyboardButton[][] = [
-    [{ text: i18n.t('common.back', { defaultValue: '返回' }), callback_data: 'settings_edit_quiet_hours' }]
+    [
+      {
+        text: i18n.t('common.back', { defaultValue: '返回' }),
+        callback_data: 'settings_edit_quiet_hours',
+      },
+    ],
   ];
 
   await telegram.editMessageText(
     chatId,
     callbackQuery.message!.message_id,
-    i18n.t('settings.selectEndHour', { 
-        defaultValue: '☀️ 開始時間已設定為 {start}:00。\n請選擇安靜時段的「結束時間」：\n(在此時間後恢復通知)',
-        start: startHour.toString().padStart(2, '0')
+    i18n.t('settings.selectEndHour', {
+      defaultValue:
+        '☀️ 開始時間已設定為 {start}:00。\n請選擇安靜時段的「結束時間」：\n(在此時間後恢復通知)',
+      start: startHour.toString().padStart(2, '0'),
     }),
     {
       reply_markup: {
-        inline_keyboard: [...grid, ...controls]
-      }
+        inline_keyboard: [...grid, ...controls],
+      },
     }
   );
 }
@@ -103,7 +117,7 @@ export async function handleQuietHoursStartSelection(
  * Step 3: Handle End Hour -> Save -> Return to Settings
  */
 export async function handleQuietHoursSave(
-  callbackQuery: TelegramCallbackQuery, 
+  callbackQuery: TelegramCallbackQuery,
   startHour: number,
   endHour: number,
   env: Env
@@ -120,12 +134,12 @@ export async function handleQuietHoursSave(
   const prefsService = new UserPreferencesService(db.d1);
   await prefsService.updatePreferences(telegramId, {
     quiet_hours_start: startHour,
-    quiet_hours_end: endHour
+    quiet_hours_end: endHour,
   });
 
   await telegram.answerCallbackQuery(
-      callbackQuery.id, 
-      i18n.t('settings.saved', { defaultValue: '✅ 設定已保存' })
+    callbackQuery.id,
+    i18n.t('settings.saved', { defaultValue: '✅ 設定已保存' })
   );
 
   // Return to settings
@@ -135,7 +149,7 @@ export async function handleQuietHoursSave(
   const fakeMessage = {
     ...callbackQuery.message!,
     from: callbackQuery.from,
-    text: '/settings'
+    text: '/settings',
   };
   await handleSettings(fakeMessage as any, env);
 }
@@ -144,7 +158,7 @@ export async function handleQuietHoursSave(
  * Handle Disable
  */
 export async function handleQuietHoursDisable(
-  callbackQuery: TelegramCallbackQuery, 
+  callbackQuery: TelegramCallbackQuery,
   env: Env
 ): Promise<void> {
   const telegram = createTelegramService(env);
@@ -159,12 +173,12 @@ export async function handleQuietHoursDisable(
   const prefsService = new UserPreferencesService(db.d1);
   await prefsService.updatePreferences(telegramId, {
     quiet_hours_start: 0,
-    quiet_hours_end: 0
+    quiet_hours_end: 0,
   });
 
   await telegram.answerCallbackQuery(
-      callbackQuery.id, 
-      i18n.t('settings.disabled', { defaultValue: '🚫 安靜時段已停用' })
+    callbackQuery.id,
+    i18n.t('settings.disabled', { defaultValue: '🚫 安靜時段已停用' })
   );
 
   await telegram.deleteMessage(chatId, callbackQuery.message!.message_id);
@@ -172,8 +186,7 @@ export async function handleQuietHoursDisable(
   const fakeMessage = {
     ...callbackQuery.message!,
     from: callbackQuery.from,
-    text: '/settings'
+    text: '/settings',
   };
   await handleSettings(fakeMessage as any, env);
 }
-

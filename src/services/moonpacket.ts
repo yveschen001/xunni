@@ -1,5 +1,10 @@
 import type { DatabaseClient } from '~/db/client';
-import type { IMoonPacketService, RulesResponse, UserProfileResponse, UserProfile } from '~/domain/moonpacket';
+import type {
+  IMoonPacketService,
+  RulesResponse,
+  UserProfileResponse,
+  UserProfile,
+} from '~/domain/moonpacket';
 import type { Env } from '~/types'; // Import Env
 import { findUserByTelegramId } from '~/db/queries/users';
 import { createTelegramService } from '~/services/telegram';
@@ -26,7 +31,7 @@ export class MoonPacketService implements IMoonPacketService {
       data: {
         level: { gte: 1 },
         is_vip: { eq: true },
-        status: { eq: "active" },
+        status: { eq: 'active' },
         is_blacklist: { eq: false },
         ads_watched_24h: { gte: 10 },
         bottles_thrown_24h: { gte: 3 },
@@ -36,8 +41,8 @@ export class MoonPacketService implements IMoonPacketService {
         invite_count_total: { gte: 10 },
         is_channel_member: { eq: true },
         profile_completeness: { gte: 80 },
-        messages_sent_24h: { gte: 10 }
-      }
+        messages_sent_24h: { gte: 10 },
+      },
     };
   }
 
@@ -48,17 +53,15 @@ export class MoonPacketService implements IMoonPacketService {
     // 1. Basic User Info (Cached)
     // Cache key: user:profile:{id}
     // TTL: 1 hour (3600s) - Basic info doesn't change often
-    const user = await this.cache.getOrSet(
-      `user:profile:${telegramId}`,
-      3600,
-      async () => findUserByTelegramId(this.db, telegramId)
+    const user = await this.cache.getOrSet(`user:profile:${telegramId}`, 3600, async () =>
+      findUserByTelegramId(this.db, telegramId)
     );
-    
+
     if (!user) {
       return {
         data: {
           level: 0,
-          status: "inactive",
+          status: 'inactive',
           is_blacklist: false,
           is_vip: false,
           vip_level: 0,
@@ -71,8 +74,8 @@ export class MoonPacketService implements IMoonPacketService {
           invite_count_total: 0,
           is_channel_member: false,
           profile_completeness: 0,
-          messages_sent_24h: 0
-        }
+          messages_sent_24h: 0,
+        },
       };
     }
 
@@ -86,7 +89,7 @@ export class MoonPacketService implements IMoonPacketService {
       inviteViralCount,
       inviteTotalCount,
       isChannelMember,
-      messagesSent24h
+      messagesSent24h,
     ] = await Promise.all([
       this.getBottlesThrown24h(telegramId),
       this.getBottlesPicked24h(telegramId),
@@ -96,7 +99,7 @@ export class MoonPacketService implements IMoonPacketService {
       this.getInviteViralCount24h(telegramId),
       this.getInviteCountTotal(telegramId),
       this.checkChannelMembership(telegramId),
-      this.getMessagesSent24h(telegramId)
+      this.getMessagesSent24h(telegramId),
     ]);
 
     const profileCompleteness = this.calculateProfileCompleteness(user);
@@ -116,7 +119,7 @@ export class MoonPacketService implements IMoonPacketService {
       invite_count_total: inviteTotalCount,
       is_channel_member: isChannelMember,
       profile_completeness: profileCompleteness,
-      messages_sent_24h: messagesSent24h
+      messages_sent_24h: messagesSent24h,
     };
 
     return { data: profile };
@@ -140,16 +143,21 @@ export class MoonPacketService implements IMoonPacketService {
     // But since we optimized daily_usage in P1 plan, let's assume it's there or use fallback
     // Fallback: Query ad_rewards directly
     // Ideally: return usage?.ads_watched || 0;
-    
+
     // Check if we have ads_watched in daily_usage (based on P1 plan)
     // If not implemented yet, fallback to count query
     try {
-      const result = await this.db.d1.prepare(`
+      const result = await this.db.d1
+        .prepare(
+          `
         SELECT COUNT(*) as count 
         FROM ad_rewards 
         WHERE user_id = ? 
           AND created_at > datetime('now', '-1 day')
-      `).bind(userId).first<{ count: number }>();
+      `
+        )
+        .bind(userId)
+        .first<{ count: number }>();
       return result?.count || 0;
     } catch (e) {
       console.error('[MoonPacket] Failed to get ads count:', e);
@@ -158,36 +166,51 @@ export class MoonPacketService implements IMoonPacketService {
   }
 
   private async getInviteCount24h(userId: string): Promise<number> {
-    const result = await this.db.d1.prepare(`
+    const result = await this.db.d1
+      .prepare(
+        `
       SELECT COUNT(*) as count 
       FROM users 
       WHERE invited_by = ? 
         AND created_at > datetime('now', '-1 day')
-    `).bind(userId).first<{ count: number }>();
+    `
+      )
+      .bind(userId)
+      .first<{ count: number }>();
     return result?.count || 0;
   }
 
   private async getInviteActiveCount24h(userId: string): Promise<number> {
     // "Active" means has thrown at least 1 bottle
-    const result = await this.db.d1.prepare(`
+    const result = await this.db.d1
+      .prepare(
+        `
       SELECT COUNT(DISTINCT u.telegram_id) as count
       FROM users u
       JOIN bottles b ON u.telegram_id = b.owner_telegram_id
       WHERE u.invited_by = ?
         AND u.created_at > datetime('now', '-1 day')
-    `).bind(userId).first<{ count: number }>();
+    `
+      )
+      .bind(userId)
+      .first<{ count: number }>();
     return result?.count || 0;
   }
 
   private async getInviteViralCount24h(userId: string): Promise<number> {
     // "Viral" means invited user also invited someone
-    const result = await this.db.d1.prepare(`
+    const result = await this.db.d1
+      .prepare(
+        `
       SELECT COUNT(DISTINCT u.telegram_id) as count
       FROM users u
       JOIN users grand_child ON u.telegram_id = grand_child.invited_by
       WHERE u.invited_by = ?
         AND u.created_at > datetime('now', '-1 day')
-    `).bind(userId).first<{ count: number }>();
+    `
+      )
+      .bind(userId)
+      .first<{ count: number }>();
     return result?.count || 0;
   }
 
@@ -198,24 +221,20 @@ export class MoonPacketService implements IMoonPacketService {
 
   private async checkChannelMembership(userId: string): Promise<boolean> {
     if (!this.env.OFFICIAL_CHANNEL_ID) return false;
-    
+
     // Check cache first (TTL 1 hour)
-    return this.cache.getOrSet(
-      `user:channel_member:${userId}`,
-      3600,
-      async () => {
-        try {
-          const member = await this.telegramService.getChatMember(
-            this.env.OFFICIAL_CHANNEL_ID!, 
-            parseInt(userId)
-          );
-          return ['creator', 'administrator', 'member', 'restricted'].includes(member.status);
-        } catch (e) {
-          console.error('[MoonPacket] Channel check failed:', e);
-          return false;
-        }
+    return this.cache.getOrSet(`user:channel_member:${userId}`, 3600, async () => {
+      try {
+        const member = await this.telegramService.getChatMember(
+          this.env.OFFICIAL_CHANNEL_ID!,
+          parseInt(userId)
+        );
+        return ['creator', 'administrator', 'member', 'restricted'].includes(member.status);
+      } catch (e) {
+        console.error('[MoonPacket] Channel check failed:', e);
+        return false;
       }
-    );
+    });
   }
 
   private calculateProfileCompleteness(user: any): number {
@@ -237,16 +256,17 @@ export class MoonPacketService implements IMoonPacketService {
 
   private async getDailyUsage(userId: string) {
     // Cache daily usage for 1 min to avoid hammering DB on rapid checks
-    return this.cache.getOrSet(
-      `user:usage:${userId}`,
-      60,
-      async () => {
-        const today = new Date().toISOString().split('T')[0];
-        return this.db.d1.prepare(`
+    return this.cache.getOrSet(`user:usage:${userId}`, 60, async () => {
+      const today = new Date().toISOString().split('T')[0];
+      return this.db.d1
+        .prepare(
+          `
           SELECT * FROM daily_usage 
           WHERE telegram_id = ? AND date = ?
-        `).bind(userId, today).first<any>();
-      }
-    );
+        `
+        )
+        .bind(userId, today)
+        .first<any>();
+    });
   }
 }

@@ -203,7 +203,7 @@ export async function handleDevReset(message: TelegramMessage, env: Env): Promis
 
     const user = await findUserByTelegramId(db, telegramId);
     const i18n = createI18n(user?.language_pref || 'zh-TW');
-    
+
     await telegram.sendMessage(chatId, i18n.t('dev.dataReset'));
   } catch (error) {
     console.error('[handleDevReset] Error:', error);
@@ -228,7 +228,7 @@ export async function handleDevInfo(message: TelegramMessage, env: Env): Promise
   const tempUser = await findUserByTelegramId(db, telegramId);
   const { createI18n } = await import('~/i18n');
   const i18n = createI18n(tempUser?.language_pref || 'zh-TW');
-  
+
   if (!isDevCommandAllowed(env)) {
     await telegram.sendMessage(chatId, i18n.t('dev.notAvailableInProduction'));
     return;

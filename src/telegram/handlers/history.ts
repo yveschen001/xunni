@@ -30,7 +30,7 @@ export async function handleHistory(message: TelegramMessage, env: Env): Promise
     // Get user
     const user = await findUserByTelegramId(db, telegramId);
     const i18n = createI18n(user?.language_pref || 'zh-TW');
-    
+
     if (!user) {
       await telegram.sendMessage(chatId, i18n.t('errors.userNotFoundRegister'));
       return;
@@ -93,10 +93,14 @@ async function showAllConversations(
       count: conv.message_count,
     });
     message += i18n.t('history.lastMessage', { preview });
-    message += i18n.t('history.time', { time: formatDate(conv.last_message_time, user?.language_pref || 'zh-TW') });
+    message += i18n.t('history.time', {
+      time: formatDate(conv.last_message_time, user?.language_pref || 'zh-TW'),
+    });
   }
 
-  message += i18n.t('history.viewFull', { identifier: formatIdentifier(conversations[0].identifier) });
+  message += i18n.t('history.viewFull', {
+    identifier: formatIdentifier(conversations[0].identifier),
+  });
   message += i18n.t('history.returnToMenu');
 
   await telegram.sendMessage(chatId, message);
@@ -134,7 +138,7 @@ async function showConversationByIdentifier(
 
   const user = await findUserByTelegramId(db, telegramId);
   const i18n = createI18n(user?.language_pref || 'zh-TW');
-  
+
   let message = i18n.t('history.conversationWith', { identifier: formatIdentifier(identifier) });
   message += i18n.t('history.stats');
   message += i18n.t('history.totalMessages', { total: stats.total_messages });
@@ -142,10 +146,14 @@ async function showConversationByIdentifier(
   message += i18n.t('history.partnerMessages', { count: stats.partner_messages });
 
   if (stats.first_message_time) {
-    message += i18n.t('history.conversationStart', { time: formatDate(stats.first_message_time, user?.language_pref || 'zh-TW') });
+    message += i18n.t('history.conversationStart', {
+      time: formatDate(stats.first_message_time, user?.language_pref || 'zh-TW'),
+    });
   }
   if (stats.last_message_time) {
-    message += i18n.t('history.conversationEnd', { time: formatDate(stats.last_message_time, user?.language_pref || 'zh-TW') });
+    message += i18n.t('history.conversationEnd', {
+      time: formatDate(stats.last_message_time, user?.language_pref || 'zh-TW'),
+    });
   }
 
   message += i18n.t('history.recentMessages');
@@ -155,7 +163,10 @@ async function showConversationByIdentifier(
   } else {
     for (const msg of messages) {
       const time = formatTime(msg.created_at, user?.language_pref || 'zh-TW');
-      const sender = msg.sender_telegram_id === telegramId ? i18n.t('history.you') : formatIdentifier(identifier);
+      const sender =
+        msg.sender_telegram_id === telegramId
+          ? i18n.t('history.you')
+          : formatIdentifier(identifier);
       const content = msg.content.substring(0, 50) + (msg.content.length > 50 ? '...' : '');
       message += i18n.t('history.messageTime', { time });
       message += i18n.t('history.messageSender', { sender, content });
@@ -194,7 +205,7 @@ function formatDate(dateString: string, locale: string = 'zh-TW'): string {
       return i18n.t('history.daysAgo', { days: diffDays });
     }
   }
-  
+
   // Fallback to locale-aware formatting (should rarely be used as i18n should always be provided)
   if (diffMins < 1) {
     return locale === 'zh-TW' ? '剛剛' : 'just now'; // Fallback only, should use i18n.t('history.justNow')

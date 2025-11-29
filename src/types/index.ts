@@ -429,7 +429,12 @@ export interface InlineKeyboardButton {
   url?: string;
   callback_data?: string;
   web_app?: { url: string };
-  login_url?: { url: string; forward_text?: string; bot_username?: string; request_write_access?: boolean };
+  login_url?: {
+    url: string;
+    forward_text?: string;
+    bot_username?: string;
+    request_write_access?: boolean;
+  };
   switch_inline_query?: string;
   switch_inline_query_current_chat?: string;
   pay?: boolean;

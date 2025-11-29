@@ -149,19 +149,19 @@ export async function handleAppealReasonInput(message: TelegramMessage, env: Env
   // ✨ NEW: AI Analysis & Admin Logging
   const { ContentModerationService } = await import('~/services/content_moderation');
   const { AdminLogService } = await import('~/services/admin_log');
-  
+
   const aiService = new ContentModerationService(env);
   const logService = new AdminLogService(env);
 
   // Analyze appeal
   const banReason = latestBan ? 'Banned' : 'Unknown'; // TODO: Fetch actual ban reason
   let aiResult: { verdict: string; reason: string; confidence: number };
-  
+
   try {
     const analysis = await aiService.analyzeAppeal({
       user: telegramId,
       banReason: banReason,
-      appealText: reason
+      appealText: reason,
     });
     aiResult = analysis;
   } catch (e) {
@@ -174,7 +174,7 @@ export async function handleAppealReasonInput(message: TelegramMessage, env: Env
     banReason: banReason,
     appealText: reason,
     aiRecommendation: `Verdict: ${aiResult.verdict}\nReason: ${aiResult.reason}`,
-    aiConfidence: aiResult.confidence
+    aiConfidence: aiResult.confidence,
   });
 
   await telegram.sendMessage(
@@ -265,11 +265,10 @@ export async function handleAppealStatus(message: TelegramMessage, env: Env): Pr
       }
     );
     reviewInfo =
-      i18n.t('appeal.reviewedAt') + reviewedAt +
+      i18n.t('appeal.reviewedAt') +
+      reviewedAt +
       '\n' +
-      (appeal.review_notes
-        ? i18n.t('appeal.notes') + appeal.review_notes
-        : '');
+      (appeal.review_notes ? i18n.t('appeal.notes') + appeal.review_notes : '');
   }
 
   await telegram.sendMessage(

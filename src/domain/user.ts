@@ -417,7 +417,7 @@ export function calculateBanDuration(banCount: number): number | null {
 export enum UserActivityLevel {
   ACTIVE = 'ACTIVE',
   INACTIVE = 'INACTIVE', // 7-30 days
-  DORMANT = 'DORMANT',   // > 30 days
+  DORMANT = 'DORMANT', // > 30 days
 }
 
 /**

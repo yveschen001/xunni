@@ -110,7 +110,12 @@ export async function updateConversationHistory(
 
     // Build buttons
     const buttons = [
-      [{ text: i18n.t('conversationHistory.replyButton'), callback_data: `conv_reply_${identifier}` }],
+      [
+        {
+          text: i18n.t('conversationHistory.replyButton'),
+          callback_data: `conv_reply_${identifier}`,
+        },
+      ],
       [{ text: i18n.t('conversationHistory.viewAllConversations'), callback_data: 'chats' }],
     ];
 
@@ -216,7 +221,10 @@ export async function updateConversationHistory(
         );
 
         // Update old post to add "continue to next page" hint
-        const oldContent = latestPost.content + '\n' + i18n.t('conversationHistory.continueView', { identifier, postNumber: newPostNumber });
+        const oldContent =
+          latestPost.content +
+          '\n' +
+          i18n.t('conversationHistory.continueView', { identifier, postNumber: newPostNumber });
         await telegram.editMessageText(
           parseInt(userTelegramId),
           latestPost.telegram_message_id,
@@ -491,8 +499,18 @@ export async function updateNewMessagePost(
 
     // Build buttons based on VIP status
     const buttons = [
-      [{ text: i18n.t('conversationHistory.replyButton'), callback_data: `conv_reply_${identifier}` }],
-      [{ text: i18n.t('conversationHistory.viewProfileCard'), callback_data: `conv_profile_${conversationId}` }],
+      [
+        {
+          text: i18n.t('conversationHistory.replyButton'),
+          callback_data: `conv_reply_${identifier}`,
+        },
+      ],
+      [
+        {
+          text: i18n.t('conversationHistory.viewProfileCard'),
+          callback_data: `conv_profile_${conversationId}`,
+        },
+      ],
     ];
 
     // Add ad/task button for non-VIP users

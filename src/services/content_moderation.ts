@@ -1,4 +1,3 @@
-
 import type { Env } from '~/types';
 
 /**
@@ -20,9 +19,12 @@ export class ContentModerationService {
   /**
    * Analyze report context to determine if content violates rules
    */
-  async analyzeReport(
-    context: { reporter: string; suspect: string; reason: string; messages: string[] }
-  ): Promise<{ verdict: 'violation' | 'safe'; confidence: number; reason: string }> {
+  async analyzeReport(context: {
+    reporter: string;
+    suspect: string;
+    reason: string;
+    messages: string[];
+  }): Promise<{ verdict: 'violation' | 'safe'; confidence: number; reason: string }> {
     if (!this.apiKey) {
       console.warn('[ContentModerationService] No API key, skipping analysis');
       return { verdict: 'safe', confidence: 0, reason: 'AI not configured' };
@@ -54,9 +56,11 @@ export class ContentModerationService {
   /**
    * Analyze appeal to determine if user should be unbanned
    */
-  async analyzeAppeal(
-    context: { user: string; banReason: string; appealText: string }
-  ): Promise<{ verdict: 'unban' | 'keep'; confidence: number; reason: string }> {
+  async analyzeAppeal(context: {
+    user: string;
+    banReason: string;
+    appealText: string;
+  }): Promise<{ verdict: 'unban' | 'keep'; confidence: number; reason: string }> {
     if (!this.apiKey) {
       return { verdict: 'keep', confidence: 0, reason: 'AI not configured' };
     }
@@ -79,7 +83,7 @@ export class ContentModerationService {
       return {
         verdict: result.verdict === 'violation' ? 'keep' : 'unban', // Map 'violation' -> keep ban, 'safe' -> unban (rough mapping, better to parse directly)
         confidence: result.confidence,
-        reason: result.reason
+        reason: result.reason,
       };
     } catch (error) {
       return { verdict: 'keep', confidence: 0, reason: 'Analysis error' };
@@ -91,8 +95,8 @@ export class ContentModerationService {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
-        contents: [{ parts: [{ text: prompt }] }]
-      })
+        contents: [{ parts: [{ text: prompt }] }],
+      }),
     });
 
     if (!response.ok) {
@@ -114,4 +118,3 @@ export class ContentModerationService {
     }
   }
 }
-

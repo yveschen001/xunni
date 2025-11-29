@@ -108,11 +108,11 @@ async function calculatePublicStats(db: ReturnType<typeof createDatabaseClient>)
        LIMIT 5`
     )
     .all<{ type: string; count: number }>();
-  
+
   const mbtiTotal = topMbtiResult.results.reduce((sum, item) => sum + item.count, 0) || 1; // avoid div by 0
-  const topMbti = topMbtiResult.results.map(item => ({
+  const topMbti = topMbtiResult.results.map((item) => ({
     type: item.type,
-    percentage: Math.round((item.count / totalUsers) * 1000) / 10 // Percentage of TOTAL users
+    percentage: Math.round((item.count / totalUsers) * 1000) / 10, // Percentage of TOTAL users
   }));
 
   // 4. Demographics - Zodiac (Top 5)
@@ -128,9 +128,9 @@ async function calculatePublicStats(db: ReturnType<typeof createDatabaseClient>)
     )
     .all<{ sign: string; count: number }>();
 
-  const topZodiac = topZodiacResult.results.map(item => ({
+  const topZodiac = topZodiacResult.results.map((item) => ({
     sign: item.sign,
-    percentage: Math.round((item.count / totalUsers) * 1000) / 10
+    percentage: Math.round((item.count / totalUsers) * 1000) / 10,
   }));
 
   // 5. Demographics - Region (Top 5)
@@ -148,9 +148,9 @@ async function calculatePublicStats(db: ReturnType<typeof createDatabaseClient>)
     )
     .all<{ code: string; count: number }>();
 
-  const topRegions = topRegionsResult.results.map(item => ({
+  const topRegions = topRegionsResult.results.map((item) => ({
     code: item.code, // e.g. 'zh-TW', 'en'
-    percentage: Math.round((item.count / totalUsers) * 1000) / 10
+    percentage: Math.round((item.count / totalUsers) * 1000) / 10,
   }));
 
   return {
@@ -171,4 +171,3 @@ async function calculatePublicStats(db: ReturnType<typeof createDatabaseClient>)
     updated_at: new Date().toISOString(),
   };
 }
-

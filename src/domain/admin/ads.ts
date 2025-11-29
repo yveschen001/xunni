@@ -1,4 +1,3 @@
-
 import type { D1Database } from '@cloudflare/workers-types';
 import type { Env } from '~/types';
 import type { OfficialAd, OfficialAdType } from '~/domain/official_ad';
@@ -145,15 +144,15 @@ export class AdminAdsService {
 
     // 3. Prepare new ad data
     const newTitle = `${sourceAd.title} (Copy)`;
-    
+
     // Parse existing translations and append (Copy) to all languages?
     // For simplicity, re-translate the new title to ensure consistency
     const [titleI18n, contentI18n] = await Promise.all([
       this.translationService.batchTranslate(newTitle),
       // Reuse content translations or re-translate? Reuse is faster/cheaper if content is same.
       // But we should verify if contentI18n exists.
-      sourceAd.content_i18n 
-        ? Promise.resolve(JSON.parse(sourceAd.content_i18n)) 
+      sourceAd.content_i18n
+        ? Promise.resolve(JSON.parse(sourceAd.content_i18n))
         : this.translationService.batchTranslate(sourceAd.content),
     ]);
 
@@ -216,17 +215,11 @@ export class AdminAdsService {
     // 2. Soft delete
     await updateOfficialAd(this.db, adId, {
       deleted_at: new Date().toISOString(),
-      is_enabled: false // Also disable it
+      is_enabled: false, // Also disable it
     });
 
     // 3. Log action
-    await logAdminAction(
-      this.db,
-      this.adminId,
-      'ad_delete',
-      { ad_id: adId },
-      String(adId)
-    );
+    await logAdminAction(this.db, this.adminId, 'ad_delete', { ad_id: adId }, String(adId));
   }
 
   /**
@@ -240,4 +233,3 @@ export class AdminAdsService {
     return getAllOfficialAds(this.db, false);
   }
 }
-

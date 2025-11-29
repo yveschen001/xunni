@@ -30,7 +30,8 @@ function extractKeys(filePath: string): Set<string> {
   const keys = new Set<string>();
   
   // Simple regex extraction
-  const keyPattern = /(\w+):\s*`([^`]*)`/g;
+  // Support single quotes, double quotes, and backticks
+  const keyPattern = /(\w+):\s*['"`](.*?)['"`],?/g;
   const lines = content.split('\n');
   let currentPath: string[] = [];
 
@@ -45,7 +46,7 @@ function extractKeys(filePath: string): Set<string> {
       continue;
     }
 
-    const kvMatch = line.match(/^(\s*)(\w+):\s*`([^`]*)`/);
+    const kvMatch = line.match(/^(\s*)(\w+):\s*['"`](.*?)['"`],?/);
     if (kvMatch) {
       const key = kvMatch[2];
       const value = kvMatch[3];
@@ -114,7 +115,7 @@ function checkFileIssues(filePath: string, refKeys: Set<string>): Issue[] {
   }
 
   // Check for empty or placeholder values
-  const emptyPattern = /(\w+):\s*`(?:\[需要翻译\]|\[Translation needed\]|)`/g;
+  const emptyPattern = /(\w+):\s*['"`](?:\[需要翻译\]|\[Translation needed\]|)['"`],?/g;
   while ((match = emptyPattern.exec(content)) !== null) {
     const lineNum = content.substring(0, match.index).split('\n').length;
     issues.push({

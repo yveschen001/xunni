@@ -18,11 +18,11 @@ export async function handleStats(message: TelegramMessage, env: Env): Promise<v
   try {
     // Get user
     const user = await findUserByTelegramId(db, telegramId);
-    
+
     // Get i18n
     const { createI18n } = await import('~/i18n');
     const i18n = createI18n(user?.language_pref || 'zh-TW');
-    
+
     if (!user) {
       await telegram.sendMessage(chatId, i18n.t('errors.userNotFound'));
       return;
@@ -59,12 +59,18 @@ export async function handleStats(message: TelegramMessage, env: Env): Promise<v
             : '0.0';
 
         vipStatsText =
-          i18n.t('stats.vipTripleTitle', { days: 30 }) + '\n' +
-          i18n.t('stats.vipThrows', { count: vipStats.throws }) + '\n' +
-          i18n.t('stats.vipTotalSlots', { count: vipStats.totalSlots }) + '\n' +
-          i18n.t('stats.vipMatchedSlots', { count: vipStats.matchedSlots }) + '\n' +
-          i18n.t('stats.vipMatchRate', { rate: matchRate }) + '\n' +
-          i18n.t('stats.vipAvgMatches', { avg: avgMatches }) + '\n';
+          i18n.t('stats.vipTripleTitle', { days: 30 }) +
+          '\n' +
+          i18n.t('stats.vipThrows', { count: vipStats.throws }) +
+          '\n' +
+          i18n.t('stats.vipTotalSlots', { count: vipStats.totalSlots }) +
+          '\n' +
+          i18n.t('stats.vipMatchedSlots', { count: vipStats.matchedSlots }) +
+          '\n' +
+          i18n.t('stats.vipMatchRate', { rate: matchRate }) +
+          '\n' +
+          i18n.t('stats.vipAvgMatches', { avg: avgMatches }) +
+          '\n';
       }
     }
 
@@ -72,24 +78,41 @@ export async function handleStats(message: TelegramMessage, env: Env): Promise<v
     const message_text =
       i18n.t('stats.title') +
       i18n.t('stats.bottles') +
-      i18n.t('stats.bottlesThrown', { count: stats.bottlesThrown }) + '\n' +
-      i18n.t('stats.bottlesCaught', { count: stats.bottlesCaught }) + '\n' +
-      i18n.t('stats.todayQuota', { display: stats.todayQuota.display }) + '\n' +
+      i18n.t('stats.bottlesThrown', { count: stats.bottlesThrown }) +
+      '\n' +
+      i18n.t('stats.bottlesCaught', { count: stats.bottlesCaught }) +
+      '\n' +
+      i18n.t('stats.todayQuota', { display: stats.todayQuota.display }) +
+      '\n' +
       i18n.t('stats.conversations') +
-      i18n.t('stats.conversationsTotal', { count: stats.totalConversations }) + '\n' +
-      i18n.t('stats.conversationsActive', { count: stats.activeConversations }) + '\n' +
-      i18n.t('stats.messagesTotal', { count: stats.totalMessages }) + '\n' +
+      i18n.t('stats.conversationsTotal', { count: stats.totalConversations }) +
+      '\n' +
+      i18n.t('stats.conversationsActive', { count: stats.activeConversations }) +
+      '\n' +
+      i18n.t('stats.messagesTotal', { count: stats.totalMessages }) +
+      '\n' +
       i18n.t('stats.match') +
-      i18n.t('stats.matchRate', { rate: stats.matchRate }) + '\n' +
-      i18n.t('stats.replyRate', { rate: stats.replyRate }) + '\n' +
+      i18n.t('stats.matchRate', { rate: stats.matchRate }) +
+      '\n' +
+      i18n.t('stats.replyRate', { rate: stats.replyRate }) +
+      '\n' +
       i18n.t('stats.vip') +
       `• ${isVip ? i18n.t('stats.vipMember') : i18n.t('stats.vipFree')}\n` +
-      (isVip ? i18n.t('stats.vipExpire', { date: new Date(user.vip_expire_at!).toLocaleDateString(user.language_pref || 'zh-TW') }) + '\n' : '') +
+      (isVip
+        ? i18n.t('stats.vipExpire', {
+            date: new Date(user.vip_expire_at!).toLocaleDateString(user.language_pref || 'zh-TW'),
+          }) + '\n'
+        : '') +
       vipStatsText +
       '\n' +
-      i18n.t('stats.registerTime', { date: new Date(user.created_at).toLocaleDateString(user.language_pref || 'zh-TW') }) + '\n' +
-      i18n.t('stats.age', { age: calculateAge(user.birthday!) }) + '\n' +
-      i18n.t('stats.zodiac', { zodiac: user.zodiac_sign }) + '\n' +
+      i18n.t('stats.registerTime', {
+        date: new Date(user.created_at).toLocaleDateString(user.language_pref || 'zh-TW'),
+      }) +
+      '\n' +
+      i18n.t('stats.age', { age: calculateAge(user.birthday!) }) +
+      '\n' +
+      i18n.t('stats.zodiac', { zodiac: user.zodiac_sign }) +
+      '\n' +
       i18n.t('stats.mbti', { mbti: user.mbti_result || i18n.t('stats.notSet') });
 
     // Send message with return to menu button
@@ -99,10 +122,7 @@ export async function handleStats(message: TelegramMessage, env: Env): Promise<v
   } catch (error) {
     console.error('[handleStats] Error:', error);
     console.error('[handleStats] Error stack:', error instanceof Error ? error.stack : 'No stack');
-    await telegram.sendMessage(
-      chatId,
-      i18n.t('errors.systemErrorRetry')
-    );
+    await telegram.sendMessage(chatId, i18n.t('errors.systemErrorRetry'));
   }
 }
 
@@ -188,9 +208,7 @@ async function getUserStats(
   // Format quota display (used/permanent+task)
   // Note: Remaining will be added in handleStats using i18n
   const quotaDisplay =
-    taskBonus > 0
-      ? `${used}/${permanentQuota}+${taskBonus}`
-      : `${used}/${permanentQuota}`;
+    taskBonus > 0 ? `${used}/${permanentQuota}+${taskBonus}` : `${used}/${permanentQuota}`;
 
   // Get total conversations
   const totalConversations = await db.d1

@@ -123,7 +123,9 @@ export async function handleStart(message: TelegramMessage, env: Env): Promise<v
           const i18n = createI18n(user.language_pref || 'zh-TW');
           await telegram.sendMessage(
             chatId,
-            i18n.t('invite.codeAccepted', { inviterName: inviter.nickname || i18n.t('common.short2') })
+            i18n.t('invite.codeAccepted', {
+              inviterName: inviter.nickname || i18n.t('common.short2'),
+            })
           );
         }
       } else {
@@ -136,11 +138,9 @@ export async function handleStart(message: TelegramMessage, env: Env): Promise<v
       // MBTI Share Link Handling (New User)
       if (mbtiShareCode) {
         await createReferralSource(db, user.telegram_id, 'mbti_share', mbtiShareCode, null);
-        await telegram.sendMessageWithButtons(
-          chatId,
-          i18n.t('mbti.share.welcome'),
-          [[{ text: i18n.t('mbti.share.startButton'), callback_data: 'mbti_test_full' }]]
-        );
+        await telegram.sendMessageWithButtons(chatId, i18n.t('mbti.share.welcome'), [
+          [{ text: i18n.t('mbti.share.startButton'), callback_data: 'mbti_test_full' }],
+        ]);
         return;
       }
 
@@ -159,11 +159,9 @@ export async function handleStart(message: TelegramMessage, env: Env): Promise<v
       await createReferralSource(db, user.telegram_id, 'mbti_share', mbtiShareCode, null);
       const { createI18n } = await import('~/i18n');
       const i18n = createI18n(user.language_pref || 'zh-TW');
-      await telegram.sendMessageWithButtons(
-        chatId,
-        i18n.t('mbti.share.welcome'),
-        [[{ text: i18n.t('mbti.share.startButton'), callback_data: 'mbti_test_full' }]]
-      );
+      await telegram.sendMessageWithButtons(chatId, i18n.t('mbti.share.welcome'), [
+        [{ text: i18n.t('mbti.share.startButton'), callback_data: 'mbti_test_full' }],
+      ]);
       return;
     }
 
@@ -226,7 +224,9 @@ export async function handleStart(message: TelegramMessage, env: Env): Promise<v
           const i18n = createI18n(user.language_pref || 'zh-TW');
           await telegram.sendMessage(
             chatId,
-            i18n.t('invite.codeAccepted', { inviterName: inviter.nickname || i18n.t('common.short2') })
+            i18n.t('invite.codeAccepted', {
+              inviterName: inviter.nickname || i18n.t('common.short2'),
+            })
           );
         }
 
@@ -287,7 +287,10 @@ async function resumeOnboarding(
     case 'avatar': {
       const { createI18n } = await import('~/i18n');
       const i18n = createI18n(user.language_pref || 'zh-TW');
-      await telegram.sendMessage(chatId, i18n.t('common.text51') + '\n\n' + i18n.t('common.text63'));
+      await telegram.sendMessage(
+        chatId,
+        i18n.t('common.text51') + '\n\n' + i18n.t('common.text63')
+      );
       break;
     }
 
@@ -333,7 +336,11 @@ async function resumeOnboarding(
 
       await telegram.sendMessageWithButtons(
         chatId,
-        i18n.t('onboarding.bloodTypeLabel') + '\n\n' + i18n.t('onboarding.vip') + '\n\n' + i18n.t('onboarding.bloodType.select'),
+        i18n.t('onboarding.bloodTypeLabel') +
+          '\n\n' +
+          i18n.t('onboarding.vip') +
+          '\n\n' +
+          i18n.t('onboarding.bloodType.select'),
         [
           [
             { text: options[0].display, callback_data: 'blood_type_A' },
@@ -355,7 +362,11 @@ async function resumeOnboarding(
       const i18n = createI18n(user.language_pref || 'zh-TW');
       await telegram.sendMessageWithButtons(
         chatId,
-        i18n.t('onboarding.settings2') + '\n\n' + i18n.t('onboarding.help') + '\n\n' + i18n.t('onboarding.settings7'),
+        i18n.t('onboarding.settings2') +
+          '\n\n' +
+          i18n.t('onboarding.help') +
+          '\n\n' +
+          i18n.t('onboarding.settings7'),
         [
           [{ text: i18n.t('onboarding.mbti2'), callback_data: 'mbti_choice_manual' }],
           [{ text: i18n.t('onboarding.text5'), callback_data: 'mbti_choice_test' }],
@@ -383,8 +394,18 @@ async function resumeOnboarding(
           '\n\n' +
           i18n.t('onboarding.confirm3'),
         [
-          [{ text: i18n.t('onboarding.antiFraud.confirm_button'), callback_data: 'anti_fraud_yes' }],
-          [{ text: i18n.t('onboarding.antiFraud.learn_button'), callback_data: 'anti_fraud_learn' }],
+          [
+            {
+              text: i18n.t('onboarding.antiFraud.confirm_button'),
+              callback_data: 'anti_fraud_yes',
+            },
+          ],
+          [
+            {
+              text: i18n.t('onboarding.antiFraud.learn_button'),
+              callback_data: 'anti_fraud_learn',
+            },
+          ],
         ]
       );
       break;
@@ -406,8 +427,18 @@ async function resumeOnboarding(
           i18n.t('onboarding.text7'),
         [
           [{ text: i18n.t('onboarding.terms.agree_button'), callback_data: 'agree_terms' }],
-          [{ text: i18n.t('onboarding.terms.privacy_policy_button'), url: LEGAL_URLS.PRIVACY_POLICY }],
-          [{ text: i18n.t('onboarding.terms.terms_of_service_button'), url: LEGAL_URLS.TERMS_OF_SERVICE }],
+          [
+            {
+              text: i18n.t('onboarding.terms.privacy_policy_button'),
+              url: LEGAL_URLS.PRIVACY_POLICY,
+            },
+          ],
+          [
+            {
+              text: i18n.t('onboarding.terms.terms_of_service_button'),
+              url: LEGAL_URLS.TERMS_OF_SERVICE,
+            },
+          ],
         ]
       );
       break;
@@ -416,7 +447,10 @@ async function resumeOnboarding(
     default: {
       const { createI18n } = await import('~/i18n');
       const i18n = createI18n(user.language_pref || 'zh-TW');
-      await telegram.sendMessage(chatId, i18n.t('errors.error.short9') + '\n\n' + i18n.t('onboarding.start2') + '\n\n' + '/start');
+      await telegram.sendMessage(
+        chatId,
+        i18n.t('errors.error.short9') + '\n\n' + i18n.t('onboarding.start2') + '\n\n' + '/start'
+      );
       break;
     }
   }

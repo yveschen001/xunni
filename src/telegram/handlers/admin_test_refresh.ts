@@ -40,9 +40,12 @@ export async function handleAdminTestRefresh(
 
     await telegram.sendMessage(
       chatId,
-      i18n.t('admin.refresh.complete') + '\n\n' +
-        i18n.t('admin.refresh.updated', { count: result.updated }) + '\n' +
-        i18n.t('admin.refresh.failed', { count: result.failed }) + '\n\n' +
+      i18n.t('admin.refresh.complete') +
+        '\n\n' +
+        i18n.t('admin.refresh.updated', { count: result.updated }) +
+        '\n' +
+        i18n.t('admin.refresh.failed', { count: result.failed }) +
+        '\n\n' +
         i18n.t('admin.refresh.checkHint'),
       {
         parse_mode: 'Markdown',
@@ -52,7 +55,11 @@ export async function handleAdminTestRefresh(
     console.error('[AdminTestRefresh] Error:', error);
     await telegram.sendMessage(
       chatId,
-      i18n.t('admin.refresh.failed') + '\n\n' + i18n.t('admin.refresh.error', { error: error instanceof Error ? error.message : String(error) })
+      i18n.t('admin.refresh.failed') +
+        '\n\n' +
+        i18n.t('admin.refresh.error', {
+          error: error instanceof Error ? error.message : String(error),
+        })
     );
   }
 }

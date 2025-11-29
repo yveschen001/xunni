@@ -132,14 +132,18 @@ export async function generateDailyReport(db: D1Database, date: string): Promise
       page_views: 0, // TODO: Add tracking for VIP page views
       purchase_intents: 0, // TODO: Add tracking for purchase intents
       conversions: dailyStats.newVip,
-      conversion_rate: dailyStats.activeUsers > 0 ? (dailyStats.newVip / dailyStats.activeUsers) * 100 : 0,
+      conversion_rate:
+        dailyStats.activeUsers > 0 ? (dailyStats.newVip / dailyStats.activeUsers) * 100 : 0,
       revenue: dailyStats.revenue,
     },
     invite_metrics: {
       initiated: dailyStats.inviteInitiated,
       accepted: dailyStats.inviteAccepted,
       activated: dailyStats.inviteActivated,
-      conversion_rate: dailyStats.inviteAccepted > 0 ? (dailyStats.inviteActivated / dailyStats.inviteAccepted) * 100 : 0,
+      conversion_rate:
+        dailyStats.inviteAccepted > 0
+          ? (dailyStats.inviteActivated / dailyStats.inviteAccepted) * 100
+          : 0,
     },
     content_metrics: {
       bottles_thrown: dailyStats.newBottles,
@@ -248,7 +252,10 @@ export async function generateAdPerformanceReport(
 /**
  * Format ad performance report for Telegram
  */
-export async function formatAdPerformanceReport(report: AdPerformanceReport, i18n?: any): Promise<string> {
+export async function formatAdPerformanceReport(
+  report: AdPerformanceReport,
+  i18n?: any
+): Promise<string> {
   // 檢查是否有廣告數據
   const hasAdData =
     report.third_party.total_impressions > 0 ||

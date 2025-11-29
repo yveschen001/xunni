@@ -1,4 +1,3 @@
-
 import type { D1Database } from '@cloudflare/workers-types';
 import type { Env } from '~/types';
 import type { Task } from '~/domain/task';
@@ -47,7 +46,7 @@ export class AdminTasksService {
 
     // 3. Calculate sort order (append to end)
     const tasks = await getAllTasksForAdmin(this.db);
-    const maxOrder = Math.max(0, ...tasks.map(t => t.sort_order));
+    const maxOrder = Math.max(0, ...tasks.map((t) => t.sort_order));
 
     // 4. Create task
     const task: Task = {
@@ -64,7 +63,7 @@ export class AdminTasksService {
       target_id: params.target_id,
       name_i18n: JSON.stringify(nameI18n),
       description_i18n: JSON.stringify(descI18n),
-      icon: params.icon || '📢'
+      icon: params.icon || '📢',
     };
 
     await createTask(this.db, task);
@@ -107,13 +106,7 @@ export class AdminTasksService {
     await updateTask(this.db, taskId, updateData);
 
     // 5. Log action
-    await logAdminAction(
-      this.d1,
-      this.adminId,
-      'task_edit',
-      { task_id: taskId, updates },
-      taskId
-    );
+    await logAdminAction(this.d1, this.adminId, 'task_edit', { task_id: taskId, updates }, taskId);
   }
 
   /**
@@ -126,7 +119,7 @@ export class AdminTasksService {
     // 2. Check type
     const existing = await getTaskById(this.db, taskId);
     if (!existing) throw new Error('Task not found');
-    
+
     if (existing.category !== 'social') {
       throw new Error('Only social tasks can be deleted');
     }
@@ -134,17 +127,11 @@ export class AdminTasksService {
     // 3. Soft delete
     await updateTask(this.db, taskId, {
       deleted_at: new Date().toISOString(),
-      is_enabled: false
+      is_enabled: false,
     });
 
     // 4. Log
-    await logAdminAction(
-      this.d1,
-      this.adminId,
-      'task_delete',
-      { task_id: taskId },
-      taskId
-    );
+    await logAdminAction(this.d1, this.adminId, 'task_delete', { task_id: taskId }, taskId);
   }
 
   /**
@@ -155,4 +142,3 @@ export class AdminTasksService {
     return getAllTasksForAdmin(this.db);
   }
 }
-

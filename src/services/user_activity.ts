@@ -11,17 +11,23 @@ import type { D1Database } from '@cloudflare/workers-types';
 /**
  * Get user activity level based on last_active_at
  */
-export async function getUserActivityLevel(telegramId: string, db: D1Database): Promise<UserActivityLevel> {
+export async function getUserActivityLevel(
+  telegramId: string,
+  db: D1Database
+): Promise<UserActivityLevel> {
   try {
-    const result = await db.prepare('SELECT last_active_at FROM users WHERE telegram_id = ?').bind(telegramId).first<{ last_active_at: string }>();
-    
+    const result = await db
+      .prepare('SELECT last_active_at FROM users WHERE telegram_id = ?')
+      .bind(telegramId)
+      .first<{ last_active_at: string }>();
+
     if (!result || !result.last_active_at) return UserActivityLevel.DORMANT;
-    
+
     const lastActive = new Date(result.last_active_at);
     const now = new Date();
     const diffTime = Math.abs(now.getTime() - lastActive.getTime());
     const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
-    
+
     if (diffDays <= 7) return UserActivityLevel.ACTIVE;
     if (diffDays <= 30) return UserActivityLevel.INACTIVE;
     return UserActivityLevel.DORMANT;

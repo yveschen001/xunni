@@ -77,20 +77,32 @@ export async function handleHelp(message: TelegramMessage, env: Env): Promise<vo
         i18n.t('help.text') +
         i18n.t('help.admin_ads') +
         i18n.t('help.admin_tasks') +
-        '\n\n/admin_report - ' + i18n.t('admin.dailyReportTitle') +
-        '\n/admin_report_test - ' + i18n.t('admin.testDailyReport') + // Added
-        '\n/admin_test_retention_push - ' + i18n.t('admin.testRetentionPush') + // Added
-        '\n/admin_test_match_push - ' + i18n.t('admin.testMatchPush'); // Added
+        '\n\n/admin_report - ' +
+        i18n.t('admin.dailyReportTitle') +
+        '\n/admin_report_test - ' +
+        i18n.t('admin.testDailyReport') + // Added
+        '\n/admin_test_retention_push - ' +
+        i18n.t('admin.testRetentionPush') + // Added
+        '\n/admin_test_match_push - ' +
+        i18n.t('admin.testMatchPush'); // Added
     }
 
     // Add super admin commands (only for super admin)
     if (isUserSuperAdmin) {
       helpMessage +=
         `\n\n━━━━━━━━━━━━━━━━\n` +
-        '👑 ' + i18n.t('common.superAdmin') + '\n' +
-        '/analytics - ' + i18n.t('admin.analyticsTitle') + '\n' +
-        '/ad_performance - ' + i18n.t('admin.adPerformanceTitle') + '\n' +
-        '/vip_funnel - ' + i18n.t('admin.vipFunnelTitle') + '\n' +
+        '👑 ' +
+        i18n.t('common.superAdmin') +
+        '\n' +
+        '/analytics - ' +
+        i18n.t('admin.analyticsTitle') +
+        '\n' +
+        '/ad_performance - ' +
+        i18n.t('admin.adPerformanceTitle') +
+        '\n' +
+        '/vip_funnel - ' +
+        i18n.t('admin.vipFunnelTitle') +
+        '\n' +
         '\n' +
         i18n.t('help.maintenance') +
         i18n.t('help.maintenance2') +

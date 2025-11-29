@@ -38,11 +38,16 @@ export async function handleBlock(message: TelegramMessage, env: Env): Promise<v
     if (!message.reply_to_message) {
       await telegram.sendMessage(
         chatId,
-        i18n.t('block.replyRequired') + '\n\n' +
-          i18n.t('block.steps') + '\n' +
-          i18n.t('block.step1') + '\n' +
-          i18n.t('block.step2') + '\n' +
-          i18n.t('block.step3') + '\n\n' +
+        i18n.t('block.replyRequired') +
+          '\n\n' +
+          i18n.t('block.steps') +
+          '\n' +
+          i18n.t('block.step1') +
+          '\n' +
+          i18n.t('block.step2') +
+          '\n' +
+          i18n.t('block.step3') +
+          '\n\n' +
           i18n.t('block.hint')
       );
       return;
@@ -78,7 +83,10 @@ export async function handleBlock(message: TelegramMessage, env: Env): Promise<v
       .first<any>();
 
     if (!conversation) {
-      await telegram.sendMessage(chatId, i18n.t('block.conversationNotFound') + '\n\n' + i18n.t('block.conversationMayEnded'));
+      await telegram.sendMessage(
+        chatId,
+        i18n.t('block.conversationNotFound') + '\n\n' + i18n.t('block.conversationMayEnded')
+      );
       return;
     }
 
@@ -106,8 +114,10 @@ export async function handleBlock(message: TelegramMessage, env: Env): Promise<v
 
     await telegram.sendMessage(
       chatId,
-      i18n.t('block.success', { identifier: conversationIdentifier }) + '\n\n' +
-        i18n.t('block.willNotMatch') + '\n\n' +
+      i18n.t('block.success', { identifier: conversationIdentifier }) +
+        '\n\n' +
+        i18n.t('block.willNotMatch') +
+        '\n\n' +
         i18n.t('block.catchNewBottle')
     );
   } catch (error) {

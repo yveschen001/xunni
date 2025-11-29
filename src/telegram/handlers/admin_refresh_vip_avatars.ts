@@ -40,11 +40,16 @@ export async function handleAdminRefreshVipAvatars(
     if (stats.usersNeedingRefresh === 0) {
       await telegram.sendMessage(
         chatId,
-        i18n.t('admin.refresh.noRefreshNeeded') + '\n\n' +
-          i18n.t('admin.refresh.stats') + '\n' +
-          i18n.t('admin.refresh.totalVipUsers', { count: stats.totalVipUsers }) + '\n' +
-          i18n.t('admin.refresh.usersNeedingRefresh', { count: stats.usersNeedingRefresh }) + '\n' +
-          i18n.t('admin.refresh.outdatedPosts', { count: stats.totalOutdatedPosts }) + '\n\n' +
+        i18n.t('admin.refresh.noRefreshNeeded') +
+          '\n\n' +
+          i18n.t('admin.refresh.stats') +
+          '\n' +
+          i18n.t('admin.refresh.totalVipUsers', { count: stats.totalVipUsers }) +
+          '\n' +
+          i18n.t('admin.refresh.usersNeedingRefresh', { count: stats.usersNeedingRefresh }) +
+          '\n' +
+          i18n.t('admin.refresh.outdatedPosts', { count: stats.totalOutdatedPosts }) +
+          '\n\n' +
           i18n.t('admin.refresh.allUpToDate'),
         {
           parse_mode: 'Markdown',
@@ -56,11 +61,16 @@ export async function handleAdminRefreshVipAvatars(
     // Send initial message
     const initialMsg = await telegram.sendMessage(
       chatId,
-      i18n.t('admin.refresh.startingBatchRefresh') + '\n\n' +
-        i18n.t('admin.refresh.stats') + '\n' +
-        i18n.t('admin.refresh.totalVipUsers', { count: stats.totalVipUsers }) + '\n' +
-        i18n.t('admin.refresh.usersNeedingRefresh', { count: stats.usersNeedingRefresh }) + '\n' +
-        i18n.t('admin.refresh.outdatedPosts', { count: stats.totalOutdatedPosts }) + '\n\n' +
+      i18n.t('admin.refresh.startingBatchRefresh') +
+        '\n\n' +
+        i18n.t('admin.refresh.stats') +
+        '\n' +
+        i18n.t('admin.refresh.totalVipUsers', { count: stats.totalVipUsers }) +
+        '\n' +
+        i18n.t('admin.refresh.usersNeedingRefresh', { count: stats.usersNeedingRefresh }) +
+        '\n' +
+        i18n.t('admin.refresh.outdatedPosts', { count: stats.totalOutdatedPosts }) +
+        '\n\n' +
         i18n.t('admin.refresh.processing'),
       {
         parse_mode: 'Markdown',
@@ -82,15 +92,22 @@ export async function handleAdminRefreshVipAvatars(
     resultMessage += i18n.t('admin.refresh.processedUsers', { count: results.totalUsers }) + '\n';
     resultMessage += i18n.t('admin.refresh.successUsers', { count: results.successUsers }) + '\n';
     resultMessage += i18n.t('admin.refresh.failedUsers', { count: results.failedUsers }) + '\n';
-    resultMessage += i18n.t('admin.refresh.updatedPosts', { count: results.totalPostsUpdated }) + '\n';
-    resultMessage += i18n.t('admin.refresh.failedPosts', { count: results.totalPostsFailed }) + '\n\n';
+    resultMessage +=
+      i18n.t('admin.refresh.updatedPosts', { count: results.totalPostsUpdated }) + '\n';
+    resultMessage +=
+      i18n.t('admin.refresh.failedPosts', { count: results.totalPostsFailed }) + '\n\n';
 
     if (results.details.length > 0) {
       resultMessage += i18n.t('admin.refresh.details') + '\n';
       for (const detail of results.details.slice(0, 10)) {
         // Show first 10
         const username = detail.username ? `@${detail.username}` : detail.userId;
-        resultMessage += i18n.t('admin.refresh.userDetail', { username, updated: detail.postsUpdated, failed: detail.postsFailed }) + '\n';
+        resultMessage +=
+          i18n.t('admin.refresh.userDetail', {
+            username,
+            updated: detail.postsUpdated,
+            failed: detail.postsFailed,
+          }) + '\n';
       }
 
       if (results.details.length > 10) {
@@ -105,9 +122,13 @@ export async function handleAdminRefreshVipAvatars(
     console.error('[AdminRefreshVipAvatars] Error:', error);
     await telegram.sendMessage(
       chatId,
-      i18n.t('admin.refresh.failed') + '\n\n' +
-        i18n.t('admin.refresh.errorOccurred') + '\n\n' +
-        i18n.t('admin.refresh.error', { error: error instanceof Error ? error.message : String(error) })
+      i18n.t('admin.refresh.failed') +
+        '\n\n' +
+        i18n.t('admin.refresh.errorOccurred') +
+        '\n\n' +
+        i18n.t('admin.refresh.error', {
+          error: error instanceof Error ? error.message : String(error),
+        })
     );
   }
 }

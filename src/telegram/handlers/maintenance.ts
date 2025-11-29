@@ -31,13 +31,15 @@ export async function handleMaintenanceEnable(message: TelegramMessage, env: Env
     const telegramId = message.from!.id.toString();
     const user = await findUserByTelegramId(db, telegramId);
     const i18n = createI18n(user?.language_pref || 'zh-TW');
-    
+
     const parts = text.split(' ');
     if (parts.length < 2) {
       await telegram.sendMessage(
         chatId,
-        i18n.t('maintenance.usageError') + '\n\n' +
-          i18n.t('maintenance.correctFormat') + '\n' +
+        i18n.t('maintenance.usageError') +
+          '\n\n' +
+          i18n.t('maintenance.correctFormat') +
+          '\n' +
           i18n.t('maintenance.example')
       );
       return;
@@ -142,8 +144,10 @@ export async function handleMaintenanceDisable(message: TelegramMessage, env: En
 
     // Broadcast recovery notification
     const recoveryMessage =
-      i18n.t('maintenance.completed') + '\n\n' +
-      i18n.t('maintenance.serviceRestored') + '\n\n' +
+      i18n.t('maintenance.completed') +
+      '\n\n' +
+      i18n.t('maintenance.serviceRestored') +
+      '\n\n' +
       i18n.t('maintenance.allFeaturesAvailable');
 
     await createBroadcast(env, recoveryMessage, 'all', telegramId);
@@ -171,7 +175,7 @@ export async function handleMaintenanceStatus(message: TelegramMessage, env: Env
     const telegramId = message.from!.id.toString();
     const user = await findUserByTelegramId(db, telegramId);
     const i18n = createI18n(user?.language_pref || 'zh-TW');
-    
+
     const maintenance = await getMaintenanceMode(db);
     if (!maintenance) {
       await telegram.sendMessage(chatId, i18n.t('maintenance.statusFailed'));

@@ -224,7 +224,10 @@ async function getUserConversationsWithPartners(
     return result.results as any[];
   } catch (error) {
     // Protection: Fallback to original query if optimized query fails
-    console.error('[getUserConversationsWithPartners] Optimized query failed, falling back:', error);
+    console.error(
+      '[getUserConversationsWithPartners] Optimized query failed, falling back:',
+      error
+    );
     return getUserConversationsWithPartnersOriginal(db, telegramId, limit, offset);
   }
 }

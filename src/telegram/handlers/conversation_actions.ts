@@ -30,7 +30,7 @@ export async function handleConversationProfile(
     const viewer = await findUserByTelegramId(db, telegramId);
     const { createI18n } = await import('~/i18n');
     const i18n = createI18n(viewer?.language_pref || 'zh-TW');
-    
+
     // Get conversation
     const conversation = await getConversationById(db, conversationId);
     if (!conversation) {
@@ -80,7 +80,9 @@ export async function handleConversationProfile(
       ageRange = `${Math.floor(age / 5) * 5}-${Math.floor(age / 5) * 5 + 4}`;
     }
 
-    const nickname = maskNickname(otherUser.nickname || otherUser.username || i18n.t('common.anonymous'));
+    const nickname = maskNickname(
+      otherUser.nickname || otherUser.username || i18n.t('common.anonymous')
+    );
     const languageLabel = otherUser.language_pref || i18n.t('common.notSet');
     const zodiacLabel = otherUser.zodiac_sign || 'Virgo';
 
@@ -98,10 +100,16 @@ export async function handleConversationProfile(
     profileMessage += i18n.t('conversation.separator') + '\n';
     profileMessage += i18n.t('conversation.nickname2', { displayNickname }) + '\n';
     profileMessage += i18n.t('conversation.text3', { languageLabel }) + '\n';
-    profileMessage += i18n.t('conversation.settings', { otherUser: { mbti_result: otherUser.mbti_result } }) + '\n';
+    profileMessage +=
+      i18n.t('conversation.settings', { otherUser: { mbti_result: otherUser.mbti_result } }) + '\n';
     profileMessage += i18n.t('conversation.zodiac2', { zodiacLabel }) + '\n';
     profileMessage += i18n.t('conversation.bloodType2', { bloodTypeText }) + '\n';
-    const genderText = otherUser.gender === 'male' ? i18n.t('common.male') : otherUser.gender === 'female' ? i18n.t('common.female') : i18n.t('common.notSet');
+    const genderText =
+      otherUser.gender === 'male'
+        ? i18n.t('common.male')
+        : otherUser.gender === 'female'
+          ? i18n.t('common.female')
+          : i18n.t('common.notSet');
     profileMessage += i18n.t('conversation.gender', { gender: genderText }) + '\n';
     profileMessage += i18n.t('conversation.age', { ageRange }) + '\n';
 
@@ -133,7 +141,9 @@ export async function handleConversationProfile(
     profileMessage += i18n.t('conversation.backToMenuCommand');
 
     // Build buttons
-    const buttons = [[{ text: i18n.t('conversation.replyButton'), callback_data: `conv_reply_${identifier}` }]];
+    const buttons = [
+      [{ text: i18n.t('conversation.replyButton'), callback_data: `conv_reply_${identifier}` }],
+    ];
 
     // Add ad/task button for non-VIP users
     if (!isVip) {
@@ -212,10 +222,15 @@ export async function handleConversationBlock(
     // Show confirmation
     await telegram.sendMessageWithButtons(
       chatId,
-      i18n.t('conversation.blockConfirmTitle') + '\n\n' + i18n.t('conversation.blockConfirmMessage'),
+      i18n.t('conversation.blockConfirmTitle') +
+        '\n\n' +
+        i18n.t('conversation.blockConfirmMessage'),
       [
         [
-          { text: i18n.t('conversation.blockConfirmButton'), callback_data: `conv_block_confirm_${conversationId}` },
+          {
+            text: i18n.t('conversation.blockConfirmButton'),
+            callback_data: `conv_block_confirm_${conversationId}`,
+          },
           { text: i18n.t('conversation.cancelButton'), callback_data: 'conv_cancel' },
         ],
       ]
@@ -252,10 +267,15 @@ export async function handleConversationReport(
     // Show confirmation
     await telegram.sendMessageWithButtons(
       chatId,
-      i18n.t('conversation.reportConfirmTitle') + '\n\n' + i18n.t('conversation.reportConfirmMessage'),
+      i18n.t('conversation.reportConfirmTitle') +
+        '\n\n' +
+        i18n.t('conversation.reportConfirmMessage'),
       [
         [
-          { text: i18n.t('conversation.reportConfirmButton'), callback_data: `conv_report_confirm_${conversationId}` },
+          {
+            text: i18n.t('conversation.reportConfirmButton'),
+            callback_data: `conv_report_confirm_${conversationId}`,
+          },
           { text: i18n.t('conversation.cancelButton'), callback_data: 'conv_cancel' },
         ],
       ]
@@ -326,7 +346,10 @@ export async function handleConversationBlockConfirm(
     await telegram.answerCallbackQuery(callbackQuery.id, i18n.t('conversation.blocked'));
     await telegram.deleteMessage(chatId, callbackQuery.message!.message_id);
 
-    await telegram.sendMessage(chatId, i18n.t('conversation.blockSuccessTitle') + '\n\n' + i18n.t('conversation.blockSuccessMessage'));
+    await telegram.sendMessage(
+      chatId,
+      i18n.t('conversation.blockSuccessTitle') + '\n\n' + i18n.t('conversation.blockSuccessMessage')
+    );
 
     // Notify other user (without revealing block)
     await telegram.sendMessage(
@@ -401,7 +424,12 @@ export async function handleConversationReportConfirm(
     await telegram.answerCallbackQuery(callbackQuery.id, i18n.t('conversation.reported'));
     await telegram.deleteMessage(chatId, callbackQuery.message!.message_id);
 
-    await telegram.sendMessage(chatId, i18n.t('conversation.reportSuccessTitle') + '\n\n' + i18n.t('conversation.reportSuccessMessage'));
+    await telegram.sendMessage(
+      chatId,
+      i18n.t('conversation.reportSuccessTitle') +
+        '\n\n' +
+        i18n.t('conversation.reportSuccessMessage')
+    );
 
     // Notify other user (without revealing report)
     await telegram.sendMessage(

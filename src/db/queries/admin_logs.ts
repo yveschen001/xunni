@@ -1,4 +1,3 @@
-
 import type { D1Database } from '@cloudflare/workers-types';
 
 export interface AdminLog {
@@ -38,4 +37,3 @@ export async function logAdminAction(
     // Don't throw, logging failure shouldn't block the action
   }
 }
-

@@ -45,7 +45,7 @@ export async function translateText(
   // Use createDatabaseClient to get D1Database instance properly
   const dbClient = createDatabaseClient(env.DB);
   const logService = new TranslationLogService(env.DB); // Assuming TranslationLogService takes D1Database directly
-  
+
   const normalizedTarget = normalizeLanguageCode(targetLanguage);
   const normalizedSource = sourceLanguage ? normalizeLanguageCode(sourceLanguage) : undefined;
 
@@ -66,11 +66,13 @@ export async function translateText(
 
       // Log success usage
       // Fire and forget (no await to avoid blocking)
-      logService.logStats({
-        provider: 'openai',
-        tokens: result.cost,
-        characters: text.length
-      }).catch(err => console.error('[TranslationLog] OpenAI log failed:', err));
+      logService
+        .logStats({
+          provider: 'openai',
+          tokens: result.cost,
+          characters: text.length,
+        })
+        .catch((err) => console.error('[TranslationLog] OpenAI log failed:', err));
 
       return {
         text: result.text,
@@ -85,29 +87,35 @@ export async function translateText(
 
       // Log fallback event
       if (userId) {
-        logService.logFallback(
-          userId,
-          'openai',
-          'gemini',
-          error instanceof Error ? error.message : String(error)
-        ).catch(err => console.error('[TranslationLog] Fallback log failed:', err));
-        
+        logService
+          .logFallback(
+            userId,
+            'openai',
+            'gemini',
+            error instanceof Error ? error.message : String(error)
+          )
+          .catch((err) => console.error('[TranslationLog] Fallback log failed:', err));
+
         // Log failed usage
-        logService.logStats({
-          provider: 'openai',
-          isError: true,
-          characters: text.length
-        }).catch(err => console.error('[TranslationLog] OpenAI error log failed:', err));
+        logService
+          .logStats({
+            provider: 'openai',
+            isError: true,
+            characters: text.length,
+          })
+          .catch((err) => console.error('[TranslationLog] OpenAI error log failed:', err));
       }
 
       const geminiResult = await translateWithGemini(text, normalizedTarget, normalizedSource, env);
 
       if (geminiResult.success) {
         // Log Gemini usage
-        logService.logStats({
-          provider: 'gemini',
-          characters: text.length
-        }).catch(err => console.error('[TranslationLog] Gemini log failed:', err));
+        logService
+          .logStats({
+            provider: 'gemini',
+            characters: text.length,
+          })
+          .catch((err) => console.error('[TranslationLog] Gemini log failed:', err));
 
         return {
           text: geminiResult.text,
@@ -120,13 +128,15 @@ export async function translateText(
       }
 
       console.error('[translateText] Gemini fallback also failed:', geminiResult.error);
-      
+
       // Log Gemini failure
-      logService.logStats({
-        provider: 'gemini',
-        isError: true,
-        characters: text.length
-      }).catch(err => console.error('[TranslationLog] Gemini error log failed:', err));
+      logService
+        .logStats({
+          provider: 'gemini',
+          isError: true,
+          characters: text.length,
+        })
+        .catch((err) => console.error('[TranslationLog] Gemini error log failed:', err));
 
       return {
         text,
@@ -144,10 +154,12 @@ export async function translateText(
 
     if (geminiResult.success) {
       // Log Gemini usage
-      logService.logStats({
-        provider: 'gemini',
-        characters: text.length
-      }).catch(err => console.error('[TranslationLog] Gemini log failed:', err));
+      logService
+        .logStats({
+          provider: 'gemini',
+          characters: text.length,
+        })
+        .catch((err) => console.error('[TranslationLog] Gemini log failed:', err));
 
       return {
         text: geminiResult.text,
@@ -161,13 +173,15 @@ export async function translateText(
     throw new Error(geminiResult.error || 'Gemini translation failed');
   } catch (error) {
     console.error('[translateText] Gemini translation failed:', error);
-    
+
     // Log Gemini failure
-    logService.logStats({
-      provider: 'gemini',
-      isError: true,
-      characters: text.length
-    }).catch(err => console.error('[TranslationLog] Gemini error log failed:', err));
+    logService
+      .logStats({
+        provider: 'gemini',
+        isError: true,
+        characters: text.length,
+      })
+      .catch((err) => console.error('[TranslationLog] Gemini error log failed:', err));
 
     return {
       text,

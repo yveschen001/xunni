@@ -59,7 +59,7 @@ export async function loadTranslations(env: Env, languageCode: string): Promise<
     try {
       const cacheKey = `i18n:lang:${languageCode}`;
       const translations = await env.CACHE.get<Translations>(cacheKey, 'json');
-      
+
       if (translations) {
         translationCache.set(languageCode, translations);
         return;
@@ -145,39 +145,43 @@ export function t(
         if (typeof nextValue === 'string' && i < keys.length - 1) {
           const combinedKey = `${k}.${keys[i + 1]}`;
           if (combinedKey in value) {
-            value = (value as Record<string, unknown>)[combinedKey] as Record<string, unknown> | string;
-            i++; 
+            value = (value as Record<string, unknown>)[combinedKey] as
+              | Record<string, unknown>
+              | string;
+            i++;
             continue;
           }
         }
         value = nextValue;
       } else if (i < keys.length - 1) {
-          // Check combined key for current level (e.g. settings.quietHoursHint where settings is object)
-          // But here value is object and k is not in it.
-          // Try next key combined?
-          const combinedKey = `${k}.${keys[i + 1]}`;
-          if (combinedKey in value) {
-               value = (value as Record<string, unknown>)[combinedKey] as Record<string, unknown> | string;
-               i++;
-               continue;
-          }
-          
-          // Key not found
-          if (params?.defaultValue) {
-              return replaceParams(params.defaultValue as string, params);
-          }
-          return `[${key}]`;
+        // Check combined key for current level (e.g. settings.quietHoursHint where settings is object)
+        // But here value is object and k is not in it.
+        // Try next key combined?
+        const combinedKey = `${k}.${keys[i + 1]}`;
+        if (combinedKey in value) {
+          value = (value as Record<string, unknown>)[combinedKey] as
+            | Record<string, unknown>
+            | string;
+          i++;
+          continue;
+        }
+
+        // Key not found
+        if (params?.defaultValue) {
+          return replaceParams(params.defaultValue as string, params);
+        }
+        return `[${key}]`;
       } else {
         // Key not found
         if (params?.defaultValue) {
-             return replaceParams(params.defaultValue as string, params);
+          return replaceParams(params.defaultValue as string, params);
         }
         return `[${key}]`;
       }
     } else {
       // Key not found
       if (params?.defaultValue) {
-           return replaceParams(params.defaultValue as string, params);
+        return replaceParams(params.defaultValue as string, params);
       }
       return `[${key}]`;
     }
@@ -192,14 +196,15 @@ export function t(
 
   // If it's an object, it means the key path was incomplete or pointed to an object
   if (params?.defaultValue) {
-       return replaceParams(params.defaultValue as string, params);
+    return replaceParams(params.defaultValue as string, params);
   }
   return `[${key}]`;
 }
 
 export function createI18n(languageCode: string) {
   return {
-    t: (key: string, params?: Record<string, string | number | undefined>) => t(languageCode, key, params),
+    t: (key: string, params?: Record<string, string | number | undefined>) =>
+      t(languageCode, key, params),
     translations: getTranslations(languageCode),
   };
 }

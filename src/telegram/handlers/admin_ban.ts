@@ -373,9 +373,11 @@ export async function handleAdminAdd(message: TelegramMessage, env: Env): Promis
       await telegram.sendMessage(
         chatId,
         i18n.t('admin.addUsageError') +
-          i18n.t('admin.adConfig.correctFormat') + '\n' +
+          i18n.t('admin.adConfig.correctFormat') +
+          '\n' +
           i18n.t('admin.addCommand') +
-          i18n.t('admin.adConfig.example') + '\n' +
+          i18n.t('admin.adConfig.example') +
+          '\n' +
           i18n.t('admin.addExample') +
           i18n.t('admin.admin')
       );
@@ -443,9 +445,11 @@ export async function handleAdminRemove(message: TelegramMessage, env: Env): Pro
       await telegram.sendMessage(
         chatId,
         i18n.t('admin.removeUsageError') +
-          i18n.t('admin.adConfig.correctFormat') + '\n' +
+          i18n.t('admin.adConfig.correctFormat') +
+          '\n' +
           i18n.t('admin.removeCommand') +
-          i18n.t('admin.adConfig.example') + '\n' +
+          i18n.t('admin.adConfig.example') +
+          '\n' +
           i18n.t('admin.removeExample') +
           i18n.t('admin.admin')
       );
@@ -498,7 +502,7 @@ export async function handleAdminBans(message: TelegramMessage, env: Env): Promi
   // Check admin permission
   const user = await findUserByTelegramId(db, telegramId);
   const i18n = createI18n(user?.language_pref || 'zh-TW');
-  
+
   if (!isAdmin(telegramId, env)) {
     await telegram.sendMessage(chatId, i18n.t('admin.noPermission'));
     return;
@@ -553,21 +557,26 @@ export async function handleAdminBans(message: TelegramMessage, env: Env): Promi
 
       const banEnd = ban.ban_end
         ? new Date(ban.ban_end).toLocaleString('zh-TW', {
-          year: 'numeric',
-          month: '2-digit',
-          day: '2-digit',
-          hour: '2-digit',
-          minute: '2-digit',
-          timeZone: 'Asia/Taipei',
-        })
+            year: 'numeric',
+            month: '2-digit',
+            day: '2-digit',
+            hour: '2-digit',
+            minute: '2-digit',
+            timeZone: 'Asia/Taipei',
+          })
         : i18n.t('admin.ban.permanent');
 
       message +=
-        i18n.t('admin.ban.banId', { id: ban.id }) + '\n' +
-        i18n.t('admin.ban.banUser', { user: ban.nickname || ban.user_id }) + '\n' +
-        i18n.t('admin.ban.banReason', { reason: ban.reason }) + '\n' +
-        i18n.t('admin.ban.banStart', { start: banStart }) + '\n' +
-        i18n.t('admin.ban.banEnd', { end: banEnd }) + '\n\n';
+        i18n.t('admin.ban.banId', { id: ban.id }) +
+        '\n' +
+        i18n.t('admin.ban.banUser', { user: ban.nickname || ban.user_id }) +
+        '\n' +
+        i18n.t('admin.ban.banReason', { reason: ban.reason }) +
+        '\n' +
+        i18n.t('admin.ban.banStart', { start: banStart }) +
+        '\n' +
+        i18n.t('admin.ban.banEnd', { end: banEnd }) +
+        '\n\n';
     }
 
     message += i18n.t('admin.ban.viewHistory');
@@ -617,22 +626,27 @@ export async function handleAdminBans(message: TelegramMessage, env: Env): Promi
 
     const banEnd = ban.ban_end
       ? new Date(ban.ban_end).toLocaleString('zh-TW', {
-        year: 'numeric',
-        month: '2-digit',
-        day: '2-digit',
-        hour: '2-digit',
-        minute: '2-digit',
-        timeZone: 'Asia/Taipei',
-      })
+          year: 'numeric',
+          month: '2-digit',
+          day: '2-digit',
+          hour: '2-digit',
+          minute: '2-digit',
+          timeZone: 'Asia/Taipei',
+        })
       : i18n.t('admin.ban.permanent');
 
     responseText +=
       `━━━━━━━━━━━━━━━━\n` +
-      i18n.t('admin.ban.banId', { id: ban.id }) + '\n' +
-      i18n.t('admin.ban.banReason', { reason: ban.reason }) + '\n' +
-      i18n.t('admin.ban.riskScore', { score: ban.risk_snapshot }) + '\n' +
-      i18n.t('admin.ban.banStart', { start: banStart }) + '\n' +
-      i18n.t('admin.ban.banEnd', { end: banEnd }) + '\n\n';
+      i18n.t('admin.ban.banId', { id: ban.id }) +
+      '\n' +
+      i18n.t('admin.ban.banReason', { reason: ban.reason }) +
+      '\n' +
+      i18n.t('admin.ban.riskScore', { score: ban.risk_snapshot }) +
+      '\n' +
+      i18n.t('admin.ban.banStart', { start: banStart }) +
+      '\n' +
+      i18n.t('admin.ban.banEnd', { end: banEnd }) +
+      '\n\n';
   }
 
   await telegram.sendMessage(chatId, responseText);
@@ -650,7 +664,7 @@ export async function handleAdminAppeals(message: TelegramMessage, env: Env): Pr
   // Check admin permission
   const user = await findUserByTelegramId(db, telegramId);
   const i18n = createI18n(user?.language_pref || 'zh-TW');
-  
+
   if (!isAdmin(telegramId, env)) {
     await telegram.sendMessage(chatId, i18n.t('admin.noPermission'));
     return;
@@ -676,7 +690,7 @@ export async function handleAdminAppeals(message: TelegramMessage, env: Env): Pr
     }>();
 
   // Use existing i18n from function scope (already declared at line 652)
-  
+
   if (!pendingAppeals.results || pendingAppeals.results.length === 0) {
     await telegram.sendMessage(chatId, i18n.t('admin.ban.noAppeals'));
     return;
@@ -700,9 +714,7 @@ export async function handleAdminAppeals(message: TelegramMessage, env: Env): Pr
       i18n.t('admin.ban.appealSubmittedAt', { time: createdAt });
   }
 
-  responseText +=
-    i18n.t('admin.appealReviewHint') +
-    i18n.t('admin.appealReviewCommands');
+  responseText += i18n.t('admin.appealReviewHint') + i18n.t('admin.appealReviewCommands');
 
   await telegram.sendMessage(chatId, responseText);
 }

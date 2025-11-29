@@ -1,4 +1,3 @@
-
 import type { Env } from '~/types';
 
 /**
@@ -10,7 +9,7 @@ import type { Env } from '~/types';
 export function isAdmin(env: Env, telegramId: string): boolean {
   const superAdminId = env.SUPER_ADMIN_USER_ID;
   const adminIds = (env.ADMIN_USER_IDS || '').split(',').filter(Boolean);
-  
+
   return telegramId === superAdminId || adminIds.includes(telegramId);
 }
 
@@ -43,4 +42,3 @@ export function assertSuperAdmin(env: Env, telegramId: string): void {
     throw new Error('Permission denied: Super Admin access required');
   }
 }
-

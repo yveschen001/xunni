@@ -7,13 +7,13 @@ const mockDb = {
     bind: vi.fn(() => ({
       first: vi.fn(),
       run: vi.fn(),
-      all: vi.fn()
-    }))
-  }))
+      all: vi.fn(),
+    })),
+  })),
 };
 
 const mockEnv = {
-    BOT_TOKEN: 'mock_token'
+  BOT_TOKEN: 'mock_token',
 };
 
 describe('PushStrategyService', () => {
@@ -44,4 +44,3 @@ describe('PushStrategyService', () => {
 
   // More logic tests can be added here
 });
-

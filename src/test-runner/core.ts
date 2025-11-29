@@ -1,7 +1,6 @@
-
 /**
  * Core Test Runner Infrastructure
- * 
+ *
  * Features:
  * 1. Automatic Retries with Exponential Backoff
  * 2. Strict Timeouts (AbortController)
@@ -27,7 +26,7 @@ export interface TestResult {
 
 export class TestFailure extends Error {
   public context: any;
-  
+
   constructor(message: string, context?: any) {
     super(message);
     this.name = 'TestFailure';
@@ -68,13 +67,13 @@ export async function fetchWithRetry(
     } catch (error: any) {
       clearTimeout(id);
       lastError = error;
-      
+
       const isAbort = error.name === 'AbortError';
       const errorMessage = isAbort ? `Timeout after ${timeoutMs}ms` : error.message;
 
       if (attempt < retries) {
         // console.warn(`⚠️  Attempt ${attempt + 1} failed: ${errorMessage}. Retrying in ${backoffMs}ms...`);
-        await new Promise(r => setTimeout(r, backoffMs));
+        await new Promise((r) => setTimeout(r, backoffMs));
         backoffMs *= 2; // Exponential backoff
       }
     }
@@ -88,22 +87,19 @@ export async function fetchWithRetry(
  */
 export abstract class TestSuite {
   abstract name: string;
-  
+
   // Each suite must implement run(), returning a list of results
   abstract run(context: TestContext): Promise<TestResult[]>;
 
   // Helper to run a single test case safely
-  protected async runTest(
-    testName: string, 
-    fn: () => Promise<void>
-  ): Promise<TestResult> {
+  protected async runTest(testName: string, fn: () => Promise<void>): Promise<TestResult> {
     const start = performance.now();
     try {
       await fn();
       return {
         name: testName,
         passed: true,
-        duration: performance.now() - start
+        duration: performance.now() - start,
       };
     } catch (error: any) {
       return {
@@ -111,7 +107,7 @@ export abstract class TestSuite {
         passed: false,
         duration: performance.now() - start,
         error: error.message,
-        context: error.context
+        context: error.context,
       };
     }
   }

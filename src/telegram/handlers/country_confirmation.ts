@@ -51,7 +51,7 @@ export async function handleCountryConfirmYes(callbackQuery: any, env: Env): Pro
     // Get user
     const user = await findUserByTelegramId(db, telegramId);
     const i18n = createI18n(user?.language_pref || 'zh-TW');
-    
+
     if (!user) {
       await telegram.answerCallbackQuery(callbackQuery.id, i18n.t('errors.userNotFound'));
       return;
@@ -92,7 +92,7 @@ export async function handleCountrySet(
     // Get user first for i18n
     const user = await findUserByTelegramId(db, telegramId);
     const i18n = createI18n(user?.language_pref || 'zh-TW');
-    
+
     if (!user) {
       await telegram.answerCallbackQuery(callbackQuery.id, i18n.t('errors.userNotFound'));
       return;
@@ -117,7 +117,10 @@ export async function handleCountrySet(
     if (completed) {
       const flag = getCountryFlagEmoji(countryCode);
       const countryName = getCountryName(countryCode);
-      await telegram.answerCallbackQuery(callbackQuery.id, i18n.t('country.setTo', { flag, country: countryName }));
+      await telegram.answerCallbackQuery(
+        callbackQuery.id,
+        i18n.t('country.setTo', { flag, country: countryName })
+      );
       await telegram.deleteMessage(chatId, callbackQuery.message!.message_id);
     } else {
       await telegram.answerCallbackQuery(callbackQuery.id, i18n.t('country.setFailed'));

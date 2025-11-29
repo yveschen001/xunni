@@ -85,21 +85,31 @@ export async function calculateDetailedDailyStats(
   oneDayBefore.setDate(oneDayBefore.getDate() - 1);
   const oneDayBeforeStr = oneDayBefore.toISOString().split('T')[0];
 
-  const cohortCountResult = await db.d1.prepare(`
+  const cohortCountResult = await db.d1
+    .prepare(
+      `
     SELECT COUNT(*) as count FROM users WHERE DATE(created_at) = ?
-  `).bind(oneDayBeforeStr).first<{ count: number }>();
-  
+  `
+    )
+    .bind(oneDayBeforeStr)
+    .first<{ count: number }>();
+
   const cohortCount = cohortCountResult?.count || 0;
-  
+
   let d1Retention = 0;
   if (cohortCount > 0) {
-    const retainedCountResult = await db.d1.prepare(`
+    const retainedCountResult = await db.d1
+      .prepare(
+        `
       SELECT COUNT(*) as count 
       FROM users 
       WHERE DATE(created_at) = ? 
         AND DATE(last_active_at) >= ?
-    `).bind(oneDayBeforeStr, date).first<{ count: number }>();
-    
+    `
+      )
+      .bind(oneDayBeforeStr, date)
+      .first<{ count: number }>();
+
     const retainedCount = retainedCountResult?.count || 0;
     d1Retention = (retainedCount / cohortCount) * 100;
   }

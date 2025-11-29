@@ -1,4 +1,3 @@
-
 import type { Env } from '~/types';
 import { createDatabaseClient } from '~/db/client';
 import { ContentModerationService } from '~/services/content_moderation';
@@ -10,11 +9,11 @@ import { AdminLogService } from '~/services/admin_log';
  */
 export async function runAiModerationPatrol(env: Env): Promise<void> {
   console.log('[AiPatrol] Starting patrol...');
-  
+
   const db = createDatabaseClient(env.DB);
   const aiService = new ContentModerationService(env);
   const logService = new AdminLogService(env);
-  
+
   // 1. Review Pending Appeals
   const pendingAppeals = await db.d1
     .prepare(
@@ -29,31 +28,45 @@ export async function runAiModerationPatrol(env: Env): Promise<void> {
 
   if (pendingAppeals.results && pendingAppeals.results.length > 0) {
     console.log(`[AiPatrol] Reviewing ${pendingAppeals.results.length} pending appeals...`);
-    
+
     for (const appeal of pendingAppeals.results) {
       try {
         // AI Analysis
         const result = await aiService.analyzeAppeal({
           user: appeal.user_id,
           banReason: appeal.ban_reason || 'Unknown',
-          appealText: appeal.reason
+          appealText: appeal.reason,
         });
 
         // Auto-Decision Logic (High Confidence Only)
         if (result.confidence > 90) {
           if (result.verdict === 'unban') {
             console.log(`[AiPatrol] Auto-approving appeal ${appeal.id}`);
-            
+
             await logService.logEvent(
               '🤖 **AI Auto-Review Recommendation**',
               `Appeal ID: ${appeal.id}\nUser: \`${appeal.user_id}\`\n\nVerdict: **Unban**\nConfidence: ${result.confidence}%\nReason: ${result.reason}`,
-              [[{ text: '✅ Auto-Approve Now', callback_data: `admin_ops_approve_${appeal.user_id}` }]]
+              [
+                [
+                  {
+                    text: '✅ Auto-Approve Now',
+                    callback_data: `admin_ops_approve_${appeal.user_id}`,
+                  },
+                ],
+              ]
             );
           } else {
             await logService.logEvent(
               '🤖 **AI Auto-Review Recommendation**',
               `Appeal ID: ${appeal.id}\nUser: \`${appeal.user_id}\`\n\nVerdict: **Keep Banned**\nConfidence: ${result.confidence}%\nReason: ${result.reason}`,
-              [[{ text: '❌ Auto-Reject Now', callback_data: `admin_ops_reject_${appeal.user_id}` }]]
+              [
+                [
+                  {
+                    text: '❌ Auto-Reject Now',
+                    callback_data: `admin_ops_reject_${appeal.user_id}`,
+                  },
+                ],
+              ]
             );
           }
         }
@@ -65,4 +78,3 @@ export async function runAiModerationPatrol(env: Env): Promise<void> {
 
   console.log('[AiPatrol] Patrol completed.');
 }
-

@@ -37,7 +37,10 @@ export async function handleRefreshConversations(
     }
 
     // Send processing message
-    const processingMsg = await telegram.sendMessage(chatId, i18n.t('refreshConversations.processing'));
+    const processingMsg = await telegram.sendMessage(
+      chatId,
+      i18n.t('refreshConversations.processing')
+    );
 
     // Refresh all conversation history posts
     const result = await refreshAllConversationHistoryPosts(db, env, telegramId);
@@ -59,7 +62,10 @@ export async function handleRefreshConversations(
     } else {
       await telegram.sendMessage(
         chatId,
-        i18n.t('refreshConversations.partialSuccess', { updated: result.updated, failed: result.failed }),
+        i18n.t('refreshConversations.partialSuccess', {
+          updated: result.updated,
+          failed: result.failed,
+        }),
         {
           parse_mode: 'Markdown',
         }

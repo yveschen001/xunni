@@ -149,7 +149,8 @@ async function showStartUsingPage(
   telegram: ReturnType<typeof createTelegramService>,
   i18n: ReturnType<typeof createI18n>
 ): Promise<void> {
-  const message = i18n.t('tutorial.readyToStart') + '\n\n' + i18n.t('tutorial.completeTasksForBottles');
+  const message =
+    i18n.t('tutorial.readyToStart') + '\n\n' + i18n.t('tutorial.completeTasksForBottles');
 
   await telegram.sendMessageWithButtons(chatId, message, [
     [

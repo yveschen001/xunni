@@ -32,7 +32,8 @@ vi.mock('../../src/domain/user_preferences', () => ({
 vi.mock('../../src/i18n', () => ({
   createI18n: vi.fn(() => ({
     t: (key: string, params?: any) => {
-      if (key === 'match.template.body') return `Template ${params?.userAttribute} -> ${params?.recommendedAttributes}`;
+      if (key === 'match.template.body')
+        return `Template ${params?.userAttribute} -> ${params?.recommendedAttributes}`;
       return key;
     },
   })),
@@ -72,9 +73,10 @@ describe('handleMatchPush', () => {
 
     const mockStmt = {
       bind: vi.fn().mockReturnThis(),
-      all: vi.fn()
+      all: vi
+        .fn()
         .mockResolvedValueOnce({ results: [mockUser] }) // First batch
-        .mockResolvedValueOnce({ results: [] }),        // Second batch (end)
+        .mockResolvedValueOnce({ results: [] }), // Second batch (end)
     };
     mockDb.prepare.mockReturnValue(mockStmt);
 
@@ -100,7 +102,7 @@ describe('handleMatchPush', () => {
     expect(mockDb.prepare).toHaveBeenCalled();
     expect(vi.mocked(getUserActivityLevel)).toHaveBeenCalledWith('123456', mockDb);
     expect(mockSendImmediate).toHaveBeenCalledTimes(1);
-    
+
     // Check notification content
     const callArgs = mockSendImmediate.mock.calls[0];
     expect(callArgs[0]).toBe('123456'); // User ID
@@ -113,7 +115,8 @@ describe('handleMatchPush', () => {
     const mockUser = { telegram_id: 'dormant_user' };
     const mockStmt = {
       bind: vi.fn().mockReturnThis(),
-      all: vi.fn()
+      all: vi
+        .fn()
         .mockResolvedValueOnce({ results: [mockUser] })
         .mockResolvedValueOnce({ results: [] }),
     };
@@ -131,7 +134,8 @@ describe('handleMatchPush', () => {
     const mockUser = { telegram_id: 'quiet_user' };
     const mockStmt = {
       bind: vi.fn().mockReturnThis(),
-      all: vi.fn()
+      all: vi
+        .fn()
         .mockResolvedValueOnce({ results: [mockUser] })
         .mockResolvedValueOnce({ results: [] }),
     };

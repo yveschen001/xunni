@@ -432,8 +432,8 @@ export function formatProviderStatus(provider: AdProvider, i18n?: any): string {
   const healthEmoji = health.is_healthy ? '💚' : '⚠️';
 
   const healthStatus = health.is_healthy
-    ? (i18n?.t('adProvider.health.good') || '良好')
-    : (i18n?.t('adProvider.health.needsAttention') || '需要關注');
+    ? i18n?.t('adProvider.health.good') || '良好'
+    : i18n?.t('adProvider.health.needsAttention') || '需要關注';
 
   return `
 ${statusEmoji} **${provider.provider_display_name}**

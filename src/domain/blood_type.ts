@@ -80,7 +80,9 @@ export function parseBloodType(input: string): BloodType | null {
  * @param i18n - Optional i18n instance for translation
  * @returns Array of blood type options with display names
  */
-export function getBloodTypeOptions(i18n?: any): Array<{ value: BloodType | null; display: string }> {
+export function getBloodTypeOptions(
+  i18n?: any
+): Array<{ value: BloodType | null; display: string }> {
   const getDisplay = (value: BloodType | null) => {
     if (value === null) {
       return i18n?.t('common.uncertain') || '❓ 不確定';

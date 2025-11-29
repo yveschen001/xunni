@@ -39,11 +39,11 @@ export async function handleCatch(message: TelegramMessage, env: Env): Promise<v
 
     // Get user
     const user = await findUserByTelegramId(db, telegramId);
-    
+
     // Get i18n
     const { createI18n } = await import('~/i18n');
     const i18n = createI18n(user?.language_pref || 'zh-TW');
-    
+
     if (!user) {
       await telegram.sendMessage(chatId, i18n.t('errors.userNotFound'));
       return;
@@ -51,19 +51,13 @@ export async function handleCatch(message: TelegramMessage, env: Env): Promise<v
 
     // Check if user completed onboarding
     if (user.onboarding_step !== 'completed') {
-      await telegram.sendMessage(
-        chatId,
-        i18n.t('catch.notRegistered')
-      );
+      await telegram.sendMessage(chatId, i18n.t('catch.notRegistered'));
       return;
     }
 
     // Check if user is banned
     if (user.is_banned) {
-      await telegram.sendMessage(
-        chatId,
-        i18n.t('catch.banned')
-      );
+      await telegram.sendMessage(chatId, i18n.t('catch.banned'));
       return;
     }
 
@@ -176,10 +170,7 @@ export async function handleCatch(message: TelegramMessage, env: Env): Promise<v
     }
 
     if (!bottle) {
-      await telegram.sendMessage(
-        chatId,
-        i18n.t('catch.bottle') + '\n' + i18n.t('catch.bottle2')
-      );
+      await telegram.sendMessage(chatId, i18n.t('catch.bottle') + '\n' + i18n.t('catch.bottle2'));
       return;
     }
 
@@ -363,10 +354,14 @@ export async function handleCatch(message: TelegramMessage, env: Env): Promise<v
 
         bottleContent = result.text;
         translationSection =
-          i18n.t('catch.originalLanguage', { language: bottleLangDisplay }) + '\n' +
-          i18n.t('catch.translatedLanguage', { language: catcherLangDisplay }) + '\n' +
-          i18n.t('catch.originalContent', { content: bottle.content }) + '\n' +
-          i18n.t('catch.translatedContent', { content: bottleContent }) + '\n';
+          i18n.t('catch.originalLanguage', { language: bottleLangDisplay }) +
+          '\n' +
+          i18n.t('catch.translatedLanguage', { language: catcherLangDisplay }) +
+          '\n' +
+          i18n.t('catch.originalContent', { content: bottle.content }) +
+          '\n' +
+          i18n.t('catch.translatedContent', { content: bottleContent }) +
+          '\n';
 
         if (result.fallback && catcherIsVip) {
           translationSection += i18n.t('catch.translationServiceFallback') + '\n';
@@ -380,9 +375,12 @@ export async function handleCatch(message: TelegramMessage, env: Env): Promise<v
         const bottleLangDisplay = getLanguageDisplay(bottleLanguage);
         const catcherLangDisplay = getLanguageDisplay(catcherLanguage);
         translationSection =
-          i18n.t('catch.originalLanguage', { language: bottleLangDisplay }) + '\n' +
-          i18n.t('catch.translatedLanguage', { language: catcherLangDisplay }) + '\n' +
-          i18n.t('catch.translationServiceUnavailable') + '\n';
+          i18n.t('catch.originalLanguage', { language: bottleLangDisplay }) +
+          '\n' +
+          i18n.t('catch.translatedLanguage', { language: catcherLangDisplay }) +
+          '\n' +
+          i18n.t('catch.translationServiceUnavailable') +
+          '\n';
       }
     } else {
       // Same language, no translation needed - don't show any message
@@ -427,29 +425,42 @@ export async function handleCatch(message: TelegramMessage, env: Env): Promise<v
     }
 
     // Build message
-    const matchScoreText = matchScore && matchType === 'smart'
-      ? i18n.t('catch.message', { score: Math.round(matchScore) }) + '\n'
-      : '';
-    
+    const matchScoreText =
+      matchScore && matchType === 'smart'
+        ? i18n.t('catch.message', { score: Math.round(matchScore) }) + '\n'
+        : '';
+
     const catchMessage =
-      i18n.t('catch.bottle4') + '\n\n' +
+      i18n.t('catch.bottle4') +
+      '\n\n' +
       matchScoreText +
-      i18n.t('catch.nickname', { ownerMaskedNickname }) + '\n' +
-      i18n.t('catch.settings', { mbti: bottle.mbti_result || i18n.t('catch.settings10') }) + '\n' +
+      i18n.t('catch.nickname', { ownerMaskedNickname }) +
+      '\n' +
+      i18n.t('catch.settings', { mbti: bottle.mbti_result || i18n.t('catch.settings10') }) +
+      '\n' +
       i18n.t('catch.zodiac', { zodiac: bottle.zodiac || 'Virgo' }) +
-      i18n.t('catch.language', { language: ownerLanguage }) + '\n\n' +
+      i18n.t('catch.language', { language: ownerLanguage }) +
+      '\n\n' +
       '━━━━━━━━━━━━━━━━\n' +
       `${bottleContent}\n\n` +
       `${translationSection}` +
       '━━━━━━━━━━━━━━━━\n\n' +
-      i18n.t('catch.replyMethods') + '\n' +
-      i18n.t('catch.message5') + '\n' +
-      i18n.t('catch.message4') + '\n\n' +
-      i18n.t('catch.catch', { newCatchesCount, quota }) + '\n' +
-      i18n.t('catch.safetyTips') + '\n' +
-      i18n.t('catch.conversation2') + '\n' +
-      i18n.t('catch.report') + '\n' +
-      i18n.t('catch.block') + '\n\n' +
+      i18n.t('catch.replyMethods') +
+      '\n' +
+      i18n.t('catch.message5') +
+      '\n' +
+      i18n.t('catch.message4') +
+      '\n\n' +
+      i18n.t('catch.catch', { newCatchesCount, quota }) +
+      '\n' +
+      i18n.t('catch.safetyTips') +
+      '\n' +
+      i18n.t('catch.conversation2') +
+      '\n' +
+      i18n.t('catch.report') +
+      '\n' +
+      i18n.t('catch.block') +
+      '\n\n' +
       i18n.t('catch.back');
 
     // Build buttons based on VIP status
@@ -476,7 +487,10 @@ export async function handleCatch(message: TelegramMessage, env: Env): Promise<v
       // Always add reply button if conversation identifier exists
       if (conversationIdentifier) {
         buttons.push([
-          { text: i18n.t('catch.replyButton'), callback_data: `conv_reply_${conversationIdentifier}` },
+          {
+            text: i18n.t('catch.replyButton'),
+            callback_data: `conv_reply_${conversationIdentifier}`,
+          },
         ]);
       }
 
@@ -494,7 +508,12 @@ export async function handleCatch(message: TelegramMessage, env: Env): Promise<v
       // VIP: Reply button + View all chats button
       if (conversationIdentifier) {
         await telegram.sendMessageWithButtons(chatId, catchMessage, [
-          [{ text: i18n.t('catch.replyButton'), callback_data: `conv_reply_${conversationIdentifier}` }],
+          [
+            {
+              text: i18n.t('catch.replyButton'),
+              callback_data: `conv_reply_${conversationIdentifier}`,
+            },
+          ],
           [{ text: i18n.t('catch.conversation3'), callback_data: 'chats' }],
         ]);
       } else {
@@ -507,10 +526,7 @@ export async function handleCatch(message: TelegramMessage, env: Env): Promise<v
   } catch (error) {
     console.error('[handleCatch] Error:', error);
     console.error('[handleCatch] Error stack:', error instanceof Error ? error.stack : 'No stack');
-    await telegram.sendMessage(
-      chatId,
-      i18n.t('errors.systemErrorRetry')
-    );
+    await telegram.sendMessage(chatId, i18n.t('errors.systemErrorRetry'));
   }
 }
 
@@ -531,14 +547,22 @@ async function notifyBottleOwner(ownerId: string, catcher: any, env: Env): Promi
     // Get owner's i18n
     const { createI18n } = await import('~/i18n');
     const ownerI18n = createI18n(owner?.language_pref || 'zh-TW');
-    
+
     // Format catcher info
-    const catcherNickname = maskNickname(catcher.nickname || catcher.username || ownerI18n.t('catch.anonymousUser'));
+    const catcherNickname = maskNickname(
+      catcher.nickname || catcher.username || ownerI18n.t('catch.anonymousUser')
+    );
     const catcherMBTI = catcher.mbti_result || ownerI18n.t('catch.settings10');
     const catcherZodiac = catcher.zodiac_sign || 'Virgo';
     const catcherGender =
-      catcher.gender === 'male' ? ownerI18n.t('catch.short4') : catcher.gender === 'female' ? ownerI18n.t('catch.short5') : ownerI18n.t('catch.settings10');
-    const catcherAge = catcher.birthday ? calculateAge(catcher.birthday) : ownerI18n.t('catch.unknown');
+      catcher.gender === 'male'
+        ? ownerI18n.t('catch.short4')
+        : catcher.gender === 'female'
+          ? ownerI18n.t('catch.short5')
+          : ownerI18n.t('catch.settings10');
+    const catcherAge = catcher.birthday
+      ? calculateAge(catcher.birthday)
+      : ownerI18n.t('catch.unknown');
 
     // Get conversation identifier for this conversation
     // First find the conversation
@@ -576,20 +600,32 @@ async function notifyBottleOwner(ownerId: string, catcher: any, env: Env): Promi
     }
 
     const notificationMessage =
-      ownerI18n.t('catch.bottle3') + '\n\n' +
-      ownerI18n.t('catch.nickname2', { catcherNickname }) + '\n' +
-      ownerI18n.t('catch.mbti', { mbti: catcherMBTI }) + '\n' +
+      ownerI18n.t('catch.bottle3') +
+      '\n\n' +
+      ownerI18n.t('catch.nickname2', { catcherNickname }) +
+      '\n' +
+      ownerI18n.t('catch.mbti', { mbti: catcherMBTI }) +
+      '\n' +
       i18n.t('catch.zodiac', { zodiac: catcherZodiac }) +
-      ownerI18n.t('catch.message2', { catcherGender, catcherAge }) + '\n\n' +
-      ownerI18n.t('catch.conversation') + '\n\n' +
-      ownerI18n.t('catch.replyMethods') + '\n' +
-      ownerI18n.t('catch.message5') + '\n' +
+      ownerI18n.t('catch.message2', { catcherGender, catcherAge }) +
+      '\n\n' +
+      ownerI18n.t('catch.conversation') +
+      '\n\n' +
+      ownerI18n.t('catch.replyMethods') +
+      '\n' +
+      ownerI18n.t('catch.message5') +
+      '\n' +
       ownerI18n.t('catch.message4');
 
     // Send notification with button if identifier exists
     if (conversationIdentifier) {
       await telegram.sendMessageWithButtons(parseInt(ownerId), notificationMessage, [
-        [{ text: ownerI18n.t('catch.replyButton'), callback_data: `conv_reply_${conversationIdentifier}` }],
+        [
+          {
+            text: ownerI18n.t('catch.replyButton'),
+            callback_data: `conv_reply_${conversationIdentifier}`,
+          },
+        ],
         [{ text: ownerI18n.t('catch.conversation3'), callback_data: 'chats' }],
       ]);
     } else {

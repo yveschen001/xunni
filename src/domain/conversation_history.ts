@@ -17,9 +17,10 @@ export function formatMessageEntry(
   i18n?: any
 ): string {
   const timeStr = formatTime(time);
-  const directionLabel = direction === 'sent'
-    ? (i18n?.t('conversationHistory.you') || '你')
-    : (i18n?.t('conversationHistory.other') || '對方');
+  const directionLabel =
+    direction === 'sent'
+      ? i18n?.t('conversationHistory.you') || '你'
+      : i18n?.t('conversationHistory.other') || '對方';
   return `[${timeStr}] ${directionLabel}：${content}`;
 }
 
@@ -68,12 +69,16 @@ export function buildHistoryPostContent(
     // Add partner info at the top if provided
     if (partnerInfo) {
       content += i18n.t('conversationHistory.partnerInfo') + '\n';
-      content += i18n.t('conversationHistory.nickname', { nickname: partnerInfo.maskedNickname }) + '\n';
+      content +=
+        i18n.t('conversationHistory.nickname', { nickname: partnerInfo.maskedNickname }) + '\n';
       content += i18n.t('conversationHistory.mbti', { mbti: partnerInfo.mbti }) + '\n';
-      content += i18n.t('conversationHistory.bloodType', { bloodType: partnerInfo.bloodType }) + '\n';
+      content +=
+        i18n.t('conversationHistory.bloodType', { bloodType: partnerInfo.bloodType }) + '\n';
       content += i18n.t('conversationHistory.zodiac', { zodiac: partnerInfo.zodiac }) + '\n';
       if (partnerInfo.matchScore) {
-        content += i18n.t('conversationHistory.matchScore', { score: Math.round(partnerInfo.matchScore) }) + '\n';
+        content +=
+          i18n.t('conversationHistory.matchScore', { score: Math.round(partnerInfo.matchScore) }) +
+          '\n';
       }
       content += '\n';
     }
@@ -83,7 +88,8 @@ export function buildHistoryPostContent(
     content += '━━━━━━━━━━━━━━━━\n\n';
     content += i18n.t('conversationHistory.historyNote') + '\n';
     content += i18n.t('conversationHistory.totalMessages', { count: totalMessages }) + '\n';
-    content += i18n.t('conversationHistory.lastUpdated', { time: formatDateTime(new Date()) }) + '\n\n';
+    content +=
+      i18n.t('conversationHistory.lastUpdated', { time: formatDateTime(new Date()) }) + '\n\n';
     content += i18n.t('conversationHistory.replyHint') + '\n';
 
     // Add VIP upgrade hint for free users
@@ -113,7 +119,8 @@ export function buildHistoryPostContent(
   const fallbackTotalMessages = `📊 總訊息數：${totalMessages} 則\n`; // Fallback only, should use i18n.t('conversationHistory.totalMessages')
   const fallbackLastUpdated = `📅 最後更新：${formatDateTime(new Date())}\n\n`; // Fallback only, should use i18n.t('conversationHistory.lastUpdated')
   const fallbackReplyHint = `💬 直接按 /reply 回覆訊息聊天\n`; // Fallback only, should use i18n.t('conversationHistory.replyHint')
-  const fallbackVipUnlock = isVip === false ? `\n🔒 升級 VIP 解鎖對方清晰頭像\n💎 使用 /vip 了解更多` : ''; // Fallback only, should use i18n.t('conversationHistory.vipUnlockAvatar') + i18n.t('conversationHistory.vipLearnMore')
+  const fallbackVipUnlock =
+    isVip === false ? `\n🔒 升級 VIP 解鎖對方清晰頭像\n💎 使用 /vip 了解更多` : ''; // Fallback only, should use i18n.t('conversationHistory.vipUnlockAvatar') + i18n.t('conversationHistory.vipLearnMore')
 
   return (
     fallbackTitle +
@@ -155,12 +162,16 @@ export function buildNewMessagePostContent(
     // Add partner info
     if (partnerInfo) {
       content += i18n.t('conversationHistory.partnerInfo') + '\n';
-      content += i18n.t('conversationHistory.nickname', { nickname: partnerInfo.maskedNickname }) + '\n';
+      content +=
+        i18n.t('conversationHistory.nickname', { nickname: partnerInfo.maskedNickname }) + '\n';
       content += i18n.t('conversationHistory.mbti', { mbti: partnerInfo.mbti }) + '\n';
-      content += i18n.t('conversationHistory.bloodType', { bloodType: partnerInfo.bloodType }) + '\n';
+      content +=
+        i18n.t('conversationHistory.bloodType', { bloodType: partnerInfo.bloodType }) + '\n';
       content += i18n.t('conversationHistory.zodiac', { zodiac: partnerInfo.zodiac }) + '\n';
       if (partnerInfo.matchScore) {
-        content += i18n.t('conversationHistory.matchScore', { score: Math.round(partnerInfo.matchScore) }) + '\n';
+        content +=
+          i18n.t('conversationHistory.matchScore', { score: Math.round(partnerInfo.matchScore) }) +
+          '\n';
       }
       content += '\n';
     }

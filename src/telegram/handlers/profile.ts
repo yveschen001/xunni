@@ -49,10 +49,19 @@ export async function handleProfile(message: TelegramMessage, env: Env): Promise
 
     // Build profile message
     const age = user.birthday ? calculateAge(user.birthday) : i18n.t('profile.settings');
-    const gender = user.gender === 'male' ? i18n.t('common.male') : user.gender === 'female' ? i18n.t('common.female') : i18n.t('profile.settings');
+    const gender =
+      user.gender === 'male'
+        ? i18n.t('common.male')
+        : user.gender === 'female'
+          ? i18n.t('common.female')
+          : i18n.t('profile.settings');
     const mbti = user.mbti_result || i18n.t('profile.settings');
     const mbtiSource =
-      user.mbti_source === 'manual' ? ` (${i18n.t('profile.manual')})` : user.mbti_source === 'test' ? ` (${i18n.t('profile.test')})` : '';
+      user.mbti_source === 'manual'
+        ? ` (${i18n.t('profile.manual')})`
+        : user.mbti_source === 'test'
+          ? ` (${i18n.t('profile.test')})`
+          : '';
     const { getZodiacDisplay } = await import('~/domain/zodiac');
     const zodiac = getZodiacDisplay(user.zodiac_sign, i18n);
     const { getBloodTypeDisplay } = await import('~/domain/blood_type');
@@ -61,13 +70,20 @@ export async function handleProfile(message: TelegramMessage, env: Env): Promise
     const bloodType = getBloodTypeDisplay(user.blood_type as any, bloodTypeI18n);
     const vipStatus =
       user.is_vip && user.vip_expire_at && new Date(user.vip_expire_at) > new Date()
-        ? i18n.t('profile.vip', { expireDate: new Date(user.vip_expire_at).toLocaleDateString(user.language_pref || 'zh-TW') })
+        ? i18n.t('profile.vip', {
+            expireDate: new Date(user.vip_expire_at).toLocaleDateString(
+              user.language_pref || 'zh-TW'
+            ),
+          })
         : i18n.t('profile.short2');
     const inviteCode = user.invite_code || i18n.t('profile.settings');
 
     // Format nickname with country flag
     const { formatNicknameWithFlag } = await import('~/utils/country_flag');
-    const displayNickname = formatNicknameWithFlag(user.nickname || i18n.t('profile.notSet'), user.country_code);
+    const displayNickname = formatNicknameWithFlag(
+      user.nickname || i18n.t('profile.notSet'),
+      user.country_code
+    );
 
     // Get invite statistics
     const inviteStats = await getInviteStats(db, telegramId);
@@ -80,7 +96,8 @@ export async function handleProfile(message: TelegramMessage, env: Env): Promise
     const taskBonus = await calculateTaskBonus(db, telegramId);
     // const totalQuota = permanentQuota + taskBonus;
 
-    const quotaDisplay = taskBonus > 0 ? `${permanentQuota}+${taskBonus}` : permanentQuota.toString();
+    const quotaDisplay =
+      taskBonus > 0 ? `${permanentQuota}+${taskBonus}` : permanentQuota.toString();
     const profileMessage =
       i18n.t('profile.profile2') +
       i18n.t('profile.nickname', { displayNickname }) +
@@ -101,7 +118,9 @@ export async function handleProfile(message: TelegramMessage, env: Env): Promise
       i18n.t('profile.quotaTotal', { quota: quotaDisplay }) +
       i18n.t('profile.success') +
       i18n.t('profile.quota') +
-      (!user.is_vip && successfulInvites >= inviteLimit ? i18n.t('profile.message2', { user: { is_vip: false }, successfulInvites, inviteLimit }) : '') +
+      (!user.is_vip && successfulInvites >= inviteLimit
+        ? i18n.t('profile.message2', { user: { is_vip: false }, successfulInvites, inviteLimit })
+        : '') +
       i18n.t('profile.separator') +
       i18n.t('profile.hints') +
       i18n.t('profile.text') +
@@ -153,17 +172,27 @@ export async function handleProfileCard(message: TelegramMessage, env: Env): Pro
 
     // Build profile card
     const age = user.birthday ? calculateAge(user.birthday) : '?';
-    const gender = user.gender === 'male' ? i18n.t('profile.cardGenderMale') : user.gender === 'female' ? i18n.t('profile.cardGenderFemale') : '?';
+    const gender =
+      user.gender === 'male'
+        ? i18n.t('profile.cardGenderMale')
+        : user.gender === 'female'
+          ? i18n.t('profile.cardGenderFemale')
+          : '?';
     const mbti = user.mbti_result || i18n.t('profile.notSet');
     const { getZodiacDisplay } = await import('~/domain/zodiac');
     const zodiac = getZodiacDisplay(user.zodiac_sign, i18n);
-    const interests = user.interests ? JSON.parse(user.interests as string).join(', ') : i18n.t('profile.notSet');
+    const interests = user.interests
+      ? JSON.parse(user.interests as string).join(', ')
+      : i18n.t('profile.notSet');
     const bio = user.bio || i18n.t('profile.mysterious');
     const city = user.city || i18n.t('profile.notSet');
 
     // Format nickname with country flag
     const { formatNicknameWithFlag } = await import('~/utils/country_flag');
-    const displayNickname = formatNicknameWithFlag(user.nickname || i18n.t('profile.anonymousUser'), user.country_code);
+    const displayNickname = formatNicknameWithFlag(
+      user.nickname || i18n.t('profile.anonymousUser'),
+      user.country_code
+    );
 
     const cardMessage =
       i18n.t('profile.cardTitle') +

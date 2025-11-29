@@ -108,18 +108,17 @@ describe('Message Reminder Cron', () => {
 
     // Verify sendPush was called
     expect(mockSendPush).toHaveBeenCalledWith(
-        'userB',
-        PushType.MESSAGE_REMINDER,
-        expect.stringMatching(/push.messageReminder[ABC]/), // Key
-        expect.objectContaining({
-            masked_partner_name: expect.stringMatching(/User A/), // Should be masked version
-            last_message_preview: 'Hello World',
-        }),
-        'zh-TW',
-        expect.objectContaining({
-            reply_markup: expect.anything() // Buttons
-        })
+      'userB',
+      PushType.MESSAGE_REMINDER,
+      expect.stringMatching(/push.messageReminder[ABC]/), // Key
+      expect.objectContaining({
+        masked_partner_name: expect.stringMatching(/User A/), // Should be masked version
+        last_message_preview: 'Hello World',
+      }),
+      'zh-TW',
+      expect.objectContaining({
+        reply_markup: expect.anything(), // Buttons
+      })
     );
   });
 });
-

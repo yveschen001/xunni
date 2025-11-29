@@ -66,7 +66,7 @@ export class FilterEngine {
     }
 
     // 4. System Triggers (Automation)
-    
+
     // Birthday Trigger: Match month and day
     // SQLite strftime('%m-%d', birthday) returns 'MM-DD'
     if (filters.is_birthday) {
@@ -74,7 +74,7 @@ export class FilterEngine {
     }
 
     // Active within X days (Default 30 days if not specified, but flexible)
-    // If last_active_days is explicit, use it. 
+    // If last_active_days is explicit, use it.
     // Otherwise, enforce a default safe limit (e.g. 90 days) to avoid zombie accounts?
     // Let's stick to the Spec: "Default 30 days active" if not specified in automation,
     // but for manual broadcast, maybe we want to reach dormant users too?
@@ -93,8 +93,11 @@ export class FilterEngine {
     const { sql, params } = this.buildQuery(filters);
     // Replace SELECT telegram_id with SELECT COUNT(*)
     const countSql = sql.replace('SELECT telegram_id', 'SELECT COUNT(*) as count');
-    
-    const result = await this.db.prepare(countSql).bind(...params).first<{ count: number }>();
+
+    const result = await this.db
+      .prepare(countSql)
+      .bind(...params)
+      .first<{ count: number }>();
     return result?.count || 0;
   }
 
@@ -105,9 +108,11 @@ export class FilterEngine {
    */
   async getMatchingUserIds(filters: BroadcastFilters): Promise<string[]> {
     const { sql, params } = this.buildQuery(filters);
-    const results = await this.db.prepare(sql).bind(...params).all<{ telegram_id: string }>();
-    
-    return results.results.map(r => r.telegram_id);
+    const results = await this.db
+      .prepare(sql)
+      .bind(...params)
+      .all<{ telegram_id: string }>();
+
+    return results.results.map((r) => r.telegram_id);
   }
 }
-

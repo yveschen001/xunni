@@ -63,8 +63,10 @@ export async function checkAndDisableExpiredMaintenance(env: Env): Promise<void>
     const { createI18n } = await import('~/i18n');
     const i18n = createI18n('zh-TW'); // Default to Chinese for system messages
     const recoveryMessage =
-      i18n.t('maintenance.completed') + '\n\n' +
-      i18n.t('maintenance.serviceRestored') + '\n\n' +
+      i18n.t('maintenance.completed') +
+      '\n\n' +
+      i18n.t('maintenance.serviceRestored') +
+      '\n\n' +
       i18n.t('maintenance.allFeaturesAvailable');
 
     // Use system as the sender

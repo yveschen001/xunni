@@ -11,12 +11,16 @@ export interface UserPushPreferences {
 
 /**
  * Check if the current time falls within the user's quiet hours.
- * 
+ *
  * @param now The current time (UTC)
  * @param prefs The user's push preferences
  * @param defaultTimezoneOffset Default timezone offset if user timezone is invalid/missing (default 8 for Taipei)
  */
-export function isQuietHours(now: Date, prefs: UserPushPreferences, defaultTimezoneOffset: number = 8): boolean {
+export function isQuietHours(
+  now: Date,
+  prefs: UserPushPreferences,
+  defaultTimezoneOffset: number = 8
+): boolean {
   if (prefs.quiet_hours_start === undefined || prefs.quiet_hours_end === undefined) {
     return false;
   }

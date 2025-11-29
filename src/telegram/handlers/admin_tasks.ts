@@ -1,4 +1,3 @@
-
 import type { Env, TelegramMessage, TelegramCallbackQuery } from '~/types';
 import type { Task } from '~/domain/task';
 import { createDatabaseClient } from '~/db/client';
@@ -28,12 +27,12 @@ export async function handleAdminTasks(message: TelegramMessage, env: Env): Prom
 
   try {
     const tasks = await service.getTasks();
-    
+
     let text = '📋 **任務管理系統**\n\n';
-    
+
     // Group by category
-    const systemTasks = tasks.filter(t => t.category !== 'social');
-    const socialTasks = tasks.filter(t => t.category === 'social');
+    const systemTasks = tasks.filter((t) => t.category !== 'social');
+    const socialTasks = tasks.filter((t) => t.category === 'social');
 
     text += `🔧 **系統任務** (${systemTasks.length})\n`;
     for (const t of systemTasks) {
@@ -41,15 +40,17 @@ export async function handleAdminTasks(message: TelegramMessage, env: Env): Prom
     }
 
     text += `\n📢 **社群任務** (${socialTasks.length})\n`;
-    
+
     const buttons: any[][] = [];
-    
+
     for (const t of socialTasks) {
       const statusEmoji = t.is_enabled ? '✅' : '⏸️';
-      buttons.push([{
-        text: `${statusEmoji} ${t.icon || '📢'} ${t.name}`,
-        callback_data: `admin_task_view_${t.id}`
-      }]);
+      buttons.push([
+        {
+          text: `${statusEmoji} ${t.icon || '📢'} ${t.name}`,
+          callback_data: `admin_task_view_${t.id}`,
+        },
+      ]);
     }
 
     // Actions
@@ -96,8 +97,8 @@ export async function handleAdminTaskCallback(
     if (data.startsWith('admin_task_view_')) {
       const taskId = data.replace('admin_task_view_', '');
       const tasks = await service.getTasks();
-      const task = tasks.find(t => t.id === taskId);
-      
+      const task = tasks.find((t) => t.id === taskId);
+
       if (!task) {
         await telegram.sendMessage(chatId, '❌ 任務不存在');
         return;
@@ -115,17 +116,18 @@ export async function handleAdminTaskCallback(
 
       const buttons = [
         [
-          { text: task.is_enabled ? '⏸️ 暫停' : '▶️ 啟用', callback_data: `admin_task_toggle_${task.id}` },
-          { text: '✏️ 編輯', callback_data: `admin_task_edit_${task.id}` }
+          {
+            text: task.is_enabled ? '⏸️ 暫停' : '▶️ 啟用',
+            callback_data: `admin_task_toggle_${task.id}`,
+          },
+          { text: '✏️ 編輯', callback_data: `admin_task_edit_${task.id}` },
         ],
-        [
-          { text: '🗑️ 刪除', callback_data: `admin_task_delete_${task.id}` }
-        ],
-        [{ text: '🔙 返回', callback_data: 'admin_task_refresh' }]
+        [{ text: '🗑️ 刪除', callback_data: `admin_task_delete_${task.id}` }],
+        [{ text: '🔙 返回', callback_data: 'admin_task_refresh' }],
       ];
 
       await telegram.editMessageText(chatId, callbackQuery.message!.message_id, info, {
-        reply_markup: { inline_keyboard: buttons }
+        reply_markup: { inline_keyboard: buttons },
       });
       return;
     }
@@ -133,7 +135,7 @@ export async function handleAdminTaskCallback(
     if (data.startsWith('admin_task_toggle_')) {
       const taskId = data.replace('admin_task_toggle_', '');
       const tasks = await service.getTasks();
-      const task = tasks.find(t => t.id === taskId);
+      const task = tasks.find((t) => t.id === taskId);
       if (task) {
         await service.editTask(taskId, { is_enabled: !task.is_enabled });
         const newCallback = { ...callbackQuery, data: `admin_task_view_${taskId}` };
@@ -161,9 +163,19 @@ export async function handleAdminTaskCallback(
     if (data.startsWith('wizard_verify_')) {
       const type = data.replace('wizard_verify_', '') as 'none' | 'telegram_chat';
       if (type === 'telegram_chat') {
-        await updateWizardStep(chatId, telegramId, { step: 'target_id', task_data: { verification_type: type } }, env);
+        await updateWizardStep(
+          chatId,
+          telegramId,
+          { step: 'target_id', task_data: { verification_type: type } },
+          env
+        );
       } else {
-        await updateWizardStep(chatId, telegramId, { step: 'reward', task_data: { verification_type: type } }, env);
+        await updateWizardStep(
+          chatId,
+          telegramId,
+          { step: 'reward', task_data: { verification_type: type } },
+          env
+        );
       }
       return;
     }
@@ -178,7 +190,6 @@ export async function handleAdminTaskCallback(
       await telegram.sendMessage(chatId, '🚫 操作已取消');
       return;
     }
-
   } catch (error) {
     console.error('[handleAdminTaskCallback] Error:', error);
     await telegram.sendMessage(chatId, `❌ 錯誤: ${(error as Error).message}`);
@@ -224,25 +235,21 @@ async function startTaskWizard(chatId: number, telegramId: string, env: Env) {
 
   await upsertSession(db, telegramId, SESSION_TYPE, { data: initialData });
 
-  await telegram.sendMessageWithButtons(
-    chatId,
-    '🆕 **創建社群任務**\n\n請選擇圖示：',
+  await telegram.sendMessageWithButtons(chatId, '🆕 **創建社群任務**\n\n請選擇圖示：', [
     [
-      [
-        { text: '📢', callback_data: 'wizard_icon_📢' },
-        { text: '🐦', callback_data: 'wizard_icon_🐦' },
-        { text: '✈️', callback_data: 'wizard_icon_✈️' },
-        { text: '📸', callback_data: 'wizard_icon_📸' }
-      ],
-      [
-        { text: '🌐', callback_data: 'wizard_icon_🌐' },
-        { text: '💬', callback_data: 'wizard_icon_💬' },
-        { text: '📺', callback_data: 'wizard_icon_📺' },
-        { text: '🎮', callback_data: 'wizard_icon_🎮' }
-      ],
-      [{ text: '🚫 取消', callback_data: 'wizard_cancel_task' }]
-    ]
-  );
+      { text: '📢', callback_data: 'wizard_icon_📢' },
+      { text: '🐦', callback_data: 'wizard_icon_🐦' },
+      { text: '✈️', callback_data: 'wizard_icon_✈️' },
+      { text: '📸', callback_data: 'wizard_icon_📸' },
+    ],
+    [
+      { text: '🌐', callback_data: 'wizard_icon_🌐' },
+      { text: '💬', callback_data: 'wizard_icon_💬' },
+      { text: '📺', callback_data: 'wizard_icon_📺' },
+      { text: '🎮', callback_data: 'wizard_icon_🎮' },
+    ],
+    [{ text: '🚫 取消', callback_data: 'wizard_cancel_task' }],
+  ]);
 }
 
 async function updateWizardStep(
@@ -253,7 +260,7 @@ async function updateWizardStep(
 ) {
   const db = createDatabaseClient(env.DB);
   const telegram = createTelegramService(env);
-  
+
   const session = await getActiveSession(db, telegramId, SESSION_TYPE);
   if (!session) return;
 
@@ -261,7 +268,7 @@ async function updateWizardStep(
   const newData: WizardData = {
     ...currentData,
     step: updates.step || currentData.step,
-    task_data: { ...currentData.task_data, ...updates.task_data }
+    task_data: { ...currentData.task_data, ...updates.task_data },
   };
 
   await upsertSession(db, telegramId, SESSION_TYPE, { data: newData });
@@ -277,14 +284,10 @@ async function updateWizardStep(
       await telegram.sendMessage(chatId, '請輸入 **跳轉 URL** (https://...):');
       break;
     case 'verify_type':
-      await telegram.sendMessageWithButtons(
-        chatId,
-        '請選擇 **驗證方式**:',
-        [
-          [{ text: '無需驗證 (點擊即領)', callback_data: 'wizard_verify_none' }],
-          [{ text: 'Telegram 群組/頻道檢查', callback_data: 'wizard_verify_telegram_chat' }]
-        ]
-      );
+      await telegram.sendMessageWithButtons(chatId, '請選擇 **驗證方式**:', [
+        [{ text: '無需驗證 (點擊即領)', callback_data: 'wizard_verify_none' }],
+        [{ text: 'Telegram 群組/頻道檢查', callback_data: 'wizard_verify_telegram_chat' }],
+      ]);
       break;
     case 'target_id':
       await telegram.sendMessage(chatId, '請輸入 **Target ID** (@channel 或 Chat ID):');
@@ -309,14 +312,20 @@ Target: ${t.target_id || 'N/A'}
 `;
       await telegram.sendMessageWithButtons(chatId, msg, [
         [{ text: '🚀 確認發布', callback_data: 'wizard_confirm_task' }],
-        [{ text: '🚫 取消', callback_data: 'wizard_cancel_task' }]
+        [{ text: '🚫 取消', callback_data: 'wizard_cancel_task' }],
       ]);
       break;
     }
   }
 }
 
-async function handleTaskWizardInput(chatId: number, telegramId: string, text: string, env: Env, session: any) {
+async function handleTaskWizardInput(
+  chatId: number,
+  telegramId: string,
+  text: string,
+  env: Env,
+  session: any
+) {
   const data = parseSessionData(session).data as WizardData;
   const telegram = createTelegramService(env);
 
@@ -328,26 +337,47 @@ async function handleTaskWizardInput(chatId: number, telegramId: string, text: s
     }
     case 'desc': {
       if (text.length > 50) return telegram.sendMessage(chatId, '❌ 描述太長 (Max 50字)');
-      await updateWizardStep(chatId, telegramId, { step: 'url', task_data: { description: text } }, env);
+      await updateWizardStep(
+        chatId,
+        telegramId,
+        { step: 'url', task_data: { description: text } },
+        env
+      );
       break;
     }
     case 'url': {
       try {
         new URL(text);
-        await updateWizardStep(chatId, telegramId, { step: 'verify_type', task_data: { action_url: text } }, env);
+        await updateWizardStep(
+          chatId,
+          telegramId,
+          { step: 'verify_type', task_data: { action_url: text } },
+          env
+        );
       } catch {
         return telegram.sendMessage(chatId, '❌ 無效 URL');
       }
       break;
     }
     case 'target_id': {
-      await updateWizardStep(chatId, telegramId, { step: 'reward', task_data: { target_id: text } }, env);
+      await updateWizardStep(
+        chatId,
+        telegramId,
+        { step: 'reward', task_data: { target_id: text } },
+        env
+      );
       break;
     }
     case 'reward': {
       const amount = parseInt(text, 10);
-      if (isNaN(amount) || amount < 1 || amount > 10) return telegram.sendMessage(chatId, '❌ 請輸入 1-10');
-      await updateWizardStep(chatId, telegramId, { step: 'confirm', task_data: { reward_amount: amount } }, env);
+      if (isNaN(amount) || amount < 1 || amount > 10)
+        return telegram.sendMessage(chatId, '❌ 請輸入 1-10');
+      await updateWizardStep(
+        chatId,
+        telegramId,
+        { step: 'confirm', task_data: { reward_amount: amount } },
+        env
+      );
       break;
     }
   }
@@ -357,12 +387,12 @@ async function finalizeTaskWizard(chatId: number, telegramId: string, env: Env) 
   const db = createDatabaseClient(env.DB);
   const telegram = createTelegramService(env);
   const service = new AdminTasksService(env.DB, env, telegramId);
-  
+
   const session = await getActiveSession(db, telegramId, SESSION_TYPE);
   if (!session) return;
 
   const data = parseSessionData(session).data as WizardData;
-  
+
   try {
     await service.createSocialTask(data.task_data as any);
     await deleteSession(db, telegramId, SESSION_TYPE);
@@ -374,4 +404,3 @@ async function finalizeTaskWizard(chatId: number, telegramId: string, env: Env) 
     await telegram.sendMessage(chatId, `❌ 錯誤: ${(error as Error).message}`);
   }
 }
-

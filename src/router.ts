@@ -63,9 +63,10 @@ export async function routeUpdate(update: TelegramUpdate, env: Env): Promise<voi
   // 🌍 Pre-load translations based on user's language
   // This ensures i18n.t() works synchronously in all handlers
   let userLang = 'zh-TW'; // Default
-  
+
   try {
-    const fromUser = update.message?.from || update.callback_query?.from || update.pre_checkout_query?.from;
+    const fromUser =
+      update.message?.from || update.callback_query?.from || update.pre_checkout_query?.from;
     if (fromUser) {
       const telegramId = fromUser.id.toString();
       // Try to get language from DB first (most accurate)
@@ -77,7 +78,7 @@ export async function routeUpdate(update: TelegramUpdate, env: Env): Promise<voi
         userLang = fromUser.language_code;
       }
     }
-    
+
     // Load translations into memory cache (async)
     const { loadTranslations } = await import('./i18n');
     await loadTranslations(env, userLang);
@@ -125,10 +126,7 @@ export async function routeUpdate(update: TelegramUpdate, env: Env): Promise<voi
           // User is in a conversation, reject media
           const { createI18n } = await import('./i18n');
           const i18n = createI18n(user.language_pref || 'zh-TW');
-          await telegram.sendMessage(
-            chatId,
-            i18n.t('warning.text8')
-          );
+          await telegram.sendMessage(chatId, i18n.t('warning.text8'));
           return;
         }
       }
@@ -284,8 +282,10 @@ export async function routeUpdate(update: TelegramUpdate, env: Env): Promise<voi
 
         // Check if replying to throw bottle prompt (#THROW tag or ForceReply prompt)
 
-        
-        if (replyToText.includes('#THROW') || replyToText.includes(routerI18n.t('router.throwPrompt'))) {
+        if (
+          replyToText.includes('#THROW') ||
+          replyToText.includes(routerI18n.t('router.throwPrompt'))
+        ) {
           console.error('[router] Detected reply to throw bottle prompt:', {
             userId: user.telegram_id,
             contentLength: text.length,
@@ -332,9 +332,13 @@ export async function routeUpdate(update: TelegramUpdate, env: Env): Promise<voi
           }
         } else if (replyToText.includes(routerI18n.t('conversation.newMessageNotification'))) {
           const newMessagePattern = new RegExp(
-            routerI18n.t('conversation.newMessageNotification').replace(/[.*+?^${}()|[\]\\]/g, '\\$&') +
+            routerI18n
+              .t('conversation.newMessageNotification')
+              .replace(/[.*+?^${}()|[\]\\]/g, '\\$&') +
               '([A-Z0-9]+)' +
-              routerI18n.t('conversation.newMessageNotificationSuffix').replace(/[.*+?^${}()|[\]\\]/g, '\\$&')
+              routerI18n
+                .t('conversation.newMessageNotificationSuffix')
+                .replace(/[.*+?^${}()|[\]\\]/g, '\\$&')
           );
           const match = replyToText.match(newMessagePattern);
           if (match) {
@@ -394,14 +398,22 @@ export async function routeUpdate(update: TelegramUpdate, env: Env): Promise<voi
       const i18n = createI18n(user.language_pref || 'zh-TW');
       await telegram.sendMessage(
         message.chat.id,
-        i18n.t('tutorial.clickButtonHint') + '\n\n' +
-          i18n.t('tutorial.throwBottleDesc') + '\n' +
-          i18n.t('tutorial.catchBottleDesc') + '\n' +
-          i18n.t('tutorial.completeTasksForBottles') + '\n\n' +
-          i18n.t('tutorial.availableCommands') + '：\n' +
-          i18n.t('tutorial.commandThrow') + '\n' +
-          i18n.t('tutorial.commandCatch') + '\n' +
-          i18n.t('tutorial.commandTasks') + '\n' +
+        i18n.t('tutorial.clickButtonHint') +
+          '\n\n' +
+          i18n.t('tutorial.throwBottleDesc') +
+          '\n' +
+          i18n.t('tutorial.catchBottleDesc') +
+          '\n' +
+          i18n.t('tutorial.completeTasksForBottles') +
+          '\n\n' +
+          i18n.t('tutorial.availableCommands') +
+          '：\n' +
+          i18n.t('tutorial.commandThrow') +
+          '\n' +
+          i18n.t('tutorial.commandCatch') +
+          '\n' +
+          i18n.t('tutorial.commandTasks') +
+          '\n' +
           i18n.t('tutorial.commandMenu')
       );
       return;
@@ -619,7 +631,7 @@ export async function routeUpdate(update: TelegramUpdate, env: Env): Promise<voi
       const user = await findUserByTelegramId(db, telegramId);
       const { createI18n } = await import('./i18n');
       const i18n = createI18n(user?.language_pref || 'zh-TW');
-      
+
       const isUserSuperAdmin = isSuperAdmin(telegramId); // Check purely by ID first (fast check)
       console.log(`[Router] isSuperAdmin(${telegramId}) = ${isUserSuperAdmin}`);
 
@@ -695,11 +707,11 @@ export async function routeUpdate(update: TelegramUpdate, env: Env): Promise<voi
       if (!adminBanModule.isAdmin(telegramId, env)) {
         return;
       }
-      
+
       const { handleMatchPush } = await import('./telegram/handlers/cron_match_push');
       // const { createDatabaseClient } = await import('./db/client');
       // const db = createDatabaseClient(env.DB);
-      
+
       await telegram.sendMessage(chatId, 'Testing Smart Match Push for your user...');
       await handleMatchPush(env, env.DB, telegramId);
       return;
@@ -711,14 +723,20 @@ export async function routeUpdate(update: TelegramUpdate, env: Env): Promise<voi
       if (!adminBanModule.isAdmin(telegramId, env)) {
         return;
       }
-      
+
       const { handlePushReminders } = await import('./telegram/handlers/cron_push');
-      
-      await telegram.sendMessage(chatId, 'Testing Retention Pushes (Throw/Catch/Message) for all eligible users...');
+
+      await telegram.sendMessage(
+        chatId,
+        'Testing Retention Pushes (Throw/Catch/Message) for all eligible users...'
+      );
       // Note: handlePushReminders processes batches of users. It doesn't target a specific user yet.
       // But we can run it to see if it triggers for anyone (including the admin if eligible).
       await handlePushReminders(env);
-      await telegram.sendMessage(chatId, 'Retention Pushes check completed. Check logs for details.');
+      await telegram.sendMessage(
+        chatId,
+        'Retention Pushes check completed. Check logs for details.'
+      );
       return;
     }
 
@@ -986,27 +1004,29 @@ export async function routeUpdate(update: TelegramUpdate, env: Env): Promise<voi
 
     // Unknown command for completed users - provide smart suggestions
     // lowerText is already defined at the top
-    
+
     // Check if user is trying to throw a bottle
     // Note: These are keyword matches for smart suggestions, not display strings
     // They match user input in any language to provide helpful suggestions
-    if (lowerText.includes('丟') || lowerText.includes('瓶子') || lowerText.includes('漂流瓶') || 
-        lowerText.includes('throw') || lowerText.includes('bottle') || lowerText.includes('drift')) {
+    if (
+      lowerText.includes('丟') ||
+      lowerText.includes('瓶子') ||
+      lowerText.includes('漂流瓶') ||
+      lowerText.includes('throw') ||
+      lowerText.includes('bottle') ||
+      lowerText.includes('drift')
+    ) {
       const { createI18n } = await import('./i18n');
       const i18n = createI18n(user.language_pref || 'zh-TW');
-      await telegram.sendMessage(
-        chatId,
-        i18n.t('common.bottle13'),
-        {
-          reply_markup: {
-            inline_keyboard: [
-              [{ text: i18n.t('buttons.bottle3'), callback_data: 'throw' }],
-              [{ text: i18n.t('buttons.bottle4'), callback_data: 'catch' }],
-              [{ text: i18n.t('common.back3'), callback_data: 'return_to_menu' }],
-            ],
-          },
-        }
-      );
+      await telegram.sendMessage(chatId, i18n.t('common.bottle13'), {
+        reply_markup: {
+          inline_keyboard: [
+            [{ text: i18n.t('buttons.bottle3'), callback_data: 'throw' }],
+            [{ text: i18n.t('buttons.bottle4'), callback_data: 'catch' }],
+            [{ text: i18n.t('common.back3'), callback_data: 'return_to_menu' }],
+          ],
+        },
+      });
       return;
     }
 
@@ -1014,19 +1034,15 @@ export async function routeUpdate(update: TelegramUpdate, env: Env): Promise<voi
     if (lowerText.includes('撿') || lowerText.includes('看') || lowerText.includes('catch')) {
       const { createI18n } = await import('./i18n');
       const i18n = createI18n(user.language_pref || 'zh-TW');
-      await telegram.sendMessage(
-        chatId,
-        i18n.t('common.bottle9'),
-        {
-          reply_markup: {
-            inline_keyboard: [
-              [{ text: i18n.t('buttons.bottle4'), callback_data: 'catch' }],
-              [{ text: i18n.t('buttons.bottle3'), callback_data: 'throw' }],
-              [{ text: i18n.t('common.back3'), callback_data: 'return_to_menu' }],
-            ],
-          },
-        }
-      );
+      await telegram.sendMessage(chatId, i18n.t('common.bottle9'), {
+        reply_markup: {
+          inline_keyboard: [
+            [{ text: i18n.t('buttons.bottle4'), callback_data: 'catch' }],
+            [{ text: i18n.t('buttons.bottle3'), callback_data: 'throw' }],
+            [{ text: i18n.t('common.back3'), callback_data: 'return_to_menu' }],
+          ],
+        },
+      });
       return;
     }
 
@@ -1044,20 +1060,14 @@ export async function routeUpdate(update: TelegramUpdate, env: Env): Promise<voi
       // Send a prompt message that user can reply to
       const { createI18n } = await import('./i18n');
       const i18n = createI18n(user.language_pref || 'zh-TW');
-      await telegram.sendMessage(
-        chatId,
-        i18n.t('router.suggestThrow')
-      );
+      await telegram.sendMessage(chatId, i18n.t('router.suggestThrow'));
       return;
     }
 
     // Default unknown command
     const { createI18n } = await import('./i18n');
     const i18n = createI18n(user.language_pref || 'zh-TW');
-    await telegram.sendMessage(
-      chatId,
-      i18n.t('router.suggestMenu')
-    );
+    await telegram.sendMessage(chatId, i18n.t('router.suggestMenu'));
     return;
   }
 
@@ -1111,7 +1121,7 @@ export async function routeUpdate(update: TelegramUpdate, env: Env): Promise<voi
       if (data === 'lang_back') {
         // Go back to main menu instead of popular languages if coming from menu
         // Or if coming from onboarding, show popular languages?
-        // But popular languages view is onboarding only. 
+        // But popular languages view is onboarding only.
         // If user is accessing language settings from /settings -> lang_more -> lang_page_x -> lang_back
         // Then lang_back should go back to... popular languages? Or settings?
         // Let's assume lang_back goes back to popular languages view (page 0 essentially but formatted differently)
@@ -1136,12 +1146,12 @@ export async function routeUpdate(update: TelegramUpdate, env: Env): Promise<voi
             }
           );
         } else {
-            // If message is missing (rare), send a new one
-            await telegram.sendMessageWithButtons(
-                chatId,
-                i18n.t('onboarding.welcome'),
-                getPopularLanguageButtons(i18n)
-            );
+          // If message is missing (rare), send a new one
+          await telegram.sendMessageWithButtons(
+            chatId,
+            i18n.t('onboarding.welcome'),
+            getPopularLanguageButtons(i18n)
+          );
         }
         await telegram.answerCallbackQuery(callbackQuery.id);
         return;
@@ -1548,7 +1558,11 @@ export async function routeUpdate(update: TelegramUpdate, env: Env): Promise<voi
 
     if (data === 'country_select') {
       const { showCountrySelection } = await import('./telegram/handlers/country_selection');
-      await showCountrySelection(callbackQuery.message!.chat.id, env, callbackQuery.from.id.toString());
+      await showCountrySelection(
+        callbackQuery.message!.chat.id,
+        env,
+        callbackQuery.from.id.toString()
+      );
       await telegram.answerCallbackQuery(callbackQuery.id);
       return;
     }
@@ -1712,7 +1726,7 @@ export async function routeUpdate(update: TelegramUpdate, env: Env): Promise<voi
         ...callbackQuery.message!,
         from: callbackQuery.from,
         text: `/history ${conversationIdentifier}`,
-        chat: callbackQuery.message!.chat
+        chat: callbackQuery.message!.chat,
       };
       await handleHistory(fakeMessage as any, env);
       await telegram.answerCallbackQuery(callbackQuery.id);
@@ -1869,7 +1883,7 @@ export async function routeUpdate(update: TelegramUpdate, env: Env): Promise<voi
       const { handleVip } = await import('./telegram/handlers/vip');
       await handleVip(fakeMessage as any, env);
       // Delete the previous message to clean up UI (optional, but handleVip sends new message)
-      // Actually handleVip sends a NEW message. 
+      // Actually handleVip sends a NEW message.
       // If we want to replace, we should modify handleVip or just delete old one here.
       // Let's delete old one to keep chat clean.
       await telegram.deleteMessage(chatId, callbackQuery.message!.message_id);
@@ -1930,14 +1944,27 @@ export async function routeUpdate(update: TelegramUpdate, env: Env): Promise<voi
     }
 
     // Admin Ad Callbacks
-    if (data.startsWith('admin_ad_') || data.startsWith('wizard_') && !data.startsWith('wizard_icon_') && !data.startsWith('wizard_verify_') && !data.startsWith('wizard_confirm_task') && !data.startsWith('wizard_cancel_task')) {
+    if (
+      data.startsWith('admin_ad_') ||
+      (data.startsWith('wizard_') &&
+        !data.startsWith('wizard_icon_') &&
+        !data.startsWith('wizard_verify_') &&
+        !data.startsWith('wizard_confirm_task') &&
+        !data.startsWith('wizard_cancel_task'))
+    ) {
       const { handleAdminAdCallback } = await import('./telegram/handlers/admin_ads');
       await handleAdminAdCallback(callbackQuery, env);
       return;
     }
 
     // Admin Task Callbacks
-    if (data.startsWith('admin_task_') || data.startsWith('wizard_icon_') || data.startsWith('wizard_verify_') || data === 'wizard_confirm_task' || data === 'wizard_cancel_task') {
+    if (
+      data.startsWith('admin_task_') ||
+      data.startsWith('wizard_icon_') ||
+      data.startsWith('wizard_verify_') ||
+      data === 'wizard_confirm_task' ||
+      data === 'wizard_cancel_task'
+    ) {
       const { handleAdminTaskCallback } = await import('./telegram/handlers/admin_tasks');
       await handleAdminTaskCallback(callbackQuery, env);
       return;
@@ -1951,7 +1978,7 @@ export async function routeUpdate(update: TelegramUpdate, env: Env): Promise<voi
       // parts[0] is action, parts[1] is targetId
       const action = parts[0];
       const targetId = parts[1];
-      
+
       if (action && targetId) {
         await handleAdminOpsCallback(callbackQuery, action, targetId, env);
         return;
@@ -1971,7 +1998,7 @@ export async function routeUpdate(update: TelegramUpdate, env: Env): Promise<voi
       // blood: A, B...
       const topic = parts[0];
       const target = parts.slice(1).join('_'); // Rejoin rest in case target has _ (unlikely but safe)
-      
+
       await handleMatchVip(callbackQuery, topic, target, env);
       return;
     }

@@ -91,7 +91,10 @@ async function handleNicknameInput(
   const validation = validateNickname(nickname);
   if (!validation.valid) {
     const i18n = createI18n(user.language_pref || 'zh-TW');
-    await telegram.sendMessage(chatId, i18n.t('onboarding.nicknameError', { error: validation.error }));
+    await telegram.sendMessage(
+      chatId,
+      i18n.t('onboarding.nicknameError', { error: validation.error })
+    );
     return true;
   }
 
@@ -131,14 +134,14 @@ async function handleBirthdayInput(
   _db: ReturnType<typeof createDatabaseClient>
 ): Promise<boolean> {
   const i18n = createI18n(user.language_pref || 'zh-TW');
-  
+
   // Validate birthday
   const validation = validateBirthday(birthday);
   if (!validation.valid) {
     await telegram.sendMessage(
       chatId,
       i18n.t('onboarding.birthdayError', { error: validation.error }) +
-      i18n.t('onboarding.birthdayRetry')
+        i18n.t('onboarding.birthdayRetry')
     );
     return true;
   }
@@ -225,8 +228,18 @@ async function handleAntiFraudInput(
         i18n.t('onboarding.text7'),
       [
         [{ text: i18n.t('onboarding.terms.agree_button'), callback_data: 'agree_terms' }],
-        [{ text: i18n.t('onboarding.terms.privacy_policy_button'), url: LEGAL_URLS.PRIVACY_POLICY }],
-        [{ text: i18n.t('onboarding.terms.terms_of_service_button'), url: LEGAL_URLS.TERMS_OF_SERVICE }],
+        [
+          {
+            text: i18n.t('onboarding.terms.privacy_policy_button'),
+            url: LEGAL_URLS.PRIVACY_POLICY,
+          },
+        ],
+        [
+          {
+            text: i18n.t('onboarding.terms.terms_of_service_button'),
+            url: LEGAL_URLS.TERMS_OF_SERVICE,
+          },
+        ],
       ]
     );
 

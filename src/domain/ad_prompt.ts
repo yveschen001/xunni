@@ -54,7 +54,8 @@ export function getAdPrompt(context: AdPromptContext, i18n?: any): AdPromptResul
     const remaining = MAX_DAILY_ADS - ads_watched_today;
     return {
       show_button: true,
-      button_text: i18n?.t('buttons.bottle', { remaining }) || `📺 看廣告獲取更多瓶子 🎁 (${remaining}/20)`,
+      button_text:
+        i18n?.t('buttons.bottle', { remaining }) || `📺 看廣告獲取更多瓶子 🎁 (${remaining}/20)`,
       button_callback: 'watch_ad',
       priority: 'ad',
     };
@@ -64,7 +65,8 @@ export function getAdPrompt(context: AdPromptContext, i18n?: any): AdPromptResul
   if (has_incomplete_tasks && next_task_name && next_task_id) {
     return {
       show_button: true,
-      button_text: i18n?.t('adPrompt.taskButton', { taskName: next_task_name }) || `✨ ${next_task_name} 🎁`,
+      button_text:
+        i18n?.t('adPrompt.taskButton', { taskName: next_task_name }) || `✨ ${next_task_name} 🎁`,
       button_callback: `next_task_${next_task_id}`,
       priority: 'task',
     };
@@ -104,7 +106,8 @@ export function getQuotaExhaustedButtons(
     const remaining = MAX_DAILY_ADS - ads_watched_today;
     buttons.push([
       {
-        text: i18n?.t('buttons.bottle', { remaining }) || `📺 看廣告獲取更多瓶子 🎁 (${remaining}/20)`,
+        text:
+          i18n?.t('buttons.bottle', { remaining }) || `📺 看廣告獲取更多瓶子 🎁 (${remaining}/20)`,
         callback_data: 'watch_ad',
       },
     ]);
@@ -114,7 +117,8 @@ export function getQuotaExhaustedButtons(
   if (has_incomplete_tasks && next_task_name && next_task_id) {
     buttons.push([
       {
-        text: i18n?.t('adPrompt.taskButton', { taskName: next_task_name }) || `✨ ${next_task_name} 🎁`,
+        text:
+          i18n?.t('adPrompt.taskButton', { taskName: next_task_name }) || `✨ ${next_task_name} 🎁`,
         callback_data: `next_task_${next_task_id}`,
       },
     ]);
@@ -134,11 +138,19 @@ export function getQuotaExhaustedButtons(
 /**
  * Get quota exhausted message
  */
-export function getQuotaExhaustedMessage(quotaDisplay: string, context: AdPromptContext, i18n?: any): string {
+export function getQuotaExhaustedMessage(
+  quotaDisplay: string,
+  context: AdPromptContext,
+  i18n?: any
+): string {
   const { ads_watched_today, has_incomplete_tasks } = context;
 
   if (i18n) {
-    let message = i18n.t('adPrompt.quotaExhausted', { quotaDisplay }) + '\n\n' + i18n.t('adPrompt.waysToGetMore') + '\n';
+    let message =
+      i18n.t('adPrompt.quotaExhausted', { quotaDisplay }) +
+      '\n\n' +
+      i18n.t('adPrompt.waysToGetMore') +
+      '\n';
 
     // Add ad option if available
     if (ads_watched_today < MAX_DAILY_ADS) {

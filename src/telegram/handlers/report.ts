@@ -21,7 +21,7 @@ export async function handleReport(message: TelegramMessage, env: Env): Promise<
     // Get user
     const user = await findUserByTelegramId(db, telegramId);
     const i18n = createI18n(user?.language_pref || 'zh-TW');
-    
+
     if (!user) {
       await telegram.sendMessage(chatId, i18n.t('report.userNotFound'));
       return;
@@ -136,7 +136,7 @@ export async function handleReportReason(
     // Get user
     const user = await findUserByTelegramId(db, telegramId);
     const i18n = createI18n(user?.language_pref || 'zh-TW');
-    
+
     if (!user) {
       await telegram.answerCallbackQuery(callbackQuery.id, i18n.t('warning.userNotFound2'));
       return;
@@ -189,13 +189,13 @@ export async function handleReportReason(
       )
       .bind(conversation.id)
       .all<{ content: string }>();
-    
-    const evidence = lastMessages.results?.map(m => m.content).reverse() || [];
+
+    const evidence = lastMessages.results?.map((m) => m.content).reverse() || [];
 
     // ✨ NEW: AI Analysis & Admin Logging
     const { ContentModerationService } = await import('~/services/content_moderation');
     const { AdminLogService } = await import('~/services/admin_log');
-    
+
     const aiService = new ContentModerationService(env);
     const logService = new AdminLogService(env);
 
@@ -203,14 +203,14 @@ export async function handleReportReason(
       reporter: telegramId,
       suspect: otherUserId,
       reason: reason,
-      messages: evidence
+      messages: evidence,
     });
 
     let actionTaken = 'Reported';
 
     // Check if user should be auto-banned (e.g., 3+ reports in 24h OR High AI Confidence)
     const recentReports = await getRecentReportCount(db, otherUserId);
-    
+
     if (aiResult.verdict === 'violation' && aiResult.confidence > 90) {
       // Immediate AI Ban
       await autoBanUser(
@@ -243,7 +243,7 @@ export async function handleReportReason(
       evidence: evidence,
       aiVerdict: aiResult.verdict,
       aiConfidence: aiResult.confidence,
-      actionTaken: actionTaken
+      actionTaken: actionTaken,
     });
 
     // Clear session
@@ -280,7 +280,7 @@ export async function handleReportCancel(callbackQuery: any, env: Env): Promise<
   const db = createDatabaseClient(env.DB);
   const chatId = callbackQuery.message!.chat.id;
   const telegramId = callbackQuery.from.id.toString();
-  
+
   const user = await findUserByTelegramId(db, telegramId);
   const i18n = createI18n(user?.language_pref || 'zh-TW');
 

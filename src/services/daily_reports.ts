@@ -74,12 +74,12 @@ export async function sendDailyReportsToSuperAdmins(env: Env): Promise<void> {
     try {
       const { AIAnalystService } = await import('./ai_analyst');
       const aiAnalyst = new AIAnalystService(env);
-      
+
       const combinedStats = {
         date: dateStr,
         daily_metrics: dailyReportData,
         ad_performance: adReportData,
-        vip_funnel: funnelReportData
+        vip_funnel: funnelReportData,
       };
 
       aiSummary = await aiAnalyst.analyzeDailyStats(combinedStats);
@@ -97,8 +97,12 @@ export async function sendDailyReportsToSuperAdmins(env: Env): Promise<void> {
         // Send header
         await telegram.sendMessage(
           parseInt(adminId),
-          i18n.t('dailyReports.header') + '\n' +
-            i18n.t('dailyReports.time', { time: new Date().toLocaleString('zh-TW', { timeZone: 'Asia/Taipei' }) }) + '\n' +
+          i18n.t('dailyReports.header') +
+            '\n' +
+            i18n.t('dailyReports.time', {
+              time: new Date().toLocaleString('zh-TW', { timeZone: 'Asia/Taipei' }),
+            }) +
+            '\n' +
             `━━━━━━━━━━━━━━━━`
         );
 
@@ -107,8 +111,8 @@ export async function sendDailyReportsToSuperAdmins(env: Env): Promise<void> {
 
         // 0. AI Summary (Priority)
         if (aiSummary) {
-           await telegram.sendMessage(parseInt(adminId), aiSummary);
-           await sleep(500);
+          await telegram.sendMessage(parseInt(adminId), aiSummary);
+          await sleep(500);
         }
 
         // 1. Daily Analytics

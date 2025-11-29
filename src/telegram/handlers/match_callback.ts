@@ -20,10 +20,10 @@ export async function handleMatchVip(
   const { createDatabaseClient } = await import('~/db/client');
   const db = createDatabaseClient(env.DB);
   const telegram = createTelegramService(env);
-  
+
   const user = await findUserByTelegramId(db, telegramId);
   if (!user) return;
-  
+
   const i18n = createI18n(user.language_pref || 'zh-TW');
 
   // Check if user is VIP
@@ -38,7 +38,7 @@ export async function handleMatchVip(
     if (topic === 'blood') options.target_blood = target;
 
     await telegram.answerCallbackQuery(callbackQuery.id, i18n.t('success.saved')); // Or some affirmation
-    
+
     // Call handleThrow with options
     // We need to construct a message-like object
     const fakeMessage = {
@@ -48,18 +48,17 @@ export async function handleMatchVip(
     };
 
     await handleThrow(fakeMessage as any, env, options);
-
   } else {
     // Non-VIP: Upsell
     // Translate target for better message
     let targetDisplay = target;
     if (topic === 'zodiac') {
-       const { getZodiacDisplay } = await import('~/domain/zodiac');
-       targetDisplay = getZodiacDisplay(target, i18n);
+      const { getZodiacDisplay } = await import('~/domain/zodiac');
+      targetDisplay = getZodiacDisplay(target, i18n);
     }
 
     await telegram.answerCallbackQuery(callbackQuery.id, i18n.t('common.vipRequired'));
-    
+
     // Send Upsell Message
     await telegram.sendMessage(
       callbackQuery.message!.chat.id,
@@ -88,7 +87,7 @@ export async function handleMatchThrow(
   const db = createDatabaseClient(env.DB);
   const user = await findUserByTelegramId(db, callbackQuery.from.id.toString());
   const i18n = createI18n(user?.language_pref || 'zh-TW');
-  
+
   const telegram = createTelegramService(env);
   await telegram.answerCallbackQuery(callbackQuery.id, i18n.t('common.loading'));
 
@@ -98,7 +97,6 @@ export async function handleMatchThrow(
     from: callbackQuery.from,
     text: '/throw',
   };
-  
+
   await handleThrow(fakeMessage as any, env);
 }
-

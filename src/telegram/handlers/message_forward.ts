@@ -153,10 +153,7 @@ export async function handleMessageForward(
 
     // Check if conversation is active
     if (!isConversationActive(conversation)) {
-      await telegram.sendMessage(
-        chatId,
-        i18n.t('conversation.conversationEnded')
-      );
+      await telegram.sendMessage(chatId, i18n.t('conversation.conversationEnded'));
       return true;
     }
 
@@ -320,7 +317,8 @@ export async function handleMessageForward(
     const { maskNickname } = await import('~/domain/invite');
 
     // For sender's history: partner is receiver
-    const receiverNickname = receiver.nickname || receiver.username || i18n.t('common.anonymousUser');
+    const receiverNickname =
+      receiver.nickname || receiver.username || i18n.t('common.anonymousUser');
     const { formatNicknameWithFlag } = await import('~/utils/country_flag');
     const receiverPartnerInfo = {
       partnerTelegramId: receiverId,
@@ -419,14 +417,16 @@ export async function handleConversationReplyButton(
   const chatId = callbackQuery.message!.chat.id;
   const telegramId = callbackQuery.from.id.toString();
 
-  console.log(`[handleConversationReplyButton] Processing reply for identifier: ${conversationIdentifier}, userId: ${telegramId}`);
+  console.log(
+    `[handleConversationReplyButton] Processing reply for identifier: ${conversationIdentifier}, userId: ${telegramId}`
+  );
 
   try {
     // Get user
     const user = await findUserByTelegramId(db, telegramId);
     const { createI18n } = await import('~/i18n');
     const i18n = createI18n(user?.language_pref || 'zh-TW');
-    
+
     if (!user) {
       console.warn(`[handleConversationReplyButton] User not found: ${telegramId}`);
       await telegram.answerCallbackQuery(callbackQuery.id, i18n.t('errors.userNotFoundRegister'));
@@ -445,8 +445,13 @@ export async function handleConversationReplyButton(
       .first<{ partner_telegram_id: string }>();
 
     if (!identifierInfo) {
-      console.warn(`[handleConversationReplyButton] Identifier not found: ${conversationIdentifier}`);
-      await telegram.answerCallbackQuery(callbackQuery.id, i18n.t('conversation.conversationEnded'));
+      console.warn(
+        `[handleConversationReplyButton] Identifier not found: ${conversationIdentifier}`
+      );
+      await telegram.answerCallbackQuery(
+        callbackQuery.id,
+        i18n.t('conversation.conversationEnded')
+      );
       return;
     }
 
@@ -471,14 +476,20 @@ export async function handleConversationReplyButton(
 
     if (!conversation) {
       console.warn(`[handleConversationReplyButton] Conversation not found or not active`);
-      await telegram.answerCallbackQuery(callbackQuery.id, i18n.t('conversation.conversationEnded'));
+      await telegram.answerCallbackQuery(
+        callbackQuery.id,
+        i18n.t('conversation.conversationEnded')
+      );
       return;
     }
 
     // Check if conversation is active
     if (conversation.status !== 'active') {
       console.warn(`[handleConversationReplyButton] Conversation status is ${conversation.status}`);
-      await telegram.answerCallbackQuery(callbackQuery.id, i18n.t('conversation.conversationEnded'));
+      await telegram.answerCallbackQuery(
+        callbackQuery.id,
+        i18n.t('conversation.conversationEnded')
+      );
       return;
     }
 

@@ -43,8 +43,10 @@ export async function handleAdProviders(message: TelegramMessage, env: Env): Pro
     if (providers.length === 0) {
       await telegram.sendMessage(
         chatId,
-        i18n.t('admin.adConfig.noProviders') + '\n\n' +
-          i18n.t('admin.adConfig.addProviderScript') + '\n' +
+        i18n.t('admin.adConfig.noProviders') +
+          '\n\n' +
+          i18n.t('admin.adConfig.addProviderScript') +
+          '\n' +
           '`scripts/init-ad-providers-test.sql`'
       );
       return;
@@ -53,7 +55,9 @@ export async function handleAdProviders(message: TelegramMessage, env: Env): Pro
     let message_text = i18n.t('admin.adConfig.providerList') + '\n\n';
 
     for (const provider of providers) {
-      const status = provider.is_enabled ? i18n.t('admin.adConfig.enabled') : i18n.t('admin.adConfig.disabled');
+      const status = provider.is_enabled
+        ? i18n.t('admin.adConfig.enabled')
+        : i18n.t('admin.adConfig.disabled');
       const config = JSON.parse(provider.config);
 
       message_text += `**${provider.provider_display_name}**\n`;
@@ -100,7 +104,11 @@ export async function handleAdProviderEnable(message: TelegramMessage, env: Env)
     if (parts.length < 2) {
       await telegram.sendMessage(
         chatId,
-        i18n.t('admin.adConfig.usageError') + '\n\n' + i18n.t('admin.adConfig.correctFormat') + '\n' + `/ad_provider_enable <provider_id>`
+        i18n.t('admin.adConfig.usageError') +
+          '\n\n' +
+          i18n.t('admin.adConfig.correctFormat') +
+          '\n' +
+          `/ad_provider_enable <provider_id>`
       );
       return;
     }
@@ -112,7 +120,9 @@ export async function handleAdProviderEnable(message: TelegramMessage, env: Env)
 
     await telegram.sendMessage(
       chatId,
-      i18n.t('admin.adConfig.providerEnabled', { name: providerName }) + '\n\n' + i18n.t('admin.adConfig.viewAllProviders')
+      i18n.t('admin.adConfig.providerEnabled', { name: providerName }) +
+        '\n\n' +
+        i18n.t('admin.adConfig.viewAllProviders')
     );
   } catch (error) {
     console.error('[handleAdProviderEnable] Error:', error);
@@ -138,7 +148,11 @@ export async function handleAdProviderDisable(message: TelegramMessage, env: Env
     if (parts.length < 2) {
       await telegram.sendMessage(
         chatId,
-        i18n.t('admin.adConfig.usageError') + '\n\n' + i18n.t('admin.adConfig.correctFormat') + '\n' + `/ad_provider_disable <provider_id>`
+        i18n.t('admin.adConfig.usageError') +
+          '\n\n' +
+          i18n.t('admin.adConfig.correctFormat') +
+          '\n' +
+          `/ad_provider_disable <provider_id>`
       );
       return;
     }
@@ -150,7 +164,9 @@ export async function handleAdProviderDisable(message: TelegramMessage, env: Env
 
     await telegram.sendMessage(
       chatId,
-      i18n.t('admin.adConfig.providerDisabled', { name: providerName }) + '\n\n' + i18n.t('admin.adConfig.viewAllProviders')
+      i18n.t('admin.adConfig.providerDisabled', { name: providerName }) +
+        '\n\n' +
+        i18n.t('admin.adConfig.viewAllProviders')
     );
   } catch (error) {
     console.error('[handleAdProviderDisable] Error:', error);
@@ -176,10 +192,13 @@ export async function handleAdProviderPriority(message: TelegramMessage, env: En
     if (parts.length < 3) {
       await telegram.sendMessage(
         chatId,
-        i18n.t('admin.adConfig.usageError') + '\n\n' +
-          i18n.t('admin.adConfig.correctFormat') + '\n' +
+        i18n.t('admin.adConfig.usageError') +
+          '\n\n' +
+          i18n.t('admin.adConfig.correctFormat') +
+          '\n' +
           `/ad_provider_priority <provider_id> <priority>\n\n` +
-          i18n.t('admin.adConfig.example') + '\n' +
+          i18n.t('admin.adConfig.example') +
+          '\n' +
           `/ad_provider_priority gigapub_test 100`
       );
       return;
@@ -198,9 +217,12 @@ export async function handleAdProviderPriority(message: TelegramMessage, env: En
 
     await telegram.sendMessage(
       chatId,
-      i18n.t('admin.adConfig.prioritySet') + '\n\n' +
-        i18n.t('admin.adConfig.provider', { name: providerName }) + '\n' +
-        i18n.t('admin.adConfig.priorityValue', { priority }) + '\n\n' +
+      i18n.t('admin.adConfig.prioritySet') +
+        '\n\n' +
+        i18n.t('admin.adConfig.provider', { name: providerName }) +
+        '\n' +
+        i18n.t('admin.adConfig.priorityValue', { priority }) +
+        '\n\n' +
         i18n.t('admin.adConfig.viewAllProviders')
     );
   } catch (error) {
@@ -232,8 +254,10 @@ export async function handleOfficialAds(message: TelegramMessage, env: Env): Pro
     if (ads.length === 0) {
       await telegram.sendMessage(
         chatId,
-        i18n.t('admin.adConfig.noOfficialAds') + '\n\n' +
-          i18n.t('admin.adConfig.addOfficialAdScript') + '\n' +
+        i18n.t('admin.adConfig.noOfficialAds') +
+          '\n\n' +
+          i18n.t('admin.adConfig.addOfficialAdScript') +
+          '\n' +
           '`scripts/create-official-ads.sql`'
       );
       return;
@@ -243,7 +267,9 @@ export async function handleOfficialAds(message: TelegramMessage, env: Env): Pro
     let message_text = i18n.t('admin.adConfig.officialAdList') + '\n\n';
 
     for (const ad of ads) {
-      const status = ad.is_enabled ? i18n.t('admin.adConfig.enabled') : i18n.t('admin.adConfig.disabled');
+      const status = ad.is_enabled
+        ? i18n.t('admin.adConfig.enabled')
+        : i18n.t('admin.adConfig.disabled');
       const typeEmoji =
         {
           text: '📝',
@@ -293,7 +319,11 @@ export async function handleOfficialAdEnable(message: TelegramMessage, env: Env)
     if (parts.length < 2) {
       await telegram.sendMessage(
         chatId,
-        i18n.t('admin.adConfig.usageError') + '\n\n' + i18n.t('admin.adConfig.correctFormat') + '\n' + `/official_ad_enable <ad_id>`
+        i18n.t('admin.adConfig.usageError') +
+          '\n\n' +
+          i18n.t('admin.adConfig.correctFormat') +
+          '\n' +
+          `/official_ad_enable <ad_id>`
       );
       return;
     }
@@ -309,7 +339,9 @@ export async function handleOfficialAdEnable(message: TelegramMessage, env: Env)
 
     await telegram.sendMessage(
       chatId,
-      i18n.t('admin.adConfig.officialAdEnabled', { id: adId }) + '\n\n' + i18n.t('admin.adConfig.viewAllOfficialAds')
+      i18n.t('admin.adConfig.officialAdEnabled', { id: adId }) +
+        '\n\n' +
+        i18n.t('admin.adConfig.viewAllOfficialAds')
     );
   } catch (error) {
     console.error('[handleOfficialAdEnable] Error:', error);
@@ -335,7 +367,11 @@ export async function handleOfficialAdDisable(message: TelegramMessage, env: Env
     if (parts.length < 2) {
       await telegram.sendMessage(
         chatId,
-        i18n.t('admin.adConfig.usageError') + '\n\n' + i18n.t('admin.adConfig.correctFormat') + '\n' + `/official_ad_disable <ad_id>`
+        i18n.t('admin.adConfig.usageError') +
+          '\n\n' +
+          i18n.t('admin.adConfig.correctFormat') +
+          '\n' +
+          `/official_ad_disable <ad_id>`
       );
       return;
     }
@@ -351,7 +387,9 @@ export async function handleOfficialAdDisable(message: TelegramMessage, env: Env
 
     await telegram.sendMessage(
       chatId,
-      i18n.t('admin.adConfig.officialAdDisabled', { id: adId }) + '\n\n' + i18n.t('admin.adConfig.viewAllOfficialAds')
+      i18n.t('admin.adConfig.officialAdDisabled', { id: adId }) +
+        '\n\n' +
+        i18n.t('admin.adConfig.viewAllOfficialAds')
     );
   } catch (error) {
     console.error('[handleOfficialAdDisable] Error:', error);

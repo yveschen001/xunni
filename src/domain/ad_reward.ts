@@ -74,13 +74,18 @@ export interface AdRewardUpdateResult {
  *   console.log(`You can watch ${result.remaining_ads} more ads`);
  * }
  */
-export function canWatchAd(adReward: AdReward | null, isVIP: boolean, i18n?: any): AdRewardCheckResult {
+export function canWatchAd(
+  adReward: AdReward | null,
+  isVIP: boolean,
+  i18n?: any
+): AdRewardCheckResult {
   // VIP users cannot watch ads (they don't need quota)
   if (isVIP) {
     return {
       can_watch: false,
       remaining_ads: 0,
-      reason: i18n?.t('adReward.vipNoAdsReason') || 'VIP users have unlimited quota and cannot watch ads',
+      reason:
+        i18n?.t('adReward.vipNoAdsReason') || 'VIP users have unlimited quota and cannot watch ads',
     };
   }
 
@@ -100,7 +105,9 @@ export function canWatchAd(adReward: AdReward | null, isVIP: boolean, i18n?: any
     return {
       can_watch: false,
       remaining_ads: 0,
-      reason: i18n?.t('adReward.dailyLimitReached', { max: AD_REWARD_CONSTANTS.MAX_ADS_PER_DAY }) || 'Daily ad limit reached (20/20)',
+      reason:
+        i18n?.t('adReward.dailyLimitReached', { max: AD_REWARD_CONSTANTS.MAX_ADS_PER_DAY }) ||
+        'Daily ad limit reached (20/20)',
     };
   }
 
@@ -155,7 +162,7 @@ export function processAdCompletion(
       new_quota_earned: adReward?.quota_earned || 0,
       total_ads_watched: adReward?.ads_watched || 0,
       remaining_ads: 0,
-      message: checkResult.reason || (i18n?.t('adReward.cannotWatchMore') || 'Cannot watch more ads'),
+      message: checkResult.reason || i18n?.t('adReward.cannotWatchMore') || 'Cannot watch more ads',
     };
   }
 
@@ -172,7 +179,9 @@ export function processAdCompletion(
     new_quota_earned: newQuotaEarned,
     total_ads_watched: newAdsWatched,
     remaining_ads: newRemainingAds,
-    message: i18n?.t('adReward.adCompleted', { quota: AD_REWARD_CONSTANTS.QUOTA_PER_AD }) || `Ad completed! Earned +${AD_REWARD_CONSTANTS.QUOTA_PER_AD} quota`,
+    message:
+      i18n?.t('adReward.adCompleted', { quota: AD_REWARD_CONSTANTS.QUOTA_PER_AD }) ||
+      `Ad completed! Earned +${AD_REWARD_CONSTANTS.QUOTA_PER_AD} quota`,
   };
 }
 
@@ -245,13 +254,20 @@ export function calculateCompletionRate(adReward: AdReward): number {
  * console.log(message);
  * // "📺 今日廣告：5/20 | 已獲得 5 個額度"
  */
-export function formatAdRewardStatus(adReward: AdReward | null, isVIP: boolean, i18n?: any): string {
+export function formatAdRewardStatus(
+  adReward: AdReward | null,
+  isVIP: boolean,
+  i18n?: any
+): string {
   if (isVIP) {
     return i18n?.t('adReward.vipNoAds') || '💎 VIP 用戶無需觀看廣告';
   }
 
   if (!adReward) {
-    return i18n?.t('common.ad3', { MAX_ADS_PER_DAY: AD_REWARD_CONSTANTS.MAX_ADS_PER_DAY }) || `📺 今日廣告：0/${AD_REWARD_CONSTANTS.MAX_ADS_PER_DAY} | 已獲得 0 個額度`;
+    return (
+      i18n?.t('common.ad3', { MAX_ADS_PER_DAY: AD_REWARD_CONSTANTS.MAX_ADS_PER_DAY }) ||
+      `📺 今日廣告：0/${AD_REWARD_CONSTANTS.MAX_ADS_PER_DAY} | 已獲得 0 個額度`
+    );
   }
 
   const adsWatched = adReward.ads_watched || 0;
@@ -259,10 +275,25 @@ export function formatAdRewardStatus(adReward: AdReward | null, isVIP: boolean, 
   const remaining = AD_REWARD_CONSTANTS.MAX_ADS_PER_DAY - adsWatched;
 
   if (remaining === 0) {
-    return i18n?.t('common.ad2', { adsWatched, MAX_ADS_PER_DAY: AD_REWARD_CONSTANTS.MAX_ADS_PER_DAY, quotaEarned }) || `📺 今日廣告：${adsWatched}/${AD_REWARD_CONSTANTS.MAX_ADS_PER_DAY} ✅ 已達上限 | 已獲得 ${quotaEarned} 個額度`;
+    return (
+      i18n?.t('common.ad2', {
+        adsWatched,
+        MAX_ADS_PER_DAY: AD_REWARD_CONSTANTS.MAX_ADS_PER_DAY,
+        quotaEarned,
+      }) ||
+      `📺 今日廣告：${adsWatched}/${AD_REWARD_CONSTANTS.MAX_ADS_PER_DAY} ✅ 已達上限 | 已獲得 ${quotaEarned} 個額度`
+    );
   }
 
-  return i18n?.t('common.ad', { adsWatched, MAX_ADS_PER_DAY: AD_REWARD_CONSTANTS.MAX_ADS_PER_DAY, quotaEarned, remaining }) || `📺 今日廣告：${adsWatched}/${AD_REWARD_CONSTANTS.MAX_ADS_PER_DAY} | 已獲得 ${quotaEarned} 個額度 | 剩餘 ${remaining} 次`;
+  return (
+    i18n?.t('common.ad', {
+      adsWatched,
+      MAX_ADS_PER_DAY: AD_REWARD_CONSTANTS.MAX_ADS_PER_DAY,
+      quotaEarned,
+      remaining,
+    }) ||
+    `📺 今日廣告：${adsWatched}/${AD_REWARD_CONSTANTS.MAX_ADS_PER_DAY} | 已獲得 ${quotaEarned} 個額度 | 剩餘 ${remaining} 次`
+  );
 }
 
 // ============================================================================

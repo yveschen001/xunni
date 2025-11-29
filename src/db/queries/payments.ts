@@ -33,4 +33,3 @@ export async function getDailyPaymentStats(
     transactions: result?.transactions || 0,
   };
 }
-

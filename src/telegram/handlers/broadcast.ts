@@ -7,10 +7,7 @@ import { createDatabaseClient } from '~/db/client';
 import { createTelegramService } from '~/services/telegram';
 import { validateBroadcastMessage, formatBroadcastStatus } from '~/domain/broadcast';
 import { createBroadcast, getBroadcast, createFilteredBroadcast } from '~/services/broadcast';
-import {
-  parseFilters,
-  formatFilters
-} from '~/domain/broadcast_filters';
+import { parseFilters, formatFilters } from '~/domain/broadcast_filters';
 import { findUserByTelegramId } from '~/db/queries/users';
 import { createI18n } from '~/i18n';
 
@@ -31,7 +28,7 @@ export async function handleBroadcast(message: TelegramMessage, env: Env): Promi
     if (parts.length < 2) {
       const user = await findUserByTelegramId(db, telegramId);
       const i18n = createI18n(user?.language_pref || 'zh-TW');
-      
+
       await telegram.sendMessage(
         chatId,
         i18n.t('broadcast.usageError') +
@@ -255,7 +252,10 @@ export async function handleBroadcastProcess(message: TelegramMessage, env: Env)
     // Show which broadcasts will be processed
     const broadcast = pendingBroadcasts.results[0];
     const statusEmoji = broadcast.status === 'pending' ? '⏳' : '🔄';
-    const statusText = broadcast.status === 'pending' ? i18n.t('broadcast.statusPending') : i18n.t('broadcast.statusStuck');
+    const statusText =
+      broadcast.status === 'pending'
+        ? i18n.t('broadcast.statusPending')
+        : i18n.t('broadcast.statusStuck');
 
     let message = i18n.t('broadcast.queueTriggered', { emoji: statusEmoji });
     message += i18n.t('broadcast.processingBroadcast', { id: broadcast.id });
@@ -264,7 +264,9 @@ export async function handleBroadcastProcess(message: TelegramMessage, env: Env)
     message += i18n.t('broadcast.userCount2', { count: broadcast.total_users });
 
     if (pendingBroadcasts.results.length > 1) {
-      message += i18n.t('broadcast.queueRemaining', { count: pendingBroadcasts.results.length - 1 });
+      message += i18n.t('broadcast.queueRemaining', {
+        count: pendingBroadcasts.results.length - 1,
+      });
     }
 
     message += i18n.t('broadcast.checkProgressLater');
@@ -280,7 +282,9 @@ export async function handleBroadcastProcess(message: TelegramMessage, env: Env)
     const i18n = createI18n(user?.language_pref || 'zh-TW');
     await telegram.sendMessage(
       chatId,
-      i18n.t('broadcast.processQueueFailed', { error: error instanceof Error ? error.message : String(error) })
+      i18n.t('broadcast.processQueueFailed', {
+        error: error instanceof Error ? error.message : String(error),
+      })
     );
   }
 }
@@ -324,7 +328,7 @@ export async function handleBroadcastCancel(message: TelegramMessage, env: Env):
     const broadcast = await getBroadcast(db, broadcastId);
     const user = await findUserByTelegramId(db, telegramId);
     const i18n = createI18n(user?.language_pref || 'zh-TW');
-    
+
     if (!broadcast) {
       await telegram.sendMessage(chatId, i18n.t('broadcast.broadcastNotFound'));
       return;
@@ -354,7 +358,9 @@ export async function handleBroadcastCancel(message: TelegramMessage, env: Env):
     const i18n = createI18n(user?.language_pref || 'zh-TW');
     await telegram.sendMessage(
       chatId,
-      i18n.t('broadcast.cancelFailed', { error: error instanceof Error ? error.message : String(error) })
+      i18n.t('broadcast.cancelFailed', {
+        error: error instanceof Error ? error.message : String(error),
+      })
     );
   }
 }
@@ -401,8 +407,13 @@ export async function handleBroadcastStatus(message: TelegramMessage, env: Env):
         responseMessage += i18n.t('broadcast.recordId', { id: b.id });
         responseMessage += i18n.t('broadcast.recordStatus', { status: b.status });
         responseMessage += i18n.t('broadcast.recordTarget', { type: b.target_type });
-        responseMessage += i18n.t('broadcast.recordProgress', { sent: b.sent_count, total: b.total_users });
-        responseMessage += i18n.t('broadcast.recordTime', { time: new Date(b.created_at).toLocaleString(i18n.language) });
+        responseMessage += i18n.t('broadcast.recordProgress', {
+          sent: b.sent_count,
+          total: b.total_users,
+        });
+        responseMessage += i18n.t('broadcast.recordTime', {
+          time: new Date(b.created_at).toLocaleString(i18n.language),
+        });
       }
 
       responseMessage += i18n.t('broadcast.viewDetailsHint');
@@ -439,7 +450,9 @@ export async function handleBroadcastStatus(message: TelegramMessage, env: Env):
     const i18n = createI18n(user?.language_pref || 'zh-TW');
     await telegram.sendMessage(
       chatId,
-      i18n.t('broadcast.queryStatusFailed', { error: error instanceof Error ? error.message : String(error) })
+      i18n.t('broadcast.queryStatusFailed', {
+        error: error instanceof Error ? error.message : String(error),
+      })
     );
   }
 }
@@ -478,7 +491,10 @@ export async function handleBroadcastCleanup(message: TelegramMessage, env: Env)
     const i18n = createI18n(user?.language_pref || 'zh-TW');
 
     if (!stuckBroadcasts.results || stuckBroadcasts.results.length === 0) {
-      await telegram.sendMessage(chatId, i18n.t('broadcast.noStuckBroadcasts') + i18n.t('broadcast.allBroadcastsNormal'));
+      await telegram.sendMessage(
+        chatId,
+        i18n.t('broadcast.noStuckBroadcasts') + i18n.t('broadcast.allBroadcastsNormal')
+      );
       return;
     }
 
@@ -488,7 +504,9 @@ export async function handleBroadcastCleanup(message: TelegramMessage, env: Env)
 
     if (!isConfirmed) {
       // Show stuck broadcasts and ask for confirmation
-      let message_text = i18n.t('broadcast.foundStuckBroadcasts', { count: stuckBroadcasts.results.length });
+      let message_text = i18n.t('broadcast.foundStuckBroadcasts', {
+        count: stuckBroadcasts.results.length,
+      });
 
       for (const broadcast of stuckBroadcasts.results) {
         const messagePreview =
@@ -498,7 +516,10 @@ export async function handleBroadcastCleanup(message: TelegramMessage, env: Env)
         message_text += i18n.t('broadcast.stuckBroadcastId', { id: broadcast.id });
         message_text += i18n.t('broadcast.stuckBroadcastMessage', { message: messagePreview });
         message_text += i18n.t('broadcast.stuckBroadcastTarget', { type: broadcast.target_type });
-        message_text += i18n.t('broadcast.stuckBroadcastProgress', { sent: broadcast.sent_count, total: broadcast.total_users });
+        message_text += i18n.t('broadcast.stuckBroadcastProgress', {
+          sent: broadcast.sent_count,
+          total: broadcast.total_users,
+        });
         message_text += i18n.t('broadcast.stuckBroadcastStartTime', { time: broadcast.started_at });
       }
 
@@ -538,7 +559,9 @@ export async function handleBroadcastCleanup(message: TelegramMessage, env: Env)
     const i18n = createI18n(user?.language_pref || 'zh-TW');
     await telegram.sendMessage(
       chatId,
-      i18n.t('broadcast.cleanupFailed', { error: error instanceof Error ? error.message : String(error) })
+      i18n.t('broadcast.cleanupFailed', {
+        error: error instanceof Error ? error.message : String(error),
+      })
     );
   }
 }
@@ -550,6 +573,6 @@ export async function handleBroadcastCleanup(message: TelegramMessage, env: Env)
  * but should be routed to v2.
  */
 export async function handleBroadcastFilter(message: TelegramMessage, env: Env): Promise<void> {
-    const { handleBroadcastFilter: v2 } = await import('./broadcast_v2');
-    return v2(message, env);
+  const { handleBroadcastFilter: v2 } = await import('./broadcast_v2');
+  return v2(message, env);
 }

@@ -46,7 +46,7 @@ export async function handleSettings(message: TelegramMessage, env: Env): Promis
 
     // Build settings message
     const languageName = await getLanguageName(user.language_pref || 'zh-TW');
-    
+
     // Check VIP status
     const isVip = !!(
       user.is_vip &&
@@ -54,18 +54,27 @@ export async function handleSettings(message: TelegramMessage, env: Env): Promis
       new Date(user.vip_expire_at) > new Date()
     );
 
-    const settingsMessage = 
-      i18n.t('settings.currentSettings') + '\n\n' +
-      i18n.t('settings.languageLabel', { language: languageName }) + '\n' +
+    const settingsMessage =
+      i18n.t('settings.currentSettings') +
+      '\n\n' +
+      i18n.t('settings.languageLabel', { language: languageName }) +
+      '\n' +
       `🌙 ${i18n.t('settings.quietHours', { defaultValue: '安靜時段' })}: ${prefs.quiet_hours_start}:00 - ${prefs.quiet_hours_end}:00` +
-      '\n   ' + i18n.t('settings.quietHoursHint', { defaultValue: '在此時段內不會收到非緊急通知' }) +
+      '\n   ' +
+      i18n.t('settings.quietHoursHint', { defaultValue: '在此時段內不會收到非緊急通知' }) +
       '\n\n' +
       i18n.t('settings.selectOption');
 
     // Build settings buttons
     const quietHoursButton = isVip
-      ? { text: i18n.t('settings.editQuietHours', { defaultValue: '✏️ 修改安靜時段' }), callback_data: 'settings_edit_quiet_hours' }
-      : { text: i18n.t('settings.quietHoursVipOnly', { defaultValue: '🔒 安靜時段 (VIP 專屬)' }), callback_data: 'settings_quiet_hours_locked' };
+      ? {
+          text: i18n.t('settings.editQuietHours', { defaultValue: '✏️ 修改安靜時段' }),
+          callback_data: 'settings_edit_quiet_hours',
+        }
+      : {
+          text: i18n.t('settings.quietHoursVipOnly', { defaultValue: '🔒 安靜時段 (VIP 專屬)' }),
+          callback_data: 'settings_quiet_hours_locked',
+        };
 
     const buttons = [
       [{ text: i18n.t('settings.changeLanguage'), callback_data: 'settings_language' }],
@@ -88,7 +97,10 @@ export async function handleSettings(message: TelegramMessage, env: Env): Promis
 /**
  * Handle settings callbacks
  */
-export async function handleSettingsCallback(callbackQuery: TelegramCallbackQuery, env: Env): Promise<void> {
+export async function handleSettingsCallback(
+  callbackQuery: TelegramCallbackQuery,
+  env: Env
+): Promise<void> {
   const db = createDatabaseClient(env.DB);
   const telegram = createTelegramService(env);
   const chatId = callbackQuery.message!.chat.id;
@@ -100,7 +112,7 @@ export async function handleSettingsCallback(callbackQuery: TelegramCallbackQuer
     const user = await findUserByTelegramId(db, telegramId);
     const prefsService = new UserPreferencesService(db.d1);
     const prefs = await prefsService.getPreferences(telegramId);
-    
+
     const { createI18n } = await import('~/i18n');
     const i18n = createI18n(user?.language_pref || 'zh-TW');
 
@@ -118,23 +130,34 @@ export async function handleSettingsCallback(callbackQuery: TelegramCallbackQuer
 
     // Quiet hours editing
     if (data === 'settings_edit_quiet_hours') {
-        const { showQuietHoursStartSelection } = await import('./settings_quiet');
-        await showQuietHoursStartSelection(callbackQuery, env);
-        return;
+      const { showQuietHoursStartSelection } = await import('./settings_quiet');
+      await showQuietHoursStartSelection(callbackQuery, env);
+      return;
     }
 
     // VIP locked quiet hours
     if (data === 'settings_quiet_hours_locked') {
-        const upgradeMessage = i18n.t('settings.upgradeForQuietHours', { defaultValue: '升級 VIP 即可設定安靜時段，避免在休息時間被打擾！' });
-        await telegram.answerCallbackQuery(callbackQuery.id, upgradeMessage);
-        
-        await telegram.sendMessageWithButtons(chatId, upgradeMessage, [
-            [{ text: i18n.t('menu.buttonVip', { defaultValue: '💎 升級 VIP' }), callback_data: 'menu_vip' }],
-            [{ text: i18n.t('common.back', { defaultValue: '返回' }), callback_data: 'back_to_settings' }]
-        ]);
-        return;
-    }
+      const upgradeMessage = i18n.t('settings.upgradeForQuietHours', {
+        defaultValue: '升級 VIP 即可設定安靜時段，避免在休息時間被打擾！',
+      });
+      await telegram.answerCallbackQuery(callbackQuery.id, upgradeMessage);
 
+      await telegram.sendMessageWithButtons(chatId, upgradeMessage, [
+        [
+          {
+            text: i18n.t('menu.buttonVip', { defaultValue: '💎 升級 VIP' }),
+            callback_data: 'menu_vip',
+          },
+        ],
+        [
+          {
+            text: i18n.t('common.back', { defaultValue: '返回' }),
+            callback_data: 'back_to_settings',
+          },
+        ],
+      ]);
+      return;
+    }
   } catch (error) {
     console.error('[handleSettingsCallback] Error:', error);
     const { createI18n } = await import('~/i18n');
@@ -146,7 +169,6 @@ export async function handleSettingsCallback(callbackQuery: TelegramCallbackQuer
 }
 
 // refreshSettingsMenu removed as toggles are no longer available in UI
-
 
 // ... existing code for handleLanguageChange, handleBackToSettings, getLanguageName ...
 /**
@@ -196,7 +218,7 @@ export async function handleLanguageChange(callbackQuery: any, env: Env): Promis
     const sentMessage = await telegram.sendMessage(chatId, confirmMessage);
 
     // Wait 2 seconds, then automatically return to menu
-    await new Promise(resolve => setTimeout(resolve, 2000));
+    await new Promise((resolve) => setTimeout(resolve, 2000));
 
     // Delete confirmation message and show menu
     try {

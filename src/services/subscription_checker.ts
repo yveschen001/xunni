@@ -89,10 +89,18 @@ export async function checkExpiredSubscriptions(env: Env): Promise<void> {
         const i18n = createI18n(userForI18n?.language_pref || 'zh-TW');
         await telegram.sendMessage(
           parseInt(user.telegram_id),
-          i18n.t('subscription.expired') + '\n\n' +
-            i18n.t('subscription.expiredDate', { date: new Date(user.vip_expire_at).toLocaleDateString(userForI18n?.language_pref || 'zh-TW') }) + '\n\n' +
-            i18n.t('subscription.downgradedToFree') + '\n\n' +
-            i18n.t('subscription.renewVipHint') + '\n\n' +
+          i18n.t('subscription.expired') +
+            '\n\n' +
+            i18n.t('subscription.expiredDate', {
+              date: new Date(user.vip_expire_at).toLocaleDateString(
+                userForI18n?.language_pref || 'zh-TW'
+              ),
+            }) +
+            '\n\n' +
+            i18n.t('subscription.downgradedToFree') +
+            '\n\n' +
+            i18n.t('subscription.renewVipHint') +
+            '\n\n' +
             i18n.t('subscription.thankYou')
         );
 

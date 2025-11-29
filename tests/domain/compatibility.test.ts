@@ -15,7 +15,7 @@ describe('CompatibilityEngine', () => {
     it('should return fire element targets for Aries (Fire)', () => {
       const user = { ...mockUserBase, zodiac_sign: 'aries' } as User;
       const result = CompatibilityEngine.getRecommendation(user, 'zodiac');
-      
+
       expect(result.isValid).toBe(true);
       expect(result.topic).toBe('zodiac');
       expect(result.userAttribute).toBe('aries');
@@ -36,7 +36,7 @@ describe('CompatibilityEngine', () => {
     it('should return NT targets for NF type (ENFP)', () => {
       const user = { ...mockUserBase, mbti_type: 'ENFP' } as User;
       const result = CompatibilityEngine.getRecommendation(user, 'mbti');
-      
+
       expect(result.isValid).toBe(true);
       expect(result.topic).toBe('mbti');
       expect(result.userAttribute).toBe('ENFP');
@@ -56,7 +56,7 @@ describe('CompatibilityEngine', () => {
     it('should return O targets for A type', () => {
       const user = { ...mockUserBase, blood_type: 'A' } as User;
       const result = CompatibilityEngine.getRecommendation(user, 'blood');
-      
+
       expect(result.isValid).toBe(true);
       expect(result.topic).toBe('blood');
       expect(result.userAttribute).toBe('A');
@@ -71,4 +71,3 @@ describe('CompatibilityEngine', () => {
     });
   });
 });
-

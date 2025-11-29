@@ -51,20 +51,22 @@ export async function showMBTIQuestion(
   const progress = Math.round((questionIndex / totalQuestions) * 100);
 
   // Get question text from i18n
-  const questionKey = version === 'full' 
-    ? `mbti.full.question${question.id}` 
-    : `mbti.quick.question${question.id}`;
+  const questionKey =
+    version === 'full' ? `mbti.full.question${question.id}` : `mbti.quick.question${question.id}`;
   const questionText = i18n.t(questionKey as any);
-  
+
   // Build answer buttons with i18n support
   const answerButtons = question.options.map((option, index) => {
-    const optionKey = version === 'full'
-      ? `mbti.full.question${question.id}.option${index + 1}`
-      : `mbti.quick.question${question.id}.option${index + 1}`;
-    return [{
-      text: i18n.t(optionKey as any),
-      callback_data: `mbti_answer_${questionIndex}_${index}`,
-    }];
+    const optionKey =
+      version === 'full'
+        ? `mbti.full.question${question.id}.option${index + 1}`
+        : `mbti.quick.question${question.id}.option${index + 1}`;
+    return [
+      {
+        text: i18n.t(optionKey as any),
+        callback_data: `mbti_answer_${questionIndex}_${index}`,
+      },
+    ];
   });
 
   // Add progress indicator
@@ -73,7 +75,8 @@ export async function showMBTIQuestion(
 
   // Determine test title and disclaimer based on version
   const testTitle = version === 'full' ? i18n.t('mbtiTest.fullTest') : i18n.t('mbtiTest.quickTest');
-  const testInfo = version === 'full' ? i18n.t('mbtiTest.questions36') : i18n.t('mbtiTest.questions12');
+  const testInfo =
+    version === 'full' ? i18n.t('mbtiTest.questions36') : i18n.t('mbtiTest.questions12');
 
   // Add disclaimer on first question
   const disclaimer =
@@ -119,7 +122,7 @@ export async function handleMBTIAnswer(
       await telegram.answerCallbackQuery(callbackQuery.id, i18n.t('warning.userNotFound2'));
       return;
     }
-    
+
     const { createI18n } = await import('~/i18n');
     const i18n = createI18n(user.language_pref || 'zh-TW');
 
@@ -155,7 +158,10 @@ export async function handleMBTIAnswer(
     }
   } catch (error) {
     console.error('[handleMBTIAnswer] Error:', error);
-    console.error('[handleMBTIAnswer] Error stack:', error instanceof Error ? error.stack : 'No stack');
+    console.error(
+      '[handleMBTIAnswer] Error stack:',
+      error instanceof Error ? error.stack : 'No stack'
+    );
     const user = await findUserByTelegramId(db, telegramId);
     const { createI18n } = await import('~/i18n');
     const i18n = createI18n(user?.language_pref || 'zh-TW');
@@ -198,9 +204,12 @@ async function handleTestCompletion(
     // Determine completion message based on version
     const { createI18n } = await import('~/i18n');
     const i18n = createI18n(user.language_pref || 'zh-TW');
-    const testTitle = version === 'full' ? i18n.t('mbtiTest.fullTestTitle') : i18n.t('mbtiTest.quickTestTitle');
-    const testInfo = version === 'full' ? i18n.t('mbtiTest.fullQuestions') : i18n.t('mbtiTest.quickQuestions');
-    const accuracy = version === 'full' ? i18n.t('mbtiTest.fullAccuracy') : i18n.t('mbtiTest.quickAccuracy');
+    const testTitle =
+      version === 'full' ? i18n.t('mbtiTest.fullTestTitle') : i18n.t('mbtiTest.quickTestTitle');
+    const testInfo =
+      version === 'full' ? i18n.t('mbtiTest.fullQuestions') : i18n.t('mbtiTest.quickQuestions');
+    const accuracy =
+      version === 'full' ? i18n.t('mbtiTest.fullAccuracy') : i18n.t('mbtiTest.quickAccuracy');
 
     // Get description from i18n
     const descriptionKey = `mbti.description.${result.type}`;
@@ -261,8 +270,11 @@ async function handleTestCompletion(
     const i18n = createI18n(user?.language_pref || 'zh-TW');
     await telegram.sendMessage(
       chatId,
-      i18n.t('errors.systemErrorRetry') + '\n\n' +
-        i18n.t('errors.errorDetails', { error: error instanceof Error ? error.message : String(error) })
+      i18n.t('errors.systemErrorRetry') +
+        '\n\n' +
+        i18n.t('errors.errorDetails', {
+          error: error instanceof Error ? error.message : String(error),
+        })
     );
   }
 }

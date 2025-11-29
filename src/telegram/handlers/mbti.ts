@@ -285,9 +285,7 @@ export async function handleMBTIMenuClear(callbackQuery: any, env: Env): Promise
     // Confirm
     await telegram.sendMessage(
       chatId,
-      i18n.t('success.mbti2') +
-        '\n\n' +
-        i18n.t('common.settings9')
+      i18n.t('success.mbti2') + '\n\n' + i18n.t('common.settings9')
     );
   } catch (error) {
     console.error('[handleMBTIMenuClear] Error:', error);

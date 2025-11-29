@@ -1,4 +1,3 @@
-
 import type { Env } from '~/types';
 
 /**
@@ -13,7 +12,7 @@ export class AIAnalystService {
   constructor(env: Env) {
     this.apiKey = env.GEMINI_API_KEY || env.OPENAI_API_KEY || ''; // Fallback
     // Use gemini-1.5-flash if available, or fall back to pro
-    this.model = 'gemini-1.5-flash'; 
+    this.model = 'gemini-1.5-flash';
     this.baseURL = `https://generativelanguage.googleapis.com/v1beta/models/${this.model}:generateContent?key=${this.apiKey}`;
   }
 
@@ -64,25 +63,24 @@ export class AIAnalystService {
       body: JSON.stringify({
         contents: [{ parts: [{ text: prompt }] }],
         generationConfig: {
-            temperature: 0.4,
-            maxOutputTokens: 500,
-        }
-      })
+          temperature: 0.4,
+          maxOutputTokens: 500,
+        },
+      }),
     });
 
     if (!response.ok) {
-        // Try fallback to gemini-pro if flash fails (e.g. 404 model not found)
-        if (response.status === 404 && this.model === 'gemini-1.5-flash') {
-            console.warn('[AIAnalystService] gemini-1.5-flash not found, falling back to gemini-pro');
-            this.model = 'gemini-pro';
-            this.baseURL = `https://generativelanguage.googleapis.com/v1beta/models/${this.model}:generateContent?key=${this.apiKey}`;
-            return this.callGemini(prompt);
-        }
-        throw new Error(`Gemini API error: ${response.status} ${response.statusText}`);
+      // Try fallback to gemini-pro if flash fails (e.g. 404 model not found)
+      if (response.status === 404 && this.model === 'gemini-1.5-flash') {
+        console.warn('[AIAnalystService] gemini-1.5-flash not found, falling back to gemini-pro');
+        this.model = 'gemini-pro';
+        this.baseURL = `https://generativelanguage.googleapis.com/v1beta/models/${this.model}:generateContent?key=${this.apiKey}`;
+        return this.callGemini(prompt);
+      }
+      throw new Error(`Gemini API error: ${response.status} ${response.statusText}`);
     }
 
     const data: any = await response.json();
     return data.candidates?.[0]?.content?.parts?.[0]?.text || 'No content generated.';
   }
 }
-

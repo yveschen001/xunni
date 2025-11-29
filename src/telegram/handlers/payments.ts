@@ -18,7 +18,14 @@ export async function handlePaymentsCallback(callbackQuery: any, env: Env): Prom
   const data = callbackQuery.data as string;
   const page = parseInt(data.replace('payments_page_', ''), 10) || 1;
 
-  await showPaymentHistory(telegram, telegramId, callbackQuery.message.chat.id, page, env, callbackQuery.message.message_id);
+  await showPaymentHistory(
+    telegram,
+    telegramId,
+    callbackQuery.message.chat.id,
+    page,
+    env,
+    callbackQuery.message.message_id
+  );
   await telegram.answerCallbackQuery(callbackQuery.id);
 }
 
@@ -35,22 +42,25 @@ async function showPaymentHistory(
   const i18n = createI18n(user?.language_pref || 'zh-TW');
 
   // Count total records
-  const countResult = await db.d1.prepare(
-    'SELECT COUNT(*) as count FROM payments WHERE telegram_id = ?'
-  ).bind(telegramId).first<{ count: number }>();
-  
+  const countResult = await db.d1
+    .prepare('SELECT COUNT(*) as count FROM payments WHERE telegram_id = ?')
+    .bind(telegramId)
+    .first<{ count: number }>();
+
   const totalRecords = countResult?.count || 0;
   const totalPages = Math.max(1, Math.ceil(totalRecords / PAGE_SIZE));
-  
+
   // Validate page
   const currentPage = Math.max(1, Math.min(page, totalPages));
 
   if (totalRecords === 0) {
     const text = `💳 **${i18n.t('buttons.viewPayments')}**\n\n${i18n.t('payments.empty')}\n\n${i18n.t('common.back3')}`;
     const buttons = [[{ text: i18n.t('common.back4'), callback_data: 'vip_menu' }]];
-    
+
     if (messageId) {
-      await telegram.editMessageText(chatId, messageId, text, { reply_markup: { inline_keyboard: buttons } });
+      await telegram.editMessageText(chatId, messageId, text, {
+        reply_markup: { inline_keyboard: buttons },
+      });
     } else {
       await telegram.sendMessageWithButtons(chatId, text, buttons);
     }
@@ -59,12 +69,17 @@ async function showPaymentHistory(
 
   // Fetch records
   const offset = (currentPage - 1) * PAGE_SIZE;
-  const records = await db.d1.prepare(`
+  const records = await db.d1
+    .prepare(
+      `
     SELECT * FROM payments 
     WHERE telegram_id = ? 
     ORDER BY created_at DESC 
     LIMIT ? OFFSET ?
-  `).bind(telegramId, PAGE_SIZE, offset).all<any>();
+  `
+    )
+    .bind(telegramId, PAGE_SIZE, offset)
+    .all<any>();
 
   // Build message
   let text = i18n.t('payments.title', { page: currentPage, total: totalPages }) + '\n\n';
@@ -76,9 +91,9 @@ async function showPaymentHistory(
       day: '2-digit',
       hour: '2-digit',
       minute: '2-digit',
-      hour12: false
+      hour12: false,
     });
-    
+
     let statusText = '';
     switch (record.status) {
       case 'completed':
@@ -114,10 +129,16 @@ async function showPaymentHistory(
   const paginationButtons: any[] = [];
 
   if (currentPage > 1) {
-    paginationButtons.push({ text: i18n.t('common.prev'), callback_data: `payments_page_${currentPage - 1}` });
+    paginationButtons.push({
+      text: i18n.t('common.prev'),
+      callback_data: `payments_page_${currentPage - 1}`,
+    });
   }
   if (currentPage < totalPages) {
-    paginationButtons.push({ text: i18n.t('common.next'), callback_data: `payments_page_${currentPage + 1}` });
+    paginationButtons.push({
+      text: i18n.t('common.next'),
+      callback_data: `payments_page_${currentPage + 1}`,
+    });
   }
 
   if (paginationButtons.length > 0) {
@@ -128,9 +149,10 @@ async function showPaymentHistory(
   buttons.push([{ text: i18n.t('common.back3'), callback_data: 'return_to_menu' }]);
 
   if (messageId) {
-    await telegram.editMessageText(chatId, messageId, text, { reply_markup: { inline_keyboard: buttons } });
+    await telegram.editMessageText(chatId, messageId, text, {
+      reply_markup: { inline_keyboard: buttons },
+    });
   } else {
     await telegram.sendMessageWithButtons(chatId, text, buttons);
   }
 }
-

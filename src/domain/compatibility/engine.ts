@@ -1,22 +1,22 @@
 import type { User } from '../user';
-import { 
-  ZODIAC_ELEMENTS, 
-  ZODIAC_MATCH_RULES, 
-  getMbtiTemperament, 
-  MBTI_MATCH_RULES, 
+import {
+  ZODIAC_ELEMENTS,
+  ZODIAC_MATCH_RULES,
+  getMbtiTemperament,
+  MBTI_MATCH_RULES,
   BLOOD_MATCH_RULES,
   type ZodiacSign,
-  type BloodType
+  type BloodType,
 } from './rules';
 
 export type MatchTopic = 'zodiac' | 'mbti' | 'blood';
 
 export interface MatchRecommendation {
   topic: MatchTopic;
-  userAttribute: string;      // 用戶的屬性 (如 "aries", "INTJ")
+  userAttribute: string; // 用戶的屬性 (如 "aries", "INTJ")
   recommendedAttributes: string[]; // 推薦的屬性列表 (如 ["leo", "sagittarius"])
-  reasonKey: string;          // i18n key for reason
-  isValid: boolean;           // 是否成功產生推薦
+  reasonKey: string; // i18n key for reason
+  isValid: boolean; // 是否成功產生推薦
 }
 
 export class CompatibilityEngine {
@@ -44,13 +44,14 @@ export class CompatibilityEngine {
 
     const element = ZODIAC_ELEMENTS[zodiac];
     const rule = ZODIAC_MATCH_RULES[element];
-    
+
     // 找出所有符合目標元素的星座
     const targets: string[] = [];
     for (const targetElement of rule.targets) {
       for (const [sign, elem] of Object.entries(ZODIAC_ELEMENTS)) {
-        if (elem === targetElement && sign !== zodiac) { // 排除自己 (可選，這裡選擇排除自己增加趣味)
-           targets.push(sign);
+        if (elem === targetElement && sign !== zodiac) {
+          // 排除自己 (可選，這裡選擇排除自己增加趣味)
+          targets.push(sign);
         }
       }
     }
@@ -64,7 +65,7 @@ export class CompatibilityEngine {
       userAttribute: zodiac,
       recommendedAttributes: selected,
       reasonKey: rule.reasonKey,
-      isValid: true
+      isValid: true,
     };
   }
 
@@ -82,7 +83,7 @@ export class CompatibilityEngine {
     // 這裡我們不列出具體 MBTI 類型 (太多)，而是推薦氣質類型 (Temperament)
     // 或者可以列出該氣質下的具體類型
     // 這裡簡化：推薦目標氣質下的所有類型
-    
+
     // 為了讓推薦更有具體感，我們回傳目標氣質名稱 (前端/i18n 需處理顯示)
     // 實際應用中，我們可能希望顯示 "NF 型 (ENFJ, INFJ...)"
     // 這裡我們直接回傳目標氣質代碼
@@ -91,7 +92,7 @@ export class CompatibilityEngine {
       userAttribute: user.mbti_result,
       recommendedAttributes: rule.targets, // e.g., ['NT', 'NF']
       reasonKey: rule.reasonKey,
-      isValid: true
+      isValid: true,
     };
   }
 
@@ -108,7 +109,7 @@ export class CompatibilityEngine {
       userAttribute: blood,
       recommendedAttributes: rule.targets,
       reasonKey: rule.reasonKey,
-      isValid: true
+      isValid: true,
     };
   }
 
@@ -118,8 +119,7 @@ export class CompatibilityEngine {
       userAttribute: '',
       recommendedAttributes: [],
       reasonKey: '',
-      isValid: false
+      isValid: false,
     };
   }
 }
-

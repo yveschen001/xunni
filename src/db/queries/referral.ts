@@ -17,10 +17,15 @@ export async function createReferralSource(
   sourceId: string | null,
   referrerId: string | null
 ): Promise<void> {
-  await db.d1.prepare(`
+  await db.d1
+    .prepare(
+      `
     INSERT INTO referral_sources (user_id, source_type, source_id, referrer_id)
     VALUES (?, ?, ?, ?)
-  `).bind(userId, sourceType, sourceId, referrerId).run();
+  `
+    )
+    .bind(userId, sourceType, sourceId, referrerId)
+    .run();
 }
 
 /**
@@ -30,8 +35,12 @@ export async function getReferralSource(
   db: DatabaseClient,
   userId: string
 ): Promise<ReferralSource | null> {
-  return await db.d1.prepare(`
+  return await db.d1
+    .prepare(
+      `
     SELECT * FROM referral_sources WHERE user_id = ? ORDER BY created_at DESC LIMIT 1
-  `).bind(userId).first<ReferralSource>();
+  `
+    )
+    .bind(userId)
+    .first<ReferralSource>();
 }
-

@@ -45,15 +45,15 @@ export async function sendThrowForceReply(
  * Handle /throw command
  * Supports optional parameters: /throw target_zodiac=leo&target_mbti=INTJ
  * (Passed via internal call or parsing text if command supports args)
- * 
- * NOTE: Telegram commands are just text like "/throw". 
+ *
+ * NOTE: Telegram commands are just text like "/throw".
  * Complex args usually come from Deep Links (start param) or internal logic.
  * Here we accept an optional `options` object for internal calls (like from Cron Push buttons).
  */
 export async function handleThrow(
-  message: TelegramMessage, 
-  env: Env, 
-  options?: { 
+  message: TelegramMessage,
+  env: Env,
+  options?: {
     target_zodiac?: string;
     target_mbti?: string;
     target_blood?: string;
@@ -250,7 +250,7 @@ export async function handleThrow(
 
     console.error('[handleThrow] Created throw_bottle session:', {
       userId: telegramId,
-      ...sessionData
+      ...sessionData,
     });
 
     // Show prompt
@@ -261,7 +261,7 @@ export async function handleThrow(
         : targetGender === 'female'
           ? i18n.t('common.female')
           : i18n.t('throw.short3');
-    
+
     // Append extra target info if present
     if (options && isVip) {
       if (options.target_zodiac) targetText += ` + ${options.target_zodiac}`; // Ideally translate
@@ -270,30 +270,30 @@ export async function handleThrow(
 
     const throwPrompt =
       i18n.t('throw.bottle4') +
-        '\n\n' +
-        i18n.t('throw.text5', { targetText }) +
-        '\n' +
-        i18n.t('throw.message7') +
-        '\n\n' +
-        i18n.t('throw.bottle6') +
-        '\n\n' +
-        i18n.t('common.text112') +
-        '\n' +
-        i18n.t('common.text93') +
-        '\n' +
-        i18n.t('common.text77') +
-        '\n' +
-        i18n.t('throw.text13') +
-        '\n\n' +
-        i18n.t('throw.text20') +
-        '\n' +
-        i18n.t('throw.message6') +
-        '\n\n' +
-        i18n.t('throw.text14') +
-        '\n' +
-        i18n.t('throw.bottle7') +
-        '\n' +
-        i18n.t('catch.message4');
+      '\n\n' +
+      i18n.t('throw.text5', { targetText }) +
+      '\n' +
+      i18n.t('throw.message7') +
+      '\n\n' +
+      i18n.t('throw.bottle6') +
+      '\n\n' +
+      i18n.t('common.text112') +
+      '\n' +
+      i18n.t('common.text93') +
+      '\n' +
+      i18n.t('common.text77') +
+      '\n' +
+      i18n.t('throw.text13') +
+      '\n\n' +
+      i18n.t('throw.text20') +
+      '\n' +
+      i18n.t('throw.message6') +
+      '\n\n' +
+      i18n.t('throw.text14') +
+      '\n' +
+      i18n.t('throw.bottle7') +
+      '\n' +
+      i18n.t('catch.message4');
 
     await telegram.sendMessageWithButtons(
       chatId,
@@ -307,7 +307,6 @@ export async function handleThrow(
 
     // ✨ NEW: Automatically trigger ForceReply for better UX
     await sendThrowForceReply(telegram, chatId, i18n, env);
-
   } catch (error) {
     console.error('[handleThrow] Error:', error);
     const errorStack = error instanceof Error ? error.stack : 'No stack';
@@ -366,7 +365,6 @@ export async function handleThrowInputButton(
 
     // Send a message with ForceReply to prompt user input
     await sendThrowForceReply(telegram, chatId, i18n, env);
-
   } catch (error) {
     console.error('[handleThrowInputButton] Error:', error);
     const { createI18n } = await import('~/i18n');
@@ -403,13 +401,13 @@ export async function processBottleContent(
     // Get session to check target gender AND other filters
     const { getActiveSession } = await import('~/db/queries/sessions');
     const session = await getActiveSession(db, user.telegram_id, 'throw_bottle');
-    
+
     let targetGender: 'male' | 'female' | 'any' = 'any';
     // Extra filters for VIP
     let targetZodiac: string | undefined;
     let targetMbti: string | undefined;
     let targetBlood: string | undefined;
-    
+
     if (session) {
       const sessionData = JSON.parse(session.data || '{}');
       targetGender = sessionData.target_gender || 'any';
@@ -428,8 +426,12 @@ export async function processBottleContent(
     // We already checked quota at start, but double check is fine.
     // Assuming user IS VIP if they have target filters set in session (since we set them only for VIP)
     // But strictly we should check again or pass it down.
-    
-    const isVip = !!(user.is_vip && user.vip_expire_at && new Date(user.vip_expire_at) > new Date());
+
+    const isVip = !!(
+      user.is_vip &&
+      user.vip_expire_at &&
+      new Date(user.vip_expire_at) > new Date()
+    );
 
     // Create bottle input
     const input: any = {
@@ -461,12 +463,11 @@ export async function processBottleContent(
     // Success message
     const { showReturnToMenuButton } = await import('./menu');
     await showReturnToMenuButton(
-      telegram, 
-      Number(user.telegram_id), 
-      i18n.t('success.bottleThrown'), 
+      telegram,
+      Number(user.telegram_id),
+      i18n.t('success.bottleThrown'),
       user.language_pref
     );
-
   } catch (error) {
     console.error('[processBottleContent] Error:', error);
     await telegram.sendMessage(Number(user.telegram_id), i18n.t('errors.systemErrorRetry'));
@@ -485,12 +486,12 @@ export async function handleThrowTargetGender(
   const db = createDatabaseClient(env.DB);
   const telegram = createTelegramService(env);
   const { createI18n } = await import('~/i18n');
-  
+
   try {
     const telegramId = callbackQuery.from.id.toString();
     const user = await findUserByTelegramId(db, telegramId);
     if (!user) return;
-    
+
     const i18n = createI18n(user.language_pref || 'zh-TW');
 
     // Update session
@@ -499,13 +500,12 @@ export async function handleThrowTargetGender(
     });
 
     await telegram.answerCallbackQuery(callbackQuery.id, i18n.t('success.saved'));
-    
+
     // Update message text to reflect selection?
     // For now just acknowledge.
-    
+
     // Trigger ForceReply again?
     await sendThrowForceReply(telegram, callbackQuery.message!.chat.id, i18n, env);
-
   } catch (error) {
     console.error('[handleThrowTargetGender] Error:', error);
   }

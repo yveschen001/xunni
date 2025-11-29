@@ -67,7 +67,7 @@ export async function handleViewOfficialAds(callbackQuery: CallbackQuery, env: E
     // Get user
     const user = await findUserByTelegramId(db, telegramId);
     const i18n = createI18n(user?.language_pref || 'zh-TW');
-    
+
     if (!user) {
       await telegram.answerCallbackQuery(callbackQuery.id, {
         text: i18n.t('officialAd.userNotFound'),
@@ -268,11 +268,16 @@ export async function handleClaimAd(
 
     // Send success message
     const baseQuota = user.is_vip ? i18n.t('officialAd.unlimited') : '10';
-    const successMessage = 
-      i18n.t('officialAd.claimRewardSuccess', { quota: ad.reward_quota }) + '\n\n' +
-      i18n.t('officialAd.rewardTemporary') + '\n\n' +
-      i18n.t('officialAd.quotaInfo', { baseQuota, permanentQuota: ad.reward_quota }) + '\n\n' +
-      (availableAds.length > 0 ? i18n.t('officialAd.moreAdsAvailable') : i18n.t('officialAd.allAdsViewed'));
+    const successMessage =
+      i18n.t('officialAd.claimRewardSuccess', { quota: ad.reward_quota }) +
+      '\n\n' +
+      i18n.t('officialAd.rewardTemporary') +
+      '\n\n' +
+      i18n.t('officialAd.quotaInfo', { baseQuota, permanentQuota: ad.reward_quota }) +
+      '\n\n' +
+      (availableAds.length > 0
+        ? i18n.t('officialAd.moreAdsAvailable')
+        : i18n.t('officialAd.allAdsViewed'));
 
     await telegram.sendMessage(chatId, successMessage);
 
@@ -321,7 +326,7 @@ export async function handleVerifyAd(
     // Get user
     const user = await findUserByTelegramId(db, telegramId);
     const i18n = createI18n(user?.language_pref || 'zh-TW');
-    
+
     if (!user) {
       await telegram.answerCallbackQuery(callbackQuery.id, {
         text: i18n.t('common.userNotFound'),
@@ -390,10 +395,13 @@ export async function handleVerifyAd(
 
     // Send success message
     const baseQuota = user.is_vip ? i18n.t('officialAd.unlimited') : '10';
-    const successMessage = 
-      i18n.t('officialAd.verifySuccess', { quota: ad.reward_quota }) + '\n\n' +
-      i18n.t('officialAd.communityThanks') + '\n\n' +
-      i18n.t('officialAd.quotaInfo', { baseQuota, permanentQuota: ad.reward_quota }) + '\n\n' +
+    const successMessage =
+      i18n.t('officialAd.verifySuccess', { quota: ad.reward_quota }) +
+      '\n\n' +
+      i18n.t('officialAd.communityThanks') +
+      '\n\n' +
+      i18n.t('officialAd.quotaInfo', { baseQuota, permanentQuota: ad.reward_quota }) +
+      '\n\n' +
       i18n.t('officialAd.communityBenefits');
 
     await telegram.sendMessage(chatId, successMessage);
@@ -432,7 +440,7 @@ export async function handleAdStats(message: any, adId: number | null, env: Env)
     // Check if user is admin
     const user = await findUserByTelegramId(db, telegramId);
     const i18n = createI18n(user?.language_pref || 'zh-TW');
-    
+
     if (!user || !user.is_super_admin) {
       await telegram.sendMessage(chatId, i18n.t('officialAd.statsNoPermission'));
       return;

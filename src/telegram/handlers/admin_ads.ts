@@ -1,4 +1,3 @@
-
 import type { Env, TelegramMessage, TelegramCallbackQuery } from '~/types';
 import type { OfficialAdType, OfficialAd } from '~/domain/official_ad';
 import { createDatabaseClient } from '~/db/client';
@@ -24,7 +23,7 @@ interface WizardData {
  */
 export async function handleAdminAds(message: TelegramMessage, env: Env): Promise<void> {
   const telegramId = message.from!.id.toString();
-  
+
   if (!isAdmin(env, telegramId)) {
     return; // Silent fail for non-admins
   }
@@ -36,21 +35,23 @@ export async function handleAdminAds(message: TelegramMessage, env: Env): Promis
 
   try {
     const ads = await service.getAds();
-    
+
     let text = '📢 **官方廣告管理**\n\n';
     text += `共 ${ads.length} 則廣告\n\n`;
-    
+
     const buttons: any[][] = [];
-    
+
     // List ads
     for (const ad of ads) {
       const statusEmoji = ad.is_enabled ? '✅' : '⏸️';
       const typeEmoji = getAdTypeEmoji(ad.ad_type);
-      
-      buttons.push([{
-        text: `${statusEmoji} ${typeEmoji} ${ad.title}`,
-        callback_data: `admin_ad_view_${ad.id}`
-      }]);
+
+      buttons.push([
+        {
+          text: `${statusEmoji} ${typeEmoji} ${ad.title}`,
+          callback_data: `admin_ad_view_${ad.id}`,
+        },
+      ]);
     }
 
     // Actions
@@ -72,7 +73,7 @@ export async function handleAdminAdCallback(
   env: Env
 ): Promise<void> {
   const telegramId = callbackQuery.from.id.toString();
-  
+
   if (!isAdmin(env, telegramId)) {
     return;
   }
@@ -102,8 +103,8 @@ export async function handleAdminAdCallback(
     if (data.startsWith('admin_ad_view_')) {
       const adId = parseInt(data.replace('admin_ad_view_', ''), 10);
       const ads = await service.getAds();
-      const ad = ads.find(a => a.id === adId);
-      
+      const ad = ads.find((a) => a.id === adId);
+
       if (!ad) {
         await telegram.sendMessage(chatId, '❌ 廣告不存在');
         return;
@@ -116,18 +117,21 @@ export async function handleAdminAdCallback(
 
       const buttons = [
         [
-          { text: ad.is_enabled ? '⏸️ 暫停' : '▶️ 啟用', callback_data: `admin_ad_toggle_${ad.id}` },
-          { text: '✏️ 編輯', callback_data: `admin_ad_edit_${ad.id}` }
+          {
+            text: ad.is_enabled ? '⏸️ 暫停' : '▶️ 啟用',
+            callback_data: `admin_ad_toggle_${ad.id}`,
+          },
+          { text: '✏️ 編輯', callback_data: `admin_ad_edit_${ad.id}` },
         ],
         [
           { text: '📋 複製', callback_data: `admin_ad_duplicate_${ad.id}` },
-          { text: '🗑️ 刪除', callback_data: `admin_ad_delete_${ad.id}` }
+          { text: '🗑️ 刪除', callback_data: `admin_ad_delete_${ad.id}` },
         ],
-        [{ text: '🔙 返回列表', callback_data: 'admin_ad_refresh' }]
+        [{ text: '🔙 返回列表', callback_data: 'admin_ad_refresh' }],
       ];
 
       await telegram.editMessageText(chatId, callbackQuery.message!.message_id, text, {
-        reply_markup: { inline_keyboard: buttons }
+        reply_markup: { inline_keyboard: buttons },
       });
       return;
     }
@@ -135,8 +139,8 @@ export async function handleAdminAdCallback(
     if (data.startsWith('admin_ad_toggle_')) {
       const adId = parseInt(data.replace('admin_ad_toggle_', ''), 10);
       const ads = await service.getAds();
-      const ad = ads.find(a => a.id === adId);
-      
+      const ad = ads.find((a) => a.id === adId);
+
       if (ad) {
         await service.toggleAdStatus(adId, !ad.is_enabled);
         // Refresh view
@@ -175,13 +179,23 @@ export async function handleAdminAdCallback(
     // Wizard callbacks
     if (data.startsWith('wizard_type_')) {
       const type = data.replace('wizard_type_', '') as OfficialAdType;
-      await updateWizardStep(chatId, telegramId, { step: 'title', ad_data: { ad_type: type } }, env);
+      await updateWizardStep(
+        chatId,
+        telegramId,
+        { step: 'title', ad_data: { ad_type: type } },
+        env
+      );
       return;
     }
 
     if (data.startsWith('wizard_verify_')) {
       const verify = data === 'wizard_verify_yes';
-      await updateWizardStep(chatId, telegramId, { step: 'confirm', ad_data: { requires_verification: verify } }, env);
+      await updateWizardStep(
+        chatId,
+        telegramId,
+        { step: 'confirm', ad_data: { requires_verification: verify } },
+        env
+      );
       return;
     }
 
@@ -201,7 +215,6 @@ export async function handleAdminAdCallback(
       await handleWizardSkip(chatId, telegramId, env);
       return;
     }
-
   } catch (error) {
     console.error('[handleAdminAdCallback] Error:', error);
     await telegram.sendMessage(chatId, `❌ 錯誤: ${(error as Error).message}`);
@@ -213,14 +226,14 @@ export async function handleAdminAdCallback(
  */
 export async function handleAdminAdInput(message: TelegramMessage, env: Env): Promise<boolean> {
   const telegramId = message.from!.id.toString();
-  
+
   if (!isAdmin(env, telegramId)) {
     return false;
   }
 
   const db = createDatabaseClient(env.DB);
   const session = await getActiveSession(db, telegramId, SESSION_TYPE);
-  
+
   if (!session) {
     return false;
   }
@@ -251,37 +264,33 @@ async function startAdWizard(chatId: number, telegramId: string, env: Env) {
 
   await upsertSession(db, telegramId, SESSION_TYPE, { data: initialData });
 
-  await telegram.sendMessageWithButtons(
-    chatId,
-    '🆕 **創建新廣告**\n\n請選擇廣告類型：',
+  await telegram.sendMessageWithButtons(chatId, '🆕 **創建新廣告**\n\n請選擇廣告類型：', [
     [
-      [
-        { text: '📢 文字 (Text)', callback_data: 'wizard_type_text' },
-        { text: '🔗 連結 (Link)', callback_data: 'wizard_type_link' }
-      ],
-      [
-        { text: '👥 群組 (Group)', callback_data: 'wizard_type_group' },
-        { text: '📣 頻道 (Channel)', callback_data: 'wizard_type_channel' }
-      ],
-      [{ text: '🚫 取消', callback_data: 'wizard_cancel' }]
-    ]
-  );
+      { text: '📢 文字 (Text)', callback_data: 'wizard_type_text' },
+      { text: '🔗 連結 (Link)', callback_data: 'wizard_type_link' },
+    ],
+    [
+      { text: '👥 群組 (Group)', callback_data: 'wizard_type_group' },
+      { text: '📣 頻道 (Channel)', callback_data: 'wizard_type_channel' },
+    ],
+    [{ text: '🚫 取消', callback_data: 'wizard_cancel' }],
+  ]);
 }
 
 async function startEditWizard(chatId: number, telegramId: string, adId: number, env: Env) {
   const db = createDatabaseClient(env.DB);
   const telegram = createTelegramService(env);
   const service = new AdminAdsService(db, env, telegramId);
-  
+
   const ads = await service.getAds();
-  const ad = ads.find(a => a.id === adId);
+  const ad = ads.find((a) => a.id === adId);
   if (!ad) throw new Error('Ad not found');
 
   // Start from title since type cannot be changed easily
   const initialData: WizardData = {
     step: 'title',
     ad_data: { ...ad },
-    edit_id: adId
+    edit_id: adId,
   };
 
   await upsertSession(db, telegramId, SESSION_TYPE, { data: initialData });
@@ -289,7 +298,10 @@ async function startEditWizard(chatId: number, telegramId: string, adId: number,
   await telegram.sendMessageWithButtons(
     chatId,
     `✏️ **編輯廣告** (ID: ${adId})\n\n當前標題：\n${ad.title}\n\n請輸入新標題，或點擊跳過：`,
-    [[{ text: '⏭️ 跳過 (保持不變)', callback_data: 'wizard_skip' }], [{ text: '🚫 取消', callback_data: 'wizard_cancel' }]]
+    [
+      [{ text: '⏭️ 跳過 (保持不變)', callback_data: 'wizard_skip' }],
+      [{ text: '🚫 取消', callback_data: 'wizard_cancel' }],
+    ]
   );
 }
 
@@ -301,7 +313,7 @@ async function updateWizardStep(
 ) {
   const db = createDatabaseClient(env.DB);
   const telegram = createTelegramService(env);
-  
+
   const session = await getActiveSession(db, telegramId, SESSION_TYPE);
   if (!session) return;
 
@@ -309,7 +321,7 @@ async function updateWizardStep(
   const newData: WizardData = {
     ...currentData,
     step: updates.step || currentData.step,
-    ad_data: { ...currentData.ad_data, ...updates.ad_data }
+    ad_data: { ...currentData.ad_data, ...updates.ad_data },
   };
 
   await upsertSession(db, telegramId, SESSION_TYPE, { data: newData });
@@ -362,12 +374,20 @@ async function updateWizardStep(
           chatId,
           '是否需要 **強制驗證** (用戶必須加入群組/頻道)?',
           [
-            [{ text: '✅ 是', callback_data: 'wizard_verify_yes' }, { text: '❌ 否', callback_data: 'wizard_verify_no' }],
-            ...(newData.edit_id ? [[{ text: '⏭️ 跳過', callback_data: 'wizard_skip' }]] : [])
+            [
+              { text: '✅ 是', callback_data: 'wizard_verify_yes' },
+              { text: '❌ 否', callback_data: 'wizard_verify_no' },
+            ],
+            ...(newData.edit_id ? [[{ text: '⏭️ 跳過', callback_data: 'wizard_skip' }]] : []),
           ]
         );
       } else {
-        await updateWizardStep(chatId, telegramId, { step: 'confirm', ad_data: { requires_verification: false } }, env);
+        await updateWizardStep(
+          chatId,
+          telegramId,
+          { step: 'confirm', ad_data: { requires_verification: false } },
+          env
+        );
       }
       break;
     case 'confirm': {
@@ -388,23 +408,34 @@ Target: ${ad.target_entity_id || '無'}
 `;
       await telegram.sendMessageWithButtons(chatId, msg, [
         [{ text: '🚀 確認發布', callback_data: 'wizard_confirm' }],
-        [{ text: '🚫 取消', callback_data: 'wizard_cancel' }]
+        [{ text: '🚫 取消', callback_data: 'wizard_cancel' }],
       ]);
       break;
     }
   }
 }
 
-async function handleWizardInput(chatId: number, telegramId: string, text: string, env: Env, session: any) {
+async function handleWizardInput(
+  chatId: number,
+  telegramId: string,
+  text: string,
+  env: Env,
+  session: any
+) {
   const data = parseSessionData(session).data as WizardData;
-  
+
   switch (data.step) {
     case 'title':
       if (text.length > 40) {
         await createTelegramService(env).sendMessage(chatId, '❌ 標題太長 (Max 40字)，請重試:');
         return;
       }
-      await updateWizardStep(chatId, telegramId, { step: 'content', ad_data: { title: text } }, env);
+      await updateWizardStep(
+        chatId,
+        telegramId,
+        { step: 'content', ad_data: { title: text } },
+        env
+      );
       break;
     case 'content':
       if (text.length > 300) {
@@ -416,14 +447,24 @@ async function handleWizardInput(chatId: number, telegramId: string, text: strin
     case 'url':
       try {
         new URL(text);
-        await updateWizardStep(chatId, telegramId, { step: 'target_id', ad_data: { url: text } }, env);
+        await updateWizardStep(
+          chatId,
+          telegramId,
+          { step: 'target_id', ad_data: { url: text } },
+          env
+        );
       } catch {
         await createTelegramService(env).sendMessage(chatId, '❌ 無效的 URL，請重試:');
       }
       break;
     case 'target_id':
       // Basic validation?
-      await updateWizardStep(chatId, telegramId, { step: 'reward', ad_data: { target_entity_id: text } }, env);
+      await updateWizardStep(
+        chatId,
+        telegramId,
+        { step: 'reward', ad_data: { target_entity_id: text } },
+        env
+      );
       break;
     case 'reward': {
       const reward = parseInt(text, 10);
@@ -431,7 +472,12 @@ async function handleWizardInput(chatId: number, telegramId: string, text: strin
         await createTelegramService(env).sendMessage(chatId, '❌ 請輸入 1-10 之間的數字:');
         return;
       }
-      await updateWizardStep(chatId, telegramId, { step: 'verification', ad_data: { reward_quota: reward } }, env);
+      await updateWizardStep(
+        chatId,
+        telegramId,
+        { step: 'verification', ad_data: { reward_quota: reward } },
+        env
+      );
       break;
     }
   }
@@ -443,17 +489,29 @@ async function handleWizardSkip(chatId: number, telegramId: string, env: Env) {
   if (!session) return;
 
   const data = parseSessionData(session).data as WizardData;
-  
+
   // Determine next step based on current step
   let nextStep: WizardData['step'] | undefined;
-  
+
   switch (data.step) {
-    case 'title': nextStep = 'content'; break;
-    case 'content': nextStep = 'url'; break;
-    case 'url': nextStep = 'target_id'; break;
-    case 'target_id': nextStep = 'reward'; break;
-    case 'reward': nextStep = 'verification'; break;
-    case 'verification': nextStep = 'confirm'; break;
+    case 'title':
+      nextStep = 'content';
+      break;
+    case 'content':
+      nextStep = 'url';
+      break;
+    case 'url':
+      nextStep = 'target_id';
+      break;
+    case 'target_id':
+      nextStep = 'reward';
+      break;
+    case 'reward':
+      nextStep = 'verification';
+      break;
+    case 'verification':
+      nextStep = 'confirm';
+      break;
   }
 
   if (nextStep) {
@@ -465,7 +523,7 @@ async function finalizeWizard(chatId: number, telegramId: string, env: Env) {
   const db = createDatabaseClient(env.DB);
   const telegram = createTelegramService(env);
   const service = new AdminAdsService(db, env, telegramId);
-  
+
   const session = await getActiveSession(db, telegramId, SESSION_TYPE);
   if (!session) return;
 
@@ -480,7 +538,7 @@ async function finalizeWizard(chatId: number, telegramId: string, env: Env) {
       await service.createAd(adData);
       await telegram.sendMessage(chatId, '✅ 廣告創建成功');
     }
-    
+
     await deleteSession(db, telegramId, SESSION_TYPE);
     // Return to list
     const fakeMessage = { chat: { id: chatId }, from: { id: parseInt(telegramId) } } as any;
@@ -493,11 +551,15 @@ async function finalizeWizard(chatId: number, telegramId: string, env: Env) {
 
 function getAdTypeEmoji(type: string): string {
   switch (type) {
-    case 'text': return '📢';
-    case 'link': return '🔗';
-    case 'group': return '👥';
-    case 'channel': return '📣';
-    default: return '❓';
+    case 'text':
+      return '📢';
+    case 'link':
+      return '🔗';
+    case 'group':
+      return '👥';
+    case 'channel':
+      return '📣';
+    default:
+      return '❓';
   }
 }
-

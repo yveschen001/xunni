@@ -1,4 +1,3 @@
-
 import type { Env } from '~/types';
 import { SUPPORTED_LANGUAGES } from '~/i18n/languages';
 
@@ -46,7 +45,8 @@ Text to translate:
           messages: [
             {
               role: 'system',
-              content: 'You are a helpful assistant that translates text into multiple languages and returns JSON.',
+              content:
+                'You are a helpful assistant that translates text into multiple languages and returns JSON.',
             },
             {
               role: 'user',
@@ -71,7 +71,7 @@ Text to translate:
       }
 
       const translations = JSON.parse(content);
-      
+
       // Validate keys and fill missing ones with fallback
       const result: Record<string, string> = {};
       for (const lang of SUPPORTED_LANGUAGES) {
@@ -93,4 +93,3 @@ Text to translate:
     return result;
   }
 }
-

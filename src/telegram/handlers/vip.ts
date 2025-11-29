@@ -63,7 +63,9 @@ export async function handleVip(message: TelegramMessage, env: Env): Promise<voi
     const isVip = user.is_vip && user.vip_expire_at && new Date(user.vip_expire_at) > new Date();
 
     if (isVip) {
-      const expireDate = new Date(user.vip_expire_at!).toLocaleDateString(user.language_pref || 'zh-TW');
+      const expireDate = new Date(user.vip_expire_at!).toLocaleDateString(
+        user.language_pref || 'zh-TW'
+      );
       await telegram.sendMessageWithButtons(
         chatId,
         i18n.t('vip.vip9') +
@@ -318,7 +320,11 @@ export async function handlePreCheckout(
     // Validate payload
     if (payload.type !== 'vip_subscription') {
       const errorI18n = createI18n('zh-TW');
-      await telegram.answerPreCheckoutQuery(preCheckoutQuery.id, false, errorI18n.t('errors.error.short6'));
+      await telegram.answerPreCheckoutQuery(
+        preCheckoutQuery.id,
+        false,
+        errorI18n.t('errors.error.short6')
+      );
       return;
     }
 
@@ -420,7 +426,9 @@ export async function handleSuccessfulPayment(
         '\n\n' +
         i18n.t('vip.vip15') +
         '\n' +
-        i18n.t('vip.message3', { expireDate: newExpire.toLocaleDateString(user.language_pref || 'zh-TW') }) +
+        i18n.t('vip.message3', {
+          expireDate: newExpire.toLocaleDateString(user.language_pref || 'zh-TW'),
+        }) +
         '\n\n' +
         i18n.t('vip.vip18') +
         '\n' +
@@ -437,7 +445,9 @@ export async function handleSuccessfulPayment(
         '\n\n' +
         i18n.t('vip.vip19') +
         '\n' +
-        i18n.t('vip.message4', { expireDate: newExpire.toLocaleDateString(user.language_pref || 'zh-TW') }) +
+        i18n.t('vip.message4', {
+          expireDate: newExpire.toLocaleDateString(user.language_pref || 'zh-TW'),
+        }) +
         '\n\n' +
         i18n.t('vip.vip20') +
         '\n' +
@@ -495,7 +505,9 @@ export async function handleSuccessfulPayment(
       chatId,
       errorI18n.t('errors.error.text17') +
         '\n\n' +
-        errorI18n.t('vip.message7', { payment: { telegram_payment_charge_id: payment.telegram_payment_charge_id } })
+        errorI18n.t('vip.message7', {
+          payment: { telegram_payment_charge_id: payment.telegram_payment_charge_id },
+        })
     );
   }
 }

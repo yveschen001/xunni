@@ -90,13 +90,21 @@ async function sendExpirationReminders(
           reminderType === '7d' ? 7 : reminderType === '3d' ? 3 : reminderType === '1d' ? 1 : 0;
         const message =
           daysLeft > 0
-            ? i18n.t('vip.reminderTitle') + '\n\n' +
-              i18n.t('vip.reminderDaysLeft', { days: daysLeft }) + '\n\n' +
-              i18n.t('vip.reminderExpireDate', { date: new Date(sub.expire_date).toLocaleDateString(user?.language_pref || 'zh-TW') }) + '\n\n' +
+            ? i18n.t('vip.reminderTitle') +
+              '\n\n' +
+              i18n.t('vip.reminderDaysLeft', { days: daysLeft }) +
+              '\n\n' +
+              i18n.t('vip.reminderExpireDate', {
+                date: new Date(sub.expire_date).toLocaleDateString(user?.language_pref || 'zh-TW'),
+              }) +
+              '\n\n' +
               i18n.t('vip.reminderRenewHint')
-            : i18n.t('vip.reminderExpiringToday') + '\n\n' +
-              i18n.t('vip.reminderExpiringTodayDesc') + '\n\n' +
-              i18n.t('vip.reminderRenewHint2') + '\n' +
+            : i18n.t('vip.reminderExpiringToday') +
+              '\n\n' +
+              i18n.t('vip.reminderExpiringTodayDesc') +
+              '\n\n' +
+              i18n.t('vip.reminderRenewHint2') +
+              '\n' +
               i18n.t('vip.reminderGracePeriod');
 
         await telegram.sendMessageWithButtons(parseInt(sub.user_id), message, [
@@ -203,10 +211,16 @@ async function autoDowngradeExpiredVips(
         const i18n = createI18n(user?.language_pref || 'zh-TW');
         await telegram.sendMessage(
           parseInt(sub.user_id),
-          i18n.t('subscription.expired') + '\n\n' +
-            i18n.t('subscription.expiredDate', { date: new Date(sub.expire_date).toLocaleDateString(user?.language_pref || 'zh-TW') }) + '\n\n' +
-            i18n.t('subscription.downgradedToFree') + '\n\n' +
-            i18n.t('subscription.renewVipHint') + '\n\n' +
+          i18n.t('subscription.expired') +
+            '\n\n' +
+            i18n.t('subscription.expiredDate', {
+              date: new Date(sub.expire_date).toLocaleDateString(user?.language_pref || 'zh-TW'),
+            }) +
+            '\n\n' +
+            i18n.t('subscription.downgradedToFree') +
+            '\n\n' +
+            i18n.t('subscription.renewVipHint') +
+            '\n\n' +
             i18n.t('subscription.thankYou')
         );
 

@@ -1,4 +1,3 @@
-
 // Use Web Crypto API (SubtleCrypto) - Native to Cloudflare Workers
 // No 'node:crypto' dependency needed.
 
@@ -40,10 +39,10 @@ export async function verifySignature(
     );
 
     const signatureBuffer = await crypto.subtle.sign('HMAC', key, msgData);
-    
+
     // Convert ArrayBuffer to Hex String
     const signatureArray = Array.from(new Uint8Array(signatureBuffer));
-    const expectedSignature = signatureArray.map(b => b.toString(16).padStart(2, '0')).join('');
+    const expectedSignature = signatureArray.map((b) => b.toString(16).padStart(2, '0')).join('');
 
     // 3. Compare
     return signature === expectedSignature;
