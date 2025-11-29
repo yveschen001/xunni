@@ -12,6 +12,7 @@ import { handleMenu } from './menu';
 import { notifySuperAdmin } from '~/services/admin_notification';
 import { createOrUpdateSubscription } from '~/services/vip_subscription';
 import { createI18n } from '~/i18n';
+import { PaymentService } from '~/services/payment';
 
 // VIP pricing (Telegram Stars)
 const DEFAULT_VIP_PRICE_STARS = 150; // ~5 USD
@@ -279,53 +280,35 @@ async function sendVipInvoice(
       i18n.t('vip.text2') +
       i18n.t('vip.retentionNotice');
 
-  // Create invoice
-  const invoice: any = {
-    chat_id: chatId,
-    title,
-    description,
-    payload: JSON.stringify({
-      user_id: telegramId,
-      type: 'vip_subscription',
-      duration_days: VIP_DURATION_DAYS,
-      is_renewal: isRenewal,
-      is_subscription: enableSubscription,
-    }),
-    provider_token: '', // Empty for Telegram Stars
-    currency: 'XTR', // Telegram Stars
-    prices: [
-      {
-        label: enableSubscription ? i18n.t('vip.vip25') : i18n.t('vip.vip21'),
-        amount: priceStars,
-      },
-    ],
+  const payload = {
+    user_id: telegramId,
+    type: 'vip_subscription',
+    duration_days: VIP_DURATION_DAYS,
+    is_renewal: isRenewal,
+    is_subscription: enableSubscription,
   };
 
-  // Add subscription_period only if enabled
-  if (enableSubscription) {
-    const SUBSCRIPTION_PERIOD_30_DAYS = 30 * 24 * 60 * 60;
-    invoice.subscription_period = SUBSCRIPTION_PERIOD_30_DAYS;
-  }
-
-  // Send invoice via Telegram API
-  console.error('[sendVipInvoice] Sending invoice:', JSON.stringify(invoice, null, 2));
-
-  const apiRoot = env.TELEGRAM_API_ROOT || 'https://api.telegram.org';
-  const response = await fetch(
-    `${apiRoot}/bot${env.TELEGRAM_BOT_TOKEN}/sendInvoice`,
+  const prices = [
     {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(invoice),
-    }
-  );
+      label: enableSubscription ? i18n.t('vip.vip25') : i18n.t('vip.vip21'),
+      amount: priceStars,
+    },
+  ];
 
-  const result = await response.json();
-  console.error('[sendVipInvoice] Telegram API response:', JSON.stringify(result, null, 2));
+  const paymentService = new PaymentService(env);
+  
+  // Subscription period (seconds)
+  const subscriptionPeriod = enableSubscription ? 30 * 24 * 60 * 60 : undefined;
 
-  if (!response.ok) {
-    throw new Error(`Failed to send invoice: ${JSON.stringify(result)}`);
-  }
+  await paymentService.sendInvoice({
+    chatId,
+    title,
+    description,
+    payload,
+    currency: 'XTR',
+    prices,
+    subscriptionPeriod
+  });
 }
 
 /**
@@ -391,6 +374,7 @@ export async function handleSuccessfulPayment(
     }
 
     const i18n = createI18n(user.language_pref || 'zh-TW');
+    const paymentService = new PaymentService(env);
     
     // Handle Fortune Pack
     if (payload.type === 'fortune_pack') {
@@ -404,11 +388,13 @@ export async function handleSuccessfulPayment(
       `).bind(telegramId, amount, amount).run();
 
       // Create payment record
-      await db.d1.prepare(`
-        INSERT INTO payments (
-          telegram_id, telegram_payment_id, amount, amount_stars, currency, status
-        ) VALUES (?, ?, ?, ?, ?, 'completed')
-      `).bind(telegramId, payment.telegram_payment_charge_id, payment.total_amount, payment.total_amount, payment.currency).run();
+      await paymentService.recordPayment(db.d1, {
+        telegramId,
+        telegramPaymentId: payment.telegram_payment_charge_id,
+        amount: payment.total_amount,
+        currency: payment.currency,
+        status: 'completed'
+      });
 
       await telegram.sendMessage(chatId, i18n.t('fortune.purchaseSuccess', { amount }));
       return;
@@ -448,21 +434,13 @@ export async function handleSuccessfulPayment(
       .run();
 
     // Create payment record
-    await db.d1
-      .prepare(
-        `
-      INSERT INTO payments (
-        telegram_id,
-        telegram_payment_id,
-        amount,
-        amount_stars,
-        currency,
-        status
-      ) VALUES (?, ?, ?, ?, ?, 'completed')
-    `
-      )
-      .bind(telegramId, payment.telegram_payment_charge_id, priceStars, priceStars, 'XTR')
-      .run();
+    await paymentService.recordPayment(db.d1, {
+      telegramId,
+      telegramPaymentId: payment.telegram_payment_charge_id,
+      amount: priceStars,
+      currency: 'XTR',
+      status: 'completed'
+    });
 
     // Create or update subscription record
     await createOrUpdateSubscription(db, telegramId, newExpire, payment.telegram_payment_charge_id);
