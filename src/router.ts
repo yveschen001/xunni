@@ -494,7 +494,7 @@ export async function routeUpdate(update: TelegramUpdate, env: Env): Promise<voi
     if (text.startsWith('/broadcast_filter ')) {
       // Check super admin permission
       const { isSuperAdmin } = await import('./telegram/handlers/admin_ban');
-      if (!isSuperAdmin(telegramId)) {
+      if (!isSuperAdmin(telegramId, env)) {
         const { createI18n } = await import('./i18n');
         const i18n = createI18n(user?.language_pref || 'zh-TW');
         await telegram.sendMessage(chatId, i18n.t('error.admin4'));
@@ -510,7 +510,7 @@ export async function routeUpdate(update: TelegramUpdate, env: Env): Promise<voi
     if (text.startsWith('/broadcast ')) {
       // Check super admin permission
       const { isSuperAdmin } = await import('./telegram/handlers/admin_ban');
-      if (!isSuperAdmin(telegramId)) {
+      if (!isSuperAdmin(telegramId, env)) {
         const { createI18n } = await import('./i18n');
         const i18n = createI18n(user?.language_pref || 'zh-TW');
         await telegram.sendMessage(chatId, i18n.t('error.admin4'));
@@ -587,7 +587,7 @@ export async function routeUpdate(update: TelegramUpdate, env: Env): Promise<voi
     // Maintenance mode commands (Super Admin only)
     if (text.startsWith('/maintenance_enable ')) {
       const { isSuperAdmin } = await import('./telegram/handlers/admin_ban');
-      if (!isSuperAdmin(telegramId)) {
+      if (!isSuperAdmin(telegramId, env)) {
         const { createI18n } = await import('./i18n');
         const i18n = createI18n(user?.language_pref || 'zh-TW');
         await telegram.sendMessage(chatId, i18n.t('error.admin4'));
@@ -600,7 +600,7 @@ export async function routeUpdate(update: TelegramUpdate, env: Env): Promise<voi
 
     if (text === '/maintenance_disable') {
       const { isSuperAdmin } = await import('./telegram/handlers/admin_ban');
-      if (!isSuperAdmin(telegramId)) {
+      if (!isSuperAdmin(telegramId, env)) {
         const { createI18n } = await import('./i18n');
         const i18n = createI18n(user?.language_pref || 'zh-TW');
         await telegram.sendMessage(chatId, i18n.t('error.admin4'));
@@ -612,11 +612,11 @@ export async function routeUpdate(update: TelegramUpdate, env: Env): Promise<voi
     }
 
     if (text === '/maintenance_status') {
-      const adminBanModule = await import('./telegram/handlers/admin_ban');
-      if (!adminBanModule.isAdmin(telegramId, env)) {
+      const { isSuperAdmin } = await import('./telegram/handlers/admin_ban');
+      if (!isSuperAdmin(telegramId, env)) {
         const { createI18n } = await import('./i18n');
         const i18n = createI18n('zh-TW'); // Admin messages default to zh-TW
-        await telegram.sendMessage(chatId, i18n.t('admin.onlyAdmin'));
+        await telegram.sendMessage(chatId, i18n.t('admin.onlySuperAdmin'));
         return;
       }
       const { handleMaintenanceStatus } = await import('./telegram/handlers/maintenance');
@@ -632,7 +632,7 @@ export async function routeUpdate(update: TelegramUpdate, env: Env): Promise<voi
       const { createI18n } = await import('./i18n');
       const i18n = createI18n(user?.language_pref || 'zh-TW');
 
-      const isUserSuperAdmin = isSuperAdmin(telegramId); // Check purely by ID first (fast check)
+      const isUserSuperAdmin = isSuperAdmin(telegramId, env); // Check purely by ID first (fast check)
       console.log(`[Router] isSuperAdmin(${telegramId}) = ${isUserSuperAdmin}`);
 
       if (!isUserSuperAdmin) {
@@ -651,7 +651,7 @@ export async function routeUpdate(update: TelegramUpdate, env: Env): Promise<voi
       const user = await findUserByTelegramId(db, telegramId);
       const { createI18n } = await import('./i18n');
       const i18n = createI18n(user?.language_pref || 'zh-TW');
-      if (!isSuperAdmin(telegramId)) {
+      if (!isSuperAdmin(telegramId, env)) {
         await telegram.sendMessage(chatId, i18n.t('admin.onlySuperAdmin'));
         return;
       }
@@ -665,7 +665,7 @@ export async function routeUpdate(update: TelegramUpdate, env: Env): Promise<voi
       const user = await findUserByTelegramId(db, telegramId);
       const { createI18n } = await import('./i18n');
       const i18n = createI18n(user?.language_pref || 'zh-TW');
-      if (!isSuperAdmin(telegramId)) {
+      if (!isSuperAdmin(telegramId, env)) {
         await telegram.sendMessage(chatId, i18n.t('admin.onlySuperAdmin'));
         return;
       }
@@ -680,7 +680,7 @@ export async function routeUpdate(update: TelegramUpdate, env: Env): Promise<voi
       const user = await findUserByTelegramId(db, telegramId);
       const { createI18n } = await import('./i18n');
       const i18n = createI18n(user?.language_pref || 'zh-TW');
-      if (!isSuperAdmin(telegramId)) {
+      if (!isSuperAdmin(telegramId, env)) {
         await telegram.sendMessage(chatId, i18n.t('admin.onlySuperAdmin'));
         return;
       }
@@ -691,8 +691,8 @@ export async function routeUpdate(update: TelegramUpdate, env: Env): Promise<voi
 
     // Admin Report Test
     if (text === '/admin_report_test') {
-      const adminBanModule = await import('./telegram/handlers/admin_ban');
-      if (!adminBanModule.isAdmin(telegramId, env)) {
+      const { isSuperAdmin } = await import('./telegram/handlers/admin_ban');
+      if (!isSuperAdmin(telegramId)) {
         return;
       }
       const { handleAdminDailyReport } = await import('./telegram/handlers/admin_report');
@@ -703,8 +703,8 @@ export async function routeUpdate(update: TelegramUpdate, env: Env): Promise<voi
 
     // Test Smart Match Push (Admin only)
     if (text === '/admin_test_match_push') {
-      const adminBanModule = await import('./telegram/handlers/admin_ban');
-      if (!adminBanModule.isAdmin(telegramId, env)) {
+      const { isSuperAdmin } = await import('./telegram/handlers/admin_ban');
+      if (!isSuperAdmin(telegramId)) {
         return;
       }
 
@@ -719,8 +719,8 @@ export async function routeUpdate(update: TelegramUpdate, env: Env): Promise<voi
 
     // Test Retention Push (Admin only)
     if (text === '/admin_test_retention_push') {
-      const adminBanModule = await import('./telegram/handlers/admin_ban');
-      if (!adminBanModule.isAdmin(telegramId, env)) {
+      const { isSuperAdmin } = await import('./telegram/handlers/admin_ban');
+      if (!isSuperAdmin(telegramId)) {
         return;
       }
 
@@ -742,12 +742,12 @@ export async function routeUpdate(update: TelegramUpdate, env: Env): Promise<voi
 
     // Broadcast process command (Admin only) - Manual trigger
     if (text === '/broadcast_process') {
-      const adminBanModule = await import('./telegram/handlers/admin_ban');
+      const { isSuperAdmin } = await import('./telegram/handlers/admin_ban');
       const user = await findUserByTelegramId(db, telegramId);
       const { createI18n } = await import('./i18n');
       const i18n = createI18n(user?.language_pref || 'zh-TW');
-      if (!adminBanModule.isAdmin(telegramId, env)) {
-        await telegram.sendMessage(chatId, i18n.t('admin.onlyAdmin'));
+      if (!isSuperAdmin(telegramId)) {
+        await telegram.sendMessage(chatId, i18n.t('admin.onlySuperAdmin'));
         return;
       }
       const { handleBroadcastProcess } = await import('./telegram/handlers/broadcast');
@@ -773,12 +773,12 @@ export async function routeUpdate(update: TelegramUpdate, env: Env): Promise<voi
 
     // Broadcast cancel command (Admin only)
     if (text.startsWith('/broadcast_cancel ')) {
-      const adminBanModule = await import('./telegram/handlers/admin_ban');
+      const { isSuperAdmin } = await import('./telegram/handlers/admin_ban');
       const user = await findUserByTelegramId(db, telegramId);
       const { createI18n } = await import('./i18n');
       const i18n = createI18n(user?.language_pref || 'zh-TW');
-      if (!adminBanModule.isAdmin(telegramId, env)) {
-        await telegram.sendMessage(chatId, i18n.t('admin.onlyAdmin'));
+      if (!isSuperAdmin(telegramId)) {
+        await telegram.sendMessage(chatId, i18n.t('admin.onlySuperAdmin'));
         return;
       }
       const { handleBroadcastCancel } = await import('./telegram/handlers/broadcast');
@@ -788,12 +788,12 @@ export async function routeUpdate(update: TelegramUpdate, env: Env): Promise<voi
 
     // Broadcast cleanup command (Admin only)
     if (text.startsWith('/broadcast_cleanup')) {
-      const adminBanModule = await import('./telegram/handlers/admin_ban');
+      const { isSuperAdmin } = await import('./telegram/handlers/admin_ban');
       const user = await findUserByTelegramId(db, telegramId);
       const { createI18n } = await import('./i18n');
       const i18n = createI18n(user?.language_pref || 'zh-TW');
-      if (!adminBanModule.isAdmin(telegramId, env)) {
-        await telegram.sendMessage(chatId, i18n.t('admin.onlyAdmin'));
+      if (!isSuperAdmin(telegramId)) {
+        await telegram.sendMessage(chatId, i18n.t('admin.onlySuperAdmin'));
         return;
       }
       const { handleBroadcastCleanup } = await import('./telegram/handlers/broadcast');
@@ -804,20 +804,20 @@ export async function routeUpdate(update: TelegramUpdate, env: Env): Promise<voi
     // Broadcast status command (Admin only)
     if (text.startsWith('/broadcast_status')) {
       console.error('[Router] /broadcast_status command received');
-      const adminBanModule = await import('./telegram/handlers/admin_ban');
-      const isUserAdmin = adminBanModule.isAdmin(telegramId, env);
-      console.error('[Router] isAdmin check result:', isUserAdmin);
+      const { isSuperAdmin } = await import('./telegram/handlers/admin_ban');
+      const isUserSuperAdmin = isSuperAdmin(telegramId, env);
+      console.error('[Router] isSuperAdmin check result:', isUserSuperAdmin);
 
-      if (!isUserAdmin) {
-        console.error('[Router] User is not admin, sending error message');
+      if (!isUserSuperAdmin) {
+        console.error('[Router] User is not super admin, sending error message');
         const user = await findUserByTelegramId(db, telegramId);
         const { createI18n } = await import('./i18n');
         const i18n = createI18n(user?.language_pref || 'zh-TW');
-        await telegram.sendMessage(chatId, i18n.t('admin.ban.noPermission'));
+        await telegram.sendMessage(chatId, i18n.t('admin.onlySuperAdmin'));
         return;
       }
 
-      console.error('[Router] User is admin, calling handleBroadcastStatus');
+      console.error('[Router] User is super admin, calling handleBroadcastStatus');
       const { handleBroadcastStatus } = await import('./telegram/handlers/broadcast');
       await handleBroadcastStatus(message, env);
       return;

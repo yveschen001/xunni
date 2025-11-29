@@ -18,7 +18,8 @@ export async function handleHelp(message: TelegramMessage, env: Env): Promise<vo
     const { getAdminIds, isSuperAdmin } = await import('./admin_ban');
     const adminIds = getAdminIds(env);
     const isUserSuperAdmin = isSuperAdmin(telegramId, env);
-    const isUserAdmin = adminIds.includes(telegramId);
+    // Helper to check if user is at least admin (Super Admin is also Admin)
+    const isUserAdmin = isUserSuperAdmin || adminIds.includes(telegramId);
 
     // Base commands for all users
     let helpMessage =
@@ -54,7 +55,7 @@ export async function handleHelp(message: TelegramMessage, env: Env): Promise<vo
       i18n.t('help.text19') +
       i18n.t('help.text17');
 
-    // Add admin commands (for both regular admin and super admin)
+    // Add admin commands (Member Management Only)
     if (isUserAdmin) {
       helpMessage +=
         `\n\n━━━━━━━━━━━━━━━━\n` +
@@ -67,30 +68,10 @@ export async function handleHelp(message: TelegramMessage, env: Env): Promise<vo
         i18n.t('help.appeal6') +
         i18n.t('help.appeal4') +
         i18n.t('help.appeal2') +
-        i18n.t('help.appeal') +
-        i18n.t('help.broadcast5') +
-        i18n.t('help.broadcast4') +
-        i18n.t('help.broadcast') +
-        i18n.t('help.broadcast2') +
-        i18n.t('help.broadcast3') +
-        i18n.t('help.cancel') +
-        i18n.t('help.text32') +
-        i18n.t('help.text') +
-        // i18n.t('help.admin_ads') +
-        // i18n.t('help.admin_tasks') +
-        (i18n.t('help.admin_ads').startsWith('[') ? '\n/admin_ads - 管理官方廣告 (含新增)' : i18n.t('help.admin_ads')) +
-        (i18n.t('help.admin_tasks').startsWith('[') ? '\n/admin_tasks - 管理社群任務 (含新增)' : i18n.t('help.admin_tasks')) +
-        '\n\n/admin_report - ' +
-        i18n.t('help.dailyReportTitle') +
-        '\n/admin_report_test - ' +
-        i18n.t('admin.ban.testDailyReport') + 
-        '\n/admin_test_retention_push - ' +
-        i18n.t('admin.ban.testRetentionPush') + 
-        '\n/admin_test_match_push - ' +
-        i18n.t('admin.ban.testMatchPush'); 
+        i18n.t('help.appeal');
     }
 
-    // Add super admin commands (only for super admin)
+    // Add super admin commands (System Maintenance & Broadcast & Analytics)
     if (isUserSuperAdmin) {
       helpMessage +=
         `\n\n━━━━━━━━━━━━━━━━\n` +
@@ -109,7 +90,32 @@ export async function handleHelp(message: TelegramMessage, env: Env): Promise<vo
         '\n' +
         (i18n.t('help.superAdminMaintenance').startsWith('[') ? '**系統維護**' : i18n.t('help.superAdminMaintenance')) +
         (i18n.t('help.superAdminMaintenanceDisable').startsWith('[') ? '\n/maintenance_disable - 關閉維護模式' : '\n' + i18n.t('help.superAdminMaintenanceDisable')) +
-        (i18n.t('help.superAdminMaintenanceEnable').startsWith('[') ? '\n/maintenance_enable [reason] - 開啟維護模式' : '\n' + i18n.t('help.superAdminMaintenanceEnable'));
+        (i18n.t('help.superAdminMaintenanceEnable').startsWith('[') ? '\n/maintenance_enable [reason] - 開啟維護模式' : '\n' + i18n.t('help.superAdminMaintenanceEnable')) +
+        '\n/maintenance_status - 查看維護狀態' +
+        
+        // Broadcast Commands (Moved from Admin)
+        '\n\n**廣播監控**' +
+        i18n.t('help.broadcast5') +
+        i18n.t('help.broadcast4') +
+        i18n.t('help.broadcast') +
+        i18n.t('help.broadcast2') +
+        i18n.t('help.broadcast3') +
+        i18n.t('help.cancel') +
+        i18n.t('help.text32') +
+        i18n.t('help.text') +
+        
+        // Ads & Tasks & Reports (Moved from Admin)
+        '\n\n**管理工具**' +
+        (i18n.t('help.admin_ads').startsWith('[') ? '\n/admin_ads - 管理官方廣告 (含新增)' : i18n.t('help.admin_ads')) +
+        (i18n.t('help.admin_tasks').startsWith('[') ? '\n/admin_tasks - 管理社群任務 (含新增)' : i18n.t('help.admin_tasks')) +
+        '\n\n/admin_report - ' +
+        i18n.t('help.dailyReportTitle') +
+        '\n/admin_report_test - ' +
+        i18n.t('admin.ban.testDailyReport') + 
+        '\n/admin_test_retention_push - ' +
+        i18n.t('admin.ban.testRetentionPush') + 
+        '\n/admin_test_match_push - ' +
+        i18n.t('admin.ban.testMatchPush');
     }
 
     await telegram.sendMessage(chatId, helpMessage, { parse_mode: undefined }); // Force plain text

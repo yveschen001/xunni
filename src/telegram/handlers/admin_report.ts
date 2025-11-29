@@ -129,3 +129,22 @@ export async function handleAdminDailyReport(
     }
   }
 }
+
+/**
+ * Handle /admin_report command (Super Admin only)
+ */
+export async function handleAdminReportCommand(message: TelegramMessage, env: Env): Promise<void> {
+  const telegramId = message.from!.id.toString();
+  // Dynamic import to avoid circular dependency if any
+  const { isSuperAdmin } = await import('~/domain/admin/auth');
+  
+  if (!isSuperAdmin(env, telegramId)) {
+    const telegram = createTelegramService(env);
+    const i18n = createI18n('zh-TW');
+    await telegram.sendMessage(message.chat.id, i18n.t('admin.onlySuperAdmin'));
+    return;
+  }
+
+  // Trigger report generation for this chat
+  await handleAdminDailyReport(env, message.chat.id.toString());
+}

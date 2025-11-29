@@ -5,7 +5,7 @@ import { createTelegramService } from '~/services/telegram';
 import { AdminTasksService } from '~/domain/admin/tasks';
 import { upsertSession, getActiveSession, deleteSession } from '~/db/queries/sessions';
 import { parseSessionData } from '~/domain/session';
-import { isAdmin } from '~/domain/admin/auth';
+import { isSuperAdmin } from '~/domain/admin/auth';
 import { AdminLogService } from '~/services/admin_log';
 
 const SESSION_TYPE = 'admin_task_wizard';
@@ -21,7 +21,7 @@ interface WizardData {
  */
 export async function handleAdminTasks(message: TelegramMessage, env: Env): Promise<void> {
   const telegramId = message.from!.id.toString();
-  if (!isAdmin(env, telegramId)) return;
+  if (!isSuperAdmin(env, telegramId)) return;
 
   const telegram = createTelegramService(env);
   const service = new AdminTasksService(env.DB, env, telegramId);
@@ -73,7 +73,7 @@ export async function handleAdminTaskCallback(
   env: Env
 ): Promise<void> {
   const telegramId = callbackQuery.from.id.toString();
-  if (!isAdmin(env, telegramId)) return;
+  if (!isSuperAdmin(env, telegramId)) return;
 
   const db = createDatabaseClient(env.DB);
   const telegram = createTelegramService(env);
@@ -217,7 +217,7 @@ export async function handleAdminTaskCallback(
  */
 export async function handleAdminTaskInput(message: TelegramMessage, env: Env): Promise<boolean> {
   const telegramId = message.from!.id.toString();
-  if (!isAdmin(env, telegramId)) return false;
+  if (!isSuperAdmin(env, telegramId)) return false;
 
   const db = createDatabaseClient(env.DB);
   const session = await getActiveSession(db, telegramId, SESSION_TYPE);

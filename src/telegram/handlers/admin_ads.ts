@@ -6,7 +6,7 @@ import { AdminAdsService } from '~/domain/admin/ads';
 import { upsertSession, getActiveSession, deleteSession } from '~/db/queries/sessions';
 import { parseSessionData } from '~/domain/session';
 import { createI18n } from '~/i18n';
-import { isAdmin } from '~/domain/admin/auth';
+import { isSuperAdmin } from '~/domain/admin/auth';
 import { formatAdStats } from '~/domain/official_ad';
 import { getAdStatistics } from '~/db/queries/official_ads';
 import { AdminLogService } from '~/services/admin_log'; // Import Log Service
@@ -25,8 +25,8 @@ interface WizardData {
 export async function handleAdminAds(message: TelegramMessage, env: Env): Promise<void> {
   const telegramId = message.from!.id.toString();
 
-  if (!isAdmin(env, telegramId)) {
-    return; // Silent fail for non-admins
+  if (!isSuperAdmin(env, telegramId)) {
+    return; // Silent fail for non-super-admins
   }
 
   const db = createDatabaseClient(env.DB);
@@ -75,7 +75,7 @@ export async function handleAdminAdCallback(
 ): Promise<void> {
   const telegramId = callbackQuery.from.id.toString();
 
-  if (!isAdmin(env, telegramId)) {
+  if (!isSuperAdmin(env, telegramId)) {
     return;
   }
 
@@ -253,7 +253,7 @@ export async function handleAdminAdCallback(
 export async function handleAdminAdInput(message: TelegramMessage, env: Env): Promise<boolean> {
   const telegramId = message.from!.id.toString();
 
-  if (!isAdmin(env, telegramId)) {
+  if (!isSuperAdmin(env, telegramId)) {
     return false;
   }
 

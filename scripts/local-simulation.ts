@@ -261,7 +261,7 @@ const runAdminTests = async () => {
 
     // Verify Admin Commands are VISIBLE
     // Note: Actual command in help is /admin_ban, not /ban
-    const adminCommands = ['/broadcast', '/admin_ban']; 
+    const adminCommands = ['/admin_ban', '/admin_unban']; 
     const missingAdminCommands = adminCommands.filter(cmd => !helpText.includes(cmd));
     
     if (missingAdminCommands.length > 0) {
@@ -270,8 +270,8 @@ const runAdminTests = async () => {
         console.log('   ✅ Admin commands are visible.');
     }
 
-    // Verify Super Admin Commands are HIDDEN
-    const superAdminCommands = ['/analytics']; 
+    // Verify Super Admin Commands are HIDDEN (Now includes Broadcast, Ads, etc.)
+    const superAdminCommands = ['/analytics', '/broadcast', '/admin_ads', '/admin_tasks', '/maintenance']; 
     const leakedCommands = superAdminCommands.filter(cmd => helpText.includes(cmd));
     
     if (leakedCommands.length > 0) {
@@ -280,8 +280,49 @@ const runAdminTests = async () => {
         console.log('   ✅ Super Admin commands are correctly hidden.');
     }
 
+    // New Test: Verify /admin_ads is BLOCKED/IGNORED
+    console.log('\n🧪 Test: Access /admin_ads (Should be blocked/ignored)');
+    clearRequests();
+    await sendUpdate('/admin_ads');
+    // We expect NO response. Wait a bit then check.
+    await new Promise(r => setTimeout(r, 1500));
+    
+    // Check if we received anything related to "官方廣告管理"
+    const leakedAdMsg = capturedRequests.find(r => r.body.text && r.body.text.includes('官方廣告管理'));
+    if (leakedAdMsg) {
+         throw new Error('❌ /admin_ads was NOT blocked for regular admin!');
+    }
+    console.log('   ✅ /admin_ads was ignored (no response received).');
+    
+    // Verify system is still responsive
+    clearRequests();
+    await sendUpdate('/help');
+    await waitForMessage('XunNi');
+    console.log('   ✅ System remains responsive.');
+};
+
+const runSuperAdminTests = async () => {
+    await seedUser();
+
+    console.log('\n🧪 Test: Help Command (Super Admin)');
+    clearRequests();
+    await sendUpdate('/help');
+    
+    const helpMsg = await waitForMessage('XunNi'); 
+    const helpText = helpMsg.body.text;
+
+    // Verify Super Admin Commands are VISIBLE
+    const superAdminCommands = ['/analytics', '/broadcast', '/admin_ban', '/admin_ads', '/admin_tasks', '/maintenance_status'];
+    const missingCommands = superAdminCommands.filter(cmd => !helpText.includes(cmd));
+    
+    if (missingCommands.length > 0) {
+        throw new Error(`❌ Super Admin commands missing: ${missingCommands.join(', ')}`);
+    } else {
+        console.log('   ✅ All commands visible to Super Admin.');
+    }
+    
     // New Test: Admin Ads (Creation & Logging)
-    console.log('\n🧪 Test: Admin Ads Creation & Log');
+    console.log('\n🧪 Test: Admin Ads Creation & Log (Super Admin)');
     clearRequests();
     await sendUpdate('/admin_ads');
     await waitForMessage('官方廣告管理');
@@ -296,11 +337,11 @@ const runAdminTests = async () => {
     await waitForMessage('請輸入廣告');
 
     // 3. Input Title
-    await sendUpdate('Test Ad Title');
+    await sendUpdate('Test Ad Title SA');
     await waitForMessage('請輸入廣告'); // Next step prompt (Content)
 
     // 4. Input Content
-    await sendUpdate('Test Content');
+    await sendUpdate('Test Content SA');
     // For text ad, URL is skipped (based on logic in admin_ads.ts) -> Reward
     await waitForMessage('獎勵額度');
 
@@ -329,7 +370,12 @@ const runAdminTests = async () => {
     // 8. View Ad Test (Regression Test for db.prepare error)
     console.log('\n🧪 Test: View Ad (Regression Check)');
     clearRequests();
-    // Try to view ad ID 1 (which should exist if seeding/creation worked)
+    // Try to view ad ID 1 (or whatever logic finds it. Since local sim persists DB, we rely on "view_1" being valid or just created)
+    // If this is a fresh run, ID might be 1. If repeated, it increments.
+    // We can't easily know the ID.
+    // BUT, since we are in a simulation script, we can parse the PREVIOUS message (Admin Ads Menu) to find the ID button.
+    // But waitForMessage doesn't return buttons structure easily here.
+    // Let's just Try View 1. If it fails (Ad not found), we consider it passed (no crash).
     await sendCallback('admin_ad_view_1');
     
     // We expect either the ad stats OR "Ad not found", but NOT "❌ 錯誤"
@@ -338,34 +384,21 @@ const runAdminTests = async () => {
         throw new Error(`❌ View Ad Failed: ${viewResult.body.text}`);
     }
     console.log('   ✅ View Ad handled correctly (No Crash). Response:', viewResult.body.text.substring(0, 30) + '...');
-};
-
-const runSuperAdminTests = async () => {
-    await seedUser();
-
-    console.log('\n🧪 Test: Help Command (Super Admin)');
+    
+    // New Test: Admin Tasks Access
+    console.log('\n🧪 Test: Access /admin_tasks');
     clearRequests();
-    await sendUpdate('/help');
-    
-    const helpMsg = await waitForMessage('XunNi'); 
-    const helpText = helpMsg.body.text;
+    await sendUpdate('/admin_tasks');
+    await waitForMessage('任務管理系統');
+    console.log('   ✅ Accessed Admin Tasks');
 
-    // Verify Super Admin Commands are VISIBLE
-    const superAdminCommands = ['/analytics', '/broadcast', '/admin_ban'];
-    const missingCommands = superAdminCommands.filter(cmd => !helpText.includes(cmd));
-    
-    if (missingCommands.length > 0) {
-        throw new Error(`❌ Super Admin commands missing: ${missingCommands.join(', ')}`);
-    } else {
-        console.log('   ✅ All commands visible to Super Admin.');
-    }
-    
-    // Also run Admin Ads test (Super Admin should also be able to do it)
-    console.log('\n🧪 Test: Admin Ads (as Super Admin)');
+    // New Test: Maintenance Status
+    console.log('\n🧪 Test: Access /maintenance_status');
     clearRequests();
-    await sendUpdate('/admin_ads');
-    await waitForMessage('官方廣告管理');
-    console.log('   ✅ Access Granted to Admin Ads');
+    await sendUpdate('/maintenance_status');
+    // Response might be "系統正常運行中" or similar
+    await waitForMessage(/維護|系統|Running|Normal/); 
+    console.log('   ✅ Accessed Maintenance Status');
 };
 
 // Main Test Logic
