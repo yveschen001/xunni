@@ -325,6 +325,19 @@ const runAdminTests = async () => {
     // Check for Log Message in Admin Group
     const logMsg = await waitForMessage(/Ad Created/, 5000, ADMIN_LOG_GROUP_ID);
     console.log('   ✅ Log received in Admin Group:', logMsg.body.text.substring(0, 50) + '...');
+
+    // 8. View Ad Test (Regression Test for db.prepare error)
+    console.log('\n🧪 Test: View Ad (Regression Check)');
+    clearRequests();
+    // Try to view ad ID 1 (which should exist if seeding/creation worked)
+    await sendCallback('admin_ad_view_1');
+    
+    // We expect either the ad stats OR "Ad not found", but NOT "❌ 錯誤"
+    const viewResult = await waitForMessage(/統計|總瀏覽|廣告不存在|Ad not found|❌ 錯誤/);
+    if (viewResult.body.text.includes('❌ 錯誤')) {
+        throw new Error(`❌ View Ad Failed: ${viewResult.body.text}`);
+    }
+    console.log('   ✅ View Ad handled correctly (No Crash). Response:', viewResult.body.text.substring(0, 30) + '...');
 };
 
 const runSuperAdminTests = async () => {
