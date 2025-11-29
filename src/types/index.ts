@@ -472,6 +472,8 @@ export interface TelegramMessage {
     file_size?: number;
   };
   reply_to_message?: TelegramMessage;
+  successful_payment?: TelegramSuccessfulPayment;
+  refunded_payment?: TelegramRefundedPayment;
 }
 
 export interface TelegramUser {
@@ -544,6 +546,14 @@ export interface TelegramSuccessfulPayment {
   invoice_payload: string;
   telegram_payment_charge_id: string;
   provider_payment_charge_id: string;
+}
+
+export interface TelegramRefundedPayment {
+  currency: string;
+  total_amount: number;
+  invoice_payload: string;
+  telegram_payment_charge_id: string;
+  provider_payment_charge_id?: string;
 }
 
 // ============================================================================

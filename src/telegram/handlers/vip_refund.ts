@@ -4,7 +4,7 @@
  * Handles VIP refund requests and admin approval/rejection.
  */
 
-import type { Env, TelegramMessage } from '~/types';
+import type { Env, TelegramMessage, TelegramRefundedPayment } from '~/types';
 import { createDatabaseClient } from '~/db/client';
 import { createTelegramService } from '~/services/telegram';
 import { findUserByTelegramId } from '~/db/queries/users';
@@ -479,5 +479,46 @@ export async function handleAdminRejectRefund(
         error: error instanceof Error ? error.message : String(error),
       })
     );
+  }
+}
+
+/**
+ * Handle refunded payment (from Telegram)
+ */
+export async function handleRefundedPayment(
+  message: TelegramMessage,
+  refund: TelegramRefundedPayment,
+  env: Env
+): Promise<void> {
+  const db = createDatabaseClient(env.DB);
+  const telegram = createTelegramService(env);
+  const telegramId = message.from?.id.toString() || message.chat.id.toString();
+
+  console.log(`[handleRefundedPayment] Processing refund for user ${telegramId}, charge_id: ${refund.telegram_payment_charge_id}`);
+
+  try {
+    // 1. Update payment record
+    await db.d1.prepare(`
+       UPDATE payments 
+       SET status = 'refunded', payment_type = 'refund', refunded_at = datetime('now')
+       WHERE telegram_payment_id = ?
+     `).bind(refund.telegram_payment_charge_id).run();
+
+    // 2. Revoke VIP status
+    await db.d1.prepare(`
+       UPDATE users
+       SET is_vip = 0, vip_expire_at = NULL, updated_at = datetime('now')
+       WHERE telegram_id = ?
+     `).bind(telegramId).run();
+
+    // 3. Notify user
+    const user = await findUserByTelegramId(db, telegramId);
+    if (user) {
+      const i18n = createI18n(user.language_pref || 'zh-TW');
+      await telegram.sendMessage(Number(telegramId), i18n.t('vip.refundedAndRevoked'));
+    }
+
+  } catch (error) {
+    console.error('[handleRefundedPayment] Error:', error);
   }
 }

@@ -223,6 +223,27 @@ async function sendVipInvoice(
   env: Env,
   i18n: ReturnType<typeof createI18n>
 ): Promise<void> {
+  // Check VIP duration limit (36 months)
+  const db = createDatabaseClient(env.DB);
+  const user = await findUserByTelegramId(db, telegramId);
+  if (user && user.vip_expire_at) {
+    const currentExpire = new Date(user.vip_expire_at);
+    const now = new Date();
+    // Only check if currently VIP and not expired
+    if (currentExpire > now) {
+      const maxDuration = 36 * 30 * 24 * 60 * 60 * 1000; // 36 months in ms (approx)
+      const maxExpireDate = new Date(now.getTime() + maxDuration);
+      
+      // Calculate projected new expiration
+      const newExpire = new Date(currentExpire.getTime() + VIP_DURATION_DAYS * 24 * 60 * 60 * 1000);
+      
+      if (newExpire > maxExpireDate) {
+        await telegram.sendMessage(chatId, i18n.t('vip.maxDurationExceeded', { maxMonths: 36 }));
+        return;
+      }
+    }
+  }
+
   const priceStars = resolveVipPrice(env);
 
   // Check if subscription is enabled (requires BotFather setup)

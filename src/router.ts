@@ -149,6 +149,15 @@ export async function routeUpdate(update: TelegramUpdate, env: Env): Promise<voi
     return;
   }
 
+  // Handle refunded payment
+  if (update.message && 'refunded_payment' in update.message) {
+    console.error('[Router] Refund received, processing...');
+    console.error('[Router] Refund data:', JSON.stringify(update.message.refunded_payment));
+    const { handleRefundedPayment } = await import('./telegram/handlers/vip_refund');
+    await handleRefundedPayment(update.message, update.message.refunded_payment, env);
+    return;
+  }
+
   // Handle message
   if (update.message) {
     const message = update.message;

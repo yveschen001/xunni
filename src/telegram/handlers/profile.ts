@@ -68,14 +68,22 @@ export async function handleProfile(message: TelegramMessage, env: Env): Promise
     const { createI18n: createI18nForBloodType } = await import('~/i18n');
     const bloodTypeI18n = createI18nForBloodType(user.language_pref || 'zh-TW');
     const bloodType = getBloodTypeDisplay(user.blood_type as any, bloodTypeI18n);
-    const vipStatus =
-      user.is_vip && user.vip_expire_at && new Date(user.vip_expire_at) > new Date()
-        ? i18n.t('profile.vip', {
-          expireDate: new Date(user.vip_expire_at).toLocaleDateString(
-            user.language_pref || 'zh-TW'
-          ),
-        })
-        : i18n.t('profile.short2');
+    
+    let vipStatus = i18n.t('profile.short2');
+    if (user.is_vip && user.vip_expire_at) {
+      const expireDate = new Date(user.vip_expire_at);
+      const now = new Date();
+      if (expireDate > now) {
+        const diffTime = Math.abs(expireDate.getTime() - now.getTime());
+        const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24)); 
+         
+        vipStatus = i18n.t('profile.vipWithDays', {
+          expireDate: expireDate.toLocaleDateString(user.language_pref || 'zh-TW'),
+          days: diffDays
+        });
+      }
+    }
+
     const inviteCode = user.invite_code || i18n.t('profile.settings');
 
     // Format nickname with country flag

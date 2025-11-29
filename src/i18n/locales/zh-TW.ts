@@ -3161,7 +3161,8 @@ export const translations: Translations = {
     "vip2": "• 使用 /vip 升級 VIP 會員\n",
     "vipUpgrade": "• 使用 /vip 升級 VIP 會員\n",
     "zodiac": "⭐ 星座：${zodiac}\n",
-    "fortuneQuota": "🔮 {fortuneBottle}: {total} (本週免費: {weekly}/{limit} | 額外: {additional})"
+    "fortuneQuota": "🔮 {fortuneBottle}: {total} (本週免費: {weekly}/{limit} | 額外: {additional})",
+    "vipWithDays": "💎 VIP 會員 (剩餘 {days} 天, 到期: {expireDate})"
   },
   "refreshAvatar": {
     "failed": "❌ 刷新頭像失敗\n\n請稍後再試，或聯繫管理員。",
@@ -3984,7 +3985,9 @@ export const translations: Translations = {
     "vip7": "💡 立即續費，享受不間斷的 VIP 服務！",
     "vip8": "💡 立即續費，繼續享受 VIP 權益！\n",
     "vip9": "✨ **你已經是 VIP 會員**\n\n",
-    "upgrade": "升級 VIP"
+    "upgrade": "升級 VIP",
+    "maxDurationExceeded": "⚠️ 您的 VIP 期限已達到上限 ({maxMonths} 個月)，暫時無法繼續購買。",
+    "refundedAndRevoked": "ℹ️ 您的款項已退還，VIP 權益已收回。"
   },
   "vipTripleBottle": {
     "bottleContent": "📝 瓶子內容：{content}\n\n",
