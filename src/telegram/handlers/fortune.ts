@@ -50,18 +50,23 @@ async function showFortuneMenu(chatId: number, profile: FortuneProfile, env: Env
                `${i18n.t('fortune.currentProfile')}: ${profile.name}\n\n` +
                `${i18n.t('fortune.selectOption')}`;
 
-  const buttons = [
-    [
-      { text: `📅 ${i18n.t('fortune.daily')}`, callback_data: 'fortune_daily' },
-      { text: `🧘 ${i18n.t('fortune.deep')}`, callback_data: 'fortune_deep' }
-    ],
-    // [
-    //   { text: `💞 ${i18n.t('fortune.match')}`, callback_data: 'fortune_match' } // Future feature
-    // ],
-    [
-      { text: `⚙️ ${i18n.t('fortune.manageProfiles')}`, callback_data: 'fortune_profiles' }
-    ]
-  ];
+    const buttons = [
+      [
+        { text: `📅 ${i18n.t('fortune.daily')}`, callback_data: 'fortune_daily' },
+        { text: `🧘 ${i18n.t('fortune.deep')}`, callback_data: 'fortune_deep' }
+      ],
+      [
+        { 
+          text: profile.is_subscribed 
+            ? `🔕 ${i18n.t('fortune.unsubscribe')}` 
+            : `🔔 ${i18n.t('fortune.subscribe')}`, 
+          callback_data: 'fortune_subscribe_toggle' 
+        }
+      ],
+      [
+        { text: `⚙️ ${i18n.t('fortune.manageProfiles')}`, callback_data: 'fortune_profiles' }
+      ]
+    ];
 
   await telegram.sendMessageWithButtons(chatId, text, buttons);
 }
@@ -364,6 +369,26 @@ export async function handleFortuneCallback(callbackQuery: TelegramCallbackQuery
         await showFortuneMenu(chatId, profiles[0], env, i18n);
       }
     }
+    return;
+  }
+
+  // Subscribe Toggle
+  if (data === 'fortune_subscribe_toggle') {
+    const profiles = await service.getProfiles(telegramId);
+    if (profiles.length === 0) return;
+    const profile = profiles[0];
+    
+    // Toggle
+    const newStatus = profile.is_subscribed ? 0 : 1;
+    await service.updateProfileSubscription(profile.id, newStatus);
+    
+    // Refresh Menu
+    const updatedProfiles = await service.getProfiles(telegramId);
+    await showFortuneMenu(chatId, updatedProfiles[0], env, i18n);
+    
+    await telegram.answerCallbackQuery(callbackQuery.id, 
+      newStatus ? i18n.t('fortune.subscribed') : i18n.t('fortune.unsubscribed')
+    );
     return;
   }
 

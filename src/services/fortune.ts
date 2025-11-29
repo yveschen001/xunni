@@ -77,6 +77,12 @@ export class FortuneService {
     };
   }
   
+  async updateProfileSubscription(id: number, status: number): Promise<void> {
+    await this.db.prepare('UPDATE fortune_profiles SET is_subscribed = ? WHERE id = ?')
+      .bind(status, id)
+      .run();
+  }
+
   private getSunSign(month: number, day: number): string {
     const signs = [
       'Aquarius', 'Pisces', 'Aries', 'Taurus', 'Gemini', 'Cancer', 

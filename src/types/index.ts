@@ -180,6 +180,7 @@ export interface FortuneProfile {
   birth_location_lat?: number;
   birth_location_lng?: number;
   is_default: number;
+  is_subscribed: number;
   created_at: string;
   updated_at: string;
 }
