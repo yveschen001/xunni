@@ -10,7 +10,7 @@ export class ContentModerationService {
   private baseURL: string;
 
   constructor(env: Env) {
-    this.apiKey = env.GEMINI_API_KEY || env.OPENAI_API_KEY || ''; // Fallback or shared key
+    this.apiKey = env.GOOGLE_GEMINI_API_KEY || env.OPENAI_API_KEY || ''; // Fallback or shared key
     this.projectId = env.GEMINI_PROJECT_ID || '';
     // Use Google Gemini API endpoint
     this.baseURL = `https://generativelanguage.googleapis.com/v1beta/models/gemini-pro:generateContent?key=${this.apiKey}`;

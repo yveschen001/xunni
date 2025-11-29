@@ -10,7 +10,7 @@ export class AIAnalystService {
   private model: string;
 
   constructor(env: Env) {
-    this.apiKey = env.GEMINI_API_KEY || env.OPENAI_API_KEY || ''; // Fallback
+    this.apiKey = env.GOOGLE_GEMINI_API_KEY || env.OPENAI_API_KEY || ''; // Fallback
     // Use gemini-1.5-flash if available, or fall back to pro
     this.model = 'gemini-1.5-flash';
     this.baseURL = `https://generativelanguage.googleapis.com/v1beta/models/${this.model}:generateContent?key=${this.apiKey}`;

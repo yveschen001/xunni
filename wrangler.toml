@@ -40,7 +40,7 @@ BROADCAST_BATCH_SIZE = "25"
 BROADCAST_MAX_JOBS = "3"
 ENABLE_AI_MODERATION = "true"
 ENABLE_TRANSLATION = "true"
-ADMIN_LOG_GROUP_ID = "-4917557179"
+ADMIN_LOG_GROUP_ID = "-5073384780"
 GEMINI_PROJECT_ID = "gen-lang-client-0526946218"
 GEMINI_LOCATION = "us-central1"
 GEMINI_MODELS = "gemini-2.0-flash-exp,gemini-2.5-flash-lite"
@@ -48,22 +48,19 @@ GEMINI_API_VERSION = "v1beta"
 OPENAI_MODEL = "gpt-4o-mini"
 # Super Admin Configuration
 SUPER_ADMIN_USER_ID = "396943893"
-ADMIN_USER_IDS = ""  # Regular admins (comma-separated). Super admin 396943893 is always included
+ADMIN_USER_IDS = ""
 # Ad System Configuration
 PUBLIC_URL = "https://xunni-bot-staging.yves221.workers.dev"
 ENABLE_ANALYTICS = "true"
 AD_PROVIDER_STRATEGY = "priority"
 AD_REWARD_SECRET = "NOGD2InZ/VuIhZPSiajhwdmIc/PKHnijE/VSUKxzspM="
-# Official Channel ID for task verification
 OFFICIAL_CHANNEL_ID = "-1003260293651"
-# VIP Subscription (requires BotFather setup - set to "true" after enabling in @BotFather)
 ENABLE_VIP_SUBSCRIPTION = "false"
-# Smart Matching Configuration
 ENABLE_SMART_MATCHING = "true"
-SMART_MATCHING_THRESHOLD = "70"  # Minimum score for smart recommendation
-  # MoonPacket API Configuration (Dev/Staging only - move to secrets for prod)
-  MOONPACKET_API_KEY = "mock-api-key"
-  MOONPACKET_API_SECRET = "your_secret_here"
+SMART_MATCHING_THRESHOLD = "70"
+VIP_PRICE_STARS = "1"
+MOONPACKET_API_KEY = "mock-api-key"
+MOONPACKET_API_SECRET = "your_secret_here"
 
 # Staging D1 Database
 [[env.staging.d1_databases]]
@@ -72,20 +69,10 @@ database_name = "xunni-db-staging"
 database_id = "7b77ad82-ba26-489f-995f-8256b32379df"
 migrations_dir = "src/db/migrations"
 
-# Staging KV Namespace for caching (free tier)
+# Staging KV Namespace
 [[env.staging.kv_namespaces]]
 binding = "CACHE"
 id = "8222fd298f254b498b7842d03e5d2a4d"
-
-# Staging Cron triggers (temporarily disabled due to API issue)
-# [[env.staging.triggers.crons]]
-# cron = "0 * * * *"  # Every hour (Channel membership check)
-# 
-# [[env.staging.triggers.crons]]
-# cron = "0 10 * * *"  # Every day at 10:00 UTC = 18:00 Taipei (VIP expiration check)
-# 
-# [[env.staging.triggers.crons]]
-# cron = "0 9 * * *"  # Every day at 09:00 UTC = 17:00 Taipei (Daily reports)
 
 # Production environment
 [env.production]
@@ -95,22 +82,23 @@ name = "xunni-bot"
 ENVIRONMENT = "production"
 LOG_LEVEL = "warn"
 ADMIN_LOG_GROUP_ID = "-4917557179"
-# Super Admin Configuration
+GEMINI_PROJECT_ID = "gen-lang-client-0526946218"
+GEMINI_LOCATION = "us-central1"
+GEMINI_MODELS = "gemini-2.0-flash-exp,gemini-2.5-flash-lite"
+GEMINI_API_VERSION = "v1beta"
+OPENAI_MODEL = "gpt-4o-mini"
 SUPER_ADMIN_USER_ID = "396943893"
 ADMIN_USER_IDS = ""
-# Ad System Configuration
-PUBLIC_URL = "https://xunni-bot.yves221.workers.dev"
+PUBLIC_URL = "https://api.xunni.xyz"
 ENABLE_ANALYTICS = "true"
 AD_PROVIDER_STRATEGY = "priority"
 AD_REWARD_SECRET = "NOGD2InZ/VuIhZPSiajhwdmIc/PKHnijE/VSUKxzspM="
-# Official Channel ID for task verification
 OFFICIAL_CHANNEL_ID = "-1003260293651"
-# VIP Subscription (requires BotFather setup - set to "true" after enabling in @BotFather)
 ENABLE_VIP_SUBSCRIPTION = "false"
-# Smart Matching Configuration
+VIP_PRICE_STARS = "385"
 ENABLE_SMART_MATCHING = "true"
-SMART_MATCHING_THRESHOLD = "70"  # Minimum score for smart recommendation
-# MoonPacket API Key should be set via secrets for production
+SMART_MATCHING_THRESHOLD = "70"
+# MOONPACKET_API_SECRET = "your_secret_here" # Commented out as likely unused or should be secret
 
 # Production D1 Database
 [[env.production.d1_databases]]
@@ -119,51 +107,17 @@ database_name = "xunni-db-production"
 database_id = "8d7fc73c-0eaf-4125-8047-9ef35de6b3c2"
 migrations_dir = "src/db/migrations"
 
-# Production KV Namespace for caching (free tier)
+# Production KV Namespace
 [[env.production.kv_namespaces]]
 binding = "CACHE"
 id = "0a6b866ecab6428691f462178473f94f"
 
+# Production Custom Domain
+[[env.production.routes]]
+pattern = "api.xunni.xyz"
+custom_domain = true
+
 # Production Cron triggers
-[[env.production.triggers.crons]]
-cron = "0 9 * * 1"  # Every Monday at 9:00 UTC (Horoscope)
-
-[[env.production.triggers.crons]]
-cron = "0 9 * * *"  # Every day at 09:00 UTC = 17:00 Taipei (Daily reports to super admins)
-
-[[env.production.triggers.crons]]
-cron = "0 10 * * *"  # Every day at 10:00 UTC = 18:00 Taipei (VIP expiration check)
-
-[[env.production.triggers.crons]]
-cron = "0 * * * *"  # Every hour (Channel membership check)
-
-[[env.production.triggers.crons]]
-cron = "5 0 * * *"  # Every day at 00:05 UTC (Daily stats generation)
-
-[[env.production.triggers.crons]]
-cron = "*/5 * * * *"  # Every 5 minutes (Broadcast queue)
-
-[[env.production.triggers.crons]]
-cron = "0 * * * *"  # Every hour (Channel membership check)
-
-[[env.production.triggers.crons]]
-cron = "0 3 * * *"  # Every day at 03:00 UTC = 11:00 Taipei (Avatar cache batch update)
-
-[[env.production.triggers.crons]]
-cron = "30 2 * * *"  # Every day at 02:30 UTC = 10:30 Taipei (Birthday greetings - 錯峰發送)
-
-[[env.production.triggers.crons]]
-cron = "30 10 * * *"  # Every day at 10:30 UTC = 18:30 Taipei (Birthday greetings - 覆蓋時區)
-
-[[env.production.triggers.crons]]
-cron = "30 18 * * *"  # Every day at 18:30 UTC = 02:30 Taipei (Birthday greetings - 覆蓋時區)
-
-# Sensitive variables should be set via:
-# wrangler secret put TELEGRAM_BOT_TOKEN --env staging
-# wrangler secret put TELEGRAM_BOT_TOKEN --env production
-# wrangler secret put OPENAI_API_KEY --env staging
-# wrangler secret put OPENAI_API_KEY --env production
-# wrangler secret put TELEGRAM_WEBHOOK_SECRET --env staging
-# wrangler secret put TELEGRAM_WEBHOOK_SECRET --env production
-# wrangler secret put MOONPACKET_API_KEY --env production
-MOONPACKET_API_SECRET = "your_secret_here"
+# [[env.production.triggers.crons]]
+# cron = "0 9 * * 1"
+# ... (add back later)

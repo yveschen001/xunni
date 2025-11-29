@@ -82,6 +82,10 @@ export interface User {
   avatar_updated_at?: string; // Last time avatar was updated
   gender?: Gender;
   birthday?: string; // YYYY-MM-DD
+  birth_time?: string; // HH:mm
+  birth_city?: string;
+  birth_location_lat?: number;
+  birth_location_lng?: number;
   age?: number;
   city?: string;
   bio?: string;
@@ -135,6 +139,52 @@ export interface User {
   created_at: string;
   updated_at: string;
   last_active_at?: string; // Last time user was active
+}
+
+// ============================================================================
+// Fortune Telling Types
+// ============================================================================
+
+export type FortuneType = 'daily' | 'deep' | 'match' | 'celebrity';
+
+export interface FortuneHistory {
+  id: number;
+  telegram_id: string;
+  type: FortuneType;
+  target_date?: string; // YYYY-MM-DD
+  target_person_name?: string;
+  target_person_birth?: string;
+  content: string;
+  provider?: string;
+  model?: string;
+  tokens_used?: number;
+  created_at: string;
+}
+
+export interface FortuneProfile {
+  id: number;
+  user_id: string;
+  name: string;
+  gender?: Gender;
+  birth_date: string;
+  birth_time?: string;
+  is_birth_time_unknown: number;
+  birth_city?: string;
+  birth_location_lat?: number;
+  birth_location_lng?: number;
+  is_default: number;
+  created_at: string;
+  updated_at: string;
+}
+
+export interface FortuneQuota {
+  id: number;
+  telegram_id: string;
+  weekly_free_quota: number;
+  additional_quota: number;
+  last_reset_at?: string;
+  created_at: string;
+  updated_at: string;
 }
 
 // ============================================================================

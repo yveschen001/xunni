@@ -23,7 +23,7 @@
 
 // Base URL for legal documents (hosted on Cloudflare Workers)
 // Default: Production Worker URL. Update if you use a custom domain.
-const BASE_URL = 'https://xunni-bot.yves221.workers.dev';
+const BASE_URL = 'https://api.xunni.xyz';
 
 /**
  * Legal document URLs
