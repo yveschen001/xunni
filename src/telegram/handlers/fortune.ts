@@ -25,21 +25,31 @@ export async function handleFortune(message: TelegramMessage, env: Env): Promise
     if (!user) return;
 
     const i18n = createI18n(user.language_pref || 'zh-TW');
+    console.log('[handleFortune] i18n created for:', user.language_pref);
+
     const service = new FortuneService(env, db.d1);
+    console.log('[handleFortune] Service created');
 
     // Check if profile exists
     const profiles = await service.getProfiles(telegramId);
+    console.log('[handleFortune] Profiles found:', profiles.length);
     
     if (profiles.length === 0) {
       // Start Onboarding Wizard
+      console.log('[handleFortune] Starting onboarding');
       await startFortuneOnboarding(chatId, telegramId, env, i18n);
       return;
     }
 
     // Show Main Menu
+    console.log('[handleFortune] Showing menu');
     await showFortuneMenu(chatId, profiles[0], env, i18n);
   } catch (error) {
-    console.error('[handleFortune] Error:', error);
+    console.error('[handleFortune] CRITICAL ERROR:', error);
+    // Print stack trace if available
+    if (error instanceof Error) {
+      console.error('[handleFortune] Stack:', error.stack);
+    }
     const telegram = createTelegramService(env);
     // Try to send error message to user
     try {

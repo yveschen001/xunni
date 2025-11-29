@@ -196,11 +196,12 @@ export class FortuneService {
       // Let's use simple JS logic for Monday reset
       // Calculate "Monday of the week" for both dates
       const getMonday = (d: Date) => {
-        const day = d.getDay(); // 0-6 (Sun-Sat)
-        const diff = d.getDate() - day + (day === 0 ? -6 : 1); // adjust when day is sunday
-        const m = new Date(d.setDate(diff));
-        m.setHours(0,0,0,0);
-        return m.getTime();
+        const date = new Date(d); // Clone to avoid side effect
+        const day = date.getDay(); // 0-6 (Sun-Sat)
+        const diff = date.getDate() - day + (day === 0 ? -6 : 1); // adjust when day is sunday
+        date.setDate(diff);
+        date.setHours(0,0,0,0);
+        return date.getTime();
       };
       
       if (getMonday(now) > getMonday(lastReset)) {
