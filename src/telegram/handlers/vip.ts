@@ -390,10 +390,11 @@ export async function handleSuccessfulPayment(
       // Create payment record
       await paymentService.recordPayment(db.d1, {
         telegramId,
-        telegramPaymentId: payment.telegram_payment_charge_id,
+        transactionId: payment.telegram_payment_charge_id,
         amount: payment.total_amount,
         currency: payment.currency,
-        status: 'completed'
+        status: 'completed',
+        provider: 'telegram'
       });
 
       await telegram.sendMessage(chatId, i18n.t('fortune.purchaseSuccess', { amount }));
@@ -436,10 +437,11 @@ export async function handleSuccessfulPayment(
     // Create payment record
     await paymentService.recordPayment(db.d1, {
       telegramId,
-      telegramPaymentId: payment.telegram_payment_charge_id,
+      transactionId: payment.telegram_payment_charge_id,
       amount: priceStars,
       currency: 'XTR',
-      status: 'completed'
+      status: 'completed',
+      provider: 'telegram'
     });
 
     // Create or update subscription record

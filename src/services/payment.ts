@@ -1,6 +1,8 @@
 import type { Env } from '~/types';
 import { createTelegramService } from './telegram';
 
+export type PaymentProvider = 'telegram' | 'ton' | 'stripe';
+
 export interface InvoiceOptions {
   chatId: number;
   title: string;
@@ -11,11 +13,12 @@ export interface InvoiceOptions {
   providerToken?: string; // Empty for Telegram Stars
   photoUrl?: string;
   subscriptionPeriod?: number; // For subscriptions
+  provider?: PaymentProvider; // Future extensibility
 }
 
 /**
  * Payment Service
- * Encapsulates Telegram Payment API interactions and common payment logic.
+ * Encapsulates Payment API interactions (Telegram Stars, Future: TON, etc.)
  */
 export class PaymentService {
   private telegram: ReturnType<typeof createTelegramService>;
@@ -30,6 +33,21 @@ export class PaymentService {
    * Send an invoice to a user
    */
   async sendInvoice(options: InvoiceOptions): Promise<void> {
+    const provider = options.provider || 'telegram';
+
+    if (provider === 'telegram') {
+      await this.sendTelegramInvoice(options);
+    } else {
+      // TODO: Implement other providers (TON, Stripe, etc.)
+      console.warn(`[PaymentService] Provider ${provider} not implemented yet`);
+      throw new Error(`Payment provider ${provider} not supported`);
+    }
+  }
+
+  /**
+   * Internal: Send Telegram Invoice
+   */
+  private async sendTelegramInvoice(options: InvoiceOptions): Promise<void> {
     const invoice: any = {
       chat_id: options.chatId,
       title: options.title,
@@ -48,7 +66,7 @@ export class PaymentService {
       invoice.subscription_period = options.subscriptionPeriod;
     }
 
-    console.log('[PaymentService] Sending invoice:', JSON.stringify(invoice, null, 2));
+    console.log('[PaymentService] Sending Telegram invoice:', JSON.stringify(invoice, null, 2));
 
     const apiRoot = this.env.TELEGRAM_API_ROOT || 'https://api.telegram.org';
     const response = await fetch(
@@ -75,13 +93,15 @@ export class PaymentService {
    */
   async recordPayment(db: D1Database, data: {
     telegramId: string;
-    telegramPaymentId: string;
+    transactionId: string; // Renamed from telegramPaymentId to be generic
     amount: number;
     currency: string;
+    provider?: PaymentProvider;
     status?: 'completed' | 'pending' | 'refunded';
   }): Promise<void> {
     // Ensure both amount (old schema) and amount_stars (new schema) are populated
     // This handles the legacy schema constraint issue
+    // Note: 'telegram_payment_id' currently serves as the generic transaction ID column
     await db.prepare(`
       INSERT INTO payments (
         telegram_id, 
@@ -93,14 +113,14 @@ export class PaymentService {
       ) VALUES (?, ?, ?, ?, ?, ?)
     `).bind(
       data.telegramId,
-      data.telegramPaymentId,
+      data.transactionId,
       data.amount,
       data.amount, // Populate amount_stars with same value
       data.currency,
       data.status || 'completed'
     ).run();
     
-    console.log(`[PaymentService] Payment recorded for user ${data.telegramId}, amount: ${data.amount}`);
+    console.log(`[PaymentService] Payment recorded for user ${data.telegramId}, amount: ${data.amount}, provider: ${data.provider || 'telegram'}`);
   }
 }
 
