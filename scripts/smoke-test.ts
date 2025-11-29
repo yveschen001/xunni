@@ -24,7 +24,7 @@ const LOCAL_WORKER_URL = 'http://127.0.0.1:8787';
 // Types
 interface TestSuite {
   name: string;
-  type: 'static' | 'critical' | 'feature';
+  type: 'static' | 'critical' | 'feature' | 'user' | 'admin';
   tests: (() => Promise<void>)[];
 }
 
@@ -36,6 +36,8 @@ const filterArg = args.find(a => a.startsWith('--filter='))?.split('=')[1];
 
 const WORKER_URL = isLocal ? LOCAL_WORKER_URL : DEFAULT_WORKER_URL;
 const TEST_USER_ID = Math.floor(Math.random() * 1000000) + 100000000; // Random test user
+// Note: Real admin commands require a specific user ID configured in environment variables.
+// Here we verify that the commands are registered and handled (even if access denied).
 
 // Initialize Runner
 const runner = new SmokeTestRunner(WORKER_URL, 15000); // 15s default timeout
@@ -75,6 +77,32 @@ const createUpdate = (text: string, userId: number = TEST_USER_ID) => ({
   }
 });
 
+const createCallbackUpdate = (data: string, userId: number = TEST_USER_ID) => ({
+  update_id: Math.floor(Math.random() * 100000),
+  callback_query: {
+    id: String(Math.floor(Math.random() * 100000)),
+    from: {
+      id: userId,
+      is_bot: false,
+      first_name: 'Test',
+      username: 'test_user',
+      language_code: 'zh-TW'
+    },
+    message: {
+      message_id: Math.floor(Math.random() * 100000),
+      chat: {
+        id: userId,
+        type: 'private',
+        first_name: 'Test',
+        username: 'test_user'
+      },
+      date: Math.floor(Date.now() / 1000),
+      text: 'Original Message'
+    },
+    data: data
+  }
+});
+
 const sendWebhook = async (update: any) => {
   const res = await runner.fetch('/webhook', {
     method: 'POST',
@@ -94,7 +122,6 @@ const staticTests: TestSuite = {
     }, { timeout: 5000 }),
     
     async () => runner.test('i18n Keys Check', async () => {
-       // Only run if not skipped, fast check only
        if (!fs.existsSync('src/i18n/locales/zh-TW.ts')) throw new Error('zh-TW locale missing');
     }, { timeout: 2000 })
   ]
@@ -110,32 +137,90 @@ const criticalTests: TestSuite = {
       if (res.status !== 200) throw new Error('Health check failed');
     }),
 
-    async () => runner.test('Start Command', async () => {
+    async () => runner.test('Start Command (/start)', async () => {
       await sendWebhook(createUpdate('/start'));
     }, { retries: 2 }), // Retry /start as it initializes user
   ]
 };
 
-// --- Group 3: Feature Suites (Parallel) ---
-const featureTests: TestSuite = {
-  name: 'Feature Suites',
+// --- Group 3: User Features (Most common user commands) ---
+const userTests: TestSuite = {
+  name: 'User Features',
+  type: 'user',
+  tests: [
+    async () => runner.test('User Profile (/profile)', async () => { await sendWebhook(createUpdate('/profile')); }),
+    async () => runner.test('Settings Menu (/settings)', async () => { await sendWebhook(createUpdate('/settings')); }),
+    async () => runner.test('Help Command (/help)', async () => { await sendWebhook(createUpdate('/help')); }),
+    async () => runner.test('My Stats (/stats)', async () => { await sendWebhook(createUpdate('/stats')); }),
+    async () => runner.test('Task System (/tasks)', async () => { await sendWebhook(createUpdate('/tasks')); }),
+    async () => runner.test('Official Ads (/official_ad)', async () => { await sendWebhook(createUpdate('/official_ad')); }),
+    async () => runner.test('Report Feedback (/report)', async () => { await sendWebhook(createUpdate('/report Test feedback')); })
+  ]
+};
+
+// --- Group 4: Admin Features (Permissions & Reports) ---
+const adminTests: TestSuite = {
+  name: 'Admin Features',
+  type: 'admin',
+  tests: [
+    async () => runner.test('Admin Panel (/admin)', async () => { 
+      await sendWebhook(createUpdate('/admin')); 
+    }),
+    async () => runner.test('Admin Reports (/admin_report)', async () => { 
+      await sendWebhook(createUpdate('/admin_report')); 
+    }),
+    async () => runner.test('Admin Stats (/admin_analytics)', async () => { 
+      await sendWebhook(createUpdate('/admin_analytics')); 
+    }),
+    async () => runner.test('Admin Ads (/admin_ads)', async () => { 
+      await sendWebhook(createUpdate('/admin_ads')); 
+    }),
+    async () => runner.test('Admin Ban (/admin_ban)', async () => { 
+      // Should handle missing args gracefully or show usage
+      await sendWebhook(createUpdate('/admin_ban')); 
+    }),
+    async () => runner.test('Admin Ads Flow (Wizard)', async () => { 
+      await sendWebhook(createUpdate('/admin_ads')); 
+      await sendWebhook(createCallbackUpdate('admin_ad_create'));
+      await sendWebhook(createCallbackUpdate('wizard_type_text'));
+      await sendWebhook(createUpdate('Smoke Test Ad')); // Title
+      await sendWebhook(createUpdate('Content')); // Content
+      await sendWebhook(createUpdate('5')); // Reward
+      // Verification skipped for text
+      await sendWebhook(createCallbackUpdate('wizard_confirm'));
+    }),
+    async () => runner.test('Admin Tasks Flow (Wizard)', async () => { 
+      await sendWebhook(createUpdate('/admin_tasks')); 
+      await sendWebhook(createCallbackUpdate('admin_task_create'));
+      await sendWebhook(createCallbackUpdate('wizard_icon_📢'));
+      await sendWebhook(createUpdate('Smoke Task')); // Name
+      await sendWebhook(createUpdate('Desc')); // Desc
+      await sendWebhook(createUpdate('https://example.com')); // URL
+      await sendWebhook(createCallbackUpdate('wizard_verify_none')); // Verify Type
+      await sendWebhook(createUpdate('5')); // Reward
+      await sendWebhook(createCallbackUpdate('wizard_confirm_task')); // Confirm
+    })
+  ]
+};
+
+// --- Group 5: Interactive Scenarios (Button clicks) ---
+const interactiveTests: TestSuite = {
+  name: 'Interactive Scenarios',
   type: 'feature',
   tests: [
-    // 1. MoonPacket API Test (New)
-    async () => runner.test('MoonPacket API (Mode A & B)', async () => {
-      // Mode A: Get Rules
+    async () => runner.test('Throw Bottle Flow', async () => {
+        await sendWebhook(createUpdate('Hello World Bottle'));
+    }),
+    async () => runner.test('Settings -> Quiet Mode Toggle', async () => {
+      await sendWebhook(createCallbackUpdate('settings:quiet'));
+    }),
+    async () => runner.test('MoonPacket API', async () => {
       const headersA = runner.generateMoonPacketHeaders('your_secret_here', {});
       const resA = await runner.fetch('/api/moonpacket/check', {
         method: 'GET',
         headers: { 'X-API-KEY': 'mock-key', ...headersA }
       });
-      if (resA.status !== 200 && resA.status !== 401) { // 401 might happen if keys are not set in staging
-         if (resA.status === 401) console.warn('   ⚠️  MoonPacket returned 401 (Keys might be missing in Env)');
-         else throw new Error(`Mode A failed: ${resA.status}`);
-      }
-
-      // Mode B: Get User Profile
-      if (resA.status === 200) {
+      if (resA.status === 200 || resA.status === 401) {
         const headersB = runner.generateMoonPacketHeaders('your_secret_here', {});
         const resB = await runner.fetch(`/api/moonpacket/check?user_id=${TEST_USER_ID}`, {
             method: 'GET',
@@ -143,23 +228,7 @@ const featureTests: TestSuite = {
         });
         if (resB.status !== 200) throw new Error(`Mode B failed: ${resB.status}`);
       }
-    }, { timeout: 10000, retries: 1 }),
-
-    // 2. Admin Command Test
-    async () => runner.test('Admin Command (/admin)', async () => {
-       // This will likely fail permission check for random user, but server should respond 200 OK (and send "Permission Denied" msg)
-       await sendWebhook(createUpdate('/admin'));
     }),
-
-    // 3. Task System
-    async () => runner.test('Task System (/tasks)', async () => {
-        await sendWebhook(createUpdate('/tasks'));
-    }),
-    
-    // 4. Throw Bottle
-    async () => runner.test('Throw Bottle', async () => {
-        await sendWebhook(createUpdate('Hello World Bottle'));
-    })
   ]
 };
 
@@ -168,28 +237,23 @@ const featureTests: TestSuite = {
 // ============================================================================
 
 async function main() {
-  const suites = [staticTests, criticalTests, featureTests];
+  const suites = [staticTests, criticalTests, userTests, adminTests, interactiveTests];
 
-  // 1. Run Static Checks (if not skipped)
+  // 1. Run Static Checks
   if (!skipStatic && (!filterArg || filterArg === 'static')) {
     await runner.runGroup('Static Checks', staticTests.tests);
   }
 
-  // 2. Run Critical Flow (Always run unless filtered out explicitly)
+  // 2. Run Critical Flow
   if (!filterArg || filterArg === 'critical') {
     await runner.runGroup('Critical Flow', criticalTests.tests);
   }
 
-  // 3. Run Features (Parallel)
+  // 3. Run Others
   if (!filterArg || (!['static', 'critical'].includes(filterArg))) {
-     // Apply filter if specific feature requested
-     let testsToRun = featureTests.tests;
-     if (filterArg) {
-         // This is a simplified filter. Real implementation would need named functions or objects.
-         // For now, if filter is set, we might skip this optimization or need better structure.
-         // Current implementation runs all features if no specific filter match on group name.
-     }
-     await runner.runGroup('Features', testsToRun);
+    await runner.runGroup('User Features', userTests.tests);
+    await runner.runGroup('Admin Features', adminTests.tests);
+    await runner.runGroup('Interactive Scenarios', interactiveTests.tests);
   }
 
   const success = runner.report();

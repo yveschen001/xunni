@@ -34,7 +34,10 @@ export function getAdminIds(env: Env): string[] {
  * Check if user is super admin (God)
  * Super admin has all permissions including config management
  */
-export function isSuperAdmin(telegramId: string): boolean {
+export function isSuperAdmin(telegramId: string, env?: Env): boolean {
+  if (env && env.SUPER_ADMIN_USER_ID) {
+    return telegramId === env.SUPER_ADMIN_USER_ID;
+  }
   return telegramId === SUPER_ADMIN_ID;
 }
 
@@ -308,7 +311,7 @@ export async function handleAdminList(message: TelegramMessage, env: Env): Promi
 
   try {
     // Check super admin permission
-    if (!isSuperAdmin(telegramId)) {
+    if (!isSuperAdmin(telegramId, env)) {
       await telegram.sendMessage(chatId, i18n.t('admin.onlySuperAdmin'));
       return;
     }

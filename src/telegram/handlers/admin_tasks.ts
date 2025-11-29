@@ -6,6 +6,7 @@ import { AdminTasksService } from '~/domain/admin/tasks';
 import { upsertSession, getActiveSession, deleteSession } from '~/db/queries/sessions';
 import { parseSessionData } from '~/domain/session';
 import { isAdmin } from '~/domain/admin/auth';
+import { AdminLogService } from '~/services/admin_log';
 
 const SESSION_TYPE = 'admin_task_wizard';
 
@@ -137,7 +138,15 @@ export async function handleAdminTaskCallback(
       const tasks = await service.getTasks();
       const task = tasks.find((t) => t.id === taskId);
       if (task) {
-        await service.editTask(taskId, { is_enabled: !task.is_enabled });
+        const newStatus = !task.is_enabled;
+        await service.editTask(taskId, { is_enabled: newStatus });
+        
+        const log = new AdminLogService(env);
+        await log.logEvent(
+          '📢 **Task Status Changed**',
+          `Admin \`${telegramId}\` changed task \`${task.name}\` (ID: ${taskId}) to ${newStatus ? 'Active ✅' : 'Paused ⏸️'}`
+        );
+
         const newCallback = { ...callbackQuery, data: `admin_task_view_${taskId}` };
         await handleAdminTaskCallback(newCallback, env);
       }
@@ -147,6 +156,13 @@ export async function handleAdminTaskCallback(
     if (data.startsWith('admin_task_delete_')) {
       const taskId = data.replace('admin_task_delete_', '');
       await service.deleteTask(taskId);
+      
+      const log = new AdminLogService(env);
+      await log.logEvent(
+        '🗑️ **Task Deleted**',
+        `Admin \`${telegramId}\` deleted task ID: ${taskId}`
+      );
+      
       await telegram.sendMessage(chatId, '✅ 任務已刪除');
       await telegram.deleteMessage(chatId, callbackQuery.message!.message_id);
       await handleAdminTasks(callbackQuery.message!, env);
@@ -392,9 +408,17 @@ async function finalizeTaskWizard(chatId: number, telegramId: string, env: Env) 
   if (!session) return;
 
   const data = parseSessionData(session).data as WizardData;
+  const log = new AdminLogService(env);
 
   try {
-    await service.createSocialTask(data.task_data as any);
+    const taskData = data.task_data as any;
+    await service.createSocialTask(taskData);
+    
+    await log.logEvent(
+      '🆕 **Social Task Created**',
+      `Admin \`${telegramId}\` created new task: ${taskData.name} (${taskData.id})`
+    );
+
     await deleteSession(db, telegramId, SESSION_TYPE);
     await telegram.sendMessage(chatId, '✅ 任務創建成功');
     const fakeMessage = { chat: { id: chatId }, from: { id: parseInt(telegramId) } } as any;

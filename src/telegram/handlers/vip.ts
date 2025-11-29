@@ -287,8 +287,9 @@ async function sendVipInvoice(
   // Send invoice via Telegram API
   console.error('[sendVipInvoice] Sending invoice:', JSON.stringify(invoice, null, 2));
 
+  const apiRoot = env.TELEGRAM_API_ROOT || 'https://api.telegram.org';
   const response = await fetch(
-    `https://api.telegram.org/bot${env.TELEGRAM_BOT_TOKEN}/sendInvoice`,
+    `${apiRoot}/bot${env.TELEGRAM_BOT_TOKEN}/sendInvoice`,
     {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },

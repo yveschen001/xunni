@@ -17,6 +17,7 @@ export interface Env {
   // Secrets
   TELEGRAM_BOT_TOKEN: string;
   TELEGRAM_WEBHOOK_SECRET: string;
+  TELEGRAM_API_ROOT?: string; // Optional: Custom Telegram API Root (default: https://api.telegram.org)
   OPENAI_API_KEY: string;
   OPENAI_MODEL?: string;
   GOOGLE_TRANSLATE_API_KEY?: string;

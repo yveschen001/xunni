@@ -9,6 +9,7 @@ import { createI18n } from '~/i18n';
 import { isAdmin } from '~/domain/admin/auth';
 import { formatAdStats } from '~/domain/official_ad';
 import { getAdStatistics } from '~/db/queries/official_ads';
+import { AdminLogService } from '~/services/admin_log'; // Import Log Service
 
 const SESSION_TYPE = 'admin_ad_wizard';
 
@@ -30,7 +31,7 @@ export async function handleAdminAds(message: TelegramMessage, env: Env): Promis
 
   const db = createDatabaseClient(env.DB);
   const telegram = createTelegramService(env);
-  const service = new AdminAdsService(db, env, telegramId);
+  const service = new AdminAdsService(db.d1, env, telegramId);
   // const i18n = createI18n('zh-TW'); // Admin interface in Traditional Chinese
 
   try {
@@ -80,7 +81,7 @@ export async function handleAdminAdCallback(
 
   const db = createDatabaseClient(env.DB);
   const telegram = createTelegramService(env);
-  const service = new AdminAdsService(db, env, telegramId);
+  const service = new AdminAdsService(db.d1, env, telegramId);
   const chatId = callbackQuery.message!.chat.id;
   const data = callbackQuery.data!;
 
@@ -142,7 +143,16 @@ export async function handleAdminAdCallback(
       const ad = ads.find((a) => a.id === adId);
 
       if (ad) {
-        await service.toggleAdStatus(adId, !ad.is_enabled);
+        const newStatus = !ad.is_enabled;
+        await service.toggleAdStatus(adId, newStatus);
+        
+        // Log to Admin Group
+        const log = new AdminLogService(env);
+        await log.logEvent(
+          '📢 **Ad Status Changed**',
+          `Admin \`${telegramId}\` changed ad \`${ad.title}\` (ID: ${adId}) to ${newStatus ? 'Active ✅' : 'Paused ⏸️'}`
+        );
+
         // Refresh view
         // Re-trigger view logic
         const newCallback = { ...callbackQuery, data: `admin_ad_view_${adId}` };
@@ -154,6 +164,14 @@ export async function handleAdminAdCallback(
     if (data.startsWith('admin_ad_delete_')) {
       const adId = parseInt(data.replace('admin_ad_delete_', ''), 10);
       await service.deleteAd(adId);
+      
+      // Log to Admin Group
+      const log = new AdminLogService(env);
+      await log.logEvent(
+        '🗑️ **Ad Deleted**',
+        `Admin \`${telegramId}\` deleted ad ID: ${adId}`
+      );
+
       await telegram.sendMessage(chatId, '✅ 廣告已刪除');
       await telegram.deleteMessage(chatId, callbackQuery.message!.message_id);
       await handleAdminAds(callbackQuery.message!, env);
@@ -163,6 +181,14 @@ export async function handleAdminAdCallback(
     if (data.startsWith('admin_ad_duplicate_')) {
       const adId = parseInt(data.replace('admin_ad_duplicate_', ''), 10);
       const newId = await service.duplicateAd(adId);
+      
+      // Log to Admin Group
+      const log = new AdminLogService(env);
+      await log.logEvent(
+        '📋 **Ad Duplicated**',
+        `Admin \`${telegramId}\` duplicated ad ${adId} to new ID: ${newId}`
+      );
+
       await telegram.sendMessage(chatId, `✅ 廣告已複製 (ID: ${newId})，目前為暫停狀態`);
       // Go to new ad view
       const newCallback = { ...callbackQuery, data: `admin_ad_view_${newId}` };
@@ -280,7 +306,7 @@ async function startAdWizard(chatId: number, telegramId: string, env: Env) {
 async function startEditWizard(chatId: number, telegramId: string, adId: number, env: Env) {
   const db = createDatabaseClient(env.DB);
   const telegram = createTelegramService(env);
-  const service = new AdminAdsService(db, env, telegramId);
+  const service = new AdminAdsService(db.d1, env, telegramId);
 
   const ads = await service.getAds();
   const ad = ads.find((a) => a.id === adId);
@@ -522,20 +548,33 @@ async function handleWizardSkip(chatId: number, telegramId: string, env: Env) {
 async function finalizeWizard(chatId: number, telegramId: string, env: Env) {
   const db = createDatabaseClient(env.DB);
   const telegram = createTelegramService(env);
-  const service = new AdminAdsService(db, env, telegramId);
+  const service = new AdminAdsService(db.d1, env, telegramId);
 
   const session = await getActiveSession(db, telegramId, SESSION_TYPE);
   if (!session) return;
 
   const data = parseSessionData(session).data as WizardData;
   const adData = data.ad_data as any; // Cast to allow flexibility
+  const log = new AdminLogService(env);
 
   try {
     if (data.edit_id) {
       await service.editAd(data.edit_id, adData);
+      
+      await log.logEvent(
+        '✏️ **Ad Edited**',
+        `Admin \`${telegramId}\` updated ad ID: ${data.edit_id}\nTitle: ${adData.title}`
+      );
+
       await telegram.sendMessage(chatId, '✅ 廣告更新成功');
     } else {
       await service.createAd(adData);
+      
+      await log.logEvent(
+        '🆕 **Ad Created**',
+        `Admin \`${telegramId}\` created new ad: ${adData.title} (${adData.ad_type})`
+      );
+
       await telegram.sendMessage(chatId, '✅ 廣告創建成功');
     }
 

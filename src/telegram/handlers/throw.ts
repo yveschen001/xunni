@@ -16,8 +16,9 @@ export async function sendThrowForceReply(
   i18n: any,
   env: Env
 ): Promise<void> {
+  const apiRoot = env.TELEGRAM_API_ROOT || 'https://api.telegram.org';
   const response = await fetch(
-    `https://api.telegram.org/bot${env.TELEGRAM_BOT_TOKEN}/sendMessage`,
+    `${apiRoot}/bot${env.TELEGRAM_BOT_TOKEN}/sendMessage`,
     {
       method: 'POST',
       headers: {

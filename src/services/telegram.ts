@@ -17,7 +17,8 @@ export class TelegramService {
 
   constructor(env: Env) {
     this.botToken = env.TELEGRAM_BOT_TOKEN;
-    this.baseURL = `https://api.telegram.org/bot${this.botToken}`;
+    const apiRoot = env.TELEGRAM_API_ROOT || 'https://api.telegram.org';
+    this.baseURL = `${apiRoot}/bot${this.botToken}`;
   }
 
   /**
@@ -618,7 +619,12 @@ export class TelegramService {
    * Get full file URL from file path
    */
   getFileUrl(filePath: string): string {
-    return `https://api.telegram.org/file/bot${this.botToken}/${filePath}`;
+    // Note: getFileUrl might not work correctly with local mock server if it returns local URLs
+    // But for most cases it's fine. We can't easily access env here without passing it.
+    // For now, keep hardcoded or refactor to store apiRoot in instance.
+    // Ideally, baseURL should be used but it includes /botTOKEN.
+    const root = this.baseURL.split('/bot')[0]; 
+    return `${root}/file/bot${this.botToken}/${filePath}`;
   }
 
   /**

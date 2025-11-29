@@ -9,7 +9,9 @@ export type SessionType =
   | 'throw_bottle'
   | 'catch_bottle'
   | 'conversation'
-  | 'edit_profile';
+  | 'edit_profile'
+  | 'admin_ad_wizard'
+  | 'admin_task_wizard';
 
 export interface UserSession {
   id: number;
@@ -33,6 +35,8 @@ export const SESSION_TIMEOUT = {
   catch_bottle: 5, // 5 minutes for catching bottle
   conversation: 60, // 60 minutes for active conversation
   edit_profile: 10, // 10 minutes for editing profile
+  admin_ad_wizard: 30, // 30 minutes for admin ad wizard
+  admin_task_wizard: 30, // 30 minutes for admin task wizard
 } as const;
 
 /**
@@ -105,6 +109,8 @@ export function getTimeoutMessage(
       '⏰ 對話已超時\n\n對方可能已離開。使用 /catch 撿新的瓶子吧！',
     edit_profile:
       i18n?.t('session.timeoutEditProfile') || '⏰ 編輯資料流程已超時\n\n請重新開始編輯。',
+    admin_ad_wizard: '⏰ 廣告管理流程已超時\n\n請使用 /admin_ads 重新開始。',
+    admin_task_wizard: '⏰ 任務管理流程已超時\n\n請使用 /admin_tasks 重新開始。',
   };
 
   return messages[sessionType];
@@ -123,6 +129,8 @@ export function getSessionTypeName(
     catch_bottle: i18n?.t('session.typeCatchBottle') || '撿瓶流程',
     conversation: i18n?.t('session.typeConversation') || '對話',
     edit_profile: i18n?.t('session.typeEditProfile') || '編輯資料',
+    admin_ad_wizard: '廣告管理',
+    admin_task_wizard: '任務管理',
   };
 
   return names[sessionType];

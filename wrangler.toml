@@ -15,6 +15,8 @@ migrations_dir = "src/db/migrations"
 [vars]
 ENVIRONMENT = "development"
 LOG_LEVEL = "debug"
+TELEGRAM_WEBHOOK_SECRET = "test-secret"
+TELEGRAM_BOT_TOKEN = "mock-token"
 BROADCAST_BATCH_SIZE = "25"
 BROADCAST_MAX_JOBS = "3"
 ENABLE_AI_MODERATION = "true"

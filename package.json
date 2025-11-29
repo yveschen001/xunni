@@ -31,6 +31,8 @@
     "test:phase1": "tsx scripts/test-phase1.ts",
     "test:phase2": "tsx scripts/test-phase2-complete.ts",
     "test:acceptance": "tsx scripts/self-acceptance-test.ts",
+    "test:sim": "./scripts/run-local-sim.sh",
+    "test:pre-push": "./scripts/pre-push-check.sh",
     "test:new-features": "tsx scripts/test-new-features.ts",
     "typecheck": "tsc --noEmit",
     "lint": "eslint src",
