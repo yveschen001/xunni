@@ -547,6 +547,27 @@ export async function handleFortuneCallback(callbackQuery: TelegramCallbackQuery
     const targetDate = new Date().toISOString().split('T')[0];
 
     try {
+      // 1. Check Cache (Free)
+      const isCached = await service.isFortuneCached(user.telegram_id, type, targetDate);
+      
+      // 2. Check Quota (if not cached)
+      if (!isCached) {
+        const isVip = !!(user.is_vip && user.vip_expire_at && new Date(user.vip_expire_at) > new Date());
+        const hasQuota = await service.checkQuota(user.telegram_id, isVip);
+        
+        if (!hasQuota) {
+           await telegram.sendMessageWithButtons(
+            chatId,
+            i18n.t('fortune.quotaExceeded'),
+            [
+              [{ text: `🛒 ${i18n.t('fortune.getMore')}`, callback_data: 'fortune_get_more' }]
+            ]
+          );
+          await telegram.answerCallbackQuery(callbackQuery.id);
+          return;
+        }
+      }
+
       // Fake Loading Animation
       const loadingMsgs = [
         '🛰️ ' + i18n.t('fortune.loading.astronomy'),
@@ -581,6 +602,7 @@ export async function handleFortuneCallback(callbackQuery: TelegramCallbackQuery
     } catch (e: any) {
       console.error('Fortune generation error:', e);
       if (e.message === 'QUOTA_EXCEEDED') {
+        // Double check (should be caught above, but generateFortune also throws)
         await telegram.sendMessageWithButtons(
           chatId,
           i18n.t('fortune.quotaExceeded'),

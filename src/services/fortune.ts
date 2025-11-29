@@ -244,6 +244,17 @@ export class FortuneService {
     return false;
   }
 
+  async isFortuneCached(userId: string, type: FortuneType, targetDate: string, targetName?: string): Promise<boolean> {
+    let query = `SELECT 1 FROM fortune_history WHERE telegram_id = ? AND type = ? AND target_date = ?`;
+    const params: any[] = [userId, type, targetDate];
+    if (type === 'match' && targetName) {
+      query += ` AND target_person_name = ?`;
+      params.push(targetName);
+    }
+    const result = await this.db.prepare(query).bind(...params).first();
+    return !!result;
+  }
+  
   // ==========================================================
   // Fortune Generation
   // ==========================================================
