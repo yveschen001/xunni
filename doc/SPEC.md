@@ -2373,7 +2373,7 @@ BROADCAST_MAX_JOBS = "3"
 
 ---
 
-## 14. 測試規範（Vitest）
+## 14. 測試規範（Vitest & Local Simulation）
 
 ### 優先針對以下純函數寫單元測試
 
@@ -2389,6 +2389,12 @@ BROADCAST_MAX_JOBS = "3"
 
 - 模擬 Telegram Update JSON 呼叫 handler
 - Mock `sendTelegramMessage`、`db.client`
+
+### Local Simulation (強制)
+
+- **關鍵功能**（User Flow, Admin Flow, SuperAdmin Flow）必須通過 `scripts/local-simulation.ts` 驗證。
+- **UI 交互**（如 Wizard）必須包含 Create/Read/Edit/Delete 完整生命週期測試。
+- 詳細規範見 `@doc/TESTING.md`。
 
 ---
 
@@ -2515,8 +2521,9 @@ BROADCAST_MAX_JOBS = "3"
 1. **專案規格書**: `@doc/SPEC.md` - 本文檔（完整的業務邏輯和資料庫設計）
 2. **開發規範**: `@doc/DEVELOPMENT_STANDARDS.md` - 代碼風格和命名規範
 3. **模組設計**: `@doc/MODULE_DESIGN.md` - 架構原則和分層設計
-4. **環境配置**: `@doc/ENV_CONFIG.md` - 環境變數配置和開發環境設置（包含**開發前檢查清單**）
-5. **UI 設計指南**: `@doc/UI_GUIDELINE.md` - UI 設計規範、動畫規範和互動體驗標準（Mini App 開發必讀）
+4. **測試規範**: `@doc/TESTING.md` - 測試策略、覆蓋率目標與 **Local Simulation** 標準（**必讀**）
+5. **環境配置**: `@doc/ENV_CONFIG.md` - 環境變數配置和開發環境設置（包含**開發前檢查清單**）
+6. **UI 設計指南**: `@doc/UI_GUIDELINE.md` - UI 設計規範、動畫規範和互動體驗標準（Mini App 開發必讀）
 
 完整文檔索引見：`@doc/README.md`
 

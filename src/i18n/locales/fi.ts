@@ -2787,7 +2787,7 @@ export const translations: Translations = {
       "welcome": "👋 Ystäväsi kutsuu sinut osallistumaan MBTI-testiin!\n\nTule ja näe persoonallisuustyyppisi～",
       "startButton": "📊 Aloita testi",
       "resultTitle": "MBTI-testini tulos on {type}!",
-      "resultDesc": "Sinun kannattaa myös kokeilla testiä～"
+      "resultDesc": "Sinun kannattaa myös kokeilla testiä～\nvip.retentionNotice"
     }
   },
   "mbtiTest": {

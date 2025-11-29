@@ -71,10 +71,10 @@ export async function handleProfile(message: TelegramMessage, env: Env): Promise
     const vipStatus =
       user.is_vip && user.vip_expire_at && new Date(user.vip_expire_at) > new Date()
         ? i18n.t('profile.vip', {
-            expireDate: new Date(user.vip_expire_at).toLocaleDateString(
-              user.language_pref || 'zh-TW'
-            ),
-          })
+          expireDate: new Date(user.vip_expire_at).toLocaleDateString(
+            user.language_pref || 'zh-TW'
+          ),
+        })
         : i18n.t('profile.short2');
     const inviteCode = user.invite_code || i18n.t('profile.settings');
 

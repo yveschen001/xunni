@@ -126,6 +126,10 @@ export interface AnalyticsEvent {
   session_id?: string;
   user_language?: string;
   user_timezone?: string;
+  // Ad related fields
+  ad_provider?: string;
+  ad_id?: number;
+  ad_type?: string;
 }
 
 /**

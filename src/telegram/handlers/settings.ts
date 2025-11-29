@@ -63,18 +63,19 @@ export async function handleSettings(message: TelegramMessage, env: Env): Promis
       '\n   ' +
       i18n.t('settings.quietHoursHint', { defaultValue: '在此時段內不會收到非緊急通知' }) +
       '\n\n' +
-      i18n.t('settings.selectOption');
+      i18n.t('settings.selectOption') +
+      i18n.t('vip.retentionNotice'); // Added data retention notice
 
     // Build settings buttons
     const quietHoursButton = isVip
       ? {
-          text: i18n.t('settings.editQuietHours', { defaultValue: '✏️ 修改安靜時段' }),
-          callback_data: 'settings_edit_quiet_hours',
-        }
+        text: i18n.t('settings.editQuietHours', { defaultValue: '✏️ 修改安靜時段' }),
+        callback_data: 'settings_edit_quiet_hours',
+      }
       : {
-          text: i18n.t('settings.quietHoursVipOnly', { defaultValue: '🔒 安靜時段 (VIP 專屬)' }),
-          callback_data: 'settings_quiet_hours_locked',
-        };
+        text: i18n.t('settings.quietHoursVipOnly', { defaultValue: '🔒 安靜時段 (VIP 專屬)' }),
+        callback_data: 'settings_quiet_hours_locked',
+      };
 
     const buttons = [
       [{ text: i18n.t('settings.changeLanguage'), callback_data: 'settings_language' }],

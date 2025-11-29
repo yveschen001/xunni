@@ -7,8 +7,8 @@ import type { Env } from '~/types';
 import { createDatabaseClient } from '~/db/client';
 import { createTelegramService } from '~/services/telegram';
 import type { Broadcast } from '~/domain/broadcast';
-import { calculateBatchSize } from '~/domain/broadcast';
 import type { BroadcastFilters } from '~/domain/broadcast_filters';
+import { translateText } from '~/services/translation/index';
 
 /**
  * Create a new filtered broadcast
@@ -45,19 +45,22 @@ export async function createFilteredBroadcast(
     );
   }
 
+  // 🌍 AUTO-TRANSLATION: Pre-translate message
+  const translationsJson = await translateBroadcastMessage(env, message);
+
   // Create broadcast record with filter_json
   const filterJson = JSON.stringify(filters);
   const result = await db.d1
     .prepare(
-      `INSERT INTO broadcasts (message, target_type, total_users, created_by, status, filter_json)
-       VALUES (?, ?, ?, ?, 'pending', ?)
+      `INSERT INTO broadcasts (message, target_type, total_users, created_by, status, filter_json, translations)
+       VALUES (?, ?, ?, ?, 'pending', ?, ?)
        RETURNING id`
     )
-    .bind(message, 'filtered', userIds.length, createdBy, filterJson)
+    .bind(message, 'filtered', userIds.length, createdBy, filterJson, translationsJson)
     .first<{ id: number }>();
 
   const broadcastId = result?.id || 0;
-  console.log(
+  console.warn(
     `[createFilteredBroadcast] Created broadcast ${broadcastId} for ${userIds.length} users with filters: ${filterJson}`
   );
 
@@ -71,7 +74,7 @@ export async function createFilteredBroadcast(
       broadcastId,
       'failed',
       undefined,
-      new Date().toISOString(),
+      undefined,
       error instanceof Error ? error.message : String(error)
     );
     throw error;
@@ -109,18 +112,21 @@ export async function createBroadcast(
     );
   }
 
+  // 🌍 AUTO-TRANSLATION: Pre-translate message
+  const translationsJson = await translateBroadcastMessage(env, message);
+
   // Create broadcast record
   const result = await db.d1
     .prepare(
-      `INSERT INTO broadcasts (message, target_type, total_users, created_by, status)
-       VALUES (?, ?, ?, ?, 'pending')
+      `INSERT INTO broadcasts (message, target_type, total_users, created_by, status, translations)
+       VALUES (?, ?, ?, ?, 'pending', ?)
        RETURNING id`
     )
-    .bind(message, targetType, userIds.length, createdBy)
+    .bind(message, targetType, userIds.length, createdBy, translationsJson)
     .first<{ id: number }>();
 
   const broadcastId = result?.id || 0;
-  console.log(`[createBroadcast] Created broadcast ${broadcastId} for ${userIds.length} users`);
+  console.warn(`[createBroadcast] Created broadcast ${broadcastId} for ${userIds.length} users`);
 
   // ✨ IMMEDIATE PROCESSING: Process broadcast synchronously
   // This ensures messages are sent before the Worker terminates
@@ -135,13 +141,53 @@ export async function createBroadcast(
       broadcastId,
       'failed',
       undefined,
-      new Date().toISOString(),
+      undefined,
       error instanceof Error ? error.message : String(error)
     );
     throw error;
   }
 
   return { broadcastId, totalUsers: userIds.length };
+}
+
+/**
+ * Translate broadcast message to major languages
+ */
+async function translateBroadcastMessage(env: Env, message: string): Promise<string> {
+  // Check feature flag (env var)
+  if (env.ENABLE_TRANSLATION !== 'true') {
+    return JSON.stringify({});
+  }
+
+  // Major languages to translate to
+  // Assuming source is zh-TW (Admin language)
+  const targetLangs = ['en', 'ja', 'ko', 'th', 'vi', 'id', 'zh-CN'];
+  const translations: Record<string, string> = {};
+
+  console.warn('[translateBroadcastMessage] Starting translation for languages:', targetLangs);
+
+  // Parallel translation
+  await Promise.all(
+    targetLangs.map(async (lang) => {
+      try {
+        const result = await translateText(
+          message,
+          lang,
+          'zh-TW', // Source is always zh-TW for admin broadcast
+          true, // Use high quality (VIP) mode for official broadcasts
+          env
+        );
+        if (result.text) { // Fix: translateText returns 'text', not 'translatedText'
+          translations[lang] = result.text;
+        }
+      } catch (e) {
+        console.warn(`[translateBroadcastMessage] Failed to translate to ${lang}`, e);
+      }
+    })
+  );
+
+  console.warn('[translateBroadcastMessage] Translation completed');
+  return JSON.stringify(translations);
 }
 
 /**
@@ -167,6 +213,16 @@ async function processBroadcast(env: Env, broadcastId: number): Promise<void> {
       return;
     }
 
+    // Parse translations
+    let translations: Record<string, string> = {};
+    if (broadcast.translations) {
+      try {
+        translations = JSON.parse(broadcast.translations);
+      } catch (e) {
+        console.error('[processBroadcast] Failed to parse translations JSON', e);
+      }
+    }
+
     // Update status to sending
     await updateBroadcastStatus(db, broadcastId, 'sending', new Date().toISOString());
 
@@ -174,17 +230,16 @@ async function processBroadcast(env: Env, broadcastId: number): Promise<void> {
     let hasMore = true;
     let totalSent = broadcast.sentCount;
     let totalFailed = broadcast.failedCount;
-    let processedInRun = 0;
 
     while (hasMore) {
       // Check execution time
       if (Date.now() - startTime > MAX_EXECUTION_TIME_MS) {
-        console.log(`[processBroadcast] Time limit reached, stopping for now. Cursor: ${cursor}`);
+        console.warn(`[processBroadcast] Time limit reached, stopping for now. Cursor: ${cursor}`);
         break;
       }
 
-      // Fetch next batch
-      let users: { id: number; telegram_id: string }[] = [];
+      // Fetch next batch with language preference
+      let users: { id: number; telegram_id: string; language_pref?: string }[] = [];
       if (broadcast.targetType === 'filtered' && broadcast.filterJson) {
         const filters: BroadcastFilters = JSON.parse(broadcast.filterJson);
         users = await getFilteredUserIds(db, filters, cursor, BATCH_SIZE);
@@ -202,7 +257,7 @@ async function processBroadcast(env: Env, broadcastId: number): Promise<void> {
         break;
       }
 
-      console.log(
+      console.warn(
         `[processBroadcast] Processing batch of ${users.length} users starting from ID ${cursor}`
       );
 
@@ -210,7 +265,16 @@ async function processBroadcast(env: Env, broadcastId: number): Promise<void> {
       await Promise.all(
         users.map(async (user) => {
           try {
-            await telegram.sendMessage(parseInt(user.telegram_id), broadcast.message);
+            // Determine message content based on user language
+            let content = broadcast.message;
+            if (user.language_pref && translations[user.language_pref]) {
+              content = translations[user.language_pref];
+            } else if (user.language_pref === 'zh-CN' && translations['zh-CN']) {
+              // Special handling for zh-CN if prefered
+              content = translations['zh-CN'];
+            }
+
+            await telegram.sendMessage(parseInt(user.telegram_id), content);
             totalSent++;
           } catch (error) {
             // Basic error handling, stats update later
@@ -228,18 +292,11 @@ async function processBroadcast(env: Env, broadcastId: number): Promise<void> {
 
       // Update cursor
       cursor = users[users.length - 1].id;
-      processedInRun += users.length;
 
       // Update progress in DB
       await db.d1
         .prepare(
-          `
-          UPDATE broadcasts 
-          SET sent_count = ?, 
-              failed_count = ?, 
-              last_processed_id = ? 
-          WHERE id = ?
-        `
+          'UPDATE broadcasts SET sent_count = ?, failed_count = ?, last_processed_id = ? WHERE id = ?'
         )
         .bind(totalSent, totalFailed, cursor, broadcastId)
         .run();
@@ -257,11 +314,11 @@ async function processBroadcast(env: Env, broadcastId: number): Promise<void> {
         undefined,
         new Date().toISOString()
       );
-      console.log(
+      console.warn(
         `[processBroadcast] Completed broadcast ${broadcastId}. Total sent: ${totalSent}`
       );
     } else {
-      console.log(`[processBroadcast] Paused broadcast ${broadcastId} at cursor ${cursor}`);
+      console.warn(`[processBroadcast] Paused broadcast ${broadcastId} at cursor ${cursor}`);
     }
   } catch (error) {
     console.error(`[processBroadcast] Error:`, error);
@@ -300,7 +357,7 @@ export async function processBroadcastQueue(env: Env): Promise<void> {
 
     // Process first pending/stuck broadcast
     const broadcastId = broadcasts.results[0].id;
-    console.log(`[processBroadcastQueue] Processing broadcast ${broadcastId}`);
+    console.warn(`[processBroadcastQueue] Processing broadcast ${broadcastId}`);
     await processBroadcast(env, broadcastId);
   } catch (error) {
     console.error('[processBroadcastQueue] Error:', error);
@@ -336,33 +393,8 @@ export async function getBroadcast(
     errorMessage: result.error_message,
     filterJson: result.filter_json,
     lastProcessedId: result.last_processed_id,
+    translations: result.translations,
   };
-}
-
-/**
- * Get target user count
- */
-async function countTargetUsers(
-  db: ReturnType<typeof createDatabaseClient>,
-  targetType: 'all' | 'vip' | 'non_vip'
-): Promise<number> {
-  let query = `
-    SELECT COUNT(*) as count
-    FROM users 
-    WHERE onboarding_step = 'completed'
-      AND deleted_at IS NULL
-      AND bot_status = 'active'
-      AND last_active_at >= datetime('now', '-30 days')
-  `;
-
-  if (targetType === 'vip') {
-    query += ` AND is_vip = 1 AND vip_expires_at > datetime('now')`;
-  } else if (targetType === 'non_vip') {
-    query += ` AND (is_vip = 0 OR vip_expires_at <= datetime('now'))`;
-  }
-
-  const result = await db.d1.prepare(query).first<{ count: number }>();
-  return result?.count || 0;
 }
 
 /**
@@ -373,10 +405,10 @@ async function getTargetUserIds(
   targetType: 'all' | 'vip' | 'non_vip',
   cursor: number = 0,
   limit: number = 1000
-): Promise<{ id: number; telegram_id: string }[]> {
+): Promise<{ id: number; telegram_id: string; language_pref?: string }[]> {
   // ✨ SMART FILTERING: Only include active users from last 30 days
   let query = `
-    SELECT id, telegram_id 
+    SELECT id, telegram_id, language_pref
     FROM users 
     WHERE onboarding_step = 'completed'
       AND deleted_at IS NULL
@@ -396,67 +428,8 @@ async function getTargetUserIds(
   const result = await db.d1
     .prepare(query)
     .bind(cursor, limit)
-    .all<{ id: number; telegram_id: string }>();
+    .all<{ id: number; telegram_id: string; language_pref?: string }>();
   return result.results || [];
-}
-
-/**
- * Get filtered user count
- */
-async function countFilteredUsers(
-  db: ReturnType<typeof createDatabaseClient>,
-  filters: BroadcastFilters
-): Promise<number> {
-  let query = `
-    SELECT COUNT(*) as count
-    FROM users 
-    WHERE onboarding_step = 'completed'
-      AND deleted_at IS NULL
-      AND bot_status = 'active'
-      AND last_active_at >= datetime('now', '-30 days')
-  `;
-
-  const params: (string | number)[] = [];
-
-  if (filters.gender) {
-    query += ` AND gender = ?`;
-    params.push(filters.gender);
-  }
-  if (filters.zodiac) {
-    query += ` AND zodiac_sign = ?`; // Fixed column name from 'zodiac' to 'zodiac_sign'
-    params.push(filters.zodiac);
-  }
-  if (filters.country) {
-    query += ` AND country_code = ?`;
-    params.push(filters.country);
-  }
-  if (filters.age) {
-    const currentYear = new Date().getFullYear();
-    const maxBirthYear = currentYear - filters.age.min;
-    const minBirthYear = currentYear - filters.age.max;
-    query += ` AND CAST(strftime('%Y', birthday) AS INTEGER) BETWEEN ? AND ?`;
-    params.push(minBirthYear, maxBirthYear);
-  }
-  if (filters.mbti) {
-    query += ` AND mbti_result = ?`; // Fixed column name from 'mbti' to 'mbti_result'
-    params.push(filters.mbti);
-  }
-  if (filters.vip !== undefined) {
-    if (filters.vip) {
-      query += ` AND is_vip = 1 AND vip_expires_at > datetime('now')`;
-    } else {
-      query += ` AND (is_vip = 0 OR vip_expires_at <= datetime('now'))`;
-    }
-  }
-  if (filters.is_birthday) {
-    query += ` AND strftime('%m-%d', birthday) = strftime('%m-%d', 'now')`;
-  }
-
-  const result = await db.d1
-    .prepare(query)
-    .bind(...params)
-    .first<{ count: number }>();
-  return result?.count || 0;
 }
 
 /**
@@ -473,10 +446,10 @@ export async function getFilteredUserIds(
   filters: BroadcastFilters,
   cursor: number = 0,
   limit: number = 1000
-): Promise<{ id: number; telegram_id: string }[]> {
+): Promise<{ id: number; telegram_id: string; language_pref?: string }[]> {
   // ✅ BASE QUERY: Always include mandatory safety filters
   let query = `
-    SELECT id, telegram_id 
+    SELECT id, telegram_id, language_pref
     FROM users 
     WHERE onboarding_step = 'completed'
       AND deleted_at IS NULL
@@ -508,8 +481,12 @@ export async function getFilteredUserIds(
   // ✅ AGE FILTER
   if (filters.age) {
     const currentYear = new Date().getFullYear();
-    const maxBirthYear = currentYear - filters.age.min;
-    const minBirthYear = currentYear - filters.age.max;
+    // Default values are handled by validator, but here we must ensure they are defined
+    const minAge = filters.age.min ?? 18;
+    const maxAge = filters.age.max ?? 100;
+    
+    const maxBirthYear = currentYear - minAge;
+    const minBirthYear = currentYear - maxAge;
 
     query += ` AND CAST(strftime('%Y', birthday) AS INTEGER) BETWEEN ? AND ?`;
     params.push(minBirthYear, maxBirthYear);
@@ -542,7 +519,7 @@ export async function getFilteredUserIds(
   const result = await db.d1
     .prepare(query)
     .bind(...params)
-    .all<{ id: number; telegram_id: string }>();
+    .all<{ id: number; telegram_id: string; language_pref?: string }>();
 
   return result.results || [];
 }
@@ -581,21 +558,6 @@ async function updateBroadcastStatus(
   await db.d1
     .prepare(`UPDATE broadcasts SET ${updates.join(', ')} WHERE id = ?`)
     .bind(...params)
-    .run();
-}
-
-/**
- * Update broadcast progress
- */
-async function updateBroadcastProgress(
-  db: ReturnType<typeof createDatabaseClient>,
-  broadcastId: number,
-  sentCount: number,
-  failedCount: number
-): Promise<void> {
-  await db.d1
-    .prepare(`UPDATE broadcasts SET sent_count = ?, failed_count = ? WHERE id = ?`)
-    .bind(sentCount, failedCount, broadcastId)
     .run();
 }
 

@@ -139,6 +139,11 @@ export default {
           return await handleSeedUser(request, env);
         }
 
+        if (url.pathname === '/api/dev/seed-conversation' && request.method === 'POST') {
+          const { handleSeedConversation } = await import('./api/dev');
+          return await handleSeedConversation(request, env);
+        }
+
         if (url.pathname === '/api/dev/delete-fake-users' && request.method === 'POST') {
           const { handleDeleteFakeUsers } = await import('./api/dev');
           return await handleDeleteFakeUsers(request, env);
@@ -186,6 +191,20 @@ export default {
       return new Response('Not Found', { status: 404 });
     } catch (error) {
       console.error('[Worker] Error:', error);
+
+      // 🚨 Smart Alerting
+      try {
+        const { AdminLogService } = await import('./services/admin_log');
+        const adminLog = new AdminLogService(env);
+        await adminLog.logError(error, {
+          context: 'Global Worker Fetch',
+          url: request.url,
+          method: request.method,
+        });
+      } catch (logError) {
+        console.error('[Worker] Failed to log error:', logError);
+      }
+
       return new Response(
         JSON.stringify({
           error: 'Internal Server Error',
@@ -206,6 +225,15 @@ export default {
     console.log('[Worker] Scheduled event:', event.cron);
 
     try {
+      // Daily Data Cleanup (Every day at 00:00 UTC)
+      if (event.cron === '0 0 * * *') {
+        // eslint-disable-next-line no-console
+        console.log('[Worker] Running daily data cleanup...');
+        const { deleteOldAnalyticsEvents, deleteOldConversationMessages } = await import('./services/cleanup');
+        await deleteOldAnalyticsEvents(env);
+        await deleteOldConversationMessages(env);
+      }
+
       // Horoscope push (Every Monday at 9:00 UTC)
       // Daily stats (Every day at 00:05 UTC)
       if (event.cron === '5 0 * * *') {
@@ -237,6 +265,14 @@ export default {
         console.log('[Worker] Checking maintenance mode...');
         const { checkAndDisableExpiredMaintenance } = await import('./services/maintenance');
         await checkAndDisableExpiredMaintenance(env);
+      }
+
+      // 🔍 External Service Health Check (Every 10 minutes)
+      if (event.cron === '*/10 * * * *') {
+        // eslint-disable-next-line no-console
+        console.log('[Worker] Checking external services health...');
+        const { checkExternalServices } = await import('./services/monitoring');
+        await checkExternalServices(env);
       }
 
       // AI Moderation Patrol (Every hour)
@@ -344,6 +380,17 @@ export default {
       }
     } catch (error) {
       console.error('[Worker] Scheduled event error:', error);
+      // 🚨 Smart Alerting
+      try {
+        const { AdminLogService } = await import('./services/admin_log');
+        const adminLog = new AdminLogService(env);
+        await adminLog.logError(error, {
+          context: 'Scheduled Event',
+          cron: event.cron,
+        });
+      } catch (logError) {
+        console.error('[Worker] Failed to log scheduled error:', logError);
+      }
     }
   },
 };

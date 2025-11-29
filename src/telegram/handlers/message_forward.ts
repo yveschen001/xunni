@@ -175,8 +175,37 @@ export async function handleMessageForward(
     }
 
     // Check for URLs (whitelist only)
-    const urlCheck = checkUrlWhitelist(messageText);
+    const isVip = !!(
+      user.is_vip &&
+      user.vip_expire_at &&
+      new Date(user.vip_expire_at) > new Date()
+    );
+
+    const urlCheck = checkUrlWhitelist(messageText, isVip);
+    
     if (!urlCheck.allowed) {
+      // 1. Check if it's a VIP-only URL (Upsell opportunity)
+      if (urlCheck.vipRestrictedUrls && urlCheck.vipRestrictedUrls.length > 0) {
+        const blockedVipUrlsText = urlCheck.vipRestrictedUrls.map((url) => `• ${url}`).join('\n');
+        await telegram.sendMessage(
+          chatId,
+          i18n.t('messageForward.urlVipOnly') + // Using existing namespace convention
+            '\n\n' +
+            blockedVipUrlsText +
+            '\n\n' +
+            i18n.t('messageForward.upgradeVipLink') // Suggest upgrade
+        );
+        
+        // Show upgrade button
+        await telegram.sendMessageWithButtons(
+           chatId, 
+           i18n.t('messageForward.upgradeToUnlock'),
+           [[{ text: i18n.t('buttons.vip'), callback_data: 'menu_vip' }]]
+        );
+        return true;
+      }
+
+      // 2. Standard blocked URLs
       const blockedUrlsText = urlCheck.blockedUrls?.map((url) => `• ${url}`).join('\n') || '';
       await telegram.sendMessage(
         chatId,

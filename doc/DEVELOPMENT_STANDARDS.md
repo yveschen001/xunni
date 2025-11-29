@@ -483,6 +483,7 @@ chore: 更新依賴版本
 
 4. **驗證變更**：
    - 執行 `pnpm test` 確保測試通過
+   - **新增/修改功能必須執行 Local Simulation** (`scripts/local-simulation.ts`)
    - 執行 `pnpm lint` 確保代碼風格正確
    - 如有資料庫變更，檢查並更新 `@doc/SPEC.md`
 
@@ -491,6 +492,7 @@ chore: 更新依賴版本
 **變更完成後，必須執行：**
 
 - ✅ 執行 `pnpm test` 確保所有測試通過
+- ✅ **執行 Local Simulation 確保關鍵路徑無誤**
 - ✅ 執行 `pnpm lint` 檢查代碼風格
 - ✅ 如有資料庫 Schema 變更，檢查 `@doc/SPEC.md` 第 3 節並更新
 - ✅ 如有業務邏輯變更，檢查 `@doc/SPEC.md` 相關章節並更新
@@ -550,6 +552,10 @@ chore: 更新依賴版本
   - 確認欄位定義（如 `zh-TW` 應該是 "Traditional Chinese (Taiwan)"）
 
 #### 功能完整性檢查
+- [ ] **執行完整的 Local Simulation (強制)**
+  - 執行 `./scripts/run-local-sim.sh user/admin/super_admin`
+  - 確保覆蓋新增功能的 Create/Read/Edit/Delete 完整流程
+  - 確保所有測試通過且無報錯
 - [ ] **執行完整的 Smoke Test**
   - 測試所有核心命令（`/start`, `/profile`, `/throw`, `/catch`, `/stats` 等）
   - 測試對話流程（發送訊息、查看資料卡片）
@@ -1084,8 +1090,43 @@ WHERE birthday IS NOT NULL;
 - [ ] 使用正確的工具函數
 - [ ] 函數命名清晰，用途明確
 - [ ] 沒有重複代碼
-- [ ] 沒有 `console.log`（只允許 `console.error`）
-- [ ] 沒有 `any` 類型（除非必要）
+- [ ] **絕對禁止** `console.log`（只允許 `console.error` 或 `console.warn`）
+- [ ] **絕對禁止** `any` 類型（必須定義 Interface 或 Type）
+- [ ] **絕對禁止** 未使用的變量和導入（必須刪除）
+
+---
+
+## 8. AI 協作強制規範 (AI Co-pilot Mandatory Rules)
+
+**⚠️ 這是給 AI 代理的強制指令，必須嚴格執行：**
+
+### 8.1 寫入後立即檢查 (Write-then-Check)
+**規則**：每次調用 `write` 或 `search_replace` 修改代碼後，**必須** 在同一個回合或下一個回合立即調用 `read_lints` 檢查該文件。
+
+**流程**：
+1. `write` (修改代碼)
+2. `read_lints` (檢查該文件)
+3. **如果有錯** -> 立即修復 (Fix immediately)
+4. **如果沒錯** -> 繼續下一個任務
+
+**禁止行為**：
+- ❌ 修改了文件卻不檢查 Lint。
+- ❌ 發現 Lint 錯誤卻說「稍後再修」。
+- ❌ 一次性修改 5 個文件，最後才統一檢查（必須改一個查一個）。
+
+### 8.2 類型安全優先 (Type Safety First)
+**規則**：在編寫函數前，先定義好 Interface。
+- **禁止** 使用 `any` 作為逃生艙。
+- 如果類型複雜，先在 `src/types/` 或 `src/domain/` 定義類型，再寫邏輯。
+
+### 8.3 乾淨代碼 (Clean Code)
+**規則**：
+- **Console Log**：提交前必須刪除所有調試用的 `console.log`。
+- **Unused Vars**：不使用的變量必須刪除，不要留著「以後可能用到」。
+- **Imports**：刪除所有未使用的 import。
+
+### 8.4 文檔同步 (Doc Sync)
+**規則**：修改邏輯後，**必須** 檢查 `SPEC.md` 或相關設計文檔，確保文檔與代碼一致。如果代碼變更導致文檔過時，必須更新文檔。
 
 #### i18n 規範（⚠️ 必須檢查）
 - [ ] **所有用戶可見文字都使用 `i18n.t()`**（禁止硬編碼中文）
@@ -1103,6 +1144,7 @@ WHERE birthday IS NOT NULL;
 
 #### 測試覆蓋
 - [ ] 新功能有單元測試
+- [ ] **關鍵功能有 Local Simulation 測試**
 - [ ] 修改的功能測試已更新
 - [ ] Smoke Test 已更新（如需要）
 - [ ] 所有測試通過

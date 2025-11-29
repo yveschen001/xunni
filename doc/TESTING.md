@@ -6,7 +6,7 @@
 
 ```
         /\
-       /  \      E2E Tests (少量)
+       /  \      Local Simulation (關鍵路徑全覆蓋)
       /____\
      /      \    Integration Tests (適量)
     /________\
@@ -19,6 +19,7 @@
 - **Domain 層**: 90%+
 - **Utils**: 80%+
 - **Handlers**: 60%+（重點測試業務邏輯）
+- **關鍵功能**: 100% 通過 Local Simulation
 
 ---
 
@@ -280,9 +281,42 @@ describe('handleThrow', () => {
 
 ---
 
-## 4. E2E 測試
+## 4. 本地模擬測試 (Local Simulation)
 
-### 4.1 測試流程
+**這是專案中最重要的測試層級，用於防止「修復後又壞掉」的返工循環。**
+
+### 4.1 測試原理
+- **工具**: `scripts/local-simulation.ts`
+- **環境**: 在本地啟動真實的 Cloudflare Worker 與 D1 資料庫。
+- **Mock**: 啟動一個本地 Mock Telegram Server (Port 9000) 攔截 Bot 發出的請求。
+- **驗證**: 測試腳本不只檢查 HTTP 200，還會解析 Bot 回傳的訊息內容 (Text/Keyboard) 是否符合預期。
+
+### 4.2 測試範圍 (必須覆蓋)
+1. **User Flow**: 註冊 (Onboarding)、/start、/profile、/stats、/help。
+2. **Admin Flow**: 管理員權限檢查、廣告管理 (CRUD)、任務管理 (CRUD)。
+3. **Super Admin Flow**: 敏感操作、日誌檢查。
+4. **生命週期**: 創建 -> 讀取 -> **編輯** -> 刪除 (CRUD 完整循環)。
+
+### 4.3 執行方式
+```bash
+# 執行所有角色的模擬測試
+./scripts/run-local-sim.sh user
+./scripts/run-local-sim.sh admin
+./scripts/run-local-sim.sh super_admin
+
+# Push 前強制檢查
+./scripts/pre-push-check.sh
+```
+
+### 4.4 新增功能規範
+- **任何涉及 UI 交互的新功能 (如 Wizard)**，都必須在 `scripts/local-simulation.ts` 中新增對應的測試案例。
+- 測試必須包含「成功路徑」與「錯誤路徑」。
+
+---
+
+## 5. E2E 測試
+
+### 5.1 測試流程
 
 ```typescript
 // tests/e2e/onboarding.test.ts
@@ -307,9 +341,9 @@ describe('Onboarding flow', () => {
 
 ---
 
-## 5. 測試工具配置
+## 6. 測試工具配置
 
-### 5.1 vitest.config.ts
+### 6.1 vitest.config.ts
 
 ```typescript
 import { defineConfig } from 'vitest/config';
@@ -331,7 +365,7 @@ export default defineConfig({
 });
 ```
 
-### 5.2 Mock 設定
+### 6.2 Mock 設定
 
 ```typescript
 // tests/mocks/telegram.ts
@@ -353,9 +387,9 @@ export function createMockUpdate(overrides?: Partial<TelegramUpdate>): TelegramU
 
 ---
 
-## 6. CI/CD 整合
+## 7. CI/CD 整合
 
-### 6.1 GitHub Actions
+### 7.1 GitHub Actions
 
 ```yaml
 # .github/workflows/test.yml
@@ -397,7 +431,7 @@ jobs:
 
 ---
 
-## 7. 測試最佳實踐
+## 8. 測試最佳實踐
 
 1. **AAA 模式**：Arrange, Act, Assert
 2. **測試隔離**：每個測試獨立，不依賴其他測試
@@ -405,4 +439,3 @@ jobs:
 4. **測試邊界條件**：空值、極值、異常情況
 5. **測試名稱清晰**：描述測試的意圖
 6. **保持測試簡單**：一個測試只驗證一個行為
-

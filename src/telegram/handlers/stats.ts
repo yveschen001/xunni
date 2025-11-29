@@ -100,8 +100,8 @@ export async function handleStats(message: TelegramMessage, env: Env): Promise<v
       `• ${isVip ? i18n.t('stats.vipMember') : i18n.t('stats.vipFree')}\n` +
       (isVip
         ? i18n.t('stats.vipExpire', {
-            date: new Date(user.vip_expire_at!).toLocaleDateString(user.language_pref || 'zh-TW'),
-          }) + '\n'
+          date: new Date(user.vip_expire_at!).toLocaleDateString(user.language_pref || 'zh-TW'),
+        }) + '\n'
         : '') +
       vipStatsText +
       '\n' +

@@ -1,34 +1,43 @@
-/**
- * URL Whitelist Tests
- */
-
 import { describe, it, expect } from 'vitest';
-import { checkUrlWhitelist } from '~/utils/url-whitelist';
+import { checkUrlWhitelist } from '../../src/utils/url-whitelist';
 
-describe('checkUrlWhitelist', () => {
-  it('should allow messages without URLs', () => {
-    const result = checkUrlWhitelist('Hello world!');
+describe('URL Whitelist', () => {
+  it('should allow whitelisted domains for everyone', () => {
+    const text = 'Check this out: https://t.me/somechannel';
+    const result = checkUrlWhitelist(text, false);
     expect(result.allowed).toBe(true);
   });
 
-  it('should allow t.me links', () => {
-    const result = checkUrlWhitelist('Check this: https://t.me/xunnibot');
-    expect(result.allowed).toBe(true);
-  });
-
-  it('should allow telegram.org links', () => {
-    const result = checkUrlWhitelist('Visit https://telegram.org');
-    expect(result.allowed).toBe(true);
-  });
-
-  it('should deny other domains', () => {
-    const result = checkUrlWhitelist('Visit https://google.com');
+  it('should block non-whitelisted domains for everyone', () => {
+    const text = 'Visit https://malicious.site';
+    const result = checkUrlWhitelist(text, true); // Even VIP blocked
     expect(result.allowed).toBe(false);
-    expect(result.blockedUrls?.length).toBeGreaterThan(0);
+    expect(result.blockedUrls).toContain('https://malicious.site');
   });
 
-  it('should handle multiple URLs', () => {
-    const result = checkUrlWhitelist('Visit https://t.me/bot and https://evil.com');
+  it('should block VIP domains for non-VIP users', () => {
+    const text = 'Watch this: https://youtube.com/watch?v=123';
+    const result = checkUrlWhitelist(text, false);
     expect(result.allowed).toBe(false);
+    expect(result.vipRestrictedUrls).toContain('https://youtube.com/watch?v=123');
+  });
+
+  it('should allow VIP domains for VIP users', () => {
+    const text = 'Watch this: https://youtube.com/watch?v=123';
+    const result = checkUrlWhitelist(text, true);
+    expect(result.allowed).toBe(true);
+  });
+
+  it('should handle mixed URLs correctly (Non-VIP)', () => {
+    const text = 'https://t.me/ok and https://twitter.com/restricted';
+    const result = checkUrlWhitelist(text, false);
+    expect(result.allowed).toBe(false);
+    expect(result.vipRestrictedUrls).toContain('https://twitter.com/restricted');
+  });
+
+  it('should handle mixed URLs correctly (VIP)', () => {
+    const text = 'https://t.me/ok and https://twitter.com/allowed';
+    const result = checkUrlWhitelist(text, true);
+    expect(result.allowed).toBe(true);
   });
 });

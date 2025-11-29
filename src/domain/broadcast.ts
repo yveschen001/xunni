@@ -18,6 +18,7 @@ export interface Broadcast {
   errorMessage?: string;
   filterJson?: string; // JSON string of BroadcastFilters
   lastProcessedId?: number; // For cursor pagination
+  translations?: string; // JSON string: {"en": "...", "ja": "..."}
 }
 
 export interface BroadcastTarget {

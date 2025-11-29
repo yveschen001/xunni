@@ -560,13 +560,13 @@ export async function handleAdminBans(message: TelegramMessage, env: Env): Promi
 
       const banEnd = ban.ban_end
         ? new Date(ban.ban_end).toLocaleString('zh-TW', {
-            year: 'numeric',
-            month: '2-digit',
-            day: '2-digit',
-            hour: '2-digit',
-            minute: '2-digit',
-            timeZone: 'Asia/Taipei',
-          })
+          year: 'numeric',
+          month: '2-digit',
+          day: '2-digit',
+          hour: '2-digit',
+          minute: '2-digit',
+          timeZone: 'Asia/Taipei',
+        })
         : i18n.t('admin.ban.permanent');
 
       message +=
@@ -629,13 +629,13 @@ export async function handleAdminBans(message: TelegramMessage, env: Env): Promi
 
     const banEnd = ban.ban_end
       ? new Date(ban.ban_end).toLocaleString('zh-TW', {
-          year: 'numeric',
-          month: '2-digit',
-          day: '2-digit',
-          hour: '2-digit',
-          minute: '2-digit',
-          timeZone: 'Asia/Taipei',
-        })
+        year: 'numeric',
+        month: '2-digit',
+        day: '2-digit',
+        hour: '2-digit',
+        minute: '2-digit',
+        timeZone: 'Asia/Taipei',
+      })
       : i18n.t('admin.ban.permanent');
 
     responseText +=

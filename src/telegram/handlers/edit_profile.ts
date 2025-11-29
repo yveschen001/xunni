@@ -591,8 +591,8 @@ export async function handleEditBloodTypeSelection(
     const bloodTypeDisplay = bloodType ? getBloodTypeDisplay(bloodType as any, i18n) : '';
     const displayText = bloodType
       ? i18n
-          .t('success.bloodType')
-          .replace(/\$\{getBloodTypeDisplay\(bloodType as any\)\}/, bloodTypeDisplay)
+        .t('success.bloodType')
+        .replace(/\$\{getBloodTypeDisplay\(bloodType as any\)\}/, bloodTypeDisplay)
       : i18n.t('success.bloodType2');
 
     await telegram.answerCallbackQuery(callbackQuery.id, displayText);

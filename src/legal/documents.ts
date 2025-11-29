@@ -301,7 +301,12 @@ export const LEGAL_DOCUMENTS = {
         <ul>
             <li><strong>Personal Data:</strong> During account existence</li>
             <li><strong>Bottles:</strong> Soft-deleted after 90 days (marked as deleted, no longer displayed)</li>
-            <li><strong>Chat Records:</strong> Maximum 3,650 messages per conversation partner</li>
+            <li><strong>Chat Records:</strong>
+                <ul>
+                    <li><strong>VIP Users:</strong> Retained for 3 years</li>
+                    <li><strong>Free Users:</strong> Retained for 1 year</li>
+                </ul>
+            </li>
             <li><strong>Security Audit Records:</strong> Retained for 90 days after account deletion (for security review only)</li>
         </ul>
 

@@ -69,6 +69,21 @@ export async function sendDailyReportsToSuperAdmins(env: Env): Promise<void> {
     const funnelReportData = await generateVIPFunnelReport(db.d1, dateStr, dateStr);
     const funnelReport = formatVIPFunnelReport(funnelReportData, i18n);
 
+    // Health Report (New)
+    let healthReport = '';
+    if (env.CACHE) {
+      const yesterday = new Date();
+      yesterday.setDate(yesterday.getDate() - 1);
+      const yesterdayStr = yesterday.toISOString().split('T')[0];
+      const errorCountVal = await env.CACHE.get(`stats:errors:${yesterdayStr}`);
+      const errorCount = errorCountVal ? parseInt(errorCountVal) : 0;
+
+      healthReport =
+        `🏥 **系統健康報告 (${yesterdayStr})**\n` +
+        `• 昨日報警總數: ${errorCount}\n` +
+        `• 監控狀態: 運行中 (每 10 分鐘檢測)`;
+    }
+
     // ✨ NEW: AI Insight Analysis
     let aiSummary = '';
     try {
@@ -125,6 +140,13 @@ export async function sendDailyReportsToSuperAdmins(env: Env): Promise<void> {
 
         // 3. VIP Funnel
         await telegram.sendMessage(parseInt(adminId), funnelReport);
+        await sleep(500);
+
+        // 4. Health Report
+        if (healthReport) {
+          await telegram.sendMessage(parseInt(adminId), healthReport);
+          await sleep(500);
+        }
 
         // eslint-disable-next-line no-console
         console.log(`[sendDailyReportsToSuperAdmins] Sent reports to admin ${adminId}`);

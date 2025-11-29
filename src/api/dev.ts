@@ -40,7 +40,7 @@ export async function handleSeedUser(request: Request, env: Env): Promise<Respon
           telegram_id, username, first_name, nickname, gender, birthday, age,
           zodiac_sign, mbti_result, mbti_source, city, bio, interests,
           language_pref, onboarding_step, anti_fraud_score, created_at, updated_at
-        ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, 'completed', 100, ?, ?)
+        ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, 100, ?, ?)
         ON CONFLICT(telegram_id) DO UPDATE SET
           username = EXCLUDED.username,
           first_name = EXCLUDED.first_name,
@@ -55,7 +55,7 @@ export async function handleSeedUser(request: Request, env: Env): Promise<Respon
           bio = EXCLUDED.bio,
           interests = EXCLUDED.interests,
           language_pref = EXCLUDED.language_pref,
-          onboarding_step = 'completed',
+          onboarding_step = EXCLUDED.onboarding_step,
           updated_at = EXCLUDED.updated_at`
       )
       .bind(
@@ -73,6 +73,7 @@ export async function handleSeedUser(request: Request, env: Env): Promise<Respon
         user.bio || null,
         user.interests || null,
         user.language_pref || 'zh-TW',
+        user.onboarding_step || 'completed',
         now,
         now
       )
@@ -90,6 +91,44 @@ export async function handleSeedUser(request: Request, env: Env): Promise<Respon
         status: 500,
         headers: { 'Content-Type': 'application/json' },
       }
+    );
+  }
+}
+
+/**
+ * Seed a fake conversation for testing
+ */
+export async function handleSeedConversation(request: Request, env: Env): Promise<Response> {
+  if (!isDevEndpointAllowed(env)) {
+    return new Response(JSON.stringify({ error: 'Not available in production' }), { status: 403 });
+  }
+
+  try {
+    const data = (await request.json()) as any;
+    const db = createDatabaseClient(env.DB);
+    const now = new Date().toISOString();
+
+    // Create conversation
+    const result = await db.d1
+      .prepare(
+        `INSERT INTO conversations (
+          user_a_telegram_id, user_b_telegram_id, status, created_at, updated_at
+        ) VALUES (?, ?, 'active', ?, ?)
+        RETURNING id`
+      )
+      .bind(data.user_a_id, data.user_b_id, now, now)
+      .first<{ id: number }>();
+
+    if (!result) throw new Error('Failed to create conversation');
+
+    return new Response(JSON.stringify({ success: true, conversation_id: result.id }), {
+      status: 200,
+      headers: { 'Content-Type': 'application/json' },
+    });
+  } catch (error) {
+    return new Response(
+      JSON.stringify({ error: error instanceof Error ? error.message : String(error) }),
+      { status: 500 }
     );
   }
 }

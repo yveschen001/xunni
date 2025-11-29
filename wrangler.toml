@@ -11,6 +11,12 @@ database_name = "xunni-db-staging"
 database_id = "7b77ad82-ba26-489f-995f-8256b32379df"
 migrations_dir = "src/db/migrations"
 
+# KV Cache (Dev)
+[[kv_namespaces]]
+binding = "CACHE"
+id = "8222fd298f254b498b7842d03e5d2a4d" # Staging ID
+preview_id = "8222fd298f254b498b7842d03e5d2a4d" # Staging ID
+
 # Default environment variables (non-sensitive)
 [vars]
 ENVIRONMENT = "development"

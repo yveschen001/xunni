@@ -245,7 +245,8 @@ async function sendVipInvoice(
       '\n' +
       i18n.t('vip.text2') +
       '\n\n' +
-      i18n.t('vip.settings3')
+      i18n.t('vip.settings3') +
+      i18n.t('vip.retentionNotice')
     : i18n.t('vip.vip12') +
       '\n' +
       i18n.t('vip.text23') +
@@ -254,7 +255,8 @@ async function sendVipInvoice(
       '\n' +
       i18n.t('vip.mbti2') +
       '\n' +
-      i18n.t('vip.text2');
+      i18n.t('vip.text2') +
+      i18n.t('vip.retentionNotice');
 
   // Create invoice
   const invoice: any = {

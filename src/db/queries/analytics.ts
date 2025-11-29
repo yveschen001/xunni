@@ -78,7 +78,7 @@ export async function getEventsByUser(
     .bind(userId, limit)
     .all();
 
-  return (result.results || []) as AnalyticsEvent[];
+  return (result.results || []) as unknown as AnalyticsEvent[];
 }
 
 /**
@@ -100,7 +100,7 @@ export async function getEventsByTypeAndDateRange(
     .bind(eventType, startDate, endDate)
     .all();
 
-  return (result.results || []) as AnalyticsEvent[];
+  return (result.results || []) as unknown as AnalyticsEvent[];
 }
 
 /**
@@ -121,7 +121,7 @@ export async function getEventsByCategoryAndDate(
     .bind(category, date)
     .all();
 
-  return (result.results || []) as AnalyticsEvent[];
+  return (result.results || []) as unknown as AnalyticsEvent[];
 }
 
 /**
@@ -277,7 +277,7 @@ export async function getActiveSessions(db: D1Database, userId: string): Promise
     .bind(userId)
     .all();
 
-  return (result.results || []) as UserSession[];
+  return (result.results || []) as unknown as UserSession[];
 }
 
 // ============================================================================
@@ -462,7 +462,7 @@ export async function getFunnelEventsByUser(
     .bind(userId, funnelType)
     .all();
 
-  return (result.results || []) as FunnelEvent[];
+  return (result.results || []) as unknown as FunnelEvent[];
 }
 
 /**
@@ -505,6 +505,145 @@ export async function getFunnelConversionRate(
     user_count: step.user_count,
     conversion_rate: (step.user_count / firstStepCount) * 100,
   }));
+}
+
+// ============================================================================
+// New Analytics Queries (Funnel & Social Depth)
+// ============================================================================
+
+/**
+ * Get User Funnel Stats for a specific date
+ * Returns: New users count, and how many of them threw/caught bottles
+ */
+export async function getUserFunnelStats(
+  db: D1Database,
+  date: string
+): Promise<{
+  newUsers: number;
+  thrownUsers: number;
+  caughtUsers: number;
+}> {
+  // 1. Get new users count
+  const newUsersResult = await db
+    .prepare(`SELECT COUNT(*) as count FROM users WHERE date(created_at) = ?`)
+    .bind(date)
+    .first<{ count: number }>();
+  
+  const newUsers = newUsersResult?.count || 0;
+
+  if (newUsers === 0) {
+    return { newUsers: 0, thrownUsers: 0, caughtUsers: 0 };
+  }
+
+  // 2. Count how many of these NEW users have thrown at least one bottle
+  // Note: We check if they exist in bottles table. Optimization: Using EXISTS is faster than JOIN for counting distinct
+  const thrownResult = await db
+    .prepare(
+      `SELECT COUNT(DISTINCT u.telegram_id) as count
+       FROM users u
+       JOIN bottles b ON u.telegram_id = b.owner_id
+       WHERE date(u.created_at) = ?`
+    )
+    .bind(date)
+    .first<{ count: number }>();
+
+  // 3. Count how many of these NEW users have caught/started a conversation
+  // Note: Check if they are in conversations table (either as A or B)
+  const caughtResult = await db
+    .prepare(
+      `SELECT COUNT(DISTINCT u.telegram_id) as count
+       FROM users u
+       JOIN conversations c ON (u.telegram_id = c.user_a_id OR u.telegram_id = c.user_b_id)
+       WHERE date(u.created_at) = ?`
+    )
+    .bind(date)
+    .first<{ count: number }>();
+
+  return {
+    newUsers,
+    thrownUsers: thrownResult?.count || 0,
+    caughtUsers: caughtResult?.count || 0,
+  };
+}
+
+/**
+ * Get Social Depth Stats for a specific date
+ * Returns: Average message rounds, total conversations, one-sided conversation count
+ */
+export async function getSocialDepthStats(
+  db: D1Database,
+  date: string
+): Promise<{
+  totalConversations: number;
+  avgRounds: number;
+  oneSidedCount: number;
+}> {
+  // 1. Get active conversations updated on this date
+  const conversations = await db
+    .prepare(
+      `SELECT id 
+       FROM conversations 
+       WHERE date(updated_at) = ?`
+    )
+    .bind(date)
+    .all<{ id: number }>();
+
+  const conversationIds = conversations.results?.map((c: any) => c.id) || [];
+  
+  if (conversationIds.length === 0) {
+    return { totalConversations: 0, avgRounds: 0, oneSidedCount: 0 };
+  }
+
+  let totalRounds = 0;
+  let oneSidedCount = 0;
+
+  // Note: For large datasets, this N+1 query pattern is bad. 
+  // Optimization: Fetch all messages for these conversations in one go if possible, 
+  // or use a smarter SQL aggregation.
+  // Given D1 limitations on complex joins/group by, we can try a slightly better SQL approach.
+
+  // Batch ID processing to avoid "too many variables" if list is huge (e.g. chunks of 50)
+  // For now, let's assume < 1000 active conversations per day for simple query.
+  
+  // Efficient Query: Group by conversation_id and count senders
+  // We need to fetch stats for these conversations
+  
+  // Since we can't easily pass array to IN clause in raw SQL without building string, 
+  // and D1 bind limits... let's try a direct aggregation on messages joined with conversations
+  // filtered by date.
+  
+  const statsResult = await db.prepare(`
+    SELECT 
+      c.id,
+      COUNT(m.id) as msg_count,
+      COUNT(DISTINCT m.sender_id) as sender_count
+    FROM conversations c
+    LEFT JOIN conversation_messages m ON c.id = m.conversation_id
+    WHERE date(c.updated_at) = ?
+    GROUP BY c.id
+  `).bind(date).all<{ id: number; msg_count: number; sender_count: number }>();
+
+  const stats = (statsResult.results as any[]) || [];
+
+  for (const stat of stats) {
+    // Round = One back-and-forth interaction. 
+    // Approx: Total messages / 2.
+    // If msg_count < 2, round is 0.
+    totalRounds += Math.floor(stat.msg_count / 2);
+
+    // One-sided: Only 1 distinct sender (or 0 messages)
+    if (stat.sender_count <= 1) {
+      oneSidedCount++;
+    }
+  }
+
+  const avgRounds = stats.length > 0 ? totalRounds / stats.length : 0;
+
+  return {
+    totalConversations: stats.length,
+    avgRounds,
+    oneSidedCount,
+  };
 }
 
 // ============================================================================

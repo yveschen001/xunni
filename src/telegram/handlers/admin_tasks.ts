@@ -25,6 +25,7 @@ export async function handleAdminTasks(message: TelegramMessage, env: Env): Prom
 
   const telegram = createTelegramService(env);
   const service = new AdminTasksService(env.DB, env, telegramId);
+  const i18n = createI18n('zh-TW'); // Force Traditional Chinese for Admin Interface
 
   try {
     const tasks = await service.getTasks();
@@ -37,7 +38,7 @@ export async function handleAdminTasks(message: TelegramMessage, env: Env): Prom
 
     text += `🔧 **系統任務** (${systemTasks.length})\n`;
     for (const t of systemTasks) {
-      text += `${t.is_enabled ? '✅' : '⏸️'} ${t.name} (ID: ${t.id})\n`;
+      text += `${t.is_enabled ? '✅' : '⏸️'} ${i18n.t(t.name)} (ID: ${t.id})\n`;
     }
 
     text += `\n📢 **社群任務** (${socialTasks.length})\n`;
@@ -48,7 +49,7 @@ export async function handleAdminTasks(message: TelegramMessage, env: Env): Prom
       const statusEmoji = t.is_enabled ? '✅' : '⏸️';
       buttons.push([
         {
-          text: `${statusEmoji} ${t.icon || '📢'} ${t.name}`,
+          text: `${statusEmoji} ${t.icon || '📢'} ${i18n.t(t.name)}`,
           callback_data: `admin_task_view_${t.id}`,
         },
       ]);
@@ -78,6 +79,7 @@ export async function handleAdminTaskCallback(
   const db = createDatabaseClient(env.DB);
   const telegram = createTelegramService(env);
   const service = new AdminTasksService(env.DB, env, telegramId);
+  const i18n = createI18n('zh-TW'); // Force Traditional Chinese for Admin Interface
   const chatId = callbackQuery.message!.chat.id;
   const data = callbackQuery.data!;
 
@@ -86,6 +88,12 @@ export async function handleAdminTaskCallback(
 
     if (data === 'admin_task_create') {
       await startTaskWizard(chatId, telegramId, env);
+      return;
+    }
+
+    if (data.startsWith('admin_task_edit_')) {
+      const taskId = data.replace('admin_task_edit_', '');
+      await startTaskEditWizard(chatId, telegramId, taskId, env);
       return;
     }
 
@@ -107,8 +115,8 @@ export async function handleAdminTaskCallback(
 
       const info = `
 🆔 ID: \`${task.id}\`
-📌 名稱: ${task.name}
-📝 描述: ${task.description}
+📌 名稱: ${i18n.t(task.name)}
+📝 描述: ${i18n.t(task.description)}
 💰 獎勵: ${task.reward_amount} 瓶
 🔗 URL: ${task.action_url || '無'}
 🛡️ 驗證: ${task.verification_type === 'telegram_chat' ? 'Telegram 群組檢查' : '無 (點擊即領)'}
@@ -196,6 +204,11 @@ export async function handleAdminTaskCallback(
       return;
     }
 
+    if (data === 'wizard_skip') {
+      await handleWizardSkip(chatId, telegramId, env);
+      return;
+    }
+
     if (data === 'wizard_confirm_task') {
       await finalizeTaskWizard(chatId, telegramId, env);
       return;
@@ -268,6 +281,69 @@ async function startTaskWizard(chatId: number, telegramId: string, env: Env) {
   ]);
 }
 
+async function startTaskEditWizard(chatId: number, telegramId: string, taskId: string, env: Env) {
+  const db = createDatabaseClient(env.DB);
+  const telegram = createTelegramService(env);
+  const service = new AdminTasksService(env.DB, env, telegramId);
+
+  const tasks = await service.getTasks();
+  const task = tasks.find((t) => t.id === taskId);
+  if (!task) throw new Error('Task not found');
+
+  const initialData: WizardData = {
+    step: 'icon',
+    task_data: { ...task },
+    edit_id: taskId,
+  };
+
+  await upsertSession(db, telegramId, SESSION_TYPE, { data: initialData });
+
+  await telegram.sendMessageWithButtons(
+    chatId, 
+    `✏️ **編輯任務** (ID: ${taskId})\n\n當前圖示：${task.icon}\n\n請選擇新圖示，或點擊跳過：`, 
+    [
+      [
+        { text: '📢', callback_data: 'wizard_icon_📢' },
+        { text: '🐦', callback_data: 'wizard_icon_🐦' },
+        { text: '✈️', callback_data: 'wizard_icon_✈️' },
+        { text: '📸', callback_data: 'wizard_icon_📸' },
+      ],
+      [
+        { text: '🌐', callback_data: 'wizard_icon_🌐' },
+        { text: '💬', callback_data: 'wizard_icon_💬' },
+        { text: '📺', callback_data: 'wizard_icon_📺' },
+        { text: '🎮', callback_data: 'wizard_icon_🎮' },
+      ],
+      [{ text: '⏭️ 跳過 (保持不變)', callback_data: 'wizard_skip' }],
+      [{ text: '🚫 取消', callback_data: 'wizard_cancel_task' }],
+    ]
+  );
+}
+
+async function handleWizardSkip(chatId: number, telegramId: string, env: Env) {
+  const db = createDatabaseClient(env.DB);
+  const session = await getActiveSession(db, telegramId, SESSION_TYPE);
+  if (!session) return;
+
+  const currentData = parseSessionData(session).data as WizardData;
+  let nextStep: WizardData['step'] = 'confirm';
+
+  switch (currentData.step) {
+    case 'icon': nextStep = 'name'; break;
+    case 'name': nextStep = 'desc'; break;
+    case 'desc': nextStep = 'url'; break;
+    case 'url': nextStep = 'verify_type'; break;
+    case 'verify_type': 
+      nextStep = (currentData.task_data.verification_type === 'telegram_chat') ? 'target_id' : 'reward'; 
+      break;
+    case 'target_id': nextStep = 'reward'; break;
+    case 'reward': nextStep = 'confirm'; break;
+    default: nextStep = 'confirm'; break;
+  }
+
+  await updateWizardStep(chatId, telegramId, { step: nextStep }, env);
+}
+
 async function updateWizardStep(
   chatId: number,
   telegramId: string,
@@ -289,32 +365,79 @@ async function updateWizardStep(
 
   await upsertSession(db, telegramId, SESSION_TYPE, { data: newData });
 
+  const cancelBtn = [{ text: '🚫 取消', callback_data: 'wizard_cancel_task' }];
+
   switch (newData.step) {
-    case 'name':
-      await telegram.sendMessage(chatId, '請輸入 **任務名稱** (Max 20字):\n(系統將自動翻譯)');
+    case 'name': {
+      let msg = '請輸入 **任務名稱** (Max 20字):\n(系統將自動翻譯)';
+      if (newData.edit_id) msg += `\n\n當前：${newData.task_data.name}`;
+      
+      if (newData.edit_id) {
+        await telegram.sendMessageWithButtons(chatId, msg, [[{ text: '⏭️ 跳過', callback_data: 'wizard_skip' }], cancelBtn]);
+      } else {
+        await telegram.sendMessage(chatId, msg);
+      }
       break;
-    case 'desc':
-      await telegram.sendMessage(chatId, '請輸入 **任務描述** (Max 50字):\n(系統將自動翻譯)');
+    }
+    case 'desc': {
+      let msg = '請輸入 **任務描述** (Max 50字):\n(系統將自動翻譯)';
+      if (newData.edit_id) msg += `\n\n當前：${newData.task_data.description}`;
+      
+      if (newData.edit_id) {
+        await telegram.sendMessageWithButtons(chatId, msg, [[{ text: '⏭️ 跳過', callback_data: 'wizard_skip' }], cancelBtn]);
+      } else {
+        await telegram.sendMessage(chatId, msg);
+      }
       break;
-    case 'url':
-      await telegram.sendMessage(chatId, '請輸入 **跳轉 URL** (https://...):');
+    }
+    case 'url': {
+      let msg = '請輸入 **跳轉 URL** (https://...):';
+      if (newData.edit_id) msg += `\n\n當前：${newData.task_data.action_url}`;
+
+      if (newData.edit_id) {
+        await telegram.sendMessageWithButtons(chatId, msg, [[{ text: '⏭️ 跳過', callback_data: 'wizard_skip' }], cancelBtn]);
+      } else {
+        await telegram.sendMessage(chatId, msg);
+      }
       break;
-    case 'verify_type':
-      await telegram.sendMessageWithButtons(chatId, '請選擇 **驗證方式**:', [
+    }
+    case 'verify_type': {
+      const btns = [
         [{ text: '無需驗證 (點擊即領)', callback_data: 'wizard_verify_none' }],
         [{ text: 'Telegram 群組/頻道檢查', callback_data: 'wizard_verify_telegram_chat' }],
-      ]);
+      ];
+      if (newData.edit_id) btns.push([{ text: `⏭️ 跳過 (當前: ${newData.task_data.verification_type})`, callback_data: 'wizard_skip' }]);
+      btns.push(cancelBtn[0] as any);
+
+      await telegram.sendMessageWithButtons(chatId, '請選擇 **驗證方式**:', btns);
       break;
-    case 'target_id':
-      await telegram.sendMessage(chatId, '請輸入 **Target ID** (@channel 或 Chat ID):');
+    }
+    case 'target_id': {
+      let msg = '請輸入 **Target ID** (@channel 或 Chat ID):';
+      if (newData.edit_id) msg += `\n\n當前：${newData.task_data.target_id || '無'}`;
+
+      if (newData.edit_id) {
+        await telegram.sendMessageWithButtons(chatId, msg, [[{ text: '⏭️ 跳過', callback_data: 'wizard_skip' }], cancelBtn]);
+      } else {
+        await telegram.sendMessage(chatId, msg);
+      }
       break;
-    case 'reward':
-      await telegram.sendMessage(chatId, '請輸入 **獎勵瓶子數** (1-10):');
+    }
+    case 'reward': {
+      let msg = '請輸入 **獎勵瓶子數** (1-10):';
+      if (newData.edit_id) msg += `\n\n當前：${newData.task_data.reward_amount}`;
+
+      if (newData.edit_id) {
+        await telegram.sendMessageWithButtons(chatId, msg, [[{ text: '⏭️ 跳過', callback_data: 'wizard_skip' }], cancelBtn]);
+      } else {
+        await telegram.sendMessage(chatId, msg);
+      }
       break;
+    }
     case 'confirm': {
       const t = newData.task_data;
       const msg = `
-🔍 **確認內容**
+🔍 **確認${newData.edit_id ? '更新' : '創建'}**
 
 圖示: ${t.icon}
 名稱: ${t.name}
@@ -324,10 +447,10 @@ URL: ${t.action_url}
 Target: ${t.target_id || 'N/A'}
 獎勵: ${t.reward_amount}
 
-確認創建?
+確認${newData.edit_id ? '更新' : '創建'}?
 `;
       await telegram.sendMessageWithButtons(chatId, msg, [
-        [{ text: '🚀 確認發布', callback_data: 'wizard_confirm_task' }],
+        [{ text: `🚀 確認${newData.edit_id ? '更新' : '發布'}`, callback_data: 'wizard_confirm_task' }],
         [{ text: '🚫 取消', callback_data: 'wizard_cancel_task' }],
       ]);
       break;
@@ -412,15 +535,30 @@ async function finalizeTaskWizard(chatId: number, telegramId: string, env: Env) 
 
   try {
     const taskData = data.task_data as any;
-    await service.createSocialTask(taskData);
     
-    await log.logEvent(
-      '🆕 **Social Task Created**',
-      `Admin \`${telegramId}\` created new task: ${taskData.name} (${taskData.id})`
-    );
+    if (data.edit_id) {
+      // Edit mode
+      await service.editTask(data.edit_id, taskData);
+      
+      await log.logEvent(
+        '✏️ **Social Task Updated**',
+        `Admin \`${telegramId}\` updated task: ${taskData.name} (${data.edit_id})`
+      );
+      await telegram.sendMessage(chatId, '✅ 任務更新成功');
+    } else {
+      // Create mode
+      await service.createSocialTask(taskData);
+      
+      await log.logEvent(
+        '🆕 **Social Task Created**',
+        `Admin \`${telegramId}\` created new task: ${taskData.name} (${taskData.id})`
+      );
+      await telegram.sendMessage(chatId, '✅ 任務創建成功');
+    }
 
     await deleteSession(db, telegramId, SESSION_TYPE);
-    await telegram.sendMessage(chatId, '✅ 任務創建成功');
+    
+    // Refresh list
     const fakeMessage = { chat: { id: chatId }, from: { id: parseInt(telegramId) } } as any;
     await handleAdminTasks(fakeMessage, env);
   } catch (error) {

@@ -320,13 +320,13 @@ export async function handleBloodTypeSelection(
     const { getBloodTypeDisplay } = await import('~/domain/blood_type');
     const displayText = bloodType
       ? i18n
-          .t('success.settings4', {
-            getBloodTypeDisplay: () => getBloodTypeDisplay(bloodType as any),
-          })
-          .replace(
-            /\$\{getBloodTypeDisplay\(bloodType as any\)\}/,
-            getBloodTypeDisplay(bloodType as any)
-          )
+        .t('success.settings4', {
+          getBloodTypeDisplay: () => getBloodTypeDisplay(bloodType as any),
+        })
+        .replace(
+          /\$\{getBloodTypeDisplay\(bloodType as any\)\}/,
+          getBloodTypeDisplay(bloodType as any)
+        )
       : i18n.t('success.settings6');
     await telegram.answerCallbackQuery(callbackQuery.id, displayText);
 

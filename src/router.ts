@@ -40,6 +40,31 @@ export async function handleWebhook(request: Request, env: Env): Promise<Respons
     const update: TelegramUpdate = await request.json();
     console.error('[Router] Received update:', update.update_id);
 
+    // 🛡️ Rate Limiting
+    const telegramId =
+      update.message?.from?.id ||
+      update.callback_query?.from?.id ||
+      update.pre_checkout_query?.from?.id;
+
+    if (telegramId) {
+      const { RateLimiter } = await import('~/services/rate_limiter');
+      const rateLimiter = new RateLimiter(env);
+      // Limit: 60 requests per 60 seconds (1 req/sec sustained)
+      // Allow bursts but cap sustained load
+      const isAllowed = await rateLimiter.isAllowed(telegramId.toString(), 60, 60);
+
+      if (!isAllowed) {
+        console.warn(`[Router] Rate limit exceeded for user ${telegramId}`);
+        // Return 200 OK to stop Telegram from retrying, but drop the update
+        // (If we return 429, Telegram might retry, exacerbating the load)
+        // Actually, Telegram webhook documentation says:
+        // "If you're having problems... we will keep trying..."
+        // "If we receive a 429... we will retry later."
+        // So returning 200 OK is safer to drop spam.
+        return new Response('OK', { status: 200 });
+      }
+    }
+
     // Route update to appropriate handler
     await routeUpdate(update, env);
 

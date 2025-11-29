@@ -114,13 +114,19 @@
 顯示關鍵運營指標：
 
 ```
-📊 運營數據統計
+📊 運營數據統計 (YYYY-MM-DD)
 
-👥 使用者數據
-├─ 總註冊數：{totalUsers}
-├─ 活躍使用者（7天）：{activeUsers7d}
-├─ 活躍使用者（30天）：{activeUsers30d}
-└─ 完成 Onboarding：{completedOnboarding}
+👥 用戶漏斗 (今日 vs 昨日)
+├─ 總加入用戶：{newUsersToday} (昨: {newUsersYesterday}) {trend_new}
+├─ 丟瓶轉化率：{throwRateToday}% ({throwUsersToday}人)
+│  └─ 昨日：{throwRateYesterday}% ({throwUsersYesterday}人) {trend_throw}
+└─ 撿瓶轉化率：{catchRateToday}% ({catchUsersToday}人)
+   └─ 昨日：{catchRateYesterday}% ({catchUsersYesterday}人) {trend_catch}
+
+💬 社交深度 (平均)
+├─ 平均對話來回：{avgRounds} 回 (一來一往算1回)
+├─ 總對話數：{totalConversations}
+└─ 單方發言佔比：{oneSidedRate}% ({oneSidedCount}個)
 
 💰 收入數據
 ├─ 本月收入：{monthlyRevenue} Stars (≈ ${usdAmount})

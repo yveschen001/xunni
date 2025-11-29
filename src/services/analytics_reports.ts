@@ -10,7 +10,11 @@ import type { D1Database } from '@cloudflare/workers-types';
 import { getDailyAdStats, getAdStatsInRange } from '~/db/queries/ad_rewards';
 import { getProviderPerformanceComparison } from '~/db/queries/ad_providers';
 import { getDailyOfficialAdStats, getOfficialAdStatsInRange } from '~/db/queries/official_ads';
-import { getFunnelConversionRate } from '~/db/queries/analytics';
+import { 
+  getFunnelConversionRate, 
+  getUserFunnelStats, 
+  getSocialDepthStats 
+} from '~/db/queries/analytics';
 import { calculateDetailedDailyStats } from '~/services/stats';
 import { createDatabaseClient } from '~/db/client';
 
@@ -25,6 +29,28 @@ export interface DailyReport {
     dau: number;
     d1_retention: number;
     avg_session_duration: number;
+  };
+  funnel_metrics: {
+    today: {
+      new_users: number;
+      thrown_users: number;
+      caught_users: number;
+      throw_rate: number;
+      catch_rate: number;
+    };
+    yesterday: {
+      new_users: number;
+      thrown_users: number;
+      caught_users: number;
+      throw_rate: number;
+      catch_rate: number;
+    };
+  };
+  social_depth_metrics: {
+    total_conversations: number;
+    avg_rounds: number;
+    one_sided_count: number;
+    one_sided_rate: number;
   };
   ad_metrics: {
     third_party: {
@@ -105,6 +131,19 @@ export async function generateDailyReport(db: D1Database, date: string): Promise
   const dbClient = createDatabaseClient(db);
   const dailyStats = await calculateDetailedDailyStats(dbClient, date);
 
+  // Calculate previous date for comparison
+  const todayDate = new Date(date);
+  const yesterdayDate = new Date(todayDate);
+  yesterdayDate.setDate(yesterdayDate.getDate() - 1);
+  const yesterday = yesterdayDate.toISOString().split('T')[0];
+
+  // Get new funnel & social depth stats
+  const [funnelToday, funnelYesterday, socialDepth] = await Promise.all([
+    getUserFunnelStats(db, date),
+    getUserFunnelStats(db, yesterday),
+    getSocialDepthStats(db, date)
+  ]);
+
   // Build report
   const report: DailyReport = {
     date,
@@ -113,6 +152,28 @@ export async function generateDailyReport(db: D1Database, date: string): Promise
       dau: dailyStats.activeUsers,
       d1_retention: dailyStats.d1Retention,
       avg_session_duration: dailyStats.avgSessionDuration,
+    },
+    funnel_metrics: {
+      today: {
+        new_users: funnelToday.newUsers,
+        thrown_users: funnelToday.thrownUsers,
+        caught_users: funnelToday.caughtUsers,
+        throw_rate: funnelToday.newUsers > 0 ? (funnelToday.thrownUsers / funnelToday.newUsers) * 100 : 0,
+        catch_rate: funnelToday.newUsers > 0 ? (funnelToday.caughtUsers / funnelToday.newUsers) * 100 : 0,
+      },
+      yesterday: {
+        new_users: funnelYesterday.newUsers,
+        thrown_users: funnelYesterday.thrownUsers,
+        caught_users: funnelYesterday.caughtUsers,
+        throw_rate: funnelYesterday.newUsers > 0 ? (funnelYesterday.thrownUsers / funnelYesterday.newUsers) * 100 : 0,
+        catch_rate: funnelYesterday.newUsers > 0 ? (funnelYesterday.caughtUsers / funnelYesterday.newUsers) * 100 : 0,
+      }
+    },
+    social_depth_metrics: {
+      total_conversations: socialDepth.totalConversations,
+      avg_rounds: socialDepth.avgRounds,
+      one_sided_count: socialDepth.oneSidedCount,
+      one_sided_rate: socialDepth.totalConversations > 0 ? (socialDepth.oneSidedCount / socialDepth.totalConversations) * 100 : 0,
     },
     ad_metrics: {
       third_party: {
@@ -149,7 +210,7 @@ export async function generateDailyReport(db: D1Database, date: string): Promise
       bottles_thrown: dailyStats.newBottles,
       bottles_caught: dailyStats.caughtBottles,
       conversations_started: dailyStats.newConversations,
-      avg_conversation_rounds: 0, // TODO: Calculate
+      avg_conversation_rounds: socialDepth.avgRounds,
     },
   };
 
@@ -165,7 +226,8 @@ export async function formatDailyReport(report: DailyReport, i18n?: any): Promis
     report.user_metrics.dau > 0 ||
     report.ad_metrics.third_party.impressions > 0 ||
     report.ad_metrics.official.impressions > 0 ||
-    report.content_metrics.bottles_thrown > 0;
+    report.content_metrics.bottles_thrown > 0 ||
+    report.funnel_metrics.today.new_users > 0;
 
   if (!i18n) {
     const { createI18n } = await import('~/i18n');
@@ -176,34 +238,50 @@ export async function formatDailyReport(report: DailyReport, i18n?: any): Promis
     return i18n.t('analytics.message2', { date: report.date });
   }
 
-  return i18n.t('analytics.message', {
-    date: report.date,
-    newUsers: report.user_metrics.new_users,
-    dau: report.user_metrics.dau,
-    d1Retention: report.user_metrics.d1_retention.toFixed(1),
-    avgSessionDuration: report.user_metrics.avg_session_duration.toFixed(1),
-    thirdPartyImpressions: report.ad_metrics.third_party.impressions,
-    thirdPartyCompletions: report.ad_metrics.third_party.completions,
-    thirdPartyCompletionRate: report.ad_metrics.third_party.completion_rate.toFixed(1),
-    thirdPartyRewardsGranted: report.ad_metrics.third_party.rewards_granted,
-    officialImpressions: report.ad_metrics.official.impressions,
-    officialClicks: report.ad_metrics.official.clicks,
-    officialCtr: report.ad_metrics.official.ctr.toFixed(1),
-    officialRewardsGranted: report.ad_metrics.official.rewards_granted,
-    vipPageViews: report.vip_metrics.page_views,
-    vipPurchaseIntents: report.vip_metrics.purchase_intents,
-    vipConversions: report.vip_metrics.conversions,
-    vipConversionRate: report.vip_metrics.conversion_rate.toFixed(1),
-    vipRevenue: report.vip_metrics.revenue.toFixed(2),
-    inviteInitiated: report.invite_metrics.initiated,
-    inviteAccepted: report.invite_metrics.accepted,
-    inviteActivated: report.invite_metrics.activated,
-    inviteConversionRate: report.invite_metrics.conversion_rate.toFixed(1),
-    bottlesThrown: report.content_metrics.bottles_thrown,
-    bottlesCaught: report.content_metrics.bottles_caught,
-    conversationsStarted: report.content_metrics.conversations_started,
-    avgConversationRounds: report.content_metrics.avg_conversation_rounds.toFixed(1),
-  });
+  // Trend indicators
+  const getTrend = (curr: number, prev: number) => {
+    if (curr > prev) return '⬆️';
+    if (curr < prev) return '⬇️';
+    return '➡️';
+  };
+
+  const newUsersTrend = getTrend(report.funnel_metrics.today.new_users, report.funnel_metrics.yesterday.new_users);
+  const throwRateTrend = getTrend(report.funnel_metrics.today.throw_rate, report.funnel_metrics.yesterday.throw_rate);
+  const catchRateTrend = getTrend(report.funnel_metrics.today.catch_rate, report.funnel_metrics.yesterday.catch_rate);
+
+  // Note: Using hardcoded format as requested in ADMIN_PANEL.md update
+  // Ideally, these strings should move to i18n files later.
+  
+  let message = `📊 **運營數據統計** (${report.date})\n\n`;
+
+  // 1. User Funnel
+  message += `👥 **用戶漏斗 (今日 vs 昨日)**\n`;
+  message += `├─ 總加入用戶：${report.funnel_metrics.today.new_users} (昨: ${report.funnel_metrics.yesterday.new_users}) ${newUsersTrend}\n`;
+  message += `├─ 丟瓶轉化率：${report.funnel_metrics.today.throw_rate.toFixed(1)}% (${report.funnel_metrics.today.thrown_users}人)\n`;
+  message += `│  └─ 昨日：${report.funnel_metrics.yesterday.throw_rate.toFixed(1)}% ${throwRateTrend}\n`;
+  message += `└─ 撿瓶轉化率：${report.funnel_metrics.today.catch_rate.toFixed(1)}% (${report.funnel_metrics.today.caught_users}人)\n`;
+  message += `   └─ 昨日：${report.funnel_metrics.yesterday.catch_rate.toFixed(1)}% ${catchRateTrend}\n\n`;
+
+  // 2. Social Depth
+  message += `💬 **社交深度 (平均)**\n`;
+  message += `├─ 平均對話來回：${report.social_depth_metrics.avg_rounds.toFixed(1)} 回 (一來一往算1回)\n`;
+  message += `├─ 總對話數：${report.social_depth_metrics.total_conversations}\n`;
+  message += `└─ 單方發言佔比：${report.social_depth_metrics.one_sided_rate.toFixed(1)}% (${report.social_depth_metrics.one_sided_count}個)\n\n`;
+
+  // 3. Revenue (Existing)
+  message += `💰 **收入數據**\n`;
+  message += `├─ 本月收入：${report.vip_metrics.revenue.toFixed(0)} Stars\n`; // Simplified for now
+  message += `├─ 總收入：${report.vip_metrics.revenue.toFixed(0)} Stars\n`; 
+  message += `└─ VIP轉化數：${report.vip_metrics.conversions}\n\n`;
+
+  // 4. Usage (Existing)
+  message += `📦 **使用數據**\n`;
+  message += `├─ 今日丟瓶數：${report.content_metrics.bottles_thrown}\n`;
+  message += `├─ 今日撿瓶數：${report.content_metrics.bottles_caught}\n`;
+  message += `├─ 活躍對話數：${report.user_metrics.dau}\n`; // Approximation
+  message += `└─ DAU：${report.user_metrics.dau}\n`;
+
+  return message;
 }
 
 // ============================================================================
