@@ -171,7 +171,13 @@ export class FortuneService {
     if (!quota) throw new Error('Failed to init quota');
 
     const now = new Date();
-    const lastReset = quota.last_reset_at ? new Date(quota.last_reset_at) : new Date(0);
+    let lastReset = new Date(0);
+    try {
+      lastReset = quota.last_reset_at ? new Date(quota.last_reset_at) : new Date(0);
+      if (isNaN(lastReset.getTime())) lastReset = new Date(0);
+    } catch (e) {
+      console.error('[FortuneService] Error parsing last_reset_at:', e);
+    }
     let shouldReset = false;
     const targetAmount = isVip ? 1 : 1; // VIP 1/day, Free 1/week
 

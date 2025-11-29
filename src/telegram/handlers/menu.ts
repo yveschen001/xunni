@@ -48,7 +48,12 @@ export async function handleMenu(message: TelegramMessage, env: Env): Promise<vo
     }
 
     // Check VIP status
-    const isVip = user.is_vip && user.vip_expire_at && new Date(user.vip_expire_at) > new Date();
+    let isVip = false;
+    try {
+      isVip = !!(user.is_vip && user.vip_expire_at && new Date(user.vip_expire_at).getTime() > Date.now());
+    } catch (e) {
+      console.error('[handleMenu] Error checking VIP status:', e);
+    }
     const vipBadge = isVip ? '💎' : '';
 
     // Get next incomplete task
