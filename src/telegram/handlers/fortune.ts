@@ -570,5 +570,62 @@ export async function handleFortuneCallback(callbackQuery: TelegramCallbackQuery
     await telegram.answerCallbackQuery(callbackQuery.id);
     return;
   }
+
+  // Manage Profiles Menu
+  if (data === 'fortune_profiles') {
+    const profiles = await service.getProfiles(telegramId);
+    
+    const text = `📂 *${i18n.t('fortune.manageProfiles')}*\n\n`;
+    const buttons = [];
+
+    // List Profiles
+    for (const p of profiles) {
+      const isDefault = p.is_default ? '⭐ ' : '';
+      const flag = getFlagEmoji(p.birth_city ? 'TW' : 'TW'); // TODO: Store country_code in profile for correct flag
+      // Wait, profile table doesn't have country_code? It has birth_city.
+      // Assuming user input city has country info implicitly or we just skip flag if complex.
+      // Let's just use Name + Gender
+      const genderIcon = p.gender === 'male' ? '♂️' : '♀️';
+      
+      buttons.push([{
+        text: `${isDefault}${p.name} ${genderIcon}`,
+        callback_data: `fortune_select_profile:${p.id}`
+      }]);
+    }
+
+    // Add "New Profile" button
+    buttons.push([{ text: `➕ ${i18n.t('fortune.addProfile') || '新增檔案'}`, callback_data: 'fortune_add_profile' }]);
+    buttons.push([{ text: i18n.t('common.back'), callback_data: 'menu_fortune' }]); // Back to main fortune menu (default)
+
+    await telegram.editMessageText(chatId, callbackQuery.message!.message_id, text, {
+      reply_markup: { inline_keyboard: buttons },
+      parse_mode: 'Markdown'
+    });
+    await telegram.answerCallbackQuery(callbackQuery.id);
+    return;
+  }
+
+  // Select Profile (View Menu for specific profile)
+  if (data.startsWith('fortune_select_profile:')) {
+    const profileId = parseInt(data.replace('fortune_select_profile:', ''));
+    const profiles = await service.getProfiles(telegramId);
+    const profile = profiles.find(p => p.id === profileId);
+    
+    if (profile) {
+      // Just show menu for this profile (Temporary View)
+      // Or we could set it as default? For now, just View.
+      await telegram.deleteMessage(chatId, callbackQuery.message!.message_id);
+      await showFortuneMenu(chatId, profile, env, i18n);
+    }
+    await telegram.answerCallbackQuery(callbackQuery.id);
+    return;
+  }
+
+  // Add Profile
+  if (data === 'fortune_add_profile') {
+    await startNewProfileWizard(chatId, telegramId, env, i18n);
+    await telegram.answerCallbackQuery(callbackQuery.id);
+    return;
+  }
 }
 

@@ -4249,6 +4249,7 @@ export const translations: Translations = {
       "generating": "AI 生成報告中..."
     },
     "dailyPush": "📅 今日運勢已送達！",
-    "dailyPushBtn": "👇 點擊查看"
+    "dailyPushBtn": "👇 點擊查看",
+    "addProfile": "新增命盤檔案"
   }
 };
