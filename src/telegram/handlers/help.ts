@@ -78,16 +78,16 @@ export async function handleHelp(message: TelegramMessage, env: Env): Promise<vo
         i18n.t('help.text') +
         // i18n.t('help.admin_ads') +
         // i18n.t('help.admin_tasks') +
-        '\n/admin_ads - 管理官方廣告 (含新增)\n' +
-        '/admin_tasks - 管理社群任務 (含新增)' +
+        (i18n.t('help.admin_ads').startsWith('[') ? '\n/admin_ads - 管理官方廣告 (含新增)' : i18n.t('help.admin_ads')) +
+        (i18n.t('help.admin_tasks').startsWith('[') ? '\n/admin_tasks - 管理社群任務 (含新增)' : i18n.t('help.admin_tasks')) +
         '\n\n/admin_report - ' +
-        (i18n.t('admin.dailyReportTitle').startsWith('[') ? '每日數據報表' : i18n.t('admin.dailyReportTitle')) +
+        i18n.t('help.dailyReportTitle') +
         '\n/admin_report_test - ' +
-        (i18n.t('admin.testDailyReport').startsWith('[') ? '測試每日報表' : i18n.t('admin.testDailyReport')) + 
+        i18n.t('admin.ban.testDailyReport') + 
         '\n/admin_test_retention_push - ' +
-        (i18n.t('admin.testRetentionPush').startsWith('[') ? '測試留存推送' : i18n.t('admin.testRetentionPush')) + 
+        i18n.t('admin.ban.testRetentionPush') + 
         '\n/admin_test_match_push - ' +
-        (i18n.t('admin.testMatchPush').startsWith('[') ? '測試配對推送' : i18n.t('admin.testMatchPush')); 
+        i18n.t('admin.ban.testMatchPush'); 
     }
 
     // Add super admin commands (only for super admin)
@@ -95,22 +95,22 @@ export async function handleHelp(message: TelegramMessage, env: Env): Promise<vo
       helpMessage +=
         `\n\n━━━━━━━━━━━━━━━━\n` +
         '👑 ' +
-        (i18n.t('common.superAdmin').startsWith('[') ? '超級管理員功能' : i18n.t('common.superAdmin')) +
+        i18n.t('help.superAdminTitle') + // CSV: 🔱 **超級管理員功能**
         '\n' +
         '/analytics - ' +
-        (i18n.t('admin.analyticsTitle').startsWith('[') ? '數據分析面板' : i18n.t('admin.analyticsTitle')) +
+        (i18n.t('admin.analyticsTitle').startsWith('[') ? '每日運營報表' : i18n.t('admin.analyticsTitle')) +
         '\n' +
         '/ad_performance - ' +
-        (i18n.t('admin.adPerformanceTitle').startsWith('[') ? '廣告成效分析' : i18n.t('admin.adPerformanceTitle')) +
+        (i18n.t('admin.adPerformanceTitle').startsWith('[') ? '廣告效果報表' : i18n.t('admin.adPerformanceTitle')) +
         '\n' +
         '/vip_funnel - ' +
         (i18n.t('admin.vipFunnelTitle').startsWith('[') ? 'VIP 轉化漏斗' : i18n.t('admin.vipFunnelTitle')) +
         '\n' +
         '\n' +
-        (i18n.t('help.maintenance').startsWith('[') ? '**系統維護**' : i18n.t('help.maintenance')) +
-        (i18n.t('help.maintenance2').startsWith('[') ? '\n/maintenance_status - 查看維護狀態' : i18n.t('help.maintenance2')) +
-        (i18n.t('help.maintenance3').startsWith('[') ? '\n/maintenance_enable [reason] - 開啟維護模式' : i18n.t('help.maintenance3')) +
-        (i18n.t('help.maintenance4').startsWith('[') ? '\n/maintenance_disable - 關閉維護模式' : i18n.t('help.maintenance4'));
+        i18n.t('help.superAdminMaintenance') + // CSV: **系統維護**
+        '\n' + i18n.t('help.superAdminMaintenanceDisable') + // CSV: /maintenance_disable - ... (Includes command!)
+        '\n' + i18n.t('help.superAdminMaintenanceEnable'); // CSV: /maintenance_enable ... (Includes command!)
+        // Note: maintenance2/3/4 in code were manual strings. CSV has full lines for these.
     }
 
     await telegram.sendMessage(chatId, helpMessage, { parse_mode: undefined }); // Force plain text
