@@ -6,7 +6,7 @@ import { FortuneService } from '~/services/fortune';
 import { upsertSession, getActiveSession, clearSession, updateSessionData } from '~/db/queries/sessions';
 import { findUserByTelegramId } from '~/db/queries/users';
 
-import { startGeoFlow, handleContinentSelection, handleCountrySelection, handleCitySearchInput, handleCitySelection } from './onboarding_geo';
+import { startGeoFlow, handleContinentSelection, handleCountrySelection, handleCitySearchInput, handleCitySelection, getRegionData, getFlagEmoji } from './onboarding_geo';
 import { createGeoService } from '~/services/geo';
 
 // ============================================================================
@@ -199,9 +199,28 @@ export async function handleFortuneInput(message: TelegramMessage, env: Env): Pr
 
 async function startGeoFlowForFortune(chatId: number, telegramId: string, env: Env, i18n: any) {
   const db = createDatabaseClient(env.DB);
+  const user = await findUserByTelegramId(db, telegramId);
   const session = await getActiveSession(db, telegramId, 'fortune_wizard');
+  
   if (session) {
     const data = JSON.parse(session.session_data as string);
+    // Suggest based on user's registered country if available
+    if (user?.country_code) {
+      const dn = new Intl.DisplayNames([user.language_pref || 'zh-TW'], { type: 'region' });
+      const countryName = dn.of(user.country_code) || user.country_code;
+      const flag = getFlagEmoji(user.country_code);
+      
+      const message = i18n.t('fortune.onboarding.askCity') + '\n\n' +
+                      `📍 ${i18n.t('fortune.onboarding.suggestCountry', { country: `${flag} ${countryName}` })}`;
+      
+      await createTelegramService(env).sendMessageWithButtons(chatId, message, [
+        [{ text: `✅ ${i18n.t('common.yes')}`, callback_data: `fortune_geo:suggest:${user.country_code}` }],
+        [{ text: `🌍 ${i18n.t('common.no_reselect')}`, callback_data: 'fortune_geo:manual' }]
+      ]);
+      return;
+    }
+
+    // Fallback to continent selection
     data.step = 'birth_city_continent';
     await updateSessionData(db, session.id, data);
   }
@@ -327,29 +346,89 @@ export async function handleFortuneCallback(callbackQuery: TelegramCallbackQuery
     if (!session) return;
     const sessionData = JSON.parse(session.session_data as string);
 
-    if (data.startsWith('fortune_geo:continent:')) {
-      const continentId = data.replace('fortune_geo:continent:', '');
-      // Show Countries (Duplicated logic from onboarding_geo but with fortune callback)
-      const { countries } = (await import('./onboarding_geo')).getRegionData(continentId); // Need to export getRegionData or REGIONS
-      // Fallback: Just ask for Country Name input or use hardcoded common list?
-      // Better: Copy the country list logic.
-      // ... (Implementation omitted for brevity, assuming similar structure)
-      // For now, let's skip to City Search Prompt to save context tokens, assuming country selected
+    // Suggestion Response
+    if (data.startsWith('fortune_geo:suggest:')) {
+      const countryCode = data.replace('fortune_geo:suggest:', '');
+      // Skip continent/country, go to City Search
       sessionData.step = 'birth_city_search';
-      // Store continent? Not strictly needed if we just search global cities or prompt country code next.
-      // Let's implement full flow properly.
-      
-      // Update session
+      sessionData.country_code = countryCode; // Store for filtering
       await updateSessionData(db, session.id, sessionData);
       
-      // Edit message to Country selection
-      // ...
+      const dn = new Intl.DisplayNames([user?.language_pref || 'zh-TW'], { type: 'region' });
+      const countryName = dn.of(countryCode);
+      
+      await telegram.sendMessage(chatId, `${getFlagEmoji(countryCode)} ${countryName}\n\n` + i18n.t('geo.search_city_prompt'));
+      await telegram.answerCallbackQuery(callbackQuery.id);
+      return;
     }
-    
-    // Quick Fix: Simplify to just City Search if Geo Flow is complex to duplicate fully now.
-    // User asked "Is it done?". Implementing full Geo Flow inside Fortune is nice but maybe overkill if Onboarding already captured it?
-    // Design doc 5.5: "Creating new profile, default to user's registered city".
-    // I should check if user has city first!
+
+    if (data === 'fortune_geo:manual') {
+      sessionData.step = 'birth_city_continent';
+      await updateSessionData(db, session.id, sessionData);
+      
+      const { REGIONS } = await import('./onboarding_geo');
+      const buttons = REGIONS.map(r => [{
+        text: i18n.t(r.key),
+        callback_data: `fortune_geo:continent:${r.id}`
+      }]);
+      
+      await telegram.sendMessageWithButtons(
+        chatId,
+        i18n.t('geo.select_continent'),
+        buttons
+      );
+      await telegram.answerCallbackQuery(callbackQuery.id);
+      return;
+    }
+
+    if (data.startsWith('fortune_geo:continent:')) {
+      const continentId = data.replace('fortune_geo:continent:', '');
+      // Show Countries
+      const { getRegionData } = await import('./onboarding_geo');
+      const region = getRegionData(continentId);
+      
+      if (!region) return;
+
+      const dn = new Intl.DisplayNames([user?.language_pref || 'zh-TW'], { type: 'region' });
+      const buttons = [];
+      let row = [];
+      for (const code of region.countries) {
+        row.push({
+          text: `${getFlagEmoji(code)} ${dn.of(code) || code}`,
+          callback_data: `fortune_geo:country:${code}`
+        });
+        if (row.length === 2) {
+          buttons.push(row);
+          row = [];
+        }
+      }
+      if (row.length > 0) buttons.push(row);
+      
+      // We can add "Back" button if we implement navigation stack in session_data
+      
+      await telegram.editMessageText(
+        chatId,
+        callbackQuery.message!.message_id,
+        i18n.t('geo.select_country'),
+        { reply_markup: { inline_keyboard: buttons } }
+      );
+      await telegram.answerCallbackQuery(callbackQuery.id);
+      return;
+    }
+
+    if (data.startsWith('fortune_geo:country:')) {
+      const countryCode = data.replace('fortune_geo:country:', '');
+      sessionData.step = 'birth_city_search';
+      sessionData.country_code = countryCode;
+      await updateSessionData(db, session.id, sessionData);
+      
+      const dn = new Intl.DisplayNames([user?.language_pref || 'zh-TW'], { type: 'region' });
+      const countryName = dn.of(countryCode);
+      
+      await telegram.sendMessage(chatId, `${getFlagEmoji(countryCode)} ${countryName}\n\n` + i18n.t('geo.search_city_prompt'));
+      await telegram.answerCallbackQuery(callbackQuery.id);
+      return;
+    }
     
     if (data.startsWith('fortune_geo:city:')) {
       const cityId = data.replace('fortune_geo:city:', '');

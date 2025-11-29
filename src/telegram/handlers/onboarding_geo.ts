@@ -7,7 +7,7 @@ import { createGeoService } from '~/services/geo';
 
 // Hardcoded Regions & Countries (MVP)
 // In a full implementation, this should come from D1 or a proper config
-const REGIONS = [
+export const REGIONS = [
   { id: 'asia', key: 'geo.continent.asia', countries: ['TW', 'CN', 'HK', 'JP', 'KR', 'VN', 'TH', 'ID', 'MY', 'SG', 'IN'] },
   { id: 'europe', key: 'geo.continent.europe', countries: ['GB', 'DE', 'FR', 'IT', 'ES', 'RU', 'UA', 'PL', 'NL', 'TR'] },
   { id: 'north_america', key: 'geo.continent.north_america', countries: ['US', 'CA', 'MX'] },
@@ -15,6 +15,10 @@ const REGIONS = [
   { id: 'africa', key: 'geo.continent.africa', countries: ['ZA', 'EG', 'NG', 'KE'] },
   { id: 'oceania', key: 'geo.continent.oceania', countries: ['AU', 'NZ'] }
 ];
+
+export function getRegionData(regionId: string) {
+  return REGIONS.find(r => r.id === regionId);
+}
 
 export async function startGeoFlow(chatId: number, telegramId: string, env: Env) {
   const db = createDatabaseClient(env.DB);
@@ -251,7 +255,7 @@ export async function handleCitySelection(
 }
 
 // Helper
-function getFlagEmoji(countryCode: string) {
+export function getFlagEmoji(countryCode: string) {
   const codePoints = countryCode
     .toUpperCase()
     .split('')

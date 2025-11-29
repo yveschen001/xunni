@@ -1727,7 +1727,8 @@ export const translations: Translations = {
     "vip8": "💡 血型可用於 VIP 血型配對功能\n\n",
     "vip9": "• VIP 用戶可以看到清晰的對方頭像\n",
     "yes": "是",
-    "zodiac": "無效的星座：${trimmedValue}（必須是以下之一：${VALID_ZODIACS.join(', ')}）"
+    "zodiac": "無效的星座：${trimmedValue}（必須是以下之一：${VALID_ZODIACS.join(', ')}）",
+    "no_reselect": "否，手動選擇"
   },
   "conversation": {
     "age": "🎂 年齡範圍：${ageRange}歲\n",
@@ -4222,7 +4223,8 @@ export const translations: Translations = {
       "askGender": "請選擇該對象的性別：",
       "askDate": "請輸入該對象的出生日期 (YYYY-MM-DD)：",
       "askTime": "請輸入該對象的出生時間 (HH:mm)，若不確定請點擊下方按鈕：",
-      "askCity": "請選擇該對象的出生城市："
+      "askCity": "請選擇該對象的出生城市：",
+      "suggestCountry": "系統檢測到您的註冊地區為：{country}。\n請問欲算命對象是否也出生於此？"
     },
     "unknownTime": "我不確定出生時間",
     "profileCreated": "✅ 命理檔案已建立！",
