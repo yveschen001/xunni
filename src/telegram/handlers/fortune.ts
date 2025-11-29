@@ -530,8 +530,8 @@ export async function handleFortuneCallback(callbackQuery: TelegramCallbackQuery
         '🧠 ' + i18n.t('fortune.loading.generating')
       ];
 
-      const msg = await telegram.sendMessage(chatId, i18n.t('fortune.generating'));
-      const msgId = msg.result.message_id;
+      const msg = await telegram.sendMessageAndGetId(chatId, i18n.t('fortune.generating'));
+      const msgId = msg.message_id;
 
       for (const loadingText of loadingMsgs) {
         await new Promise(r => setTimeout(r, 800)); // 0.8s delay
