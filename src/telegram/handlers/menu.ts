@@ -122,6 +122,9 @@ export async function handleMenu(message: TelegramMessage, env: Env): Promise<vo
         { text: i18n.t('menu.buttonStats'), callback_data: 'menu_stats' },
       ],
       [
+        { text: `🔮 ${i18n.t('fortune.menuTitle')}`, callback_data: 'menu_fortune' },
+      ],
+      [
         { text: i18n.t('menu.buttonInvite'), callback_data: 'menu_invite' },
         { text: i18n.t('menu.buttonChats'), callback_data: 'menu_chats' },
       ],
@@ -233,6 +236,13 @@ export async function handleMenuCallback(callbackQuery: CallbackQuery, env: Env)
         fakeMessage.text = '/stats';
         const { handleStats } = await import('./stats');
         await handleStats(fakeMessage, env);
+        break;
+      }
+
+      case 'menu_fortune': {
+        fakeMessage.text = '/fortune';
+        const { handleFortune } = await import('./fortune');
+        await handleFortune(fakeMessage, env);
         break;
       }
 
