@@ -260,6 +260,64 @@ const runUserTests = async () => {
         console.warn('   ⚠️ Onboarding V2 flow verification failed (Feature might not be enabled yet):', e.message);
     }
 
+    // Test 1.6: Fortune Telling (/fortune)
+    console.log('\n🧪 Test 1.6: Fortune Telling Flow');
+    clearRequests();
+    await sendUpdate('/fortune');
+    // For new user, it should start Wizard: "請輸入您的名字"
+    try {
+      const fortuneStartMsg = await waitForMessage(/名字|Name/);
+      console.log('   ✅ Fortune Wizard Started:', fortuneStartMsg.body.text.substring(0, 30) + '...');
+
+      // 1. Input Name
+      clearRequests();
+      await sendUpdate('FortuneTestUser');
+      const genderMsg = await waitForMessage(/性別|Gender/);
+      console.log('   ✅ Name Accepted. Asked for Gender.');
+
+      // 2. Select Gender
+      clearRequests();
+      await sendCallback('fortune_gender_male');
+      const dateMsg = await waitForMessage(/出生日期|Date/);
+      console.log('   ✅ Gender Selected. Asked for Date.');
+
+      // 3. Input Date (Invalid)
+      clearRequests();
+      await sendUpdate('invalid-date');
+      await waitForMessage(/格式|Format|Invalid/);
+      console.log('   ✅ Invalid Date handled.');
+
+      // 3. Input Date (Valid)
+      clearRequests();
+      await sendUpdate('1990-01-01');
+      const timeMsg = await waitForMessage(/出生時間|Time/);
+      console.log('   ✅ Valid Date Accepted. Asked for Time.');
+
+      // 4. Select Unknown Time
+      clearRequests();
+      await sendCallback('fortune_time_unknown');
+      const cityMsg = await waitForMessage(/出生城市|City/);
+      console.log('   ✅ Unknown Time Accepted. Asked for City.');
+
+      // 5. Input City
+      clearRequests();
+      await sendUpdate('Taipei');
+      const menuMsg = await waitForMessage(/運勢|Fortune|Profile Created/);
+      console.log('   ✅ Profile Created. Menu Shown:', menuMsg.body.text.substring(0, 30) + '...');
+
+      // 6. Generate Daily Fortune
+      clearRequests();
+      await sendCallback('fortune_daily');
+      // Wait for "Generating..." then Result
+      await waitForMessage(/生成中|Generating/);
+      const resultMsg = await waitForMessage(/📅|Daily|運勢/);
+      console.log('   ✅ Daily Fortune Generated:', resultMsg.body.text.substring(0, 50) + '...');
+
+    } catch (e) {
+      console.warn('   ⚠️ Fortune Flow verification failed:', e.message);
+      // Don't fail the whole suite if Gemini key is missing or quota issues
+    }
+
     // Test 2: Profile Command (Unregistered)
     console.log('\n🧪 Test 2: /profile command (Unregistered)');
     await seedUser({ onboarding_step: 'language_selection' }); // Reset user state
