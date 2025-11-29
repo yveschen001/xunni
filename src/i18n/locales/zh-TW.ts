@@ -4224,7 +4224,8 @@ export const translations: Translations = {
       "askDate": "請輸入該對象的出生日期 (YYYY-MM-DD)：",
       "askTime": "請輸入該對象的出生時間 (HH:mm)，若不確定請點擊下方按鈕：",
       "askCity": "請選擇該對象的出生城市：",
-      "suggestCountry": "系統檢測到您的註冊地區為：{country}。\n請問欲算命對象是否也出生於此？"
+      "suggestCountry": "系統檢測到您的註冊地區為：{country}。\n請問欲算命對象是否也出生於此？",
+      "selfWelcome": "👋 歡迎 {name}！\n系統已自動帶入您的註冊資料（生日：{date}）。\n為了提高準確度，請補充以下資訊："
     },
     "unknownTime": "我不確定出生時間",
     "profileCreated": "✅ 命理檔案已建立！",

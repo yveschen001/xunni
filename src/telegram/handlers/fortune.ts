@@ -31,8 +31,12 @@ export async function handleFortune(message: TelegramMessage, env: Env): Promise
     const profiles = await service.getProfiles(telegramId);
     
     if (profiles.length === 0) {
-      // Start Onboarding Wizard
-      await startFortuneOnboarding(chatId, telegramId, env, i18n);
+      // Check if user has birth info from onboarding
+      if (user.birthday && user.gender) {
+        await startSelfProfileWizard(chatId, telegramId, env, user, i18n);
+      } else {
+        await startNewProfileWizard(chatId, telegramId, env, i18n);
+      }
       return;
     }
 
@@ -86,17 +90,40 @@ async function showFortuneMenu(chatId: number, profile: FortuneProfile, env: Env
 // Onboarding Wizard
 // ============================================================================
 
-async function startFortuneOnboarding(chatId: number, telegramId: string, env: Env, i18n: any) {
+async function startNewProfileWizard(chatId: number, telegramId: string, env: Env, i18n: any) {
   const db = createDatabaseClient(env.DB);
   const telegram = createTelegramService(env);
 
-  // Clear any existing session
   await clearSession(db, telegramId, 'fortune_wizard');
-
-  // Create new session
   await upsertSession(db, telegramId, 'fortune_wizard', {});
-
   await telegram.sendMessage(chatId, i18n.t('fortune.onboarding.askName'));
+}
+
+async function startSelfProfileWizard(chatId: number, telegramId: string, env: Env, user: User, i18n: any) {
+  const db = createDatabaseClient(env.DB);
+  const telegram = createTelegramService(env);
+
+  await clearSession(db, telegramId, 'fortune_wizard');
+  
+  // Pre-fill session with user data
+  // Skip name, gender, birth_date
+  const sessionData = {
+    step: 'birth_time',
+    name: user.first_name || user.username || 'User',
+    gender: user.gender || 'male',
+    birth_date: user.birthday // Assumed YYYY-MM-DD
+  };
+  
+  await upsertSession(db, telegramId, 'fortune_wizard', sessionData);
+  
+  const msg = i18n.t('fortune.onboarding.selfWelcome', { 
+    name: sessionData.name,
+    date: sessionData.birth_date 
+  }) + '\n\n' + i18n.t('fortune.onboarding.askTime');
+
+  await telegram.sendMessageWithButtons(chatId, msg, [
+    [{ text: i18n.t('fortune.unknownTime'), callback_data: 'fortune_time_unknown' }]
+  ]);
 }
 
 // ============================================================================
