@@ -85,6 +85,7 @@
   "dependencies": {
     "@google/generative-ai": "^0.24.1",
     "astronomy-engine": "^2.1.19",
+    "geo-tz": "^8.1.4",
     "lunar-javascript": "^1.7.7"
   }
 }

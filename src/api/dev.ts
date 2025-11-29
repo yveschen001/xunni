@@ -108,15 +108,24 @@ export async function handleSeedConversation(request: Request, env: Env): Promis
     const db = createDatabaseClient(env.DB);
     const now = new Date().toISOString();
 
+    // Create dummy bottle first
+    const bottleResult = await db.d1.prepare(`
+        INSERT INTO bottles (owner_telegram_id, content, status, created_at)
+        VALUES (?, 'Fake bottle for testing', 'matched', ?)
+        RETURNING id
+    `).bind(data.user_a_id, now).first<{ id: number }>();
+
+    if (!bottleResult) throw new Error('Failed to create fake bottle');
+
     // Create conversation
     const result = await db.d1
       .prepare(
         `INSERT INTO conversations (
-          user_a_telegram_id, user_b_telegram_id, status, created_at, updated_at
-        ) VALUES (?, ?, 'active', ?, ?)
+          user_a_telegram_id, user_b_telegram_id, bottle_id, status, created_at
+        ) VALUES (?, ?, ?, 'active', ?)
         RETURNING id`
       )
-      .bind(data.user_a_id, data.user_b_id, now, now)
+      .bind(data.user_a_id, data.user_b_id, bottleResult.id, now)
       .first<{ id: number }>();
 
     if (!result) throw new Error('Failed to create conversation');

@@ -1,24 +1,9 @@
 /******************************************************
- * XunNi Smart Range Translator v5 (Parallel & Safe)
- * - 只翻「選取範圍」
- * - zh-TW → zh-CN 用 LanguageApp；其他語言用 OpenAI（pivot: en）
- * - 模型：gpt-4o-mini
- * - 🚀 平行處理：同一批次多語言同時請求，大幅提升速度
- * - ⏱️ 超時保護：5.5 分鐘自動暫停並提示進度
- * - 品牌字：XunNi 固定，不翻譯
- * - 「漂流瓶」功能：各語在地化詞彙固定
- * - 佔位符 / 變數 / emoji / URL 全面保護
- * - 高亮目前批次 + toast 進度
- * - 一鍵清除選區 HTML 標籤
- * - zh-TW 客服口吻潤飾（台灣用語）
- * - ✅ 全表質檢 & 選區質檢（不耗 Token）
- * - ⚙ 自動翻譯高亮（en→多語；無 en 則 zh-TW）
- * - 🧹 清除全表 QA 高亮與備註
- * - 一鍵流程：質檢→修復→清除
+ * XunNi Smart Range Translator v5.1 (OpenAI Priority & Safe)
  ******************************************************/
 
 /* ===================== 配置常數 ===================== */
-var GEMINI_MODEL      = 'gemini-1.5-flash'; // 🚀 預設使用高速 Flash 模型
+var GEMINI_MODEL      = 'gemini-1.5-flash';
 var OPENAI_MODEL      = 'gpt-4o-mini';
 var OPENAI_MAX_TOKENS = 4096;
 var BATCH_SIZE        = 50;
@@ -27,265 +12,39 @@ var SLEEP_MS          = 200;
 var WORKING_COLOR     = '#fff2cc';
 var CLEAR_COLOR       = null;
 var QA_COLOR          = '#ffd7d7';
-var CMD_COLOR         = '#E1D5E7'; // 特殊指令檢查高亮 (紫色)
+var CMD_COLOR         = '#E1D5E7'; 
 var QA_NOTE_PREFIX    = '[QA] ';
 var CMD_NOTE_PREFIX   = '[CMD] ';
 
 /* ===================== 國家代碼映射表 ===================== */
 var LANG_TO_COUNTRY_MAP = {
-  'zh-TW': 'TW',
-  'zh-CN': 'CN',
-  'en': 'US',
-  'ja': 'JP',
-  'ko': 'KR',
-  'th': 'TH',
-  'vi': 'VN',
-  'id': 'ID',
-  'ms': 'MY',
-  'tl': 'PH',
-  'es': 'ES',
-  'pt': 'BR',
-  'fr': 'FR',
-  'de': 'DE',
-  'it': 'IT',
-  'ru': 'RU',
-  'ar': 'SA',
-  'hi': 'IN',
-  'tr': 'TR',
-  'pl': 'PL',
-  'nl': 'NL',
-  'uk': 'UA'
-  // 可根據需求擴充
+  'zh-TW': 'TW', 'zh-CN': 'CN', 'en': 'US', 'ja': 'JP', 'ko': 'KR',
+  'th': 'TH', 'vi': 'VN', 'id': 'ID', 'ms': 'MY', 'tl': 'PH',
+  'es': 'ES', 'pt': 'BR', 'fr': 'FR', 'de': 'DE', 'it': 'IT',
+  'ru': 'RU', 'ar': 'SA', 'hi': 'IN', 'tr': 'TR', 'pl': 'PL',
+  'nl': 'NL', 'uk': 'UA'
 };
-
-// ... (中間代碼保持不變，直到 callOpenAIChat_) ...
-
-/* ===================== AI API 統一調用 (OpenAI 優先) ===================== */
-function callAiApi_(systemText, userText) {
-  // 強制優先檢查 OpenAI Key
-  var openAiKey = getApiKey_('OPENAI_API_KEY');
-  
-  if (openAiKey) {
-    return callOpenAIChat_(systemText, userText);
-  } 
-  
-  // 其次檢查 Gemini Key
-  var geminiKey = getApiKey_('GEMINI_API_KEY');
-  if (geminiKey) {
-    return callGeminiChat_(geminiKey, systemText, userText);
-  }
-  
-  Logger.log('無可用的 API Key');
-  return '';
-}
-
-/* ===================== Gemini API 實作 ===================== */
-function callGeminiChat_(apiKey, systemText, userText) {
-  var url = 'https://generativelanguage.googleapis.com/v1beta/models/' + GEMINI_MODEL + ':generateContent?key=' + apiKey;
-  
-  // Gemini 的 Prompt 結構: system instruction + user message
-  var payload = {
-    "system_instruction": {
-      "parts": { "text": systemText }
-    },
-    "contents": [
-      {
-        "role": "user",
-        "parts": [{ "text": userText }]
-      }
-    ],
-    "generationConfig": {
-      "responseMimeType": "application/json" // 強制 JSON 輸出
-    }
-  };
-
-  var params = {
-    method: 'post',
-    contentType: 'application/json',
-    muteHttpExceptions: true,
-    payload: JSON.stringify(payload)
-  };
-
-  try {
-    var res = UrlFetchApp.fetch(url, params);
-    var code = res.getResponseCode();
-    var text = res.getContentText();
-
-    if (code >= 200 && code < 300) {
-      var json = JSON.parse(text);
-      // Gemini 回傳結構解析
-      if (json.candidates && json.candidates[0] && json.candidates[0].content) {
-        return json.candidates[0].content.parts[0].text;
-      }
-    } else {
-      Logger.log('Gemini API Error: ' + code + ' ' + text);
-    }
-  } catch (e) {
-    Logger.log('Gemini Fetch Error: ' + e);
-  }
-  return '';
-}
-
-/* ===================== OpenAI API 實作 (原有) ===================== */
-function callOpenAIChat_(systemText, userText) {
-  var apiKey = getApiKey_('OPENAI_API_KEY'); // 明確指定 Key 名稱
-  if (!apiKey) {
-    // 如果連 OpenAI Key 都沒有，提示錯誤
-    Logger.log('無可用的 API Key (Gemini 或 OpenAI)');
-    return ''; 
-  }
-
-  var url = 'https://api.openai.com/v1/chat/completions';
-  var payload = {
-    model: OPENAI_MODEL,
-    messages: [
-      { role: 'system', content: systemText },
-      { role: 'user',   content: userText }
-    ],
-    max_completion_tokens: OPENAI_MAX_TOKENS
-  };
-  // ... (後續保持不變)
-  var params = {
-    method: 'post',
-    contentType: 'application/json',
-    headers: { 'Authorization': 'Bearer ' + apiKey },
-    muteHttpExceptions: true,
-    payload: JSON.stringify(payload)
-  };
-
-  var res  = UrlFetchApp.fetch(url, params);
-  var code = res.getResponseCode();
-  var text = res.getContentText();
-  if (code < 200 || code >= 300) {
-    Logger.log('OpenAI HTTP ' + code + ' body: ' + text.slice(0, 400));
-    return '';
-  }
-  try {
-    var data = JSON.parse(text);
-    return (data.choices &&
-            data.choices[0] &&
-            data.choices[0].message &&
-            data.choices[0].message.content) || '';
-  } catch (e) {
-    Logger.log('OpenAI JSON parse fail: ' + e);
-    return '';
-  }
-}
-
-// 修改 helper 函數以支援多種 Key
-function getApiKey_(keyName) {
-  // 如果沒傳參數，預設行為 (為了相容舊代碼，雖然現在都該傳參數)
-  // 這裡邏輯改為：如果傳入 keyName，只查該 Key。
-  // 如果是舊代碼調用 (沒傳參)，則優先回傳 Gemini，沒有則 OpenAI。
-  
-  var props = PropertiesService.getScriptProperties();
-  var userProps = PropertiesService.getUserProperties();
-
-  if (keyName) {
-    var key = props.getProperty(keyName) || userProps.getProperty(keyName);
-    return key;
-  }
-
-  // 預設優先順序：OpenAI -> Gemini
-  var oKey = props.getProperty('OPENAI_API_KEY') || userProps.getProperty('OPENAI_API_KEY');
-  if (oKey) return oKey;
-
-  var gKey = props.getProperty('GEMINI_API_KEY') || userProps.getProperty('GEMINI_API_KEY');
-  if (gKey) return gKey;
-
-  // 都沒有，提示輸入 (優先引導 OpenAI)
-  var ui = SpreadsheetApp.getUi();
-  var response = ui.prompt('API Key 設定', '請輸入 OpenAI API Key (推薦) 或 Google Gemini API Key：', ui.ButtonSet.OK_CANCEL);
-  if (response.getSelectedButton() == ui.Button.OK) {
-    var inputKey = response.getResponseText().trim();
-    if (inputKey.startsWith('sk-')) { // OpenAI 格式特徵
-       userProps.setProperty('OPENAI_API_KEY', inputKey);
-       return inputKey;
-    } else {
-       userProps.setProperty('GEMINI_API_KEY', inputKey); // 假設其他都是 Gemini
-       return inputKey;
-    }
-  }
-  return null;
-}
-
-// 替換所有舊的 callOpenAIChat_ 調用為 callAiApi_
-// ... (以下為替換邏輯，將在 apply 中執行) ...
 
 /* ===================== 語言顯示名稱 ===================== */
 var LOCALE_PRETTY = {
   'zh-TW': 'Traditional Chinese (Taiwan)',
   'zh-CN': 'Simplified Chinese (China)',
-  'en'   : 'English',
-  'ja'   : 'Japanese',
-  'ko'   : 'Korean',
-  'th'   : 'Thai',
-  'vi'   : 'Vietnamese',
-  'id'   : 'Indonesian',
-  'ms'   : 'Malay',
-  'tl'   : 'Filipino',
-  'es'   : 'Spanish',
-  'pt'   : 'Portuguese',
-  'fr'   : 'French',
-  'de'   : 'German',
-  'it'   : 'Italian',
-  'ru'   : 'Russian',
-  'ar'   : 'Arabic',
-  'hi'   : 'Hindi',
-  'bn'   : 'Bengali',
-  'tr'   : 'Turkish',
-  'pl'   : 'Polish',
-  'uk'   : 'Ukrainian',
-  'nl'   : 'Dutch',
-  'sv'   : 'Swedish',
-  'no'   : 'Norwegian',
-  'da'   : 'Danish',
-  'fi'   : 'Finnish',
-  'cs'   : 'Czech',
-  'el'   : 'Greek',
-  'he'   : 'Hebrew',
-  'fa'   : 'Persian',
-  'ur'   : 'Urdu',
-  'sw'   : 'Swahili',
-  'ro'   : 'Romanian'
+  'en'   : 'English', 'ja': 'Japanese', 'ko': 'Korean',
+  'th'   : 'Thai', 'vi': 'Vietnamese', 'id': 'Indonesian', 'ms': 'Malay',
+  'tl'   : 'Filipino', 'es': 'Spanish', 'pt': 'Portuguese', 'fr': 'French',
+  'de'   : 'German', 'it': 'Italian', 'ru': 'Russian', 'ar': 'Arabic',
+  'hi'   : 'Hindi', 'tr': 'Turkish', 'pl': 'Polish', 'uk': 'Ukrainian',
+  'nl'   : 'Dutch', 'sw': 'Swahili', 'ro': 'Romanian'
 };
 
-/* ========== 「漂流瓶」功能：各語固定術語 ========== */
+/* ===================== 漂流瓶術語表 ===================== */
 var BOTTLE_TERM_MAP = {
-  'zh-TW': '漂流瓶',
-  'zh-CN': '漂流瓶',
-  'en'   : 'message bottle',
-  'ja'   : 'ボトルメール',
-  'ko'   : '메시지 병',
-  'th'   : 'ขวดข้อความ',
-  'vi'   : 'chai thư',
-  'id'   : 'botol pesan',
-  'ms'   : 'botol mesej',
-  'tl'   : 'bote ng mensahe',
-  'es'   : 'botella de mensajes',
-  'pt'   : 'garrafa de mensagem',
-  'fr'   : 'bouteille à message',
-  'de'   : 'Nachrichtenflasche',
-  'it'   : 'bottiglia di messaggi',
-  'ru'   : 'бутылка с сообщением',
-  'ar'   : 'زجاجة رسائل',
-  'hi'   : 'संदेश की बोतल',
-  'bn'   : 'বার্তার বোতল',
-  'tr'   : 'mesaj şişesi',
-  'pl'   : 'butelka z wiadomością',
-  'uk'   : 'пляшка з повідомленням',
-  'nl'   : 'berichtfles',
-  'sv'   : 'flaskpost',
-  'no'   : 'flaskepost',
-  'da'   : 'flaskepost',
-  'fi'   : 'pulloposti',
-  'cs'   : 'láhev se zprávou',
-  'el'   : 'μπουκάλι μηνύματος',
-  'he'   : 'בקבוק מסר',
-  'fa'   : 'بطری پیام',
-  'ur'   : 'پیغام کی بوتل',
-  'sw'   : 'chupa ya ujumbe',
-  'ro'   : 'sticlă cu mesaj'
+  'zh-TW': '漂流瓶', 'zh-CN': '漂流瓶', 'en': 'message bottle',
+  'ja': 'ボトルメール', 'ko': '메시지 병', 'th': 'ขวดข้อความ',
+  'vi': 'chai thư', 'id': 'botol pesan', 'ms': 'botol mesej',
+  'tl': 'bote ng mensahe', 'es': 'botella de mensajes', 'pt': 'garrafa de mensagem',
+  'fr': 'bouteille à message', 'de': 'Nachrichtenflasche', 'it': 'bottiglia di messaggi',
+  'ru': 'бутылка с сообщением', 'ar': 'زجاجة رسائل', 'tr': 'mesaj şişesi'
 };
 
 function getBottleTerm_(code) {
@@ -318,7 +77,7 @@ function onOpen() {
     .addItem('⚙ 自動翻譯高亮（全表）', 'autoTranslateHighlighted')
     .addItem('🧹 清除全表 QA 高亮', 'clearAllQaHighlights')
     .addSeparator()
-    .addItem('🛠️ 測試 Gemini 連線', 'runTestGeminiConnection')
+    .addItem('🛠️ 測試 AI 連線', 'runTestConnection')
     .addItem('一鍵：質檢→修復→清除', 'oneClickQAAndFix')
     .addSeparator()
     .addItem('🔍 掃描：特殊指令與參數 (Highlight)', 'scanSpecialCommandsInSelection')
@@ -339,29 +98,21 @@ function toggleDebugMode() {
 
 function log_(msg) {
   var userProps = PropertiesService.getUserProperties();
-  if (userProps.getProperty('DEBUG_MODE') === 'true') {
-    Logger.log('[Debug] ' + msg);
-  }
+  Logger.log('[Debug] ' + msg); 
 }
 
 /* ===================== 測試工具 ===================== */
-function runTestGeminiConnection() {
+function runTestConnection() {
   var ui = SpreadsheetApp.getUi();
-  var apiKey = getApiKey_('GEMINI_API_KEY');
-  
-  if (!apiKey) {
-    ui.alert('錯誤', '未設定 Gemini API Key', ui.ButtonSet.OK);
-    return;
-  }
-
+  var apiKey = getApiKey_();
+  if (!apiKey) { ui.alert('錯誤', '未設定 API Key', ui.ButtonSet.OK); return; }
   var testUser = "Translate to English: ['你好', '世界']";
   var testSys  = "Return strict JSON Array: [\"hello\", \"world\"]";
-  
   try {
-    var result = callGeminiChat_(apiKey, testSys, testUser);
-    ui.alert('Gemini 測試成功', 'API 回傳原文:\n' + result, ui.ButtonSet.OK);
+    var result = callAiApi_(testSys, testUser);
+    ui.alert('API 測試成功', '回傳:\n' + result, ui.ButtonSet.OK);
   } catch (e) {
-    ui.alert('Gemini 測試失敗', '錯誤詳情:\n' + e, ui.ButtonSet.OK);
+    ui.alert('API 測試失敗', '錯誤詳情:\n' + e, ui.ButtonSet.OK);
   }
 }
 
@@ -370,831 +121,38 @@ function processRangeList_(processorFn) {
   var ss = SpreadsheetApp.getActiveSpreadsheet();
   var sh = ss.getActiveSheet();
   var rangeList = sh.getActiveRangeList();
-  
-  if (!rangeList) {
+  if (!rangeList || rangeList.getRanges().length === 0) {
     ss.toast('請先選取範圍', '⚠ 沒有選區', 5);
     return;
   }
-  
   var ranges = rangeList.getRanges();
-  if (ranges.length === 0) {
-    ss.toast('請先選取範圍', '⚠ 沒有選區', 5);
-    return;
-  }
-
-  // 預先檢查所有 Range 是否包含表頭
   for (var k = 0; k < ranges.length; k++) {
     if (ranges[k].getRow() === 1) {
       ss.toast('選區不能包含表頭行（第1行），請只選內容行', '提示', 5);
       return;
     }
   }
-
-  // 取得表頭資訊 (共用)
   var lastCol = sh.getLastColumn();
   var headers = sh.getRange(1, 1, 1, lastCol).getValues()[0];
-
   for (var i = 0; i < ranges.length; i++) {
     var range = ranges[i];
-    if (ranges.length > 1) {
-      ss.toast('正在處理第 ' + (i + 1) + ' / ' + ranges.length + ' 個選區...', '多重選區', 300);
-    }
-    
-    try {
-      processorFn(sh, range, headers);
-    } catch (e) {
-      Logger.log('處理選區 ' + (i + 1) + ' 失敗: ' + e);
-      ss.toast('選區 ' + (i + 1) + ' 發生錯誤: ' + e.message, '錯誤', 5);
-    }
+    if (ranges.length > 1) ss.toast('正在處理第 ' + (i + 1) + ' / ' + ranges.length + ' 個選區...', '多重選區', 300);
+    try { processorFn(sh, range, headers); } 
+    catch (e) { Logger.log('處理選區 ' + (i + 1) + ' 失敗: ' + e); ss.toast('選區 ' + (i + 1) + ' 發生錯誤: ' + e.message, '錯誤', 5); }
   }
-  
-  if (ranges.length > 1) {
-    ss.toast('✅ 所有選區處理完成', '完成', 5);
-  }
+  if (ranges.length > 1) ss.toast('✅ 所有選區處理完成', '完成', 5);
 }
 
-/* ===================== 主要流程：zh-TW → 多語（pivot: en, 平行處理） ===================== */
-function runSmartTranslateSelection() {
-  processRangeList_(runSmartTranslateCore_);
-}
+/* ===================== 主要流程：zh-TW → 多語 ===================== */
+function runSmartTranslateSelection() { processRangeList_(runSmartTranslateCore_); }
 
 function runSmartTranslateCore_(sh, sel, headers) {
   var gKey = getApiKey_('GEMINI_API_KEY');
   var oKey = getApiKey_('OPENAI_API_KEY');
   var useGemini = (!oKey && !!gKey);
   var apiKey = oKey ? oKey : gKey;
-  if (!apiKey) throw new Error('缺少 API Key (Gemini/OpenAI)');
-
-  var colZhTw = getColIndexByHeader_(headers, 'zh-TW');
-  if (colZhTw < 0) throw new Error('表頭必須包含 zh-TW');
-  colZhTw += 1; // 1-based
-
-  var startRow = sel.getRow();
-  var startCol = sel.getColumn();
-  var numRows  = sel.getNumRows();
-  var numCols  = sel.getNumColumns();
-
-  var totalRowsRemaining = numRows;
-  var processedRows = 0;
-  
-  // ... (後續邏輯與原 runSmartTranslateSelection 相同，但變量來源改為參數) ...
-  // 為了避免代碼重複過多，這裡直接將原函數內容搬移並適配
-  
-  // 計算實際需要調用 API 的目標欄位數量
-  var activeTargetCount = 0;
-  for (var cOff = 0; cOff < numCols; cOff++) {
-    var h = String(headers[startCol + cOff - 1] || '').trim();
-    if (h && h !== 'key' && h !== 'zh-TW' && h !== 'zh-CN') {
-      activeTargetCount++;
-    }
-  }
-  if (activeTargetCount < 1) activeTargetCount = 1;
-
-  var concurrentBatches = Math.floor(MAX_PARALLEL_REQS / activeTargetCount);
-  if (concurrentBatches < 1) concurrentBatches = 1;
-  if (concurrentBatches > 5) concurrentBatches = 5;
-  var dynamicChunkRows = concurrentBatches * BATCH_SIZE;
-
-  var ss = SpreadsheetApp.getActiveSpreadsheet(); // 用於 toast
-
-  while (totalRowsRemaining > 0) {
-    var rowsThisChunk = Math.min(dynamicChunkRows, totalRowsRemaining);
-    var chunkRowStart = startRow + processedRows;
-
-    highlightRange_(sh, chunkRowStart, startCol, rowsThisChunk, numCols, WORKING_COLOR);
-    ss.toast(
-      '🚀 正在翻譯 ' + rowsThisChunk + ' 行 (並行優化)... (' +
-      (processedRows + rowsThisChunk) + '/' + numRows + ')',
-      '翻譯中', 120
-    );
-
-    var blockRange = sh.getRange(chunkRowStart, startCol, rowsThisChunk, numCols);
-    var blockValues = blockRange.getValues();
-
-    var zhTwVals = sh.getRange(chunkRowStart, colZhTw, rowsThisChunk, 1)
-      .getValues()
-      .map(function (r) { return String(r[0] || ''); });
-
-    var pivotEnVals = null;
-    var needsPivot = false;
-
-    for (var cOff = 0; cOff < numCols; cOff++) {
-      var sheetColIndex = startCol + cOff;
-      var headerCode = String(headers[sheetColIndex - 1] || '').trim();
-      if (!headerCode || headerCode === 'key' || headerCode === 'zh-TW') continue;
-      if (headerCode !== 'zh-CN' && headerCode !== 'en') {
-        needsPivot = true;
-      }
-    }
-
-    if (needsPivot) {
-      var enInSelectionIndex = -1;
-      for (cOff = 0; cOff < numCols; cOff++) {
-        var h = String(headers[startCol + cOff - 1] || '').trim();
-        if (h === 'en') { enInSelectionIndex = cOff; break; }
-      }
-
-      if (enInSelectionIndex >= 0) {
-        pivotEnVals = openAiBatchTranslate_(zhTwVals, 'zh-TW', 'en');
-        for (var r = 0; r < rowsThisChunk; r++) {
-          var out = processTranslationResult_(zhTwVals[r], pivotEnVals[r], 'en');
-          blockValues[r][enInSelectionIndex] = out;
-          pivotEnVals[r] = out;
-        }
-      } else {
-        pivotEnVals = openAiBatchTranslate_(zhTwVals, 'zh-TW', 'en');
-      }
-    }
-
-    var aiTasks = []; 
-
-    for (cOff = 0; cOff < numCols; cOff++) {
-      var sheetColIndex = startCol + cOff;
-      var headerCode = String(headers[sheetColIndex - 1] || '').trim();
-      if (!headerCode || headerCode === 'key' || headerCode === 'zh-TW') continue;
-
-      if (headerCode === 'en' && pivotEnVals) continue; 
-
-      // 修改：zh-CN 也改用 AI 翻譯，不再使用 LanguageApp，以確保變數/指令格式正確
-      var srcDataFull = (headerCode === 'en') ? zhTwVals : (pivotEnVals || zhTwVals);
-      var srcLang = (headerCode === 'en') ? 'zh-TW' : 'en';
-
-      // 特殊：如果是 zh-CN，強制用 zh-TW 當來源 (效果通常比 en -> zh-CN 好)
-      if (headerCode === 'zh-CN') {
-        srcDataFull = zhTwVals;
-        srcLang = 'zh-TW';
-      }
-
-      for (var offset = 0; offset < rowsThisChunk; offset += BATCH_SIZE) {
-          var sliceLen = Math.min(BATCH_SIZE, rowsThisChunk - offset);
-          var sliceData = srcDataFull.slice(offset, offset + sliceLen);
-          var origZhTwSlice = zhTwVals.slice(offset, offset + sliceLen);
-
-          var sysMsg  = buildSystemPrompt_(srcLang, headerCode);
-          var userMsg = buildUserPrompt_(sliceData, srcLang, headerCode);
-          
-          var payload;
-          if (useGemini) {
-             payload = {
-               "system_instruction": { "parts": { "text": sysMsg } },
-               "contents": [{ "role": "user", "parts": [{ "text": userMsg }] }],
-               "generationConfig": { 
-                 "responseMimeType": "application/json",
-                 "responseSchema": {
-                    "type": "ARRAY",
-                    "items": { "type": "STRING" }
-                 }
-               }
-             };
-          } else {
-             payload = {
-               model: OPENAI_MODEL,
-               messages: [
-                 { role: 'system', content: sysMsg },
-                 { role: 'user',   content: userMsg }
-               ],
-               max_completion_tokens: OPENAI_MAX_TOKENS
-             };
-          }
-          
-          aiTasks.push({
-            payload: payload,
-            colOffset: cOff,
-            targetLang: headerCode,
-            sourceVals: sliceData,
-            origZhTwVals: origZhTwSlice,
-            rowOffset: offset 
-          });
-      }
-    }
-
-    if (aiTasks.length > 0) {
-      var requests = aiTasks.map(function(task) {
-        var url, headers;
-        if (useGemini) {
-           url = 'https://generativelanguage.googleapis.com/v1beta/models/' + GEMINI_MODEL + ':generateContent?key=' + apiKey;
-           headers = {};
-        } else {
-           url = 'https://api.openai.com/v1/chat/completions';
-           headers = { 'Authorization': 'Bearer ' + apiKey };
-        }
-        return {
-          url: url,
-          method: 'post',
-          contentType: 'application/json',
-          headers: headers,
-          muteHttpExceptions: true,
-          payload: JSON.stringify(task.payload)
-        };
-      });
-
-      try {
-        var responses = UrlFetchApp.fetchAll(requests);
-        
-        for (var i = 0; i < responses.length; i++) {
-          var task = aiTasks[i];
-          var res = responses[i];
-          var code = res.getResponseCode();
-          var text = res.getContentText();
-          
-          if (code >= 200 && code < 300) {
-            try {
-              var json = JSON.parse(text);
-              var content;
-              if (useGemini) {
-                 if (json.candidates && json.candidates[0] && json.candidates[0].content) {
-                    content = json.candidates[0].content.parts[0].text;
-                 } else {
-                    throw new Error('Gemini response format error');
-                 }
-              } else {
-                 content = json.choices[0].message.content;
-              }
-              
-              var arr = parseJsonArrayResponse_(content, task.sourceVals.length);
-              
-              for (var subR = 0; subR < arr.length; subR++) {
-                var actualR = task.rowOffset + subR;
-                var src = task.sourceVals[subR]; 
-                var rawTgt = arr[subR] || '';
-                
-                // [Debug Log]
-                Logger.log('[Debug] ' + task.targetLang + ' Row:' + (actualR+1) + '\nSrc: ' + src + '\nRaw: ' + rawTgt);
-
-                var out = processTranslationResult_(src, rawTgt, task.targetLang, task.origZhTwVals[subR]);
-                
-                Logger.log('[Debug] ' + task.targetLang + ' => Out: ' + out);
-
-                blockValues[actualR][task.colOffset] = out;
-              }
-            } catch (e) {
-              Logger.log('JSON Parse Error for ' + task.targetLang + ': ' + e);
-            }
-          } else {
-            Logger.log('API Error for ' + task.targetLang + ': ' + code + ' ' + text);
-          }
-        }
-      } catch (e) {
-        Logger.log('FetchAll Error: ' + e);
-      }
-    }
-
-    blockRange.setValues(blockValues);
-    highlightRange_(sh, chunkRowStart, startCol, rowsThisChunk, numCols, CLEAR_COLOR);
-    SpreadsheetApp.flush();
-
-    processedRows      += rowsThisChunk;
-    totalRowsRemaining -= rowsThisChunk;
-    Utilities.sleep(SLEEP_MS);
-  }
-  ss.toast('✅ 此選區翻譯完成：' + processedRows + ' 行', '完成', 5);
-}
-
-/* ===================== 英文 → 多語（來源自動：en 優先，平行處理） ===================== */
-/* ===================== 英文 → 多語（來源自動：en 優先，平行處理） ===================== */
-function runTranslateFromEnSelection() {
-  processRangeList_(runTranslateFromEnCore_);
-}
-
-function runTranslateFromEnCore_(sh, sel, headers) {
-  var gKey = getApiKey_('GEMINI_API_KEY');
-  var oKey = getApiKey_('OPENAI_API_KEY');
-  var useGemini = (!oKey && !!gKey);
-  var apiKey = oKey ? oKey : gKey;
-  if (!apiKey) throw new Error('缺少 API Key (Gemini/OpenAI)');
-
-  var colEn = getColIndexByHeader_(headers, 'en');
-  var colTw = getColIndexByHeader_(headers, 'zh-TW');
-  if (colEn < 0 && colTw < 0) throw new Error('表頭至少要有 en 或 zh-TW');
-  if (colEn >= 0) colEn += 1;
-  if (colTw >= 0) colTw += 1;
-
-  var startRow = sel.getRow();
-  var startCol = sel.getColumn();
-  var numRows  = sel.getNumRows();
-  var numCols  = sel.getNumColumns();
-
-  var totalRowsRemaining = numRows;
-  var processedRows = 0;
-
-  // 計算實際需要調用 API 的目標欄位數量
-  var activeTargetCount = 0;
-  for (var cOff = 0; cOff < numCols; cOff++) {
-    var headerCode = String(headers[startCol + cOff - 1] || '').trim();
-    var srcCodeForCheck = colEn ? 'en' : 'zh-TW';
-    if (headerCode && headerCode !== 'key' && 
-        headerCode !== srcCodeForCheck && 
-        !(headerCode === 'zh-TW' && srcCodeForCheck === 'zh-TW')) {
-        activeTargetCount++;
-    }
-  }
-  if (activeTargetCount < 1) activeTargetCount = 1;
-
-  var concurrentBatches = Math.floor(MAX_PARALLEL_REQS / activeTargetCount);
-  if (concurrentBatches < 1) concurrentBatches = 1;
-  if (concurrentBatches > 5) concurrentBatches = 5;
-  var dynamicChunkRows = concurrentBatches * BATCH_SIZE;
-
-  var ss = SpreadsheetApp.getActiveSpreadsheet();
-
-  while (totalRowsRemaining > 0) {
-    var rowsThisChunk = Math.min(dynamicChunkRows, totalRowsRemaining);
-    var chunkRowStart = startRow + processedRows;
-
-    highlightRange_(sh, chunkRowStart, startCol, rowsThisChunk, numCols, WORKING_COLOR);
-    ss.toast(
-      '🚀 正在平行翻譯 (Src: EN/TW) ' + rowsThisChunk + ' 行… (' + (processedRows + rowsThisChunk) + '/' + numRows + ')',
-      '翻譯中', 120
-    );
-
-    var srcRange, srcCode;
-    if (colEn) {
-      srcRange = sh.getRange(chunkRowStart, colEn, rowsThisChunk, 1);
-      srcCode  = 'en';
-    } else {
-      srcRange = sh.getRange(chunkRowStart, colTw, rowsThisChunk, 1);
-      srcCode  = 'zh-TW';
-    }
-    var srcVals = srcRange.getValues().map(function (r) { return String(r[0] || ''); });
-
-    var blockRange  = sh.getRange(chunkRowStart, startCol, rowsThisChunk, numCols);
-    var blockValues = blockRange.getValues();
-
-    var aiTasks = [];
-
-    for (var cOff = 0; cOff < numCols; cOff++) {
-      var sheetColIndex = startCol + cOff;
-      var headerCode = String(headers[sheetColIndex - 1] || '').trim();
-      if (!headerCode || headerCode === 'key' ||
-          headerCode === srcCode || (headerCode === 'zh-TW' && srcCode === 'zh-TW')) {
-        continue;
-      }
-
-      for (var offset = 0; offset < rowsThisChunk; offset += BATCH_SIZE) {
-         var sliceLen = Math.min(BATCH_SIZE, rowsThisChunk - offset);
-         var sliceData = srcVals.slice(offset, offset + sliceLen);
-
-         var sysMsg  = buildSystemPrompt_(srcCode, headerCode);
-         var userMsg = buildUserPrompt_(sliceData, srcCode, headerCode);
-         
-         var payload;
-         if (useGemini) {
-             payload = {
-                "system_instruction": { "parts": { "text": sysMsg } },
-                "contents": [{ "role": "user", "parts": [{ "text": userMsg }] }],
-                "generationConfig": { 
-                  "responseMimeType": "application/json",
-                  "responseSchema": {
-                    "type": "ARRAY",
-                    "items": { "type": "STRING" }
-                  }
-                }
-             };
-         } else {
-             payload = {
-               model: OPENAI_MODEL,
-               messages: [
-                 { role: 'system', content: sysMsg },
-                 { role: 'user',   content: userMsg }
-               ],
-               max_completion_tokens: OPENAI_MAX_TOKENS
-             };
-         }
-
-         aiTasks.push({
-           payload: payload,
-           colOffset: cOff,
-           targetLang: headerCode,
-           sourceVals: sliceData,
-           rowOffset: offset
-         });
-      }
-    }
-
-    if (aiTasks.length > 0) {
-      var requests = aiTasks.map(function(task) {
-        var url, headers;
-        if (useGemini) {
-           url = 'https://generativelanguage.googleapis.com/v1beta/models/' + GEMINI_MODEL + ':generateContent?key=' + apiKey;
-           headers = {};
-        } else {
-           url = 'https://api.openai.com/v1/chat/completions';
-           headers = { 'Authorization': 'Bearer ' + apiKey };
-        }
-        return {
-          url: url,
-          method: 'post',
-          contentType: 'application/json',
-          headers: headers,
-          muteHttpExceptions: true,
-          payload: JSON.stringify(task.payload)
-        };
-      });
-
-      try {
-        var responses = UrlFetchApp.fetchAll(requests);
-        for (var i = 0; i < responses.length; i++) {
-          var task = aiTasks[i];
-          var res = responses[i];
-          var code = res.getResponseCode();
-          
-          if (code >= 200 && code < 300) {
-            try {
-              var json = JSON.parse(res.getContentText());
-              var content;
-              if (useGemini) {
-                  if (json.candidates && json.candidates[0] && json.candidates[0].content) {
-                    content = json.candidates[0].content.parts[0].text;
-                  } else {
-                    content = ''; // Fail
-                  }
-              } else {
-                  content = json.choices[0].message.content;
-              }
-              
-              var arr = parseJsonArrayResponse_(content, task.sourceVals.length);
-              
-              for (var subR = 0; subR < arr.length; subR++) {
-                var actualR = task.rowOffset + subR;
-                var src = task.sourceVals[subR];
-                var out = processTranslationResult_(src, arr[subR], task.targetLang);
-                blockValues[actualR][task.colOffset] = out;
-              }
-            } catch (e) {
-              Logger.log('JSON Parse Error: ' + e);
-            }
-          }
-        }
-      } catch (e) {
-        Logger.log('FetchAll Error: ' + e);
-      }
-    }
-
-    blockRange.setValues(blockValues);
-    highlightRange_(sh, chunkRowStart, startCol, rowsThisChunk, numCols, CLEAR_COLOR);
-    SpreadsheetApp.flush();
-
-    processedRows      += rowsThisChunk;
-    totalRowsRemaining -= rowsThisChunk;
-    Utilities.sleep(SLEEP_MS);
-  }
-
-  ss.toast('✅ 此選區翻譯完成：' + processedRows + ' 行', '完成', 5);
-}
-
-/* ===================== 後處理統一封裝 ===================== */
-function processTranslationResult_(src, tgt, langCode, origZhTw) {
-  var out = String(tgt || '');
-  out = stripTags_(out);
-  out = ensureKeepProtectedTokens_(src, out);
-  // 如果有提供原始 zh-TW (例如從 pivot EN 翻過來的)，用 zh-TW 判斷術語比較準
-  var termSrc = origZhTw || src;
-  out = enforceBottleTerminologyOnPair_(termSrc, out, langCode);
-  return out.trim();
-}
-
-/* ===================== OpenAI 批次封裝 (單次調用用) ===================== */
-function openAiBatchTranslate_(srcArr, sourceCode, targetCode) {
-  if (sourceCode === targetCode) {
-    return srcArr.map(function (s) { return String(s || ''); });
-  }
-
-  var out = new Array(srcArr.length);
-  for (var i = 0; i < out.length; i++) out[i] = '';
-
-  var cursor = 0;
-  while (cursor < srcArr.length) {
-    var slice = srcArr.slice(cursor, cursor + BATCH_SIZE);
-    var allEmpty = slice.every(function (t) { return String(t || '').trim() === ''; });
-    if (allEmpty) {
-      cursor += BATCH_SIZE;
-      continue;
-    }
-
-    var attempt = translateChunkOnce_(slice, sourceCode, targetCode);
-    if (attempt.ok && attempt.items.length === slice.length) {
-      for (var i = 0; i < slice.length; i++) out[cursor + i] = attempt.items[i] || '';
-      cursor += BATCH_SIZE;
-      Utilities.sleep(SLEEP_MS);
-      continue;
-    }
-    
-    // 簡單重試邏輯 (這裡簡化，不拆分，避免複雜)
-    cursor += BATCH_SIZE;
-  }
-  return out;
-}
-
-function translateChunkOnce_(slice, sourceCode, targetCode) {
-  var sysMsg  = buildSystemPrompt_(sourceCode, targetCode);
-  var userMsg = buildUserPrompt_(slice, sourceCode, targetCode);
-    var rawResp = callAiApi_(sysMsg, userMsg);
-  var arr     = parseJsonArrayResponse_(rawResp, slice.length);
-  var nonEmpty = arr.some(function (x) { return String(x || '').trim() !== ''; });
-  var ok = (arr.length === slice.length) && nonEmpty;
-  return { ok: ok, items: arr };
-}
-
-/* ===================== AI API 統一調用 (OpenAI 優先) ===================== */
-function callAiApi_(systemText, userText) {
-  // 強制優先檢查 OpenAI Key
-  var openAiKey = getApiKey_('OPENAI_API_KEY');
-  
-  if (openAiKey) {
-    return callOpenAIChat_(systemText, userText);
-  } 
-  
-  // 其次檢查 Gemini Key
-  var geminiKey = getApiKey_('GEMINI_API_KEY');
-  if (geminiKey) {
-    return callGeminiChat_(geminiKey, systemText, userText);
-  }
-  
-  Logger.log('無可用的 API Key');
-  return '';
-}
-
-/* ===================== Gemini API 實作 ===================== */
-function callGeminiChat_(apiKey, systemText, userText) {
-  var url = 'https://generativelanguage.googleapis.com/v1beta/models/' + GEMINI_MODEL + ':generateContent?key=' + apiKey;
-  
-  var payload = {
-    "system_instruction": {
-      "parts": { "text": systemText }
-    },
-    "contents": [
-      {
-        "role": "user",
-        "parts": [{ "text": userText }]
-      }
-    ],
-    "generationConfig": {
-      "responseMimeType": "application/json"
-    }
-  };
-
-  var params = {
-    method: 'post',
-    contentType: 'application/json',
-    muteHttpExceptions: true,
-    payload: JSON.stringify(payload)
-  };
-
-  try {
-    var res = UrlFetchApp.fetch(url, params);
-    var code = res.getResponseCode();
-    var text = res.getContentText();
-
-    if (code >= 200 && code < 300) {
-      var json = JSON.parse(text);
-      if (json.candidates && json.candidates[0] && json.candidates[0].content) {
-        return json.candidates[0].content.parts[0].text;
-      }
-    } else {
-      Logger.log('Gemini API Error: ' + code + ' ' + text);
-    }
-  } catch (e) {
-    Logger.log('Gemini Fetch Error: ' + e);
-  }
-  return '';
-}
-
-function callOpenAIChat_(systemText, userText) {
-  var apiKey = getApiKey_('OPENAI_API_KEY');
-  if (!apiKey) return '';
-
-  var url = 'https://api.openai.com/v1/chat/completions';
-  var payload = {
-    model: OPENAI_MODEL,
-    messages: [
-      { role: 'system', content: systemText },
-      { role: 'user',   content: userText }
-    ],
-    max_completion_tokens: OPENAI_MAX_TOKENS
-  };
-  var params = {
-    method: 'post',
-    contentType: 'application/json',
-    headers: { 'Authorization': 'Bearer ' + apiKey },
-    muteHttpExceptions: true,
-    payload: JSON.stringify(payload)
-  };
-
-  var res  = UrlFetchApp.fetch(url, params);
-  var code = res.getResponseCode();
-  var text = res.getContentText();
-  if (code < 200 || code >= 300) {
-    Logger.log('OpenAI HTTP ' + code + ' body: ' + text.slice(0, 400));
-    return '';
-  }
-  try {
-    var data = JSON.parse(text);
-    return (data.choices &&
-            data.choices[0] &&
-            data.choices[0].message &&
-            data.choices[0].message.content) || '';
-  } catch (e) {
-    Logger.log('OpenAI JSON parse fail: ' + e);
-    return '';
-  }
-}
-
-function parseJsonArrayResponse_(rawContent, expectLen) {
-  var s = String(rawContent || '').trim();
-  
-  // [增強] 移除 Markdown Code Block 標記 (Gemini 常見問題)
-  s = s.replace(/^```json\s*/i, '').replace(/^```\s*/i, '').replace(/\s*```$/, '');
-
-  // [增強] 嘗試修復被截斷的 JSON
-  if (s.lastIndexOf('}') === -1 && s.lastIndexOf(']') === -1) {
-     s += '"]]}'; 
-  } else if (s.lastIndexOf('}') < s.lastIndexOf('{') && s.indexOf('[') === -1) {
-     s += ']}';
-  }
-
-  var obj = null;
-  try {
-    obj = JSON.parse(s);
-  } catch (e) {
-    try {
-      // 嘗試提取 JSON 部分 (陣列优先)
-      var startAr = s.indexOf('[');
-      var startOb = s.indexOf('{');
-      
-      var start = -1;
-      var end = -1;
-      
-      // 優先找 Array [...]
-      if (startAr >= 0 && (startOb === -1 || startAr < startOb)) {
-          start = startAr;
-          end = s.lastIndexOf(']');
-      } else if (startOb >= 0) {
-          start = startOb;
-          end = s.lastIndexOf('}');
-      }
-
-      if (start >= 0 && end > start) {
-          s = s.substring(start, end + 1);
-          obj = JSON.parse(s);
-      } else {
-          // 二次嘗試：修復常見的結尾逗號或截斷問題
-          s = s.replace(/,\s*}/g, '}').replace(/,\s*]/g, ']');
-          // 嘗試補全截斷的陣列
-          if (s.slice(-1) !== '}' && s.slice(-1) !== ']') s += ']}';
-          obj = JSON.parse(s);
-      }
-    } catch (e2) {
-      obj = null;
-      Logger.log('JSON Parse Failed: ' + e2 + '\nContent: ' + s.slice(0, 100) + '...');
-    }
-  }
-
-  // 確保 items 存在：兼容纯数组 [...] 或 { items: [...] }
-  var items = [];
-  if (Array.isArray(obj)) {
-      items = obj;
-  } else if (obj && Array.isArray(obj.items)) {
-      items = obj.items;
-  } else if (obj && typeof obj === 'object') {
-      // 嘗試找任何是数组的 property
-      for (var key in obj) {
-          if (Array.isArray(obj[key])) {
-              items = obj[key];
-              break;
-          }
-      }
-  }
-
-  // [修正] 如果回傳數量少於預期 (漏翻)，補空字串，確保後續索引對齊
-  if (items.length < expectLen) {
-    Logger.log('Warning: AI returned ' + items.length + ' items, expected ' + expectLen);
-    while (items.length < expectLen) {
-      items.push(''); // 補空
-    }
-  }
-  
-  // 如果回傳數量多於預期 (極少見)，截斷
-  if (items.length > expectLen) {
-     items = items.slice(0, expectLen);
-  }
-
-  var out = [];
-  var i;
-  for (i = 0; i < expectLen; i++) {
-    out.push(typeof items[i] === 'string' ? items[i] : '');
-  }
-  return out;
-}
-
-/* ===================== Prompt 生成 ===================== */
-function buildSystemPrompt_(sourceCode, targetCode) {
-  var srcPretty   = LOCALE_PRETTY[sourceCode] || sourceCode;
-  var tgtPretty   = LOCALE_PRETTY[targetCode] || targetCode;
-  var bottleTerm  = getBottleTerm_(targetCode);
-
-  var sys =
-    "You are a localization engine for the XunNi drifting-bottle social app.\n" +
-    "Translate short UI and customer-support strings from " + srcPretty +
-    " to " + tgtPretty + ".\n" +
-    "Tone: professional, friendly, reassuring; concise like real product UI.\n" +
-    "Keep meaning consistent. No explanations.\n" +
-    "BRAND: Keep the product name 'XunNi' exactly as written (case-sensitive), never translate it.\n" +
-    "TICKERS/CHAINS: Keep SOL, TON, TRON, BEP, ETH, BTC, USDT, USDC, BNB, XRP, DOGE, SHIB, meme unchanged.\n" +
-    "PLACEHOLDERS: Keep placeholders exactly as-is, including {{name}}, {name}, {0}, ${name}, %s, %d, %1$s, %02d, $VAR, :emoji:.\n" +
-    "SPECIAL RULE FOR <...>: If the text inside angle brackets is a variable name (e.g. <id>, <user_id>, <br>), KEEP IT. If it is a descriptive placeholder in Chinese or natural language (e.g. <訊息內容>, <輸入金額>), TRANSLATE the text inside but keep the angle brackets (e.g. <message content>, <amount>).\n" +
-    "URLs, emails, @mentions, IDs, inline code, HTML entities must be preserved.\n" +
-    "SPECIAL RULE FOR URLs: If the text is a URL (starts with http/https), DO NOT TRANSLATE the URL structure itself. Only translate the value of the 'text=' or 'body=' query parameter if present. Ensure the output contains the URL EXACTLY ONCE. Do NOT duplicate the content.\n" +
-    (bottleTerm
-      ? "FEATURE TERMINOLOGY: When the drifting-bottle feature (漂流瓶 / bottle message) appears, render it as \"" +
-        bottleTerm + "\" in the target language.\n"
-      : "") +
-    "OUTPUT FORMAT: Return ONLY a strict JSON Array of strings: [\"translated_text1\", \"translated_text2\"]. Do NOT return an object. Do NOT use markdown code blocks.";
-
-  return sys;
-}
-
-function buildUserPrompt_(slice, sourceCode, targetCode) {
-  return (
-    "Translate each item from " + sourceCode + " to " + targetCode +
-    " following the system rules.\n" +
-    "Return a valid JSON Array of strings.\n" +
-    "Input array:\n" + JSON.stringify(slice)
-  );
-}
-
-/* ===================== HTML 標籤處理（保留 <provider_id> 類型佔位符） ===================== */
-function stripTags_(s) {
-  if (s == null) return '';
-  s = String(s);
-
-  // 1) 暫存像 <provider_id> 或 <id> 這種變數佔位符 (包含 snake_case、單字或中文)
-  var placeholderStore = {};
-  var phIndex = 0;
-  // 修改：支援中文變數 (如 <訊息內容>) 及無底線單詞
-  // 排除標準 HTML 標籤的常見誤判，但這裡主要保護非標準變數
-  var phRe = /<[^<>]+>/g;
-
-  s = s.replace(phRe, function (m) {
-    // 過濾明顯的 HTML 標籤 (這是一個簡單的黑名單，可根據需要擴充)
-    var lower = m.toLowerCase();
-    if (/^<(br|div|span|p|b|i|strong|em|u|a|img|table|tr|td|th|ul|ol|li|code|pre)\b/.test(lower)) {
-      return m; // 這是 HTML，不保護，留給後面刪除
-    }
-    // 剩下的視為自定義變數 (如 <id>, <訊息內容>, <user_id>)
-    var key = '%%ANG' + (phIndex++) + '%%';
-    placeholderStore[key] = m;
-    return key;
-  });
-
-  // 2) 移除 ```code``` 區塊
-  s = s.replace(/```[\s\S]*?```/g, '');
-
-  // 3) 清掉一般 HTML 標籤
-  s = s.replace(/<[^>]+>/g, '');
-
-  // 4) 還原佔位符
-  s = s.replace(/%%ANG\d+%%/g, function (m) {
-    return placeholderStore[m] || '';
-  });
-
-  // 5) 收斂空白
-  s = s.replace(/\u00A0/g, ' ');
-  s = s.replace(/[ \t\r\f\v]+/g, ' ').trim();
-  return s;
-}
-
-/* ===================== 清理選區 HTML 標籤 ===================== */
-function cleanSelectionHtmlWrappers() {
-  processRangeList_(cleanSelectionHtmlWrappersCore_);
-}
-
-function cleanSelectionHtmlWrappersCore_(sh, rng, headers) {
-  highlightRange_(sh, rng.getRow(), rng.getColumn(), rng.getNumRows(), rng.getNumColumns(), WORKING_COLOR);
-
-  var vals = rng.getValues();
-  var r, c;
-  for (r = 0; r < vals.length; r++) {
-    for (c = 0; c < vals[0].length; c++) {
-      if (typeof vals[r][c] === 'string') {
-        vals[r][c] = stripTags_(vals[r][c]);
-      }
-    }
-  }
-
-  rng.setValues(vals);
-  highlightRange_(sh, rng.getRow(), rng.getColumn(), rng.getNumRows(), rng.getNumColumns(), CLEAR_COLOR);
-  SpreadsheetApp.flush();
-  sh.getParent().toast('✅ 已清理所選範圍中的 HTML 標籤', '完成', 3);
-}
-
-/* ===================== zh-TW 客服口吻潤飾 ===================== */
-function polishZhTwSelection() {
-  processRangeList_(polishZhTwCore_);
-}
-
-function polishZhTwCore_(sh, sel, headers) {
-  var apiKey = getApiKey_();
-  if (!apiKey) throw new Error('缺少 OPENAI_API_KEY');
+  if (!apiKey) throw new Error('缺少 API Key');
+  log_('Using Model: ' + (useGemini ? GEMINI_MODEL : OPENAI_MODEL));
 
   var colZhTw = getColIndexByHeader_(headers, 'zh-TW');
   if (colZhTw < 0) throw new Error('表頭必須包含 zh-TW');
@@ -1204,273 +162,421 @@ function polishZhTwCore_(sh, sel, headers) {
   var startCol = sel.getColumn();
   var numRows  = sel.getNumRows();
   var numCols  = sel.getNumColumns();
-
-  if (!(colZhTw >= startCol && colZhTw < startCol + numCols)) {
-    return; // 沒選到 zh-TW 欄位就跳過
-  }
-
   var totalRowsRemaining = numRows;
   var processedRows = 0;
-  var ss = sh.getParent();
+  
+  var activeTargetCount = 0;
+  for (var cOff = 0; cOff < numCols; cOff++) {
+    var h = String(headers[startCol + cOff - 1] || '').trim();
+    if (h && h !== 'key' && h !== 'zh-TW' && h !== 'zh-CN') activeTargetCount++;
+  }
+  if (activeTargetCount < 1) activeTargetCount = 1;
+
+  var concurrentBatches = Math.floor(MAX_PARALLEL_REQS / activeTargetCount);
+  if (concurrentBatches < 1) concurrentBatches = 1;
+  if (concurrentBatches > 5) concurrentBatches = 5;
+  var dynamicChunkRows = concurrentBatches * BATCH_SIZE;
+
+  var ss = SpreadsheetApp.getActiveSpreadsheet();
 
   while (totalRowsRemaining > 0) {
-    var rowsThisChunk = Math.min(CHUNK_ROWS, totalRowsRemaining);
+    var rowsThisChunk = Math.min(dynamicChunkRows, totalRowsRemaining);
     var chunkRowStart = startRow + processedRows;
-
     highlightRange_(sh, chunkRowStart, startCol, rowsThisChunk, numCols, WORKING_COLOR);
-    ss.toast(
-      '正在優化 zh-TW：' + rowsThisChunk + ' 行… (' +
-      (processedRows + rowsThisChunk) + '/' + numRows + ')',
-      '優化中', 5
-    );
+    ss.toast('🚀 翻譯 ' + rowsThisChunk + ' 行... (' + (processedRows + rowsThisChunk) + '/' + numRows + ')', '翻譯中', 120);
 
-    var zhTwRange = sh.getRange(chunkRowStart, colZhTw, rowsThisChunk, 1);
-    var zhTwVals  = zhTwRange.getValues()
-      .map(function (r) { return String(r[0] || ''); });
+    var blockRange = sh.getRange(chunkRowStart, startCol, rowsThisChunk, numCols);
+    var blockValues = blockRange.getValues();
+    var zhTwVals = sh.getRange(chunkRowStart, colZhTw, rowsThisChunk, 1).getValues().map(function (r) { return String(r[0] || ''); });
+    var pivotEnVals = null;
+    var needsPivot = false;
 
-    var polished = openAiBatchPolishZhTw_(zhTwVals);
-
-    var out = [];
-    var i;
-    for (i = 0; i < rowsThisChunk; i++) {
-      var newText = String(polished[i] || '').trim();
-      out.push([newText || zhTwVals[i]]);
+    for (var cOff = 0; cOff < numCols; cOff++) {
+      var headerCode = String(headers[startCol + cOff - 1] || '').trim();
+      if (!headerCode || headerCode === 'key' || headerCode === 'zh-TW') continue;
+      if (headerCode !== 'zh-CN' && headerCode !== 'en') needsPivot = true;
     }
 
-    zhTwRange.setValues(out);
+    if (needsPivot) {
+      var enIdx = -1;
+      for (cOff = 0; cOff < numCols; cOff++) {
+        if (String(headers[startCol + cOff - 1] || '').trim() === 'en') { enIdx = cOff; break; }
+      }
+      if (enIdx >= 0) {
+        pivotEnVals = openAiBatchTranslate_(zhTwVals, 'zh-TW', 'en');
+        for (var r = 0; r < rowsThisChunk; r++) {
+          var out = processTranslationResult_(zhTwVals[r], pivotEnVals[r], 'en');
+          blockValues[r][enIdx] = out;
+          pivotEnVals[r] = out;
+        }
+      } else {
+        pivotEnVals = openAiBatchTranslate_(zhTwVals, 'zh-TW', 'en');
+      }
+    }
+
+    var aiTasks = []; 
+    for (cOff = 0; cOff < numCols; cOff++) {
+      var headerCode = String(headers[startCol + cOff - 1] || '').trim();
+      if (!headerCode || headerCode === 'key' || headerCode === 'zh-TW') continue;
+      if (headerCode === 'en' && pivotEnVals) continue; 
+
+      var srcDataFull = (headerCode === 'en') ? zhTwVals : (pivotEnVals || zhTwVals);
+      var srcLang = (headerCode === 'en') ? 'zh-TW' : 'en';
+      if (headerCode === 'zh-CN') { srcDataFull = zhTwVals; srcLang = 'zh-TW'; }
+
+      for (var offset = 0; offset < rowsThisChunk; offset += BATCH_SIZE) {
+          var sliceLen = Math.min(BATCH_SIZE, rowsThisChunk - offset);
+          var sliceData = srcDataFull.slice(offset, offset + sliceLen);
+          var origZhTwSlice = zhTwVals.slice(offset, offset + sliceLen);
+          var sysMsg  = buildSystemPrompt_(srcLang, headerCode);
+          var userMsg = buildUserPrompt_(sliceData, srcLang, headerCode);
+          
+          var payload;
+          if (useGemini) {
+             payload = {
+               "system_instruction": { "parts": { "text": sysMsg } },
+               "contents": [{ "role": "user", "parts": [{ "text": userMsg }] }],
+               "generationConfig": { "responseMimeType": "application/json", "responseSchema": { "type": "ARRAY", "items": { "type": "STRING" } } }
+             };
+          } else {
+             payload = { model: OPENAI_MODEL, messages: [{ role: 'system', content: sysMsg }, { role: 'user', content: userMsg }], max_completion_tokens: OPENAI_MAX_TOKENS };
+          }
+          aiTasks.push({ payload: payload, colOffset: cOff, targetLang: headerCode, sourceVals: sliceData, origZhTwVals: origZhTwSlice, rowOffset: offset });
+      }
+    }
+
+    if (aiTasks.length > 0) {
+      var requests = aiTasks.map(function(task) {
+        var url, headers;
+        if (useGemini) {
+           url = 'https://generativelanguage.googleapis.com/v1beta/models/' + GEMINI_MODEL + ':generateContent?key=' + apiKey;
+           headers = {};
+        } else {
+           url = 'https://api.openai.com/v1/chat/completions';
+           headers = { 'Authorization': 'Bearer ' + apiKey };
+        }
+        return { url: url, method: 'post', contentType: 'application/json', headers: headers, muteHttpExceptions: true, payload: JSON.stringify(task.payload) };
+      });
+
+      try {
+        var responses = UrlFetchApp.fetchAll(requests);
+        for (var i = 0; i < responses.length; i++) {
+          var task = aiTasks[i];
+          var res = responses[i];
+          if (res.getResponseCode() >= 200 && res.getResponseCode() < 300) {
+            try {
+              var json = JSON.parse(res.getContentText());
+              var content = useGemini ? (json.candidates?.[0]?.content?.parts?.[0]?.text || '') : json.choices[0].message.content;
+              var arr = parseJsonArrayResponse_(content, task.sourceVals.length);
+              for (var subR = 0; subR < arr.length; subR++) {
+                var actualR = task.rowOffset + subR;
+                var out = processTranslationResult_(task.sourceVals[subR], arr[subR], task.targetLang, task.origZhTwVals[subR]);
+                blockValues[actualR][task.colOffset] = out;
+              }
+            } catch (e) { Logger.log('JSON Parse Error: ' + e); }
+          } else { Logger.log('API Error: ' + res.getResponseCode()); }
+        }
+      } catch (e) { Logger.log('FetchAll Error: ' + e); }
+    }
+
+    blockRange.setValues(blockValues);
     highlightRange_(sh, chunkRowStart, startCol, rowsThisChunk, numCols, CLEAR_COLOR);
     SpreadsheetApp.flush();
-
-    processedRows      += rowsThisChunk;
+    processedRows += rowsThisChunk;
     totalRowsRemaining -= rowsThisChunk;
     Utilities.sleep(SLEEP_MS);
   }
-  ss.toast('✅ zh-TW 優化完成：' + numRows + ' 行', '完成', 3);
+  ss.toast('✅ 完成', '完成', 5);
 }
 
-function openAiBatchPolishZhTw_(srcArr) {
-  var out = new Array(srcArr.length);
-  var i;
-  for (i = 0; i < out.length; i++) out[i] = '';
+/* ===================== 英文 → 多語 ===================== */
+function runTranslateFromEnSelection() { processRangeList_(runTranslateFromEnCore_); }
 
+function runTranslateFromEnCore_(sh, sel, headers) {
+  var gKey = getApiKey_('GEMINI_API_KEY');
+  var oKey = getApiKey_('OPENAI_API_KEY');
+  var useGemini = (!oKey && !!gKey);
+  var apiKey = oKey ? oKey : gKey;
+  if (!apiKey) throw new Error('缺少 API Key');
+
+  var colEn = getColIndexByHeader_(headers, 'en');
+  var colTw = getColIndexByHeader_(headers, 'zh-TW');
+  if (colEn < 0 && colTw < 0) throw new Error('需 en 或 zh-TW');
+  if (colEn >= 0) colEn += 1;
+  if (colTw >= 0) colTw += 1;
+
+  var startRow = sel.getRow();
+  var startCol = sel.getColumn();
+  var numRows  = sel.getNumRows();
+  var numCols  = sel.getNumColumns();
+  var totalRowsRemaining = numRows;
+  var processedRows = 0;
+  
+  var activeTargetCount = 0;
+  for (var cOff = 0; cOff < numCols; cOff++) {
+    var h = String(headers[startCol + cOff - 1] || '').trim();
+    if (h && h !== 'key' && h !== 'en' && h !== 'zh-TW') activeTargetCount++;
+  }
+  if (activeTargetCount < 1) activeTargetCount = 1;
+
+  var concurrentBatches = Math.floor(MAX_PARALLEL_REQS / activeTargetCount);
+  if (concurrentBatches < 1) concurrentBatches = 1;
+  if (concurrentBatches > 5) concurrentBatches = 5;
+  var dynamicChunkRows = concurrentBatches * BATCH_SIZE;
+
+  var ss = SpreadsheetApp.getActiveSpreadsheet();
+
+  while (totalRowsRemaining > 0) {
+    var rowsThisChunk = Math.min(dynamicChunkRows, totalRowsRemaining);
+    var chunkRowStart = startRow + processedRows;
+    highlightRange_(sh, chunkRowStart, startCol, rowsThisChunk, numCols, WORKING_COLOR);
+    ss.toast('🚀 平行翻譯 ' + rowsThisChunk + ' 行...', '翻譯中', 120);
+
+    var srcRange, srcCode;
+    if (colEn) { srcRange = sh.getRange(chunkRowStart, colEn, rowsThisChunk, 1); srcCode = 'en'; } 
+    else { srcRange = sh.getRange(chunkRowStart, colTw, rowsThisChunk, 1); srcCode = 'zh-TW'; }
+    var srcVals = srcRange.getValues().map(function (r) { return String(r[0] || ''); });
+
+    var blockRange  = sh.getRange(chunkRowStart, startCol, rowsThisChunk, numCols);
+    var blockValues = blockRange.getValues();
+    var aiTasks = [];
+
+    for (var cOff = 0; cOff < numCols; cOff++) {
+      var headerCode = String(headers[startCol + cOff - 1] || '').trim();
+      if (!headerCode || headerCode === 'key' || headerCode === srcCode) continue;
+
+      for (var offset = 0; offset < rowsThisChunk; offset += BATCH_SIZE) {
+         var sliceLen = Math.min(BATCH_SIZE, rowsThisChunk - offset);
+         var sliceData = srcVals.slice(offset, offset + sliceLen);
+         var sysMsg  = buildSystemPrompt_(srcCode, headerCode);
+         var userMsg = buildUserPrompt_(sliceData, srcCode, headerCode);
+         var payload;
+         if (useGemini) {
+             payload = {
+                "system_instruction": { "parts": { "text": sysMsg } },
+                "contents": [{ "role": "user", "parts": [{ "text": userMsg }] }],
+                "generationConfig": { "responseMimeType": "application/json", "responseSchema": { "type": "ARRAY", "items": { "type": "STRING" } } }
+             };
+         } else {
+             payload = { model: OPENAI_MODEL, messages: [{ role: 'system', content: sysMsg }, { role: 'user', content: userMsg }], max_completion_tokens: OPENAI_MAX_TOKENS };
+         }
+         aiTasks.push({ payload: payload, colOffset: cOff, targetLang: headerCode, sourceVals: sliceData, rowOffset: offset });
+      }
+    }
+
+    if (aiTasks.length > 0) {
+      var requests = aiTasks.map(function(task) {
+        var url, headers;
+        if (useGemini) { url = 'https://generativelanguage.googleapis.com/v1beta/models/' + GEMINI_MODEL + ':generateContent?key=' + apiKey; headers = {}; } 
+        else { url = 'https://api.openai.com/v1/chat/completions'; headers = { 'Authorization': 'Bearer ' + apiKey }; }
+        return { url: url, method: 'post', contentType: 'application/json', headers: headers, muteHttpExceptions: true, payload: JSON.stringify(task.payload) };
+      });
+
+      try {
+        var responses = UrlFetchApp.fetchAll(requests);
+        for (var i = 0; i < responses.length; i++) {
+          var task = aiTasks[i];
+          var res = responses[i];
+          if (res.getResponseCode() >= 200 && res.getResponseCode() < 300) {
+            try {
+              var json = JSON.parse(res.getContentText());
+              var content = useGemini ? (json.candidates?.[0]?.content?.parts?.[0]?.text || '') : json.choices[0].message.content;
+              var arr = parseJsonArrayResponse_(content, task.sourceVals.length);
+              for (var subR = 0; subR < arr.length; subR++) {
+                var actualR = task.rowOffset + subR;
+                var out = processTranslationResult_(task.sourceVals[subR], arr[subR], task.targetLang);
+                blockValues[actualR][task.colOffset] = out;
+              }
+            } catch (e) { Logger.log('JSON Parse Error: ' + e); }
+          }
+        }
+      } catch (e) { Logger.log('FetchAll Error: ' + e); }
+    }
+
+    blockRange.setValues(blockValues);
+    highlightRange_(sh, chunkRowStart, startCol, rowsThisChunk, numCols, CLEAR_COLOR);
+    SpreadsheetApp.flush();
+    processedRows += rowsThisChunk;
+    totalRowsRemaining -= rowsThisChunk;
+    Utilities.sleep(SLEEP_MS);
+  }
+  ss.toast('✅ 完成', '完成', 5);
+}
+
+/* ===================== 後處理 ===================== */
+function processTranslationResult_(src, tgt, langCode, origZhTw) {
+  var out = String(tgt || '');
+  out = stripTags_(out);
+  out = ensureKeepProtectedTokens_(src, out);
+  var termSrc = origZhTw || src;
+  out = enforceBottleTerminologyOnPair_(termSrc, out, langCode);
+  return out.trim();
+}
+
+function openAiBatchTranslate_(srcArr, sourceCode, targetCode) {
+  if (sourceCode === targetCode) return srcArr.map(function(s){return String(s||'');});
+  var out = new Array(srcArr.length);
+  for (var i=0; i<out.length; i++) out[i]='';
   var cursor = 0;
   while (cursor < srcArr.length) {
     var slice = srcArr.slice(cursor, cursor + BATCH_SIZE);
-    var allEmpty = slice.every(function (t) { return String(t || '').trim() === ''; });
-    if (allEmpty) {
-      cursor += BATCH_SIZE;
-      continue;
+    var allEmpty = slice.every(function(t){return !String(t).trim();});
+    if (allEmpty) { cursor += BATCH_SIZE; continue; }
+    var attempt = translateChunkOnce_(slice, sourceCode, targetCode);
+    if (attempt.ok && attempt.items.length === slice.length) {
+      for (var i = 0; i < slice.length; i++) out[cursor + i] = attempt.items[i] || '';
     }
-
-    var sysMsg  = buildSystemPromptPolishZhTw_();
-    var userMsg = buildUserPromptPolishZhTw_(slice);
-    var rawResp = callAiApi_(sysMsg, userMsg);
-    var arr     = parseJsonArrayResponse_(rawResp, slice.length);
-
-    var j;
-    for (j = 0; j < slice.length; j++) {
-      var v = typeof arr[j] === 'string' ? arr[j] : '';
-      v = ensureKeepProtectedTokens_(slice[j], v);
-      v = collapseWhitespaceKeepLines_(v);
-      out[cursor + j] = v;
-    }
-
     cursor += BATCH_SIZE;
     Utilities.sleep(SLEEP_MS);
   }
   return out;
 }
 
-function buildSystemPromptPolishZhTw_() {
-  return (
-    "You are a professional Traditional Chinese (Taiwan) copy editor for the XunNi drifting-bottle app.\n" +
-    "Polish zh-TW text to natural Taiwan wording, remove redundancy, clarify logic; do NOT over-shorten.\n" +
-    "Tone: friendly and courteous like a female CS rep, addressing the user with「您」.\n" +
-    "Taiwan word choices: 帳號 / 連結 / 下載 / 應用程式 / 客服專員 / 提領 / 匯出 / 餘額 / 加值 / 綁定 / 取消綁定。\n" +
-    "Keep line breaks.\n" +
-    "STRICTLY preserve brand 'XunNi', tickers (SOL, TON, TRON, BEP, ETH, BTC, USDT, USDC, BNB, XRP, DOGE, SHIB, meme), placeholders {{x}}, {x}, ${x}, %s, %d, %1$s, %02d, $VAR, :emoji:, <provider_id>, URLs, emails, IDs, @mentions, inline code, and HTML entities.\n" +
-    "Return only JSON: {\"items\":[...]}."
-  );
+function translateChunkOnce_(slice, sourceCode, targetCode) {
+  var sysMsg  = buildSystemPrompt_(sourceCode, targetCode);
+  var userMsg = buildUserPrompt_(slice, sourceCode, targetCode);
+  var rawResp = callAiApi_(sysMsg, userMsg);
+  var arr     = parseJsonArrayResponse_(rawResp, slice.length);
+  return { ok: arr.length === slice.length, items: arr };
 }
 
-function buildUserPromptPolishZhTw_(slice) {
-  return "Polish each item (zh-TW→zh-TW). Keep meaning & placeholders. Return JSON only. Input:\n" +
-    JSON.stringify(slice);
+/* ===================== API 調用統一入口 ===================== */
+function callAiApi_(systemText, userText) {
+  var openAiKey = getApiKey_('OPENAI_API_KEY');
+  if (openAiKey) return callOpenAIChat_(systemText, userText);
+  var geminiKey = getApiKey_('GEMINI_API_KEY');
+  if (geminiKey) return callGeminiChat_(geminiKey, systemText, userText);
+  Logger.log('無可用的 API Key');
+  return '';
 }
 
-/* ===================== 佔位符保護 + 空白收斂 ===================== */
+function callOpenAIChat_(systemText, userText) {
+  var apiKey = getApiKey_('OPENAI_API_KEY');
+  if (!apiKey) return '';
+  var url = 'https://api.openai.com/v1/chat/completions';
+  var payload = { model: OPENAI_MODEL, messages: [{ role: 'system', content: systemText }, { role: 'user', content: userText }], max_completion_tokens: OPENAI_MAX_TOKENS };
+  var params = { method: 'post', contentType: 'application/json', headers: { 'Authorization': 'Bearer ' + apiKey }, muteHttpExceptions: true, payload: JSON.stringify(payload) };
+  try {
+    var res  = UrlFetchApp.fetch(url, params);
+    if (res.getResponseCode() < 200 || res.getResponseCode() >= 300) { Logger.log('OpenAI Error: ' + res.getContentText()); return ''; }
+    var data = JSON.parse(res.getContentText());
+    return data.choices[0].message.content || '';
+  } catch (e) { Logger.log('OpenAI Error: ' + e); return ''; }
+}
+
+function callGeminiChat_(apiKey, systemText, userText) {
+  var url = 'https://generativelanguage.googleapis.com/v1beta/models/' + GEMINI_MODEL + ':generateContent?key=' + apiKey;
+  var payload = { "system_instruction": { "parts": { "text": systemText } }, "contents": [{ "role": "user", "parts": [{ "text": userText }] }], "generationConfig": { "responseMimeType": "application/json" } };
+  try {
+    var res = UrlFetchApp.fetch(url, { method: 'post', contentType: 'application/json', muteHttpExceptions: true, payload: JSON.stringify(payload) });
+    if (res.getResponseCode() >= 200 && res.getResponseCode() < 300) {
+      var json = JSON.parse(res.getContentText());
+      return json.candidates?.[0]?.content?.parts?.[0]?.text || '';
+    } else { Logger.log('Gemini Error: ' + res.getContentText()); }
+  } catch (e) { Logger.log('Gemini Exception: ' + e); }
+  return '';
+}
+
+function parseJsonArrayResponse_(rawContent, expectLen) {
+  var s = String(rawContent || '').trim().replace(/^```json\s*/i, '').replace(/^```\s*/i, '').replace(/\s*```$/, '');
+  if (s.lastIndexOf('}') === -1 && s.lastIndexOf(']') === -1) s += '"]]}'; 
+  else if (s.lastIndexOf('}') < s.lastIndexOf('{') && s.indexOf('[') === -1) s += ']}';
+  var items = [];
+  try {
+    var obj = JSON.parse(s);
+    if (Array.isArray(obj)) items = obj;
+    else if (obj && Array.isArray(obj.items)) items = obj.items;
+    else if (obj && typeof obj === 'object') { for (var key in obj) { if (Array.isArray(obj[key])) { items = obj[key]; break; } } }
+  } catch (e) {
+    try {
+      var start = s.indexOf('['); var end = s.lastIndexOf(']');
+      if (start >= 0 && end > start) items = JSON.parse(s.substring(start, end + 1));
+    } catch (e2) { Logger.log('JSON Parse Failed: ' + e2); }
+  }
+  while (items.length < expectLen) items.push('');
+  if (items.length > expectLen) items = items.slice(0, expectLen);
+  return items.map(function(i){ return typeof i==='string' ? i : ''; });
+}
+
+/* ===================== Prompt 生成 ===================== */
+function buildSystemPrompt_(sourceCode, targetCode) {
+  var srcPretty = LOCALE_PRETTY[sourceCode] || sourceCode;
+  var tgtPretty = LOCALE_PRETTY[targetCode] || targetCode;
+  var bottleTerm = getBottleTerm_(targetCode);
+  return "You are a localization engine for the XunNi app.\nTranslate from " + srcPretty + " to " + tgtPretty + ".\nTone: professional, concise.\nKeep 'XunNi' and tickers unchanged.\nPreserve placeholders: {{name}}, {0}, %s, $VAR, :emoji:, <provider_id>, <msg_content>.\nPreserve URLs, emails, @mentions, HTML entities.\n" + (bottleTerm ? "Translate 'drifting bottle' or '漂流瓶' as \"" + bottleTerm + "\".\n" : "") + "OUTPUT: Only a valid JSON Array of strings. No markdown. No overlap with source.";
+}
+
+function buildUserPrompt_(slice, sourceCode, targetCode) {
+  return "Translate array to JSON Array:\n" + JSON.stringify(slice);
+}
+
+/* ===================== 輔助工具 ===================== */
+function stripTags_(s) {
+  if (s == null) return '';
+  s = String(s);
+  var store = {};
+  var idx = 0;
+  s = s.replace(/<[^<>]+>/g, function (m) {
+    if (/^<(br|div|span|p|b|i|strong|em|u|a|img|table|tr|td|th|ul|ol|li|code|pre)\b/i.test(m)) return m;
+    var k = '%%ANG' + (idx++) + '%%';
+    store[k] = m;
+    return k;
+  });
+  s = s.replace(/```[\s\S]*?```/g, '').replace(/<[^>]+>/g, '');
+  s = s.replace(/%%ANG\d+%%/g, function(m){ return store[m] || ''; });
+  return s.replace(/\u00A0/g, ' ').replace(/[ \t\r\f\v]+/g, ' ').trim();
+}
+
 function ensureKeepProtectedTokens_(src, out) {
-  src = String(src || '');
-  out = String(out || '');
-
-  var patterns = [
-    /\{\{[^}]+\}\}/g,                    // {{name}}
-    /\{[^{][^}]*\}/g,                    // {name} / {0}
-    /%(\d+\$)?[sdif]/g,                  // %s, %d, %1$s, %02d
-    /\$\{[^}]+\}/g,                      // ${var}
-    /\$[A-Z_][A-Z0-9_]*/g,               // $VAR
-    /:[a-z0-9_+-]+:/gi,                  // :emoji:
-    /<[^<>\n]+>/g                        // <provider_id>, <訊息內容>, <message content>
-  ];
-
-  var extras = [
-    /\bhttps?:\/\/[^\s)]+/gi,            // URL
-    /\bwww\.[^\s)]+/gi,
-    /\b[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}\b/gi, // email
-    /@[A-Za-z0-9_.-]+/g,                 // @mention
-    /`[^`]+`/g,                          // `inline code`
-    /&[A-Za-z0-9#]+;/g                   // entities
-  ];
-
+  src = String(src||''); out = String(out||'');
+  var regexs = [ /\{\{[^}]+\}\}/g, /\{[^{][^}]*\}/g, /%(\d+\$)?[sdif]/g, /\$\{[^}]+\}/g, /\$[A-Z_][A-Z0-9_]*/g, /:[a-z0-9_+-]+:/gi, /<[^<>\n]+>/g, /\bhttps?:\/\/[^\s)]+/gi, /@[A-Za-z0-9_.-]+/g ];
   var tokens = [];
-
-  function collect(arr) {
-    var i, m, re;
-    for (i = 0; i < arr.length; i++) {
-      re = arr[i];
-      re.lastIndex = 0;
-      while ((m = re.exec(src)) !== null) {
-        var token = m[0];
-        // 避免把整段超長程式碼當作一個 token 補回去
-        if ((token.charAt(0) === '{' || token.indexOf('${') === 0) &&
-            token.length > 80) {
-          continue;
-        }
-
-        // [FIX Enhanced] 防止重複添加：
-        // 檢查是否為「複雜邏輯變數」或「可翻譯內容」
-        // 如果 token 以 $ 或 { 開頭，且包含 ? (三元), = (賦值/比較), ' " (字串), 或中文
-        // 則視為包含邏輯或可翻譯內容，翻譯後可能會變，因此不強制保留原始 token
-        if (token.charAt(0) === '$' || token.charAt(0) === '{') {
-           if (/[\?='"\u4e00-\u9fa5]/.test(token)) {
-             continue;
-           }
-        }
-
-        tokens.push(token);
-      }
-    }
-  }
-
-  collect(patterns);
-  collect(extras);
-
-  var seen = Object.create(null);
-  var uniq = [];
-  var i;
-  for (i = 0; i < tokens.length; i++) {
-    var t = tokens[i];
-    if (!seen[t]) {
-      seen[t] = true;
-      uniq.push(t);
-    }
-  }
-
-  for (i = 0; i < uniq.length; i++) {
-    var tok = uniq[i];
-    if (tok && out.indexOf(tok) === -1) {
-      out += (out ? ' ' : '') + tok;
-    }
-  }
-
+  regexs.forEach(function(re){
+    var m = src.match(re);
+    if(m) m.forEach(function(t){ if (t.length < 50 && out.indexOf(t) === -1) tokens.push(t); });
+  });
+  tokens.forEach(function(t){ if (out.indexOf(t) === -1) out += ' ' + t; });
   return out;
 }
 
-function collapseWhitespaceKeepLines_(s) {
-  if (s == null) return '';
-  s = String(s);
-  var parts = s.split('\n');
-  var i;
-  for (i = 0; i < parts.length; i++) {
-    parts[i] = parts[i]
-      .replace(/\u00A0/g, ' ')
-      .replace(/[ \t\r\f\v]+/g, ' ')
-      .trim();
+function enforceBottleTerminologyOnPair_(src, out, targetCode) {
+  var term = getBottleTerm_(targetCode);
+  if (!term) return out;
+  if (/(漂流瓶|bottle)/i.test(src) && out.toLowerCase().indexOf(term.toLowerCase()) === -1) {
+    out = out.replace(/bottle/gi, term);
   }
-  s = parts.join('\n');
-  s = s.replace(/\n{3,}/g, '\n\n');
-  return s.trim();
+  return out;
 }
 
-/* ===================== 漂流瓶術語：僅在源含意時落地 ===================== */
-function enforceBottleTerminologyOnPair_(srcText, translated, targetCode) {
-  try {
-    var src = String(srcText || '');
-    var out = String(translated || '');
-    var term = getBottleTerm_(targetCode);
-    if (!term) return out;
-
-    var hasConcept = /(漂流瓶|drifting\s*bottle|message\s*bottle|bottle\s*message)/i.test(src);
-    if (!hasConcept) return out;
-
-    var lowerOut = out.toLowerCase();
-    var lowerTerm = term.toLowerCase();
-    if (lowerOut.indexOf(lowerTerm) >= 0) return out;
-
-    out = out
-      .replace(/drifting\s*bottle/gi, term)
-      .replace(/message\s*bottle/gi, term)
-      .replace(/bottle\s*message/gi, term)
-      .replace(/漂流瓶/g, term);
-
-    return out;
-  } catch (e) {
-    return translated;
-  }
-}
-
-// [補回遺失的工具函數]
 function getApiKey_(keyName) {
   var props = PropertiesService.getScriptProperties();
   var userProps = PropertiesService.getUserProperties();
-
-  if (keyName) {
-    var key = props.getProperty(keyName) || userProps.getProperty(keyName);
-    return key;
-  }
-
-  // 修改優先順序：Gemini -> OpenAI (Gemini 優先)
-  var gKey = props.getProperty('GEMINI_API_KEY') || userProps.getProperty('GEMINI_API_KEY');
-  if (gKey) return gKey;
-
+  if (keyName) return props.getProperty(keyName) || userProps.getProperty(keyName);
   var oKey = props.getProperty('OPENAI_API_KEY') || userProps.getProperty('OPENAI_API_KEY');
   if (oKey) return oKey;
-
-  // 都沒有，提示輸入 (優先引導 Gemini)
+  var gKey = props.getProperty('GEMINI_API_KEY') || userProps.getProperty('GEMINI_API_KEY');
+  if (gKey) return gKey;
   var ui = SpreadsheetApp.getUi();
-  var response = ui.prompt('API Key 設定', '請輸入 Google Gemini API Key (推薦) 或 OpenAI API Key：', ui.ButtonSet.OK_CANCEL);
+  var response = ui.prompt('API Key', '請輸入 OpenAI API Key (優先) 或 Gemini Key:', ui.ButtonSet.OK_CANCEL);
   if (response.getSelectedButton() == ui.Button.OK) {
-    var inputKey = response.getResponseText().trim();
-    if (inputKey.startsWith('sk-')) { // OpenAI 格式特徵
-       userProps.setProperty('OPENAI_API_KEY', inputKey);
-       return inputKey;
-    } else {
-       userProps.setProperty('GEMINI_API_KEY', inputKey); // 假設其他都是 Gemini
-       return inputKey;
-    }
+    var k = response.getResponseText().trim();
+    if (k.startsWith('sk-')) userProps.setProperty('OPENAI_API_KEY', k);
+    else userProps.setProperty('GEMINI_API_KEY', k);
+    return k;
   }
   return null;
 }
 
-// [補回遺失的工具函數]
-function highlightRange_(sh, row, col, numRows, numCols, color) {
-  try {
-    sh.getRange(row, col, numRows, numCols).setBackground(color);
-  } catch (e) {
-    // 忽略錯誤 (例如範圍無效)
-  }
+function highlightRange_(sh, r, c, nr, nc, color) {
+  try { sh.getRange(r, c, nr, nc).setBackground(color); } catch(e){}
 }
 
 function getColIndexByHeader_(headers, name) {
-  var n = String(name || '').toLowerCase().trim();
-  for (var i = 0; i < headers.length; i++) {
-    var h = String(headers[i] || '').toLowerCase().trim();
-    if (h === n) {
-      return i;
-    }
-  }
+  name = String(name||'').toLowerCase().trim();
+  for(var i=0; i<headers.length; i++) if(String(headers[i]).toLowerCase().trim()===name) return i;
   return -1;
 }
+
 
 /* ===================== 質檢核心工具 (增強版) ===================== */
 
