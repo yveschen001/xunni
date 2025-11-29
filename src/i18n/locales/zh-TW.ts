@@ -42,7 +42,8 @@ export const translations: Translations = {
     "watchAdClickButton": "👇 點擊下方按鈕開始觀看",
     "watchAdRemaining": "📊 今日剩餘：**${remaining}/20** 次",
     "watchAdReward": "🎁 完成觀看可獲得 **+1 個額度**",
-    "watchAdTitle": "📺 **觀看廣告獲得額度**"
+    "watchAdTitle": "📺 **觀看廣告獲得額度**",
+    "watchAdButton": "📺 觀看廣告解鎖 (+1 次)"
   },
   "admin": {
     "ad": "使用 /official_ads 查看所有廣告",

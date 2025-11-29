@@ -1162,6 +1162,13 @@ export async function routeUpdate(update: TelegramUpdate, env: Env): Promise<voi
       // Ignore if already answered
     }
 
+    // Ad Reward callbacks
+    if (data.startsWith('watch_ad')) {
+      const { handleAdRewardCallback } = await import('./telegram/handlers/ad_reward');
+      await handleAdRewardCallback(callbackQuery, env);
+      return;
+    }
+
     // Route callback queries
     // Nickname selection
     if (data === 'nickname_use_telegram') {
@@ -2036,6 +2043,13 @@ export async function routeUpdate(update: TelegramUpdate, env: Env): Promise<voi
         callbackQuery.message!.chat.id,
         i18n.t('vip.reminderCancelled') + '\n\n' + i18n.t('vip.viewVipCommand')
       );
+      return;
+    }
+
+    // Ad Reward Callbacks
+    if (data === 'watch_ad' || data.startsWith('watch_ad:')) {
+      const { handleWatchAd } = await import('./telegram/handlers/ad_reward');
+      await handleWatchAd(callbackQuery, env);
       return;
     }
 
