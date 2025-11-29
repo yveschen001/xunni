@@ -46,11 +46,11 @@ export async function checkExternalServices(env: Env): Promise<void> {
   // 4. Check MoonPacket API (if configured)
   if (env.MOONPACKET_API_KEY) {
     try {
-       // Just check if variable is set, maybe a simple ping if API supports it.
-       // Assuming ok if key exists for now, or skip if no known endpoint.
-       status['MoonPacket'] = 'skipped'; 
+      // Just check if variable is set, maybe a simple ping if API supports it.
+      // Assuming ok if key exists for now, or skip if no known endpoint.
+      status['MoonPacket'] = 'skipped'; 
     } catch (e) {
-       // ...
+      // ...
     }
   }
 
@@ -59,8 +59,8 @@ export async function checkExternalServices(env: Env): Promise<void> {
     console.error('[Monitoring] Health check failed:', status);
     // Use logError for throttling
     await adminLog.logError(new Error('External Service Health Check Failed'), {
-        errors,
-        status
+      errors,
+      status
     });
   } else {
     // console.log('[Monitoring] Health check passed');

@@ -198,9 +198,9 @@ export async function handleMessageForward(
         
         // Show upgrade button
         await telegram.sendMessageWithButtons(
-           chatId, 
-           i18n.t('messageForward.upgradeToUnlock'),
-           [[{ text: i18n.t('buttons.vip'), callback_data: 'menu_vip' }]]
+          chatId, 
+          i18n.t('messageForward.upgradeToUnlock'),
+          [[{ text: i18n.t('buttons.vip'), callback_data: 'menu_vip' }]]
         );
         return true;
       }

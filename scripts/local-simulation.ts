@@ -262,6 +262,9 @@ const runUserTests = async () => {
 
     // Test 1.6: Fortune Telling (/fortune)
     console.log('\n🧪 Test 1.6: Fortune Telling Flow');
+    // Ensure user is in a clean state (Completed Onboarding, No Fortune Profile yet)
+    await seedUser({ onboarding_step: 'completed' }); 
+    
     clearRequests();
     await sendUpdate('/fortune');
     // For new user, it should start Wizard: "請輸入您的名字"

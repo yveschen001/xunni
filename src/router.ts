@@ -1197,8 +1197,8 @@ export async function routeUpdate(update: TelegramUpdate, env: Env): Promise<voi
         return;
       }
       if (data ===('geo:back:region') || data === ('geo:back:country')) {
-         await startGeoFlow(chatId, callbackQuery.from.id.toString(), env);
-         return;
+        await startGeoFlow(chatId, callbackQuery.from.id.toString(), env);
+        return;
       }
     }
 

@@ -8,6 +8,7 @@ export interface AdSession {
   provider_name: string;
   token: string;
   status: AdSessionStatus;
+  source?: string | null;
   started_at?: string | null;
   completed_at?: string | null;
   duration_ms?: number | null;
@@ -23,7 +24,8 @@ export async function createAdSession(
   db: D1Database,
   telegramId: string,
   providerName: string,
-  token: string
+  token: string,
+  source?: string
 ): Promise<void> {
   await db
     .prepare(
@@ -31,10 +33,11 @@ export async function createAdSession(
         telegram_id,
         provider_name,
         token,
-        status
-      ) VALUES (?, ?, ?, 'pending')`
+        status,
+        source
+      ) VALUES (?, ?, ?, 'pending', ?)`
     )
-    .bind(telegramId, providerName, token)
+    .bind(telegramId, providerName, token, source || null)
     .run();
 }
 

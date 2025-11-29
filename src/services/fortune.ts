@@ -167,7 +167,7 @@ export class FortuneService {
     const now = new Date();
     const lastReset = quota.last_reset_at ? new Date(quota.last_reset_at) : new Date(0);
     let shouldReset = false;
-    let targetAmount = isVip ? 1 : 1; // VIP 1/day, Free 1/week
+    const targetAmount = isVip ? 1 : 1; // VIP 1/day, Free 1/week
 
     if (isVip) {
       // Daily reset (UTC)

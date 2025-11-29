@@ -2542,7 +2542,8 @@ export const translations: Translations = {
     "vip4": "🎁 **額度與 VIP**\n",
     "vip5": "/vip - VIP 訂閱\n",
     "vip6": "💎 **VIP 權益**\n",
-    "dailyReportTitle": "獲取每日運營報告"
+    "dailyReportTitle": "獲取每日運營報告",
+    "fortune": "\n/fortune - 🔮 每日運勢與深度命理分析"
   },
   "history": {
     "chatHistory": "💬 **你的聊天記錄**\n\n",
@@ -4191,8 +4192,7 @@ export const translations: Translations = {
     "messageReminderA": "👋 Hey {masked_partner_name} 還在等你回覆喔！別讓對話冷掉了～",
     "messageReminderB": "📩 你有一則來自 {masked_partner_name} 的未讀訊息：\n> \"{last_message_preview}...\"\n(已經過了 24 小時囉！)",
     "messageReminderC": "⏳ {masked_partner_name} 正在等待你的回覆..."
-  }
-,
+  },
   "geo": {
     "select_continent": "請選擇您所在的地區 🌍",
     "select_country": "請選擇國家",

@@ -85,6 +85,13 @@ export interface DailyReport {
     conversations_started: number;
     avg_conversation_rounds: number;
   };
+  fortune_metrics: {
+    new_profiles: number;
+    total_profiles: number;
+    daily_readings: number;
+    deep_readings: number;
+    ad_rewards: number;
+  };
 }
 
 export interface AdPerformanceReport {
@@ -143,6 +150,26 @@ export async function generateDailyReport(db: D1Database, date: string): Promise
     getUserFunnelStats(db, yesterday),
     getSocialDepthStats(db, date)
   ]);
+
+  // Fortune Metrics
+  const fortuneStats = await db.batch([
+    // New Profiles Today
+    db.prepare("SELECT COUNT(*) as c FROM fortune_profiles WHERE created_at LIKE ?").bind(`${date}%`),
+    // Total Profiles
+    db.prepare("SELECT COUNT(*) as c FROM fortune_profiles"),
+    // Daily Readings Today
+    db.prepare("SELECT COUNT(*) as c FROM fortune_history WHERE created_at LIKE ? AND type = 'daily'").bind(`${date}%`),
+    // Deep Readings Today
+    db.prepare("SELECT COUNT(*) as c FROM fortune_history WHERE created_at LIKE ? AND type = 'deep'").bind(`${date}%`),
+    // Ad Rewards for Fortune
+    db.prepare("SELECT COUNT(*) as c FROM analytics_events WHERE event_type = 'ad_complete' AND event_date = ? AND event_data LIKE '%fortune%'").bind(date)
+  ]);
+
+  const newProfiles = (fortuneStats[0].results?.[0] as any)?.c || 0;
+  const totalProfiles = (fortuneStats[1].results?.[0] as any)?.c || 0;
+  const dailyReadings = (fortuneStats[2].results?.[0] as any)?.c || 0;
+  const deepReadings = (fortuneStats[3].results?.[0] as any)?.c || 0;
+  const adRewards = (fortuneStats[4].results?.[0] as any)?.c || 0;
 
   // Build report
   const report: DailyReport = {
@@ -212,6 +239,13 @@ export async function generateDailyReport(db: D1Database, date: string): Promise
       conversations_started: dailyStats.newConversations,
       avg_conversation_rounds: socialDepth.avgRounds,
     },
+    fortune_metrics: {
+      new_profiles: newProfiles,
+      total_profiles: totalProfiles,
+      daily_readings: dailyReadings,
+      deep_readings: deepReadings,
+      ad_rewards: adRewards,
+    },
   };
 
   return report;
@@ -279,7 +313,14 @@ export async function formatDailyReport(report: DailyReport, i18n?: any): Promis
   message += `├─ 今日丟瓶數：${report.content_metrics.bottles_thrown}\n`;
   message += `├─ 今日撿瓶數：${report.content_metrics.bottles_caught}\n`;
   message += `├─ 活躍對話數：${report.user_metrics.dau}\n`; // Approximation
-  message += `└─ DAU：${report.user_metrics.dau}\n`;
+  message += `└─ DAU：${report.user_metrics.dau}\n\n`;
+
+  // 5. Fortune
+  message += `🔮 **命理數據**\n`;
+  message += `├─ 新增檔案：${report.fortune_metrics.new_profiles} (總: ${report.fortune_metrics.total_profiles})\n`;
+  message += `├─ 每日運勢：${report.fortune_metrics.daily_readings}\n`;
+  message += `├─ 深度分析：${report.fortune_metrics.deep_readings}\n`;
+  message += `└─ 廣告換額度：${report.fortune_metrics.ad_rewards}\n`;
 
   return message;
 }

@@ -124,7 +124,8 @@ export async function trackAdCompletion(
   env: Env,
   userId: string,
   providerName: string,
-  totalAdsWatched: number
+  totalAdsWatched: number,
+  source?: string
 ): Promise<void> {
   if (!env.ENABLE_ANALYTICS) return;
 
@@ -140,6 +141,7 @@ export async function trackAdCompletion(
       event_data: {
         quota_earned: 1,
         total_ads_watched: totalAdsWatched,
+        source: source || 'unknown',
       },
     });
 

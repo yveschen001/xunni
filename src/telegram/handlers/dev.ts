@@ -115,6 +115,11 @@ export async function handleDevReset(message: TelegramMessage, env: Env): Promis
       { sql: 'DELETE FROM user_sessions WHERE telegram_id = ?', params: [telegramId] },
       { sql: 'DELETE FROM bottle_drafts WHERE telegram_id = ?', params: [telegramId] },
 
+      // Fortune Telling
+      { sql: 'DELETE FROM fortune_history WHERE user_id = ?', params: [telegramId] },
+      { sql: 'DELETE FROM fortune_quota WHERE telegram_id = ?', params: [telegramId] },
+      { sql: 'DELETE FROM fortune_profiles WHERE telegram_id = ?', params: [telegramId] },
+
       // Ad rewards and analytics
       { sql: 'DELETE FROM ad_rewards WHERE telegram_id = ?', params: [telegramId] },
       { sql: 'DELETE FROM ad_provider_logs WHERE telegram_id = ?', params: [telegramId] },
@@ -383,6 +388,11 @@ export async function handleDevRestart(message: TelegramMessage, env: Env): Prom
       { sql: 'DELETE FROM payments WHERE telegram_id = ?', params: [telegramId] },
       { sql: 'DELETE FROM user_sessions WHERE telegram_id = ?', params: [telegramId] },
       { sql: 'DELETE FROM bottle_drafts WHERE telegram_id = ?', params: [telegramId] },
+
+      // Fortune Telling
+      { sql: 'DELETE FROM fortune_history WHERE user_id = ?', params: [telegramId] },
+      { sql: 'DELETE FROM fortune_quota WHERE telegram_id = ?', params: [telegramId] },
+      { sql: 'DELETE FROM fortune_profiles WHERE telegram_id = ?', params: [telegramId] },
 
       // Ad rewards and analytics
       { sql: 'DELETE FROM ad_rewards WHERE telegram_id = ?', params: [telegramId] },

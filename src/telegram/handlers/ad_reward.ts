@@ -88,6 +88,11 @@ export async function handleWatchAd(callbackQuery: CallbackQuery, env: Env): Pro
     const { createI18n } = await import('~/i18n');
     const i18n = createI18n(user.language_pref || 'zh-TW');
 
+    // Parse source from callback data (e.g. watch_ad:fortune)
+    const source = callbackQuery.data && callbackQuery.data.includes(':') 
+      ? callbackQuery.data.split(':')[1] 
+      : 'menu';
+
     // Check if VIP
     if (user.is_vip) {
       await telegram.answerCallbackQuery(callbackQuery.id, {
@@ -146,7 +151,7 @@ export async function handleWatchAd(callbackQuery: CallbackQuery, env: Env): Pro
     const token = generateAdToken(telegramId);
 
     // Create ad session (pending)
-    await createAdSession(db.d1, telegramId, selection.provider.provider_name, token);
+    await createAdSession(db.d1, telegramId, selection.provider.provider_name, token, source);
 
     // Build ad page URL
     const adPageUrl = `${env.PUBLIC_URL}/ad.html?provider=${selection.provider.provider_name}&token=${token}&user=${telegramId}`;
@@ -383,7 +388,7 @@ export async function handleAdComplete(
     });
 
     // Track analytics
-    await trackAdCompletion(env, telegramId, providerName, updated.ads_watched);
+    await trackAdCompletion(env, telegramId, providerName, updated.ads_watched, session.source || undefined);
 
     // Send notification to user
     const notificationMessage =

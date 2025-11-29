@@ -41,6 +41,7 @@ export async function handleHelp(message: TelegramMessage, env: Env): Promise<vo
       i18n.t('help.vip4') +
       i18n.t('help.text16') +
       i18n.t('help.bottle2') +
+      i18n.t('help.fortune') + // Add Fortune
       i18n.t('help.invite2') +
       i18n.t('help.vip5') +
       i18n.t('help.ad3') +
