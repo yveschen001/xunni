@@ -381,6 +381,16 @@ export async function handleSuccessfulPayment(
   try {
     // Parse payload
     const payload = JSON.parse(payment.invoice_payload);
+
+    // Get user first to get language preference
+    const user = await findUserByTelegramId(db, telegramId);
+    if (!user) {
+      const errorI18n = createI18n('zh-TW');
+      await telegram.sendMessage(chatId, errorI18n.t('errors.userNotFound4'));
+      return;
+    }
+
+    const i18n = createI18n(user.language_pref || 'zh-TW');
     
     // Handle Fortune Pack
     if (payload.type === 'fortune_pack') {
@@ -412,16 +422,6 @@ export async function handleSuccessfulPayment(
       isSubscription: payload.is_subscription,
       telegramId,
     });
-
-    // Get user
-    const user = await findUserByTelegramId(db, telegramId);
-    if (!user) {
-      const errorI18n = createI18n('zh-TW');
-      await telegram.sendMessage(chatId, errorI18n.t('errors.userNotFound4'));
-      return;
-    }
-
-    const i18n = createI18n(user.language_pref || 'zh-TW');
 
     // Calculate VIP expiration
     const now = new Date();
