@@ -16,6 +16,7 @@ import {
   showAllLanguages,
   handleLanguageSelection,
 } from './telegram/handlers/language_selection';
+import { handleFortune, handleFortuneCallback, handleFortuneInput } from './telegram/handlers/fortune';
 import { createTelegramService } from './services/telegram';
 import { createDatabaseClient } from './db/client';
 import { findUserByTelegramId, createUser } from './db/queries/users';
@@ -433,6 +434,12 @@ export async function routeUpdate(update: TelegramUpdate, env: Env): Promise<voi
       const { handleAdminTaskInput } = await import('./telegram/handlers/admin_tasks');
       const isAdminTaskInput = await handleAdminTaskInput(message, env);
       if (isAdminTaskInput) {
+        return;
+      }
+
+      // Try fortune wizard input
+      const isFortuneInput = await handleFortuneInput(message, env);
+      if (isFortuneInput) {
         return;
       }
     }
@@ -905,6 +912,11 @@ export async function routeUpdate(update: TelegramUpdate, env: Env): Promise<voi
       return;
     }
 
+    if (text === '/fortune') {
+      await handleFortune(message, env);
+      return;
+    }
+
     if (text === '/rules') {
       const { handleRules } = await import('./telegram/handlers/help');
       await handleRules(message, env);
@@ -1162,6 +1174,32 @@ export async function routeUpdate(update: TelegramUpdate, env: Env): Promise<voi
       const { handleNicknameCustom } = await import('./telegram/handlers/nickname_callback');
       await handleNicknameCustom(callbackQuery, env);
       return;
+    }
+
+    // Geo Onboarding
+    if (data.startsWith('geo:')) {
+      const { handleContinentSelection, handleCountrySelection, handleCitySelection, startGeoFlow } = 
+        await import('./telegram/handlers/onboarding_geo');
+        
+      if (data.startsWith('geo:continent:')) {
+        const continentId = data.replace('geo:continent:', '');
+        await handleContinentSelection(callbackQuery, continentId, env);
+        return;
+      }
+      if (data.startsWith('geo:country:')) {
+        const countryCode = data.replace('geo:country:', '');
+        await handleCountrySelection(callbackQuery, countryCode, env);
+        return;
+      }
+      if (data.startsWith('geo:city:')) {
+        const cityId = data.replace('geo:city:', '');
+        await handleCitySelection(callbackQuery, cityId, env);
+        return;
+      }
+      if (data ===('geo:back:region') || data === ('geo:back:country')) {
+         await startGeoFlow(chatId, callbackQuery.from.id.toString(), env);
+         return;
+      }
     }
 
     // Language selection
@@ -1654,6 +1692,12 @@ export async function routeUpdate(update: TelegramUpdate, env: Env): Promise<voi
     if (data === 'draft_edit') {
       const { handleDraftEdit } = await import('./telegram/handlers/draft');
       await handleDraftEdit(callbackQuery, env);
+      return;
+    }
+
+    // Fortune Telling Callbacks
+    if (data.startsWith('fortune_')) {
+      await handleFortuneCallback(callbackQuery, env);
       return;
     }
 

@@ -2,6 +2,7 @@ import { D1Database } from '@cloudflare/workers-types';
 import { Env, FortuneHistory, FortuneProfile, FortuneQuota, FortuneType, User } from '../types';
 import { Solar, Lunar, EightChar } from 'lunar-javascript';
 import { Body, Equator, Observer, SearchBody } from 'astronomy-engine';
+import { FORTUNE_PROMPTS } from '../prompts/fortune';
 
 export class FortuneService {
   private db: D1Database;
@@ -40,7 +41,7 @@ export class FortuneService {
     const chineseChart = {
       lunar_date: lunar.toString(),
       eight_char: eightChar.toString(), // e.g. "甲子 乙丑 丙寅 丁卯"
-      day_master: eightChar.getDayGan().getName(), // 日主 (Core self)
+      day_master: eightChar.getDayGan().toString(), // 日主 (Core self)
       wuxing: lunar.getBaZiWuXing(), // 五行
       animals: {
         year: lunar.getYearShengXiao(),
@@ -66,7 +67,7 @@ export class FortuneService {
     const westernChart = {
       sun_sign: this.getSunSign(month, day), // Simple zodiac
       // TODO: Calculate Moon sign using astronomy-engine (requires robust timezone handling)
-      moon_phase: lunar.getPhase(), // Lunar lib provides phase too
+      moon_phase: 'Unknown', // lunar.getPhase() not available in this version
     };
 
     return {
@@ -78,10 +79,10 @@ export class FortuneService {
   
   private getSunSign(month: number, day: number): string {
     const signs = [
-      'Capricorn', 'Aquarius', 'Pisces', 'Aries', 'Taurus', 'Gemini',
-      'Cancer', 'Leo', 'Virgo', 'Libra', 'Scorpio', 'Sagittarius'
+      'Aquarius', 'Pisces', 'Aries', 'Taurus', 'Gemini', 'Cancer', 
+      'Leo', 'Virgo', 'Libra', 'Scorpio', 'Sagittarius', 'Capricorn'
     ];
-    const cutoff = [20, 19, 20, 20, 21, 21, 22, 22, 22, 23, 22, 21];
+    const cutoff = [20, 19, 21, 20, 21, 21, 23, 23, 23, 23, 22, 22];
     let index = month - 1;
     if (day < cutoff[index]) {
       index = index - 1;
@@ -277,27 +278,45 @@ export class FortuneService {
     const cached = await this.db.prepare(query).bind(...params).first<FortuneHistory>();
     if (cached) return cached;
 
-    // 2. Calculate Chart
+    // 2. Check Quota (if not cached)
+    const isVip = !!(user.is_vip && user.vip_expire_at && new Date(user.vip_expire_at) > new Date());
+    // For match/deep types, maybe we require more quota? 
+    // For now, let's assume 1 token per request regardless of type, or maybe deep needs VIP?
+    // Implementation: Deduct 1 quota.
+    const hasQuota = await this.deductQuota(user.telegram_id, isVip);
+    if (!hasQuota) {
+      throw new Error('QUOTA_EXCEEDED');
+    }
+
+    // 3. Calculate Chart
     const chart = await this.calculateChart(profile.birth_date, profile.birth_time, profile.birth_location_lat, profile.birth_location_lng);
     
-    // 3. Build Prompt
-    // TODO: Import from src/prompts/fortune.ts
-    // For now, simple construction
-    let prompt = `Role: Professional Fortune Teller. Language: ${user.language_pref || 'zh-TW'}.\n`;
-    prompt += `User Data: Gender=${profile.gender}, Birth=${profile.birth_date} ${profile.birth_time || 'Unknown'}.\n`;
-    prompt += `Chart Data: ${JSON.stringify(chart)}\n`;
-    prompt += `Target Date: ${targetDate}\n`;
-    
-    if (type === 'daily') {
-      prompt += `Task: Generate a short daily horoscope (max 150 words). Include lucky color/number. Structure: [Emoji] Summary, [Emoji] Advice.`;
+    // 4. Build Prompt
+    let systemPrompt = FORTUNE_PROMPTS.SYSTEM_ROLE;
+    // Add User Language constraint to system prompt just in case
+    systemPrompt += `\nLanguage: ${user.language_pref || 'zh-TW'}`;
+
+    let userPrompt = `User Data: Gender=${profile.gender}, Birth=${profile.birth_date} ${profile.birth_time || 'Unknown'}.\n`;
+    userPrompt += `Chart Data: ${JSON.stringify(chart)}\n`;
+    userPrompt += `Target Date: ${targetDate}\n`;
+
+    if (type === 'match' && targetProfile) {
+      const targetChart = await this.calculateChart(targetProfile.birth_date, targetProfile.birth_time, targetProfile.birth_location_lat, targetProfile.birth_location_lng);
+      userPrompt += `Target Person: Name=${targetProfile.name}, Gender=${targetProfile.gender}, Birth=${targetProfile.birth_date}.\n`;
+      userPrompt += `Target Chart: ${JSON.stringify(targetChart)}\n`;
+      userPrompt += FORTUNE_PROMPTS.MATCH;
+    } else if (type === 'daily') {
+      userPrompt += FORTUNE_PROMPTS.DAILY;
     } else if (type === 'deep') {
-      prompt += `Task: Generate a deep analysis for this date/year. Cover Career, Love, Wealth. Max 800 words.`;
+      userPrompt += FORTUNE_PROMPTS.DEEP;
     }
+
+    const fullPrompt = `${systemPrompt}\n\n${userPrompt}`;
     
-    // 4. Call AI
-    const content = await this.callGemini(prompt);
+    // 5. Call AI
+    const content = await this.callGemini(fullPrompt);
     
-    // 5. Save History
+    // 6. Save History
     const insertQuery = `
       INSERT INTO fortune_history (
         telegram_id, type, target_date, target_person_name, target_person_birth, 
