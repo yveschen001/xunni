@@ -44,6 +44,34 @@ export async function handleStats(message: TelegramMessage, env: Env): Promise<v
       new Date(user.vip_expire_at) > new Date()
     );
 
+    // 🆕 Get Fortune Stats
+    const { FortuneService } = await import('~/services/fortune');
+    const fortuneService = new FortuneService(env, db.d1);
+    // Refresh quota to ensure accuracy
+    const fortuneQuota = await fortuneService.refreshQuota(telegramId, isVip);
+    
+    // Count total readings
+    const fortuneReadings = await db.d1.prepare('SELECT COUNT(*) as count FROM fortune_history WHERE telegram_id = ?').bind(telegramId).first<{count: number}>();
+    const totalReadings = fortuneReadings?.count || 0;
+    
+    const fortuneTotal = fortuneQuota.weekly_free_quota + fortuneQuota.additional_quota;
+    const fortuneWeeklyLimit = isVip ? 7 : 1;
+    // Format: 10 (本週免費: 0/1 | 額外: 10) - matching Profile style roughly
+    const fortuneQuotaText = `${fortuneTotal} (${i18n.t('fortune.quotaDisplay').split(': ')[1].replace('{total}', '').replace('{weekly}', String(fortuneQuota.weekly_free_quota)).replace('{limit}', String(fortuneWeeklyLimit)).replace('{additional}', String(fortuneQuota.additional_quota)).trim()})`;
+    // Actually, let's just use the same format logic or simple text.
+    // i18n key 'profile.fortuneQuota' is "🔮 {fortuneBottle}: {total} (本週免費: {weekly}/{limit} | 額外: {additional})"
+    // We want just the value part for stats? Or full line?
+    // Stats usually has "• Label: Value".
+    // I added 'stats.fortuneQuota' = '• 剩餘額度 : {quota}'
+    // So 'quota' should be "10 (Free: 0/1 | Extra: 10)"
+    
+    const fortuneQuotaValue = `${fortuneTotal} (${i18n.t('common.weeklyFree') || '本週免費'}: ${fortuneQuota.weekly_free_quota}/${fortuneWeeklyLimit} | ${i18n.t('common.additional') || '額外'}: ${fortuneQuota.additional_quota})`;
+    
+    const fortuneStatsText = 
+      i18n.t('stats.fortuneTitle', { fortuneBottle: i18n.t('common.fortuneBottle') }) +
+      i18n.t('stats.fortuneReadings', { count: totalReadings }) +
+      i18n.t('stats.fortuneQuota', { quota: fortuneQuotaValue }) + '\n';
+
     // 🆕 Get VIP triple bottle stats if user is VIP
     let vipStatsText = '';
     if (isVip) {
@@ -83,6 +111,7 @@ export async function handleStats(message: TelegramMessage, env: Env): Promise<v
       i18n.t('stats.bottlesCaught', { count: stats.bottlesCaught }) +
       '\n' +
       i18n.t('stats.todayQuota', { display: stats.todayQuota.display }) +
+      fortuneStatsText +
       '\n' +
       i18n.t('stats.conversations') +
       i18n.t('stats.conversationsTotal', { count: stats.totalConversations }) +

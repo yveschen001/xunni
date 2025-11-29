@@ -1729,7 +1729,10 @@ export const translations: Translations = {
     "vip9": "• VIP 用戶可以看到清晰的對方頭像\n",
     "yes": "是",
     "zodiac": "無效的星座：${trimmedValue}（必須是以下之一：${VALID_ZODIACS.join(', ')}）",
-    "no_reselect": "否，手動選擇"
+    "no_reselect": "否，手動選擇",
+    "fortuneBottle": "算命瓶",
+    "weeklyFree": "本週免費",
+    "additional": "額外"
   },
   "conversation": {
     "age": "🎂 年齡範圍：${ageRange}歲\n",
@@ -3157,7 +3160,8 @@ export const translations: Translations = {
     "vip": "VIP 會員（到期：${expireDate}）",
     "vip2": "• 使用 /vip 升級 VIP 會員\n",
     "vipUpgrade": "• 使用 /vip 升級 VIP 會員\n",
-    "zodiac": "⭐ 星座：${zodiac}\n"
+    "zodiac": "⭐ 星座：${zodiac}\n",
+    "fortuneQuota": "🔮 {fortuneBottle}: {total} (本週免費: {weekly}/{limit} | 額外: {additional})"
   },
   "refreshAvatar": {
     "failed": "❌ 刷新頭像失敗\n\n請稍後再試，或聯繫管理員。",
@@ -3363,7 +3367,10 @@ export const translations: Translations = {
     "vipTotalSlots": "• 總配對槽位：{count}",
     "vipTriple": "💎 **VIP 三倍瓶子統計**（近 ${days} 天）",
     "vipTripleTitle": "💎 **VIP 三倍瓶子統計**（近 {days} 天）",
-    "zodiac": "🔮 **星座**：${zodiac}\n"
+    "zodiac": "🔮 **星座**：${zodiac}\n",
+    "fortuneTitle": "\n🔮 **{fortuneBottle}**\n",
+    "fortuneReadings": "• 算命次數 : {count}\n",
+    "fortuneQuota": "• 剩餘額度 : {quota}"
   },
   "status": {
     "cancelled": "已取消",

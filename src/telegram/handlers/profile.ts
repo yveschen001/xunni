@@ -96,6 +96,22 @@ export async function handleProfile(message: TelegramMessage, env: Env): Promise
     const taskBonus = await calculateTaskBonus(db, telegramId);
     // const totalQuota = permanentQuota + taskBonus;
 
+    // Get Fortune Quota
+    const { FortuneService } = await import('~/services/fortune');
+    const fortuneService = new FortuneService(env, db.d1);
+    const fortuneQuota = await fortuneService.refreshQuota(telegramId, !!user.is_vip);
+    
+    const fortuneTotal = fortuneQuota.weekly_free_quota + fortuneQuota.additional_quota;
+    const fortuneWeeklyLimit = user.is_vip ? 7 : 1; // Logic synced with service
+    
+    const fortuneQuotaDisplay = i18n.t('profile.fortuneQuota', {
+      fortuneBottle: i18n.t('common.fortuneBottle'),
+      total: fortuneTotal,
+      weekly: fortuneQuota.weekly_free_quota,
+      limit: fortuneWeeklyLimit,
+      additional: fortuneQuota.additional_quota
+    });
+
     const quotaDisplay =
       taskBonus > 0 ? `${permanentQuota}+${taskBonus}` : permanentQuota.toString();
     const profileMessage =
@@ -116,6 +132,7 @@ export async function handleProfile(message: TelegramMessage, env: Env): Promise
       i18n.t('profile.invite', { inviteStats: { pending: inviteStats.pending } }) +
       i18n.t('profile.message5', { inviteStats: { conversionRate: inviteStats.conversionRate } }) +
       i18n.t('profile.quotaTotal', { quota: quotaDisplay }) +
+      fortuneQuotaDisplay + '\n' + // Add Fortune Quota here
       i18n.t('profile.success') +
       i18n.t('profile.quota') +
       (!user.is_vip && successfulInvites >= inviteLimit
