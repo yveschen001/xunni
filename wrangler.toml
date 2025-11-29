@@ -113,12 +113,11 @@ SMART_MATCHING_THRESHOLD = "70"  # Minimum score for smart recommendation
 # MoonPacket API Key should be set via secrets for production
 
 # Production D1 Database
-# Run: wrangler d1 create xunni-db-production
-# Then uncomment and fill in the database_id
-# [[env.production.d1_databases]]
-# binding = "DB"
-# database_name = "xunni-db-production"
-# database_id = "<PRODUCTION_D1_DATABASE_ID>"
+[[env.production.d1_databases]]
+binding = "DB"
+database_name = "xunni-db-production"
+database_id = "8d7fc73c-0eaf-4125-8047-9ef35de6b3c2"
+migrations_dir = "src/db/migrations"
 
 # Production KV Namespace for caching (free tier)
 [[env.production.kv_namespaces]]
