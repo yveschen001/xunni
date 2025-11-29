@@ -49,15 +49,6 @@ export async function handleFortune(message: TelegramMessage, env: Env): Promise
     }
   }
 }
-    const telegram = createTelegramService(env);
-    // Try to send error message to user
-    try {
-      await telegram.sendMessage(message.chat.id, 'System error in Fortune service. Please try again later.');
-    } catch (e) {
-      // Ignore
-    }
-  }
-}
 
 // ============================================================================
 // Menu & UI
