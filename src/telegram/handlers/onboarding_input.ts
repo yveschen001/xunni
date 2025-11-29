@@ -52,6 +52,11 @@ export async function handleOnboardingInput(message: TelegramMessage, env: Env):
     switch (step) {
       case 'nickname':
         return await handleNicknameInput(user, text, chatId, telegram, db);
+      
+      case 'city_search':
+        const { handleCitySearchInput } = await import('./onboarding_geo');
+        await handleCitySearchInput(message, env);
+        return true;
 
       case 'birthday':
         return await handleBirthdayInput(user, text, chatId, telegram, db);

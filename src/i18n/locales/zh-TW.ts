@@ -3846,6 +3846,7 @@ export const translations: Translations = {
     "whatIsXunNiDesc": "匿名漂流瓶交友平台，透過 MBTI 和星座幫你找到志同道合的朋友"
   },
   "vip": {
+    "retentionNotice": "⚠️ **重要提示**：VIP 會員對話記錄將保存 3 年。若停止續費，您的對話記錄將在會員過期後 **30 天** 被刪除。請注意備份重要資訊。",
     "admin": "⏳ 你已有待處理的退款請求，請耐心等待管理員審核。",
     "bottle": "📝 瓶子內容：${bottle.content.substring(0, 50)}${bottle.content.length > 50 ? '...' : ''}\n\n",
     "bottle2": "📝 瓶子內容：${bottle.content.substring(0, 50)}${bottle.content.length > 50 ?",
@@ -4190,5 +4191,23 @@ export const translations: Translations = {
     "messageReminderA": "👋 Hey {masked_partner_name} 還在等你回覆喔！別讓對話冷掉了～",
     "messageReminderB": "📩 你有一則來自 {masked_partner_name} 的未讀訊息：\n> \"{last_message_preview}...\"\n(已經過了 24 小時囉！)",
     "messageReminderC": "⏳ {masked_partner_name} 正在等待你的回覆..."
+  }
+,
+  "geo": {
+    "select_continent": "請選擇您所在的地區 🌍",
+    "select_country": "請選擇國家",
+    "search_city_prompt": "請輸入城市名稱（例如：Taipei）",
+    "city_not_found": "找不到該城市，請嘗試英文名稱。",
+    "confirm_city": "您選擇的是：{city} ({country}) 嗎？",
+    "continent": {
+      "asia": "亞洲",
+      "europe": "歐洲",
+      "north_america": "北美洲",
+      "south_america": "南美洲",
+      "africa": "非洲",
+      "oceania": "大洋洲"
+    },
+    "btn_search_manually": "🔍 手動搜尋城市",
+    "confirm_button": "✅ 確認"
   }
 };

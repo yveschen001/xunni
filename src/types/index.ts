@@ -56,6 +56,10 @@ export type Role = 'user' | 'group_admin' | 'angel' | 'god';
 export type TrustLevel = 'new' | 'basic' | 'trusted' | 'verified';
 export type OnboardingStep =
   | 'language_selection'
+  | 'region_selection' // New Geo Flow
+  | 'country_selection'
+  | 'city_search'
+  | 'city_confirm'
   | 'start'
   | 'nickname'
   | 'avatar'
@@ -93,6 +97,9 @@ export interface User {
   region?: string;
   match_preference?: 'male' | 'female' | 'any'; // Preferred match gender
   country_code?: string; // ISO 3166-1 alpha-2 country code for flag display
+  lat?: number;
+  lng?: number;
+  timezone?: string;
 
   // MBTI & Tests
   mbti_result?: string;

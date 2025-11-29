@@ -108,10 +108,10 @@ export async function handleLanguageSelection(
       language_pref: languageCode,
     });
 
-    // Update onboarding step to nickname for new users
+    // Update onboarding step to region_selection for new users (Step 2: Region)
     if (isNewUser) {
       const { updateOnboardingStep } = await import('~/db/queries/users');
-      await updateOnboardingStep(db, telegramId, 'nickname');
+      await updateOnboardingStep(db, telegramId, 'region_selection');
     }
 
     // Answer callback query (use newly selected language)
@@ -125,14 +125,9 @@ export async function handleLanguageSelection(
     await telegram.deleteMessage(chatId, callbackQuery.message!.message_id);
 
     if (isNewUser) {
-      // New user - start onboarding immediately
-      await startOnboarding(
-        chatId,
-        telegram,
-        languageCode,
-        callbackQuery.from.username,
-        callbackQuery.from.first_name
-      );
+      // New user - start Geo Flow (Region Selection)
+      const { startGeoFlow } = await import('./onboarding_geo');
+      await startGeoFlow(chatId, telegramId, env);
     } else {
       // Existing user - just confirm language change
       // Use the newly selected language for confirmation message
@@ -169,9 +164,11 @@ export async function handleLanguageSelection(
   }
 }
 
-/**
+/*
  * Start onboarding after language selection
+ * @deprecated - Replaced by Geo Flow in onboarding_geo.ts
  */
+/*
 async function startOnboarding(
   chatId: number,
   telegram: ReturnType<typeof createTelegramService>,
@@ -219,3 +216,4 @@ async function startOnboarding(
     await telegram.sendMessage(chatId, nicknameMessage);
   }
 }
+*/

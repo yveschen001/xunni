@@ -76,7 +76,6 @@ export interface Translations {
     selectEndHour?: string;
     saved?: string;
     disabled?: string;
-    saved?: string;
     languageUpdated?: string;
     currentSettings?: string;
     languageLabel?: string;
@@ -270,6 +269,26 @@ export interface Translations {
     viewVipCommand?: string;
     renewalProcessing?: string;
     reminderCancelled?: string;
+    retentionNotice?: string;
+  };
+
+  // Geo
+  geo?: {
+    select_continent: string;
+    select_country: string;
+    search_city_prompt: string;
+    city_not_found: string;
+    confirm_city: string;
+    continent: {
+      asia: string;
+      europe: string;
+      north_america: string;
+      south_america: string;
+      africa: string;
+      oceania: string;
+    };
+    btn_search_manually: string;
+    confirm_button: string;
   };
 
   // Invite
