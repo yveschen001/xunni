@@ -95,7 +95,7 @@ export async function handleHelp(message: TelegramMessage, env: Env): Promise<vo
       helpMessage +=
         `\n\n━━━━━━━━━━━━━━━━\n` +
         '👑 ' +
-        i18n.t('help.superAdminTitle') + // CSV: 🔱 **超級管理員功能**
+        (i18n.t('help.superAdminTitle').startsWith('[') ? '🔱 **超級管理員功能**' : i18n.t('help.superAdminTitle')) +
         '\n' +
         '/analytics - ' +
         (i18n.t('admin.analyticsTitle').startsWith('[') ? '每日運營報表' : i18n.t('admin.analyticsTitle')) +
@@ -107,10 +107,9 @@ export async function handleHelp(message: TelegramMessage, env: Env): Promise<vo
         (i18n.t('admin.vipFunnelTitle').startsWith('[') ? 'VIP 轉化漏斗' : i18n.t('admin.vipFunnelTitle')) +
         '\n' +
         '\n' +
-        i18n.t('help.superAdminMaintenance') + // CSV: **系統維護**
-        '\n' + i18n.t('help.superAdminMaintenanceDisable') + // CSV: /maintenance_disable - ... (Includes command!)
-        '\n' + i18n.t('help.superAdminMaintenanceEnable'); // CSV: /maintenance_enable ... (Includes command!)
-        // Note: maintenance2/3/4 in code were manual strings. CSV has full lines for these.
+        (i18n.t('help.superAdminMaintenance').startsWith('[') ? '**系統維護**' : i18n.t('help.superAdminMaintenance')) +
+        (i18n.t('help.superAdminMaintenanceDisable').startsWith('[') ? '\n/maintenance_disable - 關閉維護模式' : '\n' + i18n.t('help.superAdminMaintenanceDisable')) +
+        (i18n.t('help.superAdminMaintenanceEnable').startsWith('[') ? '\n/maintenance_enable [reason] - 開啟維護模式' : '\n' + i18n.t('help.superAdminMaintenanceEnable'));
     }
 
     await telegram.sendMessage(chatId, helpMessage, { parse_mode: undefined }); // Force plain text
