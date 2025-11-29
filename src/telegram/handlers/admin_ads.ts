@@ -111,7 +111,7 @@ export async function handleAdminAdCallback(
         return;
       }
 
-      const stats = await getAdStatistics(db, adId);
+      const stats = await getAdStatistics(db.d1, adId);
       // Re-calculate stats including daily/unique logic if needed, or trust DB stats
       // Use formatting helper
       const text = formatAdStats(ad, stats as any, createI18n('zh-TW'));

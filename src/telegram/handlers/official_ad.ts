@@ -77,10 +77,10 @@ export async function handleViewOfficialAds(callbackQuery: CallbackQuery, env: E
     }
 
     // Get all active ads
-    const allAds = await getActiveOfficialAds(db);
+    const allAds = await getActiveOfficialAds(db.d1);
 
     // Get user's viewed ad IDs
-    const viewedAdIds = await getViewedAdIds(db, telegramId);
+    const viewedAdIds = await getViewedAdIds(db.d1, telegramId);
 
     // Get available ads
     const availableAds = getAvailableAds(allAds, viewedAdIds);
@@ -105,10 +105,10 @@ export async function handleViewOfficialAds(callbackQuery: CallbackQuery, env: E
     }
 
     // Create ad view record
-    await createAdView(db, telegramId, ad.id);
+    await createAdView(db.d1, telegramId, ad.id);
 
     // Increment ad view count
-    await incrementAdViewCount(db, ad.id);
+    await incrementAdViewCount(db.d1, ad.id);
 
     // Format ad message
     const message = formatAdMessage(ad, i18n);
@@ -225,7 +225,7 @@ export async function handleClaimAd(
     }
 
     // Get ad
-    const ad = await getOfficialAdById(db, adId);
+    const ad = await getOfficialAdById(db.d1, adId);
     if (!ad) {
       await telegram.answerCallbackQuery(callbackQuery.id, {
         text: i18n.t('officialAd.adNotFound'),
@@ -235,7 +235,7 @@ export async function handleClaimAd(
     }
 
     // Check eligibility (should already be viewed)
-    const viewedAdIds = await getViewedAdIds(db, telegramId);
+    const viewedAdIds = await getViewedAdIds(db.d1, telegramId);
     const eligibility = checkAdEligibility(ad, viewedAdIds.includes(adId));
 
     if (!eligibility.is_eligible) {
@@ -247,7 +247,7 @@ export async function handleClaimAd(
     }
 
     // Mark as clicked
-    await markAdClicked(db, telegramId, adId);
+    await markAdClicked(db.d1, telegramId, adId);
 
     // Process ad click
     const result = processAdClick(ad, null);
@@ -261,10 +261,10 @@ export async function handleClaimAd(
     }
 
     // Grant reward
-    await grantTemporaryQuota(db, telegramId, ad.reward_quota);
+    await grantTemporaryQuota(db.d1, telegramId, ad.reward_quota);
 
     // Mark reward as granted
-    await markRewardGranted(db, telegramId, adId);
+    await markRewardGranted(db.d1, telegramId, adId);
 
     // Send success message
     const baseQuota = user.is_vip ? i18n.t('officialAd.unlimited') : '10';
@@ -336,7 +336,7 @@ export async function handleVerifyAd(
     }
 
     // Get ad
-    const ad = await getOfficialAdById(db, adId);
+    const ad = await getOfficialAdById(db.d1, adId);
     if (!ad) {
       await telegram.answerCallbackQuery(callbackQuery.id, {
         text: i18n.t('officialAd.adNotFound'),
@@ -385,13 +385,13 @@ export async function handleVerifyAd(
     }
 
     // Mark as verified
-    await markAdVerified(db, telegramId, adId);
+    await markAdVerified(db.d1, telegramId, adId);
 
     // Grant reward
-    await grantTemporaryQuota(db, telegramId, ad.reward_quota);
+    await grantTemporaryQuota(db.d1, telegramId, ad.reward_quota);
 
     // Mark reward as granted
-    await markRewardGranted(db, telegramId, adId);
+    await markRewardGranted(db.d1, telegramId, adId);
 
     // Send success message
     const baseQuota = user.is_vip ? i18n.t('officialAd.unlimited') : '10';
@@ -448,19 +448,19 @@ export async function handleAdStats(message: any, adId: number | null, env: Env)
 
     if (adId) {
       // Show stats for specific ad
-      const ad = await getOfficialAdById(db, adId);
+      const ad = await getOfficialAdById(db.d1, adId);
       if (!ad) {
         await telegram.sendMessage(chatId, i18n.t('officialAd.statsAdNotFound'));
         return;
       }
 
-      const stats = await getAdStatistics(db, adId);
+      const stats = await getAdStatistics(db.d1, adId);
       const message = formatAdStats(ad, stats, i18n);
 
       await telegram.sendMessage(chatId, message);
     } else {
       // Show stats for all ads
-      const allAds = await getActiveOfficialAds(db);
+      const allAds = await getActiveOfficialAds(db.d1);
 
       if (allAds.length === 0) {
         await telegram.sendMessage(chatId, i18n.t('officialAd.statsNoAds'));
@@ -470,7 +470,7 @@ export async function handleAdStats(message: any, adId: number | null, env: Env)
       let message = i18n.t('officialAd.statsTitle');
 
       for (const ad of allAds) {
-        const stats = await getAdStatistics(db, ad.id);
+        const stats = await getAdStatistics(db.d1, ad.id);
         message += `**${ad.title}** (ID: ${ad.id})\n`;
         message += i18n.t('officialAd.statsSummary', {
           views: stats.total_views,
