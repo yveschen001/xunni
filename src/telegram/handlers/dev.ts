@@ -35,7 +35,7 @@ export async function handleDevReset(message: TelegramMessage, env: Env): Promis
   // SECURITY CHECK: Only allow in staging/development
   if (!isDevCommandAllowed(env)) {
     const { createI18n } = await import('~/i18n');
-    const i18n = createI18n('zh-TW'); // Dev messages default to zh-TW
+    const i18n = createI18n('en'); // Dev messages default to zh-TW
     await telegram.sendMessage(chatId, i18n.t('dev.notAvailableInProduction'));
     return;
   }
@@ -44,15 +44,18 @@ export async function handleDevReset(message: TelegramMessage, env: Env): Promis
   const telegramId = message.from!.id.toString();
   const user = await findUserByTelegramId(db, telegramId);
   const { createI18n } = await import('~/i18n');
-  const i18n = createI18n(user?.language_pref || 'zh-TW');
+  const i18n = createI18n(user?.language_pref || 'en');
 
   try {
     // Delete user data - ignore errors for non-existent tables
     // 按照外鍵依賴順序刪除
     const tables = [
-      // 1. 先刪除依賴其他表的數據
+      // 1. Dependencies (Children)
+      // Delete ALL messages in conversations involving the user (including partner's messages) to allow conversation deletion
       {
-        sql: 'DELETE FROM conversation_messages WHERE sender_telegram_id = ? OR receiver_telegram_id = ?',
+        sql: `DELETE FROM conversation_messages WHERE conversation_id IN (
+          SELECT id FROM conversations WHERE user_a_telegram_id = ? OR user_b_telegram_id = ?
+        )`,
         params: [telegramId, telegramId],
       },
       {
@@ -67,21 +70,36 @@ export async function handleDevReset(message: TelegramMessage, env: Env): Promis
         sql: 'DELETE FROM conversation_new_message_posts WHERE user_telegram_id = ?',
         params: [telegramId],
       },
-      {
-        sql: 'DELETE FROM bottle_chat_history WHERE user_a_telegram_id = ? OR user_b_telegram_id = ?',
-        params: [telegramId, telegramId],
-      },
 
-      // Level 1: 最深層的子表（依賴其他子表）
+      // Level 1: Deepest
       { sql: 'DELETE FROM refund_requests WHERE user_id = ?', params: [telegramId] },
-
-      // Level 2: 依賴 bottles 和 conversations 的表
+      { sql: 'DELETE FROM matching_history WHERE matched_user_id = ?', params: [telegramId] },
+      { 
+        sql: `DELETE FROM matching_history WHERE bottle_id IN (
+          SELECT id FROM bottles WHERE owner_telegram_id = ?
+        )`, 
+        params: [telegramId] 
+      },
+      
+      // Bottle Match Slots (FK to Bottles, Conversations)
       {
-        sql: 'DELETE FROM matching_history WHERE matched_user_id = ?',
-        params: [telegramId],
+        sql: `DELETE FROM bottle_match_slots WHERE bottle_id IN (
+            SELECT id FROM bottles WHERE owner_telegram_id = ?
+        ) OR conversation_id IN (
+            SELECT id FROM conversations WHERE user_a_telegram_id = ? OR user_b_telegram_id = ?
+        ) OR matched_with_telegram_id = ?`,
+        params: [telegramId, telegramId, telegramId, telegramId]
+      },
+      
+      // Reports (FK to conversations OR user)
+      {
+        sql: `DELETE FROM reports WHERE conversation_id IN (
+          SELECT id FROM conversations WHERE user_a_telegram_id = ? OR user_b_telegram_id = ?
+        ) OR reporter_telegram_id = ? OR reported_telegram_id = ?`,
+        params: [telegramId, telegramId, telegramId, telegramId],
       },
 
-      // Level 3: 父表 (conversations, bottles)
+      // Level 3: Parents (conversations, bottles)
       {
         sql: 'DELETE FROM conversation_identifiers WHERE user_telegram_id = ? OR partner_telegram_id = ?',
         params: [telegramId, telegramId],
@@ -90,21 +108,22 @@ export async function handleDevReset(message: TelegramMessage, env: Env): Promis
         sql: 'DELETE FROM conversations WHERE user_a_telegram_id = ? OR user_b_telegram_id = ?',
         params: [telegramId, telegramId],
       },
+      // Only delete bottles OWNED by user. For matches, just unmatch.
       {
-        sql: 'DELETE FROM bottles WHERE owner_telegram_id = ? OR matched_with_telegram_id = ?',
-        params: [telegramId, telegramId],
+        sql: 'DELETE FROM bottles WHERE owner_telegram_id = ?',
+        params: [telegramId],
+      },
+      {
+        sql: "UPDATE bottles SET matched_with_telegram_id = NULL, status = 'pending', matched_at = NULL WHERE matched_with_telegram_id = ?",
+        params: [telegramId],
       },
 
-      // Level 4: 其他用戶相關數據
+      // Level 4: Others
       {
         sql: 'DELETE FROM invites WHERE inviter_telegram_id = ? OR invitee_telegram_id = ?',
         params: [telegramId, telegramId],
       },
       { sql: 'DELETE FROM daily_usage WHERE telegram_id = ?', params: [telegramId] },
-      {
-        sql: 'DELETE FROM reports WHERE reporter_telegram_id = ? OR reported_telegram_id = ?',
-        params: [telegramId, telegramId],
-      },
       { sql: 'DELETE FROM bans WHERE user_id = ?', params: [telegramId] },
       {
         sql: 'DELETE FROM user_blocks WHERE blocker_telegram_id = ? OR blocked_telegram_id = ?',
@@ -114,11 +133,19 @@ export async function handleDevReset(message: TelegramMessage, env: Env): Promis
       { sql: 'DELETE FROM payments WHERE telegram_id = ?', params: [telegramId] },
       { sql: 'DELETE FROM user_sessions WHERE telegram_id = ?', params: [telegramId] },
       { sql: 'DELETE FROM bottle_drafts WHERE telegram_id = ?', params: [telegramId] },
+      { sql: 'DELETE FROM appeals WHERE telegram_id = ?', params: [telegramId] },
+      { sql: 'DELETE FROM broadcast_queue WHERE admin_telegram_id = ?', params: [telegramId] },
+      { sql: 'DELETE FROM admin_logs WHERE admin_telegram_id = ?', params: [telegramId] },
+
+      // Push & Ads
+      { sql: 'DELETE FROM push_notifications WHERE user_id = ?', params: [telegramId] },
+      { sql: 'DELETE FROM user_push_preferences WHERE user_id = ?', params: [telegramId] },
+      { sql: 'DELETE FROM ad_sessions WHERE telegram_id = ?', params: [telegramId] },
 
       // Fortune Telling
-      { sql: 'DELETE FROM fortune_history WHERE user_id = ?', params: [telegramId] },
+      { sql: 'DELETE FROM fortune_history WHERE telegram_id = ?', params: [telegramId] },
       { sql: 'DELETE FROM fortune_quota WHERE telegram_id = ?', params: [telegramId] },
-      { sql: 'DELETE FROM fortune_profiles WHERE telegram_id = ?', params: [telegramId] },
+      { sql: 'DELETE FROM fortune_profiles WHERE user_id = ?', params: [telegramId] },
 
       // Ad rewards and analytics
       { sql: 'DELETE FROM ad_rewards WHERE telegram_id = ?', params: [telegramId] },
@@ -134,7 +161,7 @@ export async function handleDevReset(message: TelegramMessage, env: Env): Promis
       // VIP subscriptions (after refund_requests)
       { sql: 'DELETE FROM vip_subscriptions WHERE user_id = ?', params: [telegramId] },
 
-      // Level 5: 最後刪除用戶本身
+      // Level 5: Lastly delete user
       { sql: 'DELETE FROM users WHERE telegram_id = ?', params: [telegramId] },
     ];
 
@@ -207,7 +234,7 @@ export async function handleDevReset(message: TelegramMessage, env: Env): Promis
     console.error('[handleDevReset] Reset complete');
 
     const user = await findUserByTelegramId(db, telegramId);
-    const i18n = createI18n(user?.language_pref || 'zh-TW');
+    const i18n = createI18n(user?.language_pref || 'en');
 
     await telegram.sendMessage(chatId, i18n.t('dev.dataReset'));
   } catch (error) {
@@ -232,7 +259,7 @@ export async function handleDevInfo(message: TelegramMessage, env: Env): Promise
   const telegramId = message.from!.id.toString();
   const tempUser = await findUserByTelegramId(db, telegramId);
   const { createI18n } = await import('~/i18n');
-  const i18n = createI18n(tempUser?.language_pref || 'zh-TW');
+  const i18n = createI18n(tempUser?.language_pref || 'en');
 
   if (!isDevCommandAllowed(env)) {
     await telegram.sendMessage(chatId, i18n.t('dev.notAvailableInProduction'));
@@ -322,7 +349,7 @@ export async function handleDevRestart(message: TelegramMessage, env: Env): Prom
   // SECURITY CHECK: Only allow in staging/development
   if (!isDevCommandAllowed(env)) {
     const { createI18n } = await import('~/i18n');
-    const i18n = createI18n('zh-TW'); // Dev messages default to zh-TW
+    const i18n = createI18n('en'); // Dev messages default to zh-TW
     await telegram.sendMessage(chatId, i18n.t('dev.notAvailableInProduction'));
     return;
   }
@@ -334,16 +361,16 @@ export async function handleDevRestart(message: TelegramMessage, env: Env): Prom
     // Delete user data - use same logic as /dev_reset
     // 按照外鍵依賴順序刪除（從最深的子表到父表）
     const tables = [
-      // Level 1: 最深層的子表（依賴其他子表）
-      { sql: 'DELETE FROM refund_requests WHERE user_id = ?', params: [telegramId] },
-
-      // Level 2: 依賴 bottles 和 conversations 的表
+      // 1. Dependencies (Children)
+      // Delete ALL messages in conversations involving the user (including partner's messages) to allow conversation deletion
       {
-        sql: 'DELETE FROM matching_history WHERE matched_user_id = ?',
-        params: [telegramId],
+        sql: `DELETE FROM conversation_messages WHERE conversation_id IN (
+          SELECT id FROM conversations WHERE user_a_telegram_id = ? OR user_b_telegram_id = ?
+        )`,
+        params: [telegramId, telegramId],
       },
       {
-        sql: 'DELETE FROM conversation_messages WHERE sender_telegram_id = ? OR receiver_telegram_id = ?',
+        sql: 'DELETE FROM conversation_identifiers WHERE user_telegram_id = ? OR partner_telegram_id = ?',
         params: [telegramId, telegramId],
       },
       {
@@ -355,7 +382,35 @@ export async function handleDevRestart(message: TelegramMessage, env: Env): Prom
         params: [telegramId],
       },
 
-      // Level 3: 父表 (conversations, bottles)
+      // Level 1: Deepest
+      { sql: 'DELETE FROM refund_requests WHERE user_id = ?', params: [telegramId] },
+      { sql: 'DELETE FROM matching_history WHERE matched_user_id = ?', params: [telegramId] },
+      { 
+        sql: `DELETE FROM matching_history WHERE bottle_id IN (
+          SELECT id FROM bottles WHERE owner_telegram_id = ?
+        )`, 
+        params: [telegramId] 
+      },
+      
+      // Bottle Match Slots (FK to Bottles, Conversations)
+      {
+        sql: `DELETE FROM bottle_match_slots WHERE bottle_id IN (
+            SELECT id FROM bottles WHERE owner_telegram_id = ?
+        ) OR conversation_id IN (
+            SELECT id FROM conversations WHERE user_a_telegram_id = ? OR user_b_telegram_id = ?
+        ) OR matched_with_telegram_id = ?`,
+        params: [telegramId, telegramId, telegramId, telegramId]
+      },
+      
+      // Reports (FK to conversations OR user)
+      {
+        sql: `DELETE FROM reports WHERE conversation_id IN (
+          SELECT id FROM conversations WHERE user_a_telegram_id = ? OR user_b_telegram_id = ?
+        ) OR reporter_telegram_id = ? OR reported_telegram_id = ?`,
+        params: [telegramId, telegramId, telegramId, telegramId],
+      },
+
+      // Level 3: Parents (conversations, bottles)
       {
         sql: 'DELETE FROM conversation_identifiers WHERE user_telegram_id = ? OR partner_telegram_id = ?',
         params: [telegramId, telegramId],
@@ -364,21 +419,22 @@ export async function handleDevRestart(message: TelegramMessage, env: Env): Prom
         sql: 'DELETE FROM conversations WHERE user_a_telegram_id = ? OR user_b_telegram_id = ?',
         params: [telegramId, telegramId],
       },
+      // Only delete bottles OWNED by user. For matches, just unmatch.
       {
-        sql: 'DELETE FROM bottles WHERE owner_telegram_id = ? OR matched_with_telegram_id = ?',
-        params: [telegramId, telegramId],
+        sql: 'DELETE FROM bottles WHERE owner_telegram_id = ?',
+        params: [telegramId],
+      },
+      {
+        sql: "UPDATE bottles SET matched_with_telegram_id = NULL, status = 'pending', matched_at = NULL WHERE matched_with_telegram_id = ?",
+        params: [telegramId],
       },
 
-      // Level 4: 其他用戶相關數據
+      // Level 4: Others
       {
         sql: 'DELETE FROM invites WHERE inviter_telegram_id = ? OR invitee_telegram_id = ?',
         params: [telegramId, telegramId],
       },
       { sql: 'DELETE FROM daily_usage WHERE telegram_id = ?', params: [telegramId] },
-      {
-        sql: 'DELETE FROM reports WHERE reporter_telegram_id = ? OR reported_telegram_id = ?',
-        params: [telegramId, telegramId],
-      },
       { sql: 'DELETE FROM bans WHERE user_id = ?', params: [telegramId] },
       {
         sql: 'DELETE FROM user_blocks WHERE blocker_telegram_id = ? OR blocked_telegram_id = ?',
@@ -388,11 +444,19 @@ export async function handleDevRestart(message: TelegramMessage, env: Env): Prom
       { sql: 'DELETE FROM payments WHERE telegram_id = ?', params: [telegramId] },
       { sql: 'DELETE FROM user_sessions WHERE telegram_id = ?', params: [telegramId] },
       { sql: 'DELETE FROM bottle_drafts WHERE telegram_id = ?', params: [telegramId] },
+      { sql: 'DELETE FROM appeals WHERE telegram_id = ?', params: [telegramId] },
+      { sql: 'DELETE FROM broadcast_queue WHERE admin_telegram_id = ?', params: [telegramId] },
+      { sql: 'DELETE FROM admin_logs WHERE admin_telegram_id = ?', params: [telegramId] },
+
+      // Push & Ads
+      { sql: 'DELETE FROM push_notifications WHERE user_id = ?', params: [telegramId] },
+      { sql: 'DELETE FROM user_push_preferences WHERE user_id = ?', params: [telegramId] },
+      { sql: 'DELETE FROM ad_sessions WHERE telegram_id = ?', params: [telegramId] },
 
       // Fortune Telling
-      { sql: 'DELETE FROM fortune_history WHERE user_id = ?', params: [telegramId] },
+      { sql: 'DELETE FROM fortune_history WHERE telegram_id = ?', params: [telegramId] },
       { sql: 'DELETE FROM fortune_quota WHERE telegram_id = ?', params: [telegramId] },
-      { sql: 'DELETE FROM fortune_profiles WHERE telegram_id = ?', params: [telegramId] },
+      { sql: 'DELETE FROM fortune_profiles WHERE user_id = ?', params: [telegramId] },
 
       // Ad rewards and analytics
       { sql: 'DELETE FROM ad_rewards WHERE telegram_id = ?', params: [telegramId] },
@@ -408,7 +472,7 @@ export async function handleDevRestart(message: TelegramMessage, env: Env): Prom
       // VIP subscriptions (after refund_requests)
       { sql: 'DELETE FROM vip_subscriptions WHERE user_id = ?', params: [telegramId] },
 
-      // Level 5: 最後刪除用戶本身
+      // Level 5: Lastly delete user
       { sql: 'DELETE FROM users WHERE telegram_id = ?', params: [telegramId] },
     ];
 
@@ -495,7 +559,7 @@ export async function handleDevRestart(message: TelegramMessage, env: Env): Prom
       username: message.from!.username,
       first_name: message.from!.first_name,
       last_name: message.from!.last_name,
-      language_pref: message.from!.language_code || 'zh-TW',
+      language_pref: message.from!.language_code || 'en',
       invite_code: newInviteCode,
       onboarding_step: 'language_selection',
     });
@@ -511,7 +575,7 @@ export async function handleDevRestart(message: TelegramMessage, env: Env): Prom
     console.error('[handleDevRestart] Error:', error);
     const errorMessage = error instanceof Error ? error.message : String(error);
     const { createI18n } = await import('~/i18n');
-    const i18n = createI18n('zh-TW'); // Dev messages default to zh-TW
+    const i18n = createI18n('en'); // Dev messages default to zh-TW
     await telegram.sendMessage(chatId, i18n.t('dev.resetFailed', { error: errorMessage }));
   }
 }
@@ -529,7 +593,7 @@ export async function handleDevSkip(message: TelegramMessage, env: Env): Promise
   // SECURITY CHECK: Only allow in staging/development
   if (!isDevCommandAllowed(env)) {
     const { createI18n } = await import('~/i18n');
-    const i18n = createI18n('zh-TW'); // Dev messages default to zh-TW
+    const i18n = createI18n('en'); // Dev messages default to zh-TW
     await telegram.sendMessage(chatId, i18n.t('dev.notAvailableInProduction'));
     return;
   }
@@ -538,7 +602,7 @@ export async function handleDevSkip(message: TelegramMessage, env: Env): Promise
   const telegramId = message.from!.id.toString();
 
   const { createI18n } = await import('~/i18n');
-  const i18n = createI18n('zh-TW'); // Dev messages default to zh-TW
+  const i18n = createI18n('en'); // Dev messages default to zh-TW
 
   try {
     // Generate invite code
@@ -586,7 +650,7 @@ export async function handleDevSkip(message: TelegramMessage, env: Env): Promise
         '2000-01-01',
         25,
         'Capricorn',
-        'zh-TW',
+        'en',
         inviteCode,
         'completed',
         100,

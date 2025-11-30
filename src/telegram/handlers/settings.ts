@@ -79,6 +79,7 @@ export async function handleSettings(message: TelegramMessage, env: Env): Promis
 
     const buttons = [
       [{ text: i18n.t('settings.changeLanguage'), callback_data: 'settings_language' }],
+      [{ text: i18n.t('settings.blocklist.title', { defaultValue: '🛡️ 隱私與黑名單' }), callback_data: 'settings_blocklist' }],
       [quietHoursButton],
       [{ text: i18n.t('settings.returnToMenu'), callback_data: 'return_to_menu' }],
     ];
@@ -126,6 +127,41 @@ export async function handleSettingsCallback(
         ...getLanguageButtons(i18n, 0),
         [{ text: i18n.t('settings.back'), callback_data: 'back_to_settings' }],
       ]);
+      return;
+    }
+
+    // Blocklist Menu
+    if (data === 'settings_blocklist') {
+      const { handleBlocklistMenu } = await import('./settings_blocklist');
+      await handleBlocklistMenu(chatId, telegramId, env);
+      await telegram.answerCallbackQuery(callbackQuery.id);
+      return;
+    }
+
+    // Blocklist Page
+    if (data.startsWith('settings_blocklist_page:')) {
+      const page = parseInt(data.split(':')[1], 10);
+      const { handleBlocklistMenu } = await import('./settings_blocklist');
+      await handleBlocklistMenu(chatId, telegramId, env, page);
+      await telegram.answerCallbackQuery(callbackQuery.id);
+      return;
+    }
+
+    // Unblock Action
+    if (data.startsWith('settings_unblock:')) {
+      const parts = data.split(':');
+      const blockedId = parts[1];
+      const page = parseInt(parts[2], 10);
+      const { handleUnblock } = await import('./settings_blocklist');
+      await handleUnblock(callbackQuery, blockedId, page, env);
+      return;
+    }
+
+    // Manual Block Start
+    if (data === 'settings_block_manual_start') {
+      const { handleManualBlockStart } = await import('./settings_blocklist');
+      await handleManualBlockStart(chatId, telegramId, env);
+      await telegram.answerCallbackQuery(callbackQuery.id);
       return;
     }
 

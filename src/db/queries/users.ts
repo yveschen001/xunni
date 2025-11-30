@@ -27,6 +27,27 @@ export async function findUserByTelegramId(
 }
 
 /**
+ * Find user by Username (New)
+ */
+export async function findUserByUsername(
+  db: any, // Use any or D1Database if not using DatabaseClient wrapper
+  username: string
+): Promise<User | null> {
+  // If db is DatabaseClient wrapper
+  if (db.queryOne) {
+    const sql = `
+      SELECT * FROM users
+      WHERE username = ? COLLATE NOCASE
+      LIMIT 1
+    `;
+    return db.queryOne(sql, [username]);
+  } 
+  
+  // If db is raw D1Database
+  return await db.prepare('SELECT * FROM users WHERE username = ? COLLATE NOCASE LIMIT 1').bind(username).first<User>();
+}
+
+/**
  * Find user by invite code
  */
 export async function findUserByInviteCode(
@@ -120,7 +141,7 @@ export async function updateUserProfile(
     UPDATE users
     SET ${fields.join(', ')}, updated_at = CURRENT_TIMESTAMP
     WHERE telegram_id = ?
-  `;
+    `;
 
   await db.execute(sql, values);
 }

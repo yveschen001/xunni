@@ -5,9 +5,12 @@ import { createI18n } from '~/i18n';
 import { FortuneService } from '~/services/fortune';
 import { upsertSession, getActiveSession, clearSession, updateSessionData } from '~/db/queries/sessions';
 import { findUserByTelegramId } from '~/db/queries/users';
-
-import { startGeoFlow, handleContinentSelection, handleCountrySelection, handleCitySearchInput, handleCitySelection, getRegionData, getFlagEmoji } from './onboarding_geo';
+import { getFlagEmoji } from './onboarding_geo';
 import { createGeoService } from '~/services/geo';
+
+import { LoveFortuneHandler } from './fortune_love';
+
+import { TarotHandler } from './fortune_tarot';
 
 // ============================================================================
 // Constants
@@ -50,7 +53,7 @@ export async function handleFortune(message: TelegramMessage, env: Env): Promise
     }
 
     // Show Main Menu
-    await showFortuneMenu(chatId, profiles[0], env, i18n);
+    await showFortuneMenu(chatId, telegramId, env, i18n);
   } catch (error) {
     console.error('[handleFortune] Error:', error);
     const telegram = createTelegramService(env);
@@ -67,48 +70,163 @@ export async function handleFortune(message: TelegramMessage, env: Env): Promise
 // Menu & UI
 // ============================================================================
 
-async function showFortuneMenu(chatId: number, profile: FortuneProfile, env: Env, i18n: any) {
+async function showFortuneMenu(chatId: number, telegramId: string, env: Env, i18n: any, profileToUse?: FortuneProfile) {
   const telegram = createTelegramService(env);
   const db = createDatabaseClient(env.DB);
   const service = new FortuneService(env, db.d1);
-  const user = await findUserByTelegramId(db, profile.user_id);
+  const user = await findUserByTelegramId(db, telegramId);
   
-  // Refresh and get quota
-  const quota = await service.refreshQuota(profile.user_id, !!user?.is_vip);
+  // 1. Determine Active Profile
+  let profile = profileToUse;
+  if (!profile) {
+    const profiles = await service.getProfiles(telegramId);
+    if (profiles.length === 0) return; // Should be handled before calling this
+
+    // Check Session for Active Selection (24h validity)
+    const session = await getActiveSession(db, telegramId, 'fortune_context');
+    if (session) {
+      const data = JSON.parse(session.session_data as string);
+      const selectedAt = new Date(data.selected_at);
+      const now = new Date();
+      const diffHours = (now.getTime() - selectedAt.getTime()) / (1000 * 60 * 60);
+      
+      if (diffHours < 24 && data.active_profile_id) {
+        profile = profiles.find(p => p.id === data.active_profile_id);
+      }
+    }
+    
+    // Fallback to default
+    if (!profile) {
+      profile = profiles.find(p => p.is_default) || profiles[0];
+    }
+  }
+
+  // 2. Refresh and get quota (User Quota, not Profile Quota)
+  const isVip = !!(user?.is_vip && user?.vip_expire_at && new Date(user.vip_expire_at) > new Date());
+  const quota = await service.refreshQuota(telegramId, isVip);
   const totalQuota = quota.weekly_free_quota + quota.additional_quota;
   
-  const quotaText = i18n.t('fortune.quotaDisplay', {
+  // 3. Prepare Display Data
+  const { getZodiacDisplay, getZodiacSign } = await import('~/domain/zodiac');
+  const birthDate = new Date(profile.birth_date);
+  const zodiacSign = getZodiacSign(birthDate);
+  const zodiac = getZodiacDisplay(zodiacSign, i18n);
+  
+  const flag = user?.country_code ? getFlagEmoji(user.country_code) : '';
+  // Owner Display Name (User's Telegram Name)
+  const ownerName = user?.nickname || user?.first_name || 'User';
+  
+  // Profile Details Line
+  const profileDetails = `👤 ${profile.gender === 'male' ? '♂️' : '♀️'} | 🎂 ${profile.birth_date} | ${zodiac} | 🩸 ${user?.blood_type || '?'} | 🧠 ${user?.mbti_result || '?'}`;
+
+  // Quota Line
+  const quotaKey = isVip ? 'fortune.quotaDisplayVip' : 'fortune.quotaDisplayFree';
+  const quotaText = i18n.t(quotaKey, {
     total: totalQuota,
-    weekly: quota.weekly_free_quota,
-    limit: user?.is_vip ? 7 : 1, // 1/week free or 1/day VIP (logic in service)
+    weekly: quota.weekly_free_quota, // For Free
+    daily: quota.weekly_free_quota,  // For VIP
+    limit: isVip ? 1 : 1, 
     additional: quota.additional_quota
   });
 
-  const text = `🔮 *${i18n.t('fortune.menuTitle')}*\n` +
-               `${i18n.t('fortune.currentProfile')}: ${profile.name}\n` +
-               `${quotaText}\n\n` +
-               `${i18n.t('fortune.selectOption')}`;
+  // 4. Construct Header
+  let header = `🔮 ${ownerName}\n`; // Always User's Name
+  
+  if (!profile.is_default) {
+    // Viewing Target Profile
+    header += `${i18n.t('fortune.targetProfile')}:\n`;
+    header += `💗 ${profile.name}\n`;
+  }
+  
+  header += `${profileDetails}\n`;
+  header += `${quotaText}\n`;
+  
+  if (!profile.is_default) {
+    header += `\n💡 ${i18n.t('fortune.revertHint')}`;
+  }
+
+  const text = header + `\n${i18n.t('fortune.selectOption')}`;
 
   const buttons = [
+    // Featured (Row 1)
+    [
+      { text: `🧬 ${i18n.t('fortune.menu.love')}`, callback_data: 'fortune_love_menu' }
+    ],
+    // Basic (Row 2)
     [
       { text: `📅 ${i18n.t('fortune.daily')}`, callback_data: 'fortune_daily' },
-      { text: `🧘 ${i18n.t('fortune.deep')}`, callback_data: 'fortune_deep' }
+      { text: `🗓️ ${i18n.t('fortune.weekly')}`, callback_data: 'fortune_weekly' }
     ],
+    // Advanced 1 (Row 3)
     [
-      { 
-        text: profile.is_subscribed 
-          ? `🔕 ${i18n.t('fortune.unsubscribe')}` 
-          : `🔔 ${i18n.t('fortune.subscribe')}`, 
-        callback_data: 'fortune_subscribe_toggle' 
-      },
+      { text: `🔮 ${i18n.t('fortune.ziwei')}`, callback_data: 'fortune_ziwei' },
+      { text: `🌠 ${i18n.t('fortune.astrology')}`, callback_data: 'fortune_astrology' }
+    ],
+    // Advanced 2 (Row 4)
+    [
+      { text: `🃏 ${i18n.t('fortune.tarot')}`, callback_data: 'fortune_tarot_menu' },
+      { text: `📜 ${i18n.t('fortune.bazi')}`, callback_data: 'fortune_bazi' }
+    ],
+    // History & Celebrity (Row 5)
+    [
+      { text: `🌟 ${i18n.t('fortune.celebrity')}`, callback_data: 'fortune_celebrity' },
+      { text: `${i18n.t('fortune.reports.tab_all')}`, callback_data: 'fortune_my_reports' }
+    ],
+    // Manage (Row 6)
+    [
+      { text: `⚙️ ${i18n.t('fortune.warehouse')}`, callback_data: 'fortune_profiles' }
+    ],
+    // Subscribe/Get More (Row 6)
+    [
       { text: `🛒 ${i18n.t('fortune.getMore')}`, callback_data: 'fortune_get_more' }
     ],
     [
-      { text: `⚙️ ${i18n.t('fortune.manageProfiles')}`, callback_data: 'fortune_profiles' }
+      { text: i18n.t('common.back3'), callback_data: 'return_to_menu' }
     ]
   ];
 
   await telegram.sendMessageWithButtons(chatId, text, buttons);
+}
+
+// ============================================================================
+// UI Helpers (Exported for Cross-Module Use)
+// ============================================================================
+
+export async function showGetMoreMenu(chatId: number, telegram: ReturnType<typeof createTelegramService>, i18n: any, env: Env, messageIdToEdit?: number) {
+  const isStaging = env.ENVIRONMENT === 'staging';
+  const smallPrice = isStaging ? 1 : FORTUNE_PACK_SMALL_STARS;
+  const largePrice = isStaging ? 1 : FORTUNE_PACK_LARGE_STARS;
+  const smallAmount = isStaging ? 50 : FORTUNE_PACK_SMALL_AMOUNT;
+  const largeAmount = FORTUNE_PACK_LARGE_AMOUNT;
+
+  const text = i18n.t('fortune.getMoreInfo', {
+    smallAmount,
+    smallPrice,
+    largeAmount,
+    largePrice
+  });
+
+  const buttons = [
+    [
+      { text: `💎 ${i18n.t('fortune.buySmall', { amount: smallAmount, price: smallPrice })}`, callback_data: 'fortune_buy_small' },
+      { text: `💎 ${i18n.t('fortune.buyLarge', { amount: largeAmount, price: largePrice })}`, callback_data: 'fortune_buy_large' }
+    ],
+    [
+      { text: `👑 ${i18n.t('vip.upgrade')}`, callback_data: 'menu_vip' },
+      { text: `👥 ${i18n.t('menu.invite')}`, callback_data: 'menu_invite' }
+    ],
+    [{ text: i18n.t('fortune.backToMenu'), callback_data: 'menu_fortune' }],
+    [{ text: i18n.t('common.back3'), callback_data: 'return_to_menu' }]
+  ];
+
+  if (messageIdToEdit) {
+    await telegram.editMessageText(chatId, messageIdToEdit, text, {
+      reply_markup: { inline_keyboard: buttons },
+      parse_mode: 'Markdown'
+    });
+  } else {
+    await telegram.sendMessageWithButtons(chatId, text, buttons);
+  }
 }
 
 // ============================================================================
@@ -165,6 +283,19 @@ export async function handleFortuneInput(message: TelegramMessage, env: Env): Pr
 
   // Check session
   const session = await getActiveSession(db, telegramId, 'fortune_wizard');
+  // Check for Love Input Session (match_target_id)
+  const inputSession = await getActiveSession(db, telegramId, 'fortune_input');
+  
+  if (inputSession && inputSession.step === 'match_target_id') {
+    const service = new FortuneService(env, db.d1);
+    const user = await findUserByTelegramId(db, telegramId);
+    const i18n = createI18n(user?.language_pref || 'zh-TW');
+    const { LoveFortuneHandler } = await import('./fortune_love');
+    const loveHandler = new LoveFortuneHandler(service, i18n, env);
+    await loveHandler.handleMatchInputGeneric(message, env, text);
+    return true;
+  }
+
   if (!session) return false;
 
   const user = await findUserByTelegramId(db, telegramId);
@@ -214,9 +345,11 @@ export async function handleFortuneInput(message: TelegramMessage, env: Env): Pr
       return true;
 
     case 'birth_time':
-      // Validate HH:mm
-      if (!/^\d{2}:\d{2}$/.test(text)) {
-        await telegram.sendMessage(message.chat.id, i18n.t('errors.invalidTimeFormat'));
+      // Validate HH:mm (Strict 24-hour format)
+      // Must be exactly 2 digits, colon, 2 digits
+      // HH must be 00-23, mm must be 00-59
+      if (!/^([01]\d|2[0-3]):([0-5]\d)$/.test(text)) {
+        await telegram.sendMessage(message.chat.id, i18n.t('errors.invalidTimeFormat') + '\n' + i18n.t('fortune.onboarding.timeHint'));
         return true;
       }
       data.birth_time = text;
@@ -312,8 +445,24 @@ async function handleFortuneCitySearch(message: TelegramMessage, env: Env) {
   const data = JSON.parse(session.session_data as string); // { country_code: 'TW', ... }
 
   const geoService = createGeoService(env.DB);
-  const allCities = await geoService.searchCities(text);
+  let allCities = await geoService.searchCities(text);
   
+  // Smart Fallback if no cities found
+  if (allCities.length === 0) {
+    const service = new FortuneService(env, db.d1);
+    const user = await findUserByTelegramId(db, telegramId);
+    const correctedName = await service.correctCityName(text, user?.language_pref || 'zh-TW');
+    
+    if (correctedName) {
+      allCities = await geoService.searchCities(correctedName);
+      if (allCities.length > 0) {
+        // Found with correction!
+        // We might want to notify user? Or just show results.
+        // Let's just show results but maybe hint in the text.
+      }
+    }
+  }
+
   // Filter by country if selected
   const filteredCities = data.country_code 
     ? allCities.filter(c => c.country_code === data.country_code)
@@ -353,6 +502,122 @@ export async function handleFortuneCallback(callbackQuery: TelegramCallbackQuery
   if (!user) return;
   const i18n = createI18n(user.language_pref || 'zh-TW');
   const service = new FortuneService(env, db.d1);
+  const loveHandler = new LoveFortuneHandler(service, i18n, env);
+
+  // Tarot Handler
+  if (data === 'fortune_tarot_menu' || data === 'fortune_tarot_draw') {
+    const { TarotHandler } = await import('./fortune_tarot');
+    const tarot = new TarotHandler(service, i18n, env);
+    if (data === 'fortune_tarot_menu') {
+      await tarot.handleTarotMenu(chatId, telegram);
+    } else {
+      await tarot.handleTarotDraw(chatId, telegramId, telegram);
+    }
+    await telegram.answerCallbackQuery(callbackQuery.id);
+    return;
+  }
+
+  if (data === 'fortune_love_menu') {
+    await loveHandler.handleLoveMenu(chatId, telegram);
+    await telegram.answerCallbackQuery(callbackQuery.id);
+    return;
+  }
+  if (data === 'fortune_love_match_start') {
+    await loveHandler.handleMatchStart(chatId, telegram);
+    await telegram.answerCallbackQuery(callbackQuery.id);
+    return;
+  }
+  if (data.startsWith('fortune_love_type:')) {
+    await loveHandler.handleMatchTypeSelection(chatId, telegramId, data, telegram, db);
+    await telegram.answerCallbackQuery(callbackQuery.id);
+    return;
+  }
+  if (data.startsWith('fortune_love_role:')) {
+    await loveHandler.handleFamilyRoleSelection(chatId, telegramId, data, telegram, db);
+    await telegram.answerCallbackQuery(callbackQuery.id);
+    return;
+  }
+  if (data === 'fortune_love_ideal') {
+    // Check if user has a default profile
+    const profiles = await service.getProfiles(telegramId);
+    if (profiles.length === 0) {
+      // Guide to create profile
+      await telegram.answerCallbackQuery(callbackQuery.id);
+      
+      // We can start the profile wizard directly or ask user
+      // Let's check if we have basic user info to start self wizard
+      if (user.birthday && user.gender) {
+        await startSelfProfileWizard(chatId, telegramId, env, user, i18n);
+      } else {
+        await startNewProfileWizard(chatId, telegramId, env, i18n);
+      }
+      return;
+    }
+
+    await loveHandler.handleIdealMode(chatId, telegram);
+    await telegram.answerCallbackQuery(callbackQuery.id);
+    return;
+  }
+
+  // Handle Match Generation (Accepted Consent)
+  if (data.startsWith('fortune_gen_match:')) {
+    const requestId = data.split(':')[1];
+    await loveHandler.handleGenerateMatchReport(chatId, telegramId, requestId, telegram);
+    await telegram.answerCallbackQuery(callbackQuery.id);
+    return;
+  }
+
+  // Handle Report Filtering/Paging/Detail
+  if (data.startsWith('reports_')) {
+    const { handleMyReports } = await import('./fortune_reports');
+    if (data.startsWith('reports_filter:')) {
+      const filter = data.split(':')[1] as any;
+      await handleMyReports(chatId, telegramId, env, filter);
+    } else if (data.startsWith('reports_page:')) {
+      const parts = data.split(':');
+      await handleMyReports(chatId, telegramId, env, parts[1] as any, parseInt(parts[2]));
+    }
+    await telegram.answerCallbackQuery(callbackQuery.id);
+    return;
+  }
+  if (data.startsWith('report_detail:')) {
+    const { handleReportDetail } = await import('./fortune_reports');
+    const reportId = parseInt(data.split(':')[1]);
+    await handleReportDetail(chatId, reportId, env);
+    await telegram.answerCallbackQuery(callbackQuery.id);
+    return;
+  }
+  // Pagination Callback
+  if (data.startsWith('report_read:')) {
+    const { handleReportDetail } = await import('./fortune_reports');
+    // Format: report_read:{id}:{page}
+    const parts = data.split(':');
+    const reportId = parseInt(parts[1]);
+    const page = parseInt(parts[2]);
+    await handleReportDetail(chatId, reportId, env, page);
+    await telegram.answerCallbackQuery(callbackQuery.id);
+    return;
+  }
+  if (data.startsWith('report_delete:')) {
+    const { handleDeleteReport } = await import('./fortune_reports');
+    const reportId = parseInt(data.split(':')[1]);
+    await handleDeleteReport(chatId, reportId, env);
+    await telegram.answerCallbackQuery(callbackQuery.id);
+    return;
+  }
+  if (data.startsWith('report_regenerate:')) {
+    const { handleRegenerateReport } = await import('./fortune_reports');
+    const reportId = parseInt(data.split(':')[1]);
+    await handleRegenerateReport(chatId, reportId, telegramId, env);
+    await telegram.answerCallbackQuery(callbackQuery.id);
+    return;
+  }
+  if (data === 'fortune_my_reports') {
+    const { handleMyReports } = await import('./fortune_reports');
+    await handleMyReports(chatId, telegramId, env);
+    await telegram.answerCallbackQuery(callbackQuery.id);
+    return;
+  }
 
   // Wizard Callbacks
   if (data.startsWith('fortune_gender_')) {
@@ -535,19 +800,46 @@ export async function handleFortuneCallback(callbackQuery: TelegramCallbackQuery
   }
 
   // Menu Callbacks
-  if (data === 'fortune_daily' || data === 'fortune_deep') {
-    const type = data === 'fortune_daily' ? 'daily' : 'deep';
+  const generateTypes = ['fortune_daily', 'fortune_weekly', 'fortune_ziwei', 'fortune_astrology', 'fortune_bazi', 'fortune_celebrity'];
+  
+  if (data === 'fortune_deep') generateTypes.push('fortune_deep'); // Add deep if valid
+
+  if (generateTypes.includes(data) || data === 'fortune_deep') {
+    const typeMap: Record<string, string> = {
+      'fortune_daily': 'daily',
+      'fortune_weekly': 'weekly',
+      'fortune_ziwei': 'ziwei',
+      'fortune_astrology': 'astrology',
+      'fortune_bazi': 'bazi',
+      'fortune_celebrity': 'celebrity',
+      'fortune_deep': 'deep'
+    };
+    
+    const type = typeMap[data];
     const profiles = await service.getProfiles(telegramId);
     if (profiles.length === 0) {
       await telegram.answerCallbackQuery(callbackQuery.id, i18n.t('fortune.noProfile'));
       return;
     }
 
-    const profile = profiles[0]; // Default profile
+    // Determine Active Profile
+    let profile = profiles.find(p => p.is_default) || profiles[0];
+    const session = await getActiveSession(db, telegramId, 'fortune_context');
+    if (session) {
+      const sData = JSON.parse(session.session_data as string);
+      const selectedAt = new Date(sData.selected_at);
+      const now = new Date();
+      if ((now.getTime() - selectedAt.getTime()) < 24 * 60 * 60 * 1000 && sData.active_profile_id) {
+        const selected = profiles.find(p => p.id === sData.active_profile_id);
+        if (selected) profile = selected;
+      }
+    }
+
     const targetDate = new Date().toISOString().split('T')[0];
 
     try {
-      // 1. Check Cache (Free)
+      // 1. Check Cache (Free) - Skip cache for match/celebrity usually? Or keep it.
+      // Celebrity might need re-roll? No, usually stable per day/week.
       const isCached = await service.isFortuneCached(user.telegram_id, type, targetDate);
       
       // 2. Check Quota (if not cached)
@@ -556,7 +848,7 @@ export async function handleFortuneCallback(callbackQuery: TelegramCallbackQuery
         const hasQuota = await service.checkQuota(user.telegram_id, isVip);
         
         if (!hasQuota) {
-           await telegram.sendMessageWithButtons(
+          await telegram.sendMessageWithButtons(
             chatId,
             i18n.t('fortune.quotaExceeded'),
             [
@@ -590,14 +882,12 @@ export async function handleFortuneCallback(callbackQuery: TelegramCallbackQuery
       
       const fortune = await service.generateFortune(user, profile, type, targetDate);
       
-      // Format Output
-      let output = `🔮 *${i18n.t(`fortune.${type}Title`)}*\n`;
-      output += `📅 ${targetDate}\n\n`;
-      output += fortune.content;
-      
       // Delete loading message and send new one (or edit final)
       await telegram.deleteMessage(chatId, msgId);
-      await telegram.sendMessage(chatId, output, { parse_mode: 'Markdown' });
+      
+      // Instead of sending raw text, delegate to handleReportDetail for pagination support
+      const { handleReportDetail } = await import('./fortune_reports');
+      await handleReportDetail(chatId, fortune.id, env);
 
     } catch (e: any) {
       console.error('Fortune generation error:', e);
@@ -626,12 +916,16 @@ export async function handleFortuneCallback(callbackQuery: TelegramCallbackQuery
     const buttons = [];
 
     // List Profiles
-    for (const p of profiles) {
-      const isDefault = p.is_default ? '⭐ ' : '';
-      const flag = getFlagEmoji(p.birth_city ? 'TW' : 'TW'); // TODO: Store country_code in profile for correct flag
-      // Wait, profile table doesn't have country_code? It has birth_city.
-      // Assuming user input city has country info implicitly or we just skip flag if complex.
-      // Let's just use Name + Gender
+    // Sort: Default first, then by created_at (assumed id order)
+    const sortedProfiles = [...profiles].sort((a, b) => {
+      if (a.is_default) return -1;
+      if (b.is_default) return 1;
+      return b.id - a.id; // Newest first? Or Oldest? Let's say newest first
+    });
+
+    for (const p of sortedProfiles) {
+      const isDefault = p.is_default ? '🌟 ' : ''; // Star for self
+      // const flag = ...
       const genderIcon = p.gender === 'male' ? '♂️' : '♀️';
       
       buttons.push([{
@@ -642,7 +936,8 @@ export async function handleFortuneCallback(callbackQuery: TelegramCallbackQuery
 
     // Add "New Profile" button
     buttons.push([{ text: `➕ ${i18n.t('fortune.addProfile') || '新增檔案'}`, callback_data: 'fortune_add_profile' }]);
-    buttons.push([{ text: i18n.t('common.back'), callback_data: 'menu_fortune' }]); // Back to main fortune menu (default)
+    buttons.push([{ text: i18n.t('fortune.backToMenu'), callback_data: 'menu_fortune' }]); // Back to main fortune menu (default)
+    buttons.push([{ text: i18n.t('common.back3'), callback_data: 'return_to_menu' }]);
 
     await telegram.editMessageText(chatId, callbackQuery.message!.message_id, text, {
       reply_markup: { inline_keyboard: buttons },
@@ -659,10 +954,17 @@ export async function handleFortuneCallback(callbackQuery: TelegramCallbackQuery
     const profile = profiles.find(p => p.id === profileId);
     
     if (profile) {
-      // Just show menu for this profile (Temporary View)
-      // Or we could set it as default? For now, just View.
+      // 1. Save Selection to Session
+      await upsertSession(
+        db, 
+        telegramId, 
+        'fortune_context', 
+        { active_profile_id: profileId, selected_at: new Date().toISOString() }
+      );
+
+      // 2. Show Menu for this profile
       await telegram.deleteMessage(chatId, callbackQuery.message!.message_id);
-      await showFortuneMenu(chatId, profile, env, i18n);
+      await showFortuneMenu(chatId, telegramId, env, i18n, profile); // Pass profile explicitly to avoid re-fetch logic override
     }
     await telegram.answerCallbackQuery(callbackQuery.id);
     return;
@@ -677,38 +979,7 @@ export async function handleFortuneCallback(callbackQuery: TelegramCallbackQuery
 
   // Get More (Shop/Info)
   if (data === 'fortune_get_more') {
-    const isStaging = env.ENVIRONMENT === 'staging';
-    // Staging override: 1 Star = 50 Bottles
-    const smallPrice = isStaging ? 1 : FORTUNE_PACK_SMALL_STARS;
-    const largePrice = isStaging ? 1 : FORTUNE_PACK_LARGE_STARS;
-    const smallAmount = isStaging ? 50 : FORTUNE_PACK_SMALL_AMOUNT; // Use 50 for staging small pack too if user wants cheap testing
-    const largeAmount = FORTUNE_PACK_LARGE_AMOUNT;
-
-    const text = i18n.t('fortune.getMoreInfo', {
-      smallAmount,
-      smallPrice,
-      largeAmount,
-      largePrice
-    });
-
-    // TODO: Implement actual payment invoices
-    // For now we just explain how to get more
-    const buttons = [
-      [
-        { text: `💎 ${i18n.t('fortune.buySmall', { amount: smallAmount, price: smallPrice })}`, callback_data: 'fortune_buy_small' },
-        { text: `💎 ${i18n.t('fortune.buyLarge', { amount: largeAmount, price: largePrice })}`, callback_data: 'fortune_buy_large' }
-      ],
-      [
-        { text: `👑 ${i18n.t('vip.upgrade')}`, callback_data: 'menu_vip' },
-        { text: `👥 ${i18n.t('menu.invite')}`, callback_data: 'menu_invite' }
-      ],
-      [{ text: i18n.t('common.back'), callback_data: 'menu_fortune' }]
-    ];
-
-    await telegram.editMessageText(chatId, callbackQuery.message!.message_id, text, {
-      reply_markup: { inline_keyboard: buttons },
-      parse_mode: 'Markdown'
-    });
+    await showGetMoreMenu(chatId, telegram, i18n, env, callbackQuery.message!.message_id);
     await telegram.answerCallbackQuery(callbackQuery.id);
     return;
   }
@@ -769,4 +1040,3 @@ export async function handleFortuneCallback(callbackQuery: TelegramCallbackQuery
     return;
   }
 }
-

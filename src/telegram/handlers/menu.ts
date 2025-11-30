@@ -62,13 +62,16 @@ export async function handleMenu(message: TelegramMessage, env: Env): Promise<vo
     console.error('[handleMenu] Next task:', nextTask ? nextTask.id : 'null');
 
     // Build menu message
+    const { getZodiacDisplay } = await import('~/domain/zodiac');
+    const zodiacDisplay = getZodiacDisplay(user.zodiac_sign, i18n);
+    
     let menuMessage =
       `${i18n.t('menu.title')} ${vipBadge}\n\n` +
       `${i18n.t('menu.text2', { user: { nickname: user.nickname } })}\n\n` +
       `${i18n.t('menu.yourStatus')}\n` +
       `• ${isVip ? i18n.t('menu.levelVip') : i18n.t('menu.levelFree')}\n` +
       `${i18n.t('menu.settings', { mbti: user.mbti_result || i18n.t('menu.notSet') })}\n` +
-      `${i18n.t('menu.settings2', { zodiac: user.zodiac_sign || i18n.t('menu.notSet') })}\n\n`;
+      `${i18n.t('menu.settings2', { zodiac: zodiacDisplay })}\n\n`;
 
     // Add next task reminder if exists
     if (nextTask) {
@@ -123,15 +126,16 @@ export async function handleMenu(message: TelegramMessage, env: Env): Promise<vo
         { text: i18n.t('menu.buttonCatch'), callback_data: 'menu_catch' },
       ],
       [
-        { text: i18n.t('menu.buttonProfile'), callback_data: 'menu_profile' },
-        { text: i18n.t('menu.buttonStats'), callback_data: 'menu_stats' },
-      ],
-      [
         { text: `🔮 ${i18n.t('fortune.menuTitle')}`, callback_data: 'menu_fortune' },
+        { text: i18n.t('fortune.menu.love').replace(/\s*\(.*\)/, ''), callback_data: 'menu_love_diagnosis' }, // High visibility shortcut
       ],
       [
         { text: i18n.t('menu.buttonInvite'), callback_data: 'menu_invite' },
         { text: i18n.t('menu.buttonChats'), callback_data: 'menu_chats' },
+      ],
+      [
+        { text: i18n.t('menu.buttonProfile'), callback_data: 'menu_profile' },
+        { text: i18n.t('menu.buttonStats'), callback_data: 'menu_stats' },
       ],
       [
         { text: i18n.t('menu.buttonSettings'), callback_data: 'menu_settings' },
@@ -248,6 +252,27 @@ export async function handleMenuCallback(callbackQuery: CallbackQuery, env: Env)
         fakeMessage.text = '/fortune';
         const { handleFortune } = await import('./fortune');
         await handleFortune(fakeMessage, env);
+        break;
+      }
+
+      case 'menu_love_diagnosis': {
+        console.error('[handleMenuCallback] Entering menu_love_diagnosis case');
+        try {
+          console.error('[handleMenuCallback] Importing fortune...');
+          const { handleFortuneCallback } = await import('./fortune');
+          console.error('[handleMenuCallback] Imported fortune. Creating modified callback...');
+          const modifiedCallback = {
+            ...callbackQuery,
+            data: 'fortune_love_menu'
+          };
+            // Note: menu already answered the callback, fortune might try again but it's fine.
+          console.error('[handleMenuCallback] Calling handleFortuneCallback...');
+          await handleFortuneCallback(modifiedCallback as any, env);
+          console.error('[handleMenuCallback] handleFortuneCallback completed');
+        } catch (e) {
+          console.error('[handleMenuCallback] Error in love_diagnosis:', e);
+          await telegram.sendMessage(chatId, i18n.t('errors.systemErrorRetry'));
+        }
         break;
       }
 

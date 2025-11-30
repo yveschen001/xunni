@@ -100,6 +100,7 @@ export interface User {
   lat?: number;
   lng?: number;
   timezone?: string;
+  allow_matching?: number;
 
   // MBTI & Tests
   mbti_result?: string;
@@ -152,7 +153,18 @@ export interface User {
 // Fortune Telling Types
 // ============================================================================
 
-export type FortuneType = 'daily' | 'deep' | 'match' | 'celebrity';
+export type FortuneType =
+  | 'daily'
+  | 'weekly'
+  | 'deep'
+  | 'match'
+  | 'celebrity'
+  | 'ziwei'
+  | 'astrology'
+  | 'tarot'
+  | 'bazi'
+  | 'love_ideal'
+  | 'love_match';
 
 export interface FortuneHistory {
   id: number;
@@ -166,6 +178,8 @@ export interface FortuneHistory {
   model?: string;
   tokens_used?: number;
   created_at: string;
+  profile_snapshot?: string; // JSON
+  target_user_id?: string;
 }
 
 export interface FortuneProfile {
@@ -179,6 +193,7 @@ export interface FortuneProfile {
   birth_city?: string;
   birth_location_lat?: number;
   birth_location_lng?: number;
+  blood_type?: string;
   is_default: number;
   is_subscribed: number;
   created_at: string;

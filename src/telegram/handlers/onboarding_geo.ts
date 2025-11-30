@@ -209,7 +209,7 @@ export async function handleCitySelection(
       timezone = ?, 
       lat = ?, 
       lng = ?,
-      onboarding_step = 'nickname'
+      onboarding_step = 'mbti'
     WHERE telegram_id = ?
   `).bind(
     city.name, city.country_code, city.timezone, city.lat, city.lng, telegramId
@@ -218,40 +218,24 @@ export async function handleCitySelection(
   await telegram.answerCallbackQuery(callbackQuery.id, `Selected: ${city.name}`);
   await telegram.deleteMessage(chatId, callbackQuery.message!.message_id);
 
-  // Next Step: Nickname
-  // Logic ported from startOnboarding to maintain consistent UX
-  const suggestedNickname = user.username || user.first_name || '';
-  
-  if (suggestedNickname) {
-    const nicknameMessage =
-      i18n.t('common.nickname7') +
-      i18n.t('warnings.warning.short4') +
-      i18n.t('common.nickname5') +
-      i18n.t('common.text79') +
-      i18n.t('common.nickname11');
-
-    await telegram.sendMessageWithButtons(chatId, nicknameMessage, [
+  // Next Step: MBTI
+  // Show MBTI options: manual / test / skip
+  await telegram.sendMessageWithButtons(
+    chatId,
+    i18n.t('onboarding.settings2') +
+      '\n\n' +
+      i18n.t('onboarding.help') +
+      '\n\n' +
+      i18n.t('onboarding.settings7'),
+    [
+      [{ text: i18n.t('onboarding.mbti2'), callback_data: 'mbti_choice_manual' }],
       [
-        {
-          text: i18n.t('onboarding.useTelegramNickname', {
-            nickname: suggestedNickname.substring(0, 18),
-          }),
-          callback_data: `nickname_use_telegram`,
-        },
+        { text: i18n.t('mbtiTest.quickTest') || '📝 12題快速測試', callback_data: 'mbti_choice_test_quick' },
+        { text: i18n.t('mbtiTest.fullTest') || '📝 36題完整測試', callback_data: 'mbti_choice_test_full' }
       ],
-      [{ text: i18n.t('onboarding.customNickname'), callback_data: 'nickname_custom' }],
-    ]);
-  } else {
-    // No Telegram nickname, ask for custom nickname
-    const nicknameMessage =
-      i18n.t('common.nickname8') +
-      i18n.t('warnings.warning.short4') +
-      i18n.t('common.nickname5') +
-      i18n.t('common.text79') +
-      i18n.t('common.nickname11');
-
-    await telegram.sendMessage(chatId, nicknameMessage);
-  }
+      [{ text: i18n.t('onboarding.short'), callback_data: 'mbti_choice_skip' }],
+    ]
+  );
 }
 
 // Helper

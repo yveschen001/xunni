@@ -70,7 +70,7 @@ export async function handleStart(message: TelegramMessage, env: Env): Promise<v
           } else {
             console.error('[handleStart] Self-invitation detected');
             const { createI18n } = await import('~/i18n');
-            const i18n = createI18n('zh-TW');
+            const i18n = createI18n('en');
             await telegram.sendMessage(chatId, i18n.t('invite.selfInviteError'));
             return;
           }
@@ -99,7 +99,7 @@ export async function handleStart(message: TelegramMessage, env: Env): Promise<v
         username: message.from!.username,
         first_name: message.from!.first_name,
         last_name: message.from!.last_name,
-        language_pref: languageCode || 'zh-TW',
+        language_pref: languageCode || 'en',
         country_code: countryCode,
         invite_code: generateInviteCode(),
         invited_by: inviterTelegramId,
@@ -120,7 +120,7 @@ export async function handleStart(message: TelegramMessage, env: Env): Promise<v
         const inviter = await findUserByTelegramId(db, inviterTelegramId);
         if (inviter) {
           const { createI18n } = await import('~/i18n');
-          const i18n = createI18n(user.language_pref || 'zh-TW');
+          const i18n = createI18n(user.language_pref || 'en');
           await telegram.sendMessage(
             chatId,
             i18n.t('invite.codeAccepted', {
@@ -133,7 +133,7 @@ export async function handleStart(message: TelegramMessage, env: Env): Promise<v
       }
 
       const { createI18n } = await import('~/i18n');
-      const i18n = createI18n(user.language_pref || 'zh-TW');
+      const i18n = createI18n(user.language_pref || 'en');
 
       // MBTI Share Link Handling (New User)
       if (mbtiShareCode) {
@@ -158,7 +158,7 @@ export async function handleStart(message: TelegramMessage, env: Env): Promise<v
     if (mbtiShareCode) {
       await createReferralSource(db, user.telegram_id, 'mbti_share', mbtiShareCode, null);
       const { createI18n } = await import('~/i18n');
-      const i18n = createI18n(user.language_pref || 'zh-TW');
+      const i18n = createI18n(user.language_pref || 'en');
       await telegram.sendMessageWithButtons(chatId, i18n.t('mbti.share.welcome'), [
         [{ text: i18n.t('mbti.share.startButton'), callback_data: 'mbti_test_full' }],
       ]);
@@ -168,7 +168,7 @@ export async function handleStart(message: TelegramMessage, env: Env): Promise<v
     if (hasCompletedOnboarding(user)) {
       // Already completed onboarding
       const { createI18n } = await import('~/i18n');
-      const i18n = createI18n(user.language_pref || 'zh-TW');
+      const i18n = createI18n(user.language_pref || 'en');
       await telegram.sendMessageWithButtons(
         chatId,
         i18n.t('common.text5', { user: { nickname: user.nickname } }) +
@@ -221,7 +221,7 @@ export async function handleStart(message: TelegramMessage, env: Env): Promise<v
         const inviter = await findUserByTelegramId(db, inviterTelegramId);
         if (inviter) {
           const { createI18n } = await import('~/i18n');
-          const i18n = createI18n(user.language_pref || 'zh-TW');
+          const i18n = createI18n(user.language_pref || 'en');
           await telegram.sendMessage(
             chatId,
             i18n.t('invite.codeAccepted', {
@@ -238,12 +238,12 @@ export async function handleStart(message: TelegramMessage, env: Env): Promise<v
       }
 
       // Resume onboarding
-      await resumeOnboarding(user, chatId, telegram, db);
+      await resumeOnboarding(user, chatId, telegram, db, env);
     }
   } catch (error) {
     console.error('[handleStart] Error:', error);
     const { createI18n } = await import('~/i18n');
-    const errorI18n = createI18n('zh-TW');
+    const errorI18n = createI18n('en');
     await telegram.sendMessage(chatId, errorI18n.t('errors.systemErrorRetry'));
   }
 }
@@ -267,7 +267,7 @@ async function resumeOnboarding(
     case 'language_selection': {
       // Show language selection with buttons
       const { createI18n } = await import('~/i18n');
-      const i18n = createI18n(user.language_pref || 'zh-TW');
+      const i18n = createI18n(user.language_pref || 'en');
       await telegram.sendMessageWithButtons(
         chatId,
         i18n.t('onboarding.welcome'),
@@ -276,17 +276,26 @@ async function resumeOnboarding(
       break;
     }
 
+    case 'region_selection':
+    case 'country_selection':
+    case 'city_search': {
+      const { startGeoFlow } = await import('./onboarding_geo');
+      // Pass env which contains DB
+      await startGeoFlow(chatId, user.telegram_id, { ...env, DB: _db.d1 } as any);
+      break;
+    }
+
     case 'start':
     case 'nickname': {
       const { createI18n } = await import('~/i18n');
-      const i18n = createI18n(user.language_pref || 'zh-TW');
+      const i18n = createI18n(user.language_pref || 'en');
       await telegram.sendMessage(chatId, i18n.t('edit_profile.nickname'));
       break;
     }
 
     case 'avatar': {
       const { createI18n } = await import('~/i18n');
-      const i18n = createI18n(user.language_pref || 'zh-TW');
+      const i18n = createI18n(user.language_pref || 'en');
       await telegram.sendMessage(
         chatId,
         i18n.t('common.text51') + '\n\n' + i18n.t('common.text63')
@@ -296,7 +305,7 @@ async function resumeOnboarding(
 
     case 'gender': {
       const { createI18n } = await import('~/i18n');
-      const i18n = createI18n(user.language_pref || 'zh-TW');
+      const i18n = createI18n(user.language_pref || 'en');
       await telegram.sendMessageWithButtons(
         chatId,
         i18n.t('onboarding.gender3') + '\n\n' + i18n.t('warnings.gender'),
@@ -312,7 +321,7 @@ async function resumeOnboarding(
 
     case 'birthday': {
       const { createI18n } = await import('~/i18n');
-      const i18n = createI18n(user.language_pref || 'zh-TW');
+      const i18n = createI18n(user.language_pref || 'en');
       await telegram.sendMessage(
         chatId,
         i18n.t('onboarding.birthday3') +
@@ -332,7 +341,7 @@ async function resumeOnboarding(
       const { getBloodTypeOptions } = await import('~/domain/blood_type');
       const options = getBloodTypeOptions();
       const { createI18n } = await import('~/i18n');
-      const i18n = createI18n(user.language_pref || 'zh-TW');
+      const i18n = createI18n(user.language_pref || 'en');
 
       await telegram.sendMessageWithButtons(
         chatId,
@@ -359,7 +368,7 @@ async function resumeOnboarding(
     case 'mbti': {
       // Show MBTI options: manual / test / skip
       const { createI18n } = await import('~/i18n');
-      const i18n = createI18n(user.language_pref || 'zh-TW');
+      const i18n = createI18n(user.language_pref || 'en');
       await telegram.sendMessageWithButtons(
         chatId,
         i18n.t('onboarding.settings2') +
@@ -379,7 +388,7 @@ async function resumeOnboarding(
     case 'anti_fraud': {
       // Show anti-fraud confirmation with buttons
       const { createI18n } = await import('~/i18n');
-      const i18n = createI18n(user.language_pref || 'zh-TW');
+      const i18n = createI18n(user.language_pref || 'en');
       await telegram.sendMessageWithButtons(
         chatId,
         i18n.t('onboarding.confirm2') +
@@ -413,7 +422,7 @@ async function resumeOnboarding(
 
     case 'terms': {
       const { createI18n } = await import('~/i18n');
-      const i18n = createI18n(user.language_pref || 'zh-TW');
+      const i18n = createI18n(user.language_pref || 'en');
       await telegram.sendMessageWithButtons(
         chatId,
         i18n.t('onboarding.start') +
@@ -446,7 +455,7 @@ async function resumeOnboarding(
 
     default: {
       const { createI18n } = await import('~/i18n');
-      const i18n = createI18n(user.language_pref || 'zh-TW');
+      const i18n = createI18n(user.language_pref || 'en');
       await telegram.sendMessage(
         chatId,
         i18n.t('errors.error.short9') + '\n\n' + i18n.t('onboarding.start2') + '\n\n' + '/start'

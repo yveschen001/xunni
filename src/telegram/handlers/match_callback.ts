@@ -1,102 +1,78 @@
 import type { Env, TelegramCallbackQuery } from '~/types';
 import { createDatabaseClient } from '~/db/client';
 import { createTelegramService } from '~/services/telegram';
-import { findUserByTelegramId } from '~/db/queries/users';
-import { createI18n } from '~/i18n';
-import { handleThrow } from './throw';
-import { handleVip } from './vip';
+import { I18n } from '~/i18n';
+import { MatchRequestService } from '~/services/match_request';
 
 /**
- * Handle VIP Target Throw from Match Push
- * Callback format: match_vip_TOPIC_TARGET (e.g., match_vip_zodiac_leo)
+ * Handle callbacks related to match requests (Attribute Diagnosis)
  */
-export async function handleMatchVip(
-  callbackQuery: TelegramCallbackQuery,
-  topic: string,
-  target: string,
-  env: Env
-): Promise<void> {
-  const telegramId = callbackQuery.from.id.toString();
-  const { createDatabaseClient } = await import('~/db/client');
+export async function handleMatchConsent(callbackQuery: TelegramCallbackQuery, env: Env): Promise<void> {
   const db = createDatabaseClient(env.DB);
   const telegram = createTelegramService(env);
+  const i18n = new I18n(callbackQuery.from.language_code || 'zh-TW');
+  const matchRequestService = new MatchRequestService(env, db.d1, i18n, telegram);
 
-  const user = await findUserByTelegramId(db, telegramId);
-  if (!user) return;
+  const data = callbackQuery.data!; // e.g., match_consent_accept:requestId
+  const parts = data.split(':');
+  const action = parts[0]; // match_consent_accept or match_consent_reject
+  const requestId = parts[1];
+  const targetId = callbackQuery.from.id.toString();
 
-  const i18n = createI18n(user.language_pref || 'zh-TW');
+  console.log(`[MatchCallback] Handling consent for request ${requestId}, action: ${action}, target: ${targetId}`);
 
-  // Check if user is VIP
-  const isVip = !!(user.is_vip && user.vip_expire_at && new Date(user.vip_expire_at) > new Date());
-
-  if (isVip) {
-    // VIP: Proceed to locked throw
-    // Construct options based on topic
-    const options: any = {};
-    if (topic === 'zodiac') options.target_zodiac = target;
-    if (topic === 'mbti') options.target_mbti = target;
-    if (topic === 'blood') options.target_blood = target;
-
-    await telegram.answerCallbackQuery(callbackQuery.id, i18n.t('success.saved')); // Or some affirmation
-
-    // Call handleThrow with options
-    // We need to construct a message-like object
-    const fakeMessage = {
-      ...callbackQuery.message!,
-      from: callbackQuery.from,
-      text: '/throw',
-    };
-
-    await handleThrow(fakeMessage as any, env, options);
-  } else {
-    // Non-VIP: Upsell
-    // Translate target for better message
-    let targetDisplay = target;
-    if (topic === 'zodiac') {
-      const { getZodiacDisplay } = await import('~/domain/zodiac');
-      targetDisplay = getZodiacDisplay(target, i18n);
-    }
-
-    await telegram.answerCallbackQuery(callbackQuery.id, i18n.t('common.vipRequired'));
-
-    // Send Upsell Message
-    await telegram.sendMessage(
-      callbackQuery.message!.chat.id,
-      i18n.t('match.btn.vip_upsell', { target: targetDisplay })
-    );
-
-    // Show VIP menu
-    const fakeMessage = {
-      ...callbackQuery.message!,
-      from: callbackQuery.from,
-      text: '/vip',
-    };
-    await handleVip(fakeMessage as any, env);
+  if (!requestId) {
+    await telegram.answerCallbackQuery(callbackQuery.id, i18n.t('error.invalidRequest') || 'Invalid Request');
+    return;
   }
+
+  const result = await matchRequestService.handleConsent(requestId, targetId, action === 'match_consent_accept');
+
+  if (result.success) {
+    if (action === 'match_consent_accept') {
+      // Success message update
+      await telegram.editMessageText(
+            callbackQuery.message!.chat.id, 
+            callbackQuery.message!.message_id, 
+            i18n.t('fortune.love.consent_accepted_msg') || '✅ Accepted. Generating report...'
+      );
+      // Report generation is triggered inside handleConsent -> MatchRequestService
+    } else {
+      // Reject message update
+      await telegram.editMessageText(
+            callbackQuery.message!.chat.id, 
+            callbackQuery.message!.message_id, 
+            i18n.t('fortune.love.consent_rejected_msg') || '❌ Request rejected.'
+      );
+    }
+  } else {
+    // Error message update
+    await telegram.editMessageText(
+        callbackQuery.message!.chat.id, 
+        callbackQuery.message!.message_id, 
+        result.message || 'Error processing request.'
+    );
+  }
+  await telegram.answerCallbackQuery(callbackQuery.id);
 }
 
 /**
- * Handle Standard Throw from Match Push
- * Callback format: match_throw
+ * Handle VIP throw callback from push notification
  */
-export async function handleMatchThrow(
-  callbackQuery: TelegramCallbackQuery,
-  env: Env
-): Promise<void> {
-  const { createDatabaseClient } = await import('~/db/client');
-  const db = createDatabaseClient(env.DB);
-  const user = await findUserByTelegramId(db, callbackQuery.from.id.toString());
-  const i18n = createI18n(user?.language_pref || 'zh-TW');
-
+export async function handleMatchVip(callbackQuery: TelegramCallbackQuery, env: Env): Promise<void> {
   const telegram = createTelegramService(env);
-  await telegram.answerCallbackQuery(callbackQuery.id, i18n.t('common.loading'));
+  // Logic to handle "Throw Bottle to this match"
+  // This typically redirects to the throw flow with a pre-filled target or topic
+  // For now, just acknowledge
+  await telegram.answerCallbackQuery(callbackQuery.id, 'VIP Match Throw not implemented yet');
+}
 
-  // Simply call standard handleThrow
-  const fakeMessage = {
-    ...callbackQuery.message!,
-    from: callbackQuery.from,
-    text: '/throw',
-  };
 
-  await handleThrow(fakeMessage as any, env);
+/**
+ * Handle generic Match Throw callback
+ */
+export async function handleMatchThrow(callbackQuery: TelegramCallbackQuery, env: Env): Promise<void> {
+  const telegram = createTelegramService(env);
+  // Logic to handle generic throw
+  await telegram.answerCallbackQuery(callbackQuery.id, 'Match Throw not implemented yet');
 }

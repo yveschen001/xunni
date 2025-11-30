@@ -234,7 +234,6 @@ export default {
         await deleteOldConversationMessages(env);
       }
 
-      // Horoscope push (Every Monday at 9:00 UTC)
       // Daily stats (Every day at 00:05 UTC)
       if (event.cron === '5 0 * * *') {
         // eslint-disable-next-line no-console
@@ -275,8 +274,9 @@ export default {
         await checkExternalServices(env);
       }
 
-      // AI Moderation Patrol (Every hour)
+      // HOURLY TASKS (Trigger every hour 0 * * * *)
       if (event.cron === '0 * * * *') {
+        // 1. AI Moderation Patrol
         try {
           // eslint-disable-next-line no-console
           console.log('[Worker] Running AI Moderation Patrol...');
@@ -285,10 +285,8 @@ export default {
         } catch (err) {
           console.error('[Worker] AI Moderation Patrol failed:', err);
         }
-      }
 
-      // Check channel membership (Every hour)
-      if (event.cron === '0 * * * *') {
+        // 2. Check channel membership
         try {
           // eslint-disable-next-line no-console
           console.log('[Worker] Checking channel membership...');
@@ -296,6 +294,44 @@ export default {
           await checkChannelMembership(env);
         } catch (err) {
           console.error('[Worker] Channel membership check failed:', err);
+        }
+
+        // 3. Check expired subscriptions
+        try {
+          // eslint-disable-next-line no-console
+          console.log('[Worker] Checking expired subscriptions...');
+          const { checkExpiredSubscriptions } = await import('./services/subscription_checker');
+          await checkExpiredSubscriptions(env);
+        } catch (err) {
+          console.error('[Worker] Subscription checker failed:', err);
+        }
+
+        // 4. Push Reminders (General Retention)
+        try {
+          console.log('[Worker] Checking push reminders...');
+          const { handlePushReminders } = await import('./telegram/handlers/cron_push');
+          await handlePushReminders(env);
+        } catch (err) {
+          console.error('[Worker] Push reminders failed:', err);
+        }
+
+        // 5. Daily Fortune Push (Now Timezone Aware)
+        try {
+          console.log('[Worker] Checking Daily Fortune Push...');
+          const { sendDailyFortunePush } = await import('./services/fortune_push');
+          await sendDailyFortunePush(env);
+        } catch (err) {
+          console.error('[Worker] Daily Fortune Push failed:', err);
+        }
+
+        // 6. Smart Match Push (Now Timezone Aware)
+        try {
+          // eslint-disable-next-line no-console
+          console.log('[Worker] Checking Smart Match Push...');
+          const { handleMatchPush } = await import('./telegram/handlers/cron_match_push');
+          await handleMatchPush(env, env.DB);
+        } catch (err) {
+          console.error('[Worker] Smart Match Push failed:', err);
         }
       }
 
@@ -308,27 +344,6 @@ export default {
           await checkVipExpirations(env);
         } catch (err) {
           console.error('[Worker] VIP expirations check failed:', err);
-        }
-      }
-
-      // Check expired subscriptions (Every hour)
-      if (event.cron === '0 * * * *') {
-        try {
-          // eslint-disable-next-line no-console
-          console.log('[Worker] Checking expired subscriptions...');
-          const { checkExpiredSubscriptions } = await import('./services/subscription_checker');
-          await checkExpiredSubscriptions(env);
-        } catch (err) {
-          console.error('[Worker] Subscription checker failed:', err);
-        }
-
-        try {
-          // New: Push Reminders (also every hour)
-          console.log('[Worker] Checking push reminders...');
-          const { handlePushReminders } = await import('./telegram/handlers/cron_push');
-          await handlePushReminders(env);
-        } catch (err) {
-          console.error('[Worker] Push reminders failed:', err);
         }
       }
 
@@ -354,7 +369,7 @@ export default {
         await handleBirthdayGreetings(env);
       }
 
-      // Daily Translation Report (Daily 09:00 UTC+8 = 01:00 UTC)
+      // Admin Daily Report (Daily 09:00 UTC+8 = 01:00 UTC)
       if (event.cron === '0 1 * * *') {
         try {
           console.log('[Worker] Running Admin Daily Report...');
@@ -365,19 +380,6 @@ export default {
         }
       }
 
-      // Smart Match Push (Every Monday at 09:00 UTC+8 = 01:00 UTC)
-      if (event.cron === '0 1 * * 1') {
-        try {
-          // eslint-disable-next-line no-console
-          console.log('[Worker] Running Smart Match Push...');
-          // const { createDatabaseClient } = await import('./db/client');
-          // const db = createDatabaseClient(env);
-          const { handleMatchPush } = await import('./telegram/handlers/cron_match_push');
-          await handleMatchPush(env, env.DB);
-        } catch (err) {
-          console.error('[Worker] Smart Match Push failed:', err);
-        }
-      }
     } catch (error) {
       console.error('[Worker] Scheduled event error:', error);
       // 🚨 Smart Alerting

@@ -232,12 +232,30 @@ const interactiveTests: TestSuite = {
   ]
 };
 
+// --- Group 6: Fortune Features (New) ---
+const fortuneTests: TestSuite = {
+  name: 'Fortune Features',
+  type: 'feature',
+  tests: [
+    async () => runner.test('Fortune Menu (/fortune)', async () => { 
+      await sendWebhook(createUpdate('/fortune')); 
+    }),
+    async () => runner.test('Fortune Love Menu', async () => { 
+      await sendWebhook(createCallbackUpdate('fortune_love_menu')); 
+    }),
+    async () => runner.test('Fortune Daily (Check Quota/Profile)', async () => { 
+      // This might fail if profile not created, but ensures handler doesn't crash
+      await sendWebhook(createCallbackUpdate('fortune_daily')); 
+    })
+  ]
+};
+
 // ============================================================================
 // Main Execution Flow
 // ============================================================================
 
 async function main() {
-  const suites = [staticTests, criticalTests, userTests, adminTests, interactiveTests];
+  const suites = [staticTests, criticalTests, userTests, adminTests, interactiveTests, fortuneTests];
 
   // 1. Run Static Checks
   if (!skipStatic && (!filterArg || filterArg === 'static')) {

@@ -12,7 +12,10 @@ export type SessionType =
   | 'edit_profile'
   | 'admin_ad_wizard'
   | 'admin_task_wizard'
-  | 'fortune_wizard';
+  | 'fortune_wizard'
+  | 'fortune_edit'
+  | 'fortune_input'
+  | 'fortune_context';
 
 export interface UserSession {
   id: number;
@@ -39,6 +42,9 @@ export const SESSION_TIMEOUT = {
   admin_ad_wizard: 30, // 30 minutes for admin ad wizard
   admin_task_wizard: 30, // 30 minutes for admin task wizard
   fortune_wizard: 15, // 15 minutes for fortune telling wizard
+  fortune_edit: 10, // 10 minutes for editing fortune profile
+  fortune_input: 10, // 10 minutes for fortune input sessions
+  fortune_context: 1440, // 24 hours for active profile selection
 } as const;
 
 /**
@@ -114,6 +120,7 @@ export function getTimeoutMessage(
     admin_ad_wizard: '⏰ 廣告管理流程已超時\n\n請使用 /admin_ads 重新開始。',
     admin_task_wizard: '⏰ 任務管理流程已超時\n\n請使用 /admin_tasks 重新開始。',
     fortune_wizard: i18n?.t('session.timeoutFortune') || '⏰ 算命流程已超時\n\n請使用 /fortune 重新開始。',
+    fortune_edit: i18n?.t('session.timeoutEditProfile') || '⏰ 編輯流程已超時\n\n請重新開始。',
   };
 
   return messages[sessionType];
@@ -135,6 +142,7 @@ export function getSessionTypeName(
     admin_ad_wizard: '廣告管理',
     admin_task_wizard: '任務管理',
     fortune_wizard: '算命流程',
+    fortune_edit: '編輯命盤',
   };
 
   return names[sessionType];

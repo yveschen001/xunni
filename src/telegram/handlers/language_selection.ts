@@ -27,9 +27,10 @@ export async function showLanguageSelection(message: TelegramMessage, env: Env):
   const telegram = createTelegramService(env);
   const chatId = message.chat.id;
 
-  // Use i18n for welcome message (bilingual zh-TW + en)
+  // Use i18n for welcome message (default to user's client language or English)
   const { createI18n } = await import('~/i18n');
-  const i18n = createI18n('zh-TW'); // Default to zh-TW for welcome
+  const languageCode = message.from?.language_code || 'en';
+  const i18n = createI18n(languageCode);
 
   // Show welcome message with popular languages
   await telegram.sendMessageWithButtons(
@@ -49,7 +50,8 @@ export async function showAllLanguages(callbackQuery: CallbackQuery, env: Env): 
 
   // Use i18n
   const { createI18n } = await import('~/i18n');
-  const i18n = createI18n('zh-TW');
+  const languageCode = callbackQuery.from.language_code || 'en';
+  const i18n = createI18n(languageCode);
 
   // Edit message to show all languages (page 0)
   await telegram.editMessageText(chatId, messageId, i18n.t('onboarding.languageSelection'), {
@@ -80,7 +82,7 @@ export async function handleLanguageSelection(
   // Get user's current language for error messages
   const { createI18n } = await import('~/i18n');
   const user = await findUserByTelegramId(db, telegramId);
-  const currentI18n = createI18n(user?.language_pref || 'zh-TW');
+  const currentI18n = createI18n(user?.language_pref || 'en');
 
   try {
     // Validate language code
@@ -108,10 +110,10 @@ export async function handleLanguageSelection(
       language_pref: languageCode,
     });
 
-    // Update onboarding step to region_selection for new users (Step 2: Region)
+    // Update onboarding step to nickname for new users (Step 2: Nickname)
     if (isNewUser) {
       const { updateOnboardingStep } = await import('~/db/queries/users');
-      await updateOnboardingStep(db, telegramId, 'region_selection');
+      await updateOnboardingStep(db, telegramId, 'nickname');
     }
 
     // Answer callback query (use newly selected language)
@@ -125,9 +127,39 @@ export async function handleLanguageSelection(
     await telegram.deleteMessage(chatId, callbackQuery.message!.message_id);
 
     if (isNewUser) {
-      // New user - start Geo Flow (Region Selection)
-      const { startGeoFlow } = await import('./onboarding_geo');
-      await startGeoFlow(chatId, telegramId, env);
+      // New user - Ask Nickname
+      const suggestedNickname = user.username || user.first_name || '';
+      
+      if (suggestedNickname) {
+        const nicknameMessage =
+          newI18n.t('common.nickname7') +
+          newI18n.t('warnings.warning.short4') +
+          newI18n.t('common.nickname5') +
+          newI18n.t('common.text79') +
+          newI18n.t('common.nickname11');
+
+        await telegram.sendMessageWithButtons(chatId, nicknameMessage, [
+          [
+            {
+              text: newI18n.t('onboarding.useTelegramNickname', {
+                nickname: suggestedNickname.substring(0, 18),
+              }),
+              callback_data: `nickname_use_telegram`,
+            },
+          ],
+          [{ text: newI18n.t('onboarding.customNickname'), callback_data: 'nickname_custom' }],
+        ]);
+      } else {
+        // No Telegram nickname, ask for custom nickname
+        const nicknameMessage =
+          newI18n.t('common.nickname8') +
+          newI18n.t('warnings.warning.short4') +
+          newI18n.t('common.nickname5') +
+          newI18n.t('common.text79') +
+          newI18n.t('common.nickname11');
+
+        await telegram.sendMessage(chatId, nicknameMessage);
+      }
     } else {
       // Existing user - just confirm language change
       // Use the newly selected language for confirmation message
@@ -159,7 +191,7 @@ export async function handleLanguageSelection(
     }
   } catch (error) {
     console.error('[handleLanguageSelection] Error:', error);
-    const errorI18n = createI18n(user?.language_pref || 'zh-TW');
+    const errorI18n = createI18n(user?.language_pref || 'en');
     await telegram.answerCallbackQuery(callbackQuery.id, errorI18n.t('errors.systemErrorRetry'));
   }
 }

@@ -67,6 +67,11 @@
 - 提供 `/appeal` 申訴機制
 
 #### 其他功能
+- **AI 算命 (Fortune Telling)**:
+  - **今日/本週運勢**: 結合 MBTI、八字、西洋占星的個性化運勢。
+  - **愛情診斷 (Love Diagnosis)**: 單人理想型分析 & 雙人合盤速配 (Viral Growth 裂變引擎)。
+  - **進階命理**: 提供紫微斗數、八字、塔羅、西洋占星深度報告。
+  - **算命瓶 (Fortune Bottle)**: 獨立的經濟系統，透過活躍、邀請或付費獲取。
 - 每週星座運勢推播，召回使用者來丟／撿瓶
 - 對外 HTTP API：
   - `/api/eligibility`：給 Moonpacket 紅包系統查資格

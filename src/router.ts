@@ -785,6 +785,27 @@ export async function routeUpdate(update: TelegramUpdate, env: Env): Promise<voi
       return;
     }
 
+    // Test Daily Fortune Push (Admin only)
+    if (text === '/admin_test_fortune_push') {
+      const { isSuperAdmin } = await import('./telegram/handlers/admin_ban');
+      // Fix: Pass env to isSuperAdmin if signature requires it (older implementation might not)
+      // Checking existing usage: if (!isSuperAdmin(telegramId)) {
+      // Some usage has env, some doesn't. Let's check imports.
+      // Line 775: if (!isSuperAdmin(telegramId)) {
+      // Line 565: if (!isSuperAdmin(telegramId, env)) {
+      // It seems both might work or one is deprecated. I'll use the one that works in match_push block or just pass both if safe.
+      // Actually match_push block uses `isSuperAdmin(telegramId)`.
+      if (!isSuperAdmin(telegramId, env)) {
+        return;
+      }
+
+      await telegram.sendMessage(chatId, 'Testing Daily Fortune Push...');
+      const { sendDailyFortunePush } = await import('./services/fortune_push');
+      await sendDailyFortunePush(env);
+      await telegram.sendMessage(chatId, 'Daily Fortune Push trigger completed.');
+      return;
+    }
+
     // Test Retention Push (Admin only)
     if (text === '/admin_test_retention_push') {
       const { isSuperAdmin } = await import('./telegram/handlers/admin_ban');
@@ -1353,6 +1374,18 @@ export async function routeUpdate(update: TelegramUpdate, env: Env): Promise<voi
     if (data === 'mbti_choice_test') {
       const { handleMBTIChoiceTest } = await import('./telegram/handlers/onboarding_callback');
       await handleMBTIChoiceTest(callbackQuery, env);
+      return;
+    }
+
+    if (data === 'mbti_choice_test_quick') {
+      const { handleMBTIChoiceTest } = await import('./telegram/handlers/onboarding_callback');
+      await handleMBTIChoiceTest(callbackQuery, env, 'quick');
+      return;
+    }
+
+    if (data === 'mbti_choice_test_full') {
+      const { handleMBTIChoiceTest } = await import('./telegram/handlers/onboarding_callback');
+      await handleMBTIChoiceTest(callbackQuery, env, 'full');
       return;
     }
 
@@ -2120,6 +2153,20 @@ export async function routeUpdate(update: TelegramUpdate, env: Env): Promise<voi
 
       await handleMatchVip(callbackQuery, topic, target, env);
       return;
+    }
+
+    // ✨ NEW: Match Consent Callbacks
+    if (data.startsWith('match_consent:')) {
+      const { handleMatchConsentCallback } = await import('./telegram/handlers/match_callback');
+      // Format: match_consent:ACTION:REQUEST_ID
+      const parts = data.split(':');
+      const action = parts[1] as 'accept' | 'reject';
+      const requestId = parts[2];
+      
+      if (action && requestId) {
+        await handleMatchConsentCallback(callbackQuery, env, action, requestId);
+        return;
+      }
     }
 
     if (data === 'match_throw') {

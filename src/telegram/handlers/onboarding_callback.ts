@@ -1026,7 +1026,11 @@ export async function handleTermsAgreement(callbackQuery: CallbackQuery, env: En
           updatedI18n.t('onboarding.age', { updatedUser: { age: updatedUser.age } }) +
           '\n' +
           updatedI18n.t('onboarding.zodiac', {
-            updatedUser: { zodiac_sign: updatedUser.zodiac_sign },
+            updatedUser: {
+              zodiac_sign: updatedUser.zodiac_sign
+                ? updatedI18n.t(`zodiac.${updatedUser.zodiac_sign}` as any).replace('$zodiac.', '')
+                : notSetText,
+            },
           }) +
           '\n' +
           updatedI18n.t('common.mbti3', { user: { mbti_result: mbtiDisplay } }) +

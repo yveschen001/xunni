@@ -52,7 +52,7 @@ export async function showMBTIQuestion(
 
   // Get question text from i18n
   const questionKey =
-    version === 'full' ? `mbti.full.question${question.id}` : `mbti.quick.question${question.id}`;
+    version === 'full' ? `mbti.full.question${question.id}.text` : `mbti.quick.question${question.id}.text`;
   const questionText = i18n.t(questionKey as any);
 
   // Build answer buttons with i18n support

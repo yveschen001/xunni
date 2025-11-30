@@ -81,6 +81,8 @@ export async function handleVip(message: TelegramMessage, env: Env): Promise<voi
           '\n' +
           i18n.t('vip.text23') +
           '\n' +
+          '• 每日免費 1 次 AI 算命（VIP 專屬）\n' +
+          '\n' +
           i18n.t('vip.quota2') +
           '\n' +
           i18n.t('vip.mbti') +
@@ -397,7 +399,20 @@ export async function handleSuccessfulPayment(
         provider: 'telegram'
       });
 
-      await telegram.sendMessage(chatId, i18n.t('fortune.purchaseSuccess', { amount }));
+      // Send Success Message with Return Button
+      const buttons = [[{ text: i18n.t('fortune.backToMenu'), callback_data: 'fortune_get_more' }]];
+      await telegram.sendMessageWithButtons(chatId, i18n.t('fortune.purchaseSuccess', { amount }), buttons);
+
+      // ⏳ Auto-Redirect after 5 seconds
+      // Note: We use setTimeout inside the handler. In Cloudflare Workers this execution will be kept alive
+      // until the promise resolves as long as we await it, but technically ctx.waitUntil is better for side effects.
+      // However, for user UX, blocking here is the intended behavior to delay the next message.
+      await new Promise(r => setTimeout(r, 5000));
+      
+      const { showGetMoreMenu } = await import('./fortune');
+      // Show "Get More" Menu (Previous Screen)
+      await showGetMoreMenu(chatId, telegram, i18n, env);
+      
       return;
     }
 
@@ -447,6 +462,19 @@ export async function handleSuccessfulPayment(
     // Create or update subscription record
     await createOrUpdateSubscription(db, telegramId, newExpire, payment.telegram_payment_charge_id);
 
+    // 🆕 Immediate Fortune Bottle Reward (Reset daily quota to 1)
+    try {
+      // Force reset weekly_free_quota to 1 and update last_reset_at to now
+      // This gives them 1 fresh bottle immediately for today.
+      await db.d1.prepare(`
+        INSERT INTO fortune_quota (telegram_id, weekly_free_quota, last_reset_at) 
+        VALUES (?, 1, ?) 
+        ON CONFLICT(telegram_id) DO UPDATE SET weekly_free_quota = 1, last_reset_at = ?
+      `).bind(telegramId, new Date().toISOString(), new Date().toISOString()).run();
+    } catch (e) {
+      console.error('[handleSuccessfulPayment] Failed to grant immediate fortune quota:', e);
+    }
+
     // Send confirmation message
     const confirmMessage = isRecurring
       ? i18n.t('vip.success2') +
@@ -492,7 +520,9 @@ export async function handleSuccessfulPayment(
         '\n\n' +
         i18n.t('vip.start');
 
-    await telegram.sendMessage(chatId, confirmMessage);
+    await telegram.sendMessageWithButtons(chatId, confirmMessage, [
+      [{ text: i18n.t('common.back3'), callback_data: 'return_to_menu' }]
+    ]);
 
     // Refresh conversation history posts to show clear avatars
     if (!isRenewal) {
@@ -513,6 +543,12 @@ export async function handleSuccessfulPayment(
       );
     }
 
+    // ⏳ Auto-Redirect after 5 seconds
+    await new Promise(r => setTimeout(r, 5000));
+    // Redirect to VIP info page (which is where they likely came from for upgrading)
+    // We can reuse handleVip but it's bound to message. We can just show the updated VIP status card.
+    await handleVip(message, env);
+    
     // Notify super admin
     const notificationType = isRecurring
       ? 'vip_auto_renewed'

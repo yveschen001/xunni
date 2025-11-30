@@ -467,8 +467,8 @@ export async function processBottleContent(
       const totalBottles = result?.count || 0;
       
       if (totalBottles > 0 && totalBottles % 10 === 0) {
-         // Grant Reward
-         await db.d1.prepare(`
+        // Grant Reward
+        await db.d1.prepare(`
           INSERT INTO fortune_quota (telegram_id, additional_quota) 
           VALUES (?, 1) 
           ON CONFLICT(telegram_id) DO UPDATE SET additional_quota = additional_quota + 1

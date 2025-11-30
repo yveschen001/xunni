@@ -77,21 +77,21 @@ export async function handleHelp(message: TelegramMessage, env: Env): Promise<vo
       helpMessage +=
         `\n\n━━━━━━━━━━━━━━━━\n` +
         '👑 ' +
-        (i18n.t('help.superAdminTitle').startsWith('[') ? '🔱 **超級管理員功能**' : i18n.t('help.superAdminTitle')) +
+        i18n.t('help.superAdminTitle') +
         '\n' +
         '/analytics - ' +
-        (i18n.t('admin.analyticsTitle').startsWith('[') ? '每日運營報表' : i18n.t('admin.analyticsTitle')) +
+        i18n.t('admin.analyticsTitle') +
         '\n' +
         '/ad_performance - ' +
-        (i18n.t('admin.adPerformanceTitle').startsWith('[') ? '廣告效果報表' : i18n.t('admin.adPerformanceTitle')) +
+        i18n.t('admin.adPerformanceTitle') +
         '\n' +
         '/vip_funnel - ' +
-        (i18n.t('admin.vipFunnelTitle').startsWith('[') ? 'VIP 轉化漏斗' : i18n.t('admin.vipFunnelTitle')) +
+        i18n.t('admin.vipFunnelTitle') +
         '\n' +
         '\n' +
-        (i18n.t('help.superAdminMaintenance').startsWith('[') ? '**系統維護**' : i18n.t('help.superAdminMaintenance')) +
-        (i18n.t('help.superAdminMaintenanceDisable').startsWith('[') ? '\n/maintenance_disable - 關閉維護模式' : '\n' + i18n.t('help.superAdminMaintenanceDisable')) +
-        (i18n.t('help.superAdminMaintenanceEnable').startsWith('[') ? '\n/maintenance_enable [reason] - 開啟維護模式' : '\n' + i18n.t('help.superAdminMaintenanceEnable')) +
+        i18n.t('help.superAdminMaintenance') +
+        '\n' + i18n.t('help.superAdminMaintenanceDisable') +
+        '\n' + i18n.t('help.superAdminMaintenanceEnable') +
         '\n/maintenance_status - 查看維護狀態' +
         
         // Broadcast Commands (Moved from Admin)
@@ -107,8 +107,8 @@ export async function handleHelp(message: TelegramMessage, env: Env): Promise<vo
         
         // Ads & Tasks & Reports (Moved from Admin)
         '\n\n**管理工具**' +
-        (i18n.t('help.admin_ads').startsWith('[') ? '\n/admin_ads - 管理官方廣告 (含新增)' : i18n.t('help.admin_ads')) +
-        (i18n.t('help.admin_tasks').startsWith('[') ? '\n/admin_tasks - 管理社群任務 (含新增)' : i18n.t('help.admin_tasks')) +
+        i18n.t('help.admin_ads') +
+        i18n.t('help.admin_tasks') +
         '\n\n/admin_report - ' +
         i18n.t('help.dailyReportTitle') +
         '\n/admin_report_test - ' +
@@ -116,7 +116,15 @@ export async function handleHelp(message: TelegramMessage, env: Env): Promise<vo
         '\n/admin_test_retention_push - ' +
         i18n.t('admin.ban.testRetentionPush') + 
         '\n/admin_test_match_push - ' +
-        i18n.t('admin.ban.testMatchPush');
+        i18n.t('admin.ban.testMatchPush') +
+        
+        // Dev Tools
+        '\n\n' +
+        i18n.t('help.devToolsTitle') +
+        i18n.t('help.devInfo') +
+        i18n.t('help.devReset') +
+        i18n.t('help.devRestart') +
+        i18n.t('help.devSkip');
     }
 
     await telegram.sendMessage(chatId, helpMessage, { parse_mode: undefined }); // Force plain text

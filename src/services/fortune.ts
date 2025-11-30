@@ -256,10 +256,87 @@ export class FortuneService {
   }
   
   // ==========================================================
+  // Smart Helpers
+  // ==========================================================
+
+  async correctCityName(userInput: string, userLang: string): Promise<string | null> {
+    const prompt = `
+      User Input: "${userInput}"
+      Task: Identify the city name from the input. Correct typos or translate to standard English or local name suitable for database search.
+      Output: Return ONLY the corrected city name. If invalid or unknown, return "null".
+      Examples:
+      "Taipeu" -> "Taipei"
+      "Taibei" -> "Taipei"
+      "New York" -> "New York"
+      "unknown123" -> "null"
+    `;
+    
+    try {
+      // Use 'gemini-pro' or 'gemini-1.5-pro' if 'gemini-1.5-flash' is not available
+      // Try Gemini First
+      const result = await this.callGemini(prompt, 'gemini-1.5-pro'); 
+      const cleaned = result.trim().replace(/['"]/g, '');
+      if (cleaned.toLowerCase() === 'null') return null;
+      return cleaned;
+    } catch (e) {
+      console.warn('Smart City Correction (Gemini) Failed, trying OpenAI fallback...', e);
+      // Fallback to OpenAI
+      try {
+        const result = await this.callOpenAI(prompt);
+        const cleaned = result.trim().replace(/['"]/g, '');
+        if (cleaned.toLowerCase() === 'null') return null;
+        return cleaned;
+      } catch (e2) {
+        console.error('Smart City Correction (OpenAI) Failed:', e2);
+        return null;
+      }
+    }
+  }
+
+  // ==========================================================
   // Fortune Generation
   // ==========================================================
 
-  private async callGemini(prompt: string, model = 'gemini-1.5-flash'): Promise<string> {
+  private async callOpenAI(prompt: string): Promise<string> {
+    const apiKey = this.env.OPENAI_API_KEY;
+    const model = this.env.OPENAI_MODEL || 'gpt-4o-mini';
+
+    if (!apiKey) throw new Error('OpenAI API Key missing');
+
+    const response = await fetch('https://api.openai.com/v1/chat/completions', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${apiKey}`,
+      },
+      body: JSON.stringify({
+        model: model,
+        messages: [
+          {
+            role: 'system',
+            content: 'You are a helpful assistant. Return ONLY the requested output without formatting or markdown.',
+          },
+          {
+            role: 'user',
+            content: prompt,
+          },
+        ],
+        temperature: 0.3,
+        max_tokens: 500,
+      }),
+    });
+
+    if (!response.ok) {
+      const err = await response.text();
+      console.error('OpenAI API Error:', err);
+      throw new Error(`OpenAI API Error: ${response.status}`);
+    }
+
+    const data = await response.json() as any;
+    return data.choices?.[0]?.message?.content?.trim() || '';
+  }
+
+  private async callGemini(prompt: string, model = 'gemini-1.5-pro'): Promise<string> {
     const apiKey = this.env.GOOGLE_GEMINI_API_KEY;
     if (!apiKey) throw new Error('Gemini API Key missing');
     
@@ -288,7 +365,9 @@ export class FortuneService {
     profile: FortuneProfile, 
     type: FortuneType, 
     targetDate: string, // YYYY-MM-DD
-    targetProfile?: FortuneProfile
+    targetProfile?: FortuneProfile,
+    targetUserId?: string, // Optional real user ID for matches
+    context?: any // Extra data for specific types (e.g. Tarot cards)
   ): Promise<FortuneHistory> {
     // 1. Check Cache
     let query = `SELECT * FROM fortune_history WHERE telegram_id = ? AND type = ? AND target_date = ?`;
@@ -300,13 +379,12 @@ export class FortuneService {
     }
     
     const cached = await this.db.prepare(query).bind(...params).first<FortuneHistory>();
+    // TODO: Add strict snapshot check for cached items here too? 
+    // For now, rely on "if inputs changed, key params might change" or Section 2.4 logic on retrieval.
     if (cached) return cached;
 
     // 2. Check Quota (if not cached)
     const isVip = !!(user.is_vip && user.vip_expire_at && new Date(user.vip_expire_at) > new Date());
-    // For match/deep types, maybe we require more quota? 
-    // For now, let's assume 1 token per request regardless of type, or maybe deep needs VIP?
-    // Implementation: Deduct 1 quota.
     const hasQuota = await this.deductQuota(user.telegram_id, isVip);
     if (!hasQuota) {
       throw new Error('QUOTA_EXCEEDED');
@@ -324,15 +402,32 @@ export class FortuneService {
     userPrompt += `Chart Data: ${JSON.stringify(chart)}\n`;
     userPrompt += `Target Date: ${targetDate}\n`;
 
-    if (type === 'match' && targetProfile) {
+    if ((type === 'match' || type === 'love_match') && targetProfile) {
       const targetChart = await this.calculateChart(targetProfile.birth_date, targetProfile.birth_time, targetProfile.birth_location_lat, targetProfile.birth_location_lng);
       userPrompt += `Target Person: Name=${targetProfile.name}, Gender=${targetProfile.gender}, Birth=${targetProfile.birth_date}.\n`;
       userPrompt += `Target Chart: ${JSON.stringify(targetChart)}\n`;
-      userPrompt += FORTUNE_PROMPTS.MATCH;
+      userPrompt += type === 'love_match' ? FORTUNE_PROMPTS.LOVE_MATCH : FORTUNE_PROMPTS.MATCH;
     } else if (type === 'daily') {
       userPrompt += FORTUNE_PROMPTS.DAILY;
-    } else if (type === 'deep') {
+    } else if (type === 'deep' || type === 'weekly') {
       userPrompt += FORTUNE_PROMPTS.DEEP;
+    } else if (type === 'celebrity') {
+      userPrompt += FORTUNE_PROMPTS.CELEBRITY;
+    } else if (type === 'ziwei') {
+      userPrompt += FORTUNE_PROMPTS.ZIWEI;
+    } else if (type === 'astrology') {
+      userPrompt += FORTUNE_PROMPTS.ASTROLOGY;
+    } else if (type === 'bazi') {
+      userPrompt += FORTUNE_PROMPTS.BAZI;
+    } else if (type === 'love_ideal') {
+      userPrompt += FORTUNE_PROMPTS.LOVE_IDEAL;
+    } else if (type === 'tarot') {
+      if (!context || !context.cards) throw new Error('Tarot cards missing');
+      const cardsStr = context.cards.map((c: any) => 
+        `${c.card.name_en} (${c.reversed ? 'Reversed' : 'Upright'})`
+      ).join(', ');
+      userPrompt += `Cards Drawn: ${cardsStr}\n`;
+      userPrompt += FORTUNE_PROMPTS.TAROT;
     }
 
     const fullPrompt = `${systemPrompt}\n\n${userPrompt}`;
@@ -340,19 +435,39 @@ export class FortuneService {
     // 5. Call AI
     const content = await this.callGemini(fullPrompt);
     
-    // 6. Save History
+    // 6. Save History with Snapshot
+    // Create snapshot object (User Profile + Target Profile)
+    const snapshot = {
+      user: {
+        birth_date: profile.birth_date,
+        birth_time: profile.birth_time,
+        gender: profile.gender,
+        mbti: user.mbti_result, // Use User's MBTI from user record
+        blood_type: user.blood_type // Use User's Blood from user record
+      },
+      target: targetProfile ? {
+        birth_date: targetProfile.birth_date,
+        birth_time: targetProfile.birth_time,
+        gender: targetProfile.gender,
+        // MBTI/Blood for target might need to be passed in if known
+      } : null,
+      context: context // Store extra context (e.g. Tarot cards)
+    };
+
     const insertQuery = `
       INSERT INTO fortune_history (
         telegram_id, type, target_date, target_person_name, target_person_birth, 
-        content, provider, model, tokens_used
-      ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)
+        content, provider, model, tokens_used,
+        profile_snapshot, target_user_id
+      ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
       RETURNING *
     `;
     
     const result = await this.db.prepare(insertQuery).bind(
       user.telegram_id, type, targetDate, 
       targetProfile?.name || null, targetProfile?.birth_date || null,
-      content, 'gemini', 'gemini-1.5-pro', 0
+      content, 'gemini', 'gemini-1.5-pro', 0,
+      JSON.stringify(snapshot), targetUserId || null
     ).first<FortuneHistory>();
     
     if (!result) throw new Error('Failed to save fortune history');
