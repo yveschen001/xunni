@@ -297,10 +297,9 @@ export class FortuneService {
   // Fortune Generation
   // ==========================================================
 
-  private async callOpenAI(prompt: string): Promise<string> {
+  private async callOpenAI(prompt: string, model: string): Promise<string> {
     const apiKey = this.env.OPENAI_API_KEY;
-    const model = this.env.OPENAI_MODEL || 'gpt-4o-mini';
-
+    
     if (!apiKey) throw new Error('OpenAI API Key missing');
 
     const response = await fetch('https://api.openai.com/v1/chat/completions', {
@@ -328,7 +327,7 @@ export class FortuneService {
 
     if (!response.ok) {
       const err = await response.text();
-      console.error('OpenAI API Error:', err);
+      console.error(`OpenAI API Error (${model}):`, err);
       throw new Error(`OpenAI API Error: ${response.status}`);
     }
 
@@ -336,7 +335,7 @@ export class FortuneService {
     return data.choices?.[0]?.message?.content?.trim() || '';
   }
 
-  private async callGemini(prompt: string, model = 'gemini-1.5-pro'): Promise<string> {
+  private async callGemini(prompt: string, model = 'gemini-2.0-flash'): Promise<string> {
     const apiKey = this.env.GOOGLE_GEMINI_API_KEY;
     if (!apiKey) throw new Error('Gemini API Key missing');
     
@@ -398,44 +397,194 @@ export class FortuneService {
     // Add User Language constraint to system prompt just in case
     systemPrompt += `\nLanguage: ${user.language_pref || 'zh-TW'}`;
 
-    let userPrompt = `User Data: Gender=${profile.gender}, Birth=${profile.birth_date} ${profile.birth_time || 'Unknown'}.\n`;
-    userPrompt += `Chart Data: ${JSON.stringify(chart)}\n`;
-    userPrompt += `Target Date: ${targetDate}\n`;
+    // Format Interests (VIP Only)
+    let interests = 'Not provided';
+    let jobRole = 'Not provided';
+    let industry = 'Not provided';
 
-    if ((type === 'match' || type === 'love_match') && targetProfile) {
-      const targetChart = await this.calculateChart(targetProfile.birth_date, targetProfile.birth_time, targetProfile.birth_location_lat, targetProfile.birth_location_lng);
-      userPrompt += `Target Person: Name=${targetProfile.name}, Gender=${targetProfile.gender}, Birth=${targetProfile.birth_date}.\n`;
-      userPrompt += `Target Chart: ${JSON.stringify(targetChart)}\n`;
-      userPrompt += type === 'love_match' ? FORTUNE_PROMPTS.LOVE_MATCH : FORTUNE_PROMPTS.MATCH;
-    } else if (type === 'daily') {
-      userPrompt += FORTUNE_PROMPTS.DAILY;
-    } else if (type === 'deep' || type === 'weekly') {
-      userPrompt += FORTUNE_PROMPTS.DEEP;
-    } else if (type === 'celebrity') {
-      userPrompt += FORTUNE_PROMPTS.CELEBRITY;
-    } else if (type === 'ziwei') {
-      userPrompt += FORTUNE_PROMPTS.ZIWEI;
-    } else if (type === 'astrology') {
-      userPrompt += FORTUNE_PROMPTS.ASTROLOGY;
-    } else if (type === 'bazi') {
-      userPrompt += FORTUNE_PROMPTS.BAZI;
-    } else if (type === 'love_ideal') {
-      userPrompt += FORTUNE_PROMPTS.LOVE_IDEAL;
-    } else if (type === 'tarot') {
+    // VIP Feature: Personalization Data
+    if (isVip) {
+      if (user.interests) {
+        try {
+          const interestsArray = JSON.parse(user.interests);
+          if (Array.isArray(interestsArray) && interestsArray.length > 0) {
+            interests = interestsArray.join(', ');
+          } else {
+            interests = user.interests; // Fallback
+          }
+        } catch (e) {
+          interests = user.interests; // Fallback
+        }
+      }
+      jobRole = user.job_role || 'Not provided';
+      industry = user.industry || 'Not provided';
+    } else {
+      // Free User: Explicitly state data is unavailable due to tier
+      interests = 'Not available (Standard Tier)';
+      jobRole = 'Not available (Standard Tier)';
+      industry = 'Not available (Standard Tier)';
+    }
+
+    const userPrompt = `
+      User Profile:
+      - Name: ${profile.name}
+      - Gender: ${profile.gender}
+      - Birth: ${profile.birth_date} ${profile.birth_time || 'Unknown Time'}
+      - Location: ${profile.birth_city || 'Unknown'}
+      - MBTI: ${user.mbti_result || 'Unknown'}
+      - Blood Type: ${user.blood_type || 'Unknown'}
+      - Job Role: ${jobRole}
+      - Industry: ${industry}
+      - Interests: ${interests}
+      
+      Target Date: ${targetDate}
+      Fortune Type: ${type}
+      
+      Chart Data:
+      ${JSON.stringify(chart)}
+      
+      ${targetProfile ? `Target Profile:\n- Name: ${targetProfile.name}\n- Birth: ${targetProfile.birth_date}\n` : ''}
+      ${context ? `Context Data: ${JSON.stringify(context)}` : ''}
+    `;
+
+    // Select Task Prompt
+    let taskPrompt = '';
+    switch (type) {
+      case 'daily': taskPrompt = FORTUNE_PROMPTS.DAILY; break;
+      case 'deep': taskPrompt = FORTUNE_PROMPTS.DEEP; break; // Maps to weekly
+      case 'weekly': taskPrompt = FORTUNE_PROMPTS.DEEP; break;
+      case 'match': taskPrompt = FORTUNE_PROMPTS.MATCH; break;
+      case 'celebrity': taskPrompt = FORTUNE_PROMPTS.CELEBRITY; break;
+      case 'ziwei': taskPrompt = FORTUNE_PROMPTS.ZIWEI; break;
+      case 'astrology': taskPrompt = FORTUNE_PROMPTS.ASTROLOGY; break;
+      case 'tarot': taskPrompt = FORTUNE_PROMPTS.TAROT; break;
+      case 'bazi': taskPrompt = FORTUNE_PROMPTS.BAZI; break;
+      case 'love_ideal': taskPrompt = FORTUNE_PROMPTS.LOVE_IDEAL; break;
+      case 'love_match': taskPrompt = FORTUNE_PROMPTS.LOVE_MATCH; break;
+      default: taskPrompt = FORTUNE_PROMPTS.DAILY;
+    }
+    
+    // Additional Context for Tarot
+    if (type === 'tarot') {
       if (!context || !context.cards) throw new Error('Tarot cards missing');
       const cardsStr = context.cards.map((c: any) => 
         `${c.card.name_en} (${c.reversed ? 'Reversed' : 'Upright'})`
       ).join(', ');
-      userPrompt += `Cards Drawn: ${cardsStr}\n`;
-      userPrompt += FORTUNE_PROMPTS.TAROT;
+      taskPrompt += `\nCards Drawn: ${cardsStr}\n`;
     }
 
-    const fullPrompt = `${systemPrompt}\n\n${userPrompt}`;
+    // Additional Context for Match
+    if ((type === 'match' || type === 'love_match') && targetProfile) {
+       // We already handled targetProfile in userPrompt via the ternary operator above?
+       // Wait, the previous code constructed `userPrompt` iteratively.
+       // My new code constructs `userPrompt` in one go.
+       // I need to ensure Target Chart is also included if needed.
+       // The previous code called `calculateChart` for target.
+    }
     
-    // 5. Call AI
-    const content = await this.callGemini(fullPrompt);
+    // RE-INSERTING TARGET CHART CALCULATION
+    let targetChartStr = '';
+    if ((type === 'match' || type === 'love_match') && targetProfile) {
+       const targetChart = await this.calculateChart(
+          targetProfile.birth_date, 
+          targetProfile.birth_time, 
+          targetProfile.birth_location_lat, 
+          targetProfile.birth_location_lng
+       );
+       targetChartStr = `Target Chart: ${JSON.stringify(targetChart)}`;
+    }
+
+    const fullPrompt = `${systemPrompt}\n\n${taskPrompt}\n\n${userPrompt}\n${targetChartStr}`;
+
+    // 5. Call AI with Fallback Strategy
+    let content = '';
+    let provider = 'gemini';
+    let model = 'gemini-2.0-flash-lite'; // Primary Model (Latest)
+
+    // Gemini Chain: 2.0-flash-lite -> 2.0-flash -> 2.5-flash-lite
+    const geminiModels = ['gemini-2.0-flash-lite', 'gemini-2.0-flash', 'gemini-2.5-flash-lite'];
+    let geminiSuccess = false;
+
+    for (const m of geminiModels) {
+      try {
+        model = m;
+        content = await this.callGemini(fullPrompt, m);
+        geminiSuccess = true;
+        break; 
+      } catch (e) {
+        console.warn(`[FortuneService] Gemini model ${m} failed:`, e);
+      }
+    }
+
+    if (!geminiSuccess) {
+        console.warn('[FortuneService] All Gemini models failed, trying OpenAI Chain...');
+        
+        // Fallback: OpenAI Chain
+        // Order: gpt-5-nano -> gpt-4.1-nano -> gpt-4o-mini
+        const openAiModels = ['gpt-5-nano', 'gpt-4.1-nano', 'gpt-4o-mini'];
+        let openAiSuccess = false;
+
+        for (const m of openAiModels) {
+          try {
+            provider = 'openai';
+            model = m;
+            content = await this.callOpenAI(fullPrompt, m);
+            openAiSuccess = true;
+            break; // Success!
+          } catch (e) {
+            console.warn(`[FortuneService] OpenAI model ${m} failed:`, e);
+            // Continue to next model
+          }
+        }
+
+        if (!openAiSuccess) {
+          console.error('[FortuneService] All AI providers/models failed.');
+          
+          // Notify Admin Group
+          try {
+             // Dynamic import to avoid circular dependency issues if any
+             const { AdminLogService } = await import('./admin_log');
+             const adminLog = new AdminLogService(this.env);
+             await adminLog.logError(new Error('AI Generation Failed - All Providers Exhausted'), {
+                 userId: user.telegram_id,
+                 fortuneType: type,
+                 lastModelAttempted: model
+             });
+          } catch (logError) {
+             console.error('Failed to log to admin:', logError);
+          }
+
+          throw new Error('AI_GENERATION_FAILED');
+        }
+    }
     
     // 6. Save History with Snapshot
+    // Append VIP Upsell for non-VIPs if applicable (except Tarot/Match which are specific)
+    if (!isVip && type !== 'match' && type !== 'love_match' && type !== 'love_ideal' && type !== 'tarot') {
+       // We can append this to content directly
+       // But wait, i18n is not available here easily (unless we pass it or import generic)
+       // Let's rely on English fallback or try to get user lang based prompt
+       // Actually, the best place is to use a standardized key that the frontend/handler can append?
+       // But 'content' is stored in DB.
+       // Let's append a placeholder or hardcode for now, or fetch i18n
+       // Since prompt has language, we know the output language.
+       // Let's rely on the handler to append the upsell button/text?
+       // User requirement: "每一則一般會員算命結果的下面，加上..."
+       // If we append to `content` here, it becomes part of the history record.
+       // That's good.
+       
+       // Hard to localize here without i18n instance. 
+       // We can instantiate i18n here using user.language_pref
+       try {
+         const { createI18n } = await import('../i18n');
+         const i18n = createI18n(user.language_pref || 'zh-TW');
+         content += `\n\n${i18n.t('fortune.upsell_vip_analysis')}`;
+       } catch (e) {
+         // Fallback
+         content += '\n\n✨ Upgrade to VIP for personalized Career & Interest analysis!';
+       }
+    }
+
     // Create snapshot object (User Profile + Target Profile)
     const snapshot = {
       user: {
@@ -466,7 +615,7 @@ export class FortuneService {
     const result = await this.db.prepare(insertQuery).bind(
       user.telegram_id, type, targetDate, 
       targetProfile?.name || null, targetProfile?.birth_date || null,
-      content, 'gemini', 'gemini-1.5-pro', 0,
+      content, provider, model, 0,
       JSON.stringify(snapshot), targetUserId || null
     ).first<FortuneHistory>();
     

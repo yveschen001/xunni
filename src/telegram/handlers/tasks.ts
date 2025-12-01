@@ -484,9 +484,9 @@ export async function handleNextTaskCallback(
         const fakeCallback = {
           id: callbackQuery.id,
           from: callbackQuery.from,
-          message: callbackQuery.message,
+          message: { chat: { id: chatId } }, // Don't pass message_id since we deleted it
           data: 'edit_interests',
-        };
+        } as any;
         await handleEditInterests(fakeCallback, env);
         break;
       }
@@ -497,9 +497,9 @@ export async function handleNextTaskCallback(
         const fakeCallback = {
           id: callbackQuery.id,
           from: callbackQuery.from,
-          message: callbackQuery.message,
+          message: { chat: { id: chatId } }, // Don't pass message_id since we deleted it
           data: 'edit_bio',
-        };
+        } as any;
         await handleEditBio(fakeCallback, env);
         break;
       }
@@ -510,9 +510,9 @@ export async function handleNextTaskCallback(
         const fakeCallback = {
           id: callbackQuery.id,
           from: callbackQuery.from,
-          message: callbackQuery.message,
+          message: { chat: { id: chatId } }, // Don't pass message_id since we deleted it
           data: 'edit_region',
-        };
+        } as any;
         await handleEditRegion(fakeCallback, env);
         break;
       }

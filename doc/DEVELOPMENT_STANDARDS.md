@@ -530,6 +530,10 @@ chore: 更新依賴版本
 - [ ] **執行 `pnpm format`** - 自動格式化代碼，確保縮進和格式一致
 - [ ] **執行 `pnpm lint`** - 確保 0 錯誤，警告數量未增加
 - [ ] **執行 `pnpm test`** - 確保所有測試通過
+- [ ] **執行 i18n 完整性檢查** - 防止關鍵文字遺失
+  ```bash
+  npx tsx scripts/verify-protected-keys.ts
+  ```
 - [ ] **執行 Schema 一致性檢查** - 確保代碼中使用的欄位存在於資料庫中
   ```bash
   # 檢查是否使用了不存在的欄位
@@ -1093,6 +1097,29 @@ WHERE birthday IS NOT NULL;
 - [ ] **絕對禁止** `console.log`（只允許 `console.error` 或 `console.warn`）
 - [ ] **絕對禁止** `any` 類型（必須定義 Interface 或 Type）
 - [ ] **絕對禁止** 未使用的變量和導入（必須刪除）
+
+---
+
+### 7.6 i18n 安全與回歸防護 (i18n Safety & Regression Prevention)
+
+**⚠️ i18n 文件是本專案最脆弱的部分，必須採取額外防護：**
+
+1. **強制執行鎖定腳本**
+   - 每次修改 `zh-TW.ts` 後，**必須** 執行 `npx tsx scripts/verify-protected-keys.ts`。
+   - 該腳本會檢查核心功能（Menu, Fortune, Tasks）的文字是否存在。
+   - 詳細規範請參考 `@doc/I18N_WORKFLOW_OPTIMIZATION.md`。
+
+2. **禁止無差別批量替換**
+   - 嚴格禁止使用全局正則表達式（如 `sed`）對 `zh-TW.ts` 進行無差別替換。
+   - 必須使用精確匹配或手動修改。
+
+3. **注意重複鍵值 (Duplicate Keys)**
+   - `zh-TW.ts` 文件結構複雜，容易產生重複鍵值。
+   - 修改前請先搜尋該 key 是否已存在，避免新增重複項導致舊值覆蓋新值（或反之）。
+
+4. **結構完整性**
+   - 確保所有物件（`{ }`）正確閉合。
+   - 錯誤的閉合會導致後續所有 key 被「吞掉」或無視。
 
 ---
 

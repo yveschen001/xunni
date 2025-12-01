@@ -94,6 +94,8 @@ export interface User {
   city?: string;
   bio?: string;
   interests?: string; // JSON array
+  job_role?: string;
+  industry?: string;
   region?: string;
   match_preference?: 'male' | 'female' | 'any'; // Preferred match gender
   country_code?: string; // ISO 3166-1 alpha-2 country code for flag display

@@ -201,12 +201,6 @@ export async function handleReportDetail(
     buttons.push(navRow);
   }
     
-  if (integrityWarning || isExpired) {
-    // Add Regenerate Button
-    buttons.push([{ text: i18n.t('fortune.reports.regenerate'), callback_data: `report_regenerate:${reportId}` }]);
-  }
-
-  buttons.push([{ text: i18n.t('common.delete'), callback_data: `report_delete:${reportId}` }]);
   buttons.push([{ text: i18n.t('common.back'), callback_data: `reports_filter:all` }]);
 
   // Use editMessageText if it's a pagination callback, otherwise sendMessage?
@@ -231,88 +225,14 @@ export async function handleReportDetail(
   await telegram.sendMessageWithButtons(chatId, fullText, buttons);
 }
 
-export async function handleRegenerateReport(
-  chatId: number, 
-  reportId: number, 
-  userId: string,
-  env: Env
-): Promise<void> {
-  const db = createDatabaseClient(env.DB);
-  const telegram = createTelegramService(env);
-  const user = await findUserByTelegramId(db, userId);
-  const i18n = createI18n(user?.language_pref || 'zh-TW');
-  const service = new FortuneService(env, db.d1);
-
-  await telegram.sendMessage(chatId, i18n.t('common.generating'));
-
-  try {
-    // 1. Fetch old report to get Type and Target context
-    const oldReport = await db.d1.prepare('SELECT * FROM fortune_history WHERE id = ?').bind(reportId).first<FortuneHistory>();
-    if (!oldReport) {
-      await telegram.sendMessage(chatId, i18n.t('errors.systemError'));
-      return;
-    }
-
-    // 2. Determine Inputs
-    const userProfile = await service.getProfiles(userId).then(ps => ps.find(p => p.is_default));
-    if (!userProfile) {
-      await telegram.sendMessage(chatId, 'Profile missing');
-      return;
-    }
-
-    let targetProfile;
-    const targetUserId = oldReport.target_user_id;
-
-    if (targetUserId) {
-      // If it was a match with a real user
-      targetProfile = await service.getProfiles(targetUserId).then(ps => ps.find(p => p.is_default));
-    } else if (oldReport.target_person_name) {
-      // If it was a match with Celebrity or manual input? 
-      // For celebrity, targetProfile might be constructed on the fly.
-      // For now, only support regeneration for User Matches where we have ID.
-      // If target_user_id is null but it's a match type, we might not be able to regenerate easily without asking inputs again.
-      if (oldReport.type === 'love_match' || oldReport.type === 'match') {
-        await telegram.sendMessage(chatId, 'Cannot regenerate this report type (missing target link).');
-        return;
-      }
-    }
-
-    // 3. Generate New Fortune
-    const today = new Date().toISOString().split('T')[0];
-    if (!user) return;
-
-    const newReport = await service.generateFortune(
-      user,
-      userProfile,
-        oldReport.type as FortuneType,
-        today,
-        targetProfile,
-        targetUserId
-    );
-
-    // 4. Show Result
-    const text = `🔄 ${i18n.t('fortune.reports.regenerated')}\n\n` + 
-                 `📄 ${i18n.t(('fortune.type.' + newReport.type) as any)}\n` + 
-                 newReport.content;
-    
-    await telegram.sendMessage(chatId, text);
-
-    // 5. Back Button
-    const buttons = [[{ text: i18n.t('common.back'), callback_data: `report_detail:${newReport.id}` }]];
-    await telegram.sendMessageWithButtons(chatId, i18n.t('common.saved_to_history'), buttons);
-
-    // Auto-show the new report detail
-    await handleReportDetail(chatId, newReport.id, env);
-
-  } catch (error: any) {
-    console.error('[Regenerate] Error:', error);
-    let msg = i18n.t('errors.systemError');
-    if (error.message === 'QUOTA_EXCEEDED') {
-      msg = i18n.t('tasks.quota.insufficient');
-    }
-    await telegram.sendMessage(chatId, msg);
-  }
-}
+// export async function handleRegenerateReport(
+//   chatId: number, 
+//   reportId: number, 
+//   userId: string,
+//   env: Env
+// ): Promise<void> {
+//   // ... Removed as per user request to strictly follow design ...
+// }
 
 export async function handleDeleteReport(
   chatId: number, 

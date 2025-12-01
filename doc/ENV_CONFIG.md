@@ -544,6 +544,7 @@ wrangler deploy --env production
 
 - [ ] 遵循 `.cursorrules` 中的閱讀順序和開發流程
 - [ ] 在提交前執行 `pnpm test` 和 `pnpm lint`
+- [ ] **修改翻譯後執行 `npx tsx scripts/verify-protected-keys.ts`**
 - [ ] 如有資料庫變更，先檢查 `@doc/SPEC.md` 並更新相應章節
 - [ ] 使用 `pnpm backup` 和 `pnpm backup:push` 進行備份（如相關）
 

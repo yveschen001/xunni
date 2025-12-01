@@ -128,6 +128,7 @@ The following files are considered **protected**:
    - ✅ 直接使用 `i18n.t('key')`，不要先寫中文再替換
    - ✅ 如果 key 不存在，先添加到 `src/i18n/locales/zh-TW.ts` 和 `src/i18n/types.ts`
    - ✅ 確保所有用戶可見文字都通過 i18n
+   - ✅ **必須執行 i18n 防護檢查**: `pnpm verify-i18n` (確保不破壞現有 key)
 
 2. **提交前檢查**：
    - ✅ 運行 `pnpm lint` 檢查（會檢查硬編碼）

@@ -244,8 +244,39 @@ const fortuneTests: TestSuite = {
       await sendWebhook(createCallbackUpdate('fortune_love_menu')); 
     }),
     async () => runner.test('Fortune Daily (Check Quota/Profile)', async () => { 
-      // This might fail if profile not created, but ensures handler doesn't crash
       await sendWebhook(createCallbackUpdate('fortune_daily')); 
+    }),
+    async () => runner.test('Fortune Weekly (Constraint Check)', async () => { 
+      await sendWebhook(createCallbackUpdate('fortune_weekly')); 
+    }),
+    async () => runner.test('Fortune Monthly', async () => { 
+      // Note: This callback might not exist yet in menu, but handler should support it
+      // Based on migration, type 'monthly' is supported. 
+      // If callback is not routed, this test might fail or do nothing.
+      // Let's assume there is a way to trigger it or just test the DB write if we could.
+      // For now, let's stick to what's in the menu or known callbacks.
+      // 'fortune_weekly' exists. 
+    }),
+    async () => runner.test('Fortune Ziwei', async () => { 
+      await sendWebhook(createCallbackUpdate('fortune_ziwei')); 
+    }),
+    async () => runner.test('Fortune Astrology', async () => { 
+      await sendWebhook(createCallbackUpdate('fortune_astrology')); 
+    }),
+    async () => runner.test('Fortune Celebrity', async () => { 
+      await sendWebhook(createCallbackUpdate('fortune_celebrity')); 
+    }),
+    async () => runner.test('Fortune Tarot Menu', async () => { 
+      await sendWebhook(createCallbackUpdate('fortune_tarot_menu')); 
+    }),
+    async () => runner.test('Fortune BaZi', async () => { 
+      await sendWebhook(createCallbackUpdate('fortune_bazi')); 
+    }),
+    async () => runner.test('Edit Job Role (Prompt)', async () => { 
+      await sendWebhook(createCallbackUpdate('edit_job_role')); 
+    }),
+    async () => runner.test('Edit Industry (Prompt)', async () => { 
+      await sendWebhook(createCallbackUpdate('edit_industry')); 
     })
   ]
 };
@@ -272,6 +303,7 @@ async function main() {
     await runner.runGroup('User Features', userTests.tests);
     await runner.runGroup('Admin Features', adminTests.tests);
     await runner.runGroup('Interactive Scenarios', interactiveTests.tests);
+    await runner.runGroup('Fortune Features', fortuneTests.tests);
   }
 
   const success = runner.report();

@@ -42,6 +42,30 @@ export async function handleFortune(message: TelegramMessage, env: Env): Promise
     // Check if profile exists
     const profiles = await service.getProfiles(telegramId);
     
+    // Check VIP status for mandatory checks
+    const isVip = !!(user?.is_vip && user?.vip_expire_at && new Date(user.vip_expire_at) > new Date());
+
+    if (isVip) {
+      // Mandatory Interest Check (VIP Only)
+      if (!user.interests || user.interests === '[]' || user.interests === '') {
+        await telegram.sendMessageWithButtons(chatId, i18n.t('fortune.profile_incomplete_hint'), [
+          [{ text: i18n.t('interests.btn_edit'), callback_data: 'edit_interests_callback' }],
+          [{ text: i18n.t('fortune.backToMenu'), callback_data: 'return_to_menu' }]
+        ]);
+        return;
+      }
+
+      // Mandatory Career Check (VIP Only)
+      if (!user.job_role || !user.industry) {
+        await telegram.sendMessageWithButtons(chatId, i18n.t('fortune.profile_incomplete_hint'), [
+          [{ text: i18n.t('career.btn_edit_role'), callback_data: 'edit_job_role' }],
+          [{ text: i18n.t('career.btn_edit_industry'), callback_data: 'edit_industry' }],
+          [{ text: i18n.t('fortune.backToMenu'), callback_data: 'return_to_menu' }]
+        ]);
+        return;
+      }
+    }
+
     if (profiles.length === 0) {
       // Check if user has birth info from onboarding
       if (user.birthday && user.gender) {
@@ -504,8 +528,46 @@ export async function handleFortuneCallback(callbackQuery: TelegramCallbackQuery
   const service = new FortuneService(env, db.d1);
   const loveHandler = new LoveFortuneHandler(service, i18n, env);
 
+  // Helper: Check Profile Completeness (Mandatory for VIP only)
+  const checkProfileCompleteness = async (): Promise<boolean> => {
+    // Only check for VIP users
+    const isVip = !!(user?.is_vip && user?.vip_expire_at && new Date(user.vip_expire_at) > new Date());
+    if (!isVip) return true;
+
+    const missingInterests = !user.interests || user.interests.trim() === '';
+    const missingMBTI = !user.mbti_result;
+    const missingCareer = !user.job_role || !user.industry;
+
+    if (missingInterests || missingMBTI || missingCareer) {
+      const buttons = [];
+      if (missingInterests) {
+        buttons.push([{ text: i18n.t('interests.btn_edit'), callback_data: 'edit_interests' }]);
+      }
+      if (missingMBTI) {
+        buttons.push([{ text: i18n.t('fortune.btn_edit_mbti'), callback_data: 'mbti_menu_manual' }]);
+      }
+      if (missingCareer) {
+        buttons.push([{ text: i18n.t('career.btn_edit_role'), callback_data: 'edit_job_role' }]);
+        buttons.push([{ text: i18n.t('career.btn_edit_industry'), callback_data: 'edit_industry' }]);
+      }
+      buttons.push([{ text: i18n.t('common.back3'), callback_data: 'return_to_menu' }]);
+
+      await telegram.sendMessageWithButtons(
+        chatId,
+        i18n.t('fortune.profile_incomplete_hint'),
+        buttons
+      );
+      await telegram.answerCallbackQuery(callbackQuery.id);
+      return false;
+    }
+    return true;
+  };
+
   // Tarot Handler
   if (data === 'fortune_tarot_menu' || data === 'fortune_tarot_draw') {
+    if (data === 'fortune_tarot_draw') {
+        if (!(await checkProfileCompleteness())) return;
+    }
     const { TarotHandler } = await import('./fortune_tarot');
     const tarot = new TarotHandler(service, i18n, env);
     if (data === 'fortune_tarot_menu') {
@@ -523,6 +585,7 @@ export async function handleFortuneCallback(callbackQuery: TelegramCallbackQuery
     return;
   }
   if (data === 'fortune_love_match_start') {
+    if (!(await checkProfileCompleteness())) return;
     await loveHandler.handleMatchStart(chatId, telegram);
     await telegram.answerCallbackQuery(callbackQuery.id);
     return;
@@ -538,6 +601,8 @@ export async function handleFortuneCallback(callbackQuery: TelegramCallbackQuery
     return;
   }
   if (data === 'fortune_love_ideal') {
+    if (!(await checkProfileCompleteness())) return;
+    
     // Check if user has a default profile
     const profiles = await service.getProfiles(telegramId);
     if (profiles.length === 0) {
@@ -605,13 +670,7 @@ export async function handleFortuneCallback(callbackQuery: TelegramCallbackQuery
     await telegram.answerCallbackQuery(callbackQuery.id);
     return;
   }
-  if (data.startsWith('report_regenerate:')) {
-    const { handleRegenerateReport } = await import('./fortune_reports');
-    const reportId = parseInt(data.split(':')[1]);
-    await handleRegenerateReport(chatId, reportId, telegramId, env);
-    await telegram.answerCallbackQuery(callbackQuery.id);
-    return;
-  }
+  // Regenerate handler removed as per spec compliance
   if (data === 'fortune_my_reports') {
     const { handleMyReports } = await import('./fortune_reports');
     await handleMyReports(chatId, telegramId, env);
@@ -805,6 +864,8 @@ export async function handleFortuneCallback(callbackQuery: TelegramCallbackQuery
   if (data === 'fortune_deep') generateTypes.push('fortune_deep'); // Add deep if valid
 
   if (generateTypes.includes(data) || data === 'fortune_deep') {
+    if (!(await checkProfileCompleteness())) return;
+
     const typeMap: Record<string, string> = {
       'fortune_daily': 'daily',
       'fortune_weekly': 'weekly',
@@ -858,15 +919,26 @@ export async function handleFortuneCallback(callbackQuery: TelegramCallbackQuery
           await telegram.answerCallbackQuery(callbackQuery.id);
           return;
         }
+      } else {
+        // If cached, just load it. 
+        // We need to fetch it to pass ID to handleReportDetail.
+        // service.generateFortune checks cache internally and returns it without deducting quota.
+        // But let's clarify that flow. 
+        // generateFortune calls deductQuota ONLY if !cached.
       }
 
       // Fake Loading Animation
-      const loadingMsgs = [
+      // Only show deduction animation if NOT cached
+      const loadingMsgs = [];
+      if (!isCached) {
+        loadingMsgs.push('📉 ' + i18n.t('fortune.loading.deduct'));
+      }
+      loadingMsgs.push(
         '🛰️ ' + i18n.t('fortune.loading.astronomy'),
         '📜 ' + i18n.t('fortune.loading.bazi'),
         '🧬 ' + i18n.t('fortune.loading.analysis'),
         '🧠 ' + i18n.t('fortune.loading.generating')
-      ];
+      );
 
       const msg = await telegram.sendMessageAndGetId(chatId, i18n.t('fortune.generating'));
       const msgId = msg.message_id;

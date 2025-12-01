@@ -65,13 +65,52 @@ export async function handleMenu(message: TelegramMessage, env: Env): Promise<vo
     const { getZodiacDisplay } = await import('~/domain/zodiac');
     const zodiacDisplay = getZodiacDisplay(user.zodiac_sign, i18n);
     
+    // Get Fortune Quota
+    const { FortuneService } = await import('~/services/fortune');
+    const fortuneService = new FortuneService(env, db.d1);
+    const fortuneQuota = await fortuneService.refreshQuota(telegramId, !!user.is_vip);
+    const fortuneTotal = fortuneQuota.weekly_free_quota + fortuneQuota.additional_quota;
+
+    // Build rich profile display
+    const { calculateDailyQuota } = await import('~/domain/invite');
+    const driftBottleQuota = calculateDailyQuota(user);
+    
+    // Format birth date
+    const birthDate = user.birthday ? user.birthday : i18n.t('menu.notSet');
+    
+    // Format interests
+    let interests = i18n.t('menu.notSet');
+    if (user.interests) {
+      try {
+        const interestsArray = JSON.parse(user.interests);
+        if (Array.isArray(interestsArray)) {
+          interests = interestsArray.join(', ');
+        }
+      } catch (e) {
+        // Fallback for legacy plain string format
+        interests = user.interests;
+      }
+    }
+    
+    // Format blood type
+    const { getBloodTypeDisplay } = await import('~/domain/blood_type');
+    const { createI18n: createI18nForBloodType } = await import('~/i18n');
+    const bloodTypeI18n = createI18nForBloodType(user.language_pref || 'zh-TW');
+    const bloodType = getBloodTypeDisplay(user.blood_type as any, bloodTypeI18n);
+
     let menuMessage =
       `${i18n.t('menu.title')} ${vipBadge}\n\n` +
       `${i18n.t('menu.text2', { user: { nickname: user.nickname } })}\n\n` +
       `${i18n.t('menu.yourStatus')}\n` +
       `• ${isVip ? i18n.t('menu.levelVip') : i18n.t('menu.levelFree')}\n` +
-      `${i18n.t('menu.settings', { mbti: user.mbti_result || i18n.t('menu.notSet') })}\n` +
-      `${i18n.t('menu.settings2', { zodiac: zodiacDisplay })}\n\n`;
+      `• 🎂 ${i18n.t('menu.birthDate')}: ${birthDate}\n` +
+      `• 🧠 MBTI: ${user.mbti_result || i18n.t('menu.notSet')}\n` +
+      `• ⭐ ${i18n.t('menu.zodiac')}: ${zodiacDisplay}\n` +
+      `• 🩸 ${i18n.t('menu.bloodType')}: ${bloodType}\n` +
+      `• 🏷️ ${i18n.t('menu.interests')}: ${interests}\n` +
+      `• 📝 ${i18n.t('menu.bio')}: ${user.bio || i18n.t('menu.notSet')}\n` +
+      `• 🍾 ${i18n.t('menu.driftBottles')}: ${driftBottleQuota}\n` +
+      `• 🔮 ${i18n.t('menu.fortuneBottles')}: ${fortuneTotal}\n\n`;
 
     // Add next task reminder if exists
     if (nextTask) {

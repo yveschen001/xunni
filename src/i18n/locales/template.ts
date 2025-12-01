@@ -1,6 +1,20 @@
 import type { Translations } from '../types';
 
 export const translations: Translations = {
+  "zodiac": {
+    "Aquarius": "Aquarius",
+    "Aries": "Aries",
+    "Cancer": "Cancer",
+    "Capricorn": "Capricorn",
+    "Gemini": "Gemini",
+    "Leo": "Leo",
+    "Libra": "Libra",
+    "Pisces": "Pisces",
+    "Sagittarius": "Sagittarius",
+    "Scorpio": "Scorpio",
+    "Taurus": "Taurus",
+    "Virgo": "Virgo"
+  },
   ad: {
     ad: `[需要翻译]`,
     failed: `[需要翻译]`,
