@@ -1660,7 +1660,7 @@ export async function routeUpdate(update: TelegramUpdate, env: Env): Promise<voi
       return;
     }
 
-    if (data === 'edit_interests') {
+    if (data === 'edit_interests' || data === 'edit_interests_callback') {
       const { handleEditInterests } = await import('./telegram/handlers/edit_profile');
       await handleEditInterests(callbackQuery, env);
       return;
