@@ -105,6 +105,12 @@ async function backup() {
     '.wrangler',
     'coverage',
     '*.log',
+    '*.zip',
+    '*.tar',
+    '*.tar.gz',
+    '*.rar',
+    '*.7z',
+    '*.tmp',
   ];
   
   // 4. 執行備份
