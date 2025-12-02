@@ -87,8 +87,7 @@ export class TarotHandler {
 
       const buttons = [
         [{ text: this.i18n.t('fortune.menu.my_reports'), callback_data: 'fortune_my_reports' }],
-        [{ text: this.i18n.t('fortune.backToMenu'), callback_data: 'menu_fortune' }],
-        [{ text: this.i18n.t('common.back3'), callback_data: 'return_to_menu' }]
+        [{ text: this.i18n.t('fortune.backToMenu'), callback_data: 'menu_fortune' }]
       ];
       await telegram.sendMessageWithButtons(chatId, this.i18n.t('common.saved_to_history'), buttons);
 

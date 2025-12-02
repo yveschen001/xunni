@@ -436,7 +436,21 @@ export class FortuneService {
     
     // Inject Language into System Prompt (Optimized for Gemini 2.5)
     const userLang = user.language_pref || 'zh-TW';
-    systemPrompt = systemPrompt.replace('{LANGUAGE}', userLang);
+    // Map code to natural language name for better adherence
+    const LANG_NAMES: Record<string, string> = {
+      'zh-TW': 'Traditional Chinese (Taiwan)',
+      'zh-CN': 'Simplified Chinese',
+      'en': 'English',
+      'ja': 'Japanese',
+      'ko': 'Korean',
+      'vi': 'Vietnamese',
+      'th': 'Thai',
+      'id': 'Indonesian',
+      // Add major languages as needed, fallback to code if missing
+    };
+    const langName = LANG_NAMES[userLang] || userLang;
+    
+    systemPrompt = systemPrompt.replace('{LANGUAGE}', langName);
 
     // Get Localized Zodiac for Context
     let localizedZodiac = '';
@@ -573,6 +587,9 @@ export class FortuneService {
 
         let taskPrompt = FORTUNE_PROMPTS[promptKey];
         
+        // Inject Strong Language Directive (Crucial for multi-stage)
+        taskPrompt += `\n\nIMPORTANT: You MUST answer in ${langName}.`;
+
         // Inject Relationship Context (for Match)
         if (type === 'love_match' && context && context.relationship_type) {
             const relType = context.relationship_type;

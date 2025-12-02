@@ -71,7 +71,7 @@ export default {
   "quotaDisplayFree": "🔮 算命瓶: {total} (本週免費: {weekly}/1 | 額外: {additional})",
   "profileDetails": "👤 {gender} {blood} | 🎂 {birthday} | {zodiac} | 🧠 {mbti}",
   "getMore": "獲取更多算命瓶",
-  "getMoreInfo": "🔮 *如何獲取算命瓶？*\n\n1. **每週免費**：普通用戶每週 1 個，VIP 每日 1 個。\n2. **邀請獎勵**：邀請一位朋友加入，而該朋友也成功邀請一位朋友加入時，您將獲得獎勵（朋友的朋友）。\n3. **漂流瓶獎勵**：每發送 10 個漂流瓶，必得 1 個算命瓶。\n4. **直接購買 (🔥 限時 2 折特惠)**：\n   • 小包 {smallAmount} 個 - ~{originalSmallPrice} Stars~ {smallPrice} Stars\n   • 大包 {largeAmount} 個 - ~{originalLargePrice} Stars~ {largePrice} Stars",
+  "getMoreInfo": "🔮 *如何獲取算命瓶？*\n\n1. **每週免費**：普通用戶每週 1 個，VIP 每日 1 個。\n2. **邀請獎勵**：邀請一位朋友加入，而該朋友也成功邀請一位朋友加入時，您將獲得獎勵（24小時內，上限可得1算命瓶）。\n3. **漂流瓶獎勵**：每發送 10 個漂流瓶，得 1 個算命瓶。（24小時內，上限可得1算命瓶）\n4. **直接購買 (🔥 限時 2 折特惠)**：\n   • 小包 {smallAmount} 個 - ~{originalSmallPrice} Stars~ {smallPrice} Stars\n   • 大包 {largeAmount} 個 - ~{originalLargePrice} Stars~ {largePrice} Stars",
   "buySmall": "🔥 特價 {price} Stars (購買 {amount} 個)",
   "buyLarge": "🔥 特價 {price} Stars (購買 {amount} 個)",
   "invoiceTitle": "購買 {amount} 個算命瓶",
@@ -136,15 +136,14 @@ export default {
     "ziweiTitle": "紫微斗數詳批",
     "astrologyTitle": "西洋占星詳批",
     "tarotTitle": "塔羅牌指引",
-    "baziTitle": "八字推命詳批",
-    "tarot_ui": {
-      "intro": "🔮 *塔羅占卜*\n\n請在心中默念您的問題（例如：「我最近的工作運勢如何？」或「我該如何處理這段關係？」），專注思考後點擊下方按鈕抽牌。",
-      "draw": "🔮 抽取卡牌",
-      "shuffling": "洗牌中...",
-      "drawn": "🎴 牌面已抽出："
-    }
+    "baziTitle": "八字推命詳批"
   },
-  "upsell_vip_analysis": "✨ **升級 VIP 解鎖專屬職業與興趣分析**！\n\nVIP 會員可獲得針對您的職業角色與個人興趣的客製化建議，幫助您在職場與生活中更上一層樓。\n\n👇 點擊下方按鈕立即升級",
-  "btn_edit_mbti": "🧠 修改 MBTI",
-  "profile_incomplete_hint": "⚠️ **個人資料未完善**\n\n為了提供精準的 AI 算命服務，請先完善您的個人資料（興趣、MBTI、職業）。"
+  "tarot_ui": {
+    "intro": "🔮 *塔羅占卜*\n\n請在心中默念您的問題（例如：「我最近的工作運勢如何？」或「我該如何處理這段關係？」），專注思考後點擊下方按鈕抽牌。",
+    "draw": "🔮 抽取卡牌",
+    "shuffling": "洗牌中...",
+    "drawn": "🎴 牌面已抽出："
+  },
+  "profile_incomplete_hint": "⚠️ 您的 VIP 資料不完整。\n\n為了提供精準的 AI 分析，VIP 會員必須填寫完整的個人資料（包含興趣、職業、產業）。請點擊下方按鈕補充資料：",
+  "upsell_vip_analysis": "✨ **升級 VIP 解鎖深度分析**：\n想要獲得結合您個人【職業背景】與【興趣愛好】的專屬建議嗎？升級 VIP 即可解鎖更精準的客製化運勢分析！"
 };

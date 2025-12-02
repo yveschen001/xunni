@@ -1040,8 +1040,7 @@ export async function handleFortuneCallback(callbackQuery: TelegramCallbackQuery
 
     // Add "New Profile" button
     buttons.push([{ text: `➕ ${i18n.t('fortune.addProfile') || '新增檔案'}`, callback_data: 'fortune_add_profile' }]);
-    buttons.push([{ text: i18n.t('fortune.backToMenu'), callback_data: 'menu_fortune' }]); // Back to main fortune menu (default)
-    buttons.push([{ text: i18n.t('fortune.back_to_menu'), callback_data: 'return_to_menu' }]);
+    buttons.push([{ text: i18n.t('fortune.backToMenu'), callback_data: 'menu_fortune' }]); 
 
     await telegram.editMessageText(chatId, callbackQuery.message!.message_id, text, {
       reply_markup: { inline_keyboard: buttons },
