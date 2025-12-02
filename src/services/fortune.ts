@@ -810,7 +810,7 @@ export class FortuneService {
             taskPrompt += `\nCards Drawn: ${cardsStr}\n`;
         }
 
-        const fullPrompt = `${systemPrompt}\n\n${taskPrompt}\n\n${userPrompt}\n${targetChartStr}`;
+        const fullPrompt = `${systemPrompt}\n\n${taskPrompt}\n${targetChartStr}`;
 
         // Call AI Logic (Single Shot)
         let singleSuccess = false;
