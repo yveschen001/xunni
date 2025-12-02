@@ -438,6 +438,20 @@ export class FortuneService {
     const userLang = user.language_pref || 'zh-TW';
     systemPrompt = systemPrompt.replace('{LANGUAGE}', userLang);
 
+    // Get Localized Zodiac for Context
+    let localizedZodiac = '';
+    try {
+      const { createI18n } = await import('../i18n');
+      const i18n = createI18n(userLang);
+      const { getZodiacDisplay, getZodiacSign } = await import('../domain/zodiac');
+      // Calculate zodiac from birth date
+      const birthDate = new Date(profile.birth_date);
+      const zodiacSign = getZodiacSign(birthDate);
+      localizedZodiac = getZodiacDisplay(zodiacSign, i18n);
+    } catch (e) {
+      console.warn('Failed to localize zodiac for prompt context', e);
+    }
+
     // Format Interests (VIP Only)
     let interests = 'Not provided';
     let jobRole = 'Not provided';
@@ -485,6 +499,7 @@ export class FortuneService {
     <name>${profile.name}</name>
     <gender>${profile.gender}</gender>
     <birth>${profile.birth_date} ${profile.birth_time || 'Unknown Time'}</birth>
+    <zodiac>${localizedZodiac}</zodiac>
     <location>${profile.birth_city || 'Unknown'}</location>
     <mbti>${user.mbti_result || 'Unknown'}</mbti>
     <blood_type>${user.blood_type || 'Unknown'}</blood_type>

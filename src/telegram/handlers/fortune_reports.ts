@@ -101,8 +101,7 @@ export async function handleMyReports(
   }
   buttons.push(paginationRow);
   
-  buttons.push([{ text: i18n.t('fortune.backToMenu'), callback_data: 'menu_fortune' }]);
-  buttons.push([{ text: i18n.t('common.back3'), callback_data: 'return_to_menu' }]);
+  buttons.push([{ text: i18n.t('fortune.back_to_menu'), callback_data: 'menu_fortune' }]);
 
   text = text.replace('<b>', '').replace('</b>', '');
 
@@ -201,7 +200,15 @@ export async function handleReportDetail(
     buttons.push(navRow);
   }
     
-  buttons.push([{ text: i18n.t('common.back'), callback_data: `reports_filter:all` }]);
+  // Check VIP for upsell
+  const isVip = !!(user?.is_vip && user?.vip_expire_at && new Date(user.vip_expire_at) > new Date());
+  if (!isVip) {
+    // Only show if it's a fortune report that likely has upsell content
+    // Or just always show for non-vips in detail view
+    buttons.push([{ text: `👑 ${i18n.t('vip.upgrade')}`, callback_data: 'menu_vip' }]);
+  }
+
+  buttons.push([{ text: i18n.t('fortune.back_to_menu'), callback_data: 'menu_fortune' }]);
 
   // Use editMessageText if it's a pagination callback, otherwise sendMessage?
   // Or always sendMessageWithButtons which uses existing message or sends new? 
@@ -260,6 +267,6 @@ export async function handleDeleteReport(
   // Let's just return to Fortune Menu.
   // We can't easily call handleFortune without a message object.
   // Let's just show a button to go back.
-  const buttons = [[{ text: i18n.t('fortune.backToMenu'), callback_data: 'menu_fortune' }]];
+  const buttons = [[{ text: i18n.t('fortune.back_to_menu'), callback_data: 'menu_fortune' }]];
   await telegram.sendMessageWithButtons(chatId, i18n.t('fortune.reports.deleted_hint'), buttons);
 }
