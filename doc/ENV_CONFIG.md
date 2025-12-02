@@ -29,7 +29,7 @@
 
 **帳號與 API Key：**
 
-- **Cloudflare 帳號**: 需要 API Token
+- **Cloudflare 帳號**: 需要 API Token (Paid Plan: Workers Paid $5/month)
 - **Telegram Bot Token**: 從 [@BotFather](https://t.me/botfather) 取得
 - **OpenAI API Key**: 從 [OpenAI Platform](https://platform.openai.com/) 取得
 
@@ -471,23 +471,65 @@ pnpm seed
 
 ---
 
-## 4. 環境切換
+## 4. Cloudflare 資源配額與優化 (Workers Paid)
 
-### 4.1 本地開發
+**目前方案：Workers Paid Plan ($5/month)**
+
+為了避免產生額外費用，請在開發和部署時注意以下配額限制：
+
+### 4.1 主要資源配額 (包含在 $5 月費內)
+
+- **Requests**: 每月 10,000,000 次請求 (超額 $0.15/百萬次)
+- **CPU Duration**: 每月 30,000,000 ms (超額需付費)
+  - *Standard 模式*：每個請求最多 30s CPU 時間 (比免費版 10ms 寬鬆很多)
+- **KV Storage**:
+  - 讀取: 10,000,000 /月
+  - 寫入: 1,000,000 /月
+  - 刪除: 1,000,000 /月
+  - 儲存空間: 1 GB
+- **D1 Database**:
+  - 讀取: 25,000,000,000 讀取行數/月
+  - 寫入: 50,000,000 寫入行數/月
+  - 儲存空間: 5 GB
+
+### 4.2 成本優化策略 (Cost Optimization)
+
+1.  **快取優先 (Cache First)**:
+    - 善用 KV 快取頻繁讀取的數據 (如 i18n, 配置, 用戶狀態)
+    - 減少 D1 讀取次數，雖然 D1 額度很高，但 KV 讀取更快且更便宜 (在大量併發時)
+
+2.  **減少寫入 (Reduce Writes)**:
+    - KV 和 D1 的寫入操作相對昂貴
+    - 避免不必要的日誌寫入到 D1 (僅記錄關鍵錯誤或業務數據)
+    - 使用批量寫入 (Batch operations) 如果可能
+
+3.  **優化 AI 請求**:
+    - AI 模型調用通常耗時較長，雖然 Cloudflare Paid 允許長時間運行，但應避免無效重試
+    - 確保在 AI 請求前完成所有必要的驗證，避免浪費 Token 和 CPU
+
+4.  **監控使用量**:
+    - 定期查看 Cloudflare Dashboard 的 Usage 頁面
+    - 設定 Billing Alert (在 Cloudflare 後台設定)，當使用量達到 75% 時發送通知
+
+---
+
+## 5. 環境切換
+
+### 5.1 本地開發
 
 ```bash
 # 使用 .dev.vars 中的變數
 wrangler dev
 ```
 
-### 4.2 部署到 Staging
+### 5.2 部署到 Staging
 
 ```bash
 # 部署到 staging 環境
 wrangler deploy --env staging
 ```
 
-### 4.3 部署到 Production
+### 5.3 部署到 Production
 
 ```bash
 # 部署到 production 環境
@@ -496,7 +538,7 @@ wrangler deploy --env production
 
 ---
 
-## 5. 安全最佳實踐
+## 6. 安全最佳實踐
 
 1. **永遠不要將敏感資訊提交到 Git**
    - 使用 `.dev.vars`（已加入 `.gitignore`）
@@ -515,11 +557,11 @@ wrangler deploy --env production
 
 ---
 
-## 6. 開發前檢查清單
+## 7. 開發前檢查清單
 
 **在開始任何新功能開發前，請確認以下事項：**
 
-### 6.1 文檔準備
+### 7.1 文檔準備
 
 - [ ] 已閱讀 `@doc/SPEC.md` 第 1–2 節（專案總覽 + 技術棧與專案結構）
 - [ ] 已閱讀 `@doc/SPEC.md` 附錄「術語表 / Glossary」，了解核心詞彙定義
@@ -527,7 +569,7 @@ wrangler deploy --env production
 - [ ] 已閱讀 `@doc/DEVELOPMENT_STANDARDS.md` 了解開發規範
 - [ ] 已閱讀 `@doc/SPEC.md` 附錄「受保護的文件/目錄」，了解哪些文件不能隨意修改
 
-### 6.2 本地環境驗證
+### 7.2 本地環境驗證
 
 確認本地環境可以正常執行以下命令：
 
@@ -536,7 +578,7 @@ wrangler deploy --env production
 - [ ] `pnpm test` - 執行測試通過（或至少沒有報錯）
 - [ ] `pnpm lint` - 代碼風格檢查通過
 
-### 6.3 開發流程遵守
+### 7.3 開發流程遵守
 
 對於任何變更，將：
 
@@ -546,7 +588,7 @@ wrangler deploy --env production
 - [ ] 如有資料庫變更，先檢查 `@doc/SPEC.md` 並更新相應章節
 - [ ] 使用 `pnpm backup` 和 `pnpm backup:push` 進行備份（如相關）
 
-### 6.4 術語使用
+### 7.4 術語使用
 
 - [ ] 在代碼和註釋中使用 `@doc/SPEC.md` 術語表中定義的標準術語
 - [ ] 不會混用 "user"/"member"/"player" 等不同術語
@@ -554,7 +596,7 @@ wrangler deploy --env production
 
 ---
 
-## 7. 環境變數檢查清單
+## 8. 環境變數檢查清單
 
 ### Development
 - [ ] `.dev.vars` 檔案已建立

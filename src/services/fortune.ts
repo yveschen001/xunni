@@ -867,32 +867,6 @@ export class FortuneService {
     }
     
     // 6. Save History with Snapshot
-    // Append VIP Upsell for non-VIPs if applicable (except Tarot/Match which are specific)
-    if (!isVip && type !== 'match' && type !== 'love_match' && type !== 'love_ideal' && type !== 'tarot') {
-       // We can append this to content directly
-       // But wait, i18n is not available here easily (unless we pass it or import generic)
-       // Let's rely on English fallback or try to get user lang based prompt
-       // Actually, the best place is to use a standardized key that the frontend/handler can append?
-       // But 'content' is stored in DB.
-       // Let's append a placeholder or hardcode for now, or fetch i18n
-       // Since prompt has language, we know the output language.
-       // Let's rely on the handler to append the upsell button/text?
-       // User requirement: "每一則一般會員算命結果的下面，加上..."
-       // If we append to `content` here, it becomes part of the history record.
-       // That's good.
-       
-       // Hard to localize here without i18n instance. 
-       // We can instantiate i18n here using user.language_pref
-       try {
-         const { createI18n } = await import('../i18n');
-         const i18n = createI18n(user.language_pref || 'zh-TW');
-         content += `\n\n${i18n.t('fortune.upsell_vip_analysis')}`;
-       } catch (e) {
-         // Fallback
-         content += '\n\n✨ Upgrade to VIP for personalized Career & Interest analysis!';
-       }
-    }
-
     // Create snapshot object (User Profile + Target Profile)
     const snapshot = {
       user: {

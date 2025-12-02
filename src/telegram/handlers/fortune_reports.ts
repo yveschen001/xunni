@@ -174,6 +174,14 @@ export async function handleReportDetail(
   const pageContent = content.substring(start, end);
 
   let fullText = `${header}\n${pageContent}`.replace('<b>', '').replace('</b>', '');
+
+  // Check VIP for upsell (Dynamic Append)
+  const isVip = !!(user?.is_vip && user?.vip_expire_at && new Date(user.vip_expire_at) > new Date());
+  if (!isVip && currentPage === totalPages - 1) {
+     if (report.type !== 'match' && report.type !== 'love_match' && report.type !== 'love_ideal' && report.type !== 'tarot') {
+         fullText += `\n\n${i18n.t('fortune.upsell_vip_analysis')}`;
+     }
+  }
   
   if (totalPages > 1) {
     fullText += `\n\n${i18n.t('fortune.reports.page_indicator', { current: currentPage + 1, total: totalPages })}`;
@@ -201,7 +209,6 @@ export async function handleReportDetail(
   }
     
   // Check VIP for upsell
-  const isVip = !!(user?.is_vip && user?.vip_expire_at && new Date(user.vip_expire_at) > new Date());
   if (!isVip) {
     // Only show if it's a fortune report that likely has upsell content
     // Or just always show for non-vips in detail view
