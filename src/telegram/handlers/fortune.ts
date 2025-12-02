@@ -77,7 +77,7 @@ export async function handleFortune(message: TelegramMessage, env: Env): Promise
     }
 
     // Show Main Menu
-    await showFortuneMenu(chatId, telegramId, env, i18n);
+    await showFortuneMenu(chatId, telegramId, env, i18n, undefined, user);
   } catch (error) {
     console.error('[handleFortune] Error:', error);
     const telegram = createTelegramService(env);
@@ -94,11 +94,11 @@ export async function handleFortune(message: TelegramMessage, env: Env): Promise
 // Menu & UI
 // ============================================================================
 
-async function showFortuneMenu(chatId: number, telegramId: string, env: Env, i18n: any, profileToUse?: FortuneProfile) {
+async function showFortuneMenu(chatId: number, telegramId: string, env: Env, i18n: any, profileToUse?: FortuneProfile, userObj?: User | null) {
   const telegram = createTelegramService(env);
   const db = createDatabaseClient(env.DB);
   const service = new FortuneService(env, db.d1);
-  const user = await findUserByTelegramId(db, telegramId);
+  const user = userObj || await findUserByTelegramId(db, telegramId);
   
   // 1. Determine Active Profile
   let profile = profileToUse;
@@ -858,7 +858,7 @@ export async function handleFortuneCallback(callbackQuery: TelegramCallbackQuery
         );
         
         // Auto-show menu (Fixing argument order bug)
-        await showFortuneMenu(chatId, telegramId, env, i18n, profiles[0]);
+        await showFortuneMenu(chatId, telegramId, env, i18n, profiles[0]); // User will be refetched, acceptable for wizard end
       }
     }
     return;
@@ -876,7 +876,7 @@ export async function handleFortuneCallback(callbackQuery: TelegramCallbackQuery
     
     // Refresh Menu
     const updatedProfiles = await service.getProfiles(telegramId);
-    await showFortuneMenu(chatId, updatedProfiles[0], env, i18n);
+    await showFortuneMenu(chatId, updatedProfiles[0], env, i18n, undefined, user);
     
     await telegram.answerCallbackQuery(callbackQuery.id, 
       newStatus ? i18n.t('fortune.subscribed') : i18n.t('fortune.unsubscribed')
@@ -1067,7 +1067,7 @@ export async function handleFortuneCallback(callbackQuery: TelegramCallbackQuery
 
       // 2. Show Menu for this profile
       await telegram.deleteMessage(chatId, callbackQuery.message!.message_id);
-      await showFortuneMenu(chatId, telegramId, env, i18n, profile); // Pass profile explicitly to avoid re-fetch logic override
+      await showFortuneMenu(chatId, telegramId, env, i18n, profile, user); // Pass profile explicitly to avoid re-fetch logic override
     }
     await telegram.answerCallbackQuery(callbackQuery.id);
     return;
