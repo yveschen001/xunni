@@ -58,7 +58,7 @@ export default {
   "help": "Isso nos ajudará a encontrar parceiros de bate-papo mais adequados para você～\n\n",
   "iHaveRead": "✅ Eu li e concordo",
   "info": {
-    "age18": "• Deve ter pelo menos 18 anos para usar este serviço",
+    "age18": "• Você deve ter pelo menos 18 anos para usar este serviço.\n- Informações precisas devem ser fornecidas para que a correspondência e a leitura de sorte gerem bons resultados.",
     "city": "🌍 Região: {city}"
   },
   "languageSelection": "🌐 **Selecione o Idioma**\n\nPor favor, selecione seu idioma preferido:",

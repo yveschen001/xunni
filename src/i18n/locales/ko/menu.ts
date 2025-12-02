@@ -15,7 +15,7 @@ export default {
   "levelFree": "🆓 무료 회원",
   "levelVip": "💎 VIP 회원",
   "message": "XunNi에서 함께 메시지 병을 던져보자! 🍾 내 초대 코드를 사용하여 가입하면, 우리 모두 더 많은 할당량을 받을 수 있어!",
-  "message2": "https://t.me/share/url?url=https://t.me/${botUsername}?start=invite_${inviteCode}&text=XunNi에 오셔서 메시지 병을 함께 던져요 ",
+  "message2": "https://t.me/share/url?url=https://t.me/${botUsername}?start=invite_${inviteCode}&text=XunNi에 오셔서 메시지 병을 함께 던져요",
   "notRegistered": "등록되지 않음",
   "notSet": "설정되지 않음",
   "quota": "• 두 분 모두 매일 할당량 +1을 받습니다.\n\n",
@@ -39,11 +39,11 @@ export default {
   "vip": "• 레벨: ${isVip ? 'VIP 회원 💎' : '무료 회원'}",
   "vip2": "VIP 회원 💎",
   "yourStatus": "귀하의 상태",
-  "birthDate": "",
-  "zodiac": "",
-  "bloodType": "",
-  "interests": "",
-  "bio": "",
-  "driftBottles": "",
-  "fortuneBottles": ""
+  "birthDate": "생일",
+  "zodiac": "조디악 표지",
+  "bloodType": "혈액형",
+  "interests": "관심사",
+  "bio": "프로필",
+  "driftBottles": "메시지 병",
+  "fortuneBottles": "운세 병"
 };

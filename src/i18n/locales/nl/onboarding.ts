@@ -58,7 +58,7 @@ export default {
   "help": "Dit helpt ons om meer geschikte chatpartners voor jou te vinden～\n\n",
   "iHaveRead": "✅ Ik heb het gelezen en ga akkoord",
   "info": {
-    "age18": "• Je moet minstens 18 jaar oud zijn om deze service te gebruiken",
+    "age18": "• Je moet minstens 18 jaar oud zijn om deze service te gebruiken.\n- Nauwkeurige informatie moet worden verstrekt om goede resultaten te behalen bij het matchen en waarzeggen.",
     "city": "🌍 Regio: {city}"
   },
   "languageSelection": "🌐 **Selecteer Taal**\n\nSelecteer je voorkeurs taal:",

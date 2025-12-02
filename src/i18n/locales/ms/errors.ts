@@ -178,6 +178,6 @@ export default {
   "userNotFound4": "❌ Pengguna tidak dijumpai",
   "userNotFoundRegister": "⚠️ Pengguna tidak wujud, sila daftar menggunakan /start dahulu.",
   "verificationFailed": "❌ Pengesahan gagal, sila cuba lagi kemudian.",
-  "invalidTimeFormat": "",
-  "invalidDateFormat": ""
+  "invalidTimeFormat": "Format masa tidak sah\nSebagai contoh: 19:30 (format 24 jam, 00-23 jam, 00-59 minit)",
+  "invalidDateFormat": "Format tarikh tidak sah\nSebagai contoh: 2000-01-01"
 };

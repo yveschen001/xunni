@@ -178,6 +178,6 @@ export default {
   "userNotFound4": "❌ Bruker eksisterer ikke",
   "userNotFoundRegister": "⚠️ Bruker eksisterer ikke, vennligst registrer deg ved å bruke /start først.",
   "verificationFailed": "❌ Verifisering mislyktes, vennligst prøv igjen senere",
-  "invalidTimeFormat": "",
-  "invalidDateFormat": ""
+  "invalidTimeFormat": "Ugyldig tidsformat\nFor eksempel: 19:30 (24-timers format, 00-23 timer, 00-59 minutter)",
+  "invalidDateFormat": "Ugyldig datoformat\nFor eksempel: 2000-01-01"
 };

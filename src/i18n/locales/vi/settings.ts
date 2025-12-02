@@ -28,8 +28,8 @@ export default {
   "disabled": "🚫 Giờ yên tĩnh đã bị vô hiệu hóa",
   "quietHoursHint": "Bạn sẽ không nhận được thông báo không khẩn trong thời gian này",
   "blocklist": {
-    "title": "",
-    "empty": "",
-    "unblock": ""
+    "title": "🚫 Danh sách chặn",
+    "empty": "Hiện tại không có danh sách chặn",
+    "unblock": "Bỏ chặn"
   }
 };

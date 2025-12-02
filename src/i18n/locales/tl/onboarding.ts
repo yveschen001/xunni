@@ -58,7 +58,7 @@ export default {
   "help": "Makakatulong ito upang makahanap kami ng mas angkop na kapareha sa chat para sa iyo～\n\n",
   "iHaveRead": "✅ Nabasa ko at sumasang-ayon ako",
   "info": {
-    "age18": "• Dapat ay 18 taong gulang ka na upang gamitin ang serbisyong ito.",
+    "age18": "• Dapat kang hindi bababa sa 18 taong gulang upang magamit ang serbisyong ito.\n- Dapat ibigay ang tamang impormasyon upang ang pagtutugma at hula ng kapalaran ay magbigay ng magagandang resulta.",
     "city": "🌍 Rehiyon: {city}"
   },
   "languageSelection": "🌐 **Pumili ng Wika**\n\nPakipili ang iyong gustong wika:",

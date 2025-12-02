@@ -126,8 +126,8 @@ export default {
   "vip7": "💡 Kesintisiz VIP hizmeti için şimdi yenileyin!",
   "vip8": "💡 VIP avantajlarından yararlanmaya devam etmek için şimdi yenileyin!\n",
   "vip9": "✨ **Zaten VIP üyesiniz**\n\n",
-  "retentionNotice": "",
-  "upgrade": "",
-  "maxDurationExceeded": "",
-  "refundedAndRevoked": ""
+  "retentionNotice": "⚠️ **Önemli Bildirim**: VIP üye sohbet geçmişi 3 yıl boyunca saklanacaktır. Yenileme durursa, sohbet geçmişiniz üyelik süresinin dolmasından **30 gün** sonra silinecektir. Önemli bilgileri yedeklemeyi unutmayın.",
+  "upgrade": "VIP'e Yüksel",
+  "maxDurationExceeded": "⚠️ VIP süreniz limitine ulaştı ({maxMonths} ay), şu anda satın alma işlemine devam edemiyorsunuz.",
+  "refundedAndRevoked": "ℹ️ Ödemeniz iade edildi ve VIP avantajlarınız iptal edildi."
 };

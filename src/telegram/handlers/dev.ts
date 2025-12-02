@@ -184,6 +184,14 @@ export async function handleDevReset(message: TelegramMessage, env: Env): Promis
       { sql: 'DELETE FROM vip_subscriptions WHERE user_id = ?', params: [targetId] },
 
       // Level 5: Lastly delete user
+      // IMPORTANT: Remove all potential FK references first
+      { sql: 'DELETE FROM match_requests WHERE requester_id = ? OR target_id = ?', params: [targetId, targetId] },
+      { sql: 'DELETE FROM user_blocklist WHERE user_id = ? OR blocked_user_id = ?', params: [targetId, targetId] },
+      { sql: 'DELETE FROM official_ad_views WHERE telegram_id = ?', params: [targetId] },
+      // Try both column names for appeals as there seems to be a schema mismatch in staging
+      { sql: 'DELETE FROM appeals WHERE telegram_id = ?', params: [targetId] },
+      { sql: 'DELETE FROM appeals WHERE user_id = ?', params: [targetId] },
+      
       { sql: 'DELETE FROM users WHERE telegram_id = ?', params: [targetId] },
     ];
 
@@ -495,6 +503,14 @@ export async function handleDevRestart(message: TelegramMessage, env: Env): Prom
       { sql: 'DELETE FROM vip_subscriptions WHERE user_id = ?', params: [telegramId] },
 
       // Level 5: Lastly delete user
+      // IMPORTANT: Remove all potential FK references first
+      { sql: 'DELETE FROM match_requests WHERE requester_id = ? OR target_id = ?', params: [telegramId, telegramId] },
+      { sql: 'DELETE FROM user_blocklist WHERE user_id = ? OR blocked_user_id = ?', params: [telegramId, telegramId] },
+      { sql: 'DELETE FROM official_ad_views WHERE telegram_id = ?', params: [telegramId] },
+      // Try both column names for appeals as there seems to be a schema mismatch in staging
+      { sql: 'DELETE FROM appeals WHERE telegram_id = ?', params: [telegramId] },
+      { sql: 'DELETE FROM appeals WHERE user_id = ?', params: [telegramId] },
+
       { sql: 'DELETE FROM users WHERE telegram_id = ?', params: [telegramId] },
     ];
 

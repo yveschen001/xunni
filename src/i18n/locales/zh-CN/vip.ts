@@ -126,8 +126,8 @@ export default {
   "vip7": "💡 立即续费，享受不间断的 VIP 服务！",
   "vip8": "💡 立即续费，继续享受 VIP 权益！\n",
   "vip9": "✨ **你已经是 VIP 会员**\n\n",
-  "retentionNotice": "",
-  "upgrade": "",
-  "maxDurationExceeded": "",
-  "refundedAndRevoked": ""
+  "retentionNotice": "⚠️ **重要提示**：VIP 会员对话记录将保存 3 年。若停止续费，您的对话记录将在会员过期后 **30 天** 被删除。请注意备份重要信息。",
+  "upgrade": "升级 VIP",
+  "maxDurationExceeded": "⚠️ 您的 VIP 期限已达到上限 ({maxMonths} 个月)，暂时无法继续购买。",
+  "refundedAndRevoked": "ℹ️ 您的款项已退还，VIP 权益已收回。"
 };

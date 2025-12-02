@@ -69,6 +69,6 @@ export default {
   "vip2": "• /vip を使ってVIPメンバーにアップグレード\n",
   "vipUpgrade": "• /vip を使ってVIPメンバーにアップグレード\n",
   "zodiac": "⭐ 星座: ${zodiac}\n",
-  "fortuneQuota": "",
-  "vipWithDays": ""
+  "fortuneQuota": "🔮 {fortunemessage ボトルメール}: {total} (今週の残り: {weekly}/{limit} | 追加: {additional})",
+  "vipWithDays": "💎 VIPメンバー (残り{days}日, 有効期限: {expireDate})"
 };

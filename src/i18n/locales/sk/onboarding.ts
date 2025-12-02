@@ -58,7 +58,7 @@ export default {
   "help": "Toto nám pomôže nájsť pre vás vhodnejších partnerov na chat～\n\n",
   "iHaveRead": "✅ Prečítal/a som si a súhlasím",
   "info": {
-    "age18": "• Musíte mať 18 rokov alebo viac, aby ste mohli používať túto službu",
+    "age18": "• Musíte mať aspoň 18 rokov na používanie tejto služby.\n- Presné informácie musia byť poskytnuté, aby zodpovedanie a veštenie prinieslo dobré výsledky.",
     "city": "🌍 Oblasť: {city}"
   },
   "languageSelection": "🌐 **Vyberte jazyk**\n\nProsím, vyberte si preferovaný jazyk:",

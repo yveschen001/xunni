@@ -99,7 +99,7 @@ export default {
   "vipTriple": "💎 **آمار بطری پیام سه‌گانه VIP** (آخرین ${days} روز)",
   "vipTripleTitle": "💎 **آمار بطری پیام سه‌گانه VIP** (آخرین {days} روز)",
   "zodiac": "🔮 **زودیاک**: ${zodiac}\n",
-  "fortuneTitle": "",
-  "fortuneReadings": "",
-  "fortuneQuota": ""
+  "fortuneTitle": "🔮 **{fortunemessage bottle}**",
+  "fortuneReadings": "• تعداد خوشبختی: {count}",
+  "fortuneQuota": "• سهمیه باقی‌مانده: {quota}"
 };

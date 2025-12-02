@@ -126,8 +126,8 @@ export default {
   "vip7": "💡 ¡Renueva ahora para disfrutar de servicio VIP ininterrumpido!",
   "vip8": "💡 ¡Renueva ahora para continuar disfrutando de los beneficios VIP!\n",
   "vip9": "✨ **Ya eres un miembro VIP**\n\n",
-  "retentionNotice": "",
-  "upgrade": "",
-  "maxDurationExceeded": "",
-  "refundedAndRevoked": ""
+  "retentionNotice": "⚠️ **Aviso Importante**: El historial de chat del miembro VIP se conservará durante 3 años. Si la renovación se detiene, su historial de chat será eliminado **30 días** después de la expiración de la membresía. Por favor, asegúrese de hacer una copia de seguridad de la información importante.",
+  "upgrade": "Actualizar a VIP",
+  "maxDurationExceeded": "⚠️ Tu período VIP ha alcanzado el límite ({maxMonths} meses), y no puedes continuar comprando por el momento.",
+  "refundedAndRevoked": "ℹ️ Tu pago ha sido reembolsado y los beneficios VIP han sido revocados."
 };

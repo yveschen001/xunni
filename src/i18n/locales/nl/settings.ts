@@ -28,8 +28,8 @@ export default {
   "disabled": "🚫 Stille uren zijn uitgeschakeld",
   "quietHoursHint": "Je ontvangt tijdens deze periode geen niet-dringende notificaties",
   "blocklist": {
-    "title": "",
-    "empty": "",
-    "unblock": ""
+    "title": "🚫 Bloklijst",
+    "empty": "Huidig geen bloklijst",
+    "unblock": "Deblokkeer"
   }
 };

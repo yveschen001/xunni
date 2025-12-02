@@ -39,11 +39,11 @@ export default {
   "vip": "• Ниво: ${isVip ? 'VIP Член 💎' : 'Член бесплатно'}",
   "vip2": "VIP член 💎",
   "yourStatus": "Вашиот статус",
-  "birthDate": "",
-  "zodiac": "",
-  "bloodType": "",
-  "interests": "",
-  "bio": "",
-  "driftBottles": "",
-  "fortuneBottles": ""
+  "birthDate": "Роденден",
+  "zodiac": "Зодијак",
+  "bloodType": "Крвна Група",
+  "interests": "Интереси",
+  "bio": "Профил",
+  "driftBottles": "Порака Буре",
+  "fortuneBottles": "Буре на Среќа"
 };

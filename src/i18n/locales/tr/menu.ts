@@ -39,11 +39,11 @@ export default {
   "vip": "• Seviye: ${isVip ? 'VIP Üyesi 💎' : 'Ücretsiz Üye'}",
   "vip2": "VIP üye 💎",
   "yourStatus": "Durumun",
-  "birthDate": "",
-  "zodiac": "",
-  "bloodType": "",
-  "interests": "",
-  "bio": "",
-  "driftBottles": "",
-  "fortuneBottles": ""
+  "birthDate": "Doğum Günü",
+  "zodiac": "Burç",
+  "bloodType": "Kan Grubu",
+  "interests": "İlgi Alanları",
+  "bio": "Profil",
+  "driftBottles": "Mesaj Şişesi",
+  "fortuneBottles": "Fal Şişesi"
 };

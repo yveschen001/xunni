@@ -69,6 +69,6 @@ export default {
   "vip2": "• Folosește /vip pentru a trece la membru VIP\n",
   "vipUpgrade": "• Folosește /vip pentru a trece la membru VIP\n",
   "zodiac": "⭐ Zodie: ${zodiac}\n",
-  "fortuneQuota": "",
-  "vipWithDays": ""
+  "fortuneQuota": "🔮 {fortunemessage bottle}: {total} (Săptămâna aceasta gratuit: {weekly}/{limit} | Suplimentar: {additional})",
+  "vipWithDays": "💎 Membru VIP (Rămase {days} zile, Expirare: {expireDate})"
 };

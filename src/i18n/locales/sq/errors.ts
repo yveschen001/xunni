@@ -178,6 +178,6 @@ export default {
   "userNotFound4": "❌ Përdoruesi nuk ekziston",
   "userNotFoundRegister": "⚠️ Përdoruesi nuk ekziston, ju lutemi regjistrohuni duke përdorur /start së pari.",
   "verificationFailed": "❌ Verifikimi dështoi, ju lutemi provoni përsëri më vonë",
-  "invalidTimeFormat": "",
-  "invalidDateFormat": ""
+  "invalidTimeFormat": "Format i papërshtatshëm i kohës\nPër shembull: 19:30 (forma 24-orëshe, 00-23 orë, 00-59 minuta)",
+  "invalidDateFormat": "Format i papërshtatshëm i datës\nPër shembull: 2000-01-01"
 };

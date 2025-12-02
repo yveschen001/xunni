@@ -178,6 +178,6 @@ export default {
   "userNotFound4": "❌ Käyttäjää ei ole olemassa",
   "userNotFoundRegister": "⚠️ Käyttäjää ei ole olemassa, rekisteröidy ensin /start-komennolla.",
   "verificationFailed": "❌ Vahvistus epäonnistui, yritä myöhemmin uudelleen",
-  "invalidTimeFormat": "",
-  "invalidDateFormat": ""
+  "invalidTimeFormat": "Virheellinen aikamuoto\nEsimerkiksi: 19:30 (24-tunnin formaatti, 00-23 tuntia, 00-59 minuuttia)",
+  "invalidDateFormat": "Virheellinen päivämäärämuoto\nEsimerkiksi: 2000-01-01"
 };

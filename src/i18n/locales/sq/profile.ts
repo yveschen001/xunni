@@ -69,6 +69,6 @@ export default {
   "vip2": "• Përdorni /vip për t'u përmirësuar në anëtar VIP\n",
   "vipUpgrade": "• Përdorni /vip për t'u përmirësuar në anëtar VIP\n",
   "zodiac": "⭐ Shenja e zodiakut: ${zodiac}\n",
-  "fortuneQuota": "",
-  "vipWithDays": ""
+  "fortuneQuota": "🔮 {fortunemessage bottle}: {total} (Këtë javë falas: {weekly}/{limit} | Shtesë: {additional})",
+  "vipWithDays": "💎 Anëtar VIP (Të mbetur {days} ditë, Skadimi: {expireDate})"
 };

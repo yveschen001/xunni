@@ -126,8 +126,8 @@ export default {
   "vip7": "💡 Odnów teraz, aby cieszyć się nieprzerwanym serwisem VIP!",
   "vip8": "💡 Odnów teraz, aby nadal cieszyć się korzyściami VIP!\n",
   "vip9": "✨ **Jesteś już członkiem VIP**\n\n",
-  "retentionNotice": "",
-  "upgrade": "",
-  "maxDurationExceeded": "",
-  "refundedAndRevoked": ""
+  "retentionNotice": "⚠️ **Ważne ogłoszenie**: Historia czatu członka VIP będzie zachowana przez 3 lata. Jeśli odnowienie zostanie wstrzymane, twoja historia czatu zostanie usunięta **30 dni** po wygaśnięciu członkostwa. Proszę pamiętać, aby zabezpieczyć ważne informacje.",
+  "upgrade": "Ulepsz do VIP",
+  "maxDurationExceeded": "⚠️ Twój okres VIP osiągnął limit ({maxMonths} miesięcy) i obecnie nie możesz kontynuować zakupu.",
+  "refundedAndRevoked": "ℹ️ Twoja płatność została zwrócona, a korzyści VIP zostały odebrane."
 };

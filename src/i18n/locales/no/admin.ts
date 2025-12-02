@@ -398,7 +398,7 @@ export default {
   "vip8": "⬇️ **VIP automatisk nedgradering**\n\n",
   "vip9": "🔄 **VIP fornyelse**\n\n",
   "dailyReport": "📊 Daglig driftsrapport ({date})\n\n💰 Estimerte oversettelseskostnader:\n{costDetails}\n\n⚠️ Anomaliovervåking:\n• Oversettelsesnedgraderinger: {fallbackCount} ganger\n• Oversettelsesfeil: {errorCount} ganger\n\n📈 Aktiv data:\n• Nye brukere: {newUsers}\n• Aktive samtaler: {activeConversations}",
-  "analyticsTitle": "",
-  "adPerformanceTitle": "",
-  "vipFunnelTitle": ""
+  "analyticsTitle": "Dataanalyse",
+  "adPerformanceTitle": "Annonseytelse",
+  "vipFunnelTitle": "VIP-trakt"
 };

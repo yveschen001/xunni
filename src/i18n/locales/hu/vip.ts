@@ -126,8 +126,8 @@ export default {
   "vip7": "💡 Újíts most, hogy élvezhesd a folyamatos VIP szolgáltatást!",
   "vip8": "💡 Újíts most, hogy továbbra is élvezhesd a VIP előnyöket!\n",
   "vip9": "✨ **Már VIP tag vagy**\n\n",
-  "retentionNotice": "",
-  "upgrade": "",
-  "maxDurationExceeded": "",
-  "refundedAndRevoked": ""
+  "retentionNotice": "⚠️ **Fontos Értesítés**: A VIP tagok csevegési előzményeit 3 évig őrizzük meg. Ha a megújítás leáll, a csevegési előzményei **30 nap** múlva törlődnek a tagság lejárta után. Kérjük, vegye figyelembe, hogy fontos információkat mentse el.",
+  "upgrade": "Frissítés VIP-re",
+  "maxDurationExceeded": "⚠️ A VIP időszakod elérte a határt ({maxMonths} hónap), és egyelőre nem tudsz vásárolni.",
+  "refundedAndRevoked": "ℹ️ A kifizetésed visszatérítésre került, és a VIP előnyöket visszavonták."
 };

@@ -23,12 +23,24 @@
 
 // Base URL for legal documents (hosted on Cloudflare Workers)
 // Default: Production Worker URL. Update if you use a custom domain.
-const BASE_URL = 'https://api.xunni.xyz';
+const PRODUCTION_URL = 'https://api.xunni.xyz';
+const STAGING_URL = 'https://xunni-bot-staging.yves221.workers.dev';
 
 /**
- * Legal document URLs
- *
- * These URLs point to the English-only legal documents.
+ * Get base URL based on environment
+ * 
+ * @param env - Environment object from Worker
+ * @returns Correct base URL for the environment
+ */
+export function getBaseUrl(env?: any): string {
+  if (!env) return PRODUCTION_URL;
+  return env.ENVIRONMENT === 'staging' ? STAGING_URL : PRODUCTION_URL;
+}
+
+/**
+ * Legal document URLs generators
+ * 
+ * These functions generate URLs pointing to the English-only legal documents.
  * All documents are hosted as static HTML files served by the Worker.
  */
 export const LEGAL_URLS = {
@@ -36,19 +48,19 @@ export const LEGAL_URLS = {
    * Privacy Policy
    * Explains data collection, usage, and user rights (GDPR/CCPA compliant)
    */
-  PRIVACY_POLICY: `${BASE_URL}/privacy`,
+  getPRIVACY_POLICY: (env?: any) => `${getBaseUrl(env)}/privacy`,
 
   /**
    * Terms of Service
    * Defines service rules, disclaimers, and limitation of liability
    */
-  TERMS_OF_SERVICE: `${BASE_URL}/terms`,
+  getTERMS_OF_SERVICE: (env?: any) => `${getBaseUrl(env)}/terms`,
 
   /**
    * Community Guidelines
    * Outlines acceptable behavior, prohibited conduct, and penalties
    */
-  COMMUNITY_GUIDELINES: `${BASE_URL}/community`,
+  getCOMMUNITY_GUIDELINES: (env?: any) => `${getBaseUrl(env)}/community`,
 } as const;
 
 /**

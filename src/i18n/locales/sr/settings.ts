@@ -28,8 +28,8 @@ export default {
   "disabled": "[Potrebno prevođenje]",
   "quietHoursHint": "Nećeš primati nehitne notifikacije tokom ovog perioda",
   "blocklist": {
-    "title": "",
-    "empty": "",
-    "unblock": ""
+    "title": "🚫 Lista blokiranih",
+    "empty": "Trenutno nema liste blokiranih",
+    "unblock": "Otkini"
   }
 };

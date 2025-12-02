@@ -15,7 +15,7 @@ export default {
   "levelFree": "🆓 Thành viên miễn phí",
   "levelVip": "💎 Thành viên VIP",
   "message": "Hãy cùng nhau thả chai thư trên XunNi! 🍾 Sử dụng mã mời của tôi để tham gia, và cả hai chúng ta đều có thể nhận thêm chỉ tiêu!",
-  "message2": "https://t.me/share/url?url=https://t.me/${botUsername}?start=invite_${inviteCode}&text=Hãy đến với XunNi và cùng nhau ném chai thư ",
+  "message2": "https://t.me/share/url?url=https://t.me/${botUsername}?start=invite_${inviteCode}&text=Hãy đến với XunNi và cùng nhau ném chai thư",
   "notRegistered": "Chưa đăng ký",
   "notSet": "Chưa được đặt",
   "quota": "• Cả hai đều nhận được hạn mức hàng ngày +1\n\n",
@@ -39,11 +39,11 @@ export default {
   "vip": "• Cấp độ: ${isVip ? 'Thành viên VIP 💎' : 'Thành viên miễn phí'}",
   "vip2": "Thành viên VIP 💎",
   "yourStatus": "Tình trạng của bạn",
-  "birthDate": "",
-  "zodiac": "",
-  "bloodType": "",
-  "interests": "",
-  "bio": "",
-  "driftBottles": "",
-  "fortuneBottles": ""
+  "birthDate": "Ngày sinh",
+  "zodiac": "Cung hoàng đạo",
+  "bloodType": "Loại máu",
+  "interests": "Sở thích",
+  "bio": "Hồ sơ",
+  "driftBottles": "Chai thư",
+  "fortuneBottles": "Chai may mắn"
 };

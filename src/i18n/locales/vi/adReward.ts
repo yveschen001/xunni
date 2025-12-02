@@ -20,5 +20,5 @@ export default {
   "watchAdRemaining": "📊 Còn lại hôm nay: **${remaining}/20** lần",
   "watchAdReward": "🎁 Hoàn thành xem để kiếm **+1 quota**",
   "watchAdTitle": "📺 **Xem quảng cáo để kiếm quota**",
-  "watchAdButton": ""
+  "watchAdButton": "📺 Mở khóa bằng cách xem quảng cáo (+1 lần)"
 };

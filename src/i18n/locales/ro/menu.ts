@@ -15,7 +15,7 @@ export default {
   "levelFree": "🆓 Membru gratuit",
   "levelVip": "💎 Membru VIP",
   "message": "Să aruncăm împreună sticle cu mesaj pe XunNi! 🍾 Folosește codul meu de invitație pentru a te alătura, și putem obține cu toții mai multe cote!",
-  "message2": "https://t.me/share/url?url=https://t.me/${botUsername}?start=invite_${inviteCode}&text=Vino pe XunNi și aruncă împreună o sticlă cu mesaj ",
+  "message2": "https://t.me/share/url?url=https://t.me/${botUsername}?start=invite_${inviteCode}&text=Vino pe XunNi și aruncă împreună o sticlă cu mesaj",
   "notRegistered": "Neînregistrat",
   "notSet": "Nelimitat",
   "quota": "• Amândoi primiți o cotă zilnică +1\n\n",
@@ -39,11 +39,11 @@ export default {
   "vip": "• Nivel: ${isVip ? 'Membru VIP 💎' : 'Membru Gratuit'}",
   "vip2": "Membru VIP 💎",
   "yourStatus": "Statutul tău",
-  "birthDate": "",
-  "zodiac": "",
-  "bloodType": "",
-  "interests": "",
-  "bio": "",
-  "driftBottles": "",
-  "fortuneBottles": ""
+  "birthDate": "Zi de naștere",
+  "zodiac": "Zodia",
+  "bloodType": "Grupa sanguină",
+  "interests": "Interese",
+  "bio": "Profil",
+  "driftBottles": "Mesaj în sticlă",
+  "fortuneBottles": "Sticlă de noroc"
 };

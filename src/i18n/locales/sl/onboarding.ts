@@ -58,7 +58,7 @@ export default {
   "help": "To nam bo pomagalo najti primernejše klepetne partnerje za vas～\n\n",
   "iHaveRead": "✅ Prebral(a) sem in se strinjam",
   "info": {
-    "age18": "• Uporabniki morajo biti stari 18 let ali več, da uporabljajo to storitev",
+    "age18": "• Za korišćenje ove usluge morate imati najmanje 18 godina.\n- Tačne informacije moraju biti obezbeđene kako bi usklađivanje i proricanje doneli dobre rezultate.",
     "city": "🌍 Regija: {city}"
   },
   "languageSelection": "🌐 **Izberite jezik**\n\nProsimo, izberite svoj želeni jezik:",

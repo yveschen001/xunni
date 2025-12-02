@@ -39,11 +39,11 @@ export default {
   "vip": "• Taso: ${isVip ? 'VIP-jäsen 💎' : 'Ilmainen jäsen'}",
   "vip2": "VIP-jäsen 💎",
   "yourStatus": "Tilasi",
-  "birthDate": "",
-  "zodiac": "",
-  "bloodType": "",
-  "interests": "",
-  "bio": "",
-  "driftBottles": "",
-  "fortuneBottles": ""
+  "birthDate": "Syntymäpäivä",
+  "zodiac": "Horoskooppimerkki",
+  "bloodType": "Veriryhmä",
+  "interests": "Kiinnostuksen kohteet",
+  "bio": "Profiili",
+  "driftBottles": "Viestipullo",
+  "fortuneBottles": "Onnentoivotuspullo"
 };

@@ -28,8 +28,8 @@ export default {
   "disabled": "🚫 静かな時間は無効になりました",
   "quietHoursHint": "この期間中、非緊急通知は受け取りません",
   "blocklist": {
-    "title": "",
-    "empty": "",
-    "unblock": ""
+    "title": "🚫 ブロックリスト",
+    "empty": "現在ブロックリストはありません",
+    "unblock": "ブロック解除"
   }
 };

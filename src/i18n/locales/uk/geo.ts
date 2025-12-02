@@ -1,17 +1,17 @@
 export default {
-  "select_continent": "",
-  "select_country": "",
-  "search_city_prompt": "",
-  "city_not_found": "",
-  "confirm_city": "",
+  "select_continent": "Будь ласка, виберіть свій регіон 🌍",
+  "select_country": "Будь ласка, виберіть країну",
+  "search_city_prompt": "Будь ласка, введіть назву міста (наприклад, Тайпей)",
+  "city_not_found": "Місто не знайдено, будь ласка, спробуйте англійську назву.",
+  "confirm_city": "Це місто, яке ви вибрали: {city} ({country})?",
   "continent": {
-    "asia": "",
-    "europe": "",
-    "north_america": "",
-    "south_america": "",
-    "africa": "",
-    "oceania": ""
+    "asia": "Азія",
+    "europe": "Європа",
+    "north_america": "Північна Америка",
+    "south_america": "Південна Америка",
+    "africa": "Африка",
+    "oceania": "Океанія"
   },
-  "btn_search_manually": "",
-  "confirm_button": ""
+  "btn_search_manually": "🔍 Шукати місто вручну",
+  "confirm_button": "✅ Підтвердити"
 };

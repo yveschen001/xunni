@@ -398,7 +398,7 @@ export default {
   "vip8": "⬇️ **کاهش خودکار VIP**\n\n",
   "vip9": "🔄 **تمدید VIP**\n\n",
   "dailyReport": "📊 گزارش عملیاتی روزانه ({date})\n\n💰 برآورد هزینه‌های ترجمه:\n{costDetails}\n\n⚠️ نظارت بر ناهنجاری:\n• کاهش‌های ترجمه: {fallbackCount} بار\n• شکست‌های ترجمه: {errorCount} بار\n\n📈 داده‌های فعال:\n• کاربران جدید: {newUsers}\n• گفتگوهای فعال: {activeConversations}",
-  "analyticsTitle": "",
-  "adPerformanceTitle": "",
-  "vipFunnelTitle": ""
+  "analyticsTitle": "تحلیل داده",
+  "adPerformanceTitle": "عملکرد آگهی",
+  "vipFunnelTitle": "فانل VIP"
 };

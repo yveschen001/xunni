@@ -32,7 +32,7 @@ export default {
   "message4": "🌍 Language: ${user.language_pref}\n",
   "message5": "📈 Conversion Rate: ${inviteStats.conversionRate}%\n",
   "message6": "${gender} • ${age} years old • ${city}\n\n",
-  "message7": "https://t.me/share/url?url=https://t.me/${botUsername}?start=invite_${inviteCode}&text=Come join XunNi and toss a message bottle ",
+  "message7": "https://t.me/share/url?url=https://t.me/${botUsername}?start=invite_${inviteCode}&text=Come join XunNi and toss a message bottle",
   "mysterious": "This person is quite mysterious, leaving nothing behind～",
   "nickname": "📛 Nickname: ${displayNickname}\n",
   "notSet": "Not Set",
@@ -69,6 +69,6 @@ export default {
   "vip2": "• Use /vip to upgrade to VIP Member\n",
   "vipUpgrade": "• Upgrade to VIP member using /vip\n",
   "zodiac": "⭐ Zodiac: ${zodiac}\n",
-  "fortuneQuota": "",
-  "vipWithDays": ""
+  "fortuneQuota": "🔮 {fortunemessage bottle}: {total} (This week free: {weekly}/{limit} | Additional: {additional})",
+  "vipWithDays": "💎 VIP Member (Remaining {days} days, Expiry: {expireDate})"
 };

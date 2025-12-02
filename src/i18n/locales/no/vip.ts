@@ -126,8 +126,8 @@ export default {
   "vip7": "💡 Forny nå for å nyte uavbrutt VIP-tjeneste!",
   "vip8": "💡 Forny nå for å fortsette å nyte VIP-fordeler!\n",
   "vip9": "✨ **Du er allerede VIP-medlem**\n\n",
-  "retentionNotice": "",
-  "upgrade": "",
-  "maxDurationExceeded": "",
-  "refundedAndRevoked": ""
+  "retentionNotice": "⚠️ **Viktig melding**: Chatthistorikk for VIP-medlemmer vil bli beholdt i 3 år. Hvis fornyelsen stopper, vil chatthistorikken din bli slettet **30 dager** etter at medlemskapet utløper. Vennligst merk deg å ta sikkerhetskopi av viktig informasjon.",
+  "upgrade": "Oppgrader til VIP",
+  "maxDurationExceeded": "⚠️ Din VIP-periode har nådd grensen ({maxMonths} måneder), og du kan ikke fortsette å kjøpe for tiden.",
+  "refundedAndRevoked": "ℹ️ Betalingen din har blitt refundert, og VIP-fordeler har blitt inndratt."
 };

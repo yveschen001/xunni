@@ -69,6 +69,6 @@ export default {
   "vip2": "• Brug /vip for at opgradere til VIP Medlem\n",
   "vipUpgrade": "• Brug /vip for at opgradere til VIP Medlem\n",
   "zodiac": "⭐ Stjernetegn: ${zodiac}\n",
-  "fortuneQuota": "",
-  "vipWithDays": ""
+  "fortuneQuota": "🔮 {fortunemessage bottle}: {total} (Denne uge gratis: {weekly}/{limit} | Yderligere: {additional})",
+  "vipWithDays": "💎 VIP Medlem (Restende {days} dage, Udløber: {expireDate})"
 };

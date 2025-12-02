@@ -398,7 +398,7 @@ export default {
   "vip8": "⬇️ **VIP Automatische Downgrade**\n\n",
   "vip9": "🔄 **VIP Vernieuwing**\n\n",
   "dailyReport": "📊 Dagelijks operationeel rapport ({date})\n\n💰 Geschatte vertaalkosten:\n{costDetails}\n\n⚠️ Anomalie-monitoring:\n• Vertaaldegradaties: {fallbackCount} keer\n• Vertaalfouten: {errorCount} keer\n\n📈 Actieve gegevens:\n• Nieuwe gebruikers: {newUsers}\n• Actieve gesprekken: {activeConversations}",
-  "analyticsTitle": "",
-  "adPerformanceTitle": "",
-  "vipFunnelTitle": ""
+  "analyticsTitle": "Gegevensanalyse",
+  "adPerformanceTitle": "Advertentieprestaties",
+  "vipFunnelTitle": "VIP-funnel"
 };

@@ -126,8 +126,8 @@ export default {
   "vip7": "💡 Reînnoiți acum pentru a beneficia de serviciu VIP neîntrerupt!",
   "vip8": "💡 Reînnoiți acum pentru a continua să beneficiați de avantajele VIP!\n",
   "vip9": "✨ **Ești deja un membru VIP**\n\n",
-  "retentionNotice": "",
-  "upgrade": "",
-  "maxDurationExceeded": "",
-  "refundedAndRevoked": ""
+  "retentionNotice": "⚠️ **Notificare importantă**: istoricul conversațiilor membrilor VIP va fi păstrat timp de 3 ani. Dacă reînnoirea este oprită, istoricul tău va fi șters **după 30 de zile** de la expirarea membrului. Te rog să fii atent să salvezi informațiile importante.",
+  "upgrade": "Upgrade la VIP",
+  "maxDurationExceeded": "⚠️ Perioada ta VIP a atins limita ({maxMonths} luni) și nu poți continua achizițiile pentru moment.",
+  "refundedAndRevoked": "ℹ️ Plata ta a fost rambursată, iar beneficiile VIP au fost revocate."
 };

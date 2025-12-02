@@ -38,7 +38,7 @@ export async function handleEditNickname(
       i18n.t('edit_profile.nicknameInstruction', { nickname: user?.username || i18n.t('common.unknown') }),
       [[{ text: i18n.t('buttons.back'), callback_data: 'edit_profile_callback' }]]
     );
-    await telegram.sendMessage(chatId, i18n.t('edit_profile.input_nickname_hint'));
+    await telegram.sendMessage(chatId, i18n.t('edit_profile.nicknameInputHint'));
   } catch (error) {
     console.error('[handleEditNickname] Error:', error);
     const errorI18n = createI18n('zh-TW');
@@ -73,7 +73,7 @@ export async function handleEditBio(
       i18n.t('edit_profile.bioInstruction', { bio: user?.bio || i18n.t('common.none') }),
       [[{ text: i18n.t('buttons.back'), callback_data: 'edit_profile_callback' }]]
     );
-    await telegram.sendMessage(chatId, i18n.t('edit_profile.input_bio_hint'));
+    await telegram.sendMessage(chatId, i18n.t('edit_profile.bioInputHint'));
   } catch (error) {
     console.error('[handleEditBio] Error:', error);
     const errorI18n = createI18n('zh-TW');
@@ -307,21 +307,22 @@ export async function handleInterestInteraction(
     // 3. Toggle Item
     if (data.startsWith('interest_toggle:')) {
       const itemKey = data.split(':')[1];
-      const itemLabel = i18n.t(`interests.items.${itemKey}` as any); // Get localized label to store (or store key?)
+      // Store the CODE (itemKey) instead of the translated label
+      // const itemLabel = i18n.t(`interests.items.${itemKey}` as any); 
       
-      const interestText = itemLabel; 
+      const interestCode = itemKey; 
       
-      // Check if exists (by text comparison)
-      if (draftInterests.includes(interestText)) {
+      // Check if exists
+      if (draftInterests.includes(interestCode)) {
         // Remove
-        draftInterests = draftInterests.filter(i => i !== interestText);
+        draftInterests = draftInterests.filter(i => i !== interestCode);
       } else {
         // Add
         if (draftInterests.length >= MAX_INTERESTS) {
           await telegram.answerCallbackQuery(callbackQuery.id, i18n.t('interests.max_limit', { max: MAX_INTERESTS }), true);
           return;
         }
-        draftInterests.push(interestText);
+        draftInterests.push(interestCode);
       }
       
       // Update Session
@@ -407,8 +408,11 @@ async function renderInterestMenu(
       const catLabel = i18n.t(`interests.categories.${cat.id}` as any);
       
       // Check selection
-      const catItemTexts = cat.items.map(k => i18n.t(`interests.items.${k}` as any));
-      const hasSelection = catItemTexts.some(text => selected.includes(text));
+      const catItemTexts = cat.items.map(k => k); // Check against keys
+      // Also check against translated text for legacy support
+      const hasSelection = cat.items.some(k => 
+        selected.includes(k) || selected.includes(i18n.t(`interests.items.${k}` as any))
+      );
       const btnText = hasSelection ? `✅ ${catLabel}` : catLabel;
 
       row.push({ text: btnText, callback_data: `interest_cat:${cat.id}` });
@@ -436,7 +440,8 @@ async function renderInterestMenu(
     let row: any[] = [];
     for (const itemKey of category.items) {
       const itemLabel = i18n.t(`interests.items.${itemKey}` as any);
-      const isSelected = selected.includes(itemLabel);
+      // Check both code and legacy text
+      const isSelected = selected.includes(itemKey) || selected.includes(itemLabel);
       const btnText = isSelected ? `✅ ${itemLabel}` : itemLabel;
       
       row.push({ text: btnText, callback_data: `interest_toggle:${itemKey}` });
@@ -557,7 +562,20 @@ async function renderIndustryMenu(
 
   if (!categoryId) {
     // === Level 1: Category View ===
-    text = `${i18n.t('career.label_industry')}\n${currentValue ? `(目前: ${currentValue})` : ''}`;
+    
+    // Translate currentValue (Industry Code) to Display Text
+    let displayValue = currentValue;
+    if (currentValue) {
+      for (const cat of INDUSTRIES) {
+        if (cat.items.includes(currentValue)) {
+          // Found code match, translate it
+          displayValue = i18n.t(`career.industry.${cat.id}.${currentValue}` as any);
+          break;
+        }
+      }
+    }
+
+    text = `${i18n.t('career.label_industry')}\n${displayValue ? `(目前: ${displayValue})` : ''}`;
     
     // Grid of Categories (1 column)
     for (const catId of INDUSTRY_CATEGORIES) {
@@ -567,8 +585,11 @@ async function renderIndustryMenu(
       if (currentValue) {
          const category = INDUSTRIES.find(c => c.id === catId);
          if (category) {
-             const catItemTexts = category.items.map(k => i18n.t(`career.industry.${catId}.${k}` as any));
-             if (catItemTexts.includes(currentValue)) {
+             // Check against Item Key (Code) OR Legacy Text
+             const hasSelection = category.items.some(k => 
+                currentValue === k || currentValue === i18n.t(`career.industry.${catId}.${k}` as any)
+             );
+             if (hasSelection) {
                  catLabel = `✅ ${catLabel}`;
              }
          }
@@ -589,7 +610,8 @@ async function renderIndustryMenu(
 
     for (const itemKey of category.items) {
       const itemLabel = i18n.t(`career.industry.${category.id}.${itemKey}` as any);
-      const isSelected = currentValue === itemLabel; // Simple text match
+      // Check both code and legacy text
+      const isSelected = currentValue === itemKey || currentValue === itemLabel; 
       const btnText = isSelected ? `✅ ${itemLabel}` : itemLabel;
       
       buttons.push([{ text: btnText, callback_data: `industry_select:${category.id}:${itemKey}` }]);
@@ -651,14 +673,24 @@ export async function handleCareerInteraction(
       return;
     }
 
-    // Industry Selection
+      // Industry Selection
     if (data.startsWith('industry_select:')) {
       const parts = data.split(':');
       const catId = parts[1];
       const itemKey = parts[2];
       const itemLabel = i18n.t(`career.industry.${catId}.${itemKey}` as any);
       
-      await db.d1.prepare('UPDATE users SET industry = ? WHERE telegram_id = ?').bind(itemLabel, telegramId).run();
+      // Store CODE (itemLabel -> itemKey)
+      // Actually, we need to store unique code. `catId:itemKey` seems safest, or just `itemKey` if unique.
+      // Let's use `itemKey` for now as they seem unique enough in the lists, BUT `catId` adds context.
+      // Wait, `INDUSTRIES` array in domain/career.ts shows items like 'dev', 'ai', 'bank'.
+      // If we just store 'dev', it's fine.
+      // BUT, let's look at `renderIndustryMenu`. It iterates `INDUSTRIES`.
+      // If we store `itemKey`, we can find it.
+      
+      const industryCode = itemKey; // Store code
+      
+      await db.d1.prepare('UPDATE users SET industry = ? WHERE telegram_id = ?').bind(industryCode, telegramId).run();
       
       await telegram.sendMessageWithButtons(chatId, i18n.t('success.text4', { text: itemLabel }), [
         [{ text: i18n.t('common.short3'), callback_data: 'edit_profile_callback' }],

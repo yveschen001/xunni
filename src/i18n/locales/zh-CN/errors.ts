@@ -178,6 +178,6 @@ export default {
   "userNotFound4": "❌ 用户不存在",
   "userNotFoundRegister": "⚠️ 用户不存在，请先使用 /start 注册。",
   "verificationFailed": "❌ 验证失败，请稍后再试",
-  "invalidTimeFormat": "",
-  "invalidDateFormat": ""
+  "invalidTimeFormat": "无效的时间格式\n例如：19:30 (24小时制，00-23时，00-59分)",
+  "invalidDateFormat": "无效的日期格式\n例如：2000-01-01"
 };

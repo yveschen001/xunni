@@ -398,7 +398,7 @@ export default {
   "vip8": "⬇️ **VIP 자동 강등**\n\n",
   "vip9": "🔄 **VIP 갱신**\n\n",
   "dailyReport": "📊 일일 운영 보고서 ({date})\n\n💰 예상 번역 비용:\n{costDetails}\n\n⚠️ 이상 모니터링:\n• 번역 내역 하강: {fallbackCount}회\n• 번역 실패: {errorCount}회\n\n📈 활성 데이터:\n• 신규 사용자: {newUsers}\n• 활성 대화: {activeConversations}",
-  "analyticsTitle": "",
-  "adPerformanceTitle": "",
-  "vipFunnelTitle": ""
+  "analyticsTitle": "데이터 분석",
+  "adPerformanceTitle": "광고 성과",
+  "vipFunnelTitle": "VIP 퍼널"
 };

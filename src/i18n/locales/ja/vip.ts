@@ -126,8 +126,8 @@ export default {
   "vip7": "💡 今すぐ更新してVIPサービスを中断なくお楽しみください！",
   "vip8": "💡 今すぐ更新してVIP特典を引き続きお楽しみください！\n",
   "vip9": "📝 ボトル内容: {content}\n\n",
-  "retentionNotice": "",
-  "upgrade": "",
-  "maxDurationExceeded": "",
-  "refundedAndRevoked": ""
+  "retentionNotice": "⚠️ **重要なお知らせ**: VIPメンバーのチャット履歴は3年間保持されます。更新が停止した場合、チャット履歴は会員期限切れから**30日後**に削除されます。重要な情報をバックアップすることをお忘れなく。",
+  "upgrade": "VIPにアップグレード",
+  "maxDurationExceeded": "⚠️ あなたのVIP期間は制限に達しました ({maxMonths} ヶ月)ので、しばらくの間購入を続けることはできません。",
+  "refundedAndRevoked": "ℹ️ あなたの支払いが返金され、VIP特典は取り消されました。"
 };

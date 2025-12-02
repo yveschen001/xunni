@@ -178,6 +178,6 @@ export default {
   "userNotFound4": "❌ صارف موجود نہیں ہے",
   "userNotFoundRegister": "⚠️ صارف موجود نہیں ہے، براہ کرم پہلے /start کے ساتھ رجسٹر کریں۔",
   "verificationFailed": "❌ تصديق ناکام ہوگئی، براہ کرم بعد میں دوبارہ کوشش کریں",
-  "invalidTimeFormat": "",
-  "invalidDateFormat": ""
+  "invalidTimeFormat": "غلط وقت کی شکل\nمثال: 19:30 (24 گھنٹوں کی شکل، 00-23 گھنٹے، 00-59 منٹ)",
+  "invalidDateFormat": "غلط تاریخ کی شکل\nمثال: 2000-01-01"
 };

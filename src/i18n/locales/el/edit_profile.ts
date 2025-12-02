@@ -1,16 +1,16 @@
 export default {
   "nickname": "👤 Ψευδώνυμο: ${ownerMaskedNickname}",
   "short19": "✏️ Επεξεργαστείτε το προφίλ",
-  "menuTitle": "",
-  "nicknameButton": "",
-  "bioButton": "",
-  "regionButton": "",
-  "interestsButton": "",
-  "bloodTypeButton": "",
-  "matchPrefButton": "",
-  "nicknameInstruction": "",
-  "nicknameInputHint": "",
-  "bioInstruction": "",
-  "bioInputHint": "",
-  "bloodTypeInstruction": ""
+  "menuTitle": "Επεξεργασία Προφίλ",
+  "nicknameButton": "✏️ Επεξεργασία Ψευδώνυμου",
+  "bioButton": "📝 Επεξεργασία Εισαγωγής",
+  "regionButton": "🌍 Αλλαγή Περιοχής",
+  "interestsButton": "🏷️ Αλλαγή Ενδιαφερόντων",
+  "bloodTypeButton": "🩸 Αλλαγή Ομάδας Αίματος",
+  "matchPrefButton": "❤️ Προτιμήσεις Ταίριαξης",
+  "nicknameInstruction": "Παρακαλώ εισάγετε ένα νέο ψευδώνυμο (έως 20 χαρακτήρες).\n\nΤο τρέχον ψευδώνυμό σας είναι: {nickname}",
+  "nicknameInputHint": "👇 Παρακαλώ εισάγετε ένα νέο ψευδώνυμο:",
+  "bioInstruction": "Παρακαλώ εισάγετε μια νέα αυτοπαρουσίαση (έως 100 χαρακτήρες).\n\nΗ τρέχουσα αυτοπαρουσίασή σας είναι: {bio}",
+  "bioInputHint": "👇 Παρακαλώ εισάγετε μια νέα αυτοπαρουσίαση:",
+  "bloodTypeInstruction": "Παρακαλώ επιλέξτε την ομάδα αίματός σας:"
 };

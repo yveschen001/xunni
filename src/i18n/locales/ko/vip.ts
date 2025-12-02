@@ -126,8 +126,8 @@ export default {
   "vip7": "💡 지금 갱신하여 VIP 서비스를 끊김 없이 이용하세요!",
   "vip8": "💡 지금 갱신하여 VIP 혜택을 계속 누리세요!\n",
   "vip9": "✨ **당신은 이미 VIP 멤버입니다**\n\n",
-  "retentionNotice": "",
-  "upgrade": "",
-  "maxDurationExceeded": "",
-  "refundedAndRevoked": ""
+  "retentionNotice": "⚠️ **중요 공지**: VIP 회원의 채팅 기록은 3년 동안 보존됩니다. 갱신이 중지되면, 귀하의 채팅 기록은 회원 만료 30일 후에 삭제됩니다. 중요 정보를 백업하시길 바랍니다.",
+  "upgrade": "VIP로 업그레이드",
+  "maxDurationExceeded": "⚠️ VIP 기간이 한도에 도달했습니다 ({maxMonths}개월), 당분간 구매를 계속할 수 없습니다.",
+  "refundedAndRevoked": "ℹ️ 결제가 환불되었으며, VIP 혜택이 취소되었습니다."
 };

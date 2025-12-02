@@ -69,6 +69,6 @@ export default {
   "vip2": "• Use /vip para fazer upgrade para Membro VIP\n",
   "vipUpgrade": "• Use /vip para fazer upgrade para Membro VIP\n",
   "zodiac": "⭐ Signo: ${zodiac}\n",
-  "fortuneQuota": "",
-  "vipWithDays": ""
+  "fortuneQuota": "🔮 {fortunemessage garrafa de mensagem}: {total} (Esta semana grátis: {weekly}/{limit} | Adicional: {additional})",
+  "vipWithDays": "💎 Membro VIP (Restante {days} dias, Expiração: {expireDate})"
 };

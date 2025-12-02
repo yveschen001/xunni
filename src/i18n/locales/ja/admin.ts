@@ -398,7 +398,7 @@ export default {
   "vip8": "⬇️ **VIP自動ダウングレード**\n\n",
   "vip9": "🔄 **VIP更新**\n\n",
   "dailyReport": "📊 デイリー運用報告 ({date})\n\n💰 推定翻訳コスト:\n{costDetails}\n\n⚠️ 異常監視:\n• 翻訳ダウングレード: {fallbackCount}回\n• 翻訳失敗: {errorCount}回\n\n📈 アクティブデータ:\n• 新規ユーザー: {newUsers}\n• アクティブな会話: {activeConversations}",
-  "analyticsTitle": "",
-  "adPerformanceTitle": "",
-  "vipFunnelTitle": ""
+  "analyticsTitle": "データ分析",
+  "adPerformanceTitle": "広告パフォーマンス",
+  "vipFunnelTitle": "VIPファネル"
 };

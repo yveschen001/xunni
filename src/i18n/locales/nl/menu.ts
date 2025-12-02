@@ -15,7 +15,7 @@ export default {
   "levelFree": "🆓 Vrije lid",
   "levelVip": "💎 VIP-lid",
   "message": "Laten we samen berichtflessen gooien op XunNi! 🍾 Gebruik mijn uitnodigingscode om mee te doen, en we kunnen allebei meer quotum krijgen!",
-  "message2": "https://t.me/share/url?url=https://t.me/${botUsername}?start=invite_${inviteCode}&text=Kom naar XunNi en gooi samen een berichtfles ",
+  "message2": "https://t.me/share/url?url=https://t.me/${botUsername}?start=invite_${inviteCode}&text=Kom naar XunNi en gooi samen een berichtfles",
   "notRegistered": "Niet geregistreerd",
   "notSet": "Niet ingesteld",
   "quota": "• Jullie beiden krijgen een dagelijkse quota +1\n\n",
@@ -39,11 +39,11 @@ export default {
   "vip": "• Niveau: ${isVip ? 'VIP Lid 💎' : 'Gratis Lid'}",
   "vip2": "VIP-lid 💎",
   "yourStatus": "Jouw status",
-  "birthDate": "",
-  "zodiac": "",
-  "bloodType": "",
-  "interests": "",
-  "bio": "",
-  "driftBottles": "",
-  "fortuneBottles": ""
+  "birthDate": "Verjaardag",
+  "zodiac": "Sterrenbeeld",
+  "bloodType": "Bloedgroep",
+  "interests": "Interesses",
+  "bio": "Profiel",
+  "driftBottles": "Berichtenfles",
+  "fortuneBottles": "Fortunefles"
 };

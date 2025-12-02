@@ -1,17 +1,17 @@
 export default {
-  "select_continent": "",
-  "select_country": "",
-  "search_city_prompt": "",
-  "city_not_found": "",
-  "confirm_city": "",
+  "select_continent": "Silakan pilih wilayah Anda 🌍",
+  "select_country": "Silakan pilih negara",
+  "search_city_prompt": "Silakan masukkan nama kota (contoh: Taipei)",
+  "city_not_found": "Kota tidak ditemukan, silakan coba nama dalam bahasa Inggris.",
+  "confirm_city": "Apakah ini kota yang Anda pilih: {city} ({country})?",
   "continent": {
-    "asia": "",
-    "europe": "",
-    "north_america": "",
-    "south_america": "",
-    "africa": "",
-    "oceania": ""
+    "asia": "Asia",
+    "europe": "Eropa",
+    "north_america": "Amerika Utara",
+    "south_america": "Amerika Selatan",
+    "africa": "Afrika",
+    "oceania": "Oseania"
   },
-  "btn_search_manually": "",
-  "confirm_button": ""
+  "btn_search_manually": "🔍 Cari kota secara manual",
+  "confirm_button": "✅ Konfirmasi"
 };

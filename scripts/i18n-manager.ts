@@ -179,121 +179,36 @@ async function importCsv() {
     function setDeepValue(target: any, pathStr: string, value: string, schema: any) {
       const parts = pathStr.split('.');
       let currentTgt = target;
-      let currentSchema = schema;
       
       for (let i = 0; i < parts.length; i++) {
         const part = parts[i];
         
-        // Check if we are at the end
+        // Check if we are at the end (Setting the value)
         if (i === parts.length - 1) {
-          currentTgt[part] = value;
+          if (currentTgt[part] && typeof currentTgt[part] === 'object') {
+             // Conflict: Target is already an object, but we are trying to set it as a string.
+             // Strategy: Don't overwrite the object. Set the value to 'text' property if appropriate, or ignore if duplicate.
+             // For MBTI questions, 'question1' string value is usually same as 'question1.text'.
+             if (!currentTgt[part]['text']) {
+                 currentTgt[part]['text'] = value;
+             }
+          } else {
+             // Standard case: Set value
+             currentTgt[part] = value;
+          }
           return;
         }
 
-        // Look ahead: Does the schema use a composite key here?
-        // e.g. path is "a.b.c", current is at "a". 
-        // We expect "b" to be a nested object. 
-        // But maybe "b.c" is the key in schema?
-        
-        // Heuristic: Try to match the longest possible key from schema
-        let foundComposite = false;
-        
-        // Try to combine current part with next parts
-        // e.g. mbti.quick.question1.option1
-        // i=2 (question1). next is option1. 
-        // schema['mbti']['quick'] has 'question1' (string) and 'question1.option1' (string)
-        // Wait, schema logic is tricky because we flattened it for export.
-        // But here we have the original zhTwTranslations object (nested).
-        
-        if (currentSchema && typeof currentSchema === 'object') {
-             // Check if 'part' exists in schema
-             if (part in currentSchema) {
-                 // It exists. Is it an object or string?
-                 if (typeof currentSchema[part] === 'string') {
-                     // Conflict! We are at an intermediate step but schema says it's a string.
-                     // This means the CSV key implies nesting that schema doesn't have 
-                     // OR schema has a composite key that spans further.
-                     
-                     // Check if schema has a key that combines current part + next part
-                     const nextPart = parts[i+1];
-                     const composite = `${part}.${nextPart}`;
-                     if (composite in currentSchema) {
-                         // Found it! "question1.option1" is the key.
-                         currentTgt[composite] = value;
-                         // Skip the next part in loop as we consumed it
-                         // Actually, we are done because we set the value (assuming it's a leaf)
-                         // But what if it's a.b.c.d and key is "b.c"? 
-                         // For this specific project issue (question1.option1), it's a leaf.
-                         return;
-                     }
-                 }
-             } else {
-                 // part not in schema? 
-                 // Maybe it's a new key, or a composite key we haven't found.
-                 // Try composite with next part
-                 const nextPart = parts[i+1];
-                 if (nextPart) {
-                    const composite = `${part}.${nextPart}`;
-                    if (composite in currentSchema) {
-                         currentTgt[composite] = value;
-                         return;
-                    }
-                 }
-             }
-        }
-
-        // Standard traversal
-        // Check if current part exists and is a string (collision!)
-        if (typeof currentTgt[part] === 'string') {
-             // We are trying to go deeper, but 'part' is already a string leaf.
-             // This means the schema implies a composite key like "question1.option1"
-             // But we are iterating part by part. 
-             // We need to merge current part with next part.
-             // However, the loop structure is rigid.
-             
-             // Workaround: If we hit a string but need an object, it's a conflict.
-             // But in our specific case (based on the error), we probably have:
-             // Key 1: "mbti.quick.question1" -> "Question Text"
-             // Key 2: "mbti.quick.question1.option1" -> "Option Text"
-             
-             // These two CANNOT coexist in a standard JS object structure unless "question1" is an object that has a special property for its own text value (not supported by our i18n).
-             // OR, one of them uses a dot in the key name explicitly.
-             
-             // Let's assume the CSV keys are flat dot notation.
-             // If "mbti.quick.question1" exists, it's a leaf.
-             // If "mbti.quick.question1.option1" comes along, it implies "question1" should be an object.
-             
-             // TRICKY: The error says "Cannot create property... on string". 
-             // This means "mbti.quick.question1" was already set as a string.
-             
-             // Fix: If we encounter this, it means we probably should have treated "question1.option1" as a single key segment relative to "question1"? No.
-             
-             // The only way this works is if the keys are actually:
-             // { "question1": "..." }
-             // AND
-             // { "question1.option1": "..." } (as a sibling key "question1.option1"?)
-             // No, that would be { "question1": "...", "question1.option1": "..." } valid in JS? Yes.
-             
-             // So, we need to detect if we should step into it or create a sibling key.
-             // If schema says it's a string, we shouldn't step into it. We should treat the rest of the path as part of the key.
-             
-             const remainingPath = parts.slice(i).join('.');
-             // We are at 'part' (e.g. question1). 
-             // We want to set 'question1.option1'. 
-             // But 'question1' is already set.
-             // We can set 'question1.option1' as a sibling key on currentTgt.
-             currentTgt[remainingPath] = value;
-             return;
+        // We need to go deeper
+        if (currentTgt[part] && typeof currentTgt[part] === 'string') {
+             // Conflict: Current part is a string, but we need to attach children.
+             // Strategy: Convert string to object with 'text' property containing the original string.
+             const originalValue = currentTgt[part];
+             currentTgt[part] = { text: originalValue };
         }
 
         currentTgt[part] = currentTgt[part] || {};
         currentTgt = currentTgt[part];
-        
-        if (currentSchema && typeof currentSchema === 'object') {
-            currentSchema = currentSchema[part];
-        } else {
-            currentSchema = null; // Lost schema track, fallback to standard nesting
-        }
       }
     }
 

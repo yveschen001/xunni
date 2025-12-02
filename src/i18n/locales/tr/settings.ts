@@ -28,8 +28,8 @@ export default {
   "disabled": "🚫 Sessiz saatler devre dışı bırakıldı",
   "quietHoursHint": "Bu süre zarfında acil olmayan bildirimler almayacaksınız",
   "blocklist": {
-    "title": "",
-    "empty": "",
-    "unblock": ""
+    "title": "🚫 Engelli Listesi",
+    "empty": "Şu anda engelli listesi yok",
+    "unblock": "Engeli Kaldır"
   }
 };

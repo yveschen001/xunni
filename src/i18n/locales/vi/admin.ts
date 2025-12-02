@@ -398,7 +398,7 @@ export default {
   "vip8": "⬇️ **Tự động giảm cấp VIP**\n\n",
   "vip9": "🔄 **Gia hạn VIP**\n\n",
   "dailyReport": "📊 Báo cáo hoạt động hàng ngày ({date})\n\n💰 Dự kiến chi phí dịch thuật:\n{costDetails}\n\n⚠️ Giám sát bất thường:\n• Giảm chất lượng dịch thuật: {fallbackCount} lần\n• Thất bại trong dịch thuật: {errorCount} lần\n\n📈 Dữ liệu hoạt động:\n• Người dùng mới: {newUsers}\n• Cuộc trò chuyện đang hoạt động: {activeConversations}",
-  "analyticsTitle": "",
-  "adPerformanceTitle": "",
-  "vipFunnelTitle": ""
+  "analyticsTitle": "Phân tích dữ liệu",
+  "adPerformanceTitle": "Hiệu suất quảng cáo",
+  "vipFunnelTitle": "Kênh VIP"
 };

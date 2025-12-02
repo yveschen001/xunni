@@ -58,7 +58,7 @@ export default {
   "help": "Ini akan membantu kami mencari rakan perbualan yang lebih sesuai untuk anda～\n\n",
   "iHaveRead": "✅ Saya telah membaca dan bersetuju",
   "info": {
-    "age18": "• Anda mesti berumur 18 tahun untuk menggunakan perkhidmatan ini.",
+    "age18": "• Anda mesti berumur sekurang-kurangnya 18 tahun untuk menggunakan perkhidmatan ini.\n- Maklumat yang tepat mesti diberikan untuk pemadanan dan ramalan nasib untuk menghasilkan keputusan yang baik.",
     "city": "🌍 Kawasan: {city}"
   },
   "languageSelection": "🌐 **Pilih Bahasa**\n\nSila pilih bahasa pilihan anda:",

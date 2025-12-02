@@ -398,7 +398,7 @@ export default {
   "vip8": "⬇️ **VIP Otomatik Düşürme**\n\n",
   "vip9": "🔄 **VIP Yenileme**\n\n",
   "dailyReport": "📊 Günlük Operasyon Raporu ({date})\n\n💰 Tahmini Çeviri Maliyetleri:\n{costDetails}\n\n⚠️ Anomali İzleme:\n• Çeviri düşüşleri: {fallbackCount} kez\n• Çeviri hataları: {errorCount} kez\n\n📈 Aktif Veriler:\n• Yeni Kullanıcılar: {newUsers}\n• Aktif Sohbetler: {activeConversations}",
-  "analyticsTitle": "",
-  "adPerformanceTitle": "",
-  "vipFunnelTitle": ""
+  "analyticsTitle": "Veri Analizi",
+  "adPerformanceTitle": "Rekabet Performansı",
+  "vipFunnelTitle": "VIP Huni"
 };

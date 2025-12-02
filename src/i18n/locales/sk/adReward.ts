@@ -20,5 +20,5 @@ export default {
   "watchAdRemaining": "📊 Dnes zostávajúce: **${remaining}/20** krát",
   "watchAdReward": "🎁 Dokončite sledovanie, aby ste zarobili **+1 kvotu**",
   "watchAdTitle": "📺 **Zarobte kvóty sledovaním reklám**",
-  "watchAdButton": ""
+  "watchAdButton": "📺 Odblokujte sledovaním reklamy (+1 krát)"
 };

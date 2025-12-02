@@ -58,7 +58,7 @@ export default {
   "help": "Dette vil hjælpe os med at finde mere passende chatpartnere til dig～",
   "iHaveRead": "✅ Jeg har læst og accepterer",
   "info": {
-    "age18": "• Du skal være mindst 18 år for at bruge denne service",
+    "age18": "• Du skal være mindst 18 år gammel for at bruge denne service.\n- Nøjagtige oplysninger skal gives for at matching og spådom kan give gode resultater.",
     "city": "🌍 Region: {city}"
   },
   "languageSelection": "🌐 **Vælg Sprog**\n\nVenligst vælg dit foretrukne sprog:",

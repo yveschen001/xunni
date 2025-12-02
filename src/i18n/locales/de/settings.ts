@@ -28,8 +28,8 @@ export default {
   "disabled": "🚫 Ruhige Zeiten wurden deaktiviert",
   "quietHoursHint": "Du wirst in dieser Zeit keine nicht dringenden Benachrichtigungen erhalten",
   "blocklist": {
-    "title": "",
-    "empty": "",
-    "unblock": ""
+    "title": "🚫 Blockliste",
+    "empty": "Derzeit keine Blockliste",
+    "unblock": "Entblocken"
   }
 };

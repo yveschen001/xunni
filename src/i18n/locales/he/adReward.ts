@@ -20,5 +20,5 @@ export default {
   "watchAdRemaining": "📊 מה שנותר היום: **${remaining}/20** פעמים",
   "watchAdReward": "🎁 השלמת הצפייה מרוויחה **+1 מכסה**",
   "watchAdTitle": "📺 **צפו בפרסומות כדי להרוויח מכסות**",
-  "watchAdButton": ""
+  "watchAdButton": "📺 תולל על ידי צפייה בפרסומת (+1 זמן)"
 };

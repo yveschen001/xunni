@@ -15,7 +15,7 @@ export default {
   "levelFree": "🆓 חבר חינם",
   "levelVip": "💎 חבר VIP",
   "message": "בוא נשליך בקבוקי מסר יחד על XunNi! 🍾 השתמש בקוד ההזמנה שלי כדי להצטרף, ואנחנו יכולים לקבל שנינו עוד מכסות!",
-  "message2": "https://t.me/share/url?url=https://t.me/${botUsername}?start=invite_${inviteCode}&text=בואו ל-XunNi ונשל throw בקבוק מסר ביחד ",
+  "message2": "https://t.me/share/url?url=https://t.me/${botUsername}?start=invite_${inviteCode}&text=בואו ל-XunNi ונשל throw בקבוק מסר ביחד",
   "notRegistered": "לא רשום",
   "notSet": "לא הוגדר",
   "quota": "• שניכם תקבלו מכסה יומית +1",
@@ -39,11 +39,11 @@ export default {
   "vip": "• רמה: ${isVip ? 'חבר VIP 💎' : 'חבר חינם'}",
   "vip2": "חבר VIP 💎",
   "yourStatus": "הסטטוס שלך",
-  "birthDate": "",
-  "zodiac": "",
-  "bloodType": "",
-  "interests": "",
-  "bio": "",
-  "driftBottles": "",
-  "fortuneBottles": ""
+  "birthDate": "יום הולדת",
+  "zodiac": "סימן גלגל המזלות",
+  "bloodType": "סוג דם",
+  "interests": "תחומי עניין",
+  "bio": "פרופיל",
+  "driftBottles": "מסר בבקבוק",
+  "fortuneBottles": "בקבוק מזל"
 };

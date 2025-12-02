@@ -28,8 +28,8 @@ export default {
   "disabled": "🚫 Os horários silenciosos foram desativados",
   "quietHoursHint": "Você não receberá notificações não urgentes durante este período",
   "blocklist": {
-    "title": "",
-    "empty": "",
-    "unblock": ""
+    "title": "🚫 Lista de Bloqueio",
+    "empty": "Atualmente sem lista de bloqueio",
+    "unblock": "Desbloquear"
   }
 };

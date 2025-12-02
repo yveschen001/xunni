@@ -58,7 +58,7 @@ export default {
   "help": "Cela nous aidera à vous trouver des partenaires de chat plus adaptés～\n\n",
   "iHaveRead": "✅ J'ai lu et j'accepte",
   "info": {
-    "age18": "• Vous devez avoir au moins 18 ans pour utiliser ce service",
+    "age18": "• Vous devez avoir au moins 18 ans pour utiliser ce service.\n- Des informations précises doivent être fournies pour que le matching et la divination produisent de bons résultats.",
     "city": "🌍 Région : {city}"
   },
   "languageSelection": "🌐 **Sélectionner la langue**\n\nVeuillez sélectionner votre langue préférée :",

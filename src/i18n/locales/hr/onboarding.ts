@@ -58,7 +58,7 @@ export default {
   "help": "To će nam pomoći da pronađemo prikladnije partnere za razgovor～\n\n",
   "iHaveRead": "✅ Pročitao/la sam i slažem se",
   "info": {
-    "age18": "• Morate imati 18 godina ili više da biste koristili ovu uslugu",
+    "age18": "• Morate imati barem 18 godina da biste koristili ovu uslugu.\n- Točne informacije moraju biti pružene kako bi usklađivanje i proricanje donijeli dobre rezultate.",
     "city": "🌍 Regija: {city}"
   },
   "languageSelection": "🌐 **Odaberite jezik**\n\nMolimo odaberite svoj željeni jezik:",

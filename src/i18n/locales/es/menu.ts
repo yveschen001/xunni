@@ -39,11 +39,11 @@ export default {
   "vip": "• Nivel: ${isVip ? 'Miembro VIP 💎' : 'Miembro Gratis'}",
   "vip2": "Miembro VIP 💎",
   "yourStatus": "Tu estado",
-  "birthDate": "",
-  "zodiac": "",
-  "bloodType": "",
-  "interests": "",
-  "bio": "",
-  "driftBottles": "",
-  "fortuneBottles": ""
+  "birthDate": "Cumpleaños",
+  "zodiac": "Signo del Zodiaco",
+  "bloodType": "Tipo de Sangre",
+  "interests": "Intereses",
+  "bio": "Perfil",
+  "driftBottles": "Botella de Mensajes",
+  "fortuneBottles": "Botella de Fortuna"
 };

@@ -26,7 +26,7 @@ export default {
   "manual": "การตั้งค่าแบบแมนนวล",
   "mbti": "• ใช้ /mbti เพื่อทำแบบทดสอบ MBTI ใหม่หรือแก้ไข\n",
   "mbtiWithSource": "🧠 MBTI: {mbti}{source}",
-  "message": "https://t.me/share/url?url=https://t.me/${botUsername}?start=invite_${inviteCode}&text=มามาขวางขวดข้อความด้วยกันใน XunNi! 🍾 ใช้รหัสเชิญของฉัน: ${inviteCode} ",
+  "message": "https://t.me/share/url?url=https://t.me/${botUsername}?start=invite_${inviteCode}&text=มามาขวางขวดข้อความด้วยกันใน XunNi! 🍾 ใช้รหัสเชิญของฉัน: ${inviteCode}",
   "message2": "${inviteLimitWarning}\n\n",
   "message3": "🌍 ภาษา: ${user.language_pref}\n\n",
   "message4": "🌍 ภาษา: ${user.language_pref }\n",
@@ -69,6 +69,6 @@ export default {
   "vip2": "• ใช้ /vip เพื่ออัพเกรดเป็นสมาชิก VIP\n",
   "vipUpgrade": "• ใช้ /vip เพื่ออัพเกรดเป็นสมาชิก VIP\n",
   "zodiac": "⭐ ราศี: ${zodiac}\n",
-  "fortuneQuota": "",
-  "vipWithDays": ""
+  "fortuneQuota": "🔮 {fortunemessage ขวดข้อความ}: {total} (สัปดาห์นี้ฟรี: {weekly}/{limit} | เพิ่มเติม: {additional})",
+  "vipWithDays": "💎 สมาชิก VIP (เหลือ {days} วัน, วันหมดอายุ: {expireDate})"
 };

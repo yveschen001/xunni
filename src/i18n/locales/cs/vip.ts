@@ -126,8 +126,8 @@ export default {
   "vip7": "💡 Obnovte nyní, abyste si užili nepřerušenou VIP službu!",
   "vip8": "💡 Obnovte nyní, abyste i nadále užívali VIP výhody!\n",
   "vip9": "✨ **Jste již VIP členem**\n\n",
-  "retentionNotice": "",
-  "upgrade": "",
-  "maxDurationExceeded": "",
-  "refundedAndRevoked": ""
+  "retentionNotice": "⚠️ **Důležité upozornění**: Historie chatu VIP členů bude uchovávána po dobu 3 let. Pokud se obnovování zastaví, vaše chatová historie bude smazána **30 dní** po vypršení členství. Prosím vezměte na vědomí, že je třeba zálohovat důležité informace.",
+  "upgrade": "Přihlásit se k VIP",
+  "maxDurationExceeded": "⚠️ Vaše VIP období dosáhlo limitu ({maxMonths} měsíců) a momentálně nemůžete pokračovat v nákupu.",
+  "refundedAndRevoked": "ℹ️ Vaše platba byla vrácena a VIP výhody byly zrušeny."
 };

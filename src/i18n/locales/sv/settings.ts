@@ -28,8 +28,8 @@ export default {
   "disabled": "🚫 Tysta timmar har inaktiverats",
   "quietHoursHint": "Du kommer inte att få icke-brådskande meddelanden under denna period",
   "blocklist": {
-    "title": "",
-    "empty": "",
-    "unblock": ""
+    "title": "🚫 Blocklista",
+    "empty": "För närvarande ingen blocklista",
+    "unblock": "Avblockera"
   }
 };

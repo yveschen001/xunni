@@ -398,7 +398,7 @@ export default {
   "vip8": "⬇️ **VIP Automaattinen Alennus**",
   "vip9": "🔄 **VIP Uudistus**",
   "dailyReport": "📊 Päivittäinen toiminta raportti ({date})\n\n💰 Arvioidut käännöskustannukset:\n{costDetails}\n\n⚠️ Poikkeamien seuranta:\n• Käännöslaskeumat: {fallbackCount} kertaa\n• Käännösvirheet: {errorCount} kertaa\n\n📈 Aktiiviset tiedot:\n• Uudet käyttäjät: {newUsers}\n• Aktiiviset keskustelut: {activeConversations}",
-  "analyticsTitle": "",
-  "adPerformanceTitle": "",
-  "vipFunnelTitle": ""
+  "analyticsTitle": "Tietoanalyysi",
+  "adPerformanceTitle": "Mainosten suorituskyky",
+  "vipFunnelTitle": "VIP-putki"
 };

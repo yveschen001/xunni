@@ -39,11 +39,11 @@ export default {
   "vip": "• Tahap: ${isVip ? 'Ahli VIP 💎' : 'Ahli Percuma'}",
   "vip2": "Ahli VIP 💎",
   "yourStatus": "Status Anda",
-  "birthDate": "",
-  "zodiac": "",
-  "bloodType": "",
-  "interests": "",
-  "bio": "",
-  "driftBottles": "",
-  "fortuneBottles": ""
+  "birthDate": "Hari Lahir",
+  "zodiac": "Tanda Zodiak",
+  "bloodType": "Jenis Darah",
+  "interests": "Minat",
+  "bio": "Profil",
+  "driftBottles": "Botol Mesej",
+  "fortuneBottles": "Botol Nasib"
 };

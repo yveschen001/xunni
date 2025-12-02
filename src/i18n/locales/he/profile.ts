@@ -69,6 +69,6 @@ export default {
   "vip2": "• השתמש ב /vip כדי לשדרג לחבר VIP\n",
   "vipUpgrade": "• השתמש ב /vip כדי לשדרג לחבר VIP\n",
   "zodiac": "⭐ גלגל המזלות: ${zodiac}\n",
-  "fortuneQuota": "",
-  "vipWithDays": ""
+  "fortuneQuota": "🔮 {fortunemessage bottle}: {total} (החודש חינם: {weekly}/{limit} | נוסף: {additional})",
+  "vipWithDays": "💎 חבר VIP (נשארו {days} ימים, תאריך תפוגה: {expireDate})"
 };

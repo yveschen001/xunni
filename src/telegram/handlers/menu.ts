@@ -84,7 +84,20 @@ export async function handleMenu(message: TelegramMessage, env: Env): Promise<vo
       try {
         const interestsArray = JSON.parse(user.interests);
         if (Array.isArray(interestsArray)) {
-          interests = interestsArray.join(', ');
+          // Translate each interest code (or keep as is if it's legacy text)
+          const translatedInterests = interestsArray.map(item => {
+            // Try to translate as key "interests.items.{item}"
+            const key = `interests.items.${item}`;
+            const translated = i18n.t(key as any);
+            // If translation exists and is not just the key itself (simple check)
+            // Note: i18n.t usually returns the key if missing, or a special placeholder depending on implementation.
+            // Our current i18n implementation might return the key or a placeholder.
+            // A safer check: does the item look like a code? (e.g. "foodie", "basketball") vs Chinese text.
+            // If it matches a known item key in INTEREST_STRUCTURE, translate it.
+            // Otherwise, keep original text.
+            return translated !== key && !translated.startsWith('[') ? translated : item;
+          });
+          interests = translatedInterests.join(', ');
         }
       } catch (e) {
         // Fallback for legacy plain string format

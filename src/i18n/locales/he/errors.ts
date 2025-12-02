@@ -178,6 +178,6 @@ export default {
   "userNotFound4": "❌ המשתמש אינו קיים",
   "userNotFoundRegister": "⚠️ המשתמש אינו קיים, בבקשה הרשמים קודם עם /start.",
   "verificationFailed": "❌ האימות נכשל, בבקשה נסה שוב מאוחר יותר",
-  "invalidTimeFormat": "",
-  "invalidDateFormat": ""
+  "invalidTimeFormat": "פורמט זמן לא תקף\nלמשל: 19:30 (פורמט 24 שעות, 00-23 שעות, 00-59 דקות)",
+  "invalidDateFormat": "פורמט תאריך לא תקף\nלמשל: 2000-01-01"
 };

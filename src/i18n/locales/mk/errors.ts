@@ -178,6 +178,6 @@ export default {
   "userNotFound4": "❌ Корисникот не постои",
   "userNotFoundRegister": "⚠️ Корисникот не постои, ве молиме регистрирајте се користејќи /start прво.",
   "verificationFailed": "❌ Верификацијата не успеа, ве молиме обидете се повторно подоцна",
-  "invalidTimeFormat": "",
-  "invalidDateFormat": ""
+  "invalidTimeFormat": "Невалиден формат на време\nНа пример: 19:30 (24-часовен формат, 00-23 часа, 00-59 минути)",
+  "invalidDateFormat": "Невалиден формат на датум\nНа пример: 2000-01-01"
 };

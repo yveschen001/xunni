@@ -20,5 +20,5 @@ export default {
   "watchAdRemaining": "📊 Bugünün kalan: **${remaining}/20** kez",
   "watchAdReward": "🎁 İzlemeyi tamamlayarak **+1 kota** kazanırsınız",
   "watchAdTitle": "📺 **Kod kazanmak için reklam izleyin**",
-  "watchAdButton": ""
+  "watchAdButton": "📺 Reklam izleyerek açın (+1 kez)"
 };

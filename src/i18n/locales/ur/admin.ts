@@ -398,7 +398,7 @@ export default {
   "vip8": "⬇️ **وی آئی پی خودکار تنزلی**\n\n",
   "vip9": "🔄 **وی آئی پی تجدید**\n\n",
   "dailyReport": "📊 روزانہ آپریشنل رپورٹ ({date})\n\n💰 تخمینی ترجمہ لاگت:\n{costDetails}\n\n⚠️ بے ضابطگی کی نگرانی:\n• ترجمہ کی تنزلی: {fallbackCount} بار\n• ترجمہ کی ناکامیاں: {errorCount} بار\n\n📈 فعال ڈیٹا:\n• نئے صارفین: {newUsers}\n• فعال گفتگوئیں: {activeConversations}",
-  "analyticsTitle": "",
-  "adPerformanceTitle": "",
-  "vipFunnelTitle": ""
+  "analyticsTitle": "ڈیٹا تجزیہ",
+  "adPerformanceTitle": "اشتہار کی کارکردگی",
+  "vipFunnelTitle": "وی آئی پی فنل"
 };

@@ -239,7 +239,11 @@ export async function handleLanguageChange(callbackQuery: any, env: Env): Promis
     const updatedUser = await findUserByTelegramId(db, telegramId);
     console.error('[handleLanguageChange] Updated user language_pref:', updatedUser?.language_pref);
 
-    const { createI18n } = await import('~/i18n');
+    const { createI18n, loadTranslations } = await import('~/i18n');
+    
+    // 🔥 Critical: Load new translations into global cache immediately
+    await loadTranslations(env, languageCode);
+
     const newI18n = createI18n(languageCode);
     const newLanguageName = await getLanguageName(languageCode);
     await telegram.answerCallbackQuery(

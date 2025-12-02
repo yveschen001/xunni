@@ -1,17 +1,17 @@
 export default {
-  "select_continent": "",
-  "select_country": "",
-  "search_city_prompt": "",
-  "city_not_found": "",
-  "confirm_city": "",
+  "select_continent": "Lütfen bölgenizi seçin 🌍",
+  "select_country": "Lütfen bir ülke seçin.",
+  "search_city_prompt": "Lütfen şehir adını girin (örneğin, Taipei).",
+  "city_not_found": "Şehir bulunamadı, lütfen İngilizce adını deneyin.",
+  "confirm_city": "Seçtiğiniz şehir bu mu: {city} ({country})?",
   "continent": {
-    "asia": "",
-    "europe": "",
-    "north_america": "",
-    "south_america": "",
-    "africa": "",
-    "oceania": ""
+    "asia": "Asya",
+    "europe": "Avrupa",
+    "north_america": "Kuzey Amerika",
+    "south_america": "Güney Amerika",
+    "africa": "Afrika",
+    "oceania": "Okyanusya"
   },
-  "btn_search_manually": "",
-  "confirm_button": ""
+  "btn_search_manually": "🔍 Bir şehri manuel olarak arayın.",
+  "confirm_button": "✅ Onayla"
 };

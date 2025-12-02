@@ -20,5 +20,5 @@ export default {
   "watchAdRemaining": "📊 Vandaag overgebleven: **${remaining}/20** keer",
   "watchAdReward": "🎁 Voltooi de weergave om **+1 quota** te verdienen",
   "watchAdTitle": "📺 **Bekijk advertenties om quota te verdienen**",
-  "watchAdButton": ""
+  "watchAdButton": "📺 Ontgrendelen door een advertentie te bekijken (+1 keer)"
 };

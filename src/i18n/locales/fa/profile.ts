@@ -69,6 +69,6 @@ export default {
   "vip2": "• از /vip برای ارتقاء به عضو VIP استفاده کنید\n",
   "vipUpgrade": "• از /vip برای ارتقاء به عضو VIP استفاده کنید\n",
   "zodiac": "⭐ زودیاک: ${zodiac}\n",
-  "fortuneQuota": "",
-  "vipWithDays": ""
+  "fortuneQuota": "🔮 {fortunemessage bottle}: {total} (این هفته رایگان: {weekly}/{limit} | اضافی: {additional})",
+  "vipWithDays": "💎 عضو VIP (باقی‌مانده {days} روز، انقضا: {expireDate})"
 };

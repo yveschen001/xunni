@@ -28,8 +28,8 @@ export default {
   "disabled": "🚫 שעות השקטות הושבתו",
   "quietHoursHint": "לא תקבל התראות שאינן דחופות במהלך תקופה זו",
   "blocklist": {
-    "title": "",
-    "empty": "",
-    "unblock": ""
+    "title": "🚫 רשימת חסומים",
+    "empty": "אין currently חסומים",
+    "unblock": "בטל חסימה"
   }
 };

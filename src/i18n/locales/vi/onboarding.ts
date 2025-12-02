@@ -58,7 +58,7 @@ export default {
   "help": "Điều này sẽ giúp chúng tôi tìm kiếm những người bạn trò chuyện phù hợp hơn với bạn～\n\n",
   "iHaveRead": "✅ Tôi đã đọc và đồng ý",
   "info": {
-    "age18": "• Bạn phải từ 18 tuổi trở lên để sử dụng dịch vụ này",
+    "age18": "• Bạn phải ít nhất 18 tuổi để sử dụng dịch vụ này.\n- Thông tin chính xác phải được cung cấp để việc ghép đôi và bói toán đạt được kết quả tốt.",
     "city": "🌍 Khu vực: {city}"
   },
   "languageSelection": "🌐 **Chọn Ngôn Ngữ**\n\nVui lòng chọn ngôn ngữ ưa thích của bạn:",

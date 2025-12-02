@@ -126,8 +126,8 @@ export default {
   "vip7": "💡 Obnovite sada kako biste uživali u neprekidnoj VIP usluzi!",
   "vip8": "💡 Obnovite sada kako biste nastavili uživanje u VIP prednostima!\n",
   "vip9": "✨ **Već ste VIP član**\n\n",
-  "retentionNotice": "",
-  "upgrade": "",
-  "maxDurationExceeded": "",
-  "refundedAndRevoked": ""
+  "retentionNotice": "⚠️ **Važno obaveštenje**: Istorija razgovora VIP članova biće zadržana 3 godine. Ako obnova stane, vaša istorija razgovora će biti obrisana **30 dana** nakon isteka članstva. Molimo vas da obratite pažnju na backup važnih informacija.",
+  "upgrade": "Nadogradite na VIP",
+  "maxDurationExceeded": "⚠️ Vaš VIP period je dostigao limit ({maxMonths} meseci) i trenutno ne možete nastaviti sa kupovinom.",
+  "refundedAndRevoked": "ℹ️ Vaša uplata je refundirana, a VIP pogodnosti su ukinute."
 };

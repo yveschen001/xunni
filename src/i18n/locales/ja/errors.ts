@@ -178,6 +178,6 @@ export default {
   "userNotFound4": "❌ ユーザーが存在しません",
   "userNotFoundRegister": "⚠️ ユーザーが存在しません。最初に /start を使用して登録してください。",
   "verificationFailed": "❌ 確認に失敗しました。後で再試行してください",
-  "invalidTimeFormat": "",
-  "invalidDateFormat": ""
+  "invalidTimeFormat": "無効な時間形式\n例: 19:30（24時間形式、00-23時間、00-59分）",
+  "invalidDateFormat": "無効な日付形式\n例: 2000-01-01"
 };

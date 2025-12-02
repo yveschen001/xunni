@@ -58,7 +58,7 @@ export default {
   "help": "Detta hjälper oss att hitta mer lämpliga chattpartners för dig～\n\n",
   "iHaveRead": "✅ Jag har läst och godkänner",
   "info": {
-    "age18": "• Måste vara minst 18 år gammal för att använda denna tjänst",
+    "age18": "• Du måste vara minst 18 år gammal för att använda denna tjänst.\n- Korrekt information måste anges för att matchning och spådom ska ge bra resultat.",
     "city": "🌍 Region: {city}"
   },
   "languageSelection": "🌐 **Välj språk**\n\nVänligen välj ditt föredragna språk:",

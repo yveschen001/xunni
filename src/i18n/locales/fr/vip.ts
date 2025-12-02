@@ -126,8 +126,8 @@ export default {
   "vip7": "💡 Renouvelez maintenant pour profiter d'un service VIP ininterrompu !",
   "vip8": "💡 Renouvelez maintenant pour continuer à profiter des avantages VIP !\n",
   "vip9": "✨ **Vous êtes déjà membre VIP**\n\n",
-  "retentionNotice": "",
-  "upgrade": "",
-  "maxDurationExceeded": "",
-  "refundedAndRevoked": ""
+  "retentionNotice": "⚠️ **Avis Important** : L'historique des chats des membres VIP sera conservé pendant 3 ans. Si le renouvellement est interrompu, votre historique de chat sera supprimé **30 jours** après l'expiration de l'adhésion. Veuillez prendre note de sauvegarder les informations importantes.",
+  "upgrade": "Passer à VIP",
+  "maxDurationExceeded": "⚠️ Votre période VIP a atteint la limite ({maxMonths} mois) et vous ne pouvez pas continuer à acheter pour le moment.",
+  "refundedAndRevoked": "ℹ️ Votre paiement a été remboursé et les avantages VIP ont été révoqués."
 };

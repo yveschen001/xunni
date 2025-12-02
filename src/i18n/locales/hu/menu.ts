@@ -15,7 +15,7 @@ export default {
   "levelFree": "🆓 Ingyenes tag",
   "levelVip": "💎 VIP tag",
   "message": "Dobjunk együtt üzenetpalackokat a XunNi-n! 🍾 Használja az én meghívókódomat a csatlakozáshoz, és mindketten több kvótát kaphatunk!",
-  "message2": "https://t.me/share/url?url=https://t.me/${botUsername}?start=invite_${inviteCode}&text=Gyere a XunNi-ra és dobjál el együtt egy message bottle-t ",
+  "message2": "https://t.me/share/url?url=https://t.me/${botUsername}?start=invite_${inviteCode}&text=Gyere a XunNi-ra és dobjál el együtt egy message bottle-t",
   "notRegistered": "Nem regisztrált",
   "notSet": "Nincs beállítva",
   "quota": "• Ti ketten napi +1 kvótát kaptok\n\n",
@@ -39,11 +39,11 @@ export default {
   "vip": "• Szint: ${isVip ? 'VIP Tag 💎' : 'Ingyenes Tag'}",
   "vip2": "VIP Tag 💎",
   "yourStatus": "A státuszod",
-  "birthDate": "",
-  "zodiac": "",
-  "bloodType": "",
-  "interests": "",
-  "bio": "",
-  "driftBottles": "",
-  "fortuneBottles": ""
+  "birthDate": "Születésnap",
+  "zodiac": "Csillagjegy",
+  "bloodType": "Vércsoport",
+  "interests": "Érdeklődések",
+  "bio": "Profil",
+  "driftBottles": "Üzenetpalack",
+  "fortuneBottles": "Sorspalack"
 };

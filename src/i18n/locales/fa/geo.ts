@@ -1,17 +1,17 @@
 export default {
-  "select_continent": "",
-  "select_country": "",
-  "search_city_prompt": "",
-  "city_not_found": "",
-  "confirm_city": "",
+  "select_continent": "لطفاً منطقه خود را انتخاب کنید 🌍",
+  "select_country": "لطفاً کشور را انتخاب کنید",
+  "search_city_prompt": "لطفاً نام شهر را وارد کنید (مثلاً، تایپه)",
+  "city_not_found": "شهر پیدا نشد، لطفاً نام انگلیسی را امتحان کنید.",
+  "confirm_city": "آیا این شهری است که انتخاب کردید: {city} ({country})؟",
   "continent": {
-    "asia": "",
-    "europe": "",
-    "north_america": "",
-    "south_america": "",
-    "africa": "",
-    "oceania": ""
+    "asia": "آسیا",
+    "europe": "اروپا",
+    "north_america": "آمریکای شمالی",
+    "south_america": "آمریکای جنوبی",
+    "africa": "آفریقا",
+    "oceania": "اقیانوسیه"
   },
-  "btn_search_manually": "",
-  "confirm_button": ""
+  "btn_search_manually": "🔍 جستجوی دستی برای یک شهر",
+  "confirm_button": "✅ تأیید"
 };

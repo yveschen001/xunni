@@ -99,7 +99,7 @@ export default {
   "vipTriple": "💎 **Статистика VIP Трійної Пляшки** (останні ${days} днів)",
   "vipTripleTitle": "💎 **Статистика VIP Трійної Пляшки** (останні {days} днів)",
   "zodiac": "🔮 **Знак Зодіаку**: ${zodiac}\n",
-  "fortuneTitle": "",
-  "fortuneReadings": "",
-  "fortuneQuota": ""
+  "fortuneTitle": "🔮 **{fortunemessage bottle}**",
+  "fortuneReadings": "• Кількість удач : {count}",
+  "fortuneQuota": "• Залишок квоти : {quota}"
 };

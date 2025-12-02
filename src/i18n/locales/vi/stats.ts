@@ -99,7 +99,7 @@ export default {
   "vipTriple": "💎 **Thống kê chai thư VIP Triple** (Trong ${days} Ngày Qua)",
   "vipTripleTitle": "💎 **Thống kê chai thư VIP Triple** (Trong {days} Ngày Qua)",
   "zodiac": "🔮 **Cung Hoàng Đạo**: ${zodiac}\n",
-  "fortuneTitle": "",
-  "fortuneReadings": "",
-  "fortuneQuota": ""
+  "fortuneTitle": "🔮 **{fortunemessage chai thư}**",
+  "fortuneReadings": "• Số lần xem: {count}",
+  "fortuneQuota": "• Số lượng còn lại: {quota}"
 };

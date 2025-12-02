@@ -1,17 +1,17 @@
 export default {
-  "select_continent": "",
-  "select_country": "",
-  "search_city_prompt": "",
-  "city_not_found": "",
-  "confirm_city": "",
+  "select_continent": "Ве молиме изберете вашата област 🌍",
+  "select_country": "Ве молиме изберете земја",
+  "search_city_prompt": "Ве молиме внесете име на градот (на пр. Тајпеј)",
+  "city_not_found": "Градот не е пронајден, ве молиме обидете се со англиското име.",
+  "confirm_city": "Дали е ова градот што го избрравте: {city} ({country})?",
   "continent": {
-    "asia": "",
-    "europe": "",
-    "north_america": "",
-    "south_america": "",
-    "africa": "",
-    "oceania": ""
+    "asia": "Азија",
+    "europe": "Европа",
+    "north_america": "Северна Америка",
+    "south_america": "Јужна Америка",
+    "africa": "Африка",
+    "oceania": "Океанија"
   },
-  "btn_search_manually": "",
-  "confirm_button": ""
+  "btn_search_manually": "🔍 Рачно пребарување на град",
+  "confirm_button": "✅ Потврди"
 };

@@ -28,8 +28,8 @@ export default {
   "disabled": "🚫 Godziny ciszy zostały wyłączone",
   "quietHoursHint": "Nie otrzymasz powiadomień niepilnych w tym czasie",
   "blocklist": {
-    "title": "",
-    "empty": "",
-    "unblock": ""
+    "title": "🚫 Lista zablokowanych",
+    "empty": "Obecnie brak listy zablokowanych",
+    "unblock": "Odblokuj"
   }
 };

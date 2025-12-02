@@ -398,7 +398,7 @@ export default {
   "vip8": "⬇️ ** downgrade אוטומטי של VIP**",
   "vip9": "🔄 **חידוש VIP**",
   "dailyReport": "📊 דוח מבצעי יומי ({date})\n\n💰 עלויות תרגום משוערות:\n{costDetails}\n\n⚠️ ניטור אנומליות:\n• הורדות תרגום: {fallbackCount} פעמים\n• כישלונות תרגום: {errorCount} פעמים\n\n📈 נתונים פעילים:\n• משתמשים חדשים: {newUsers}\n• שיחות פעילות: {activeConversations}",
-  "analyticsTitle": "",
-  "adPerformanceTitle": "",
-  "vipFunnelTitle": ""
+  "analyticsTitle": "ניתוח נתונים",
+  "adPerformanceTitle": "ביצועי פרסומות",
+  "vipFunnelTitle": "משפך VIP"
 };

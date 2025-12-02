@@ -58,7 +58,7 @@ export default {
   "help": "To pomoże nam znaleźć bardziej odpowiednich partnerów do czatu dla Ciebie～\n\n",
   "iHaveRead": "✅ Przeczytałem i zgadzam się",
   "info": {
-    "age18": "• Musisz mieć 18 lat lub więcej, aby korzystać z tej usługi",
+    "age18": "• Musisz mieć co najmniej 18 lat, aby korzystać z tej usługi.\n- Należy podać dokładne informacje, aby dopasowanie i wróżenie przyniosły dobre wyniki.",
     "city": "{city}"
   },
   "languageSelection": "🌐 **Wybierz język**\n\nProszę wybrać preferowany język:",

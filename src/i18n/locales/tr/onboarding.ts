@@ -58,7 +58,7 @@ export default {
   "help": "Bu, sizin için daha uygun sohbet arkadaşları bulmamıza yardımcı olacak～\n\n",
   "iHaveRead": "✅ Okudum ve kabul ediyorum",
   "info": {
-    "age18": "• Bu hizmeti kullanmak için en az 18 yaşında olmalısınız",
+    "age18": "• Bu hizmeti kullanmak için en az 18 yaşında olmalısınız.\n- Eşleşme ve fal bakımı için doğru bilgiler sağlanmalıdır, böylece iyi sonuçlar elde edilebilir.",
     "city": "🌍 Bölge: {city}"
   },
   "languageSelection": "🌐 **Dil Seçin**\n\nLütfen tercih ettiğiniz dili seçiniz:",

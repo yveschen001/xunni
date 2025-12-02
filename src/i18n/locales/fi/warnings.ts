@@ -7,7 +7,7 @@ export default {
   "register4": "⚠️ Rekisteröinti ei ole valmis",
   "settings": "🧠 MBTI: \\\\\\\\\\\\$",
   "text5": "📖 Esittely: {otherUser.bio}",
-  "text6": "[Requires translation: warnings.text6]",
+  "text6": "⚠️ Ole hyvä ja suorita rekisteröinti ensin",
   "userNotFound": "Käyttäjää ei ole olemassa",
   "warning": {
     "ad": "⚠️ Tällä hetkellä ei ole määriteltyjä mainospalveluntarjoajia\n\n",

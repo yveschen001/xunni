@@ -474,5 +474,21 @@ export interface Translations {
     COMPLETED: string;
   };
 
+  // Zodiac
+  zodiac?: {
+    Aries: string;
+    Taurus: string;
+    Gemini: string;
+    Cancer: string;
+    Leo: string;
+    Virgo: string;
+    Libra: string;
+    Scorpio: string;
+    Sagittarius: string;
+    Capricorn: string;
+    Aquarius: string;
+    Pisces: string;
+  };
+
   [key: string]: any; // Allow indexing by string for dynamic keys
 }

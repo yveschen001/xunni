@@ -178,6 +178,6 @@ export default {
   "userNotFound4": "❌ Użytkownik nie istnieje",
   "userNotFoundRegister": "⚠️ Użytkownik nie istnieje, proszę najpierw zarejestrować się używając /start.",
   "verificationFailed": "❌ Weryfikacja nie powiodła się, spróbuj ponownie później",
-  "invalidTimeFormat": "",
-  "invalidDateFormat": ""
+  "invalidTimeFormat": "Nieprawidłowy format czasu\nNa przykład: 19:30 (format 24-godzinny, 00-23 godziny, 00-59 minuty)",
+  "invalidDateFormat": "Nieprawidłowy format daty\nNa przykład: 2000-01-01"
 };

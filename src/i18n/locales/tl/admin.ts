@@ -398,7 +398,7 @@ export default {
   "vip8": "⬇️ **Awtomatikong Pagbaba ng VIP**\n\n",
   "vip9": "🔄 **Pag-renew ng VIP**\n\n",
   "dailyReport": "📊 Pang-araw-araw na Ulat sa Operasyon ({date})\n\n💰 Tinatayang Gastos sa Pagsasalin:\n{costDetails}\n\n⚠️ Pagsubok sa Anomalya:\n• Mga pag-baba ng kalidad ng pagsasalin: {fallbackCount} beses\n• Mga kabiguan sa pagsasalin: {errorCount} beses\n\n📈 Aktibong Data:\n• Mga Bagong Gumagamit: {newUsers}\n• Aktibong Usapan: {activeConversations}",
-  "analyticsTitle": "",
-  "adPerformanceTitle": "",
-  "vipFunnelTitle": ""
+  "analyticsTitle": "Pagsusuri ng Data",
+  "adPerformanceTitle": "Pagganap ng Ad",
+  "vipFunnelTitle": "VIP Funnel"
 };

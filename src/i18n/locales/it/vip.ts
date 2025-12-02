@@ -126,8 +126,8 @@ export default {
   "vip7": "💡 Rinnova ora per godere di un servizio VIP senza interruzioni!",
   "vip8": "💡 Rinnova ora per continuare a godere dei vantaggi VIP!\n",
   "vip9": "✨ **Sei già un membro VIP**\n\n",
-  "retentionNotice": "",
-  "upgrade": "",
-  "maxDurationExceeded": "",
-  "refundedAndRevoked": ""
+  "retentionNotice": "⚠️ **Avviso Importante**: La cronologia chat dei membri VIP sarà conservata per 3 anni. Se il rinnovo si interrompe, la tua cronologia chat sarà cancellata **30 giorni** dopo la scadenza dell'abbonamento. Si prega di fare attenzione a fare il backup delle informazioni importanti.",
+  "upgrade": "Passa a VIP",
+  "maxDurationExceeded": "⚠️ Il tuo periodo VIP ha raggiunto il limite ({maxMonths} mesi) e non puoi continuare ad acquistare per il momento.",
+  "refundedAndRevoked": "ℹ️ Il tuo pagamento è stato rimborsato e i benefici VIP sono stati revocati."
 };

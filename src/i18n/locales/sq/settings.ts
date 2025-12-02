@@ -28,8 +28,8 @@ export default {
   "disabled": "🚫 Orët e qetësisë janë çaktivizuar",
   "quietHoursHint": "Nuk do të merrni njoftime jo urgjente gjatë kësaj periudhe",
   "blocklist": {
-    "title": "",
-    "empty": "",
-    "unblock": ""
+    "title": "🚫 Lista e Bllokuar",
+    "empty": "Aktualisht nuk ka lista të bllokuara",
+    "unblock": "Anuloj bllokimin"
   }
 };

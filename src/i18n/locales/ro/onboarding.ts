@@ -58,7 +58,7 @@ export default {
   "help": "Aceasta ne va ajuta să găsim parteneri de chat mai potriviți pentru tine～\n\n",
   "iHaveRead": "✅ Am citit și sunt de acord",
   "info": {
-    "age18": "• Trebuie să aveți 18 ani sau mai mult pentru a folosi acest serviciu",
+    "age18": "• Trebuie să ai cel puțin 18 ani pentru a folosi acest serviciu.\n- Informațiile exacte trebuie furnizate pentru ca potrivirea și prezicerea să ofere rezultate bune.",
     "city": "🌍 Regiune: {city}"
   },
   "languageSelection": "🌐 **Alegeți Limba**\n\nVă rugăm să selectați limba preferată:",

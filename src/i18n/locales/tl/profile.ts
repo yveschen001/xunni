@@ -69,6 +69,6 @@ export default {
   "vip2": "• Gamitin ang /vip upang mag-upgrade sa VIP Miyembro\n",
   "vipUpgrade": "• Mag-upgrade sa VIP miyembro gamit ang /vip\n",
   "zodiac": "⭐ Kanser: ${zodiac}\n",
-  "fortuneQuota": "",
-  "vipWithDays": ""
+  "fortuneQuota": "🔮 {fortunemessage bote ng mensahe}: {total} (Libre ngayong linggo: {weekly}/{limit} | Karagdagan: {additional})",
+  "vipWithDays": "💎 VIP Miyembro (Natitirang {days} araw, Pagtatapos: {expireDate})"
 };

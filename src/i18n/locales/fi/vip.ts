@@ -126,8 +126,8 @@ export default {
   "vip7": "💡 Uusi nyt nauttiaksesi keskeytymättömästä VIP-palvelusta!",
   "vip8": "💡 Uusi nyt jatkaaksesi VIP-etujen nauttimista!\n",
   "vip9": "✨ **Olet jo VIP-jäsen**\n\n",
-  "retentionNotice": "",
-  "upgrade": "",
-  "maxDurationExceeded": "",
-  "refundedAndRevoked": ""
+  "retentionNotice": "⚠️ **Tärkeä huomautus**: VIP-jäsenen keskusteluhistoria säilytetään 3 vuotta. Jos uusinta ei tapahdu, keskusteluhistoriaasi poistetaan **30 päivää** jäsenyyden päättymisen jälkeen. Huomioithan, että tärkeät tiedot on varmistettava.",
+  "upgrade": "Päivitä VIP-jäsenyyteen",
+  "maxDurationExceeded": "⚠️ VIP-jaksosi on saavuttanut rajan ({maxMonths} kuukautta), etkä voi jatkaa ostamista toistaiseksi.",
+  "refundedAndRevoked": "ℹ️ Maksusi on hyvitetty, ja VIP-edut on peruutettu."
 };

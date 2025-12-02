@@ -58,7 +58,7 @@ export default {
   "help": "Ово ће нам помоћи да пронађемо погодније партнере за ћаскање за вас～\n\n",
   "iHaveRead": "✅ Pročitao/la sam i slažem se",
   "info": {
-    "age18": "• Morate imati 18 godina ili više da biste koristili ovu uslugu",
+    "age18": "• Morate imati najmanje 18 godina da biste koristili ovu uslugu.\n- Tačni podaci moraju biti pruženi kako bi usklađivanje i proricanje doneli dobre rezultate.",
     "city": "🌍 Регион: {city}"
   },
   "languageSelection": "🌐 **Izaberite jezik**\n\nMolimo odaberite svoj omiljeni jezik:",

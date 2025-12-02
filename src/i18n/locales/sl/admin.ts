@@ -398,7 +398,7 @@ export default {
   "vip8": "⬇️ **Samodejno Zmanjšanje VIP-a**\n\n",
   "vip9": "🔄 **Obnova VIP-a**\n\n",
   "dailyReport": "📊 Dnevno operativno poročilo ({date})\n\n💰 Ocenjeni stroški prevajanja:\n{costDetails}\n\n⚠️ Nadzor anomaliij:\n• Zmanjšanja v prevodih: {fallbackCount} krat\n• Napake v prevodih: {errorCount} krat\n\n📈 Aktivni podatki:\n• Novi uporabniki: {newUsers}\n• Aktivni pogovori: {activeConversations}",
-  "analyticsTitle": "",
-  "adPerformanceTitle": "",
-  "vipFunnelTitle": ""
+  "analyticsTitle": "Analiza podatkov",
+  "adPerformanceTitle": "Uspešnost oglasov",
+  "vipFunnelTitle": "VIP prodajni lijak"
 };

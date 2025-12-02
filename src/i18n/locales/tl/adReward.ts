@@ -20,5 +20,5 @@ export default {
   "watchAdRemaining": "📊 Natitirang ngayon: **${remaining}/20** beses",
   "watchAdReward": "🎁 Kumita ng **+1 kredito** sa pagkumpleto ng panonood",
   "watchAdTitle": "📺 **Manood ng mga ad upang kumita ng kredito**",
-  "watchAdButton": ""
+  "watchAdButton": "📺 Buksan sa pamamagitan ng panonood ng ad (+1 oras)"
 };

@@ -20,5 +20,5 @@ export default {
   "watchAdRemaining": "📊 Heute verbleibend: **${remaining}/20** Mal",
   "watchAdReward": "🎁 Vervollständigen Sie das Ansehen, um **+1 Quote** zu verdienen",
   "watchAdTitle": "📺 **Anzeigen ansehen, um Quoten zu verdienen**",
-  "watchAdButton": ""
+  "watchAdButton": "📺 Freischalten durch Ansehen einer Anzeige (+1 Mal)"
 };

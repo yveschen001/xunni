@@ -178,6 +178,6 @@ export default {
   "userNotFound4": "❌ Kullanıcı mevcut değil",
   "userNotFoundRegister": "⚠️ Kullanıcı mevcut değil, lütfen önce /start ile kaydolun.",
   "verificationFailed": "❌ Doğrulama başarısız oldu, lütfen daha sonra tekrar deneyin",
-  "invalidTimeFormat": "",
-  "invalidDateFormat": ""
+  "invalidTimeFormat": "Geçersiz zaman formatı\nÖrneğin: 19:30 (24 saat formatı, 00-23 saat, 00-59 dakika)",
+  "invalidDateFormat": "Geçersiz tarih formatı\nÖrneğin: 2000-01-01"
 };

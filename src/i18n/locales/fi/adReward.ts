@@ -20,5 +20,5 @@ export default {
   "watchAdRemaining": "📊 Tämän päivän jäljellä: **${remaining}/20** kertaa",
   "watchAdReward": "🎁 Suorita katsominen ansaitaksesi **+1 kiintiö**",
   "watchAdTitle": "📺 **Katso mainoksia ansaitaksesi kiintiöitä**",
-  "watchAdButton": ""
+  "watchAdButton": "📺 Avaa katsomalla mainos (+1 kertaa)"
 };

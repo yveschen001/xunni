@@ -116,6 +116,10 @@ export async function handleLanguageSelection(
       await updateOnboardingStep(db, telegramId, 'nickname');
     }
 
+    // 🔥 Critical: Load translations for the selected language immediately
+    const { loadTranslations } = await import('~/i18n');
+    await loadTranslations(env, languageCode);
+
     // Answer callback query (use newly selected language)
     const newI18n = createI18n(languageCode);
     await telegram.answerCallbackQuery(

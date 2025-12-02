@@ -28,8 +28,8 @@ export default {
   "disabled": "🚫 安静时间已被禁用",
   "quietHoursHint": "在此期间你将不会收到非紧急通知",
   "blocklist": {
-    "title": "",
-    "empty": "",
-    "unblock": ""
+    "title": "🚫 封锁名单",
+    "empty": "目前没有封锁名单",
+    "unblock": "解除封锁"
   }
 };

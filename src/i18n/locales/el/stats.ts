@@ -99,7 +99,7 @@ export default {
   "vipTriple": "💎 **Στατιστικά VIP Triple Bottle** (τις τελευταίες ${days} ημέρες)",
   "vipTripleTitle": "💎 **Στατιστικά VIP Triple Bottle** (τις τελευταίες {days} ημέρες)",
   "zodiac": "🔮 **Ζωδιακός**: ${zodiac}\n",
-  "fortuneTitle": "",
-  "fortuneReadings": "",
-  "fortuneQuota": ""
+  "fortuneTitle": "🔮 **{fortunemessage bottle}**",
+  "fortuneReadings": "• Αριθμός Τύχης : {count}",
+  "fortuneQuota": "• Υπόλοιπο Ποσά : {quota}"
 };

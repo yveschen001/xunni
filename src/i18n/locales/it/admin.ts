@@ -398,7 +398,7 @@ export default {
   "vip8": "⬇️ **Diminuzione automatica VIP**\n\n",
   "vip9": "🔄 **Rinnovo VIP**\n\n",
   "dailyReport": "📊 Rapporto Operativo Giornaliero ({date})\n\n💰 Costi di Traduzione Stimati:\n{costDetails}\n\n⚠️ Monitoraggio delle Anomalie:\n• Downgrade delle traduzioni: {fallbackCount} volte\n• Fallimenti di traduzione: {errorCount} volte\n\n📈 Dati Attivi:\n• Nuovi Utenti: {newUsers}\n• Conversazioni Attive: {activeConversations}",
-  "analyticsTitle": "",
-  "adPerformanceTitle": "",
-  "vipFunnelTitle": ""
+  "analyticsTitle": "Analisi Dati",
+  "adPerformanceTitle": "Prestazioni Annuncio",
+  "vipFunnelTitle": "Funnel VIP"
 };

@@ -14,7 +14,7 @@ export default {
   "invite3": "📤 分享邀请码",
   "levelFree": "🆓 免费会员",
   "levelVip": "💎 VIP 会员",
-  "message": " XunNi 丢一个漂流瓶！🍾 使用我的邀请码加入，我们都能获得更多配额！",
+  "message": "XunNi 丢一个漂流瓶！🍾 使用我的邀请码加入，我们都能获得更多配额！",
   "message2": "加入 XunNi 丢一个漂流瓶",
   "notRegistered": "未注册",
   "notSet": "未设置",
@@ -39,11 +39,11 @@ export default {
   "vip": "• 级别: ${isVip ? 'VIP会员 💎' : '免费会员'}",
   "vip2": "VIP 会员 💎",
   "yourStatus": "你的状态",
-  "birthDate": "",
-  "zodiac": "",
-  "bloodType": "",
-  "interests": "",
-  "bio": "",
-  "driftBottles": "",
-  "fortuneBottles": ""
+  "birthDate": "生日",
+  "zodiac": "星座",
+  "bloodType": "血型",
+  "interests": "兴趣",
+  "bio": "简介",
+  "driftBottles": "漂流瓶",
+  "fortuneBottles": "算命瓶"
 };

@@ -178,6 +178,6 @@ export default {
   "userNotFound4": "❌ کاربر وجود ندارد",
   "userNotFoundRegister": "⚠️ کاربر وجود ندارد، لطفاً ابتدا با /start ثبت‌نام کنید.",
   "verificationFailed": "❌ تأیید اعتبار ناموفق بود، لطفاً بعداً دوباره تلاش کنید",
-  "invalidTimeFormat": "",
-  "invalidDateFormat": ""
+  "invalidTimeFormat": "قالب ورودی زمان نامعتبر است\nبرای مثال: ۱۹:۳۰ (قالب ۲۴ ساعته، ۰۰-۲۳ ساعت، ۰۰-۵۹ دقیقه)",
+  "invalidDateFormat": "قالب ورودی تاریخ نامعتبر است\nبرای مثال: ۲۰۰۰-۰۱-۰۱"
 };

@@ -39,11 +39,11 @@ export default {
   "vip": "• Level: ${isVip ? 'Anggota VIP 💎' : 'Anggota Gratis'}",
   "vip2": "Anggota VIP 💎",
   "yourStatus": "Status Anda",
-  "birthDate": "",
-  "zodiac": "",
-  "bloodType": "",
-  "interests": "",
-  "bio": "",
-  "driftBottles": "",
-  "fortuneBottles": ""
+  "birthDate": "Hari Lahir",
+  "zodiac": "Zodiak",
+  "bloodType": "Tipe Darah",
+  "interests": "Minat",
+  "bio": "Profil",
+  "driftBottles": "Botol Pesan",
+  "fortuneBottles": "Botol Keberuntungan"
 };

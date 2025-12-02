@@ -28,8 +28,8 @@ export default {
   "disabled": "🚫 Tihe sate su onemogućene",
   "quietHoursHint": "Nećeš primati nehitne obavijesti tijekom ovog razdoblja",
   "blocklist": {
-    "title": "",
-    "empty": "",
-    "unblock": ""
+    "title": "🚫 Lista blokiranih",
+    "empty": "Trenutno nema blokirane liste",
+    "unblock": "Deblokiraj"
   }
 };

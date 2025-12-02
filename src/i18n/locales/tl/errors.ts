@@ -178,6 +178,6 @@ export default {
   "userNotFound4": "❌ Hindi natagpuan ang gumagamit",
   "userNotFoundRegister": "⚠️ Ang gumagamit ay hindi umiiral, mangyaring magparehistro gamit ang /start muna.",
   "verificationFailed": "❌ Nabigong beripikasyon, mangyaring subukan muli mamaya.",
-  "invalidTimeFormat": "",
-  "invalidDateFormat": ""
+  "invalidTimeFormat": "Di-wastong format ng oras\nHalimbawa: 19:30 (24-oras na format, 00-23 oras, 00-59 minuto)",
+  "invalidDateFormat": "Di-wastong format ng petsa\nHalimbawa: 2000-01-01"
 };

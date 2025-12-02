@@ -69,6 +69,6 @@ export default {
   "vip2": "• Koristite /vip za nadogradnju na VIP člana\n",
   "vipUpgrade": "• Koristite /vip za nadogradnju na VIP člana\n",
   "zodiac": "⭐ Horoskopski znak: ${zodiac}\n",
-  "fortuneQuota": "",
-  "vipWithDays": ""
+  "fortuneQuota": "🔮 {fortunemessage bottle}: {total} (Ovaj tjedan besplatno: {weekly}/{limit} | Dodatno: {additional})",
+  "vipWithDays": "💎 VIP član (Preostalo {days} dana, Istek: {expireDate})"
 };

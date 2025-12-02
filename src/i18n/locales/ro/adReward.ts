@@ -20,5 +20,5 @@ export default {
   "watchAdRemaining": "📊 Rămase astăzi: **${remaining}/20** ori",
   "watchAdReward": "🎁 Finalizează vizionarea pentru a câștiga **+1 cotă**",
   "watchAdTitle": "📺 **Câștigă cote vizionând reclame**",
-  "watchAdButton": ""
+  "watchAdButton": "📺 Deblocați prin vizionarea unei reclame (+1 dată)"
 };

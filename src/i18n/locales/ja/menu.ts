@@ -15,7 +15,7 @@ export default {
   "levelFree": "🆓 無料メンバー",
   "levelVip": "💎 VIPメンバー",
   "message": "一緒にXunNiでボトルメールを投げましょう! 🍾 私の招待コードを使って参加すれば、お互いにもっとクォータを得られます!",
-  "message2": "https://t.me/share/url?url=https://t.me/${botUsername}?start=invite_${inviteCode}&text=XunNiに来て、一緒にボトルメールを投げましょう ",
+  "message2": "https://t.me/share/url?url=https://t.me/${botUsername}?start=invite_${inviteCode}&text=XunNiに来て、一緒にボトルメールを投げましょう",
   "notRegistered": "未登録",
   "notSet": "未設定",
   "quota": "• お互いに1日のクォータが+1されます\n\n",
@@ -39,11 +39,11 @@ export default {
   "vip": "• レベル: ${isVip ? 'VIPメンバー 💎' : '無料メンバー'}",
   "vip2": "VIP会員 💎",
   "yourStatus": "あなたのステータス",
-  "birthDate": "",
-  "zodiac": "",
-  "bloodType": "",
-  "interests": "",
-  "bio": "",
-  "driftBottles": "",
-  "fortuneBottles": ""
+  "birthDate": "誕生日",
+  "zodiac": "星座",
+  "bloodType": "血液型",
+  "interests": "興味",
+  "bio": "プロフィール",
+  "driftBottles": "メッセージボトル",
+  "fortuneBottles": "運勢ボトル"
 };

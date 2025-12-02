@@ -1,17 +1,17 @@
 export default {
-  "select_continent": "",
-  "select_country": "",
-  "search_city_prompt": "",
-  "city_not_found": "",
-  "confirm_city": "",
+  "select_continent": "Please select your region 🌍",
+  "select_country": "Please select a country",
+  "search_city_prompt": "Please enter the city name (e.g., Taipei)",
+  "city_not_found": "City not found, please try the English name.",
+  "confirm_city": "Is this the city you selected: {city} ({country})?",
   "continent": {
-    "asia": "",
-    "europe": "",
-    "north_america": "",
-    "south_america": "",
-    "africa": "",
-    "oceania": ""
+    "asia": "Asia",
+    "europe": "Europe",
+    "north_america": "North America",
+    "south_america": "South America",
+    "africa": "Africa",
+    "oceania": "Oceania"
   },
-  "btn_search_manually": "",
-  "confirm_button": ""
+  "btn_search_manually": "🔍 Manually search for a city",
+  "confirm_button": "✅ Confirm"
 };

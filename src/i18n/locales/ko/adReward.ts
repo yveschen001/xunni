@@ -20,5 +20,5 @@ export default {
   "watchAdRemaining": "📊 오늘 남은 횟수: **${remaining}/20** 번",
   "watchAdReward": "🎁 시청 완료 시 **+1 크레딧**을 드립니다",
   "watchAdTitle": "📺 **광고 시청으로 크레딧을 얻으세요**",
-  "watchAdButton": ""
+  "watchAdButton": "📺 광고를 시청하여 잠금 해제 (+1회)"
 };

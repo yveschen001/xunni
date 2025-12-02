@@ -126,8 +126,8 @@ export default {
   "vip7": "💡 Rinovoni tani për të shijuar shërbimin VIP pa ndërprerje!",
   "vip8": "💡 Rinovoni tani për të vazhduar shijimin e përfitimeve VIP!\n",
   "vip9": "✨ **Ju jeni tashmë një anëtar VIP**\n\n",
-  "retentionNotice": "",
-  "upgrade": "",
-  "maxDurationExceeded": "",
-  "refundedAndRevoked": ""
+  "retentionNotice": "⚠️ **Njoftim i Randësishëm**: Historia e bisedave për anëtarët VIP do të ruhet për 3 vjet. Nëse rinovimi ndalon, historia juaj e bisedave do të fshihet **30 ditë** pas skadimit të anëtarësisë. Ju lutem, merrni parasysh që të mbani informacionet e rëndësishme.",
+  "upgrade": "Përmirësohu në VIP",
+  "maxDurationExceeded": "⚠️ Periudha juaj VIP ka arritur kufirin ({maxMonths} muaj), dhe nuk mund të vazhdoni të blini për momentin.",
+  "refundedAndRevoked": "ℹ️ Pagesa juaj është rimbursuar, dhe përfitimet VIP janë revokuar."
 };

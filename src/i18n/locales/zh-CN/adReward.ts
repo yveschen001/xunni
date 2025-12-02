@@ -20,5 +20,5 @@ export default {
   "watchAdRemaining": "📊 今日剩余：**${remaining}/20** 次",
   "watchAdReward": "🎁 完成观看可获得 **+1 个额度**",
   "watchAdTitle": "📺 **观看广告获得额度**",
-  "watchAdButton": ""
+  "watchAdButton": "📺 观看广告解锁 (+1 次)"
 };

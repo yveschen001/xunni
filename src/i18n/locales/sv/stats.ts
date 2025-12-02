@@ -99,7 +99,7 @@ export default {
   "vipTriple": "💎 **VIP Trippla Flaskpoststatistik** (senaste ${days} dagar)",
   "vipTripleTitle": "💎 **VIP Trippla Flaskpoststatistik** (senaste {days} dagar)",
   "zodiac": "🔮 **Stjärntecken**: ${zodiac}\n",
-  "fortuneTitle": "",
-  "fortuneReadings": "",
-  "fortuneQuota": ""
+  "fortuneTitle": "🔮 **{fortunemessage bottle}**",
+  "fortuneReadings": "• Antal öden: {count}",
+  "fortuneQuota": "• Återstående kvot: {quota}"
 };

@@ -178,6 +178,6 @@ export default {
   "userNotFound4": "❌ Uporabnik ne obstaja",
   "userNotFoundRegister": "⚠️ Uporabnik ne obstaja, prosim, najprej se registrirajte z /start.",
   "verificationFailed": "❌ Potrditev ni uspela, prosim, poskusite znova kasneje",
-  "invalidTimeFormat": "",
-  "invalidDateFormat": ""
+  "invalidTimeFormat": "Neveljaven časovni format\nNa primer: 19:30 (24-urni format, 00-23 ure, 00-59 minut)",
+  "invalidDateFormat": "Neveljaven datumni format\nNa primer: 2000-01-01"
 };

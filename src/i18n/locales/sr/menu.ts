@@ -15,7 +15,7 @@ export default {
   "levelFree": "🆓 Besplatni član",
   "levelVip": "💎 VIP član",
   "message": "Hajde da zajedno bacamo message bottle na XunNi! 🍾 Iskoristi moj pozivni kod da se pridružiš, i oboje možemo dobiti više kvota!",
-  "message2": "https://t.me/share/url?url=https://t.me/${botUsername}?start=invite_${inviteCode}&text=Dođite u XunNi i zajedno bacite message bottle ",
+  "message2": "https://t.me/share/url?url=https://t.me/${botUsername}?start=invite_${inviteCode}&text=Dođite u XunNi i zajedno bacite message bottle",
   "notRegistered": "Niste registrovani",
   "notSet": "Nije podešeno",
   "quota": "• Oboje dobijate dnevnu kvotu +1\n\n",
@@ -39,11 +39,11 @@ export default {
   "vip": "• Nivo: ${isVip ? 'VIP član 💎' : 'Besplatan član'}",
   "vip2": "VIP član 💎",
   "yourStatus": "Vaš status",
-  "birthDate": "",
-  "zodiac": "",
-  "bloodType": "",
-  "interests": "",
-  "bio": "",
-  "driftBottles": "",
-  "fortuneBottles": ""
+  "birthDate": "Rođendan",
+  "zodiac": "Znak Zodijaka",
+  "bloodType": "Krvna grupa",
+  "interests": "Interesovanja",
+  "bio": "Profil",
+  "driftBottles": "Poruka u boci",
+  "fortuneBottles": "Boca sreće"
 };

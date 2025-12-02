@@ -28,8 +28,8 @@ export default {
   "disabled": "🚫 Stille timer har blitt deaktivert",
   "quietHoursHint": "Du vil ikke motta ikke-hastemeldinger i denne perioden",
   "blocklist": {
-    "title": "",
-    "empty": "",
-    "unblock": ""
+    "title": "🚫 Blokkeringsliste",
+    "empty": "For øyeblikket ingen blokkeringsliste",
+    "unblock": "Fjern blokkering"
   }
 };

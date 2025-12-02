@@ -178,6 +178,6 @@ export default {
   "userNotFound4": "❌ Ο χρήστης δεν υπάρχει",
   "userNotFoundRegister": "⚠️ Ο χρήστης δεν υπάρχει, παρακαλώ εγγραφείτε χρησιμοποιώντας το /start πρώτα.",
   "verificationFailed": "❌ Η επιβεβαίωση απέτυχε, παρακαλώ δοκιμάστε ξανά αργότερα",
-  "invalidTimeFormat": "",
-  "invalidDateFormat": ""
+  "invalidTimeFormat": "Μη έγκυρη μορφή ώρας\nΓια παράδειγμα: 19:30 (24ωρη μορφή, 00-23 ώρες, 00-59 λεπτά)",
+  "invalidDateFormat": "Μη έγκυρη μορφή ημερομηνίας\nΓια παράδειγμα: 2000-01-01"
 };

@@ -69,6 +69,6 @@ export default {
   "vip2": "• Használj /vip-t a VIP tagra való frissítéshez\n",
   "vipUpgrade": "• Használj /vip-t a VIP tagra való frissítéshez\n",
   "zodiac": "⭐ Csillagjegy: ${zodiac}\n",
-  "fortuneQuota": "",
-  "vipWithDays": ""
+  "fortuneQuota": "🔮 {fortunemessage bottle}: {total} (Ez a hét ingyenes: {weekly}/{limit} | Kiegészítő: {additional})",
+  "vipWithDays": "💎 VIP Tag (Hátralévő {days} nap, Lejárat: {expireDate})"
 };

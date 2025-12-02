@@ -28,8 +28,8 @@ export default {
   "disabled": "🚫 Jam tenang telah dinonaktifkan",
   "quietHoursHint": "Kamu tidak akan menerima pemberitahuan non-urgensi selama periode ini",
   "blocklist": {
-    "title": "",
-    "empty": "",
-    "unblock": ""
+    "title": "🚫 Daftar Blokir",
+    "empty": "Saat ini tidak ada daftar blokir",
+    "unblock": "Buka Blokir"
   }
 };

@@ -39,11 +39,11 @@ export default {
   "vip": "• المستوى: ${isVip ? 'عضو VIP 💎' : 'عضو مجاني'}",
   "vip2": "عضو VIP 💎",
   "yourStatus": "حالتك",
-  "birthDate": "",
-  "zodiac": "",
-  "bloodType": "",
-  "interests": "",
-  "bio": "",
-  "driftBottles": "",
-  "fortuneBottles": ""
+  "birthDate": "عيد الميلاد",
+  "zodiac": "برجك الفلكي",
+  "bloodType": "فصيلة الدم",
+  "interests": "الاهتمامات",
+  "bio": "الملف الشخصي",
+  "driftBottles": "زجاجة رسائل",
+  "fortuneBottles": "زجاجة حظ"
 };

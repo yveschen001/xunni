@@ -178,6 +178,6 @@ export default {
   "userNotFound4": "❌ Người dùng không tồn tại",
   "userNotFoundRegister": "⚠️ Người dùng không tồn tại, vui lòng đăng ký bằng cách sử dụng /start trước.",
   "verificationFailed": "❌ Xác minh không thành công, vui lòng thử lại sau",
-  "invalidTimeFormat": "",
-  "invalidDateFormat": ""
+  "invalidTimeFormat": "Định dạng thời gian không hợp lệ\nVí dụ: 19:30 (định dạng 24 giờ, 00-23 giờ, 00-59 phút)",
+  "invalidDateFormat": "Định dạng ngày không hợp lệ\nVí dụ: 2000-01-01"
 };

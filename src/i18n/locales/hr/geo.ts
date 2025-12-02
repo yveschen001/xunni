@@ -1,17 +1,17 @@
 export default {
-  "select_continent": "",
-  "select_country": "",
-  "search_city_prompt": "",
-  "city_not_found": "",
-  "confirm_city": "",
+  "select_continent": "Molimo odaberite svoju regiju 🌍",
+  "select_country": "Molimo odaberite državu",
+  "search_city_prompt": "Molimo unesite ime grada (npr. Taipei)",
+  "city_not_found": "Grad nije pronađen, pokušajte s engleskim imenom.",
+  "confirm_city": "Je li to grad koji ste odabrali: {city} ({country})?",
   "continent": {
-    "asia": "",
-    "europe": "",
-    "north_america": "",
-    "south_america": "",
-    "africa": "",
-    "oceania": ""
+    "asia": "Azija",
+    "europe": "Europa",
+    "north_america": "Sjeverna Amerika",
+    "south_america": "Južna Amerika",
+    "africa": "Afrika",
+    "oceania": "Okeanija"
   },
-  "btn_search_manually": "",
-  "confirm_button": ""
+  "btn_search_manually": "🔍 Ručno pretraživanje grada",
+  "confirm_button": "✅ Potvrdi"
 };

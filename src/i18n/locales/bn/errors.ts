@@ -178,6 +178,6 @@ export default {
   "userNotFound4": "❌ ব্যবহারকারী বিদ্যমান নেই",
   "userNotFoundRegister": "⚠️ ব্যবহারকারী বিদ্যমান নেই, لطفاً আগে /start ব্যবহার করে নিবন্ধন করুন।",
   "verificationFailed": "❌ যাচাই ব্যর্থ হয়েছে, পরে আবার চেষ্টা করুন",
-  "invalidTimeFormat": "",
-  "invalidDateFormat": ""
+  "invalidTimeFormat": "অকার্যকর সময়ের ফরম্যাট\nযেমন: ১৯:৩০ (২৪-ঘন্টার ফরম্যাট, ০০-২৩ ঘণ্টা, ০০-৫৯ মিনিট)",
+  "invalidDateFormat": "অকার্যকর তারিখের ফরম্যাট\nযেমন: ২০০০-০১-০১"
 };

@@ -20,5 +20,5 @@ export default {
   "watchAdRemaining": "📊 Сьогодні залишилося: **${remaining}/20** разів",
   "watchAdReward": "🎁 Завершіть перегляд, щоб заробити **+1 квоту**",
   "watchAdTitle": "📺 **Заробляйте квоти, переглядаючи рекламу**",
-  "watchAdButton": ""
+  "watchAdButton": "📺 Розблокувати, переглянувши рекламу (+1 раз)"
 };

@@ -69,6 +69,6 @@ export default {
   "vip2": "• Gunakan /vip untuk naik taraf ke Ahli VIP\n",
   "vipUpgrade": "• Naik taraf ke ahli VIP menggunakan /vip\n",
   "zodiac": "⭐ Zodiak: ${zodiac}\n",
-  "fortuneQuota": "",
-  "vipWithDays": ""
+  "fortuneQuota": "🔮 {fortunemessage botol mesej}: {total} (Minggu ini percuma: {weekly}/{limit} | Tambahan: {additional})",
+  "vipWithDays": "💎 Ahli VIP (Tersisa {days} hari, Tamat: {expireDate})"
 };

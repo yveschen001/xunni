@@ -67,7 +67,7 @@ export async function handleOnboardingInput(message: TelegramMessage, env: Env):
         return false;
 
       case 'anti_fraud':
-        return await handleAntiFraudInput(user, text, chatId, telegram, db);
+        return await handleAntiFraudInput(user, text, chatId, telegram, db, env);
 
       default:
         return false; // Not expecting text input
@@ -178,7 +178,7 @@ async function handleBirthdayInput(
     i18n.t('onboarding.confirmBirthday') +
       `\n生日：${birthday}\n` +
       i18n.t('onboarding.age', { updatedUser: { age } }) +
-      i18n.t('onboarding.zodiac', { updatedUser: { zodiac_sign: i18n.t(`zodiac.${zodiacSign}` as any) } }).replace('$zodiac.', '') +
+      i18n.t('onboarding.zodiac', { updatedUser: { zodiac_sign: i18n.t(`zodiac.${zodiacSign}` as any) } }) +
       '\n\n' +
       i18n.t('onboarding.birthdayWarning'),
     [
@@ -208,7 +208,8 @@ async function handleAntiFraudInput(
   answer: string,
   chatId: number,
   telegram: ReturnType<typeof createTelegramService>,
-  db: ReturnType<typeof createDatabaseClient>
+  db: ReturnType<typeof createDatabaseClient>,
+  env: Env
 ): Promise<boolean> {
   // Simple check (in production, this would be a proper quiz)
   if (answer.includes('是') || answer.toLowerCase().includes('yes')) {
@@ -236,13 +237,13 @@ async function handleAntiFraudInput(
         [
           {
             text: i18n.t('onboarding.terms.privacy_policy_button'),
-            url: LEGAL_URLS.PRIVACY_POLICY,
+            url: LEGAL_URLS.getPRIVACY_POLICY(env),
           },
         ],
         [
           {
             text: i18n.t('onboarding.terms.terms_of_service_button'),
-            url: LEGAL_URLS.TERMS_OF_SERVICE,
+            url: LEGAL_URLS.getTERMS_OF_SERVICE(env),
           },
         ],
       ]

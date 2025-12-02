@@ -99,7 +99,7 @@ export default {
   "vipTriple": "💎 **VIPトリプルボトル統計** （過去${days}日間）",
   "vipTripleTitle": "💎 **VIPトリプルメッセージボトル統計** (過去 {days} 日間)",
   "zodiac": "🔮 **星座**: ${zodiac}\n",
-  "fortuneTitle": "",
-  "fortuneReadings": "",
-  "fortuneQuota": ""
+  "fortuneTitle": "🔮 **{fortunemessage ボトルメール}**",
+  "fortuneReadings": "• 運勢の数 : {count}",
+  "fortuneQuota": "• 残りのクオータ : {quota}"
 };

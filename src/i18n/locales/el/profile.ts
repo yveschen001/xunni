@@ -69,6 +69,6 @@ export default {
   "vip2": "• Χρησιμοποιήστε /vip για να αναβαθμίσετε σε Μέλος VIP\n",
   "vipUpgrade": "• Χρησιμοποιήστε /vip για να αναβαθμίσετε σε Μέλος VIP\n",
   "zodiac": "⭐ Ζώδιο: ${zodiac}\n",
-  "fortuneQuota": "",
-  "vipWithDays": ""
+  "fortuneQuota": "🔮 {fortunemessage bottle}: {total} (Αυτή τη βδομάδα δωρεάν: {weekly}/{limit} | Πρόσθετα: {additional})",
+  "vipWithDays": "💎 VIP Μέλος (Υπόλοιπα {days} ημέρες, Λήξη: {expireDate})"
 };

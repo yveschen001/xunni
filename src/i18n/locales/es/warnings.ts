@@ -7,7 +7,7 @@ export default {
   "register4": "⚠️ Registro no completado",
   "settings": "🧠 MBTI: \\\\\\\\\\\\$",
   "text5": "📖 Biografía: {otherUser.bio}",
-  "text6": "[Necesita traducción: warnings.text6]",
+  "text6": "⚠️ Por favor, complete primero el registro",
   "userNotFound": "El usuario no existe",
   "warning": {
     "ad": "⚠️ Actualmente no hay proveedores de anuncios configurados\n\n",

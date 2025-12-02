@@ -20,5 +20,5 @@ export default {
   "watchAdRemaining": "📊 Today remaining: **${remaining}/20** times",
   "watchAdReward": "🎁 Earn **+1 credit** upon completion of viewing",
   "watchAdTitle": "📺 **Watch ads to earn credits**",
-  "watchAdButton": ""
+  "watchAdButton": "📺 Unlock by watching an ad (+1 time)"
 };

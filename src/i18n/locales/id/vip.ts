@@ -126,8 +126,8 @@ export default {
   "vip7": "💡 Perbarui sekarang untuk menikmati layanan VIP tanpa terputus!",
   "vip8": "💡 Perbarui sekarang untuk terus menikmati manfaat VIP!\n",
   "vip9": "✨ **Anda sudah menjadi anggota VIP**\n\n",
-  "retentionNotice": "",
-  "upgrade": "",
-  "maxDurationExceeded": "",
-  "refundedAndRevoked": ""
+  "retentionNotice": "⚠️ **Pemberitahuan Penting**: Riwayat obrolan anggota VIP akan disimpan selama 3 tahun. Jika perpanjangan berhenti, riwayat obrolan Anda akan dihapus **30 hari** setelah kedaluwarsa keanggotaan. Harap diingat untuk mencadangkan informasi penting.",
+  "upgrade": "Tingkatkan ke VIP",
+  "maxDurationExceeded": "⚠️ Periode VIP Anda telah mencapai batas ({maxMonths} bulan), dan Anda tidak dapat melanjutkan pembelian untuk saat ini.",
+  "refundedAndRevoked": "ℹ️ Pembayaran Anda telah dikembalikan, dan manfaat VIP telah dicabut."
 };

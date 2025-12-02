@@ -58,7 +58,7 @@ export default {
   "help": "Dette vil hjelpe oss å finne mer passende samtalepartnere for deg～\n\n",
   "iHaveRead": "✅ Jeg har lest og godtar",
   "info": {
-    "age18": "• Må være minst 18 år gammel for å bruke denne tjenesten",
+    "age18": "• Du må være minst 18 år gammel for å bruke denne tjenesten.\n- Nøyaktig informasjon må gis for at matching og spådommer skal gi gode resultater.",
     "city": "🌍 Region: {city}"
   },
   "languageSelection": "🌐 **Velg språk**\n\nVennligst velg ditt foretrukne språk:",

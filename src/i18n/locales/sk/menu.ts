@@ -39,11 +39,11 @@ export default {
   "vip": "✅ Vyžaduje sa overenie: Kliknite na tlačidlo 'Overiť' po pridaní do skupiny/kanála",
   "vip2": "VIP člen 💎",
   "yourStatus": "Váš stav",
-  "birthDate": "",
-  "zodiac": "",
-  "bloodType": "",
-  "interests": "",
-  "bio": "",
-  "driftBottles": "",
-  "fortuneBottles": ""
+  "birthDate": "Narodeniny",
+  "zodiac": "Znamenie zverokruhu",
+  "bloodType": "Krvný typ",
+  "interests": "Záujmy",
+  "bio": "Profil",
+  "driftBottles": "Správa v fľaši",
+  "fortuneBottles": "Fľaša s predpoveďou"
 };

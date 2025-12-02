@@ -15,7 +15,7 @@ export default {
   "levelFree": "🆓 Membre gratuit",
   "levelVip": "💎 Membre VIP",
   "message": "Jetons des bouteilles à message ensemble sur XunNi ! 🍾 Utilise mon code d'invitation pour rejoindre, et nous pourrons tous les deux obtenir plus de quotas !",
-  "message2": "https://t.me/share/url?url=https://t.me/${botUsername}?start=invite_${inviteCode}&text=Venez sur XunNi et lancez une bouteille à message ensemble ",
+  "message2": "https://t.me/share/url?url=https://t.me/${botUsername}?start=invite_${inviteCode}&text=Venez sur XunNi et lancez une bouteille à message ensemble",
   "notRegistered": "Non enregistré",
   "notSet": "Non défini",
   "quota": "• Vous obtenez tous les deux un quota quotidien +1\n\n",
@@ -39,11 +39,11 @@ export default {
   "vip": "• Niveau : ${isVip ? 'Membre VIP 💎' : 'Membre Gratuit'}",
   "vip2": "Membre VIP 💎",
   "yourStatus": "Votre statut",
-  "birthDate": "",
-  "zodiac": "",
-  "bloodType": "",
-  "interests": "",
-  "bio": "",
-  "driftBottles": "",
-  "fortuneBottles": ""
+  "birthDate": "Anniversaire",
+  "zodiac": "Signe du Zodiaque",
+  "bloodType": "Groupe Sanguin",
+  "interests": "Intérêts",
+  "bio": "Profil",
+  "driftBottles": "Bouteille à Message",
+  "fortuneBottles": "Bouteille de Fortune"
 };

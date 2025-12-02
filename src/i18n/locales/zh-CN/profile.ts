@@ -26,13 +26,13 @@ export default {
   "manual": "手动设定",
   "mbti": "• 使用 /mbti 重新测验或修改 MBTI\n",
   "mbtiWithSource": "🧠 MBTI: {mbti}{source}",
-  "message": " XunNi 丢一个漂流瓶！🍾 使用我的邀请码：${inviteCode}",
+  "message": "XunNi 丢一个漂流瓶！🍾 使用我的邀请码：${inviteCode}",
   "message2": "${inviteLimitWarning}\n\n",
   "message3": "🌍 语言：${user.language_pref }\n\n",
   "message4": "🌍 语言：${user.language_pref }\n",
   "message5": "📈 转化率：${inviteStats.conversionRate}%\n",
   "message6": "${gender} • ${age} 岁 • ${city}\n\n",
-  "message7": " XunNi 一起丢漂流",
+  "message7": "XunNi 一起丢漂流",
   "mysterious": "这个人很神秘，什么都没有留下～",
   "nickname": "📛 昵称：${displayNickname}\n",
   "notSet": "未设定",
@@ -69,6 +69,6 @@ export default {
   "vip2": "• 使用 /vip 升级 VIP 会员\n",
   "vipUpgrade": "• 使用 /vip 升级 VIP 会员\n",
   "zodiac": "⭐ 星座: ${zodiac}",
-  "fortuneQuota": "",
-  "vipWithDays": ""
+  "fortuneQuota": "🔮 {fortune漂流瓶}: {total} (本周免费: {weekly}/{limit} | 额外: {additional})",
+  "vipWithDays": "💎 VIP 会员 (剩余 {days} 天, 到期: {expireDate})"
 };

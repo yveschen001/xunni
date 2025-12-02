@@ -39,11 +39,11 @@ export default {
   "vip": "• Nivå: ${isVip ? 'VIP-medlem 💎' : 'Gratis medlem'}",
   "vip2": "VIP medlem 💎",
   "yourStatus": "Din status",
-  "birthDate": "",
-  "zodiac": "",
-  "bloodType": "",
-  "interests": "",
-  "bio": "",
-  "driftBottles": "",
-  "fortuneBottles": ""
+  "birthDate": "Fødselsdag",
+  "zodiac": "Stjernetegn",
+  "bloodType": "Blodtype",
+  "interests": "Interesser",
+  "bio": "Profil",
+  "driftBottles": "Meldingsflaske",
+  "fortuneBottles": "Skjebneflaske"
 };

@@ -398,7 +398,7 @@ export default {
   "vip8": "⬇️ **Retrogradare automată VIP**\n\n",
   "vip9": "🔄 **Reînnoire VIP**\n\n",
   "dailyReport": "📊 Raport operațional zilnic ({date})\n\n💰 Costuri estimate de traducere:\n{costDetails}\n\n⚠️ Monitorizarea anomaliilor:\n• Scăderi de traducere: {fallbackCount} ori\n• Eșecuri de traducere: {errorCount} ori\n\n📈 Date active:\n• Utilizatori noi: {newUsers}\n• Conversații active: {activeConversations}",
-  "analyticsTitle": "",
-  "adPerformanceTitle": "",
-  "vipFunnelTitle": ""
+  "analyticsTitle": "Analiza datelor",
+  "adPerformanceTitle": "Performanța reclamelor",
+  "vipFunnelTitle": "Funnel VIP"
 };

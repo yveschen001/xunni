@@ -1,17 +1,17 @@
 export default {
-  "select_continent": "",
-  "select_country": "",
-  "search_city_prompt": "",
-  "city_not_found": "",
-  "confirm_city": "",
+  "select_continent": "Seleziona la tua regione 🌍",
+  "select_country": "Seleziona un paese",
+  "search_city_prompt": "Inserisci il nome della città (ad es., Taipei)",
+  "city_not_found": "Città non trovata, prova con il nome in inglese.",
+  "confirm_city": "È questa la città che hai selezionato: {city} ({country})?",
   "continent": {
-    "asia": "",
-    "europe": "",
-    "north_america": "",
-    "south_america": "",
-    "africa": "",
-    "oceania": ""
+    "asia": "Asia",
+    "europe": "Europa",
+    "north_america": "Nord America",
+    "south_america": "Sud America",
+    "africa": "Africa",
+    "oceania": "Oceania"
   },
-  "btn_search_manually": "",
-  "confirm_button": ""
+  "btn_search_manually": "🔍 Cerca manualmente una città",
+  "confirm_button": "✅ Conferma"
 };

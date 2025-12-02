@@ -398,7 +398,7 @@ export default {
   "vip8": "⬇️ **Penurunan Automatik VIP**\n\n",
   "vip9": "🔄 **Pembaharuan VIP**\n\n",
   "dailyReport": "📊 Laporan Operasi Harian ({date})\n\n💰 Anggaran Kos Terjemahan:\n{costDetails}\n\n⚠️ Pemantauan Anomali:\n• Penurunan terjemahan: {fallbackCount} kali\n• Kegagalan terjemahan: {errorCount} kali\n\n📈 Data Aktif:\n• Pengguna Baru: {newUsers}\n• Perbualan Aktif: {activeConversations}",
-  "analyticsTitle": "",
-  "adPerformanceTitle": "",
-  "vipFunnelTitle": ""
+  "analyticsTitle": "Analisis Data",
+  "adPerformanceTitle": "Prestasi Iklan",
+  "vipFunnelTitle": "Jalur VIP"
 };

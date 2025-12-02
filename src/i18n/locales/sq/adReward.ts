@@ -20,5 +20,5 @@ export default {
   "watchAdRemaining": "📊 Mbetja e sotme: **${remaining}/20** herë",
   "watchAdReward": "🎁 Përfundoni shikimin për të fituar **+1 kuotë**",
   "watchAdTitle": "📺 **Fitoni kuota duke shikuar reklama**",
-  "watchAdButton": ""
+  "watchAdButton": "📺 Zhbllokuar duke parë një reklamë (+1 herë)"
 };

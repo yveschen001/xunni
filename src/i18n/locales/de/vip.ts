@@ -126,8 +126,8 @@ export default {
   "vip7": "💡 Jetzt erneuern, um ununterbrogenen VIP-Service zu genießen!",
   "vip8": "💡 Jetzt erneuern, um weiterhin VIP-Vorteile zu genießen!\n",
   "vip9": "✨ **Sie sind bereits ein VIP-Mitglied**\n\n",
-  "retentionNotice": "",
-  "upgrade": "",
-  "maxDurationExceeded": "",
-  "refundedAndRevoked": ""
+  "retentionNotice": "⚠️ **Wichtiger Hinweis**: Die Chatverläufe von VIP-Mitgliedern werden 3 Jahre lang aufbewahrt. Wenn die Verlängerung stoppt, werden Ihre Chatverläufe **30 Tage** nach Ablauf der Mitgliedschaft gelöscht. Bitte denken Sie daran, wichtige Informationen zu sichern.",
+  "upgrade": "Upgrade auf VIP",
+  "maxDurationExceeded": "⚠️ Ihre VIP-Periode hat das Limit erreicht ({maxMonths} Monate), und Sie können vorerst nicht weiter einkaufen.",
+  "refundedAndRevoked": "ℹ️ Ihre Zahlung wurde zurückerstattet, und die VIP-Vorteile wurden widerrufen."
 };

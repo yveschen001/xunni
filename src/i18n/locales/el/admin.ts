@@ -398,7 +398,7 @@ export default {
   "vip8": "⬇️ **Αυτόματη Υποβάθμιση VIP**\n\n",
   "vip9": "🔄 **Ανανέωση VIP**\n\n",
   "dailyReport": "📊 Καθημερινή Έκθεση Λειτουργίας ({date})\n\n💰 Εκτιμώμενα Κόστη Μετάφρασης:\n{costDetails}\n\n⚠️ Παρακολούθηση Ανωμαλιών:\n• Υποβαθμίσεις Μετάφρασης: {fallbackCount} φορές\n• Αποτυχίες Μετάφρασης: {errorCount} φορές\n\n📈 Ενεργά Δεδομένα:\n• Νέοι Χρήστες: {newUsers}\n• Ενεργές Συζητήσεις: {activeConversations}",
-  "analyticsTitle": "",
-  "adPerformanceTitle": "",
-  "vipFunnelTitle": ""
+  "analyticsTitle": "Ανάλυση Δεδομένων",
+  "adPerformanceTitle": "Απόδοση Διαφήμισης",
+  "vipFunnelTitle": "VIP Funnel"
 };

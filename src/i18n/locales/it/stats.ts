@@ -99,7 +99,7 @@ export default {
   "vipTriple": "💎 **Statistiche bottiglia VIP Triple** (ultimi ${days} giorni)",
   "vipTripleTitle": "💎 **Statistiche bottiglia VIP Triple** (ultimi {days} giorni)",
   "zodiac": "🔮 **Zodiac**: ${zodiac}",
-  "fortuneTitle": "",
-  "fortuneReadings": "",
-  "fortuneQuota": ""
+  "fortuneTitle": "🔮 **{fortunemessage bottiglia di messaggi}**",
+  "fortuneReadings": "• Conteggio della Fortuna : {count}",
+  "fortuneQuota": "• Quota Rimanente : {quota}"
 };

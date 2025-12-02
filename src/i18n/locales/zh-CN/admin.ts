@@ -398,7 +398,7 @@ export default {
   "vip8": "⬇️ **VIP 自动降级**\n\n",
   "vip9": "🔄 **VIP 续费**\n\n",
   "dailyReport": "📊 每日运营报告 ({date})\n\n💰 预计翻译费用：\n{costDetails}\n\n⚠️ 异常监控：\n• 翻译降级：{fallbackCount} 次\n• 翻译失败：{errorCount} 次\n\n📈 活跃数据：\n• 新用户：{newUsers}\n• 活跃对话：{activeConversations}",
-  "analyticsTitle": "",
-  "adPerformanceTitle": "",
-  "vipFunnelTitle": ""
+  "analyticsTitle": "数据分析",
+  "adPerformanceTitle": "广告效能",
+  "vipFunnelTitle": "VIP 漏斗"
 };

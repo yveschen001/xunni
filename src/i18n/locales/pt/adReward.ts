@@ -20,5 +20,5 @@ export default {
   "watchAdRemaining": "📊 Restantes de hoje: **${remaining}/20** vezes",
   "watchAdReward": "🎁 Complete a visualização para ganhar **+1 cota**",
   "watchAdTitle": "📺 **Assista anúncios para ganhar cotas**",
-  "watchAdButton": ""
+  "watchAdButton": "📺 Desbloquear assistindo a um anúncio (+1 vez)"
 };

@@ -398,7 +398,7 @@ export default {
   "vip8": "⬇️ **VIP Automatikus Leépítés**\n\n",
   "vip9": "🔄 **VIP Megújítás**\n\n",
   "dailyReport": "📊 Napi Működési Jelentés ({date})\n\n💰 Becslés a Fordítási Költségekről:\n{costDetails}\n\n⚠️ Anomália Figyelés:\n• Fordítási visszaesések: {fallbackCount} alkalommal\n• Fordítási hibák: {errorCount} alkalommal\n\n📈 Aktív Adatok:\n• Új Felhasználók: {newUsers}\n• Aktív Beszélgetések: {activeConversations}",
-  "analyticsTitle": "",
-  "adPerformanceTitle": "",
-  "vipFunnelTitle": ""
+  "analyticsTitle": "Adat elemzés",
+  "adPerformanceTitle": "Hirdetés teljesítmény",
+  "vipFunnelTitle": "VIP tölcsér"
 };

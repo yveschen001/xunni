@@ -28,8 +28,8 @@ export default {
   "disabled": "🚫 Quiet hours have been disabled",
   "quietHoursHint": "You will not receive non-urgent notifications during this period",
   "blocklist": {
-    "title": "",
-    "empty": "",
-    "unblock": ""
+    "title": "🚫 Block List",
+    "empty": "Currently no block list",
+    "unblock": "Unblock"
   }
 };

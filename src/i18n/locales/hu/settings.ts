@@ -28,8 +28,8 @@ export default {
   "disabled": "🚫 A csendes órák le lettek tiltva",
   "quietHoursHint": "Ebben az időszakban nem kapsz nem sürgős értesítéseket",
   "blocklist": {
-    "title": "",
-    "empty": "",
-    "unblock": ""
+    "title": "🚫 Blokkolt lista",
+    "empty": "Jelenleg nincs blokkolt lista",
+    "unblock": "Feloldás"
   }
 };

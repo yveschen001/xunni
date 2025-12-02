@@ -126,8 +126,8 @@ export default {
   "vip7": "💡 Gia hạn ngay bây giờ để tận hưởng dịch vụ VIP không gián đoạn!",
   "vip8": "💡 Gia hạn ngay bây giờ để tiếp tục tận hưởng lợi ích VIP!\n",
   "vip9": "✨ **Bạn đã là thành viên VIP**\n\n",
-  "retentionNotice": "",
-  "upgrade": "",
-  "maxDurationExceeded": "",
-  "refundedAndRevoked": ""
+  "retentionNotice": "⚠️ **Thông báo quan trọng**: Lịch sử trò chuyện của thành viên VIP sẽ được lưu giữ trong 3 năm. Nếu gia hạn dừng lại, lịch sử trò chuyện của bạn sẽ bị xóa **30 ngày** sau khi hết hạn thành viên. Xin lưu ý sao lưu thông tin quan trọng.",
+  "upgrade": "Nâng cấp lên VIP",
+  "maxDurationExceeded": "⚠️ Thời gian VIP của bạn đã đạt giới hạn ({maxMonths} tháng), và bạn không thể tiếp tục mua sắm trong thời gian này.",
+  "refundedAndRevoked": "ℹ️ Thanh toán của bạn đã được hoàn lại, và các quyền lợi VIP đã bị thu hồi."
 };

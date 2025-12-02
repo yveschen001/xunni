@@ -28,8 +28,8 @@ export default {
   "disabled": "🚫 Les heures de calme ont été désactivées",
   "quietHoursHint": "Tu ne recevras pas de notifications non urgentes pendant cette période",
   "blocklist": {
-    "title": "",
-    "empty": "",
-    "unblock": ""
+    "title": "🚫 Liste de Blocage",
+    "empty": "Aucunes entrées dans la liste de blocage actuellement",
+    "unblock": "Débloquer"
   }
 };

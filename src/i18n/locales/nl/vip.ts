@@ -126,8 +126,8 @@ export default {
   "vip7": "💡 Vernieuw nu om ononderbroken VIP-service te genieten!",
   "vip8": "💡 Vernieuw nu om te blijven genieten van VIP-voordelen!\n",
   "vip9": "✨ **U bent al een VIP-lid**\n\n",
-  "retentionNotice": "",
-  "upgrade": "",
-  "maxDurationExceeded": "",
-  "refundedAndRevoked": ""
+  "retentionNotice": "⚠️ **Belangrijke Mededeling**: VIP lid chatgeschiedenis wordt 3 jaar bewaard. Als verlenging stopt, wordt je chatgeschiedenis **30 dagen** na vervaldatum van het lidmaatschap verwijderd. Vergeet niet belangrijke informatie veilig te stellen.",
+  "upgrade": "Upgrade naar VIP",
+  "maxDurationExceeded": "⚠️ Uw VIP-periode heeft de limiet bereikt ({maxMonths} maanden), en u kunt momenteel niet verder kopen.",
+  "refundedAndRevoked": "ℹ️ Uw betaling is terugbetaald, en VIP-voordelen zijn ingetrokken."
 };

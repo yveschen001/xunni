@@ -58,7 +58,7 @@ export default {
   "help": "Ez segít abban, hogy megfelelőbb csevegőpartnereket találjunk számodra～\n\n",
   "iHaveRead": "✅ Elolvastam és egyetértek",
   "info": {
-    "age18": "• Legalább 18 évesnek kell lennie a szolgáltatás használatához",
+    "age18": "• Legalább 18 évesnek kell lenned ahhoz, hogy használhasd ezt a szolgáltatást.\n- Pontos információt kell megadni a megfelelő és jóslás eredményessége érdekében.",
     "city": "🌍 Régió: {city}"
   },
   "languageSelection": "🌐 **Válassza ki a nyelvet**\n\nKérjük, válassza ki a preferált nyelvét:",

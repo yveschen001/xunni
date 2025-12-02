@@ -126,8 +126,8 @@ export default {
   "vip7": "💡 Perbaharui sekarang untuk menikmati perkhidmatan VIP tanpa gangguan!",
   "vip8": "💡 Perbaharui sekarang untuk terus menikmati faedah VIP!\n",
   "vip9": "✨ **Anda sudah menjadi ahli VIP**\n\n",
-  "retentionNotice": "",
-  "upgrade": "",
-  "maxDurationExceeded": "",
-  "refundedAndRevoked": ""
+  "retentionNotice": "⚠️ **Notis Penting**: Sejarah chat ahli VIP akan disimpan selama 3 tahun. Jika pembaharuan berhenti, sejarah chat anda akan dipadamkan **30 hari** selepas tamat keanggotaan. Sila ambil perhatian untuk menyimpan maklumat penting.",
+  "upgrade": "Tingkatkan ke VIP",
+  "maxDurationExceeded": "⚠️ Tempoh VIP anda telah mencapai had ({maxMonths} bulan), dan anda tidak boleh meneruskan pembelian buat sementara waktu.",
+  "refundedAndRevoked": "ℹ️ Pembayaran anda telah dikembalikan, dan faedah VIP telah dibatalkan."
 };

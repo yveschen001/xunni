@@ -398,7 +398,7 @@ export default {
   "vip8": "⬇️ **Zbritje Automatikë VIP**\n\n",
   "vip9": "🔄 **Rinnovimi VIP**\n\n",
   "dailyReport": "📊 Raporti Ditor i Operacioneve ({date})\n\n💰 Kostot e Pritshme të Përkthimit:\n{costDetails}\n\n⚠️ Monitorimi i Anomalisë:\n• Uljet e përkthimit: {fallbackCount} herë\n• Dështimet e përkthimit: {errorCount} herë\n\n📈 Të Dhënat Aktive:\n• Përdorues të Rinjtë: {newUsers}\n• Biseda Aktive: {activeConversations}",
-  "analyticsTitle": "",
-  "adPerformanceTitle": "",
-  "vipFunnelTitle": ""
+  "analyticsTitle": "Analiza e të Dhënave",
+  "adPerformanceTitle": "Performanca e Reklamave",
+  "vipFunnelTitle": "VIP Funnel"
 };

@@ -99,7 +99,7 @@ export default {
   "vipTriple": "💎 **סטטיסטיקות בקבוק מסר משולש VIP** (בימי האחרונים ${days})",
   "vipTripleTitle": "💎 **סטטיסטיקות בקבוק מסר משולש VIP** (בימי האחרונים {days})",
   "zodiac": "🔮 **מזל**: ${zodiac}\n",
-  "fortuneTitle": "",
-  "fortuneReadings": "",
-  "fortuneQuota": ""
+  "fortuneTitle": "🔮 **{fortunemessage bottle}**",
+  "fortuneReadings": "• מספר מזל : {count}",
+  "fortuneQuota": "• מכסה נותרת : {quota}"
 };

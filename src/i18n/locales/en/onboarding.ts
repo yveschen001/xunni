@@ -58,7 +58,7 @@ export default {
   "help": "This will help us find more suitable chat partners for you～\n\n",
   "iHaveRead": "✅ I have read and agree",
   "info": {
-    "age18": "• You must be 18 years old to use this service.",
+    "age18": "• You must be at least 18 years old to use this service.\n- Accurate information must be provided for matching and fortune-telling to yield good results.",
     "city": "🌍 Region: {city}"
   },
   "languageSelection": "🌐 **Choose Language**\n\nPlease select your preferred language:",

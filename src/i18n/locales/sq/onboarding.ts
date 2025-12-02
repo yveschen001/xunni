@@ -58,7 +58,7 @@ export default {
   "help": "Kjo do të ndihmojë të gjejmë partnerë më të përshtatshëm për biseda për ju～\n\n",
   "iHaveRead": "✅ E kam lexuar dhe pranoj",
   "info": {
-    "age18": "• Duhet të jeni 18 vjeç ose më të rritur për të përdorur këtë shërbim",
+    "age18": "• Duhet të jesh të paktën 18 vjeç për të përdorur këtë shërbim.\n- Duhet të sigurohet informacion i saktë për përputhjen dhe parashikimin e fatit për të dhënë rezultate të mira.",
     "city": "🌍 Rajoni: {city}"
   },
   "languageSelection": "🌐 **Zgjidhni Gjuhën**\n\nJu lutemi zgjidhni gjuhën tuaj të preferuar:",

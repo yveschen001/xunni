@@ -1,169 +1,169 @@
 export default {
-  "label_role": "",
-  "label_industry": "",
-  "btn_edit_role": "",
-  "btn_edit_industry": "",
-  "profile_incomplete_hint": "",
+  "label_role": "你目前的主要身份是？",
+  "label_industry": "你主要从事的产业是？",
+  "btn_edit_role": "💼 编辑职业身份",
+  "btn_edit_industry": "🏢 编辑所属产业",
+  "profile_incomplete_hint": "💡 为了提供更精准的 AI 算命服务，请先完善您的个人资料。",
   "role": {
-    "employee": "",
-    "freelancer": "",
-    "founder": "",
-    "part_time": "",
-    "student": "",
-    "homemaker": "",
-    "investor": "",
-    "retired": "",
-    "unemployed": "",
-    "decline": ""
+    "employee": "上班族",
+    "freelancer": "自由工作者 / SOHO",
+    "founder": "创业者 / 老板",
+    "part_time": "兼职 / 打工",
+    "student": "学生",
+    "homemaker": "家庭主妇 / 主夫",
+    "investor": "全职投资人 / 自营交易",
+    "retired": "退休",
+    "unemployed": "暂时待业 / 正在找工作",
+    "decline": "不想回答"
   },
   "industry": {
     "tech": {
-      "label": "",
-      "dev": "",
-      "ai": "",
-      "mis": "",
-      "security": "",
-      "network": ""
+      "label": "1️⃣ 科技与信息（IT / Tech）",
+      "dev": "软件 / App / 网站开发",
+      "ai": "AI / 数据科学 / 机器学习",
+      "mis": "信息系统 / MIS / IT 支持",
+      "security": "资安 / 网络安全",
+      "network": "通讯设备 / 网络硬件"
     },
     "internet": {
-      "label": "",
-      "platform": "",
-      "productivity": "",
-      "community": "",
-      "web3": ""
+      "label": "2️⃣ 网络服务 & 数字产品",
+      "platform": "网络平台 / SaaS / 在线服务",
+      "productivity": "数字工具 / 生产力 App",
+      "community": "线上社区 / 社群平台运营",
+      "web3": "Web3 / 区块链应用（非纯投资）"
     },
     "finance": {
-      "label": "",
-      "bank": "",
-      "insurance": "",
-      "fintech": "",
-      "consultant": ""
+      "label": "3️⃣ 金融 & 保险",
+      "bank": "银行 / 证券 / 期货",
+      "insurance": "保险",
+      "fintech": "金融科技（支付 / 在线银行等）",
+      "consultant": "投资顾问 / 资产管理 / 家族办公室"
     },
     "professional": {
-      "label": "",
-      "accounting": "",
-      "legal": "",
-      "management": "",
-      "hr": ""
+      "label": "4️⃣ 专业服务（法律 / 会计 / 顾问）",
+      "accounting": "会计 / 税务",
+      "legal": "法律 / 律师 / 法务",
+      "management": "管理顾问 / 企业顾问",
+      "hr": "人资顾问 / 猎头 / 猎才"
     },
     "marketing": {
-      "label": "",
-      "digital": "",
-      "branding": "",
-      "ads": "",
-      "content": ""
+      "label": "5️⃣ 行销、广告与品牌",
+      "digital": "数字行销 / 社群行销",
+      "branding": "品牌行销 / 公关",
+      "ads": "广告代理 / 媒体采购",
+      "content": "内容行销 / 文案 / SEO"
     },
     "media": {
-      "label": "",
-      "news": "",
-      "publishing": "",
-      "writing": "",
-      "podcast": ""
+      "label": "6️⃣ 媒体、出版与内容创作",
+      "news": "新闻媒体 / 新闻网站",
+      "publishing": "出版社 / 编辑",
+      "writing": "撰稿 / 博客 / 专栏",
+      "podcast": "Podcast / 自媒体创作"
     },
     "entertainment": {
-      "label": "",
-      "film": "",
-      "music": "",
-      "art": "",
-      "design": ""
+      "label": "7️⃣ 娱乐 & 文创 & 表演",
+      "film": "影视 / 戏剧 / 综艺制作",
+      "music": "音乐 / 经纪 / 艺人相关",
+      "art": "艺术 / 画廊 / 展览",
+      "design": "设计（平面 / 视觉 / UI / 3D）"
     },
     "game_acg": {
-      "label": "",
-      "game_dev": "",
-      "game_ops": "",
-      "esports": "",
-      "anime": "",
-      "streamer": ""
+      "label": "8️⃣ 游戏、ACG 与电竞",
+      "game_dev": "游戏开发（手游 / PC / 主机）",
+      "game_ops": "游戏运营 / 发行 / 社群管理",
+      "esports": "电竞 / 战队 / 赛事",
+      "anime": "动漫 / ACG 相关产业",
+      "streamer": "直播主 / 直播平台"
     },
     "manufacturing": {
-      "label": "",
-      "general": "",
-      "machinery": "",
-      "electronics": "",
-      "automotive": ""
+      "label": "9️⃣ 制造业与工业",
+      "general": "一般制造业 / 加工",
+      "machinery": "机械 / 自动化 / 工业设备",
+      "electronics": "电子 / 半导体",
+      "automotive": "汽车 / 摩托车 / 零组件"
     },
     "energy": {
-      "label": "",
-      "oil": "",
-      "power": "",
-      "chemical": "",
-      "mining": ""
+      "label": "🔟 能源、化工与原材料",
+      "oil": "石油 / 天然气",
+      "power": "电力 / 再生能源",
+      "chemical": "化工 / 材料",
+      "mining": "矿业 / 原材料"
     },
     "construction": {
-      "label": "",
-      "architecture": "",
-      "civil": "",
-      "developer": "",
-      "real_estate": ""
+      "label": "1️⃣1️⃣ 建筑、不动产与工程",
+      "architecture": "建筑设计 / 室内设计",
+      "civil": "土木工程 / 施工",
+      "developer": "不动产开发 / 建商",
+      "real_estate": "房仲 / 代销 / 物业管理"
     },
     "logistics": {
-      "label": "",
-      "logistics_intl": "",
-      "warehouse": "",
-      "transport": "",
-      "supply_chain": ""
+      "label": "1️⃣2️⃣ 交通、物流与供应链",
+      "logistics_intl": "国内外物流 / 快递",
+      "warehouse": "仓储 / 配送中心",
+      "transport": "交通运输（航空 / 海运 / 陆运）",
+      "supply_chain": "供应链管理 / 采购"
     },
     "retail": {
-      "label": "",
-      "wholesale": "",
-      "department": "",
-      "retail_shop": "",
-      "trade": ""
+      "label": "1️⃣3️⃣ 批发、零售与贸易",
+      "wholesale": "批发 / 代理商 / 渠道商",
+      "department": "百货 / 商场 / 便利店",
+      "retail_shop": "传统零售 / 小店",
+      "trade": "进出口贸易"
     },
     "service": {
-      "label": "",
-      "restaurant": "",
-      "hotel": "",
-      "travel": "",
-      "leisure": ""
+      "label": "1️⃣4️⃣ 餐饮、旅游与休闲",
+      "restaurant": "餐厅 / 咖啡厅 / 饮料店 / 酒吧",
+      "hotel": "酒店 / 旅馆 / 民宿",
+      "travel": "旅行社 / 导游 / 领队",
+      "leisure": "观光景点 / 游乐园 / 休闲娱乐场所"
     },
     "medical": {
-      "label": "",
-      "hospital": "",
-      "pharma": "",
-      "rehab": "",
-      "counseling": "",
-      "care": ""
+      "label": "1️⃣5️⃣ 医疗、健康与照护",
+      "hospital": "医院 / 诊所 / 医师 / 护理",
+      "pharma": "药局 / 药品 / 医疗器材公司",
+      "rehab": "复健 / 物理治疗 / 药学 / 检验",
+      "counseling": "心理咨询 / 身心健康",
+      "care": "长照 / 照护 / 社工"
     },
     "education": {
-      "label": "",
-      "teacher": "",
-      "cram_school": "",
-      "online_edu": "",
-      "research": "",
-      "training": ""
+      "label": "1️⃣6️⃣ 教育、研究与培训",
+      "teacher": "学校教师 / 教职人员",
+      "cram_school": "补习班 / 家教",
+      "online_edu": "线上教育 / 教学平台",
+      "research": "研究机构 / 实验室",
+      "training": "企业内训 / 培训讲师"
     },
     "public": {
-      "label": "",
-      "civil_servant": "",
-      "public_corp": "",
-      "military": "",
-      "ngo": "",
-      "religious": ""
+      "label": "1️⃣7️⃣ 公部门、军警与非营利",
+      "civil_servant": "公务员 / 政府机关",
+      "public_corp": "公营事业",
+      "military": "军人 / 警消 / 宪兵等",
+      "ngo": "NGO / NPO / 协会 / 基金会",
+      "religious": "宗教团体 / 宗教机构"
     },
     "agriculture": {
-      "label": "",
-      "farming": "",
-      "fishery": "",
-      "forestry": "",
-      "environment": ""
+      "label": "1️⃣8️⃣ 农林渔牧与环境相关",
+      "farming": "农业 / 农场 / 农企业",
+      "fishery": "渔业 / 水产养殖",
+      "forestry": "林业",
+      "environment": "环保 / 永续 / ESG / 气候相关产业"
     },
     "beauty": {
-      "label": "",
-      "beauty_spa": "",
-      "fitness": "",
-      "fashion": "",
-      "wedding": "",
-      "other_service": ""
+      "label": "1️⃣9️⃣ 美容、时尚与个人服务",
+      "beauty_spa": "美容 / 美发 / 美甲 / SPA",
+      "fitness": "健身教练 / 运动指导",
+      "fashion": "时尚 / 服装 / 饰品",
+      "wedding": "婚礼 / 摄影 / 活动策划",
+      "other_service": "其他个人服务业"
     },
     "flexible": {
-      "label": "",
-      "homemaker_full": "",
-      "student_full": "",
-      "investor_full": "",
-      "slasher": "",
-      "seeking": "",
-      "other_industry": ""
+      "label": "2️⃣0️⃣ 灵活 & 其他",
+      "homemaker_full": "家庭主妇 / 主夫（全职家务）",
+      "student_full": "学生（高中 / 大学 / 研究生）",
+      "investor_full": "全职投资人 / 自营交易",
+      "slasher": "斜杠 / 多重职业",
+      "seeking": "目前待业 / 转职中",
+      "other_industry": "其他产业（自行输入）"
     }
   }
 };

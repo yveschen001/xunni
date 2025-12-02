@@ -439,13 +439,13 @@ async function resumeOnboarding(
           [
             {
               text: i18n.t('onboarding.terms.privacy_policy_button'),
-              url: LEGAL_URLS.PRIVACY_POLICY,
+              url: LEGAL_URLS.getPRIVACY_POLICY(env),
             },
           ],
           [
             {
               text: i18n.t('onboarding.terms.terms_of_service_button'),
-              url: LEGAL_URLS.TERMS_OF_SERVICE,
+              url: LEGAL_URLS.getTERMS_OF_SERVICE(env),
             },
           ],
         ]

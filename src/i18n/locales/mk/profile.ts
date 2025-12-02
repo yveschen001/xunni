@@ -69,6 +69,6 @@ export default {
   "vip2": "• Употреби /vip за да се надградиш на VIP член\n",
   "vipUpgrade": "• Употреби /vip за да се надградиш на VIP член\n",
   "zodiac": "⭐ Загатка: ${zodiac}\n",
-  "fortuneQuota": "",
-  "vipWithDays": ""
+  "fortuneQuota": "🔮 {fortunemessage bottle}: {total} (Оваа недела бесплатно: {weekly}/{limit} | Додатно: {additional})",
+  "vipWithDays": "💎 VIP Член (Останати {days} дена, Истек: {expireDate})"
 };

@@ -69,6 +69,6 @@ export default {
   "vip2": "• VIP Üye olmak için /vip kullanın\n",
   "vipUpgrade": "• VIP Üye olmak için /vip kullanın\n",
   "zodiac": "⭐ Burç: ${zodiac}\n",
-  "fortuneQuota": "",
-  "vipWithDays": ""
+  "fortuneQuota": "🔮 {fortunemessage mesaj şişesi}: {total} (Bu hafta ücretsiz: {weekly}/{limit} | Ek: {additional})",
+  "vipWithDays": "💎 VIP Üye (Kalan {days} gün, Son Tarih: {expireDate})"
 };

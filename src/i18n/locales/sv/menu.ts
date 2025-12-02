@@ -15,7 +15,7 @@ export default {
   "levelFree": "🆓 Gratis medlem",
   "levelVip": "💎 VIP-medlem",
   "message": "Låt oss skicka flaskpost tillsammans på XunNi! 🍾 Använd min inbjudningskod för att gå med, så kan vi båda få fler kvoter!",
-  "message2": "https://t.me/share/url?url=https://t.me/${botUsername}?start=invite_${inviteCode}&text=Kom till XunNi och kasta en flaskpost tillsammans ",
+  "message2": "https://t.me/share/url?url=https://t.me/${botUsername}?start=invite_${inviteCode}&text=Kom till XunNi och kasta en flaskpost tillsammans",
   "notRegistered": "Inte registrerad",
   "notSet": "Inte satt",
   "quota": "• Ni båda får en daglig kvot +1\n\n",
@@ -39,11 +39,11 @@ export default {
   "vip": "• Nivå: ${isVip ? 'VIP-medlem 💎' : 'Gratis medlem'}",
   "vip2": "VIP medlem 💎",
   "yourStatus": "Din status",
-  "birthDate": "",
-  "zodiac": "",
-  "bloodType": "",
-  "interests": "",
-  "bio": "",
-  "driftBottles": "",
-  "fortuneBottles": ""
+  "birthDate": "Födelsedag",
+  "zodiac": "Stjärntecken",
+  "bloodType": "Blodtyp",
+  "interests": "Intressen",
+  "bio": "Profil",
+  "driftBottles": "Meddelandeflaske",
+  "fortuneBottles": "Ödesflaska"
 };

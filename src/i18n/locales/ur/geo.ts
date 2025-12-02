@@ -1,17 +1,17 @@
 export default {
-  "select_continent": "",
-  "select_country": "",
-  "search_city_prompt": "",
-  "city_not_found": "",
-  "confirm_city": "",
+  "select_continent": "براہ کرم اپنے علاقے کا انتخاب کریں 🌍",
+  "select_country": "براہ کرم ایک ملک منتخب کریں",
+  "search_city_prompt": "براہ کرم شہر کا نام درج کریں (جیسے، تائی پے)",
+  "city_not_found": "شہر نہیں ملا، براہ کرم انگریزی نام آزما لیں۔",
+  "confirm_city": "کیا یہ وہ شہر ہے جس کا آپ نے انتخاب کیا: {city} ({country})؟",
   "continent": {
-    "asia": "",
-    "europe": "",
-    "north_america": "",
-    "south_america": "",
-    "africa": "",
-    "oceania": ""
+    "asia": "ایشیاء",
+    "europe": "یورپ",
+    "north_america": "شمالی امریکہ",
+    "south_america": "جنوبی امریکہ",
+    "africa": "افریقہ",
+    "oceania": "اوشیانا"
   },
-  "btn_search_manually": "",
-  "confirm_button": ""
+  "btn_search_manually": "🔍 شہر کی دستی تلاش کریں",
+  "confirm_button": "✅ تصدیق کریں"
 };

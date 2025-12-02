@@ -178,6 +178,6 @@ export default {
   "userNotFound4": "❌ उपयोगकर्ता नहीं मिला",
   "userNotFoundRegister": "⚠️ उपयोगकर्ता अस्तित्व में नहीं है, कृपया पहले /start का उपयोग करके पंजीकरण करें।",
   "verificationFailed": "❌ सत्यापन विफल, कृपया बाद में पुनः प्रयास करें।",
-  "invalidTimeFormat": "",
-  "invalidDateFormat": ""
+  "invalidTimeFormat": "अमान्य समय प्रारूप\nउदाहरण: 19:30 (24-घंटे का प्रारूप, 00-23 घंटे, 00-59 मिनट)",
+  "invalidDateFormat": "अमान्य दिनांक प्रारूप\nउदाहरण: 2000-01-01"
 };

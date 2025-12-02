@@ -20,5 +20,5 @@ export default {
   "watchAdRemaining": "📊 เหลือวันนี้: **${remaining}/20** ครั้ง",
   "watchAdReward": "🎁 ดูจบเพื่อรับ **+1 โควตา**",
   "watchAdTitle": "📺 **ดูโฆษณาเพื่อรับโควตา**",
-  "watchAdButton": ""
+  "watchAdButton": "📺 ปลดล็อกโดยการดูโฆษณา (+1 ครั้ง)"
 };

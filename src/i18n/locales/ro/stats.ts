@@ -99,7 +99,7 @@ export default {
   "vipTriple": "💎 **Statistici VIP Triple Bottle** (ultimele ${days} zile)",
   "vipTripleTitle": "💎 **Statistici VIP Triple Bottle** (ultimele {days} zile)",
   "zodiac": "🔮 **Zodiac**: ${zodiac}",
-  "fortuneTitle": "",
-  "fortuneReadings": "",
-  "fortuneQuota": ""
+  "fortuneTitle": "🔮 **{fortunemessage bottle}**",
+  "fortuneReadings": "• Număr de noroc : {count}",
+  "fortuneQuota": "• Cota rămasă : {quota}"
 };

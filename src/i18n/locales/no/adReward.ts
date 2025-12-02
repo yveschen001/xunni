@@ -20,5 +20,5 @@ export default {
   "watchAdRemaining": "📊 Dagens gjenstående: **${remaining}/20** ganger",
   "watchAdReward": "🎁 Fullfør visning for å tjene **+1 kvote**",
   "watchAdTitle": "📺 **Se annonser for å tjene kvoter**",
-  "watchAdButton": ""
+  "watchAdButton": "📺 Lås opp ved å se en annonse (+1 gang)"
 };

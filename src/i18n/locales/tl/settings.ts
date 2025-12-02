@@ -28,8 +28,8 @@ export default {
   "disabled": "🚫 Na-disable na ang tahimik na oras",
   "quietHoursHint": "Hindi ka makakatanggap ng mga di-mahalagang abiso sa panahong ito",
   "blocklist": {
-    "title": "",
-    "empty": "",
-    "unblock": ""
+    "title": "🚫 Listahan ng Naharang",
+    "empty": "Walang kasalukuyang listahan ng naharang",
+    "unblock": "I-unblock"
   }
 };

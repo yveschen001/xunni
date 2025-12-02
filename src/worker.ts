@@ -21,13 +21,13 @@ export default {
       }
 
       // Legal documents (static HTML files)
-      if (url.pathname === '/privacy.html') {
+      if (url.pathname === '/privacy' || url.pathname === '/privacy.html') {
         return serveLegalDocument('privacy');
       }
-      if (url.pathname === '/terms.html') {
+      if (url.pathname === '/terms' || url.pathname === '/terms.html') {
         return serveLegalDocument('terms');
       }
-      if (url.pathname === '/community.html') {
+      if (url.pathname === '/community' || url.pathname === '/community.html') {
         return serveLegalDocument('community');
       }
 

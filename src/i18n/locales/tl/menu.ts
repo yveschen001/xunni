@@ -15,7 +15,7 @@ export default {
   "levelFree": "🆓 Libreng Miyembro",
   "levelVip": "💎 Miyembro ng VIP",
   "message": "Magtapon tayo ng mga bote ng mensahe nang magkasama sa XunNi! 🍾 Gamitin ang aking invite code para sumali, at pareho tayong makakakuha ng mas maraming quota!",
-  "message2": "https://t.me/share/url?url=https://t.me/${botUsername}?start=invite_${inviteCode}&text=Halika sa XunNi at magtapon ng bote ng mensahe nang magkasama ",
+  "message2": "https://t.me/share/url?url=https://t.me/${botUsername}?start=invite_${inviteCode}&text=Halika sa XunNi at magtapon ng bote ng mensahe nang magkasama",
   "notRegistered": "Hindi Nakarehistro",
   "notSet": "Hindi Itinakda",
   "quota": "• Pareho kayong makakakuha ng daily quota +1\n\n",
@@ -39,11 +39,11 @@ export default {
   "vip": "• Antas: ${isVip ? 'VIP Member 💎' : 'Free Member'}",
   "vip2": "VIP Miyembro 💎",
   "yourStatus": "Ang Iyong Katayuan",
-  "birthDate": "",
-  "zodiac": "",
-  "bloodType": "",
-  "interests": "",
-  "bio": "",
-  "driftBottles": "",
-  "fortuneBottles": ""
+  "birthDate": "Kaarawan",
+  "zodiac": "Tanda ng Zodiac",
+  "bloodType": "Uri ng Dugo",
+  "interests": "Mga Interes",
+  "bio": "Profil",
+  "driftBottles": "Bote ng Mensahe",
+  "fortuneBottles": "Bote ng Kapalaran"
 };

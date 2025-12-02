@@ -15,7 +15,7 @@ export default {
   "levelFree": "🆓 Anëtar i lirë",
   "levelVip": "💎 Anëtar VIP",
   "message": "Le të hedhim së bashku message bottles në XunNi! 🍾 Përdor kodin tim të ftesës për t'u bashkuar dhe të dy mund të marrim më shumë kuota!",
-  "message2": "https://t.me/share/url?url=https://t.me/${botUsername}?start=invite_${inviteCode}&text=Vieni në XunNi dhe hidh një shishkë mesazh së bashku ",
+  "message2": "https://t.me/share/url?url=https://t.me/${botUsername}?start=invite_${inviteCode}&text=Vieni në XunNi dhe hidh një shishkë mesazh së bashku",
   "notRegistered": "Nuk jeni regjistruar",
   "notSet": "Nuk është vendosur",
   "quota": "• Të dy merrni një kuotë të përditshme +1",
@@ -39,11 +39,11 @@ export default {
   "vip": "• Niveli: ${isVip ? 'Anëtar VIP 💎' : 'Anëtar Falas'}",
   "vip2": "Anëtar VIP 💎",
   "yourStatus": "Statusi juaj",
-  "birthDate": "",
-  "zodiac": "",
-  "bloodType": "",
-  "interests": "",
-  "bio": "",
-  "driftBottles": "",
-  "fortuneBottles": ""
+  "birthDate": "Datëlindja",
+  "zodiac": "Shenja e Horoskopit",
+  "bloodType": "Grada e Gjakut",
+  "interests": "Preferencat",
+  "bio": "Profili",
+  "driftBottles": "Mesazhi i Shishe",
+  "fortuneBottles": "Shishja e Fatit"
 };

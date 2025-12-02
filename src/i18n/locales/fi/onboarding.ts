@@ -58,7 +58,7 @@ export default {
   "help": "Tämä auttaa meitä löytämään sinulle sopivampia keskustelukumppaneita～",
   "iHaveRead": "✅ Olen lukenut ja hyväksyn",
   "info": {
-    "age18": "• Palvelun käyttöön on oltava vähintään 18 vuotta vanha",
+    "age18": "• Sinun on oltava vähintään 18-vuotias voidaksesi käyttää tätä palvelua.\n- Tarkkoja tietoja on annettava, jotta yhteensovitus ja ennustaminen tuottaisivat hyviä tuloksia.",
     "city": "🌍 Alue: {city}"
   },
   "languageSelection": "🌐 **Valitse kieli**\n\nValitse toivottu kieli:",

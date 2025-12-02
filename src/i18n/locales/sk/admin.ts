@@ -398,7 +398,7 @@ export default {
   "vip8": "⬇️ **VIP Automatické zníženie**\n\n",
   "vip9": "🔄 **Obnovenie VIP**\n\n",
   "dailyReport": "📊 Denná operačná správa ({date})\n\n💰 Odhadované náklady na preklad:\n{costDetails}\n\n⚠️ Monitorovanie anomálií:\n• Zníženia prekladu: {fallbackCount} krát\n• Zlyhania prekladu: {errorCount} krát\n\n📈 Aktívne údaje:\n• Noví užívatelia: {newUsers}\n• Aktívne konverzácie: {activeConversations}",
-  "analyticsTitle": "",
-  "adPerformanceTitle": "",
-  "vipFunnelTitle": ""
+  "analyticsTitle": "Analýza dát",
+  "adPerformanceTitle": "Výkon reklamy",
+  "vipFunnelTitle": "VIP funnel"
 };

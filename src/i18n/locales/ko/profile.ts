@@ -69,6 +69,6 @@ export default {
   "vip2": "• /vip를 사용하여 VIP 회원으로 업그레이드하세요\n",
   "vipUpgrade": "• /vip를 사용하여 VIP 회원으로 업그레이드하세요\n",
   "zodiac": "⭐ 별자리: ${zodiac}\n",
-  "fortuneQuota": "",
-  "vipWithDays": ""
+  "fortuneQuota": "🔮 {fortunemessage 메시지 병}: {total} (이번 주 무료: {weekly}/{limit} | 추가: {additional})",
+  "vipWithDays": "💎 VIP 회원 (남은 {days}일, 만료: {expireDate})"
 };

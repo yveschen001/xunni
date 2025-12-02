@@ -834,13 +834,13 @@ export async function handleAntiFraudConfirmation(
         [
           {
             text: i18n.t('onboarding.terms.privacy_policy_button'),
-            url: LEGAL_URLS.PRIVACY_POLICY,
+            url: LEGAL_URLS.getPRIVACY_POLICY(env),
           },
         ],
         [
           {
             text: i18n.t('onboarding.terms.terms_of_service_button'),
-            url: LEGAL_URLS.TERMS_OF_SERVICE,
+            url: LEGAL_URLS.getTERMS_OF_SERVICE(env),
           },
         ],
       ]
@@ -1028,7 +1028,7 @@ export async function handleTermsAgreement(callbackQuery: CallbackQuery, env: En
           updatedI18n.t('onboarding.zodiac', {
             updatedUser: {
               zodiac_sign: updatedUser.zodiac_sign
-                ? updatedI18n.t(`zodiac.${updatedUser.zodiac_sign}` as any).replace('$zodiac.', '')
+                ? updatedI18n.t(`zodiac.${updatedUser.zodiac_sign}` as any)
                 : notSetText,
             },
           }) +

@@ -28,8 +28,8 @@ export default {
   "disabled": "🚫 Waktu senyap telah dinyahaktifkan",
   "quietHoursHint": "Anda tidak akan menerima pemberitahuan tidak mendesak sepanjang tempoh ini",
   "blocklist": {
-    "title": "",
-    "empty": "",
-    "unblock": ""
+    "title": "🚫 Senarai Sekat",
+    "empty": "Kini tiada senarai sekat",
+    "unblock": "Buka Sekatan"
   }
 };

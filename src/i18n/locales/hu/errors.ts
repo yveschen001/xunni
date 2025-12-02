@@ -178,6 +178,6 @@ export default {
   "userNotFound4": "❌ A felhasználó nem létezik",
   "userNotFoundRegister": "⚠️ A felhasználó nem létezik, kérjük, először regisztráljon a /start paranccsal.",
   "verificationFailed": "❌ A hitelesítés meghiúsult, kérjük, próbálkozzon később",
-  "invalidTimeFormat": "",
-  "invalidDateFormat": ""
+  "invalidTimeFormat": "Érvénytelen időformátum\nPélda: 19:30 (24 órás formátum, 00-23 óra, 00-59 perc)",
+  "invalidDateFormat": "Érvénytelen dátumformátum\nPélda: 2000-01-01"
 };

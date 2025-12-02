@@ -26,7 +26,7 @@ export default {
   "manual": "Cài đặt thủ công",
   "mbti": "• Sử dụng /mbti để làm lại hoặc chỉnh sửa MBTI\n",
   "mbtiWithSource": "🧠 MBTI: {mbti}{source}",
-  "message": "https://t.me/share/url?url=https://t.me/${botUsername}?start=invite_${inviteCode}&text=Hãy cùng nhau ném chai thư trên XunNi! 🍾 Sử dụng mã mời của tôi: ${inviteCode} ",
+  "message": "https://t.me/share/url?url=https://t.me/${botUsername}?start=invite_${inviteCode}&text=Hãy cùng nhau ném chai thư trên XunNi! 🍾 Sử dụng mã mời của tôi: ${inviteCode}",
   "message2": "${inviteLimitWarning}\n\n",
   "message3": "🌍 Ngôn ngữ: ${user.language_pref}\n\n",
   "message4": "🌍 Ngôn ngữ: ${user.language_pref }\n",
@@ -69,6 +69,6 @@ export default {
   "vip2": "• Sử dụng /vip để nâng cấp thành viên VIP\n",
   "vipUpgrade": "• Sử dụng /vip để nâng cấp thành viên VIP\n",
   "zodiac": "⭐ Cung hoàng đạo: ${zodiac}\n",
-  "fortuneQuota": "",
-  "vipWithDays": ""
+  "fortuneQuota": "🔮 {fortunemessage chai thư}: {total} (Tuần này miễn phí: {weekly}/{limit} | Thêm: {additional})",
+  "vipWithDays": "💎 Thành viên VIP (Còn lại {days} ngày, Hết hạn: {expireDate})"
 };

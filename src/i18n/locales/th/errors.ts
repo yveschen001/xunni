@@ -178,6 +178,6 @@ export default {
   "userNotFound4": "❌ ผู้ใช้ไม่มีอยู่",
   "userNotFoundRegister": "⚠️ ผู้ใช้ไม่มีอยู่ กรุณาลงทะเบียนโดยใช้ /start ก่อน",
   "verificationFailed": "❌ การตรวจสอบล échล้มเหลว กรุณาลองใหม่ในภายหลัง",
-  "invalidTimeFormat": "",
-  "invalidDateFormat": ""
+  "invalidTimeFormat": "รูปแบบเวลาที่ไม่ถูกต้อง\nตัวอย่าง: 19:30 (รูปแบบ 24 ชั่วโมง, 00-23 ชั่วโมง, 00-59 นาที)",
+  "invalidDateFormat": "รูปแบบวันเดือนปีที่ไม่ถูกต้อง\nตัวอย่าง: 2000-01-01"
 };

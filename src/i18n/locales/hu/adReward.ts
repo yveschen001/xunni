@@ -20,5 +20,5 @@ export default {
   "watchAdRemaining": "📊 A mai maradék: **${remaining}/20** alkalom",
   "watchAdReward": "🎁 A hirdetések befejezése után **+1 kvóta** szerzés",
   "watchAdTitle": "📺 **Kvóták szerzése hirdetések nézésével**",
-  "watchAdButton": ""
+  "watchAdButton": "📺 Hirdetéssel történő feloldás (+1 alkalom)"
 };

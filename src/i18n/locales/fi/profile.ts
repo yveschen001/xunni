@@ -69,6 +69,6 @@ export default {
   "vip2": "• Käytä /vip päivittääksesi VIP-jäseneksi\n",
   "vipUpgrade": "• Käytä /vip päivittääksesi VIP-jäseneksi\n",
   "zodiac": "⭐ Horoskooppi: ${zodiac}\n",
-  "fortuneQuota": "",
-  "vipWithDays": ""
+  "fortuneQuota": "🔮 {fortunemessage bottle}: {total} (Tällä viikolla ilmainen: {weekly}/{limit} | Lisä: {additional})",
+  "vipWithDays": "💎 VIP-jäsen (Jäljellä {days} päivää, vanhenemispäivä: {expireDate})"
 };

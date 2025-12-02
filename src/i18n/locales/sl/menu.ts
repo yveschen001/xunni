@@ -39,11 +39,11 @@ export default {
   "vip": "• Raven: ${isVip ? 'VIP Član 💎' : 'Brezplačni član'}",
   "vip2": "VIP član 💎",
   "yourStatus": "Vaš status",
-  "birthDate": "",
-  "zodiac": "",
-  "bloodType": "",
-  "interests": "",
-  "bio": "",
-  "driftBottles": "",
-  "fortuneBottles": ""
+  "birthDate": "Rojstni dan",
+  "zodiac": "Zodiakalna znamenja",
+  "bloodType": "Krvna skupina",
+  "interests": "Interesi",
+  "bio": "Profil",
+  "driftBottles": "Sporočilna steklenica",
+  "fortuneBottles": "Fortuna steklenica"
 };

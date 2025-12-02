@@ -28,8 +28,8 @@ export default {
   "disabled": "🚫 Tiché hodiny boli deaktivované",
   "quietHoursHint": "Počas tohto obdobia nebudete dostávať neurgentné notifikácie",
   "blocklist": {
-    "title": "",
-    "empty": "",
-    "unblock": ""
+    "title": "🚫 Zoznam blokovaných",
+    "empty": "Momentálne nie je žiadny blokovaný zoznam",
+    "unblock": "Oblokovať"
   }
 };

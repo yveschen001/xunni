@@ -15,7 +15,7 @@ export default {
   "levelFree": "🆓 Bezplatný člen",
   "levelVip": "💎 VIP člen",
   "message": "Pojďme společně posílat láhve se zprávou na XunNi! 🍾 Použij můj pozvánkový kód k připojení a oba získáme více kvót!",
-  "message2": "https://t.me/share/url?url=https://t.me/${botUsername}?start=invite_${inviteCode}&text=Přijďte do XunNi a hodíme si láhev se zprávou spolu ",
+  "message2": "https://t.me/share/url?url=https://t.me/${botUsername}?start=invite_${inviteCode}&text=Přijďte do XunNi a hodíme si láhev se zprávou spolu",
   "notRegistered": "Neregistrován",
   "notSet": "Nastaveno",
   "quota": "• Oba máte denní kvótu +1\n\n",
@@ -39,11 +39,11 @@ export default {
   "vip": "• Úroveň: ${isVip ? 'VIP Člen 💎' : 'Bezplatný člen'}",
   "vip2": "VIP Člen 💎",
   "yourStatus": "Váš stav",
-  "birthDate": "",
-  "zodiac": "",
-  "bloodType": "",
-  "interests": "",
-  "bio": "",
-  "driftBottles": "",
-  "fortuneBottles": ""
+  "birthDate": "Narozeniny",
+  "zodiac": "Znamení zvěrokruhu",
+  "bloodType": "Krevní skupina",
+  "interests": "Zájmy",
+  "bio": "Profil",
+  "driftBottles": "Zprávová láhev",
+  "fortuneBottles": "Láhev osudu"
 };

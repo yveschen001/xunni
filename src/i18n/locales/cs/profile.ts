@@ -69,6 +69,6 @@ export default {
   "vip2": "• Použijte /vip pro upgrade na VIP člena\n",
   "vipUpgrade": "• Použijte /vip pro upgrade na VIP člena\n",
   "zodiac": "⭐ Zvěrokruh: ${zodiac}\n",
-  "fortuneQuota": "",
-  "vipWithDays": ""
+  "fortuneQuota": "🔮 {fortunemessage bottle}: {total} (Tento týden zdarma: {weekly}/{limit} | Další: {additional})",
+  "vipWithDays": "💎 VIP člen (zbývá {days} dní, Vypršení: {expireDate})"
 };

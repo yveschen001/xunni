@@ -1,16 +1,16 @@
 export default {
   "nickname": "👤 نام مستعار: ${ownerMaskedNickname}",
   "short19": "✏️ ویرایش پروفایل",
-  "menuTitle": "",
-  "nicknameButton": "",
-  "bioButton": "",
-  "regionButton": "",
-  "interestsButton": "",
-  "bloodTypeButton": "",
-  "matchPrefButton": "",
-  "nicknameInstruction": "",
-  "nicknameInputHint": "",
-  "bioInstruction": "",
-  "bioInputHint": "",
-  "bloodTypeInstruction": ""
+  "menuTitle": "ویرایش پروفایل",
+  "nicknameButton": "✏️ ویرایش نام مستعار",
+  "bioButton": "📝 ویرایش معرفی",
+  "regionButton": "🌍 تغییر منطقه",
+  "interestsButton": "🏷️ تغییر علایق",
+  "bloodTypeButton": "🩸 تغییر گروه خونی",
+  "matchPrefButton": "❤️ تنظیمات تطابق",
+  "nicknameInstruction": "لطفاً یک نام مستعار جدید وارد کنید (حداکثر ۲۰ کاراکتر).\n\nنام مستعار فعلی شما: {nickname}",
+  "nicknameInputHint": "👇 لطفاً یک نام مستعار جدید وارد کنید:",
+  "bioInstruction": "لطفاً یک معرفی‌نامه جدید وارد کنید (حداکثر ۱۰۰ کاراکتر).\n\nمعرفی‌نامه فعلی شما: {bio}",
+  "bioInputHint": "👇 لطفاً یک معرفی‌نامه جدید وارد کنید:",
+  "bloodTypeInstruction": "لطفاً گروه خونی خود را انتخاب کنید:"
 };

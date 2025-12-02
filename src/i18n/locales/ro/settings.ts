@@ -28,8 +28,8 @@ export default {
   "disabled": "🚫 Orele de liniște au fost dezactivate",
   "quietHoursHint": "Nu vei primi notificări neurgente în această perioadă",
   "blocklist": {
-    "title": "",
-    "empty": "",
-    "unblock": ""
+    "title": "🚫 Lista de blocare",
+    "empty": "În prezent nu există nicio listă de blocare",
+    "unblock": "Deblochează"
   }
 };

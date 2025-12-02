@@ -178,6 +178,6 @@ export default {
   "userNotFound4": "❌ 사용자가 존재하지 않습니다",
   "userNotFoundRegister": "⚠️ 사용자가 존재하지 않습니다. 먼저 /start를 사용하여 등록해 주세요.",
   "verificationFailed": "❌ 인증 실패, 나중에 다시 시도해 주세요",
-  "invalidTimeFormat": "",
-  "invalidDateFormat": ""
+  "invalidTimeFormat": "유효하지 않은 시간 형식\n예: 19:30 (24시간 형식, 00-23 시, 00-59 분)",
+  "invalidDateFormat": "유효하지 않은 날짜 형식\n예: 2000-01-01"
 };

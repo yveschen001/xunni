@@ -69,6 +69,6 @@ export default {
   "vip2": "• VIP رکن بننے کے لیے /vip استعمال کریں\n",
   "vipUpgrade": "• VIP رکن بننے کے لیے /vip استعمال کریں\n",
   "zodiac": "⭐ زائچہ: ${zodiac}\n",
-  "fortuneQuota": "",
-  "vipWithDays": ""
+  "fortuneQuota": "🔮 {fortunemessage bottle}: {total} (اس ہفتے مفت: {weekly}/{limit} | اضافی: {additional})",
+  "vipWithDays": "💎 VIP رکن (باقی {days} دن، تاریخ ختم: {expireDate})"
 };

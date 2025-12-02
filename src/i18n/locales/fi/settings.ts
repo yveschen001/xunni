@@ -28,8 +28,8 @@ export default {
   "disabled": "🚫 Hiljaiset tunnit on poistettu käytöstä",
   "quietHoursHint": "Et saa kiireettömiä ilmoituksia tänä aikana",
   "blocklist": {
-    "title": "",
-    "empty": "",
-    "unblock": ""
+    "title": "🚫 Estolistat",
+    "empty": "Tällä hetkellä ei ole estolistoja",
+    "unblock": "Poista esto"
   }
 };

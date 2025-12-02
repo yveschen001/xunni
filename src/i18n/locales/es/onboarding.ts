@@ -58,7 +58,7 @@ export default {
   "help": "Esto nos ayudará a encontrar mejores compañeros de chat para ti～\n\n",
   "iHaveRead": "✅ He leído y estoy de acuerdo",
   "info": {
-    "age18": "• Debe tener al menos 18 años para utilizar este servicio",
+    "age18": "• Debes tener al menos 18 años para utilizar este servicio.\n- Se debe proporcionar información precisa para que la coincidencia y la adivinación den buenos resultados.",
     "city": "🌍 Región: {city}"
   },
   "languageSelection": "🌐 **Seleccionar idioma**\n\nPor favor selecciona tu idioma preferido:",
