@@ -395,7 +395,9 @@ async function renderInterestMenu(
   const buttons: any[][] = [];
 
   // Header: Current Selection
-  const listStr = selected.length > 0 ? selected.join(', ') : i18n.t('common.none');
+  const listStr = selected.length > 0 
+    ? selected.map(k => i18n.t(`interests.items.${k}` as any)).join(', ') 
+    : i18n.t('common.none');
   const header = i18n.t('interests.current', { count: selected.length, max: MAX_INTERESTS, list: listStr });
 
   if (!categoryId) {
@@ -408,10 +410,8 @@ async function renderInterestMenu(
       const catLabel = i18n.t(`interests.categories.${cat.id}` as any);
       
       // Check selection
-      const catItemTexts = cat.items.map(k => k); // Check against keys
-      // Also check against translated text for legacy support
       const hasSelection = cat.items.some(k => 
-        selected.includes(k) || selected.includes(i18n.t(`interests.items.${k}` as any))
+        selected.includes(k)
       );
       const btnText = hasSelection ? `✅ ${catLabel}` : catLabel;
 
@@ -435,13 +435,12 @@ async function renderInterestMenu(
     const catName = i18n.t(`interests.categories.${category.id}` as any);
     text = `${i18n.t('interests.title')} > ${catName}\n\n${header}\n\n${i18n.t('interests.label_item', { category: catName })}`;
 
-    // Grid of Items (2 columns or 3?)
-    // 2 columns allows longer text
+    // Grid of Items (2 columns)
     let row: any[] = [];
     for (const itemKey of category.items) {
       const itemLabel = i18n.t(`interests.items.${itemKey}` as any);
-      // Check both code and legacy text
-      const isSelected = selected.includes(itemKey) || selected.includes(itemLabel);
+      // Check if selected
+      const isSelected = selected.includes(itemKey);
       const btnText = isSelected ? `✅ ${itemLabel}` : itemLabel;
       
       row.push({ text: btnText, callback_data: `interest_toggle:${itemKey}` });
@@ -454,7 +453,7 @@ async function renderInterestMenu(
     if (row.length > 0) buttons.push(row);
 
     // Navigation
-    buttons.push([{ text: `⬅️ ${i18n.t('common.back')}`, callback_data: 'interest_home' }]);
+    buttons.push([{ text: `↩️ ${i18n.t('interests.back_to_categories') || '返回分類選單'}`, callback_data: 'interest_home' }]);
     buttons.push([{ text: i18n.t('interests.save'), callback_data: 'interest_save' }]);
   }
 
@@ -618,7 +617,7 @@ async function renderIndustryMenu(
     }
 
     // Navigation
-    buttons.push([{ text: `⬅️ ${i18n.t('common.back')}`, callback_data: 'industry_home' }]);
+    buttons.push([{ text: `↩️ ${i18n.t('career.back_to_categories') || '返回分類選單'}`, callback_data: 'industry_home' }]);
   }
 
   if (messageId) {
