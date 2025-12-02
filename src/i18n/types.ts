@@ -82,6 +82,8 @@ export interface Translations {
     changeLanguage?: string;
     returnToMenu?: string;
     back?: string;
+    quietHoursVipOnly?: string;
+    upgradeForQuietHours?: string;
   };
 
   // Push Notifications (New)
