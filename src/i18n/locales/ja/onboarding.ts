@@ -1,7 +1,7 @@
 export default {
-  "age": "• 年齢: ${updatedUser.age}歳\n",
-  "age2": "あなたの年齢: ${age}歳\n",
-  "age3": "年齢: ${age}歳\n",
+  "age": "• 年齢: {updatedUser.age}歳\n",
+  "age2": "あなたの年齢: {age}歳\n",
+  "age3": "年齢: {age}歳\n",
   "ageRestriction": "❌ 申し訳ありませんが、このサービスを利用するには18歳以上でなければなりません。\n\n",
   "agreeTerms": "下のボタンをクリックして、上記の利用規約を読み、同意したことを示してください。",
   "antiFraud": {
@@ -24,7 +24,7 @@ export default {
   "birthday": "これが誤りであると思われる場合は、お誕生日のフォーマットが正しいか（YYYY-MM-DD）を確認してください。",
   "birthday2": "誕生日を再入力してください (形式: YYYY-MM-DD):\n\n",
   "birthday3": "誕生日を入力してください (形式: YYYY-MM-DD):\n\n",
-  "birthday4": "誕生日: ${birthday}\n",
+  "birthday4": "誕生日: {birthday}\n",
   "birthdayCheck": "このエラーが発生したと思われる場合は、誕生日の形式（YYYY-MM-DD）が正しいかどうかを確認してください。",
   "birthdayError": "❌ {error}",
   "birthdayFormatError": "❌ 無効な誕生日形式\n\n再入力してください（形式: YYYY-MM-DD）:",
@@ -43,14 +43,14 @@ export default {
   "enterYes": "テストを完了するには「はい」と入力してください:",
   "errorRetry": "❌ エラーが発生しました、再入力してください。",
   "example": {
-    "birthday": "例: 1995-06-15"
+    "birthday": "例えば: 2000-12-25"
   },
   "gender": {
     "female": "女性",
-    "label": "• 性別: ${gender}\n",
+    "label": "• 性別: {gender}\n",
     "male": "男性"
   },
-  "gender2": "• 性別: ${updatedUser.gender ===",
+  "gender2": "• 性別: {updatedUser.gender ===",
   "gender3": "性別を選択してください:\n\n",
   "genderFemale": "👩 女性",
   "genderMale": "👨 男性",
@@ -58,7 +58,7 @@ export default {
   "help": "これにより、あなたにより適したチャットパートナーを見つける手助けになります～\n\n",
   "iHaveRead": "✅ 私は読み、同意しました",
   "info": {
-    "age18": "• このサービスを利用するには18歳以上でなければなりません。\n- マッチングと占いが良い結果を生むためには、正確な情報を提供する必要があります。",
+    "age18": "• このサービスを使用するには、18歳以上である必要があります。\n- マッチングや占いを利用するには、良い結果を得るために正確な情報を提供する必要があります。\n\n- 誕生日を入力してください (例: 2000-12-15)",
     "city": "🌍 地域: {city}"
   },
   "languageSelection": "🌐 **言語を選択**\n\nお好みの言語を選択してください：",
@@ -69,8 +69,8 @@ export default {
   "message": "2. 🚨 詐欺メッセージを識別する\n",
   "message2": "• お金を要求するメッセージに注意してください\n",
   "moreLanguages": "もっと多くの言語",
-  "nickname": "• ニックネーム: ${updatedUser.nickname}\n",
-  "nickname2": "素晴らしい！あなたのニックネームは: ${nickname}\n\n",
+  "nickname": "• ニックネーム: {updatedUser.nickname}\n",
+  "nickname2": "素晴らしい！あなたのニックネームは: {nickname}\n\n",
   "nicknameError": "❌ {error}\n\nニックネームを再入力してください：",
   "nicknameGood": "素晴らしい！あなたのニックネームは: {nickname}\n\n",
   "notCompleted": "⚠️ まず、登録プロセスを完了してください。",
@@ -99,7 +99,7 @@ export default {
   "startRegistration": "登録を開始 →",
   "stats": "📊 統計",
   "stepAntiFraud": "🛡️ 上のボタンをクリックして、詐欺防止安全対策を確認してください",
-  "stepBirthday": "📅 生年月日を入力してください（形式：YYYY-MM-DD、例：1995-06-15）",
+  "stepBirthday": "📅 お誕生日を入力してください（フォーマット：YYYY-MM-DD、例：2000-12-25）",
   "stepDefault": "プロンプトに従って登録を完了してください",
   "stepGender": "👤 上のボタンをクリックして性別を選択してください",
   "stepLanguageSelection": "🌍 上のボタンをクリックして言語を選択してください",
@@ -138,12 +138,12 @@ export default {
   "useTelegramNickname": "Telegramのニックネームを使用する",
   "viewPrivacyPolicy": "📋 プライバシーポリシーを見る",
   "viewTermsOfService": "📋 サービス利用規約を見る",
-  "vip": "💡 血液型を提供することは、将来の血液型マッチング機能（VIP限定）に使用されます。\n\n",
+  "vip": "💡 あなたの血液型を入力することで、将来の血液型マッチング機能（追加属性、占星術的マッチング）に使用される可能性があります。",
   "warning": {
     "birthday": "⚠️ 誕生日は設定後に変更できません。正しいことを確認してください！"
   },
   "welcome": "XunNiへようこそ！\n\n言語を選択してください：",
   "yourAge": "あなたの年齢: {age} 歳\n",
-  "zodiac": "• 星座: ${updatedUser.zodiac_sign}\n",
-  "zodiac2": "星座: ${zodiacSign}\n\n"
+  "zodiac": "• 星座: {updatedUser.zodiac_sign}\n",
+  "zodiac2": "星座: {zodiacSign}\n\n"
 };
