@@ -18,164 +18,248 @@ export default {
     "ISTP": "評価者 - 大胆で実用的な実験者、様々な道具を使いこなすスキルを持っている。"
   },
   "full": {
-    "question1": "社交の場では、あなたは通常:",
-    "question1.option1": "他者との会話を開始する",
-    "question1.option2": "他者が近づいてくるのを待つ",
-    "question10": "問題を解決する際、あなたは:",
-    "question10.option1": "実践的な経験と事実に頼る",
-    "question10.option2": "直感と可能性に頼る",
-    "question11": "あなたは好む:",
-    "question11.option1": "特定の詳細に焦点を当てる",
-    "question11.option2": "全体の概念に焦点を当てる",
-    "question12": "新しいことを学ぶとき、あなたは次のことを好みます：",
-    "question12.option1": "段階を追ったアプローチ",
-    "question12.option2": "革新的な方法を探る",
-    "question13": "読むとき、あなたは次のことを好みます：",
-    "question13.option1": "実用的なガイド",
-    "question13.option2": "理論と概念",
-    "question14": "あなたは次のことにもっと集中します：",
-    "question14.option1": "現在と過去",
-    "question14.option2": "未来と可能性",
-    "question15": "物事を説明するとき、あなたは次のようにします：",
-    "question15.option1": "具体的な例を使う",
-    "question15.option2": "比喩や類推を使う",
-    "question16": "あなたの仕事で、次のことにもっと重きを置きます：",
-    "question16.option1": "実用的な応用",
-    "question16.option2": "革新的なアイデア",
-    "question17": "あなたは次のことをより信頼します：",
-    "question17.option1": "実証された方法",
-    "question17.option2": "新しい試み",
-    "question18": "未来を計画するとき、あなたは：",
-    "question18.option1": "現実的な条件に基づいて行います",
-    "question18.option2": "さまざまな可能性を想像してみてください",
-    "question19": "意思決定の際により重視することは:",
-    "question19.option1": "論理と客観的分析",
-    "question19.option2": "感情と人間関係の調和",
-    "question2": "週末は、あなたは:",
-    "question2.option1": "友達と出かける",
-    "question2.option2": "一人でリラックスするために家にいる",
-    "question20": "他人を批判する際には:",
-    "question20.option1": "問題を直接指摘する",
-    "question20.option2": "相手の気持ちを考慮する",
-    "question21": "あなたがより重視するのは:",
-    "question21.option1": "公平と正義",
-    "question21.option2": "思いやりと理解",
-    "question22": "アイデアを評価する際、まず考えるのは:",
-    "question22.option1": "それが論理的であるか",
-    "question22.option2": "それが有益であるか",
-    "question23": "友人が心を打ち明けたとき、あなたは:",
-    "question23.option1": "問題を分析し、アドバイスを提供する",
-    "question23.option2": "聞いて安心感を与える",
-    "question24": "対立の際、あなたは傾向がある:",
-    "question24.option1": "原則を守る",
-    "question24.option2": "関係を維持する",
-    "question25": "あなたは次のことにより説得されやすい:",
-    "question25.option1": "事実とデータ",
-    "question25.option2": "感情と物語",
-    "question26": "チームの意思決定において、あなたはより重視する:",
-    "question26.option1": "効率と結果",
-    "question26.option2": "合意と団結",
-    "question27": "良いリーダーは次のようであるべきだと信じている:",
-    "question27.option1": "公平で決断力がある",
-    "question27.option2": "思いやりがあり、気遣いをする",
-    "question28": "あなたの働き方は:",
-    "question28.option1": "事前に計画し準備する",
-    "question28.option2": "適応し柔軟である",
-    "question29": "あなたは次を好む:",
-    "question29.option1": "明確な締切があること",
-    "question29.option2": "選択肢を開いたままにすること",
-    "question3": "集まりに参加した後、あなたは通常:",
-    "question3.option1": "エネルギーを感じる",
-    "question3.option2": "休息が必要だと感じる",
-    "question30": "旅行中、あなたは：",
-    "question30.option1": "詳細な計画を立てる",
-    "question30.option2": "自由に探検する",
-    "question31": "あなたの部屋は通常：",
-    "question31.option1": "整頓されている",
-    "question31.option2": "カジュアルで自由な精神",
-    "question32": "タスクを処理する際、あなたは：",
-    "question32.option1": "できるだけ早く終わらせる",
-    "question32.option2": "締切に近い時間に終わらせる",
-    "question33": "あなたが好むライフスタイル：",
-    "question33.option1": "構造的でルーチン",
-    "question33.option2": "自由で柔軟",
-    "question34": "意思決定をする際、あなたは：",
-    "question34.option1": "迅速に決定する",
-    "question34.option2": "選択肢を開いたままにする",
-    "question35": "買い物をする際、あなたは：",
-    "question35.option1": "リストを作り、計画に従って買い物をする",
-    "question35.option2": "ランダムにブラウザし、気に入ったものを買う",
-    "question36": "変化に直面する際、あなたは通常：",
-    "question36.option1": "不安を感じる",
-    "question36.option2": "ワクワクします",
-    "question4": "チームでは、あなたは:",
-    "question4.option1": "意見を積極的に表現する",
-    "question4.option2": "話す前に聞く",
-    "question5": "新しい友達に会ったとき、あなたは:",
-    "question5.option1": "すぐに親しむ",
-    "question5.option2": "慣れるまで時間が必要",
-    "question6": "あなたの友人の輪:",
-    "question6.option1": "広いが深くはない",
-    "question6.option2": "小さくて親しい",
-    "question7": "仕事をするとき、あなたは好む:",
-    "question7.option1": "チームでの協力",
-    "question7.option2": "独立した作業",
-    "question8": "問題を考えるとき、あなたは:",
-    "question8.option1": "話しながら考える",
-    "question8.option2": "話す前に慎重に考える",
-    "question9": "プレッシャーがかかったとき、あなたは:",
-    "question9.option1": "友人とチャットする",
-    "question9.option2": "一人で処理する"
+    "question1": {
+      "text": "社交の場では、あなたは通常:",
+      "option1": "他者との会話を開始する",
+      "option2": "他者が近づいてくるのを待つ"
+    },
+    "question10": {
+      "text": "問題を解決する際、あなたは:",
+      "option1": "実践的な経験と事実に頼る",
+      "option2": "直感と可能性に頼る"
+    },
+    "question11": {
+      "text": "あなたは好む:",
+      "option1": "特定の詳細に焦点を当てる",
+      "option2": "全体の概念に焦点を当てる"
+    },
+    "question12": {
+      "text": "新しいことを学ぶとき、あなたは次のことを好みます：",
+      "option1": "段階を追ったアプローチ",
+      "option2": "革新的な方法を探る"
+    },
+    "question13": {
+      "text": "読むとき、あなたは次のことを好みます：",
+      "option1": "実用的なガイド",
+      "option2": "理論と概念"
+    },
+    "question14": {
+      "text": "あなたは次のことにもっと集中します：",
+      "option1": "現在と過去",
+      "option2": "未来と可能性"
+    },
+    "question15": {
+      "text": "物事を説明するとき、あなたは次のようにします：",
+      "option1": "具体的な例を使う",
+      "option2": "比喩や類推を使う"
+    },
+    "question16": {
+      "text": "あなたの仕事で、次のことにもっと重きを置きます：",
+      "option1": "実用的な応用",
+      "option2": "革新的なアイデア"
+    },
+    "question17": {
+      "text": "あなたは次のことをより信頼します：",
+      "option1": "実証された方法",
+      "option2": "新しい試み"
+    },
+    "question18": {
+      "text": "未来を計画するとき、あなたは：",
+      "option1": "現実的な条件に基づいて行います",
+      "option2": "さまざまな可能性を想像してみてください"
+    },
+    "question19": {
+      "text": "意思決定の際により重視することは:",
+      "option1": "論理と客観的分析",
+      "option2": "感情と人間関係の調和"
+    },
+    "question2": {
+      "text": "週末は、あなたは:",
+      "option1": "友達と出かける",
+      "option2": "一人でリラックスするために家にいる"
+    },
+    "question20": {
+      "text": "他人を批判する際には:",
+      "option1": "問題を直接指摘する",
+      "option2": "相手の気持ちを考慮する"
+    },
+    "question21": {
+      "text": "あなたがより重視するのは:",
+      "option1": "公平と正義",
+      "option2": "思いやりと理解"
+    },
+    "question22": {
+      "text": "アイデアを評価する際、まず考えるのは:",
+      "option1": "それが論理的であるか",
+      "option2": "それが有益であるか"
+    },
+    "question23": {
+      "text": "友人が心を打ち明けたとき、あなたは:",
+      "option1": "問題を分析し、アドバイスを提供する",
+      "option2": "聞いて安心感を与える"
+    },
+    "question24": {
+      "text": "対立の際、あなたは傾向がある:",
+      "option1": "原則を守る",
+      "option2": "関係を維持する"
+    },
+    "question25": {
+      "text": "あなたは次のことにより説得されやすい:",
+      "option1": "事実とデータ",
+      "option2": "感情と物語"
+    },
+    "question26": {
+      "text": "チームの意思決定において、あなたはより重視する:",
+      "option1": "効率と結果",
+      "option2": "合意と団結"
+    },
+    "question27": {
+      "text": "良いリーダーは次のようであるべきだと信じている:",
+      "option1": "公平で決断力がある",
+      "option2": "思いやりがあり、気遣いをする"
+    },
+    "question28": {
+      "text": "あなたの働き方は:",
+      "option1": "事前に計画し準備する",
+      "option2": "適応し柔軟である"
+    },
+    "question29": {
+      "text": "あなたは次を好む:",
+      "option1": "明確な締切があること",
+      "option2": "選択肢を開いたままにすること"
+    },
+    "question3": {
+      "text": "集まりに参加した後、あなたは通常:",
+      "option1": "エネルギーを感じる",
+      "option2": "休息が必要だと感じる"
+    },
+    "question30": {
+      "text": "旅行中、あなたは：",
+      "option1": "詳細な計画を立てる",
+      "option2": "自由に探検する"
+    },
+    "question31": {
+      "text": "あなたの部屋は通常：",
+      "option1": "整頓されている",
+      "option2": "カジュアルで自由な精神"
+    },
+    "question32": {
+      "text": "タスクを処理する際、あなたは：",
+      "option1": "できるだけ早く終わらせる",
+      "option2": "締切に近い時間に終わらせる"
+    },
+    "question33": {
+      "text": "あなたが好むライフスタイル：",
+      "option1": "構造的でルーチン",
+      "option2": "自由で柔軟"
+    },
+    "question34": {
+      "text": "意思決定をする際、あなたは：",
+      "option1": "迅速に決定する",
+      "option2": "選択肢を開いたままにする"
+    },
+    "question35": {
+      "text": "買い物をする際、あなたは：",
+      "option1": "リストを作り、計画に従って買い物をする",
+      "option2": "ランダムにブラウザし、気に入ったものを買う"
+    },
+    "question36": {
+      "text": "変化に直面する際、あなたは通常：",
+      "option1": "不安を感じる",
+      "option2": "ワクワクします"
+    },
+    "question4": {
+      "text": "チームでは、あなたは:",
+      "option1": "意見を積極的に表現する",
+      "option2": "話す前に聞く"
+    },
+    "question5": {
+      "text": "新しい友達に会ったとき、あなたは:",
+      "option1": "すぐに親しむ",
+      "option2": "慣れるまで時間が必要"
+    },
+    "question6": {
+      "text": "あなたの友人の輪:",
+      "option1": "広いが深くはない",
+      "option2": "小さくて親しい"
+    },
+    "question7": {
+      "text": "仕事をするとき、あなたは好む:",
+      "option1": "チームでの協力",
+      "option2": "独立した作業"
+    },
+    "question8": {
+      "text": "問題を考えるとき、あなたは:",
+      "option1": "話しながら考える",
+      "option2": "話す前に慎重に考える"
+    },
+    "question9": {
+      "text": "プレッシャーがかかったとき、あなたは:",
+      "option1": "友人とチャットする",
+      "option2": "一人で処理する"
+    }
   },
   "quick": {
-    "question1": "社交の場では、あなたは通常:",
-    "question1.option1": "他の人と会話を始める",
-    "question1.option2": "他の人からのアプローチを待つ",
-    "question10": "あなたの働き方は：",
-    "question10.option1": "事前に計画を立て準備する",
-    "question10.option2": "柔軟性を持つ",
-    "question11": "あなたは好みます：",
-    "question11.option1": "明確な締切があること",
-    "question11.option2": "選択肢を残すこと",
-    "question12": "旅行中は、あなたは傾向がある：",
-    "question12.option1": "詳細な旅程を作成する",
-    "question12.option2": "気ままに探索する",
-    "question2": "週末には、あなたは好みます：",
-    "question2.option1": "友達と遊ぶこと",
-    "question2.option2": "家で休むこと",
-    "question3": "パーティーに参加した後、あなたは通常：",
-    "question3.option1": "エネルギーを感じる",
-    "question3.option2": "休む必要を感じる",
-    "question4": "問題を解決する際に、あなたはより依存します：",
-    "question4.option1": "実践的な経験と事実",
-    "question4.option2": "直感と可能性",
-    "question5": "あなたはどちらを好みますか:",
-    "question5.option1": "特定の詳細に焦点を当てる",
-    "question5.option2": "全体的なコンセプトに焦点を当てる",
-    "question6": "新しいことを学ぶとき、あなたは好みます:",
-    "question6.option1": "段階的なアプローチ",
-    "question6.option2": "革新的な方法を探求する",
-    "question7": "意思決定を行うとき、あなたが重視するのは:",
-    "question7.option1": "論理と客観的な分析",
-    "question7.option2": "感情と思いやりの調和",
-    "question8": "他人を批判するとき、あなたは:",
-    "question8.option1": "問題を直接指摘する",
-    "question8.option2": "他人の気持ちを考慮する",
-    "question9": "あなたがより重視するのは:",
-    "question9.option1": "公正と正義",
-    "question9.option2": "思いやりと理解",
-    "question1.text": "社交場では、あなたは通常:",
-    "question10.text": "あなたの働き方は:",
-    "question11.text": "あなたは好む:",
-    "question12.text": "旅行中は、あなたは傾向がある:",
-    "question2.text": "週末はあなたは好む:",
-    "question3.text": "集まりに参加した後、あなたは通常:",
-    "question4.text": "問題を解決する際、あなたはより信頼する:",
-    "question5.text": "あなたは好む:",
-    "question6.text": "新しいことを学ぶ際、あなたは好む:",
-    "question7.text": "意思決定をする際、あなたは重視する:",
-    "question8.text": "他人を批判する際、あなたは:",
-    "question9.text": "あなたはより重視する:"
+    "question1": {
+      "text": "社交場では、あなたは通常:",
+      "option1": "他の人と会話を始める",
+      "option2": "他の人からのアプローチを待つ"
+    },
+    "question10": {
+      "text": "あなたの働き方は:",
+      "option1": "事前に計画を立て準備する",
+      "option2": "柔軟性を持つ"
+    },
+    "question11": {
+      "text": "あなたは好む:",
+      "option1": "明確な締切があること",
+      "option2": "選択肢を残すこと"
+    },
+    "question12": {
+      "text": "旅行中は、あなたは傾向がある:",
+      "option1": "詳細な旅程を作成する",
+      "option2": "気ままに探索する"
+    },
+    "question2": {
+      "text": "週末はあなたは好む:",
+      "option1": "友達と遊ぶこと",
+      "option2": "家で休むこと"
+    },
+    "question3": {
+      "text": "集まりに参加した後、あなたは通常:",
+      "option1": "エネルギーを感じる",
+      "option2": "休む必要を感じる"
+    },
+    "question4": {
+      "text": "問題を解決する際、あなたはより信頼する:",
+      "option1": "実践的な経験と事実",
+      "option2": "直感と可能性"
+    },
+    "question5": {
+      "text": "あなたは好む:",
+      "option1": "特定の詳細に焦点を当てる",
+      "option2": "全体的なコンセプトに焦点を当てる"
+    },
+    "question6": {
+      "text": "新しいことを学ぶ際、あなたは好む:",
+      "option1": "段階的なアプローチ",
+      "option2": "革新的な方法を探求する"
+    },
+    "question7": {
+      "text": "意思決定をする際、あなたは重視する:",
+      "option1": "論理と客観的な分析",
+      "option2": "感情と思いやりの調和"
+    },
+    "question8": {
+      "text": "他人を批判する際、あなたは:",
+      "option1": "問題を直接指摘する",
+      "option2": "他人の気持ちを考慮する"
+    },
+    "question9": {
+      "text": "あなたはより重視する:",
+      "option1": "公正と正義",
+      "option2": "思いやりと理解"
+    }
   },
   "share": {
     "welcome": "👋 友達があなたをMBTIテストに招待しています！\n\nあなたの性格タイプを見に来て～",

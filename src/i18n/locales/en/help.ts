@@ -60,7 +60,7 @@ export default {
   "profile": "/edit_profile - Edit Profile\n",
   "profile2": "/profile - View Profile\n",
   "profile3": "👤 **Profile**\n",
-  "quota": "• Invite friends to increase quota (up to 10/100)\n",
+  "quota": "🔢 Daily High Quota\n• Start with 30 message bottles daily (only 10 for regular users).\n• Inviting friends can permanently increase your quota, up to a maximum of 100!\n• Daily limit of 100 chat messages, chat without barriers.",
   "quota2": "• 30 message bottle quota per day\n",
   "register": "/start - Start using / Continue registration\n",
   "report": "/report - Report inappropriate content\n",

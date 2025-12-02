@@ -18,164 +18,248 @@ export default {
     "ISTP": "Vlerësuesi - Një eksperimentues guximtar dhe pragmatic, i aftë në përdorimin e mjeteve të ndryshme."
   },
   "full": {
-    "question1": "Në situata sociale, ju zakonisht:",
-    "question1.option1": "Merrni iniciativën për të biseduar me të tjerët",
-    "question1.option2": "Prisni që të tjerët të afrohen te unë",
-    "question10": "Kur zgjidhni probleme, ju mbështeteni më shumë në:",
-    "question10.option1": "Përvojën praktike dhe faktet",
-    "question10.option2": "Intuicioni dhe mundësitë",
-    "question11": "Ju preferoni:",
-    "question11.option1": "Të përqendroheni në detaje specifike",
-    "question11.option2": "Të përqendroheni në pamjen e madhe",
-    "question12": "Kur mësoni gjëra të reja, ju preferoni:",
-    "question12.option1": "Një qasje hap pas hapi",
-    "question12.option2": "Të eksploroni mënyra novatore",
-    "question13": "Kur lexoni, ju preferoni:",
-    "question13.option1": "Udhëzime praktike",
-    "question13.option2": "Teoritë dhe konceptet",
-    "question14": "Ju jeni më të shqetësuar për:",
-    "question14.option1": "Të tashmen dhe të kaluarën",
-    "question14.option2": "Të ardhmen dhe mundësitë",
-    "question15": "Kur përshkruani gjërat, ju tendoni:",
-    "question15.option1": "Të përdorni shembuj konkretë",
-    "question15.option2": "Të përdorni metafora dhe analogji",
-    "question16": "Në punë, ju vlerësoni:",
-    "question16.option1": "Aplikimin praktik",
-    "question16.option2": "Ide novatore",
-    "question17": "Ju besoni:",
-    "question17.option1": "Metoda të provuara",
-    "question17.option2": "përpjekje të reja",
-    "question18": "Kur planifikoni për të ardhmen, ju:",
-    "question18.option1": "Beni bazën në kushte realiste",
-    "question18.option2": "Imagjinoni mundësi të ndryshme",
-    "question19": "Kur merrni vendime, ju i përprioritizoni:",
-    "question19.option1": "Logjikën dhe analizën objektive",
-    "question19.option2": "Emocionet dhe harmoninë ndërpersonale",
-    "question2": "Në fundjavë, ju preferoni:",
-    "question2.option1": "Të dilni me miqtë",
-    "question2.option2": "Të qëndroni në shtëpi vetëm për të pushuar",
-    "question20": "Kur kritikoni të tjerët, ju:",
-    "question20.option1": "Shënoni problemin drejtpërdrejt",
-    "question20.option2": "Konsideroni ndjenjat e të tjerëve",
-    "question21": "Çfarë vlerëson më shumë:",
-    "question21.option1": "Drejtësia dhe ndershmëria",
-    "question21.option2": "Kënaqësia dhe kuptimi",
-    "question22": "Kur vlerëson një ide, së pari merr parasysh:",
-    "question22.option1": "A është e arsyeshme",
-    "question22.option2": "A është e dobishme",
-    "question23": "Kur një mik të beson ty, do:",
-    "question23.option1": "Analizosh problemin dhe ofron sugjerime",
-    "question23.option2": "Dëgjosh dhe ofron ngushëllim",
-    "question24": "Në një konflikt, ti tendosesh:",
-    "question24.option1": "Të mbash parime",
-    "question24.option2": "Të mbash marrëdhënie",
-    "question25": "Je më lehtësisht e bindur nga:",
-    "question25.option1": "Faktet dhe të dhënat",
-    "question25.option2": "Emocionet dhe historitë",
-    "question26": "Në marrëdhëniet vendimmarrëse në skuadër, fokusohem më shumë në:",
-    "question26.option1": "Efikasitetin dhe rezultatet",
-    "question26.option2": "Konsensusin dhe unitetin",
-    "question27": "Beson se një udhëheqës i mirë duhet:",
-    "question27.option1": "Të jetë i drejtë dhe vendimtar",
-    "question27.option2": "Të jetë i kujdesshëm dhe i dashur",
-    "question28": "Stili yt i punës është:",
-    "question28.option1": "Të planifikosh dhe përgatitesh në avancë",
-    "question28.option2": "Të jesh i përshtatshëm dhe fleksibël",
-    "question29": "Preferon:",
-    "question29.option1": "Të kesh afate të qarta",
-    "question29.option2": "Të mbash mundësi të hapura",
-    "question3": "Pas ndjekjes së një takimi, zakonisht:",
-    "question3.option1": "Ndihesh energjik",
-    "question3.option2": "Ndihesh i nevojshëm për të pushuar",
-    "question30": "Gjatë udhëtimit, ti tendosesh:",
-    "question30.option1": "Të bësh itinerare të detajuara",
-    "question30.option2": "Të eksplorosh lirshëm",
-    "question31": "Dhurata e dhomës tënde është zakonisht:",
-    "question31.option1": "E pastër dhe e organizuar",
-    "question31.option2": "E rastësishme dhe e qetë",
-    "question32": "Kur merresh me detyra, do:",
-    "question32.option1": "Përfundoj para kohe",
-    "question32.option2": "Ta përfundoj afër afatit",
-    "question33": "Stili yt i preferuar i jetesës:",
-    "question33.option1": "Strukturor dhe i rregullt",
-    "question33.option2": "I lirë dhe fleksibël",
-    "question34": "Kur merr vendime, tendosesh:",
-    "question34.option1": "Të bësh vendime të shpejta",
-    "question34.option2": "Të mbash mundësi të hapura",
-    "question35": "Gjatë blerjeve, do:",
-    "question35.option1": "Të bësh një listë dhe të blesh siç është planifikuar",
-    "question35.option2": "Të shfletojësh rastësisht dhe të blesh çfarë të pëlqen",
-    "question36": "Kur përballehesh me ndryshime, zakonisht:",
-    "question36.option1": "Ndihesh e shqetësuar",
-    "question36.option2": "Duke emocionuar",
-    "question4": "Në një ekip, je më i prirur të:",
-    "question4.option1": "Shprehësh aktivisht mendimet e tua",
-    "question4.option2": "Dëgjon para se të flasësh",
-    "question5": "Kur takon miq të rinj, ti:",
-    "question5.option1": "Shpejt bëhesh i njohur",
-    "question5.option2": "Kneed kohë për t'u ndier ngushte",
-    "question6": "Ora e miqve të tu:",
-    "question6.option1": "E gjerë por jo e thellë",
-    "question6.option2": "E vogël dhe intime",
-    "question7": "Kur punon, preferon:",
-    "question7.option1": "Bashkëpunimin në ekip",
-    "question7.option2": "Punën e pavarur",
-    "question8": "Kur mendon për probleme, ti pr tendencat:",
-    "question8.option1": "Mendon ndërsa flet",
-    "question8.option2": "Planifikon mendimet para se të flasësh",
-    "question9": "Kur je nën stres, ti:",
-    "question9.option1": "Bisedon me miqtë",
-    "question9.option2": "Përpunon vetëm"
+    "question1": {
+      "text": "Në situata sociale, ju zakonisht:",
+      "option1": "Merrni iniciativën për të biseduar me të tjerët",
+      "option2": "Prisni që të tjerët të afrohen te unë"
+    },
+    "question10": {
+      "text": "Kur zgjidhni probleme, ju mbështeteni më shumë në:",
+      "option1": "Përvojën praktike dhe faktet",
+      "option2": "Intuicioni dhe mundësitë"
+    },
+    "question11": {
+      "text": "Ju preferoni:",
+      "option1": "Të përqendroheni në detaje specifike",
+      "option2": "Të përqendroheni në pamjen e madhe"
+    },
+    "question12": {
+      "text": "Kur mësoni gjëra të reja, ju preferoni:",
+      "option1": "Një qasje hap pas hapi",
+      "option2": "Të eksploroni mënyra novatore"
+    },
+    "question13": {
+      "text": "Kur lexoni, ju preferoni:",
+      "option1": "Udhëzime praktike",
+      "option2": "Teoritë dhe konceptet"
+    },
+    "question14": {
+      "text": "Ju jeni më të shqetësuar për:",
+      "option1": "Të tashmen dhe të kaluarën",
+      "option2": "Të ardhmen dhe mundësitë"
+    },
+    "question15": {
+      "text": "Kur përshkruani gjërat, ju tendoni:",
+      "option1": "Të përdorni shembuj konkretë",
+      "option2": "Të përdorni metafora dhe analogji"
+    },
+    "question16": {
+      "text": "Në punë, ju vlerësoni:",
+      "option1": "Aplikimin praktik",
+      "option2": "Ide novatore"
+    },
+    "question17": {
+      "text": "Ju besoni:",
+      "option1": "Metoda të provuara",
+      "option2": "përpjekje të reja"
+    },
+    "question18": {
+      "text": "Kur planifikoni për të ardhmen, ju:",
+      "option1": "Beni bazën në kushte realiste",
+      "option2": "Imagjinoni mundësi të ndryshme"
+    },
+    "question19": {
+      "text": "Kur merrni vendime, ju i përprioritizoni:",
+      "option1": "Logjikën dhe analizën objektive",
+      "option2": "Emocionet dhe harmoninë ndërpersonale"
+    },
+    "question2": {
+      "text": "Në fundjavë, ju preferoni:",
+      "option1": "Të dilni me miqtë",
+      "option2": "Të qëndroni në shtëpi vetëm për të pushuar"
+    },
+    "question20": {
+      "text": "Kur kritikoni të tjerët, ju:",
+      "option1": "Shënoni problemin drejtpërdrejt",
+      "option2": "Konsideroni ndjenjat e të tjerëve"
+    },
+    "question21": {
+      "text": "Çfarë vlerëson më shumë:",
+      "option1": "Drejtësia dhe ndershmëria",
+      "option2": "Kënaqësia dhe kuptimi"
+    },
+    "question22": {
+      "text": "Kur vlerëson një ide, së pari merr parasysh:",
+      "option1": "A është e arsyeshme",
+      "option2": "A është e dobishme"
+    },
+    "question23": {
+      "text": "Kur një mik të beson ty, do:",
+      "option1": "Analizosh problemin dhe ofron sugjerime",
+      "option2": "Dëgjosh dhe ofron ngushëllim"
+    },
+    "question24": {
+      "text": "Në një konflikt, ti tendosesh:",
+      "option1": "Të mbash parime",
+      "option2": "Të mbash marrëdhënie"
+    },
+    "question25": {
+      "text": "Je më lehtësisht e bindur nga:",
+      "option1": "Faktet dhe të dhënat",
+      "option2": "Emocionet dhe historitë"
+    },
+    "question26": {
+      "text": "Në marrëdhëniet vendimmarrëse në skuadër, fokusohem më shumë në:",
+      "option1": "Efikasitetin dhe rezultatet",
+      "option2": "Konsensusin dhe unitetin"
+    },
+    "question27": {
+      "text": "Beson se një udhëheqës i mirë duhet:",
+      "option1": "Të jetë i drejtë dhe vendimtar",
+      "option2": "Të jetë i kujdesshëm dhe i dashur"
+    },
+    "question28": {
+      "text": "Stili yt i punës është:",
+      "option1": "Të planifikosh dhe përgatitesh në avancë",
+      "option2": "Të jesh i përshtatshëm dhe fleksibël"
+    },
+    "question29": {
+      "text": "Preferon:",
+      "option1": "Të kesh afate të qarta",
+      "option2": "Të mbash mundësi të hapura"
+    },
+    "question3": {
+      "text": "Pas ndjekjes së një takimi, zakonisht:",
+      "option1": "Ndihesh energjik",
+      "option2": "Ndihesh i nevojshëm për të pushuar"
+    },
+    "question30": {
+      "text": "Gjatë udhëtimit, ti tendosesh:",
+      "option1": "Të bësh itinerare të detajuara",
+      "option2": "Të eksplorosh lirshëm"
+    },
+    "question31": {
+      "text": "Dhurata e dhomës tënde është zakonisht:",
+      "option1": "E pastër dhe e organizuar",
+      "option2": "E rastësishme dhe e qetë"
+    },
+    "question32": {
+      "text": "Kur merresh me detyra, do:",
+      "option1": "Përfundoj para kohe",
+      "option2": "Ta përfundoj afër afatit"
+    },
+    "question33": {
+      "text": "Stili yt i preferuar i jetesës:",
+      "option1": "Strukturor dhe i rregullt",
+      "option2": "I lirë dhe fleksibël"
+    },
+    "question34": {
+      "text": "Kur merr vendime, tendosesh:",
+      "option1": "Të bësh vendime të shpejta",
+      "option2": "Të mbash mundësi të hapura"
+    },
+    "question35": {
+      "text": "Gjatë blerjeve, do:",
+      "option1": "Të bësh një listë dhe të blesh siç është planifikuar",
+      "option2": "Të shfletojësh rastësisht dhe të blesh çfarë të pëlqen"
+    },
+    "question36": {
+      "text": "Kur përballehesh me ndryshime, zakonisht:",
+      "option1": "Ndihesh e shqetësuar",
+      "option2": "Duke emocionuar"
+    },
+    "question4": {
+      "text": "Në një ekip, je më i prirur të:",
+      "option1": "Shprehësh aktivisht mendimet e tua",
+      "option2": "Dëgjon para se të flasësh"
+    },
+    "question5": {
+      "text": "Kur takon miq të rinj, ti:",
+      "option1": "Shpejt bëhesh i njohur",
+      "option2": "Kneed kohë për t'u ndier ngushte"
+    },
+    "question6": {
+      "text": "Ora e miqve të tu:",
+      "option1": "E gjerë por jo e thellë",
+      "option2": "E vogël dhe intime"
+    },
+    "question7": {
+      "text": "Kur punon, preferon:",
+      "option1": "Bashkëpunimin në ekip",
+      "option2": "Punën e pavarur"
+    },
+    "question8": {
+      "text": "Kur mendon për probleme, ti pr tendencat:",
+      "option1": "Mendon ndërsa flet",
+      "option2": "Planifikon mendimet para se të flasësh"
+    },
+    "question9": {
+      "text": "Kur je nën stres, ti:",
+      "option1": "Bisedon me miqtë",
+      "option2": "Përpunon vetëm"
+    }
   },
   "quick": {
-    "question1": "Në situata shoqërore, ti zakonisht:",
-    "question1.option1": "Angazhohesh proaktivisht në biseda",
-    "question1.option2": "Pres që të tjerët të afrohen",
-    "question10": "Stili yt i punës është:",
-    "question10.option1": "Planifikon dhe përgatit në avancë",
-    "question10.option2": "Përshtatet dhe është fleksibël",
-    "question11": "Preferon:",
-    "question11.option1": "Afat të qartë",
-    "question11.option2": "Të mbash opsionet e hapura",
-    "question12": "Kur udhëton, ti pr tendencat:",
-    "question12.option1": "Krijon itinerare të detajuara",
-    "question12.option2": "Eksploron në ritmin tënd",
-    "question2": "Në fundjavë, preferon:",
-    "question2.option1": "Të dalësh me miqtë",
-    "question2.option2": "Të qëndrosh në shtëpi për t'u relaksuar vetëm",
-    "question3": "Pas pjesëmarrjes në një takim, zakonisht:",
-    "question3.option1": "Ndihesh energjik",
-    "question3.option2": "Ndihesh nevojë për të pushuar",
-    "question4": "Kur zgjidh problemet, mbështetesh më shumë në:",
-    "question4.option1": "Përvojën praktike dhe faktet",
-    "question4.option2": "Intuicioni dhe mundësitë",
-    "question5": "Preferon:",
-    "question5.option1": "Të fokusohet në detaje specifike",
-    "question5.option2": "Të fokusohet në konceptin e përgjithshëm",
-    "question6": "Kur mëson gjëra të reja, preferon:",
-    "question6.option1": "Një qasje hap pas hapi",
-    "question6.option2": "Të eksplorosh metoda inovative",
-    "question7": "Kur merr vendime, vlerëson më shumë:",
-    "question7.option1": "Logjikën dhe analizën objektive",
-    "question7.option2": "Emocionin dhe harmoni ndërpersonale",
-    "question8": "Kur kritikoni të tjerët, ju:",
-    "question8.option1": "Shkruani direkt për problemin",
-    "question8.option2": "Merrni parasysh ndjenjat e personit tjetër",
-    "question9": "Çfarë vlerëson më shumë:",
-    "question9.option1": "Drejtësi dhe Barazi",
-    "question9.option2": "Bamirësi dhe Kuptim",
-    "question1.text": "Në situata sociale, zakonisht:",
-    "question10.text": "Stili juaj i punës është:",
-    "question11.text": "Preferoni:",
-    "question12.text": "Kur udhëtoni, tendenca juaj është:",
-    "question2.text": "Në fundjavë preferoni:",
-    "question3.text": "Pas pjesëmarrjes në një takim, zakonisht:",
-    "question4.text": "Kur zgjidhni probleme, mbështeteni më shumë në:",
-    "question5.text": "Preferoni:",
-    "question6.text": "Kur mësoni gjëra të reja, preferoni:",
-    "question7.text": "Kur merrni vendime, vlerësoni:",
-    "question8.text": "Kur kritikoni të tjerët, ju:",
-    "question9.text": "Vlerësoni më shumë:"
+    "question1": {
+      "text": "Në situata sociale, zakonisht:",
+      "option1": "Angazhohesh proaktivisht në biseda",
+      "option2": "Pres që të tjerët të afrohen"
+    },
+    "question10": {
+      "text": "Stili juaj i punës është:",
+      "option1": "Planifikon dhe përgatit në avancë",
+      "option2": "Përshtatet dhe është fleksibël"
+    },
+    "question11": {
+      "text": "Preferoni:",
+      "option1": "Afat të qartë",
+      "option2": "Të mbash opsionet e hapura"
+    },
+    "question12": {
+      "text": "Kur udhëtoni, tendenca juaj është:",
+      "option1": "Krijon itinerare të detajuara",
+      "option2": "Eksploron në ritmin tënd"
+    },
+    "question2": {
+      "text": "Në fundjavë preferoni:",
+      "option1": "Të dalësh me miqtë",
+      "option2": "Të qëndrosh në shtëpi për t'u relaksuar vetëm"
+    },
+    "question3": {
+      "text": "Pas pjesëmarrjes në një takim, zakonisht:",
+      "option1": "Ndihesh energjik",
+      "option2": "Ndihesh nevojë për të pushuar"
+    },
+    "question4": {
+      "text": "Kur zgjidhni probleme, mbështeteni më shumë në:",
+      "option1": "Përvojën praktike dhe faktet",
+      "option2": "Intuicioni dhe mundësitë"
+    },
+    "question5": {
+      "text": "Preferoni:",
+      "option1": "Të fokusohet në detaje specifike",
+      "option2": "Të fokusohet në konceptin e përgjithshëm"
+    },
+    "question6": {
+      "text": "Kur mësoni gjëra të reja, preferoni:",
+      "option1": "Një qasje hap pas hapi",
+      "option2": "Të eksplorosh metoda inovative"
+    },
+    "question7": {
+      "text": "Kur merrni vendime, vlerësoni:",
+      "option1": "Logjikën dhe analizën objektive",
+      "option2": "Emocionin dhe harmoni ndërpersonale"
+    },
+    "question8": {
+      "text": "Kur kritikoni të tjerët, ju:",
+      "option1": "Shkruani direkt për problemin",
+      "option2": "Merrni parasysh ndjenjat e personit tjetër"
+    },
+    "question9": {
+      "text": "Vlerësoni më shumë:",
+      "option1": "Drejtësi dhe Barazi",
+      "option2": "Bamirësi dhe Kuptim"
+    }
   },
   "share": {
     "welcome": "👋 Shoku juaj ju fton të bëni testin MBTI!\n\nEjani dhe shikoni tipin tuaj të personalitetit～",

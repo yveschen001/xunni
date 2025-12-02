@@ -2,7 +2,7 @@ export default {
   "ad": "➡️ Ďalšia reklama",
   "back": "⬅️ Späť",
   "backToVip": "💎 Návrat do VIP menu",
-  "bottle": "📺 Sledujte reklamy, aby ste získali viac message bottles 🎁 (${remaining}/20)",
+  "bottle": "📺 Sledujte reklamy, aby ste získali viac message bottles 🎁 ({remaining}/20)",
   "bottle2": "💎 Upgradujte na VIP pre viac message bottles",
   "bottle3": "🌊 Hoďte message bottle",
   "bottle4": "🎣 Zdvihnite message bottle",

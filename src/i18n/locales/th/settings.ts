@@ -11,7 +11,7 @@ export default {
   "settings2": "⚙️ **การตั้งค่า**\n\n",
   "settings3": "🏠 กลับไปที่การตั้งค่า",
   "settings4": "การตั้งค่าปัจจุบัน:\n",
-  "text": "• ภาษา：${languageName} 🇹🇼\n\n",
+  "text": "• ภาษา：{languageName} 🇹🇼\n\n",
   "title": "🏠 **เมนูหลัก**",
   "throwReminder": "การแจ้งเตือนขวดข้อความ",
   "catchReminder": "การแจ้งเตือนการรับขวดข้อความ",

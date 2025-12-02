@@ -11,6 +11,6 @@ export default {
   "step2": "2️⃣ Valitse 'Vastaa'.",
   "step3": "3️⃣ Syötä /block.",
   "steps": "**Toimintavaiheet:**",
-  "success": "✅ Tämä käyttäjä on estetty (#${identifier}).",
+  "success": "✅ Tämä käyttäjä on estetty (#{identifier}).",
   "willNotMatch": "Et enää saa toisten viestipulloja."
 };

@@ -1,5 +1,5 @@
 export default {
-  "alreadyExists": "⏳ Sie haben einen ausstehenden Einspruch (ID: #${appealId})\n\nStatus: ${status}\nEingereichte Zeit: ${time}\n\nBitte warten Sie geduldig auf die Überprüfung durch den Administrator.",
+  "alreadyExists": "⏳ Sie haben einen ausstehenden Einspruch (ID: #{appealId})\n\nStatus: {status}\nEingereichte Zeit: {time}\n\nBitte warten Sie geduldig auf die Überprüfung durch den Administrator.",
   "approved": "✅ Ihr Einspruch wurde genehmigt und Ihr Konto wurde wieder entsperrt",
   "noAppeal": "Sie haben derzeit keine ausstehenden Einsprüche",
   "notBanned": "✅ Ihr Konto ist nicht gesperrt, kein Einspruch erforderlich.",
@@ -10,9 +10,9 @@ export default {
   "reasonTooShort": "❌ Der Grund für den Einspruch ist zu kurz, bitte geben Sie mindestens 10 Zeichen ein.",
   "rejected": "❌ Ihr Einspruch wurde abgelehnt.",
   "reviewedAt": "Überprüfungszeit:",
-  "status": "📋 **Einspruchsstatus**\n\nEinspruchs-ID: #${appealId}\nStatus: ${status}\nEinreichungszeit: ${createdAt}${reviewInfo}",
+  "status": "📋 **Einspruchsstatus**\n\nEinspruchs-ID: #{appealId}\nStatus: {status}\nEinreichungszeit: {createdAt}{reviewInfo}",
   "statusApproved": "Genehmigt",
   "statusPending": "In Überprüfung",
   "statusRejected": "Abgelehnt",
-  "submitted": "✅ **Einspruch eingereicht**\n\nEinspruchs-ID: #${appealId}\nStatus: In Überprüfung\n\nWir werden Ihren Einspruch innerhalb von 1-3 Werktagen bearbeiten.\nDas Ergebnis wird Ihnen über den Bot mitgeteilt."
+  "submitted": "✅ **Einspruch eingereicht**\n\nEinspruchs-ID: #{appealId}\nStatus: In Überprüfung\n\nWir werden Ihren Einspruch innerhalb von 1-3 Werktagen bearbeiten.\nDas Ergebnis wird Ihnen über den Bot mitgeteilt."
 };

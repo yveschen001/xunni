@@ -11,7 +11,7 @@ export default {
   "settings2": "⚙️ **设定**\n\n",
   "settings3": "🏠 返回设定",
   "settings4": "当前设定：\n",
-  "text": "• 语言：${languageName} 🇹🇼\n\n",
+  "text": "• 语言：{languageName} 🇹🇼\n\n",
   "title": "🏠 **主选单**",
   "throwReminder": "丢瓶提醒",
   "catchReminder": "捡瓶提醒",

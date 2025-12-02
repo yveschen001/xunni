@@ -18,164 +18,248 @@ export default {
     "ISTP": "Gurme - Cesur ve pragmatik bir denemeci, çeşitli araçları kullanma konusunda yetkin."
   },
   "full": {
-    "question1": "Sosyal durumlarda genellikle:",
-    "question1.option1": "Başkalarıyla proaktif bir şekilde etkileşim kurarsınız",
-    "question1.option2": "Başkalarının benimle yaklaşmasını beklerim",
-    "question10": "Problemleri çözerken, daha çok şuna güvenirim:",
-    "question10.option1": "Pratik deneyim ve gerçekler",
-    "question10.option2": "Sezgi ve olasılıklar",
-    "question11": "Tercih edersiniz:",
-    "question11.option1": "Belirli detaylara odaklanmayı",
-    "question11.option2": "Genel kavrama odaklanmayı",
-    "question12": "Yeni bir şey öğrenirken, şunu tercih edersiniz:",
-    "question12.option1": "Adım adım bir yaklaşım",
-    "question12.option2": "Yenilikçi yolları keşfetmeyi",
-    "question13": "Okurken, şunu tercih edersiniz:",
-    "question13.option1": "Pratik kılavuzlar",
-    "question13.option2": "Teoriler ve kavramlar",
-    "question14": "Daha çok şuna odaklanıyorsunuz:",
-    "question14.option1": "Geçmiş ve şimdiye",
-    "question14.option2": "Geleceğe ve olasılıklara",
-    "question15": "Şeyleri tanımlarken, genellikle şunu yaparsınız:",
-    "question15.option1": "Belirli örnekler kullanırsınız",
-    "question15.option2": "Mecazlar ve benzetmeler kullanırsınız",
-    "question16": "İş yerinde, şuna daha çok değer verirsiniz:",
-    "question16.option1": "Pratik uygulamalara",
-    "question16.option2": "Yenilikçi fikirlere",
-    "question17": "Daha çok şuna güvenirsiniz:",
-    "question17.option1": "Doğrulanmış yöntemler",
-    "question17.option2": "Yeni denemelere",
-    "question18": "Gelecek için plan yaparken, şunu yaparsınız:",
-    "question18.option1": "Bunu gerçekçi koşullara dayandırırsınız",
-    "question18.option2": "Çeşitli olasılıkları hayal edersiniz",
-    "question19": "Karar verirken, öncelik verirsiniz:",
-    "question19.option1": "Mantıklı ve nesnel analize",
-    "question19.option2": "Duygulara ve kişiler arası uyuma",
-    "question2": "Hafta sonları, şunu tercih edersiniz:",
-    "question2.option1": "Arkadaşlarla vakit geçirmeyi",
-    "question2.option2": "Evde kalıp enerji toplamak",
-    "question20": "Başkalarını eleştirirken, şunu yaparsınız:",
-    "question20.option1": "Sorunu doğrudan belirtirsiniz",
-    "question20.option2": "Başkalarının duygularını dikkate alırsınız",
-    "question21": "Neyi daha çok değerlendiriyorsun:",
-    "question21.option1": "Adalet ve hakkaniyet",
-    "question21.option2": "Şefkat ve anlayış",
-    "question22": "Bir fikri değerlendirirken öncelikle şunları dikkate alıyorsun:",
-    "question22.option1": "Mantıklı mı",
-    "question22.option2": "Faydası var mı",
-    "question23": "Bir arkadaşın sana sırlarını açtığında, sen:",
-    "question23.option1": "Sorunu analiz eder ve önerilerde bulunursun",
-    "question23.option2": "Dinler ve rahatlatırsın",
-    "question24": "Bir çatışmada, genellikle:",
-    "question24.option1": "Prensiplerine bağlı kalırsın",
-    "question24.option2": "İlişkileri sürdürürsün",
-    "question25": "Daha kolay ikna olursun:",
-    "question25.option1": "Gerçekler ve veriler",
-    "question25.option2": "Duygular ve hikayeler",
-    "question26": "Takım kararları alırken, daha çok şuna odaklanırsın:",
-    "question26.option1": "Verimlilik ve sonuçlar",
-    "question26.option2": "Uzlaşma ve birlik",
-    "question27": "İyi bir liderin olması gereken:",
-    "question27.option1": "Adil ve kesin olmalı",
-    "question27.option2": "Düşünceli ve ilgili olmalı",
-    "question28": "Çalışma tarzın:",
-    "question28.option1": "Plan yapar ve önceden hazırlanırsın",
-    "question28.option2": "Uyumlu ve esnek olursun",
-    "question29": "Tercih edersin:",
-    "question29.option1": "Açık son tarihleri almak",
-    "question29.option2": "Seçenekleri açık tutmak",
-    "question3": "Bir etkinliğe katıldıktan sonra genellikle:",
-    "question3.option1": "Enerjik hissedersin",
-    "question3.option2": "Dinlenme ihtiyacı hissedersin",
-    "question30": "Seyahat ederken, genellikle:",
-    "question30.option1": "Detaylı bir güzergah planlarsın",
-    "question30.option2": "Spontane keşfederim",
-    "question31": "Odan genellikle:",
-    "question31.option1": "Düzenli ve tertipli",
-    "question31.option2": "Rahat ve sıradan",
-    "question32": "Görevleri yerine getirirken:",
-    "question32.option1": "Mümkün olan en kısa sürede tamamlarsın",
-    "question32.option2": "Son tarihe yakın bitirirsin",
-    "question33": "Tercih ettiğin yaşam tarzı:",
-    "question33.option1": "Düzenli ve yapılandırılmış",
-    "question33.option2": "Özgür ve esnek",
-    "question34": "Karar alırken, genellikle:",
-    "question34.option1": "Hızlı kararlar alırsın",
-    "question34.option2": "Seçeneklerini açık tutarsın",
-    "question35": "Alışveriş yaparken:",
-    "question35.option1": "Bir liste yapar ve ona sadık kalırsın",
-    "question35.option2": "Rastgele dolaşır ve hoşuna gidenleri alırsın",
-    "question36": "Değişimlerle karşılaştığında, genellikle:",
-    "question36.option1": "Rahatsız hissedersin",
-    "question36.option2": "Heyecanlı hissediyorum",
-    "question4": "Bir ekipte, eğilimleriniz:",
-    "question4.option1": "Fikirlerinizi aktif bir şekilde ifade edin",
-    "question4.option2": "Önce dinleyin, sonra konuşun",
-    "question5": "Yeni arkadaşlarla tanıştığınızda:",
-    "question5.option1": "Hızla tanıdık olursunuz",
-    "question5.option2": "Tanışmak için zamana ihtiyaç duyarsınız",
-    "question6": "Arkadaş çevreniz:",
-    "question6.option1": "Geniş ama derin değil",
-    "question6.option2": "Küçük ve samimi",
-    "question7": "Çalışırken tercih edersiniz:",
-    "question7.option1": "Ekip işbirliği",
-    "question7.option2": "Bağımsız çalışma",
-    "question8": "Problemler hakkında düşünürken, eğilimleriniz:",
-    "question8.option1": "Konuşurken düşünmek",
-    "question8.option2": "Konuşmadan önce düşünmek",
-    "question9": "Baskı altında, siz:",
-    "question9.option1": "Arkadaşlarla sohbet edin",
-    "question9.option2": "Yalnız çalışın"
+    "question1": {
+      "text": "Sosyal durumlarda genellikle:",
+      "option1": "Başkalarıyla proaktif bir şekilde etkileşim kurarsınız",
+      "option2": "Başkalarının benimle yaklaşmasını beklerim"
+    },
+    "question10": {
+      "text": "Problemleri çözerken, daha çok şuna güvenirim:",
+      "option1": "Pratik deneyim ve gerçekler",
+      "option2": "Sezgi ve olasılıklar"
+    },
+    "question11": {
+      "text": "Tercih edersiniz:",
+      "option1": "Belirli detaylara odaklanmayı",
+      "option2": "Genel kavrama odaklanmayı"
+    },
+    "question12": {
+      "text": "Yeni bir şey öğrenirken, şunu tercih edersiniz:",
+      "option1": "Adım adım bir yaklaşım",
+      "option2": "Yenilikçi yolları keşfetmeyi"
+    },
+    "question13": {
+      "text": "Okurken, şunu tercih edersiniz:",
+      "option1": "Pratik kılavuzlar",
+      "option2": "Teoriler ve kavramlar"
+    },
+    "question14": {
+      "text": "Daha çok şuna odaklanıyorsunuz:",
+      "option1": "Geçmiş ve şimdiye",
+      "option2": "Geleceğe ve olasılıklara"
+    },
+    "question15": {
+      "text": "Şeyleri tanımlarken, genellikle şunu yaparsınız:",
+      "option1": "Belirli örnekler kullanırsınız",
+      "option2": "Mecazlar ve benzetmeler kullanırsınız"
+    },
+    "question16": {
+      "text": "İş yerinde, şuna daha çok değer verirsiniz:",
+      "option1": "Pratik uygulamalara",
+      "option2": "Yenilikçi fikirlere"
+    },
+    "question17": {
+      "text": "Daha çok şuna güvenirsiniz:",
+      "option1": "Doğrulanmış yöntemler",
+      "option2": "Yeni denemelere"
+    },
+    "question18": {
+      "text": "Gelecek için plan yaparken, şunu yaparsınız:",
+      "option1": "Bunu gerçekçi koşullara dayandırırsınız",
+      "option2": "Çeşitli olasılıkları hayal edersiniz"
+    },
+    "question19": {
+      "text": "Karar verirken, öncelik verirsiniz:",
+      "option1": "Mantıklı ve nesnel analize",
+      "option2": "Duygulara ve kişiler arası uyuma"
+    },
+    "question2": {
+      "text": "Hafta sonları, şunu tercih edersiniz:",
+      "option1": "Arkadaşlarla vakit geçirmeyi",
+      "option2": "Evde kalıp enerji toplamak"
+    },
+    "question20": {
+      "text": "Başkalarını eleştirirken, şunu yaparsınız:",
+      "option1": "Sorunu doğrudan belirtirsiniz",
+      "option2": "Başkalarının duygularını dikkate alırsınız"
+    },
+    "question21": {
+      "text": "Neyi daha çok değerlendiriyorsun:",
+      "option1": "Adalet ve hakkaniyet",
+      "option2": "Şefkat ve anlayış"
+    },
+    "question22": {
+      "text": "Bir fikri değerlendirirken öncelikle şunları dikkate alıyorsun:",
+      "option1": "Mantıklı mı",
+      "option2": "Faydası var mı"
+    },
+    "question23": {
+      "text": "Bir arkadaşın sana sırlarını açtığında, sen:",
+      "option1": "Sorunu analiz eder ve önerilerde bulunursun",
+      "option2": "Dinler ve rahatlatırsın"
+    },
+    "question24": {
+      "text": "Bir çatışmada, genellikle:",
+      "option1": "Prensiplerine bağlı kalırsın",
+      "option2": "İlişkileri sürdürürsün"
+    },
+    "question25": {
+      "text": "Daha kolay ikna olursun:",
+      "option1": "Gerçekler ve veriler",
+      "option2": "Duygular ve hikayeler"
+    },
+    "question26": {
+      "text": "Takım kararları alırken, daha çok şuna odaklanırsın:",
+      "option1": "Verimlilik ve sonuçlar",
+      "option2": "Uzlaşma ve birlik"
+    },
+    "question27": {
+      "text": "İyi bir liderin olması gereken:",
+      "option1": "Adil ve kesin olmalı",
+      "option2": "Düşünceli ve ilgili olmalı"
+    },
+    "question28": {
+      "text": "Çalışma tarzın:",
+      "option1": "Plan yapar ve önceden hazırlanırsın",
+      "option2": "Uyumlu ve esnek olursun"
+    },
+    "question29": {
+      "text": "Tercih edersin:",
+      "option1": "Açık son tarihleri almak",
+      "option2": "Seçenekleri açık tutmak"
+    },
+    "question3": {
+      "text": "Bir etkinliğe katıldıktan sonra genellikle:",
+      "option1": "Enerjik hissedersin",
+      "option2": "Dinlenme ihtiyacı hissedersin"
+    },
+    "question30": {
+      "text": "Seyahat ederken, genellikle:",
+      "option1": "Detaylı bir güzergah planlarsın",
+      "option2": "Spontane keşfederim"
+    },
+    "question31": {
+      "text": "Odan genellikle:",
+      "option1": "Düzenli ve tertipli",
+      "option2": "Rahat ve sıradan"
+    },
+    "question32": {
+      "text": "Görevleri yerine getirirken:",
+      "option1": "Mümkün olan en kısa sürede tamamlarsın",
+      "option2": "Son tarihe yakın bitirirsin"
+    },
+    "question33": {
+      "text": "Tercih ettiğin yaşam tarzı:",
+      "option1": "Düzenli ve yapılandırılmış",
+      "option2": "Özgür ve esnek"
+    },
+    "question34": {
+      "text": "Karar alırken, genellikle:",
+      "option1": "Hızlı kararlar alırsın",
+      "option2": "Seçeneklerini açık tutarsın"
+    },
+    "question35": {
+      "text": "Alışveriş yaparken:",
+      "option1": "Bir liste yapar ve ona sadık kalırsın",
+      "option2": "Rastgele dolaşır ve hoşuna gidenleri alırsın"
+    },
+    "question36": {
+      "text": "Değişimlerle karşılaştığında, genellikle:",
+      "option1": "Rahatsız hissedersin",
+      "option2": "Heyecanlı hissediyorum"
+    },
+    "question4": {
+      "text": "Bir ekipte, eğilimleriniz:",
+      "option1": "Fikirlerinizi aktif bir şekilde ifade edin",
+      "option2": "Önce dinleyin, sonra konuşun"
+    },
+    "question5": {
+      "text": "Yeni arkadaşlarla tanıştığınızda:",
+      "option1": "Hızla tanıdık olursunuz",
+      "option2": "Tanışmak için zamana ihtiyaç duyarsınız"
+    },
+    "question6": {
+      "text": "Arkadaş çevreniz:",
+      "option1": "Geniş ama derin değil",
+      "option2": "Küçük ve samimi"
+    },
+    "question7": {
+      "text": "Çalışırken tercih edersiniz:",
+      "option1": "Ekip işbirliği",
+      "option2": "Bağımsız çalışma"
+    },
+    "question8": {
+      "text": "Problemler hakkında düşünürken, eğilimleriniz:",
+      "option1": "Konuşurken düşünmek",
+      "option2": "Konuşmadan önce düşünmek"
+    },
+    "question9": {
+      "text": "Baskı altında, siz:",
+      "option1": "Arkadaşlarla sohbet edin",
+      "option2": "Yalnız çalışın"
+    }
   },
   "quick": {
-    "question1": "Sosyal durumlarda genellikle:",
-    "question1.option1": "Başkalarıyla konuşma başlatırsınız",
-    "question1.option2": "Başkalarının benimle yaklaşmasını beklerim",
-    "question10": "Çalışma tarzınız:",
-    "question10.option1": "Önceden plan yapıp hazırlık yapmak",
-    "question10.option2": "Uyum sağlamak ve esnek olmak",
-    "question11": "Tercih edersiniz:",
-    "question11.option1": "Açık ve net son tarihler",
-    "question11.option2": "Seçenekleri açık tutmak",
-    "question12": "Seyahat ederken, eğilimleriniz:",
-    "question12.option1": "Ayrıntılı seyahat planları hazırlamak",
-    "question12.option2": "İstediğiniz gibi keşfetmek",
-    "question2": "Hafta sonları, tercih edersiniz:",
-    "question2.option1": "Arkadaşlarla dışarı çıkmak",
-    "question2.option2": "Evde yalnız dinlenmek",
-    "question3": "Bir etkinliğe katıldıktan sonra genellikle:",
-    "question3.option1": "Enerjik hissediyorum",
-    "question3.option2": "Dinlenme ihtiyacı hissediyorum",
-    "question4": "Problemleri çözerken daha çok güvendiğiniz:",
-    "question4.option1": "Pratik deneyim ve gerçekler",
-    "question4.option2": "Sezgi ve olasılıklar",
-    "question5": "Tercih edersiniz:",
-    "question5.option1": "Belirli detaylara odaklanmak",
-    "question5.option2": "Genel kavramlara odaklanmak",
-    "question6": "Yeni şeyler öğrenirken tercih edersiniz:",
-    "question6.option1": "Adım adım yaklaşım",
-    "question6.option2": "Yenilikçi yollar keşfetmek",
-    "question7": "Karar verirken daha fazla değer verdiğiniz:",
-    "question7.option1": "Mantık ve nesnel analiz",
-    "question7.option2": "Duygular ve kişilerarası uyum",
-    "question8": "Başkalarını eleştirirken, siz:",
-    "question8.option1": "Sorunu doğrudan belirtin",
-    "question8.option2": "Diğer kişinin duygularını dikkate alın",
-    "question9": "Neyi daha çok değerli buluyorsunuz:",
-    "question9.option1": "Adalet ve eşitlik",
-    "question9.option2": "Şefkat ve anlayış",
-    "question1.text": "Sosyal ortamlarda genellikle:",
-    "question10.text": "Çalışma tarzınız:",
-    "question11.text": "Tercih ediyorsunuz:",
-    "question12.text": "Seyahat ederken eğilimleriniz:",
-    "question2.text": "Hafta sonları tercih ediyorsunuz:",
-    "question3.text": "Bir etkinliğe katıldıktan sonra genellikle:",
-    "question4.text": "Problemleri çözerken daha çok:",
-    "question5.text": "Tercih ediyorsunuz:",
-    "question6.text": "Yeni şeyler öğrenirken tercih ediyorsunuz:",
-    "question7.text": "Karar verirken değer verdiğiniz:",
-    "question8.text": "Başkalarını eleştirirken:",
-    "question9.text": "Daha fazla değer veriyorsunuz:"
+    "question1": {
+      "text": "Sosyal ortamlarda genellikle:",
+      "option1": "Başkalarıyla konuşma başlatırsınız",
+      "option2": "Başkalarının benimle yaklaşmasını beklerim"
+    },
+    "question10": {
+      "text": "Çalışma tarzınız:",
+      "option1": "Önceden plan yapıp hazırlık yapmak",
+      "option2": "Uyum sağlamak ve esnek olmak"
+    },
+    "question11": {
+      "text": "Tercih ediyorsunuz:",
+      "option1": "Açık ve net son tarihler",
+      "option2": "Seçenekleri açık tutmak"
+    },
+    "question12": {
+      "text": "Seyahat ederken eğilimleriniz:",
+      "option1": "Ayrıntılı seyahat planları hazırlamak",
+      "option2": "İstediğiniz gibi keşfetmek"
+    },
+    "question2": {
+      "text": "Hafta sonları tercih ediyorsunuz:",
+      "option1": "Arkadaşlarla dışarı çıkmak",
+      "option2": "Evde yalnız dinlenmek"
+    },
+    "question3": {
+      "text": "Bir etkinliğe katıldıktan sonra genellikle:",
+      "option1": "Enerjik hissediyorum",
+      "option2": "Dinlenme ihtiyacı hissediyorum"
+    },
+    "question4": {
+      "text": "Problemleri çözerken daha çok:",
+      "option1": "Pratik deneyim ve gerçekler",
+      "option2": "Sezgi ve olasılıklar"
+    },
+    "question5": {
+      "text": "Tercih ediyorsunuz:",
+      "option1": "Belirli detaylara odaklanmak",
+      "option2": "Genel kavramlara odaklanmak"
+    },
+    "question6": {
+      "text": "Yeni şeyler öğrenirken tercih ediyorsunuz:",
+      "option1": "Adım adım yaklaşım",
+      "option2": "Yenilikçi yollar keşfetmek"
+    },
+    "question7": {
+      "text": "Karar verirken değer verdiğiniz:",
+      "option1": "Mantık ve nesnel analiz",
+      "option2": "Duygular ve kişilerarası uyum"
+    },
+    "question8": {
+      "text": "Başkalarını eleştirirken:",
+      "option1": "Sorunu doğrudan belirtin",
+      "option2": "Diğer kişinin duygularını dikkate alın"
+    },
+    "question9": {
+      "text": "Daha fazla değer veriyorsunuz:",
+      "option1": "Adalet ve eşitlik",
+      "option2": "Şefkat ve anlayış"
+    }
   },
   "share": {
     "welcome": "👋 Arkadaşın seni MBTI testine davet ediyor!\n\nKişilik tipini görmeye gel～",

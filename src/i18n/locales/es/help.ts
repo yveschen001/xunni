@@ -60,7 +60,7 @@ export default {
   "profile": "/edit_profile - Editar perfil\n",
   "profile2": "/profile - Ver perfil\n",
   "profile3": "👤 **Perfil**\n",
-  "quota": "• Invitar amigos aumenta la cuota (hasta 10/100)\n",
+  "quota": "🔢 Cuota diaria máxima\n• Comienza con 30 botellas de mensajes diarias (solo 10 para usuarios regulares).\n• Invitar amigos puede aumentar tu cuota permanentemente, ¡hasta un máximo de 100!\n• Límite diario de 100 mensajes de chat, chatea sin barreras.",
   "quota2": "• Cuota de 30 botellas de mensajes por día\n",
   "register": "/start - Comenzar a usar / Continuar registro\n",
   "report": "/report - Reportar contenido inapropiado\n",

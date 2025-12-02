@@ -27,8 +27,8 @@ export default {
   "error": "שגיאה: {error}",
   "estimate": {
     "immediate": "שלח מיד (סביבות 1-2 שניות)",
-    "minutes": "בערך \\${minutes} דקות",
-    "seconds": "בערך \\${seconds} שניות"
+    "minutes": "בערך \\{minutes} דקות",
+    "seconds": "בערך \\{seconds} שניות"
   },
   "estimatedTime": "{time}\n\n",
   "example": "**דוגמה:**\n",
@@ -97,7 +97,7 @@ export default {
   "foundStuckBroadcasts": "{count}\n\n",
   "id": "מזהה: {id}\n",
   "idMustBeNumber": "❌ מזהה שידור חייב להיות מספר",
-  "maxUsersExceeded": "❌ מערכת השידור הנוכחית תומכת רק בשידורים של עד ${max} משתמשים.\n\nמספר יעד של משתמשים: ${current}",
+  "maxUsersExceeded": "❌ מערכת השידור הנוכחית תומכת רק בשידורים של עד {max} משתמשים.\n\nמספר יעד של משתמשים: {current}",
   "messageContent": "תוכן ההודעה",
   "noPendingBroadcasts": "נכון לעכשיו, אין שידורים ממתינים או תקועים.\n\n",
   "noRecords": "📊 כרגע אין רשומות שידור",
@@ -151,7 +151,7 @@ export default {
   "targetNonVip": "משתמשים לא-ווייפי",
   "targetType": "מטרה: {type}\n",
   "targetVip": "משתמשי VIP",
-  "tooLong": "הודעת שידור לא יכולה לחרוג מ-${max} תווים (נוכחי ${current} תווים)",
+  "tooLong": "הודעת שידור לא יכולה לחרוג מ-{max} תווים (נוכחי {current} תווים)",
   "upgradeRequired": "שידורים המוניים דורשים שדרוג ארכיטקטורת מערכת, אנא עיין ב-BROADCAST_SYSTEM_REDESIGN.md",
   "usageError": "❌ שימוש שגוי\n\n",
   "userCount": "מספר המשתמשים: {count} אנשים\n",

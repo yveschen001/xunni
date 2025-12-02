@@ -1,7 +1,7 @@
 export default {
-  "age": "• Wiek: ${updatedUser.age} lat\n",
-  "age2": "Twój wiek: ${age} lat\n",
-  "age3": "Wiek: ${age} lat\n",
+  "age": "• Wiek: {updatedUser.age} lat\n",
+  "age2": "Twój wiek: {age} lat\n",
+  "age3": "Wiek: {age} lat\n",
   "ageRestriction": "❌ Przykro nam, musisz mieć co najmniej 18 lat, aby korzystać z tej usługi.\n\n",
   "agreeTerms": "Naciśnij przycisk poniżej, aby potwierdzić, że przeczytałeś i zgadzasz się z powyższymi warunkami.",
   "antiFraud": {
@@ -24,7 +24,7 @@ export default {
   "birthday": "Jeśli uważasz, że to błąd, sprawdź, czy format twojej daty urodzenia jest poprawny (RRRR-MM-DD).",
   "birthday2": "Proszę wprowadzić ponownie datę urodzenia (format: RRRR-MM-DD):\n\n",
   "birthday3": "Proszę podać datę urodzenia (format: RRRR-MM-DD):\n\n",
-  "birthday4": "Urodziny: ${birthday}\n",
+  "birthday4": "Urodziny: {birthday}\n",
   "birthdayCheck": "Jeśli uważasz, że to błąd, sprawdź, czy Twój format daty urodzin jest poprawny (RRRR-MM-DD).",
   "birthdayError": "{error}\n\n",
   "birthdayFormatError": "❌ Niepoprawny format daty urodzin\n\nProszę wprowadzić ponownie (format: RRRR-MM-DD):",
@@ -43,11 +43,11 @@ export default {
   "enterYes": "Proszę wpisać 'tak', aby zakończyć test:",
   "errorRetry": "❌ Wystąpił błąd, proszę wprowadzić ponownie.",
   "example": {
-    "birthday": "Na przykład: 1995-06-15"
+    "birthday": "Na przykład: 2000-12-25"
   },
   "gender": {
     "female": "Kobieta",
-    "label": "• Płeć: ${gender}\n",
+    "label": "• Płeć: {gender}\n",
     "male": "Mężczyzna"
   },
   "gender2": "• Płeć: ${updatedUser.gender ===",
@@ -58,7 +58,7 @@ export default {
   "help": "To pomoże nam znaleźć bardziej odpowiednich partnerów do czatu dla Ciebie～\n\n",
   "iHaveRead": "✅ Przeczytałem i zgadzam się",
   "info": {
-    "age18": "• Musisz mieć co najmniej 18 lat, aby korzystać z tej usługi.\n- Należy podać dokładne informacje, aby dopasowanie i wróżenie przyniosły dobre wyniki.",
+    "age18": "• Musisz mieć co najmniej 18 lat, aby korzystać z tej usługi\n- Aby skorzystać z dopasowywania i wróżenia, należy podać dokładne informacje, aby uzyskać dobre wyniki.\n\n- Wprowadź swoją datę urodzenia (np. 2000-12-15)",
     "city": "{city}"
   },
   "languageSelection": "🌐 **Wybierz język**\n\nProszę wybrać preferowany język:",
@@ -69,8 +69,8 @@ export default {
   "message": "2. 🚨 Zidentyfikuj oszukańcze wiadomości\n",
   "message2": "• Bądź ostrożny wobec wiadomości żądających pieniędzy\n",
   "moreLanguages": "Więcej języków",
-  "nickname": "• Pseudonim: ${updatedUser.nickname}\n",
-  "nickname2": "{nickname} ${nickname}\n\n",
+  "nickname": "• Pseudonim: {updatedUser.nickname}\n",
+  "nickname2": "{nickname} {nickname}\n\n",
   "nicknameError": "❌ {error}\n\nProszę wpisać ponownie swój pseudonim:",
   "nicknameGood": "{nickname}\n\n",
   "notCompleted": "⚠️ Proszę najpierw zakończyć proces rejestracji",
@@ -99,7 +99,7 @@ export default {
   "startRegistration": "Rozpocznij rejestrację →",
   "stats": "📊 Statystyki",
   "stepAntiFraud": "🛡️ Proszę kliknąć przycisk powyżej, aby potwierdzić środki bezpieczeństwa przeciw oszustwom",
-  "stepBirthday": "📅 Proszę podać swoją datę urodzenia (format: RRRR-MM-DD, np. 1995-06-15)",
+  "stepBirthday": "📅 Proszę podaj swoją datę urodzenia (format: RRRR-MM-DD, np. 2000-12-25)",
   "stepDefault": "Proszę zakończyć rejestrację zgodnie z instrukcjami",
   "stepGender": "👤 Proszę kliknąć przycisk powyżej, aby wybrać swoją płeć",
   "stepLanguageSelection": "🌍 Proszę kliknąć przycisk powyżej, aby wybrać swój język",
@@ -113,7 +113,7 @@ export default {
     "terms_of_service_button": "📋 Warunki korzystania"
   },
   "termsOfService": "📋 Warunki użytkownika\n\n",
-  "text": "potwierdź_datę_urodzenia_${birthday}",
+  "text": "potwierdź_datę_urodzenia_{birthday}",
   "text10": "Na przykład: 1995-06-15\n\n",
   "text11": "🛡️ Wskazówki dotyczące bezpieczeństwa w randkowaniu online\n\n",
   "text12": "📋 Ostatni krok: Warunki korzystania z usługi\n\n",
@@ -127,7 +127,7 @@ export default {
   "text2": "💡 Możesz użyć komendy /mbti w każdej chwili, aby ponownie przeprowadzić test lub zmodyfikować.",
   "text20": "Proszę wrócić po osiągnięciu pełnoletności!\n\n",
   "text21": "📋 Polityka prywatności\n",
-  "text3": "potwierdź_płeć_${gender}",
+  "text3": "potwierdź_płeć_{gender}",
   "text4": "Ostatni krok: Proszę przeczytać i zgodzić się na nasze Warunki korzystania z usługi\n\n",
   "text5": "📝 Wykonaj szybki test (12 pytań, tylko w celach informacyjnych)",
   "text6": "• Warunki użytkownika: Wytyczne dotyczące korzystania z tej usługi\n\n",
@@ -138,12 +138,12 @@ export default {
   "useTelegramNickname": "Użyj pseudonimu na Telegramie",
   "viewPrivacyPolicy": "📋 Zobacz Politykę Prywatności",
   "viewTermsOfService": "📋 Zobacz Warunki Usługi",
-  "vip": "💡 Podanie grupy krwi będzie wykorzystane w przyszłych funkcjach dopasowywania grup krwi (wyłącznie dla VIP)\n\n",
+  "vip": "💡 Wprowadzenie twojego typu krwi może być wykorzystane do przyszłych funkcji dopasowywania typu krwi (więcej atrybutów, dopasowanie astrologiczne)",
   "warning": {
     "birthday": "⚠️ Daty urodzin nie można zmienić po ustawieniu. Proszę potwierdzić, że jest poprawna!"
   },
   "welcome": "Witamy w XunNi！\n\nProszę wybrać swój język:",
   "yourAge": "Twój wiek: {age} lat\n",
-  "zodiac": "• Znak zodiaku: ${updatedUser.zodiac_sign}\n",
-  "zodiac2": "Znak zodiaku: ${zodiacSign}\n\n"
+  "zodiac": "• Znak zodiaku: {updatedUser.zodiac_sign}\n",
+  "zodiac2": "Znak zodiaku: {zodiacSign}\n\n"
 };

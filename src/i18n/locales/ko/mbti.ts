@@ -18,164 +18,248 @@ export default {
     "ISTP": "감정가 - 대담하고 실용적인 실험가로, 다양한 도구를 사용하는 데 능숙합니다."
   },
   "full": {
-    "question1": "사회적 상황에서, 당신은 일반적으로:",
-    "question1.option1": "다른 사람들과 대화를 시작합니다",
-    "question1.option2": "다른 사람이 다가오기를 기다립니다",
-    "question10": "문제를 해결할 때, 당신은 더 많이 의존합니다:",
-    "question10.option1": "실용적인 경험과 사실",
-    "question10.option2": "직관과 가능성",
-    "question11": "당신은 선호합니다:",
-    "question11.option1": "특정 세부 사항에 집중하기",
-    "question11.option2": "전체 개념에 집중하기",
-    "question12": "새로운 것을 배울 때, 당신은 선호합니다:",
-    "question12.option1": "단계별 접근법",
-    "question12.option2": "혁신적인 방법 탐색",
-    "question13": "읽을 때, 당신은 선호합니다:",
-    "question13.option1": "실용적인 안내서",
-    "question13.option2": "이론과 개념",
-    "question14": "당신은 더 집중합니다:",
-    "question14.option1": "현재와 과거",
-    "question14.option2": "미래와 가능성",
-    "question15": "사물을 설명할 때, 당신은 경향이 있습니다:",
-    "question15.option1": "구체적인 예시 사용",
-    "question15.option2": "비유와 유추 사용",
-    "question16": "당신의 일에서, 당신은 더 중요하게 생각합니다:",
-    "question16.option1": "실용적인 적용",
-    "question16.option2": "혁신적인 아이디어",
-    "question17": "당신은 더 신뢰합니다:",
-    "question17.option1": "검증된 방법",
-    "question17.option2": "새로운 시도",
-    "question18": "미래를 계획할 때, 당신은:",
-    "question18.option1": "현실적인 조건에 기반하여",
-    "question18.option2": "다양한 가능성을 상상해보세요",
-    "question19": "결정을 내릴 때, 당신이 더 중요하게 생각하는 것은:",
-    "question19.option1": "논리와 객관적인 분석",
-    "question19.option2": "감정과 대인 관계의 조화",
-    "question2": "주말에, 당신은 선호합니다:",
-    "question2.option1": "친구들과 나가는 것",
-    "question2.option2": "혼자 집에 있어 휴식하는 것",
-    "question20": "다른 사람을 비판할 때, 당신은:",
-    "question20.option1": "문제를 직접 지적합니다",
-    "question20.option2": "상대방의 감정을 고려합니다",
-    "question21": "당신이 더 중요하게 생각하는 것은:",
-    "question21.option1": "공정성과 정의",
-    "question21.option2": "동정과 이해",
-    "question22": "아이디어를 평가할 때, 당신은 먼저 고려합니다:",
-    "question22.option1": "합리적인지 여부",
-    "question22.option2": "유익한지 여부",
-    "question23": "친구가 당신에게 고민을 털어놓을 때, 당신은:",
-    "question23.option1": "문제를 분석하고 제안을 제공합니다",
-    "question23.option2": "귀 기울여 듣고 위로합니다",
-    "question24": "갈등에서, 당신은 경향이 있습니다:",
-    "question24.option1": "원칙을 고수하세요",
-    "question24.option2": "관계를 유지하세요",
-    "question25": "당신은 다음 중 더 쉽게 설득됩니다:",
-    "question25.option1": "사실과 데이터",
-    "question25.option2": "감정과 이야기",
-    "question26": "팀 결정을 내릴 때, 당신은 더 많이 집중합니다:",
-    "question26.option1": "효율성과 결과",
-    "question26.option2": "합의와 단결",
-    "question27": "당신은 좋은 리더가 되어야 한다고 믿습니다:",
-    "question27.option1": "공정하고 단호해야 한다",
-    "question27.option2": "배려하고 돌봐야 한다",
-    "question28": "당신의 근무 스타일은:",
-    "question28.option1": "미리 계획하고 준비하기",
-    "question28.option2": "적응하고 유연하게 대처하기",
-    "question29": "당신은 선호합니다:",
-    "question29.option1": "명확한 마감일 갖기",
-    "question29.option2": "선택지를 열어두기",
-    "question3": "모임에 참석한 후, 보통 당신은:",
-    "question3.option1": "힘이 솟는 기분이 듭니다",
-    "question3.option2": "휴식이 필요하다고 느낍니다",
-    "question30": "여행할 때 당신은:",
-    "question30.option1": "상세한 계획을 세운다",
-    "question30.option2": "자유롭게 탐험한다",
-    "question31": "당신의 방은 일반적으로:",
-    "question31.option1": "깔끔하고 정돈되어 있다",
-    "question31.option2": "편안하고 캐주얼하다",
-    "question32": "작업을 처리할 때 당신은:",
-    "question32.option1": "가능한 한 일찍 완료한다",
-    "question32.option2": "마감일에 가까운 시점에 마친다",
-    "question33": "당신의 선호하는 라이프스타일:",
-    "question33.option1": "구조적이고 질서 정연하다",
-    "question33.option2": "자유롭고 유동적이다",
-    "question34": "결정을 내릴 때 당신은:",
-    "question34.option1": "빠르게 결정한다",
-    "question34.option2": "옵션을 열어둔다",
-    "question35": "쇼핑할 때 당신은:",
-    "question35.option1": "목록을 만들고 그것을 고수한다",
-    "question35.option2": "가볍게 둘러보며 마음에 드는 것을 구매한다",
-    "question36": "변화에 직면할 때 당신은 일반적으로:",
-    "question36.option1": "불안함을 느낀다",
-    "question36.option2": "신나고 기대돼요",
-    "question4": "팀에서는 당신이:",
-    "question4.option1": "적극적으로 의견을 내요",
-    "question4.option2": "먼저 듣고, 그 후에 말해요",
-    "question5": "새로운 친구를 만날 때, 당신은:",
-    "question5.option1": "빠르게 친해져요",
-    "question5.option2": "적응하는 데 시간이 필요해요",
-    "question6": "당신의 친구들은:",
-    "question6.option1": "넓지만 깊지는 않아요",
-    "question6.option2": "작고 친밀해요",
-    "question7": "일할 때, 당신은 선호해요:",
-    "question7.option1": "팀 협업",
-    "question7.option2": "독립적인 작업",
-    "question8": "문제를 생각할 때, 당신은:",
-    "question8.option1": "생각하면서 이야기해요",
-    "question8.option2": "말하기 전에 곰곰이 생각해요",
-    "question9": "압박을 받을 때, 당신은:",
-    "question9.option1": "친구와 대화해요",
-    "question9.option2": "혼자서 처리해요"
+    "question1": {
+      "text": "사회적 상황에서, 당신은 일반적으로:",
+      "option1": "다른 사람들과 대화를 시작합니다",
+      "option2": "다른 사람이 다가오기를 기다립니다"
+    },
+    "question10": {
+      "text": "문제를 해결할 때, 당신은 더 많이 의존합니다:",
+      "option1": "실용적인 경험과 사실",
+      "option2": "직관과 가능성"
+    },
+    "question11": {
+      "text": "당신은 선호합니다:",
+      "option1": "특정 세부 사항에 집중하기",
+      "option2": "전체 개념에 집중하기"
+    },
+    "question12": {
+      "text": "새로운 것을 배울 때, 당신은 선호합니다:",
+      "option1": "단계별 접근법",
+      "option2": "혁신적인 방법 탐색"
+    },
+    "question13": {
+      "text": "읽을 때, 당신은 선호합니다:",
+      "option1": "실용적인 안내서",
+      "option2": "이론과 개념"
+    },
+    "question14": {
+      "text": "당신은 더 집중합니다:",
+      "option1": "현재와 과거",
+      "option2": "미래와 가능성"
+    },
+    "question15": {
+      "text": "사물을 설명할 때, 당신은 경향이 있습니다:",
+      "option1": "구체적인 예시 사용",
+      "option2": "비유와 유추 사용"
+    },
+    "question16": {
+      "text": "당신의 일에서, 당신은 더 중요하게 생각합니다:",
+      "option1": "실용적인 적용",
+      "option2": "혁신적인 아이디어"
+    },
+    "question17": {
+      "text": "당신은 더 신뢰합니다:",
+      "option1": "검증된 방법",
+      "option2": "새로운 시도"
+    },
+    "question18": {
+      "text": "미래를 계획할 때, 당신은:",
+      "option1": "현실적인 조건에 기반하여",
+      "option2": "다양한 가능성을 상상해보세요"
+    },
+    "question19": {
+      "text": "결정을 내릴 때, 당신이 더 중요하게 생각하는 것은:",
+      "option1": "논리와 객관적인 분석",
+      "option2": "감정과 대인 관계의 조화"
+    },
+    "question2": {
+      "text": "주말에, 당신은 선호합니다:",
+      "option1": "친구들과 나가는 것",
+      "option2": "혼자 집에 있어 휴식하는 것"
+    },
+    "question20": {
+      "text": "다른 사람을 비판할 때, 당신은:",
+      "option1": "문제를 직접 지적합니다",
+      "option2": "상대방의 감정을 고려합니다"
+    },
+    "question21": {
+      "text": "당신이 더 중요하게 생각하는 것은:",
+      "option1": "공정성과 정의",
+      "option2": "동정과 이해"
+    },
+    "question22": {
+      "text": "아이디어를 평가할 때, 당신은 먼저 고려합니다:",
+      "option1": "합리적인지 여부",
+      "option2": "유익한지 여부"
+    },
+    "question23": {
+      "text": "친구가 당신에게 고민을 털어놓을 때, 당신은:",
+      "option1": "문제를 분석하고 제안을 제공합니다",
+      "option2": "귀 기울여 듣고 위로합니다"
+    },
+    "question24": {
+      "text": "갈등에서, 당신은 경향이 있습니다:",
+      "option1": "원칙을 고수하세요",
+      "option2": "관계를 유지하세요"
+    },
+    "question25": {
+      "text": "당신은 다음 중 더 쉽게 설득됩니다:",
+      "option1": "사실과 데이터",
+      "option2": "감정과 이야기"
+    },
+    "question26": {
+      "text": "팀 결정을 내릴 때, 당신은 더 많이 집중합니다:",
+      "option1": "효율성과 결과",
+      "option2": "합의와 단결"
+    },
+    "question27": {
+      "text": "당신은 좋은 리더가 되어야 한다고 믿습니다:",
+      "option1": "공정하고 단호해야 한다",
+      "option2": "배려하고 돌봐야 한다"
+    },
+    "question28": {
+      "text": "당신의 근무 스타일은:",
+      "option1": "미리 계획하고 준비하기",
+      "option2": "적응하고 유연하게 대처하기"
+    },
+    "question29": {
+      "text": "당신은 선호합니다:",
+      "option1": "명확한 마감일 갖기",
+      "option2": "선택지를 열어두기"
+    },
+    "question3": {
+      "text": "모임에 참석한 후, 보통 당신은:",
+      "option1": "힘이 솟는 기분이 듭니다",
+      "option2": "휴식이 필요하다고 느낍니다"
+    },
+    "question30": {
+      "text": "여행할 때 당신은:",
+      "option1": "상세한 계획을 세운다",
+      "option2": "자유롭게 탐험한다"
+    },
+    "question31": {
+      "text": "당신의 방은 일반적으로:",
+      "option1": "깔끔하고 정돈되어 있다",
+      "option2": "편안하고 캐주얼하다"
+    },
+    "question32": {
+      "text": "작업을 처리할 때 당신은:",
+      "option1": "가능한 한 일찍 완료한다",
+      "option2": "마감일에 가까운 시점에 마친다"
+    },
+    "question33": {
+      "text": "당신의 선호하는 라이프스타일:",
+      "option1": "구조적이고 질서 정연하다",
+      "option2": "자유롭고 유동적이다"
+    },
+    "question34": {
+      "text": "결정을 내릴 때 당신은:",
+      "option1": "빠르게 결정한다",
+      "option2": "옵션을 열어둔다"
+    },
+    "question35": {
+      "text": "쇼핑할 때 당신은:",
+      "option1": "목록을 만들고 그것을 고수한다",
+      "option2": "가볍게 둘러보며 마음에 드는 것을 구매한다"
+    },
+    "question36": {
+      "text": "변화에 직면할 때 당신은 일반적으로:",
+      "option1": "불안함을 느낀다",
+      "option2": "신나고 기대돼요"
+    },
+    "question4": {
+      "text": "팀에서는 당신이:",
+      "option1": "적극적으로 의견을 내요",
+      "option2": "먼저 듣고, 그 후에 말해요"
+    },
+    "question5": {
+      "text": "새로운 친구를 만날 때, 당신은:",
+      "option1": "빠르게 친해져요",
+      "option2": "적응하는 데 시간이 필요해요"
+    },
+    "question6": {
+      "text": "당신의 친구들은:",
+      "option1": "넓지만 깊지는 않아요",
+      "option2": "작고 친밀해요"
+    },
+    "question7": {
+      "text": "일할 때, 당신은 선호해요:",
+      "option1": "팀 협업",
+      "option2": "독립적인 작업"
+    },
+    "question8": {
+      "text": "문제를 생각할 때, 당신은:",
+      "option1": "생각하면서 이야기해요",
+      "option2": "말하기 전에 곰곰이 생각해요"
+    },
+    "question9": {
+      "text": "압박을 받을 때, 당신은:",
+      "option1": "친구와 대화해요",
+      "option2": "혼자서 처리해요"
+    }
   },
   "quick": {
-    "question1": "사회적 상황에서는 보통:",
-    "question1.option1": "다른 사람과 대화를 시작하세요",
-    "question1.option2": "다른 사람이 저에게 연락하기를 기다립니다",
-    "question10": "귀하의 근무 스타일은 다음과 같습니다:",
-    "question10.option1": "미리 계획하고 준비하기",
-    "question10.option2": "적응하고 유연하게 대처하기",
-    "question11": "귀하는 선호합니다:",
-    "question11.option1": "명확한 마감일 갖기",
-    "question11.option2": "선택지를 열어두기",
-    "question12": "여행할 때, 귀하는 대체로:",
-    "question12.option1": "상세한 일정을 작성하기",
-    "question12.option2": "자유롭게 탐험하기",
-    "question2": "주말에 귀하는 선호합니다:",
-    "question2.option1": "친구들과 어울리기",
-    "question2.option2": "혼자 집에서 휴식 취하기",
-    "question3": "파티 후, 귀하는 대개:",
-    "question3.option1": "에너지를 느끼기",
-    "question3.option2": "휴식이 필요하다고 느끼기",
-    "question4": "문제를 해결할 때, 귀하는 더 많이 의존합니다:",
-    "question4.option1": "실용적인 경험과 사실",
-    "question4.option2": "직관과 가능성",
-    "question5": "어떤 것을 선호하시나요:",
-    "question5.option1": "특정 세부사항에 집중하기",
-    "question5.option2": "전체 개념에 집중하기",
-    "question6": "새로운 것을 배울 때, 당신은:",
-    "question6.option1": "단계별 접근 방식",
-    "question6.option2": "혁신적인 방법 탐색하기",
-    "question7": "결정을 내릴 때, 당신이 중시하는 것은:",
-    "question7.option1": "논리와 객관적 분석",
-    "question7.option2": "감정과 대인 간 조화",
-    "question8": "타인을 비판할 때, 당신은:",
-    "question8.option1": "문제를 직접 지적하기",
-    "question8.option2": "상대방의 감정을 고려하기",
-    "question9": "더 중시하는 것은:",
-    "question9.option1": "공정성과 정의",
-    "question9.option2": "연민과 이해",
-    "question1.text": "사회적 상황에서 당신은 보통:",
-    "question10.text": "당신의 업무 스타일은:",
-    "question11.text": "당신은 선호합니다:",
-    "question12.text": "여행할 때, 당신은:",
-    "question2.text": "주말에는 당신이 선호하는 것은:",
-    "question3.text": "모임에 참석한 후, 당신은 보통:",
-    "question4.text": "문제를 해결할 때, 당신은 주로:",
-    "question5.text": "당신은 선호합니다:",
-    "question6.text": "새로운 것을 배울 때, 당신은 선호합니다:",
-    "question7.text": "결정을 내릴 때, 당신은 중요하게 여기는 것:",
-    "question8.text": "다른 사람을 비판할 때, 당신은:",
-    "question9.text": "당신이 더 중요하게 여기는 것은:"
+    "question1": {
+      "text": "사회적 상황에서 당신은 보통:",
+      "option1": "다른 사람과 대화를 시작하세요",
+      "option2": "다른 사람이 저에게 연락하기를 기다립니다"
+    },
+    "question10": {
+      "text": "당신의 업무 스타일은:",
+      "option1": "미리 계획하고 준비하기",
+      "option2": "적응하고 유연하게 대처하기"
+    },
+    "question11": {
+      "text": "당신은 선호합니다:",
+      "option1": "명확한 마감일 갖기",
+      "option2": "선택지를 열어두기"
+    },
+    "question12": {
+      "text": "여행할 때, 당신은:",
+      "option1": "상세한 일정을 작성하기",
+      "option2": "자유롭게 탐험하기"
+    },
+    "question2": {
+      "text": "주말에는 당신이 선호하는 것은:",
+      "option1": "친구들과 어울리기",
+      "option2": "혼자 집에서 휴식 취하기"
+    },
+    "question3": {
+      "text": "모임에 참석한 후, 당신은 보통:",
+      "option1": "에너지를 느끼기",
+      "option2": "휴식이 필요하다고 느끼기"
+    },
+    "question4": {
+      "text": "문제를 해결할 때, 당신은 주로:",
+      "option1": "실용적인 경험과 사실",
+      "option2": "직관과 가능성"
+    },
+    "question5": {
+      "text": "당신은 선호합니다:",
+      "option1": "특정 세부사항에 집중하기",
+      "option2": "전체 개념에 집중하기"
+    },
+    "question6": {
+      "text": "새로운 것을 배울 때, 당신은 선호합니다:",
+      "option1": "단계별 접근 방식",
+      "option2": "혁신적인 방법 탐색하기"
+    },
+    "question7": {
+      "text": "결정을 내릴 때, 당신은 중요하게 여기는 것:",
+      "option1": "논리와 객관적 분석",
+      "option2": "감정과 대인 간 조화"
+    },
+    "question8": {
+      "text": "다른 사람을 비판할 때, 당신은:",
+      "option1": "문제를 직접 지적하기",
+      "option2": "상대방의 감정을 고려하기"
+    },
+    "question9": {
+      "text": "당신이 더 중요하게 여기는 것은:",
+      "option1": "공정성과 정의",
+      "option2": "연민과 이해"
+    }
   },
   "share": {
     "welcome": "👋 당신의 친구가 MBTI 테스트를 받으라고 초대합니다!\n\n와서 당신의 성격 유형을 확인하세요～",

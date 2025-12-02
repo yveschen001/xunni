@@ -1,8 +1,8 @@
 export default {
   "activatedInvites": "✅ الدعوات المُفعلة: {successfulInvites} / {inviteLimit} شخص\n",
-  "age": "🎂 العمر: ${age}\n",
+  "age": "🎂 العمر: {age}\n",
   "anonymousUser": "مستخدم مجهول",
-  "bloodType": "🩸 نوع الدم: ${bloodType}\n",
+  "bloodType": "🩸 نوع الدم: {bloodType}\n",
   "bottle": ": permanentQuota} زجاجات رسائل\n\n",
   "cardAge": "{age} سنة",
   "cardBio": "📝 المقدمة:\n{bio}\n\n",
@@ -18,23 +18,23 @@ export default {
   "completeOnboarding": "⚠️ يرجى إكمال عملية التسجيل أولاً.\n\nاستخدم /start للمتابعة في التسجيل.",
   "conversation": "💡 هذه هي بطاقة المعلومات التي تُظهرها للآخرين في الحديث\n\n",
   "editProfile": "📝 تعديل الملف الشخصي",
-  "gender": "👤 الجنس: ${gender}\n",
+  "gender": "👤 الجنس: {gender}\n",
   "hints": "💡 نصيحة:\n",
-  "invite": "⏳ الدعوات في انتظار التفعيل: ${inviteStats.pending} شخص\n",
+  "invite": "⏳ الدعوات في انتظار التفعيل: {inviteStats.pending} شخص\n",
   "invite2": "🎁 **معلومات الدعوة**\n\n",
   "inviteCodeLabel": "📋 رمز دعوتك: `{inviteCode}`\n",
   "manual": "الإعدادات اليدوية",
   "mbti": "• استخدم /mbti لإعادة أخذ أو تعديل MBTI\n",
   "mbtiWithSource": "🧠 MBTI: {mbti}{source}",
-  "message": "https://t.me/share/url?url=https://t.me/${botUsername}?start=invite_${inviteCode}&text=تعال إلى XunNi وارمِ زجاجة رسائل معًا!🍾 استخدم رمز الدعوة الخاص بي: ${inviteCode}",
-  "message2": "${inviteLimitWarning}\n\n",
-  "message3": "🌍 اللغة: ${user.language_pref}\n\n",
-  "message4": "🌍 اللغة: ${user.language_pref}\n",
-  "message5": "📈 معدل التحويل: ${inviteStats.conversionRate}%\n",
-  "message6": "${gender} • ${age} سنوات • ${city}\n\n",
-  "message7": "https://t.me/share/url?url=https://t.me/${botUsername}?start=invite_${inviteCode}&text=تعال وانضم إلى XunNi وأرسل زجاجة رسائل",
+  "message": "https://t.me/share/url?url=https://t.me/{botUsername}?start=invite_{inviteCode}&text=تعال إلى XunNi وارمِ زجاجة رسائل معًا!🍾 استخدم رمز الدعوة الخاص بي: {inviteCode}",
+  "message2": "{inviteLimitWarning}\n\n",
+  "message3": "🌍 اللغة: {user.language_pref}\n\n",
+  "message4": "🌍 اللغة: {user.language_pref}\n",
+  "message5": "📈 معدل التحويل: {inviteStats.conversionRate}%\n",
+  "message6": "{gender} • {age} سنوات • {city}\n\n",
+  "message7": "https://t.me/share/url?url=https://t.me/{botUsername}?start=invite_{inviteCode}&text=تعال وانضم إلى XunNi وأرسل زجاجة رسائل",
   "mysterious": "هذه الشخص غامض جدًا، ولا يترك شيئًا وراءه～",
-  "nickname": "📛 اللقب: ${displayNickname}\n",
+  "nickname": "📛 اللقب: {displayNickname}\n",
   "notSet": "غير مُحدد",
   "profile": "│ 📇 بطاقة الملف الشخصي │\n",
   "profile2": "👤 **الملف الشخصي**\n\n",
@@ -60,15 +60,15 @@ export default {
   "systemError": "❌ حدث خطأ في النظام، يرجى المحاولة مرة أخرى لاحقًا.",
   "test": "نتائج الاختبار",
   "text": "• استخدم /profile_card لعرض بطاقة الملف الشخصي الكاملة\n",
-  "text2": "🏷️ الاهتمامات: ${interests}\n\n",
-  "text3": "💎 عضو: ${vipStatus}\n\n",
-  "text4": "📝 السيرة الذاتية:\n${bio}\n\n",
+  "text2": "🏷️ الاهتمامات: {interests}\n\n",
+  "text3": "💎 عضو: {vipStatus}\n\n",
+  "text4": "📝 السيرة الذاتية:\n{bio}\n\n",
   "text5": "هذه الشخص غامض جدًا، لا يترك شيئًا وراءه～",
   "userNotFound": "⚠️ المستخدم لا exists، يرجى التسجيل باستخدام /start أولاً.",
-  "vip": "عضو VIP (تنتهي: ${expireDate})",
+  "vip": "عضو VIP (تنتهي: {expireDate})",
   "vip2": "• استخدم /vip لترقية إلى عضو VIP\n",
   "vipUpgrade": "• قم بالترقية إلى عضو VIP باستخدام /vip\n",
-  "zodiac": "⭐ البرج: ${zodiac}\n",
+  "zodiac": "⭐ البرج: {zodiac}\n",
   "fortuneQuota": "🔮 {fortunemessage زجاجة رسائل}: {total} (هذا الأسبوع مجاني: {weekly}/{limit} | إضافي: {additional})",
   "vipWithDays": "💎 عضو VIP (تبقى {days} أيام، تاريخ انتهاء الاشتراك: {expireDate})"
 };

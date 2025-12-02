@@ -2,7 +2,7 @@ export default {
   "ad": "➡️ Następna reklama",
   "back": "⬅️ Powrót / Wstecz",
   "backToVip": "💎 Powrót do menu VIP",
-  "bottle": "📺 Oglądaj reklamy, aby zdobyć więcej butelek z wiadomościami 🎁 (${remaining}/20)",
+  "bottle": "📺 Oglądaj reklamy, aby zdobyć więcej butelek z wiadomościami 🎁 ({remaining}/20)",
   "bottle2": "💎 Ulepsz do VIP, aby uzyskać więcej butelek z wiadomościami",
   "bottle3": "🌊 Rzuć butelkę z wiadomością",
   "bottle4": "🎣 Podnieś butelkę z wiadomością",

@@ -11,6 +11,6 @@ export default {
   "step2": "2️⃣ Select 'Reply'.",
   "step3": "3️⃣ Enter /block",
   "steps": "**Operation steps:**",
-  "success": "✅ Blocked this user (#${identifier})",
+  "success": "✅ Blocked this user (#{identifier})",
   "willNotMatch": "You will no longer be matched with each other's message bottles."
 };

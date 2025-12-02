@@ -27,8 +27,8 @@ export default {
   "error": "Feil: {error}",
   "estimate": {
     "immediate": "Send umiddelbart (omtrent 1-2 sekunder)",
-    "minutes": "Omtrent \\${minutes} minutter",
-    "seconds": "Omtrent \\${seconds} sekunder"
+    "minutes": "Omtrent \\{minutes} minutter",
+    "seconds": "Omtrent \\{seconds} sekunder"
   },
   "estimatedTime": "Estimert tid: {time}\n\n",
   "example": "**Eksempel:**\n",
@@ -97,7 +97,7 @@ export default {
   "foundStuckBroadcasts": "⚠️ Oppdaget {count} fastlåste sendinger\n\n",
   "id": "ID: {id}",
   "idMustBeNumber": "❌ Sending ID må være et tall",
-  "maxUsersExceeded": "❌ Det nåværende sending systemet støtter sending til maksimalt ${max} brukere.\n\nMål antall brukere: ${current}",
+  "maxUsersExceeded": "❌ Det nåværende sending systemet støtter sending til maksimalt {max} brukere.\n\nMål antall brukere: {current}",
   "messageContent": "Meldingens Innhold",
   "noPendingBroadcasts": "For øyeblikket er det ingen ventende eller fastlåste sendinger.\n\n",
   "noRecords": "📊 Ingen sendeopptegnelser tilgjengelig for øyeblikket",
@@ -151,7 +151,7 @@ export default {
   "targetNonVip": "Ikke-VIP brukere",
   "targetType": "Mål: {type}\n",
   "targetVip": "VIP brukere",
-  "tooLong": "Sendemelding kan ikke overskride ${max} tegn (for øyeblikket ${current} tegn)",
+  "tooLong": "Sendemelding kan ikke overskride {max} tegn (for øyeblikket {current} tegn)",
   "upgradeRequired": "Storskalasendinger krever systemoppgradering, vennligst se BROADCAST_SYSTEM_REDESIGN.md",
   "usageError": "❌ Feil bruk\n\n",
   "userCount": "Antall brukere: {count} personer\n",

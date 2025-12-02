@@ -27,8 +27,8 @@ export default {
   "error": "エラー: {error}",
   "estimate": {
     "immediate": "即時送信（約 1-2 秒）",
-    "minutes": "約 \\${minutes} 分",
-    "seconds": "約 \\${seconds} 秒"
+    "minutes": "約 \\{minutes} 分",
+    "seconds": "約 \\{seconds} 秒"
   },
   "estimatedTime": "推定時間: {time}\n\n",
   "example": "**例:**\n",
@@ -97,7 +97,7 @@ export default {
   "foundStuckBroadcasts": "⚠️ {count} 件のスタックブロードキャストが検出されました\n\n",
   "id": "ID: {id}",
   "idMustBeNumber": "❌ ブロードキャストIDは数字である必要があります",
-  "maxUsersExceeded": "❌ 現在のブロードキャストシステムは、最大${max}ユーザーまでのブロードキャストをサポートしています。\n\nターゲットユーザー数: ${current}",
+  "maxUsersExceeded": "❌ 現在のブロードキャストシステムは、最大{max}ユーザーまでのブロードキャストをサポートしています。\n\nターゲットユーザー数: {current}",
   "messageContent": "メッセージ内容",
   "noPendingBroadcasts": "現在、保留中またはスタックしているブロードキャストはありません。\n\n",
   "noRecords": "📊 現在、ブロードキャスト記録はありません",
@@ -151,7 +151,7 @@ export default {
   "targetNonVip": "一般ユーザー",
   "targetType": "ターゲット: {type}\n",
   "targetVip": "VIPユーザー",
-  "tooLong": "放送メッセージは${max}文字を超えることはできません（現在${current}文字）",
+  "tooLong": "放送メッセージは{max}文字を超えることはできません（現在{current}文字）",
   "upgradeRequired": "大規模放送にはシステムアーキテクチャのアップグレードが必要です。BROADCAST_SYSTEM_REDESIGN.mdを参照してください",
   "usageError": "❌ 不正な使用法です\n\n",
   "userCount": "ユーザー数: {count}人\n",

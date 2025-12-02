@@ -1,5 +1,5 @@
 export default {
-  "nickname": "👤 Becenév: ${ownerMaskedNickname}",
+  "nickname": "👤 Becenév: {ownerMaskedNickname}",
   "short19": "✏️ Profil szerkesztése",
   "menuTitle": "Profil Szerkesztése",
   "nicknameButton": "✏️ Becenév Szerkesztése",

@@ -1,7 +1,7 @@
 export default {
   "age": {
-    "daysAgo": "\\${days} araw na ang nakalipas",
-    "hoursAgo": "\\${hours} oras na ang nakalipas",
+    "daysAgo": "\\{days} araw na ang nakalipas",
+    "hoursAgo": "\\{hours} oras na ang nakalipas",
     "justNow": "Katatapos lang"
   },
   "contentHint": "💡 Maaari mong:\n• Direktang ipasok ang bagong nilalaman upang palitan ang draft\n• Gumamit ng /throw upang magsimula muli\n• Ipadala ang nilalaman ng draft upang magtapon ng bote ng mensahe",

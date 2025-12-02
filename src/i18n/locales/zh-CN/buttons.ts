@@ -2,7 +2,7 @@ export default {
   "ad": "➡️ 下一个广告",
   "back": "⬅️ 返回",
   "backToVip": "💎 返回 VIP 选单",
-  "bottle": "📺 看广告获取更多瓶子 🎁 (${remaining}/20)",
+  "bottle": "📺 看广告获取更多瓶子 🎁 ({remaining}/20)",
   "bottle2": "💎 升级 VIP 获得更多瓶子",
   "bottle3": "🌊 丢出漂流瓶",
   "bottle4": "🎣 捡起漂流瓶",

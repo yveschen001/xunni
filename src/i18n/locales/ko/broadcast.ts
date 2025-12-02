@@ -27,8 +27,8 @@ export default {
   "error": "오류: {error}",
   "estimate": {
     "immediate": "즉시 전송(약 1-2초 소요)",
-    "minutes": "약 \\${minutes} 분",
-    "seconds": "약 \\${seconds} 초"
+    "minutes": "약 \\{minutes} 분",
+    "seconds": "약 \\{seconds} 초"
   },
   "estimatedTime": "예상 시간: {time}\n\n",
   "example": "**예시:**\n",
@@ -97,7 +97,7 @@ export default {
   "foundStuckBroadcasts": "⚠️ {count}개의 특정 방송이 감지되었습니다\n\n",
   "id": "아이디: {id}",
   "idMustBeNumber": "❌ 방송 ID는 숫자가 되어야 합니다.",
-  "maxUsersExceeded": "❌ 현재 방송 시스템은 ${max}명 이하의 사용자에게만 방송을 지원합니다.\n\n대상 사용자 수: ${current}",
+  "maxUsersExceeded": "❌ 현재 방송 시스템은 {max}명 이하의 사용자에게만 방송을 지원합니다.\n\n대상 사용자 수: {current}",
   "messageContent": "메시지 내용",
   "noPendingBroadcasts": "현재 보류 중이거나 정체된 방송이 없습니다.\n\n",
   "noRecords": "📊 현재 방송 기록이 없습니다.",
@@ -151,7 +151,7 @@ export default {
   "targetNonVip": "비VIP 사용자",
   "targetType": "대상: {type}\n",
   "targetVip": "VIP 사용자",
-  "tooLong": "전송 메시지는 ${max}자 이하이어야 합니다 (현재 ${current}자)",
+  "tooLong": "전송 메시지는 {max}자 이하이어야 합니다 (현재 {current}자)",
   "upgradeRequired": "대규모 방송은 시스템 아키텍처 업그레이드가 필요합니다. BROADCAST_SYSTEM_REDESIGN.md를 참조하세요",
   "usageError": "❌ 잘못된 사용법\n\n",
   "userCount": "사용자 수: {count}명\n",

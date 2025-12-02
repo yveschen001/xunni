@@ -60,7 +60,7 @@ export default {
   "profile": "/edit_profile - Redakto profilin\n",
   "profile2": "/profile - Shiko profilin\n",
   "profile3": "👤 **Profili**\n",
-  "quota": "• Ftesa e miqve mund të rrisë kuotën (maksimum 10/100)\n",
+  "quota": "🔢 Kuota e Lartë Ditore\n• Filloni me 30 message bottles çdo ditë (vetëm 10 për përdoruesit e zakonshëm).\n• Ftesat për miq mund të rrisin përhershmërisht kuotën tuaj, deri në maksimum 100!\n• Kufiri ditor prej 100 mesazhesh bisedash, bisedoni pa barriera.",
   "quota2": "• 30 shishe mesazh kuotë në ditë\n",
   "register": "/start - Filloni përdorimin / Vazhdoni regjistrimin\n",
   "report": "/report - Raportoni përmbajtje të papërshtatshme\n",

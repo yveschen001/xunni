@@ -27,8 +27,8 @@ export default {
   "error": "Chyba: {error}",
   "estimate": {
     "immediate": "Odoslať okamžite (približne 1-2 sekundy)",
-    "minutes": "Približne \\${minutes} minút",
-    "seconds": "Približne \\${seconds} sekúnd"
+    "minutes": "Približne \\{minutes} minút",
+    "seconds": "Približne \\{seconds} sekúnd"
   },
   "estimatedTime": "Odhadovaný čas: {time}\n\n",
   "example": "**Príklad:**\n",
@@ -97,7 +97,7 @@ export default {
   "foundStuckBroadcasts": "⚠️ Zistené {count} uviaznuté vysielania\n\n",
   "id": "ID: {id}",
   "idMustBeNumber": "❌ ID vysielania musí byť číslo",
-  "maxUsersExceeded": "❌ Aktuálny systém vysielania podporuje maximálne ${max} používateľov.\n\nCieľový počet používateľov: ${current}",
+  "maxUsersExceeded": "❌ Aktuálny systém vysielania podporuje maximálne {max} používateľov.\n\nCieľový počet používateľov: {current}",
   "messageContent": "Obsah správy",
   "noPendingBroadcasts": "Momentálne nie sú žiadne čakajúce alebo uviaznuté vysielania.\n\n",
   "noRecords": "📊 Momentálne nie sú dostupné žiadne záznamy vysielania",
@@ -151,7 +151,7 @@ export default {
   "targetNonVip": "Nepremium používatelia",
   "targetType": "Cieľ: {type}\n",
   "targetVip": "VIP používatelia",
-  "tooLong": "Správa vysielania nemôže presiahnuť ${max} znakov (aktuálne ${current} znakov)",
+  "tooLong": "Správa vysielania nemôže presiahnuť {max} znakov (aktuálne {current} znakov)",
   "upgradeRequired": "Hromadné vysielanie vyžaduje upgrade systémovej architektúry, pozrite si BROADCAST_SYSTEM_REDESIGN.md",
   "usageError": "❌ Nesprávne použitie\n\n",
   "userCount": "Počet používateľov: {count} osôb\n",

@@ -18,164 +18,248 @@ export default {
     "ISTP": "Evaluator - Un experimentator îndrăzneț și pragmatic, priceput în utilizarea unor instrumente diverse."
   },
   "full": {
-    "question1": "În situații sociale, de obicei:",
-    "question1.option1": "Ia inițiativa să vorbesc cu alții",
-    "question1.option2": "Aștept ca alții să se apropie de mine",
-    "question10": "Atunci când rezolvi probleme, te bazezi mai mult pe:",
-    "question10.option1": "Experiență practică și fapte",
-    "question10.option2": "Intuiție și posibilități",
-    "question11": "Preferi:",
-    "question11.option1": "Să mă concentrez pe detalii specifice",
-    "question11.option2": "Să mă concentrez pe imaginea de ansamblu",
-    "question12": "Când înveți lucruri noi, preferi:",
-    "question12.option1": "O abordare pas cu pas",
-    "question12.option2": "Să explorezi modalități inovatoare",
-    "question13": "Când citești, preferi:",
-    "question13.option1": "Ghiduri practice",
-    "question13.option2": "Teorii și concepte",
-    "question14": "Te preocupă mai mult:",
-    "question14.option1": "Prezentul și trecutul",
-    "question14.option2": "Viitorul și posibilitățile",
-    "question15": "Când descrii lucruri, ai tendința să:",
-    "question15.option1": "Folosesc exemple concrete",
-    "question15.option2": "Folosesc metafore și analogii",
-    "question16": "La muncă, prețuiești:",
-    "question16.option1": "Aplicarea practică",
-    "question16.option2": "Ideile inovatoare",
-    "question17": "Ai încredere în:",
-    "question17.option1": "Metode dovedite",
-    "question17.option2": "Încercări noi",
-    "question18": "Când planifici pentru viitor,:",
-    "question18.option1": "Îți bazezi pe condiții realiste",
-    "question18.option2": "Îți imaginezi diverse posibilități",
-    "question19": "Când iei decizii, prioritizezi:",
-    "question19.option1": "Logica și analiza obiectivă",
-    "question19.option2": "Emoțiile și armonia interumană",
-    "question2": "În weekenduri, preferi:",
-    "question2.option1": "Să ies cu prietenii",
-    "question2.option2": "Să rămân acasă singur pentru a mă odihni",
-    "question20": "Când critici pe alții,:",
-    "question20.option1": "Sublinezi direct problema",
-    "question20.option2": "Ieși în considerare sentimentele altora",
-    "question21": "Ce prețuiești mai mult:",
-    "question21.option1": "Corectitudine și justiție",
-    "question21.option2": "Compasiune și înțelegere",
-    "question22": "Când evaluezi o idee, mai întâi iei în considerare:",
-    "question22.option1": "Dacă este rațională",
-    "question22.option2": "Dacă este benefică",
-    "question23": "Când un prieten îți încredințează ceva, tu vei:",
-    "question23.option1": "Analiza problema și oferi sugestii",
-    "question23.option2": "Asculta și oferi confort",
-    "question24": "Într-un conflict, ai tendința să:",
-    "question24.option1": "Te ții de principii",
-    "question24.option2": "Menții relațiile",
-    "question25": "Ești mai ușor de convins de:",
-    "question25.option1": "Fapte și date",
-    "question25.option2": "Emoții și povești",
-    "question26": "În procesul decizional de echipă, te concentrezi mai mult pe:",
-    "question26.option1": "Eficiență și rezultate",
-    "question26.option2": "Consens și unitate",
-    "question27": "Crezi că un bun lider ar trebui să:",
-    "question27.option1": "Fie corect și decisiv",
-    "question27.option2": "Fie atent și grijuliu",
-    "question28": "Stilul tău de lucru este:",
-    "question28.option1": "Să planifici și să te pregătești din timp",
-    "question28.option2": "Să fii adaptabil și flexibil",
-    "question29": "Preferi:",
-    "question29.option1": "Să ai termene clare",
-    "question29.option2": "Să ții opțiunile deschise",
-    "question3": "După ce ai participat la o adunare, de obicei:",
-    "question3.option1": "Te simți energizat",
-    "question3.option2": "Simți nevoia să te odihnești",
-    "question30": "În timp ce călătorești, ai tendința să:",
-    "question30.option1": "Să faci itinerarii detaliate",
-    "question30.option2": "Să explorezi liber",
-    "question31": "Cameră ta este de obicei:",
-    "question31.option1": "Ordonați și organizată",
-    "question31.option2": "Relaxată și casuală",
-    "question32": "Când te ocupa de sarcini, vei:",
-    "question32.option1": "Termina devreme",
-    "question32.option2": "Completa aproape de termenul limită",
-    "question33": "Stilul tău de viață preferat:",
-    "question33.option1": "Structurat și ordonat",
-    "question33.option2": "Liber și flexibil",
-    "question34": "Când iei decizii, ai tendința să:",
-    "question34.option1": "Faci decizii rapide",
-    "question34.option2": "Să ții opțiunile deschise",
-    "question35": "În timp ce faci cumpărături, vei:",
-    "question35.option1": "Face o listă și cumpăra după cum ai planificat",
-    "question35.option2": "Răsfoiești casual și cumperi ce îți place",
-    "question36": "Când te confrunți cu schimbarea, de obicei:",
-    "question36.option1": "Te simți neliniștit",
-    "question36.option2": "Simți entuziasm",
-    "question4": "Într-o echipă, ești mai înclinat să:",
-    "question4.option1": "Îți exprimi opiniile activ",
-    "question4.option2": "Asculți înainte de a vorbi",
-    "question5": "Când întâlnești noi prieteni, tu:",
-    "question5.option1": "Te familiarizezi repede",
-    "question5.option2": "Ai nevoie de timp pentru a te acomoda treptat",
-    "question6": "Cercul tău de prieteni:",
-    "question6.option1": "Larg dar nu profund",
-    "question6.option2": "Mic și intim",
-    "question7": "Când lucrezi, preferi:",
-    "question7.option1": "Colaborare în echipă",
-    "question7.option2": "Lucru independent",
-    "question8": "Când gândești la probleme, ai tendința să:",
-    "question8.option1": "Gândești în timp ce vorbești",
-    "question8.option2": "Îți planifici gândurile înainte de a vorbi",
-    "question9": "Când ești sub stres, tu:",
-    "question9.option1": "Conversa cu prietenii",
-    "question9.option2": "Procesezi singur"
+    "question1": {
+      "text": "În situații sociale, de obicei:",
+      "option1": "Ia inițiativa să vorbesc cu alții",
+      "option2": "Aștept ca alții să se apropie de mine"
+    },
+    "question10": {
+      "text": "Atunci când rezolvi probleme, te bazezi mai mult pe:",
+      "option1": "Experiență practică și fapte",
+      "option2": "Intuiție și posibilități"
+    },
+    "question11": {
+      "text": "Preferi:",
+      "option1": "Să mă concentrez pe detalii specifice",
+      "option2": "Să mă concentrez pe imaginea de ansamblu"
+    },
+    "question12": {
+      "text": "Când înveți lucruri noi, preferi:",
+      "option1": "O abordare pas cu pas",
+      "option2": "Să explorezi modalități inovatoare"
+    },
+    "question13": {
+      "text": "Când citești, preferi:",
+      "option1": "Ghiduri practice",
+      "option2": "Teorii și concepte"
+    },
+    "question14": {
+      "text": "Te preocupă mai mult:",
+      "option1": "Prezentul și trecutul",
+      "option2": "Viitorul și posibilitățile"
+    },
+    "question15": {
+      "text": "Când descrii lucruri, ai tendința să:",
+      "option1": "Folosesc exemple concrete",
+      "option2": "Folosesc metafore și analogii"
+    },
+    "question16": {
+      "text": "La muncă, prețuiești:",
+      "option1": "Aplicarea practică",
+      "option2": "Ideile inovatoare"
+    },
+    "question17": {
+      "text": "Ai încredere în:",
+      "option1": "Metode dovedite",
+      "option2": "Încercări noi"
+    },
+    "question18": {
+      "text": "Când planifici pentru viitor,:",
+      "option1": "Îți bazezi pe condiții realiste",
+      "option2": "Îți imaginezi diverse posibilități"
+    },
+    "question19": {
+      "text": "Când iei decizii, prioritizezi:",
+      "option1": "Logica și analiza obiectivă",
+      "option2": "Emoțiile și armonia interumană"
+    },
+    "question2": {
+      "text": "În weekenduri, preferi:",
+      "option1": "Să ies cu prietenii",
+      "option2": "Să rămân acasă singur pentru a mă odihni"
+    },
+    "question20": {
+      "text": "Când critici pe alții,:",
+      "option1": "Sublinezi direct problema",
+      "option2": "Ieși în considerare sentimentele altora"
+    },
+    "question21": {
+      "text": "Ce prețuiești mai mult:",
+      "option1": "Corectitudine și justiție",
+      "option2": "Compasiune și înțelegere"
+    },
+    "question22": {
+      "text": "Când evaluezi o idee, mai întâi iei în considerare:",
+      "option1": "Dacă este rațională",
+      "option2": "Dacă este benefică"
+    },
+    "question23": {
+      "text": "Când un prieten îți încredințează ceva, tu vei:",
+      "option1": "Analiza problema și oferi sugestii",
+      "option2": "Asculta și oferi confort"
+    },
+    "question24": {
+      "text": "Într-un conflict, ai tendința să:",
+      "option1": "Te ții de principii",
+      "option2": "Menții relațiile"
+    },
+    "question25": {
+      "text": "Ești mai ușor de convins de:",
+      "option1": "Fapte și date",
+      "option2": "Emoții și povești"
+    },
+    "question26": {
+      "text": "În procesul decizional de echipă, te concentrezi mai mult pe:",
+      "option1": "Eficiență și rezultate",
+      "option2": "Consens și unitate"
+    },
+    "question27": {
+      "text": "Crezi că un bun lider ar trebui să:",
+      "option1": "Fie corect și decisiv",
+      "option2": "Fie atent și grijuliu"
+    },
+    "question28": {
+      "text": "Stilul tău de lucru este:",
+      "option1": "Să planifici și să te pregătești din timp",
+      "option2": "Să fii adaptabil și flexibil"
+    },
+    "question29": {
+      "text": "Preferi:",
+      "option1": "Să ai termene clare",
+      "option2": "Să ții opțiunile deschise"
+    },
+    "question3": {
+      "text": "După ce ai participat la o adunare, de obicei:",
+      "option1": "Te simți energizat",
+      "option2": "Simți nevoia să te odihnești"
+    },
+    "question30": {
+      "text": "În timp ce călătorești, ai tendința să:",
+      "option1": "Să faci itinerarii detaliate",
+      "option2": "Să explorezi liber"
+    },
+    "question31": {
+      "text": "Cameră ta este de obicei:",
+      "option1": "Ordonați și organizată",
+      "option2": "Relaxată și casuală"
+    },
+    "question32": {
+      "text": "Când te ocupa de sarcini, vei:",
+      "option1": "Termina devreme",
+      "option2": "Completa aproape de termenul limită"
+    },
+    "question33": {
+      "text": "Stilul tău de viață preferat:",
+      "option1": "Structurat și ordonat",
+      "option2": "Liber și flexibil"
+    },
+    "question34": {
+      "text": "Când iei decizii, ai tendința să:",
+      "option1": "Faci decizii rapide",
+      "option2": "Să ții opțiunile deschise"
+    },
+    "question35": {
+      "text": "În timp ce faci cumpărături, vei:",
+      "option1": "Face o listă și cumpăra după cum ai planificat",
+      "option2": "Răsfoiești casual și cumperi ce îți place"
+    },
+    "question36": {
+      "text": "Când te confrunți cu schimbarea, de obicei:",
+      "option1": "Te simți neliniștit",
+      "option2": "Simți entuziasm"
+    },
+    "question4": {
+      "text": "Într-o echipă, ești mai înclinat să:",
+      "option1": "Îți exprimi opiniile activ",
+      "option2": "Asculți înainte de a vorbi"
+    },
+    "question5": {
+      "text": "Când întâlnești noi prieteni, tu:",
+      "option1": "Te familiarizezi repede",
+      "option2": "Ai nevoie de timp pentru a te acomoda treptat"
+    },
+    "question6": {
+      "text": "Cercul tău de prieteni:",
+      "option1": "Larg dar nu profund",
+      "option2": "Mic și intim"
+    },
+    "question7": {
+      "text": "Când lucrezi, preferi:",
+      "option1": "Colaborare în echipă",
+      "option2": "Lucru independent"
+    },
+    "question8": {
+      "text": "Când gândești la probleme, ai tendința să:",
+      "option1": "Gândești în timp ce vorbești",
+      "option2": "Îți planifici gândurile înainte de a vorbi"
+    },
+    "question9": {
+      "text": "Când ești sub stres, tu:",
+      "option1": "Conversa cu prietenii",
+      "option2": "Procesezi singur"
+    }
   },
   "quick": {
-    "question1": "În situații sociale, de obicei:",
-    "question1.option1": "Te implici proactiv în conversații",
-    "question1.option2": "Aștepți ca alții să se apropie de tine",
-    "question10": "Stilul tău de lucru este:",
-    "question10.option1": "Planifici și te pregătești în avans",
-    "question10.option2": "Te adaptezi și ești flexibil",
-    "question11": "Preferi:",
-    "question11.option1": "Termene clare",
-    "question11.option2": "Să păstrezi opțiunile deschise",
-    "question12": "Când călătorești, ai tendința să:",
-    "question12.option1": "Creezi itinerarii detaliate",
-    "question12.option2": "Explorezi în ritmul tău",
-    "question2": "În weekenduri, preferi:",
-    "question2.option1": "Să ieși cu prietenii",
-    "question2.option2": "Să stai acasă pentru a te relaxa singur",
-    "question3": "După ce ai participat la o adunare, de obicei:",
-    "question3.option1": "Te simți energizat",
-    "question3.option2": "Simți nevoia să te odihnești",
-    "question4": "Când rezolvi probleme, te bazezi mai mult pe:",
-    "question4.option1": "Experiență practică și fapte",
-    "question4.option2": "Intuiție și posibilități",
-    "question5": "Preferi:",
-    "question5.option1": "Să te concentrezi pe detalii specifice",
-    "question5.option2": "Să te concentrezi pe conceptul general",
-    "question6": "Când înveți lucruri noi, preferi:",
-    "question6.option1": "O abordare pas cu pas",
-    "question6.option2": "Explorarea de metode inovatoare",
-    "question7": "Când iei decizii, valorezi mai mult:",
-    "question7.option1": "Logica și analiza obiectivă",
-    "question7.option2": "Emoția și armonia interumană",
-    "question8": "Când critici pe alții, tu:",
-    "question8.option1": "Indică direct problema",
-    "question8.option2": "Consideră sentimentele celeilalte persoane",
-    "question9": "Ce apreciezi mai mult:",
-    "question9.option1": "Corectitudine și Justiție",
-    "question9.option2": "Compasiune și Înțelegere",
-    "question1.text": "În situații sociale, de obicei tu:",
-    "question10.text": "Stilul tău de muncă este:",
-    "question11.text": "Preferi:",
-    "question12.text": "Când călătorești, ai tendința de a:",
-    "question2.text": "În weekenduri, preferi:",
-    "question3.text": "După ce participi la o întâlnire, de obicei tu:",
-    "question4.text": "Când rezolvi probleme, te bazezi mai mult pe:",
-    "question5.text": "Preferi:",
-    "question6.text": "Când înveți lucruri noi, preferi:",
-    "question7.text": "Când iei decizii, apreciezi:",
-    "question8.text": "Când critici pe alții, tu:",
-    "question9.text": "Apreciezi mai mult:"
+    "question1": {
+      "text": "În situații sociale, de obicei tu:",
+      "option1": "Te implici proactiv în conversații",
+      "option2": "Aștepți ca alții să se apropie de tine"
+    },
+    "question10": {
+      "text": "Stilul tău de muncă este:",
+      "option1": "Planifici și te pregătești în avans",
+      "option2": "Te adaptezi și ești flexibil"
+    },
+    "question11": {
+      "text": "Preferi:",
+      "option1": "Termene clare",
+      "option2": "Să păstrezi opțiunile deschise"
+    },
+    "question12": {
+      "text": "Când călătorești, ai tendința de a:",
+      "option1": "Creezi itinerarii detaliate",
+      "option2": "Explorezi în ritmul tău"
+    },
+    "question2": {
+      "text": "În weekenduri, preferi:",
+      "option1": "Să ieși cu prietenii",
+      "option2": "Să stai acasă pentru a te relaxa singur"
+    },
+    "question3": {
+      "text": "După ce participi la o întâlnire, de obicei tu:",
+      "option1": "Te simți energizat",
+      "option2": "Simți nevoia să te odihnești"
+    },
+    "question4": {
+      "text": "Când rezolvi probleme, te bazezi mai mult pe:",
+      "option1": "Experiență practică și fapte",
+      "option2": "Intuiție și posibilități"
+    },
+    "question5": {
+      "text": "Preferi:",
+      "option1": "Să te concentrezi pe detalii specifice",
+      "option2": "Să te concentrezi pe conceptul general"
+    },
+    "question6": {
+      "text": "Când înveți lucruri noi, preferi:",
+      "option1": "O abordare pas cu pas",
+      "option2": "Explorarea de metode inovatoare"
+    },
+    "question7": {
+      "text": "Când iei decizii, apreciezi:",
+      "option1": "Logica și analiza obiectivă",
+      "option2": "Emoția și armonia interumană"
+    },
+    "question8": {
+      "text": "Când critici pe alții, tu:",
+      "option1": "Indică direct problema",
+      "option2": "Consideră sentimentele celeilalte persoane"
+    },
+    "question9": {
+      "text": "Apreciezi mai mult:",
+      "option1": "Corectitudine și Justiție",
+      "option2": "Compasiune și Înțelegere"
+    }
   },
   "share": {
     "welcome": "👋 Prietenul tău te invită să faci testul MBTI!\n\nVino să vezi tipul tău de personalitate～",

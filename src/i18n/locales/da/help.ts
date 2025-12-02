@@ -60,7 +60,7 @@ export default {
   "profile": "/edit_profile - Rediger profil\n",
   "profile2": "/profile - Se profil\n",
   "profile3": "👤 **Profil**\n",
-  "quota": "• At invitere venner øger kvoten (op til 10/100)\n",
+  "quota": "🔢 Daglig høj kvote\n• Start med 30 message bottles dagligt (kun 10 for almindelige brugere).\n• At invitere venner kan permanent øge din kvote, op til et maksimalt antal på 100!\n• Daglig grænse på 100 chatbeskeder, chat uden barrierer.",
   "quota2": "• 30 beskedflaskeposter kvote pr. dag\n",
   "register": "/start - Begynd at bruge / Fortsæt registreringen\n",
   "report": "/report - Rapportér upassende indhold\n",

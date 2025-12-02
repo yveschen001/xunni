@@ -1,9 +1,9 @@
 export default {
-  "bottle": "المكافأة: +${task.reward_amount} زجاجة رسائل (${rewardTypeText})\n\n",
-  "bottle2": "المكافأة: +${task.reward_amount} زجاجة رسائل (${task.reward_type ===",
-  "bottle3": "${icon} ${task.name} (+${task.reward_amount} زجاجة رسائل)\n",
-  "bottle4": "• مكافأة دائمة: ${inviteProgress.current} زجاجة رسائل (تصدر يومياً)\n",
-  "bottle5": "• مكافأة لمرة واحدة: ${todayRewardCount} زجاجة رسائل (صالحة لليوم)\n",
+  "bottle": "المكافأة: +{task.reward_amount} زجاجة رسائل ({rewardTypeText})\n\n",
+  "bottle2": "المكافأة: +{task.reward_amount} زجاجة رسائل (${task.reward_type ===",
+  "bottle3": "{icon} {task.name} (+{task.reward_amount} زجاجة رسائل)\n",
+  "bottle4": "• مكافأة دائمة: {inviteProgress.current} زجاجة رسائل (تصدر يومياً)\n",
+  "bottle5": "• مكافأة لمرة واحدة: {todayRewardCount} زجاجة رسائل (صالحة لليوم)\n",
   "bottle6": "📋 **مركز المهام**\n\nأكمل المهام لكسب زجاجات رسائل إضافية!\n\n",
   "description": {
     "bio": "اكتب قصتك (لا تقل عن 20 كلمة)",
@@ -16,9 +16,9 @@ export default {
     "join_channel": "احصل على آخر الأخبار والفعاليات",
     "confirm_country": "ساعد المستخدمين الآخرين على فهمك بشكل أفضل"
   },
-  "invite": "🔄 ادعُ الأصدقاء (${inviteProgress.current}/${inviteProgress.max})\n",
+  "invite": "🔄 ادعُ الأصدقاء ({inviteProgress.current}/{inviteProgress.max})\n",
   "invite2": "احصل على +1 حصة يومية دائمة لكل شخص تتم دعوته\n",
-  "message": "${icon} ${task.name} ${status} (+${task.reward_amount} زجاجة رسائل)\n",
+  "message": "{icon} {task.name} {status} (+{task.reward_amount} زجاجة رسائل)\n",
   "message2": "اضغط على الزر أدناه للانضمام إلى القناة الرسمية لـ XunNi للحصول على آخر الأخبار والفعاليات!\n\n",
   "name": {
     "bio": "أكمل ملفك الشخصي",
@@ -31,16 +31,16 @@ export default {
     "join_channel": "انضم للقناة الرسمية",
     "confirm_country": "أكد دولتك"
   },
-  "profile": "👤 **مهام الملف الشخصي** (${completedCount}/${profileTasks.length})\n",
-  "quota": "الحصة اليومية الحالية: ${calculateDailyQuota(user)} عناصر\n",
+  "profile": "👤 **مهام الملف الشخصي** ({completedCount}/{profileTasks.length})\n",
+  "quota": "الحصة اليومية الحالية: {calculateDailyQuota(user)} عناصر\n",
   "short": "(في انتظار الجمع)",
   "short2": "صالح لليوم",
   "short3": "صالح بشكل دائم",
-  "task": "• مهام الدعوة: ${inviteProgress.current}/${inviteProgress.max} قيد التقدم\n\n",
-  "task2": "📱 **مهام وسائل التواصل الاجتماعي** (${completedCount}/${socialTasks.length})\n",
-  "task3": "🎯 **مهام العمل** (${completedCount}/${actionTasks.length})\n",
-  "task4": "• مهام لمرة واحدة: ${oneTimeCompleted}/${oneTimeTotal} مكتملة\n",
-  "task5": "🎉 تهانينا على إكمال المهمة \"${task.name}\"!\n\n",
+  "task": "• مهام الدعوة: {inviteProgress.current}/{inviteProgress.max} قيد التقدم\n\n",
+  "task2": "📱 **مهام وسائل التواصل الاجتماعي** ({completedCount}/{socialTasks.length})\n",
+  "task3": "🎯 **مهام العمل** ({completedCount}/{actionTasks.length})\n",
+  "task4": "• مهام لمرة واحدة: {oneTimeCompleted}/{oneTimeTotal} مكتملة\n",
+  "task5": "🎉 تهانينا على إكمال المهمة \"{task.name}\"!\n\n",
   "task6": "👥 **مهام الدعوة** (جارية)\n",
   "task7": "💡 استخدم /tasks لعرض مركز المهام",
   "text": "بعد الانضمام، انقر على زر \"لقد انضممت\" للمطالبة بمكافأتك 🎁",

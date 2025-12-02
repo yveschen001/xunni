@@ -27,8 +27,8 @@ export default {
   "error": "Chyba: {error}",
   "estimate": {
     "immediate": "Odeslat okamžitě (přibližně 1-2 sekundy)",
-    "minutes": "Přibližně \\${minutes} minut",
-    "seconds": "Přibližně \\${seconds} sekund"
+    "minutes": "Přibližně \\{minutes} minut",
+    "seconds": "Přibližně \\{seconds} sekund"
   },
   "estimatedTime": "{time}\n\n",
   "example": "**Příklad:**\n",
@@ -97,7 +97,7 @@ export default {
   "foundStuckBroadcasts": "{count}\n\n",
   "id": "{id}\n",
   "idMustBeNumber": "❌ ID vysílání musí být číslo",
-  "maxUsersExceeded": "❌ Aktuální systém vysílání podporuje maximálně ${max} uživatelů.\n\nCílový počet uživatelů: ${current}",
+  "maxUsersExceeded": "❌ Aktuální systém vysílání podporuje maximálně {max} uživatelů.\n\nCílový počet uživatelů: {current}",
   "messageContent": "Obsah zprávy",
   "noPendingBroadcasts": "V současné době nejsou žádná čekající nebo uvízlá vysílání.\n\n",
   "noRecords": "📊 Nyní nejsou k dispozici žádné záznamy o vysíláních",
@@ -151,7 +151,7 @@ export default {
   "targetNonVip": "Uživatelé bez VIP",
   "targetType": "Cíl: {type}\n",
   "targetVip": "Uživatelé VIP",
-  "tooLong": "Vysílací zpráva nemůže překročit ${max} znaků (aktuálně ${current} znaků)",
+  "tooLong": "Vysílací zpráva nemůže překročit {max} znaků (aktuálně {current} znaků)",
   "upgradeRequired": "Hromadné vysílání vyžaduje upgrade systémové architektury, prosím odkazujte se na BROADCAST_SYSTEM_REDESIGN.md",
   "usageError": "❌ Nesprávné použití\n\n",
   "userCount": "Počet uživatelů: {count} lidí\n",

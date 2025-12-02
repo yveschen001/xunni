@@ -60,7 +60,7 @@ export default {
   "profile": "/edit_profile - Profil bearbeiten\n",
   "profile2": "/profile - Profil ansehen\n",
   "profile3": "👤 **Profil**\n",
-  "quota": "• Freunde einladen erhöht die Quote (bis zu 10/100)\n",
+  "quota": "🔢 Tägliches Hökontingent\n• Beginnen Sie mit 30 Nachrichtenflaschen täglich (nur 10 für reguläre Nutzer).\n• Freunde einladen kann Ihr Kontingent dauerhaft erhöhen, bis zu einem Maximum von 100!\n• Tägliches Limit von 100 Chatnachrichten, chatten Sie ohne Barrieren.",
   "quota2": "• 30 Nachrichtenflaschen-Quote pro Tag\n",
   "register": "/start - Benutze starten / Registrierung fortsetzen\n",
   "report": "/report - unangemessene Inhalte melden\n",

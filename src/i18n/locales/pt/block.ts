@@ -11,6 +11,6 @@ export default {
   "step2": "2️⃣ Selecione 'Responder'.",
   "step3": "3️⃣ Insira /block.",
   "steps": "**Passos da Operação:**",
-  "success": "✅ Este usuário foi bloqueado (#${identifier}).",
+  "success": "✅ Este usuário foi bloqueado (#{identifier}).",
   "willNotMatch": "Você não será mais emparelhado com as garrafas de mensagem um do outro."
 };

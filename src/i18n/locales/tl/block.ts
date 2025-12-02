@@ -11,6 +11,6 @@ export default {
   "step2": "2️⃣ Piliin ang 'Tumugon'.",
   "step3": "3️⃣ Ipasok ang /block",
   "steps": "**Mga hakbang sa operasyon:**",
-  "success": "✅ Na-block ang user na ito (#${identifier})",
+  "success": "✅ Na-block ang user na ito (#{identifier})",
   "willNotMatch": "Hindi ka na magkakaroon ng kasamang bote ng mensahe."
 };

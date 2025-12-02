@@ -60,7 +60,7 @@ export default {
   "profile": "/edit_profile - Modifica profilo\n",
   "profile2": "/profile - Visualizza profilo\n",
   "profile3": "👤 **Profilo**\n",
-  "quota": "• Invitare amici aumenta la quota (fino a 10/100)\n",
+  "quota": "🔢 Quota Giornaliera Massima\n• Inizia con 30 bottiglie di messaggi al giorno (solo 10 per utenti normali).\n• Invitare amici può aumentare permanentemente la tua quota, fino a un massimo di 100!\n• Limite giornaliero di 100 messaggi in chat, chatti senza barriere.",
   "quota2": "• 30 bottiglie di messaggi quota al giorno\n",
   "register": "/start - Inizia a usare / Continua la registrazione\n",
   "report": "/report - Riporta contenuti inappropriati\n",

@@ -18,164 +18,248 @@ export default {
     "ISTP": "Procjenitelj - Smion i pragmatičan eksperimentator vješt u korištenju raznih alata."
   },
   "full": {
-    "question1": "U društvenim situacijama obično:",
-    "question1.option1": "Preuzimam inicijativu za razgovor s drugima",
-    "question1.option2": "Čekam da drugi priđu meni",
-    "question10": "Kada rješavate probleme, više se oslanjate na:",
-    "question10.option1": "Praktično iskustvo i činjenice",
-    "question10.option2": "Intuiciju i mogućnosti",
-    "question11": "Više volite:",
-    "question11.option1": "Fokusirati se na specifične detalje",
-    "question11.option2": "Fokusirati se na širu sliku",
-    "question12": "Kada učite nove stvari, više volite:",
-    "question12.option1": "Postupni pristup",
-    "question12.option2": "Istraživanje inovativnih načina",
-    "question13": "Kada čitate, više volite:",
-    "question13.option1": "Praktične vodiče",
-    "question13.option2": "Teorije i koncepti",
-    "question14": "Više vas zanima:",
-    "question14.option1": "Sadašnjost i prošlost",
-    "question14.option2": "Budućnost i mogućnosti",
-    "question15": "Kada opisujete stvari, imate tendenciju:",
-    "question15.option1": "Koristiti konkretne primjere",
-    "question15.option2": "Koristiti metafore i analogije",
-    "question16": "Na poslu, cijenite:",
-    "question16.option1": "Praktičnu primjenu",
-    "question16.option2": "Inovativne ideje",
-    "question17": "Povjeravate:",
-    "question17.option1": "Dokazane metode",
-    "question17.option2": "Nove pokušaje",
-    "question18": "Kada planirate budućnost, vi:",
-    "question18.option1": "Temeljite je na realnim uvjetima",
-    "question18.option2": "Zamišljate razne mogućnosti",
-    "question19": "Kada donosite odluke, prioritet vam je:",
-    "question19.option1": "Logika i objektivna analiza",
-    "question19.option2": "Emocije i međuljudska harmonija",
-    "question2": "Tijekom vikenda više volite:",
-    "question2.option1": "Ići van s prijateljima",
-    "question2.option2": "Ostati kod kuće sam da odmorim",
-    "question20": "Kada kritizirate druge, vi:",
-    "question20.option1": "Direktno ukazujete na problem",
-    "question20.option2": "Razmatrate osjećaje drugih.",
-    "question21": "Što više cijenite:",
-    "question21.option1": "Pravednost i pravda",
-    "question21.option2": "Saosjećanje i razumijevanje",
-    "question22": "Kada ocjenjujete ideju, prvo razmatrate:",
-    "question22.option1": "Je li razumna",
-    "question22.option2": "Je li korisna",
-    "question23": "Kada vam prijatelj povjeri, vi:",
-    "question23.option1": "Analizirate problem i pružate savjete",
-    "question23.option2": "Slušate i pružate utjehu",
-    "question24": "U sukobu, obično:",
-    "question24.option1": "Držite se principa",
-    "question24.option2": "Održavate odnose",
-    "question25": "Lakše vas uvjeravaju:",
-    "question25.option1": "Činjenice i podaci",
-    "question25.option2": "Emocije i priče",
-    "question26": "U donošenju odluka u timu, više se fokusirate na:",
-    "question26.option1": "Učinkovitost i rezultate",
-    "question26.option2": "Konsenzus i jedinstvo",
-    "question27": "Vjerujete da dobar vođa treba:",
-    "question27.option1": "Biti pravedan i odlučan",
-    "question27.option2": "Biti pažljiv i brižan",
-    "question28": "Vaš stil rada je:",
-    "question28.option1": "Planirati i pripremati se unaprijed",
-    "question28.option2": "Biti prilagodljiv i fleksibilan",
-    "question29": "Vi preferirate:",
-    "question29.option1": "Imajući jasne rokove",
-    "question29.option2": "Održavanje otvorenih opcija",
-    "question3": "Nakon sudjelovanja na okupljanju, obično:",
-    "question3.option1": "Osjećate se energično",
-    "question3.option2": "Osjećate potrebu za odmorom",
-    "question30": "Dok putujete, obično:",
-    "question30.option1": "Pravite detaljne itinerere",
-    "question30.option2": "Istražujete slobodno",
-    "question31": "Vaša soba obično izgleda:",
-    "question31.option1": "Čista i organizirana",
-    "question31.option2": "Opustena i ležerna",
-    "question32": "Kada se bavite zadacima, vi:",
-    "question32.option1": "Završite rano",
-    "question32.option2": "Dovršite blizu roka",
-    "question33": "Vaš preferirani način života:",
-    "question33.option1": "Strukturiran i uredan",
-    "question33.option2": "Slobodan i fleksibilan",
-    "question34": "Kada donosite odluke, obično:",
-    "question34.option1": "Donosite brze odluke",
-    "question34.option2": "Održavate otvorene opcije",
-    "question35": "Dok kupujete, vi:",
-    "question35.option1": "Napravite popis i kupite prema planu",
-    "question35.option2": "Opustite se i kupite što vam se sviđa",
-    "question36": "Kada se suočavate s promjenom, obično:",
-    "question36.option1": "Osjećate nelagodu",
-    "question36.option2": "Osjećaj uzbuđenja",
-    "question4": "U timu, skloniji ste:",
-    "question4.option1": "Aktivno izražavanje mišljenja",
-    "question4.option2": "Slušanje prije nego što se govori",
-    "question5": "Kada upoznajete nove prijatelje, vi:",
-    "question5.option1": "Brzo se upoznajete",
-    "question5.option2": "Trebate vremena da se postepeno osjećate ugodno",
-    "question6": "Vaš krug prijatelja:",
-    "question6.option1": "Širok, ali ne dubok",
-    "question6.option2": "Mali i intiman",
-    "question7": "Kada radite, preferirate:",
-    "question7.option1": "Timsku suradnju",
-    "question7.option2": "Nezavisni rad",
-    "question8": "Kada razmišljate o problemima, obično:",
-    "question8.option1": "Razmišljate dok govorite",
-    "question8.option2": "Planirate svoje misli prije govora",
-    "question9": "Kada ste pod stresom, vi:",
-    "question9.option1": "Razgovarate s prijateljima",
-    "question9.option2": "Prerađujete sami"
+    "question1": {
+      "text": "U društvenim situacijama obično:",
+      "option1": "Preuzimam inicijativu za razgovor s drugima",
+      "option2": "Čekam da drugi priđu meni"
+    },
+    "question10": {
+      "text": "Kada rješavate probleme, više se oslanjate na:",
+      "option1": "Praktično iskustvo i činjenice",
+      "option2": "Intuiciju i mogućnosti"
+    },
+    "question11": {
+      "text": "Više volite:",
+      "option1": "Fokusirati se na specifične detalje",
+      "option2": "Fokusirati se na širu sliku"
+    },
+    "question12": {
+      "text": "Kada učite nove stvari, više volite:",
+      "option1": "Postupni pristup",
+      "option2": "Istraživanje inovativnih načina"
+    },
+    "question13": {
+      "text": "Kada čitate, više volite:",
+      "option1": "Praktične vodiče",
+      "option2": "Teorije i koncepti"
+    },
+    "question14": {
+      "text": "Više vas zanima:",
+      "option1": "Sadašnjost i prošlost",
+      "option2": "Budućnost i mogućnosti"
+    },
+    "question15": {
+      "text": "Kada opisujete stvari, imate tendenciju:",
+      "option1": "Koristiti konkretne primjere",
+      "option2": "Koristiti metafore i analogije"
+    },
+    "question16": {
+      "text": "Na poslu, cijenite:",
+      "option1": "Praktičnu primjenu",
+      "option2": "Inovativne ideje"
+    },
+    "question17": {
+      "text": "Povjeravate:",
+      "option1": "Dokazane metode",
+      "option2": "Nove pokušaje"
+    },
+    "question18": {
+      "text": "Kada planirate budućnost, vi:",
+      "option1": "Temeljite je na realnim uvjetima",
+      "option2": "Zamišljate razne mogućnosti"
+    },
+    "question19": {
+      "text": "Kada donosite odluke, prioritet vam je:",
+      "option1": "Logika i objektivna analiza",
+      "option2": "Emocije i međuljudska harmonija"
+    },
+    "question2": {
+      "text": "Tijekom vikenda više volite:",
+      "option1": "Ići van s prijateljima",
+      "option2": "Ostati kod kuće sam da odmorim"
+    },
+    "question20": {
+      "text": "Kada kritizirate druge, vi:",
+      "option1": "Direktno ukazujete na problem",
+      "option2": "Razmatrate osjećaje drugih."
+    },
+    "question21": {
+      "text": "Što više cijenite:",
+      "option1": "Pravednost i pravda",
+      "option2": "Saosjećanje i razumijevanje"
+    },
+    "question22": {
+      "text": "Kada ocjenjujete ideju, prvo razmatrate:",
+      "option1": "Je li razumna",
+      "option2": "Je li korisna"
+    },
+    "question23": {
+      "text": "Kada vam prijatelj povjeri, vi:",
+      "option1": "Analizirate problem i pružate savjete",
+      "option2": "Slušate i pružate utjehu"
+    },
+    "question24": {
+      "text": "U sukobu, obično:",
+      "option1": "Držite se principa",
+      "option2": "Održavate odnose"
+    },
+    "question25": {
+      "text": "Lakše vas uvjeravaju:",
+      "option1": "Činjenice i podaci",
+      "option2": "Emocije i priče"
+    },
+    "question26": {
+      "text": "U donošenju odluka u timu, više se fokusirate na:",
+      "option1": "Učinkovitost i rezultate",
+      "option2": "Konsenzus i jedinstvo"
+    },
+    "question27": {
+      "text": "Vjerujete da dobar vođa treba:",
+      "option1": "Biti pravedan i odlučan",
+      "option2": "Biti pažljiv i brižan"
+    },
+    "question28": {
+      "text": "Vaš stil rada je:",
+      "option1": "Planirati i pripremati se unaprijed",
+      "option2": "Biti prilagodljiv i fleksibilan"
+    },
+    "question29": {
+      "text": "Vi preferirate:",
+      "option1": "Imajući jasne rokove",
+      "option2": "Održavanje otvorenih opcija"
+    },
+    "question3": {
+      "text": "Nakon sudjelovanja na okupljanju, obično:",
+      "option1": "Osjećate se energično",
+      "option2": "Osjećate potrebu za odmorom"
+    },
+    "question30": {
+      "text": "Dok putujete, obično:",
+      "option1": "Pravite detaljne itinerere",
+      "option2": "Istražujete slobodno"
+    },
+    "question31": {
+      "text": "Vaša soba obično izgleda:",
+      "option1": "Čista i organizirana",
+      "option2": "Opustena i ležerna"
+    },
+    "question32": {
+      "text": "Kada se bavite zadacima, vi:",
+      "option1": "Završite rano",
+      "option2": "Dovršite blizu roka"
+    },
+    "question33": {
+      "text": "Vaš preferirani način života:",
+      "option1": "Strukturiran i uredan",
+      "option2": "Slobodan i fleksibilan"
+    },
+    "question34": {
+      "text": "Kada donosite odluke, obično:",
+      "option1": "Donosite brze odluke",
+      "option2": "Održavate otvorene opcije"
+    },
+    "question35": {
+      "text": "Dok kupujete, vi:",
+      "option1": "Napravite popis i kupite prema planu",
+      "option2": "Opustite se i kupite što vam se sviđa"
+    },
+    "question36": {
+      "text": "Kada se suočavate s promjenom, obično:",
+      "option1": "Osjećate nelagodu",
+      "option2": "Osjećaj uzbuđenja"
+    },
+    "question4": {
+      "text": "U timu, skloniji ste:",
+      "option1": "Aktivno izražavanje mišljenja",
+      "option2": "Slušanje prije nego što se govori"
+    },
+    "question5": {
+      "text": "Kada upoznajete nove prijatelje, vi:",
+      "option1": "Brzo se upoznajete",
+      "option2": "Trebate vremena da se postepeno osjećate ugodno"
+    },
+    "question6": {
+      "text": "Vaš krug prijatelja:",
+      "option1": "Širok, ali ne dubok",
+      "option2": "Mali i intiman"
+    },
+    "question7": {
+      "text": "Kada radite, preferirate:",
+      "option1": "Timsku suradnju",
+      "option2": "Nezavisni rad"
+    },
+    "question8": {
+      "text": "Kada razmišljate o problemima, obično:",
+      "option1": "Razmišljate dok govorite",
+      "option2": "Planirate svoje misli prije govora"
+    },
+    "question9": {
+      "text": "Kada ste pod stresom, vi:",
+      "option1": "Razgovarate s prijateljima",
+      "option2": "Prerađujete sami"
+    }
   },
   "quick": {
-    "question1": "U društvenim situacijama obično:",
-    "question1.option1": "Proaktivno se uključujete u razgovore",
-    "question1.option2": "Čekate da drugi priđu vama",
-    "question10": "Vaš stil rada je:",
-    "question10.option1": "Planiranje i pripremanje unaprijed",
-    "question10.option2": "Prilagodljivost i fleksibilnost",
-    "question11": "Preferirate:",
-    "question11.option1": "Jasne rokove",
-    "question11.option2": "Održavanje otvorenih opcija",
-    "question12": "Kada putujete, skloniji ste:",
-    "question12.option1": "Kreiranju detaljnih itinerera",
-    "question12.option2": "Istraživanju u vlastitom tempu",
-    "question2": "Na vikendima, preferirate:",
-    "question2.option1": "Druženje s prijateljima",
-    "question2.option2": "Ostati kod kuće i opustiti se sam",
-    "question3": "Nakon sudjelovanja na okupljanju, obično:",
-    "question3.option1": "Osjećate se energizirano",
-    "question3.option2": "Osjećate potrebu za odmorom",
-    "question4": "Kada rješavate probleme, više se oslanjate na:",
-    "question4.option1": "Praktično iskustvo i činjenice",
-    "question4.option2": "Intuiciju i mogućnosti",
-    "question5": "Preferirate:",
-    "question5.option1": "Fokusiranje na specifične detalje",
-    "question5.option2": "Fokusiranje na ukupnu koncepciju",
-    "question6": "Kada učite nove stvari, preferirate:",
-    "question6.option1": "Pristup korak po korak",
-    "question6.option2": "Istraživanje inovativnih metoda",
-    "question7": "Kada donosite odluke, više cijenite:",
-    "question7.option1": "Logiku i objektivnu analizu",
-    "question7.option2": "Emociju i međuljudsku harmoniju",
-    "question8": "Kada kritikujete druge, vi:",
-    "question8.option1": "Direktno ukazati na problem",
-    "question8.option2": "Uzmite u obzir osjećaje druge osobe",
-    "question9": "Što više cijenite:",
-    "question9.option1": "Pravednost i pravda",
-    "question9.option2": "Suosjećanje i razumijevanje",
-    "question1.text": "U društvenim situacijama, obično:",
-    "question10.text": "Vaš stil rada je:",
-    "question11.text": "Vi preferirate:",
-    "question12.text": "Kada putujete, skloni ste:",
-    "question2.text": "Tijekom vikenda preferirate:",
-    "question3.text": "Nakon sudjelovanja na okupljanjima, obično:",
-    "question4.text": "Kada rješavate probleme, više se oslanjate na:",
-    "question5.text": "Vi preferirate:",
-    "question6.text": "Kada učite nove stvari, preferirate:",
-    "question7.text": "Kada donosite odluke, cijenite:",
-    "question8.text": "Kada kritizirate druge, vi:",
-    "question9.text": "Vi više cijenite:"
+    "question1": {
+      "text": "U društvenim situacijama, obično:",
+      "option1": "Proaktivno se uključujete u razgovore",
+      "option2": "Čekate da drugi priđu vama"
+    },
+    "question10": {
+      "text": "Vaš stil rada je:",
+      "option1": "Planiranje i pripremanje unaprijed",
+      "option2": "Prilagodljivost i fleksibilnost"
+    },
+    "question11": {
+      "text": "Vi preferirate:",
+      "option1": "Jasne rokove",
+      "option2": "Održavanje otvorenih opcija"
+    },
+    "question12": {
+      "text": "Kada putujete, skloni ste:",
+      "option1": "Kreiranju detaljnih itinerera",
+      "option2": "Istraživanju u vlastitom tempu"
+    },
+    "question2": {
+      "text": "Tijekom vikenda preferirate:",
+      "option1": "Druženje s prijateljima",
+      "option2": "Ostati kod kuće i opustiti se sam"
+    },
+    "question3": {
+      "text": "Nakon sudjelovanja na okupljanjima, obično:",
+      "option1": "Osjećate se energizirano",
+      "option2": "Osjećate potrebu za odmorom"
+    },
+    "question4": {
+      "text": "Kada rješavate probleme, više se oslanjate na:",
+      "option1": "Praktično iskustvo i činjenice",
+      "option2": "Intuiciju i mogućnosti"
+    },
+    "question5": {
+      "text": "Vi preferirate:",
+      "option1": "Fokusiranje na specifične detalje",
+      "option2": "Fokusiranje na ukupnu koncepciju"
+    },
+    "question6": {
+      "text": "Kada učite nove stvari, preferirate:",
+      "option1": "Pristup korak po korak",
+      "option2": "Istraživanje inovativnih metoda"
+    },
+    "question7": {
+      "text": "Kada donosite odluke, cijenite:",
+      "option1": "Logiku i objektivnu analizu",
+      "option2": "Emociju i međuljudsku harmoniju"
+    },
+    "question8": {
+      "text": "Kada kritizirate druge, vi:",
+      "option1": "Direktno ukazati na problem",
+      "option2": "Uzmite u obzir osjećaje druge osobe"
+    },
+    "question9": {
+      "text": "Vi više cijenite:",
+      "option1": "Pravednost i pravda",
+      "option2": "Suosjećanje i razumijevanje"
+    }
   },
   "share": {
     "welcome": "👋 Tvoj prijatelj te poziva da napraviš MBTI test!\n\nDođi i saznaj koji je tvoj tip osobnosti～",

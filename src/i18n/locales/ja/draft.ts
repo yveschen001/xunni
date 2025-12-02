@@ -1,7 +1,7 @@
 export default {
   "age": {
-    "daysAgo": "\\${days}日前",
-    "hoursAgo": "\\${hours}時間前",
+    "daysAgo": "\\{days}日前",
+    "hoursAgo": "\\{hours}時間前",
     "justNow": "今すぐ"
   },
   "contentHint": "💡 あなたは:\n• 下書きを置き換える新しい内容を直接入力できます\n• /throw を使って再起動できます\n• 下書きの内容を送信してボトルメールを投げることができます",

@@ -18,164 +18,248 @@ export default {
     "ISTP": "Avaliador - Experimentadores ousados e práticos, habilidosos no uso de várias ferramentas."
   },
   "full": {
-    "question1": "Em situações sociais, você geralmente:",
-    "question1.option1": "Inicia conversas com os outros",
-    "question1.option2": "Espera que os outros se aproximem de mim",
-    "question10": "Ao resolver problemas, você confia mais em:",
-    "question10.option1": "Experiência prática e fatos",
-    "question10.option2": "Intuição e possibilidades",
-    "question11": "Você prefere:",
-    "question11.option1": "Focar em detalhes específicos",
-    "question11.option2": "Focar em conceitos gerais",
-    "question12": "Ao aprender coisas novas, você prefere:",
-    "question12.option1": "Uma abordagem passo a passo",
-    "question12.option2": "Explorar maneiras inovadoras",
-    "question13": "Ao ler, você prefere:",
-    "question13.option1": "Guias práticos",
-    "question13.option2": "Teorias e conceitos",
-    "question14": "Você foca mais em:",
-    "question14.option1": "O presente e o passado",
-    "question14.option2": "O futuro e as possibilidades",
-    "question15": "Ao descrever coisas, você tende a:",
-    "question15.option1": "Usar exemplos específicos",
-    "question15.option2": "Usar metáforas e analogias",
-    "question16": "No trabalho, você valoriza:",
-    "question16.option1": "Aplicação prática",
-    "question16.option2": "Ideias inovadoras",
-    "question17": "Você confia mais em:",
-    "question17.option1": "Métodos comprovados",
-    "question17.option2": "Novas tentativas",
-    "question18": "Ao planejar o futuro, você:",
-    "question18.option1": "Baseia-se em condições realistas",
-    "question18.option2": "Imagina várias possibilidades",
-    "question19": "Ao tomar decisões, você prioriza:",
-    "question19.option1": "Lógica e análise objetiva",
-    "question19.option2": "Emoção e harmonia interpessoal",
-    "question2": "Nos finais de semana, você prefere:",
-    "question2.option1": "Sair com amigos",
-    "question2.option2": "Ficar em casa sozinho para relaxar",
-    "question20": "Ao criticar os outros, você:",
-    "question20.option1": "Aponta o problema diretamente",
-    "question20.option2": "Considera os sentimentos da outra pessoa",
-    "question21": "O que você valoriza mais:",
-    "question21.option1": "Justiça e equidade",
-    "question21.option2": "Compaixão e compreensão",
-    "question22": "Ao avaliar uma ideia, você considera primeiro:",
-    "question22.option1": "Se é razoável",
-    "question22.option2": "Se é benéfico",
-    "question23": "Quando um amigo confia em você, você:",
-    "question23.option1": "Analisa o problema e oferece conselhos",
-    "question23.option2": "Escuta e proporciona conforto",
-    "question24": "Em conflitos, você tende a:",
-    "question24.option1": "Aderir a princípios",
-    "question24.option2": "Manter relacionamentos",
-    "question25": "Você é mais facilmente persuadido por:",
-    "question25.option1": "Fatos e dados",
-    "question25.option2": "Emoções e histórias",
-    "question26": "Na tomada de decisões em equipe, você foca mais em:",
-    "question26.option1": "Eficiência e resultados",
-    "question26.option2": "Consenso e unidade",
-    "question27": "Você acredita que um bom líder deve:",
-    "question27.option1": "Justo e decisivo",
-    "question27.option2": "Atencioso e cuidadoso",
-    "question28": "Seu estilo de trabalho é:",
-    "question28.option1": "Planejar e se preparar antecipadamente",
-    "question28.option2": "Adaptar-se e ser flexível",
-    "question29": "Você prefere:",
-    "question29.option1": "Ter prazos claros",
-    "question29.option2": "Manter opções em aberto",
-    "question3": "Após participar de um encontro, você geralmente:",
-    "question3.option1": "Sente-se energizado",
-    "question3.option2": "Sente a necessidade de descansar",
-    "question30": "Ao viajar, você tende a:",
-    "question30.option1": "Fazer itinerários detalhados",
-    "question30.option2": "Explorar livremente",
-    "question31": "Seu quarto geralmente é:",
-    "question31.option1": "Organizado e arrumado",
-    "question31.option2": "Casual e relaxado",
-    "question32": "Ao lidar com tarefas, você:",
-    "question32.option1": "Completa o mais cedo possível",
-    "question32.option2": "Finaliza próximo do prazo",
-    "question33": "Seu estilo de vida preferido:",
-    "question33.option1": "Regular e estruturado",
-    "question33.option2": "Livre e flexível",
-    "question34": "Ao tomar decisões, você tende a:",
-    "question34.option1": "Tomar decisões rápidas",
-    "question34.option2": "Manter opções em aberto",
-    "question35": "Ao fazer compras, você:",
-    "question35.option1": "Faz uma lista e compra conforme planejado",
-    "question35.option2": "Navega casualmente e compra se gostar",
-    "question36": "Ao enfrentar mudanças, você geralmente:",
-    "question36.option1": "Sente-se inquieto",
-    "question36.option2": "Sinta-se animado",
-    "question4": "Em uma equipe, você prefere:",
-    "question4.option1": "Falar ativamente",
-    "question4.option2": "Ouvir primeiro, depois falar",
-    "question5": "Ao conhecer novos amigos, você:",
-    "question5.option1": "Fica familiarizado rapidamente",
-    "question5.option2": "Precisa de tempo para se soltar",
-    "question6": "Seu círculo de amigos:",
-    "question6.option1": "Largo, mas não profundo",
-    "question6.option2": "Pequeno e unido",
-    "question7": "Ao trabalhar, você prefere:",
-    "question7.option1": "Colaboração em equipe",
-    "question7.option2": "Trabalho independente",
-    "question8": "Ao pensar em problemas, você tende a:",
-    "question8.option1": "Falar enquanto pensa",
-    "question8.option2": "Pensar bem antes de falar",
-    "question9": "Quando está estressado, você:",
-    "question9.option1": "Bate papo com amigos",
-    "question9.option2": "Reflete sozinho"
+    "question1": {
+      "text": "Em situações sociais, você geralmente:",
+      "option1": "Inicia conversas com os outros",
+      "option2": "Espera que os outros se aproximem de mim"
+    },
+    "question10": {
+      "text": "Ao resolver problemas, você confia mais em:",
+      "option1": "Experiência prática e fatos",
+      "option2": "Intuição e possibilidades"
+    },
+    "question11": {
+      "text": "Você prefere:",
+      "option1": "Focar em detalhes específicos",
+      "option2": "Focar em conceitos gerais"
+    },
+    "question12": {
+      "text": "Ao aprender coisas novas, você prefere:",
+      "option1": "Uma abordagem passo a passo",
+      "option2": "Explorar maneiras inovadoras"
+    },
+    "question13": {
+      "text": "Ao ler, você prefere:",
+      "option1": "Guias práticos",
+      "option2": "Teorias e conceitos"
+    },
+    "question14": {
+      "text": "Você foca mais em:",
+      "option1": "O presente e o passado",
+      "option2": "O futuro e as possibilidades"
+    },
+    "question15": {
+      "text": "Ao descrever coisas, você tende a:",
+      "option1": "Usar exemplos específicos",
+      "option2": "Usar metáforas e analogias"
+    },
+    "question16": {
+      "text": "No trabalho, você valoriza:",
+      "option1": "Aplicação prática",
+      "option2": "Ideias inovadoras"
+    },
+    "question17": {
+      "text": "Você confia mais em:",
+      "option1": "Métodos comprovados",
+      "option2": "Novas tentativas"
+    },
+    "question18": {
+      "text": "Ao planejar o futuro, você:",
+      "option1": "Baseia-se em condições realistas",
+      "option2": "Imagina várias possibilidades"
+    },
+    "question19": {
+      "text": "Ao tomar decisões, você prioriza:",
+      "option1": "Lógica e análise objetiva",
+      "option2": "Emoção e harmonia interpessoal"
+    },
+    "question2": {
+      "text": "Nos finais de semana, você prefere:",
+      "option1": "Sair com amigos",
+      "option2": "Ficar em casa sozinho para relaxar"
+    },
+    "question20": {
+      "text": "Ao criticar os outros, você:",
+      "option1": "Aponta o problema diretamente",
+      "option2": "Considera os sentimentos da outra pessoa"
+    },
+    "question21": {
+      "text": "O que você valoriza mais:",
+      "option1": "Justiça e equidade",
+      "option2": "Compaixão e compreensão"
+    },
+    "question22": {
+      "text": "Ao avaliar uma ideia, você considera primeiro:",
+      "option1": "Se é razoável",
+      "option2": "Se é benéfico"
+    },
+    "question23": {
+      "text": "Quando um amigo confia em você, você:",
+      "option1": "Analisa o problema e oferece conselhos",
+      "option2": "Escuta e proporciona conforto"
+    },
+    "question24": {
+      "text": "Em conflitos, você tende a:",
+      "option1": "Aderir a princípios",
+      "option2": "Manter relacionamentos"
+    },
+    "question25": {
+      "text": "Você é mais facilmente persuadido por:",
+      "option1": "Fatos e dados",
+      "option2": "Emoções e histórias"
+    },
+    "question26": {
+      "text": "Na tomada de decisões em equipe, você foca mais em:",
+      "option1": "Eficiência e resultados",
+      "option2": "Consenso e unidade"
+    },
+    "question27": {
+      "text": "Você acredita que um bom líder deve:",
+      "option1": "Justo e decisivo",
+      "option2": "Atencioso e cuidadoso"
+    },
+    "question28": {
+      "text": "Seu estilo de trabalho é:",
+      "option1": "Planejar e se preparar antecipadamente",
+      "option2": "Adaptar-se e ser flexível"
+    },
+    "question29": {
+      "text": "Você prefere:",
+      "option1": "Ter prazos claros",
+      "option2": "Manter opções em aberto"
+    },
+    "question3": {
+      "text": "Após participar de um encontro, você geralmente:",
+      "option1": "Sente-se energizado",
+      "option2": "Sente a necessidade de descansar"
+    },
+    "question30": {
+      "text": "Ao viajar, você tende a:",
+      "option1": "Fazer itinerários detalhados",
+      "option2": "Explorar livremente"
+    },
+    "question31": {
+      "text": "Seu quarto geralmente é:",
+      "option1": "Organizado e arrumado",
+      "option2": "Casual e relaxado"
+    },
+    "question32": {
+      "text": "Ao lidar com tarefas, você:",
+      "option1": "Completa o mais cedo possível",
+      "option2": "Finaliza próximo do prazo"
+    },
+    "question33": {
+      "text": "Seu estilo de vida preferido:",
+      "option1": "Regular e estruturado",
+      "option2": "Livre e flexível"
+    },
+    "question34": {
+      "text": "Ao tomar decisões, você tende a:",
+      "option1": "Tomar decisões rápidas",
+      "option2": "Manter opções em aberto"
+    },
+    "question35": {
+      "text": "Ao fazer compras, você:",
+      "option1": "Faz uma lista e compra conforme planejado",
+      "option2": "Navega casualmente e compra se gostar"
+    },
+    "question36": {
+      "text": "Ao enfrentar mudanças, você geralmente:",
+      "option1": "Sente-se inquieto",
+      "option2": "Sinta-se animado"
+    },
+    "question4": {
+      "text": "Em uma equipe, você prefere:",
+      "option1": "Falar ativamente",
+      "option2": "Ouvir primeiro, depois falar"
+    },
+    "question5": {
+      "text": "Ao conhecer novos amigos, você:",
+      "option1": "Fica familiarizado rapidamente",
+      "option2": "Precisa de tempo para se soltar"
+    },
+    "question6": {
+      "text": "Seu círculo de amigos:",
+      "option1": "Largo, mas não profundo",
+      "option2": "Pequeno e unido"
+    },
+    "question7": {
+      "text": "Ao trabalhar, você prefere:",
+      "option1": "Colaboração em equipe",
+      "option2": "Trabalho independente"
+    },
+    "question8": {
+      "text": "Ao pensar em problemas, você tende a:",
+      "option1": "Falar enquanto pensa",
+      "option2": "Pensar bem antes de falar"
+    },
+    "question9": {
+      "text": "Quando está estressado, você:",
+      "option1": "Bate papo com amigos",
+      "option2": "Reflete sozinho"
+    }
   },
   "quick": {
-    "question1": "Em situações sociais, você geralmente:",
-    "question1.option1": "Inicia conversas com os outros",
-    "question1.option2": "Espera que os outros se aproximem de mim",
-    "question10": "Seu estilo de trabalho é:",
-    "question10.option1": "Planejar e se preparar com antecedência",
-    "question10.option2": "Adaptar-se e ser flexível",
-    "question11": "Você prefere:",
-    "question11.option1": "Prazos claros",
-    "question11.option2": "Manter opções em aberto",
-    "question12": "Ao viajar, você tende a:",
-    "question12.option1": "Fazer itinerários detalhados",
-    "question12.option2": "Explorar livremente",
-    "question2": "Nos finais de semana, você prefere:",
-    "question2.option1": "Sair com amigos",
-    "question2.option2": "Descansar sozinho em casa",
-    "question3": "Após participar de uma festa, você geralmente:",
-    "question3.option1": "Sente-se energizado",
-    "question3.option2": "Sente a necessidade de descansar",
-    "question4": "Ao resolver problemas, você confia mais em:",
-    "question4.option1": "Experiência prática e fatos",
-    "question4.option2": "Intuição e possibilidades",
-    "question5": "Você prefere:",
-    "question5.option1": "Focar em detalhes específicos",
-    "question5.option2": "Focar no conceito geral",
-    "question6": "Ao aprender coisas novas, você prefere:",
-    "question6.option1": "Métodos passo a passo",
-    "question6.option2": "Explorar maneiras inovadoras",
-    "question7": "Ao tomar decisões, você valoriza mais:",
-    "question7.option1": "Lógica e análise objetiva",
-    "question7.option2": "Emoções e harmonia interpessoal",
-    "question8": "Ao criticar os outros, você:",
-    "question8.option1": "Aponte diretamente o problema",
-    "question8.option2": "Considere os sentimentos da outra pessoa",
-    "question9": "O que você valoriza mais:",
-    "question9.option1": "Justiça e equidade",
-    "question9.option2": "Empatia e compreensão",
-    "question1.text": "Em situações sociais, você geralmente:",
-    "question10.text": "Seu estilo de trabalho é:",
-    "question11.text": "Você prefere:",
-    "question12.text": "Ao viajar, você tende a:",
-    "question2.text": "Nos finais de semana, você prefere:",
-    "question3.text": "Após participar de um encontro, você geralmente:",
-    "question4.text": "Ao resolver problemas, você confia mais em:",
-    "question5.text": "Você prefere:",
-    "question6.text": "Ao aprender coisas novas, você prefere:",
-    "question7.text": "Ao tomar decisões, você valoriza:",
-    "question8.text": "Ao criticar os outros, você:",
-    "question9.text": "Você valoriza mais:"
+    "question1": {
+      "text": "Em situações sociais, você geralmente:",
+      "option1": "Inicia conversas com os outros",
+      "option2": "Espera que os outros se aproximem de mim"
+    },
+    "question10": {
+      "text": "Seu estilo de trabalho é:",
+      "option1": "Planejar e se preparar com antecedência",
+      "option2": "Adaptar-se e ser flexível"
+    },
+    "question11": {
+      "text": "Você prefere:",
+      "option1": "Prazos claros",
+      "option2": "Manter opções em aberto"
+    },
+    "question12": {
+      "text": "Ao viajar, você tende a:",
+      "option1": "Fazer itinerários detalhados",
+      "option2": "Explorar livremente"
+    },
+    "question2": {
+      "text": "Nos finais de semana, você prefere:",
+      "option1": "Sair com amigos",
+      "option2": "Descansar sozinho em casa"
+    },
+    "question3": {
+      "text": "Após participar de um encontro, você geralmente:",
+      "option1": "Sente-se energizado",
+      "option2": "Sente a necessidade de descansar"
+    },
+    "question4": {
+      "text": "Ao resolver problemas, você confia mais em:",
+      "option1": "Experiência prática e fatos",
+      "option2": "Intuição e possibilidades"
+    },
+    "question5": {
+      "text": "Você prefere:",
+      "option1": "Focar em detalhes específicos",
+      "option2": "Focar no conceito geral"
+    },
+    "question6": {
+      "text": "Ao aprender coisas novas, você prefere:",
+      "option1": "Métodos passo a passo",
+      "option2": "Explorar maneiras inovadoras"
+    },
+    "question7": {
+      "text": "Ao tomar decisões, você valoriza:",
+      "option1": "Lógica e análise objetiva",
+      "option2": "Emoções e harmonia interpessoal"
+    },
+    "question8": {
+      "text": "Ao criticar os outros, você:",
+      "option1": "Aponte diretamente o problema",
+      "option2": "Considere os sentimentos da outra pessoa"
+    },
+    "question9": {
+      "text": "Você valoriza mais:",
+      "option1": "Justiça e equidade",
+      "option2": "Empatia e compreensão"
+    }
   },
   "share": {
     "welcome": "👋 Seu amigo te convida para fazer o teste MBTI!\n\nVenha ver seu tipo de personalidade～",

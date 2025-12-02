@@ -1,7 +1,7 @@
 export default {
   "age": {
-    "daysAgo": "\\${days} hari yang lalu",
-    "hoursAgo": "\\${hours} jam yang lalu",
+    "daysAgo": "\\{days} hari yang lalu",
+    "hoursAgo": "\\{hours} jam yang lalu",
     "justNow": "Baru saja sekarang"
   },
   "contentHint": "💡 Anda dapat:\n• Langsung memasukkan konten baru untuk menggantikan draf\n• Gunakan /throw untuk memulai kembali\n• Kirim konten draf untuk melempar botol pesan",

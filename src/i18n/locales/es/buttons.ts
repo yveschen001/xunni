@@ -2,7 +2,7 @@ export default {
   "ad": "➡️ Anuncio Siguiente",
   "back": "⬅️ Atrás / Regresar",
   "backToVip": "💎 Regresar al Menú VIP",
-  "bottle": "📺 Mira anuncios para obtener más botellas de mensajes 🎁 (${remaining}/20)",
+  "bottle": "📺 Mira anuncios para obtener más botellas de mensajes 🎁 ({remaining}/20)",
   "bottle2": "💎 Mejora a VIP para más botellas de mensajes",
   "bottle3": "🌊 Lanzar una botella de mensajes",
   "bottle4": "🎣 Recoger una botella de mensajes",

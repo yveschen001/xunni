@@ -2,7 +2,7 @@ export default {
   "ad": "➡️ Următoarea reclamă",
   "back": "⬅️ Înapoi / Întoarceți-vă",
   "backToVip": "💎 Întoarceți-vă la Meniul VIP",
-  "bottle": "📺 Vizionați reclame pentru a obține mai multe sticle cu mesaje 🎁 (${remaining}/20)",
+  "bottle": "📺 Vizionați reclame pentru a obține mai multe sticle cu mesaje 🎁 ({remaining}/20)",
   "bottle2": "💎 Faceți upgrade la VIP pentru mai multe sticle cu mesaje",
   "bottle3": "🌊 Aruncă o sticlă cu mesaj",
   "bottle4": "🎣 Ridică o sticlă cu mesaj",

@@ -11,7 +11,7 @@ export default {
   "settings2": "⚙️ **Ustawienia**\n\n",
   "settings3": "🏠 Powrót do Ustawień",
   "settings4": "Bieżące ustawienia:\n",
-  "text": "• Język：${languageName} 🇹🇼\n\n",
+  "text": "• Język：{languageName} 🇹🇼\n\n",
   "title": "🏠 **Menu Główne**",
   "throwReminder": "Przypomnienie o butelce z wiadomością",
   "catchReminder": "Przypomnienie o odbiorze butelki z wiadomością",

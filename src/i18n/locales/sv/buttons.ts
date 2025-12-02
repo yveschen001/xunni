@@ -2,7 +2,7 @@ export default {
   "ad": "➡️ Nästa annons",
   "back": "⬅️ Tillbaka / Återvänd",
   "backToVip": "💎 Återgå till VIP-menyn",
-  "bottle": "📺 Titta på annonser för att få fler flaskpost 🎁 (${remaining}/20)",
+  "bottle": "📺 Titta på annonser för att få fler flaskpost 🎁 ({remaining}/20)",
   "bottle2": "💎 Uppgradera till VIP för fler flaskpost",
   "bottle3": "🌊 Kasta en flaskpost",
   "bottle4": "🎣 Plocka upp en flaskpost",

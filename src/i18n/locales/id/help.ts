@@ -60,7 +60,7 @@ export default {
   "profile": "/edit_profile - Edit Profil\n",
   "profile2": "/profile - Lihat Profil\n",
   "profile3": "👤 **Profil**\n",
-  "quota": "• Undang teman untuk meningkatkan kuota (hingga 10/100)\n",
+  "quota": "🔢 Kuota Tinggi Harian\n• Mulai dengan 30 botol pesan setiap hari (hanya 10 untuk pengguna reguler).\n• Mengundang teman dapat secara permanen meningkatkan kuota Anda, hingga maksimum 100!\n• Batas harian 100 pesan obrolan, obrolan tanpa batasan.",
   "quota2": "• 30 kuota botol pesan per hari\n",
   "register": "/start - Mulai menggunakan / Lanjutkan pendaftaran\n",
   "report": "/report - Laporkan konten yang tidak pantas\n",

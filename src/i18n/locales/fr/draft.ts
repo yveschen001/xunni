@@ -1,7 +1,7 @@
 export default {
   "age": {
-    "daysAgo": "\\${days} jours auparavant",
-    "hoursAgo": "\\${hours} heures auparavant",
+    "daysAgo": "\\{days} jours auparavant",
+    "hoursAgo": "\\{hours} heures auparavant",
     "justNow": "À l'instant"
   },
   "contentHint": "💡 Vous pouvez :\n• Entrer un nouveau contenu pour remplacer directement le brouillon\n• Utiliser /throw pour redémarrer\n• Envoyer le contenu du brouillon pour lancer une bouteille à message",

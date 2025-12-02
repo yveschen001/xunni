@@ -11,7 +11,7 @@ export default {
   "settings2": "⚙️ **Indstillinger**\n\n",
   "settings3": "🏠 Gå tilbage til Indstillinger",
   "settings4": "Nuværende indstillinger:\n",
-  "text": "• Sprog：${languageName} 🇹🇼\n\n",
+  "text": "• Sprog：{languageName} 🇹🇼\n\n",
   "title": "🏠 **Hovedmenu**",
   "throwReminder": "Påmindelse om flaskepost",
   "catchReminder": "Påmindelse om afhentning af flaskepost",

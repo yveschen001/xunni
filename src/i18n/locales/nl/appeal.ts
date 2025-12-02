@@ -1,5 +1,5 @@
 export default {
-  "alreadyExists": "⏳ Je hebt een lopend beroep (ID: #${appealId})\n\nStatus: ${status}\nIngediend op: ${time}\n\nGelieve te wachten op de beoordeling van de beheerder.",
+  "alreadyExists": "⏳ Je hebt een lopend beroep (ID: #{appealId})\n\nStatus: {status}\nIngediend op: {time}\n\nGelieve te wachten op de beoordeling van de beheerder.",
   "approved": "✅ Je klacht is goedgekeurd, account is deblokkert",
   "noAppeal": "Je hebt momenteel geen lopende klachten",
   "notBanned": "✅ Je account is niet geband, geen noodzaak om te appelleren.",
@@ -10,9 +10,9 @@ export default {
   "reasonTooShort": "❌ De reden voor de aanvraag is te kort, voer minimaal 10 tekens in.",
   "rejected": "❌ Je aanvraag is afgewezen.",
   "reviewedAt": "Beoordelingstijd:",
-  "status": "📋 **Status van de aanvraag**\n\nAanvraag-ID: #${appealId}\nStatus: ${status}\nIndientijd: ${createdAt}${reviewInfo}",
+  "status": "📋 **Status van de aanvraag**\n\nAanvraag-ID: #{appealId}\nStatus: {status}\nIndientijd: {createdAt}{reviewInfo}",
   "statusApproved": "Goedgekeurd",
   "statusPending": "In afwachting van beoordeling",
   "statusRejected": "Afgewezen",
-  "submitted": "✅ **Aanvraag ingediend**\n\nAanvraag-ID: #${appealId}\nStatus: In afwachting van beoordeling\n\nWe zullen je aanvraag binnen 1-3 werkdagen verwerken.\nHet resultaat wordt via Bot aan je meegedeeld."
+  "submitted": "✅ **Aanvraag ingediend**\n\nAanvraag-ID: #{appealId}\nStatus: In afwachting van beoordeling\n\nWe zullen je aanvraag binnen 1-3 werkdagen verwerken.\nHet resultaat wordt via Bot aan je meegedeeld."
 };

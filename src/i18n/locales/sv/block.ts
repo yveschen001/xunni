@@ -11,6 +11,6 @@ export default {
   "step2": "2️⃣ Välj 'Svara'.",
   "step3": "3️⃣ Skriv /block.",
   "steps": "**Operationssteg:**",
-  "success": "✅ Denna användare har blockerats (#${identifier}).",
+  "success": "✅ Denna användare har blockerats (#{identifier}).",
   "willNotMatch": "Du kommer inte längre att matchas med varandras flaskposter."
 };

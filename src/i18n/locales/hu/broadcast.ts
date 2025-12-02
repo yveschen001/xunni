@@ -27,8 +27,8 @@ export default {
   "error": "Hiba: {error}",
   "estimate": {
     "immediate": "Küldés azonnal (kb. 1-2 másodperc)",
-    "minutes": "Körülbelül \\${minutes} perc",
-    "seconds": "Körülbelül \\${seconds} másodperc"
+    "minutes": "Körülbelül \\{minutes} perc",
+    "seconds": "Körülbelül \\{seconds} másodperc"
   },
   "estimatedTime": "Becsült idő: {time}\n\n",
   "example": "**Példa:**\n",
@@ -97,7 +97,7 @@ export default {
   "foundStuckBroadcasts": "⚠️ {count} elakadt közvetítést észleltünk\n\n",
   "id": "Azonosító: {id}",
   "idMustBeNumber": "❌ A közzététel ID-nak számnak kell lennie",
-  "maxUsersExceeded": "❌ A jelenlegi közzétételi rendszer maximum ${max} felhasználóhoz tud közzétenni.\n\nCélzott felhasználók száma: ${current}",
+  "maxUsersExceeded": "❌ A jelenlegi közzétételi rendszer maximum {max} felhasználóhoz tud közzétenni.\n\nCélzott felhasználók száma: {current}",
   "messageContent": "Üzenet tartalom",
   "noPendingBroadcasts": "Jelenleg nincsenek függőben lévő vagy elakadt közvetítések.\n\n",
   "noRecords": "📊 Jelenleg nincs közzétételi rekord",
@@ -151,7 +151,7 @@ export default {
   "targetNonVip": "Nem VIP Felhasználók",
   "targetType": "Cél: {type}\n",
   "targetVip": "VIP Felhasználók",
-  "tooLong": "A közvetítési üzenet nem haladhatja meg a ${max} karaktert (jelenleg ${current} karakter)",
+  "tooLong": "A közvetítési üzenet nem haladhatja meg a {max} karaktert (jelenleg {current} karakter)",
   "upgradeRequired": "A tömeges közvetítéshez rendszerarchitektúra-frissítés szükséges, kérjük, nézd meg a BROADCAST_SYSTEM_REDESIGN.md-ot",
   "usageError": "❌ Helytelen használat\n\n",
   "userCount": "Felhasználók száma: {count} fő\n",

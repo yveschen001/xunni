@@ -11,7 +11,7 @@ export default {
   "settings2": "⚙️ **Cilësimet**\n\n",
   "settings3": "🏠 Kthehu në Cilësime",
   "settings4": "Cilësimet aktuale:\n",
-  "text": "• Gjuha：${languageName} 🇹🇼\n\n",
+  "text": "• Gjuha：{languageName} 🇹🇼\n\n",
   "title": "🏠 **Meny Kryesore**",
   "throwReminder": "Kujtues për message bottle",
   "catchReminder": "Kujtues për marrjen e message bottle",

@@ -1,5 +1,5 @@
 export default {
-  "nickname": "👤 ニックネーム: ${ownerMaskedNickname}",
+  "nickname": "👤 ニックネーム: {ownerMaskedNickname}",
   "short19": "✏️ プロフィールを編集",
   "menuTitle": "プロフィールを編集",
   "nicknameButton": "✏️ ニックネームを編集",

@@ -11,6 +11,6 @@ export default {
   "step2": "2️⃣ Velg 'Svar'.",
   "step3": "3️⃣ Skriv inn /block.",
   "steps": "**Operasjonstrinn:**",
-  "success": "✅ Denne brukeren har blitt blokkert (#${identifier}).",
+  "success": "✅ Denne brukeren har blitt blokkert (#{identifier}).",
   "willNotMatch": "Du vil ikke lenger bli matchet med hverandres flaskeposter."
 };

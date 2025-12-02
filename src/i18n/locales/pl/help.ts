@@ -60,7 +60,7 @@ export default {
   "profile": "/edit_profile - Edytuj profil\n",
   "profile2": "/profile - Zobacz profil\n",
   "profile3": "👤 **Profil**\n",
-  "quota": "• Zapraszanie przyjaciół może zwiększyć kwotę (max 10/100)\n",
+  "quota": "🔢 Dzienne Maksymalne Limity\n• Rozpocznij z 30 wiadomościami w butelce dziennie (tylko 10 dla zwykłych użytkowników).\n• Zapraszanie znajomych może na stałe zwiększyć Twój limit, maksymalnie do 100!\n• Dzienny limit 100 wiadomości czatowych, czatuj bez barier.",
   "quota2": "• 30 butelek z wiadomościami dziennie\n",
   "register": "/start - Rozpocznij korzystanie z / Kontynuuj rejestrację\n",
   "report": "/report - Zgłoś niewłaściwe treści\n",

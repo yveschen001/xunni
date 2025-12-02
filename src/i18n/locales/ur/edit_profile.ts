@@ -1,5 +1,5 @@
 export default {
-  "nickname": "👤 نک نیم: ${ownerMaskedNickname}",
+  "nickname": "👤 نک نیم: {ownerMaskedNickname}",
   "short19": "✏️ پروفائل میں ترمیم کریں",
   "menuTitle": "پروفائل میں ترمیم کریں",
   "nicknameButton": "✏️ نک نیم میں ترمیم کریں",

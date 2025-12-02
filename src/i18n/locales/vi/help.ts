@@ -60,7 +60,7 @@ export default {
   "profile": "/edit_profile - Chỉnh sửa hồ sơ\n",
   "profile2": "/profile - Xem hồ sơ\n",
   "profile3": "👤 **Hồ Sơ**\n",
-  "quota": "• Mời bạn bè có thể tăng hạn ngạch (tối đa 10/100)\n",
+  "quota": "🔢 Hạn mức cao hàng ngày\n• Bắt đầu với 30 chai thư mỗi ngày (chỉ 10 cho người dùng thông thường).\n• Mời bạn bè có thể tăng hạn mức của bạn vĩnh viễn, lên đến tối đa 100!\n• Giới hạn hàng ngày là 100 tin nhắn trò chuyện, trò chuyện không giới hạn.",
   "quota2": "• 30 chai thư mỗi ngày\n",
   "register": "/start - Bắt đầu / Tiếp tục đăng ký\n",
   "report": "/report - Báo cáo nội dung không phù hợp\n",

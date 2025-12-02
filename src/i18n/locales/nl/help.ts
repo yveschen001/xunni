@@ -60,7 +60,7 @@ export default {
   "profile": "/edit_profile - Profiel bewerken\n",
   "profile2": "/profile - Bekijk profiel\n",
   "profile3": "👤 **Profiel**\n",
-  "quota": "• Vrienden uitnodigen verhoogt het quotum (max 10/100)\n",
+  "quota": "🔢 Dagelijkse Hoge Quotum\n• Begin met 30 message bottles per dag (slechts 10 voor reguliere gebruikers).\n• Vrienden uitnodigen kan je quotum permanent verhogen, tot een maximum van 100!\n• Dagelijkse limiet van 100 chatberichten, chat zonder barrières.",
   "quota2": "• 30 berichtflessen quotum per dag\n",
   "register": "/start - Begin met gebruiken / Ga verder met registratie\n",
   "report": "/report - Meld ongepaste inhoud\n",

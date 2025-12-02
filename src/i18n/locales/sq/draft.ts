@@ -1,7 +1,7 @@
 export default {
   "age": {
-    "daysAgo": "\\${days} ditë më parë",
-    "hoursAgo": "\\${hours} orë më parë",
+    "daysAgo": "\\{days} ditë më parë",
+    "hoursAgo": "\\{hours} orë më parë",
     "justNow": "Sapo tani"
   },
   "contentHint": "💡 Ju mund të:\n• Hidhni drejtpërdrejt përmbajtje të re për të zëvendësuar skicën\n• Përdorni /throw për të rinisur\n• Dërgoni përmbajtjen e skicës për të hedhur një message bottle",

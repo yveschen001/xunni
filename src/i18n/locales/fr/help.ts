@@ -60,7 +60,7 @@ export default {
   "profile": "/edit_profile - Éditer le profil\n",
   "profile2": "/profile - Voir le profil\n",
   "profile3": "👤 **Profil**\n",
-  "quota": "• Inviter des amis augmente le quota (jusqu'à 10/100)\n",
+  "quota": "🔢 Quota quotidienne élevée\n• Commencez avec 30 bouteilles à message par jour (seulement 10 pour les utilisateurs réguliers).\n• Inviter des amis peut augmenter votre quota de manière permanente, jusqu'à un maximum de 100 !\n• Limite quotidienne de 100 messages de chat, discutez sans barrières.",
   "quota2": "• 30 bouteilles à message de quota par jour\n",
   "register": "/start - Commencer à utiliser / Continuer l'inscription\n",
   "report": "/report - Signaler un contenu inapproprié\n",

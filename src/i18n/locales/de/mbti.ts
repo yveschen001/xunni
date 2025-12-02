@@ -18,164 +18,248 @@ export default {
     "ISTP": "Gutachter - Mutige und praktische Experimentatoren, die geschickt im Umgang mit verschiedenen Werkzeugen sind."
   },
   "full": {
-    "question1": "In sozialen Situationen tun Sie normalerweise:",
-    "question1.option1": "Gespräche mit anderen beginnen",
-    "question1.option2": "Warten, bis andere auf mich zukommen",
-    "question10": "Beim Lösen von Problemen verlassen Sie sich mehr auf:",
-    "question10.option1": "Praktische Erfahrung und Fakten",
-    "question10.option2": "Intuition und Möglichkeiten",
-    "question11": "Sie bevorzugen:",
-    "question11.option1": "Fokus auf spezifische Details",
-    "question11.option2": "Fokus auf Gesamtkonzepte",
-    "question12": "Beim Lernen neuer Dinge ziehen Sie vor:",
-    "question12.option1": "Einen Schritt-für-Schritt-Ansatz",
-    "question12.option2": "Innovative Wege zu erkunden",
-    "question13": "Beim Lesen ziehen Sie vor:",
-    "question13.option1": "Praktische Anleitungen",
-    "question13.option2": "Theorien und Konzepte",
-    "question14": "Sie konzentrieren sich mehr auf:",
-    "question14.option1": "Die Gegenwart und die Vergangenheit",
-    "question14.option2": "Die Zukunft und Möglichkeiten",
-    "question15": "Beim Beschreiben von Dingen neigen Sie dazu:",
-    "question15.option1": "Konkrete Beispiele zu verwenden",
-    "question15.option2": "Metaphern und Analogien zu verwenden",
-    "question16": "Bei der Arbeit schätzen Sie:",
-    "question16.option1": "Praktische Anwendung",
-    "question16.option2": "Innovative Ideen",
-    "question17": "Sie vertrauen mehr:",
-    "question17.option1": "Bewährten Methoden",
-    "question17.option2": "Neuen Versuchen",
-    "question18": "Bei der Planung für die Zukunft:",
-    "question18.option1": "Berücksichtigen Sie realistische Bedingungen",
-    "question18.option2": "Stellen Sie sich verschiedene Möglichkeiten vor",
-    "question19": "Bei Entscheidungen priorisieren Sie:",
-    "question19.option1": "Logik und objektive Analyse",
-    "question19.option2": "Emotion und zwischenmenschliche Harmonie",
-    "question2": "Am Wochenende bevorzugen Sie:",
-    "question2.option1": "Mit Freunden auszugehen",
-    "question2.option2": "Zuhause allein zu bleiben, um sich zu entspannen",
-    "question20": "Wenn Sie andere kritisieren, dann:",
-    "question20.option1": "Auf das Problem direkt hinweisen",
-    "question20.option2": "Die Gefühle der anderen Person berücksichtigen",
-    "question21": "Was ist Ihnen wichtiger:",
-    "question21.option1": "Fairness und Gerechtigkeit",
-    "question21.option2": "Mitgefühl und Verständnis",
-    "question22": "Bei der Bewertung einer Idee berücksichtigen Sie zuerst:",
-    "question22.option1": "Ob es vernünftig ist",
-    "question22.option2": "Ob es vorteilhaft ist",
-    "question23": "Wenn ein Freund Ihnen anvertraut, werden Sie:",
-    "question23.option1": "Das Problem analysieren und Ratschläge anbieten",
-    "question23.option2": "Zuhören und Trost spenden",
-    "question24": "In Konflikten neigen Sie dazu:",
-    "question24.option1": "An Prinzipien festzuhalten",
-    "question24.option2": "Beziehungen aufrechtzuerhalten",
-    "question25": "Sie lassen sich leichter überzeugen von:",
-    "question25.option1": "Fakten und Daten",
-    "question25.option2": "Emotionen und Geschichten",
-    "question26": "Bei der Entscheidungsfindung im Team konzentrieren Sie sich mehr auf:",
-    "question26.option1": "Effizienz und Ergebnisse",
-    "question26.option2": "Konsens und Einheit",
-    "question27": "Sie glauben, dass ein guter Führer sein sollte:",
-    "question27.option1": "Fair und entscheidungsfreudig",
-    "question27.option2": "Nachdenklich und fürsorglich",
-    "question28": "Ihr Arbeitsstil ist:",
-    "question28.option1": "Vorab planen und vorbereiten",
-    "question28.option2": "Anpassen und flexibel sein",
-    "question29": "Sie bevorzugen:",
-    "question29.option1": "Klare Fristen",
-    "question29.option2": "Optionen offen zu halten",
-    "question3": "Nach dem Besuch einer Versammlung fühlen Sie sich meistens:",
-    "question3.option1": "Energiegeladen",
-    "question3.option2": "Der Bedarf, sich auszuruhen",
-    "question30": "Beim Reisen neigen Sie dazu:",
-    "question30.option1": "Detaillierte Reisepläne zu machen",
-    "question30.option2": "Frei zu erkunden",
-    "question31": "Ihr Zimmer ist normalerweise:",
-    "question31.option1": "Ordentlich und aufgeräumt",
-    "question31.option2": "Locker und entspannt",
-    "question32": "Beim Umgang mit Aufgaben werden Sie:",
-    "question32.option1": "So früh wie möglich abschließen",
-    "question32.option2": "Nahe der Frist fertigstellen",
-    "question33": "Ihr bevorzugter Lebensstil:",
-    "question33.option1": "Regelmäßig und strukturiert",
-    "question33.option2": "Frei und flexibel",
-    "question34": "Bei der Entscheidungsfindung neigen Sie dazu:",
-    "question34.option1": "Schnelle Entscheidungen zu treffen",
-    "question34.option2": "Optionen offen zu halten",
-    "question35": "Beim Einkaufen werden Sie:",
-    "question35.option1": "Eine Liste machen und wie geplant kaufen",
-    "question35.option2": "Ungezwungen stöbern und kaufen, wenn es Ihnen gefällt",
-    "question36": "Wenn Sie mit Veränderungen konfrontiert werden, fühlen Sie sich normalerweise:",
-    "question36.option1": "Unbehaglich",
-    "question36.option2": "Fühle dich aufgeregt",
-    "question4": "In einem Team ziehst du vor:",
-    "question4.option1": "Aktiv zu sprechen",
-    "question4.option2": "Zuhören und dann sprechen",
-    "question5": "Wenn du neue Freunde triffst, bist du:",
-    "question5.option1": "Schnell vertraut",
-    "question5.option2": "Brauchst Zeit, um dich aufzuwärmen",
-    "question6": "Dein Freundeskreis ist:",
-    "question6.option1": "Weit, aber nicht tief",
-    "question6.option2": "Klein und eng verbunden",
-    "question7": "Wenn du arbeitest, bevorzugst du:",
-    "question7.option1": "Teamarbeit",
-    "question7.option2": "Unabhängige Arbeit",
-    "question8": "Wenn du über Probleme nachdenkst, neigst du dazu:",
-    "question8.option1": "Während des Denkens zu sprechen",
-    "question8.option2": "Zuerst nachzudenken, bevor du sprichst",
-    "question9": "Wenn du gestresst bist, machst du:",
-    "question9.option1": "Mit Freunden chatten",
-    "question9.option2": "Allein nachdenken"
+    "question1": {
+      "text": "In sozialen Situationen tun Sie normalerweise:",
+      "option1": "Gespräche mit anderen beginnen",
+      "option2": "Warten, bis andere auf mich zukommen"
+    },
+    "question10": {
+      "text": "Beim Lösen von Problemen verlassen Sie sich mehr auf:",
+      "option1": "Praktische Erfahrung und Fakten",
+      "option2": "Intuition und Möglichkeiten"
+    },
+    "question11": {
+      "text": "Sie bevorzugen:",
+      "option1": "Fokus auf spezifische Details",
+      "option2": "Fokus auf Gesamtkonzepte"
+    },
+    "question12": {
+      "text": "Beim Lernen neuer Dinge ziehen Sie vor:",
+      "option1": "Einen Schritt-für-Schritt-Ansatz",
+      "option2": "Innovative Wege zu erkunden"
+    },
+    "question13": {
+      "text": "Beim Lesen ziehen Sie vor:",
+      "option1": "Praktische Anleitungen",
+      "option2": "Theorien und Konzepte"
+    },
+    "question14": {
+      "text": "Sie konzentrieren sich mehr auf:",
+      "option1": "Die Gegenwart und die Vergangenheit",
+      "option2": "Die Zukunft und Möglichkeiten"
+    },
+    "question15": {
+      "text": "Beim Beschreiben von Dingen neigen Sie dazu:",
+      "option1": "Konkrete Beispiele zu verwenden",
+      "option2": "Metaphern und Analogien zu verwenden"
+    },
+    "question16": {
+      "text": "Bei der Arbeit schätzen Sie:",
+      "option1": "Praktische Anwendung",
+      "option2": "Innovative Ideen"
+    },
+    "question17": {
+      "text": "Sie vertrauen mehr:",
+      "option1": "Bewährten Methoden",
+      "option2": "Neuen Versuchen"
+    },
+    "question18": {
+      "text": "Bei der Planung für die Zukunft:",
+      "option1": "Berücksichtigen Sie realistische Bedingungen",
+      "option2": "Stellen Sie sich verschiedene Möglichkeiten vor"
+    },
+    "question19": {
+      "text": "Bei Entscheidungen priorisieren Sie:",
+      "option1": "Logik und objektive Analyse",
+      "option2": "Emotion und zwischenmenschliche Harmonie"
+    },
+    "question2": {
+      "text": "Am Wochenende bevorzugen Sie:",
+      "option1": "Mit Freunden auszugehen",
+      "option2": "Zuhause allein zu bleiben, um sich zu entspannen"
+    },
+    "question20": {
+      "text": "Wenn Sie andere kritisieren, dann:",
+      "option1": "Auf das Problem direkt hinweisen",
+      "option2": "Die Gefühle der anderen Person berücksichtigen"
+    },
+    "question21": {
+      "text": "Was ist Ihnen wichtiger:",
+      "option1": "Fairness und Gerechtigkeit",
+      "option2": "Mitgefühl und Verständnis"
+    },
+    "question22": {
+      "text": "Bei der Bewertung einer Idee berücksichtigen Sie zuerst:",
+      "option1": "Ob es vernünftig ist",
+      "option2": "Ob es vorteilhaft ist"
+    },
+    "question23": {
+      "text": "Wenn ein Freund Ihnen anvertraut, werden Sie:",
+      "option1": "Das Problem analysieren und Ratschläge anbieten",
+      "option2": "Zuhören und Trost spenden"
+    },
+    "question24": {
+      "text": "In Konflikten neigen Sie dazu:",
+      "option1": "An Prinzipien festzuhalten",
+      "option2": "Beziehungen aufrechtzuerhalten"
+    },
+    "question25": {
+      "text": "Sie lassen sich leichter überzeugen von:",
+      "option1": "Fakten und Daten",
+      "option2": "Emotionen und Geschichten"
+    },
+    "question26": {
+      "text": "Bei der Entscheidungsfindung im Team konzentrieren Sie sich mehr auf:",
+      "option1": "Effizienz und Ergebnisse",
+      "option2": "Konsens und Einheit"
+    },
+    "question27": {
+      "text": "Sie glauben, dass ein guter Führer sein sollte:",
+      "option1": "Fair und entscheidungsfreudig",
+      "option2": "Nachdenklich und fürsorglich"
+    },
+    "question28": {
+      "text": "Ihr Arbeitsstil ist:",
+      "option1": "Vorab planen und vorbereiten",
+      "option2": "Anpassen und flexibel sein"
+    },
+    "question29": {
+      "text": "Sie bevorzugen:",
+      "option1": "Klare Fristen",
+      "option2": "Optionen offen zu halten"
+    },
+    "question3": {
+      "text": "Nach dem Besuch einer Versammlung fühlen Sie sich meistens:",
+      "option1": "Energiegeladen",
+      "option2": "Der Bedarf, sich auszuruhen"
+    },
+    "question30": {
+      "text": "Beim Reisen neigen Sie dazu:",
+      "option1": "Detaillierte Reisepläne zu machen",
+      "option2": "Frei zu erkunden"
+    },
+    "question31": {
+      "text": "Ihr Zimmer ist normalerweise:",
+      "option1": "Ordentlich und aufgeräumt",
+      "option2": "Locker und entspannt"
+    },
+    "question32": {
+      "text": "Beim Umgang mit Aufgaben werden Sie:",
+      "option1": "So früh wie möglich abschließen",
+      "option2": "Nahe der Frist fertigstellen"
+    },
+    "question33": {
+      "text": "Ihr bevorzugter Lebensstil:",
+      "option1": "Regelmäßig und strukturiert",
+      "option2": "Frei und flexibel"
+    },
+    "question34": {
+      "text": "Bei der Entscheidungsfindung neigen Sie dazu:",
+      "option1": "Schnelle Entscheidungen zu treffen",
+      "option2": "Optionen offen zu halten"
+    },
+    "question35": {
+      "text": "Beim Einkaufen werden Sie:",
+      "option1": "Eine Liste machen und wie geplant kaufen",
+      "option2": "Ungezwungen stöbern und kaufen, wenn es Ihnen gefällt"
+    },
+    "question36": {
+      "text": "Wenn Sie mit Veränderungen konfrontiert werden, fühlen Sie sich normalerweise:",
+      "option1": "Unbehaglich",
+      "option2": "Fühle dich aufgeregt"
+    },
+    "question4": {
+      "text": "In einem Team ziehst du vor:",
+      "option1": "Aktiv zu sprechen",
+      "option2": "Zuhören und dann sprechen"
+    },
+    "question5": {
+      "text": "Wenn du neue Freunde triffst, bist du:",
+      "option1": "Schnell vertraut",
+      "option2": "Brauchst Zeit, um dich aufzuwärmen"
+    },
+    "question6": {
+      "text": "Dein Freundeskreis ist:",
+      "option1": "Weit, aber nicht tief",
+      "option2": "Klein und eng verbunden"
+    },
+    "question7": {
+      "text": "Wenn du arbeitest, bevorzugst du:",
+      "option1": "Teamarbeit",
+      "option2": "Unabhängige Arbeit"
+    },
+    "question8": {
+      "text": "Wenn du über Probleme nachdenkst, neigst du dazu:",
+      "option1": "Während des Denkens zu sprechen",
+      "option2": "Zuerst nachzudenken, bevor du sprichst"
+    },
+    "question9": {
+      "text": "Wenn du gestresst bist, machst du:",
+      "option1": "Mit Freunden chatten",
+      "option2": "Allein nachdenken"
+    }
   },
   "quick": {
-    "question1": "In sozialen Situationen tust du normalerweise:",
-    "question1.option1": "Gespräche mit anderen initiieren",
-    "question1.option2": "Warten, bis andere mich ansprechen",
-    "question10": "Dein Arbeitsstil ist:",
-    "question10.option1": "Im Voraus planen und vorbereiten",
-    "question10.option2": "Anpassen und flexibel sein",
-    "question11": "Du bevorzugst:",
-    "question11.option1": "Klare Fristen",
-    "question11.option2": "Optionen offen halten",
-    "question12": "Wenn du reist, neigst du dazu:",
-    "question12.option1": "Detaillierte Reisepläne zu machen",
-    "question12.option2": "Frei zu erkunden",
-    "question2": "Am Wochenende bevorzugst du:",
-    "question2.option1": "Zeit mit Freunden zu verbringen",
-    "question2.option2": "Allein zu Hause zu ruhen",
-    "question3": "Nach einer Party fühlst du dich normalerweise:",
-    "question3.option1": "Energiegeladen",
-    "question3.option2": "Brauchst das Bedürfnis zu ruhen",
-    "question4": "Wenn du Probleme löst, verlässt du dich mehr auf:",
-    "question4.option1": "Praktische Erfahrungen und Fakten",
-    "question4.option2": "Intuition und Möglichkeiten",
-    "question5": "Du bevorzugst:",
-    "question5.option1": "Fokus auf spezifische Details",
-    "question5.option2": "Fokus auf das Gesamtkonzept",
-    "question6": "Wenn du neue Dinge lernst, ziehst du vor:",
-    "question6.option1": "Schritt-für-Schritt-Methoden",
-    "question6.option2": "Innovative Wege zu erkunden",
-    "question7": "Wenn du Entscheidungen triffst, schätzt du mehr:",
-    "question7.option1": "Logik und objektive Analyse",
-    "question7.option2": "Emotionen und zwischenmenschliche Harmonie",
-    "question8": "Wenn du andere kritisierst, machst du:",
-    "question8.option1": "Weisen Sie direkt auf das Problem hin",
-    "question8.option2": "Berücksichtigen Sie die Gefühle der anderen Person",
-    "question9": "Was schätzen Sie mehr:",
-    "question9.option1": "Fairness und Gerechtigkeit",
-    "question9.option2": "Einfühlungsvermögen und Verständnis",
-    "question1.text": "In sozialen Situationen sind Sie normalerweise:",
-    "question10.text": "Ihr Arbeitsstil ist:",
-    "question11.text": "Sie bevorzugen:",
-    "question12.text": "Beim Reisen neigen Sie dazu:",
-    "question2.text": "An Wochenenden bevorzugen Sie:",
-    "question3.text": "Nachdem Sie an einem Treffen teilgenommen haben, machen Sie normalerweise:",
-    "question4.text": "Bei der Problemlösung verlassen Sie sich mehr auf:",
-    "question5.text": "Sie bevorzugen:",
-    "question6.text": "Beim Lernen neuer Dinge bevorzugen Sie:",
-    "question7.text": "Bei Entscheidungen schätzen Sie:",
-    "question8.text": "Wenn Sie andere kritisieren, sind Sie:",
-    "question9.text": "Sie schätzen mehr:"
+    "question1": {
+      "text": "In sozialen Situationen sind Sie normalerweise:",
+      "option1": "Gespräche mit anderen initiieren",
+      "option2": "Warten, bis andere mich ansprechen"
+    },
+    "question10": {
+      "text": "Ihr Arbeitsstil ist:",
+      "option1": "Im Voraus planen und vorbereiten",
+      "option2": "Anpassen und flexibel sein"
+    },
+    "question11": {
+      "text": "Sie bevorzugen:",
+      "option1": "Klare Fristen",
+      "option2": "Optionen offen halten"
+    },
+    "question12": {
+      "text": "Beim Reisen neigen Sie dazu:",
+      "option1": "Detaillierte Reisepläne zu machen",
+      "option2": "Frei zu erkunden"
+    },
+    "question2": {
+      "text": "An Wochenenden bevorzugen Sie:",
+      "option1": "Zeit mit Freunden zu verbringen",
+      "option2": "Allein zu Hause zu ruhen"
+    },
+    "question3": {
+      "text": "Nachdem Sie an einem Treffen teilgenommen haben, machen Sie normalerweise:",
+      "option1": "Energiegeladen",
+      "option2": "Brauchst das Bedürfnis zu ruhen"
+    },
+    "question4": {
+      "text": "Bei der Problemlösung verlassen Sie sich mehr auf:",
+      "option1": "Praktische Erfahrungen und Fakten",
+      "option2": "Intuition und Möglichkeiten"
+    },
+    "question5": {
+      "text": "Sie bevorzugen:",
+      "option1": "Fokus auf spezifische Details",
+      "option2": "Fokus auf das Gesamtkonzept"
+    },
+    "question6": {
+      "text": "Beim Lernen neuer Dinge bevorzugen Sie:",
+      "option1": "Schritt-für-Schritt-Methoden",
+      "option2": "Innovative Wege zu erkunden"
+    },
+    "question7": {
+      "text": "Bei Entscheidungen schätzen Sie:",
+      "option1": "Logik und objektive Analyse",
+      "option2": "Emotionen und zwischenmenschliche Harmonie"
+    },
+    "question8": {
+      "text": "Wenn Sie andere kritisieren, sind Sie:",
+      "option1": "Weisen Sie direkt auf das Problem hin",
+      "option2": "Berücksichtigen Sie die Gefühle der anderen Person"
+    },
+    "question9": {
+      "text": "Sie schätzen mehr:",
+      "option1": "Fairness und Gerechtigkeit",
+      "option2": "Einfühlungsvermögen und Verständnis"
+    }
   },
   "share": {
     "welcome": "👋 Dein Freund lädt dich ein, den MBTI-Test zu machen!\n\nKomm und finde deinen Persönlichkeitstyp heraus～",

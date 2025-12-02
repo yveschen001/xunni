@@ -2,7 +2,7 @@ export default {
   "ad": "➡️ Next Ad",
   "back": "⬅️ Back",
   "backToVip": "💎 Back to VIP Menu",
-  "bottle": "📺 Watch Ads to Get More Message Bottles 🎁 (${remaining}/20)",
+  "bottle": "📺 Watch Ads to Get More Message Bottles 🎁 ({remaining}/20)",
   "bottle2": "💎 Upgrade to VIP for More Message Bottles",
   "bottle3": "🌊 Throw Out Message Bottle",
   "bottle4": "🎣 Pick Up Message Bottle",

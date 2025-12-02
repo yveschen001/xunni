@@ -27,8 +27,8 @@ export default {
   "error": "Errore: {error}",
   "estimate": {
     "immediate": "Invia immediatamente (circa 1-2 secondi)",
-    "minutes": "Circa \\${minutes} minuti",
-    "seconds": "Circa \\${seconds} secondi"
+    "minutes": "Circa \\{minutes} minuti",
+    "seconds": "Circa \\{seconds} secondi"
   },
   "estimatedTime": "Tempo stimato: {time}\n\n",
   "example": "**Esempio:**\n",
@@ -97,7 +97,7 @@ export default {
   "foundStuckBroadcasts": "⚠️ Rilevati {count} trasmissioni bloccate\n\n",
   "id": "ID: {id}",
   "idMustBeNumber": "❌ L'ID del broadcast deve essere un numero",
-  "maxUsersExceeded": "❌ Il sistema di broadcast attuale supporta un massimo di ${max} utenti.\n\nNumero target di utenti: ${current}",
+  "maxUsersExceeded": "❌ Il sistema di broadcast attuale supporta un massimo di {max} utenti.\n\nNumero target di utenti: {current}",
   "messageContent": "Contenuto del Messaggio",
   "noPendingBroadcasts": "Attualmente non ci sono trasmissioni in attesa o bloccate.\n\n",
   "noRecords": "📊 Nessun record di broadcast disponibile attualmente",
@@ -151,7 +151,7 @@ export default {
   "targetNonVip": "Utenti non VIP",
   "targetType": "Obiettivo: {type}\n",
   "targetVip": "Utenti VIP",
-  "tooLong": "Il messaggio di trasmissione non può superare ${max} caratteri (attualmente ${current} caratteri)",
+  "tooLong": "Il messaggio di trasmissione non può superare {max} caratteri (attualmente {current} caratteri)",
   "upgradeRequired": "Le trasmissioni su larga scala richiedono un aggiornamento dell'architettura di sistema, si prega di fare riferimento a BROADCAST_SYSTEM_REDESIGN.md",
   "usageError": "❌ Uso non corretto\n\n",
   "userCount": "Conteggio utenti: {count} persone\n",

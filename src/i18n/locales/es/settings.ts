@@ -11,7 +11,7 @@ export default {
   "settings2": "⚙️ **Configuraciones**\n\n",
   "settings3": "🏠 Volver a configuraciones",
   "settings4": "Configuraciones actuales:\n",
-  "text": "• Idioma: ${languageName} 🇹🇼\n\n",
+  "text": "• Idioma: {languageName} 🇹🇼\n\n",
   "title": "🏠 **Menú principal**",
   "throwReminder": "Recordatorio de botella de mensajes",
   "catchReminder": "Recordatorio de recogida de botella de mensajes",

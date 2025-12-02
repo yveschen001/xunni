@@ -1,7 +1,7 @@
 export default {
   "age": {
-    "daysAgo": "\\${days} giorni fa",
-    "hoursAgo": "\\${hours} ore fa",
+    "daysAgo": "\\{days} giorni fa",
+    "hoursAgo": "\\{hours} ore fa",
     "justNow": "Appena adesso"
   },
   "contentHint": "💡 Puoi:\n• Inserire nuovi contenuti per sostituire direttamente la bozza\n• Usare /throw per ripartire\n• Inviare contenuti della bozza per lanciare una bottiglia di messaggi",

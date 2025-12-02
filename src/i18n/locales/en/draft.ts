@@ -1,7 +1,7 @@
 export default {
   "age": {
-    "daysAgo": "\\${days} days ago",
-    "hoursAgo": "\\${hours} hours ago",
+    "daysAgo": "\\{days} days ago",
+    "hoursAgo": "\\{hours} hours ago",
     "justNow": "Just now"
   },
   "contentHint": "💡 You can:\n• Directly enter new content to replace the draft\n• Use /throw to start over\n• Send the draft content to throw a message bottle",

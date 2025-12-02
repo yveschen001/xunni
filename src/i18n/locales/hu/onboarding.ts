@@ -1,7 +1,7 @@
 export default {
-  "age": "• Kor: ${updatedUser.age} éves\n",
-  "age2": "A te korod: ${age} éves\n",
-  "age3": "Kor: ${age} éves\n",
+  "age": "• Kor: {updatedUser.age} éves\n",
+  "age2": "A te korod: {age} éves\n",
+  "age3": "Kor: {age} éves\n",
   "ageRestriction": "❌ Sajnáljuk, de legalább 18 évesnek kell lenned a szolgáltatás használatához.\n\n",
   "agreeTerms": "Kattintson az alábbi gombra, hogy jelezze, hogy elolvasta és egyetért a fenti feltételekkel.",
   "antiFraud": {
@@ -24,7 +24,7 @@ export default {
   "birthday": "Ha úgy véli, hogy ez hiba, kérjük, ellenőrizze, hogy a születési dátum formátuma helyes-e (YYYY-MM-DD).",
   "birthday2": "Kérlek, írd be újra a születési dátumodat (formátum: ÉÉÉÉ-HH-NN):\n\n",
   "birthday3": "Kérlek, add meg a születési dátumodat (formátum: ÉÉÉÉ-HH-NN):\n\n",
-  "birthday4": "Születésnap: ${birthday}\n",
+  "birthday4": "Születésnap: {birthday}\n",
   "birthdayCheck": "Ha úgy gondolja, hogy ez hiba, ellenőrizze, hogy a születésnap formátuma helyes-e (ÉÉÉÉ-HH-NN).",
   "birthdayError": "{error}\n\n",
   "birthdayFormatError": "❌ Hibás születésnap formátum\n\nKérjük, írja be újra (formátum: ÉÉÉÉ-HH-NN):",
@@ -43,11 +43,11 @@ export default {
   "enterYes": "Kérjük, írja be, hogy 'igen', a teszt befejezéséhez:",
   "errorRetry": "❌ Hiba történt, kérjük, írja be újra.",
   "example": {
-    "birthday": "Például: 1995-06-15"
+    "birthday": "Például: 2000-12-25"
   },
   "gender": {
     "female": "Nő",
-    "label": "• Neme: ${gender}\n",
+    "label": "• Neme: {gender}\n",
     "male": "Férfi"
   },
   "gender2": "• Neme: ${updatedUser.gender ===",
@@ -58,7 +58,7 @@ export default {
   "help": "Ez segít abban, hogy megfelelőbb csevegőpartnereket találjunk számodra～\n\n",
   "iHaveRead": "✅ Elolvastam és egyetértek",
   "info": {
-    "age18": "• Legalább 18 évesnek kell lenned ahhoz, hogy használhasd ezt a szolgáltatást.\n- Pontos információt kell megadni a megfelelő és jóslás eredményessége érdekében.",
+    "age18": "• Legalább 18 évesnek kell lenned ahhoz, hogy igénybe vedd ezt a szolgáltatást\n- A párosításhoz és a jövendöléshez pontos információkat kell megadni a jó eredmények érdekében.\n\n- Add meg a születési dátumodat (pl. 2000-12-15)",
     "city": "🌍 Régió: {city}"
   },
   "languageSelection": "🌐 **Válassza ki a nyelvet**\n\nKérjük, válassza ki a preferált nyelvét:",
@@ -69,8 +69,8 @@ export default {
   "message": "2. 🚨 Csaló üzenetek azonosítása\n",
   "message2": "• Legyen óvatos a pénz kérésével kapcsolatos üzenetekkel\n",
   "moreLanguages": "Több nyelv",
-  "nickname": "• Becsület: ${updatedUser.nickname}\n",
-  "nickname2": "Nagyszerű! A beceneved: ${nickname}\n\n",
+  "nickname": "• Becsület: {updatedUser.nickname}\n",
+  "nickname2": "Nagyszerű! A beceneved: {nickname}\n\n",
   "nicknameError": "❌ {error}\n\nKérjük, írja be újra a becenevét:",
   "nicknameGood": "Nagyszerű! A beceneved: {nickname}\n\n",
   "notCompleted": "⚠️ Kérjük, előbb fejezze be a regisztrációs folyamatot",
@@ -99,7 +99,7 @@ export default {
   "startRegistration": "Regisztráció indítása →",
   "stats": "📊 Statisztikák",
   "stepAntiFraud": "🛡️ Kérjük, kattintson a fenti gombra az átverésellenes biztonsági intézkedések megerősítéséhez",
-  "stepBirthday": "📅 Kérjük, adja meg a születésnapját (formátum: ÉÉÉÉ-HH-NN, pl.: 1995-06-15)",
+  "stepBirthday": "📅 Kérjük, adja meg a születésnapját (formátum: ÉÉÉÉ-HH-NN, pl.: 2000-12-25)",
   "stepDefault": "Kérjük, fejezze be a regisztrációt az utasítások szerint",
   "stepGender": "👤 Kérjük, kattintson a fenti gombra a neme kiválasztásához",
   "stepLanguageSelection": "🌍 Kérjük, kattintson a fenti gombra a nyelv kiválasztásához",
@@ -113,7 +113,7 @@ export default {
     "terms_of_service_button": "📋 Szolgáltatási Feltételek"
   },
   "termsOfService": "📋 Felhasználói Feltételek\n\n",
-  "text": "megerősíti_születésnapját_${birthday}",
+  "text": "megerősíti_születésnapját_{birthday}",
   "text10": "Például: 1995-06-15\n\n",
   "text11": "🛡️ Online Randizás Biztonsági Tippek\n\n",
   "text12": "📋 Utolsó lépés: Szolgáltatási feltételek\n\n",
@@ -127,7 +127,7 @@ export default {
   "text2": "💡 Bármikor használhatja a /mbti parancsot az MBTI újratezteléséhez vagy módosításához.",
   "text20": "Kérlek, térj vissza felnőttkorba lépéskor!\n\n",
   "text21": "📋 Adatvédelmi irányelv\n",
-  "text3": "nem_elfogadva_${gender}",
+  "text3": "nem_elfogadva_{gender}",
   "text4": "Utolsó lépés: Kérlek, olvasd el és fogadd el a Szolgáltatási Feltételeinket\n\n",
   "text5": "📝 Végezzen el egy gyors tesztet (12 kérdés, csupán tájékoztatás céljából)",
   "text6": "• Felhasználói Feltételek: Útmutatók a szolgáltatás használatához\n\n",
@@ -138,12 +138,12 @@ export default {
   "useTelegramNickname": "Használja a Telegram becenevét",
   "viewPrivacyPolicy": "📋 Adatvédelmi irányelv megtekintése",
   "viewTermsOfService": "📋 Szolgáltatási feltételek megtekintése",
-  "vip": "💡 A vércsoportod megadása a jövőbeni vércsoport-illesztési funkciókhoz fog felhasználásra kerülni (VIP exkluzív)\n\n",
+  "vip": "💡 A vércsoportod megadása felhasználható jövőbeli vércsoport-illesztési funkciókhoz (több attribútum, asztrológiai illesztés)",
   "warning": {
     "birthday": "⚠️ A születési dátumot a beállítás után nem lehet módosítani. Kérjük, ellenőrizd, hogy helyes-e!"
   },
   "welcome": "Üdvözlünk a XunNi-n! \n\nKérjük, válaszd ki a nyelved:",
   "yourAge": "A korod: {age} éves\n",
-  "zodiac": "• Csillagjegy: ${updatedUser.zodiac_sign}\n",
-  "zodiac2": "Csillagjegy: ${zodiacSign}\n\n"
+  "zodiac": "• Csillagjegy: {updatedUser.zodiac_sign}\n",
+  "zodiac2": "Csillagjegy: {zodiacSign}\n\n"
 };

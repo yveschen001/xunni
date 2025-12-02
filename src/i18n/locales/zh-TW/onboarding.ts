@@ -43,7 +43,7 @@ export default {
   "enterYes": "請輸入「是」完成測驗：",
   "errorRetry": "❌ 發生錯誤，請重新輸入。",
   "example": {
-    "birthday": "例如：1995-06-15"
+    "birthday": "例如：2000-12-25"
   },
   "gender": {
     "female": "女",
@@ -58,7 +58,7 @@ export default {
   "help": "這將幫助我們為你找到更合適的聊天對象～\n\n",
   "iHaveRead": "✅ 我已閱讀並同意",
   "info": {
-    "age18": "• 必須年滿 18 歲才能使用本服務\n-為了使用配對、命理，正確填寫才有好的結果",
+    "age18": "• 必須年滿 18 歲才能使用本服務\n-為了使用配對、命理，正確填寫才有好的結果\n\n-輸入你的生日（例如：2000-12-15）",
     "city": "🌍 地區：{city}"
   },
   "languageSelection": "🌐 **選擇語言**\n\n請選擇你的偏好語言：",
@@ -99,7 +99,7 @@ export default {
   "startRegistration": "開始註冊 →",
   "stats": "📊 統計",
   "stepAntiFraud": "🛡️ 請點擊上方按鈕確認反詐騙安全事項",
-  "stepBirthday": "📅 請輸入你的生日（格式：YYYY-MM-DD，例如：1995-06-15）",
+  "stepBirthday": "📅 請輸入你的生日（格式：YYYY-MM-DD，例如：2000-12-25）",
   "stepDefault": "請按照提示完成註冊",
   "stepGender": "👤 請點擊上方按鈕選擇你的性別",
   "stepLanguageSelection": "🌍 請點擊上方按鈕選擇你的語言",
@@ -138,7 +138,7 @@ export default {
   "useTelegramNickname": "使用 Telegram 暱稱",
   "viewPrivacyPolicy": "📋 View Privacy Policy",
   "viewTermsOfService": "📋 View Terms of Service",
-  "vip": "💡 填寫血型可用於未來的血型配對功能（VIP 專屬）\n\n",
+  "vip": "💡 填寫血型可用於未來的血型配對功能（更多的屬性、命盤配對）\n\n",
   "warning": {
     "birthday": "⚠️ 生日設定後無法修改，請確認無誤！"
   },

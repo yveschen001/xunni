@@ -1,7 +1,7 @@
 export default {
   "age": {
-    "daysAgo": "\\${days} päivää sitten",
-    "hoursAgo": "\\${hours} tuntia sitten",
+    "daysAgo": "\\{days} päivää sitten",
+    "hoursAgo": "\\{hours} tuntia sitten",
     "justNow": "Juuri nyt"
   },
   "contentHint": "💡 Voit:\n• Syötä uusi sisältö korvataksesi luonnoksen suoraan\n• Käytä /throw -komentoa aloittaaksesi uudelleen\n• Lähetä luonnossisältö heittääksesi viestipullo",

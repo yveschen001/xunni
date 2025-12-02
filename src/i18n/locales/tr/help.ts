@@ -60,7 +60,7 @@ export default {
   "profile": "/edit_profile - Profil düzenle\n",
   "profile2": "/profile - Profil görüntüle\n",
   "profile3": "👤 **Profil**\n",
-  "quota": "• Arkadaşları davet etmek kotayı artırır (maksimum 10/100)\n",
+  "quota": "🔢 Günlük Yüksek Kota\n• Her gün 30 mesaj şişesi ile başlayın (normal kullanıcılar için sadece 10).\n• Arkadaş davet etmek kotanızı kalıcı olarak artırabilir, maksimum 100'e kadar!\n• Günlük 100 sohbet mesajı limiti, engeller olmadan sohbet edin.",
   "quota2": "• Günde 30 mesaj şişesi kotası\n",
   "register": "/start - Başlayın / Kaydı sürdürün\n",
   "report": "/report - Uygun olmayan içeriği raporlayın\n",

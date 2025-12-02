@@ -2,7 +2,7 @@ export default {
   "ad": "➡️ Sonraki İlan",
   "back": "⬅️ Geri / Dön",
   "backToVip": "💎 VIP Menüsüne Dön",
-  "bottle": "📺 Daha fazla mesaj şişesi almak için reklam izleyin 🎁 (${remaining}/20)",
+  "bottle": "📺 Daha fazla mesaj şişesi almak için reklam izleyin 🎁 ({remaining}/20)",
   "bottle2": "💎 Daha fazla mesaj şişesi için VIP'ye yükselin",
   "bottle3": "🌊 Bir mesaj şişesi at",
   "bottle4": "🎣 Bir mesaj şişesi al",

@@ -2,7 +2,7 @@ export default {
   "ad": "➡️ Prochain annonce",
   "back": "⬅️ Retour / Retourner",
   "backToVip": "💎 Retour au menu VIP",
-  "bottle": "📺 Regardez des annonces pour obtenir plus de bouteilles à message 🎁 (${remaining}/20)",
+  "bottle": "📺 Regardez des annonces pour obtenir plus de bouteilles à message 🎁 ({remaining}/20)",
   "bottle2": "💎 Passez à VIP pour plus de bouteilles à message",
   "bottle3": "🌊 Jeter une bouteille à message",
   "bottle4": "🎣 Ramasser une bouteille à message",

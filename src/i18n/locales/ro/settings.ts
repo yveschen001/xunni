@@ -11,7 +11,7 @@ export default {
   "settings2": "⚙️ **Setări**\n\n",
   "settings3": "🏠 Întoarce-te la Setări",
   "settings4": "Setările curente:\n",
-  "text": "• Limbă: ${languageName} 🇹🇼\n\n",
+  "text": "• Limbă: {languageName} 🇹🇼\n\n",
   "title": "🏠 **Meniu Principal**",
   "throwReminder": "Reminder sticlă cu mesaj",
   "catchReminder": "Reminder ridicare sticlă cu mesaj",

@@ -11,7 +11,7 @@ export default {
   "settings2": "⚙️ **Параметри**\n\n",
   "settings3": "🏠 Врати се на Поставки",
   "settings4": "Тековни поставки:\n",
-  "text": "• Јазик: ${languageName} 🇹🇼\n\n",
+  "text": "• Јазик: {languageName} 🇹🇼\n\n",
   "title": "🏠 **Главно Мени**",
   "throwReminder": "Подсетник за message bottle",
   "catchReminder": "Подсетник за подигнување на message bottle",

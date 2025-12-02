@@ -11,6 +11,6 @@ export default {
   "step2": "2️⃣ '답장'을 선택하세요.",
   "step3": "3️⃣ /block을 입력하세요.",
   "steps": "**작업 단계:**",
-  "success": "✅ 이 사용자가 차단되었습니다 (#${identifier}).",
+  "success": "✅ 이 사용자가 차단되었습니다 (#{identifier}).",
   "willNotMatch": "더 이상 서로의 메시지 병과 매칭되지 않습니다."
 };

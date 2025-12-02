@@ -1,7 +1,7 @@
 export default {
   "age": {
-    "daysAgo": "\\${days} dnů zpět",
-    "hoursAgo": "\\${hours} hodin zpět",
+    "daysAgo": "\\{days} dnů zpět",
+    "hoursAgo": "\\{hours} hodin zpět",
     "justNow": "Právě teď"
   },
   "contentHint": "💡 Můžete:\n• Přímo zadat nový obsah k nahrazení konceptu\n• Použít /throw k restartování\n• Odeslat obsah konceptu, aby se hodila láhev se zprávou",

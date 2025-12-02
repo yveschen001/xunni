@@ -71,7 +71,7 @@ export default {
   "quotaDisplayFree": "🔮 메시지 병: {total} (이번 주 무료: {weekly}/1 | 추가: {additional})",
   "profileDetails": "👤 {gender} {blood} | 🎂 {birthday} | {zodiac} | 🧠 {mbti}",
   "getMore": "메시지 병 더 받기",
-  "getMoreInfo": "🔮 *메시지 병을 얻는 방법?*\n\n1. **주간 무료**: 일반 사용자는 주당 1개, VIP는 하루에 1개를 받습니다.\n2. **추천 보상**: 친구를 초대하면 친구가 다른 친구를 초대할 때 보상을 받습니다(친구의 친구).\n3. **메시지 병 보상**: 10개의 메시지 병을 보내면 1개의 메시지 병을 받습니다.\n4. **직접 구매 (🔥 한정 시간 20% 할인)**:\n • 소형 패키지 {smallAmount} - ~{originalSmallPrice} 별~ {smallPrice} 별\n • 대형 패키지 {largeAmount} - ~{originalLargePrice} 별~ {largePrice} 별",
+  "getMoreInfo": "🔮 *행운의 병을 얻는 방법?*\n\n1. **주간 무료**: 일반 사용자는 주당 1개, VIP는 하루에 1개를 받습니다.\n2. **초대 보상**: 친구를 초대하면 보상을 받으며, 그 친구가 또 다른 친구를 초대하면 추가 보상을 받습니다 (24시간 이내, 최대 1개의 행운의 병).\n3. **메시지 병 보상**: 메시지 병을 10개 보낼 때마다 행운의 병 1개를 받습니다. (24시간 이내, 최대 1개의 행운의 병)\n4. **직접 구매 (🔥 한정 시간 20% 할인)**:\n • 소형 패키지 {smallAmount} - ~{originalSmallPrice} 별~ {smallPrice} 별\n • 대형 패키지 {largeAmount} - ~{originalLargePrice} 별~ {largePrice} 별",
   "buySmall": "🔥 특별가 {price} 별 (구매 {amount}개)",
   "buyLarge": "🔥 특별가 {price} 별 (구매 {amount}개)",
   "invoiceTitle": "{amount}개의 메시지 병 구매",

@@ -1,7 +1,7 @@
 export default {
   "age": {
-    "daysAgo": "\\${days} ngày trước",
-    "hoursAgo": "\\${hours} giờ trước",
+    "daysAgo": "\\{days} ngày trước",
+    "hoursAgo": "\\{hours} giờ trước",
     "justNow": "Ngay bây giờ"
   },
   "contentHint": "💡 Bạn có thể:\n• Nhập nội dung mới để thay thế bản nháp\n• Sử dụng /throw để bắt đầu lại\n• Gửi nội dung bản nháp để ném một chai thư",

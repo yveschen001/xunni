@@ -11,7 +11,7 @@ export default {
   "settings2": "⚙️ **Nastavenia**\n\n",
   "settings3": "🏠 Návrat do nastavení",
   "settings4": "Aktuálne nastavenia:\n",
-  "text": "• Jazyk：${languageName} 🇹🇼\n\n",
+  "text": "• Jazyk：{languageName} 🇹🇼\n\n",
   "title": "🏠 **Hlavné menu**",
   "throwReminder": "Pripomienka na message bottle",
   "catchReminder": "Pripomienka na vyzdvihnutie message bottle",

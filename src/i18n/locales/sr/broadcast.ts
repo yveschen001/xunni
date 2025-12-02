@@ -27,8 +27,8 @@ export default {
   "error": "Greška: {error}",
   "estimate": {
     "immediate": "Pošalji odmah (približno 1-2 sekunde)",
-    "minutes": "Otprilike \\${minutes} minuta",
-    "seconds": "Otprilike \\${seconds} sekundi"
+    "minutes": "Otprilike \\{minutes} minuta",
+    "seconds": "Otprilike \\{seconds} sekundi"
   },
   "estimatedTime": "Procenjeno vreme: {time}\n\n",
   "example": "**Primer:**\n",
@@ -97,7 +97,7 @@ export default {
   "foundStuckBroadcasts": "⚠️ Otkriveno {count} blokiranih emitovanja\n\n",
   "id": "ID: {id}",
   "idMustBeNumber": "❌ ID emitovanja mora biti broj",
-  "maxUsersExceeded": "❌ Aktuelni sistem emitovanja podržava emitovanje do maksimalno ${max} korisnika.\n\nCiljani broj korisnika: ${current}",
+  "maxUsersExceeded": "❌ Aktuelni sistem emitovanja podržava emitovanje do maksimalno {max} korisnika.\n\nCiljani broj korisnika: {current}",
   "messageContent": "Sadržaj poruke",
   "noPendingBroadcasts": "Trenutno nema čekajućih ili blokiranih emitovanja.\n\n",
   "noRecords": "📊 Trenutno nema dostupnih zapisa emitovanja",
@@ -151,7 +151,7 @@ export default {
   "targetNonVip": "Ne-VIP korisnici",
   "targetType": "Cilj: {type}\n",
   "targetVip": "VIP korisnici",
-  "tooLong": "Emitovana poruka ne može da premaši ${max} karaktera (trenutno ${current} karaktera)",
+  "tooLong": "Emitovana poruka ne može da premaši {max} karaktera (trenutno {current} karaktera)",
   "upgradeRequired": "Masa emitovanja zahteva nadogradnju sistemske arhitekture, molimo se obratite BROADCAST_SYSTEM_REDESIGN.md",
   "usageError": "❌ Nekorektna upotreba\n\n",
   "userCount": "Broj korisnika: {count} ljudi\n",

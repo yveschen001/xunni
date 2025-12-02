@@ -27,8 +27,8 @@ export default {
   "error": "Error: {error}",
   "estimate": {
     "immediate": "Ipadala Agad (Tinatayang 1-2 segundo)",
-    "minutes": "Tungkol sa ${minutes} minuto",
-    "seconds": "Tungkol sa ${seconds} segundo"
+    "minutes": "Tungkol sa {minutes} minuto",
+    "seconds": "Tungkol sa {seconds} segundo"
   },
   "estimatedTime": "Tinatayang Oras: {time}\n\n",
   "example": "**Halimbawa:**\n",
@@ -97,7 +97,7 @@ export default {
   "foundStuckBroadcasts": "⚠️ Natukoy na {count} na na-stuck na broadcasts\n\n",
   "id": "ID: {id}",
   "idMustBeNumber": "❌ Ang Broadcast ID ay dapat na isang numero",
-  "maxUsersExceeded": "❌ Ang kasalukuyang sistema ng broadcast ay sumusuporta lamang sa mga broadcast para sa ${max} na gumagamit o mas kaunti.\n\nBilang ng target na gumagamit: ${current}",
+  "maxUsersExceeded": "❌ Ang kasalukuyang sistema ng broadcast ay sumusuporta lamang sa mga broadcast para sa {max} na gumagamit o mas kaunti.\n\nBilang ng target na gumagamit: {current}",
   "messageContent": "Nilalaman ng mensahe",
   "noPendingBroadcasts": "Sa kasalukuyan, walang pending o na-stuck na broadcasts.\n\n",
   "noRecords": "📊 Walang mga tala ng broadcast sa kasalukuyan",
@@ -151,7 +151,7 @@ export default {
   "targetNonVip": "Non-VIP na mga user",
   "targetType": "Target: {type}",
   "targetVip": "VIP na mga user",
-  "tooLong": "Hindi dapat lumagpas ang bote ng mensahe ng ${max} na karakter (kasalukuyan ${current} na karakter)",
+  "tooLong": "Hindi dapat lumagpas ang bote ng mensahe ng {max} na karakter (kasalukuyan {current} na karakter)",
   "upgradeRequired": "Ang malakihang broadcasting ay nangangailangan ng pag-upgrade ng sistema, mangyaring kumonsulta sa BROADCAST_SYSTEM_REDESIGN.md",
   "usageError": "❌ Mali ang paggamit\n\n",
   "userCount": "Bilang ng User: {count} tao\n",

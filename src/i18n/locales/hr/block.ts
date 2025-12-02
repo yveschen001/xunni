@@ -11,6 +11,6 @@ export default {
   "step2": "2️⃣ Odaberite 'Odgovori'.",
   "step3": "3️⃣ Unesite /block.",
   "steps": "**Koraci za Rad:**",
-  "success": "✅ Blokirali ste ovog korisnika (#${identifier})",
+  "success": "✅ Blokirali ste ovog korisnika (#{identifier})",
   "willNotMatch": "Vi više nećete biti povezani sa message bottles jedan drugome."
 };

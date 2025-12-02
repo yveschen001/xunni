@@ -1,4 +1,4 @@
 export default {
   "header": "📊 **Codzienny raport analizy danych**",
-  "time": "Czas: ${time}"
+  "time": "Czas: {time}"
 };

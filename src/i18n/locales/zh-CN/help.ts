@@ -60,7 +60,7 @@ export default {
   "profile": "/edit_profile - 编辑个人资料\n",
   "profile2": "/profile - 查看个人资料\n",
   "profile3": "👤 **个人资料**\n",
-  "quota": "• 邀请好友可增加配额（最多 10/100）\n",
+  "quota": "🔢 每日超高额度\n• 每日 30 个 漂流瓶起步（普通用户仅 10 个）。\n• 邀请好友可永久增加额度，总最高可达 100 个！\n• 每日 100 则 对话消息额度，畅聊无阻。",
   "quota2": "• 每天 30 个漂流瓶配额\n",
   "register": "/start - 开始使用 / 继续注册\n",
   "report": "/report - 举报不当内容\n",

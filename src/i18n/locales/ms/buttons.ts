@@ -2,7 +2,7 @@ export default {
   "ad": "➡️ Iklan Seterusnya",
   "back": "⬅️ Kembali",
   "backToVip": "💎 Kembali ke Menu VIP",
-  "bottle": "📺 Tonton Iklan untuk Mendapatkan Lebih Banyak Botol Mesej 🎁 (${remaining}/20)",
+  "bottle": "📺 Tonton Iklan untuk Mendapatkan Lebih Banyak Botol Mesej 🎁 ({remaining}/20)",
   "bottle2": "💎 Naik taraf ke VIP untuk Lebih Banyak Botol Mesej",
   "bottle3": "🌊 Buang Botol Mesej",
   "bottle4": "🎣 Ambil Botol Mesej",

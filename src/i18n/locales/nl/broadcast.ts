@@ -27,8 +27,8 @@ export default {
   "error": "Fout: {error}",
   "estimate": {
     "immediate": "Onmiddellijk verzenden (ongeveer 1-2 seconden)",
-    "minutes": "Ongeveer \\${minutes} minuten",
-    "seconds": "Ongeveer \\${seconds} seconden"
+    "minutes": "Ongeveer \\{minutes} minuten",
+    "seconds": "Ongeveer \\{seconds} seconden"
   },
   "estimatedTime": "Geschatte tijd: {time}\n\n",
   "example": "**Voorbeeld:**\n",
@@ -97,7 +97,7 @@ export default {
   "foundStuckBroadcasts": "⚠️ {count} vastgelopen uitzendingen gedetecteerd\n\n",
   "id": "ID: {id}",
   "idMustBeNumber": "❌ Broadcast-ID moet een getal zijn",
-  "maxUsersExceeded": "❌ Het huidige uitzending systeem ondersteunt uitzenden naar maximaal ${max} gebruikers.\n\nDoel aantal gebruikers: ${current}",
+  "maxUsersExceeded": "❌ Het huidige uitzending systeem ondersteunt uitzenden naar maximaal {max} gebruikers.\n\nDoel aantal gebruikers: {current}",
   "messageContent": "Boodschapinhoud",
   "noPendingBroadcasts": "Momenteel zijn er geen lopende of vastgelopen uitzendingen.\n\n",
   "noRecords": "📊 Momenteel geen uitzendrecords beschikbaar",
@@ -151,7 +151,7 @@ export default {
   "targetNonVip": "Geen VIP-gebruikers",
   "targetType": "Doel: {type}\n",
   "targetVip": "VIP-gebruikers",
-  "tooLong": "Uitzendbericht mag niet meer dan ${max} tekens bevatten (momenteel ${current} tekens)",
+  "tooLong": "Uitzendbericht mag niet meer dan {max} tekens bevatten (momenteel {current} tekens)",
   "upgradeRequired": "Grootschalige uitzendingen vereisen een upgrade van de systeemarchitectuur, raadpleeg please BROADCAST_SYSTEM_REDESIGN.md",
   "usageError": "❌ Ongeldig gebruik\n\n",
   "userCount": "Aantal gebruikers: {count} personen\n",

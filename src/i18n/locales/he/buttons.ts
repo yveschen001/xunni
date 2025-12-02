@@ -2,7 +2,7 @@ export default {
   "ad": "➡️ מודעה הבאה",
   "back": "⬅️ חזור / החזר",
   "backToVip": "💎 חזור לתפריט VIP",
-  "bottle": "📺 צפה במודעות כדי לקבל יותר בקבוקי מסר 🎁 (${remaining}/20)",
+  "bottle": "📺 צפה במודעות כדי לקבל יותר בקבוקי מסר 🎁 ({remaining}/20)",
   "bottle2": "💎 שדרג ל-VIP עבור יותר בקבוקי מסר",
   "bottle3": "🌊 זרוק בקבוק מסר",
   "bottle4": "🎣 אסוף בקבוק מסר",

@@ -1,5 +1,5 @@
 export default {
-  "nickname": "👤 Nimimerkki: ${ownerMaskedNickname}",
+  "nickname": "👤 Nimimerkki: {ownerMaskedNickname}",
   "short19": "✏️ Muokkaa profiilia",
   "menuTitle": "Muokkaa Profiilia",
   "nicknameButton": "✏️ Muokkaa Nimikettä",

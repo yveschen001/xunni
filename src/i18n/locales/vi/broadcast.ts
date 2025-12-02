@@ -27,8 +27,8 @@ export default {
   "error": "Lỗi: {error}",
   "estimate": {
     "immediate": "Gửi ngay lập tức (khoảng 1-2 giây)",
-    "minutes": "Khoảng \\${minutes} phút",
-    "seconds": "Khoảng \\${seconds} giây"
+    "minutes": "Khoảng \\{minutes} phút",
+    "seconds": "Khoảng \\{seconds} giây"
   },
   "estimatedTime": "Thời gian ước tính: {time}\n\n",
   "example": "**Ví dụ:**\n",
@@ -97,7 +97,7 @@ export default {
   "foundStuckBroadcasts": "⚠️ Đã phát hiện {count} phát sóng bị kẹt\n\n",
   "id": "ID: {id}",
   "idMustBeNumber": "❌ ID phát sóng phải là một số",
-  "maxUsersExceeded": "❌ Hệ thống phát sóng hiện tại chỉ hỗ trợ tối đa ${max} người dùng.\n\nSố người dùng mục tiêu: ${current}",
+  "maxUsersExceeded": "❌ Hệ thống phát sóng hiện tại chỉ hỗ trợ tối đa {max} người dùng.\n\nSố người dùng mục tiêu: {current}",
   "messageContent": "Nội dung tin nhắn",
   "noPendingBroadcasts": "Hiện tại, không có phát sóng nào đang chờ xử lý hoặc bị kẹt.\n\n",
   "noRecords": "📊 Hiện tại, không có bản ghi phát sóng nào",
@@ -151,7 +151,7 @@ export default {
   "targetNonVip": "Người dùng không VIP",
   "targetType": "Mục tiêu: {type}\n",
   "targetVip": "Người dùng VIP",
-  "tooLong": "Tin nhắn phát sóng không được vượt quá ${max} ký tự (hiện tại ${current} ký tự)",
+  "tooLong": "Tin nhắn phát sóng không được vượt quá {max} ký tự (hiện tại {current} ký tự)",
   "upgradeRequired": "Phát sóng quy mô lớn yêu cầu nâng cấp kiến trúc hệ thống, vui lòng tham khảo BROADCAST_SYSTEM_REDESIGN.md",
   "usageError": "❌ Sử dụng không đúng cách\n\n",
   "userCount": "Số lượng người dùng: {count} người\n",

@@ -1,7 +1,7 @@
 export default {
-  "age": "• Godine: ${updatedUser.age} godina\n",
-  "age2": "Vaše godine: ${age} godina\n",
-  "age3": "Godine: ${age} godina\n",
+  "age": "• Godine: {updatedUser.age} godina\n",
+  "age2": "Vaše godine: {age} godina\n",
+  "age3": "Godine: {age} godina\n",
   "ageRestriction": "❌ Žao nam je, morate imati najmanje 18 godina za korištenje ove usluge.\n\n",
   "agreeTerms": "Kliknite gumb ispod da biste naznačili da ste pročitali i slažete se s gornjim uvjetima.",
   "antiFraud": {
@@ -24,7 +24,7 @@ export default {
   "birthday": "Ako mislite da je ovo greška, provjerite je li format vaše datuma rođenja ispravan (GGGG-MM-DD).",
   "birthday2": "Molimo ponovno unesite svoj datum rođenja (format: YYYY-MM-DD):\n\n",
   "birthday3": "Molimo unesite svoj datum rođenja (format: YYYY-MM-DD):\n\n",
-  "birthday4": "Rođendan: ${birthday}\n",
+  "birthday4": "Rođendan: {birthday}\n",
   "birthdayCheck": "Ako mislite da je ovo greška, provjerite je li format vašeg rođendana ispravan (GGGG-MM-DD).",
   "birthdayError": "❌ {error}",
   "birthdayFormatError": "❌ Neispravan format rođendana\n\nMolimo ponovno unesite (format: GGGG-MM-DD):",
@@ -43,11 +43,11 @@ export default {
   "enterYes": "Molimo upišite 'da' kako biste završili test:",
   "errorRetry": "❌ Došlo je do greške, molimo ponovno unesite.",
   "example": {
-    "birthday": "Na primjer: 1995-06-15"
+    "birthday": "Na primjer: 2000-12-25"
   },
   "gender": {
     "female": "Ženski",
-    "label": "• Spol: ${gender}\n",
+    "label": "• Spol: {gender}\n",
     "male": "Muški"
   },
   "gender2": "• Spol: ${updatedUser.gender ===",
@@ -58,7 +58,7 @@ export default {
   "help": "To će nam pomoći da pronađemo prikladnije partnere za razgovor～\n\n",
   "iHaveRead": "✅ Pročitao/la sam i slažem se",
   "info": {
-    "age18": "• Morate imati barem 18 godina da biste koristili ovu uslugu.\n- Točne informacije moraju biti pružene kako bi usklađivanje i proricanje donijeli dobre rezultate.",
+    "age18": "• Morate imati najmanje 18 godina kako biste koristili ovu uslugu\n- Za korištenje usluga spajanja i proricanja, potrebno je pružiti točne informacije za dobre rezultate.\n\n- Unesite svoj datum rođenja (npr. 2000-12-15)",
     "city": "🌍 Regija: {city}"
   },
   "languageSelection": "🌐 **Odaberite jezik**\n\nMolimo odaberite svoj željeni jezik:",
@@ -69,8 +69,8 @@ export default {
   "message": "2. 🚨 Identificirajte lažne poruke\n",
   "message2": "• Budite oprezni s porukama koje traže novac\n",
   "moreLanguages": "Više jezika",
-  "nickname": "• Nadimak: ${updatedUser.nickname}\n",
-  "nickname2": "Odlično! Vaš nadimak je: ${nickname}\n\n",
+  "nickname": "• Nadimak: {updatedUser.nickname}\n",
+  "nickname2": "Odlično! Vaš nadimak je: {nickname}\n\n",
   "nicknameError": "❌ {error}\n\nMolimo ponovno unesite svoj nadimak:",
   "nicknameGood": "Odlično! Vaš nadimak je: {nickname}\n\n",
   "notCompleted": "⚠️ Molimo prvo dovršite proces registracije",
@@ -99,7 +99,7 @@ export default {
   "startRegistration": "Započni registraciju →",
   "stats": "📊 Statistika",
   "stepAntiFraud": "🛡️ Molimo kliknite gumb iznad kako biste potvrdili mjere zaštite protiv prijevara",
-  "stepBirthday": "📅 Molimo unesite svoj datum rođenja (format: YYYY-MM-DD, npr., 1995-06-15)",
+  "stepBirthday": "📅 Molimo unesite svoj rođendan (format: YYYY-MM-DD, npr., 2000-12-25)",
   "stepDefault": "Molimo dovršite registraciju prema uputama",
   "stepGender": "👤 Molimo kliknite gumb iznad kako biste odabrali vaš spol",
   "stepLanguageSelection": "🌍 Molimo kliknite gumb iznad kako biste odabrali svoj jezik",
@@ -113,7 +113,7 @@ export default {
     "terms_of_service_button": "📋 Uvjeti usluge"
   },
   "termsOfService": "📋 Uvjeti korištenja\n\n",
-  "text": "potvrdi_rođendan_${birthday}",
+  "text": "potvrdi_rođendan_{birthday}",
   "text10": "Na primjer: 1995-06-15\n\n",
   "text11": "🛡️ Savjeti za sigurnost u online upoznavanju\n\n",
   "text12": "📋 Posljednji korak: Uvjeti korištenja\n\n",
@@ -127,7 +127,7 @@ export default {
   "text2": "💡 Možete koristiti komandu /mbti u bilo kojem trenutku za ponovni test ili modifikaciju.",
   "text20": "Molimo vratite se nakon navršene punoljetnosti!\n\n",
   "text21": "📋 Politika privatnosti\n",
-  "text3": "potvrda_spol_${gender}",
+  "text3": "potvrda_spol_{gender}",
   "text4": "Posljednji korak: Molimo pročitajte i prihvatite naše Uvjete korištenja\n\n",
   "text5": "📝 Uzmite brzi test (12 pitanja, samo za referencu)",
   "text6": "• Korisnički uvjeti: Smjernice za korištenje ove usluge\n\n",
@@ -138,12 +138,12 @@ export default {
   "useTelegramNickname": "Koristite Telegram nadimak",
   "viewPrivacyPolicy": "📋 Pogledajte Pravila Privatnosti",
   "viewTermsOfService": "📋 Pogledajte Uvjete Usluge",
-  "vip": "💡 Navođenje vaše krvne grupe koristiti će se za buduće funkcije usklađivanja krvnih grupa (isključivo za VIP)\n\n",
+  "vip": "💡 Unos vaše krvne grupe može se koristiti za buduće značajke usklađivanja krvne grupe (više atributa, astrološko usklađivanje)",
   "warning": {
     "birthday": "⚠️ Rođendan se ne može mijenjati nakon postavljanja. Molimo potvrdite da je ispravan!"
   },
   "welcome": "Dobrodošli u XunNi！\n\nMolimo odaberite svoj jezik:",
   "yourAge": "Vaša dob: {age} godina\n",
-  "zodiac": "• Horoskop: ${updatedUser.zodiac_sign}\n",
-  "zodiac2": "Znakovi zodijaka: ${zodiacSign}\n\n"
+  "zodiac": "• Horoskop: {updatedUser.zodiac_sign}\n",
+  "zodiac2": "Znakovi zodijaka: {zodiacSign}\n\n"
 };

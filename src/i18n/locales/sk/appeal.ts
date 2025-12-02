@@ -1,5 +1,5 @@
 export default {
-  "alreadyExists": "⏳ Máte čakajúcu žiadosť (ID: #${appealId})\n\nStav: ${status}\nČas odoslania: ${time}\n\nProsím, buďte trpezliví a čakajte na posúdenie administrátora.",
+  "alreadyExists": "⏳ Máte čakajúcu žiadosť (ID: #{appealId})\n\nStav: {status}\nČas odoslania: {time}\n\nProsím, buďte trpezliví a čakajte na posúdenie administrátora.",
   "approved": "✅ Vaša žiadosť bola schválená, účet bol odblokovaný",
   "noAppeal": "Momentálne nemáte žiadne čakajúce žiadosti",
   "notBanned": "✅ Váš účet nie je zablokovaný, žiadosť nie je potrebná.",
@@ -10,9 +10,9 @@ export default {
   "reasonTooShort": "❌ Dôvod odvolania je príliš krátky, prosím zadajte aspoň 10 znakov.",
   "rejected": "❌ Vaše odvolanie bolo zamietnuté.",
   "reviewedAt": "Čas kontroly:",
-  "status": "📋 **Stav odvolania**\n\nID odvolania: #${appealId}\nStav: ${status}\nČas podania: ${createdAt}${reviewInfo}",
+  "status": "📋 **Stav odvolania**\n\nID odvolania: #{appealId}\nStav: {status}\nČas podania: {createdAt}{reviewInfo}",
   "statusApproved": "Schválené",
   "statusPending": "Čaká na kontrolu",
   "statusRejected": "Zamietnuté",
-  "submitted": "✅ **Odvolanie odoslané**\n\nID odvolania: #${appealId}\nStav: Čaká na kontrolu\n\nVaše odvolanie spracujeme v priebehu 1-3 pracovných dní.\nO výsledku budete informovaní prostredníctvom Bota."
+  "submitted": "✅ **Odvolanie odoslané**\n\nID odvolania: #{appealId}\nStav: Čaká na kontrolu\n\nVaše odvolanie spracujeme v priebehu 1-3 pracovných dní.\nO výsledku budete informovaní prostredníctvom Bota."
 };

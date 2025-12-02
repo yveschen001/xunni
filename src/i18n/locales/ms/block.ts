@@ -11,6 +11,6 @@ export default {
   "step2": "2️⃣ Pilih 'Balas'.",
   "step3": "3️⃣ Masukkan /block",
   "steps": "**Langkah operasi:**",
-  "success": "✅ Telah menyekat pengguna ini (#${identifier})",
+  "success": "✅ Telah menyekat pengguna ini (#{identifier})",
   "willNotMatch": "Anda tidak lagi akan dipadankan dengan botol mesej masing-masing."
 };

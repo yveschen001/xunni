@@ -27,8 +27,8 @@ export default {
   "error": "Napaka: {error}",
   "estimate": {
     "immediate": "Pošlji takoj (približno 1-2 sekundi)",
-    "minutes": "Približno \\${minutes} minut",
-    "seconds": "Približno \\${seconds} sekund"
+    "minutes": "Približno \\{minutes} minut",
+    "seconds": "Približno \\{seconds} sekund"
   },
   "estimatedTime": "Predviden čas: {time}\n\n",
   "example": "**Primer:**\n",
@@ -97,7 +97,7 @@ export default {
   "foundStuckBroadcasts": "⚠️ Ugotovljenih {count} zataknjenih oddaj\n\n",
   "id": "ID: {id}",
   "idMustBeNumber": "❌ ID oddaje mora biti številka",
-  "maxUsersExceeded": "❌ Trenutni sistem oddajanja podpira največ ${max} uporabnikov.\n\nCiljna številka uporabnikov: ${current}",
+  "maxUsersExceeded": "❌ Trenutni sistem oddajanja podpira največ {max} uporabnikov.\n\nCiljna številka uporabnikov: {current}",
   "messageContent": "Vsebina sporočila",
   "noPendingBroadcasts": "Trenutno ni nobenih čakajočih ali zataknjenih oddaj.\n\n",
   "noRecords": "📊 Zdaj ni razpoložljivih zapisov oddaj",
@@ -151,7 +151,7 @@ export default {
   "targetNonVip": "Ne-VIP uporabniki",
   "targetType": "Cilj: {type}\n",
   "targetVip": "VIP uporabniki",
-  "tooLong": "Sporočilo ne more presegati ${max} znakov (trenutno ${current} znakov)",
+  "tooLong": "Sporočilo ne more presegati {max} znakov (trenutno {current} znakov)",
   "upgradeRequired": "Masovno pošiljanje zahteva nadgradnjo sistema, prosimo, preberite BROADCAST_SYSTEM_REDESIGN.md",
   "usageError": "❌ Napačna uporaba\n\n",
   "userCount": "Število uporabnikov: {count} ljudi\n",

@@ -1,5 +1,5 @@
 export default {
-  "nickname": "👤 Kaldenavn: ${ownerMaskedNickname}",
+  "nickname": "👤 Kaldenavn: {ownerMaskedNickname}",
   "short19": "✏️ Rediger profil",
   "menuTitle": "Rediger profil",
   "nicknameButton": "✏️ Rediger kaldenavn",

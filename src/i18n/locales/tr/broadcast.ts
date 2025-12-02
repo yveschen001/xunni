@@ -27,8 +27,8 @@ export default {
   "error": "Hata: {error}",
   "estimate": {
     "immediate": "Hemen gönder (yaklaşık 1-2 saniye)",
-    "minutes": "{minutes} ${minutes}",
-    "seconds": "{seconds} ${seconds}"
+    "minutes": "{minutes} {minutes}",
+    "seconds": "{seconds} {seconds}"
   },
   "estimatedTime": "{time}\n\n",
   "example": "**Örnek:**\n",
@@ -97,7 +97,7 @@ export default {
   "foundStuckBroadcasts": "{count}\n\n",
   "id": "{id}\n",
   "idMustBeNumber": "❌ Yayın ID'si bir sayı olmalıdır",
-  "maxUsersExceeded": "❌ Mevcut yayın sistemi en fazla ${max} kullanıcıya kadar yayın desteklemektedir.\n\nHedef kullanıcı sayısı: ${current}",
+  "maxUsersExceeded": "❌ Mevcut yayın sistemi en fazla {max} kullanıcıya kadar yayın desteklemektedir.\n\nHedef kullanıcı sayısı: {current}",
   "messageContent": "Mesaj İçeriği",
   "noPendingBroadcasts": "Şu anda bekleyen veya takılan yayın yok.\n\n",
   "noRecords": "📊 Şu anda yayın kaydı yok",
@@ -151,7 +151,7 @@ export default {
   "targetNonVip": "VIP Olmayan Kullanıcılar",
   "targetType": "Hedef: {type}\n",
   "targetVip": "VIP Kullanıcılar",
-  "tooLong": "Yayın mesajı ${max} karakterden fazla olamaz (şu anda ${current} karakter)",
+  "tooLong": "Yayın mesajı {max} karakterden fazla olamaz (şu anda {current} karakter)",
   "upgradeRequired": "Toplu yayınlar sistem mimarisi güncellemesi gerektiriyor, lütfen BROADCAST_SYSTEM_REDESIGN.md'ye bakın",
   "usageError": "❌ Yanlış kullanım\n\n",
   "userCount": "Kullanıcı sayısı: {count} kişi\n",

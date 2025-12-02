@@ -1,5 +1,5 @@
 export default {
-  "nickname": "👤 Takma ad: ${ownerMaskedNickname}",
+  "nickname": "👤 Takma ad: {ownerMaskedNickname}",
   "short19": "✏️ Profili düzenle",
   "menuTitle": "Profili Düzenle",
   "nicknameButton": "✏️ Takma Adı Düzenle",

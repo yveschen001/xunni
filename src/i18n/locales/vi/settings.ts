@@ -11,7 +11,7 @@ export default {
   "settings2": "⚙️ **Cài đặt**\n\n",
   "settings3": "🏠 Quay lại cài đặt",
   "settings4": "Cài đặt hiện tại:\n",
-  "text": "• Ngôn ngữ：${languageName} 🇹🇼\n\n",
+  "text": "• Ngôn ngữ：{languageName} 🇹🇼\n\n",
   "title": "🏠 **Menu Chính**",
   "throwReminder": "Nhắc nhở chai thư",
   "catchReminder": "Nhắc nhở nhặt chai thư",

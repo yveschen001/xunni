@@ -27,8 +27,8 @@ export default {
   "error": "Fel: {error}",
   "estimate": {
     "immediate": "Skicka omedelbart (cirka 1-2 sekunder)",
-    "minutes": "Cirka \\${minutes} minuter",
-    "seconds": "Cirka \\${seconds} sekunder"
+    "minutes": "Cirka \\{minutes} minuter",
+    "seconds": "Cirka \\{seconds} sekunder"
   },
   "estimatedTime": "Beräknad tid: {time}\n\n",
   "example": "**Exempel:**\n",
@@ -97,7 +97,7 @@ export default {
   "foundStuckBroadcasts": "⚠️ Upptäckte {count} fastnade sändningar\n\n",
   "id": "ID: {id}",
   "idMustBeNumber": "❌ Sändnings-ID måste vara ett nummer",
-  "maxUsersExceeded": "❌ Det aktuella sändningssystemet stöder sändning till maximalt ${max} användare.\n\nMålsatt antal användare: ${current}",
+  "maxUsersExceeded": "❌ Det aktuella sändningssystemet stöder sändning till maximalt {max} användare.\n\nMålsatt antal användare: {current}",
   "messageContent": "Meddelandeinnehåll",
   "noPendingBroadcasts": "För närvarande finns det inga väntande eller fastnade sändningar.\n\n",
   "noRecords": "📊 Inga sändningsregister tillgängliga för närvarande",
@@ -151,7 +151,7 @@ export default {
   "targetNonVip": "Icke-VIP-användare",
   "targetType": "Mål: {type}\n",
   "targetVip": "VIP-användare",
-  "tooLong": "Sändningsmeddelandet får inte överstiga ${max} tecken (för närvarande ${current} tecken)",
+  "tooLong": "Sändningsmeddelandet får inte överstiga {max} tecken (för närvarande {current} tecken)",
   "upgradeRequired": "Storskaliga sändningar kräver en uppgradering av systemarkitekturen, vänligen se BROADCAST_SYSTEM_REDESIGN.md",
   "usageError": "❌ Felaktig användning\n\n",
   "userCount": "Antal användare: {count} personer\n",

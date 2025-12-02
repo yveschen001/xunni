@@ -1,5 +1,5 @@
 export default {
-  "alreadyExists": "⏳ Máte nevyřízenou žádost (ID: #${appealId})\n\nStav: ${status}\nOdeslaný čas: ${time}\n\nProsím buďte trpěliví při čekání na přezkoumání admina.",
+  "alreadyExists": "⏳ Máte nevyřízenou žádost (ID: #{appealId})\n\nStav: {status}\nOdeslaný čas: {time}\n\nProsím buďte trpěliví při čekání na přezkoumání admina.",
   "approved": "✅ Vaše žádost byla schválena, účet byl odblokován.",
   "noAppeal": "Aktuálně nemáte žádné nevyřízené žádosti.",
   "notBanned": "✅ Váš účet není zablokován, žádná žádost není potřebná.",
@@ -10,9 +10,9 @@ export default {
   "reasonTooShort": "❌ Důvod odvolání je příliš krátký, prosím, zadejte alespoň 10 znaků.",
   "rejected": "❌ Vaše odvolání bylo zamítnuto.",
   "reviewedAt": "Doba přezkoumání:",
-  "status": "📋 **Stav odvolání**\n\nID odvolání: #${appealId}\nStatus: ${status}\nČas odeslání: ${createdAt}${reviewInfo}",
+  "status": "📋 **Stav odvolání**\n\nID odvolání: #{appealId}\nStatus: {status}\nČas odeslání: {createdAt}{reviewInfo}",
   "statusApproved": "Schváleno",
   "statusPending": "Čeká na přezkoumání",
   "statusRejected": "Zamítnuto",
-  "submitted": "✅ **Odvolání odesláno**\n\nID odvolání: #${appealId}\nStatus: Čeká na přezkoumání\n\nVaše odvolání zpracujeme během 1-3 pracovních dnů.\nO výsledku vás budeme informovat prostřednictvím Bota."
+  "submitted": "✅ **Odvolání odesláno**\n\nID odvolání: #{appealId}\nStatus: Čeká na přezkoumání\n\nVaše odvolání zpracujeme během 1-3 pracovních dnů.\nO výsledku vás budeme informovat prostřednictvím Bota."
 };

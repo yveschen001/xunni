@@ -11,7 +11,7 @@ export default {
   "settings2": "⚙️ **Settings**\n\n",
   "settings3": "🏠 Back to Settings",
   "settings4": "Current Settings：\n",
-  "text": "• Language：${languageName} 🇹🇼\n\n",
+  "text": "• Language：{languageName} 🇹🇼\n\n",
   "title": "🏠 **Main Menu**",
   "throwReminder": "Message bottle reminder",
   "catchReminder": "Message bottle pickup reminder",

@@ -2,7 +2,7 @@ export default {
   "ad": "➡️ Következő Hirdetés",
   "back": "⬅️ Vissza / Hátra",
   "backToVip": "💎 Vissza a VIP Menübe",
-  "bottle": "📺 Nézd meg a hirdetéseket, hogy több üzenet palackot kapj 🎁 (${remaining}/20)",
+  "bottle": "📺 Nézd meg a hirdetéseket, hogy több üzenet palackot kapj 🎁 ({remaining}/20)",
   "bottle2": "💎 Frissíts VIP-re több üzenet palackért",
   "bottle3": "🌊 Dobj egy üzenet palackot",
   "bottle4": "🎣 Fogj egy üzenet palackot",

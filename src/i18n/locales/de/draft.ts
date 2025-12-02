@@ -1,7 +1,7 @@
 export default {
   "age": {
-    "daysAgo": "\\${days} Tage her",
-    "hoursAgo": "\\${hours} Stunden her",
+    "daysAgo": "\\{days} Tage her",
+    "hoursAgo": "\\{hours} Stunden her",
     "justNow": "Gerade eben"
   },
   "contentHint": "💡 Sie können:\n• Neue Inhalte eingeben, um den Entwurf direkt zu ersetzen\n• /throw verwenden, um neu zu starten\n• Entwurf-Inhalte senden, um eine Nachrichtenflasche zu werfen",

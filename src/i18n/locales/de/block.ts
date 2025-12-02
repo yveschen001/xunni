@@ -11,6 +11,6 @@ export default {
   "step2": "2️⃣ Wählen Sie 'Antworten'.",
   "step3": "3️⃣ Geben Sie /block ein.",
   "steps": "**Betriebsabläufe:**",
-  "success": "✅ Dieser Benutzer wurde blockiert (#${identifier}).",
+  "success": "✅ Dieser Benutzer wurde blockiert (#{identifier}).",
   "willNotMatch": "Sie werden nicht mehr mit den Nachrichtenflaschen des anderen übereinstimmen."
 };

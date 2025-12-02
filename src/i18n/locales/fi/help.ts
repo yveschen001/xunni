@@ -60,7 +60,7 @@ export default {
   "profile": "/edit_profile - Muokkaa profiilia\n",
   "profile2": "/profile - Katso profiili\n",
   "profile3": "👤 **Profiili**\n",
-  "quota": "• Ystävien kutsuminen lisää kiintiötä (enintään 10/100)\n",
+  "quota": "🔢 Päivittäinen korkea kiintiö\n• Aloita 30 viestipullolla päivittäin (vain 10 tavallisille käyttäjille).\n• Ystävien kutsuminen voi pysyvästi nostaa kiintiötäsi, enintään 100:aan!\n• Päivittäinen raja 100 keskusteliviestille, keskustele esteittä.",
   "quota2": "• 30 viestipullopostin kiintiö päivässä\n",
   "register": "/start - Aloita käyttö / Jatka rekisteröintiä\n",
   "report": "/report - Ilmoita sopimattomasta sisällöstä\n",

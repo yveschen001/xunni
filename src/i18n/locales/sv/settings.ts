@@ -11,7 +11,7 @@ export default {
   "settings2": "⚙️ **Inställningar**\n\n",
   "settings3": "🏠 Återgå till inställningar",
   "settings4": "Aktuella inställningar:\n",
-  "text": "• Språk：${languageName} 🇹🇼\n\n",
+  "text": "• Språk：{languageName} 🇹🇼\n\n",
   "title": "🏠 **Huvudmeny**",
   "throwReminder": "Påminnelse om flaskpost",
   "catchReminder": "Påminnelse om att hämta flaskpost",

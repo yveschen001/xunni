@@ -27,8 +27,8 @@ export default {
   "error": "Błąd: {error}",
   "estimate": {
     "immediate": "Wyślij natychmiastowo (około 1-2 sekundy)",
-    "minutes": "Około \\${minutes} minut",
-    "seconds": "Około \\${seconds} sekund"
+    "minutes": "Około \\{minutes} minut",
+    "seconds": "Około \\{seconds} sekund"
   },
   "estimatedTime": "Szacowany czas: {time}\n\n",
   "example": "**Przykład:**\n",
@@ -97,7 +97,7 @@ export default {
   "foundStuckBroadcasts": "⚠️ Wykryto {count} zablokowanych transmisji\n\n",
   "id": "ID: {id}",
   "idMustBeNumber": "❌ ID emisji musi być liczbą",
-  "maxUsersExceeded": "❌ Obecny system emisji obsługuje wysyłanie maksymalnie do ${max} użytkowników.\n\nDocelowa liczba użytkowników: ${current}",
+  "maxUsersExceeded": "❌ Obecny system emisji obsługuje wysyłanie maksymalnie do {max} użytkowników.\n\nDocelowa liczba użytkowników: {current}",
   "messageContent": "Treść wiadomości",
   "noPendingBroadcasts": "Obecnie nie ma oczekujących ani zablokowanych transmisji.\n\n",
   "noRecords": "📊 Brak dostępnych zapisów emisji teraz",
@@ -151,7 +151,7 @@ export default {
   "targetNonVip": "Użytkownicy nie-VIP",
   "targetType": "Cel: {type}\n",
   "targetVip": "Użytkownicy VIP",
-  "tooLong": "Wiadomość transmitowana nie może przekraczać ${max} znaków (obecnie ${current} znaków)",
+  "tooLong": "Wiadomość transmitowana nie może przekraczać {max} znaków (obecnie {current} znaków)",
   "upgradeRequired": "Masa transmisji wymaga aktualizacji architektury systemu, prosimy o zapoznanie się z BROADCAST_SYSTEM_REDESIGN.md",
   "usageError": "❌ Nieprawidłowe użycie\n\n",
   "userCount": "Liczba użytkowników: {count} osób\n",

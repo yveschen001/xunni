@@ -11,7 +11,7 @@ export default {
   "appeal2": "✅ 申訴 {appealId} 已拒絕",
   "appeal3": "✅ 目前沒有待審核的申訴",
   "birthday": "✅ 生日已保存",
-  "bloodType": "✅ 血型已更新為 \\${getBloodTypeDisplay(bloodType as any)}",
+  "bloodType": "✅ 血型已更新為 \\{getBloodTypeDisplay(bloodType as any)}",
   "bloodType2": "✅ 血型已清除",
   "bottle": "✅ 獎勵已發放！+1 瓶子",
   "bottle2": "✅ 開始新的漂流瓶",

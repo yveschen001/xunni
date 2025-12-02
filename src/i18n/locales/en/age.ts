@@ -1,5 +1,5 @@
 export default {
-  "daysAgo": "${days} days ago",
-  "hoursAgo": "${hours} hours ago",
+  "daysAgo": "{days} days ago",
+  "hoursAgo": "{hours} hours ago",
   "justNow": "Just Now"
 };

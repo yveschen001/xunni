@@ -11,7 +11,7 @@ export default {
   "settings2": "⚙️ **Beállítások**\n\n",
   "settings3": "🏠 Vissza a Beállításokhoz",
   "settings4": "Jelenlegi beállítások:\n",
-  "text": "• Nyelv: ${languageName} 🇹🇼\n\n",
+  "text": "• Nyelv: {languageName} 🇹🇼\n\n",
   "title": "🏠 **Főmenü**",
   "throwReminder": "Üzenetpalack emlékeztető",
   "catchReminder": "Üzenetpalack felvételi emlékeztető",

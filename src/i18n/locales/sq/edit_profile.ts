@@ -1,5 +1,5 @@
 export default {
-  "nickname": "👤 Pseudonim: ${ownerMaskedNickname}",
+  "nickname": "👤 Pseudonim: {ownerMaskedNickname}",
   "short19": "✏️ Redaktoni profilin",
   "menuTitle": "Redakto Profilin",
   "nicknameButton": "✏️ Redakto Pseudonimin",

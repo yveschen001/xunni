@@ -18,164 +18,248 @@ export default {
     "ISTP": "Oceňovatel - Odvážný a pragmatický experimentátor se schopností využívat různé nástroje."
   },
   "full": {
-    "question1": "V sociálních situacích obvykle:",
-    "question1.option1": "Iniciujete rozhovor s ostatními",
-    "question1.option2": "Čekáte, až se k vám ostatní přiblíží",
-    "question10": "Při řešení problémů se více spoléháte na:",
-    "question10.option1": "Praktické zkušenosti a fakta",
-    "question10.option2": "Intuici a možnosti",
-    "question11": "Preferujete:",
-    "question11.option1": "Zaměření na konkrétní detaily",
-    "question11.option2": "Zaměření na celkový obraz",
-    "question12": "Při učení nových věcí dáváte přednost:",
-    "question12.option1": "Krok za krokem přístup",
-    "question12.option2": "Zkoumání inovativních cest",
-    "question13": "Při čtení preferujete:",
-    "question13.option1": "Praktické příručky",
-    "question13.option2": "Teorie a koncepty",
-    "question14": "Více vás zajímá:",
-    "question14.option1": "Přítomnost a minulost",
-    "question14.option2": "Budoucnost a možnosti",
-    "question15": "Při popisu věcí tendujete:",
-    "question15.option1": "Používat konkrétní příklady",
-    "question15.option2": "Používat metafory a analogie",
-    "question16": "V práci oceňujete:",
-    "question16.option1": "Praktickou aplikaci",
-    "question16.option2": "Inovativní nápady",
-    "question17": "Důvěřujete:",
-    "question17.option1": "Ověřeným metodám",
-    "question17.option2": "Novým pokusům",
-    "question18": "Při plánování budoucnosti:",
-    "question18.option1": "Zakládáte na realistických podmínkách",
-    "question18.option2": "Představujete si různé možnosti",
-    "question19": "Při rozhodování dáváte přednost:",
-    "question19.option1": "Logice a objektivní analýze",
-    "question19.option2": "Emocím a mezilidské harmonii",
-    "question2": "O víkendech preferujete:",
-    "question2.option1": "Vycházet s přáteli",
-    "question2.option2": "Zůstat doma sám, abych si odpočinul",
-    "question20": "Při kritizování ostatních:",
-    "question20.option1": "Přímo ukazujete na problém",
-    "question20.option2": "Zohledňujete pocity ostatních",
-    "question21": "Co si více vážíte:",
-    "question21.option1": "Spravedlnosti a rovnosti",
-    "question21.option2": "Soucitu a porozumění",
-    "question22": "Při hodnocení nápadu nejprve zvažujete:",
-    "question22.option1": "Zda je to rozumné",
-    "question22.option2": "Zda je to prospěšné",
-    "question23": "Když se vám přítel svěřuje, uděláte:",
-    "question23.option1": "Analyzujete problém a poskytnete návrhy",
-    "question23.option2": "Posloucháte a poskytujete útěchu",
-    "question24": "V konfliktu obvykle:",
-    "question24.option1": "Držíte se principů",
-    "question24.option2": "Udržujete vztahy",
-    "question25": "Snáze vás přesvědčí:",
-    "question25.option1": "Fakta a data",
-    "question25.option2": "Emoce a příběhy",
-    "question26": "Při rozhodování v týmu se více soustředíte na:",
-    "question26.option1": "Efektivitu a výsledky",
-    "question26.option2": "Konsensus a jednotu",
-    "question27": "Věříte, že dobrý vůdce by měl:",
-    "question27.option1": "Být spravedlivý a rozhodný",
-    "question27.option2": "Být ohleduplný a pečující",
-    "question28": "Váš pracovní styl je:",
-    "question28.option1": "Plánovat a připravovat se dopředu",
-    "question28.option2": "Být přizpůsobivý a flexibilní",
-    "question29": "Preferujete:",
-    "question29.option1": "Mít jasné termíny",
-    "question29.option2": "Udržovat otevřené možnosti",
-    "question3": "Po účasti na setkání obvykle:",
-    "question3.option1": "Cítíte se energicky",
-    "question3.option2": "Cítíte potřebu odpočinout si",
-    "question30": "Během cestování máte tendenci:",
-    "question30.option1": "Vytvářet podrobné itineráře",
-    "question30.option2": "Volně objevovat",
-    "question31": "Váš pokoj je obvykle:",
-    "question31.option1": "Úhledný a organizovaný",
-    "question31.option2": "Neformální a uvolněný",
-    "question32": "Při zvládání úkolů:",
-    "question32.option1": "Dokončíte brzy",
-    "question32.option2": "Dokončíte to těsně před termínem",
-    "question33": "Váš preferovaný životní styl:",
-    "question33.option1": "Strukturovaný a uspořádaný",
-    "question33.option2": "Volný a flexibilní",
-    "question34": "Při rozhodování obvykle:",
-    "question34.option1": "Děláte rychlá rozhodnutí",
-    "question34.option2": "Udržujete otevřené možnosti",
-    "question35": "Při nakupování:",
-    "question35.option1": "Vytvoříte seznam a nakoupíte podle plánu",
-    "question35.option2": "Prohlížíte si volně a kupujete, co se vám líbí",
-    "question36": "Když čelíte změnám, obvykle:",
-    "question36.option1": "Cítíte se nepříjemně",
-    "question36.option2": "Cítíte se nadšení",
-    "question4": "V týmu obvykle:",
-    "question4.option1": "Aktivně se hlásíte",
-    "question4.option2": "Než promluvíte, posloucháte",
-    "question5": "Při setkání s novými přáteli:",
-    "question5.option1": "Rychle se s nimi sblížíte",
-    "question5.option2": "Potřebujete čas na jejich poznání",
-    "question6": "Tvůj okruh přátel:",
-    "question6.option1": "Široký, ale ne hluboký",
-    "question6.option2": "Malý a blízký",
-    "question7": "Při práci upřednostňuješ:",
-    "question7.option1": "Týmovou spolupráci",
-    "question7.option2": "Samostatnou práci",
-    "question8": "Když přemýšlíš o problémech, máš tendenci:",
-    "question8.option1": "Mluvit nahlas při brainstormingu",
-    "question8.option2": "Promyslet to před mluvením",
-    "question9": "Když jsi pod tlakem, uděláš:",
-    "question9.option1": "Pohovoříš s přáteli",
-    "question9.option2": "Zpracuješ to sám"
+    "question1": {
+      "text": "V sociálních situacích obvykle:",
+      "option1": "Iniciujete rozhovor s ostatními",
+      "option2": "Čekáte, až se k vám ostatní přiblíží"
+    },
+    "question10": {
+      "text": "Při řešení problémů se více spoléháte na:",
+      "option1": "Praktické zkušenosti a fakta",
+      "option2": "Intuici a možnosti"
+    },
+    "question11": {
+      "text": "Preferujete:",
+      "option1": "Zaměření na konkrétní detaily",
+      "option2": "Zaměření na celkový obraz"
+    },
+    "question12": {
+      "text": "Při učení nových věcí dáváte přednost:",
+      "option1": "Krok za krokem přístup",
+      "option2": "Zkoumání inovativních cest"
+    },
+    "question13": {
+      "text": "Při čtení preferujete:",
+      "option1": "Praktické příručky",
+      "option2": "Teorie a koncepty"
+    },
+    "question14": {
+      "text": "Více vás zajímá:",
+      "option1": "Přítomnost a minulost",
+      "option2": "Budoucnost a možnosti"
+    },
+    "question15": {
+      "text": "Při popisu věcí tendujete:",
+      "option1": "Používat konkrétní příklady",
+      "option2": "Používat metafory a analogie"
+    },
+    "question16": {
+      "text": "V práci oceňujete:",
+      "option1": "Praktickou aplikaci",
+      "option2": "Inovativní nápady"
+    },
+    "question17": {
+      "text": "Důvěřujete:",
+      "option1": "Ověřeným metodám",
+      "option2": "Novým pokusům"
+    },
+    "question18": {
+      "text": "Při plánování budoucnosti:",
+      "option1": "Zakládáte na realistických podmínkách",
+      "option2": "Představujete si různé možnosti"
+    },
+    "question19": {
+      "text": "Při rozhodování dáváte přednost:",
+      "option1": "Logice a objektivní analýze",
+      "option2": "Emocím a mezilidské harmonii"
+    },
+    "question2": {
+      "text": "O víkendech preferujete:",
+      "option1": "Vycházet s přáteli",
+      "option2": "Zůstat doma sám, abych si odpočinul"
+    },
+    "question20": {
+      "text": "Při kritizování ostatních:",
+      "option1": "Přímo ukazujete na problém",
+      "option2": "Zohledňujete pocity ostatních"
+    },
+    "question21": {
+      "text": "Co si více vážíte:",
+      "option1": "Spravedlnosti a rovnosti",
+      "option2": "Soucitu a porozumění"
+    },
+    "question22": {
+      "text": "Při hodnocení nápadu nejprve zvažujete:",
+      "option1": "Zda je to rozumné",
+      "option2": "Zda je to prospěšné"
+    },
+    "question23": {
+      "text": "Když se vám přítel svěřuje, uděláte:",
+      "option1": "Analyzujete problém a poskytnete návrhy",
+      "option2": "Posloucháte a poskytujete útěchu"
+    },
+    "question24": {
+      "text": "V konfliktu obvykle:",
+      "option1": "Držíte se principů",
+      "option2": "Udržujete vztahy"
+    },
+    "question25": {
+      "text": "Snáze vás přesvědčí:",
+      "option1": "Fakta a data",
+      "option2": "Emoce a příběhy"
+    },
+    "question26": {
+      "text": "Při rozhodování v týmu se více soustředíte na:",
+      "option1": "Efektivitu a výsledky",
+      "option2": "Konsensus a jednotu"
+    },
+    "question27": {
+      "text": "Věříte, že dobrý vůdce by měl:",
+      "option1": "Být spravedlivý a rozhodný",
+      "option2": "Být ohleduplný a pečující"
+    },
+    "question28": {
+      "text": "Váš pracovní styl je:",
+      "option1": "Plánovat a připravovat se dopředu",
+      "option2": "Být přizpůsobivý a flexibilní"
+    },
+    "question29": {
+      "text": "Preferujete:",
+      "option1": "Mít jasné termíny",
+      "option2": "Udržovat otevřené možnosti"
+    },
+    "question3": {
+      "text": "Po účasti na setkání obvykle:",
+      "option1": "Cítíte se energicky",
+      "option2": "Cítíte potřebu odpočinout si"
+    },
+    "question30": {
+      "text": "Během cestování máte tendenci:",
+      "option1": "Vytvářet podrobné itineráře",
+      "option2": "Volně objevovat"
+    },
+    "question31": {
+      "text": "Váš pokoj je obvykle:",
+      "option1": "Úhledný a organizovaný",
+      "option2": "Neformální a uvolněný"
+    },
+    "question32": {
+      "text": "Při zvládání úkolů:",
+      "option1": "Dokončíte brzy",
+      "option2": "Dokončíte to těsně před termínem"
+    },
+    "question33": {
+      "text": "Váš preferovaný životní styl:",
+      "option1": "Strukturovaný a uspořádaný",
+      "option2": "Volný a flexibilní"
+    },
+    "question34": {
+      "text": "Při rozhodování obvykle:",
+      "option1": "Děláte rychlá rozhodnutí",
+      "option2": "Udržujete otevřené možnosti"
+    },
+    "question35": {
+      "text": "Při nakupování:",
+      "option1": "Vytvoříte seznam a nakoupíte podle plánu",
+      "option2": "Prohlížíte si volně a kupujete, co se vám líbí"
+    },
+    "question36": {
+      "text": "Když čelíte změnám, obvykle:",
+      "option1": "Cítíte se nepříjemně",
+      "option2": "Cítíte se nadšení"
+    },
+    "question4": {
+      "text": "V týmu obvykle:",
+      "option1": "Aktivně se hlásíte",
+      "option2": "Než promluvíte, posloucháte"
+    },
+    "question5": {
+      "text": "Při setkání s novými přáteli:",
+      "option1": "Rychle se s nimi sblížíte",
+      "option2": "Potřebujete čas na jejich poznání"
+    },
+    "question6": {
+      "text": "Tvůj okruh přátel:",
+      "option1": "Široký, ale ne hluboký",
+      "option2": "Malý a blízký"
+    },
+    "question7": {
+      "text": "Při práci upřednostňuješ:",
+      "option1": "Týmovou spolupráci",
+      "option2": "Samostatnou práci"
+    },
+    "question8": {
+      "text": "Když přemýšlíš o problémech, máš tendenci:",
+      "option1": "Mluvit nahlas při brainstormingu",
+      "option2": "Promyslet to před mluvením"
+    },
+    "question9": {
+      "text": "Když jsi pod tlakem, uděláš:",
+      "option1": "Pohovoříš s přáteli",
+      "option2": "Zpracuješ to sám"
+    }
   },
   "quick": {
-    "question1": "V sociálních situacích obvykle:",
-    "question1.option1": "Zahajuji rozhovory s ostatními",
-    "question1.option2": "Čekám, až přijdou ostatní za mnou",
-    "question10": "Tvůj pracovní styl je:",
-    "question10.option1": "Plánovat a připravovat se dopředu",
-    "question10.option2": "Být přizpůsobivý a flexibilní",
-    "question11": "Více preferuješ:",
-    "question11.option1": "Jasně definované termíny",
-    "question11.option2": "Udržování otevřených možností",
-    "question12": "Při cestování máš tendenci:",
-    "question12.option1": "Vytvořit podrobný itinerář",
-    "question12.option2": "Volně zkoumat",
-    "question2": "O víkendech preferuješ:",
-    "question2.option1": "Jít ven s přáteli",
-    "question2.option2": "Zůstat doma a odpočívat",
-    "question3": "Po účasti na večírku obvykle:",
-    "question3.option1": "Cítit se energicky",
-    "question3.option2": "Cítit potřebu odpočinku",
-    "question4": "Při řešení problémů více spoléháš na:",
-    "question4.option1": "Praktické zkušenosti a fakta",
-    "question4.option2": "Intuici a možnosti",
-    "question5": "Více preferuješ:",
-    "question5.option1": "Zaměření na konkrétní detaily",
-    "question5.option2": "Zaměření na celkový koncept",
-    "question6": "Při učení novým věcem preferuješ:",
-    "question6.option1": "Postupný přístup",
-    "question6.option2": "Zkoumání inovativních cest",
-    "question7": "Při rozhodování si více ceníš:",
-    "question7.option1": "Logiku a objektivní analýzu",
-    "question7.option2": "Emoce a mezilidskou harmonii",
-    "question8": "Když kritizuješ ostatní, ty:",
-    "question8.option1": "Přímo ukažte problém",
-    "question8.option2": "Zvažte pocity druhé osoby",
-    "question9": "Co si více vážíte:",
-    "question9.option1": "Spravedlnost a právo",
-    "question9.option2": "Soucit a porozumění",
-    "question1.text": "V sociálních situacích obvykle:",
-    "question10.text": "Váš pracovní styl je:",
-    "question11.text": "Preferujete:",
-    "question12.text": "Při cestování máte tendenci:",
-    "question2.text": "O víkendech preferujete:",
-    "question3.text": "Po účasti na shromáždění obvykle:",
-    "question4.text": "Při řešení problémů se více spoléháte na:",
-    "question5.text": "Preferujete:",
-    "question6.text": "Při učení nových věcí preferujete:",
-    "question7.text": "Při rozhodování oceňujete:",
-    "question8.text": "Při kritizování ostatních:",
-    "question9.text": "Oceňujete více:"
+    "question1": {
+      "text": "V sociálních situacích obvykle:",
+      "option1": "Zahajuji rozhovory s ostatními",
+      "option2": "Čekám, až přijdou ostatní za mnou"
+    },
+    "question10": {
+      "text": "Váš pracovní styl je:",
+      "option1": "Plánovat a připravovat se dopředu",
+      "option2": "Být přizpůsobivý a flexibilní"
+    },
+    "question11": {
+      "text": "Preferujete:",
+      "option1": "Jasně definované termíny",
+      "option2": "Udržování otevřených možností"
+    },
+    "question12": {
+      "text": "Při cestování máte tendenci:",
+      "option1": "Vytvořit podrobný itinerář",
+      "option2": "Volně zkoumat"
+    },
+    "question2": {
+      "text": "O víkendech preferujete:",
+      "option1": "Jít ven s přáteli",
+      "option2": "Zůstat doma a odpočívat"
+    },
+    "question3": {
+      "text": "Po účasti na shromáždění obvykle:",
+      "option1": "Cítit se energicky",
+      "option2": "Cítit potřebu odpočinku"
+    },
+    "question4": {
+      "text": "Při řešení problémů se více spoléháte na:",
+      "option1": "Praktické zkušenosti a fakta",
+      "option2": "Intuici a možnosti"
+    },
+    "question5": {
+      "text": "Preferujete:",
+      "option1": "Zaměření na konkrétní detaily",
+      "option2": "Zaměření na celkový koncept"
+    },
+    "question6": {
+      "text": "Při učení nových věcí preferujete:",
+      "option1": "Postupný přístup",
+      "option2": "Zkoumání inovativních cest"
+    },
+    "question7": {
+      "text": "Při rozhodování oceňujete:",
+      "option1": "Logiku a objektivní analýzu",
+      "option2": "Emoce a mezilidskou harmonii"
+    },
+    "question8": {
+      "text": "Při kritizování ostatních:",
+      "option1": "Přímo ukažte problém",
+      "option2": "Zvažte pocity druhé osoby"
+    },
+    "question9": {
+      "text": "Oceňujete více:",
+      "option1": "Spravedlnost a právo",
+      "option2": "Soucit a porozumění"
+    }
   },
   "share": {
     "welcome": "👋 Váš přítel vás zve k vyzkoušení MBTI testu!\n\nPřijďte a zjistěte svůj typ osobnosti～",

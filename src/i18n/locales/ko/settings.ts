@@ -11,7 +11,7 @@ export default {
   "settings2": "⚙️ **설정**\n\n",
   "settings3": "🏠 설정으로 돌아가기",
   "settings4": "현재 설정:\n",
-  "text": "• 언어：${languageName} 🇹🇼\n\n",
+  "text": "• 언어：{languageName} 🇹🇼\n\n",
   "title": "🏠 **메인 메뉴**",
   "throwReminder": "메시지 병 알림",
   "catchReminder": "메시지 병 수거 알림",

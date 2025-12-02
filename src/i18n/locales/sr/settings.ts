@@ -11,7 +11,7 @@ export default {
   "settings2": "⚙️ **Podešavanja**\n\n",
   "settings3": "🏠 Povratak na postavke",
   "settings4": "Trenutne postavke:\n",
-  "text": "• Jezik：${languageName} 🇹🇼\n\n",
+  "text": "• Jezik：{languageName} 🇹🇼\n\n",
   "title": "🏠 **Glavni meni**",
   "throwReminder": "Podsetnik na message bottle",
   "catchReminder": "Podsetnik za preuzimanje message bottle",

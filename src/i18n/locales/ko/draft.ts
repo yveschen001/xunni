@@ -1,7 +1,7 @@
 export default {
   "age": {
-    "daysAgo": "\\${days} 일 전",
-    "hoursAgo": "\\${hours} 시간 전",
+    "daysAgo": "\\{days} 일 전",
+    "hoursAgo": "\\{hours} 시간 전",
     "justNow": "방금 지금"
   },
   "contentHint": "💡 사용하실 수 있는 방법:\n• 초안 대신 새로운 내용을 직접 입력하세요\n• /throw를 사용하여 재시작하세요\n• 초안 내용을 보내서 메시지 병을 던지세요",

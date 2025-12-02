@@ -1,7 +1,7 @@
 export default {
   "age": {
-    "daysAgo": "\\${days} dagar sedan",
-    "hoursAgo": "\\${hours} timmar sedan",
+    "daysAgo": "\\{days} dagar sedan",
+    "hoursAgo": "\\{hours} timmar sedan",
     "justNow": "Nyss"
   },
   "contentHint": "💡 Du kan:\n• Ange nytt innehåll för att ersätta utkastet direkt\n• Använda /throw för att starta om\n• Skicka utkastinnehåll för att kasta en meddelandeflaskpost",

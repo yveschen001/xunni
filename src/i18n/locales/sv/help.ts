@@ -60,7 +60,7 @@ export default {
   "profile": "/edit_profile - Redigera profil\n",
   "profile2": "/profile - Visa profil\n",
   "profile3": "👤 **Profil**\n",
-  "quota": "• Att bjuda in vänner ökar kvoten (upp till 10/100)\n",
+  "quota": "🔢 Dagligt högsta kvot\n• Börja med 30 message bottles dagligen (bara 10 för vanliga användare).\n• Att bjuda in vänner kan permanent öka din kvot, upp till ett maximum av 100!\n• Dagens gräns är 100 chattmeddelanden, chatta utan hinder.",
   "quota2": "• 30 meddelandeflaskor kvot per dag\n",
   "register": "/start - Börja använda / Fortsätt registrering\n",
   "report": "/report - Rapportera olämpligt innehåll\n",

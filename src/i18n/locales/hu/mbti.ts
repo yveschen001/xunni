@@ -18,164 +18,248 @@ export default {
     "ISTP": "Értékelő - Egy bátor és pragmatikus kísérletező, aki ügyes különféle eszközök használatában."
   },
   "full": {
-    "question1": "Társadalmi helyzetekben általában:",
-    "question1.option1": "Te kezdeményezel beszélgetést másokkal",
-    "question1.option2": "Várod, hogy mások közelítsenek hozzád",
-    "question10": "Problémák megoldásakor inkább támaszkodsz:",
-    "question10.option1": "Gyakorlati tapasztalatokra és tényekre",
-    "question10.option2": "Intuícióra és lehetőségekre",
-    "question11": "Előnyben részesíted:",
-    "question11.option1": "Konkrét részletek fókuszálását",
-    "question11.option2": "A nagy kép fókuszálását",
-    "question12": "Új dolgok tanulásakor előnyben részesíted:",
-    "question12.option1": "Lépésről lépésre megközelítést",
-    "question12.option2": "Innovatív módszerek felfedezését",
-    "question13": "Olvasás közben előnyben részesíted:",
-    "question13.option1": "Gyakorlati útmutatókat",
-    "question13.option2": "Elméleteket és koncepciókat",
-    "question14": "Jobban foglalkoztatnak:",
-    "question14.option1": "A jelen és a múlt",
-    "question14.option2": "A jövő és a lehetőségek",
-    "question15": "Dolgok leírásakor hajlamos vagy:",
-    "question15.option1": "Konkrét példákat használni",
-    "question15.option2": "Metaforákat és analógiákat használni",
-    "question16": "A munkahelyen értékeled:",
-    "question16.option1": "Gyakorlati alkalmazást",
-    "question16.option2": "Innovatív ötleteket",
-    "question17": "Bízol:",
-    "question17.option1": "Bizonyított módszerekben",
-    "question17.option2": "Új próbálkozásokban",
-    "question18": "Jövő tervezésekor:",
-    "question18.option1": "Reális körülményekre alapozol",
-    "question18.option2": "Különféle lehetőségeket képzelsz el",
-    "question19": "Döntéshozatalkor elsődlegesen prioritást adsz:",
-    "question19.option1": "Logikának és objektív elemzésnek",
-    "question19.option2": "Érzelmeknek és interperszonális harmóniának",
-    "question2": "Hétvégéken előnyben részesíted:",
-    "question2.option1": "Kimenni a barátokkal",
-    "question2.option2": "Otthon maradni egyedül pihenni",
-    "question20": "Másokat kritizálva:",
-    "question20.option1": "Közvetlenül rávilágítasz a problémára",
-    "question20.option2": "Figyelembe veszed mások érzéseit",
-    "question21": "Mit értékelsz jobban:",
-    "question21.option1": "Igazságosság és méltányosság",
-    "question21.option2": "Empátia és megértés",
-    "question22": "Egy ötlet értékelésekor először a következőket veszed figyelembe:",
-    "question22.option1": "Hogy ésszerű-e",
-    "question22.option2": "Hogy hasznos-e",
-    "question23": "Amikor egy barátod bizalmasan megoszt veled valamit, te:",
-    "question23.option1": "Elemzed a problémát és javaslatokat adsz",
-    "question23.option2": "Figyelsz és vigaszt nyújtasz",
-    "question24": "Egy konfliktusban te hajlasz:",
-    "question24.option1": "A принципiumok megtartására",
-    "question24.option2": "Kapcsolatok fenntartására",
-    "question25": "Könnyebben meggyőznek:",
-    "question25.option1": "Tények és adatok",
-    "question25.option2": "Érzelmek és történetek",
-    "question26": "Csapat döntéshozatal során inkább a következőkre összpontosítasz:",
-    "question26.option1": "Hatékonyság és eredmények",
-    "question26.option2": "Konszenzus és egység",
-    "question27": "Azt hiszed, hogy egy jó vezetőnek:",
-    "question27.option1": "Igazságosnak és határozottnak kell lennie",
-    "question27.option2": "Figyelmesnek és gondoskodónak kell lennie",
-    "question28": "A munkastílusod:",
-    "question28.option1": "Tervezés és előkészületek",
-    "question28.option2": "Rugalmasnak és alkalmazkodónak lenni",
-    "question29": "Te inkább:",
-    "question29.option1": "Világos határidők betartására",
-    "question29.option2": "Nyitva tartani a lehetőségeket",
-    "question3": "Egy összejövetel után általában:",
-    "question3.option1": "Feltöltődve érzed magad",
-    "question3.option2": "Pihenés szükségét érzed",
-    "question30": "Utazás során hajlamos vagy:",
-    "question30.option1": "Részletes útitervet készíteni",
-    "question30.option2": "Szabadon felfedezni",
-    "question31": "A szobád általában:",
-    "question31.option1": "Rendezett és szervezett",
-    "question31.option2": "Kényelmes és laza",
-    "question32": "Feladatok kezelésekor te:",
-    "question32.option1": "Korán befejezed",
-    "question32.option2": "Közel a határidőhöz fejezed be",
-    "question33": "A preferált életstílusod:",
-    "question33.option1": "Szervezett és rendezett",
-    "question33.option2": "Szabad és rugalmas",
-    "question34": "Döntések meghozatalánál hajlasz:",
-    "question34.option1": "Gyors döntéseket hozni",
-    "question34.option2": "Nyitva tartani a lehetőségeket",
-    "question35": "Vásárlás során te:",
-    "question35.option1": "Listát készítesz és a tervek szerint vásárolsz",
-    "question35.option2": "Böngészel lazán és azt veszed meg, ami tetszik",
-    "question36": "Változásokkal szembenézve általában:",
-    "question36.option1": "Elégedetlenül érzed magad",
-    "question36.option2": "Izgatottnak érzem magam",
-    "question4": "Csapatban hajlamos vagy:",
-    "question4.option1": "Aktívan kifejezni a véleményed",
-    "question4.option2": "Először hallgatni a beszélgetés előtt",
-    "question5": "Amikor új barátokkal találkozol, te:",
-    "question5.option1": "Gyorsan megismerkedsz",
-    "question5.option2": "Időre van szükséged, hogy fokozatosan kényelmesen érezd magad",
-    "question6": "A baráti köröd:",
-    "question6.option1": "Széles, de nem mély",
-    "question6.option2": "Kicsi és intim",
-    "question7": "Munka közben inkább:",
-    "question7.option1": "Csapatmunkát végzel",
-    "question7.option2": "Függetlenül dolgozol",
-    "question8": "Problémák átgondolásakor hajlamos vagy:",
-    "question8.option1": "Beszélés közben gondolkodni",
-    "question8.option2": "A gondolataidat beszélés előtt megtervezni",
-    "question9": "Stresszhelyzetben te:",
-    "question9.option1": "Beszélgetsz a barátaiddal",
-    "question9.option2": "Egyedül dolgozol fel"
+    "question1": {
+      "text": "Társadalmi helyzetekben általában:",
+      "option1": "Te kezdeményezel beszélgetést másokkal",
+      "option2": "Várod, hogy mások közelítsenek hozzád"
+    },
+    "question10": {
+      "text": "Problémák megoldásakor inkább támaszkodsz:",
+      "option1": "Gyakorlati tapasztalatokra és tényekre",
+      "option2": "Intuícióra és lehetőségekre"
+    },
+    "question11": {
+      "text": "Előnyben részesíted:",
+      "option1": "Konkrét részletek fókuszálását",
+      "option2": "A nagy kép fókuszálását"
+    },
+    "question12": {
+      "text": "Új dolgok tanulásakor előnyben részesíted:",
+      "option1": "Lépésről lépésre megközelítést",
+      "option2": "Innovatív módszerek felfedezését"
+    },
+    "question13": {
+      "text": "Olvasás közben előnyben részesíted:",
+      "option1": "Gyakorlati útmutatókat",
+      "option2": "Elméleteket és koncepciókat"
+    },
+    "question14": {
+      "text": "Jobban foglalkoztatnak:",
+      "option1": "A jelen és a múlt",
+      "option2": "A jövő és a lehetőségek"
+    },
+    "question15": {
+      "text": "Dolgok leírásakor hajlamos vagy:",
+      "option1": "Konkrét példákat használni",
+      "option2": "Metaforákat és analógiákat használni"
+    },
+    "question16": {
+      "text": "A munkahelyen értékeled:",
+      "option1": "Gyakorlati alkalmazást",
+      "option2": "Innovatív ötleteket"
+    },
+    "question17": {
+      "text": "Bízol:",
+      "option1": "Bizonyított módszerekben",
+      "option2": "Új próbálkozásokban"
+    },
+    "question18": {
+      "text": "Jövő tervezésekor:",
+      "option1": "Reális körülményekre alapozol",
+      "option2": "Különféle lehetőségeket képzelsz el"
+    },
+    "question19": {
+      "text": "Döntéshozatalkor elsődlegesen prioritást adsz:",
+      "option1": "Logikának és objektív elemzésnek",
+      "option2": "Érzelmeknek és interperszonális harmóniának"
+    },
+    "question2": {
+      "text": "Hétvégéken előnyben részesíted:",
+      "option1": "Kimenni a barátokkal",
+      "option2": "Otthon maradni egyedül pihenni"
+    },
+    "question20": {
+      "text": "Másokat kritizálva:",
+      "option1": "Közvetlenül rávilágítasz a problémára",
+      "option2": "Figyelembe veszed mások érzéseit"
+    },
+    "question21": {
+      "text": "Mit értékelsz jobban:",
+      "option1": "Igazságosság és méltányosság",
+      "option2": "Empátia és megértés"
+    },
+    "question22": {
+      "text": "Egy ötlet értékelésekor először a következőket veszed figyelembe:",
+      "option1": "Hogy ésszerű-e",
+      "option2": "Hogy hasznos-e"
+    },
+    "question23": {
+      "text": "Amikor egy barátod bizalmasan megoszt veled valamit, te:",
+      "option1": "Elemzed a problémát és javaslatokat adsz",
+      "option2": "Figyelsz és vigaszt nyújtasz"
+    },
+    "question24": {
+      "text": "Egy konfliktusban te hajlasz:",
+      "option1": "A принципiumok megtartására",
+      "option2": "Kapcsolatok fenntartására"
+    },
+    "question25": {
+      "text": "Könnyebben meggyőznek:",
+      "option1": "Tények és adatok",
+      "option2": "Érzelmek és történetek"
+    },
+    "question26": {
+      "text": "Csapat döntéshozatal során inkább a következőkre összpontosítasz:",
+      "option1": "Hatékonyság és eredmények",
+      "option2": "Konszenzus és egység"
+    },
+    "question27": {
+      "text": "Azt hiszed, hogy egy jó vezetőnek:",
+      "option1": "Igazságosnak és határozottnak kell lennie",
+      "option2": "Figyelmesnek és gondoskodónak kell lennie"
+    },
+    "question28": {
+      "text": "A munkastílusod:",
+      "option1": "Tervezés és előkészületek",
+      "option2": "Rugalmasnak és alkalmazkodónak lenni"
+    },
+    "question29": {
+      "text": "Te inkább:",
+      "option1": "Világos határidők betartására",
+      "option2": "Nyitva tartani a lehetőségeket"
+    },
+    "question3": {
+      "text": "Egy összejövetel után általában:",
+      "option1": "Feltöltődve érzed magad",
+      "option2": "Pihenés szükségét érzed"
+    },
+    "question30": {
+      "text": "Utazás során hajlamos vagy:",
+      "option1": "Részletes útitervet készíteni",
+      "option2": "Szabadon felfedezni"
+    },
+    "question31": {
+      "text": "A szobád általában:",
+      "option1": "Rendezett és szervezett",
+      "option2": "Kényelmes és laza"
+    },
+    "question32": {
+      "text": "Feladatok kezelésekor te:",
+      "option1": "Korán befejezed",
+      "option2": "Közel a határidőhöz fejezed be"
+    },
+    "question33": {
+      "text": "A preferált életstílusod:",
+      "option1": "Szervezett és rendezett",
+      "option2": "Szabad és rugalmas"
+    },
+    "question34": {
+      "text": "Döntések meghozatalánál hajlasz:",
+      "option1": "Gyors döntéseket hozni",
+      "option2": "Nyitva tartani a lehetőségeket"
+    },
+    "question35": {
+      "text": "Vásárlás során te:",
+      "option1": "Listát készítesz és a tervek szerint vásárolsz",
+      "option2": "Böngészel lazán és azt veszed meg, ami tetszik"
+    },
+    "question36": {
+      "text": "Változásokkal szembenézve általában:",
+      "option1": "Elégedetlenül érzed magad",
+      "option2": "Izgatottnak érzem magam"
+    },
+    "question4": {
+      "text": "Csapatban hajlamos vagy:",
+      "option1": "Aktívan kifejezni a véleményed",
+      "option2": "Először hallgatni a beszélgetés előtt"
+    },
+    "question5": {
+      "text": "Amikor új barátokkal találkozol, te:",
+      "option1": "Gyorsan megismerkedsz",
+      "option2": "Időre van szükséged, hogy fokozatosan kényelmesen érezd magad"
+    },
+    "question6": {
+      "text": "A baráti köröd:",
+      "option1": "Széles, de nem mély",
+      "option2": "Kicsi és intim"
+    },
+    "question7": {
+      "text": "Munka közben inkább:",
+      "option1": "Csapatmunkát végzel",
+      "option2": "Függetlenül dolgozol"
+    },
+    "question8": {
+      "text": "Problémák átgondolásakor hajlamos vagy:",
+      "option1": "Beszélés közben gondolkodni",
+      "option2": "A gondolataidat beszélés előtt megtervezni"
+    },
+    "question9": {
+      "text": "Stresszhelyzetben te:",
+      "option1": "Beszélgetsz a barátaiddal",
+      "option2": "Egyedül dolgozol fel"
+    }
   },
   "quick": {
-    "question1": "Társas helyzetekben általában:",
-    "question1.option1": "Proaktívan részt veszel a beszélgetésekben",
-    "question1.option2": "Várod, hogy mások közelítsenek hozzád",
-    "question10": "A munkastílusod:",
-    "question10.option1": "Előre tervezel és készítesz",
-    "question10.option2": "Alkalmazkodó és rugalmas vagy",
-    "question11": "Inkább:",
-    "question11.option1": "Tiszta határidők",
-    "question11.option2": "A lehetőségek nyitva tartása",
-    "question12": "Utazáskor hajlamos vagy:",
-    "question12.option1": "Részletes útitervet készíteni",
-    "question12.option2": "Lazán felfedezni",
-    "question2": "Hétvégén inkább:",
-    "question2.option1": "Barátokkal lógni",
-    "question2.option2": "Otthon maradni és egyedül pihenni",
-    "question3": "Egy összejövetel után általában:",
-    "question3.option1": "Energikusnak érzem magam",
-    "question3.option2": "Pihenésre van szükségem",
-    "question4": "Problémák megoldásakor inkább:",
-    "question4.option1": "Gyakorlati tapasztalatokra és tényekre támaszkodsz",
-    "question4.option2": "Intuícióra és lehetőségekre támaszkodsz",
-    "question5": "Inkább:",
-    "question5.option1": "A konkrét részletekre összpontosítani",
-    "question5.option2": "A teljes koncepcióra összpontosítani",
-    "question6": "Új dolgok tanulásakor inkább:",
-    "question6.option1": "Lépésről lépésre megközelítés",
-    "question6.option2": "Innovatív módszerek felfedezése",
-    "question7": "Döntések meghozatalakor jobban értékeled:",
-    "question7.option1": "Logikát és objektív elemzést",
-    "question7.option2": "Érzelmet és interperszonális harmóniát",
-    "question8": "Amikor másokat kritizálsz, te:",
-    "question8.option1": "Közvetlenül mutasd ki a problémát",
-    "question8.option2": "Fontold meg a másik érzéseit",
-    "question9": "Mit értékelsz jobban:",
-    "question9.option1": "Igazságosság és Méltányosság",
-    "question9.option2": "Empátia és Megértés",
-    "question1.text": "Társas helyzetekben Ön általában:",
-    "question10.text": "Munka stílusa:",
-    "question11.text": "Ön előnyben részesíti:",
-    "question12.text": "Utazás közben hajlamos arra, hogy:",
-    "question2.text": "Hétvégéken inkább:",
-    "question3.text": "Összejövetel után általában:",
-    "question4.text": "Problémák megoldásakor inkább rá támaszkodik:",
-    "question5.text": "Ön kedveli:",
-    "question6.text": "Új dolgok tanulásakor előnyben részesíti:",
-    "question7.text": "Döntések meghozatalakor fontos Önnek:",
-    "question8.text": "Másokat kritizálva:",
-    "question9.text": "Ön többre értékel:"
+    "question1": {
+      "text": "Társas helyzetekben Ön általában:",
+      "option1": "Proaktívan részt veszel a beszélgetésekben",
+      "option2": "Várod, hogy mások közelítsenek hozzád"
+    },
+    "question10": {
+      "text": "Munka stílusa:",
+      "option1": "Előre tervezel és készítesz",
+      "option2": "Alkalmazkodó és rugalmas vagy"
+    },
+    "question11": {
+      "text": "Ön előnyben részesíti:",
+      "option1": "Tiszta határidők",
+      "option2": "A lehetőségek nyitva tartása"
+    },
+    "question12": {
+      "text": "Utazás közben hajlamos arra, hogy:",
+      "option1": "Részletes útitervet készíteni",
+      "option2": "Lazán felfedezni"
+    },
+    "question2": {
+      "text": "Hétvégéken inkább:",
+      "option1": "Barátokkal lógni",
+      "option2": "Otthon maradni és egyedül pihenni"
+    },
+    "question3": {
+      "text": "Összejövetel után általában:",
+      "option1": "Energikusnak érzem magam",
+      "option2": "Pihenésre van szükségem"
+    },
+    "question4": {
+      "text": "Problémák megoldásakor inkább rá támaszkodik:",
+      "option1": "Gyakorlati tapasztalatokra és tényekre támaszkodsz",
+      "option2": "Intuícióra és lehetőségekre támaszkodsz"
+    },
+    "question5": {
+      "text": "Ön kedveli:",
+      "option1": "A konkrét részletekre összpontosítani",
+      "option2": "A teljes koncepcióra összpontosítani"
+    },
+    "question6": {
+      "text": "Új dolgok tanulásakor előnyben részesíti:",
+      "option1": "Lépésről lépésre megközelítés",
+      "option2": "Innovatív módszerek felfedezése"
+    },
+    "question7": {
+      "text": "Döntések meghozatalakor fontos Önnek:",
+      "option1": "Logikát és objektív elemzést",
+      "option2": "Érzelmet és interperszonális harmóniát"
+    },
+    "question8": {
+      "text": "Másokat kritizálva:",
+      "option1": "Közvetlenül mutasd ki a problémát",
+      "option2": "Fontold meg a másik érzéseit"
+    },
+    "question9": {
+      "text": "Ön többre értékel:",
+      "option1": "Igazságosság és Méltányosság",
+      "option2": "Empátia és Megértés"
+    }
   },
   "share": {
     "welcome": "👋 A barátod meghív, hogy tedd meg az MBTI tesztet!\n\nGyere és nézd meg a személyiségtípusodat～",

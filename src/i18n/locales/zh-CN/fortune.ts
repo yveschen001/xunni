@@ -71,7 +71,7 @@ export default {
   "quotaDisplayFree": "🔮 算命瓶: {total} (本周免费: {weekly}/1 | 额外: {additional})",
   "profileDetails": "👤 {gender} {blood} | 🎂 {birthday} | {zodiac} | 🧠 {mbti}",
   "getMore": "获取更多算命瓶",
-  "getMoreInfo": "🔮 *如何获取算命瓶？*\n\n1. **每周免费**：普通用户每周 1 个，VIP 每日 1 个。\n2. **邀请奖励**：邀请一位朋友加入，而该朋友也成功邀请一位朋友加入时，您将获得奖励（朋友的朋友）。\n3. **漂流瓶奖励**：每发送 10 个漂流瓶，必得 1 个算命瓶。\n4. **直接购买 (🔥 限时 2 折特惠)**：\n • 小包 {smallAmount} 个 - ~{originalSmallPrice} Stars~ {smallPrice} Stars\n • 大包 {largeAmount} 个 - ~{originalLargePrice} Stars~ {largePrice} Stars",
+  "getMoreInfo": "🔮 *如何获取算命瓶？*\n\n1. **每周免费**：普通用户每周 1 个，VIP 每日 1 个。\n2. **邀请奖励**：邀请一位朋友加入，而该朋友也成功邀请一位朋友加入时，您将获得奖励（24小时内，上限可得1算命瓶）。\n3. **漂流瓶奖励**：每发送 10 个漂流瓶，得 1 个算命瓶。（24小时内，上限可得1算命瓶）\n4. **直接购买 (🔥 限时 2 折特惠)**：\n • 小包 {smallAmount} 个 - ~{originalSmallPrice} Stars~ {smallPrice} Stars\n • 大包 {largeAmount} 个 - ~{originalLargePrice} Stars~ {largePrice} Stars",
   "buySmall": "🔥 特价 {price} Stars (购买 {amount} 个)",
   "buyLarge": "🔥 特价 {price} Stars (购买 {amount} 个)",
   "invoiceTitle": "购买 {amount} 个算命瓶",

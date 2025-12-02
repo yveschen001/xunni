@@ -60,7 +60,7 @@ export default {
   "profile": "/edit_profile - Izmeni profil\n",
   "profile2": "/profile - Pogledaj profil\n",
   "profile3": "👤 **Profil**\n",
-  "quota": "• Pozivanje prijatelja može povećati kvotu (maks 10/100)\n",
+  "quota": "🔢 Dnevna visoka kvota\n• Počnite sa 30 message bottles dnevno (samo 10 za redovne korisnike).\n• Pozivanje prijatelja može trajno povećati vašu kvotu, do maksimalno 100!\n• Dnevni limit od 100 poruka u čatu, čavrljanje bez prepreka.",
   "quota2": "• 30 poruka dnevno\n",
   "register": "/start - Započni korišćenje / Nastavi registraciju\n",
   "report": "/report - Prijavi neodgovarajući sadržaj\n",

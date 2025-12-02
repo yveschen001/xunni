@@ -11,7 +11,7 @@ export default {
   "settings2": "⚙️ **Ayarlar**\n\n",
   "settings3": "🏠 Ayarlara Dön",
   "settings4": "Mevcut ayarlar:\n",
-  "text": "• Dil: ${languageName} 🇹🇼\n\n",
+  "text": "• Dil: {languageName} 🇹🇼\n\n",
   "title": "🏠 **Ana Menü**",
   "throwReminder": "Mesaj şişesi hatırlatıcısı",
   "catchReminder": "Mesaj şişesi alma hatırlatıcısı",

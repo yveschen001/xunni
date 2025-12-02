@@ -2,7 +2,7 @@ export default {
   "ad": "➡️ Susunod na Ad",
   "back": "⬅️ Bumalik",
   "backToVip": "💎 Bumalik sa VIP Menu",
-  "bottle": "📺 Manood ng Mga Ad upang Makakuha ng Higit pang mga Bote ng Mensahe 🎁 (${remaining}/20)",
+  "bottle": "📺 Manood ng Mga Ad upang Makakuha ng Higit pang mga Bote ng Mensahe 🎁 ({remaining}/20)",
   "bottle2": "💎 Mag-upgrade sa VIP para sa Higit pang mga Bote ng Mensahe",
   "bottle3": "🌊 Itapon ang Bote ng Mensahe",
   "bottle4": "🎣 Kunin ang Bote ng Mensahe",

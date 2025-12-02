@@ -27,8 +27,8 @@ export default {
   "error": "Gabim: {error}",
   "estimate": {
     "immediate": "Dërgo menjëherë (afërsisht 1-2 sekonda)",
-    "minutes": "Afërsisht \\${minutes} minuta",
-    "seconds": "Afërsisht \\${seconds} sekonda"
+    "minutes": "Afërsisht \\{minutes} minuta",
+    "seconds": "Afërsisht \\{seconds} sekonda"
   },
   "estimatedTime": "Koha e parashikuar: {time}\n\n",
   "example": "**Shembulli:**\n",
@@ -97,7 +97,7 @@ export default {
   "foundStuckBroadcasts": "⚠️ U zbuluan {count} transmetime të ngecura\n\n",
   "id": "ID: {id}",
   "idMustBeNumber": "❌ ID e transmetimit duhet të jetë një numër",
-  "maxUsersExceeded": "❌ Sistemi aktual i transmetimit mbështet transmetimin deri në një maksimum prej ${max} përdoruesish.\n\nNumri i synuar i përdoruesve: ${current}",
+  "maxUsersExceeded": "❌ Sistemi aktual i transmetimit mbështet transmetimin deri në një maksimum prej {max} përdoruesish.\n\nNumri i synuar i përdoruesve: {current}",
   "messageContent": "Përmbajtja e mesazhit",
   "noPendingBroadcasts": "Aktualisht, nuk ka transmetime në pritje apo të ngecura.\n\n",
   "noRecords": "📊 Nuk ka të dhëna për transmetimet e tanishme",
@@ -151,7 +151,7 @@ export default {
   "targetNonVip": "Përdoruesit jo-VIP",
   "targetType": "Objektivi: {type}\n",
   "targetVip": "Përdoruesit VIP",
-  "tooLong": "Mesazhi i transmetimit nuk mund të kalojë ${max} karaktere (aktualisht ${current} karaktere)",
+  "tooLong": "Mesazhi i transmetimit nuk mund të kalojë {max} karaktere (aktualisht {current} karaktere)",
   "upgradeRequired": "Transmetimi masiv kërkon përmirësimin e arkitekturës së sistemit, ju lutemi referohuni në BROADCAST_SYSTEM_REDESIGN.md",
   "usageError": "❌ Përdorim i gabuar\n\n",
   "userCount": "Numri i përdoruesve: {count} persona\n",

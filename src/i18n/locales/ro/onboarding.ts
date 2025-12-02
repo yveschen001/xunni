@@ -1,7 +1,7 @@
 export default {
-  "age": "• Vârstă: ${updatedUser.age} ani\n",
-  "age2": "Vârsta dumneavoastră: ${age} ani\n",
-  "age3": "Vârstă: ${age} ani\n",
+  "age": "• Vârstă: {updatedUser.age} ani\n",
+  "age2": "Vârsta dumneavoastră: {age} ani\n",
+  "age3": "Vârstă: {age} ani\n",
   "ageRestriction": "❌ Ne pare rău, trebuie să aveți cel puțin 18 ani pentru a folosi acest serviciu.\n\n",
   "agreeTerms": "Faceți clic pe butonul de mai jos pentru a indica că ați citit și acceptat termenii de mai sus.",
   "antiFraud": {
@@ -24,7 +24,7 @@ export default {
   "birthday": "Dacă credeți că aceasta este o eroare, vă rugăm să verificați dacă formatul datei dumneavoastră de naștere este corect (AAAA-LL-ZZ).",
   "birthday2": "Te rugăm să reintroduci data nașterii tale (format: YYYY-MM-DD):\n\n",
   "birthday3": "Te rugăm să introduci data nașterii tale (format: YYYY-MM-DD):\n\n",
-  "birthday4": "Data nașterii: ${birthday}\n",
+  "birthday4": "Data nașterii: {birthday}\n",
   "birthdayCheck": "Dacă credeți că aceasta este o eroare, vă rugăm să verificați dacă formatul datei nașterii este corect (AAAA-LL-ZZ).",
   "birthdayError": "❌ {error}",
   "birthdayFormatError": "❌ Format incorect pentru data nașterii\n\nVă rugăm să reintroduceți (format: AAAA-LL-ZZ):",
@@ -43,11 +43,11 @@ export default {
   "enterYes": "Vă rugăm să introduceți 'da' pentru a finaliza testul:",
   "errorRetry": "❌ A apărut o eroare, vă rugăm să reintroduceți.",
   "example": {
-    "birthday": "De exemplu: 1995-06-15"
+    "birthday": "De exemplu: 2000-12-25"
   },
   "gender": {
     "female": "Femenin",
-    "label": "• Gen: ${gender}\n",
+    "label": "• Gen: {gender}\n",
     "male": "Masculin"
   },
   "gender2": "• Gen: ${updatedUser.gender ===",
@@ -58,7 +58,7 @@ export default {
   "help": "Aceasta ne va ajuta să găsim parteneri de chat mai potriviți pentru tine～\n\n",
   "iHaveRead": "✅ Am citit și sunt de acord",
   "info": {
-    "age18": "• Trebuie să ai cel puțin 18 ani pentru a folosi acest serviciu.\n- Informațiile exacte trebuie furnizate pentru ca potrivirea și prezicerea să ofere rezultate bune.",
+    "age18": "• Trebuie să ai cel puțin 18 ani pentru a folosi acest serviciu\n- Pentru a utiliza potrivirea și ghicirea, trebuie furnizate informații exacte pentru rezultate bune.\n\n- Introdu data ta de naștere (de exemplu, 2000-12-15)",
     "city": "🌍 Regiune: {city}"
   },
   "languageSelection": "🌐 **Alegeți Limba**\n\nVă rugăm să selectați limba preferată:",
@@ -69,8 +69,8 @@ export default {
   "message": "2. 🚨 Identificați mesajele frauduloase\n",
   "message2": "• Fiți precauți în privința mesajelor care solicită bani\n",
   "moreLanguages": "Mai multe limbi",
-  "nickname": "• Poreclă: ${updatedUser.nickname}\n",
-  "nickname2": "Minunat! Pseudonimul tău este: ${nickname}\n\n",
+  "nickname": "• Poreclă: {updatedUser.nickname}\n",
+  "nickname2": "Minunat! Pseudonimul tău este: {nickname}\n\n",
   "nicknameError": "❌ {error}\n\nVă rugăm să reintroduceți porecla:",
   "nicknameGood": "Minunat! Pseudonimul tău este: {nickname}\n\n",
   "notCompleted": "⚠️ Vă rugăm să finalizați mai întâi procesul de înregistrare",
@@ -99,7 +99,7 @@ export default {
   "startRegistration": "Începe înregistrarea →",
   "stats": "📊 Statistici",
   "stepAntiFraud": "🛡️ Te rugăm să apesi pe butonul de mai sus pentru a confirma măsurile de siguranță anti-fraudă",
-  "stepBirthday": "📅 Te rugăm să introduci data ta de naștere (format: AAAA-LL-ZZ, de exemplu, 1995-06-15)",
+  "stepBirthday": "📅 Te rugăm să introduci data ta de naștere (format: AAAA-LL-ZZ, de exemplu, 2000-12-25)",
   "stepDefault": "Te rugăm să finalizezi înregistrarea conform instrucțiunilor",
   "stepGender": "👤 Te rugăm să apeși pe butonul de mai sus pentru a selecta genul tău",
   "stepLanguageSelection": "🌍 Te rugăm să apeși pe butonul de mai sus pentru a alege limba ta",
@@ -113,7 +113,7 @@ export default {
     "terms_of_service_button": "📋 Termenii și condițiile"
   },
   "termsOfService": "📋 Termenii utilizatorilor\n\n",
-  "text": "confirmă_ziua_de_naștere_${birthday}",
+  "text": "confirmă_ziua_de_naștere_{birthday}",
   "text10": "De exemplu: 1995-06-15\n\n",
   "text11": "🛡️ Sfaturi de siguranță pentru întâlniri online\n\n",
   "text12": "📋 Pasul final: Termeni și condiții\n\n",
@@ -127,7 +127,7 @@ export default {
   "text2": "💡 Poți folosi comanda /mbti oricând pentru a repeta sau modifica.",
   "text20": "Te rugăm să revii după ce ajungi la vârsta adultă!\n\n",
   "text21": "📋 Politica de confidențialitate\n",
-  "text3": "gen_confirmat_${gender}",
+  "text3": "gen_confirmat_{gender}",
   "text4": "Pasul final: Te rugăm să citești și să accepți Termenii și condițiile noastre\n\n",
   "text5": "📝 Fă un test rapid (12 întrebări, doar pentru referință)",
   "text6": "• Termenii utilizatorilor: Ghiduri pentru utilizarea acestui serviciu\n\n",
@@ -138,12 +138,12 @@ export default {
   "useTelegramNickname": "Folosește porecla de Telegram",
   "viewPrivacyPolicy": "📋 Vizualizați Politica de Confidențialitate",
   "viewTermsOfService": "📋 Vizualizați Termenii de Serviciu",
-  "vip": "💡 Furnizarea grupei tale sanguine va fi folosită pentru caracteristici viitoare de potrivire a grupei sanguine (exclusiv VIP)\n\n",
+  "vip": "💡 Introducerea grupei tale sanguine poate fi utilizată pentru viitoare funcționalități de potrivire a grupei sanguine (mai multe atribute, potrivire astrologică)",
   "warning": {
     "birthday": "⚠️ Data nașterii nu poate fi modificată după setare. Vă rugăm să confirmați că este corectă!"
   },
   "welcome": "Bun venit la XunNi！\n\nVă rugăm să selectați limba:",
   "yourAge": "Vârsta dumneavoastră: {age} ani\n",
-  "zodiac": "• Zodiac: ${updatedUser.zodiac_sign}\n",
-  "zodiac2": "Semnul zodiacal: ${zodiacSign}\n\n"
+  "zodiac": "• Zodiac: {updatedUser.zodiac_sign}\n",
+  "zodiac2": "Semnul zodiacal: {zodiacSign}\n\n"
 };

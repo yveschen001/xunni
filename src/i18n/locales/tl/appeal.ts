@@ -1,5 +1,5 @@
 export default {
-  "alreadyExists": "⏳ Mayroon kang nakabinbing apela (ID: #${appealId})\n\nKatayuan: ${status}\nIsinumite noong: ${time}\n\nPakihintay ang pagsusuri ng administrador.",
+  "alreadyExists": "⏳ Mayroon kang nakabinbing apela (ID: #{appealId})\n\nKatayuan: {status}\nIsinumite noong: {time}\n\nPakihintay ang pagsusuri ng administrador.",
   "approved": "✅ Ang iyong reklamo ay naaprubahan, ang account ay na-unblock",
   "noAppeal": "Sa kasalukuyan, wala kang mga nakabinbing reklamo",
   "notBanned": "✅ Ang iyong account ay hindi naka-ban, hindi kailangan ng apela.",
@@ -10,9 +10,9 @@ export default {
   "reasonTooShort": "❌ Ang dahilan ng apela ay masyadong maikli, mangyaring magpasok ng hindi bababa sa 10 na karakter.",
   "rejected": "❌ Ang iyong reklamo ay tinanggihan",
   "reviewedAt": "Oras ng Pagsusuri:",
-  "status": "📋 **Katayuan ng Apela**\n\nID ng Apela: #${appealId}\nKatayuan: ${status}\nOras ng Pagsumite: ${createdAt}${reviewInfo}",
+  "status": "📋 **Katayuan ng Apela**\n\nID ng Apela: #{appealId}\nKatayuan: {status}\nOras ng Pagsumite: {createdAt}{reviewInfo}",
   "statusApproved": "Inaprubahan",
   "statusPending": "Naka-review",
   "statusRejected": "Tinanggihan",
-  "submitted": "✅ **Nagsumite ng Apela**\n\nID ng Apela: #${appealId}\nKatayuan: Nasa Pagsusuri\n\nIpaproseso namin ang iyong apela sa loob ng 1-3 araw ng trabaho.\nAng resulta ay ipapaalam sa iyo sa pamamagitan ng Bot."
+  "submitted": "✅ **Nagsumite ng Apela**\n\nID ng Apela: #{appealId}\nKatayuan: Nasa Pagsusuri\n\nIpaproseso namin ang iyong apela sa loob ng 1-3 araw ng trabaho.\nAng resulta ay ipapaalam sa iyo sa pamamagitan ng Bot."
 };

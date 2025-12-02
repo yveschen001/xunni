@@ -2,7 +2,7 @@ export default {
   "ad": "➡️ Quảng cáo tiếp theo",
   "back": "⬅️ Quay lại",
   "backToVip": "💎 Trở về Menu VIP",
-  "bottle": "📺 Xem quảng cáo để nhận thêm chai thư 🎁 (${remaining}/20)",
+  "bottle": "📺 Xem quảng cáo để nhận thêm chai thư 🎁 ({remaining}/20)",
   "bottle2": "💎 Nâng cấp VIP để có thêm chai thư",
   "bottle3": "🌊 Ném chai thư",
   "bottle4": "🎣 Nhặt chai thư",

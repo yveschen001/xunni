@@ -1,7 +1,7 @@
 export default {
   "age": {
-    "daysAgo": "\\${days} gün önce",
-    "hoursAgo": "\\${hours} saat önce",
+    "daysAgo": "\\{days} gün önce",
+    "hoursAgo": "\\{hours} saat önce",
     "justNow": "Şu anda"
   },
   "contentHint": "💡 Şunları yapabilirsiniz:\n• Taslağı değiştirmek için yeni içerik doğrudan girin\n• Yeniden başlamak için /throw kullanın\n• Mesaj şişesi atmak için taslak içeriği gönderin",

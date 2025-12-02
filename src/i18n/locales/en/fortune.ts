@@ -71,7 +71,7 @@ export default {
   "quotaDisplayFree": "🔮 Message Bottle: {total} (Free this week: {weekly}/1 | Additional: {additional})",
   "profileDetails": "👤 {gender} {blood} | 🎂 {birthday} | {zodiac} | 🧠 {mbti}",
   "getMore": "Get More Message Bottles",
-  "getMoreInfo": "🔮 *How to Obtain Message Bottles?*\n\n1. **Weekly Free**: Regular users get 1 per week, VIPs get 1 per day.\n2. **Referral Rewards**: Invite a friend to join, and when they successfully invite another friend, you will receive a reward (friend's friend).\n3. **Message Bottle Reward**: For every 10 message bottles sent, you will receive 1 message bottle.\n4. **Direct Purchase (🔥 Limited Time 20% Discount)**:\n • Small Pack {smallAmount} - ~{originalSmallPrice} Stars~ {smallPrice} Stars\n • Large Pack {largeAmount} - ~{originalLargePrice} Stars~ {largePrice} Stars",
+  "getMoreInfo": "🔮 *How to Obtain a Fortune Bottle?*\n\n1. **Weekly Free**: Regular users get 1 per week, VIPs get 1 per day.\n2. **Invitation Reward**: You will receive a reward for inviting a friend to join, and if that friend also successfully invites another friend, you will get a reward (within 24 hours, maximum of 1 fortune bottle).\n3. **Message Bottle Reward**: For every 10 message bottles sent, receive 1 fortune bottle. (Within 24 hours, maximum of 1 fortune bottle)\n4. **Direct Purchase (🔥 Limited Time 20% Off)**:\n • Small package {smallAmount} - ~{originalSmallPrice} Stars~ {smallPrice} Stars\n • Large package {largeAmount} - ~{originalLargePrice} Stars~ {largePrice} Stars",
   "buySmall": "🔥 Special Price {price} Stars (Buy {amount} items)",
   "buyLarge": "🔥 Special Price {price} Stars (Buy {amount} items)",
   "invoiceTitle": "Purchase {amount} message bottles",

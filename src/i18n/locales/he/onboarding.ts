@@ -1,7 +1,7 @@
 export default {
-  "age": "• גיל: ${updatedUser.age} שנים\n",
-  "age2": "הגיל שלך: ${age} שנים\n",
-  "age3": "גיל: ${age} שנים\n",
+  "age": "• גיל: {updatedUser.age} שנים\n",
+  "age2": "הגיל שלך: {age} שנים\n",
+  "age3": "גיל: {age} שנים\n",
   "ageRestriction": "❌ אנחנו מתנצלים, עליך להיות בן 18 ומעלה כדי להשתמש בשירות זה.",
   "agreeTerms": "לחץ על הכפתור למטה כדי לציין שקראת ומסכים לתנאים שלמעלה.",
   "antiFraud": {
@@ -24,7 +24,7 @@ export default {
   "birthday": "אם אתה חושב שזה שגיאה, אנא בדוק אם בפורמט תאריך הלידה שלך נכון (YYYY-MM-DD).",
   "birthday2": "אנא הקלד שוב את תאריך הלידה שלך (פורמט: YYYY-MM-DD):",
   "birthday3": "אנא הזן את תאריך הלידה שלך (פורמט: YYYY-MM-DD):",
-  "birthday4": "יום הולדת: ${birthday}\n",
+  "birthday4": "יום הולדת: {birthday}\n",
   "birthdayCheck": "אם אתה חושב שזו טעות, אנא בדוק שהפורמט של תאריך הלידה שלך נכון (YYYY-MM-DD).",
   "birthdayError": "{error}\n\n",
   "birthdayFormatError": "❌ פורמט יום הולדת לא נכון\n\nאנא הזן מחדש (פורמט: YYYY-MM-DD):",
@@ -43,11 +43,11 @@ export default {
   "enterYes": "אנא הזן 'כן' כדי להשלים את המבחן:",
   "errorRetry": "❌ התרחשה טעות, אנא הזן מחדש.",
   "example": {
-    "birthday": "למשל: 1995-06-15"
+    "birthday": "לדוגמה: 2000-12-25"
   },
   "gender": {
     "female": "נקבה",
-    "label": "• מגדר: ${gender}\n",
+    "label": "• מגדר: {gender}\n",
     "male": "זכר"
   },
   "gender2": "• מגדר: ${updatedUser.gender ===",
@@ -58,7 +58,7 @@ export default {
   "help": "זה יעזור לנו למצוא שותפי שיחה מתאימים יותר עבורך～",
   "iHaveRead": "✅ קראתי ומסכים",
   "info": {
-    "age18": "• עליך להיות בן 18 לפחות כדי להשתמש בשירות זה.\n- יש לספק מידע מדויק כדי שההתאמה והנבואה יניבו תוצאות טובות.",
+    "age18": "• עליך להיות בן 18 לפחות כדי להשתמש בשירות זה\n- כדי להשתמש בהתאמה ובתחזית, יש לספק מידע מדויק כדי להשיג תוצאות טובות.\n\n- הזן את תאריך הלידה שלך (למשל, 2000-12-15)",
     "city": "🌍 אזור: {city}"
   },
   "languageSelection": "🌐 **בחר שפה**\n\nאנא בחר את השפה המועדפת עליך:",
@@ -69,8 +69,8 @@ export default {
   "message": "2. 🚨 זיהוי הודעות הונאה\n",
   "message2": "• היה זהיר להודעות המבקשות כסף\n",
   "moreLanguages": "עוד שפות",
-  "nickname": "• כינוי: ${updatedUser.nickname}\n",
-  "nickname2": "{nickname} ${nickname}\n\n",
+  "nickname": "• כינוי: {updatedUser.nickname}\n",
+  "nickname2": "{nickname} {nickname}\n\n",
   "nicknameError": "❌ {error}\n\nאנא הזן מחדש את הכינוי שלך:",
   "nicknameGood": "{nickname}\n\n",
   "notCompleted": "⚠️ אנא השלֵם את תהליך ההרשמה קודם",
@@ -99,7 +99,7 @@ export default {
   "startRegistration": "התחל רישום →",
   "stats": "📊 סטטיסטיקות",
   "stepAntiFraud": "🛡️ אנא לחץ על הכפתור שלמעלה כדי לאשר בעיות אבטחת אנטי-ונדרים",
-  "stepBirthday": "📅 אנא הכנס את יום ההולדת שלך (פורמט: YYYY-MM-DD, לדוגמה, 1995-06-15)",
+  "stepBirthday": "📅 אנא הזן את תאריך הלידה שלך (פורמט: YYYY-MM-DD, לדוגמה, 2000-12-25)",
   "stepDefault": "אנא עקוב אחרי ההוראות כדי להשלים את הרישום",
   "stepGender": "👤 אנא לחץ על הכפתור שלמעלה כדי לבחור את מגדרך",
   "stepLanguageSelection": "🌍 אנא לחץ על הכפתור שלמעלה כדי לבחור את שפתך",
@@ -113,7 +113,7 @@ export default {
     "terms_of_service_button": "📋 תנאי שימוש"
   },
   "termsOfService": "📋 תנאי השימוש למשתמש\n\n",
-  "text": "אשר_יום_הולדת_${birthday}",
+  "text": "אשר_יום_הולדת_{birthday}",
   "text10": "לדוגמה: 1995-06-15\n\n",
   "text11": "🛡️ טיפים לבטיחות בדייטים אונליין\n\n",
   "text12": "📋 שלב סופי: תנאי השימוש\n\n",
@@ -127,7 +127,7 @@ export default {
   "text2": "💡 תוכל להשתמש בפקודת /mbti בכל זמן כדי לעשות מבחן מחדש או לשנות.",
   "text20": "אנא חזור לאחר שתגיע לגיל הבגרות!\n\n",
   "text21": "📋 מדיניות פרטיות\n",
-  "text3": "אישור_מגדר_${gender}",
+  "text3": "אישור_מגדר_{gender}",
   "text4": "שלב סופי: אנא קרא והסכם עם תנאי השימוש שלנו\n\n",
   "text5": "📝 עשה מבחן מהיר (12 שאלות, רק לצורך הפניה)",
   "text6": "• תנאי המשתמש: הנחיות לשימוש בשירות הזה\n\n",
@@ -138,12 +138,12 @@ export default {
   "useTelegramNickname": "השתמש בכינוי בטלגרם",
   "viewPrivacyPolicy": "📋 צפה במדיניות הפרטיות",
   "viewTermsOfService": "📋 צפה בתנאי השירות",
-  "vip": "💡 מתן סוג הדם שלך ישמש לתכונות התאמת סוג דם עתידיות (בלעדיות ל-VIP)\n\n",
+  "vip": "💡 הזנת סוג הדם שלך יכולה לשמש עבור תכונות תאימות עתידיות לסוגי דם (יותר תכונות, תאימות אסטרולוגית)",
   "warning": {
     "birthday": "⚠️ תאריך הלידה לא ניתן לשינוי לאחר שנקבע. אנא אשר שזה נכון!"
   },
   "welcome": "ברוך הבא ל-XunNi！\n\nאנא בחר את השפה שלך:",
   "yourAge": "גילך: {age} שנים\n",
-  "zodiac": "• סימן גלגל המזלות: ${updatedUser.zodiac_sign}\n",
-  "zodiac2": "סימן גלגל המזלות: ${zodiacSign}\n\n"
+  "zodiac": "• סימן גלגל המזלות: {updatedUser.zodiac_sign}\n",
+  "zodiac2": "סימן גלגל המזלות: {zodiacSign}\n\n"
 };

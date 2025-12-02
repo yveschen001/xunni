@@ -1,7 +1,7 @@
 export default {
-  "age": "• Yaş: ${updatedUser.age} yaşında\n",
-  "age2": "Yaşınız: ${age} yaşında\n",
-  "age3": "Yaş: ${age} yaşında\n",
+  "age": "• Yaş: {updatedUser.age} yaşında\n",
+  "age2": "Yaşınız: {age} yaşında\n",
+  "age3": "Yaş: {age} yaşında\n",
   "ageRestriction": "❌ Üzgünüz, bu hizmeti kullanmak için en az 18 yaşında olmalısınız.\n\n",
   "agreeTerms": "Yukarıdaki şartları okuduğunuzu ve kabul ettiğinizi belirtmek için aşağıdaki butona tıklayın.",
   "antiFraud": {
@@ -24,7 +24,7 @@ export default {
   "birthday": "Bunun bir hata olduğunu düşünüyorsanız, lütfen doğum günü formatınızı kontrol edin (YYYY-AA-GG).",
   "birthday2": "Lütfen doğum tarihinizi tekrar girin (şekil: YYYY-AA-GG):\n\n",
   "birthday3": "Lütfen doğum tarihinizi girin (şekil: YYYY-AA-GG):\n\n",
-  "birthday4": "Doğum Günü: ${birthday}\n",
+  "birthday4": "Doğum Günü: {birthday}\n",
   "birthdayCheck": "Bu bir hata olduğunu düşünüyorsanız, lütfen doğum günü formatınızın doğru olduğunu kontrol edin (YYYY-AA-GG).",
   "birthdayError": "❌ {error}",
   "birthdayFormatError": "❌ Yanlış doğum günü formatı\n\nLütfen yeniden giriniz (format: YYYY-AA-GG):",
@@ -43,11 +43,11 @@ export default {
   "enterYes": "Testi tamamlamak için 'evet' yazınız:",
   "errorRetry": "❌ Bir hata oluştu, lütfen yeniden giriniz.",
   "example": {
-    "birthday": "Örneğin: 1995-06-15"
+    "birthday": "Örneğin: 2000-12-25"
   },
   "gender": {
     "female": "Kadın",
-    "label": "• Cinsiyet: ${gender}\n",
+    "label": "• Cinsiyet: {gender}\n",
     "male": "Erkek"
   },
   "gender2": "• Cinsiyet: ${updatedUser.gender ===",
@@ -58,7 +58,7 @@ export default {
   "help": "Bu, sizin için daha uygun sohbet arkadaşları bulmamıza yardımcı olacak～\n\n",
   "iHaveRead": "✅ Okudum ve kabul ediyorum",
   "info": {
-    "age18": "• Bu hizmeti kullanmak için en az 18 yaşında olmalısınız.\n- Eşleşme ve fal bakımı için doğru bilgiler sağlanmalıdır, böylece iyi sonuçlar elde edilebilir.",
+    "age18": "• Bu hizmeti kullanmak için en az 18 yaşında olmalısınız.\n- Eşleştirme ve fal bakma hizmetlerinden yararlanmak için iyi sonuçlar elde etmek amacıyla doğru bilgi sağlanmalıdır.\n\n- Doğum tarihinizi girin (örn., 2000-12-15)",
     "city": "🌍 Bölge: {city}"
   },
   "languageSelection": "🌐 **Dil Seçin**\n\nLütfen tercih ettiğiniz dili seçiniz:",
@@ -69,8 +69,8 @@ export default {
   "message": "2. 🚨 Dolandırıcılık mesajlarını tespit edin\n",
   "message2": "• Para talep eden mesajlara dikkat edin\n",
   "moreLanguages": "Daha fazla dil",
-  "nickname": "• Takma ad: ${updatedUser.nickname}\n",
-  "nickname2": "Harika! Takma adınız: ${nickname}\n\n",
+  "nickname": "• Takma ad: {updatedUser.nickname}\n",
+  "nickname2": "Harika! Takma adınız: {nickname}\n\n",
   "nicknameError": "❌ {error}\n\nLütfen takma adınızı yeniden giriniz:",
   "nicknameGood": "Harika! Takma adınız: {nickname}\n\n",
   "notCompleted": "⚠️ Lütfen önce kayıt sürecini tamamlayın",
@@ -99,7 +99,7 @@ export default {
   "startRegistration": "Kayıt Başlat →",
   "stats": "📊 İstatistikler",
   "stepAntiFraud": "🛡️ Lütfen yukarıdaki butona tıklayarak dolandırıcılık karşıtı güvenlik konularını onaylayın",
-  "stepBirthday": "📅 Lütfen doğum tarihinizi girin (format: YYYY-AA-GG, örn: 1995-06-15)",
+  "stepBirthday": "📅 Lütfen doğum tarihinizi girin (format: YYYY-AA-GG, örn: 2000-12-25)",
   "stepDefault": "Lütfen kayıt işlemini tamamlamak için talimatları izleyin",
   "stepGender": "👤 Lütfen cinsiyetinizi seçmek için yukarıdaki butona tıklayın",
   "stepLanguageSelection": "🌍 Lütfen dilinizi seçmek için yukarıdaki butona tıklayın",
@@ -113,7 +113,7 @@ export default {
     "terms_of_service_button": "📋 Hizmet Şartları"
   },
   "termsOfService": "📋 Kullanıcı Şartları\n\n",
-  "text": "doğum günü onayla ${birthday}",
+  "text": "doğum günü onayla {birthday}",
   "text10": "Örneğin: 1995-06-15\n\n",
   "text11": "🛡️ Çevrimiçi Tanışma Güvenlik İpuçları\n\n",
   "text12": "📋 Son Adım: Hizmet Şartları\n\n",
@@ -127,7 +127,7 @@ export default {
   "text2": "💡 Testi tekrar yapmak veya değiştirmek için istediğiniz zaman /mbti komutunu kullanabilirsiniz.",
   "text20": "Yetişkinliğe ulaştıktan sonra geri dönün lütfen!\n\n",
   "text21": "📋 Gizlilik Politikası\n",
-  "text3": "cinsiyet onayla ${gender}",
+  "text3": "cinsiyet onayla {gender}",
   "text4": "Son Adım: Lütfen Hizmet Şartlarımızı okuyun ve kabul edin\n\n",
   "text5": "📝 Hızlı bir test yapın (12 soru, sadece referans için)",
   "text6": "• Kullanıcı Şartları: Bu hizmeti kullanma kılavuzu\n\n",
@@ -138,12 +138,12 @@ export default {
   "useTelegramNickname": "Telegram takma adını kullan",
   "viewPrivacyPolicy": "📋 Gizlilik Politikasını Görüntüle",
   "viewTermsOfService": "📋 Hizmet Şartlarını Görüntüle",
-  "vip": "💡 Kan grubunuzu vermeniz, gelecekteki kan grubu eşleştirme özellikleri için kullanılacaktır (VIP özel)\n\n",
+  "vip": "💡 Kan grubunuzu girmek, gelecekteki kan grubu eşleştirme özellikleri için kullanılabilir (daha fazla özellik, astrolojik eşleştirme)",
   "warning": {
     "birthday": "⚠️ Doğum tarihi bir kez ayarlandıktan sonra değiştirilemez. Lütfen doğru olduğunu onaylayın!"
   },
   "welcome": "XunNi'ye hoş geldiniz！\n\nLütfen dilinizi seçin:",
   "yourAge": "Yaşınız: {age} yaşında\n",
-  "zodiac": "• Burç: ${updatedUser.zodiac_sign}\n",
-  "zodiac2": "Burç: ${zodiacSign}\n\n"
+  "zodiac": "• Burç: {updatedUser.zodiac_sign}\n",
+  "zodiac2": "Burç: {zodiacSign}\n\n"
 };

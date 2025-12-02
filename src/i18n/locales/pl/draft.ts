@@ -1,7 +1,7 @@
 export default {
   "age": {
-    "daysAgo": "\\${days} dni temu",
-    "hoursAgo": "\\${hours} godzin temu",
+    "daysAgo": "\\{days} dni temu",
+    "hoursAgo": "\\{hours} godzin temu",
     "justNow": "Przed chwilą"
   },
   "contentHint": "💡 Możesz:\n• Bezpośrednio wprowadzić nową treść, aby zastąpić szkic\n• Użyj /throw, aby zresetować\n• Wyślij treść szkicu, aby wyrzucić butelkę z wiadomością",

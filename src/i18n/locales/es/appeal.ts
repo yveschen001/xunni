@@ -1,5 +1,5 @@
 export default {
-  "alreadyExists": "⏳ Tienes una apelación pendiente (ID: #${appealId})\n\nEstado: ${status}\nHora de Envío: ${time}\n\nPor favor, espera pacientemente a que el administrador revise.",
+  "alreadyExists": "⏳ Tienes una apelación pendiente (ID: #{appealId})\n\nEstado: {status}\nHora de Envío: {time}\n\nPor favor, espera pacientemente a que el administrador revise.",
   "approved": "✅ Tu apelación ha sido aprobada, y tu cuenta ha sido desbloqueada",
   "noAppeal": "Actualmente no tienes apelaciones pendientes",
   "notBanned": "✅ Tu cuenta no está baneada, no se necesita apelación.",
@@ -10,9 +10,9 @@ export default {
   "reasonTooShort": "❌ La razón de la apelación es demasiado corta, por favor ingresa al menos 10 caracteres.",
   "rejected": "❌ Tu apelación ha sido rechazada.",
   "reviewedAt": "Tiempo de revisión:",
-  "status": "📋 **Estado de la Apelación**\n\nID de Apelación: #${appealId}\nEstado: ${status}\nHora de envío: ${createdAt}${reviewInfo}",
+  "status": "📋 **Estado de la Apelación**\n\nID de Apelación: #{appealId}\nEstado: {status}\nHora de envío: {createdAt}{reviewInfo}",
   "statusApproved": "Aprobada",
   "statusPending": "Pendiente de revisión",
   "statusRejected": "Rechazada",
-  "submitted": "✅ **Apelación enviada**\n\nID de Apelación: #${appealId}\nEstado: Pendiente de revisión\n\nProcesaremos tu apelación dentro de 1-3 días hábiles.\nTe notificaremos el resultado a través de Bot."
+  "submitted": "✅ **Apelación enviada**\n\nID de Apelación: #{appealId}\nEstado: Pendiente de revisión\n\nProcesaremos tu apelación dentro de 1-3 días hábiles.\nTe notificaremos el resultado a través de Bot."
 };

@@ -11,6 +11,6 @@ export default {
   "step2": "2️⃣ Pilih 'Balas'.",
   "step3": "3️⃣ Masukkan /block",
   "steps": "**Langkah operasi:**",
-  "success": "✅ Pengguna ini telah diblokir (#${identifier})",
+  "success": "✅ Pengguna ini telah diblokir (#{identifier})",
   "willNotMatch": "Anda tidak akan lagi dipasangkan dengan botol pesan satu sama lain."
 };

@@ -11,7 +11,7 @@ export default {
   "settings2": "⚙️ **Pengaturan**\n\n",
   "settings3": "🏠 Kembali ke Pengaturan",
   "settings4": "Pengaturan Saat Ini：\n",
-  "text": "• Bahasa：${languageName} 🇹🇼\n\n",
+  "text": "• Bahasa：{languageName} 🇹🇼\n\n",
   "title": "🏠 **Menu Utama**",
   "throwReminder": "Pengingat botol pesan",
   "catchReminder": "Pengingat pengambilan botol pesan",

@@ -1,7 +1,7 @@
 export default {
-  "age": "• Věk: ${updatedUser.age} let\n",
-  "age2": "Tvůj věk: ${age} let\n",
-  "age3": "Věk: ${age} let\n",
+  "age": "• Věk: {updatedUser.age} let\n",
+  "age2": "Tvůj věk: {age} let\n",
+  "age3": "Věk: {age} let\n",
   "ageRestriction": "❌ Omlouváme se, musíte být alespoň 18 let, abyste mohli tuto službu používat.\n\n",
   "agreeTerms": "Klikněte na tlačítko níže a potvrďte, že jste si přečetli a souhlasíte s výše uvedenými podmínkami.",
   "antiFraud": {
@@ -24,7 +24,7 @@ export default {
   "birthday": "Pokud si myslíte, že je to omyl, zkontrolujte prosím, zda je formát vašeho data narození správný (RRRR-MM-DD).",
   "birthday2": "Zadejte prosím své datum narození znovu (formát: RRRR-MM-DD):\n\n",
   "birthday3": "Zadejte prosím své datum narození (formát: RRRR-MM-DD):\n\n",
-  "birthday4": "Narozeniny: ${birthday}\n",
+  "birthday4": "Narozeniny: {birthday}\n",
   "birthdayCheck": "Pokud si myslíte, že se jedná o chybu, zkontrolujte, zda je formát vašich narozenin správný (RRRR-MM-DD).",
   "birthdayError": "❌ {error}",
   "birthdayFormatError": "❌ Nesprávný formát narozenin\n\nProsím, zadejte znovu (formát: RRRR-MM-DD):",
@@ -43,11 +43,11 @@ export default {
   "enterYes": "Prosím, zadejte 'ano' pro dokončení testu:",
   "errorRetry": "❌ Došlo k chybě, prosím zadejte znovu.",
   "example": {
-    "birthday": "Například: 1995-06-15"
+    "birthday": "Například: 2000-12-25"
   },
   "gender": {
     "female": "Žena",
-    "label": "• Pohlaví: ${gender}\n",
+    "label": "• Pohlaví: {gender}\n",
     "male": "Muž"
   },
   "gender2": "• Pohlaví: ${updatedUser.gender ===",
@@ -58,7 +58,7 @@ export default {
   "help": "To nám pomůže najít vhodnější chatovací partnery pro vás～\n\n",
   "iHaveRead": "✅ Přečetl/a jsem a souhlasím",
   "info": {
-    "age18": "• Musíte být minimálně 18 let, abyste mohli používat tuto službu.\n- Je nutné poskytnout přesné informace, aby shoda a věštění přinesly dobré výsledky.",
+    "age18": "• Musíte být alespoň 18 let, abyste mohli tento servis používat\n- Pro využití shod a věštění je nutné poskytnout přesné informace pro dobré výsledky.\n\n- Zadejte své narozeniny (např. 2000-12-15)",
     "city": "🌍 Regiona: {city}"
   },
   "languageSelection": "🌐 **Vyberte jazyk**\n\nProsím, vyberte svůj preferovaný jazyk:",
@@ -69,8 +69,8 @@ export default {
   "message": "2. 🚨 Identifikujte podvodné zprávy\n",
   "message2": "• Buďte opatrní na zprávy, které žádají o peníze\n",
   "moreLanguages": "Více jazyků",
-  "nickname": "• Přezdívka: ${updatedUser.nickname}\n",
-  "nickname2": "Skvělé! Vaše uživatelské jméno je: ${nickname}\n\n",
+  "nickname": "• Přezdívka: {updatedUser.nickname}\n",
+  "nickname2": "Skvělé! Vaše uživatelské jméno je: {nickname}\n\n",
   "nicknameError": "❌ {error}\n\nProsím, zadejte znovu svou přezdívku:",
   "nicknameGood": "Skvělé! Vaše uživatelské jméno je: {nickname}\n\n",
   "notCompleted": "⚠️ Nejprve prosím dokončete registrační proces",
@@ -99,7 +99,7 @@ export default {
   "startRegistration": "Zahájit registraci →",
   "stats": "📊 Statistiky",
   "stepAntiFraud": "🛡️ Prosím, klikněte na tlačítko výše pro potvrzení bezpečnostních opatření proti podvodům",
-  "stepBirthday": "📅 Zadejte prosím své datum narození (formát: RRRR-MM-DD, např. 1995-06-15)",
+  "stepBirthday": "📅 Zadejte prosím své datum narození (formát: RRRR-MM-DD, např. 2000-12-25)",
   "stepDefault": "Prosím, dokončete registraci podle pokynů",
   "stepGender": "👤 Prosím, klikněte na tlačítko výše pro výběr vašeho pohlaví",
   "stepLanguageSelection": "🌍 Prosím, klikněte na tlačítko výše pro výběr vašeho jazyka",
@@ -113,7 +113,7 @@ export default {
     "terms_of_service_button": "📋 Podmínky služby"
   },
   "termsOfService": "📋 Uživatelské podmínky\n\n",
-  "text": "potvrdit_narozeniny_${birthday}",
+  "text": "potvrdit_narozeniny_{birthday}",
   "text10": "Například: 1995-06-15\n\n",
   "text11": "🛡️ Tipy na bezpečnost online seznamování\n\n",
   "text12": "📋 Závěrečný krok: Podmínky služby\n\n",
@@ -127,7 +127,7 @@ export default {
   "text2": "💡 Můžete kdykoli použít příkaz /mbti k opakovanému testování nebo úpravám.",
   "text20": "Prosím, vraťte se po dosažení dospělosti!\n\n",
   "text21": "📋 Zásady ochrany soukromí\n",
-  "text3": "potvrdit_pohlaví_${gender}",
+  "text3": "potvrdit_pohlaví_{gender}",
   "text4": "Konečný krok: Přečtěte si a souhlasíte s našimi Podmínkami služby\n\n",
   "text5": "📝 Udělejte si rychlý test (12 otázek, pouze pro informaci)",
   "text6": "• Uživatelovy podmínky: Pokyny k používání této služby\n\n",
@@ -138,12 +138,12 @@ export default {
   "useTelegramNickname": "Použijte přezdívku na Telegramu",
   "viewPrivacyPolicy": "📋 Zobrazit zásady ochrany osobních údajů",
   "viewTermsOfService": "📋 Zobrazit podmínky služby",
-  "vip": "💡 Poskytnutí vašeho krevního typu bude použito pro budoucí funkce shody krevních typů (pouze pro VIP)\n\n",
+  "vip": "💡 Zadejte svou krevní skupinu, kterou lze použít pro budoucí funkce shody krevních skupin (více atributů, astrologická shoda)",
   "warning": {
     "birthday": "⚠️ Datum narození nelze po nastavení změnit. Prosím potvrďte jeho správnost!"
   },
   "welcome": "Vítejte v XunNi！\n\nVyberte prosím svůj jazyk:",
   "yourAge": "Váš věk: {age} let\n",
-  "zodiac": "• Znamení: ${updatedUser.zodiac_sign}\n",
-  "zodiac2": "Znamení zvěrokruhu: ${zodiacSign}\n\n"
+  "zodiac": "• Znamení: {updatedUser.zodiac_sign}\n",
+  "zodiac2": "Znamení zvěrokruhu: {zodiacSign}\n\n"
 };

@@ -11,7 +11,7 @@ export default {
   "settings2": "⚙️ **ترتیبات**\n\n",
   "settings3": "🏠 ترتیبات میں واپس جائیں",
   "settings4": "موجودہ ترتیبات:\n",
-  "text": "• زبان: ${languageName} 🇹🇼\n\n",
+  "text": "• زبان: {languageName} 🇹🇼\n\n",
   "title": "🏠 **مرکزی مینو**",
   "throwReminder": "پیغام کی بوتل کی یاد دہانی",
   "catchReminder": "پیغام کی بوتل اٹھانے کی یاد دہانی",

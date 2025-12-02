@@ -1,7 +1,7 @@
 export default {
   "age": {
-    "daysAgo": "\\${days} dni nazaj",
-    "hoursAgo": "\\${hours} ur nazaj",
+    "daysAgo": "\\{days} dni nazaj",
+    "hoursAgo": "\\{hours} ur nazaj",
     "justNow": "Pred trenutkom"
   },
   "contentHint": "💡 Lahko:\n• Neposredno vnesete nov vsebinski osnutek\n• Uporabite /throw za ponovni zagon\n• Pošljete osnutek za odvrženo sporočilno steklenico",

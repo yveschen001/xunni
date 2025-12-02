@@ -1,7 +1,7 @@
 export default {
-  "age": "• Ikä: ${updatedUser.age} vuotta\n",
-  "age2": "Ikäsi: ${age} vuotta\n",
-  "age3": "Ikä: ${age} vuotta\n",
+  "age": "• Ikä: {updatedUser.age} vuotta\n",
+  "age2": "Ikäsi: {age} vuotta\n",
+  "age3": "Ikä: {age} vuotta\n",
   "ageRestriction": "❌ Anteeksi, sinun on oltava vähintään 18-vuotias voidaksesi käyttää tätä palvelua.\n\n",
   "agreeTerms": "Klikkaa alla olevaa painiketta ilmoittaaksesi, että olet lukenut ja hyväksynyt yllä olevat ehdot.",
   "antiFraud": {
@@ -24,7 +24,7 @@ export default {
   "birthday": "Jos luulet, että tämä on virhe, tarkista, että syntymäpäiväsi muoto on oikea (VVVV-KK-PV).",
   "birthday2": "Ole hyvä ja syötä syntymäpäiväsi uudelleen (muoto: YYYY-MM-DD):",
   "birthday3": "Ole hyvä ja syötä syntymäpäiväsi (muoto: YYYY-MM-DD):",
-  "birthday4": "syntymäpäivä: ${birthday}\n",
+  "birthday4": "syntymäpäivä: {birthday}\n",
   "birthdayCheck": "Jos luulet, että tämä on virhe, tarkista syntymäpäiväsi muoto (VVVV-KK-PV).",
   "birthdayError": "{error}\n\n",
   "birthdayFormatError": "❌ Virheellinen syntymäpäivän muoto\n\nOle hyvä ja syötä uudelleen (muoto: VVVV-KK-PV):",
@@ -43,11 +43,11 @@ export default {
   "enterYes": "Syötä 'kyllä' testin suorittamiseksi:",
   "errorRetry": "❌ Tapahtui virhe, syötä uudelleen.",
   "example": {
-    "birthday": "Esimerkiksi: 1995-06-15"
+    "birthday": "Esimerkiksi: 2000-12-25"
   },
   "gender": {
     "female": "Nainen",
-    "label": "• Sukupuoli: ${gender}\n",
+    "label": "• Sukupuoli: {gender}\n",
     "male": "Mies"
   },
   "gender2": "• Sukupuoli: ${updatedUser.gender ===",
@@ -58,7 +58,7 @@ export default {
   "help": "Tämä auttaa meitä löytämään sinulle sopivampia keskustelukumppaneita～",
   "iHaveRead": "✅ Olen lukenut ja hyväksyn",
   "info": {
-    "age18": "• Sinun on oltava vähintään 18-vuotias voidaksesi käyttää tätä palvelua.\n- Tarkkoja tietoja on annettava, jotta yhteensovitus ja ennustaminen tuottaisivat hyviä tuloksia.",
+    "age18": "• Sinun on oltava vähintään 18-vuotias käyttääksesi tätä palvelua\n- Sovelluksen ja ennustamisen hyödyntämiseksi on annettava tarkkoja tietoja hyvien tulosten saamiseksi.\n\n- Syötä syntymäpäiväsi (esim. 2000-12-15)",
     "city": "🌍 Alue: {city}"
   },
   "languageSelection": "🌐 **Valitse kieli**\n\nValitse toivottu kieli:",
@@ -69,8 +69,8 @@ export default {
   "message": "2. 🚨 Tunnista huijausviestit\n",
   "message2": "• Ole varovainen viestien kanssa, joissa pyydetään rahaa\n",
   "moreLanguages": "Lisää kieliä",
-  "nickname": "• Käyttäjänimi: ${updatedUser.nickname}\n",
-  "nickname2": "{nickname} ${nickname}\n\n",
+  "nickname": "• Käyttäjänimi: {updatedUser.nickname}\n",
+  "nickname2": "{nickname} {nickname}\n\n",
   "nicknameError": "❌ {error}\n\nOle hyvä ja syötä käyttäjänimesi uudelleen:",
   "nicknameGood": "{nickname}\n\n",
   "notCompleted": "⚠️ Ole hyvä ja suorita rekisteröintiprosessi ensin",
@@ -99,7 +99,7 @@ export default {
   "startRegistration": "Aloita rekisteröinti →",
   "stats": "📊 Tilastot",
   "stepAntiFraud": "🛡️ Ole hyvä ja napsauta yllä olevaa painiketta vahvistaaksesi petoksentorjuntakysymyksiä",
-  "stepBirthday": "📅 Ole hyvä ja syötä syntymäpäiväsi (muoto: VVVV-KK-PV, esim. 1995-06-15)",
+  "stepBirthday": "📅 Ole hyvä ja syötä syntymäpäiväsi (muoto: YYYY-MM-DD, esim. 2000-12-25)",
   "stepDefault": "Ole hyvä ja seuraa ohjeita rekisteröinnin loppuunsaattamiseksi",
   "stepGender": "👤 Ole hyvä ja napsauta yllä olevaa painiketta valitaksesi sukupuolesi",
   "stepLanguageSelection": "🌍 Ole hyvä ja napsauta yllä olevaa painiketta valitaksesi kielesi",
@@ -113,7 +113,7 @@ export default {
     "terms_of_service_button": "📋 Käyttöehdot"
   },
   "termsOfService": "📋 Käyttäjän ehdot\n\n",
-  "text": "{birthday} ${birthday}",
+  "text": "{birthday} {birthday}",
   "text10": "Esimerkiksi: 1995-06-15\n\n",
   "text11": "🛡️ Online-deittailun turvallisuusvinkit\n\n",
   "text12": "📋 Viimeinen vaihe: Käyttöehdot\n\n",
@@ -127,7 +127,7 @@ export default {
   "text2": "💡 Voit käyttää /mbti-komentoa milloin tahansa testataksesi tai muokataksesi.",
   "text20": "Palaa takaisin aikuisen iän saavuttamisen jälkeen!\n\n",
   "text21": "📋 Tietosuojakäytäntö\n",
-  "text3": "{gender} ${gender}",
+  "text3": "{gender} {gender}",
   "text4": "Viimeinen vaihe: Lue ja hyväksy käyttöehdot\n\n",
   "text5": "📝 Suorita nopea testi (12 kysymystä, vain viitteeksi)",
   "text6": "• Käyttäjän ehdot: Ohjeet tämän palvelun käyttöön\n\n",
@@ -138,12 +138,12 @@ export default {
   "useTelegramNickname": "Käytä Telegram-lempinimeä",
   "viewPrivacyPolicy": "📋 Näytä tietosuojakäytäntö",
   "viewTermsOfService": "📋 Näytä käyttöehdot",
-  "vip": "💡 Verentyypin antaminen käytetään tulevissa verenryhmämatching-ominaisuuksissa (VIP-exclusiivinen)\n\n",
+  "vip": "💡 Verasta veriryhmäsi syöttäminen voi auttaa tulevissa veriryhmän yhteensovitusominaisuuksissa (lisäksi attribuutteja, astrologista yhteensovitusta)",
   "warning": {
     "birthday": "⚠️ Syntymäpäivää ei voi muokata asettamisen jälkeen, vahvista, että se on oikea!"
   },
   "welcome": "Tervetuloa XunNi:in！\n\nValitse kielesi:",
   "yourAge": "Ikäsi: {age} vuotta\n",
-  "zodiac": "• Horoskooppimerkki: ${updatedUser.zodiac_sign}\n",
-  "zodiac2": "{zodiacSign} ${zodiacSign}\n\n"
+  "zodiac": "• Horoskooppimerkki: {updatedUser.zodiac_sign}\n",
+  "zodiac2": "{zodiacSign} {zodiacSign}\n\n"
 };

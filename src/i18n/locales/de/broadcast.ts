@@ -27,8 +27,8 @@ export default {
   "error": "Fehler: {error}",
   "estimate": {
     "immediate": "Sofort senden (ca. 1-2 Sekunden)",
-    "minutes": "Ungefähr \\${minutes} Minuten",
-    "seconds": "Ungefähr \\${seconds} Sekunden"
+    "minutes": "Ungefähr \\{minutes} Minuten",
+    "seconds": "Ungefähr \\{seconds} Sekunden"
   },
   "estimatedTime": "Geschätzte Zeit: {time}\n\n",
   "example": "**Beispiel:**\n",
@@ -97,7 +97,7 @@ export default {
   "foundStuckBroadcasts": "⚠️ {count} festgefahrene Übertragungen erkannt\n\n",
   "id": "ID: {id}",
   "idMustBeNumber": "❌ Broadcast-ID muss eine Zahl sein",
-  "maxUsersExceeded": "❌ Das aktuelle Broadcast-System unterstützt das Senden an maximal ${max} Benutzer.\n\nZielanzahl der Benutzer: ${current}",
+  "maxUsersExceeded": "❌ Das aktuelle Broadcast-System unterstützt das Senden an maximal {max} Benutzer.\n\nZielanzahl der Benutzer: {current}",
   "messageContent": "Nachrichteninhalt",
   "noPendingBroadcasts": "Aktuell gibt es keine anhängigen oder festgefahrenen Übertragungen.\n\n",
   "noRecords": "📊 Derzeit keine Broadcast-Aufzeichnungen verfügbar",
@@ -151,7 +151,7 @@ export default {
   "targetNonVip": "Nicht-VIP-Benutzer",
   "targetType": "Ziel: {type}\n",
   "targetVip": "VIP-Benutzer",
-  "tooLong": "Die Übertragungsnachricht darf ${max} Zeichen nicht überschreiten (derzeit ${current} Zeichen)",
+  "tooLong": "Die Übertragungsnachricht darf {max} Zeichen nicht überschreiten (derzeit {current} Zeichen)",
   "upgradeRequired": "Großangelegte Übertragungen erfordern ein Upgrade der Systemarchitektur, bitte beachten Sie BROADCAST_SYSTEM_REDESIGN.md",
   "usageError": "❌ Falsche Nutzung\n\n",
   "userCount": "Benutzeranzahl: {count} Personen\n",

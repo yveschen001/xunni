@@ -1,5 +1,5 @@
 export default {
-  "nickname": "👤 Biệt danh: ${ownerMaskedNickname}",
+  "nickname": "👤 Biệt danh: {ownerMaskedNickname}",
   "short19": "✏️ Chỉnh sửa Hồ sơ",
   "menuTitle": "Chỉnh sửa Hồ sơ",
   "nicknameButton": "✏️ Chỉnh sửa Tên hiển thị",

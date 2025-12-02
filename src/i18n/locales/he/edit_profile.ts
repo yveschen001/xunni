@@ -1,5 +1,5 @@
 export default {
-  "nickname": "👤 כינוי: ${ownerMaskedNickname}",
+  "nickname": "👤 כינוי: {ownerMaskedNickname}",
   "short19": "✏️ ערוך פרופיל",
   "menuTitle": "ערוך פרופיל",
   "nicknameButton": "✏️ ערוך שם משתמש",

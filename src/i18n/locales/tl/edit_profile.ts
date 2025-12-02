@@ -1,5 +1,5 @@
 export default {
-  "nickname": "👤 Palayaw: \\\\\\\\\\\\\\${ownerMaskedNickname}",
+  "nickname": "👤 Palayaw: \\\\\\\\\\\\\\{ownerMaskedNickname}",
   "short19": "✏️ I-edit ang Profile",
   "menuTitle": "I-edit ang Profile",
   "nicknameButton": "✏️ I-edit ang Palayaw",

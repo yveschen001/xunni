@@ -1,7 +1,7 @@
 export default {
-  "age": "• Edad: ${updatedUser.age} años\n",
-  "age2": "Tu edad: ${age} años\n",
-  "age3": "Edad: ${age} años\n",
+  "age": "• Edad: {updatedUser.age} años\n",
+  "age2": "Tu edad: {age} años\n",
+  "age3": "Edad: {age} años\n",
   "ageRestriction": "❌ Lo sentimos, debes tener al menos 18 años para usar este servicio.\n\n",
   "agreeTerms": "Haz clic en el botón de abajo para indicar que has leído y aceptas los términos anteriores.",
   "antiFraud": {
@@ -24,7 +24,7 @@ export default {
   "birthday": "Si crees que esto es un error, por favor verifica si el formato de tu cumpleaños es correcto (AAAA-MM-DD).",
   "birthday2": "Por favor, vuelve a ingresar tu fecha de nacimiento (formato: AAAA-MM-DD):\n\n",
   "birthday3": "Por favor, ingresa tu fecha de nacimiento (formato: AAAA-MM-DD):\n\n",
-  "birthday4": "Cumpleaños: ${birthday}\n",
+  "birthday4": "Cumpleaños: {birthday}\n",
   "birthdayCheck": "Si crees que esto es un error, por favor verifica si el formato de tu cumpleaños es correcto (YYYY-MM-DD).",
   "birthdayError": "❌ {error}",
   "birthdayFormatError": "❌ Formato de cumpleaños no válido\n\nPor favor vuelve a ingresar (formato: YYYY-MM-DD):",
@@ -43,11 +43,11 @@ export default {
   "enterYes": "Por favor ingresa 'sí' para completar la prueba:",
   "errorRetry": "❌ Ocurrió un error, por favor vuelve a ingresar.",
   "example": {
-    "birthday": "Por ejemplo: 1995-06-15"
+    "birthday": "Por ejemplo: 2000-12-25"
   },
   "gender": {
     "female": "Femenino",
-    "label": "• Género: ${gender}\n",
+    "label": "• Género: {gender}\n",
     "male": "Masculino"
   },
   "gender2": "• Género: ${updatedUser.gender ===",
@@ -58,7 +58,7 @@ export default {
   "help": "Esto nos ayudará a encontrar mejores compañeros de chat para ti～\n\n",
   "iHaveRead": "✅ He leído y estoy de acuerdo",
   "info": {
-    "age18": "• Debes tener al menos 18 años para utilizar este servicio.\n- Se debe proporcionar información precisa para que la coincidencia y la adivinación den buenos resultados.",
+    "age18": "• Debes tener al menos 18 años para utilizar este servicio\n- Para usar la coincidencia y la adivinación, se debe proporcionar información precisa para obtener buenos resultados.\n\n- Ingresa tu fecha de nacimiento (p. ej., 2000-12-15)",
     "city": "🌍 Región: {city}"
   },
   "languageSelection": "🌐 **Seleccionar idioma**\n\nPor favor selecciona tu idioma preferido:",
@@ -69,8 +69,8 @@ export default {
   "message": "2. 🚨 Identificar mensajes de estafa\n",
   "message2": "• Ten cuidado con los mensajes que piden dinero\n",
   "moreLanguages": "Más idiomas",
-  "nickname": "• Apodo: ${updatedUser.nickname}\n",
-  "nickname2": "¡Genial! Tu apodo es: ${nickname}\n\n",
+  "nickname": "• Apodo: {updatedUser.nickname}\n",
+  "nickname2": "¡Genial! Tu apodo es: {nickname}\n\n",
   "nicknameError": "❌ {error}\n\nPor favor vuelve a ingresar tu apodo:",
   "nicknameGood": "¡Genial! Tu apodo es: {nickname}\n\n",
   "notCompleted": "⚠️ Por favor completa primero el proceso de registro",
@@ -99,7 +99,7 @@ export default {
   "startRegistration": "Iniciar Registro →",
   "stats": "📊 Estadísticas",
   "stepAntiFraud": "🛡️ Por favor, haz clic en el botón de arriba para confirmar asuntos de seguridad anti-fraude",
-  "stepBirthday": "📅 Por favor, ingresa tu fecha de cumpleaños (formato: AAAA-MM-DD, ej.: 1995-06-15)",
+  "stepBirthday": "📅 Por favor, ingresa tu fecha de nacimiento (formato: AAAA-MM-DD, p. ej., 2000-12-25)",
   "stepDefault": "Por favor, sigue las indicaciones para completar el registro",
   "stepGender": "👤 Por favor, haz clic en el botón de arriba para seleccionar tu género",
   "stepLanguageSelection": "🌍 Por favor, haz clic en el botón de arriba para seleccionar tu idioma",
@@ -113,7 +113,7 @@ export default {
     "terms_of_service_button": "📋 Términos de Servicio"
   },
   "termsOfService": "📋 Términos del usuario\n\n",
-  "text": "confirma_cumpleaños_${birthday}",
+  "text": "confirma_cumpleaños_{birthday}",
   "text10": "Por ejemplo: 1995-06-15\n\n",
   "text11": "🛡️ Consejos de seguridad para citas en línea\n\n",
   "text12": "📋 Paso final: Términos de Servicio\n\n",
@@ -127,7 +127,7 @@ export default {
   "text2": "💡 Puedes utilizar el comando /mbti en cualquier momento para volver a probar o modificar.",
   "text20": "¡Por favor regresa después de alcanzar la mayoría de edad!\n\n",
   "text21": "📋 Política de Privacidad\n",
-  "text3": "género_confirm_${gender}",
+  "text3": "género_confirm_{gender}",
   "text4": "Paso final: Por favor lee y acepta nuestros Términos de Servicio\n\n",
   "text5": "📝 Realiza una prueba rápida (12 preguntas, solo para referencia)",
   "text6": "• Términos del usuario: Directrices para usar este servicio\n\n",
@@ -138,12 +138,12 @@ export default {
   "useTelegramNickname": "Usa el apodo de Telegram",
   "viewPrivacyPolicy": "📋 Ver Política de Privacidad",
   "viewTermsOfService": "📋 Ver Términos de Servicio",
-  "vip": "💡 Proporcionar tu tipo de sangre se utilizará para futuras funciones de emparejamiento de tipo de sangre (exclusivo para VIP)\n\n",
+  "vip": "💡 Ingresar tu grupo sanguíneo puede ser utilizado para futuras funciones de emparejamiento de grupos sanguíneos (más atributos, emparejamiento astrológico)",
   "warning": {
     "birthday": "⚠️ La fecha de nacimiento no se puede modificar después de establecerla, ¡por favor confirma que es correcta!"
   },
   "welcome": "¡Bienvenido a XunNi!\n\nPor favor selecciona tu idioma:",
   "yourAge": "Tu edad: {age} años\n",
-  "zodiac": "• Signo del Zodiaco: ${updatedUser.zodiac_sign}\n",
-  "zodiac2": "Signo del zodiaco: ${zodiacSign}\n\n"
+  "zodiac": "• Signo del Zodiaco: {updatedUser.zodiac_sign}\n",
+  "zodiac2": "Signo del zodiaco: {zodiacSign}\n\n"
 };

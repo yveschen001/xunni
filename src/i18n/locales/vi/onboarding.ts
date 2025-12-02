@@ -1,7 +1,7 @@
 export default {
-  "age": "• Tuổi: ${updatedUser.age} tuổi\n",
-  "age2": "Tuổi của bạn: ${age} tuổi\n",
-  "age3": "Tuổi: ${age} tuổi\n",
+  "age": "• Tuổi: {updatedUser.age} tuổi\n",
+  "age2": "Tuổi của bạn: {age} tuổi\n",
+  "age3": "Tuổi: {age} tuổi\n",
   "ageRestriction": "❌ Chúng tôi xin lỗi, bạn phải ít nhất 18 tuổi để sử dụng dịch vụ này.\n\n",
   "agreeTerms": "Nhấn nút bên dưới để xác nhận rằng bạn đã đọc và đồng ý với các điều khoản trên.",
   "antiFraud": {
@@ -24,7 +24,7 @@ export default {
   "birthday": "Nếu bạn nghĩ đây là sai lầm, vui lòng kiểm tra xem định dạng ngày sinh của bạn có chính xác không (YYYY-MM-DD).",
   "birthday2": "Vui lòng nhập lại ngày sinh của bạn (định dạng: YYYY-MM-DD):\n\n",
   "birthday3": "Vui lòng nhập ngày sinh của bạn (định dạng: YYYY-MM-DD):\n\n",
-  "birthday4": "Ngày sinh: ${birthday}\n",
+  "birthday4": "Ngày sinh: {birthday}\n",
   "birthdayCheck": "Nếu bạn nghĩ đây là sai lầm, vui lòng kiểm tra xem định dạng ngày sinh của bạn có chính xác không (YYYY-MM-DD).",
   "birthdayError": "❌ {error}",
   "birthdayFormatError": "❌ Định dạng ngày sinh không chính xác\n\nVui lòng nhập lại (định dạng: YYYY-MM-DD):",
@@ -43,11 +43,11 @@ export default {
   "enterYes": "Vui lòng nhập 'yes' để hoàn thành bài kiểm tra:",
   "errorRetry": "❌ Đã xảy ra lỗi, vui lòng nhập lại.",
   "example": {
-    "birthday": "Ví dụ: 1995-06-15"
+    "birthday": "Ví dụ: 2000-12-25"
   },
   "gender": {
     "female": "Nữ",
-    "label": "• Giới tính: ${gender}\n",
+    "label": "• Giới tính: {gender}\n",
     "male": "Nam"
   },
   "gender2": "• Giới tính: ${updatedUser.gender ===",
@@ -58,7 +58,7 @@ export default {
   "help": "Điều này sẽ giúp chúng tôi tìm kiếm những người bạn trò chuyện phù hợp hơn với bạn～\n\n",
   "iHaveRead": "✅ Tôi đã đọc và đồng ý",
   "info": {
-    "age18": "• Bạn phải ít nhất 18 tuổi để sử dụng dịch vụ này.\n- Thông tin chính xác phải được cung cấp để việc ghép đôi và bói toán đạt được kết quả tốt.",
+    "age18": "• Bạn phải ít nhất 18 tuổi để sử dụng dịch vụ này\n- Để sử dụng tính năng ghép đôi và xem vận mệnh, cần cung cấp thông tin chính xác để đạt được kết quả tốt.\n\n- Nhập ngày sinh của bạn (ví dụ: 2000-12-15)",
     "city": "🌍 Khu vực: {city}"
   },
   "languageSelection": "🌐 **Chọn Ngôn Ngữ**\n\nVui lòng chọn ngôn ngữ ưa thích của bạn:",
@@ -69,8 +69,8 @@ export default {
   "message": "2. 🚨 Nhận biết tin nhắn lừa đảo\n",
   "message2": "• Cảnh giác với những tin nhắn yêu cầu tiền\n",
   "moreLanguages": "Nhiều ngôn ngữ hơn",
-  "nickname": "• Biệt danh: ${updatedUser.nickname}\n",
-  "nickname2": "Tuyệt vời! Biệt danh của bạn là: ${nickname}\n\n",
+  "nickname": "• Biệt danh: {updatedUser.nickname}\n",
+  "nickname2": "Tuyệt vời! Biệt danh của bạn là: {nickname}\n\n",
   "nicknameError": "❌ {error}\n\nVui lòng nhập lại biệt danh của bạn:",
   "nicknameGood": "Tuyệt vời! Biệt danh của bạn là: {nickname}\n\n",
   "notCompleted": "⚠️ Vui lòng hoàn tất quy trình đăng ký trước",
@@ -99,7 +99,7 @@ export default {
   "startRegistration": "Bắt đầu Đăng ký →",
   "stats": "📊 Thống kê",
   "stepAntiFraud": "🛡️ Vui lòng nhấp vào nút trên để xác nhận các vấn đề an toàn chống gian lận",
-  "stepBirthday": "📅 Vui lòng nhập ngày sinh của bạn (định dạng: YYYY-MM-DD, ví dụ: 1995-06-15)",
+  "stepBirthday": "📅 Vui lòng nhập ngày sinh của bạn (định dạng: YYYY-MM-DD, ví dụ: 2000-12-25)",
   "stepDefault": "Vui lòng hoàn thành đăng ký theo hướng dẫn",
   "stepGender": "👤 Vui lòng nhấp vào nút trên để chọn giới tính của bạn",
   "stepLanguageSelection": "🌍 Vui lòng nhấp vào nút trên để chọn ngôn ngữ của bạn",
@@ -113,7 +113,7 @@ export default {
     "terms_of_service_button": "📋 Điều khoản Dịch vụ"
   },
   "termsOfService": "📋 Điều khoản người dùng\n\n",
-  "text": "xác nhận sinh nhật ${birthday}",
+  "text": "xác nhận sinh nhật {birthday}",
   "text10": "Ví dụ: 1995-06-15\n\n",
   "text11": "🛡️ Mẹo an toàn khi hẹn hò trực tuyến\n\n",
   "text12": "📋 Bước cuối: Điều khoản dịch vụ\n\n",
@@ -127,7 +127,7 @@ export default {
   "text2": "💡 Bạn có thể sử dụng lệnh /mbti bất cứ lúc nào để làm lại bài kiểm tra hoặc chỉnh sửa nó.",
   "text20": "Xin vui lòng quay lại sau khi trở thành người trưởng thành!\n\n",
   "text21": "📋 Chính sách Bảo mật\n",
-  "text3": "xác nhận giới tính ${gender}",
+  "text3": "xác nhận giới tính {gender}",
   "text4": "Bước cuối: Vui lòng đọc và đồng ý với Điều khoản Dịch vụ của chúng tôi\n\n",
   "text5": "📝 Làm một bài kiểm tra nhanh (12 câu hỏi, chỉ để tham khảo)",
   "text6": "• Điều khoản người dùng: Hướng dẫn sử dụng dịch vụ này\n\n",
@@ -138,12 +138,12 @@ export default {
   "useTelegramNickname": "Sử dụng bí danh Telegram",
   "viewPrivacyPolicy": "📋 Xem Chính sách Bảo mật",
   "viewTermsOfService": "📋 Xem Điều khoản Dịch vụ",
-  "vip": "💡 Cung cấp nhóm máu của bạn sẽ được sử dụng cho các tính năng ghép nhóm máu trong tương lai (dành riêng cho VIP)\n\n",
+  "vip": "💡 Nhập nhóm máu của bạn có thể được sử dụng cho các tính năng ghép nhóm máu trong tương lai (nhiều thuộc tính, ghép cung hoàng đạo)",
   "warning": {
     "birthday": "⚠️ Ngày sinh không thể sửa đổi sau khi thiết lập, vui lòng xác nhận rằng nó là đúng!"
   },
   "welcome": "Chào mừng đến với XunNi!\n\nVui lòng chọn ngôn ngữ của bạn:",
   "yourAge": "Tuổi của bạn: {age} tuổi\n",
-  "zodiac": "• Cung hoàng đạo: ${updatedUser.zodiac_sign}\n",
-  "zodiac2": "Cung hoàng đạo: ${zodiacSign}\n\n"
+  "zodiac": "• Cung hoàng đạo: {updatedUser.zodiac_sign}\n",
+  "zodiac2": "Cung hoàng đạo: {zodiacSign}\n\n"
 };

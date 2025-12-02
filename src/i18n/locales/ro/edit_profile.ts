@@ -1,5 +1,5 @@
 export default {
-  "nickname": "👤 Porecla: ${ownerMaskedNickname}",
+  "nickname": "👤 Porecla: {ownerMaskedNickname}",
   "short19": "✏️ Editează profilul",
   "menuTitle": "Editează Profilul",
   "nicknameButton": "✏️ Editează Pseudonimul",

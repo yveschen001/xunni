@@ -27,8 +27,8 @@ export default {
   "error": "Error: {error}",
   "estimate": {
     "immediate": "Send Immediately (Approx. 1-2 seconds)",
-    "minutes": "About ${minutes} minutes",
-    "seconds": "About ${seconds} seconds"
+    "minutes": "About {minutes} minutes",
+    "seconds": "About {seconds} seconds"
   },
   "estimatedTime": "Estimated Time: {time}\n\n",
   "example": "**Example:**\n",
@@ -97,7 +97,7 @@ export default {
   "foundStuckBroadcasts": "⚠️ Detected {count} stuck broadcasts\n\n",
   "id": "ID: {id}",
   "idMustBeNumber": "❌ Broadcast ID must be a number",
-  "maxUsersExceeded": "❌ The current broadcast system only supports broadcasts to ${max} users or less.\n\nTarget user count: ${current}",
+  "maxUsersExceeded": "❌ The current broadcast system only supports broadcasts to {max} users or less.\n\nTarget user count: {current}",
   "messageContent": "Message content",
   "noPendingBroadcasts": "Currently, there are no pending or stuck broadcasts.\n\n",
   "noRecords": "📊 No broadcast records currently",
@@ -151,7 +151,7 @@ export default {
   "targetNonVip": "Non-VIP users",
   "targetType": "Target: {type}\n",
   "targetVip": "VIP users",
-  "tooLong": "Message bottle cannot exceed ${max} characters (currently ${current} characters)",
+  "tooLong": "Message bottle cannot exceed {max} characters (currently {current} characters)",
   "upgradeRequired": "Large-scale broadcasting requires system architecture upgrade, please refer to BROADCAST_SYSTEM_REDESIGN.md",
   "usageError": "❌ Incorrect usage\n\n",
   "userCount": "User Count: {count} people\n",

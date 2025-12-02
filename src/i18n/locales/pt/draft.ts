@@ -1,7 +1,7 @@
 export default {
   "age": {
-    "daysAgo": "\\${days} dias atrás",
-    "hoursAgo": "\\${hours} horas atrás",
+    "daysAgo": "\\{days} dias atrás",
+    "hoursAgo": "\\{hours} horas atrás",
     "justNow": "Agora mesmo"
   },
   "contentHint": "💡 Você pode:\n• Inserir novo conteúdo para substituir o rascunho diretamente\n• Usar /throw para reiniciar\n• Enviar conteúdo do rascunho para jogar uma garrafa de mensagem",

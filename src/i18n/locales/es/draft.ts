@@ -1,7 +1,7 @@
 export default {
   "age": {
-    "daysAgo": "\\${days} días atrás",
-    "hoursAgo": "\\${hours} horas atrás",
+    "daysAgo": "\\{days} días atrás",
+    "hoursAgo": "\\{hours} horas atrás",
     "justNow": "Ahora mismo"
   },
   "contentHint": "💡 Puedes:\n• Ingresar nuevo contenido para reemplazar el borrador directamente\n• Usar /throw para reiniciar\n• Enviar contenido del borrador para lanzar una botella de mensajes",

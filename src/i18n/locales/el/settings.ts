@@ -11,7 +11,7 @@ export default {
   "settings2": "⚙️ **Ρυθμίσεις**\n\n",
   "settings3": "🏠 Επιστροφή στις Ρυθμίσεις",
   "settings4": "Τρέχουσες ρυθμίσεις:\n",
-  "text": "• Γλώσσα：${languageName} 🇹🇼\n\n",
+  "text": "• Γλώσσα：{languageName} 🇹🇼\n\n",
   "title": "🏠 **Κύριο Μενού**",
   "throwReminder": "Υπενθύμιση μπουκαλιού μηνύματος",
   "catchReminder": "Υπενθύμιση παραλαβής μπουκαλιού μηνύματος",

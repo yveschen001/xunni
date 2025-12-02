@@ -2,7 +2,7 @@ export default {
   "ad": "➡️ Další reklama",
   "back": "⬅️ Zpět / Zpět",
   "backToVip": "💎 Návrat do VIP menu",
-  "bottle": "📺 Sledujte reklamy pro získání více láhví se zprávou 🎁 (${remaining}/20)",
+  "bottle": "📺 Sledujte reklamy pro získání více láhví se zprávou 🎁 ({remaining}/20)",
   "bottle2": "💎 Upgradujte na VIP pro více láhví se zprávou",
   "bottle3": "🌊 Hoďte láhev se zprávou",
   "bottle4": "🎣 Vezměte si láhev se zprávou",

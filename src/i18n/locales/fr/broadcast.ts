@@ -27,8 +27,8 @@ export default {
   "error": "Erreur : {error}",
   "estimate": {
     "immediate": "Envoyer immédiatement (environ 1-2 secondes)",
-    "minutes": "Environ \\${minutes} minutes",
-    "seconds": "Environ \\${seconds} secondes"
+    "minutes": "Environ \\{minutes} minutes",
+    "seconds": "Environ \\{seconds} secondes"
   },
   "estimatedTime": "Temps estimé : {time}\n\n",
   "example": "**Exemple :**\n",
@@ -97,7 +97,7 @@ export default {
   "foundStuckBroadcasts": "⚠️ Détecté {count} diffusions bloquées\n\n",
   "id": "ID : {id}\n",
   "idMustBeNumber": "❌ L'ID de diffusion doit être un nombre",
-  "maxUsersExceeded": "❌ Le système de diffusion actuel prend en charge un maximum de ${max} utilisateurs.\n\nNombre cible d'utilisateurs : ${current}",
+  "maxUsersExceeded": "❌ Le système de diffusion actuel prend en charge un maximum de {max} utilisateurs.\n\nNombre cible d'utilisateurs : {current}",
   "messageContent": "Contenu du message",
   "noPendingBroadcasts": "Actuellement, il n'y a aucune diffusion en attente ou bloquée.\n\n",
   "noRecords": "📊 Aucun enregistrement de diffusion disponible actuellement",
@@ -151,7 +151,7 @@ export default {
   "targetNonVip": "Utilisateurs non VIP",
   "targetType": "Cible : {type}\n",
   "targetVip": "Utilisateurs VIP",
-  "tooLong": "Le message de diffusion ne peut pas dépasser ${max} caractères (actuellement ${current} caractères)",
+  "tooLong": "Le message de diffusion ne peut pas dépasser {max} caractères (actuellement {current} caractères)",
   "upgradeRequired": "Les diffusions à grande échelle nécessitent une mise à niveau de l'architecture système, veuillez vous référer à BROADCAST_SYSTEM_REDESIGN.md",
   "usageError": "❌ Utilisation incorrecte\n\n",
   "userCount": "Nombre d'utilisateurs : {count} personnes\n",

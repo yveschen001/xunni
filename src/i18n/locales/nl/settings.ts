@@ -11,7 +11,7 @@ export default {
   "settings2": "⚙️ **Instellingen**\n\n",
   "settings3": "🏠 Terug naar Instellingen",
   "settings4": "Huidige instellingen:\n",
-  "text": "• Taal: ${languageName} 🇹🇼\n\n",
+  "text": "• Taal: {languageName} 🇹🇼\n\n",
   "title": "🏠 **Hoofdmenu**",
   "throwReminder": "Herinnering voor berichtfles",
   "catchReminder": "Herinnering voor ophalen van berichtfles",

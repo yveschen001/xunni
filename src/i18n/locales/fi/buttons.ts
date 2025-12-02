@@ -2,7 +2,7 @@ export default {
   "ad": "➡️ Seuraava ilmoitus",
   "back": "⬅️ Takaisin / Paluu",
   "backToVip": "💎 Palaa VIP-valikkoon",
-  "bottle": "📺 Katso mainoksia saadaksesi lisää pulloposteja 🎁 (${remaining}/20)",
+  "bottle": "📺 Katso mainoksia saadaksesi lisää pulloposteja 🎁 ({remaining}/20)",
   "bottle2": "💎 Upgrade to VIP for more message bottles",
   "bottle3": "🌊 Heitä viestipullo",
   "bottle4": "🎣 Nosta viestipullo",

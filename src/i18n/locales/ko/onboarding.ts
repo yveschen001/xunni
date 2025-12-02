@@ -1,7 +1,7 @@
 export default {
-  "age": "• 나이: ${updatedUser.age}세\n",
-  "age2": "당신의 나이: ${age}세\n",
-  "age3": "나이: ${age}세\n",
+  "age": "• 나이: {updatedUser.age}세\n",
+  "age2": "당신의 나이: {age}세\n",
+  "age3": "나이: {age}세\n",
   "ageRestriction": "❌ 죄송합니다. 이 서비스를 사용하려면 18세 이상이어야 합니다.\n\n",
   "agreeTerms": "아래 버튼을 클릭하여 위의 약관을 읽고 동의함을 표시하세요.",
   "antiFraud": {
@@ -24,7 +24,7 @@ export default {
   "birthday": "이것이 오류라고 생각하신다면, 생일 형식이 올바른지 확인해 주세요 (YYYY-MM-DD).",
   "birthday2": "생년월일을 다시 입력하세요 (형식: YYYY-MM-DD):\n\n",
   "birthday3": "생년월일을 입력하세요 (형식: YYYY-MM-DD):\n\n",
-  "birthday4": "생일: ${birthday}\n",
+  "birthday4": "생일: {birthday}\n",
   "birthdayCheck": "이 정보가 올바르지 않다고 생각되면 생일 형식이 올바른지 확인해 주세요 (YYYY-MM-DD).",
   "birthdayError": "{error}",
   "birthdayFormatError": "❌ 잘못된 생일 형식\n\n다시 입력해 주세요 (형식: YYYY-MM-DD):",
@@ -43,11 +43,11 @@ export default {
   "enterYes": "테스트를 완료하려면 'yes'를 입력해 주세요:",
   "errorRetry": "❌ 오류가 발생했습니다. 다시 입력해 주세요.",
   "example": {
-    "birthday": "예: 1995-06-15"
+    "birthday": "예: 2000-12-25"
   },
   "gender": {
     "female": "여성",
-    "label": "• 성별: ${gender}\n",
+    "label": "• 성별: {gender}\n",
     "male": "남성"
   },
   "gender2": "• 성별: ${updatedUser.gender ===",
@@ -58,7 +58,7 @@ export default {
   "help": "이것은 더 적합한 채팅 파트너를 찾는 데 도움이 됩니다～\n\n",
   "iHaveRead": "✅ 저는 읽고 동의합니다",
   "info": {
-    "age18": "• 이 서비스를 사용하려면 최소 18세 이상이어야 합니다.\n- 매칭 및 점술이 좋은 결과를 낳기 위해서는 정확한 정보를 제공해야 합니다.",
+    "age18": "• 이 서비스를 이용하려면 최소 18세 이상이어야 합니다.\n- 매칭 및 점쟁이를 이용하려면 좋은 결과를 위해 정확한 정보를 제공해야 합니다.\n\n- 생년월일을 입력하세요 (예: 2000-12-15)",
     "city": "🌍 지역: {city}"
   },
   "languageSelection": "🌐 **언어 선택**\n\n선호하는 언어를 선택해 주세요:",
@@ -69,8 +69,8 @@ export default {
   "message": "2. 🚨 사기 메시지 식별하기\n",
   "message2": "• 돈을 요청하는 메시지에 주의하십시오\n",
   "moreLanguages": "더 많은 언어",
-  "nickname": "• 닉네임: ${updatedUser.nickname}\n",
-  "nickname2": "좋습니다! 당신의 닉네임은: ${nickname}\n\n",
+  "nickname": "• 닉네임: {updatedUser.nickname}\n",
+  "nickname2": "좋습니다! 당신의 닉네임은: {nickname}\n\n",
   "nicknameError": "❌ {error}\n\n닉네임을 다시 입력해 주세요:",
   "nicknameGood": "좋습니다! 당신의 닉네임은: {nickname}\n\n",
   "notCompleted": "⚠️ 먼저 회원 가입 절차를 완료해주세요.",
@@ -99,7 +99,7 @@ export default {
   "startRegistration": "등록 시작 →",
   "stats": "📊 통계",
   "stepAntiFraud": "🛡️ 위의 버튼을 클릭하여 사기 방지 안전 항목을 확인해 주세요",
-  "stepBirthday": "📅 생년월일을 입력해 주세요 (형식: YYYY-MM-DD, 예: 1995-06-15)",
+  "stepBirthday": "📅 생일을 입력해 주세요 (형식: YYYY-MM-DD, 예: 2000-12-25)",
   "stepDefault": "안내에 따라 등록을 완료해 주세요",
   "stepGender": "👤 위의 버튼을 클릭하여 성별을 선택해 주세요",
   "stepLanguageSelection": "🌍 위의 버튼을 클릭하여 언어를 선택해 주세요",
@@ -113,7 +113,7 @@ export default {
     "terms_of_service_button": "📋 서비스 약관"
   },
   "termsOfService": "📋 사용자 약관\n\n",
-  "text": "생일을 확인하세요: ${birthday}",
+  "text": "생일을 확인하세요: {birthday}",
   "text10": "예: 1995-06-15\n\n",
   "text11": "🛡️ 온라인 데이팅 안전 수칙\n\n",
   "text12": "📋 마지막 단계: 서비스 약관\n\n",
@@ -127,7 +127,7 @@ export default {
   "text2": "💡 언제든지 /mbti 명령어를 사용하여 테스트를 다시 받거나 수정할 수 있습니다.",
   "text20": "성년이 된 후에 돌아와 주세요!\n\n",
   "text21": "📋 개인정보처리방침\n",
-  "text3": "성별을 확인하세요: ${gender}",
+  "text3": "성별을 확인하세요: {gender}",
   "text4": "마지막 단계: 서비스 약관을 읽고 동의해 주세요\n\n",
   "text5": "📝 빠른 테스트를 진행하세요 (12문항, 참고용)",
   "text6": "• 사용자 약관: 이 서비스를 사용하는 가이드라인\n\n",
@@ -138,12 +138,12 @@ export default {
   "useTelegramNickname": "텔레그램 닉네임을 사용하세요",
   "viewPrivacyPolicy": "📋 개인정보 처리방침 보기",
   "viewTermsOfService": "📋 서비스 약관 보기",
-  "vip": "💡 혈액형을 제공하면 향후 혈액형 매칭 기능에 사용됩니다 (VIP 전용)\n\n",
+  "vip": "💡 혈액형을 입력하면 향후 혈액형 일치 기능(추가 속성, 별자리 일치 등)에 사용될 수 있습니다.",
   "warning": {
     "birthday": "⚠️ 생년월일은 설정 후 수정할 수 없습니다. 정확한지 확인하세요!"
   },
   "welcome": "XunNi에 오신 것을 환영합니다!\n\n언어를 선택해 주세요:",
   "yourAge": "당신의 나이: {age}세\n",
-  "zodiac": "• 별자리: ${updatedUser.zodiac_sign}\n",
-  "zodiac2": "별자리: ${zodiacSign}\n\n"
+  "zodiac": "• 별자리: {updatedUser.zodiac_sign}\n",
+  "zodiac2": "별자리: {zodiacSign}\n\n"
 };

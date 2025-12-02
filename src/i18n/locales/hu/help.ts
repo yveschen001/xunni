@@ -60,7 +60,7 @@ export default {
   "profile": "/edit_profile - Profil szerkesztése\n",
   "profile2": "/profile - Profil megtekintése\n",
   "profile3": "👤 **Profil**\n",
-  "quota": "• Barátok meghívása növelheti a kvótát (max 10/100)\n",
+  "quota": "🔢 Napi Magas Kvóta\n• Kezdj napi 30 üzenetpalackkal (csak 10 a normál felhasználóknak).\n• Barátok meghívása tartósan növelheti a kvótádat, max. 100-ra!\n• Napi 100 csevegési üzenet korlát, csevegj korlátok nélkül.",
   "quota2": "• Napi 30 message bottle kvóta\n",
   "register": "/start - Kezd el használni / Folytasd a regisztrációt\n",
   "report": "/report - Jelentsd a helytelen tartalmat\n",

@@ -11,7 +11,7 @@ export default {
   "settings2": "⚙️ **Mga Setting**\n\n",
   "settings3": "🏠 Bumalik sa Mga Seting",
   "settings4": "Kasalukuyang mga Seting:\n",
-  "text": "• Wika：${languageName} 🇹🇼\n\n",
+  "text": "• Wika：{languageName} 🇹🇼\n\n",
   "title": "🏠 **Pangunahing Menu**",
   "throwReminder": "Paalaala sa bote ng mensahe",
   "catchReminder": "Paalaala sa pagkuha ng bote ng mensahe",

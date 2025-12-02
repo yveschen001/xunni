@@ -71,7 +71,7 @@ export default {
   "quotaDisplayFree": "🔮 ボトルメール：{total} (今週の無料：{weekly}/1 | 追加：{additional})",
   "profileDetails": "👤 {gender} {blood} | 🎂 {birthday} | {zodiac} | 🧠 {mbti}",
   "getMore": "もっとボトルメールを取得する",
-  "getMoreInfo": "🔮 *ボトルメールを取得する方法？*\n\n1. **週ごとの無料**：通常ユーザーは週に1つ、VIPは1日1つ。\n2. **紹介報酬**：友達を招待し、彼らが他の友達を成功裏に招待すると、あなたは報酬を受け取ります（友達の友達）。\n3. **ボトルメール報酬**：送信したボトルメールが10本ごとに、1つのボトルメールを受け取ります。\n4. **直接購入 (🔥 限定タイム20%割引)**：\n • 小パック {smallAmount} - ~{originalSmallPrice} 星~ {smallPrice} 星\n • 大パック {largeAmount} - ~{originalLargePrice} 星~ {largePrice} 星",
+  "getMoreInfo": "🔮 *ボトルメールの取得方法は？*\n\n1. **週ごとの無料**: 通常ユーザーは週に1本、VIPは1日1本取得できます。\n2. **招待報酬**: 友達を招待すると報酬を受け取り、その友達がさらに別の友達を招待すると、最大1本のボトルメールが報酬としてもらえます（24時間以内）。\n3. **メッセージボトル報酬**: 送信したメッセージボトル10本ごとに、1本のボトルメールを受け取ります。（24時間以内、最大1本のボトルメール）\n4. **直接購入 (🔥 限定20%オフ)**:\n • 小パッケージ {smallAmount} - ~{originalSmallPrice} スター~ {smallPrice} スター\n • 大パッケージ {largeAmount} - ~{originalLargePrice} スター~ {largePrice} スター",
   "buySmall": "🔥 特別価格 {price} 星 (アイテム {amount} 点購入)",
   "buyLarge": "🔥 特別価格 {price} 星 (アイテム {amount} 点購入)",
   "invoiceTitle": "{amount} 本のボトルメールを購入する",

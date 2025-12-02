@@ -1,7 +1,7 @@
 export default {
-  "age": "• Mosha: ${updatedUser.age} vjeç\n",
-  "age2": "Mosha juaj: ${age} vjeç\n",
-  "age3": "Mosha: ${age} vjeç\n",
+  "age": "• Mosha: {updatedUser.age} vjeç\n",
+  "age2": "Mosha juaj: {age} vjeç\n",
+  "age3": "Mosha: {age} vjeç\n",
   "ageRestriction": "❌ Na vjen keq, duhet të jeni të paktën 18 vjeç për të përdorur këtë shërbim.\n\n",
   "agreeTerms": "Klikoni butonin më poshtë për të treguar që keni lexuar dhe pranoni kushtet e lartpërmendura.",
   "antiFraud": {
@@ -24,7 +24,7 @@ export default {
   "birthday": "Nëse mendoni se është një gabim, ju lutemi kontrolloni nëse formati i ditëlindjes suaj është i saktë (YYYY-MM-DD).",
   "birthday2": "Ju lutemi riktheni datëlindjen tuaj (format: YYYY-MM-DD):\n\n",
   "birthday3": "Ju lutemi shkruani datëlindjen tuaj (format: YYYY-MM-DD):\n\n",
-  "birthday4": "Ditëlindja: ${birthday}\n",
+  "birthday4": "Ditëlindja: {birthday}\n",
   "birthdayCheck": "Nëse mendoni se kjo është një gabim, ju lutemi kontrolloni nëse formati i ditëlindjes suaj është i saktë (YYYY-MM-DD).",
   "birthdayError": "{error}\n\n",
   "birthdayFormatError": "❌ Format i pahijshëm i ditëlindjes\n\nJu lutemi ripastroni (formati: YYYY-MM-DD):",
@@ -43,11 +43,11 @@ export default {
   "enterYes": "Ju lutemi shkruani 'po' për të përfunduar testin:",
   "errorRetry": "❌ Ka ndodhur një gabim, ju lutemi ripastroni.",
   "example": {
-    "birthday": "Për shembull: 1995-06-15"
+    "birthday": "Për shembull: 2000-12-25"
   },
   "gender": {
     "female": "Femer",
-    "label": "• Gjinia: ${gender}\n",
+    "label": "• Gjinia: {gender}\n",
     "male": "Mashkull"
   },
   "gender2": "• Gjinia: ${updatedUser.gender ===",
@@ -58,7 +58,7 @@ export default {
   "help": "Kjo do të ndihmojë të gjejmë partnerë më të përshtatshëm për biseda për ju～\n\n",
   "iHaveRead": "✅ E kam lexuar dhe pranoj",
   "info": {
-    "age18": "• Duhet të jesh të paktën 18 vjeç për të përdorur këtë shërbim.\n- Duhet të sigurohet informacion i saktë për përputhjen dhe parashikimin e fatit për të dhënë rezultate të mira.",
+    "age18": "• Du duhet të jesh të paktën 18 vjeç për të përdorur këtë shërbim\n- Për të përdorur përputhjen dhe parashikimin, duhet të jepni informacion të saktë për rezultate të mira.\n\n- Futni ditëlindjen tuaj (p.sh., 2000-12-15)",
     "city": "🌍 Rajoni: {city}"
   },
   "languageSelection": "🌐 **Zgjidhni Gjuhën**\n\nJu lutemi zgjidhni gjuhën tuaj të preferuar:",
@@ -69,8 +69,8 @@ export default {
   "message": "2. 🚨 Identifikoni mesazhet e mashtrimit\n",
   "message2": "• Bëni kujdes nga mesazhet që kërkojnë para\n",
   "moreLanguages": "Më shumë gjuhë",
-  "nickname": "• Emri: ${updatedUser.nickname}\n",
-  "nickname2": "{nickname} ${nickname}\n\n",
+  "nickname": "• Emri: {updatedUser.nickname}\n",
+  "nickname2": "{nickname} {nickname}\n\n",
   "nicknameError": "❌ {error}\n\nJu lutemi ripastroni emrin tuaj:",
   "nicknameGood": "{nickname}\n\n",
   "notCompleted": "⚠️ Ju lutemi përfundoni procesin e regjistrimit së pari",
@@ -99,7 +99,7 @@ export default {
   "startRegistration": "Filloni regjistrimin →",
   "stats": "📊 Statistikat",
   "stepAntiFraud": "🛡️ Ju lutem klikoni butonin më sipër për të konfirmuar masat e sigurisë anti-fraudë",
-  "stepBirthday": "📅 Ju lutem shtoni datën tuaj të lindjes (formati: YYYY-MM-DD, p.sh., 1995-06-15)",
+  "stepBirthday": "📅 Ju lutem shkruani ditëlindjen tuaj (forma: YYYY-MM-DD, p.sh., 2000-12-25)",
   "stepDefault": "Ju lutem përfundoni regjistrimin siç është udhëzuar",
   "stepGender": "👤 Ju lutem klikoni butonin më sipër për të zgjedhur gjininë tuaj",
   "stepLanguageSelection": "🌍 Ju lutem klikoni butonin më sipër për të zgjedhur gjuhën tuaj",
@@ -113,7 +113,7 @@ export default {
     "terms_of_service_button": "📋 Kushtet e Shërbimit"
   },
   "termsOfService": "📋 Kushtet për Përdoruesit\n\n",
-  "text": "konfirmo_datëlindjen_${birthday}",
+  "text": "konfirmo_datëlindjen_{birthday}",
   "text10": "Për shembull: 1995-06-15\n\n",
   "text11": "🛡️ Këshilla për Sigurinë në Takime Online\n\n",
   "text12": "📋 Hapi i fundit: Kushtet e Shërbimit\n\n",
@@ -127,7 +127,7 @@ export default {
   "text2": "💡 Mund të përdorni komandën /mbti në çdo kohë për të bërë testin përsëri ose për ta modifikuar.",
   "text20": "Ju lutemi kthehuni pas arritjes së moshe së rritur!\n\n",
   "text21": "📋 Politika e Privatësisë\n",
-  "text3": "konfirmo_gjinine_${gender}",
+  "text3": "konfirmo_gjinine_{gender}",
   "text4": "Hapi i fundit: Ju lutemi lexoni dhe pranoni Kushtet e Shërbimit\n\n",
   "text5": "📝 Bëni një test të shpejtë (12 pyetje, vetëm për referencë)",
   "text6": "• Kushtet e Përdoruesit: Rregulla për përdorimin e këtij shërbimi\n\n",
@@ -138,12 +138,12 @@ export default {
   "useTelegramNickname": "Përdorni nofken tuaj në Telegram",
   "viewPrivacyPolicy": "📋 Shiko Politikat e Privatësisë",
   "viewTermsOfService": "📋 Shiko Kushtet e Shërbimit",
-  "vip": "💡 Ofrimi i grupit tuaj të gjakut do të përdoret për funksionet e ardhshme të përmatchjes së grupit të gjakut (ekskluzive për VIP)\n\n",
+  "vip": "💡 Të dhënat e grupit tuaj të gjakut mund të përdoren për veçori të ardhshme të përputhjes së grupit të gjakut (më shumë atribute, përputhje astrologjike)",
   "warning": {
     "birthday": "⚠️ Ditëlindja nuk mund të modifikohet pas vendosjes. Ju lutemi konfirmoni se është e saktë!"
   },
   "welcome": "Mirësevini në XunNi！\n\nJu lutemi zgjidhni gjuhën tuaj:",
   "yourAge": "Mosha juaj: {age} vjeç\n",
-  "zodiac": "• Zodiac: ${updatedUser.zodiac_sign}\n",
-  "zodiac2": "Shenja e Zodiakut: ${zodiacSign}\n\n"
+  "zodiac": "• Zodiac: {updatedUser.zodiac_sign}\n",
+  "zodiac2": "Shenja e Zodiakut: {zodiacSign}\n\n"
 };

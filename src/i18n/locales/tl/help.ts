@@ -60,7 +60,7 @@ export default {
   "profile": "/edit_profile - I-edit ang Profile\n",
   "profile2": "/profile - Tingnan ang Profile\n",
   "profile3": "👤 **Profile**",
-  "quota": "• Mag-imbita ng mga kaibigan upang dagdagan ang quota (hanggang 10/100)\n",
+  "quota": "🔢 Pang-araw-araw na Mataas na Quota\n• Magsimula sa 30 bote ng mensahe araw-araw (10 lamang para sa mga regular na gumagamit).\n• Ang pag-imbita sa mga kaibigan ay maaaring permanenteng magpataas ng iyong quota, hanggang sa maximum na 100!\n• Pang-araw-araw na limitasyon ng 100 chat messages, makipag-chat nang walang hadlang.",
   "quota2": "• 30 quota ng bote ng mensahe bawat araw\n",
   "register": "/start - Simulan ang paggamit / Magpatuloy sa pagpaparehistro\n",
   "report": "/report - I-ulat ang di-angkop na nilalaman\n",

@@ -11,6 +11,6 @@ export default {
   "step2": "2️⃣ Selectați 'Răspunde'.",
   "step3": "3️⃣ Introduceți /block.",
   "steps": "**Pași pentru operare:**",
-  "success": "✅ Utilizatorul (#${identifier}) a fost blocat",
+  "success": "✅ Utilizatorul (#{identifier}) a fost blocat",
   "willNotMatch": "Nu veți mai fi asociați cu sticlele de mesaje ale celuilalt."
 };

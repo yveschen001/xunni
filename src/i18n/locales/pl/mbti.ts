@@ -18,164 +18,248 @@ export default {
     "ISTP": "Rzeczoznawca - Odważny i pragmatyczny eksperymentator, biegły w wykorzystaniu różnych narzędzi."
   },
   "full": {
-    "question1": "W sytuacjach społecznych zwykle:",
-    "question1.option1": "Inicjuję rozmowę z innymi",
-    "question1.option2": "Czekam, aż inni podejdą do mnie",
-    "question10": "Kiedy rozwiązuję problemy, bardziej polegam na:",
-    "question10.option1": "Praktycznym doświadczeniu i faktach",
-    "question10.option2": "Intuicji i możliwościach",
-    "question11": "Preferujesz:",
-    "question11.option1": "Skupienie na szczegółach",
-    "question11.option2": "Skupienie na ogólnym obrazie",
-    "question12": "Kiedy uczysz się nowych rzeczy, preferujesz:",
-    "question12.option1": "Podejście krok po kroku",
-    "question12.option2": "Odkrywanie innowacyjnych metod",
-    "question13": "Kiedy czytasz, preferujesz:",
-    "question13.option1": "Praktyczne przewodniki",
-    "question13.option2": "Teorie i koncepcje",
-    "question14": "Bardziej interesują cię:",
-    "question14.option1": "Teraźniejszość i przeszłość",
-    "question14.option2": "Przyszłość i możliwości",
-    "question15": "Kiedy opisujesz rzeczy, masz tendencję do:",
-    "question15.option1": "Używania konkretnych przykładów",
-    "question15.option2": "Używania metafor i analogii",
-    "question16": "W pracy cenisz:",
-    "question16.option1": "Praktyczne zastosowanie",
-    "question16.option2": "Innowacyjne pomysły",
-    "question17": "Ufasz:",
-    "question17.option1": "Sprawdzonym metodom",
-    "question17.option2": "Nowym próbom",
-    "question18": "Planując przyszłość,:",
-    "question18.option1": "Opierasz się na realistycznych warunkach",
-    "question18.option2": "Wyobrażasz sobie różne możliwości",
-    "question19": "Podejmując decyzje, nadajesz priorytet:",
-    "question19.option1": "Logice i obiektywnej analizie",
-    "question19.option2": "Emocjom i harmonii interpersonalnej",
-    "question2": "W weekendy preferujesz:",
-    "question2.option1": "Wyjścia z przyjaciółmi",
-    "question2.option2": "Zostanie w domu, aby odpocząć",
-    "question20": "Kiedy krytykujesz innych,:",
-    "question20.option1": "Wskazujesz bezpośrednio na problem",
-    "question20.option2": "Uwzględniasz uczucia innych",
-    "question21": "Co cenisz bardziej:",
-    "question21.option1": "Sprawiedliwość i uczciwość",
-    "question21.option2": "Współczucie i zrozumienie",
-    "question22": "Oceniając pomysł, najpierw bierzesz pod uwagę:",
-    "question22.option1": "Czy jest rozsądny",
-    "question22.option2": "Czy jest korzystny",
-    "question23": "Gdy przyjaciel się zwierza, ty:",
-    "question23.option1": "Analizujesz problem i dajesz sugestie",
-    "question23.option2": "Słuchasz i dajesz pocieszenie",
-    "question24": "W konflikcie zazwyczaj:",
-    "question24.option1": "Trzymasz się zasad",
-    "question24.option2": "Utrzymujesz relacje",
-    "question25": "Łatwiej jesteś przekonywany przez:",
-    "question25.option1": "Fakty i dane",
-    "question25.option2": "Emocje i historie",
-    "question26": "Podczas podejmowania decyzji w zespole, bardziej koncentrujesz się na:",
-    "question26.option1": "Efektywności i wynikach",
-    "question26.option2": "Konsensusie i jedności",
-    "question27": "Uważasz, że dobry lider powinien:",
-    "question27.option1": "Być uczciwy i zdecydowany",
-    "question27.option2": "Być troskliwy i opiekuńczy",
-    "question28": "Twój styl pracy to:",
-    "question28.option1": "Planowanie i przygotowywanie z wyprzedzeniem",
-    "question28.option2": "Bycie elastycznym i dostosowującym się",
-    "question29": "Preferujesz:",
-    "question29.option1": "Mieć jasne terminy",
-    "question29.option2": "Trzymać opcje otwarte",
-    "question3": "Po uczestnictwie w zgromadzeniu zazwyczaj:",
-    "question3.option1": "Czujesz przypływ energii",
-    "question3.option2": "Czujesz potrzebę odpoczynku",
-    "question30": "Podczas podróżowania skłaniasz się do:",
-    "question30.option1": "Tworzenia szczegółowych planów podróży",
-    "question30.option2": "Swobodnego eksplorowania",
-    "question31": "Twój pokój zazwyczaj jest:",
-    "question31.option1": "Czysty i uporządkowany",
-    "question31.option2": "Swobodny i zrelaksowany",
-    "question32": "Podczas realizacji zadań:",
-    "question32.option1": "Kończysz wcześniej",
-    "question32.option2": "Kończysz blisko terminu",
-    "question33": "Twój preferowany styl życia:",
-    "question33.option1": "Ustrukturyzowany i uporządkowany",
-    "question33.option2": "Wolny i elastyczny",
-    "question34": "Podejmując decyzje, skłaniasz się do:",
-    "question34.option1": "Szybkiego podejmowania decyzji",
-    "question34.option2": "Zachowania otwartych możliwości",
-    "question35": "Podczas zakupów:",
-    "question35.option1": "Robisz listę i kupujesz zgodnie z planem",
-    "question35.option2": "Przeglądasz swobodnie i kupujesz, co ci się podoba",
-    "question36": "W obliczu zmiany zazwyczaj:",
-    "question36.option1": "Czujesz się nieswojo",
-    "question36.option2": "Czujesz podekscytowanie",
-    "question4": "W zespole jesteś bardziej skłonny do:",
-    "question4.option1": "Aktywnie wyrażać swoje opinie",
-    "question4.option2": "Słuchać przed mówieniem",
-    "question5": "Przy poznawaniu nowych przyjaciół:",
-    "question5.option1": "Szybko stajesz się zaznajomiony",
-    "question5.option2": "Potrzebujesz czasu, aby stopniowo się zaaklimatyzować",
-    "question6": "Twoje grono przyjaciół:",
-    "question6.option1": "Szerokie, ale nie głębokie",
-    "question6.option2": "Małe i intymne",
-    "question7": "Podczas pracy wolisz:",
-    "question7.option1": "Współpracę zespołową",
-    "question7.option2": "Pracę niezależną",
-    "question8": "Myśląc o problemach, masz tendencję do:",
-    "question8.option1": "Myślenia podczas mówienia",
-    "question8.option2": "Planowania myśli przed mówieniem",
-    "question9": "Podczas stresu:",
-    "question9.option1": "Gawędzisz z przyjaciółmi",
-    "question9.option2": "Przetwarzasz w samotności"
+    "question1": {
+      "text": "W sytuacjach społecznych zwykle:",
+      "option1": "Inicjuję rozmowę z innymi",
+      "option2": "Czekam, aż inni podejdą do mnie"
+    },
+    "question10": {
+      "text": "Kiedy rozwiązuję problemy, bardziej polegam na:",
+      "option1": "Praktycznym doświadczeniu i faktach",
+      "option2": "Intuicji i możliwościach"
+    },
+    "question11": {
+      "text": "Preferujesz:",
+      "option1": "Skupienie na szczegółach",
+      "option2": "Skupienie na ogólnym obrazie"
+    },
+    "question12": {
+      "text": "Kiedy uczysz się nowych rzeczy, preferujesz:",
+      "option1": "Podejście krok po kroku",
+      "option2": "Odkrywanie innowacyjnych metod"
+    },
+    "question13": {
+      "text": "Kiedy czytasz, preferujesz:",
+      "option1": "Praktyczne przewodniki",
+      "option2": "Teorie i koncepcje"
+    },
+    "question14": {
+      "text": "Bardziej interesują cię:",
+      "option1": "Teraźniejszość i przeszłość",
+      "option2": "Przyszłość i możliwości"
+    },
+    "question15": {
+      "text": "Kiedy opisujesz rzeczy, masz tendencję do:",
+      "option1": "Używania konkretnych przykładów",
+      "option2": "Używania metafor i analogii"
+    },
+    "question16": {
+      "text": "W pracy cenisz:",
+      "option1": "Praktyczne zastosowanie",
+      "option2": "Innowacyjne pomysły"
+    },
+    "question17": {
+      "text": "Ufasz:",
+      "option1": "Sprawdzonym metodom",
+      "option2": "Nowym próbom"
+    },
+    "question18": {
+      "text": "Planując przyszłość,:",
+      "option1": "Opierasz się na realistycznych warunkach",
+      "option2": "Wyobrażasz sobie różne możliwości"
+    },
+    "question19": {
+      "text": "Podejmując decyzje, nadajesz priorytet:",
+      "option1": "Logice i obiektywnej analizie",
+      "option2": "Emocjom i harmonii interpersonalnej"
+    },
+    "question2": {
+      "text": "W weekendy preferujesz:",
+      "option1": "Wyjścia z przyjaciółmi",
+      "option2": "Zostanie w domu, aby odpocząć"
+    },
+    "question20": {
+      "text": "Kiedy krytykujesz innych,:",
+      "option1": "Wskazujesz bezpośrednio na problem",
+      "option2": "Uwzględniasz uczucia innych"
+    },
+    "question21": {
+      "text": "Co cenisz bardziej:",
+      "option1": "Sprawiedliwość i uczciwość",
+      "option2": "Współczucie i zrozumienie"
+    },
+    "question22": {
+      "text": "Oceniając pomysł, najpierw bierzesz pod uwagę:",
+      "option1": "Czy jest rozsądny",
+      "option2": "Czy jest korzystny"
+    },
+    "question23": {
+      "text": "Gdy przyjaciel się zwierza, ty:",
+      "option1": "Analizujesz problem i dajesz sugestie",
+      "option2": "Słuchasz i dajesz pocieszenie"
+    },
+    "question24": {
+      "text": "W konflikcie zazwyczaj:",
+      "option1": "Trzymasz się zasad",
+      "option2": "Utrzymujesz relacje"
+    },
+    "question25": {
+      "text": "Łatwiej jesteś przekonywany przez:",
+      "option1": "Fakty i dane",
+      "option2": "Emocje i historie"
+    },
+    "question26": {
+      "text": "Podczas podejmowania decyzji w zespole, bardziej koncentrujesz się na:",
+      "option1": "Efektywności i wynikach",
+      "option2": "Konsensusie i jedności"
+    },
+    "question27": {
+      "text": "Uważasz, że dobry lider powinien:",
+      "option1": "Być uczciwy i zdecydowany",
+      "option2": "Być troskliwy i opiekuńczy"
+    },
+    "question28": {
+      "text": "Twój styl pracy to:",
+      "option1": "Planowanie i przygotowywanie z wyprzedzeniem",
+      "option2": "Bycie elastycznym i dostosowującym się"
+    },
+    "question29": {
+      "text": "Preferujesz:",
+      "option1": "Mieć jasne terminy",
+      "option2": "Trzymać opcje otwarte"
+    },
+    "question3": {
+      "text": "Po uczestnictwie w zgromadzeniu zazwyczaj:",
+      "option1": "Czujesz przypływ energii",
+      "option2": "Czujesz potrzebę odpoczynku"
+    },
+    "question30": {
+      "text": "Podczas podróżowania skłaniasz się do:",
+      "option1": "Tworzenia szczegółowych planów podróży",
+      "option2": "Swobodnego eksplorowania"
+    },
+    "question31": {
+      "text": "Twój pokój zazwyczaj jest:",
+      "option1": "Czysty i uporządkowany",
+      "option2": "Swobodny i zrelaksowany"
+    },
+    "question32": {
+      "text": "Podczas realizacji zadań:",
+      "option1": "Kończysz wcześniej",
+      "option2": "Kończysz blisko terminu"
+    },
+    "question33": {
+      "text": "Twój preferowany styl życia:",
+      "option1": "Ustrukturyzowany i uporządkowany",
+      "option2": "Wolny i elastyczny"
+    },
+    "question34": {
+      "text": "Podejmując decyzje, skłaniasz się do:",
+      "option1": "Szybkiego podejmowania decyzji",
+      "option2": "Zachowania otwartych możliwości"
+    },
+    "question35": {
+      "text": "Podczas zakupów:",
+      "option1": "Robisz listę i kupujesz zgodnie z planem",
+      "option2": "Przeglądasz swobodnie i kupujesz, co ci się podoba"
+    },
+    "question36": {
+      "text": "W obliczu zmiany zazwyczaj:",
+      "option1": "Czujesz się nieswojo",
+      "option2": "Czujesz podekscytowanie"
+    },
+    "question4": {
+      "text": "W zespole jesteś bardziej skłonny do:",
+      "option1": "Aktywnie wyrażać swoje opinie",
+      "option2": "Słuchać przed mówieniem"
+    },
+    "question5": {
+      "text": "Przy poznawaniu nowych przyjaciół:",
+      "option1": "Szybko stajesz się zaznajomiony",
+      "option2": "Potrzebujesz czasu, aby stopniowo się zaaklimatyzować"
+    },
+    "question6": {
+      "text": "Twoje grono przyjaciół:",
+      "option1": "Szerokie, ale nie głębokie",
+      "option2": "Małe i intymne"
+    },
+    "question7": {
+      "text": "Podczas pracy wolisz:",
+      "option1": "Współpracę zespołową",
+      "option2": "Pracę niezależną"
+    },
+    "question8": {
+      "text": "Myśląc o problemach, masz tendencję do:",
+      "option1": "Myślenia podczas mówienia",
+      "option2": "Planowania myśli przed mówieniem"
+    },
+    "question9": {
+      "text": "Podczas stresu:",
+      "option1": "Gawędzisz z przyjaciółmi",
+      "option2": "Przetwarzasz w samotności"
+    }
   },
   "quick": {
-    "question1": "W sytuacjach towarzyskich zazwyczaj:",
-    "question1.option1": "Aktywnie angażujesz się w rozmowy",
-    "question1.option2": "Czekasz, aż inni podejdą do Ciebie",
-    "question10": "Twój styl pracy to:",
-    "question10.option1": "Planowanie i przygotowanie z wyprzedzeniem",
-    "question10.option2": "Dostosowanie i elastyczność",
-    "question11": "Wolisz:",
-    "question11.option1": "Wyraźne terminy",
-    "question11.option2": "Zachowanie otwartych opcji",
-    "question12": "Podczas podróży masz tendencję do:",
-    "question12.option1": "Tworzenia szczegółowych planów podróży",
-    "question12.option2": "Zabawy w swoim tempie",
-    "question2": "W weekendy wolisz:",
-    "question2.option1": "Spędzać czas z przyjaciółmi",
-    "question2.option2": "Zostać w domu, aby się zrelaksować samemu",
-    "question3": "Po uczestnictwie w spotkaniu zazwyczaj:",
-    "question3.option1": "Czujesz się naładowany energią",
-    "question3.option2": "Czujesz potrzebę odpoczynku",
-    "question4": "Podczas rozwiązywania problemów bardziej polegasz na:",
-    "question4.option1": "Praktycznym doświadczeniu i faktach",
-    "question4.option2": "Intuicji i możliwościach",
-    "question5": "Wolisz:",
-    "question5.option1": "Skupiać się na konkretnych szczegółach",
-    "question5.option2": "Skupiać się na ogólnej koncepcji",
-    "question6": "Podczas nauki nowych rzeczy wolisz:",
-    "question6.option1": "Podejście krok po kroku",
-    "question6.option2": "Odkrywanie innowacyjnych metod",
-    "question7": "Podejmując decyzje, bardziej cenisz:",
-    "question7.option1": "Logikę i obiektywną analizę",
-    "question7.option2": "Emocje i harmonię interpersonalną",
-    "question8": "Kiedy krytykujesz innych, ty:",
-    "question8.option1": "Bezpośrednio wskaż problem",
-    "question8.option2": "Weź pod uwagę uczucia drugiej osoby",
-    "question9": "Co cenisz bardziej:",
-    "question9.option1": "Sprawiedliwość i Równość",
-    "question9.option2": "Współczucie i Zrozumienie",
-    "question1.text": "W sytuacjach towarzyskich zazwyczaj:",
-    "question10.text": "Twój styl pracy to:",
-    "question11.text": "Preferujesz:",
-    "question12.text": "Podczas podróży masz tendencję do:",
-    "question2.text": "W weekendy preferujesz:",
-    "question3.text": "Po uczęszczaniu na spotkanie zazwyczaj:",
-    "question4.text": "Podczas rozwiązywania problemów bardziej polegasz na:",
-    "question5.text": "Preferujesz:",
-    "question6.text": "Podczas nauki nowych rzeczy preferujesz:",
-    "question7.text": "Przy podejmowaniu decyzji cenisz:",
-    "question8.text": "Kiedy krytykujesz innych, ty:",
-    "question9.text": "Cenisz bardziej:"
+    "question1": {
+      "text": "W sytuacjach towarzyskich zazwyczaj:",
+      "option1": "Aktywnie angażujesz się w rozmowy",
+      "option2": "Czekasz, aż inni podejdą do Ciebie"
+    },
+    "question10": {
+      "text": "Twój styl pracy to:",
+      "option1": "Planowanie i przygotowanie z wyprzedzeniem",
+      "option2": "Dostosowanie i elastyczność"
+    },
+    "question11": {
+      "text": "Preferujesz:",
+      "option1": "Wyraźne terminy",
+      "option2": "Zachowanie otwartych opcji"
+    },
+    "question12": {
+      "text": "Podczas podróży masz tendencję do:",
+      "option1": "Tworzenia szczegółowych planów podróży",
+      "option2": "Zabawy w swoim tempie"
+    },
+    "question2": {
+      "text": "W weekendy preferujesz:",
+      "option1": "Spędzać czas z przyjaciółmi",
+      "option2": "Zostać w domu, aby się zrelaksować samemu"
+    },
+    "question3": {
+      "text": "Po uczęszczaniu na spotkanie zazwyczaj:",
+      "option1": "Czujesz się naładowany energią",
+      "option2": "Czujesz potrzebę odpoczynku"
+    },
+    "question4": {
+      "text": "Podczas rozwiązywania problemów bardziej polegasz na:",
+      "option1": "Praktycznym doświadczeniu i faktach",
+      "option2": "Intuicji i możliwościach"
+    },
+    "question5": {
+      "text": "Preferujesz:",
+      "option1": "Skupiać się na konkretnych szczegółach",
+      "option2": "Skupiać się na ogólnej koncepcji"
+    },
+    "question6": {
+      "text": "Podczas nauki nowych rzeczy preferujesz:",
+      "option1": "Podejście krok po kroku",
+      "option2": "Odkrywanie innowacyjnych metod"
+    },
+    "question7": {
+      "text": "Przy podejmowaniu decyzji cenisz:",
+      "option1": "Logikę i obiektywną analizę",
+      "option2": "Emocje i harmonię interpersonalną"
+    },
+    "question8": {
+      "text": "Kiedy krytykujesz innych, ty:",
+      "option1": "Bezpośrednio wskaż problem",
+      "option2": "Weź pod uwagę uczucia drugiej osoby"
+    },
+    "question9": {
+      "text": "Cenisz bardziej:",
+      "option1": "Sprawiedliwość i Równość",
+      "option2": "Współczucie i Zrozumienie"
+    }
   },
   "share": {
     "welcome": "👋 Twój przyjaciel zaprasza Cię do przetestowania MBTI!\n\nPrzyjdź i sprawdź swój typ osobowości～",

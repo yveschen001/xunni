@@ -27,8 +27,8 @@ export default {
   "error": "Error: {error}",
   "estimate": {
     "immediate": "Enviar inmediatamente (aproximadamente 1-2 segundos)",
-    "minutes": "Aproximadamente \\${minutes} minutos",
-    "seconds": "Aproximadamente \\${seconds} segundos"
+    "minutes": "Aproximadamente \\{minutes} minutos",
+    "seconds": "Aproximadamente \\{seconds} segundos"
   },
   "estimatedTime": "Tiempo estimado: {time}\n\n",
   "example": "**Ejemplo:**\n",
@@ -97,7 +97,7 @@ export default {
   "foundStuckBroadcasts": "⚠️ Se detectaron {count} transmisiones atascadas.\n\n",
   "id": "ID: {id}",
   "idMustBeNumber": "❌ El ID de difusión debe ser un número",
-  "maxUsersExceeded": "❌ El sistema de difusión actual admite un máximo de ${max} usuarios.\n\nNúmero objetivo de usuarios: ${current}",
+  "maxUsersExceeded": "❌ El sistema de difusión actual admite un máximo de {max} usuarios.\n\nNúmero objetivo de usuarios: {current}",
   "messageContent": "Contenido del Mensaje",
   "noPendingBroadcasts": "Actualmente, no hay transmisiones pendientes o atascadas.\n\n",
   "noRecords": "📊 No hay registros de difusión disponibles actualmente",
@@ -151,7 +151,7 @@ export default {
   "targetNonVip": "Usuarios No VIP",
   "targetType": "Objetivo: {type}\n",
   "targetVip": "Usuarios VIP",
-  "tooLong": "El mensaje de difusión no puede exceder ${max} caracteres (actualmente ${current} caracteres)",
+  "tooLong": "El mensaje de difusión no puede exceder {max} caracteres (actualmente {current} caracteres)",
   "upgradeRequired": "Las difusiones a gran escala requieren una actualización de la arquitectura del sistema, consulta BROADCAST_SYSTEM_REDESIGN.md",
   "usageError": "❌ Uso incorrecto\n\n",
   "userCount": "Número de Usuarios: {count} personas\n",

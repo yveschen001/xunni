@@ -27,8 +27,8 @@ export default {
   "error": "Fejl: {error}",
   "estimate": {
     "immediate": "Send straks (omkring 1-2 sekunder)",
-    "minutes": "Omkring \\${minutes} minutter",
-    "seconds": "Omkring \\${seconds} sekunder"
+    "minutes": "Omkring \\{minutes} minutter",
+    "seconds": "Omkring \\{seconds} sekunder"
   },
   "estimatedTime": "Estimeret tid: {time}\n\n",
   "example": "**Eksempel:**\n",
@@ -97,7 +97,7 @@ export default {
   "foundStuckBroadcasts": "⚠️ Fundet {count} fastlåste udsendelser\n\n",
   "id": "ID: {id}",
   "idMustBeNumber": "❌ Broadcast ID skal være et nummer",
-  "maxUsersExceeded": "❌ Det nuværende broadcast-system understøtter broadcasting til maksimalt ${max} brugere.\n\nMålantal af brugere: ${current}",
+  "maxUsersExceeded": "❌ Det nuværende broadcast-system understøtter broadcasting til maksimalt {max} brugere.\n\nMålantal af brugere: {current}",
   "messageContent": "Beskedindhold",
   "noPendingBroadcasts": "I øjeblikket er der ingen ventende eller fastlåste udsendelser.\n\n",
   "noRecords": "📊 Ingen broadcastoptegnelser tilgængelige i øjeblikket",
@@ -151,7 +151,7 @@ export default {
   "targetNonVip": "Non-VIP-brugere",
   "targetType": "Mål: {type}\n",
   "targetVip": "VIP-brugere",
-  "tooLong": "Udsendelsesbeskeden må ikke overstige ${max} tegn (i øjeblikket ${current} tegn)",
+  "tooLong": "Udsendelsesbeskeden må ikke overstige {max} tegn (i øjeblikket {current} tegn)",
   "upgradeRequired": "Storskala udsendelser kræver systemarkitektur-opgradering, se venligst BROADCAST_SYSTEM_REDESIGN.md",
   "usageError": "❌ Forkert brug\n\n",
   "userCount": "Brugerantal: {count} personer\n",

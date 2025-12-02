@@ -11,6 +11,6 @@ export default {
   "step2": "2️⃣ 「返信」を選択します。",
   "step3": "3️⃣ /blockを入力します。",
   "steps": "**操作手順:**",
-  "success": "✅ ユーザー (#${identifier})がブロックされました。",
+  "success": "✅ ユーザー (#{identifier})がブロックされました。",
   "willNotMatch": "互いのボトルメールが表示されなくなります。"
 };

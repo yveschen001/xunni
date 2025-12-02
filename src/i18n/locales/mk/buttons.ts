@@ -2,7 +2,7 @@ export default {
   "ad": "➡️ Следна реклама",
   "back": "⬅️ Врати назад / Назад",
   "backToVip": "💎 Врати се на VIP мени",
-  "bottle": "📺 Гледајте реклами за да добиете повеќе message bottles 🎁 (${remaining}/20)",
+  "bottle": "📺 Гледајте реклами за да добиете повеќе message bottles 🎁 ({remaining}/20)",
   "bottle2": "💎 Надградете на VIP за повеќе message bottles",
   "bottle3": "🌊 Лавина на message bottle",
   "bottle4": "🎣 Подигнете message bottle",

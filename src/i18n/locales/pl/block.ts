@@ -11,6 +11,6 @@ export default {
   "step2": "2️⃣ Wybierz 'Odpowiedz'.",
   "step3": "3️⃣ Wprowadź /block.",
   "steps": "**Kroki operacyjne:**",
-  "success": "✅ Zablokowano tego użytkownika (#${identifier})",
+  "success": "✅ Zablokowano tego użytkownika (#{identifier})",
   "willNotMatch": "Nie będziesz już dopasowany do butelek z wiadomościami tej drugiej osoby."
 };

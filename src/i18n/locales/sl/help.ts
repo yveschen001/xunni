@@ -60,7 +60,7 @@ export default {
   "profile": "/edit_profile - Uredi profil\n",
   "profile2": "/profile - Oglej si profil\n",
   "profile3": "👤 **Profil**\n",
-  "quota": "• Povabljanje prijateljev lahko poveča kvoto (max 10/100)\n",
+  "quota": "🔢 Dnevna visoka kvota\n• Započnite s 30 sporočilnimi steklenicami na dan (samo 10 za redne uporabnike).\n• Vabljeni prijatelji lahko trajno povečajo vašo kvoto, do največ 100!\n• Dnevna omejitev 100 klepetnih sporočil, klepetajte brez ovir.",
   "quota2": "• 30 stekel za sporočila kvota dnevno\n",
   "register": "/start - Začni uporabljati / Nadaljuj registracijo\n",
   "report": "/report - Poročaj o neprimernem vsebini\n",

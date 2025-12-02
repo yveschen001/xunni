@@ -2,7 +2,7 @@ export default {
   "ad": "➡️ Volgende advertentie",
   "back": "⬅️ Terug / Terugkeren",
   "backToVip": "💎 Terug naar VIP-menu",
-  "bottle": "📺 Kijk advertenties om meer berichtflessen te krijgen 🎁 (${remaining}/20)",
+  "bottle": "📺 Kijk advertenties om meer berichtflessen te krijgen 🎁 ({remaining}/20)",
   "bottle2": "💎 Upgrade naar VIP voor meer berichtflessen",
   "bottle3": "🌊 Gooi een berichtfles",
   "bottle4": "🎣 Pak een berichtfles",

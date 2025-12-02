@@ -11,6 +11,6 @@ export default {
   "step2": "2️⃣ Vyberte 'Odpovědět'.",
   "step3": "3️⃣ Zadejte /block.",
   "steps": "**Kroky k provedení:**",
-  "success": "✅ Tento uživatel byl zablokován (#${identifier})",
+  "success": "✅ Tento uživatel byl zablokován (#{identifier})",
   "willNotMatch": "Už nebudete spojováni se zprávami navzájem."
 };

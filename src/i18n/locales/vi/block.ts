@@ -11,6 +11,6 @@ export default {
   "step2": "2️⃣ Chọn 'Trả lời'.",
   "step3": "3️⃣ Nhập /block.",
   "steps": "**Các bước thực hiện:**",
-  "success": "✅ Người dùng này đã bị chặn (#${identifier}).",
+  "success": "✅ Người dùng này đã bị chặn (#{identifier}).",
   "willNotMatch": "Bạn sẽ không còn được ghép nối với chai thư của nhau nữa."
 };

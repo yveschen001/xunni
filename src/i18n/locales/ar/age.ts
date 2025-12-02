@@ -1,5 +1,5 @@
 export default {
-  "daysAgo": "منذ ${days} يوم",
-  "hoursAgo": "منذ ${hours} ساعة",
+  "daysAgo": "منذ {days} يوم",
+  "hoursAgo": "منذ {hours} ساعة",
   "justNow": "الآن فقط"
 };

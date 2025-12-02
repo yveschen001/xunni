@@ -11,6 +11,6 @@ export default {
   "step2": "2️⃣ בחר 'השב'.",
   "step3": "3️⃣ הזן /block.",
   "steps": "**צעדים שיש לנקוט:**",
-  "success": "✅ משתמש זה נחסם (#${identifier})",
+  "success": "✅ משתמש זה נחסם (#{identifier})",
   "willNotMatch": "לא תתואמו יותר בבקבוקי המסר זה עם זה."
 };

@@ -1,5 +1,5 @@
 export default {
-  "nickname": "👤 Nama panggilan: \\\\\\\\\\\\\\${ownerMaskedNickname}",
+  "nickname": "👤 Nama panggilan: \\\\\\\\\\\\\\{ownerMaskedNickname}",
   "short19": "✏️ Edit Profil",
   "menuTitle": "Edit Profil",
   "nicknameButton": "✏️ Edit Nama Panggilan",

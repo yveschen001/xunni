@@ -60,7 +60,7 @@ export default {
   "profile": "/edit_profile - Upraviť profil\n",
   "profile2": "/profile - Zobraziť profil\n",
   "profile3": "👤 **Profil**\n",
-  "quota": "• Pozývanie priateľov môže zvýšiť kvótu (max 10/100)\n",
+  "quota": "🔢 Denný vysoký limit\n• Začnite s 30 správami z fľaše denne (iba 10 pre bežných používateľov).\n• Pozývanie priateľov môže trvalo zvýšiť váš limit, až do maximálneho počtu 100!\n• Denný limit 100 chatových správ, chat bez bariér.",
   "quota2": "• 30 kvóta správ fľašiek denne\n",
   "register": "/start - Začnite používať / Pokračovať v registrácii\n",
   "report": "/report - Nahlásiť nevhodný obsah\n",

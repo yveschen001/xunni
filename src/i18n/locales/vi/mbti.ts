@@ -18,164 +18,248 @@ export default {
     "ISTP": "Người thưởng thức - Một người dũng cảm và thực dụng, thành thạo trong việc sử dụng các công cụ khác nhau."
   },
   "full": {
-    "question1": "Trong các tình huống xã hội, bạn thường:",
-    "question1.option1": "Khởi xướng cuộc trò chuyện với người khác",
-    "question1.option2": "Chờ người khác tiếp cận tôi",
-    "question10": "Khi giải quyết vấn đề, bạn thường dựa vào:",
-    "question10.option1": "Kinh nghiệm thực tế và sự thật",
-    "question10.option2": "Trực giác và khả năng",
-    "question11": "Bạn thích:",
-    "question11.option1": "Tập trung vào các chi tiết cụ thể",
-    "question11.option2": "Tập trung vào khái niệm tổng thể",
-    "question12": "Khi học những điều mới, bạn thích:",
-    "question12.option1": "Một cách tiếp cận từng bước",
-    "question12.option2": "Khám phá những cách sáng tạo",
-    "question13": "Khi đọc, bạn thích:",
-    "question13.option1": "Hướng dẫn thực tiễn",
-    "question13.option2": "Lý thuyết và khái niệm",
-    "question14": "Bạn tập trung nhiều hơn vào:",
-    "question14.option1": "Hiện tại và quá khứ",
-    "question14.option2": "Tương lai và những khả năng",
-    "question15": "Khi mô tả sự vật, bạn có xu hướng:",
-    "question15.option1": "Sử dụng ví dụ cụ thể",
-    "question15.option2": "Sử dụng phép ẩn dụ và sự so sánh",
-    "question16": "Tại nơi làm việc, bạn coi trọng hơn:",
-    "question16.option1": "Ứng dụng thực tiễn",
-    "question16.option2": "Ý tưởng sáng tạo",
-    "question17": "Bạn tin tưởng hơn:",
-    "question17.option1": "Phương pháp đã được chứng minh",
-    "question17.option2": "Những nỗ lực mới",
-    "question18": "Khi lập kế hoạch cho tương lai, bạn:",
-    "question18.option1": "Dựa trên điều kiện thực tế",
-    "question18.option2": "Hình dung nhiều khả năng khác nhau",
-    "question19": "Khi đưa ra quyết định, bạn coi trọng hơn:",
-    "question19.option1": "Phân tích logic và khách quan",
-    "question19.option2": "Cảm xúc và sự hòa hợp giữa các mối quan hệ",
-    "question2": "Cuối tuần, bạn thích:",
-    "question2.option1": "Ra ngoài với bạn bè",
-    "question2.option2": "Ở nhà để thư giãn",
-    "question20": "Khi chỉ trích người khác, bạn:",
-    "question20.option1": "Chỉ ra vấn đề một cách trực tiếp",
-    "question20.option2": "Xem xét cảm xúc của người khác",
-    "question21": "Điều gì quan trọng hơn đối với bạn:",
-    "question21.option1": "Sự công bằng và công lý",
-    "question21.option2": "Sự cảm thông và thấu hiểu",
-    "question22": "Khi đánh giá một ý tưởng, bạn xem xét điều gì đầu tiên:",
-    "question22.option1": "Điều đó có hợp lý không",
-    "question22.option2": "Điều đó có lợi không",
-    "question23": "Khi một người bạn chia sẻ với bạn, bạn:",
-    "question23.option1": "Phân tích vấn đề và đưa ra lời khuyên",
-    "question23.option2": "Lắng nghe và đưa ra sự an ủi",
-    "question24": "Trong một cuộc xung đột, bạn có xu hướng:",
-    "question24.option1": "Đứng vững vào nguyên tắc của mình",
-    "question24.option2": "Duy trì mối quan hệ",
-    "question25": "Bạn dễ bị thuyết phục bởi:",
-    "question25.option1": "Sự thật và dữ liệu",
-    "question25.option2": "Cảm xúc và câu chuyện",
-    "question26": "Trong quyết định của nhóm, bạn tập trung nhiều hơn vào:",
-    "question26.option1": "Hiệu quả và kết quả",
-    "question26.option2": "Sự đồng thuận và thống nhất",
-    "question27": "Bạn tin rằng một nhà lãnh đạo giỏi nên:",
-    "question27.option1": "Công bằng và quyết đoán",
-    "question27.option2": "Chăm sóc và chu đáo",
-    "question28": "Phong cách làm việc của bạn là:",
-    "question28.option1": "Lập kế hoạch và chuẩn bị trước",
-    "question28.option2": "Thích ứng và linh hoạt",
-    "question29": "Bạn thích:",
-    "question29.option1": "Có thời hạn rõ ràng",
-    "question29.option2": "Giữ các tùy chọn mở",
-    "question3": "Sau khi tham dự một buổi gặp gỡ, bạn thường:",
-    "question3.option1": "Cảm thấy tràn đầy năng lượng",
-    "question3.option2": "Cảm thấy cần nghỉ ngơi",
-    "question30": "Khi du lịch, bạn có khuynh hướng:",
-    "question30.option1": "Tạo một lịch trình chi tiết",
-    "question30.option2": "Khám phá một cách tự do",
-    "question31": "Phòng của bạn thường thì:",
-    "question31.option1": "Gọn gàng và ngăn nắp",
-    "question31.option2": "Thoải mái và dễ chịu",
-    "question32": "Khi xử lý nhiệm vụ, bạn:",
-    "question32.option1": "Hoàn thành chúng càng sớm càng tốt",
-    "question32.option2": "Hoàn thành gần với thời hạn",
-    "question33": "Phong cách sống ưa thích của bạn:",
-    "question33.option1": "Thường xuyên và có cấu trúc",
-    "question33.option2": "Tự do và linh hoạt",
-    "question34": "Khi đưa ra quyết định, bạn có khuynh hướng:",
-    "question34.option1": "Quyết định nhanh chóng",
-    "question34.option2": "Giữ các lựa chọn mở",
-    "question35": "Khi mua sắm, bạn:",
-    "question35.option1": "Lập danh sách và tuân theo nó",
-    "question35.option2": "Lướt qua một cách thoải mái và mua những thứ bạn thích",
-    "question36": "Khi đối mặt với thay đổi, bạn thường:",
-    "question36.option1": "Cảm thấy không thoải mái",
-    "question36.option2": "Cảm thấy hào hứng",
-    "question4": "Trong một nhóm, bạn có khuynh hướng:",
-    "question4.option1": "Chia sẻ ý kiến của mình một cách tích cực",
-    "question4.option2": "Lắng nghe trước và nói sau",
-    "question5": "Khi gặp gỡ bạn mới, bạn:",
-    "question5.option1": "Làm quen nhanh chóng",
-    "question5.option2": "Cần thời gian để thích nghi",
-    "question6": "Vòng tròn xã hội của bạn:",
-    "question6.option1": "Rộng nhưng không sâu",
-    "question6.option2": "Nhỏ và gắn kết",
-    "question7": "Trong công việc, bạn thích:",
-    "question7.option1": "Hợp tác nhóm",
-    "question7.option2": "Làm việc độc lập",
-    "question8": "Khi suy nghĩ về vấn đề, bạn có xu hướng:",
-    "question8.option1": "Nói trong khi suy nghĩ",
-    "question8.option2": "Suy nghĩ kỹ trước khi nói",
-    "question9": "Khi bị áp lực, bạn:",
-    "question9.option1": "Trò chuyện với bạn bè",
-    "question9.option2": "Giải quyết một mình"
+    "question1": {
+      "text": "Trong các tình huống xã hội, bạn thường:",
+      "option1": "Khởi xướng cuộc trò chuyện với người khác",
+      "option2": "Chờ người khác tiếp cận tôi"
+    },
+    "question10": {
+      "text": "Khi giải quyết vấn đề, bạn thường dựa vào:",
+      "option1": "Kinh nghiệm thực tế và sự thật",
+      "option2": "Trực giác và khả năng"
+    },
+    "question11": {
+      "text": "Bạn thích:",
+      "option1": "Tập trung vào các chi tiết cụ thể",
+      "option2": "Tập trung vào khái niệm tổng thể"
+    },
+    "question12": {
+      "text": "Khi học những điều mới, bạn thích:",
+      "option1": "Một cách tiếp cận từng bước",
+      "option2": "Khám phá những cách sáng tạo"
+    },
+    "question13": {
+      "text": "Khi đọc, bạn thích:",
+      "option1": "Hướng dẫn thực tiễn",
+      "option2": "Lý thuyết và khái niệm"
+    },
+    "question14": {
+      "text": "Bạn tập trung nhiều hơn vào:",
+      "option1": "Hiện tại và quá khứ",
+      "option2": "Tương lai và những khả năng"
+    },
+    "question15": {
+      "text": "Khi mô tả sự vật, bạn có xu hướng:",
+      "option1": "Sử dụng ví dụ cụ thể",
+      "option2": "Sử dụng phép ẩn dụ và sự so sánh"
+    },
+    "question16": {
+      "text": "Tại nơi làm việc, bạn coi trọng hơn:",
+      "option1": "Ứng dụng thực tiễn",
+      "option2": "Ý tưởng sáng tạo"
+    },
+    "question17": {
+      "text": "Bạn tin tưởng hơn:",
+      "option1": "Phương pháp đã được chứng minh",
+      "option2": "Những nỗ lực mới"
+    },
+    "question18": {
+      "text": "Khi lập kế hoạch cho tương lai, bạn:",
+      "option1": "Dựa trên điều kiện thực tế",
+      "option2": "Hình dung nhiều khả năng khác nhau"
+    },
+    "question19": {
+      "text": "Khi đưa ra quyết định, bạn coi trọng hơn:",
+      "option1": "Phân tích logic và khách quan",
+      "option2": "Cảm xúc và sự hòa hợp giữa các mối quan hệ"
+    },
+    "question2": {
+      "text": "Cuối tuần, bạn thích:",
+      "option1": "Ra ngoài với bạn bè",
+      "option2": "Ở nhà để thư giãn"
+    },
+    "question20": {
+      "text": "Khi chỉ trích người khác, bạn:",
+      "option1": "Chỉ ra vấn đề một cách trực tiếp",
+      "option2": "Xem xét cảm xúc của người khác"
+    },
+    "question21": {
+      "text": "Điều gì quan trọng hơn đối với bạn:",
+      "option1": "Sự công bằng và công lý",
+      "option2": "Sự cảm thông và thấu hiểu"
+    },
+    "question22": {
+      "text": "Khi đánh giá một ý tưởng, bạn xem xét điều gì đầu tiên:",
+      "option1": "Điều đó có hợp lý không",
+      "option2": "Điều đó có lợi không"
+    },
+    "question23": {
+      "text": "Khi một người bạn chia sẻ với bạn, bạn:",
+      "option1": "Phân tích vấn đề và đưa ra lời khuyên",
+      "option2": "Lắng nghe và đưa ra sự an ủi"
+    },
+    "question24": {
+      "text": "Trong một cuộc xung đột, bạn có xu hướng:",
+      "option1": "Đứng vững vào nguyên tắc của mình",
+      "option2": "Duy trì mối quan hệ"
+    },
+    "question25": {
+      "text": "Bạn dễ bị thuyết phục bởi:",
+      "option1": "Sự thật và dữ liệu",
+      "option2": "Cảm xúc và câu chuyện"
+    },
+    "question26": {
+      "text": "Trong quyết định của nhóm, bạn tập trung nhiều hơn vào:",
+      "option1": "Hiệu quả và kết quả",
+      "option2": "Sự đồng thuận và thống nhất"
+    },
+    "question27": {
+      "text": "Bạn tin rằng một nhà lãnh đạo giỏi nên:",
+      "option1": "Công bằng và quyết đoán",
+      "option2": "Chăm sóc và chu đáo"
+    },
+    "question28": {
+      "text": "Phong cách làm việc của bạn là:",
+      "option1": "Lập kế hoạch và chuẩn bị trước",
+      "option2": "Thích ứng và linh hoạt"
+    },
+    "question29": {
+      "text": "Bạn thích:",
+      "option1": "Có thời hạn rõ ràng",
+      "option2": "Giữ các tùy chọn mở"
+    },
+    "question3": {
+      "text": "Sau khi tham dự một buổi gặp gỡ, bạn thường:",
+      "option1": "Cảm thấy tràn đầy năng lượng",
+      "option2": "Cảm thấy cần nghỉ ngơi"
+    },
+    "question30": {
+      "text": "Khi du lịch, bạn có khuynh hướng:",
+      "option1": "Tạo một lịch trình chi tiết",
+      "option2": "Khám phá một cách tự do"
+    },
+    "question31": {
+      "text": "Phòng của bạn thường thì:",
+      "option1": "Gọn gàng và ngăn nắp",
+      "option2": "Thoải mái và dễ chịu"
+    },
+    "question32": {
+      "text": "Khi xử lý nhiệm vụ, bạn:",
+      "option1": "Hoàn thành chúng càng sớm càng tốt",
+      "option2": "Hoàn thành gần với thời hạn"
+    },
+    "question33": {
+      "text": "Phong cách sống ưa thích của bạn:",
+      "option1": "Thường xuyên và có cấu trúc",
+      "option2": "Tự do và linh hoạt"
+    },
+    "question34": {
+      "text": "Khi đưa ra quyết định, bạn có khuynh hướng:",
+      "option1": "Quyết định nhanh chóng",
+      "option2": "Giữ các lựa chọn mở"
+    },
+    "question35": {
+      "text": "Khi mua sắm, bạn:",
+      "option1": "Lập danh sách và tuân theo nó",
+      "option2": "Lướt qua một cách thoải mái và mua những thứ bạn thích"
+    },
+    "question36": {
+      "text": "Khi đối mặt với thay đổi, bạn thường:",
+      "option1": "Cảm thấy không thoải mái",
+      "option2": "Cảm thấy hào hứng"
+    },
+    "question4": {
+      "text": "Trong một nhóm, bạn có khuynh hướng:",
+      "option1": "Chia sẻ ý kiến của mình một cách tích cực",
+      "option2": "Lắng nghe trước và nói sau"
+    },
+    "question5": {
+      "text": "Khi gặp gỡ bạn mới, bạn:",
+      "option1": "Làm quen nhanh chóng",
+      "option2": "Cần thời gian để thích nghi"
+    },
+    "question6": {
+      "text": "Vòng tròn xã hội của bạn:",
+      "option1": "Rộng nhưng không sâu",
+      "option2": "Nhỏ và gắn kết"
+    },
+    "question7": {
+      "text": "Trong công việc, bạn thích:",
+      "option1": "Hợp tác nhóm",
+      "option2": "Làm việc độc lập"
+    },
+    "question8": {
+      "text": "Khi suy nghĩ về vấn đề, bạn có xu hướng:",
+      "option1": "Nói trong khi suy nghĩ",
+      "option2": "Suy nghĩ kỹ trước khi nói"
+    },
+    "question9": {
+      "text": "Khi bị áp lực, bạn:",
+      "option1": "Trò chuyện với bạn bè",
+      "option2": "Giải quyết một mình"
+    }
   },
   "quick": {
-    "question1": "Trong các tình huống xã hội, bạn thường:",
-    "question1.option1": "Khởi xướng cuộc trò chuyện với người khác",
-    "question1.option2": "Chờ người khác đến gần mình",
-    "question10": "Phong cách làm việc của bạn là:",
-    "question10.option1": "Lập kế hoạch và chuẩn bị trước",
-    "question10.option2": "Thích nghi và linh hoạt",
-    "question11": "Bạn thích:",
-    "question11.option1": "Có thời hạn rõ ràng",
-    "question11.option2": "Giữ nhiều lựa chọn mở",
-    "question12": "Khi đi du lịch, bạn có xu hướng:",
-    "question12.option1": "Tạo lịch trình chi tiết",
-    "question12.option2": "Khám phá tự do",
-    "question2": "Vào cuối tuần, bạn thích:",
-    "question2.option1": "Đi chơi với bạn bè",
-    "question2.option2": "Ở nhà để nghỉ ngơi",
-    "question3": "Sau khi tham dự một bữa tiệc, bạn thường:",
-    "question3.option1": "Cảm thấy tràn đầy năng lượng",
-    "question3.option2": "Cảm thấy cần nghỉ ngơi",
-    "question4": "Khi giải quyết vấn đề, bạn dựa nhiều vào:",
-    "question4.option1": "Kinh nghiệm thực tiễn và sự thật",
-    "question4.option2": "Trực giác và khả năng",
-    "question5": "Bạn thích gì hơn:",
-    "question5.option1": "Tập trung vào những chi tiết cụ thể",
-    "question5.option2": "Tập trung vào khái niệm tổng thể",
-    "question6": "Khi học một cái gì đó mới, bạn thích:",
-    "question6.option1": "Phương pháp từng bước một",
-    "question6.option2": "Khám phá các phương pháp sáng tạo",
-    "question7": "Khi đưa ra quyết định, bạn coi trọng:",
-    "question7.option1": "Lý luận và phân tích khách quan",
-    "question7.option2": "Cảm xúc và sự hòa hợp giữa các cá nhân",
-    "question8": "Khi chỉ trích người khác, bạn:",
-    "question8.option1": "Chỉ ra vấn đề một cách trực tiếp",
-    "question8.option2": "Xem xét cảm xúc của người khác",
-    "question9": "Bạn coi trọng gì hơn:",
-    "question9.option1": "Sự công bằng và chính nghĩa",
-    "question9.option2": "Sự đồng cảm và thấu hiểu",
-    "question1.text": "Trong các tình huống xã hội, bạn thường:",
-    "question10.text": "Phong cách làm việc của bạn là:",
-    "question11.text": "Bạn ưu tiên:",
-    "question12.text": "Khi đi du lịch, bạn có xu hướng:",
-    "question2.text": "Vào cuối tuần, bạn thích:",
-    "question3.text": "Sau khi tham dự một buổi gặp mặt, bạn thường:",
-    "question4.text": "Khi giải quyết vấn đề, bạn dựa nhiều hơn vào:",
-    "question5.text": "Bạn ưu tiên:",
-    "question6.text": "Khi học điều mới, bạn ưu tiên:",
-    "question7.text": "Khi đưa ra quyết định, bạn đánh giá:",
-    "question8.text": "Khi chỉ trích người khác, bạn:",
-    "question9.text": "Bạn coi trọng hơn:"
+    "question1": {
+      "text": "Trong các tình huống xã hội, bạn thường:",
+      "option1": "Khởi xướng cuộc trò chuyện với người khác",
+      "option2": "Chờ người khác đến gần mình"
+    },
+    "question10": {
+      "text": "Phong cách làm việc của bạn là:",
+      "option1": "Lập kế hoạch và chuẩn bị trước",
+      "option2": "Thích nghi và linh hoạt"
+    },
+    "question11": {
+      "text": "Bạn ưu tiên:",
+      "option1": "Có thời hạn rõ ràng",
+      "option2": "Giữ nhiều lựa chọn mở"
+    },
+    "question12": {
+      "text": "Khi đi du lịch, bạn có xu hướng:",
+      "option1": "Tạo lịch trình chi tiết",
+      "option2": "Khám phá tự do"
+    },
+    "question2": {
+      "text": "Vào cuối tuần, bạn thích:",
+      "option1": "Đi chơi với bạn bè",
+      "option2": "Ở nhà để nghỉ ngơi"
+    },
+    "question3": {
+      "text": "Sau khi tham dự một buổi gặp mặt, bạn thường:",
+      "option1": "Cảm thấy tràn đầy năng lượng",
+      "option2": "Cảm thấy cần nghỉ ngơi"
+    },
+    "question4": {
+      "text": "Khi giải quyết vấn đề, bạn dựa nhiều hơn vào:",
+      "option1": "Kinh nghiệm thực tiễn và sự thật",
+      "option2": "Trực giác và khả năng"
+    },
+    "question5": {
+      "text": "Bạn ưu tiên:",
+      "option1": "Tập trung vào những chi tiết cụ thể",
+      "option2": "Tập trung vào khái niệm tổng thể"
+    },
+    "question6": {
+      "text": "Khi học điều mới, bạn ưu tiên:",
+      "option1": "Phương pháp từng bước một",
+      "option2": "Khám phá các phương pháp sáng tạo"
+    },
+    "question7": {
+      "text": "Khi đưa ra quyết định, bạn đánh giá:",
+      "option1": "Lý luận và phân tích khách quan",
+      "option2": "Cảm xúc và sự hòa hợp giữa các cá nhân"
+    },
+    "question8": {
+      "text": "Khi chỉ trích người khác, bạn:",
+      "option1": "Chỉ ra vấn đề một cách trực tiếp",
+      "option2": "Xem xét cảm xúc của người khác"
+    },
+    "question9": {
+      "text": "Bạn coi trọng hơn:",
+      "option1": "Sự công bằng và chính nghĩa",
+      "option2": "Sự đồng cảm và thấu hiểu"
+    }
   },
   "share": {
     "welcome": "👋 Bạn của bạn mời bạn tham gia bài kiểm tra MBTI!\n\nHãy đến và xem kiểu tính cách của bạn～",

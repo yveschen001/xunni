@@ -11,7 +11,7 @@ export default {
   "settings2": "⚙️ **Einstellungen**\n\n",
   "settings3": "🏠 Zurück zu den Einstellungen",
   "settings4": "Aktuelle Einstellungen:\n",
-  "text": "• Sprache: ${languageName} 🇹🇼\n\n",
+  "text": "• Sprache: {languageName} 🇹🇼\n\n",
   "title": "🏠 **Hauptmenü**",
   "throwReminder": "Erinnerung an Nachrichtenflasche",
   "catchReminder": "Erinnerung zur Abholung der Nachrichtenflasche",

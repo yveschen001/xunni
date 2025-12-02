@@ -27,8 +27,8 @@ export default {
   "error": "Virhe: {error}",
   "estimate": {
     "immediate": "Lähetä heti (noin 1-2 sekuntia)",
-    "minutes": "Noin \\${minutes} minuuttia",
-    "seconds": "Noin \\${seconds} sekuntia"
+    "minutes": "Noin \\{minutes} minuuttia",
+    "seconds": "Noin \\{seconds} sekuntia"
   },
   "estimatedTime": "Arvioitu aika: {time}\n\n",
   "example": "**Esimerkki:**\n",
@@ -97,7 +97,7 @@ export default {
   "foundStuckBroadcasts": "⚠️ Havaitut {count} juuttunutta lähetystä\n\n",
   "id": "ID: {id}",
   "idMustBeNumber": "❌ Lähetteen ID:n tulee olla numero",
-  "maxUsersExceeded": "❌ Nykyinen lähetysjärjestelmä tukee enintään ${max} käyttäjän lähettämistä.\n\nTavoitekäyttäjien määrä: ${current}",
+  "maxUsersExceeded": "❌ Nykyinen lähetysjärjestelmä tukee enintään {max} käyttäjän lähettämistä.\n\nTavoitekäyttäjien määrä: {current}",
   "messageContent": "Viestin sisältö",
   "noPendingBroadcasts": "Tällä hetkellä ei ole odottavia tai juuttuneita lähetyksiä.\n\n",
   "noRecords": "📊 Tällä hetkellä ei ole saatavilla lähetyshistoriaa",
@@ -151,7 +151,7 @@ export default {
   "targetNonVip": "Ei-VIP käyttäjät",
   "targetType": "Kohde: {type}\n",
   "targetVip": "VIP käyttäjät",
-  "tooLong": "Lähetyksen viestin pituus ei saa ylittää ${max} merkkiä (tällä hetkellä ${current} merkkiä)",
+  "tooLong": "Lähetyksen viestin pituus ei saa ylittää {max} merkkiä (tällä hetkellä {current} merkkiä)",
   "upgradeRequired": "Suuret lähetykset vaativat järjestelmäarkkitehtuurin päivityksen, katso BROADCAST_SYSTEM_REDESIGN.md",
   "usageError": "❌ Virheellinen käyttö\n\n",
   "userCount": "Käyttäjämäärä: {count} henkilöä\n",

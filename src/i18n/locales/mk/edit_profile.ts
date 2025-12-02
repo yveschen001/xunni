@@ -1,5 +1,5 @@
 export default {
-  "nickname": "👤 Прекар: ${ownerMaskedNickname}",
+  "nickname": "👤 Прекар: {ownerMaskedNickname}",
   "short19": "✏️ Уреди профил",
   "menuTitle": "Измени профил",
   "nicknameButton": "✏️ Измени прекар",

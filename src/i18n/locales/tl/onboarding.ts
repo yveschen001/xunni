@@ -1,7 +1,7 @@
 export default {
-  "age": "• Edad: ${updatedUser.age} taong gulang\n",
-  "age2": "Ang Iyong Edad: ${age} taong gulang\n",
-  "age3": "Edad: ${age} taong gulang\n",
+  "age": "• Edad: {updatedUser.age} taong gulang\n",
+  "age2": "Ang Iyong Edad: {age} taong gulang\n",
+  "age3": "Edad: {age} taong gulang\n",
   "ageRestriction": "❌ Ikinalulungkot namin, kailangan mong maging hindi bababa sa 18 taong gulang upang gamitin ang serbisyong ito.\n\n",
   "agreeTerms": "I-click ang button sa ibaba upang ipahayag na nabasa mo at sumang-ayon sa mga nabanggit na termino.",
   "antiFraud": {
@@ -24,7 +24,7 @@ export default {
   "birthday": "Kung sa tingin mo ito ay isang pagkakamali, pakisuri kung tama ang format ng iyong kaarawan (YYYY-MM-DD).",
   "birthday2": "Pakisok muli ang iyong kaarawan (format: YYYY-MM-DD):\n\n",
   "birthday3": "Pakisok ang iyong kaarawan (format: YYYY-MM-DD):\n\n",
-  "birthday4": "Kaarawan: ${birthday}\n",
+  "birthday4": "Kaarawan: {birthday}\n",
   "birthdayCheck": "Kung sa tingin mo ito ay isang error, pakisuri kung tama ang format ng iyong kaarawan (YYYY-MM-DD).",
   "birthdayError": "❌ {error}",
   "birthdayFormatError": "❌ Mali ang format ng kaarawan\n\nPakisuling muli (format: YYYY-MM-DD):",
@@ -43,11 +43,11 @@ export default {
   "enterYes": "Pakisulat ang 'oo' upang makumpleto ang pagsubok:",
   "errorRetry": "❌ Nagkaroon ng error, pakisuling muli.",
   "example": {
-    "birthday": "Halimbawa: 1995-06-15"
+    "birthday": "Halimbawa: 2000-12-25"
   },
   "gender": {
     "female": "Babae",
-    "label": "• Kasarian: ${gender}\n",
+    "label": "• Kasarian: {gender}\n",
     "male": "Lalaki"
   },
   "gender2": "• Kasarian: ${updatedUser.gender ===",
@@ -58,7 +58,7 @@ export default {
   "help": "Makakatulong ito upang makahanap kami ng mas angkop na kapareha sa chat para sa iyo～\n\n",
   "iHaveRead": "✅ Nabasa ko at sumasang-ayon ako",
   "info": {
-    "age18": "• Dapat kang hindi bababa sa 18 taong gulang upang magamit ang serbisyong ito.\n- Dapat ibigay ang tamang impormasyon upang ang pagtutugma at hula ng kapalaran ay magbigay ng magagandang resulta.",
+    "age18": "• Dapat ikaw ay hindi bababa sa 18 taong gulang upang magamit ang serbisyong ito\n- Upang gumamit ng pagtutugma at pagsasabi ng kapalaran, kinakailangang magbigay ng tumpak na impormasyon para sa magandang resulta.\n\n- Ipasok ang iyong kaarawan (hal., 2000-12-15)",
     "city": "🌍 Rehiyon: {city}"
   },
   "languageSelection": "🌐 **Pumili ng Wika**\n\nPakipili ang iyong gustong wika:",
@@ -69,8 +69,8 @@ export default {
   "message": "2. 🚨 Kilalanin ang mga mensahe ng panlilinlang\n",
   "message2": "• Mag-ingat sa mga mensahe na humihingi ng pera\n",
   "moreLanguages": "Karagdagang Wika",
-  "nickname": "• Palayaw: ${updatedUser.nickname}\n",
-  "nickname2": "Mahusay! Ang iyong palayaw ay: ${nickname}\n\n",
+  "nickname": "• Palayaw: {updatedUser.nickname}\n",
+  "nickname2": "Mahusay! Ang iyong palayaw ay: {nickname}\n\n",
   "nicknameError": "❌ {error}\n\nPakisuling muli ang iyong palayaw:",
   "nicknameGood": "Mahusay! Ang iyong palayaw ay: {nickname}\n\n",
   "notCompleted": "⚠️ Pakisuyong kumpletuhin ang proseso ng pagpaparehistro muna",
@@ -99,7 +99,7 @@ export default {
   "startRegistration": "Simulan ang Rehistrasyon →",
   "stats": "📊 Istadistika",
   "stepAntiFraud": "🛡️ Paki-click ang pindutan sa itaas upang kumpirmahin ang mga isyu sa kaligtasan laban sa panlilinlang",
-  "stepBirthday": "📅 Pakiusap ipasok ang iyong kaarawan (format: YYYY-MM-DD, hal. 1995-06-15)",
+  "stepBirthday": "📅 Pakisagutan ang iyong kaarawan (format: YYYY-MM-DD, hal., 2000-12-25)",
   "stepDefault": "Pakiusap kumpletuhin ang rehistrasyon ayon sa inutusan",
   "stepGender": "👤 Paki-click ang pindutan sa itaas upang piliin ang iyong kasarian",
   "stepLanguageSelection": "🌍 Paki-click ang pindutan sa itaas upang pumili ng iyong wika",
@@ -113,7 +113,7 @@ export default {
     "terms_of_service_button": "📋 Mga Tuntunin ng Serbisyo"
   },
   "termsOfService": "📋 Mga Tuntunin ng Gumagamit\n\n",
-  "text": "kumpirmahin_birthday_${birthday}",
+  "text": "kumpirmahin_birthday_{birthday}",
   "text10": "Halimbawa: 1995-06-15\n\n",
   "text11": "🛡️ Mga Tip sa Kaligtasan sa Pakikipag-Date Online\n\n",
   "text12": "📋 Huling Hakbang: Mga Tuntunin ng Serbisyo\n\n",
@@ -127,7 +127,7 @@ export default {
   "text2": "💡 Maaari mong gamitin ang /mbti command anumang oras upang muling kunin ang pagsusulit o gumawa ng mga pagbabago.",
   "text20": "Mangyaring bumalik pagkatapos maabot ang pagka-adulto!\n\n",
   "text21": "📋 Patakaran sa Privacy\n",
-  "text3": "kumpirmahin_tao_${gender}",
+  "text3": "kumpirmahin_tao_{gender}",
   "text4": "Huling Hakbang: Pakibasa at sumang-ayon sa aming Mga Tuntunin ng Serbisyo\n\n",
   "text5": "📝 Kumpletuhin ang mabilis na pagsusulit (12 tanong, para lamang sa sanggunian)",
   "text6": "• Mga Tuntunin ng Gumagamit: Mga Patnubay para sa paggamit ng serbisyong ito\n\n",
@@ -138,12 +138,12 @@ export default {
   "useTelegramNickname": "Gamitin ang Telegram Nickname",
   "viewPrivacyPolicy": "📋 Tingnan ang Patakaran sa Privacy",
   "viewTermsOfService": "📋 Tingnan ang Mga Tuntunin ng Serbisyo",
-  "vip": "💡 Ang pagbibigay ng iyong uri ng dugo ay gagamitin para sa mga hinaharap na tampok na pagkakatugma ng uri ng dugo (exklusibo para sa VIP)\n\n",
+  "vip": "💡 Ang pagpasok ng iyong uri ng dugo ay maaaring magamit para sa mga hinaharap na tampok ng pagtutugma ng uri ng dugo (mas maraming katangian, pagsasama ng astrolohiya)",
   "warning": {
     "birthday": "⚠️ Ang kaarawan ay hindi maaaring baguhin matapos itakda, pakitiyak na ito ay tama!"
   },
   "welcome": "Maligayang pagdating sa XunNi!\n\nPumili ng iyong wika:",
   "yourAge": "Ang iyong edad: {age} taong gulang\n",
-  "zodiac": "• Zodiac sign: ${updatedUser.zodiac_sign}",
-  "zodiac2": "Tanda ng Zodiac: ${zodiacSign}\n\n"
+  "zodiac": "• Zodiac sign: {updatedUser.zodiac_sign}",
+  "zodiac2": "Tanda ng Zodiac: {zodiacSign}\n\n"
 };

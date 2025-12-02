@@ -1,7 +1,7 @@
 export default {
-  "age": "• Umur: ${updatedUser.age} tahun\n",
-  "age2": "Umur Anda: ${age} tahun\n",
-  "age3": "Umur: ${age} tahun\n",
+  "age": "• Umur: {updatedUser.age} tahun\n",
+  "age2": "Umur Anda: {age} tahun\n",
+  "age3": "Umur: {age} tahun\n",
   "ageRestriction": "❌ Maaf, anda mesti berumur sekurang-kurangnya 18 tahun untuk menggunakan perkhidmatan ini.\n\n",
   "agreeTerms": "Klik butang di bawah untuk menunjukkan bahawa anda telah membaca dan bersetuju dengan terma di atas.",
   "antiFraud": {
@@ -24,7 +24,7 @@ export default {
   "birthday": "Jika anda percaya ini adalah kesilapan, sila semak jika format tarikh lahir anda betul (YYYY-MM-DD).",
   "birthday2": "Sila masukkan semula hari lahir anda (format: YYYY-MM-DD):\n\n",
   "birthday3": "Sila masukkan hari lahir anda (format: YYYY-MM-DD):\n\n",
-  "birthday4": "Hari Lahir: ${birthday}\n",
+  "birthday4": "Hari Lahir: {birthday}\n",
   "birthdayCheck": "Jika anda fikir ini adalah ralat, sila semak sama ada format hari lahir anda adalah betul (YYYY-MM-DD).",
   "birthdayError": "❌ {error}",
   "birthdayFormatError": "❌ Format hari lahir adalah tidak betul\n\nSila masukkan semula (format: YYYY-MM-DD):",
@@ -43,11 +43,11 @@ export default {
   "enterYes": "Sila masukkan 'ya' untuk menyelesaikan ujian:",
   "errorRetry": "❌ Ralat telah berlaku, sila masukkan semula.",
   "example": {
-    "birthday": "Sebagai contoh: 1995-06-15"
+    "birthday": "Sebagai contoh: 2000-12-25"
   },
   "gender": {
     "female": "Perempuan",
-    "label": "• Jantina: ${gender}\n",
+    "label": "• Jantina: {gender}\n",
     "male": "Lelaki"
   },
   "gender2": "• Jantina: ${updatedUser.gender ===",
@@ -58,7 +58,7 @@ export default {
   "help": "Ini akan membantu kami mencari rakan perbualan yang lebih sesuai untuk anda～\n\n",
   "iHaveRead": "✅ Saya telah membaca dan bersetuju",
   "info": {
-    "age18": "• Anda mesti berumur sekurang-kurangnya 18 tahun untuk menggunakan perkhidmatan ini.\n- Maklumat yang tepat mesti diberikan untuk pemadanan dan ramalan nasib untuk menghasilkan keputusan yang baik.",
+    "age18": "• Anda mesti berumur sekurang-kurangnya 18 tahun untuk menggunakan perkhidmatan ini\n- Untuk menggunakan padanan dan ramalan, maklumat yang tepat mesti diberikan untuk hasil yang baik.\n\n- Masukkan tarikh lahir anda (contohnya, 2000-12-15)",
     "city": "🌍 Kawasan: {city}"
   },
   "languageSelection": "🌐 **Pilih Bahasa**\n\nSila pilih bahasa pilihan anda:",
@@ -69,8 +69,8 @@ export default {
   "message": "2. 🚨 Kenalpasti mesej penipuan\n",
   "message2": "• Berhati-hati dengan mesej yang meminta duit\n",
   "moreLanguages": "Lebih Banyak Bahasa",
-  "nickname": "• Nama samaran: ${updatedUser.nickname}\n",
-  "nickname2": "Hebat! Nama panggilan anda adalah: ${nickname}\n\n",
+  "nickname": "• Nama samaran: {updatedUser.nickname}\n",
+  "nickname2": "Hebat! Nama panggilan anda adalah: {nickname}\n\n",
   "nicknameError": "❌ {error}\n\nSila masukkan semula nama samaran anda:",
   "nicknameGood": "Hebat! Nama panggilan anda adalah: {nickname}\n\n",
   "notCompleted": "[Penterjemahan diperlukan: onboarding.notCompleted]",
@@ -99,7 +99,7 @@ export default {
   "startRegistration": "Mula Pendaftaran →",
   "stats": "📊 Statistik",
   "stepAntiFraud": "🛡️ Sila klik butang di atas untuk mengesahkan perkara keselamatan anti-penipuan",
-  "stepBirthday": "📅 Sila masukkan hari lahir anda (format: YYYY-MM-DD, contohnya, 1995-06-15)",
+  "stepBirthday": "📅 Sila masukkan tarikh lahir anda (format: YYYY-MM-DD, contohnya, 2000-12-25)",
   "stepDefault": "Sila lengkapi pendaftaran seperti yang diarahkan",
   "stepGender": "👤 Sila klik butang di atas untuk memilih jantina anda",
   "stepLanguageSelection": "🌍 Sila klik butang di atas untuk memilih bahasa anda",
@@ -113,7 +113,7 @@ export default {
     "terms_of_service_button": "📋 Terma Perkhidmatan"
   },
   "termsOfService": "📋 Terma Pengguna\n\n",
-  "text": "sahkan_hari_lahir_${birthday}",
+  "text": "sahkan_hari_lahir_{birthday}",
   "text10": "Sebagai contoh: 1995-06-15\n\n",
   "text11": "🛡️ Tip Keselamatan Temu Janji Dalam Talian\n\n",
   "text12": "📋 Langkah Akhir: Terma Perkhidmatan\n\n",
@@ -127,7 +127,7 @@ export default {
   "text2": "💡 Anda boleh menggunakan perintah /mbti pada bila-bila masa untuk mengambil semula ujian atau membuat perubahan.",
   "text20": "Sila kembali setelah mencapai dewasa!\n\n",
   "text21": "📋 Dasar Privasi\n",
-  "text3": "sahkan_jantina_${gender}",
+  "text3": "sahkan_jantina_{gender}",
   "text4": "Langkah Akhir: Sila baca dan setujui Terma Perkhidmatan kami\n\n",
   "text5": "📝 Ambil kuiz cepat (12 soalan, untuk rujukan sahaja)",
   "text6": "• Terma Pengguna: Garis panduan untuk menggunakan perkhidmatan ini\n\n",
@@ -138,12 +138,12 @@ export default {
   "useTelegramNickname": "Gunakan Nama Panggilan Telegram",
   "viewPrivacyPolicy": "📋 Lihat Dasar Privasi",
   "viewTermsOfService": "📋 Lihat Terma Perkhidmatan",
-  "vip": "💡 Memberikan jenis darah anda akan digunakan untuk ciri padanan jenis darah di masa hadapan (eksklusif VIP)\n\n",
+  "vip": "💡 Memasukkan jenis darah anda boleh digunakan untuk ciri pemadanan jenis darah di masa hadapan (lebih banyak atribut, pemadanan astrologi)",
   "warning": {
     "birthday": "⚠️ Tarikh lahir tidak boleh diubah selepas ditetapkan, sila sahkan bahawa ia betul!"
   },
   "welcome": "Selamat datang ke XunNi!\n\nSila pilih bahasa anda:",
   "yourAge": "Umur anda: {age} tahun\n",
-  "zodiac": "• Tanda zodiak: ${updatedUser.zodiac_sign}\n",
-  "zodiac2": "Tanda zodiak: ${zodiacSign}\n\n"
+  "zodiac": "• Tanda zodiak: {updatedUser.zodiac_sign}\n",
+  "zodiac2": "Tanda zodiak: {zodiacSign}\n\n"
 };

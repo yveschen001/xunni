@@ -11,6 +11,6 @@ export default {
   "step2": "2️⃣ 选择「回覆」",
   "step3": "3️⃣ 输入 /block",
   "steps": "**操作步骤：**",
-  "success": "✅ 已封锁此使用者 (#${identifier})",
+  "success": "✅ 已封锁此使用者 (#{identifier})",
   "willNotMatch": "你们将不会再被匹配到对方的漂流瓶。"
 };

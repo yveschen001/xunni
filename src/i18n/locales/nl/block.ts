@@ -11,6 +11,6 @@ export default {
   "step2": "2️⃣ Selecteer 'Antwoord'.",
   "step3": "3️⃣ Voer /block in.",
   "steps": "**Stappen voor de operatie:**",
-  "success": "✅ Deze gebruiker is geblokkeerd (#${identifier}).",
+  "success": "✅ Deze gebruiker is geblokkeerd (#{identifier}).",
   "willNotMatch": "Je zult niet langer met elkaars berichtflessen worden gematcht."
 };

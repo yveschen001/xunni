@@ -18,164 +18,248 @@ export default {
     "ISTP": "Penilai - Seorang percobaan yang berani dan praktis, terampil dalam menggunakan berbagai alat."
   },
   "full": {
-    "question1": "Dalam situasi sosial, Anda biasanya:",
-    "question1.option1": "Berinteraksi proaktif dengan orang lain",
-    "question1.option2": "Menunggu orang lain mendekati saya",
-    "question10": "Ketika memecahkan masalah, Anda lebih mengandalkan:",
-    "question10.option1": "Pengalaman praktis dan fakta",
-    "question10.option2": "Intuisi dan kemungkinan",
-    "question11": "Mana yang Anda lebih suka:",
-    "question11.option1": "Fokus pada detail tertentu",
-    "question11.option2": "Fokus pada konsep keseluruhan",
-    "question12": "Ketika mempelajari sesuatu yang baru, Anda lebih suka:",
-    "question12.option1": "Pendekatan langkah demi langkah",
-    "question12.option2": "Menjelajahi metode inovatif",
-    "question13": "Ketika membaca, Anda lebih suka:",
-    "question13.option1": "Pedoman praktis",
-    "question13.option2": "Teori dan konsep",
-    "question14": "Anda lebih fokus pada:",
-    "question14.option1": "Saat ini dan masa lalu",
-    "question14.option2": "Masa depan dan kemungkinan",
-    "question15": "Ketika menggambarkan sesuatu, Anda cenderung:",
-    "question15.option1": "Menggunakan contoh spesifik",
-    "question15.option2": "Menggunakan metafora dan analogi",
-    "question16": "Di tempat kerja, Anda menghargai:",
-    "question16.option1": "Aplikasi praktis",
-    "question16.option2": "Ide-ide inovatif",
-    "question17": "Siapa yang Anda percayai lebih:",
-    "question17.option1": "Metode yang terverifikasi",
-    "question17.option2": "Upaya baru",
-    "question18": "Saat merencanakan masa depan, Anda akan:",
-    "question18.option1": "Berdasarkan pada kondisi nyata",
-    "question18.option2": "Membayangkan berbagai kemungkinan",
-    "question19": "Saat membuat keputusan, Anda lebih menghargai:",
-    "question19.option1": "Logika dan analisis obyektif",
-    "question19.option2": "Emosi dan harmoni antarpribadi",
-    "question2": "Di akhir pekan Anda lebih suka:",
-    "question2.option1": "Pergi keluar dengan teman-teman",
-    "question2.option2": "Tetap di rumah untuk bersantai sendirian",
-    "question20": "Ketika mengkritik orang lain, Anda akan:",
-    "question20.option1": "Menunjukkan masalah secara langsung",
-    "question20.option2": "Mempertimbangkan perasaan orang lain",
-    "question21": "Anda lebih menghargai:",
-    "question21.option1": "Keadilan dan kejujuran",
-    "question21.option2": "Belas kasih dan pengertian",
-    "question22": "Saat mengevaluasi sebuah ide, Anda pertama-tama mempertimbangkan:",
-    "question22.option1": "Apakah itu masuk akal?",
-    "question22.option2": "Apakah itu bermanfaat?",
-    "question23": "Ketika seorang teman mempercayakan rahasianya kepada Anda, Anda akan:",
-    "question23.option1": "Menganalisis masalah dan memberikan saran",
-    "question23.option2": "Mendengarkan dan menawarkan kenyamanan",
-    "question24": "Dalam konflik, Anda cenderung:",
-    "question24.option1": "Berpegang pada prinsip",
-    "question24.option2": "Mempertahankan hubungan",
-    "question25": "Anda lebih mudah dipersuasif oleh:",
-    "question25.option1": "Fakta dan data",
-    "question25.option2": "Emosi dan cerita",
-    "question26": "Dalam pengambilan keputusan tim, Anda lebih fokus pada:",
-    "question26.option1": "Efisiensi dan hasil",
-    "question26.option2": "Konsensus dan persatuan",
-    "question27": "Anda percaya seorang pemimpin yang baik seharusnya:",
-    "question27.option1": "Adil dan tegas",
-    "question27.option2": "Perhatian dan peduli",
-    "question28": "Gaya kerja Anda adalah:",
-    "question28.option1": "Merencanakan dan mempersiapkan terlebih dahulu",
-    "question28.option2": "Beradaptasi dan fleksibel",
-    "question29": "Anda lebih suka:",
-    "question29.option1": "Memiliki tenggat waktu yang jelas",
-    "question29.option2": "Menjaga opsi tetap terbuka",
-    "question3": "Setelah menghadiri sebuah pertemuan, Anda biasanya:",
-    "question3.option1": "Merasa berenergi",
-    "question3.option2": "Merasa perlu istirahat",
-    "question30": "Saat bepergian, Anda cenderung:",
-    "question30.option1": "Membuat rencana rinci",
-    "question30.option2": "Jelajahi dengan santai",
-    "question31": "Kamar Anda biasanya:",
-    "question31.option1": "Rapi dan teratur",
-    "question31.option2": "Santai dan bebas bentuk",
-    "question32": "Saat menangani tugas, Anda:",
-    "question32.option1": "Menyelesaikannya secepat mungkin",
-    "question32.option2": "Menyelesaikannya mendekati tenggat waktu",
-    "question33": "Gaya hidup yang Anda sukai:",
-    "question33.option1": "Teratur dan terstruktur",
-    "question33.option2": "Bebas dan fleksibel",
-    "question34": "Saat membuat keputusan, Anda cenderung:",
-    "question34.option1": "Memutuskan dengan cepat",
-    "question34.option2": "Menjaga opsi Anda tetap terbuka",
-    "question35": "Saat berbelanja, Anda:",
-    "question35.option1": "Membuat daftar dan mematuhinya",
-    "question35.option2": "Berkeliling dengan santai dan membeli apa yang Anda suka",
-    "question36": "Saat menghadapi perubahan, Anda biasanya:",
-    "question36.option1": "Merasa tidak nyaman",
-    "question36.option2": "Rasakan semangat",
-    "question4": "Dalam sebuah tim, Anda cenderung:",
-    "question4.option1": "Berbicara aktif",
-    "question4.option2": "Mendengarkan sebelum berbicara",
-    "question5": "Ketika bertemu teman baru, Anda:",
-    "question5.option1": "Menjadi akrab dengan cepat",
-    "question5.option2": "Butuh waktu untuk mengenal mereka",
-    "question6": "Lingkaran teman Anda:",
-    "question6.option1": "Luasa tetapi tidak dalam",
-    "question6.option2": "Kecil dan dekat",
-    "question7": "Ketika bekerja, Anda lebih suka:",
-    "question7.option1": "Kolaborasi tim",
-    "question7.option2": "Bekerja secara mandiri",
-    "question8": "Ketika memikirkan masalah, Anda cenderung:",
-    "question8.option1": "Berpikir keras saat brainstorming",
-    "question8.option2": "Memikirkannya sebelum berbicara",
-    "question9": "Ketika berada di bawah tekanan, Anda akan:",
-    "question9.option1": "Mengobrol dengan teman",
-    "question9.option2": "Proses sendiri"
+    "question1": {
+      "text": "Dalam situasi sosial, Anda biasanya:",
+      "option1": "Berinteraksi proaktif dengan orang lain",
+      "option2": "Menunggu orang lain mendekati saya"
+    },
+    "question10": {
+      "text": "Ketika memecahkan masalah, Anda lebih mengandalkan:",
+      "option1": "Pengalaman praktis dan fakta",
+      "option2": "Intuisi dan kemungkinan"
+    },
+    "question11": {
+      "text": "Mana yang Anda lebih suka:",
+      "option1": "Fokus pada detail tertentu",
+      "option2": "Fokus pada konsep keseluruhan"
+    },
+    "question12": {
+      "text": "Ketika mempelajari sesuatu yang baru, Anda lebih suka:",
+      "option1": "Pendekatan langkah demi langkah",
+      "option2": "Menjelajahi metode inovatif"
+    },
+    "question13": {
+      "text": "Ketika membaca, Anda lebih suka:",
+      "option1": "Pedoman praktis",
+      "option2": "Teori dan konsep"
+    },
+    "question14": {
+      "text": "Anda lebih fokus pada:",
+      "option1": "Saat ini dan masa lalu",
+      "option2": "Masa depan dan kemungkinan"
+    },
+    "question15": {
+      "text": "Ketika menggambarkan sesuatu, Anda cenderung:",
+      "option1": "Menggunakan contoh spesifik",
+      "option2": "Menggunakan metafora dan analogi"
+    },
+    "question16": {
+      "text": "Di tempat kerja, Anda menghargai:",
+      "option1": "Aplikasi praktis",
+      "option2": "Ide-ide inovatif"
+    },
+    "question17": {
+      "text": "Siapa yang Anda percayai lebih:",
+      "option1": "Metode yang terverifikasi",
+      "option2": "Upaya baru"
+    },
+    "question18": {
+      "text": "Saat merencanakan masa depan, Anda akan:",
+      "option1": "Berdasarkan pada kondisi nyata",
+      "option2": "Membayangkan berbagai kemungkinan"
+    },
+    "question19": {
+      "text": "Saat membuat keputusan, Anda lebih menghargai:",
+      "option1": "Logika dan analisis obyektif",
+      "option2": "Emosi dan harmoni antarpribadi"
+    },
+    "question2": {
+      "text": "Di akhir pekan Anda lebih suka:",
+      "option1": "Pergi keluar dengan teman-teman",
+      "option2": "Tetap di rumah untuk bersantai sendirian"
+    },
+    "question20": {
+      "text": "Ketika mengkritik orang lain, Anda akan:",
+      "option1": "Menunjukkan masalah secara langsung",
+      "option2": "Mempertimbangkan perasaan orang lain"
+    },
+    "question21": {
+      "text": "Anda lebih menghargai:",
+      "option1": "Keadilan dan kejujuran",
+      "option2": "Belas kasih dan pengertian"
+    },
+    "question22": {
+      "text": "Saat mengevaluasi sebuah ide, Anda pertama-tama mempertimbangkan:",
+      "option1": "Apakah itu masuk akal?",
+      "option2": "Apakah itu bermanfaat?"
+    },
+    "question23": {
+      "text": "Ketika seorang teman mempercayakan rahasianya kepada Anda, Anda akan:",
+      "option1": "Menganalisis masalah dan memberikan saran",
+      "option2": "Mendengarkan dan menawarkan kenyamanan"
+    },
+    "question24": {
+      "text": "Dalam konflik, Anda cenderung:",
+      "option1": "Berpegang pada prinsip",
+      "option2": "Mempertahankan hubungan"
+    },
+    "question25": {
+      "text": "Anda lebih mudah dipersuasif oleh:",
+      "option1": "Fakta dan data",
+      "option2": "Emosi dan cerita"
+    },
+    "question26": {
+      "text": "Dalam pengambilan keputusan tim, Anda lebih fokus pada:",
+      "option1": "Efisiensi dan hasil",
+      "option2": "Konsensus dan persatuan"
+    },
+    "question27": {
+      "text": "Anda percaya seorang pemimpin yang baik seharusnya:",
+      "option1": "Adil dan tegas",
+      "option2": "Perhatian dan peduli"
+    },
+    "question28": {
+      "text": "Gaya kerja Anda adalah:",
+      "option1": "Merencanakan dan mempersiapkan terlebih dahulu",
+      "option2": "Beradaptasi dan fleksibel"
+    },
+    "question29": {
+      "text": "Anda lebih suka:",
+      "option1": "Memiliki tenggat waktu yang jelas",
+      "option2": "Menjaga opsi tetap terbuka"
+    },
+    "question3": {
+      "text": "Setelah menghadiri sebuah pertemuan, Anda biasanya:",
+      "option1": "Merasa berenergi",
+      "option2": "Merasa perlu istirahat"
+    },
+    "question30": {
+      "text": "Saat bepergian, Anda cenderung:",
+      "option1": "Membuat rencana rinci",
+      "option2": "Jelajahi dengan santai"
+    },
+    "question31": {
+      "text": "Kamar Anda biasanya:",
+      "option1": "Rapi dan teratur",
+      "option2": "Santai dan bebas bentuk"
+    },
+    "question32": {
+      "text": "Saat menangani tugas, Anda:",
+      "option1": "Menyelesaikannya secepat mungkin",
+      "option2": "Menyelesaikannya mendekati tenggat waktu"
+    },
+    "question33": {
+      "text": "Gaya hidup yang Anda sukai:",
+      "option1": "Teratur dan terstruktur",
+      "option2": "Bebas dan fleksibel"
+    },
+    "question34": {
+      "text": "Saat membuat keputusan, Anda cenderung:",
+      "option1": "Memutuskan dengan cepat",
+      "option2": "Menjaga opsi Anda tetap terbuka"
+    },
+    "question35": {
+      "text": "Saat berbelanja, Anda:",
+      "option1": "Membuat daftar dan mematuhinya",
+      "option2": "Berkeliling dengan santai dan membeli apa yang Anda suka"
+    },
+    "question36": {
+      "text": "Saat menghadapi perubahan, Anda biasanya:",
+      "option1": "Merasa tidak nyaman",
+      "option2": "Rasakan semangat"
+    },
+    "question4": {
+      "text": "Dalam sebuah tim, Anda cenderung:",
+      "option1": "Berbicara aktif",
+      "option2": "Mendengarkan sebelum berbicara"
+    },
+    "question5": {
+      "text": "Ketika bertemu teman baru, Anda:",
+      "option1": "Menjadi akrab dengan cepat",
+      "option2": "Butuh waktu untuk mengenal mereka"
+    },
+    "question6": {
+      "text": "Lingkaran teman Anda:",
+      "option1": "Luasa tetapi tidak dalam",
+      "option2": "Kecil dan dekat"
+    },
+    "question7": {
+      "text": "Ketika bekerja, Anda lebih suka:",
+      "option1": "Kolaborasi tim",
+      "option2": "Bekerja secara mandiri"
+    },
+    "question8": {
+      "text": "Ketika memikirkan masalah, Anda cenderung:",
+      "option1": "Berpikir keras saat brainstorming",
+      "option2": "Memikirkannya sebelum berbicara"
+    },
+    "question9": {
+      "text": "Ketika berada di bawah tekanan, Anda akan:",
+      "option1": "Mengobrol dengan teman",
+      "option2": "Proses sendiri"
+    }
   },
   "quick": {
-    "question1": "Dalam situasi sosial, Anda biasanya:",
-    "question1.option1": "Menginisiasi percakapan dengan orang lain",
-    "question1.option2": "Menunggu orang lain mendekati saya",
-    "question10": "Gaya kerja Anda adalah:",
-    "question10.option1": "Merencanakan dan mempersiapkan sebelumnya",
-    "question10.option2": "Menjadi adaptif dan fleksibel",
-    "question11": "Anda lebih suka:",
-    "question11.option1": "Memiliki tenggat waktu yang jelas",
-    "question11.option2": "Menjaga opsi tetap terbuka",
-    "question12": "Ketika bepergian, Anda cenderung:",
-    "question12.option1": "Membuat itinerary yang rinci",
-    "question12.option2": "Menjelajahi dengan bebas",
-    "question2": "Pada akhir pekan, Anda lebih suka:",
-    "question2.option1": "Keluar dengan teman",
-    "question2.option2": "Berada di rumah untuk bersantai",
-    "question3": "Setelah menghadiri sebuah pesta, Anda biasanya:",
-    "question3.option1": "Merasa berenergi",
-    "question3.option2": "Merasa perlu istirahat",
-    "question4": "Anda lebih mengandalkan saat menyelesaikan masalah:",
-    "question4.option1": "Pengalaman praktis dan fakta",
-    "question4.option2": "Intuisi dan kemungkinan",
-    "question5": "Anda lebih suka:",
-    "question5.option1": "Fokus pada rincian spesifik",
-    "question5.option2": "Fokus pada konsep keseluruhan",
-    "question6": "Ketika belajar hal-hal baru, Anda lebih suka:",
-    "question6.option1": "Pendekatan langkah demi langkah",
-    "question6.option2": "Menjelajahi cara-cara inovatif",
-    "question7": "Ketika membuat keputusan, Anda lebih menghargai:",
-    "question7.option1": "Logika dan analisis objektif",
-    "question7.option2": "Emosi dan harmoni antarpersonal",
-    "question8": "Ketika mengkritik orang lain, Anda:",
-    "question8.option1": "Tunjukkan masalah secara langsung",
-    "question8.option2": "Pertimbangkan perasaan orang lain",
-    "question9": "Anda lebih menghargai:",
-    "question9.option1": "Keadilan dan kejujuran",
-    "question9.option2": "Belas kasihan dan pengertian",
-    "question1.text": "Dalam situasi sosial, Anda biasanya:",
-    "question10.text": "Gaya kerja Anda adalah:",
-    "question11.text": "Anda lebih memilih:",
-    "question12.text": "Saat bepergian, Anda cenderung:",
-    "question2.text": "Saat akhir pekan Anda lebih memilih:",
-    "question3.text": "Setelah menghadiri kumpul-kumpul, Anda biasanya:",
-    "question4.text": "Saat menyelesaikan masalah, Anda lebih mengandalkan:",
-    "question5.text": "Anda lebih memilih:",
-    "question6.text": "Saat belajar hal-hal baru, Anda lebih suka:",
-    "question7.text": "Saat membuat keputusan, Anda menghargai:",
-    "question8.text": "Saat mengkritik orang lain, Anda:",
-    "question9.text": "Anda lebih menghargai:"
+    "question1": {
+      "text": "Dalam situasi sosial, Anda biasanya:",
+      "option1": "Menginisiasi percakapan dengan orang lain",
+      "option2": "Menunggu orang lain mendekati saya"
+    },
+    "question10": {
+      "text": "Gaya kerja Anda adalah:",
+      "option1": "Merencanakan dan mempersiapkan sebelumnya",
+      "option2": "Menjadi adaptif dan fleksibel"
+    },
+    "question11": {
+      "text": "Anda lebih memilih:",
+      "option1": "Memiliki tenggat waktu yang jelas",
+      "option2": "Menjaga opsi tetap terbuka"
+    },
+    "question12": {
+      "text": "Saat bepergian, Anda cenderung:",
+      "option1": "Membuat itinerary yang rinci",
+      "option2": "Menjelajahi dengan bebas"
+    },
+    "question2": {
+      "text": "Saat akhir pekan Anda lebih memilih:",
+      "option1": "Keluar dengan teman",
+      "option2": "Berada di rumah untuk bersantai"
+    },
+    "question3": {
+      "text": "Setelah menghadiri kumpul-kumpul, Anda biasanya:",
+      "option1": "Merasa berenergi",
+      "option2": "Merasa perlu istirahat"
+    },
+    "question4": {
+      "text": "Saat menyelesaikan masalah, Anda lebih mengandalkan:",
+      "option1": "Pengalaman praktis dan fakta",
+      "option2": "Intuisi dan kemungkinan"
+    },
+    "question5": {
+      "text": "Anda lebih memilih:",
+      "option1": "Fokus pada rincian spesifik",
+      "option2": "Fokus pada konsep keseluruhan"
+    },
+    "question6": {
+      "text": "Saat belajar hal-hal baru, Anda lebih suka:",
+      "option1": "Pendekatan langkah demi langkah",
+      "option2": "Menjelajahi cara-cara inovatif"
+    },
+    "question7": {
+      "text": "Saat membuat keputusan, Anda menghargai:",
+      "option1": "Logika dan analisis objektif",
+      "option2": "Emosi dan harmoni antarpersonal"
+    },
+    "question8": {
+      "text": "Saat mengkritik orang lain, Anda:",
+      "option1": "Tunjukkan masalah secara langsung",
+      "option2": "Pertimbangkan perasaan orang lain"
+    },
+    "question9": {
+      "text": "Anda lebih menghargai:",
+      "option1": "Keadilan dan kejujuran",
+      "option2": "Belas kasihan dan pengertian"
+    }
   },
   "share": {
     "welcome": "👋 Teman Anda mengundang Anda untuk mengikuti tes MBTI!\n\nAyo lihat tipe kepribadian Anda～",

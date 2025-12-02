@@ -1,7 +1,7 @@
 export default {
   "age": {
-    "daysAgo": "\\${days} dagen geleden",
-    "hoursAgo": "\\${hours} uur geleden",
+    "daysAgo": "\\{days} dagen geleden",
+    "hoursAgo": "\\{hours} uur geleden",
     "justNow": "Zojuist"
   },
   "contentHint": "💡 Je kunt:\n• Nieuwe inhoud invoeren om de concepttekst direct te vervangen\n• Gebruik /throw om opnieuw te starten\n• Conceptinhoud verzenden om een berichtfles te gooien",

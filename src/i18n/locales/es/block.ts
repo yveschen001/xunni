@@ -11,6 +11,6 @@ export default {
   "step2": "2️⃣ Selecciona 'Responder'.",
   "step3": "3️⃣ Ingresa /block.",
   "steps": "**Pasos de Operación:**",
-  "success": "✅ Este usuario ha sido bloqueado (#${identifier}).",
+  "success": "✅ Este usuario ha sido bloqueado (#{identifier}).",
   "willNotMatch": "No volverás a ser emparejado con las botellas de mensajes del otro."
 };

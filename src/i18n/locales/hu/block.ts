@@ -11,6 +11,6 @@ export default {
   "step2": "2️⃣ Válassza a 'Válasz' lehetőséget.",
   "step3": "3️⃣ Írja be: /block.",
   "steps": "**Műveletek lépései:**",
-  "success": "✅ Ezt a felhasználót letiltottuk (#${identifier})",
+  "success": "✅ Ezt a felhasználót letiltottuk (#{identifier})",
   "willNotMatch": "Többé nem lesznek egymás message bottle-jai."
 };

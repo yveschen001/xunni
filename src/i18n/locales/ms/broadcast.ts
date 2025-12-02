@@ -27,8 +27,8 @@ export default {
   "error": "Ralat: {error}",
   "estimate": {
     "immediate": "Hantar Segera (Anggaran 1-2 saat)",
-    "minutes": "Kira-kira ${minutes} minit",
-    "seconds": "Kira-kira ${seconds} saat"
+    "minutes": "Kira-kira {minutes} minit",
+    "seconds": "Kira-kira {seconds} saat"
   },
   "estimatedTime": "Anggaran Masa: {time}\n\n",
   "example": "**Contoh:**\n",
@@ -97,7 +97,7 @@ export default {
   "foundStuckBroadcasts": "⚠️ Terdapat {count} siaran tersekat dikesan\n\n",
   "id": "ID: {id}",
   "idMustBeNumber": "❌ ID siaran mesti nombor",
-  "maxUsersExceeded": "❌ Sistem siaran semasa hanya menyokong siaran kepada ${max} pengguna atau kurang.\n\nJumlah pengguna sasaran: ${current}",
+  "maxUsersExceeded": "❌ Sistem siaran semasa hanya menyokong siaran kepada {max} pengguna atau kurang.\n\nJumlah pengguna sasaran: {current}",
   "messageContent": "Kandungan mesej",
   "noPendingBroadcasts": "Ketika ini, tiada siaran tertangguh atau tersekat.\n\n",
   "noRecords": "📊 Tiada rekod siaran pada masa ini",
@@ -151,7 +151,7 @@ export default {
   "targetNonVip": "Pengguna Bukan VIP",
   "targetType": "Sasaran: {type}\n",
   "targetVip": "Pengguna VIP",
-  "tooLong": "Botol mesej tidak boleh melebihi ${max} aksara (sekarang ${current} aksara)",
+  "tooLong": "Botol mesej tidak boleh melebihi {max} aksara (sekarang {current} aksara)",
   "upgradeRequired": "Penyiaran berskala besar memerlukan peningkatan seni bina sistem, sila rujuk kepada BROADCAST_SYSTEM_REDESIGN.md",
   "usageError": "❌ Penggunaan tidak betul\n\n",
   "userCount": "Jumlah Pengguna: {count} orang\n",

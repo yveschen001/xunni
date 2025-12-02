@@ -1,5 +1,5 @@
 export default {
-  "alreadyExists": "⏳ Van egy függő javaslata (ID: #${appealId})\n\nÁllapot: ${status}\nBen submitted at: ${time}\n\nKérjük, várjon az adminisztrátor átvizsgálására.",
+  "alreadyExists": "⏳ Van egy függő javaslata (ID: #{appealId})\n\nÁllapot: {status}\nBen submitted at: {time}\n\nKérjük, várjon az adminisztrátor átvizsgálására.",
   "approved": "✅ A panasza jóváhagyásra került, a fiók feloldva",
   "noAppeal": "Jelenleg nincs függő panasz.",
   "notBanned": "✅ A fiókja nincs letiltva, nincs szükség fellebbezésre.",
@@ -10,9 +10,9 @@ export default {
   "reasonTooShort": "❌ A fellebbezés oka túl rövid, kérjük, adjon meg legalább 10 karaktert.",
   "rejected": "❌ A fellebbezése elutasításra került.",
   "reviewedAt": "Felülvizsgálati idő:",
-  "status": "📋 **Fellebbezés Állapota**\n\nFellebbezés ID: #${appealId}\nÁllapot: ${status}\nBenysztás ideje: ${createdAt}${reviewInfo}",
+  "status": "📋 **Fellebbezés Állapota**\n\nFellebbezés ID: #{appealId}\nÁllapot: {status}\nBenysztás ideje: {createdAt}{reviewInfo}",
   "statusApproved": "Jóváhagyva",
   "statusPending": "Folyamatban lévő felülvizsgálat",
   "statusRejected": "Elutasítva",
-  "submitted": "✅ **Fellebbezés benyújtva**\n\nFellebbezés ID: #${appealId}\nÁllapot: Folyamatban lévő felülvizsgálat\n\nA fellebbezését 1-3 munkanapon belül feldolgozzuk.\nA végeredményről értesítést kap."
+  "submitted": "✅ **Fellebbezés benyújtva**\n\nFellebbezés ID: #{appealId}\nÁllapot: Folyamatban lévő felülvizsgálat\n\nA fellebbezését 1-3 munkanapon belül feldolgozzuk.\nA végeredményről értesítést kap."
 };

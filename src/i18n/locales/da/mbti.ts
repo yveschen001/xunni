@@ -18,164 +18,248 @@ export default {
     "ISTP": "Vurderer - Modige og praktiske eksperimentatorer, dygtige i at bruge forskellige redskaber."
   },
   "full": {
-    "question1": "I sociale situationer plejer du at:",
-    "question1.option1": "Initiere samtale med andre",
-    "question1.option2": "Vent på, at andre henvender sig til mig",
-    "question10": "Når du løser problemer, stoler du mere på:",
-    "question10.option1": "Praktisk erfaring og fakta",
-    "question10.option2": "Intuition og muligheder",
-    "question11": "Du foretrækker:",
-    "question11.option1": "Fokusere på specifikke detaljer",
-    "question11.option2": "Fokusere på overordnede koncepter",
-    "question12": "Når du lærer nye ting, foretrækker du:",
-    "question12.option1": "En trin-for-trin tilgang",
-    "question12.option2": "At udforske innovative måder",
-    "question13": "Når du læser, foretrækker du:",
-    "question13.option1": "Praktiske guider",
-    "question13.option2": "Teorier og koncepter",
-    "question14": "Du fokuserer mere på:",
-    "question14.option1": "Nutiden og fortiden",
-    "question14.option2": "Fremtiden og muligheder",
-    "question15": "Når du beskriver ting, har du tendens til at:",
-    "question15.option1": "Brug specifikke eksempler",
-    "question15.option2": "Brug metaforer og analogier",
-    "question16": "På arbejdet værdsætter du:",
-    "question16.option1": "Praktisk anvendelse",
-    "question16.option2": "Innovative idéer",
-    "question17": "Du stoler mere på:",
-    "question17.option1": "Beviste metoder",
-    "question17.option2": "Nye forsøg",
-    "question18": "Når du planlægger for fremtiden, du:",
-    "question18.option1": "Basere på realistiske forhold",
-    "question18.option2": "Forestille dig forskellige muligheder",
-    "question19": "Når du træffer beslutninger, prioriterer du:",
-    "question19.option1": "Logik og objektiv analyse",
-    "question19.option2": "Emotion og interpersonel harmoni",
-    "question2": "I weekenden foretrækker du:",
-    "question2.option1": "At gå ud med venner",
-    "question2.option2": "At blive hjemme alene for at slappe af",
-    "question20": "Når du kritiserer andre, gør du:",
-    "question20.option1": "Pege direkte på problemet",
-    "question20.option2": "Overveje den anden persons følelser",
-    "question21": "Hvad værdsætter du mest:",
-    "question21.option1": "Retfærdighed og retfærdighed",
-    "question21.option2": "Medfølelse og forståelse",
-    "question22": "Når du vurderer en idé, overvejer du først:",
-    "question22.option1": "Om det er rimeligt",
-    "question22.option2": "Om det er gavnligt",
-    "question23": "Når en ven betror sig til dig, vil du:",
-    "question23.option1": "Analysere problemet og give råd",
-    "question23.option2": "Lytte og give trøst",
-    "question24": "I konflikter har du tendens til:",
-    "question24.option1": "At holde fast ved principper",
-    "question24.option2": "At opretholde relationer",
-    "question25": "Du lader dig lettere overmande af:",
-    "question25.option1": "Fakta og data",
-    "question25.option2": "Følelser og historier",
-    "question26": "I teambeslutningstagning fokuserer du mere på:",
-    "question26.option1": "Effektivitet og resultater",
-    "question26.option2": "Enighed og enhed",
-    "question27": "Du mener, en god leder bør:",
-    "question27.option1": "Retfærdig og afgørende",
-    "question27.option2": "Eftertænksom og omsorgsfuld",
-    "question28": "Din arbejdsstil er:",
-    "question28.option1": "Planlægge og forberede på forhånd",
-    "question28.option2": "Tilpasse og være fleksibel",
-    "question29": "Du foretrækker:",
-    "question29.option1": "At have klare deadlines",
-    "question29.option2": "At holde muligheder åbne",
-    "question3": "Efter at have deltaget i en sammenkomst, føler du normalt:",
-    "question3.option1": "At du er energisk",
-    "question3.option2": "At du har brug for at hvile",
-    "question30": "Når du rejser, har du tendens til:",
-    "question30.option1": "At lave detaljerede rejseplaner",
-    "question30.option2": "At udforske frit",
-    "question31": "Dit værelse er som regel:",
-    "question31.option1": "Ryddeligt og ordentligt",
-    "question31.option2": "Uformelt og afslappet",
-    "question32": "Når du håndterer opgaver, vil du:",
-    "question32.option1": "Færdiggøre så tidligt som muligt",
-    "question32.option2": "Færdiggøre tæt på deadline",
-    "question33": "Din foretrukne livsstil:",
-    "question33.option1": "Regelmæssig og struktureret",
-    "question33.option2": "Fri og fleksibel",
-    "question34": "Når du træffer beslutninger, har du tendens til:",
-    "question34.option1": "At træffe hurtige beslutninger",
-    "question34.option2": "At holde muligheder åbne",
-    "question35": "Når du shopper, vil du:",
-    "question35.option1": "Lave en liste og købe som planlagt",
-    "question35.option2": "Browsing casual og købe hvis du kan lide",
-    "question36": "Når du står over for forandringer, føler du normalt:",
-    "question36.option1": "At du er ubehagelig",
-    "question36.option2": "Føler dig spændt",
-    "question4": "I et team foretrækker du at:",
-    "question4.option1": "Tale aktivt",
-    "question4.option2": "Lytte først, så tale",
-    "question5": "Når du møder nye venner, gør du:",
-    "question5.option1": "Bliver hurtigt fortrolig",
-    "question5.option2": "Har brug for tid til at varme op",
-    "question6": "Din vennekreds:",
-    "question6.option1": "Bred, men ikke dyb",
-    "question6.option2": "Lille og tæt",
-    "question7": "Når du arbejder, foretrækker du:",
-    "question7.option1": "Team-samarbejde",
-    "question7.option2": "Selvstændigt arbejde",
-    "question8": "Når du tænker på problemer, har du en tendens til:",
-    "question8.option1": "Tale mens du tænker",
-    "question8.option2": "Tænke det igennem før du taler",
-    "question9": "Når du er under pres, gør du:",
-    "question9.option1": "Snakker med venner",
-    "question9.option2": "Fordøjer alene"
+    "question1": {
+      "text": "I sociale situationer plejer du at:",
+      "option1": "Initiere samtale med andre",
+      "option2": "Vent på, at andre henvender sig til mig"
+    },
+    "question10": {
+      "text": "Når du løser problemer, stoler du mere på:",
+      "option1": "Praktisk erfaring og fakta",
+      "option2": "Intuition og muligheder"
+    },
+    "question11": {
+      "text": "Du foretrækker:",
+      "option1": "Fokusere på specifikke detaljer",
+      "option2": "Fokusere på overordnede koncepter"
+    },
+    "question12": {
+      "text": "Når du lærer nye ting, foretrækker du:",
+      "option1": "En trin-for-trin tilgang",
+      "option2": "At udforske innovative måder"
+    },
+    "question13": {
+      "text": "Når du læser, foretrækker du:",
+      "option1": "Praktiske guider",
+      "option2": "Teorier og koncepter"
+    },
+    "question14": {
+      "text": "Du fokuserer mere på:",
+      "option1": "Nutiden og fortiden",
+      "option2": "Fremtiden og muligheder"
+    },
+    "question15": {
+      "text": "Når du beskriver ting, har du tendens til at:",
+      "option1": "Brug specifikke eksempler",
+      "option2": "Brug metaforer og analogier"
+    },
+    "question16": {
+      "text": "På arbejdet værdsætter du:",
+      "option1": "Praktisk anvendelse",
+      "option2": "Innovative idéer"
+    },
+    "question17": {
+      "text": "Du stoler mere på:",
+      "option1": "Beviste metoder",
+      "option2": "Nye forsøg"
+    },
+    "question18": {
+      "text": "Når du planlægger for fremtiden, du:",
+      "option1": "Basere på realistiske forhold",
+      "option2": "Forestille dig forskellige muligheder"
+    },
+    "question19": {
+      "text": "Når du træffer beslutninger, prioriterer du:",
+      "option1": "Logik og objektiv analyse",
+      "option2": "Emotion og interpersonel harmoni"
+    },
+    "question2": {
+      "text": "I weekenden foretrækker du:",
+      "option1": "At gå ud med venner",
+      "option2": "At blive hjemme alene for at slappe af"
+    },
+    "question20": {
+      "text": "Når du kritiserer andre, gør du:",
+      "option1": "Pege direkte på problemet",
+      "option2": "Overveje den anden persons følelser"
+    },
+    "question21": {
+      "text": "Hvad værdsætter du mest:",
+      "option1": "Retfærdighed og retfærdighed",
+      "option2": "Medfølelse og forståelse"
+    },
+    "question22": {
+      "text": "Når du vurderer en idé, overvejer du først:",
+      "option1": "Om det er rimeligt",
+      "option2": "Om det er gavnligt"
+    },
+    "question23": {
+      "text": "Når en ven betror sig til dig, vil du:",
+      "option1": "Analysere problemet og give råd",
+      "option2": "Lytte og give trøst"
+    },
+    "question24": {
+      "text": "I konflikter har du tendens til:",
+      "option1": "At holde fast ved principper",
+      "option2": "At opretholde relationer"
+    },
+    "question25": {
+      "text": "Du lader dig lettere overmande af:",
+      "option1": "Fakta og data",
+      "option2": "Følelser og historier"
+    },
+    "question26": {
+      "text": "I teambeslutningstagning fokuserer du mere på:",
+      "option1": "Effektivitet og resultater",
+      "option2": "Enighed og enhed"
+    },
+    "question27": {
+      "text": "Du mener, en god leder bør:",
+      "option1": "Retfærdig og afgørende",
+      "option2": "Eftertænksom og omsorgsfuld"
+    },
+    "question28": {
+      "text": "Din arbejdsstil er:",
+      "option1": "Planlægge og forberede på forhånd",
+      "option2": "Tilpasse og være fleksibel"
+    },
+    "question29": {
+      "text": "Du foretrækker:",
+      "option1": "At have klare deadlines",
+      "option2": "At holde muligheder åbne"
+    },
+    "question3": {
+      "text": "Efter at have deltaget i en sammenkomst, føler du normalt:",
+      "option1": "At du er energisk",
+      "option2": "At du har brug for at hvile"
+    },
+    "question30": {
+      "text": "Når du rejser, har du tendens til:",
+      "option1": "At lave detaljerede rejseplaner",
+      "option2": "At udforske frit"
+    },
+    "question31": {
+      "text": "Dit værelse er som regel:",
+      "option1": "Ryddeligt og ordentligt",
+      "option2": "Uformelt og afslappet"
+    },
+    "question32": {
+      "text": "Når du håndterer opgaver, vil du:",
+      "option1": "Færdiggøre så tidligt som muligt",
+      "option2": "Færdiggøre tæt på deadline"
+    },
+    "question33": {
+      "text": "Din foretrukne livsstil:",
+      "option1": "Regelmæssig og struktureret",
+      "option2": "Fri og fleksibel"
+    },
+    "question34": {
+      "text": "Når du træffer beslutninger, har du tendens til:",
+      "option1": "At træffe hurtige beslutninger",
+      "option2": "At holde muligheder åbne"
+    },
+    "question35": {
+      "text": "Når du shopper, vil du:",
+      "option1": "Lave en liste og købe som planlagt",
+      "option2": "Browsing casual og købe hvis du kan lide"
+    },
+    "question36": {
+      "text": "Når du står over for forandringer, føler du normalt:",
+      "option1": "At du er ubehagelig",
+      "option2": "Føler dig spændt"
+    },
+    "question4": {
+      "text": "I et team foretrækker du at:",
+      "option1": "Tale aktivt",
+      "option2": "Lytte først, så tale"
+    },
+    "question5": {
+      "text": "Når du møder nye venner, gør du:",
+      "option1": "Bliver hurtigt fortrolig",
+      "option2": "Har brug for tid til at varme op"
+    },
+    "question6": {
+      "text": "Din vennekreds:",
+      "option1": "Bred, men ikke dyb",
+      "option2": "Lille og tæt"
+    },
+    "question7": {
+      "text": "Når du arbejder, foretrækker du:",
+      "option1": "Team-samarbejde",
+      "option2": "Selvstændigt arbejde"
+    },
+    "question8": {
+      "text": "Når du tænker på problemer, har du en tendens til:",
+      "option1": "Tale mens du tænker",
+      "option2": "Tænke det igennem før du taler"
+    },
+    "question9": {
+      "text": "Når du er under pres, gør du:",
+      "option1": "Snakker med venner",
+      "option2": "Fordøjer alene"
+    }
   },
   "quick": {
-    "question1": "I sociale situationer plejer du at:",
-    "question1.option1": "Initierer samtaler med andre",
-    "question1.option2": "Venter på at andre nærmer sig mig",
-    "question10": "Din arbejdsstil er:",
-    "question10.option1": "Planlægge og forberede på forhånd",
-    "question10.option2": "Tilpasse og være fleksibel",
-    "question11": "Du foretrækker:",
-    "question11.option1": "Klare deadlines",
-    "question11.option2": "Holde muligheder åbne",
-    "question12": "Når du rejser, har du en tendens til:",
-    "question12.option1": "Lave detaljerede rejseplaner",
-    "question12.option2": "Udforske frit",
-    "question2": "I weekenderne foretrækker du:",
-    "question2.option1": "Hænge ud med venner",
-    "question2.option2": "Hvile alene derhjemme",
-    "question3": "Efter at have været til en fest, plejer du at:",
-    "question3.option1": "Føle dig energisk",
-    "question3.option2": "Føle behov for at hvile",
-    "question4": "Når du løser problemer, stoler du mere på:",
-    "question4.option1": "Praktisk erfaring og fakta",
-    "question4.option2": "Intuition og muligheder",
-    "question5": "Du foretrækker:",
-    "question5.option1": "Fokusere på specifikke detaljer",
-    "question5.option2": "Fokusere på det overordnede koncept",
-    "question6": "Når du lærer nye ting, foretrækker du:",
-    "question6.option1": "Trinvise metoder",
-    "question6.option2": "Udforske innovative måder",
-    "question7": "Når du træffer beslutninger, værdsætter du mere:",
-    "question7.option1": "Logik og objektiv analyse",
-    "question7.option2": "Følelser og interpersonel harmoni",
-    "question8": "Når du kritiserer andre, gør du:",
-    "question8.option1": "Peg direkte på problemet",
-    "question8.option2": "Overvej den andens følelser",
-    "question9": "Hvad værdsætter du mest:",
-    "question9.option1": "Retfærdighed og retfærdighed",
-    "question9.option2": "Empati og forståelse",
-    "question1.text": "I sociale situationer plejer du:",
-    "question10.text": "Din arbejdsstil er:",
-    "question11.text": "Du foretrækker:",
-    "question12.text": "Når du rejser, har du en tendens til at:",
-    "question2.text": "I weekenden foretrækker du:",
-    "question3.text": "Efter at have deltaget i en sammenkomst plejer du:",
-    "question4.text": "Når du løser problemer, stoler du mere på:",
-    "question5.text": "Du foretrækker:",
-    "question6.text": "Når du lærer nye ting, foretrækker du:",
-    "question7.text": "Når du træffer beslutninger, værdsætter du:",
-    "question8.text": "Når du kritiserer andre,:",
-    "question9.text": "Du værdsætter mere:"
+    "question1": {
+      "text": "I sociale situationer plejer du:",
+      "option1": "Initierer samtaler med andre",
+      "option2": "Venter på at andre nærmer sig mig"
+    },
+    "question10": {
+      "text": "Din arbejdsstil er:",
+      "option1": "Planlægge og forberede på forhånd",
+      "option2": "Tilpasse og være fleksibel"
+    },
+    "question11": {
+      "text": "Du foretrækker:",
+      "option1": "Klare deadlines",
+      "option2": "Holde muligheder åbne"
+    },
+    "question12": {
+      "text": "Når du rejser, har du en tendens til at:",
+      "option1": "Lave detaljerede rejseplaner",
+      "option2": "Udforske frit"
+    },
+    "question2": {
+      "text": "I weekenden foretrækker du:",
+      "option1": "Hænge ud med venner",
+      "option2": "Hvile alene derhjemme"
+    },
+    "question3": {
+      "text": "Efter at have deltaget i en sammenkomst plejer du:",
+      "option1": "Føle dig energisk",
+      "option2": "Føle behov for at hvile"
+    },
+    "question4": {
+      "text": "Når du løser problemer, stoler du mere på:",
+      "option1": "Praktisk erfaring og fakta",
+      "option2": "Intuition og muligheder"
+    },
+    "question5": {
+      "text": "Du foretrækker:",
+      "option1": "Fokusere på specifikke detaljer",
+      "option2": "Fokusere på det overordnede koncept"
+    },
+    "question6": {
+      "text": "Når du lærer nye ting, foretrækker du:",
+      "option1": "Trinvise metoder",
+      "option2": "Udforske innovative måder"
+    },
+    "question7": {
+      "text": "Når du træffer beslutninger, værdsætter du:",
+      "option1": "Logik og objektiv analyse",
+      "option2": "Følelser og interpersonel harmoni"
+    },
+    "question8": {
+      "text": "Når du kritiserer andre,:",
+      "option1": "Peg direkte på problemet",
+      "option2": "Overvej den andens følelser"
+    },
+    "question9": {
+      "text": "Du værdsætter mere:",
+      "option1": "Retfærdighed og retfærdighed",
+      "option2": "Empati og forståelse"
+    }
   },
   "share": {
     "welcome": "👋 Din ven inviterer dig til at tage MBTI-testen!\n\nKom og se din personlighedstype～",

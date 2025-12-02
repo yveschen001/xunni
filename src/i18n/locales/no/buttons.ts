@@ -2,7 +2,7 @@ export default {
   "ad": "➡️ Neste annonse",
   "back": "⬅️ Tilbake / Returner",
   "backToVip": "💎 Gå tilbake til VIP-menyen",
-  "bottle": "📺 Se annonser for å få flere flaskeposter 🎁 (${remaining}/20)",
+  "bottle": "📺 Se annonser for å få flere flaskeposter 🎁 ({remaining}/20)",
   "bottle2": "💎 Oppgrader til VIP for flere flaskeposter",
   "bottle3": "🌊 Kast en flaskepost",
   "bottle4": "🎣 Plukk opp en flaskepost",

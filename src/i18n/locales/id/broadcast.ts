@@ -27,8 +27,8 @@ export default {
   "error": "Kesalahan: {error}",
   "estimate": {
     "immediate": "Kirim Segera (Perkiraan 1-2 detik)",
-    "minutes": "Sekitar ${minutes} menit",
-    "seconds": "Sekitar ${seconds} detik"
+    "minutes": "Sekitar {minutes} menit",
+    "seconds": "Sekitar {seconds} detik"
   },
   "estimatedTime": "Perkiraan Waktu: {time}\n\n",
   "example": "**Contoh:**\n",
@@ -97,7 +97,7 @@ export default {
   "foundStuckBroadcasts": "⚠️ Terdeteksi {count} siaran yang terhambat\n\n",
   "id": "ID: {id}",
   "idMustBeNumber": "❌ ID siaran harus berupa angka",
-  "maxUsersExceeded": "❌ Sistem siaran saat ini hanya mendukung siaran kepada ${max} pengguna atau kurang.\n\nJumlah pengguna target: ${current}",
+  "maxUsersExceeded": "❌ Sistem siaran saat ini hanya mendukung siaran kepada {max} pengguna atau kurang.\n\nJumlah pengguna target: {current}",
   "messageContent": "Isi pesan",
   "noPendingBroadcasts": "Saat ini, tidak ada siaran yang tertunda atau terhambat.\n\n",
   "noRecords": "📊 Tidak ada catatan siaran saat ini",
@@ -151,7 +151,7 @@ export default {
   "targetNonVip": "Pengguna Non-VIP",
   "targetType": "Target: {type}",
   "targetVip": "Pengguna VIP",
-  "tooLong": "Botol pesan tidak boleh melebihi ${max} karakter (saat ini ${current} karakter)",
+  "tooLong": "Botol pesan tidak boleh melebihi {max} karakter (saat ini {current} karakter)",
   "upgradeRequired": "Siaran skala besar memerlukan peningkatan arsitektur sistem, silakan lihat BROADCAST_SYSTEM_REDESIGN.md",
   "usageError": "❌ Penggunaan tidak benar\n\n",
   "userCount": "Jumlah Pengguna: {count} orang\n",

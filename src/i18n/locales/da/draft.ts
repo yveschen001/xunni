@@ -1,7 +1,7 @@
 export default {
   "age": {
-    "daysAgo": "\\${days} dage siden",
-    "hoursAgo": "\\${hours} timer siden",
+    "daysAgo": "\\{days} dage siden",
+    "hoursAgo": "\\{hours} timer siden",
     "justNow": "Lige nu"
   },
   "contentHint": "💡 Du kan:\n• Indtaste nyt indhold for at erstatte udkastet direkte\n• Bruge /throw for at genstarte\n• Sende udkastindhold for at kaste en flaskepost",

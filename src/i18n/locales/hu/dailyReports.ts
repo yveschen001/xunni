@@ -1,4 +1,4 @@
 export default {
   "header": "📊 **Napi Adat Elemzési Jelentés**",
-  "time": "Idő: ${time}"
+  "time": "Idő: {time}"
 };

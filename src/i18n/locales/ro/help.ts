@@ -60,7 +60,7 @@ export default {
   "profile": "/edit_profile - Editează profilul\n",
   "profile2": "/profile - Vezi profilul\n",
   "profile3": "👤 **Profil**\n",
-  "quota": "• Invitarea prietenilor poate crește cota (max 10/100)\n",
+  "quota": "🔢 Cota zilnică maximă\n• Începeți cu 30 de mesaje din sticle zilnic (doar 10 pentru utilizatorii obișnuiți).\n• Invitarea prietenilor poate crește permanent cota dvs., până la un maxim de 100!\n• Limită zilnică de 100 de mesaje în chat, conversați fără bariere.",
   "quota2": "• Cotă zilnică de 30 de sticle cu mesaj\n",
   "register": "/start - Începe să folosești / Continuă înregistrarea\n",
   "report": "/report - Raportează conținut inadecvat\n",

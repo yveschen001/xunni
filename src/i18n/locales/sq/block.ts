@@ -11,6 +11,6 @@ export default {
   "step2": "2️⃣ Zgjidhni 'Përgjigju'.",
   "step3": "3️⃣ Shkruani /block.",
   "steps": "**Hapat për të Vepruar:**",
-  "success": "✅ Bllokuar këtë përdorues (#${identifier})",
+  "success": "✅ Bllokuar këtë përdorues (#{identifier})",
   "willNotMatch": "Nuk do të përputheni më me mesazhet e njëri-tjetrit."
 };

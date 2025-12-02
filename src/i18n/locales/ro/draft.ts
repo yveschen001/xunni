@@ -1,7 +1,7 @@
 export default {
   "age": {
-    "daysAgo": "\\${days} zile în urmă",
-    "hoursAgo": "\\${hours} ore în urmă",
+    "daysAgo": "\\{days} zile în urmă",
+    "hoursAgo": "\\{hours} ore în urmă",
     "justNow": "Chiar acum"
   },
   "contentHint": "💡 Poți:\n• Introduce direct un nou conținut pentru a înlocui ciorna\n• Folosește /throw pentru a reporni\n• Trimite conținutul ciornei pentru a arunca o sticlă cu mesaj",

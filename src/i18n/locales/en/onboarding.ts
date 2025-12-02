@@ -1,7 +1,7 @@
 export default {
-  "age": "• Age: ${updatedUser.age} years old\n",
-  "age2": "Your Age: ${age} years old\n",
-  "age3": "Age: ${age} years old\n",
+  "age": "• Age: {updatedUser.age} years old\n",
+  "age2": "Your Age: {age} years old\n",
+  "age3": "Age: {age} years old\n",
   "ageRestriction": "❌ We're sorry, you must be at least 18 years old to use this service.\n\n",
   "agreeTerms": "Click the button below to indicate that you have read and agreed to the above terms.",
   "antiFraud": {
@@ -24,7 +24,7 @@ export default {
   "birthday": "If you believe this is an error, please check if your birthday format is correct (YYYY-MM-DD).",
   "birthday2": "Please re-enter your birthday (format: YYYY-MM-DD):\n\n",
   "birthday3": "Please enter your birthday (format: YYYY-MM-DD):\n\n",
-  "birthday4": "Birthday: ${birthday}\n",
+  "birthday4": "Birthday: {birthday}\n",
   "birthdayCheck": "If you think this is an error, please check if your birthday format is correct (YYYY-MM-DD).",
   "birthdayError": "❌ {error}",
   "birthdayFormatError": "❌ Birthday format is incorrect\n\nPlease re-enter (format: YYYY-MM-DD):",
@@ -43,11 +43,11 @@ export default {
   "enterYes": "Please enter 'yes' to complete the test:",
   "errorRetry": "❌ An error occurred, please re-enter.",
   "example": {
-    "birthday": "For example: 1995-06-15"
+    "birthday": "For example: 2000-12-25"
   },
   "gender": {
     "female": "Female",
-    "label": "• Gender: ${gender}\n",
+    "label": "• Gender: {gender}\n",
     "male": "Male"
   },
   "gender2": "• Gender: ${updatedUser.gender ===",
@@ -58,7 +58,7 @@ export default {
   "help": "This will help us find more suitable chat partners for you～\n\n",
   "iHaveRead": "✅ I have read and agree",
   "info": {
-    "age18": "• You must be at least 18 years old to use this service.\n- Accurate information must be provided for matching and fortune-telling to yield good results.",
+    "age18": "• You must be at least 18 years old to use this service\n- To use matching and fortune-telling, accurate information must be provided for good results.\n\n- Enter your birthday (e.g., 2000-12-15)",
     "city": "🌍 Region: {city}"
   },
   "languageSelection": "🌐 **Choose Language**\n\nPlease select your preferred language:",
@@ -69,8 +69,8 @@ export default {
   "message": "2. 🚨 Identify scam messages\n",
   "message2": "• Be cautious of messages requesting money\n",
   "moreLanguages": "More Languages",
-  "nickname": "• Nickname: ${updatedUser.nickname}\n",
-  "nickname2": "Great! Your nickname is: ${nickname}\n\n",
+  "nickname": "• Nickname: {updatedUser.nickname}\n",
+  "nickname2": "Great! Your nickname is: {nickname}\n\n",
   "nicknameError": "❌ {error}\n\nPlease re-enter your nickname:",
   "nicknameGood": "Great! Your nickname is: {nickname}\n\n",
   "notCompleted": "[Translation needed: onboarding.notCompleted]",
@@ -99,7 +99,7 @@ export default {
   "startRegistration": "Start Registration →",
   "stats": "📊 Statistics",
   "stepAntiFraud": "🛡️ Please click the button above to confirm anti-fraud safety matters",
-  "stepBirthday": "📅 Please enter your birthday (format: YYYY-MM-DD, e.g., 1995-06-15)",
+  "stepBirthday": "📅 Please enter your birthday (format: YYYY-MM-DD, e.g., 2000-12-25)",
   "stepDefault": "Please complete the registration as prompted",
   "stepGender": "👤 Please click the button above to select your gender",
   "stepLanguageSelection": "🌍 Please click the button above to choose your language",
@@ -113,7 +113,7 @@ export default {
     "terms_of_service_button": "📋 Terms of Service"
   },
   "termsOfService": "📋 User Terms\n\n",
-  "text": "confirm_birthday_${birthday}",
+  "text": "confirm_birthday_{birthday}",
   "text10": "For example: 1995-06-15\n\n",
   "text11": "🛡️ Online Dating Safety Tips\n\n",
   "text12": "📋 Final Step: Terms of Service\n\n",
@@ -127,7 +127,7 @@ export default {
   "text2": "💡 You can use the /mbti command at any time to retake the test or make changes.",
   "text20": "Please return after reaching adulthood!\n\n",
   "text21": "📋 Privacy Policy\n",
-  "text3": "gender_confirm_${gender}",
+  "text3": "gender_confirm_{gender}",
   "text4": "Final Step: Please read and agree to our Terms of Service\n\n",
   "text5": "📝 Take a quick quiz (12 questions, for reference only)",
   "text6": "• User Terms: Guidelines for using this service\n\n",
@@ -138,12 +138,12 @@ export default {
   "useTelegramNickname": "Use Telegram Nickname",
   "viewPrivacyPolicy": "📋 View Privacy Policy",
   "viewTermsOfService": "📋 View Terms of Service",
-  "vip": "💡 Providing your blood type will be used for future blood type matching features (VIP exclusive)\n\n",
+  "vip": "💡 Entering your blood type can be used for future blood type matching features (more attributes, astrological matching)",
   "warning": {
     "birthday": "⚠️ Birthday cannot be changed after setting, please confirm it is correct!"
   },
   "welcome": "Welcome to XunNi!\n\nPlease select your language:",
   "yourAge": "Your age: {age} years old\n",
-  "zodiac": "• Zodiac sign: ${updatedUser.zodiac_sign}\n",
-  "zodiac2": "Zodiac sign: ${zodiacSign}\n\n"
+  "zodiac": "• Zodiac sign: {updatedUser.zodiac_sign}\n",
+  "zodiac2": "Zodiac sign: {zodiacSign}\n\n"
 };

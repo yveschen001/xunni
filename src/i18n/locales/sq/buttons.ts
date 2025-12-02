@@ -2,7 +2,7 @@ export default {
   "ad": "➡️ Reklama tjetër",
   "back": "⬅️ Kthehu / Kthehu mbrapa",
   "backToVip": "💎 Kthehu në menunë VIP",
-  "bottle": "📺 Shikoni reklama për të marrë më shumë mesazhe butele 🎁 (${remaining}/20)",
+  "bottle": "📺 Shikoni reklama për të marrë më shumë mesazhe butele 🎁 ({remaining}/20)",
   "bottle2": "💎 Upgrade në VIP për më shumë mesazhe butele",
   "bottle3": "🌊 Hedhi një mesazh butele",
   "bottle4": "🎣 Merr një mesazh butele",

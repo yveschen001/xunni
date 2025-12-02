@@ -27,8 +27,8 @@ export default {
   "error": "Eroare: {error}",
   "estimate": {
     "immediate": "Trimite imediat (aproximativ 1-2 secunde)",
-    "minutes": "Aproximativ \\${minutes} minute",
-    "seconds": "Aproximativ \\${seconds} secunde"
+    "minutes": "Aproximativ \\{minutes} minute",
+    "seconds": "Aproximativ \\{seconds} secunde"
   },
   "estimatedTime": "Timp estimat: {time}\n\n",
   "example": "**Exemplu:**\n",
@@ -97,7 +97,7 @@ export default {
   "foundStuckBroadcasts": "⚠️ S-au detectat {count} transmisii blocate\n\n",
   "id": "ID: {id}",
   "idMustBeNumber": "❌ ID-ul difuzării trebuie să fie un număr",
-  "maxUsersExceeded": "❌ Sistemul actual de difuzare suportă difuzarea către un maxim de ${max} utilizatori.\n\nNumărul țintă de utilizatori: ${current}",
+  "maxUsersExceeded": "❌ Sistemul actual de difuzare suportă difuzarea către un maxim de {max} utilizatori.\n\nNumărul țintă de utilizatori: {current}",
   "messageContent": "Conținut mesaj",
   "noPendingBroadcasts": "În prezent, nu există transmisii restante sau blocate.\n\n",
   "noRecords": "📊 Nu există înregistrări de difuzare disponibile acum",
@@ -151,7 +151,7 @@ export default {
   "targetNonVip": "Utilizatori non-VIP",
   "targetType": "Țintă: {type}\n",
   "targetVip": "Utilizatori VIP",
-  "tooLong": "Mesajul difuzat nu poate depăși ${max} caractere (în prezent ${current} caractere)",
+  "tooLong": "Mesajul difuzat nu poate depăși {max} caractere (în prezent {current} caractere)",
   "upgradeRequired": "Difuzarea în masă necesită o actualizare a arhitecturii sistemului, vă rugăm să consultați BROADCAST_SYSTEM_REDESIGN.md",
   "usageError": "❌ Utilizare incorectă\n\n",
   "userCount": "Număr de utilizatori: {count} persoane\n",

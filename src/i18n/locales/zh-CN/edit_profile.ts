@@ -1,5 +1,5 @@
 export default {
-  "nickname": "👤 昵称：\\\\\\\\\\\\\\${ownerMaskedNickname}",
+  "nickname": "👤 昵称：\\\\\\\\\\\\\\{ownerMaskedNickname}",
   "short19": "✏️ 编辑个人资料",
   "menuTitle": "编辑个人资料",
   "nicknameButton": "✏️ 修改昵称",

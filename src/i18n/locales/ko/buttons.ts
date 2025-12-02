@@ -2,7 +2,7 @@ export default {
   "ad": "➡️ 다음 광고",
   "back": "⬅️ 뒤로",
   "backToVip": "💎 VIP 메뉴로 돌아가기",
-  "bottle": "📺 광고를 시청하여 더 많은 메시지 병을 획득하세요 🎁 (${remaining}/20)",
+  "bottle": "📺 광고를 시청하여 더 많은 메시지 병을 획득하세요 🎁 ({remaining}/20)",
   "bottle2": "💎 VIP 업그레이드 시 더 많은 메시지 병을 받습니다",
   "bottle3": "🌊 메시지 병 던지기",
   "bottle4": "🎣 메시지 병 주워오기",

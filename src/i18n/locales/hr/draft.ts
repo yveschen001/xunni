@@ -1,7 +1,7 @@
 export default {
   "age": {
-    "daysAgo": "\\${days} dana prije",
-    "hoursAgo": "\\${hours} sati prije",
+    "daysAgo": "\\{days} dana prije",
+    "hoursAgo": "\\{hours} sati prije",
     "justNow": "Prije trenutka"
   },
   "contentHint": "💡 Možete:\n• Izravno unijeti novi sadržaj kao zamjenu za nacrt\n• Koristiti /throw za ponovno pokretanje\n• Poslati sadržaj nacrta da baci poruku u boci",

@@ -1,5 +1,5 @@
 export default {
-  "nickname": "👤 Ψευδώνυμο: ${ownerMaskedNickname}",
+  "nickname": "👤 Ψευδώνυμο: {ownerMaskedNickname}",
   "short19": "✏️ Επεξεργαστείτε το προφίλ",
   "menuTitle": "Επεξεργασία Προφίλ",
   "nicknameButton": "✏️ Επεξεργασία Ψευδώνυμου",

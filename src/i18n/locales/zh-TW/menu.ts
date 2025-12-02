@@ -21,7 +21,7 @@ export default {
   "quota": "• 你們都獲得每日配額 +1\n\n",
   "register": "• 好友使用你的邀請碼註冊\n",
   "selectFeature": "請選擇功能：",
-  "settings": "⚙️ 設定",
+  "settings": "• MBTI：{mbti}\n",
   "settings2": "• 星座：{zodiac}\n\n",
   "settings3": "未設定",
   "settings4": "未設定",

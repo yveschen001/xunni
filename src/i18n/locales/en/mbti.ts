@@ -18,164 +18,248 @@ export default {
     "ISTP": "Appraiser - A bold and practical experimenter, skilled in using various tools."
   },
   "full": {
-    "question1": "In social situations, you usually:",
-    "question1.option1": "Proactively engage with others",
-    "question1.option2": "Wait for others to approach me",
-    "question10": "When solving problems, you rely more on:",
-    "question10.option1": "Practical experiences and facts",
-    "question10.option2": "Intuition and possibilities",
-    "question11": "Which do you prefer:",
-    "question11.option1": "Focusing on specific details",
-    "question11.option2": "Focusing on overall concepts",
-    "question12": "When learning something new, you prefer:",
-    "question12.option1": "A step-by-step approach",
-    "question12.option2": "Exploring innovative methods",
-    "question13": "When reading, you prefer:",
-    "question13.option1": "Practical guidelines",
-    "question13.option2": "Theories and concepts",
-    "question14": "You focus more on:",
-    "question14.option1": "The present and the past",
-    "question14.option2": "The future and possibilities",
-    "question15": "When describing things, you tend to:",
-    "question15.option1": "Use specific examples",
-    "question15.option2": "Use metaphors and analogies",
-    "question16": "At work, you value:",
-    "question16.option1": "Practical applications",
-    "question16.option2": "Innovative ideas",
-    "question17": "Who do you trust more:",
-    "question17.option1": "Verified methods",
-    "question17.option2": "New attempts",
-    "question18": "When planning for the future, you will:",
-    "question18.option1": "Base on real conditions",
-    "question18.option2": "Imagine various possibilities",
-    "question19": "When making decisions, you value more:",
-    "question19.option1": "Logic and objective analysis",
-    "question19.option2": "Emotions and interpersonal harmony",
-    "question2": "On weekends you prefer:",
-    "question2.option1": "Going out with friends",
-    "question2.option2": "Staying home to relax alone",
-    "question20": "When criticizing others, you will:",
-    "question20.option1": "Point out the problem directly",
-    "question20.option2": "Consider the feelings of others",
-    "question21": "You value more:",
-    "question21.option1": "Fairness and justice",
-    "question21.option2": "Compassion and understanding",
-    "question22": "When evaluating an idea, you first consider:",
-    "question22.option1": "Is it reasonable?",
-    "question22.option2": "Is it beneficial?",
-    "question23": "When a friend confides in you, you would:",
-    "question23.option1": "Analyze the problem and provide suggestions",
-    "question23.option2": "Listen and offer comfort",
-    "question24": "In conflicts, you tend to:",
-    "question24.option1": "Stick to principles",
-    "question24.option2": "Maintain relationships",
-    "question25": "You are more easily persuaded by:",
-    "question25.option1": "Facts and data",
-    "question25.option2": "Emotions and stories",
-    "question26": "In team decision-making, you focus more on:",
-    "question26.option1": "Efficiency and results",
-    "question26.option2": "Consensus and unity",
-    "question27": "You believe a good leader should:",
-    "question27.option1": "Be fair and decisive",
-    "question27.option2": "Be considerate and caring",
-    "question28": "Your working style is:",
-    "question28.option1": "Plan and prepare in advance",
-    "question28.option2": "Adapt and be flexible",
-    "question29": "You prefer:",
-    "question29.option1": "Have a clear deadline",
-    "question29.option2": "Keep options open",
-    "question3": "After attending a gathering, you usually:",
-    "question3.option1": "Feel energized",
-    "question3.option2": "Feel the need to rest",
-    "question30": "When traveling, you tend to:",
-    "question30.option1": "Make a detailed itinerary",
-    "question30.option2": "Explore at leisure",
-    "question31": "Your room usually:",
-    "question31.option1": "Is tidy and organized",
-    "question31.option2": "Is casual and free-form",
-    "question32": "When handling tasks, you:",
-    "question32.option1": "Complete them as early as possible",
-    "question32.option2": "Finish them close to the deadline",
-    "question33": "Your preferred lifestyle:",
-    "question33.option1": "Regulated and structured",
-    "question33.option2": "Free and flexible",
-    "question34": "When making decisions, you tend to:",
-    "question34.option1": "Decide quickly",
-    "question34.option2": "Keep your options open",
-    "question35": "When shopping, you:",
-    "question35.option1": "Make a list and stick to it",
-    "question35.option2": "Browse casually and buy what you like",
-    "question36": "When faced with change, you usually:",
-    "question36.option1": "Feel uneasy",
-    "question36.option2": "Feel excited",
-    "question4": "In a team, you tend to:",
-    "question4.option1": "Speak up actively",
-    "question4.option2": "Listen before speaking",
-    "question5": "When meeting new friends, you:",
-    "question5.option1": "Become familiar quickly",
-    "question5.option2": "Need time to get to know them",
-    "question6": "Your friend circle:",
-    "question6.option1": "Wide but not deep",
-    "question6.option2": "Small and close-knit",
-    "question7": "When working, you prefer:",
-    "question7.option1": "Team collaboration",
-    "question7.option2": "Independent work",
-    "question8": "When thinking about problems, you tend to:",
-    "question8.option1": "Think aloud while brainstorming",
-    "question8.option2": "Think it over before speaking",
-    "question9": "When under pressure, you will:",
-    "question9.option1": "Chat with friends",
-    "question9.option2": "Process alone"
+    "question1": {
+      "text": "In social situations, you usually:",
+      "option1": "Proactively engage with others",
+      "option2": "Wait for others to approach me"
+    },
+    "question10": {
+      "text": "When solving problems, you rely more on:",
+      "option1": "Practical experiences and facts",
+      "option2": "Intuition and possibilities"
+    },
+    "question11": {
+      "text": "Which do you prefer:",
+      "option1": "Focusing on specific details",
+      "option2": "Focusing on overall concepts"
+    },
+    "question12": {
+      "text": "When learning something new, you prefer:",
+      "option1": "A step-by-step approach",
+      "option2": "Exploring innovative methods"
+    },
+    "question13": {
+      "text": "When reading, you prefer:",
+      "option1": "Practical guidelines",
+      "option2": "Theories and concepts"
+    },
+    "question14": {
+      "text": "You focus more on:",
+      "option1": "The present and the past",
+      "option2": "The future and possibilities"
+    },
+    "question15": {
+      "text": "When describing things, you tend to:",
+      "option1": "Use specific examples",
+      "option2": "Use metaphors and analogies"
+    },
+    "question16": {
+      "text": "At work, you value:",
+      "option1": "Practical applications",
+      "option2": "Innovative ideas"
+    },
+    "question17": {
+      "text": "Who do you trust more:",
+      "option1": "Verified methods",
+      "option2": "New attempts"
+    },
+    "question18": {
+      "text": "When planning for the future, you will:",
+      "option1": "Base on real conditions",
+      "option2": "Imagine various possibilities"
+    },
+    "question19": {
+      "text": "When making decisions, you value more:",
+      "option1": "Logic and objective analysis",
+      "option2": "Emotions and interpersonal harmony"
+    },
+    "question2": {
+      "text": "On weekends you prefer:",
+      "option1": "Going out with friends",
+      "option2": "Staying home to relax alone"
+    },
+    "question20": {
+      "text": "When criticizing others, you will:",
+      "option1": "Point out the problem directly",
+      "option2": "Consider the feelings of others"
+    },
+    "question21": {
+      "text": "You value more:",
+      "option1": "Fairness and justice",
+      "option2": "Compassion and understanding"
+    },
+    "question22": {
+      "text": "When evaluating an idea, you first consider:",
+      "option1": "Is it reasonable?",
+      "option2": "Is it beneficial?"
+    },
+    "question23": {
+      "text": "When a friend confides in you, you would:",
+      "option1": "Analyze the problem and provide suggestions",
+      "option2": "Listen and offer comfort"
+    },
+    "question24": {
+      "text": "In conflicts, you tend to:",
+      "option1": "Stick to principles",
+      "option2": "Maintain relationships"
+    },
+    "question25": {
+      "text": "You are more easily persuaded by:",
+      "option1": "Facts and data",
+      "option2": "Emotions and stories"
+    },
+    "question26": {
+      "text": "In team decision-making, you focus more on:",
+      "option1": "Efficiency and results",
+      "option2": "Consensus and unity"
+    },
+    "question27": {
+      "text": "You believe a good leader should:",
+      "option1": "Be fair and decisive",
+      "option2": "Be considerate and caring"
+    },
+    "question28": {
+      "text": "Your working style is:",
+      "option1": "Plan and prepare in advance",
+      "option2": "Adapt and be flexible"
+    },
+    "question29": {
+      "text": "You prefer:",
+      "option1": "Have a clear deadline",
+      "option2": "Keep options open"
+    },
+    "question3": {
+      "text": "After attending a gathering, you usually:",
+      "option1": "Feel energized",
+      "option2": "Feel the need to rest"
+    },
+    "question30": {
+      "text": "When traveling, you tend to:",
+      "option1": "Make a detailed itinerary",
+      "option2": "Explore at leisure"
+    },
+    "question31": {
+      "text": "Your room usually:",
+      "option1": "Is tidy and organized",
+      "option2": "Is casual and free-form"
+    },
+    "question32": {
+      "text": "When handling tasks, you:",
+      "option1": "Complete them as early as possible",
+      "option2": "Finish them close to the deadline"
+    },
+    "question33": {
+      "text": "Your preferred lifestyle:",
+      "option1": "Regulated and structured",
+      "option2": "Free and flexible"
+    },
+    "question34": {
+      "text": "When making decisions, you tend to:",
+      "option1": "Decide quickly",
+      "option2": "Keep your options open"
+    },
+    "question35": {
+      "text": "When shopping, you:",
+      "option1": "Make a list and stick to it",
+      "option2": "Browse casually and buy what you like"
+    },
+    "question36": {
+      "text": "When faced with change, you usually:",
+      "option1": "Feel uneasy",
+      "option2": "Feel excited"
+    },
+    "question4": {
+      "text": "In a team, you tend to:",
+      "option1": "Speak up actively",
+      "option2": "Listen before speaking"
+    },
+    "question5": {
+      "text": "When meeting new friends, you:",
+      "option1": "Become familiar quickly",
+      "option2": "Need time to get to know them"
+    },
+    "question6": {
+      "text": "Your friend circle:",
+      "option1": "Wide but not deep",
+      "option2": "Small and close-knit"
+    },
+    "question7": {
+      "text": "When working, you prefer:",
+      "option1": "Team collaboration",
+      "option2": "Independent work"
+    },
+    "question8": {
+      "text": "When thinking about problems, you tend to:",
+      "option1": "Think aloud while brainstorming",
+      "option2": "Think it over before speaking"
+    },
+    "question9": {
+      "text": "When under pressure, you will:",
+      "option1": "Chat with friends",
+      "option2": "Process alone"
+    }
   },
   "quick": {
-    "question1": "In social situations, you usually:",
-    "question1.option1": "Initiate conversations with others",
-    "question1.option2": "Wait for others to approach me",
-    "question10": "Your working style is:",
-    "question10.option1": "Plan and prepare in advance",
-    "question10.option2": "Be adaptable and flexible",
-    "question11": "You prefer:",
-    "question11.option1": "Having clear deadlines",
-    "question11.option2": "Keeping options open",
-    "question12": "When traveling, you tend to:",
-    "question12.option1": "Create a detailed itinerary",
-    "question12.option2": "Explore freely",
-    "question2": "On weekends, you prefer:",
-    "question2.option1": "Going out with friends",
-    "question2.option2": "Staying at home to relax",
-    "question3": "After attending a party, you usually:",
-    "question3.option1": "Feeling energetic",
-    "question3.option2": "Feeling the need to rest",
-    "question4": "You rely more on when solving problems:",
-    "question4.option1": "Practical experience and facts",
-    "question4.option2": "Intuition and possibilities",
-    "question5": "You prefer:",
-    "question5.option1": "Focusing on specific details",
-    "question5.option2": "Focusing on the overall concept",
-    "question6": "When learning new things, you prefer:",
-    "question6.option1": "Step-by-step approach",
-    "question6.option2": "Exploring innovative ways",
-    "question7": "When making decisions, you value more:",
-    "question7.option1": "Logic and objective analysis",
-    "question7.option2": "Emotions and interpersonal harmony",
-    "question8": "When criticizing others, you:",
-    "question8.option1": "Point out the problem directly",
-    "question8.option2": "Consider the other person's feelings",
-    "question9": "You value more:",
-    "question9.option1": "Fairness and justice",
-    "question9.option2": "Compassion and understanding",
-    "question1.text": "In social situations, you usually:",
-    "question10.text": "Your working style is:",
-    "question11.text": "You prefer:",
-    "question12.text": "When traveling, you tend to:",
-    "question2.text": "On weekends you prefer:",
-    "question3.text": "After attending a gathering, you usually:",
-    "question4.text": "When solving problems, you rely more on:",
-    "question5.text": "You prefer:",
-    "question6.text": "When learning new things, you prefer:",
-    "question7.text": "When making decisions, you value:",
-    "question8.text": "When criticizing others, you:",
-    "question9.text": "You value more:"
+    "question1": {
+      "text": "In social situations, you usually:",
+      "option1": "Initiate conversations with others",
+      "option2": "Wait for others to approach me"
+    },
+    "question10": {
+      "text": "Your working style is:",
+      "option1": "Plan and prepare in advance",
+      "option2": "Be adaptable and flexible"
+    },
+    "question11": {
+      "text": "You prefer:",
+      "option1": "Having clear deadlines",
+      "option2": "Keeping options open"
+    },
+    "question12": {
+      "text": "When traveling, you tend to:",
+      "option1": "Create a detailed itinerary",
+      "option2": "Explore freely"
+    },
+    "question2": {
+      "text": "On weekends you prefer:",
+      "option1": "Going out with friends",
+      "option2": "Staying at home to relax"
+    },
+    "question3": {
+      "text": "After attending a gathering, you usually:",
+      "option1": "Feeling energetic",
+      "option2": "Feeling the need to rest"
+    },
+    "question4": {
+      "text": "When solving problems, you rely more on:",
+      "option1": "Practical experience and facts",
+      "option2": "Intuition and possibilities"
+    },
+    "question5": {
+      "text": "You prefer:",
+      "option1": "Focusing on specific details",
+      "option2": "Focusing on the overall concept"
+    },
+    "question6": {
+      "text": "When learning new things, you prefer:",
+      "option1": "Step-by-step approach",
+      "option2": "Exploring innovative ways"
+    },
+    "question7": {
+      "text": "When making decisions, you value:",
+      "option1": "Logic and objective analysis",
+      "option2": "Emotions and interpersonal harmony"
+    },
+    "question8": {
+      "text": "When criticizing others, you:",
+      "option1": "Point out the problem directly",
+      "option2": "Consider the other person's feelings"
+    },
+    "question9": {
+      "text": "You value more:",
+      "option1": "Fairness and justice",
+      "option2": "Compassion and understanding"
+    }
   },
   "share": {
     "welcome": "👋 Your friend invites you to take the MBTI test!\n\nCome and see your personality type～",

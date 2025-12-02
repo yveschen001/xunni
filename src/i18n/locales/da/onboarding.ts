@@ -1,7 +1,7 @@
 export default {
-  "age": "• Alder: ${updatedUser.age} år gammel\n",
-  "age2": "Din alder: ${age} år gammel\n",
-  "age3": "Alder: ${age} år gammel\n",
+  "age": "• Alder: {updatedUser.age} år gammel\n",
+  "age2": "Din alder: {age} år gammel\n",
+  "age3": "Alder: {age} år gammel\n",
   "ageRestriction": "❌ Vi beklager, du skal være mindst 18 år for at bruge denne service.",
   "agreeTerms": "Klik på knappen nedenfor for at indikere, at du har læst og accepterer de ovenstående vilkår.",
   "antiFraud": {
@@ -24,7 +24,7 @@ export default {
   "birthday": "Hvis du mener, dette er en fejl, bedes du tjekke, om dit fødselsdagsformat er korrekt (YYYY-MM-DD).",
   "birthday2": "Indtast venligst din fødselsdag igen (format: ÅÅÅÅ-MM-DD):",
   "birthday3": "Indtast venligst din fødselsdag (format: ÅÅÅÅ-MM-DD):",
-  "birthday4": "Fødselsdag: ${birthday}\n",
+  "birthday4": "Fødselsdag: {birthday}\n",
   "birthdayCheck": "Hvis du mener, dette er en fejl, bedes du kontrollere, om dit fødselsdagsformat er korrekt (YYYY-MM-DD).",
   "birthdayError": "{error}\n\n",
   "birthdayFormatError": "❌ Ugyldigt fødselsdagsformat\n\nVenligst indtast på ny (format: YYYY-MM-DD):",
@@ -43,11 +43,11 @@ export default {
   "enterYes": "Venligst indtast 'ja' for at afslutte testen:",
   "errorRetry": "❌ En fejl opstod, venligst indtast på ny.",
   "example": {
-    "birthday": "For eksempel: 1995-06-15"
+    "birthday": "For eksempel: 2000-12-25"
   },
   "gender": {
     "female": "Kvinde",
-    "label": "• Køn: ${gender}\n",
+    "label": "• Køn: {gender}\n",
     "male": "Mand"
   },
   "gender2": "• Køn: ${updatedUser.gender ===",
@@ -58,7 +58,7 @@ export default {
   "help": "Dette vil hjælpe os med at finde mere passende chatpartnere til dig～",
   "iHaveRead": "✅ Jeg har læst og accepterer",
   "info": {
-    "age18": "• Du skal være mindst 18 år gammel for at bruge denne service.\n- Nøjagtige oplysninger skal gives for at matching og spådom kan give gode resultater.",
+    "age18": "• Du skal være mindst 18 år gammel for at bruge denne service\n- For at bruge matchning og spådom, skal der gives nøjagtige oplysninger for at opnå gode resultater.\n\n- Indtast din fødselsdag (f.eks. 2000-12-15)",
     "city": "🌍 Region: {city}"
   },
   "languageSelection": "🌐 **Vælg Sprog**\n\nVenligst vælg dit foretrukne sprog:",
@@ -69,8 +69,8 @@ export default {
   "message": "2. 🚨 Identificer svindelbeskeder\n",
   "message2": "• Vær opmærksom på beskeder, der beder om penge\n",
   "moreLanguages": "Flere sprog",
-  "nickname": "• Brugernavn: ${updatedUser.nickname}\n",
-  "nickname2": "Fantastisk! Dit kaldenavn er: ${nickname}\n\n",
+  "nickname": "• Brugernavn: {updatedUser.nickname}\n",
+  "nickname2": "Fantastisk! Dit kaldenavn er: {nickname}\n\n",
   "nicknameError": "❌ {error}\n\nVenligst indtast dit brugernavn igen:",
   "nicknameGood": "Fantastisk! Dit kaldenavn er: {nickname}\n\n",
   "notCompleted": "⚠️ Venligst fuldfør registreringsprocessen først",
@@ -99,7 +99,7 @@ export default {
   "startRegistration": "Start registrering →",
   "stats": "📊 Statistik",
   "stepAntiFraud": "🛡️ Venligst klik på knappen ovenfor for at bekræfte sikkerhedsanliggender mod svindel",
-  "stepBirthday": "📅 Venligst indtast din fødselsdag (format: ÅÅÅÅ-MM-DD, f.eks. 1995-06-15)",
+  "stepBirthday": "📅 Angiv venligst din fødselsdag (format: YYYY-MM-DD, f.eks. 2000-12-25)",
   "stepDefault": "Venligst følg instruktionerne for at fuldføre registreringen",
   "stepGender": "👤 Venligst klik på knappen ovenfor for at vælge dit køn",
   "stepLanguageSelection": "🌍 Venligst klik på knappen ovenfor for at vælge dit sprog",
@@ -113,7 +113,7 @@ export default {
     "terms_of_service_button": "📋 Servicevilkår"
   },
   "termsOfService": "📋 Brugervilkår\n\n",
-  "text": "bekræft_fødselsdag_${birthday}",
+  "text": "bekræft_fødselsdag_{birthday}",
   "text10": "For eksempel: 1995-06-15\n\n",
   "text11": "🛡️ Sikkerhedstips til online dating\n\n",
   "text12": "📋 Sidste trin: Servicevilkår\n\n",
@@ -127,7 +127,7 @@ export default {
   "text2": "💡 Du kan bruge /mbti kommandoen når som helst for at tage testen igen eller ændre.",
   "text20": "Kom venligst tilbage, når du når voksen alder!\n\n",
   "text21": "📋 Privatlivspolitik\n",
-  "text3": "køn_bekræft_${gender}",
+  "text3": "køn_bekræft_{gender}",
   "text4": "Sidste trin: Læs og accepter venligst vores Servicevilkår\n\n",
   "text5": "📝 Tag en hurtig test (12 spørgsmål, til reference kun)",
   "text6": "• Brugervilkår: Retningslinjer for brug af denne tjeneste\n\n",
@@ -138,12 +138,12 @@ export default {
   "useTelegramNickname": "Brug Telegram kaldenavn",
   "viewPrivacyPolicy": "📋 Se privatlivspolitik",
   "viewTermsOfService": "📋 Se servicebetingelser",
-  "vip": "💡 At angive din blodtype vil blive brugt til fremtidige matchningsfunktioner for blodtype (VIP eksklusiv)\n\n",
+  "vip": "💡 Indtastning af din blodtype kan bruges til fremtidige funktioner til matchning af blodtyper (flere attributter, astrologisk matchning)",
   "warning": {
     "birthday": "⚠️ Fødselsdato kan ikke ændres efter indstilling, venligst bekræft at den er korrekt!"
   },
   "welcome": "Velkommen til XunNi！\n\nVenligst vælg dit sprog:",
   "yourAge": "Din alder: {age} år gammel\n",
-  "zodiac": "• Stjernetegn: ${updatedUser.zodiac_sign}\n",
-  "zodiac2": "Stjernetegn: ${zodiacSign}\n\n"
+  "zodiac": "• Stjernetegn: {updatedUser.zodiac_sign}\n",
+  "zodiac2": "Stjernetegn: {zodiacSign}\n\n"
 };

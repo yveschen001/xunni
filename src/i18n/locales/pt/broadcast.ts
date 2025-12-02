@@ -27,8 +27,8 @@ export default {
   "error": "Erro: {error}",
   "estimate": {
     "immediate": "Enviar imediatamente (cerca de 1-2 segundos)",
-    "minutes": "Cerca de \\${minutes} minutos",
-    "seconds": "Cerca de \\${seconds} segundos"
+    "minutes": "Cerca de \\{minutes} minutos",
+    "seconds": "Cerca de \\{seconds} segundos"
   },
   "estimatedTime": "Tempo Estimado: {time}\n\n",
   "example": "**Exemplo:**\n",
@@ -97,7 +97,7 @@ export default {
   "foundStuckBroadcasts": "⚠️ Detectados {count} transmissões paradas\n\n",
   "id": "ID: {id}",
   "idMustBeNumber": "❌ O ID da transmissão deve ser um número",
-  "maxUsersExceeded": "❌ O sistema de transmissão atual suporta a transmissão para um máximo de ${max} usuários.\n\nNúmero alvo de usuários: ${current}",
+  "maxUsersExceeded": "❌ O sistema de transmissão atual suporta a transmissão para um máximo de {max} usuários.\n\nNúmero alvo de usuários: {current}",
   "messageContent": "Conteúdo da Mensagem",
   "noPendingBroadcasts": "Atualmente, não há transmissões pendentes ou paradas.\n\n",
   "noRecords": "📊 Nenhum registro de transmissão disponível atualmente",
@@ -151,7 +151,7 @@ export default {
   "targetNonVip": "Usuários Não-VIP",
   "targetType": "Alvo: {type}\n",
   "targetVip": "Usuários VIP",
-  "tooLong": "A mensagem da transmissão não pode exceder ${max} caracteres (atualmente ${current} caracteres)",
+  "tooLong": "A mensagem da transmissão não pode exceder {max} caracteres (atualmente {current} caracteres)",
   "upgradeRequired": "Transmissões em grande escala requerem atualização da arquitetura do sistema, por favor consulte BROADCAST_SYSTEM_REDESIGN.md",
   "usageError": "❌ Uso incorreto\n\n",
   "userCount": "Contagem de Usuários: {count} pessoas\n",

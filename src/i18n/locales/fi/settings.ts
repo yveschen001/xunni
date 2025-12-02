@@ -11,7 +11,7 @@ export default {
   "settings2": "⚙️ **Asetukset**\n\n",
   "settings3": "🏠 Palaa asetuksiin",
   "settings4": "Nykyiset asetukset:\n",
-  "text": "• Kieli：${languageName} 🇹🇼\n\n",
+  "text": "• Kieli：{languageName} 🇹🇼\n\n",
   "title": "🏠 **Päävalikko**",
   "throwReminder": "Viesti pulloposti muistutus",
   "catchReminder": "Viesti pullopostin nouto muistutus",

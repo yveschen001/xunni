@@ -1,7 +1,7 @@
 export default {
   "age": {
-    "daysAgo": "\\${days} nappal ezelőtt",
-    "hoursAgo": "\\${hours} órával ezelőtt",
+    "daysAgo": "\\{days} nappal ezelőtt",
+    "hoursAgo": "\\{hours} órával ezelőtt",
     "justNow": "Most azonnal"
   },
   "contentHint": "💡 Ön:\n• Közvetlenül megadhat új tartalmat a vázlat helyettesítésére\n• Használja a /throw-t az újraindításhoz\n• Küldje el a vázlat tartalmát üzenetpalack dobásához",

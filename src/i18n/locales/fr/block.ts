@@ -11,6 +11,6 @@ export default {
   "step2": "2️⃣ Sélectionnez 'Répondre'.",
   "step3": "3️⃣ Entrez /block.",
   "steps": "**Étapes de l'opération :**",
-  "success": "✅ Cet utilisateur a été bloqué (#${identifier}).",
+  "success": "✅ Cet utilisateur a été bloqué (#{identifier}).",
   "willNotMatch": "Vous ne serez plus mis en relation avec les bouteilles à message de l'autre."
 };

@@ -60,7 +60,7 @@ export default {
   "profile": "/edit_profile - Upravit profil\n",
   "profile2": "/profile - Zobrazit profil\n",
   "profile3": "👤 **Profil**\n",
-  "quota": "• Pozvání přátel může zvýšit kvótu (max 10/100)\n",
+  "quota": "🔢 Denní vysoký limit\n• Začněte s 30 message bottles denně (pouze 10 pro běžné uživatele).\n• Pozvání přátel může trvale zvýšit váš limit, až na maximálně 100!\n• Denní limit 100 zpráv v chatu, chat bez bariér.",
   "quota2": "• 30 láhví se zprávou kvóta denně\n",
   "register": "/start - Začít používat / Pokračovat v registraci\n",
   "report": "/report - Nahlásit nevhodný obsah\n",

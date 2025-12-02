@@ -1,7 +1,7 @@
 export default {
-  "age": "• Leeftijd: ${updatedUser.age} jaar oud\n",
-  "age2": "Je leeftijd: ${age} jaar oud\n",
-  "age3": "Leeftijd: ${age} jaar oud\n",
+  "age": "• Leeftijd: {updatedUser.age} jaar oud\n",
+  "age2": "Je leeftijd: {age} jaar oud\n",
+  "age3": "Leeftijd: {age} jaar oud\n",
   "ageRestriction": "❌ Het spijt ons, je moet minstens 18 jaar oud zijn om deze service te gebruiken.\n\n",
   "agreeTerms": "Klik op de knop hieronder om aan te geven dat je de bovenstaande voorwaarden hebt gelezen en ermee akkoord gaat.",
   "antiFraud": {
@@ -24,7 +24,7 @@ export default {
   "birthday": "Als je denkt dat dit een fout is, controleer dan of je verjaardagformaat correct is (JJJJ-MM-DD).",
   "birthday2": "Voer alsjeblieft je geboortedatum opnieuw in (formaat: JJJJ-MM-DD):\n\n",
   "birthday3": "Voer alsjeblieft je geboortedatum in (formaat: JJJJ-MM-DD):\n\n",
-  "birthday4": "Geboortedatum: ${birthday}\n",
+  "birthday4": "Geboortedatum: {birthday}\n",
   "birthdayCheck": "Als je denkt dat dit een fout is, controleer dan of je geboortedatum correct is ingevoerd (JJJJ-MM-DD).",
   "birthdayError": "❌ {error}",
   "birthdayFormatError": "❌ Ongeldig geboortedatumformaat\n\nVoer opnieuw in (formaat: JJJJ-MM-DD):",
@@ -43,11 +43,11 @@ export default {
   "enterYes": "Voer 'ja' in om de test te voltooien:",
   "errorRetry": "❌ Er is een fout opgetreden, voer opnieuw in.",
   "example": {
-    "birthday": "Bijvoorbeeld: 1995-06-15"
+    "birthday": "Bijvoorbeeld: 2000-12-25"
   },
   "gender": {
     "female": "Vrouwelijk",
-    "label": "• Geslacht: ${gender}\n",
+    "label": "• Geslacht: {gender}\n",
     "male": "Mannelijk"
   },
   "gender2": "• Geslacht: ${updatedUser.gender ===",
@@ -58,7 +58,7 @@ export default {
   "help": "Dit helpt ons om meer geschikte chatpartners voor jou te vinden～\n\n",
   "iHaveRead": "✅ Ik heb het gelezen en ga akkoord",
   "info": {
-    "age18": "• Je moet minstens 18 jaar oud zijn om deze service te gebruiken.\n- Nauwkeurige informatie moet worden verstrekt om goede resultaten te behalen bij het matchen en waarzeggen.",
+    "age18": "• Je moet minstens 18 jaar oud zijn om deze service te gebruiken\n- Voor het gebruik van matching en waarzeggen moet je nauwkeurige informatie geven voor goede resultaten.\n\n- Voer je geboortedatum in (bijv. 2000-12-15)",
     "city": "🌍 Regio: {city}"
   },
   "languageSelection": "🌐 **Selecteer Taal**\n\nSelecteer je voorkeurs taal:",
@@ -69,8 +69,8 @@ export default {
   "message": "2. 🚨 Identificeer oplichtingsberichten\n",
   "message2": "• Wees voorzichtig met berichten die om geld vragen\n",
   "moreLanguages": "Meer talen",
-  "nickname": "• Bijnaam: ${updatedUser.nickname}\n",
-  "nickname2": "Geweldig! Je bijnaam is: ${nickname}\n\n",
+  "nickname": "• Bijnaam: {updatedUser.nickname}\n",
+  "nickname2": "Geweldig! Je bijnaam is: {nickname}\n\n",
   "nicknameError": "❌ {error}\n\nVoer je bijnaam opnieuw in:",
   "nicknameGood": "Geweldig! Je bijnaam is: {nickname}\n\n",
   "notCompleted": "⚠️ Voltooi eerst het registratieproces",
@@ -99,7 +99,7 @@ export default {
   "startRegistration": "Start registratie →",
   "stats": "📊 Statistieken",
   "stepAntiFraud": "🛡️ Klik op de knop hierboven om anti-fraude beveiligingskwesties te bevestigen",
-  "stepBirthday": "📅 Voer je verjaardag in (formaat: JJJJ-MM-DD, bijv. 1995-06-15)",
+  "stepBirthday": "📅 Voer uw verjaardag in (formaat: JJJJ-MM-DD, bijv. 2000-12-25)",
   "stepDefault": "Volg de aanwijzingen om de registratie te voltooien",
   "stepGender": "👤 Klik op de knop hierboven om je geslacht te selecteren",
   "stepLanguageSelection": "🌍 Klik op de knop hierboven om je taal te selecteren",
@@ -113,7 +113,7 @@ export default {
     "terms_of_service_button": "📋 Servicevoorwaarden"
   },
   "termsOfService": "📋 Gebruikersvoorwaarden\n\n",
-  "text": "bevestigen_verjaardag_${birthday}",
+  "text": "bevestigen_verjaardag_{birthday}",
   "text10": "Bijvoorbeeld: 1995-06-15\n\n",
   "text11": "🛡️ Veiligheidstips voor Online Dating\n\n",
   "text12": "📋 Laatste Stap: Gebruiksvoorwaarden\n\n",
@@ -127,7 +127,7 @@ export default {
   "text2": "💡 Je kunt het /mbti-commando op elk moment gebruiken om opnieuw te testen of te wijzigen.",
   "text20": "Kom alsjeblieft terug nadat je volwassen bent geworden!\n\n",
   "text21": "📋 Privacybeleid\n",
-  "text3": "geslacht_bevestigen_${gender}",
+  "text3": "geslacht_bevestigen_{gender}",
   "text4": "Laatste Stap: Lees en ga alsjeblieft akkoord met onze Gebruiksvoorwaarden\n\n",
   "text5": "📝 Doe een snelle test (12 vragen, ter referentie)",
   "text6": "• Gebruikersvoorwaarden: Richtlijnen voor het gebruik van deze service\n\n",
@@ -138,12 +138,12 @@ export default {
   "useTelegramNickname": "Gebruik Telegram-bijnaam",
   "viewPrivacyPolicy": "📋 Bekijk Privacybeleid",
   "viewTermsOfService": "📋 Bekijk Algemene Voorwaarden",
-  "vip": "💡 Je bloedgroep opgeven zal worden gebruikt voor toekomstige functies voor het matchen van bloedgroepen (VIP exclusief)\n\n",
+  "vip": "💡 Het invoeren van uw bloedgroep kan worden gebruikt voor toekomstige functies voor bloedgroepmatching (meer attributen, astrologische matching)",
   "warning": {
     "birthday": "⚠️ Jarig kan niet worden gewijzigd na instellen, bevestig alstublieft dat het correct is!"
   },
   "welcome": "Welkom bij XunNi！\n\nSelecteer alstublieft je taal:",
   "yourAge": "Je leeftijd: {age} jaar\n",
-  "zodiac": "• Sterrenbeeld: ${updatedUser.zodiac_sign}\n",
-  "zodiac2": "Sterrenbeeld: ${zodiacSign}\n\n"
+  "zodiac": "• Sterrenbeeld: {updatedUser.zodiac_sign}\n",
+  "zodiac2": "Sterrenbeeld: {zodiacSign}\n\n"
 };

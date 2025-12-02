@@ -27,8 +27,8 @@ export default {
   "error": "错误: {error}",
   "estimate": {
     "immediate": "立即发送（约 1-2 秒）",
-    "minutes": "约 \\${minutes} 分钟",
-    "seconds": "约 \\${seconds} 秒"
+    "minutes": "约 \\{minutes} 分钟",
+    "seconds": "约 \\{seconds} 秒"
   },
   "estimatedTime": "预计时间: {time}\n\n",
   "example": "**示例：**",
@@ -97,7 +97,7 @@ export default {
   "foundStuckBroadcasts": "⚠️ 发现 {count} 个卡住的广播\n\n",
   "id": "ID: {id}",
   "idMustBeNumber": "❌ 广播 ID 必须是数字",
-  "maxUsersExceeded": "❌ 当前广播系统仅支持 ${max} 个用户以内的广播。\n\n目标用户数：${current}",
+  "maxUsersExceeded": "❌ 当前广播系统仅支持 {max} 个用户以内的广播。\n\n目标用户数：{current}",
   "messageContent": "讯息内容",
   "noPendingBroadcasts": "目前没有待处理或卡住的广播。\n\n",
   "noRecords": "📊 目前没有广播记录",
@@ -151,7 +151,7 @@ export default {
   "targetNonVip": "非 VIP 用户",
   "targetType": "目标：{type}\n",
   "targetVip": "VIP 用户",
-  "tooLong": "广播讯息不能超过 ${max} 个字符（目前 ${current} 个字符）",
+  "tooLong": "广播讯息不能超过 {max} 个字符（目前 {current} 个字符）",
   "upgradeRequired": "大规模广播需要升级系统架构，请参考 BROADCAST_SYSTEM_REDESIGN.md",
   "usageError": "❌ 使用方法错误\n\n",
   "userCount": "用户数: {count} 人\n",

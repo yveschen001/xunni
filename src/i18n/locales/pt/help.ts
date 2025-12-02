@@ -60,7 +60,7 @@ export default {
   "profile": "/edit_profile - Editar perfil\n",
   "profile2": "/profile - Ver perfil\n",
   "profile3": "👤 **Perfil**\n",
-  "quota": "• Convidar amigos aumenta a cota (até 10/100)\n",
+  "quota": "🔢 Cota Diária Alta\n• Comece com 30 garrafas de mensagem diárias (apenas 10 para usuários regulares).\n• Convidar amigos pode aumentar permanentemente sua cota, até um máximo de 100!\n• Limite diário de 100 mensagens de chat, converse sem barreiras.",
   "quota2": "• 30 garrafas de mensagem de cota por dia\n",
   "register": "/start - Começar a usar / Continuar registro\n",
   "report": "/report - Reportar conteúdo inadequado\n",

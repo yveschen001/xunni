@@ -1,5 +1,5 @@
 export default {
-  "alreadyExists": "⏳ Imate neodgovorenu žalbu (ID: #${appealId})\n\nStatus: ${status}\nVreme podnošenja: ${time}\n\nMolimo budite strpljivi dok čekate pregled od strane administratora.",
+  "alreadyExists": "⏳ Imate neodgovorenu žalbu (ID: #{appealId})\n\nStatus: {status}\nVreme podnošenja: {time}\n\nMolimo budite strpljivi dok čekate pregled od strane administratora.",
   "approved": "✅ Vaša žalba je odobrena, nalog je deblokiran",
   "noAppeal": "Trenutno nemate neodgovarajuće žalbe",
   "notBanned": "✅ Vaš nalog nije blokiran, nije potrebna žalba.",
@@ -10,9 +10,9 @@ export default {
   "reasonTooShort": "❌ Razlog za žalbu je prekratak, molimo unesite najmanje 10 karaktera.",
   "rejected": "❌ Vaša žalba je odbijena.",
   "reviewedAt": "Vreme pregleda:",
-  "status": "📋 **Status Žalbe**\n\nID Žalbe: #${appealId}\nStatus: ${status}\nVreme Podnošenja: ${createdAt}${reviewInfo}",
+  "status": "📋 **Status Žalbe**\n\nID Žalbe: #{appealId}\nStatus: {status}\nVreme Podnošenja: {createdAt}{reviewInfo}",
   "statusApproved": "Odobreno",
   "statusPending": "U toku pregleda",
   "statusRejected": "Odbijeno",
-  "submitted": "✅ **Žalba Podneta**\n\nID Žalbe: #${appealId}\nStatus: U toku pregleda\n\nObradit ćemo vašu žalbu u roku od 1-3 radna dana.\nBićete obavešteni o rezultatu putem Bota."
+  "submitted": "✅ **Žalba Podneta**\n\nID Žalbe: #{appealId}\nStatus: U toku pregleda\n\nObradit ćemo vašu žalbu u roku od 1-3 radna dana.\nBićete obavešteni o rezultatu putem Bota."
 };

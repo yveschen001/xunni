@@ -11,6 +11,6 @@ export default {
   "step2": "2️⃣ 'Yanıtla' seçeneğini seçin.",
   "step3": "3️⃣ /block yazın.",
   "steps": "**Takip edilecek adımlar:**",
-  "success": "✅ Bu kullanıcı engellendi (#${identifier})",
+  "success": "✅ Bu kullanıcı engellendi (#{identifier})",
   "willNotMatch": "Artık birbirinizin mesaj şişeleri ile eşleşmeyeceksiniz."
 };
