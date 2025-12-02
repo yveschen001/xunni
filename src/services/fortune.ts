@@ -530,6 +530,8 @@ export class FortuneService {
     let content = '';
     let provider = 'gemini';
     let model = 'gemini-2.0-flash-lite'; 
+    let totalInputTokens = 0;
+    let totalOutputTokens = 0;
 
     const chain = CHAINED_PROMPTS[type];
 
