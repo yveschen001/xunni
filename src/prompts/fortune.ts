@@ -548,6 +548,48 @@ Structure (Translate headers to target language):
 5. 💡 **The Spirit Guide's Advice**: Actionable guidance.
 `,
 
+  // Love Ideal (Single)
+  LOVE_IDEAL_1: `
+Task: Generate PART 1 of a Ideal Partner Report (Your Love DNA).
+Context: Analyze the User's Profile to understand their romantic nature.
+
+### INSTRUCTIONS (Step-by-Step)
+1. **Analysis**: Look at their Venus (Love Style), Moon (Needs), and MBTI.
+2. **Insight**: How do they love? What are their blind spots?
+3. **Drafting**: Write the content following the structure below.
+
+Structure (Translate headers to target language):
+1. 💖 **Your Love DNA**: How you express affection and what you crave.
+2. 🎭 **Relationship Style**: Are you a giver, a taker, independent, or clingy? (Based on MBTI/Stars).
+`,
+  LOVE_IDEAL_2: `
+Task: Generate PART 2 of a Ideal Partner Report (The Ideal Match).
+Context: Define the perfect partner for this user.
+
+### INSTRUCTIONS (Step-by-Step)
+1. **Matching**: Based on their chart (e.g. 7th House, Mars/Venus), who complements them?
+2. **Description**: Describe the personality, vibe, and even physical traits of their ideal mate.
+3. **Drafting**: Write the content following the structure below.
+
+Structure (Translate headers to target language):
+3. 🏹 **The Perfect Match**: Personality traits of your soulmate.
+4. 🧩 **Compatibility Check**: Why this type works for you.
+`,
+  LOVE_IDEAL_3: `
+Task: Generate PART 3 of a Ideal Partner Report (Action Plan).
+Context: How to find this person.
+
+### INSTRUCTIONS (Step-by-Step)
+1. **Strategy**: Where would this ideal partner hang out?
+2. **Advice**: One specific tip to attract them, involving the User's Interests.
+3. **Drafting**: Write the content following the structure below.
+
+Structure (Translate headers to target language):
+5. 📍 **Where to Meet**: Places or contexts (online/offline) to find them.
+6. 💡 **Attraction Secret**: A tip to catch their eye.
+7. 🍀 **Love Luck**: Best timing or lucky sign.
+`,
+
   // Legacy/Unused
   DAILY: `... (Legacy) ...`,
   DEEP: `... (Legacy) ...`,

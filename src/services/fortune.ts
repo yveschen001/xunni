@@ -569,6 +569,7 @@ export class FortuneService {
       'daily': ['DAILY_1', 'DAILY_2', 'DAILY_3'],
       'weekly': ['WEEKLY_1', 'WEEKLY_2', 'WEEKLY_3', 'WEEKLY_4', 'WEEKLY_5'],
       'love_match': ['LOVE_MATCH_1', 'LOVE_MATCH_2', 'LOVE_MATCH_3', 'LOVE_MATCH_4', 'LOVE_MATCH_5'],
+      'love_ideal': ['LOVE_IDEAL_1', 'LOVE_IDEAL_2', 'LOVE_IDEAL_3'],
       'ziwei': ['ZIWEI_1', 'ZIWEI_2', 'ZIWEI_3', 'ZIWEI_4', 'ZIWEI_5'],
       'astrology': ['ASTROLOGY_1', 'ASTROLOGY_2', 'ASTROLOGY_3', 'ASTROLOGY_4', 'ASTROLOGY_5'],
       'bazi': ['BAZI_1', 'BAZI_2', 'BAZI_3', 'BAZI_4', 'BAZI_5'],
