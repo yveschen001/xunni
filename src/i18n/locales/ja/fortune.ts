@@ -118,19 +118,16 @@ export default {
   },
   "reports": {
     "tab_all": "📜 占い記録",
-    "reports": {
-      "tab_all": "📜 占い記録",
-      "tab_match": "💞 マッチ",
-      "tab_fortune": "🔮 幸運",
-      "history_desc": "合計{count}件の記録があります。詳細を表示するか、削除するにはクリックしてください。",
-      "empty": "📭 まだ記録はありません",
-      "expired": "⚠️ 記録が保存期間（3年）を超えました",
-      "regenerate": "🔄 再生成",
-      "regenerated": "✨ 幸運が再生成されました！",
-      "deleted_hint": "🗑️ 記録が削除されました",
-      "integrity_warning": "⚠️ 警告：この記録の生成に使用された個人データが現在のデータと一致しません（例：MBTIや血液型の変更）。",
-      "page_indicator": "ページ {current} / {total}"
-    },
+    "tab_match": "💞 マッチ",
+    "tab_fortune": "🔮 幸運",
+    "history_desc": "合計{count}件の記録があります。詳細を表示するか、削除するにはクリックしてください。",
+    "empty": "📭 まだ記録はありません",
+    "expired": "⚠️ 記録が保存期間（3年）を超えました",
+    "regenerate": "🔄 再生成",
+    "regenerated": "✨ 幸運が再生成されました！",
+    "deleted_hint": "🗑️ 記録が削除されました",
+    "integrity_warning": "⚠️ 警告：この記録の生成に使用された個人データが現在のデータと一致しません（例：MBTIや血液型の変更）。",
+    "page_indicator": "ページ {current} / {total}",
     "weeklyTitle": "今週の運勢予報",
     "celebrityTitle": "セレブの相性分析",
     "ziweiTitle": "紫微斗数の詳細分析",
@@ -143,5 +140,7 @@ export default {
       "shuffling": "シャッフル中...",
       "drawn": "🎴 カードが引かれました："
     }
-  }
+  },
+  "profile_incomplete_hint": "⚠️ VIPプロフィールが不完全です。\n\n正確なAI分析を提供するため、VIPメンバーは完全なプロフィール（興味、職業、産業を含む）を入力する必要があります。詳細を追加するには下のボタンをクリックしてください：",
+  "upsell_vip_analysis": "✨ **VIPにアップグレードして詳細分析をアンロック**：\nあなたの【職業】や【興味・関心】に合わせたパーソナライズされたアドバイスを受け取りませんか？VIPにアップグレードして、より正確でカスタマイズされた運勢分析をアンロックしましょう！"
 };
