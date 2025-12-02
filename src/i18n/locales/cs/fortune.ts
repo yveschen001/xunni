@@ -137,11 +137,11 @@ export default {
     "astrologyTitle": "Podrobná analýza západní astrologie",
     "tarotTitle": "Poradenství tarotových karet",
     "baziTitle": "Podrobná analýza osudu Ba Zi",
-    "tarot_ui": {
-      "intro": "🔮 *Tarotové věštění*\n\nProsím, tiše přemýšlejte o své otázce (např. 'Jaké je moje pracovní štěstí v poslední době?' nebo 'Jak bych měl nakládat s tímto vztahem?'), soustřeďte své myšlenky a klikněte na tlačítko níže pro vylosování karet.",
-      "draw": "🔮 Vylosovat karty",
-      "shuffling": "Míchání...",
-      "drawn": "🎴 Karty byly vylosovány:"
-    }
+  },
+  "tarot_ui": {
+    "intro": "🔮 *Tarotové věštění*\n\nProsím, tiše přemýšlejte o své otázce (např. 'Jaké je moje pracovní štěstí v poslední době?' nebo 'Jak bych měl nakládat s tímto vztahem?'), soustřeďte své myšlenky a klikněte na tlačítko níže pro vylosování karet.",
+    "draw": "🔮 Vylosovat karty",
+    "shuffling": "Míchání...",
+    "drawn": "🎴 Karty byly vylosovány:"
   }
 };

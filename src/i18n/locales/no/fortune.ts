@@ -137,11 +137,11 @@ export default {
     "astrologyTitle": "Vesterlandsk astrologi detaljert analyse",
     "tarotTitle": "Tarotkort veiledning",
     "baziTitle": "Ba Zi detaljert skjebneanalyse",
-    "tarot_ui": {
-      "intro": "🔮 *Tarot spådom*\n\nVennligst tenk stille på spørsmålet ditt (for eksempel: 'Hvordan er arbeidsskjebnen min nylig?' eller 'Hvordan bør jeg håndtere dette forholdet?'), fokuser tankene dine og klikk på knappen nedenfor for å trekke kort.",
-      "draw": "🔮 Trekk kort",
-      "shuffling": "Blande...",
-      "drawn": "🎴 Kortene har blitt trukket:"
-    }
+  },
+  "tarot_ui": {
+    "intro": "🔮 *Tarot spådom*\n\nVennligst tenk stille på spørsmålet ditt (for eksempel: 'Hvordan er arbeidsskjebnen min nylig?' eller 'Hvordan bør jeg håndtere dette forholdet?'), fokuser tankene dine og klikk på knappen nedenfor for å trekke kort.",
+    "draw": "🔮 Trekk kort",
+    "shuffling": "Blande...",
+    "drawn": "🎴 Kortene har blitt trukket:"
   }
 };

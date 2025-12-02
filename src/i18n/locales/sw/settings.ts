@@ -12,5 +12,7 @@ export default {
   "settings3": "[需要翻译]",
   "settings4": "[需要翻译]",
   "text": "[需要翻译]",
-  "title": "[需要翻译]"
+  "title": "[需要翻译]",
+  "quietHoursVipOnly": "🔒 Quiet Hours (VIP Only)",
+  "upgradeForQuietHours": "Upgrade to VIP to use this feature"
 };

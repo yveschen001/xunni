@@ -31,5 +31,7 @@ export default {
     "title": "🚫 Lista e Bllokuar",
     "empty": "Aktualisht nuk ka lista të bllokuara",
     "unblock": "Anuloj bllokimin"
-  }
+  },
+  "quietHoursVipOnly": "🔒 Quiet Hours (VIP Only)",
+  "upgradeForQuietHours": "Upgrade to VIP to use this feature"
 };

@@ -137,11 +137,11 @@ export default {
     "astrologyTitle": "Podrobná analýza západnej astrológie",
     "tarotTitle": "Návrh Tarotových kariet",
     "baziTitle": "Podrobná analýza šťastia Ba Zi",
-    "tarot_ui": {
-      "intro": "🔮 *Veštenie pomocou Tarotových kariet*\n\nProsím ticho myslite na svoju otázku (napríklad: 'Ako je to s mojím pracovným šťastím v poslednej dobe?' alebo 'Ako by som mal riešiť tento vzťah?'), sústreďte svoje myšlienky a kliknite na tlačidlo nižšie, aby ste vytiahli karty.",
-      "draw": "🔮 Vytiahnuť karty",
-      "shuffling": "Mixujem...",
-      "drawn": "🎴 Karty boli vytiahnuté:"
-    }
+  },
+  "tarot_ui": {
+    "intro": "🔮 *Veštenie pomocou Tarotových kariet*\n\nProsím ticho myslite na svoju otázku (napríklad: 'Ako je to s mojím pracovným šťastím v poslednej dobe?' alebo 'Ako by som mal riešiť tento vzťah?'), sústreďte svoje myšlienky a kliknite na tlačidlo nižšie, aby ste vytiahli karty.",
+    "draw": "🔮 Vytiahnuť karty",
+    "shuffling": "Mixujem...",
+    "drawn": "🎴 Karty boli vytiahnuté:"
   }
 };

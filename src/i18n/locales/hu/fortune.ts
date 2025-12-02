@@ -137,11 +137,11 @@ export default {
     "astrologyTitle": "Nyugati asztrológia részletes elemzés",
     "tarotTitle": "Tarot kártyás útmutatás",
     "baziTitle": "Ba Zi részletes sors elemzés",
-    "tarot_ui": {
-      "intro": "🔮 *Tarot jóslás*\n\nKérjük, csendben gondolkodjon a kérdésén (például: 'Hogyan alakul az utóbbi időben a munkám sorsa?' vagy 'Hogyan kezeljem ezt a kapcsolatot?'), összpontosítson a gondolataira, és kattintson az alábbi gombra a kártyák húzásához.",
-      "draw": "🔮 Kártya húzása",
-      "shuffling": "Keverés...",
-      "drawn": "🎴 A kártyák húzva lettek:"
-    }
+  },
+  "tarot_ui": {
+    "intro": "🔮 *Tarot jóslás*\n\nKérjük, csendben gondolkodjon a kérdésén (például: 'Hogyan alakul az utóbbi időben a munkám sorsa?' vagy 'Hogyan kezeljem ezt a kapcsolatot?'), összpontosítson a gondolataira, és kattintson az alábbi gombra a kártyák húzásához.",
+    "draw": "🔮 Kártya húzása",
+    "shuffling": "Keverés...",
+    "drawn": "🎴 A kártyák húzva lettek:"
   }
 };

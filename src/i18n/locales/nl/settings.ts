@@ -31,5 +31,7 @@ export default {
     "title": "🚫 Bloklijst",
     "empty": "Huidig geen bloklijst",
     "unblock": "Deblokkeer"
-  }
+  },
+  "quietHoursVipOnly": "🔒 Quiet Hours (VIP Only)",
+  "upgradeForQuietHours": "Upgrade to VIP to use this feature"
 };

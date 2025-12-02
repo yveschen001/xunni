@@ -137,11 +137,11 @@ export default {
     "astrologyTitle": "Analyse astrologique occidentale détaillée",
     "tarotTitle": "Conseils de cartes de tarot",
     "baziTitle": "Analyse détaillée de la fortune Ba Zi",
-    "tarot_ui": {
-      "intro": "🔮 *Divination par le tarot*\n\nVeuillez penser silencieusement à votre question (par exemple : 'Comment est ma fortune au travail ces derniers temps ?' ou 'Comment devrais-je gérer cette relation ?'), concentrez-vous et cliquez sur le bouton ci-dessous pour tirer les cartes.",
-      "draw": "🔮 Tirer les cartes",
-      "shuffling": "Mélanger...",
-      "drawn": "🎴 Les cartes ont été tirées :"
-    }
+  },
+  "tarot_ui": {
+    "intro": "🔮 *Divination par le tarot*\n\nVeuillez penser silencieusement à votre question (par exemple : 'Comment est ma fortune au travail ces derniers temps ?' ou 'Comment devrais-je gérer cette relation ?'), concentrez-vous et cliquez sur le bouton ci-dessous pour tirer les cartes.",
+    "draw": "🔮 Tirer les cartes",
+    "shuffling": "Mélanger...",
+    "drawn": "🎴 Les cartes ont été tirées :"
   }
 };

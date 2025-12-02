@@ -31,5 +31,7 @@ export default {
     "title": "🚫 Estolistat",
     "empty": "Tällä hetkellä ei ole estolistoja",
     "unblock": "Poista esto"
-  }
+  },
+  "quietHoursVipOnly": "🔒 Quiet Hours (VIP Only)",
+  "upgradeForQuietHours": "Upgrade to VIP to use this feature"
 };

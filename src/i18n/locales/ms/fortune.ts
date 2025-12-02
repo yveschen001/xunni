@@ -137,11 +137,11 @@ export default {
     "astrologyTitle": "Analisis terperinci astrologi Barat",
     "tarotTitle": "Panduan kad Tarot",
     "baziTitle": "Analisis nasib Ba Zi yang terperinci",
-    "tarot_ui": {
-      "intro": "🔮 *Pengundian Tarot*\n\nSila fikirkan soalan anda dalam hati (contohnya: 'Bagaimana nasib kerja saya akhir-akhir ini?' atau 'Bagaimana saya harus menangani hubungan ini?'), fokuskan fikiran anda dan klik butang di bawah untuk menarik kad.",
-      "draw": "🔮 Tarik kad",
-      "shuffling": "Mengadun...",
-      "drawn": "🎴 Kad telah ditarik:"
-    }
+  },
+  "tarot_ui": {
+    "intro": "🔮 *Pengundian Tarot*\n\nSila fikirkan soalan anda dalam hati (contohnya: 'Bagaimana nasib kerja saya akhir-akhir ini?' atau 'Bagaimana saya harus menangani hubungan ini?'), fokuskan fikiran anda dan klik butang di bawah untuk menarik kad.",
+    "draw": "🔮 Tarik kad",
+    "shuffling": "Mengadun...",
+    "drawn": "🎴 Kad telah ditarik:"
   }
 };

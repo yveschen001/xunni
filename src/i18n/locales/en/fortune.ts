@@ -137,11 +137,11 @@ export default {
     "astrologyTitle": "Western astrology detailed analysis",
     "tarotTitle": "Tarot card guidance",
     "baziTitle": "Ba Zi detailed fortune analysis",
-    "tarot_ui": {
-      "intro": "🔮 *Tarot divination*\n\nPlease silently think of your question (for example: 'How is my work fortune lately?' or 'How should I handle this relationship?'), focus your thoughts and click the button below to draw cards.",
-      "draw": "🔮 Draw cards",
-      "shuffling": "Shuffling...",
-      "drawn": "🎴 The cards have been drawn:"
-    }
+  },
+  "tarot_ui": {
+    "intro": "🔮 *Tarot divination*\n\nPlease silently think of your question (for example: 'How is my work fortune lately?' or 'How should I handle this relationship?'), focus your thoughts and click the button below to draw cards.",
+    "draw": "🔮 Draw cards",
+    "shuffling": "Shuffling...",
+    "drawn": "🎴 The cards have been drawn:"
   }
 };

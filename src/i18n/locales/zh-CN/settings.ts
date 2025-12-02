@@ -31,5 +31,7 @@ export default {
     "title": "🚫 封锁名单",
     "empty": "目前没有封锁名单",
     "unblock": "解除封锁"
-  }
+  },
+  "quietHoursVipOnly": "🔒 Quiet Hours (VIP Only)",
+  "upgradeForQuietHours": "Upgrade to VIP to use this feature"
 };

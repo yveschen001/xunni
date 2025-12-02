@@ -137,11 +137,11 @@ export default {
     "astrologyTitle": "Szczegółowa analiza astrologii zachodniej",
     "tarotTitle": "Wskazówki z kart tarota",
     "baziTitle": "Szczegółowa analiza fortuny Ba Zi",
-    "tarot_ui": {
-      "intro": "🔮 *Wróżenie z tarota*\n\nProszę cicho pomyśleć o swoim pytaniu (na przykład: 'Jak ostatnio wygląda moja fortuna w pracy?' lub 'Jak powinienem poradzić sobie z tą relacją?'), skup swoje myśli i kliknij przycisk poniżej, aby dobrać karty.",
-      "draw": "🔮 Dobierz karty",
-      "shuffling": "Tasowanie...",
-      "drawn": "🎴 Karty zostały dobrane:"
-    }
+  },
+  "tarot_ui": {
+    "intro": "🔮 *Wróżenie z tarota*\n\nProszę cicho pomyśleć o swoim pytaniu (na przykład: 'Jak ostatnio wygląda moja fortuna w pracy?' lub 'Jak powinienem poradzić sobie z tą relacją?'), skup swoje myśli i kliknij przycisk poniżej, aby dobrać karty.",
+    "draw": "🔮 Dobierz karty",
+    "shuffling": "Tasowanie...",
+    "drawn": "🎴 Karty zostały dobrane:"
   }
 };

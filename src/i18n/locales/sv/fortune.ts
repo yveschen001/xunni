@@ -137,11 +137,11 @@ export default {
     "astrologyTitle": "Västerländsk astrologi detaljerad analys",
     "tarotTitle": "Tarotkort vägledning",
     "baziTitle": "Ba Zi detaljerad ödesanalys",
-    "tarot_ui": {
-      "intro": "🔮 *Tarotutvinning*\n\nVänligen tänk tyst på din fråga (till exempel: 'Hur är min arbetsöde på sistone?' eller 'Hur ska jag hantera denna relation?'), fokusera dina tankar och klicka på knappen nedan för att dra kort.",
-      "draw": "🔮 Dra kort",
-      "shuffling": "Blandar...",
-      "drawn": "🎴 Korten har dragits:"
-    }
+  },
+  "tarot_ui": {
+    "intro": "🔮 *Tarotutvinning*\n\nVänligen tänk tyst på din fråga (till exempel: 'Hur är min arbetsöde på sistone?' eller 'Hur ska jag hantera denna relation?'), fokusera dina tankar och klicka på knappen nedan för att dra kort.",
+    "draw": "🔮 Dra kort",
+    "shuffling": "Blandar...",
+    "drawn": "🎴 Korten har dragits:"
   }
 };

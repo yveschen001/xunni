@@ -31,5 +31,7 @@ export default {
     "title": "🚫 רשימת חסומים",
     "empty": "אין currently חסומים",
     "unblock": "בטל חסימה"
-  }
+  },
+  "quietHoursVipOnly": "🔒 Quiet Hours (VIP Only)",
+  "upgradeForQuietHours": "Upgrade to VIP to use this feature"
 };

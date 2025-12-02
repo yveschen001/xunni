@@ -31,5 +31,7 @@ export default {
     "title": "🚫 Seznam blokiranih",
     "empty": "Trenutno ni seznama blokiranih",
     "unblock": "Odblokiraj"
-  }
+  },
+  "quietHoursVipOnly": "🔒 Quiet Hours (VIP Only)",
+  "upgradeForQuietHours": "Upgrade to VIP to use this feature"
 };

@@ -31,5 +31,7 @@ export default {
     "title": "🚫 ব্লক তালিকা",
     "empty": "বর্তমানে কোনো ব্লক তালিকা নেই",
     "unblock": "ব্লক অপসারণ করুন"
-  }
+  },
+  "quietHoursVipOnly": "🔒 Quiet Hours (VIP Only)",
+  "upgradeForQuietHours": "Upgrade to VIP to use this feature"
 };

@@ -137,11 +137,11 @@ export default {
     "astrologyTitle": "Vestlig astrologi detaljeret analyse",
     "tarotTitle": "Tarot kort vejledning",
     "baziTitle": "Ba Zi detaljeret skæbneanalyse",
-    "tarot_ui": {
-      "intro": "🔮 *Tarot divination*\n\nTænk stille på dit spørgsmål (for eksempel: 'Hvordan er min arbejdsskæbne for tiden?' eller 'Hvordan skal jeg håndtere dette forhold?'), fokuser dine tanker og klik på knappen nedenfor for at trække kort.",
-      "draw": "🔮 Træk kort",
-      "shuffling": "Blander...",
-      "drawn": "🎴 Kortene er blevet trukket:"
-    }
+  },
+  "tarot_ui": {
+    "intro": "🔮 *Tarot divination*\n\nTænk stille på dit spørgsmål (for eksempel: 'Hvordan er min arbejdsskæbne for tiden?' eller 'Hvordan skal jeg håndtere dette forhold?'), fokuser dine tanker og klik på knappen nedenfor for at trække kort.",
+    "draw": "🔮 Træk kort",
+    "shuffling": "Blander...",
+    "drawn": "🎴 Kortene er blevet trukket:"
   }
 };

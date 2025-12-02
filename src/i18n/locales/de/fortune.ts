@@ -137,11 +137,11 @@ export default {
     "astrologyTitle": "Ausführliche Analyse der westlichen Astrologie",
     "tarotTitle": "Tarotkartenführungen",
     "baziTitle": "Ba Zi ausführliche Glücksanalyse",
-    "tarot_ui": {
-      "intro": "🔮 *Tarot Wahrsagung*\n\nBitte denken Sie stillschweigend an Ihre Frage (zum Beispiel: 'Wie steht es um mein Arbeitsglück in letzter Zeit?' oder 'Wie sollte ich mit dieser Beziehung umgehen?'), konzentrieren Sie Ihre Gedanken und klicken Sie auf die Schaltfläche unten, um Karten zu ziehen.",
-      "draw": "🔮 Karten ziehen",
-      "shuffling": "Mischen...",
-      "drawn": "🎴 Die Karten wurden gezogen:"
-    }
+  },
+  "tarot_ui": {
+    "intro": "🔮 *Tarot Wahrsagung*\n\nBitte denken Sie stillschweigend an Ihre Frage (zum Beispiel: 'Wie steht es um mein Arbeitsglück in letzter Zeit?' oder 'Wie sollte ich mit dieser Beziehung umgehen?'), konzentrieren Sie Ihre Gedanken und klicken Sie auf die Schaltfläche unten, um Karten zu ziehen.",
+    "draw": "🔮 Karten ziehen",
+    "shuffling": "Mischen...",
+    "drawn": "🎴 Die Karten wurden gezogen:"
   }
 };

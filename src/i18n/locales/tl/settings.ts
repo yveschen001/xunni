@@ -31,5 +31,7 @@ export default {
     "title": "🚫 Listahan ng Naharang",
     "empty": "Walang kasalukuyang listahan ng naharang",
     "unblock": "I-unblock"
-  }
+  },
+  "quietHoursVipOnly": "🔒 Quiet Hours (VIP Only)",
+  "upgradeForQuietHours": "Upgrade to VIP to use this feature"
 };

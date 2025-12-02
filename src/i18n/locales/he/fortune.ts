@@ -137,11 +137,11 @@ export default {
     "astrologyTitle": "ניתוח מפורט של אסטרולוגיה מערבית",
     "tarotTitle": "הנחיה בטארוט",
     "baziTitle": "ניתוח מפורט של חיזוי בא צ'י",
-    "tarot_ui": {
-      "intro": "🔮 *נבואת טארוט*\n\nאנא אמור בשקט את שאלתך (למשל, 'איך המזל שלי בעבודה לאחרונה?' או 'איך עלי להתמודד עם מערכת יחסים זו?'), ממקד את מחשבותיך ולחץ על הכפתור למטה כדי למשוך קלפים.",
-      "draw": "🔮 משיכת קלפים",
-      "shuffling": "מערבבים...",
-      "drawn": "🎴 הקלף נמשך:"
-    }
+  },
+  "tarot_ui": {
+    "intro": "🔮 *נבואת טארוט*\n\nאנא אמור בשקט את שאלתך (למשל, 'איך המזל שלי בעבודה לאחרונה?' או 'איך עלי להתמודד עם מערכת יחסים זו?'), ממקד את מחשבותיך ולחץ על הכפתור למטה כדי למשוך קלפים.",
+    "draw": "🔮 משיכת קלפים",
+    "shuffling": "מערבבים...",
+    "drawn": "🎴 הקלף נמשך:"
   }
 };

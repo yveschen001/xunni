@@ -137,11 +137,11 @@ export default {
     "astrologyTitle": "Gedetailleerde analyse van westerse astrologie",
     "tarotTitle": "Tarotkaart begeleiding",
     "baziTitle": "Ba Zi gedetailleerde fortuuanalyse",
-    "tarot_ui": {
-      "intro": "🔮 *Tarot waarzegging*\n\nDenk stil aan je vraag (bijvoorbeeld: 'Hoe is mijn werkfortuin de laatste tijd?' of 'Hoe moet ik met deze relatie omgaan?'), focus je gedachten en klik op de knop hieronder om kaarten te trekken.",
-      "draw": "🔮 Kaarten trekken",
-      "shuffling": "Schutten...",
-      "drawn": "🎴 De kaarten zijn getrokken:"
-    }
+  },
+  "tarot_ui": {
+    "intro": "🔮 *Tarot waarzegging*\n\nDenk stil aan je vraag (bijvoorbeeld: 'Hoe is mijn werkfortuin de laatste tijd?' of 'Hoe moet ik met deze relatie omgaan?'), focus je gedachten en klik op de knop hieronder om kaarten te trekken.",
+    "draw": "🔮 Kaarten trekken",
+    "shuffling": "Schutten...",
+    "drawn": "🎴 De kaarten zijn getrokken:"
   }
 };

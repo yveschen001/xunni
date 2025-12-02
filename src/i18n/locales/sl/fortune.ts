@@ -137,11 +137,11 @@ export default {
     "astrologyTitle": "Podrobna analiza zahodne astrologije",
     "tarotTitle": "Vodenje s Tarot kartami",
     "baziTitle": "Podrobna analiza usode Ba Zi",
-    "tarot_ui": {
-      "intro": "🔮 *Tarot prerokba*\n\nProsim, tiho pomislite na svoje vprašanje (na primer: 'Kako je z mojo delovno usodo zadnje čase?' ali 'Kako naj obvladujem to razmerje?'), osredotočite svoje misli in kliknite spodnji gumb za vlečenje kart.",
-      "draw": "🔮 Vleci karte",
-      "shuffling": "Mešanje...",
-      "drawn": "🎴 Karte so bile potegnjene:"
-    }
+  },
+  "tarot_ui": {
+    "intro": "🔮 *Tarot prerokba*\n\nProsim, tiho pomislite na svoje vprašanje (na primer: 'Kako je z mojo delovno usodo zadnje čase?' ali 'Kako naj obvladujem to razmerje?'), osredotočite svoje misli in kliknite spodnji gumb za vlečenje kart.",
+    "draw": "🔮 Vleci karte",
+    "shuffling": "Mešanje...",
+    "drawn": "🎴 Karte so bile potegnjene:"
   }
 };

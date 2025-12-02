@@ -31,5 +31,7 @@ export default {
     "title": "🚫 차단 목록",
     "empty": "현재 차단 목록 없음",
     "unblock": "차단 해제"
-  }
+  },
+  "quietHoursVipOnly": "🔒 Quiet Hours (VIP Only)",
+  "upgradeForQuietHours": "Upgrade to VIP to use this feature"
 };

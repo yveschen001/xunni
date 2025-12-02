@@ -137,11 +137,11 @@ export default {
     "astrologyTitle": "Analisi dettagliata di astrologia occidentale",
     "tarotTitle": "Guida delle carte dei tarocchi",
     "baziTitle": "Analisi dettagliata della fortuna Ba Zi",
-    "tarot_ui": {
-      "intro": "🔮 *Divinazione con i tarocchi*\n\nPer favore, pensa silenziosamente alla tua domanda (ad esempio: 'Com'è la mia fortuna lavorativa ultimamente?' o 'Come dovrei gestire questa relazione?'), concentra i tuoi pensieri e clicca il pulsante qui sotto per pescare le carte.",
-      "draw": "🔮 Pesca carte",
-      "shuffling": "Mescolando...",
-      "drawn": "🎴 Le carte sono state pescate:"
-    }
+  },
+  "tarot_ui": {
+    "intro": "🔮 *Divinazione con i tarocchi*\n\nPer favore, pensa silenziosamente alla tua domanda (ad esempio: 'Com'è la mia fortuna lavorativa ultimamente?' o 'Come dovrei gestire questa relazione?'), concentra i tuoi pensieri e clicca il pulsante qui sotto per pescare le carte.",
+    "draw": "🔮 Pesca carte",
+    "shuffling": "Mescolando...",
+    "drawn": "🎴 Le carte sono state pescate:"
   }
 };

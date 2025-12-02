@@ -137,11 +137,11 @@ export default {
     "astrologyTitle": "Phân tích chi tiết chiêm tinh phương Tây",
     "tarotTitle": "Hướng dẫn bài Tarot",
     "baziTitle": "Phân tích vận mệnh chi tiết Ba Zi",
-    "tarot_ui": {
-      "intro": "🔮 *Bói bài Tarot*\n\nVui lòng lặng lẽ nghĩ về câu hỏi của bạn (ví dụ: 'Vận mệnh công việc của tôi gần đây thế nào?' hoặc 'Tôi nên xử lý mối quan hệ này như thế nào?'), tập trung suy nghĩ và nhấn nút bên dưới để rút bài.",
-      "draw": "🔮 Rút bài",
-      "shuffling": "Xáo trộn...",
-      "drawn": "🎴 Các lá bài đã được rút:"
-    }
+  },
+  "tarot_ui": {
+    "intro": "🔮 *Bói bài Tarot*\n\nVui lòng lặng lẽ nghĩ về câu hỏi của bạn (ví dụ: 'Vận mệnh công việc của tôi gần đây thế nào?' hoặc 'Tôi nên xử lý mối quan hệ này như thế nào?'), tập trung suy nghĩ và nhấn nút bên dưới để rút bài.",
+    "draw": "🔮 Rút bài",
+    "shuffling": "Xáo trộn...",
+    "drawn": "🎴 Các lá bài đã được rút:"
   }
 };

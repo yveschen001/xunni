@@ -31,5 +31,7 @@ export default {
     "title": "🚫 Block List",
     "empty": "Currently no block list",
     "unblock": "Unblock"
-  }
+  },
+  "quietHoursVipOnly": "🔒 Quiet Hours (VIP Only)",
+  "upgradeForQuietHours": "Upgrade to VIP to use this feature"
 };

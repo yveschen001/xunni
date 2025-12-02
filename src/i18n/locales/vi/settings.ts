@@ -31,5 +31,7 @@ export default {
     "title": "🚫 Danh sách chặn",
     "empty": "Hiện tại không có danh sách chặn",
     "unblock": "Bỏ chặn"
-  }
+  },
+  "quietHoursVipOnly": "🔒 Quiet Hours (VIP Only)",
+  "upgradeForQuietHours": "Upgrade to VIP to use this feature"
 };

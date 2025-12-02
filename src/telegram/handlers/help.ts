@@ -124,7 +124,8 @@ export async function handleHelp(message: TelegramMessage, env: Env): Promise<vo
         i18n.t('help.devInfo') +
         i18n.t('help.devReset') +
         i18n.t('help.devRestart') +
-        i18n.t('help.devSkip');
+        i18n.t('help.devSkip') +
+        i18n.t('help.clearFortune');
     }
 
     await telegram.sendMessage(chatId, helpMessage, { parse_mode: undefined }); // Force plain text

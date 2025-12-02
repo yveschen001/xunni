@@ -137,11 +137,11 @@ export default {
     "astrologyTitle": "Analiza e hollësishme e astrologjisë perëndimore",
     "tarotTitle": "Udhëzimi me kartat Tarot",
     "baziTitle": "Analiza e hollësishme e fatit Ba Zi",
-    "tarot_ui": {
-      "intro": "🔮 *Dëshira e Tarot-it*\n\nJu lutem, mendoni në heshtje për pyetjen tuaj (për shembull: 'Si është fati im në punë së fundmi?' ose 'Si duhet të trajtoj këtë marrëdhënie?'), përqendroni mendimet tuaja dhe klikoni butonin më poshtë për të nxjerrë karta.",
-      "draw": "🔮 Nxirrni karta",
-      "shuffling": "Përzierja...",
-      "drawn": "🎴 Kartat janë nxjerrë:"
-    }
+  },
+  "tarot_ui": {
+    "intro": "🔮 *Dëshira e Tarot-it*\n\nJu lutem, mendoni në heshtje për pyetjen tuaj (për shembull: 'Si është fati im në punë së fundmi?' ose 'Si duhet të trajtoj këtë marrëdhënie?'), përqendroni mendimet tuaja dhe klikoni butonin më poshtë për të nxjerrë karta.",
+    "draw": "🔮 Nxirrni karta",
+    "shuffling": "Përzierja...",
+    "drawn": "🎴 Kartat janë nxjerrë:"
   }
 };

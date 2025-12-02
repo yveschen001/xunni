@@ -137,11 +137,11 @@ export default {
     "astrologyTitle": "Analiza detaliată a astrologiei occidentale",
     "tarotTitle": "Îndrumare cu cărțile de Tarot",
     "baziTitle": "Analiza detaliată a soartei Ba Zi",
-    "tarot_ui": {
-      "intro": "🔮 *Ghicire cu Tarot*\n\nVă rugăm să vă gândiți în tăcere la întrebarea dumneavoastră (de exemplu: 'Cum stau lucrurile în cariera mea în ultima vreme?' sau 'Cum ar trebui să gestionez această relație?'), concentrați-vă gândurile și faceți clic pe butonul de mai jos pentru a trasa cărțile.",
-      "draw": "🔮 Trasați cărțile",
-      "shuffling": "Amestecăm...",
-      "drawn": "🎴 Cărțile au fost trasate:"
-    }
+  },
+  "tarot_ui": {
+    "intro": "🔮 *Ghicire cu Tarot*\n\nVă rugăm să vă gândiți în tăcere la întrebarea dumneavoastră (de exemplu: 'Cum stau lucrurile în cariera mea în ultima vreme?' sau 'Cum ar trebui să gestionez această relație?'), concentrați-vă gândurile și faceți clic pe butonul de mai jos pentru a trasa cărțile.",
+    "draw": "🔮 Trasați cărțile",
+    "shuffling": "Amestecăm...",
+    "drawn": "🎴 Cărțile au fost trasate:"
   }
 };

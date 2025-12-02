@@ -1096,6 +1096,12 @@ export async function routeUpdate(update: TelegramUpdate, env: Env): Promise<voi
       return;
     }
 
+    if (text === '/clear_fortune' || text.startsWith('/clear_fortune ')) {
+      const { handleClearFortune } = await import('./telegram/handlers/dev');
+      await handleClearFortune(message, env);
+      return;
+    }
+
     // User is in onboarding but sent unrecognized text
     // Provide friendly guidance instead of "unknown command"
     if (user.onboarding_step !== 'completed') {

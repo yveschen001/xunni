@@ -31,5 +31,7 @@ export default {
     "title": "🚫 Листа на Блокирани",
     "empty": "Currently no block list",
     "unblock": "Отклучи"
-  }
+  },
+  "quietHoursVipOnly": "🔒 Quiet Hours (VIP Only)",
+  "upgradeForQuietHours": "Upgrade to VIP to use this feature"
 };

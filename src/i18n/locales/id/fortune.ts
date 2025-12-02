@@ -137,11 +137,11 @@ export default {
     "astrologyTitle": "Analisis mendetail astrologi Barat",
     "tarotTitle": "Panduan kartu Tarot",
     "baziTitle": "Analisis keberuntungan mendetail Ba Zi",
-    "tarot_ui": {
-      "intro": "🔮 *Divinasi Tarot*\n\nSilakan pikirkan pertanyaan Anda dengan diam (misalnya: 'Bagaimana keberuntungan kerja saya belakangan ini?' atau 'Bagaimana saya harus menangani hubungan ini?'), fokuskan pikiran Anda dan klik tombol di bawah ini untuk menarik kartu.",
-      "draw": "🔮 Tarik kartu",
-      "shuffling": "Mengocok...",
-      "drawn": "🎴 Kartu telah ditarik:"
-    }
+  },
+  "tarot_ui": {
+    "intro": "🔮 *Divinasi Tarot*\n\nSilakan pikirkan pertanyaan Anda dengan diam (misalnya: 'Bagaimana keberuntungan kerja saya belakangan ini?' atau 'Bagaimana saya harus menangani hubungan ini?'), fokuskan pikiran Anda dan klik tombol di bawah ini untuk menarik kartu.",
+    "draw": "🔮 Tarik kartu",
+    "shuffling": "Mengocok...",
+    "drawn": "🎴 Kartu telah ditarik:"
   }
 };

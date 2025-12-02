@@ -137,11 +137,11 @@ export default {
     "astrologyTitle": "Análise detalhada de astrologia ocidental",
     "tarotTitle": "Orientação de cartas de Tarô",
     "baziTitle": "Análise detalhada de fortuna de Ba Zi",
-    "tarot_ui": {
-      "intro": "🔮 *Adivinhação com Tarô*\n\nPor favor, pense silenciosamente em sua pergunta (por exemplo: 'Como está minha fortuna no trabalho ultimamente?' ou 'Como devo lidar com esse relacionamento?'), concentre seus pensamentos e clique no botão abaixo para sortear cartas.",
-      "draw": "🔮 Sortear cartas",
-      "shuffling": "Embaralhando...",
-      "drawn": "🎴 As cartas foram sorteadas:"
-    }
+  },
+  "tarot_ui": {
+    "intro": "🔮 *Adivinhação com Tarô*\n\nPor favor, pense silenciosamente em sua pergunta (por exemplo: 'Como está minha fortuna no trabalho ultimamente?' ou 'Como devo lidar com esse relacionamento?'), concentre seus pensamentos e clique no botão abaixo para sortear cartas.",
+    "draw": "🔮 Sortear cartas",
+    "shuffling": "Embaralhando...",
+    "drawn": "🎴 As cartas foram sorteadas:"
   }
 };

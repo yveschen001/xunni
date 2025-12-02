@@ -137,11 +137,11 @@ export default {
     "astrologyTitle": "Detalyadong pagsusuri ng kanlurang astrolohiya",
     "tarotTitle": "Patnubay sa Tarot card",
     "baziTitle": "Detalyadong pagsusuri ng kapalaran ng Ba Zi",
-    "tarot_ui": {
-      "intro": "🔮 *Tarot divination*\n\nMangyaring tahimik na isipin ang iyong tanong (halimbawa: 'Paano ang kapalaran ko sa trabaho kamakailan?' o 'Paano ko dapat hawakan ang relasyong ito?'), ituon ang iyong mga saloobin at i-click ang button sa ibaba upang mag-draw ng mga card.",
-      "draw": "🔮 Mag-draw ng mga card",
-      "shuffling": "Naghahalo...",
-      "drawn": "🎴 Na-draw na ang mga card:"
-    }
+  },
+  "tarot_ui": {
+    "intro": "🔮 *Tarot divination*\n\nMangyaring tahimik na isipin ang iyong tanong (halimbawa: 'Paano ang kapalaran ko sa trabaho kamakailan?' o 'Paano ko dapat hawakan ang relasyong ito?'), ituon ang iyong mga saloobin at i-click ang button sa ibaba upang mag-draw ng mga card.",
+    "draw": "🔮 Mag-draw ng mga card",
+    "shuffling": "Naghahalo...",
+    "drawn": "🎴 Na-draw na ang mga card:"
   }
 };

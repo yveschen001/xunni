@@ -31,5 +31,7 @@ export default {
     "title": "🚫 Список блокування",
     "empty": "На даний момент немає списку блокування",
     "unblock": "Розблокувати"
-  }
+  },
+  "quietHoursVipOnly": "🔒 Quiet Hours (VIP Only)",
+  "upgradeForQuietHours": "Upgrade to VIP to use this feature"
 };

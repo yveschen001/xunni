@@ -137,11 +137,11 @@ export default {
     "astrologyTitle": "Análisis detallado de astrología occidental",
     "tarotTitle": "Orientación de tarot",
     "baziTitle": "Análisis detallado de fortuna de Ba Zi",
-    "tarot_ui": {
-      "intro": "🔮 *Adivinación de tarot*\n\nPor favor, piensa silenciosamente en tu pregunta (por ejemplo: '¿Cómo está mi fortuna laboral últimamente?' o '¿Cómo debo manejar esta relación?'), enfoca tus pensamientos y haz clic en el botón de abajo para sacar cartas.",
-      "draw": "🔮 Sacar cartas",
-      "shuffling": "Barajando...",
-      "drawn": "🎴 Las cartas han sido sacadas:"
-    }
+  },
+  "tarot_ui": {
+    "intro": "🔮 *Adivinación de tarot*\n\nPor favor, piensa silenciosamente en tu pregunta (por ejemplo: '¿Cómo está mi fortuna laboral últimamente?' o '¿Cómo debo manejar esta relación?'), enfoca tus pensamientos y haz clic en el botón de abajo para sacar cartas.",
+    "draw": "🔮 Sacar cartas",
+    "shuffling": "Barajando...",
+    "drawn": "🎴 Las cartas han sido sacadas:"
   }
 };

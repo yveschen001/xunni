@@ -137,11 +137,11 @@ export default {
     "astrologyTitle": "Detaljna analiza zapadne astrologije",
     "tarotTitle": "Smjernice za tarot karte",
     "baziTitle": "Detaljna analiza sudbine Ba Zi",
-    "tarot_ui": {
-      "intro": "🔮 *Tarot proricanje*\n\nMolimo tiho razmislite o svom pitanju (na primjer: 'Kako je moja sudbina na poslu u posljednje vrijeme?' ili 'Kako bih trebao postupiti u ovoj vezi?'), usredotočite misli i kliknite gumb ispod za vuču karata.",
-      "draw": "🔮 Izvlačenje karata",
-      "shuffling": "Šefanje...",
-      "drawn": "🎴 Karte su izvučene:"
-    }
+  },
+  "tarot_ui": {
+    "intro": "🔮 *Tarot proricanje*\n\nMolimo tiho razmislite o svom pitanju (na primjer: 'Kako je moja sudbina na poslu u posljednje vrijeme?' ili 'Kako bih trebao postupiti u ovoj vezi?'), usredotočite misli i kliknite gumb ispod za vuču karata.",
+    "draw": "🔮 Izvlačenje karata",
+    "shuffling": "Šefanje...",
+    "drawn": "🎴 Karte su izvučene:"
   }
 };

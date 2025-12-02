@@ -713,3 +713,67 @@ export async function handleDevSkip(message: TelegramMessage, env: Env): Promise
     await telegram.sendMessage(chatId, i18n.t('dev.skipFailed'));
   }
 }
+
+/**
+ * /clear_fortune - Clear fortune telling records for testing
+ *
+ * ⚠️ DEVELOPMENT ONLY - Remove in production!
+ * ⚠️ SECURITY: Only works in staging/development environment & Admin only
+ */
+export async function handleClearFortune(message: TelegramMessage, env: Env): Promise<void> {
+  const telegram = createTelegramService(env);
+  const chatId = message.chat.id;
+  const senderId = message.from!.id.toString();
+
+  // SECURITY CHECK
+  if (!isDevCommandAllowed(env, senderId)) {
+    const { createI18n } = await import('~/i18n');
+    const i18n = createI18n('en');
+    await telegram.sendMessage(chatId, i18n.t('dev.notAvailableInProduction'));
+    return;
+  }
+
+  const db = createDatabaseClient(env.DB);
+  // Determine target ID: argument or sender
+  const args = message.text?.split(' ').slice(1) || [];
+  const targetId = args[0] || senderId;
+
+  // Get sender's language for response
+  const senderUser = await findUserByTelegramId(db, senderId);
+  const { createI18n } = await import('~/i18n');
+  const i18n = createI18n(senderUser?.language_pref || 'en');
+
+  try {
+    // Delete fortune history
+    const historyResult = await db.d1
+      .prepare('DELETE FROM fortune_history WHERE telegram_id = ?')
+      .bind(targetId)
+      .run();
+
+    // Reset fortune quota usage (set counters to 0, keep total limits)
+    await db.d1
+      .prepare(`
+        UPDATE fortune_quota 
+        SET daily_usage = 0, 
+            weekly_usage = 0,
+            additional_bottles = 100, -- Give some bottles for testing
+            last_bottle_reward_at = NULL,
+            last_invite_reward_at = NULL
+        WHERE telegram_id = ?
+      `)
+      .bind(targetId)
+      .run();
+
+    await telegram.sendMessage(
+      chatId, 
+      `🔮 Fortune records cleared for ID: ${targetId}\n` +
+      `- History deleted: ${historyResult.meta.changes} records\n` +
+      `- Quota reset: Usage 0, Bottles 100`
+    );
+
+  } catch (error) {
+    console.error('[handleClearFortune] Error:', error);
+    const errorMessage = error instanceof Error ? error.message : String(error);
+    await telegram.sendMessage(chatId, `❌ Failed to clear fortune: ${errorMessage}`);
+  }
+}

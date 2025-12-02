@@ -137,11 +137,11 @@ export default {
     "astrologyTitle": "Lännen astrologia yksityiskohtainen analyysi",
     "tarotTitle": "Tarot-korttiopastus",
     "baziTitle": "Ba Zi yksityiskohtainen ennustusanalyytiikka",
-    "tarot_ui": {
-      "intro": "🔮 *Tarot-ennustus*\n\nAjattele hiljaa kysymystäsi (esim: 'Miten työni menee viime aikoina?' tai 'Miten minun tulisi käsitellä tätä suhdetta?'), keskity ajatuksiisi ja napsauta alla olevaa painiketta vetääksesi kortteja.",
-      "draw": "🔮 Vedä kortteja",
-      "shuffling": "Sekoitetaan...",
-      "drawn": "🎴 Kortit on vedetty:"
-    }
+  },
+  "tarot_ui": {
+    "intro": "🔮 *Tarot-ennustus*\n\nAjattele hiljaa kysymystäsi (esim: 'Miten työni menee viime aikoina?' tai 'Miten minun tulisi käsitellä tätä suhdetta?'), keskity ajatuksiisi ja napsauta alla olevaa painiketta vetääksesi kortteja.",
+    "draw": "🔮 Vedä kortteja",
+    "shuffling": "Sekoitetaan...",
+    "drawn": "🎴 Kortit on vedetty:"
   }
 };

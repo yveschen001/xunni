@@ -137,11 +137,11 @@ export default {
     "astrologyTitle": "Batı astrolojisi detaylı analizi",
     "tarotTitle": "Tarot kartı rehberliği",
     "baziTitle": "Ba Zi detaylı fal analizi",
-    "tarot_ui": {
-      "intro": "🔮 *Tarot falı*\n\nLütfen sessizce sorunuzu düşünün (örneğin: 'Son zamanlarda iş falım nasıl?' veya 'Bu ilişkiyi nasıl yönetmeliyim?'), düşüncelerinize odaklanın ve kart çekmek için aşağıdaki düğmeye tıklayın.",
-      "draw": "🔮 Kart çek",
-      "shuffling": "Karıştırılıyor...",
-      "drawn": "🎴 Kartlar çekildi:"
-    }
+  },
+  "tarot_ui": {
+    "intro": "🔮 *Tarot falı*\n\nLütfen sessizce sorunuzu düşünün (örneğin: 'Son zamanlarda iş falım nasıl?' veya 'Bu ilişkiyi nasıl yönetmeliyim?'), düşüncelerinize odaklanın ve kart çekmek için aşağıdaki düğmeye tıklayın.",
+    "draw": "🔮 Kart çek",
+    "shuffling": "Karıştırılıyor...",
+    "drawn": "🎴 Kartlar çekildi:"
   }
 };

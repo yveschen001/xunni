@@ -31,5 +31,7 @@ export default {
     "title": "🚫 Lista de blocare",
     "empty": "În prezent nu există nicio listă de blocare",
     "unblock": "Deblochează"
-  }
+  },
+  "quietHoursVipOnly": "🔒 Quiet Hours (VIP Only)",
+  "upgradeForQuietHours": "Upgrade to VIP to use this feature"
 };
