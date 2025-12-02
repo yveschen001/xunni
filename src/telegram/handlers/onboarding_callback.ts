@@ -963,19 +963,39 @@ export async function handleTermsAgreement(callbackQuery: CallbackQuery, env: En
           // Find Grand-Inviter (A)
           const grandInviterId = inviter.invited_by;
           
-          // Grant Reward to A
-          await db.d1.prepare(`
-            INSERT INTO fortune_quota (telegram_id, additional_quota) 
-            VALUES (?, 1) 
-            ON CONFLICT(telegram_id) DO UPDATE SET additional_quota = additional_quota + 1
-          `).bind(grandInviterId).run();
+          // Check last reward time (Limit: 1 per 24h)
+          const quota = await db.d1.prepare('SELECT last_invite_reward_at FROM fortune_quota WHERE telegram_id = ?').bind(grandInviterId).first<{ last_invite_reward_at: string | null }>();
           
-          // Notify A
-          const grandInviter = await findUserByTelegramId(db, grandInviterId);
-          if (grandInviter) {
-            const { createI18n } = await import('~/i18n');
-            const grandI18n = createI18n(grandInviter.language_pref || 'zh-TW');
-            await telegram.sendMessage(Number(grandInviterId), grandI18n.t('fortune.inviteChainReward'));
+          const now = new Date();
+          let canReward = true;
+          
+          if (quota?.last_invite_reward_at) {
+            const lastReward = new Date(quota.last_invite_reward_at);
+            const diff = now.getTime() - lastReward.getTime();
+            // 24 hours in ms
+            if (diff < 24 * 60 * 60 * 1000) {
+              canReward = false;
+              console.log(`[Onboarding] Fortune invite reward skipped for ${grandInviterId}: daily limit reached (last: ${quota.last_invite_reward_at})`);
+            }
+          }
+
+          if (canReward) {
+            // Grant Reward to A
+            await db.d1.prepare(`
+              INSERT INTO fortune_quota (telegram_id, additional_quota, last_invite_reward_at) 
+              VALUES (?, 1, ?) 
+              ON CONFLICT(telegram_id) DO UPDATE SET 
+                additional_quota = additional_quota + 1,
+                last_invite_reward_at = ?
+            `).bind(grandInviterId, now.toISOString(), now.toISOString()).run();
+            
+            // Notify A
+            const grandInviter = await findUserByTelegramId(db, grandInviterId);
+            if (grandInviter) {
+              const { createI18n } = await import('~/i18n');
+              const grandI18n = createI18n(grandInviter.language_pref || 'zh-TW');
+              await telegram.sendMessage(Number(grandInviterId), grandI18n.t('fortune.inviteChainReward'));
+            }
           }
         }
       } catch (e) {

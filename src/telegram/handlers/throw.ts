@@ -467,15 +467,35 @@ export async function processBottleContent(
       const totalBottles = result?.count || 0;
       
       if (totalBottles > 0 && totalBottles % 10 === 0) {
-        // Grant Reward
-        await db.d1.prepare(`
-          INSERT INTO fortune_quota (telegram_id, additional_quota) 
-          VALUES (?, 1) 
-          ON CONFLICT(telegram_id) DO UPDATE SET additional_quota = additional_quota + 1
-        `).bind(user.telegram_id).run();
+        // Check last reward time (Limit: 1 per 24h)
+        const quota = await db.d1.prepare('SELECT last_bottle_reward_at FROM fortune_quota WHERE telegram_id = ?').bind(user.telegram_id).first<{ last_bottle_reward_at: string | null }>();
         
-        // Notify User
-        await telegram.sendMessage(Number(user.telegram_id), i18n.t('fortune.bottleReward', { count: totalBottles }));
+        const now = new Date();
+        let canReward = true;
+        
+        if (quota?.last_bottle_reward_at) {
+          const lastReward = new Date(quota.last_bottle_reward_at);
+          const diff = now.getTime() - lastReward.getTime();
+          // 24 hours in ms
+          if (diff < 24 * 60 * 60 * 1000) {
+            canReward = false;
+            console.log(`[Throw] Fortune reward skipped for ${user.telegram_id}: daily limit reached (last: ${quota.last_bottle_reward_at})`);
+          }
+        }
+
+        if (canReward) {
+          // Grant Reward
+          await db.d1.prepare(`
+            INSERT INTO fortune_quota (telegram_id, additional_quota, last_bottle_reward_at) 
+            VALUES (?, 1, ?) 
+            ON CONFLICT(telegram_id) DO UPDATE SET 
+              additional_quota = additional_quota + 1,
+              last_bottle_reward_at = ?
+          `).bind(user.telegram_id, now.toISOString(), now.toISOString()).run();
+          
+          // Notify User
+          await telegram.sendMessage(Number(user.telegram_id), i18n.t('fortune.bottleReward', { count: totalBottles }));
+        }
       }
     } catch (e) {
       console.error('Error checking fortune bottle reward:', e);
