@@ -406,7 +406,13 @@ export async function handleAdComplete(
         ? i18n.t('adReward.continueWatching')
         : i18n.t('adReward.dailyLimitReached'));
 
-    await telegram.sendMessage(user.telegram_id, notificationMessage);
+    const buttons = [];
+    if (result.remaining_ads > 0) {
+      buttons.push([{ text: i18n.t('adReward.startWatchButton'), callback_data: 'watch_ad' }]);
+    }
+    buttons.push([{ text: i18n.t('common.back3'), callback_data: 'return_to_menu' }]);
+
+    await telegram.sendMessageWithButtons(user.telegram_id, notificationMessage, buttons);
 
     return {
       success: true,
