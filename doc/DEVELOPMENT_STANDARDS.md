@@ -544,6 +544,8 @@ chore: 更新依賴版本
   ```
   - 正確：使用 `user.role === 'god'` 檢查超級管理員
   - 錯誤：使用 `user.is_super_admin`（欄位不存在）
+- [ ] **檢查 Router 引用** - 確保 `src/router.ts` 中動態導入的 Handler 函數名稱與實際導出一致
+  - 修改了 Handler 函數名後，必須同步更新 `src/router.ts`
 - [ ] **檢查是否使用了正確的工具函數**
   - 例如：暱稱擾碼使用 `maskNickname` 而不是 `maskSensitiveValue`
   - 確認函數名稱和用途一致
@@ -586,6 +588,7 @@ chore: 更新依賴版本
 
 - [ ] **路由配置**
   - 在 `src/router.ts` 中註冊新命令
+  - **確保動態導入的函數名稱與 Handler 導出一致**
   - 檢查權限控制（一般用戶/管理員/超級管理員）
   - 測試命令是否正確路由到處理器
 
@@ -1030,6 +1033,31 @@ SET age_range = CASE
   WHEN (CAST(strftime('%Y', 'now') AS INTEGER) - CAST(strftime('%Y', birthday) AS INTEGER)) >= 40 THEN '40+'
 END
 WHERE birthday IS NOT NULL;
+```
+
+#### 錯誤 10：Router Handler 導入名稱不匹配
+**症狀：** 點擊按鈕或執行命令時報錯 `TypeError: xxx is not a function`
+
+**為什麼會發生？**
+重構 Handler 導出的函數名稱時，忘記同步更新 `src/router.ts` 中的導入和調用。特別是因為 `router.ts` 使用動態導入 (`await import(...)`)，這類錯誤在編譯時不會被發現，只有在運行時才會報錯。
+
+**預防措施：**
+1. 修改 Handler 導出函數名稱時，全局搜索該函數的所有引用
+2. 特別檢查 `src/router.ts` 中的動態導入
+3. 部署前執行 grep 檢查 router 中的函數調用是否存在於對應文件中
+
+**修復方法：**
+```typescript
+// src/router.ts
+if (data.startsWith('watch_ad')) {
+  // ❌ 錯誤：文件裡導出的是 handleWatchAd
+  const { handleAdRewardCallback } = await import('./telegram/handlers/ad_reward'); // 這裡不會報錯
+  await handleAdRewardCallback(callbackQuery, env); // 這裡會報 TypeError
+  
+  // ✅ 正確
+  const { handleWatchAd } = await import('./telegram/handlers/ad_reward');
+  await handleWatchAd(callbackQuery, env);
+}
 ```
 
 ### 7.3 修改代碼的安全流程（Safe Code Modification Process）
