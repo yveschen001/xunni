@@ -143,5 +143,8 @@ export default {
       "shuffling": "洗牌中...",
       "drawn": "🎴 牌面已抽出："
     }
-  }
+  },
+  "upsell_vip_analysis": "✨ **升級 VIP 解鎖專屬職業與興趣分析**！\n\nVIP 會員可獲得針對您的職業角色與個人興趣的客製化建議，幫助您在職場與生活中更上一層樓。\n\n👇 點擊下方按鈕立即升級",
+  "btn_edit_mbti": "🧠 修改 MBTI",
+  "profile_incomplete_hint": "⚠️ **個人資料未完善**\n\n為了提供精準的 AI 算命服務，請先完善您的個人資料（興趣、MBTI、職業）。"
 };

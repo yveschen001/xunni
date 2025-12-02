@@ -205,7 +205,7 @@ async function showFortuneMenu(chatId: number, telegramId: string, env: Env, i18
       { text: `🛒 ${i18n.t('fortune.getMore')}`, callback_data: 'fortune_get_more' }
     ],
     [
-      { text: i18n.t('common.back3'), callback_data: 'return_to_menu' }
+      { text: i18n.t('fortune.back_to_menu'), callback_data: 'return_to_menu' }
     ]
   ];
 
@@ -245,7 +245,7 @@ export async function showGetMoreMenu(chatId: number, telegram: ReturnType<typeo
       { text: `👥 ${i18n.t('menu.invite')}`, callback_data: 'menu_invite' }
     ],
     [{ text: i18n.t('fortune.backToMenu'), callback_data: 'menu_fortune' }],
-    [{ text: i18n.t('common.back3'), callback_data: 'return_to_menu' }]
+    [{ text: i18n.t('fortune.back_to_menu'), callback_data: 'return_to_menu' }]
   ];
 
   if (messageIdToEdit) {
@@ -568,7 +568,7 @@ export async function handleFortuneCallback(callbackQuery: TelegramCallbackQuery
         buttons.push([{ text: i18n.t('career.btn_edit_role'), callback_data: 'edit_job_role' }]);
         buttons.push([{ text: i18n.t('career.btn_edit_industry'), callback_data: 'edit_industry' }]);
       }
-      buttons.push([{ text: i18n.t('common.back3'), callback_data: 'return_to_menu' }]);
+      buttons.push([{ text: i18n.t('fortune.back_to_menu'), callback_data: 'return_to_menu' }]);
 
       await telegram.sendMessageWithButtons(
         chatId,
@@ -1041,7 +1041,7 @@ export async function handleFortuneCallback(callbackQuery: TelegramCallbackQuery
     // Add "New Profile" button
     buttons.push([{ text: `➕ ${i18n.t('fortune.addProfile') || '新增檔案'}`, callback_data: 'fortune_add_profile' }]);
     buttons.push([{ text: i18n.t('fortune.backToMenu'), callback_data: 'menu_fortune' }]); // Back to main fortune menu (default)
-    buttons.push([{ text: i18n.t('common.back3'), callback_data: 'return_to_menu' }]);
+    buttons.push([{ text: i18n.t('fortune.back_to_menu'), callback_data: 'return_to_menu' }]);
 
     await telegram.editMessageText(chatId, callbackQuery.message!.message_id, text, {
       reply_markup: { inline_keyboard: buttons },
