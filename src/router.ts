@@ -1214,8 +1214,8 @@ export async function routeUpdate(update: TelegramUpdate, env: Env): Promise<voi
 
     // Ad Reward callbacks
     if (data.startsWith('watch_ad')) {
-      const { handleAdRewardCallback } = await import('./telegram/handlers/ad_reward');
-      await handleAdRewardCallback(callbackQuery, env);
+      const { handleWatchAd } = await import('./telegram/handlers/ad_reward');
+      await handleWatchAd(callbackQuery, env);
       return;
     }
 
