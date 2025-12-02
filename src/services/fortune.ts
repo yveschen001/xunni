@@ -243,6 +243,25 @@ export class FortuneService {
     return false;
   }
 
+  async refundQuota(userId: string, isVip: boolean): Promise<void> {
+    const quota = await this.getQuota(userId);
+    if (!quota) return;
+
+    // Refund policy: Attempt to restore weekly/daily quota first if it was used (not maxed)
+    // VIP Daily Max = 1, Free Weekly Max = 1 (usually, defined in refreshQuota logic)
+    // Actually, refreshQuota sets it to 1.
+    // So if current < 1, we can increment it.
+    
+    const maxFree = 1; // Assuming 1 for now based on refreshQuota logic
+    
+    if (quota.weekly_free_quota < maxFree) {
+        await this.db.prepare('UPDATE fortune_quota SET weekly_free_quota = weekly_free_quota + 1 WHERE id = ?').bind(quota.id).run();
+    } else {
+        // Otherwise refund to additional (stored) quota
+        await this.db.prepare('UPDATE fortune_quota SET additional_quota = additional_quota + 1 WHERE id = ?').bind(quota.id).run();
+    }
+  }
+
   async isFortuneCached(userId: string, type: FortuneType, targetDate: string, targetName?: string): Promise<boolean> {
     let query = `SELECT 1 FROM fortune_history WHERE telegram_id = ? AND type = ? AND target_date = ?`;
     const params: any[] = [userId, type, targetDate];
@@ -429,6 +448,7 @@ export class FortuneService {
     }
 
     // 3. Calculate Chart
+    try {
     const chart = await this.calculateChart(profile.birth_date, profile.birth_time, profile.birth_location_lat, profile.birth_location_lng);
     
     // 4. Build Prompt Context (Data First, Query Last)
@@ -678,6 +698,54 @@ export class FortuneService {
             }
         }
 
+        if (stepSuccess) {
+            // ✨ CELEBRITY VALIDATION LOGIC
+            if (type === 'celebrity' && promptKey === 'CELEBRITY_1') {
+                try {
+                    const jsonMatch = stepContent.match(/\{[\s\S]*?\}/);
+                    if (jsonMatch) {
+                        const data = JSON.parse(jsonMatch[0]);
+                        
+                        // Check Found Status
+                        if (data.found === false) {
+                             throw new Error('NO_CELEBRITY_FOUND');
+                        }
+                        
+                        // Check Date
+                        if (data.birth_date) {
+                             const birthDate = new Date(data.birth_date);
+                             const userBirthDate = new Date(profile.birth_date);
+                             // Compare Month (0-11) and Date (1-31)
+                             if (birthDate.getUTCMonth() !== userBirthDate.getUTCMonth() || 
+                                 birthDate.getUTCDate() !== userBirthDate.getUTCDate()) {
+                                 console.error(`Celebrity mismatch: User ${profile.birth_date} vs Celeb ${data.birth_date}`);
+                                 // Try lax comparison (local time issues?)
+                                 // Actually, we should trust the input strings if possible, but Date parsing is safer.
+                                 // Let's rely on UTC methods to avoid timezone shifts if inputs are ISO YYYY-MM-DD.
+                                 throw new Error('CELEBRITY_DATE_MISMATCH');
+                             }
+                        }
+                        
+                        // Clean Output (Remove JSON block)
+                        stepContent = stepContent.replace(jsonMatch[0], '').trim();
+                        stepContent = stepContent.replace(/```json\s*|\s*```/g, '').trim();
+                    } else {
+                        // JSON missing? If strict, fail.
+                        console.warn('Celebrity JSON missing');
+                    }
+                } catch (e: any) {
+                    if (e.message === 'NO_CELEBRITY_FOUND' || e.message === 'CELEBRITY_DATE_MISMATCH') {
+                        stepSuccess = false; // Mark as failed to trigger refund
+                        // Re-throw to exit loop or handle?
+                        // If we throw here, it might be caught by the retry loop? 
+                        // No, retry loop wraps API calls. We are outside retry loop (after it finishes).
+                        // So throwing here will bubble up.
+                        throw e;
+                    }
+                }
+            }
+        }
+
         if (!stepSuccess) {
            console.error(`[FortuneService] Step ${promptKey} failed entirely.`);
            throw new Error('AI_GENERATION_FAILED');
@@ -860,6 +928,11 @@ export class FortuneService {
     
     if (!result) throw new Error('Failed to save fortune history');
     return result;
+    } catch (e) {
+      console.error('Fortune Generation Failed, refunding quota:', e);
+      await this.refundQuota(user.telegram_id, isVip);
+      throw e;
+    }
   }
 
   private async logAiCost(userId: string, type: string, subType: string, provider: string, model: string, inputTokens: number, outputTokens: number): Promise<void> {

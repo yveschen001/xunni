@@ -8,6 +8,7 @@ export default {
   "title": "🏷️ **興味のタグを編集**",
   "subtitle": "オプションをブラウズするためにカテゴリーを選択してください。",
   "current": "現在選択中 ({count}/{max}):\n{list}",
+  "back_to_categories": "↩️ カテゴリメニューに戻る",
   "saved": "✅ 興味のタグが更新されました！",
   "required_hint": "💡 より正確なAI占いサービスを提供するために、まず興味のタグを完了してください。",
   "categories": {

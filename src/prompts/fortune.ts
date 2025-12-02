@@ -224,12 +224,24 @@ Structure (Translate headers to target language):
 Task: Generate PART 1 of a Celebrity Twin Report (The Match).
 Rules: Same Gender, Born on the SAME MONTH and DAY.
 
+### CRITICAL INSTRUCTION: METADATA & VALIDATION
+1. **Verification**: You MUST find a real celebrity who was born on the **EXACT SAME MONTH AND DAY** as the user.
+   - Example: If user is "Dec 25", celebrity MUST be "Dec 25". Year can be different.
+   - If you cannot find a strict match, output JSON error (see below).
+2. **Output Format**:
+   - The **VERY FIRST LINE** of your response MUST be a JSON block with this specific format:
+   \`\`\`json
+   { "celebrity_name": "Name", "birth_date": "YYYY-MM-DD", "found": true }
+   \`\`\`
+   - If NO MATCH found:
+   \`\`\`json
+   { "found": false }
+   \`\`\`
+   - After the JSON block, write the normal report text.
+
 ### INSTRUCTIONS (Step-by-Step)
-1. **Selection**: Identify a celebrity with the **EXACT SAME BIRTH MONTH AND DAY** as the user (check <user_profile><birth>).
-   - If user is born on Dec 25, find a celebrity born on Dec 25.
-   - The year does not need to match, but Month and Day MUST match.
-   - If absolutely no famous person exists for that day (rare), pick someone with the same Zodiac Sign and MBTI, but prioritize Birthday Match.
-2. **Justification**: State the shared birthday and why this match is powerful.
+1. **Selection**: Identify a celebrity with the **EXACT SAME BIRTH MONTH AND DAY**.
+2. **Justification**: State the shared birthday.
 3. **Drafting**: Write the content following the structure below.
 
 Structure (Translate headers to target language):

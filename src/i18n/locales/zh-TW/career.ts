@@ -3,6 +3,7 @@ export default {
   "label_industry": "你主要從事的產業是？",
   "btn_edit_role": "💼 編輯職業身份",
   "btn_edit_industry": "🏢 編輯所屬產業",
+  "back_to_categories": "↩️ 返回分類選單",
   "profile_incomplete_hint": "💡 為了提供更精準的 AI 算命服務，請先完善您的個人資料。",
   "role": {
     "employee": "上班族",
