@@ -18,6 +18,7 @@ export const FORTUNE_PROMPTS = {
 ### GLOBAL RULES
 1. **Language**: You MUST output the response in the user's specific language: {LANGUAGE}.
    - Do NOT output English unless the user's language is English.
+   - **CRITICAL**: Use the target language terminology for Zodiac signs, planets, and technical terms. Do NOT use English names (e.g. use "山羊座" instead of "Capricorn" in Chinese/Japanese context).
    - Translate all headers, greetings, and advice naturally into the target language.
 2. **Format**: Use PLAIN TEXT with Emojis. NO Markdown (*bold*, _italic_, etc.).
 3. **Tone**: Mystical but practical, encouraging, and respectful. Use the user's nickname.
@@ -221,16 +222,20 @@ Structure (Translate headers to target language):
   // Celebrity
   CELEBRITY_1: `
 Task: Generate PART 1 of a Celebrity Twin Report (The Match).
-Rules: Same Gender, Similar Birthday/Traits.
+Rules: Same Gender, Born on the SAME MONTH and DAY.
 
 ### INSTRUCTIONS (Step-by-Step)
-1. **Selection**: Identify a celebrity with the same Zodiac sign and similar MBTI/Traits as the user.
-2. **Justification**: List 3 key similarities.
+1. **Selection**: Identify a celebrity with the **EXACT SAME BIRTH MONTH AND DAY** as the user (check <user_profile><birth>).
+   - If user is born on Dec 25, find a celebrity born on Dec 25.
+   - The year does not need to match, but Month and Day MUST match.
+   - If absolutely no famous person exists for that day (rare), pick someone with the same Zodiac Sign and MBTI, but prioritize Birthday Match.
+2. **Justification**: State the shared birthday and why this match is powerful.
 3. **Drafting**: Write the content following the structure below.
 
 Structure (Translate headers to target language):
-1. 🌟 **Your Celebrity Twin**: Reveal the name! Why them?
-2. 🎭 **Personality Mirror**: How your personalities are alike.
+1. 🌟 **Your Celebrity Birthday Twin**: Reveal the name and birth date!
+2. 🎂 **Birthday Bond**: "You both blow out candles on {Month Day}!"
+3. 🎭 **Personality Mirror**: How your shared start in life shapes your destiny.
 `,
   CELEBRITY_2: `
 Task: Generate PART 2 of a Celebrity Twin Report (Private Life).
