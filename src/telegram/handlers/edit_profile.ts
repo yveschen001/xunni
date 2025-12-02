@@ -38,6 +38,7 @@ export async function handleEditNickname(
       i18n.t('edit_profile.nicknameInstruction', { nickname: user?.username || i18n.t('common.unknown') }),
       [[{ text: i18n.t('buttons.back'), callback_data: 'edit_profile_callback' }]]
     );
+    await telegram.sendMessage(chatId, i18n.t('edit_profile.input_nickname_hint'));
   } catch (error) {
     console.error('[handleEditNickname] Error:', error);
     const errorI18n = createI18n('zh-TW');
@@ -72,6 +73,7 @@ export async function handleEditBio(
       i18n.t('edit_profile.bioInstruction', { bio: user?.bio || i18n.t('common.none') }),
       [[{ text: i18n.t('buttons.back'), callback_data: 'edit_profile_callback' }]]
     );
+    await telegram.sendMessage(chatId, i18n.t('edit_profile.input_bio_hint'));
   } catch (error) {
     console.error('[handleEditBio] Error:', error);
     const errorI18n = createI18n('zh-TW');
@@ -810,7 +812,7 @@ export async function handleProfileEditInput(message: TelegramMessage, env: Env)
         }
 
         await db.d1
-          .prepare('UPDATE users SET username = ? WHERE telegram_id = ?')
+          .prepare('UPDATE users SET nickname = ? WHERE telegram_id = ?')
           .bind(text, telegramId)
           .run();
 

@@ -1,0 +1,130 @@
+export default {
+  "birthday": "⚠️ Fødselsdag kan ikke ændres, når den er indstillet, venligst bekræft, at den er korrekt!",
+  "bloodType": "🩸 Blodtype",
+  "gender": "👤 Køn: {otherUser.gender}",
+  "mbti": "🧠 MBTI：\\\\\\\\\\${mbti}",
+  "register2": "⚠️ Venligst afslut registreringen først",
+  "register4": "⚠️ Registrering ikke færdiggjort",
+  "settings": "🧠 MBTI: \\\\\\\\\\\\$",
+  "text5": "📖 Biografi: {otherUser.bio}",
+  "text6": "⚠️ Venligst afslut registreringen først",
+  "userNotFound": "Bruger eksisterer ikke",
+  "warning": {
+    "ad": "⚠️ Ingen annoncesælgere er i øjeblikket konfigureret\n\n",
+    "ad2": "⚠️ Ingen officielle annoncer i øjeblikket\n\n",
+    "ad3": "⚠️ Ingen tilgængelige annoncesælgere på nuværende tidspunkt",
+    "ad4": "⚠️ Kan ikke vælge annoncesælger",
+    "ad5": "⚠️ Kan ikke se flere annoncer",
+    "birthday": "⚠️ Er ikke i fødselsdagsindtastnings trin i øjeblikket",
+    "bloodType": "⚠️ Er ikke i blodtype valgs trin i øjeblikket",
+    "broadcast": "⚠️ Fundet \\${stuckBroadcasts.results.length} fastlåste udsendelser\n\n",
+    "complete": "⚠️ Venligst afslut den tidligere annonce, før du starter en ny",
+    "confirm": "⚠️ Bekræft venligst din fødselsdagsinformation:\n\n",
+    "conversation": "⚠️ Samtaleinformation er forkert.",
+    "conversation10": "⚠️ Samtalen findes ikke",
+    "conversation2": "⚠️ Samtaleinformation er forkert",
+    "conversation3": "⚠️ Denne bruger har ingen samtalehistorik indlæg\n",
+    "conversation4": "⚠️ Kan ikke finde den specificerede samtale, den kan være afsluttet eller udløbet.",
+    "conversation5": "⚠️ **Samtalehistorik delvist opdateret**\n\n",
+    "conversation6": "⚠️ Kan ikke identificere samtalepartner\n\n",
+    "conversation7": "⚠️ Kan ikke finde denne samtale\n\n",
+    "conversation8": "⚠️ Samtalen findes ikke eller er afsluttet",
+    "conversation9": "⚠️ Denne samtale er afsluttet",
+    "end": "⚠️ Testen er slut eller findes ikke.",
+    "failed": "⚠️ Betalingsverifikationen mislykkedes, prøv venligst igen senere.",
+    "gender": "⚠️ Er i øjeblikket ikke i kønsvalgs-trin.",
+    "invite": "⚠️ Kunne ikke hente invitationskoden.",
+    "mbti": "⚠️ Er i øjeblikket ikke i MBTI-test-trin.",
+    "mbti2": "⚠️ Ugyldig MBTI-type.",
+    "message": "⚠️ Fundet \\${outdatedPosts.length} forældede indlæg, der skal opdateres\n",
+    "message2": "⚠️ Bemærk: Dette er \\${testInfo}\\${testTitle}, \\${accuracy}.\n\n",
+    "message3": "⚠️ Hold venligst fingeren på den besked, du ønsker at blokere, og svar med kommandoen\n\n",
+    "message4": "⚠️ Hold venligst fingeren på den besked, du ønsker at rapportere, og svar med kommandoen\n\n",
+    "message5": "⚠️ **Besked indeholder forbudte links**\n\n",
+    "register": "⚠️ Brugerprofil ikke fundet, registrer venligst først ved at bruge /start.",
+    "register2": "⚠️ Venligst afslut registreringsprocessen først.\n\nBrug /start for at fortsætte registreringen.",
+    "register3": "⚠️ Der opstod et problem med registreringsprocessen, venligst genstart: /start",
+    "register4": "⚠️ Venligst afslut registreringsprocessen først",
+    "settings": "⚠️ Påmindelse: Når det er indstillet, kan køn **ikke ændres** for evigt!\n\n",
+    "settings2": "⚠️ Fødselsdagsindstillinger kan ikke ændres, venligst bekræft!",
+    "settings3": "⚠️ Bemærk: Kønindstillinger kan ikke ændres, vælg venligst omhyggeligt!",
+    "short": "⚠️ Forkert rækkefølge af spørgsmål",
+    "short2": "⚠️ Ukendt mulighed",
+    "short3": "⚠️ Ugyldig anmodning",
+    "short4": "⚠️ Øgenavns længdegrænse er 36 tegn",
+    "short5": "⚠️ Andre overtrædelser",
+    "start": "⚠️ Sessionen er udløbet, venligst genstart: /throw",
+    "start2": "⚠️ Sessionen er udløbet, venligst genstart",
+    "task": "⚠️ Ukendt opgavetype",
+    "text": "⚠️ **Bemærk**\n\n",
+    "text10": "⚠️ **Ikke-modificerbare elementer**:\n",
+    "text11": "⚠️ Sessionen er udløbet, venligst prøv igen",
+    "text12": "⚠️ Udkast findes ikke eller er udløbet",
+    "text2": "⚠️ Ugyldig betalingstype",
+    "text3": "⚠️ Oversættelsestjenesten er midlertidigt utilgængelig, den oprindelige tekst er nedenfor\n",
+    "text4": "⚠️ Sikkerhedspåmindelse:\n",
+    "text5": "⚠️ Er i øjeblikket ikke i anti-svindel test-trin",
+    "text6": "⚠️ Er i øjeblikket ikke i brugsvilkårstrin",
+    "text7": "⚠️ Bemærk: Denne funktion er kun tilgængelig i Staging-miljøet.",
+    "text8": "⚠️ **Det er ikke tilladt at sende billeder, videoer eller multimedier**\n\n",
+    "text9": "⚠️ Denne funktion er kun tilgængelig i Staging-miljøet.",
+    "userNotFound": "⚠️ Bruger findes ikke, registrer venligst først ved at bruge /start.",
+    "userNotFound2": "⚠️ Bruger findes ikke",
+    "vip": "⚠️ Invitationsgrænsen for gratis brugere er nået, opgrader til VIP for at låse op for grænsen på 100 personer!",
+    "vip2": "⚠️ Denne funktion er kun for VIP-medlemmer",
+    "vip3": "⚠️ **VIP udløber i dag**\n\n"
+  },
+  "BROADCAST": {
+    "FILTER_ERROR": "❌ Formatfejl.\nEksempel: `/broadcast_filter gender=female,country=TW test message`",
+    "NO_CONTENT": "❌ Indtast venligst broadcast-indhold.",
+    "NO_MATCHES": "⚠️ Ingen brugere, der matcher kriterierne, blev fundet.\nFilterkriterier: {filters}",
+    "TOO_MANY_USERS": "⚠️ For mange målbrugere ({count} personer), begrænset til at sende til {max} personer ad gangen.",
+    "START_SENDING": "🚀 Starter broadcast #{id}\n🎯 Mål: {filters}\n👥 Antal personer: {count}",
+    "COMPLETED": "✅ Broadcast #{id} gennemført!\nSucces: {sent}\nFejl: {failed}\nBlokeret: {blocked}"
+  },
+  "push": {
+    "throwReminder": "🌊 Hej! Det har været et stykke tid siden, du kastede en flaskepost, stranden er meget stille...",
+    "catchReminder": "🎣 Nogle nye flaskeposter er skyllet op på stranden, vil du tjekke dem ud?",
+    "onboardingReminder": "👋 Din registrering er endnu ikke fuldført, du er næsten der! (Trin: {step})",
+    "messageReminderA": "👋 Hej {masked_partner_name} venter stadig på dit svar! Lad ikke samtalen blive kold～",
+    "messageReminderB": "📩 Du har en ulæst besked fra {masked_partner_name}:\n> \"{last_message_preview}...\"\n(Det er gået mere end 24 timer!)",
+    "messageReminderC": "⏳ {masked_partner_name} venter på dit svar...",
+    "actionReply": "💬 Svar til {masked_partner_name}",
+    "actionHistory": "📜 Se Kontekst"
+  },
+  "match": {
+    "header": {
+      "zodiac": "🌟 Stjernetegn Match Afsløret",
+      "mbti": "🧠 MBTI Personligheds Resonans",
+      "blood": "🩸 BlodtypeKode Analyse"
+    },
+    "reason": {
+      "zodiac": {
+        "fire_affinity": "Som medfødte ildtegn brænder din passion klart, og din forbindelse er stærk!",
+        "earth_affinity": "Stabiliteten af jordtegn kombineret med blidheden af vandtegn skaber den perfekte strøm.",
+        "air_affinity": "Lufttegns smidighed møder ildtegns passion, hvilket inspirerer til endeløs kreativitet!",
+        "water_affinity": "Vandtegns følelser og jordtegns praktiskhed bygger den varmeste støtte."
+      },
+      "mbti": {
+        "sj_affinity": "Socialiseringsfreaks (SJ) og Udforskere (SP), en perfekt kombination af stabilitet og spænding!",
+        "sp_affinity": "Udforskere (SP) og Socialiseringsfreaks (SJ), de bedste partnere af legekammerater og omsorgspersoner!",
+        "nf_affinity": "Idealister (NF) og Rationalister (NT), et dybt sammenstød af sjæl og visdom!",
+        "nt_affinity": "Rationalister (NT) og Idealister (NF), en resonans af tanker og følelser!"
+      },
+      "blood": {
+        "a_affinity": "Type A's omhyggelighed møder Type O's tolerance, hvilket skaber de mest behagelige interaktioner.",
+        "b_affinity": "Type B's selvsikkerhed møder Type O's afslappede natur, stressfrit og afslappet.",
+        "o_affinity": "Type O og Type B/A er fantastiske komplementære partnere!",
+        "ab_affinity": "AB's unikke frekvens forstås bedst af sin egen slags."
+      }
+    },
+    "template": {
+      "body": "{userAttribute},\nIfølge analysen har du den stærkeste affinity med {recommendedAttributes}!\n\n💡 {reason}\n\n👇 Føler du dig heldig?"
+    },
+    "btn": {
+      "throw": "🌊 Kast en flaske og tag en chance",
+      "vip_throw": "🎯 Kast til {target}",
+      "vip_upsell": "💡 Opgrader til VIP for at bestemme leveringen til {target}, for præcis matchmaking!"
+    }
+  }
+};

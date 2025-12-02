@@ -760,6 +760,17 @@ export async function routeUpdate(update: TelegramUpdate, env: Env): Promise<voi
       return;
     }
 
+    // System Check (Super Admin only)
+    if (text === '/admin_system_check') {
+      const { isSuperAdmin } = await import('./telegram/handlers/admin_ban');
+      if (!isSuperAdmin(telegramId, env)) {
+        return;
+      }
+      const { handleAdminSystemCheck } = await import('./telegram/handlers/admin_system');
+      await handleAdminSystemCheck(message, env);
+      return;
+    }
+
     // Admin Report Test
     if (text === '/admin_report_test') {
       const { isSuperAdmin } = await import('./telegram/handlers/admin_ban');
@@ -953,6 +964,12 @@ export async function routeUpdate(update: TelegramUpdate, env: Env): Promise<voi
     if (text === '/rules') {
       const { handleRules } = await import('./telegram/handlers/help');
       await handleRules(message, env);
+      return;
+    }
+
+    if (text === '/delete_me') {
+      const { handleDeleteMe } = await import('./telegram/handlers/account_deletion');
+      await handleDeleteMe(message, env);
       return;
     }
 
@@ -1778,9 +1795,47 @@ export async function routeUpdate(update: TelegramUpdate, env: Env): Promise<voi
       return;
     }
 
+    // ✨ NEW: Single Opt-in Match Execution
+    if (data.startsWith('fortune_exec_match:')) {
+      // fortune_exec_match:targetId:relType(:role)
+      const parts = data.split(':');
+      const targetId = parts[1];
+      const relType = parts[2];
+      const role = parts[3]; // optional
+      
+      console.error('[Router] Processing fortune_exec_match:', { targetId, relType, role });
+      
+      const db = createDatabaseClient(env.DB);
+      const user = await findUserByTelegramId(db, callbackQuery.from.id.toString());
+      if (user) {
+        console.error('[Router] User found, creating handler...');
+        const { createI18n } = await import('./i18n');
+        const i18n = createI18n(user.language_pref || 'zh-TW');
+        const { FortuneService } = await import('./services/fortune');
+        const service = new FortuneService(env, db.d1);
+        const { LoveFortuneHandler } = await import('./telegram/handlers/fortune_love');
+        const handler = new LoveFortuneHandler(service, i18n, env);
+        
+        console.error('[Router] Calling handleMatchExecution...');
+        await handler.handleMatchExecution(chatId, user.telegram_id, targetId, relType, role, telegram);
+        console.error('[Router] handleMatchExecution returned.');
+        await telegram.answerCallbackQuery(callbackQuery.id);
+      } else {
+        console.error('[Router] User not found during fortune_exec_match');
+      }
+      return;
+    }
+
     // Fortune Telling Callbacks
     if (data.startsWith('fortune_')) {
       await handleFortuneCallback(callbackQuery, env);
+      return;
+    }
+
+    // Match Consent Callbacks
+    if (data.startsWith('match_consent_')) {
+      const { handleMatchConsent } = await import('./telegram/handlers/match_callback');
+      await handleMatchConsent(callbackQuery, env);
       return;
     }
 
@@ -2122,6 +2177,12 @@ export async function routeUpdate(update: TelegramUpdate, env: Env): Promise<voi
       return;
     }
 
+    if (data === 'account_delete_confirm') {
+      const { handleAccountDeleteConfirm } = await import('./telegram/handlers/account_deletion');
+      await handleAccountDeleteConfirm(callbackQuery, env);
+      return;
+    }
+
     // Ad Reward Callbacks
     if (data === 'watch_ad' || data.startsWith('watch_ad:')) {
       const { handleWatchAd } = await import('./telegram/handlers/ad_reward');
@@ -2189,7 +2250,6 @@ export async function routeUpdate(update: TelegramUpdate, env: Env): Promise<voi
       return;
     }
 
-    // ✨ NEW: Match Consent Callbacks
     if (data.startsWith('match_consent:')) {
       const { handleMatchConsentCallback } = await import('./telegram/handlers/match_callback');
       // Format: match_consent:ACTION:REQUEST_ID

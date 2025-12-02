@@ -1,0 +1,21 @@
+export default {
+  "amount": "Määrä: ${stars} ⭐",
+  "data": "Tietoja: ${data}",
+  "daysLeft": "Jäljellä: ${days} päivää",
+  "expireDate": "Voimassaolo: ${date}",
+  "newExpireDate": "Uusi voimassaolo: ${date}",
+  "paymentFailed": "❌ **Maksu epäonnistui**",
+  "paymentId": "Maksu-ID: `${id}`",
+  "reason": "Syynä: ${reason}",
+  "refundRequest": "🔴 **Hyvityspyyntö**",
+  "requestId": "Pyyntö-ID: #${id}",
+  "systemNotification": "📢 **Systemiviesti**",
+  "time": "Aika: ${time}",
+  "type": "Tyyppi: ${type}",
+  "user": "Käyttäjä: `${userId}`",
+  "viewRefundsHint": "💡 Käytä /admin_refunds lisätietoja varten",
+  "vipDowngraded": "⬇️ **VIP Automattinen alennus**",
+  "vipPurchased": "🎉 **Uusi VIP-ostos**",
+  "vipReminderSent": "⏰ **VIP-vanhenemis muistutus lähetetty**",
+  "vipRenewed": "🔄 **VIP-uusiminen**"
+};

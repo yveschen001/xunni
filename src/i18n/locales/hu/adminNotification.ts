@@ -1,0 +1,21 @@
+export default {
+  "amount": "Összeg: ${stars} ⭐",
+  "data": "Adat: ${data}",
+  "daysLeft": "Hátralévő: ${days} nap",
+  "expireDate": "Lejárat: ${date}",
+  "newExpireDate": "Új Lejárat: ${date}",
+  "paymentFailed": "❌ **Fizetés Sikertelen**",
+  "paymentId": "Fizetési ID: `${id}`",
+  "reason": "{reason} ${reason}",
+  "refundRequest": "🔴 **Visszatérítési Kérelem**",
+  "requestId": "{id} ${id}",
+  "systemNotification": "📢 **Rendszer Értesítés**",
+  "time": "{time} ${time}",
+  "type": "{type} ${type}",
+  "user": "Felhasználó: `${userId}`",
+  "viewRefundsHint": "💡 A részletekhez használja a /admin_refunds parancsot",
+  "vipDowngraded": "⬇️ **VIP Automatikus Leépítés**",
+  "vipPurchased": "🎉 **Új VIP Vásárlás**",
+  "vipReminderSent": "⏰ **VIP Lejárati Emlékeztető Elküldve**",
+  "vipRenewed": "🔄 **VIP Megújítás**"
+};

@@ -1,0 +1,21 @@
+export default {
+  "amount": "Halaga: ${stars} ⭐",
+  "data": "Data: ${data}",
+  "daysLeft": "Natitirang: ${days} araw",
+  "expireDate": "Pagtatapos: ${date}",
+  "newExpireDate": "Bagong pagtatapos: ${date}",
+  "paymentFailed": "❌ **Nabigong Bayad**",
+  "paymentId": "Payment ID: `${id}`",
+  "reason": "Dahilan: ${reason}",
+  "refundRequest": "🔴 **Humiling ng Refund**",
+  "requestId": "Request ID: #${id}",
+  "systemNotification": "📢 **Pahayag ng Sistema**",
+  "time": "Oras: ${time}",
+  "type": "Uri: ${type}",
+  "user": "Gumagamit: `${userId}`",
+  "viewRefundsHint": "💡 Gamitin ang /admin_refunds para sa mga detalye",
+  "vipDowngraded": "⬇️ **Awtomatikong Pagbaba ng VIP**",
+  "vipPurchased": "🎉 **Bagong VIP Purchase**",
+  "vipReminderSent": "⏰ **Paalaala sa Pagtatapos ng VIP Ipinadala**",
+  "vipRenewed": "🔄 **Renewal ng VIP**"
+};

@@ -1,0 +1,22 @@
+export default {
+  "afterRegistration": "[需要翻译]",
+  "answerRecorded": "[需要翻译]",
+  "completion": "[需要翻译]",
+  "fullAccuracy": "[需要翻译]",
+  "fullQuestions": "[需要翻译]",
+  "fullTest": "[需要翻译]",
+  "fullTestInfo": "[需要翻译]",
+  "fullTestTitle": "[需要翻译]",
+  "manualModify": "[需要翻译]",
+  "moreDetailedTest": "[需要翻译]",
+  "note": "[需要翻译]",
+  "questionOrderError": "[需要翻译]",
+  "questions12": "[需要翻译]",
+  "questions36": "[需要翻译]",
+  "quickAccuracy": "[需要翻译]",
+  "quickQuestions": "[需要翻译]",
+  "quickTest": "[需要翻译]",
+  "quickTestInfo": "[需要翻译]",
+  "quickTestTitle": "[需要翻译]",
+  "yourMbtiType": "[需要翻译]"
+};

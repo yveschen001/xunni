@@ -1,0 +1,22 @@
+export default {
+  "afterRegistration": "💡 Αφού ολοκληρώσετε την εγγραφή, μπορείτε:\n",
+  "answerRecorded": "✅ Καταγεγραμμένο",
+  "completion": "🎉 {testTitle} Ολοκληρώθηκε!\n\n",
+  "fullAccuracy": "Περισσότερο ακριβή αποτελέσματα",
+  "fullQuestions": "36 ερωτήσεις",
+  "fullTest": "Ολοκληρώστε το τεστ MBTI",
+  "fullTestInfo": "💡 Αυτός είναι ο πλήρης έλεγχος ({questions}), και τα αποτελέσματα είναι πιο ακριβή.\nΑφού ολοκληρώσετε την εγγραφή, μπορείτε να κάνετε ξανά τον έλεγχο χρησιμοποιώντας /mbti.",
+  "fullTestTitle": "Ολοκληρώστε το τεστ",
+  "manualModify": "• Χειροκίνητη τροποποίηση του τύπου MBTI σας",
+  "moreDetailedTest": "• Κάντε ένα πιο λεπτομερές τεστ\n",
+  "note": "⚠️ Σημείωση: Αυτό είναι {testInfo}{testTitle}, {accuracy}.\n\n",
+  "questionOrderError": "⚠️ Λάθος σειρά ερωτήσεων",
+  "questions12": "12 ερωτήσεις",
+  "questions36": "36 ερωτήσεις",
+  "quickAccuracy": "Αποτελέσματα για αναφορά μόνο",
+  "quickQuestions": "12 ερωτήσεις",
+  "quickTest": "Γρήγορο τεστ MBTI",
+  "quickTestInfo": "💡 Αυτό είναι ένα γρήγορο κουίζ ({questions}), και τα αποτελέσματα είναι μόνο για αναφορά.\nΑφού ολοκληρώσετε την εγγραφή, μπορείτε να ξανακάνετε το κουίζ μέσω /mbti.",
+  "quickTestTitle": "Γρήγορο τεστ",
+  "yourMbtiType": "Ο τύπος MBTI σου είναι: **{type}**\n\n"
+};

@@ -1,0 +1,21 @@
+export default {
+  "amount": "Miktar: ${stars} ⭐",
+  "data": "Veri: ${data}",
+  "daysLeft": "Kalan: ${days} gün",
+  "expireDate": "Son Tarih: ${date}",
+  "newExpireDate": "Yeni Son Tarih: ${date}",
+  "paymentFailed": "❌ **Ödeme Başarısız**",
+  "paymentId": "Ödeme ID: `${id}`",
+  "reason": "Sebep: ${reason}",
+  "refundRequest": "🔴 **İade Talebi**",
+  "requestId": "Talep ID: #${id}",
+  "systemNotification": "📢 **Sistem Bildirimi**",
+  "time": "Zaman: ${time}",
+  "type": "Tür: ${type}",
+  "user": "Kullanıcı: `${userId}`",
+  "viewRefundsHint": "💡 Ayrıntılar için /admin_refunds kullanın",
+  "vipDowngraded": "⬇️ **VIP Otomatik Düşürme**",
+  "vipPurchased": "🎉 **Yeni VIP Satın Alma**",
+  "vipReminderSent": "⏰ **VIP Süre Sonu Hatırlatması Gönderildi**",
+  "vipRenewed": "🔄 **VIP Yenileme**"
+};

@@ -1,0 +1,23 @@
+export default {
+  "adCompleted": "[需要翻译]",
+  "cannotSelectProvider": "[需要翻译]",
+  "cannotWatchMore": "[需要翻译]",
+  "clickButtonHint": "[需要翻译]",
+  "completedEarned": "[需要翻译]",
+  "completedRemaining": "[需要翻译]",
+  "completedReward": "[需要翻译]",
+  "completedTitle": "[需要翻译]",
+  "completedWatched": "[需要翻译]",
+  "continueWatching": "[需要翻译]",
+  "dailyLimitReached": "[需要翻译]",
+  "getStatusFailed": "[需要翻译]",
+  "noProviders": "[需要翻译]",
+  "pendingAd": "[需要翻译]",
+  "startWatchButton": "[需要翻译]",
+  "vipNoAds": "[需要翻译]",
+  "vipNoAdsReason": "[需要翻译]",
+  "watchAdClickButton": "[需要翻译]",
+  "watchAdRemaining": "[需要翻译]",
+  "watchAdReward": "[需要翻译]",
+  "watchAdTitle": "[需要翻译]"
+};

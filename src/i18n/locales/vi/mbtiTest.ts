@@ -1,0 +1,22 @@
+export default {
+  "afterRegistration": "💡 Sau khi hoàn tất đăng ký, bạn có thể:\n",
+  "answerRecorded": "✅ Đã ghi lại",
+  "completion": "🎉 {testTitle} Đã hoàn thành!\n\n",
+  "fullAccuracy": "Kết quả chính xác hơn",
+  "fullQuestions": "36 câu hỏi",
+  "fullTest": "Bài kiểm tra MBTI đầy đủ",
+  "fullTestInfo": "💡 Đây là bài kiểm tra hoàn chỉnh ({questions}), và kết quả chính xác hơn.\nSau khi hoàn tất đăng ký, bạn có thể làm lại bài kiểm tra bằng cách sử dụng /mbti.",
+  "fullTestTitle": "Bài kiểm tra đầy đủ",
+  "manualModify": "• Chỉnh sửa loại MBTI của bạn thủ công",
+  "moreDetailedTest": "• Thực hiện bài kiểm tra chi tiết hơn\n",
+  "note": "⚠️ Lưu ý: Đây là {testInfo}{testTitle}, {accuracy}.\n\n",
+  "questionOrderError": "⚠️ Thứ tự câu hỏi không đúng",
+  "questions12": "12 câu hỏi",
+  "questions36": "36 câu hỏi",
+  "quickAccuracy": "Kết quả chỉ mang tính tham khảo",
+  "quickQuestions": "12 câu hỏi",
+  "quickTest": "Bài kiểm tra MBTI nhanh",
+  "quickTestInfo": "💡 Đây là một bài kiểm tra nhanh ({questions}), và kết quả chỉ để tham khảo.\nSau khi hoàn tất đăng ký, bạn có thể làm lại bài kiểm tra qua /mbti.",
+  "quickTestTitle": "Bài kiểm tra nhanh",
+  "yourMbtiType": "Loại MBTI của bạn là: **{type}**\n\n"
+};

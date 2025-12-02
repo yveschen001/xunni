@@ -311,7 +311,7 @@ function main() {
       }
     }
     console.log('\n💡 修復建議：');
-    console.log('   將這些 keys 添加到 `i18n_for_translation.csv` 和 `src/i18n/locales/zh-TW.ts`\n');
+    console.log('   將這些 keys 添加到 `i18n_for_translation.csv` 和 `src/i18n/locales/zh-TW/` 對應的模組中\n');
   } else {
     console.log(`✅ 所有 i18n keys (${keyCheck.total} 個) 都在 CSV 中！\n`);
   }
@@ -344,7 +344,7 @@ function main() {
     
     console.log('💡 修復建議：');
     console.log('   1. 將硬編碼的中文替換為 `i18n.t(\'key\')`');
-    console.log('   2. 在 `src/i18n/locales/zh-TW.ts` 中添加翻譯');
+    console.log('   2. 在 `src/i18n/locales/zh-TW/` 下的對應模組文件中添加翻譯');
     console.log('   3. 在 `i18n_for_translation.csv` 中添加 key 和翻譯');
     console.log('   4. 在 `src/i18n/types.ts` 中添加類型定義');
     console.log('   5. 確保已初始化 i18n: `const i18n = createI18n(user.language_pref || \'zh-TW\')`\n');

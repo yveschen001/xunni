@@ -1,0 +1,21 @@
+export default {
+  "amount": "Amount: ${stars} ⭐",
+  "data": "Data: ${data}",
+  "daysLeft": "Remaining: ${days} days",
+  "expireDate": "Expiration: ${date}",
+  "newExpireDate": "New expiration: ${date}",
+  "paymentFailed": "❌ **Payment Failed**",
+  "paymentId": "Payment ID: `${id}`",
+  "reason": "Reason: ${reason}",
+  "refundRequest": "🔴 **Refund Request**",
+  "requestId": "Request ID: #${id}",
+  "systemNotification": "📢 **System Notification**",
+  "time": "Time: ${time}",
+  "type": "Type: ${type}",
+  "user": "User: `${userId}`",
+  "viewRefundsHint": "💡 Use /admin_refunds for details",
+  "vipDowngraded": "⬇️ **VIP Automatic Downgrade**",
+  "vipPurchased": "🎉 **New VIP Purchase**",
+  "vipReminderSent": "⏰ **VIP Expiry Reminder Sent**",
+  "vipRenewed": "🔄 **VIP Renewal**"
+};

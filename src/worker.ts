@@ -224,54 +224,112 @@ export default {
     // eslint-disable-next-line no-console
     console.log('[Worker] Scheduled event:', event.cron);
 
+    // Initialize AdminLogService for enhanced error reporting
+    let adminLog;
+    try {
+        const { AdminLogService } = await import('./services/admin_log');
+        adminLog = new AdminLogService(env);
+    } catch (e) {
+        console.error('[Worker] Failed to init AdminLogService:', e);
+    }
+
+    const logError = async (error: any, context: string) => {
+        console.error(`[Worker] ${context} failed:`, error);
+        if (adminLog) {
+            try {
+                await adminLog.logError(error, { context, cron: event.cron });
+            } catch (e) {
+                console.error('[Worker] Failed to send error log:', e);
+            }
+        }
+    };
+
     try {
       // Daily Data Cleanup (Every day at 00:00 UTC)
       if (event.cron === '0 0 * * *') {
-        // eslint-disable-next-line no-console
-        console.log('[Worker] Running daily data cleanup...');
-        const { deleteOldAnalyticsEvents, deleteOldConversationMessages } = await import('./services/cleanup');
-        await deleteOldAnalyticsEvents(env);
-        await deleteOldConversationMessages(env);
+        try {
+            // eslint-disable-next-line no-console
+            console.log('[Worker] Running daily data cleanup...');
+            const { deleteOldAnalyticsEvents, deleteOldConversationMessages } = await import('./services/cleanup');
+            await deleteOldAnalyticsEvents(env);
+            await deleteOldConversationMessages(env);
+        } catch (err) {
+            await logError(err, 'Daily Data Cleanup');
+        }
       }
 
       // Daily stats (Every day at 00:05 UTC)
       if (event.cron === '5 0 * * *') {
-        // eslint-disable-next-line no-console
-        console.log('[Worker] Generating daily stats...');
-        const { generateDailyStats } = await import('./services/stats');
-        await generateDailyStats(env);
+        try {
+            // eslint-disable-next-line no-console
+            console.log('[Worker] Generating daily stats...');
+            const { generateDailyStats } = await import('./services/stats');
+            await generateDailyStats(env);
+        } catch (err) {
+            await logError(err, 'Daily Stats Generation');
+        }
+      }
+
+      // 💰 Daily Financial Settlement & Report (Every day at 00:10 UTC)
+      if (event.cron === '10 0 * * *') {
+        try {
+            // eslint-disable-next-line no-console
+            console.log('[Worker] Running Daily Financial Settlement...');
+            const { AnalyticsService } = await import('./services/analytics');
+            const analytics = new AnalyticsService(env);
+            const report = await analytics.runDailySettlement();
+            await analytics.sendReportToAdmin(report);
+        } catch (err) {
+            await logError(err, 'Daily Financial Settlement');
+        }
       }
 
       // Daily reports to super admins (Every day at 09:00 UTC = 17:00 Taipei)
       if (event.cron === '0 9 * * *') {
-        // eslint-disable-next-line no-console
-        console.log('[Worker] Sending daily reports to super admins...');
-        const { sendDailyReportsToSuperAdmins } = await import('./services/daily_reports');
-        await sendDailyReportsToSuperAdmins(env);
+        try {
+            // eslint-disable-next-line no-console
+            console.log('[Worker] Sending daily reports to super admins...');
+            const { sendDailyReportsToSuperAdmins } = await import('./services/daily_reports');
+            await sendDailyReportsToSuperAdmins(env);
+        } catch (err) {
+            await logError(err, 'Daily Reports');
+        }
       }
 
       // Broadcast queue (Every 5 minutes)
       if (event.cron === '*/5 * * * *') {
-        // eslint-disable-next-line no-console
-        console.log('[Worker] Processing broadcast queue...');
-        const { processBroadcastQueue } = await import('./services/broadcast');
-        await processBroadcastQueue(env);
+        try {
+            // eslint-disable-next-line no-console
+            console.log('[Worker] Processing broadcast queue...');
+            const { processBroadcastQueue } = await import('./services/broadcast');
+            await processBroadcastQueue(env);
+        } catch (err) {
+            await logError(err, 'Broadcast Queue');
+        }
       }
 
       // Check and auto-disable expired maintenance mode (Every minute)
       if (event.cron === '*/5 * * * *') {
-        // eslint-disable-next-line no-console
-        console.log('[Worker] Checking maintenance mode...');
-        const { checkAndDisableExpiredMaintenance } = await import('./services/maintenance');
-        await checkAndDisableExpiredMaintenance(env);
+        try {
+            // eslint-disable-next-line no-console
+            console.log('[Worker] Checking maintenance mode...');
+            const { checkAndDisableExpiredMaintenance } = await import('./services/maintenance');
+            await checkAndDisableExpiredMaintenance(env);
+        } catch (err) {
+            await logError(err, 'Maintenance Check');
+        }
       }
 
       // 🔍 External Service Health Check (Every 10 minutes)
       if (event.cron === '*/10 * * * *') {
-        // eslint-disable-next-line no-console
-        console.log('[Worker] Checking external services health...');
-        const { checkExternalServices } = await import('./services/monitoring');
-        await checkExternalServices(env);
+        try {
+            // eslint-disable-next-line no-console
+            console.log('[Worker] Checking external services health...');
+            const { checkExternalServices } = await import('./services/monitoring');
+            await checkExternalServices(env);
+        } catch (err) {
+            await logError(err, 'Service Health Check');
+        }
       }
 
       // HOURLY TASKS (Trigger every hour 0 * * * *)
@@ -283,7 +341,7 @@ export default {
           const { runAiModerationPatrol } = await import('./cron/ai_moderation_patrol');
           await runAiModerationPatrol(env);
         } catch (err) {
-          console.error('[Worker] AI Moderation Patrol failed:', err);
+          await logError(err, 'AI Moderation Patrol');
         }
 
         // 2. Check channel membership
@@ -293,7 +351,7 @@ export default {
           const { checkChannelMembership } = await import('./services/channel_membership_check');
           await checkChannelMembership(env);
         } catch (err) {
-          console.error('[Worker] Channel membership check failed:', err);
+          await logError(err, 'Channel Membership Check');
         }
 
         // 3. Check expired subscriptions
@@ -303,7 +361,7 @@ export default {
           const { checkExpiredSubscriptions } = await import('./services/subscription_checker');
           await checkExpiredSubscriptions(env);
         } catch (err) {
-          console.error('[Worker] Subscription checker failed:', err);
+          await logError(err, 'Expired Subscriptions Check');
         }
 
         // 4. Push Reminders (General Retention)
@@ -312,7 +370,7 @@ export default {
           const { handlePushReminders } = await import('./telegram/handlers/cron_push');
           await handlePushReminders(env);
         } catch (err) {
-          console.error('[Worker] Push reminders failed:', err);
+          await logError(err, 'Push Reminders');
         }
 
         // 5. Daily Fortune Push (Now Timezone Aware)
@@ -321,7 +379,7 @@ export default {
           const { sendDailyFortunePush } = await import('./services/fortune_push');
           await sendDailyFortunePush(env);
         } catch (err) {
-          console.error('[Worker] Daily Fortune Push failed:', err);
+          await logError(err, 'Daily Fortune Push');
         }
 
         // 6. Smart Match Push (Now Timezone Aware)
@@ -331,7 +389,7 @@ export default {
           const { handleMatchPush } = await import('./telegram/handlers/cron_match_push');
           await handleMatchPush(env, env.DB);
         } catch (err) {
-          console.error('[Worker] Smart Match Push failed:', err);
+          await logError(err, 'Smart Match Push');
         }
       }
 
@@ -343,30 +401,38 @@ export default {
           const { checkVipExpirations } = await import('./services/vip_subscription');
           await checkVipExpirations(env);
         } catch (err) {
-          console.error('[Worker] VIP expirations check failed:', err);
+          await logError(err, 'VIP Expirations Check');
         }
       }
 
       // Batch update expired avatar caches (Every day at 03:00 UTC = 11:00 Taipei)
       if (event.cron === '0 3 * * *') {
-        // eslint-disable-next-line no-console
-        console.log('[Worker] Batch updating expired avatars...');
-        const { createDatabaseClient } = await import('./db/client');
-        const db = createDatabaseClient(env);
-        const { batchUpdateExpiredAvatars } = await import('./services/avatar_background_update');
-        const result = await batchUpdateExpiredAvatars(db, env);
-        // eslint-disable-next-line no-console
-        console.log(
-          `[Worker] Avatar batch update completed: ${result.updated} updated, ${result.failed} failed`
-        );
+        try {
+            // eslint-disable-next-line no-console
+            console.log('[Worker] Batch updating expired avatars...');
+            const { createDatabaseClient } = await import('./db/client');
+            const db = createDatabaseClient(env);
+            const { batchUpdateExpiredAvatars } = await import('./services/avatar_background_update');
+            const result = await batchUpdateExpiredAvatars(db, env);
+            // eslint-disable-next-line no-console
+            console.log(
+            `[Worker] Avatar batch update completed: ${result.updated} updated, ${result.failed} failed`
+            );
+        } catch (err) {
+            await logError(err, 'Avatar Batch Update');
+        }
       }
 
       // Send birthday greetings (Every day at 01:00 UTC = 09:00 Taipei)
       if (event.cron === '0 1 * * *') {
-        // eslint-disable-next-line no-console
-        console.log('[Worker] Sending birthday greetings...');
-        const { handleBirthdayGreetings } = await import('./cron/birthday_greetings');
-        await handleBirthdayGreetings(env);
+        try {
+            // eslint-disable-next-line no-console
+            console.log('[Worker] Sending birthday greetings...');
+            const { handleBirthdayGreetings } = await import('./cron/birthday_greetings');
+            await handleBirthdayGreetings(env);
+        } catch (err) {
+            await logError(err, 'Birthday Greetings');
+        }
       }
 
       // Admin Daily Report (Daily 09:00 UTC+8 = 01:00 UTC)
@@ -376,23 +442,12 @@ export default {
           const { handleAdminDailyReport } = await import('./telegram/handlers/admin_report');
           await handleAdminDailyReport(env);
         } catch (err) {
-          console.error('[Worker] Admin Daily Report failed:', err);
+          await logError(err, 'Admin Daily Report');
         }
       }
 
     } catch (error) {
-      console.error('[Worker] Scheduled event error:', error);
-      // 🚨 Smart Alerting
-      try {
-        const { AdminLogService } = await import('./services/admin_log');
-        const adminLog = new AdminLogService(env);
-        await adminLog.logError(error, {
-          context: 'Scheduled Event',
-          cron: event.cron,
-        });
-      } catch (logError) {
-        console.error('[Worker] Failed to log scheduled error:', logError);
-      }
+      await logError(error, 'Scheduled Event Top-Level');
     }
   },
 };

@@ -117,7 +117,7 @@
 ### 2.1 技術棧
 - **Runtime**: Cloudflare Workers
 - **DB**: Cloudflare D1（SQLite 相容）
-- **KV（可選）**: Cloudflare KV（風險分數、cache 用）
+- **KV**: Cloudflare KV（必須：用於 i18n 翻譯存儲；可選：風險分數、cache）
 - **語言**: TypeScript（ESM 模組）
 - **測試**: Vitest（或 Jest）
 
@@ -162,10 +162,12 @@ XunNi/
 │   ├── utils/                    # 通用工具（@src/utils/）
 │   │   ├── url-whitelist.ts      # URL 白名單（@src/utils/url-whitelist.ts）
 │   │   └── emoji.ts              # Emoji 處理（@src/utils/emoji.ts）
-│   └── i18n/                     # 國際化（@src/i18n/）
-│       ├── index.ts              # i18n 初始化（@src/i18n/index.ts）
-│       ├── keys.ts               # 翻譯鍵值（@src/i18n/keys.ts）
-│       └── locales/              # 語言包（@src/i18n/locales/）
+│   └── i18n/                     # 國際化（@src/i18n/） - KV 架構
+│       ├── index.ts              # i18n 初始化與動態加載（@src/i18n/index.ts）
+│       ├── locales/              # 語言包源碼（@src/i18n/locales/）
+│       │   ├── zh-TW/            # 繁體中文（基準語言模組）
+│       │   └── en/               # 英文（自動生成）
+│       └── types.ts              # 翻譯型別（@src/i18n/types.ts）
 ├── tests/                        # 測試目錄（@tests/）
 │   └── domain/                   # Domain 層測試（@tests/domain/）
 │       ├── usage.test.ts
@@ -2502,6 +2504,11 @@ BROADCAST_MAX_JOBS = "3"
 - 未滿 18 歲不允許註冊
 - 必須輸入真實生日驗證
 - **實作位置**: `@src/domain/user.ts` 和 `@src/telegram/handlers/start.ts`
+
+#### 法律文件語言規範
+- **統一語言**: 所有法律文件（Terms of Service, Privacy Policy）**必須使用英文 (English)**。
+- **準據法**: 以英文版本為準，多語言應用僅供 UI 顯示，法律文件不提供翻譯版本。
+- **設計原則**: 站在公司立場，參考 JP/US/EU 標準，最大化免責保護（含單向配對授權、娛樂免責、刪除後黑名單機制）。
 
 ### 受保護的文件/目錄
 

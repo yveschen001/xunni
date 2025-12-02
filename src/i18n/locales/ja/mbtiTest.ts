@@ -1,0 +1,22 @@
+export default {
+  "afterRegistration": "💡 登録を完了すると、あなたは:\n",
+  "answerRecorded": "✅ 記録済み",
+  "completion": "🎉 {testTitle} 完了しました！\n\n",
+  "fullAccuracy": "より正確な結果",
+  "fullQuestions": "36の質問",
+  "fullTest": "MBTI 完全テスト",
+  "fullTestInfo": "💡 これは完全なテストです ({questions})、結果はより正確です。\n登録を完了した後、/mbtiを使用してテストを再受験できます。",
+  "fullTestTitle": "完全テスト",
+  "manualModify": "• MBTIタイプを手動で修正",
+  "moreDetailedTest": "• より詳細なテストを受ける\n",
+  "note": "⚠️ 注意: これは{testInfo}{testTitle}で、{accuracy}です。\n\n",
+  "questionOrderError": "⚠️ 質問の順序が正しくありません",
+  "questions12": "12 質問",
+  "questions36": "36 質問",
+  "quickAccuracy": "結果は参考用です",
+  "quickQuestions": "12 質問",
+  "quickTest": "MBTI クイックテスト",
+  "quickTestInfo": "💡 これは簡単なクイズ（{questions}）で、結果は参考用です。\n登録を完了した後、/mbtiを通して再度クイズを受けることができます。",
+  "quickTestTitle": "クイックテスト",
+  "yourMbtiType": "あなたのMBTIタイプは: **{type}**\n\n"
+};

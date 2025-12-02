@@ -45,9 +45,19 @@
 - Wrangler 配置
 - 部署腳本
 
----
-
-## 3. 備份流程
+### 2.4 永久保存記錄 (Permanent Records)
+   
+   以下資料表涉及金流與用戶核心權益，必須**永久保存**，禁止物理刪除（Physical Delete）：
+   
+   *   `payment_transactions` (儲值/消費記錄)
+   *   `fortune_history` (算命結果 - 承諾保存 3 年，但建議永久歸檔)
+   *   `users` (核心用戶表 - 僅可標記 deleted_at)
+   
+   **策略**: 使用 `deleted_at` 欄位進行軟刪除 (Soft Delete)，而非 `DELETE FROM`。
+   
+   ---
+   
+   ## 3. 備份流程
 
 ### 3.1 本地備份
 
@@ -284,9 +294,25 @@ npm install
 wrangler d1 execute xunni-db --file=backups/db-20250115-120000.sql
 ```
 
----
-
-## 7. 自動化備份
+### 6.3 個人資料還原 (Individual User Restoration)
+   
+   ⚠️ **場景**: 當特定用戶資料損壞或被誤刪，需要單獨恢復而不影響其他用戶。
+   
+   **步驟**:
+   1.  **定位備份**: 找到問題發生前的最近一份 `.sql` 備份檔。
+   2.  **提取數據**: 使用 `grep` 或腳本從備份檔中提取該 `telegram_id` 相關的 INSERT 語句。
+       ```bash
+       grep "INSERT INTO users" backup.sql | grep "'12345678'" > restore_user.sql
+       ```
+   3.  **驗證 SQL**: 檢查提取出的 SQL 是否完整且安全。
+   4.  **執行修復**:
+       ```bash
+       wrangler d1 execute xunni-db --file=restore_user.sql
+       ```
+   
+   ---
+   
+   ## 7. 自動化備份
 
 ### 7.1 GitHub Actions
 

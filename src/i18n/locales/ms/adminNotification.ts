@@ -1,0 +1,21 @@
+export default {
+  "amount": "Jumlah: ${stars} ⭐",
+  "data": "Data: ${data}",
+  "daysLeft": "Tersisa: ${days} hari",
+  "expireDate": "Tamat: ${date}",
+  "newExpireDate": "Tamat baru: ${date}",
+  "paymentFailed": "❌ **Pembayaran Gagal**",
+  "paymentId": "ID Pembayaran: `${id}`",
+  "reason": "Sebab: ${reason}",
+  "refundRequest": "🔴 **Permohonan Pemulangan**",
+  "requestId": "ID Permohonan: #${id}",
+  "systemNotification": "📢 **Pemberitahuan Sistem**",
+  "time": "Masa: ${time}",
+  "type": "Jenis: ${type}",
+  "user": "Pengguna: `${userId}`",
+  "viewRefundsHint": "💡 Gunakan /admin_refunds untuk maklumat lanjut",
+  "vipDowngraded": "⬇️ **Pengurangan Automatik VIP**",
+  "vipPurchased": "🎉 **Pembelian VIP Baharu**",
+  "vipReminderSent": "⏰ **Peringatan Tamat VIP Dihantar**",
+  "vipRenewed": "🔄 **Pembaharuan VIP**"
+};

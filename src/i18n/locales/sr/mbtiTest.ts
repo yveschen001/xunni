@@ -1,0 +1,22 @@
+export default {
+  "afterRegistration": "💡 Nakon završetka registracije, možete:\n",
+  "answerRecorded": "✅ Zabeleženo",
+  "completion": "🎉 {testTitle} Završeno!\n\n",
+  "fullAccuracy": "Precizniji rezultati",
+  "fullQuestions": "36 pitanja",
+  "fullTest": "Povežite MBTI test",
+  "fullTestInfo": "💡 Ovo je kompletan test ({questions}), a rezultati su tačniji.\nNakon završetka registracije, možete ponovo uraditi test koristeći /mbti.",
+  "fullTestTitle": "Završite test",
+  "manualModify": "• Ručno izmenite svoj MBTI tip",
+  "moreDetailedTest": "• Uzmite detaljniji test\n",
+  "note": "⚠️ Napomena: Ovo je {testInfo}{testTitle}, {accuracy}.\n\n",
+  "questionOrderError": "⚠️ Neispravan redosled pitanja",
+  "questions12": "12 pitanja",
+  "questions36": "36 pitanja",
+  "quickAccuracy": "Rezultati su samo za upotrebu kao referenca",
+  "quickQuestions": "12 pitanja",
+  "quickTest": "Brzi MBTI test",
+  "quickTestInfo": "💡 Ovo je brzi kviz ({questions}), a rezultati su samo za referencu.\nNakon završene registracije, možete ponovo uraditi kviz putem /mbti.",
+  "quickTestTitle": "Brzi test",
+  "yourMbtiType": "Vaš MBTI tip je: **{type}**\n\n"
+};

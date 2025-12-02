@@ -8,7 +8,7 @@
 - [ ] Wrangler CLI 已安裝 (`npm install -g wrangler`)
 - [ ] Cloudflare API Token 已取得
 - [ ] D1 資料庫已建立
-- [ ] KV 命名空間已建立（可選）
+- [ ] KV 命名空間已建立 (`I18N_DATA`, `RISK_CACHE`)
 - [ ] 環境變數已設定（Secrets）
 - [ ] Telegram Bot Token 已取得
 - [ ] Webhook URL 已配置
@@ -53,8 +53,9 @@ wrangler dev
 # 建立 D1 資料庫
 wrangler d1 create xunni-db-staging
 
-# 建立 KV 命名空間（可選）
+# 建立 KV 命名空間
 wrangler kv:namespace create "RISK_CACHE" --env staging
+wrangler kv:namespace create "I18N_DATA" --env staging
 ```
 
 ### 3.2 設定環境變數
@@ -74,11 +75,19 @@ wrangler secret put EXTERNAL_API_KEY --env staging
 wrangler d1 execute xunni-db-staging --file=./src/db/schema.sql
 ```
 
-### 3.4 部署 Worker
+### 3.4 部署 Worker 與翻譯
 
-```bash
-wrangler deploy --env staging
-```
+**⚠️ 兩步部署（必須）**：
+
+1. **部署翻譯數據 (KV)**
+   ```bash
+   pnpm i18n:upload staging
+   ```
+
+2. **部署 Worker 代碼**
+   ```bash
+   wrangler deploy --env staging
+   ```
 
 ### 3.5 設定 Webhook
 
@@ -104,6 +113,7 @@ wrangler d1 create xunni-db
 
 # 建立 KV 命名空間
 wrangler kv:namespace create "RISK_CACHE"
+wrangler kv:namespace create "I18N_DATA"
 ```
 
 ### 4.2 設定環境變數
@@ -131,10 +141,17 @@ wrangler d1 execute xunni-db --file=./src/db/schema.sql
 
 ### 4.4 部署
 
-```bash
-# 部署到 production
-wrangler deploy --env production
-```
+**⚠️ 兩步部署（必須）**：
+
+1. **部署翻譯數據 (KV)**
+   ```bash
+   pnpm i18n:upload production
+   ```
+
+2. **部署 Worker 代碼**
+   ```bash
+   wrangler deploy --env production
+   ```
 
 ### 4.5 設定 Webhook
 
@@ -181,6 +198,15 @@ jobs:
       - name: Run tests
         run: npm test
       
+      - name: Deploy i18n to Staging
+        if: github.ref == 'refs/heads/staging'
+        run: |
+          npm run i18n:import # Ensure local files are synced
+          npm run i18n:upload staging
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+
       - name: Deploy to Staging
         if: github.ref == 'refs/heads/staging'
         uses: cloudflare/wrangler-action@v3
@@ -189,6 +215,15 @@ jobs:
           accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
           command: deploy --env staging
       
+      - name: Deploy i18n to Production
+        if: github.ref == 'refs/heads/main'
+        run: |
+          npm run i18n:import
+          npm run i18n:upload production
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+
       - name: Deploy to Production
         if: github.ref == 'refs/heads/main'
         uses: cloudflare/wrangler-action@v3
@@ -370,7 +405,7 @@ export async function sendAlert(
 
 ## 9. 回滾策略
 
-### 8.1 版本管理
+### 9.1 版本管理
 
 ```bash
 # 查看部署歷史
@@ -380,7 +415,7 @@ wrangler deployments list
 wrangler rollback <deployment-id>
 ```
 
-### 8.2 資料庫回滾
+### 9.2 資料庫回滾
 
 ```bash
 # 從備份恢復
@@ -391,7 +426,7 @@ wrangler d1 execute xunni-db --file=backup.sql
 
 ## 10. 健康檢查
 
-### 9.1 健康檢查端點
+### 10.1 健康檢查端點
 
 ```typescript
 // src/router.ts
@@ -429,6 +464,7 @@ router.get('/health', async (request, env) => {
 - [ ] 代碼審查完成
 - [ ] 環境變數已設定
 - [ ] 資料庫遷移已測試
+- [ ] **i18n 數據已上傳** (`pnpm i18n:upload`)
 - [ ] Webhook URL 已更新
 - [ ] 監控已配置
 - [ ] 備份策略已確認
@@ -438,7 +474,7 @@ router.get('/health', async (request, env) => {
 
 ## 12. 故障排除
 
-### 11.1 常見問題
+### 12.1 常見問題
 
 **問題**: Worker 部署失敗
 - 檢查 `wrangler.toml` 配置

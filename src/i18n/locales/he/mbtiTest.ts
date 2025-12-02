@@ -1,0 +1,22 @@
+export default {
+  "afterRegistration": "💡 לאחר שהשגת רישום, אתה יכול:\n",
+  "answerRecorded": "✅ הוקלט",
+  "completion": "{testTitle}\n\n",
+  "fullAccuracy": "תוצאות יותר מדויקות",
+  "fullQuestions": "36 שאלות",
+  "fullTest": "השלם את מבחן MBTI",
+  "fullTestInfo": "💡 זהו המבחן המלא ({questions}), והתוצאות מדויקות יותר.\nלאחר השלמת הרישום, תוכל לחזור על המבחן באמצעות /mbti.",
+  "fullTestTitle": "השלם את המבחן",
+  "manualModify": "• שנה את סוג MBTI שלך ידנית",
+  "moreDetailedTest": "• קח מבחן מפורט יותר\n",
+  "note": "{testInfo} {testTitle} {accuracy}\n\n",
+  "questionOrderError": "⚠️ סדר השאלות לא נכון",
+  "questions12": "12 שאלות",
+  "questions36": "36 שאלות",
+  "quickAccuracy": "תוצאות לצורך התייחסות בלבד",
+  "quickQuestions": "12 שאלות",
+  "quickTest": "מבחן MBTI מהיר",
+  "quickTestInfo": "💡 זו חידה קצרה ({questions}), והתוצאות הן לצורכי הפניה בלבד.\nלאחר סיום ההרשמה, תוכל לחזור על החידה דרך /mbti.",
+  "quickTestTitle": "מבחן מהיר",
+  "yourMbtiType": "{type}\n\n"
+};

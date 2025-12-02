@@ -48,6 +48,27 @@ export async function findUserByUsername(
 }
 
 /**
+ * Find user by Nickname
+ */
+export async function findUserByNickname(
+  db: any,
+  nickname: string
+): Promise<User | null> {
+  // If db is DatabaseClient wrapper
+  if (db.queryOne) {
+    const sql = `
+      SELECT * FROM users
+      WHERE nickname = ? COLLATE NOCASE
+      LIMIT 1
+    `;
+    return db.queryOne(sql, [nickname]);
+  } 
+  
+  // If db is raw D1Database
+  return await db.prepare('SELECT * FROM users WHERE nickname = ? COLLATE NOCASE LIMIT 1').bind(nickname).first<User>();
+}
+
+/**
  * Find user by invite code
  */
 export async function findUserByInviteCode(

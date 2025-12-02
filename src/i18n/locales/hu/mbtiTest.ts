@@ -1,0 +1,22 @@
+export default {
+  "afterRegistration": "💡 A regisztráció befejezésével képessé válsz:\n",
+  "answerRecorded": "✅ Rögzítve",
+  "completion": "{testTitle}\n\n",
+  "fullAccuracy": "Pontosabb eredmények",
+  "fullQuestions": "36 kérdés",
+  "fullTest": "Teljes MBTI teszt",
+  "fullTestInfo": "💡 Ez a teljes teszt ({questions}), és az eredmények pontosabbak.\nA regisztráció befejezése után újra megteheti a tesztet a /mbti használatával.",
+  "fullTestTitle": "Teljes teszt",
+  "manualModify": "• Kézi módosítás a MBTI típusodon",
+  "moreDetailedTest": "• Végezzen el egy részletesebb tesztet\n",
+  "note": "{testInfo} {testTitle} {accuracy}\n\n",
+  "questionOrderError": "⚠️ Helytelen kérdésrend",
+  "questions12": "12 kérdés",
+  "questions36": "36 kérdés",
+  "quickAccuracy": "Eredmények csak tájékoztatásul",
+  "quickQuestions": "12 kérdés",
+  "quickTest": "Gyors MBTI teszt",
+  "quickTestInfo": "💡 Ez egy gyors kvíz ({questions}), az eredmények csak tájékoztató jellegűek.\nA regisztráció befejezése után a /mbti segítségével újra megteheti a kvízt.",
+  "quickTestTitle": "Gyors teszt",
+  "yourMbtiType": "{type}\n\n"
+};

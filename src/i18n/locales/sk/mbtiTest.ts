@@ -1,0 +1,22 @@
+export default {
+  "afterRegistration": "💡 Po dokončení registrácie môžete:\n",
+  "answerRecorded": "✅ Zaznamenané",
+  "completion": "🎉 {testTitle} Dokončené!\n\n",
+  "fullAccuracy": "Presnejšie výsledky",
+  "fullQuestions": "36 otázok",
+  "fullTest": "Dokončiť MBTI test",
+  "fullTestInfo": "💡 Toto je kompletný test ({questions}), a výsledky sú presnejšie.\nPo dokončení registrácie môžete test zopakovať pomocou /mbti.",
+  "fullTestTitle": "Dokončiť test",
+  "manualModify": "• Manuálne upraviť svoj typ MBTI",
+  "moreDetailedTest": "• Urobiť podrobnejší test\n",
+  "note": "⚠️ Poznámka: Toto je {testInfo}{testTitle}, {accuracy}.\n\n",
+  "questionOrderError": "⚠️ Nesprávne poradie otázok",
+  "questions12": "12 otázok",
+  "questions36": "36 otázok",
+  "quickAccuracy": "Výsledky sú len na referenciu",
+  "quickQuestions": "12 otázok",
+  "quickTest": "Rýchly MBTI test",
+  "quickTestInfo": "💡 Toto je rýchly kvíz ({questions}), a výsledky sú len na referenciu.\nPo dokončení registrácie si môžete kviz zopakovať cez /mbti.",
+  "quickTestTitle": "Rýchly test",
+  "yourMbtiType": "Váš MBTI typ je: **{type}**\n\n"
+};

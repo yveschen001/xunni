@@ -1,0 +1,22 @@
+export default {
+  "afterRegistration": "💡 Rekisteröinnin jälkeen voit:\n",
+  "answerRecorded": "✅ Tallennettu",
+  "completion": "🎉 {testTitle} Suoritettu!\n\n",
+  "fullAccuracy": "Tarkemmat tulokset",
+  "fullQuestions": "36 kysymystä",
+  "fullTest": "Suorita MBTI-testi",
+  "fullTestInfo": "💡 Tämä on täydellinen testi ({questions}), ja tulokset ovat tarkempia.\nRekisteröitymisen jälkeen voit ottaa testin uudelleen käyttämällä /mbti.",
+  "fullTestTitle": "Suorita testi",
+  "manualModify": "• Muokkaa MBTI-tyyppiäsi manuaalisesti",
+  "moreDetailedTest": "• Ota yksityiskohtaisempi testi\n",
+  "note": "⚠️ Huomio: Tämä on {testInfo}{testTitle}, {accuracy}.\n\n",
+  "questionOrderError": "⚠️ Väärä kysymysjärjestys",
+  "questions12": "12 kysymystä",
+  "questions36": "36 kysymystä",
+  "quickAccuracy": "Tulokset vain viitteeksi",
+  "quickQuestions": "12 kysymystä",
+  "quickTest": "Nopea MBTI-testi",
+  "quickTestInfo": "💡 Tämä on nopea kysely ({questions}), ja tulokset ovat vain viitteeksi.\nRekisteröinnin jälkeen voit tehdä kyselyn uudelleen osoitteessa /mbti.",
+  "quickTestTitle": "Nopea testi",
+  "yourMbtiType": "MBTI-tyyppisi on: **{type}**\n\n"
+};

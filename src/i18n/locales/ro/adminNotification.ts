@@ -1,0 +1,21 @@
+export default {
+  "amount": "Sumă: ${stars} ⭐",
+  "data": "Date: ${data}",
+  "daysLeft": "Rămase: ${days} zile",
+  "expireDate": "Expirare: ${date}",
+  "newExpireDate": "Nouă expirare: ${date}",
+  "paymentFailed": "❌ **Plata eșuată**",
+  "paymentId": "ID Plata: `${id}`",
+  "reason": "Motiv: ${reason}",
+  "refundRequest": "🔴 **Cerere de Rambursare**",
+  "requestId": "ID Cerere: #${id}",
+  "systemNotification": "📢 **Notificare de Sistem**",
+  "time": "Timp: ${time}",
+  "type": "Tip: ${type}",
+  "user": "Utilizator: `${userId}`",
+  "viewRefundsHint": "💡 Folosește /admin_refunds pentru detalii",
+  "vipDowngraded": "⬇️ **Scădere Automată VIP**",
+  "vipPurchased": "🎉 **Nouă Achiziție VIP**",
+  "vipReminderSent": "⏰ **Atenționare Expirare VIP Trimisa**",
+  "vipRenewed": "🔄 **Reînnoire VIP**"
+};

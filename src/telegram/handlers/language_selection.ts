@@ -133,7 +133,7 @@ export async function handleLanguageSelection(
       if (suggestedNickname) {
         const nicknameMessage =
           newI18n.t('common.nickname7') +
-          newI18n.t('warnings.warning.short4') +
+          newI18n.t('warning.short4') +
           newI18n.t('common.nickname5') +
           newI18n.t('common.text79') +
           newI18n.t('common.nickname11');
@@ -153,7 +153,7 @@ export async function handleLanguageSelection(
         // No Telegram nickname, ask for custom nickname
         const nicknameMessage =
           newI18n.t('common.nickname8') +
-          newI18n.t('warnings.warning.short4') +
+          newI18n.t('warning.short4') +
           newI18n.t('common.nickname5') +
           newI18n.t('common.text79') +
           newI18n.t('common.nickname11');

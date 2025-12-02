@@ -1,0 +1,130 @@
+export default {
+  "birthday": "⚠️ Data nașterii nu poate fi modificată după setare, vă rugăm să confirmați că este corectă!",
+  "bloodType": "🩸 Grupele sanguine",
+  "gender": "👤 Gen：{otherUser.gender}",
+  "mbti": "🧠 MBTI：\\\\\\\\\\${mbti}",
+  "register2": "⚠️ Vă rugăm să finalizați mai întâi înregistrarea",
+  "register4": "⚠️ Înregistrare nefinalizată",
+  "settings": "🧠 MBTI：\\\\\\\\\\\\$",
+  "text5": "📖 Bio：{otherUser.bio}",
+  "text6": "⚠️ Vă rugăm să finalizați mai întâi înregistrarea",
+  "userNotFound": "Utilizatorul nu există",
+  "warning": {
+    "ad": "⚠️ În prezent, nu sunt configurate furnizori de reclame\n\n",
+    "ad2": "⚠️ În prezent, nu există reclame oficiale\n\n",
+    "ad3": "⚠️ Nu sunt furnizori de reclame disponibili în acest moment",
+    "ad4": "⚠️ Nu se poate selecta furnizorul de reclame",
+    "ad5": "⚠️ Nu se pot viziona mai multe reclame",
+    "birthday": "⚠️ Actualmente nu suntem în etapa de introducere a datei nașterii",
+    "bloodType": "⚠️ Actualmente nu suntem în etapa de selecție a grupei sanguine",
+    "broadcast": "⚠️ Am găsit \\${stuckBroadcasts.results.length} transmisiuni blocate\n\n",
+    "complete": "⚠️ Vă rugăm să finalizați reclama anterioară înainte de a începe o nouă reclamă",
+    "confirm": "⚠️ Te rugăm să confirmi informațiile despre ziua ta de naștere:\n\n",
+    "conversation": "⚠️ Eroare în informațiile privind conversația.",
+    "conversation10": "⚠️ Conversația nu există",
+    "conversation2": "⚠️ Eroare în informațiile privind conversația",
+    "conversation3": "⚠️ Acest utilizator nu are postări în istoricul conversației\n",
+    "conversation4": "⚠️ Nu s-a putut găsi conversația specificată, aceasta ar putea să fi încetat sau să fi expirat.",
+    "conversation5": "⚠️ **Istoricul conversațiilor a fost parțial actualizat**\n\n",
+    "conversation6": "⚠️ Nu am putut identifica partenerul de conversație\n\n",
+    "conversation7": "⚠️ Nu pot găsi această conversație\n\n",
+    "conversation8": "⚠️ Conversația nu există sau a luat sfârșit",
+    "conversation9": "⚠️ Această conversație a luat sfârșit",
+    "end": "⚠️ Testul s-a încheiat sau nu există",
+    "failed": "⚠️ Verificarea plății a eșuat, vă rugăm să încercați din nou mai târziu",
+    "gender": "⚠️ În prezent nu sunteți în pasul de selecție a genului",
+    "invite": "⚠️ Nu s-a putut recupera codul de invitație",
+    "mbti": "⚠️ În prezent nu sunteți în pasul testului MBTI",
+    "mbti2": "⚠️ Tip MBTI invalid",
+    "message": "⚠️ S-au detectat \\${outdatedPosts.length} postări depășite care necesită actualizare\n",
+    "message2": "⚠️ Notă: Acesta este \\${testInfo}\\${testTitle}, \\${accuracy}.\n\n",
+    "message3": "⚠️ Te rugăm să ții apăsat pe mesajul pe care vrei să-l blochezi și să răspunzi cu comanda\n\n",
+    "message4": "⚠️ Te rugăm să ții apăsat pe mesajul pe care vrei să-l raportezi și să răspunzi cu comanda\n\n",
+    "message5": "⚠️ **Mesajul conține linkuri interzise**\n\n",
+    "register": "⚠️ Profilul utilizatorului nu a fost găsit, vă rugăm să vă înregistrați mai întâi folosind /start.",
+    "register2": "⚠️ Vă rugăm să finalizați mai întâi procesul de înregistrare.\n\nFolositi /start pentru a continua înregistrarea.",
+    "register3": "⚠️ A apărut o problemă cu procesul de înregistrare, vă rugăm să începeți din nou: /start",
+    "register4": "⚠️ Vă rugăm să finalizați mai întâi procesul de înregistrare",
+    "settings": "⚠️ Recomandare: Odată setat, genul **nu poate fi modificat** niciodată!\n\n",
+    "settings2": "⚠️ Setarea zilei de naștere nu poate fi modificată, vă rugăm să confirmați că este corectă!",
+    "settings3": "⚠️ Notă: Setarea genului nu poate fi modificată, vă rugăm să alegeți cu atenție!",
+    "short": "⚠️ Ordine incorectă a întrebărilor",
+    "short2": "⚠️ Opțiune necunoscută",
+    "short3": "⚠️ Cerere invalidă",
+    "short4": "⚠️ Limita de lungime a poreclei este de 36 de caractere",
+    "short5": "⚠️ Alte încălcări",
+    "start": "⚠️ Sesiunea a expirat, vă rugăm să reintrați: /throw",
+    "start2": "⚠️ Sesiunea a expirat, vă rugăm să reintrați",
+    "task": "⚠️ Tip de task necunoscut",
+    "text": "⚠️ **Notă**\n\n",
+    "text10": "⚠️ **Elemente non-modificabile**:\n",
+    "text11": "⚠️ Sesiunea a expirat, vă rugăm să încercați din nou",
+    "text12": "⚠️ Ciorna nu există sau a expirat",
+    "text2": "⚠️ Tip de plată invalid",
+    "text3": "⚠️ Serviciul de traducere este temporar indisponibil, iată textul original\n",
+    "text4": "⚠️ Reminder de securitate:\n",
+    "text5": "⚠️ În prezent nu sunteți în pasul testului anti-fraudă",
+    "text6": "⚠️ În prezent nu sunteți în pasul termenilor de serviciu",
+    "text7": "⚠️ Notă: Această funcție este disponibilă doar în mediu Staging.",
+    "text8": "⚠️ **Trimiterea de imagini, videoclipuri sau multimedia nu este permisă**\n\n",
+    "text9": "⚠️ Această funcție este disponibilă doar în mediu Staging.",
+    "userNotFound": "⚠️ Utilizatorul nu există, vă rugăm să vă înregistrați mai întâi folosind /start.",
+    "userNotFound2": "⚠️ Utilizatorul nu există",
+    "vip": "⚠️ Ați atins limita pentru invitații de utilizatori gratuiti, treceți la VIP pentru a debloca limita de 100 de persoane!",
+    "vip2": "⚠️ Această funcție este disponibilă doar pentru membrii VIP",
+    "vip3": "⚠️ **VIP expiră astăzi**\n\n"
+  },
+  "BROADCAST": {
+    "FILTER_ERROR": "❌ Eroare de format.\nExemplu: `/broadcast_filter gender=female,country=TW test message`",
+    "NO_CONTENT": "❌ Vă rugăm să introduceți conținutul difuzării.",
+    "NO_MATCHES": "⚠️ Nu au fost găsiți utilizatori care să corespundă criteriilor.\nCriterii de filtrare: {filters}",
+    "TOO_MANY_USERS": "⚠️ Prea mulți utilizatori țintiți ({count} persoane), în prezent, este limitat la trimiterea către {max} persoane simultan.",
+    "START_SENDING": "🚀 Începere difuzare #{id}\n🎯 Țintă: {filters}\n👥 Număr de persoane: {count}",
+    "COMPLETED": "✅ Difuzare #{id} finalizată!\nSucces: {sent}\nEșuat: {failed}\nBlocat: {blocked}"
+  },
+  "push": {
+    "throwReminder": "🌊 Hei! A trecut ceva timp de când ai aruncat o sticlă cu mesaj, plaja este foarte liniștită...",
+    "catchReminder": "🎣 Au apărut unele sticle cu mesaje noi pe plajă, vrei să mergi să le verifici?",
+    "onboardingReminder": "👋 Înregistrarea ta nu este încă completă, ești aproape! (Pas: {step})",
+    "messageReminderA": "👋 Hei {masked_partner_name} așteaptă încă răspunsul tău! Nu lăsa conversația să se răcească～",
+    "messageReminderB": "📩 Ai un mesaj necitit de la {masked_partner_name}:\n> \"{last_message_preview}...\"\n(A trecut peste 24 de ore!)",
+    "messageReminderC": "⏳ {masked_partner_name} așteaptă răspunsul tău...",
+    "actionReply": "💬 Răspunde lui {masked_partner_name}",
+    "actionHistory": "📜 Vezi Contextul"
+  },
+  "match": {
+    "header": {
+      "zodiac": "🌟 Potrivirea Zodiacală Revelată",
+      "mbti": "🧠 Rezonanța Personalității MBTI",
+      "blood": "🩸 Analiza Codului Grupi de Sânge"
+    },
+    "reason": {
+      "zodiac": {
+        "fire_affinity": "Ca semne de foc, pasiunea voastră arde puternic și conexiunea este solidă!",
+        "earth_affinity": "Stabilitatea semnelor de pământ combinată cu blândețea semnelor de apă creează fluxul perfect.",
+        "air_affinity": "Agilitatea semnelor de aer se întâlnește cu pasiunea semnelor de foc, inspirând o creativitate fără sfârșit!",
+        "water_affinity": "Emoțiile semnelor de apă și practicitatea semnelor de pământ construiesc cel mai cald suport."
+      },
+      "mbti": {
+        "sj_affinity": "Socializatorii (SJ) și Exploratorii (SP), un complement perfect de stabilitate și entuziasm!",
+        "sp_affinity": "Exploratorii (SP) și Socializatorii (SJ), cei mai buni parteneri de jucărie și îngrijire!",
+        "nf_affinity": "Idealistii (NF) și Raționaliștii (NT), o coliziune profundă a sufletului și înțelepciunii!",
+        "nt_affinity": "Raționaliștii (NT) și Idealistii (NF), o rezonanță a gândurilor și emoțiilor!"
+      },
+      "blood": {
+        "a_affinity": "Meticulozitatea Tipului A se întâlnește cu toleranța Tipului O, creând cele mai confortabile interacțiuni.",
+        "b_affinity": "Afirmarea de sine a Tipului B se întâlnește cu natura relaxată a Tipului O, fără stres și dezvoltată.",
+        "o_affinity": "Tipul O și Tipul B/A sunt parteneri complementari excelenti!",
+        "ab_affinity": "Frecvența unică a AB-ului este cel mai bine înțeleasă de semeni."
+      }
+    },
+    "template": {
+      "body": "{userAttribute},\nConform analizei, ai cea mai puternică afinitate cu {recommendedAttributes}!\n\n💡 {reason}\n\n👇 Te simți norocos?"
+    },
+    "btn": {
+      "throw": "🌊 Aruncă o sticlă cu mesaj și ia o șansă",
+      "vip_throw": "🎯 Aruncă către {target}",
+      "vip_upsell": "💡 Upgrade la VIP pentru a desemna livrarea către {target}, pentru un potrivire precisă!"
+    }
+  }
+};

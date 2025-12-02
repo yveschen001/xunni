@@ -1,0 +1,130 @@
+export default {
+  "birthday": "⚠️ Hari lahir tidak boleh diubah setelah ditetapkan, sila sahkan ia betul!",
+  "bloodType": "🩸 Jenis Darah",
+  "gender": "👤 Jantina: {otherUser.gender}",
+  "mbti": "🧠 MBTI：\\\\\\\\\\${mbti}",
+  "register2": "⚠️ Sila lengkapkan pendaftaran terlebih dahulu",
+  "register4": "⚠️ Pendaftaran tidak lengkap",
+  "settings": "🧠 MBTI:\\\\\\\\\\\\$",
+  "text5": "📖 Pengenalan: {otherUser.bio}",
+  "text6": "⚠️ Sila lengkapkan pendaftaran dahulu",
+  "userNotFound": "Pengguna tidak wujud",
+  "warning": {
+    "ad": "⚠️ Tiada penyedia iklan yang dikonfigurasi buat masa ini\n\n",
+    "ad2": "⚠️ Tiada iklan rasmi buat masa ini\n\n",
+    "ad3": "⚠️ Tiada penyedia iklan yang tersedia pada masa ini",
+    "ad4": "⚠️ Gagal untuk memilih penyedia iklan",
+    "ad5": "⚠️ Gagal untuk menonton lebih banyak iklan",
+    "birthday": "⚠️ Kini tidak dalam langkah pengisian hari lahir",
+    "bloodType": "⚠️ Kini tidak dalam langkah pemilihan jenis darah",
+    "broadcast": "⚠️ Ditemukan \\${stuckBroadcasts.results.length} siaran tersekat\n\n",
+    "complete": "⚠️ Sila lengkapkan iklan sebelumnya sebelum memulakan yang baru",
+    "confirm": "⚠️ Sila sahkan maklumat hari lahir anda:\n\n",
+    "conversation": "⚠️ Maklumat perbualan tidak tepat.",
+    "conversation10": "⚠️ Perbualan tidak wujud",
+    "conversation2": "⚠️ Maklumat perbualan tidak tepat",
+    "conversation3": "⚠️ Pengguna ini tiada catatan sejarah perbualan\n",
+    "conversation4": "⚠️ Tidak dapat mencari perbualan yang ditetapkan, ia mungkin telah tamat atau tamat.",
+    "conversation5": "⚠️ **Sejarah perbualan telah dikemas kini sebahagian**\n\n",
+    "conversation6": "⚠️ Tidak dapat mengenal pasti rakan perbualan\n\n",
+    "conversation7": "⚠️ Tidak dapat menemukan perbualan ini\n\n",
+    "conversation8": "⚠️ Perbualan tidak wujud atau telah tamat",
+    "conversation9": "⚠️ Perbualan ini telah tamat",
+    "end": "⚠️ Kuiz telah tamat atau tidak wujud",
+    "failed": "⚠️ Pengesahan pembayaran gagal, sila cuba lagi kemudian",
+    "gender": "⚠️ Kini tidak berada dalam langkah pemilihan jantina",
+    "invite": "⚠️ Tidak dapat mengambil kod jemputan",
+    "mbti": "⚠️ Kini tidak berada dalam langkah kuiz MBTI",
+    "mbti2": "⚠️ Jenis MBTI tidak sah",
+    "message": "⚠️ Ditemui \\${outdatedPosts.length} pos lapuk yang memerlukan penyegaran\n",
+    "message2": "⚠️ Nota: Ini adalah \\${testInfo}\\${testTitle}, \\${accuracy}.\n\n",
+    "message3": "⚠️ Sila tekan lama pada mesej yang anda ingin sekat dan balas dengan arahan\n\n",
+    "message4": "⚠️ Sila tekan lama pada mesej yang anda ingin laporkan dan balas dengan arahan\n\n",
+    "message5": "⚠️ **Mesej mengandungi pautan yang dilarang**\n\n",
+    "register": "⚠️ Data pengguna tidak dijumpai, sila daftar terlebih dahulu menggunakan /start.",
+    "register2": "⚠️ Sila lengkapkan proses pendaftaran terlebih dahulu.\n\nTeruskan pendaftaran menggunakan /start.",
+    "register3": "⚠️ Terdapat masalah dengan proses pendaftaran, sila mulakan semula: /start",
+    "register4": "⚠️ Sila lengkapkan proses pendaftaran terlebih dahulu.",
+    "settings": "⚠️ Peringatan: Sebaik sahaja ditetapkan, jantina **tidak boleh diubah** untuk selama-lamanya!\n\n",
+    "settings2": "⚠️ Hari lahir tidak dapat diubah setelah ditetapkan, sila sahkan ia betul!",
+    "settings3": "⚠️ Nota: Jantina tidak dapat diubah setelah ditetapkan, sila pilih dengan bijak!",
+    "short": "⚠️ Susunan soalan tidak betul",
+    "short2": "⚠️ Pilihan tidak dikenali",
+    "short3": "⚠️ Permintaan tidak sah",
+    "short4": "⚠️ Had panjang nama panggilan: 36 aksara",
+    "short5": "⚠️ Pelanggaran lain",
+    "start": "⚠️ Sesi telah tamat, sila mulakan semula: /throw",
+    "start2": "⚠️ Sesi telah tamat, sila mulakan semula",
+    "task": "⚠️ Jenis tugas tidak dikenali",
+    "text": "⚠️ **Nota**\n\n",
+    "text10": "⚠️ **Item yang tidak boleh diubah**:\n",
+    "text11": "⚠️ Sesi telah tamat, sila beroperasi semula",
+    "text12": "⚠️ Draf tidak wujud atau telah tamat",
+    "text2": "⚠️ Jenis pembayaran tidak sah",
+    "text3": "⚠️ Perkhidmatan penterjemahan tidak tersedia buat sementara waktu, menunjukkan teks asal di bawah\n",
+    "text4": "⚠️ Peringatan keselamatan:\n",
+    "text5": "⚠️ Kini tidak berada dalam langkah ujian anti-penipuan",
+    "text6": "⚠️ Kini tidak berada dalam langkah terma perkhidmatan",
+    "text7": "⚠️ Nota: Ciri ini hanya tersedia dalam persekitaran Staging.",
+    "text8": "⚠️ **Menghantar imej, video, atau multimedia tidak dibenarkan**\n\n",
+    "text9": "⚠️ Ciri ini hanya tersedia dalam persekitaran Staging.",
+    "userNotFound": "⚠️ Pengguna tidak wujud, sila gunakan /start untuk mendaftar terlebih dahulu.",
+    "userNotFound2": "⚠️ Pengguna tidak wujud",
+    "vip": "⚠️ Telah mencapai had untuk jemputan pengguna percuma; tingkatkan kepada VIP untuk membuka had 100 orang!",
+    "vip2": "⚠️ Ciri ini hanya untuk ahli VIP sahaja",
+    "vip3": "⚠️ **VIP tamat hari ini**\n\n"
+  },
+  "BROADCAST": {
+    "FILTER_ERROR": "❌ Ralat format.\nContoh: `/broadcast_filter gender=female,country=TW test message`",
+    "NO_CONTENT": "❌ Sila masukkan kandungan siaran.",
+    "NO_MATCHES": "⚠️ Tiada pengguna yang memenuhi kriteria ditemui.\nKriteria penapisan: {filters}",
+    "TOO_MANY_USERS": "⚠️ Terlalu banyak pengguna sasaran ({count} orang), sekarang terhad kepada menghantar kepada {max} orang pada satu masa.",
+    "START_SENDING": "🚀 Memulakan siaran #{id}\n🎯 Sasaran: {filters}\n👥 Bilangan orang: {count}",
+    "COMPLETED": "✅ Siaran #{id} selesai!\nBerjaya: {sent}\nGagal: {failed}\nDiblokir: {blocked}"
+  },
+  "push": {
+    "throwReminder": "🌊 Hai! Sudah lama sejak anda melemparkan botol mesej, pantai ini sangat tenang...",
+    "catchReminder": "🎣 Beberapa botol mesej baru telah terdampar di pantai, mahu pergi melihatnya?",
+    "onboardingReminder": "👋 Pendaftaran anda belum lengkap, anda hampir selesai! (Langkah: {step})",
+    "messageReminderA": "👋 Hai {masked_partner_name} masih menunggu jawapan anda! Jangan biarkan perbualan sejuk～",
+    "messageReminderB": "📩 Anda mempunyai mesej yang tidak dibaca dari {masked_partner_name}:\n> \"{last_message_preview}...\"\n(Ia telah melebihi 24 jam!)",
+    "messageReminderC": "⏳ {masked_partner_name} sedang menunggu jawapan anda...",
+    "actionReply": "💬 Balas kepada {masked_partner_name}",
+    "actionHistory": "📜 Lihat Konteks"
+  },
+  "match": {
+    "header": {
+      "zodiac": "🌟 Padanan Zodiak Didedahkan",
+      "mbti": "🧠 Resonansi Keperibadian MBTI",
+      "blood": "🩸 Analisis Kod Jenis Darah"
+    },
+    "reason": {
+      "zodiac": {
+        "fire_affinity": "Sebagai tanda api yang seiring, semangat anda bersinar terang dan hubungan anda kuat!",
+        "earth_affinity": "Stabiliti tanda bumi digabungkan dengan kelembutan tanda air mencipta aliran yang sempurna.",
+        "air_affinity": "Kelincahan tanda udara bertemu dengan semangat tanda api, memberi inspirasi kepada kreativiti tanpa henti!",
+        "water_affinity": "Emosi tanda air dan kepraktisan tanda bumi membina sokongan yang paling hangat."
+      },
+      "mbti": {
+        "sj_affinity": "Sosialis (SJ) dan Penjelajah (SP), pelengkap yang sempurna antara kestabilan dan keterujaan!",
+        "sp_affinity": "Penjelajah (SP) dan Sosialis (SJ), rakan kongsi terbaik untuk teman bermain dan penjaga!",
+        "nf_affinity": "Idealis (NF) dan Rasionalis (NT), pertembungan mendalam antara jiwa dan kebijaksanaan!",
+        "nt_affinity": "Rasionalis (NT) dan Idealistis (NF), resonansi antara pemikiran dan perasaan!"
+      },
+      "blood": {
+        "a_affinity": "Ketelitian Jenis A bertemu dengan toleransi Jenis O, mencipta interaksi yang paling selesa.",
+        "b_affinity": "Pengesahan diri Jenis B bertemu dengan sikap santai Jenis O, bebas stres dan santai.",
+        "o_affinity": "Jenis O dan Jenis B/A adalah pasangan pelengkap yang hebat!",
+        "ab_affinity": "Frekuesi unik AB paling difahami oleh golongannya."
+      }
+    },
+    "template": {
+      "body": "{userAttribute},\nMenurut analisis, anda mempunyai ikatan terkuat dengan {recommendedAttributes}!\n\n💡 {reason}\n\n👇 Merasa bertuah?"
+    },
+    "btn": {
+      "throw": "🌊 Balas botol dan ambil peluang",
+      "vip_throw": "🎯 Buang kepada {target}",
+      "vip_upsell": "💡 Tingkatkan ke VIP untuk menandakan penghantaran kepada {target}, untuk padanan yang tepat!"
+    }
+  }
+};

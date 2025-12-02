@@ -223,17 +223,22 @@ export async function showGetMoreMenu(chatId: number, telegram: ReturnType<typeo
   const smallAmount = isStaging ? 50 : FORTUNE_PACK_SMALL_AMOUNT;
   const largeAmount = FORTUNE_PACK_LARGE_AMOUNT;
 
+  const originalSmallPrice = smallPrice * 5;
+  const originalLargePrice = largePrice * 5;
+
   const text = i18n.t('fortune.getMoreInfo', {
     smallAmount,
     smallPrice,
     largeAmount,
-    largePrice
+    largePrice,
+    originalSmallPrice,
+    originalLargePrice
   });
 
   const buttons = [
     [
-      { text: `💎 ${i18n.t('fortune.buySmall', { amount: smallAmount, price: smallPrice })}`, callback_data: 'fortune_buy_small' },
-      { text: `💎 ${i18n.t('fortune.buyLarge', { amount: largeAmount, price: largePrice })}`, callback_data: 'fortune_buy_large' }
+      { text: `💎 ${i18n.t('fortune.buySmall', { amount: smallAmount, price: smallPrice, originalPrice: originalSmallPrice })}`, callback_data: 'fortune_buy_small' },
+      { text: `💎 ${i18n.t('fortune.buyLarge', { amount: largeAmount, price: largePrice, originalPrice: originalLargePrice })}`, callback_data: 'fortune_buy_large' }
     ],
     [
       { text: `👑 ${i18n.t('vip.upgrade')}`, callback_data: 'menu_vip' },
@@ -291,6 +296,8 @@ async function startSelfProfileWizard(chatId: number, telegramId: string, env: E
   await telegram.sendMessageWithButtons(chatId, msg, [
     [{ text: i18n.t('fortune.unknownTime'), callback_data: 'fortune_time_unknown' }]
   ]);
+  // Hint message below buttons
+  await telegram.sendMessage(chatId, i18n.t('fortune.onboarding.input_time_hint')); // Corrected key to input_time_hint
 }
 
 // ============================================================================
@@ -310,14 +317,24 @@ export async function handleFortuneInput(message: TelegramMessage, env: Env): Pr
   // Check for Love Input Session (match_target_id)
   const inputSession = await getActiveSession(db, telegramId, 'fortune_input');
   
-  if (inputSession && inputSession.step === 'match_target_id') {
-    const service = new FortuneService(env, db.d1);
-    const user = await findUserByTelegramId(db, telegramId);
-    const i18n = createI18n(user?.language_pref || 'zh-TW');
-    const { LoveFortuneHandler } = await import('./fortune_love');
-    const loveHandler = new LoveFortuneHandler(service, i18n, env);
-    await loveHandler.handleMatchInputGeneric(message, env, text);
-    return true;
+  if (inputSession) {
+    try {
+      const sessionData = typeof inputSession.session_data === 'string' 
+        ? JSON.parse(inputSession.session_data) 
+        : inputSession.session_data;
+
+      if (sessionData && sessionData.step === 'match_target_id') {
+        const service = new FortuneService(env, db.d1);
+        const user = await findUserByTelegramId(db, telegramId);
+        const i18n = createI18n(user?.language_pref || 'zh-TW');
+        const { LoveFortuneHandler } = await import('./fortune_love');
+        const loveHandler = new LoveFortuneHandler(service, i18n, env);
+        await loveHandler.handleMatchInputGeneric(message, env, text);
+        return true;
+      }
+    } catch (e) {
+      console.error('Error parsing session data:', e);
+    }
   }
 
   if (!session) return false;
@@ -366,6 +383,7 @@ export async function handleFortuneInput(message: TelegramMessage, env: Env): Pr
       await telegram.sendMessageWithButtons(message.chat.id, i18n.t('fortune.onboarding.askTime'), [
         [{ text: i18n.t('fortune.unknownTime'), callback_data: 'fortune_time_unknown' }]
       ]);
+      await telegram.sendMessage(message.chat.id, i18n.t('fortune.onboarding.input_time_hint'));
       return true;
 
     case 'birth_time':
@@ -619,7 +637,7 @@ export async function handleFortuneCallback(callbackQuery: TelegramCallbackQuery
       return;
     }
 
-    await loveHandler.handleIdealMode(chatId, telegram);
+    await loveHandler.handleIdealMode(chatId, telegramId, telegram);
     await telegram.answerCallbackQuery(callbackQuery.id);
     return;
   }
@@ -831,8 +849,16 @@ export async function handleFortuneCallback(callbackQuery: TelegramCallbackQuery
         
         await clearSession(db, telegramId, 'fortune_wizard');
         const profiles = await service.getProfiles(telegramId);
-        await telegram.sendMessage(chatId, i18n.t('fortune.profileCreated'));
-        await showFortuneMenu(chatId, profiles[0], env, i18n);
+        
+        // Send Success with Button
+        await telegram.sendMessageWithButtons(
+          chatId, 
+          i18n.t('fortune.profileCreated'),
+          [[{ text: i18n.t('fortune.back_to_menu'), callback_data: 'return_to_menu' }]]
+        );
+        
+        // Auto-show menu (Fixing argument order bug)
+        await showFortuneMenu(chatId, telegramId, env, i18n, profiles[0]);
       }
     }
     return;
@@ -943,16 +969,22 @@ export async function handleFortuneCallback(callbackQuery: TelegramCallbackQuery
       const msg = await telegram.sendMessageAndGetId(chatId, i18n.t('fortune.generating'));
       const msgId = msg.message_id;
 
-      for (const loadingText of loadingMsgs) {
-        await new Promise(r => setTimeout(r, 800)); // 0.8s delay
-        try {
-          await telegram.editMessageText(chatId, msgId, loadingText);
-        } catch (e) {
-          // Ignore edit errors (e.g. if same content)
+      const fortune = await service.generateFortune(
+        user, 
+        profile, 
+        type, 
+        targetDate, 
+        undefined, 
+        undefined, 
+        undefined, 
+        async (progressText) => {
+          try {
+            await telegram.editMessageText(chatId, msgId, progressText);
+          } catch (e) {
+            // Ignore edit errors
+          }
         }
-      }
-      
-      const fortune = await service.generateFortune(user, profile, type, targetDate);
+      );
       
       // Delete loading message and send new one (or edit final)
       await telegram.deleteMessage(chatId, msgId);
@@ -1072,6 +1104,7 @@ export async function handleFortuneCallback(callbackQuery: TelegramCallbackQuery
 
     const title = i18n.t('fortune.invoiceTitle', { amount });
     const description = i18n.t('fortune.invoiceDesc', { amount });
+    const originalPrice = price * 5;
     
     const invoice = {
       chat_id: chatId,
@@ -1084,7 +1117,7 @@ export async function handleFortuneCallback(callbackQuery: TelegramCallbackQuery
       }),
       provider_token: '', // Stars
       currency: 'XTR',
-      prices: [{ label: title, amount: price }]
+      prices: [{ label: `${title} (Original ${originalPrice} Stars -80%)`, amount: price }]
     };
 
     console.log('[Fortune] Sending invoice:', invoice);

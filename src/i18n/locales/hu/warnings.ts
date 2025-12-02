@@ -1,0 +1,130 @@
+export default {
+  "birthday": "⚠️ A születésnap a beállítás után nem módosítható, kérjük, erősítse meg, hogy helyes!",
+  "bloodType": "🩸 Vércsoport",
+  "gender": "👤 Neme：{otherUser.gender}",
+  "mbti": "🧠 MBTI：\\\\\\\\\\${mbti}",
+  "register2": "⚠️ Kérjük, először fejezze be a regisztrációt",
+  "register4": "⚠️ A regisztráció nincs befejezve",
+  "settings": "🧠 MBTI：\\\\\\\\\\\\$",
+  "text5": "📖 Bemutatkozás：{otherUser.bio}",
+  "text6": "⚠️ Kérjük, először fejezze be a regisztrációt",
+  "userNotFound": "A felhasználó nem létezik",
+  "warning": {
+    "ad": "⚠️ Jelenleg nincs konfigurálva hirdetési szolgáltató\n\n",
+    "ad2": "⚠️ Jelenleg nincsenek hivatalos hirdetések\n\n",
+    "ad3": "⚠️ Jelenleg nincs elérhető hirdetési szolgáltató",
+    "ad4": "⚠️ Nem lehet hirdetési szolgáltatót választani",
+    "ad5": "⚠️ Nem lehet több hirdetést megtekinteni",
+    "birthday": "⚠️ Jelenleg nem tart a születésnapi bemeneti lépésben",
+    "bloodType": "⚠️ Jelenleg nem tart a vércsoport kiválasztási lépésben",
+    "broadcast": "⚠️ Talált \\${stuckBroadcasts.results.length} megrekedt közvetítést\n\n",
+    "complete": "⚠️ Kérjük, fejezze be az előző hirdetést, mielőtt új hirdetést indítana",
+    "confirm": "⚠️ Kérjük, erősítse meg a születési dátumát:\n\n",
+    "conversation": "⚠️ Beszélgetési információs hiba.",
+    "conversation10": "⚠️ A beszélgetés nem létezik",
+    "conversation2": "⚠️ Beszélgetési információs hiba",
+    "conversation3": "⚠️ Ennek a felhasználónak nincs beszélgetési előzménye\n",
+    "conversation4": "⚠️ Nem sikerült megtalálni a megadott beszélgetést, lehet, hogy véget ért vagy lejárt.",
+    "conversation5": "⚠️ **A beszélgetési előzmények részben frissítve**\n\n",
+    "conversation6": "⚠️ Nem sikerült azonosítani a beszélgetőpartnert\n\n",
+    "conversation7": "⚠️ Nem található ez a beszélgetés\n\n",
+    "conversation8": "⚠️ A beszélgetés nem létezik vagy véget ért",
+    "conversation9": "⚠️ Ez a beszélgetés véget ért",
+    "end": "⚠️ A teszt véget ért vagy nem létezik",
+    "failed": "⚠️ A kifizetés ellenőrzése nem sikerült, kérjük próbálkozzon később",
+    "gender": "⚠️ Jelenleg nem a nem kiválasztási lépésben",
+    "invite": "⚠️ Nem tudjuk lekérni a meghívó kódot",
+    "mbti": "⚠️ Jelenleg nem a MBTI teszt lépésben",
+    "mbti2": "⚠️ Érvénytelen MBTI típus",
+    "message": "⚠️ \\${outdatedPosts.length} elavult bejegyzést észleltünk, amelyeket frissíteni kell\n",
+    "message2": "⚠️ Megjegyzés: Ez a \\${testInfo}\\${testTitle}, \\${accuracy}.\n\n",
+    "message3": "⚠️ Kérjük, hosszú nyomással válassza ki a blokkolni kívánt üzenetet, és válaszoljon a parancsra\n\n",
+    "message4": "⚠️ Kérjük, hosszú nyomással válassza ki a jelenteni kívánt üzenetet, és válaszoljon a parancsra\n\n",
+    "message5": "⚠️ **Az üzenet tiltotta linkeket tartalmaz**\n\n",
+    "register": "⚠️ A felhasználói profil nem található, kérjük először regisztráljon a /start használatával.",
+    "register2": "⚠️ Kérjük, először fejezze be a regisztrációs folyamatot.\n\nHasználja a /start parancsot a regisztráció folytatásához.",
+    "register3": "⚠️ Probléma merült fel a regisztrációs folyamat során, kérjük, kezdje újra: /start",
+    "register4": "⚠️ Kérjük, először fejezze be a regisztrációs folyamatot",
+    "settings": "⚠️ Emlékeztető: Egyszeri beállítás után a nem **nem módosítható** örökre!\n\n",
+    "settings2": "⚠️ A születési dátum beállítása nem módosítható, kérjük, erősítse meg, hogy helyes!",
+    "settings3": "⚠️ Megjegyzés: A nem beállítása nem módosítható, kérjük, válasszon óvatosan!",
+    "short": "⚠️ Hibás kérdések sorrendje",
+    "short2": "⚠️ Ismeretlen opció",
+    "short3": "⚠️ Érvénytelen kérés",
+    "short4": "⚠️ A becenév hossza 36 karakterre korlátozódik",
+    "short5": "⚠️ Egyéb jogsértések",
+    "start": "⚠️ A munkamenet lejárt, kérjük, indítsa újra: /throw",
+    "start2": "⚠️ A munkamenet lejárt, kérjük, indítsa újra",
+    "task": "⚠️ Ismeretlen feladat típus",
+    "text": "⚠️ **Megjegyzés**\n\n",
+    "text10": "⚠️ **Nem módosítható elemek**:\n",
+    "text11": "⚠️ A munkamenet lejárt, kérjük, próbálja újra",
+    "text12": "⚠️ A vázlat nem létezik vagy lejárt",
+    "text2": "⚠️ Érvénytelen fizetési típus",
+    "text3": "⚠️ A fordító szolgáltatás ideiglenesen nem elérhető, íme az eredeti szöveg\n",
+    "text4": "⚠️ Biztonsági figyelmeztetés:\n",
+    "text5": "⚠️ Jelenleg nem a csalásellenes teszt lépésben",
+    "text6": "⚠️ Jelenleg nem a szolgáltatási feltételek lépésben",
+    "text7": "⚠️ Megjegyzés: Ez a funkció csak a Staging környezetben érhető el.",
+    "text8": "⚠️ **Képek, videók vagy multimédia küldése nem megengedett**\n\n",
+    "text9": "⚠️ Ez a funkció csak a Staging környezetben érhető el.",
+    "userNotFound": "⚠️ A felhasználó nem létezik, kérjük először regisztráljon a /start használatával.",
+    "userNotFound2": "⚠️ A felhasználó nem létezik",
+    "vip": "⚠️ Elérte a maximális ingyenes felhasználói meghívók számát, váltsa VIP-re, hogy feloldhassa a 100 főre vonatkozó korlátot!",
+    "vip2": "⚠️ Ez a funkció csak VIP tagok számára elérhető",
+    "vip3": "⚠️ **A VIP ma lejár**\n\n"
+  },
+  "BROADCAST": {
+    "FILTER_ERROR": "❌ Formátum hiba.\nPélda: `/broadcast_filter gender=female,country=TW teszt üzenet` ",
+    "NO_CONTENT": "❌ Kérjük, adja meg a közvetítési tartalmat.",
+    "NO_MATCHES": "⚠️ Nincsenek felhasználók, akik megfelelnek a kritériumoknak.\nSzűrési kritériumok: {filters}",
+    "TOO_MANY_USERS": "⚠️ Túl sok célfelhasználó ({count} fő), jelenleg maximum {max} főnek lehet egyszerre küldeni.",
+    "START_SENDING": "🚀 Közvetítés indítása #{id}\n🎯 Cél: {filters}\n👥 Résztvevők száma: {count}",
+    "COMPLETED": "✅ A közvetítés #{id} befejeződött!\nSiker: {sent}\nHiba: {failed}\nBlokkolt: {blocked}"
+  },
+  "push": {
+    "throwReminder": "🌊 Hé! Régóta nem dobtál el üzenetpalackot, a tengerpart nagyon csendes...",
+    "catchReminder": "🎣 Új üzenetpalackok érkeztek a partra, meg akarod nézni őket?",
+    "onboardingReminder": "👋 A regisztrációd még nem teljes, majdnem készen vagy! (Lépés: {step})",
+    "messageReminderA": "👋 Hé {masked_partner_name}, még mindig várom a válaszodat! Ne hagyd, hogy a beszélgetés lelohasson～",
+    "messageReminderB": "📩 Van egy olvasatlan üzeneted {masked_partner_name}tól:\n> \"{last_message_preview}...\"\n(Ez már több mint 24 órája történt!)",
+    "messageReminderC": "⏳ {masked_partner_name} a válaszodra vár...",
+    "actionReply": "💬 Válaszolj {masked_partner_name}nak",
+    "actionHistory": "📜 Nézd meg a kontextust"
+  },
+  "match": {
+    "header": {
+      "zodiac": "🌟 Megtudtuk a csillagjegy egyezést",
+      "mbti": "🧠 MBTI személyiségi rezonancia",
+      "blood": "🩸 Vértípus kód elemzés"
+    },
+    "reason": {
+      "zodiac": {
+        "fire_affinity": "Tűzjeleként a szenvedélyetek ragyog, és a kapcsolatotok erős!",
+        "earth_affinity": "A földjelek stabilitása és a vízjelek gyengédsége tökéletes áramlást teremt.",
+        "air_affinity": "A levegőjelek agilitása találkozik a tűzjelek szenvedélyével, végtelen kreativitást inspirálva!",
+        "water_affinity": "A vízjelek érzelmei és a földjelek praktikussága építi a legmelegebb támogatást."
+      },
+      "mbti": {
+        "sj_affinity": "Társadalmi típusok (SJ) és felfedezők (SP), a stabilitás és izgalom tökéletes kiegészítése!",
+        "sp_affinity": "Felfedezők (SP) és társadalmi típusok (SJ), a játékosok és gondoskodók legjobb partnerei!",
+        "nf_affinity": "Idealisták (NF) és Racionalisták (NT), a lélek és bölcsesség mély ütközése!",
+        "nt_affinity": "Racionalisták (NT) és Idealisták (NF), a gondolatok és érzelmek rezonanciája!"
+      },
+      "blood": {
+        "a_affinity": "A típus A precizitása találkozik a típus O toleranciájával, a legkényelmesebb interakciókat teremtve.",
+        "b_affinity": "A típus B önérvényesítése találkozik a típus O laza természetével, stresszmentes és nyugodt.",
+        "o_affinity": "A típus O és a típus B/A nagyszerűen kiegészítik egymást!",
+        "ab_affinity": "Az AB különleges frekvenciáját a saját fajtája érti meg a legjobban."
+      }
+    },
+    "template": {
+      "body": "{userAttribute},\nAz elemzés szerint a legnagyobb affinításod van a {recommendedAttributes}val!\n\n💡 {reason}\n\n👇 Szerencsésnek érzed magad?"
+    },
+    "btn": {
+      "throw": "🌊 Dobj egy üveget és kockáztass",
+      "vip_throw": "🎯 Dobj {target} felé",
+      "vip_upsell": "💡 Frissíts VIP-re, hogy az {target} számára jelölj szállítást, a pontos kapcsolatteremtés érdekében!"
+    }
+  }
+};

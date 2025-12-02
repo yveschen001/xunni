@@ -1,0 +1,22 @@
+export default {
+  "afterRegistration": "💡 完成註冊後，你可以：\n",
+  "answerRecorded": "✅ 已記錄",
+  "completion": "🎉 {testTitle}完成！\n\n",
+  "fullAccuracy": "結果更準確",
+  "fullQuestions": "36 題",
+  "fullTest": "MBTI 完整測驗",
+  "fullTestInfo": "\n\n💡 這是完整測驗（{questions}），結果更準確。\n完成註冊後，可使用 /mbti 重新測驗。\n\n",
+  "fullTestTitle": "完整測驗",
+  "manualModify": "• 手動修改你的 MBTI 類型",
+  "moreDetailedTest": "• 進行更詳細的測驗\n",
+  "note": "⚠️ 注意：這是 {testInfo}{testTitle}，{accuracy}。\n\n",
+  "questionOrderError": "⚠️ 問題順序錯誤",
+  "questions12": "12 題",
+  "questions36": "36 題",
+  "quickAccuracy": "結果僅供參考",
+  "quickQuestions": "12 題",
+  "quickTest": "MBTI 快速測驗",
+  "quickTestInfo": "\n\n💡 這是快速測驗（{questions}），結果僅供參考。\n完成註冊後，可使用 /mbti 重新測驗。\n\n",
+  "quickTestTitle": "快速測驗",
+  "yourMbtiType": "你的 MBTI 類型是：**{type}**\n\n"
+};

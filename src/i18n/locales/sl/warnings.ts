@@ -1,0 +1,130 @@
+export default {
+  "birthday": "⚠️ Rojstni dan po nastavitvi ni mogoče spremeniti, prosimo, potrdite, da je pravilen!",
+  "bloodType": "🩸 Krvna skupina",
+  "gender": "👤 Spol：{otherUser.gender}",
+  "mbti": "🧠 MBTI：\\\\\\\\\\${mbti}",
+  "register2": "⚠️ Prosimo, najprej dokončajte registracijo",
+  "register4": "⚠️ Registracija ni bila dokončana",
+  "settings": "🧠 MBTI：\\\\\\\\\\\\$",
+  "text5": "📖 Biografija：{otherUser.bio}",
+  "text6": "⚠️ Prosimo, najprej dokončajte registracijo",
+  "userNotFound": "Uporabnik ne obstaja",
+  "warning": {
+    "ad": "⚠️ Trenutno ni konfiguriranih ponudnikov oglasov\n\n",
+    "ad2": "⚠️ Trenutno ni uradnih oglasov\n\n",
+    "ad3": "⚠️ Trenutno ni na voljo oglaševalskih ponudnikov",
+    "ad4": "⚠️ Ni mogoče izbrati oglaševalskega ponudnika",
+    "ad5": "⚠️ Ni mogoče ogledati več oglasov",
+    "birthday": "⚠️ Trenutno niste v koraku vnosa rojstnega dne",
+    "bloodType": "⚠️ Trenutno niste v koraku izbire krvne skupine",
+    "broadcast": "⚠️ Najdenih \\${stuckBroadcasts.results.length} zataknjenih oddaj\n\n",
+    "complete": "⚠️ Preden začnete novega oglasa, prosimo, dokončajte prejšnji oglas",
+    "confirm": "⚠️ Prosimo, potrdite informacije o svojem rojstnem dnevu:\n\n",
+    "conversation": "⚠️ Napačne informacije o pogovoru.",
+    "conversation10": "⚠️ Pogovor ne obstaja",
+    "conversation2": "⚠️ Napačne informacije o pogovoru",
+    "conversation3": "⚠️ Ta uporabnik nima objav zgodovine pogovorov\n",
+    "conversation4": "⚠️ Ni mogoče najti določenega pogovora, morda se je končal ali potečen.",
+    "conversation5": "⚠️ **Zgodovina pogovorov je delno posodobljena**\n\n",
+    "conversation6": "⚠️ Nič ni mogoče identificirati partnerja v pogovoru\n\n",
+    "conversation7": "⚠️ Ni mogoče najti tega pogovora\n\n",
+    "conversation8": "⚠️ Pogovor ne obstaja ali se je končal",
+    "conversation9": "⚠️ Ta pogovor se je končal",
+    "end": "⚠️ Test se je končal ali ne obstaja",
+    "failed": "⚠️ Preverjanje plačila ni uspelo, poskusite znova pozneje",
+    "gender": "⚠️ Trenutno niste v koraku izbire spola",
+    "invite": "⚠️ Ni mogoče pridobiti kode za povabilo",
+    "mbti": "⚠️ Trenutno niste v koraku MBTI testa",
+    "mbti2": "⚠️ Neveljavna MBTI vrsta",
+    "message": "⚠️ Zaznali smo \\${outdatedPosts.length} zastarelih objav, ki jih je treba osvežiti\n",
+    "message2": "⚠️ Opomba: To je \\${testInfo}\\${testTitle}, \\${accuracy}.\n\n",
+    "message3": "⚠️ Prosimo, dolg pritisk na sporočilo, ki ga želite blokirati, in odgovorite s ukazom\n\n",
+    "message4": "⚠️ Prosimo, dolg pritisk na sporočilo, ki ga želite prijaviti, in odgovorite s ukazom\n\n",
+    "message5": "⚠️ **Sporočilo vsebuje prepovedane povezave**\n\n",
+    "register": "⚠️ Profil uporabnika ni najden, prosimo, registrirajte se najprej z uporabo /start.",
+    "register2": "⚠️ Prosimo, najprej dokončajte postopek registracije.\n\nUporabite /start za nadaljevanje registracije.",
+    "register3": "⚠️ Prišlo je do težave pri postopku registracije, prosimo, začnite znova: /start",
+    "register4": "⚠️ Prosimo, najprej dokončajte postopek registracije",
+    "settings": "⚠️ Opozorilo: Ko je nastavljen, spola **ni mogoče spremeniti** nikoli več!\n\n",
+    "settings2": "⚠️ Nastavitev rojstnega dne se ne more spremeniti, prosimo, potrdite, da je pravilna!",
+    "settings3": "⚠️ Opomba: Nastavitev spola se ne more spremeniti, prosimo, izberite skrbno!",
+    "short": "⚠️ Napačen vrstni red vprašanj",
+    "short2": "⚠️ Neznana možnost",
+    "short3": "⚠️ Neveljavna zahteva",
+    "short4": "⚠️ Omejitev dolžine vzdevka je 36 znakov",
+    "short5": "⚠️ Druge kršitve",
+    "start": "⚠️ Sejna veljavnost je potekla, prosimo, znova začnite: /throw",
+    "start2": "⚠️ Sejna veljavnost je potekla, prosimo, znova začnite",
+    "task": "⚠️ Neznana vrsta naloge",
+    "text": "⚠️ **Opomba**\n\n",
+    "text10": "⚠️ **Predmeti, ki jih ni mogoče spremeniti**:\n",
+    "text11": "⚠️ Sejna veljavnost je potekla, prosimo, poskusite znova",
+    "text12": "⚠️ Osnutek ne obstaja ali je potekel",
+    "text2": "⚠️ Neveljavna vrsta plačila",
+    "text3": "⚠️ Storitve prevajanja trenutno niso na voljo, tukaj je izvirno besedilo\n",
+    "text4": "⚠️ Varnostni opomnik:\n",
+    "text5": "⚠️ Trenutno niste v koraku testa proti goljufijam",
+    "text6": "⚠️ Trenutno niste v koraku pogojev storitve",
+    "text7": "⚠️ Opomba: Ta funkcija je na voljo le v Staging okolju.",
+    "text8": "⚠️ **Pošiljanje slik, videoposnetkov ali multimedije ni dovoljeno**\n\n",
+    "text9": "⚠️ Ta funkcija je na voljo le v Staging okolju.",
+    "userNotFound": "⚠️ Uporabnik ne obstaja, prosimo, registrirajte se najprej z uporabo /start.",
+    "userNotFound2": "⚠️ Uporabnik ne obstaja",
+    "vip": "⚠️ Dosegli ste omejitev za brezplačna povabila uporabnikov, nadgradite na VIP, da odblokirate omejitev 100 oseb!",
+    "vip2": "⚠️ Ta funkcija je na voljo samo članom VIP",
+    "vip3": "⚠️ **VIP se izteče danes**\n\n"
+  },
+  "BROADCAST": {
+    "FILTER_ERROR": "❌ Napaka formata.\nPrimer: `/broadcast_filter gender=female,country=TW test message`",
+    "NO_CONTENT": "❌ Vnesite vsebino za oddajanje.",
+    "NO_MATCHES": "⚠️ Ni uporabnikov, ki bi ustrezali kriterijem.\nKriteriji filtra: {filters}",
+    "TOO_MANY_USERS": "⚠️ Preveč ciljnih uporabnikov ({count} ljudi), trenutno je omejeno na pošiljanje {max} ljudem naenkrat.",
+    "START_SENDING": "🚀 Začinjamo oddajanje #{id}\n🎯 Cilj: {filters}\n👥 Število ljudi: {count}",
+    "COMPLETED": "✅ Oddajanje #{id} je zaključeno!\nUspešno: {sent}\nNeuspešno: {failed}\nBlokirano: {blocked}"
+  },
+  "push": {
+    "throwReminder": "🌊 Živjo! Minilo je nekaj časa, odkar si vrgel message bottle, plaža je zelo tiha...",
+    "catchReminder": "🎣 Nekatere nove message bottles so priplavale na plažo, želiš iti pogledat?",
+    "onboardingReminder": "👋 Tvoja registracija še ni končana, skoraj si tam! (Korak: {step})",
+    "messageReminderA": "👋 Hey {masked_partner_name} še vedno čaka na vaš odgovor! Ne pustite, da se pogovor ohladi～",
+    "messageReminderB": "📩 Imate neprebrano sporočilo od {masked_partner_name}:\n> \"{last_message_preview}...\"\n(To je že več kot 24 ur!)",
+    "messageReminderC": "⏳ {masked_partner_name} čaka na vaš odgovor...",
+    "actionReply": "💬 Odgovorite {masked_partner_name}",
+    "actionHistory": "📜 Oglejte si Kontekst"
+  },
+  "match": {
+    "header": {
+      "zodiac": "🌟 Razkrita Zodiakalna Ujemanja",
+      "mbti": "🧠 MBTI Osebnostna Resonanca",
+      "blood": "🩸 Analiza Krvne Skupine"
+    },
+    "reason": {
+      "zodiac": {
+        "fire_affinity": "Kot sorodne ognjene znamenja, vaša strast sveti svetlo in vaša povezanost je močna!",
+        "earth_affinity": "Stabilnost zemeljskih znamenj v kombinaciji z nežnostjo vodnih znamenj ustvarja popoln tok.",
+        "air_affinity": "Hitra narava zračnih znamenj se srečuje s strastjo ognjenih znamenj, kar navdihuje neskončno ustvarjalnost!",
+        "water_affinity": "čustva vodnih znamenj in praktičnost zemeljskih znamenj gradijo najtoplejšo podporo."
+      },
+      "mbti": {
+        "sj_affinity": "Družabniki (SJ) in Raziskovalci (SP), popoln dodatek stabilnosti in vznemirjenja!",
+        "sp_affinity": "Raziskovalci (SP) in Družabniki (SJ), najboljši partnerji za igralce in skrbnike!",
+        "nf_affinity": "Idealisti (NF) in Racionalisti (NT), globok trk duše in modrosti!",
+        "nt_affinity": "Racionalisti (NT) in Idealisti (NF), resonanca misli in občutkov!"
+      },
+      "blood": {
+        "a_affinity": "Natančnost tipa A se sreča z toleranco tipa O, kar ustvarja najbolj udobne interakcije.",
+        "b_affinity": "Samozaščita tipa B se sreča z brezskrbnostjo tipa O, brez stresa in sproščeno.",
+        "o_affinity": "Tip O in Tip B/A sta odlična dopolnilna partnerja!",
+        "ab_affinity": "Unikatna frekvenca AB najbolje razumejo njegovi vrstniki."
+      }
+    },
+    "template": {
+      "body": "{userAttribute},\nPo analizi imate najmočnejšo afiniteto z {recommendedAttributes}!\n\n💡 {reason}\n\n👇 Se počutite srečne?"
+    },
+    "btn": {
+      "throw": "🌊 Vrhni steklenico in poskusite srečo",
+      "vip_throw": "🎯 Vrzi na {target}",
+      "vip_upsell": "💡 Nadgradite na VIP, da določite dostavo na {target}, za natančno ujemanje!"
+    }
+  }
+};

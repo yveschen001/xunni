@@ -1,0 +1,130 @@
+export default {
+  "birthday": "⚠️ Doğum tarihi belirlendikten sonra değiştirilemez, lütfen doğru olduğunu onaylayın!",
+  "bloodType": "🩸 Kan grubu",
+  "gender": "👤 Cinsiyet：{otherUser.gender}",
+  "mbti": "🧠 MBTI：\\\\\\\\\\${mbti}",
+  "register2": "⚠️ Lütfen önce kaydı tamamlayın",
+  "register4": "⚠️ Kayıt tamamlanmadı",
+  "settings": "🧠 MBTI：\\\\\\\\\\\\$",
+  "text5": "📖 Biyografi：{otherUser.bio}",
+  "text6": "⚠️ Lütfen önce kaydı tamamlayın",
+  "userNotFound": "Kullanıcı mevcut değil",
+  "warning": {
+    "ad": "⚠️ Şu anda yapılandırılmış reklam sağlayıcı yok\n\n",
+    "ad2": "⚠️ Şu anda resmi reklam yok\n\n",
+    "ad3": "⚠️ Şu anda mevcut reklam sağlayıcısı yok",
+    "ad4": "⚠️ Reklam sağlayıcısı seçilemiyor",
+    "ad5": "⚠️ Daha fazla reklam görüntülenemiyor",
+    "birthday": "⚠️ Şu anda doğum tarihi giriş adımında değil",
+    "bloodType": "⚠️ Şu anda kan grubu seçme adımında değil",
+    "broadcast": "{stuckBroadcasts.results.length} ${stuckBroadcasts.results.length}\n\n",
+    "complete": "⚠️ Yeni birine başlamadan önce önceki reklamı tamamlayın",
+    "confirm": "⚠️ Lütfen doğum tarihi bilginizi onaylayın:\n\n",
+    "conversation": "⚠️ Sohbet bilgileri yanlış.",
+    "conversation10": "⚠️ Sohbet mevcut değil",
+    "conversation2": "⚠️ Sohbet bilgileri yanlış",
+    "conversation3": "⚠️ Bu kullanıcının sohbet geçmişi gönderisi yoktur\n",
+    "conversation4": "⚠️ Belirtilen sohbet bulunamıyor, sona ermiş veya süresi dolmuş olabilir.",
+    "conversation5": "⚠️ **Konuşma geçmişi kısmen güncellendi**\n\n",
+    "conversation6": "⚠️ Konuşma partneri tanımlanamıyor\n\n",
+    "conversation7": "⚠️ Bu konuşma bulunamıyor\n\n",
+    "conversation8": "⚠️ Sohbet mevcut değil veya sona ermiş",
+    "conversation9": "⚠️ Bu sohbet sona erdi",
+    "end": "⚠️ Test sona erdi veya mevcut değil",
+    "failed": "⚠️ Ödeme doğrulaması başarısız, lütfen daha sonra tekrar deneyin",
+    "gender": "⚠️ Şu anda cinsiyet seçim aşamasında değilsiniz",
+    "invite": "⚠️ Davet kodu alınamadı",
+    "mbti": "⚠️ Şu anda MBTI test aşamasında değilsiniz",
+    "mbti2": "⚠️ Geçersiz MBTI tipi",
+    "message": "⚠️ Yalnızca \\${outdatedPosts.length} güncellenmesi gereken eski gönderi bulundu\n",
+    "message2": "{testInfo} {testTitle} {accuracy} ${testInfo} ${testTitle} ${accuracy}\n\n",
+    "message3": "⚠️ Engellemek istediğiniz mesaja uzun basın ve komutla yanıtlayın\n\n",
+    "message4": "⚠️ Bildirmek istediğiniz mesaja uzun basın ve komutla yanıtlayın\n\n",
+    "message5": "⚠️ **Mesaj yasaklı bağlantılar içeriyor**\n\n",
+    "register": "⚠️ Kullanıcı profili bulunamadı, lütfen önce kaydolmak için /start komutunu kullanın.",
+    "register2": "⚠️ Lütfen önce kayıt işlemini tamamlayın.\n\nDevam etmek için /start kullanın.",
+    "register3": "⚠️ Kayıt işleminde bir sorun oluştu, lütfen yeniden başlatın: /start",
+    "register4": "⚠️ Lütfen önce kayıt işlemini tamamlayın",
+    "settings": "⚠️ Hatırlatma: Bir kez ayarlandığında, cinsiyet **asla değiştirilemez!**\n\n",
+    "settings2": "⚠️ Doğum tarihi ayarı değiştirilemez, lütfen doğru olduğunu onaylayın!",
+    "settings3": "⚠️ Not: Cinsiyet ayarı bundan sonra değiştirilemez, lütfen dikkatli seçin!",
+    "short": "⚠️ Soru sırası yanlış",
+    "short2": "⚠️ Bilinmeyen seçenek",
+    "short3": "⚠️ Geçersiz talep",
+    "short4": "⚠️ Takma ad uzunluğu sınırı 36 karakterdir",
+    "short5": "⚠️ Diğer ihlaller",
+    "start": "⚠️ Oturum süresi doldu, lütfen yeniden başlatın: /throw",
+    "start2": "⚠️ Oturum süresi doldu, lütfen yeniden başlatın",
+    "task": "⚠️ Bilinmeyen görev türü",
+    "text": "⚠️ **Not**\n\n",
+    "text10": "⚠️ **Değiştirilemeyen öğeler**:\n",
+    "text11": "⚠️ Oturum süresi doldu, lütfen tekrar işlem yapın",
+    "text12": "⚠️ Taslak mevcut değil veya süresi dolmuş",
+    "text2": "⚠️ Geçersiz ödeme türü",
+    "text3": "⚠️ Çeviri hizmeti geçici olarak mevcut değil, orijinal metin aşağıdaki gibidir\n",
+    "text4": "⚠️ Güvenlik hatırlatması:\n",
+    "text5": "⚠️ Şu anda dolandırıcılık testi aşamasında değilsiniz",
+    "text6": "⚠️ Şu anda hizmet şartları aşamasında değilsiniz",
+    "text7": "⚠️ Not: Bu özellik sadece Staging ortamında mevcuttur.",
+    "text8": "⚠️ **Görüntü, video veya multimedya göndermek yasaktır**\n\n",
+    "text9": "⚠️ Bu özellik yalnızca Staging ortamında mevcuttur.",
+    "userNotFound": "⚠️ Kullanıcı mevcut değil, lütfen önce kaydolmak için /start komutunu kullanın.",
+    "userNotFound2": "⚠️ Kullanıcı mevcut değil",
+    "vip": "⚠️ Ücretsiz kullanıcı davet sınırına ulaşıldı, 100 kişilik bir limiti açmak için VIP'e geçin!",
+    "vip2": "⚠️ Bu özellik yalnızca VIP üyeleri içindir",
+    "vip3": "⚠️ **VIP bugün sona eriyor**\n\n"
+  },
+  "BROADCAST": {
+    "FILTER_ERROR": "❌ Biçim hatası.\nÖrnek: `/broadcast_filter gender=female,country=TW test message`",
+    "NO_CONTENT": "❌ Lütfen yayın içeriğini girin.",
+    "NO_MATCHES": "⚠️ Kriterlere uyan kullanıcı bulunamadı.\nFiltre kriterleri: {filters}",
+    "TOO_MANY_USERS": "⚠️ Hedef kullanıcı sayısı fazla ({count} kişi), şu anda aynı anda {max} kişiye gönderim ile sınırlıdır.",
+    "START_SENDING": "🚀 Yayın başlatılıyor #{id}\n🎯 Hedef: {filters}\n👥 Kişi sayısı: {count}",
+    "COMPLETED": "✅ Yayın #{id} tamamlandı!\nBaşarılı: {sent}\nBaşarısız: {failed}\nEngellenmiş: {blocked}"
+  },
+  "push": {
+    "throwReminder": "🌊 Merhaba! Bir süre önce mesaj şişesi attın, plaj çok sessiz...",
+    "catchReminder": "🎣 Plaja bazı yeni mesaj şişeleri vurdu, onlara bakmaya gitmek ister misin?",
+    "onboardingReminder": "👋 Kaydınız henüz tamamlanmadı, neredeyse oradasınız! (Adım: {step})",
+    "messageReminderA": "👋 Hey {masked_partner_name}, hâlâ cevabını bekliyor! Sohbetin soğumasına izin verme～",
+    "messageReminderB": "📩 {masked_partner_name}'dan okumadığınız bir mesaj var:\n> \"{last_message_preview}...\"\n(Bu zamandan beri 24 saatten fazla oldu!)",
+    "messageReminderC": "⏳ {masked_partner_name} cevabınızı bekliyor...",
+    "actionReply": "💬 {masked_partner_name}’a cevap ver",
+    "actionHistory": "📜 Bağlamı Gör"
+  },
+  "match": {
+    "header": {
+      "zodiac": "🌟 Burç Uyumu Açıklandı",
+      "mbti": "🧠 MBTI Kişilik Rezonansı",
+      "blood": "🩸 Kan Grubu Kod Analizi"
+    },
+    "reason": {
+      "zodiac": {
+        "fire_affinity": "Ateş burçları olarak tutkunuz parlak yanıyor ve bağlantınız güçlü!",
+        "earth_affinity": "Toprak burçlarının istikrarı, su burçlarının nazikliği ile birleştiğinde mükemmel bir akış yaratır.",
+        "air_affinity": "Hava burçlarının çevikliği, ateş burçlarının tutkusuyla buluşarak sonsuz yaratıcılık ilhamı verir!",
+        "water_affinity": "Su burçlarının duyguları ve toprak burçlarının pratikliliği en sıcak desteği oluşturur."
+      },
+      "mbti": {
+        "sj_affinity": "Sosyalistler (SJ) ve Keşifçiler (SP), istikrar ve heyecanın mükemmel bir birleşimi!",
+        "sp_affinity": "Keşifçiler (SP) ve Sosyalistler (SJ), oyun arkadaşları ve bakıcıların en iyi partnerleri!",
+        "nf_affinity": "İdealistler (NF) ve Rasyonalistler (NT), ruh ve bilgelik arasında derin bir çarpışma!",
+        "nt_affinity": "Rasyonalistler (NT) ve İdealistler (NF), düşüncelerin ve duyguların rezonansı!"
+      },
+      "blood": {
+        "a_affinity": "Tip A'nın titizliği, Tip O'nun hoşgörüsüyle buluşarak en konforlu etkileşimleri yaratır.",
+        "b_affinity": "Tip B'nin kendine güveni, Tip O'nun rahat doğasıyla buluşur, stresiz ve gevşek.",
+        "o_affinity": "Tip O ve Tip B/A harika tamamlayıcı partnerlerdir!",
+        "ab_affinity": "AB'nin benzersiz frekansı, yalnızca kendi türü tarafından en iyi anlaşılır."
+      }
+    },
+    "template": {
+      "body": "{userAttribute},\nAnalizlere göre, en güçlü çekim gücüne sahip olduğunuz {recommendedAttributes} ile uyumlusunuz!\n\n💡 {reason}\n\n👇 Şanslı hissetmek mi?"
+    },
+    "btn": {
+      "throw": "🌊 Bir şişe at ve şansını dene",
+      "vip_throw": "🎯 {target}'a at",
+      "vip_upsell": "💡 Hedefe teslimat belirlemek için VIP'ye yükselin, tam eşleştirme için! {target}"
+    }
+  }
+};

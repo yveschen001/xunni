@@ -1,0 +1,130 @@
+export default {
+  "birthday": "⚠️ 生日设定后无法修改，请确认无误！",
+  "bloodType": "🩸 血型",
+  "gender": "👤 性别：{otherUser.gender}",
+  "mbti": "🧠 MBTI：\\\\\\\\\\${mbti}",
+  "register2": "⚠️ 请先完成注册",
+  "register4": "⚠️ 注册未完成",
+  "settings": "🧠 MBTI: \\\\\\\\\\\\$",
+  "text5": "📖 简介：{otherUser.bio}",
+  "text6": "⚠️ 请先完成注册",
+  "userNotFound": "用户不存在",
+  "warning": {
+    "ad": "⚠️ 目前没有配置任何广告提供商\n\n",
+    "ad2": "⚠️ 目前没有官方广告\n\n",
+    "ad3": "⚠️ 暂无可用的广告提供商",
+    "ad4": "⚠️ 无法选择广告提供商",
+    "ad5": "⚠️ 无法观看更多广告",
+    "birthday": "⚠️ 当前不在生日输入步骤",
+    "bloodType": "⚠️ 当前不在血型选择步骤",
+    "broadcast": "⚠️ 发现 \\${stuckBroadcasts.results.length} 个卡住的广播\n\n",
+    "complete": "⚠️ 请先完成上一支广告，再开始新的广告",
+    "confirm": "⚠️ 请确认你的生日资讯：\n\n",
+    "conversation": "⚠️ 对话资讯错误。",
+    "conversation10": "⚠️ 对话不存在",
+    "conversation2": "⚠️ 对话资讯错误",
+    "conversation3": "⚠️ 此用户没有对话历史帖子\n",
+    "conversation4": "⚠️ 找不到指定的对话，可能已结束或过期。",
+    "conversation5": "⚠️ **对话历史部分更新**\n\n",
+    "conversation6": "⚠️ 无法识别对话对象\n\n",
+    "conversation7": "⚠️ 找不到此对话\n\n",
+    "conversation8": "⚠️ 对话不存在或已结束",
+    "conversation9": "⚠️ 此对话已结束",
+    "end": "⚠️ 测验已结束或不存在",
+    "failed": "⚠️ 支付验证失败，请稍后再试",
+    "gender": "⚠️ 当前不在性别选择步骤",
+    "invite": "⚠️ 无法获取邀请码",
+    "mbti": "⚠️ 当前不在 MBTI 测验步骤",
+    "mbti2": "⚠️ 无效的 MBTI 类型",
+    "message": "⚠️ 发现 \\${outdatedPosts.length} 个过时帖子需要刷新\n",
+    "message2": "⚠️ 注意：这是 \\${testInfo}\\${testTitle}，\\${accuracy}。\n\n",
+    "message3": "⚠️ 请长按你要封锁的讯息后回覆指令\n\n",
+    "message4": "⚠️ 请长按你要举报的讯息后回覆指令\n\n",
+    "message5": "⚠️ **讯息包含不允许的连结**\n\n",
+    "register": "⚠️ 找不到用户资料，请先使用 /start 注册。",
+    "register2": "⚠️ 请先完成注册流程。\n\n使用 /start 继续注册。",
+    "register3": "⚠️ 注册流程出现问题，请重新开始：/start",
+    "register4": "⚠️ 请先完成注册流程",
+    "settings": "⚠️ 再次提醒：性别设定后将**永远不能修改**！\n\n",
+    "settings2": "⚠️ 生日设定后无法修改，请确认无误！",
+    "settings3": "⚠️ 注意：性别设定后无法修改，请谨慎选择！",
+    "short": "⚠️ 问题顺序错误",
+    "short2": "⚠️ 未知的选项",
+    "short3": "⚠️ 无效的请求",
+    "short4": "⚠️ 昵称长度限制 36 个字",
+    "short5": "⚠️ 其他违规",
+    "start": "⚠️ 会话已过期，请重新开始：/throw",
+    "start2": "⚠️ 会话已过期，请重新开始",
+    "task": "⚠️ 未知的任务类型",
+    "text": "⚠️ **注意**",
+    "text10": "⚠️ **不可修改项目**：\n",
+    "text11": "⚠️ 会话已过期，请重新操作",
+    "text12": "⚠️ 草稿不存在或已过期",
+    "text2": "⚠️ 无效的支付类型",
+    "text3": "⚠️ 翻译服务暂时无法使用，以下为原文\n",
+    "text4": "⚠️ 安全提醒:",
+    "text5": "⚠️ 当前不在反诈骗测验步骤",
+    "text6": "⚠️ 当前不在服务条款步骤",
+    "text7": "⚠️ 注意：此功能仅在 Staging 环境可用。",
+    "text8": "⚠️ **不允许发送图片、影片或多媒体**\n\n",
+    "text9": "⚠️ 此功能仅在 Staging 环境可用。",
+    "userNotFound": "⚠️ 用户不存在，请先使用 /start 注册。",
+    "userNotFound2": "⚠️ 用户不存在",
+    "vip": "⚠️ 已达免费用户邀请上限，升级 VIP 可解锁 100 人上限！",
+    "vip2": "⚠️ 此功能仅限 VIP 会员使用",
+    "vip3": "⚠️ **VIP今天到期**"
+  },
+  "BROADCAST": {
+    "FILTER_ERROR": "❌ 格式错误。\n示例：`/broadcast_filter gender=female,country=TW test message`",
+    "NO_CONTENT": "❌ 请输入广播内容。",
+    "NO_MATCHES": "⚠️ 找不到符合条件的用户。\n过滤条件：{filters}",
+    "TOO_MANY_USERS": "⚠️ 目标用户过多 ({count} 人)，目前限制单次发送 {max} 人。",
+    "START_SENDING": "🚀 开始发送广播 #{id}\n🎯 目标：{filters}\n👥 人数：{count} 人",
+    "COMPLETED": "✅ 广播 #{id} 完成！\n成功：{sent}\n失败：{failed}\n封锁：{blocked}"
+  },
+  "push": {
+    "throwReminder": "🌊 嘿！好久没丢瓶子了，海边很安静呢...",
+    "catchReminder": "🎣 海边漂来了一些新瓶子，要不要去看看？",
+    "onboardingReminder": "👋 你的注册还没完成，只差一点点了！ (步骤: {step})",
+    "messageReminderA": "👋 嘿 {masked_partner_name} 仍在等待你的回复！不要让对话冷却～",
+    "messageReminderB": "📩 你有一条来自 {masked_partner_name} 的未读消息：\n> \"{last_message_preview}...\"\n（已超过24小时！）",
+    "messageReminderC": "⏳ {masked_partner_name} 在等待你的回复...",
+    "actionReply": "💬 回复 {masked_partner_name}",
+    "actionHistory": "📜 查看上下文"
+  },
+  "match": {
+    "header": {
+      "zodiac": "🌟 星座匹配揭示",
+      "mbti": "🧠 MBTI人格共鸣",
+      "blood": "🩸 血型代码分析"
+    },
+    "reason": {
+      "zodiac": {
+        "fire_affinity": "作为同样的火象星座，你们的激情燃烧得强烈，彼此的连接也很紧密！",
+        "earth_affinity": "土象星座的稳定性与水象星座的温柔结合，创造出完美的流动。",
+        "air_affinity": "空气星座的灵活性与火象星座的激情相遇，激发无尽的创造力！",
+        "water_affinity": "水象星座的情感与土象星座的实用性构建出最温暖的支持。"
+      },
+      "mbti": {
+        "sj_affinity": "社交者(SJ)与探险者(SP)，稳定与兴奋的完美互补！",
+        "sp_affinity": "探险者(SP)与社交者(SJ)，游戏伙伴与照顾者的最佳搭档！",
+        "nf_affinity": "理想主义者(NF)与理性主义者(NT)，灵魂与智慧的深刻碰撞！",
+        "nt_affinity": "理性主义者(NT)与理想主义者(NF)，思想与情感的共鸣！"
+      },
+      "blood": {
+        "a_affinity": "A型的细致与O型的宽容相遇，创造出最舒适的互动。",
+        "b_affinity": "B型的自我主张与O型的随和性相遇，无压力和放松。",
+        "o_affinity": "O型与B/A型是极好的互补伙伴！",
+        "ab_affinity": "AB型独特的频率最好被同类理解。"
+      }
+    },
+    "template": {
+      "body": "{userAttribute},\n根据分析，你与 {recommendedAttributes} 的亲和力最强！\n\n💡 {reason}\n\n👇 感觉运气不错？"
+    },
+    "btn": {
+      "throw": "🌊 投掷漂流瓶，试试运气",
+      "vip_throw": "🎯 投掷给 {target}",
+      "vip_upsell": "💡 升级到VIP以指定投递给 {target}，实现精准匹配！"
+    }
+  }
+};

@@ -1,0 +1,21 @@
+export default {
+  "amount": "{stars} ${stars}",
+  "data": "{data} ${data}",
+  "daysLeft": "{days} ${days}",
+  "expireDate": "{date} ${date}",
+  "newExpireDate": "{date} ${date}",
+  "paymentFailed": "❌ **תשלום נכשל**",
+  "paymentId": "מזהה תשלום: `${id}`",
+  "reason": "סיבה: ${reason}",
+  "refundRequest": "🔴 **בקשת החזר כספי**",
+  "requestId": "מזהה בקשה: #${id}",
+  "systemNotification": "📢 **הודעת מערכת**",
+  "time": "זמן: ${time}",
+  "type": "סוג: ${type}",
+  "user": "משתמש: `${userId}`",
+  "viewRefundsHint": "💡 השתמשו ב /admin_refunds לפרטים",
+  "vipDowngraded": "⬇️ **ירידת דרגה אוטומטית ל-VIP**",
+  "vipPurchased": "🎉 **רכישת VIP חדשה**",
+  "vipReminderSent": "⏰ **תזכורת לפקיעת VIP נשלחה**",
+  "vipRenewed": "🔄 **חידוש VIP**"
+};

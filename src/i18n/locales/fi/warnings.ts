@@ -1,0 +1,130 @@
+export default {
+  "birthday": "⚠️ Syntymäpäivää ei voi muuttaa sen jälkeen kun se on asetettu, vahvista, että se on oikein!",
+  "bloodType": "🩸 Veriryhmä",
+  "gender": "👤 Sukupuoli: {otherUser.gender}",
+  "mbti": "🧠 MBTI：\\\\\\\\\\${mbti}",
+  "register2": "⚠️ Ole hyvä ja завершай rekisteröinti ensin",
+  "register4": "⚠️ Rekisteröinti ei ole valmis",
+  "settings": "🧠 MBTI: \\\\\\\\\\\\$",
+  "text5": "📖 Esittely: {otherUser.bio}",
+  "text6": "[Requires translation: warnings.text6]",
+  "userNotFound": "Käyttäjää ei ole olemassa",
+  "warning": {
+    "ad": "⚠️ Tällä hetkellä ei ole määriteltyjä mainospalveluntarjoajia\n\n",
+    "ad2": "⚠️ Tällä hetkellä ei ole virallisia mainoksia\n\n",
+    "ad3": "⚠️ Tällä hetkellä ei ole saatavilla mainospalveluntarjoajia",
+    "ad4": "⚠️ Mainospalveluntarjoajaa ei voi valita",
+    "ad5": "⚠️ Enemmän mainoksia ei voi katsoa",
+    "birthday": "⚠️ Tällä hetkellä ei ole syntymäpäivätietovaiheessa",
+    "bloodType": "⚠️ Tällä hetkellä ei ole verityypin valintavaiheessa",
+    "broadcast": "⚠️ Löydetty \\${stuckBroadcasts.results.length} jumissa olevaa lähetysohjelmaa\n\n",
+    "complete": "⚠️ Ole hyvä ja suorita edellinen ilmoitus ennen uuden aloittamista",
+    "confirm": "⚠️ Ole hyvä ja vahvista syntymäpäivätietosi:\n\n",
+    "conversation": "⚠️ Keskustelutiedot ovat virheelliset.",
+    "conversation10": "⚠️ Keskustelua ei ole olemassa",
+    "conversation2": "⚠️ Keskustelutiedot ovat virheelliset",
+    "conversation3": "⚠️ Tällä käyttäjällä ei ole keskusteluhistorian julkaisuja\n",
+    "conversation4": "⚠️ Määritettyä keskustelua ei löytynyt, se on saattanut päättyä tai vanhentua.",
+    "conversation5": "⚠️ **Keskusteluhistoria päivitetty osittain**\n\n",
+    "conversation6": "⚠️ Keskustelukumppania ei voida tunnistaa\n\n",
+    "conversation7": "⚠️ Tätä keskustelua ei löytynyt\n\n",
+    "conversation8": "⚠️ Keskustelua ei ole olemassa tai se on päättynyt",
+    "conversation9": "⚠️ Tämä keskustelu on päättynyt",
+    "end": "⚠️ Testi on päättynyt tai ei olemassa.",
+    "failed": "⚠️ Maksuvahvistus epäonnistui, yritä myöhemmin uudelleen.",
+    "gender": "⚠️ Et ole tällä hetkellä sukupuolen valintavaiheessa.",
+    "invite": "⚠️ Kutsukoodin hakeminen epäonnistui.",
+    "mbti": "⚠️ Et ole tällä hetkellä MBTI-testivaiheessa.",
+    "mbti2": "⚠️ Virheellinen MBTI-tyyppi.",
+    "message": "⚠️ Löydettiin \\${outdatedPosts.length} vanhentunutta postausta, jotka tulee päivittää\n",
+    "message2": "⚠️ Huomio: Tämä on \\${testInfo}\\${testTitle}, \\${accuracy}.\n\n",
+    "message3": "⚠️ Ole hyvä ja pidä pitkään painettuna estettävää viestiä ja vastaa komennolla\n\n",
+    "message4": "⚠️ Ole hyvä ja pidä pitkään painettuna raportoitavaa viestiä ja vastaa komennolla\n\n",
+    "message5": "⚠️ **Viesti sisältää kiellettyjä linkkejä**\n\n",
+    "register": "⚠️ Käyttäjäprofiilia ei löydy, rekisteröidy ensin käyttämällä /start.",
+    "register2": "⚠️ Ole hyvä ja suorita rekisteröintiprosessi ensin.\n\nKäytä /start jatkaaksesi rekisteröintiä.",
+    "register3": "⚠️ Rekisteröintiprosessissa tapahtui ongelma, käynnistä se uudelleen: /start",
+    "register4": "⚠️ Ole hyvä ja suorita rekisteröintiprosessi ensin",
+    "settings": "⚠️ Muistutus: Kun sukupuoli on asetettu, sitä **ei voi muuttaa** koskaan!\n\n",
+    "settings2": "⚠️ Syntymäpäiväasetuksia ei voi muuttaa, vahvista!",
+    "settings3": "⚠️ Huom: Sukupuolen asetuksia ei voi muuttaa, valitse huolellisesti!",
+    "short": "⚠️ Väärä kysymysten järjestys",
+    "short2": "⚠️ Tuntematon vaihtoehto",
+    "short3": "⚠️ Virheellinen pyyntö",
+    "short4": "⚠️ Nimimerkin pituusrajoitus on 36 merkkiä",
+    "short5": "⚠️ Muita rikkomuksia",
+    "start": "⚠️ Istunto on vanhentunut, käynnistä se uudelleen: /throw",
+    "start2": "⚠️ Istunto on vanhentunut, käynnistä se uudelleen",
+    "task": "⚠️ Tuntematon tehtävätyyppi",
+    "text": "⚠️ **Huomio**\n\n",
+    "text10": "⚠️ **Muuttamattomat kohteet**:\n",
+    "text11": "⚠️ Istunto on vanhentunut, yritä uudelleen",
+    "text12": "⚠️ Luonnosta ei ole olemassa tai se on vanhentunut",
+    "text2": "⚠️ Virheellinen maksutyyppi",
+    "text3": "⚠️ Käännöspalvelu ei ole tilapäisesti käytettävissä, alkuperäinen teksti on alla\n",
+    "text4": "⚠️ Turvallisuusmuistutus:\n",
+    "text5": "⚠️ Et ole tällä hetkellä petostonestotestivaiheessa",
+    "text6": "⚠️ Et ole tällä hetkellä palveluehtovaiheessa",
+    "text7": "⚠️ Huom: Tämä ominaisuus on saatavilla vain Staging-ympäristössä.",
+    "text8": "⚠️ **Kuvien, videoiden tai monimedia sisällön lähettäminen ei ole sallittua**\n\n",
+    "text9": "⚠️ Tämä ominaisuus on saatavilla vain Staging-ympäristössä.",
+    "userNotFound": "⚠️ Käyttäjää ei ole olemassa, rekisteröidy ensin käyttämällä /start.",
+    "userNotFound2": "⚠️ Käyttäjää ei ole olemassa",
+    "vip": "⚠️ Kutsuraja ilmaisille käyttäjille saavutettu, päivitä VIP:ksi, jotta voit avata 100 henkilön rajan!",
+    "vip2": "⚠️ Tämä ominaisuus on vain VIP-jäsenille",
+    "vip3": "⚠️ **VIP vanhentuu tänään**\n\n"
+  },
+  "BROADCAST": {
+    "FILTER_ERROR": "❌ Muotoilivirhe.\nEsimerkki: `/broadcast_filter gender=female,country=TW test message`",
+    "NO_CONTENT": "❌ Ole hyvä ja syötä lähetys sisältö.",
+    "NO_MATCHES": "⚠️ Kriteerejä vastaavia käyttäjiä ei löytynyt.\nSuodatin-kriteerit: {filters}",
+    "TOO_MANY_USERS": "⚠️ Liian monta kohdekäyttäjää ({count} henkilöä), rajoitettu tällä hetkellä {max} henkilölle kerrallaan.",
+    "START_SENDING": "🚀 Aloitetaan lähetys #{id}\n🎯 Kohteet: {filters}\n👥 Henkilöiden määrä: {count}",
+    "COMPLETED": "✅ Lähetys #{id} valmis!\nOnnistuneet: {sent}\nEpäännistuneet: {failed}\nEstetyt: {blocked}"
+  },
+  "push": {
+    "throwReminder": "🌊 Hei! On kulunut aikaa siitä, kun heitit pullopostia, ranta on hyvin hiljainen...",
+    "catchReminder": "🎣 Joitakin uusia pulloposteja on huuhtoutunut rannalle, haluatko mennä katsomaan niitä?",
+    "onboardingReminder": "👋 Rekisteröintisi ei ole vielä valmis, olet melkein perillä! (Vaihe: {step})",
+    "messageReminderA": "👋 Hei {masked_partner_name}, odottaa yhä vastaustasi! Älä anna keskustelun viilentyä～",
+    "messageReminderB": "📩 Sinulla on lukematon viesti {masked_partner_name}ltä:\n> \"{last_message_preview}...\"\n(Olenut yli 24 tuntia!)",
+    "messageReminderC": "⏳ {masked_partner_name} odottaa vastaustasi...",
+    "actionReply": "💬 Vastaa {masked_partner_name}lle",
+    "actionHistory": "📜 Näytä konteksti"
+  },
+  "match": {
+    "header": {
+      "zodiac": "🌟 Horoskooppisynkronointi paljastettu",
+      "mbti": "🧠 MBTI Persoonallisuusresonanssi",
+      "blood": "🩸 Veriryhmäkoodianalyysi"
+    },
+    "reason": {
+      "zodiac": {
+        "fire_affinity": "Yhteisen tulimerkin edustajina intohimosi palaa kirkkaasti ja yhteytesi on vahva!",
+        "earth_affinity": "Maamerkkien vakaus yhdistettynä vesimerkkien lempeyteen luo täydellisen virtauksen.",
+        "air_affinity": "Ilmamerkkien ketteryys kohtaa tulimerkkien intohimon, inspiroiden loputonta luovuutta!",
+        "water_affinity": "Vesimerkkien tunteet ja maamerkkien käytännöllisyys rakentavat lämpimimmän tuen."
+      },
+      "mbti": {
+        "sj_affinity": "Sosiaaliset tyylit (SJ) ja tutkia (SP), täydellinen yhdistelmä vakautta ja jännitystä!",
+        "sp_affinity": "Tutkijat (SP) ja sosiaaliset tyylit (SJ), parhaita leikkikavereiden ja hoitajien kumppaneita!",
+        "nf_affinity": "Idealistit (NF) ja rationalistit (NT), syvä sielun ja viisauden törmäys!",
+        "nt_affinity": "Rationalistit (NT) ja idealistit (NF), ajatusten ja tunteiden resonanssi!"
+      },
+      "blood": {
+        "a_affinity": "Tyyppi A:n huolellisuus kohtaa tyyppi O:n suvaitsevaisuuden, luoden mukavimpia vuorovaikutuksia.",
+        "b_affinity": "Tyyppi B:n itsevarmuus kohtaa tyyppi O:n rentouden, stressitöntä ja rauhoittavaa.",
+        "o_affinity": "Tyyppi O ja tyyppi B/A ovat loistavia täydentäviä kumppaneita!",
+        "ab_affinity": "AB:n ainutlaatuista taajuutta ymmärtää parhaiten sen oma väki."
+      }
+    },
+    "template": {
+      "body": "{userAttribute},\nAnalyysin mukaan sinulla on vahvin yhteys {recommendedAttributes}n kanssa!\n\n💡 {reason}\n\n👇 Tunnetko onnea?"
+    },
+    "btn": {
+      "throw": "🌊 Heitä pullo ja ota riski",
+      "vip_throw": "🎯 Heitä {target}lle",
+      "vip_upsell": "💡 Päivitä VIP:ksi, jotta voit määrittää toimituksen {target}lle, tarkkaa matchausta varten!"
+    }
+  }
+};

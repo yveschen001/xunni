@@ -1,0 +1,21 @@
+export default {
+  "amount": "Iznos: ${stars} ⭐",
+  "data": "Podaci: ${data}",
+  "daysLeft": "Preostalo: ${days} dana",
+  "expireDate": "Istek: ${date}",
+  "newExpireDate": "Novo isteknuće: ${date}",
+  "paymentFailed": "❌ **Plaćanje nije uspjelo**",
+  "paymentId": "ID Plaćanja: `${id}`",
+  "reason": "Razlog: ${reason}",
+  "refundRequest": "🔴 **Zahtjev za povrat**",
+  "requestId": "ID Zahtjeva: #${id}",
+  "systemNotification": "📢 **Obavijest sustava**",
+  "time": "Vrijeme: ${time}",
+  "type": "Vrsta: ${type}",
+  "user": "Korisnik: `${userId}`",
+  "viewRefundsHint": "💡 Koristite /admin_refunds za detalje",
+  "vipDowngraded": "⬇️ **VIP automatsko smanjenje**",
+  "vipPurchased": "🎉 **Nova VIP kupnja**",
+  "vipReminderSent": "⏰ **Podsjetnik na isteke VIP-a poslan**",
+  "vipRenewed": "🔄 **Obnova VIP-a**"
+};

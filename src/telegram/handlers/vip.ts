@@ -51,6 +51,7 @@ export async function handleVip(message: TelegramMessage, env: Env): Promise<voi
 
     const i18n = createI18n(user.language_pref || 'zh-TW');
     const priceStars = resolveVipPrice(env);
+    const originalPrice = priceStars * 5;
     const priceNote =
       priceStars === DEFAULT_VIP_PRICE_STARS ? i18n.t('vip.short') : i18n.t('vip.text28');
 
@@ -95,7 +96,7 @@ export async function handleVip(message: TelegramMessage, env: Env): Promise<voi
           '\n\n' +
           i18n.t('common.backToMainMenu'),
         [
-          [{ text: i18n.t('vip.vip4', { priceStars }), callback_data: 'vip_renew' }],
+          [{ text: i18n.t('vip.vip4', { priceStars, originalPrice }), callback_data: 'vip_renew' }],
           [{ text: i18n.t('buttons.viewPayments'), callback_data: 'payments_page_1' }],
           [{ text: i18n.t('common.back3'), callback_data: 'return_to_menu' }],
         ]
@@ -105,7 +106,7 @@ export async function handleVip(message: TelegramMessage, env: Env): Promise<voi
         chatId,
         i18n.t('vip.vip10') +
           '\n\n' +
-          i18n.t('vip.message8', { priceStars }) +
+          i18n.t('vip.message8', { priceStars, originalPrice }) +
           '\n' +
           priceNote +
           '\n\n' +
@@ -129,7 +130,7 @@ export async function handleVip(message: TelegramMessage, env: Env): Promise<voi
           '\n\n' +
           i18n.t('common.backToMainMenu'),
         [
-          [{ text: i18n.t('vip.vip5', { priceStars }), callback_data: 'vip_purchase' }],
+          [{ text: i18n.t('vip.vip5', { priceStars, originalPrice }), callback_data: 'vip_purchase' }],
           [{ text: i18n.t('buttons.viewPayments'), callback_data: 'payments_page_1' }],
           [{ text: i18n.t('common.back3'), callback_data: 'return_to_menu' }],
         ]
@@ -248,6 +249,7 @@ async function sendVipInvoice(
   }
 
   const priceStars = resolveVipPrice(env);
+  const originalPrice = priceStars * 5;
 
   // Check if subscription is enabled (requires BotFather setup)
   const enableSubscription = env.ENABLE_VIP_SUBSCRIPTION === 'true';
@@ -296,6 +298,13 @@ async function sendVipInvoice(
       amount: priceStars,
     },
   ];
+
+  // Add original price visualization for one-time payments if supported by UI (label only)
+  // For subscriptions, showing original price in label might be confusing if UI shows amount.
+  // The actual charge is priceStars.
+  if (!enableSubscription) {
+     prices[0].label = `${prices[0].label} (Original ${originalPrice} Stars -80%)`;
+  }
 
   const paymentService = new PaymentService(env);
   

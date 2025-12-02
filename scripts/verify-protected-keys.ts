@@ -1,5 +1,5 @@
 
-import { translations } from '../src/i18n/locales/zh-TW';
+import { translations } from '../src/i18n/locales/zh-TW/index';
 
 const PROTECTED_KEYS = [
   // Menu & Profile
@@ -28,10 +28,16 @@ const PROTECTED_KEYS = [
   
   // Common
   'common.back3',
+  'common.saved_to_history',
+  'common.analyzing',
+  'common.date',
   'common.unknown',
+  'common.processing',
+  'common.continue_op',
 
   // Success
   'success.text6',
+  'success.bottleThrown',
 
   // Interests
   'interests.title',
@@ -39,6 +45,17 @@ const PROTECTED_KEYS = [
   'interests.current',
   'interests.save',
   'interests.categories.life',
+
+  // Fortune
+  'fortune.type.daily',
+  'fortune.type.weekly',
+  'fortune.type.ziwei',
+  'fortune.type.astrology',
+  'fortune.type.tarot',
+  'fortune.backToMenu',
+  'fortune.back_to_menu',
+  'fortune.love.invite_friend',
+  'fortune.love.error_not_found',
 
   // Edit Profile
   'edit_profile.bioInstruction',

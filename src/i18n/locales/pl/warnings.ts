@@ -1,0 +1,130 @@
+export default {
+  "birthday": "⚠️ Data urodzenia nie może być modyfikowana po ustawieniu, proszę potwierdzić, że jest poprawna!",
+  "bloodType": "🩸 Typ krwi",
+  "gender": "👤 Płeć：{otherUser.gender}",
+  "mbti": "🧠 MBTI：\\\\\\\\\\${mbti}",
+  "register2": "⚠️ Proszę najpierw dokończyć rejestrację",
+  "register4": "⚠️ Rejestracja nie została zakończona",
+  "settings": "🧠 MBTI：\\\\\\\\\\\\$",
+  "text5": "📖 Biografia：{otherUser.bio}",
+  "text6": "⚠️ Proszę najpierw zakończyć rejestrację",
+  "userNotFound": "Użytkownik nie istnieje",
+  "warning": {
+    "ad": "⚠️ Obecnie nie skonfigurowano dostawców reklam\n\n",
+    "ad2": "⚠️ Obecnie brak oficjalnych reklam\n\n",
+    "ad3": "⚠️ Obecnie brak dostępnych dostawców reklam",
+    "ad4": "⚠️ Nie można wybrać dostawcy reklamy",
+    "ad5": "⚠️ Nie można oglądać więcej reklam",
+    "birthday": "⚠️ Obecnie nie jesteś na etapie wprowadzania daty urodzenia",
+    "bloodType": "⚠️ Obecnie nie jesteś na etapie wyboru typu krwi",
+    "broadcast": "⚠️ Znaleziono \\${stuckBroadcasts.results.length} utknęte transmisje\n\n",
+    "complete": "⚠️ Proszę dokończyć poprzednią reklamę przed rozpoczęciem nowej reklamy",
+    "confirm": "⚠️ Proszę potwierdzić swoje dane urodzenia:\n\n",
+    "conversation": "⚠️ Błąd informacji o rozmowie.",
+    "conversation10": "⚠️ Rozmowa nie istnieje",
+    "conversation2": "⚠️ Błąd informacji o rozmowie",
+    "conversation3": "⚠️ Ten użytkownik nie ma żadnych postów z historią rozmowy\n",
+    "conversation4": "⚠️ Nie można znaleźć określonej rozmowy, mogła się zakończyć lub wygasnąć.",
+    "conversation5": "⚠️ **Historia rozmów częściowo zaktualizowana**\n\n",
+    "conversation6": "⚠️ Nie można zidentyfikować partnera rozmowy\n\n",
+    "conversation7": "⚠️ Nie można znaleźć tej rozmowy\n\n",
+    "conversation8": "⚠️ Rozmowa nie istnieje lub się zakończyła",
+    "conversation9": "⚠️ Ta rozmowa się zakończyła",
+    "end": "⚠️ Test zakończony lub nie istnieje",
+    "failed": "⚠️ Weryfikacja płatności nie powiodła się, spróbuj ponownie później",
+    "gender": "⚠️ Obecnie nie jesteś na etapie wyboru płci",
+    "invite": "⚠️ Nie można pobrać kodu zaproszenia",
+    "mbti": "⚠️ Obecnie nie jesteś na etapie testu MBTI",
+    "mbti2": "⚠️ Nieprawidłowy typ MBTI",
+    "message": "⚠️ Wykryto \\${outdatedPosts.length} przestarzałych postów, które należy odświeżyć\n",
+    "message2": "⚠️ Uwaga: To jest \\${testInfo}\\${testTitle}, \\${accuracy}.\n\n",
+    "message3": "⚠️ Proszę długoterminowo nacisnąć wiadomość, którą chcesz zablokować i odpowiedzieć komendą\n\n",
+    "message4": "⚠️ Proszę długoterminowo nacisnąć wiadomość, którą chcesz zgłosić i odpowiedzieć komendą\n\n",
+    "message5": "⚠️ **Wiadomość zawiera zabronione linki**\n\n",
+    "register": "⚠️ Profil użytkownika nie został znaleziony, najpierw zarejestruj się używając /start.",
+    "register2": "⚠️ Najpierw zakończ proces rejestracji.\n\nUżyj /start, aby kontynuować rejestrację.",
+    "register3": "⚠️ Wystąpił problem z procesem rejestracji, spróbuj ponownie: /start",
+    "register4": "⚠️ Najpierw zakończ proces rejestracji",
+    "settings": "⚠️ Przypomnienie: Po ustawieniu płci **nie może być zmieniana** na zawsze!\n\n",
+    "settings2": "⚠️ Ustawienie daty urodzin nie może być zmieniane, proszę potwierdzić, że jest poprawne!",
+    "settings3": "⚠️ Uwaga: Ustawienie płci nie może być zmieniane, wybierz ostrożnie!",
+    "short": "⚠️ Nieprawidłowa kolejność pytań",
+    "short2": "⚠️ Nieznana opcja",
+    "short3": "⚠️ Nieprawidłowe żądanie",
+    "short4": "⚠️ Limit długości pseudonimu wynosi 36 znaków",
+    "short5": "⚠️ Inne naruszenia",
+    "start": "⚠️ Sesja wygasła, proszę uruchomić ponownie: /throw",
+    "start2": "⚠️ Sesja wygasła, proszę uruchomić ponownie",
+    "task": "⚠️ Nieznany typ zadania",
+    "text": "⚠️ **Uwaga**\n\n",
+    "text10": "⚠️ **Elementy, które nie mogą być modyfikowane**:\n",
+    "text11": "⚠️ Sesja wygasła, spróbuj ponownie",
+    "text12": "⚠️ Szkic nie istnieje lub wygasł",
+    "text2": "⚠️ Nieprawidłowy typ płatności",
+    "text3": "⚠️ Usługa tłumaczenia tymczasowo niedostępna, oto oryginalny tekst\n",
+    "text4": "⚠️ Przypomnienie o bezpieczeństwie:\n",
+    "text5": "⚠️ Obecnie nie jesteś na etapie testu antyfraudowego",
+    "text6": "⚠️ Obecnie nie jesteś na etapie regulaminu",
+    "text7": "⚠️ Uwaga: Ta funkcja jest dostępna tylko w środowisku Staging.",
+    "text8": "⚠️ **Wysyłanie obrazów, filmów lub multimediów jest zabronione**\n\n",
+    "text9": "⚠️ Ta funkcja jest dostępna tylko w środowisku Staging.",
+    "userNotFound": "⚠️ Użytkownik nie istnieje, najpierw zarejestruj się używając /start.",
+    "userNotFound2": "⚠️ Użytkownik nie istnieje",
+    "vip": "⚠️ Osiągnięto limit darmowych zaproszeń dla użytkowników, przejdź na VIP, aby odblokować limit 100 osób!",
+    "vip2": "⚠️ Ta funkcja jest dostępna tylko dla członków VIP",
+    "vip3": "⚠️ **VIP wygasa dzisiaj**\n\n"
+  },
+  "BROADCAST": {
+    "FILTER_ERROR": "❌ Błąd formatu.\nPrzykład: `/broadcast_filter gender=female,country=TW test message`",
+    "NO_CONTENT": "❌ Proszę wprowadzić treść transmisji.",
+    "NO_MATCHES": "⚠️ Nie znaleziono użytkowników odpowiadających kryteriom.\nKryteria filtru: {filters}",
+    "TOO_MANY_USERS": "⚠️ Zbyt wielu docelowych użytkowników ({count} osób), obecnie ograniczone do wysyłania do {max} osób naraz.",
+    "START_SENDING": "🚀 Rozpoczęcie transmisji #{id}\n🎯 Cel: {filters}\n👥 Liczba osób: {count}",
+    "COMPLETED": "✅ Transmisja #{id} zakończona!\nSukces: {sent}\nNieudane: {failed}\nZablokowane: {blocked}"
+  },
+  "push": {
+    "throwReminder": "🌊 Hej! Minęło trochę czasu od kiedy wrzuciłeś butelkę z wiadomością, plaża jest bardzo cicha...",
+    "catchReminder": "🎣 Na plaży pojawiły się nowe butelki z wiadomościami, chcesz je sprawdzić?",
+    "onboardingReminder": "👋 Twoja rejestracja nie jest jeszcze zakończona, jesteś prawie tam! (Krok: {step})",
+    "messageReminderA": "👋 Hej {masked_partner_name}, wciąż czekasz na odpowiedź! Nie pozwól, aby rozmowa ostygła～",
+    "messageReminderB": "📩 Masz nieprzeczytaną wiadomość od {masked_partner_name}:\n> \"{last_message_preview}...\"\n(To już ponad 24 godziny!)",
+    "messageReminderC": "⏳ {masked_partner_name} czeka na twoją odpowiedź...",
+    "actionReply": "💬 Odpowiedz {masked_partner_name}",
+    "actionHistory": "📜 Zobacz kontekst"
+  },
+  "match": {
+    "header": {
+      "zodiac": "🌟 Odsłonięte dopasowanie zodiakalne",
+      "mbti": "🧠 Resonans osobowości MBTI",
+      "blood": "🩸 Analiza kodu grupy krwi"
+    },
+    "reason": {
+      "zodiac": {
+        "fire_affinity": "Jako znaki ognia, wasza pasja płonie jasno, a wasze połączenie jest silne!",
+        "earth_affinity": "Stabilność znaków ziemi w połączeniu z delikatnością znaków wodnych tworzy idealny przepływ.",
+        "air_affinity": "Zwinność znaków powietrza spotyka pasję znaków ognia, inspirując niekończącą się kreatywność!",
+        "water_affinity": "Emocje znaków wodnych i praktyczność znaków ziemi budują najcieplejsze wsparcie."
+      },
+      "mbti": {
+        "sj_affinity": "Socjalizatorzy (SJ) i Odkrywcy (SP), idealne połączenie stabilności i ekscytacji!",
+        "sp_affinity": "Odkrywcy (SP) i Socjalizatorzy (SJ), najlepsi partnerzy do zabawy i opieki!",
+        "nf_affinity": "Idealistów (NF) i Racjonalistów (NT) łączy głęboka kolizja duszy i mądrości!",
+        "nt_affinity": "Racjonaliści (NT) i Idealiści (NF) to rezonans myśli i uczuć!"
+      },
+      "blood": {
+        "a_affinity": "Dokładność typów A spotyka tolerancję typów O, tworząc najwygodniejsze interakcje.",
+        "b_affinity": "Asertywność typów B spotyka wyluzowaną naturę typów O, bezstresowo i w relaksie.",
+        "o_affinity": "Typ O i Typ B/A to świetni partnerzy do uzupełniania się!",
+        "ab_affinity": "Unikalna częstotliwość AB najlepiej rozumiana jest przez rówieśników."
+      }
+    },
+    "template": {
+      "body": "{userAttribute},\nZgodnie z analizą, masz najsilniejszą więź z {recommendedAttributes}!\n\n💡 {reason}\n\n👇 Czujesz szczęście?"
+    },
+    "btn": {
+      "throw": "🌊 Rzuć butelkę z wiadomością i spróbuj szczęścia",
+      "vip_throw": "🎯 Rzuć do {target}",
+      "vip_upsell": "💡 Przejdź na VIP, aby wyznaczyć dostawę do {target}, dla precyzyjnego dopasowania!"
+    }
+  }
+};

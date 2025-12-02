@@ -1,0 +1,22 @@
+export default {
+  "afterRegistration": "💡 Após completar o registro, você pode:\n",
+  "answerRecorded": "✅ Registrado",
+  "completion": "🎉 {testTitle} Concluído!\n\n",
+  "fullAccuracy": "Resultados mais precisos",
+  "fullQuestions": "36 perguntas",
+  "fullTest": "Complete o teste MBTI",
+  "fullTestInfo": "💡 Este é o teste completo ({questions}), e os resultados são mais precisos.\nApós concluir o registro, você pode refazer o teste usando /mbti.",
+  "fullTestTitle": "Teste completo",
+  "manualModify": "• Modificar manualmente seu tipo MBTI",
+  "moreDetailedTest": "• Fazer um teste mais detalhado\n",
+  "note": "⚠️ Nota: Este é {testInfo}{testTitle}, {accuracy}.\n\n",
+  "questionOrderError": "⚠️ Ordem das perguntas incorreta",
+  "questions12": "12 perguntas",
+  "questions36": "36 perguntas",
+  "quickAccuracy": "Resultados apenas para referência",
+  "quickQuestions": "12 perguntas",
+  "quickTest": "Teste MBTI rápido",
+  "quickTestInfo": "💡 Este é um questionário rápido ({questions}), e os resultados são apenas para referência.\nApós concluir o registro, você pode refazer o questionário através de /mbti.",
+  "quickTestTitle": "Teste rápido",
+  "yourMbtiType": "Seu tipo MBTI é: **{type}**\n\n"
+};

@@ -1,0 +1,130 @@
+export default {
+  "birthday": "⚠️ Fødselsdato kan ikke endres når den er satt, vennligst bekreft at den er korrekt!",
+  "bloodType": "🩸 Blodtype",
+  "gender": "👤 Kjønn: {otherUser.gender}",
+  "mbti": "🧠 MBTI：\\\\\\\\\\${mbti}",
+  "register2": "⚠️ Vennligst fullfør registreringen først",
+  "register4": "⚠️ Registrering ikke fullført",
+  "settings": "🧠 MBTI: \\\\\\\\\\\\$",
+  "text5": "📖 Bio: {otherUser.bio}",
+  "text6": "⚠️ Vennligst fullfør registreringen først",
+  "userNotFound": "Brukeren eksisterer ikke",
+  "warning": {
+    "ad": "⚠️ For øyeblikket ingen annonseleverandører konfigurert\n\n",
+    "ad2": "⚠️ For øyeblikket ingen offisielle annonser\n\n",
+    "ad3": "⚠️ Ingen tilgjengelige annonseleverandører for øyeblikket",
+    "ad4": "⚠️ Klarer ikke å velge annonseleverandør",
+    "ad5": "⚠️ Klarer ikke å se flere annonser",
+    "birthday": "⚠️ For øyeblikket ikke i trinnet for inntasting av fødselsdato",
+    "bloodType": "⚠️ For øyeblikket ikke i trinnet for valg av blodtype",
+    "broadcast": "⚠️ Fant \\${stuckBroadcasts.results.length} fastlåste sendinger\n\n",
+    "complete": "⚠️ Vennligst fullfør den forrige annonsen før du starter en ny",
+    "confirm": "⚠️ Vennligst bekreft din fødselsdagsinformasjon:\n\n",
+    "conversation": "⚠️ Samtaleinformasjonen er feil.",
+    "conversation10": "⚠️ Samtalen eksisterer ikke",
+    "conversation2": "⚠️ Informasjonen om samtalen er feil",
+    "conversation3": "⚠️ Denne brukeren har ingen samtalehistorikk innlegg\n",
+    "conversation4": "⚠️ Kan ikke finne den spesifiserte samtalen, den kan ha avsluttet eller utløpt.",
+    "conversation5": "⚠️ **Samtalehistorikk delvis oppdatert**\n\n",
+    "conversation6": "⚠️ Klarer ikke å identifisere samtalepartner\n\n",
+    "conversation7": "⚠️ Kan ikke finne denne samtalen\n\n",
+    "conversation8": "⚠️ Samtalen eksisterer ikke eller har avsluttet",
+    "conversation9": "⚠️ Denne samtalen har avsluttet",
+    "end": "⚠️ Testen har avsluttet eller eksisterer ikke.",
+    "failed": "⚠️ Betalingsverifisering mislyktes, vennligst prøv igjen senere.",
+    "gender": "⚠️ Er for øyeblikket ikke i kjønnvalgtrinnet.",
+    "invite": "⚠️ Kan ikke hente invitasjonskode.",
+    "mbti": "⚠️ Er for øyeblikket ikke i MBTI-testtrinnet.",
+    "mbti2": "⚠️ Ugyldig MBTI-type.",
+    "message": "⚠️ Fant \\${outdatedPosts.length} utdaterte innlegg som trenger oppdatering\n",
+    "message2": "⚠️ Merk: Dette er \\${testInfo}\\${testTitle}, \\${accuracy}.\n\n",
+    "message3": "⚠️ Vennligst trykk lenge på meldingen du ønsker å blokkere og svar med kommandoen\n\n",
+    "message4": "⚠️ Vennligst trykk lenge på meldingen du ønsker å rapportere og svar med kommandoen\n\n",
+    "message5": "⚠️ **Meldingen inneholder forbudte lenker**\n\n",
+    "register": "⚠️ Brukerprofil ikke funnet, vennligst registrer deg først ved å bruke /start.",
+    "register2": "⚠️ Vennligst fullfør registreringsprosessen først.\n\nBruk /start for å fortsette registreringen.",
+    "register3": "⚠️ Det oppsto et problem med registreringsprosessen, vennligst start på nytt: /start",
+    "register4": "⚠️ Vennligst fullfør registreringsprosessen først",
+    "settings": "⚠️ Påminnelse: Når satt, kan kjønn **ikke endres** for alltid!\n\n",
+    "settings2": "⚠️ Fødselsdagsinnstillinger kan ikke endres, vennligst verifiser!",
+    "settings3": "⚠️ Merknad: Kjønnsinnstillinger kan ikke endres, vennligst velg nøye!",
+    "short": "⚠️ Feil rekkefølge av spørsmål",
+    "short2": "⚠️ Ukjent alternativ",
+    "short3": "⚠️ Ugyldig forespørsel",
+    "short4": "⚠️ Kallenavn lengdegrense er 36 tegn",
+    "short5": "⚠️ Andre brudd",
+    "start": "⚠️ Økten har utløpt, vennligst start på nytt: /throw",
+    "start2": "⚠️ Økten har utløpt, vennligst start på nytt",
+    "task": "⚠️ Ukjent oppgavetype",
+    "text": "⚠️ **Merk**\n\n",
+    "text10": "⚠️ **Ikke-modifiserbare elementer**:\n",
+    "text11": "⚠️ Økten har utløpt, vennligst prøv igjen",
+    "text12": "⚠️ Utkast eksisterer ikke eller har utløpt",
+    "text2": "⚠️ Ugyldig betalingstype",
+    "text3": "⚠️ Oversettelsestjenesten er midlertidig utilgjengelig, den originale teksten er under\n",
+    "text4": "⚠️ Sikkerhetspåminnelse:\n",
+    "text5": "⚠️ Er for øyeblikket ikke i anti-svindeltesttrinnet",
+    "text6": "⚠️ Er for øyeblikket ikke i vilkår for bruk-trinnet",
+    "text7": "⚠️ Merknad: Denne funksjonen er kun tilgjengelig i Staging-miljøet.",
+    "text8": "⚠️ **Å sende bilder, videoer eller multimedia er ikke lov**\n\n",
+    "text9": "⚠️ Denne funksjonen er kun tilgjengelig i Staging-miljøet.",
+    "userNotFound": "⚠️ Bruker finnes ikke, vennligst registrer deg først ved å bruke /start.",
+    "userNotFound2": "⚠️ Bruker finnes ikke",
+    "vip": "⚠️ Invitasjonsgrensen for gratisbrukere er nådd, oppgrader til VIP for å låse opp grensen på 100 personer!",
+    "vip2": "⚠️ Denne funksjonen er kun for VIP-medlemmer",
+    "vip3": "⚠️ **VIP utløper i dag**\n\n"
+  },
+  "BROADCAST": {
+    "FILTER_ERROR": "❌ Formatfeil.\nEksempel: `/broadcast_filter gender=female,country=TW test message`",
+    "NO_CONTENT": "❌ Vennligst skriv inn sendingsinnhold.",
+    "NO_MATCHES": "⚠️ Ingen brukere som matcher kriteriene ble funnet.\nFilterkriterier: {filters}",
+    "TOO_MANY_USERS": "⚠️ For mange målbrukere ({count} personer), for øyeblikket begrenset til å sende til {max} personer om gangen.",
+    "START_SENDING": "🚀 Starter sending #{id}\n🎯 Mål: {filters}\n👥 Antall personer: {count}",
+    "COMPLETED": "✅ Sending #{id} avsluttet!\nSuksess: {sent}\nFeilet: {failed}\nBlokkert: {blocked}"
+  },
+  "push": {
+    "throwReminder": "🌊 Hei! Det har vært en stund siden du kastet en flaskepost, stranden er veldig stille...",
+    "catchReminder": "🎣 Noen nye flaskeposter har vasket opp på stranden, vil du gå og sjekke dem ut?",
+    "onboardingReminder": "👋 Registreringen din er fremdeles ikke fullført, du er nesten der! (Steg: {step})",
+    "messageReminderA": "👋 Hei {masked_partner_name} venter fortsatt på ditt svar! Ikke la samtalen kjøle seg ned～",
+    "messageReminderB": "📩 Du har en ulest melding fra {masked_partner_name}:\n> \"{last_message_preview}...\"\n(Det har gått over 24 timer!)",
+    "messageReminderC": "⏳ {masked_partner_name} venter på ditt svar...",
+    "actionReply": "💬 Svar til {masked_partner_name}",
+    "actionHistory": "📜 Vis kontekst"
+  },
+  "match": {
+    "header": {
+      "zodiac": "🌟 Dyrekretsmatch avslørt",
+      "mbti": "🧠 MBTI-personlighet resonans",
+      "blood": "🩸 Blodtypekodeanalyse"
+    },
+    "reason": {
+      "zodiac": {
+        "fire_affinity": "Som medelemer av ildtegn, brenner din lidenskap klart og forbindelsen er sterk!",
+        "earth_affinity": "Stabiliteten til jordtegn kombinert med mildheten til vanndrag gir den perfekte flyten.",
+        "air_affinity": "Smidigheten til lufttegn møter lidenskapen til ildtegn, og inspirerer til endeløs kreativitet!",
+        "water_affinity": "Følelsene til vanndrag og praktisk tilnærming av jordtegn bygger den varmeste støtten."
+      },
+      "mbti": {
+        "sj_affinity": "Sosialiserere (SJ) og utforskere (SP), en perfekt komplement av stabilitet og spenning!",
+        "sp_affinity": "Utforskere (SP) og sosialiserere (SJ), de beste partnerne for lekekamerater og omsorgspersoner!",
+        "nf_affinity": "Idealister (NF) og rasjonalister (NT), en dyp kollisjon av sjel og visdom!",
+        "nt_affinity": "Rasjonalister (NT) og idealister (NF), en resonans av tanker og følelser!"
+      },
+      "blood": {
+        "a_affinity": "Type A's grundighet møter Type O's toleranse, og skaper de mest komfortable interaksjonene.",
+        "b_affinity": "Type B's selvhevdelse møter Type O's avslappede natur, stressfritt og behagelig.",
+        "o_affinity": "Type O og Type B/A er flotte komplementære partnere!",
+        "ab_affinity": "AB's unike frekvens blir best forstått av sin egen type."
+      }
+    },
+    "template": {
+      "body": "{userAttribute},\nI henhold til analysen har du den sterkeste affiniteten med {recommendedAttributes}!\n\n💡 {reason}\n\n👇 Føler du deg heldig?"
+    },
+    "btn": {
+      "throw": "🌊 Kast en flaske og ta en sjanse",
+      "vip_throw": "🎯 Kast til {target}",
+      "vip_upsell": "💡 Oppgrader til VIP for å spesifisere levering til {target}, for presis matching!"
+    }
+  }
+};

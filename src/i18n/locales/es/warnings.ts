@@ -1,0 +1,130 @@
+export default {
+  "birthday": "⚠️ El cumpleaños no puede ser modificado una vez establecido, ¡por favor confirma que es correcto!",
+  "bloodType": "🩸 Grupo sanguíneo",
+  "gender": "👤 Género: {otherUser.gender}",
+  "mbti": "🧠 MBTI：\\\\\\\\\\${mbti}",
+  "register2": "⚠️ Por favor, complete primero el registro",
+  "register4": "⚠️ Registro no completado",
+  "settings": "🧠 MBTI: \\\\\\\\\\\\$",
+  "text5": "📖 Biografía: {otherUser.bio}",
+  "text6": "[Necesita traducción: warnings.text6]",
+  "userNotFound": "El usuario no existe",
+  "warning": {
+    "ad": "⚠️ Actualmente no hay proveedores de anuncios configurados\n\n",
+    "ad2": "⚠️ Actualmente no hay anuncios oficiales\n\n",
+    "ad3": "⚠️ No hay proveedores de anuncios disponibles en este momento",
+    "ad4": "⚠️ No se puede seleccionar el proveedor de anuncios",
+    "ad5": "⚠️ No se pueden ver más anuncios",
+    "birthday": "⚠️ Actualmente no está en la etapa de ingreso de cumpleaños",
+    "bloodType": "⚠️ Actualmente no está en la etapa de selección de grupo sanguíneo",
+    "broadcast": "⚠️ Encontrados \\${stuckBroadcasts.results.length} transmisiones atascadas\n\n",
+    "complete": "⚠️ Por favor, completa el anuncio anterior antes de comenzar uno nuevo",
+    "confirm": "⚠️ Por favor, confirma tu información de cumpleaños:\n\n",
+    "conversation": "⚠️ La información de la conversación es incorrecta.",
+    "conversation10": "⚠️ La conversación no existe",
+    "conversation2": "⚠️ La información de la conversación es incorrecta",
+    "conversation3": "⚠️ Este usuario no tiene publicaciones en el historial de conversación\n",
+    "conversation4": "⚠️ No se puede encontrar la conversación especificada, puede haber terminado o expirado.",
+    "conversation5": "⚠️ **Historial de conversación parcialmente actualizado**\n\n",
+    "conversation6": "⚠️ No se puede identificar al compañero de conversación\n\n",
+    "conversation7": "⚠️ No se puede encontrar esta conversación\n\n",
+    "conversation8": "⚠️ La conversación no existe o ha terminado",
+    "conversation9": "⚠️ Esta conversación ha terminado",
+    "end": "⚠️ La prueba ha terminado o no existe.",
+    "failed": "⚠️ La verificación de pago falló, por favor intenta de nuevo más tarde.",
+    "gender": "⚠️ Actualmente no estás en la etapa de selección de género.",
+    "invite": "⚠️ No se pudo recuperar el código de invitación.",
+    "mbti": "⚠️ Actualmente no estás en la etapa de prueba MBTI.",
+    "mbti2": "⚠️ Tipo MBTI inválido.",
+    "message": "⚠️ Se encontraron \\${outdatedPosts.length} publicaciones desactualizadas que necesitan refrescarse\n",
+    "message2": "⚠️ Nota: Esto es \\${testInfo}\\${testTitle}, \\${accuracy}.\n\n",
+    "message3": "⚠️ Por favor, mantén presionado el mensaje que deseas bloquear y responde con el comando\n\n",
+    "message4": "⚠️ Por favor, mantén presionado el mensaje que deseas reportar y responde con el comando\n\n",
+    "message5": "⚠️ **El mensaje contiene enlaces prohibidos**\n\n",
+    "register": "⚠️ Perfil de usuario no encontrado, por favor regístrate primero usando /start.",
+    "register2": "⚠️ Por favor, completa primero el proceso de registro.\n\nUsa /start para continuar el registro.",
+    "register3": "⚠️ Hubo un problema con el proceso de registro, por favor reinicia: /start",
+    "register4": "⚠️ Por favor, completa primero el proceso de registro",
+    "settings": "⚠️ Recordatorio: Una vez establecido, el género **no se puede modificar** para siempre!\n\n",
+    "settings2": "⚠️ Las configuraciones de cumpleaños no pueden ser modificadas, ¡por favor verifica!",
+    "settings3": "⚠️ Nota: Las configuraciones de género no pueden ser modificadas, ¡por favor elige con cuidado!",
+    "short": "⚠️ Orden de preguntas incorrecto",
+    "short2": "⚠️ Opción desconocida",
+    "short3": "⚠️ Solicitud inválida",
+    "short4": "⚠️ El límite de longitud del apodo es de 36 caracteres",
+    "short5": "⚠️ Otras violaciones",
+    "start": "⚠️ La sesión ha expirado, por favor reinicia: /throw",
+    "start2": "⚠️ La sesión ha expirado, por favor reinicia",
+    "task": "⚠️ Tipo de tarea desconocido",
+    "text": "⚠️ **Nota**\n\n",
+    "text10": "⚠️ **Elementos no modificables**:\n",
+    "text11": "⚠️ La sesión ha expirado, por favor intenta nuevamente",
+    "text12": "⚠️ El borrador no existe o ha expirado",
+    "text2": "⚠️ Tipo de pago inválido",
+    "text3": "⚠️ El servicio de traducción no está disponible temporalmente, el texto original está abajo\n",
+    "text4": "⚠️ Recordatorio de seguridad:\n",
+    "text5": "⚠️ Actualmente no estás en la etapa de prueba contra fraude",
+    "text6": "⚠️ Actualmente no estás en la etapa de términos de servicio",
+    "text7": "⚠️ Nota: Esta función solo está disponible en el entorno de Staging.",
+    "text8": "⚠️ **No se permite enviar imágenes, videos o multimedia**\n\n",
+    "text9": "⚠️ Esta función solo está disponible en el entorno de Staging.",
+    "userNotFound": "⚠️ El usuario no existe, por favor regístrate primero usando /start.",
+    "userNotFound2": "⚠️ El usuario no existe",
+    "vip": "⚠️ Límite de invitaciones para usuarios gratuitos alcanzado, ¡actualiza a VIP para desbloquear el límite de 100 personas!",
+    "vip2": "⚠️ Esta función es solo para miembros VIP",
+    "vip3": "⚠️ **VIP expira hoy**\n\n"
+  },
+  "BROADCAST": {
+    "FILTER_ERROR": "❌ Error de formato.\nEjemplo: `/broadcast_filter gender=female,country=TW test message`",
+    "NO_CONTENT": "❌ Por favor, introduce el contenido de la difusión.",
+    "NO_MATCHES": "⚠️ No se encontraron usuarios que coincidieran con los criterios.\nCriterios de filtrado: {filters}",
+    "TOO_MANY_USERS": "⚠️ Demasiados usuarios objetivo ({count} personas), actualmente limitado a enviar a {max} personas a la vez.",
+    "START_SENDING": "🚀 Iniciando la difusión #{id}\n🎯 Objetivo: {filters}\n👥 Número de personas: {count}",
+    "COMPLETED": "✅ Difusión #{id} completada!\nÉxitos: {sent}\nFallidos: {failed}\nBloqueados: {blocked}"
+  },
+  "push": {
+    "throwReminder": "🌊 ¡Hola! Ha pasado un tiempo desde que lanzaste una botella de mensajes, la playa está muy tranquila...",
+    "catchReminder": "🎣 Algunas nuevas botellas de mensajes han llegado a la playa, ¿quieres ir a verlas?",
+    "onboardingReminder": "👋 Tu registro aún no está completo, ¡estás casi allí! (Paso: {step})",
+    "messageReminderA": "👋 Hola {masked_partner_name}, ¡todavía está esperando tu respuesta! No dejes que la conversación se enfríe～",
+    "messageReminderB": "📩 Tienes un mensaje no leído de {masked_partner_name}:\n> \"{last_message_preview}...\"\n(¡Ha pasado más de 24 horas!)",
+    "messageReminderC": "⏳ {masked_partner_name} está esperando tu respuesta...",
+    "actionReply": "💬 Responder a {masked_partner_name}",
+    "actionHistory": "📜 Ver Contexto"
+  },
+  "match": {
+    "header": {
+      "zodiac": "🌟 Match Zodiacal Revelado",
+      "mbti": "🧠 Resonancia de Personalidad MBTI",
+      "blood": "🩸 Análisis de Tipo de Sangre"
+    },
+    "reason": {
+      "zodiac": {
+        "fire_affinity": "Como compañeros signos de fuego, ¡tu pasión brilla intensamente y tu conexión es fuerte!",
+        "earth_affinity": "La estabilidad de los signos de tierra combinada con la suavidad de los signos de agua crea el flujo perfecto.",
+        "air_affinity": "¡La agilidad de los signos de aire se encuentra con la pasión de los signos de fuego, inspirando creatividad sin fin!",
+        "water_affinity": "Las emociones de los signos de agua y la practicidad de los signos de tierra construyen el apoyo más cálido."
+      },
+      "mbti": {
+        "sj_affinity": "¡Socializadores (SJ) y Exploradores (SP), un complemento perfecto de estabilidad y emoción!",
+        "sp_affinity": "¡Exploradores (SP) y Socializadores (SJ), los mejores compañeros de juego y cuidadores!",
+        "nf_affinity": "¡Idealistas (NF) y Racionalistas (NT), una profunda colisión de alma y sabiduría!",
+        "nt_affinity": "¡Racionalistas (NT) e Idealistas (NF), una resonancia de pensamientos y sentimientos!"
+      },
+      "blood": {
+        "a_affinity": "La meticulosidad de Tipo A se encuentra con la tolerancia de Tipo O, creando las interacciones más cómodas.",
+        "b_affinity": "La autoafirmación de Tipo B se encuentra con la naturaleza relajada de Tipo O, sin estrés y relajado.",
+        "o_affinity": "¡Tipo O y Tipo B/A son grandes compañeros complementarios!",
+        "ab_affinity": "La frecuencia única de AB es mejor comprendida por su especie."
+      }
+    },
+    "template": {
+      "body": "{userAttribute},\nSegún el análisis, ¡tienes la afinidad más fuerte con {recommendedAttributes}!\n\n💡 {reason}\n\n👇 ¿Te sientes afortunado?"
+    },
+    "btn": {
+      "throw": "🌊 Lanzar una botella y arriesgarse",
+      "vip_throw": "🎯 Lanzar a {target}",
+      "vip_upsell": "💡 ¡Actualiza a VIP para designar la entrega a {target}, para emparejamiento preciso!"
+    }
+  }
+};

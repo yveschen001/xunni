@@ -1,0 +1,5 @@
+export default {
+  "female": "女性",
+  "label": "👤 性别：{otherUser.gender}",
+  "male": "男性"
+};

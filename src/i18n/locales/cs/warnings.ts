@@ -1,0 +1,130 @@
+export default {
+  "birthday": "⚠️ Narozeniny nelze upravit po nastavení, prosím potvrďte, že jsou správné!",
+  "bloodType": "🩸 Krevní typ",
+  "gender": "👤 Pohlaví：{otherUser.gender}",
+  "mbti": "🧠 MBTI：\\\\\\\\\\${mbti}",
+  "register2": "⚠️ Nejprve prosím dokončete registraci",
+  "register4": "⚠️ Registrace nebyla dokončena",
+  "settings": "🧠 MBTI：\\\\\\\\\\\\$",
+  "text5": "📖 Biografie：{otherUser.bio}",
+  "text6": "⚠️ Nejprve prosím dokončete registraci.",
+  "userNotFound": "Uživatel neexistuje",
+  "warning": {
+    "ad": "⚠️ Aktuálně nejsou nakonfigurováni žádní poskytovatelé reklam\n\n",
+    "ad2": "⚠️ Aktuálně nejsou k dispozici oficiální reklamy\n\n",
+    "ad3": "⚠️ V tuto chvíli nejsou k dispozici žádní poskytovatelé reklam",
+    "ad4": "⚠️ Nelze vybrat poskytovatele reklam",
+    "ad5": "⚠️ Nelze shlédnout další reklamy",
+    "birthday": "⚠️ Aktuálně nejste ve fázi zadávání narozenin",
+    "bloodType": "⚠️ Aktuálně nejste ve fázi výběru krevního typu",
+    "broadcast": "⚠️ Nalezeno \\${stuckBroadcasts.results.length} uvízlých vysílání\n\n",
+    "complete": "⚠️ Prosím dokončete předchozí reklamu před zahájením nové reklamy",
+    "confirm": "⚠️ Prosím potvrďte informace o vašem datu narození:\n\n",
+    "conversation": "⚠️ Chyba informací o konverzaci.",
+    "conversation10": "⚠️ Konverzace neexistuje",
+    "conversation2": "⚠️ Chyba informací o konverzaci",
+    "conversation3": "⚠️ Tento uživatel nemá žádné příspěvky v historii konverzace\n",
+    "conversation4": "⚠️ Nelze najít specifikovanou konverzaci, mohla skončit nebo vypršet.",
+    "conversation5": "⚠️ **Historie konverzací byla částečně aktualizována**\n\n",
+    "conversation6": "⚠️ Nelze identifikovat partnera v konverzaci\n\n",
+    "conversation7": "⚠️ Tuto konverzaci nelze najít\n\n",
+    "conversation8": "⚠️ Konverzace neexistuje nebo skončila",
+    "conversation9": "⚠️ Tato konverzace skončila",
+    "end": "⚠️ Test skončil nebo neexistuje",
+    "failed": "⚠️ Ověření platby selhalo, zkuste to prosím znovu později",
+    "gender": "⚠️ V současnosti nejste ve kroku výběru pohlaví",
+    "invite": "⚠️ Nelze získat pozvánkový kód",
+    "mbti": "⚠️ V současnosti nejste ve kroku MBTI testu",
+    "mbti2": "⚠️ Neplatný typ MBTI",
+    "message": "⚠️ Zjištěno \\${outdatedPosts.length} zastaralých příspěvků, které je potřeba aktualizovat\n",
+    "message2": "⚠️ Poznámka: Toto je \\${testInfo}\\${testTitle}, \\${accuracy}.\n\n",
+    "message3": "⚠️ Prosím dlouze stiskněte zprávu, kterou chcete zablokovat, a odpovězte příkazem\n\n",
+    "message4": "⚠️ Prosím dlouze stiskněte zprávu, kterou chcete nahlásit, a odpovězte příkazem\n\n",
+    "message5": "⚠️ **Zpráva obsahuje zakázané odkazy**\n\n",
+    "register": "⚠️ Uživatelův profil nebyl nalezen, prosím, nejprve se zaregistrujte pomocí /start.",
+    "register2": "⚠️ Nejprve prosím dokončete registrační proces.\n\nPoužijte /start pro pokračování registrace.",
+    "register3": "⚠️ Došlo k problému s registračním procesem, prosím, začněte znovu: /start",
+    "register4": "⚠️ Nejprve prosím dokončete registrační proces",
+    "settings": "⚠️ Připomenutí: Jakmile je nastaveno, pohlaví **nelze změnit** navždy!\n\n",
+    "settings2": "⚠️ Nastavení narozenin nelze měnit, prosím, potvrďte, že je správné!",
+    "settings3": "⚠️ Poznámka: Nastavení pohlaví nelze měnit, prosím, vyberte opatrně!",
+    "short": "⚠️ Nesprávné pořadí otázek",
+    "short2": "⚠️ Neznámá možnost",
+    "short3": "⚠️ Neplatný požadavek",
+    "short4": "⚠️ Délka přezdívky je omezena na 36 znaků",
+    "short5": "⚠️ Další porušení",
+    "start": "⚠️ Seshna vypršela, prosím, restartujte: /throw",
+    "start2": "⚠️ Seshna vypršela, prosím, restartujte",
+    "task": "⚠️ Neznámý typ úkolu",
+    "text": "⚠️ **Poznámka**\n\n",
+    "text10": "⚠️ **Nemodifikovatelné položky**:\n",
+    "text11": "⚠️ Seshna vypršela, prosím, zkuste to znovu",
+    "text12": "⚠️ Návrh neexistuje nebo vypršel",
+    "text2": "⚠️ Neplatný typ platby",
+    "text3": "⚠️ Překladová služba je dočasně nedostupná, zde je původní text\n",
+    "text4": "⚠️ Bezpečnostní připomínka:\n",
+    "text5": "⚠️ V současnosti nejste ve kroku testu proti podvodům",
+    "text6": "⚠️ V současnosti nejste ve kroku podmínek služby",
+    "text7": "⚠️ Poznámka: Tato funkce je dostupná pouze v prostředí Staging.",
+    "text8": "⚠️ **Odesílání obrázků, videí nebo multimédií není povoleno**\n\n",
+    "text9": "⚠️ Tato funkce je dostupná pouze v prostředí Staging.",
+    "userNotFound": "⚠️ Uživatel neexistuje, prosím, nejprve se zaregistrujte pomocí /start.",
+    "userNotFound2": "⚠️ Uživatel neexistuje",
+    "vip": "⚠️ Dosáhli jste limitu pro pozvánky zdarma, přejděte na VIP pro odemčení limitu 100 lidí!",
+    "vip2": "⚠️ Tato funkce je pouze pro VIP členy",
+    "vip3": "⚠️ **VIP vyprší dnes**\n\n"
+  },
+  "BROADCAST": {
+    "FILTER_ERROR": "❌ Chyba formátu.\nPříklad: `/broadcast_filter gender=female,country=TW test message`",
+    "NO_CONTENT": "❌ Prosím, zadejte obsah vysílání.",
+    "NO_MATCHES": "⚠️ Nebyli nalezeni žádní uživatelé odpovídající kritériím.\nKritéria filtru: {filters}",
+    "TOO_MANY_USERS": "⚠️ Příliš mnoho cílových uživatelů ({count} lidí), momentálně je omezeno na odeslání {max} lidem najednou.",
+    "START_SENDING": "🚀 Spouští se vysílání #{id}\n🎯 Cíl: {filters}\n👥 Počet lidí: {count}",
+    "COMPLETED": "✅ Vysílání #{id} bylo dokončeno!\nÚspěšně: {sent}\nNeúspěšně: {failed}\nBlokováno: {blocked}"
+  },
+  "push": {
+    "throwReminder": "🌊 Ahoj! Už je to chvíli, co jsi hodil láhev se zprávou, pláž je velmi tichá...",
+    "catchReminder": "🎣 Na pláži se objevilo několik nových lahví se zprávou, chceš se na ně jít podívat?",
+    "onboardingReminder": "👋 Tvoje registrace ještě není dokončena, jsi téměř u cíle! (Krok: {step})",
+    "messageReminderA": "👋 Ahoj {masked_partner_name}, stále čeká na vaši odpověď! Nenechte konverzaci vychladnout～",
+    "messageReminderB": "📩 Máte nepřečtenou zprávu od {masked_partner_name}:\n> \"{last_message_preview}...\"\n(Už to trvá více než 24 hodin!)",
+    "messageReminderC": "⏳ {masked_partner_name} čeká na vaši odpověď...",
+    "actionReply": "💬 Odpovědět {masked_partner_name}",
+    "actionHistory": "📜 Zobrazit kontext"
+  },
+  "match": {
+    "header": {
+      "zodiac": "🌟 Odhalený znamení zvěrokruhu",
+      "mbti": "🧠 Resonance MBTI osobnosti",
+      "blood": "🩸 Analýza krevní skupiny"
+    },
+    "reason": {
+      "zodiac": {
+        "fire_affinity": "Jakožto ohnivé znamení, vaše vášeň jasně hoří a vaše spojení je silné!",
+        "earth_affinity": "Stabilita zemských znamení v kombinaci s jemností vodních znamení vytváří dokonalý proud.",
+        "air_affinity": "Obratnost vzdušných znamení se setkává s vášní ohnivých znamení, což inspirová nekonečnou kreativitu!",
+        "water_affinity": "Emoce vodních znamení a praktičnost zemských znamení vytvářejí nejteplejší podporu."
+      },
+      "mbti": {
+        "sj_affinity": "Společenské (SJ) a Objevitelé (SP), dokonalý doplněk stability a vzrušení!",
+        "sp_affinity": "Objevitelé (SP) a Společenské (SJ), nejlepší partneři pro kamarády a pečovatele!",
+        "nf_affinity": "Idealisté (NF) a Racionalisté (NT), hluboké kolize duše a moudrosti!",
+        "nt_affinity": "Racionalisté (NT) a Idealisté (NF), rezonance myšlenek a pocitů!"
+      },
+      "blood": {
+        "a_affinity": "Pečlivost typu A se setkává s tolerancí typu O, což vytváří nejpohodlnější interakce.",
+        "b_affinity": "Sebevědomí typu B se setkává se snadnou povahou typu O, bez stresu a uvolněné.",
+        "o_affinity": "Typ O a Typ B/A jsou skvělí doplňkoví partneři!",
+        "ab_affinity": "Unikátní frekvence AB je nejlépe pochopena jeho druhem."
+      }
+    },
+    "template": {
+      "body": "{userAttribute},\nPodle analýzy máte nejsilnější afinitu s {recommendedAttributes}!\n\n💡 {reason}\n\n👇 Cítíte se šťastní?"
+    },
+    "btn": {
+      "throw": "🌊 Hoďte láhev se zprávou a vezměte šanci",
+      "vip_throw": "🎯 Hoďte na {target}",
+      "vip_upsell": "💡 Upgradujte na VIP a určete dodání na {target}, pro přesné párování!"
+    }
+  }
+};

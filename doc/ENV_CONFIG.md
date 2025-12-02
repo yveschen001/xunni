@@ -182,10 +182,15 @@ binding = "DB"
 database_name = "xunni-db-dev"
 database_id = "<DEV_D1_DATABASE_ID>"
 
-# Development KV (可選)
+# Development KV (RISK_CACHE)
 [[kv_namespaces]]
 binding = "RISK_CACHE"
 id = "<DEV_KV_NAMESPACE_ID>"
+
+# Development KV (I18N_DATA)
+[[kv_namespaces]]
+binding = "I18N_DATA"
+id = "<DEV_I18N_KV_NAMESPACE_ID>"
 
 # 開發環境變數（敏感資訊使用 .dev.vars）
 [vars]
@@ -226,24 +231,6 @@ wrangler secret put TELEGRAM_BOT_SECRET --env staging
 
 # 設定 Google Translate API Key
 wrangler secret put GOOGLE_TRANSLATE_API_KEY --env staging
-
-# 設定 Google OAuth（可選）
-wrangler secret put GOOGLE_CLIENT_ID --env staging
-wrangler secret put GOOGLE_CLIENT_SECRET --env staging
-
-# 設定 Apple Sign In（預留，M3 階段才需要）
-# wrangler secret put APPLE_CLIENT_ID --env staging
-# wrangler secret put APPLE_TEAM_ID --env staging
-# wrangler secret put APPLE_KEY_ID --env staging
-# wrangler secret put APPLE_PRIVATE_KEY --env staging
-
-# 設定 WeChat（預留，M2 階段才需要）
-# wrangler secret put WECHAT_APP_ID --env staging
-# wrangler secret put WECHAT_APP_SECRET --env staging
-
-# 設定 Line（預留，M2 階段才需要）
-# wrangler secret put LINE_CHANNEL_ID --env staging
-# wrangler secret put LINE_CHANNEL_SECRET --env staging
 ```
 
 #### 2.2.2 wrangler.toml (staging)
@@ -260,10 +247,15 @@ binding = "DB"
 database_name = "xunni-db-staging"
 database_id = "<STAGING_D1_DATABASE_ID>"
 
-# Staging KV
+# Staging KV (RISK_CACHE)
 [[env.staging.kv_namespaces]]
 binding = "RISK_CACHE"
 id = "<STAGING_KV_NAMESPACE_ID>"
+
+# Staging KV (I18N_DATA)
+[[env.staging.kv_namespaces]]
+binding = "I18N_DATA"
+id = "<STAGING_I18N_KV_NAMESPACE_ID>"
 
 # Staging 環境變數（非敏感）
 [env.staging.vars]
@@ -306,10 +298,15 @@ binding = "DB"
 database_name = "xunni-db"
 database_id = "<PROD_D1_DATABASE_ID>"
 
-# Production KV
+# Production KV (RISK_CACHE)
 [[env.production.kv_namespaces]]
 binding = "RISK_CACHE"
 id = "<PROD_KV_NAMESPACE_ID>"
+
+# Production KV (I18N_DATA)
+[[env.production.kv_namespaces]]
+binding = "I18N_DATA"
+id = "<PROD_I18N_KV_NAMESPACE_ID>"
 
 # Production 環境變數
 [env.production.vars]
@@ -337,6 +334,7 @@ export interface Env {
   // Cloudflare Bindings
   DB: D1Database;
   RISK_CACHE?: KVNamespace;
+  I18N_DATA?: KVNamespace; // i18n KV Storage
   
   // Environment
   ENVIRONMENT: 'development' | 'staging' | 'production';
@@ -568,15 +566,14 @@ wrangler deploy --env production
 ### Staging
 - [ ] Cloudflare Workers Secrets 已設定
 - [ ] D1 資料庫已建立（staging）
-- [ ] KV 命名空間已建立（staging）
+- [ ] KV 命名空間已建立（RISK_CACHE, I18N_DATA）
 - [ ] Cron Jobs 已配置
 - [ ] Webhook URL 已設定到測試 Bot
 
 ### Production
 - [ ] 所有 Secrets 已設定（production）
 - [ ] D1 資料庫已建立（production）
-- [ ] KV 命名空間已建立（production）
+- [ ] KV 命名空間已建立（RISK_CACHE, I18N_DATA）
 - [ ] Cron Jobs 已配置
 - [ ] Webhook URL 已設定到正式 Bot
 - [ ] 監控和告警已配置
-

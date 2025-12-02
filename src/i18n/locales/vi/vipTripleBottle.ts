@@ -1,0 +1,12 @@
+export default {
+  "bottleContent": "{content}\n\n",
+  "bottlePicked": "{maskedMatcherNickname}\n\n",
+  "conversationIdentifier": "💬 Mã xác định cuộc trò chuyện: {conversationIdentifier}\n",
+  "firstMatch": "💡 Đây là trận đấu đầu tiên của bạn, có 2 chai thư đang chờ\n\n",
+  "foundBottle": "{maskedOwnerNickname}\n\n",
+  "matchSuccess": "🎯 **Ghép đôi thông minh VIP thành công!**\n\n",
+  "replyHint": "💬 **Vui lòng nhấn giữ tin nhắn này, chọn 'Trả lời', sau đó nhập nội dung để bắt đầu trò chuyện với bên kia**",
+  "slotsWaiting": "{remaining}\n\n",
+  "smartMatch": "🎉 **Ghép đôi thông minh thành công!**\n\n",
+  "viewChats": "Sử dụng /chats để xem tất cả các cuộc hội thoại\n\n"
+};

@@ -1,0 +1,130 @@
+export default {
+  "birthday": "⚠️ Đã đạt giới hạn mời người dùng miễn phí, nâng cấp lên VIP để mở khóa giới hạn 100 người!",
+  "bloodType": "🩸 Nhóm máu",
+  "gender": "{otherUser.gender}",
+  "mbti": "🧠 MBTI：\\\\\\\\\\${mbti}",
+  "register2": "⚠️ Vui lòng hoàn tất đăng ký trước",
+  "register4": "⚠️ Đăng ký chưa hoàn tất",
+  "settings": "🧠 MBTI:\\\\\\\\\\\\$",
+  "text5": "{otherUser.bio}",
+  "text6": "⚠️ Vui lòng hoàn thành đăng ký trước",
+  "userNotFound": "[Cần dịch: warnings.register4]",
+  "warning": {
+    "ad": "🧠 MBTI: \\\\\\\\\\\\$\n\n",
+    "ad2": "[Cần dịch: warnings.text6]\n\n",
+    "ad3": "Người dùng không tồn tại",
+    "ad4": "⚠️ Hiện tại không có nhà cung cấp quảng cáo nào được cấu hình",
+    "ad5": "⚠️ Không thể xem thêm quảng cáo",
+    "birthday": "⚠️ Hiện tại không ở bước nhập sinh nhật",
+    "bloodType": "⚠️ Hiện tại không ở bước chọn nhóm máu",
+    "broadcast": "⚠️ Đã tìm thấy \\${stuckBroadcasts.results.length} phát sóng bị kẹt\n\n",
+    "complete": "⚠️ Vui lòng hoàn thành quảng cáo trước đó trước khi bắt đầu quảng cáo mới",
+    "confirm": "⚠️ Vui lòng xác nhận thông tin ngày sinh của bạn:\n\n",
+    "conversation": "⚠️ Thông tin cuộc trò chuyện không chính xác.",
+    "conversation10": "⚠️ Cuộc trò chuyện không tồn tại.",
+    "conversation2": "⚠️ Thông tin cuộc trò chuyện không chính xác.",
+    "conversation3": "⚠️ Người dùng này không có bài viết lịch sử trò chuyện\n",
+    "conversation4": "⚠️ Không thể tìm thấy cuộc trò chuyện đã chỉ định, nó có thể đã kết thúc hoặc hết hạn.",
+    "conversation5": "⚠️ **Lịch sử trò chuyện đã được cập nhật một phần**\n\n",
+    "conversation6": "⚠️ Không thể xác định đối tác trò chuyện\n\n",
+    "conversation7": "⚠️ Không thể tìm thấy cuộc trò chuyện này\n\n",
+    "conversation8": "⚠️ Cuộc trò chuyện không tồn tại hoặc đã kết thúc",
+    "conversation9": "⚠️ Cuộc trò chuyện này đã kết thúc",
+    "end": "⚠️ Bài khảo sát đã kết thúc hoặc không tồn tại",
+    "failed": "⚠️ Xác minh thanh toán không thành công, vui lòng thử lại sau.",
+    "gender": "⚠️ Hiện tại không ở bước chọn giới tính",
+    "invite": "⚠️ Không thể lấy mã mời",
+    "mbti": "⚠️ Hiện tại không ở bước bài kiểm tra MBTI",
+    "mbti2": "⚠️ Loại MBTI không hợp lệ",
+    "message": "⚠️ Đã tìm thấy \\${outdatedPosts.length} bài viết cũ cần làm mới\n",
+    "message2": "⚠️ Lưu ý: Đây là \\${testInfo}\\${testTitle}, \\${accuracy}.\n\n",
+    "message3": "⚠️ Vui lòng giữ lâu tin nhắn bạn muốn chặn và phản hồi bằng lệnh\n\n",
+    "message4": "⚠️ Vui lòng giữ lâu tin nhắn bạn muốn báo cáo và phản hồi bằng lệnh\n\n",
+    "message5": "⚠️ **Tin nhắn chứa liên kết bị cấm**\n\n",
+    "register": "⚠️ Không thể tìm thấy thông tin người dùng, vui lòng đăng ký trước bằng /start.",
+    "register2": "⚠️ Vui lòng hoàn tất quy trình đăng ký trước.\n\nSử dụng /start để tiếp tục đăng ký.",
+    "register3": "⚠️ Đã xảy ra sự cố với quy trình đăng ký, vui lòng khởi động lại: /start",
+    "register4": "⚠️ Vui lòng hoàn tất quy trình đăng ký trước",
+    "settings": "⚠️ Nhắc nhở: Khi đã thiết lập, giới tính **không thể thay đổi** mãi mãi!\n\n",
+    "settings2": "⚠️ Cài đặt ngày sinh không thể được sửa đổi, vui lòng xác nhận rằng nó chính xác!",
+    "settings3": "⚠️ Lưu ý: Cài đặt giới tính không thể được sửa đổi, vui lòng lựa chọn cẩn thận!",
+    "short": "⚠️ Thứ tự câu hỏi không đúng",
+    "short2": "⚠️ Lựa chọn không xác định",
+    "short3": "⚠️ Yêu cầu không hợp lệ",
+    "short4": "⚠️ Giới hạn độ dài biệt danh là 36 ký tự",
+    "short5": "⚠️ Vi phạm khác",
+    "start": "⚠️ Phiên đã hết hạn, vui lòng khởi động lại: /throw",
+    "start2": "⚠️ Phiên đã hết hạn, vui lòng khởi động lại",
+    "task": "⚠️ Loại tác vụ không xác định",
+    "text": "⚠️ **Lưu ý**\n\n",
+    "text10": "⚠️ **Các mục không thể thay đổi**：\n",
+    "text11": "⚠️ Phiên đã hết hạn, vui lòng thử lại",
+    "text12": "⚠️ Bản nháp không tồn tại hoặc đã hết hạn",
+    "text2": "⚠️ Loại thanh toán không hợp lệ",
+    "text3": "⚠️ Dịch vụ dịch thuật tạm thời không khả dụng, bên dưới là văn bản gốc\n",
+    "text4": "⚠️ Lời nhắc an toàn：\n",
+    "text5": "⚠️ Hiện tại không ở bước kiểm tra chống gian lận",
+    "text6": "⚠️ Hiện tại không ở bước điều khoản dịch vụ",
+    "text7": "⚠️ Lưu ý: Tính năng này chỉ khả dụng trong môi trường Staging.",
+    "text8": "⚠️ **Gửi ảnh, video hoặc multimedia là không được phép**\n\n",
+    "text9": "⚠️ Tính năng này chỉ khả dụng trong môi trường Staging.",
+    "userNotFound": "⚠️ Người dùng không tồn tại, vui lòng sử dụng /start để đăng ký trước.",
+    "userNotFound2": "⚠️ Người dùng không tồn tại",
+    "vip": "⚠️ Đã đạt giới hạn mời người dùng miễn phí, nâng cấp lên VIP để mở khóa giới hạn 100 người!",
+    "vip2": "⚠️ Tính năng này chỉ dành cho thành viên VIP",
+    "vip3": "⚠️ **VIP hết hạn hôm nay**\n\n"
+  },
+  "BROADCAST": {
+    "FILTER_ERROR": "❌ Lỗi định dạng.\nVí dụ: `/broadcast_filter gender=female,country=TW test message`",
+    "NO_CONTENT": "❌ Vui lòng nhập nội dung phát sóng.",
+    "NO_MATCHES": "⚠️ Không tìm thấy người dùng nào phù hợp với tiêu chí.\nTiêu chí lọc: {filters}",
+    "TOO_MANY_USERS": "⚠️ Quá nhiều người dùng mục tiêu ({count} người), hiện tại giới hạn gửi tới {max} người cùng một lúc.",
+    "START_SENDING": "🚀 Bắt đầu phát sóng #{id}\n🎯 Mục tiêu: {filters}\n👥 Số lượng người: {count}",
+    "COMPLETED": "✅ Phát sóng #{id} đã hoàn thành!\nThành công: {sent}\nThất bại: {failed}\nBị chặn: {blocked}"
+  },
+  "push": {
+    "throwReminder": "🌊 Chào bạn! Đã lâu rồi bạn không thả chai thư, bãi biển rất yên tĩnh...",
+    "catchReminder": "🎣 Một số chai thư mới đã trôi dạt vào bãi biển, bạn có muốn đi xem không?",
+    "onboardingReminder": "👋 Đăng ký của bạn chưa hoàn tất, bạn gần hoàn thành rồi! (Bước: {step})",
+    "messageReminderA": "👋 Chào {masked_partner_name}, vẫn đang chờ phản hồi của bạn! Đừng để cuộc trò chuyện nguội lạnh～",
+    "messageReminderB": "📩 Bạn có một tin nhắn chưa đọc từ {masked_partner_name}:\n> \"{last_message_preview}...\"\n(Đã qua hơn 24 giờ!)",
+    "messageReminderC": "⏳ {masked_partner_name} đang chờ phản hồi của bạn...",
+    "actionReply": "💬 Phản hồi cho {masked_partner_name}",
+    "actionHistory": "📜 Xem Ngữ cảnh"
+  },
+  "match": {
+    "header": {
+      "zodiac": "🌟 Tiết lộ Khám Phá Cung Hoàng Đạo",
+      "mbti": "🧠 Tương Tác Tính Cách MBTI",
+      "blood": "🩸 Phân Tích Mã Nhóm Máu"
+    },
+    "reason": {
+      "zodiac": {
+        "fire_affinity": "Là những cung lửa, đam mê của bạn tỏa sáng rực rỡ và kết nối của bạn mạnh mẽ!",
+        "earth_affinity": "Sự ổn định của các cung đất kết hợp với sự nhẹ nhàng của các cung nước tạo nên dòng chảy hoàn hảo.",
+        "air_affinity": "Sự linh hoạt của các cung khí gặp gỡ đam mê của các cung lửa, truyền cảm hứng cho sự sáng tạo vô tận!",
+        "water_affinity": "Cảm xúc của các cung nước và tính thực tế của các cung đất tạo nên sự hỗ trợ ấm áp nhất."
+      },
+      "mbti": {
+        "sj_affinity": "Những người xã hội (SJ) và Khám phá (SP), sự kết hợp hoàn hảo giữa ổn định và hồi hộp!",
+        "sp_affinity": "Khám phá (SP) và xã hội (SJ), những bạn đồng hành tốt nhất của bạn và người chăm sóc!",
+        "nf_affinity": "Nhà lý tưởng (NF) và Nhà lý trí (NT), sự va chạm sâu sắc giữa linh hồn và trí tuệ!",
+        "nt_affinity": "Nhà lý trí (NT) và Nhà lý tưởng (NF), sự cộng hưởng của suy nghĩ và cảm xúc!"
+      },
+      "blood": {
+        "a_affinity": "Sự tỉ mỉ của loại A gặp gỡ sự khoan dung của loại O, tạo ra tương tác thoải mái nhất.",
+        "b_affinity": "Sự khẳng định của loại B gặp gỡ tính dễ chịu của loại O, không căng thẳng và thư giãn.",
+        "o_affinity": "Loại O và loại B/A là những đối tác bổ sung tuyệt vời!",
+        "ab_affinity": "Tần số độc đáo của loại AB chỉ được hiểu tốt nhất bởi những người cùng loại."
+      }
+    },
+    "template": {
+      "body": "{userAttribute},\nTheo phân tích, bạn có sự gắn kết mạnh mẽ nhất với {recommendedAttributes}!\n\n💡 {reason}\n\n👇 Cảm thấy may mắn?"
+    },
+    "btn": {
+      "throw": "🌊 Ném một chai thư và thử vận may",
+      "vip_throw": "🎯 Ném đến {target}",
+      "vip_upsell": "💡 Nâng cấp lên VIP để chỉ định giao hàng đến {target}, cho sự ghép đôi chính xác!"
+    }
+  }
+};

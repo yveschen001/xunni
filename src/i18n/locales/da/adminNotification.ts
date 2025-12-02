@@ -1,0 +1,21 @@
+export default {
+  "amount": "Beløb: ${stars} ⭐",
+  "data": "Data: ${data}",
+  "daysLeft": "Resterende: ${days} dage",
+  "expireDate": "Udløb: ${date}",
+  "newExpireDate": "Ny udløb: ${date}",
+  "paymentFailed": "❌ **Betaling Mislykkedes**",
+  "paymentId": "Betalings-ID: `${id}`",
+  "reason": "Årsag: ${reason}",
+  "refundRequest": "🔴 **Refusionsanmodning**",
+  "requestId": "Anmodnings-ID: #${id}",
+  "systemNotification": "📢 **Systemmeddelelse**",
+  "time": "Tid: ${time}",
+  "type": "Type: ${type}",
+  "user": "Bruger: `${userId}`",
+  "viewRefundsHint": "💡 Brug /admin_refunds for detaljer",
+  "vipDowngraded": "⬇️ **VIP Automatisk Nedgradering**",
+  "vipPurchased": "🎉 **Ny VIP Køb**",
+  "vipReminderSent": "⏰ **VIP Udløbs Påmindelse Sendt**",
+  "vipRenewed": "🔄 **VIP Fornyelse**"
+};

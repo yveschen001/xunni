@@ -1,0 +1,22 @@
+export default {
+  "afterRegistration": "💡 등록을 완료한 후, 당신은:\n",
+  "answerRecorded": "✅ 기록됨",
+  "completion": "🎉 {testTitle} 완료!\n\n",
+  "fullAccuracy": "더 정확한 결과",
+  "fullQuestions": "36문항",
+  "fullTest": "MBTI 전체 테스트",
+  "fullTestInfo": "💡 이것은 완전한 테스트 ({questions})이며, 결과가 더 정확합니다.\n등록을 완료한 후 /mbti를 사용하여 테스트를 다시 수행할 수 있습니다.",
+  "fullTestTitle": "전체 테스트",
+  "manualModify": "• 수동으로 MBTI 유형 수정",
+  "moreDetailedTest": "• 더 자세한 테스트 진행\n",
+  "note": "⚠️ 주의: 이것은 {testInfo}{testTitle}, {accuracy}입니다.\n\n",
+  "questionOrderError": "⚠️ 질문 순서가 잘못됨",
+  "questions12": "12 질문",
+  "questions36": "36 질문",
+  "quickAccuracy": "결과는 참고용입니다",
+  "quickQuestions": "12 질문",
+  "quickTest": "MBTI 간편 테스트",
+  "quickTestInfo": "💡 이것은 빠른 퀴즈 ({questions})이며, 결과는 참고용입니다.\n등록을 완료한 후 /mbti를 통해 퀴즈를 다시 응시할 수 있습니다.",
+  "quickTestTitle": "간편 테스트",
+  "yourMbtiType": "당신의 MBTI 유형은: **{type}**\n\n"
+};

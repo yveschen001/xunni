@@ -1,0 +1,22 @@
+export default {
+  "afterRegistration": "💡 Na registratie kun je:\n",
+  "answerRecorded": "✅ Opgenomen",
+  "completion": "🎉 {testTitle} Voltooid!\n\n",
+  "fullAccuracy": "Nauwkeurigere resultaten",
+  "fullQuestions": "36 vragen",
+  "fullTest": "Voltooi MBTI-test",
+  "fullTestInfo": "💡 Dit is de volledige test ({questions}), en de resultaten zijn nauwkeuriger.\nNa het voltooien van de registratie kun je de test opnieuw maken met /mbti.",
+  "fullTestTitle": "Voltooi test",
+  "manualModify": "• Wijzig handmatig je MBTI-type",
+  "moreDetailedTest": "• Doe een gedetailleerdere test\n",
+  "note": "⚠️ Opmerking: Dit is {testInfo}{testTitle}, {accuracy}.\n\n",
+  "questionOrderError": "⚠️ Onjuiste volgorde van vragen",
+  "questions12": "12 vragen",
+  "questions36": "36 vragen",
+  "quickAccuracy": "Resultaten zijn alleen ter referentie",
+  "quickQuestions": "12 vragen",
+  "quickTest": "Snelle MBTI-test",
+  "quickTestInfo": "💡 Dit is een snelle quiz ({questions}), en de resultaten zijn alleen ter referentie.\nNa het voltooien van de registratie kun je de quiz opnieuw maken via /mbti.",
+  "quickTestTitle": "Snelle test",
+  "yourMbtiType": "Je MBTI-type is: **{type}**\n\n"
+};

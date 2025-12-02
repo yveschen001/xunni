@@ -15,6 +15,7 @@ const LOCALES_DIR = path.resolve(__dirname, '../src/i18n/locales');
 // Supported Languages Order (User Preferred)
 const HEADER_ORDER = [
   'key',
+  'module', // Added context column
   'zh-TW', 'zh-CN', 'en', 'ja', 'ko', 'vi', 'th', 'id', 'ms', 'tl',
   'hi', 'ar', 'ur', 'fa', 'he', 'tr', 'ru', 'uk', 'pl', 'cs',
   'ro', 'hu', 'bn', 'hr', 'sk', 'sl', 'sr', 'mk', 'sq', 'el',
@@ -70,16 +71,17 @@ async function exportCsv() {
 
   // 3a. Keep existing records in their original order
   for (const record of existingRecords) {
+    // Ensure module column is populated
+    if (!record.module) {
+      record.module = record.key.split('.')[0];
+    }
+
     if (currentTranslations[record.key]) {
       // Key still exists, update zh-TW reference just in case it changed in code
       record['zh-TW'] = currentTranslations[record.key];
       finalRecords.push(record);
     } else {
       // Key no longer exists in code.
-      // Strategy: Keep it but mark it, or move to bottom?
-      // User request: "Don't mess up order". 
-      // Safe bet: Keep it where it is. Maybe add a note? 
-      // For now, we keep it to be safe.
       console.warn(`  ⚠️ Key in CSV but missing in code: ${record.key} (Kept)`);
       finalRecords.push(record);
     }
@@ -91,9 +93,11 @@ async function exportCsv() {
     console.log(`- Found ${newKeys.length} NEW keys. Appending to bottom...`);
     for (const key of newKeys) {
       const newRecord: any = { key: key };
+      newRecord.module = key.split('.')[0];
+      
       // Initialize all columns
       HEADER_ORDER.forEach(lang => {
-        if (lang === 'key') return;
+        if (lang === 'key' || lang === 'module') return;
         if (lang === 'zh-TW') {
           newRecord[lang] = currentTranslations[key];
         } else {
@@ -145,9 +149,9 @@ async function importCsv() {
   console.log(`- Loaded ${records.length} records from CSV.`);
 
   // Group by language
-  // HEADER_ORDER includes 'key', 'zh-TW', ...
+  // HEADER_ORDER includes 'key', 'module', 'zh-TW', ...
   // Allow updating zh-TW as well to sync back changes/fixes from CSV
-  const languages = HEADER_ORDER.filter(h => h !== 'key');
+  const languages = HEADER_ORDER.filter(h => h !== 'key' && h !== 'module');
 
   // We also need to update zh-TW if we want the CSV to be the source of truth for text changes
   // But usually zh-TW source comes from code. 
@@ -239,6 +243,49 @@ async function importCsv() {
         }
 
         // Standard traversal
+        // Check if current part exists and is a string (collision!)
+        if (typeof currentTgt[part] === 'string') {
+             // We are trying to go deeper, but 'part' is already a string leaf.
+             // This means the schema implies a composite key like "question1.option1"
+             // But we are iterating part by part. 
+             // We need to merge current part with next part.
+             // However, the loop structure is rigid.
+             
+             // Workaround: If we hit a string but need an object, it's a conflict.
+             // But in our specific case (based on the error), we probably have:
+             // Key 1: "mbti.quick.question1" -> "Question Text"
+             // Key 2: "mbti.quick.question1.option1" -> "Option Text"
+             
+             // These two CANNOT coexist in a standard JS object structure unless "question1" is an object that has a special property for its own text value (not supported by our i18n).
+             // OR, one of them uses a dot in the key name explicitly.
+             
+             // Let's assume the CSV keys are flat dot notation.
+             // If "mbti.quick.question1" exists, it's a leaf.
+             // If "mbti.quick.question1.option1" comes along, it implies "question1" should be an object.
+             
+             // TRICKY: The error says "Cannot create property... on string". 
+             // This means "mbti.quick.question1" was already set as a string.
+             
+             // Fix: If we encounter this, it means we probably should have treated "question1.option1" as a single key segment relative to "question1"? No.
+             
+             // The only way this works is if the keys are actually:
+             // { "question1": "..." }
+             // AND
+             // { "question1.option1": "..." } (as a sibling key "question1.option1"?)
+             // No, that would be { "question1": "...", "question1.option1": "..." } valid in JS? Yes.
+             
+             // So, we need to detect if we should step into it or create a sibling key.
+             // If schema says it's a string, we shouldn't step into it. We should treat the rest of the path as part of the key.
+             
+             const remainingPath = parts.slice(i).join('.');
+             // We are at 'part' (e.g. question1). 
+             // We want to set 'question1.option1'. 
+             // But 'question1' is already set.
+             // We can set 'question1.option1' as a sibling key on currentTgt.
+             currentTgt[remainingPath] = value;
+             return;
+        }
+
         currentTgt[part] = currentTgt[part] || {};
         currentTgt = currentTgt[part];
         
@@ -257,23 +304,105 @@ async function importCsv() {
       if (!key || !value) continue;
       
       // Don't import placeholders
-      if (value === '[需要翻译]' || value.trim() === '') continue;
+      // if (value === '[需要翻译]' || value.trim() === '') continue;
+      // UPDATE: For full synchronization, we WANT to import even if it's a placeholder,
+      // so that the key exists in the file structure (and falls back to Key name in UI).
+      // However, we shouldn't overwrite existing valid translations with empty.
+      // But here we are rebuilding the object from scratch based on CSV (sort of).
+      // Actually we are merging into 'translationObj'.
+      
+      let finalValue = value;
+      if (value === '[需要翻译]' || value.trim() === '') {
+          // If missing, use empty string so the key is created
+          finalValue = ''; 
+      }
 
       // Use the smart setter
-      setDeepValue(translationObj, key, value, zhTwTranslations);
+      setDeepValue(translationObj, key, finalValue, zhTwTranslations);
     }
 
     // Write to file
-    const filePath = path.join(LOCALES_DIR, `${lang}.ts`);
-    const fileContent = `import type { Translations } from '../types';\n\nexport const translations: Translations = ${JSON.stringify(translationObj, null, 2)};\n`;
+    // NEW: Modular write support.
+    // Instead of writing one big file, we need to split it again using refactor logic or similar.
+    // BUT, we already have a split directory structure!
+    // The easiest way is to reuse the logic from refactor-i18n.ts to split this object into files.
     
-    // Formatting: The JSON.stringify output is valid JS but not pretty TypeScript object literal.
-    // For best results, we might want to use a smarter serializer or just Prettier later.
-    // But this works for functionality. 
-    // Optimization: Use a custom serializer to make it look like the original source (unquoted keys where possible, backticks etc).
-    // For now, JSON format is 100% valid TS.
+    const targetDir = path.join(LOCALES_DIR, lang);
+    if (!fs.existsSync(targetDir)) {
+        fs.mkdirSync(targetDir, { recursive: true });
+    }
+
+    // Helper from refactor-i18n.ts (duplicated here for independence)
+    function getModuleName(key: string, value: any): string {
+        if (typeof value === 'object' && value !== null && !Array.isArray(value)) {
+            return key; 
+        }
+        return 'misc';
+    }
+
+    const modules: Record<string, any> = {};
+    const imports: string[] = [];
+    const exportAssignments: string[] = [];
     
-    fs.writeFileSync(filePath, fileContent);
+    // JS Reserved Words
+    const RESERVED_WORDS = new Set([
+      'break', 'case', 'catch', 'class', 'const', 'continue', 'debugger', 'default', 'delete', 'do',
+      'else', 'enum', 'export', 'extends', 'false', 'finally', 'for', 'function', 'if', 'import',
+      'in', 'instanceof', 'new', 'null', 'return', 'super', 'switch', 'this', 'throw', 'true',
+      'try', 'typeof', 'var', 'void', 'while', 'with', 'yield', 'implements', 'interface', 'let',
+      'package', 'private', 'protected', 'public', 'static', 'await', 'async'
+    ]);
+
+    for (const key of Object.keys(translationObj)) {
+        const value = translationObj[key];
+        const moduleName = getModuleName(key, value);
+
+        if (!modules[moduleName]) {
+            modules[moduleName] = {};
+        }
+
+        if (moduleName === 'misc') {
+            modules[moduleName][key] = value;
+        } else {
+            modules[moduleName] = value;
+        }
+    }
+
+    // Write module files
+    for (const [modName, content] of Object.entries(modules)) {
+        const modFilePath = path.join(targetDir, `${modName}.ts`);
+        const modFileContent = `export default ${JSON.stringify(content, null, 2)};\n`;
+        fs.writeFileSync(modFilePath, modFileContent);
+
+        if (modName === 'misc') {
+            imports.push(`import misc from './misc';`);
+        } else {
+            let varName = modName;
+            if (RESERVED_WORDS.has(modName)) {
+                varName = `${modName}_module`;
+            }
+            imports.push(`import ${varName} from './${modName}';`);
+            
+            if (varName !== modName) {
+                exportAssignments.push(`  "${modName}": ${varName},`);
+            } else {
+                exportAssignments.push(`  ${modName},`);
+            }
+        }
+    }
+
+    // Generate index.ts
+    const indexContent = [
+        imports.join('\n'),
+        '',
+        'export const translations = {',
+        modules['misc'] ? '  ...misc,' : '',
+        exportAssignments.join('\n'),
+        '};',
+        ''
+    ].join('\n');
+
+    fs.writeFileSync(path.join(targetDir, 'index.ts'), indexContent);
   }
   
   console.log('✅ Import Complete! All locale files updated.');

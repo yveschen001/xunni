@@ -1,0 +1,21 @@
+export default {
+  "amount": "Số lượng: ${stars} ⭐",
+  "data": "Dữ liệu: ${data}",
+  "daysLeft": "Thời gian còn lại: ${days} ngày",
+  "expireDate": "Hạn sử dụng: ${date}",
+  "newExpireDate": "Ngày hết hạn mới: ${date}",
+  "paymentFailed": "❌ **Thanh toán thất bại**",
+  "paymentId": "Mã thanh toán: `${id}`",
+  "reason": "Lý do: ${reason}",
+  "refundRequest": "🔴 **Yêu cầu Hoàn tiền**",
+  "requestId": "Mã yêu cầu: #${id}",
+  "systemNotification": "📢 **Thông báo hệ thống**",
+  "time": "Thời gian: ${time}",
+  "type": "Loại: ${type}",
+  "user": "Người dùng: `${userId}`",
+  "viewRefundsHint": "💡 Sử dụng /admin_refunds để biết thêm chi tiết",
+  "vipDowngraded": "⬇️ **Giảm cấp tự động VIP**",
+  "vipPurchased": "🎉 **Mua VIP Mới**",
+  "vipReminderSent": "⏰ **Nhắc nhở hết VIP đã được gửi**",
+  "vipRenewed": "🔄 **Gia hạn VIP**"
+};

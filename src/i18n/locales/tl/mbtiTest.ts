@@ -1,0 +1,22 @@
+export default {
+  "afterRegistration": "💡 Pagkatapos makumpleto ang pagpaparehistro, maaari kang:\n",
+  "answerRecorded": "✅ Naitala",
+  "completion": "🎉 {testTitle} Natapos na!\n\n",
+  "fullAccuracy": "Mas tumpak ang mga resulta",
+  "fullQuestions": "36 na tanong",
+  "fullTest": "Kompletuhin ang MBTI test",
+  "fullTestInfo": "💡 Ito ang kumpletong pagsusulit ({questions}), at mas tumpak ang mga resulta.\nPagkatapos makumpleto ang pagpaparehistro, maaari mong ulitin ang pagsusulit gamit ang /mbti.",
+  "fullTestTitle": "Buong pagsusulit",
+  "manualModify": "• Manwal na baguhin ang iyong uri ng MBTI",
+  "moreDetailedTest": "• Gumawa ng mas detalyadong pagsusulit\n",
+  "note": "⚠️ Tandaan: Ito ay {testInfo}{testTitle}, {accuracy}.\n\n",
+  "questionOrderError": "⚠️ Mali ang pagkakasunod-sunod ng tanong",
+  "questions12": "12 na tanong",
+  "questions36": "36 na tanong",
+  "quickAccuracy": "Ang mga resulta ay para sa sanggunian lamang",
+  "quickQuestions": "12 na tanong",
+  "quickTest": "Mabilis na MBTI test",
+  "quickTestInfo": "💡 Ito ay isang mabilis na pagsusulit ({questions}), at ang mga resulta ay para sa sanggunian lamang.\nMatapos kumpletuhin ang pagpaparehistro, maaari mong ulitin ang pagsusulit sa pamamagitan ng /mbti.",
+  "quickTestTitle": "Mabilis na pagsusulit",
+  "yourMbtiType": "Ang iyong MBTI uri ay: **{type}**\n\n"
+};

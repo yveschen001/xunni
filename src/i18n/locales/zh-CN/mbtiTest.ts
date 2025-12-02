@@ -1,0 +1,22 @@
+export default {
+  "afterRegistration": "💡 完成注册后，你可以：\n",
+  "answerRecorded": "✅ 已记录",
+  "completion": "🎉 {testTitle} 完成！",
+  "fullAccuracy": "结果更准确",
+  "fullQuestions": "36 题",
+  "fullTest": "MBTI 完整测验",
+  "fullTestInfo": "💡 这是完整测验（{questions}），结果更准确。\n完成注册后，可使用 /mbti 重新测验。",
+  "fullTestTitle": "完整测验",
+  "manualModify": "• 手动修改你的 MBTI 类型",
+  "moreDetailedTest": "• 进行更详细的测验\n",
+  "note": "⚠️ 注意：这是 {testInfo}{testTitle}，{accuracy}。\n\n",
+  "questionOrderError": "⚠️ 问题顺序错误",
+  "questions12": "12 题",
+  "questions36": "36 题",
+  "quickAccuracy": "结果仅供参考",
+  "quickQuestions": "12 题",
+  "quickTest": "MBTI 快速测验",
+  "quickTestInfo": "💡 这是快速测验（{questions}），结果仅供参考。\n完成注册后，可使用 /mbti 重新测验。",
+  "quickTestTitle": "快速测验",
+  "yourMbtiType": "你的 MBTI 类型是：**{type}**\n\n"
+};

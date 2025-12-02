@@ -11,7 +11,7 @@ import {
   createBlock,
   getMatchRequest
 } from '~/db/queries/match_requests';
-import { findUserByTelegramId, findUserByUsername } from '~/db/queries/users';
+import { findUserByTelegramId, findUserByUsername, findUserByNickname } from '~/db/queries/users';
 import { COOLDOWN_HOURS, MATCH_REQUEST_EXPIRY_DAYS, RelationshipType } from '~/domain/match_request';
 import { FortuneService } from '~/services/fortune';
 import { maskNickname } from '~/domain/invite';
@@ -34,13 +34,25 @@ export class MatchRequestService {
     targetInput: string, // Username or ID
     relationshipType: RelationshipType,
     familyRole?: string
-  ): Promise<{ success: boolean; code?: string; message?: string }> {
+  ): Promise<{ success: boolean; code?: string; message?: string; data?: any }> {
     // 1. Find target user
-    let targetUser = await findUserByTelegramId(createDatabaseClient(this.db), targetInput);
+    let targetInputClean = targetInput.trim();
+    
+    // Smart Input Handling: Extract username from URL
+    // Supports: t.me/username, https://t.me/username, @username
+    const urlMatch = targetInputClean.match(/(?:t\.me\/|@)([\w\d_]+)/i);
+    if (urlMatch) {
+      targetInputClean = urlMatch[1];
+    }
+
+    let targetUser = await findUserByTelegramId(createDatabaseClient(this.db), targetInputClean);
     if (!targetUser) {
-      // Try by username (remove @ if present)
-      const username = targetInput.replace('@', '');
-      targetUser = await findUserByUsername(createDatabaseClient(this.db), username);
+      // Try by username (already cleaned)
+      targetUser = await findUserByUsername(createDatabaseClient(this.db), targetInputClean);
+    }
+    if (!targetUser) {
+      // Try by nickname (as per user request and data observation)
+      targetUser = await findUserByNickname(createDatabaseClient(this.db), targetInputClean);
     }
 
     if (!targetUser) {
@@ -49,13 +61,19 @@ export class MatchRequestService {
 
     const targetId = targetUser.telegram_id;
 
+    // 1.5 Check Target Profile (New Requirement)
+    const fortuneService = new FortuneService(this.env, this.db);
+    const targetProfiles = await fortuneService.getProfiles(targetId);
+    if (targetProfiles.length === 0) {
+      return { success: false, code: 'TARGET_NO_PROFILE' };
+    }
+
     // 2. Validate Target
     if (requesterId === targetId) {
       return { success: false, code: 'SELF_MATCH', message: this.i18n.t('fortune.love.error_self_match') };
     }
 
     // 3. Check Quota (Pre-check)
-    const fortuneService = new FortuneService(this.env, this.db);
     // Determine if VIP (we need requester user object, but we assume caller checked or we fetch it)
     const requester = await findUserByTelegramId(createDatabaseClient(this.db), requesterId);
     if (!requester) return { success: false, code: 'USER_NOT_FOUND' };
@@ -77,6 +95,9 @@ export class MatchRequestService {
     }
 
     // 5. Check Active/Pending Requests
+    // In Single Opt-in flow, we ignore pending requests from old flow.
+    // We just proceed to match.
+    /*
     const activeRequest = await getActiveMatchRequest(this.db, requesterId, targetId);
     if (activeRequest) {
       if (activeRequest.status === 'pending') {
@@ -86,6 +107,7 @@ export class MatchRequestService {
       // Logic: Allow re-request if data changed (handled elsewhere) or if previous request expired.
       // getActiveMatchRequest handles checking expiry.
     }
+    */
 
     // 6. Check Cooldown (Anti-Harassment)
     const lastRejected = await getLastRejectedRequest(this.db, requesterId, targetId);
@@ -108,53 +130,24 @@ export class MatchRequestService {
       }
     }
 
-    // 7. Create Request
-    const expiresAt = new Date();
-    expiresAt.setDate(expiresAt.getDate() + MATCH_REQUEST_EXPIRY_DAYS);
-
-    const request = await createMatchRequest(this.db, {
-      requester_id: requesterId,
-      target_id: targetId,
-      relationship_type: relationshipType,
-      family_role: familyRole,
-      expires_at: expiresAt.toISOString()
-    });
-
-    // 8. Send Consent Message to Target
-    // We need Target's language for the message sent TO them
-    const { createI18n } = await import('~/i18n');
-    const targetI18n = createI18n(targetUser.language_pref || 'zh-TW');
-    
-    // Prepare Requester Name
-    const requesterName = requester.nickname || requester.username || this.i18n.t('common.anonymousUser');
-    const maskedRequesterName = formatNicknameWithFlag(maskNickname(requesterName), requester.country_code);
-
-    // Relationship Text
-    let relationText = targetI18n.t(('fortune.relationship.' + relationshipType) as any);
-    if (familyRole) relationText += ` (${familyRole})`;
-
-    const messageText = targetI18n.t('fortune.love.consent_request_msg', {
-      requester: maskedRequesterName,
-      gender: requester.gender === 'male' ? '♂️' : (requester.gender === 'female' ? '♀️' : ''),
-      relation: relationText
-    });
-
-    await this.telegram.sendMessageWithButtons(
-      targetUser.telegram_id,
-      messageText,
-      [
-        [
-          { text: targetI18n.t('common.agree'), callback_data: `match_consent_accept:${request.id}` },
-          { text: targetI18n.t('common.reject'), callback_data: `match_consent_reject:${request.id}` }
-        ]
-      ]
-    );
-
-    return { success: true };
+    // 7. Validation Success - Return Ready State (Single Opt-in Flow)
+    // No longer creating DB request or sending consent
+    return { 
+      success: true, 
+      code: 'READY_TO_MATCH',
+      message: 'Validation passed',
+      // Return target info for the UI confirmation step
+      data: {
+        targetId,
+        targetName: targetUser.nickname || targetUser.username || this.i18n.t('common.anonymousUser'),
+        targetCountry: targetUser.country_code
+      }
+    };
   }
 
   /**
    * Handle user consent (Accept/Reject)
+   * @deprecated No longer used in Single Opt-in Flow
    */
   async handleConsent(requestId: string, targetId: string, accepted: boolean): Promise<{ success: boolean; message?: string }> {
     const request = await getMatchRequest(this.db, requestId);

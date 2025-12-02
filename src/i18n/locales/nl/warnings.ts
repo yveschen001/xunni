@@ -1,0 +1,130 @@
+export default {
+  "birthday": "⚠️ Geboortedatum kan niet worden gewijzigd eenmaal ingesteld, bevestig dat deze correct is!",
+  "bloodType": "🩸 Bloedgroep",
+  "gender": "👤 Geslacht: {otherUser.gender}",
+  "mbti": "🧠 MBTI：\\\\\\\\\\${mbti}",
+  "register2": "⚠️ Voltooi eerst de registratie",
+  "register4": "⚠️ Registratie niet voltooid",
+  "settings": "🧠 MBTI: \\\\\\\\\\\\$",
+  "text5": "📖 Bio: {otherUser.bio}",
+  "text6": "⚠️ Voltooi eerst de registratie",
+  "userNotFound": "Gebruiker bestaat niet",
+  "warning": {
+    "ad": "⚠️ Momenteel geen advertentieproviders geconfigureerd\n\n",
+    "ad2": "⚠️ Momenteel geen officiële advertenties\n\n",
+    "ad3": "⚠️ Geen beschikbare advertentieproviders op dit moment",
+    "ad4": "⚠️ Kan de advertentieprovider niet selecteren",
+    "ad5": "⚠️ Kan niet meer advertenties bekijken",
+    "birthday": "⚠️ Momenteel niet in de stap voor het invoeren van de verjaardag",
+    "bloodType": "⚠️ Momenteel niet in de stap voor het selecteren van bloedgroep",
+    "broadcast": "⚠️ Gevonden \\${stuckBroadcasts.results.length} vastgezette uitzendingen\n\n",
+    "complete": "⚠️ Voltooi de vorige advertentie voordat je een nieuwe start",
+    "confirm": "⚠️ Bevestig je verjaardag informatie:\n\n",
+    "conversation": "⚠️ Gespreksinformatie is onjuist.",
+    "conversation10": "⚠️ Gesprek bestaat niet",
+    "conversation2": "⚠️ Gespreksinformatie is onjuist",
+    "conversation3": "⚠️ Deze gebruiker heeft geen gespreksgeschiedenis berichten\n",
+    "conversation4": "⚠️ Kan het opgegeven gesprek niet vinden, het kan zijn beëindigd of verlopen zijn.",
+    "conversation5": "⚠️ **Gespreksgeschiedenis gedeeltelijk bijgewerkt**\n\n",
+    "conversation6": "⚠️ Kan gesprekspartner niet identificeren\n\n",
+    "conversation7": "⚠️ Kan dit gesprek niet vinden\n\n",
+    "conversation8": "⚠️ Gesprek bestaat niet of is beëindigd",
+    "conversation9": "⚠️ Dit gesprek is beëindigd",
+    "end": "⚠️ De test is beëindigd of bestaat niet.",
+    "failed": "⚠️ Betalingsverificatie mislukt, probeer het later opnieuw.",
+    "gender": "⚠️ Momenteel niet in de geslachtsselectiestap.",
+    "invite": "⚠️ Kan de uitnodigingscode niet ophalen.",
+    "mbti": "⚠️ Momenteel niet in de MBTI-teststap.",
+    "mbti2": "⚠️ Ongeldig MBTI-type.",
+    "message": "⚠️ Gevonden \\${outdatedPosts.length} verouderde berichten die ververst moeten worden\n",
+    "message2": "⚠️ Opmerking: Dit is \\${testInfo}\\${testTitle}, \\${accuracy}.\n\n",
+    "message3": "⚠️ Houd de boodschap die je wilt blokkeren lang ingedrukt en antwoord met de opdracht\n\n",
+    "message4": "⚠️ Houd de boodschap die je wilt melden lang ingedrukt en antwoord met de opdracht\n\n",
+    "message5": "⚠️ **Boodschap bevat verboden links**\n\n",
+    "register": "⚠️ Gebruikersprofiel niet gevonden, registreer eerst met /start.",
+    "register2": "⚠️ Voltooi eerst het registratieproces.\n\nGebruik /start om door te gaan met registreren.",
+    "register3": "⚠️ Er was een probleem met het registratieproces, start opnieuw: /start",
+    "register4": "⚠️ Voltooi eerst het registratieproces",
+    "settings": "⚠️ Herinnering: Eenmaal ingesteld, kan geslacht **nooit meer gewijzigd worden**!\n\n",
+    "settings2": "⚠️ Jariginstellingen kunnen niet worden gewijzigd, controleer alsjeblieft!",
+    "settings3": "⚠️ Opmerking: Geslachtsinstellingen kunnen niet worden gewijzigd, kies zorgvuldig!",
+    "short": "⚠️ Foutieve volgorde van vragen",
+    "short2": "⚠️ Onbekende optie",
+    "short3": "⚠️ Ongeldig verzoek",
+    "short4": "⚠️ Bijnaam lengtelimiet is 36 tekens",
+    "short5": "⚠️ Andere schendingen",
+    "start": "⚠️ De sessie is verlopen, start opnieuw: /throw",
+    "start2": "⚠️ De sessie is verlopen, start opnieuw",
+    "task": "⚠️ Onbekend ta TYPE",
+    "text": "⚠️ **Opmerking**\n\n",
+    "text10": "⚠️ **Niet-wijzigbare items**:\n",
+    "text11": "⚠️ De sessie is verlopen, probeer het opnieuw",
+    "text12": "⚠️ Concept bestaat niet of is verlopen",
+    "text2": "⚠️ Ongeldig betalingstype",
+    "text3": "⚠️ Vertaalservice is tijdelijk niet beschikbaar, de originele tekst is hieronder\n",
+    "text4": "⚠️ Veiligheidsherinnering:\n",
+    "text5": "⚠️ Momenteel niet in de anti-fraude teststap",
+    "text6": "⚠️ Momenteel niet in de gebruiksvoorwaardenstap",
+    "text7": "⚠️ Opmerking: Deze functie is alleen beschikbaar in de Staging-omgeving.",
+    "text8": "⚠️ **Het verzenden van afbeeldingen, video's of multimedia is niet toegestaan**\n\n",
+    "text9": "⚠️ Deze functie is alleen beschikbaar in de Staging-omgeving.",
+    "userNotFound": "⚠️ Gebruiker bestaat niet, registreer eerst met /start.",
+    "userNotFound2": "⚠️ Gebruiker bestaat niet",
+    "vip": "⚠️ Uitnodigingslimiet voor gratis gebruikers bereikt, upgrade naar VIP om de limiet van 100 mensen te ontgrendelen!",
+    "vip2": "⚠️ Deze functie is alleen voor VIP-leden",
+    "vip3": "⚠️ **VIP verloopt vandaag**\n\n"
+  },
+  "BROADCAST": {
+    "FILTER_ERROR": "❌ Fout in het formaat.\nVoorbeeld: `/broadcast_filter gender=female,country=TW test message`",
+    "NO_CONTENT": "❌ Voer broadcast inhoud in.",
+    "NO_MATCHES": "⚠️ Er zijn geen gebruikers gevonden die aan de criteria voldoen.\nFiltercriteria: {filters}",
+    "TOO_MANY_USERS": "⚠️ Te veel doelgebruikers ({count} personen), momenteel is het beperkt tot het versturen naar {max} personen tegelijk.",
+    "START_SENDING": "🚀 Broadcast #{id} wordt gestart\n🎯 Doel: {filters}\n👥 Aantal mensen: {count}",
+    "COMPLETED": "✅ Broadcast #{id} voltooid!\nSucces: {sent}\nMislukt: {failed}\nGeblokkeerd: {blocked}"
+  },
+  "push": {
+    "throwReminder": "🌊 Hé! Het is een tijdje geleden dat je een berichtfles hebt gegooid, het strand is erg rustig...",
+    "catchReminder": "🎣 Er zijn enkele nieuwe berichtflessen op het strand aangespoeld, wil je ze gaan bekijken?",
+    "onboardingReminder": "👋 Je registratie is nog niet compleet, je bent bijna daar! (Stap: {step})",
+    "messageReminderA": "👋 Hey {masked_partner_name} wacht nog steeds op je reactie! Laat het gesprek niet afkoelen～",
+    "messageReminderB": "📩 Je hebt een ongelezen bericht van {masked_partner_name}:\n> \"{last_message_preview}...\"\n(Het is al meer dan 24 uur!)",
+    "messageReminderC": "⏳ {masked_partner_name} wacht op je reactie...",
+    "actionReply": "💬 Beantwoord {masked_partner_name}",
+    "actionHistory": "📜 Bekijk Context"
+  },
+  "match": {
+    "header": {
+      "zodiac": "🌟 Dierenriem Match Onthuld",
+      "mbti": "🧠 MBTI Persoonlijkheid Resonantie",
+      "blood": "🩸 Bloedgroep Code Analyse"
+    },
+    "reason": {
+      "zodiac": {
+        "fire_affinity": "Als mede-vuurttekens brandt jullie passie helder en is jullie verbinding sterk!",
+        "earth_affinity": "De stabiliteit van aardetekens gecombineerd met de zachtheid van watertekens creëert de perfecte stroom.",
+        "air_affinity": "De behendigheid van luchttekens ontmoet de passie van vuurttekens, wat eindeloze creativiteit inspireert!",
+        "water_affinity": "De emotie van watertekens en de praktische kant van aardetekens bouwen de warmste ondersteuning."
+      },
+      "mbti": {
+        "sj_affinity": "Socializers (SJ) en Ontdekkers (SP), een perfecte aanvulling van stabiliteit en opwinding!",
+        "sp_affinity": "Ontdekkers (SP) en Socializers (SJ), de beste partners van speelmaatjes en verzorgers!",
+        "nf_affinity": "Idealisten (NF) en Rationalisten (NT), een diepe botsing van ziel en wijsheid!",
+        "nt_affinity": "Rationalisten (NT) en Idealisten (NF), een resonantie van gedachten en gevoelens!"
+      },
+      "blood": {
+        "a_affinity": "Type A's nauwgezetheid ontmoet Type O's tolerantie, wat de meest comfortabele interacties creëert.",
+        "b_affinity": "Type B's zelfassertie ontmoet Type O's gemakkelijke aard, stressvrij en ontspannen.",
+        "o_affinity": "Type O en Type B/A zijn geweldige complementaire partners!",
+        "ab_affinity": "De unieke frequentie van AB wordt het beste begrepen door zijn soort."
+      }
+    },
+    "template": {
+      "body": "{userAttribute},\nVolgens de analyse heb je de sterkste affiniteit met {recommendedAttributes}!\n\n💡 {reason}\n\n👇 Voel je je gelukkig?"
+    },
+    "btn": {
+      "throw": "🌊 Gooi een fles en waag een kans",
+      "vip_throw": "🎯 Gooi naar {target}",
+      "vip_upsell": "💡 Upgrade naar VIP om de bezorging naar {target} te specificeren, voor nauwkeurige matchmaking!"
+    }
+  }
+};

@@ -1,0 +1,22 @@
+export default {
+  "afterRegistration": "💡 Etter registrering kan du:\n",
+  "answerRecorded": "✅ Registrert",
+  "completion": "🎉 {testTitle} Fullført!\n\n",
+  "fullAccuracy": "Mer nøyaktige resultater",
+  "fullQuestions": "36 spørsmål",
+  "fullTest": "Fullfør MBTI-testen",
+  "fullTestInfo": "💡 Dette er den komplette testen ({questions}), og resultatene er mer nøyaktige.\nEtter å ha fullført registreringen, kan du ta testen på nytt ved å bruke /mbti.",
+  "fullTestTitle": "Fullfør testen",
+  "manualModify": "• Endre MBTI-typen din manuelt",
+  "moreDetailedTest": "• Ta en mer detaljert test\n",
+  "note": "⚠️ Merk: Dette er {testInfo}{testTitle}, {accuracy}.\n\n",
+  "questionOrderError": "⚠️ Feil spørsmålsrekkefølge",
+  "questions12": "12 spørsmål",
+  "questions36": "36 spørsmål",
+  "quickAccuracy": "Resultater til referanse kun",
+  "quickQuestions": "12 spørsmål",
+  "quickTest": "Rask MBTI-test",
+  "quickTestInfo": "💡 Dette er en rask quiz ({questions}), og resultatene er kun til referanse.\nEtter at du har fullført registreringen, kan du ta quizen på nytt via /mbti.",
+  "quickTestTitle": "Rask test",
+  "yourMbtiType": "Din MBTI-type er: **{type}**\n\n"
+};

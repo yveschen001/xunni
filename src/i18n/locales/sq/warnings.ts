@@ -1,0 +1,130 @@
+export default {
+  "birthday": "⚠️ Data e lindjes nuk mund të modifikohet pas vendosjes, ju lutemi konfirmoni që është e saktë!",
+  "bloodType": "🩸 Grupi i gjakut",
+  "gender": "👤 Gjinia：{otherUser.gender}",
+  "mbti": "🧠 MBTI：\\\\\\\\\\${mbti}",
+  "register2": "⚠️ Ju lutem përfundo regjistrimin fillimisht",
+  "register4": "⚠️ Regjistrimi nuk është përfunduar",
+  "settings": "🧠 MBTI：\\\\\\\\\\\\$",
+  "text5": "📖 Bio：{otherUser.bio}",
+  "text6": "⚠️ Ju lutem përfundoni regjistrimin së pari",
+  "userNotFound": "Përdoruesi nuk ekziston",
+  "warning": {
+    "ad": "⚠️ Aktualisht nuk janë konfiguruar ofrues reklamash\n\n",
+    "ad2": "⚠️ Aktualisht nuk ka reklama zyrtare\n\n",
+    "ad3": "⚠️ Nuk ka ofrues reklamash të disponueshëm në këtë moment",
+    "ad4": "⚠️ Nuk mund të zgjidhni ofruesin e reklamave",
+    "ad5": "⚠️ Nuk mund të shikoni më shumë reklama",
+    "birthday": "⚠️ Aktualisht nuk ndodheni në hapin e inputit të datës së lindjes",
+    "bloodType": "⚠️ Aktualisht nuk ndodheni në hapin e zgjedhjes së grupit të gjakut",
+    "broadcast": "{stuckBroadcasts.results.length} ${stuckBroadcasts.results.length}\n\n",
+    "complete": "⚠️ Ju lutemi përfundoni reklamen e mëparshme para se të filloni një reklamë të re",
+    "confirm": "⚠️ Ju lutem konfirmoni informacionin tuaj të ditëlindjes:\n\n",
+    "conversation": "⚠️ Gabim në informacionin e bisedës.",
+    "conversation10": "⚠️ Biseda nuk ekziston",
+    "conversation2": "⚠️ Gabim në informacionin e bisedës",
+    "conversation3": "⚠️ Ky përdorues nuk ka postime në historinë e bisedës\n",
+    "conversation4": "⚠️ Nuk mund të gjendet biseda e specifikuar, mund të ketë përfunduar ose ka skaduar.",
+    "conversation5": "⚠️ **Historia e bisedave është përditësuar pjesërisht**\n\n",
+    "conversation6": "⚠️ Nuk mund të identifikohet partneri i bisedës\n\n",
+    "conversation7": "⚠️ Nuk mund ta gjej këtë bisedë\n\n",
+    "conversation8": "⚠️ Biseda nuk ekziston ose ka përfunduar",
+    "conversation9": "⚠️ Kjo bisedë ka përfunduar",
+    "end": "⚠️ Testi ka përfunduar ose nuk ekziston",
+    "failed": "⚠️ Verifikimi i pagesës dështoi, ju lutemi provoni më vonë",
+    "gender": "⚠️ Aktualisht nuk jeni në hapin e zgjedhjes së gjinive",
+    "invite": "⚠️ E pamundur të rikuperoni kodin e ftesës",
+    "mbti": "⚠️ Aktualisht nuk jeni në hapin e testit MBTI",
+    "mbti2": "⚠️ Lloji MBTI është i pavlefshëm",
+    "message": "⚠️ U zbulua \\${outdatedPosts.length} postime të vjetra që duhet rifreskuar\n",
+    "message2": "⚠️ Shënim: Ky është \\${testInfo}\\${testTitle}, \\${accuracy}.\n\n",
+    "message3": "⚠️ Ju lutem mbani të shtypur mesazhin që dëshirani të bllokoni dhe përgjigjuni me komandën\n\n",
+    "message4": "⚠️ Ju lutem mbani të shtypur mesazhin që dëshirani të raportoni dhe përgjigjuni me komandën\n\n",
+    "message5": "⚠️ **Mesazhi përmban lidhje të ndaluara**\n\n",
+    "register": "⚠️ Profili i përdoruesit nuk u gjet, ju lutemi regjistroni së pari duke përdorur /start.",
+    "register2": "⚠️ Ju lutemi përfundoni procesin e regjistrimit së pari.\n\nPërdorni /start për të vazhduar regjistrimin.",
+    "register3": "⚠️ Kishte një problem me procesin e regjistrimit, ju lutemi filloni nga e para: /start",
+    "register4": "⚠️ Ju lutemi përfundoni procesin e regjistrimit së pari",
+    "settings": "⚠️ Kujtesë: Një herë e vendosur, gjinia **nuk mund të modifikohet** përjetësisht!\n\n",
+    "settings2": "⚠️ Cilësimi i ditëlindjes nuk mund të modifikohet, ju lutemi konfirmoni që është i saktë!",
+    "settings3": "⚠️ Shënim: Cilësimi i gjinisë nuk mund të modifikohet, ju lutemi zgjidhni me kujdes!",
+    "short": "⚠️ Renditja e gabuar e pyetjeve",
+    "short2": "⚠️ Opsion i panjohur",
+    "short3": "⚠️ Kërkesë e pavlefshme",
+    "short4": "⚠️ Kufiri i gjatë të emrit është 36 karaktere",
+    "short5": "⚠️ Shkelje të tjera",
+    "start": "⚠️ Sesioni ka skaduar, ju lutemi rifilloni: /throw",
+    "start2": "⚠️ Sesioni ka skaduar, ju lutemi rifilloni",
+    "task": "⚠️ Lloj detyre i panjohur",
+    "text": "⚠️ **Shënim**\n\n",
+    "text10": "⚠️ **Artikuj jo të modifikueshëm**:\n",
+    "text11": "⚠️ Sesioni ka skaduar, ju lutemi provoni përsëri",
+    "text12": "⚠️ Boshti nuk ekziston ose ka skaduar",
+    "text2": "⚠️ Lloji i pagesës është i pavlefshëm",
+    "text3": "⚠️ Shërbimi i përkthimit është përkohësisht i paqartë, ja teksti origjinal\n",
+    "text4": "⚠️ Kujtesë për sigurinë:\n",
+    "text5": "⚠️ Aktualisht nuk jeni në hapin e testit anti-mashtrim",
+    "text6": "⚠️ Aktualisht nuk jeni në hapin e kushteve të shërbimit",
+    "text7": "⚠️ Shënim: Kjo veçori është vetëm në dispozitën e mjedisit të Staging.",
+    "text8": "⚠️ **Dërgimi i imazheve, videove, ose multimedia nuk lejohet**\n\n",
+    "text9": "⚠️ Kjo veçori është vetëm në dispozitën e mjedisit të Staging.",
+    "userNotFound": "⚠️ Përdoruesi nuk ekziston, ju lutemi regjistroni së pari duke përdorur /start.",
+    "userNotFound2": "⚠️ Përdoruesi nuk ekziston",
+    "vip": "⚠️ Arritët kufirin për ftesat e përdoruesve të lirë, përmirësoni në VIP për të aktivizuar limitin e 100 personave!",
+    "vip2": "⚠️ Kjo veçori është vetëm për anëtarët VIP",
+    "vip3": "⚠️ **VIP skadon sot**\n\n"
+  },
+  "BROADCAST": {
+    "FILTER_ERROR": "❌ Gabim formati.\nShembulli: `/broadcast_filter gender=female,country=TW test message`",
+    "NO_CONTENT": "❌ Ju lutem hyni në përmbajtjen e transmetimit.",
+    "NO_MATCHES": "⚠️ Nuk u gjetën përdorues që përputhen me kriteret.\nKriteret e filtrit: {filters}",
+    "TOO_MANY_USERS": "⚠️ Shumë përdorues të targetuar ({count} persona), aktualisht e kufizuar në dërgimin e mesazheve për {max} persona në një herë.",
+    "START_SENDING": "🚀 Duke nisur transmetimin #{id}\n🎯 Target: {filters}\n👥 Numri i njerëzve: {count}",
+    "COMPLETED": "✅ Transmetimi #{id} përfundoi!\nSukses: {sent}\nDështoi: {failed}\nBlokuar: {blocked}"
+  },
+  "push": {
+    "throwReminder": "🌊 Hey! Ka kaluar një kohë që kur hodhët një message bottle, plazhi është shumë i qetë...",
+    "catchReminder": "🎣 Disa message bottles të reja kanë mbërritur në plazh, a do të donit t'i kontrollonit?",
+    "onboardingReminder": "👋 Regjistrimi juaj nuk është akoma i plotë, jeni pothuajse atje! (Hapi: {step})",
+    "messageReminderA": "👋 Hey {masked_partner_name} po pret ende përgjigjen tuaj! Mos e lejoni bisedën të ftohet～",
+    "messageReminderB": "📩 Keni një mesazh të pa lexuar nga {masked_partner_name}:\n> \"{last_message_preview}...\"\n(Ka kaluar më shumë se 24 orë!)",
+    "messageReminderC": "⏳ {masked_partner_name} po pret përgjigjen tuaj...",
+    "actionReply": "💬 Përgjigjuni {masked_partner_name}",
+    "actionHistory": "📜 Shihni Kontekstin"
+  },
+  "match": {
+    "header": {
+      "zodiac": "🌟 Zodiaku i Përputhur është Zbuluar",
+      "mbti": "🧠 Resonanca e Personalitetit MBTI",
+      "blood": "🩸 Analiza e Kodit të Tipit të Gjakut"
+    },
+    "reason": {
+      "zodiac": {
+        "fire_affinity": "Si shenja të zjarrta, pasioni juaj digjet fort dhe lidhja juaj është e fortë!",
+        "earth_affinity": "Stabiliteti i shenjave të tokës i kombinuar me butësinë e shenjave të ujit krijon rrjedhën perfekte.",
+        "air_affinity": "Agjilia e shenjave të ajrit takon pasionin e shenjave të zjarrtë, duke frymëzuar kreativitet të pafund!",
+        "water_affinity": "Emocionet e shenjave të ujit dhe praktikshmëria e shenjave të tokës ndihmojnë në ndërtimin e mbështetjes më të ngrohtë."
+      },
+      "mbti": {
+        "sj_affinity": "Socializuesit (SJ) dhe Eksploruesit (SP), një plotësim perfekt i stabilitetit dhe emocionit!",
+        "sp_affinity": "Eksploruesit (SP) dhe Socializuesit (SJ), partnerët më të mirë të shoqëruesve dhe kujdestarëve!",
+        "nf_affinity": "Idealistët (NF) dhe Racionalistët (NT), një përplasje e thellë e shpirtit dhe mençurisë!",
+        "nt_affinity": "Racionalistët (NT) dhe Idealistët (NF), një rezonancë e mendimeve dhe ndjenjave!"
+      },
+      "blood": {
+        "a_affinity": "Pikë A's metikuloziteti takon tolerancën e Pikës O, duke krijuar ndërveprime më të rehatshme.",
+        "b_affinity": "Pikë B's vetë-përshtatja takon natyrën e lehtë të Pikës O, pa stres dhe të relaksuar.",
+        "o_affinity": "Pika O dhe Pika B/A janë partnerë shumë të mirë plotësues!",
+        "ab_affinity": "Frekuenca unike e AB kuptohet më së miri nga të njëjtit lloj."
+      }
+    },
+    "template": {
+      "body": "{userAttribute},\nSipas analizës, keni afinitetin më të fortë me {recommendedAttributes}!\n\n💡 {reason}\n\n👇 Po ndiheni me fat?"
+    },
+    "btn": {
+      "throw": "🌊 Hedhni një shishe dhe merrni një mundësi",
+      "vip_throw": "🎯 Hedh për {target}",
+      "vip_upsell": "💡 Përmirësoni në VIP për të caktuar dorëzimin për {target}, për përputhje të saktë!"
+    }
+  }
+};

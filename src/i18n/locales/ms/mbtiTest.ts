@@ -1,0 +1,22 @@
+export default {
+  "afterRegistration": "💡 Selepas menyelesaikan pendaftaran, anda boleh:\n",
+  "answerRecorded": "✅ Direkodkan",
+  "completion": "🎉 {testTitle} Selesai!\n\n",
+  "fullAccuracy": "Keputusan adalah lebih tepat",
+  "fullQuestions": "36 soalan",
+  "fullTest": "Lengkapkan ujian MBTI",
+  "fullTestInfo": "💡 Ini adalah ujian lengkap ({questions}), dan keputusan adalah lebih tepat.\nSelepas menyelesaikan pendaftaran, anda boleh mengambil semula ujian menggunakan /mbti.",
+  "fullTestTitle": "Ujian penuh",
+  "manualModify": "• Ubah jenis MBTI anda secara manual",
+  "moreDetailedTest": "• Ambil ujian yang lebih terperinci\n",
+  "note": "⚠️ Nota: Ini adalah {testInfo}{testTitle}, {accuracy}.\n\n",
+  "questionOrderError": "⚠️ Urutan soalan tidak betul",
+  "questions12": "12 soalan",
+  "questions36": "36 soalan",
+  "quickAccuracy": "Keputusan adalah untuk rujukan sahaja",
+  "quickQuestions": "12 soalan",
+  "quickTest": "Ujian MBTI Pantas",
+  "quickTestInfo": "💡 Ini adalah kuiz cepat ({questions}), dan keputusan hanya untuk rujukan sahaja.\nSelepas menyelesaikan pendaftaran, anda boleh mengambil semula kuiz melalui /mbti.",
+  "quickTestTitle": "Ujian pantas",
+  "yourMbtiType": "Jenis MBTI anda ialah: **{type}**\n\n"
+};

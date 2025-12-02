@@ -1,0 +1,21 @@
+export default {
+  "amount": "Čiastka: ${stars} ⭐",
+  "data": "Údaje: ${data}",
+  "daysLeft": "Zostáva: ${days} dní",
+  "expireDate": "Platnosť: ${date}",
+  "newExpireDate": "Nová platnosť: ${date}",
+  "paymentFailed": "❌ **Platba zlyhala**",
+  "paymentId": "ID platby: `${id}`",
+  "reason": "Dôvod: ${reason}",
+  "refundRequest": "🔴 **Žiadosť o vrátenie peňazí**",
+  "requestId": "ID žiadosti: #${id}",
+  "systemNotification": "📢 **Systémová oznámenie**",
+  "time": "Čas: ${time}",
+  "type": "Typ: ${type}",
+  "user": "Používateľ: `${userId}`",
+  "viewRefundsHint": "💡 Použite /admin_refunds pre detaily",
+  "vipDowngraded": "⬇️ **Automatické zníženie VIP**",
+  "vipPurchased": "🎉 **Nový VIP nákup**",
+  "vipReminderSent": "⏰ **Pripomienka vypršania VIP zaslaná**",
+  "vipRenewed": "🔄 **Obnovenie VIP**"
+};

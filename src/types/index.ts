@@ -12,6 +12,7 @@ export interface Env {
   DB: D1Database;
   RISK_CACHE?: KVNamespace;
   CACHE?: KVNamespace; // 🚀 智能匹配缓存（成本优化，可选）
+  I18N_DATA?: KVNamespace; // 🌍 i18n Data Store (Architecture Upgrade)
   ASSETS?: Fetcher;
 
   // Secrets

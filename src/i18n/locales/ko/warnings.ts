@@ -1,0 +1,130 @@
+export default {
+  "birthday": "⚠️ 생일이 설정되면 변경할 수 없습니다. 올바른지 확인해 주세요!",
+  "bloodType": "🩸 혈액형",
+  "gender": "👤 성별: {otherUser.gender}",
+  "mbti": "🧠 MBTI：\\\\\\\\\\${mbti}",
+  "register2": "⚠️ 먼저 등록을 완료해주세요",
+  "register4": "⚠️ 등록이 완료되지 않았습니다",
+  "settings": "🧠 MBTI:\\\\\\\\\\\\$",
+  "text5": "📖 소개: {otherUser.bio}",
+  "text6": "⚠️ 먼저 등록을 완료해 주세요",
+  "userNotFound": "사용자가 존재하지 않습니다",
+  "warning": {
+    "ad": "⚠️ 현재 광고 제공자가 구성되어 있지 않습니다\n\n",
+    "ad2": "⚠️ 현재 공식 광고가 없습니다\n\n",
+    "ad3": "⚠️ 지금 사용 가능한 광고 제공자가 없습니다",
+    "ad4": "⚠️ 광고 제공자를 선택할 수 없습니다",
+    "ad5": "⚠️ 더 많은 광고를 볼 수 없습니다",
+    "birthday": "⚠️ 현재 생일 입력 단계에 있지 않습니다",
+    "bloodType": "⚠️ 현재 혈액형 선택 단계에 있지 않습니다",
+    "broadcast": "⚠️ \\${stuckBroadcasts.results.length}개의 멈춘 방송을 찾았습니다\n\n",
+    "complete": "⚠️ 새로운 광고를 시작하기 전에 이전 광고를 완료해 주세요",
+    "confirm": "⚠️ 생년월일 정보를 확인해 주세요:\n\n",
+    "conversation": "⚠️ 대화 정보가 올바르지 않습니다.",
+    "conversation10": "⚠️ 대화가 존재하지 않습니다.",
+    "conversation2": "⚠️ 대화 정보가 올바르지 않습니다.",
+    "conversation3": "⚠️ 이 사용자는 대화 기록이 없습니다\n",
+    "conversation4": "⚠️ 지정된 대화를 찾을 수 없습니다. 종료되었거나 만료되었을 수 있습니다.",
+    "conversation5": "⚠️ **대화 기록이 부분적으로 업데이트되었습니다**\n\n",
+    "conversation6": "⚠️ 대화 상대를 식별할 수 없습니다\n\n",
+    "conversation7": "⚠️ 이 대화를 찾을 수 없습니다\n\n",
+    "conversation8": "⚠️ 대화가 존재하지 않거나 종료되었습니다.",
+    "conversation9": "⚠️ 이 대화는 종료되었습니다.",
+    "end": "⚠️ 퀴즈가 종료되었거나 존재하지 않습니다.",
+    "failed": "⚠️ 결제 확인이 실패했습니다. 나중에 다시 시도해 주세요.",
+    "gender": "⚠️ 현재 성별 선택 단계에 있지 않습니다.",
+    "invite": "⚠️ 초대 코드를 가져올 수 없습니다.",
+    "mbti": "⚠️ 현재 MBTI 퀴즈 단계에 있지 않습니다.",
+    "mbti2": "⚠️ 잘못된 MBTI 유형입니다.",
+    "message": "⚠️ 새로 고침이 필요한 \\${outdatedPosts.length}개의 오래된 게시물이 발견되었습니다\n",
+    "message2": "⚠️ 주의: 이것은 \\${testInfo}\\${testTitle}, \\${accuracy}입니다.\n\n",
+    "message3": "⚠️ 차단할 메시지를 길게 눌러서 명령어로 회신해 주세요\n\n",
+    "message4": "⚠️ 신고할 메시지를 길게 눌러서 명령어로 회신해 주세요\n\n",
+    "message5": "⚠️ **메시지에 금지된 링크가 포함되어 있습니다**\n\n",
+    "register": "⚠️ 사용자 데이터를 찾을 수 없습니다. 먼저 /start를 사용하여 등록해 주세요.",
+    "register2": "⚠️ 먼저 등록 절차를 완료해 주세요.\n\n등록을 계속하려면 /start를 사용하세요.",
+    "register3": "⚠️ 등록 과정에 문제가 발생했습니다. 다시 시작해 주세요: /start",
+    "register4": "⚠️ 먼저 등록 절차를 완료해 주세요.",
+    "settings": "⚠️ 알림: 설정 후 성별은 **영원히 수정할 수 없습니다!**\n\n",
+    "settings2": "⚠️ 생일 설정은 수정할 수 없습니다. 정확한지 확인해 주세요!",
+    "settings3": "⚠️ 주의: 성별 설정은 수정할 수 없습니다. 신중히 선택해 주세요!",
+    "short": "⚠️ 질문 순서가 잘못되었습니다",
+    "short2": "⚠️ 알 수 없는 옵션",
+    "short3": "⚠️ 잘못된 요청입니다",
+    "short4": "⚠️ 닉네임 길이는 36자로 제한됩니다",
+    "short5": "⚠️ 기타 위반 사항",
+    "start": "⚠️ 세션이 만료되었습니다. 다시 시작해 주세요: /throw",
+    "start2": "⚠️ 세션이 만료되었습니다. 다시 시도해 주세요",
+    "task": "⚠️ 알 수 없는 작업 유형",
+    "text": "⚠️ **주의**\n\n",
+    "text10": "⚠️ **수정할 수 없는 항목**:\n",
+    "text11": "⚠️ 세션이 만료되었습니다. 다시 시도해 주세요",
+    "text12": "⚠️ 초안이 존재하지 않거나 만료되었습니다.",
+    "text2": "⚠️ 유효하지 않은 결제 유형",
+    "text3": "⚠️ 번역 서비스가 일시적으로 사용 중지되었습니다. 아래는 원본 텍스트입니다.\n",
+    "text4": "⚠️ 안전 알림:\n",
+    "text5": "⚠️ 현재 사기 방지 퀴즈 단계에 없습니다.",
+    "text6": "⚠️ 현재 서비스 약관 단계에 없습니다.",
+    "text7": "⚠️ 주의: 이 기능은 스테이징 환경에서만 사용 가능합니다.",
+    "text8": "⚠️ **이미지, 비디오 또는 멀티미디어 전송은 허용되지 않습니다**\n\n",
+    "text9": "⚠️ 이 기능은 스테이징 환경에서만 사용 가능합니다.",
+    "userNotFound": "⚠️ 사용자가 존재하지 않습니다. 먼저 /start를 사용하여 등록해 주세요.",
+    "userNotFound2": "⚠️ 사용자가 존재하지 않습니다.",
+    "vip": "⚠️ 무료 사용자 초대 최대 한도에 도달했습니다. VIP로 업그레이드하여 100명 한도를 잠금 해제하세요!",
+    "vip2": "⚠️ 이 기능은 VIP 회원 전용입니다.",
+    "vip3": "⚠️ **VIP가 오늘 만료됩니다**\n\n"
+  },
+  "BROADCAST": {
+    "FILTER_ERROR": "❌ 형식 오류.\n예시: `/broadcast_filter gender=female,country=TW test message`",
+    "NO_CONTENT": "❌ 방송 내용을 입력해 주세요.",
+    "NO_MATCHES": "⚠️ 조건에 맞는 사용자가 발견되지 않았습니다.\n필터 조건: {filters}",
+    "TOO_MANY_USERS": "⚠️ 대상 사용자가 너무 많습니다 ({count}명), 현재 한 번에 {max}명에게 전송할 수 있습니다.",
+    "START_SENDING": "🚀 방송 시작 #{id}\n🎯 대상: {filters}\n👥 인원 수: {count}",
+    "COMPLETED": "✅ 방송 #{id} 완료!\n성공: {sent}\n실패: {failed}\n차단: {blocked}"
+  },
+  "push": {
+    "throwReminder": "🌊 안녕하세요! 메시지 병을 던진 지 한동안 되어서 해변이 매우 조용하네요...",
+    "catchReminder": "🎣 해변에 새로운 메시지 병이 씻겨왔습니다, 한번 확인해 보시겠어요?",
+    "onboardingReminder": "👋 아직 등록이 완료되지 않았습니다, 거의 다 오셨습니다! (단계: {step})",
+    "messageReminderA": "👋 안녕하세요 {masked_partner_name}님, 아직 답장이 기다리고 있습니다! 대화가 식지 않도록 해주세요～",
+    "messageReminderB": "📩 {masked_partner_name}님으로부터 읽지 않은 메시지가 있습니다:\n> \"{last_message_preview}...\"\n(24시간이 넘었습니다!)",
+    "messageReminderC": "⏳ {masked_partner_name}님이 답장을 기다리고 있습니다...",
+    "actionReply": "💬 {masked_partner_name}님에게 답장하기",
+    "actionHistory": "📜 맥락 보기"
+  },
+  "match": {
+    "header": {
+      "zodiac": "🌟 별자리 매치 공개",
+      "mbti": "🧠 MBTI 성격 공명",
+      "blood": "🩸 혈액형 코드 분석"
+    },
+    "reason": {
+      "zodiac": {
+        "fire_affinity": "같은 불의 내기들로서, 당신의 열정은 밝고 관계는 강합니다!",
+        "earth_affinity": "지구형의 안정성과 수水형의 부드러움이 완벽한 흐름을 만들어냅니다.",
+        "air_affinity": "공기형의 민첩함과 불의 열정이 만나 무한한 창의력을 자극합니다!",
+        "water_affinity": "물의 감정과 지구의 실용성이 따뜻한 지지를 만듭니다."
+      },
+      "mbti": {
+        "sj_affinity": "사회형(SJ)과 탐험가(SP)는 안정성과 흥분의 완벽한 조화입니다!",
+        "sp_affinity": "탐험가(SP)와 사회형(SJ)는 놀이 친구와 돌보미의 최고의 파트너입니다!",
+        "nf_affinity": "이상주의자(NF)와 이성주의자(NT)는 영혼과 지혜의 깊은 충돌입니다!",
+        "nt_affinity": "이성주의자(NT)와 이상주의자(NF)는 사고와 감정의 공명입니다!"
+      },
+      "blood": {
+        "a_affinity": "A형의 세심함과 O형의 관용이 만나 가장 편안한 상호작용을 만들어냅니다.",
+        "b_affinity": "B형의 자기주장이 O형의 느긋함과 만나 스트레스 없는 편안함을 느낍니다.",
+        "o_affinity": "O형과 B/A형은 훌륭한 상호 보완 파트너입니다!",
+        "ab_affinity": "AB형의 독특한 주파수는 같은 종류에 의해 가장 잘 이해됩니다."
+      }
+    },
+    "template": {
+      "body": "{userAttribute},\n분석에 따르면, 당신은 {recommendedAttributes}와 가장 강한 친화력을 가지고 있습니다!\n\n💡 {reason}\n\n👇 운이 좋다고 느끼세요?"
+    },
+    "btn": {
+      "throw": "🌊 병을 던져 보고 기회를 잡으세요",
+      "vip_throw": "🎯 {target}에게 던지기",
+      "vip_upsell": "💡 VIP로 업그레이드하여 {target}에게 배달을 지정하여 정밀한 매칭을 하세요!"
+    }
+  }
+};

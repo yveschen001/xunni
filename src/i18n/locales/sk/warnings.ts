@@ -1,0 +1,130 @@
+export default {
+  "birthday": "⚠️ Narodeniny nie je možné upraviť po nastavení, potvrďte, že sú správne!",
+  "bloodType": "🩸 Krvná skupina",
+  "gender": "👤 Pohlavie：{otherUser.gender}",
+  "mbti": "🧠 MBTI：\\\\\\\\\\${mbti}",
+  "register2": "⚠️ Prosím, najprv dokončite registráciu",
+  "register4": "⚠️ Registrácia nebola dokončená",
+  "settings": "🧠 MBTI：\\\\\\\\\\\\$",
+  "text5": "📖 Bio：{otherUser.bio}",
+  "text6": "⚠️ Prosím, najprv dokončite registráciu",
+  "userNotFound": "Používateľ neexistuje",
+  "warning": {
+    "ad": "⚠️ Aktuálne nie sú nakonfigurovaní žiadni poskytovatelia reklám\n\n",
+    "ad2": "⚠️ Aktuálne nie sú žiadne oficiálne reklamy\n\n",
+    "ad3": "⚠️ Momentálne nie sú k dispozícii žiadni poskytovatelia reklám",
+    "ad4": "⚠️ Nie je možné vybrať poskytovateľa reklamy",
+    "ad5": "⚠️ Nie je možné sledovať viac reklám",
+    "birthday": "⚠️ Aktuálne nie ste v kroku zadávania dátumu narodenia",
+    "bloodType": "⚠️ Aktuálne nie ste v kroku výberu krvnej skupiny",
+    "broadcast": "⚠️ Našli sme \\${stuckBroadcasts.results.length} uviaznutých prenosov\n\n",
+    "complete": "⚠️ Prosím dokončite predchádzajúcu reklamu pred začatím novej reklamy",
+    "confirm": "⚠️ Prosíme potvrďte svoje dátumy narodenia:\n\n",
+    "conversation": "⚠️ Chyba informácií o konverzácii.",
+    "conversation10": "⚠️ Konverzácia neexistuje",
+    "conversation2": "⚠️ Chyba informácií o konverzácii",
+    "conversation3": "⚠️ Tento používateľ nemá žiadne príspevky v histórii konverzácií\n",
+    "conversation4": "⚠️ Nie je možné nájsť zadanú konverzáciu, mohla sa skončiť alebo vypršať.",
+    "conversation5": "⚠️ **História konverzácie bola čiastočne aktualizovaná**\n\n",
+    "conversation6": "⚠️ Nie je možné identifikovať partnera v konverzácii\n\n",
+    "conversation7": "⚠️ Nie je možné nájsť túto konverzáciu\n\n",
+    "conversation8": "⚠️ Konverzácia neexistuje alebo sa skončila",
+    "conversation9": "⚠️ Táto konverzácia sa skončila",
+    "end": "⚠️ Test sa skončil alebo neexistuje",
+    "failed": "⚠️ Overenie platby zlyhalo, skúste to prosím neskôr",
+    "gender": "⚠️ Momentálne nie ste v kroku výberu pohlavia",
+    "invite": "⚠️ Nepodarilo sa získať pozývací kód",
+    "mbti": "⚠️ Momentálne nie ste v kroku MBTI testu",
+    "mbti2": "⚠️ Neplatný typ MBTI",
+    "message": "⚠️ Zistených \\${outdatedPosts.length} zastaraných príspevkov, ktoré je potrebné aktualizovať\n",
+    "message2": "⚠️ Poznámka: Toto je \\${testInfo}\\${testTitle}, \\${accuracy}.\n\n",
+    "message3": "⚠️ Prosíme podržte správu, ktorú chcete zablokovať, a odpovedzte príkazom\n\n",
+    "message4": "⚠️ Prosíme podržte správu, ktorú chcete nahlásiť, a odpovedzte príkazom\n\n",
+    "message5": "⚠️ **Správa obsahuje zakázané odkazy**\n\n",
+    "register": "⚠️ Profil používateľa nenájdený, najskôr sa prosím zaregistrujte pomocou /start.",
+    "register2": "⚠️ Najskôr dokončite proces registrácie.\n\nPoužite /start na pokračovanie v registrácii.",
+    "register3": "⚠️ Prišlo k problému s procesom registrácie, prosím začnite odznova: /start",
+    "register4": "⚠️ Najskôr dokončite proces registrácie",
+    "settings": "⚠️ Upozornenie: Po nastavení sa pohlavie **nedá navždy upraviť**!\n\n",
+    "settings2": "⚠️ Nastavenie dátumu narodenia nemôže byť upravené, prosím potvrďte, že je správne!",
+    "settings3": "⚠️ Poznámka: Nastavenie pohlavia nie je možné upraviť, prosím vyberajte starostlivo!",
+    "short": "⚠️ Nesprávny poradie otázok",
+    "short2": "⚠️ Neznáma voľba",
+    "short3": "⚠️ Neplatný dopyt",
+    "short4": "⚠️ Dĺžka prezývky je obmedzená na 36 znakov",
+    "short5": "⚠️ Iné porušenia",
+    "start": "⚠️ Relácia vypršala, prosím reštartujte: /throw",
+    "start2": "⚠️ Relácia vypršala, prosím reštartujte",
+    "task": "⚠️ Neznámý typ úlohy",
+    "text": "⚠️ **Poznámka**\n\n",
+    "text10": "⚠️ **Nemodifikovateľné položky**:\n",
+    "text11": "⚠️ Relácia vypršala, prosím skúste to znova",
+    "text12": "⚠️ Návrh neexistuje alebo vypršal",
+    "text2": "⚠️ Neplatný typ platby",
+    "text3": "⚠️ Prekladová služba je dočasne nedostupná, tu je pôvodný text\n",
+    "text4": "⚠️ Bezpečnostná pripomienka:\n",
+    "text5": "⚠️ Momentálne nie ste v kroku testovania proti podvodom",
+    "text6": "⚠️ Momentálne nie ste v kroku podmienok služby",
+    "text7": "⚠️ Poznámka: Táto funkcia je k dispozícii iba v stagingovom prostredí.",
+    "text8": "⚠️ **Posielanie obrázkov, videí alebo multimédií nie je povolené**\n\n",
+    "text9": "⚠️ Táto funkcia je k dispozícii iba v stagingovom prostredí.",
+    "userNotFound": "⚠️ Používateľ neexistuje, prosím najskôr sa zaregistrujte pomocou /start.",
+    "userNotFound2": "⚠️ Používateľ neexistuje",
+    "vip": "⚠️ Dosiahli ste limit pre pozvánky pre bezplatného používateľa, prejdite na VIP, aby ste odomkli limit 100 ľudí!",
+    "vip2": "⚠️ Táto funkcia je iba pre VIP členov",
+    "vip3": "⚠️ **VIP končí dnes**\n\n"
+  },
+  "BROADCAST": {
+    "FILTER_ERROR": "❌ Chyba formátu.\nPríklad: `/broadcast_filter gender=female,country=TW test message`",
+    "NO_CONTENT": "❌ Prosím zadajte obsah vysielania.",
+    "NO_MATCHES": "⚠️ Neboli nájdení žiadni používatelia zodpovedajúci kritériám.\nKritériá filtru: {filters}",
+    "TOO_MANY_USERS": "⚠️ Príliš veľa cieľových používateľov ({count} osôb), aktuálne je obmedzené na posielanie {max} osobám naraz.",
+    "START_SENDING": "🚀 Spúšťam vysielanie #{id}\n🎯 Cieľ: {filters}\n👥 Počet osôb: {count}",
+    "COMPLETED": "✅ Vysielanie #{id} dokončené!\nÚspechy: {sent}\nZlyhania: {failed}\nZablokované: {blocked}"
+  },
+  "push": {
+    "throwReminder": "🌊 Ahoj! Ubehlo to už chvíľu, čo si hodil message bottle, pláž je veľmi tichá...",
+    "catchReminder": "🎣 Na pláži sa objavili nové message bottles, chceš sa ísť pozrieť?",
+    "onboardingReminder": "👋 Tvoja registrácia ešte nie je dokončená, takmer si tam! (Krok: {step})",
+    "messageReminderA": "👋 Ahoj {masked_partner_name}, stále čaká na tvoju odpoveď! Nenechaj konverzáciu vychladnúť～",
+    "messageReminderB": "📩 Máte nezodpovedanú správu od {masked_partner_name}:\n> \"{last_message_preview}...\"\n(Už prešlo viac ako 24 hodín!)",
+    "messageReminderC": "⏳ {masked_partner_name} čaká na tvoju odpoveď...",
+    "actionReply": "💬 Odpovedať {masked_partner_name}",
+    "actionHistory": "📜 Zobraziť kontext"
+  },
+  "match": {
+    "header": {
+      "zodiac": "🌟 Odhalený znamení zverokruhu",
+      "mbti": "🧠 MBTI osobnostná rezonancia",
+      "blood": "🩸 Analýza krvnej skupiny"
+    },
+    "reason": {
+      "zodiac": {
+        "fire_affinity": "Ako rovnako ohnivé znamenia, vaša vášeň horí jasne a váš spojenie je silné!",
+        "earth_affinity": "Stabilita zemských znamení spolu so šetrnosťou vodných znamení vytvára dokonalý tok.",
+        "air_affinity": "Obratnosť vzdušných znamení sa stretáva s vášňou ohnivých znamení, inšpirujúc nekonečnú kreativitu!",
+        "water_affinity": "Emócie vodných znamení a praktickosť zemských znamení budujú najteplejšiu podporu."
+      },
+      "mbti": {
+        "sj_affinity": "Spoločenskí ľudia (SJ) a Prieskumníci (SP), dokonalá kombinácia stability a vzrušenia!",
+        "sp_affinity": "Prieskumníci (SP) a Spoločenskí ľudia (SJ), najlepší partneri na hranie a starostlivosť!",
+        "nf_affinity": "Idealisti (NF) a Racionalisti (NT), hlboké zrážky duše a múdrosti!",
+        "nt_affinity": "Racionalisti (NT) a Idealisti (NF), rezonancia myšlienok a pocitov!"
+      },
+      "blood": {
+        "a_affinity": "Precíznosť typu A sa stretáva s toleranciou typu O, čo vytvára najpohodlnejšiu interakciu.",
+        "b_affinity": "Sebavedomie typu B sa stretáva s bezstarostnou povahou typu O, bez stresu a uvoľnené.",
+        "o_affinity": "Typ O a Typ B/A sú skvelí doplnkoví partneri!",
+        "ab_affinity": "Jedinečná frekvencia AB je najlepšie pochopená svojím druhom."
+      }
+    },
+    "template": {
+      "body": "{userAttribute},\nPodľa analýzy máte najväčšiu afinitu s {recommendedAttributes}!\n\n💡 {reason}\n\n👇 Cítiš sa šťastne?"
+    },
+    "btn": {
+      "throw": "🌊 Hodiť fľašu a Risknúť",
+      "vip_throw": "🎯 Hodiť na {target}",
+      "vip_upsell": "💡 Upgradujte na VIP, aby ste určili doručenie na {target}, pre presné párovanie!"
+    }
+  }
+};

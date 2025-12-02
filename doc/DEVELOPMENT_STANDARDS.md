@@ -55,14 +55,16 @@ XunNi/
 │   │   ├── validation.ts         # 通用驗證
 │   │   ├── url-whitelist.ts      # URL 白名單檢查
 │   │   └── emoji.ts              # Emoji 處理
-│   └── i18n/                     # 國際化
-│       ├── index.ts              # i18n 初始化
-│       ├── locales/              # 語言包
-│       │   ├── zh-TW.ts
-│       │   ├── en.ts
-│       │   ├── ja.ts
+│   └── i18n/                     # 國際化 (KV 架構)
+│       ├── index.ts              # i18n 初始化與動態加載
+│       ├── locales/              # 語言包源碼
+│       │   ├── zh-TW/            # 繁體中文 (基準)
+│       │   │   ├── index.ts      # 模組聚合
+│       │   │   ├── common.ts
+│       │   │   └── ...
+│       │   ├── en/               # 英文 (自動生成)
 │       │   └── ...
-│       └── keys.ts               # 翻譯鍵值定義
+│       └── types.ts              # 翻譯型別定義
 ├── tests/                        # 測試目錄
 │   ├── domain/                   # Domain 層測試
 │   │   ├── usage.test.ts
@@ -568,6 +570,12 @@ chore: 更新依賴版本
   - 暱稱擾碼格式正確（`張小明` → `張**`，不是 `****`）
   - 統計數據合理（百分比 0-100%）
   - 按鈕和提示文字正確顯示
+
+#### i18n 部署檢查 (必做)
+- [ ] **執行 i18n 上傳** - 代碼部署不會更新翻譯，必須手動上傳
+  ```bash
+  pnpm i18n:upload staging    # 或 production
+  ```
 
 #### 文檔檢查
 - [ ] **確認 SPEC.md 已更新**（如有業務邏輯或資料庫變更）
@@ -1100,26 +1108,29 @@ WHERE birthday IS NOT NULL;
 
 ---
 
-### 7.6 i18n 安全與回歸防護 (i18n Safety & Regression Prevention)
+### 7.6 i18n 安全與發布流程 (i18n Safety & Deployment)
 
-**⚠️ i18n 文件是本專案最脆弱的部分，必須採取額外防護：**
+**⚠️ i18n 系統已遷移至 KV 架構，請務必遵守新流程：**
 
-1. **強制執行鎖定腳本**
-   - 每次修改 `zh-TW.ts` 後，**必須** 執行 `npx tsx scripts/verify-protected-keys.ts`。
-   - 該腳本會檢查核心功能（Menu, Fortune, Tasks）的文字是否存在。
-   - 詳細規範請參考 `@doc/I18N_WORKFLOW_OPTIMIZATION.md`。
+1.  **禁止手動修改非中文文件**
+    - `src/i18n/locales/en/` 等目錄下的文件是由 `import` 腳本自動生成的。
+    - **永遠只修改** `src/i18n/locales/zh-TW/` 下的代碼，或通過 `i18n_for_translation.csv` 導入。
 
-2. **禁止無差別批量替換**
-   - 嚴格禁止使用全局正則表達式（如 `sed`）對 `zh-TW.ts` 進行無差別替換。
-   - 必須使用精確匹配或手動修改。
+2.  **翻譯更新必須上傳 KV**
+    - 修改代碼或導入 CSV 後，翻譯**不會**自動生效。
+    - **必須執行**：
+      ```bash
+      pnpm i18n:upload staging    # 測試環境
+      pnpm i18n:upload production # 正式環境
+      ```
 
-3. **注意重複鍵值 (Duplicate Keys)**
-   - `zh-TW.ts` 文件結構複雜，容易產生重複鍵值。
-   - 修改前請先搜尋該 key 是否已存在，避免新增重複項導致舊值覆蓋新值（或反之）。
+3.  **保護核心 Keys**
+    - 雖然文件已拆分，但 `scripts/verify-protected-keys.ts` 依然有效且必須執行。
+    - 確保關鍵功能（Menu, Fortune）的 Keys 沒有被意外刪除或改名。
 
-4. **結構完整性**
-   - 確保所有物件（`{ }`）正確閉合。
-   - 錯誤的閉合會導致後續所有 key 被「吞掉」或無視。
+4.  **CSV 是唯一真理 (Source of Truth)**
+    - 對於多語言翻譯，`i18n_for_translation.csv` 是權威來源。
+    - 流程：Export -> Translate -> Import -> Upload。
 
 ---
 
@@ -1163,7 +1174,9 @@ WHERE birthday IS NOT NULL;
 - [ ] 所有按鈕文字都使用 `i18n.t()`
 - [ ] 所有錯誤消息都使用 `i18n.t()`
 - [ ] **⚠️ i18n 同步（必須執行）**：
-  - [ ] 新增或修改 i18n key 後，執行 `pnpm i18n:sync` 同步到所有語言
+  - [ ] 新增或修改 i18n key 後，執行 `pnpm i18n:export` 導出 CSV (可選)
+  - [ ] 若修改 CSV，執行 `pnpm i18n:import`
+  - [ ] **必須執行** `pnpm i18n:upload` 同步到 KV
   - [ ] 執行 `pnpm i18n:check` 檢查是否有問題
   - [ ] 執行 `pnpm i18n:fix-templates` 修復模板字符串問題
   - [ ] 確認所有 34 種語言都有對應的 key（或占位符）
@@ -1229,4 +1242,3 @@ WHERE birthday IS NOT NULL;
 ---
 
 **最後更新**: 2025-01-15
-

@@ -1,0 +1,130 @@
+export default {
+  "birthday": "⚠️ Ang kaarawan ay hindi maaaring baguhin kapag naitakda na, pakikumpirmahin na ito ay tama!",
+  "bloodType": "🩸 Uri ng Dugo",
+  "gender": "👤 Kasarian: {otherUser.gender}",
+  "mbti": "🧠 MBTI：\\\\\\\\\\${mbti}",
+  "register2": "⚠️ Mangyaring kumpletuhin ang pagpaparehistro muna",
+  "register4": "⚠️ Hindi natapos ang pagpaparehistro",
+  "settings": "🧠 MBTI:\\\\\\\\\\\\$",
+  "text5": "{otherUser.bio}",
+  "text6": "⚠️ Pakisuyong kumpletuhin ang pagpaparehistro muna",
+  "userNotFound": "Ang user ay hindi umiiral",
+  "warning": {
+    "ad": "⚠️ Kasalukuyang walang naka-configure na ad providers\n\n",
+    "ad2": "⚠️ Kasalukuyang walang opisyal na ads\n\n",
+    "ad3": "⚠️ Walang magagamit na ad providers sa oras na ito",
+    "ad4": "⚠️ Hindi makapagpili ng ad provider",
+    "ad5": "⚠️ Hindi makapanood ng higit pang ads",
+    "birthday": "⚠️ Wala sa hakbang ng input ng kaarawan sa kasalukuyan",
+    "bloodType": "⚠️ Wala sa hakbang ng pagpili ng uri ng dugo sa kasalukuyan",
+    "broadcast": "⚠️ Natagpuan \\${stuckBroadcasts.results.length} na nakasagabal na mga broadcast\n\n",
+    "complete": "⚠️ Pakikcomplete ang naunang ad bago magsimula ng bago",
+    "confirm": "⚠️ Pakikonpirma ang impormasyon ng iyong kaarawan:\n\n",
+    "conversation": "⚠️ Mali ang impormasyon ng pag-uusap.",
+    "conversation10": "⚠️ Ang pag-uusap ay hindi umiiral",
+    "conversation2": "⚠️ Mali ang impormasyon ng pag-uusap",
+    "conversation3": "⚠️ Wala ng kasaysayan ng pag-uusap ang user na ito\n",
+    "conversation4": "⚠️ Hindi mahanap ang tinukoy na pag-uusap, maaari itong matapos o nag-expire na.",
+    "conversation5": "⚠️ **Bahagyang na-update ang kasaysayan ng pag-uusap**\n\n",
+    "conversation6": "⚠️ Hindi matagpuan ang kapareha sa pag-uusap\n\n",
+    "conversation7": "⚠️ Hindi mahanap ang pag-uusap na ito\n\n",
+    "conversation8": "⚠️ Ang pag-uusap ay hindi umiiral o natapos na",
+    "conversation9": "⚠️ Natapos na ang pag-uusap na ito",
+    "end": "⚠️ Natapos na ang quiz o hindi ito umiiral",
+    "failed": "⚠️ Nabigong beripikahin ang pagbabayad, pakisubukan muli mamaya",
+    "gender": "⚠️ Sa kasalukuyan ay hindi pa nasa hakbang ng pagpili ng kasarian",
+    "invite": "⚠️ Hindi makuha ang code ng imbitasyon",
+    "mbti": "⚠️ Sa kasalukuyan ay hindi pa nasa hakbang ng MBTI quiz",
+    "mbti2": "⚠️ Hindi wastong uri ng MBTI",
+    "message": "⚠️ Natagpuan \\${outdatedPosts.length} lumang post na kinakailangan ng pag-refresh\n",
+    "message2": "⚠️ Tandaan: Ito ay \\${testInfo}\\${testTitle}, \\${accuracy}.\n\n",
+    "message3": "⚠️ Pakidikit ang mensahe na nais mong i-block at tumugon gamit ang utos\n\n",
+    "message4": "⚠️ Pakidikit ang mensahe na nais mong i-report at tumugon gamit ang utos\n\n",
+    "message5": "⚠️ **Naglalaman ang mensahe ng mga ipinagbabawal na link**\n\n",
+    "register": "⚠️ Walang nahanap na datos ng gumagamit, pakirehistro muna gamit ang /start.",
+    "register2": "⚠️ Pakikcomplete ang proseso ng pagpaparehistro muna.\n\nIpagpatuloy ang pagpaparehistro gamit ang /start.",
+    "register3": "⚠️ Nagkaroon ng problema sa proseso ng pagpaparehistro, pakisubukan muli: /start",
+    "register4": "⚠️ Pakikcomplete ang proseso ng pagpaparehistro muna.",
+    "settings": "⚠️ Paalala: Kapag naitakda na, ang kasarian **ay hindi maaaring baguhin** magpakailanman!\n\n",
+    "settings2": "⚠️ Ang kaarawan ay hindi maaaring baguhin kapag na-set na, pakikumpirmahin na ito ay tama!",
+    "settings3": "⚠️ Paalala: Ang kasarian ay hindi maaaring baguhin kapag na-set na, pakipili nang mabuti!",
+    "short": "⚠️ Maling pagkakasunod-sunod ng tanong",
+    "short2": "⚠️ Hindi kilalang opsyon",
+    "short3": "⚠️ Hindi wastong kahilingan",
+    "short4": "⚠️ Limitasyon sa haba ng palayaw: 36 na karakter",
+    "short5": "⚠️ Ibang paglabag",
+    "start": "⚠️ Nag-expire na ang session, pakisubukan muli: /throw",
+    "start2": "⚠️ Nag-expire na ang session, pakisubukang muling simulan",
+    "task": "⚠️ Hindi kilalang uri ng gawain",
+    "text": "⚠️ **Tandaan**\n\n",
+    "text10": "⚠️ **Hindi maaaring baguhin ang mga item**:\n",
+    "text11": "⚠️ Nag-expire na ang session, pakisubok muli",
+    "text12": "⚠️ Walang draft na umiiral o nag-expire na",
+    "text2": "⚠️ Hindi wastong uri ng pagbabayad",
+    "text3": "⚠️ Ang serbisyo sa pagsasalin ay pansamantalang hindi available, ipinapakita ang orihinal na teksto sa ibaba\n",
+    "text4": "⚠️ Paalala sa kaligtasan:\n",
+    "text5": "⚠️ Sa kasalukuyan ay hindi pa nasa hakbang ng pagsusulit laban sa pandaraya",
+    "text6": "⚠️ Sa kasalukuyan ay hindi pa nasa hakbang ng mga tuntunin ng serbisyo",
+    "text7": "⚠️ Paalala: Ang tampok na ito ay available lamang sa Staging environment.",
+    "text8": "⚠️ **Bawal ang pagpapadala ng mga larawan, video, o multimedia**\n\n",
+    "text9": "⚠️ Ang tampok na ito ay available lamang sa Staging environment.",
+    "userNotFound": "⚠️ Ang gumagamit ay hindi umiiral, pakisubukan ang /start upang magparehistro muna.",
+    "userNotFound2": "⚠️ Ang gumagamit ay hindi umiiral",
+    "vip": "⚠️ Naabot na ang limitasyon para sa mga libreng imbitasyon sa gumagamit; mag-upgrade sa VIP upang buksan ang limitasyon ng 100 tao!",
+    "vip2": "⚠️ Ang tampok na ito ay para lamang sa mga VIP na miyembro",
+    "vip3": "⚠️ **Nag-e-expire ang VIP ngayon**\n\n"
+  },
+  "BROADCAST": {
+    "FILTER_ERROR": "❌ error sa format.\nHalimbawa: `/broadcast_filter gender=female,country=TW test message`",
+    "NO_CONTENT": "❌ Pakisuyong ilagay ang nilalaman ng broadcast.",
+    "NO_MATCHES": "⚠️ Walang mga gumagamit na tumutugma sa mga pamantayan.\nPamantayan ng filter: {filters}",
+    "TOO_MANY_USERS": "⚠️ Masyadong maraming target na gumagamit ({count} na tao), kasalukuyang limitado sa pagpapadala sa {max} na tao nang sabay.",
+    "START_SENDING": "🚀 Nagsisimula na ang broadcast #{id}\n🎯 Target: {filters}\n👥 Bilang ng mga tao: {count}",
+    "COMPLETED": "✅ Kumpleto na ang broadcast #{id}!\nTagumpay: {sent}\nBigo: {failed}\nNaharang: {blocked}"
+  },
+  "push": {
+    "throwReminder": "🌊 Hey! Matagal na simula nang huli mong itapon ang isang bote ng mensahe, napakatahimik sa dalampasigan...",
+    "catchReminder": "🎣 May ilang bagong bote ng mensahe na lumutang sa dalampasigan, gusto mo bang tingnan ang mga ito?",
+    "onboardingReminder": "👋 Ang iyong pagpaparehistro ay hindi pa kumpleto, malapit na! (Hakbang: {step})",
+    "messageReminderA": "👋 Hey {masked_partner_name} ay nag-aantay pa rin ng iyong sagot! Huwag hayaang lumamig ang pag-uusap～",
+    "messageReminderB": "📩 Mayroon kang unread na mensahe mula kay {masked_partner_name}:\n> \"{last_message_preview}...\"\n(Nagdaan na ang higit sa 24 na oras!)",
+    "messageReminderC": "⏳ {masked_partner_name} ay nag-aantay ng iyong sagot...",
+    "actionReply": "💬 Sagutin si {masked_partner_name}",
+    "actionHistory": "📜 Tingnan ang Konteksto"
+  },
+  "match": {
+    "header": {
+      "zodiac": "🌟 Nahayag ang Zodiac Match",
+      "mbti": "🧠 Resonans ng MBTI Personalidad",
+      "blood": "🩸 Pagsusuri ng Code ng Uri ng Dugo"
+    },
+    "reason": {
+      "zodiac": {
+        "fire_affinity": "Bilang mga kapwa apoy na tanda, ang iyong sigasig ay nagniningning at ang iyong koneksyon ay malakas!",
+        "earth_affinity": "Ang katatagan ng mga tanda ng lupa ay pinagsama sa lambing ng mga tanda ng tubig na bumubuo ng perpektong daloy.",
+        "air_affinity": "Ang liksi ng mga tanda ng hangin ay nakakatugon sa sigasig ng mga tanda ng apoy, na nag-uudyok ng walang katapusang pagkamalikhain!",
+        "water_affinity": "Ang emosyon ng mga tanda ng tubig at ang praktikalidad ng mga tanda ng lupa ay bumubuo ng pinakamainit na suporta."
+      },
+      "mbti": {
+        "sj_affinity": "Mga Socializer (SJ) at Explorers (SP), perpektong pagsasama ng katatagan at kasiyahan!",
+        "sp_affinity": "Mga Explorers (SP) at Socializer (SJ), ang pinakamahusay na kasama ng mga kalaro at tagapag-alaga!",
+        "nf_affinity": "Mga Idealista (NF) at mga Rasyonalista (NT), isang malalim na pagkakasalungat ng kaluluwa at karunungan!",
+        "nt_affinity": "Mga Rasyonalista (NT) at mga Idealista (NF), isang resonans ng mga ideya at damdamin!"
+      },
+      "blood": {
+        "a_affinity": "Ang masusing pagkakaayos ng Type A ay nakakatugon sa pagpapahalaga ng Type O, na lumilikha ng pinaka-komportableng interaksyon.",
+        "b_affinity": "Ang pansariling pagkaka-assert ng Type B ay nakakatugon sa madaling pakikitungo ng Type O, walang stress at nakakarelaks.",
+        "o_affinity": "Ang Type O at Type B/A ay mahusay na mga kapareha!",
+        "ab_affinity": "Ang natatanging dalas ng AB ay pinakamahusay na nauunawaan ng mga kapwa nito."
+      }
+    },
+    "template": {
+      "body": "{userAttribute},\nAyon sa pagsusuri, mayroon kang pinakamalakas na pagkakaangkop sa {recommendedAttributes}!\n\n💡 {reason}\n\n👇 Nakakaramdam ng suwerte?"
+    },
+    "btn": {
+      "throw": "🌊 Magtapon ng bote at subukan ang iyong swerte",
+      "vip_throw": "🎯 Magtapon sa {target}",
+      "vip_upsell": "💡 I-upgrade sa VIP upang italaga ang paghahatid sa {target}, para sa tumpak na pagsasama!"
+    }
+  }
+};

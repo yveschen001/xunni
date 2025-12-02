@@ -1,0 +1,130 @@
+export default {
+  "birthday": "⚠️ Birthday cannot be modified once set, please confirm it is correct!",
+  "bloodType": "🩸 Blood Type",
+  "gender": "👤 Gender: {otherUser.gender}",
+  "mbti": "🧠 MBTI：\\\\\\\\\\${mbti}",
+  "register2": "⚠️ Please complete registration first",
+  "register4": "⚠️ Registration not completed",
+  "settings": "🧠 MBTI: \\\\\\\\\\\\$",
+  "text5": "📖 Bio: {otherUser.bio}",
+  "text6": "⚠️ Please complete registration first",
+  "userNotFound": "User does not exist",
+  "warning": {
+    "ad": "⚠️ Currently no ad providers configured\n\n",
+    "ad2": "⚠️ Currently no official ads\n\n",
+    "ad3": "⚠️ No available ad providers at this time",
+    "ad4": "⚠️ Unable to select ad provider",
+    "ad5": "⚠️ Unable to watch more ads",
+    "birthday": "⚠️ Currently not in birthday input step",
+    "bloodType": "⚠️ Currently not in blood type selection step",
+    "broadcast": "⚠️ Found \\${stuckBroadcasts.results.length} stuck broadcasts\n\n",
+    "complete": "⚠️ Please complete the previous ad before starting a new one",
+    "confirm": "⚠️ Please confirm your birthday information: \n\n",
+    "conversation": "⚠️ Conversation information is incorrect.",
+    "conversation10": "⚠️ Conversation does not exist",
+    "conversation2": "⚠️ Conversation information is incorrect",
+    "conversation3": "⚠️ This user has no conversation history posts\n",
+    "conversation4": "⚠️ Cannot find the specified conversation, it may have ended or expired.",
+    "conversation5": "⚠️ **Conversation history partially updated**\n\n",
+    "conversation6": "⚠️ Unable to identify conversation partner\n\n",
+    "conversation7": "⚠️ Cannot find this conversation\n\n",
+    "conversation8": "⚠️ Conversation does not exist or has ended",
+    "conversation9": "⚠️ This conversation has ended",
+    "end": "⚠️ Quiz has ended or does not exist",
+    "failed": "⚠️ Payment verification failed, please try again later",
+    "gender": "⚠️ Currently not in the gender selection step",
+    "invite": "⚠️ Unable to retrieve invitation code",
+    "mbti": "⚠️ Currently not in the MBTI quiz step",
+    "mbti2": "⚠️ Invalid MBTI type",
+    "message": "⚠️ Found \\${outdatedPosts.length} outdated posts needing refresh\n",
+    "message2": "⚠️ Note: This is \\${testInfo}\\${testTitle}, \\${accuracy}.\n\n",
+    "message3": "⚠️ Please long-press the message you want to block and reply with the command\n\n",
+    "message4": "⚠️ Please long-press the message you want to report and reply with the command\n\n",
+    "message5": "⚠️ **Message contains prohibited links**\n\n",
+    "register": "⚠️ User data not found, please register first using /start.",
+    "register2": "⚠️ Please complete the registration process first.\n\nContinue registration using /start.",
+    "register3": "⚠️ There was a problem with the registration process, please start over: /start",
+    "register4": "⚠️ Please complete the registration process first.",
+    "settings": "⚠️ Reminder: Once set, gender **cannot be modified** forever!\n\n",
+    "settings2": "⚠️ Birthday cannot be modified once set, please confirm it is correct!",
+    "settings3": "⚠️ Note: Gender cannot be modified once set, please choose wisely!",
+    "short": "⚠️ Incorrect question order",
+    "short2": "⚠️ Unknown option",
+    "short3": "⚠️ Invalid request",
+    "short4": "⚠️ Nickname length limit: 36 characters",
+    "short5": "⚠️ Other violations",
+    "start": "⚠️ Session has expired, please start over: /throw",
+    "start2": "⚠️ Session has expired, please restart",
+    "task": "⚠️ Unknown task type",
+    "text": "⚠️ **Note**\n\n",
+    "text10": "⚠️ **Non-modifiable items**: \n",
+    "text11": "⚠️ Session has expired, please re-operate",
+    "text12": "⚠️ Draft does not exist or has expired",
+    "text2": "⚠️ Invalid payment type",
+    "text3": "⚠️ Translation service is temporarily unavailable, showing original text below\n",
+    "text4": "⚠️ Safety reminder: \n",
+    "text5": "⚠️ Currently not in the anti-fraud test step",
+    "text6": "⚠️ Currently not in the terms of service step",
+    "text7": "⚠️ Note: This feature is only available in the Staging environment.",
+    "text8": "⚠️ **Sending images, videos, or multimedia is not allowed**\n\n",
+    "text9": "⚠️ This feature is only available in the Staging environment.",
+    "userNotFound": "⚠️ User does not exist, please use /start to register first.",
+    "userNotFound2": "⚠️ User does not exist",
+    "vip": "⚠️ Reached the limit for free user invitations; upgrade to VIP to unlock a limit of 100 people!",
+    "vip2": "⚠️ This feature is for VIP members only",
+    "vip3": "⚠️ **VIP expires today**\n\n"
+  },
+  "BROADCAST": {
+    "FILTER_ERROR": "❌ Format error.\nExample: `/broadcast_filter gender=female,country=TW test message` ",
+    "NO_CONTENT": "❌ Please enter broadcast content.",
+    "NO_MATCHES": "⚠️ No users matching the criteria were found.\nFilter criteria: {filters}",
+    "TOO_MANY_USERS": "⚠️ Too many target users ({count} people), currently limited to sending to {max} people at once.",
+    "START_SENDING": "🚀 Starting broadcast #{id}\n🎯 Target: {filters}\n👥 Number of people: {count}",
+    "COMPLETED": "✅ Broadcast #{id} completed!\nSuccess: {sent}\nFailed: {failed}\nBlocked: {blocked}"
+  },
+  "push": {
+    "throwReminder": "🌊 Hey! It’s been a while since you tossed a message bottle, the beach is very quiet...",
+    "catchReminder": "🎣 Some new message bottles have washed up at the beach, want to go check them out?",
+    "onboardingReminder": "👋 Your registration is not yet complete, you're almost there! (Step: {step})",
+    "messageReminderA": "👋 Hey {masked_partner_name} is still waiting for your reply! Don't let the conversation cool down～",
+    "messageReminderB": "📩 You have an unread message from {masked_partner_name}:\n> \"{last_message_preview}...\"\n(It has been over 24 hours!)",
+    "messageReminderC": "⏳ {masked_partner_name} is waiting for your reply...",
+    "actionReply": "💬 Reply to {masked_partner_name}",
+    "actionHistory": "📜 View Context"
+  },
+  "match": {
+    "header": {
+      "zodiac": "🌟 Zodiac Match Revealed",
+      "mbti": "🧠 MBTI Personality Resonance",
+      "blood": "🩸 Blood Type Code Analysis"
+    },
+    "reason": {
+      "zodiac": {
+        "fire_affinity": "As fellow fire signs, your passion burns bright and your connection is strong!",
+        "earth_affinity": "The stability of earth signs combined with the gentleness of water signs creates the perfect flow.",
+        "air_affinity": "The agility of air signs meets the passion of fire signs, inspiring endless creativity!",
+        "water_affinity": "The emotions of water signs and the practicality of earth signs build the warmest support."
+      },
+      "mbti": {
+        "sj_affinity": "Socializers (SJ) and Explorers (SP), a perfect complement of stability and excitement!",
+        "sp_affinity": "Explorers (SP) and Socializers (SJ), the best partners of playmates and caretakers!",
+        "nf_affinity": "Idealists (NF) and Rationalists (NT), a deep collision of soul and wisdom!",
+        "nt_affinity": "Rationalists (NT) and Idealists (NF), a resonance of thoughts and feelings!"
+      },
+      "blood": {
+        "a_affinity": "Type A's meticulousness meets Type O's tolerance, creating the most comfortable interactions.",
+        "b_affinity": "Type B's self-assertion meets Type O's easygoing nature, stress-free and relaxed.",
+        "o_affinity": "Type O and Type B/A are great complementary partners!",
+        "ab_affinity": "AB's unique frequency is best understood by its kind."
+      }
+    },
+    "template": {
+      "body": "{userAttribute},\nAccording to the analysis, you have the strongest affinity with {recommendedAttributes}!\n\n💡 {reason}\n\n👇 Feeling lucky?"
+    },
+    "btn": {
+      "throw": "🌊 Throw a bottle and take a chance",
+      "vip_throw": "🎯 Throw to {target}",
+      "vip_upsell": "💡 Upgrade to VIP to designate delivery to {target}, for precise matchmaking!"
+    }
+  }
+};

@@ -1,0 +1,22 @@
+export default {
+  "afterRegistration": "💡 Kayıt işlemini tamamladıktan sonra şunları yapabilirsiniz:\n",
+  "answerRecorded": "✅ Kaydedildi",
+  "completion": "🎉 {testTitle} Tamamlandı!\n\n",
+  "fullAccuracy": "Daha doğru sonuçlar",
+  "fullQuestions": "36 soru",
+  "fullTest": "MBTI testi tamamlayın",
+  "fullTestInfo": "💡 Bu, tamamlayıcı testtir ({questions}), ve sonuçlar daha doğrudur.\nKayıt işlemini tamamladıktan sonra /mbti kullanarak testi tekrar yapabilirsiniz.",
+  "fullTestTitle": "Testi tamamla",
+  "manualModify": "• MBTI türünüzü manuel olarak değiştirin",
+  "moreDetailedTest": "• Daha detaylı bir test yapın\n",
+  "note": "⚠️ Not: Bu {testInfo}{testTitle}, {accuracy}.\n\n",
+  "questionOrderError": "⚠️ Soru sırası yanlış",
+  "questions12": "12 soru",
+  "questions36": "36 soru",
+  "quickAccuracy": "Sonuçlar sadece referans içindir",
+  "quickQuestions": "12 soru",
+  "quickTest": "Hızlı MBTI testi",
+  "quickTestInfo": "💡 Bu hızlı bir ankettir ({questions}), ve sonuçlar yalnızca referans amaçlıdır.\nKaydı tamamladıktan sonra, /mbti üzerinden anketi tekrar alabilirsiniz.",
+  "quickTestTitle": "Hızlı test",
+  "yourMbtiType": "MBTI türünüz: **{type}**\n\n"
+};

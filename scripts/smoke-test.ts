@@ -122,7 +122,7 @@ const staticTests: TestSuite = {
     }, { timeout: 5000 }),
     
     async () => runner.test('i18n Keys Check', async () => {
-       if (!fs.existsSync('src/i18n/locales/zh-TW.ts')) throw new Error('zh-TW locale missing');
+       if (!fs.existsSync('src/i18n/locales/zh-TW/index.ts')) throw new Error('zh-TW locale index missing');
     }, { timeout: 2000 })
   ]
 };
@@ -277,6 +277,17 @@ const fortuneTests: TestSuite = {
     }),
     async () => runner.test('Edit Industry (Prompt)', async () => { 
       await sendWebhook(createCallbackUpdate('edit_industry')); 
+    }),
+    async () => runner.test('Fortune Match Flow', async () => {
+      // 1. Start Match
+      await sendWebhook(createCallbackUpdate('fortune_love_match_start'));
+      // 2. Select Type
+      await sendWebhook(createCallbackUpdate('fortune_love_type:love'));
+      // 3. Select Role (if applicable, or just assume type selection triggers input state if configured)
+      // Based on code, type selection -> role selection -> input.
+      await sendWebhook(createCallbackUpdate('fortune_love_role:none')); 
+      // 4. Send Target ID (Smart Input Test)
+      await sendWebhook(createUpdate('@yveschen'));
     })
   ]
 };

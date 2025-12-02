@@ -166,10 +166,10 @@ function runSmartTranslateCore_(sh, sel, headers) {
   var processedRows = 0;
   
   var activeTargetCount = 0;
-  for (var cOff = 0; cOff < numCols; cOff++) {
-    var h = String(headers[startCol + cOff - 1] || '').trim();
-    if (h && h !== 'key' && h !== 'zh-TW' && h !== 'zh-CN') activeTargetCount++;
-  }
+    for (var cOff = 0; cOff < numCols; cOff++) {
+      var h = String(headers[startCol + cOff - 1] || '').trim();
+      if (h && h !== 'key' && h !== 'module' && h !== 'zh-TW' && h !== 'zh-CN') activeTargetCount++;
+    }
   if (activeTargetCount < 1) activeTargetCount = 1;
 
   var concurrentBatches = Math.floor(MAX_PARALLEL_REQS / activeTargetCount);
@@ -193,7 +193,7 @@ function runSmartTranslateCore_(sh, sel, headers) {
 
     for (var cOff = 0; cOff < numCols; cOff++) {
       var headerCode = String(headers[startCol + cOff - 1] || '').trim();
-      if (!headerCode || headerCode === 'key' || headerCode === 'zh-TW') continue;
+      if (!headerCode || headerCode === 'key' || headerCode === 'module' || headerCode === 'zh-TW') continue;
       if (headerCode !== 'zh-CN' && headerCode !== 'en') needsPivot = true;
     }
 
@@ -217,7 +217,7 @@ function runSmartTranslateCore_(sh, sel, headers) {
     var aiTasks = []; 
     for (cOff = 0; cOff < numCols; cOff++) {
       var headerCode = String(headers[startCol + cOff - 1] || '').trim();
-      if (!headerCode || headerCode === 'key' || headerCode === 'zh-TW') continue;
+      if (!headerCode || headerCode === 'key' || headerCode === 'module' || headerCode === 'zh-TW') continue;
       if (headerCode === 'en' && pivotEnVals) continue; 
 
       var srcDataFull = (headerCode === 'en') ? zhTwVals : (pivotEnVals || zhTwVals);
@@ -315,7 +315,7 @@ function runTranslateFromEnCore_(sh, sel, headers) {
   var activeTargetCount = 0;
   for (var cOff = 0; cOff < numCols; cOff++) {
     var h = String(headers[startCol + cOff - 1] || '').trim();
-    if (h && h !== 'key' && h !== 'en' && h !== 'zh-TW') activeTargetCount++;
+    if (h && h !== 'key' && h !== 'module' && h !== 'en' && h !== 'zh-TW') activeTargetCount++;
   }
   if (activeTargetCount < 1) activeTargetCount = 1;
 
@@ -343,7 +343,7 @@ function runTranslateFromEnCore_(sh, sel, headers) {
 
     for (var cOff = 0; cOff < numCols; cOff++) {
       var headerCode = String(headers[startCol + cOff - 1] || '').trim();
-      if (!headerCode || headerCode === 'key' || headerCode === srcCode) continue;
+      if (!headerCode || headerCode === 'key' || headerCode === 'module' || headerCode === srcCode) continue;
 
       for (var offset = 0; offset < rowsThisChunk; offset += BATCH_SIZE) {
          var sliceLen = Math.min(BATCH_SIZE, rowsThisChunk - offset);
@@ -898,7 +898,7 @@ function runQualityScanAll() {
 
     for (c = 0; c < lastCol; c++) {
       var header = String(headers[c] || '').trim();
-      if (!header || header === 'key' || header === 'en' || header === 'zh-TW' || header === 'zh-CN') continue;
+      if (!header || header === 'key' || header === 'module' || header === 'en' || header === 'zh-TW' || header === 'zh-CN') continue;
 
       var txt = String(values[r][c] || '');
       // 優先用英文做基準，沒有則用中文
@@ -967,7 +967,7 @@ function runQualityScanSelectionCore_(sh, sel, headers) {
         var sheetColIndex = startCol + c;
         var header = String(headers[sheetColIndex - 1] || '').trim();
         
-        if (!header || header === 'key' || header === 'zh-TW') continue;
+        if (!header || header === 'key' || header === 'module' || header === 'zh-TW') continue;
 
         // 清除舊的 QA 高亮 (Reset)
         if (bgs[r][c] === QA_COLOR) {
@@ -1076,7 +1076,7 @@ function scanMissingCodesInSelectionCore_(sh, sel, headers) {
         var sheetColIndex = startCol + c;
         var header = String(headers[sheetColIndex - 1] || '').trim();
         
-        if (!header || header === 'key' || header === 'zh-TW' || header === 'zh-CN') continue;
+        if (!header || header === 'key' || header === 'module' || header === 'zh-TW' || header === 'zh-CN') continue;
 
         // Reset previous QA highlight (Clean state)
         if (bgs[r][c] === QA_COLOR) {
@@ -1172,8 +1172,8 @@ function scanEmptyCellsInSelectionCore_(sh, sel, headers) {
         var sheetColIndex = startCol + c;
         var header = String(headers[sheetColIndex - 1] || '').trim();
         
-        // 跳過 key, en, zh-TW, zh-CN (這些通常是源頭，不視為漏翻，或者由其他邏輯處理)
-        if (!header || header === 'key' || header === 'zh-TW' || header === 'en' || header === 'zh-CN') continue;
+        // 跳過 key, module, en, zh-TW, zh-CN (這些通常是源頭，不視為漏翻，或者由其他邏輯處理)
+        if (!header || header === 'key' || header === 'module' || header === 'zh-TW' || header === 'en' || header === 'zh-CN') continue;
 
         // Reset previous QA highlight (Clean state)
         if (bgs[r][c] === QA_COLOR) {
@@ -1260,7 +1260,7 @@ function runAiQualityScanCore_(sh, sel, headers) {
       for (var c = 0; c < numCols; c++) {
         var sheetColIndex = startCol + c;
         var header = String(headers[sheetColIndex - 1] || '').trim();
-        if (!header || header === 'key' || header === 'en' || header === 'zh-TW' || header === 'zh-CN') continue;
+        if (!header || header === 'key' || header === 'module' || header === 'en' || header === 'zh-TW' || header === 'zh-CN') continue;
 
         var tgt = String(valuesChunk[r][c] || '');
         if (!tgt) continue;
@@ -1370,7 +1370,7 @@ function runAiReverifyCore_(sh, sel, headers) {
           totalFoundInSelection++;
           var sheetColIndex = startCol + c;
           var header = String(headers[sheetColIndex - 1] || '').trim();
-          if (!header || header === 'key') continue;
+          if (!header || header === 'key' || header === 'module') continue;
 
           var tgt = String(values[r][c] || '');
           var en  = colEN ? String(enColVals[r] ? enColVals[r][0] : '') : '';
@@ -1719,7 +1719,7 @@ function autoTranslateHighlightedCore_(sh, startRow, numRows, limitStartCol, lim
           var actualColIndex = scanStartCol + c;
           var header = String(headers[actualColIndex - 1] || '').trim();
           
-          if (!header || header === 'zh-TW' || header === 'key') continue;
+          if (!header || header === 'zh-TW' || header === 'key' || header === 'module') continue;
 
           // 決定來源
           var srcCode = (header === 'en') ? 'zh-TW' : (colEN ? 'en' : 'zh-TW');
@@ -2010,7 +2010,7 @@ function scanSpecialCommandsCore_(sh, sel, headers) {
         var sheetColIndex = startCol + c;
         var header = String(headers[sheetColIndex - 1] || '').trim();
         
-        if (!header || header === 'key' || header === 'zh-TW' || header === 'zh-CN') continue;
+        if (!header || header === 'key' || header === 'module' || header === 'zh-TW' || header === 'zh-CN') continue;
 
         var txt = String(values[r][c] || '');
         var issues = [];
@@ -2107,7 +2107,7 @@ function fixSpecialCommandsCore_(sh, sel, headers) {
       for (var c = 0; c < numCols; c++) {
         var sheetColIndex = startCol + c;
         var header = String(headers[sheetColIndex - 1] || '').trim();
-        if (!header || header === 'key' || header === 'zh-TW' || header === 'zh-CN') continue;
+        if (!header || header === 'key' || header === 'module' || header === 'zh-TW' || header === 'zh-CN') continue;
 
         // 檢查是否被標記為 CMD 問題，或者我們強制對選區內所有指令行進行修復
         // 這裡策略：只要是指令行，都嘗試修復，確保格式統一

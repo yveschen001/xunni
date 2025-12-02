@@ -13,7 +13,9 @@ export async function handleAdminDailyReport(
 ): Promise<void> {
   const db = createDatabaseClient(env.DB);
   const telegram = createTelegramService(env);
-  const i18n = createI18n('zh-TW'); // Admin reports in Traditional Chinese
+  // i18n kept for future use or if needed for text formatting, but currently unused
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  const _i18n = createI18n('zh-TW');
 
   try {
     // 1. Get yesterday's stats
@@ -59,6 +61,22 @@ export async function handleAdminDailyReport(
       .bind(yesterday)
       .first<{ count: number }>();
 
+    // Fortune Stats (New)
+    const fortuneStats = await db.d1
+      .prepare(
+        `
+      SELECT type, COUNT(*) as count 
+      FROM fortune_history 
+      WHERE date(created_at) = ? 
+      GROUP BY type
+      ORDER BY count DESC
+    `
+      )
+      .bind(yesterday)
+      .all<{ type: string; count: number }>();
+
+    const totalFortuneRequests = fortuneStats.results.reduce((sum, item) => sum + item.count, 0);
+
     // 2. Format Report
     let report = `📊 **昨日運營日報** (${yesterday})\n\n`;
 
@@ -79,6 +97,33 @@ export async function handleAdminDailyReport(
       report += `👉 **總計**: $${totalCost.toFixed(4)}\n\n`;
     } else {
       report += `(無翻譯數據)\n\n`;
+    }
+
+    // Fortune Section (New)
+    report += `🔮 **命理與算命瓶**：\n`;
+    if (totalFortuneRequests > 0) {
+      report += `• 總算命次數：${totalFortuneRequests} 次\n`;
+      // Mapping type names to Chinese
+      const typeNames: Record<string, string> = {
+        'daily': '今日運勢',
+        'weekly': '本週運勢',
+        'match': '雙人合盤',
+        'deep': '深度分析',
+        'love_match': '戀愛合盤',
+        'career': '事業運勢',
+        'wealth': '財運分析',
+        'health': '健康運勢',
+        'tarot': '塔羅牌',
+        'ziwei': '紫微斗數',
+        'astrology': '西洋占星'
+      };
+      for (const item of fortuneStats.results) {
+        const name = typeNames[item.type] || item.type;
+        report += `  - ${name}: ${item.count}\n`;
+      }
+      report += `\n`;
+    } else {
+      report += `(無算命數據)\n\n`;
     }
 
     // Monitoring Section

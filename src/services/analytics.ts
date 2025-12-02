@@ -1,59 +1,40 @@
-/**
- * Analytics Service
- *
- * Purpose:
- *   Centralized service for tracking user events and behavior
- *   Provides high-level API for analytics operations
- *
- * Usage:
- *   const analytics = new AnalyticsService(db, env);
- *   await analytics.trackEvent({ ... });
- */
+import type { Env } from '../types';
+import { createDatabaseClient } from '../db/client';
+import { createTelegramService } from './telegram';
+import { 
+    getEventCategory, 
+    type AllEventTypes, 
+    type AnalyticsEvent, 
+    type FunnelType 
+} from '../domain/analytics_events';
 
-import type { D1Database } from '@cloudflare/workers-types';
-import type { Env } from '~/types';
-import type { AllEventTypes } from '~/domain/analytics_events';
-import { getEventCategory, generateSessionId } from '~/domain/analytics_events';
-import {
-  createAnalyticsEvent,
-  createUserSession,
-  updateUserSession,
-  getUserSession,
-  getActiveSessions,
-  upsertDailyUserSummary,
-  createFunnelEvent,
-  getFunnelEventsByUser,
-} from '~/db/queries/analytics';
+interface ModelBreakdown {
+  [model: string]: {
+    requests: number;
+    tokens_in: number;
+    tokens_out: number;
+    cost: number;
+  };
+}
 
-// ============================================================================
-// Analytics Service
-// ============================================================================
+interface FeatureBreakdown {
+  [feature: string]: {
+    requests: number;
+    cost: number;
+  };
+}
 
-export class AnalyticsService {
-  constructor(
-    private db: D1Database,
-    private env: Env
-  ) {}
+export interface FinancialReportData {
+    date: string;
+    totalIncome: number;
+    totalAiCost: number;
+    grossProfit: number;
+    dau: number;
+    modelBreakdown: ModelBreakdown;
+    featureBreakdown: FeatureBreakdown;
+}
 
-  // ==========================================================================
-  // Event Tracking
-  // ==========================================================================
-
-  /**
-   * Track an analytics event
-   *
-   * @param event - Event data
-   * @returns Event ID
-   *
-   * @example
-   * await analytics.trackEvent({
-   *   event_type: UserLifecycleEvent.USER_REGISTERED,
-   *   event_category: EventCategory.USER,
-   *   user_id: '123456789',
-   *   event_data: { source: 'invite' },
-   * });
-   */
-  async trackEvent(event: {
+export interface TrackEventOptions {
     event_type: AllEventTypes;
     user_id: string;
     user_type?: 'free' | 'vip';
@@ -61,313 +42,265 @@ export class AnalyticsService {
     event_data?: Record<string, any>;
     ad_provider?: string;
     ad_id?: number;
-    ad_type?: 'third_party' | 'official';
+    ad_type?: string;
     session_id?: string;
-    user_language?: string;
-    user_timezone?: string;
-  }): Promise<number> {
-    try {
-      // Get event category automatically
-      const event_category = getEventCategory(event.event_type);
+}
 
-      // Create event
-      const eventId = await createAnalyticsEvent(this.db, {
-        ...event,
-        event_category,
-      });
+export class AnalyticsService {
+  private db;
+  private env: Env;
 
-      // Update daily user summary
-      await this.updateDailySummary(event.user_id, event.event_type);
-
-      return eventId;
-    } catch (error) {
-      console.error('[AnalyticsService] trackEvent error:', error);
-      throw error;
-    }
+  constructor(d1: D1Database, env: Env) {
+    this.env = env;
+    this.db = createDatabaseClient(env.DB);
   }
 
+  // ============================================================================
+  // Behavioral Tracking (Restored)
+  // ============================================================================
+
   /**
-   * Track multiple events in batch
+   * Track a generic analytics event
    */
-  async trackEvents(events: Parameters<typeof this.trackEvent>[0][]): Promise<void> {
-    for (const event of events) {
-      await this.trackEvent(event);
-    }
-  }
-
-  // ==========================================================================
-  // Session Management
-  // ==========================================================================
-
-  /**
-   * Start a new user session
-   *
-   * @param userId - User's Telegram ID
-   * @param language - User's language
-   * @param timezone - User's timezone
-   * @returns Session ID
-   */
-  async startSession(userId: string, language?: string, timezone?: string): Promise<string> {
+  async trackEvent(options: TrackEventOptions): Promise<void> {
     try {
-      const sessionId = generateSessionId(userId);
-
-      await createUserSession(this.db, {
-        session_id: sessionId,
-        user_id: userId,
-        session_start: new Date().toISOString(),
-        events_count: 0,
-        bottles_thrown: 0,
-        bottles_caught: 0,
-        ads_watched: 0,
-        conversations_started: 0,
-        messages_sent: 0,
-        vip_converted: false,
-        invite_sent: false,
-        ad_completed: false,
-        user_language: language,
-        user_timezone: timezone,
-      });
-
-      return sessionId;
-    } catch (error) {
-      console.error('[AnalyticsService] startSession error:', error);
-      throw error;
+        const category = getEventCategory(options.event_type);
+        const query = `
+            INSERT INTO analytics_events (
+                event_type, event_category, user_id, user_type, user_age_days, 
+                event_data, ad_provider, ad_id, ad_type, session_id, created_at
+            ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, datetime('now'))
+        `;
+        
+        await this.db.d1.prepare(query).bind(
+            options.event_type,
+            category,
+            options.user_id,
+            options.user_type || null,
+            options.user_age_days || 0,
+            options.event_data ? JSON.stringify(options.event_data) : null,
+            options.ad_provider || null,
+            options.ad_id || null,
+            options.ad_type || null,
+            options.session_id || null
+        ).run();
+    } catch (e) {
+        console.error('[Analytics] trackEvent failed:', e);
     }
   }
 
   /**
-   * End a user session
-   *
-   * @param sessionId - Session ID
-   */
-  async endSession(sessionId: string): Promise<void> {
-    try {
-      const session = await getUserSession(this.db, sessionId);
-      if (!session) {
-        return;
-      }
-
-      const sessionEnd = new Date();
-      const sessionStart = new Date(session.session_start);
-      const durationSeconds = Math.floor((sessionEnd.getTime() - sessionStart.getTime()) / 1000);
-
-      await updateUserSession(this.db, sessionId, {
-        session_end: sessionEnd.toISOString(),
-        session_duration_seconds: durationSeconds,
-      });
-
-      // Update daily summary with session duration
-      const summaryDate = sessionEnd.toISOString().split('T')[0];
-      await upsertDailyUserSummary(this.db, session.user_id, summaryDate, {
-        total_duration_seconds: durationSeconds,
-      });
-    } catch (error) {
-      console.error('[AnalyticsService] endSession error:', error);
-      throw error;
-    }
-  }
-
-  /**
-   * Update session statistics
-   *
-   * @param sessionId - Session ID
-   * @param updates - Statistics to update
-   */
-  async updateSession(
-    sessionId: string,
-    updates: {
-      events_count?: number;
-      bottles_thrown?: number;
-      bottles_caught?: number;
-      ads_watched?: number;
-      conversations_started?: number;
-      messages_sent?: number;
-      vip_converted?: boolean;
-      invite_sent?: boolean;
-      ad_completed?: boolean;
-    }
-  ): Promise<void> {
-    try {
-      await updateUserSession(this.db, sessionId, updates);
-    } catch (error) {
-      console.error('[AnalyticsService] updateSession error:', error);
-      throw error;
-    }
-  }
-
-  /**
-   * Get or create active session for user
-   *
-   * @param userId - User's Telegram ID
-   * @param language - User's language
-   * @param timezone - User's timezone
-   * @returns Session ID
-   */
-  async getOrCreateSession(userId: string, language?: string, timezone?: string): Promise<string> {
-    try {
-      // Check for active sessions
-      const activeSessions = await getActiveSessions(this.db, userId);
-
-      if (activeSessions.length > 0) {
-        // Return most recent active session
-        return activeSessions[0].session_id;
-      }
-
-      // Create new session
-      return await this.startSession(userId, language, timezone);
-    } catch (error) {
-      console.error('[AnalyticsService] getOrCreateSession error:', error);
-      throw error;
-    }
-  }
-
-  // ==========================================================================
-  // Funnel Tracking
-  // ==========================================================================
-
-  /**
-   * Track funnel step
-   *
-   * @param userId - User's Telegram ID
-   * @param funnelType - Funnel type
-   * @param funnelStep - Step name
-   * @param stepOrder - Step order (1, 2, 3...)
-   * @param stepData - Additional step data
-   * @param completed - Whether funnel was completed
+   * Track a funnel step
    */
   async trackFunnelStep(
-    userId: string,
-    funnelType: string,
-    funnelStep: string,
-    stepOrder: number,
+    userId: string, 
+    funnelType: FunnelType, 
+    stepName: string, 
+    stepOrder: number, 
     stepData?: Record<string, any>,
     completed: boolean = false
   ): Promise<void> {
     try {
-      // Get previous steps to calculate time differences
-      const previousSteps = await getFunnelEventsByUser(this.db, userId, funnelType);
-
-      let timeFromPreviousStep: number | undefined;
-      let timeFromFunnelStart: number | undefined;
-
-      if (previousSteps.length > 0) {
-        const now = new Date();
-        const previousStep = previousSteps[previousSteps.length - 1];
-        const previousTime = new Date(previousStep.step_timestamp);
-        timeFromPreviousStep = Math.floor((now.getTime() - previousTime.getTime()) / 1000);
-
-        const firstStep = previousSteps[0];
-        const firstTime = new Date(firstStep.step_timestamp);
-        timeFromFunnelStart = Math.floor((now.getTime() - firstTime.getTime()) / 1000);
-      }
-
-      await createFunnelEvent(this.db, {
-        user_id: userId,
-        funnel_type: funnelType,
-        funnel_step: funnelStep,
-        step_order: stepOrder,
-        step_data: stepData,
-        time_from_previous_step_seconds: timeFromPreviousStep,
-        time_from_funnel_start_seconds: timeFromFunnelStart,
-        completed: completed,
-        dropped_off: false,
-      });
-    } catch (error) {
-      console.error('[AnalyticsService] trackFunnelStep error:', error);
-      throw error;
+        const query = `
+            INSERT INTO funnel_events (
+                user_id, funnel_type, funnel_step, step_order, step_data, completed, created_at
+            ) VALUES (?, ?, ?, ?, ?, ?, datetime('now'))
+        `;
+        await this.db.d1.prepare(query).bind(
+            userId,
+            funnelType,
+            stepName,
+            stepOrder,
+            stepData ? JSON.stringify(stepData) : null,
+            completed ? 1 : 0
+        ).run();
+    } catch (e) {
+        console.error('[Analytics] trackFunnelStep failed:', e);
     }
   }
 
-  // ==========================================================================
-  // Daily Summary
-  // ==========================================================================
+  // ============================================================================
+  // Financial Reporting (New)
+  // ============================================================================
 
   /**
-   * Update daily user summary based on event type
-   *
-   * @param userId - User's Telegram ID
-   * @param eventType - Event type
+   * Aggregates yesterday's data into daily_financial_reports
    */
-  private async updateDailySummary(userId: string, eventType: AllEventTypes): Promise<void> {
+  async runDailySettlement(targetDate?: string): Promise<FinancialReportData> {
+    // Default to yesterday if not provided
+    const date = targetDate || new Date(Date.now() - 24 * 60 * 60 * 1000).toISOString().split('T')[0];
+    
+    console.log(`[Analytics] Running settlement for ${date}...`);
+
+    // 1. AI Costs from ai_cost_logs (Fortune & New features)
+    const aiLogs = await this.db.d1.prepare(`
+      SELECT feature_type, model, SUM(cost_usd) as cost, COUNT(*) as count, SUM(input_tokens) as in_tok, SUM(output_tokens) as out_tok
+      FROM ai_cost_logs
+      WHERE date(created_at) = ?
+      GROUP BY feature_type, model
+    `).bind(date).all<any>();
+
+    // 2. Translation Costs from legacy daily_translation_stats (if not yet migrated)
+    const transLogs = await this.db.d1.prepare(`
+      SELECT provider as model, SUM(cost_usd) as cost, SUM(request_count) as count
+      FROM daily_translation_stats
+      WHERE stat_date = ?
+      GROUP BY provider
+    `).bind(date).all<any>();
+
+    // Aggregation Structures
+    let totalAiCost = 0;
+    const modelBreakdown: ModelBreakdown = {};
+    const featureBreakdown: FeatureBreakdown = {};
+
+    // Process AI Logs
+    if (aiLogs.results) {
+      for (const log of aiLogs.results) {
+        totalAiCost += log.cost || 0;
+        
+        // Model breakdown
+        if (!modelBreakdown[log.model]) modelBreakdown[log.model] = { requests: 0, tokens_in: 0, tokens_out: 0, cost: 0 };
+        modelBreakdown[log.model].requests += log.count;
+        modelBreakdown[log.model].tokens_in += log.in_tok;
+        modelBreakdown[log.model].tokens_out += log.out_tok;
+        modelBreakdown[log.model].cost += log.cost;
+
+        // Feature breakdown
+        const feature = log.feature_type || 'OTHER';
+        if (!featureBreakdown[feature]) featureBreakdown[feature] = { requests: 0, cost: 0 };
+        featureBreakdown[feature].requests += log.count;
+        featureBreakdown[feature].cost += log.cost;
+      }
+    }
+
+    // Process Translation Logs (Merge into breakdown)
+    if (transLogs.results) {
+      for (const log of transLogs.results) {
+        const cost = log.cost || 0;
+        totalAiCost += cost;
+        
+        // Treat provider as model for legacy stats
+        const modelName = `translation-${log.model}`; 
+        if (!modelBreakdown[modelName]) modelBreakdown[modelName] = { requests: 0, tokens_in: 0, tokens_out: 0, cost: 0 };
+        modelBreakdown[modelName].requests += log.count;
+        modelBreakdown[modelName].cost += cost;
+
+        // Feature
+        if (!featureBreakdown['TRANSLATION']) featureBreakdown['TRANSLATION'] = { requests: 0, cost: 0 };
+        featureBreakdown['TRANSLATION'].requests += log.count;
+        featureBreakdown['TRANSLATION'].cost += cost;
+      }
+    }
+
+    // 3. Revenue (Stars)
+    let totalRevenue = 0;
     try {
-      const summaryDate = new Date().toISOString().split('T')[0];
-      const updates: Partial<any> = { is_active: true };
-
-      // Map event types to summary fields
-      if (eventType === 'bottle_throw') {
-        updates.bottles_thrown = 1;
-        updates.quota_used = 1;
-      } else if (eventType === 'bottle_catch') {
-        updates.bottles_caught = 1;
-      } else if (eventType === 'conversation_start') {
-        updates.conversations_started = 1;
-      } else if (eventType === 'conversation_message') {
-        updates.messages_sent = 1;
-      } else if (eventType === 'ad_impression' || eventType === 'ad_click') {
-        updates.ads_viewed = 1;
-      } else if (eventType === 'ad_complete') {
-        updates.ads_completed = 1;
-        updates.quota_from_ads = 1;
-      } else if (eventType === 'official_ad_click') {
-        updates.official_ads_clicked = 1;
-      } else if (eventType === 'invite_initiated') {
-        updates.invites_sent = 1;
-      } else if (eventType === 'invite_accepted') {
-        updates.invites_accepted = 1;
-      } else if (eventType === 'invite_activated') {
-        updates.quota_from_invites = 1;
-      } else if (eventType === 'vip_interest' || eventType === 'vip_consideration') {
-        updates.vip_page_views = 1;
-      } else if (eventType === 'vip_purchase_success') {
-        updates.vip_converted = true;
-      }
-
-      if (Object.keys(updates).length > 1) {
-        // More than just is_active
-        await upsertDailyUserSummary(this.db, userId, summaryDate, updates);
-      }
-    } catch (error) {
-      console.error('[AnalyticsService] updateDailySummary error:', error);
-      // Don't throw - summary update failure shouldn't break main flow
+        const payments = await this.db.d1.prepare(`
+            SELECT SUM(amount_stars) as stars FROM payment_transactions 
+            WHERE date(created_at) = ? AND status = 'paid'
+        `).bind(date).first<{ stars: number }>();
+        // Approx 0.015 USD per Star 
+        totalRevenue = (payments?.stars || 0) * 0.015; 
+    } catch (e) {
+        console.warn('[Analytics] Payment table query failed (table might not exist yet)', e);
     }
+
+    // 4. Ad Revenue
+    let adRevenue = 0;
+    try {
+        const ads = await this.db.d1.prepare(`
+            SELECT COUNT(*) as count FROM ad_history WHERE date(created_at) = ?
+        `).bind(date).first<{ count: number }>();
+        // eCPM estimate: $10 per 1000 views => $0.01 per view
+        adRevenue = (ads?.count || 0) * 0.01;
+    } catch (e) {
+        console.warn('[Analytics] Ad table query failed', e);
+    }
+
+    const totalIncome = totalRevenue + adRevenue;
+    const grossProfit = totalIncome - totalAiCost;
+
+    // 5. Activity (DAU)
+    let dau = 0;
+    try {
+        const stats = await this.db.d1.prepare(`SELECT active_users FROM daily_stats WHERE stat_date = ?`).bind(date).first<{ active_users: number }>();
+        dau = stats?.active_users || 0;
+    } catch (e) { console.warn('[Analytics] DAU fetch failed', e); }
+
+    // 6. Save to DB
+    await this.db.d1.prepare(`
+        INSERT OR REPLACE INTO daily_financial_reports 
+        (date, total_revenue, total_cost, gross_profit, dau, fortune_count, fortune_cost, translation_cost, model_breakdown, feature_breakdown)
+        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+    `).bind(
+        date, 
+        totalIncome, 
+        totalAiCost, 
+        grossProfit, 
+        dau, 
+        featureBreakdown['FORTUNE']?.requests || 0,
+        featureBreakdown['FORTUNE']?.cost || 0,
+        featureBreakdown['TRANSLATION']?.cost || 0,
+        JSON.stringify(modelBreakdown),
+        JSON.stringify(featureBreakdown)
+    ).run();
+
+    return { date, totalIncome, totalAiCost, grossProfit, dau, modelBreakdown, featureBreakdown };
   }
 
-  // ==========================================================================
-  // Helper Methods
-  // ==========================================================================
+  async sendReportToAdmin(reportData: FinancialReportData) {
+    const telegram = createTelegramService(this.env);
+    const { date, totalIncome, totalAiCost, grossProfit, dau, modelBreakdown, featureBreakdown } = reportData;
 
-  /**
-   * Get user age in days
-   *
-   * @param registrationDate - User's registration date
-   * @returns Age in days
-   */
-  getUserAgeDays(registrationDate: string): number {
-    const now = new Date();
-    const registration = new Date(registrationDate);
-    const diffMs = now.getTime() - registration.getTime();
-    return Math.floor(diffMs / (1000 * 60 * 60 * 24));
-  }
+    let msg = `📊 **財務運營日報** (${date})\n\n`;
+    
+    msg += `💰 **營收概況**\n`;
+    msg += `• 總收入: $${totalIncome.toFixed(2)}\n`;
+    msg += `• 總成本: $${totalAiCost.toFixed(2)}\n`;
+    msg += `• 毛利潤: $${grossProfit.toFixed(2)} (Margin: ${totalIncome > 0 ? ((grossProfit/totalIncome)*100).toFixed(1) : 0}%)\n\n`;
 
-  /**
-   * Check if analytics is enabled
-   */
-  isEnabled(): boolean {
-    return this.env.ENABLE_ANALYTICS !== 'false';
+    msg += `💸 **成本分析 (Feature)**\n`;
+    for (const [feature, data] of Object.entries(featureBreakdown) as [string, any][]) {
+        const percent = totalAiCost > 0 ? ((data.cost / totalAiCost) * 100).toFixed(1) : 0;
+        msg += `• ${feature}: $${data.cost.toFixed(3)} (${percent}%)\n`;
+    }
+    msg += `\n`;
+
+    msg += `🤖 **模型消耗 Top 3**\n`;
+    const sortedModels = Object.entries(modelBreakdown as ModelBreakdown)
+        .sort(([, a], [, b]) => b.cost - a.cost)
+        .slice(0, 3);
+    
+    for (const [model, data] of sortedModels) {
+        msg += `• ${model}: $${data.cost.toFixed(3)} (${data.requests} reqs)\n`;
+    }
+    msg += `\n`;
+
+    msg += `📈 **運營指標**\n`;
+    msg += `• DAU: ${dau}\n`;
+    if (dau > 0) {
+        msg += `• ARPU: $${(totalIncome / dau).toFixed(3)}\n`;
+        msg += `• CPU (Cost Per User): $${(totalAiCost / dau).toFixed(3)}\n`;
+    }
+    const fortuneReqs = featureBreakdown['FORTUNE']?.requests || 0;
+    if (fortuneReqs > 0) {
+        const costPerFortune = featureBreakdown['FORTUNE'].cost / fortuneReqs;
+        msg += `• 單次算命成本: $${costPerFortune.toFixed(3)}\n`;
+    }
+
+    // Send to Admin Log Group (or Super Admins)
+    const adminGroupId = this.env.ADMIN_LOG_GROUP_ID;
+    if (adminGroupId) {
+        await telegram.sendMessage(adminGroupId, msg);
+    } else {
+        // Fallback to Super Admin
+        const superAdmin = this.env.SUPER_ADMIN_USER_ID;
+        if (superAdmin) await telegram.sendMessage(superAdmin, msg);
+    }
   }
 }
 
-// ============================================================================
-// Factory Function
-// ============================================================================
-
-/**
- * Create analytics service instance
- *
- * @param db - D1 database
- * @param env - Environment variables
- * @returns Analytics service
- */
-export function createAnalyticsService(db: D1Database, env: Env): AnalyticsService {
-  return new AnalyticsService(db, env);
+// Factory function compatibility
+export function createAnalyticsService(d1: D1Database, env: Env): AnalyticsService {
+  return new AnalyticsService(d1, env);
 }

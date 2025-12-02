@@ -1,0 +1,22 @@
+export default {
+  "afterRegistration": "💡 Setelah menyelesaikan pendaftaran, Anda dapat:\n",
+  "answerRecorded": "✅ Dicatat",
+  "completion": "🎉 {testTitle} Selesai!\n\n",
+  "fullAccuracy": "Hasilnya lebih akurat",
+  "fullQuestions": "36 pertanyaan",
+  "fullTest": "Selesaikan tes MBTI",
+  "fullTestInfo": "💡 Ini adalah tes lengkap ({questions}), dan hasilnya lebih akurat.\nSetelah menyelesaikan pendaftaran, Anda dapat mengulang tes menggunakan /mbti.",
+  "fullTestTitle": "Tes penuh",
+  "manualModify": "• Ubah tipe MBTI Anda secara manual",
+  "moreDetailedTest": "• Ikuti tes yang lebih detail\n",
+  "note": "⚠️ Catatan: Ini adalah {testInfo}{testTitle}, {accuracy}.\n\n",
+  "questionOrderError": "⚠️ Urutan pertanyaan tidak benar",
+  "questions12": "12 pertanyaan",
+  "questions36": "36 pertanyaan",
+  "quickAccuracy": "Hasil hanya untuk referensi",
+  "quickQuestions": "12 pertanyaan",
+  "quickTest": "Tes MBTI cepat",
+  "quickTestInfo": "💡 Ini adalah kuis cepat ({questions}), dan hasilnya hanya untuk referensi.\nSetelah menyelesaikan pendaftaran, Anda dapat mengulang kuis melalui /mbti.",
+  "quickTestTitle": "Tes cepat",
+  "yourMbtiType": "Tipe MBTI Anda adalah: **{type}**\n\n"
+};

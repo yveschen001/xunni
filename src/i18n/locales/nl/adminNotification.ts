@@ -1,0 +1,21 @@
+export default {
+  "amount": "Bedrag: ${stars} ⭐",
+  "data": "Gegevens: ${data}",
+  "daysLeft": "Resterend: ${days} dagen",
+  "expireDate": "Verloopdatum: ${date}",
+  "newExpireDate": "Nieuwe verloopdatum: ${date}",
+  "paymentFailed": "❌ **Betaling Mislukt**",
+  "paymentId": "Betaling ID: `${id}`",
+  "reason": "{reason} ${reason}",
+  "refundRequest": "🔴 **Terugbetalingsverzoek**",
+  "requestId": "{id} ${id}",
+  "systemNotification": "📢 **Systeemmelding**",
+  "time": "{time} ${time}",
+  "type": "{type} ${type}",
+  "user": "Gebruiker: `${userId}`",
+  "viewRefundsHint": "💡 Gebruik /admin_refunds voor details",
+  "vipDowngraded": "⬇️ **VIP Automatische Downgrade**",
+  "vipPurchased": "🎉 **Nieuwe VIP Aankoop**",
+  "vipReminderSent": "⏰ **VIP Vervaldatum Herinnering Verzonden**",
+  "vipRenewed": "🔄 **VIP Vernieuwing**"
+};

@@ -155,7 +155,7 @@ export async function handleReportDetail(
   }
 
   let header = `📄 <b>${i18n.t(('fortune.type.' + report.type) as any)}</b>\n`;
-  header += `📅 ${i18n.t('common.date')}: ${report.target_date}\n`;
+  header += `📅 ${i18n.t('common.date', { date: report.target_date })}\n`;
     
   if (isExpired) {
     header += `⚠️ ${i18n.t('fortune.reports.expired')}\n`;

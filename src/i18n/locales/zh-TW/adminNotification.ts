@@ -1,0 +1,21 @@
+export default {
+  "amount": "金額：{stars} ⭐",
+  "data": "數據：{data}",
+  "daysLeft": "剩餘：{days} 天",
+  "expireDate": "到期：{date}",
+  "newExpireDate": "新到期：{date}",
+  "paymentFailed": "❌ **支付失敗**",
+  "paymentId": "支付 ID：`{id}`",
+  "reason": "原因：{reason}",
+  "refundRequest": "🔴 **退款請求**",
+  "requestId": "請求 ID：#{id}",
+  "systemNotification": "📢 **系統通知**",
+  "time": "時間：{time}",
+  "type": "類型：{type}",
+  "user": "用戶：`{userId}`",
+  "viewRefundsHint": "💡 使用 /admin_refunds 查看詳情",
+  "vipDowngraded": "⬇️ **VIP 自動降級**",
+  "vipPurchased": "🎉 **新 VIP 購買**",
+  "vipReminderSent": "⏰ **VIP 到期提醒已發送**",
+  "vipRenewed": "🔄 **VIP 續費**"
+};

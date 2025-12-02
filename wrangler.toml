@@ -17,6 +17,11 @@ binding = "CACHE"
 id = "8222fd298f254b498b7842d03e5d2a4d" # Staging ID
 preview_id = "8222fd298f254b498b7842d03e5d2a4d" # Staging ID
 
+[[kv_namespaces]]
+binding = "I18N_DATA"
+id = "6e9a063bd4a2463d8a2d76dd7fbef88a" # Staging ID
+preview_id = "6e9a063bd4a2463d8a2d76dd7fbef88a" # Staging ID
+
 # Default environment variables (non-sensitive)
 [vars]
 ENVIRONMENT = "development"
@@ -74,6 +79,11 @@ migrations_dir = "src/db/migrations"
 binding = "CACHE"
 id = "8222fd298f254b498b7842d03e5d2a4d"
 
+# Staging I18N Data
+[[env.staging.kv_namespaces]]
+binding = "I18N_DATA"
+id = "6e9a063bd4a2463d8a2d76dd7fbef88a"
+
 # Production environment
 [env.production]
 name = "xunni-bot"
@@ -111,6 +121,11 @@ migrations_dir = "src/db/migrations"
 [[env.production.kv_namespaces]]
 binding = "CACHE"
 id = "0a6b866ecab6428691f462178473f94f"
+
+# Production I18N Data
+[[env.production.kv_namespaces]]
+binding = "I18N_DATA"
+id = "1bbc7e09e9044c18b04aa1b7e7b3ef95"
 
 # Production Custom Domain
 [[env.production.routes]]

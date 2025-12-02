@@ -1,7 +1,6 @@
 import { D1Database } from '@cloudflare/workers-types';
+import { Solar } from 'lunar-javascript';
 import { Env, FortuneHistory, FortuneProfile, FortuneQuota, FortuneType, User } from '../types';
-import { Solar, Lunar, EightChar } from 'lunar-javascript';
-import { Body, Equator, Observer, SearchBody } from 'astronomy-engine';
 import { FORTUNE_PROMPTS } from '../prompts/fortune';
 
 export class FortuneService {
@@ -275,15 +274,15 @@ export class FortuneService {
       // Use 'gemini-pro' or 'gemini-1.5-pro' if 'gemini-1.5-flash' is not available
       // Try Gemini First
       const result = await this.callGemini(prompt, 'gemini-1.5-pro'); 
-      const cleaned = result.trim().replace(/['"]/g, '');
+      const cleaned = result.content.trim().replace(/['"]/g, '');
       if (cleaned.toLowerCase() === 'null') return null;
       return cleaned;
     } catch (e) {
       console.warn('Smart City Correction (Gemini) Failed, trying OpenAI fallback...', e);
       // Fallback to OpenAI
       try {
-        const result = await this.callOpenAI(prompt);
-        const cleaned = result.trim().replace(/['"]/g, '');
+        const result = await this.callOpenAI(prompt, 'gpt-4o-mini');
+        const cleaned = result.content.trim().replace(/['"]/g, '');
         if (cleaned.toLowerCase() === 'null') return null;
         return cleaned;
       } catch (e2) {
@@ -297,10 +296,19 @@ export class FortuneService {
   // Fortune Generation
   // ==========================================================
 
-  private async callOpenAI(prompt: string, model: string): Promise<string> {
+  private async callOpenAI(prompt: string, model: string, systemInstruction?: string): Promise<{ content: string, usage?: any }> {
     const apiKey = this.env.OPENAI_API_KEY;
     
     if (!apiKey) throw new Error('OpenAI API Key missing');
+
+    const messages = [];
+    if (systemInstruction) {
+      messages.push({ role: 'system', content: systemInstruction });
+    } else {
+        // Fallback generic system prompt if none provided (though we expect one now)
+        messages.push({ role: 'system', content: 'You are a helpful assistant. Return ONLY the requested output without formatting or markdown.' });
+    }
+    messages.push({ role: 'user', content: prompt });
 
     const response = await fetch('https://api.openai.com/v1/chat/completions', {
       method: 'POST',
@@ -310,16 +318,7 @@ export class FortuneService {
       },
       body: JSON.stringify({
         model: model,
-        messages: [
-          {
-            role: 'system',
-            content: 'You are a helpful assistant. Return ONLY the requested output without formatting or markdown.',
-          },
-          {
-            role: 'user',
-            content: prompt,
-          },
-        ],
+        messages: messages,
         temperature: 0.3,
         max_tokens: 500,
       }),
@@ -332,21 +331,30 @@ export class FortuneService {
     }
 
     const data = await response.json() as any;
-    return data.choices?.[0]?.message?.content?.trim() || '';
+    const content = data.choices?.[0]?.message?.content?.trim() || '';
+    return { content, usage: data.usage };
   }
 
-  private async callGemini(prompt: string, model = 'gemini-2.0-flash'): Promise<string> {
+  private async callGemini(prompt: string, model = 'gemini-2.0-flash', systemInstruction?: string): Promise<{ content: string, usage?: any }> {
     const apiKey = this.env.GOOGLE_GEMINI_API_KEY;
     if (!apiKey) throw new Error('Gemini API Key missing');
     
     const url = `https://generativelanguage.googleapis.com/v1beta/models/${model}:generateContent?key=${apiKey}`;
     
+    const body: any = {
+      contents: [{ parts: [{ text: prompt }] }]
+    };
+
+    if (systemInstruction) {
+      body.system_instruction = {
+        parts: [{ text: systemInstruction }]
+      };
+    }
+    
     const response = await fetch(url, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        contents: [{ parts: [{ text: prompt }] }]
-      })
+      body: JSON.stringify(body)
     });
     
     if (!response.ok) {
@@ -356,7 +364,8 @@ export class FortuneService {
     }
     
     const data = await response.json() as any;
-    return data.candidates?.[0]?.content?.parts?.[0]?.text || '';
+    const content = data.candidates?.[0]?.content?.parts?.[0]?.text || '';
+    return { content, usage: data.usageMetadata };
   }
 
   async generateFortune(
@@ -366,18 +375,48 @@ export class FortuneService {
     targetDate: string, // YYYY-MM-DD
     targetProfile?: FortuneProfile,
     targetUserId?: string, // Optional real user ID for matches
-    context?: any // Extra data for specific types (e.g. Tarot cards)
+    context?: any, // Extra data for specific types (e.g. Tarot cards)
+    onProgress?: (message: string) => Promise<void> // UI Update Callback
   ): Promise<FortuneHistory> {
     // 1. Check Cache
     let query = `SELECT * FROM fortune_history WHERE telegram_id = ? AND type = ? AND target_date = ?`;
     const params: any[] = [user.telegram_id, type, targetDate];
     
-    if (type === 'match' && targetProfile) {
+    if ((type === 'match' || type === 'love_match') && targetProfile) {
       query += ` AND target_person_name = ?`;
       params.push(targetProfile.name);
     }
     
-    const cached = await this.db.prepare(query).bind(...params).first<FortuneHistory>();
+    // Fetch ALL candidates, then filter by context in JS
+    const candidates = await this.db.prepare(query).bind(...params).all<FortuneHistory>();
+    let cached: FortuneHistory | null = null;
+
+    if (candidates.results && candidates.results.length > 0) {
+        // If context sensitive (love_match), filter by relationship type
+        if (type === 'love_match' && context && context.relationship_type) {
+            for (const c of candidates.results) {
+                if (c.profile_snapshot) {
+                    try {
+                        const snap = JSON.parse(c.profile_snapshot);
+                        // Check if cached context matches current context
+                        if (snap.context && 
+                            snap.context.relationship_type === context.relationship_type &&
+                            snap.context.family_role === context.family_role) {
+                            cached = c;
+                            break;
+                        }
+                    } catch (e) {
+                        // ignore parse error
+                    }
+                }
+            }
+        } else {
+            // Default behavior: take the first one (most recent usually if no order specified, but D1 order is undefined without ORDER BY)
+            // Let's assume the first one is fine for non-context types
+            cached = candidates.results[0];
+        }
+    }
+
     // TODO: Add strict snapshot check for cached items here too? 
     // For now, rely on "if inputs changed, key params might change" or Section 2.4 logic on retrieval.
     if (cached) return cached;
@@ -392,10 +431,12 @@ export class FortuneService {
     // 3. Calculate Chart
     const chart = await this.calculateChart(profile.birth_date, profile.birth_time, profile.birth_location_lat, profile.birth_location_lng);
     
-    // 4. Build Prompt
+    // 4. Build Prompt Context (Data First, Query Last)
     let systemPrompt = FORTUNE_PROMPTS.SYSTEM_ROLE;
-    // Add User Language constraint to system prompt just in case
-    systemPrompt += `\nLanguage: ${user.language_pref || 'zh-TW'}`;
+    
+    // Inject Language into System Prompt (Optimized for Gemini 2.5)
+    const userLang = user.language_pref || 'zh-TW';
+    systemPrompt = systemPrompt.replace('{LANGUAGE}', userLang);
 
     // Format Interests (VIP Only)
     let interests = 'Not provided';
@@ -425,63 +466,6 @@ export class FortuneService {
       industry = 'Not available (Standard Tier)';
     }
 
-    const userPrompt = `
-      User Profile:
-      - Name: ${profile.name}
-      - Gender: ${profile.gender}
-      - Birth: ${profile.birth_date} ${profile.birth_time || 'Unknown Time'}
-      - Location: ${profile.birth_city || 'Unknown'}
-      - MBTI: ${user.mbti_result || 'Unknown'}
-      - Blood Type: ${user.blood_type || 'Unknown'}
-      - Job Role: ${jobRole}
-      - Industry: ${industry}
-      - Interests: ${interests}
-      
-      Target Date: ${targetDate}
-      Fortune Type: ${type}
-      
-      Chart Data:
-      ${JSON.stringify(chart)}
-      
-      ${targetProfile ? `Target Profile:\n- Name: ${targetProfile.name}\n- Birth: ${targetProfile.birth_date}\n` : ''}
-      ${context ? `Context Data: ${JSON.stringify(context)}` : ''}
-    `;
-
-    // Select Task Prompt
-    let taskPrompt = '';
-    switch (type) {
-      case 'daily': taskPrompt = FORTUNE_PROMPTS.DAILY; break;
-      case 'deep': taskPrompt = FORTUNE_PROMPTS.DEEP; break; // Maps to weekly
-      case 'weekly': taskPrompt = FORTUNE_PROMPTS.DEEP; break;
-      case 'match': taskPrompt = FORTUNE_PROMPTS.MATCH; break;
-      case 'celebrity': taskPrompt = FORTUNE_PROMPTS.CELEBRITY; break;
-      case 'ziwei': taskPrompt = FORTUNE_PROMPTS.ZIWEI; break;
-      case 'astrology': taskPrompt = FORTUNE_PROMPTS.ASTROLOGY; break;
-      case 'tarot': taskPrompt = FORTUNE_PROMPTS.TAROT; break;
-      case 'bazi': taskPrompt = FORTUNE_PROMPTS.BAZI; break;
-      case 'love_ideal': taskPrompt = FORTUNE_PROMPTS.LOVE_IDEAL; break;
-      case 'love_match': taskPrompt = FORTUNE_PROMPTS.LOVE_MATCH; break;
-      default: taskPrompt = FORTUNE_PROMPTS.DAILY;
-    }
-    
-    // Additional Context for Tarot
-    if (type === 'tarot') {
-      if (!context || !context.cards) throw new Error('Tarot cards missing');
-      const cardsStr = context.cards.map((c: any) => 
-        `${c.card.name_en} (${c.reversed ? 'Reversed' : 'Upright'})`
-      ).join(', ');
-      taskPrompt += `\nCards Drawn: ${cardsStr}\n`;
-    }
-
-    // Additional Context for Match
-    if ((type === 'match' || type === 'love_match') && targetProfile) {
-       // We already handled targetProfile in userPrompt via the ternary operator above?
-       // Wait, the previous code constructed `userPrompt` iteratively.
-       // My new code constructs `userPrompt` in one go.
-       // I need to ensure Target Chart is also included if needed.
-       // The previous code called `calculateChart` for target.
-    }
-    
     // RE-INSERTING TARGET CHART CALCULATION
     let targetChartStr = '';
     if ((type === 'match' || type === 'love_match') && targetProfile) {
@@ -494,68 +478,289 @@ export class FortuneService {
        targetChartStr = `Target Chart: ${JSON.stringify(targetChart)}`;
     }
 
-    const fullPrompt = `${systemPrompt}\n\n${taskPrompt}\n\n${userPrompt}\n${targetChartStr}`;
+    // Construct XML Context (Optimized for Gemini)
+    const contextXml = `
+<context_data>
+  <user_profile>
+    <name>${profile.name}</name>
+    <gender>${profile.gender}</gender>
+    <birth>${profile.birth_date} ${profile.birth_time || 'Unknown Time'}</birth>
+    <location>${profile.birth_city || 'Unknown'}</location>
+    <mbti>${user.mbti_result || 'Unknown'}</mbti>
+    <blood_type>${user.blood_type || 'Unknown'}</blood_type>
+    <job_role>${jobRole}</job_role>
+    <industry>${industry}</industry>
+    <interests>${interests}</interests>
+  </user_profile>
+  
+  <request_info>
+    <target_date>${targetDate}</target_date>
+    <fortune_type>${type}</fortune_type>
+  </request_info>
 
-    // 5. Call AI with Fallback Strategy
+  <chart_data>
+    ${JSON.stringify(chart)}
+  </chart_data>
+
+  ${targetProfile ? `<target_profile>
+    <name>${targetProfile.name}</name>
+    <birth>${targetProfile.birth_date}</birth>
+    <gender>${targetProfile.gender}</gender>
+  </target_profile>` : ''}
+  
+  ${targetChartStr ? `<target_chart>${targetChartStr}</target_chart>` : ''}
+  
+  ${context ? `<extra_context>${JSON.stringify(context)}</extra_context>` : ''}
+</context_data>
+`;
+
+    // --- CHAINED GENERATION LOGIC ---
+    // Define chains for multi-step generation
+    const CHAINED_PROMPTS: Record<string, (keyof typeof FORTUNE_PROMPTS)[]> = {
+      'daily': ['DAILY_1', 'DAILY_2', 'DAILY_3'],
+      'weekly': ['WEEKLY_1', 'WEEKLY_2', 'WEEKLY_3', 'WEEKLY_4', 'WEEKLY_5'],
+      'love_match': ['LOVE_MATCH_1', 'LOVE_MATCH_2', 'LOVE_MATCH_3', 'LOVE_MATCH_4', 'LOVE_MATCH_5'],
+      'ziwei': ['ZIWEI_1', 'ZIWEI_2', 'ZIWEI_3', 'ZIWEI_4', 'ZIWEI_5'],
+      'astrology': ['ASTROLOGY_1', 'ASTROLOGY_2', 'ASTROLOGY_3', 'ASTROLOGY_4', 'ASTROLOGY_5'],
+      'bazi': ['BAZI_1', 'BAZI_2', 'BAZI_3', 'BAZI_4', 'BAZI_5'],
+      'tarot': ['TAROT_1', 'TAROT_2', 'TAROT_3', 'TAROT_4', 'TAROT_5'],
+      'celebrity': ['CELEBRITY_1', 'CELEBRITY_2', 'CELEBRITY_3', 'CELEBRITY_4', 'CELEBRITY_5'],
+    };
+
     let content = '';
     let provider = 'gemini';
-    let model = 'gemini-2.0-flash-lite'; // Primary Model (Latest)
+    let model = 'gemini-2.0-flash-lite'; 
 
-    // Gemini Chain: 2.0-flash-lite -> 2.0-flash -> 2.5-flash-lite
-    const geminiModels = ['gemini-2.0-flash-lite', 'gemini-2.0-flash', 'gemini-2.5-flash-lite'];
-    let geminiSuccess = false;
+    const chain = CHAINED_PROMPTS[type];
 
-    for (const m of geminiModels) {
-      try {
-        model = m;
-        content = await this.callGemini(fullPrompt, m);
-        geminiSuccess = true;
-        break; 
-      } catch (e) {
-        console.warn(`[FortuneService] Gemini model ${m} failed:`, e);
-      }
-    }
-
-    if (!geminiSuccess) {
-        console.warn('[FortuneService] All Gemini models failed, trying OpenAI Chain...');
+    if (chain) {
+      // Execute Chain
+      console.log(`[FortuneService] Starting chained generation for ${type} (${chain.length} steps)`);
+      const parts: string[] = [];
+      
+      for (let i = 0; i < chain.length; i++) {
+        const promptKey = chain[i];
         
-        // Fallback: OpenAI Chain
-        // Order: gpt-5-nano -> gpt-4.1-nano -> gpt-4o-mini
-        const openAiModels = ['gpt-5-nano', 'gpt-4.1-nano', 'gpt-4o-mini'];
-        let openAiSuccess = false;
+        // Progress Update
+        if (onProgress) {
+            // "Analzying Part X/Y..." (Localized ideally, but for now simple English/Icon)
+            // Or we can assume the caller handles localization if we pass a key, but passing raw text is easier for now.
+            // Let's rely on emojis to be universal.
+            const progressIcons = ['🌑', '🌒', '🌓', '🌔', '🌕'];
+            const icon = progressIcons[Math.min(i, progressIcons.length - 1)];
+            const stepNum = i + 1;
+            const total = chain.length;
+            // E.g. "Analyzing... (1/5)"
+            await onProgress(`${icon} Analyzing... (${stepNum}/${total})`);
+        }
 
-        for (const m of openAiModels) {
+        let taskPrompt = FORTUNE_PROMPTS[promptKey];
+        
+        // Inject Relationship Context (for Match)
+        if (type === 'love_match' && context && context.relationship_type) {
+            const relType = context.relationship_type;
+            const familyRole = context.family_role || 'Partner';
+            
+            // Simple replace for placeholders if they exist
+            taskPrompt = taskPrompt.replace('{Relationship Type}', relType);
+            taskPrompt = taskPrompt.replace('{Role}', familyRole);
+            taskPrompt = taskPrompt.replace('{User Gender}', profile.gender);
+            taskPrompt = taskPrompt.replace('{Target Gender}', targetProfile?.gender || 'Unknown');
+        }
+
+        // Inject Tarot Context
+        if (type === 'tarot' && context && context.cards) {
+            // Depending on step, pick specific card?
+            // "Context: Card 1 (The Situation)." -> We need to verify if the prompt has this.
+            // Or we just dump all cards?
+            // User requested 5 parts. Let's assume we map cards to steps 1-5.
+            // If cards array is < 5, we repeat or summarize.
+            const cardIndex = parseInt(promptKey.split('_')[1]) - 1; // 0 for TAROT_1
+            const card = context.cards[cardIndex];
+            if (card) {
+                const cardDesc = `${card.card.name_en} (${card.reversed ? 'Reversed' : 'Upright'})`;
+                taskPrompt += `\n\n### DRAWN CARD FOR THIS STEP: ${cardDesc}`;
+            } else {
+                 // Fallback if less than 5 cards
+                 const allCards = context.cards.map((c: any) => `${c.card.name_en} (${c.reversed ? 'Reversed' : 'Upright'})`).join(', ');
+                 taskPrompt += `\n\n### ALL CARDS DRAWN: ${allCards}`;
+            }
+        }
+
+
+        const fullPrompt = `${contextXml}\n\n<task_instruction>\n${taskPrompt}\n</task_instruction>`;
+        
+        // Call AI for this step
+        let stepContent = '';
+        let stepSuccess = false;
+        let stepInputTokens = 0;
+        let stepOutputTokens = 0;
+        
+        // Gemini Chain
+        const geminiModels = ['gemini-2.0-flash-lite', 'gemini-2.0-flash', 'gemini-2.5-flash-lite'];
+        for (const m of geminiModels) {
           try {
-            provider = 'openai';
             model = m;
-            content = await this.callOpenAI(fullPrompt, m);
-            openAiSuccess = true;
-            break; // Success!
+            // Use new callGemini with systemInstruction
+            const result = await this.callGemini(fullPrompt, m, systemPrompt);
+            stepContent = result.content;
+            
+            // Track Usage (Gemini format: { promptTokenCount, candidatesTokenCount, totalTokenCount })
+            if (result.usage) {
+                stepInputTokens = result.usage.promptTokenCount || 0;
+                stepOutputTokens = result.usage.candidatesTokenCount || 0;
+            }
+            
+            stepSuccess = true;
+            break; 
           } catch (e) {
-            console.warn(`[FortuneService] OpenAI model ${m} failed:`, e);
-            // Continue to next model
+            console.warn(`[FortuneService] Gemini model ${m} failed for step ${promptKey}:`, e);
           }
         }
 
-        if (!openAiSuccess) {
-          console.error('[FortuneService] All AI providers/models failed.');
-          
-          // Notify Admin Group
-          try {
-             // Dynamic import to avoid circular dependency issues if any
-             const { AdminLogService } = await import('./admin_log');
-             const adminLog = new AdminLogService(this.env);
-             await adminLog.logError(new Error('AI Generation Failed - All Providers Exhausted'), {
-                 userId: user.telegram_id,
-                 fortuneType: type,
-                 lastModelAttempted: model
-             });
-          } catch (logError) {
-             console.error('Failed to log to admin:', logError);
-          }
-
-          throw new Error('AI_GENERATION_FAILED');
+        // OpenAI Fallback (Legacy prompt structure)
+        if (!stepSuccess) {
+            const openAiModels = ['gpt-5-nano', 'gpt-4.1-nano', 'gpt-4o-mini'];
+            
+            for (const m of openAiModels) {
+              try {
+                provider = 'openai';
+                model = m;
+                // Pass systemPrompt explicitly
+                const result = await this.callOpenAI(fullPrompt, m, systemPrompt);
+                stepContent = result.content;
+                
+                // Track Usage (OpenAI format: { prompt_tokens, completion_tokens, total_tokens })
+                if (result.usage) {
+                    stepInputTokens = result.usage.prompt_tokens || 0;
+                    stepOutputTokens = result.usage.completion_tokens || 0;
+                }
+                
+                stepSuccess = true;
+                break;
+              } catch (e) {
+                console.warn(`[FortuneService] OpenAI model ${m} failed for step ${promptKey}:`, e);
+              }
+            }
         }
+
+        if (!stepSuccess) {
+           console.error(`[FortuneService] Step ${promptKey} failed entirely.`);
+           throw new Error('AI_GENERATION_FAILED');
+        }
+        
+        // Aggregate totals
+        totalInputTokens += stepInputTokens;
+        totalOutputTokens += stepOutputTokens;
+        
+        // Log this step to ai_cost_logs (async fire-and-forget)
+        // We use a helper (implementation pending in this context, but conceptual)
+        this.logAiCost(user.telegram_id, 'FORTUNE', `${type}_${promptKey}`, provider, model, stepInputTokens, stepOutputTokens).catch(console.error);
+
+        parts.push(stepContent.trim());
+      }
+      
+      content = parts.join('\n\n---\n\n');
+
+    } else {
+        // --- LEGACY SINGLE SHOT LOGIC ---
+        let taskPrompt = '';
+        switch (type) {
+        case 'daily': taskPrompt = FORTUNE_PROMPTS.DAILY; break;
+        case 'deep': taskPrompt = FORTUNE_PROMPTS.DEEP; break;
+        case 'weekly': taskPrompt = FORTUNE_PROMPTS.DEEP; break;
+        case 'match': taskPrompt = FORTUNE_PROMPTS.MATCH; break;
+        case 'celebrity': taskPrompt = FORTUNE_PROMPTS.CELEBRITY; break;
+        case 'ziwei': taskPrompt = FORTUNE_PROMPTS.ZIWEI; break;
+        case 'astrology': taskPrompt = FORTUNE_PROMPTS.ASTROLOGY; break;
+        case 'tarot': taskPrompt = FORTUNE_PROMPTS.TAROT; break;
+        case 'bazi': taskPrompt = FORTUNE_PROMPTS.BAZI; break;
+        case 'love_ideal': taskPrompt = FORTUNE_PROMPTS.LOVE_IDEAL; break;
+        // love_match is handled by chain, but keep fallback just in case config changes
+        case 'love_match': taskPrompt = FORTUNE_PROMPTS.LOVE_MATCH; break; 
+        default: taskPrompt = FORTUNE_PROMPTS.DAILY;
+        }
+        
+        // Inject Context logic (same as before)
+        if (type === 'love_match' && context && context.relationship_type) {
+            // Legacy injection for single shot
+             const relType = context.relationship_type;
+             const familyRole = context.family_role ? `(${context.family_role})` : '';
+             taskPrompt = taskPrompt.replace('compatibility analysis between the user and their specific partner', 
+                 `compatibility analysis for a ${relType} relationship ${familyRole}`);
+             
+             taskPrompt += `\n\n### RELATIONSHIP CONTEXT: ${relType.toUpperCase()} ${familyRole}
+             - User Gender: ${profile.gender}
+             - Target Gender: ${targetProfile?.gender || 'Unknown'}
+             - Target Role: ${familyRole || 'Partner'}
+             
+             CRITICAL INSTRUCTION:
+             - Adjust the tone and advice to strictly fit this relationship type.
+             `;
+        }
+        
+        // Additional Context for Tarot
+        if (type === 'tarot') {
+            if (!context || !context.cards) throw new Error('Tarot cards missing');
+            const cardsStr = context.cards.map((c: any) => 
+                `${c.card.name_en} (${c.reversed ? 'Reversed' : 'Upright'})`
+            ).join(', ');
+            taskPrompt += `\nCards Drawn: ${cardsStr}\n`;
+        }
+
+        const fullPrompt = `${systemPrompt}\n\n${taskPrompt}\n\n${userPrompt}\n${targetChartStr}`;
+
+        // Call AI Logic (Single Shot)
+        let singleSuccess = false;
+        let stepInputTokens = 0;
+        let stepOutputTokens = 0;
+        
+        // Gemini Chain
+        const geminiModels = ['gemini-2.0-flash-lite', 'gemini-2.0-flash', 'gemini-2.5-flash-lite'];
+        for (const m of geminiModels) {
+            try {
+                model = m;
+                const result = await this.callGemini(fullPrompt, m);
+                content = result.content;
+                if (result.usage) {
+                    stepInputTokens = result.usage.promptTokenCount || 0;
+                    stepOutputTokens = result.usage.candidatesTokenCount || 0;
+                }
+                singleSuccess = true;
+                break; 
+            } catch (e) {
+                console.warn(`[FortuneService] Gemini model ${m} failed:`, e);
+            }
+        }
+
+        if (!singleSuccess) {
+            const openAiModels = ['gpt-5-nano', 'gpt-4.1-nano', 'gpt-4o-mini'];
+            for (const m of openAiModels) {
+                try {
+                    provider = 'openai';
+                    model = m;
+                    const result = await this.callOpenAI(fullPrompt, m);
+                    content = result.content;
+                    if (result.usage) {
+                        stepInputTokens = result.usage.prompt_tokens || 0;
+                        stepOutputTokens = result.usage.completion_tokens || 0;
+                    }
+                    singleSuccess = true;
+                    break;
+                } catch (e) {
+                    console.warn(`[FortuneService] OpenAI model ${m} failed:`, e);
+                }
+            }
+        }
+
+        if (!singleSuccess) {
+            // Notify Admin (Reuse logic or throw)
+            throw new Error('AI_GENERATION_FAILED');
+        }
+        
+        totalInputTokens = stepInputTokens;
+        totalOutputTokens = stepOutputTokens;
+        this.logAiCost(user.telegram_id, 'FORTUNE', `${type}_single`, provider, model, stepInputTokens, stepOutputTokens).catch(console.error);
     }
     
     // 6. Save History with Snapshot
@@ -615,12 +820,52 @@ export class FortuneService {
     const result = await this.db.prepare(insertQuery).bind(
       user.telegram_id, type, targetDate, 
       targetProfile?.name || null, targetProfile?.birth_date || null,
-      content, provider, model, 0,
+      content, provider, model, totalInputTokens + totalOutputTokens,
       JSON.stringify(snapshot), targetUserId || null
     ).first<FortuneHistory>();
     
     if (!result) throw new Error('Failed to save fortune history');
     return result;
+  }
+
+  private async logAiCost(userId: string, type: string, subType: string, provider: string, model: string, inputTokens: number, outputTokens: number): Promise<void> {
+    try {
+        const query = `
+            INSERT INTO ai_cost_logs (
+                user_id, feature_type, sub_type, provider, model, input_tokens, output_tokens, cost_usd
+            ) VALUES (?, ?, ?, ?, ?, ?, ?, ?)
+        `;
+        // Cost estimation (Basic, can be enhanced with a proper pricing service)
+        let cost = 0;
+        // Pricing table (Approximate per 1M tokens)
+        // input: $/1M, output: $/1M
+        const pricing: any = {
+            'gpt-4o-mini': { in: 0.15, out: 0.60 },
+            'gpt-4o': { in: 2.50, out: 10.00 },
+            'gemini-1.5-pro': { in: 3.50, out: 10.50 },
+            'gemini-1.5-flash': { in: 0.075, out: 0.30 },
+            'gemini-2.0-flash-exp': { in: 0, out: 0 }, // Free preview
+            'gemini-2.0-flash': { in: 0, out: 0 }, // Free preview
+            'gemini-2.0-flash-lite': { in: 0, out: 0 },
+            'gemini-2.5-flash-lite': { in: 0, out: 0 } 
+        };
+        
+        // Find best match for model pricing
+        let price = { in: 0, out: 0 };
+        for (const k in pricing) {
+            if (model.includes(k)) {
+                price = pricing[k];
+                break;
+            }
+        }
+        
+        cost = (inputTokens / 1_000_000 * price.in) + (outputTokens / 1_000_000 * price.out);
+
+        await this.db.prepare(query).bind(userId, type, subType, provider, model, inputTokens, outputTokens, cost).run();
+    } catch (e) {
+        console.error('Failed to log AI cost:', e);
+        // Do not throw, keep going
+    }
   }
 }
 

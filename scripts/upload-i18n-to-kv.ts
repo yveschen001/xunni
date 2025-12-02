@@ -1,161 +1,70 @@
-import * as fs from 'fs';
-import * as path from 'path';
-import { fileURLToPath } from 'url';
+import { readdirSync, statSync, writeFileSync, unlinkSync } from 'fs';
+import { join, resolve, dirname } from 'path';
 import { execSync } from 'child_process';
+import { fileURLToPath } from 'url';
 
 const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
+const __dirname = dirname(__filename);
 
-const LOCALES_DIR = path.resolve(__dirname, '../src/i18n/locales');
-// Namespace binding name in wrangler.toml is usually "CACHE" or we use the ID directly if needed.
-// For `wrangler kv:key put`, we need the `--binding` or `--namespace-id`.
-// Let's assume we use `--binding CACHE` if run via `wrangler exec` or just upload to preview/production KV directly.
-// Easier way: Use `wrangler kv:key put --binding=CACHE` might not work directly in shell without script context.
-// Standard way: `wrangler kv:key put <key> <value> --namespace-id <id>` or `--binding <name>` inside a worker context?
-// No, `wrangler kv:key put` takes a namespace ID locally.
-
-// We need to parse wrangler.toml to get the namespace ID for "CACHE".
-// Or user can provide it.
-// Let's try to auto-detect from wrangler.toml
-
-function getKvNamespaceId(env: string = 'production'): string | null {
-  try {
-    const wranglerContent = fs.readFileSync(path.resolve(__dirname, '../wrangler.toml'), 'utf-8');
-    // Simple regex to find kv_namespaces
-    // This is a bit heuristic.
-    // [[kv_namespaces]]
-    // binding = "CACHE"
-    // id = "..."
-    
-    // We need to handle environments too. 
-    // Usually 'staging' overrides the id.
-    
-    // Let's look for the block.
-    const lines = wranglerContent.split('\n');
-    let currentBinding = '';
-    let foundId = '';
-    
-    // Very basic parser
-    for (let i = 0; i < lines.length; i++) {
-      const line = lines[i].trim();
-      if (line.startsWith('binding = "CACHE"')) {
-        // Look ahead for id
-        for (let j = i + 1; j < lines.length; j++) {
-           const nextLine = lines[j].trim();
-           if (nextLine.startsWith('id =')) {
-             foundId = nextLine.split('=')[1].trim().replace(/"/g, '');
-             // If we are looking for production (default), this might be it if it's top level.
-             // But if we are in [env.staging], we need to be careful.
-             break;
-           }
-           if (nextLine.startsWith('[')) break; // New section
-        }
-      }
-    }
-    
-    // Better approach: Let user pass the ID or rely on wrangler's environment handling if we run this via a worker script?
-    // No, this is a local maintenance script.
-    
-    // Let's try to use `wrangler kv:namespace list` to get the ID.
-    const listOutput = execSync('npx wrangler kv:namespace list', { encoding: 'utf-8' });
-    const namespaces = JSON.parse(listOutput);
-    
-    // Look for a namespace that looks like "xunni-bot-staging-CACHE" or just "CACHE" depending on setup
-    // Our binding is "CACHE".
-    
-    // Filter logic:
-    // If env is staging, look for title containing "staging" and "CACHE" (or whatever wrangler auto-generated)
-    // Or just look for the ID we saw in deployment logs: "8222fd298f254b498b7842d03e5d2a4d" (from user logs)
-    
-    const targetTitle = env === 'staging' ? 'xunni-bot-staging-CACHE' : 'xunni-bot-CACHE';
-    const ns = namespaces.find((n: any) => n.title.includes(targetTitle) || n.title === `CACHE-${env}`);
-    
-    if (ns) return ns.id;
-    
-    // Fallback: Try to match just "CACHE" if strict match failed
-    const fallbackNs = namespaces.find((n: any) => n.title.includes('CACHE'));
-    if (fallbackNs) {
-        console.warn(`⚠️ Ambiguous namespace match. Using: ${fallbackNs.title} (${fallbackNs.id})`);
-        return fallbackNs.id;
-    }
-    
-    return null;
-  } catch (e) {
-    console.error('Error finding KV ID:', e);
-    return null;
-  }
-}
+// Usage: ts-node scripts/upload-i18n-to-kv.ts [staging|production]
+const ENV = process.argv[2] || 'staging'; 
+const LOCALES_DIR = resolve(__dirname, '../src/i18n/locales');
+const TEMP_FILE = resolve(__dirname, '../temp_i18n_upload.json');
 
 async function main() {
-  const env = process.argv[2] || 'staging'; // Default to staging
-  console.log(`🚀 Starting i18n upload for environment: ${env}`);
+  console.log(`🚀 Starting i18n upload to KV for environment: [${ENV}]`);
+  console.log(`📂 Locales Directory: ${LOCALES_DIR}`);
 
-  // 1. Get Namespace ID
-  // For safety, let's hardcode the IDs we saw in logs if detection fails, or ask user.
-  // User log showed: CACHE: 8222fd298f254b498b7842d03e5d2a4d (for staging)
-  let namespaceId = '';
-  
-  if (env === 'staging') {
-      // From previous deployment log
-      namespaceId = '8222fd298f254b498b7842d03e5d2a4d';
-  } else {
-      // Try to find for production
-      const id = getKvNamespaceId(env);
-      if (!id) {
-          console.error('❌ Could not find KV Namespace ID for production. Please verify wrangler.toml or kv:namespace list.');
-          process.exit(1);
-      }
-      namespaceId = id;
-  }
-  
-  console.log(`- Target KV ID: ${namespaceId}`);
+  // 1. Get all languages
+  const languages = readdirSync(LOCALES_DIR).filter(f => 
+    statSync(join(LOCALES_DIR, f)).isDirectory()
+  );
 
-  // 2. Read all locales
-  const files = fs.readdirSync(LOCALES_DIR).filter(f => f.endsWith('.ts'));
-  console.log(`- Found ${files.length} language files.`);
+  console.log(`🌍 Found ${languages.length} languages: ${languages.join(', ')}`);
 
-  for (const file of files) {
-    const langCode = file.replace('.ts', '');
-    const filePath = path.join(LOCALES_DIR, file);
-    
-    console.log(`Processing ${langCode}...`);
-    
+  for (const lang of languages) {
+    console.log(`\nProcessing [${lang}]...`);
     try {
-      // Dynamic import to get the object
-      // We need to use absolute path for import()
-      const module = await import(filePath);
-      const translations = module.translations;
-      
+      // Dynamic import the locale module
+      // Note: We use dynamic import so ts-node compiles it on the fly
+      const modulePath = join(LOCALES_DIR, lang, 'index.ts');
+      const mod = await import(modulePath);
+      const translations = mod.translations || mod.default;
+
       if (!translations) {
-        console.warn(`  ⚠️ No translations export found in ${file}`);
+        console.error(`❌ No translations found for ${lang} (export 'translations' or default missing)`);
         continue;
       }
-      
+
       const jsonStr = JSON.stringify(translations);
-      const kvKey = `i18n:lang:${langCode}`;
-      
-      // 3. Upload to KV
-      // Use wrangler kv:key put --namespace-id <id> <key> <value>
-      // Since value can be large, we might need to pipe it or use a file.
-      // Writing to a temp file is safer for shell commands.
-      
-      const tempFile = path.resolve(__dirname, `../temp_i18n_${langCode}.json`);
-      fs.writeFileSync(tempFile, jsonStr);
-      
-      try {
-          execSync(`npx wrangler kv:key put "${kvKey}" --path="${tempFile}" --namespace-id=${namespaceId}`, { stdio: 'inherit' });
-          console.log(`  ✅ Uploaded ${langCode} (${jsonStr.length} bytes)`);
-      } finally {
-          if (fs.existsSync(tempFile)) fs.unlinkSync(tempFile);
-      }
-      
-    } catch (e) {
-      console.error(`  ❌ Failed to upload ${langCode}:`, e);
+      console.log(`  - Size: ${(jsonStr.length / 1024).toFixed(2)} KB`);
+
+      // Write to temp file
+      writeFileSync(TEMP_FILE, jsonStr);
+
+      // Upload to KV using wrangler
+      // We use --binding I18N_DATA which is defined in wrangler.toml for the specific env
+      console.log(`  - Uploading to KV...`);
+      execSync(`npx wrangler kv:key put "locale:${lang}" --path "${TEMP_FILE}" --binding I18N_DATA --env ${ENV}`, {
+        stdio: 'inherit' 
+      });
+
+    } catch (error) {
+      console.error(`❌ Failed to process ${lang}:`, error);
     }
   }
+
+  // Cleanup
+  try {
+    if (require('fs').existsSync(TEMP_FILE)) {
+      unlinkSync(TEMP_FILE);
+    }
+  } catch (e) {}
   
-  console.log('🎉 All uploads completed!');
+  console.log('\n✅ All uploads completed successfully!');
 }
 
-main().catch(console.error);
-
+main().catch(err => {
+  console.error('Fatal Error:', err);
+  process.exit(1);
+});

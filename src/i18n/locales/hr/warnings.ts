@@ -1,0 +1,130 @@
+export default {
+  "birthday": "⚠️ Rođendan se ne može mijenjati nakon postavljanja, molimo potvrdite da je ispravan!",
+  "bloodType": "🩸 Krvna grupa",
+  "gender": "👤 Spol：{otherUser.gender}",
+  "mbti": "🧠 MBTI：\\\\\\\\\\${mbti}",
+  "register2": "⚠️ Molimo vas da prvo završite registraciju",
+  "register4": "⚠️ Registracija nije završena",
+  "settings": "🧠 MBTI：\\\\\\\\\\\\$",
+  "text5": "📖 Bio：{otherUser.bio}",
+  "text6": "⚠️ Molimo vas da prvo završite registraciju",
+  "userNotFound": "Korisnik ne postoji",
+  "warning": {
+    "ad": "⚠️ Trenutno nisu konfigurirani ponuditelji oglasa\n\n",
+    "ad2": "⚠️ Trenutno nema službenih oglasa\n\n",
+    "ad3": "⚠️ Trenutno nema dostupnih davatelja oglasa",
+    "ad4": "⚠️ Ne možete odabrati davatelja oglasa",
+    "ad5": "⚠️ Ne možete gledati više oglasa",
+    "birthday": "⚠️ Trenutno niste u koraku unosa rođendana",
+    "bloodType": "⚠️ Trenutno niste u koraku odabira krvne grupe",
+    "broadcast": "⚠️ Pronađeno je \\${stuckBroadcasts.results.length} zaglavljenih prijenosa\n\n",
+    "complete": "⚠️ Molimo dovršite prethodni oglas prije nego što započnete novi oglas",
+    "confirm": "⚠️ Molimo potvrdite svoje informacije o rođendanu:\n\n",
+    "conversation": "⚠️ Greška u informacijama razgovora.",
+    "conversation10": "⚠️ Razgovor ne postoji",
+    "conversation2": "⚠️ Greška u informacijama razgovora",
+    "conversation3": "⚠️ Ovaj korisnik nema objave u povijesti razgovora\n",
+    "conversation4": "⚠️ Nije moguće pronaći određeni razgovor, možda je završen ili istekao.",
+    "conversation5": "⚠️ **Povijest razgovora djelomično ažurirana**\n\n",
+    "conversation6": "⚠️ Nije moguće identificirati sugovornika\n\n",
+    "conversation7": "⚠️ Ne mogu pronaći ovaj razgovor\n\n",
+    "conversation8": "⚠️ Razgovor ne postoji ili je završen",
+    "conversation9": "⚠️ Ovaj razgovor je završen",
+    "end": "⚠️ Test je završio ili ne postoji",
+    "failed": "⚠️ Provjera plaćanja nije uspjela, pokušajte ponovno kasnije",
+    "gender": "⚠️ Trenutno niste u koraku odabira spola",
+    "invite": "⚠️ Nije moguće dobiti pozivni kod",
+    "mbti": "⚠️ Trenutno niste u koraku MBTI testa",
+    "mbti2": "⚠️ Nevaljan MBTI tip",
+    "message": "⚠️ Otkriveno \\${outdatedPosts.length} zastarjelih postova koji trebaju osvježiti\n",
+    "message2": "⚠️ Napomena: Ovo je \\${testInfo}\\${testTitle}, \\${accuracy}.\n\n",
+    "message3": "⚠️ Molimo pritisnite i držite poruku koju želite blokirati i odgovorite s naredbom\n\n",
+    "message4": "⚠️ Molimo pritisnite i držite poruku koju želite prijaviti i odgovorite s naredbom\n\n",
+    "message5": "⚠️ **Poruka sadrži zabranjene veze**\n\n",
+    "register": "⚠️ Korisnički profil nije pronađen, molimo registrirajte se prvo koristeći /start.",
+    "register2": "⚠️ Molimo dovršite postupak registracije prvo.\n\nKoristite /start za nastavak registracije.",
+    "register3": "⚠️ Dogodila se greška tijekom postupka registracije, molimo ponovno započnite: /start",
+    "register4": "⚠️ Molimo dovršite postupak registracije prvo",
+    "settings": "⚠️ Podsjetnik: Jednom postavljeno, spol **se ne može izmijeniti** zauvijek!\n\n",
+    "settings2": "⚠️ Postavka rođendana se ne može izmijeniti, molimo potvrdite da je ispravna!",
+    "settings3": "⚠️ Napomena: Postavka spola se ne može izmijeniti, pažljivo birajte!",
+    "short": "⚠️ Neispravan redoslijed pitanja",
+    "short2": "⚠️ Nepoznata opcija",
+    "short3": "⚠️ Nevažeći zahtjev",
+    "short4": "⚠️ Ograničenje duljine nadimka je 36 znakova",
+    "short5": "⚠️ Druge povrede",
+    "start": "⚠️ Sesija je istekao, molimo ponovno pokrenite: /throw",
+    "start2": "⚠️ Sesija je istekao, molimo ponovno pokrenite",
+    "task": "⚠️ Nepoznati tip zadatka",
+    "text": "⚠️ **Napomena**\n\n",
+    "text10": "⚠️ **Stvari koje se ne mogu mijenjati**:\n",
+    "text11": "⚠️ Sesija je istekao, molimo pokušajte ponovno",
+    "text12": "⚠️ Nacrt ne postoji ili je istekao",
+    "text2": "⚠️ Nevaljan tip plaćanja",
+    "text3": "⚠️ Usluga prevođenja privremeno nije dostupna, evo izvorne poruke\n",
+    "text4": "⚠️ Podsjetnik o sigurnosti:\n",
+    "text5": "⚠️ Trenutno niste u koraku testa protiv prijevara",
+    "text6": "⚠️ Trenutno niste u koraku uvjeta korištenja",
+    "text7": "⚠️ Napomena: Ova funkcija je dostupna samo u Staging okruženju.",
+    "text8": "⚠️ **Slanje slika, videa ili multimedije nije dozvoljeno**\n\n",
+    "text9": "⚠️ Ova funkcija je dostupna samo u Staging okruženju.",
+    "userNotFound": "⚠️ Korisnik ne postoji, molimo registrirajte se prvo koristeći /start.",
+    "userNotFound2": "⚠️ Korisnik ne postoji",
+    "vip": "⚠️ Dostignuta je granica besplatnih pozivnica za korisnike, nadogradite na VIP kako biste otključali limit od 100 osoba!",
+    "vip2": "⚠️ Ova funkcija je samo za VIP članove",
+    "vip3": "⚠️ **VIP ističe danas**\n\n"
+  },
+  "BROADCAST": {
+    "FILTER_ERROR": "❌ Greška u formatu.\nPrimjer: `/broadcast_filter gender=female,country=TW test message`",
+    "NO_CONTENT": "❌ Molimo unesite sadržaj emitiranja.",
+    "NO_MATCHES": "⚠️ Nema korisnika koji odgovaraju kriterijima.\nKriteriji filtriranja: {filters}",
+    "TOO_MANY_USERS": "⚠️ Previše ciljanih korisnika ({count} ljudi), trenutno je ograničeno na slanje {max} ljudi odjednom.",
+    "START_SENDING": "🚀 Pokretanje emitiranja #{id}\n🎯 Cilj: {filters}\n👥 Broj osoba: {count}",
+    "COMPLETED": "✅ Emitiranje #{id} završeno!\nUspješno: {sent}\nNeuspješno: {failed}\nBlokirano: {blocked}"
+  },
+  "push": {
+    "throwReminder": "🌊 Hej! Prošlo je već neko vrijeme otkako si bacio message bottle, plaža je vrlo tiha...",
+    "catchReminder": "🎣 Na plaži su se pojavile nove message bottles, želiš li ih provjeriti?",
+    "onboardingReminder": "👋 Tvoja registracija još nije dovršena, gotovo si! (Korak: {step})",
+    "messageReminderA": "👋 Hej {masked_partner_name} još uvijek čeka tvoj odgovor! Ne daj da razgovor osadi～",
+    "messageReminderB": "📩 Imaš nepročitanu poruku od {masked_partner_name}:\n> \"{last_message_preview}...\"\n(Prošlo je više od 24 sata!)",
+    "messageReminderC": "⏳ {masked_partner_name} čeka na tvoj odgovor...",
+    "actionReply": "💬 Odgovori {masked_partner_name}",
+    "actionHistory": "📜 Pregledaj kontekst"
+  },
+  "match": {
+    "header": {
+      "zodiac": "🌟 Otkriće horoskopske podudarnosti",
+      "mbti": "🧠 MBTI rezonancija ličnosti",
+      "blood": "🩸 Analiza krvnih grupa"
+    },
+    "reason": {
+      "zodiac": {
+        "fire_affinity": "Kao pripadnici vatrenih znakova, tvoja strast gori jako i vaša povezanost je snažna!",
+        "earth_affinity": "Stabilnost zemljanih znakova u kombinaciji s blagim vodeni znakovima stvara savršen tok.",
+        "air_affinity": "Agilnost zračnih znakova susreće strast vatrenih znakova, nadahnjujući bezgraničnu kreativnost!",
+        "water_affinity": "Emocije vodenih znakova i praktičnost zemljanih znakova grade najtopliju podršku."
+      },
+      "mbti": {
+        "sj_affinity": "Društvenjaci (SJ) i Istraživači (SP), savršena kombinacija stabilnosti i uzbuđenja!",
+        "sp_affinity": "Istraživači (SP) i Društvenjaci (SJ), najbolji partneri za igrače i skrbnike!",
+        "nf_affinity": "Idealisti (NF) i Rationalisti (NT), dubok sudar duše i mudrosti!",
+        "nt_affinity": "Rationalisti (NT) i Idealisti (NF), rezonancija misli i osjećaja!"
+      },
+      "blood": {
+        "a_affinity": "Pažljivost tipa A susreće toleranciju tipa O, stvarajući najudobnije interakcije.",
+        "b_affinity": "Samouvjerenost tipa B susreće bezbrižnu prirodu tipa O, bez stresa i opušteno.",
+        "o_affinity": "Tip O i Tip B/A su sjajni komplementarni partneri!",
+        "ab_affinity": "Jedinstvena frekvencija AB najbolje se razumije sa svojima."
+      }
+    },
+    "template": {
+      "body": "{userAttribute},\nPrema analizi, imaš najjaču afinitet s {recommendedAttributes}!\n\n💡 {reason}\n\n👇 Osjećaš li se sretnim?"
+    },
+    "btn": {
+      "throw": "🌊 Baci bocu i uzmi šansu",
+      "vip_throw": "🎯 Baci na {target}",
+      "vip_upsell": "💡 Nadogradi na VIP kako bi odredio isporuku {target}, za precizno uparivanje!"
+    }
+  }
+};

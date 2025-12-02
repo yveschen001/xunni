@@ -1,0 +1,22 @@
+export default {
+  "afterRegistration": "💡 Pas përfundimit të regjistrimit, ju mund të:\n",
+  "answerRecorded": "✅ I regjistruar",
+  "completion": "🎉 {testTitle} U përfundua!\n\n",
+  "fullAccuracy": "Rezultate më të sakta",
+  "fullQuestions": "36 pyetje",
+  "fullTest": "Përfundoni testin MBTI",
+  "fullTestInfo": "💡 Kyこれは testi i plotë ({questions}), dhe rezultatet janë më të sakta.\nPas përfundimit të regjistrimit, mund të përsërisni testin duke përdorur /mbti.",
+  "fullTestTitle": "Përfundoni testin",
+  "manualModify": "• Modifikoni manualisht tipin tuaj MBTI",
+  "moreDetailedTest": "• Bëni një test më të detajuar\n",
+  "note": "{testInfo} {testTitle} {accuracy}\n\n",
+  "questionOrderError": "⚠️ Renditje e gabuar e pyetjeve",
+  "questions12": "12 pyetje",
+  "questions36": "36 pyetje",
+  "quickAccuracy": "Rezultatet janë për referencë vetëm",
+  "quickQuestions": "12 pyetje",
+  "quickTest": "Testi i shpejtë MBTI",
+  "quickTestInfo": "💡 Ky është një kuiz i shpejtë ({questions}), dhe rezultatet janë vetëm për referencë.\nPas përfundimit të regjistrimit, mund të rikthehesh në kuiz përmes /mbti.",
+  "quickTestTitle": "Testi i shpejtë",
+  "yourMbtiType": "{type}\n\n"
+};

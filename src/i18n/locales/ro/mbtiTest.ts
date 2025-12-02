@@ -1,0 +1,22 @@
+export default {
+  "afterRegistration": "💡 După completarea înregistrării, poți:\n",
+  "answerRecorded": "✅ Înregistrat",
+  "completion": "🎉 {testTitle} Finalizat!\n\n",
+  "fullAccuracy": "Rezultate mai precise",
+  "fullQuestions": "36 întrebări",
+  "fullTest": "Completează testul MBTI",
+  "fullTestInfo": "💡 Acesta este testul complet ({questions}), iar rezultatele sunt mai precise.\nDupă finalizarea înregistrării, poți repeta testul folosind /mbti.",
+  "fullTestTitle": "Completează testul",
+  "manualModify": "• Modifică manual tipul tău MBTI",
+  "moreDetailedTest": "• Fă un test mai detaliat\n",
+  "note": "⚠️ Notă: Acesta este {testInfo}{testTitle}, {accuracy}.\n\n",
+  "questionOrderError": "⚠️ Ordine incorectă a întrebărilor",
+  "questions12": "12 întrebări",
+  "questions36": "36 întrebări",
+  "quickAccuracy": "Rezultatele sunt doar pentru referință",
+  "quickQuestions": "12 întrebări",
+  "quickTest": "Test rapid MBTI",
+  "quickTestInfo": "💡 Acesta este un quiz rapid ({questions}), iar rezultatele sunt doar pentru referință.\nDupă completarea înregistrării, poți relua quiz-ul prin /mbti.",
+  "quickTestTitle": "Test rapid",
+  "yourMbtiType": "Tipul dumneavoastră MBTI este: **{type}**\n\n"
+};
