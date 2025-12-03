@@ -112,5 +112,6 @@ export default {
     "career_focused": "کار زیاد",
     "family": "خانواده/والدینی",
     "exploring": "اکتشاف"
-  }
+  },
+  "back_to_categories": "بازگشت به منوی دسته‌بندی"
 };

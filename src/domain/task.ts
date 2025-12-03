@@ -56,7 +56,8 @@ export function isTaskCompleted(
       return !!user.bio && user.bio.length > 0;
 
     case 'task_city':
-      return !!user.city && user.city.length > 0;
+      // City OR Country is enough (some places only have country)
+      return (!!user.city && user.city.length > 0) || (!!user.country_code && user.country_code.length > 0);
 
     case 'task_confirm_country':
       return !!user.country_code;

@@ -165,5 +165,6 @@ export default {
       "seeking": "Trenutno nezaposlen / u prijelazu",
       "other_industry": "Ostale industrije (ručno unesite)"
     }
-  }
+  },
+  "next_step_industry": "পরবর্তীতে, অনুগ্রহ করে আপনার শিল্প নির্বাচন করুন।"
 };

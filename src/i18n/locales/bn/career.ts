@@ -165,5 +165,6 @@ export default {
       "seeking": "বর্তমানে বেকার / পরিবর্তনের পক্ষে",
       "other_industry": "অন্যান্য শিল্প (হাতে লিখুন)"
     }
-  }
+  },
+  "next_step_industry": "Következő lépésként kérjük, válassza ki iparágát."
 };

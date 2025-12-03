@@ -31,7 +31,5 @@ export default {
     "title": "🚫 قائمة الحظر",
     "empty": "لا توجد قائمة حظر حالياً",
     "unblock": "إلغاء الحظر"
-  },
-  "quietHoursVipOnly": "🔒 Quiet Hours (VIP Only)",
-  "upgradeForQuietHours": "Upgrade to VIP to use this feature"
+  }
 };

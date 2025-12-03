@@ -39,7 +39,7 @@ export default {
   "profile": "│ 📇 Thẻ hồ sơ │\n",
   "profile2": "👤 **Hồ sơ**\n\n",
   "quota": "💡 Hoàn thành nhiệm vụ để kiếm thêm hạn mức hàng ngày (sử dụng /tasks để kiểm tra)\n",
-  "quota2": "📦 Hạn mức hàng ngày hiện tại: ${taskBonus > 0 ?",
+  "quota2": "📦 Hạn mức hàng ngày hiện tại: {taskBonus > 0 ?",
   "quotaBottles": "{taskBonus} chai thư",
   "quotaTotal": "📦 Số lượng hàng ngày hiện tại: {quota}\n\n",
   "returnToMenu": "🏠 Trở về menu chính: /menu",
@@ -69,6 +69,7 @@ export default {
   "vip2": "• Sử dụng /vip để nâng cấp thành viên VIP\n",
   "vipUpgrade": "• Sử dụng /vip để nâng cấp thành viên VIP\n",
   "zodiac": "⭐ Cung hoàng đạo: {zodiac}\n",
-  "fortuneQuota": "🔮 {fortunemessage chai thư}: {total} (Tuần này miễn phí: {weekly}/{limit} | Thêm: {additional})",
-  "vipWithDays": "💎 Thành viên VIP (Còn lại {days} ngày, Hết hạn: {expireDate})"
+  "fortuneQuota": "🔮 {fortuneBottle}: {total} (Tuần này miễn phí: {weekly}/{limit} | Thêm: {additional})",
+  "vipWithDays": "💎 Thành viên VIP (Còn lại {days} ngày, Hết hạn: {expireDate})",
+  "driftBottleInfo": "🍾 chai thư: {remaining} / {total}"
 };

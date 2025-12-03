@@ -38,7 +38,7 @@ export default {
     "age": "อายุ: {min}-{max} ปี",
     "atLeastOneRequired": "ต้องมีการกรองอย่างน้อยหนึ่งรายการ",
     "birthdayToday": "วันเกิดวันนี้",
-    "country": "ประเทศ: {country}",
+    "country": "ประเทศ/ภูมิภาค: {country}",
     "genderFemale": "เพศหญิง",
     "genderMale": "เพศชาย",
     "genderOther": "เพศอื่น",
@@ -68,7 +68,7 @@ export default {
     "zodiacVirgo": "ราศีกันย์"
   },
   "filterAge": "• อายุ=18-25\n",
-  "filterCommand": "/broadcast_filter\n\n",
+  "filterCommand": "/broadcast_filter <filter> <msg_content> ",
   "filterConfirmConditions": "**เงื่อนไขการกรอง:**\n{conditions}\n\n",
   "filterConfirmMessage": "**เนื้อหาข้อความ:**\n{message}\n\n",
   "filterConfirmTitle": "🔍 **การยืนยันการกรองการเผยแพร่**\n\n",

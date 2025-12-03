@@ -112,5 +112,6 @@ export default {
     "career_focused": "Deloholik",
     "family": "Družina/Starševstvo",
     "exploring": "Razziskovanje"
-  }
+  },
+  "back_to_categories": "Vrni se na meni kategorij"
 };

@@ -56,7 +56,7 @@ export default {
   "message5": "/broadcast_vip <message> - Wyślij do użytkowników VIP",
   "message6": "/maintenance_disable - Wyłącz tryb konserwacji\n\n",
   "message7": "/maintenance_status - Zobacz status konserwacji\n",
-  "message8": "/broadcast <wiadomość> - Wyślij do wszystkich użytkowników <message>",
+  "message8": "/broadcast <message> - Nadaj wiadomość do wszystkich użytkowników",
   "profile": "/edit_profile - Edytuj profil\n",
   "profile2": "/profile - Zobacz profil\n",
   "profile3": "👤 **Profil**\n",
@@ -119,5 +119,9 @@ export default {
   "devReset": "/dev_reset - Zresetuj bieżącego użytkownika",
   "devRestart": "/dev_restart - Uruchom instancję ponownie",
   "devSkip": "/dev_skip - Pomijaj samouczek",
-  "fortune": "/fortune - 🔮 Codzienna wróżba i szczegółowa analiza astrologiczna"
+  "fortune": "/fortune - 🔮 Codzienna wróżba i szczegółowa analiza astrologiczna",
+  "clearFortune": "/clear_fortune - Wyczyść rekordy fortune",
+  "adminGrantSection": "🔧 **Dostawa zasobów**",
+  "addVip": "/add_vip - Aktywuj VIP (30 dni)",
+  "addBottles": "/add_butelka wróżbys - Dodaj 50 butelek z fortune"
 };

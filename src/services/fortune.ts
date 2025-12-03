@@ -456,6 +456,8 @@ export class FortuneService {
     
     // Inject Language into System Prompt (Optimized for Gemini 2.5)
     const userLang = user.language_pref || 'zh-TW';
+    console.log(`[FortuneService] User Lang: ${userLang}`);
+    
     // Map code to natural language name for better adherence
     const LANG_NAMES: Record<string, string> = {
       'zh-TW': 'Traditional Chinese (Taiwan)',
@@ -482,6 +484,7 @@ export class FortuneService {
       const birthDate = new Date(profile.birth_date);
       const zodiacSign = getZodiacSign(birthDate);
       localizedZodiac = getZodiacDisplay(zodiacSign, i18n);
+      console.log(`[FortuneService] Zodiac: ${zodiacSign} -> ${localizedZodiac} (Lang: ${userLang})`);
     } catch (e) {
       console.warn('Failed to localize zodiac for prompt context', e);
     }
@@ -703,10 +706,31 @@ export class FortuneService {
             // ✨ CELEBRITY VALIDATION LOGIC
             if (type === 'celebrity' && promptKey === 'CELEBRITY_1') {
                 try {
-                    const jsonMatch = stepContent.match(/\{[\s\S]*?\}/);
-                    if (jsonMatch) {
-                        const data = JSON.parse(jsonMatch[0]);
-                        
+                    // Search for JSON block specifically using regex
+                    // This handles cases where "Thinking" models output intro text before the JSON
+                    const jsonRegex = /```json\s*(\{[\s\S]*?\})\s*```/;
+                    const match = stepContent.match(jsonRegex);
+                    
+                    let data;
+                    let jsonStr;
+                    
+                    if (match && match[1]) {
+                        // Found clear JSON block
+                        jsonStr = match[1];
+                        data = JSON.parse(jsonStr);
+                        // Clean Output (Remove JSON block)
+                        stepContent = stepContent.replace(match[0], '').trim();
+                    } else {
+                        // Fallback: Try finding just the JSON object at the start if no code blocks
+                        const laxMatch = stepContent.match(/^\s*(\{[\s\S]*?\})/);
+                        if (laxMatch && laxMatch[1]) {
+                             jsonStr = laxMatch[1];
+                             data = JSON.parse(jsonStr);
+                             stepContent = stepContent.replace(laxMatch[0], '').trim();
+                        }
+                    }
+
+                    if (data) {
                         // Check Found Status
                         if (data.found === false) {
                              throw new Error('NO_CELEBRITY_FOUND');
@@ -717,32 +741,29 @@ export class FortuneService {
                              const birthDate = new Date(data.birth_date);
                              const userBirthDate = new Date(profile.birth_date);
                              // Compare Month (0-11) and Date (1-31)
+                             // Note: Use UTC methods to avoid timezone shifts if inputs are ISO YYYY-MM-DD
                              if (birthDate.getUTCMonth() !== userBirthDate.getUTCMonth() || 
                                  birthDate.getUTCDate() !== userBirthDate.getUTCDate()) {
                                  console.error(`Celebrity mismatch: User ${profile.birth_date} vs Celeb ${data.birth_date}`);
-                                 // Try lax comparison (local time issues?)
-                                 // Actually, we should trust the input strings if possible, but Date parsing is safer.
-                                 // Let's rely on UTC methods to avoid timezone shifts if inputs are ISO YYYY-MM-DD.
                                  throw new Error('CELEBRITY_DATE_MISMATCH');
                              }
                         }
                         
-                        // Clean Output (Remove JSON block)
-                        stepContent = stepContent.replace(jsonMatch[0], '').trim();
+                        // Final cleanup of any lingering artifacts
                         stepContent = stepContent.replace(/```json\s*|\s*```/g, '').trim();
                     } else {
-                        // JSON missing? If strict, fail.
-                        console.warn('Celebrity JSON missing');
+                        console.warn('Celebrity JSON missing or malformed');
+                        // If strict validation is needed, we could throw here, but sometimes partial success is better
+                        // For now, let's just warn and proceed, assuming the text might be okay.
+                        // However, prompt instructions say JSON is MANDATORY.
                     }
                 } catch (e: any) {
                     if (e.message === 'NO_CELEBRITY_FOUND' || e.message === 'CELEBRITY_DATE_MISMATCH') {
                         stepSuccess = false; // Mark as failed to trigger refund
-                        // Re-throw to exit loop or handle?
-                        // If we throw here, it might be caught by the retry loop? 
-                        // No, retry loop wraps API calls. We are outside retry loop (after it finishes).
-                        // So throwing here will bubble up.
                         throw e;
                     }
+                    console.warn('Celebrity Validation Error:', e);
+                    // Other JSON errors ignored
                 }
             }
         }

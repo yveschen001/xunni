@@ -39,7 +39,7 @@ export default {
   "profile": "│ 📇 Profilkarte │\n",
   "profile2": "👤 **Profil**\n\n",
   "quota": "💡 Erledige Aufgaben, um zusätzliche tägliche Quoten zu verdienen (verwende /tasks zur Ansicht)\n",
-  "quota2": "📦 Aktuelle tägliche Quote: ${taskBonus > 0 ?",
+  "quota2": "📦 Aktuelle tägliche Quote: {taskBonus > 0 ?",
   "quotaBottles": "{taskBonus} Nachrichtenflaschen",
   "quotaTotal": "📦 Aktuelles tägliches Kontingent: {quota}\n\n",
   "returnToMenu": "🏠 Zurück zum Hauptmenü: /menu",
@@ -62,13 +62,14 @@ export default {
   "text": "• Verwende /profile_card zur Ansicht der vollständigen Profilkarte\n",
   "text2": "🏷️ Interessen: {interests}\n\n",
   "text3": "💎 Mitgliedschaft: {vipStatus}\n\n",
-  "text4": "📝 Biografie:\n{bio}\n\n",
+  "text4": "📝 Bio:\n{bio}",
   "text5": "Diese Person ist sehr geheimnisvoll und hinterlässt nichts～",
   "userNotFound": "⚠️ Benutzer existiert nicht, bitte verwende /start um dich zuerst zu registrieren.",
   "vip": "VIP-Mitglied (Läuft ab: {expireDate})",
   "vip2": "• Verwende /vip um zum VIP-Mitglied aufzusteigen\n",
   "vipUpgrade": "• Verwende /vip um zum VIP-Mitglied aufzusteigen\n",
   "zodiac": "⭐ Sternzeichen: {zodiac}\n",
-  "fortuneQuota": "🔮 {fortunemessage Nachrichtenflasche}: {total} (Diese Woche kostenlos: {weekly}/{limit} | Zusätzlich: {additional})",
-  "vipWithDays": "💎 VIP-Mitglied (Verbleibende {days} Tage, Ablauf: {expireDate})"
+  "fortuneQuota": "🔮 {fortuneBottle}: {total} (Diese Woche kostenlos: {weekly}/{limit} | Zusätzlich: {additional})",
+  "vipWithDays": "💎 VIP-Mitglied (Verbleibende {days} Tage, Ablauf: {expireDate})",
+  "driftBottleInfo": "🍾 Nachrichtenflasche: {remaining} / {total}"
 };

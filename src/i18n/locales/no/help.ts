@@ -56,7 +56,7 @@ export default {
   "message5": "/broadcast_vip <melding> - Send til VIP-brukere <message>",
   "message6": "/maintenance_disable - Deaktiver vedlikeholdsmodus\n\n",
   "message7": "/maintenance_status - Sjekk vedlikeholdsstatus\n",
-  "message8": "/broadcast <melding> - Send til alle brukere <message>",
+  "message8": "/broadcast <message> - Send en melding til alle brukere",
   "profile": "/edit_profile - Rediger profil\n",
   "profile2": "/profile - Vis profil\n",
   "profile3": "👤 **Profil**\n",
@@ -119,5 +119,9 @@ export default {
   "devReset": "/dev_reset - Tilbakestill nåværende bruker",
   "devRestart": "/dev_restart - Restart instans",
   "devSkip": "/dev_skip - Hopp over opplæring",
-  "fortune": "/fortune - 🔮 Daglig skjebne og dyptgående astrologianalyse"
+  "fortune": "/fortune - 🔮 Daglig skjebne og dyptgående astrologianalyse",
+  "clearFortune": "/clear_fortune - Tøm lykkeposter",
+  "adminGrantSection": "🔧 **Ressurstilførsel**",
+  "addVip": "/add_vip - Aktiver VIP (30 dager)",
+  "addBottles": "/add_fortune bottles - Legg til 50 lykkeboller"
 };

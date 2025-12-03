@@ -2514,6 +2514,7 @@ BROADCAST_MAX_JOBS = "3"
 
 **⚠️ 修改前必須謹慎，建議先與維護者確認：**
 
+- `@doc/MAINTENANCE_MODE.md` - 維護模式規範（**當前生效中**）
 - `@wrangler.toml` - Cloudflare 配置（部署相關）
 - `@src/db/schema.sql` - 資料庫 Schema（必須通過遷移腳本）
 - `@src/db/migrations/` - 遷移腳本目錄（變更需審核）

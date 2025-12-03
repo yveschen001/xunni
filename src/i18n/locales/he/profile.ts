@@ -39,7 +39,7 @@ export default {
   "profile": "│ 📇 כרטיס פרופיל │\n",
   "profile2": "👤 **פרופיל**\n\n",
   "quota": "💡 השלם משימות כדי לקבל מכסה יומית נוספת (השתמש ב /tasks כדי לצפות)\n",
-  "quota2": "📦 מכסה יומית נוכחית: ${taskBonus > 0 ?",
+  "quota2": "📦 מכסה יומית נוכחית: {taskBonus > 0 ?",
   "quotaBottles": "{taskBonus} בקבוקי מסר",
   "quotaTotal": "📦 מכסה יומית נוכחית: {quota}\n\n",
   "returnToMenu": "🏠 חזור לתפריט הראשי: /menu",
@@ -69,6 +69,7 @@ export default {
   "vip2": "• השתמש ב /vip כדי לשדרג לחבר VIP\n",
   "vipUpgrade": "• השתמש ב /vip כדי לשדרג לחבר VIP\n",
   "zodiac": "⭐ גלגל המזלות: {zodiac}\n",
-  "fortuneQuota": "🔮 {fortunemessage bottle}: {total} (החודש חינם: {weekly}/{limit} | נוסף: {additional})",
-  "vipWithDays": "💎 חבר VIP (נשארו {days} ימים, תאריך תפוגה: {expireDate})"
+  "fortuneQuota": "🔮 {fortuneBottle}: {total} (החודש חינם: {weekly}/{limit} | נוסף: {additional})",
+  "vipWithDays": "💎 חבר VIP (נשארו {days} ימים, תאריך תפוגה: {expireDate})",
+  "driftBottleInfo": "🍾 בקבוק הודעות: {remaining} / {total}"
 };

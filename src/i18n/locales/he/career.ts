@@ -165,5 +165,6 @@ export default {
       "seeking": "כרגע מחוסר עבודה / במעבר",
       "other_industry": "תעשיות אחרות (הכנס ידנית)"
     }
-  }
+  },
+  "next_step_industry": "לאחר מכן, אנא בחר את הענף שלך."
 };

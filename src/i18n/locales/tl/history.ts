@@ -25,6 +25,6 @@ export default {
   "time": "Oras: {time}\n\n",
   "totalMessages": "• Kabuuang mensahe: {total}\n",
   "userMessages": "• Ikaw ay nagpadala: {count}\n",
-  "viewFull": "💡 Gamitin ang /history {identifier} upang tingnan ang kumpletong pag-uusap",
+  "viewFull": "💡 Gamitin ang /history {identifier} upang makita ang buong pag-uusap",
   "you": "Ikaw"
 };

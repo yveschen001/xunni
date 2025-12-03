@@ -56,7 +56,7 @@ export default {
   "message5": "/broadcast_vip <message> - Magpadala sa mga VIP na gumagamit",
   "message6": "/maintenance_disable - Huag ang maintenance mode\n\n",
   "message7": "/maintenance_status - Suriin ang estado ng maintenance\n",
-  "message8": "/broadcast <mensahe> - I-broadcast sa lahat ng gumagamit <message>",
+  "message8": "/broadcast <message> - I-broadcast sa lahat ng gumagamit",
   "profile": "/edit_profile - I-edit ang Profile\n",
   "profile2": "/profile - Tingnan ang Profile\n",
   "profile3": "👤 **Profile**",
@@ -119,5 +119,9 @@ export default {
   "devReset": "/dev_reset - I-reset ang kasalukuyang user",
   "devRestart": "/dev_restart - I-restart ang instance",
   "devSkip": "/dev_skip - Laktawan ang tutorial",
-  "fortune": "/fortune - 🔮 Araw-araw na kapalaran at malalim na pagsusuri ng astrolohiya"
+  "fortune": "/fortune - 🔮 Araw-araw na kapalaran at malalim na pagsusuri ng astrolohiya",
+  "clearFortune": "/clear_fortune - Linisin ang mga tala ng kapalaran",
+  "adminGrantSection": "🔧 **Suplay ng Yaman**",
+  "addVip": "/add_vip - I-activate ang VIP (30 araw)",
+  "addBottles": "/add_bottles - Magdagdag ng 50 botelyang panghuhula"
 };

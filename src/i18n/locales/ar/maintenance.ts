@@ -2,7 +2,7 @@ export default {
   "allFeaturesAvailable": "جميع الميزات تعمل الآن بشكل كامل.",
   "completed": "✅ تمت صيانة النظام بنجاح",
   "completingSoon": "على وشك الانتهاء",
-  "correctFormat": "**التنسيق الصحيح:**\n/maintenance_enable <المدة (الدقائق)> <duration (minutes)>",
+  "correctFormat": "**الصيغة الصحيحة:**\n/maintenance_enable <المدة (الدقائق)> <duration (minutes)>",
   "defaultMessage": "النظام يخضع للصيانة وغير متوفر مؤقتًا.",
   "disableFailed": "❌ فشل في تعطيل وضع الصيانة.",
   "disableSuccess": "✅ تم تعطيل وضع الصيانة\n\nتم بث إشعارات الاستعادة لجميع المستخدمين.",

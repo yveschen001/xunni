@@ -165,5 +165,6 @@ export default {
       "seeking": "Şu Anda İşsiz / Geçiş Halinde",
       "other_industry": "Diğer Sektörler (Elle Giriş Yapın)"
     }
-  }
+  },
+  "next_step_industry": "Sırada"
 };

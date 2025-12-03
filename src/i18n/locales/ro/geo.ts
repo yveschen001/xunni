@@ -1,7 +1,7 @@
 export default {
   "select_continent": "Te rog să selectezi regiunea ta 🌍",
-  "select_country": "Te rog să selectezi o țară",
-  "search_city_prompt": "Te rog să introduci numele orașului (de exemplu, Taipei)",
+  "select_country": "Vă rugăm să selectați o țară/regiune",
+  "search_city_prompt": "Vă rugăm să introduceți numele orașului (de exemplu: Tokyo)",
   "city_not_found": "Orașul nu a fost găsit, te rog să încerci numele în engleză.",
   "confirm_city": "Este acesta orașul pe care l-ai selectat: {city} ({country})?",
   "continent": {

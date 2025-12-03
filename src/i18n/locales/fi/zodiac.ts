@@ -1,14 +1,14 @@
 export default {
-  "Aquarius": "Vesimies",
-  "Aries": "Oinas",
-  "Cancer": "Rapu",
-  "Capricorn": "Kauris",
-  "Gemini": "Kaksoset",
-  "Leo": "Leijona",
-  "Libra": "Vaaka",
-  "Pisces": "Kalat",
-  "Sagittarius": "Jousimies",
-  "Scorpio": "Skorpioni",
-  "Taurus": "Härkä",
-  "Virgo": "Neitsyt"
+  "Aries": "♈️ Oinas",
+  "Taurus": "♉️ Härkä",
+  "Gemini": "♊️ Kaksoset",
+  "Cancer": "♋️ Rapu",
+  "Leo": "♌️ Leijona",
+  "Virgo": "♍️ Neitsyt",
+  "Libra": "♎️ Vaaka",
+  "Scorpio": "♏️ Skorpioni",
+  "Sagittarius": "♐️ Jousimies",
+  "Capricorn": "♑️ Kauris",
+  "Aquarius": "♒️ Vesimies",
+  "Pisces": "♓️ Kalat"
 };

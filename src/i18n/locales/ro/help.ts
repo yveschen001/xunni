@@ -56,7 +56,7 @@ export default {
   "message5": "/broadcast_vip <message> - Trimite către utilizatorii VIP",
   "message6": "/maintenance_disable - Dezactivare mod de întreținere\n\n",
   "message7": "/maintenance_status - Vezi starea întreținerii\n",
-  "message8": "/broadcast <mesaj> - Transmite tuturor utilizatorilor <message>",
+  "message8": "/broadcast <message> - Transmiteți tuturor utilizatorilor",
   "profile": "/edit_profile - Editează profilul\n",
   "profile2": "/profile - Vezi profilul\n",
   "profile3": "👤 **Profil**\n",
@@ -119,5 +119,9 @@ export default {
   "devReset": "/dev_reset - Resetează utilizatorul curent",
   "devRestart": "/dev_restart - Restart instanță",
   "devSkip": "/dev_skip - Sar bypass-ul tutorialului",
-  "fortune": "/fortune - 🔮 Fortune zilnică și analiză de astrologie în profunzime"
+  "fortune": "/fortune - 🔮 Fortune zilnică și analiză de astrologie în profunzime",
+  "clearFortune": "/clear_fortune - Ștergeți înregistrările de noroc",
+  "adminGrantSection": "🔧 **Furnizare Resurse**",
+  "addVip": "/add_vip - Activează VIP (30 de zile)",
+  "addBottles": "/add_fortune bottles - Adaugă 50 de mesaje fortune bottle"
 };

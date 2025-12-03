@@ -2,7 +2,6 @@ import type { Env } from '~/types';
 import { createDatabaseClient } from '~/db/client';
 import { createTelegramService } from '~/services/telegram';
 import { createI18n } from '~/i18n';
-import { FortuneService } from '~/services/fortune';
 import { UserActivityLevel } from '~/domain/user';
 import { getUserActivityLevel } from '~/services/user_activity';
 
@@ -15,7 +14,7 @@ export async function sendDailyFortunePush(env: Env): Promise<void> {
   // 1. User must have a Fortune Profile.
   // 2. User must not be deleted or blocked.
   // 3. User must be "Active" (not DORMANT).
-  // 4. (Future) Respect Timezone. Current implementation assumes Worker triggers at appropriate global time (e.g. 9 AM UTC+8).
+  // 4. Respect Timezone: Only push at 9 AM local time.
   
   // Select unique users with profiles
   // Optimization: Join with bans table to filter blocked users
@@ -37,24 +36,56 @@ export async function sendDailyFortunePush(env: Env): Promise<void> {
       AND p.is_default = 1
   `).all();
   
-  if (!profiles.results) return;
-
   console.log(`[DailyFortunePush] Found ${profiles.results.length} candidates.`);
 
+  const now = new Date();
+  const utcHour = now.getUTCHours();
+
   for (const record of profiles.results as any[]) {
-    // Check Activity Level
     try {
+      // Check Activity Level
       const activityLevel = await getUserActivityLevel(record.user_telegram_id, db.d1);
       // Skip if Dormant (>30 days inactive)
       if (activityLevel === UserActivityLevel.DORMANT) {
         continue;
       }
 
-      // Prioritize active users or those with quota
-      // (Actually we push to all active users as per "operational strategy")
+      // Check Timezone (Target: 09:00 Local Time)
+      // Default to Asia/Taipei (UTC+8) if not set
+      const userTimezone = record.timezone || 'Asia/Taipei';
       
-      const i18n = createI18n(record.language_pref || 'zh-TW');
+      // Calculate local hour
+      let localHour;
+      try {
+        // Use Intl.DateTimeFormat to get hour in specific timezone
+        const parts = new Intl.DateTimeFormat('en-US', {
+          hour: 'numeric',
+          hour12: false,
+          timeZone: userTimezone,
+        }).formatToParts(now);
+        const hourPart = parts.find(p => p.type === 'hour');
+        localHour = hourPart ? parseInt(hourPart.value, 10) : -1;
+        
+        // Handle 24h format weirdness (sometimes returns 24 instead of 0)
+        if (localHour === 24) localHour = 0;
+      } catch (e) {
+        // Fallback to UTC+8 if timezone is invalid
+        console.warn(`[DailyFortunePush] Invalid timezone ${userTimezone} for user ${record.user_telegram_id}, falling back to UTC+8`);
+        localHour = (utcHour + 8) % 24;
+      }
+
+      // Only push if it's 9 AM (allow a small window if needed, but cron is hourly)
+      if (localHour !== 9) {
+        // console.debug(`[DailyFortunePush] Skipping user ${record.user_telegram_id}: Local hour is ${localHour} (Target: 9)`);
+        continue;
+      }
+
+      // Prepare I18n
+      const userLang = record.language_pref || 'zh-TW';
+      const i18n = createI18n(userLang);
       
+      console.log(`[DailyFortunePush] Sending to ${record.user_telegram_id} (Lang: ${userLang}, Timezone: ${userTimezone})`);
+
       await telegram.sendMessage(record.user_telegram_id, 
         `📅 *${i18n.t('fortune.dailyPushTitle')}*\n\n` +
         `${i18n.t('fortune.dailyPushBody', { name: record.profile_name })}\n\n` +

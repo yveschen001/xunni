@@ -39,7 +39,7 @@ export default {
   "profile": "│ 📇 Kard ng Profile │\n",
   "profile2": "👤 **Profile**",
   "quota": "💡 Kumpletuhin ang mga gawain upang kumita ng karagdagang pang-araw-araw na quota (gamitin ang /tasks upang tingnan)\n",
-  "quota2": "📦 Kasalukuyang Pang-araw-araw na Quota: ${taskBonus > 0 ?",
+  "quota2": "📦 Kasalukuyang Pang-araw-araw na Quota: {taskBonus > 0 ?",
   "quotaBottles": "{taskBonus} bote",
   "quotaTotal": "📦 Kasalukuyang pang-araw-araw na quota: {quota}\n\n",
   "returnToMenu": "🏠 Bumalik sa pangunahing menu: /menu",
@@ -69,6 +69,7 @@ export default {
   "vip2": "• Gamitin ang /vip upang mag-upgrade sa VIP Miyembro\n",
   "vipUpgrade": "• Mag-upgrade sa VIP miyembro gamit ang /vip\n",
   "zodiac": "⭐ Kanser: {zodiac}\n",
-  "fortuneQuota": "🔮 {fortunemessage bote ng mensahe}: {total} (Libre ngayong linggo: {weekly}/{limit} | Karagdagan: {additional})",
-  "vipWithDays": "💎 VIP Miyembro (Natitirang {days} araw, Pagtatapos: {expireDate})"
+  "fortuneQuota": "🔮 {fortuneBottle}: {total} (Libre ngayong linggo: {weekly}/{limit} | Karagdagan: {additional})",
+  "vipWithDays": "💎 VIP Miyembro (Natitirang {days} araw, Pagtatapos: {expireDate})",
+  "driftBottleInfo": "🍾 bote ng mensahe: {remaining} / {total}"
 };

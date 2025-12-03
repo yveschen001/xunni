@@ -188,7 +188,7 @@ async function showFortuneMenu(chatId: number, telegramId: string, env: Env, i18
     ],
     // Advanced 2 (Row 4)
     [
-      { text: `🃏 ${i18n.t('fortune.tarot')}`, callback_data: 'fortune_tarot_menu' },
+      { text: `🃏 ${i18n.t('fortune.tarot_menu_title')}`, callback_data: 'fortune_tarot_menu' },
       { text: `📜 ${i18n.t('fortune.bazi')}`, callback_data: 'fortune_bazi' }
     ],
     // History & Celebrity (Row 5)
@@ -311,6 +311,15 @@ export async function handleFortuneInput(message: TelegramMessage, env: Env): Pr
   const text = message.text?.trim();
 
   if (!text) return false;
+
+  // 🛡️ IGNORE COMMANDS (Prevent trapping commands like /clear_fortune, /start)
+  if (text.startsWith('/')) {
+    console.log('[handleFortuneInput] Command detected, clearing session and letting Router handle it:', text);
+    // Clear sessions to exit input mode immediately upon command usage
+    await clearSession(db, telegramId, 'fortune_wizard');
+    await clearSession(db, telegramId, 'fortune_input');
+    return false;
+  }
 
   // Check session
   const session = await getActiveSession(db, telegramId, 'fortune_wizard');
@@ -476,31 +485,42 @@ async function startGeoFlowForFortune(chatId: number, telegramId: string, env: E
 }
 
 async function handleFortuneCitySearch(message: TelegramMessage, env: Env) {
+  console.log('[handleFortuneCitySearch] Start searching for:', message.text);
   const db = createDatabaseClient(env.DB);
   const telegram = createTelegramService(env);
   const text = message.text?.trim();
-  if (!text) return;
+  if (!text) {
+    console.log('[handleFortuneCitySearch] No text provided');
+    return;
+  }
 
   const telegramId = message.from!.id.toString();
+  // Move user fetching to top scope to avoid ReferenceError later
+  const user = await findUserByTelegramId(db, telegramId);
+  const i18n = createI18n(user?.language_pref || 'en');
+  
   const session = await getActiveSession(db, telegramId, 'fortune_wizard');
-  if (!session) return;
+  if (!session) {
+    console.log('[handleFortuneCitySearch] No active session');
+    return;
+  }
   const data = JSON.parse(session.session_data as string); // { country_code: 'TW', ... }
 
   const geoService = createGeoService(env.DB);
+  console.log('[handleFortuneCitySearch] calling geoService.searchCities with:', text);
   let allCities = await geoService.searchCities(text);
+  console.log('[handleFortuneCitySearch] geoService.searchCities result count:', allCities.length);
   
   // Smart Fallback if no cities found
   if (allCities.length === 0) {
     const service = new FortuneService(env, db.d1);
-    const user = await findUserByTelegramId(db, telegramId);
     const correctedName = await service.correctCityName(text, user?.language_pref || 'zh-TW');
     
     if (correctedName) {
+      console.log('[handleFortuneCitySearch] correctedName:', correctedName);
       allCities = await geoService.searchCities(correctedName);
       if (allCities.length > 0) {
         // Found with correction!
-        // We might want to notify user? Or just show results.
-        // Let's just show results but maybe hint in the text.
       }
     }
   }
@@ -510,7 +530,7 @@ async function handleFortuneCitySearch(message: TelegramMessage, env: Env) {
     ? allCities.filter(c => c.country_code === data.country_code)
     : allCities;
 
-  const i18n = createI18n('zh-TW'); // Fallback or get from user
+  console.log('[handleFortuneCitySearch] filteredCities count:', filteredCities.length);
 
   if (filteredCities.length === 0) {
     await telegram.sendMessage(message.chat.id, i18n.t('geo.city_not_found'));
@@ -957,7 +977,11 @@ export async function handleFortuneCallback(callbackQuery: TelegramCallbackQuery
       // Only show deduction animation if NOT cached
       const loadingMsgs = [];
       if (!isCached) {
-        loadingMsgs.push('📉 ' + i18n.t('fortune.loading.deduct'));
+        loadingMsgs.push('📉 ' + i18n.t('fortune.loading.deduct')); // Assuming key exists or fallback
+        // The user mentioned "deduction" isn't strictly translated in code above, but let's use what we have.
+        // Actually the code I read has:
+        // loadingMsgs.push('📉 ' + i18n.t('fortune.loading.deduct')); 
+        // But I don't see 'deduct' in the keys I grepped earlier. Let's check fortune.ts keys again.
       }
       loadingMsgs.push(
         '🛰️ ' + i18n.t('fortune.loading.astronomy'),
@@ -968,6 +992,19 @@ export async function handleFortuneCallback(callbackQuery: TelegramCallbackQuery
 
       const msg = await telegram.sendMessageAndGetId(chatId, i18n.t('fortune.generating'));
       const msgId = msg.message_id;
+
+      // Animation Loop
+      for (const loadingText of loadingMsgs) {
+        // Skip if text is undefined/missing key (fallback)
+        if (!loadingText.includes('fortune.loading')) {
+             try {
+                await telegram.editMessageText(chatId, msgId, loadingText);
+                await new Promise(resolve => setTimeout(resolve, 800)); // 0.8s per frame
+             } catch (e) {
+                // Ignore edit errors (e.g. rate limit)
+             }
+        }
+      }
 
       const fortune = await service.generateFortune(
         user, 

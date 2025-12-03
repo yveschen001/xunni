@@ -1,7 +1,7 @@
 export default {
   "select_continent": "請選擇您所在的地區 🌍",
-  "select_country": "請選擇國家",
-  "search_city_prompt": "請輸入城市名稱（例如：Taipei）",
+  "select_country": "請選擇國家/地區",
+  "search_city_prompt": "請輸入城市名稱（例如：Tokyo）",
   "city_not_found": "找不到該城市，請嘗試英文名稱。",
   "confirm_city": "您選擇的是：{city} ({country}) 嗎？",
   "continent": {

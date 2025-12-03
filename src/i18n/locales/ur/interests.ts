@@ -112,5 +112,6 @@ export default {
     "career_focused": "کام کا عادی",
     "family": "خاندان/والدین",
     "exploring": "تلاش"
-  }
+  },
+  "back_to_categories": "زمرے کے مینو پر واپس جائیں"
 };

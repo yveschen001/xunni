@@ -26,7 +26,7 @@ export default {
   "birthday3": "Voer alsjeblieft je geboortedatum in (formaat: JJJJ-MM-DD):\n\n",
   "birthday4": "Geboortedatum: {birthday}\n",
   "birthdayCheck": "Als je denkt dat dit een fout is, controleer dan of je geboortedatum correct is ingevoerd (JJJJ-MM-DD).",
-  "birthdayError": "❌ {error}",
+  "birthdayError": "❌ {error}\n\n",
   "birthdayFormatError": "❌ Ongeldig geboortedatumformaat\n\nVoer opnieuw in (formaat: JJJJ-MM-DD):",
   "birthdayRetry": "Voer je geboortedatum opnieuw in (formaat: JJJJ-MM-DD):",
   "birthdayWarning": "⚠️ Geboortedatum kan niet worden gewijzigd na instellen, bevestig dat deze correct is!",
@@ -50,7 +50,7 @@ export default {
     "label": "• Geslacht: {gender}\n",
     "male": "Mannelijk"
   },
-  "gender2": "• Geslacht: ${updatedUser.gender ===",
+  "gender2": "• Geslacht: {updatedUser.gender ===",
   "gender3": "Selecteer alsjeblieft je geslacht:\n\n",
   "genderFemale": "👩 Vrouwelijk",
   "genderMale": "👨 Mannelijk",

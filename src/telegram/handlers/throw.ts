@@ -434,6 +434,38 @@ export async function processBottleContent(
       new Date(user.vip_expire_at) > new Date()
     );
 
+    // Calculate task bonus
+    const { calculateTaskBonus } = await import('./tasks');
+    const taskBonus = await calculateTaskBonus(db, user.telegram_id);
+
+    // Get ad reward info
+    const { getTodayAdReward } = await import('~/db/queries/ad_rewards');
+    const adReward = await getTodayAdReward(db.d1, user.telegram_id);
+    const adBonus = adReward?.quota_earned || 0;
+
+    const { canThrowBottle } = await import('~/domain/bottle');
+    if (!canThrowBottle(throwsToday, isVip, inviteBonus, taskBonus, adBonus)) {
+      // Calculate permanent quota (base + invite)
+      const baseQuota = isVip ? 30 : 3;
+      const maxQuota = isVip ? 100 : 10;
+      const permanentQuota = Math.min(baseQuota + inviteBonus, maxQuota);
+
+      // Calculate temporary bonus (task + ad)
+      const temporaryBonus = taskBonus + adBonus;
+
+      // Format quota display
+      const quotaDisplay =
+        temporaryBonus > 0
+          ? `${throwsToday}/${permanentQuota}+${temporaryBonus}`
+          : `${throwsToday}/${permanentQuota}`;
+
+      await telegram.sendMessage(
+        Number(user.telegram_id),
+        i18n.t('error.quota', { quotaDisplay })
+      );
+      return;
+    }
+
     // Create bottle input
     const input: any = {
       content: text,

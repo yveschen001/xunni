@@ -112,5 +112,6 @@ export default {
     "career_focused": "কর্মঠ ব্যক্তি",
     "family": "পরিবার/প্যারেন্টিং",
     "exploring": "অন্বেষণ"
-  }
+  },
+  "back_to_categories": "বিভাগ মেনুতে ফিরে যান"
 };

@@ -99,7 +99,7 @@ export default {
   "vipTriple": "💎 **VIP 트리플 메시지 병 통계** (지난 {days}일)",
   "vipTripleTitle": "💎 **VIP 트리플 메시지 병 통계** (지난 {days}일)",
   "zodiac": "🔮 **별자리**: {zodiac}\n",
-  "fortuneTitle": "🔮 **{fortunemessage 메시지 병}**",
+  "fortuneTitle": "\n🔮 **{fortuneBottle}**\n",
   "fortuneReadings": "• 운세 개수: {count}",
   "fortuneQuota": "• 남은 할당량: {quota}"
 };

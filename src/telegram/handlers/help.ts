@@ -78,6 +78,15 @@ export async function handleHelp(message: TelegramMessage, env: Env): Promise<vo
         `\n\n━━━━━━━━━━━━━━━━\n` +
         '👑 ' +
         i18n.t('help.superAdminTitle') +
+        
+        // Grant Section (New)
+        '\n\n' + i18n.t('help.adminGrantSection') +
+        i18n.t('help.addVip') +
+        i18n.t('help.addBottles') +
+
+        // Analytics
+        '\n\n📊 ' +
+        i18n.t('admin.analyticsTitle') +
         '\n' +
         '/analytics - ' +
         i18n.t('admin.analyticsTitle') +
@@ -88,6 +97,7 @@ export async function handleHelp(message: TelegramMessage, env: Env): Promise<vo
         '/vip_funnel - ' +
         i18n.t('admin.vipFunnelTitle') +
         '\n' +
+        
         '\n' +
         i18n.t('help.superAdminMaintenance') +
         '\n' + i18n.t('help.superAdminMaintenanceDisable') +

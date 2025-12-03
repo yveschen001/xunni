@@ -112,5 +112,6 @@ export default {
     "career_focused": "Работохоличар",
     "family": "Семејство/Родителство",
     "exploring": "Истражување"
-  }
+  },
+  "back_to_categories": "Вратете се на мени за категории"
 };

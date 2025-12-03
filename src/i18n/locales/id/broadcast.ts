@@ -38,7 +38,7 @@ export default {
     "age": "Usia: {min}-{max} tahun",
     "atLeastOneRequired": "Setidaknya satu filter diperlukan",
     "birthdayToday": "Ulang tahun Hari Ini",
-    "country": "Negara: {country}",
+    "country": "Negara/Region: {country}",
     "genderFemale": "Perempuan",
     "genderMale": "Laki-laki",
     "genderOther": "Lainnya",
@@ -68,7 +68,7 @@ export default {
     "zodiacVirgo": "Virgo"
   },
   "filterAge": "• usia=18-25\n",
-  "filterCommand": "/broadcast_filter\n\n",
+  "filterCommand": "/broadcast_filter <filter> <msg_content> ",
   "filterConfirmConditions": "**Kondisi filter:**\n{conditions}\n\n",
   "filterConfirmMessage": "**Konten pesan:**\n{message}\n\n",
   "filterConfirmTitle": "🔍 **Konfirmasi Filter Siaran**\n\n",

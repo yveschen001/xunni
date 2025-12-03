@@ -26,7 +26,7 @@ export default {
   "birthday3": "Proszę podać datę urodzenia (format: RRRR-MM-DD):\n\n",
   "birthday4": "Urodziny: {birthday}\n",
   "birthdayCheck": "Jeśli uważasz, że to błąd, sprawdź, czy Twój format daty urodzin jest poprawny (RRRR-MM-DD).",
-  "birthdayError": "{error}\n\n",
+  "birthdayError": "❌ {error}\n\n",
   "birthdayFormatError": "❌ Niepoprawny format daty urodzin\n\nProszę wprowadzić ponownie (format: RRRR-MM-DD):",
   "birthdayRetry": "Proszę wprowadzić swoje urodziny ponownie (format: RRRR-MM-DD):",
   "birthdayWarning": "⚠️ Data urodzin nie może być zmieniana po ustawieniu, prosimy potwierdzić, czy jest poprawna!",
@@ -50,7 +50,7 @@ export default {
     "label": "• Płeć: {gender}\n",
     "male": "Mężczyzna"
   },
-  "gender2": "• Płeć: ${updatedUser.gender ===",
+  "gender2": "• Płeć: {updatedUser.gender ===",
   "gender3": "Proszę wybrać swoją płeć:\n\n",
   "genderFemale": "👩 Kobieta",
   "genderMale": "👨 Mężczyzna",

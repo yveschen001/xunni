@@ -2,10 +2,10 @@ export default {
   "availableCommands": "يمكنك استخدام الأوامر التالية في أي وقت:",
   "catchBottle": "🎣 **التقط زجاجة رسائل**",
   "catchBottleDesc": "شاهد زجاجات رسائل الآخرين ورد إذا كنت مهتمًا لبدء المحادثة",
-  "clickButtonHint": "[Needs translation: tutorial.clickButtonHint]",
+  "clickButtonHint": "💡 يرجى النقر على الزر للمتابعة",
   "commandCatch": "• /catch - التقاط زجاجة رسائل",
   "commandHelp": "• /help - عرض المساعدة",
-  "commandMenu": "[Needs translation: tutorial.commandMenu]",
+  "commandMenu": "📋 قائمة الأوامر",
   "commandTasks": "• /tasks - عرض المهام",
   "commandThrow": "• /throw - إلقاء زجاجة رسائل",
   "completeTasksForBottles": "💡 أكمل المهام لكسب زجاجات إضافية",

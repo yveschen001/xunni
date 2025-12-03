@@ -119,5 +119,9 @@ export default {
   "devReset": "/dev_reset - 重置当前用户",
   "devRestart": "/dev_restart - 重启实例",
   "devSkip": "/dev_skip - 跳过教学",
-  "fortune": "/fortune - 🔮 每日运势与深度命理分析"
+  "fortune": "/fortune - 🔮 每日运势与深度命理分析",
+  "clearFortune": "/clear_fortune - 清除算命记录",
+  "adminGrantSection": "🔧 **资源补给**",
+  "addVip": "/add_vip - 开通 VIP (30天)",
+  "addBottles": "/add_bottles - 增加 50 个算命瓶"
 };

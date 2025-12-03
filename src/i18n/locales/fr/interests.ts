@@ -80,13 +80,14 @@ export default {
     "movie": "Films d'animation",
     "anime_movie": "Regarder YouTube",
     "youtube": "Podcast",
-    "podcast": "Suivre des célébrités/fandom",
+    "podcast": "Podcast",
     "fandom": "Mèmes/images drôles",
     "meme": "Réseaux sociaux",
     "social_media": "Lecture/livres",
     "reading": "Livres d'affaires/finances",
     "business_book": "Cours en ligne",
     "online_course": "Apprentissage des langues",
+    "language": "Apprentissage des langues",
     "coding": "Programmation",
     "marketing": "Marketing/Planification",
     "entrepreneurship": "Entrepreneuriat/Activités secondaires",
@@ -111,5 +112,6 @@ export default {
     "career_focused": "Travailleur acharné",
     "family": "Famille/Parentalité",
     "exploring": "Exploration"
-  }
+  },
+  "back_to_categories": "Retour au menu des catégories"
 };

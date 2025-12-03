@@ -26,12 +26,12 @@ export default {
   "birthday3": "Pakisok ang iyong kaarawan (format: YYYY-MM-DD):\n\n",
   "birthday4": "Kaarawan: {birthday}\n",
   "birthdayCheck": "Kung sa tingin mo ito ay isang error, pakisuri kung tama ang format ng iyong kaarawan (YYYY-MM-DD).",
-  "birthdayError": "❌ {error}",
+  "birthdayError": "❌ {error}\n\n",
   "birthdayFormatError": "❌ Mali ang format ng kaarawan\n\nPakisuling muli (format: YYYY-MM-DD):",
   "birthdayRetry": "Pakisuling muli ang iyong kaarawan (format: YYYY-MM-DD):",
   "birthdayWarning": "⚠️ Hindi maaaring baguhin ang kaarawan matapos itong itakda, pakikonpirma na ito ay tama!",
   "bloodType": {
-    "select": "[Kailangan ng pagsasalin: onboarding.bloodType.select]"
+    "select": "Paki pili ang iyong uri ng dugo:"
   },
   "bloodTypeLabel": "🩸 **Pakisok ang iyong uri ng dugo**\n\n",
   "complete": "Pakisulat ang 'oo' upang makumpleto ang pagsubok:",
@@ -50,7 +50,7 @@ export default {
     "label": "• Kasarian: {gender}\n",
     "male": "Lalaki"
   },
-  "gender2": "• Kasarian: ${updatedUser.gender ===",
+  "gender2": "• Kasarian: {updatedUser.gender ===",
   "gender3": "Pumili ng iyong kasarian:\n\n",
   "genderFemale": "👩 Babae",
   "genderMale": "👨 Lalaki",

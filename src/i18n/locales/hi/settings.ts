@@ -31,7 +31,5 @@ export default {
     "title": "🚫 ब्लॉक सूची",
     "empty": "वर्तमान में कोई ब्लॉक सूची नहीं",
     "unblock": "अनब्लॉक करें"
-  },
-  "quietHoursVipOnly": "🔒 Quiet Hours (VIP Only)",
-  "upgradeForQuietHours": "Upgrade to VIP to use this feature"
+  }
 };

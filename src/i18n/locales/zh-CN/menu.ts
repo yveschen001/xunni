@@ -28,7 +28,7 @@ export default {
   "short": "免费会员",
   "stats": "📊 查看邀请统计：/profile",
   "stats2": "📊 查看邀请统计",
-  "task": "🎯 **下一个任务**\n⏳ {nextTask.name} (+{nextTask.reward_amount} 瓶子)\n💡 {nextTask.description}\n\n",
+  "task": "🎯 **下一任务**\n⏳ {nextTask.name} (+{nextTask.reward_amount} 瓶子)\n💡 {nextTask.description}",
   "text": "🏠 **主选单** {vipBadge}\n\n",
   "text2": "👋 你好，{user.nickname}!",
   "text3": "💡 点击下方按钮分享给好友：\n",

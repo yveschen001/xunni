@@ -39,7 +39,7 @@ export default {
   "profile": "│ 📇 Profil Kartı │\n",
   "profile2": "👤 **Profil**\n\n",
   "quota": "💡 Ekstra günlük kota almak için görevleri tamamlayın (görevleri görüntülemek için /tasks kullanın)\n",
-  "quota2": "📦 Günlük mevcut kota: ${taskBonus > 0 ?",
+  "quota2": "📦 Günlük mevcut kota: {taskBonus > 0 ?",
   "quotaBottles": "{taskBonus} mesaj şişesi",
   "quotaTotal": "📦 Günlük mevcut kota: {quota}\n\n",
   "returnToMenu": "🏠 Ana menüye dön: /menu",
@@ -69,6 +69,7 @@ export default {
   "vip2": "• VIP Üye olmak için /vip kullanın\n",
   "vipUpgrade": "• VIP Üye olmak için /vip kullanın\n",
   "zodiac": "⭐ Burç: {zodiac}\n",
-  "fortuneQuota": "🔮 {fortunemessage mesaj şişesi}: {total} (Bu hafta ücretsiz: {weekly}/{limit} | Ek: {additional})",
-  "vipWithDays": "💎 VIP Üye (Kalan {days} gün, Son Tarih: {expireDate})"
+  "fortuneQuota": "🔮 {fortuneBottle}: {total} (Bu hafta ücretsiz: {weekly}/{limit} | Ek: {additional})",
+  "vipWithDays": "💎 VIP Üye (Kalan {days} gün, Son Tarih: {expireDate})",
+  "driftBottleInfo": "🍾 mesaj şişesi: {remaining} / {total}"
 };

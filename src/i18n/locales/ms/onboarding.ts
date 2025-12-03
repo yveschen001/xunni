@@ -26,12 +26,12 @@ export default {
   "birthday3": "Sila masukkan hari lahir anda (format: YYYY-MM-DD):\n\n",
   "birthday4": "Hari Lahir: {birthday}\n",
   "birthdayCheck": "Jika anda fikir ini adalah ralat, sila semak sama ada format hari lahir anda adalah betul (YYYY-MM-DD).",
-  "birthdayError": "❌ {error}",
+  "birthdayError": "❌ {error}\n\n",
   "birthdayFormatError": "❌ Format hari lahir adalah tidak betul\n\nSila masukkan semula (format: YYYY-MM-DD):",
   "birthdayRetry": "Sila masukkan semula hari lahir anda (format: YYYY-MM-DD):",
   "birthdayWarning": "⚠️ Hari lahir tidak boleh diubah setelah ditetapkan, sila sahkan ia adalah betul!",
   "bloodType": {
-    "select": "[Translation Needed: onboarding.bloodType.select]"
+    "select": "Sila pilih jenis darah anda:"
   },
   "bloodTypeLabel": "🩸 **Sila pilih jenis darah anda**\n\n",
   "complete": "Sila masukkan 'ya' untuk menyelesaikan ujian:",
@@ -50,7 +50,7 @@ export default {
     "label": "• Jantina: {gender}\n",
     "male": "Lelaki"
   },
-  "gender2": "• Jantina: ${updatedUser.gender ===",
+  "gender2": "• Jantina: {updatedUser.gender ===",
   "gender3": "Sila pilih jantina anda:\n\n",
   "genderFemale": "👩 Perempuan",
   "genderMale": "👨 Lelaki",
@@ -73,7 +73,7 @@ export default {
   "nickname2": "Hebat! Nama panggilan anda adalah: {nickname}\n\n",
   "nicknameError": "❌ {error}\n\nSila masukkan semula nama samaran anda:",
   "nicknameGood": "Hebat! Nama panggilan anda adalah: {nickname}\n\n",
-  "notCompleted": "[Penterjemahan diperlukan: onboarding.notCompleted]",
+  "notCompleted": "⚠️ Sila lengkapkan proses pendaftaran terlebih dahulu.",
   "nowSelectGender": "Sekarang sila pilih jantina anda:\n\n",
   "otherUserNotFound": "❌ Pengguna lain tidak wujud.",
   "pleaseAnswer": "❌ Sila jawab soalan dengan serius\n\n",
@@ -108,7 +108,7 @@ export default {
   "stepTerms": "📜 Sila klik butang di atas untuk bersetuju dengan Terma Perkhidmatan",
   "terms": {
     "agree_button": "✅ Saya Setuju",
-    "english_only_note": "[Penterjemahan diperlukan: onboarding.terms.english_only_note]",
+    "english_only_note": "📋 Dokumen undang-undang hanya tersedia dalam versi bahasa Inggeris.",
     "privacy_policy_button": "🔒 Dasar Privasi",
     "terms_of_service_button": "📋 Terma Perkhidmatan"
   },

@@ -15,10 +15,10 @@ export default {
   "levelFree": "🆓 Gratis medlem",
   "levelVip": "💎 VIP medlem",
   "message": "Lad os kaste flaskeposter sammen på XunNi! 🍾 Brug min invitationskode for at deltage, så vi begge kan få flere kvoter!",
-  "message2": "https://t.me/share/url?url=https://t.me/{botUsername}?start=invite_{inviteCode}&text=Kom til XunNi og kast en flaskepost sammen",
+  "message2": "XunNi Lad os kaste en message bottle sammen",
   "notRegistered": "Ikke registreret",
   "notSet": "Ikke sat",
-  "quota": "• I begge får en daglig kvote +1",
+  "quota": "• I får begge en daglig kvote +1",
   "register": "• Venner registrerer sig ved hjælp af din invitationskode\n",
   "selectFeature": "Vælg venligst en funktion:",
   "settings": "{mbti} {mbti}\n",
@@ -28,7 +28,7 @@ export default {
   "short": "Gratis medlem",
   "stats": "📊 Vis invitationsstatistik: /profil",
   "stats2": "📊 Vis invitationsstatistik",
-  "task": "🎯 **Næste opgave**\n⏳ {nextTask.name} (+{nextTask.reward_amount} flaskeposter)\n💡 {nextTask.description}",
+  "task": "🎯 **Næste opgave**\n⏳ {nextTask.name} (+{nextTask.reward_amount} message bottles)\n💡 {nextTask.description}",
   "text": "{vipBadge} {vipBadge}\n\n",
   "text2": "{user.nickname} {user.nickname}\n\n",
   "text3": "💡 Klik på knappen nedenfor for at dele med venner:\n",
@@ -36,7 +36,7 @@ export default {
   "text5": "📊 Din status:\n",
   "title": "🏠 **Hovedmenu**",
   "userNotFound": "Bruger findes ikke",
-  "vip": "• Niveau: {isVip ? 'VIP medlem 💎' : 'Gratis medlem'}",
+  "vip": "• Niveau: {isVip ? 'VIP-medlem 💎' : 'Gratis medlem'} {isVip ? 'VIP medlem 💎' : 'Gratis medlem'} {isVip ? 'VIP Member 💎' : 'Free Member'} {isVip ? 'VIP 會員 💎' : '免費會員'}",
   "vip2": "VIP medlem 💎",
   "yourStatus": "Din status",
   "birthDate": "Fødselsdag",
@@ -45,5 +45,5 @@ export default {
   "interests": "Interesser",
   "bio": "Profil",
   "driftBottles": "Meddelelsesflaske",
-  "fortuneBottles": "Heldflaske"
+  "fortuneBottles": "spådomsflaskemor"
 };

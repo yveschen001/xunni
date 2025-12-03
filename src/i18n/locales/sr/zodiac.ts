@@ -1,14 +1,14 @@
 export default {
-  "Aquarius": "Vodolija",
-  "Aries": "Ovan",
-  "Cancer": "Rak",
-  "Capricorn": "Jarac",
-  "Gemini": "Blizanac",
-  "Leo": "Lav",
-  "Libra": "Vaga",
-  "Pisces": "Ribe",
-  "Sagittarius": "Strelac",
-  "Scorpio": "Škorpija",
-  "Taurus": "Bik",
-  "Virgo": "Devica"
+  "Aries": "♈️ Ovnovi",
+  "Taurus": "♉️ Bika",
+  "Gemini": "♊️ Blizanci",
+  "Cancer": "♋️ Rak",
+  "Leo": "♌️ Lav",
+  "Virgo": "♍️ Devica",
+  "Libra": "♎️ Vaga",
+  "Scorpio": "♏️ Škorpija",
+  "Sagittarius": "♐️ Strelac",
+  "Capricorn": "♑️ Jarac",
+  "Aquarius": "♒️ Vodolija",
+  "Pisces": "♓️ Ribe"
 };

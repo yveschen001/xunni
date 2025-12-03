@@ -1,7 +1,7 @@
 export default {
   "select_continent": "Molimo vas da odaberete svoj region 🌍",
-  "select_country": "Molimo vas da odaberete državu",
-  "search_city_prompt": "Molimo vas da unesete naziv grada (npr. Tajpej)",
+  "select_country": "Молим вас изаберите државу/регион",
+  "search_city_prompt": "Молим вас да унесете име града (нпр.: Токио)",
   "city_not_found": "Grad nije pronađen, pokušajte sa engleskim imenom.",
   "confirm_city": "Da li je to grad koji ste odabrali: {city} ({country})?",
   "continent": {

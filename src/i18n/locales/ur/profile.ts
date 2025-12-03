@@ -39,7 +39,7 @@ export default {
   "profile": "│ 📇 پروفائل کارڈ │\n",
   "profile2": "👤 **پروفائل**\n\n",
   "quota": "💡 اضافی روزانہ کوٹے کے حصول کے لیے کام مکمل کریں (دیکھنے کے لیے /tasks استعمال کریں)\n",
-  "quota2": "📦 موجودہ روزانہ کوٹہ: ${taskBonus > 0 ?",
+  "quota2": "📦 موجودہ روزانہ کوٹہ: {taskBonus > 0 ?",
   "quotaBottles": "{taskBonus} پیغام کی بوتلیں",
   "quotaTotal": "📦 موجودہ روزانہ کی کوٹا: {quota}\n\n",
   "returnToMenu": "🏠 مرکزی مینو پر واپس جائیں: /menu",
@@ -69,6 +69,7 @@ export default {
   "vip2": "• VIP رکن بننے کے لیے /vip استعمال کریں\n",
   "vipUpgrade": "• VIP رکن بننے کے لیے /vip استعمال کریں\n",
   "zodiac": "⭐ زائچہ: {zodiac}\n",
-  "fortuneQuota": "🔮 {fortunemessage bottle}: {total} (اس ہفتے مفت: {weekly}/{limit} | اضافی: {additional})",
-  "vipWithDays": "💎 VIP رکن (باقی {days} دن، تاریخ ختم: {expireDate})"
+  "fortuneQuota": "🔮 {fortuneBottle}: {total} (اس ہفتے مفت: {weekly}/{limit} | اضافی: {additional})",
+  "vipWithDays": "💎 VIP رکن (باقی {days} دن، تاریخ ختم: {expireDate})",
+  "driftBottleInfo": "🍾 پیغام کی بوتل: {remaining} / {total}"
 };

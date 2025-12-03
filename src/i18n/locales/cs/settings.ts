@@ -31,7 +31,5 @@ export default {
     "title": "🚫 Seznam blokovaných",
     "empty": "Momentálně žádný blokovaný seznam",
     "unblock": "Odblokovat"
-  },
-  "quietHoursVipOnly": "🔒 Quiet Hours (VIP Only)",
-  "upgradeForQuietHours": "Upgrade to VIP to use this feature"
+  }
 };

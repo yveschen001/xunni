@@ -2,7 +2,7 @@ export default {
   "allFeaturesAvailable": "Sada možete koristiti sve funkcije normalno.",
   "completed": "✅ Održavanje sistema je završeno",
   "completingSoon": "Skoro gotovo",
-  "correctFormat": "**Ispravan format:**\n/maintenance_enable <trajanje (minuti)> <duration (minutes)>",
+  "correctFormat": "**Ispravan format:**\n/maintenance_enable <trajanje (minute)> <duration (minutes)>",
   "defaultMessage": "Sistem je pod održavanjem i privremeno nije dostupan.",
   "disableFailed": "❌ Nije uspelo isključivanje režima održavanja.",
   "disableSuccess": "✅ Režim održavanja je isključen\n\nObaveštenje o oporavku je prosleđeno svim korisnicima.",

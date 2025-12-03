@@ -165,5 +165,6 @@ export default {
       "seeking": "현재 실업 상태 / 전환 중",
       "other_industry": "기타 산업 (수동 입력)"
     }
-  }
+  },
+  "next_step_industry": "다음으로 업종을 선택해 주세요."
 };

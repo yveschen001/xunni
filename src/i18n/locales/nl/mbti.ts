@@ -19,246 +19,246 @@ export default {
   },
   "full": {
     "question1": {
-      "text": "In sociale situaties initieer je meestal:",
       "option1": "Een gesprek met anderen",
-      "option2": "Wacht je tot anderen mij benaderen"
+      "option2": "Wacht je tot anderen mij benaderen",
+      "text": "In sociale situaties ben je meestal:"
     },
     "question10": {
-      "text": "Bij het oplossen van problemen vertrouw je meer op:",
       "option1": "Praktische ervaring en feiten",
-      "option2": "Intuïtie en mogelijkheden"
+      "option2": "Intuïtie en mogelijkheden",
+      "text": "Bij het oplossen van problemen vertrouw je meer op:"
     },
     "question11": {
-      "text": "Je geeft de voorkeur aan:",
       "option1": "Focussen op specifieke details",
-      "option2": "Focussen op algemene concepten"
+      "option2": "Focussen op algemene concepten",
+      "text": "Je hebt de voorkeur voor:"
     },
     "question12": {
-      "text": "Bij het leren van nieuwe dingen geef je de voorkeur aan:",
       "option1": "Een stapsgewijze aanpak",
-      "option2": "Het verkennen van innovatieve manieren"
+      "option2": "Het verkennen van innovatieve manieren",
+      "text": "Bij het leren van nieuwe dingen heb je de voorkeur voor:"
     },
     "question13": {
-      "text": "Bij het lezen geef je de voorkeur aan:",
       "option1": "Praktische gidsen",
-      "option2": "Theorieën en concepten"
+      "option2": "Theorieën en concepten",
+      "text": "Bij het lezen geef je de voorkeur aan:"
     },
     "question14": {
-      "text": "Je focust meer op:",
       "option1": "Het heden en het verleden",
-      "option2": "De toekomst en mogelijkheden"
+      "option2": "De toekomst en mogelijkheden",
+      "text": "Je maakt je meer zorgen over:"
     },
     "question15": {
-      "text": "Bij het beschrijven van dingen heb je de neiging om:",
       "option1": "Specifieke voorbeelden te gebruiken",
-      "option2": "Metafoor en analogieën te gebruiken"
+      "option2": "Metafoor en analogieën te gebruiken",
+      "text": "Wanneer je dingen beschrijft, heb je de neiging om:"
     },
     "question16": {
-      "text": "Op het werk waardeer je:",
       "option1": "Praktische toepassing",
-      "option2": "Innovatieve ideeën"
+      "option2": "Innovatieve ideeën",
+      "text": "Op het werk waardeer je:"
     },
     "question17": {
-      "text": "Je vertrouwt meer op:",
       "option1": "Bewezen methoden",
-      "option2": "Nieuwe pogingen"
+      "option2": "Nieuwe pogingen",
+      "text": "Je vertrouwt meer:"
     },
     "question18": {
-      "text": "Bij het plannen voor de toekomst baseer je je op:",
       "option1": "Realistische voorwaarden",
-      "option2": "Je stelt je verschillende mogelijkheden voor"
+      "option2": "Je stelt je verschillende mogelijkheden voor",
+      "text": "Wanneer je voor de toekomst plant, zul je:"
     },
     "question19": {
-      "text": "Bij het nemen van beslissingen geef je prioriteit aan:",
       "option1": "Logica en objectieve analyse",
-      "option2": "Emotie en interpersoonlijke harmonie"
+      "option2": "Emotie en interpersoonlijke harmonie",
+      "text": "Bij het nemen van beslissingen geef je prioriteit aan:"
     },
     "question2": {
-      "text": "In het weekend geef je de voorkeur aan:",
       "option1": "Uitgaan met vrienden",
-      "option2": "Thuisblijven alleen om te ontspannen"
+      "option2": "Thuisblijven alleen om te ontspannen",
+      "text": "In het weekend geef je de voorkeur aan:"
     },
     "question20": {
-      "text": "Bij het bekritiseren van anderen:",
       "option1": "Wijs je het probleem direct aan",
-      "option2": "Neem je de gevoelens van de ander in overweging"
+      "option2": "Neem je de gevoelens van de ander in overweging",
+      "text": "Wanneer je anderen bekritiseert, zul je:"
     },
     "question21": {
-      "text": "Wat waardeer je meer:",
       "option1": "Rechtvaardigheid en recht",
-      "option2": "Compassie en begrip"
+      "option2": "Compassie en begrip",
+      "text": "Je hecht meer belang aan:"
     },
     "question22": {
-      "text": "Bij het evalueren van een idee denk je eerst aan:",
       "option1": "Of het redelijk is",
-      "option2": "Of het voordelig is"
+      "option2": "Of het voordelig is",
+      "text": "Bij het evalueren van een idee overweeg je eerst:"
     },
     "question23": {
-      "text": "Wanneer een vriend je vertrouwt, zal je:",
       "option1": "Het probleem analyseren en advies geven",
-      "option2": "Luisteren en troost bieden"
+      "option2": "Luisteren en troost bieden",
+      "text": "Wanneer vrienden je in vertrouwen nemen, zul je:"
     },
     "question24": {
-      "text": "In conflicten heb je de neiging om:",
       "option1": "Vast te houden aan principes",
-      "option2": "Relaties te behouden"
+      "option2": "Relaties te behouden",
+      "text": "In conflicten heb je de neiging om:"
     },
     "question25": {
-      "text": "Je laat je makkelijker overtuigen door:",
       "option1": "Feiten en data",
-      "option2": "Emoties en verhalen"
+      "option2": "Emoties en verhalen",
+      "text": "Je laat je gemakkelijker overtuigen door:"
     },
     "question26": {
-      "text": "Bij teambesluitvorming richt je je meer op:",
       "option1": "Efficiëntie en resultaten",
-      "option2": "Consensus en eenheid"
+      "option2": "Consensus en eenheid",
+      "text": "Bij teambesluitvorming richt je je op:"
     },
     "question27": {
-      "text": "Je gelooft dat een goede leider moet zijn:",
       "option1": "Rechvaardig en doortastend",
-      "option2": "Attent en zorgzaam"
+      "option2": "Attent en zorgzaam",
+      "text": "Je gelooft dat een goede leider zou moeten:"
     },
     "question28": {
-      "text": "Je werkwijze is:",
       "option1": "Van tevoren plannen en voorbereiden",
-      "option2": "Aanpassen en flexibel zijn"
+      "option2": "Aanpassen en flexibel zijn",
+      "text": "Je werkstijl is:"
     },
     "question29": {
-      "text": "Je verkiest:",
       "option1": "Duidelijke deadlines hebben",
-      "option2": "Opties openhouden"
+      "option2": "Opties openhouden",
+      "text": "Je hebt de voorkeur voor:"
     },
     "question3": {
-      "text": "Na het bijwonen van een bijeenkomst voel je meestal:",
       "option1": "Energieker",
-      "option2": "De behoefte om te rusten"
+      "option2": "De behoefte om te rusten",
+      "text": "Na deelname aan een bijeenkomst:"
     },
     "question30": {
-      "text": "Tijdens het reizen heb je de neiging om:",
       "option1": "Gedetailleerde reisplannen te maken",
-      "option2": "Vrij te verkennen"
+      "option2": "Vrij te verkennen",
+      "text": "Tijdens het reizen neig je naar:"
     },
     "question31": {
-      "text": "Je kamer is meestal:",
       "option1": "Net en opgeruimd",
-      "option2": "Informeel en ontspannen"
+      "option2": "Informeel en ontspannen",
+      "text": "Je kamer meestal:"
     },
     "question32": {
-      "text": "Bij het afhandelen van taken zal je:",
       "option1": "Zo vroeg mogelijk afmaken",
-      "option2": "Dicht bij de deadline afmaken"
+      "option2": "Dicht bij de deadline afmaken",
+      "text": "Bij het afhandelen van taken heb je de neiging om:"
     },
     "question33": {
-      "text": "Je voorkeur voor levensstijl:",
       "option1": "Regelmatig en gestructureerd",
-      "option2": "Vrij en flexibel"
+      "option2": "Vrij en flexibel",
+      "text": "Je voorkeurstijl van leven:"
     },
     "question34": {
-      "text": "Bij het nemen van beslissingen heb je de neiging om:",
       "option1": "Snel beslissingen te maken",
-      "option2": "Opties open te houden"
+      "option2": "Opties open te houden",
+      "text": "Bij het nemen van beslissingen heb je de neiging om:"
     },
     "question35": {
-      "text": "Wanneer je winkelt, zal je:",
       "option1": "Een lijst maken en kopen zoals gepland",
-      "option2": "Casual rondkijken en kopen als je het leuk vindt"
+      "option2": "Casual rondkijken en kopen als je het leuk vindt",
+      "text": "Bij het winkelen zal je:"
     },
     "question36": {
-      "text": "Wanneer je met verandering te maken hebt, voel je meestal:",
       "option1": "Zich ongemakkelijk",
-      "option2": "Voel je enthousiast"
+      "option2": "Voel je enthousiast",
+      "text": "Bij het ondergaan van veranderingen heb je meestal:"
     },
     "question4": {
-      "text": "In een team geef je de voorkeur aan:",
       "option1": "Actief meedenken",
-      "option2": "Eerst luisteren, dan spreken"
+      "option2": "Eerst luisteren, dan spreken",
+      "text": "In een team ben je meer geneigd om:"
     },
     "question5": {
-      "text": "Wanneer je nieuwe vrienden ontmoet, doe je:",
       "option1": "Snel vertrouwd raken",
-      "option2": "Tijd nodig hebben om op te warmen"
+      "option2": "Tijd nodig hebben om op te warmen",
+      "text": "Wanneer je nieuwe vrienden ontmoet, zul je:"
     },
     "question6": {
-      "text": "Jouw vriendenkring:",
       "option1": "Breed maar niet diep",
-      "option2": "Klein en hecht"
+      "option2": "Klein en hecht",
+      "text": "Je vriendenkring:"
     },
     "question7": {
-      "text": "Wanneer je werkt, geef je de voorkeur aan:",
       "option1": "Team samenwerking",
-      "option2": "Onafhankelijk werken"
+      "option2": "Onafhankelijk werken",
+      "text": "Bij het werken geef je de voorkeur aan:"
     },
     "question8": {
-      "text": "Wanneer je over problemen nadenkt, heb je de neiging om:",
       "option1": "Sprekend te denken",
-      "option2": "Eerst nadenken voordat je spreekt"
+      "option2": "Eerst nadenken voordat je spreekt",
+      "text": "Wanneer je nadenkt over problemen, heb je de neiging om:"
     },
     "question9": {
-      "text": "Wanneer je onder stress staat, doe je:",
       "option1": "Chatten met vrienden",
-      "option2": "Alleen verwerken"
+      "option2": "Alleen verwerken",
+      "text": "Wanneer je onder druk staat, zul je:"
     }
   },
   "quick": {
     "question1": {
-      "text": "In sociale situaties ben je meestal:",
       "option1": "Gesprekken met anderen beginnen",
-      "option2": "Wachten tot anderen mij benaderen"
+      "option2": "Wachten tot anderen mij benaderen",
+      "text": "In sociale situaties ben je meestal:"
     },
     "question10": {
-      "text": "Je werkstijl is:",
       "option1": "Vooraf plannen en voorbereiden",
-      "option2": "Aanpassen en flexibel zijn"
+      "option2": "Aanpassen en flexibel zijn",
+      "text": "Je werkstijl is:"
     },
     "question11": {
-      "text": "Je hebt de voorkeur voor:",
       "option1": "Duidelijke deadlines",
-      "option2": "Opties openhouden"
+      "option2": "Opties openhouden",
+      "text": "Je hebt de voorkeur voor:"
     },
     "question12": {
-      "text": "Tijdens het reizen neig je naar:",
       "option1": "Gedetailleerde agenda's maken",
-      "option2": "Vrije verkenning"
+      "option2": "Vrije verkenning",
+      "text": "Tijdens het reizen neig je naar:"
     },
     "question2": {
-      "text": "In het weekend geef je de voorkeur aan:",
       "option1": "Afspreken met vrienden",
-      "option2": "Alleen thuis uitrusten"
+      "option2": "Alleen thuis uitrusten",
+      "text": "In het weekend geef je de voorkeur aan:"
     },
     "question3": {
-      "text": "Na deelname aan een bijeenkomst:",
       "option1": "Je energiek voelen",
-      "option2": "De behoefte om uit te rusten"
+      "option2": "De behoefte om uit te rusten",
+      "text": "Na deelname aan een bijeenkomst:"
     },
     "question4": {
-      "text": "Bij het oplossen van problemen vertrouw je meer op:",
       "option1": "Praktische ervaring en feiten",
-      "option2": "Intuïtie en mogelijkheden"
+      "option2": "Intuïtie en mogelijkheden",
+      "text": "Bij het oplossen van problemen vertrouw je meer op:"
     },
     "question5": {
-      "text": "Je hebt de voorkeur voor:",
       "option1": "Focus op specifieke details",
-      "option2": "Focus op het algemene concept"
+      "option2": "Focus op het algemene concept",
+      "text": "Je hebt de voorkeur voor:"
     },
     "question6": {
-      "text": "Bij het leren van nieuwe dingen heb je de voorkeur voor:",
       "option1": "Stapsgewijze methoden",
-      "option2": "Innovatieve manieren verkennen"
+      "option2": "Innovatieve manieren verkennen",
+      "text": "Bij het leren van nieuwe dingen heb je de voorkeur voor:"
     },
     "question7": {
-      "text": "Bij het nemen van beslissingen waardeer je:",
       "option1": "Logica en objectieve analyse",
-      "option2": "Emoties en interpersoonlijke harmonie"
+      "option2": "Emoties en interpersoonlijke harmonie",
+      "text": "Bij het nemen van beslissingen waardeer je:"
     },
     "question8": {
-      "text": "Bij het bekritiseren van anderen:",
       "option1": "Wijs het probleem direct aan",
-      "option2": "Houd rekening met de gevoelens van de ander"
+      "option2": "Houd rekening met de gevoelens van de ander",
+      "text": "Bij het bekritiseren van anderen:"
     },
     "question9": {
-      "text": "Je waardeert meer:",
       "option1": "Eerlijkheid en rechtvaardigheid",
-      "option2": "Empathie en begrip"
+      "option2": "Empathie en begrip",
+      "text": "Je waardeert meer:"
     }
   },
   "share": {

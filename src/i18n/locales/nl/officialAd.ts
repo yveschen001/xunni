@@ -20,7 +20,7 @@ export default {
   "noAdsAvailable": "❌ Geen beschikbare advertenties op dit moment",
   "noVerificationRequired": "❌ Deze advertentie vereist geen verificatie",
   "quotaInfo": "📊 Nog over vandaag: **{remaining}/20** keer",
-  "requiresVerification": "✅ Verificatie nodig: Klik op de knop 'Verifiëren' nadat je de groep/kanaal bent joind",
+  "requiresVerification": "✅ Verificatie vereist: Klik op de 'Verifieer' knop na het joinen van de groep/kanaal",
   "reward": "🎁 Beloning: +{quota} permanente quotas",
   "rewardPermanent": "🎁 Voltooi de taak om **+1 permanente quota** te verdienen",
   "rewardTemporary": "🎁 Gefeliciteerd! Je hebt +1 tijdelijke quota ontvangen (geldigt vandaag)",

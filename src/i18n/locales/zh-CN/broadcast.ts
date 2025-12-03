@@ -38,7 +38,7 @@ export default {
     "age": "年龄：{min}-{max} 岁",
     "atLeastOneRequired": "至少需要一个过滤器",
     "birthdayToday": "当天生日",
-    "country": "国家：{country}",
+    "country": "国家/地区：{country}",
     "genderFemale": "女性",
     "genderMale": "男性",
     "genderOther": "其他性别",
@@ -68,7 +68,7 @@ export default {
     "zodiacVirgo": "处女座"
   },
   "filterAge": "• 年龄=18-25",
-  "filterCommand": "/broadcast_filter\n\n",
+  "filterCommand": "/broadcast_filter <过滤器> <消息内容> ",
   "filterConfirmConditions": "**过滤条件：**\n{conditions}\n\n",
   "filterConfirmMessage": "**讯息内容：**\n{message}\n\n",
   "filterConfirmTitle": "🔍 **广播过滤器确认**\n\n",

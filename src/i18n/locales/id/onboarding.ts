@@ -26,12 +26,12 @@ export default {
   "birthday3": "Silakan masukkan tanggal lahir Anda (format: YYYY-MM-DD):\n\n",
   "birthday4": "Tanggal Lahir: {birthday}\n",
   "birthdayCheck": "Jika Anda merasa ini adalah kesalahan, silakan periksa apakah format tanggal lahir Anda benar (YYYY-MM-DD).",
-  "birthdayError": "❌ {error}",
+  "birthdayError": "❌ {error}\n\n",
   "birthdayFormatError": "❌ Format tanggal lahir tidak benar\n\nSilakan masukkan ulang (format: YYYY-MM-DD):",
   "birthdayRetry": "Silakan masukkan ulang tanggal lahir Anda (format: YYYY-MM-DD):",
   "birthdayWarning": "⚠️ Tanggal lahir tidak dapat diubah setelah disetting, silakan konfirmasi bahwa itu benar!",
   "bloodType": {
-    "select": "[Terjemahan Diperlukan: onboarding.bloodType.select]"
+    "select": "Silakan pilih tipe darah Anda:"
   },
   "bloodTypeLabel": "🩸 **Silakan pilih golongan darah Anda**\n\n",
   "complete": "Silakan masukkan 'ya' untuk menyelesaikan tes:",
@@ -50,7 +50,7 @@ export default {
     "label": "• Jenis Kelamin: {gender}\n",
     "male": "Laki-laki"
   },
-  "gender2": "• Jenis Kelamin: ${updatedUser.gender ===",
+  "gender2": "• Jenis Kelamin: {updatedUser.gender ===",
   "gender3": "Silakan pilih jenis kelamin Anda:\n\n",
   "genderFemale": "👩 Perempuan",
   "genderMale": "👨 Laki-laki",
@@ -73,7 +73,7 @@ export default {
   "nickname2": "Bagus! Nama panggilan Anda adalah: {nickname}\n\n",
   "nicknameError": "❌ {error}\n\nSilakan masukkan ulang nama panggilan Anda:",
   "nicknameGood": "Bagus! Nama panggilan Anda adalah: {nickname}\n\n",
-  "notCompleted": "Anda belum menyelesaikan onboarding.",
+  "notCompleted": "⚠️ Silakan selesaikan proses registrasi terlebih dahulu.",
   "nowSelectGender": "Sekarang silakan pilih jenis kelamin Anda:\n\n",
   "otherUserNotFound": "❌ Pengguna lain tidak ada.",
   "pleaseAnswer": "❌ Silakan jawab pertanyaan dengan serius\n\n",
@@ -108,7 +108,7 @@ export default {
   "stepTerms": "📜 Silakan klik tombol di atas untuk menyetujui Syarat Layanan",
   "terms": {
     "agree_button": "✅ Saya Setuju",
-    "english_only_note": "Catatan: hanya untuk bahasa Inggris.",
+    "english_only_note": "📋 Dokumen hukum hanya tersedia dalam Bahasa Inggris.",
     "privacy_policy_button": "🔒 Kebijakan Privasi",
     "terms_of_service_button": "📋 Syarat Layanan"
   },

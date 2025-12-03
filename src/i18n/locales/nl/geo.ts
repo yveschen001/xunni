@@ -1,7 +1,7 @@
 export default {
   "select_continent": "Selecteer uw regio 🌍",
-  "select_country": "Selecteer een land",
-  "search_city_prompt": "Voer de stadsnaam in (bijv. Taipei)",
+  "select_country": "Selecteer een land/regio",
+  "search_city_prompt": "Voer de naam van de stad in (bijv.: Tokio)",
   "city_not_found": "Stad niet gevonden, probeer de Engelse naam.",
   "confirm_city": "Is dit de stad die u heeft geselecteerd: {city} ({country})?",
   "continent": {

@@ -38,7 +38,7 @@ export default {
     "age": "Ikä: {min}-{max} vuotta",
     "atLeastOneRequired": "Vähintään yksi suodatin vaaditaan",
     "birthdayToday": "Syntymäpäivä tänään",
-    "country": "Maa: {country}",
+    "country": "Maa/Alue: {country}",
     "genderFemale": "Nainen",
     "genderMale": "Mies",
     "genderOther": "Muu sukupuoli",
@@ -68,7 +68,7 @@ export default {
     "zodiacVirgo": "Neitsyt"
   },
   "filterAge": "• ikä=18-25\n",
-  "filterCommand": "/broadcast_filter\n\n",
+  "filterCommand": "/broadcast_filter <filter> <msg_content> ",
   "filterConfirmConditions": "**Suodatusvaatimukset:**\n{conditions}\n\n",
   "filterConfirmMessage": "**Viestin sisältö:**\n{message}\n\n",
   "filterConfirmTitle": "🔍 **Lähetyssuodatusvahvistus**\n\n",

@@ -38,7 +38,7 @@ export default {
     "age": "年齡：{min}-{max} 歲",
     "atLeastOneRequired": "至少需要一個過濾器",
     "birthdayToday": "當天生日",
-    "country": "國家：{country}",
+    "country": "國家/地區：{country}",
     "genderFemale": "女性",
     "genderMale": "男性",
     "genderOther": "其他性別",

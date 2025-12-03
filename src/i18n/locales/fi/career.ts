@@ -165,5 +165,6 @@ export default {
       "seeking": "Tällä hetkellä Työtön / Siirtymässä",
       "other_industry": "Muut Toimialat (Syötä Manuaalisesti)"
     }
-  }
+  },
+  "next_step_industry": "Wählen Sie als Nächstes Ihre Branche aus."
 };

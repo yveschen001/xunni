@@ -112,5 +112,6 @@ export default {
     "career_focused": "Workaholic",
     "family": "Family/Parenting",
     "exploring": "Exploring"
-  }
+  },
+  "back_to_categories": "Return to category menu"
 };

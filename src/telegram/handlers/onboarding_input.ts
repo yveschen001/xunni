@@ -176,7 +176,7 @@ async function handleBirthdayInput(
   await telegram.sendMessageWithButtons(
     chatId,
     i18n.t('onboarding.confirmBirthday') +
-      `\n生日：${birthday}\n` +
+      i18n.t('onboarding.birthday4', { birthday }) +
       i18n.t('onboarding.age', { updatedUser: { age } }) +
       i18n.t('onboarding.zodiac', { updatedUser: { zodiac_sign: i18n.t(`zodiac.${zodiacSign}` as any) } }) +
       '\n\n' +

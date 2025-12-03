@@ -112,5 +112,6 @@ export default {
     "career_focused": "워커홀릭",
     "family": "가족/육아",
     "exploring": "탐험"
-  }
+  },
+  "back_to_categories": "카테고리 메뉴로 돌아가기"
 };

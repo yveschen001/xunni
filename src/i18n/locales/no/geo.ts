@@ -1,7 +1,7 @@
 export default {
   "select_continent": "Vennligst velg region 🌍",
-  "select_country": "Vennligst velg et land",
-  "search_city_prompt": "Vennligst skriv inn bynavnet (f.eks. Taipei)",
+  "select_country": "Vennligst velg et land/område",
+  "search_city_prompt": "Vennligst skriv inn bynavnet (f.eks.: Tokyo)",
   "city_not_found": "Byen ble ikke funnet, vennligst prøv det engelske navnet.",
   "confirm_city": "Er dette byen du valgte: {city} ({country})?",
   "continent": {

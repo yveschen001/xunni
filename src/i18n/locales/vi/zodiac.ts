@@ -1,14 +1,14 @@
 export default {
-  "Aquarius": "Bảo Bình",
-  "Aries": "Bạch Dương",
-  "Cancer": "Cự Giải",
-  "Capricorn": "Ma Kết",
-  "Gemini": "Song Tử",
-  "Leo": "Sư Tử",
-  "Libra": "Thiên Bình",
-  "Pisces": "Song Ngư",
-  "Sagittarius": "Nhân Mã",
-  "Scorpio": "Thiên Yết",
-  "Taurus": "Kim Ngưu",
-  "Virgo": "Xử Nữ"
+  "Aries": "♈️ Bạch Dương",
+  "Taurus": "♉️ Kim Ngưu",
+  "Gemini": "♊️ Song Tử",
+  "Cancer": "♋️ Cự Giải",
+  "Leo": "♌️ Sư Tử",
+  "Virgo": "♍️ Xử Nữ",
+  "Libra": "♎️ Thiên Bình",
+  "Scorpio": "♏️ Bọ Cạp",
+  "Sagittarius": "♐️ Nhân Mã",
+  "Capricorn": "♑️ Ma Kết",
+  "Aquarius": "♒️ Bảo Bình",
+  "Pisces": "♓️ Song Ngư"
 };

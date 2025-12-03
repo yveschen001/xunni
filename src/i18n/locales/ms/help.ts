@@ -56,7 +56,7 @@ export default {
   "message5": "/broadcast_vip <message> - Hantar kepada pengguna VIP",
   "message6": "/maintenance_disable - Lumpuhkan mod penyelenggaraan\n\n",
   "message7": "/maintenance_status - Periksa status penyelenggaraan\n",
-  "message8": "/siarkan <message> - Siarkan kepada semua pengguna",
+  "message8": "/broadcast <message> - Siarkan kepada semua pengguna",
   "profile": "/edit_profile - Edit Profil\n",
   "profile2": "/profile - Lihat Profil\n",
   "profile3": "👤 **Profil**\n",
@@ -119,5 +119,9 @@ export default {
   "devReset": "/dev_reset - Tetapkan semula pengguna semasa",
   "devRestart": "/dev_restart - Mulakan semula instans",
   "devSkip": "/dev_skip - Lewatkan tutorial",
-  "fortune": "/fortune - 🔮 Ramalan harian dan analisis astrologi mendalam"
+  "fortune": "/fortune - 🔮 Ramalan harian dan analisis astrologi mendalam",
+  "clearFortune": "/clear_fortune - Hapus rekod nasib",
+  "adminGrantSection": "🔧 **Pembekalan Sumber**",
+  "addVip": "/add_vip - Aktifkan VIP (30 hari)",
+  "addBottles": "/add_bottles - Tambah 50 botol nasib"
 };

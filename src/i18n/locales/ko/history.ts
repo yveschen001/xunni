@@ -25,6 +25,6 @@ export default {
   "time": "시간: {time}\n\n",
   "totalMessages": "• 총 메시지: {total} 개\n",
   "userMessages": "• 당신이 보낸 메시지: {count} 개\n",
-  "viewFull": "💡 /history {identifier} 명령어를 사용하여 전체 대화를 확인하세요.",
+  "viewFull": "💡 전체 대화를 보려면 /history {identifier}를 사용하세요.",
   "you": "당신"
 };

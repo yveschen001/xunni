@@ -165,5 +165,6 @@ export default {
       "seeking": "Saat Ini Menganggur / Dalam Transisi",
       "other_industry": "Industri Lain (Masukkan Secara Manual)"
     }
-  }
+  },
+  "next_step_industry": "Selanjutnya, silakan pilih industri Anda."
 };

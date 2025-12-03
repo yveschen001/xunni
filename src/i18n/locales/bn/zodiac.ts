@@ -1,14 +1,14 @@
 export default {
-  "Aquarius": "কুম্ভ",
-  "Aries": "মেষ",
-  "Cancer": "কর্কট",
-  "Capricorn": "মকর",
-  "Gemini": "মিথুন",
-  "Leo": "সিংহ",
-  "Libra": "তুলা",
-  "Pisces": "মীন",
-  "Sagittarius": "ধনু",
-  "Scorpio": "বৃশ্চিক",
-  "Taurus": "বৃষ",
-  "Virgo": "কন্যা"
+  "Aries": "♈️ মেষ",
+  "Taurus": "♉️ বৃষ",
+  "Gemini": "♊️ মিথুন",
+  "Cancer": "♋️ কাঁকড়া",
+  "Leo": "♌️ সিংহ",
+  "Virgo": "♍️ কন্যা",
+  "Libra": "♎️ তুলা",
+  "Scorpio": "♏️ বৃশ্চিক",
+  "Sagittarius": "♐️ ধনু",
+  "Capricorn": "♑️ মকর",
+  "Aquarius": "♒️ কুম্ভ",
+  "Pisces": "♓️ মীন"
 };

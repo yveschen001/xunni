@@ -25,6 +25,6 @@ export default {
   "time": "Vreme: {time}\n\n",
   "totalMessages": "• Ukupno poruka: {total}\n",
   "userMessages": "• Poslali ste: {count}\n",
-  "viewFull": "💡 Koristite /history {identifier} da vidite celu konverzaciju",
+  "viewFull": "💡 Koristite /history {identifier} da biste videli celu konverzaciju",
   "you": "Ti"
 };

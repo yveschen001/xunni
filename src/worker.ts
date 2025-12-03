@@ -34,7 +34,7 @@ export default {
       // Ad pages (static HTML files)
       if (url.pathname === '/ad.html' || url.pathname === '/ad-test.html') {
         const { serveAdPage } = await import('./services/ad_pages');
-        return serveAdPage(url.pathname);
+        return await serveAdPage(request, env);
       }
 
       // Health check

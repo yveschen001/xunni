@@ -39,7 +39,7 @@ export default {
   "profile": "│ 📇 کارت پروفایل │\n",
   "profile2": "👤 **پروفایل**\n\n",
   "quota": "💡 برای دریافت سهمیه روزانه اضافی، وظایف را تکمیل کنید (برای مشاهده از /tasks استفاده کنید)\n",
-  "quota2": "📦 سهمیه روزانه فعلی: ${taskBonus > 0 ?",
+  "quota2": "📦 سهمیه روزانه فعلی: {taskBonus > 0 ?",
   "quotaBottles": "{taskBonus} بطری پیام",
   "quotaTotal": "📦 سهمیه روزانه فعلی: {quota}\n\n",
   "returnToMenu": "🏠 بازگشت به منوی اصلی: /menu",
@@ -69,6 +69,7 @@ export default {
   "vip2": "• از /vip برای ارتقاء به عضو VIP استفاده کنید\n",
   "vipUpgrade": "• از /vip برای ارتقاء به عضو VIP استفاده کنید\n",
   "zodiac": "⭐ زودیاک: {zodiac}\n",
-  "fortuneQuota": "🔮 {fortunemessage bottle}: {total} (این هفته رایگان: {weekly}/{limit} | اضافی: {additional})",
-  "vipWithDays": "💎 عضو VIP (باقی‌مانده {days} روز، انقضا: {expireDate})"
+  "fortuneQuota": "🔮 {fortuneBottle}: {total} (این هفته رایگان: {weekly}/{limit} | اضافی: {additional})",
+  "vipWithDays": "💎 عضو VIP (باقی‌مانده {days} روز، انقضا: {expireDate})",
+  "driftBottleInfo": "🍾 بطری پیام: {remaining} / {total}"
 };

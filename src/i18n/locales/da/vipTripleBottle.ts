@@ -1,8 +1,8 @@
 export default {
   "bottleContent": "📝 Flaskepostindhold: {content}\n\n",
-  "bottlePicked": "Din beskedflaske er blevet hentet af {maskedMatcherNickname}!\n\n",
+  "bottlePicked": "Din message bottle er blevet afhentet af {maskedMatcherNickname}!",
   "conversationIdentifier": "💬 Samtale identifier: {conversationIdentifier}\n",
-  "firstMatch": "💡 Dette er dit 1. match, med 2 pladser tilbage\n\n",
+  "firstMatch": "💡 Dette er dit 1. match, med 2 pladser stadig tilgængelige",
   "foundBottle": "Systemet har fundet en flaske fra {maskedOwnerNickname}!\n\n",
   "matchSuccess": "🎯 **VIP-smartparring lykkedes!**\n\n",
   "replyHint": "💬 **Tryk længe på denne besked, vælg 'Svar', og indtast dit indhold for at starte en samtale med den anden part**",

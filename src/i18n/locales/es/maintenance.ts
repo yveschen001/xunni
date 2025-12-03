@@ -28,5 +28,5 @@ export default {
   "statusTitle": "🛠️ Estado del modo de mantenimiento",
   "thanks": "¡Gracias por tu paciencia!",
   "unknown": "Desconocido",
-  "usageError": "💡 Esta es una prueba completa ({questions}), el resultado es más preciso.\nDespués de completar el registro, puedes usar /mbti para volver a hacer la prueba.\n\n"
+  "usageError": "❌ Uso incorrecto"
 };

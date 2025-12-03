@@ -1,8 +1,8 @@
 export default {
   "bottleContent": "📝 Vsebina steklenice: {content}\n\n",
-  "bottlePicked": "Vaša sporočilna steklenica je bila prevzeta s strani {maskedMatcherNickname}!\n\n",
+  "bottlePicked": "Vaša sporočilna steklenica je bila prevzeta s strani {maskedMatcherNickname}!",
   "conversationIdentifier": "💬 Identifikator pogovora: {conversationIdentifier}\n",
-  "firstMatch": "💡 To je vaše 1. ujemanje, s 2 prostimi mesti\n\n",
+  "firstMatch": "💡 To je tvoje 1. ujemanje, z 2 prostimi mestnimi še na voljo",
   "foundBottle": "Sistem je našel steklenico od {maskedOwnerNickname}!\n\n",
   "matchSuccess": "🎯 **Uspešno ujemanje VIP!**\n\n",
   "replyHint": "💬 **Prosimo, dolgo pritisnite to sporočilo, izberite 'Odgovori' in vnesite vsebino, da začnete klepetati z drugo osebo**",

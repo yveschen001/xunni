@@ -1,7 +1,7 @@
 export default {
   "admin": "⏳ 你已有待處理的退款請求，請耐心等待管理員審核。",
   "bottle": "📝 瓶子內容：{bottle.content.substring(0, 50)}{bottle.content.length > 50 ? '...' : ''}\n\n",
-  "bottle2": "📝 瓶子內容：{bottle.content.substring(0, 50)}${bottle.content.length > 50 ?",
+  "bottle2": "📝 瓶子內容：{bottle.content.substring(0, 50)}{bottle.content.length > 50 ?",
   "bottle3": "你的瓶子已被 {maskedMatcherNickname} 撿起！\n\n",
   "bottle4": "系統為你找到了 {maskedOwnerNickname} 的瓶子！\n\n",
   "bottle5": "📝 瓶子內容：{bottle.content}\n\n",
@@ -25,7 +25,7 @@ export default {
   "message6": "📋 **待處理退款請求** ({requests.results.length})\n\n",
   "message7": "支付 ID：{payment.telegram_payment_charge_id}",
   "message8": "價格：~{originalPrice} Stars~ {priceStars} ⭐ Telegram Stars / 月 🔥 (-80%)\n",
-  "message9": "支付時間：${paymentDate.toLocaleDateString(",
+  "message9": "支付時間：{paymentDate.toLocaleDateString(",
   "purchaseCancelled": "✅ 已取消購買",
   "quota": "• 每天 30 個漂流瓶配額（邀請好友可增加，最高 100 個/天）\n",
   "quota2": "• 每天 30 個漂流瓶配額（最高 100 個/天）\n",
@@ -112,7 +112,7 @@ export default {
   "vip17": "XunNi VIP 訂閱（月費）",
   "vip18": "✨ VIP 權益持續啟用：\n",
   "vip19": "你已成為 VIP 會員！\n",
-  "vip2": "你的 VIP 會員已於 ${new Date(sub.expire_date).toLocaleDateString(",
+  "vip2": "你的 VIP 會員已於 {new Date(sub.expire_date).toLocaleDateString(",
   "vip20": "✨ VIP 權益已啟用：\n",
   "vip21": "VIP 會員 (30 天)",
   "vip22": "🎁 VIP 權益：\n",
@@ -129,5 +129,6 @@ export default {
   "retentionNotice": "⚠️ **重要提示**：VIP 會員對話記錄將保存 3 年。若停止續費，您的對話記錄將在會員過期後 **30 天** 被刪除。請注意備份重要資訊。",
   "upgrade": "升級 VIP",
   "maxDurationExceeded": "⚠️ 您的 VIP 期限已達到上限 ({maxMonths} 個月)，暫時無法繼續購買。",
-  "refundedAndRevoked": "ℹ️ 您的款項已退還，VIP 權益已收回。"
+  "refundedAndRevoked": "ℹ️ 您的款項已退還，VIP 權益已收回。",
+  "benefit_daily_fortune": "• 每日免費 1 次 AI 算命（VIP 專屬）\n"
 };

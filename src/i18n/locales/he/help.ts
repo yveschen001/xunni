@@ -56,7 +56,7 @@ export default {
   "message5": "/broadcast_vip <message> - שלח למשתמשי VIP",
   "message6": "/maintenance_disable - השבת מצב תחזוקה\n\n",
   "message7": "/maintenance_status - בדוק מצב תחזוקה\n",
-  "message8": "/broadcast <הודעתך> - שדר לכל המשתמשים <message>",
+  "message8": "/broadcast <message> - שדר לכל המשתמשים",
   "profile": "/edit_profile - ערוך פרופיל\n",
   "profile2": "/profile - הצג פרופיל\n",
   "profile3": "👤 **פרופיל**\n",
@@ -119,5 +119,9 @@ export default {
   "devReset": "/dev_reset - אפס את המשתמש הנוכחי",
   "devRestart": "/dev_restart - הפעל מחדש את המערכת",
   "devSkip": "/dev_skip - דלג על המדריך",
-  "fortune": "/fortune - 🔮 מזל יומי ואסטרולוגיה מעמיקה"
+  "fortune": "/fortune - 🔮 מזל יומי ואסטרולוגיה מעמיקה",
+  "clearFortune": "/clear_fortune - נסה לנקות את רשומות המזל",
+  "adminGrantSection": "🔧 **אספקת משאבים**",
+  "addVip": "/add_vip - הפעל VIP (30 ימים)",
+  "addBottles": "/add_fortune bottles - הוסף 50 בקבוקי מזל"
 };

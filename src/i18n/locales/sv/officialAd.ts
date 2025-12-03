@@ -20,7 +20,7 @@ export default {
   "noAdsAvailable": "❌ Inga tillgängliga annonser för tillfället",
   "noVerificationRequired": "❌ Denna annons kräver ingen verifiering",
   "quotaInfo": "📊 Återstående idag: **{remaining}/20** gånger",
-  "requiresVerification": "✅ Verifiering behövs: Klicka på knappen 'Verifiera' efter att ha gått med i gruppen/kanalen",
+  "requiresVerification": "✅ Verifiering krävs: Klicka på 'Verifiera' knappen efter att du har gått med i gruppen/kanalen",
   "reward": "🎁 Belöning: +{quota} permanenta kvoter",
   "rewardPermanent": "🎁 Slutför uppgiften för att tjäna **+1 permanent kvot**",
   "rewardTemporary": "🎁 Grattis! Du har fått +1 tillfällig kvot (giltig idag)",

@@ -39,7 +39,7 @@ export default {
   "profile": "│ 📇 Profielkaart │\n",
   "profile2": "👤 **Profiel**\n\n",
   "quota": "💡 Voltooi taken om extra dagelijkse quota's te verdienen (gebruik /tasks om te bekijken)\n",
-  "quota2": "📦 Huidige dagelijkse quota: ${taskBonus > 0 ?",
+  "quota2": "📦 Huidige dagelijkse quota: {taskBonus > 0 ?",
   "quotaBottles": "{taskBonus} berichtfles(s)",
   "quotaTotal": "📦 Huidige dagelijkse quotum: {quota}\n\n",
   "returnToMenu": "🏠 Terug naar hoofdmenu: /menu",
@@ -62,13 +62,14 @@ export default {
   "text": "• Gebruik /profile_card om de complete profielkaart te bekijken\n",
   "text2": "🏷️ Interesses: {interests}\n\n",
   "text3": "💎 Lidmaatschap: {vipStatus}\n\n",
-  "text4": "📝 Biografie:\n{bio}\n\n",
+  "text4": "📝 Bio:\n{bio}",
   "text5": "Deze persoon is zeer mysterieus, laat niets achter～",
   "userNotFound": "⚠️ Gebruiker bestaat niet, gebruik /start om je eerst te registreren.",
   "vip": "VIP Lid (Verloopt: {expireDate})",
   "vip2": "• Gebruik /vip om te upgraden naar VIP Lid\n",
   "vipUpgrade": "• Gebruik /vip om te upgraden naar VIP Lid\n",
   "zodiac": "⭐ Sterrenbeeld: {zodiac}\n",
-  "fortuneQuota": "🔮 {fortunemessage bottle}: {total} (Deze week gratis: {weekly}/{limit} | Extra: {additional})",
-  "vipWithDays": "💎 VIP Lid (Overige {days} dagen, Vervaldatum: {expireDate})"
+  "fortuneQuota": "🔮 {fortuneBottle}: {total} (Deze week gratis: {weekly}/{limit} | Extra: {additional})",
+  "vipWithDays": "💎 VIP Lid (Overige {days} dagen, Vervaldatum: {expireDate})",
+  "driftBottleInfo": "🍾 bericht fles: {remaining} / {total}"
 };

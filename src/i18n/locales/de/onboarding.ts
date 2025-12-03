@@ -26,7 +26,7 @@ export default {
   "birthday3": "Bitte gib dein Geburtsdatum ein (Format: JJJJ-MM-TT):\n\n",
   "birthday4": "Geburtstag: {birthday}\n",
   "birthdayCheck": "Wenn Sie denken, dass dies ein Fehler ist, überprüfen Sie bitte, ob Ihr Geburtstagsformat korrekt ist (JJJJ-MM-TT).",
-  "birthdayError": "❌ {error}",
+  "birthdayError": "❌ {error}\n\n",
   "birthdayFormatError": "❌ Ungültiges Geburtsdatumformat\n\nBitte geben Sie erneut ein (Format: JJJJ-MM-TT):",
   "birthdayRetry": "Bitte geben Sie Ihr Geburtsdatum erneut ein (Format: JJJJ-MM-TT):",
   "birthdayWarning": "⚠️ Das Geburtsdatum kann nach der Festlegung nicht geändert werden, bitte bestätigen Sie, dass es korrekt ist!",
@@ -50,7 +50,7 @@ export default {
     "label": "• Geschlecht: {gender}\n",
     "male": "Männlich"
   },
-  "gender2": "• Geschlecht: ${updatedUser.gender ===",
+  "gender2": "• Geschlecht: {updatedUser.gender ===",
   "gender3": "Bitte wählen Sie Ihr Geschlecht:\n\n",
   "genderFemale": "👩 Weiblich",
   "genderMale": "👨 Männlich",

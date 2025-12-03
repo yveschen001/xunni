@@ -19,246 +19,246 @@ export default {
   },
   "full": {
     "question1": {
-      "text": "U društvenim situacijama, obično:",
       "option1": "Preuzmem inicijativu da razgovaram s drugima",
-      "option2": "Čekam da me drugi priđu"
+      "option2": "Čekam da me drugi priđu",
+      "text": "U društvenim situacijama, obično:"
     },
     "question10": {
-      "text": "Kada rešavate probleme, više se oslanjate na:",
       "option1": "Praktično iskustvo i činjenice",
-      "option2": "Intuiciju i mogućnosti"
+      "option2": "Intuiciju i mogućnosti",
+      "text": "Kada rešavate probleme, više se oslanjate na:"
     },
     "question11": {
-      "text": "Više volite:",
       "option1": "Fokusiranje na konkretne detalje",
-      "option2": "Fokusiranje na širu sliku"
+      "option2": "Fokusiranje na širu sliku",
+      "text": "Preferirate:"
     },
     "question12": {
-      "text": "Kada učite nove stvari, više volite:",
       "option1": "Pristup korak po korak",
-      "option2": "Istraživanje inovativnih načina"
+      "option2": "Istraživanje inovativnih načina",
+      "text": "Kada učite nove stvari, preferirate:"
     },
     "question13": {
-      "text": "Kada čitate, više volite:",
       "option1": "Praktične vodiče",
-      "option2": "Teorije i koncepte"
+      "option2": "Teorije i koncepte",
+      "text": "Kada čitate, preferirate:"
     },
     "question14": {
-      "text": "Više vas zanima:",
       "option1": "Sadašnjost i prošlost",
-      "option2": "Budućnost i mogućnosti"
+      "option2": "Budućnost i mogućnosti",
+      "text": "Vi ste više zabrinuti za:"
     },
     "question15": {
-      "text": "Kada opisujete stvari, obično:",
       "option1": "Koristite konkretne primere",
-      "option2": "Koristite metafore i analogije"
+      "option2": "Koristite metafore i analogije",
+      "text": "Kada opisujete stvari, obično:"
     },
     "question16": {
-      "text": "Na poslu, cenite:",
       "option1": "Praktičnu primenu",
-      "option2": "Inovativne ideje"
+      "option2": "Inovativne ideje",
+      "text": "Na poslu, cenite:"
     },
     "question17": {
-      "text": "Verujete u:",
       "option1": "Dokazane metode",
-      "option2": "Nove pokušaje"
+      "option2": "Nove pokušaje",
+      "text": "Vi više verujete:"
     },
     "question18": {
-      "text": "Kada planirate budućnost, vi:",
       "option1": "Bazirate na realnim uslovima",
-      "option2": "Zamišljate različite mogućnosti"
+      "option2": "Zamišljate različite mogućnosti",
+      "text": "Kada planirate budućnost, vi ćete:"
     },
     "question19": {
-      "text": "Kada donosite odluke, prioritet imate:",
       "option1": "Logiku i objektivnu analizu",
-      "option2": "Emocije i međuljudsku harmoniju"
+      "option2": "Emocije i međuljudsku harmoniju",
+      "text": "Kada donosite odluke, prioritet dajete:"
     },
     "question2": {
-      "text": "Tokom vikenda, više volite:",
       "option1": "Izlazak s prijateljima",
-      "option2": "Ostati kod kuće sam da se odmorite"
+      "option2": "Ostati kod kuće sam da se odmorite",
+      "text": "Tokom vikenda, preferirate:"
     },
     "question20": {
-      "text": "Kada kritikujete druge, vi:",
       "option1": "Direktno ukazujete na problem",
-      "option2": "Razmatrate osećaje drugih"
+      "option2": "Razmatrate osećaje drugih",
+      "text": "Kada kritikujete druge, vi ćete:"
     },
     "question21": {
-      "text": "Šta vam je važnije:",
       "option1": "Pravednost i pravda",
-      "option2": "Saosećanje i razumevanje"
+      "option2": "Saosećanje i razumevanje",
+      "text": "Vi pridajete veću važnost:"
     },
     "question22": {
-      "text": "Kada procenjujete ideju, prvo razmatrate:",
       "option1": "Da li je razumno",
-      "option2": "Da li je korisno"
+      "option2": "Da li je korisno",
+      "text": "Kada procenjujete ideju, prvo razmatrate:"
     },
     "question23": {
-      "text": "Kada vam prijatelj poveri, vi ćete:",
       "option1": "Analizirati problem i dati savete",
-      "option2": "Slušati i pružiti utehu"
+      "option2": "Slušati i pružiti utehu",
+      "text": "Kada vam prijatelji otkrivaju svoja osećanja, vi ćete:"
     },
     "question24": {
-      "text": "U sukobu, obično:",
       "option1": "Držite se principa",
-      "option2": "Održavate veze"
+      "option2": "Održavate veze",
+      "text": "U sukobima, obično:"
     },
     "question25": {
-      "text": "Lakše vas ubeđuju:",
       "option1": "Činjenice i podaci",
-      "option2": "Emocije i priče"
+      "option2": "Emocije i priče",
+      "text": "Vi ste lakše uvereni od strane:"
     },
     "question26": {
-      "text": "U timskom donošenju odluka, više se fokusirate na:",
       "option1": "Efikasnost i rezultate",
-      "option2": "Saglasnost i jedinstvo"
+      "option2": "Saglasnost i jedinstvo",
+      "text": "U donošenju odluka u timu, fokusirate se na:"
     },
     "question27": {
-      "text": "Verujete da dobar lider treba da:",
       "option1": "Bude pravedan i odlučan",
-      "option2": "Bude obazriv i brižan"
+      "option2": "Bude obazriv i brižan",
+      "text": "Verujete da dobar lider treba da:"
     },
     "question28": {
-      "text": "Vaš stil rada je:",
       "option1": "Planirati i pripremati unapred",
-      "option2": "Biti prilagodljiv i fleksibilan"
+      "option2": "Biti prilagodljiv i fleksibilan",
+      "text": "Vaš stil rada je:"
     },
     "question29": {
-      "text": "Vi više volite:",
       "option1": "Imati jasne rokove",
-      "option2": "Ostaviti mogućnosti otvorene"
+      "option2": "Ostaviti mogućnosti otvorene",
+      "text": "Preferirate:"
     },
     "question3": {
-      "text": "Nakon prisustvovanja okupljanju, obično:",
       "option1": "Osvežite se",
-      "option2": "Osećate potrebu za odmorom"
+      "option2": "Osećate potrebu za odmorom",
+      "text": "Nakon prisustvovanja okupljanju, obično:"
     },
     "question30": {
-      "text": "Dok putujete, obično:",
       "option1": "Pravite detaljne itinerere",
-      "option2": "Slobodno istražujete"
+      "option2": "Slobodno istražujete",
+      "text": "Kada putujete, obično:"
     },
     "question31": {
-      "text": "Vaša soba obično izgleda:",
       "option1": "Uredna i organizovana",
-      "option2": "Opustena i ležerna"
+      "option2": "Opustena i ležerna",
+      "text": "Vaša soba obično:"
     },
     "question32": {
-      "text": "Kada se bavite zadacima, vi ćete:",
       "option1": "Završiti ranije",
-      "option2": "Završiti blizu roka"
+      "option2": "Završiti blizu roka",
+      "text": "Kada obavljate zadatke, skloni ste da:"
     },
     "question33": {
-      "text": "Vaš željeni stil života:",
       "option1": "Strukturiran i uredan",
-      "option2": "Slobodan i fleksibilan"
+      "option2": "Slobodan i fleksibilan",
+      "text": "Vaš preferirani stil života:"
     },
     "question34": {
-      "text": "Kada donosite odluke, obično:",
       "option1": "Brzo donosite odluke",
-      "option2": "Ostaviti mogućnosti otvorene"
+      "option2": "Ostaviti mogućnosti otvorene",
+      "text": "Kada donosite odluke, skloni ste da:"
     },
     "question35": {
-      "text": "Dok kupujete, vi ćete:",
       "option1": "Napraviti spisak i kupiti prema planu",
-      "option2": "Povremeno pretraživati i kupovati što vam se dopada"
+      "option2": "Povremeno pretraživati i kupovati što vam se dopada",
+      "text": "Kada kupujete, vi ćete:"
     },
     "question36": {
-      "text": "Kada se suočavate sa promenama, obično:",
       "option1": "Osećate nelagodnost",
-      "option2": "Osjećajte se uzbuđeno"
+      "option2": "Osjećajte se uzbuđeno",
+      "text": "Kada se suočavate sa promenama, obično:"
     },
     "question4": {
-      "text": "U timu, obično:",
       "option1": "Aktivno se javljate",
-      "option2": "Slušate pre nego što progovorite"
+      "option2": "Slušate pre nego što progovorite",
+      "text": "U timu, više ste skloni da:"
     },
     "question5": {
-      "text": "Kada upoznajete nove prijatelje, vi:",
       "option1": "Brzo se upoznajete",
-      "option2": "Trebate vreme da ih upoznate"
+      "option2": "Trebate vreme da ih upoznate",
+      "text": "Kada upoznajete nove prijatelje, vi ćete:"
     },
     "question6": {
-      "text": "Vaš prijateljski krug:",
       "option1": "Širok, ali ne dubok",
-      "option2": "Mali i blizak"
+      "option2": "Mali i blizak",
+      "text": "Vaš krug prijatelja:"
     },
     "question7": {
-      "text": "Kada radite, više volite:",
       "option1": "Timsku saradnju",
-      "option2": "Nezavisni rad"
+      "option2": "Nezavisni rad",
+      "text": "Kada radite, preferirate:"
     },
     "question8": {
-      "text": "Kada razmišljate o problemima, obično:",
       "option1": "Govrite naglas dok razmišljate",
-      "option2": "Razmislite pre nego što progovorite"
+      "option2": "Razmislite pre nego što progovorite",
+      "text": "Kada razmišljate o problemima, skloni ste da:"
     },
     "question9": {
-      "text": "Kada ste pod pritiskom, obično ćete:",
       "option1": "Čavrljati sa prijateljima",
-      "option2": "Obraditi sami"
+      "option2": "Obraditi sami",
+      "text": "Kada ste pod pritiskom, vi ćete:"
     }
   },
   "quick": {
     "question1": {
-      "text": "U društvenim situacijama, obično:",
       "option1": "Inicirate razgovore sa drugima",
-      "option2": "Čekate da vas drugi priđu"
+      "option2": "Čekate da vas drugi priđu",
+      "text": "U društvenim situacijama, obično:"
     },
     "question10": {
-      "text": "Vaš stil rada je:",
       "option1": "Planirati i pripremiti unapred",
-      "option2": "Biti prilagodljiv i fleksibilan"
+      "option2": "Biti prilagodljiv i fleksibilan",
+      "text": "Vaš stil rada je:"
     },
     "question11": {
-      "text": "Preferirate:",
       "option1": "Imati jasne rokove",
-      "option2": "Održavanje opcija otvorenim"
+      "option2": "Održavanje opcija otvorenim",
+      "text": "Preferirate:"
     },
     "question12": {
-      "text": "Kada putujete, obično:",
       "option1": "Kreirate detaljan plan putovanja",
-      "option2": "Slobodno istražujete"
+      "option2": "Slobodno istražujete",
+      "text": "Kada putujete, obično:"
     },
     "question2": {
-      "text": "Tokom vikenda preferirate:",
       "option1": "Izlazak s prijateljima",
-      "option2": "Ostati kod kuće i opustiti se"
+      "option2": "Ostati kod kuće i opustiti se",
+      "text": "Tokom vikenda preferirate:"
     },
     "question3": {
-      "text": "Nakon prisustvovanja okupljanju, obično:",
       "option1": "Osećajući energiju",
-      "option2": "Osećajući potrebu za odmorom"
+      "option2": "Osećajući potrebu za odmorom",
+      "text": "Nakon prisustvovanja okupljanju, obično:"
     },
     "question4": {
-      "text": "Kada rešavate probleme, više se oslanjate na:",
       "option1": "Praktično iskustvo i činjenice",
-      "option2": "Intuiciju i mogućnosti"
+      "option2": "Intuiciju i mogućnosti",
+      "text": "Kada rešavate probleme, više se oslanjate na:"
     },
     "question5": {
-      "text": "Preferirate:",
       "option1": "Fokusiranje na specifične detalje",
-      "option2": "Fokusiranje na celokupni koncept"
+      "option2": "Fokusiranje na celokupni koncept",
+      "text": "Preferirate:"
     },
     "question6": {
-      "text": "Kada učite nove stvari, preferirate:",
       "option1": "Pristup korak po korak",
-      "option2": "Istraživanje inovativnih načina"
+      "option2": "Istraživanje inovativnih načina",
+      "text": "Kada učite nove stvari, preferirate:"
     },
     "question7": {
-      "text": "Kada donosite odluke, cenite:",
       "option1": "Logiku i objektivnu analizu",
-      "option2": "Emocije i međuljudsku harmoniju"
+      "option2": "Emocije i međuljudsku harmoniju",
+      "text": "Kada donosite odluke, cenite:"
     },
     "question8": {
-      "text": "Kada kritikujete druge, vi:",
       "option1": "Direktno ukazivanje na problem",
-      "option2": "Razmotrite osećanja druge osobe"
+      "option2": "Razmotrite osećanja druge osobe",
+      "text": "Kada kritikujete druge, vi:"
     },
     "question9": {
-      "text": "Vi više cenite:",
       "option1": "Pravednost i pravda",
-      "option2": "Saosećanje i razumevanje"
+      "option2": "Saosećanje i razumevanje",
+      "text": "Vi više cenite:"
     }
   },
   "share": {

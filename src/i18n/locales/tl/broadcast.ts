@@ -38,7 +38,7 @@ export default {
     "age": "Edad: {min}-{max} taon",
     "atLeastOneRequired": "Kailangan ng hindi bababa sa isang filter",
     "birthdayToday": "Kaarawan Ngayon",
-    "country": "Bansa: {country}",
+    "country": "Bansa/Rehiyon: {country}",
     "genderFemale": "Babae",
     "genderMale": "Lalaki",
     "genderOther": "Iba pa",
@@ -68,7 +68,7 @@ export default {
     "zodiacVirgo": "Virgo"
   },
   "filterAge": "• edad=18-25\n",
-  "filterCommand": "/broadcast_filter\n\n",
+  "filterCommand": "/broadcast_filter <filter> <msg_content> ",
   "filterConfirmConditions": "**Mga kundisyon ng filter:**\n{conditions}\n\n",
   "filterConfirmMessage": "**Nilalaman ng mensahe:**\n{message}\n\n",
   "filterConfirmTitle": "🔍 **Kumpirmasyon ng Broadcast Filter**\n\n",

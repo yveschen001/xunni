@@ -1,14 +1,14 @@
 export default {
-  "Aquarius": "Υδροχόος",
-  "Aries": "Κριός",
-  "Cancer": "Καρκίνος",
-  "Capricorn": "Αιγόκερως",
-  "Gemini": "Δίδυμοι",
-  "Leo": "Λέων",
-  "Libra": "Ζυγός",
-  "Pisces": "Ιχθύες",
-  "Sagittarius": "Τοξότης",
-  "Scorpio": "Σκορπιός",
-  "Taurus": "Ταύρος",
-  "Virgo": "Παρθένος"
+  "Aries": "♈️ Κριός",
+  "Taurus": "♉️ Ταύρος",
+  "Gemini": "♊️ Δίδυμοι",
+  "Cancer": "♋️ Καρκίνος",
+  "Leo": "♌️ Λέων",
+  "Virgo": "♍️ Παρθένος",
+  "Libra": "♎️ Ζυγός",
+  "Scorpio": "♏️ Σκορπιός",
+  "Sagittarius": "♐️ Τοξότης",
+  "Capricorn": "♑️ Αιγόκερως",
+  "Aquarius": "♒️ Υδροχόος",
+  "Pisces": "♓️ Ιχθύες"
 };

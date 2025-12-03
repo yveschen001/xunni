@@ -26,7 +26,7 @@ export default {
   "birthday3": "请输入你的生日（格式：YYYY-MM-DD）：\n\n",
   "birthday4": "生日：{birthday}",
   "birthdayCheck": "如果你认为这是错误，请检查你的生日格式是否正确（YYYY-MM-DD）。",
-  "birthdayError": "❌ {error}",
+  "birthdayError": "❌ {error}\n\n",
   "birthdayFormatError": "❌ 生日格式错误\n\n请重新输入（格式：YYYY-MM-DD）：",
   "birthdayRetry": "请重新输入生日（格式：YYYY-MM-DD）：",
   "birthdayWarning": "⚠️ 生日设定后无法修改，请确认无误！",
@@ -50,7 +50,7 @@ export default {
     "label": "• 性别：{gender}\n",
     "male": "男"
   },
-  "gender2": "• 性别：${updatedUser.gender ===",
+  "gender2": "• 性别：{updatedUser.gender ===",
   "gender3": "请选择你的性别：\n\n",
   "genderFemale": "👩 女",
   "genderMale": "👨 男",

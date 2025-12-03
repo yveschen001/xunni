@@ -165,5 +165,6 @@ export default {
       "seeking": "Momenteel Werkloos / In Overgang",
       "other_industry": "Overige Sectoren (Handmatig Invoeren)"
     }
-  }
+  },
+  "next_step_industry": "Em seguida, selecione sua indústria."
 };

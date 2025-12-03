@@ -25,6 +25,6 @@ export default {
   "time": "時間: {time}\n\n",
   "totalMessages": "• 総メッセージ数: {total}\n",
   "userMessages": "• あなたが送信した: {count}\n",
-  "viewFull": "💡 /history {identifier}を使って全体の会話を表示\n\n",
+  "viewFull": "💡 /history {identifier} を使って、会話の全体を表示します",
   "you": "あなた"
 };

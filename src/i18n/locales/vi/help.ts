@@ -53,10 +53,10 @@ export default {
   "message2": "/broadcast_non_vip <tin nhắn> - Phát sóng đến người dùng không VIP <message>",
   "message3": "• Phụ nữ từ 18-25 tuổi: giới tính= nữ , tuổi=18-25\n",
   "message4": "/broadcast_filter <lọc> <tin nhắn> - Phát sóng chính xác <filter> <message>",
-  "message5": "/broadcast_vip <tin nhắn> - Gửi đến người dùng VIP <message>",
+  "message5": "/broadcast_vip <tin nhắn> - Gửi đến người dùng VIP",
   "message6": "/maintenance_disable - Tắt chế độ bảo trì\n\n",
   "message7": "/maintenance_status - Kiểm tra trạng thái bảo trì\n",
-  "message8": "/broadcast <tin nhắn> - Phát sóng đến tất cả người dùng <message>",
+  "message8": "/broadcast <message> - Phát sóng đến tất cả người dùng",
   "profile": "/edit_profile - Chỉnh sửa hồ sơ\n",
   "profile2": "/profile - Xem hồ sơ\n",
   "profile3": "👤 **Hồ Sơ**\n",
@@ -119,5 +119,9 @@ export default {
   "devReset": "/dev_reset - Đặt lại người dùng hiện tại",
   "devRestart": "/dev_restart - Khởi động lại phiên bản",
   "devSkip": "/dev_skip - Bỏ qua hướng dẫn",
-  "fortune": "/fortune - 🔮 Tử vi hàng ngày và phân tích chi tiết về chiêm tinh"
+  "fortune": "/fortune - 🔮 Tử vi hàng ngày và phân tích chi tiết về chiêm tinh",
+  "clearFortune": "/clear_fortune - Xóa hồ sơ vận mệnh",
+  "adminGrantSection": "🔧 **Cung Cấp Tài Nguyên**",
+  "addVip": "/add_vip - Kích hoạt VIP (30 ngày)",
+  "addBottles": "/add_bottles - Thêm 50 chai bói toán"
 };

@@ -50,7 +50,7 @@ export default {
     "label": "• 性別：{gender}\n",
     "male": "男"
   },
-  "gender2": "• 性別：${updatedUser.gender ===",
+  "gender2": "• 性別：{updatedUser.gender ===",
   "gender3": "請選擇你的性別：\n\n",
   "genderFemale": "👩 女性",
   "genderMale": "👨 男性",

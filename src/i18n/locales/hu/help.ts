@@ -56,7 +56,7 @@ export default {
   "message5": "/broadcast_vip <message> - Küldés VIP felhasználóknak",
   "message6": "/maintenance_disable - Karbantartási mód letiltása\n\n",
   "message7": "/maintenance_status - Karbantartási státusz megtekintése\n",
-  "message8": "/broadcast <üzenet> - Közvetítés minden felhasználónak <message>",
+  "message8": "/broadcast <message> - Üzenet küldése az összes felhasználónak",
   "profile": "/edit_profile - Profil szerkesztése\n",
   "profile2": "/profile - Profil megtekintése\n",
   "profile3": "👤 **Profil**\n",
@@ -119,5 +119,9 @@ export default {
   "devReset": "/dev_reset - Aktuális felhasználó visszaállítása",
   "devRestart": "/dev_restart - Példány újraindítása",
   "devSkip": "/dev_skip - Oktatóanyag kihagyása",
-  "fortune": "/fortune - 🔮 Napi jóslat és részletes asztrológiai elemzés"
+  "fortune": "/fortune - 🔮 Napi jóslat és részletes asztrológiai elemzés",
+  "clearFortune": "/clear_fortune - Tisztítja a szerencse rekordokat",
+  "adminGrantSection": "🔧 **Erőforrás Ellátás**",
+  "addVip": "/add_vip - VIP aktiválása (30 nap)",
+  "addBottles": "/add_fortune bottles - 50 üzenet palack hozzáadása"
 };

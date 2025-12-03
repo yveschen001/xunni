@@ -165,5 +165,6 @@ export default {
       "seeking": "Derzeit arbeitslos / Im Übergang",
       "other_industry": "Sonstige Branchen (Manuell eingeben)"
     }
-  }
+  },
+  "next_step_industry": "Στη συνέχεια, επιλέξτε τον κλάδο σας."
 };

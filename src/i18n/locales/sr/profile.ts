@@ -39,7 +39,7 @@ export default {
   "profile": "│ 📇 Profilna kartica │\n",
   "profile2": "👤 **Профил**\n\n",
   "quota": "💡 Završite zadatke da biste zaradili dodatne dnevne kvote (koristite /tasks za proveru)\n",
-  "quota2": "📦 Trenutna dnevna kvota: ${taskBonus > 0 ?",
+  "quota2": "📦 Trenutna dnevna kvota: {taskBonus > 0 ?",
   "quotaBottles": "{taskBonus} poruka u boci",
   "quotaTotal": "📦 Тренутна дневна квота: {quota}\n\n",
   "returnToMenu": "🏠 Vratite se u glavni meni: /menu",
@@ -62,13 +62,14 @@ export default {
   "text": "• Koristite /profile_card da biste videli kompletnu profilnu karticu\n",
   "text2": "🏷️ Интереси: {interests}\n\n",
   "text3": "💎 Чланство: {vipStatus}\n\n",
-  "text4": "📝 Biografija:\n{bio}",
+  "text4": "📝 Uvod:\n{bio}",
   "text5": "Ova osoba je veoma misteriozna, ne ostavlja ništa za sobom～",
   "userNotFound": "⚠️ Korisnik ne postoji, molimo registrujte se prvo koristeći /start.",
   "vip": "VIP član (Ima rok: {expireDate})",
   "vip2": "• Koristite /vip za nadogradnju na VIP člana\n",
   "vipUpgrade": "• Koristite /vip za nadogradnju na VIP člana\n",
   "zodiac": "⭐ Horoskop: {zodiac}\n",
-  "fortuneQuota": "🔮 {fortunemessage bottle}: {total} (Ove nedelje besplatno: {weekly}/{limit} | Dodatno: {additional})",
-  "vipWithDays": "💎 VIP član (Preostalih {days} dana, Istek: {expireDate})"
+  "fortuneQuota": "🔮 {fortuneBottle}: {total} (Ove nedelje besplatno: {weekly}/{limit} | Dodatno: {additional})",
+  "vipWithDays": "💎 VIP član (Preostalih {days} dana, Istek: {expireDate})",
+  "driftBottleInfo": "🍾 poruka u boci: {remaining} / {total}"
 };

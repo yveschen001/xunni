@@ -26,7 +26,7 @@ export default {
   "birthday3": "Vennligst skriv inn bursdagen din (format: YYYY-MM-DD):\n\n",
   "birthday4": "Bursdag: {birthday}\n",
   "birthdayCheck": "Hvis du mener dette er en feil, vennligst sjekk om bursdagsformatet ditt er korrekt (ÅÅÅÅ-MM-DD).",
-  "birthdayError": "❌ {error}\n\\n",
+  "birthdayError": "❌ {error}\n\n",
   "birthdayFormatError": "❌ Ugyldig bursdagsformat\n\nVennligst skriv inn på nytt (format: ÅÅÅÅ-MM-DD):",
   "birthdayRetry": "Vennligst skriv inn bursdagen din på nytt (format: ÅÅÅÅ-MM-DD):",
   "birthdayWarning": "⚠️ Bursdag kan ikke endres etter at den er satt, vennligst bekreft at den er korrekt!",
@@ -50,7 +50,7 @@ export default {
     "label": "• Kjønn: {gender}\n",
     "male": "Mann"
   },
-  "gender2": "• Kjønn: ${updatedUser.gender ===",
+  "gender2": "• Kjønn: {updatedUser.gender ===",
   "gender3": "Vennligst velg kjønn:\n\n",
   "genderFemale": "👩 Kvinne",
   "genderMale": "👨 Mann",

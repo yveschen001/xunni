@@ -26,7 +26,7 @@ export default {
   "birthday3": "Vänligen ange ditt födelsedatum (format: ÅÅÅÅ-MM-DD):\n\n",
   "birthday4": "Födelsedag: {birthday}\n",
   "birthdayCheck": "Om du tror att detta är ett fel, vänligen kontrollera om ditt födelsedagsformat är korrekt (ÅÅÅÅ-MM-DD).",
-  "birthdayError": "❌ {error}",
+  "birthdayError": "❌ {error}\n\n",
   "birthdayFormatError": "❌ Ogiltigt födelsedagsformat\n\nVänligen ange på nytt (format: ÅÅÅÅ-MM-DD):",
   "birthdayRetry": "Vänligen ange din födelsedag på nytt (format: ÅÅÅÅ-MM-DD):",
   "birthdayWarning": "⚠️ Födelsedagen kan inte ändras efter att den har angivits, vänligen bekräfta att den är korrekt!",
@@ -50,7 +50,7 @@ export default {
     "label": "• Kön: {gender}\n",
     "male": "Man"
   },
-  "gender2": "• Kön: ${updatedUser.gender ===",
+  "gender2": "• Kön: {updatedUser.gender ===",
   "gender3": "Vänligen välj ditt kön:\n\n",
   "genderFemale": "👩 Kvinna",
   "genderMale": "👨 Man",

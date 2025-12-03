@@ -39,7 +39,7 @@ export default {
   "profile": "│ 📇 Κάρτα προφίλ │\n",
   "profile2": "👤 **Προφίλ**\n\n",
   "quota": "💡 Ολοκληρώστε εργασίες για να κερδίσετε πρόσθετες καθημερινές ποσοστώσεις (χρησιμοποιήστε /tasks για να δείτε)\n",
-  "quota2": "📦 Τρέχουσα καθημερινή ποσοστά: ${taskBonus > 0 ?",
+  "quota2": "📦 Τρέχουσα καθημερινή ποσοστά: {taskBonus > 0 ?",
   "quotaBottles": "{taskBonus} μπουκάλια μηνύματος",
   "quotaTotal": "📦 Τρέχουσα ημερήσια ποσόστωση: {quota}\n\n",
   "returnToMenu": "🏠 Επιστροφή στο κύριο μενού: /menu",
@@ -69,6 +69,7 @@ export default {
   "vip2": "• Χρησιμοποιήστε /vip για να αναβαθμίσετε σε Μέλος VIP\n",
   "vipUpgrade": "• Χρησιμοποιήστε /vip για να αναβαθμίσετε σε Μέλος VIP\n",
   "zodiac": "⭐ Ζώδιο: {zodiac}\n",
-  "fortuneQuota": "🔮 {fortunemessage bottle}: {total} (Αυτή τη βδομάδα δωρεάν: {weekly}/{limit} | Πρόσθετα: {additional})",
-  "vipWithDays": "💎 VIP Μέλος (Υπόλοιπα {days} ημέρες, Λήξη: {expireDate})"
+  "fortuneQuota": "🔮 {fortuneBottle}: {total} (Αυτή τη βδομάδα δωρεάν: {weekly}/{limit} | Πρόσθετα: {additional})",
+  "vipWithDays": "💎 VIP Μέλος (Υπόλοιπα {days} ημέρες, Λήξη: {expireDate})",
+  "driftBottleInfo": "🍾 μπουκάλι μηνυμάτων: {remaining} / {total}"
 };

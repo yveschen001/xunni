@@ -99,7 +99,7 @@ export default {
   "vipTriple": "💎 **Estadistika ng VIP Triple bote ng mensahe** (Huling {days} Araw)",
   "vipTripleTitle": "💎 **Estadistika ng VIP Triple bote ng mensahe** (Huling {days} Araw)",
   "zodiac": "🔮 **Zodiac**: {zodiac}",
-  "fortuneTitle": "🔮 **{fortunemessage bote ng mensahe}**",
+  "fortuneTitle": "\n🔮 **{fortuneBottle}**\n",
   "fortuneReadings": "• Bilang ng Kapalaran: {count}",
   "fortuneQuota": "• Natitirang Quota: {quota}"
 };

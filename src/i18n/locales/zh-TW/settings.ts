@@ -27,8 +27,6 @@ export default {
   "selectEndHour": "☀️ 開始時間已設定為 {start}:00。\n請選擇安靜時段的「結束時間」：\n(在此時間後恢復通知)",
   "disabled": "🚫 安靜時段已停用",
   "quietHoursHint": "在此時段內不會收到非緊急通知",
-  "quietHoursVipOnly": "🔒 安靜時段 (VIP 專屬)",
-  "upgradeForQuietHours": "💡 升級 VIP 即可自訂「安靜時段」，享受不被打擾的夜晚！",
   "blocklist": {
     "title": "🚫 封鎖名單",
     "empty": "目前沒有封鎖名單",

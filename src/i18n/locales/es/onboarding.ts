@@ -26,7 +26,7 @@ export default {
   "birthday3": "Por favor, ingresa tu fecha de nacimiento (formato: AAAA-MM-DD):\n\n",
   "birthday4": "Cumpleaños: {birthday}\n",
   "birthdayCheck": "Si crees que esto es un error, por favor verifica si el formato de tu cumpleaños es correcto (YYYY-MM-DD).",
-  "birthdayError": "❌ {error}",
+  "birthdayError": "❌ {error}\n\n",
   "birthdayFormatError": "❌ Formato de cumpleaños no válido\n\nPor favor vuelve a ingresar (formato: YYYY-MM-DD):",
   "birthdayRetry": "Por favor vuelve a ingresar tu cumpleaños (formato: YYYY-MM-DD):",
   "birthdayWarning": "⚠️ El cumpleaños no puede ser modificado después de establecerlo, ¡por favor confirma que es correcto!",
@@ -50,7 +50,7 @@ export default {
     "label": "• Género: {gender}\n",
     "male": "Masculino"
   },
-  "gender2": "• Género: ${updatedUser.gender ===",
+  "gender2": "• Género: {updatedUser.gender ===",
   "gender3": "Por favor selecciona tu género:\n\n",
   "genderFemale": "👩 Femenino",
   "genderMale": "👨 Masculino",

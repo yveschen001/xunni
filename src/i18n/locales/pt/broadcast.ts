@@ -38,7 +38,7 @@ export default {
     "age": "Idade: {min}-{max} anos",
     "atLeastOneRequired": "Pelo menos um filtro é necessário",
     "birthdayToday": "Aniversário hoje",
-    "country": "País: {country}",
+    "country": "País/Região: {country}",
     "genderFemale": "Feminino",
     "genderMale": "Masculino",
     "genderOther": "Outro gênero",
@@ -68,7 +68,7 @@ export default {
     "zodiacVirgo": "Virgem"
   },
   "filterAge": "• idade=18-25\n",
-  "filterCommand": "/broadcast_filter\n\n",
+  "filterCommand": "/broadcast_filter <filter> <msg_content> ",
   "filterConfirmConditions": "**Condições de filtro:**\n{conditions}\n\n",
   "filterConfirmMessage": "**Conteúdo da mensagem:**\n{message}\n\n",
   "filterConfirmTitle": "🔍 **Confirmação do Filtro de Transmissão**\n\n",

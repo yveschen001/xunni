@@ -95,20 +95,18 @@ export async function handleWatchAd(callbackQuery: CallbackQuery, env: Env): Pro
 
     // Check if VIP
     if (user.is_vip) {
-      await telegram.answerCallbackQuery(callbackQuery.id, {
-        text: i18n.t('adReward.vipNoAds'),
-        show_alert: true,
-      });
+      // Send message instead of alert to ensure visibility even if callback was answered
+      await telegram.sendMessage(chatId, i18n.t('adReward.vipNoAds'));
+      // Try to answer callback just in case (ignore error if already answered)
+      try { await telegram.answerCallbackQuery(callbackQuery.id); } catch (e) {}
       return;
     }
 
     // Check if there is any pending session
     const activeSession = await getActiveSessionByUser(db.d1, telegramId);
     if (activeSession) {
-      await telegram.answerCallbackQuery(callbackQuery.id, {
-        text: i18n.t('adReward.pendingAd'),
-        show_alert: true,
-      });
+      await telegram.sendMessage(chatId, i18n.t('adReward.pendingAd'));
+      try { await telegram.answerCallbackQuery(callbackQuery.id); } catch (e) {}
       return;
     }
 
@@ -154,7 +152,8 @@ export async function handleWatchAd(callbackQuery: CallbackQuery, env: Env): Pro
     await createAdSession(db.d1, telegramId, selection.provider.provider_name, token, source);
 
     // Build ad page URL
-    const adPageUrl = `${env.PUBLIC_URL}/ad.html?provider=${selection.provider.provider_name}&token=${token}&user=${telegramId}`;
+    const lang = user.language_pref || 'zh-TW';
+    const adPageUrl = `${env.PUBLIC_URL}/ad.html?provider=${selection.provider.provider_name}&token=${token}&user=${telegramId}&lang=${lang}`;
 
     // Send message with ad link
     const remainingAds = checkResult.remaining_ads;
@@ -352,7 +351,8 @@ export async function handleAdComplete(
     const adReward = await getTodayAdReward(db.d1, telegramId);
 
     // Process ad completion
-    const { createI18n } = await import('~/i18n');
+    const { createI18n, loadTranslations } = await import('~/i18n');
+    await loadTranslations(env, user.language_pref || 'zh-TW');
     const i18n = createI18n(user.language_pref || 'zh-TW');
     const result = processAdCompletion(adReward, user.is_vip, i18n);
 

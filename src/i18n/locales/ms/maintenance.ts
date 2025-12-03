@@ -2,7 +2,7 @@ export default {
   "allFeaturesAvailable": "Anda kini boleh menggunakan semua ciri seperti biasa.",
   "completed": "✅ Penyelenggaraan sistem telah selesai",
   "completingSoon": "Hampir selesai",
-  "correctFormat": "**Format yang betul:**\n/maintenance_enable <durasi (minit)> <duration (minutes)>",
+  "correctFormat": "**Format betul:**\n/maintenance_enable <durasi (minit)> <duration (minutes)>",
   "defaultMessage": "Sistem sedang dalam penyelenggaraan dan sementara tidak tersedia.",
   "disableFailed": "❌ Gagal untuk mematikan mod penyelenggaraan.",
   "disableSuccess": "✅ Mod penyelenggaraan telah dimatikan\n\nNotis pemulihan telah disiarkan kepada semua pengguna.",

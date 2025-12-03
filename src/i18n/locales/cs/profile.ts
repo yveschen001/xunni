@@ -39,7 +39,7 @@ export default {
   "profile": "│ 📇 Profilová karta │\n",
   "profile2": "👤 **Profil**\n\n",
   "quota": "💡 Dokončujte úkoly a získejte další denní kvóty (použijte /tasks pro kontrolu)\n",
-  "quota2": "📦 Aktuální denní kvóta: ${taskBonus > 0 ?",
+  "quota2": "📦 Aktuální denní kvóta: {taskBonus > 0 ?",
   "quotaBottles": "{taskBonus} láhve se zprávou",
   "quotaTotal": "📦 Aktuální denní kvóta: {quota}\n\n",
   "returnToMenu": "🏠 Návrat do hlavního menu: /menu",
@@ -69,6 +69,7 @@ export default {
   "vip2": "• Použijte /vip pro upgrade na VIP člena\n",
   "vipUpgrade": "• Použijte /vip pro upgrade na VIP člena\n",
   "zodiac": "⭐ Zvěrokruh: {zodiac}\n",
-  "fortuneQuota": "🔮 {fortunemessage bottle}: {total} (Tento týden zdarma: {weekly}/{limit} | Další: {additional})",
-  "vipWithDays": "💎 VIP člen (zbývá {days} dní, Vypršení: {expireDate})"
+  "fortuneQuota": "🔮 {fortuneBottle}: {total} (Tento týden zdarma: {weekly}/{limit} | Další: {additional})",
+  "vipWithDays": "💎 VIP člen (zbývá {days} dní, Vypršení: {expireDate})",
+  "driftBottleInfo": "🍾 zprávová láhev: {remaining} / {total}"
 };

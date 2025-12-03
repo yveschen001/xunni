@@ -56,7 +56,7 @@ export default {
   "message5": "/broadcast_vip <message> - Odoslať VIP používateľom",
   "message6": "/maintenance_disable - Deaktivovať režim údržby\n\n",
   "message7": "/maintenance_status - Zobraziť stav údržby\n",
-  "message8": "/broadcast <správa> - Odošli všetkým používateľom <message>",
+  "message8": "/broadcast <message> - Vyžarujte všetkým používateľom",
   "profile": "/edit_profile - Upraviť profil\n",
   "profile2": "/profile - Zobraziť profil\n",
   "profile3": "👤 **Profil**\n",
@@ -119,5 +119,9 @@ export default {
   "devReset": "/dev_reset - Obnoviť aktuálneho používateľa",
   "devRestart": "/dev_restart - Reštartovať inštanciu",
   "devSkip": "/dev_skip - Preskočiť tutoriál",
-  "fortune": "/fortune - 🔮 Denná predpoveď a hĺbková astrologická analýza"
+  "fortune": "/fortune - 🔮 Denná predpoveď a hĺbková astrologická analýza",
+  "clearFortune": "/clear_fortune - Vymazať záznamy o šťastí",
+  "adminGrantSection": "🔧 **Zásobovanie zdrojmi**",
+  "addVip": "/add_vip - Aktivovať VIP (30 dní)",
+  "addBottles": "/add_fortune bottles - Pridať 50 šťastných fliaš"
 };

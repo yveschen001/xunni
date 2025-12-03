@@ -19,246 +19,246 @@ export default {
   },
   "full": {
     "question1": {
-      "text": "V spoločenských situáciách zvyčajne:",
       "option1": "Zoberiete iniciatívu a rozprávate s inými.",
-      "option2": "Čakáte, kým k vám prídu iní."
+      "option2": "Čakáte, kým k vám prídu iní.",
+      "text": "V sociálnych situáciách obvykle:"
     },
     "question10": {
-      "text": "Pri riešení problémov sa viac spoliehate na:",
       "option1": "Praktické skúsenosti a fakty.",
-      "option2": "Intuície a možnosti."
+      "option2": "Intuície a možnosti.",
+      "text": "Pri riešení problémov sa viac spoliehate na:"
     },
     "question11": {
-      "text": "Preferujete:",
       "option1": "Zameriavať sa na konkrétne detaily.",
-      "option2": "Zameriavať sa na celkový obraz."
+      "option2": "Zameriavať sa na celkový obraz.",
+      "text": "Preferujete:"
     },
     "question12": {
-      "text": "Pri učení nových vecí preferujete:",
       "option1": "Krok za krokom prístup.",
-      "option2": "Skúmanie inovatívnych spôsobov."
+      "option2": "Skúmanie inovatívnych spôsobov.",
+      "text": "Pri učení nových vecí preferujete:"
     },
     "question13": {
-      "text": "Pri čítaní preferujete:",
       "option1": "Praktické príručky.",
-      "option2": "Teórie a koncepty."
+      "option2": "Teórie a koncepty.",
+      "text": "Pri čítaní uprednostňujete:"
     },
     "question14": {
-      "text": "Viac vám záleží na:",
       "option1": "Prítomnosti a minulosti.",
-      "option2": "Budúcnosti a možnostiach."
+      "option2": "Budúcnosti a možnostiach.",
+      "text": "Viac vás zaujíma:"
     },
     "question15": {
-      "text": "Pri opisovaní vecí sa tendenciu:",
       "option1": "Používať konkrétne príklady.",
-      "option2": "Používať metafory a analógie."
+      "option2": "Používať metafory a analógie.",
+      "text": "Pokiaľ ide o opisovanie vecí, máte tendenciu:"
     },
     "question16": {
-      "text": "V práci si ceníte:",
       "option1": "Praktickú aplikáciu.",
-      "option2": "Inovatívne nápady."
+      "option2": "Inovatívne nápady.",
+      "text": "V práci si ceníte:"
     },
     "question17": {
-      "text": "Dôverujete:",
       "option1": "Overeným metódam.",
-      "option2": "Novým pokusom."
+      "option2": "Novým pokusom.",
+      "text": "Viac dôverujete:"
     },
     "question18": {
-      "text": "Pri plánovaní budúcnosti:",
       "option1": "Zakladáte to na realistických podmienkach.",
-      "option2": "Predstavujete si rôzne možnosti."
+      "option2": "Predstavujete si rôzne možnosti.",
+      "text": "Keď plánujete budúcnosť, budete:"
     },
     "question19": {
-      "text": "Pri rozhodovaní dávate prednosť:",
       "option1": "Logike a objektívnej analýze.",
-      "option2": "Emóciám a medziľudskej harmónii."
+      "option2": "Emóciám a medziľudskej harmónii.",
+      "text": "Pri rozhodovaní uprednostňujete:"
     },
     "question2": {
-      "text": "Cez víkendy preferujete:",
       "option1": "Chodiť von s priateľmi.",
-      "option2": "Ostať doma osamote na odpočinok."
+      "option2": "Ostať doma osamote na odpočinok.",
+      "text": "Na víkendoch uprednostňujete:"
     },
     "question20": {
-      "text": "Keď kritizujete iných,:",
       "option1": "Prípadne priamo ukazujete na problém.",
-      "option2": "Zohľadňujete pocity ostatných."
+      "option2": "Zohľadňujete pocity ostatných.",
+      "text": "Keď kritizujete iných, máte tendenciu:"
     },
     "question21": {
-      "text": "Čo si vážite viac:",
       "option1": "Spravodlivosť a férovosť",
-      "option2": "Súcit a porozumenie"
+      "option2": "Súcit a porozumenie",
+      "text": "Viac dôležitosti prikladáte:"
     },
     "question22": {
-      "text": "Pri hodnotení nápadu najprv zvážite:",
       "option1": "Či je rozumný",
-      "option2": "Či je prínosný"
+      "option2": "Či je prínosný",
+      "text": "Pri hodnotení nápadu najprv zvážite:"
     },
     "question23": {
-      "text": "Keď sa vám priateľ zdôverí, vy:",
       "option1": "Analyzujete problém a ponúkate návrhy",
-      "option2": "Počúvate a poskytujete útěchu"
+      "option2": "Počúvate a poskytujete útěchu",
+      "text": "Keď sa vám priateľi zverujú, máte tendenciu:"
     },
     "question24": {
-      "text": "Pri konflikte zvyčajne:",
       "option1": "Držíte sa zásad",
-      "option2": "Udržujete vzťahy"
+      "option2": "Udržujete vzťahy",
+      "text": "V konfliktoch máte tendenciu:"
     },
     "question25": {
-      "text": "Ľahšie vás presvedčia:",
       "option1": "Fakty a údaje",
-      "option2": "Emócie a príbehy"
+      "option2": "Emócie a príbehy",
+      "text": "Ste ľahšie presvedčiteľný:"
     },
     "question26": {
-      "text": "Pri rozhodovaní v tíme sa viac sústreďujete na:",
       "option1": "Efektivitu a výsledky",
-      "option2": "Konsenzus a jednotu"
+      "option2": "Konsenzus a jednotu",
+      "text": "Pri rozhodovaní v tíme sa sústreďujete na:"
     },
     "question27": {
-      "text": "Veríte, že dobrý líder by mal:",
       "option1": "Byť spravodlivý a rozhodný",
-      "option2": "Byť ohľaduplný a starostlivý"
+      "option2": "Byť ohľaduplný a starostlivý",
+      "text": "Veríte, že dobrý líder by mal:"
     },
     "question28": {
-      "text": "Váš pracovný štýl je:",
       "option1": "Plánovať a pripravovať sa vopred",
-      "option2": "Byť prispôsobivý a flexibilný"
+      "option2": "Byť prispôsobivý a flexibilný",
+      "text": "Váš pracovný štýl je:"
     },
     "question29": {
-      "text": "Preferujete:",
       "option1": "Jasne stanovené termíny",
-      "option2": "Zachovávať možnosti otvorené"
+      "option2": "Zachovávať možnosti otvorené",
+      "text": "Preferujete:"
     },
     "question3": {
-      "text": "Po účasti na stretnutí obvykle:",
       "option1": "Cítite sa energicky",
-      "option2": "Cítite potrebu odpočinku"
+      "option2": "Cítite potrebu odpočinku",
+      "text": "Po zúčastnení sa stretávania obvykle:"
     },
     "question30": {
-      "text": "Počas cestovania obvykle:",
       "option1": "Vytvárate podrobné itineráre",
-      "option2": "Voľne skúmate"
+      "option2": "Voľne skúmate",
+      "text": "Pri cestovaní máte tendenciu:"
     },
     "question31": {
-      "text": "Váš izba je zvyčajne:",
       "option1": "Úhľadná a usporiadaná",
-      "option2": "Neformálna a uvoľnená"
+      "option2": "Neformálna a uvoľnená",
+      "text": "Vaša izba zvyčajne:"
     },
     "question32": {
-      "text": "Pri riešení úloh:",
       "option1": "Dokončíte skôr",
-      "option2": "Dokončíte blízko negatívneho termínu"
+      "option2": "Dokončíte blízko negatívneho termínu",
+      "text": "Keď zvládate úlohy, máte tendenciu:"
     },
     "question33": {
-      "text": "Váš preferovaný životný štýl:",
       "option1": "Štruktúrovaný a usporiadaný",
-      "option2": "Voľný a flexibilný"
+      "option2": "Voľný a flexibilný",
+      "text": "Váš preferovaný životný štýl:"
     },
     "question34": {
-      "text": "Pri rozhodovaní zvyčajne:",
       "option1": "Robíte rýchle rozhodnutia",
-      "option2": "Zachovávate možnosti otvorené"
+      "option2": "Zachovávate možnosti otvorené",
+      "text": "Keď robíte rozhodnutia, máte tendenciu:"
     },
     "question35": {
-      "text": "Pri nakupovaní:",
       "option1": "Vytvárate zoznam a kupujete podľa plánu",
-      "option2": "Jeden budete prehliadať a kúpiť čo sa vám páči"
+      "option2": "Jeden budete prehliadať a kúpiť čo sa vám páči",
+      "text": "Keď nakupujete, budete:"
     },
     "question36": {
-      "text": "Keď čelíte zmene, obyčajne:",
       "option1": "Cítite sa nepokojne",
-      "option2": "Cítim sa vzrušene"
+      "option2": "Cítim sa vzrušene",
+      "text": "Keď čelíte zmenám, zvyčajne:"
     },
     "question4": {
-      "text": "V tíme ste viac naklonený k:",
       "option1": "Aktívne vyjadrujete svoje názory",
-      "option2": "Počúvate predtým, než prehovoríte"
+      "option2": "Počúvate predtým, než prehovoríte",
+      "text": "V tíme máte väčšiu tendenciu:"
     },
     "question5": {
-      "text": "Keď spoznávate nových priateľov, vy:",
       "option1": "Rýchlo sa zoznamujete",
-      "option2": "Potrebujete čas, aby ste sa postupne udomácnili"
+      "option2": "Potrebujete čas, aby ste sa postupne udomácnili",
+      "text": "Keď spoznávate nových priateľov, budete:"
     },
     "question6": {
-      "text": "Váš okruh priateľov:",
       "option1": "Široký, ale nie hlboký",
-      "option2": "Malý a intímny"
+      "option2": "Malý a intímny",
+      "text": "Váš okruh priateľov:"
     },
     "question7": {
-      "text": "Pri práci preferujete:",
       "option1": "Tímovú spoluprácu",
-      "option2": "Samostatnú prácu"
+      "option2": "Samostatnú prácu",
+      "text": "Keď pracujete, preferujete:"
     },
     "question8": {
-      "text": "Keď premýšľate o problémoch, máte tendenciu:",
       "option1": "Premýšľať pri rozprávaní",
-      "option2": "Plánovať svoje myšlienky pred rozprávaním"
+      "option2": "Plánovať svoje myšlienky pred rozprávaním",
+      "text": "Keď premýšľate o problémoch, máte tendenciu:"
     },
     "question9": {
-      "text": "Keď ste pod stresom, zaobchádzate:",
       "option1": "Rozprávate sa s priateľmi",
-      "option2": "Spracovávate osamote"
+      "option2": "Spracovávate osamote",
+      "text": "Keď ste pod tlakom, budete:"
     }
   },
   "quick": {
     "question1": {
-      "text": "V sociálnych situáciách obvykle:",
       "option1": "Proaktívne sa zapájate do rozhovorov",
-      "option2": "Čakáte, kým sa ku mne priblížia iní"
+      "option2": "Čakáte, kým sa ku mne priblížia iní",
+      "text": "V sociálnych situáciách obvykle:"
     },
     "question10": {
-      "text": "Váš pracovný štýl je:",
       "option1": "Plánovať a pripravovať sa vopred",
-      "option2": "Prispôsobiť sa a byť flexibilný"
+      "option2": "Prispôsobiť sa a byť flexibilný",
+      "text": "Váš pracovný štýl je:"
     },
     "question11": {
-      "text": "Preferujete:",
       "option1": "Jasné termíny",
-      "option2": "Nechať možnosti otvorené"
+      "option2": "Nechať možnosti otvorené",
+      "text": "Preferujete:"
     },
     "question12": {
-      "text": "Pri cestovaní máte tendenciu:",
       "option1": "Vytvárať podrobné itineráre",
-      "option2": "Preskúmavať vo svojom vlastnom tempe"
+      "option2": "Preskúmavať vo svojom vlastnom tempe",
+      "text": "Pri cestovaní máte tendenciu:"
     },
     "question2": {
-      "text": "Na víkende preferujete:",
       "option1": "Tráviť čas s priateľmi",
-      "option2": "Zostať doma a relaxovať osamote"
+      "option2": "Zostať doma a relaxovať osamote",
+      "text": "Na víkende preferujete:"
     },
     "question3": {
-      "text": "Po zúčastnení sa stretávania obvykle:",
       "option1": "Cítite sa nabitý energiou",
-      "option2": "Cítite potrebu si oddýchnuť"
+      "option2": "Cítite potrebu si oddýchnuť",
+      "text": "Po zúčastnení sa stretávania obvykle:"
     },
     "question4": {
-      "text": "Pri riešení problémov sa viac spoliehate na:",
       "option1": "Praktické skúsenosti a fakty",
-      "option2": "Intuície a možnosti"
+      "option2": "Intuície a možnosti",
+      "text": "Pri riešení problémov sa viac spoliehate na:"
     },
     "question5": {
-      "text": "Preferujete:",
       "option1": "Zameranie na konkrétne detaily",
-      "option2": "Zameranie na celkový koncept"
+      "option2": "Zameranie na celkový koncept",
+      "text": "Preferujete:"
     },
     "question6": {
-      "text": "Pri učení nových vecí preferujete:",
       "option1": "Prístup krok za krokom",
-      "option2": "Preskúmavanie inovatívnych metód"
+      "option2": "Preskúmavanie inovatívnych metód",
+      "text": "Pri učení nových vecí preferujete:"
     },
     "question7": {
-      "text": "Pri rozhodovaní si vážite:",
       "option1": "Logiku a objektívnu analýzu",
-      "option2": "Emóciu a medziľudskú harmóniu"
+      "option2": "Emóciu a medziľudskú harmóniu",
+      "text": "Pri rozhodovaní si vážite:"
     },
     "question8": {
-      "text": "Pri kritizovaní iných vy:",
       "option1": "Prímo poukázať na problém",
-      "option2": "Zohľadnite pocity druhej osoby"
+      "option2": "Zohľadnite pocity druhej osoby",
+      "text": "Pri kritizovaní iných vy:"
     },
     "question9": {
-      "text": "Viac si vážite:",
       "option1": "Spravodlivosť a právo",
-      "option2": "Súcit a porozumenie"
+      "option2": "Súcit a porozumenie",
+      "text": "Viac si vážite:"
     }
   },
   "share": {

@@ -1,7 +1,7 @@
 export default {
   "select_continent": "Vyberte prosím svůj region 🌍",
-  "select_country": "Vyberte prosím zemi.",
-  "search_city_prompt": "Zadejte prosím název města (např. Tchaj-pej).",
+  "select_country": "prosím vyberte zemi/region",
+  "search_city_prompt": "Prosím, zadejte název města (např.: Tokio)",
   "city_not_found": "Město nebylo nalezeno, zkuste prosím anglický název.",
   "confirm_city": "Je toto město, které jste vybrali: {city} ({country})?",
   "continent": {

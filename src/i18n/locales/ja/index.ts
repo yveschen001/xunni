@@ -63,6 +63,7 @@ import interests from './interests';
 import career from './career';
 import geo from './geo';
 import fortune from './fortune';
+import adPage from './adPage';
 import zodiac from './zodiac';
 
 export const translations = {
@@ -132,5 +133,6 @@ export const translations = {
   career,
   geo,
   fortune,
+  adPage,
   zodiac,
 };

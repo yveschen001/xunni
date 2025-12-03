@@ -112,5 +112,6 @@ export default {
     "career_focused": "Radoholičar",
     "family": "Obitelj/Roditeljstvo",
     "exploring": "Istraživanje"
-  }
+  },
+  "back_to_categories": "Vrati se u izbornik kategorija"
 };

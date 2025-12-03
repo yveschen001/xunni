@@ -2,7 +2,7 @@ export default {
   "allFeaturesAvailable": "Du kan nu bruge alle funktioner normalt.",
   "completed": "✅ Systemvedligeholdelse er blevet gennemført",
   "completingSoon": "Næsten færdig",
-  "correctFormat": "**Korrekt format:**\n/vedligeholdelse_aktivere <varighed (minutter)> <duration (minutes)>",
+  "correctFormat": "**Korrekt format:**\n/maintenance_enable <varighed (minutter)> <duration (minutes)>",
   "defaultMessage": "Systemet er under vedligeholdelse og kan ikke bruges midlertidigt.",
   "disableFailed": "❌ Mislykkedes at deaktivere vedligeholdelsestilstand.",
   "disableSuccess": "✅ Vedligeholdelsestilstand er blevet deaktiveret\n\nGenopretningsmeddelelse er blevet sendt til alle brugere.",
@@ -28,5 +28,5 @@ export default {
   "statusTitle": "🛠️ Status for vedligeholdelsestilstand",
   "thanks": "Tak for din tålmodighed!",
   "unknown": "Ukendt",
-  "usageError": "❌ Forkert brug"
+  "usageError": "❌ Ugyldig brug"
 };

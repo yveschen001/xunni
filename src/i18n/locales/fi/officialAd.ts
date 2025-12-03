@@ -20,7 +20,7 @@ export default {
   "noAdsAvailable": "❌ Ei saatavilla olevia mainoksia tällä hetkellä",
   "noVerificationRequired": "❌ Tämä mainos ei vaadi vahvistusta",
   "quotaInfo": "📊 Jäljellä tänään: **{remaining}/20** kertaa",
-  "requiresVerification": "✅ Vahvistus tarvitaan: Napsauta 'Vahvista' -painiketta liittyessäsi ryhmään/kanavaan",
+  "requiresVerification": "✅ Vahvistus vaaditaan: Napsauta 'Vahvista' -painiketta liittyessäsi ryhmään/kanavaan",
   "reward": "🎁 Palkinto: +{quota} pysyvää kiintiötä",
   "rewardPermanent": "🎁 Suorita tehtävä ansaitaksesi **+1 pysyvä kiintiö**",
   "rewardTemporary": "🎁 Onneksi olkoon! Olet saanut +1 tilapäisen kiintiön (voimassa tänään)",

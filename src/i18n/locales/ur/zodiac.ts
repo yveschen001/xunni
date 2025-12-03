@@ -1,14 +1,14 @@
 export default {
-  "Aquarius": "دلو",
-  "Aries": "برج حمل",
-  "Cancer": "کینسر",
-  "Capricorn": "برج جدی",
-  "Gemini": "جمنائی",
-  "Leo": "شیر",
-  "Libra": "برج میزان",
-  "Pisces": "مچھلیاں",
-  "Sagittarius": "برج قوس",
-  "Scorpio": "برج عقرب",
-  "Taurus": "برج ثور",
-  "Virgo": "سنبلہ"
+  "Aries": "♈️ حمل",
+  "Taurus": "♉️ ثور",
+  "Gemini": "♊️ جمنائی",
+  "Cancer": "♋️ کینسر",
+  "Leo": "♌️ شیر",
+  "Virgo": "♍️ کنیا",
+  "Libra": "♎️ میزان",
+  "Scorpio": "♏️ عقرب",
+  "Sagittarius": "♐️ قوس",
+  "Capricorn": "♑️ جدی",
+  "Aquarius": "♒️ دلو",
+  "Pisces": "♓️ حوت"
 };

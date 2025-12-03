@@ -15,7 +15,7 @@ export default {
   "levelFree": "🆓 Δωρεάν μέλος",
   "levelVip": "💎 Μέλος VIP",
   "message": "Ας ρίξουμε μπουκάλια μηνύματος μαζί στο XunNi! 🍾 Χρησιμοποίησε τον κωδικό πρόσκλησής μου για να συμμετάσχεις, και μπορούμε να αποκτήσουμε και οι δύο περισσότερες ποσοστώσεις!",
-  "message2": "https://t.me/share/url?url=https://t.me/{botUsername}?start=invite_{inviteCode}&text=Ελάτε στο XunNi και ρίξτε μαζί ένα μπουκάλι μηνύματος",
+  "message2": "XunNi Ας ρίξουμε μαζί ένα μήνυμα μπουκάλι",
   "notRegistered": "Δεν έχει εγγραφεί",
   "notSet": "Δεν έχει ρυθμιστεί",
   "quota": "• Και οι δύο αποκτάτε ένα ημερήσιο ποσοστό +1\n\n",
@@ -28,7 +28,7 @@ export default {
   "short": "Μέλος δωρεάν",
   "stats": "📊 Δείτε στατιστικά πρόσκλησης: /profile",
   "stats2": "📊 Δείτε στατιστικά πρόσκλησης",
-  "task": "🎯 **Επόμενη Εργασία**\n⏳ {nextTask.name} (+{nextTask.reward_amount} μπουκάλια μηνύματος)\n💡 {nextTask.description}\n\n",
+  "task": "🎯 **Επόμενη Δραστηριότητα**\n⏳ {nextTask.name} (+{nextTask.reward_amount} μήνυμα μπουκαλιών)\n💡 {nextTask.description}",
   "text": "🏠 **Κύριο Μενού** {vipBadge}\n\n",
   "text2": "👋 Γεια, {user.nickname}!\n\n",
   "text3": "💡 Κάντε κλικ στο κουμπί παρακάτω για να μοιραστείτε με φίλους:\n",
@@ -36,7 +36,7 @@ export default {
   "text5": "📊 Η κατάσταση σας:\n",
   "title": "🏠 **Κύριο μενού**",
   "userNotFound": "Ο χρήστης δεν υπάρχει",
-  "vip": "• Επίπεδο: {isVip ? 'VIP Μέλος 💎' : 'Ελεύθερο Μέλος'}",
+  "vip": "• Επίπεδο: {isVip ? 'Μέλος VIP 💎' : 'Δωρεάν Μέλος'} {isVip ? 'Μέλος VIP 💎' : 'Δωρεάν Μέλος'} {isVip ? 'VIP Member 💎' : 'Free Member'} {isVip ? 'VIP 會員 💎' : '免費會員'}",
   "vip2": "Μέλος VIP 💎",
   "yourStatus": "Η κατάσταση σας",
   "birthDate": "Ημερομηνία γέννησης",
@@ -45,5 +45,5 @@ export default {
   "interests": "Ενδιαφέροντα",
   "bio": "Προφίλ",
   "driftBottles": "Μήνυμα σε Μπουκάλι",
-  "fortuneBottles": "Μπουκάλι Τύχης"
+  "fortuneBottles": "μαντεία μπουκαλιού τύχης"
 };

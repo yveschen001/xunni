@@ -26,7 +26,7 @@ export default {
   "birthday3": "Veuillez entrer votre date de naissance (format : AAAA-MM-JJ) :\n\n",
   "birthday4": "Anniversaire : {birthday}\n",
   "birthdayCheck": "Si vous pensez qu'il s'agit d'une erreur, veuillez vérifier si le format de votre date de naissance est correct (AAAA-MM-JJ).",
-  "birthdayError": "{error}",
+  "birthdayError": "❌ {error}\n\n",
   "birthdayFormatError": "❌ Format de date de naissance invalide\n\nVeuillez ré-entrer (format : AAAA-MM-JJ) :",
   "birthdayRetry": "Veuillez ré-entrer votre date de naissance (format : AAAA-MM-JJ) :",
   "birthdayWarning": "⚠️ La date de naissance ne peut pas être modifiée après sa définition, veuillez confirmer qu'elle est correcte !",
@@ -50,7 +50,7 @@ export default {
     "label": "• Sexe : {gender}\n",
     "male": "Homme"
   },
-  "gender2": "• Sexe : ${updatedUser.gender ===",
+  "gender2": "• Sexe : {updatedUser.gender ===",
   "gender3": "Veuillez sélectionner votre sexe :\n\n",
   "genderFemale": "👩 Femme",
   "genderMale": "👨 Homme",

@@ -165,5 +165,6 @@ export default {
       "seeking": "Временски невработен / Во транзиција",
       "other_industry": "Други индустрии (Внеси рачно)"
     }
-  }
+  },
+  "next_step_industry": "Zatim odaberite svoju industriju."
 };

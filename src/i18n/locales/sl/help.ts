@@ -56,7 +56,7 @@ export default {
   "message5": "/broadcast_vip <message> - Pošlji VIP uporabnikom",
   "message6": "/maintenance_disable - Onemogoči način vzdrževanja\n\n",
   "message7": "/maintenance_status - Oglej si stanje vzdrževanja\n",
-  "message8": "/broadcast <sporočilo> - Razširi vsem uporabnikom <message>",
+  "message8": "/broadcast <message> - Pošlji sporočilo vsem uporabnikom",
   "profile": "/edit_profile - Uredi profil\n",
   "profile2": "/profile - Oglej si profil\n",
   "profile3": "👤 **Profil**\n",
@@ -119,5 +119,9 @@ export default {
   "devReset": "/dev_reset - Ponastavi trenutnega uporabnika",
   "devRestart": "/dev_restart - Ponovno zaženi instanco",
   "devSkip": "/dev_skip - Preskoči vadnico",
-  "fortune": "/fortune - 🔮 Dnevna usoda in poglobljena astrologijska analiza"
+  "fortune": "/fortune - 🔮 Dnevna usoda in poglobljena astrologijska analiza",
+  "clearFortune": "/clear_fortune - Počisti registre sreče",
+  "adminGrantSection": "🔧 **Osnovna dobava**",
+  "addVip": "/add_vip - Aktiviraj VIP (30 dni)",
+  "addBottles": "/add_fortune bottles - Dodaj 50 sporočilnih steklenic"
 };

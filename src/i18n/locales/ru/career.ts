@@ -165,5 +165,6 @@ export default {
       "seeking": "В настоящее время безработный / В переходе",
       "other_industry": "Другие отрасли (Введите вручную)"
     }
-  }
+  },
+  "next_step_industry": "lütfen sektörünüzü seçin."
 };

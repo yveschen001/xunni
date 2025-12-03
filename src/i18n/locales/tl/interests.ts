@@ -112,5 +112,6 @@ export default {
     "career_focused": "Workaholic",
     "family": "Pamilya/Pagiging Magulang",
     "exploring": "Pagsusuri"
-  }
+  },
+  "back_to_categories": "Bumalik sa menu ng kategorya"
 };

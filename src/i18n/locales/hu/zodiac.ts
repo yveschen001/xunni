@@ -1,14 +1,14 @@
 export default {
-  "Aquarius": "Vízöntő",
-  "Aries": "Kos",
-  "Cancer": "Rák",
-  "Capricorn": "Bak",
-  "Gemini": "Ikrek",
-  "Leo": "Oroszlán",
-  "Libra": "Mérleg",
-  "Pisces": "Halak",
-  "Sagittarius": "Nyilas",
-  "Scorpio": "Skorpió",
-  "Taurus": "Bika",
-  "Virgo": "Szűz"
+  "Aries": "♈️ Kos",
+  "Taurus": "♉️ Bika",
+  "Gemini": "♊️ Ikrek",
+  "Cancer": "♋️ Rák",
+  "Leo": "♌️ Oroszlán",
+  "Virgo": "♍️ Szűz",
+  "Libra": "♎️ Mérleg",
+  "Scorpio": "♏️ Skorpió",
+  "Sagittarius": "♐️ Nyilas",
+  "Capricorn": "♑️ Bak",
+  "Aquarius": "♒️ Vízöntő",
+  "Pisces": "♓️ Halak"
 };

@@ -25,7 +25,7 @@ export default {
   "nickname": "📝 Biệt danh: {ownerMaskedNickname}\n",
   "nickname2": "📝 Biệt danh: {catcherNickname}\n",
   "notRegistered": "❌ Vui lòng hoàn thành quy trình đăng ký trước khi nhặt chai thư.\n\nSử dụng /start để tiếp tục đăng ký.",
-  "originalContent": "Nội dung gốc: {content}",
+  "originalContent": "Văn bản gốc: {content}",
   "originalLanguage": "Ngôn ngữ gốc: {language}",
   "quotaExhausted": "❌ Hạn mức chai thư hôm nay đã hết ({quotaDisplay})",
   "replyButton": "💬 Trả lời tin nhắn",

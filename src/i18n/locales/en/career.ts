@@ -165,5 +165,6 @@ export default {
       "seeking": "Currently Unemployed / In Transition",
       "other_industry": "Other Industries (Input Manually)"
     }
-  }
+  },
+  "next_step_industry": "Next, please select your industry:"
 };

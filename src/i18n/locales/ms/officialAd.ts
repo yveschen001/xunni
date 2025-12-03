@@ -20,7 +20,7 @@ export default {
   "noAdsAvailable": "❌ Tiada iklan tersedia",
   "noVerificationRequired": "❌ Iklan ini tidak memerlukan pengesahan",
   "quotaInfo": "📊 Sisa hari ini: **{remaining}/20** kali",
-  "requiresVerification": "✅ Pengesahan diperlukan: Klik butang 'Sahkan' selepas menyertai kumpulan/saluran",
+  "requiresVerification": "✅ Pengesahan diperlukan: Klik butang 'Verify' selepas menyertai kumpulan/saluran",
   "reward": "🎁 Ganjaran: +{quota} kuota tetap",
   "rewardPermanent": "🎁 Lengkapkan tugas untuk mendapat **+1 kuota tetap**.",
   "rewardTemporary": "🎁 Tahniah atas penerimaan +1 kuota sementara (sah hari ini).",

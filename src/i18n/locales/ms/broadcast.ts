@@ -38,7 +38,7 @@ export default {
     "age": "Umur: {min}-{max} tahun",
     "atLeastOneRequired": "Sekurang-kurangnya satu penapis diperlukan",
     "birthdayToday": "Ulang Tahun Hari Ini",
-    "country": "Negara: {country}",
+    "country": "Negara/Wilayah: {country}",
     "genderFemale": "Perempuan",
     "genderMale": "Lelaki",
     "genderOther": "Lain-lain",
@@ -68,7 +68,7 @@ export default {
     "zodiacVirgo": "Virgo"
   },
   "filterAge": "• umur=18-25\n",
-  "filterCommand": "/broadcast_filter\n\n",
+  "filterCommand": "/broadcast_filter <filter> <msg_content> ",
   "filterConfirmConditions": "**Keadaan penapis:**\n{conditions}\n\n",
   "filterConfirmMessage": "**Kandungan mesej:**\n{message}\n\n",
   "filterConfirmTitle": "🔍 **Pengesahan Penapis Siaran**\n\n",

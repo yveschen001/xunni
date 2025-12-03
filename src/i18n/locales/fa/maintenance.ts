@@ -2,7 +2,7 @@ export default {
   "allFeaturesAvailable": "شما اکنون می‌توانید از تمام ویژگی‌ها به طور عادی استفاده کنید.",
   "completed": "✅ نگهداری سیستم با موفقیت کامل شد",
   "completingSoon": "به زودی جمع بندی می‌شود",
-  "correctFormat": "**فرمت صحیح:**\n/maintenance_enable <مدت زمان (دقایق)> <duration (minutes)>",
+  "correctFormat": "**فرمت صحیح:**\n/maintenance_enable <مدت زمان (دقیقه)> <duration (minutes)>",
   "defaultMessage": "سیستم در حال نگهداری است و به طور موقت در دسترس نیست.",
   "disableFailed": "❌ غیرفعال کردن حالت نگهداری ناموفق بود.",
   "disableSuccess": "✅ حالت نگهداری غیرفعال شده است\n\nاطلاع‌رسانی به تمام کاربران پخش شده است.",

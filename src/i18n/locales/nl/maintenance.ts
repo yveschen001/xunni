@@ -2,7 +2,7 @@ export default {
   "allFeaturesAvailable": "Je kunt nu alle functies normaal gebruiken.",
   "completed": "✅ Systeemonderhoud is voltooid",
   "completingSoon": "Bijna klaar",
-  "correctFormat": "**Correct formaat:**\n/maintenance_enable <duur (minuten)> <duration (minutes)>",
+  "correctFormat": "** correct formaat:**\n/onderhoud_inschakelen <duur (minuten)> <duration (minutes)>",
   "defaultMessage": "Het systeem is in onderhoud en kan tijdelijk niet worden gebruikt.",
   "disableFailed": "❌ Mislukt om de onderhoudsmodus uit te schakelen.",
   "disableSuccess": "✅ Onderhoudsmodus is uitgeschakeld\n\nHerstelmelding is naar alle gebruikers verzonden.",

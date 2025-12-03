@@ -1,9 +1,9 @@
 export default {
   "cannotGetNickname": "❌ Kunne ikke hente Telegram-kaldenavn",
   "customHint": "⚠️ Bemærk:\n• Kaldenavns længdegrænse er 36 tegn\n• Den anden part kan vise maksimalt 18 tegn\n• Venligst brug ikke et kaldenavn til at sende annoncer",
-  "customPrompt": "✏️ Indtast venligst dit kaldenavn:",
+  "customPrompt": "✏️ Venligst indtast dit kaldenavn:",
   "genderHint": "⚠️ Bemærk: Kønindstillingen kan ikke ændres efter valg, venligst vælg omhyggeligt!\n-For at bruge astrologi- og message bottle matchende funktioner, venligst udfyld dit køn ved fødslen.",
-  "genderSelection": "Fantastisk! Dit kaldenavn er: {nickname}\n\nNu skal du vælge dit køn:",
+  "genderSelection": "Fantastisk! Dit kaldenavn er: {nickname}\n\nVælg venligst dit køn:",
   "nicknameSet": "✅ Kaldenavn er blevet indstillet",
   "userNotFound": "❌ Bruger findes ikke"
 };

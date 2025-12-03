@@ -112,5 +112,6 @@ export default {
     "career_focused": "Työholisti",
     "family": "Perhe/Vanhemmuus",
     "exploring": "Tutkimus"
-  }
+  },
+  "back_to_categories": "Palaa kategoria-valikkoon"
 };

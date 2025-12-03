@@ -112,5 +112,6 @@ export default {
     "career_focused": "Працьовитий",
     "family": "Сім'я/Батьківство",
     "exploring": "Дослідження"
-  }
+  },
+  "back_to_categories": "Повернутися до меню категорій"
 };

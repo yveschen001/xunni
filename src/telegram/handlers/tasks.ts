@@ -63,8 +63,8 @@ export async function handleTasks(message: TelegramMessage, env: Env): Promise<v
       }).length;
 
       message_text += i18n.t('tasks.profile', {
-        completedCount,
-        profileTasks: profileTasks.length,
+        completed: completedCount,
+        total: profileTasks.length,
       });
       message_text += `━━━━━━━━━━━━━━━━\n`;
 
@@ -89,7 +89,7 @@ export async function handleTasks(message: TelegramMessage, env: Env): Promise<v
         return userTask?.status === 'completed';
       }).length;
 
-      message_text += i18n.t('tasks.task2', { completedCount, socialTasks: socialTasks.length });
+      message_text += i18n.t('tasks.task2', { completed: completedCount, total: socialTasks.length });
       message_text += `━━━━━━━━━━━━━━━━\n`;
 
       for (const task of socialTasks) {
@@ -128,7 +128,7 @@ export async function handleTasks(message: TelegramMessage, env: Env): Promise<v
         return userTask?.status === 'completed';
       }).length;
 
-      message_text += i18n.t('tasks.task3', { completedCount, actionTasks: actionTasks.length });
+      message_text += i18n.t('tasks.task3', { completed: completedCount, total: actionTasks.length });
       message_text += `━━━━━━━━━━━━━━━━\n`;
 
       for (const task of actionTasks) {
@@ -154,7 +154,7 @@ export async function handleTasks(message: TelegramMessage, env: Env): Promise<v
       message_text += i18n.t('tasks.invite', { inviteProgress });
       message_text += i18n.t('tasks.invite2');
       const dailyQuota = calculateDailyQuota(user);
-      message_text += i18n.t('tasks.quota', { calculateDailyQuota: dailyQuota });
+      message_text += i18n.t('tasks.quota', { quota: dailyQuota });
       message_text += '\n';
     }
 
@@ -398,6 +398,13 @@ export async function getNextIncompleteTask(
       userTasks.filter((ut) => ut.status === 'completed').map((ut) => ut.task_id)
     );
 
+    // Pre-fetch stats for dynamic checks
+    let userStats: {
+      bottleCount?: number;
+      catchCount?: number;
+      conversationCount?: number;
+    } = {};
+
     // Find first incomplete task (excluding invite task as it's continuous)
     for (const task of allTasks) {
       // Skip invite task (it's continuous)
@@ -415,6 +422,30 @@ export async function getNextIncompleteTask(
 
       // Check if task is completed
       if (!completedTaskIds.has(task.id)) {
+        // Fetch stats lazily if needed for this specific task
+        if (task.id === 'task_first_bottle' && userStats.bottleCount === undefined) {
+          const res = await db.d1.prepare('SELECT COUNT(*) as count FROM bottles WHERE owner_telegram_id = ?').bind(user.telegram_id).first<{ count: number }>();
+          userStats.bottleCount = res?.count || 0;
+        }
+        if (task.id === 'task_first_catch' && userStats.catchCount === undefined) {
+          const res = await db.d1.prepare("SELECT COUNT(*) as count FROM bottles WHERE matched_with_telegram_id = ? AND status = 'matched'").bind(user.telegram_id).first<{ count: number }>();
+          userStats.catchCount = res?.count || 0;
+        }
+        if (task.id === 'task_first_conversation' && userStats.conversationCount === undefined) {
+          const res = await db.d1.prepare('SELECT COUNT(*) as count FROM conversations WHERE user_a_telegram_id = ? OR user_b_telegram_id = ?').bind(user.telegram_id, user.telegram_id).first<{ count: number }>();
+          userStats.conversationCount = res?.count || 0;
+        }
+
+        // Double check: Is it actually completed based on data?
+        // This prevents the loop where task is conceptually done but not marked in DB
+        const isActuallyCompleted = isTaskCompleted(task.id, user, userStats);
+        
+        if (isActuallyCompleted) {
+          // Self-healing: Mark it as completed silently
+          await completeUserTask(db, user.telegram_id, task.id);
+          continue; // Skip this task, find next
+        }
+
         return task;
       }
     }

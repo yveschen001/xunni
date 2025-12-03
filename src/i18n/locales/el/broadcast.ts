@@ -38,7 +38,7 @@ export default {
     "age": "Ηλικία: {min}-{max} χρόνια",
     "atLeastOneRequired": "Απαιτείται τουλάχιστον ένα φίλτρο",
     "birthdayToday": "Γενέθλια σήμερα",
-    "country": "Χώρα: {country}",
+    "country": "Χώρα/Περιοχή: {country}",
     "genderFemale": "Γυναίκα",
     "genderMale": "Άνδρας",
     "genderOther": "Άλλο φύλο",
@@ -68,7 +68,7 @@ export default {
     "zodiacVirgo": "Παρθένος"
   },
   "filterAge": "• ηλικία=18-25\n",
-  "filterCommand": "/broadcast_filter\n\n",
+  "filterCommand": "/broadcast_filter <filter> <msg_content> ",
   "filterConfirmConditions": "**Συνθήκες φίλτρου:**\n{conditions}\n\n",
   "filterConfirmMessage": "**Περιεχόμενο μηνύματος:**\n{message}\n\n",
   "filterConfirmTitle": "🔍 **Επιβεβαίωση Φίλτρου Μετάδοσης**\n\n",

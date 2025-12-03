@@ -50,7 +50,7 @@ export class TarotHandler {
     await new Promise(r => setTimeout(r, 1500));
     
     const cards = drawCards(3);
-    const cardDisplay = cards.map((c, i) => `${i + 1}. ${getCardDisplay(c.card, c.reversed)}`).join('\n');
+    const cardDisplay = cards.map((c, i) => `${i + 1}. ${getCardDisplay(c.card, c.reversed, this.i18n)}`).join('\n');
     
     await telegram.editMessageText(chatId, msg.message_id, 
       `${this.i18n.t('fortune.tarot_ui.drawn')}\n\n${cardDisplay}\n\n${this.i18n.t('common.analyzing')}`
@@ -78,12 +78,12 @@ export class TarotHandler {
       );
 
       // 4. Show Result
-      const resultText = `🃏 *${this.i18n.t('fortune.type.tarot')}*\n\n` +
+      const resultText = `🃏 ${this.i18n.t('fortune.type.tarot')}\n\n` +
                          `${cardDisplay}\n\n` +
                          `-------------------\n\n` +
                          fortune.content;
       
-      await telegram.sendMessage(chatId, resultText, { parse_mode: 'Markdown' });
+      await telegram.sendMessage(chatId, resultText);
 
       const buttons = [
         [{ text: this.i18n.t('fortune.menu.my_reports'), callback_data: 'fortune_my_reports' }],

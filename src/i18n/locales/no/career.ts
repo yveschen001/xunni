@@ -165,5 +165,6 @@ export default {
       "seeking": "For tiden arbeidsledig / I overgang",
       "other_industry": "Andre industrier (skriv manuelt)"
     }
-  }
+  },
+  "next_step_industry": "Välj sedan din bransch."
 };

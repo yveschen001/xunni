@@ -26,7 +26,7 @@ export default {
   "birthday3": "Lütfen doğum tarihinizi girin (şekil: YYYY-AA-GG):\n\n",
   "birthday4": "Doğum Günü: {birthday}\n",
   "birthdayCheck": "Bu bir hata olduğunu düşünüyorsanız, lütfen doğum günü formatınızın doğru olduğunu kontrol edin (YYYY-AA-GG).",
-  "birthdayError": "❌ {error}",
+  "birthdayError": "❌ {error}\n\n",
   "birthdayFormatError": "❌ Yanlış doğum günü formatı\n\nLütfen yeniden giriniz (format: YYYY-AA-GG):",
   "birthdayRetry": "Lütfen doğum gününüzü yeniden giriniz (format: YYYY-AA-GG):",
   "birthdayWarning": "⚠️ Doğum tarihi belirlendikten sonra değiştirilemez, lütfen doğru olduğundan emin olun!",
@@ -50,7 +50,7 @@ export default {
     "label": "• Cinsiyet: {gender}\n",
     "male": "Erkek"
   },
-  "gender2": "• Cinsiyet: ${updatedUser.gender ===",
+  "gender2": "• Cinsiyet: {updatedUser.gender ===",
   "gender3": "Lütfen cinsiyetinizi seçin:\n\n",
   "genderFemale": "👩 Kadın",
   "genderMale": "👨 Erkek",

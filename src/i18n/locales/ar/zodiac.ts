@@ -1,14 +1,14 @@
 export default {
-  "Aquarius": "الدلو",
-  "Aries": "الحمل",
-  "Cancer": "السرطان",
-  "Capricorn": "الجدي",
-  "Gemini": "الجوزاء",
-  "Leo": "الأسد",
-  "Libra": "الميزان",
-  "Pisces": "الحوت",
-  "Sagittarius": "القوس",
-  "Scorpio": "العقرب",
-  "Taurus": "الثور",
-  "Virgo": "العذراء"
+  "Aries": "♈️ الحمل",
+  "Taurus": "♉️ الثور",
+  "Gemini": "♊️ الجوزاء",
+  "Cancer": "♋️ السرطان",
+  "Leo": "♌️ الأسد",
+  "Virgo": "♍️ العذراء",
+  "Libra": "♎️ الميزان",
+  "Scorpio": "♏️ العقرب",
+  "Sagittarius": "♐️ القوس",
+  "Capricorn": "♑️ الجدي",
+  "Aquarius": "♒️ الدلو",
+  "Pisces": "♓️ الحوت"
 };

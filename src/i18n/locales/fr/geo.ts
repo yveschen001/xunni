@@ -1,7 +1,7 @@
 export default {
   "select_continent": "Veuillez sélectionner votre région 🌍",
-  "select_country": "Veuillez sélectionner un pays",
-  "search_city_prompt": "Veuillez entrer le nom de la ville (par exemple, Taipei)",
+  "select_country": "Veuillez sélectionner un pays/région",
+  "search_city_prompt": "Veuillez entrer le nom de la ville (par exemple : Tokyo)",
   "city_not_found": "Ville non trouvée, veuillez essayer le nom en anglais.",
   "confirm_city": "Est-ce la ville que vous avez sélectionnée : {city} ({country}) ?",
   "continent": {

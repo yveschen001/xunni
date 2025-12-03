@@ -26,7 +26,7 @@ export default {
   "birthday3": "Kérlek, add meg a születési dátumodat (formátum: ÉÉÉÉ-HH-NN):\n\n",
   "birthday4": "Születésnap: {birthday}\n",
   "birthdayCheck": "Ha úgy gondolja, hogy ez hiba, ellenőrizze, hogy a születésnap formátuma helyes-e (ÉÉÉÉ-HH-NN).",
-  "birthdayError": "{error}\n\n",
+  "birthdayError": "❌ {error}\n\n",
   "birthdayFormatError": "❌ Hibás születésnap formátum\n\nKérjük, írja be újra (formátum: ÉÉÉÉ-HH-NN):",
   "birthdayRetry": "Kérjük, írja be a születési dátumát újra (formátum: ÉÉÉÉ-HH-NN):",
   "birthdayWarning": "⚠️ A születésnapot a beállítás után nem lehet módosítani, kérjük, erősítse meg, hogy helyes!",
@@ -50,7 +50,7 @@ export default {
     "label": "• Neme: {gender}\n",
     "male": "Férfi"
   },
-  "gender2": "• Neme: ${updatedUser.gender ===",
+  "gender2": "• Neme: {updatedUser.gender ===",
   "gender3": "Kérlek, válaszd ki a nemed:\n\n",
   "genderFemale": "👩 Nő",
   "genderMale": "👨 Férfi",

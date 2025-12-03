@@ -99,7 +99,7 @@ export default {
   "vipTriple": "💎 **VIP Triple Flaschenstatistik** (letzte {days} Tage)",
   "vipTripleTitle": "💎 **VIP Triple Flaschenstatistik** (letzte {days} Tage)",
   "zodiac": "🔮 **Sternzeichen**: {zodiac}\n",
-  "fortuneTitle": "🔮 **{fortunemessage Nachrichtenflasche}**",
+  "fortuneTitle": "\n🔮 **{fortuneBottle}**\n",
   "fortuneReadings": "• Glückszahl : {count}",
   "fortuneQuota": "• Verbleibendes Kontingent : {quota}"
 };

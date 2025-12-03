@@ -2,7 +2,7 @@ export default {
   "allFeaturesAvailable": "Du kannst nun alle Funktionen normal nutzen.",
   "completed": "✅ Systemwartung wurde abgeschlossen",
   "completingSoon": "Fast fertig",
-  "correctFormat": "**Korrektes Format:**\n/maintenance_enable <Dauer (Minuten)> <duration (minutes)>",
+  "correctFormat": "**Richtige Format:**\n/maintenance_enable <Dauer (Minuten)> <duration (minutes)>",
   "defaultMessage": "Das System ist in Wartung und kann vorübergehend nicht genutzt werden.",
   "disableFailed": "❌ Fehler beim Deaktivieren des Wartungsmodus.",
   "disableSuccess": "✅ Wartungsmodus wurde deaktiviert\n\nBenachrichtigung zur Wiederherstellung wurde an alle Nutzer gesendet.",

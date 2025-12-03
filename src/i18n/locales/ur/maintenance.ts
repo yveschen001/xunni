@@ -2,7 +2,7 @@ export default {
   "allFeaturesAvailable": "آپ اب تمام خصوصیات کا نارمل طور پر استعمال کر سکتے ہیں۔",
   "completed": "✅ نظام کی دیکھ بھال مکمل ہو گئی",
   "completingSoon": "جلد ہی ختم ہو رہا ہے",
-  "correctFormat": "**صحیح شکل:**\n/maintenance_enable <مدت (منٹ)> <duration (minutes)>",
+  "correctFormat": "**صحیح فارمیٹ:**\n/maintenance_enable <مدت (منٹ)> <duration (minutes)>",
   "defaultMessage": "نظام دیکھ بھال میں ہے اور عارضی طور پر دستیاب نہیں ہے۔",
   "disableFailed": "❌ دیکھ بھال کے موڈ کو غیر فعال کرنے میں ناکامی۔",
   "disableSuccess": "✅ دیکھ بھال کا موڈ غیر فعال کر دیا گیا ہے\n\nمرمت کی اطلاع تمام صارفین کو ارسال کی جا چکی ہے۔",

@@ -38,7 +38,7 @@ export default {
     "age": "Leeftijd: {min}-{max} jaar",
     "atLeastOneRequired": "Ten minste één filter is vereist",
     "birthdayToday": "Verjaardag vandaag",
-    "country": "Land: {country}",
+    "country": "Land/Regio: {country}",
     "genderFemale": "Vrouwelijk",
     "genderMale": "Mannelijk",
     "genderOther": "Andere gender",
@@ -68,7 +68,7 @@ export default {
     "zodiacVirgo": "Maagd"
   },
   "filterAge": "• leeftijd=18-25\n",
-  "filterCommand": "/broadcast_filter\n\n",
+  "filterCommand": "/broadcast_filter <filter> <msg_content> ",
   "filterConfirmConditions": "**Filtervoorwaarden:**\n{conditions}\n\n",
   "filterConfirmMessage": "**Berichtinhoud:**\n{message}\n\n",
   "filterConfirmTitle": "🔍 **Bevestiging van uitzendingfilter**\n\n",

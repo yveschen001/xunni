@@ -39,7 +39,7 @@ export default {
   "profile": "│ 📇 Karta profilu │\n",
   "profile2": "👤 **Profil**\n\n",
   "quota": "💡 Wykonuj zadania, aby zdobyć dodatkowe codzienne limity (użyj /tasks, aby sprawdzić)\n",
-  "quota2": "📦 Aktualny dzienny limit: ${taskBonus > 0 ?",
+  "quota2": "📦 Aktualny dzienny limit: {taskBonus > 0 ?",
   "quotaBottles": "{taskBonus} butelek z wiadomościami",
   "quotaTotal": "📦 Obecny dzienny limit: {quota}\n\n",
   "returnToMenu": "🏠 Powrót do menu głównego: /menu",
@@ -69,6 +69,7 @@ export default {
   "vip2": "• Użyj /vip, aby zaktualizować do członka VIP\n",
   "vipUpgrade": "• Użyj /vip, aby zaktualizować do członka VIP\n",
   "zodiac": "⭐ Znak zodiaku: {zodiac}\n",
-  "fortuneQuota": "🔮 {fortunemessage bottle}: {total} (Ten tydzień gratis: {weekly}/{limit} | Dodatkowo: {additional})",
-  "vipWithDays": "💎 VIP członek (Pozostało {days} dni, Wygasa: {expireDate})"
+  "fortuneQuota": "🔮 {fortuneBottle}: {total} (Ten tydzień gratis: {weekly}/{limit} | Dodatkowo: {additional})",
+  "vipWithDays": "💎 VIP członek (Pozostało {days} dni, Wygasa: {expireDate})",
+  "driftBottleInfo": "🍾 butelka wiadomości: {remaining} / {total}"
 };

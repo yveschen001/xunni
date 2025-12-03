@@ -1,7 +1,7 @@
 export default {
   "select_continent": "Prosím, vyberte svoj región 🌍",
-  "select_country": "Prosím, vyberte krajinu",
-  "search_city_prompt": "Prosím, zadajte názov mesta (napr. Taipei)",
+  "select_country": "Prosím, vyberte krajinu/oblasť",
+  "search_city_prompt": "Prosím zadajte názov mesta (napr.: Tokio)",
   "city_not_found": "Mesto nebolo nájdené, skúste prosím anglický názov.",
   "confirm_city": "Je toto mesto, ktoré ste vybrali: {city} ({country})?",
   "continent": {

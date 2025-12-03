@@ -38,7 +38,7 @@ export default {
     "age": "Возраст: {min}-{max} години",
     "atLeastOneRequired": "Најмалку еден филтер е потребен",
     "birthdayToday": "Роденден денес",
-    "country": "Држава: {country}",
+    "country": "Држава/Регион: {country}",
     "genderFemale": "Женски",
     "genderMale": "Машки",
     "genderOther": "Друг пол",
@@ -68,7 +68,7 @@ export default {
     "zodiacVirgo": "Девица"
   },
   "filterAge": "• возраст=18-25\n",
-  "filterCommand": "/broadcast_filter\n\n",
+  "filterCommand": "/broadcast_filter <filter> <msg_content> ",
   "filterConfirmConditions": "**Услови за филтрирање:**\n{conditions}\n\n",
   "filterConfirmMessage": "**Содржина на пораката:**\n{message}\n\n",
   "filterConfirmTitle": "🔍 **Потврда за филтер на емитување**\n\n",

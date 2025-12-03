@@ -31,7 +31,5 @@ export default {
     "title": "🚫 Daftar Blokir",
     "empty": "Saat ini tidak ada daftar blokir",
     "unblock": "Buka Blokir"
-  },
-  "quietHoursVipOnly": "🔒 Quiet Hours (VIP Only)",
-  "upgradeForQuietHours": "Upgrade to VIP to use this feature"
+  }
 };

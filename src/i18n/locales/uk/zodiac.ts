@@ -1,14 +1,14 @@
 export default {
-  "Aquarius": "Водолій",
-  "Aries": "Овен",
-  "Cancer": "Рак",
-  "Capricorn": "Козеріг",
-  "Gemini": "Близнюки",
-  "Leo": "Лев",
-  "Libra": "Терези",
-  "Pisces": "Риби",
-  "Sagittarius": "Стрілець",
-  "Scorpio": "Скорпіон",
-  "Taurus": "Телець",
-  "Virgo": "Діва"
+  "Aries": "♈️ Овен",
+  "Taurus": "♉️ Телець",
+  "Gemini": "♊️ Близнюки",
+  "Cancer": "♋️ Рак",
+  "Leo": "♌️ Лев",
+  "Virgo": "♍️ Діва",
+  "Libra": "♎️ Терези",
+  "Scorpio": "♏️ Скорпіон",
+  "Sagittarius": "♐️ Стрілець",
+  "Capricorn": "♑️ Козеріг",
+  "Aquarius": "♒️ Водолій",
+  "Pisces": "♓️ Риби"
 };

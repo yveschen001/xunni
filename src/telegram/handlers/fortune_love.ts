@@ -5,7 +5,7 @@ import { I18n, createI18n } from '~/i18n';
 import { findUserByTelegramId } from '~/db/queries/users';
 import { MatchRequestService } from '~/services/match_request';
 import { RelationshipType } from '~/domain/match_request';
-import { upsertSession, getActiveSession } from '~/db/queries/sessions';
+import { upsertSession, getActiveSession, clearSession } from '~/db/queries/sessions';
 import { SessionType } from '~/domain/session';
 import { FortuneService } from '~/services/fortune';
 import { getMatchRequest } from '~/db/queries/match_requests';
@@ -200,6 +200,9 @@ export class LoveFortuneHandler {
    * Helper: Start Target ID Input Session
    */
   private async startTargetIdInput(chatId: number, userId: string, relType: RelationshipType, familyRole: string | undefined, db: any, telegram: ReturnType<typeof createTelegramService>) {
+    // Clear potential conflicting sessions to avoid input hijacking
+    await clearSession(db, userId, 'edit_profile');
+    
     // Save session
     await upsertSession(
       db, 

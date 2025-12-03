@@ -39,7 +39,7 @@ export default {
   "profile": "│ 📇 Kartela e profilit │\n",
   "profile2": "👤 **Profili**\n\n",
   "quota": "💡 Kryeni detyra për të fituar kuota të përditshme të shtuar (përdorni /tasks për të kontrolluar)\n",
-  "quota2": "📦 Kuota aktuale e përditshme: ${taskBonus > 0 ?",
+  "quota2": "📦 Kuota aktuale e përditshme: {taskBonus > 0 ?",
   "quotaBottles": "{taskBonus} message bottles",
   "quotaTotal": "📦 Kuota e përditshme aktuale: {quota}\n\n",
   "returnToMenu": "🏠 Kthehu në menunë kryesore: /menu",
@@ -62,13 +62,14 @@ export default {
   "text": "• Përdorni /profile_card për të parë kartelën e plotë të profilit\n",
   "text2": "🏷️ Interesat: {interests}\n\n",
   "text3": "💎 Anëtarësimi: {vipStatus}\n\n",
-  "text4": "📝 Biografia:\n{bio}",
+  "text4": "📝 Prezantimi:\n{bio}",
   "text5": "Ky person është shumë misterioz, nuk ka lënë asgjë pas～",
   "userNotFound": "⚠️ Përdoruesi nuk ekziston, ju lutemi regjistrohuni së pari duke përdorur /start.",
   "vip": "Anëtar VIP (Skadon: {expireDate})",
   "vip2": "• Përdorni /vip për t'u përmirësuar në anëtar VIP\n",
   "vipUpgrade": "• Përdorni /vip për t'u përmirësuar në anëtar VIP\n",
   "zodiac": "⭐ Shenja e zodiakut: {zodiac}\n",
-  "fortuneQuota": "🔮 {fortunemessage bottle}: {total} (Këtë javë falas: {weekly}/{limit} | Shtesë: {additional})",
-  "vipWithDays": "💎 Anëtar VIP (Të mbetur {days} ditë, Skadimi: {expireDate})"
+  "fortuneQuota": "🔮 {fortuneBottle}: {total} (Këtë javë falas: {weekly}/{limit} | Shtesë: {additional})",
+  "vipWithDays": "💎 Anëtar VIP (Të mbetur {days} ditë, Skadimi: {expireDate})",
+  "driftBottleInfo": "🍾 shishja e mesazheve: {remaining} / {total}"
 };

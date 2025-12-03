@@ -165,5 +165,6 @@ export default {
       "seeking": "Αυτή τη στιγμή Άνεργος / Σε Μετάβαση",
       "other_industry": "Άλλες Βιομηχανίες (Εισαγωγή Χειροκίνητα)"
     }
-  }
+  },
+  "next_step_industry": "Tjetër, ju lutemi zgjidhni industrinë tuaj."
 };

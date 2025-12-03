@@ -26,7 +26,7 @@ export default {
   "birthday3": "Prosím, zadajte svoje narodeniny (formát: RRRR-MM-DD):\n\n",
   "birthday4": "Narodeniny: {birthday}\n",
   "birthdayCheck": "Ak si myslíte, že ide o chybu, skontrolujte prosím, či je formát vášho narodenia správny (RRRR-MM-DD).",
-  "birthdayError": "📝 Biografia:\n{bio} {error}",
+  "birthdayError": "❌ {error}\n\n",
   "birthdayFormatError": "❌ Nesprávny formát narodenín\n\nProsím, zadajte znova (formát: RRRR-MM-DD):",
   "birthdayRetry": "Prosím, zadajte svoje narodeniny znova (formát: RRRR-MM-DD):",
   "birthdayWarning": "⚠️ Narodeniny nie je možné upraviť po nastavení, prosím, potvrďte, či sú správne!",
@@ -50,7 +50,7 @@ export default {
     "label": "• Pohlavie: {gender}\n",
     "male": "Muž"
   },
-  "gender2": "• Pohlavie: ${updatedUser.gender ===",
+  "gender2": "• Pohlavie: {updatedUser.gender ===",
   "gender3": "Prosím, vyberte svoje pohlavie:\n\n",
   "genderFemale": "👩 Žena",
   "genderMale": "👨 Muž",

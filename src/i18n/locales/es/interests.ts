@@ -112,5 +112,6 @@ export default {
     "career_focused": "Adicto al Trabajo",
     "family": "Familia/Padres",
     "exploring": "Exploración"
-  }
+  },
+  "back_to_categories": "Regresar al menú de categorías"
 };

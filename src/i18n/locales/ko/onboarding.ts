@@ -26,7 +26,7 @@ export default {
   "birthday3": "생년월일을 입력하세요 (형식: YYYY-MM-DD):\n\n",
   "birthday4": "생일: {birthday}\n",
   "birthdayCheck": "이 정보가 올바르지 않다고 생각되면 생일 형식이 올바른지 확인해 주세요 (YYYY-MM-DD).",
-  "birthdayError": "{error}",
+  "birthdayError": "❌ {error}\n\n",
   "birthdayFormatError": "❌ 잘못된 생일 형식\n\n다시 입력해 주세요 (형식: YYYY-MM-DD):",
   "birthdayRetry": "생일을 다시 입력해 주세요 (형식: YYYY-MM-DD):",
   "birthdayWarning": "⚠️ 설정된 후에는 생일을 수정할 수 없습니다. 올바른지 확인해 주세요!",
@@ -50,7 +50,7 @@ export default {
     "label": "• 성별: {gender}\n",
     "male": "남성"
   },
-  "gender2": "• 성별: ${updatedUser.gender ===",
+  "gender2": "• 성별: {updatedUser.gender ===",
   "gender3": "성별을 선택하세요:\n\n",
   "genderFemale": "👩 여성",
   "genderMale": "👨 남성",

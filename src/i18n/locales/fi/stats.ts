@@ -99,7 +99,7 @@ export default {
   "vipTriple": "💎 **VIP Kolmoispulloposti-tilastot** (viimeiset {days} päivää)",
   "vipTripleTitle": "💎 **VIP Kolmoispulloposti-tilastot** (viimeiset {days} päivää)",
   "zodiac": "🔮 **Horoskooppi**: {zodiac}\n",
-  "fortuneTitle": "🔮 **{fortunemessage bottle}**",
+  "fortuneTitle": "\n🔮 **{fortuneBottle}**\n",
   "fortuneReadings": "• Onnentaulukko : {count}",
   "fortuneQuota": "• Jäljellä oleva kiintiö : {quota}"
 };

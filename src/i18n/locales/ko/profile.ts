@@ -39,7 +39,7 @@ export default {
   "profile": "│ 📇 프로필 카드 │\n",
   "profile2": "👤 **프로필**\n\n",
   "quota": "💡 하루의 추가 쿼터를 얻으려면 작업을 완료하세요 (작업 확인은 /tasks 사용)\n",
-  "quota2": "📦 현재 일일 쿼터：${taskBonus > 0 ?",
+  "quota2": "📦 현재 일일 쿼터：{taskBonus > 0 ?",
   "quotaBottles": "{taskBonus} 메시지 병",
   "quotaTotal": "📦 현재 일일 쿼터: {quota}\n\n",
   "returnToMenu": "🏠 메인 메뉴로 돌아가기：/menu",
@@ -69,6 +69,7 @@ export default {
   "vip2": "• /vip를 사용하여 VIP 회원으로 업그레이드하세요\n",
   "vipUpgrade": "• /vip를 사용하여 VIP 회원으로 업그레이드하세요\n",
   "zodiac": "⭐ 별자리: {zodiac}\n",
-  "fortuneQuota": "🔮 {fortunemessage 메시지 병}: {total} (이번 주 무료: {weekly}/{limit} | 추가: {additional})",
-  "vipWithDays": "💎 VIP 회원 (남은 {days}일, 만료: {expireDate})"
+  "fortuneQuota": "🔮 {fortuneBottle}: {total} (이번 주 무료: {weekly}/{limit} | 추가: {additional})",
+  "vipWithDays": "💎 VIP 회원 (남은 {days}일, 만료: {expireDate})",
+  "driftBottleInfo": "🍾 메시지 병: {remaining} / {total}"
 };

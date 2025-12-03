@@ -1,7 +1,7 @@
 export default {
   "select_continent": "Silakan pilih wilayah Anda 🌍",
-  "select_country": "Silakan pilih negara",
-  "search_city_prompt": "Silakan masukkan nama kota (contoh: Taipei)",
+  "select_country": "Silakan pilih negara/region",
+  "search_city_prompt": "Silakan masukkan nama kota (misalnya: Tokyo)",
   "city_not_found": "Kota tidak ditemukan, silakan coba nama dalam bahasa Inggris.",
   "confirm_city": "Apakah ini kota yang Anda pilih: {city} ({country})?",
   "continent": {

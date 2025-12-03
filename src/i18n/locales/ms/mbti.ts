@@ -19,246 +19,246 @@ export default {
   },
   "full": {
     "question1": {
-      "text": "Dalam situasi sosial, anda biasanya:",
       "option1": "Bertindak proaktif berinteraksi dengan orang lain",
-      "option2": "Menunggu orang lain mendekati saya"
+      "option2": "Menunggu orang lain mendekati saya",
+      "text": "Dalam situasi sosial, anda biasanya:"
     },
     "question10": {
-      "text": "Apabila menyelesaikan masalah, anda lebih bergantung pada:",
       "option1": "Pengalaman praktikal dan fakta",
-      "option2": "Intuisi dan kemungkinan"
+      "option2": "Intuisi dan kemungkinan",
+      "text": "Apabila menyelesaikan masalah, anda lebih bergantung pada:"
     },
     "question11": {
-      "text": "Yang mana satu anda lebih suka:",
       "option1": "Fokus pada butiran tertentu",
-      "option2": "Fokus pada konsep keseluruhan"
+      "option2": "Fokus pada konsep keseluruhan",
+      "text": "Anda lebih suka:"
     },
     "question12": {
-      "text": "Apabila belajar sesuatu yang baharu, anda lebih suka:",
       "option1": "Pendekatan langkah demi langkah",
-      "option2": "Meneroka kaedah inovatif"
+      "option2": "Meneroka kaedah inovatif",
+      "text": "Apabila mempelajari perkara baru, anda lebih suka:"
     },
     "question13": {
-      "text": "Apabila membaca, anda lebih suka:",
       "option1": "Garis panduan praktikal",
-      "option2": "Teori dan konsep"
+      "option2": "Teori dan konsep",
+      "text": "Apabila membaca, anda lebih suka:"
     },
     "question14": {
-      "text": "Anda lebih fokus pada:",
       "option1": "Masa kini dan masa lalu",
-      "option2": "Masa depan dan kemungkinan"
+      "option2": "Masa depan dan kemungkinan",
+      "text": "Anda lebih prihatin tentang:"
     },
     "question15": {
-      "text": "Apabila menerangkan perkara, anda cenderung untuk:",
       "option1": "Menggunakan contoh spesifik",
-      "option2": "Menggunakan metafora dan analogi"
+      "option2": "Menggunakan metafora dan analogi",
+      "text": "Apabila menerangkan perkara, anda cenderung untuk:"
     },
     "question16": {
-      "text": "Di tempat kerja, anda menghargai:",
       "option1": "Permohonan praktikal",
-      "option2": "Idea inovatif"
+      "option2": "Idea inovatif",
+      "text": "Di tempat kerja, anda menghargai:"
     },
     "question17": {
-      "text": "Siapa yang anda percayai lebih:",
       "option1": "Kaedah yang disahkan",
-      "option2": "Percubaan baru"
+      "option2": "Percubaan baru",
+      "text": "Anda lebih mempercayai:"
     },
     "question18": {
-      "text": "Apabila merancang untuk masa depan, anda akan:",
       "option1": "Berdasarkan pada keadaan sebenar",
-      "option2": "Membayangkan pelbagai kemungkinan"
+      "option2": "Membayangkan pelbagai kemungkinan",
+      "text": "Apabila merancang untuk masa depan, anda akan:"
     },
     "question19": {
-      "text": "Apabila membuat keputusan, anda lebih menghargai:",
       "option1": "Logik dan analisis objektif",
-      "option2": "Emosi dan keharmonian interpersonal"
+      "option2": "Emosi dan keharmonian interpersonal",
+      "text": "Apabila membuat keputusan, anda mengutamakan:"
     },
     "question2": {
-      "text": "Pada hujung minggu anda lebih suka:",
       "option1": "Keluar dengan rakan-rakan",
-      "option2": "Tinggal di rumah untuk bersantai seorang diri"
+      "option2": "Tinggal di rumah untuk bersantai seorang diri",
+      "text": "Pada hujung minggu, anda lebih suka:"
     },
     "question20": {
-      "text": "Apabila mengkritik orang lain, anda akan:",
       "option1": "Menunjukkan masalah secara langsung",
-      "option2": "Mengambil kira perasaan orang lain"
+      "option2": "Mengambil kira perasaan orang lain",
+      "text": "Apabila mengkritik orang lain, anda akan:"
     },
     "question21": {
-      "text": "Anda lebih menghargai:",
       "option1": "Keadilan dan keadilan",
-      "option2": "Kasih sayang dan pemahaman"
+      "option2": "Kasih sayang dan pemahaman",
+      "text": "Anda meletakkan lebih banyak kepentingan pada:"
     },
     "question22": {
-      "text": "Apabila menilai sebuah idea, anda terlebih dahulu mempertimbangkan:",
       "option1": "Adakah ia berpatutan?",
-      "option2": "Adakah ia memberi manfaat?"
+      "option2": "Adakah ia memberi manfaat?",
+      "text": "Apabila menilai satu idea, anda pertama kali mempertimbangkan:"
     },
     "question23": {
-      "text": "Apabila seorang rakan meluahkan kepada anda, anda akan:",
       "option1": "Menganalisis masalah dan memberikan cadangan",
-      "option2": "Mendengar dan menawarkan keselesaan"
+      "option2": "Mendengar dan menawarkan keselesaan",
+      "text": "Apabila rakan-rakan meluahkan perasaan kepada anda, anda akan:"
     },
     "question24": {
-      "text": "Dalam konflik, anda cenderung untuk:",
       "option1": "Berpegang kepada prinsip",
-      "option2": "Menjaga hubungan"
+      "option2": "Menjaga hubungan",
+      "text": "Dalam konflik, anda cenderung untuk:"
     },
     "question25": {
-      "text": "Anda lebih mudah dipujuk oleh:",
       "option1": "Fakta dan data",
-      "option2": "Emosi dan cerita"
+      "option2": "Emosi dan cerita",
+      "text": "Anda lebih mudah dipengaruhi oleh:"
     },
     "question26": {
-      "text": "Dalam pengambilan keputusan pasukan, anda lebih fokus pada:",
       "option1": "Kecekapan dan hasil",
-      "option2": "Konsensus dan perpaduan"
+      "option2": "Konsensus dan perpaduan",
+      "text": "Dalam pengambilan keputusan berkumpulan, anda memberi tumpuan kepada:"
     },
     "question27": {
-      "text": "Anda percaya pemimpin yang baik harus:",
       "option1": "Adil dan tegas",
-      "option2": "Bersikap mengambil berat dan peduli"
+      "option2": "Bersikap mengambil berat dan peduli",
+      "text": "Anda percaya pemimpin yang baik seharusnya:"
     },
     "question28": {
-      "text": "Gaya kerja anda adalah:",
       "option1": "Merancang dan bersiap lebih awal",
-      "option2": "Menyesuaikan diri dan fleksibel"
+      "option2": "Menyesuaikan diri dan fleksibel",
+      "text": "Gaya kerja anda adalah:"
     },
     "question29": {
-      "text": "Anda lebih suka:",
       "option1": "Ada tarikh akhir yang jelas",
-      "option2": "Mengekalkan pilihan terbuka"
+      "option2": "Mengekalkan pilihan terbuka",
+      "text": "Anda lebih suka:"
     },
     "question3": {
-      "text": "Setelah menghadiri satu pertemuan, anda biasanya:",
       "option1": "Rasa bertenaga",
-      "option2": "Rasa perlukan rehat"
+      "option2": "Rasa perlukan rehat",
+      "text": "Selepas menghadiri perhimpunan, anda biasanya:"
     },
     "question30": {
-      "text": "Apabila melancong, anda cenderung untuk:",
       "option1": "Membuat jadual terperinci",
-      "option2": "Berkeliling dengan santai"
+      "option2": "Berkeliling dengan santai",
+      "text": "Apabila melancong, anda cenderung:"
     },
     "question31": {
-      "text": "Bilik anda biasanya:",
       "option1": "Kemaskini dan teratur",
-      "option2": "Santai dan bebas"
+      "option2": "Santai dan bebas",
+      "text": "Bilik anda biasanya:"
     },
     "question32": {
-      "text": "Apabila mengendalikan tugas, anda:",
       "option1": "Menyiapkannya seawal mungkin",
-      "option2": "Menghabiskannya dekat dengan tarikh akhir"
+      "option2": "Menghabiskannya dekat dengan tarikh akhir",
+      "text": "Apabila mengendalikan tugas, anda cenderung untuk:"
     },
     "question33": {
-      "text": "Gaya hidup pilihan anda:",
       "option1": "Diatur dan berstruktur",
-      "option2": "Bebas dan fleksibel"
+      "option2": "Bebas dan fleksibel",
+      "text": "Gaya hidup pilihan anda:"
     },
     "question34": {
-      "text": "Apabila membuat keputusan, anda cenderung untuk:",
       "option1": "Buat keputusan dengan cepat",
-      "option2": "Menjaga pilihan anda terbuka"
+      "option2": "Menjaga pilihan anda terbuka",
+      "text": "Apabila membuat keputusan, anda cenderung untuk:"
     },
     "question35": {
-      "text": "Apabila berbelanja, anda:",
       "option1": "Membuat senarai dan mengikutinya",
-      "option2": "Melihat secara santai dan membeli apa yang anda suka"
+      "option2": "Melihat secara santai dan membeli apa yang anda suka",
+      "text": "Apabila membeli-belah, anda akan:"
     },
     "question36": {
-      "text": "Apabila berhadapan dengan perubahan, anda biasanya:",
       "option1": "Rasa tidak selesa",
-      "option2": "Rasa teruja"
+      "option2": "Rasa teruja",
+      "text": "Apabila berhadapan dengan perubahan, anda biasanya:"
     },
     "question4": {
-      "text": "Dalam satu pasukan, anda cenderung untuk:",
       "option1": "Bersuara dengan aktif",
-      "option2": "Dengar sebelum bercakap"
+      "option2": "Dengar sebelum bercakap",
+      "text": "Dalam satu pasukan, anda lebih cenderung untuk:"
     },
     "question5": {
-      "text": "Apabila bertemu rakan baru, anda:",
       "option1": "Menjadi biasa dengan cepat",
-      "option2": "Memerlukan masa untuk mengenali mereka"
+      "option2": "Memerlukan masa untuk mengenali mereka",
+      "text": "Apabila bertemu rakan baru, anda akan:"
     },
     "question6": {
-      "text": "Kawasan rakan anda:",
       "option1": "Luas tetapi tidak mendalam",
-      "option2": "Kecil dan mesra"
+      "option2": "Kecil dan mesra",
+      "text": "Lingkaran rakan-rakan anda:"
     },
     "question7": {
-      "text": "Apabila bekerja, anda lebih suka:",
       "option1": "Kerjasama pasukan",
-      "option2": "Kerja secara individu"
+      "option2": "Kerja secara individu",
+      "text": "Apabila bekerja, anda lebih suka:"
     },
     "question8": {
-      "text": "Apabila berfikir tentang masalah, anda cenderung untuk:",
       "option1": "Berfikir kuat semasa sesi pemikiran",
-      "option2": "Fikirkan sebelum bercakap"
+      "option2": "Fikirkan sebelum bercakap",
+      "text": "Apabila memikirkan masalah, anda cenderung untuk:"
     },
     "question9": {
-      "text": "Apabila di bawah tekanan, anda akan:",
       "option1": "Berborak dengan rakan",
-      "option2": "Proses sendiri"
+      "option2": "Proses sendiri",
+      "text": "Apabila berada di bawah tekanan, anda akan:"
     }
   },
   "quick": {
     "question1": {
-      "text": "Dalam situasi sosial, anda biasanya:",
       "option1": "Memulakan perbualan dengan orang lain",
-      "option2": "Menunggu orang lain untuk mendekati saya"
+      "option2": "Menunggu orang lain untuk mendekati saya",
+      "text": "Dalam situasi sosial, anda biasanya:"
     },
     "question10": {
-      "text": "Gaya kerja anda adalah:",
       "option1": "Merancang dan bersedia lebih awal",
-      "option2": "Bersikap adaptif dan fleksibel"
+      "option2": "Bersikap adaptif dan fleksibel",
+      "text": "Gaya kerja anda adalah:"
     },
     "question11": {
-      "text": "Anda lebih suka:",
       "option1": "Mempunyai tarikh akhir yang jelas",
-      "option2": "Menjaga pilihan terbuka"
+      "option2": "Menjaga pilihan terbuka",
+      "text": "Anda lebih suka:"
     },
     "question12": {
-      "text": "Apabila melancong, anda cenderung:",
       "option1": "Membuat jadual terperinci",
-      "option2": "Meneroka secara bebas"
+      "option2": "Meneroka secara bebas",
+      "text": "Apabila melancong, anda cenderung:"
     },
     "question2": {
-      "text": "Pada hujung minggu, anda lebih suka:",
       "option1": "Keluar dengan rakan",
-      "option2": "Bersantai di rumah"
+      "option2": "Bersantai di rumah",
+      "text": "Pada hujung minggu, anda lebih suka:"
     },
     "question3": {
-      "text": "Selepas menghadiri perhimpunan, anda biasanya:",
       "option1": "Merasa bertenaga",
-      "option2": "Merasa perlunya berehat"
+      "option2": "Merasa perlunya berehat",
+      "text": "Selepas menghadiri perhimpunan, anda biasanya:"
     },
     "question4": {
-      "text": "Apabila menyelesaikan masalah, anda lebih bergantung pada:",
       "option1": "Pengalaman praktikal dan fakta",
-      "option2": "Intuisi dan kemungkinan"
+      "option2": "Intuisi dan kemungkinan",
+      "text": "Apabila menyelesaikan masalah, anda lebih bergantung pada:"
     },
     "question5": {
-      "text": "Anda lebih suka:",
       "option1": "Fokus pada butiran tertentu",
-      "option2": "Fokus pada keseluruhan konsep"
+      "option2": "Fokus pada keseluruhan konsep",
+      "text": "Anda lebih suka:"
     },
     "question6": {
-      "text": "Apabila mempelajari perkara baru, anda lebih suka:",
       "option1": "Pendekatan langkah demi langkah",
-      "option2": "Meneroka cara-cara inovatif"
+      "option2": "Meneroka cara-cara inovatif",
+      "text": "Apabila mempelajari perkara baru, anda lebih suka:"
     },
     "question7": {
-      "text": "Apabila membuat keputusan, anda menghargai:",
       "option1": "Logik dan analisis objektif",
-      "option2": "Emosi dan keharmonian interpersonal"
+      "option2": "Emosi dan keharmonian interpersonal",
+      "text": "Apabila membuat keputusan, anda menghargai:"
     },
     "question8": {
-      "text": "Apabila mengkritik orang lain, anda:",
       "option1": "Tunjukkan masalah secara terus",
-      "option2": "Pertimbangkan perasaan orang lain"
+      "option2": "Pertimbangkan perasaan orang lain",
+      "text": "Apabila mengkritik orang lain, anda:"
     },
     "question9": {
-      "text": "Anda lebih menghargai:",
       "option1": "Keadilan dan keadilan",
-      "option2": "Belas kasihan dan pemahaman"
+      "option2": "Belas kasihan dan pemahaman",
+      "text": "Anda lebih menghargai:"
     }
   },
   "share": {

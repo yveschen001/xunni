@@ -39,7 +39,7 @@ export default {
   "profile": "│ 📇 Profilkártya │\n",
   "profile2": "👤 **Profil**\n\n",
   "quota": "💡 Feladatok teljesítésével további napi kvótákat nyerhetsz (használj /tasks-t az ellenőrzéshez)\n",
-  "quota2": "📦 Jelenlegi napi kvóta: ${taskBonus > 0 ?",
+  "quota2": "📦 Jelenlegi napi kvóta: {taskBonus > 0 ?",
   "quotaBottles": "{taskBonus} üzenetpalack",
   "quotaTotal": "📦 Jelenlegi napi kvóta: {quota}\n\n",
   "returnToMenu": "🏠 Vissza a főmenübe: /menu",
@@ -69,6 +69,7 @@ export default {
   "vip2": "• Használj /vip-t a VIP tagra való frissítéshez\n",
   "vipUpgrade": "• Használj /vip-t a VIP tagra való frissítéshez\n",
   "zodiac": "⭐ Csillagjegy: {zodiac}\n",
-  "fortuneQuota": "🔮 {fortunemessage bottle}: {total} (Ez a hét ingyenes: {weekly}/{limit} | Kiegészítő: {additional})",
-  "vipWithDays": "💎 VIP Tag (Hátralévő {days} nap, Lejárat: {expireDate})"
+  "fortuneQuota": "🔮 {fortuneBottle}: {total} (Ez a hét ingyenes: {weekly}/{limit} | Kiegészítő: {additional})",
+  "vipWithDays": "💎 VIP Tag (Hátralévő {days} nap, Lejárat: {expireDate})",
+  "driftBottleInfo": "🍾 üzenetpalack: {remaining} / {total}"
 };

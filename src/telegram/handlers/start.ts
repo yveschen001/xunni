@@ -102,7 +102,7 @@ export async function handleStart(message: TelegramMessage, env: Env): Promise<v
         language_pref: languageCode || 'en',
         country_code: countryCode,
         invite_code: generateInviteCode(),
-        invited_by: inviterTelegramId,
+        invited_by: inviterTelegramId || undefined,
       });
 
       // Create invite record if invited
@@ -259,7 +259,8 @@ async function resumeOnboarding(
   user: User,
   chatId: number,
   telegram: ReturnType<typeof createTelegramService>,
-  _db: ReturnType<typeof createDatabaseClient>
+  _db: ReturnType<typeof createDatabaseClient>,
+  env: Env
 ): Promise<void> {
   const step = user.onboarding_step;
 
@@ -339,9 +340,9 @@ async function resumeOnboarding(
 
     case 'blood_type': {
       const { getBloodTypeOptions } = await import('~/domain/blood_type');
-      const options = getBloodTypeOptions();
       const { createI18n } = await import('~/i18n');
       const i18n = createI18n(user.language_pref || 'en');
+      const options = getBloodTypeOptions(i18n);
 
       await telegram.sendMessageWithButtons(
         chatId,

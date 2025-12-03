@@ -1,7 +1,7 @@
 import type { Env } from '../types';
 import { createDatabaseClient } from '../db/client';
 import { createTelegramService } from './telegram';
-import { 
+import {
     getEventCategory, 
     type AllEventTypes, 
     type AnalyticsEvent, 
@@ -93,10 +93,10 @@ export class AnalyticsService {
    * Track a funnel step
    */
   async trackFunnelStep(
-    userId: string, 
+    userId: string,
     funnelType: FunnelType, 
     stepName: string, 
-    stepOrder: number, 
+    stepOrder: number,
     stepData?: Record<string, any>,
     completed: boolean = false
   ): Promise<void> {
@@ -215,7 +215,7 @@ export class AnalyticsService {
         adRevenue = (ads?.count || 0) * 0.01;
     } catch (e) {
         console.warn('[Analytics] Ad table query failed', e);
-    }
+      }
 
     const totalIncome = totalRevenue + adRevenue;
     const grossProfit = totalIncome - totalAiCost;
@@ -263,7 +263,7 @@ export class AnalyticsService {
     for (const [feature, data] of Object.entries(featureBreakdown) as [string, any][]) {
         const percent = totalAiCost > 0 ? ((data.cost / totalAiCost) * 100).toFixed(1) : 0;
         msg += `• ${feature}: $${data.cost.toFixed(3)} (${percent}%)\n`;
-    }
+  }
     msg += `\n`;
 
     msg += `🤖 **模型消耗 Top 3**\n`;
@@ -273,7 +273,7 @@ export class AnalyticsService {
     
     for (const [model, data] of sortedModels) {
         msg += `• ${model}: $${data.cost.toFixed(3)} (${data.requests} reqs)\n`;
-    }
+  }
     msg += `\n`;
 
     msg += `📈 **運營指標**\n`;

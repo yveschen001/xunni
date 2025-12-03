@@ -73,7 +73,36 @@ export async function handleMenu(message: TelegramMessage, env: Env): Promise<vo
 
     // Build rich profile display
     const { calculateDailyQuota } = await import('~/domain/invite');
-    const driftBottleQuota = calculateDailyQuota(user);
+    const { getDailyThrowCount } = await import('~/db/queries/bottles');
+    const { calculateTaskBonus } = await import('./tasks');
+    const { getTodayAdReward } = await import('~/db/queries/ad_rewards');
+
+    // 1. Permanent Quota (Base + Invites)
+    // calculateDailyQuota includes user base (3/30) + invite bonus
+    const permanentQuota = calculateDailyQuota(user);
+
+    // 2. Temporary Quota (Task + Ad Bonus)
+    const taskBonus = await calculateTaskBonus(db, telegramId);
+    const adReward = await getTodayAdReward(db.d1, telegramId);
+    const adBonus = adReward?.quota_earned || 0;
+    const temporaryQuota = taskBonus + adBonus;
+
+    // 3. Total Quota
+    const totalDailyQuota = permanentQuota + temporaryQuota;
+
+    // 4. Used Quota
+    const throwsToday = await getDailyThrowCount(db, telegramId);
+
+    // 5. Remaining Quota
+    const remainingQuota = Math.max(0, totalDailyQuota - throwsToday);
+    
+    // Display string: "Remaining / Permanent + Temporary"
+    // Example: "2 / 3 + 1" (2 remaining, 3 permanent limit, +1 temporary earned)
+    // If no temporary, just "2 / 3"
+    let driftBottleQuota = `${remainingQuota} / ${permanentQuota}`;
+    if (temporaryQuota > 0) {
+      driftBottleQuota += ` + ${temporaryQuota}`;
+    }
     
     // Format birth date
     const birthDate = user.birthday ? user.birthday : i18n.t('menu.notSet');
@@ -221,6 +250,25 @@ export async function handleMenu(message: TelegramMessage, env: Env): Promise<vo
         taskI18nKey,
       });
       buttons.unshift([{ text: `✨ ${taskName}`, callback_data: callbackData }]);
+    } else {
+      // Suggest completing Fortune Profile if tasks are done
+      try {
+        const { FortuneService } = await import('~/services/fortune');
+        const fortuneService = new FortuneService(env, db.d1);
+        const profile = await fortuneService.getFortuneProfile(telegramId);
+        // Only if profile is default/incomplete? 
+        // Actually getFortuneProfile returns default one or null.
+        // If profile doesn't exist OR lacks city/time (optional but recommended)
+        // But getFortuneProfile creates a default one if not exists (in some logic)? 
+        // No, it returns null if not found.
+        
+        if (!profile || !profile.birth_city_id || !profile.birth_time) {
+           const hintText = i18n.t('fortune.profile_incomplete_hint') || '完善算命资料'; // Fallback
+           buttons.unshift([{ text: `🔮 ${hintText}`, callback_data: 'menu_fortune' }]);
+        }
+      } catch (e) {
+        // Ignore error
+      }
     }
 
     // Add VIP button for non-VIP users

@@ -1,14 +1,14 @@
 export default {
-  "Aquarius": "Vannmannen",
-  "Aries": "Væren",
-  "Cancer": "Krepsen",
-  "Capricorn": "Steinbukken",
-  "Gemini": "Tvillingene",
-  "Leo": "Løven",
-  "Libra": "Vekten",
-  "Pisces": "Fiskene",
-  "Sagittarius": "Skytten",
-  "Scorpio": "Skorpionen",
-  "Taurus": "Tyren",
-  "Virgo": "Jomfru"
+  "Aries": "♈️ Væren",
+  "Taurus": "♉️ Tyren",
+  "Gemini": "♊️ Tvillingene",
+  "Cancer": "♋️ Krepsen",
+  "Leo": "♌️ Løven",
+  "Virgo": "♍️ Jomfruen",
+  "Libra": "♎️ Vekten",
+  "Scorpio": "♏️ Skorpionen",
+  "Sagittarius": "♐️ Skytten",
+  "Capricorn": "♑️ Steinbukken",
+  "Aquarius": "♒️ Vannmannen",
+  "Pisces": "♓️ Fiskene"
 };

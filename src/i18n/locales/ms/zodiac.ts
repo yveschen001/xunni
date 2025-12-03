@@ -1,14 +1,14 @@
 export default {
-  "Aquarius": "Aqua",
-  "Aries": "Aries",
-  "Cancer": "Kanser",
-  "Capricorn": "Capricorn",
-  "Gemini": "Gemini",
-  "Leo": "Leo",
-  "Libra": "Libra",
-  "Pisces": "Pisces",
-  "Sagittarius": "Sagitarius",
-  "Scorpio": "Scorpio",
-  "Taurus": "Taurus",
-  "Virgo": "Virgo"
+  "Aries": "♈️ Aries",
+  "Taurus": "♉️ Taurus",
+  "Gemini": "♊️ Gemini",
+  "Cancer": "♋️ Kanser",
+  "Leo": "♌️ Leo",
+  "Virgo": "♍️ Virgo",
+  "Libra": "♎️ Libra",
+  "Scorpio": "♏️ Scorpio",
+  "Sagittarius": "♐️ Sagitarius",
+  "Capricorn": "♑️ Capricorn",
+  "Aquarius": "♒️ Aquarius",
+  "Pisces": "♓️ Pisces"
 };

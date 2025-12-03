@@ -56,7 +56,7 @@ export default {
   "message5": "/broadcast_vip <message> - Odeslat VIP uživatelům",
   "message6": "/maintenance_disable - Zakázat režim údržby\n\n",
   "message7": "/maintenance_status - Zobrazit stav údržby\n",
-  "message8": "/broadcast <zpráva> - Vysílání všem uživatelům <message>",
+  "message8": "/broadcast <message> - Vysílat všem uživatelům",
   "profile": "/edit_profile - Upravit profil\n",
   "profile2": "/profile - Zobrazit profil\n",
   "profile3": "👤 **Profil**\n",
@@ -119,5 +119,9 @@ export default {
   "devReset": "/dev_reset - Resetovat aktuální uživatele",
   "devRestart": "/dev_restart - Restartovat instanci",
   "devSkip": "/dev_skip - Přeskočit výukový program",
-  "fortune": "/fortune - 🔮 Denní předpověď a detailní astrologická analýza"
+  "fortune": "/fortune - 🔮 Denní předpověď a detailní astrologická analýza",
+  "clearFortune": "/clear_fortune - Vymazat záznamy o fortuně",
+  "adminGrantSection": "🔧 **Zásobování prostředky**",
+  "addVip": "/add_vip - Aktivovat VIP (30 dní)",
+  "addBottles": "/add_fortune bottles - Přidat 50 lahví s zprávami"
 };

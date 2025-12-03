@@ -20,7 +20,7 @@ export default {
   "noAdsAvailable": "❌ 現在利用可能な広告はありません",
   "noVerificationRequired": "❌ この広告は認証を必要としません",
   "quotaInfo": "📊 残り回数: **{remaining}/20** 回",
-  "requiresVerification": "✅ 確認が必要です: グループ/チャンネルに参加後、「確認」ボタンをクリックしてください",
+  "requiresVerification": "✅ 確認が必要です: グループ/チャンネルに参加後、「確認」ボタンをクリックしてください。",
   "reward": "🎁 報酬: +{quota} の永久クオータ",
   "rewardPermanent": "🎁 タスクを完了すると **+1 の永久クオータ** が得られます",
   "rewardTemporary": "🎁 おめでとうございます！ +1 の一時的クオータ（本日有効）を受け取りました",

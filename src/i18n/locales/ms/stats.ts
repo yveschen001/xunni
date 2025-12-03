@@ -99,7 +99,7 @@ export default {
   "vipTriple": "💎 **Statistik Botol Mesej VIP Triple** (Hari {days} Lepas)",
   "vipTripleTitle": "💎 **Statistik Botol Mesej VIP Triple** (Hari {days} Lepas)",
   "zodiac": "🔮 **Zodiak**: {zodiac}\n",
-  "fortuneTitle": "🔮 **{fortunemessage botol mesej}**",
+  "fortuneTitle": "\n🔮 **{fortuneBottle}**\n",
   "fortuneReadings": "• Jumlah Nasib : {count}",
   "fortuneQuota": "• Kuota Tersisa : {quota}"
 };

@@ -31,7 +31,5 @@ export default {
     "title": "🚫 لیست مسدود",
     "empty": "در حال حاضر هیچ لیست مسدود وجود ندارد",
     "unblock": "جلوگیری از مسدود کردن"
-  },
-  "quietHoursVipOnly": "🔒 Quiet Hours (VIP Only)",
-  "upgradeForQuietHours": "Upgrade to VIP to use this feature"
+  }
 };

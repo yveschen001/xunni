@@ -56,7 +56,7 @@ export default {
   "message5": "/broadcast_vip <message> - Skicka till VIP-användare",
   "message6": "/maintenance_disable - Inaktivera underhållsläge\n\n",
   "message7": "/maintenance_status - Kontrollera underhållsstatus\n",
-  "message8": "/broadcast <meddelande> - Sänd till alla användare <message>",
+  "message8": "/broadcast <message> - Sänd till alla användare",
   "profile": "/edit_profile - Redigera profil\n",
   "profile2": "/profile - Visa profil\n",
   "profile3": "👤 **Profil**\n",
@@ -119,5 +119,9 @@ export default {
   "devReset": "/dev_reset - Återställ nuvarande användare",
   "devRestart": "/dev_restart - Öppna instans på nytt",
   "devSkip": "/dev_skip - Hoppa över instruktioner",
-  "fortune": "/fortune - 🔮 Dagens horoskop och djupgående astrologianalys"
+  "fortune": "/fortune - 🔮 Dagens horoskop och djupgående astrologianalys",
+  "clearFortune": "/clear_fortune - Rensa lyckorecensioner",
+  "adminGrantSection": "🔧 **Resursförsörjning**",
+  "addVip": "/add_vip - Aktivera VIP (30 dagar)",
+  "addBottles": "/add_fortune bottles - Lägg till 50 lyckobottlar"
 };

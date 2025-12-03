@@ -31,7 +31,5 @@ export default {
     "title": "🚫 Blokkolt lista",
     "empty": "Jelenleg nincs blokkolt lista",
     "unblock": "Feloldás"
-  },
-  "quietHoursVipOnly": "🔒 Quiet Hours (VIP Only)",
-  "upgradeForQuietHours": "Upgrade to VIP to use this feature"
+  }
 };

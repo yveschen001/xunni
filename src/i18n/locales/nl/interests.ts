@@ -112,5 +112,6 @@ export default {
     "career_focused": "Werkverslaafde",
     "family": "Gezin/Ouderschap",
     "exploring": "Verkennen"
-  }
+  },
+  "back_to_categories": "Terug naar categoriemenu"
 };

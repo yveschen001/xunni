@@ -112,5 +112,6 @@ export default {
     "career_focused": "Tukang Kerja",
     "family": "Keluarga/Parenting",
     "exploring": "Menjelajah"
-  }
+  },
+  "back_to_categories": "Kembali ke menu kategori"
 };

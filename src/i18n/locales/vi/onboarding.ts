@@ -26,7 +26,7 @@ export default {
   "birthday3": "Vui lòng nhập ngày sinh của bạn (định dạng: YYYY-MM-DD):\n\n",
   "birthday4": "Ngày sinh: {birthday}\n",
   "birthdayCheck": "Nếu bạn nghĩ đây là sai lầm, vui lòng kiểm tra xem định dạng ngày sinh của bạn có chính xác không (YYYY-MM-DD).",
-  "birthdayError": "❌ {error}",
+  "birthdayError": "❌ {error}\n\n",
   "birthdayFormatError": "❌ Định dạng ngày sinh không chính xác\n\nVui lòng nhập lại (định dạng: YYYY-MM-DD):",
   "birthdayRetry": "Vui lòng nhập lại ngày sinh của bạn (định dạng: YYYY-MM-DD):",
   "birthdayWarning": "⚠️ Ngày sinh không thể được sửa đổi sau khi đã thiết lập, vui lòng xác nhận là chính xác!",
@@ -50,7 +50,7 @@ export default {
     "label": "• Giới tính: {gender}\n",
     "male": "Nam"
   },
-  "gender2": "• Giới tính: ${updatedUser.gender ===",
+  "gender2": "• Giới tính: {updatedUser.gender ===",
   "gender3": "Xin hãy chọn giới tính của bạn:\n\n",
   "genderFemale": "👩 Nữ",
   "genderMale": "👨 Nam",

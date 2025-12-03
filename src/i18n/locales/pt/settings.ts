@@ -31,7 +31,5 @@ export default {
     "title": "🚫 Lista de Bloqueio",
     "empty": "Atualmente sem lista de bloqueio",
     "unblock": "Desbloquear"
-  },
-  "quietHoursVipOnly": "🔒 Quiet Hours (VIP Only)",
-  "upgradeForQuietHours": "Upgrade to VIP to use this feature"
+  }
 };

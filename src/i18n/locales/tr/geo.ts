@@ -1,7 +1,7 @@
 export default {
   "select_continent": "Lütfen bölgenizi seçin 🌍",
-  "select_country": "Lütfen bir ülke seçin.",
-  "search_city_prompt": "Lütfen şehir adını girin (örneğin, Taipei).",
+  "select_country": "Lütfen bir ülke/bölge seçin",
+  "search_city_prompt": "Lütfen şehir adını girin (örneğin: Tokyo)",
   "city_not_found": "Şehir bulunamadı, lütfen İngilizce adını deneyin.",
   "confirm_city": "Seçtiğiniz şehir bu mu: {city} ({country})?",
   "continent": {

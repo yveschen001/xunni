@@ -1,7 +1,7 @@
 export default {
   "select_continent": "地域を選択してください 🌍",
-  "select_country": "国を選択してください",
-  "search_city_prompt": "市名を入力してください (例: 台北)",
+  "select_country": "国/地域を選択してください",
+  "search_city_prompt": "都市名を入力してください（例：東京）",
   "city_not_found": "市が見つかりませんでした。英語名でお試しください。",
   "confirm_city": "これがあなたが選んだ市ですか: {city} ({country})？",
   "continent": {

@@ -112,5 +112,6 @@ export default {
     "career_focused": "Εργαholic",
     "family": "Οικογένεια/Γονείς",
     "exploring": "Εξερεύνηση"
-  }
+  },
+  "back_to_categories": "Επιστροφή στο μενού κατηγοριών"
 };

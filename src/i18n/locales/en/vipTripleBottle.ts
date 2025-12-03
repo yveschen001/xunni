@@ -1,8 +1,8 @@
 export default {
   "bottleContent": "📝 Bottle Content: {content}\n\n",
-  "bottlePicked": "Your message bottle has been picked up by {maskedMatcherNickname}!\n\n",
+  "bottlePicked": "Your message bottle has been picked up by {maskedMatcherNickname}!",
   "conversationIdentifier": "💬 Conversation Identifier: {conversationIdentifier}\n",
-  "firstMatch": "💡 This is your 1st match, with 2 slots remaining\n\n",
+  "firstMatch": "💡 This is your 1st match, with 2 slots still available",
   "foundBottle": "The system has found a bottle from {maskedOwnerNickname}!\n\n",
   "matchSuccess": "🎯 **VIP smart pairing successful!**\n\n",
   "replyHint": "💬 **Please long press this message, select 'Reply', and enter content to start chatting with the other party**",

@@ -2,7 +2,7 @@ export default {
   "allFeaturesAvailable": "עכשיו אתה יכול להשתמש בכל התכונות באופן רגיל.",
   "completed": "✅ תחזוקת מערכת הושלמה",
   "completingSoon": "ניסויים לקראת סיום",
-  "correctFormat": "**פורמט נכון:**\n/maintenance_enable <משך (דקות)> <duration (minutes)>",
+  "correctFormat": "**פורמט נכון:**\n/maintenance_enable <משך זמן (דקות)> <duration (minutes)>",
   "defaultMessage": "המערכת Onder תחזוקה וזמינה באופן זמני.",
   "disableFailed": "❌ נכשל בשכיחת מצב תחזוקה.",
   "disableSuccess": "✅ מצב תחזוקה בוטל\n\nהודעת ההשבה שודרה לכל המשתמשים.",

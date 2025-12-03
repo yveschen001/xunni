@@ -1,14 +1,14 @@
 export default {
-  "Aquarius": "Kova",
-  "Aries": "Koç",
-  "Cancer": "Yengeç",
-  "Capricorn": "Oğlak",
-  "Gemini": "İkizler",
-  "Leo": "Aslan",
-  "Libra": "Terazi",
-  "Pisces": "Balık",
-  "Sagittarius": "Yay",
-  "Scorpio": "Akreç",
-  "Taurus": "Boğa",
-  "Virgo": "Başak"
+  "Aries": "♈️ Koç",
+  "Taurus": "♉️ Boğa",
+  "Gemini": "♊️ İkizler",
+  "Cancer": "♋️ Yengeç",
+  "Leo": "♌️ Aslan",
+  "Virgo": "♍️ Başak",
+  "Libra": "♎️ Terazi",
+  "Scorpio": "♏️ Akrep",
+  "Sagittarius": "♐️ Yay",
+  "Capricorn": "♑️ Oğlak",
+  "Aquarius": "♒️ Kova",
+  "Pisces": "♓️ Balık"
 };

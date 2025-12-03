@@ -26,7 +26,7 @@ export default {
   "birthday3": "אנא הזן את תאריך הלידה שלך (פורמט: YYYY-MM-DD):",
   "birthday4": "יום הולדת: {birthday}\n",
   "birthdayCheck": "אם אתה חושב שזו טעות, אנא בדוק שהפורמט של תאריך הלידה שלך נכון (YYYY-MM-DD).",
-  "birthdayError": "{error}\n\n",
+  "birthdayError": "❌ {error}\n\n",
   "birthdayFormatError": "❌ פורמט יום הולדת לא נכון\n\nאנא הזן מחדש (פורמט: YYYY-MM-DD):",
   "birthdayRetry": "אנא הזן מחדש את יום ההולדת שלך (פורמט: YYYY-MM-DD):",
   "birthdayWarning": "⚠️ יום הולדת לא ניתן לשינוי לאחר קביעתו, אנא אשר שהוא נכון!",
@@ -50,7 +50,7 @@ export default {
     "label": "• מגדר: {gender}\n",
     "male": "זכר"
   },
-  "gender2": "• מגדר: ${updatedUser.gender ===",
+  "gender2": "• מגדר: {updatedUser.gender ===",
   "gender3": "אנא בחר את המגדר שלך:",
   "genderFemale": "👩 נקבה",
   "genderMale": "👨 זכר",

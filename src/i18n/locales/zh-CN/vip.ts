@@ -1,7 +1,7 @@
 export default {
   "admin": "⏳ 你已有待处理的退款请求，请耐心等待管理员审核。",
   "bottle": "📝 瓶子内容：{bottle.content.substring(0, 50)}{bottle.content.length > 50 ? '...' : ''}\n\n",
-  "bottle2": "📝 瓶子内容：{bottle.content.substring(0, 50)}${bottle.content.length > 50 ?",
+  "bottle2": "📝 瓶子内容：{bottle.content.substring(0, 50)}{bottle.content.length > 50 ?",
   "bottle3": "你的瓶子已被 {maskedMatcherNickname} 捡起！\n\n",
   "bottle4": "系统为你找到了 {maskedOwnerNickname} 的瓶子！\n\n",
   "bottle5": "📝 瓶子内容：{bottle.content}\n\n",
@@ -25,7 +25,7 @@ export default {
   "message6": "📋 **待处理退款请求** ({requests.results.length})\n\n",
   "message7": "支付ID: {payment.telegram_payment_charge_id}",
   "message8": "价格：{priceStars} ⭐ Telegram Stars / 月\n",
-  "message9": "支付时间：${paymentDate.toLocaleDateString(",
+  "message9": "支付时间：{paymentDate.toLocaleDateString(",
   "purchaseCancelled": "✅ 已取消购买",
   "quota": "• 每天 30 个漂流瓶配额（邀请好友可增加，最高 100 个/天）\n",
   "quota2": "• 每天 30 个漂流瓶配额（最高 100 个/天）\n",
@@ -84,7 +84,7 @@ export default {
   "text2": "• 34 种语言自动翻译（OpenAI GPT 优先）\n",
   "text20": "💡 想要续订或升级吗？\n\n",
   "text21": "💡 如有特殊情况，请联系客服。",
-  "text22": "原因: {reason}",
+  "text22": "原因：{reason}",
   "text23": "• 解锁对方清晰头像 🆕\n",
   "text24": "这可能需要几秒钟时间，请稍候。",
   "text25": "📝 **申请退款**\n\n",
@@ -112,7 +112,7 @@ export default {
   "vip17": "XunNi VIP 订阅（月费）",
   "vip18": "✨ VIP 权益持续启用：\n",
   "vip19": "你已成为 VIP 会员！\n",
-  "vip2": "你的 VIP 会员已于 ${new Date(sub.expire_date).toLocaleDateString(",
+  "vip2": "你的 VIP 会员已于 {new Date(sub.expire_date).toLocaleDateString(",
   "vip20": "✨ VIP 权益已启用：\n",
   "vip21": "VIP 会员 (30 天)",
   "vip22": "🎁 VIP 权益：\n",
@@ -129,5 +129,6 @@ export default {
   "retentionNotice": "⚠️ **重要提示**：VIP 会员对话记录将保存 3 年。若停止续费，您的对话记录将在会员过期后 **30 天** 被删除。请注意备份重要信息。",
   "upgrade": "升级 VIP",
   "maxDurationExceeded": "⚠️ 您的 VIP 期限已达到上限 ({maxMonths} 个月)，暂时无法继续购买。",
-  "refundedAndRevoked": "ℹ️ 您的款项已退还，VIP 权益已收回。"
+  "refundedAndRevoked": "ℹ️ 您的款项已退还，VIP 权益已收回。",
+  "benefit_daily_fortune": "• 每日免费 1 次 AI 算命（VIP 专属）"
 };

@@ -20,7 +20,7 @@ export default {
   "noAdsAvailable": "❌ Žiadne dostupné inzeráty",
   "noVerificationRequired": "❌ Tento inzerát si nevyžaduje verifikáciu",
   "quotaInfo": "📊 Zostáva dnes: **{remaining}/20** krát",
-  "requiresVerification": "✅ Potrebná verifikácia: Kliknite na tlačidlo 'Overiť' po pripojení sa do skupiny/kanála",
+  "requiresVerification": "✅ Vyžaduje sa overenie: Kliknite na tlačidlo 'Overiť' po pripojení sa do skupiny/kanála",
   "reward": "🎁 Odmena: +{quota} trvalá kvóta",
   "rewardPermanent": "🎁 Dokončite úlohu a získajte **+1 trvalú kvótu**",
   "rewardTemporary": "🎁 Gratulujeme! Získali ste +1 dočasnú kvótu (platnú dnes)",

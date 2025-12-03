@@ -20,7 +20,7 @@ export default {
   "noAdsAvailable": "❌ 暂无可用的广告",
   "noVerificationRequired": "❌ 此广告不需要验证",
   "quotaInfo": "📊 今日剩余：**{remaining}/20** 次",
-  "requiresVerification": "✅ 需要验证：加入群组/频道后点击“验证”按钮",
+  "requiresVerification": "✅ 需要验证：加入群组/频道后点击「验证」按钮",
   "reward": "🎁 奖励：+{quota} 个永久额度",
   "rewardPermanent": "🎁 完成任务可获得 **+1 永久额度**",
   "rewardTemporary": "🎁 恭喜获得 +1 临时额度 (今日有效)",

@@ -56,7 +56,7 @@ export default {
   "message5": "/broadcast_vip <mensaje> - Enviar a usuarios VIP <message>",
   "message6": "/maintenance_disable - Desactivar modo de mantenimiento\n\n",
   "message7": "/maintenance_status - Ver estado de mantenimiento\n",
-  "message8": "/broadcast <mensaje> - Transmitir a todos los usuarios <message>",
+  "message8": "/broadcast <message> - Transmitir a todos los usuarios",
   "profile": "/edit_profile - Editar perfil\n",
   "profile2": "/profile - Ver perfil\n",
   "profile3": "👤 **Perfil**\n",
@@ -119,5 +119,9 @@ export default {
   "devReset": "/dev_reset - Restablecer usuario actual",
   "devRestart": "/dev_restart - Reiniciar instancia",
   "devSkip": "/dev_skip - Saltar tutorial",
-  "fortune": "/fortune - 🔮 Fortuna diaria y análisis astrológico en profundidad"
+  "fortune": "/fortune - 🔮 Fortuna diaria y análisis astrológico en profundidad",
+  "clearFortune": "/clear_fortune - Limpiar registros de fortuna",
+  "adminGrantSection": "🔧 **Suministro de Recursos**",
+  "addVip": "/add_vip - Activar VIP (30 días)",
+  "addBottles": "/add_botella de la fortunas - Añadir 50 botellas de mensajes"
 };

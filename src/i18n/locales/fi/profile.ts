@@ -39,7 +39,7 @@ export default {
   "profile": "│ 📇 Profiilikortti │\n",
   "profile2": "👤 **Profiili**\n\n",
   "quota": "💡 Suorita tehtäviä ansaitaksesi lisää päivittäisiä kiintiöitä (käytä /tasks katsellaksesi)\n",
-  "quota2": "📦 Nykyinen päivittäinen kiintiö: ${taskBonus > 0 ?",
+  "quota2": "📦 Nykyinen päivittäinen kiintiö: {taskBonus > 0 ?",
   "quotaBottles": "{taskBonus} viestipulloa",
   "quotaTotal": "{quota}\n\n",
   "returnToMenu": "🏠 Palaa päävalikkoon: /menu",
@@ -69,6 +69,7 @@ export default {
   "vip2": "• Käytä /vip päivittääksesi VIP-jäseneksi\n",
   "vipUpgrade": "• Käytä /vip päivittääksesi VIP-jäseneksi\n",
   "zodiac": "⭐ Horoskooppi: {zodiac}\n",
-  "fortuneQuota": "🔮 {fortunemessage bottle}: {total} (Tällä viikolla ilmainen: {weekly}/{limit} | Lisä: {additional})",
-  "vipWithDays": "💎 VIP-jäsen (Jäljellä {days} päivää, vanhenemispäivä: {expireDate})"
+  "fortuneQuota": "🔮 {fortuneBottle}: {total} (Tällä viikolla ilmainen: {weekly}/{limit} | Lisä: {additional})",
+  "vipWithDays": "💎 VIP-jäsen (Jäljellä {days} päivää, vanhenemispäivä: {expireDate})",
+  "driftBottleInfo": "🍾 viestipullo: {remaining} / {total}"
 };

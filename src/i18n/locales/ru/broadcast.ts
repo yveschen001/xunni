@@ -38,7 +38,7 @@ export default {
     "age": "Возраст: {min}-{max} лет",
     "atLeastOneRequired": "Необходим хотя бы один фильтр",
     "birthdayToday": "День рождения сегодня",
-    "country": "Страна: {country}",
+    "country": "Страна/Регион: {country}",
     "genderFemale": "Женский",
     "genderMale": "Мужской",
     "genderOther": "Другие полы",
@@ -68,7 +68,7 @@ export default {
     "zodiacVirgo": "Дева"
   },
   "filterAge": "• возраст=18-25\n",
-  "filterCommand": "/broadcast_filter\n\n",
+  "filterCommand": "/broadcast_filter <filter> <msg_content> ",
   "filterConfirmConditions": "**Условия фильтра:**\n{conditions}\n\n",
   "filterConfirmMessage": "**Содержимое сообщения:**\n{message}\n\n",
   "filterConfirmTitle": "🔍 **Подтверждение фильтра трансляции**\n\n",

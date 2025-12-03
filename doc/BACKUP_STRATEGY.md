@@ -55,9 +55,9 @@
    
    **策略**: 使用 `deleted_at` 欄位進行軟刪除 (Soft Delete)，而非 `DELETE FROM`。
    
-   ---
-   
-   ## 3. 備份流程
+---
+
+## 3. 備份流程
 
 ### 3.1 本地備份
 
@@ -314,11 +314,11 @@ wrangler d1 execute xunni-db --file=backups/db-20250115-120000.sql
    4.  **執行修復**:
        ```bash
        wrangler d1 execute xunni-db --file=restore_user.sql
-       ```
-   
-   ---
-   
-   ## 7. 自動化備份
+```
+
+---
+
+## 7. 自動化備份
 
 ### 7.1 GitHub Actions
 

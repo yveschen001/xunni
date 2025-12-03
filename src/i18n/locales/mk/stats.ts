@@ -99,7 +99,7 @@ export default {
   "vipTriple": "💎 **VIP Троен Статистика за Бутилки** (последни {days} дена)",
   "vipTripleTitle": "💎 **VIP Троен Статистика за Бутилки** (последни {days} дена)",
   "zodiac": "🔮 **Зодијак**: {zodiac}\n",
-  "fortuneTitle": "🔮 **{fortunemessage bottle}**",
+  "fortuneTitle": "\n🔮 **{fortuneBottle}**\n",
   "fortuneReadings": "• Број на Среќа : {count}",
   "fortuneQuota": "• Останат Квота : {quota}"
 };

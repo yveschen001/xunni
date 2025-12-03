@@ -46,7 +46,7 @@ export default {
   "genderLabel": "• جنسیت: {gender}\n",
   "mbti": "• MBTI: {selectedMBTI.length > 0 ? selectedMBTI.join(', ') : 'هیچ محدودیتی وجود ندارد'}",
   "mbti2": "انتخاب شده: {selectedMBTI.length > 0 ? selectedMBTI.join(', ') : 'هیچ'}",
-  "mbti3": "انتخاب شده: ${selectedMBTI.length > 0 ? selectedMBTI.join(",
+  "mbti3": "انتخاب شده: {selectedMBTI.length > 0 ? selectedMBTI.join(",
   "mbti4": "🧠 **فیلتر MBTI**",
   "mbti5": "• MBTI: فیلتر بر اساس نوع شخصیت خاص\n",
   "mbti6": "• سازگاری بالا با MBTI ✓",
@@ -54,7 +54,7 @@ export default {
   "mbtiLabel": "{mbti}\n",
   "message": "انتخاب شده: {selectedZodiac.length > 0 ? selectedZodiac.map((z) => ZODIAC_NAMES[z]).join(', ') : 'هیچ'}",
   "message2": "انتخاب فعلی: {currentGender === 'male' ? '👨 مرد' : currentGender === 'female' ? '👩 زن' : '🌈 هر کس'}",
-  "message3": "انتخاب شده: ${selectedZodiac.length > 0 ? selectedZodiac.map((z) => ZODIAC_NAMES[z]).join(",
+  "message3": "انتخاب شده: {selectedZodiac.length > 0 ? selectedZodiac.map((z) => ZODIAC_NAMES[z]).join(",
   "message4": "انتخاب فعلی: {bloodTypeDisplay[currentBloodType]}",
   "message5": "👤 حریف: {vipMatchInfo.matcherNickname}",
   "message6": "\"سلام! من فردی هستم که موسیقی و فیلم را دوست دارم و امیدوارم دوستانی با سلیقه مشابه پیدا کنم～\"",
@@ -117,7 +117,7 @@ export default {
   "text23": "💡 می‌توانید چندین معیار را ترکیب کنید",
   "text24": "شرایط فیلتر فعلی:\n\n",
   "text3": "💡 این ممکن است چند ثانیه طول بکشد، ما در حال یافتن مناسب‌ترین فرد برای شما هستیم",
-  "text4": "انتخاب فعلی: ${currentGender ===",
+  "text4": "انتخاب فعلی: {currentGender ===",
   "text5": "🎯 در حال یافتن گیرنده: {targetText}\n",
   "text6": "🎯 در حال جستجوی 3 بهترین تطابق برای شما\n\n",
   "text7": "📨 **2 جای خالی اضافی منتظرتان است:**\n",
@@ -134,8 +134,8 @@ export default {
   "vip6": "💡 برای دریافت موارد زیر به VIP ارتقا دهید:\n",
   "vip7": "✨ امتیازات VIP در حال فعال شدن\n",
   "zodiac": "• طالع بینی: {selectedZodiac.length > 0 ? selectedZodiac.map((z) => ZODIAC_NAMES[z]).join(', ') : 'هیچ محدودیتی وجود ندارد'}",
-  "zodiac2": "⭐ زودیاک: ${matchResult.user.zodiac ||",
-  "zodiac3": "⭐ زودیاک: ${user.zodiac_sign ||",
+  "zodiac2": "⭐ زودیاک: {matchResult.user.zodiac ||",
+  "zodiac3": "⭐ زودیاک: {user.zodiac_sign ||",
   "zodiac4": "⭐ **فیلتر زودیاک**\n\n",
   "zodiac5": "• زودیاک: فیلتر نشانه‌های زودیاک خاص\n",
   "zodiac6": "• سازگاری بالا ✓",

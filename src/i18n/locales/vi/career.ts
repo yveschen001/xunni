@@ -165,5 +165,6 @@ export default {
       "seeking": "Hiện đang thất nghiệp / Trong quá trình chuyển tiếp",
       "other_industry": "Ngành nghề khác (Nhập tay)"
     }
-  }
+  },
+  "next_step_industry": "Tiếp theo, vui lòng chọn ngành nghề của bạn."
 };

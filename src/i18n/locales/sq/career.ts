@@ -165,5 +165,6 @@ export default {
       "seeking": "Për momentin i Papunë / në Transicion",
       "other_industry": "Industrive të Tjera (Input Manual)"
     }
-  }
+  },
+  "next_step_industry": "Следно, ве молиме изберете ја вашата индустрија."
 };

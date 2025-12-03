@@ -3,7 +3,6 @@ export default {
   "label_industry": "あなたが主に従事している業界は何ですか？",
   "btn_edit_role": "💼 プロフェッショナルアイデンティティの編集",
   "btn_edit_industry": "🏢 業界の編集",
-  "back_to_categories": "↩️ カテゴリメニューに戻る",
   "profile_incomplete_hint": "💡 より正確なAI占いサービスを提供するために、最初に個人情報を入力してください。",
   "role": {
     "employee": "オフィスワーカー",
@@ -166,5 +165,6 @@ export default {
       "seeking": "現在失業中 / 移行中",
       "other_industry": "その他の業種（手動入力）"
     }
-  }
+  },
+  "next_step_industry": "次に、業界を選択してください："
 };

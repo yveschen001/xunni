@@ -38,7 +38,7 @@ export default {
     "age": "Starost: {min}-{max} let",
     "atLeastOneRequired": "Potrebna je vsaj ena filtracija",
     "birthdayToday": "Rojstni dan danes",
-    "country": "Država: {country}",
+    "country": "Država/Regija: {country}",
     "genderFemale": "Ženska",
     "genderMale": "Moški",
     "genderOther": "Drugo",
@@ -68,7 +68,7 @@ export default {
     "zodiacVirgo": "Devica"
   },
   "filterAge": "• starost=18-25\n",
-  "filterCommand": "/broadcast_filter\n\n",
+  "filterCommand": "/broadcast_filter <filter> <msg_content> ",
   "filterConfirmConditions": "**Filtrirni pogoji:**\n{conditions}\n\n",
   "filterConfirmMessage": "**Vsebina sporočila:**\n{message}\n\n",
   "filterConfirmTitle": "🔍 **Potrditev filtriranja oddaj**\n\n",

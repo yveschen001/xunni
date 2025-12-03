@@ -1,7 +1,7 @@
 export default {
   "select_continent": "Kérlek, válaszd ki a régiódat 🌍",
-  "select_country": "Kérlek, válaszd ki az országot",
-  "search_city_prompt": "Kérlek, írd be a város nevét (pl. Taipei)",
+  "select_country": "Kérjük, válasszon egy országot/régiót",
+  "search_city_prompt": "Kérjük, adja meg a város nevét (pl.: Tokió)",
   "city_not_found": "A város nem található, kérlek, próbáld meg az angol nevet.",
   "confirm_city": "Ez az általad kiválasztott város: {city} ({country})?",
   "continent": {

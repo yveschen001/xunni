@@ -85,9 +85,9 @@ wrangler d1 execute xunni-db-staging --file=./src/db/schema.sql
    ```
 
 2. **部署 Worker 代碼**
-   ```bash
-   wrangler deploy --env staging
-   ```
+```bash
+wrangler deploy --env staging
+```
 
 ### 3.5 設定 Webhook
 
@@ -149,9 +149,9 @@ wrangler d1 execute xunni-db --file=./src/db/schema.sql
    ```
 
 2. **部署 Worker 代碼**
-   ```bash
-   wrangler deploy --env production
-   ```
+```bash
+wrangler deploy --env production
+```
 
 ### 4.5 設定 Webhook
 
@@ -206,7 +206,7 @@ jobs:
         env:
           CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
-
+      
       - name: Deploy to Staging
         if: github.ref == 'refs/heads/staging'
         uses: cloudflare/wrangler-action@v3
@@ -223,7 +223,7 @@ jobs:
         env:
           CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
-
+      
       - name: Deploy to Production
         if: github.ref == 'refs/heads/main'
         uses: cloudflare/wrangler-action@v3

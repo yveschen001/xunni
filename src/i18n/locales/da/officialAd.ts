@@ -20,7 +20,7 @@ export default {
   "noAdsAvailable": "❌ Ingen tilgængelige annoncer i øjeblikket",
   "noVerificationRequired": "❌ Denne annonce kræver ikke verifikation",
   "quotaInfo": "📊 Resterende i dag: **{remaining}/20** gange",
-  "requiresVerification": "✅ Verifikation nødvendig: Klik på 'Verificer' knappen efter at have tilsluttet dig gruppen/kanalen",
+  "requiresVerification": "✅ Verificering kræves: Klik på 'Verificer' knappen efter du er tilsluttet gruppen/kanalen",
   "reward": "🎁 Belønning: +{quota} permanente kvoter",
   "rewardPermanent": "🎁 Udfør opgaven for at tjene **+1 permanent kvote**",
   "rewardTemporary": "🎁 Tillykke! Du har modtaget +1 midlertidig kvote (gyldig i dag)",

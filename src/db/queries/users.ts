@@ -95,6 +95,7 @@ export async function createUser(
     first_name?: string;
     last_name?: string;
     language_pref?: string;
+    country_code?: string;
     invite_code: string;
     invited_by?: string;
     onboarding_step?: string;
@@ -103,9 +104,9 @@ export async function createUser(
   const sql = `
     INSERT INTO users (
       telegram_id, username, first_name, last_name,
-      language_pref, invite_code, invited_by, onboarding_step
+      language_pref, country_code, invite_code, invited_by, onboarding_step
     )
-    VALUES (?, ?, ?, ?, ?, ?, ?, ?)
+    VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)
     RETURNING *
   `;
 
@@ -115,6 +116,7 @@ export async function createUser(
     data.first_name || null,
     data.last_name || null,
     data.language_pref || 'zh-TW',
+    data.country_code || null,
     data.invite_code,
     data.invited_by || null,
     data.onboarding_step || 'language_selection',
@@ -122,6 +124,15 @@ export async function createUser(
 
   if (!result) {
     throw new Error('Failed to create user');
+  }
+
+  // 🧹 Ensure clean state for re-registration (Dev/Staging mostly)
+  // Clear daily usage if any exists for this ID (prevents "Used Up" error for new users)
+  try {
+    await db.execute('DELETE FROM daily_usage WHERE telegram_id = ?', [data.telegram_id]);
+    await db.execute('DELETE FROM fortune_quota WHERE telegram_id = ?', [data.telegram_id]);
+  } catch (e) {
+    console.warn('[createUser] Failed to clear legacy usage data:', e);
   }
 
   return result;
@@ -144,6 +155,7 @@ export async function updateUserProfile(
     interests: string;
     zodiac_sign: string;
     language_pref: string;
+    blood_type: string | null;
   }>
 ): Promise<void> {
   const fields: string[] = [];

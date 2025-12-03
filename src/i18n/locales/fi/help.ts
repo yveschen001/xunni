@@ -56,7 +56,7 @@ export default {
   "message5": "/broadcast_vip <viesti> - Lähetä VIP-käyttäjille <message>",
   "message6": "/huolto_ota_poistoon - Poista huoltotila käytöstä\n\n",
   "message7": "/maintenance_status - Tarkista huoltotila\n",
-  "message8": "/broadcast <viesti> - Lähetä kaikille käyttäjille <message>",
+  "message8": "/broadcast <message> - Lähetä viesti kaikille käyttäjille",
   "profile": "/edit_profile - Muokkaa profiilia\n",
   "profile2": "/profile - Katso profiili\n",
   "profile3": "👤 **Profiili**\n",
@@ -119,5 +119,9 @@ export default {
   "devReset": "/dev_reset - Nollaa nykyinen käyttäjä",
   "devRestart": "/dev_restart - Käynnistä instanssi uudelleen",
   "devSkip": "/dev_skip - Ohita opastus",
-  "fortune": "/fortune - 🔮 Päivittäinen onni ja syvällinen astrologinen analyysi"
+  "fortune": "/fortune - 🔮 Päivittäinen onni ja syvällinen astrologinen analyysi",
+  "clearFortune": "/clear_fortune - Tyhjennä onnenkirjaukset",
+  "adminGrantSection": "🔧 **Resurssitarjonta**",
+  "addVip": "/add_vip - Aktivoi VIP (30 päivää)",
+  "addBottles": "/add_fortune bottles - Lisää 50 onnenpullopulloa"
 };

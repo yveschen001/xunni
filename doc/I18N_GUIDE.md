@@ -119,7 +119,7 @@ import { createI18n } from '../../i18n';
 export async function handleFortune(message, env) {
   // 1. 初始化 i18n 實例
   const i18n = createI18n(user.language_pref);
-
+  
   // 2. 調用翻譯 (支持點號嵌套)
   const text = i18n.t('fortune.daily.title');
   

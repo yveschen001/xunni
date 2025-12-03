@@ -112,5 +112,6 @@ export default {
     "career_focused": "אובססיבי לעבודה",
     "family": "משפחה/הורות",
     "exploring": "חקירה"
-  }
+  },
+  "back_to_categories": "חזרה לתפריט קטגוריות"
 };

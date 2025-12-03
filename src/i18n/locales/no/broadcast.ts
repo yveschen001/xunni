@@ -38,7 +38,7 @@ export default {
     "age": "Alder: {min}-{max} år",
     "atLeastOneRequired": "Minst ett filter er nødvendig",
     "birthdayToday": "Bursdag i dag",
-    "country": "Land: {country}",
+    "country": "Land/Region: {country}",
     "genderFemale": "Kvinne",
     "genderMale": "Mann",
     "genderOther": "Annen kjønn",
@@ -68,7 +68,7 @@ export default {
     "zodiacVirgo": "Jomfru"
   },
   "filterAge": "• alder=18-25\n",
-  "filterCommand": "/broadcast_filter\n\n",
+  "filterCommand": "/broadcast_filter <filter> <msg_content> ",
   "filterConfirmConditions": "**Filterbetingelser:**\n{conditions}\n\n",
   "filterConfirmMessage": "**Meldingsinnhold:**\n{message}\n\n",
   "filterConfirmTitle": "🔍 **Bekreftelse av sendingens filter**\n\n",

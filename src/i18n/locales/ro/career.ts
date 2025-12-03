@@ -165,5 +165,6 @@ export default {
       "seeking": "În prezent Fără Loc de Muncă / În Tranziție",
       "other_industry": "Alte Industrii (Introducere Manuală)"
     }
-  }
+  },
+  "next_step_industry": "Dále prosím vyberte své odvětví."
 };

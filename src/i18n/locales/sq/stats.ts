@@ -99,7 +99,7 @@ export default {
   "vipTriple": "💎 **Statistikat e VIP Triple Bottle** (të fundit {days} ditë)",
   "vipTripleTitle": "💎 **Statistikat e VIP Triple Bottle** (të fundit {days} ditë)",
   "zodiac": "🔮 **Raca**: {zodiac}\n",
-  "fortuneTitle": "🔮 **{fortunemessage bottle}**",
+  "fortuneTitle": "\n🔮 **{fortuneBottle}**\n",
   "fortuneReadings": "• Numri i Fatit: {count}",
   "fortuneQuota": "• Kuota e mbetur: {quota}"
 };

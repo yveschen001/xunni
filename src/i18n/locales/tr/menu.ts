@@ -15,7 +15,7 @@ export default {
   "levelFree": "🆓 Ücretsiz üye",
   "levelVip": "💎 VIP üye",
   "message": "XunNi'de birlikte mesaj şişeleri atalım! 🍾 Katılmak için davet kodumu kullan, böylece ikimiz de daha fazla kota alırız!",
-  "message2": "https://t.me/share/url?url=https://t.me/{botUsername}?start=invite_{inviteCode}&text=XunNi'ye gel ve birlikte bir mesaj şişesi at",
+  "message2": "XunNi Haydi birlikte bir mesaj şişesi atalım",
   "notRegistered": "Kaydedilmedi",
   "notSet": "Ayrılmadı",
   "quota": "• İkiniz de günlük kota +1 kazanıyorsunuz.\n\n",
@@ -28,7 +28,7 @@ export default {
   "short": "Ücretsiz üye",
   "stats": "📊 Davet istatistiklerini görüntüle: /profile",
   "stats2": "📊 Davet istatistiklerini görüntüle",
-  "task": "🎯 **Sonraki Görev**\n⏳ {nextTask.name} (+{nextTask.reward_amount} mesaj şişesi)\n💡 {nextTask.description}\n\n",
+  "task": "🎯 **Son Görev**\n⏳ {nextTask.name} (+{nextTask.reward_amount} mesaj şişesi)\n💡 {nextTask.description}",
   "text": "🏠 **Ana Menü** {vipBadge}\n\n",
   "text2": "👋 Merhaba, {user.nickname}!\n\n",
   "text3": "💡 Aşağıdaki butona tıklayarak arkadaşlarınla paylaş:\n",
@@ -36,7 +36,7 @@ export default {
   "text5": "📊 Durumun:\n",
   "title": "🏠 **Ana menü**",
   "userNotFound": "Kullanıcı mevcut değil",
-  "vip": "• Seviye: {isVip ? 'VIP Üyesi 💎' : 'Ücretsiz Üye'}",
+  "vip": "• Seviye: {isVip ? 'VIP Üyesi 💎' : 'Ücretsiz Üye'} {isVip ? 'VIP ÜYESİ 💎' : 'ÜCRETSİZ ÜYE'} {isVip ? 'VIP Member 💎' : 'Free Member'} {isVip ? 'VIP 會員 💎' : '免費會員'}",
   "vip2": "VIP üye 💎",
   "yourStatus": "Durumun",
   "birthDate": "Doğum Günü",
@@ -45,5 +45,5 @@ export default {
   "interests": "İlgi Alanları",
   "bio": "Profil",
   "driftBottles": "Mesaj Şişesi",
-  "fortuneBottles": "Fal Şişesi"
+  "fortuneBottles": "fal bakan fal şişesi"
 };

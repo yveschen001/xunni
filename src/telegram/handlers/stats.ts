@@ -15,14 +15,12 @@ export async function handleStats(message: TelegramMessage, env: Env): Promise<v
   const chatId = message.chat.id;
   const telegramId = message.from!.id.toString();
 
+  // Get user for i18n (needed in both try and catch)
+  const user = await findUserByTelegramId(db, telegramId);
+  const { createI18n } = await import('~/i18n');
+  const i18n = createI18n(user?.language_pref || 'zh-TW');
+
   try {
-    // Get user
-    const user = await findUserByTelegramId(db, telegramId);
-
-    // Get i18n
-    const { createI18n } = await import('~/i18n');
-    const i18n = createI18n(user?.language_pref || 'zh-TW');
-
     if (!user) {
       await telegram.sendMessage(chatId, i18n.t('errors.userNotFound'));
       return;
@@ -56,16 +54,11 @@ export async function handleStats(message: TelegramMessage, env: Env): Promise<v
     
     const fortuneTotal = fortuneQuota.weekly_free_quota + fortuneQuota.additional_quota;
     const fortuneWeeklyLimit = isVip ? 7 : 1;
-    // Format: 10 (本週免費: 0/1 | 額外: 10) - matching Profile style roughly
-    const fortuneQuotaText = `${fortuneTotal} (${i18n.t('fortune.quotaDisplay').split(': ')[1].replace('{total}', '').replace('{weekly}', String(fortuneQuota.weekly_free_quota)).replace('{limit}', String(fortuneWeeklyLimit)).replace('{additional}', String(fortuneQuota.additional_quota)).trim()})`;
-    // Actually, let's just use the same format logic or simple text.
-    // i18n key 'profile.fortuneQuota' is "🔮 {fortuneBottle}: {total} (本週免費: {weekly}/{limit} | 額外: {additional})"
-    // We want just the value part for stats? Or full line?
-    // Stats usually has "• Label: Value".
-    // I added 'stats.fortuneQuota' = '• 剩餘額度 : {quota}'
-    // So 'quota' should be "10 (Free: 0/1 | Extra: 10)"
     
-    const fortuneQuotaValue = `${fortuneTotal} (${i18n.t('common.weeklyFree') || '本週免費'}: ${fortuneQuota.weekly_free_quota}/${fortuneWeeklyLimit} | ${i18n.t('common.additional') || '額外'}: ${fortuneQuota.additional_quota})`;
+    // Use i18n safely
+    const weeklyFreeLabel = i18n.t('common.weeklyFree') || '本週免費';
+    const additionalLabel = i18n.t('common.additional') || '額外';
+    const fortuneQuotaValue = `${fortuneTotal} (${weeklyFreeLabel}: ${fortuneQuota.weekly_free_quota}/${fortuneWeeklyLimit} | ${additionalLabel}: ${fortuneQuota.additional_quota})`;
     
     const fortuneStatsText = 
       i18n.t('stats.fortuneTitle', { fortuneBottle: i18n.t('common.fortuneBottle') }) +

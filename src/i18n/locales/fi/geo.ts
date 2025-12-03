@@ -1,7 +1,7 @@
 export default {
   "select_continent": "Valitse alueesi 🌍",
-  "select_country": "Valitse maa",
-  "search_city_prompt": "Anna kaupungin nimi (esim. Taipei)",
+  "select_country": "Ole hyvä ja valitse maa/alue",
+  "search_city_prompt": "Ole hyvä ja kirjoita kaupungin nimi (esim.: Tokio)",
   "city_not_found": "Kaupunkia ei löytynyt, yritä englanninkielistä nimeä.",
   "confirm_city": "Onko tämä valitsemasi kaupunki: {city} ({country})?",
   "continent": {

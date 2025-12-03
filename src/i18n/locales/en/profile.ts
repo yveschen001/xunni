@@ -39,7 +39,7 @@ export default {
   "profile": "│ 📇 Profile Card │\n",
   "profile2": "👤 **Profile**\n\n",
   "quota": "💡 Complete tasks to earn additional daily quota (use /tasks to view)\n",
-  "quota2": "📦 Current Daily Quota: ${taskBonus > 0 ?",
+  "quota2": "📦 Current Daily Quota: {taskBonus > 0 ?",
   "quotaBottles": "{taskBonus} bottles",
   "quotaTotal": "📦 Current daily quota: {quota}\n\n",
   "returnToMenu": "🏠 Back to main menu: /menu",
@@ -69,6 +69,7 @@ export default {
   "vip2": "• Use /vip to upgrade to VIP Member\n",
   "vipUpgrade": "• Upgrade to VIP member using /vip\n",
   "zodiac": "⭐ Zodiac: {zodiac}\n",
-  "fortuneQuota": "🔮 {fortunemessage bottle}: {total} (This week free: {weekly}/{limit} | Additional: {additional})",
-  "vipWithDays": "💎 VIP Member (Remaining {days} days, Expiry: {expireDate})"
+  "fortuneQuota": "🔮 {fortuneBottle}: {total} (This week free: {weekly}/{limit} | Additional: {additional})",
+  "vipWithDays": "💎 VIP Member (Remaining {days} days, Expiry: {expireDate})",
+  "driftBottleInfo": "🍾 message bottle: {remaining} / {total}"
 };

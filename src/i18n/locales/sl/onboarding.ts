@@ -26,7 +26,7 @@ export default {
   "birthday3": "Prosimo, vnesite svoj datum rojstva (format: YYYY-MM-DD):\n\n",
   "birthday4": "Rojstni dan: {birthday}\n",
   "birthdayCheck": "Če menite, da je to napaka, preverite, ali je format vašega rojstnega dne pravilen (YYYY-MM-DD).",
-  "birthdayError": "❌ {error}",
+  "birthdayError": "❌ {error}\n\n",
   "birthdayFormatError": "❌ Napačen format rojstnega dne\n\nPonovno vnesite (format: YYYY-MM-DD):",
   "birthdayRetry": "Ponovno vnesite svoj rojstni dan (format: YYYY-MM-DD):",
   "birthdayWarning": "⚠️ Rojstnega dne ne morete spremeniti po nastavitvi, prosimo, potrdite, da je pravilno!",
@@ -50,7 +50,7 @@ export default {
     "label": "• Spol: {gender}\n",
     "male": "Moški"
   },
-  "gender2": "• Spol: ${updatedUser.gender ===",
+  "gender2": "• Spol: {updatedUser.gender ===",
   "gender3": "Prosimo, izberite svoj spol:\n\n",
   "genderFemale": "👩 Žensko",
   "genderMale": "👨 Moški",

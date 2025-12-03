@@ -165,5 +165,6 @@ export default {
       "seeking": "Jelenleg Munka nélkül / Átmenetben",
       "other_industry": "Egyéb Iparágak (Kézi Bevitellel)"
     }
-  }
+  },
+  "next_step_industry": "În continuare, te rugăm să selectezi industria ta."
 };

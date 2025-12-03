@@ -1,8 +1,8 @@
 export default {
   "bottleContent": "{content}\n\n",
-  "bottlePicked": "{maskedMatcherNickname}\n\n",
+  "bottlePicked": "Mesaj şişeniz {maskedMatcherNickname} tarafından alındı!",
   "conversationIdentifier": "💬 Görüşme Tanımlayıcısı: {conversationIdentifier}\n",
-  "firstMatch": "💡 Bu, 1. eşleşmenizdir, 2 slot kaldı\n\n",
+  "firstMatch": "💡 Bu senin 1. eşleşmen, hala 2 boş slot var",
   "foundBottle": "{maskedOwnerNickname}\n\n",
   "matchSuccess": "🎯 **VIP akıllı eşleştirme başarılı!**\n\n",
   "replyHint": "💬 **Lütfen bu mesaja uzun basın, 'Yanıtla' seçeneğini seçin ve ardından diğer tarafla sohbet etmek için içeriğinizi yazın**",

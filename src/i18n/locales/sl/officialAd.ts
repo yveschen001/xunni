@@ -20,7 +20,7 @@ export default {
   "noAdsAvailable": "❌ Ni na voljo oglasi",
   "noVerificationRequired": "❌ Ta oglas ne zahteva preverjanja",
   "quotaInfo": "📊 Preostalo danes: **{remaining}/20** krat",
-  "requiresVerification": "✅ Potrebna verifikacija: Kliknite na gumb 'Verificiraj' po pridruževanju skupini/kanalu",
+  "requiresVerification": "✅ Potrebna je potrditev: Kliknite na gumb 'Potrdi' po pridružitvi skupini/kanalu",
   "reward": "🎁 Nagrada: +{quota} stalne kvote",
   "rewardPermanent": "🎁 Izvedite nalogo, da zaslužite **+1 stalno kvoto**",
   "rewardTemporary": "🎁 Čestitamo! Prejeli ste +1 začasno kvoto (velja danes)",

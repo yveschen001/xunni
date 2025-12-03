@@ -112,5 +112,6 @@ export default {
     "career_focused": "İşkolik",
     "family": "Aile/Ebeveynlik",
     "exploring": "Keşif"
-  }
+  },
+  "back_to_categories": "Kategori menüsüne dön"
 };

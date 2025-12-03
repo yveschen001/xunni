@@ -112,5 +112,6 @@ export default {
     "career_focused": "काम की लत",
     "family": "परिवार/पालन-पोषण",
     "exploring": "अन्वेषण"
-  }
+  },
+  "back_to_categories": "श्रेणी मेनू पर लौटें"
 };

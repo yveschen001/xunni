@@ -26,7 +26,7 @@ export default {
   "birthday3": "誕生日を入力してください (形式: YYYY-MM-DD):\n\n",
   "birthday4": "誕生日: {birthday}\n",
   "birthdayCheck": "このエラーが発生したと思われる場合は、誕生日の形式（YYYY-MM-DD）が正しいかどうかを確認してください。",
-  "birthdayError": "❌ {error}",
+  "birthdayError": "❌ {error}\n\n",
   "birthdayFormatError": "❌ 無効な誕生日形式\n\n再入力してください（形式: YYYY-MM-DD）:",
   "birthdayRetry": "誕生日を再入力してください（形式: YYYY-MM-DD）:",
   "birthdayWarning": "⚠️ 誕生日を設定すると、変更できなくなりますので、ご確認ください！",

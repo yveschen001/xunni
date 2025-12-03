@@ -99,7 +99,7 @@ export default {
   "vipTriple": "💎 **Štatistika VIP Triple Bottle** (posledných {days} dní)",
   "vipTripleTitle": "💎 **Štatistika VIP Triple Bottle** (posledných {days} dní)",
   "zodiac": "🔮 **Zverokruh**: {zodiac}\n",
-  "fortuneTitle": "🔮 **{fortunemessage bottle}**",
+  "fortuneTitle": "\n🔮 **{fortuneBottle}**\n",
   "fortuneReadings": "• Počet predpovedí: {count}",
   "fortuneQuota": "• Zostávajúca kvóta: {quota}"
 };

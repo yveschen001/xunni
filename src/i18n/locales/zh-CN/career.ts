@@ -165,5 +165,6 @@ export default {
       "seeking": "目前待业 / 转职中",
       "other_industry": "其他产业（自行输入）"
     }
-  }
+  },
+  "next_step_industry": "接下来请选择您的行业类别："
 };

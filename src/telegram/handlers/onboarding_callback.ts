@@ -3,7 +3,7 @@
  * Handles callback queries during onboarding (gender, terms, etc.)
  */
 
-import type { Env, CallbackQuery } from '~/types';
+import type { Env, CallbackQuery, TelegramMessage } from '~/types';
 import { createDatabaseClient } from '~/db/client';
 import { findUserByTelegramId, updateUserProfile, updateOnboardingStep } from '~/db/queries/users';
 import { createTelegramService } from '~/services/telegram';
@@ -246,7 +246,7 @@ export async function handleBirthdayConfirmation(
 
     // Show blood type selection
     const { getBloodTypeOptions } = await import('~/domain/blood_type');
-    const options = getBloodTypeOptions();
+    const options = getBloodTypeOptions(i18n);
 
     await telegram.sendMessageWithButtons(
       chatId,
@@ -366,7 +366,13 @@ export async function handleBirthdayRetry(callbackQuery: CallbackQuery, env: Env
 
   try {
     const user = await findUserByTelegramId(db, telegramId);
-    const i18n = createI18n(user?.language_pref || 'zh-TW');
+    if (!user) {
+      const errorI18n = createI18n('zh-TW');
+      await telegram.answerCallbackQuery(callbackQuery.id, errorI18n.t('errors.userNotFound4'));
+      return;
+    }
+
+    const i18n = createI18n(user.language_pref || 'zh-TW');
 
     // Delete confirmation message
     await telegram.deleteMessage(chatId, callbackQuery.message!.message_id);
@@ -873,27 +879,27 @@ export async function handleAntiFraudLearnMore(
     await telegram.editMessageText(
       chatId,
       callbackQuery.message!.message_id,
-      i18n.t('common.text11') +
+      i18n.t('onboarding.text11') +
         '\n\n' +
-        i18n.t('common.text14') +
+        i18n.t('onboarding.text14') +
         '\n' +
-        i18n.t('common.text8') +
+        i18n.t('onboarding.text8') +
         '\n' +
-        i18n.t('common.text15') +
+        i18n.t('onboarding.text15') +
         '\n\n' +
-        i18n.t('common.message') +
+        i18n.t('onboarding.message') +
         '\n' +
-        i18n.t('common.message2') +
+        i18n.t('onboarding.message2') +
         '\n' +
-        i18n.t('common.text16') +
+        i18n.t('onboarding.text16') +
         '\n\n' +
-        i18n.t('common.text18') +
+        i18n.t('onboarding.text18') +
         '\n' +
-        i18n.t('common.text13') +
+        i18n.t('onboarding.text13') +
         '\n' +
-        i18n.t('common.text17') +
+        i18n.t('onboarding.text17') +
         '\n\n' +
-        i18n.t('common.confirm3'),
+        i18n.t('onboarding.confirm3'),
       {
         reply_markup: {
           inline_keyboard: [

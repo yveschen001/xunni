@@ -15,7 +15,7 @@ export default {
   "levelFree": "🆓 مفت رکن",
   "levelVip": "💎 VIP رکن",
   "message": "آئو XunNi پر مل کر پیغام کی بوتلیں پھینکیں! 🍾 میرا دعوتی کوڈ استعمال کریں، اور ہم دونوں مزید کوٹہ حاصل کر سکتے ہیں!",
-  "message2": "https://t.me/share/url?url=https://t.me/{botUsername}?start=invite_{inviteCode}&text=XunNi پر آئیں اور مل کر پیغام کی بوتل پھینکیں",
+  "message2": "XunNi آئیے ایک ساتھ پیغام کی بوتل پھینکتے ہیں",
   "notRegistered": "رجسٹر نہیں ہوا",
   "notSet": "سیٹ نہیں کیا",
   "quota": "• آپ دونوں کو روزانہ کا کوٹہ +1 ملتا ہے\n\n",
@@ -28,7 +28,7 @@ export default {
   "short": "مفت رکن",
   "stats": "📊 دعوت کے اعداد و شمار دیکھیں: /profile",
   "stats2": "📊 دعوت کے اعداد و شمار دیکھیں",
-  "task": "🎯 **اگلا کام**\n⏳ {nextTask.name} (+{nextTask.reward_amount} پیغام کی بوتلیں)\n💡 {nextTask.description}\n\n",
+  "task": "🎯 **اگلا کام**\n⏳ {nextTask.name} (+{nextTask.reward_amount} پیغام بوتلیں)\n💡 {nextTask.description}",
   "text": "🏠 **اہم مینو** {vipBadge}\n\n",
   "text2": "👋 ہیلو، {user.nickname}!\n\n",
   "text3": "💡 دوستوں کے ساتھ شیئر کرنے کے لیے نیچے دیے گئے بٹن پر کلک کریں:\n",
@@ -36,7 +36,7 @@ export default {
   "text5": "📊 آپ کی حیثیت:\n",
   "title": "🏠 **اہم مینو**",
   "userNotFound": "صارف موجود نہیں ہے",
-  "vip": "• سطح: {isVip ? 'VIP رکن 💎' : 'مفت رکن'}",
+  "vip": "• درجہ: {isVip ? 'VIP رکن 💎' : 'مفت رکن'} {isVip ? 'VIP 會員 💎' : '免費會員'} {isVip ? 'VIP Member 💎' : 'Free Member'}",
   "vip2": "VIP رکن 💎",
   "yourStatus": "آپ کی حیثیت",
   "birthDate": "جنم دن",
@@ -45,5 +45,5 @@ export default {
   "interests": "دلچسپیاں",
   "bio": "پروفائل",
   "driftBottles": "پیغام کی بوتل",
-  "fortuneBottles": "قسمت کی بوتل"
+  "fortuneBottles": "قسمت کی پیش گوئی کا پیغام بوتل"
 };

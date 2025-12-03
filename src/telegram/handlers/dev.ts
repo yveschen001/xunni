@@ -145,7 +145,7 @@ export async function handleDevReset(message: TelegramMessage, env: Env): Promis
         sql: 'DELETE FROM invites WHERE inviter_telegram_id = ? OR invitee_telegram_id = ?',
         params: [targetId, targetId],
       },
-      { sql: 'DELETE FROM daily_usage WHERE telegram_id = ?', params: [targetId] },
+      // { sql: 'DELETE FROM daily_usage WHERE telegram_id = ?', params: [targetId] }, // Removed: table does not exist
       { sql: 'DELETE FROM bans WHERE user_id = ?', params: [targetId] },
       {
         sql: 'DELETE FROM user_blocks WHERE blocker_telegram_id = ? OR blocked_telegram_id = ?',
@@ -272,6 +272,9 @@ export async function handleDevReset(message: TelegramMessage, env: Env): Promis
 }
 
 /**
+ * /dev_skip - Skip to completed onboarding (for testing)
+
+/**
  * /dev_info - Show development info
  *
  * ⚠️ DEVELOPMENT ONLY - Remove in production!
@@ -385,7 +388,9 @@ export async function handleDevRestart(message: TelegramMessage, env: Env): Prom
   }
 
   const db = createDatabaseClient(env.DB);
-  const telegramId = message.from!.id.toString(); // Restart is always self for now to restart onboarding
+  // Determine target ID: argument or sender
+  const args = message.text?.split(' ').slice(1) || [];
+  const targetId = args[0] || senderId;
 
   try {
     // Delete user data - use same logic as /dev_reset
@@ -397,29 +402,29 @@ export async function handleDevRestart(message: TelegramMessage, env: Env): Prom
         sql: `DELETE FROM conversation_messages WHERE conversation_id IN (
           SELECT id FROM conversations WHERE user_a_telegram_id = ? OR user_b_telegram_id = ?
         )`,
-        params: [telegramId, telegramId],
+        params: [targetId, targetId],
       },
       {
         sql: 'DELETE FROM conversation_identifiers WHERE user_telegram_id = ? OR partner_telegram_id = ?',
-        params: [telegramId, telegramId],
+        params: [targetId, targetId],
       },
       {
         sql: 'DELETE FROM conversation_history_posts WHERE user_telegram_id = ?',
-        params: [telegramId],
+        params: [targetId],
       },
       {
         sql: 'DELETE FROM conversation_new_message_posts WHERE user_telegram_id = ?',
-        params: [telegramId],
+        params: [targetId],
       },
 
       // Level 1: Deepest
-      { sql: 'DELETE FROM refund_requests WHERE user_id = ?', params: [telegramId] },
-      { sql: 'DELETE FROM matching_history WHERE matched_user_id = ?', params: [telegramId] },
+      { sql: 'DELETE FROM refund_requests WHERE user_id = ?', params: [targetId] },
+      { sql: 'DELETE FROM matching_history WHERE matched_user_id = ?', params: [targetId] },
       { 
         sql: `DELETE FROM matching_history WHERE bottle_id IN (
           SELECT id FROM bottles WHERE owner_telegram_id = ?
         )`, 
-        params: [telegramId] 
+        params: [targetId] 
       },
       
       // Bottle Match Slots (FK to Bottles, Conversations)
@@ -429,7 +434,7 @@ export async function handleDevRestart(message: TelegramMessage, env: Env): Prom
         ) OR conversation_id IN (
             SELECT id FROM conversations WHERE user_a_telegram_id = ? OR user_b_telegram_id = ?
         ) OR matched_with_telegram_id = ?`,
-        params: [telegramId, telegramId, telegramId, telegramId]
+        params: [targetId, targetId, targetId, targetId]
       },
       
       // Reports (FK to conversations OR user)
@@ -437,84 +442,84 @@ export async function handleDevRestart(message: TelegramMessage, env: Env): Prom
         sql: `DELETE FROM reports WHERE conversation_id IN (
           SELECT id FROM conversations WHERE user_a_telegram_id = ? OR user_b_telegram_id = ?
         ) OR reporter_telegram_id = ? OR reported_telegram_id = ?`,
-        params: [telegramId, telegramId, telegramId, telegramId],
+        params: [targetId, targetId, targetId, targetId],
       },
 
       // Level 3: Parents (conversations, bottles)
       {
         sql: 'DELETE FROM conversation_identifiers WHERE user_telegram_id = ? OR partner_telegram_id = ?',
-        params: [telegramId, telegramId],
+        params: [targetId, targetId],
       },
       {
         sql: 'DELETE FROM conversations WHERE user_a_telegram_id = ? OR user_b_telegram_id = ?',
-        params: [telegramId, telegramId],
+        params: [targetId, targetId],
       },
       // Only delete bottles OWNED by user. For matches, just unmatch.
       {
         sql: 'DELETE FROM bottles WHERE owner_telegram_id = ?',
-        params: [telegramId],
+        params: [targetId],
       },
       {
         sql: "UPDATE bottles SET matched_with_telegram_id = NULL, status = 'pending', matched_at = NULL WHERE matched_with_telegram_id = ?",
-        params: [telegramId],
+        params: [targetId],
       },
 
       // Level 4: Others
       {
         sql: 'DELETE FROM invites WHERE inviter_telegram_id = ? OR invitee_telegram_id = ?',
-        params: [telegramId, telegramId],
+        params: [targetId, targetId],
       },
-      { sql: 'DELETE FROM daily_usage WHERE telegram_id = ?', params: [telegramId] },
-      { sql: 'DELETE FROM bans WHERE user_id = ?', params: [telegramId] },
+      // { sql: 'DELETE FROM daily_usage WHERE telegram_id = ?', params: [targetId] }, // Removed: table does not exist
+      { sql: 'DELETE FROM bans WHERE user_id = ?', params: [targetId] },
       {
         sql: 'DELETE FROM user_blocks WHERE blocker_telegram_id = ? OR blocked_telegram_id = ?',
-        params: [telegramId, telegramId],
+        params: [targetId, targetId],
       },
-      { sql: 'DELETE FROM mbti_test_progress WHERE telegram_id = ?', params: [telegramId] },
-      { sql: 'DELETE FROM payments WHERE telegram_id = ?', params: [telegramId] },
-      { sql: 'DELETE FROM user_sessions WHERE telegram_id = ?', params: [telegramId] },
-      { sql: 'DELETE FROM bottle_drafts WHERE telegram_id = ?', params: [telegramId] },
-      { sql: 'DELETE FROM appeals WHERE telegram_id = ?', params: [telegramId] },
-      { sql: 'DELETE FROM broadcast_queue WHERE admin_telegram_id = ?', params: [telegramId] },
-      { sql: 'DELETE FROM admin_logs WHERE admin_telegram_id = ?', params: [telegramId] },
+      { sql: 'DELETE FROM mbti_test_progress WHERE telegram_id = ?', params: [targetId] },
+      { sql: 'DELETE FROM payments WHERE telegram_id = ?', params: [targetId] },
+      { sql: 'DELETE FROM user_sessions WHERE telegram_id = ?', params: [targetId] },
+      { sql: 'DELETE FROM bottle_drafts WHERE telegram_id = ?', params: [targetId] },
+      { sql: 'DELETE FROM appeals WHERE telegram_id = ?', params: [targetId] },
+      { sql: 'DELETE FROM broadcast_queue WHERE admin_telegram_id = ?', params: [targetId] },
+      { sql: 'DELETE FROM admin_logs WHERE admin_telegram_id = ?', params: [targetId] },
 
       // Push & Ads
-      { sql: 'DELETE FROM push_notifications WHERE user_id = ?', params: [telegramId] },
-      { sql: 'DELETE FROM user_push_preferences WHERE user_id = ?', params: [telegramId] },
-      { sql: 'DELETE FROM ad_sessions WHERE telegram_id = ?', params: [telegramId] },
+      { sql: 'DELETE FROM push_notifications WHERE user_id = ?', params: [targetId] },
+      { sql: 'DELETE FROM user_push_preferences WHERE user_id = ?', params: [targetId] },
+      { sql: 'DELETE FROM ad_sessions WHERE telegram_id = ?', params: [targetId] },
 
       // Fortune Telling
-      { sql: 'DELETE FROM fortune_history WHERE telegram_id = ?', params: [telegramId] },
-      { sql: 'DELETE FROM fortune_quota WHERE telegram_id = ?', params: [telegramId] },
-      { sql: 'DELETE FROM fortune_profiles WHERE user_id = ?', params: [telegramId] },
+      { sql: 'DELETE FROM fortune_history WHERE telegram_id = ?', params: [targetId] },
+      { sql: 'DELETE FROM fortune_quota WHERE telegram_id = ?', params: [targetId] },
+      { sql: 'DELETE FROM fortune_profiles WHERE user_id = ?', params: [targetId] },
 
       // Ad rewards and analytics
-      { sql: 'DELETE FROM ad_rewards WHERE telegram_id = ?', params: [telegramId] },
-      { sql: 'DELETE FROM ad_provider_logs WHERE telegram_id = ?', params: [telegramId] },
-      { sql: 'DELETE FROM analytics_events WHERE user_id = ?', params: [telegramId] },
-      { sql: 'DELETE FROM funnel_events WHERE user_id = ?', params: [telegramId] },
-      { sql: 'DELETE FROM daily_user_summary WHERE user_id = ?', params: [telegramId] },
+      { sql: 'DELETE FROM ad_rewards WHERE telegram_id = ?', params: [targetId] },
+      { sql: 'DELETE FROM ad_provider_logs WHERE telegram_id = ?', params: [targetId] },
+      { sql: 'DELETE FROM analytics_events WHERE user_id = ?', params: [targetId] },
+      { sql: 'DELETE FROM funnel_events WHERE user_id = ?', params: [targetId] },
+      { sql: 'DELETE FROM daily_user_summary WHERE user_id = ?', params: [targetId] },
 
       // Tasks
-      { sql: 'DELETE FROM user_tasks WHERE user_id = ?', params: [telegramId] },
-      { sql: 'DELETE FROM task_reminders WHERE user_id = ?', params: [telegramId] },
+      { sql: 'DELETE FROM user_tasks WHERE user_id = ?', params: [targetId] },
+      { sql: 'DELETE FROM task_reminders WHERE user_id = ?', params: [targetId] },
 
       // VIP subscriptions (after refund_requests)
-      { sql: 'DELETE FROM vip_subscriptions WHERE user_id = ?', params: [telegramId] },
+      { sql: 'DELETE FROM vip_subscriptions WHERE user_id = ?', params: [targetId] },
 
       // Level 5: Lastly delete user
       // IMPORTANT: Remove all potential FK references first
-      { sql: 'DELETE FROM match_requests WHERE requester_id = ? OR target_id = ?', params: [telegramId, telegramId] },
-      { sql: 'DELETE FROM user_blocklist WHERE user_id = ? OR blocked_user_id = ?', params: [telegramId, telegramId] },
-      { sql: 'DELETE FROM official_ad_views WHERE telegram_id = ?', params: [telegramId] },
+      { sql: 'DELETE FROM match_requests WHERE requester_id = ? OR target_id = ?', params: [targetId, targetId] },
+      { sql: 'DELETE FROM user_blocklist WHERE user_id = ? OR blocked_user_id = ?', params: [targetId, targetId] },
+      { sql: 'DELETE FROM official_ad_views WHERE telegram_id = ?', params: [targetId] },
       // Try both column names for appeals as there seems to be a schema mismatch in staging
-      { sql: 'DELETE FROM appeals WHERE telegram_id = ?', params: [telegramId] },
-      { sql: 'DELETE FROM appeals WHERE user_id = ?', params: [telegramId] },
+      { sql: 'DELETE FROM appeals WHERE telegram_id = ?', params: [targetId] },
+      { sql: 'DELETE FROM appeals WHERE user_id = ?', params: [targetId] },
 
-      { sql: 'DELETE FROM users WHERE telegram_id = ?', params: [telegramId] },
+      { sql: 'DELETE FROM users WHERE telegram_id = ?', params: [targetId] },
     ];
 
-    console.error('[handleDevRestart] Starting data deletion...');
+    console.error(`[handleDevRestart] Starting data deletion for ${targetId}...`);
 
     // Delete in multiple passes to handle foreign key constraints
     // Pass 1: Try to delete all tables (some may fail due to FK constraints)
@@ -572,43 +577,49 @@ export async function handleDevRestart(message: TelegramMessage, env: Env): Prom
     // Verify user is deleted
     const existingUser = await db.d1
       .prepare('SELECT telegram_id FROM users WHERE telegram_id = ?')
-      .bind(telegramId)
+      .bind(targetId)
       .first();
 
     if (existingUser) {
       console.error('[handleDevRestart] User still exists after deletion, force deleting...');
-      await db.d1.prepare('DELETE FROM users WHERE telegram_id = ?').bind(telegramId).run();
+      await db.d1.prepare('DELETE FROM users WHERE telegram_id = ?').bind(targetId).run();
 
       // Wait a bit to ensure deletion is committed
       await new Promise((resolve) => setTimeout(resolve, 100));
     }
 
-    console.error('[handleDevRestart] Creating new user...');
+    // Only restart onboarding if targeting SELF
+    if (targetId === senderId) {
+        console.error('[handleDevRestart] Creating new user for self...');
 
-    // Create user record with language_selection step
-    const { generateInviteCode } = await import('~/domain/user');
-    const { createUser } = await import('~/db/queries/users');
+        // Create user record with language_selection step
+        const { generateInviteCode } = await import('~/domain/user');
+        const { createUser } = await import('~/db/queries/users');
 
-    const newInviteCode = generateInviteCode();
-    console.error('[handleDevRestart] Generated invite code:', newInviteCode);
+        const newInviteCode = generateInviteCode();
+        console.error('[handleDevRestart] Generated invite code:', newInviteCode);
 
-    await createUser(db, {
-      telegram_id: telegramId,
-      username: message.from!.username,
-      first_name: message.from!.first_name,
-      last_name: message.from!.last_name,
-      language_pref: message.from!.language_code || 'en',
-      invite_code: newInviteCode,
-      onboarding_step: 'language_selection',
-    });
+        await createUser(db, {
+        telegram_id: targetId,
+        username: message.from!.username,
+        first_name: message.from!.first_name,
+        last_name: message.from!.last_name,
+        language_pref: message.from!.language_code || 'en',
+        invite_code: newInviteCode,
+        onboarding_step: 'language_selection',
+        });
 
-    console.error('[handleDevRestart] User created, showing language selection...');
+        console.error('[handleDevRestart] User created, showing language selection...');
 
-    // Show language selection (start onboarding)
-    const { showLanguageSelection } = await import('./language_selection');
-    await showLanguageSelection(message, env);
+        // Show language selection (start onboarding)
+        const { showLanguageSelection } = await import('./language_selection');
+        await showLanguageSelection(message, env);
 
-    console.error('[handleDevRestart] Language selection shown successfully');
+        console.error('[handleDevRestart] Language selection shown successfully');
+    } else {
+        // Targeted reset for another user
+        await telegram.sendMessage(chatId, `✅ Target user ${targetId} has been reset. They will need to /start again.`);
+    }
   } catch (error) {
     console.error('[handleDevRestart] Error:', error);
     const errorMessage = error instanceof Error ? error.message : String(error);
@@ -750,13 +761,32 @@ export async function handleClearFortune(message: TelegramMessage, env: Env): Pr
       .bind(targetId)
       .run();
 
+    // Also delete match requests and history for thorough cleanup
+    await db.d1
+      .prepare('DELETE FROM match_requests WHERE requester_id = ? OR target_id = ?')
+      .bind(targetId, targetId)
+      .run();
+    
+    await db.d1
+      .prepare('DELETE FROM matching_history WHERE matched_user_id = ? OR bottle_id IN (SELECT id FROM bottles WHERE owner_telegram_id = ?)')
+      .bind(targetId, targetId)
+      .run();
+
+    // Force clear session (Critical fix for "still useless" report)
+    // If user was stuck in a session loop, clearing DB history isn't enough if session persists in KV/D1
+    const { clearSession } = await import('~/db/queries/sessions');
+    // Clear all potential blocking session types
+    await clearSession(db, targetId, 'fortune_wizard');
+    await clearSession(db, targetId, 'fortune_love_match');
+    await clearSession(db, targetId, 'edit_profile'); 
+    
     // Reset fortune quota usage (set counters to 0, keep total limits)
+    // Note: weekly_free_quota counts USAGE (0 = unused, 1 = used)
     await db.d1
       .prepare(`
         UPDATE fortune_quota 
-        SET daily_usage = 0, 
-            weekly_usage = 0,
-            additional_bottles = 100, -- Give some bottles for testing
+        SET weekly_free_quota = 0, 
+            additional_quota = 100, -- Give some bottles for testing
             last_bottle_reward_at = NULL,
             last_invite_reward_at = NULL
         WHERE telegram_id = ?

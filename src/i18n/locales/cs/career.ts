@@ -165,5 +165,6 @@ export default {
       "seeking": "Momentálně nezaměstnaný / V přechodu",
       "other_industry": "Jiné odvětví (vložit ručně)"
     }
-  }
+  },
+  "next_step_industry": "Następnie proszę wybrać branżę."
 };

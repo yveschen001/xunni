@@ -19,246 +19,246 @@ export default {
   },
   "full": {
     "question1": {
-      "text": "在社交場合中，你通常：",
       "option1": "主動與他人交談",
-      "option2": "等待他人來找我"
+      "option2": "等待他人來找我",
+      "text": "在社交場合中，你通常："
     },
     "question10": {
-      "text": "解決問題時，你更依賴：",
       "option1": "實際經驗和事實",
-      "option2": "直覺和可能性"
+      "option2": "直覺和可能性",
+      "text": "解決問題時，你更依賴："
     },
     "question11": {
-      "text": "你更喜歡：",
       "option1": "關注具體細節",
-      "option2": "關注整體概念"
+      "option2": "關注整體概念",
+      "text": "你更喜歡："
     },
     "question12": {
-      "text": "學習新事物時，你更喜歡：",
       "option1": "按部就班的方法",
-      "option2": "探索創新的方式"
+      "option2": "探索創新的方式",
+      "text": "學習新事物時，你更喜歡："
     },
     "question13": {
-      "text": "閱讀時，你更喜歡：",
       "option1": "實用的指南",
-      "option2": "理論和概念"
+      "option2": "理論和概念",
+      "text": "閱讀時，你更喜歡："
     },
     "question14": {
-      "text": "你更關注：",
       "option1": "現在和過去",
-      "option2": "未來和可能性"
+      "option2": "未來和可能性",
+      "text": "你更關注："
     },
     "question15": {
-      "text": "描述事物時，你傾向於：",
       "option1": "使用具體例子",
-      "option2": "使用比喻和類比"
+      "option2": "使用比喻和類比",
+      "text": "描述事物時，你傾向於："
     },
     "question16": {
-      "text": "工作中，你更重視：",
       "option1": "實際應用",
-      "option2": "創新想法"
+      "option2": "創新想法",
+      "text": "工作中，你更重視："
     },
     "question17": {
-      "text": "你更信任：",
       "option1": "已驗證的方法",
-      "option2": "新的嘗試"
+      "option2": "新的嘗試",
+      "text": "你更信任："
     },
     "question18": {
-      "text": "規劃未來時，你會：",
       "option1": "基於現實條件",
-      "option2": "想像各種可能"
+      "option2": "想像各種可能",
+      "text": "規劃未來時，你會："
     },
     "question19": {
-      "text": "做決定時，你更重視：",
       "option1": "邏輯和客觀分析",
-      "option2": "情感和人際和諧"
+      "option2": "情感和人際和諧",
+      "text": "做決定時，你更重視："
     },
     "question2": {
-      "text": "週末你更喜歡：",
       "option1": "和朋友出去玩",
-      "option2": "在家獨處休息"
+      "option2": "在家獨處休息",
+      "text": "週末你更喜歡："
     },
     "question20": {
-      "text": "批評他人時，你會：",
       "option1": "直接指出問題",
-      "option2": "考慮對方感受"
+      "option2": "考慮對方感受",
+      "text": "批評他人時，你會："
     },
     "question21": {
-      "text": "你更看重：",
       "option1": "公平和正義",
-      "option2": "同情和理解"
+      "option2": "同情和理解",
+      "text": "你更看重："
     },
     "question22": {
-      "text": "評價一個想法時，你首先考慮：",
       "option1": "是否合理",
-      "option2": "是否有益"
+      "option2": "是否有益",
+      "text": "評價一個想法時，你首先考慮："
     },
     "question23": {
-      "text": "朋友向你傾訴時，你會：",
       "option1": "分析問題並提供建議",
-      "option2": "傾聽並給予安慰"
+      "option2": "傾聽並給予安慰",
+      "text": "朋友向你傾訴時，你會："
     },
     "question24": {
-      "text": "衝突中，你更傾向於：",
       "option1": "堅持原則",
-      "option2": "維持關係"
+      "option2": "維持關係",
+      "text": "衝突中，你更傾向於："
     },
     "question25": {
-      "text": "你更容易被說服通過：",
       "option1": "事實和數據",
-      "option2": "情感和故事"
+      "option2": "情感和故事",
+      "text": "你更容易被說服通過："
     },
     "question26": {
-      "text": "團隊決策時，你更關注：",
       "option1": "效率和結果",
-      "option2": "共識和團結"
+      "option2": "共識和團結",
+      "text": "團隊決策時，你更關注："
     },
     "question27": {
-      "text": "你認為好的領導者應該：",
       "option1": "公正果斷",
-      "option2": "體貼關懷"
+      "option2": "體貼關懷",
+      "text": "你認為好的領導者應該："
     },
     "question28": {
-      "text": "你的工作方式是：",
       "option1": "提前計劃和準備",
-      "option2": "隨機應變和靈活"
+      "option2": "隨機應變和靈活",
+      "text": "你的工作方式是："
     },
     "question29": {
-      "text": "你更喜歡：",
       "option1": "有明確的截止日期",
-      "option2": "保持開放的選擇"
+      "option2": "保持開放的選擇",
+      "text": "你更喜歡："
     },
     "question3": {
-      "text": "參加聚會後，你通常：",
       "option1": "感到充滿活力",
-      "option2": "感到需要休息"
+      "option2": "感到需要休息",
+      "text": "參加聚會後，你通常："
     },
     "question30": {
-      "text": "旅行時，你傾向於：",
       "option1": "制定詳細行程",
-      "option2": "隨心所欲探索"
+      "option2": "隨心所欲探索",
+      "text": "旅行時，你傾向於："
     },
     "question31": {
-      "text": "你的房間通常：",
       "option1": "整齊有序",
-      "option2": "隨性自在"
+      "option2": "隨性自在",
+      "text": "你的房間通常："
     },
     "question32": {
-      "text": "處理任務時，你會：",
       "option1": "盡早完成",
-      "option2": "接近截止日期才完成"
+      "option2": "接近截止日期才完成",
+      "text": "處理任務時，你會："
     },
     "question33": {
-      "text": "你更喜歡的生活方式：",
       "option1": "有規律和結構",
-      "option2": "自由和彈性"
+      "option2": "自由和彈性",
+      "text": "你更喜歡的生活方式："
     },
     "question34": {
-      "text": "做決定時，你傾向於：",
       "option1": "快速決定",
-      "option2": "保留選擇權"
+      "option2": "保留選擇權",
+      "text": "做決定時，你傾向於："
     },
     "question35": {
-      "text": "購物時，你會：",
       "option1": "列清單按計劃購買",
-      "option2": "隨意逛逛看到喜歡就買"
+      "option2": "隨意逛逛看到喜歡就買",
+      "text": "購物時，你會："
     },
     "question36": {
-      "text": "面對變化，你通常：",
       "option1": "感到不安",
-      "option2": "感到興奮"
+      "option2": "感到興奮",
+      "text": "面對變化，你通常："
     },
     "question4": {
-      "text": "在團隊中，你更傾向於：",
       "option1": "積極發表意見",
-      "option2": "先聽後說"
+      "option2": "先聽後說",
+      "text": "在團隊中，你更傾向於："
     },
     "question5": {
-      "text": "遇到新朋友時，你會：",
       "option1": "很快就能熟絡起來",
-      "option2": "需要時間慢慢熟悉"
+      "option2": "需要時間慢慢熟悉",
+      "text": "遇到新朋友時，你會："
     },
     "question6": {
-      "text": "你的朋友圈：",
       "option1": "廣泛但不深入",
-      "option2": "小而親密"
+      "option2": "小而親密",
+      "text": "你的朋友圈："
     },
     "question7": {
-      "text": "工作時，你更喜歡：",
       "option1": "團隊合作",
-      "option2": "獨立工作"
+      "option2": "獨立工作",
+      "text": "工作時，你更喜歡："
     },
     "question8": {
-      "text": "思考問題時，你傾向於：",
       "option1": "邊說邊想",
-      "option2": "先想好再說"
+      "option2": "先想好再說",
+      "text": "思考問題時，你傾向於："
     },
     "question9": {
-      "text": "壓力大時，你會：",
       "option1": "找朋友聊天",
-      "option2": "獨自消化"
+      "option2": "獨自消化",
+      "text": "壓力大時，你會："
     }
   },
   "quick": {
     "question1": {
-      "text": "在社交場合中，你通常：",
       "option1": "主動與他人交談",
-      "option2": "等待他人來找我"
+      "option2": "等待他人來找我",
+      "text": "在社交場合中，你通常："
     },
     "question10": {
-      "text": "你的工作方式是：",
       "option1": "提前計劃和準備",
-      "option2": "隨機應變和靈活"
+      "option2": "隨機應變和靈活",
+      "text": "你的工作方式是："
     },
     "question11": {
-      "text": "你更喜歡：",
       "option1": "有明確的截止日期",
-      "option2": "保持開放的選擇"
+      "option2": "保持開放的選擇",
+      "text": "你更喜歡："
     },
     "question12": {
-      "text": "旅行時，你傾向於：",
       "option1": "制定詳細行程",
-      "option2": "隨心所欲探索"
+      "option2": "隨心所欲探索",
+      "text": "旅行時，你傾向於："
     },
     "question2": {
-      "text": "週末你更喜歡：",
       "option1": "和朋友出去玩",
-      "option2": "在家獨處休息"
+      "option2": "在家獨處休息",
+      "text": "週末你更喜歡："
     },
     "question3": {
-      "text": "參加聚會後，你通常：",
       "option1": "感到充滿活力",
-      "option2": "感到需要休息"
+      "option2": "感到需要休息",
+      "text": "參加聚會後，你通常："
     },
     "question4": {
-      "text": "解決問題時，你更依賴：",
       "option1": "實際經驗和事實",
-      "option2": "直覺和可能性"
+      "option2": "直覺和可能性",
+      "text": "解決問題時，你更依賴："
     },
     "question5": {
-      "text": "你更喜歡：",
       "option1": "關注具體細節",
-      "option2": "關注整體概念"
+      "option2": "關注整體概念",
+      "text": "你更喜歡："
     },
     "question6": {
-      "text": "學習新事物時，你更喜歡：",
       "option1": "按部就班的方法",
-      "option2": "探索創新的方式"
+      "option2": "探索創新的方式",
+      "text": "學習新事物時，你更喜歡："
     },
     "question7": {
-      "text": "做決定時，你更重視：",
       "option1": "邏輯和客觀分析",
-      "option2": "情感和人際和諧"
+      "option2": "情感和人際和諧",
+      "text": "做決定時，你更重視："
     },
     "question8": {
-      "text": "批評他人時，你會：",
       "option1": "直接指出問題",
-      "option2": "考慮對方感受"
+      "option2": "考慮對方感受",
+      "text": "批評他人時，你會："
     },
     "question9": {
-      "text": "你更看重：",
       "option1": "公平和正義",
-      "option2": "同情和理解"
+      "option2": "同情和理解",
+      "text": "你更看重："
     }
   },
   "share": {

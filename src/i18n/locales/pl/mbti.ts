@@ -19,246 +19,246 @@ export default {
   },
   "full": {
     "question1": {
-      "text": "W sytuacjach społecznych zwykle:",
       "option1": "Inicjuję rozmowę z innymi",
-      "option2": "Czekam, aż inni podejdą do mnie"
+      "option2": "Czekam, aż inni podejdą do mnie",
+      "text": "W sytuacjach towarzyskich zazwyczaj:"
     },
     "question10": {
-      "text": "Kiedy rozwiązuję problemy, bardziej polegam na:",
       "option1": "Praktycznym doświadczeniu i faktach",
-      "option2": "Intuicji i możliwościach"
+      "option2": "Intuicji i możliwościach",
+      "text": "Podczas rozwiązywania problemów bardziej polegasz na:"
     },
     "question11": {
-      "text": "Preferujesz:",
       "option1": "Skupienie na szczegółach",
-      "option2": "Skupienie na ogólnym obrazie"
+      "option2": "Skupienie na ogólnym obrazie",
+      "text": "Preferujesz:"
     },
     "question12": {
-      "text": "Kiedy uczysz się nowych rzeczy, preferujesz:",
       "option1": "Podejście krok po kroku",
-      "option2": "Odkrywanie innowacyjnych metod"
+      "option2": "Odkrywanie innowacyjnych metod",
+      "text": "Podczas nauki nowych rzeczy preferujesz:"
     },
     "question13": {
-      "text": "Kiedy czytasz, preferujesz:",
       "option1": "Praktyczne przewodniki",
-      "option2": "Teorie i koncepcje"
+      "option2": "Teorie i koncepcje",
+      "text": "Gdy czytasz, wolisz:"
     },
     "question14": {
-      "text": "Bardziej interesują cię:",
       "option1": "Teraźniejszość i przeszłość",
-      "option2": "Przyszłość i możliwości"
+      "option2": "Przyszłość i możliwości",
+      "text": "Bardziej zależy Ci na:"
     },
     "question15": {
-      "text": "Kiedy opisujesz rzeczy, masz tendencję do:",
       "option1": "Używania konkretnych przykładów",
-      "option2": "Używania metafor i analogii"
+      "option2": "Używania metafor i analogii",
+      "text": "Opisując rzeczy, masz tendencję do:"
     },
     "question16": {
-      "text": "W pracy cenisz:",
       "option1": "Praktyczne zastosowanie",
-      "option2": "Innowacyjne pomysły"
+      "option2": "Innowacyjne pomysły",
+      "text": "W pracy cenisz:"
     },
     "question17": {
-      "text": "Ufasz:",
       "option1": "Sprawdzonym metodom",
-      "option2": "Nowym próbom"
+      "option2": "Nowym próbom",
+      "text": "Bardziej ufasz:"
     },
     "question18": {
-      "text": "Planując przyszłość,:",
       "option1": "Opierasz się na realistycznych warunkach",
-      "option2": "Wyobrażasz sobie różne możliwości"
+      "option2": "Wyobrażasz sobie różne możliwości",
+      "text": "Planując przyszłość, będziesz:"
     },
     "question19": {
-      "text": "Podejmując decyzje, nadajesz priorytet:",
       "option1": "Logice i obiektywnej analizie",
-      "option2": "Emocjom i harmonii interpersonalnej"
+      "option2": "Emocjom i harmonii interpersonalnej",
+      "text": "Podejmując decyzje, priorytetowo traktujesz:"
     },
     "question2": {
-      "text": "W weekendy preferujesz:",
       "option1": "Wyjścia z przyjaciółmi",
-      "option2": "Zostanie w domu, aby odpocząć"
+      "option2": "Zostanie w domu, aby odpocząć",
+      "text": "W weekendy wolisz:"
     },
     "question20": {
-      "text": "Kiedy krytykujesz innych,:",
       "option1": "Wskazujesz bezpośrednio na problem",
-      "option2": "Uwzględniasz uczucia innych"
+      "option2": "Uwzględniasz uczucia innych",
+      "text": "Krytykując innych, będziesz:"
     },
     "question21": {
-      "text": "Co cenisz bardziej:",
       "option1": "Sprawiedliwość i uczciwość",
-      "option2": "Współczucie i zrozumienie"
+      "option2": "Współczucie i zrozumienie",
+      "text": "Przykładasz większą wagę do:"
     },
     "question22": {
-      "text": "Oceniając pomysł, najpierw bierzesz pod uwagę:",
       "option1": "Czy jest rozsądny",
-      "option2": "Czy jest korzystny"
+      "option2": "Czy jest korzystny",
+      "text": "Oceniając pomysł, najpierw rozważasz:"
     },
     "question23": {
-      "text": "Gdy przyjaciel się zwierza, ty:",
       "option1": "Analizujesz problem i dajesz sugestie",
-      "option2": "Słuchasz i dajesz pocieszenie"
+      "option2": "Słuchasz i dajesz pocieszenie",
+      "text": "Gdy przyjaciele się zwierzają, będziesz:"
     },
     "question24": {
-      "text": "W konflikcie zazwyczaj:",
       "option1": "Trzymasz się zasad",
-      "option2": "Utrzymujesz relacje"
+      "option2": "Utrzymujesz relacje",
+      "text": "W konfliktach masz tendencję do:"
     },
     "question25": {
-      "text": "Łatwiej jesteś przekonywany przez:",
       "option1": "Fakty i dane",
-      "option2": "Emocje i historie"
+      "option2": "Emocje i historie",
+      "text": "Jesteś łatwiej przekonywany przez:"
     },
     "question26": {
-      "text": "Podczas podejmowania decyzji w zespole, bardziej koncentrujesz się na:",
       "option1": "Efektywności i wynikach",
-      "option2": "Konsensusie i jedności"
+      "option2": "Konsensusie i jedności",
+      "text": "W podejmowaniu decyzji zespołowych koncentrujesz się na:"
     },
     "question27": {
-      "text": "Uważasz, że dobry lider powinien:",
       "option1": "Być uczciwy i zdecydowany",
-      "option2": "Być troskliwy i opiekuńczy"
+      "option2": "Być troskliwy i opiekuńczy",
+      "text": "Uważasz, że dobry lider powinien:"
     },
     "question28": {
-      "text": "Twój styl pracy to:",
       "option1": "Planowanie i przygotowywanie z wyprzedzeniem",
-      "option2": "Bycie elastycznym i dostosowującym się"
+      "option2": "Bycie elastycznym i dostosowującym się",
+      "text": "Twój styl pracy to:"
     },
     "question29": {
-      "text": "Preferujesz:",
       "option1": "Mieć jasne terminy",
-      "option2": "Trzymać opcje otwarte"
+      "option2": "Trzymać opcje otwarte",
+      "text": "Preferujesz:"
     },
     "question3": {
-      "text": "Po uczestnictwie w zgromadzeniu zazwyczaj:",
       "option1": "Czujesz przypływ energii",
-      "option2": "Czujesz potrzebę odpoczynku"
+      "option2": "Czujesz potrzebę odpoczynku",
+      "text": "Po uczęszczaniu na spotkanie zazwyczaj:"
     },
     "question30": {
-      "text": "Podczas podróżowania skłaniasz się do:",
       "option1": "Tworzenia szczegółowych planów podróży",
-      "option2": "Swobodnego eksplorowania"
+      "option2": "Swobodnego eksplorowania",
+      "text": "Podczas podróży masz tendencję do:"
     },
     "question31": {
-      "text": "Twój pokój zazwyczaj jest:",
       "option1": "Czysty i uporządkowany",
-      "option2": "Swobodny i zrelaksowany"
+      "option2": "Swobodny i zrelaksowany",
+      "text": "Twoje pomieszczenie zazwyczaj:"
     },
     "question32": {
-      "text": "Podczas realizacji zadań:",
       "option1": "Kończysz wcześniej",
-      "option2": "Kończysz blisko terminu"
+      "option2": "Kończysz blisko terminu",
+      "text": "Podczas realizacji zadań, masz tendencję do:"
     },
     "question33": {
-      "text": "Twój preferowany styl życia:",
       "option1": "Ustrukturyzowany i uporządkowany",
-      "option2": "Wolny i elastyczny"
+      "option2": "Wolny i elastyczny",
+      "text": "Twój preferowany styl życia:"
     },
     "question34": {
-      "text": "Podejmując decyzje, skłaniasz się do:",
       "option1": "Szybkiego podejmowania decyzji",
-      "option2": "Zachowania otwartych możliwości"
+      "option2": "Zachowania otwartych możliwości",
+      "text": "Podejmując decyzje, masz tendencję do:"
     },
     "question35": {
-      "text": "Podczas zakupów:",
       "option1": "Robisz listę i kupujesz zgodnie z planem",
-      "option2": "Przeglądasz swobodnie i kupujesz, co ci się podoba"
+      "option2": "Przeglądasz swobodnie i kupujesz, co ci się podoba",
+      "text": "Podczas zakupów, będziesz:"
     },
     "question36": {
-      "text": "W obliczu zmiany zazwyczaj:",
       "option1": "Czujesz się nieswojo",
-      "option2": "Czujesz podekscytowanie"
+      "option2": "Czujesz podekscytowanie",
+      "text": "W obliczu zmian, zazwyczaj:"
     },
     "question4": {
-      "text": "W zespole jesteś bardziej skłonny do:",
       "option1": "Aktywnie wyrażać swoje opinie",
-      "option2": "Słuchać przed mówieniem"
+      "option2": "Słuchać przed mówieniem",
+      "text": "W zespole, skłaniasz się bardziej do:"
     },
     "question5": {
-      "text": "Przy poznawaniu nowych przyjaciół:",
       "option1": "Szybko stajesz się zaznajomiony",
-      "option2": "Potrzebujesz czasu, aby stopniowo się zaaklimatyzować"
+      "option2": "Potrzebujesz czasu, aby stopniowo się zaaklimatyzować",
+      "text": "Podczas poznawania nowych przyjaciół, będziesz:"
     },
     "question6": {
-      "text": "Twoje grono przyjaciół:",
       "option1": "Szerokie, ale nie głębokie",
-      "option2": "Małe i intymne"
+      "option2": "Małe i intymne",
+      "text": "Twoje grono przyjaciół:"
     },
     "question7": {
-      "text": "Podczas pracy wolisz:",
       "option1": "Współpracę zespołową",
-      "option2": "Pracę niezależną"
+      "option2": "Pracę niezależną",
+      "text": "Podczas pracy, wolisz:"
     },
     "question8": {
-      "text": "Myśląc o problemach, masz tendencję do:",
       "option1": "Myślenia podczas mówienia",
-      "option2": "Planowania myśli przed mówieniem"
+      "option2": "Planowania myśli przed mówieniem",
+      "text": "Myśląc o problemach, masz tendencję do:"
     },
     "question9": {
-      "text": "Podczas stresu:",
       "option1": "Gawędzisz z przyjaciółmi",
-      "option2": "Przetwarzasz w samotności"
+      "option2": "Przetwarzasz w samotności",
+      "text": "Podczas presji, będziesz:"
     }
   },
   "quick": {
     "question1": {
-      "text": "W sytuacjach towarzyskich zazwyczaj:",
       "option1": "Aktywnie angażujesz się w rozmowy",
-      "option2": "Czekasz, aż inni podejdą do Ciebie"
+      "option2": "Czekasz, aż inni podejdą do Ciebie",
+      "text": "W sytuacjach towarzyskich zazwyczaj:"
     },
     "question10": {
-      "text": "Twój styl pracy to:",
       "option1": "Planowanie i przygotowanie z wyprzedzeniem",
-      "option2": "Dostosowanie i elastyczność"
+      "option2": "Dostosowanie i elastyczność",
+      "text": "Twój styl pracy to:"
     },
     "question11": {
-      "text": "Preferujesz:",
       "option1": "Wyraźne terminy",
-      "option2": "Zachowanie otwartych opcji"
+      "option2": "Zachowanie otwartych opcji",
+      "text": "Preferujesz:"
     },
     "question12": {
-      "text": "Podczas podróży masz tendencję do:",
       "option1": "Tworzenia szczegółowych planów podróży",
-      "option2": "Zabawy w swoim tempie"
+      "option2": "Zabawy w swoim tempie",
+      "text": "Podczas podróży masz tendencję do:"
     },
     "question2": {
-      "text": "W weekendy preferujesz:",
       "option1": "Spędzać czas z przyjaciółmi",
-      "option2": "Zostać w domu, aby się zrelaksować samemu"
+      "option2": "Zostać w domu, aby się zrelaksować samemu",
+      "text": "W weekendy preferujesz:"
     },
     "question3": {
-      "text": "Po uczęszczaniu na spotkanie zazwyczaj:",
       "option1": "Czujesz się naładowany energią",
-      "option2": "Czujesz potrzebę odpoczynku"
+      "option2": "Czujesz potrzebę odpoczynku",
+      "text": "Po uczęszczaniu na spotkanie zazwyczaj:"
     },
     "question4": {
-      "text": "Podczas rozwiązywania problemów bardziej polegasz na:",
       "option1": "Praktycznym doświadczeniu i faktach",
-      "option2": "Intuicji i możliwościach"
+      "option2": "Intuicji i możliwościach",
+      "text": "Podczas rozwiązywania problemów bardziej polegasz na:"
     },
     "question5": {
-      "text": "Preferujesz:",
       "option1": "Skupiać się na konkretnych szczegółach",
-      "option2": "Skupiać się na ogólnej koncepcji"
+      "option2": "Skupiać się na ogólnej koncepcji",
+      "text": "Preferujesz:"
     },
     "question6": {
-      "text": "Podczas nauki nowych rzeczy preferujesz:",
       "option1": "Podejście krok po kroku",
-      "option2": "Odkrywanie innowacyjnych metod"
+      "option2": "Odkrywanie innowacyjnych metod",
+      "text": "Podczas nauki nowych rzeczy preferujesz:"
     },
     "question7": {
-      "text": "Przy podejmowaniu decyzji cenisz:",
       "option1": "Logikę i obiektywną analizę",
-      "option2": "Emocje i harmonię interpersonalną"
+      "option2": "Emocje i harmonię interpersonalną",
+      "text": "Przy podejmowaniu decyzji cenisz:"
     },
     "question8": {
-      "text": "Kiedy krytykujesz innych, ty:",
       "option1": "Bezpośrednio wskaż problem",
-      "option2": "Weź pod uwagę uczucia drugiej osoby"
+      "option2": "Weź pod uwagę uczucia drugiej osoby",
+      "text": "Kiedy krytykujesz innych, ty:"
     },
     "question9": {
-      "text": "Cenisz bardziej:",
       "option1": "Sprawiedliwość i Równość",
-      "option2": "Współczucie i Zrozumienie"
+      "option2": "Współczucie i Zrozumienie",
+      "text": "Cenisz bardziej:"
     }
   },
   "share": {

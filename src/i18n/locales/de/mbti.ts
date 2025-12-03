@@ -19,246 +19,246 @@ export default {
   },
   "full": {
     "question1": {
-      "text": "In sozialen Situationen tun Sie normalerweise:",
       "option1": "Gespräche mit anderen beginnen",
-      "option2": "Warten, bis andere auf mich zukommen"
+      "option2": "Warten, bis andere auf mich zukommen",
+      "text": "In sozialen Situationen sind Sie normalerweise:"
     },
     "question10": {
-      "text": "Beim Lösen von Problemen verlassen Sie sich mehr auf:",
       "option1": "Praktische Erfahrung und Fakten",
-      "option2": "Intuition und Möglichkeiten"
+      "option2": "Intuition und Möglichkeiten",
+      "text": "Bei der Problemlösung verlassen Sie sich mehr auf:"
     },
     "question11": {
-      "text": "Sie bevorzugen:",
       "option1": "Fokus auf spezifische Details",
-      "option2": "Fokus auf Gesamtkonzepte"
+      "option2": "Fokus auf Gesamtkonzepte",
+      "text": "Sie bevorzugen:"
     },
     "question12": {
-      "text": "Beim Lernen neuer Dinge ziehen Sie vor:",
       "option1": "Einen Schritt-für-Schritt-Ansatz",
-      "option2": "Innovative Wege zu erkunden"
+      "option2": "Innovative Wege zu erkunden",
+      "text": "Beim Lernen neuer Dinge bevorzugen Sie:"
     },
     "question13": {
-      "text": "Beim Lesen ziehen Sie vor:",
       "option1": "Praktische Anleitungen",
-      "option2": "Theorien und Konzepte"
+      "option2": "Theorien und Konzepte",
+      "text": "Beim Lesen bevorzugen Sie:"
     },
     "question14": {
-      "text": "Sie konzentrieren sich mehr auf:",
       "option1": "Die Gegenwart und die Vergangenheit",
-      "option2": "Die Zukunft und Möglichkeiten"
+      "option2": "Die Zukunft und Möglichkeiten",
+      "text": "Sie sind mehr besorgt über:"
     },
     "question15": {
-      "text": "Beim Beschreiben von Dingen neigen Sie dazu:",
       "option1": "Konkrete Beispiele zu verwenden",
-      "option2": "Metaphern und Analogien zu verwenden"
+      "option2": "Metaphern und Analogien zu verwenden",
+      "text": "Wenn Sie Dinge beschreiben, neigen Sie dazu:"
     },
     "question16": {
-      "text": "Bei der Arbeit schätzen Sie:",
       "option1": "Praktische Anwendung",
-      "option2": "Innovative Ideen"
+      "option2": "Innovative Ideen",
+      "text": "Bei der Arbeit schätzen Sie:"
     },
     "question17": {
-      "text": "Sie vertrauen mehr:",
       "option1": "Bewährten Methoden",
-      "option2": "Neuen Versuchen"
+      "option2": "Neuen Versuchen",
+      "text": "Sie vertrauen mehr:"
     },
     "question18": {
-      "text": "Bei der Planung für die Zukunft:",
       "option1": "Berücksichtigen Sie realistische Bedingungen",
-      "option2": "Stellen Sie sich verschiedene Möglichkeiten vor"
+      "option2": "Stellen Sie sich verschiedene Möglichkeiten vor",
+      "text": "Bei der Planung für die Zukunft werden Sie:"
     },
     "question19": {
-      "text": "Bei Entscheidungen priorisieren Sie:",
       "option1": "Logik und objektive Analyse",
-      "option2": "Emotion und zwischenmenschliche Harmonie"
+      "option2": "Emotion und zwischenmenschliche Harmonie",
+      "text": "Bei Entscheidungen priorisieren Sie:"
     },
     "question2": {
-      "text": "Am Wochenende bevorzugen Sie:",
       "option1": "Mit Freunden auszugehen",
-      "option2": "Zuhause allein zu bleiben, um sich zu entspannen"
+      "option2": "Zuhause allein zu bleiben, um sich zu entspannen",
+      "text": "Am Wochenende bevorzugen Sie:"
     },
     "question20": {
-      "text": "Wenn Sie andere kritisieren, dann:",
       "option1": "Auf das Problem direkt hinweisen",
-      "option2": "Die Gefühle der anderen Person berücksichtigen"
+      "option2": "Die Gefühle der anderen Person berücksichtigen",
+      "text": "Wenn Sie andere kritisieren, werden Sie:"
     },
     "question21": {
-      "text": "Was ist Ihnen wichtiger:",
       "option1": "Fairness und Gerechtigkeit",
-      "option2": "Mitgefühl und Verständnis"
+      "option2": "Mitgefühl und Verständnis",
+      "text": "Sie legen mehr Wert auf:"
     },
     "question22": {
-      "text": "Bei der Bewertung einer Idee berücksichtigen Sie zuerst:",
       "option1": "Ob es vernünftig ist",
-      "option2": "Ob es vorteilhaft ist"
+      "option2": "Ob es vorteilhaft ist",
+      "text": "Bei der Bewertung einer Idee ziehen Sie zuerst in Betracht:"
     },
     "question23": {
-      "text": "Wenn ein Freund Ihnen anvertraut, werden Sie:",
       "option1": "Das Problem analysieren und Ratschläge anbieten",
-      "option2": "Zuhören und Trost spenden"
+      "option2": "Zuhören und Trost spenden",
+      "text": "Wenn Freunde Ihnen anvertrauen, werden Sie:"
     },
     "question24": {
-      "text": "In Konflikten neigen Sie dazu:",
       "option1": "An Prinzipien festzuhalten",
-      "option2": "Beziehungen aufrechtzuerhalten"
+      "option2": "Beziehungen aufrechtzuerhalten",
+      "text": "In Konflikten neigen Sie dazu:"
     },
     "question25": {
-      "text": "Sie lassen sich leichter überzeugen von:",
       "option1": "Fakten und Daten",
-      "option2": "Emotionen und Geschichten"
+      "option2": "Emotionen und Geschichten",
+      "text": "Sie lassen sich leichter überzeugen von:"
     },
     "question26": {
-      "text": "Bei der Entscheidungsfindung im Team konzentrieren Sie sich mehr auf:",
       "option1": "Effizienz und Ergebnisse",
-      "option2": "Konsens und Einheit"
+      "option2": "Konsens und Einheit",
+      "text": "Bei teamorientierten Entscheidungen konzentrieren Sie sich auf:"
     },
     "question27": {
-      "text": "Sie glauben, dass ein guter Führer sein sollte:",
       "option1": "Fair und entscheidungsfreudig",
-      "option2": "Nachdenklich und fürsorglich"
+      "option2": "Nachdenklich und fürsorglich",
+      "text": "Sie glauben, dass ein guter Führer sollte:"
     },
     "question28": {
-      "text": "Ihr Arbeitsstil ist:",
       "option1": "Vorab planen und vorbereiten",
-      "option2": "Anpassen und flexibel sein"
+      "option2": "Anpassen und flexibel sein",
+      "text": "Ihr Arbeitsstil ist:"
     },
     "question29": {
-      "text": "Sie bevorzugen:",
       "option1": "Klare Fristen",
-      "option2": "Optionen offen zu halten"
+      "option2": "Optionen offen zu halten",
+      "text": "Sie bevorzugen:"
     },
     "question3": {
-      "text": "Nach dem Besuch einer Versammlung fühlen Sie sich meistens:",
       "option1": "Energiegeladen",
-      "option2": "Der Bedarf, sich auszuruhen"
+      "option2": "Der Bedarf, sich auszuruhen",
+      "text": "Nachdem Sie an einem Treffen teilgenommen haben, machen Sie normalerweise:"
     },
     "question30": {
-      "text": "Beim Reisen neigen Sie dazu:",
       "option1": "Detaillierte Reisepläne zu machen",
-      "option2": "Frei zu erkunden"
+      "option2": "Frei zu erkunden",
+      "text": "Beim Reisen neigen Sie dazu:"
     },
     "question31": {
-      "text": "Ihr Zimmer ist normalerweise:",
       "option1": "Ordentlich und aufgeräumt",
-      "option2": "Locker und entspannt"
+      "option2": "Locker und entspannt",
+      "text": "Ihr Zimmer normalerweise:"
     },
     "question32": {
-      "text": "Beim Umgang mit Aufgaben werden Sie:",
       "option1": "So früh wie möglich abschließen",
-      "option2": "Nahe der Frist fertigstellen"
+      "option2": "Nahe der Frist fertigstellen",
+      "text": "Bei der Bearbeitung von Aufgaben neigen Sie dazu:"
     },
     "question33": {
-      "text": "Ihr bevorzugter Lebensstil:",
       "option1": "Regelmäßig und strukturiert",
-      "option2": "Frei und flexibel"
+      "option2": "Frei und flexibel",
+      "text": "Ihr bevorzugter Lebensstil:"
     },
     "question34": {
-      "text": "Bei der Entscheidungsfindung neigen Sie dazu:",
       "option1": "Schnelle Entscheidungen zu treffen",
-      "option2": "Optionen offen zu halten"
+      "option2": "Optionen offen zu halten",
+      "text": "Bei Entscheidungen neigen Sie dazu:"
     },
     "question35": {
-      "text": "Beim Einkaufen werden Sie:",
       "option1": "Eine Liste machen und wie geplant kaufen",
-      "option2": "Ungezwungen stöbern und kaufen, wenn es Ihnen gefällt"
+      "option2": "Ungezwungen stöbern und kaufen, wenn es Ihnen gefällt",
+      "text": "Beim Einkaufen werden Sie:"
     },
     "question36": {
-      "text": "Wenn Sie mit Veränderungen konfrontiert werden, fühlen Sie sich normalerweise:",
       "option1": "Unbehaglich",
-      "option2": "Fühle dich aufgeregt"
+      "option2": "Fühle dich aufgeregt",
+      "text": "Bei Veränderungen neigen Sie normalerweise:"
     },
     "question4": {
-      "text": "In einem Team ziehst du vor:",
       "option1": "Aktiv zu sprechen",
-      "option2": "Zuhören und dann sprechen"
+      "option2": "Zuhören und dann sprechen",
+      "text": "In einem Team sind Sie eher geneigt:"
     },
     "question5": {
-      "text": "Wenn du neue Freunde triffst, bist du:",
       "option1": "Schnell vertraut",
-      "option2": "Brauchst Zeit, um dich aufzuwärmen"
+      "option2": "Brauchst Zeit, um dich aufzuwärmen",
+      "text": "Beim Kennenlernen neuer Freunde werden Sie:"
     },
     "question6": {
-      "text": "Dein Freundeskreis ist:",
       "option1": "Weit, aber nicht tief",
-      "option2": "Klein und eng verbunden"
+      "option2": "Klein und eng verbunden",
+      "text": "Ihr Freundeskreis:"
     },
     "question7": {
-      "text": "Wenn du arbeitest, bevorzugst du:",
       "option1": "Teamarbeit",
-      "option2": "Unabhängige Arbeit"
+      "option2": "Unabhängige Arbeit",
+      "text": "Beim Arbeiten ziehen Sie vor:"
     },
     "question8": {
-      "text": "Wenn du über Probleme nachdenkst, neigst du dazu:",
       "option1": "Während des Denkens zu sprechen",
-      "option2": "Zuerst nachzudenken, bevor du sprichst"
+      "option2": "Zuerst nachzudenken, bevor du sprichst",
+      "text": "Wenn Sie über Probleme nachdenken, neigen Sie dazu:"
     },
     "question9": {
-      "text": "Wenn du gestresst bist, machst du:",
       "option1": "Mit Freunden chatten",
-      "option2": "Allein nachdenken"
+      "option2": "Allein nachdenken",
+      "text": "Unter Druck werden Sie:"
     }
   },
   "quick": {
     "question1": {
-      "text": "In sozialen Situationen sind Sie normalerweise:",
       "option1": "Gespräche mit anderen initiieren",
-      "option2": "Warten, bis andere mich ansprechen"
+      "option2": "Warten, bis andere mich ansprechen",
+      "text": "In sozialen Situationen sind Sie normalerweise:"
     },
     "question10": {
-      "text": "Ihr Arbeitsstil ist:",
       "option1": "Im Voraus planen und vorbereiten",
-      "option2": "Anpassen und flexibel sein"
+      "option2": "Anpassen und flexibel sein",
+      "text": "Ihr Arbeitsstil ist:"
     },
     "question11": {
-      "text": "Sie bevorzugen:",
       "option1": "Klare Fristen",
-      "option2": "Optionen offen halten"
+      "option2": "Optionen offen halten",
+      "text": "Sie bevorzugen:"
     },
     "question12": {
-      "text": "Beim Reisen neigen Sie dazu:",
       "option1": "Detaillierte Reisepläne zu machen",
-      "option2": "Frei zu erkunden"
+      "option2": "Frei zu erkunden",
+      "text": "Beim Reisen neigen Sie dazu:"
     },
     "question2": {
-      "text": "An Wochenenden bevorzugen Sie:",
       "option1": "Zeit mit Freunden zu verbringen",
-      "option2": "Allein zu Hause zu ruhen"
+      "option2": "Allein zu Hause zu ruhen",
+      "text": "An Wochenenden bevorzugen Sie:"
     },
     "question3": {
-      "text": "Nachdem Sie an einem Treffen teilgenommen haben, machen Sie normalerweise:",
       "option1": "Energiegeladen",
-      "option2": "Brauchst das Bedürfnis zu ruhen"
+      "option2": "Brauchst das Bedürfnis zu ruhen",
+      "text": "Nachdem Sie an einem Treffen teilgenommen haben, machen Sie normalerweise:"
     },
     "question4": {
-      "text": "Bei der Problemlösung verlassen Sie sich mehr auf:",
       "option1": "Praktische Erfahrungen und Fakten",
-      "option2": "Intuition und Möglichkeiten"
+      "option2": "Intuition und Möglichkeiten",
+      "text": "Bei der Problemlösung verlassen Sie sich mehr auf:"
     },
     "question5": {
-      "text": "Sie bevorzugen:",
       "option1": "Fokus auf spezifische Details",
-      "option2": "Fokus auf das Gesamtkonzept"
+      "option2": "Fokus auf das Gesamtkonzept",
+      "text": "Sie bevorzugen:"
     },
     "question6": {
-      "text": "Beim Lernen neuer Dinge bevorzugen Sie:",
       "option1": "Schritt-für-Schritt-Methoden",
-      "option2": "Innovative Wege zu erkunden"
+      "option2": "Innovative Wege zu erkunden",
+      "text": "Beim Lernen neuer Dinge bevorzugen Sie:"
     },
     "question7": {
-      "text": "Bei Entscheidungen schätzen Sie:",
       "option1": "Logik und objektive Analyse",
-      "option2": "Emotionen und zwischenmenschliche Harmonie"
+      "option2": "Emotionen und zwischenmenschliche Harmonie",
+      "text": "Bei Entscheidungen schätzen Sie:"
     },
     "question8": {
-      "text": "Wenn Sie andere kritisieren, sind Sie:",
       "option1": "Weisen Sie direkt auf das Problem hin",
-      "option2": "Berücksichtigen Sie die Gefühle der anderen Person"
+      "option2": "Berücksichtigen Sie die Gefühle der anderen Person",
+      "text": "Wenn Sie andere kritisieren, sind Sie:"
     },
     "question9": {
-      "text": "Sie schätzen mehr:",
       "option1": "Fairness und Gerechtigkeit",
-      "option2": "Einfühlungsvermögen und Verständnis"
+      "option2": "Einfühlungsvermögen und Verständnis",
+      "text": "Sie schätzen mehr:"
     }
   },
   "share": {

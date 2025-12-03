@@ -19,246 +19,246 @@ export default {
   },
   "full": {
     "question1": {
-      "text": "Sosiaalisissa tilanteissa sinä yleensä:",
       "option1": "Aloitat keskustelun muiden kanssa",
-      "option2": "Odota, että muut lähestyvät minua"
+      "option2": "Odota, että muut lähestyvät minua",
+      "text": "Sosiaalisissa tilanteissa käyttäydyt yleensä:"
     },
     "question10": {
-      "text": "Probleemien ratkaisemisessa nojaudut enemmän:",
       "option1": "Käytännön kokemukseen ja faktoihin",
-      "option2": "Intuutioon ja mahdollisuuksiin"
+      "option2": "Intuutioon ja mahdollisuuksiin",
+      "text": "Ongelmatilanteissa turvaudut enemmän:"
     },
     "question11": {
-      "text": "Preferenssisi:",
       "option1": "Keskityt erityisiin yksityiskohtiin",
-      "option2": "Keskityt kokonaiskonsepteihin"
+      "option2": "Keskityt kokonaiskonsepteihin",
+      "text": "Pidät enemmän:"
     },
     "question12": {
-      "text": "Uuden oppimisessa preferoit:",
       "option1": "Askel askeleelta -lähestymistapa",
-      "option2": "Innovatiivisten keinojen tutkiminen"
+      "option2": "Innovatiivisten keinojen tutkiminen",
+      "text": "Uuden oppimisen yhteydessä pidät enemmän:"
     },
     "question13": {
-      "text": "Lukiessasi preferoit:",
       "option1": "Käytännön ohjeet",
-      "option2": "Teoriat ja konseptit"
+      "option2": "Teoriat ja konseptit",
+      "text": "Kun luet, suosittelet:"
     },
     "question14": {
-      "text": "Keskityt enemmän:",
       "option1": "Nykyhetkeen ja menneisyyteen",
-      "option2": "Tulevaisuuteen ja mahdollisuuksiin"
+      "option2": "Tulevaisuuteen ja mahdollisuuksiin",
+      "text": "Olet enemmän huolissasi:"
     },
     "question15": {
-      "text": "Kuvaillessasi asioita, sinä yleensä:",
       "option1": "Käytät erityisiä esimerkkejä",
-      "option2": "Käytät vertauskuvia ja analoogioita"
+      "option2": "Käytät vertauskuvia ja analoogioita",
+      "text": "Kuvailtaessa asioita, sinulla on taipumus:"
     },
     "question16": {
-      "text": "Työssä arvostat:",
       "option1": "Käytännön sovellusta",
-      "option2": "Innovatiivisia ideoita"
+      "option2": "Innovatiivisia ideoita",
+      "text": "Työssä arvostat:"
     },
     "question17": {
-      "text": "Luotat enemmän:",
       "option1": "Todistettuihin menetelmiin",
-      "option2": "Uusiin yrityksiin"
+      "option2": "Uusiin yrityksiin",
+      "text": "Luotat enemmän:"
     },
     "question18": {
-      "text": "Suunnitellessasi tulevaisuutta:",
       "option1": "Perustat realistisiin olosuhteisiin",
-      "option2": "Kuvittelet erilaisia mahdollisuuksia"
+      "option2": "Kuvittelet erilaisia mahdollisuuksia",
+      "text": "Suunnitellessasi tulevaisuutta, teet:"
     },
     "question19": {
-      "text": "Päätöksenteossa priorisoit:",
       "option1": "Logiikka ja objektiivinen analyysi",
-      "option2": "Emotion ja ihmissuhteiden harmonia"
+      "option2": "Emotion ja ihmissuhteiden harmonia",
+      "text": "Päätöksiä tehdessä, priorisoit:"
     },
     "question2": {
-      "text": "Viikonloppuisin preferoit:",
       "option1": "Käymistä ystävien kanssa",
-      "option2": "Kotona olemista yksin rentoutumiseen"
+      "option2": "Kotona olemista yksin rentoutumiseen",
+      "text": "Viikonloppuisin suosittelet:"
     },
     "question20": {
-      "text": "Kritiikissä muita kohtaan:",
       "option1": "Tuot ongelman suoraan esiin",
-      "option2": "Otaten huomioon toisen henkilön tunteet"
+      "option2": "Otaten huomioon toisen henkilön tunteet",
+      "text": "Kun arvostelet muita, teet:"
     },
     "question21": {
-      "text": "Mitä arvostat enemmän:",
       "option1": "Reiluus ja oikeus",
-      "option2": "Empatia ja ymmärrys"
+      "option2": "Empatia ja ymmärrys",
+      "text": "Pannessasi enemmän painoa:"
     },
     "question22": {
-      "text": "Kun arvioit ideaa, mietit ensin:",
       "option1": "Onko se järkevää",
-      "option2": "Onko se hyödyllistä"
+      "option2": "Onko se hyödyllistä",
+      "text": "Kun arvioit ideaa, mietit ensin:"
     },
     "question23": {
-      "text": "Kun ystäväsi avautuu sinulle, teet:",
       "option1": "Analysoit ongelman ja tarjoat neuvoja",
-      "option2": "Kuuntelet ja tarjoat lohtua"
+      "option2": "Kuuntelet ja tarjoat lohtua",
+      "text": "Kun ystävät luottavat sinuun, teet:"
     },
     "question24": {
-      "text": "Konflikteissa sinun on tapana:",
       "option1": "Pysyä periaatteissa",
-      "option2": "Säilyttää suhteet"
+      "option2": "Säilyttää suhteet",
+      "text": "Riidoissa sinulla on taipumus:"
     },
     "question25": {
-      "text": "Sinut on helpompi vakuuttaa:",
       "option1": "Fakteilla ja tiedoilla",
-      "option2": "Tunteilla ja tarinoilla"
+      "option2": "Tunteilla ja tarinoilla",
+      "text": "Olet helpompi vaikuttaa:"
     },
     "question26": {
-      "text": "Tiimipäätöksenteossa keskityt enemmän:",
       "option1": "Tehokkuuteen ja tuloksiin",
-      "option2": "Konsensukseen ja yhtenäisyyteen"
+      "option2": "Konsensukseen ja yhtenäisyyteen",
+      "text": "Tiimipäätöksenteossa keskityt:"
     },
     "question27": {
-      "text": "Uskot, että hyvä johtaja pitäisi olla:",
       "option1": "Reilu ja päättäväinen",
-      "option2": "Harkitseva ja huolehtivainen"
+      "option2": "Harkitseva ja huolehtivainen",
+      "text": "Uskot, että hyvän johtajan tulisi:"
     },
     "question28": {
-      "text": "Tyylisi työskennellä on:",
       "option1": "Suunnitella ja valmistella etukäteen",
-      "option2": "Mukautua ja olla joustava"
+      "option2": "Mukautua ja olla joustava",
+      "text": "Työtapasi on:"
     },
     "question29": {
-      "text": "Pidät mieluummin:",
       "option1": "Selkeistä määräajoista",
-      "option2": "Avoimista vaihtoehdoista"
+      "option2": "Avoimista vaihtoehdoista",
+      "text": "Pidät enemmän:"
     },
     "question3": {
-      "text": "Kun olet ollut kokoontumisessa, tunnet yleensä:",
       "option1": "Olevasi energinen",
-      "option2": "Tunnet tarpeen levätä"
+      "option2": "Tunnet tarpeen levätä",
+      "text": "Kokouksen jälkeen käyttäydyt yleensä:"
     },
     "question30": {
-      "text": "Matkustaessasi sinulla on yleensä tapana:",
       "option1": "Laatia tarkkoja matkasuunnitelmia",
-      "option2": "Tutkia vapaasti"
+      "option2": "Tutkia vapaasti",
+      "text": "Matkustaessasi taipumuksesi on:"
     },
     "question31": {
-      "text": "Huoneesi on yleensä:",
       "option1": "Siisti ja järjestelmällinen",
-      "option2": "Rentoa ja rentouttavaa"
+      "option2": "Rentoa ja rentouttavaa",
+      "text": "Huoneesi on yleensä:"
     },
     "question32": {
-      "text": "Tehtäviä hoitaessasi:",
       "option1": "Valmistaa mahdollisimman aikaisin",
-      "option2": "Saada päätökseen lähellä määräaikaa"
+      "option2": "Saada päätökseen lähellä määräaikaa",
+      "text": "Kun käsittelet tehtäviä, sinulla on taipumus:"
     },
     "question33": {
-      "text": "Toivomasi elämäntyyli:",
       "option1": "Säännöllinen ja rakenteellinen",
-      "option2": "Vapaa ja joustava"
+      "option2": "Vapaa ja joustava",
+      "text": "Suosikki elämäntapasi:"
     },
     "question34": {
-      "text": "Päätöksiä tehdessäsi sinulla on tapana:",
       "option1": "Tehdä nopeita päätöksiä",
-      "option2": "Pitää vaihtoehdot avoimina"
+      "option2": "Pitää vaihtoehdot avoimina",
+      "text": "Kun teet päätöksiä, sinulla on taipumus:"
     },
     "question35": {
-      "text": "Ostoksia tehdessäsi:",
       "option1": "Laadin listan ja ostan suunnitellusti",
-      "option2": "Selaan vapaasti ja ostan, jos pidän"
+      "option2": "Selaan vapaasti ja ostan, jos pidän",
+      "text": "Kun shoppailet, teet:"
     },
     "question36": {
-      "text": "Kohtaessasi muutoksia tunnet yleensä:",
       "option1": "Olevasi levoton",
-      "option2": "Tunne innostusta"
+      "option2": "Tunne innostusta",
+      "text": "Kun kohtaat muutoksia, käyttäydyt yleensä:"
     },
     "question4": {
-      "text": "Tiimissä suosittelet:",
       "option1": "Puhu aktiivisesti",
-      "option2": "Kuuntele ensin, sitten puhu"
+      "option2": "Kuuntele ensin, sitten puhu",
+      "text": "Tiimissä olet enemmän taipuvainen:"
     },
     "question5": {
-      "text": "Kun tapaat uusia ystäviä, sinä:",
       "option1": "Tutustut nopeasti",
-      "option2": "Tarvitset aikaa lämmitellä"
+      "option2": "Tarvitset aikaa lämmitellä",
+      "text": "Kun tapaat uusia ystäviä, teet:"
     },
     "question6": {
-      "text": "Ympärilläsi on ystäviä:",
       "option1": "Laaja mutta ei syvä",
-      "option2": "Pieni ja tiivis"
+      "option2": "Pieni ja tiivis",
+      "text": "Ystäväpiirisi:"
     },
     "question7": {
-      "text": "Työskentelyssä suosittelet:",
       "option1": "Tiimityöskentely",
-      "option2": "Itsenäistä työtä"
+      "option2": "Itsenäistä työtä",
+      "text": "Työskennellessäsi suosittelet:"
     },
     "question8": {
-      "text": "Kun ajattelet ongelmia, sinä:",
       "option1": "Puhuessasi ajattelet",
-      "option2": "Ajattele rauhassa ennen puhumista"
+      "option2": "Ajattele rauhassa ennen puhumista",
+      "text": "Kun mietit ongelmia, sinulla on taipumus:"
     },
     "question9": {
-      "text": "Stressitilanteessa sinä:",
       "option1": "Juttelet ystävien kanssa",
-      "option2": "Käsittelet asioita yksin"
+      "option2": "Käsittelet asioita yksin",
+      "text": "Painetilanteessa toimit:"
     }
   },
   "quick": {
     "question1": {
-      "text": "Sosiaalisissa tilanteissa käyttäydyt yleensä:",
       "option1": "Aloitat keskusteluja muiden kanssa",
-      "option2": "Odota, että muut lähestyvät minua"
+      "option2": "Odota, että muut lähestyvät minua",
+      "text": "Sosiaalisissa tilanteissa käyttäydyt yleensä:"
     },
     "question10": {
-      "text": "Työtapasi on:",
       "option1": "Suunnittele ja valmistele etukäteen",
-      "option2": "Sopeudu ja ole joustava"
+      "option2": "Sopeudu ja ole joustava",
+      "text": "Työtapasi on:"
     },
     "question11": {
-      "text": "Pidät enemmän:",
       "option1": "Selkeät määräajat",
-      "option2": "Pidä vaihtoehdot avoimina"
+      "option2": "Pidä vaihtoehdot avoimina",
+      "text": "Pidät enemmän:"
     },
     "question12": {
-      "text": "Matkustaessasi taipumuksesi on:",
       "option1": "Laadi yksityiskohtaiset matkasuunnitelmat",
-      "option2": "Tutki vapaasti"
+      "option2": "Tutki vapaasti",
+      "text": "Matkustaessasi taipumuksesi on:"
     },
     "question2": {
-      "text": "Viikonloppuisin pidät enemmän:",
       "option1": "Vietä aikaa ystävien kanssa",
-      "option2": "Lepää yksin kotona"
+      "option2": "Lepää yksin kotona",
+      "text": "Viikonloppuisin pidät enemmän:"
     },
     "question3": {
-      "text": "Kokouksen jälkeen käyttäydyt yleensä:",
       "option1": "Tunnet itsesi energiseksi",
-      "option2": "Tunnet tarvitsevasi lepoa"
+      "option2": "Tunnet tarvitsevasi lepoa",
+      "text": "Kokouksen jälkeen käyttäydyt yleensä:"
     },
     "question4": {
-      "text": "Ongelmatilanteissa turvaudut enemmän:",
       "option1": "Käytännön kokemukseen ja faktoihin",
-      "option2": "Intuitioon ja mahdollisuuksiin"
+      "option2": "Intuitioon ja mahdollisuuksiin",
+      "text": "Ongelmatilanteissa turvaudut enemmän:"
     },
     "question5": {
-      "text": "Pidät enemmän:",
       "option1": "Keskityt erityisiin yksityiskohtiin",
-      "option2": "Keskityt kokonaiskonseptiin"
+      "option2": "Keskityt kokonaiskonseptiin",
+      "text": "Pidät enemmän:"
     },
     "question6": {
-      "text": "Uuden oppimisen yhteydessä pidät enemmän:",
       "option1": "Askel askeleelta -menetelmiä",
-      "option2": "Tutki innovatiivisia tapoja"
+      "option2": "Tutki innovatiivisia tapoja",
+      "text": "Uuden oppimisen yhteydessä pidät enemmän:"
     },
     "question7": {
-      "text": "Päätöksenteossa arvostat:",
       "option1": "Logiikkaa ja objektiivista analyysiä",
-      "option2": "Tuntemuksia ja ihmissuhteiden harmoniaa"
+      "option2": "Tuntemuksia ja ihmissuhteiden harmoniaa",
+      "text": "Päätöksenteossa arvostat:"
     },
     "question8": {
-      "text": "Kun kritisoit muita, olet:",
       "option1": "Osoita ongelma suoraan",
-      "option2": "Ota huomioon toisen tunteet"
+      "option2": "Ota huomioon toisen tunteet",
+      "text": "Kun kritisoit muita, olet:"
     },
     "question9": {
-      "text": "Arvostat enemmän:",
       "option1": "Oikeudenmukaisuus ja tasa-arvo",
-      "option2": "Empatia ja ymmärrys"
+      "option2": "Empatia ja ymmärrys",
+      "text": "Arvostat enemmän:"
     }
   },
   "share": {

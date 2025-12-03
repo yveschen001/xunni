@@ -26,7 +26,7 @@ export default {
   "birthday3": "Παρακαλώ εισάγετε την ημερομηνία γέννησής σας (μορφή: YYYY-MM-DD):\n\n",
   "birthday4": "Γενέθλια: {birthday}\n",
   "birthdayCheck": "Αν νομίζετε ότι αυτό είναι λάθος, παρακαλούμε ελέγξτε αν η μορφή της ημερομηνίας γέννησής σας είναι σωστή (YYYY-MM-DD).",
-  "birthdayError": "❌ {error}",
+  "birthdayError": "❌ {error}\n\n",
   "birthdayFormatError": "❌ Μη έγκυρη μορφή ημερομηνίας γέννησης\n\nΠαρακαλώ ξανακαταχωρήστε (μορφή: YYYY-MM-DD):",
   "birthdayRetry": "Παρακαλώ ξανακαταχωρήστε την ημερομηνία γέννησής σας (μορφή: YYYY-MM-DD):",
   "birthdayWarning": "⚠️ Η ημερομηνία γέννησης δεν μπορεί να τροποποιηθεί μετά την ρύθμιση, παρακαλούμε επιβεβαιώστε ότι είναι σωστή!",
@@ -50,7 +50,7 @@ export default {
     "label": "• Φύλο: {gender}\n",
     "male": "Αρσενικό"
   },
-  "gender2": "• Φύλο: ${updatedUser.gender ===",
+  "gender2": "• Φύλο: {updatedUser.gender ===",
   "gender3": "Παρακαλώ επιλέξτε το φύλο σας:\n\n",
   "genderFemale": "👩 Θηλυκό",
   "genderMale": "👨 Αρσενικό",

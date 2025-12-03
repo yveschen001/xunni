@@ -2,7 +2,7 @@ export default {
   "allFeaturesAvailable": "Tất cả tính năng hiện đã sẵn sàng để sử dụng.",
   "completed": "✅ Việc bảo trì hệ thống đã hoàn tất",
   "completingSoon": "Sắp hoàn thành",
-  "correctFormat": "**Định dạng chính xác:**\n/maintenance_enable <duration (minutes)>",
+  "correctFormat": "**Định dạng đúng:**\n/maintenance_enable <duration (minutes)>",
   "defaultMessage": "Hệ thống đang được bảo trì và tạm thời không khả dụng.",
   "disableFailed": "❌ Không thể tắt chế độ bảo trì.",
   "disableSuccess": "✅ Chế độ bảo trì đã được tắt\n\nThông báo phục hồi đã được gửi đến tất cả người dùng.",

@@ -428,30 +428,16 @@ export async function routeUpdate(update: TelegramUpdate, env: Env): Promise<voi
         }
       }
 
+      // Try fortune wizard input
+      const isFortuneInput = await handleFortuneInput(message, env);
+      if (isFortuneInput) {
+        return;
+      }
+
       // Try profile edit input (lowest priority)
       const { handleProfileEditInput } = await import('./telegram/handlers/edit_profile');
       const isEditingProfile = await handleProfileEditInput(message, env);
       if (isEditingProfile) {
-        return;
-      }
-
-      // Try admin ad wizard input
-      const { handleAdminAdInput } = await import('./telegram/handlers/admin_ads');
-      const isAdminAdInput = await handleAdminAdInput(message, env);
-      if (isAdminAdInput) {
-        return;
-      }
-
-      // Try admin task wizard input
-      const { handleAdminTaskInput } = await import('./telegram/handlers/admin_tasks');
-      const isAdminTaskInput = await handleAdminTaskInput(message, env);
-      if (isAdminTaskInput) {
-        return;
-      }
-
-      // Try fortune wizard input
-      const isFortuneInput = await handleFortuneInput(message, env);
-      if (isFortuneInput) {
         return;
       }
     }
@@ -1072,7 +1058,7 @@ export async function routeUpdate(update: TelegramUpdate, env: Env): Promise<voi
     }
 
     // Development commands (⚠️ REMOVE IN PRODUCTION!)
-    if (text === '/dev_reset') {
+    if (text === '/dev_reset' || text.startsWith('/dev_reset ')) {
       const { handleDevReset } = await import('./telegram/handlers/dev');
       await handleDevReset(message, env);
       return;
@@ -1090,7 +1076,7 @@ export async function routeUpdate(update: TelegramUpdate, env: Env): Promise<voi
       return;
     }
 
-    if (text === '/dev_restart') {
+    if (text === '/dev_restart' || text.startsWith('/dev_restart ')) {
       const { handleDevRestart } = await import('./telegram/handlers/dev');
       await handleDevRestart(message, env);
       return;
@@ -1099,6 +1085,18 @@ export async function routeUpdate(update: TelegramUpdate, env: Env): Promise<voi
     if (text === '/clear_fortune' || text.startsWith('/clear_fortune ')) {
       const { handleClearFortune } = await import('./telegram/handlers/dev');
       await handleClearFortune(message, env);
+      return;
+    }
+
+    if (text.startsWith('/add_vip')) {
+      const { handleAddVip } = await import('./telegram/handlers/admin_grant');
+      await handleAddVip(message, env);
+      return;
+    }
+
+    if (text.startsWith('/add_bottles')) {
+      const { handleAddBottles } = await import('./telegram/handlers/admin_grant');
+      await handleAddBottles(message, env);
       return;
     }
 
@@ -1832,8 +1830,8 @@ export async function routeUpdate(update: TelegramUpdate, env: Env): Promise<voi
       return;
     }
 
-    // Fortune Telling Callbacks
-    if (data.startsWith('fortune_')) {
+    // Fortune Telling Callbacks (and Reports)
+    if (data.startsWith('fortune_') || data.startsWith('report_') || data.startsWith('reports_')) {
       await handleFortuneCallback(callbackQuery, env);
       return;
     }

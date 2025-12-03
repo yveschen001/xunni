@@ -165,5 +165,6 @@ export default {
       "seeking": "Kasalukuyang Walang Trabaho / Nasa Paglipat",
       "other_industry": "Ibang Industriya (Manual na I-input)"
     }
-  }
+  },
+  "next_step_industry": "Susunod, mangyaring piliin ang iyong industriya."
 };

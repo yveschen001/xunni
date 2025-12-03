@@ -20,7 +20,7 @@ export default {
   "noAdsAvailable": "❌ אין מודעות זמינות כרגע.",
   "noVerificationRequired": "❌ המודעות הזו לא דורשת אימות.",
   "quotaInfo": "📊 יתרה להיום: **{remaining}/20** פעמים",
-  "requiresVerification": "✅ נדרשת אימות: לחץ על כפתור 'אמת' לאחר שהצטרפת לקבוצה/ערוץ",
+  "requiresVerification": "✅ נדרש אימות: לחץ על כפתור 'אמת' לאחר שהצטרפת לקבוצה/ערוץ",
   "reward": "🎁 פרס: +{quota} מכסות קבועות.",
   "rewardPermanent": "🎁 השלם את המשימה כדי לקבל **+1 מכסה קבועה**.",
   "rewardTemporary": "🎁 ברכות! קיבלת +1 מכסה זמנית (בתוקף היום).",

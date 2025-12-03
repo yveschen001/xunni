@@ -2,7 +2,7 @@ export default {
   "allFeaturesAvailable": "আপনি এখন সাধারণভাবে সমস্ত ফিচার ব্যবহার করতে পারেন।",
   "completed": "✅ সিস্টেম রক্ষণাবেক্ষণ সম্পন্ন হয়েছে",
   "completingSoon": "প্রায় শেষ",
-  "correctFormat": "**সঠিক ফরম্যাট:**\n/maintenance_enable <স্থায়িত্ব (মিনিট)> <duration (minutes)>",
+  "correctFormat": "**সঠিক ফরম্যাট:**\n/maintenance_enable <duration (minutes)>",
   "defaultMessage": "সিস্টেম রক্ষণাবেক্ষণের অধীনে এবং অস্থায়ীভাবে অপ্রাপ্য।",
   "disableFailed": "❌ রক্ষণাবেক্ষণ মোড নিষ্ক্রিয় করতে ব্যর্থ।",
   "disableSuccess": "✅ রক্ষণাবেক্ষণ মোড নিষ্ক্রিয় করা হয়েছে\n\nপুনরুদ্ধারের বিজ্ঞপ্তি সকল ব্যবহারকারীদের সদ্য সম্প্রচারিত হয়েছে।",

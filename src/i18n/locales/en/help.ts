@@ -119,5 +119,9 @@ export default {
   "devReset": "/dev_reset - Reset current user",
   "devRestart": "/dev_restart - Restart instance",
   "devSkip": "/dev_skip - Skip tutorial",
-  "fortune": "/fortune - 🔮 Daily fortune and in-depth astrology analysis"
+  "fortune": "/fortune - 🔮 Daily fortune and in-depth astrology analysis",
+  "clearFortune": "/clear_fortune - Clear fortune records",
+  "adminGrantSection": "🔧 **Resource Supply**",
+  "addVip": "/add_vip - Activate VIP (30 days)",
+  "addBottles": "/add_bottles - Add 50 fortune bottles"
 };

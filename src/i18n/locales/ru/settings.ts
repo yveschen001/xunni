@@ -31,7 +31,5 @@ export default {
     "title": "🚫 Черный список",
     "empty": "В данный момент черный список отсутствует",
     "unblock": "Разблокировать"
-  },
-  "quietHoursVipOnly": "🔒 Quiet Hours (VIP Only)",
-  "upgradeForQuietHours": "Upgrade to VIP to use this feature"
+  }
 };

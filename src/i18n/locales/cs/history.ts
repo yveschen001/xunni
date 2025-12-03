@@ -25,6 +25,6 @@ export default {
   "time": "Čas: {time}\n\n",
   "totalMessages": "• Celkem zpráv: {total}\n",
   "userMessages": "• Poslal/a jste: {count}\n",
-  "viewFull": "💡 Použijte /history {identifier} pro zobrazení kompletní konverzace",
+  "viewFull": "💡 Použijte /history {identifier} pro zobrazení celé konverzace",
   "you": "Vy"
 };

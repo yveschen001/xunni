@@ -2,7 +2,7 @@ export default {
   "allFeaturesAvailable": "Тепер ви можете використовувати всі функції звичайно.",
   "completed": "✅ Обслуговування системи завершено",
   "completingSoon": "Майже готово",
-  "correctFormat": "**Вірний формат:**\n/maintenance_enable <тривалість (хвилини)> <duration (minutes)>",
+  "correctFormat": "**Правильний формат:**\n/maintenance_enable <тривалість (хвилин)> <duration (minutes)>",
   "defaultMessage": "Система знаходиться на обслуговуванні та тимчасово недоступна.",
   "disableFailed": "❌ Не вдалося відключити режим обслуговування.",
   "disableSuccess": "✅ Режим обслуговування було відключено\n\nПовідомлення про відновлення було розіслано всім користувачам.",

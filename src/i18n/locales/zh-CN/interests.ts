@@ -112,5 +112,6 @@ export default {
     "career_focused": "工作狂",
     "family": "家庭/育儿",
     "exploring": "探索中"
-  }
+  },
+  "back_to_categories": "返回分类菜单"
 };

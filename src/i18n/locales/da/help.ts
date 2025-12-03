@@ -56,7 +56,7 @@ export default {
   "message5": "/broadcast_vip <message> - Send til VIP brugere",
   "message6": "/maintenance_disable - Deaktiver vedligeholdelsestilstand\n\n",
   "message7": "/maintenance_status - Tjek vedligeholdelsesstatus\n",
-  "message8": "/broadcast <besked> - Udsend til alle brugere <message>",
+  "message8": "/broadcast <message> - Udsend til alle brugere",
   "profile": "/edit_profile - Rediger profil\n",
   "profile2": "/profile - Se profil\n",
   "profile3": "👤 **Profil**\n",
@@ -119,5 +119,9 @@ export default {
   "devReset": "/dev_reset - Nulstil nuværende bruger",
   "devRestart": "/dev_restart - Genstart instans",
   "devSkip": "/dev_skip - Spring vejledningen over",
-  "fortune": "/fortune - 🔮 Daglig held og dybdegående astrologianalyse"
+  "fortune": "/fortune - 🔮 Daglig held og dybdegående astrologianalyse",
+  "clearFortune": "/clear_fortune - Nulstil lykkeoptegnelser",
+  "adminGrantSection": "🔧 **Ressourceforsyning**",
+  "addVip": "/add_vip - Aktivér VIP (30 dage)",
+  "addBottles": "/add_fortune bottles - Tilføj 50 lykkebreve"
 };

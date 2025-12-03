@@ -112,6 +112,8 @@ export async function handleCountrySet(
     }
 
     // Use existing checkAndCompleteTask function
+    // Also complete 'task_city' to ensure consistency
+    await checkAndCompleteTask(db, telegram, updatedUser, 'task_city');
     const completed = await checkAndCompleteTask(db, telegram, updatedUser, 'task_confirm_country');
 
     if (completed) {

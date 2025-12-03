@@ -79,9 +79,14 @@ export function drawCards(count: number = 3): { card: TarotCard, reversed: boole
 }
 
 export function getCardDisplay(card: TarotCard, reversed: boolean, i18n?: any): string {
-    // If i18n provided, try to translate? For now use static ZH/EN
-    // Design doc: "Emoji + Text"
-    const position = reversed ? '(逆位)' : '(正位)';
-    return `${card.emoji} ${card.name_zh} ${position}`;
+  const position = reversed
+    ? (i18n?.t('fortune.tarot.reversed', { defaultValue: '(逆位)' }) || '(逆位)')
+    : (i18n?.t('fortune.tarot.upright', { defaultValue: '(正位)' }) || '(正位)');
+
+  const cardName = i18n
+    ? i18n.t(`fortune.tarot.cards.${card.id}`, { defaultValue: card.name_zh })
+    : card.name_zh;
+
+  return `${card.emoji} ${cardName} ${position}`;
 }
 

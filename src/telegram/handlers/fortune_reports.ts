@@ -184,7 +184,7 @@ export async function handleReportDetail(
   }
   
   if (totalPages > 1) {
-    fullText += `\n\n${i18n.t('fortune.reports.page_indicator', { current: currentPage + 1, total: totalPages })}`;
+    fullText += `\n\n${i18n.t('fortune.reports.reports.page_indicator', { current: currentPage + 1, total: totalPages })}`;
   }
 
   const buttons: any[][] = [];

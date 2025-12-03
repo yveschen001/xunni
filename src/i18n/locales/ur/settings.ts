@@ -31,7 +31,5 @@ export default {
     "title": "🚫 بلاک لسٹ",
     "empty": "فی الحال کوئی بلاک لسٹ نہیں",
     "unblock": "ان بلاک کریں"
-  },
-  "quietHoursVipOnly": "🔒 Quiet Hours (VIP Only)",
-  "upgradeForQuietHours": "Upgrade to VIP to use this feature"
+  }
 };

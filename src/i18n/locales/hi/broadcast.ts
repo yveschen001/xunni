@@ -38,7 +38,7 @@ export default {
     "age": "आयु: {min}-{max} वर्ष",
     "atLeastOneRequired": "कम से कम एक फ़िल्टर आवश्यक है",
     "birthdayToday": "आज जन्मदिन",
-    "country": "देश: {country}",
+    "country": "देश/क्षेत्र: {country}",
     "genderFemale": "महिला",
     "genderMale": "पुरुष",
     "genderOther": "अन्य",
@@ -68,7 +68,7 @@ export default {
     "zodiacVirgo": "कन्या"
   },
   "filterAge": "• आयु=18-25\n",
-  "filterCommand": "/broadcast_filter\n\n",
+  "filterCommand": "/broadcast_filter <filter> <msg_content> ",
   "filterConfirmConditions": "**फिल्टर शर्तें:**\n{conditions}\n\n",
   "filterConfirmMessage": "**संदेश की सामग्री:**\n{message}\n\n",
   "filterConfirmTitle": "🔍 **ब्रॉडकास्ट फ़िल्टर पुष्टि**\n\n",

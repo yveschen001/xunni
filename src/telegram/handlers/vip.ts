@@ -82,7 +82,7 @@ export async function handleVip(message: TelegramMessage, env: Env): Promise<voi
           '\n' +
           i18n.t('vip.text23') +
           '\n' +
-          '• 每日免費 1 次 AI 算命（VIP 專屬）\n' +
+          i18n.t('vip.benefit_daily_fortune') +
           '\n' +
           i18n.t('vip.quota2') +
           '\n' +

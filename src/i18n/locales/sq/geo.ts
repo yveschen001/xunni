@@ -1,7 +1,7 @@
 export default {
   "select_continent": "Ju lutemi zgjidhni rajonin tuaj 🌍",
-  "select_country": "Ju lutemi zgjidhni një vend",
-  "search_city_prompt": "Ju lutemi shkruani emrin e qytetit (p.sh., Taipei)",
+  "select_country": "Ju lutemi zgjidhni një vend/rajon",
+  "search_city_prompt": "Ju lutem shkruani emrin e qytetit (p.sh.: Tokio)",
   "city_not_found": "Qyteti nuk u gjet, ju lutemi provoni emrin në anglisht.",
   "confirm_city": "A është ky qyteti që zgjodhët: {city} ({country})?",
   "continent": {

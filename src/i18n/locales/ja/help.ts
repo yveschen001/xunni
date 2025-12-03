@@ -56,7 +56,7 @@ export default {
   "message5": "/broadcast_vip <message> - VIPユーザーに送信",
   "message6": "/maintenance_disable - メンテナンスモードを無効にする\n\n",
   "message7": "/maintenance_status - メンテナンスステータスを確認\n",
-  "message8": "/broadcast <メッセージ> - すべてのユーザーに配信 <message>",
+  "message8": "/broadcast <message> - すべてのユーザーにメッセージを配信します",
   "profile": "/edit_profile - プロフィールを編集\n",
   "profile2": "/profile - プロフィールを見る\n",
   "profile3": "👤 **プロフィール**\n",
@@ -109,7 +109,7 @@ export default {
   "vip4": "🎁 **クォータと VIP**\n",
   "vip5": "/vip - VIP サブスクリプション\n",
   "vip6": "💎 **VIP 特典**\n",
-  "dailyReportTitle": "[需要翻訳]",
+  "dailyReportTitle": "日次運営報告",
   "superAdminTitle": "スーパー管理者",
   "superAdminMaintenance": "🔧 **システムメンテナンス**",
   "superAdminMaintenanceDisable": "• `/maintenance_disable` - メンテナンスモードを無効にする",
@@ -119,5 +119,9 @@ export default {
   "devReset": "/dev_reset - 現在のユーザーをリセット",
   "devRestart": "/dev_restart - インスタンスを再起動",
   "devSkip": "/dev_skip - チュートリアルをスキップ",
-  "fortune": "/fortune - 🔮 毎日の運勢と詳細な占星術分析"
+  "fortune": "/fortune - 🔮 毎日の運勢と詳細な占星術分析",
+  "clearFortune": "/clear_fortune - Fortuneの記録をクリアする",
+  "adminGrantSection": "🔧 **リソース供給**",
+  "addVip": "/add_vip - VIPを有効にする（30日間）",
+  "addBottles": "/add_bottles - 50本の占いボトルを追加する"
 };

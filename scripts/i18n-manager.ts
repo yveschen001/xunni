@@ -49,18 +49,23 @@ async function exportCsv() {
   console.log(`- Found ${currentKeys.length} keys in source code (zh-TW).`);
 
   // 2. Read existing CSV to preserve order
-  let existingRecords: any[] = [];
-  const existingKeySet = new Set<string>();
-
+  const existingRecordsMap = new Map<string, any>();
+  
   if (fs.existsSync(CSV_FILE_PATH)) {
     console.log('- Reading existing CSV to preserve order...');
     const fileContent = fs.readFileSync(CSV_FILE_PATH, 'utf-8');
-    existingRecords = parse(fileContent, {
+    const rawRecords = parse(fileContent, {
       columns: true,
       skip_empty_lines: true,
-      relax_column_count: true
+      relax_column_count: true,
+      trim: true
     });
-    existingRecords.forEach(r => existingKeySet.add(r.key));
+    
+    // Deduplicate on load (Last win)
+    rawRecords.forEach((r: any) => {
+        if (r.key) existingRecordsMap.set(r.key, r);
+    });
+    console.log(`- Loaded ${rawRecords.length} raw records, ${existingRecordsMap.size} unique.`);
   } else {
     console.log('- No existing CSV found. Creating new...');
   }
@@ -68,21 +73,22 @@ async function exportCsv() {
   // 3. Update existing records with latest zh-TW value (optional, but good for consistency)
   //    And mark keys that no longer exist in code (optional cleanup)
   const finalRecords: any[] = [];
+  const existingKeySet = new Set(existingRecordsMap.keys());
 
-  // 3a. Keep existing records in their original order
-  for (const record of existingRecords) {
+  // 3a. Keep existing records in their original order (using Map iteration)
+  for (const [key, record] of existingRecordsMap) {
     // Ensure module column is populated
     if (!record.module) {
-      record.module = record.key.split('.')[0];
+      record.module = key.split('.')[0];
     }
 
-    if (currentTranslations[record.key]) {
+    if (currentTranslations[key]) {
       // Key still exists, update zh-TW reference just in case it changed in code
-      record['zh-TW'] = currentTranslations[record.key];
+      record['zh-TW'] = currentTranslations[key];
       finalRecords.push(record);
     } else {
       // Key no longer exists in code.
-      console.warn(`  ⚠️ Key in CSV but missing in code: ${record.key} (Kept)`);
+      console.warn(`  ⚠️ Key in CSV but missing in code: ${key} (Kept)`);
       finalRecords.push(record);
     }
   }
@@ -194,7 +200,7 @@ async function importCsv() {
              }
           } else {
              // Standard case: Set value
-             currentTgt[part] = value;
+          currentTgt[part] = value;
           }
           return;
         }
@@ -205,7 +211,7 @@ async function importCsv() {
              // Strategy: Convert string to object with 'text' property containing the original string.
              const originalValue = currentTgt[part];
              currentTgt[part] = { text: originalValue };
-        }
+                    }
 
         currentTgt[part] = currentTgt[part] || {};
         currentTgt = currentTgt[part];

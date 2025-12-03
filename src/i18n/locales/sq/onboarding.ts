@@ -26,7 +26,7 @@ export default {
   "birthday3": "Ju lutemi shkruani datëlindjen tuaj (format: YYYY-MM-DD):\n\n",
   "birthday4": "Ditëlindja: {birthday}\n",
   "birthdayCheck": "Nëse mendoni se kjo është një gabim, ju lutemi kontrolloni nëse formati i ditëlindjes suaj është i saktë (YYYY-MM-DD).",
-  "birthdayError": "{error}\n\n",
+  "birthdayError": "❌ {error}\n\n",
   "birthdayFormatError": "❌ Format i pahijshëm i ditëlindjes\n\nJu lutemi ripastroni (formati: YYYY-MM-DD):",
   "birthdayRetry": "Ju lutemi ripastroni ditëlindjen tuaj (formati: YYYY-MM-DD):",
   "birthdayWarning": "⚠️ Ditëlindja nuk mund të modifikohet pas vendosjes, ju lutemi konfirmoni që është e saktë!",
@@ -50,7 +50,7 @@ export default {
     "label": "• Gjinia: {gender}\n",
     "male": "Mashkull"
   },
-  "gender2": "• Gjinia: ${updatedUser.gender ===",
+  "gender2": "• Gjinia: {updatedUser.gender ===",
   "gender3": "Ju lutemi zgjidhni gjininë tuaj:\n\n",
   "genderFemale": "👩 Femër",
   "genderMale": "👨 Mashkull",

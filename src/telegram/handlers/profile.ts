@@ -95,6 +95,11 @@ export async function handleProfile(message: TelegramMessage, env: Env): Promise
 
     // Get invite statistics
     const inviteStats = await getInviteStats(db, telegramId);
+    
+    // Calculate Quotas
+    const { getDailyThrowCount } = await import('~/db/queries/bottles');
+    const { getTodayAdReward } = await import('~/db/queries/ad_rewards');
+    
     const permanentQuota = calculateDailyQuota(user);
     const inviteLimit = getInviteLimit(user);
     const successfulInvites = user.successful_invites || 0;
@@ -102,7 +107,22 @@ export async function handleProfile(message: TelegramMessage, env: Env): Promise
     // Calculate task bonus
     const { calculateTaskBonus } = await import('./tasks');
     const taskBonus = await calculateTaskBonus(db, telegramId);
-    // const totalQuota = permanentQuota + taskBonus;
+    
+    // Ad Bonus
+    const adReward = await getTodayAdReward(db.d1, telegramId);
+    const adBonus = adReward?.quota_earned || 0;
+
+    // Total & Remaining
+    const totalDailyQuota = permanentQuota + taskBonus + adBonus;
+    const throwsToday = await getDailyThrowCount(db, telegramId);
+    const remainingQuota = Math.max(0, totalDailyQuota - throwsToday);
+    const temporaryQuota = taskBonus + adBonus;
+
+    // Display string: "Remaining / Permanent + Temporary"
+    let quotaDisplay = `${remainingQuota} / ${permanentQuota}`;
+    if (temporaryQuota > 0) {
+      quotaDisplay += ` + ${temporaryQuota}`;
+    }
 
     // Get Fortune Quota
     const { FortuneService } = await import('~/services/fortune');
@@ -120,8 +140,6 @@ export async function handleProfile(message: TelegramMessage, env: Env): Promise
       additional: fortuneQuota.additional_quota
     });
 
-    const quotaDisplay =
-      taskBonus > 0 ? `${permanentQuota}+${taskBonus}` : permanentQuota.toString();
     const profileMessage =
       i18n.t('profile.profile2') +
       i18n.t('profile.nickname', { displayNickname }) +
@@ -139,7 +157,7 @@ export async function handleProfile(message: TelegramMessage, env: Env): Promise
       i18n.t('profile.activatedInvites', { successfulInvites, inviteLimit }) +
       i18n.t('profile.invite', { inviteStats: { pending: inviteStats.pending } }) +
       i18n.t('profile.message5', { inviteStats: { conversionRate: inviteStats.conversionRate } }) +
-      i18n.t('profile.quotaTotal', { quota: quotaDisplay }) +
+      i18n.t('profile.driftBottleInfo', { remaining: remainingQuota, total: totalDailyQuota }) + '\n' + // ✨ NEW: Explicit bottle info
       fortuneQuotaDisplay + '\n' + // Add Fortune Quota here
       i18n.t('profile.success') +
       i18n.t('profile.quota') +

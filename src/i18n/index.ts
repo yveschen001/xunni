@@ -9,7 +9,7 @@
  * 3. Fallback to bundled zh-TW
  */
 
-import { translations as zhTW } from './locales/zh-TW/index';
+import { translations as en } from './locales/en/index';
 
 // Declare global cache for Worker instance
 declare global {
@@ -19,7 +19,7 @@ declare global {
 // Initialize cache if it doesn't exist
 if (typeof globalThis.LOCALE_CACHE === 'undefined') {
   globalThis.LOCALE_CACHE = {
-    'zh-TW': zhTW // Pre-load zh-TW as it's bundled
+    'en': en // Pre-load en as it's bundled
   };
 }
 
@@ -27,19 +27,19 @@ export class I18n {
   private locale: string;
   private translations: Record<string, any>;
 
-  constructor(locale: string = 'zh-TW') {
+  constructor(locale: string = 'en') {
     this.locale = locale;
-    // Try to get from cache, otherwise fallback to zh-TW
-    this.translations = globalThis.LOCALE_CACHE[locale] || globalThis.LOCALE_CACHE['zh-TW'];
+    // Try to get from cache, otherwise fallback to en
+    this.translations = globalThis.LOCALE_CACHE[locale] || globalThis.LOCALE_CACHE['en'];
   }
 
   t(key: string, params: Record<string, any> = {}): string {
     const value = this.getNestedValue(this.translations, key);
     
     if (!value) {
-      // Fallback to zh-TW if key is missing in target locale
-      if (this.locale !== 'zh-TW') {
-        const fallbackValue = this.getNestedValue(globalThis.LOCALE_CACHE['zh-TW'], key);
+      // Fallback to en if key is missing in target locale
+      if (this.locale !== 'en') {
+        const fallbackValue = this.getNestedValue(globalThis.LOCALE_CACHE['en'], key);
         if (fallbackValue) return this.replaceParams(fallbackValue, params);
       }
       return key; // Return key if absolutely nothing found
@@ -47,7 +47,15 @@ export class I18n {
     return this.replaceParams(value, params);
   }
 
-  private getNestedValue(obj: any, key: string): string | undefined {
+  getObject(key: string): any {
+    const value = this.getNestedValue(this.translations, key);
+    if (!value && this.locale !== 'en') {
+      return this.getNestedValue(globalThis.LOCALE_CACHE['en'], key);
+    }
+    return value;
+  }
+
+  private getNestedValue(obj: any, key: string): any {
     return key.split('.').reduce((o, i) => (o ? o[i] : undefined), obj);
   }
 
@@ -60,7 +68,7 @@ export class I18n {
   }
 }
 
-export function createI18n(locale: string = 'zh-TW'): I18n {
+export function createI18n(locale: string = 'en'): I18n {
   return new I18n(locale);
 }
 
@@ -92,7 +100,7 @@ export async function loadTranslations(env: any, locale: string): Promise<void> 
     console.error(`[i18n] Failed to load locale ${locale} from KV:`, error);
   }
 
-  // 3. Fallback (Logic handled in I18n class, effectively using zh-TW)
+  // 3. Fallback (Logic handled in I18n class, effectively using en)
   // We don't throw here to ensure the app doesn't crash.
-  // The I18n class will use zh-TW from cache if the target locale is missing.
+  // The I18n class will use en from cache if the target locale is missing.
 }

@@ -20,7 +20,7 @@ export default {
   "noAdsAvailable": "❌ No hay anuncios disponibles en este momento",
   "noVerificationRequired": "❌ Este anuncio no requiere verificación",
   "quotaInfo": "📊 Restante hoy: **{remaining}/20** veces",
-  "requiresVerification": "✅ Necesita verificación: Haga clic en el botón 'Verificar' después de unirse al grupo/canal",
+  "requiresVerification": "✅ Verificación requerida: Haga clic en el botón 'Verificar' después de unirse al grupo/canal",
   "reward": "🎁 Recompensa: +{quota} cuotas permanentes",
   "rewardPermanent": "🎁 Completa la tarea para ganar **+1 cuota permanente**",
   "rewardTemporary": "🎁 ¡Felicidades! Has recibido +1 cuota temporal (válida hoy)",

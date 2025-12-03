@@ -39,7 +39,7 @@ export default {
   "profile": "│ 📇 Profilová karta │\n",
   "profile2": "👤 **Profil**\n\n",
   "quota": "💡 Splňte úlohy, aby ste získali dodatočné denné limity (použite /tasks na kontrolu)\n",
-  "quota2": "📦 Aktuálny denný limit: ${taskBonus > 0 ?",
+  "quota2": "📦 Aktuálny denný limit: {taskBonus > 0 ?",
   "quotaBottles": "{taskBonus} message bottles",
   "quotaTotal": "📦 Aktuálna denná kvóta: {quota}\n\n",
   "returnToMenu": "🏠 Návrat do hlavného menu: /menu",
@@ -62,13 +62,14 @@ export default {
   "text": "• Použite /profile_card na zobrazenie úplnej profilovej karty\n",
   "text2": "🏷️ Záujmy: {interests}\n\n",
   "text3": "💎 Členstvo: {vipStatus}\n\n",
-  "text4": "{bio} {bio}",
+  "text4": "📝 Úvod:\n{bio}",
   "text5": "Tento človek je veľmi tajomný, nezanecháva nič～",
   "userNotFound": "⚠️ Používateľ neexistuje, prosím zaregistrujte sa najprv pomocou /start.",
   "vip": "VIP člen (Platnosť: {expireDate})",
   "vip2": "• Použite /vip na upgrade na VIP člena\n",
   "vipUpgrade": "• Použite /vip na upgrade na VIP člena\n",
   "zodiac": "⭐ Zverokruh: {zodiac}\n",
-  "fortuneQuota": "🔮 {fortunemessage bottle}: {total} (Tento týždeň zdarma: {weekly}/{limit} | Dodatočne: {additional})",
-  "vipWithDays": "💎 VIP člen (Zostáva {days} dní, Platnosť: {expireDate})"
+  "fortuneQuota": "🔮 {fortuneBottle}: {total} (Tento týždeň zdarma: {weekly}/{limit} | Dodatočne: {additional})",
+  "vipWithDays": "💎 VIP člen (Zostáva {days} dní, Platnosť: {expireDate})",
+  "driftBottleInfo": "🍾 správa fľaša: {remaining} / {total}"
 };

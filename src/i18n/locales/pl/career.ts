@@ -165,5 +165,6 @@ export default {
       "seeking": "Obecnie bezrobotny / W trakcie zmiany",
       "other_industry": "Inne branże (Wprowadź ręcznie)"
     }
-  }
+  },
+  "next_step_industry": "Далі, будь ласка, виберіть вашу галузь."
 };

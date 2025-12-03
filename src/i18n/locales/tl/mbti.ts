@@ -19,246 +19,246 @@ export default {
   },
   "full": {
     "question1": {
-      "text": "Sa mga sosyal na sitwasyon, kadalasang:",
       "option1": "Aktibong nakikipag-ugnayan sa iba",
-      "option2": "Naghihintay na lapitan ako ng iba"
+      "option2": "Naghihintay na lapitan ako ng iba",
+      "text": "Sa mga sosyal na sitwasyon, karaniwan mong:"
     },
     "question10": {
-      "text": "Kapag naglutas ng mga problema, mas umaasa ka sa:",
       "option1": "Praktikal na karanasan at katotohanan",
-      "option2": "Intuwisyon at posibilidad"
+      "option2": "Intuwisyon at posibilidad",
+      "text": "Kapag nagsosolusyong ng mga problema, mas umaasa ka sa:"
     },
     "question11": {
-      "text": "Alin ang mas gusto mo:",
       "option1": "Tumutok sa mga tiyak na detalye",
-      "option2": "Tumutok sa mga kabuuang konsepto"
+      "option2": "Tumutok sa mga kabuuang konsepto",
+      "text": "Mas gusto mo:"
     },
     "question12": {
-      "text": "Kapag natututo ng bagong bagay, mas gusto mo:",
       "option1": "Isang hakbang-hakbang na diskarte",
-      "option2": "Tuklasin ang mga makabagong pamamaraan"
+      "option2": "Tuklasin ang mga makabagong pamamaraan",
+      "text": "Kapag natututo ng mga bagong bagay, mas gusto mo:"
     },
     "question13": {
-      "text": "Kapag nagbabasa, mas gusto mo:",
       "option1": "Praktikal na mga gabay",
-      "option2": "Teorya at mga konsepto"
+      "option2": "Teorya at mga konsepto",
+      "text": "Sa pagbabasa, mas pinipili mo:"
     },
     "question14": {
-      "text": "Mas tumutok ka sa:",
       "option1": "Ang kasalukuyan at nakaraan",
-      "option2": "Ang hinaharap at mga posibilidad"
+      "option2": "Ang hinaharap at mga posibilidad",
+      "text": "Mas nag-aalala ka tungkol sa:"
     },
     "question15": {
-      "text": "Kapag naglalarawan ng mga bagay, may posibilidad kang:",
       "option1": "Gumamit ng mga tiyak na halimbawa",
-      "option2": "Gumamit ng mga metaphor at analohiya"
+      "option2": "Gumamit ng mga metaphor at analohiya",
+      "text": "Sa paglalarawan ng mga bagay, karaniwan kang:"
     },
     "question16": {
-      "text": "Sa trabaho, pinahahalagahan mo:",
       "option1": "Praktikal na aplikasyon",
-      "option2": "Makabagong ideya"
+      "option2": "Makabagong ideya",
+      "text": "Sa trabaho, pinahahalagahan mo:"
     },
     "question17": {
-      "text": "Sino ang mas pagkakatiwalaan mo:",
       "option1": "Napatunayan na mga pamamaraan",
-      "option2": "Mga bagong pagsubok"
+      "option2": "Mga bagong pagsubok",
+      "text": "Mas nagtitiwala ka sa:"
     },
     "question18": {
-      "text": "Kapag nagplano para sa hinaharap, gagawin mo:",
       "option1": "Batay sa tunay na kalagayan",
-      "option2": "Isipin ang iba't ibang posibilidad"
+      "option2": "Isipin ang iba't ibang posibilidad",
+      "text": "Sa pagpaplano para sa hinaharap, gagawin mo:"
     },
     "question19": {
-      "text": "Kapag gumagawa ng desisyon, mas pinahahalagahan mo:",
       "option1": "Natatakdang lohika at obhetibong pagsusuri",
-      "option2": "Emosyon at interpersonal na pagkakaisa"
+      "option2": "Emosyon at interpersonal na pagkakaisa",
+      "text": "Sa paggawa ng mga desisyon, inuuna mo:"
     },
     "question2": {
-      "text": "Sa mga katapusan ng linggo mas gusto mo:",
       "option1": "Lumabas kasama ang mga kaibigan",
-      "option2": "Manatili sa bahay upang mag-relax mag-isa"
+      "option2": "Manatili sa bahay upang mag-relax mag-isa",
+      "text": "Sa mga katapusan ng linggo, mas pinipili mo:"
     },
     "question20": {
-      "text": "Kapag bumabatikos sa iba, gagawin mo:",
       "option1": "Tukuyin ang problema nang direkta",
-      "option2": "Isaalang-alang ang mga damdamin ng iba"
+      "option2": "Isaalang-alang ang mga damdamin ng iba",
+      "text": "Sa pagpuna sa iba, gagawin mo:"
     },
     "question21": {
-      "text": "Pinahahalagahan mo ang higit pa:",
       "option1": "Katarungan at hustisya",
-      "option2": "Pagsasaawa at pag-unawa"
+      "option2": "Pagsasaawa at pag-unawa",
+      "text": "Mas binibigyan mo ng halaga ang:"
     },
     "question22": {
-      "text": "Kapag sumusuri ng ideya, unang isinasalang-alang mo:",
       "option1": "Makatuwiran ba ito?",
-      "option2": "Nakapagbibigay benepisyo ba ito?"
+      "option2": "Nakapagbibigay benepisyo ba ito?",
+      "text": "Sa pagsusuri ng isang ideya, una mong tinitingnan:"
     },
     "question23": {
-      "text": "Kapag may kaibigan kang nagtapat, ikaw ay:",
       "option1": "Suriin ang problema at magbigay ng mungkahi",
-      "option2": "Makinig at mag-alok ng ginhawa"
+      "option2": "Makinig at mag-alok ng ginhawa",
+      "text": "Kapag ang mga kaibigan ay nagtapat sa iyo, gagawin mo:"
     },
     "question24": {
-      "text": "Sa mga alitan, karaniwan kang:",
       "option1": "Manindigan sa mga prinsipyo",
-      "option2": "Panatilihin ang mga relasyon"
+      "option2": "Panatilihin ang mga relasyon",
+      "text": "Sa mga hidwaan, karaniwan kang:"
     },
     "question25": {
-      "text": "Mas madali kang napapaniwalaan ng:",
       "option1": "Mga katotohanan at datos",
-      "option2": "Emosyon at kwento"
+      "option2": "Emosyon at kwento",
+      "text": "Mas madali kang mahihikayat ng:"
     },
     "question26": {
-      "text": "Sa paggawa ng desisyon sa grupo, nakatuon ka sa:",
       "option1": "Kahusayan at resulta",
-      "option2": "Konsenso at pagkakaisa"
+      "option2": "Konsenso at pagkakaisa",
+      "text": "Sa paggawa ng desisyon ng koponan, nakatuon ka sa:"
     },
     "question27": {
-      "text": "Naniniwala ka na ang isang magandang lider ay dapat:",
       "option1": "Maging makatarungan at tiyak",
-      "option2": "Maging maalalahanin at mapagmalasakit"
+      "option2": "Maging maalalahanin at mapagmalasakit",
+      "text": "Naniniwala ka na ang isang mabuting lider ay dapat:"
     },
     "question28": {
-      "text": "Ang iyong estilo ng trabaho ay:",
       "option1": "Magplano at maghanda nang maaga",
-      "option2": "Umangkop at maging flexible"
+      "option2": "Umangkop at maging flexible",
+      "text": "Ang iyong istilo ng trabaho ay:"
     },
     "question29": {
-      "text": "Mas gusto mo:",
       "option1": "May malinaw na takdang panahon",
-      "option2": "Panatilihin ang mga pagpipilian"
+      "option2": "Panatilihin ang mga pagpipilian",
+      "text": "Mas gusto mo:"
     },
     "question3": {
-      "text": "Matapos dumalo sa isang pagtitipon, karaniwan kang:",
       "option1": "Makaramdam ng enerhiya",
-      "option2": "Makaramdam ng pangangailangan na magpahinga"
+      "option2": "Makaramdam ng pangangailangan na magpahinga",
+      "text": "Pagkatapos dumalo sa isang pagtitipon, karaniwan mong:"
     },
     "question30": {
-      "text": "Kapag naglalakbay, karaniwan kang:",
       "option1": "Gumawa ng detalyadong itinerary",
-      "option2": "Mag-explore nang may kasiyahan"
+      "option2": "Mag-explore nang may kasiyahan",
+      "text": "Kapag naglalakbay, madalas mong:"
     },
     "question31": {
-      "text": "Ang iyong silid ay karaniwang:",
       "option1": "Maayos at organisado",
-      "option2": "Kaswal at malaya"
+      "option2": "Kaswal at malaya",
+      "text": "Karaniwan ang iyong silid:"
     },
     "question32": {
-      "text": "Kapag humahawak ng mga gawain, ikaw ay:",
       "option1": "Kumpletuhin ang mga ito nang maaga hangga't maaari",
-      "option2": "Tapusin ang mga ito malapit sa takdang panahon"
+      "option2": "Tapusin ang mga ito malapit sa takdang panahon",
+      "text": "Kapag humahawak ng mga gawain, madalas kang:"
     },
     "question33": {
-      "text": "Ang iyong gustong pamumuhay:",
       "option1": "Regulado at nakaplanong",
-      "option2": "Malaya at flexible"
+      "option2": "Malaya at flexible",
+      "text": "Ang iyong nais na pamumuhay:"
     },
     "question34": {
-      "text": "Kapag gumagawa ng mga desisyon, karaniwan kang:",
       "option1": "Mabilis na magpasya",
-      "option2": "Panatilihin ang mga pagpipilian"
+      "option2": "Panatilihin ang mga pagpipilian",
+      "text": "Kapag gumagawa ng mga desisyon, madalas kang:"
     },
     "question35": {
-      "text": "Kapag namimili, ikaw:",
       "option1": "Gumawa ng listahan at sumunod dito",
-      "option2": "Mag browse ng kaswal at bumili ng gusto mo"
+      "option2": "Mag browse ng kaswal at bumili ng gusto mo",
+      "text": "Kapag namimili, gagawin mo:"
     },
     "question36": {
-      "text": "Kapag nahaharap sa pagbabago, karaniwan kang:",
       "option1": "Makaramdam ng hindi komportable",
-      "option2": "Kailangan ng kaunting kasiyahan"
+      "option2": "Kailangan ng kaunting kasiyahan",
+      "text": "Kapag humaharap sa mga pagbabago, karaniwan kang:"
     },
     "question4": {
-      "text": "Sa isang grupo, madalas mong:",
       "option1": "Aktibong nagsasalita",
-      "option2": "Makinig bago magsalita"
+      "option2": "Makinig bago magsalita",
+      "text": "Sa isang grupo, mas malamang na:"
     },
     "question5": {
-      "text": "Kapag nakikilala ng mga bagong kaibigan, ikaw:",
       "option1": "Mabilis na nagiging pamilyar",
-      "option2": "Kailangan ng oras upang makilala sila"
+      "option2": "Kailangan ng oras upang makilala sila",
+      "text": "Kapag nakikipagkilala sa mga bagong kaibigan, gagawin mo:"
     },
     "question6": {
-      "text": "Ang iyong bilog ng kaibigan:",
       "option1": "Malawak ngunit hindi malalim",
-      "option2": "Maliit at magkakaroon ng malapit na ugnayan"
+      "option2": "Maliit at magkakaroon ng malapit na ugnayan",
+      "text": "Ang iyong bilog ng mga kaibigan:"
     },
     "question7": {
-      "text": "Kapag nagtatrabaho, mas gusto mo:",
       "option1": "Pakikipagtulungan sa grupo",
-      "option2": "Independenteng trabaho"
+      "option2": "Independenteng trabaho",
+      "text": "Kapag nagtatrabaho, mas gusto mo:"
     },
     "question8": {
-      "text": "Kapag nag-iisip tungkol sa mga problema, madalas mong:",
       "option1": "Nagsasalita nang malakas habang nag-iisip",
-      "option2": "Isipin ito bago magsalita"
+      "option2": "Isipin ito bago magsalita",
+      "text": "Kapag nag-iisip tungkol sa mga problema, madalas kang:"
     },
     "question9": {
-      "text": "Kapag nasa ilalim ng presyon, ikaw ay:",
       "option1": "Nakikipag-chat sa mga kaibigan",
-      "option2": "Nag-iisa sa pagproseso"
+      "option2": "Nag-iisa sa pagproseso",
+      "text": "Kapag nasa ilalim ng pressure, gagawin mo:"
     }
   },
   "quick": {
     "question1": {
-      "text": "Sa mga sosyal na sitwasyon, karaniwan mong:",
       "option1": "Nagsisimula ng usapan sa iba",
-      "option2": "Naghihintay na lumapit sa akin ang iba"
+      "option2": "Naghihintay na lumapit sa akin ang iba",
+      "text": "Sa mga sosyal na sitwasyon, karaniwan mong:"
     },
     "question10": {
-      "text": "Ang iyong istilo ng trabaho ay:",
       "option1": "Nagtatakda at naghahanda sa maaga",
-      "option2": "Maging mapag-adapt at nababagay"
+      "option2": "Maging mapag-adapt at nababagay",
+      "text": "Ang iyong istilo ng trabaho ay:"
     },
     "question11": {
-      "text": "Mas gusto mo:",
       "option1": "May malinaw na mga takdang panahon",
-      "option2": "Bumubukas ng mga opsyon"
+      "option2": "Bumubukas ng mga opsyon",
+      "text": "Mas gusto mo:"
     },
     "question12": {
-      "text": "Kapag naglalakbay, madalas mong:",
       "option1": "Gumawa ng detalyadong itineraryo",
-      "option2": "Malayang nag-eeksplora"
+      "option2": "Malayang nag-eeksplora",
+      "text": "Kapag naglalakbay, madalas mong:"
     },
     "question2": {
-      "text": "Sa mga katapusan ng linggo, mas gusto mo:",
       "option1": "Lumabas kasama ang mga kaibigan",
-      "option2": "Manatili sa bahay upang magpahinga"
+      "option2": "Manatili sa bahay upang magpahinga",
+      "text": "Sa mga katapusan ng linggo, mas gusto mo:"
     },
     "question3": {
-      "text": "Pagkatapos dumalo sa isang pagtitipon, karaniwan mong:",
       "option1": "Nakatagpo ng enerhiya",
-      "option2": "Naramdaman ang pangangailangan na magpahinga"
+      "option2": "Naramdaman ang pangangailangan na magpahinga",
+      "text": "Pagkatapos dumalo sa isang pagtitipon, karaniwan mong:"
     },
     "question4": {
-      "text": "Kapag nagsosolusyong ng mga problema, mas umaasa ka sa:",
       "option1": "Praktikal na karanasan at mga katotohanan",
-      "option2": "Intuwisyon at mga posibilidad"
+      "option2": "Intuwisyon at mga posibilidad",
+      "text": "Kapag nagsosolusyong ng mga problema, mas umaasa ka sa:"
     },
     "question5": {
-      "text": "Mas gusto mo:",
       "option1": "Pagpokus sa mga partikular na detalye",
-      "option2": "Pagpokus sa pangkalahatang konsepto"
+      "option2": "Pagpokus sa pangkalahatang konsepto",
+      "text": "Mas gusto mo:"
     },
     "question6": {
-      "text": "Kapag natututo ng mga bagong bagay, mas gusto mo:",
       "option1": "Hakbang-hakbang na diskarte",
-      "option2": "Pag-eeksplora ng mga makabago at bagong paraan"
+      "option2": "Pag-eeksplora ng mga makabago at bagong paraan",
+      "text": "Kapag natututo ng mga bagong bagay, mas gusto mo:"
     },
     "question7": {
-      "text": "Kapag gumagawa ng desisyon, pinahahalagahan mo:",
       "option1": "Loohika at obhetibong pagsusuri",
-      "option2": "Emosyon at pagkakasunduan sa tao"
+      "option2": "Emosyon at pagkakasunduan sa tao",
+      "text": "Kapag gumagawa ng desisyon, pinahahalagahan mo:"
     },
     "question8": {
-      "text": "Kapag bumabatikos sa iba, ikaw:",
       "option1": "Tukuyin nang direkta ang problema",
-      "option2": "Isaalang-alang ang damdamin ng ibang tao"
+      "option2": "Isaalang-alang ang damdamin ng ibang tao",
+      "text": "Kapag bumabatikos sa iba, ikaw:"
     },
     "question9": {
-      "text": "Mas pinahahalagahan mo:",
       "option1": "Katarungan at hustisya",
-      "option2": "Habag at pag-unawa"
+      "option2": "Habag at pag-unawa",
+      "text": "Mas pinahahalagahan mo:"
     }
   },
   "share": {

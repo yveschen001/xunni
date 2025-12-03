@@ -38,7 +38,7 @@ export default {
     "age": "Vek: {min}-{max} rokov",
     "atLeastOneRequired": "Aspoň jeden filter je potrebný",
     "birthdayToday": "Narodeniny dnes",
-    "country": "Krajina: {country}",
+    "country": "Kraj/oblasť: {country}",
     "genderFemale": "Žena",
     "genderMale": "Muž",
     "genderOther": "Iné pohlavie",
@@ -68,7 +68,7 @@ export default {
     "zodiacVirgo": "Panna"
   },
   "filterAge": "• vek=18-25\n",
-  "filterCommand": "/broadcast_filter\n\n",
+  "filterCommand": "/broadcast_filter <filter> <msg_content> ",
   "filterConfirmConditions": "**Podmienky filtrovania:**\n{conditions}\n\n",
   "filterConfirmMessage": "**Obsah správy:**\n{message}\n\n",
   "filterConfirmTitle": "🔍 **Potvrdenie filtra vysielania**\n\n",

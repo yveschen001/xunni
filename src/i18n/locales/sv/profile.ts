@@ -39,7 +39,7 @@ export default {
   "profile": "│ 📇 Profilkort │\n",
   "profile2": "👤 **Profil**\n\n",
   "quota": "💡 Fullfölj uppgifter för att tjäna extra dagliga kvoter (använd /tasks för att se)\n",
-  "quota2": "📦 Aktuell daglig kvot: ${taskBonus > 0 ?",
+  "quota2": "📦 Aktuell daglig kvot: {taskBonus > 0 ?",
   "quotaBottles": "{taskBonus} flaskpost meddelanden",
   "quotaTotal": "📦 Aktuell daglig kvot: {quota}\n\n",
   "returnToMenu": "🏠 Återgå till huvudmenyn: /menu",
@@ -62,13 +62,14 @@ export default {
   "text": "• Använd /profile_card för att se hela profilkortet\n",
   "text2": "🏷️ Intressen: {interests}\n\n",
   "text3": "💎 Medlemskap: {vipStatus}\n\n",
-  "text4": "📝 Biografi:\n{bio}\n\n",
+  "text4": "📝 Biografi:\n{bio}",
   "text5": "Denna person är mycket mystisk, lämnar inget bakom sig～",
   "userNotFound": "⚠️ Användaren existerar inte, vänligen använd /start för att registrera dig först.",
   "vip": "VIP Medlem (Upphör: {expireDate})",
   "vip2": "• Använd /vip för att uppgradera till VIP Medlem\n",
   "vipUpgrade": "• Använd /vip för att uppgradera till VIP Medlem\n",
   "zodiac": "⭐ Stjärntecken: {zodiac}\n",
-  "fortuneQuota": "🔮 {fortunemessage bottle}: {total} (Denna vecka gratis: {weekly}/{limit} | Extra: {additional})",
-  "vipWithDays": "💎 VIP-medlem (Återstående {days} dagar, Utgång: {expireDate})"
+  "fortuneQuota": "🔮 {fortuneBottle}: {total} (Denna vecka gratis: {weekly}/{limit} | Extra: {additional})",
+  "vipWithDays": "💎 VIP-medlem (Återstående {days} dagar, Utgång: {expireDate})",
+  "driftBottleInfo": "🍾 meddelandeflaska: {remaining} / {total}"
 };

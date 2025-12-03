@@ -20,7 +20,7 @@ export default {
   "noAdsAvailable": "❌ Nuk ka reklama të disponueshme.",
   "noVerificationRequired": "❌ Kjo reklamë nuk kërkon verifikim.",
   "quotaInfo": "📊 Çfarë ka mbetur sot: **{remaining}/20** herë",
-  "requiresVerification": "✅ Verifikimi i nevojshëm: Klikoni butonin 'Verifiko' pas anëtarësimit në grupin/kanalin",
+  "requiresVerification": "✅ Verifikimi i nevojshëm: Klikoni butonin 'Verifiko' pas anëtarësimit në grupin/c kanal",
   "reward": "🎁 Shpërblimi: +{quota} kuotë të përhershme",
   "rewardPermanent": "🎁 Kompletoni detyrën për të fituar **+1 kuotë të përhershme**",
   "rewardTemporary": "🎁 Urime! Keni marrë +1 kuotë të përkohshme (e vlefshme sot)",

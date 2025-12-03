@@ -38,7 +38,7 @@ export default {
     "age": "Vârstă: {min}-{max} ani",
     "atLeastOneRequired": "Este necesar cel puțin un filtru",
     "birthdayToday": "Ziua de naștere azi",
-    "country": "Țara: {country}",
+    "country": "Țară/Regiune: {country}",
     "genderFemale": "Femeie",
     "genderMale": "Bărbat",
     "genderOther": "Alt gen",
@@ -68,7 +68,7 @@ export default {
     "zodiacVirgo": "Fecioară"
   },
   "filterAge": "• vârstă=18-25\n",
-  "filterCommand": "/broadcast_filter\n\n",
+  "filterCommand": "/broadcast_filter <filter> <msg_content> ",
   "filterConfirmConditions": "**Condiții de filtrare:**\n{conditions}\n\n",
   "filterConfirmMessage": "**Conținutul mesajului:**\n{message}\n\n",
   "filterConfirmTitle": "🔍 **Confirmare Filtru Transmitere**\n\n",

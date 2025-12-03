@@ -31,7 +31,5 @@ export default {
     "title": "🚫 Engelli Listesi",
     "empty": "Şu anda engelli listesi yok",
     "unblock": "Engeli Kaldır"
-  },
-  "quietHoursVipOnly": "🔒 Quiet Hours (VIP Only)",
-  "upgradeForQuietHours": "Upgrade to VIP to use this feature"
+  }
 };

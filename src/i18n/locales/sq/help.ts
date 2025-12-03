@@ -56,7 +56,7 @@ export default {
   "message5": "/broadcast_vip <mesazhi> - Dërgo tek përdoruesit VIP <message>",
   "message6": "/maintenance_disable - Çaktivizo modalitetin e mirëmbajtjes\n\n",
   "message7": "/maintenance_status - Shiko statusin e mirëmbajtjes\n",
-  "message8": "/broadcast <mesazh> - Transmeto për të gjithë përdoruesit <message>",
+  "message8": "/broadcast <message> - Transmeto për të gjithë përdoruesit",
   "profile": "/edit_profile - Redakto profilin\n",
   "profile2": "/profile - Shiko profilin\n",
   "profile3": "👤 **Profili**\n",
@@ -119,5 +119,9 @@ export default {
   "devReset": "/dev_reset - Rivendos përdoruesin aktual",
   "devRestart": "/dev_restart - Rindiz instancën",
   "devSkip": "/dev_skip - Anashkalo tutorialin",
-  "fortune": "/fortune - 🔮 Fat i përditshëm dhe analizë e thellë astrologjike"
+  "fortune": "/fortune - 🔮 Fat i përditshëm dhe analizë e thellë astrologjike",
+  "clearFortune": "/clear_fortune - Pastroni regjistrat e fatit",
+  "adminGrantSection": "🔧 **Furnizimi i Burimeve**",
+  "addVip": "/add_vip - Aktivizo VIP (30 ditë)",
+  "addBottles": "/add_fortune bottles - Shto 50 shishe mesazhesh"
 };

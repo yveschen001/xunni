@@ -2,7 +2,7 @@ export default {
   "allFeaturesAvailable": "Теперь вы можете использовать все функции в обычном режиме.",
   "completed": "✅ Проведение технических работ завершено",
   "completingSoon": "Скоро завершим",
-  "correctFormat": "**Правильный формат:**\n/maintenance_enable <длительность (минуты)> <duration (minutes)>",
+  "correctFormat": "**Правильный формат:**\n/maintenance_enable <продолжительность (минуты)> <duration (minutes)>",
   "defaultMessage": "Система находится на обслуживании и временно недоступна.",
   "disableFailed": "❌ Не удалось отключить режим обслуживания.",
   "disableSuccess": "✅ Режим обслуживания был отключен\n\nУведомление о восстановлении было отправлено всем пользователям.",

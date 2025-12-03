@@ -30,15 +30,15 @@ async function main() {
       const modulePath = join(LOCALES_DIR, lang, 'index.ts');
       const mod = await import(modulePath);
       const translations = mod.translations || mod.default;
-
+      
       if (!translations) {
         console.error(`❌ No translations found for ${lang} (export 'translations' or default missing)`);
         continue;
       }
-
+      
       const jsonStr = JSON.stringify(translations);
       console.log(`  - Size: ${(jsonStr.length / 1024).toFixed(2)} KB`);
-
+      
       // Write to temp file
       writeFileSync(TEMP_FILE, jsonStr);
 
@@ -58,7 +58,7 @@ async function main() {
   try {
     if (require('fs').existsSync(TEMP_FILE)) {
       unlinkSync(TEMP_FILE);
-    }
+      }
   } catch (e) {}
   
   console.log('\n✅ All uploads completed successfully!');

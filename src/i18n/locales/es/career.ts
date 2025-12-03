@@ -165,5 +165,6 @@ export default {
       "seeking": "Actualmente Desempleado / En Transición",
       "other_industry": "Otras Industrias (Introducir Manualmente)"
     }
-  }
+  },
+  "next_step_industry": "Ensuite, veuillez sélectionner votre secteur d'activité."
 };

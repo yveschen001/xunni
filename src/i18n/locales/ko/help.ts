@@ -56,7 +56,7 @@ export default {
   "message5": "/broadcast_vip <message> - VIP 사용자에게 전송",
   "message6": "/maintenance_disable - 유지 관리 모드 비활성화\n\n",
   "message7": "/maintenance_status - 유지보수 상태 보기\n",
-  "message8": "/broadcast <메시지> - 모든 사용자에게 전송합니다 <message>",
+  "message8": "/broadcast <message> - 모든 사용자에게 방송합니다",
   "profile": "/edit_profile - 프로필 수정\n",
   "profile2": "/profile - 프로필 보기\n",
   "profile3": "👤 **프로필**\n",
@@ -119,5 +119,9 @@ export default {
   "devReset": "/dev_reset - 현재 사용자 리셋",
   "devRestart": "/dev_restart - 인스턴스 재시작",
   "devSkip": "/dev_skip - 튜토리얼 건너뛰기",
-  "fortune": "/fortune - 🔮 오늘의 운세 및 심층 점성술 분석"
+  "fortune": "/fortune - 🔮 오늘의 운세 및 심층 점성술 분석",
+  "clearFortune": "/clear_fortune - 행운 기록을 지웁니다.",
+  "adminGrantSection": "🔧 **자원 공급**",
+  "addVip": "/add_vip - VIP 활성화 (30일)",
+  "addBottles": "/add_bottles - 50개의 운세 병 추가"
 };

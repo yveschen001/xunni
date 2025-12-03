@@ -39,7 +39,7 @@ export default {
   "profile": "│ 📇 Cartelă de profil │\n",
   "profile2": "👤 **Profil**\n\n",
   "quota": "💡 Finalizează sarcini pentru a câștiga cote zilnice suplimentare (folosește /tasks pentru a verifica)\n",
-  "quota2": "📦 Cota zilnică actuală: ${taskBonus > 0 ?",
+  "quota2": "📦 Cota zilnică actuală: {taskBonus > 0 ?",
   "quotaBottles": "{taskBonus} sticle cu mesaj",
   "quotaTotal": "📦 Cota zilnică curentă: {quota}\n\n",
   "returnToMenu": "🏠 Întoarce-te la meniul principal: /menu",
@@ -69,6 +69,7 @@ export default {
   "vip2": "• Folosește /vip pentru a trece la membru VIP\n",
   "vipUpgrade": "• Folosește /vip pentru a trece la membru VIP\n",
   "zodiac": "⭐ Zodie: {zodiac}\n",
-  "fortuneQuota": "🔮 {fortunemessage bottle}: {total} (Săptămâna aceasta gratuit: {weekly}/{limit} | Suplimentar: {additional})",
-  "vipWithDays": "💎 Membru VIP (Rămase {days} zile, Expirare: {expireDate})"
+  "fortuneQuota": "🔮 {fortuneBottle}: {total} (Săptămâna aceasta gratuit: {weekly}/{limit} | Suplimentar: {additional})",
+  "vipWithDays": "💎 Membru VIP (Rămase {days} zile, Expirare: {expireDate})",
+  "driftBottleInfo": "🍾 mesaj sticlă: {remaining} / {total}"
 };

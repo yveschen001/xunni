@@ -56,7 +56,7 @@ export default {
   "message5": "/broadcast_vip <μήνυμα> - Αποστολή σε VIP χρήστες <message>",
   "message6": "/απενεργοποίηση_συντήρησης - Απενεργοποίηση λειτουργίας συντήρησης\n\n",
   "message7": "/maintenance_status - Ελέγξτε την κατάσταση συντήρησης\n",
-  "message8": "/broadcast <μήνυμα> - Εκπομπή σε όλους τους χρήστες <message>",
+  "message8": "/broadcast <message> - Μετάδοση σε όλους τους χρήστες",
   "profile": "/edit_profile - Επεξεργασία προφίλ\n",
   "profile2": "/profile - Δείτε το προφίλ\n",
   "profile3": "👤 **Προφίλ**\n",
@@ -119,5 +119,9 @@ export default {
   "devReset": "/dev_reset - Επαναφορά τρέχοντος χρήστη",
   "devRestart": "/dev_restart - Επανεκκίνηση παραδείγματος",
   "devSkip": "/dev_skip - Παράκαμψη εκπαιδευτικού προγράμματος",
-  "fortune": "/fortune - 🔮 Ημερήσια τύχη και ανάλυση βαθιάς αστρολογίας"
+  "fortune": "/fortune - 🔮 Ημερήσια τύχη και ανάλυση βαθιάς αστρολογίας",
+  "clearFortune": "/clear_fortune - Καθαρισμός αρχείων τύχης",
+  "adminGrantSection": "🔧 **Προμήθεια Πόρων**",
+  "addVip": "/add_vip - Ενεργοποίηση VIP (30 ημέρες)",
+  "addBottles": "/add_fortune bottles - Προσθήκη 50 μπουκαλιών τύχης"
 };

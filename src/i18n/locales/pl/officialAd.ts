@@ -20,7 +20,7 @@ export default {
   "noAdsAvailable": "❌ Brak dostępnych ogłoszeń",
   "noVerificationRequired": "❌ To ogłoszenie nie wymaga weryfikacji",
   "quotaInfo": "📊 Pozostało dzisiaj: **{remaining}/20** razy",
-  "requiresVerification": "✅ Weryfikacja wymagana: Kliknij przycisk 'Weryfikuj' po dołączeniu do grupy/kanału",
+  "requiresVerification": "✅ Wymagana weryfikacja: Kliknij przycisk 'Weryfikuj' po dołączeniu do grupy/kanału",
   "reward": "🎁 Nagroda: +{quota} stała kwota",
   "rewardPermanent": "🎁 Wykonaj zadanie, aby zdobyć **+1 stałą kwotę**",
   "rewardTemporary": "🎁 Gratulacje! Otrzymałeś +1 tymczasową kwotę (ważną dzisiaj)",

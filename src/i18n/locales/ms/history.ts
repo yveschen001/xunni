@@ -25,6 +25,6 @@ export default {
   "time": "Masa: {time}\n\n",
   "totalMessages": "• Jumlah mesej: {total}\n",
   "userMessages": "• Anda telah menghantar: {count}\n",
-  "viewFull": "💡 Gunakan /history {identifier} untuk melihat perbualan lengkap",
+  "viewFull": "💡 Gunakan /history {identifier} untuk melihat perbualan penuh",
   "you": "Anda"
 };

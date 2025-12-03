@@ -15,7 +15,7 @@ export default {
   "levelFree": "🆓 Kostenloses Mitglied",
   "levelVip": "💎 VIP-Mitglied",
   "message": "Lass uns gemeinsam Nachrichtenflaschen auf XunNi werfen! 🍾 Verwende meinen Einladungscode, um beizutreten, und wir können beide mehr Quoten erhalten!",
-  "message2": "https://t.me/share/url?url=https://t.me/{botUsername}?start=invite_{inviteCode}&text=Komm zu XunNi und wirf gemeinsam eine Nachrichtenflasche",
+  "message2": "XunNi Lass uns gemeinsam eine Nachrichtenflasche werfen",
   "notRegistered": "Nicht registriert",
   "notSet": "Nicht festgelegt",
   "quota": "• Ihr beide erhaltet eine tägliche Quote +1\n\n",
@@ -28,7 +28,7 @@ export default {
   "short": "Kostenloses Mitglied",
   "stats": "📊 Einladungsstatistiken anzeigen: /profile",
   "stats2": "📊 Einladungsstatistiken anzeigen",
-  "task": "🎯 **Nächste Aufgabe**\n⏳ {nextTask.name} (+{nextTask.reward_amount} Nachrichtenflaschen)\n💡 {nextTask.description}\n\n",
+  "task": "🎯 **Nächste Aufgabe**\n⏳ {nextTask.name} (+{nextTask.reward_amount} Nachrichtenflaschen)\n💡 {nextTask.description}",
   "text": "🏠 **Hauptmenü** {vipBadge}\n\n",
   "text2": "👋 Hallo, {user.nickname}!\n\n",
   "text3": "💡 Klicken Sie auf die Schaltfläche unten, um mit Freunden zu teilen:\n",
@@ -36,7 +36,7 @@ export default {
   "text5": "📊 Ihr Status:\n",
   "title": "🏠 **Hauptmenü**",
   "userNotFound": "Benutzer existiert nicht",
-  "vip": "• Stufe: {isVip ? 'VIP Mitglied 💎' : 'Kostenloses Mitglied'}",
+  "vip": "• Stufe: {isVip ? 'VIP-Mitglied 💎' : 'Kostenloses Mitglied'} {isVip ? 'VIP Mitglied 💎' : 'Kostenfreies Mitglied'} {isVip ? 'VIP Member 💎' : 'Free Member'} {isVip ? 'VIP 會員 💎' : '免費會員'}",
   "vip2": "VIP-Mitglied 💎",
   "yourStatus": "Ihr Status",
   "birthDate": "Geburtstag",
@@ -45,5 +45,5 @@ export default {
   "interests": "Interessen",
   "bio": "Profil",
   "driftBottles": "Nachrichtenflasche",
-  "fortuneBottles": "Glücksflasche"
+  "fortuneBottles": "Wahrsagung Glücksflasche"
 };

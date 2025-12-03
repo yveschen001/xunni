@@ -38,7 +38,7 @@ export default {
     "age": "Вік: {min}-{max} років",
     "atLeastOneRequired": "Принаймні один фільтр є обов'язковим",
     "birthdayToday": "День народження сьогодні",
-    "country": "Країна: {country}",
+    "country": "Країна/Регіон: {country}",
     "genderFemale": "Жіноча",
     "genderMale": "Чоловіча",
     "genderOther": "Інша стать",
@@ -68,7 +68,7 @@ export default {
     "zodiacVirgo": "Діва"
   },
   "filterAge": "• вік=18-25\n",
-  "filterCommand": "/broadcast_filter\n\n",
+  "filterCommand": "/broadcast_filter <filter> <msg_content> ",
   "filterConfirmConditions": "**Умови фільтрації:**\n{conditions}\n\n",
   "filterConfirmMessage": "**Зміст повідомлення:**\n{message}\n\n",
   "filterConfirmTitle": "🔍 **Підтвердження фільтра трансляції**\n\n",

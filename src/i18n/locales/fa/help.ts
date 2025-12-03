@@ -56,7 +56,7 @@ export default {
   "message5": "/broadcast_vip <message> - ارسال به کاربران VIP",
   "message6": "/maintenance_disable - غیرفعال‌سازی حالت نگهداری\n\n",
   "message7": "/maintenance_status - بررسی وضعیت نگهداری\n",
-  "message8": "/پهBroadcast <پیام> - به همه کاربران پخش کنید <message>",
+  "message8": "/broadcast <message> - پخش به همه کاربران",
   "profile": "/edit_profile - ویرایش پروفایل\n",
   "profile2": "/profile - مشاهده پروفایل\n",
   "profile3": "👤 **پروفایل**\n",
@@ -119,5 +119,9 @@ export default {
   "devReset": "/dev_reset - بازنشانی کاربر فعلی",
   "devRestart": "/dev_restart - دوباره راه‌اندازی کردن نمونه",
   "devSkip": "/dev_skip - رد کردن آموزشی",
-  "fortune": "/fortune - 🔮 خوشبختی روزانه و تحلیل عمیق طالع‌بینی"
+  "fortune": "/fortune - 🔮 خوشبختی روزانه و تحلیل عمیق طالع‌بینی",
+  "clearFortune": "/clear_fortune - پاک کردن سوابق شانس",
+  "adminGrantSection": "🔧 **تأمین منابع**",
+  "addVip": "/add_vip - فعال‌سازی VIP (30 روز)",
+  "addBottles": "/add_fortune bottles - افزودن 50 بطری پیام"
 };

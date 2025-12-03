@@ -39,7 +39,7 @@ export default {
   "profile": "│ 📇 Cartão de Perfil │\n",
   "profile2": "👤 **Perfil**\n\n",
   "quota": "💡 Complete tarefas para ganhar cotas diárias extras (use /tasks para visualizar)\n",
-  "quota2": "📦 Cota diária atual: ${taskBonus > 0 ?",
+  "quota2": "📦 Cota diária atual: {taskBonus > 0 ?",
   "quotaBottles": "{taskBonus} garrafas de mensagem",
   "quotaTotal": "📦 Cota diária atual: {quota}\n\n",
   "returnToMenu": "🏠 Retornar ao menu principal: /menu",
@@ -69,6 +69,7 @@ export default {
   "vip2": "• Use /vip para fazer upgrade para Membro VIP\n",
   "vipUpgrade": "• Use /vip para fazer upgrade para Membro VIP\n",
   "zodiac": "⭐ Signo: {zodiac}\n",
-  "fortuneQuota": "🔮 {fortunemessage garrafa de mensagem}: {total} (Esta semana grátis: {weekly}/{limit} | Adicional: {additional})",
-  "vipWithDays": "💎 Membro VIP (Restante {days} dias, Expiração: {expireDate})"
+  "fortuneQuota": "🔮 {fortuneBottle}: {total} (Esta semana grátis: {weekly}/{limit} | Adicional: {additional})",
+  "vipWithDays": "💎 Membro VIP (Restante {days} dias, Expiração: {expireDate})",
+  "driftBottleInfo": "🍾 garrafa de mensagem: {remaining} / {total}"
 };

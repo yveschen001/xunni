@@ -2,7 +2,7 @@ export default {
   "allFeaturesAvailable": "Du kan nu använda alla funktioner som vanligt.",
   "completed": "✅ Systemunderhåll har slutförts",
   "completingSoon": "Nästan klar",
-  "correctFormat": "**Korrekt format:**\n/maintenance_enable <varaktighet (minuter)> <duration (minutes)>",
+  "correctFormat": "**Korrekt format:**\n/maintenance_enable <varaktighet ( minuter )> <duration (minutes)>",
   "defaultMessage": "Systemet är under underhåll och kan inte användas tillfälligt.",
   "disableFailed": "❌ Misslyckades med att stänga av underhållsläget.",
   "disableSuccess": "✅ Underhållsläge har stängts av\n\nÅterställningsmeddelande har sänds till alla användare.",

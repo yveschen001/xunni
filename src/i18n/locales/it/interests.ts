@@ -112,5 +112,6 @@ export default {
     "career_focused": "Lavoroholics",
     "family": "Famiglia/Genitorialità",
     "exploring": "Esplorazione"
-  }
+  },
+  "back_to_categories": "Torna al menu delle categorie"
 };

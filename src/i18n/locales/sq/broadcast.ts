@@ -38,7 +38,7 @@ export default {
     "age": "Mosha: {min}-{max} vjet",
     "atLeastOneRequired": "Të paktën një filtrë është e nevojshme",
     "birthdayToday": "Ditëlindja sot",
-    "country": "Shteti: {country}",
+    "country": "Shteti/Regioni: {country}",
     "genderFemale": "Femër",
     "genderMale": "Mashkull",
     "genderOther": "Gjin tjetër",
@@ -68,7 +68,7 @@ export default {
     "zodiacVirgo": "Virgjëreshë"
   },
   "filterAge": "• mosha=18-25\n",
-  "filterCommand": "/broadcast_filter\n\n",
+  "filterCommand": "/broadcast_filter <filter> <msg_content> ",
   "filterConfirmConditions": "**Kushtet e filtrit:**\n{conditions}\n\n",
   "filterConfirmMessage": "**Përmbajtja e mesazhit:**\n{message}\n\n",
   "filterConfirmTitle": "🔍 **Konfirmimi i Filtrit të Transmetimit**\n\n",

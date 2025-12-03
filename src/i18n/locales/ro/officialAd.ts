@@ -20,7 +20,7 @@ export default {
   "noAdsAvailable": "❌ Nu sunt anunțuri disponibile",
   "noVerificationRequired": "❌ Acest anunț nu necesită verificare",
   "quotaInfo": "📊 Rămase astăzi: **{remaining}/20** ori",
-  "requiresVerification": "✅ Verificare necesară: Faceti clic pe butonul 'Verificare' după ce ați aderat la grup/canal",
+  "requiresVerification": "✅ Verificare necesară: Faceți clic pe butonul 'Verifică' după ce ați aderat la grup/canal",
   "reward": "🎁 Recompensă: +{quota} cotă permanentă",
   "rewardPermanent": "🎁 Finalizați sarcina pentru a câștiga **+1 cotă permanentă**",
   "rewardTemporary": "🎁 Felicitări! Ați primit +1 cotă temporară (valabilă astăzi)",

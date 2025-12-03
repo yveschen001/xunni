@@ -39,7 +39,7 @@ export default {
   "profile": "│ 📇 个人资料卡片 │\n",
   "profile2": "👤 **个人资料**\n\n",
   "quota": "💡 完成任务可获得当日额外配额（使用 /tasks 查看）\n",
-  "quota2": "📦 当前每日配额：${taskBonus > 0 ?",
+  "quota2": "📦 当前每日配额：{taskBonus > 0 ?",
   "quotaBottles": "{taskBonus} 个瓶子",
   "quotaTotal": "📦 当前每日配额：{quota}\n\n",
   "returnToMenu": "🏠 返回主选单：/menu",
@@ -70,5 +70,6 @@ export default {
   "vipUpgrade": "• 使用 /vip 升级 VIP 会员\n",
   "zodiac": "⭐ 星座: {zodiac}",
   "fortuneQuota": "🔮 {fortune漂流瓶}: {total} (本周免费: {weekly}/{limit} | 额外: {additional})",
-  "vipWithDays": "💎 VIP 会员 (剩余 {days} 天, 到期: {expireDate})"
+  "vipWithDays": "💎 VIP 会员 (剩余 {days} 天, 到期: {expireDate})",
+  "driftBottleInfo": "🍾 漂流瓶：{remaining} / {total}"
 };

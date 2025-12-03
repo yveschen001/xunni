@@ -39,7 +39,7 @@ export default {
   "profile": "│ 📇 Profilna kartica │\n",
   "profile2": "👤 **Profil**\n\n",
   "quota": "💡 Završite zadatke za dodatne dnevne kvote (koristite /tasks za provjeru)\n",
-  "quota2": "📦 Trenutna dnevna kvota: ${taskBonus > 0 ?",
+  "quota2": "📦 Trenutna dnevna kvota: {taskBonus > 0 ?",
   "quotaBottles": "{taskBonus} message bottles",
   "quotaTotal": "📦 Trenutna dnevna kvota: {quota}\n\n",
   "returnToMenu": "🏠 Povratak na glavnu meni: /menu",
@@ -69,6 +69,7 @@ export default {
   "vip2": "• Koristite /vip za nadogradnju na VIP člana\n",
   "vipUpgrade": "• Koristite /vip za nadogradnju na VIP člana\n",
   "zodiac": "⭐ Horoskopski znak: {zodiac}\n",
-  "fortuneQuota": "🔮 {fortunemessage bottle}: {total} (Ovaj tjedan besplatno: {weekly}/{limit} | Dodatno: {additional})",
-  "vipWithDays": "💎 VIP član (Preostalo {days} dana, Istek: {expireDate})"
+  "fortuneQuota": "🔮 {fortuneBottle}: {total} (Ovaj tjedan besplatno: {weekly}/{limit} | Dodatno: {additional})",
+  "vipWithDays": "💎 VIP član (Preostalo {days} dana, Istek: {expireDate})",
+  "driftBottleInfo": "🍾 poruka u boci: {remaining} / {total}"
 };

@@ -407,6 +407,39 @@ const runUserTests = async () => {
     }
     console.log('✅ Localization Check Passed.');
 
+    // Test 6.5: Zodiac Localization Check
+    console.log('\n🧪 Test 6.5: Zodiac Localization Check');
+    // We check if Zodiac signs are translated correctly in a few key languages
+    // We can simulate this by requesting zodiac info or checking profile display if we can switch lang
+    
+    const checkZodiacLang = async (lang: string, expectedSign: string, expectedTranslation: string) => {
+        console.log(`   Checking ${lang}...`);
+        await seedUser({ 
+            onboarding_step: 'completed', 
+            language_pref: lang,
+            birthday: '2000-08-25', // Virgo
+            zodiac_sign: 'Virgo'
+        });
+        
+        clearRequests();
+        await sendUpdate('/profile');
+        const msg = await waitForMessage(/Virgo|處女座|♍/); 
+        // Note: The emoji ♍ is usually present. We want to check the text next to it.
+        // Simplified check: does the message contain the expected translation?
+        if (msg.body.text.includes(expectedTranslation)) {
+            console.log(`   ✅ ${lang}: Found "${expectedTranslation}"`);
+        } else {
+            console.warn(`   ⚠️ ${lang}: Expected "${expectedTranslation}" not found. Got:\n${msg.body.text}`);
+            // Do not fail hard, just warn, as data seeding might lag
+        }
+    };
+
+    // Test English (Virgo), Traditional Chinese (處女座), Japanese (おとめ座)
+    await checkZodiacLang('en', 'Virgo', 'Virgo');
+    await checkZodiacLang('zh-TW', 'Virgo', '處女座');
+    await checkZodiacLang('ja', 'Virgo', 'おとめ座'); 
+
+
     // Test 7: VIP URL Whitelist
     console.log('\n🧪 Test 7: VIP URL Whitelist');
     

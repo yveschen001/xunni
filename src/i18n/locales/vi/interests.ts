@@ -112,5 +112,6 @@ export default {
     "career_focused": "Người cuồng công việc",
     "family": "Gia đình/Cha mẹ",
     "exploring": "Khám phá"
-  }
+  },
+  "back_to_categories": "Quay trở lại menu danh mục"
 };

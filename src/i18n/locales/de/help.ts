@@ -56,7 +56,7 @@ export default {
   "message5": "/broadcast_vip <message> - An VIP-Nutzer senden",
   "message6": "/maintenance_disable - Wartungsmodus deaktivieren\n\n",
   "message7": "/maintenance_status - Wartungsstatus überprüfen\n",
-  "message8": "/broadcast <Nachricht> - An alle Benutzer senden <message>",
+  "message8": "/broadcast <message> - An alle Benutzer senden",
   "profile": "/edit_profile - Profil bearbeiten\n",
   "profile2": "/profile - Profil ansehen\n",
   "profile3": "👤 **Profil**\n",
@@ -119,5 +119,9 @@ export default {
   "devReset": "/dev_reset - Aktuellen Benutzer zurücksetzen",
   "devRestart": "/dev_restart - Instanz neu starten",
   "devSkip": "/dev_skip - Tutorial überspringen",
-  "fortune": "/fortune - 🔮 Tägliches Horoskop und tiefgehende Astrologie-Analyse"
+  "fortune": "/fortune - 🔮 Tägliches Horoskop und tiefgehende Astrologie-Analyse",
+  "clearFortune": "/clear_fortune - Glücksaufzeichnungen löschen",
+  "adminGrantSection": "🔧 **Ressourcenversorgung**",
+  "addVip": "/add_vip - VIP aktivieren (30 Tage)",
+  "addBottles": "/add_bottles - 50 Glücksflaschen hinzufügen"
 };

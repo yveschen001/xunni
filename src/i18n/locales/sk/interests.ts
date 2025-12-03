@@ -112,5 +112,6 @@ export default {
     "career_focused": "Pracoholič",
     "family": "Rodina/Rodičovstvo",
     "exploring": "Objavovanie"
-  }
+  },
+  "back_to_categories": "Návrat do menu kategórií"
 };

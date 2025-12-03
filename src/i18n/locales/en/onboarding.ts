@@ -26,12 +26,12 @@ export default {
   "birthday3": "Please enter your birthday (format: YYYY-MM-DD):\n\n",
   "birthday4": "Birthday: {birthday}\n",
   "birthdayCheck": "If you think this is an error, please check if your birthday format is correct (YYYY-MM-DD).",
-  "birthdayError": "❌ {error}",
+  "birthdayError": "❌ {error}\n\n",
   "birthdayFormatError": "❌ Birthday format is incorrect\n\nPlease re-enter (format: YYYY-MM-DD):",
   "birthdayRetry": "Please re-enter your birthday (format: YYYY-MM-DD):",
   "birthdayWarning": "⚠️ The birthday cannot be modified after setting, please confirm it's correct!",
   "bloodType": {
-    "select": "[Translation Needed: onboarding.bloodType.select]"
+    "select": "Please select your blood type:"
   },
   "bloodTypeLabel": "🩸 **Please select your blood type**\n\n",
   "complete": "Please enter 'yes' to complete the test:",
@@ -50,7 +50,7 @@ export default {
     "label": "• Gender: {gender}\n",
     "male": "Male"
   },
-  "gender2": "• Gender: ${updatedUser.gender ===",
+  "gender2": "• Gender: {updatedUser.gender ===",
   "gender3": "Please select your gender:\n\n",
   "genderFemale": "👩 Female",
   "genderMale": "👨 Male",
@@ -73,7 +73,7 @@ export default {
   "nickname2": "Great! Your nickname is: {nickname}\n\n",
   "nicknameError": "❌ {error}\n\nPlease re-enter your nickname:",
   "nicknameGood": "Great! Your nickname is: {nickname}\n\n",
-  "notCompleted": "[Translation needed: onboarding.notCompleted]",
+  "notCompleted": "⚠️ Please complete the registration process first",
   "nowSelectGender": "Now please select your gender:\n\n",
   "otherUserNotFound": "❌ The other user does not exist.",
   "pleaseAnswer": "❌ Please answer the questions seriously\n\n",
@@ -108,7 +108,7 @@ export default {
   "stepTerms": "📜 Please click the button above to agree to the Terms of Service",
   "terms": {
     "agree_button": "✅ I Agree",
-    "english_only_note": "[Translation needed: onboarding.terms.english_only_note]",
+    "english_only_note": "📋 The legal documents are available in English only.",
     "privacy_policy_button": "🔒 Privacy Policy",
     "terms_of_service_button": "📋 Terms of Service"
   },

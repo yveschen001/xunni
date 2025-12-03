@@ -99,7 +99,7 @@ export default {
   "vipTriple": "💎 **VIP Üçlü Mesaj Şişesi İstatistikleri** (son {days} gün)",
   "vipTripleTitle": "💎 **VIP Üçlü Mesaj Şişesi İstatistikleri** (son {days} gün)",
   "zodiac": "🔮 **Burç**: {zodiac}\n",
-  "fortuneTitle": "🔮 **{fortunemessage mesaj şişesi}**",
+  "fortuneTitle": "\n🔮 **{fortuneBottle}**\n",
   "fortuneReadings": "• Fal Sayısı : {count}",
   "fortuneQuota": "• Kalan Kota : {quota}"
 };

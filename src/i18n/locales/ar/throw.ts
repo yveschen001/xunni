@@ -46,7 +46,7 @@ export default {
   "genderLabel": "• الجنس: {gender}\n",
   "mbti": "• MBTI: {selectedMBTI.length > 0 ? selectedMBTI.join(', ') : 'لا قيود'}",
   "mbti2": "المحدد: {selectedMBTI.length > 0 ? selectedMBTI.join(', ') : 'لا شيء'}",
-  "mbti3": "المحدد: ${selectedMBTI.length > 0 ? selectedMBTI.join(",
+  "mbti3": "المحدد: {selectedMBTI.length > 0 ? selectedMBTI.join(",
   "mbti4": "🧠 **فلتر MBTI**\n\n",
   "mbti5": "• MBTI: تصفية حسب أنواع الشخصية المحددة\n",
   "mbti6": "• توافق عالي مع MBTI ✓",
@@ -54,7 +54,7 @@ export default {
   "mbtiLabel": "• MBTI: {mbti}",
   "message": "تم الاختيار: {selectedZodiac.length > 0 ? selectedZodiac.map((z) => ZODIAC_NAMES[z]).join(', ') : 'لا شيء'}",
   "message2": "الاختيار الحالي: {currentGender === 'male' ? '👨 ذكر' : currentGender === 'female' ? '👩 أنثى' : '🌈 أي شخص'}",
-  "message3": "المحدد: ${selectedZodiac.length > 0 ? selectedZodiac.map((z) => ZODIAC_NAMES[z]).join(",
+  "message3": "المحدد: {selectedZodiac.length > 0 ? selectedZodiac.map((z) => ZODIAC_NAMES[z]).join(",
   "message4": "اختيار الحالي: {bloodTypeDisplay[currentBloodType]}",
   "message5": "👤 الخصم: {vipMatchInfo.matcherNickname}",
   "message6": "\"مرحبًا! أنا شخص يحب الموسيقى والأفلام، وآمل أن ألتقي بأصدقاء يشاركونني الاهتمامات～\"",
@@ -117,14 +117,14 @@ export default {
   "text23": "💡 يمكنك دمج شروط متعددة",
   "text24": "شروط الفلترة الحالية:\n\n",
   "text3": "💡 قد يستغرق ذلك بضع ثوان، نحن نبحث عن الأشخاص الأنسب لك",
-  "text4": "الاختيار الحالي: ${currentGender ===",
+  "text4": "الاختيار الحالي: {currentGender ===",
   "text5": "🎯 البحث عن: {targetText}\n",
   "text6": "🎯 العثور على 3 تطابقات ممتازة لك\n\n",
   "text7": "📨 **2 مواقع إضافية في الانتظار:**\n",
   "text8": "🔍 مطابقة ذكية لأفضل المواضيع...\n\n",
   "text9": "معاينة المحتوى: {preview}\n\n",
   "throw": "📊 الرسائل المرسلة اليوم: {quotaDisplay}\n\n",
-  "tips": "[ترجمة مطلوبة من zh-TW.ts]",
+  "tips": "💡 نصيحة: كلما كتبت بتفصيل أكثر، كان من الأسهل العثور على شركاء محادثة مناسبين.",
   "unlimited": "غير محدود",
   "vip": "💎 مستخدمو VIP: 30 في اليوم (ثلاث مرات عرض)\n\n",
   "vip2": "💎 **قم بالترقية إلى VIP للحصول على ثلاث مرات فرص العرض!**\n",
@@ -134,8 +134,8 @@ export default {
   "vip6": "💡 الترقية إلى VIP يمنحك: \n",
   "vip7": "✨ تفعيل امتيازات VIP\n",
   "zodiac": "• علامة زودياك: {selectedZodiac.length > 0 ? selectedZodiac.map((z) => ZODIAC_NAMES[z]).join(', ') : 'لا توجد قيود'}",
-  "zodiac2": "⭐ البرج: ${matchResult.user.zodiac ||",
-  "zodiac3": "⭐ البرج: ${user.zodiac_sign ||",
+  "zodiac2": "⭐ البرج: {matchResult.user.zodiac ||",
+  "zodiac3": "⭐ البرج: {user.zodiac_sign ||",
   "zodiac4": "⭐ **فلترة برجية**\n\n",
   "zodiac5": "• برج: فلترة أبراج محددة\n",
   "zodiac6": "• توافق الأبراج ✓",

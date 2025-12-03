@@ -1,8 +1,8 @@
 export default {
   "bottleContent": "📝 Flaskpostinnehåll: {content}\n\n",
-  "bottlePicked": "Din meddelandeflaskpost har blivit upphämtad av {maskedMatcherNickname}!\n\n",
+  "bottlePicked": "Ditt meddelandebrev har plockats upp av {maskedMatcherNickname}!",
   "conversationIdentifier": "💬 Konversationsidentifierare: {conversationIdentifier}\n",
-  "firstMatch": "💡 Detta är din 1:a match, med 2 platser kvar\n\n",
+  "firstMatch": "💡 Detta är din första match, med 2 platser kvar",
   "foundBottle": "Systemet har funnit en flaskpost från {maskedOwnerNickname}!\n\n",
   "matchSuccess": "🎯 **VIP smart parning lyckades!**\n\n",
   "replyHint": "💬 **Vänligen håll inne på detta meddelande, välj 'Svara', och skriv in ditt innehåll för att börja chatta med den andra parten**",

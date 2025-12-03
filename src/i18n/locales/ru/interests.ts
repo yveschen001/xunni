@@ -112,5 +112,6 @@ export default {
     "career_focused": "Трудоголик",
     "family": "Семья/Родительство",
     "exploring": "Исследование"
-  }
+  },
+  "back_to_categories": "Вернуться в меню категорий"
 };

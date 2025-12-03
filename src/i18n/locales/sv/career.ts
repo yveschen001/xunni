@@ -165,5 +165,6 @@ export default {
       "seeking": "För närvarande arbetslös / I övergång",
       "other_industry": "Andra industrier (Manuell inmatning)"
     }
-  }
+  },
+  "next_step_industry": "Selecteer vervolgens uw branche."
 };

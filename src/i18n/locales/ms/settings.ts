@@ -31,7 +31,5 @@ export default {
     "title": "🚫 Senarai Sekat",
     "empty": "Kini tiada senarai sekat",
     "unblock": "Buka Sekatan"
-  },
-  "quietHoursVipOnly": "🔒 Quiet Hours (VIP Only)",
-  "upgradeForQuietHours": "Upgrade to VIP to use this feature"
+  }
 };

@@ -25,6 +25,6 @@ export default {
   "time": "זמן: {time}\n\n",
   "totalMessages": "• סך הכל הודעות: {total} הודעות\n",
   "userMessages": "• שלחת: {count} הודעות\n",
-  "viewFull": "💡 השתמש ב-/history {identifier} כדי לראות את השיחה המלאה",
+  "viewFull": "💡 השתמשו ב-/history {identifier} כדי לצפות בשיחה המלאה",
   "you": "אתה"
 };

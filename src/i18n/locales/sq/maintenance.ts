@@ -2,7 +2,7 @@ export default {
   "allFeaturesAvailable": "Tani mund të përdorësh të gjitha karakteristikat normalisht.",
   "completed": "✅ Mirëmbajtja e sistemit ka përfunduar",
   "completingSoon": "Gati përfundimisht",
-  "correctFormat": "**Formati i saktë:**\n/maintenance_enable <kohëzgjatja (minuta)> <duration (minutes)>",
+  "correctFormat": "**Formati i saktë:**\n/maintenance_enable <zgjatja (minuta)> <duration (minutes)>",
   "defaultMessage": "Sistemi është duke u mirëmbajtur dhe përkohësisht i paaksesueshëm.",
   "disableFailed": "❌ Dështoi të çaktivizojë modin e mirëmbajtjes.",
   "disableSuccess": "✅ Modin e mirëmbajtjes është çaktivizuar\n\nNjoftimi për rikuperim është transmetuar të gjithë përdoruesve.",

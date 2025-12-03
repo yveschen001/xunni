@@ -31,7 +31,5 @@ export default {
     "title": "🚫 รายชื่อบล็อก",
     "empty": "ขณะนี้ไม่มีรายชื่อบล็อก",
     "unblock": "ถอนบล็อก"
-  },
-  "quietHoursVipOnly": "🔒 Quiet Hours (VIP Only)",
-  "upgradeForQuietHours": "Upgrade to VIP to use this feature"
+  }
 };

@@ -25,6 +25,6 @@ export default {
   "time": "Zaman: {time}\n\n",
   "totalMessages": "• Toplam Mesaj: {total} mesaj\n",
   "userMessages": "• Gönderdiğiniz: {count} mesaj\n",
-  "viewFull": "💡 Tam sohbeti görüntülemek için /history {identifier} kullanın",
+  "viewFull": "💡 Tam konuşmayı görüntülemek için /history {identifier} komutunu kullanın",
   "you": "Siz"
 };

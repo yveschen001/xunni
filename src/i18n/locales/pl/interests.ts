@@ -112,5 +112,6 @@ export default {
     "career_focused": "Pracoholik",
     "family": "Rodzina/Rodzicielstwo",
     "exploring": "Eksploracja"
-  }
+  },
+  "back_to_categories": "Powrót do menu kategorii"
 };

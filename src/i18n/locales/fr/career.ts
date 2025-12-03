@@ -165,5 +165,6 @@ export default {
       "seeking": "Actuellement sans emploi / En transition",
       "other_industry": "Autres industries (À saisir manuellement)"
     }
-  }
+  },
+  "next_step_industry": "Wählen Sie als Nächstes Ihre Branche aus."
 };

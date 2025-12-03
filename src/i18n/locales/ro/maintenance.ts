@@ -2,7 +2,7 @@ export default {
   "allFeaturesAvailable": "Acum poți folosi toate funcționalitățile în mod normal.",
   "completed": "✅ Mentenanța sistemului este completă",
   "completingSoon": "Aproape gata",
-  "correctFormat": "**Format corect:**\n/maintenance_enable <durată (minute)> <duration (minutes)>",
+  "correctFormat": "**Format corect:**\n/maintenance_enable <durata (minute)> <duration (minutes)>",
   "defaultMessage": "Sistemul este în mentenanță și temporar indisponibil.",
   "disableFailed": "❌ A eșuat dezactivarea modulului de mentenanță.",
   "disableSuccess": "✅ Modul de mentenanță a fost dezactivat\n\nNotificarea de recuperare a fost transmisă tuturor utilizatorilor.",

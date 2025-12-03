@@ -1,7 +1,7 @@
 export default {
   "select_continent": "אנא בחר את האזור שלך 🌍",
-  "select_country": "אנא בחר מדינה",
-  "search_city_prompt": "אנא הזן את שם העיר (למשל, טיpei)",
+  "select_country": "אנא בחר מדינה/אזור",
+  "search_city_prompt": "אנא הזן את שם העיר (למשל: טוקיו)",
   "city_not_found": "העיר לא נמצאה, אנא נסה את השם באנגלית.",
   "confirm_city": "האם זו העיר שבחרת: {city} ({country})?",
   "continent": {

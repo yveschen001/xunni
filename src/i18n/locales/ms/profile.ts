@@ -39,7 +39,7 @@ export default {
   "profile": "│ 📇 Kad Profil │\n",
   "profile2": "👤 **Profil**\n\n",
   "quota": "💡 Lengkapkan tugas untuk mendapatkan kuota harian tambahan (guna /tasks untuk lihat)\n",
-  "quota2": "📦 Kuota Harian Semasa: ${taskBonus > 0 ?",
+  "quota2": "📦 Kuota Harian Semasa: {taskBonus > 0 ?",
   "quotaBottles": "{taskBonus} botol",
   "quotaTotal": "📦 Kuota harian semasa: {quota}\n\n",
   "returnToMenu": "🏠 Kembali ke menu utama: /menu",
@@ -69,6 +69,7 @@ export default {
   "vip2": "• Gunakan /vip untuk naik taraf ke Ahli VIP\n",
   "vipUpgrade": "• Naik taraf ke ahli VIP menggunakan /vip\n",
   "zodiac": "⭐ Zodiak: {zodiac}\n",
-  "fortuneQuota": "🔮 {fortunemessage botol mesej}: {total} (Minggu ini percuma: {weekly}/{limit} | Tambahan: {additional})",
-  "vipWithDays": "💎 Ahli VIP (Tersisa {days} hari, Tamat: {expireDate})"
+  "fortuneQuota": "🔮 {fortuneBottle}: {total} (Minggu ini percuma: {weekly}/{limit} | Tambahan: {additional})",
+  "vipWithDays": "💎 Ahli VIP (Tersisa {days} hari, Tamat: {expireDate})",
+  "driftBottleInfo": "🍾 botol mesej: {remaining} / {total}"
 };

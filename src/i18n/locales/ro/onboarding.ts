@@ -26,7 +26,7 @@ export default {
   "birthday3": "Te rugăm să introduci data nașterii tale (format: YYYY-MM-DD):\n\n",
   "birthday4": "Data nașterii: {birthday}\n",
   "birthdayCheck": "Dacă credeți că aceasta este o eroare, vă rugăm să verificați dacă formatul datei nașterii este corect (AAAA-LL-ZZ).",
-  "birthdayError": "❌ {error}",
+  "birthdayError": "❌ {error}\n\n",
   "birthdayFormatError": "❌ Format incorect pentru data nașterii\n\nVă rugăm să reintroduceți (format: AAAA-LL-ZZ):",
   "birthdayRetry": "Vă rugăm să reintroduceți data nașterii (format: AAAA-LL-ZZ):",
   "birthdayWarning": "⚠️ Data nașterii nu poate fi modificată după setare, vă rugăm să confirmați că este corectă!",
@@ -50,7 +50,7 @@ export default {
     "label": "• Gen: {gender}\n",
     "male": "Masculin"
   },
-  "gender2": "• Gen: ${updatedUser.gender ===",
+  "gender2": "• Gen: {updatedUser.gender ===",
   "gender3": "Te rugăm să selectezi sexul tău:\n\n",
   "genderFemale": "👩 Femenin",
   "genderMale": "👨 Masculin",

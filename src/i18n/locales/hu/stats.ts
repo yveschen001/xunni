@@ -99,7 +99,7 @@ export default {
   "vipTriple": "💎 **VIP Háromszoros Üveg Statisztika** (az elmúlt {days} napban)",
   "vipTripleTitle": "💎 **VIP Háromszoros Üveg Statisztika** (az elmúlt {days} napban)",
   "zodiac": "🔮 **Zodiac**: {zodiac}",
-  "fortuneTitle": "🔮 **{fortunemessage bottle}**",
+  "fortuneTitle": "\n🔮 **{fortuneBottle}**\n",
   "fortuneReadings": "• Sorsszám: {count}",
   "fortuneQuota": "• Hátralévő kvóta: {quota}"
 };

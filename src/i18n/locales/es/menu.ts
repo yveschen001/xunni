@@ -9,13 +9,13 @@ export default {
   "buttonStats": "📊 Estadísticas",
   "buttonThrow": "🌊 Lanzar una botella de mensajes",
   "buttonVip": "💎 VIP",
-  "invite": "🎁 **Invitar Amigos**",
+  "invite": "🎁 **Invitar a Amigos**",
   "invite2": "📋 Tu código de invitación: {inviteCode}",
   "invite3": "📤 Compartir código de invitación",
   "levelFree": "🆓 Miembro gratuito",
   "levelVip": "💎 Miembro VIP",
   "message": "¡Lanzamos botellas de mensajes juntos en XunNi! 🍾 Usa mi código de invitación para unirte, ¡y ambos podemos obtener más cuotas!",
-  "message2": "https://t.me/share/url?url=https://t.me/{botUsername}?start=invite_{inviteCode}&text=Ven a XunNi y lanza una botella de mensajes juntos",
+  "message2": "XunNi, vamos a lanzar una botella de mensajes juntos.",
   "notRegistered": "No registrado",
   "notSet": "No establecido",
   "quota": "• Ambos obtienen una cuota diaria +1",
@@ -36,7 +36,7 @@ export default {
   "text5": "📊 Tu estado:\n",
   "title": "🏠 **Menú principal**",
   "userNotFound": "El usuario no existe",
-  "vip": "• Nivel: {isVip ? 'Miembro VIP 💎' : 'Miembro Gratis'}",
+  "vip": "• Nivel: {isVip ? 'Miembro VIP 💎' : 'Miembro Gratuito'} {isVip ? 'Miembro VIP 💎' : 'Miembro Gratis'} {isVip ? 'VIP Member 💎' : 'Free Member'} {isVip ? 'VIP 會員 💎' : '免費會員'}",
   "vip2": "Miembro VIP 💎",
   "yourStatus": "Tu estado",
   "birthDate": "Cumpleaños",
@@ -45,5 +45,5 @@ export default {
   "interests": "Intereses",
   "bio": "Perfil",
   "driftBottles": "Botella de Mensajes",
-  "fortuneBottles": "Botella de Fortuna"
+  "fortuneBottles": "botella de la fortuna de adivinación"
 };

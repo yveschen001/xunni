@@ -2,7 +2,7 @@ export default {
   "allFeaturesAvailable": "Du kan nå bruke alle funksjoner normalt.",
   "completed": "✅ Systemvedlikehold er fullført",
   "completingSoon": "Nesten ferdig",
-  "correctFormat": "**Korrekt format:**\n/maintenance_enable <varighet (minutter)> <duration (minutes)>",
+  "correctFormat": "**Korrekt format:**\n/vedlikehold_aktivere <varighet (minutter)> <duration (minutes)>",
   "defaultMessage": "Systemet er under vedlikehold og kan ikke brukes midlertidig.",
   "disableFailed": "❌ Kunne ikke deaktivere vedlikeholdsmodus.",
   "disableSuccess": "✅ Vedlikeholdsmodus har blitt deaktivert\n\nGjenopprettingsmelding er sendt til alle brukere.",

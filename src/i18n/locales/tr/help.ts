@@ -56,7 +56,7 @@ export default {
   "message5": "/yayın_vip <message> - VIP kullanıcılara gönder",
   "message6": "/maintenance_disable - Bakım modunu devre dışı bırak\n\n",
   "message7": "/maintenance_status - Bakım durumunu kontrol et\n",
-  "message8": "/yayınla <mesaj> - Tüm kullanıcılara yayın yap <message>",
+  "message8": "/broadcast <message> - Tüm kullanıcılara yayın yap",
   "profile": "/edit_profile - Profil düzenle\n",
   "profile2": "/profile - Profil görüntüle\n",
   "profile3": "👤 **Profil**\n",
@@ -119,5 +119,9 @@ export default {
   "devReset": "/dev_reset - Mevcut kullanıcıyı sıfırla",
   "devRestart": "/dev_restart - Örneği yeniden başlat",
   "devSkip": "/dev_skip - Eğitimi geç",
-  "fortune": "/fortune - 🔮 Günlük fal ve derin astroloji analizi"
+  "fortune": "/fortune - 🔮 Günlük fal ve derin astroloji analizi",
+  "clearFortune": "/clear_fortune - Şans kayıtlarını temizle",
+  "adminGrantSection": "🔧 **Kaynak Tedariki**",
+  "addVip": "/add_vip - VIP'yi etkinleştir (30 gün)",
+  "addBottles": "/add_bottles - 50 fal şişesi ekle"
 };

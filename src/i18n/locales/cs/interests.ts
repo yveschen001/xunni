@@ -112,5 +112,6 @@ export default {
     "career_focused": "Workaholic",
     "family": "Rodina/Rodičovství",
     "exploring": "Objevování"
-  }
+  },
+  "back_to_categories": "Vrátit se do nabídky kategorií"
 };

@@ -38,7 +38,7 @@ export default {
     "age": "Tuổi: {min}-{max} tuổi",
     "atLeastOneRequired": "Ít nhất một bộ lọc là cần thiết",
     "birthdayToday": "Sinh nhật hôm nay",
-    "country": "Quốc gia: {country}",
+    "country": "Quốc gia/Khu vực: {country}",
     "genderFemale": "Nữ",
     "genderMale": "Nam",
     "genderOther": "Giới tính khác",
@@ -68,7 +68,7 @@ export default {
     "zodiacVirgo": "Xử Nữ"
   },
   "filterAge": "• tuổi=18-25\n",
-  "filterCommand": "/broadcast_filter\n\n",
+  "filterCommand": "/broadcast_filter <filter> <msg_content> ",
   "filterConfirmConditions": "**Điều kiện lọc:**\n{conditions}\n\n",
   "filterConfirmMessage": "**Nội dung tin nhắn:**\n{message}\n\n",
   "filterConfirmTitle": "🔍 **Xác Nhận Lọc Phát Sóng**\n\n",

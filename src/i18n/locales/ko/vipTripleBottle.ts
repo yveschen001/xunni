@@ -1,8 +1,8 @@
 export default {
   "bottleContent": "📝 병 내용: {content}\n\n",
-  "bottlePicked": "귀하의 메시지 병이 {maskedMatcherNickname}에 의해 픽업되었습니다!\n\n",
+  "bottlePicked": "당신의 메시지 병이 {maskedMatcherNickname}에 의해 수거되었습니다!",
   "conversationIdentifier": "💬 대화 식별자: {conversationIdentifier}\n",
-  "firstMatch": "💡 이는 당신의 첫 매치로, 2개의 슬롯이 남아 있습니다\n\n",
+  "firstMatch": "💡 이것이 당신의 첫 번째 매치이며, 아직 2개의 슬롯이 남아 있습니다.",
   "foundBottle": "시스템에서 {maskedOwnerNickname}의 병을 찾았습니다!\n\n",
   "matchSuccess": "🎯 **VIP 스마트 짝짓기 성공!**\n\n",
   "replyHint": "💬 **이 메시지를 오래 눌러서 '답장'을 선택한 다음, 내용을 입력하여 상대방과 채팅하세요**",

@@ -2,7 +2,7 @@ export default {
   "allFeaturesAvailable": "すべての機能が正常に使用できるようになりました。",
   "completed": "✅ システムメンテナンスが完了しました",
   "completingSoon": "もう少しです",
-  "correctFormat": "**正しい形式:**\n/maintenance_enable <時間 (分)> <duration (minutes)>",
+  "correctFormat": "**正しい形式:**\n/maintenance_enable <時間(分)> <duration (minutes)>",
   "defaultMessage": "❌ メンテナンスモードの無効化に失敗しました。",
   "disableFailed": "❌ メンテナンスモードの無効化に失敗しました。",
   "disableSuccess": "✅ メンテナンスモードが無効化されました\n\n回復通知がすべてのユーザーに送信されました。",

@@ -165,5 +165,6 @@ export default {
       "seeking": "Trenutno brez zaposlitve / V prehodu",
       "other_industry": "Druge industrije (vnesite ročno)"
     }
-  }
+  },
+  "next_step_industry": "Ďalej prosím vyberte svoje odvetvie."
 };

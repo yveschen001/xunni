@@ -112,5 +112,6 @@ export default {
     "career_focused": "Căutător de muncă",
     "family": "Familie/Parinte",
     "exploring": "Explorare"
-  }
+  },
+  "back_to_categories": "Întoarceți-vă la meniul de categorii"
 };

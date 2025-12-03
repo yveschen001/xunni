@@ -112,5 +112,6 @@ export default {
     "career_focused": "Munkaaholic",
     "family": "Család/gyermeknevelés",
     "exploring": "Felfedezés"
-  }
+  },
+  "back_to_categories": "Vissza a kategória menühöz"
 };

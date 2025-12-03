@@ -20,7 +20,7 @@ export default {
   "noAdsAvailable": "❌ 사용 가능한 광고가 없습니다",
   "noVerificationRequired": "❌ 이 광고는 인증이 필요하지 않습니다",
   "quotaInfo": "📊 오늘 남은 횟수: **{remaining}/20** 회",
-  "requiresVerification": "✅ 확인 필요: 그룹/채널에 가입한 후 '확인' 버튼을 클릭하세요",
+  "requiresVerification": "✅ 인증 필요: 그룹/채널에 가입한 후 '확인' 버튼을 클릭하세요",
   "reward": "🎁 보상: +{quota} 영구 할당량",
   "rewardPermanent": "🎁 작업을 완료하여 **+1 영구 할당량**을 받으세요",
   "rewardTemporary": "🎁 축하합니다! +1 임시 할당량을 받았습니다 (오늘 유효)",

@@ -15,7 +15,7 @@ export default {
   "levelFree": "🆓 חבר חינם",
   "levelVip": "💎 חבר VIP",
   "message": "בוא נשליך בקבוקי מסר יחד על XunNi! 🍾 השתמש בקוד ההזמנה שלי כדי להצטרף, ואנחנו יכולים לקבל שנינו עוד מכסות!",
-  "message2": "https://t.me/share/url?url=https://t.me/{botUsername}?start=invite_{inviteCode}&text=בואו ל-XunNi ונשל throw בקבוק מסר ביחד",
+  "message2": "XunNi בוא נזרוק ביחד בקבוק הודעות",
   "notRegistered": "לא רשום",
   "notSet": "לא הוגדר",
   "quota": "• שניכם תקבלו מכסה יומית +1",
@@ -28,7 +28,7 @@ export default {
   "short": "חבר חינם",
   "stats": "📊 הצג סטטיסטיקות הזמנה: /profile",
   "stats2": "📊 הצג סטטיסטיקות הזמנה",
-  "task": "🎯 **משימה הבאה**\n⏳ {nextTask.name} (+{nextTask.reward_amount} בקבוקי מסר)\n💡 {nextTask.description}",
+  "task": "🎯 **משימה הבאה**\n⏳ {nextTask.name} (+{nextTask.reward_amount} בקבוקי הודעה)\n💡 {nextTask.description}",
   "text": "{vipBadge} {vipBadge}\n\n",
   "text2": "{user.nickname} {user.nickname}\n\n",
   "text3": "💡 לחץ על הכפתור למטה לשתף עם חברים:\n",
@@ -36,7 +36,7 @@ export default {
   "text5": "📊 הסטטוס שלך:\n",
   "title": "🏠 **תפריט ראשי**",
   "userNotFound": "המשתמש לא קיים",
-  "vip": "• רמה: {isVip ? 'חבר VIP 💎' : 'חבר חינם'}",
+  "vip": "• רמה: {isVip ? 'חבר VIP 💎' : 'חבר חינם'} {isVip ? 'VIP 會員 💎' : '免費會員'} {isVip ? 'VIP Member 💎' : 'Free Member'}",
   "vip2": "חבר VIP 💎",
   "yourStatus": "הסטטוס שלך",
   "birthDate": "יום הולדת",
@@ -45,5 +45,5 @@ export default {
   "interests": "תחומי עניין",
   "bio": "פרופיל",
   "driftBottles": "מסר בבקבוק",
-  "fortuneBottles": "בקבוק מזל"
+  "fortuneBottles": "חיזוי בעזרת בקבוק כ fortuna"
 };

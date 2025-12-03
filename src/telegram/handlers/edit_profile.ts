@@ -275,7 +275,7 @@ export async function handleInterestInteraction(
   const chatId = callbackQuery.message!.chat.id;
   const telegramId = callbackQuery.from.id.toString();
   const data = callbackQuery.data!;
-  
+
   try {
     const user = await findUserByTelegramId(db, telegramId);
     const i18n = createI18n(user?.language_pref || 'zh-TW');
@@ -292,7 +292,7 @@ export async function handleInterestInteraction(
     // 1. Show Category List (Home)
     if (data === 'interest_home') {
       await renderInterestMenu(chatId, telegramId, telegram, i18n, db, callbackQuery.message!.message_id, undefined);
-      await telegram.answerCallbackQuery(callbackQuery.id);
+    await telegram.answerCallbackQuery(callbackQuery.id);
       return;
     }
 
@@ -364,7 +364,7 @@ export async function handleInterestInteraction(
         [{ text: i18n.t('common.back3'), callback_data: 'return_to_menu' }]
       ]);
       // Delete the menu message
-      await telegram.deleteMessage(chatId, callbackQuery.message!.message_id);
+    await telegram.deleteMessage(chatId, callbackQuery.message!.message_id);
       await telegram.answerCallbackQuery(callbackQuery.id);
       return;
     }
@@ -533,7 +533,7 @@ export async function handleEditIndustry(
     const i18n = createI18n(user?.language_pref || 'zh-TW');
 
     await telegram.answerCallbackQuery(callbackQuery.id);
-    
+
     // Create session
     await upsertSession(db, telegramId, SESSION_TYPE, { data: { editing: 'industry' } });
 
@@ -649,8 +649,19 @@ export async function handleCareerInteraction(
       const role = data.split(':')[1];
       await db.d1.prepare('UPDATE users SET job_role = ? WHERE telegram_id = ?').bind(role, telegramId).run();
       
+      // Check if Industry is missing (Flow Optimization)
+      const updatedUser = await findUserByTelegramId(db, telegramId);
+      if (!updatedUser?.industry) {
+        await telegram.sendMessage(chatId, i18n.t('success.text4', { text: i18n.t(`career.role.${role}` as any) }) + '\n\n' + i18n.t('career.next_step_industry'));
+        // Trigger Industry Edit
+        await upsertSession(db, telegramId, SESSION_TYPE, { data: { editing: 'industry' } });
+        await renderIndustryMenu(chatId, telegram, i18n);
+        await telegram.answerCallbackQuery(callbackQuery.id);
+        return;
+      }
+
       await telegram.sendMessageWithButtons(chatId, i18n.t('success.text4', { text: i18n.t(`career.role.${role}` as any) }), [
-        [{ text: i18n.t('common.short3'), callback_data: 'edit_profile_callback' }],
+        [{ text: i18n.t('fortune.menuTitle'), callback_data: 'menu_fortune' }],
         [{ text: i18n.t('common.back3'), callback_data: 'return_to_menu' }]
       ]);
       await telegram.deleteMessage(chatId, callbackQuery.message!.message_id);
@@ -691,8 +702,51 @@ export async function handleCareerInteraction(
       
       await db.d1.prepare('UPDATE users SET industry = ? WHERE telegram_id = ?').bind(industryCode, telegramId).run();
       
+      // Check if Job Role is missing (Flow Optimization)
+      const updatedUser = await findUserByTelegramId(db, telegramId);
+      if (!updatedUser?.job_role) {
+         // Determine appropriate success message
+         // We don't have 'career.next_step_role', let's just reuse or add one?
+         // Or just send a generic message.
+         // Let's add 'career.next_step_role' to make it consistent.
+         // But I can't easily add to CSV right now without script.
+         // Use a generic prompt or reuse 'career.label_role'.
+         
+         await telegram.sendMessage(chatId, i18n.t('success.text4', { text: itemLabel }) + '\n\n' + i18n.t('career.label_role'));
+         
+         // Trigger Role Edit
+         // Logic from handleEditJobRole
+         await upsertSession(db, telegramId, SESSION_TYPE, { data: { editing: 'job_role' } });
+         
+         // Manually construct Role menu since handleEditJobRole is a handler function, not a helper (although I can extract helper)
+         // It's short enough to duplicate the button generation logic or extract it.
+         // Actually, let's call handleEditJobRole? No, that expects a callbackQuery object which we might not want to fake entirely.
+         // But handleEditJobRole takes (callbackQuery, env).
+         // We can construct a fake callbackQuery?
+         // Or better, extract the logic.
+         
+         // Logic copy from handleEditJobRole:
+         const buttons: any[][] = [];
+         let row: any[] = [];
+         // JOB_ROLES is already imported at top of file
+         for (const role of JOB_ROLES) {
+            let label = i18n.t(`career.role.${role}` as any);
+            row.push({ text: label, callback_data: `career_role:${role}` });
+            if (row.length === 1) {
+                buttons.push(row);
+                row = [];
+            }
+         }
+         if (row.length > 0) buttons.push(row);
+         buttons.push([{ text: i18n.t('buttons.back'), callback_data: 'edit_profile_callback' }]);
+         
+         await telegram.sendMessageWithButtons(chatId, i18n.t('career.label_role'), buttons);
+         await telegram.answerCallbackQuery(callbackQuery.id);
+         return;
+      }
+
       await telegram.sendMessageWithButtons(chatId, i18n.t('success.text4', { text: itemLabel }), [
-        [{ text: i18n.t('common.short3'), callback_data: 'edit_profile_callback' }],
+        [{ text: i18n.t('fortune.menuTitle'), callback_data: 'menu_fortune' }],
         [{ text: i18n.t('common.back3'), callback_data: 'return_to_menu' }]
       ]);
       await telegram.deleteMessage(chatId, callbackQuery.message!.message_id);
@@ -732,7 +786,7 @@ export async function handleEditBloodType(
       [{ text: '🅰️ A型', callback_data: 'edit_blood_type_A' }, { text: '🅱️ B型', callback_data: 'edit_blood_type_B' }],
       [{ text: '🅾️ O型', callback_data: 'edit_blood_type_O' }, { text: '🆎 AB型', callback_data: 'edit_blood_type_AB' }],
       [{ text: i18n.t('common.unknown'), callback_data: 'edit_blood_type_unknown' }],
-      [{ text: i18n.t('buttons.back'), callback_data: 'edit_profile_callback' }],
+        [{ text: i18n.t('buttons.back'), callback_data: 'edit_profile_callback' }],
     ];
 
     await telegram.sendMessageWithButtons(chatId, i18n.t('edit_profile.bloodTypeInstruction'), buttons);
@@ -1103,6 +1157,19 @@ export async function handleEditGeoInteraction(
       await db.d1.prepare('UPDATE users SET country_code = ?, city = NULL WHERE telegram_id = ?')
         .bind(countryCode, telegramId)
         .run();
+
+      // Check and complete "city" task (even if city is NULL, country is set)
+      try {
+        const updatedUser = await findUserByTelegramId(db, telegramId);
+        if (updatedUser) {
+          const { checkAndCompleteTask } = await import('./tasks');
+          await checkAndCompleteTask(db, telegram, updatedUser, 'task_city');
+          // Also complete 'task_confirm_country' since user just manually confirmed it
+          await checkAndCompleteTask(db, telegram, updatedUser, 'task_confirm_country');
+        }
+      } catch (taskError) {
+        console.error('[handleEditGeoInteraction] Task check error:', taskError);
+      }
 
       const dn = new Intl.DisplayNames([user?.language_pref || 'zh-TW'], { type: 'region' });
       const countryName = dn.of(countryCode);

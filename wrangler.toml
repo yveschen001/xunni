@@ -84,6 +84,21 @@ id = "8222fd298f254b498b7842d03e5d2a4d"
 binding = "I18N_DATA"
 id = "6e9a063bd4a2463d8a2d76dd7fbef88a"
 
+# Staging Cron Triggers
+[env.staging.triggers]
+crons = [
+  "0 0 * * *",    # Daily Cleanup (00:00 UTC)
+  "5 0 * * *",    # Daily Stats (00:05 UTC)
+  "10 0 * * *",   # Financial Settlement (00:10 UTC)
+  "0 9 * * *",    # Super Admin Reports (09:00 UTC)
+  "*/5 * * * *",  # Broadcast & Maintenance (Every 5 mins)
+  "*/10 * * * *", # Health Check (Every 10 mins)
+  "0 * * * *",    # Hourly Tasks (Push, Match, etc.)
+  "0 10 * * *",   # VIP Expirations (10:00 UTC)
+  "0 3 * * *",    # Avatar Updates (03:00 UTC)
+  "0 1 * * *"     # Birthday & Admin Report (01:00 UTC)
+]
+
 # Production environment
 [env.production]
 name = "xunni-bot"
@@ -133,6 +148,16 @@ pattern = "api.xunni.xyz"
 custom_domain = true
 
 # Production Cron triggers
-# [[env.production.triggers.crons]]
-# cron = "0 9 * * 1"
-# ... (add back later)
+[env.production.triggers]
+crons = [
+  "0 0 * * *",    # Daily Cleanup (00:00 UTC)
+  "5 0 * * *",    # Daily Stats (00:05 UTC)
+  "10 0 * * *",   # Financial Settlement (00:10 UTC)
+  "0 9 * * *",    # Super Admin Reports (09:00 UTC)
+  "*/5 * * * *",  # Broadcast & Maintenance (Every 5 mins)
+  "*/10 * * * *", # Health Check (Every 10 mins)
+  "0 * * * *",    # Hourly Tasks (Push, Match, etc.)
+  "0 10 * * *",   # VIP Expirations (10:00 UTC)
+  "0 3 * * *",    # Avatar Updates (03:00 UTC)
+  "0 1 * * *"     # Birthday & Admin Report (01:00 UTC)
+]

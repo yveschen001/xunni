@@ -31,7 +31,5 @@ export default {
     "title": "🚫 Blokkeringsliste",
     "empty": "For øyeblikket ingen blokkeringsliste",
     "unblock": "Fjern blokkering"
-  },
-  "quietHoursVipOnly": "🔒 Quiet Hours (VIP Only)",
-  "upgradeForQuietHours": "Upgrade to VIP to use this feature"
+  }
 };

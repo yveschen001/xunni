@@ -20,7 +20,7 @@ export default {
   "noAdsAvailable": "❌ Нема доступних реклама",
   "noVerificationRequired": "❌ Ова реклама не захтева верификацију",
   "quotaInfo": "📊 Остало данас: **{remaining}/20** пута",
-  "requiresVerification": "✅ Potrebna verifikacija: Kliknite na dugme 'Verifikuj' nakon pridruživanja grupi/kanalu",
+  "requiresVerification": "✅ Verifikacija je potrebna: Kliknite na dugme 'Verifikuj' nakon pridruživanja grupi/kanalu",
   "reward": "🎁 Награда: +{quota} трајна квота",
   "rewardPermanent": "🎁 Завршите задатак да зарадите **+1 трајну квоту**",
   "rewardTemporary": "🎁 Чestитамо! Дobili ste +1 привремену квоту (важећа данас)",

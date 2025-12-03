@@ -15,7 +15,7 @@ export default {
   "levelFree": "🆓 Anggota Gratis",
   "levelVip": "💎 Anggota VIP",
   "message": "Ayo kirim botol pesan bersama di XunNi! 🍾 Gunakan kode undangan saya untuk bergabung, dan kita berdua bisa mendapatkan lebih banyak kuota!",
-  "message2": "https://t.me/share/url?url=https://t.me/{botUsername}?start=invite_{inviteCode}&text=Datanglah ke XunNi dan lempar botol pesan bersama",
+  "message2": "XunNi Ayo kita bersama-sama mengirim botol pesan",
   "notRegistered": "Belum Terdaftar",
   "notSet": "Belum Ditetapkan",
   "quota": "• Kalian berdua mendapatkan kuota harian +1\n\n",
@@ -28,7 +28,7 @@ export default {
   "short": "Anggota Gratis",
   "stats": "📊 Lihat Statistik Undangan: /profile",
   "stats2": "📊 Lihat Statistik Undangan",
-  "task": "🎯 **Tugas Selanjutnya**\n⏳ {nextTask.name} (+{nextTask.reward_amount} botol pesan)\n💡 {nextTask.description}\n\n",
+  "task": "🎯 **Tugas Berikutnya**\n⏳ {nextTask.name} (+{nextTask.reward_amount} botol pesan)\n💡 {nextTask.description}",
   "text": "🏠 **Menu Utama** {vipBadge}\n\n",
   "text2": "👋 Hai, {user.nickname}!\n\n",
   "text3": "💡 Klik tombol di bawah untuk berbagi dengan teman:\n",
@@ -36,7 +36,7 @@ export default {
   "text5": "📊 Status Anda:\n",
   "title": "🏠 **Menu Utama**",
   "userNotFound": "Pengguna tidak ada",
-  "vip": "• Level: {isVip ? 'Anggota VIP 💎' : 'Anggota Gratis'}",
+  "vip": "• Level: {isVip ? 'Anggota VIP 💎' : 'Anggota Gratis'} {isVip ? 'Anggota VIP 💎' : 'Anggota Gratis'} {isVip ? 'VIP Member 💎' : 'Free Member'} {isVip ? 'VIP 會員 💎' : '免費會員'}",
   "vip2": "Anggota VIP 💎",
   "yourStatus": "Status Anda",
   "birthDate": "Hari Lahir",
@@ -45,5 +45,5 @@ export default {
   "interests": "Minat",
   "bio": "Profil",
   "driftBottles": "Botol Pesan",
-  "fortuneBottles": "Botol Keberuntungan"
+  "fortuneBottles": "ramalan botol ramalan"
 };

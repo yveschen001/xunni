@@ -66,6 +66,7 @@ export type OnboardingStep =
   | 'avatar'
   | 'gender'
   | 'birthday'
+  | 'blood_type'
   | 'mbti'
   | 'anti_fraud'
   | 'terms'
@@ -113,6 +114,7 @@ export interface User {
   blood_type?: string; // Blood type (A, B, AB, O)
   anti_fraud_score: number;
   anti_fraud_completed_at?: string;
+  tutorial_completed?: number;
 
   // Onboarding
   onboarding_step: OnboardingStep;

@@ -1,8 +1,8 @@
 export default {
   "bottleContent": "あなたのボトルメールが{maskedMatcherNickname}に拾われました！ {content}\n\n",
-  "bottlePicked": "💡 これはあなたの1回目のマッチです。残り2スロットがあります {maskedMatcherNickname}",
+  "bottlePicked": "あなたのボトルメールは{maskedMatcherNickname}によって回収されました！",
   "conversationIdentifier": "💬 会話識別子: {conversationIdentifier}\n",
-  "firstMatch": "⚠️ 現在利用可能な公式広告はありません",
+  "firstMatch": "💡 これはあなたの最初のマッチで、まだ2つのスロットが空いています",
   "foundBottle": "🎯 **VIPスマートペアリング成功！** {maskedOwnerNickname}\n\n",
   "matchSuccess": "残りのスロットは{remaining}です\n\n",
   "replyHint": "💬 **このメッセージを長押しして、「返信」を選択し、内容を入力して相手とのチャットを開始してください**",

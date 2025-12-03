@@ -1,7 +1,7 @@
 export default {
   "admin": "⏳ 払戻しリクエストが保留中です。管理者が確認するまでお待ちください。",
   "bottle": "📝 ボトルメールの内容: {bottle.content.substring(0, 50)}{bottle.content.length > 50 ? '...' : ''}\n\n",
-  "bottle2": "📝 ボトルメールの内容: {bottle.content.substring(0, 50)}${bottle.content.length > 50 ?",
+  "bottle2": "📝 ボトルメールの内容: {bottle.content.substring(0, 50)}{bottle.content.length > 50 ?",
   "bottle3": "あなたのメッセージボトルは {maskedMatcherNickname} によって拾われました！",
   "bottle4": "システムは {maskedOwnerNickname} からのメッセージボトルを見つけました！",
   "bottle5": "🔄 会話履歴を更新中です、アバターが表示されるまでお待ちください... {bottle.content} {bottle.content}\n\n",
@@ -84,7 +84,7 @@ export default {
   "text2": "• 34言語での自動翻訳 (OpenAI GPT推奨)\n",
   "text20": "💡 更新またはアップグレードを希望しますか？",
   "text21": "💡 特別な事情がある場合は、カスタマーサービスにご連絡ください。",
-  "text22": "📝 **返金リクエスト** {reason} {reason}\n\n",
+  "text22": "理由: {reason}",
   "text23": "• 相手のクリアアバターを解放 🆕\n",
   "text24": "少々お待ちください。",
   "text25": "ステータス: 審査中\n\n",
@@ -122,12 +122,13 @@ export default {
   "vip3": "XunNi VIPメンバーシップを毎月自動更新で購読しよう！ {daysLeft} {daysLeft}\n\n",
   "vip4": "🔄 VIP更新 ({priceStars} ⭐)",
   "vip5": "💳 VIP購入 ({priceStars} ⭐)",
-  "vip6": "あなたのボトルメールは{maskedMatcherNickname}に拾われました！",
+  "vip6": "XunNi VIPメンバーシップに登録する（1回限りの購入）",
   "vip7": "💡 今すぐ更新してVIPサービスを中断なくお楽しみください！",
   "vip8": "💡 今すぐ更新してVIP特典を引き続きお楽しみください！\n",
   "vip9": "📝 ボトル内容: {content}\n\n",
   "retentionNotice": "⚠️ **重要なお知らせ**: VIPメンバーのチャット履歴は3年間保持されます。更新が停止した場合、チャット履歴は会員期限切れから**30日後**に削除されます。重要な情報をバックアップすることをお忘れなく。",
   "upgrade": "VIPにアップグレード",
   "maxDurationExceeded": "⚠️ あなたのVIP期間は制限に達しました ({maxMonths} ヶ月)ので、しばらくの間購入を続けることはできません。",
-  "refundedAndRevoked": "ℹ️ あなたの支払いが返金され、VIP特典は取り消されました。"
+  "refundedAndRevoked": "ℹ️ あなたの支払いが返金され、VIP特典は取り消されました。",
+  "benefit_daily_fortune": "• VIP専用の1日1回無料AI占い"
 };

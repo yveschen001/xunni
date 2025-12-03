@@ -38,7 +38,7 @@ export default {
     "age": "Kor: {min}-{max} év",
     "atLeastOneRequired": "Legalább egy szűrő szükséges",
     "birthdayToday": "Születésnap ma",
-    "country": "Ország: {country}",
+    "country": "Ország/ Régió: {country}",
     "genderFemale": "Nő",
     "genderMale": "Férfi",
     "genderOther": "Egyéb nem",
@@ -68,7 +68,7 @@ export default {
     "zodiacVirgo": "Szűz"
   },
   "filterAge": "• életkor=18-25\n",
-  "filterCommand": "/broadcast_filter\n\n",
+  "filterCommand": "/broadcast_filter <filter> <msg_content> ",
   "filterConfirmConditions": "**Szűrési feltételek:**\n{conditions}\n\n",
   "filterConfirmMessage": "**Üzenet tartalma:**\n{message}\n\n",
   "filterConfirmTitle": "🔍 **Közvetítési Szűrő Megerősítése**\n\n",

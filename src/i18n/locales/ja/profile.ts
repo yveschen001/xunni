@@ -39,7 +39,7 @@ export default {
   "profile": "│ 📇 プロフィールカード │\n",
   "profile2": "👤 **プロフィール**\n\n",
   "quota": "💡 タスクを完了すると、追加のデイリークォータを受け取れます（/tasks で確認してください）\n",
-  "quota2": "📦 現在のデイリークォータ: ${taskBonus > 0 ?",
+  "quota2": "📦 現在のデイリークォータ: {taskBonus > 0 ?",
   "quotaBottles": "{taskBonus} ボトルメール",
   "quotaTotal": "📦 現在の毎日クォータ: {quota}\n\n",
   "returnToMenu": "🏠 メインメニューに戻る: /menu",
@@ -69,6 +69,7 @@ export default {
   "vip2": "• /vip を使ってVIPメンバーにアップグレード\n",
   "vipUpgrade": "• /vip を使ってVIPメンバーにアップグレード\n",
   "zodiac": "⭐ 星座: {zodiac}\n",
-  "fortuneQuota": "🔮 {fortunemessage ボトルメール}: {total} (今週の残り: {weekly}/{limit} | 追加: {additional})",
-  "vipWithDays": "💎 VIPメンバー (残り{days}日, 有効期限: {expireDate})"
+  "fortuneQuota": "🔮 {fortuneBottle}: {total} (今週の残り: {weekly}/{limit} | 追加: {additional})",
+  "vipWithDays": "💎 VIPメンバー (残り{days}日, 有効期限: {expireDate})",
+  "driftBottleInfo": "🍾 ボトルメール: {remaining} / {total}"
 };

@@ -26,7 +26,7 @@ export default {
   "nickname2": "📝 Kaldenavn: {catcherNickname}\n",
   "notRegistered": "❌ Venligst fuldfør registreringsprocessen, før du henter flaskeposter.\n\nBrug /start for at fortsætte registreringen.",
   "originalContent": "Original tekst: {content}",
-  "originalLanguage": "Original sprog: {language}",
+  "originalLanguage": "Originalsprog: {language}",
   "quotaExhausted": "❌ Dagens flaskepostkvote er brugt op ({quotaDisplay})",
   "replyButton": "💬 Svarbesked",
   "replyMethods": "💡 **To måder at svare på**:\n",

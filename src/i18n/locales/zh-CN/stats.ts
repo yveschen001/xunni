@@ -99,7 +99,7 @@ export default {
   "vipTriple": "💎 **VIP 三倍瓶子统计**（近 {days} 天）",
   "vipTripleTitle": "💎 **VIP 三倍瓶子统计**（近 {days} 天）",
   "zodiac": "🔮 **星座**: {zodiac}",
-  "fortuneTitle": "🔮 **{fortune漂流瓶}**",
+  "fortuneTitle": "\n🔮 **{fortuneBottle}**\n",
   "fortuneReadings": "• 算命次数 : {count}",
   "fortuneQuota": "• 剩余额度 : {quota}"
 };

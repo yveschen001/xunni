@@ -8,7 +8,7 @@
  * 当你修复一个语言（zh-TW）的问题后，此脚本会将相同的修复结构应用到所有其他语言。
  */
 
-import { readFileSync, writeFileSync, readdirSync } from 'fs';
+import { readFileSync, writeFileSync, readdirSync, existsSync } from 'fs';
 import { join } from 'path';
 
 const LOCALES_DIR = 'src/i18n/locales';
@@ -37,7 +37,7 @@ function extractKeys(filePath: string): Map<string, KeyStructure> {
     const line = lines[i];
     const indent = (line.match(/^(\s*)/)?.[1].length || 0) / 2;
 
-    if (line.includes('export const translations')) {
+    if (line.includes('export default')) {
       inTranslations = true;
       continue;
     }
@@ -45,20 +45,30 @@ function extractKeys(filePath: string): Map<string, KeyStructure> {
     if (!inTranslations) continue;
 
     // Reset path based on indent
-    currentPath = currentPath.slice(0, indent);
-
     // Check for object start (e.g., "common: {")
     const objMatch = line.match(/^(\s*)(\w+):\s*\{/);
     if (objMatch) {
-      currentPath.push(objMatch[2]);
+      const keyName = objMatch[2];
+      const level = Math.floor(indent);
+      
+      if (level <= currentPath.length) {
+         currentPath = currentPath.slice(0, level - 1);
+      }
+      currentPath.push(keyName);
       continue;
     }
 
-    // Check for key-value pair (e.g., "key: `value`,")
-    const kvMatch = line.match(/^(\s*)(\w+):\s*`([^`]*)`/);
+    // Check for key-value pair
+    const kvMatch = line.match(/^(\s*)(\w+):\s*(['"`])(.*?)\3,?$/);
     if (kvMatch) {
       const key = kvMatch[2];
-      const value = kvMatch[3];
+      const value = kvMatch[4];
+      const level = Math.floor(indent);
+      
+      if (level <= currentPath.length) {
+         currentPath = currentPath.slice(0, level - 1);
+      }
+      
       const fullPath = currentPath.length > 0 ? `${currentPath.join('.')}.${key}` : key;
       
       keys.set(fullPath, {
@@ -96,54 +106,69 @@ function findInsertionPoint(
     const line = lines[i];
     const indent = (line.match(/^(\s*)/)?.[1].length || 0) / 2;
 
-    if (line.includes('export const translations')) {
+    if (line.includes('export default')) {
       inTranslations = true;
       continue;
     }
 
     if (!inTranslations) continue;
 
-    // Reset path based on indent
-    currentPath = currentPath.slice(0, indent);
-
     // Check for object start
     const objMatch = line.match(/^(\s*)(\w+):\s*\{/);
     if (objMatch) {
-      currentPath.push(objMatch[2]);
+      const keyName = objMatch[2];
+      const level = Math.floor(indent);
+      
+      if (level <= currentPath.length) {
+         currentPath = currentPath.slice(0, level - 1);
+      }
+      currentPath.push(keyName);
       
       // Check if we're in the right path
-      if (currentPath.length === targetPath.length) {
+      if (currentPath.join('.') === targetPath.join('.')) {
         // We're in the target object, find the last key
         for (let j = i + 1; j < lines.length; j++) {
           const nextLine = lines[j];
+          if (!nextLine.trim()) continue;
+          
           const nextIndent = (nextLine.match(/^(\s*)/)?.[1].length || 0) / 2;
           
-          // If we've left the object, insert before the closing brace
+          // If we've left the object
           if (nextIndent <= indent) {
             return { line: j, indent: indent + 1 };
           }
           
+          if (nextLine.match(/^\s*\},?\s*$/) && nextIndent === indent) {
+            return { line: j, indent: indent + 1 };
+          }
+          
           // If we found a key at the right level, remember it
-          const nextKvMatch = nextLine.match(/^(\s*)(\w+):\s*`/);
+          const nextKvMatch = nextLine.match(/^(\s*)(\w+):\s*(['"`])(.*?)\3,?$/);
           if (nextKvMatch && nextIndent === indent + 1) {
             lastKeyLine = j + 1; // Insert after this key
             lastKeyIndent = indent + 1;
           }
         }
         
-        // If we found a last key, return after it
         if (lastKeyLine > 0) {
           return { line: lastKeyLine, indent: lastKeyIndent };
         }
+        
+        return { line: i + 1, indent: indent + 1 };
       }
       continue;
     }
 
-    // Check for key-value pair
-    const kvMatch = line.match(/^(\s*)(\w+):\s*`/);
-    if (kvMatch && currentPath.length === targetPath.length) {
-      lastKeyLine = i + 1;
-      lastKeyIndent = indent;
+    const kvMatch = line.match(/^(\s*)(\w+):\s*(['"`])(.*?)\3,?$/);
+    if (kvMatch) {
+        const level = Math.floor(indent);
+        if (level <= currentPath.length) {
+            currentPath = currentPath.slice(0, level - 1);
+        }
+    }
+    
+    if (line.match(/^\s*\},?\s*$/)) {
+      currentPath.pop();
     }
   }
 
@@ -167,7 +192,7 @@ function addKeyToFile(
 
   const lines = content.split('\n');
   const indent = '  '.repeat(insertionPoint.indent);
-  const newLine = `${indent}${keyStruct.key}: \`${placeholder}\`,`;
+  const newLine = `${indent}${keyStruct.key}: "${placeholder}",`;
   
   lines.splice(insertionPoint.line, 0, newLine);
   writeFileSync(filePath, lines.join('\n'), 'utf-8');
@@ -181,26 +206,35 @@ function addKeyToFile(
 function syncMissingKeys(): void {
   console.log('🔄 Syncing missing i18n keys from reference language...\n');
 
-  const refFile = join(LOCALES_DIR, `${REFERENCE_LANG}.ts`);
+  const refFile = join(LOCALES_DIR, REFERENCE_LANG, 'index.ts');
+  
+  if (!existsSync(refFile)) {
+      console.error(`❌ Reference file not found: ${refFile}`);
+      // Fallback for flat structure if needed, but we know it's index.ts now
+      return;
+  }
+
   const refKeys = extractKeys(refFile);
   console.log(`📋 Reference language (${REFERENCE_LANG}): ${refKeys.size} keys\n`);
 
-  const langFiles = readdirSync(LOCALES_DIR)
-    .filter(f => f.endsWith('.ts') && f !== 'template.ts')
-    .map(f => join(LOCALES_DIR, f));
+  const langDirs = readdirSync(LOCALES_DIR, { withFileTypes: true })
+    .filter(dirent => dirent.isDirectory() && dirent.name !== REFERENCE_LANG)
+    .map(dirent => dirent.name);
 
   let totalAdded = 0;
   const results: Array<{ lang: string; added: number; failed: string[] }> = [];
 
-  for (const file of langFiles) {
-    const lang = file.split('/').pop()?.replace('.ts', '') || '';
-    if (lang === REFERENCE_LANG) continue;
+  for (const lang of langDirs) {
+    const langFile = join(LOCALES_DIR, lang, 'index.ts');
+    
+    if (!existsSync(langFile)) {
+        continue;
+    }
 
-    const keys = extractKeys(file);
+    const keys = extractKeys(langFile);
     const missing: KeyStructure[] = [];
     const failed: string[] = [];
 
-    // Find missing keys
     for (const [fullPath, keyStruct] of refKeys) {
       if (!keys.has(fullPath)) {
         missing.push(keyStruct);
@@ -211,7 +245,7 @@ function syncMissingKeys(): void {
       console.log(`📁 ${lang}: ${missing.length} missing keys`);
       
       for (const keyStruct of missing) {
-        const success = addKeyToFile(file, keyStruct);
+        const success = addKeyToFile(langFile, keyStruct);
         if (success) {
           totalAdded++;
         } else {
@@ -227,7 +261,7 @@ function syncMissingKeys(): void {
       
       console.log(`   ✅ Added ${missing.length - failed.length} keys`);
       if (failed.length > 0) {
-        console.log(`   ⚠️  Failed to add ${failed.length} keys`);
+        console.log(`   ⚠️  Failed to add ${failed.length} keys: ${failed.join(', ')}`);
       }
       console.log('');
     } else {
@@ -242,12 +276,6 @@ function syncMissingKeys(): void {
   if (results.some(r => r.failed.length > 0)) {
     console.log('\n⚠️  Some keys could not be automatically added. Please check manually.');
   }
-  
-  console.log('\n💡 Next steps:');
-  console.log('   1. Review the added placeholder values');
-  console.log('   2. Translate them or use CSV import for bulk translation');
-  console.log('   3. Run: pnpm i18n:check to verify consistency\n');
 }
 
 syncMissingKeys();
-

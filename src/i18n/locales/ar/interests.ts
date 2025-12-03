@@ -112,5 +112,6 @@ export default {
     "career_focused": "مدمن عمل",
     "family": "عائلة/تربية الأطفال",
     "exploring": "استكشاف"
-  }
+  },
+  "back_to_categories": "العودة إلى قائمة الفئات"
 };

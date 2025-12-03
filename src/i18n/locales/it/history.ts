@@ -25,6 +25,6 @@ export default {
   "time": "Ora: {time}\n\n",
   "totalMessages": "• Messaggi totali: {total}\n",
   "userMessages": "• Hai inviato: {count}\n",
-  "viewFull": "💡 Usa /history {identifier} per visualizzare la conversazione completa",
+  "viewFull": "💡 Usa /history {identifier} per visualizzare l'intera conversazione",
   "you": "Tu"
 };

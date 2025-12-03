@@ -112,5 +112,6 @@ export default {
     "career_focused": "ทำงานหนักเกินไป",
     "family": "ครอบครัว/การเลี้ยงดู",
     "exploring": "การสำรวจ"
-  }
+  },
+  "back_to_categories": "กลับไปที่เมนูหมวดหมู่"
 };

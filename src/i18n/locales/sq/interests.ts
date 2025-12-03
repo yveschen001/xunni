@@ -112,5 +112,6 @@ export default {
     "career_focused": "Punoholic",
     "family": "Familje/Prindërim",
     "exploring": "Eksplorim"
-  }
+  },
+  "back_to_categories": "Kthehu në menunë e kategori"
 };

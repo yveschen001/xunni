@@ -112,5 +112,6 @@ export default {
     "career_focused": "Arbeidsnarkoman",
     "family": "Familie/Foreldreskap",
     "exploring": "Utforskning"
-  }
+  },
+  "back_to_categories": "Gå tilbake til kategorimeny"
 };

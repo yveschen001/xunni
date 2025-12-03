@@ -165,5 +165,6 @@ export default {
       "seeking": "Trenutno nezaposlen / U prelaznoj fazi",
       "other_industry": "Ostale industrije (unesite ručno)"
     }
-  }
+  },
+  "next_step_industry": "Nato izberite svojo panogo."
 };

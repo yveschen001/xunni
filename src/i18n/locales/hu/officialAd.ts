@@ -20,7 +20,7 @@ export default {
   "noAdsAvailable": "❌ Nincsenek elérhető hirdetések",
   "noVerificationRequired": "❌ Ez a hirdetés nem igényel ellenőrzést",
   "quotaInfo": "📊 Maradt ma: **{remaining}/20** alkalom",
-  "requiresVerification": "✅ Ellenőrzés szükséges: Kattintson a 'Hitelesítés' gombra a csoporthoz/csatornához való csatlakozás után",
+  "requiresVerification": "✅ Ellenőrzés szükséges: Kérjük, kattintson a 'Verifikálás' gombra a csoport/csatorna csatlakozása után",
   "reward": "🎁 Jutalom: +{quota} állandó kvóta",
   "rewardPermanent": "🎁 A feladat teljesítésével **+1 állandó kvótát** nyerhetsz",
   "rewardTemporary": "🎁 Gratulálunk! +1 ideiglenes kvótát kaptál (érvényes ma)",

@@ -1,6 +1,6 @@
 export default {
   "bottle": "المكافأة: +{task.reward_amount} زجاجة رسائل ({rewardTypeText})\n\n",
-  "bottle2": "المكافأة: +{task.reward_amount} زجاجة رسائل (${task.reward_type ===",
+  "bottle2": "المكافأة: +{task.reward_amount} زجاجة رسائل ({task.reward_type ===",
   "bottle3": "{icon} {task.name} (+{task.reward_amount} زجاجة رسائل)\n",
   "bottle4": "• مكافأة دائمة: {inviteProgress.current} زجاجة رسائل (تصدر يومياً)\n",
   "bottle5": "• مكافأة لمرة واحدة: {todayRewardCount} زجاجة رسائل (صالحة لليوم)\n",
@@ -29,16 +29,20 @@ export default {
     "interests": "املأ علامات اهتماماتك",
     "invite_progress": "دعوة الأصدقاء",
     "join_channel": "انضم للقناة الرسمية",
-    "confirm_country": "أكد دولتك"
+    "confirm_country": "أكد دولتك/منطقتك",
+    "mars049_bot": "Mars049 Bot",
+    "moonpacket_bot": "MoonPacket Bot",
+    "moonpacket_group": "MoonPacket Group",
+    "moonpacket_channel": "MoonPacket Channel"
   },
-  "profile": "👤 **مهام الملف الشخصي** ({completedCount}/{profileTasks.length})\n",
-  "quota": "الحصة اليومية الحالية: {calculateDailyQuota(user)} عناصر\n",
+  "profile": "👤 **مهام الملف الشخصي** ({completed}/{total})\n",
+  "quota": "الحصة اليومية الحالية: {quota} عناصر\n",
   "short": "(في انتظار الجمع)",
   "short2": "صالح لليوم",
   "short3": "صالح بشكل دائم",
   "task": "• مهام الدعوة: {inviteProgress.current}/{inviteProgress.max} قيد التقدم\n\n",
-  "task2": "📱 **مهام وسائل التواصل الاجتماعي** ({completedCount}/{socialTasks.length})\n",
-  "task3": "🎯 **مهام العمل** ({completedCount}/{actionTasks.length})\n",
+  "task2": "📱 **مهام وسائل التواصل الاجتماعي** ({completed}/{total})\n",
+  "task3": "🎯 **مهام العمل** ({completed}/{total})\n",
   "task4": "• مهام لمرة واحدة: {oneTimeCompleted}/{oneTimeTotal} مكتملة\n",
   "task5": "🎉 تهانينا على إكمال المهمة \"{task.name}\"!\n\n",
   "task6": "👥 **مهام الدعوة** (جارية)\n",

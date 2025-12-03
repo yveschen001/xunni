@@ -19,246 +19,246 @@ export default {
   },
   "full": {
     "question1": {
-      "text": "Társadalmi helyzetekben általában:",
       "option1": "Te kezdeményezel beszélgetést másokkal",
-      "option2": "Várod, hogy mások közelítsenek hozzád"
+      "option2": "Várod, hogy mások közelítsenek hozzád",
+      "text": "Társas helyzetekben Ön általában:"
     },
     "question10": {
-      "text": "Problémák megoldásakor inkább támaszkodsz:",
       "option1": "Gyakorlati tapasztalatokra és tényekre",
-      "option2": "Intuícióra és lehetőségekre"
+      "option2": "Intuícióra és lehetőségekre",
+      "text": "Problémák megoldásakor inkább rá támaszkodik:"
     },
     "question11": {
-      "text": "Előnyben részesíted:",
       "option1": "Konkrét részletek fókuszálását",
-      "option2": "A nagy kép fókuszálását"
+      "option2": "A nagy kép fókuszálását",
+      "text": "Ön előnyben részesíti:"
     },
     "question12": {
-      "text": "Új dolgok tanulásakor előnyben részesíted:",
       "option1": "Lépésről lépésre megközelítést",
-      "option2": "Innovatív módszerek felfedezését"
+      "option2": "Innovatív módszerek felfedezését",
+      "text": "Új dolgok tanulásakor előnyben részesíti:"
     },
     "question13": {
-      "text": "Olvasás közben előnyben részesíted:",
       "option1": "Gyakorlati útmutatókat",
-      "option2": "Elméleteket és koncepciókat"
+      "option2": "Elméleteket és koncepciókat",
+      "text": "Olvasás közben az a preferenciád, hogy:"
     },
     "question14": {
-      "text": "Jobban foglalkoztatnak:",
       "option1": "A jelen és a múlt",
-      "option2": "A jövő és a lehetőségek"
+      "option2": "A jövő és a lehetőségek",
+      "text": "Többet aggódsz az alábbiak miatt:"
     },
     "question15": {
-      "text": "Dolgok leírásakor hajlamos vagy:",
       "option1": "Konkrét példákat használni",
-      "option2": "Metaforákat és analógiákat használni"
+      "option2": "Metaforákat és analógiákat használni",
+      "text": "Dolgok leírásakor általában:"
     },
     "question16": {
-      "text": "A munkahelyen értékeled:",
       "option1": "Gyakorlati alkalmazást",
-      "option2": "Innovatív ötleteket"
+      "option2": "Innovatív ötleteket",
+      "text": "A munkádban értékeled:"
     },
     "question17": {
-      "text": "Bízol:",
       "option1": "Bizonyított módszerekben",
-      "option2": "Új próbálkozásokban"
+      "option2": "Új próbálkozásokban",
+      "text": "Többre tartod:"
     },
     "question18": {
-      "text": "Jövő tervezésekor:",
       "option1": "Reális körülményekre alapozol",
-      "option2": "Különféle lehetőségeket képzelsz el"
+      "option2": "Különféle lehetőségeket képzelsz el",
+      "text": "A jövő tervezésekor:"
     },
     "question19": {
-      "text": "Döntéshozatalkor elsődlegesen prioritást adsz:",
       "option1": "Logikának és objektív elemzésnek",
-      "option2": "Érzelmeknek és interperszonális harmóniának"
+      "option2": "Érzelmeknek és interperszonális harmóniának",
+      "text": "Döntések meghozatalakor elsődlegesen:"
     },
     "question2": {
-      "text": "Hétvégéken előnyben részesíted:",
       "option1": "Kimenni a barátokkal",
-      "option2": "Otthon maradni egyedül pihenni"
+      "option2": "Otthon maradni egyedül pihenni",
+      "text": "A hétvégén inkább:"
     },
     "question20": {
-      "text": "Másokat kritizálva:",
       "option1": "Közvetlenül rávilágítasz a problémára",
-      "option2": "Figyelembe veszed mások érzéseit"
+      "option2": "Figyelembe veszed mások érzéseit",
+      "text": "Amikor másokat kritizálsz, te:"
     },
     "question21": {
-      "text": "Mit értékelsz jobban:",
       "option1": "Igazságosság és méltányosság",
-      "option2": "Empátia és megértés"
+      "option2": "Empátia és megértés",
+      "text": "Több fontosságot tulajdonítasz:"
     },
     "question22": {
-      "text": "Egy ötlet értékelésekor először a következőket veszed figyelembe:",
       "option1": "Hogy ésszerű-e",
-      "option2": "Hogy hasznos-e"
+      "option2": "Hogy hasznos-e",
+      "text": "Egy ötlet értékelésekor először figyelembe veszed:"
     },
     "question23": {
-      "text": "Amikor egy barátod bizalmasan megoszt veled valamit, te:",
       "option1": "Elemzed a problémát és javaslatokat adsz",
-      "option2": "Figyelsz és vigaszt nyújtasz"
+      "option2": "Figyelsz és vigaszt nyújtasz",
+      "text": "Amikor a barátaid bizalmasan megosztják veled, te:"
     },
     "question24": {
-      "text": "Egy konfliktusban te hajlasz:",
       "option1": "A принципiumok megtartására",
-      "option2": "Kapcsolatok fenntartására"
+      "option2": "Kapcsolatok fenntartására",
+      "text": "Konfliktusokban hajlamos vagy:"
     },
     "question25": {
-      "text": "Könnyebben meggyőznek:",
       "option1": "Tények és adatok",
-      "option2": "Érzelmek és történetek"
+      "option2": "Érzelmek és történetek",
+      "text": "Könnyebben meggyőznek az alábbiak:"
     },
     "question26": {
-      "text": "Csapat döntéshozatal során inkább a következőkre összpontosítasz:",
       "option1": "Hatékonyság és eredmények",
-      "option2": "Konszenzus és egység"
+      "option2": "Konszenzus és egység",
+      "text": "Csapatdöntéshozatal során a következőre összpontosítasz:"
     },
     "question27": {
-      "text": "Azt hiszed, hogy egy jó vezetőnek:",
       "option1": "Igazságosnak és határozottnak kell lennie",
-      "option2": "Figyelmesnek és gondoskodónak kell lennie"
+      "option2": "Figyelmesnek és gondoskodónak kell lennie",
+      "text": "Hinned kell, hogy egy jó vezetőnek debería:"
     },
     "question28": {
-      "text": "A munkastílusod:",
       "option1": "Tervezés és előkészületek",
-      "option2": "Rugalmasnak és alkalmazkodónak lenni"
+      "option2": "Rugalmasnak és alkalmazkodónak lenni",
+      "text": "Munka stílusa:"
     },
     "question29": {
-      "text": "Te inkább:",
       "option1": "Világos határidők betartására",
-      "option2": "Nyitva tartani a lehetőségeket"
+      "option2": "Nyitva tartani a lehetőségeket",
+      "text": "Ön előnyben részesíti:"
     },
     "question3": {
-      "text": "Egy összejövetel után általában:",
       "option1": "Feltöltődve érzed magad",
-      "option2": "Pihenés szükségét érzed"
+      "option2": "Pihenés szükségét érzed",
+      "text": "Összejövetel után általában:"
     },
     "question30": {
-      "text": "Utazás során hajlamos vagy:",
       "option1": "Részletes útitervet készíteni",
-      "option2": "Szabadon felfedezni"
+      "option2": "Szabadon felfedezni",
+      "text": "Utazás közben hajlamos arra, hogy:"
     },
     "question31": {
-      "text": "A szobád általában:",
       "option1": "Rendezett és szervezett",
-      "option2": "Kényelmes és laza"
+      "option2": "Kényelmes és laza",
+      "text": "A szobád általában:"
     },
     "question32": {
-      "text": "Feladatok kezelésekor te:",
       "option1": "Korán befejezed",
-      "option2": "Közel a határidőhöz fejezed be"
+      "option2": "Közel a határidőhöz fejezed be",
+      "text": "Feladatok kezelésekor hajlamos vagy:"
     },
     "question33": {
-      "text": "A preferált életstílusod:",
       "option1": "Szervezett és rendezett",
-      "option2": "Szabad és rugalmas"
+      "option2": "Szabad és rugalmas",
+      "text": "A preferált életstílusod:"
     },
     "question34": {
-      "text": "Döntések meghozatalánál hajlasz:",
       "option1": "Gyors döntéseket hozni",
-      "option2": "Nyitva tartani a lehetőségeket"
+      "option2": "Nyitva tartani a lehetőségeket",
+      "text": "Döntések meghozatala során hajlamos vagy:"
     },
     "question35": {
-      "text": "Vásárlás során te:",
       "option1": "Listát készítesz és a tervek szerint vásárolsz",
-      "option2": "Böngészel lazán és azt veszed meg, ami tetszik"
+      "option2": "Böngészel lazán és azt veszed meg, ami tetszik",
+      "text": "Vásárláskor:"
     },
     "question36": {
-      "text": "Változásokkal szembenézve általában:",
       "option1": "Elégedetlenül érzed magad",
-      "option2": "Izgatottnak érzem magam"
+      "option2": "Izgatottnak érzem magam",
+      "text": "Változásokkal szembesülve általában:"
     },
     "question4": {
-      "text": "Csapatban hajlamos vagy:",
       "option1": "Aktívan kifejezni a véleményed",
-      "option2": "Először hallgatni a beszélgetés előtt"
+      "option2": "Először hallgatni a beszélgetés előtt",
+      "text": "Egy csapatban inkább hajlasz:"
     },
     "question5": {
-      "text": "Amikor új barátokkal találkozol, te:",
       "option1": "Gyorsan megismerkedsz",
-      "option2": "Időre van szükséged, hogy fokozatosan kényelmesen érezd magad"
+      "option2": "Időre van szükséged, hogy fokozatosan kényelmesen érezd magad",
+      "text": "Új barátokkal való találkozáskor:"
     },
     "question6": {
-      "text": "A baráti köröd:",
       "option1": "Széles, de nem mély",
-      "option2": "Kicsi és intim"
+      "option2": "Kicsi és intim",
+      "text": "A baráti köröd:"
     },
     "question7": {
-      "text": "Munka közben inkább:",
       "option1": "Csapatmunkát végzel",
-      "option2": "Függetlenül dolgozol"
+      "option2": "Függetlenül dolgozol",
+      "text": "Munka közben:"
     },
     "question8": {
-      "text": "Problémák átgondolásakor hajlamos vagy:",
       "option1": "Beszélés közben gondolkodni",
-      "option2": "A gondolataidat beszélés előtt megtervezni"
+      "option2": "A gondolataidat beszélés előtt megtervezni",
+      "text": "Problémákon gondolkodva hajlamos vagy:"
     },
     "question9": {
-      "text": "Stresszhelyzetben te:",
       "option1": "Beszélgetsz a barátaiddal",
-      "option2": "Egyedül dolgozol fel"
+      "option2": "Egyedül dolgozol fel",
+      "text": "Nyomás alatt:"
     }
   },
   "quick": {
     "question1": {
-      "text": "Társas helyzetekben Ön általában:",
       "option1": "Proaktívan részt veszel a beszélgetésekben",
-      "option2": "Várod, hogy mások közelítsenek hozzád"
+      "option2": "Várod, hogy mások közelítsenek hozzád",
+      "text": "Társas helyzetekben Ön általában:"
     },
     "question10": {
-      "text": "Munka stílusa:",
       "option1": "Előre tervezel és készítesz",
-      "option2": "Alkalmazkodó és rugalmas vagy"
+      "option2": "Alkalmazkodó és rugalmas vagy",
+      "text": "Munka stílusa:"
     },
     "question11": {
-      "text": "Ön előnyben részesíti:",
       "option1": "Tiszta határidők",
-      "option2": "A lehetőségek nyitva tartása"
+      "option2": "A lehetőségek nyitva tartása",
+      "text": "Ön előnyben részesíti:"
     },
     "question12": {
-      "text": "Utazás közben hajlamos arra, hogy:",
       "option1": "Részletes útitervet készíteni",
-      "option2": "Lazán felfedezni"
+      "option2": "Lazán felfedezni",
+      "text": "Utazás közben hajlamos arra, hogy:"
     },
     "question2": {
-      "text": "Hétvégéken inkább:",
       "option1": "Barátokkal lógni",
-      "option2": "Otthon maradni és egyedül pihenni"
+      "option2": "Otthon maradni és egyedül pihenni",
+      "text": "Hétvégéken inkább:"
     },
     "question3": {
-      "text": "Összejövetel után általában:",
       "option1": "Energikusnak érzem magam",
-      "option2": "Pihenésre van szükségem"
+      "option2": "Pihenésre van szükségem",
+      "text": "Összejövetel után általában:"
     },
     "question4": {
-      "text": "Problémák megoldásakor inkább rá támaszkodik:",
       "option1": "Gyakorlati tapasztalatokra és tényekre támaszkodsz",
-      "option2": "Intuícióra és lehetőségekre támaszkodsz"
+      "option2": "Intuícióra és lehetőségekre támaszkodsz",
+      "text": "Problémák megoldásakor inkább rá támaszkodik:"
     },
     "question5": {
-      "text": "Ön kedveli:",
       "option1": "A konkrét részletekre összpontosítani",
-      "option2": "A teljes koncepcióra összpontosítani"
+      "option2": "A teljes koncepcióra összpontosítani",
+      "text": "Ön kedveli:"
     },
     "question6": {
-      "text": "Új dolgok tanulásakor előnyben részesíti:",
       "option1": "Lépésről lépésre megközelítés",
-      "option2": "Innovatív módszerek felfedezése"
+      "option2": "Innovatív módszerek felfedezése",
+      "text": "Új dolgok tanulásakor előnyben részesíti:"
     },
     "question7": {
-      "text": "Döntések meghozatalakor fontos Önnek:",
       "option1": "Logikát és objektív elemzést",
-      "option2": "Érzelmet és interperszonális harmóniát"
+      "option2": "Érzelmet és interperszonális harmóniát",
+      "text": "Döntések meghozatalakor fontos Önnek:"
     },
     "question8": {
-      "text": "Másokat kritizálva:",
       "option1": "Közvetlenül mutasd ki a problémát",
-      "option2": "Fontold meg a másik érzéseit"
+      "option2": "Fontold meg a másik érzéseit",
+      "text": "Másokat kritizálva:"
     },
     "question9": {
-      "text": "Ön többre értékel:",
       "option1": "Igazságosság és Méltányosság",
-      "option2": "Empátia és Megértés"
+      "option2": "Empátia és Megértés",
+      "text": "Ön többre értékel:"
     }
   },
   "share": {

@@ -20,7 +20,7 @@ export default {
   "noAdsAvailable": "❌ Walang magagamit na anunsyo",
   "noVerificationRequired": "❌ Ang anunsyong ito ay hindi nangangailangan ng beripikasyon",
   "quotaInfo": "📊 Natitira ngayon: **{remaining}/20** na beses",
-  "requiresVerification": "✅ Kailangan ng beripikasyon: I-click ang 'Beripikahin' na button pagkatapos sumali sa grupo/channel",
+  "requiresVerification": "✅ Kailangan ang Pag-verify: I-click ang pindutang 'I-verify' pagkatapos sumali sa grupo/channel",
   "reward": "🎁 Gantimpala: +{quota} permanenteng quota",
   "rewardPermanent": "🎁 Kumpletuhin ang mga gawain upang kumita ng **+1 permanenteng quota**.",
   "rewardTemporary": "🎁 Binabati kita sa pagtanggap ng +1 pansamantalang quota (balido ngayon).",

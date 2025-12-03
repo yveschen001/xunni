@@ -1,8 +1,8 @@
 export default {
   "bottleContent": "📝 Sadržaj boce: {content}\n\n",
-  "bottlePicked": "Vaša poruka boca je preuzeta od {maskedMatcherNickname}!\n\n",
+  "bottlePicked": "Vaša poruka u boci je preuzeta od {maskedMatcherNickname}!",
   "conversationIdentifier": "💬 Identifikator razgovora: {conversationIdentifier}\n",
-  "firstMatch": "💡 Ovo je vaše 1. usklađivanje, sa 2 mesta preostala\n\n",
+  "firstMatch": "💡 Ovo je vaš prvi susret, sa 2 slobodna mesta",
   "foundBottle": "Sistem je pronašao bocu od {maskedOwnerNickname}!\n\n",
   "matchSuccess": "🎯 **VIP pametno usklađivanje uspešno!**\n\n",
   "replyHint": "💬 **Molimo vas da dugo pritisnete ovu poruku, izaberete 'Odgovori' i unesete sadržaj da biste započeli razgovor s drugom stranom**",

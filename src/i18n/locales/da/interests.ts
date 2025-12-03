@@ -112,5 +112,6 @@ export default {
     "career_focused": "Arbeitssüchtig",
     "family": "Familie/Elternschaft",
     "exploring": "Erkundung"
-  }
+  },
+  "back_to_categories": "Tilbage til kategorimenuen"
 };

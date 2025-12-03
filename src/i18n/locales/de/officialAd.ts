@@ -20,7 +20,7 @@ export default {
   "noAdsAvailable": "❌ Momentan keine verfügbaren Anzeigen",
   "noVerificationRequired": "❌ Diese Anzeige erfordert keine Verifizierung",
   "quotaInfo": "📊 Verbleibend für heute: **{remaining}/20** Mal",
-  "requiresVerification": "✅ Verifizierung erforderlich: Klicken Sie nach dem Beitreten zur Gruppe/zum Kanal auf die Schaltfläche 'Verifizieren'",
+  "requiresVerification": "✅ Überprüfung erforderlich: Klicken Sie auf die Schaltfläche 'Überprüfen', nachdem Sie der Gruppe/dem Kanal beigetreten sind",
   "reward": "🎁 Belohnung: +{quota} permanente Quoten",
   "rewardPermanent": "🎁 Erledigen Sie die Aufgabe, um **+1 permanente Quote** zu verdienen",
   "rewardTemporary": "🎁 Herzlichen Glückwunsch! Sie haben +1 temporäre Quote erhalten (gültig heute)",

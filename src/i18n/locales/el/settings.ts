@@ -31,7 +31,5 @@ export default {
     "title": "🚫 Λίστα Αποκλεισμένων",
     "empty": "Δεν υπάρχει τρέχουσα λίστα αποκλεισμένων",
     "unblock": "Αποκλεισμός"
-  },
-  "quietHoursVipOnly": "🔒 Quiet Hours (VIP Only)",
-  "upgradeForQuietHours": "Upgrade to VIP to use this feature"
+  }
 };
