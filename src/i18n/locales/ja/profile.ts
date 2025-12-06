@@ -26,7 +26,7 @@ export default {
   "manual": "マニュアル設定",
   "mbti": "• /mbti を使って MBTI を再受験または変更する\n",
   "mbtiWithSource": "🧠 MBTI: {mbti}{source}",
-  "message": "https://t.me/share/url?url=https://t.me/{botUsername}?start=invite_{inviteCode}&text=XunNi でボトルメールを一緒に投げよう！🍾 私の招待コードを使って: {inviteCode}",
+  "message": "XunNi 一緒に祈りのボトルを投げましょう！🍾 私の招待コードを使ってください：{inviteCode}",
   "message2": "{inviteLimitWarning}\n\n",
   "message3": "🌍 言語: {user.language_pref}\n\n",
   "message4": "🌍 言語: {user.language_pref }\n",
@@ -42,7 +42,7 @@ export default {
   "quota2": "📦 現在のデイリークォータ: {taskBonus > 0 ?",
   "quotaBottles": "{taskBonus} ボトルメール",
   "quotaTotal": "📦 現在の毎日クォータ: {quota}\n\n",
-  "returnToMenu": "🏠 メインメニューに戻る: /menu",
+  "returnToMenu": "🏠 メインメニューに戻る",
   "separator": "━━━━━━━━━━━━━━━━\n\n",
   "settings": "未設定",
   "settings2": "未設定",
@@ -71,5 +71,14 @@ export default {
   "zodiac": "⭐ 星座: {zodiac}\n",
   "fortuneQuota": "🔮 {fortuneBottle}: {total} (今週の残り: {weekly}/{limit} | 追加: {additional})",
   "vipWithDays": "💎 VIPメンバー (残り{days}日, 有効期限: {expireDate})",
-  "driftBottleInfo": "🍾 ボトルメール: {remaining} / {total}"
+  "driftBottleInfo": "🍾 祈りのボトル：{remaining} / {total}",
+  "ageRange": "年齢: {min}-{max}",
+  "fortuneMatchButton": "💘 占い速配",
+  "giftVipButton": "🎁 VIPを贈る",
+  "giftFortuneBottleButton": "🔮 占いボトルを贈る",
+  "moreOptions": "⚙️ もっと見る...",
+  "blockUser": "🚫 ユーザーをブロック",
+  "reportUser": "⚠️ 通報",
+  "moreOptionsTitle": "⚙️ **もっと見る**",
+  "giftedVipNote": "🎁 あなたにVIPを贈ったことがあります"
 };

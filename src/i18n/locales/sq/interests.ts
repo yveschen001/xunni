@@ -9,7 +9,7 @@ export default {
   "subtitle": "Ju lutemi zgjidhni një kategori për të shfletuar opsionet.",
   "current": "Aktualisht të zgjedhura ({count}/{max}):\n{list}",
   "saved": "✅ Etiketat e interesit janë përditësuar!",
-  "required_hint": "💡 Për të ofruar shërbime më të sakta të horoskopit me AI, ju lutemi përfundoni fillimisht etiketat tuaja të interesit.",
+  "required_hint": "💡 Për të ofruar shërbime më të sakta të leximit psikik, ju lutemi plotësoni më parë etiketat tuaja të interesit.",
   "categories": {
     "life": "Stili dhe Jetesa",
     "travel": "Udhëtim dhe Eksplorim",

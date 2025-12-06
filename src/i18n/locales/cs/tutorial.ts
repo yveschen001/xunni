@@ -1,13 +1,13 @@
 export default {
   "availableCommands": "Můžete použít následující příkazy kdykoli:",
-  "catchBottle": "🎣 **Zvedněte láhev se zprávou**",
-  "catchBottleDesc": "Podívejte se na láhve se zprávou ostatních a pokud máte zájem, odpovězte, abyste začali chatovat",
+  "catchBottle": "🎣 **Zachyť Láhev Přání**",
+  "catchBottleDesc": "Podívejte se na přání v Láhev Přání ostatních, odpovězte na přání a začněte chatovat~",
   "clickButtonHint": "💡 Prosím, klikněte na tlačítko pro pokračování",
-  "commandCatch": "• /catch - Zvednout láhev se zprávou",
+  "commandCatch": "• Zachyť - Zachyť Láhev Přání",
   "commandHelp": "• /help - Zobrazit nápovědu",
   "commandMenu": "📋 Nabídka příkazů",
   "commandTasks": "• /tasks - Zobrazit úkoly",
-  "commandThrow": "• /throw - Hodit láhev se zprávou",
+  "commandThrow": "• Hoď - Hoď Láhev Přání",
   "completeTasksForBottles": "💡 Dokončujte úkoly, abyste získali extra láhve",
   "completed": "✅ Tutoriál dokončen!",
   "howToBecomeFriends": "💬 **Jak si najít přátele?**",
@@ -16,11 +16,11 @@ export default {
   "skip": "Přeskočit",
   "skipped": "✅ Tutoriál přeskočen",
   "startUsing": "Začněte používat →",
-  "throwBottle": "📦 **Hodit láhev se zprávou**",
+  "throwBottle": "📦 **Hoď Láhev Přání**",
   "throwBottleDesc": "Napište své pocity nebo myšlenky, systém vám pomůže najít správného člověka",
   "unknownStep": "❌ Neznámý krok tutoriálu",
   "viewTasks": "📋 Zobrazit úkoly",
   "welcome": "🎉 Gratulujeme k dokončení registrace!",
   "whatIsXunNi": "🌊 **Co je XunNi?**",
-  "whatIsXunNiDesc": "Platforma pro přátelství pomocí anonymních láhví se zprávou, která vám pomůže najít podobně smýšlející přátele pomocí MBTI a znamení zvěrokruhu"
+  "whatIsXunNiDesc": "Anonymní platforma pro přátelství pomocí Láhev Přání, která vám pomůže najít spřízněné duše prostřednictvím přání, MBTI a horoskopů."
 };

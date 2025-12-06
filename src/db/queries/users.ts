@@ -44,7 +44,8 @@ export async function findUserByUsername(
   } 
   
   // If db is raw D1Database
-  return await db.prepare('SELECT * FROM users WHERE username = ? COLLATE NOCASE LIMIT 1').bind(username).first<User>();
+  const result = await db.prepare('SELECT * FROM users WHERE username = ? COLLATE NOCASE LIMIT 1').bind(username).first();
+  return result as User | null;
 }
 
 /**
@@ -65,7 +66,8 @@ export async function findUserByNickname(
   } 
   
   // If db is raw D1Database
-  return await db.prepare('SELECT * FROM users WHERE nickname = ? COLLATE NOCASE LIMIT 1').bind(nickname).first<User>();
+  const result = await db.prepare('SELECT * FROM users WHERE nickname = ? COLLATE NOCASE LIMIT 1').bind(nickname).first();
+  return result as User | null;
 }
 
 /**

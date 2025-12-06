@@ -12,5 +12,6 @@ export default {
   "nicknameInputHint": "👇 Te rog să introduci un nou nickname:",
   "bioInstruction": "Te rog să introduci o nouă auto-prezentare (până la 100 de caractere).\n\nAuto-prezentarea ta actuală este: {bio}",
   "bioInputHint": "👇 Te rog să introduci o nouă auto-prezentare:",
-  "bloodTypeInstruction": "Te rog să selectezi grupa ta sanguină:"
+  "bloodTypeInstruction": "Te rog să selectezi grupa ta sanguină:",
+  "matchPrefInstruction": "Vă rugăm să selectați preferința dvs. de potrivire:"
 };

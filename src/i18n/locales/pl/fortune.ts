@@ -8,15 +8,15 @@ export default {
     "love_match": "Kompatybilność par",
     "love_ideal": "Analiza idealnego typu"
   },
-  "back_to_menu": "🔙 Wróć do menu wróżenia AI",
-  "get_more_bottles": "💎 Zdobądź więcej butelek z wróżbami",
+  "back_to_menu": "🔙 Powrót do menu Czytania Wróżenieznego",
+  "get_more_bottles": "💎 Zdobądź więcej butelek wróżby",
   "relationship": {
     "love": "Para",
     "friend": "Przyjaciele",
     "family": "Rodzina",
     "work": "Koledzy"
   },
-  "menuTitle": "Wróżenie AI",
+  "menuTitle": "Wróżenie",
   "currentProfile": "Aktualny profil",
   "warehouse": "Przechowywanie wykresów urodzeniowych",
   "manageProfiles": "Zarządzanie wykresami urodzeniowymi",
@@ -148,21 +148,21 @@ export default {
   },
   "dailyPush": "📅 Dzisiaj horoskop został dostarczony!",
   "dailyPushBtn": "👇 Kliknij, aby zobaczyć",
-  "backToMenu": "🔙 Powrót do menu wróżb AI",
+  "backToMenu": "🔙 Wróć do menu czytania tarota",
   "addProfile": "Dodaj plik wykresu",
-  "quotaDisplay": "🔮 Wróżenie z fusów butelka wiadomości: {total} (Ten tydzień za darmo: {weekly}/{limit} | Dodatkowe: {additional})",
-  "quotaDisplayVip": "🔮 butelka wróżb: {total} (Dziś: {daily}/1 | Dodatkowe: {additional})",
-  "quotaDisplayFree": "🔮 butelka wróżb: {total} (W tym tygodniu darmowe: {weekly}/1 | Dodatkowe: {additional})",
+  "quotaDisplay": "🔮 butelka wróżby: {total} (W tym tygodniu darmowe: {weekly}/{limit} | Dodatkowe: {additional})",
+  "quotaDisplayVip": "🔮 butelka wróżby: {total} (Dziś: {daily}/1 | Dodatkowe: {additional})",
+  "quotaDisplayFree": "🔮 butelka wróżby: {total} (W tym tygodniu darmowe: {weekly}/1 | Dodatkowe: {additional})",
   "profileDetails": "👤 {gender} {blood} | 🎂 {birthday} | {zodiac} | 🧠 {mbti}",
-  "getMore": "Zdobądź więcej butelek wróżbiarskich",
-  "getMoreInfo": "🔮 *Jak zdobyć butelkę szczęścia?*\n\n1. **Tygodniowe Darmowe**: Zwykli użytkownicy otrzymują 1 na tydzień, VIP-y otrzymują 1 dziennie.\n2. **Nagrody za Zaproszenia**: Zaproś przyjaciela, aby dołączył, a gdy on pomyślnie zaprosi innego przyjaciela, otrzymasz nagrodę (maksymalnie 1 butelkę szczęścia w ciągu 24 godzin).\n3. **Nagrody za Butelki Wiadomości**: Za każdą wysłaną 10 butelek wiadomości otrzymasz 1 butelkę szczęścia. (Maksymalnie 1 butelka szczęścia w ciągu 24 godzin)\n4. **Zakup Bezpośredni (🔥 Ograniczona Czasowo Zniżka 20%)**:\n • Mały Pakiet {smallAmount} - ~{originalSmallPrice} Gwiazd~ {smallPrice} Gwiazd\n • Duży Pakiet {largeAmount} - ~{originalLargePrice} Gwiazd~ {largePrice} Gwiazd",
+  "getMore": "Zdobądź więcej butelek wróżby",
+  "getMoreInfo": "🔮 *Jak zdobyć butelki wróżby?*\n\n1. **Co tydzień darmowe**: Zwykli użytkownicy 1 butelka, VIP codziennie 1 butelka.\n2. **Nagrody za zaproszenie**: Zaproś jednego przyjaciela do dołączenia, a gdy ten przyjaciel również zaprosi kogoś, otrzymasz nagrodę (w ciągu 24 godzin, limit 1 butelka wróżby).\n3. **Nagroda za Butelki Życzeń**: Za każde wysłanie 10 Butelek Życzeń otrzymasz 1 butelkę wróżby. (w ciągu 24 godzin, limit 1 butelka wróżby)\n4. **Bezpośredni zakup (🔥 Limitowana oferta 20% zniżki)**:\n   • Mały pakiet {smallAmount} butelek - ~{originalSmallPrice} Gwiazd~ {smallPrice} Gwiazd\n   • Duży pakiet {largeAmount} butelek - ~{originalLargePrice} Gwiazd~ {largePrice} Gwiazd",
   "buySmall": "🔥 Cena specjalna {price} gwiazdek (Kup {amount} przedmiotów)",
   "buyLarge": "🔥 Cena specjalna {price} gwiazdek (Kup {amount} przedmiotów)",
-  "invoiceTitle": "Kup {amount} butelek z wróżbą",
-  "invoiceDesc": "Po zakupie możesz od razu skorzystać z usługi wróżenia AI, a każda usługa wróżenia zużywa 1 butelkę z wróżbą.\n\nKliknij przycisk poniżej, aby kupić teraz:",
-  "purchaseSuccess": "🎉 Zakup udany! Dodano {amount} butelek z wróżbą.",
-  "bottleReward": "🎉 Gratulacje! Wysłałeś {count} butelek z wróżbą i otrzymałeś 1 butelkę z wróżbą jako nagrodę!",
-  "inviteChainReward": "🎉 Gratulacje! Twój zaproszony przyjaciel skutecznie zaprosił nowego przyjaciela do dołączenia, a Ty otrzymałeś 1 butelkę z wróżbą jako nagrodę!",
+  "invoiceTitle": "Zakup {amount} butelek wróżby",
+  "invoiceDesc": "Po zakupie możesz natychmiast korzystać z usługi wróżby, każda usługa zużywa 1 butelkę wróżby.\n\nNaciśnij poniższy przycisk, aby kupić:",
+  "purchaseSuccess": "🎉 Zakup udany! Dodano {amount} butelek wróżby.",
+  "bottleReward": "🎉 Gratulacje! Wysłałeś {count} butelka wróżbys i otrzymałeś 1 nagrodę w postaci fortune bottle!",
+  "inviteChainReward": "🎉 Gratulacje! Twój zaproszony przyjaciel pomyślnie zaprosił nowego przyjaciela, otrzymujesz 1 butelkę wróżby jako nagrodę!",
   "menu": {
     "love": "Diagnoza atrybutów (dopasowanie relacji)",
     "attribute_desc": "Analizuj swoje romantyczne atrybuty i potencjalne cechy.",
@@ -190,7 +190,9 @@ export default {
     "match_report_title": "💞 Raport o synastrii pary",
     "wait_for_consent": "⏳ Czekanie na zgodę drugiej strony...",
     "consent_accepted": "✅ Druga strona się zgodziła! Generowanie raportu...",
-    "consent_rejected": "❌ Druga strona odrzuciła prośbę o synastrię."
+    "consent_rejected": "❌ Druga strona odrzuciła prośbę o synastrię.",
+    "invite_friend": "📨 Invite Friend to Experience",
+    "invite_friend_text": "Hey! I want to try the Compatibility Test with you. Create your fortune profile now!"
   },
   "role": {
     "husband": "Mąż",
@@ -228,12 +230,26 @@ export default {
       "drawn": "🎴 Karty zostały dobrane:"
     }
   },
-  "profile_incomplete_hint": "💡 Aby zapewnić dokładniejsze usługi wróżenia AI, proszę najpierw uzupełnić informacje o swoich zainteresowaniach, zawodzie lub MBTI.",
+  "profile_incomplete_hint": "💡 Aby zapewnić dokładniejszą usługę wróżenia duchowego, prosimy najpierw o uzupełnienie swoich zainteresowań, zawodu lub MBTI ... i innych informacji.",
   "tarot_menu_title": "Karty Tarota",
   "tarot_ui": {
     "intro": "🔮 *Czytanie Tarota*\n\nProszę, w ciszy pomyśl o swoim pytaniu (np. \"Jak wygląda moja fortuna zawodowa ostatnio?\" lub \"Jak powinienem zająć się tą relacją?\") i skoncentruj się przed naciśnięciem przycisku poniżej, aby losować karty.",
     "draw": "🔮 Losuj Karty",
     "shuffling": "Tasowanie...",
     "drawn": "🎴 Karty zostały wylosowane:"
+  },
+  "profileUpdated": "✅ Profil astrologiczny został zaktualizowany!",
+  "btn_complete_info": "✏️ Uzupełnij swoje dane urodzeniowe",
+  "complete_info_hint": "💡 Udoskonal swój czas i miejsce urodzenia, aby odblokować analizę znaku wschodzącego i domów!",
+  "btn_edit_info": "📝 Edytuj dane urodzeniowe",
+  "edit": {
+    "currentInfo": "📋 Aktualne informacje:",
+    "currentTime": "Czas urodzenia: {time}",
+    "currentTimeUnknown": "Czas urodzenia: Niepewny",
+    "currentCity": "Miasto urodzenia: {city}",
+    "currentCityUnknown": "Miasto urodzenia: Nie ustawione",
+    "confirmEdit": "Czy chcesz zmodyfikować powyższe informacje?",
+    "btnConfirmEdit": "✅ Tak, chcę zmodyfikować",
+    "btnCancelEdit": "❌ Anuluj"
   }
 };

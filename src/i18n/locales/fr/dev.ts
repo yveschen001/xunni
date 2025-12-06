@@ -1,7 +1,7 @@
 export default {
   "autoCompleted": "Le processus d'inscription a été complété automatiquement.\n\n",
-  "bottles": "• Bouteilles à message : {count}\n",
-  "catchCommand": "• /catch - Attraper des bouteilles à message\n",
+  "bottles": "• Bouteille de Vœux de bénédiction : {count}",
+  "catchCommand": "• /attraper - Ramasser une Bouteille de Vœux",
   "conversations": "• Conversations : {count}\n",
   "dataReset": "✅ Mode développement : Les données ont été réinitialisées\n\nToutes vos données ont été supprimées.\n\n💡 Vous pouvez maintenant redémarrer le processus d'inscription pour test.\n\n🔄 Réinscription : /start\nou utilisez : /dev_restart (démarrer automatiquement l'inscription)\n\n⚠️ Remarque : Cette fonctionnalité est uniquement disponible dans l'environnement de staging.",
   "getUserInfoFailed": "❌ Échec de la récupération des informations",
@@ -30,7 +30,7 @@ export default {
   "telegramId": "ID Telegram : {id}\n",
   "testCoreFeatures": "💡 Vous pouvez désormais tester directement les fonctionnalités principales :\n",
   "testUser": "Utilisateur de test",
-  "throwCommand": "• /throw - Lancer une bouteille à message\n",
+  "throwCommand": "• /throw - Lancer une Bouteille de Vœux",
   "userInfo": "🔧 Mode développement : Informations utilisateur\n\n",
   "userNotFound": "❌ L'utilisateur n'existe pas",
   "vip": "VIP : {status}\n",

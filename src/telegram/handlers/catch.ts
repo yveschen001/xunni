@@ -21,6 +21,8 @@ import {
 import { canCatchBottle, getBottleQuota } from '~/domain/bottle';
 import { calculateAge } from '~/domain/user';
 import { maskNickname } from '~/domain/invite';
+import { formatNicknameWithFlag } from '~/utils/country_flag';
+import { getLanguageDisplay } from '~/i18n/languages';
 
 export async function handleCatch(message: TelegramMessage, env: Env): Promise<void> {
   const db = createDatabaseClient(env.DB);
@@ -171,17 +173,26 @@ export async function handleCatch(message: TelegramMessage, env: Env): Promise<v
 
     if (!bottle) {
       await telegram.sendMessage(chatId, i18n.t('catch.bottle') + '\n' + i18n.t('catch.bottle2'));
+      
+      // Wait 3 seconds then return to menu
+      await new Promise(resolve => setTimeout(resolve, 3000));
+      
+      const { handleMenu } = await import('./menu');
+      // Create fake message for menu handler
+      const menuMessage = {
+        ...message,
+        text: '/menu'
+      };
+      await handleMenu(menuMessage, env);
       return;
     }
 
     const bottleOwner = await findUserByTelegramId(db, bottle.owner_telegram_id);
-    const { maskNickname } = await import('~/domain/invite');
     const ownerMaskedNickname = maskNickname(
       bottleOwner?.nickname || bottleOwner?.username || i18n.t('catch.short3')
     );
 
     // Get language display name
-    const { getLanguageDisplay } = await import('~/i18n/languages');
     const ownerLanguage = bottleOwner?.language_pref
       ? getLanguageDisplay(bottleOwner.language_pref)
       : i18n.t('profile.settings');
@@ -256,7 +267,11 @@ export async function handleCatch(message: TelegramMessage, env: Env): Promise<v
     // Prepare partner info (use already masked nickname)
     const ownerPartnerInfo = {
       partnerTelegramId: bottle.owner_telegram_id,
-      maskedNickname: ownerMaskedNickname,
+      maskedNickname: formatNicknameWithFlag(
+        ownerMaskedNickname,
+        bottleOwner?.country_code,
+        bottleOwner?.gender
+      ),
       mbti: bottleOwner?.mbti_result || i18n.t('catch.settings10'),
       bloodType: bottleOwner?.blood_type || i18n.t('catch.settings10'),
       zodiac: bottleOwner?.zodiac_sign || 'Virgo',
@@ -264,10 +279,13 @@ export async function handleCatch(message: TelegramMessage, env: Env): Promise<v
     };
 
     const catcherNickname = user.nickname || user.username || i18n.t('catch.short3');
-    const { formatNicknameWithFlag } = await import('~/utils/country_flag');
     const catcherPartnerInfo = {
       partnerTelegramId: telegramId,
-      maskedNickname: formatNicknameWithFlag(maskNickname(catcherNickname), user.country_code),
+      maskedNickname: formatNicknameWithFlag(
+        maskNickname(catcherNickname),
+        user.country_code,
+        user.gender
+      ),
       mbti: user.mbti_result || i18n.t('catch.settings10'),
       bloodType: user.blood_type || i18n.t('catch.settings10'),
       zodiac: user.zodiac_sign || 'Virgo',

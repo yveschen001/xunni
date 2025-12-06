@@ -1,7 +1,7 @@
 export default {
   "autoCompleted": "A regisztrációs folyamat automatikusan befejeződött.\n\n",
-  "bottles": "• Message bottles: {count}\n",
-  "catchCommand": "• /catch - Fogj üzenetpalackokat\n",
+  "bottles": "• Kívánság Palack: {count}\n",
+  "catchCommand": "• Kívánság Palack Szedegetés\n",
   "conversations": "• Beszélgetések: {count}\n",
   "dataReset": "✅ Fejlesztési mód: Az adatok vissza lettek állítva\n\nMinden adatod törölve lett.\n\n💡 Most újraindíthatod a teszt regisztrációs folyamatot.\n\n🔄 Újraregisztrálás: /start\nvagy használd: /dev_restart (automatikus regisztráció kezdése)\n\n⚠️ Figyelem: Ez a funkció csak a Staging környezetben érhető el.",
   "getUserInfoFailed": "❌ Információk lekérése sikertelen",
@@ -30,7 +30,7 @@ export default {
   "telegramId": "Telegram azonosító: {id}\n",
   "testCoreFeatures": "💡 Most közvetlenül tesztelheti a fő funkciókat:\n",
   "testUser": "Teszt felhasználó",
-  "throwCommand": "• /throw - Üzenetpalack dobása\n",
+  "throwCommand": "• Kívánság Palack Eldobás\n",
   "userInfo": "🔧 Fejlesztési mód: Felhasználói információ\n\n",
   "userNotFound": "❌ A felhasználó nem létezik",
   "vip": "VIP: {status}",

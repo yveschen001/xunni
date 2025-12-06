@@ -9,7 +9,7 @@ export default {
   "subtitle": "Por favor, selecione uma categoria para navegar nas opções.",
   "current": "Selecionado atualmente ({count}/{max}):\n{list}",
   "saved": "✅ Tags de interesse atualizadas!",
-  "required_hint": "💡 Para fornecer serviços de previsão de IA mais precisos, complete primeiro suas tags de interesse.",
+  "required_hint": "💡 Para fornecer serviços de leitura psíquica mais precisos, por favor, complete suas tags de interesse primeiro.",
   "categories": {
     "life": "Estilo e Estilo de Vida",
     "travel": "Viagem e Exploração",

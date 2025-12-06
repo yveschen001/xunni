@@ -26,7 +26,7 @@ export default {
   "manual": "ম্যানুয়াল সেটিংস",
   "mbti": "• পরীক্ষাটি পুনরায় নিতে বা MBTI পরিবর্তন করতে /mbti ব্যবহার করুন\n",
   "mbtiWithSource": "🧠 MBTI: {mbti}{source}",
-  "message": "https://t.me/share/url?url=https://t.me/{botUsername}?start=invite_{inviteCode}&text=XunNi তে আসুন এবং বার্তার বোতল একসাথে নিক্ষেপ করুন!🍾 আমার আমন্ত্রণ কোড ব্যবহার করুন: {inviteCode}",
+  "message": "XunNi একসঙ্গে Blessing Bottle ফেলুন!🍾 আমার আমন্ত্রণ কোড ব্যবহার করুন：{inviteCode}",
   "message2": "{inviteLimitWarning}\n\n",
   "message3": "🌍 ভাষা: {user.language_pref}\n\n",
   "message4": "🌍 ভাষা: {user.language_pref }\n",
@@ -42,7 +42,7 @@ export default {
   "quota2": "📦 বর্তমান দৈনিক কোটা: {taskBonus > 0 ?",
   "quotaBottles": "{taskBonus} বার্তার বোতল",
   "quotaTotal": "📦 বর্তমান দৈনিক কোটা: {quota}\n\n",
-  "returnToMenu": "🏠 মূল মেনুতে ফিরে যান: /menu",
+  "returnToMenu": "🏠 প্রধান মেনু",
   "separator": "━━━━━━━━━━━━━━━━\n\n",
   "settings": "সেট করা হয়নি",
   "settings2": "সেট করা হয়নি",
@@ -71,5 +71,14 @@ export default {
   "zodiac": "⭐ রাশি: {zodiac}\n",
   "fortuneQuota": "🔮 {fortuneBottle}: {total} (এই সপ্তাহে ফ্রি: {weekly}/{limit} | অতিরিক্ত: {additional})",
   "vipWithDays": "💎 VIP সদস্য (শিশুর {days} দিন অবশিষ্ট, মেয়াদ শেষ: {expireDate})",
-  "driftBottleInfo": "🍾 বার্তাবোতল: {remaining} / {total}"
+  "driftBottleInfo": "🍾 Blessing Bottle：{remaining} / {total}",
+  "ageRange": "বয়স: {min}-{max}",
+  "fortuneMatchButton": "💘 速配",
+  "giftVipButton": "🎁 贈送 VIP",
+  "giftFortuneBottleButton": "🔮 贈送 Fortune Bottle",
+  "moreOptions": "⚙️ 更多選項",
+  "blockUser": "🚫 封鎖",
+  "reportUser": "⚠️ 檢舉",
+  "moreOptionsTitle": "⚙️ 更多選項",
+  "giftedVipNote": "🎁 贈送過 VIP"
 };

@@ -5,6 +5,7 @@
  */
 
 import type { Env, TelegramMessage } from '~/types';
+import type { DatabaseClient } from '~/db/client';
 import { createDatabaseClient } from '~/db/client';
 import { createTelegramService } from '~/services/telegram';
 import { findUserByTelegramId } from '~/db/queries/users';
@@ -13,9 +14,12 @@ import {
   getPartnerByIdentifier,
   getConversationMessages,
   getConversationStats,
+  getConversationMessagesPaginated,
 } from '~/db/queries/conversation_identifiers';
 import { formatIdentifier, parseIdentifier } from '~/domain/conversation_identifier';
 import { createI18n } from '~/i18n';
+import { formatNicknameWithFlag } from '~/utils/country_flag';
+import { maskNickname } from '~/utils/nickname';
 
 /**
  * Handle /history command
@@ -50,14 +54,167 @@ export async function handleHistory(message: TelegramMessage, env: Env): Promise
       // Show specific conversation
       await showConversationByIdentifier(db, telegram, chatId, telegramId, searchIdentifier, i18n);
     } else {
-      // Show all conversations
-      await showAllConversations(db, telegram, chatId, telegramId, i18n);
+      // Show all conversations (Interactive List via /chats handler)
+      const { handleChats } = await import('./chats');
+      await handleChats(message, env);
     }
   } catch (error) {
     console.error('[handleHistory] Error:', error);
     const user = await findUserByTelegramId(db, telegramId);
     const i18n = createI18n(user?.language_pref || 'zh-TW');
     await telegram.sendMessage(chatId, i18n.t('history.errorRetry'));
+  }
+}
+
+/**
+ * Handle history read pagination
+ * Callback format: history_read:{identifier}:{page}
+ */
+export async function handleHistoryRead(
+  chatId: number,
+  userId: string,
+  identifier: string,
+  page: number,
+  env: Env,
+  messageIdToEdit?: number,
+  callbackQueryId?: string
+): Promise<void> {
+  const db = createDatabaseClient(env.DB);
+  const telegram = createTelegramService(env);
+  const telegramId = userId;
+
+  try {
+    const user = await findUserByTelegramId(db, telegramId);
+    const i18n = createI18n(user?.language_pref || 'zh-TW');
+
+    // Get partner info
+    const partnerTelegramId = await getPartnerByIdentifier(db, telegramId, identifier);
+    if (!partnerTelegramId) {
+      if (callbackQueryId) {
+        await telegram.answerCallbackQuery(callbackQueryId, i18n.t('history.conversationNotFound', { identifier }));
+      } else {
+        await telegram.sendMessage(chatId, i18n.t('history.conversationNotFound', { identifier }));
+      }
+      return;
+    }
+
+    const partner = await findUserByTelegramId(db, partnerTelegramId);
+    const partnerNickname = partner 
+      ? formatNicknameWithFlag(maskNickname(partner.nickname || partner.username || ''), partner.country_code, partner.gender)
+      : `#${identifier}`;
+
+    // Get paginated messages
+    const pageSize = 20;
+    const { messages, total, totalPages } = await getConversationMessagesPaginated(
+      db,
+      telegramId,
+      partnerTelegramId,
+      page,
+      pageSize
+    );
+
+    // Build message content
+    // Header: 💬 與 🇯🇵 CoolJa**** 的對話記錄 (第 1/3 頁)
+    let content = i18n.t('conversationHistory.title', { 
+      identifier: partnerNickname, // Use nickname instead of ID
+      postNumber: `${page}/${Math.max(1, totalPages)}` 
+    }) + '\n';
+    
+    content += '━━━━━━━━━━━━━━━━\n';
+
+    let lastDate = '';
+    
+    if (messages.length === 0) {
+      content += i18n.t('history.noMessages') + '\n';
+    } else {
+      for (const msg of messages) {
+        const msgDate = new Date(msg.created_at);
+        const dateStr = msgDate.toLocaleDateString(user?.language_pref || 'zh-TW');
+        
+        // Date Separator
+        if (dateStr !== lastDate) {
+          content += `\n📅 ${dateStr}\n`;
+          lastDate = dateStr;
+        }
+
+        const timeStr = formatTime(msg.created_at, user?.language_pref || 'zh-TW');
+        const isMe = msg.sender_telegram_id === telegramId;
+        const senderLabel = isMe 
+          ? i18n.t('conversationHistory.you') 
+          : i18n.t('conversationHistory.other');
+        
+        // Show translated text if available, otherwise original
+        // User requested: "Only display translated content"
+        const textToShow = msg.translated_text || msg.content;
+        
+        content += `[${timeStr}] ${senderLabel}：${textToShow}\n`;
+      }
+    }
+
+    content += '\n━━━━━━━━━━━━━━━━\n';
+    content += '💡 ' + i18n.t('conversationHistory.translatedContent') + '\n'; // "Only translated content" hint (reuse translatedContent key or similar)
+
+    // Build buttons
+    const buttons: any[][] = [];
+
+    // Navigation buttons
+    const navRow: any[] = [];
+    if (page > 1) {
+      navRow.push({ 
+        text: i18n.t('common.prev'), 
+        callback_data: `history_read:${identifier}:${page - 1}` 
+      });
+    }
+    if (page < totalPages) {
+      navRow.push({ 
+        text: i18n.t('common.next'), 
+        callback_data: `history_read:${identifier}:${page + 1}` 
+      });
+    }
+    if (navRow.length > 0) {
+      buttons.push(navRow);
+    }
+
+    // Action buttons
+    buttons.push([
+      { text: i18n.t('conversationHistory.replyButton'), callback_data: `conv_reply_${identifier}` },
+      { text: i18n.t('common.back'), callback_data: 'chats' } 
+    ]);
+
+    // Ad button (Non-VIP)
+    if (user && !user.is_vip) {
+      const { getTodayAdReward } = await import('~/db/queries/ad_rewards');
+      const adReward = await getTodayAdReward(db.d1, telegramId);
+      const adsWatched = adReward?.ads_watched || 0;
+      const MAX_DAILY_ADS = 20; // Should import constant but 20 is standard
+      
+      if (adsWatched < MAX_DAILY_ADS) {
+        const remaining = MAX_DAILY_ADS - adsWatched;
+        buttons.push([{
+          text: i18n.t('buttons.bottle', { remaining }),
+          callback_data: 'watch_ad'
+        }]);
+      }
+    }
+
+    // Edit or Send?
+    if (messageIdToEdit) {
+      try {
+        await telegram.editMessageText(chatId, messageIdToEdit, content, {
+          reply_markup: { inline_keyboard: buttons }
+        });
+      } catch (e) {
+        // If edit fails (e.g. content same), just ignore or send new
+        console.error('[handleHistoryRead] Edit failed, sending new message', e);
+        await telegram.sendMessageWithButtons(chatId, content, buttons);
+      }
+    } else {
+      // Send new message
+      await telegram.sendMessageWithButtons(chatId, content, buttons);
+    }
+
+  } catch (error) {
+    console.error('[handleHistoryRead] Error:', error);
   }
 }
 
@@ -94,7 +251,7 @@ async function showAllConversations(
     });
     message += i18n.t('history.lastMessage', { preview });
     message += i18n.t('history.time', {
-      time: formatDate(conv.last_message_time, user?.language_pref || 'zh-TW'),
+      time: formatDate(conv.last_message_time, user?.language_pref || 'zh-TW', i18n),
     });
   }
 
@@ -147,12 +304,12 @@ async function showConversationByIdentifier(
 
   if (stats.first_message_time) {
     message += i18n.t('history.conversationStart', {
-      time: formatDate(stats.first_message_time, user?.language_pref || 'zh-TW'),
+      time: formatDate(stats.first_message_time, user?.language_pref || 'zh-TW', i18n),
     });
   }
   if (stats.last_message_time) {
     message += i18n.t('history.conversationEnd', {
-      time: formatDate(stats.last_message_time, user?.language_pref || 'zh-TW'),
+      time: formatDate(stats.last_message_time, user?.language_pref || 'zh-TW', i18n),
     });
   }
 
@@ -185,7 +342,7 @@ async function showConversationByIdentifier(
 /**
  * Format date for display
  */
-function formatDate(dateString: string, locale: string = 'zh-TW'): string {
+function formatDate(dateString: string, locale: string = 'zh-TW', i18n?: any): string {
   const date = new Date(dateString);
   const now = new Date();
   const diffMs = now.getTime() - date.getTime();
@@ -234,5 +391,6 @@ function formatTime(dateString: string, locale: string = 'zh-TW'): string {
     day: '2-digit',
     hour: '2-digit',
     minute: '2-digit',
-  });
+    hour12: false
+  }).split(', ')[1] || date.toLocaleTimeString(locale, {hour: '2-digit', minute:'2-digit', hour12: false});
 }

@@ -13,7 +13,7 @@ export default {
   "bloodType": "✅ Blodtyp uppdaterad till {getBloodTypeDisplay(bloodType as any)}",
   "bloodType2": "✅ Blodtyp rensad",
   "bottle": "✅ Belöning utdelad! +1 meddelandeflaskpost",
-  "bottle2": "✅ Startade en ny meddelandeflaskpost",
+  "bottle2": "✅ Starta ny Önskeflaska",
   "bottle3": "✅ Meddelandeflaskpost skapad\n",
   "broadcast": "✅ Rensade {ids.length} fastklistrade sändningar\n\n",
   "broadcast2": "✅ Inga sändningar behöver rensning\n\n",
@@ -95,7 +95,7 @@ export default {
     "bloodType": "✅ Blodtyp uppdaterad till \\{getBloodTypeDisplay(bloodType as any)}",
     "bloodType2": "✅ Blodtyp rensad",
     "bottle": "✅ Belöning utdelad! +1 flaskpost",
-    "bottle2": "✅ Starta en ny flaskpost",
+    "bottle2": "✅ Starta en ny välsignelse med meddelandeflaska",
     "bottle3": "✅ Flaskpost skapad\n",
     "broadcast": "✅ Rensade \\{ids.length} fastnade sändningar\n\n",
     "broadcast2": "✅ Inga sändningar att städa upp\n\n",
@@ -238,6 +238,6 @@ export default {
   "verify2": "✅ Verifiering lyckad! Mottog +\\{ad.reward_quota} permanent kvot!",
   "vip": "✅ Alla inlägg är uppdaterade (VIP-status korrekt)\n",
   "zodiac": "✅ Rensade zodiakvalet",
-  "bottleThrown": "🍾 Flaskposten har kastats!",
+  "bottleThrown": "✅ Önskeflaska har kastats!",
   "saved": "✅ Inställningar sparade"
 };

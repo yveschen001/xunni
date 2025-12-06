@@ -13,7 +13,7 @@ export default {
   "bloodType": "✅ Blutgruppe auf {getBloodTypeDisplay(bloodType as any)} aktualisiert",
   "bloodType2": "✅ Blutgruppe gelöscht",
   "bottle": "✅ Belohnung vergeben! +1 Nachrichtenflasche",
-  "bottle2": "✅ Eine neue Nachrichtenflasche gestartet",
+  "bottle2": "✅ Starte eine neue Segensflasche Segnung",
   "bottle3": "✅ Nachrichtenflasche erstellt\n",
   "broadcast": "✅ {ids.length} hängende Übertragungen bereinigt\n\n",
   "broadcast2": "✅ Keine Übertragungen müssen bereinigt werden\n\n",
@@ -95,7 +95,7 @@ export default {
     "bloodType": "✅ Blutgruppe auf \\{getBloodTypeDisplay(bloodType as any)} aktualisiert",
     "bloodType2": "✅ Blutgruppe gelöscht",
     "bottle": "✅ Belohnung verteilt! +1 Nachrichtenflasche",
-    "bottle2": "✅ Eine neue Nachrichtenflasche starten",
+    "bottle2": "✅ Starte eine neue SegensSegensflasche",
     "bottle3": "✅ Nachrichtenflasche erstellt\n",
     "broadcast": "✅ \\{ids.length} festgefahrene Übertragungen wurden gelöscht\n\n",
     "broadcast2": "✅ Keine Übertragungen zur Bereinigung\n\n",
@@ -238,6 +238,6 @@ export default {
   "verify2": "✅ Verifizierung erfolgreich! Erhaltene +\\{ad.reward_quota} permanente Quote!",
   "vip": "✅ Alle Beiträge sind aktuell (VIP-Status korrekt)\n",
   "zodiac": "✅ Tierauswahl gelöscht",
-  "bottleThrown": "🍾 Nachrichtenflasche wurde geworfen!",
+  "bottleThrown": "✅ Segensflasche wurde geworfen!",
   "saved": "✅ Einstellungen gespeichert"
 };

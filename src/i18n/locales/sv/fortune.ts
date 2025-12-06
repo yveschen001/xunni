@@ -8,15 +8,15 @@ export default {
     "love_match": "Parcompatibilitet",
     "love_ideal": "Analys av idealtyp"
   },
-  "back_to_menu": "🔙 Återgå till AI-ödesmenyn",
-  "get_more_bottles": "💎 Skaffa fler spådomsmeddelandeflaskor",
+  "back_to_menu": "🔙 Återvänd till Menyn för Psykiska Läsningar",
+  "get_more_bottles": "💎 Få mer Spådomsflaska",
   "relationship": {
     "love": "Par",
     "friend": "Vänner",
     "family": "Familj",
     "work": "Kollegor"
   },
-  "menuTitle": "AI-ödesberäkning",
+  "menuTitle": "Psychic Reading",
   "currentProfile": "Nuvarande profil",
   "warehouse": "Födelsekartsförvaring",
   "manageProfiles": "Hantera födelsekartor",
@@ -148,21 +148,21 @@ export default {
   },
   "dailyPush": "📅 Dagens horoskop har levererats!",
   "dailyPushBtn": "👇 Klicka för att se",
-  "backToMenu": "🔙 Återgå till AI spådomsmeny",
+  "backToMenu": "🔙 Tillbaka till Menyn för Psychic Reading",
   "addProfile": "Lägg till diagramfil",
-  "quotaDisplay": "🔮 Spådomsmeddelandeburk: {total} (Denna vecka gratis: {weekly}/{limit} | Tillägg: {additional})",
-  "quotaDisplayVip": "🔮 meddelandeflaska: {total} (Idag: {daily}/1 | Tillägg: {additional})",
-  "quotaDisplayFree": "🔮 meddelandeflaska: {total} (Denna vecka gratis: {weekly}/1 | Tillägg: {additional})",
+  "quotaDisplay": "🔮 Spådomsflaska: {total} (Veckans gratis: {weekly}/{limit} | Extra: {additional})",
+  "quotaDisplayVip": "🔮 Spådomsflaska: {total} (Idag: {daily}/1 | Extra: {additional})",
+  "quotaDisplayFree": "🔮 Spådomsflaska: {total} (Veckans gratis: {weekly}/1 | Extra: {additional})",
   "profileDetails": "👤 {gender} {blood} | 🎂 {birthday} | {zodiac} | 🧠 {mbti}",
-  "getMore": "Få fler spådomsflaskor",
-  "getMoreInfo": "🔮 *Hur man får en lycko-flaska?*\n\n1. **Veckovis Gratis**: Vanliga användare får 1 per vecka, VIPs får 1 per dag.\n2. **Inbjudningsbelöningar**: Bjud en vän att gå med, och när de framgångsrikt bjuder in en annan vän får du en belöning (upp till 1 lycko-flaska inom 24 timmar).\n3. **Belöningar för meddelandeflaskor**: För varje 10 meddelandeflaskor som skickas, få 1 lycko-flaska. (Upp till 1 lycko-flaska inom 24 timmar)\n4. **Direktköp (🔥 Begränsad Tid 20% Rabatt)**:\n • Litet paket {smallAmount} - ~{originalSmallPrice} Stjärnor~ {smallPrice} Stjärnor\n • Stort paket {largeAmount} - ~{originalLargePrice} Stjärnor~ {largePrice} Stjärnor",
+  "getMore": "Få mer Spådomsflaska",
+  "getMoreInfo": "🔮 *Hur får man spådomsflaskor?*\n\n1. **Veckovis gratis**: Vanliga användare får 1 per vecka, VIP får 1 per dag.\n2. **Inbjudan belöning**: Om du bjuder in en vän och de också bjuder in en vän, får du en belöning (max 1 spådomsflaska inom 24 timmar).\n3. **Belöning för att skicka Önskeflaskor**: För varje 10 Önskeflaskor du skickar får du 1 spådomsflaska. (max 1 spådomsflaska inom 24 timmar)\n4. **Direkt köp (🔥 Tidsbegränsat 20% rabatt)**:\n   • Liten påse {smallAmount} flaskor - ~{originalSmallPrice} Stjärnor~ {smallPrice} Stjärnor\n   • Stor påse {largeAmount} flaskor - ~{originalLargePrice} Stjärnor~ {largePrice} Stjärnor",
   "buySmall": "🔥 Specialpris {price} Stjärnor (Köp {amount} föremål)",
   "buyLarge": "🔥 Specialpris {price} Stjärnor (Köp {amount} föremål)",
-  "invoiceTitle": "Köp {amount} spåkflaskor",
-  "invoiceDesc": "Efter köpet kan du omedelbart använda AI-spådomstjänsten, och varje spådomstjänst förbrukar 1 spåkflaska.\n\nKlicka på knappen nedan för att köpa nu:",
-  "purchaseSuccess": "🎉 Köpet lyckades! {amount} spåkflaskor har lagts till.",
-  "bottleReward": "🎉 Grattis! Du har skickat {count} spåkflaskor och fått 1 spåkflaska belöning!",
-  "inviteChainReward": "🎉 Grattis! Din inbjudna vän har framgångsrikt bjudit in en ny vän att gå med, och du har fått 1 spåkflaska belöning!",
+  "invoiceTitle": "Köpa {amount} Spådomsflaskor",
+  "invoiceDesc": "Efter köpet kan du omedelbart använda spådomstjänsten, varje spådomstjänst kostar 1 spådomsflaska.\n\nKlicka på knappen nedan för att köpa:",
+  "purchaseSuccess": "🎉 Köpet lyckades! Du har nu {amount} fler Spådomsflaskor.",
+  "bottleReward": "🎉 Grattis! Du har skickat {count} Önskeflaskor och fått 1 spådomsflaska som belöning!",
+  "inviteChainReward": "🎉 Grattis! Din inbjudna vän har framgångsrikt bjudit in en ny vän, du får 1 spådomsflaska som belöning!",
   "menu": {
     "love": "Attributdiagnos (Relationsmatchning)",
     "attribute_desc": "Analysera dina romantiska attribut och potentiella drag.",
@@ -190,7 +190,9 @@ export default {
     "match_report_title": "💞 Parens synastrirapport",
     "wait_for_consent": "⏳ Väntar på den andra partens godkännande...",
     "consent_accepted": "✅ Den andra parten har godkänt! Genererar rapport...",
-    "consent_rejected": "❌ Den andra parten har avvisat synastriförfrågan."
+    "consent_rejected": "❌ Den andra parten har avvisat synastriförfrågan.",
+    "invite_friend": "📨 Invite Friend to Experience",
+    "invite_friend_text": "Hey! I want to try the Compatibility Test with you. Create your fortune profile now!"
   },
   "role": {
     "husband": "Make",
@@ -228,12 +230,26 @@ export default {
       "drawn": "🎴 Korten har dragits:"
     }
   },
-  "profile_incomplete_hint": "💡 För att tillhandahålla mer exakta AI-spådomstjänster, vänligen fyll i dina intressen, yrke eller MBTI-information först.",
+  "profile_incomplete_hint": "💡 För att kunna tillhandahålla en mer exakt andlig spådomstjänst, vänligen fyll först i dina intressen, yrke eller MBTI ... och annan information.",
   "tarot_menu_title": "Tarot-kort",
   "tarot_ui": {
     "intro": "🔮 *Tarotläsning*\n\nTänk tyst på din fråga (t.ex. \"Hur är min arbetestyrka nyligen?\" eller \"Hur ska jag hantera denna relation?\") och fokusera innan du klickar på knappen nedan för att dra kort.",
     "draw": "🔮 Dra kort",
     "shuffling": "Blandar...",
     "drawn": "🎴 Korten har dragits:"
+  },
+  "profileUpdated": "✅ Astrologiprofilen har uppdaterats!",
+  "btn_complete_info": "✏️ Fyll i din födelseinformation",
+  "complete_info_hint": "💡 Perfektera din födelsetid och plats för att låsa upp analys av stigande tecken och hus!",
+  "btn_edit_info": "📝 Redigera födelseinformation",
+  "edit": {
+    "currentInfo": "📋 Aktuell information:",
+    "currentTime": "Födelsestid: {time}",
+    "currentTimeUnknown": "Födelsestid: Osäker",
+    "currentCity": "Födelsestad: {city}",
+    "currentCityUnknown": "Födelsestad: Ej angiven",
+    "confirmEdit": "Vill du ändra ovanstående information?",
+    "btnConfirmEdit": "✅ Ja, jag vill ändra",
+    "btnCancelEdit": "❌ Avbryt"
   }
 };

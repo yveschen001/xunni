@@ -442,6 +442,16 @@ CREATE TABLE users (
 ALTER TABLE users ADD COLUMN horoscope_opt_in INTEGER DEFAULT 0;
 ```
 
+### 4.3 Schema 與代碼一致性（⚠️ CRITICAL）
+
+> **代碼中的欄位名稱必須與 `src/db/schema.sql` 嚴格一致。**
+
+**檢查流程**：
+1. **修改前**：修改任何 SQL 查詢前，**必須**先閱讀 `src/db/schema.sql`，確認欄位名稱、類型和約束。
+2. **禁止猜測**：不要憑記憶或直覺猜測欄位名稱（例如 `match_pref` vs `match_preference`）。
+3. **類型安全**：優先使用自動生成的 TypeScript 類型（如果可用），或手動維護與 Schema 一致的 Interface。
+4. **遷移同步**：如果修改了 Schema（新增 migration），必須**立即**全局搜索代碼，更新所有相關的 `INSERT`、`UPDATE`、`SELECT` 語句。
+
 ---
 
 ## 5. Git 提交規範
@@ -1176,6 +1186,10 @@ if (data.startsWith('watch_ad')) {
 1. **保留現有文案**：優先復用現有的 i18n key，避免新增不必要的 Key 或更改已驗證的文案。
 2. **復用現有按鈕**：新增交互時，優先尋找並復用現有的按鈕樣式和回調邏輯。
 3. **保護配置文件**：嚴禁隨意修改 `wrangler.toml`、`package.json` 等配置，除非經過明確審批。
+4. **i18n 復用原則 (Key Reuse Policy)**：
+   - **檢查現有 Key**：在新增任何翻譯 Key 之前，**必須**先搜索現有的 `zh-TW` 文件或 CSV。
+   - **避免重複**：如果已經有相同或極其相似的文案（例如「返回」、「確認」、「取消」），**必須**直接復用現有的 Key。
+   - **通用 Key**：對於通用詞彙（如 `common.back`, `common.confirm`），優先使用 `common` 命名空間下的 Key。
 
 ---
 

@@ -266,5 +266,24 @@ export default {
     "startButton": "📊 テストを開始",
     "resultTitle": "私のMBTIテスト結果は{type}です！",
     "resultDesc": "テストを受けに来てください～"
-  }
+  },
+  "titles": {
+
+  "INTJ": "建築家",
+  "INTP": "論理学者",
+  "ENTJ": "指揮官",
+  "ENTP": "討論者",
+  "INFJ": "擁護者",
+  "INFP": "仲介者",
+  "ENFJ": "主人公",
+  "ENFP": "活動家",
+  "ISTJ": "物流専門家",
+  "ISFJ": "守護者",
+  "ESTJ": "経営者",
+  "ESFJ": "領事",
+  "ISTP": "名人",
+  "ISFP": "冒険者",
+  "ESTP": "起業家",
+  "ESFP": "エンターテイナー"
+  },
 };

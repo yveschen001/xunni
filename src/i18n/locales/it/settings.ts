@@ -27,6 +27,8 @@ export default {
   "selectEndHour": "☀️ Orario di inizio impostato su {start}:00.\nSi prega di scegliere l'orario di fine per le ore di silenzio:\n(Lascerete riprendere le notifiche dopo questo orario)",
   "disabled": "🚫 Le ore di silenzio sono state disabilitate",
   "quietHoursHint": "Non riceverai notifiche non urgenti durante questo periodo",
+  "quietHoursVipOnly": "🔒 Orari di Silenzio (Solo VIP)",
+  "upgradeForQuietHours": "Aggiorna a VIP per impostare gli orari di silenzio e evitare disturbi durante il riposo!",
   "blocklist": {
     "title": "🚫 Lista di Blocco",
     "empty": "Attualmente nessuna lista di blocco",

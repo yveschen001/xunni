@@ -12,5 +12,6 @@ export default {
   "nicknameInputHint": "👇 Prosím zadejte novou přezdívku:",
   "bioInstruction": "Prosím zadejte nové sebe-úvod (maximálně 100 znaků).\n\nVáš aktuální sebe-úvod je: {bio}",
   "bioInputHint": "👇 Prosím zadejte nový sebe-úvod:",
-  "bloodTypeInstruction": "Prosím vyberte svou krevní skupinu:"
+  "bloodTypeInstruction": "Prosím vyberte svou krevní skupinu:",
+  "matchPrefInstruction": "Vyberte si preferenci shody:"
 };

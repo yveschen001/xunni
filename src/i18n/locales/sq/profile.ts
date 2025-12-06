@@ -26,7 +26,7 @@ export default {
   "manual": "Cilësimet Manuale",
   "mbti": "• Përdorni /mbti për të rikaluar testin ose për të modifikuar MBTI\n",
   "mbtiWithSource": "🧠 MBTI: {mbti}{source}",
-  "message": "https://t.me/share/url?url=https://t.me/{botUsername}?start=invite_{inviteCode}&text=Ejani në XunNi dhe hidhim mesazhe shishe së bashku!🍾 Përdorni kodin tim të ftesës: {inviteCode}",
+  "message": "XunNi一起丢Blessing Bottle吧！🍾 使用我的邀请码：{inviteCode}",
   "message2": "{inviteLimitWarning}\n\n",
   "message3": "🌍 Gjuha: {user.language_pref}\n\n",
   "message4": "🌍 Gjuha: {user.language_pref }\n",
@@ -42,7 +42,7 @@ export default {
   "quota2": "📦 Kuota aktuale e përditshme: {taskBonus > 0 ?",
   "quotaBottles": "{taskBonus} message bottles",
   "quotaTotal": "📦 Kuota e përditshme aktuale: {quota}\n\n",
-  "returnToMenu": "🏠 Kthehu në menunë kryesore: /menu",
+  "returnToMenu": "🏠 主選單",
   "separator": "━━━━━━━━━━━━━━━━\n\n",
   "settings": "Nuk është caktuar",
   "settings2": "Nuk është caktuar",
@@ -71,5 +71,14 @@ export default {
   "zodiac": "⭐ Shenja e zodiakut: {zodiac}\n",
   "fortuneQuota": "🔮 {fortuneBottle}: {total} (Këtë javë falas: {weekly}/{limit} | Shtesë: {additional})",
   "vipWithDays": "💎 Anëtar VIP (Të mbetur {days} ditë, Skadimi: {expireDate})",
-  "driftBottleInfo": "🍾 shishja e mesazheve: {remaining} / {total}"
+  "driftBottleInfo": "🍾 Blessing Bottle：{remaining} / {total}",
+  "ageRange": "Mosha: {min}-{max}",
+  "fortuneMatchButton": "💘 Fortunë",
+  "giftVipButton": "🎁 Dhuro VIP",
+  "giftFortuneBottleButton": "🔮 Dhuro Fortune Bottle",
+  "moreOptions": "⚙️ Më shumë opsione...",
+  "blockUser": "🚫 Blloko përdoruesin",
+  "reportUser": "⚠️ Raporto",
+  "moreOptionsTitle": "⚙️ Më shumë opsione",
+  "giftedVipNote": "🎁 Të ka dhuruar VIP"
 };

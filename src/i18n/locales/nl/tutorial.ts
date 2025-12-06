@@ -1,13 +1,13 @@
 export default {
   "availableCommands": "Je kunt de volgende opdrachten op elk moment gebruiken:",
-  "catchBottle": "🎣 **Pak een berichtfles op**",
-  "catchBottleDesc": "Bekijk de berichtflessen van anderen, reageer indien geïnteresseerd en begin met chatten",
+  "catchBottle": "🎣 **Vang Wensfles**",
+  "catchBottleDesc": "Bekijk de Wensfles van anderen, geef een wens terug en begin een gesprek~",
   "clickButtonHint": "💡 Klik op de knop om door te gaan",
-  "commandCatch": "• /catch - Pak berichtfles op",
+  "commandCatch": "• Vang Wensfles",
   "commandHelp": "• /help - Bekijk hulp",
   "commandMenu": "📋 Opdrachtmenu",
   "commandTasks": "• /tasks - Bekijk taken",
-  "commandThrow": "• /throw - Gooi berichtfles weg",
+  "commandThrow": "• Gooi Wensfles",
   "completeTasksForBottles": "💡 Voltooi taken om extra flessen te verdienen",
   "completed": "✅ Tutorial voltooid!",
   "howToBecomeFriends": "💬 **Hoe vrienden maken?**",
@@ -16,11 +16,11 @@ export default {
   "skip": "Overslaan",
   "skipped": "✅ Tutorial overgeslagen",
   "startUsing": "Begin met gebruiken →",
-  "throwBottle": "📦 **Gooi berichtfles weg**",
+  "throwBottle": "📦 **Gooi Wensfles**",
   "throwBottleDesc": "Schrijf je gevoelens of gedachten op, en het systeem helpt je een geschikte persoon te vinden",
   "unknownStep": "❌ Onbekende tutorialstap",
   "viewTasks": "📋 Bekijk taken",
   "welcome": "🎉 Gefeliciteerd met het voltooien van de registratie!",
   "whatIsXunNi": "🌊 **Wat is XunNi?**",
-  "whatIsXunNiDesc": "Een anonieme berichtfles sociale platform dat je helpt gelijkgestemde vrienden te vinden via MBTI en sterrenbeelden"
+  "whatIsXunNiDesc": "Anonieme Wensfles-vriendschapsplatform, vind gelijkgestemde vrienden via wensen, MBTI en sterrenbeelden."
 };

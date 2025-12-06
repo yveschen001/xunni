@@ -19,7 +19,7 @@ export default {
   "noMessages": "(Ingen meldinger)",
   "partnerMessages": "• Meldinger sendt av den andre parten: {count}\n",
   "recentMessages": "📨 **Nylige samtaler:**\n\n",
-  "returnToMenu": "🏠 Gå tilbake til Hovedmeny: /menu",
+  "returnToMenu": "🏠 Hovedmeny",
   "returnToMenuButton": "🏠 Gå tilbake til hovedmeny",
   "stats": "📊 **Statistikk:**\n",
   "time": "Tid: {time}\n\n",

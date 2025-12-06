@@ -9,7 +9,7 @@ export default {
   "subtitle": "Kérjük, válassz egy kategóriát az opciók böngészéséhez.",
   "current": "Jelenleg kiválasztott ({count}/{max}):\n{list}",
   "saved": "✅ Érdeklődési címkék frissítve!",
-  "required_hint": "💡 A pontosabb AI sorsolási szolgáltatások érdekében kérjük, először teljesítsd az érdeklődési címkéket.",
+  "required_hint": "💡 A pontosabb lelki olvasási szolgáltatások érdekében kérjük, először töltse ki érdeklődési címkéit.",
   "categories": {
     "life": "Életmód és stílus",
     "travel": "Utazás és felfedezés",

@@ -122,7 +122,7 @@ export default {
       "body": "{userAttribute},\nVolgens de analyse heb je de sterkste affiniteit met {recommendedAttributes}!\n\n💡 {reason}\n\n👇 Voel je je gelukkig?"
     },
     "btn": {
-      "throw": "🌊 Gooi een fles en waag een kans",
+      "throw": "🌊 Gooi een zegenbottle, wens anderen het beste, en geluk zal naar jou terugkeren.",
       "vip_throw": "🎯 Gooi naar {target}",
       "vip_upsell": "💡 Upgrade naar VIP om de bezorging naar {target} te specificeren, voor nauwkeurige matchmaking!"
     }

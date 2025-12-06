@@ -68,7 +68,7 @@ export default {
     "zodiacVirgo": "处女座"
   },
   "filterAge": "• 年龄=18-25",
-  "filterCommand": "/broadcast_filter <过滤器> <消息内容> ",
+  "filterCommand": "/broadcast_filter <过滤器> <消息内容>",
   "filterConfirmConditions": "**过滤条件：**\n{conditions}\n\n",
   "filterConfirmMessage": "**讯息内容：**\n{message}\n\n",
   "filterConfirmTitle": "🔍 **广播过滤器确认**\n\n",

@@ -1,13 +1,13 @@
 export default {
   "availableCommands": "Puoi utilizzare i seguenti comandi in qualsiasi momento:",
-  "catchBottle": "🎣 **Ritira una bottiglia di messaggi**",
-  "catchBottleDesc": "Controlla le bottiglie di messaggi degli altri, rispondi se sei interessato e inizia a chattare",
+  "catchBottle": "🎣 **Prendi la Bottiglia dei Desideri di benedizioni**",
+  "catchBottleDesc": "Guarda la Bottiglia dei Desideri degli altri, rispondi con un desiderio e inizia a chattare~",
   "clickButtonHint": "💡 Fai clic sul pulsante per continuare",
-  "commandCatch": "• /catch - Raccogli bottiglia di messaggi",
+  "commandCatch": "• /catch - Raccogli una Bottiglia dei Desideri di benedizione",
   "commandHelp": "• /help - Visualizza aiuto",
   "commandMenu": "📋 Menu comandi",
   "commandTasks": "• /tasks - Visualizza attività",
-  "commandThrow": "• /throw - Getta bottiglia di messaggi",
+  "commandThrow": "• /throw - Lancia una Bottiglia dei Desideri Benessere",
   "completeTasksForBottles": "💡 Completa le attività per guadagnare bottiglie extra",
   "completed": "✅ Tutorial completato!",
   "howToBecomeFriends": "💬 **Come fare amici?**",
@@ -16,11 +16,11 @@ export default {
   "skip": "Salta",
   "skipped": "✅ Tutorial saltato",
   "startUsing": "Inizia a usare →",
-  "throwBottle": "📦 **Getta bottiglia di messaggi**",
+  "throwBottle": "📦 **Invia una Bottiglia dei Desideri di benedizione**",
   "throwBottleDesc": "Scrivi le tue emozioni o pensieri e il sistema ti aiuterà a trovare una persona adatta",
   "unknownStep": "❌ Passo del tutorial sconosciuto",
   "viewTasks": "📋 Visualizza attività",
   "welcome": "🎉 Congratulazioni per aver completato la registrazione!",
   "whatIsXunNi": "🌊 **Cos'è XunNi?**",
-  "whatIsXunNiDesc": "Una piattaforma sociale di bottiglie di messaggi anonime che ti aiuta a trovare amici affini attraverso il MBTI e i segni zodiacali"
+  "whatIsXunNiDesc": "Piattaforma di socializzazione anonima con la Bottiglia dei Desideri, trova amici affini attraverso desideri reciproci, MBTI e segni zodiacali."
 };

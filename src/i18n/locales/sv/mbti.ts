@@ -266,5 +266,24 @@ export default {
     "startButton": "📊 Starta testet",
     "resultTitle": "Mitt MBTI-testresultat är {type}!",
     "resultDesc": "Du borde också prova testet～"
-  }
+  },
+  "titles": {
+
+  "INTJ": "Arkitekt",
+  "INTP": "Logiker",
+  "ENTJ": "Befälhavare",
+  "ENTP": "Debattör",
+  "INFJ": "Försvarare",
+  "INFP": "Mäklare",
+  "ENFJ": "Huvudperson",
+  "ENFP": "Kampanjledare",
+  "ISTJ": "Logistikexpert",
+  "ISFJ": "Försvarare",
+  "ESTJ": "Exekutiv",
+  "ESFJ": "Konsul",
+  "ISTP": "Virtuos",
+  "ISFP": "Äventyrare",
+  "ESTP": "Entreprenör",
+  "ESFP": "Underhållare"
+  },
 };

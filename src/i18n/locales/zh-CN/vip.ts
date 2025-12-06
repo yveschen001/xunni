@@ -27,8 +27,8 @@ export default {
   "message8": "价格：{priceStars} ⭐ Telegram Stars / 月\n",
   "message9": "支付时间：{paymentDate.toLocaleDateString(",
   "purchaseCancelled": "✅ 已取消购买",
-  "quota": "• 每天 30 个漂流瓶配额（邀请好友可增加，最高 100 个/天）\n",
-  "quota2": "• 每天 30 个漂流瓶配额（最高 100 个/天）\n",
+  "quota": "• 每天 30 个祝福漂流瓶配额（邀请好友可增加，最高 100 个/天）",
+  "quota2": "• 每天 30 个祝福漂流瓶配额（最高 100 个/天）",
   "refundAdminCommands": "💡 使用以下命令处理：\n• 批准：`/admin_approve_refund <ID>`\n• 拒绝：`/admin_reject_refund <ID> <原因>`",
   "refundApproved": "✅ **退款已批准**\n\n退款金额：{amount} ⭐\n退款将在 1-3 个工作日内到帐。\n\n你的 VIP 会员已取消。\n\n感谢你的理解！",
   "refundApprovedAdmin": "✅ 退款已批准\n\n请求 ID：#{requestId}\n用户 ID：{userId}\n金额：{amount} ⭐",
@@ -75,7 +75,7 @@ export default {
   "text11": "到期时间：{expireDate}\n\n",
   "text12": "退款将在 1-3 个工作日内到帐。\n\n",
   "text13": "请求 ID：#{requestId}\n",
-  "text14": "└ 1 个智能配对 + 2 个公共漂流瓶池展示：额外增加 2 个展示位，等待有缘人捡起。\n让您的瓶子被看到的机会提升 300%！",
+  "text14": "└ 1 个智能配对 + 2 个公共祝福漂流瓶池展示：额外增加 2 个展示位，等待有缘人捡起。\n让您的瓶子被看到的机会提升 300%！",
   "text15": "处理结果会通过 Bot 通知你。\n\n",
   "text16": "请输入退款原因（至少 10 个字）：",
   "text17": "原因: {req.reason}",
@@ -130,5 +130,5 @@ export default {
   "upgrade": "升级 VIP",
   "maxDurationExceeded": "⚠️ 您的 VIP 期限已达到上限 ({maxMonths} 个月)，暂时无法继续购买。",
   "refundedAndRevoked": "ℹ️ 您的款项已退还，VIP 权益已收回。",
-  "benefit_daily_fortune": "• 每日免费 1 次 AI 算命（VIP 专属）"
+  "benefit_daily_fortune": "• 每日免费 1 次 灵能算命（VIP 专属）"
 };

@@ -1,13 +1,13 @@
 export default {
   "availableCommands": "You can use the following commands at any time:",
-  "catchBottle": "🎣 **Pick Up Message Bottle**",
-  "catchBottleDesc": "Check out others' message bottles and reply if you're interested to start chatting.",
+  "catchBottle": "🎣 **Pick up the Blessing Bottle of blessings**",
+  "catchBottleDesc": "Check out others' Blessing Bottles of blessings, reply with blessings, and start chatting~",
   "clickButtonHint": "💡 Please click the button to continue",
-  "commandCatch": "• /catch - Pick up message bottle",
+  "commandCatch": "• /catch - Pick up a blessing Blessing Bottle",
   "commandHelp": "• /help - View help",
   "commandMenu": "📋 Command Menu",
   "commandTasks": "• /tasks - View tasks",
-  "commandThrow": "• /throw - Throw out message bottle",
+  "commandThrow": "• /throw - Throw a blessing Blessing Bottle",
   "completeTasksForBottles": "💡 Complete tasks to earn extra bottles",
   "completed": "✅ Tutorial completed!",
   "howToBecomeFriends": "💬 **How to make friends?**",
@@ -16,11 +16,11 @@ export default {
   "skip": "Skip",
   "skipped": "✅ Tutorial skipped",
   "startUsing": "Start using →",
-  "throwBottle": "📦 **Throw Out Message Bottle**",
+  "throwBottle": "📦 **Send a blessing Blessing Bottle**",
   "throwBottleDesc": "Write down your feelings or thoughts, and the system will help you find the right person",
   "unknownStep": "❌ Unknown tutorial step",
   "viewTasks": "📋 View tasks",
   "welcome": "🎉 Congratulations on completing your registration!",
   "whatIsXunNi": "🌊 **What is XunNi?**",
-  "whatIsXunNiDesc": "An anonymous message bottle social platform that helps you find like-minded friends through MBTI and zodiac signs."
+  "whatIsXunNiDesc": "Anonymous Blessing Bottle friendship platform, find like-minded friends through mutual blessings, MBTI, and zodiac signs."
 };

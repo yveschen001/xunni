@@ -56,13 +56,20 @@ export async function updateConversationHistory(
   try {
     // Get viewer (current user) to check VIP status
     const { findUserByTelegramId } = await import('~/db/queries/users');
+    const { createI18n, loadTranslations } = await import('~/i18n');
     const viewer = await findUserByTelegramId(db, userTelegramId);
+    
     const isVip = !!(
       viewer?.is_vip &&
       viewer.vip_expire_at &&
       new Date(viewer.vip_expire_at) > new Date()
     );
 
+    // Load translations for viewer's locale
+    const locale = viewer?.language_pref || 'zh-TW';
+    await loadTranslations(env, locale);
+    const i18n = createI18n(locale);
+    
     // Get partner's avatar URL (only for first message) with smart caching
     let partnerAvatarUrl: string | null = null;
 
@@ -101,8 +108,7 @@ export async function updateConversationHistory(
     );
 
     // Get user for i18n (viewer already fetched above)
-    const { createI18n } = await import('~/i18n');
-    const i18n = createI18n(viewer?.language_pref || 'zh-TW');
+    // i18n instance already created at start of function
 
     // Format new message entry
     const newMessageEntry = formatMessageEntry(messageTime, direction, messageContent, i18n);
@@ -117,6 +123,15 @@ export async function updateConversationHistory(
         },
       ],
       [{ text: i18n.t('conversationHistory.viewAllConversations'), callback_data: 'chats' }],
+      // Add Profile Button (for Gift/Match features)
+      [{
+        text: partnerInfo 
+          ? i18n.t('conversationHistory.viewProfileWithNickname', { nickname: partnerInfo.maskedNickname })
+          : i18n.t('conversationHistory.viewProfileCard'),
+        callback_data: `conv_profile_${conversationId}`,
+      }],
+      // Add Back to Menu Button
+      [{ text: i18n.t('common.backToMenu'), callback_data: 'menu' }],
     ];
 
     // Add ad/task button for non-VIP users
@@ -458,7 +473,8 @@ export async function updateNewMessagePost(
     bloodType: string;
     zodiac: string;
     matchScore?: number;
-  }
+  },
+  originalContent?: string
 ): Promise<void> {
   const telegram = createTelegramService(env);
 
@@ -478,9 +494,14 @@ export async function updateNewMessagePost(
 
     // Get user for i18n and VIP status
     const { findUserByTelegramId } = await import('~/db/queries/users');
-    const { createI18n } = await import('~/i18n');
+    const { createI18n, loadTranslations } = await import('~/i18n');
     const user = await findUserByTelegramId(db, userTelegramId);
-    const i18n = createI18n(user?.language_pref || 'zh-TW');
+    
+    // Load translations
+    const locale = user?.language_pref || 'zh-TW';
+    await loadTranslations(env, locale);
+    
+    const i18n = createI18n(locale);
     const isVip = !!(
       user?.is_vip &&
       user?.vip_expire_at &&
@@ -494,7 +515,8 @@ export async function updateNewMessagePost(
       messageTime,
       conversationId,
       partnerInfo,
-      i18n
+      i18n,
+      originalContent
     );
 
     // Build buttons based on VIP status
@@ -504,10 +526,17 @@ export async function updateNewMessagePost(
           text: i18n.t('conversationHistory.replyButton'),
           callback_data: `conv_reply_${identifier}`,
         },
+        {
+          text: i18n.t('conversationHistory.viewHistoryButton'),
+          // Using 'history_read:{identifier}:{page}' format
+          callback_data: `history_read:${identifier}:1`,
+        },
       ],
       [
         {
-          text: i18n.t('conversationHistory.viewProfileCard'),
+          text: partnerInfo 
+            ? i18n.t('conversationHistory.viewProfileWithNickname', { nickname: partnerInfo.maskedNickname })
+            : i18n.t('conversationHistory.viewProfileCard'),
           callback_data: `conv_profile_${conversationId}`,
         },
       ],
@@ -537,6 +566,9 @@ export async function updateNewMessagePost(
         buttons.push([{ text: prompt.button_text, callback_data: prompt.button_callback }]);
       }
     }
+
+    // Add Back to Menu Button (below Ad button)
+    buttons.push([{ text: i18n.t('common.backToMenu'), callback_data: 'menu' }]);
 
     // Send new message with buttons
     const sentMessage = await telegram.sendMessageWithButtonsAndGetId(

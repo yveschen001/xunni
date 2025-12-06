@@ -97,9 +97,9 @@ export default {
     "nickname": "❌ Nem sikerült lekérdezni a Telegram becenevet",
     "nickname2": "❌ A felhasználónév nem tartalmazhat weboldal linket\n\n",
     "nickname3": "❌ \\{validation.error}\n\nKérlek, írd be újra a becenevet:",
-    "quota": "❌ A mai üzenet palack kvóta kimerült (\\{quotaDisplay})\n\n💡 Módok a további kvóta megszerzéséhez:\n",
+    "quota": "❌ A mai Áldás Üveg áldási kvótája elfogyott (\\{quotaDisplay})\n\n💡 További kvóták megszerzésének módjai:",
     "quota2": "❌ A mai beszélgetési üzenet kvóta elfogyott (\\{usedToday}/\\{dailyLimit})\n\n",
-    "quota3": "❌ A mai message bottle kvóta elfogyott (\\{quotaDisplay})\n\n",
+    "quota3": "❌ A mai Áldás Üveg áldáskerete elhasználódott (\\{quotaDisplay})",
     "register": "❌ Kérlek, először fejezd be a regisztrációs folyamatot.\n\nHasználj /start-ot a regisztráció folytatásához.",
     "register2": "❌ Felhasználói adatok nem találhatóak, kérlek használj /start-ot a regisztrációhoz.",
     "register3": "❌ Kérlek, fejezd be a regisztrációs folyamatot az üzenet palackok felvételéhez.\n\nHasználj /start-ot a regisztráció folytatásához.",
@@ -179,5 +179,6 @@ export default {
   "userNotFoundRegister": "⚠️ A felhasználó nem létezik, kérjük, először regisztráljon a /start paranccsal.",
   "verificationFailed": "❌ A hitelesítés meghiúsult, kérjük, próbálkozzon később",
   "invalidTimeFormat": "Érvénytelen időformátum\nPélda: 19:30 (24 órás formátum, 00-23 óra, 00-59 perc)",
-  "invalidDateFormat": "Érvénytelen dátumformátum\nPélda: 2000-01-01"
+  "invalidDateFormat": "Érvénytelen dátumformátum\nPélda: 2000-01-01",
+  "taskAlreadyCompleted": "❌ Ez a feladat már teljesítve lett, és a jutalom már igénybevételre került."
 };

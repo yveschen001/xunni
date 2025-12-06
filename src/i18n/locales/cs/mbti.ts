@@ -266,5 +266,24 @@ export default {
     "startButton": "📊 Začít test",
     "resultTitle": "Můj výsledek MBTI testu je {type}!",
     "resultDesc": "Měli byste také zkusit test～"
-  }
+  },
+  "titles": {
+
+  "INTJ": "Architekt",
+  "INTP": "Logik",
+  "ENTJ": "Velitel",
+  "ENTP": "Debatér",
+  "INFJ": "Obhájce",
+  "INFP": "Zprostředkovatel",
+  "ENFJ": "Hrdina",
+  "ENFP": "Kampaně",
+  "ISTJ": "Logistik",
+  "ISFJ": "Obránce",
+  "ESTJ": "Výkonný",
+  "ESFJ": "Konzul",
+  "ISTP": "Virtuos",
+  "ISFP": "Dobrodruh",
+  "ESTP": "Podnikatel",
+  "ESFP": "Zábavný"
+  },
 };

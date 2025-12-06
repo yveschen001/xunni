@@ -125,7 +125,7 @@ export function calculateLanguageScore(
 // MBTI Matching
 // ============================================================================
 
-const MBTI_BEST_MATCHES: Record<string, string[]> = {
+export const MBTI_BEST_MATCHES: Record<string, string[]> = {
   INTJ: ['ENFP', 'ENTP'],
   INTP: ['ENFJ', 'ENTJ'],
   ENTJ: ['INFP', 'INTP'],
@@ -143,6 +143,13 @@ const MBTI_BEST_MATCHES: Record<string, string[]> = {
   ESTP: ['ISFJ', 'ISTJ'],
   ESFP: ['ISFJ', 'ISTJ'],
 };
+
+/**
+ * Get best MBTI matches for a given type
+ */
+export function getBestMbtiMatches(mbti: string): string[] {
+  return MBTI_BEST_MATCHES[mbti] || [];
+}
 
 /**
  * Calculate MBTI match score

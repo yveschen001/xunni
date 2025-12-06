@@ -36,14 +36,48 @@ ${details}
 `.trim();
 
     try {
+      let success = false;
       if (buttons.length > 0) {
-        await this.telegram.sendMessageWithButtons(this.adminGroupId, message, buttons);
+        success = await this.telegram.sendMessageWithButtons(this.adminGroupId, message, buttons);
       } else {
-        await this.telegram.sendMessage(this.adminGroupId, message);
+        success = await this.telegram.sendMessage(this.adminGroupId, message);
+      }
+
+      if (!success) {
+        throw new Error(`Failed to send message to admin group ${this.adminGroupId}. Check logs.`);
       }
     } catch (error) {
       console.error('[AdminLogService] Failed to send log:', error);
+      throw error; // Rethrow to let caller handle it
     }
+  }
+
+  /**
+   * Log a raw error with stack trace (Panic Handler)
+   * Designed for critical global errors
+   */
+  async logError(error: unknown, context: string = ''): Promise<void> {
+    const errorTitle = `🚨 CRITICAL ERROR: ${context}`;
+    let errorMessage = '';
+    let stackTrace = '';
+
+    if (error instanceof Error) {
+      errorMessage = error.message;
+      stackTrace = error.stack || 'No stack trace';
+    } else {
+      errorMessage = String(error);
+      stackTrace = 'Unknown error type';
+    }
+
+    // Format for Telegram (truncate if too long)
+    const details = `
+Error: ${errorMessage}
+
+Stack:
+${stackTrace.substring(0, 1000)}...
+    `.trim();
+
+    await this.logEvent(errorTitle, details);
   }
 
   /**
@@ -58,24 +92,38 @@ ${details}
     aiConfidence: number;
     actionTaken: string;
   }): Promise<void> {
-    const title = '🚨 **New Report / Incident**';
+    const title = '🚨 新的舉報報告';
     const details = `
-**Reporter**: \`${data.reporterId}\`
-**Suspect**: \`${data.suspectId}\`
-**Reason**: ${data.reason}
+舉報人: ${data.reporterId}
+被舉報人: ${data.suspectId}
+原因: ${data.reason}
 
-**📝 Evidence (Context):**
-${data.evidence.join('\n')}
+證據:
+${data.evidence.map((e) => `- ${e}`).join('\n')}
 
-**🤖 AI Analysis:**
-Verdict: ${data.aiVerdict} (Conf: ${data.aiConfidence}%)
-Action: **${data.actionTaken}**
+🤖 AI 分析:
+判決: ${data.aiVerdict}
+信心度: ${Math.round(data.aiConfidence * 100)}%
+
+處置: ${data.actionTaken}
     `.trim();
 
     const buttons = [
       [
-        { text: '🔓 Unban (False Positive)', callback_data: `admin_ops_unban_${data.suspectId}` },
-        { text: '📜 History', callback_data: `admin_ops_history_${data.suspectId}` },
+        {
+          text: '✅ 同意 AI (維持處置)',
+          callback_data: `admin_approve:${data.suspectId}`,
+        },
+        {
+          text: '❌ 駁回 AI (撤銷處置)',
+          callback_data: `admin_reject:${data.suspectId}`,
+        },
+      ],
+      [
+        {
+          text: '👮‍♂️ 人工審核',
+          callback_data: `admin_review:${data.suspectId}`,
+        },
       ],
     ];
 
@@ -83,7 +131,7 @@ Action: **${data.actionTaken}**
   }
 
   /**
-   * Log a new appeal
+   * Log an appeal
    */
   async logAppeal(data: {
     userId: string;
@@ -92,124 +140,32 @@ Action: **${data.actionTaken}**
     aiRecommendation: string;
     aiConfidence: number;
   }): Promise<void> {
-    const title = '📝 **New Appeal Received**';
+    const title = '📩 新的申訴請求';
     const details = `
-**User**: \`${data.userId}\`
-**Ban Reason**: ${data.banReason}
-**Appeal**: "${data.appealText}"
+用戶ID: ${data.userId}
+封鎖原因: ${data.banReason}
 
-**🤖 AI Recommendation:**
-${data.aiRecommendation} (Conf: ${data.aiConfidence}%)
+申訴內容:
+${data.appealText}
+
+🤖 AI 建議:
+${data.aiRecommendation}
+(信心度: ${Math.round(data.aiConfidence * 100)}%)
     `.trim();
 
     const buttons = [
       [
-        { text: '✅ Approve (Unban)', callback_data: `admin_ops_approve_${data.userId}` },
-        { text: '❌ Reject', callback_data: `admin_ops_reject_${data.userId}` },
+        {
+          text: '✅ 解除封鎖',
+          callback_data: `admin_unban:${data.userId}`,
+        },
+        {
+          text: '❌ 駁回申訴',
+          callback_data: `admin_reject_appeal:${data.userId}`,
+        },
       ],
     ];
 
     await this.logEvent(title, details, buttons);
-  }
-
-  /**
-   * Log an error with Smart Alerting (Aggregation & Throttling)
-   */
-  async logError(error: unknown, context: Record<string, any> = {}): Promise<void> {
-    const errorName = error instanceof Error ? error.name : 'UnknownError';
-    const errorMessage = error instanceof Error ? error.message : String(error);
-    const fingerprint = await this.generateFingerprint(errorName, errorMessage);
-
-    // Track daily total errors (fire and forget)
-    this.incrementDailyErrorStats().catch((e) => console.error('Failed to increment stats:', e));
-
-    // If no cache, log directly (dev/fallback)
-    if (!this.cache) {
-      console.warn('[AdminLogService] No CACHE binding, skipping throttle.');
-      await this.sendErrorAlert(errorName, errorMessage, context, 1);
-      return;
-    }
-
-    const key = `alert:${fingerprint}`;
-    const now = Date.now();
-    const THROTTLE_WINDOW = 300 * 1000; // 5 minutes
-
-    try {
-      const cached = await this.cache.get<{
-        first_seen: number;
-        last_sent: number;
-        count: number;
-      }>(key, 'json');
-
-      if (cached) {
-        // Increment count
-        cached.count += 1;
-
-        // Check if we should send update
-        if (now - cached.last_sent > THROTTLE_WINDOW) {
-          // Window passed, send update with accumulated count
-          await this.sendErrorAlert(errorName, errorMessage, context, cached.count);
-          cached.last_sent = now;
-          cached.count = 0; // Reset count (will be 0, effectively just sent report)
-          // Ideally we want to count distinct occurrences.
-          // If we report "Occurred 5 times", then we start fresh.
-        }
-
-        // Update cache
-        await this.cache.put(key, JSON.stringify(cached), { expirationTtl: 3600 }); // Keep for 1 hour
-      } else {
-        // First time
-        const data = {
-          first_seen: now,
-          last_sent: now,
-          count: 1,
-        };
-        await this.sendErrorAlert(errorName, errorMessage, context, 1);
-        await this.cache.put(key, JSON.stringify(data), { expirationTtl: 3600 });
-      }
-    } catch (err) {
-      console.error('[AdminLogService] Cache error:', err);
-      // Fallback to send
-      await this.sendErrorAlert(errorName, errorMessage, context, 1);
-    }
-  }
-
-  private async sendErrorAlert(
-    name: string,
-    message: string,
-    context: Record<string, any>,
-    count: number
-  ) {
-    const title = `🚨 **System Error**${count > 1 ? ` (x${count})` : ''}`;
-    const contextStr = Object.entries(context)
-      .map(([k, v]) => `• ${k}: ${typeof v === 'object' ? JSON.stringify(v) : v}`)
-      .join('\n');
-    const details = `
-**Error**: \`${name}\`
-**Message**: ${message}
-${contextStr ? `\n**Context**:\n${contextStr}` : ''}
-`.trim();
-
-    await this.logEvent(title, details);
-  }
-
-  private async generateFingerprint(name: string, message: string): Promise<string> {
-    const data = new TextEncoder().encode(name + message);
-    const hashBuffer = await crypto.subtle.digest('SHA-1', data);
-    const hashArray = Array.from(new Uint8Array(hashBuffer));
-    return hashArray
-      .map((b) => b.toString(16).padStart(2, '0'))
-      .join('')
-      .substring(0, 8);
-  }
-
-  private async incrementDailyErrorStats() {
-    if (!this.cache) return;
-    const today = new Date().toISOString().split('T')[0];
-    const key = `stats:errors:${today}`;
-    // Basic read-modify-write
-    const current = await this.cache.get(key);
-    const val = current ? parseInt(current) : 0;
-    await this.cache.put(key, (val + 1).toString(), { expirationTtl: 86400 * 3 }); // Keep for 3 days
   }
 }

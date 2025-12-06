@@ -8,7 +8,7 @@ export default {
     "love_match": "Çift uyumu",
     "love_ideal": "İdeal tip analizi"
   },
-  "back_to_menu": "🔙 AI fal menüsüne geri dön.",
+  "back_to_menu": "🔙 Psişik Okuma Menüsüne Dön",
   "get_more_bottles": "💎 Daha fazla kehanet fal şişesi edin",
   "relationship": {
     "love": "Çift",
@@ -16,7 +16,7 @@ export default {
     "family": "Aile",
     "work": "İş arkadaşları"
   },
-  "menuTitle": "AI falı",
+  "menuTitle": "Psişik Okuma",
   "currentProfile": "Mevcut profil",
   "warehouse": "Doğum haritası depolama",
   "manageProfiles": "Doğum haritalarını yönet",
@@ -148,21 +148,21 @@ export default {
   },
   "dailyPush": "📅 Bugünün burç yorumu teslim edildi!",
   "dailyPushBtn": "👇 Görüntülemek için tıklayın",
-  "backToMenu": "🔙 AI Fal Menüsüne Dön",
+  "backToMenu": "🔙 Psikik Okuma Menüsüne Geri",
   "addProfile": "Grafik Dosyası Ekle",
   "quotaDisplay": "🔮 Fal Bakma fal şişesi: {total} (Bu hafta ücretsiz: {weekly}/{limit} | Ek: {additional})",
   "quotaDisplayVip": "🔮 fal şişesi: {total} (Bugün: {daily}/1 | Ek: {additional})",
   "quotaDisplayFree": "🔮 fal şişesi: {total} (Bu hafta ücretsiz: {weekly}/1 | Ek: {additional})",
   "profileDetails": "👤 {gender} {blood} | 🎂 {birthday} | {zodiac} | 🧠 {mbti}",
-  "getMore": "Daha fazla kader tahmin şişesi al",
-  "getMoreInfo": "🔮 *Şans Şişesi Nasıl Elde Edilir?*\n\n1. **Haftalık Ücretsiz**: Normal kullanıcılar haftada 1, VIP'ler günde 1 alır.\n2. **Davet Ödülleri**: Bir arkadaşınızı davet edin ve o, başka bir arkadaşını başarıyla davet ettiğinde ödül alırsınız (24 saat içinde en fazla 1 şans şişesi).\n3. **fal şişesi Ödülleri**: Gönderilen her 10 fal şişesi için 1 şans şişesi alın. (24 saat içinde en fazla 1 şans şişesi)\n4. **Doğrudan Satın Alma (🔥 Sınırlı Süre %20 İndirim)**:\n • Küçük Paket {smallAmount} - ~{originalSmallPrice} Yıldız~ {smallPrice} Yıldız\n • Büyük Paket {largeAmount} - ~{originalLargePrice} Yıldız~ {largePrice} Yıldız",
+  "getMore": "Daha Fazla Fal Şişesi Al",
+  "getMoreInfo": "🔮 *Fal Şişesi Nasıl Alınır?*\n\n1. **Her Hafta Ücretsiz**: Normal kullanıcılar haftada 1, VIP kullanıcılar günde 1.\n2. **Davet Ödülü**: Bir arkadaşınızı davet ettiğinizde ve o arkadaşınız da başarılı bir şekilde bir arkadaş daha davet ettiğinde ödül alırsınız (24 saat içinde, maksimum 1 fal şişesi). \n3. **Dilek Dilek Şişesi Ödülü**: Her 10 Dilek Dilek Şişesi gönderdiğinizde 1 fal şişesi alırsınız. (24 saat içinde, maksimum 1 fal şişesi)\n4. **Doğrudan Satın Alma (🔥 Sınırlı Zamanlı %20 İndirim)**:\n   • Küçük Paket {smallAmount} Adet - ~{originalSmallPrice} Yıldız~ {smallPrice} Yıldız\n   • Büyük Paket {largeAmount} Adet - ~{originalLargePrice} Yıldız~ {largePrice} Yıldız",
   "buySmall": "🔥 Özel Fiyat {price} Yıldız (Satın Al {amount} ürün)",
   "buyLarge": "🔥 Özel Fiyat {price} Yıldız (Satın Al {amount} ürün)",
-  "invoiceTitle": "{amount} şans şişesi satın al",
-  "invoiceDesc": "Satın aldıktan sonra, hemen yapay zeka fal hizmetini kullanabilirsiniz ve her fal hizmeti 1 şans şişesi tüketir.\n\nŞimdi satın almak için aşağıdaki düğmeye tıklayın:",
-  "purchaseSuccess": "🎉 Satın alma başarılı! {amount} şans şişesi eklendi.",
-  "bottleReward": "🎉 Tebrikler! {count} şans şişesi gönderdiniz ve 1 şans şişesi ödülü aldınız!",
-  "inviteChainReward": "🎉 Tebrikler! Davet ettiğiniz arkadaş başarılı bir şekilde yeni bir arkadaş davet etti ve 1 şans şişesi ödülü aldınız!",
+  "invoiceTitle": "{amount} Adet Fal Şişesi Satın Al",
+  "invoiceDesc": "Satın alma sonrası ruhsal fal hizmetini hemen kullanabilirsiniz, her ruhsal fal hizmeti 1 fal şişesi tüketir.\n\nAşağıdaki butona basarak hemen satın alın:",
+  "purchaseSuccess": "🎉 Satın Alma Başarılı! {amount} Adet Fal Şişesi Eklendi.",
+  "bottleReward": "🎉 Tebrikler! {count} fal şişesi gönderdiniz ve 1 şans şişesi ödülü aldınız!",
+  "inviteChainReward": "🎉 Tebrikler! Davet ettiğiniz arkadaş yeni bir arkadaş davet etti, 1 adet fal şişesi ödülü kazandınız!",
   "menu": {
     "love": "Öznitelik Tanısı (İlişki Eşleştirme)",
     "attribute_desc": "Romantik özelliklerinizi ve potansiyel niteliklerinizi analiz edin.",
@@ -190,7 +190,9 @@ export default {
     "match_report_title": "💞 Çiftlerin senkretik raporu",
     "wait_for_consent": "⏳ Diğer tarafın onayını bekliyoruz...",
     "consent_accepted": "✅ Diğer taraf kabul etti! Rapor hazırlanıyor...",
-    "consent_rejected": "❌ Diğer taraf senkretik talebi reddetti."
+    "consent_rejected": "❌ Diğer taraf senkretik talebi reddetti.",
+    "invite_friend": "📨 Invite Friend to Experience",
+    "invite_friend_text": "Hey! I want to try the Compatibility Test with you. Create your fortune profile now!"
   },
   "role": {
     "husband": "Koca",
@@ -228,12 +230,26 @@ export default {
       "drawn": "🎴 Kartlar çekildi:"
     }
   },
-  "profile_incomplete_hint": "💡 Daha doğru AI fal hizmetleri sunmak için lütfen önce ilgi alanlarınızı, mesleğinizi veya MBTI bilginizi doldurun.",
+  "profile_incomplete_hint": "💡 Daha doğru bir spiritüel fal hizmeti sunmak için lütfen önce ilgi alanlarınızı, mesleğinizi veya MBTI’nizi ... ve diğer bilgileri tamamlayın.",
   "tarot_menu_title": "Tarot Kartları",
   "tarot_ui": {
     "intro": "🔮 *Tarot Yorumu*\n\nLütfen sorunuza sessizce düşünün (örneğin, \"Son zamanlarda iş şansım nasıl?\" veya \"Bu ilişkiyi nasıl yönetmeliyim?\") ve kartları çekmek için aşağıdaki butona tıklamadan önce odaklanın.",
     "draw": "🔮 Kart Çek",
     "shuffling": "Karıştırılıyor...",
     "drawn": "🎴 Kartlar çekildi:"
+  },
+  "profileUpdated": "✅ Astroloji profili güncellendi!",
+  "btn_complete_info": "✏️ Doğum bilgilerinizi tamamlayın",
+  "complete_info_hint": "💡 Yükselen burç ve ev analizini açığa çıkarmak için doğum saatinizi ve yerinizi mükemmelleştirin!",
+  "btn_edit_info": "📝 Doğum bilgilerini düzenle",
+  "edit": {
+    "currentInfo": "📋 Güncel Bilgi:",
+    "currentTime": "Doğum Zamanı: {time}",
+    "currentTimeUnknown": "Doğum Zamanı: Belirsiz",
+    "currentCity": "Doğum Şehri: {city}",
+    "currentCityUnknown": "Doğum Şehri: Belirlenmedi",
+    "confirmEdit": "Yukarıdaki bilgiyi değiştirmek istiyor musunuz?",
+    "btnConfirmEdit": "✅ Evet, değiştirmek istiyorum",
+    "btnCancelEdit": "❌ İptal"
   }
 };

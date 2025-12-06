@@ -12,5 +12,6 @@ export default {
   "nicknameInputHint": "👇 براہ کرم نیا نک نام درج کریں:",
   "bioInstruction": "براہ کرم نئی خود تعارفی معلومات درج کریں (100 حروف تک).\n\nآپ کی موجودہ خود تعارفی معلومات ہے: {bio}",
   "bioInputHint": "👇 براہ کرم نئی خود تعارفی معلومات درج کریں:",
-  "bloodTypeInstruction": "براہ کرم اپنی خون کی قسم منتخب کریں:"
+  "bloodTypeInstruction": "براہ کرم اپنی خون کی قسم منتخب کریں:",
+  "matchPrefInstruction": "براہ کرم اپنی ملاپ کی ترجیح منتخب کریں:"
 };

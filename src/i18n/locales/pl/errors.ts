@@ -97,9 +97,9 @@ export default {
     "nickname": "❌ Nie można pobrać pseudonimu Telegram",
     "nickname2": "❌ Nazwa użytkownika nie może zawierać linku do strony internetowej\n\n",
     "nickname3": "❌ \\{validation.error}\n\nProszę ponownie wprowadzić pseudonim:",
-    "quota": "❌ Dzienny limit wiadomości butelek został wyczerpany (\\{quotaDisplay})\n\n💡 Sposoby na zdobycie większego limitu:\n",
+    "quota": "❌ Dzisiaj wykorzystano limit błogosławieństw butelki błogosławieństwa (\\{quotaDisplay})\n\n💡 Sposoby na uzyskanie większej liczby limitów:",
     "quota2": "❌ Dzisiejszy limit wiadomości został wykorzystany (\\{usedToday}/\\{dailyLimit})\n\n",
-    "quota3": "❌ Dzisiejszy limit butelek z wiadomościami został wyczerpany (\\{quotaDisplay})\n\n",
+    "quota3": "❌ Dzisiejsza kwota błogosławieństw w butelce błogosławieństw została wykorzystana (\\{quotaDisplay})",
     "register": "❌ Proszę najpierw zakończyć proces rejestracji.\n\nUżyj /start aby kontynuować rejestrację.",
     "register2": "❌ Nie znaleziono danych użytkownika, proszę najpierw użyć /start, aby zarejestrować.",
     "register3": "❌ Proszę zakończyć proces rejestracji, aby odebrać butelki z wiadomościami.\n\nUżyj /start aby kontynuować rejestrację.",
@@ -179,5 +179,6 @@ export default {
   "userNotFoundRegister": "⚠️ Użytkownik nie istnieje, proszę najpierw zarejestrować się używając /start.",
   "verificationFailed": "❌ Weryfikacja nie powiodła się, spróbuj ponownie później",
   "invalidTimeFormat": "Nieprawidłowy format czasu\nNa przykład: 19:30 (format 24-godzinny, 00-23 godziny, 00-59 minuty)",
-  "invalidDateFormat": "Nieprawidłowy format daty\nNa przykład: 2000-01-01"
+  "invalidDateFormat": "Nieprawidłowy format daty\nNa przykład: 2000-01-01",
+  "taskAlreadyCompleted": "❌ To zadanie zostało już zakończone, a nagroda została odebrana."
 };

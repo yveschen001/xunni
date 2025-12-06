@@ -122,7 +122,7 @@ export default {
       "body": "{userAttribute},\nPodle analýzy máte nejsilnější afinitu s {recommendedAttributes}!\n\n💡 {reason}\n\n👇 Cítíte se šťastní?"
     },
     "btn": {
-      "throw": "🌊 Hoďte láhev se zprávou a vezměte šanci",
+      "throw": "🌊 Hoďte požehnání do lahve s požehnáním, přejte ostatním štěstí a štěstí se vám vrátí.",
       "vip_throw": "🎯 Hoďte na {target}",
       "vip_upsell": "💡 Upgradujte na VIP a určete dodání na {target}, pro přesné párování!"
     }

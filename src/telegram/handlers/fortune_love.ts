@@ -23,12 +23,12 @@ export class LoveFortuneHandler {
   async handleLoveMenu(chatId: number, telegram: ReturnType<typeof createTelegramService>) {
     console.log(`[LoveFortune] handleLoveMenu called for ${chatId}`);
     
-    const text = this.i18n.t('fortune.menu.attribute_desc'); // "Select mode..."
+    const text = this.i18n.t('fortune.love.menu_desc'); // Correct key for "Explore your love genes..."
       const buttons = [
       // Featured (Row 1)
       [
-        { text: `👤 ${this.i18n.t('fortune.love.mode_single')}`, callback_data: 'fortune_love_ideal' },
-        { text: `💞 ${this.i18n.t('fortune.love.mode_match')}`, callback_data: 'fortune_love_match_start' }
+        { text: this.i18n.t('fortune.love.mode_single'), callback_data: 'fortune_love_ideal' },
+        { text: this.i18n.t('fortune.love.mode_match'), callback_data: 'fortune_love_match_start' }
       ],
       [
         { text: this.i18n.t('fortune.back_to_menu'), callback_data: 'menu_fortune' }
@@ -202,6 +202,7 @@ export class LoveFortuneHandler {
   private async startTargetIdInput(chatId: number, userId: string, relType: RelationshipType, familyRole: string | undefined, db: any, telegram: ReturnType<typeof createTelegramService>) {
     // Clear potential conflicting sessions to avoid input hijacking
     await clearSession(db, userId, 'edit_profile');
+    await clearSession(db, userId, 'throw_bottle');
     
     // Save session
     await upsertSession(
@@ -317,11 +318,14 @@ export class LoveFortuneHandler {
 
         // Target Not Found -> Invite
         if (result.code === 'TARGET_NOT_FOUND') {
-          // Use invite code link
+          // Use share url link
           const botUsername = env.ENVIRONMENT === 'staging' ? 'xunni_dev_bot' : 'XunNiBot';
-          const inviteLink = `https://t.me/${botUsername}?start=invite_${user?.invite_code || ''}`;
+          const inviteUrl = `https://t.me/${botUsername}?start=invite_${user?.invite_code || ''}`;
+          const inviteText = i18n.t('fortune.love.invite_friend_text');
+          const shareUrl = `https://t.me/share/url?url=${encodeURIComponent(inviteUrl)}&text=${encodeURIComponent(inviteText)}`;
+          
           const buttons = [
-            [{ text: i18n.t('fortune.love.invite_friend'), url: inviteLink }],
+            [{ text: i18n.t('fortune.love.invite_friend'), url: shareUrl }],
             [{ text: i18n.t('fortune.back_to_menu'), callback_data: 'menu_fortune' }]
           ];
           // errorMsg already contains the user's requested text from zh-TW.ts

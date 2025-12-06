@@ -1,7 +1,7 @@
 export default {
   "autoCompleted": "등록 과정이 자동으로 완료되었습니다.\n\n",
-  "bottles": "• 메시지 병: {count}\n",
-  "catchCommand": "• /catch - 메시지 병 잡기\n",
+  "bottles": "• 축복 축복의 병: {count}",
+  "catchCommand": "• 잡기 - 축복의 병",
   "conversations": "• 대화: {count}\n",
   "dataReset": "✅ 개발 모드: 데이터가 초기화되었습니다.\n\n모든 데이터가 삭제되었습니다.\n\n💡 이제 테스트 등록 과정을 다시 시작할 수 있습니다.\n\n🔄 재등록: /start\n또는 사용: /dev_restart (자동으로 등록 시작)\n\n⚠️ 주의: 이 기능은 스테이징 환경에서만 사용할 수 있습니다.",
   "getUserInfoFailed": "❌ 정보를 가져오는 데 실패했습니다.",
@@ -30,7 +30,7 @@ export default {
   "telegramId": "텔레그램 ID: {id}\n",
   "testCoreFeatures": "💡 이제 핵심 기능을 직접 테스트할 수 있습니다:\n",
   "testUser": "테스트 사용자",
-  "throwCommand": "• /throw - 메시지 병 던지기\n",
+  "throwCommand": "• /throw - 축복의 병 던지기",
   "userInfo": "🔧 개발 모드: 사용자 정보\n\n",
   "userNotFound": "❌ 사용자가 존재하지 않습니다",
   "vip": "VIP: {status}",

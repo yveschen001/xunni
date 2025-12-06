@@ -19,6 +19,7 @@ export interface Bottle {
   target_region?: string;
   target_zodiac_filter?: string; // JSON array
   target_mbti_filter?: string; // JSON array
+  target_blood_type_filter?: string; // A, B, AB, O, any
 }
 
 export interface ThrowBottleInput {

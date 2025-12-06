@@ -266,5 +266,24 @@ export default {
     "startButton": "📊 Bắt đầu bài kiểm tra",
     "resultTitle": "Kết quả bài kiểm tra MBTI của tôi là {type}!",
     "resultDesc": "Bạn cũng nên thử bài kiểm tra～"
-  }
+  },
+  "titles": {
+
+  "INTJ": "Kiến trúc sư",
+  "INTP": "Nhà logic",
+  "ENTJ": "Tổng chỉ huy",
+  "ENTP": "Nhà tranh luận",
+  "INFJ": "Người biện hộ",
+  "INFP": "Người hòa giải",
+  "ENFJ": "Nhân vật chính",
+  "ENFP": "Nhà vận động",
+  "ISTJ": "Nhà logistic",
+  "ISFJ": "Người bảo vệ",
+  "ESTJ": "Nhà điều hành",
+  "ESFJ": "Đại sứ",
+  "ISTP": "Nhà nghệ thuật",
+  "ISFP": "Nhà phiêu lưu",
+  "ESTP": "Doanh nhân",
+  "ESFP": "Người giải trí"
+  },
 };

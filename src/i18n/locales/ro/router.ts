@@ -1,7 +1,7 @@
 export default {
   "replyPrompt": "💬 Răspunde",
-  "suggestCatch": "❓ Vrei să preiei o sticlă cu mesaj?\n\nFolosește /capturează pentru a prelua sticla cu mesaj\n\n💡 **Comenzi comune**:\n• /aruncă - Aruncă o sticlă cu mesaj\n• /capturează - Preia o sticlă cu mesaj\n• /meniu - Meniul principal\n• /sarcini - Centrul de sarcini",
-  "suggestMenu": "❓ Comandă neinclusă\n\n💡 **Comenzi comune**:\n• /aruncă - Aruncă o sticlă cu mesaj\n• /capturează - Preia o sticlă cu mesaj\n• /meniu - Meniul principal\n• /sarcini - Centrul de sarcini",
-  "suggestThrow": "❓ Vrei să arunci o sticlă cu mesaj?\n\nTe rog să apesi lung pe mesajul anterior sau pe acest mesaj,\nselectează 'Răspunde' din meniu,\napoi introdu conținutul sticlei cu mesaj care urmează să fie trimis\n\n💡 **Comenzi comune**:\n• /aruncă - Aruncă o sticlă cu mesaj\n• /capturează - Preia o sticlă cu mesaj\n• /meniu - Meniul principal\n• /sarcini - Centrul de sarcini\n\n#ARUNCĂ",
-  "throwPrompt": "📝 Vă rugăm să introduceți conținutul sticlei cu mesaj:"
+  "suggestCatch": "❓ Vrei să iei Sticla cu Dorințe?\n\nFolosește pentru a lua Sticla cu Dorințe\n\n💡 **Comenzi Frecvente**：\n• Aruncă - Sticla cu Dorințe\n• Ia - Sticla cu Dorințe\n• Meniul Principal\n• Sarcina - Centru de Sarcini",
+  "suggestMenu": "❓ Nu găsești această comandă\n\n💡 **Comenzi Frecvente**：\n• Aruncă - Sticla cu Dorințe\n• Ia - Sticla cu Dorințe\n• Meniul Principal\n• Sarcina - Centru de Sarcini",
+  "suggestThrow": "❓ Vrei să arunci Sticla cu Dorințe?\n\nTe rog să ții apăsat pe mesajul anterior sau pe acest mesaj,\nalege „Răspunde” din meniu,\nscrie conținutul dorit pentru sticla de dorințe\n\n💡 **Comenzi Frecvente**：\n• Aruncă - Sticla cu Dorințe\n• Ia - Sticla cu Dorințe\n• Meniul Principal\n• Sarcina - Centru de Sarcini\n\n#ARUNCA",
+  "throwPrompt": "📝 Te rog să introduci conținutul pentru Sticla cu Dorințe:"
 };

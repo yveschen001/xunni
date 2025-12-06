@@ -266,5 +266,24 @@ export default {
     "startButton": "📊 Filloni testin",
     "resultTitle": "Rezultati im i testit MBTI është {type}!",
     "resultDesc": "Ju duhet ta provoni testin gjithashtu～"
-  }
+  },
+  "titles": {
+
+  "INTJ": "Arkitekt",
+  "INTP": "Logjicist",
+  "ENTJ": "Komandant",
+  "ENTP": "Debatues",
+  "INFJ": "Avokat",
+  "INFP": "Mediatator",
+  "ENFJ": "Protagonist",
+  "ENFP": "Kampanjues",
+  "ISTJ": "Logjistik",
+  "ISFJ": "Mbrojtës",
+  "ESTJ": "Ekzekutiv",
+  "ESFJ": "Konsull",
+  "ISTP": "Virtuoz",
+  "ISFP": "Avokat",
+  "ESTP": "Sipërmarrës",
+  "ESFP": "Argëtues"
+  },
 };

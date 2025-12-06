@@ -122,7 +122,7 @@ export default {
       "body": "{userAttribute},\nSelon l'analyse, tu as la plus forte affinité avec {recommendedAttributes} !\n\n💡 {reason}\n\n👇 Tu te sens chanceux ?"
     },
     "btn": {
-      "throw": "🌊 Jeter une bouteille et tenter ta chance",
+      "throw": "🌊 Lancez une Bouteille de Vœux de bénédiction, souhaitez du bien aux autres, et le bonheur vous reviendra.",
       "vip_throw": "🎯 Jeter à {target}",
       "vip_upsell": "💡 Passer au VIP pour désigner une livraison à {target}, pour un matchmaking précis !"
     }

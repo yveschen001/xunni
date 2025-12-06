@@ -12,5 +12,6 @@ export default {
   "nicknameInputHint": "👇 Molimo unesite novi nadimak:",
   "bioInstruction": "Molimo unesite novu samoprepoznavanje (do 100 karaktera).\n\nVaša trenutna samoprepoznavanje je: {bio}",
   "bioInputHint": "👇 Molimo unesite novu samoprepoznavanje:",
-  "bloodTypeInstruction": "Molimo izaberite svoju krvnu grupu:"
+  "bloodTypeInstruction": "Molimo izaberite svoju krvnu grupu:",
+  "matchPrefInstruction": "Пожалите да одредите своје преференције у подударању:"
 };

@@ -68,7 +68,7 @@ export default {
     "zodiacVirgo": "ماهی"
   },
   "filterAge": "• سن=18-25\n",
-  "filterCommand": "/broadcast_filter <filter> <msg_content> ",
+  "filterCommand": "/broadcast_filter <filter> <msg_content>",
   "filterConfirmConditions": "**شرایط فیلتر:**\n{conditions}\n\n",
   "filterConfirmMessage": "**محتوای پیام:**\n{message}\n\n",
   "filterConfirmTitle": "🔍 **تایید فیلتر پخش**\n\n",

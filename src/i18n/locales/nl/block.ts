@@ -1,6 +1,6 @@
 export default {
   "cannotIdentify": "⚠️ Kan de gesprekspartner niet identificeren.",
-  "catchNewBottle": "💡 Gebruik /catch om nieuwe berichtflessen op te halen en een nieuw gesprek te starten.",
+  "catchNewBottle": "💡 Gebruik 'Vang' om een nieuwe Wensfles te pakken en een nieuw gesprek te beginnen.",
   "conversationInfoError": "⚠️ Gespreksinformatie is onjuist.",
   "conversationMayEnded": "Het gesprek kan zijn beëindigd of bestaat niet.",
   "conversationNotFound": "⚠️ Dit gesprek kan niet worden gevonden.",
@@ -12,5 +12,5 @@ export default {
   "step3": "3️⃣ Voer /block in.",
   "steps": "**Stappen voor de operatie:**",
   "success": "✅ Deze gebruiker is geblokkeerd (#{identifier}).",
-  "willNotMatch": "Je zult niet langer met elkaars berichtflessen worden gematcht."
+  "willNotMatch": "Jullie zullen niet meer worden gematcht met elkaars Wensfles."
 };

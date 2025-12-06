@@ -4,7 +4,7 @@ export default {
   "cancel": "❌ 取消",
   "cancelled": "已取消",
   "cannotIdentify": "⚠️ 无法识别对话对象\n\n",
-  "catchHint": "• 使用 /catch 捡新的漂流瓶",
+  "catchHint": "• 使用 /catch 捡新的祝福漂流瓶",
   "completeOnboarding": "⚠️ 请先完成注册流程。\n\n使用 /start 继续注册。",
   "conversationInfoError": "⚠️ 对话资讯错误。",
   "conversationInfoError2": "⚠️ 对话资讯错误",

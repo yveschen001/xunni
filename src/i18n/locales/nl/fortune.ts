@@ -8,15 +8,15 @@ export default {
     "love_match": "Koppelscompatibiliteit",
     "love_ideal": "Ideaal type-analyse"
   },
-  "back_to_menu": "🔙 Terug naar het AI waarzegmenu",
-  "get_more_bottles": "💎 Verkrijg meer waarzeggerij boodschapflessen",
+  "back_to_menu": "🔙 Terug naar het menu voor psychische lezingen",
+  "get_more_bottles": "💎 Meer geluksfles",
   "relationship": {
     "love": "Koppels",
     "friend": "Vrienden",
     "family": "Familie",
     "work": "Collega's"
   },
-  "menuTitle": "AI waarzegging",
+  "menuTitle": "Paranormale Lezing",
   "currentProfile": "Huidig profiel",
   "warehouse": "Bewaring geboortehoroscoop",
   "manageProfiles": "Beheer geboortehoroscopen",
@@ -148,21 +148,21 @@ export default {
   },
   "dailyPush": "📅 Vandaag's horoscoop is geleverd!",
   "dailyPushBtn": "👇 Klik om te bekijken",
-  "backToMenu": "🔙 Terug naar AI Fortune Telling Menu",
+  "backToMenu": "🔙 Terug naar het Psychisch Lezing Menu",
   "addProfile": "Voeg Grafiek Bestand toe",
-  "quotaDisplay": "🔮 Voorspellende boodschapfles: {total} (Deze week gratis: {weekly}/{limit} | Extra: {additional})",
-  "quotaDisplayVip": "🔮 boodschap fles: {total} (Vandaag: {daily}/1 | Extra: {additional})",
-  "quotaDisplayFree": "🔮 boodschap fles: {total} (Deze week gratis: {weekly}/1 | Extra: {additional})",
+  "quotaDisplay": "🔮 Geluksfles: {total} (Deze week gratis: {weekly}/{limit} | Extra: {additional})",
+  "quotaDisplayVip": "🔮 Geluksfles: {total} (Vandaag: {daily}/1 | Extra: {additional})",
+  "quotaDisplayFree": "🔮 Geluksfles: {total} (Deze week gratis: {weekly}/1 | Extra: {additional})",
   "profileDetails": "👤 {gender} {blood} | 🎂 {birthday} | {zodiac} | 🧠 {mbti}",
-  "getMore": "Krijg meer waarzeggende flessen",
-  "getMoreInfo": "🔮 *Hoe verkijg je een Fortuin geluksfles?*\n\n1. **Wekelijks Gratis**: Reguliere gebruikers krijgen 1 per week, VIP's krijgen 1 per dag.\n2. **Uitnodigingsbeloningen**: Nodig een vriend uit om zich aan te melden, en wanneer zij succesvol een andere vriend uitnodigen, ontvang je een beloning (tot 1 fortuin geluksfles binnen 24 uur).\n3. **Berichtfles Beloningen**: Voor elke 10 verstuurde berichtflessen ontvang je 1 fortuin geluksfles. (Tot 1 fortuin geluksfles binnen 24 uur)\n4. **Directe Aankoop (🔥 Beperkte Tijd 20% Korting)**:\n • Klein Pakket {smallAmount} - ~{originalSmallPrice} Sterren~ {smallPrice} Sterren\n • Groot Pakket {largeAmount} - ~{originalLargePrice} Sterren~ {largePrice} Sterren",
+  "getMore": "Meer geluksfles",
+  "getMoreInfo": "🔮 *Hoe geluksflessen te verkrijgen?*\n\n1. **Elke week gratis**: Gewone gebruikers krijgen elke week 1, VIP elke dag 1.\n2. **Uitnodigingsbeloning**: Als u een vriend uitnodigt en die vriend uitnodigt ook weer een vriend, ontvangt u een beloning (maximaal 1 geluksfles in 24 uur).\n3. **Zegen Wensfles beloning**: Voor elke 10 verzonden Wensflessen ontvangt u 1 geluksfles. (maximaal 1 geluksfles in 24 uur)\n4. **Direct kopen (🔥 Tijdelijke 80% korting)**:\n   • Klein pakket {smallAmount} - ~{originalSmallPrice} Sterren~ {smallPrice} Sterren\n   • Groot pakket {largeAmount} - ~{originalLargePrice} Sterren~ {largePrice} Sterren",
   "buySmall": "🔥 Speciale Prijs {price} Sterren (Koop {amount} artikelen)",
   "buyLarge": "🔥 Speciale Prijs {price} Sterren (Koop {amount} artikelen)",
-  "invoiceTitle": "Koop {amount} gelukflessen",
-  "invoiceDesc": "Na de aankoop kun je direct de AI waarzegservice gebruiken, en elke waarzegservice verbruikt 1 gelukfles.\n\nKlik op de onderstaande knop om nu te kopen:",
-  "purchaseSuccess": "🎉 Aankoop succesvol! {amount} gelukflessen zijn toegevoegd.",
-  "bottleReward": "🎉 Gefeliciteerd! Je hebt {count} gelukflessen verzonden en 1 gelukfles beloning ontvangen!",
-  "inviteChainReward": "🎉 Gefeliciteerd! Je uitgenodigde vriend heeft succesvol een nieuwe vriend uitgenodigd en je hebt 1 gelukfles beloning ontvangen!",
+  "invoiceTitle": "Koop {amount} geluksfles",
+  "invoiceDesc": "Na aankoop kunt u onmiddellijk gebruik maken van de geestelijke waarzegservice, elke waarzegservice kost 1 geluksfles.\n\nDruk onmiddellijk op de onderstaande knop om te kopen:",
+  "purchaseSuccess": "🎉 Aankoop succesvol! {amount} geluksfles toegevoegd.",
+  "bottleReward": "🎉 Gefeliciteerd! Je hebt {count} geluksfless verzonden en 1 fortune bottle beloning ontvangen!",
+  "inviteChainReward": "🎉 Gefeliciteerd! De vriend die u heeft uitgenodigd, heeft met succes een nieuwe vriend uitgenodigd en u ontvangt 1 geluksfles beloning!",
   "menu": {
     "love": "Attribut Diagnose (Relatie Matching)",
     "attribute_desc": "Analyseer je romantische attributen en potentiële eigenschappen.",
@@ -190,7 +190,9 @@ export default {
     "match_report_title": "💞 Synastri rapport voor stellen",
     "wait_for_consent": "⏳ Wacht op de goedkeuring van de andere partij...",
     "consent_accepted": "✅ De andere partij heeft ingestemd! Rapport wordt gegenereerd...",
-    "consent_rejected": "❌ De andere partij heeft het synastrieverzoek afgewezen."
+    "consent_rejected": "❌ De andere partij heeft het synastrieverzoek afgewezen.",
+    "invite_friend": "📨 Invite Friend to Experience",
+    "invite_friend_text": "Hey! I want to try the Compatibility Test with you. Create your fortune profile now!"
   },
   "role": {
     "husband": "Echtgenoot",
@@ -228,12 +230,26 @@ export default {
       "drawn": "🎴 De kaarten zijn getrokken:"
     }
   },
-  "profile_incomplete_hint": "💡 Om nauwkeurigere AI waarzegdiensten te bieden, voltooi eerst uw interesses, beroep of MBTI-informatie.",
+  "profile_incomplete_hint": "💡 Om een nauwkeurigere spirituele waarzegservice te bieden, vul eerst uw interesses, beroep of MBTI ... en andere informatie in.",
   "tarot_menu_title": "Tarotkaarten",
   "tarot_ui": {
     "intro": "🔮 *Tarot Lezing*\n\nDenk stilletjes aan je vraag (bijv. \"Hoe staat het met mijn werkgeluk recentelijk?\" of \"Hoe moet ik met deze relatie omgaan?\") en focus voordat je op de knop hieronder klikt om kaarten te trekken.",
     "draw": "🔮 Kaarten Trekken",
     "shuffling": "Schudden...",
     "drawn": "🎴 Kaarten zijn getrokken:"
+  },
+  "profileUpdated": "✅ Het astrologieprofiel is bijgewerkt!",
+  "btn_complete_info": "✏️ Vul uw geboortedatum-informatie in",
+  "complete_info_hint": "💡 Perfecteer uw geboortetijd en locatie om het stijgende teken en huisanalyse te ontsluiten!",
+  "btn_edit_info": "📝 Bewerk geboortedatum-informatie",
+  "edit": {
+    "currentInfo": "📋 Huidige Informatie:",
+    "currentTime": "Geboortetijd: {time}",
+    "currentTimeUnknown": "Geboortetijd: Onzeker",
+    "currentCity": "Geboortestad: {city}",
+    "currentCityUnknown": "Geboortestad: Niet Instellen",
+    "confirmEdit": "Wilt u de bovenstaande informatie wijzigen?",
+    "btnConfirmEdit": "✅ Ja, ik wil wijzigen",
+    "btnCancelEdit": "❌ Annuleren"
   }
 };

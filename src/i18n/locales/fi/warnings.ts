@@ -122,7 +122,7 @@ export default {
       "body": "{userAttribute},\nAnalyysin mukaan sinulla on vahvin yhteys {recommendedAttributes}n kanssa!\n\n💡 {reason}\n\n👇 Tunnetko onnea?"
     },
     "btn": {
-      "throw": "🌊 Heitä pullo ja ota riski",
+      "throw": "🌊 Heitä siunaava viesti pullo, toivo muille hyvää, ja onnellisuus palaa sinulle itsellesi.",
       "vip_throw": "🎯 Heitä {target}lle",
       "vip_upsell": "💡 Päivitä VIP:ksi, jotta voit määrittää toimituksen {target}lle, tarkkaa matchausta varten!"
     }

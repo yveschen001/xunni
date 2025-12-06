@@ -27,6 +27,8 @@ export default {
   "selectEndHour": "☀️ Čas začiatku nastavený na {start}:00.\nProsím vyberte čas konca tichých hodín:\n(Nahlásenia sa obnovia po tomto čase)",
   "disabled": "🚫 Tiché hodiny boli deaktivované",
   "quietHoursHint": "Počas tohto obdobia nebudete dostávať neurgentné notifikácie",
+  "quietHoursVipOnly": "🔒 Tiché hodiny (len pre VIP)",
+  "upgradeForQuietHours": "Upravte na VIP a nastavte tiché hodiny, aby ste sa vyhli rušeniu počas prestávok!",
   "blocklist": {
     "title": "🚫 Zoznam blokovaných",
     "empty": "Momentálne nie je žiadny blokovaný zoznam",

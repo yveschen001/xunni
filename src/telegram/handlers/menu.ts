@@ -450,6 +450,9 @@ export async function handleMenuCallback(callbackQuery: CallbackQuery, env: Env)
     }
   } catch (error) {
     console.error('[handleMenuCallback] Error:', error);
+    // Fallback i18n
+    const { createI18n } = await import('~/i18n');
+    const i18n = createI18n('zh-TW');
     await telegram.answerCallbackQuery(callbackQuery.id, i18n.t('error.text6'));
   }
 }

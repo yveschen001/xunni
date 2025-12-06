@@ -8,7 +8,7 @@ export default {
     "love_match": "Sự tương thích của cặp đôi",
     "love_ideal": "Phân tích kiểu lý tưởng"
   },
-  "back_to_menu": "🔙 Trở về menu bói toán AI",
+  "back_to_menu": "🔙 Quay lại Menu Đọc Tâm Linh",
   "get_more_bottles": "💎 Nhận thêm chai bói toán bói toán",
   "relationship": {
     "love": "Cặp đôi",
@@ -16,7 +16,7 @@ export default {
     "family": "Gia đình",
     "work": "Đồng nghiệp"
   },
-  "menuTitle": "Bói toán AI",
+  "menuTitle": "Bói tâm linh",
   "currentProfile": "Hồ sơ hiện tại",
   "warehouse": "Lưu trữ bản đồ sinh",
   "manageProfiles": "Quản lý bản đồ sinh",
@@ -148,20 +148,20 @@ export default {
   },
   "dailyPush": "📅 Tử vi hôm nay đã được gửi đến!",
   "dailyPushBtn": "👇 Nhấn để xem",
-  "backToMenu": "🔙 Quay lại Menu Xem Bói AI",
+  "backToMenu": "🔙 Quay lại Menu Đọc Tâm Linh",
   "addProfile": "Thêm Tập Tin Biểu Đồ",
   "quotaDisplay": "🔮 chai bói toán bói toán: {total} (Miễn phí tuần này: {weekly}/{limit} | Thêm: {additional})",
   "quotaDisplayVip": "🔮 chai bói toán: {total} (Hôm nay: {daily}/1 | Bổ sung: {additional})",
   "quotaDisplayFree": "🔮 chai bói toán: {total} (Tuần này miễn phí: {weekly}/1 | Bổ sung: {additional})",
   "profileDetails": "👤 {gender} {blood} | 🎂 {birthday} | {zodiac} | 🧠 {mbti}",
-  "getMore": "Nhận thêm chai bói toán dự đoán vận mệnh",
-  "getMoreInfo": "🔮 *Làm thế nào để nhận chai bói toán?*\n\n1. **Miễn phí hàng tuần**: Người dùng thông thường nhận 1 chai bói toán mỗi tuần, VIP nhận 1 chai bói toán mỗi ngày.\n2. **Phần thưởng mời bạn**: Mời một người bạn tham gia, và khi họ mời thành công một người bạn khác, bạn sẽ nhận được phần thưởng (lên đến 1 chai bói toán trong vòng 24 giờ).\n3. **Phần thưởng từ chai bói toán nhắn tin**: Với mỗi 10 chai bói toán nhắn tin đã gửi, nhận 1 chai bói toán. (Tối đa 1 chai bói toán trong vòng 24 giờ)\n4. **Mua trực tiếp (🔥 Giảm giá 20% có thời gian giới hạn)**:\n • Gói nhỏ {smallAmount} - ~{originalSmallPrice} Stars~ {smallPrice} Stars\n • Gói lớn {largeAmount} - ~{originalLargePrice} Stars~ {largePrice} Stars",
+  "getMore": "Nhận thêm chai bói toán bói toán",
+  "getMoreInfo": "🔮 *Cách nhận chai bói toán?*\n\n1. **Miễn phí hàng tuần**: Người dùng thường mỗi tuần 1 chai, VIP mỗi ngày 1 chai.\n2. **Phần thưởng mời bạn**: Khi bạn mời một người bạn tham gia và người bạn đó cũng mời thành công một người bạn khác, bạn sẽ nhận được phần thưởng (trong 24 giờ, tối đa nhận được 1 chai bói toán).\n3. **Phần thưởng từ chai cầu nguyện**: Cứ mỗi 10 chai cầu nguyện gửi đi, bạn sẽ nhận được 1 chai bói toán. (trong 24 giờ, tối đa nhận được 1 chai bói toán)\n4. **Mua trực tiếp (🔥 Khuyến mãi giới hạn 20% giảm giá)**:\n   • Gói nhỏ {smallAmount} chai - ~{originalSmallPrice} ngôi sao~ {smallPrice} ngôi sao\n   • Gói lớn {largeAmount} chai - ~{originalLargePrice} ngôi sao~ {largePrice} ngôi sao",
   "buySmall": "🔥 Giá Đặc Biệt {price} Sao (Mua {amount} sản phẩm)",
   "buyLarge": "🔥 Giá Đặc Biệt {price} Sao (Mua {amount} sản phẩm)",
   "invoiceTitle": "Mua {amount} chai bói toán",
-  "invoiceDesc": "Sau khi mua, bạn có thể ngay lập tức sử dụng dịch vụ bói toán AI, và mỗi dịch vụ bói toán sẽ tiêu tốn 1 chai bói toán.\n\nNhấn nút bên dưới để mua ngay:",
+  "invoiceDesc": "Sau khi mua, bạn có thể ngay lập tức sử dụng dịch vụ bói toán, mỗi dịch vụ sẽ tiêu tốn 1 chai bói toán.\n\nNhấn nút dưới đây để mua ngay:",
   "purchaseSuccess": "🎉 Mua thành công! {amount} chai bói toán đã được thêm vào.",
-  "bottleReward": "🎉 Xin chúc mừng! Bạn đã gửi {count} chai bói toán và nhận được 1 phần thưởng chai bói toán!",
+  "bottleReward": "🎉 Chúc mừng! Bạn đã gửi {count} chai bói toán và nhận được 1 phần thưởng chai bói toán may mắn!",
   "inviteChainReward": "🎉 Xin chúc mừng! Người bạn được mời của bạn đã thành công trong việc mời một người bạn mới tham gia, và bạn đã nhận được 1 phần thưởng chai bói toán!",
   "menu": {
     "love": "Chẩn Đoán Thuộc Tính (Ghép Đôi Quan Hệ)",
@@ -190,7 +190,9 @@ export default {
     "match_report_title": "💞 Báo cáo hợp cặp của cặp đôi",
     "wait_for_consent": "⏳ Đang chờ sự đồng ý của bên kia...",
     "consent_accepted": "✅ Bên kia đã đồng ý! Đang tạo báo cáo...",
-    "consent_rejected": "❌ Bên kia đã từ chối yêu cầu hợp cặp."
+    "consent_rejected": "❌ Bên kia đã từ chối yêu cầu hợp cặp.",
+    "invite_friend": "📨 Invite Friend to Experience",
+    "invite_friend_text": "Hey! I want to try the Compatibility Test with you. Create your fortune profile now!"
   },
   "role": {
     "husband": "Chồng",
@@ -228,12 +230,26 @@ export default {
       "drawn": "🎴 Các lá bài đã được rút:"
     }
   },
-  "profile_incomplete_hint": "💡 Để cung cấp dịch vụ xem bói AI chính xác hơn, vui lòng hoàn thành thông tin sở thích, nghề nghiệp hoặc MBTI của bạn trước.",
+  "profile_incomplete_hint": "💡 Để cung cấp dịch vụ xem bói tâm linh chính xác hơn, vui lòng hoàn thành thông tin về sở thích, nghề nghiệp hoặc MBTI... và thông tin khác trước.",
   "tarot_menu_title": "Bài Tarot",
   "tarot_ui": {
     "intro": "🔮 *Đọc Tarot*\n\nXin hãy lặng lẽ nghĩ về câu hỏi của bạn (ví dụ: \"Vận may công việc của tôi gần đây thế nào?\" hoặc \"Tôi nên xử lý mối quan hệ này như thế nào?\") và tập trung trước khi nhấn nút bên dưới để rút bài.",
     "draw": "🔮 Rút Bài",
     "shuffling": "Đang tráo bài...",
     "drawn": "🎴 Các thẻ đã được rút:"
+  },
+  "profileUpdated": "✅ Hồ sơ chiêm tinh đã được cập nhật!",
+  "btn_complete_info": "✏️ Hoàn thành thông tin sinh của bạn",
+  "complete_info_hint": "💡 Hoàn thiện thời gian và địa điểm sinh của bạn để mở khóa phân tích các cung và nhà!",
+  "btn_edit_info": "📝 Chỉnh sửa thông tin sinh",
+  "edit": {
+    "currentInfo": "📋 Thông tin hiện tại:",
+    "currentTime": "Thời gian sinh: {time}",
+    "currentTimeUnknown": "Thời gian sinh: Không chắc chắn",
+    "currentCity": "Thành phố sinh: {city}",
+    "currentCityUnknown": "Thành phố sinh: Chưa đặt",
+    "confirmEdit": "Bạn có muốn sửa đổi thông tin trên không?",
+    "btnConfirmEdit": "✅ Có, tôi muốn sửa đổi",
+    "btnCancelEdit": "❌ Hủy bỏ"
   }
 };

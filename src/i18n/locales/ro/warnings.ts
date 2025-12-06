@@ -122,7 +122,7 @@ export default {
       "body": "{userAttribute},\nConform analizei, ai cea mai puternică afinitate cu {recommendedAttributes}!\n\n💡 {reason}\n\n👇 Te simți norocos?"
     },
     "btn": {
-      "throw": "🌊 Aruncă o sticlă cu mesaj și ia o șansă",
+      "throw": "🌊 Lansează o sticlă de binecuvântare, urează-le altora bine, iar fericirea se va întoarce la tine.",
       "vip_throw": "🎯 Aruncă către {target}",
       "vip_upsell": "💡 Upgrade la VIP pentru a desemna livrarea către {target}, pentru un potrivire precisă!"
     }

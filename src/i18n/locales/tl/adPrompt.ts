@@ -1,7 +1,7 @@
 export default {
   "completeTask": "• ✨ Kumpletuhin ang mga gawain (kumuha ng permanenteng quota)",
   "inviteFriends": "• 🎁 Mag-imbita ng mga kaibigan (+1 quota bawat tao)",
-  "quotaExhausted": "❌ Naubos na ang quota ng bote ng mensahe ng araw na ito ({quotaDisplay})",
+  "quotaExhausted": "❌ Ang pangkaraniwang quota ng Bote ng Pagpapala para sa araw na ito ay nauubos na ({quotaDisplay})",
   "taskButton": "✨ {taskName} 🎁",
   "upgradeVip": "• 💎 Mag-upgrade sa VIP (30 quotas araw-araw)",
   "watchAd": "• 📺 Manood ng mga ad (natitirang {remaining}/20 beses)",

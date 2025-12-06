@@ -172,7 +172,7 @@ export async function getSlotsByBottleId(
     .bind(bottleId)
     .all();
 
-  return (results.results as BottleMatchSlot[]) || [];
+  return (results.results as unknown as BottleMatchSlot[]) || [];
 }
 
 /**

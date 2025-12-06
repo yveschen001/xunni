@@ -8,15 +8,15 @@ export default {
     "love_match": "Kahalagahan ng magkasintahan",
     "love_ideal": "Pagsusuri ng ideal na uri"
   },
-  "back_to_menu": "🔙 Bumalik sa menu ng AI na kapalaran",
-  "get_more_bottles": "💎 Kumuha ng higit pang mga bote ng kapalaran na may mga hula",
+  "back_to_menu": "🔙 Bumalik sa Menu ng Psychic Reading",
+  "get_more_bottles": "💎 Kumuha ng Higit pang Botelyang Panghuhula",
   "relationship": {
     "love": "Kasal",
     "friend": "Mga Kaibigan",
     "family": "Pamilya",
     "work": "Mga Kasamahan"
   },
-  "menuTitle": "AI na kapalaran",
+  "menuTitle": "Psychic Reading",
   "currentProfile": "Kasalukuyang profile",
   "warehouse": "Imbakan ng birth chart",
   "manageProfiles": "Pamahalaan ang mga birth chart",
@@ -148,20 +148,20 @@ export default {
   },
   "dailyPush": "📅 Naipadala na ang horoscope ng araw na ito!",
   "dailyPushBtn": "👇 I-click upang makita",
-  "backToMenu": "🔙 Bumalik sa Menu ng AI Fortune Telling",
+  "backToMenu": "🔙 Bumalik sa Menu ng Psychic Reading",
   "addProfile": "Magdagdag ng Chart File",
   "quotaDisplay": "🔮 Pagsasabi ng kapalaran gamit ang botelyang panghuhula: {total} (Libreng linggong ito: {weekly}/{limit} | Karagdagan: {additional})",
   "quotaDisplayVip": "🔮 botelyang panghuhula: {total} (Ngayon: {daily}/1 | Nadagdag: {additional})",
   "quotaDisplayFree": "🔮 botelyang panghuhula: {total} (Sa linggong ito libre: {weekly}/1 | Nadagdag: {additional})",
   "profileDetails": "👤 {gender} {blood} | 🎂 {birthday} | {zodiac} | 🧠 {mbti}",
   "getMore": "Kumuha ng higit pang mga botelyang panghuhula",
-  "getMoreInfo": "🔮 *Paano Makakuha ng Bote ng Kapalaran?*\n\n1. **Lingguhang Libre**: Karaniwang mga gumagamit ay nakakakuha ng 1 sa bawat linggo, mga VIP ay nakakakuha ng 1 sa bawat araw.\n2. **Gantimpala sa Imbitasyon**: I-imbitahan ang isang kaibigan na sumali, at kapag matagumpay nilang naimbitahan ang isa pang kaibigan, makakatanggap ka ng gantimpala (hanggang sa 1 bote ng kapalaran sa loob ng 24 na oras).\n3. **Gantimpala sa botelyang panghuhula**: Para sa bawat 10 botelyang panghuhula na ipinadala, tumanggap ng 1 bote ng kapalaran. (Hanggang sa 1 bote ng kapalaran sa loob ng 24 na oras)\n4. **Direktang Pagbili (🔥 Limitadong Oras 20% Off)**:\n • Maliit na Package {smallAmount} - ~{originalSmallPrice} Stars~ {smallPrice} Stars\n • Malaking Package {largeAmount} - ~{originalLargePrice} Stars~ {largePrice} Stars",
+  "getMoreInfo": "🔮 *Paano Kumuha ng Botelyang Panghuhula?*\n\n1. **Lingguhang Libre**: 1 para sa mga karaniwang gumagamit bawat linggo, 1 araw-araw para sa mga VIP.\n2. **Gantimpala sa Imbitasyon**: Mag-imbita ng isang kaibigan, at kapag nakapag-imbita rin siya ng isa, makakakuha ka ng gantimpala (1 botelyang panghuhula sa loob ng 24 na oras, may limitasyon).\n3. **Gantimpala sa Bote ng Pagpapala**: Para sa bawat 10 boteng pagpapala na ipinadala, makakakuha ka ng 1 botelyang panghuhula. (1 botelyang panghuhula sa loob ng 24 na oras, may limitasyon).\n4. **Direktang Bilhin (🔥 Limitadong 20% na Diskwento)**:\n   • Maliit na Pakete {smallAmount} - ~{originalSmallPrice} Bituin~ {smallPrice} Bituin\n   • Malaking Pakete {largeAmount} - ~{originalLargePrice} Bituin~ {largePrice} Bituin",
   "buySmall": "🔥 Espesyal na Presyo {price} Stars (Bumili ng {amount} item)",
   "buyLarge": "🔥 Espesyal na Presyo {price} Stars (Bumili ng {amount} item)",
   "invoiceTitle": "Bumili ng {amount} na botelyang panghuhula",
-  "invoiceDesc": "Matapos ang pagbili, maaari mong agad na gamitin ang serbisyo ng hula ng AI, at bawat serbisyo ng hula ay kumakain ng 1 botelyang panghuhula.\n\nI-click ang button sa ibaba para bumili ngayon:",
+  "invoiceDesc": "Maaari mong gamitin ang serbisyong espiritwal na panghuhula agad pagkatapos bumili, bawat serbisyong ito ay kumakain ng 1 botelyang panghuhula.\n\nAgad na pindutin ang pindutan sa ibaba upang bumili:",
   "purchaseSuccess": "🎉 Matagumpay ang pagbili! {amount} na botelyang panghuhula ang naidagdag.",
-  "bottleReward": "🎉 Binabati kita! Nagpadala ka ng {count} na botelyang panghuhula at nakatanggap ng 1 botelyang panghuhula bilang gantimpala!",
+  "bottleReward": "🎉 Maligayang bati! Nakapagpadala ka ng {count} botelyang panghuhula at nakatanggap ng 1 gantimpala na bote ng kapalaran!",
   "inviteChainReward": "🎉 Binabati kita! Ang kaibigang naimbitahan mo ay matagumpay na nakapag-imbita ng isang bagong kaibigan upang sumali, at nakatanggap ka ng 1 botelyang panghuhula bilang gantimpala!",
   "menu": {
     "love": "Pagsusuri ng Katangian (Pagka-match ng Relasyon)",
@@ -190,7 +190,9 @@ export default {
     "match_report_title": "💞 Ulat ng synastry ng mag-asawa",
     "wait_for_consent": "⏳ Naghihintay para sa pag-apruba ng kabilang partido...",
     "consent_accepted": "✅ Pumayag ang kabilang partido! Nagtataguyod ng ulat...",
-    "consent_rejected": "❌ Tinanggihan ng kabilang partido ang kahilingan sa synastry."
+    "consent_rejected": "❌ Tinanggihan ng kabilang partido ang kahilingan sa synastry.",
+    "invite_friend": "📨 Invite Friend to Experience",
+    "invite_friend_text": "Hey! I want to try the Compatibility Test with you. Create your fortune profile now!"
   },
   "role": {
     "husband": "Asawa",
@@ -228,12 +230,26 @@ export default {
       "drawn": "🎴 Na-draw na ang mga card:"
     }
   },
-  "profile_incomplete_hint": "💡 Upang makapagbigay ng mas tumpak na serbisyong AI sa kapalaran, mangyaring kumpletuhin ang iyong mga interes, propesyon, o impormasyon ng MBTI muna.",
+  "profile_incomplete_hint": "💡 Upang magbigay ng mas tumpak na serbisyong pang-espiritwal na hula, mangyaring unang kumpletuhin ang iyong mga interes, propesyon, o MBTI ... at iba pang impormasyon.",
   "tarot_menu_title": "Mga Tarot Card",
   "tarot_ui": {
     "intro": "🔮 *Pagbasa ng Tarot*\n\nMangyaring tahimik na isipin ang iyong tanong (halimbawa, \"Kamusta ang aking kapalaran sa trabaho kamakailan?\" o \"Paano ko dapat hawakan ang relasyong ito?\") at tumuon bago pindutin ang button sa ibaba upang kumuha ng mga baraha.",
     "draw": "🔮 Kumuha ng Mga Baraha",
     "shuffling": "Nagsasalu-salo...",
     "drawn": "🎴 Nakuhang mga baraha:"
+  },
+  "profileUpdated": "✅ Na-update na ang astrology profile!",
+  "btn_complete_info": "✏️ Kumpletuhin ang iyong impormasyon ng kapanganakan",
+  "complete_info_hint": "💡 Pagbutihin ang iyong oras at lokasyon ng kapanganakan upang ma-unlock ang pagsusuri ng rising sign at bahay!",
+  "btn_edit_info": "📝 I-edit ang impormasyon ng kapanganakan",
+  "edit": {
+    "currentInfo": "📋 Kasalukuyang Impormasyon:",
+    "currentTime": "Oras ng Kapanganakan: {time}",
+    "currentTimeUnknown": "Oras ng Kapanganakan: Hindi Tiyak",
+    "currentCity": "Lungsod ng Kapanganakan: {city}",
+    "currentCityUnknown": "Lungsod ng Kapanganakan: Hindi Nakatalaga",
+    "confirmEdit": "Gusto mo bang baguhin ang impormasyon sa itaas?",
+    "btnConfirmEdit": "✅ Oo, gusto kong baguhin",
+    "btnCancelEdit": "❌ Kanselahin"
   }
 };

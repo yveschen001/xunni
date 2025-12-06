@@ -122,7 +122,7 @@ export default {
       "body": "{userAttribute},\nAz elemzés szerint a legnagyobb affinításod van a {recommendedAttributes}val!\n\n💡 {reason}\n\n👇 Szerencsésnek érzed magad?"
     },
     "btn": {
-      "throw": "🌊 Dobj egy üveget és kockáztass",
+      "throw": "🌊 Dobd el áldó Üzenetpalackot, kívánj másoknak jót, és a boldogság vissza fog térni hozzád.",
       "vip_throw": "🎯 Dobj {target} felé",
       "vip_upsell": "💡 Frissíts VIP-re, hogy az {target} számára jelölj szállítást, a pontos kapcsolatteremtés érdekében!"
     }

@@ -4,7 +4,7 @@ export default {
   "cancel": "❌ منسوخ کریں",
   "cancelled": "منسوخ کر دیا گیا",
   "cannotIdentify": "⚠️ چیٹ پارٹنر کی شناخت نہیں کی جا سکتی\n\n",
-  "catchHint": "• نئے پیغام کی بوتل اٹھانے کے لئے /catch استعمال کریں",
+  "catchHint": "• نئے Blessing Bottles اٹھانے کے لیے /catch استعمال کریں",
   "completeOnboarding": "⚠️ براہ کرم پہلے رجسٹریشن کے عمل کو مکمل کریں۔\n\nرجسٹریشن جاری رکھنے کے لئے /start استعمال کریں۔",
   "conversationInfoError": "⚠️ بات چیت کی معلومات میں غلطی ہے۔",
   "conversationInfoError2": "⚠️ بات چیت کی معلومات میں غلطی ہے",

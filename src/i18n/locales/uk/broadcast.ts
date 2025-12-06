@@ -68,7 +68,7 @@ export default {
     "zodiacVirgo": "Діва"
   },
   "filterAge": "• вік=18-25\n",
-  "filterCommand": "/broadcast_filter <filter> <msg_content> ",
+  "filterCommand": "/broadcast_filter <filter> <msg_content>",
   "filterConfirmConditions": "**Умови фільтрації:**\n{conditions}\n\n",
   "filterConfirmMessage": "**Зміст повідомлення:**\n{message}\n\n",
   "filterConfirmTitle": "🔍 **Підтвердження фільтра трансляції**\n\n",

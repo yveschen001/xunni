@@ -1,7 +1,7 @@
 export default {
   "replyPrompt": "💬 Trả lời",
-  "suggestCatch": "❓ Bạn muốn nhận chai thư?\n\nSử dụng /catch để nhặt chai thư\n\n💡 **Lệnh Thường Gặp**:\n• /throw - Thả chai thư\n• /catch - Nhặt chai thư\n• /menu - Menu Chính\n• /tasks - Trung Tâm Nhiệm Vụ",
-  "suggestMenu": "❓ Không tìm thấy lệnh\n\n💡 **Lệnh Thường Gặp**:\n• /throw - Thả chai thư\n• /catch - Nhặt chai thư\n• /menu - Menu Chính\n• /tasks - Trung Tâm Nhiệm Vụ",
-  "suggestThrow": "❓ Bạn muốn thả chai thư?\n\nVui lòng nhấn giữ tin nhắn trước đó hoặc tin nhắn này,\nchọn 'Trả lời' từ menu,\nvà nhập nội dung để gửi chai thư\n\n💡 **Lệnh Thường Gặp**:\n• /throw - Thả chai thư\n• /catch - Nhặt chai thư\n• /menu - Menu Chính\n• /tasks - Trung Tâm Nhiệm Vụ\n\n#THROW",
-  "throwPrompt": "📝 Vui lòng nhập nội dung của chai thư:"
+  "suggestCatch": "❓ Bạn có muốn bắt một Chai Cầu Nguyện không?\n\nSử dụng /catch để nhặt Chai Cầu Nguyện\n\n💡 **Lệnh Thông Dụng**:\n• /throw - Vứt ra một Chai Cầu Nguyện\n• /catch - Nhặt một Chai Cầu Nguyện\n• /menu - Menu chính\n• /tasks - Trung tâm nhiệm vụ",
+  "suggestMenu": "❓ Lệnh không tìm thấy\n\n💡 **Lệnh Thông Dụng**:\n• /throw - Ném một Chai Cầu Nguyện Blessing\n• /catch - Nhặt một Chai Cầu Nguyện Blessing\n• /menu - Menu chính\n• /tasks - Trung tâm nhiệm vụ",
+  "suggestThrow": "❓ Bạn muốn ném một Chai Cầu Nguyện?\n\nHãy nhấn giữ thông điệp trước đó hoặc thông điệp này,\nchọn 'Trả lời' từ menu,\nvà nhập nội dung để gửi trong Chai Cầu Nguyện.\n\n💡 **Lệnh Thông Dụng**:\n• /throw - Ném một Chai Cầu Nguyện\n• /catch - Nhặt một Chai Cầu Nguyện\n• /menu - Menu chính\n• /tasks - Trung tâm nhiệm vụ\n\n#THROW",
+  "throwPrompt": "📝 Vui lòng nhập nội dung Chai Cầu Nguyện của bạn:"
 };

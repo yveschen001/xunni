@@ -12,5 +12,6 @@ export default {
   "nicknameInputHint": "👇 Proszę wprowadzić nowy pseudonim:",
   "bioInstruction": "Proszę wprowadzić nowe wprowadzenie (do 100 znaków).\n\nTwoje obecne wprowadzenie to: {bio}",
   "bioInputHint": "👇 Proszę wprowadzić nowe wprowadzenie:",
-  "bloodTypeInstruction": "Proszę wybrać swoją grupę krwi:"
+  "bloodTypeInstruction": "Proszę wybrać swoją grupę krwi:",
+  "matchPrefInstruction": "Proszę wybrać swoje preferencje dopasowania:"
 };

@@ -27,8 +27,8 @@ export default {
   "message8": "Preis: {priceStars} ⭐ Telegram Stars / Monat\n",
   "message9": "Zahlungszeit: {paymentDate.toLocaleDateString(",
   "purchaseCancelled": "✅ Kauf storniert",
-  "quota": "• Tägliches Kontingent von 30 Nachrichtenflaschen (Freunde einladen, um zu erhöhen, max. 100 pro Tag)\n",
-  "quota2": "• Tägliches Kontingent von 30 Nachrichtenflaschen (max. 100 pro Tag)\n",
+  "quota": "• Täglich 30 Segensflaschen (Freunde einladen erhöht das Limit, maximal 100 pro Tag)\n",
+  "quota2": "• Täglich 30 Segensflaschen (maximal 100 pro Tag)\n",
   "refundAdminCommands": "💡 Verwenden Sie die folgenden Befehle, um fortzufahren:\n• Genehmigen: `/admin_approve_refund <ID>`\n• Ablehnen: `/admin_reject_refund <ID> <reason>`",
   "refundApproved": "✅ **Rückerstattung genehmigt**\n\nRückerstattungsbetrag: {amount} ⭐\nDie Rückerstattung wird innerhalb von 1-3 Werktagen gutgeschrieben.\n\nIhre VIP-Mitgliedschaft wurde gekündigt.\n\nDanke für Ihr Verständnis!",
   "refundApprovedAdmin": "✅ Rückerstattung genehmigt\n\nAnforderungs-ID: #{requestId}\nBenutzer-ID: {userId}\nBetrag: {amount} ⭐",
@@ -75,7 +75,7 @@ export default {
   "text11": "Ablaufzeit: {expireDate}\n\n",
   "text12": "Rückerstattungen werden innerhalb von 1-3 Werktagen gutgeschrieben.\n\n",
   "text13": "Anforderungs-ID: #{requestId}\n",
-  "text14": "└ 1 intelligenter Match + 2 öffentliche Nachrichtenflaschen-Poolanzeigen: 2 zusätzliche Anzeigeflächen, die auf eine bestimmte Person warten, um sie abzuholen.\nErhöhen Sie die Chancen, dass Ihre Nachrichtenflasche gesehen wird, um 300%!",
+  "text14": "└ 1 intelligentes Match + 2 öffentliche SegensSegensflaschen-Poolanzeigen: Fügt 2 zusätzliche Anzeigeplätze hinzu, auf die schicksalhafte Personen warten, um sie aufzuheben.\nErhöht die Chance, dass Ihre Flasche gesehen wird, um 300%!",
   "text15": "Sie werden über die Verarbeitungsergebnisse per Bot benachrichtigt.\n\n",
   "text16": "Bitte geben Sie den Rückerstattungsgrund ein (mindestens 10 Zeichen):",
   "text17": "Grund: {req.reason}\n",
@@ -130,5 +130,5 @@ export default {
   "upgrade": "Upgrade auf VIP",
   "maxDurationExceeded": "⚠️ Ihre VIP-Periode hat das Limit erreicht ({maxMonths} Monate), und Sie können vorerst nicht weiter einkaufen.",
   "refundedAndRevoked": "ℹ️ Ihre Zahlung wurde zurückerstattet, und die VIP-Vorteile wurden widerrufen.",
-  "benefit_daily_fortune": "• 1 kostenlose KI-Wahrsagung pro Tag (exklusiv für VIP)"
+  "benefit_daily_fortune": "• 1 kostenlose psychische Lesung pro Tag (exklusiv für VIP)"
 };

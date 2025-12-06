@@ -1,6 +1,6 @@
 export default {
   "cannotIdentify": "⚠️ Αδύνατη η αναγνώριση του συνομιλητή.",
-  "catchNewBottle": "💡 Χρησιμοποιήστε το /catch για να παραλάβετε νέα μπουκάλια μηνυμάτων και να ξεκινήσετε μια νέα συνομιλία.",
+  "catchNewBottle": "💡 撿取新的 Blessing Bottle 開始新對話。",
   "conversationInfoError": "⚠️ Οι πληροφορίες της συνομιλίας είναι εσφαλμένες.",
   "conversationMayEnded": "Η συνομιλία μπορεί να έχει τελειώσει ή να μην υπάρχει.",
   "conversationNotFound": "⚠️ Αυτή η συνομιλία δεν μπορεί να βρεθεί.",
@@ -12,5 +12,5 @@ export default {
   "step3": "3️⃣ Εισάγετε /block.",
   "steps": "**Βήματα Λειτουργίας:**",
   "success": "✅ Αυτός ο χρήστης έχει αποκλειστεί (#{identifier}).",
-  "willNotMatch": "Δεν θα ταιριάξετε ξανά με μπουκάλια μηνυμάτων ο ένας του άλλου."
+  "willNotMatch": "你們將不會再被匹配到對方的 Blessing Bottle。"
 };

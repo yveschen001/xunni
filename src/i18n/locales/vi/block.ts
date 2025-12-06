@@ -1,6 +1,6 @@
 export default {
   "cannotIdentify": "⚠️ Không thể xác định đối tác trò chuyện.",
-  "catchNewBottle": "💡 Sử dụng /catch để nhận một chai thư mới và bắt đầu một cuộc trò chuyện mới.",
+  "catchNewBottle": "💡 Sử dụng /catch để thu thập một Chai Cầu Nguyện mới và bắt đầu một cuộc trò chuyện mới.",
   "conversationInfoError": "⚠️ Thông tin cuộc trò chuyện không chính xác.",
   "conversationMayEnded": "Cuộc trò chuyện có thể đã kết thúc hoặc không tồn tại.",
   "conversationNotFound": "⚠️ Không tìm thấy cuộc trò chuyện này.",
@@ -12,5 +12,5 @@ export default {
   "step3": "3️⃣ Nhập /block.",
   "steps": "**Các bước thực hiện:**",
   "success": "✅ Người dùng này đã bị chặn (#{identifier}).",
-  "willNotMatch": "Bạn sẽ không còn được ghép nối với chai thư của nhau nữa."
+  "willNotMatch": "Bạn sẽ không còn được ghép đôi với Chai Cầu Nguyện của nhau."
 };

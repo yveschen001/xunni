@@ -13,7 +13,7 @@ export default {
   "bloodType": "✅ Krvna skupina posodobljena na {getBloodTypeDisplay(bloodType as any)}",
   "bloodType2": "✅ Krvna skupina izbrisana",
   "bottle": "✅ Nagrada dodeljena! +1 message bottle",
-  "bottle2": "✅ Začela nova message bottle",
+  "bottle2": "✅ 開始新的 Blessing Bottle",
   "bottle3": "✅ Message bottle ustvarjena\n",
   "broadcast": "✅ Počistili {ids.length} zagozdenih oddaj\n\n",
   "broadcast2": "✅ Ni zagozdenih oddaj, ki bi jih bilo treba počistiti\n\n",
@@ -95,7 +95,7 @@ export default {
     "bloodType": "✅ Krvna skupina posodobljena na \\{getBloodTypeDisplay(bloodType as any)}",
     "bloodType2": "✅ Krvna skupina zbrisana",
     "bottle": "✅ Nagrada dodeljena! +1 message bottle",
-    "bottle2": "✅ Začnite novo message bottle",
+    "bottle2": "✅ Začni novo blagoslovno steklenico blagoslovov",
     "bottle3": "✅ Steklenica ustvarjena\n",
     "broadcast": "✅ Počistili \\{ids.length} zagozdenih oddaj\n\n",
     "broadcast2": "✅ Ni oddaj za čiščenje\n\n",
@@ -238,6 +238,6 @@ export default {
   "verify2": "✅ Preverjanje uspešno! Zaslužili ste +\\{ad.reward_quota} trajnih kvot!",
   "vip": "✅ Vse objave so posodobljene (VIP status je pravilen)\n",
   "zodiac": "✅ Izbira znaka je bila očiščena",
-  "bottleThrown": "🍾 Message bottle je bila vržena!",
+  "bottleThrown": "✅ Blessing Bottle 已丟出！",
   "saved": "✅ Nastavitve so shranjene"
 };

@@ -1,6 +1,6 @@
 export default {
   "cannotIdentify": "⚠️ Gesprächspartner kann nicht identifiziert werden.",
-  "catchNewBottle": "💡 Verwenden Sie /catch, um neue Nachrichtenflaschen aufzuheben und ein neues Gespräch zu beginnen.",
+  "catchNewBottle": "💡 Verwenden Sie /catch, um eine neue Segensflasche zu sammeln und ein neues Gespräch zu beginnen.",
   "conversationInfoError": "⚠️ Gesprächsinformationen sind inkorrekt.",
   "conversationMayEnded": "Das Gespräch könnte beendet sein oder existiert nicht.",
   "conversationNotFound": "⚠️ Dieses Gespräch kann nicht gefunden werden.",
@@ -12,5 +12,5 @@ export default {
   "step3": "3️⃣ Geben Sie /block ein.",
   "steps": "**Betriebsabläufe:**",
   "success": "✅ Dieser Benutzer wurde blockiert (#{identifier}).",
-  "willNotMatch": "Sie werden nicht mehr mit den Nachrichtenflaschen des anderen übereinstimmen."
+  "willNotMatch": "Sie werden nicht mehr mit den Segensflaschen des jeweils anderen zugeordnet."
 };

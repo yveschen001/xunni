@@ -19,7 +19,7 @@ export default {
   "noMessages": "(Geen berichten)",
   "partnerMessages": "• Berichten verzonden door de andere partij: {count}\n",
   "recentMessages": "📨 **Recente gesprekken:**\n\n",
-  "returnToMenu": "🏠 Terug naar Hoofdmenu: /menu",
+  "returnToMenu": "🏠 Hoofdmenu",
   "returnToMenuButton": "🏠 Terug naar het hoofdmenu",
   "stats": "📊 **Statistieken:**\n",
   "time": "Tijd: {time}\n\n",

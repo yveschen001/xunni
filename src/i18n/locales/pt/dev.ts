@@ -1,7 +1,7 @@
 export default {
   "autoCompleted": "O processo de registro foi concluído automaticamente.\n\n",
-  "bottles": "• Garrafas de Mensagem: {count}\n",
-  "catchCommand": "• /catch - Pegar garrafas de mensagem\n",
+  "bottles": "• Garrafa de Bênção de Bênção: {count}",
+  "catchCommand": "• /catch - Pegue uma Garrafa de Bênção",
   "conversations": "• Conversas: {count}\n",
   "dataReset": "✅ Modo de desenvolvimento: Dados foram redefinidos\n\nTodos os seus dados foram excluídos.\n\n💡 Você agora pode reiniciar o processo de registro para teste.\n\n🔄 Re-cadastrar: /start\nou use: /dev_restart (iniciar registro automaticamente)\n\n⚠️ Nota: Este recurso está disponível apenas no ambiente de Staging.",
   "getUserInfoFailed": "❌ Falha ao recuperar informações",
@@ -30,7 +30,7 @@ export default {
   "telegramId": "ID do Telegram: {id}\n",
   "testCoreFeatures": "💡 Agora você pode testar diretamente os recursos principais:\n",
   "testUser": "Usuário de teste",
-  "throwCommand": "• /throw - Jogar garrafa de mensagem\n",
+  "throwCommand": "• /throw - Jogue uma Garrafa de Bênção",
   "userInfo": "🔧 Modo de desenvolvimento: Informação do usuário\n\n",
   "userNotFound": "❌ Usuário não existe",
   "vip": "VIP: {status}",

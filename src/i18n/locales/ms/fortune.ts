@@ -8,7 +8,7 @@ export default {
     "love_match": "Keserasian pasangan",
     "love_ideal": "Analisis jenis ideal"
   },
-  "back_to_menu": "🔙 Kembali ke menu ramalan AI",
+  "back_to_menu": "🔙 Kembali ke Menu Bacaan Psikik",
   "get_more_bottles": "💎 Dapatkan lebih banyak botol nasib ramalan",
   "relationship": {
     "love": "Pasangan",
@@ -16,7 +16,7 @@ export default {
     "family": "Keluarga",
     "work": "Rakan sekerja"
   },
-  "menuTitle": "Ramalan AI",
+  "menuTitle": "Ramalan Psikik",
   "currentProfile": "Profil semasa",
   "warehouse": "Penyimpanan carta kelahiran",
   "manageProfiles": "Urus carta kelahiran",
@@ -148,20 +148,20 @@ export default {
   },
   "dailyPush": "📅 Horoskop hari ini telah dihantar!",
   "dailyPushBtn": "👇 Klik untuk melihat",
-  "backToMenu": "🔙 Kembali ke Menu Ramalan AI",
+  "backToMenu": "🔙 Kembali ke Menu Bacaan Psikik",
   "addProfile": "Tambah Fail Carta",
   "quotaDisplay": "🔮 Ramalan Nasib botol nasib: {total} (Minggu ini percuma: {weekly}/{limit} | Tambahan: {additional})",
   "quotaDisplayVip": "🔮 botol nasib: {total} (Hari ini: {daily}/1 | Tambahan: {additional})",
   "quotaDisplayFree": "🔮 botol nasib: {total} (Minggu ini percuma: {weekly}/1 | Tambahan: {additional})",
   "profileDetails": "👤 {gender} {blood} | 🎂 {birthday} | {zodiac} | 🧠 {mbti}",
   "getMore": "Dapatkan lebih banyak botol nasib",
-  "getMoreInfo": "🔮 *Bagaimana untuk Mendapatkan botol nasib?*\n\n1. **Percuma Mingguan**: Pengguna biasa mendapat 1 setiap minggu, VIP mendapat 1 setiap hari.\n2. **Ganjaran Jemputan**: Jemput rakan untuk sertai, dan apabila mereka berjaya jemput rakan lain, anda akan menerima ganjaran (sehingga 1 botol nasib dalam masa 24 jam).\n3. **Ganjaran botol nasib**: Untuk setiap 10 botol nasib yang dihantar, terima 1 botol nasib. (Sehingga 1 botol nasib dalam masa 24 jam)\n4. **Pembelian Terus (🔥 Diskaun 20% Terhad)**:\n • Pek Kecil {smallAmount} - ~{originalSmallPrice} Bintang~ {smallPrice} Bintang\n • Pek Besar {largeAmount} - ~{originalLargePrice} Bintang~ {largePrice} Bintang",
+  "getMoreInfo": "🔮 *Bagaimana Mendapatkan Botol Nasib?*\n\n1. **Percuma setiap minggu**: Pengguna biasa setiap minggu 1 botol, VIP setiap hari 1 botol.\n2. **Ganjaran Jemputan**: Jemput seorang rakan untuk menyertai, dan jika rakan itu juga berjaya menjemput rakan lain, anda akan menerima ganjaran (dalam 24 jam, maksimum 1 botol nasib). \n3. **Ganjaran Botol Restu**: Setiap kali menghantar 10 Botol Restu, anda akan mendapat 1 botol nasib. (dalam 24 jam, maksimum 1 botol nasib)\n4. **Pembelian Langsung (🔥 Tawaran Terhad 20% Diskaun)**:\n   • Pakej Kecil {smallAmount} botol - ~{originalSmallPrice} Stars~ {smallPrice} Stars\n   • Pakej Besar {largeAmount} botol - ~{originalLargePrice} Stars~ {largePrice} Stars",
   "buySmall": "🔥 Harga Istimewa {price} Bintang (Beli {amount} item)",
   "buyLarge": "🔥 Harga Istimewa {price} Bintang (Beli {amount} item)",
   "invoiceTitle": "Beli {amount} botol nasib",
-  "invoiceDesc": "Selepas pembelian, anda boleh segera menggunakan perkhidmatan ramalan AI, dan setiap perkhidmatan ramalan menggunakan 1 botol nasib.\n\nKlik butang di bawah untuk beli sekarang:",
+  "invoiceDesc": "Setelah pembelian, anda boleh segera menggunakan khidmat ramalan spiritual, setiap khidmat ramalan spiritual menggunakan 1 botol nasib.\n\nSegera tekan butang di bawah untuk membeli:",
   "purchaseSuccess": "🎉 Pembelian berjaya! {amount} botol nasib telah ditambahkan.",
-  "bottleReward": "🎉 Tahniah! Anda telah menghantar {count} botol nasib dan menerima 1 ganjaran botol nasib!",
+  "bottleReward": "🎉 Tahniah! Anda telah menghantar {count} botol mesej dan menerima 1 ganjaran botol nasib!",
   "inviteChainReward": "🎉 Tahniah! Rakan yang anda jemput telah berjaya menjemput rakan baru untuk menyertai, dan anda telah menerima 1 ganjaran botol nasib!",
   "menu": {
     "love": "Diagnosa Atribut (Pemetaan Hubungan)",
@@ -190,7 +190,9 @@ export default {
     "match_report_title": "💞 Laporan sinastria pasangan",
     "wait_for_consent": "⏳ Menunggu persetujuan pihak satu lagi...",
     "consent_accepted": "✅ Pihak satu lagi telah bersetuju! Menghasilkan laporan...",
-    "consent_rejected": "❌ Pihak satu lagi telah menolak permintaan sinastria."
+    "consent_rejected": "❌ Pihak satu lagi telah menolak permintaan sinastria.",
+    "invite_friend": "📨 Invite Friend to Experience",
+    "invite_friend_text": "Hey! I want to try the Compatibility Test with you. Create your fortune profile now!"
   },
   "role": {
     "husband": "Suami",
@@ -228,12 +230,26 @@ export default {
       "drawn": "🎴 Kad telah ditarik:"
     }
   },
-  "profile_incomplete_hint": "💡 Untuk memberikan perkhidmatan ramalan AI yang lebih tepat, sila lengkapkan maklumat minat, profesion, atau MBTI anda terlebih dahulu.",
+  "profile_incomplete_hint": "💡 Untuk memberikan perkhidmatan ramalan Ramalan Psikik yang lebih tepat, sila lengkapkan minat, profesion, atau MBTI ... dan maklumat lain terlebih dahulu.",
   "tarot_menu_title": "Kad Tarot",
   "tarot_ui": {
     "intro": "🔮 *Bacaan Tarot*\n\nSila fikirkan soalan anda dengan senyap (contohnya, \"Bagaimana nasib kerja saya baru-baru ini?\" atau \"Bagaimana saya harus mengendalikan hubungan ini?\") dan fokus sebelum menekan butang di bawah untuk menarik kad.",
     "draw": "🔮 Tarik Kad",
     "shuffling": "Mengocok...",
     "drawn": "🎴 Kad telah ditarik:"
+  },
+  "profileUpdated": "✅ Profil astrologi telah dikemas kini!",
+  "btn_complete_info": "✏️ Lengkapkan maklumat kelahiran anda",
+  "complete_info_hint": "💡 Perbaiki masa dan lokasi kelahiran anda untuk membuka analisis tanda naik dan rumah!",
+  "btn_edit_info": "📝 Edit maklumat kelahiran",
+  "edit": {
+    "currentInfo": "📋 Maklumat Terkini:",
+    "currentTime": "Masa Lahir: {time}",
+    "currentTimeUnknown": "Masa Lahir: Tidak Pasti",
+    "currentCity": "Bandar Lahir: {city}",
+    "currentCityUnknown": "Bandar Lahir: Tidak Ditetapkan",
+    "confirmEdit": "Adakah anda ingin mengubah suai maklumat di atas?",
+    "btnConfirmEdit": "✅ Ya, saya ingin mengubah suai",
+    "btnCancelEdit": "❌ Batalkan"
   }
 };

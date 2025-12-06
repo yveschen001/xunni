@@ -12,5 +12,6 @@ export default {
   "nicknameInputHint": "👇 Mangyaring ilagay ang isang bagong palayaw:",
   "bioInstruction": "Mangyaring ilagay ang isang bagong pagpapakilala sa sarili (hanggang 100 karakter).\n\nAng iyong kasalukuyang pagpapakilala sa sarili ay: {bio}",
   "bioInputHint": "👇 Mangyaring ilagay ang isang bagong pagpapakilala sa sarili:",
-  "bloodTypeInstruction": "Mangyaring piliin ang iyong uri ng dugo:"
+  "bloodTypeInstruction": "Mangyaring piliin ang iyong uri ng dugo:",
+  "matchPrefInstruction": "Pakitang iyong kagustuhan sa pagtutugma:"
 };

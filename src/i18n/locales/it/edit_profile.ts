@@ -12,5 +12,6 @@ export default {
   "nicknameInputHint": "👇 Per favore inserisci un nuovo soprannome:",
   "bioInstruction": "Per favore inserisci una nuova autodichiarazione (fino a 100 caratteri).\n\nLa tua autodichiarazione attuale è: {bio}",
   "bioInputHint": "👇 Per favore inserisci una nuova autodichiarazione:",
-  "bloodTypeInstruction": "Per favore seleziona il tuo gruppo sanguigno:"
+  "bloodTypeInstruction": "Per favore seleziona il tuo gruppo sanguigno:",
+  "matchPrefInstruction": "Seleziona la tua preferenza di abbinamento:"
 };

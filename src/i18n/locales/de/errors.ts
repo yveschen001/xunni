@@ -97,9 +97,9 @@ export default {
     "nickname": "❌ Telegram-Nickname kann nicht abgerufen werden",
     "nickname2": "❌ Der Benutzername darf keinen Website-Link enthalten\n\n",
     "nickname3": "❌ \\{validation.error}\n\nBitte geben Sie Ihren Nickname erneut ein:",
-    "quota": "❌ Das Nachrichtenflaschen-Kontingent für heute wurde aufgebraucht (\\{quotaDisplay})\n\n💡 Möglichkeiten, mehr Kontingent zu erhalten:\n",
+    "quota": "❌ Das Kontingent für die Segenflasche von heute wurde aufgebraucht (\\{quotaDisplay})\n\n💡 Möglichkeiten, um weitere Kontingente zu erhalten:",
     "quota2": "❌ Das Nachrichtenkontingent für Gespräche wurde heute aufgebraucht (\\{usedToday}/\\{dailyLimit})\n\n",
-    "quota3": "❌ Das Kontingent für Nachrichtenflaschen wurde heute aufgebraucht (\\{quotaDisplay})\n\n",
+    "quota3": "❌ Das Kontingent für die Segensflasche von heute wurde aufgebraucht (\\{quotaDisplay})",
     "register": "❌ Bitte schließen Sie zuerst den Registrierungsprozess ab.\n\nVerwenden Sie /start, um mit der Registrierung fortzufahren.",
     "register2": "❌ Benutzerprofil nicht gefunden, bitte verwenden Sie /start, um sich zuerst zu registrieren.",
     "register3": "❌ Bitte schließen Sie den Registrierungsprozess ab, bevor Sie Nachrichtenflaschen sammeln.\n\nVerwenden Sie /start, um mit der Registrierung fortzufahren.",
@@ -179,5 +179,6 @@ export default {
   "userNotFoundRegister": "⚠️ Benutzer existiert nicht, bitte registrieren Sie sich zuerst mit /start.",
   "verificationFailed": "❌ Überprüfung fehlgeschlagen, bitte versuchen Sie es später erneut",
   "invalidTimeFormat": "Ungültiges Zeitformat\nBeispiel: 19:30 (24-Stunden-Format, 00-23 Stunden, 00-59 Minuten)",
-  "invalidDateFormat": "Ungültiges Datumsformat\nBeispiel: 2000-01-01"
+  "invalidDateFormat": "Ungültiges Datumsformat\nBeispiel: 2000-01-01",
+  "taskAlreadyCompleted": "❌ Diese Aufgabe wurde bereits abgeschlossen und die Belohnung wurde beansprucht."
 };

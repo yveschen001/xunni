@@ -1,13 +1,13 @@
 export default {
   "availableCommands": "Sie können jederzeit die folgenden Befehle verwenden:",
-  "catchBottle": "🎣 **Eine Nachrichtenflasche aufheben**",
-  "catchBottleDesc": "Sehen Sie sich die Nachrichtenflaschen anderer an, antworten Sie bei Interesse und beginnen Sie zu chatten",
+  "catchBottle": "🎣 **Nehme die Segensflasche der Segnungen**",
+  "catchBottleDesc": "Schau dir die Segensflaschen anderer an, antworte mit Segnungen und starte ein Gespräch~",
   "clickButtonHint": "💡 Bitte klicken Sie auf die Schaltfläche, um fortzufahren",
-  "commandCatch": "• /catch - Nachrichtenflasche aufheben",
+  "commandCatch": "• /catch - Nimm eine SegensSegensflasche auf",
   "commandHelp": "• /help - Hilfe anzeigen",
   "commandMenu": "📋 Befehlsmenü",
   "commandTasks": "• /tasks - Aufgaben anzeigen",
-  "commandThrow": "• /throw - Nachrichtenflasche wegwerfen",
+  "commandThrow": "• Segensflasche werfen",
   "completeTasksForBottles": "💡 Aufgaben abschließen, um zusätzliche Flaschen zu verdienen",
   "completed": "✅ Tutorial abgeschlossen!",
   "howToBecomeFriends": "💬 **Wie Freundschaften schließen?**",
@@ -16,11 +16,11 @@ export default {
   "skip": "Überspringen",
   "skipped": "✅ Tutorial übersprungen",
   "startUsing": "Jetzt nutzen →",
-  "throwBottle": "📦 **Nachrichtenflasche wegwerfen**",
+  "throwBottle": "📦 **Sende eine SegensSegensflasche**",
   "throwBottleDesc": "Schreibe deine Gefühle oder Gedanken auf, und das System hilft dir, eine geeignete Person zu finden",
   "unknownStep": "❌ Unbekannter Tutorial-Schritt",
   "viewTasks": "📋 Aufgaben anzeigen",
   "welcome": "🎉 Herzlichen Glückwunsch zur Registrierung!",
   "whatIsXunNi": "🌊 **Was ist XunNi?**",
-  "whatIsXunNiDesc": "Eine anonyme Nachrichtenflasche-Plattform, die dir hilft, gleichgesinnte Freunde über MBTI und Sternzeichen zu finden"
+  "whatIsXunNiDesc": "Anonyme Segensflasche Freundschaftsplattform, finde gleichgesinnte Freunde durch gegenseitige Segnungen, MBTI und Sternzeichen."
 };

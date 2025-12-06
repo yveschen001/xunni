@@ -121,13 +121,7 @@ export async function handleManualBlockStart(
   const i18n = createI18n(user?.language_pref || 'zh-TW');
 
   const { upsertSession } = await import('~/db/queries/sessions');
-  await upsertSession(db, {
-    telegram_id: userId,
-    type: 'fortune_input', // Reuse this session type or create new
-    step: 'block_manual_input',
-    data: {},
-    updated_at: new Date().toISOString()
-  });
+  await upsertSession(db, userId, 'fortune_input', { step: 'block_manual_input' });
 
   await telegram.sendMessageWithButtons(
     chatId, 

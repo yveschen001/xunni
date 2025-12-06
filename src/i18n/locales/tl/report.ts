@@ -4,7 +4,7 @@ export default {
   "cancel": "❌ Kanselahin",
   "cancelled": "Nansela",
   "cannotIdentify": "⚠️ Hindi mahanap ang kasamang nakikipag-chat\n\n",
-  "catchHint": "• Gumamit ng /catch upang makuha ang mga bagong bote ng mensahe",
+  "catchHint": "• Gumamit ng 'Catch' para kumuha ng bagong Bote ng Pagpapala",
   "completeOnboarding": "⚠️ Mangyaring kumpletuhin muna ang proseso ng pagpaparehistro.\n\nGumamit ng /start upang ipagpatuloy ang pagpaparehistro.",
   "conversationInfoError": "⚠️ Mali ang impormasyon ng pag-uusap.",
   "conversationInfoError2": "⚠️ Mali ang impormasyon ng pag-uusap",

@@ -1,7 +1,7 @@
 export default {
   "autoCompleted": "Proces rejestracji został automatycznie zakończony.\n\n",
-  "bottles": "• Butelki z wiadomościami: {count}\n",
-  "catchCommand": "• /catch - Złap butelki z wiadomościami\n",
+  "bottles": "• Butelka Życzeń: {count}\n",
+  "catchCommand": "• Złap Butelkę Życzeń\n",
   "conversations": "• Rozmowy: {count}\n",
   "dataReset": "✅ Tryb dewelopera: Dane zostały zresetowane\n\nWszystkie Twoje dane zostały usunięte.\n\n💡 Możesz teraz rozpocząć proces rejestracji testowej od nowa.\n\n🔄 Ponowna rejestracja: /start\nlub użyj: /dev_restart (automatyczne rozpoczęcie rejestracji)\n\n⚠️ Uwaga: Ta funkcja jest dostępna tylko w środowisku Staging.",
   "getUserInfoFailed": "❌ Nie udało się pobrać informacji",
@@ -30,7 +30,7 @@ export default {
   "telegramId": "ID Telegrama: {id}\n",
   "testCoreFeatures": "💡 Możesz teraz bezpośrednio testować podstawowe funkcje:\n",
   "testUser": "Użytkownik testowy",
-  "throwCommand": "• /throw - Rzuć butelkę z wiadomością\n",
+  "throwCommand": "• Rzuć Butelkę Życzeń\n",
   "userInfo": "🔧 Tryb dewelopera: Informacje o użytkowniku\n\n",
   "userNotFound": "❌ Użytkownik nie istnieje",
   "vip": "VIP: {status}",

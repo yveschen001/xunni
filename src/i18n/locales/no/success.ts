@@ -13,7 +13,7 @@ export default {
   "bloodType": "✅ Blodtype oppdatert til {getBloodTypeDisplay(bloodType as any)}",
   "bloodType2": "✅ Blodtype fjernet",
   "bottle": "✅ Belønning utstedt! +1 melding flaskepost",
-  "bottle2": "✅ Startet en ny melding flaskepost",
+  "bottle2": "✅ Start Ønskeflaske",
   "bottle3": "✅ Melding flaskepost opprettet\n",
   "broadcast": "✅ Tømt {ids.length} fastlåste sendinger\n\n",
   "broadcast2": "✅ Ingen sendinger trenger å bli tømt\n\n",
@@ -95,7 +95,7 @@ export default {
     "bloodType": "✅ Blodtype oppdatert til \\{getBloodTypeDisplay(bloodType as any)}",
     "bloodType2": "✅ Blodtype slettet",
     "bottle": "✅ Belønning distribuert! +1 flaskepost",
-    "bottle2": "✅ Start en ny flaskepost",
+    "bottle2": "✅ Start en ny velsignelse Meldingsflaske",
     "bottle3": "✅ Flaskepost opprettet\n",
     "broadcast": "✅ Renset \\{ids.length} fastlåste kringkastinger\n\n",
     "broadcast2": "✅ Ingen kringkastinger å rydde opp\n\n",
@@ -238,6 +238,6 @@ export default {
   "verify2": "✅ Verifisering vellykket! Mottok +\\{ad.reward_quota} permanent kvote!",
   "vip": "✅ Alle innlegg er oppdatert (VIP-status korrekt)\n",
   "zodiac": "✅ Rensing av stjernetegnvalg",
-  "bottleThrown": "🍾 Flaskeposten har blitt kastet!",
+  "bottleThrown": "✅ Ønskeflaske er kastet!",
   "saved": "✅ Innstillinger lagret"
 };

@@ -1,6 +1,6 @@
 export default {
   "cannotIdentify": "⚠️ Unable to identify conversation partner",
-  "catchNewBottle": "💡 Use /catch to pick a new message bottle to start a new conversation.",
+  "catchNewBottle": "💡 Use /catch to collect a new Blessing Bottle and start a new conversation.",
   "conversationInfoError": "⚠️ Conversation information is incorrect.",
   "conversationMayEnded": "The conversation may have ended or does not exist.",
   "conversationNotFound": "⚠️ This conversation could not be found.",
@@ -12,5 +12,5 @@ export default {
   "step3": "3️⃣ Enter /block",
   "steps": "**Operation steps:**",
   "success": "✅ Blocked this user (#{identifier})",
-  "willNotMatch": "You will no longer be matched with each other's message bottles."
+  "willNotMatch": "You will no longer be matched with each other's Blessing Bottles."
 };

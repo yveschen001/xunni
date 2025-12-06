@@ -1,6 +1,6 @@
 export default {
   "cannotIdentify": "⚠️ Kunde inte identifiera samtalspartnern.",
-  "catchNewBottle": "💡 Använd /catch för att plocka upp nya flaskposter och starta ett nytt samtal.",
+  "catchNewBottle": "💡 Catch Önskeflaska för att starta en ny konversation.",
   "conversationInfoError": "⚠️ Samtalsinformationen är felaktig.",
   "conversationMayEnded": "Samtalet kan ha avslutats eller finns inte.",
   "conversationNotFound": "⚠️ Det här samtalet kan inte hittas.",
@@ -12,5 +12,5 @@ export default {
   "step3": "3️⃣ Skriv /block.",
   "steps": "**Operationssteg:**",
   "success": "✅ Denna användare har blockerats (#{identifier}).",
-  "willNotMatch": "Du kommer inte längre att matchas med varandras flaskposter."
+  "willNotMatch": "Ni kommer inte längre att matchas med varandras önskeflaskor."
 };

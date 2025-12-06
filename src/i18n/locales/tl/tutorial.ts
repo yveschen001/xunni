@@ -1,13 +1,13 @@
 export default {
   "availableCommands": "Maaari mong gamitin ang mga sumusunod na utos sa kahit anong oras:",
-  "catchBottle": "🎣 **Pumili ng Bote ng Mensahe**",
-  "catchBottleDesc": "Tingnan ang mga bote ng mensahe ng iba at tumugon kung interesado kang makipag-chat.",
+  "catchBottle": "🎣 **Kunin ang Bote ng Pagpapala ng mga biyaya**",
+  "catchBottleDesc": "Tingnan ang mga Bote ng Pagpapala ng mga biyaya ng iba, tumugon ng mga biyaya, at simulan ang pag-uusap~",
   "clickButtonHint": "💡 Mangyaring i-click ang button upang magpatuloy",
-  "commandCatch": "• /catch - Kumuha ng bote ng mensahe",
+  "commandCatch": "• /catch - Kunin ang isang biyaya mula sa Bote ng Pagpapala",
   "commandHelp": "• /help - Tingnan ang tulong",
   "commandMenu": "📋 Menu ng Utos",
   "commandTasks": "• /tasks - Tingnan ang mga gawain",
-  "commandThrow": "• /throw - Itapon ang bote ng mensahe",
+  "commandThrow": "• /throw - Magtapon ng isang biyaya Bote ng Pagpapala",
   "completeTasksForBottles": "💡 Kumpletuhin ang mga gawain para kumita ng dagdag na bote",
   "completed": "✅ Nakumpleto ang tutorial!",
   "howToBecomeFriends": "💬 **Paano makahanap ng mga kaibigan?**",
@@ -16,11 +16,11 @@ export default {
   "skip": "Laktawan",
   "skipped": "✅ Nakalaktawan ang tutorial",
   "startUsing": "Simulan ang paggamit →",
-  "throwBottle": "📦 **Itapon ang Bote ng Mensahe**",
+  "throwBottle": "📦 **Magpadala ng biyaya Bote ng Pagpapala**",
   "throwBottleDesc": "Isulat ang iyong mga damdamin o saloobin, at tutulungan ka ng sistema na makahanap ng tamang tao",
   "unknownStep": "❌ Hindi kilalang hakbang ng tutorial",
   "viewTasks": "📋 Tingnan ang mga gawain",
   "welcome": "🎉 Binabati kita sa pagkumpleto ng iyong rehistrasyon!",
   "whatIsXunNi": "🌊 **Ano ang XunNi?**",
-  "whatIsXunNiDesc": "Isang hindi nagpapakilalang platform ng bote ng mensahe na tumutulong sa iyo na makahanap ng mga kaibigang kapareho ng isip sa pamamagitan ng MBTI at mga zodiac sign."
+  "whatIsXunNiDesc": "Isang plataporma ng pakikipagkaibigan gamit ang Bote ng Pagpapala na hindi nagpapakilala, na tumutulong sa iyo na makahanap ng mga kaibigang katulad ng iyong interes sa pamamagitan ng pagbibigay ng mga pagbati, MBTI, at mga tanda ng zodiac."
 };

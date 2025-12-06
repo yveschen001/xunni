@@ -27,6 +27,8 @@ export default {
   "selectEndHour": "☀️ Čas začetka je nastavljen na {start}:00.\nIzberite čas konca tihe ure:\n(Obvestila se bodo ponovno prikazala po tem času)",
   "disabled": "🚫 Tihe ure so bile onemogočene",
   "quietHoursHint": "V tem obdobju ne boste prejemali nujnih obvestil",
+  "quietHoursVipOnly": "🔒 Tiho urad (samo za VIP)",
+  "upgradeForQuietHours": "Nadgradite na VIP za nastavitev tihega urad, da se izognete motnjam med počitkom!",
   "blocklist": {
     "title": "🚫 Seznam blokiranih",
     "empty": "Trenutno ni seznama blokiranih",

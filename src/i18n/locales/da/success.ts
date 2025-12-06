@@ -13,7 +13,7 @@ export default {
   "bloodType": "✅ Blodtype opdateret til {getBloodTypeDisplay(bloodType as any)}",
   "bloodType2": "✅ Blodtype ryddet",
   "bottle": "✅ Belønning udstedt! +1 beskedflaske",
-  "bottle2": "✅ Startet en ny beskedflaske",
+  "bottle2": "✅ Start ny Ønskeflaske",
   "bottle3": "✅ Flaskepost oprettet\n",
   "broadcast": "✅ Renset {ids.length} fastlåste udsendelser\n\n",
   "broadcast2": "✅ Ingen udsendelser kræver rensning\n\n",
@@ -95,7 +95,7 @@ export default {
     "bloodType": "✅ Blodtype opdateret til \\{getBloodTypeDisplay(bloodType as any)}",
     "bloodType2": "✅ Blodtype ryddet",
     "bottle": "✅ Belønning uddelt! +1 flaskepost",
-    "bottle2": "✅ Start en ny flaskepost",
+    "bottle2": "✅ Start en ny velsignelse Beskedsflaske",
     "bottle3": "✅ Flaskepost oprettet\n",
     "broadcast": "✅ Renset \\{ids.length} fastlåste udsendelser\n\n",
     "broadcast2": "✅ Ingen udsendelser at rydde op i\n\n",
@@ -238,6 +238,6 @@ export default {
   "verify2": "✅ Verifikation vellykket! Modtaget +\\{ad.reward_quota} permanent kvote!",
   "vip": "✅ Alle indlæg er opdaterede (VIP-status korrekt)\n",
   "zodiac": "✅ Rydet stjernetegn valg",
-  "bottleThrown": "🍾 Flaskepost er blevet kastet!",
+  "bottleThrown": "✅ Ønskeflaske er kastet!",
   "saved": "✅ Indstillinger gemt"
 };

@@ -8,7 +8,7 @@ export default {
     "love_match": "Paarkompatibilität",
     "love_ideal": "Analyse des idealen Typs"
   },
-  "back_to_menu": "🔙 Zurück zum Menü der AI-Wahrsagerei",
+  "back_to_menu": "🔙 Zurück zum Menü der Wahrsagungen",
   "get_more_bottles": "💎 Erwerben Sie weitere Wahrsagungs-Glücksflaschen",
   "relationship": {
     "love": "Partner",
@@ -16,7 +16,7 @@ export default {
     "family": "Familie",
     "work": "Kollegen"
   },
-  "menuTitle": "AI-Wahrsagerei",
+  "menuTitle": "Hellsehen",
   "currentProfile": "Aktuelles Profil",
   "warehouse": "Speicherung der Geburtshoroskope",
   "manageProfiles": "Geburtshoroskope verwalten",
@@ -148,20 +148,20 @@ export default {
   },
   "dailyPush": "📅 Das Horoskop für heute wurde zugestellt!",
   "dailyPushBtn": "👇 Klicken Sie hier, um zu sehen",
-  "backToMenu": "🔙 Zurück zum AI-Wahrsagungsmenü",
+  "backToMenu": "🔙 Zurück zum Menü für Wahrsagungen",
   "addProfile": "Diagrammdatei hinzufügen",
   "quotaDisplay": "🔮 Wahrsagung Glücksflasche: {total} (Diese Woche kostenlos: {weekly}/{limit} | Zusätzlich: {additional})",
   "quotaDisplayVip": "🔮 Glücksflasche: {total} (Heute: {daily}/1 | Zusätzlich: {additional})",
   "quotaDisplayFree": "🔮 Glücksflasche: {total} (Diese Woche kostenlos: {weekly}/1 | Zusätzlich: {additional})",
   "profileDetails": "👤 {gender} {blood} | 🎂 {birthday} | {zodiac} | 🧠 {mbti}",
-  "getMore": "Erhalte weitere Wahrsageflaschen",
-  "getMoreInfo": "🔮 *Wie erhält man eine Glücksflasche?*\n\n1. **Wöchentlich kostenlos**: Reguläre Nutzer erhalten 1 pro Woche, VIPs erhalten 1 pro Tag.\n2. **Einladungsbelohnungen**: Lade einen Freund ein, und wenn dieser erfolgreich einen weiteren Freund einlädt, erhältst du eine Belohnung (bis zu 1 Glücksflasche innerhalb von 24 Stunden).\n3. **Glücksflaschenbelohnungen**: Für jede 10 gesendeten Glücksflaschen erhältst du 1 Glücksflasche. (Bis zu 1 Glücksflasche innerhalb von 24 Stunden)\n4. **Direkter Kauf (🔥 Begrenzte Zeit 20% Rabatt)**:\n • Kleines Paket {smallAmount} - ~{originalSmallPrice} Sterne~ {smallPrice} Sterne\n • Großes Paket {largeAmount} - ~{originalLargePrice} Sterne~ {largePrice} Sterne",
+  "getMore": "Mehr Glücksflaschen",
+  "getMoreInfo": "🔮 *Wie man Glücksflaschen bekommt?*\n\n1. **Wöchentlich kostenlos**: Normale Benutzer 1 pro Woche, VIP täglich 1.\n2. **Einladungsbelohnung**: Wenn Sie einen Freund einladen und dieser auch erfolgreich einen Freund einlädt, erhalten Sie eine Belohnung (innerhalb von 24 Stunden, maximal 1 Glücksflasche).\n3. **Segensflaschen-Belohnung**: Für jeden 10 gesendeten Segensflasche erhalten Sie 1 Glücksflasche. (Innerhalb von 24 Stunden, maximal 1 Glücksflasche).\n4. **Direkt kaufen (🔥 Zeitlich begrenztes Angebot 20% Rabatt)**:\n   • Kleines Paket {smallAmount} Stück - ~{originalSmallPrice} Sterne~ {smallPrice} Sterne\n   • Großes Paket {largeAmount} Stück - ~{originalLargePrice} Sterne~ {largePrice} Sterne",
   "buySmall": "🔥 Sonderpreis {price} Sterne (Kaufen Sie {amount} Artikel)",
   "buyLarge": "🔥 Sonderpreis {price} Sterne (Kaufen Sie {amount} Artikel)",
   "invoiceTitle": "Kaufe {amount} Glücksflaschen",
-  "invoiceDesc": "Nach dem Kauf kannst du sofort den KI-Wahrsage-Service nutzen, wobei jeder Wahrsage-Service 1 Glücksflasche verbraucht.\n\nKlicke auf die Schaltfläche unten, um jetzt zu kaufen:",
+  "invoiceDesc": "Nach dem Kauf können Sie sofort den psychischen Wahrsageservice nutzen, jeder psychische Wahrsageservice verbraucht 1 Glücksflasche.\n\nDrücken Sie sofort den folgenden Button zum Kauf:",
   "purchaseSuccess": "🎉 Kauf erfolgreich! {amount} Glücksflaschen wurden hinzugefügt.",
-  "bottleReward": "🎉 Herzlichen Glückwunsch! Du hast {count} Glücksflaschen verschickt und 1 Glücksflasche Belohnung erhalten!",
+  "bottleReward": "🎉 Herzlichen Glückwunsch! Sie haben {count} Nachrichtenflaschen gesendet und eine Belohnung in Form einer Glücksflasche erhalten!",
   "inviteChainReward": "🎉 Herzlichen Glückwunsch! Dein eingeladener Freund hat erfolgreich einen neuen Freund eingeladen, und du hast 1 Glücksflasche Belohnung erhalten!",
   "menu": {
     "love": "Attributdiagnose (Beziehungsmatching)",
@@ -190,7 +190,9 @@ export default {
     "match_report_title": "💞 Synastriebericht für Paare",
     "wait_for_consent": "⏳ Warten auf die Zustimmung der anderen Partei...",
     "consent_accepted": "✅ Die andere Partei hat zugestimmt! Bericht wird generiert...",
-    "consent_rejected": "❌ Die andere Partei hat die Synastrie-Anfrage abgelehnt."
+    "consent_rejected": "❌ Die andere Partei hat die Synastrie-Anfrage abgelehnt.",
+    "invite_friend": "📨 Invite Friend to Experience",
+    "invite_friend_text": "Hey! I want to try the Compatibility Test with you. Create your fortune profile now!"
   },
   "role": {
     "husband": "Ehemann",
@@ -228,12 +230,26 @@ export default {
       "drawn": "🎴 Die Karten wurden gezogen:"
     }
   },
-  "profile_incomplete_hint": "💡 Um genauere KI-Wahrsage-Dienste anzubieten, vervollständigen Sie bitte zuerst Ihre Interessen, Ihren Beruf oder Ihre MBTI-Informationen.",
+  "profile_incomplete_hint": "💡 Um einen genaueren spirituellen Wahrsagedienst anzubieten, vervollständigen Sie bitte zunächst Ihre Interessen, Ihren Beruf oder Ihr MBTI ... und andere Informationen.",
   "tarot_menu_title": "Tarotkarten",
   "tarot_ui": {
     "intro": "🔮 *Tarot-Lesung*\n\nBitte denken Sie still über Ihre Frage nach (z.B. \"Wie steht es um mein Arbeitsglück zurzeit?\" oder \"Wie sollte ich mit dieser Beziehung umgehen?\") und konzentrieren Sie sich, bevor Sie auf die Schaltfläche unten klicken, um Karten zu ziehen.",
     "draw": "🔮 Karten ziehen",
     "shuffling": "Mischen...",
     "drawn": "🎴 Karten wurden gezogen:"
+  },
+  "profileUpdated": "✅ Das astrologische Profil wurde aktualisiert!",
+  "btn_complete_info": "✏️ Vervollständige deine Geburtsinformationen",
+  "complete_info_hint": "💡 Perfektioniere deine Geburtszeit und deinen Geburtsort, um das aufsteigende Zeichen und die Hausanalyse freizuschalten!",
+  "btn_edit_info": "📝 Bearbeite Geburtsinformationen",
+  "edit": {
+    "currentInfo": "📋 Aktuelle Informationen:",
+    "currentTime": "Geburtszeit: {time}",
+    "currentTimeUnknown": "Geburtszeit: Unklar",
+    "currentCity": "Geburtsstadt: {city}",
+    "currentCityUnknown": "Geburtsstadt: Nicht festgelegt",
+    "confirmEdit": "Möchten Sie die obigen Informationen ändern?",
+    "btnConfirmEdit": "✅ Ja, ich möchte ändern",
+    "btnCancelEdit": "❌ Abbrechen"
   }
 };

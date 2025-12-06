@@ -68,7 +68,7 @@ export default {
     "zodiacVirgo": "Vierge"
   },
   "filterAge": "• âge=18-25\n",
-  "filterCommand": "/broadcast_filter <filter> <msg_content> ",
+  "filterCommand": "/broadcast_filter <filter> <msg_content>",
   "filterConfirmConditions": "**Conditions de filtre :**\n{conditions}\n\n",
   "filterConfirmMessage": "**Contenu du message :**\n{message}\n\n",
   "filterConfirmTitle": "🔍 **Confirmation du Filtre de Diffusion**\n\n",

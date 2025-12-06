@@ -3,7 +3,7 @@ export default {
   "label_industry": "あなたが主に従事している業界は何ですか？",
   "btn_edit_role": "💼 プロフェッショナルアイデンティティの編集",
   "btn_edit_industry": "🏢 業界の編集",
-  "profile_incomplete_hint": "💡 より正確なAI占いサービスを提供するために、最初に個人情報を入力してください。",
+  "profile_incomplete_hint": "💡 より正確な超能力霊能占いサービスを提供するために、まずは個人情報を入力してください。",
   "role": {
     "employee": "オフィスワーカー",
     "freelancer": "フリーランス / SOHO",
@@ -166,5 +166,6 @@ export default {
       "other_industry": "その他の業種（手動入力）"
     }
   },
-  "next_step_industry": "次に、業界を選択してください："
+  "next_step_industry": "次に、業界を選択してください：",
+  "back_to_categories": "カテゴリーメニューに戻る"
 };

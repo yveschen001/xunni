@@ -26,7 +26,7 @@ export default {
   "manual": "Cài đặt thủ công",
   "mbti": "• Sử dụng /mbti để làm lại hoặc chỉnh sửa MBTI\n",
   "mbtiWithSource": "🧠 MBTI: {mbti}{source}",
-  "message": "https://t.me/share/url?url=https://t.me/{botUsername}?start=invite_{inviteCode}&text=Hãy cùng nhau ném chai thư trên XunNi! 🍾 Sử dụng mã mời của tôi: {inviteCode}",
+  "message": "Hãy cùng nhau ném một Chai Cầu Nguyện của những lời chúc trên XunNi! 🍾 Sử dụng mã mời của tôi: {inviteCode}",
   "message2": "{inviteLimitWarning}\n\n",
   "message3": "🌍 Ngôn ngữ: {user.language_pref}\n\n",
   "message4": "🌍 Ngôn ngữ: {user.language_pref }\n",
@@ -42,7 +42,7 @@ export default {
   "quota2": "📦 Hạn mức hàng ngày hiện tại: {taskBonus > 0 ?",
   "quotaBottles": "{taskBonus} chai thư",
   "quotaTotal": "📦 Số lượng hàng ngày hiện tại: {quota}\n\n",
-  "returnToMenu": "🏠 Trở về menu chính: /menu",
+  "returnToMenu": "🏠 Menu Chính",
   "separator": "━━━━━━━━━━━━━━━━\n\n",
   "settings": "Chưa được thiết lập",
   "settings2": "Chưa được thiết lập",
@@ -71,5 +71,14 @@ export default {
   "zodiac": "⭐ Cung hoàng đạo: {zodiac}\n",
   "fortuneQuota": "🔮 {fortuneBottle}: {total} (Tuần này miễn phí: {weekly}/{limit} | Thêm: {additional})",
   "vipWithDays": "💎 Thành viên VIP (Còn lại {days} ngày, Hết hạn: {expireDate})",
-  "driftBottleInfo": "🍾 chai thư: {remaining} / {total}"
+  "driftBottleInfo": "🍾 Chai Cầu Nguyện: {remaining} / {total}",
+  "ageRange": "Tuổi: {min}-{max}",
+  "fortuneMatchButton": "💘 Bói Toán Nhanh",
+  "giftVipButton": "🎁 Tặng VIP",
+  "giftFortuneBottleButton": "🔮 Tặng Chai Bói Toán",
+  "moreOptions": "⚙️ Tùy Chọn Khác...",
+  "blockUser": "🚫 Chặn Người Dùng",
+  "reportUser": "⚠️ Báo Cáo",
+  "moreOptionsTitle": "⚙️ Tùy Chọn Khác",
+  "giftedVipNote": "🎁 Đã tặng bạn VIP"
 };

@@ -68,7 +68,7 @@ export default {
     "zodiacVirgo": "Jomfru"
   },
   "filterAge": "• alder=18-25\n",
-  "filterCommand": "/broadcast_filter <filter> <msg_content> ",
+  "filterCommand": "/broadcast_filter <filter> <msg_content>",
   "filterConfirmConditions": "**Filterbetingelser:**\n{conditions}\n\n",
   "filterConfirmMessage": "**Beskedindhold:**\n{message}\n\n",
   "filterConfirmTitle": "🔍 **Udsendelsesfilter Bekræftelse**\n\n",

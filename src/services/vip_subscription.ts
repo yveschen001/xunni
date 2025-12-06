@@ -10,7 +10,7 @@ import { createTelegramService } from './telegram';
 import { notifySuperAdmin } from './admin_notification';
 import { CacheService } from './cache';
 
-const VIP_PRICE_STARS = 150; // Default price
+const VIP_PRICE_STARS = 385; // Default price
 
 function resolveVipPrice(env: Env): number {
   const value = Number(env.VIP_PRICE_STARS ?? VIP_PRICE_STARS);
@@ -82,9 +82,11 @@ async function sendExpirationReminders(
       try {
         // Get user's language preference for i18n
         const { findUserByTelegramId } = await import('~/db/queries/users');
-        const { createI18n } = await import('~/i18n');
+        const { createI18n, loadTranslations } = await import('~/i18n');
         const user = await findUserByTelegramId(db, sub.user_id);
-        const i18n = createI18n(user?.language_pref || 'zh-TW');
+        const userLang = user?.language_pref || 'zh-TW';
+        await loadTranslations(env, userLang);
+        const i18n = createI18n(userLang);
 
         const daysLeft =
           reminderType === '7d' ? 7 : reminderType === '3d' ? 3 : reminderType === '1d' ? 1 : 0;

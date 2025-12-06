@@ -1,13 +1,13 @@
 export default {
   "availableCommands": "Môžete kedykoľvek použiť nasledujúce príkazy:",
-  "catchBottle": "🎣 **Vyzvednite message bottle**",
-  "catchBottleDesc": "Skontrolujte message bottles iných ľudí a ak máte záujem, odpovedzte, aby ste začali chatovať",
+  "catchBottle": "🎣 **Catch Blessing Bottle**",
+  "catchBottleDesc": "Pozrite si požehnania od ostatných a odpovedzte na požehnania, začnite chatovať~",
   "clickButtonHint": "💡 Prosím kliknite na tlačidlo pre pokračovanie",
-  "commandCatch": "• /catch - Zdvihnúť message bottle",
+  "commandCatch": "• Catch Blessing Bottle",
   "commandHelp": "• /help - Zobraziť pomoc",
   "commandMenu": "📋 Nápoveda",
   "commandTasks": "• /tasks - Zobraziť úlohy",
-  "commandThrow": "• /throw - Hodiť message bottle",
+  "commandThrow": "• Throw Blessing Bottle",
   "completeTasksForBottles": "💡 Dokončte úlohy a získajte extra fľaše",
   "completed": "✅ Tutoriál dokončený!",
   "howToBecomeFriends": "💬 **Ako si spraviť priateľov?**",
@@ -16,11 +16,11 @@ export default {
   "skip": "Preskočiť",
   "skipped": "✅ Tutoriál preskočený",
   "startUsing": "Začnite používať →",
-  "throwBottle": "📦 **Hodiť message bottle**",
+  "throwBottle": "📦 **Throw Blessing Bottle**",
   "throwBottleDesc": "Zapíšte svoje pocity alebo myšlienky, systém vám pomôže nájsť vhodnú osobu",
   "unknownStep": "❌ Neznámy krok v tutoriáli",
   "viewTasks": "📋 Zobraziť úlohy",
   "welcome": "🎉 Gratulujeme k dokončeniu registrácie!",
   "whatIsXunNi": "🌊 **Čo je XunNi?**",
-  "whatIsXunNiDesc": "Anonymná platforma na priateľstvo s message bottles, ktorá vám pomáha nájsť podobne zmýšľajúcich priateľov cez MBTI a znamenia zverokruhu"
+  "whatIsXunNiDesc": "Anonymná platforma na priateľstvo s Blessing Bottle, nájdite si priateľov, ktorí majú podobné záujmy prostredníctvom vzájomných požehnaní, MBTI a zverokruhu."
 };

@@ -3,7 +3,7 @@ export default {
   "label_industry": "U kojoj industriji ste prvenstveno angažirani?",
   "btn_edit_role": "💼 Uređivanje profesionalnog identiteta",
   "btn_edit_industry": "🏢 Uređivanje industrije",
-  "profile_incomplete_hint": "💡 Da bismo pružili točnije AI usluge proricanja, molimo vas da prvo dovršite svoje osobne informacije.",
+  "profile_incomplete_hint": "💡 Da biste pružili točnije usluge psihičkog čitanja, molimo vas da prvo popunite svoje osobne podatke.",
   "role": {
     "employee": "Uredski radnik",
     "freelancer": "Slobodni radnik / SOHO",
@@ -167,4 +167,6 @@ export default {
     }
   },
   "next_step_industry": "পরবর্তীতে, অনুগ্রহ করে আপনার শিল্প নির্বাচন করুন।"
+,
+  "back_to_categories": "Back to Industries"
 };

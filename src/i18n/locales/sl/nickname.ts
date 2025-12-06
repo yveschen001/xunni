@@ -2,7 +2,7 @@ export default {
   "cannotGetNickname": "❌ Ni mogoče pridobiti Telegram vzdevka",
   "customHint": "⚠️ Opomba:\n• Omejitev dolžine vzdevka je 36 znakov\n• Druga stranka prikazuje največ 18 znakov\n• Ne uporabljajte vzdevka za pošiljanje oglasov",
   "customPrompt": "✏️ Prosimo, vnesite svoje vzdevek:\n\n",
-  "genderHint": "⚠️ Opomba: Nastavitve spola ni mogoče spremeniti po izbiri, prosimo, izberite previdno!\n- Za uporabo funkcij astrologije in ujemanja z message bottle, prosimo, izpolnite svoj spol ob rojstvu.",
+  "genderHint": "⚠️ Pozor: Ko se enkrat nastavi spol, ga ni mogoče spremeniti. Prosimo, izberite skrbno! \n- Za uporabo funkcij astrološkega ujemanja in Blessing Bottle, prosimo, navedite spol ob rojstvu.",
   "genderSelection": "Odlično! Vaš vzdevek je: {nickname}\n\nZdaj izberite svoj spol:\n\n",
   "nicknameSet": "✅ Vzdevek nastavljen",
   "userNotFound": "❌ Uporabnik ne obstaja"

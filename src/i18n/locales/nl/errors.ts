@@ -97,9 +97,9 @@ export default {
     "nickname": "❌ Niet in staat om Telegram bijnaam op te halen",
     "nickname2": "❌ De gebruikersnaam mag geen website-link bevatten\n\n",
     "nickname3": "❌ \\{validation.error}\n\nVoer je bijnaam opnieuw in:",
-    "quota": "❌ De quotum voor berichtflessen van vandaag is opgebruikt (\\{quotaDisplay})\n\n💡 Manieren om meer quotum te krijgen:\n",
+    "quota": "❌ De zegenquota van de Blessing Bottle van vandaag is opgebruikt (\\{quotaDisplay})\n\n💡 Manieren om meer quota te verkrijgen:",
     "quota2": "❌ Het quotum voor gesprekberichten van vandaag is bereikt (\\{usedToday}/\\{dailyLimit})\n\n",
-    "quota3": "❌ Het quotum voor berichtflessen van vandaag is bereikt (\\{quotaDisplay})\n\n",
+    "quota3": "❌ De zegenquota van de Blessing Bottle voor vandaag is opgebruikt (\\{quotaDisplay})",
     "register": "❌ Voltooi eerst het registratieproces.\n\nGebruik /start om door te gaan met de registratie.",
     "register2": "❌ Gebruikersprofiel niet gevonden, gebruik alsjeblieft /start om je eerst te registreren.",
     "register3": "❌ Voltooi het registratieproces voordat je berichtflessen verzamelt.\n\nGebruik /start om door te gaan met de registratie.",
@@ -179,5 +179,6 @@ export default {
   "userNotFoundRegister": "⚠️ Gebruiker bestaat niet, registreer je eerst met /start.",
   "verificationFailed": "❌ Verificatie mislukt, probeer het later opnieuw",
   "invalidTimeFormat": "Ongeldig tijdformaat\nBijvoorbeeld: 19:30 (24-uursformaat, 00-23 uur, 00-59 minuten)",
-  "invalidDateFormat": "Ongeldig datumformaat\nBijvoorbeeld: 2000-01-01"
+  "invalidDateFormat": "Ongeldig datumformaat\nBijvoorbeeld: 2000-01-01",
+  "taskAlreadyCompleted": "❌ Deze taak is al voltooid en de beloning is opgeëist."
 };

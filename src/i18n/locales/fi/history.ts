@@ -19,7 +19,7 @@ export default {
   "noMessages": "(Ei viestejä)",
   "partnerMessages": "• Toisen osapuolen lähettämät viestit: {count}\n",
   "recentMessages": "📨 **Äskettäiset keskustelut:**\n\n",
-  "returnToMenu": "🏠 Palaa päävalikkoon: /menu",
+  "returnToMenu": "🏠 Päävalikko",
   "returnToMenuButton": "🏠 Palaa päävalikkoon",
   "stats": "📊 **Tilastot:**\n",
   "time": "Aika: {time}\n\n",

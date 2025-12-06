@@ -3,7 +3,7 @@ export default {
   "label_industry": "In quale settore sei principalmente impegnato?",
   "btn_edit_role": "💼 Modifica Identità Professionale",
   "btn_edit_industry": "🏢 Modifica Settore",
-  "profile_incomplete_hint": "💡 Per fornire servizi di divinazione AI più accurati, ti preghiamo di completare prima le tue informazioni personali.",
+  "profile_incomplete_hint": "💡 Per fornire servizi di lettura psichica più accurati, ti preghiamo di completare prima le tue informazioni personali.",
   "role": {
     "employee": "Lavoratore d'Ufficio",
     "freelancer": "Libero Professionista / SOHO",
@@ -167,4 +167,6 @@ export default {
     }
   },
   "next_step_industry": "A continuación, seleccione su industria."
+,
+  "back_to_categories": "Back to Industries"
 };

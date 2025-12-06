@@ -13,7 +13,7 @@ export default {
   "bloodType": "✅ 혈액형이 {getBloodTypeDisplay(bloodType as any)}으로 업데이트되었습니다",
   "bloodType2": "✅ 혈액형이 제거되었습니다",
   "bottle": "✅ 보상이 배포되었습니다! +1 메시지 병",
-  "bottle2": "✅ 새로운 메시지 병 시작",
+  "bottle2": "✅ 새로운 축복의 병 축복 시작",
   "bottle3": "✅ 메시지 병이 생성되었습니다\n",
   "broadcast": "✅ {ids.length}개의 정체된 방송을 정리했습니다\n\n",
   "broadcast2": "✅ 정리할 방송이 없습니다\n\n",
@@ -95,7 +95,7 @@ export default {
     "bloodType": "✅ 혈액형이 \\{getBloodTypeDisplay(bloodType as any)}으로 업데이트되었습니다",
     "bloodType2": "✅ 혈액형이 초기화되었습니다",
     "bottle": "✅ 보상이 배포되었습니다! +1 메시지 병",
-    "bottle2": "✅ 새로운 메시지 병을 시작하세요",
+    "bottle2": "✅ 새로운 축복 축복의 병 시작하기",
     "bottle3": "✅ 메시지 병이 생성되었습니다\n",
     "broadcast": "✅ \\{ids.length}개의 정체된 방송을 정리했습니다\n\n",
     "broadcast2": "✅ 정리할 방송이 없습니다\n\n",
@@ -238,6 +238,6 @@ export default {
   "verify2": "✅ 인증되었습니다! +\\{ad.reward_quota} 영구 크레딧을 획득했습니다!",
   "vip": "✅ 모든 게시물이 최신 상태입니다 (VIP 상태가 올바릅니다)\n",
   "zodiac": "✅ 별자리 선택이 완료되었습니다",
-  "bottleThrown": "🍾 메시지 병이 던져졌습니다!",
+  "bottleThrown": "✅ 축복의 병이 던져졌습니다!",
   "saved": "✅ 설정이 저장되었습니다."
 };

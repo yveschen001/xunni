@@ -3,7 +3,7 @@ export default {
   "label_industry": "Vilken bransch arbetar du främst inom?",
   "btn_edit_role": "💼 Redigera Professionell Identitet",
   "btn_edit_industry": "🏢 Redigera Bransch",
-  "profile_incomplete_hint": "💡 För att tillhandahålla mer exakta AI-spådomstjänster, vänligen fyll i din personliga information först.",
+  "profile_incomplete_hint": "💡 För att kunna erbjuda mer precisa psykvärderingstjänster, vänligen fyll i din personliga information först.",
   "role": {
     "employee": "Kontorsarbetare",
     "freelancer": "Frilansare / SOHO",
@@ -167,4 +167,6 @@ export default {
     }
   },
   "next_step_industry": "Selecteer vervolgens uw branche."
+,
+  "back_to_categories": "Back to Industries"
 };

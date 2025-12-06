@@ -27,8 +27,8 @@ export default {
   "message8": "Fiyat: {priceStars} ⭐ Telegram Yıldızları / ay\n",
   "message9": "Ödeme zamanı: {paymentDate.toLocaleDateString(",
   "purchaseCancelled": "✅ Satın alma iptal edildi",
-  "quota": "• Günlük 30 mesaj şişesi kotası (Arkadaş davet ederek artırın, günde 100'e kadar)\n",
-  "quota2": "• Günlük 30 mesaj şişesi kotası (günde 100'e kadar)\n",
+  "quota": "• Günde 30 Dilek Şişesi kotası (Arkadaş davet ederek artırabilirsiniz, en fazla 100 şişe/gün)\n",
+  "quota2": "• Günde 30 Dilek Şişesi kotası (en fazla 100 şişe/gün)\n",
   "refundAdminCommands": "💡 Aşağıdaki komutları kullanarak devam edin:\n• Onayla: `/admin_approve_refund <ID>`\n• Reddet: `/admin_reject_refund <ID> <reason>`",
   "refundApproved": "✅ **İade Onaylandı**\n\nİade Tutarı: {amount} ⭐\nİade, 1-3 iş günü içinde hesabınıza aktarılacaktır.\n\nVIP üyeliğiniz iptal edilmiştir.\n\nAnlayışınız için teşekkür ederiz!",
   "refundApprovedAdmin": "✅ İade Onaylandı\n\nTalep ID: #{requestId}\nKullanıcı ID: {userId}\nTutar: {amount} ⭐",
@@ -75,7 +75,7 @@ export default {
   "text11": "Son kullanım tarihi: {expireDate}\n\n",
   "text12": "İadeler 1-3 iş günü içinde yapılacaktır.\n\n",
   "text13": "Talep ID: #{requestId}\n",
-  "text14": "└ 1 akıllı eşleşme + 2 kamu mesaj şişesi havuzu gösterimleri: Bir ek 2 gösterim yeri, onlara ulaşmayı bekleyen bir kader kişisi için.\nMesaj şişenizin görünme ihtimalini %300 artırın!",
+  "text14": "└ 1 akıllı eşleşme + 2 kamuya açık dualar Dilek Şişesi havuzunun görüntülemesini artırır: 2 ekstra görüntüleme alanı ekler, kaderine uygun kişilerin bunları almasını bekler.\nŞişenizin görünme şansını %300 artırır!",
   "text15": "İşlem sonuçları Bot tarafından bildirilecektir.\n\n",
   "text16": "Lütfen iade nedenini girin (en az 10 karakter):",
   "text17": "Neden: {req.reason}\n",
@@ -130,5 +130,5 @@ export default {
   "upgrade": "VIP'e Yüksel",
   "maxDurationExceeded": "⚠️ VIP süreniz limitine ulaştı ({maxMonths} ay), şu anda satın alma işlemine devam edemiyorsunuz.",
   "refundedAndRevoked": "ℹ️ Ödemeniz iade edildi ve VIP avantajlarınız iptal edildi.",
-  "benefit_daily_fortune": "• Günde 1 ücretsiz AI fal (VIP'ye özel)"
+  "benefit_daily_fortune": "• Günde 1 ücretsiz meditasyon okuması (VIP'ye özel)"
 };

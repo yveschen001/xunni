@@ -406,20 +406,40 @@ export function getCountryName(countryCode: string): string {
 }
 
 /**
- * Format nickname with country flag prefix
+ * Format nickname with country flag and gender prefix
  *
  * @param nickname - User's nickname
  * @param countryCode - ISO 3166-1 alpha-2 country code
- * @returns Formatted nickname with flag prefix
+ * @param gender - User's gender ('male', 'female', or other)
+ * @returns Formatted nickname with flag and gender prefix
  */
 export function formatNicknameWithFlag(
   nickname: string,
-  countryCode: string | null | undefined
+  countryCode: string | null | undefined,
+  gender?: string | null
 ): string {
-  if (!countryCode) {
-    return `🌍 ${nickname}`; // Default to earth emoji
+  let prefix = '';
+
+  // 1. Country Flag
+  if (countryCode) {
+    prefix += getCountryFlagEmoji(countryCode);
+  } else {
+    prefix += '🌍'; // Default to earth emoji
   }
 
-  const flag = getCountryFlagEmoji(countryCode);
-  return `${flag} ${nickname}`;
+  // 2. Gender Emoji
+  if (gender) {
+    if (gender === 'male') {
+      prefix += ' 🚹';
+    } else if (gender === 'female') {
+      prefix += ' 🚺';
+    }
+    // 'other' or unknown gender -> no emoji or maybe 👤?
+    // User requested "gender icon", usually implies male/female distinction.
+    // If not specified, we can skip or use a neutral one.
+    // Let's skip for 'other' to keep it clean, or use 👤 if explicitly 'other'.
+    // Given the requirement "add a gender ... icon", let's strictly add for male/female.
+  }
+
+  return `${prefix} ${nickname}`;
 }

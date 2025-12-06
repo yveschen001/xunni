@@ -65,6 +65,8 @@ import geo from './geo';
 import fortune from './fortune';
 import adPage from './adPage';
 import zodiac from './zodiac';
+import match from './match';
+import gift from './gift';
 
 export const translations = {
 
@@ -135,4 +137,6 @@ export const translations = {
   fortune,
   adPage,
   zodiac,
+  match,
+  gift,
 };

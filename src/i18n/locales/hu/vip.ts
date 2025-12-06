@@ -27,8 +27,8 @@ export default {
   "message8": "Ár: {priceStars} ⭐ Telegram Stars / hónap\n",
   "message9": "Fizetési idő: {paymentDate.toLocaleDateString(",
   "purchaseCancelled": "✅ Vásárlás megszakítva",
-  "quota": "• Napi kvóta 30 üzenet palackra (barátok meghívása növelheti, maximum 100 naponta)\n",
-  "quota2": "• Napi kvóta 30 üzenet palackra (legfeljebb 100 naponta)\n",
+  "quota": "• Naponta 30 Kívánság Palack kvóta (barátok meghívásával növelhető, maximum 100/db/nap)\n",
+  "quota2": "• Naponta 30 Kívánság Palack kvóta (maximum 100/db/nap)\n",
   "refundAdminCommands": "💡 Használja az alábbi parancsokat a folytatáshoz:\n• Jóváhagyás: `/admin_approve_refund <ID>`\n• Elutasítás: `/admin_reject_refund <ID> <reason>`",
   "refundApproved": "✅ **Jóváhagyott visszatérítés**\n\nVisszatérítési összeg: {amount} ⭐\nA visszatérítést 1-3 munkanapon belül jóváírjuk.\n\nVIP tagsága meg lett szüntetve.\n\nKöszönjük a megértését!",
   "refundApprovedAdmin": "✅ Visszatérítés jóváhagyva\n\nKérelem ID: #{requestId}\nFelhasználó ID: {userId}\nÖsszeg: {amount} ⭐",
@@ -75,7 +75,7 @@ export default {
   "text11": "Lejárati idő: {expireDate}\n\n",
   "text12": "A visszatérítéseket 1-3 munkanapon belül jóváírják.\n\n",
   "text13": "Kérelem ID: #{requestId}\n",
-  "text14": "└ 1 okos találat + 2 nyilvános üzenetpalack medence kijelző: További 2 kijelző hely, várva a sorsolt személyre, hogy felvegye őket.\nNövelje az esélyét, hogy az üzenetpalackját 300%-kal lássák!",
+  "text14": "└ 1 intelligens párosítás + 2 nyilvános Kívánság Palack medence megjelenítése: további 2 megjelenítési hely, várva a sorsra. \nNövelje a palackjai láthatóságának esélyeit 300%-kal!",
   "text15": "Az eljárási eredményekről Bot értesítést kapsz.\n\n",
   "text16": "Kérjük, adja meg a visszatérítés okát (legalább 10 karakter):",
   "text17": "Oka: {req.reason}\n",
@@ -130,5 +130,5 @@ export default {
   "upgrade": "Frissítés VIP-re",
   "maxDurationExceeded": "⚠️ A VIP időszakod elérte a határt ({maxMonths} hónap), és egyelőre nem tudsz vásárolni.",
   "refundedAndRevoked": "ℹ️ A kifizetésed visszatérítésre került, és a VIP előnyöket visszavonták.",
-  "benefit_daily_fortune": "• Naponta 1 ingyenes AI jósda (kizárólag VIP tagoknak)"
+  "benefit_daily_fortune": "• Naponta 1 ingyenes pszichikai olvasás (kizárólag VIP számára)"
 };

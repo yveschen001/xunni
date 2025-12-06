@@ -1,6 +1,6 @@
 export default {
   "cannotIdentify": "⚠️ Hindi makilala ang kasosyo sa usapan",
-  "catchNewBottle": "💡 Gumamit ng /catch para kumuha ng bagong bote ng mensahe upang makapagsimula ng bagong usapan.",
+  "catchNewBottle": "💡 Gumamit ng /catch upang mangolekta ng bagong Bote ng Pagpapala at simulan ang isang bagong pag-uusap.",
   "conversationInfoError": "⚠️ Mali ang impormasyon ng usapan.",
   "conversationMayEnded": "Maaaring natapos na ang usapan o hindi ito umiiral.",
   "conversationNotFound": "⚠️ Ang usapang ito ay hindi mahanap.",
@@ -12,5 +12,5 @@ export default {
   "step3": "3️⃣ Ipasok ang /block",
   "steps": "**Mga hakbang sa operasyon:**",
   "success": "✅ Na-block ang user na ito (#{identifier})",
-  "willNotMatch": "Hindi ka na magkakaroon ng kasamang bote ng mensahe."
+  "willNotMatch": "Hindi na kayo pagtutugmain sa isa't isa ng Bote ng Pagpapala."
 };

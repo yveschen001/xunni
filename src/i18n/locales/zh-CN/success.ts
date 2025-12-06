@@ -13,7 +13,7 @@ export default {
   "bloodType": "✅ 血型已更新为 {getBloodTypeDisplay(bloodType as any)}",
   "bloodType2": "✅ 血型已清除",
   "bottle": "✅ 奖励已发放！ +1 瓶子",
-  "bottle2": "✅ 开始新的漂流瓶",
+  "bottle2": "✅ 开始新的祝福漂流瓶",
   "bottle3": "✅ 瓶子已创建\n",
   "broadcast": "✅ 已清理 {ids.length} 个卡住的广播\n\n",
   "broadcast2": "✅ 没有需要清理的广播\n\n",
@@ -95,7 +95,7 @@ export default {
     "bloodType": "✅ 血型已更新为 \\{getBloodTypeDisplay(bloodType as any)}",
     "bloodType2": "✅ 血型已清除",
     "bottle": "✅ 奖励已发放！ +1 瓶子",
-    "bottle2": "✅ 开始新的漂流瓶",
+    "bottle2": "✅ 开始新的祝福漂流瓶",
     "bottle3": "✅ 瓶子已创建\n",
     "broadcast": "✅ 已清理 \\{ids.length} 个卡住的广播\n\n",
     "broadcast2": "✅ 没有需要清理的广播\n\n",
@@ -238,6 +238,6 @@ export default {
   "verify2": "✅ 验证成功！获得 +\\{ad.reward_quota} 个永久额度！",
   "vip": "✅ 所有帖子都是最新的（VIP 状态正确）\n",
   "zodiac": "✅ 已清除星座选择",
-  "bottleThrown": "🍾 漂流瓶已丢出！",
+  "bottleThrown": "✅ 祝福漂流瓶已扔出！",
   "saved": "✅ 设定已保存"
 };

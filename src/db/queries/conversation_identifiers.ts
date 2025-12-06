@@ -137,7 +137,7 @@ export async function getAllConversationsWithIdentifiers(
       COUNT(cm.id) as message_count,
       MAX(cm.created_at) as last_message_time,
       (
-        SELECT content 
+        SELECT original_text 
         FROM conversation_messages 
         WHERE conversation_id IN (
           SELECT id FROM conversations 
@@ -185,11 +185,12 @@ export async function getConversationMessages(
     id: number;
     sender_telegram_id: string;
     content: string;
+    translated_text: string | null;
     created_at: string;
   }>
 > {
   const query = `
-    SELECT cm.id, cm.sender_telegram_id, cm.content, cm.created_at
+    SELECT cm.id, cm.sender_telegram_id, cm.original_text as content, cm.translated_text, cm.created_at
     FROM conversation_messages cm
     JOIN conversations c ON cm.conversation_id = c.id
     WHERE (
@@ -209,8 +210,83 @@ export async function getConversationMessages(
     id: number;
     sender_telegram_id: string;
     content: string;
+    translated_text: string | null;
     created_at: string;
   }>;
+}
+
+/**
+ * Get paginated conversation messages
+ */
+export async function getConversationMessagesPaginated(
+  db: DatabaseClient,
+  userTelegramId: string,
+  partnerTelegramId: string,
+  page: number = 1,
+  pageSize: number = 20
+): Promise<{
+  messages: Array<{
+    id: number;
+    sender_telegram_id: string;
+    content: string;
+    translated_text: string | null;
+    created_at: string;
+  }>;
+  total: number;
+  totalPages: number;
+}> {
+  const offset = (page - 1) * pageSize;
+  
+  // Get messages
+  const query = `
+    SELECT cm.id, cm.sender_telegram_id, cm.original_text as content, cm.translated_text, cm.created_at
+    FROM conversation_messages cm
+    JOIN conversations c ON cm.conversation_id = c.id
+    WHERE (
+      (c.user_a_telegram_id = ? AND c.user_b_telegram_id = ?)
+      OR (c.user_b_telegram_id = ? AND c.user_a_telegram_id = ?)
+    )
+    ORDER BY cm.created_at DESC
+    LIMIT ? OFFSET ?
+  `;
+
+  const { results } = await db.d1
+    .prepare(query)
+    .bind(userTelegramId, partnerTelegramId, userTelegramId, partnerTelegramId, pageSize, offset)
+    .all();
+
+  const messages = (results || []).reverse() as Array<{
+    id: number;
+    sender_telegram_id: string;
+    content: string;
+    translated_text: string | null;
+    created_at: string;
+  }>;
+
+  // Get total count
+  const countQuery = `
+    SELECT COUNT(*) as total
+    FROM conversation_messages cm
+    JOIN conversations c ON cm.conversation_id = c.id
+    WHERE (
+      (c.user_a_telegram_id = ? AND c.user_b_telegram_id = ?)
+      OR (c.user_b_telegram_id = ? AND c.user_a_telegram_id = ?)
+    )
+  `;
+
+  const countResult = await db.d1
+    .prepare(countQuery)
+    .bind(userTelegramId, partnerTelegramId, userTelegramId, partnerTelegramId)
+    .first<{ total: number }>();
+
+  const total = countResult?.total || 0;
+  const totalPages = Math.ceil(total / pageSize);
+
+  return {
+    messages,
+    total,
+    totalPages
+  };
 }
 
 /**

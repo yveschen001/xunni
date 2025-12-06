@@ -12,5 +12,6 @@ export default {
   "nicknameInputHint": "👇 يرجى إدخال لقب جديد:",
   "bioInstruction": "يرجى إدخال مقدمة ذاتية جديدة (حتى 100 حرف).\n\nمقدمتك الذاتية الحالية هي: {bio}",
   "bioInputHint": "👇 يرجى إدخال مقدمة ذاتية جديدة:",
-  "bloodTypeInstruction": "يرجى اختيار فصيلة دمك:"
+  "bloodTypeInstruction": "يرجى اختيار فصيلة دمك:",
+  "matchPrefInstruction": "يرجى اختيار تفضيلات المطابقة الخاصة بك:"
 };

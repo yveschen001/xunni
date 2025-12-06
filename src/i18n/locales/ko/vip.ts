@@ -27,8 +27,8 @@ export default {
   "message8": "가격: {priceStars} ⭐ 텔레그램 스타 / 월\n",
   "message9": "결제 시간: {paymentDate.toLocaleDateString(",
   "purchaseCancelled": "✅ 구매가 취소되었습니다",
-  "quota": "• 일일 30개의 메시지 병 할당량 (친구 초대 시 최대 100개까지 증가 가능)\n",
-  "quota2": "• 일일 30개의 메시지 병 할당량 (최대 100개까지)\n",
+  "quota": "• 하루 30개의 축복의 병 한도 (친구 초대 시 최대 100개까지 증가 가능)",
+  "quota2": "• 하루 30개의 축복의 병 한도 (최대 100개까지 가능)",
   "refundAdminCommands": "💡 다음 명령어를 사용하여 진행하세요:\n• 승인: `/admin_approve_refund <ID>`\n• 거부: `/admin_reject_refund <ID> <reason>`",
   "refundApproved": "✅ **환불 승인**\n\n환불 금액: {amount} ⭐\n환불은 1-3 영업일 이내에 처리됩니다.\n\n귀하의 VIP 멤버십이 취소되었습니다.\n\n이해해 주셔서 감사합니다!",
   "refundApprovedAdmin": "✅ 환불 승인\n\n요청 ID: #{requestId}\n사용자 ID: {userId}\n금액: {amount} ⭐",
@@ -75,7 +75,7 @@ export default {
   "text11": "만료 시간: {expireDate}\n\n",
   "text12": "환불은 1-3 영업일 이내에 처리됩니다.\n\n",
   "text13": "요청 ID: #{requestId}\n",
-  "text14": "└ 1 스마트 매치 + 2 공개 메시지 병 풀 표시: 추가 2개의 표시 공간이 있어, 운명적인 사람이 이를 주워갈 때까지 기다립니다.\n메시지 병이 보일 확률을 300% 증가시킵니다!",
+  "text14": "└ 1 스마트 매치 + 2 공개 축복 축복의 병 풀 디스플레이: 2개의 추가 디스플레이 공간을 추가하여 인연이 있는 사람들이 pick할 수 있도록 기다립니다.\n당신의 병이 보일 확률을 300% 증가시킵니다!",
   "text15": "처리 결과는 봇을 통해 알려드립니다.\n\n",
   "text16": "환불 사유를 입력해 주세요 (최소 10자):",
   "text17": "사유: {req.reason}\n",
@@ -130,5 +130,5 @@ export default {
   "upgrade": "VIP로 업그레이드",
   "maxDurationExceeded": "⚠️ VIP 기간이 한도에 도달했습니다 ({maxMonths}개월), 당분간 구매를 계속할 수 없습니다.",
   "refundedAndRevoked": "ℹ️ 결제가 환불되었으며, VIP 혜택이 취소되었습니다.",
-  "benefit_daily_fortune": "• 하루에 1회 무료 AI 점술 (VIP 전용)"
+  "benefit_daily_fortune": "• 하루에 1회의 무료 심리 상담 (VIP 전용)"
 };

@@ -4,7 +4,7 @@ export default {
   "cancel": "❌ Prekliči",
   "cancelled": "Preklicano",
   "cannotIdentify": "⚠️ Ni mogoče identificirati sogovornika\n\n",
-  "catchHint": "• Uporabite /catch za pobiranje novega message bottle",
+  "catchHint": "• 使用 Catch Blessing Bottle 撿新的祝福瓶",
   "completeOnboarding": "⚠️ Najprej dokončajte postopek registracije.\n\nUporabite /start za nadaljevanje registracije.",
   "conversationInfoError": "⚠️ Informacije o pogovoru so nepravilne.",
   "conversationInfoError2": "⚠️ Informacije o pogovoru so nepravilne",

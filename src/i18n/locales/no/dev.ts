@@ -1,7 +1,7 @@
 export default {
   "autoCompleted": "Registreringsprosessen er fullført automatisk.\n\n",
-  "bottles": "• Flaskeposter: {count}\n",
-  "catchCommand": "• /catch - Fang flaskeposter\n",
+  "bottles": "• Ønskeflaske: {count}\n",
+  "catchCommand": "• Catch Ønskeflaske\n",
   "conversations": "• Samtaler: {count}\n",
   "dataReset": "✅ Utviklingsmodus: Data er tilbakestilt\n\nAlle dataene dine har blitt slettet.\n\n💡 Du kan nå starte registreringsprosessen på nytt for testing.\n\n🔄 Re-register: /start\neller bruk: /dev_restart (start registreringen automatisk)\n\n⚠️ Merk: Denne funksjonen er kun tilgjengelig i staging-miljøet.",
   "getUserInfoFailed": "❌ Kunne ikke hente informasjon",
@@ -30,7 +30,7 @@ export default {
   "telegramId": "Telegram-ID: {id}\n",
   "testCoreFeatures": "💡 Du kan nå direkte teste kjernefuksjoner:\n",
   "testUser": "Testbruker",
-  "throwCommand": "• /throw - Kast flaskepost\n",
+  "throwCommand": "• Throw Ønskeflaske\n",
   "userInfo": "🔧 Utviklingsmodus: Brukerinformasjon\n\n",
   "userNotFound": "❌ Bruker eksisterer ikke",
   "vip": "VIP: {status}",

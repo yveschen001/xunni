@@ -31,13 +31,13 @@
 # Staging: 1 Star（測試價格）
 VIP_PRICE_STARS = "1"
 
-# Production: 150 Stars（正式價格，約 5 USD）
-VIP_PRICE_STARS = "150"
+# Production: 385 Stars（正式價格，約 7.7 USD）
+VIP_PRICE_STARS = "385"
 ```
 
 #### ✅ 自動環境識別
 - Staging: 顯示「💳 購買 VIP (1 ⭐)（Staging 測試價）」
-- Production: 顯示「💳 購買 VIP (150 ⭐)（約 5 USD）」
+- Production: 顯示「💳 購買 VIP (385 ⭐)（約 7.7 USD）」
 
 ---
 
@@ -417,7 +417,7 @@ cron = "0 10 * * *"  # Every day at 10:00 UTC = 18:00 Taipei (VIP expiration che
 - **狀態**: ✅ 已部署並可測試
 
 ### 🔄 Production 環境
-- **VIP_PRICE_STARS**: 150 ⭐（正式價格，約 5 USD）
+- **VIP_PRICE_STARS**: 385 ⭐（正式價格，約 7.7 USD）
 - **Migrations**: 待執行
 - **Cron Jobs**: 已配置
 - **狀態**: 待部署
@@ -502,7 +502,7 @@ curl -X POST "https://xunni-bot-staging.yves221.workers.dev/__scheduled?cron=0+1
 
 ### Production 部署前
 1. **執行 Migrations**（0036, 0037, 0038）
-2. **設置 VIP_PRICE_STARS = 150**
+2. **設置 VIP_PRICE_STARS = 385**
 3. **啟用 Cron Jobs**
 4. **部署到 Production**
 

@@ -97,9 +97,9 @@ export default {
     "nickname": "❌ Không thể lấy biệt danh Telegram",
     "nickname2": "❌ Tên người dùng không thể chứa liên kết trang web\n\n",
     "nickname3": "❌ \\{validation.error}\n\nVui lòng nhập lại biệt danh của bạn:",
-    "quota": "❌ Hạn mức chai thư hàng ngày đã sử dụng hết (\\{quotaDisplay})\n\n💡 Cách để nhận thêm hạn mức:\n",
+    "quota": "❌ Hạn ngạch Chai Cầu Nguyện chúc phúc hôm nay đã được sử dụng hết (\\{quotaDisplay})\n\n💡 Cách để nhận thêm hạn ngạch:",
     "quota2": "❌ Hạn ngạch tin nhắn cuộc trò chuyện hôm nay đã được sử dụng hết (\\{usedToday}/\\{dailyLimit})\n\n",
-    "quota3": "❌ Hạn ngạch chai thư hôm nay đã được sử dụng hết (\\{quotaDisplay})\n\n",
+    "quota3": "❌ hạn ngạch Chai Cầu Nguyện ban phước hôm nay đã được sử dụng hết (\\{quotaDisplay})",
     "register": "❌ Vui lòng hoàn tất quy trình đăng ký trước.\n\nSử dụng /start để tiếp tục đăng ký.",
     "register2": "❌ Không tìm thấy dữ liệu người dùng, vui lòng sử dụng /start để đăng ký trước.",
     "register3": "❌ Vui lòng hoàn tất quy trình đăng ký để nhận chai thư.\n\nSử dụng /start để tiếp tục đăng ký.",
@@ -179,5 +179,6 @@ export default {
   "userNotFoundRegister": "⚠️ Người dùng không tồn tại, vui lòng đăng ký bằng cách sử dụng /start trước.",
   "verificationFailed": "❌ Xác minh không thành công, vui lòng thử lại sau",
   "invalidTimeFormat": "Định dạng thời gian không hợp lệ\nVí dụ: 19:30 (định dạng 24 giờ, 00-23 giờ, 00-59 phút)",
-  "invalidDateFormat": "Định dạng ngày không hợp lệ\nVí dụ: 2000-01-01"
+  "invalidDateFormat": "Định dạng ngày không hợp lệ\nVí dụ: 2000-01-01",
+  "taskAlreadyCompleted": "❌ Nhiệm vụ này đã được hoàn thành và phần thưởng đã được nhận."
 };

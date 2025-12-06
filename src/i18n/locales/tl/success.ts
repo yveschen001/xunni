@@ -13,7 +13,7 @@ export default {
   "bloodType": "✅ Na-update ang uri ng dugo sa {getBloodTypeDisplay(bloodType as any)}",
   "bloodType2": "✅ Na-clear ang uri ng dugo",
   "bottle": "✅ Naipamahagi ang mga gantimpala! +1 bote ng mensahe",
-  "bottle2": "✅ Magsimula ng bagong bote ng mensahe",
+  "bottle2": "✅ Magsimula ng bagong pagbabasbas ng Bote ng Pagpapala",
   "bottle3": "✅ Naka-create ang bote ng mensahe\n",
   "broadcast": "✅ Nilinis ang {ids.length} na natigil na broadcast\n\n",
   "broadcast2": "✅ Walang broadcasts na kailangang linisin\n\n",
@@ -95,7 +95,7 @@ export default {
     "bloodType": "✅ Na-update ang uri ng dugo sa \\{getBloodTypeDisplay(bloodType as any)}",
     "bloodType2": "✅ Na-clear ang uri ng dugo",
     "bottle": "✅ Ibinigay ang gantimpala! +1 bote ng mensahe",
-    "bottle2": "✅ Nagsimula ng bagong bote ng mensahe",
+    "bottle2": "✅ Simulan ang bagong pagpapala ng Bote ng Pagpapala",
     "bottle3": "✅ Nalikha ang bote ng mensahe\n",
     "broadcast": "✅ Na-clear ang \\{ids.length} na nakabiting broadcast\n\n",
     "broadcast2": "✅ Walang broadcasting na kailangang linisin\n\n",
@@ -238,6 +238,6 @@ export default {
   "verify2": "✅ Matagumpay ang verification! Nakakuha ka ng +\\{ad.reward_quota} permanenteng kredito!",
   "vip": "✅ Lahat ng mga post ay na-update (tama ang VIP status)\n",
   "zodiac": "✅ Nalinis ang pagpili ng Zodiac",
-  "bottleThrown": "🍾 Naitapon na ang bote ng mensahe!",
+  "bottleThrown": "✅ Itinapon na ang Bote ng Pagpapala!",
   "saved": "✅ Nasaved na ang mga setting"
 };

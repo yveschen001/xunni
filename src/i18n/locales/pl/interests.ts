@@ -9,7 +9,7 @@ export default {
   "subtitle": "Proszę wybrać kategorię, aby przeglądać opcje.",
   "current": "Bieżąco wybrane ({count}/{max}):\n{list}",
   "saved": "✅ Tagi zainteresowań zaktualizowane!",
-  "required_hint": "💡 Aby zapewnić dokładniejsze usługi wróżenia AI, proszę najpierw wypełnić tagi zainteresowań.",
+  "required_hint": "💡 Aby zapewnić dokładniejsze usługi wróżbiarskie, prosimy najpierw o uzupełnienie tagów zainteresowań.",
   "categories": {
     "life": "Styl życia i styl",
     "travel": "Podróże i eksploracja",

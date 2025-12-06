@@ -9,7 +9,7 @@ export default {
   "subtitle": "Vui lòng chọn một loại để duyệt các tùy chọn.",
   "current": "Hiện tại đã chọn ({count}/{max}):\n{list}",
   "saved": "✅ Thẻ sở thích đã được cập nhật!",
-  "required_hint": "💡 Để cung cấp dịch vụ xem bói AI chính xác hơn, vui lòng hoàn thành trước thẻ sở thích của bạn.",
+  "required_hint": "💡 Để cung cấp dịch vụ đọc tarot chính xác hơn, vui lòng hoàn thành các thẻ sở thích của bạn trước.",
   "categories": {
     "life": "Phong cách sống và Thời trang",
     "travel": "Du lịch và Khám phá",

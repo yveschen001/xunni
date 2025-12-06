@@ -8,15 +8,15 @@ export default {
     "love_match": "Përshtatshmëria mes çiftëve",
     "love_ideal": "Analiza e tipit ideal"
   },
-  "back_to_menu": "🔙 Kthehuni në menunë e fatit të AI",
-  "get_more_bottles": "💎 Merrni më shumë shishka fatit për përcaktimin e fatit",
+  "back_to_menu": "🔙 Kthehu në Menun e Leximit Psikik",
+  "get_more_bottles": "💎 Merrni më shumë Fortune Bottle",
   "relationship": {
     "love": "Çifti",
     "friend": "Miqtë",
     "family": "Familja",
     "work": "Kolegët"
   },
-  "menuTitle": "Fati i AI",
+  "menuTitle": "Psychic Reading",
   "currentProfile": "Profili aktual",
   "warehouse": "Ruajtja e hartave të lindjes",
   "manageProfiles": "Menaxhoni hartat e lindjes",
@@ -148,21 +148,21 @@ export default {
   },
   "dailyPush": "📅 Horoskopi i sotëm është dorëzuar!",
   "dailyPushBtn": "👇 Klikoni për të parë",
-  "backToMenu": "🔙 Kthehu në Menun e Parashikimeve me AI",
+  "backToMenu": "🔙 Kthehu në Menun e Leximit Psikik",
   "addProfile": "Shto Skedarin e Diagramit",
-  "quotaDisplay": "🔮 Parashikimi i fatit me shishe mesazhi: {total} (Këtë javë falas: {weekly}/{limit} | Shtesë: {additional})",
-  "quotaDisplayVip": "🔮 shishja e fatit: {total} (Sot: {daily}/1 | Shtesë: {additional})",
-  "quotaDisplayFree": "🔮 shishja e fatit: {total} (Kjo javë falas: {weekly}/1 | Shtesë: {additional})",
+  "quotaDisplay": "🔮 Fortune Bottle: {total} (Këtë javë falas: {weekly}/{limit} | Shtesë: {additional})",
+  "quotaDisplayVip": "🔮 Fortune Bottle: {total} (Sot: {daily}/1 | Shtesë: {additional})",
+  "quotaDisplayFree": "🔮 Fortune Bottle: {total} (Këtë javë falas: {weekly}/1 | Shtesë: {additional})",
   "profileDetails": "👤 {gender} {blood} | 🎂 {birthday} | {zodiac} | 🧠 {mbti}",
-  "getMore": "Merrni më shumë shishe fatit",
-  "getMoreInfo": "🔮 *Si të Merrni një Shishe Fatit?*\n\n1. **Falë**: Përdoruesit e rregullt marrin 1 në javë, VIP-at marrin 1 në ditë.\n2. **Shpërblime Për Ftesa**: Ftoni një mik të bashkohet, dhe kur ata me sukses ftojnë një mik tjetër, ju do të merrni një shpërblim (deri në 1 shishe fati brenda 24 orëve).\n3. **Shpërblime për Shishe Mesazhesh**: Për çdo 10 shishe mesazhesh të dërguara, merrni 1 shishe fati. (Derisa në 1 shishe fati brenda 24 orëve)\n4. **Blijeni Direkt (🔥 20% Zbritje në Kohë të Kufizuar)**:\n • Paketë e Vogël {smallAmount} - ~{originalSmallPrice} Yje~ {smallPrice} Yje\n • Paketë e Madhe {largeAmount} - ~{originalLargePrice} Yje~ {largePrice} Yje",
+  "getMore": "Merr më shumë Fortune Bottle",
+  "getMoreInfo": "🔮 *Si të merrni Fortune Bottle?*\n\n1. **Falë për çdo javë**: Përdoruesit normalë çdo javë 1, VIP çdo ditë 1.\n2. **Shpërblimi i thirrjes**: Nëse ftoni një mik të bashkohet, dhe ai miku gjithashtu fton një mik tjetër, ju do të merrni një shpërblim (në 24 orët e ardhshme, maksimumi 1 Fortune Bottle).\n3. **Shpërblimi i Blessing Bottle**: Çdo 10 Blessing Bottle dërguar, merrni 1 Fortune Bottle. (në 24 orët e ardhshme, maksimumi 1 Fortune Bottle)\n4. **Blerje direkte (🔥 Oferta e limituar 20% zbritje)**:\n   • Paketë e vogël {smallAmount} - ~{originalSmallPrice} Yjet~ {smallPrice} Yjet\n   • Paketë e madhe {largeAmount} - ~{originalLargePrice} Yjet~ {largePrice} Yjet",
   "buySmall": "🔥 Çmimi Special {price} Yjet (Bleni {amount} artikuj)",
   "buyLarge": "🔥 Çmimi Special {price} Yjet (Bleni {amount} artikuj)",
-  "invoiceTitle": "Blini {amount} shishe fatku.",
-  "invoiceDesc": "Pas blerjes, mund të përdorni menjëherë shërbimin e parashikimit të fatit të AI, dhe çdo shërbim parashikimi konsumon 1 shishe fatku.\n\nKlikoni butonin më poshtë për të blerë tani:",
-  "purchaseSuccess": "🎉 Blerja ishte e suksesshme! {amount} shishe fatku janë shtuar.",
-  "bottleReward": "🎉 Urime! Keni dërguar {count} shishe fatku dhe keni marrë 1 shpërblim shishe fatku!",
-  "inviteChainReward": "🎉 Urime! Mikpritësi juaj i ftuar ka ftuar me sukses një mik të ri për t'u bashkuar, dhe ju keni marrë 1 shpërblim shishe fatku!",
+  "invoiceTitle": "Blerja e {amount} Fortune Bottle",
+  "invoiceDesc": "Pasi të blihet, mund të përdorni menjëherë shërbimin e fatit, çdo shërbim konsumon 1 Fortune Bottle.\n\nShtypni butonin e mëposhtëm për të blerë tani:",
+  "purchaseSuccess": "🎉 Blerja e suksesshme! Shtuar {amount} Fortune Bottle.",
+  "bottleReward": "🎉 Urime! Keni dërguar {count} Blessing Bottle, fitoni 1 Fortune Bottle shpërblim!",
+  "inviteChainReward": "🎉 Urime! Miku juaj që e keni ftuar ka ftuar me sukses një mik tjetër, ju fitoni 1 Fortune Bottle shpërblim!",
   "menu": {
     "love": "Diagnoza e Atributeve (Përshtatja e Marrëdhënies)",
     "attribute_desc": "Analizoni atributet tuaja romantike dhe tiparet potenciale.",
@@ -190,7 +190,9 @@ export default {
     "match_report_title": "💞 Raporti i sinastrisë së çiftit",
     "wait_for_consent": "⏳ Duke pritur për pajtimin e palës tjetër...",
     "consent_accepted": "✅ Pala tjetër është pajtuar! Duke gjeneruar raportin...",
-    "consent_rejected": "❌ Pala tjetër e ka refuzuar kërkesën për sinastrinë."
+    "consent_rejected": "❌ Pala tjetër e ka refuzuar kërkesën për sinastrinë.",
+    "invite_friend": "📨 Invite Friend to Experience",
+    "invite_friend_text": "Hey! I want to try the Compatibility Test with you. Create your fortune profile now!"
   },
   "role": {
     "husband": "Bashkëshort",
@@ -228,12 +230,26 @@ export default {
       "drawn": "🎴 Kartat janë nxjerrë:"
     }
   },
-  "profile_incomplete_hint": "💡 Për të ofruar shërbime më të sakta të parashikimit me IA, ju lutemi plotësoni fillimisht informacionin tuaj mbi interesat, profesionin ose MBTI.",
+  "profile_incomplete_hint": "💡 Për të ofruar një shërbim më të saktë të parashikimit shpirtëror, ju lutemi së pari plotësoni interesat, profesionin, ose MBTI ... dhe informacionet e tjera.",
   "tarot_menu_title": "Kartat e Tarots",
   "tarot_ui": {
     "intro": "🔮 *Leximi i Taros*\n\nJu lutem mendoni në heshtje për pyetjen tuaj (për shembull, \"Si është fati im karrierës së fundit?\" ose \"Si duhet ta menaxhoj këtë lidhje?\") dhe klikoni butonin më poshtë për të tërhequr një kartë pasi të përqendroheni në mendimet tuaja.",
     "draw": "🔮 Tërheq Kartën",
     "shuffling": "Përzierje...",
     "drawn": "🎴 Karta është tërhequr:"
+  },
+  "profileUpdated": "✅ Profili i astrologjisë është përditësuar!",
+  "btn_complete_info": "✏️ Plotësoni informacionin tuaj të lindjes",
+  "complete_info_hint": "💡 Perfeksoni orën dhe vendndodhjen tuaj të lindjes për të hapur analizën e shenjës ngjallëse dhe shtëpisë!",
+  "btn_edit_info": "📝 Redaktoni informacionin e lindjes",
+  "edit": {
+    "currentInfo": "📋 Informacionet Aktuale:",
+    "currentTime": "Koha e Lindjes: {time}",
+    "currentTimeUnknown": "Koha e Lindjes: E Paqartë",
+    "currentCity": "Qyteti i Lindjes: {city}",
+    "currentCityUnknown": "Qyteti i Lindjes: Nuk është Vendosur",
+    "confirmEdit": "A dëshiron të modifikosh informacionin e mësipërm?",
+    "btnConfirmEdit": "✅ Po, dua të modifikoj",
+    "btnCancelEdit": "❌ Anulo"
   }
 };

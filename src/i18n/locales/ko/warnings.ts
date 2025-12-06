@@ -122,7 +122,7 @@ export default {
       "body": "{userAttribute},\n분석에 따르면, 당신은 {recommendedAttributes}와 가장 강한 친화력을 가지고 있습니다!\n\n💡 {reason}\n\n👇 운이 좋다고 느끼세요?"
     },
     "btn": {
-      "throw": "🌊 병을 던져 보고 기회를 잡으세요",
+      "throw": "🌊 축복 축복의 병을 던져 다른 이들에게 행복을 기원하며, 행복이 다시 돌아올 것입니다.",
       "vip_throw": "🎯 {target}에게 던지기",
       "vip_upsell": "💡 VIP로 업그레이드하여 {target}에게 배달을 지정하여 정밀한 매칭을 하세요!"
     }

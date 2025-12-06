@@ -191,14 +191,16 @@ export async function handleBirthdayGreetings(env: Env): Promise<void> {
     // - deleted_at IS NULL
     // - onboarding_step = 'completed'
     // - last_active_at >= datetime('now', '-30 days')
-    let userIds = await getFilteredUserIds(db, { is_birthday: true });
+    const users = await getFilteredUserIds(db, { is_birthday: true });
 
-    if (userIds.length === 0) {
+    if (users.length === 0) {
       console.log('[BirthdayGreetings] No users with birthdays today.');
       return;
     }
 
-    console.log(`[BirthdayGreetings] Found ${userIds.length} users with birthdays today.`);
+    console.log(`[BirthdayGreetings] Found ${users.length} users with birthdays today.`);
+
+    let userIds = users.map((u) => u.telegram_id);
 
     // Prioritize users if too many
     if (userIds.length > MAX_BIRTHDAY_GREETINGS_PER_DAY) {
@@ -209,7 +211,7 @@ export async function handleBirthdayGreetings(env: Env): Promise<void> {
     }
 
     // Fetch user details
-    const users = await db.d1
+    const userDetails = await db.d1
       .prepare(
         `SELECT telegram_id, nickname, zodiac, gender
          FROM users
@@ -223,14 +225,14 @@ export async function handleBirthdayGreetings(env: Env): Promise<void> {
         gender: string;
       }>();
 
-    if (!users.results || users.results.length === 0) {
+    if (!userDetails.results || userDetails.results.length === 0) {
       console.log('[BirthdayGreetings] No user details found.');
       return;
     }
 
     // Filter out users who already received greeting today
     const usersToSend = [];
-    for (const user of users.results) {
+    for (const user of userDetails.results) {
       const alreadySent = await wasGreetingSentToday(db, user.telegram_id);
       if (!alreadySent) {
         usersToSend.push(user);

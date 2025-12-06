@@ -1,13 +1,13 @@
 export default {
   "availableCommands": "آپ کسی بھی وقت مندرجہ ذیل کمانڈز کا استعمال کر سکتے ہیں:",
-  "catchBottle": "🎣 **پیغام کی بوتل اٹھائیں**",
-  "catchBottleDesc": "دوسروں کی پیغام کی بوتلیں چیک کریں، اگر دلچسپی ہو تو جواب دیں تاکہ چیٹنگ شروع ہو سکے",
+  "catchBottle": "🎣 **Catch Blessing Bottle**",
+  "catchBottleDesc": "دوسروں کے Blessing Bottle کو دیکھیں، Blessing کے جواب دیں، گفتگو شروع کریں~",
   "clickButtonHint": "💡 براہ کرم جاری رکھنے کے لئے بٹن پر کلک کریں",
-  "commandCatch": "• /catch - پیغام کی بوتل اٹھائیں",
+  "commandCatch": "• Catch Blessing Bottle",
   "commandHelp": "• /help - مدد دیکھیں",
   "commandMenu": "📋 کمانڈ مینو",
   "commandTasks": "• /tasks - کام دیکھیں",
-  "commandThrow": "• /throw - پیغام کی بوتل پھینکیں",
+  "commandThrow": "• /throw - ایک دعا پھینکیں Blessing Bottle",
   "completeTasksForBottles": "💡 اضافی بوتلیں حاصل کرنے کے لیے کام مکمل کریں",
   "completed": "✅ سبق مکمل ہوگیا!",
   "howToBecomeFriends": "💬 **دوست کیسے بنائیں؟**",
@@ -16,11 +16,11 @@ export default {
   "skip": "چھوڑ دیں",
   "skipped": "✅ سبق چھوڑ دیا گیا",
   "startUsing": "استعمال شروع کریں →",
-  "throwBottle": "📦 **پیغام کی بوتل پھینکیں**",
+  "throwBottle": "📦 **Throw Blessing Bottle**",
   "throwBottleDesc": "اپنے احساسات یا خیالات لکھیں، اور نظام آپ کو موزوں لوگوں تک پہنچانے میں مدد کرے گا",
   "unknownStep": "❌ نامعلوم سبق کا مرحلہ",
   "viewTasks": "📋 کام دیکھیں",
   "welcome": "🎉 رجسٹریشن مکمل کرنے پر مبارک ہو!",
   "whatIsXunNi": "🌊 **XunNi کیا ہے؟**",
-  "whatIsXunNiDesc": "یہ ایک نامعلوم پیغام کی بوتل سوشل پلیٹ فارم ہے جو آپ کو MBTI اور زودیاک علامات کے ذریعے ہم خیال دوست تلاش کرنے میں مدد کرتا ہے"
+  "whatIsXunNiDesc": "یہ ایک نامعلوم Blessing Bottle دوستی کا پلیٹ فارم ہے، جو آپ کو ایک دوسرے کے Blessing کے ذریعے، MBTI اور ستاروں کی مدد سے ہم خیال دوستوں کو تلاش کرنے میں مدد کرتا ہے"
 };

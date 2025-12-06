@@ -1,7 +1,7 @@
 export default {
   "autoCompleted": "Procesul de înregistrare a fost finalizat automat.\n\n",
-  "bottles": "• Sticle cu mesaje: {count}\n",
-  "catchCommand": "• /catch - Prinde sticle cu mesaje\n",
+  "bottles": "• Sticla cu Dorințe: {count}\n",
+  "catchCommand": "• Prinde Sticla cu Dorințe\n",
   "conversations": "• Conversații: {count}\n",
   "dataReset": "✅ Mod de dezvoltare: Datele au fost resetate\n\nToate datele tale au fost șterse.\n\n💡 Poți acum să repornești procesul de înregistrare de test.\n\n🔄 Reînregistrează-te: /start\nsau folosește: /dev_restart (începere automată a înregistrării)\n\n⚠️ Notă: Această funcție este disponibilă doar în mediu de testare.",
   "getUserInfoFailed": "❌ Eșec la recuperarea informațiilor",
@@ -30,7 +30,7 @@ export default {
   "telegramId": "ID Telegram: {id}\n",
   "testCoreFeatures": "💡 Acum poți testa direct funcțiile de bază:\n",
   "testUser": "Utilizator de test",
-  "throwCommand": "• /throw - Aruncă sticlă cu mesaj\n",
+  "throwCommand": "• Aruncă Sticla cu Dorințe\n",
   "userInfo": "🔧 Mod de dezvoltare: Informații utilizator\n\n",
   "userNotFound": "❌ Utilizatorul nu există",
   "vip": "VIP: {status}",

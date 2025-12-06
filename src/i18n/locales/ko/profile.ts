@@ -26,7 +26,7 @@ export default {
   "manual": "수동으로 설정",
   "mbti": "• MBTI를 다시 테스트하거나 수정하려면 /mbti를 사용하세요.\n",
   "mbtiWithSource": "🧠 MBTI：{mbti}{source}\n",
-  "message": "https://t.me/share/url?url=https://t.me/{botUsername}?start=invite_{inviteCode}&text=XunNi에 와서 함께 메시지 병을 던져보세요!🍾 초대 코드 사용: {inviteCode}",
+  "message": "함께 XunNi에서 축복의 축복의 병을 던져보세요! 🍾 내 초대 코드 사용: {inviteCode}",
   "message2": "{inviteLimitWarning}\n\n",
   "message3": "🌍 언어: {user.language_pref}\n\n",
   "message4": "🌍 언어：{user.language_pref }\n",
@@ -42,7 +42,7 @@ export default {
   "quota2": "📦 현재 일일 쿼터：{taskBonus > 0 ?",
   "quotaBottles": "{taskBonus} 메시지 병",
   "quotaTotal": "📦 현재 일일 쿼터: {quota}\n\n",
-  "returnToMenu": "🏠 메인 메뉴로 돌아가기：/menu",
+  "returnToMenu": "🏠 메인 메뉴로 돌아가기",
   "separator": "━━━━━━━━━━━━━━━━\n\n",
   "settings": "설정되지 않음",
   "settings2": "설정되지 않음",
@@ -71,5 +71,14 @@ export default {
   "zodiac": "⭐ 별자리: {zodiac}\n",
   "fortuneQuota": "🔮 {fortuneBottle}: {total} (이번 주 무료: {weekly}/{limit} | 추가: {additional})",
   "vipWithDays": "💎 VIP 회원 (남은 {days}일, 만료: {expireDate})",
-  "driftBottleInfo": "🍾 메시지 병: {remaining} / {total}"
+  "driftBottleInfo": "🍾 축복의 병：{remaining} / {total}",
+  "ageRange": "나이: {min}-{max}",
+  "fortuneMatchButton": "💘 운세 빠른 매칭",
+  "giftVipButton": "🎁 VIP 증정",
+  "giftFortuneBottleButton": "🔮 운세 병 증정",
+  "moreOptions": "⚙️ 더 많은 옵션...",
+  "blockUser": "🚫 사용자 차단",
+  "reportUser": "⚠️ 신고하기",
+  "moreOptionsTitle": "⚙️ 더 많은 옵션",
+  "giftedVipNote": "🎁 이전에 VIP를 증정했습니다"
 };

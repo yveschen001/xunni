@@ -68,7 +68,7 @@ export default {
     "zodiacVirgo": "Panna"
   },
   "filterAge": "• vek=18-25\n",
-  "filterCommand": "/broadcast_filter <filter> <msg_content> ",
+  "filterCommand": "/broadcast_filter <filter> <msg_content>",
   "filterConfirmConditions": "**Podmienky filtrovania:**\n{conditions}\n\n",
   "filterConfirmMessage": "**Obsah správy:**\n{message}\n\n",
   "filterConfirmTitle": "🔍 **Potvrdenie filtra vysielania**\n\n",

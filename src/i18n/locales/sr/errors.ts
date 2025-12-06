@@ -97,9 +97,9 @@ export default {
     "nickname": "❌ Није могуће преузети Telegram надимак",
     "nickname2": "❌ Korisničko ime ne može sadržati link ka veb sajtu\n\n",
     "nickname3": "❌ \\{validation.error}\n\nМолимо поново унесите надимак:",
-    "quota": "❌ Котизација за поруке у данашњем дану је испуњена (\\{quotaDisplay})\n\n💡 Начини за добијање већих котизација:\n",
+    "quota": "❌ Današnja kvota za blagoslov bočice blagoslova je iskorišćena (\\{quotaDisplay})\n\n💡 Načini za sticanje više kvota:",
     "quota2": "❌ Današnja kvota za poruke u razgovoru je iskorišćena (\\{usedToday}/\\{dailyLimit})\n\n",
-    "quota3": "❌ Današnja kvota za message bottle je iskorišćena (\\{quotaDisplay})\n\n",
+    "quota3": "❌ Kvota za današnju poruku u boci je iskorišćena (\\{quotaDisplay})",
     "register": "❌ Молимо прво завршите процес регистрације.\n\nКористите /start да бисте наставили регистрацију.",
     "register2": "❌ Подаци о кориснику нису пронађени, молимо користите /start да се прво региструјете.",
     "register3": "❌ Молимо завршите процес регистрације да бисте преузели message bottles.\n\nКористите /start да бисте наставили регистрацију.",
@@ -179,5 +179,6 @@ export default {
   "userNotFoundRegister": "⚠️ Korisnik ne postoji, molimo registrujte se koristeći /start prvo.",
   "verificationFailed": "❌ Provera nije uspela, molimo pokušajte ponovo kasnije",
   "invalidTimeFormat": "Nevažeći format vremena\nNa primer: 19:30 (24-satni format, 00-23 časova, 00-59 minuta)",
-  "invalidDateFormat": "Nevažeći format datuma\nNa primer: 2000-01-01"
+  "invalidDateFormat": "Nevažeći format datuma\nNa primer: 2000-01-01",
+  "taskAlreadyCompleted": "❌ Овај задатак је већ завршен и награда је преузета."
 };

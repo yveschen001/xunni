@@ -47,6 +47,17 @@ var BOTTLE_TERM_MAP = {
   'ru': 'бутылка с сообщением', 'ar': 'زجاجة رسائل', 'tr': 'mesaj şişesi'
 };
 
+/* ===================== 算命瓶術語表 (新增) ===================== */
+var FORTUNE_BOTTLE_TERM_MAP = {
+  'zh-TW': '算命瓶', 'zh-CN': '算命瓶', 'en': 'fortune bottle',
+  'ja': '占いボトル', 'ko': '운세 병', 'th': 'ขวดทำนาย',
+  'vi': 'chai bói toán', 'id': 'botol ramalan', 'ms': 'botol nasib',
+  'tl': 'botelyang panghuhula', 'es': 'botella de la fortuna', 'pt': 'garrafa da sorte',
+  'fr': 'bouteille de bonne aventure', 'de': 'Glücksflasche', 'it': 'bottiglia della fortuna',
+  'ru': 'бутылка с предсказанием', 'ar': 'زجاجة الحظ', 'tr': 'fal şişesi',
+  'pl': 'butelka wróżby', 'nl': 'geluksfles', 'uk': 'пляшка долі'
+};
+
 function getBottleTerm_(code) {
   var t = BOTTLE_TERM_MAP[code];
   if (t) return t;
@@ -55,11 +66,75 @@ function getBottleTerm_(code) {
   return 'message bottle';
 }
 
+function getFortuneBottleTerm_(code) {
+  var t = FORTUNE_BOTTLE_TERM_MAP[code];
+  if (t) return t;
+  var lang = String(code || '').split('-')[0];
+  if (lang === 'zh') return '算命瓶';
+  return 'fortune bottle';
+}
+
+/* ===================== 靈能算命術語表 (Psychic Fortune Telling) ===================== */
+var PSYCHIC_FORTUNE_TERM_MAP = {
+  'zh-TW': '靈能算命', 'zh-CN': '灵能算命', 'en': 'Psychic Reading',
+  'ja': '霊能占い', 'ko': '영능 점술', 'th': 'ทำนายพลังจิต',
+  'vi': 'Bói tâm linh', 'id': 'Ramalan Psikis', 'ms': 'Ramalan Psikik',
+  'tl': 'Psychic Reading', 'es': 'Lectura Psíquica', 'pt': 'Leitura Psíquica',
+  'fr': 'Voyance', 'de': 'Hellsehen', 'it': 'Lettura Psichica',
+  'ru': 'Ясновидение', 'ar': 'قراءة نفسية', 'hi': 'मानसिक भविष्यवाणी',
+  'tr': 'Psişik Okuma', 'pl': 'Wróżenie', 'nl': 'Paranormale Lezing',
+  'uk': 'Ясновидіння', 'sw': 'Uchanganuzi wa Kiroho', 'ro': 'Citire Psihică'
+};
+
+function getPsychicFortuneTerm_(code) {
+  var t = PSYCHIC_FORTUNE_TERM_MAP[code];
+  if (t) return t;
+  var lang = String(code || '').split('-')[0];
+  if (lang === 'zh') return '靈能算命';
+  return 'Psychic Reading';
+}
+
+/* ===================== 祝福漂流瓶術語表 (Blessing Bottle) ===================== */
+var BLESSING_BOTTLE_TERM_MAP = {
+  'zh-TW': '祝福漂流瓶', 'zh-CN': '祝福漂流瓶', 'en': 'Blessing Bottle',
+  'ja': '祈りのボトル', 'ko': '축복의 병', 'th': 'ขวดอวยพร',
+  'vi': 'Chai Cầu Nguyện', 'id': 'Botol Berkah', 'ms': 'Botol Restu',
+  'tl': 'Bote ng Pagpapala', 'es': 'Botella de Bendición', 'pt': 'Garrafa de Bênção',
+  'fr': 'Bouteille de Vœux', 'de': 'Segensflasche', 'it': 'Bottiglia dei Desideri',
+  'ru': 'Бутылка Желаний', 'ar': 'زجاجة البركة', 'hi': 'आशीर्वाद की बोतल',
+  'tr': 'Dilek Şişesi', 'pl': 'Butelka Życzeń', 'nl': 'Wensfles',
+  'uk': 'Пляшка Бажань', 'sw': 'Chupa ya Baraka', 'ro': 'Sticla cu Dorințe'
+};
+
+function getBlessingBottleTerm_(code) {
+  var t = BLESSING_BOTTLE_TERM_MAP[code];
+  if (t) return t;
+  var lang = String(code || '').split('-')[0];
+  if (lang === 'zh') return '祝福漂流瓶';
+  return 'Blessing Bottle';
+}
+
+
+/* ===================== 命理/塔羅術語表 (Fortune Terms) ===================== */
+// 提供關鍵術語的參考，輔助 AI 進行更精準的翻譯
+var FORTUNE_TERMS_REF = {
+  'concepts': {
+    'zh-TW': '正位, 逆位, 聖杯, 權杖, 寶劍, 錢幣, 大阿爾克那, 小阿爾克那, 命宮, 夫妻宮, 日主, 七殺, 正官, 偏財',
+    'en': 'Upright, Reversed, Cups, Wands, Swords, Pentacles, Major Arcana, Minor Arcana, Life Palace, Spouse Palace, Day Master, Seven Killings, Direct Officer, Indirect Wealth',
+    'ja': '正位置, 逆位置, 聖杯, 杖, 剣, 金貨, 大アルカナ, 小アルカナ, 命宮, 夫婦宮, 日主, 七殺, 正官, 偏財'
+  },
+  'tarot_cards_sample': {
+    'zh-TW': '愚者, 魔術師, 女祭司, 皇后, 皇帝, 教皇, 戀人, 戰車, 力量, 隱士, 命運之輪, 正義, 倒吊人, 死神, 節制, 惡魔, 高塔, 星星, 月亮, 太陽, 審判, 世界',
+    'en': 'The Fool, The Magician, The High Priestess, The Empress, The Emperor, The Hierophant, The Lovers, The Chariot, Strength, The Hermit, Wheel of Fortune, Justice, The Hanged Man, Death, Temperance, The Devil, The Tower, The Star, The Moon, The Sun, Judgement, The World'
+  }
+};
+
 /* ===================== 菜單 ===================== */
 function onOpen() {
   SpreadsheetApp.getUi()
     .createMenu('翻譯工具')
     .addItem('🚀 翻譯選取範圍 (zh-TW→多語)', 'runSmartTranslateSelection')
+    .addItem('🚀 翻譯選取範圍 (命理/塔羅專用)', 'runFortuneTranslateSelection')
     .addItem('🚀 由英文翻譯選取範圍 (en→多語)', 'runTranslateFromEnSelection')
     .addSeparator()
     .addItem('清理選取範圍 HTML 標籤（<>）', 'cleanSelectionHtmlWrappers')
@@ -67,11 +142,14 @@ function onOpen() {
     .addSeparator()
     .addItem('✅ 全表質檢（不耗 Token）', 'runQualityScanAll')
     .addItem('✅ 選取範圍質檢（不耗 Token）', 'runQualityScanSelection')
+    .addItem('📊 診斷：錯誤類型統計（分析誤報原因）', 'runErrorTypeDiagnosis')
     .addItem('🔍 掃描選區遺失代碼 (Missing Codes)', 'scanMissingCodesInSelection')
     .addItem('🔍 掃描選區空白未翻譯', 'scanEmptyCellsInSelection')
     .addItem('🧹 清除選取範圍高亮', 'clearQaInSelection')
     .addSeparator()
     .addItem('🤖 AI 智能複核誤報（只查高亮格）', 'runAiReverifySelection')
+    .addItem('🎯 AI 智能採樣檢查（評估誤報率）', 'runAiSamplingCheck')
+    .addItem('📊 全表高亮分批 AI 複核（可中斷續傳）', 'runAiReverifyAllHighlighted')
     .addItem('🤖 AI 深度質檢（選取範圍 - 耗 Token）', 'runAiQualityScanSelection')
     .addItem('⚙ 自動翻譯高亮（選取範圍）', 'autoTranslateHighlightedSelection')
     .addItem('⚙ 自動翻譯高亮（全表）', 'autoTranslateHighlighted')
@@ -143,6 +221,21 @@ function processRangeList_(processorFn) {
   if (ranges.length > 1) ss.toast('✅ 所有選區處理完成', '完成', 5);
 }
 
+/* ===================== 命理/塔羅專用翻譯流程 ===================== */
+function runFortuneTranslateSelection() { processRangeList_(runFortuneTranslateCore_); }
+
+function runFortuneTranslateCore_(sh, sel, headers) {
+  // 設置模式標記，讓底層邏輯知道要使用命理 Prompt
+  var props = PropertiesService.getUserProperties();
+  props.setProperty('CURRENT_MODE', 'FORTUNE');
+  
+  try {
+    runSmartTranslateCore_(sh, sel, headers);
+  } finally {
+    props.deleteProperty('CURRENT_MODE');
+  }
+}
+
 /* ===================== 主要流程：zh-TW → 多語 ===================== */
 function runSmartTranslateSelection() { processRangeList_(runSmartTranslateCore_); }
 
@@ -166,10 +259,10 @@ function runSmartTranslateCore_(sh, sel, headers) {
   var processedRows = 0;
   
   var activeTargetCount = 0;
-    for (var cOff = 0; cOff < numCols; cOff++) {
-      var h = String(headers[startCol + cOff - 1] || '').trim();
+  for (var cOff = 0; cOff < numCols; cOff++) {
+    var h = String(headers[startCol + cOff - 1] || '').trim();
       if (h && h !== 'key' && h !== 'module' && h !== 'zh-TW' && h !== 'zh-CN') activeTargetCount++;
-    }
+  }
   if (activeTargetCount < 1) activeTargetCount = 1;
 
   var concurrentBatches = Math.floor(MAX_PARALLEL_REQS / activeTargetCount);
@@ -228,7 +321,13 @@ function runSmartTranslateCore_(sh, sel, headers) {
           var sliceLen = Math.min(BATCH_SIZE, rowsThisChunk - offset);
           var sliceData = srcDataFull.slice(offset, offset + sliceLen);
           var origZhTwSlice = zhTwVals.slice(offset, offset + sliceLen);
-          var sysMsg  = buildSystemPrompt_(srcLang, headerCode);
+          
+          // 檢查是否為命理模式
+          var isFortuneMode = PropertiesService.getUserProperties().getProperty('CURRENT_MODE') === 'FORTUNE';
+          var sysMsg = isFortuneMode 
+            ? buildFortuneSystemPrompt_(srcLang, headerCode) 
+            : buildSystemPrompt_(srcLang, headerCode);
+            
           var userMsg = buildUserPrompt_(sliceData, srcLang, headerCode);
           
           var payload;
@@ -311,7 +410,7 @@ function runTranslateFromEnCore_(sh, sel, headers) {
   var numCols  = sel.getNumColumns();
   var totalRowsRemaining = numRows;
   var processedRows = 0;
-  
+
   var activeTargetCount = 0;
   for (var cOff = 0; cOff < numCols; cOff++) {
     var h = String(headers[startCol + cOff - 1] || '').trim();
@@ -388,8 +487,8 @@ function runTranslateFromEnCore_(sh, sel, headers) {
                 blockValues[actualR][task.colOffset] = out;
               }
             } catch (e) { Logger.log('JSON Parse Error: ' + e); }
+            }
           }
-        }
       } catch (e) { Logger.log('FetchAll Error: ' + e); }
     }
 
@@ -426,8 +525,8 @@ function openAiBatchTranslate_(srcArr, sourceCode, targetCode) {
     if (attempt.ok && attempt.items.length === slice.length) {
       for (var i = 0; i < slice.length; i++) out[cursor + i] = attempt.items[i] || '';
     }
-    cursor += BATCH_SIZE;
-    Utilities.sleep(SLEEP_MS);
+      cursor += BATCH_SIZE;
+      Utilities.sleep(SLEEP_MS);
   }
   return out;
 }
@@ -435,7 +534,7 @@ function openAiBatchTranslate_(srcArr, sourceCode, targetCode) {
 function translateChunkOnce_(slice, sourceCode, targetCode) {
   var sysMsg  = buildSystemPrompt_(sourceCode, targetCode);
   var userMsg = buildUserPrompt_(slice, sourceCode, targetCode);
-  var rawResp = callAiApi_(sysMsg, userMsg);
+    var rawResp = callAiApi_(sysMsg, userMsg);
   var arr     = parseJsonArrayResponse_(rawResp, slice.length);
   return { ok: arr.length === slice.length, items: arr };
 }
@@ -457,7 +556,7 @@ function callOpenAIChat_(systemText, userText) {
   var payload = { model: OPENAI_MODEL, messages: [{ role: 'system', content: systemText }, { role: 'user', content: userText }], max_completion_tokens: OPENAI_MAX_TOKENS };
   var params = { method: 'post', contentType: 'application/json', headers: { 'Authorization': 'Bearer ' + apiKey }, muteHttpExceptions: true, payload: JSON.stringify(payload) };
   try {
-    var res  = UrlFetchApp.fetch(url, params);
+  var res  = UrlFetchApp.fetch(url, params);
     if (res.getResponseCode() < 200 || res.getResponseCode() >= 300) { Logger.log('OpenAI Error: ' + res.getContentText()); return ''; }
     var data = JSON.parse(res.getContentText());
     return data.choices[0].message.content || '';
@@ -474,7 +573,7 @@ function callGeminiChat_(apiKey, systemText, userText) {
       return json.candidates?.[0]?.content?.parts?.[0]?.text || '';
     } else { Logger.log('Gemini Error: ' + res.getContentText()); }
   } catch (e) { Logger.log('Gemini Exception: ' + e); }
-  return '';
+    return '';
 }
 
 function parseJsonArrayResponse_(rawContent, expectLen) {
@@ -504,6 +603,79 @@ function buildSystemPrompt_(sourceCode, targetCode) {
   var tgtPretty = LOCALE_PRETTY[targetCode] || targetCode;
   var bottleTerm = getBottleTerm_(targetCode);
   return "You are a localization engine for the XunNi app.\nTranslate from " + srcPretty + " to " + tgtPretty + ".\nTone: professional, concise.\nKeep 'XunNi' and tickers unchanged.\nPreserve placeholders: {{name}}, {0}, %s, $VAR, :emoji:, <provider_id>, <msg_content>.\nPreserve URLs, emails, @mentions, HTML entities.\n" + (bottleTerm ? "Translate 'drifting bottle' or '漂流瓶' as \"" + bottleTerm + "\".\n" : "") + "OUTPUT: Only a valid JSON Array of strings. No markdown. No overlap with source.";
+}
+
+function buildFortuneSystemPrompt_(sourceCode, targetCode) {
+  // 1. 利用 LOCALE_PRETTY 映射表進行「標準化」查找 (Case-Insensitive)
+  var stdTargetCode = targetCode; // 預設保留原樣
+  var tgtPretty = targetCode;
+  
+  var keys = Object.keys(LOCALE_PRETTY);
+  for (var i = 0; i < keys.length; i++) {
+    if (keys[i].toLowerCase() === String(targetCode).toLowerCase()) {
+      stdTargetCode = keys[i]; // 找到標準 Key (例如 'zh-CN')
+      tgtPretty = LOCALE_PRETTY[keys[i]]; // 找到全稱 (例如 'Simplified Chinese (China)')
+      break;
+    }
+  }
+
+  var srcPretty = LOCALE_PRETTY[sourceCode] || sourceCode;
+  
+  // 基礎 Prompt
+  var prompt = "You are an expert Tarot & Fortune Telling translator.\n" +
+    "Translate from " + srcPretty + " to " + tgtPretty + ".\n" +
+    "OUTPUT: Only a valid JSON Array of strings.\n\n";
+
+  // === 針對不同目標語言的動態規則 (使用標準化後的代碼判斷) ===
+  
+  // 1. 目標是中文 (zh-CN) -> 轉簡體，保留漢字
+  if (stdTargetCode === 'zh-CN') {
+    prompt += "=== RULES FOR SIMPLIFIED CHINESE ===\n" +
+      "- Convert Traditional Chinese to Simplified Chinese (e.g. 權杖 -> 权杖, 錢幣 -> 钱币).\n" +
+      "- Keep terminology consistent with Chinese Tarot standards.\n";
+    return prompt;
+  }
+
+  // 2. 目標是英文 (en) -> 使用標準英文術語
+  if (stdTargetCode === 'en') {
+    prompt += "=== RULES FOR ENGLISH ===\n" +
+      "- Use standard Rider-Waite names: 'Ace of Wands', 'Page of Cups', 'The Fool'.\n" +
+      "- No Pinyin, No Chinese characters.\n";
+    return prompt;
+  }
+
+  // 3. 目標是日文 (ja) -> 使用片假名/日文漢字規則
+  if (stdTargetCode === 'ja') {
+    prompt += "=== RULES FOR JAPANESE ===\n" +
+      "- **Suits**: Cups->カップ, Wands->ワンド, Swords->ソード, Pentacles->ペンタクル\n" +
+      "- **Court**: Page->ペイジ, Knight->ナイト, Queen->クイーン, King->キング\n" +
+      "- **Format**: 'Suit' + の + 'Rank' (e.g. ワンドのエース, カップの9).\n" +
+      "- **Major**: Use standard names (愚者, 魔術師...).\n" +
+      "- NO English (unless native), NO Chinese only characters.\n";
+    return prompt;
+  }
+
+  // 4. 目標是韓文 (ko) -> 使用韓文規則
+  if (stdTargetCode === 'ko') {
+    prompt += "=== RULES FOR KOREAN ===\n" +
+      "- **Suits**: Cups->컵, Wands->완드, Swords->소드, Pentacles->펜타클\n" +
+      "- **Court**: Page->페이지, Knight->나이트, Queen->퀸, King->킹\n" +
+      "- **Format**: 'Suit' + ' ' + 'Rank' (e.g. 완드 에이스, 컵 9).\n";
+    return prompt;
+  }
+
+  // 5. 其他語言 (通則)
+  prompt += "=== GENERAL RULES ===\n" +
+    "- Use STANDARD Tarot terminology for " + tgtPretty + ".\n" +
+    "- **NO Chinese Characters**: Output must be in " + tgtPretty + " script.\n" +
+    "- **Suits Meaning**: \n" +
+    "  * 聖杯 -> Cups/Water element\n" +
+    "  * 權杖 -> Wands/Fire element\n" +
+    "  * 寶劍 -> Swords/Air element\n" +
+    "  * 錢幣 -> Pentacles/Coins/Earth element\n" +
+    "- **Format**: Use the most common Tarot card naming convention in " + tgtPretty + ".\n";
+
+  return prompt;
 }
 
 function buildUserPrompt_(slice, sourceCode, targetCode) {
@@ -540,12 +712,102 @@ function ensureKeepProtectedTokens_(src, out) {
 }
 
 function enforceBottleTerminologyOnPair_(src, out, targetCode) {
-  var term = getBottleTerm_(targetCode);
-  if (!term) return out;
-  if (/(漂流瓶|bottle)/i.test(src) && out.toLowerCase().indexOf(term.toLowerCase()) === -1) {
-    out = out.replace(/bottle/gi, term);
+  var msgTerm = getBottleTerm_(targetCode);
+  var fortuneTerm = getFortuneBottleTerm_(targetCode);
+  var psychicTerm = getPsychicFortuneTerm_(targetCode);
+  var blessingTerm = getBlessingBottleTerm_(targetCode);
+  
+  // 0. 檢測是否為「靈能算命」 (Priority Highest)
+  // 如果原文明確包含 "靈能算命" 或 "Psychic Reading"
+  if (/(靈能算命|灵能算命|Psychic Reading)/i.test(src)) {
+     // [修正] 移除之前的暴力覆蓋邏輯 (src.length < 15)，改用「精準替換」
+     // 目標：保留 "Back to...", "...Menu" 等上下文，只替換核心術語
+     
+     if (psychicTerm && out.toLowerCase().indexOf(psychicTerm.toLowerCase()) === -1) {
+        // 定義 AI 可能給出的「泛用/錯誤」翻譯 (Case Insensitive)
+        // 優先替換長詞，再替換短詞
+        var wrongPatterns = [
+           // 1. 具體錯誤術語
+           fortuneTerm ? escapeRegExp_(fortuneTerm) : null,
+           msgTerm ? escapeRegExp_(msgTerm) : null,
+           // 2. 常見 AI 幻覺詞 (英文/片假名/解釋性文字)
+           'Spiritual Reading', 'Mental Reading', 'Fortune Telling', 'Divination', 
+           'Psychic Reading', 'サイキック.?リーディング', 'スピリチュアル', 
+           '精神分析', '心理分析', '超心理',
+           // 3. 泛用詞 (放在最後)
+           'Fortune', 'Spiritual', 'Mental', 'Psychic', '算命', '占い', '占卜'
+        ].filter(Boolean);
+
+        // 使用正則進行替換，確保不區分大小寫
+        var re = new RegExp('(' + wrongPatterns.join('|') + ')', 'gi');
+        
+        // 執行替換：將泛用詞換成標準術語
+        // 額外檢查：如果目標語言是日文，且替換後出現 "の霊能占い" (重複助詞)，則修正之
+        out = out.replace(re, psychicTerm);
+        
+        // [修復] 日文/韓文語法微調
+        if (targetCode === 'ja') {
+           out = out.replace(/の霊能占い/g, '霊能占い'); // 移除多餘的 "の"
+           out = out.replace(/霊能占いメニュー/g, '霊能占いメニュー'); // 確認複合詞連接順暢
+        }
+     }
+     return out; 
   }
+
+  // 0.5 檢測是否為「祝福漂流瓶」 (Priority High)
+  if (/(祝福漂流瓶|Blessing Bottle|祈願漂流瓶)/i.test(src)) {
+     if (blessingTerm && out.toLowerCase().indexOf(blessingTerm.toLowerCase()) === -1) {
+        // 定義可能出現的錯誤翻譯
+        var wrongPatterns = [
+           msgTerm ? escapeRegExp_(msgTerm) : null,
+           fortuneTerm ? escapeRegExp_(fortuneTerm) : null,
+           'Drifting Bottle', 'Message Bottle', 'Wishing Bottle', 'Lucky Bottle',
+           'Bottle of Blessing', 'Botol Harapan', '祝福のボトル', '願いのボトル'
+        ].filter(Boolean);
+
+        var re = new RegExp('(' + wrongPatterns.join('|') + ')', 'gi');
+        out = out.replace(re, blessingTerm);
+        
+        // [修復] 日文/韓文語法微調
+        if (targetCode === 'ja') {
+           out = out.replace(/の祈りのボトル/g, '祈りのボトル'); 
+           out = out.replace(/祈りのボトルメニュー/g, '祈りのボトルメニュー');
+        }
+     }
+     return out;
+  }
+  
+  // 1. 檢測是否為「算命瓶」 (Priority High)
+  // 如果原文明確包含 "算命瓶" 或 "fortune bottle"，則目標必須是 "fortune bottle" 對應詞
+  if (/(算命瓶|fortune bottle)/i.test(src)) {
+     if (fortuneTerm && out.toLowerCase().indexOf(fortuneTerm.toLowerCase()) === -1) {
+        // 如果翻譯結果錯誤地使用了 Message Bottle 的術語，強制修正
+        if (msgTerm && out.toLowerCase().indexOf(msgTerm.toLowerCase()) !== -1) {
+           var re = new RegExp(escapeRegExp_(msgTerm), 'gi');
+           out = out.replace(re, fortuneTerm);
+        } else if (/bottle/i.test(out)) {
+           // 如果只是寫 generic bottle，嘗試替換
+           // 注意：某些語言可能 fortune bottle 只是 bottle 的變體，這裡假設 fortuneTerm 是完整正確的
+           out = out.replace(/bottle/gi, fortuneTerm);
+        }
+     }
+     return out; // 處理完算命瓶就返回，避免被漂流瓶邏輯覆蓋
+  }
+
+  // 2. 檢測是否為「漂流瓶」
+  // 只有當原文明確是 "漂流瓶" 或 "message bottle" 時才強制
+  if (msgTerm && /(漂流瓶|message bottle)/i.test(src)) {
+     if (out.toLowerCase().indexOf(msgTerm.toLowerCase()) === -1) {
+        // 簡單替換 bottle -> message bottle term
+        out = out.replace(/bottle/gi, msgTerm);
+    }
+  }
+
   return out;
+}
+
+function escapeRegExp_(string) {
+  return string.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'); 
 }
 
 function getApiKey_(keyName) {
@@ -578,167 +840,231 @@ function getColIndexByHeader_(headers, name) {
 }
 
 
-/* ===================== 質檢核心工具 (增強版) ===================== */
+/* ===================== 質檢核心工具 (優化版 v2.1) ===================== */
 
 function validateTranslation_(src, tgt, headerCode) {
-  src = String(src || '');
-  tgt = String(tgt || '');
+  // 0. 預處理：移除不可見字符、標準化
+  src = normalizeString_(src);
+  tgt = normalizeString_(tgt);
+  
   var reasons = [];
 
-  // 1. 空白檢查
+  // 1. 空白檢查 (Critical)
   if (src.trim() && !tgt.trim()) {
     reasons.push('翻譯空白');
     return reasons;
   }
   if (!src.trim()) return [];
 
-  // 判斷來源特質：是否為「純變數/代碼/符號/指令」
-  var isSourceCodeLike = isPureVariableOrNumber_(src);
+  var isSrcPureCode = isPureVariableOrNumber_(src);
 
-  // === 檢查邏輯分流 ===
-
-  // 情況 A：來源是代碼/變數/指令 (e.g., "${taskName}", "123", "/admin_add", "-->")
-  if (isSourceCodeLike) {
-    // 1. 純代碼/指令：如果完全一樣，視為正確 (Pass)
-    if (src.trim() === tgt.trim()) {
-      return []; 
+  // === 情況 A：來源是純代碼/變數/數字 ===
+  if (isSrcPureCode) {
+    // 忽略空白和全形半形差異後比較
+    if (normalizeFullwidth_(src).trim() !== normalizeFullwidth_(tgt).trim()) {
+      reasons.push('代碼/變數被修改');
     }
-    // 2. 如果不一樣，通常是變數被改壞了，或是多了空格，這裡交由後面的變數檢查來抓
-  } 
-  // 情況 B：來源是文字 (e.g., "Hello World", "Task: ${name}")
-  else {
-    // 1. 未翻譯檢查 (Source Leak)
-    // 只有當它不是「純代碼」時，內容完全一樣才算錯誤
-    if (src === tgt && src.length > 2) {
+    return reasons;
+  }
+
+  // === 情況 B：一般文本 ===
+
+  // 2. 未翻譯檢查 (Source Leak) - [優化：加入白名單]
+  if (src === tgt && src.length > 0) {
+    if (!isSafeToKeepSame_(src)) {
        reasons.push('未翻譯（與原文完全相同）');
     }
-    
-    // 2. 語言別檢測 (Language Mismatch)
-    // 非中文語系 (en, ja...) 卻包含連續中文
-    if (headerCode.indexOf('zh') === -1) {
-      var shouldNotHaveHanzi = /^(en|vi|id|ms|th|fil|tl|fr|de|it|es|pt|ru|ar|hi|ur)$/i.test(headerCode);
-      if (shouldNotHaveHanzi) {
-        // 移除變數後檢查是否殘留中文
-        var cleanTgt = tgt.replace(/\$\{[^}]+\}|\{\{[^}]+\}/g, '');
-        if (/[\u4E00-\u9FFF\u3400-\u4DBF\u{20000}-\u{2A6DF}]{2,}/u.test(cleanTgt)) {
-           reasons.push('非中文語系包含中文');
-        }
+  }
+
+  // 3. 語言別檢測 (Language Mismatch)
+  // 非中文語系 (en, ja...) 卻包含連續中文
+  if (headerCode.indexOf('zh') === -1) {
+    // 排除 ja (日文漢字), ko (韓文偶爾有漢字), vi (越南文無漢字)
+    // 這裡主要抓 歐美語系 殘留中文
+    var shouldNotHaveHanzi = /^(en|fr|de|it|es|pt|ru|ar|hi|ur|pl|nl|tr|th|id|ms)$/i.test(headerCode);
+    if (shouldNotHaveHanzi) {
+      var cleanTgt = tgt.replace(/\$\{[^}]+\}|\{\{[^}]+\}/g, ''); // 移除變數
+      // 檢查是否有連續2個以上漢字
+      if (/[\u4E00-\u9FFF\u3400-\u4DBF]{2,}/u.test(cleanTgt)) {
+         reasons.push('非中文語系包含中文');
       }
     }
   }
 
-  // === 通用檢查 (無論類型) ===
-
-  // 2. 品牌字檢查 (XunNi)
-  if (src.indexOf('XunNi') !== -1 && tgt.indexOf('XunNi') === -1) {
+  // 4. 品牌字檢查 (XunNi) - 忽略大小寫檢查
+  if (src.toLowerCase().indexOf('xunni') !== -1 && tgt.toLowerCase().indexOf('xunni') === -1) {
     reasons.push('遺失品牌字 XunNi');
   }
 
-  // 3. 換行符數量
-  var srcLines = (src.match(/\n/g) || []).length;
-  var tgtLines = (tgt.match(/\n/g) || []).length;
-  if (Math.abs(srcLines - tgtLines) > 1) { 
-    reasons.push('換行數差異過大');
-  }
-
-  // 4. 變數/佔位符檢查 (核心保護 - 增強版：忽略空格，內容必對)
+  // 5. 變數/佔位符檢查 (核心保護)
   var tokensRegex = [
-    // 優先匹配最長的模式，避免重疊匹配
     /\$\{[^}]+\}/g,                      // ${var}
     /\{\{[^}]+\}\}/g,                    // {{name}}
     /%(\d+\$)?[sdif]/g,                  // %s, %d
     /\$[A-Z_][A-Z0-9_]*/g,               // $VAR
     /:[a-z0-9_+-]+:/g,                   // :emoji:
-    /<[^<>\n]+>/g,                       // <provider_id>, <訊息內容>, <message content>
+    /<[^<>\n]+>/g,                       // <tag>
     /`[^`]+`/g,                          // `code`
-    /&[A-Za-z0-9#]+;/g                   // Entities
+    /&[A-Za-z0-9#]+;/g                   // HTML Entities
   ];
-  
-  // 針對 {var} 做特殊處理：如果它已經被 ${var} 或 {{var}} 匹配過，就不該再匹配
-  // 這裡使用一個簡單策略：先將 src/tgt 中已匹配的高優先級變數「挖空」，再匹配低優先級
-  
+
   var tempSrc = src;
   var tempTgt = tgt;
-  
+
   for (var i = 0; i < tokensRegex.length; i++) {
     var re = tokensRegex[i];
-    
-    // 提取變數
     var srcTokens = tempSrc.match(re) || [];
     var tgtTokens = tempTgt.match(re) || [];
-    
-    // 挖空已匹配的變數，避免後續正則重複抓取
+
+    // 挖空已匹配變數
     if (srcTokens.length > 0) tempSrc = tempSrc.replace(re, '___TOKEN___');
     if (tgtTokens.length > 0) tempTgt = tempTgt.replace(re, '___TOKEN___');
-    
+
     if (srcTokens.length > 0 || tgtTokens.length > 0) {
-      // 規範化：移除所有空白後再比較
+      // [優化] 規範化：移除變數內的空白、轉小寫後比較 (忽略大小寫差異)
       var normSrc = srcTokens.map(normalizeToken_);
       var normTgt = tgtTokens.map(normalizeToken_);
-      
-      // 檢查數量
+
+      // 檢查數量與內容
       if (normSrc.length !== normTgt.length) {
-         var missing = findMissingToken_(normSrc, normTgt);
-         if (missing) reasons.push('缺失變數 ' + missing);
-         else reasons.push('變數數量不符');
-      } else {
-         // 數量相同，檢查內容是否一一對應
+         // [優化] 如果差異很小（1-2個），可能是格式問題而非遺失
+         var diff = Math.abs(normSrc.length - normTgt.length);
+         if (diff <= 2 && (normSrc.length > 3 || normTgt.length > 3)) {
+           // 變數較多時，允許小差異（可能是格式問題）
+           // 不報錯，繼續檢查內容
+         } else {
+           reasons.push('變數數量不符');
+         }
+      }
+      
+      // 檢查內容（即使數量不同也檢查，找出具體缺失的）
+      if (normSrc.length > 0 && normTgt.length > 0) {
          var missingContent = findMissingToken_(normSrc, normTgt);
          if (missingContent) {
-           reasons.push('變數內容錯誤或被竄改: ' + missingContent);
+           // [優化] 如果只是大小寫或格式差異，不報錯
+           var isFormatDiff = false;
+           for (var sIdx = 0; sIdx < normSrc.length; sIdx++) {
+             for (var tIdx = 0; tIdx < normTgt.length; tIdx++) {
+               // 檢查是否只是格式差異（如 {name} vs { name }）
+               if (normSrc[sIdx].replace(/[_\s]/g, '') === normTgt[tIdx].replace(/[_\s]/g, '')) {
+                 isFormatDiff = true;
+                 break;
+               }
+             }
+             if (isFormatDiff) break;
+           }
+           if (!isFormatDiff) {
+             reasons.push('變數內容錯誤: ' + missingContent);
+           }
          }
       }
     }
   }
 
-  // 補遺：檢查單大括號 {var} (排除已被挖空的)
-  // 只有當剩下文本裡還有 {x} 結構時才檢查
-  var braceRe = /\{[^{}]+ ?\}/g; // 簡單匹配 {code} 或 { code }
-  var srcBraces = tempSrc.match(braceRe) || [];
-  var tgtBraces = tempTgt.match(braceRe) || [];
-  if (srcBraces.length !== tgtBraces.length) {
-    // 再次確認這不是誤判（有些語言文本可能包含大括號）
-    // 這裡做個寬容處理：只有當括號內看起來像變數（無空格或短單詞）才報錯
-    var validSrcBraces = srcBraces.filter(isValidBraceVar_);
-    var validTgtBraces = tgtBraces.filter(isValidBraceVar_);
-    
-    if (validSrcBraces.length !== validTgtBraces.length) {
-        // 嘗試 Normalize 後比較
-        var nSrc = validSrcBraces.map(normalizeToken_);
-        var nTgt = validTgtBraces.map(normalizeToken_);
-        var missingB = findMissingToken_(nSrc, nTgt);
-        if (missingB) reasons.push('缺失變數 ' + missingB);
+  // 6. 括號對稱性 - [優化：支援全形/半形混用檢查]
+  // 將所有全形括號轉換為半形後再檢查平衡
+  var normalizedSrcBrackets = normalizeBrackets_(tempSrc); // 使用 tempSrc (已移除變數)
+  var normalizedTgtBrackets = normalizeBrackets_(tempTgt);
+  
+  checkBraceBalance_(normalizedSrcBrackets, normalizedTgtBrackets, '{', '}', reasons);
+  checkBraceBalance_(normalizedSrcBrackets, normalizedTgtBrackets, '(', ')', reasons);
+  checkBraceBalance_(normalizedSrcBrackets, normalizedTgtBrackets, '[', ']', reasons);
+
+  // 7. 數字檢查 - [優化：進一步放寬，避免誤報]
+  var cleanSrc = normalizeFullwidth_(src.replace(/\$\{[^}]+\}|\{\{[^}]+\}\}|<[^>]+>/g, ''));
+  var cleanTgt = normalizeFullwidth_(tgt.replace(/\$\{[^}]+\}|\{\{[^}]+\}\}|<[^>]+>/g, ''));
+  
+  var srcNums = (cleanSrc.match(/\d+/g) || []);
+  var tgtNums = (cleanTgt.match(/\d+/g) || []);
+  
+  // [優化] 進一步放寬：只有當原文有數字但譯文完全沒有，且原文長度>5時才報錯
+  // 短文本（如 "OK"）可能不包含數字，這是正常的
+  if (srcNums.length > 0 && tgtNums.length === 0 && src.trim().length > 5) {
+    reasons.push('遺失數字');
+  } else if (srcNums.length > 0 && tgtNums.length > 0) {
+    // [優化] 只有當差異非常大（>3）且原文數字數量>2時才報錯
+    // 避免單個數字的小差異被誤報（如 "1次" vs "1 次"）
+    if (Math.abs(srcNums.length - tgtNums.length) > 3 && srcNums.length > 2) {
+      reasons.push('數字數量差異過大');
     }
   }
 
-  // 5. 括號對稱性
-  checkBraceBalance_(src, tgt, '{', '}', reasons);
-  checkBraceBalance_(src, tgt, '(', ')', reasons);
-  
-  // 6. 數字檢查 (忽略變數內的數字)
-  var cleanSrc = src.replace(/\$\{[^}]+\}|\{[^}]+\}/g, '');
-  var cleanTgt = tgt.replace(/\$\{[^}]+\}|\{[^}]+\}/g, '');
-  var srcNums = (cleanSrc.match(/\d+/g) || []).length;
-  var tgtNums = (cleanTgt.match(/\d+/g) || []).length;
-  if (srcNums > 0 && tgtNums === 0) {
-    reasons.push('缺失數字');
-  } else if (Math.abs(srcNums - tgtNums) > 1) {
-    reasons.push('數字數量差異大');
-  }
-
-  // 7. 強制檢查佔位符文字
+  // 8. 預設佔位符檢查
   if (tgt.indexOf('[需要翻譯]') !== -1 || tgt.indexOf('[需要翻译]') !== -1) {
-    reasons.push('包含預設佔位符 [需要翻譯]');
+    reasons.push('包含預設佔位符');
   }
 
-  // 8. URL/長度暴增檢查 (疑似重複翻譯)
-  // 如果原文是 URL (http 開頭) 或包含長連結，且譯文長度超過原文 1.5 倍，極有可能是重複貼上
-  // 排除純文字變長的狀況 (通常 URL 結構不該變長)
-  if (src.indexOf('http') !== -1 && tgt.length > src.length * 1.5) {
-     reasons.push('長度異常 (疑似重複翻譯)');
+  // 9. 換行符數量 - [優化：進一步放寬]
+  var srcLines = (src.match(/\n/g) || []).length;
+  var tgtLines = (tgt.match(/\n/g) || []).length;
+  // [優化] 只有當差異>2且原文有多行時才報錯（允許格式微調）
+  if (Math.abs(srcLines - tgtLines) > 2 && srcLines > 1) { 
+    reasons.push('換行數差異過大');
   }
-  
+
   return reasons;
+}
+
+// [新增] 判斷是否為「保持原樣也安全」的文本
+function isSafeToKeepSame_(s) {
+  s = s.trim();
+  if (!/[\p{L}\d]/u.test(s)) return true; // 純符號
+  
+  // [優化] 擴展白名單：技術術語、品牌名、常見縮寫
+  var whitelist = /^(OK|ID|APP|IP|API|VIP|FAQ|S|M|L|XL|MBTI|URL|PDF|CSV|VS|vs\.?|HTTP|HTTPS|JSON|XML|HTML|CSS|JS|UI|UX|AI|ML|DL|iOS|Android|Windows|Mac|Linux|GitHub|GitLab|npm|yarn|pnpm)$/i;
+  if (whitelist.test(s)) return true;
+  
+  if (/^[\d+\-.,%]+$/.test(s)) return true; // 純數字
+  
+  // 指令型 (e.g. /admin, /block, /appeal)
+  if (/^\/[a-zA-Z0-9_]+/.test(s)) return true;
+  
+  // [新增] Emoji + 短文本（如 "✅ OK"）
+  if (/^[\u{1F300}-\u{1F9FF}\u{2600}-\u{26FF}\u{2700}-\u{27BF}]\s*[A-Z]{1,3}$/iu.test(s)) return true;
+  
+  // [新增] 純表情符號或表情+符號
+  if (/^[\u{1F300}-\u{1F9FF}\u{2600}-\u{26FF}\u{2700}-\u{27BF}\s]+$/u.test(s)) return true;
+  
+  return false;
+}
+
+// [新增] 基礎字串清洗：移除不可見字符
+function normalizeString_(s) {
+  return String(s || '').replace(/[\u200B-\u200D\uFEFF]/g, '');
+}
+
+// [新增] 全形轉半形 (數字與符號)
+function normalizeFullwidth_(s) {
+  return s.replace(/[\uFF01-\uFF5E]/g, function(ch) {
+      return String.fromCharCode(ch.charCodeAt(0) - 0xFEE0);
+  }).replace(/\u3000/g, ' ');
+}
+
+// [新增] 括號規範化
+function normalizeBrackets_(s) {
+  return s.replace(/【/g, '[').replace(/】/g, ']')
+          .replace(/（/g, '(').replace(/）/g, ')')
+          .replace(/｛/g, '{').replace(/｝/g, '}');
+}
+
+// [新增] 檢查括號平衡
+function checkBraceBalance_(src, tgt, open, close, reasons) {
+  // [優化] 先移除已識別的變數佔位符，避免干擾
+  var cleanSrc = src.replace(/\$\{[^}]+\}/g, '').replace(/\{\{[^}]+\}\}/g, '');
+  var cleanTgt = tgt.replace(/\$\{[^}]+\}/g, '').replace(/\{\{[^}]+\}\}/g, '');
+  
+  var srcOpen = cleanSrc.split(open).length - 1;
+  var srcClose = cleanSrc.split(close).length - 1;
+  var tgtOpen = cleanTgt.split(open).length - 1;
+  var tgtClose = cleanTgt.split(close).length - 1;
+
+  // [優化] 只有當原文括號明顯對稱（>1對）且譯文不對稱時才報錯
+  // 單個括號可能是表情符號或其他用途，不應報錯
+  if (srcOpen === srcClose && srcOpen > 1) {
+    if (tgtOpen !== tgtClose) {
+      reasons.push('括號不對稱 ' + open + close);
+    }
+  }
 }
 
 // [修正] 嚴格版：只有「純」變數/數字/符號/指令 才允許不翻譯
@@ -751,7 +1077,7 @@ function isPureVariableOrNumber_(s) {
   // 2. 純變數 (e.g. "${taskName}", "{{user}}", "$VAR", "%s", "<訊息內容>")
   // 不允許混合其他文字
   if (/^(\$\{[^}]+\}|\{\{[^}]+\}|%[\d\.]*[sdif]|\$[A-Z_][A-Z0-9_]*|<[^<>\s]+>)$/.test(s)) return true;
-
+  
   // [新增] 純指令 (e.g. "/admin_add 123", "/set <id>", `admin_add`)
   // 1. 以 / 開頭，後續允許英數字、符號、空格及變數結構
   if (/^\/[A-Za-z0-9_\-\.]+(?:\s+(?:[A-Za-z0-9_\-\.=]+|(?:\$\{[^}]+\})|(?:<[^>]+>)|(?:\{\{[^}]+\})))*$/.test(s)) return true;
@@ -792,37 +1118,18 @@ function isPureVariableOrNumber_(s) {
   return true; // 只剩符號/Emoji，可以保持原樣
 }
 
-// [新增] 規範化 Token：移除空白
+// [優化] 規範化 Token：移除空白、轉小寫 (增加寬容度)
 function normalizeToken_(t) {
-  return String(t || '').replace(/\s+/g, '');
+  return String(t || '').replace(/\s+/g, '').toLowerCase();
 }
 
-// [新增] 判斷是否為有效的大括號變數
+// [優化] 判斷變數是否有效 (增加對 . 的支持)
 function isValidBraceVar_(t) {
   var inner = t.substring(1, t.length - 1).trim();
-  // 變數通常不含空格，或者很短
-  // 如果內部包含大量空格或很長，可能是普通文本
-  if (inner.indexOf(' ') !== -1 && inner.length > 20) return false;
+  if (inner.indexOf(' ') !== -1 && inner.length > 35) return false;
   return true;
 }
 
-// 移除舊的 isSafeToKeepSame_ 和 isNumberOrSymbol_ 以免混淆
-// function isSafeToKeepSame_(s) { ... }
-// function isNumberOrSymbol_(s) { ... }
-
-// 移除舊的 isNumberOrSymbol_ 以免混淆
-
-
-function checkBraceBalance_(src, tgt, open, close, reasons) {
-  var srcOpen = src.split(open).length - 1;
-  var srcClose = src.split(close).length - 1;
-  var tgtOpen = tgt.split(open).length - 1;
-  var tgtClose = tgt.split(close).length - 1;
-
-  if (srcOpen === srcClose && tgtOpen !== tgtClose) {
-    reasons.push('括號不對稱 ' + open + close);
-  }
-}
 
 function findMissingToken_(srcArr, tgtArr) {
   var i;
@@ -952,21 +1259,21 @@ function runQualityScanSelectionCore_(sh, sel, headers) {
     var notes  = rngChunk.getNotes();
     var bgs    = rngChunk.getBackgrounds();
 
-    var enColVals = colEN 
+  var enColVals = colEN
       ? sh.getRange(currentStartRow, colEN, rowsThisChunk, 1).getValues() 
-      : [];
-    var twColVals = colTW 
+    : [];
+  var twColVals = colTW
       ? sh.getRange(currentStartRow, colTW, rowsThisChunk, 1).getValues() 
       : [];
 
     for (var r = 0; r < rowsThisChunk; r++) {
-      var en = colEN ? String(enColVals[r] ? enColVals[r][0] : '') : '';
-      var tw = colTW ? String(twColVals[r] ? twColVals[r][0] : '') : '';
+    var en = colEN ? String(enColVals[r] ? enColVals[r][0] : '') : '';
+    var tw = colTW ? String(twColVals[r] ? twColVals[r][0] : '') : '';
 
-      for (var c = 0; c < numCols; c++) {
-        var sheetColIndex = startCol + c;
-        var header = String(headers[sheetColIndex - 1] || '').trim();
-        
+    for (var c = 0; c < numCols; c++) {
+      var sheetColIndex = startCol + c;
+      var header = String(headers[sheetColIndex - 1] || '').trim();
+      
         if (!header || header === 'key' || header === 'module' || header === 'zh-TW') continue;
 
         // 清除舊的 QA 高亮 (Reset)
@@ -978,18 +1285,18 @@ function runQualityScanSelectionCore_(sh, sel, headers) {
         }
 
         var txt = String(values[r][c] || '');
-        var currentSrcRef = en || tw;
-        if (header === 'en' || header === 'zh-CN') {
-           currentSrcRef = tw;
-        }
-        if (!currentSrcRef) currentSrcRef = '';
+      var currentSrcRef = en || tw;
+      if (header === 'en' || header === 'zh-CN') {
+         currentSrcRef = tw;
+      }
+      if (!currentSrcRef) currentSrcRef = '';
 
-        var reasons = validateTranslation_(currentSrcRef, txt, header);
+      var reasons = validateTranslation_(currentSrcRef, txt, header);
 
-        if (reasons.length > 0) {
-          var msg = reasons.join('；');
-          bgs[r][c]   = QA_COLOR;
-          notes[r][c] = QA_NOTE_PREFIX + msg;
+      if (reasons.length > 0) {
+        var msg = reasons.join('；');
+        bgs[r][c]   = QA_COLOR;
+        notes[r][c] = QA_NOTE_PREFIX + msg;
           totalErrors++;
         }
       }
@@ -1163,15 +1470,15 @@ function scanEmptyCellsInSelectionCore_(sh, sel, headers) {
       : [];
 
     for (var r = 0; r < rowsThisChunk; r++) {
-      var en = colEN ? String(enColVals[r] ? enColVals[r][0] : '') : '';
-      var tw = colTW ? String(twColVals[r] ? twColVals[r][0] : '') : '';
-      // 如果連原文都沒有，這行應該是廢棄或空白行，跳過
-      if (!en && !tw) continue;
+    var en = colEN ? String(enColVals[r] ? enColVals[r][0] : '') : '';
+    var tw = colTW ? String(twColVals[r] ? twColVals[r][0] : '') : '';
+    // 如果連原文都沒有，這行應該是廢棄或空白行，跳過
+    if (!en && !tw) continue;
 
-      for (var c = 0; c < numCols; c++) {
-        var sheetColIndex = startCol + c;
-        var header = String(headers[sheetColIndex - 1] || '').trim();
-        
+    for (var c = 0; c < numCols; c++) {
+      var sheetColIndex = startCol + c;
+      var header = String(headers[sheetColIndex - 1] || '').trim();
+      
         // 跳過 key, module, en, zh-TW, zh-CN (這些通常是源頭，不視為漏翻，或者由其他邏輯處理)
         if (!header || header === 'key' || header === 'module' || header === 'zh-TW' || header === 'en' || header === 'zh-CN') continue;
 
@@ -1183,11 +1490,11 @@ function scanEmptyCellsInSelectionCore_(sh, sel, headers) {
              }
         }
 
-        var txt = String(values[r][c] || '').trim();
-        
-        if (!txt) {
-          bgs[r][c]   = QA_COLOR;
-          notes[r][c] = QA_NOTE_PREFIX + '⚠️ 缺翻譯 (空白)';
+      var txt = String(values[r][c] || '').trim();
+      
+      if (!txt) {
+        bgs[r][c]   = QA_COLOR;
+        notes[r][c] = QA_NOTE_PREFIX + '⚠️ 缺翻譯 (空白)';
           totalErrors++;
         }
       }
@@ -1498,13 +1805,13 @@ function openAiBatchReverify_(items) {
         };
     } else {
         payload = {
-          model: OPENAI_MODEL,
-          messages: [
-            { role: 'system', content: sysMsg },
-            { role: 'user',   content: prompt }
-          ],
-          max_completion_tokens: OPENAI_MAX_TOKENS
-        };
+      model: OPENAI_MODEL,
+      messages: [
+        { role: 'system', content: sysMsg },
+        { role: 'user',   content: prompt }
+      ],
+      max_completion_tokens: OPENAI_MAX_TOKENS
+    };
     }
 
     var url, headers;
@@ -1524,7 +1831,8 @@ function openAiBatchReverify_(items) {
       muteHttpExceptions: true,
       payload: JSON.stringify(payload),
       _startIndex: i,
-      _sliceLen: slice.length
+      _sliceLen: slice.length,
+      _slice: slice // 保存 slice 以便後續使用
     });
   }
 
@@ -1547,10 +1855,24 @@ function openAiBatchReverify_(items) {
              if (json.candidates && json.candidates[0] && json.candidates[0].content) {
                 aiContent = json.candidates[0].content.parts[0].text;
              } else {
+                Logger.log('Gemini: No candidates in response. Full response: ' + JSON.stringify(json).substring(0, 500));
                 aiContent = '';
              }
           } else {
-             aiContent = json.choices[0].message.content;
+             if (json.choices && json.choices[0] && json.choices[0].message) {
+                aiContent = json.choices[0].message.content;
+             } else {
+                Logger.log('OpenAI: No choices in response. Full response: ' + JSON.stringify(json).substring(0, 500));
+                aiContent = '';
+             }
+          }
+          
+          if (!aiContent || aiContent.trim() === '') {
+            Logger.log('Empty AI content. Marking all items in batch as API error.');
+            for (var subI = 0; subI < req._sliceLen; subI++) {
+              results[req._startIndex + subI] = { valid: false, reason: "API 返回空內容", _apiError: true };
+            }
+            continue;
           }
           
           var parsedArr = parseJsonArrayResponse_(aiContent, req._sliceLen);
@@ -1561,7 +1883,7 @@ function openAiBatchReverify_(items) {
             var finalObj = { valid: false, reason: "AI 格式錯誤" };
             
             // 如果是空字串 (Padding)，代表 AI 沒回傳這筆，標記為 Skip
-            if (p === '') {
+            if (p === '' || p === null || p === undefined) {
                finalObj = { valid: false, reason: "AI漏答 (Skipped)", _skipped: true };
             } else if (p && typeof p === 'object') {
                 finalObj = p;
@@ -1572,7 +1894,7 @@ function openAiBatchReverify_(items) {
 
             // 後處理：確保 corrected 經過標準化 (如保留特殊符號)
             if (!finalObj.valid && finalObj.corrected) {
-               var item = slice[subI];
+               var item = req._slice[subI];
                // 簡單的保護處理，避免 AI 修復時把變數搞壞
                // 這裡直接信賴 AI，但可以加一層 stripTags_ 或類似處理
                finalObj.corrected = String(finalObj.corrected).trim();
@@ -1581,7 +1903,17 @@ function openAiBatchReverify_(items) {
             results[req._startIndex + subI] = finalObj;
           }
         } catch (e) {
-          Logger.log('Reverify JSON Parse Error: ' + e);
+          Logger.log('Reverify JSON Parse Error: ' + e + '. Response code: ' + code + ', Content: ' + content.substring(0, 500));
+          // 標記這批所有項目為解析錯誤
+          for (var subI = 0; subI < req._sliceLen; subI++) {
+            results[req._startIndex + subI] = { valid: false, reason: "JSON 解析失敗: " + e.message, _parseError: true };
+          }
+        }
+      } else {
+        // API 調用失敗
+        Logger.log('API Error: Code ' + code + ', Response: ' + content.substring(0, 500));
+        for (var subI = 0; subI < req._sliceLen; subI++) {
+          results[req._startIndex + subI] = { valid: false, reason: "API 錯誤 (HTTP " + code + ")", _apiError: true };
         }
       }
     }
@@ -1700,7 +2032,7 @@ function autoTranslateHighlightedCore_(sh, startRow, numRows, limitStartCol, lim
     var values = rng.getValues();
     var bgs = rng.getBackgrounds();
     var notes = rng.getNotes();
-    
+
     log_('Chunk Range: Row ' + currentStartRow + ', ' + chunkRows + ' rows. Checking ' + scanNumCols + ' cols.');
 
     // 預讀取來源欄位 (Chunk)
@@ -1789,13 +2121,13 @@ function autoTranslateHighlightedCore_(sh, startRow, numRows, limitStartCol, lim
              };
           } else {
              payload = {
-               model: OPENAI_MODEL,
-               messages: [
-                 { role: 'system', content: sysMsg },
-                 { role: 'user',   content: userMsg }
-               ],
-               max_completion_tokens: OPENAI_MAX_TOKENS
-             };
+            model: OPENAI_MODEL,
+            messages: [
+              { role: 'system', content: sysMsg },
+              { role: 'user',   content: userMsg }
+            ],
+            max_completion_tokens: OPENAI_MAX_TOKENS
+          };
           }
 
           var url, headers;
@@ -2193,6 +2525,584 @@ function splitCommandAndBody_(text) {
     header: headerLines.join('\n').trim(),
     body: bodyLines.join('\n').trim()
   };
+}
+
+/* ===================== 📊 診斷：錯誤類型統計（分析誤報原因） ===================== */
+/* 掃描全表高亮，統計每種錯誤類型的數量，幫助找出導致大量誤報的規則 */
+function runErrorTypeDiagnosis() {
+  var ss = SpreadsheetApp.getActiveSpreadsheet();
+  var sh = ss.getActiveSheet();
+  var lastRow = sh.getLastRow();
+  var lastCol = sh.getLastColumn();
+  
+  if (lastRow < 2) {
+    ss.toast('沒有資料可檢查', '提示', 4);
+    return;
+  }
+
+  var ui = SpreadsheetApp.getUi();
+  var response = ui.alert(
+    '錯誤類型診斷',
+    '此功能將掃描全表高亮單元格，統計每種錯誤類型的數量。\n\n這可以幫助您找出哪些質檢規則產生了過多的誤報。\n\n是否繼續？',
+    ui.ButtonSet.YES_NO
+  );
+  
+  if (response !== ui.ButtonSet.YES) return;
+
+  ss.toast('正在掃描全表高亮...', '診斷中', 10);
+
+  var headers = sh.getRange(1, 1, 1, lastCol).getValues()[0];
+  var colEN = getColIndexByHeader_(headers, 'en');
+  var colTW = getColIndexByHeader_(headers, 'zh-TW');
+  if (colEN >= 0) colEN += 1;
+  if (colTW >= 0) colTW += 1;
+
+  // 統計錯誤類型
+  var errorStats = {};
+  var totalHighlighted = 0;
+  var sampleNotes = {}; // 保存每種錯誤類型的樣本
+
+  var rng = sh.getRange(2, 1, lastRow - 1, lastCol);
+  var bgs = rng.getBackgrounds();
+  var notes = rng.getNotes();
+  var values = rng.getValues();
+
+  var enColVals = colEN ? sh.getRange(2, colEN, lastRow - 1, 1).getValues() : [];
+  var twColVals = colTW ? sh.getRange(2, colTW, lastRow - 1, 1).getValues() : [];
+
+  for (var r = 0; r < bgs.length; r++) {
+    for (var c = 0; c < bgs[0].length; c++) {
+      var bg = String(bgs[r][c] || '').toLowerCase();
+      if (bg === String(QA_COLOR).toLowerCase()) {
+        totalHighlighted++;
+        var note = String(notes[r][c] || '');
+        
+        // 解析錯誤原因（從備註中提取）
+        if (note.indexOf(QA_NOTE_PREFIX) === 0) {
+          var reasonsStr = note.substring(QA_NOTE_PREFIX.length);
+          var reasons = reasonsStr.split('；'); // 中文分號分隔
+          
+          for (var i = 0; i < reasons.length; i++) {
+            var reason = reasons[i].trim();
+            if (reason) {
+              // 統計錯誤類型
+              errorStats[reason] = (errorStats[reason] || 0) + 1;
+              
+              // 保存樣本（每種錯誤類型最多保存3個）
+              if (!sampleNotes[reason]) {
+                sampleNotes[reason] = [];
+              }
+              if (sampleNotes[reason].length < 3) {
+                var en = colEN ? String(enColVals[r] ? enColVals[r][0] : '') : '';
+                var tw = colTW ? String(twColVals[r] ? twColVals[r][0] : '') : '';
+                var tgt = String(values[r][c] || '');
+                var header = String(headers[c] || '').trim();
+                sampleNotes[reason].push({
+                  src: en || tw,
+                  tgt: tgt,
+                  lang: header,
+                  row: r + 2
+                });
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+
+  if (totalHighlighted === 0) {
+    ss.toast('未發現高亮單元格', '提示', 5);
+    return;
+  }
+
+  // 排序錯誤類型（按數量降序）
+  var sortedErrors = [];
+  for (var reason in errorStats) {
+    sortedErrors.push({
+      reason: reason,
+      count: errorStats[reason],
+      percentage: ((errorStats[reason] / totalHighlighted) * 100).toFixed(1)
+    });
+  }
+  sortedErrors.sort(function(a, b) { return b.count - a.count; });
+
+  // 生成報告
+  var report = '📊 錯誤類型診斷報告\n\n';
+  report += '總高亮數: ' + totalHighlighted + '\n';
+  report += '錯誤類型數: ' + sortedErrors.length + '\n\n';
+  report += '━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n\n';
+
+  // 顯示前10種最常見的錯誤
+  var topN = Math.min(10, sortedErrors.length);
+  report += '🔝 前 ' + topN + ' 種最常見錯誤：\n\n';
+  
+  for (var i = 0; i < topN; i++) {
+    var err = sortedErrors[i];
+    report += (i + 1) + '. ' + err.reason + '\n';
+    report += '   數量: ' + err.count + ' (' + err.percentage + '%)\n';
+    
+    // 顯示樣本
+    if (sampleNotes[err.reason] && sampleNotes[err.reason].length > 0) {
+      report += '   樣本：\n';
+      for (var j = 0; j < sampleNotes[err.reason].length; j++) {
+        var sample = sampleNotes[err.reason][j];
+        var srcPreview = sample.src.length > 30 ? sample.src.substring(0, 30) + '...' : sample.src;
+        var tgtPreview = sample.tgt.length > 30 ? sample.tgt.substring(0, 30) + '...' : sample.tgt;
+        report += '     [' + sample.lang + '] 行' + sample.row + ': "' + srcPreview + '" → "' + tgtPreview + '"\n';
+      }
+    }
+    report += '\n';
+  }
+
+  // 分析建議
+  report += '━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n\n';
+  report += '💡 優化建議：\n\n';
+
+  var topError = sortedErrors[0];
+  if (topError && topError.percentage > 50) {
+    report += '⚠️ 發現主要問題：\n';
+    report += '   "' + topError.reason + '" 佔比 ' + topError.percentage + '%\n';
+    report += '   這可能是導致大量誤報的主要原因。\n\n';
+    
+    // 針對特定錯誤類型給出建議
+    if (topError.reason.indexOf('變數') !== -1) {
+      report += '   建議：\n';
+      report += '   - 檢查變數格式是否統一（如 {name} vs { name }）\n';
+      report += '   - 確認變數名稱是否在不同語言中保持一致\n';
+      report += '   - 考慮放寬變數檢查的嚴格度\n';
+    } else if (topError.reason.indexOf('數字') !== -1) {
+      report += '   建議：\n';
+      report += '   - 數字檢查可能過於嚴格\n';
+      report += '   - 某些語言可能用文字表達數字（如 "one" vs "1"）\n';
+      report += '   - 考慮進一步放寬數字差異容忍度\n';
+    } else if (topError.reason.indexOf('未翻譯') !== -1) {
+      report += '   建議：\n';
+      report += '   - 擴充「保持原樣安全」的白名單\n';
+      report += '   - 某些技術術語、品牌名應保持原樣\n';
+    } else if (topError.reason.indexOf('括號') !== -1) {
+      report += '   建議：\n';
+      report += '   - 某些語言習慣使用全形括號\n';
+      report += '   - 檢查是否已正確處理全形/半形轉換\n';
+    }
+  } else {
+    report += '✅ 錯誤類型分布較為均勻，沒有明顯的單一問題源頭。\n';
+    report += '   建議使用「AI 智能採樣檢查」評估誤報率。\n';
+  }
+
+  // 顯示完整報告
+  ui.alert('錯誤類型診斷報告', report, ui.ButtonSet.OK);
+
+  // 可選：輸出到日誌（方便複製）
+  Logger.log('=== 錯誤類型診斷報告 ===');
+  Logger.log('總高亮數: ' + totalHighlighted);
+  Logger.log('\n錯誤類型統計：');
+  for (var i = 0; i < sortedErrors.length; i++) {
+    Logger.log((i + 1) + '. ' + sortedErrors[i].reason + ': ' + sortedErrors[i].count + ' (' + sortedErrors[i].percentage + '%)');
+  }
+
+  ss.toast('診斷完成，請查看報告', '完成', 5);
+}
+
+/* ===================== 🎯 AI 智能採樣檢查（評估誤報率） ===================== */
+/* 隨機採樣高亮單元格，用 AI 評估誤報率，幫助決定是否需要全量檢查 */
+function runAiSamplingCheck() {
+  var ss = SpreadsheetApp.getActiveSpreadsheet();
+  var sh = ss.getActiveSheet();
+  var lastRow = sh.getLastRow();
+  var lastCol = sh.getLastColumn();
+  
+  if (lastRow < 2) {
+    ss.toast('沒有資料可檢查', '提示', 4);
+    return;
+  }
+
+  var ui = SpreadsheetApp.getUi();
+  var response = ui.prompt(
+    '智能採樣檢查',
+    '請輸入採樣數量（建議 50-200，預設 100）：',
+    ui.ButtonSet.OK_CANCEL
+  );
+  
+  if (response.getSelectedButton() !== ui.Button.OK) return;
+  
+  var sampleSize = parseInt(response.getResponseText()) || 100;
+  if (sampleSize < 10 || sampleSize > 500) {
+    ss.toast('採樣數量應在 10-500 之間', '錯誤', 5);
+    return;
+  }
+
+  var apiKey = getApiKey_();
+  if (!apiKey) {
+    ss.toast('缺少 API Key', '錯誤', 5);
+    return;
+  }
+
+  var headers = sh.getRange(1, 1, 1, lastCol).getValues()[0];
+  var colEN = getColIndexByHeader_(headers, 'en');
+  var colTW = getColIndexByHeader_(headers, 'zh-TW');
+  if (colEN >= 0) colEN += 1;
+  if (colTW >= 0) colTW += 1;
+
+  ss.toast('正在掃描全表高亮單元格...', '採樣中', 10);
+
+  // 1. 收集所有高亮單元格
+  var allHighlighted = [];
+  var rng = sh.getRange(2, 1, lastRow - 1, lastCol);
+  var bgs = rng.getBackgrounds();
+  var values = rng.getValues();
+  var notes = rng.getNotes();
+
+  var enColVals = colEN ? sh.getRange(2, colEN, lastRow - 1, 1).getValues() : [];
+  var twColVals = colTW ? sh.getRange(2, colTW, lastRow - 1, 1).getValues() : [];
+
+  for (var r = 0; r < bgs.length; r++) {
+    for (var c = 0; c < bgs[0].length; c++) {
+      var bg = String(bgs[r][c] || '').toLowerCase();
+      if (bg === String(QA_COLOR).toLowerCase()) {
+        var header = String(headers[c] || '').trim();
+        if (!header || header === 'key' || header === 'module') continue;
+
+        var tgt = String(values[r][c] || '');
+        var en = colEN ? String(enColVals[r] ? enColVals[r][0] : '') : '';
+        var tw = colTW ? String(twColVals[r] ? twColVals[r][0] : '') : '';
+        var src = en || tw;
+
+        if (src) {
+          allHighlighted.push({
+            row: r + 2,
+            col: c + 1,
+            src: src,
+            tgt: tgt,
+            lang: header,
+            note: String(notes[r][c] || '')
+          });
+        }
+      }
+    }
+  }
+
+  if (allHighlighted.length === 0) {
+    ss.toast('未發現高亮單元格', '提示', 5);
+    return;
+  }
+
+  // 2. 隨機採樣
+  var sampled = [];
+  var actualSampleSize = Math.min(sampleSize, allHighlighted.length);
+  
+  // Fisher-Yates 洗牌算法
+  var indices = [];
+  for (var i = 0; i < allHighlighted.length; i++) indices.push(i);
+  for (var i = indices.length - 1; i > 0; i--) {
+    var j = Math.floor(Math.random() * (i + 1));
+    var temp = indices[i];
+    indices[i] = indices[j];
+    indices[j] = temp;
+  }
+  
+  for (var i = 0; i < actualSampleSize; i++) {
+    sampled.push(allHighlighted[indices[i]]);
+  }
+
+  ss.toast('正在用 AI 檢查 ' + actualSampleSize + ' 個採樣...', 'AI 檢查中', 30);
+
+  // 3. AI 檢查採樣
+  var itemsToCheck = sampled.map(function(item) {
+    return {
+      src: item.src,
+      tgt: item.tgt,
+      lang: item.lang
+    };
+  });
+
+  var results = openAiBatchReverify_(itemsToCheck);
+
+  // 4. 統計結果
+  var validCount = 0;
+  var invalidCount = 0;
+  var fixedCount = 0;
+  var skippedCount = 0;
+  var apiErrorCount = 0;
+  var parseErrorCount = 0;
+  var successCount = 0; // 成功獲得 AI 判斷的數量
+
+  for (var i = 0; i < results.length; i++) {
+    var res = results[i];
+    if (res._apiError) {
+      apiErrorCount++;
+    } else if (res._parseError) {
+      parseErrorCount++;
+    } else if (res._skipped) {
+      skippedCount++;
+    } else {
+      successCount++;
+      if (res.valid) {
+        validCount++;
+      } else {
+        invalidCount++;
+        if (res.corrected) fixedCount++;
+      }
+    }
+  }
+
+  // 5. 顯示結果
+  var report = '📊 採樣檢查結果\n\n' +
+    '採樣數量: ' + actualSampleSize + ' / ' + allHighlighted.length + '\n\n';
+  
+  if (successCount === 0) {
+    // 如果全部失敗，顯示錯誤信息
+    report += '⚠️ AI 檢查失敗！\n\n';
+    report += '❌ API 錯誤: ' + apiErrorCount + '\n';
+    report += '❌ 解析錯誤: ' + parseErrorCount + '\n';
+    report += '⏭️ 跳過: ' + skippedCount + '\n\n';
+    report += '💡 可能原因：\n';
+    report += '1. API Key 無效或過期\n';
+    report += '2. API 配額已用完\n';
+    report += '3. 網絡連接問題\n';
+    report += '4. AI 返回格式異常\n\n';
+    report += '請檢查：\n';
+    report += '- 查看 Apps Script 執行紀錄（執行 > 執行紀錄）\n';
+    report += '- 確認 API Key 是否正確\n';
+    report += '- 嘗試重新運行或減少採樣數量';
+  } else {
+    var falsePositiveRate = successCount > 0 ? (validCount / successCount * 100).toFixed(1) : '0.0';
+    var estimatedTotal = allHighlighted.length;
+    var estimatedFalsePositives = successCount > 0 ? Math.round(estimatedTotal * validCount / successCount) : 0;
+    var estimatedCost = Math.ceil(estimatedTotal / 15) * 0.001; // 假設每批 15 個，每批成本約 0.001 USD
+
+    report += '✅ 成功檢查: ' + successCount + ' 個\n';
+    report += '✅ 正確（誤報）: ' + validCount + ' (' + falsePositiveRate + '%)\n';
+    report += '❌ 確實有問題: ' + invalidCount + '\n';
+    report += '🔧 可自動修復: ' + fixedCount + '\n';
+    
+    if (apiErrorCount > 0 || parseErrorCount > 0 || skippedCount > 0) {
+      report += '\n⚠️ 檢查異常：\n';
+      if (apiErrorCount > 0) report += '  ❌ API 錯誤: ' + apiErrorCount + '\n';
+      if (parseErrorCount > 0) report += '  ❌ 解析錯誤: ' + parseErrorCount + '\n';
+      if (skippedCount > 0) report += '  ⏭️ 跳過: ' + skippedCount + '\n';
+    }
+    
+    report += '\n📈 預估全表：\n' +
+      '  總高亮數: ' + estimatedTotal + '\n' +
+      '  預估誤報: ~' + estimatedFalsePositives + '\n' +
+      '  預估成本: ~$' + estimatedCost.toFixed(2) + '\n\n' +
+      '💡 建議：\n';
+    
+    if (falsePositiveRate > 70) {
+      report += '誤報率很高（>70%），建議先優化質檢規則，或直接清除大部分高亮。';
+    } else if (falsePositiveRate > 40) {
+      report += '誤報率較高（40-70%），建議分批處理，每次處理 1000-2000 行。';
+    } else {
+      report += '誤報率較低（<40%），可以進行全量 AI 複核。';
+    }
+  }
+
+  ui.alert('採樣檢查報告', report, ui.ButtonSet.OK);
+
+  // 6. 可選：自動清除採樣中的誤報（僅當有成功檢查的結果時）
+  if (successCount > 0 && validCount > 0) {
+    var clearResponse = ui.alert(
+      '是否清除採樣中的誤報高亮？',
+      '將清除 ' + validCount + ' 個確認無誤的高亮單元格。\n（僅清除成功檢查且確認無誤的項目）',
+      ui.ButtonSet.YES_NO
+    );
+
+    if (clearResponse === ui.ButtonSet.YES) {
+      var cleared = 0;
+      for (var i = 0; i < sampled.length; i++) {
+        var res = results[i];
+        // 只清除成功檢查且確認無誤的
+        if (res.valid && !res._apiError && !res._parseError && !res._skipped) {
+          var item = sampled[i];
+          sh.getRange(item.row, item.col).setBackground(CLEAR_COLOR);
+          sh.getRange(item.row, item.col).setNote('');
+          cleared++;
+        }
+      }
+      SpreadsheetApp.flush();
+      ss.toast('已清除 ' + cleared + ' 個誤報高亮', '完成', 5);
+    }
+  } else if (successCount === 0) {
+    ui.alert(
+      '無法清除誤報',
+      '由於 AI 檢查全部失敗，無法確認哪些是誤報。\n請先解決 API 問題後再試。',
+      ui.ButtonSet.OK
+    );
+  }
+}
+
+/* ===================== 📊 全表高亮分批 AI 複核（可中斷續傳） ===================== */
+/* 智能分批處理全表高亮，支持中斷後續傳，避免重複檢查 */
+function runAiReverifyAllHighlighted() {
+  var ss = SpreadsheetApp.getActiveSpreadsheet();
+  var sh = ss.getActiveSheet();
+  var lastRow = sh.getLastRow();
+  var lastCol = sh.getLastColumn();
+
+  if (lastRow < 2) {
+    ss.toast('沒有資料可檢查', '提示', 4);
+    return;
+  }
+
+  var ui = SpreadsheetApp.getUi();
+  
+  // 檢查是否有進度保存
+  var userProps = PropertiesService.getUserProperties();
+  var savedProgress = userProps.getProperty('AI_REVERIFY_PROGRESS');
+  var continueFromSaved = false;
+  var startRow = 2;
+  
+  if (savedProgress) {
+    var response = ui.alert(
+      '發現未完成的進度',
+      '是否從上次中斷處繼續？\n（上次處理到第 ' + savedProgress + ' 行）',
+      ui.ButtonSet.YES_NO_CANCEL
+    );
+    
+    if (response === ui.ButtonSet.YES) {
+      startRow = parseInt(savedProgress) + 1;
+      continueFromSaved = true;
+    } else if (response === ui.ButtonSet.CANCEL) {
+      return;
+    } else {
+      userProps.deleteProperty('AI_REVERIFY_PROGRESS');
+    }
+  }
+
+  var response = ui.prompt(
+    '全表高亮分批 AI 複核',
+    '請輸入每批處理的行數（建議 500-2000，預設 1000）：\n（處理過程中可隨時中斷，下次可續傳）',
+    ui.ButtonSet.OK_CANCEL
+  );
+
+  if (response.getSelectedButton() !== ui.Button.OK) return;
+
+  var batchSize = parseInt(response.getResponseText()) || 1000;
+  if (batchSize < 100 || batchSize > 5000) {
+    ss.toast('批次大小應在 100-5000 之間', '錯誤', 5);
+    return;
+  }
+
+  var apiKey = getApiKey_();
+  if (!apiKey) {
+    ss.toast('缺少 API Key', '錯誤', 5);
+    return;
+  }
+
+  var headers = sh.getRange(1, 1, 1, lastCol).getValues()[0];
+  var colEN = getColIndexByHeader_(headers, 'en');
+  var colTW = getColIndexByHeader_(headers, 'zh-TW');
+  if (colEN >= 0) colEN += 1;
+  if (colTW >= 0) colTW += 1;
+
+  var totalProcessed = startRow - 2;
+  var totalCleared = 0;
+  var totalFixed = 0;
+  var totalChecked = 0;
+  var currentRow = startRow;
+
+  try {
+    while (currentRow <= lastRow) {
+      var rowsThisBatch = Math.min(batchSize, lastRow - currentRow + 1);
+      
+      ss.toast(
+        '🤖 正在處理第 ' + currentRow + '-' + (currentRow + rowsThisBatch - 1) + ' 行...\n' +
+        '（已處理: ' + totalProcessed + ' 行，清除: ' + totalCleared + '，修復: ' + totalFixed + '）',
+        '分批處理中', 120
+      );
+
+      var rangeBatch = sh.getRange(currentRow, 1, rowsThisBatch, lastCol);
+      var values = rangeBatch.getValues();
+      var bgs = rangeBatch.getBackgrounds();
+      var notes = rangeBatch.getNotes();
+
+      var enColVals = colEN ? sh.getRange(currentRow, colEN, rowsThisBatch, 1).getValues() : [];
+      var twColVals = colTW ? sh.getRange(currentRow, colTW, rowsThisBatch, 1).getValues() : [];
+
+      var itemsToCheck = [];
+      var itemIndices = [];
+
+      for (var r = 0; r < rowsThisBatch; r++) {
+        for (var c = 0; c < lastCol; c++) {
+          var bg = String(bgs[r][c] || '').toLowerCase();
+          if (bg === String(QA_COLOR).toLowerCase()) {
+            var header = String(headers[c] || '').trim();
+            if (!header || header === 'key' || header === 'module') continue;
+
+            var tgt = String(values[r][c] || '');
+            var en = colEN ? String(enColVals[r] ? enColVals[r][0] : '') : '';
+            var tw = colTW ? String(twColVals[r] ? twColVals[r][0] : '') : '';
+            var src = en || tw;
+
+            if (src) {
+              itemsToCheck.push({
+                src: src,
+                tgt: tgt,
+                lang: header
+              });
+              itemIndices.push({ r: r, c: c });
+            }
+          }
+        }
+      }
+
+      if (itemsToCheck.length > 0) {
+        totalChecked += itemsToCheck.length;
+        var results = openAiBatchReverify_(itemsToCheck);
+
+        for (var i = 0; i < results.length; i++) {
+          var res = results[i];
+          var idx = itemIndices[i];
+
+          if (res.valid) {
+            bgs[idx.r][idx.c] = CLEAR_COLOR;
+            notes[idx.r][idx.c] = '';
+            totalCleared++;
+          } else if (res.corrected && res.corrected !== values[idx.r][idx.c]) {
+            values[idx.r][idx.c] = res.corrected;
+            bgs[idx.r][idx.c] = CLEAR_COLOR;
+            notes[idx.r][idx.c] = '';
+            totalFixed++;
+          } else if (!res._skipped) {
+            notes[idx.r][idx.c] = QA_NOTE_PREFIX + 'AI: ' + (res.reason || '語意錯誤');
+          }
+        }
+
+        rangeBatch.setValues(values);
+        rangeBatch.setBackgrounds(bgs);
+        rangeBatch.setNotes(notes);
+        SpreadsheetApp.flush();
+      }
+
+      // 保存進度
+      currentRow += rowsThisBatch;
+      totalProcessed += rowsThisBatch;
+      userProps.setProperty('AI_REVERIFY_PROGRESS', String(currentRow - 1));
+
+      // 批次間暫停，避免觸發限制
+      Utilities.sleep(200);
+    }
+
+    // 完成後清除進度
+    userProps.deleteProperty('AI_REVERIFY_PROGRESS');
+
+    var msg = '✅ 全表處理完成！\n' +
+      '總處理: ' + totalProcessed + ' 行\n' +
+      '檢查: ' + totalChecked + ' 個高亮\n' +
+      '清除誤報: ' + totalCleared + ' 個\n' +
+      '自動修復: ' + totalFixed + ' 個';
+    
+    ss.toast(msg, '完成', 10);
+    ui.alert('處理完成', msg, ui.ButtonSet.OK);
+
+  } catch (e) {
+    // 發生錯誤時保存進度
+    userProps.setProperty('AI_REVERIFY_PROGRESS', String(currentRow - 1));
+    Logger.log('Error in runAiReverifyAllHighlighted: ' + e);
+    ss.toast('處理中斷，進度已保存。錯誤: ' + e.message, '錯誤', 10);
+    throw e;
+  }
 }
 
 /* ===================== THE END ===================== */

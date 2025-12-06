@@ -4,7 +4,7 @@ export default {
   "cancel": "❌ Cancel",
   "cancelled": "Cancelled",
   "cannotIdentify": "⚠️ Cannot identify chat partner\n\n",
-  "catchHint": "• Use /catch to catch new message bottles",
+  "catchHint": "• Use /catch to pick up new blessing Blessing Bottles",
   "completeOnboarding": "⚠️ Please complete the registration process first.\n\nUse /start to continue registration.",
   "conversationInfoError": "⚠️ Conversation information is incorrect.",
   "conversationInfoError2": "⚠️ Conversation information is incorrect",

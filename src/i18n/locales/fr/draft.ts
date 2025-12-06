@@ -4,20 +4,20 @@ export default {
     "hoursAgo": "\\{hours} heures auparavant",
     "justNow": "À l'instant"
   },
-  "contentHint": "💡 Vous pouvez :\n• Entrer un nouveau contenu pour remplacer directement le brouillon\n• Utiliser /throw pour redémarrer\n• Envoyer le contenu du brouillon pour lancer une bouteille à message",
+  "contentHint": "💡 Vous pouvez :\n• Entrer du nouveau contenu pour remplacer le brouillon\n• Recommencer\n• Envoyer le contenu du brouillon pour lancer une Bouteille de Vœux",
   "contentTitle": "📝 **Contenu du brouillon**\n\n",
   "continueEditing": "✅ Continuer à modifier le brouillon",
   "deleteButton": "🗑️ Supprimer le brouillon",
   "deleted": "✅ Le brouillon a été supprimé",
   "editButton": "✏️ Modifier le contenu",
-  "editInput": "✏️ Veuillez entrer le nouveau contenu de la bouteille à message:\n\n💡 Astuce :\n• Minimum 5 caractères\n• Maximum 250 caractères\n• Aucun lien, image ou multimédia autorisé\n• Ne pas inclure d'informations de contact personnelles\n• Un contenu amical et respectueux a plus de chances d'être pické～",
+  "editInput": "✏️ Veuillez entrer le nouveau contenu de la Bouteille de Vœux :\n\n💡 Astuces :\n• Minimum 5 caractères\n• Maximum 250 caractères\n• Les liens, images et multimédias ne sont pas autorisés\n• Ne pas inclure d'informations de contact personnelles\n• Un contenu amical, respectueux et plein de bénédictions non seulement donne des bénédictions aux autres, mais recevra également des réponses joyeuses !",
   "editPrompt": "✏️ Veuillez entrer un nouveau contenu",
-  "newBottle": "✅ Démarrer une nouvelle bouteille à message",
+  "newBottle": "✅ Commencer une nouvelle bénédiction de Bouteille de Vœux",
   "notFound": "⚠️ Le brouillon n'existe pas ou a expiré",
   "sendButton": "✅ Envoi du brouillon",
   "sendQuestion": "Voulez-vous envoyer ce brouillon directement ?",
   "sending": "✅ Envoi...",
   "targetGender": "Quel type de partenaire de chat recherchez-vous ?\n\n",
   "targetGenderHint": "💡 Passez à VIP pour un filtrage avancé (MBTI/Zodiac) : /vip",
-  "throwBottle": "🍾 Lancer une bouteille à message\n\nQuel type de partenaire de chat recherchez-vous ?"
+  "throwBottle": "🍾 Envoyez des bénédictions via une Bouteille de Vœux\n\nEnvoyer des bénédictions aux autres vous apportera également du bonheur~"
 };

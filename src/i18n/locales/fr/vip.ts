@@ -27,8 +27,8 @@ export default {
   "message8": "Prix : {priceStars} ⭐ Étoiles Telegram / mois\n",
   "message9": "Temps de paiement : {paymentDate.toLocaleDateString(",
   "purchaseCancelled": "✅ Achat annulé",
-  "quota": "• Quota quotidien de 30 bouteilles à message (Invitez des amis pour augmenter, max 100 par jour)\n",
-  "quota2": "• Quota quotidien de 30 bouteilles à message (max 100 par jour)\n",
+  "quota": "• Quotité de 30 Bouteilles de Vœux par jour (invitez des amis pour augmenter, jusqu'à 100 par jour)\n",
+  "quota2": "• Quotité de 30 Bouteilles de Vœux par jour (jusqu'à 100 par jour)\n",
   "refundAdminCommands": "💡 Utilisez les commandes suivantes pour continuer :\n• Approuver : `/admin_approve_refund <ID>`\n• Rejeter : `/admin_reject_refund <ID> <reason>`",
   "refundApproved": "✅ **Remboursement Approuvé**\n\nMontant du remboursement : {amount} ⭐\nLe remboursement sera crédité dans un délai de 1 à 3 jours ouvrables.\n\nVotre adhésion VIP a été annulée.\n\nMerci de votre compréhension !",
   "refundApprovedAdmin": "✅ Remboursement Approuvé\n\nDemande ID : #{requestId}\nID Utilisateur : {userId}\nMontant : {amount} ⭐",
@@ -75,7 +75,7 @@ export default {
   "text11": "Date d'expiration : {expireDate}\n\n",
   "text12": "Les remboursements seront crédités dans un délai de 1 à 3 jours ouvrables.\n\n",
   "text13": "Demande ID : #{requestId}\n",
-  "text14": "└ 1 correspondance intelligente + 2 affichages de bouteilles à message publiques : 2 emplacements supplémentaires, attendant qu'une personne destinée les prenne.\nAugmentez les chances que votre bouteille à message soit vue de 300 % !",
+  "text14": "└ 1 correspondance intelligente + 2 bénédictions publiques dans la piscine de Bouteille de Vœux : Ajoute 2 emplacements d'affichage supplémentaires, attendant que les personnes destinées viennent les récupérer.\nAugmente de 300 % la chance que votre bouteille soit vue !",
   "text15": "Vous serez informé des résultats du traitement via le Bot.\n\n",
   "text16": "Veuillez entrer le motif du remboursement (au moins 10 caractères) :",
   "text17": "Motif : {req.reason}\n",
@@ -130,5 +130,5 @@ export default {
   "upgrade": "Passer à VIP",
   "maxDurationExceeded": "⚠️ Votre période VIP a atteint la limite ({maxMonths} mois) et vous ne pouvez pas continuer à acheter pour le moment.",
   "refundedAndRevoked": "ℹ️ Votre paiement a été remboursé et les avantages VIP ont été révoqués.",
-  "benefit_daily_fortune": "• 1 voyance AI gratuite par jour (exclusive aux VIP)"
+  "benefit_daily_fortune": "• 1 lecture psychique gratuite par jour (exclusive aux VIP)"
 };

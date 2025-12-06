@@ -9,7 +9,7 @@ export default {
   "subtitle": "Vyberte prosím kategorii pro procházení možností.",
   "current": "Aktuálně vybráno ({count}/{max}):\n{list}",
   "saved": "✅ Štítky zájmů byly aktualizovány!",
-  "required_hint": "💡 Abychom poskytli přesnější služby AI věštby, prosím nejprve vyplňte své štítky zájmů.",
+  "required_hint": "💡 Pro zajištění přesnějších služeb Psychic Readingkého čtení prosím nejprve vyplňte své zájmové značky.",
   "categories": {
     "life": "Životní styl a móda",
     "travel": "Cestování a objevování",

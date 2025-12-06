@@ -68,7 +68,7 @@ export default {
     "zodiacVirgo": "Maagd"
   },
   "filterAge": "• leeftijd=18-25\n",
-  "filterCommand": "/broadcast_filter <filter> <msg_content> ",
+  "filterCommand": "/broadcast_filter <filter> <msg_content>",
   "filterConfirmConditions": "**Filtervoorwaarden:**\n{conditions}\n\n",
   "filterConfirmMessage": "**Berichtinhoud:**\n{message}\n\n",
   "filterConfirmTitle": "🔍 **Bevestiging van uitzendingfilter**\n\n",

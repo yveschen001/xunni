@@ -13,7 +13,7 @@ export default {
   "bloodType": "✅ Nhóm máu đã được cập nhật thành {getBloodTypeDisplay(bloodType as any)}",
   "bloodType2": "✅ Nhóm máu đã được xóa",
   "bottle": "✅ Phần thưởng đã được phân phát! +1 chai thư",
-  "bottle2": "✅ Bắt đầu một chai thư mới",
+  "bottle2": "✅ Bắt đầu một Chai Cầu Nguyện phước lành mới",
   "bottle3": "✅ Chai thư đã được tạo\n",
   "broadcast": "✅ Đã xóa {ids.length} đợt phát thanh bị kẹt\n\n",
   "broadcast2": "✅ Không có đợt phát thanh nào cần xóa\n\n",
@@ -95,7 +95,7 @@ export default {
     "bloodType": "✅ Nhóm máu đã được cập nhật sang \\{getBloodTypeDisplay(bloodType as any)}",
     "bloodType2": "✅ Nhóm máu đã được xóa",
     "bottle": "✅ Phần thưởng đã được phân phát! +1 chai thư",
-    "bottle2": "✅ Bắt đầu chai thư mới",
+    "bottle2": "✅ Bắt đầu một Chai Cầu Nguyện chúc phúc mới",
     "bottle3": "✅ Chai thư đã được tạo\n",
     "broadcast": "✅ Đã xóa \\{ids.length} phát sóng bị kẹt\n\n",
     "broadcast2": "✅ Không còn phát sóng để dọn dẹp\n\n",
@@ -238,6 +238,6 @@ export default {
   "verify2": "✅ Xác minh thành công! Nhận được +\\{ad.reward_quota} hạn mức vĩnh viễn!",
   "vip": "✅ Tất cả bài viết đã được cập nhật (trạng thái VIP đúng)\n",
   "zodiac": "✅ Đã xóa lựa chọn chiêm tinh",
-  "bottleThrown": "🍾 Chai thư đã được thả!",
+  "bottleThrown": "✅ Chai Cầu Nguyện đã được ném ra!",
   "saved": "✅ Cài đặt đã được lưu"
 };

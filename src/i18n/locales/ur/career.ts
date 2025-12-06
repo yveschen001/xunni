@@ -3,7 +3,7 @@ export default {
   "label_industry": "آپ کس صنعت میں بنیادی طور پر مشغول ہیں؟",
   "btn_edit_role": "💼 پیشہ ورانہ شناخت میں ترمیم",
   "btn_edit_industry": "🏢 صنعت میں ترمیم",
-  "profile_incomplete_hint": "💡 مزید درست AI قسمت معلوم کرنے کی خدمات فراہم کرنے کے لیے، براہ کرم پہلے اپنی ذاتی معلومات مکمل کریں۔",
+  "profile_incomplete_hint": "💡 زیادہ درست ذہنیت کی قرآنی خدمات فراہم کرنے کے لیے، براہ کرم پہلے اپنے ذاتی معلومات مکمل کریں۔",
   "role": {
     "employee": "آفس کے ملازم",
     "freelancer": "فری لانسر / SOHO",
@@ -167,4 +167,6 @@ export default {
     }
   },
   "next_step_industry": "اس کے بعد، براہ کرم اپنی صنعت کا انتخاب کریں۔"
+,
+  "back_to_categories": "Back to Industries"
 };

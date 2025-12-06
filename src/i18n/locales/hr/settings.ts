@@ -27,6 +27,8 @@ export default {
   "selectEndHour": "☀️ Vrijeme početka postavljeno na {start}:00.\nMolimo odaberite vrijeme završetka tihe sate:\n(Notifikacije će se nastaviti nakon ovog vremena)",
   "disabled": "🚫 Tihe sate su onemogućene",
   "quietHoursHint": "Nećeš primati nehitne obavijesti tijekom ovog razdoblja",
+  "quietHoursVipOnly": "🔒 Tiha Razdoblja (samo za VIP)",
+  "upgradeForQuietHours": "Nadogradite na VIP za postavljanje tiha razdoblja, kako biste izbjegli ometanje tijekom odmora!",
   "blocklist": {
     "title": "🚫 Lista blokiranih",
     "empty": "Trenutno nema blokirane liste",

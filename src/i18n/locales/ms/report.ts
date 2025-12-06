@@ -4,7 +4,7 @@ export default {
   "cancel": "❌ Batalkan",
   "cancelled": "Dibatalkan",
   "cannotIdentify": "⚠️ Tidak dapat mengenal pasti rakan sembang\n\n",
-  "catchHint": "• Gunakan /catch untuk menangkap botol mesej baharu",
+  "catchHint": "• Gunakan untuk menangkap Botol Restu yang baru",
   "completeOnboarding": "⚠️ Sila lengkapkan proses pendaftaran terlebih dahulu.\n\nGunakan /start untuk meneruskan pendaftaran.",
   "conversationInfoError": "⚠️ Maklumat perbualan tidak tepat.",
   "conversationInfoError2": "⚠️ Maklumat perbualan tidak tepat",

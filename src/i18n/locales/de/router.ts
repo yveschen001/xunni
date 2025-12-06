@@ -1,7 +1,7 @@
 export default {
   "replyPrompt": "💬 Antworten",
-  "suggestCatch": "❓ Möchten Sie eine Nachrichtenflasche wählen?\n\nVerwenden Sie /catch, um eine Nachrichtenflasche aufzufangen\n\n💡 **Häufige Befehle**:\n• /throw - Werfen Sie eine Nachrichtenflasche\n• /catch - Fangen Sie eine Nachrichtenflasche auf\n• /menu - Hauptmenü\n• /tasks - Aufgabenbereich",
-  "suggestMenu": "❓ Kann diesen Befehl nicht finden\n\n💡 **Häufige Befehle**:\n• /throw - Werfen Sie eine Nachrichtenflasche\n• /catch - Fangen Sie eine Nachrichtenflasche auf\n• /menu - Hauptmenü\n• /tasks - Aufgabenbereich",
-  "suggestThrow": "❓ Möchten Sie eine Nachrichtenflasche werfen?\n\nBitte halten Sie die vorherige Nachricht oder diese Nachricht lange gedrückt,\nwählen Sie 'Antworten' aus dem Menü und geben Sie dann den Inhalt ein, den Sie senden möchten\n\n💡 **Häufige Befehle**:\n• /throw - Werfen Sie eine Nachrichtenflasche\n• /catch - Fangen Sie eine Nachrichtenflasche auf\n• /menu - Hauptmenü\n• /tasks - Aufgabenbereich\n\n#THROW",
-  "throwPrompt": "📝 Bitte gib den Inhalt deiner Nachrichtenflasche ein:"
+  "suggestCatch": "❓ Möchten Sie eine Segensflasche fangen?\n\nVerwenden Sie /catch, um die Segensflasche aufzuheben\n\n💡 **Häufige Befehle**:\n• /throw - Eine Segensflasche wegwerfen\n• /catch - Eine Segensflasche aufheben\n• /menu - Hauptmenü\n• /tasks - Aufgabenbereich",
+  "suggestMenu": "❓ Befehl nicht gefunden\n\n💡 **Häufige Befehle**:\n• /werfen - Eine Segen Segensflasche werfen\n• /fangen - Eine Segen Segensflasche aufheben\n• /menü - Hauptmenü\n• /aufgaben - Aufgabenbereich",
+  "suggestThrow": "❓ Möchten Sie eine Segensflasche werfen?\n\nBitte drücken Sie lange auf die vorherige Nachricht oder diese Nachricht,\nwählen Sie 'Antworten' aus dem Menü,\nund geben Sie den Inhalt ein, der in der Segensflasche gesendet werden soll.\n\n💡 **Häufige Befehle**:\n• /throw - Werfen Sie eine Segensflasche\n• /catch - Heben Sie eine Segensflasche auf\n• /menu - Hauptmenü\n• /tasks - Aufgaben-Zentrum\n\n#THROW",
+  "throwPrompt": "📝 Bitte gib den Inhalt deiner Segensflasche ein:"
 };

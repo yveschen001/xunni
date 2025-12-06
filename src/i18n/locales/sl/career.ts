@@ -3,7 +3,7 @@ export default {
   "label_industry": "V kateri panogi se primarno ukvarjate?",
   "btn_edit_role": "💼 Urejanje strokovne identitete",
   "btn_edit_industry": "🏢 Urejanje panoge",
-  "profile_incomplete_hint": "💡 Da bi zagotovili natančnejše storitve AI napovedovanja, prosimo, najprej izpolnite svoje osebne informacije.",
+  "profile_incomplete_hint": "💡 Da zagotovimo natančnejše storitve psihičnega branja, prosimo, da najprej izpolnite svoje osebne informacije.",
   "role": {
     "employee": "Urnik delavca",
     "freelancer": "Svobodni poklic / SOHO",
@@ -167,4 +167,6 @@ export default {
     }
   },
   "next_step_industry": "Ďalej prosím vyberte svoje odvetvie."
+,
+  "back_to_categories": "Back to Industries"
 };

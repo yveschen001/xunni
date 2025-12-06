@@ -1,13 +1,13 @@
 export default {
   "availableCommands": "你可以隨時使用以下命令：",
-  "catchBottle": "🎣 **撿起漂流瓶**",
-  "catchBottleDesc": "看看別人的漂流瓶，有興趣就回覆開始聊天",
+  "catchBottle": "🎣 **撿起祝福漂流瓶**",
+  "catchBottleDesc": "看看別人的祝福漂流瓶，回覆祝福，開始聊天~",
   "clickButtonHint": "💡 請點擊按鈕繼續",
-  "commandCatch": "• /catch - 撿起漂流瓶",
+  "commandCatch": "• /catch - 撿起祝福漂流瓶",
   "commandHelp": "• /help - 查看幫助",
   "commandMenu": "📋 命令選單",
   "commandTasks": "• /tasks - 查看任務",
-  "commandThrow": "• /throw - 丟出漂流瓶",
+  "commandThrow": "• /throw - 丟出祝福漂流瓶",
   "completeTasksForBottles": "💡 完成任務可獲得額外瓶子",
   "completed": "✅ 教學已完成！",
   "howToBecomeFriends": "💬 **如何成為朋友？**",
@@ -16,11 +16,11 @@ export default {
   "skip": "跳過",
   "skipped": "✅ 已跳過教學",
   "startUsing": "開始使用 →",
-  "throwBottle": "📦 **丟出漂流瓶**",
+  "throwBottle": "📦 **丟出祝福漂流瓶**",
   "throwBottleDesc": "寫下你的心情或想法，系統會幫你找到合適的人",
   "unknownStep": "❌ 未知的教學步驟",
   "viewTasks": "📋 查看任務",
   "welcome": "🎉 恭喜完成註冊！",
   "whatIsXunNi": "🌊 **XunNi 是什麼？**",
-  "whatIsXunNiDesc": "匿名漂流瓶交友平台，透過 MBTI 和星座幫你找到志同道合的朋友"
+  "whatIsXunNiDesc": "匿名祝福漂流瓶交友平台，透過彼此祝福， MBTI 和星座幫你找到志同道合的朋友"
 };

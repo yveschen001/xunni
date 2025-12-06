@@ -97,9 +97,9 @@ export default {
     "nickname": "❌ Impossibile recuperare il soprannome di Telegram",
     "nickname2": "❌ Il nome utente non può contenere link a siti web\n\n",
     "nickname3": "❌ \\{validation.error}\n\nPer favore reinserisci il tuo soprannome:",
-    "quota": "❌ La quota di bottiglie di messaggi di oggi è esaurita (\\{quotaDisplay})\n\n💡 Modi per ottenere più quota:\n",
+    "quota": "❌ La quota di benedizioni della Bottiglia dei Desideri di oggi è stata esaurita (\\{quotaDisplay})\n\n💡 Modi per ottenere più quote:",
     "quota2": "❌ Il limite di messaggi per la conversazione di oggi è stato raggiunto (\\{usedToday}/\\{dailyLimit})\n\n",
-    "quota3": "❌ Il limite odierno per le bottiglie di messaggi è stato utilizzato (\\{quotaDisplay})\n\n",
+    "quota3": "❌ La quota di benedizioni della Bottiglia dei Desideri di oggi è stata esaurita (\\{quotaDisplay})",
     "register": "❌ Si prega di completare prima il processo di registrazione.\n\nUsa /start per continuare la registrazione.",
     "register2": "❌ Profilo utente non trovato, utilizzare /start per registrarsi prima.",
     "register3": "❌ Si prega di completare il processo di registrazione prima di raccogliere le bottiglie di messaggi.\n\nUsa /start per continuare la registrazione.",
@@ -179,5 +179,6 @@ export default {
   "userNotFoundRegister": "⚠️ L'utente non esiste, registrati usando /start prima.",
   "verificationFailed": "❌ La verifica non è riuscita, riprova più tardi",
   "invalidTimeFormat": "Formato orario non valido\nAd esempio: 19:30 (formato 24 ore, 00-23 ore, 00-59 minuti)",
-  "invalidDateFormat": "Formato data non valido\nAd esempio: 2000-01-01"
+  "invalidDateFormat": "Formato data non valido\nAd esempio: 2000-01-01",
+  "taskAlreadyCompleted": "❌ Questo compito è già stato completato e la ricompensa è stata reclamata."
 };

@@ -123,8 +123,10 @@ export async function handleSettingsCallback(
       const { getLanguageButtons } = await import('~/i18n/languages');
       await telegram.answerCallbackQuery(callbackQuery.id);
       await telegram.deleteMessage(chatId, callbackQuery.message!.message_id);
+      
+      // Smart Sort: Pass user's current language to getLanguageButtons for sorting
       await telegram.sendMessageWithButtons(chatId, i18n.t('onboarding.languageSelection'), [
-        ...getLanguageButtons(i18n, 0),
+        ...getLanguageButtons(i18n, 0, user?.language_pref || 'en'), // Pass user language for sorting
         [{ text: i18n.t('settings.back'), callback_data: 'back_to_settings' }],
       ]);
       return;

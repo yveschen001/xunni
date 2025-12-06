@@ -1,13 +1,13 @@
 export default {
   "availableCommands": "Du kan använda följande kommandon när som helst:",
-  "catchBottle": "🎣 **Plocka upp en flaskpost**",
-  "catchBottleDesc": "Kolla in andras flaskposter, svara om du är intresserad och börja chatta",
+  "catchBottle": "🎣 **Plocka upp Önskeflaska**",
+  "catchBottleDesc": "Se andras önskeflaskor, svara med en önskan och starta en chatt~",
   "clickButtonHint": "💡 Vänligen klicka på knappen för att fortsätta",
-  "commandCatch": "• /catch - Plocka upp flaskpost",
+  "commandCatch": "• Plocka upp Önskeflaska",
   "commandHelp": "• /help - Visa hjälp",
   "commandMenu": "📋 Kommandomeny",
   "commandTasks": "• /tasks - Visa uppgifter",
-  "commandThrow": "• /throw - Kasta ut flaskpost",
+  "commandThrow": "• Kasta Önskeflaska",
   "completeTasksForBottles": "💡 Fullfölj uppgifter för att tjäna extra flaskor",
   "completed": "✅ Utbildning slutförd!",
   "howToBecomeFriends": "💬 **Hur skaffar man vänner?**",
@@ -16,11 +16,11 @@ export default {
   "skip": "Skippa",
   "skipped": "✅ Utbildning hoppad över",
   "startUsing": "Börja använda →",
-  "throwBottle": "📦 **Kasta ut flaskpost**",
+  "throwBottle": "📦 **Kasta Önskeflaska**",
   "throwBottleDesc": "Skriv ner dina känslor eller tankar, och systemet hjälper dig att hitta en lämplig person",
   "unknownStep": "❌ Okänt utbildningssteg",
   "viewTasks": "📋 Visa uppgifter",
   "welcome": "🎉 Grattis, registreringen är slutförd!",
   "whatIsXunNi": "🌊 **Vad är XunNi?**",
-  "whatIsXunNiDesc": "En anonym flaskpost social plattform som hjälper dig att hitta likasinnade vänner genom MBTI och stjärntecken"
+  "whatIsXunNiDesc": "En anonym plattform för att skicka önskeflaskor, där du genom ömsesidiga önskningar, MBTI och stjärntecken hittar likasinnade vänner."
 };

@@ -12,15 +12,17 @@ const CACHE_TTL = 600; // 10 minutes in seconds
 export async function handleStats(request: Request, env: Env): Promise<Response> {
   try {
     // 1. Check KV Cache
-    const cachedStats = await env.CACHE.get(STATS_CACHE_KEY);
-    if (cachedStats) {
-      return new Response(cachedStats, {
-        headers: {
-          'Content-Type': 'application/json',
-          'Cache-Control': `public, max-age=${CACHE_TTL}, s-maxage=${CACHE_TTL}`,
-          'X-Cache-Status': 'HIT',
-        },
-      });
+    if (env.CACHE) {
+      const cachedStats = await env.CACHE.get(STATS_CACHE_KEY);
+      if (cachedStats) {
+        return new Response(cachedStats, {
+          headers: {
+            'Content-Type': 'application/json',
+            'Cache-Control': `public, max-age=${CACHE_TTL}, s-maxage=${CACHE_TTL}`,
+            'X-Cache-Status': 'HIT',
+          },
+        });
+      }
     }
 
     // 2. Compute Stats from DB
@@ -34,7 +36,9 @@ export async function handleStats(request: Request, env: Env): Promise<Response>
     });
 
     // 4. Update KV Cache
-    await env.CACHE.put(STATS_CACHE_KEY, responseBody, { expirationTtl: CACHE_TTL });
+    if (env.CACHE) {
+      await env.CACHE.put(STATS_CACHE_KEY, responseBody, { expirationTtl: CACHE_TTL });
+    }
 
     // 5. Return Response
     return new Response(responseBody, {

@@ -13,7 +13,7 @@ export default {
   "bloodType": "✅ סוג דם עודכן ל-{getBloodTypeDisplay(bloodType as any)}",
   "bloodType2": "✅ סוג דם הוסרה",
   "bottle": "✅ הפרס הוצא! +1 בקבוק מסר",
-  "bottle2": "✅ התחלת בקבוק מסר חדש",
+  "bottle2": "✅ 開始新的 Blessing Bottle",
   "bottle3": "✅ בקבוק המסר נוצר\n",
   "broadcast": "✅ נוקו {ids.length} שידורים תקועים\n\n",
   "broadcast2": "✅ אין שידורים שדורשים ניקוי\n\n",
@@ -95,7 +95,7 @@ export default {
     "bloodType": "✅ סוג דם עודכן ל- \\{getBloodTypeDisplay(bloodType as any)}",
     "bloodType2": "✅ סוג דם נמחק",
     "bottle": "✅ תגמול הוצא! +1 בקבוק מסר",
-    "bottle2": "✅ התחלת בקבוק מסר חדש",
+    "bottle2": "✅ התחל בקבוק ברכה חדש",
     "bottle3": "✅ בקבוק מסר נוצר\n",
     "broadcast": "{ids.length} {ids.length}\n\n",
     "broadcast2": "✅ אין שידורים לנקות\n\n",
@@ -238,6 +238,6 @@ export default {
   "verify2": "✅ האימות הצליח! אזר +\\{ad.reward_quota} מכסות קבועות!",
   "vip": "✅ כל הפוסטים עדכניים (סטטוס VIP נכון)\n",
   "zodiac": "✅ נבחרה מערכת המזלות",
-  "bottleThrown": "🍾 בקבוק מסר נזרק!",
+  "bottleThrown": "✅ Blessing Bottle 已丟出！",
   "saved": "✅ ההגדרות נשמרו"
 };

@@ -19,7 +19,7 @@ export default {
   "noMessages": "(אין הודעות)",
   "partnerMessages": "• הצד השני שלח: {count} הודעות\n",
   "recentMessages": "📨 **שיחות אחרונות:**\n\n",
-  "returnToMenu": "🏠 חזור לתפריט הראשי: /menu",
+  "returnToMenu": "🏠 主選單",
   "returnToMenuButton": "🏠 חזרה לתפריט הראשי",
   "stats": "📊 **סטטיסטיקות:**\n",
   "time": "זמן: {time}\n\n",

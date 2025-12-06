@@ -27,8 +27,8 @@ export default {
   "message8": "Hinta: {priceStars} ⭐ Telegram Stars / kuukausi\n",
   "message9": "Maksuaika: {paymentDate.toLocaleDateString(",
   "purchaseCancelled": "✅ Ostos peruutettu",
-  "quota": "• Päivittäinen kiintiö 30 viestipulloa (Kutsu ystäviä lisäämään, max 100 päivässä)\n",
-  "quota2": "• Päivittäinen kiintiö 30 viestipulloa (max 100 päivässä)\n",
+  "quota": "• Päivittäinen 30 Toivepullo -kiintiö (kutsumalla ystäviä voi lisätä, enintään 100 pulloa/päivä)\n",
+  "quota2": "• Päivittäinen 30 Toivepullo -kiintiö (enintään 100 pulloa/päivä)\n",
   "refundAdminCommands": "💡 Käytä seuraavia komentoja jatkaaksesi:\n• Hyväksy: `/admin_approve_refund <ID>`\n• Hylkää: `/admin_reject_refund <ID> <reason>`",
   "refundApproved": "✅ **Hyvitys hyväksytty**\n\nHyvitysmäärä: {amount} ⭐\nHyvitys hyvitetään 1-3 arkipäivän kuluessa.\n\nVIP-jäsenyytesi on peruutettu.\n\nKiitos ymmärryksestäsi!",
   "refundApprovedAdmin": "✅ Hyvitys hyväksytty\n\nPyyntö ID: #{requestId}\nKäyttäjä ID: {userId}\nMäärä: {amount} ⭐",
@@ -75,7 +75,7 @@ export default {
   "text11": "Vanhentumisaika: {expireDate}\n\n",
   "text12": "Palautukset hyvitetään 1-3 arkipäivän kuluessa.\n\n",
   "text13": "Pyyntö ID: #{requestId}\n",
-  "text14": "└ 1 älykäs ottelu + 2 julkista viestipullon näyttöä: Lisä 2 näyttöpaikkaa, odottamassa määrättyä henkilöä noutamaan ne.\nLisää mahdollisuuksia, että viestipullosi nähdään 300%!",
+  "text14": "└ 1 älykäs paritus + 2 julkista Toivepullo -näyttöä: lisätään 2 näyttöpaikkaa, odottaen onnekkaita poimijoita.\nAnna pullojen saada näkyvyyttä 300% enemmän!",
   "text15": "Saat tiedot käsittelyn tuloksista Botin kautta.\n\n",
   "text16": "Ole hyvä ja anna hyvityksen syy (vähintään 10 merkkiä):",
   "text17": "Syy: {req.reason}\n",
@@ -130,5 +130,5 @@ export default {
   "upgrade": "Päivitä VIP-jäsenyyteen",
   "maxDurationExceeded": "⚠️ VIP-jaksosi on saavuttanut rajan ({maxMonths} kuukautta), etkä voi jatkaa ostamista toistaiseksi.",
   "refundedAndRevoked": "ℹ️ Maksusi on hyvitetty, ja VIP-edut on peruutettu.",
-  "benefit_daily_fortune": "• 1 ilmainen AI-ennustus päivässä (vain VIP:lle)"
+  "benefit_daily_fortune": "• 1 ilmainen psykologinen lukema päivässä (vain VIP:lle)"
 };

@@ -1,7 +1,7 @@
 export default {
   "autoCompleted": "Η διαδικασία εγγραφής έχει ολοκληρωθεί αυτόματα.\n\n",
-  "bottles": "• Μπουκάλια μηνυμάτων: {count}\n",
-  "catchCommand": "• /catch - Πιάστε μπουκάλια μηνυμάτων\n",
+  "bottles": "• Blessing Bottle: {count}\n",
+  "catchCommand": "• Catch Blessing Bottle\n",
   "conversations": "• Συνομιλίες: {count}\n",
   "dataReset": "✅ Λειτουργία ανάπτυξης: Τα δεδομένα έχουν επαναφερθεί\n\nΌλα τα δεδομένα σας έχουν διαγραφεί.\n\n💡 Μπορείτε τώρα να επανεκκινήσετε τη διαδικασία εγγραφής για δοκιμή.\n\n🔄 Επαναεγγραφή: /start\nή χρησιμοποιήστε: /dev_restart (ξεκινήστε αυτόματα την εγγραφή)\n\n⚠️ Σημείωση: Αυτή η δυνατότητα είναι διαθέσιμη μόνο στο περιβάλλον Staging.",
   "getUserInfoFailed": "❌ Αποτυχία απόκτησης πληροφοριών",
@@ -30,7 +30,7 @@ export default {
   "telegramId": "Ταυτότητα Telegram: {id}",
   "testCoreFeatures": "💡 Τώρα μπορείτε να δοκιμάσετε άμεσα τις βασικές λειτουργίες:\n",
   "testUser": "Δοκιμαστικός χρήστης",
-  "throwCommand": "• /throw - Ρίξτε μπουκάλι μηνύματος\n",
+  "throwCommand": "• Throw Blessing Bottle\n",
   "userInfo": "🔧 Λειτουργία ανάπτυξης: Πληροφορίες χρήστη\n\n",
   "userNotFound": "❌ Ο χρήστης δεν υπάρχει",
   "vip": "VIP: {status}",

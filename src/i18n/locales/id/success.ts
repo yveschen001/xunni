@@ -13,7 +13,7 @@ export default {
   "bloodType": "✅ Golongan darah telah diperbarui menjadi {getBloodTypeDisplay(bloodType as any)}",
   "bloodType2": "✅ Golongan darah telah dihapus",
   "bottle": "✅ Hadiah telah dibagikan! +1 botol pesan",
-  "bottle2": "✅ Mulai botol pesan baru",
+  "bottle2": "✅ Mulai berkat baru pada Botol Berkah",
   "bottle3": "✅ Botol pesan telah dibuat\n",
   "broadcast": "✅ Dihapus {ids.length} siaran terjebak\n\n",
   "broadcast2": "✅ Tidak ada siaran yang perlu dihapus\n\n",
@@ -95,7 +95,7 @@ export default {
     "bloodType": "✅ Tipe darah diperbarui menjadi \\{getBloodTypeDisplay(bloodType as any)}",
     "bloodType2": "✅ Tipe darah dihapus",
     "bottle": "✅ Hadiah yang dikeluarkan! +1 botol pesan",
-    "bottle2": "✅ Memulai botol pesan baru",
+    "bottle2": "✅ Mulai Botol Berkah berkah baru",
     "bottle3": "✅ Botol pesan dibuat\n",
     "broadcast": "✅ Menghapus \\{ids.length} siaran tersangkut\n\n",
     "broadcast2": "✅ Tidak ada siaran untuk dibersihkan\n\n",
@@ -238,6 +238,6 @@ export default {
   "verify2": "✅ Verifikasi Berhasil! Anda telah menerima +\\{ad.reward_quota} kredit permanen!",
   "vip": "✅ Semua pos sudah diperbarui (status VIP benar)\n",
   "zodiac": "✅ Pilihan zodiak dibersihkan",
-  "bottleThrown": "🍾 Botol pesan telah dilempar!",
+  "bottleThrown": "✅ Botol Berkah telah dibuang!",
   "saved": "✅ Pengaturan disimpan"
 };

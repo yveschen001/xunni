@@ -1,4 +1,4 @@
-import type { User } from '../user';
+import type { User } from '~/types';
 
 /**
  * Zodiac (星座) - Four Elements Rule

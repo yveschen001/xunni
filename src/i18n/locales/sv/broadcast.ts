@@ -68,7 +68,7 @@ export default {
     "zodiacVirgo": "Jungfrun"
   },
   "filterAge": "• ålder=18-25\n",
-  "filterCommand": "/broadcast_filter <filter> <msg_content> ",
+  "filterCommand": "/broadcast_filter <filter> <msg_content>",
   "filterConfirmConditions": "**Filtreringsvillkor:**\n{conditions}\n\n",
   "filterConfirmMessage": "**Meddelandeinnehåll:**\n{message}\n\n",
   "filterConfirmTitle": "🔍 **Bekräftelse av sändningsfilter**\n\n",

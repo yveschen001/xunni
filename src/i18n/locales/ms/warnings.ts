@@ -122,7 +122,7 @@ export default {
       "body": "{userAttribute},\nMenurut analisis, anda mempunyai ikatan terkuat dengan {recommendedAttributes}!\n\n💡 {reason}\n\n👇 Merasa bertuah?"
     },
     "btn": {
-      "throw": "🌊 Balas botol dan ambil peluang",
+      "throw": "🌊 Buang Botol Restu berkat, doakan orang lain sejahtera, dan kebahagiaan akan kembali kepada diri anda.",
       "vip_throw": "🎯 Buang kepada {target}",
       "vip_upsell": "💡 Tingkatkan ke VIP untuk menandakan penghantaran kepada {target}, untuk padanan yang tepat!"
     }

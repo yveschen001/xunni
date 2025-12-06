@@ -248,8 +248,8 @@ async function sendMatchNotifications(
   // 這裡使用簡單的邏輯，實際應該複用 matching.ts 的邏輯
   if (bottleOwner.mbti_result && matcher.mbti_result) {
     try {
-      const { getBestMatches } = await import('~/domain/matching');
-      const bestMatches = getBestMatches(matcher.mbti_result);
+      const { getBestMbtiMatches } = await import('~/domain/matching');
+      const bestMatches = getBestMbtiMatches(matcher.mbti_result);
       if (bestMatches.includes(bottleOwner.mbti_result)) {
         highlights.push(i18n?.t('common.mbtiMatch') || '🧠 MBTI 契合');
       }
@@ -271,6 +271,7 @@ async function sendMatchNotifications(
   const notSet = i18n?.t('common.notSet') || '未設定';
   const ownerMbti = bottleOwner.mbti_result || notSet;
   const ownerZodiac = bottleOwner.zodiac_sign || notSet;
+  const bottleContentPreview = bottle.content.length > 50 ? bottle.content.substring(0, 50) + '...' : bottle.content;
 
   // 並行發送兩個通知
   await Promise.allSettled([

@@ -122,7 +122,7 @@ export default {
       "body": "{userAttribute},\nPodľa analýzy máte najväčšiu afinitu s {recommendedAttributes}!\n\n💡 {reason}\n\n👇 Cítiš sa šťastne?"
     },
     "btn": {
-      "throw": "🌊 Hodiť fľašu a Risknúť",
+      "throw": "🌊 Hoďte požehnanie do fľaše požehnania, prajete ostatným dobre, a šťastie sa vám vráti.",
       "vip_throw": "🎯 Hodiť na {target}",
       "vip_upsell": "💡 Upgradujte na VIP, aby ste určili doručenie na {target}, pre presné párovanie!"
     }

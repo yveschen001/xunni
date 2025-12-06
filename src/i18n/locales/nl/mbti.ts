@@ -266,5 +266,24 @@ export default {
     "startButton": "📊 Start de test",
     "resultTitle": "Mijn MBTI-testresultaat is {type}!",
     "resultDesc": "Je zou de test ook moeten proberen～"
-  }
+  },
+  "titles": {
+
+  "INTJ": "Architect",
+  "INTP": "Logicus",
+  "ENTJ": "Commandant",
+  "ENTP": "Debater",
+  "INFJ": "Advocaat",
+  "INFP": "Bemiddelaar",
+  "ENFJ": "Protagonist",
+  "ENFP": "Campagnevoerder",
+  "ISTJ": "Logisticus",
+  "ISFJ": "Verdediger",
+  "ESTJ": "Uitvoerend",
+  "ESFJ": "Consul",
+  "ISTP": "Virtuoos",
+  "ISFP": "Avonturier",
+  "ESTP": "Ondernemer",
+  "ESFP": "Entertainer"
+  },
 };

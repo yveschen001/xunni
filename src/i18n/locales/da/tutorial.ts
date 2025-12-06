@@ -1,13 +1,13 @@
 export default {
   "availableCommands": "Du kan bruge følgende kommandoer når som helst:",
-  "catchBottle": "🎣 **Tag en flaskepost**",
-  "catchBottleDesc": "Tjek andres flaskeposter, svar hvis du er interesseret og begynd at chatte",
+  "catchBottle": "🎣 **Fang Ønskeflaske**",
+  "catchBottleDesc": "Se andres Ønskeflasker, svar på ønsker og begynd en samtale~",
   "clickButtonHint": "💡 Klik venligst på knappen for at fortsætte",
-  "commandCatch": "• /catch - Tag flaskepost",
+  "commandCatch": "• Fang Ønskeflaske",
   "commandHelp": "• /help - Se hjælp",
   "commandMenu": "📋 Kommando menu",
   "commandTasks": "• /tasks - Se opgaver",
-  "commandThrow": "• /throw - Smid flaskepost væk",
+  "commandThrow": "• Send Ønskeflaske",
   "completeTasksForBottles": "💡 Fuldfør opgaver for at tjene ekstra flasker",
   "completed": "✅ Tutorial gennemført!",
   "howToBecomeFriends": "💬 **Hvordan skaber man venner?**",
@@ -16,11 +16,11 @@ export default {
   "skip": "Spring over",
   "skipped": "✅ Tutorial sprunget over",
   "startUsing": "Begynd at bruge →",
-  "throwBottle": "📦 **Smid flaskepost væk**",
+  "throwBottle": "📦 **Send Ønskeflaske**",
   "throwBottleDesc": "Skriv dine følelser eller tanker ned, og systemet vil hjælpe dig med at finde en passende person",
   "unknownStep": "❌ Ukendt tutorial trin",
   "viewTasks": "📋 Se opgaver",
   "welcome": "🎉 Tillykke med at have gennemført registreringen!",
   "whatIsXunNi": "🌊 **Hvad er XunNi?**",
-  "whatIsXunNiDesc": "En anonym flaskepost social platform, der hjælper dig med at finde ligesindede venner gennem MBTI og stjernetegn"
+  "whatIsXunNiDesc": "Anonym Ønskeflaske venneplatform, der hjælper dig med at finde ligesindede gennem ønsker, MBTI og stjernetegn."
 };

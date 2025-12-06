@@ -266,5 +266,24 @@ export default {
     "startButton": "📊 开始测试",
     "resultTitle": "我的 MBTI 测试结果是 {type}!",
     "resultDesc": "你也应该尝试一下这个测试～"
-  }
+  },
+  "titles": {
+
+  "INTJ": "建筑师",
+  "INTP": "逻辑学家",
+  "ENTJ": "指挥官",
+  "ENTP": "辩论者",
+  "INFJ": "倡导者",
+  "INFP": "调解者",
+  "ENFJ": "主角",
+  "ENFP": "竞选者",
+  "ISTJ": "后勤大师",
+  "ISFJ": "保护者",
+  "ESTJ": "执行官",
+  "ESFJ": "领事",
+  "ISTP": "艺术家",
+  "ISFP": "冒险家",
+  "ESTP": "企业家",
+  "ESFP": "娱乐者"
+  },
 };

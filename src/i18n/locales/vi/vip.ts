@@ -27,8 +27,8 @@ export default {
   "message8": "Giá: {priceStars} ⭐ Telegram Stars / tháng\n",
   "message9": "Thời gian thanh toán: {paymentDate.toLocaleDateString(",
   "purchaseCancelled": "✅ Đơn hàng đã bị hủy",
-  "quota": "• Hạn ngạch hàng ngày là 30 chai thư (mời bạn bè để tăng, tối đa 100 mỗi ngày)\n",
-  "quota2": "• Hạn ngạch hàng ngày là 30 chai thư (tối đa 100 mỗi ngày)\n",
+  "quota": "• Hạn ngạch hàng ngày là 30 Chai Cầu Nguyện (mời bạn bè có thể tăng số lượng này, tối đa 100 mỗi ngày)",
+  "quota2": "• Hạn ngạch hàng ngày là 30 Chai Cầu Nguyện (tối đa 100 mỗi ngày)",
   "refundAdminCommands": "💡 Sử dụng các lệnh sau để tiếp tục:\n• Chấp nhận: `/admin_approve_refund <ID>`\n• Từ chối: `/admin_reject_refund <ID> <reason>`",
   "refundApproved": "✅ **Hoàn lại đã được phê duyệt**\n\nSố tiền hoàn lại: {amount} ⭐\nHoàn lại sẽ được ghi có trong vòng 1-3 ngày làm việc.\n\nThành viên VIP của bạn đã bị hủy.\n\nCảm ơn bạn đã thông cảm!",
   "refundApprovedAdmin": "✅ Hoàn lại đã được phê duyệt\n\nMã yêu cầu: #{requestId}\nMã người dùng: {userId}\nSố tiền: {amount} ⭐",
@@ -75,7 +75,7 @@ export default {
   "text11": "Thời gian hết hạn: {expireDate}\n\n",
   "text12": "Hoàn tiền sẽ được ghi có trong vòng 1-3 ngày làm việc.\n\n",
   "text13": "Mã yêu cầu: #{requestId}\n",
-  "text14": "└ 1 ghép thông minh + 2 chai thư công khai hiển thị: Thêm 2 vị trí hiển thị, chờ đợi một người định mệnh đến nhặt chúng.\nTăng cơ hội cho chai thư của bạn được nhìn thấy lên 300%!",
+  "text14": "└ 1 kết hợp thông minh + 2 Chai Cầu Nguyện phước lành công cộng hiển thị: Thêm 2 vị trí hiển thị bổ sung, chờ đợi những người có duyên đến nhận.\nTăng cơ hội Chai Cầu Nguyện của bạn được nhìn thấy lên 300%!",
   "text15": "Bạn sẽ được thông báo về kết quả xử lý qua Bot.\n\n",
   "text16": "Vui lòng nhập lý do hoàn tiền (ít nhất 10 ký tự):",
   "text17": "Lý do: {req.reason}\n",
@@ -130,5 +130,5 @@ export default {
   "upgrade": "Nâng cấp lên VIP",
   "maxDurationExceeded": "⚠️ Thời gian VIP của bạn đã đạt giới hạn ({maxMonths} tháng), và bạn không thể tiếp tục mua sắm trong thời gian này.",
   "refundedAndRevoked": "ℹ️ Thanh toán của bạn đã được hoàn lại, và các quyền lợi VIP đã bị thu hồi.",
-  "benefit_daily_fortune": "• 1 lần xem bói AI miễn phí mỗi ngày (dành cho VIP)"
+  "benefit_daily_fortune": "• 1 lần đọc thần giao cách cảm miễn phí mỗi ngày (dành riêng cho VIP)"
 };

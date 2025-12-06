@@ -3,7 +3,7 @@ export default {
   "label_industry": "În ce industrie ești în principal implicat?",
   "btn_edit_role": "💼 Editarea identității profesionale",
   "btn_edit_industry": "🏢 Editarea industriei",
-  "profile_incomplete_hint": "💡 Pentru a oferi servicii de prezicere mai precise cu ajutorul AI, te rugăm să completezi mai întâi informațiile tale personale.",
+  "profile_incomplete_hint": "💡 Pentru a oferi servicii de citire psiho-psihică mai precise, vă rugăm să completați mai întâi informațiile dumneavoastră personale.",
   "role": {
     "employee": "Angajat de birou",
     "freelancer": "Freelancer / SOHO",
@@ -167,4 +167,6 @@ export default {
     }
   },
   "next_step_industry": "Dále prosím vyberte své odvětví."
+,
+  "back_to_categories": "Back to Industries"
 };

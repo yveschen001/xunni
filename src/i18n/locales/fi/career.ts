@@ -3,7 +3,7 @@ export default {
   "label_industry": "Missä teollisuudessa työskentelet pääasiassa?",
   "btn_edit_role": "💼 Ammattitittelin muokkaus",
   "btn_edit_industry": "🏢 Teollisuuden muokkaus",
-  "profile_incomplete_hint": "💡 Tarjoa tarkempia AI-ennustamispalveluja varten, täytä ensin henkilötietosi.",
+  "profile_incomplete_hint": "💡 Tarkempiin selvänäkijäpalveluihin tarjoamiseksi, täytä ensin henkilötietosi.",
   "role": {
     "employee": "Toimistotyöntekijä",
     "freelancer": "Freelancer / SOHO",
@@ -167,4 +167,6 @@ export default {
     }
   },
   "next_step_industry": "Wählen Sie als Nächstes Ihre Branche aus."
+,
+  "back_to_categories": "Back to Industries"
 };

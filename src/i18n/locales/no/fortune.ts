@@ -8,7 +8,7 @@ export default {
     "love_match": "Kompatibilitet for par",
     "love_ideal": "Ideell type analyse"
   },
-  "back_to_menu": "🔙 Gå tilbake til AI-horoskopmenyen",
+  "back_to_menu": "🔙 Tilbake til Meny for Synsk Lesing",
   "get_more_bottles": "💎 Skaff mer spådomsflasker",
   "relationship": {
     "love": "Par",
@@ -16,7 +16,7 @@ export default {
     "family": "Familie",
     "work": "Kollegaer"
   },
-  "menuTitle": "AI-horoskop",
+  "menuTitle": "Psychic Reading",
   "currentProfile": "Nåværende profil",
   "warehouse": "Fødselsdiagramlagring",
   "manageProfiles": "Administrer fødselsdiagrammer",
@@ -148,21 +148,21 @@ export default {
   },
   "dailyPush": "📅 Dagens horoskop har blitt levert!",
   "dailyPushBtn": "👇 Klikk for å se",
-  "backToMenu": "🔙 Tilbake til AI Spådomsmeny",
+  "backToMenu": "🔙 Tilbake til menyen for psykisk lesing",
   "addProfile": "Legg til diagramfil",
   "quotaDisplay": "🔮 Spådomsflaske: {total} (Denne uken gratis: {weekly}/{limit} | Ekstra: {additional})",
-  "quotaDisplayVip": "🔮 meldingsflaske: {total} (I dag: {daily}/1 | Ekstra: {additional})",
-  "quotaDisplayFree": "🔮 meldingsflaske: {total} (Denne uken gratis: {weekly}/1 | Ekstra: {additional})",
+  "quotaDisplayVip": "🔮 Spådomsflaske: {total} (I dag: {daily}/1 | Ekstra: {additional})",
+  "quotaDisplayFree": "🔮 Spådomsflaske: {total} (Ukes gratis: {weekly}/1 | Ekstra: {additional})",
   "profileDetails": "👤 {gender} {blood} | 🎂 {birthday} | {zodiac} | 🧠 {mbti}",
   "getMore": "Få flere spådomsflasker",
-  "getMoreInfo": "🔮 *Hvordan få en formueflaske?*\n\n1. **Ukentlig Gratis**: Vanlige brukere får 1 per uke, VIP-er får 1 per dag.\n2. **Invitasjonsbelønninger**: Inviter en venn til å bli med, og når de lykkes med å invitere en annen venn, vil du motta en belønning (opptil 1 formueflaske innen 24 timer).\n3. **Belønninger for meldingsflasker**: For hver 10 meldingsflasker som sendes, motta 1 formueflaske. (Opptil 1 formueflaske innen 24 timer)\n4. **Direkte Kjøp (🔥 Begrenset Tid 20% Rabatt)**:\n • Liten pakke {smallAmount} - ~{originalSmallPrice} Stjerner~ {smallPrice} Stjerner\n • Stor pakke {largeAmount} - ~{originalLargePrice} Stjerner~ {largePrice} Stjerner",
+  "getMoreInfo": "🔮 *Slik skaffer du Spådomsflasker?*\n\n1. **Ukes gratis**: Vanlige brukere får 1 per uke, VIP får 1 per dag.\n2. **Invitasjonsbelønning**: Inviter en venn til å bli med, og når vennen også inviterer en venn, får du en belønning (maks 1 Spådomsflaske innen 24 timer).\n3. **Ønskeflaske belønning**: For hver 10 Ønskeflasker du sender, får du 1 Spådomsflaske. (maks 1 Spådomsflaske innen 24 timer)\n4. **Kjøp direkte (🔥 Tidsbegrenset 20% rabatter)**:\n   • Lite paket {smallAmount} stk - ~{originalSmallPrice} Stjerner~ {smallPrice} Stjerner\n   • Stort paket {largeAmount} stk - ~{originalLargePrice} Stjerner~ {largePrice} Stjerner",
   "buySmall": "🔥 Spesialpris {price} Stjerner (Kjøp {amount} varer)",
   "buyLarge": "🔥 Spesialpris {price} Stjerner (Kjøp {amount} varer)",
-  "invoiceTitle": "Kjøp {amount} lykkeblærer",
-  "invoiceDesc": "Etter kjøpet kan du umiddelbart bruke AI spådomstjenesten, og hver spådomstjeneste bruker 1 lykkeblåse.\n\nKlikk på knappen nedenfor for å kjøpe nå:",
-  "purchaseSuccess": "🎉 Kjøpet var vellykket! {amount} lykkeblærer har blitt lagt til.",
-  "bottleReward": "🎉 Gratulerer! Du har sendt {count} lykkeblærer og mottatt 1 lykkeblær belønning!",
-  "inviteChainReward": "🎉 Gratulerer! Din inviterte venn har lykkes med å invitere en ny venn til å bli med, og du har mottatt 1 lykkeblær belønning!",
+  "invoiceTitle": "Kjøp {amount} Spådomsflasker",
+  "invoiceDesc": "Etter kjøp kan du umiddelbart bruke åndelig spådomstjeneste, hver tjeneste bruker 1 Spådomsflaske.\n\nTrykk på knappen nedenfor for å kjøpe:",
+  "purchaseSuccess": "🎉 Kjøp vellykket! {amount} Spådomsflasker er lagt til.",
+  "bottleReward": "🎉 Gratulerer! Du har sendt {count} Ønskeflasker og mottatt 1 Spådomsflaske som belønning!",
+  "inviteChainReward": "🎉 Gratulerer! Vennene dine har blitt med ved å invitere nye venner, og du får 1 Spådomsflaske som belønning!",
   "menu": {
     "love": "Attributtdiagnose (Forholdsmatching)",
     "attribute_desc": "Analyser romantiske attributter og potensielle trekk.",
@@ -190,7 +190,9 @@ export default {
     "match_report_title": "💞 Parrets synastri rapport",
     "wait_for_consent": "⏳ Venter på den andre partens samtykke...",
     "consent_accepted": "✅ Den andre parten har samtykket! Genererer rapport...",
-    "consent_rejected": "❌ Den andre parten har avvist synastrian forespørselen."
+    "consent_rejected": "❌ Den andre parten har avvist synastrian forespørselen.",
+    "invite_friend": "📨 Invite Friend to Experience",
+    "invite_friend_text": "Hey! I want to try the Compatibility Test with you. Create your fortune profile now!"
   },
   "role": {
     "husband": "Ektefelle",
@@ -228,12 +230,26 @@ export default {
       "drawn": "🎴 Kortene har blitt trukket:"
     }
   },
-  "profile_incomplete_hint": "💡 For å gi mer nøyaktige AI spådomstjenester, vennligst fullfør interessene dine, yrket ditt eller MBTI-informasjonen først.",
+  "profile_incomplete_hint": "💡 For å gi en mer nøyaktig åndelig spådomstjeneste, vennligst fullfør først dine interesser, yrke eller MBTI ... og annen informasjon.",
   "tarot_menu_title": "Tarot-kort",
   "tarot_ui": {
     "intro": "🔮 *Tarot Lesning*\n\nVennligst tenk stille på spørsmålet ditt (f.eks. \"Hvordan er arbeidshoroskopet mitt nylig?\" eller \"Hvordan bør jeg håndtere dette forholdet?\") og fokuser før du klikker på knappen nedenfor for å trekke kort.",
     "draw": "🔮 Trekk kort",
     "shuffling": "Bland...",
     "drawn": "🎴 Kortene har blitt trukket:"
+  },
+  "profileUpdated": "✅ Astrologiprofilen har blitt oppdatert!",
+  "btn_complete_info": "✏️ Fullfør din fødselsinformasjon",
+  "complete_info_hint": "💡 Perfekt tidspunkt og sted for din fødsel for å låse opp horoskoptegn og husanalyse!",
+  "btn_edit_info": "📝 Rediger fødselsinformasjon",
+  "edit": {
+    "currentInfo": "📋 Nåværende informasjon:",
+    "currentTime": "Fødetid: {time}",
+    "currentTimeUnknown": "Fødetid: Usikker",
+    "currentCity": "Fødselsby: {city}",
+    "currentCityUnknown": "Fødselsby: Ikke satt",
+    "confirmEdit": "Ønsker du å endre den ovenfor nevnte informasjonen?",
+    "btnConfirmEdit": "✅ Ja, jeg ønsker å endre",
+    "btnCancelEdit": "❌ Avbryt"
   }
 };

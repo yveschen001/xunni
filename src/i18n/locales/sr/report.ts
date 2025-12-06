@@ -4,7 +4,7 @@ export default {
   "cancel": "❌ Otkaži",
   "cancelled": "Otkaženo",
   "cannotIdentify": "⚠️ Ne možemo da identifikujemo partnera za chat\n\n",
-  "catchHint": "• Koristite /catch da preuzmete novu message bottle",
+  "catchHint": "• Пухни нову Blessing Bottle",
   "completeOnboarding": "⚠️ Molimo vas da prvo završite proces registracije.\n\nKoristite /start da nastavite registraciju.",
   "conversationInfoError": "⚠️ Informacije o razgovoru su netačne.",
   "conversationInfoError2": "⚠️ Informacije o razgovoru su netačne",

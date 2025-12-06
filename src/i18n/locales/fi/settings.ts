@@ -27,6 +27,8 @@ export default {
   "selectEndHour": "☀️ Aloitusaika asetettu {start}:00.\nValitse hiljaisten tuntien lopetusaika:\n(Ilmoitukset jatkuvat tämän ajan jälkeen)",
   "disabled": "🚫 Hiljaiset tunnit on poistettu käytöstä",
   "quietHoursHint": "Et saa kiireettömiä ilmoituksia tänä aikana",
+  "quietHoursVipOnly": "🔒 Hiljaiset tunti (Vain VIP)",
+  "upgradeForQuietHours": "Päivitä VIP:ksi asettaaksesi hiljaiset tunnit, jotta et häiriintyisi lepoaikana!",
   "blocklist": {
     "title": "🚫 Estolistat",
     "empty": "Tällä hetkellä ei ole estolistoja",

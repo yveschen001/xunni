@@ -122,7 +122,7 @@ export default {
       "body": "{userAttribute},\nSipas analizës, keni afinitetin më të fortë me {recommendedAttributes}!\n\n💡 {reason}\n\n👇 Po ndiheni me fat?"
     },
     "btn": {
-      "throw": "🌊 Hedhni një shishe dhe merrni një mundësi",
+      "throw": "🌊 Hedhni një butelkë bekimi, dëshiro tjerëve mirësi dhe lumturia do të kthehet tek ty.",
       "vip_throw": "🎯 Hedh për {target}",
       "vip_upsell": "💡 Përmirësoni në VIP për të caktuar dorëzimin për {target}, për përputhje të saktë!"
     }

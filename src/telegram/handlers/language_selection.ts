@@ -36,7 +36,7 @@ export async function showLanguageSelection(message: TelegramMessage, env: Env):
   await telegram.sendMessageWithButtons(
     chatId,
     i18n.t('onboarding.welcome'),
-    getPopularLanguageButtons(i18n)
+    getPopularLanguageButtons(i18n, languageCode)
   );
 }
 
@@ -54,10 +54,11 @@ export async function showAllLanguages(callbackQuery: CallbackQuery, env: Env): 
   const i18n = createI18n(languageCode);
 
   // Edit message to show all languages (page 0)
+  // Smart Sort: Pass user's current language for sorting
   await telegram.editMessageText(chatId, messageId, i18n.t('onboarding.languageSelection'), {
     reply_markup: {
       inline_keyboard: [
-        ...getLanguageButtons(i18n, 0),
+        ...getLanguageButtons(i18n, 0, languageCode),
         [{ text: i18n.t('common.back'), callback_data: 'lang_back' }],
       ],
     },

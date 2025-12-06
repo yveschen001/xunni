@@ -9,7 +9,7 @@ export default {
   "subtitle": "Por favor selecciona una categoría para explorar opciones.",
   "current": "Actualmente seleccionados ({count}/{max}):\n{list}",
   "saved": "✅ ¡Etiquetas de interés actualizadas!",
-  "required_hint": "💡 Para ofrecer servicios de adivinación AI más precisos, por favor completa primero tus etiquetas de interés.",
+  "required_hint": "💡 Para ofrecer servicios de lectura psíquica más precisos, complete primero sus etiquetas de interés.",
   "categories": {
     "life": "Estilo y Moda",
     "travel": "Viajes y Exploración",

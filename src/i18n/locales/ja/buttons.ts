@@ -2,10 +2,10 @@ export default {
   "ad": "➡️ 次の広告",
   "back": "⬅️ 戻る",
   "backToVip": "💎 VIPメニューに戻る",
-  "bottle": "📺 ボトルメールをもっと受け取るための広告を見る 🎁 ({remaining}/20)",
+  "bottle": "📺 広告を見て祝福のボトルをゲット 🎁 ({remaining}/20)",
   "bottle2": "💎 VIPをアップグレードしてボトルメールをもっと受け取る",
-  "bottle3": "🌊 ボトルメールを投げる",
-  "bottle4": "🎣 ボトルメールを拾う",
+  "bottle3": "🌊 祈りのボトルを送信",
+  "bottle4": "🎣 祈りのボトルを拾う",
   "cancel": "キャンセル",
   "claim": "請求する",
   "help": "❓ ヘルプ",
@@ -47,5 +47,6 @@ export default {
   "text": "👤 プロフィールを見る",
   "verify": "認証する",
   "viewPayments": "💰 サブスクリプション履歴",
+  "viewReports": "🚩 レポートを表示",
   "vip": "💎 VIPにアップグレード"
 };

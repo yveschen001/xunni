@@ -266,5 +266,24 @@ export default {
     "startButton": "📊 Teszt indítása",
     "resultTitle": "Az MBTI teszt eredményem: {type}!",
     "resultDesc": "Neked is érdemes megpróbálnod a tesztet～"
-  }
+  },
+  "titles": {
+
+  "INTJ": " Építész",
+  "INTP": "Logikus",
+  "ENTJ": "Parancsnok",
+  "ENTP": "Vitázó",
+  "INFJ": "Szószóló",
+  "INFP": "Közvetítő",
+  "ENFJ": "Főszereplő",
+  "ENFP": "Kampányoló",
+  "ISTJ": "Logisztikus",
+  "ISFJ": "Védelmező",
+  "ESTJ": "Vezető",
+  "ESFJ": "Konzul",
+  "ISTP": "Virtuóz",
+  "ISFP": "Kalandor",
+  "ESTP": "Vállalkozó",
+  "ESFP": "Szórakoztató"
+  },
 };

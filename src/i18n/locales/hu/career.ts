@@ -3,7 +3,7 @@ export default {
   "label_industry": "Milyen iparágban dolgozik elsősorban?",
   "btn_edit_role": "💼 Szakmai identitás szerkesztése",
   "btn_edit_industry": "🏢 Iparág szerkesztése",
-  "profile_incomplete_hint": "💡 A pontosabb AI sorsolási szolgáltatások érdekében kérjük, először töltse ki a személyes adatait.",
+  "profile_incomplete_hint": "💡 A pontosabb pszichikai olvasás és jóslás szolgáltatások biztosítása érdekében kérjük, először töltsd ki a személyes adataidat.",
   "role": {
     "employee": "Irodai munkatárs",
     "freelancer": "Szabadúszó / SOHO",
@@ -167,4 +167,6 @@ export default {
     }
   },
   "next_step_industry": "În continuare, te rugăm să selectezi industria ta."
+,
+  "back_to_categories": "Back to Industries"
 };

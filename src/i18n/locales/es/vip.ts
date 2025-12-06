@@ -27,8 +27,8 @@ export default {
   "message8": "Precio: {priceStars} ⭐ Telegram Stars / mes\n",
   "message9": "Hora de pago: {paymentDate.toLocaleDateString(",
   "purchaseCancelled": "✅ Compra cancelada",
-  "quota": "• Cuota diaria de 30 botellas de mensajes (Invita amigos para aumentar, máximo 100 por día)\n",
-  "quota2": "• Cuota diaria de 30 botellas de mensajes (máximo 100 por día)\n",
+  "quota": "• Límite de 30 Botellas de Bendición al día (puedes aumentarlo invitando amigos, hasta un máximo de 100 al día)\n",
+  "quota2": "• Límite de 30 Botellas de Bendición al día (hasta un máximo de 100 al día)\n",
   "refundAdminCommands": "💡 Utiliza los siguientes comandos para continuar:\n• Aprobar: `/admin_approve_refund <ID>`\n• Rechazar: `/admin_reject_refund <ID> <reason>`",
   "refundApproved": "✅ **Reembolso Aprobado**\n\nMonto del Reembolso: {amount} ⭐\nEl reembolso se acreditará en un plazo de 1 a 3 días hábiles.\n\nTu membresía VIP ha sido cancelada.\n\n¡Gracias por tu comprensión!",
   "refundApprovedAdmin": "✅ Reembolso Aprobado\n\nID de Solicitud: #{requestId}\nID de Usuario: {userId}\nMonto: {amount} ⭐",
@@ -75,7 +75,7 @@ export default {
   "text11": "Fecha de expiración: {expireDate}\n\n",
   "text12": "Los reembolsos se acreditarán dentro de 1-3 días hábiles.\n\n",
   "text13": "ID de Solicitud: #{requestId}\n",
-  "text14": "└ 1 coincidencia inteligente + 2 exhibiciones de botella de mensajes pública: 2 lugares de exhibición adicionales, esperando a que una persona destinada los recoja.\n¡Aumenta las posibilidades de que tu botella de mensajes sea vista en un 300%!",
+  "text14": "└ 1 emparejamiento inteligente + 2 espacios de exhibición de Botellas de Bendición públicas: se agregan 2 posiciones adicionales, esperando ser recogidas por personas afines.\n¡Aumenta la oportunidad de que tu botella sea vista en un 300%!",
   "text15": "Serás notificado de los resultados del procesamiento a través de Bot.\n\n",
   "text16": "Por favor ingresa el motivo del reembolso (mínimo 10 caracteres):",
   "text17": "Motivo: {req.reason}\n",
@@ -130,5 +130,5 @@ export default {
   "upgrade": "Actualizar a VIP",
   "maxDurationExceeded": "⚠️ Tu período VIP ha alcanzado el límite ({maxMonths} meses), y no puedes continuar comprando por el momento.",
   "refundedAndRevoked": "ℹ️ Tu pago ha sido reembolsado y los beneficios VIP han sido revocados.",
-  "benefit_daily_fortune": "• 1 adivinación AI gratuita por día (exclusivo para VIP)"
+  "benefit_daily_fortune": "• 1 lectura psíquica gratis por día (exclusivo para VIP)"
 };

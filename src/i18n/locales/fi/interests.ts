@@ -9,7 +9,7 @@ export default {
   "subtitle": "Valitse kategoria selataksesi vaihtoehtoja.",
   "current": "Tällä hetkellä valitut ({count}/{max}):\n{list}",
   "saved": "✅ Kiinnostustagien päivitys onnistui!",
-  "required_hint": "💡 Tarjoamme tarkempia AI-ennustuspalveluja, ole hyvä ja viimeistele ensin kiinnostustagisi.",
+  "required_hint": "💡 Tarjotaksemme tarkempia selvänäkijäpalveluja, pyydämme sinua ensiksi täydentämään kiinnostustunnisteesi.",
   "categories": {
     "life": "Elämäntapa ja tyyli",
     "travel": "Matkustus ja tutkimus",

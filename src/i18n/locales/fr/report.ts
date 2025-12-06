@@ -4,7 +4,7 @@ export default {
   "cancel": "❌ Annuler",
   "cancelled": "Annulé",
   "cannotIdentify": "⚠️ Impossible d'identifier le partenaire de chat\n\n",
-  "catchHint": "• Utilisez /catch pour choisir une nouvelle bouteille à message",
+  "catchHint": "• Utilisez pour attraper une nouvelle Bouteille de Vœux",
   "completeOnboarding": "⚠️ Veuillez d'abord compléter le processus d'inscription.\n\nUtilisez /start pour continuer l'inscription.",
   "conversationInfoError": "⚠️ Les informations de la conversation sont incorrectes.",
   "conversationInfoError2": "⚠️ Les informations de la conversation sont incorrectes",

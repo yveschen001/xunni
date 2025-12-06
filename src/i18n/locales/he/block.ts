@@ -1,6 +1,6 @@
 export default {
   "cannotIdentify": "⚠️ לא ניתן לזהות את שותף השיחה.",
-  "catchNewBottle": "💡 השתמש ב-/catch כדי לקחת בקבוק מסר חדש ולהתחיל שיחה חדשה.",
+  "catchNewBottle": "💡 捕捉新的 Blessing Bottle 開始新對話。",
   "conversationInfoError": "⚠️ מידע השיחה שגוי.",
   "conversationMayEnded": "השיחה עשויה להסתיים או אינה קיימת.",
   "conversationNotFound": "⚠️ לא ניתן למצוא שיחה זו.",
@@ -12,5 +12,5 @@ export default {
   "step3": "3️⃣ הזן /block.",
   "steps": "**צעדים שיש לנקוט:**",
   "success": "✅ משתמש זה נחסם (#{identifier})",
-  "willNotMatch": "לא תתואמו יותר בבקבוקי המסר זה עם זה."
+  "willNotMatch": "你們將不會再被匹配到對方的 Blessing Bottle。"
 };

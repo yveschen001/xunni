@@ -1,7 +1,7 @@
 export default {
   "replyPrompt": "💬 Vastaa",
-  "suggestCatch": "❓ Haluatko noutaa pullopostin?\n\nKäytä /catch noutaaksesi pullopostin\n\n💡 **Yleiset komennot**:\n• /throw - Heitä pulloposti\n• /catch - Noutaa pullopostin\n• /menu - Päävalikko\n• /tasks - Tehtäväkeskus",
-  "suggestMenu": "❓ Tämän komenne ei löydy\n\n💡 **Yleiset komennot**:\n• /throw - Heitä pulloposti\n• /catch - Noutaa pullopostin\n• /menu - Päävalikko\n• /tasks - Tehtäväkeskus",
-  "suggestThrow": "❓ Haluatko heittää pullopostin?\n\nPitkä painallus edelliseen viestiin tai tähän viestiin,\nvalitse 'Vastaa' valikosta, kirjoita sitten lähetettävä sisältö\n\n💡 **Yleiset komennot**:\n• /throw - Heitä pulloposti\n• /catch - Noutaa pullopostin\n• /menu - Päävalikko\n• /tasks - Tehtäväkeskus\n\n#THROW",
-  "throwPrompt": "📝 Ole hyvä ja syötä pullopostisi sisältö:"
+  "suggestCatch": "❓ Haluaisitko napata Toivepullo?\n\nKäytä Toivepullo-nappia napataksesi Toivepullo\n\n💡 **Yleisimmät komennot**：\n• Toivepullo - Heitä Toivepullo\n• Toivepullo - Nappaa Toivepullo\n• Päävalikko - Päävalikko\n• Tehtävät - Tehtäväkeskus",
+  "suggestMenu": "❓ Tätä komentoa ei löytynyt\n\n💡 **Yleisimmät komennot**：\n• Toivepullo - Heitä Toivepullo\n• Toivepullo - Nappaa Toivepullo\n• Päävalikko - Päävalikko\n• Tehtävät - Tehtäväkeskus",
+  "suggestThrow": "❓ Haluaako sinun heittää Toivepullo?\n\nPidä pitkään edellistä viestiä tai tätä viestiä,\nvalitse valikosta 'Vastaa',\njota syötä valmis Toivepullo-viesti\n\n💡 **Yleisimmät komennot**：\n• Toivepullo - Heitä Toivepullo\n• Toivepullo - Nappaa Toivepullo\n• Päävalikko - Päävalikko\n• Tehtävät - Tehtäväkeskus\n\n#HEITÄ",
+  "throwPrompt": "📝 Syötä Toivepullosi sisältö:"
 };

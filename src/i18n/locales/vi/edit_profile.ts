@@ -12,5 +12,6 @@ export default {
   "nicknameInputHint": "👇 Vui lòng nhập biệt danh mới:",
   "bioInstruction": "Vui lòng nhập một tự giới thiệu mới (tối đa 100 ký tự).\n\nTự giới thiệu hiện tại của bạn là: {bio}",
   "bioInputHint": "👇 Vui lòng nhập một tự giới thiệu mới:",
-  "bloodTypeInstruction": "Vui lòng chọn loại máu của bạn:"
+  "bloodTypeInstruction": "Vui lòng chọn loại máu của bạn:",
+  "matchPrefInstruction": "Vui lòng chọn sở thích ghép nối của bạn:"
 };

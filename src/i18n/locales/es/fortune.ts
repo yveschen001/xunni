@@ -8,15 +8,15 @@ export default {
     "love_match": "Compatibilidad de parejas",
     "love_ideal": "Análisis del tipo ideal"
   },
-  "back_to_menu": "🔙 Volver al menú de adivinación AI",
-  "get_more_bottles": "💎 Adquiere más botellas de mensajes de adivinación",
+  "back_to_menu": "🔙 Volver al Menú de Lectura Psíquica",
+  "get_more_bottles": "💎 Obtener más botellas de la fortuna",
   "relationship": {
     "love": "Pareja",
     "friend": "Amigos",
     "family": "Familia",
     "work": "Colegas"
   },
-  "menuTitle": "Adivinación AI",
+  "menuTitle": "Lectura Psíquica",
   "currentProfile": "Perfil actual",
   "warehouse": "Almacenamiento de carta natal",
   "manageProfiles": "Gestionar cartas natales",
@@ -148,20 +148,20 @@ export default {
   },
   "dailyPush": "📅 ¡El horóscopo de hoy ha sido entregado!",
   "dailyPushBtn": "👇 Haz clic para ver",
-  "backToMenu": "🔙 Regresar al Menú de Adivinación de IA",
+  "backToMenu": "🔙 Volver al Menú de Lecturas Psíquicas",
   "addProfile": "Agregar Archivo de Gráfico",
   "quotaDisplay": "🔮 Lectura de la fortuna botella de la fortuna: {total} (Esta semana gratis: {weekly}/{limit} | Adicional: {additional})",
   "quotaDisplayVip": "🔮 botella de la fortuna: {total} (Hoy: {daily}/1 | Adicional: {additional})",
   "quotaDisplayFree": "🔮 botella de la fortuna: {total} (Esta semana gratis: {weekly}/1 | Adicional: {additional})",
   "profileDetails": "👤 {gender} {blood} | 🎂 {birthday} | {zodiac} | 🧠 {mbti}",
-  "getMore": "Consigue más botellas de mensajes",
-  "getMoreInfo": "🔮 *¿Cómo obtener una botella de fortuna?*\n\n1. **Gratis Semanal**: Los usuarios regulares reciben 1 por semana, los VIP reciben 1 por día.\n2. **Recompensas por Invitación**: Invita a un amigo a unirse, y cuando él invite exitosamente a otro amigo, recibirás una recompensa (hasta 1 botella de fortuna en 24 horas).\n3. **Recompensas por Botellas de Mensajes**: Por cada 10 botellas de mensajes enviadas, recibe 1 botella de fortuna. (Hasta 1 botella de fortuna en 24 horas)\n4. **Compra Directa (🔥 Descuento por Tiempo Limitado del 20%)**:\n • Paquete Pequeño {smallAmount} - ~{originalSmallPrice} Estrellas~ {smallPrice} Estrellas\n • Paquete Grande {largeAmount} - ~{originalLargePrice} Estrellas~ {largePrice} Estrellas",
+  "getMore": "Obtener más botellas de la fortuna",
+  "getMoreInfo": "🔮 *¿Cómo obtener botellas de la fortuna?*\n\n1. **Gratis semanal**: Usuarios normales 1 por semana, VIP 1 diaria.\n2. **Recompensa por invitación**: Invita a un amigo a unirse, y cuando ese amigo también invite a otro, recibirás una recompensa (máximo 1 botella de la fortuna cada 24 horas).\n3. **Recompensa por Botellas de Bendición**: Por cada 10 Botellas de Bendición enviadas, recibirás 1 botella de la fortuna. (máximo 1 botella de la fortuna cada 24 horas)\n4. **Compra directa (🔥 Oferta limitada 80% de descuento)**:\n   • Paquete pequeño {smallAmount} - ~{originalSmallPrice} Estrellas~ {smallPrice} Estrellas\n   • Paquete grande {largeAmount} - ~{originalLargePrice} Estrellas~ {largePrice} Estrellas",
   "buySmall": "🔥 Precio Especial {price} Estrellas (Compra {amount} artículos)",
   "buyLarge": "🔥 Precio Especial {price} Estrellas (Compra {amount} artículos)",
-  "invoiceTitle": "Compra {amount} botellas de mensajes",
-  "invoiceDesc": "Después de la compra, puedes utilizar inmediatamente el servicio de adivinación de IA, y cada servicio de adivinación consume 1 botella de la fortuna.\n\nHaz clic en el botón de abajo para comprar ahora:",
-  "purchaseSuccess": "🎉 ¡Compra exitosa! Se han añadido {amount} botellas de mensajes.",
-  "bottleReward": "🎉 ¡Felicidades! Has enviado {count} botellas de mensajes y has recibido 1 botella de la fortuna de recompensa.",
+  "invoiceTitle": "Comprar {amount} botellas de la fortuna",
+  "invoiceDesc": "Después de la compra, podrás utilizar inmediatamente el servicio de tarot espiritual, cada servicio consume 1 botella de la fortuna.\n\nPresiona el siguiente botón para comprar:",
+  "purchaseSuccess": "🎉 ¡Compra exitosa! Se han añadido {amount} botellas de la fortuna.",
+  "bottleReward": "🎉 ¡Felicidades! Has enviado {count} Botellas de Bendición, ¡recibiste 1 botella de la fortuna como recompensa!",
   "inviteChainReward": "🎉 ¡Felicidades! Tu amigo invitado ha logrado invitar a un nuevo amigo a unirse, y has recibido 1 botella de la fortuna de recompensa!",
   "menu": {
     "love": "Diagnóstico de Atributos (Emparejamiento de Relaciones)",
@@ -190,7 +190,9 @@ export default {
     "match_report_title": "💞 Informe de sinastría de pareja",
     "wait_for_consent": "⏳ Esperando la aprobación de la otra parte...",
     "consent_accepted": "✅ ¡La otra parte ha aceptado! Generando informe...",
-    "consent_rejected": "❌ La otra parte ha rechazado la solicitud de sinastría."
+    "consent_rejected": "❌ La otra parte ha rechazado la solicitud de sinastría.",
+    "invite_friend": "📨 Invite Friend to Experience",
+    "invite_friend_text": "Hey! I want to try the Compatibility Test with you. Create your fortune profile now!"
   },
   "role": {
     "husband": "Esposo",
@@ -228,12 +230,26 @@ export default {
       "drawn": "🎴 Las cartas han sido sacadas:"
     }
   },
-  "profile_incomplete_hint": "💡 Para proporcionar servicios de adivinación AI más precisos, por favor completa primero tus intereses, profesión o información de MBTI.",
+  "profile_incomplete_hint": "💡 Para ofrecer un servicio de adivinación eLectura Psíquica más preciso, complete primero sus intereses, profesión o MBTI ... y otra información.",
   "tarot_menu_title": "Cartas del Tarot",
   "tarot_ui": {
     "intro": "🔮 *Lectura de Tarot*\n\nPor favor, piensa en silencio en tu pregunta (por ejemplo, \"¿Cómo está mi fortuna laboral recientemente?\" o \"¿Cómo debería manejar esta relación?\") y concéntrate antes de hacer clic en el botón de abajo para sacar las cartas.",
     "draw": "🔮 Sacar Cartas",
     "shuffling": "Barajando...",
     "drawn": "🎴 Las cartas han sido sacadas:"
+  },
+  "profileUpdated": "✅ ¡El perfil de astrología ha sido actualizado!",
+  "btn_complete_info": "✏️ Complete su información de nacimiento",
+  "complete_info_hint": "💡 ¡Perfeccione su hora y ubicación de nacimiento para desbloquear el análisis de signo ascendente y casas!",
+  "btn_edit_info": "📝 Edite la información de nacimiento",
+  "edit": {
+    "currentInfo": "📋 Información Actual:",
+    "currentTime": "Hora de Natal: {time}",
+    "currentTimeUnknown": "Hora de Natal: Incierta",
+    "currentCity": "Ciudad de Natal: {city}",
+    "currentCityUnknown": "Ciudad de Natal: No Establecida",
+    "confirmEdit": "¿Deseas modificar la información anterior?",
+    "btnConfirmEdit": "✅ Sí, quiero modificar",
+    "btnCancelEdit": "❌ Cancelar"
   }
 };

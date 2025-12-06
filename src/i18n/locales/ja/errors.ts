@@ -97,9 +97,9 @@ export default {
     "nickname": "❌ Telegramのニックネームを取得できません",
     "nickname2": "❌ ユーザー名にウェブサイトのリンクを含めることはできません。\n\n",
     "nickname3": "❌ \\{validation.error}\n\nニックネームを再入力してください:",
-    "quota": "❌ 今日のボトルメールのクォータが使い果たされました (\\{quotaDisplay})\n\n💡 クォータをもっと得る方法:\n",
+    "quota": "❌ 本日祈りのボトルの祝福クォータは使い切りました(\\{quotaDisplay})\n\n💡 更なるクォータを取得する方法：",
     "quota2": "❌ 今日の会話メッセージの割り当ては使い果たされました (\\{usedToday}/\\{dailyLimit})\n\n",
-    "quota3": "❌ 今日のメッセージボトルの割り当ては使い果たされました (\\{quotaDisplay})\n\n",
+    "quota3": "❌ 本日祈りのボトルの祝福クォータは使い切りました (\\{quotaDisplay})",
     "register": "❌ まずは登録プロセスを完了してください。\n\n登録を続けるには /start を使用してください。",
     "register2": "❌ ユーザー情報が見つかりません。まずは /start を使用して登録してください。",
     "register3": "❌ ボトルメールを受け取るには登録プロセスを完了する必要があります。\n\n登録を続けるには /start を使用してください。",
@@ -179,5 +179,6 @@ export default {
   "userNotFoundRegister": "⚠️ ユーザーが存在しません。最初に /start を使用して登録してください。",
   "verificationFailed": "❌ 確認に失敗しました。後で再試行してください",
   "invalidTimeFormat": "無効な時間形式\n例: 19:30（24時間形式、00-23時間、00-59分）",
-  "invalidDateFormat": "無効な日付形式\n例: 2000-01-01"
+  "invalidDateFormat": "無効な日付形式\n例: 2000-01-01",
+  "taskAlreadyCompleted": "❌ このタスクはすでに完了しており、報酬は受け取られました。"
 };

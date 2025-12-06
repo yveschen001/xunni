@@ -4,7 +4,7 @@ export default {
   "cancel": "❌ إلغاء",
   "cancelled": "تم الإلغاء",
   "cannotIdentify": "⚠️ غير قادر على تحديد شريك الدردشة\n\n",
-  "catchHint": "• استخدم /catch لالتقاط زجاجة رسائل جديدة",
+  "catchHint": "• استخدم /catch لالتقاط زجاجة البركة بركة جديدة",
   "completeOnboarding": "⚠️ يرجى إكمال عملية التسجيل أولاً.\n\nاستخدم /start لمتابعة التسجيل.",
   "conversationInfoError": "⚠️ معلومات المحادثة غير صحيحة.",
   "conversationInfoError2": "⚠️ معلومات المحادثة غير صحيحة",

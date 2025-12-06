@@ -26,7 +26,7 @@ export default {
   "manual": "Kézi Beállítások",
   "mbti": "• Használj /mbti-t a teszt újravételéhez vagy az MBTI módosításához\n",
   "mbtiWithSource": "🧠 MBTI: {mbti}{source}",
-  "message": "https://t.me/share/url?url=https://t.me/{botUsername}?start=invite_{inviteCode}&text=Gyere a XunNi-ra, és dobáljunk üzenetpalackokat együtt!🍾 Használj meghívó kódot: {inviteCode}",
+  "message": "XunNi, dobj egy Kívánság Palackot! 🍾 Használj az invitációs kódomat: {inviteCode}",
   "message2": "{inviteLimitWarning}\n\n",
   "message3": "🌍 Nyelv: {user.language_pref}\n\n",
   "message4": "🌍 Nyelv: {user.language_pref }\n",
@@ -42,7 +42,7 @@ export default {
   "quota2": "📦 Jelenlegi napi kvóta: {taskBonus > 0 ?",
   "quotaBottles": "{taskBonus} üzenetpalack",
   "quotaTotal": "📦 Jelenlegi napi kvóta: {quota}\n\n",
-  "returnToMenu": "🏠 Vissza a főmenübe: /menu",
+  "returnToMenu": "🏠 Főmenü",
   "separator": "━━━━━━━━━━━━━━━━\n\n",
   "settings": "Nincs beállítva",
   "settings2": "Nincs beállítva",
@@ -71,5 +71,14 @@ export default {
   "zodiac": "⭐ Csillagjegy: {zodiac}\n",
   "fortuneQuota": "🔮 {fortuneBottle}: {total} (Ez a hét ingyenes: {weekly}/{limit} | Kiegészítő: {additional})",
   "vipWithDays": "💎 VIP Tag (Hátralévő {days} nap, Lejárat: {expireDate})",
-  "driftBottleInfo": "🍾 üzenetpalack: {remaining} / {total}"
+  "driftBottleInfo": "🍾 Kívánság Palack: {remaining} / {total}",
+  "ageRange": "Kor: {min}-{max}",
+  "fortuneMatchButton": "💘 Jós Gyors Párosítás",
+  "giftVipButton": "🎁 VIP Ajándékozás",
+  "giftFortuneBottleButton": "🔮 Jós Palack Ajándékozás",
+  "moreOptions": "⚙️ További Opciók...",
+  "blockUser": "🚫 Felhasználó Blokkolása",
+  "reportUser": "⚠️ Jelentés",
+  "moreOptionsTitle": "⚙️ További Opciók",
+  "giftedVipNote": "🎁 Már Ajándékoztak Neked VIP-ot"
 };

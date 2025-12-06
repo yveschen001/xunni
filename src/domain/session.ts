@@ -15,7 +15,9 @@ export type SessionType =
   | 'fortune_wizard'
   | 'fortune_edit'
   | 'fortune_input'
-  | 'fortune_context';
+  | 'fortune_context'
+  | 'vip_refund_reason'
+  | 'reply_context';
 
 export interface UserSession {
   id: number;
@@ -45,6 +47,8 @@ export const SESSION_TIMEOUT = {
   fortune_edit: 10, // 10 minutes for editing fortune profile
   fortune_input: 10, // 10 minutes for fortune input sessions
   fortune_context: 1440, // 24 hours for active profile selection
+  vip_refund_reason: 10, // 10 minutes for refund reason input
+  reply_context: 10, // 10 minutes for reply context
 } as const;
 
 /**
@@ -121,6 +125,10 @@ export function getTimeoutMessage(
     admin_task_wizard: '⏰ 任務管理流程已超時\n\n請使用 /admin_tasks 重新開始。',
     fortune_wizard: i18n?.t('session.timeoutFortune') || '⏰ 算命流程已超時\n\n請使用 /fortune 重新開始。',
     fortune_edit: i18n?.t('session.timeoutEditProfile') || '⏰ 編輯流程已超時\n\n請重新開始。',
+    fortune_input: i18n?.t('session.timeoutFortune') || '⏰ 輸入已超時\n\n請重新開始。',
+    fortune_context: i18n?.t('session.timeoutFortune') || '⏰ 上下文已過期\n\n請重新開始。',
+    vip_refund_reason: '⏰ 退款申請流程已超時\n\n請重新開始。',
+    reply_context: '⏰ 回覆時限已過\n\n請重新點擊回覆按鈕。',
   };
 
   return messages[sessionType];
@@ -143,6 +151,10 @@ export function getSessionTypeName(
     admin_task_wizard: '任務管理',
     fortune_wizard: '算命流程',
     fortune_edit: '編輯命盤',
+    fortune_input: '算命輸入',
+    fortune_context: '算命上下文',
+    vip_refund_reason: '退款申請',
+    reply_context: '回覆上下文',
   };
 
   return names[sessionType];

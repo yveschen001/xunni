@@ -19,7 +19,7 @@ export default {
   "noMessages": "(Không có tin nhắn)",
   "partnerMessages": "• Đối thủ đã gửi: {count} tin nhắn\n",
   "recentMessages": "📨 **Các Cuộc trò chuyện Gần đây:**\n\n",
-  "returnToMenu": "🏠 Trở về menu chính: /menu",
+  "returnToMenu": "🏠 Trở về Menu",
   "returnToMenuButton": "🏠 Trở về menu chính",
   "stats": "📊 **Thống kê:**\n",
   "time": "Thời gian: {time}\n\n",

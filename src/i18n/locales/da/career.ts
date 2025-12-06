@@ -3,7 +3,7 @@ export default {
   "label_industry": "In welcher Branche sind Sie hauptsächlich tätig?",
   "btn_edit_role": "💼 Berufsidentität bearbeiten",
   "btn_edit_industry": "🏢 Branche bearbeiten",
-  "profile_incomplete_hint": "💡 Um genauere AI-Wahrsagemdienste anzubieten, vervollständigen Sie bitte zuerst Ihre persönlichen Informationen.",
+  "profile_incomplete_hint": "💡 For at give mere præcise psykiske læsninger, venligst udfyld dine personlige oplysninger først.",
   "role": {
     "employee": "Büroangestellter",
     "freelancer": "Freiberufler / SOHO",
@@ -167,4 +167,6 @@ export default {
     }
   },
   "next_step_industry": "Deretter velger du bransjen din."
+,
+  "back_to_categories": "Back to Industries"
 };

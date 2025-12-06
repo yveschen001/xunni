@@ -115,6 +115,8 @@ export interface User {
   anti_fraud_score: number;
   anti_fraud_completed_at?: string;
   tutorial_completed?: number;
+  tutorial_step?: string; // Legacy field
+
 
   // Onboarding
   onboarding_step: OnboardingStep;
@@ -232,6 +234,7 @@ export interface Bottle {
   target_max_age?: number;
   target_zodiac_filter?: string; // JSON array
   target_mbti_filter?: string; // JSON array
+  target_blood_type_filter?: string; // A, B, AB, O, any
   target_region?: string;
   require_anti_fraud: number;
 

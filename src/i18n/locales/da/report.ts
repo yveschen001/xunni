@@ -4,7 +4,7 @@ export default {
   "cancel": "❌ Annuller",
   "cancelled": "Annulleret",
   "cannotIdentify": "⚠️ Kan ikke identificere chatpartner\n\n",
-  "catchHint": "• Brug /catch for at vælge en ny flaskepost",
+  "catchHint": "• Brug for at fange en ny Ønskeflaske",
   "completeOnboarding": "⚠️ Venligst gennemfør registreringsprocessen først.\n\nBrug /start for at fortsætte registreringen.",
   "conversationInfoError": "⚠️ Samtaleinformation er forkert.",
   "conversationInfoError2": "⚠️ Samtaleinformation er forkert",

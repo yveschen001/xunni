@@ -4,7 +4,7 @@ export default {
   "cancel": "❌ Hủy",
   "cancelled": "Đã hủy",
   "cannotIdentify": "⚠️ Không thể xác định đối tác trò chuyện\n\n",
-  "catchHint": "• Sử dụng /catch để chọn một chai thư mới",
+  "catchHint": "• Sử dụng /catch để nhặt lên những Chai Cầu Nguyện Blessing",
   "completeOnboarding": "⚠️ Vui lòng hoàn thành quy trình đăng ký trước.\n\nSử dụng /start để tiếp tục đăng ký.",
   "conversationInfoError": "⚠️ Thông tin cuộc trò chuyện không chính xác.",
   "conversationInfoError2": "⚠️ Thông tin cuộc trò chuyện không chính xác",

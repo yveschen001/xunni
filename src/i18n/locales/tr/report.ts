@@ -4,7 +4,7 @@ export default {
   "cancel": "❌ İptal",
   "cancelled": "İptal edildi",
   "cannotIdentify": "⚠️ Sohbet partnerini tanımlamak mümkün değil.\n\n",
-  "catchHint": "• Yeni bir mesaj şişesi almak için /catch kullanın",
+  "catchHint": "• Yeni Dilek Şişesi yakalamak için yakala kullanın",
   "completeOnboarding": "⚠️ Lütfen önce kayıt işlemini tamamlayın.\n\nDevam etmek için /start kullanın.",
   "conversationInfoError": "⚠️ Sohbet bilgileri hatalı.",
   "conversationInfoError2": "⚠️ Sohbet bilgileri hatalı",

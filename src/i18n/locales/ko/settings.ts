@@ -27,6 +27,8 @@ export default {
   "selectEndHour": "☀️ 시작 시간이 {start}:00으로 설정되었습니다.\n조용한 시간의 종료 시간을 선택해 주세요:\n(이 시간이 지나면 알림이 다시 시작됩니다)",
   "disabled": "🚫 조용한 시간이 비활성화되었습니다",
   "quietHoursHint": "이 기간 동안 비긴급 알림을 받지 않습니다",
+  "quietHoursVipOnly": "🔒 조용한 시간 (VIP 전용)",
+  "upgradeForQuietHours": "조용한 시간을 설정하려면 VIP로 업그레이드하여 휴식 시간 동안 방해받지 마세요!",
   "blocklist": {
     "title": "🚫 차단 목록",
     "empty": "현재 차단 목록 없음",

@@ -111,7 +111,8 @@ export async function refreshAllConversationHistoryPosts(
         const partnerInfo = {
           maskedNickname: formatNicknameWithFlag(
             maskNickname(partner.nickname || partner.username || i18n.t('common.anonymous')),
-            partner.country_code
+            partner.country_code,
+            partner.gender
           ),
           mbti: partner.mbti_result || i18n.t('common.notSet'),
           bloodType: partner.blood_type || i18n.t('common.notSet'),

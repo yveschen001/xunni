@@ -10,6 +10,7 @@ import { translateWithOpenAI } from './openai';
 
 import { TranslationLogService } from '~/services/translation_log';
 import { createDatabaseClient } from '~/db/client';
+import { notifySuperAdmin } from '~/services/admin_notification';
 
 export enum TranslationProvider {
   OPENAI = 'openai',
@@ -138,6 +139,13 @@ export async function translateText(
         })
         .catch((err) => console.error('[TranslationLog] Gemini error log failed:', err));
 
+      // Notify Super Admin (Critical Failure)
+      await notifySuperAdmin(env, 'translation_failure', {
+        user_id: userId || 'unknown',
+        provider: 'ALL (OpenAI & Gemini)',
+        error: `OpenAI: ${error instanceof Error ? error.message : String(error)} | Gemini: ${geminiResult.error}`,
+      });
+
       return {
         text,
         provider: TranslationProvider.GEMINI,
@@ -182,6 +190,13 @@ export async function translateText(
         characters: text.length,
       })
       .catch((err) => console.error('[TranslationLog] Gemini error log failed:', err));
+
+    // Notify Super Admin (Critical Failure - Non-VIP)
+    await notifySuperAdmin(env, 'translation_failure', {
+      user_id: userId || 'unknown',
+      provider: 'Gemini (Non-VIP)',
+      error: error instanceof Error ? error.message : String(error),
+    });
 
     return {
       text,

@@ -8,15 +8,15 @@ export default {
     "love_match": "Compatibilitate între cupluri",
     "love_ideal": "Analiza tipului ideal"
   },
-  "back_to_menu": "🔙 Întoarce-te la meniul de divinație AI",
-  "get_more_bottles": "💎 Aduceți mai multe sticle de mesaj pentru previziuni",
+  "back_to_menu": "🔙 Întoarceți-vă la Meniul de Citire Citire Psihică",
+  "get_more_bottles": "💎 Obține mai multe Sticle de Ghicit",
   "relationship": {
     "love": "Cuplu",
     "friend": "Prietenii",
     "family": "Familie",
     "work": "Colegi"
   },
-  "menuTitle": "Divinație AI",
+  "menuTitle": "Citire Psihică",
   "currentProfile": "Profilul curent",
   "warehouse": "Stocare hartă natală",
   "manageProfiles": "Gestionează hărțile natale",
@@ -148,21 +148,21 @@ export default {
   },
   "dailyPush": "📅 Horoscopul de azi a fost livrat!",
   "dailyPushBtn": "👇 Clic pentru a vizualiza",
-  "backToMenu": "🔙 Întoarce-te la Meniul de Citire a Norocului AI",
+  "backToMenu": "🔙 Înapoi la Meniul de Citiri Psihice",
   "addProfile": "Adaugă Fișier Grafic",
-  "quotaDisplay": "🔮 Previziuni cu mesaj fortune bottle: {total} (Această săptămână gratuit: {weekly}/{limit} | Suplimentar: {additional})",
-  "quotaDisplayVip": "🔮 fortune bottle: {total} (Astăzi: {daily}/1 | Suplimentar: {additional})",
-  "quotaDisplayFree": "🔮 fortune bottle: {total} (Săptămâna aceasta gratis: {weekly}/1 | Suplimentar: {additional})",
+  "quotaDisplay": "🔮 Sticle de Ghicit: {total} (Gratuit săptămâna aceasta: {weekly}/{limit} | Adițional: {additional})",
+  "quotaDisplayVip": "🔮 Sticle de Ghicit: {total} (Astăzi: {daily}/1 | Adițional: {additional})",
+  "quotaDisplayFree": "🔮 Sticle de Ghicit: {total} (Gratuit săptămâna aceasta: {weekly}/1 | Adițional: {additional})",
   "profileDetails": "👤 {gender} {blood} | 🎂 {birthday} | {zodiac} | 🧠 {mbti}",
-  "getMore": "Obțineți mai multe fortune bottle-uri",
-  "getMoreInfo": "🔮 *Cum să obții o sticlă de noroc?*\n\n1. **Gratuit săptămânal**: Utilizatorii obișnuiți primesc 1 pe săptămână, VIP-urile primesc 1 pe zi.\n2. **Recompense de invitație**: Invită un prieten să se alăture, iar când acesta invită cu succes un alt prieten, vei primi o recompensă (până la 1 sticlă de noroc în 24 de ore).\n3. **Recompense pentru sticlele de mesaj**: Pentru fiecare 10 sticle de mesaj trimise, primești 1 sticlă de noroc. (Până la 1 sticlă de noroc în 24 de ore)\n4. **Achiziție directă (🔥 Reducere limitată de 20%)**:\n • Pachet mic {smallAmount} - ~{originalSmallPrice} Stele~ {smallPrice} Stele\n • Pachet mare {largeAmount} - ~{originalLargePrice} Stele~ {largePrice} Stele",
+  "getMore": "Obține mai multe Sticle de Ghicit",
+  "getMoreInfo": "🔮 *Cum să obții Sticle de Ghicit?*\n\n1. **Gratuit săptămânal**: utilizatorii normali 1 pe săptămână, VIP 1 pe zi.\n2. **Recompense pentru invitații**: dacă inviți un prieten și acesta reușește să invite pe altcineva, vei primi o recompensă (maxim 1 Sticlă de Ghicit în termen de 24 de ore).\n3. **Recompense pentru Sticla cu Dorințe**: pentru fiecare 10 Sticle cu Dorințe trimise, obții 1 Sticlă de Ghicit. (maxim 1 Sticlă de Ghicit în termen de 24 de ore)\n4. **Cumpărare directă (🔥 Reducere limitată 20%)**:\n   • Pachet mic {smallAmount} - ~{originalSmallPrice} Stele~ {smallPrice} Stele\n   • Pachet mare {largeAmount} - ~{originalLargePrice} Stele~ {largePrice} Stele",
   "buySmall": "🔥 Preț Special {price} Stele (Cumpără {amount} articole)",
   "buyLarge": "🔥 Preț Special {price} Stele (Cumpără {amount} articole)",
-  "invoiceTitle": "Cumpără {amount} sticle de noroc",
-  "invoiceDesc": "După achiziție, poți folosi imediat serviciul de ghicire AI, iar fiecare serviciu de ghicire consumă 1 sticlă de noroc.\n\nFă clic pe butonul de mai jos pentru a cumpăra acum:",
-  "purchaseSuccess": "🎉 Cumpărare reușită! {amount} sticle de noroc au fost adăugate.",
-  "bottleReward": "🎉 Felicitări! Ai trimis {count} sticle de noroc și ai primit 1 recompensă de sticlă de noroc!",
-  "inviteChainReward": "🎉 Felicitări! Prietenul tău invitat a invitat cu succes un nou prieten să se alăture, iar tu ai primit 1 recompensă de sticlă de noroc!",
+  "invoiceTitle": "Cumpărare {amount} Sticle de Ghicit",
+  "invoiceDesc": "După cumpărare, poți folosi imediat serviciul de ghicit, fiecare serviciu consumă 1 Sticlă de Ghicit.\n\nApasă pe butonul de mai jos pentru a cumpăra:",
+  "purchaseSuccess": "🎉 Cumpărare reușită! Ai primit {amount} Sticle de Ghicit.",
+  "bottleReward": "🎉 Felicitări! Ai trimis {count} Sticle cu Dorințe și ai obținut 1 Sticlă de Ghicit drept recompensă!",
+  "inviteChainReward": "🎉 Felicitări! Prietenul tău pe care l-ai invitat a reușit să invite un nou prieten, și tu ai obținut 1 Sticlă de Ghicit drept recompensă!",
   "menu": {
     "love": "Diagnosticare de Atribute (Potrivire Relațională)",
     "attribute_desc": "Analizează-ți atributele romantice și trăsăturile potențiale.",
@@ -190,7 +190,9 @@ export default {
     "match_report_title": "💞 Raport de sinastrie pentru cuplu",
     "wait_for_consent": "⏳ Așteptând acordul celeilalte părți...",
     "consent_accepted": "✅ Cealaltă parte a fost de acord! Generăm raportul...",
-    "consent_rejected": "❌ Cealaltă parte a respins cererea de sinastrie."
+    "consent_rejected": "❌ Cealaltă parte a respins cererea de sinastrie.",
+    "invite_friend": "📨 Invite Friend to Experience",
+    "invite_friend_text": "Hey! I want to try the Compatibility Test with you. Create your fortune profile now!"
   },
   "role": {
     "husband": "Soț",
@@ -228,12 +230,26 @@ export default {
       "drawn": "🎴 Cărțile au fost trasate:"
     }
   },
-  "profile_incomplete_hint": "💡 Pentru a oferi servicii de prezicere a viitorului AI mai precise, vă rugăm să completați mai întâi informațiile despre interesele, profesia sau MBTI-ul dvs.",
+  "profile_incomplete_hint": "💡 Pentru a oferi un serviciu de ghicire Citire Psihicăă mai precis, vă rugăm să completați mai întâi interesele, profesia sau MBTI ... și alte informații.",
   "tarot_menu_title": "Carti Tarot",
   "tarot_ui": {
     "intro": "🔮 *Citire Tarot*\n\nTe rog să te gândești în tăcere la întrebarea ta (de exemplu, \"Cum îmi merge fortuna la muncă recent?\" sau \"Cum ar trebui să gestionez această relație?\") și să te concentrezi înainte de a face clic pe butonul de mai jos pentru a trasa cărțile.",
     "draw": "🔮 Trasează Cărți",
     "shuffling": "Amestecare...",
     "drawn": "🎴 Cărțile au fost trase:"
+  },
+  "profileUpdated": "✅ Profilul astrologic a fost actualizat!",
+  "btn_complete_info": "✏️ Completați informațiile despre naștere",
+  "complete_info_hint": "💡 Perfecționați ora și locația nașterii pentru a debloca analiza semnului ascendent și a casei!",
+  "btn_edit_info": "📝 Editați informațiile despre naștere",
+  "edit": {
+    "currentInfo": "📋 Informații curente:",
+    "currentTime": "Timpul nașterii: {time}",
+    "currentTimeUnknown": "Timpul nașterii: Incert",
+    "currentCity": "Orașul nașterii: {city}",
+    "currentCityUnknown": "Orașul nașterii: Nestabilit",
+    "confirmEdit": "Vrei să modifici informațiile de mai sus?",
+    "btnConfirmEdit": "✅ Da, vreau să modific",
+    "btnCancelEdit": "❌ Anulează"
   }
 };

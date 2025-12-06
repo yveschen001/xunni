@@ -27,6 +27,8 @@ export default {
   "selectEndHour": "☀️ Start time set to {start}:00.\nPlease choose the end time for quiet hours:\n(Notifications will resume after this time)",
   "disabled": "🚫 Quiet hours have been disabled",
   "quietHoursHint": "You will not receive non-urgent notifications during this period",
+  "quietHoursVipOnly": "🔒 Quiet Hours (VIP Only)",
+  "upgradeForQuietHours": "Upgrade to VIP to set Quiet Hours and avoid disturbances during rest time!",
   "blocklist": {
     "title": "🚫 Block List",
     "empty": "Currently no block list",

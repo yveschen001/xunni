@@ -4,20 +4,20 @@ export default {
     "hoursAgo": "\\{hours} orë më parë",
     "justNow": "Sapo tani"
   },
-  "contentHint": "💡 Ju mund të:\n• Hidhni drejtpërdrejt përmbajtje të re për të zëvendësuar skicën\n• Përdorni /throw për të rinisur\n• Dërgoni përmbajtjen e skicës për të hedhur një message bottle",
+  "contentHint": "💡 你可以：\n• 直接輸入新內容來替換草稿\n• 使用 Main Menu 重新開始\n• 發送草稿內容來丟出 Blessing Bottle",
   "contentTitle": "📝 **Përmbajtja në skicë**\n\n",
   "continueEditing": "✅ Vazhdoni të redaktoni skicën",
   "deleteButton": "🗑️ Fshij skicën",
   "deleted": "✅ Skica është fshirë",
   "editButton": "✏️ Redaktoni përmbajtjen",
-  "editInput": "✏️ Ju lutemi shkruani përmbajtjen e re të message bottle:\n\n💡 Këshilla:\n• Minimum 5 karaktere\n• Maksimum 250 karaktere\n• Lidhjet, imazhet dhe multimedia nuk lejohet\n• Mos përfshini informacione personale kontaktoje\n• Përmbajtja miqësore dhe respektuese është më e prirur të merret～",
+  "editInput": "✏️ 請輸入新的 Blessing Bottle 內容：\n\n💡 提示：\n• 最短 5 個字符\n• 最多 250 個字符\n• 不允許連結、圖片、多媒體\n• 不要包含個人聯絡方式\n• 友善、尊重的、充滿祝福的內容不但給對方祝福，也會收到幸福的回復哦～",
   "editPrompt": "✏️ Ju lutemi shkruani përmbajtje të re",
-  "newBottle": "✅ Nisi një message bottle të re",
+  "newBottle": "✅ Fill a Blessing Bottle të re",
   "notFound": "⚠️ Skica nuk ekziston ose ka skaduar",
   "sendButton": "✅ Dërgo skicën",
   "sendQuestion": "A dëshironi ta dërgoni këtë skicë direkt?",
   "sending": "✅ Po dërgohet...",
   "targetGender": "Çfarë lloji partneri për bisedë po kërkoni?\n\n",
   "targetGenderHint": "💡 Upgrade në VIP për filtre të avancuara (MBTI/Zodiak): /vip",
-  "throwBottle": "🍾 Hedh message bottle\n\nÇfarë lloj partneri bisedash po kërkoni?"
+  "throwBottle": "🍾 丟 Blessing Bottle\n\n給別人送上祝福，幸福也會返回到自己身上哦~"
 };

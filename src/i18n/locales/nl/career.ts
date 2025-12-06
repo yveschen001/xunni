@@ -3,7 +3,7 @@ export default {
   "label_industry": "In welke sector bent u voornamelijk actief?",
   "btn_edit_role": "💼 Professionele Identiteit Bewerken",
   "btn_edit_industry": "🏢 Sector Bewerken",
-  "profile_incomplete_hint": "💡 Om nauwkeurigere AI-fortunetellingdiensten te bieden, voltooi alstublieft eerst uw persoonlijke informatie.",
+  "profile_incomplete_hint": "💡 Om nauwkeurigere diensten voor psychische readings aan te bieden, vul alstublieft eerst uw persoonlijke informatie in.",
   "role": {
     "employee": "Kantoorwerknemer",
     "freelancer": "Freelancer / SOHO",
@@ -167,4 +167,6 @@ export default {
     }
   },
   "next_step_industry": "Em seguida, selecione sua indústria."
+,
+  "back_to_categories": "Back to Industries"
 };

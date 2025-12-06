@@ -266,5 +266,24 @@ export default {
     "startButton": "📊 Počnite test",
     "resultTitle": "Moj rezultat MBTI testa je {type}!",
     "resultDesc": "Trebalo bi da probate test takođe～"
-  }
+  },
+  "titles": {
+
+  "INTJ": "Arhitekta",
+  "INTP": "Logičar",
+  "ENTJ": "Komandant",
+  "ENTP": "Debater",
+  "INFJ": "Zastupnik",
+  "INFP": "Posrednik",
+  "ENFJ": "Protagonist",
+  "ENFP": "Kampanjac",
+  "ISTJ": "Logističar",
+  "ISFJ": "Odbrambenik",
+  "ESTJ": "Izvršni",
+  "ESFJ": "Konzul",
+  "ISTP": "Virtuoz",
+  "ISFP": "Avanturista",
+  "ESTP": "Preduzetnik",
+  "ESFP": "Zabavljač"
+  },
 };

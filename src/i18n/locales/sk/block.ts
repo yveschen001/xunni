@@ -1,6 +1,6 @@
 export default {
   "cannotIdentify": "⚠️ Nepodarilo sa rozpoznať partnera v rozhovore.",
-  "catchNewBottle": "💡 Použite /catch, aby ste si vybrali novú message bottle a začali nový rozhovor.",
+  "catchNewBottle": "💡 Chyťte nový Blessing Bottle a začnite nový rozhovor.",
   "conversationInfoError": "⚠️ Informácie o rozhovore sú nesprávne.",
   "conversationMayEnded": "Rozhovor mohol skončiť alebo neexistuje.",
   "conversationNotFound": "⚠️ Tento rozhovor sa nedá nájsť.",
@@ -12,5 +12,5 @@ export default {
   "step3": "3️⃣ Zadajte /block.",
   "steps": "**Kroky na obsluhu:**",
   "success": "✅ Zablokovaný tento používateľ (#{identifier})",
-  "willNotMatch": "Už sa nebudete navzájom zhodovať na message bottles."
+  "willNotMatch": "Nebudete už viac spárovaní s Blessing Bottle od seba navzájom."
 };

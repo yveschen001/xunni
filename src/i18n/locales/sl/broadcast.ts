@@ -68,7 +68,7 @@ export default {
     "zodiacVirgo": "Devica"
   },
   "filterAge": "• starost=18-25\n",
-  "filterCommand": "/broadcast_filter <filter> <msg_content> ",
+  "filterCommand": "/broadcast_filter <filter> <msg_content>",
   "filterConfirmConditions": "**Filtrirni pogoji:**\n{conditions}\n\n",
   "filterConfirmMessage": "**Vsebina sporočila:**\n{message}\n\n",
   "filterConfirmTitle": "🔍 **Potrditev filtriranja oddaj**\n\n",

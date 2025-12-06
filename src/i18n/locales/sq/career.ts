@@ -3,7 +3,7 @@ export default {
   "label_industry": "Në cilin sektor jeni kryesisht të angazhuar?",
   "btn_edit_role": "💼 Duke Redaktuar Identitetin Profesional",
   "btn_edit_industry": "🏢 Duke Redaktuar Industrinë",
-  "profile_incomplete_hint": "💡 Për të ofruar shërbime më të sakta të parashikimit AI, ju lutemi plotësoni së pari informacionin tuaj personal.",
+  "profile_incomplete_hint": "💡 Për të ofruar shërbime më të sakta të Leximit Psikik, ju lutemi plotësoni informacionin tuaj personal së pari.",
   "role": {
     "employee": "Punonjës Zyre",
     "freelancer": "Freelancer / SOHO",
@@ -167,4 +167,6 @@ export default {
     }
   },
   "next_step_industry": "Следно, ве молиме изберете ја вашата индустрија."
+,
+  "back_to_categories": "Back to Industries"
 };

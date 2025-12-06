@@ -4,7 +4,7 @@ export default {
   "cancel": "❌ Ακύρωση",
   "cancelled": "Ακυρώθηκε",
   "cannotIdentify": "⚠️ Δεν μπορεί να προσδιοριστεί ο σύντροφος συνομιλίας\n\n",
-  "catchHint": "• Χρησιμοποιήστε το /catch για να πάρετε ένα νέο μπουκάλι μηνύματος",
+  "catchHint": "• 使用 Catch Blessing Bottle για να παραλάβετε νέο Blessing Bottle",
   "completeOnboarding": "⚠️ Παρακαλώ ολοκληρώστε πρώτα τη διαδικασία εγγραφής.\n\nΧρησιμοποιήστε το /start για να συνεχίσετε την εγγραφή.",
   "conversationInfoError": "⚠️ Οι πληροφορίες συνομιλίας είναι λανθασμένες.",
   "conversationInfoError2": "⚠️ Οι πληροφορίες συνομιλίας είναι λανθασμένες",

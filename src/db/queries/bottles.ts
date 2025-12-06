@@ -123,7 +123,7 @@ export async function findMatchingBottle(
   }
 
   // Filter by MBTI and Zodiac in application layer
-  const bottles = results.results as Bottle[];
+  const bottles = results.results as unknown as Bottle[];
   const matchingBottles = bottles.filter((bottle) => {
     // Check MBTI filter
     if (bottle.target_mbti_filter) {

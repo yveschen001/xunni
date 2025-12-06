@@ -97,9 +97,9 @@ export default {
     "nickname": "❌ 텔레그램 닉네임을 가져올 수 없습니다.",
     "nickname2": "❌ 사용자 이름에 웹사이트 링크가 포함될 수 없습니다.\n\n",
     "nickname3": "❌ \\{validation.error}\n\n닉네임을 다시 입력해 주세요:",
-    "quota": "❌ 오늘의 메시지 병 할당량이 소진되었습니다 (\\{quotaDisplay})\n\n💡 더 많은 할당량을 얻는 방법:\n",
+    "quota": "❌ 오늘의 축복의 병 축복 할당량이 소진되었습니다 (\\{quotaDisplay})\n\n💡 추가 할당량을 얻는 방법:",
     "quota2": "❌ 오늘의 대화 메시지 할당량이 소진되었습니다 (\\{usedToday}/\\{dailyLimit})\n\n",
-    "quota3": "❌ 오늘의 메시지 병 할당량이 소진되었습니다 (\\{quotaDisplay})\n\n",
+    "quota3": "❌ 오늘의 축복의 병 축복 할당량이 소진되었습니다 (\\{quotaDisplay})",
     "register": "❌ 먼저 등록 과정을 완료해 주세요.\n\n/start를 사용하여 등록을 계속해 주세요.",
     "register2": "❌ 사용자 데이터를 찾을 수 없습니다. 먼저 /start를 사용하여 등록해 주세요.",
     "register3": "❌ 메시지 병을 받으려면 등록 과정을 완료해 주세요.\n\n/start를 사용하여 등록을 계속해 주세요.",
@@ -179,5 +179,6 @@ export default {
   "userNotFoundRegister": "⚠️ 사용자가 존재하지 않습니다. 먼저 /start를 사용하여 등록해 주세요.",
   "verificationFailed": "❌ 인증 실패, 나중에 다시 시도해 주세요",
   "invalidTimeFormat": "유효하지 않은 시간 형식\n예: 19:30 (24시간 형식, 00-23 시, 00-59 분)",
-  "invalidDateFormat": "유효하지 않은 날짜 형식\n예: 2000-01-01"
+  "invalidDateFormat": "유효하지 않은 날짜 형식\n예: 2000-01-01",
+  "taskAlreadyCompleted": "❌ 이 작업은 이미 완료되었으며 보상이 청구되었습니다."
 };

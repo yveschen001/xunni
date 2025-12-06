@@ -1,6 +1,6 @@
 export default {
   "cannotIdentify": "⚠️ Tidak dapat mengidentifikasi mitra percakapan",
-  "catchNewBottle": "💡 Gunakan /catch untuk memilih botol pesan baru untuk memulai percakapan baru.",
+  "catchNewBottle": "💡 Gunakan /catch untuk mengumpulkan Botol Berkah baru dan memulai percakapan baru.",
   "conversationInfoError": "⚠️ Informasi percakapan tidak benar.",
   "conversationMayEnded": "Percakapan mungkin telah berakhir atau tidak ada.",
   "conversationNotFound": "⚠️ Percakapan ini tidak dapat ditemukan.",
@@ -12,5 +12,5 @@ export default {
   "step3": "3️⃣ Masukkan /block",
   "steps": "**Langkah operasi:**",
   "success": "✅ Pengguna ini telah diblokir (#{identifier})",
-  "willNotMatch": "Anda tidak akan lagi dipasangkan dengan botol pesan satu sama lain."
+  "willNotMatch": "Anda tidak akan lagi dip配合kan dengan Botol Berkah satu sama lain."
 };

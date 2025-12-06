@@ -26,7 +26,7 @@ export default {
   "manual": "Manuel olarak ayarla",
   "mbti": "• Testi yeniden almak veya MBTI'yi değiştirmek için /mbti kullanın\n",
   "mbtiWithSource": "🧠 MBTI: {mbti}{source}",
-  "message": "https://t.me/share/url?url=https://t.me/{botUsername}?start=invite_{inviteCode}&text=XunNi'ye gel ve mesaj şişelerini birlikte at!🍾 Davet kodumu kullan: {inviteCode}",
+  "message": "XunNi ile birlikte Dilek Şişesi atalım!🍾 Davet kodum: {inviteCode}",
   "message2": "{inviteLimitWarning}\n\n",
   "message3": "🌍 Dil: {user.language_pref}\n\n",
   "message4": "🌍 Dil: {user.language_pref }\n",
@@ -42,7 +42,7 @@ export default {
   "quota2": "📦 Günlük mevcut kota: {taskBonus > 0 ?",
   "quotaBottles": "{taskBonus} mesaj şişesi",
   "quotaTotal": "📦 Günlük mevcut kota: {quota}\n\n",
-  "returnToMenu": "🏠 Ana menüye dön: /menu",
+  "returnToMenu": "🏠 Ana Menü",
   "separator": "━━━━━━━━━━━━━━━━\n\n",
   "settings": "Belirtilmemiş",
   "settings2": "Belirtilmemiş",
@@ -71,5 +71,14 @@ export default {
   "zodiac": "⭐ Burç: {zodiac}\n",
   "fortuneQuota": "🔮 {fortuneBottle}: {total} (Bu hafta ücretsiz: {weekly}/{limit} | Ek: {additional})",
   "vipWithDays": "💎 VIP Üye (Kalan {days} gün, Son Tarih: {expireDate})",
-  "driftBottleInfo": "🍾 mesaj şişesi: {remaining} / {total}"
+  "driftBottleInfo": "🍾 Dilek Şişesi: {remaining} / {total}",
+  "ageRange": "Yaş: {min}-{max}",
+  "fortuneMatchButton": "💘 Fal Eşleşmesi",
+  "giftVipButton": "🎁 VIP Hediye Et",
+  "giftFortuneBottleButton": "🔮 Fal Şişesi Hediye Et",
+  "moreOptions": "⚙️ Daha Fazla Seçenek...",
+  "blockUser": "🚫 Kullanıcıyı Engelle",
+  "reportUser": "⚠️ Raporla",
+  "moreOptionsTitle": "⚙️ **Daha Fazla Seçenek**",
+  "giftedVipNote": "🎁 Daha Önce Sana VIP Hediye Edildi"
 };

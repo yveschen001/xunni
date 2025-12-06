@@ -27,6 +27,8 @@ export default {
   "selectEndHour": "☀️ 开始时间设置为 {start}:00。\n请选择安静时间的结束时间：\n（通知将在此时间后恢复）",
   "disabled": "🚫 安静时间已被禁用",
   "quietHoursHint": "在此期间你将不会收到非紧急通知",
+  "quietHoursVipOnly": "🔒 安静时段 (VIP 专属)",
+  "upgradeForQuietHours": "升级 VIP 即可设置安静时段，避免在休息时间被打扰！",
   "blocklist": {
     "title": "🚫 封锁名单",
     "empty": "目前没有封锁名单",

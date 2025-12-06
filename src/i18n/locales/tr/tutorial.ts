@@ -1,13 +1,13 @@
 export default {
   "availableCommands": "İstediğiniz zaman aşağıdaki komutları kullanabilirsiniz:",
-  "catchBottle": "🎣 **Mesaj şişesini al**",
-  "catchBottleDesc": "Diğerlerinin mesaj şişelerini kontrol edin, ilgilenirseniz cevap verin ve sohbet etmeye başlayın",
+  "catchBottle": "🎣 **Şans Dilek Şişesini Al**",
+  "catchBottleDesc": "Diğerlerinin dilek şişesini görün, dileklerinizi yanıtlayın, sohbete başlayın~",
   "clickButtonHint": "💡 Devam etmek için lütfen butona tıklayın",
-  "commandCatch": "• /catch - Mesaj şişesini al",
+  "commandCatch": "• /catch - Bir bereket Dilek Şişesi al",
   "commandHelp": "• /help - Yardımı görüntüle",
   "commandMenu": "📋 Komut menüsü",
   "commandTasks": "• /tasks - Görevleri görüntüle",
-  "commandThrow": "• /throw - Mesaj şişesini at",
+  "commandThrow": "• /at - Bir nimet Dilek Şişesi atın",
   "completeTasksForBottles": "💡 Ekstra şişe kazanmak için görevleri tamamlayın",
   "completed": "✅ Eğitim tamamlandı!",
   "howToBecomeFriends": "💬 **Arkadaş nasıl edinilir?**",
@@ -16,11 +16,11 @@ export default {
   "skip": "Atla",
   "skipped": "✅ Eğitim atlandı",
   "startUsing": "Kullanıma başla →",
-  "throwBottle": "📦 **Mesaj şişesini at**",
+  "throwBottle": "📦 **Bir nimet Dilek Şişesi gönder**",
   "throwBottleDesc": "Duygularınızı veya düşüncelerinizi yazın, sistem uygun kişileri bulmanıza yardımcı olacaktır",
   "unknownStep": "❌ Bilinmeyen eğitim adımı",
   "viewTasks": "📋 Görevleri görüntüle",
   "welcome": "🎉 Kaydı tamamladığınız için tebrikler!",
   "whatIsXunNi": "🌊 **XunNi nedir?**",
-  "whatIsXunNiDesc": "MBTI ve burçlar aracılığıyla benzer düşüncelere sahip arkadaşlar bulmanıza yardımcı olan anonim bir mesaj şişesi sosyal platformu"
+  "whatIsXunNiDesc": "Anonim Dilek Şişesi arkadaşlık platformu, karşılıklı dualar, MBTI ve burçlar aracılığıyla benzer düşünen arkadaşlar bulmanızı sağlar."
 };

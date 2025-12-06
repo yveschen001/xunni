@@ -8,15 +8,15 @@ export default {
     "love_match": "Pariskuntien yhteensopivuus",
     "love_ideal": "Ihanteen analyysi"
   },
-  "back_to_menu": "🔙 Palaa AI-onnenennustuksen valikkoon",
-  "get_more_bottles": "💎 Hanki lisää ennustuksia fortune bottleneita",
+  "back_to_menu": "🔙 Paluu selvännäkijän valikkoon",
+  "get_more_bottles": "💎 Hanki lisää Ennustuspulloja",
   "relationship": {
     "love": "Pariskunta",
     "friend": "Ystävät",
     "family": "Perhe",
     "work": "Työkaverit"
   },
-  "menuTitle": "AI-onnenennustus",
+  "menuTitle": "Psychic Reading",
   "currentProfile": "Nykyinen profiili",
   "warehouse": "Synnyntodistuksen tallennus",
   "manageProfiles": "Hallitse synnyntodistuksia",
@@ -148,21 +148,21 @@ export default {
   },
   "dailyPush": "📅 Tämän päivän horoskooppi on toimitettu!",
   "dailyPushBtn": "👇 Klikkaa nähdäksesi",
-  "backToMenu": "🔙 Palaa AI-ennustuksen valikkoon",
+  "backToMenu": "🔙 Takaisin psykisen lukemisen valikkoon",
   "addProfile": "Lisää kaaviotiedosto",
-  "quotaDisplay": "🔮 Ennustaminen viestipullo: {total} (Tällä viikolla ilmainen: {weekly}/{limit} | Lisä: {additional})",
-  "quotaDisplayVip": "🔮 viestin pullo: {total} (Tänään: {daily}/1 | Lisä: {additional})",
-  "quotaDisplayFree": "🔮 viestin pullo: {total} (Tällä viikolla ilmainen: {weekly}/1 | Lisä: {additional})",
+  "quotaDisplay": "🔮 Ennustuspulloja: {total} (tällä viikolla ilmaiseksi: {weekly}/{limit} | ylimääräiset: {additional})",
+  "quotaDisplayVip": "🔮 Ennustuspulloja: {total} (tänään: {daily}/1 | ylimääräiset: {additional})",
+  "quotaDisplayFree": "🔮 Ennustuspulloja: {total} (tällä viikolla ilmaiseksi: {weekly}/1 | ylimääräiset: {additional})",
   "profileDetails": "👤 {gender} {blood} | 🎂 {birthday} | {zodiac} | 🧠 {mbti}",
   "getMore": "Hanki lisää ennustuspulloja",
-  "getMoreInfo": "🔮 *Miten saada onnenpullo?*\n\n1. **Viikottainen Ilmainen**: Tavallisille käyttäjille 1 viikossa, VIP-käyttäjille 1 päivässä.\n2. **Kutsupalkinnot**: Kutsu ystävä liittymään, ja kun he onnistuneesti kutsuvat toisen ystävän, saat palkkion (enintään 1 onnenpullo 24 tunnin sisällä).\n3. **Viesti pullo Palkinnot**: Jokaisesta 10 lähetetystä viestipullosta saat 1 onnenpullon. (Enintään 1 onnenpullo 24 tunnin sisällä)\n4. **Suora Osto (🔥 Rajoitettu Aika 20% Alennus)**:\n • Pieni Paketti {smallAmount} - ~{originalSmallPrice} Tähteä~ {smallPrice} Tähteä\n • Suuri Paketti {largeAmount} - ~{originalLargePrice} Tähteä~ {largePrice} Tähteä",
+  "getMoreInfo": "🔮 *Kuinka hankkia ennustuspullo?*\n\n1. **Viikoittainen Ilmainen**: Tavalliset käyttäjät saavat 1 viikossa, VIP-käyttäjät saavat 1 päivässä.\n2. **Kutsu Palkkio**: Kun kutsut ystävän, joka onnistuu kutsumaan toisen ystävän, saat palkkion (enintään 1 ennustuspullo 24 tunnin sisällä).\n3. **Siunausviestin Pullo Palkkio**: Jokaisesta 10 lähetetystä siunauksesta saat 1 ennustuspullon. (enintään 1 ennustuspullo 24 tunnin sisällä)\n4. **Suora Osto (🔥 Rajoitettu Aika 80% Alennus)**:\n • Pieni Paketti {smallAmount} - ~{originalSmallPrice} Tähteä~ {smallPrice} Tähteä\n • Suuri Paketti {largeAmount} - ~{originalLargePrice} Tähteä~ {largePrice} Tähteä",
   "buySmall": "🔥 Erikoishinta {price} tähteä (Osta {amount} tuotetta)",
   "buyLarge": "🔥 Erikoishinta {price} tähteä (Osta {amount} tuotetta)",
-  "invoiceTitle": "Osta {amount} onnenpulloja",
-  "invoiceDesc": "Oston jälkeen voit käyttää AI-onnenennustusp palvelua heti, ja jokainen onnenennustusp palvelu kuluttaa 1 onnenpulloa.\n\nNapsauta alla olevaa painiketta ostaaksesi nyt:",
-  "purchaseSuccess": "🎉 Osto onnistui! {amount} onnenpulloa on lisätty.",
-  "bottleReward": "🎉 Onnittelut! Olet lähettänyt {count} onnenpulloa ja saanut 1 onnenpullon palkinnon!",
-  "inviteChainReward": "🎉 Onnittelut! Kutsumasi ystävä kutsui onnistuneesti uuden ystävän liittymään, ja olet saanut 1 onnenpullon palkinnon!",
+  "invoiceTitle": "Osta {amount} Ennustuspulloa",
+  "invoiceDesc": "Oston jälkeen voit heti käyttää henkistä ennustamispalvelua, jokainen palvelu kuluttaa 1 Ennustuspullon.\n\nOsta nyt alla olevaa painiketta painamalla:",
+  "purchaseSuccess": "🎉 Osto onnistui! {amount} Ennustuspulloa on lisätty.",
+  "bottleReward": "🎉 Onneksi olkoon! Olet lähettänyt {count} Toivepulloa ja saanut 1 Ennustuspullon palkinnoksi!",
+  "inviteChainReward": "🎉 Onneksi olkoon! Kutsumasi ystävä onnistui kutsumaan uuden ystävän, saat 1 Ennustuspullon palkinnoksi!",
   "menu": {
     "love": "Attribuuttidiagnostiikka (suhteen yhteensopivuus)",
     "attribute_desc": "Analysoi romanttisia attribuuttejasi ja potentiaalisia piirteitä.",
@@ -190,7 +190,9 @@ export default {
     "match_report_title": "💞 Pari-synastriaraporteissa",
     "wait_for_consent": "⏳ Odotetaan toisen osapuolen suostumusta...",
     "consent_accepted": "✅ Toinen osapuoli on suostunut! Raporttia luodaan...",
-    "consent_rejected": "❌ Toinen osapuoli on hylännyt synastriapyynnön."
+    "consent_rejected": "❌ Toinen osapuoli on hylännyt synastriapyynnön.",
+    "invite_friend": "📨 Invite Friend to Experience",
+    "invite_friend_text": "Hey! I want to try the Compatibility Test with you. Create your fortune profile now!"
   },
   "role": {
     "husband": "Puoliso",
@@ -228,12 +230,26 @@ export default {
       "drawn": "🎴 Kortit on vedetty:"
     }
   },
-  "profile_incomplete_hint": "💡 Tarjoa tarkempia AI-ennustepalveluja varten, ole hyvä ja täydennä ensin kiinnostuksesi, ammattisi tai MBTI-tietosi.",
+  "profile_incomplete_hint": "💡 Tarjoamme tarkempaa henkistä ennustepalvelua varten, suorita ensin kiinnostuksesi, ammattilaisesi tai MBTI ... ja muut tiedot.",
   "tarot_menu_title": "Tarot-kortit",
   "tarot_ui": {
     "intro": "🔮 *Tarot-luku*\n\nAjattele hiljaa kysymystäsi (esim. \"Miten työonni on viime aikoina?\" tai \"Miten minun pitäisi käsitellä tätä suhdetta?\") ja keskity ennen kuin napsautat alla olevaa painiketta korttien nostamiseksi.",
     "draw": "🔮 Nosta kortteja",
     "shuffling": "Sekoitetaaan...",
     "drawn": "🎴 Kortit on nostettu:"
+  },
+  "profileUpdated": "✅ Horoskooppiprofiili on päivitetty!",
+  "btn_complete_info": "✏️ Täydennä syntymätietosi",
+  "complete_info_hint": "💡 Täydennä syntymäaika ja -paikka, jotta voit avata nousevan merkin ja huoneanalyysin!",
+  "btn_edit_info": "📝 Muokkaa syntymätietoja",
+  "edit": {
+    "currentInfo": "📋 Nykyiset tiedot:",
+    "currentTime": "Syntymäaika: {time}",
+    "currentTimeUnknown": "Syntymäaika: Epävarma",
+    "currentCity": "Syntymäkaupunki: {city}",
+    "currentCityUnknown": "Syntymäkaupunki: Ei asetettu",
+    "confirmEdit": "Haluatko muokata yllä olevia tietoja?",
+    "btnConfirmEdit": "✅ Kyllä, haluan muokata",
+    "btnCancelEdit": "❌ Peruuta"
   }
 };

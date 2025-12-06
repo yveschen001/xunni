@@ -13,7 +13,7 @@ export default {
   "bloodType": "✅ Bloedgroep bijgewerkt naar {getBloodTypeDisplay(bloodType as any)}",
   "bloodType2": "✅ Bloedgroep gewist",
   "bottle": "✅ Beloning uitgegeven! +1 berichtfles",
-  "bottle2": "✅ Een nieuwe berichtfles gestart",
+  "bottle2": "✅ Nieuwe Wensfles starten",
   "bottle3": "✅ Berichtfles aangemaakt\n",
   "broadcast": "✅ {ids.length} vastgelopen uitzendingen gewist\n\n",
   "broadcast2": "✅ Geen uitzendingen hoeven gewist te worden\n\n",
@@ -95,7 +95,7 @@ export default {
     "bloodType": "✅ Bloedgroep bijgewerkt naar \\{getBloodTypeDisplay(bloodType as any)}",
     "bloodType2": "✅ Bloedgroep gewist",
     "bottle": "✅ Beloning verdeeld! +1 berichtfles",
-    "bottle2": "✅ Start een nieuwe berichtfles",
+    "bottle2": "✅ Begin een nieuwe zegeningsberichtfles",
     "bottle3": "✅ Berichtfles aangemaakt\n",
     "broadcast": "✅ \\{ids.length} vastgelopen uitzendingen verwijderd\n\n",
     "broadcast2": "✅ Geen uitzendingen om schoon te maken\n\n",
@@ -238,6 +238,6 @@ export default {
   "verify2": "✅ Verificatie geslaagd! Ontvangen +\\{ad.reward_quota} permanente quotum!",
   "vip": "✅ Alle berichten zijn up-to-date (VIP-status correct)\n",
   "zodiac": "✅ Zodiac-selectie gewist",
-  "bottleThrown": "🍾 Berichtfles is gegooid!",
+  "bottleThrown": "✅ Wensfles is verstuurd!",
   "saved": "✅ Instellingen opgeslagen"
 };

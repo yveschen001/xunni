@@ -27,8 +27,8 @@ export default {
   "message8": "Cena: {priceStars} ⭐ Telegram Stars / mesec\n",
   "message9": "Vreme plaćanja: {paymentDate.toLocaleDateString(",
   "purchaseCancelled": "✅ Kupovina otkazana",
-  "quota": "• Dnevna kvota od 30 poruka u boci (pozivanje prijatelja može je povećati, do 100 dnevno)\n",
-  "quota2": "• Dnevna kvota od 30 poruka u boci (do 100 dnevno)\n",
+  "quota": "• 每天 30個 Blessing Bottle 配額（邀請好友可增加，最高 100個/天）\n",
+  "quota2": "• 每天 30個 Blessing Bottle 配額（最高 100個/天）\n",
   "refundAdminCommands": "💡 Koristite sledeće komande za nastavak:\n• Odobri: `/admin_approve_refund <ID>`\n• Odbij: `/admin_reject_refund <ID> <reason>`",
   "refundApproved": "✅ **Odobren Povrat Novca**\n\nIznos povrata: {amount} ⭐\nPovrat će biti vraćen u roku od 1-3 radna dana.\n\nVaše VIP članstvo je otkazano.\n\nHvala na razumevanju!",
   "refundApprovedAdmin": "✅ Povrat Novca Odobren\n\nID Zahteva: #{requestId}\nID Korisnika: {userId}\nIznos: {amount} ⭐",
@@ -75,7 +75,7 @@ export default {
   "text11": "Vreme isteka: {expireDate}\n\n",
   "text12": "Povraćaji će biti obrađeni u roku od 1-3 radna dana.\n\n",
   "text13": "ID Zahteva: #{requestId}\n",
-  "text14": "└ 1 pametan spoj + 2 javna izlaganja poruka u boci: Dodatna 2 mesta za izlaganje, čekajući da ih odredi određena osoba.\nPovećajte šanse da vaša poruka u boci bude viđena za 300%!",
+  "text14": "└ 1個智能配對 + 2個公共 Blessing Bottle 池展示：額外增加 2個展示位，等待有緣人撿起。\n讓您的瓶子被看到的機會提升 300%！",
   "text15": "Bićete obavešteni o rezultatima obrade putem Bota.\n\n",
   "text16": "Molimo unesite razlog povrata (najmanje 10 karaktera):",
   "text17": "Razlog: {req.reason}\n",
@@ -130,5 +130,5 @@ export default {
   "upgrade": "Nadogradite na VIP",
   "maxDurationExceeded": "⚠️ Vaš VIP period je dostigao limit ({maxMonths} meseci) i trenutno ne možete nastaviti sa kupovinom.",
   "refundedAndRevoked": "ℹ️ Vaša uplata je refundirana, a VIP pogodnosti su ukinute.",
-  "benefit_daily_fortune": "• 1 besplatno AI proricanje dnevno (ekskluzivno za VIP)"
+  "benefit_daily_fortune": "• 1 besplatno čitanje sudbine dnevno (isključivo za VIP)"
 };

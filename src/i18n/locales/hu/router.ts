@@ -1,7 +1,7 @@
 export default {
   "replyPrompt": "💬 Válasz",
-  "suggestCatch": "❓ Szeretne message bottle-t felvenni?\n\nHasználja a /catch parancsot a message bottle felvételéhez\n\n💡 **Gyakori parancsok**:\n• /throw - Dobjon el egy message bottle-t\n• /catch - Vegyen fel egy message bottle-t\n• /menu - Főmenü\n• /tasks - Feladatközpont",
-  "suggestMenu": "❓ A parancs nem található\n\n💡 **Gyakori parancsok**:\n• /throw - Dobjon el egy message bottle-t\n• /catch - Vegyen fel egy message bottle-t\n• /menu - Főmenü\n• /tasks - Feladatközpont",
-  "suggestThrow": "❓ Szeretne egy message bottle-t eldobni?\n\nKérjük, hosszan nyomja meg az előző üzenetet, vagy ezt az üzenetet,\nválassza a 'Válasz' lehetőséget a menüből,\nmajd írja be a küldendő message bottle tartalmát\n\n💡 **Gyakori parancsok**:\n• /throw - Dobjon el egy message bottle-t\n• /catch - Vegyen fel egy message bottle-t\n• /menu - Főmenü\n• /tasks - Feladatközpont\n\n#THROW",
-  "throwPrompt": "📝 Kérjük, írd be a message bottle tartalmát:"
+  "suggestCatch": "❓ Szeretnél Kívánság Palackot szedni?\n\nHasználj Kívánság Palackot a Kívánság Palack szedéséhez\n\n💡 **Gyakran használt parancsok**：\n• Kívánság Palack - Kívánság Palack kidobása\n• Kívánság Palack - Kívánság Palack szedése\n• Főmenü - Főmenü\n• Feladatok - Feladatközpont",
+  "suggestMenu": "❓ Ez a parancs nem található\n\n💡 **Gyakran használt parancsok**：\n• Kívánság Palack - Kívánság Palack kidobása\n• Kívánság Palack - Kívánság Palack szedése\n• Főmenü - Főmenü\n• Feladatok - Feladatközpont",
+  "suggestThrow": "❓ Szeretnél Kívánság Palackot kidobni?\n\nKérlek hosszan nyomd meg az előző üzenetet, vagy ezt az üzenetet,\na menüben válaszd a «Válasz» lehetőséget,\nmajd írd be a küldeni kívánt Kívánság Palack tartalmát\n\n💡 **Gyakran használt parancsok**：\n• Kívánság Palack - Kívánság Palack kidobása\n• Kívánság Palack - Kívánság Palack szedése\n• Főmenü - Főmenü\n• Feladatok - Feladatközpont\n\n#THROW",
+  "throwPrompt": "📝 Kérlek írd be a Kívánság Palack tartalmát:"
 };

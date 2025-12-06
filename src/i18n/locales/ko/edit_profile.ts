@@ -12,5 +12,6 @@ export default {
   "nicknameInputHint": "👇 새 닉네임을 입력하십시오:",
   "bioInstruction": "새 자기소개를 입력하십시오 (최대 100자).\n\n현재 자기소개: {bio}",
   "bioInputHint": "👇 새 자기소개를 입력하십시오:",
-  "bloodTypeInstruction": "혈액형을 선택하십시오:"
+  "bloodTypeInstruction": "혈액형을 선택하십시오:",
+  "matchPrefInstruction": "매칭 설정을 선택하세요:"
 };

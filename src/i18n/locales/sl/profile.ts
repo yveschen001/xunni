@@ -26,7 +26,7 @@ export default {
   "manual": "Ročne nastavitve",
   "mbti": "• Uporabite /mbti za ponovni test ali spremembo MBTI\n",
   "mbtiWithSource": "🧠 MBTI: {mbti}{source}",
-  "message": "https://t.me/share/url?url=https://t.me/{botUsername}?start=invite_{inviteCode}&text=Pridite na XunNi in skupaj pošljite sporočilne steklenice!🍾 Uporabite mojo kodo za povabilo: {inviteCode}",
+  "message": "XunNi skupaj vržimo Blessing Bottle! 🍾 Uporabite mojo povabilno kodo: {inviteCode}",
   "message2": "{inviteLimitWarning}\n\n",
   "message3": "🌍 Jezik: {user.language_pref}\n\n",
   "message4": "🌍 Jezik: {user.language_pref }\n",
@@ -42,7 +42,7 @@ export default {
   "quota2": "📦 Trenutna dnevna kvota: {taskBonus > 0 ?",
   "quotaBottles": "{taskBonus} message bottles",
   "quotaTotal": "📦 Trenutna dnevna kvota: {quota}\n\n",
-  "returnToMenu": "🏠 Vrni se na glavni meni: /menu",
+  "returnToMenu": "🏠 Glavni meni",
   "separator": "━━━━━━━━━━━━━━━━\n\n",
   "settings": "Ni nastavljeno",
   "settings2": "Ni nastavljeno",
@@ -71,5 +71,14 @@ export default {
   "zodiac": "⭐ Oznaka: {zodiac}\n",
   "fortuneQuota": "🔮 {fortuneBottle}: {total} (Ta teden brezplačno: {weekly}/{limit} | Dodatno: {additional})",
   "vipWithDays": "💎 VIP član (Preostali {days} dni, potek: {expireDate})",
-  "driftBottleInfo": "🍾 sporočilna steklenica: {remaining} / {total}"
+  "driftBottleInfo": "🍾 Blessing Bottle: {remaining} / {total}",
+  "ageRange": "Starost: {min}-{max}",
+  "fortuneMatchButton": "💘 Fortune Match",
+  "giftVipButton": "🎁 Gift VIP",
+  "giftFortuneBottleButton": "🔮 Gift Fortune Bottle",
+  "moreOptions": "⚙️ More Options",
+  "blockUser": "🚫 Block User",
+  "reportUser": "⚠️ Report",
+  "moreOptionsTitle": "⚙️ More Options",
+  "giftedVipNote": "🎁 Previously Gifted VIP"
 };

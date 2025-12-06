@@ -27,6 +27,8 @@ export default {
   "selectEndHour": "☀️ Waktu mula ditetapkan pada {start}:00.\nSila pilih waktu tamat untuk waktu senyap:\n(Pemberitahuan akan disambung semula selepas waktu ini)",
   "disabled": "🚫 Waktu senyap telah dinyahaktifkan",
   "quietHoursHint": "Anda tidak akan menerima pemberitahuan tidak mendesak sepanjang tempoh ini",
+  "quietHoursVipOnly": "🔒 Waktu Senyap (Khusus VIP)",
+  "upgradeForQuietHours": "Tingkatkan ke VIP untuk menetapkan waktu senyap dan mengelakkan gangguan semasa waktu rehat!",
   "blocklist": {
     "title": "🚫 Senarai Sekat",
     "empty": "Kini tiada senarai sekat",

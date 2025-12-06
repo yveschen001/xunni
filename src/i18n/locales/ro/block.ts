@@ -1,6 +1,6 @@
 export default {
   "cannotIdentify": "⚠️ Nu se poate recunoaște partenerul de conversație.",
-  "catchNewBottle": "💡 Folosiți /catch pentru a alege o nouă sticlă cu mesaj și a începe o nouă conversație.",
+  "catchNewBottle": "💡 Folosește 'Prinde Sticla cu Dorințe' pentru a începe o conversație nouă.",
   "conversationInfoError": "⚠️ Informațiile despre conversație sunt incorecte.",
   "conversationMayEnded": "Conversația poate să fi fost încheiată sau nu există.",
   "conversationNotFound": "⚠️ Această conversație nu a putut fi găsită.",
@@ -12,5 +12,5 @@ export default {
   "step3": "3️⃣ Introduceți /block.",
   "steps": "**Pași pentru operare:**",
   "success": "✅ Utilizatorul (#{identifier}) a fost blocat",
-  "willNotMatch": "Nu veți mai fi asociați cu sticlele de mesaje ale celuilalt."
+  "willNotMatch": "Nu veți mai fi potriviți cu Sticla cu Dorințe a celuilalt."
 };

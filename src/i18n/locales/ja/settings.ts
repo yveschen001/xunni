@@ -27,9 +27,17 @@ export default {
   "selectEndHour": "☀️ 開始時刻は{start}:00に設定されました。\n静かな時間の終了時刻を選択してください:\n(この時間以降に通知が再開されます)",
   "disabled": "🚫 静かな時間は無効になりました",
   "quietHoursHint": "この期間中、非緊急通知は受け取りません",
+  "quietHoursVipOnly": "🔒 静かな時間 (VIP限定)",
+  "upgradeForQuietHours": "この機能を使用するにはVIPにアップグレードしてください",
   "blocklist": {
     "title": "🚫 ブロックリスト",
+    "desc": "ブロックリストを管理します。",
+    "add_manual": "手動でブロックIDを追加",
     "empty": "現在ブロックリストはありません",
-    "unblock": "ブロック解除"
+    "unblock": "ブロック解除",
+    "manual_prompt": "ブロックするユーザーIDまたは@usernameを入力してください：",
+    "block_success": "✅ {name}をブロックしました",
+    "unblock_success": "✅ ブロックを解除しました",
+    "error_self": "❌ 自分自身をブロックすることはできません"
   }
 };

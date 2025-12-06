@@ -1,13 +1,13 @@
 export default {
   "availableCommands": "Bármikor használhatod a következő parancsokat:",
-  "catchBottle": "🎣 **Vedd fel a message bottle-t**",
-  "catchBottleDesc": "Nézd meg mások message bottle-ait, és ha érdekel, válaszolj a csevegés megkezdéséhez",
+  "catchBottle": "🎣 **Kívánság Palack**",
+  "catchBottleDesc": "Nézd meg mások kívánság palackját, válaszolj a kívánságra, kezdd el a beszélgetést~",
   "clickButtonHint": "💡 Kérlek, kattints a gombra a folytatáshoz",
-  "commandCatch": "• /catch - Üzenet palack felvétele",
+  "commandCatch": "• Kívánság Palack",
   "commandHelp": "• /help - Segítség megtekintése",
   "commandMenu": "📋 Parancs menü",
   "commandTasks": "• /tasks - Feladatok megtekintése",
-  "commandThrow": "• /throw - Üzenet palack eldobása",
+  "commandThrow": "• Kívánság Palack",
   "completeTasksForBottles": "💡 A feladatok teljesítésével extra palackokat kereshetsz",
   "completed": "✅ Útmutató befejezve!",
   "howToBecomeFriends": "💬 **Hogyan barátkozzunk?**",
@@ -16,11 +16,11 @@ export default {
   "skip": "Kihagyás",
   "skipped": "✅ Útmutató kihagyva",
   "startUsing": "Ke vesd be →",
-  "throwBottle": "📦 **Üzenet palack eldobása**",
+  "throwBottle": "📦 **Kívánság Palack**",
   "throwBottleDesc": "Írd le az érzéseidet vagy gondolataidat, a rendszer segít megtalálni a megfelelő személyt",
   "unknownStep": "❌ Ismeretlen útmutató lépés",
   "viewTasks": "📋 Feladatok megtekintése",
   "welcome": "🎉 Gratulálunk a regisztráció befejezéséhez!",
   "whatIsXunNi": "🌊 **Mi az a XunNi?**",
-  "whatIsXunNiDesc": "Egy anonim üzenet palack barátsági platform, amely segít neked hasonló gondolkodású barátokat találni MBTI és csillagjegyek alapján"
+  "whatIsXunNiDesc": "Anonim kívánság palack társkereső platform, amely segít MBTI és csillagjegyek alapján találni képzett barátokat."
 };

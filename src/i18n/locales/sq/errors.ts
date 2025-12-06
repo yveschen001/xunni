@@ -97,9 +97,9 @@ export default {
     "nickname": "❌ Pamundësi për të tërhequr nofkën në Telegram",
     "nickname2": "❌ Emri i përdoruesit nuk mund të përmbajë një link të faqes së internetit\n\n",
     "nickname3": "❌ \\{validation.error}\n\nJu lutemi ri-ndumtoni nofkën:",
-    "quota": "❌ Kuota për message bottle për sot është shteruar (\\{quotaDisplay})\n\n💡 Mënyra për të marrë më shumë kuotë:\n",
+    "quota": "❌ Sot i sotëm i shishës së bekimit është shfrytëzuar (\\{quotaDisplay})\n\n💡 Mënyra për të marrë më shumë kuota:",
     "quota2": "❌ Kuota e mesazheve të bisedës për sot është shfrytëzuar (\\{usedToday}/\\{dailyLimit})\n\n",
-    "quota3": "❌ Kuota e message bottle për sot është shfrytëzuar (\\{quotaDisplay})\n\n",
+    "quota3": "❌ Sotja e sotme e shishës së bekimeve është shfrytëzuar (\\{quotaDisplay})",
     "register": "❌ Ju lutemi përfundoni procesin e regjistrimit së pari.\n\nPërdorni /start për të vazhduar regjistrimin.",
     "register2": "❌ Të dhënat e përdoruesit nuk u gjetën, ju lutemi përdorni /start për të regjistruar së pari.",
     "register3": "❌ Ju lutemi përfundoni procesin e regjistrimit për të marrë message bottles.\n\nPërdorni /start për të vazhduar regjistrimin.",
@@ -179,5 +179,6 @@ export default {
   "userNotFoundRegister": "⚠️ Përdoruesi nuk ekziston, ju lutemi regjistrohuni duke përdorur /start së pari.",
   "verificationFailed": "❌ Verifikimi dështoi, ju lutemi provoni përsëri më vonë",
   "invalidTimeFormat": "Format i papërshtatshëm i kohës\nPër shembull: 19:30 (forma 24-orëshe, 00-23 orë, 00-59 minuta)",
-  "invalidDateFormat": "Format i papërshtatshëm i datës\nPër shembull: 2000-01-01"
+  "invalidDateFormat": "Format i papërshtatshëm i datës\nPër shembull: 2000-01-01",
+  "taskAlreadyCompleted": "❌ Ky detyrë është përfunduar tashmë dhe shpërblimi është kërkuar."
 };

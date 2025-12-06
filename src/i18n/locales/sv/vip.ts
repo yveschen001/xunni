@@ -27,8 +27,8 @@ export default {
   "message8": "Pris: {priceStars} ⭐ Telegram Stars / månad\n",
   "message9": "Betalningstid: {paymentDate.toLocaleDateString(",
   "purchaseCancelled": "✅ Köp avbrutet",
-  "quota": "• Daglig kvot av 30 flaskor (Bjud in vänner för att öka, max 100 per dag)\n",
-  "quota2": "• Daglig kvot av 30 flaskor (max 100 per dag)\n",
+  "quota": "• Varje dag 30 Önskeflaskor (bjud in vänner för att öka, högst 100 per dag)\n",
+  "quota2": "• Varje dag 30 Önskeflaskor (högst 100 per dag)\n",
   "refundAdminCommands": "💡 Använd följande kommandon för att gå vidare:\n• Godkänn: `/admin_approve_refund <ID>`\n• Avvisa: `/admin_reject_refund <ID> <reason>`",
   "refundApproved": "✅ **Återbetalning Godkänd**\n\nÅterbetalningsbelopp: {amount} ⭐\nÅterbetalning kommer att krediteras inom 1-3 arbetsdagar.\n\nDitt VIP-medlemskap har avbrutits.\n\nTack för din förståelse!",
   "refundApprovedAdmin": "✅ Återbetalning Godkänd\n\nBegärnings-ID: #{requestId}\nAnvändar-ID: {userId}\nBelopp: {amount} ⭐",
@@ -75,7 +75,7 @@ export default {
   "text11": "Utgångsdatum: {expireDate}\n\n",
   "text12": "Återbetalningar kommer att krediteras inom 1-3 arbetsdagar.\n\n",
   "text13": "Begärnings-ID: #{requestId}\n",
-  "text14": "└ 1 smart match + 2 publika display för meddelandeburkar: Ytterligare 2 displayplatser, som väntar på att en avsedd person ska plocka upp dem.\nÖka chansen att din meddelandeburk blir sedd med 300%!",
+  "text14": "└ 1 intelligent matchning + 2 offentliga Önskeflaskpooler: lägg till 2 extra visningsplatser som väntar på att bli plockade. \nÖka chansen att era flaskor blir sedda med 300%!",
   "text15": "Du kommer att meddelas om behandlingsresultaten via Bot.\n\n",
   "text16": "Vänligen ange orsaken till återbetalningen (minst 10 tecken):",
   "text17": "Skäl: {req.reason}\n",
@@ -130,5 +130,5 @@ export default {
   "upgrade": "Uppgradera till VIP",
   "maxDurationExceeded": "⚠️ Din VIP-period har nått gränsen ({maxMonths} månader), och du kan inte fortsätta köpa för tillfället.",
   "refundedAndRevoked": "ℹ️ Din betalning har återbetalats, och VIP-förmåner har upphävts.",
-  "benefit_daily_fortune": "• 1 gratis AI-spådom per dag (exklusiv för VIP)"
+  "benefit_daily_fortune": "• 1 gratis spirituell läsning per dag (exklusiv för VIP)"
 };

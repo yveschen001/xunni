@@ -1,6 +1,6 @@
 export default {
   "cannotIdentify": "⚠️ Impossibile identificare il partner della conversazione.",
-  "catchNewBottle": "💡 Usa /catch per raccogliere nuove bottiglie di messaggi e avviare una nuova conversazione.",
+  "catchNewBottle": "💡 Usa /catch per raccogliere una nuova Bottiglia dei Desideri e avviare una nuova conversazione.",
   "conversationInfoError": "⚠️ Le informazioni sulla conversazione sono errate.",
   "conversationMayEnded": "La conversazione potrebbe essere terminata o non esistere.",
   "conversationNotFound": "⚠️ Questa conversazione non può essere trovata.",
@@ -12,5 +12,5 @@ export default {
   "step3": "3️⃣ Inserisci /block.",
   "steps": "**Passi operativi:**",
   "success": "✅ Questo utente è stato bloccato (#{identifier}).",
-  "willNotMatch": "Non sarai più abbinato alle bottiglie di messaggi dell'altro."
+  "willNotMatch": "Non sarete più abbinati alla bottiglia dei desideri dell'altra persona."
 };

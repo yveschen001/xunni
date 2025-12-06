@@ -4,20 +4,20 @@ export default {
     "hoursAgo": "\\{hours} órával ezelőtt",
     "justNow": "Most azonnal"
   },
-  "contentHint": "💡 Ön:\n• Közvetlenül megadhat új tartalmat a vázlat helyettesítésére\n• Használja a /throw-t az újraindításhoz\n• Küldje el a vázlat tartalmát üzenetpalack dobásához",
+  "contentHint": "💡 Lehetőséged van:\n• Közvetlenül új tartalom beírására a tervezet helyettesítésére\n• Újra kezdeni a Kívánság Palackot\n• A tervezet tartalmának elküldésére Kívánság Palack küldéséhez",
   "contentTitle": "📝 **Vázlat tartalom**\n\n",
   "continueEditing": "✅ Folytassa a vázlat szerkesztését",
   "deleteButton": "🗑️ Vázlat törlése",
   "deleted": "✅ A vázlat törölve lett",
   "editButton": "✏️ Tartalom szerkesztése",
-  "editInput": "✏️ Kérjük, adjon meg új üzenetpalack tartalmat:\n\n💡 Tippek:\n• Minimális 5 karakter\n• Maximális 250 karakter\n• Linkek, képek és multimédia nem megengedettek\n• Ne tartalmazzon személyes elérhetőségi információkat\n• A barátságos és tiszteletteljes tartalom valószínűbb, hogy kiválasztásra kerül～",
+  "editInput": "✏️ Kérjük, írd be az új Kívánság Palack tartalmát:\n\n💡 Tipp:\n• Legalább 5 karakter\n• Legfeljebb 250 karakter\n• Linkek, képek, multimédia nem engedélyezett\n• Ne tartalmazzon személyes elérhetőségeket\n• Barátságos, tiszteletteljes, áldással teli tartalom, amely nemcsak áldásokat ad másoknak, hanem boldog válaszokat is kap~",
   "editPrompt": "✏️ Kérjük, adjon meg új tartalmat",
-  "newBottle": "✅ Kezdjen el egy új üzenetpalackot",
+  "newBottle": "✅ Új Kívánság Palack indítása",
   "notFound": "⚠️ A vázlat nem létezik vagy lejárt",
   "sendButton": "✅ Vázlat elküldése",
   "sendQuestion": "Közvetlenül szeretné elküldeni ezt a vázlatot?",
   "sending": "✅ Küldés folyamatban...",
   "targetGender": "Milyen típusú csevegőpartnert keres?\n\n",
   "targetGenderHint": "💡 Frissítse VIP-re, hogy fejlett szűrőket kapjon (MBTI/Zodiákus): /vip",
-  "throwBottle": "🍾 Üzenetpalack dobása\n\nMilyen típusú csevegőpartnert keres?"
+  "throwBottle": "🍾 Kívánság Palack elküldése\n\nKüldj áldást másoknak, és a boldogság visszatér hozzád~"
 };

@@ -68,7 +68,7 @@ export default {
     "zodiacVirgo": "처녀자리"
   },
   "filterAge": "• 나이=18-25\n",
-  "filterCommand": "/broadcast_filter <filter> <msg_content> ",
+  "filterCommand": "/broadcast_filter <filter> <msg_content>",
   "filterConfirmConditions": "**필터 조건:**\n{conditions}\n\n",
   "filterConfirmMessage": "**메시지 내용:**\n{message}\n\n",
   "filterConfirmTitle": "🔍 **방송 필터 확인**\n\n",

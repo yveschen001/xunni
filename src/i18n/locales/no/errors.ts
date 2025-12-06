@@ -97,9 +97,9 @@ export default {
     "nickname": "❌ Kan ikke hente Telegram-nick",
     "nickname2": "❌ Brukernavnet kan ikke inneholde en lenke til et nettsted\n\n",
     "nickname3": "❌ \\{validation.error}\n\nVennligst skriv inn kallenavnet ditt på nytt:",
-    "quota": "❌ Dagens flaskepostkvote er brukt opp (\\{quotaDisplay})\n\n💡 Måter å få mer kvote på:\n",
+    "quota": "❌ Dagens velsignelsesflaske velsigningskvote er brukt opp (\\{quotaDisplay})\n\n💡 Måter å skaffe flere kvoter:",
     "quota2": "❌ Dagens samtalebeskjed kvote er brukt opp (\\{usedToday}/\\{dailyLimit})\n\n",
-    "quota3": "❌ Dagens meldingsflaskepost kvote er brukt opp (\\{quotaDisplay})\n\n",
+    "quota3": "❌ Dagens velsignelsesflaske kvote er brukt opp (\\{quotaDisplay})",
     "register": "❌ Vennligst fullfør registreringsprosessen først.\n\nBruk /start for å fortsette registreringen.",
     "register2": "❌ Brukerprofil ikke funnet, vennligst bruk /start for å registrere deg først.",
     "register3": "❌ Vennligst fullfør registreringsprosessen før du samler flaskeposter.\n\nBruk /start for å fortsette registreringen.",
@@ -179,5 +179,6 @@ export default {
   "userNotFoundRegister": "⚠️ Bruker eksisterer ikke, vennligst registrer deg ved å bruke /start først.",
   "verificationFailed": "❌ Verifisering mislyktes, vennligst prøv igjen senere",
   "invalidTimeFormat": "Ugyldig tidsformat\nFor eksempel: 19:30 (24-timers format, 00-23 timer, 00-59 minutter)",
-  "invalidDateFormat": "Ugyldig datoformat\nFor eksempel: 2000-01-01"
+  "invalidDateFormat": "Ugyldig datoformat\nFor eksempel: 2000-01-01",
+  "taskAlreadyCompleted": "❌ Denne oppgaven er allerede fullført, og belønningen er hentet."
 };

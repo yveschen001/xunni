@@ -122,7 +122,7 @@ export default {
       "body": "{userAttribute},\nLaut der Analyse hast du die größte Affinität zu {recommendedAttributes}!\n\n💡 {reason}\n\n👇 Fühlst du dich glücklich?"
     },
     "btn": {
-      "throw": "🌊 Wirf eine Flasche und versuche dein Glück",
+      "throw": "🌊 Wirf eine SegensSegensflasche, wünsche anderen Wohl und das Glück wird zu dir zurückkehren.",
       "vip_throw": "🎯 Werfen auf {target}",
       "vip_upsell": "💡 Upgrade auf VIP, um die Zustellung an {target} zu bestimmen, für präzises Matching!"
     }

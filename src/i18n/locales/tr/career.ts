@@ -3,7 +3,7 @@ export default {
   "label_industry": "Hangi sektörde faaliyet gösteriyorsunuz?",
   "btn_edit_role": "💼 Profesyonel Kimlik Düzenleme",
   "btn_edit_industry": "🏢 Sektör Düzenleme",
-  "profile_incomplete_hint": "💡 Daha doğru AI falcılık hizmetleri sağlamak için lütfen önce kişisel bilgilerinizi tamamlayın.",
+  "profile_incomplete_hint": "💡 Daha doğru Ruhsal Okuma hizmetleri sunabilmek için lütfen önce kişisel bilgilerinizi doldurun.",
   "role": {
     "employee": "Ofis Çalışanı",
     "freelancer": "Serbest Çalışan / SOHO",
@@ -167,4 +167,6 @@ export default {
     }
   },
   "next_step_industry": "Sırada"
+,
+  "back_to_categories": "Back to Industries"
 };

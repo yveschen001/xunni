@@ -12,5 +12,6 @@ export default {
   "nicknameInputHint": "👇 Veuillez entrer un nouveau surnom :",
   "bioInstruction": "Veuillez entrer une nouvelle auto-introduction (jusqu'à 100 caractères).\n\nVotre auto-introduction actuelle est : {bio}",
   "bioInputHint": "👇 Veuillez entrer une nouvelle auto-introduction :",
-  "bloodTypeInstruction": "Veuillez sélectionner votre groupe sanguin :"
+  "bloodTypeInstruction": "Veuillez sélectionner votre groupe sanguin :",
+  "matchPrefInstruction": "Veuillez sélectionner votre préférence de correspondance :"
 };

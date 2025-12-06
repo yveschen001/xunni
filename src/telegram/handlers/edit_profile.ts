@@ -162,7 +162,7 @@ export async function handleEditMatchPref(
     const buttons = [
       [{ text: i18n.t('common.male'), callback_data: 'match_pref_male' }],
       [{ text: i18n.t('common.female'), callback_data: 'match_pref_female' }],
-      [{ text: i18n.t('common.text60'), callback_data: 'match_pref_any' }],
+      [{ text: i18n.t('common.anyone'), callback_data: 'match_pref_any' }],
       [{ text: i18n.t('buttons.back'), callback_data: 'edit_profile_callback' }],
     ];
 
@@ -189,7 +189,7 @@ export async function handleMatchPrefSelection(
     const i18n = createI18n(user?.language_pref || 'zh-TW');
 
     await db.d1
-      .prepare('UPDATE users SET match_pref = ? WHERE telegram_id = ?')
+      .prepare('UPDATE users SET match_preference = ? WHERE telegram_id = ?')
       .bind(preference, telegramId)
       .run();
 
@@ -207,7 +207,7 @@ export async function handleMatchPrefSelection(
       console.error('[handleMatchPrefSelection] Task check error:', taskError);
     }
 
-    const prefKey = preference === 'any' ? 'common.text60' : (preference === 'male' ? 'common.male' : 'common.female');
+    const prefKey = preference === 'any' ? 'common.anyone' : (preference === 'male' ? 'common.male' : 'common.female');
     const prefText = i18n.t(prefKey as any);
 
     await telegram.sendMessageWithButtons(chatId, i18n.t('success.text3', { prefText }), [
@@ -730,7 +730,7 @@ export async function handleCareerInteraction(
          let row: any[] = [];
          // JOB_ROLES is already imported at top of file
          for (const role of JOB_ROLES) {
-            let label = i18n.t(`career.role.${role}` as any);
+            const label = i18n.t(`career.role.${role}` as any);
             row.push({ text: label, callback_data: `career_role:${role}` });
             if (row.length === 1) {
                 buttons.push(row);
@@ -831,7 +831,10 @@ export async function handleEditBloodTypeSelection(
       console.error('[handleEditBloodTypeSelection] Task check error:', taskError);
     }
 
-    await telegram.sendMessageWithButtons(chatId, i18n.t('success.bloodType', { bloodType: bloodTypeValue }), [
+    const { getBloodTypeDisplay } = await import('~/domain/blood_type');
+    const bloodTypeDisplay = getBloodTypeDisplay(bloodTypeValue as any, i18n);
+
+    await telegram.sendMessageWithButtons(chatId, i18n.t('success.bloodType', { bloodType: bloodTypeDisplay }), [
       [{ text: i18n.t('common.short3'), callback_data: 'edit_profile_callback' }],
       [{ text: i18n.t('common.back3'), callback_data: 'return_to_menu' }],
     ]);
@@ -1123,9 +1126,19 @@ export async function handleEditGeoInteraction(
 
       const dn = new Intl.DisplayNames([user?.language_pref || 'zh-TW'], { type: 'region' });
       
+      // Smart Sort: Prioritize countries based on user language
+      const { getPriorityCountries } = await import('./country_selection');
+      const userLang = user?.language_pref || 'zh-TW';
+      const prioritySet = new Set(getPriorityCountries(userLang));
+      
+      // Sort countries: Priority first, then others
+      const priorityList = region.countries.filter(c => prioritySet.has(c));
+      const remainingList = region.countries.filter(c => !prioritySet.has(c));
+      const sortedCountries = [...priorityList, ...remainingList];
+
       const buttons = [];
       let row: any[] = [];
-      for (const code of region.countries) {
+      for (const code of sortedCountries) {
         row.push({
           text: `${getFlagEmoji(code)} ${dn.of(code) || code}`,
           callback_data: `edit_geo:country:${code}`

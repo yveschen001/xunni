@@ -1,6 +1,6 @@
 export default {
   "cannotIdentify": "⚠️ Ni mogoče prepoznati sogovornika.",
-  "catchNewBottle": "💡 Uporabite /catch za izbiro nove message bottle in začnite nov pogovor.",
+  "catchNewBottle": "💡 Catch New Blessing Bottle to start a new conversation.",
   "conversationInfoError": "⚠️ Informacije o pogovoru so nepravilne.",
   "conversationMayEnded": "Pogovor se je morda zaključil ali ne obstaja.",
   "conversationNotFound": "⚠️ Ta pogovor ni bil najden.",
@@ -12,5 +12,5 @@ export default {
   "step3": "3️⃣ Vnesite /block.",
   "steps": "**Koraki za delovanje:**",
   "success": "✅ To osebo (#{identifier}) ste blokirali",
-  "willNotMatch": "Več ne bosta ujemala z message bottle drug drugega."
+  "willNotMatch": "Ve več ne boste ujemali z Blessing Bottles drug drugega."
 };

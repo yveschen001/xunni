@@ -1,7 +1,7 @@
 export default {
   "autoCompleted": "Registratieproces is automatisch voltooid.\n\n",
-  "bottles": "• Berichtflessen: {count}\n",
-  "catchCommand": "• /catch - Vang berichtflessen\n",
+  "bottles": "• Wensfles: {count}\n",
+  "catchCommand": "• Vangen - Wensfles\n",
   "conversations": "• Gesprekken: {count}\n",
   "dataReset": "✅ Ontwikkelingsmodus: Gegevens zijn opnieuw ingesteld\n\nAl je gegevens zijn verwijderd.\n\n💡 Je kunt nu het registratieproces opnieuw starten voor testing.\n\n🔄 Herregistreren: /start\nof gebruik: /dev_restart (start registratie automatisch)\n\n⚠️ Opmerking: Deze functie is alleen beschikbaar in de Staging-omgeving.",
   "getUserInfoFailed": "❌ Mislukt om informatie op te halen",
@@ -30,7 +30,7 @@ export default {
   "telegramId": "Telegram ID: {id}",
   "testCoreFeatures": "💡 Je kunt nu rechtstreeks kernfuncties testen:\n",
   "testUser": "Test gebruiker",
-  "throwCommand": "• /throw - Gooien berichtfles\n",
+  "throwCommand": "• Gooi - Wensfles\n",
   "userInfo": "🔧 Ontwikkelingsmodus: Gebruikersinformatie\n\n",
   "userNotFound": "❌ Gebruiker bestaat niet",
   "vip": "VIP: {status}",

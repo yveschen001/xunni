@@ -27,6 +27,8 @@ export default {
   "selectEndHour": "☀️ Hora de inicio establecida a {start}:00.\nPor favor, elige la hora de finalización para las horas silenciosas:\n(Las notificaciones se reanudarán después de esta hora)",
   "disabled": "🚫 Las horas silenciosas han sido deshabilitadas",
   "quietHoursHint": "No recibirás notificaciones no urgentes durante este período",
+  "quietHoursVipOnly": "🔒 Horas Silenciosas (Solo VIP)",
+  "upgradeForQuietHours": "¡Actualiza a VIP para establecer horas silenciosas y evitar interrupciones durante tu descanso!",
   "blocklist": {
     "title": "🚫 Lista de Bloqueados",
     "empty": "Actualmente no hay lista de bloqueados",

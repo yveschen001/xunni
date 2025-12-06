@@ -3,9 +3,9 @@ export default {
   "age": "🎂 **عمر**: {age} سال\n",
   "avgMatches": "• فی سیشن اوسط میچ: {avg} اشیاء\n",
   "bottle": "💎 **VIP تین بوتلوں کی شماریات** (آخری 30 دن)\n",
-  "bottle2": "🍾 **پیغام کی بوتل**\n",
-  "bottle3": "🎈 پیغام کی بوتل کی اعداد و شمار\n",
-  "bottles": "🍾 **پیغام کی بوتل**\n",
+  "bottle2": "🍾 **Blessing Bottle**\n",
+  "bottle3": "🎈 Blessing Bottle統計\n",
+  "bottles": "🍾 **Blessing Bottle**\n",
   "bottlesCaught": "• ملی: {count} اشیاء\n",
   "bottlesThrown": "• پھینکی گئی: {count} اشیاء\n",
   "catch": "• کل پکڑی گئی بوتلیں کل: {stats.caughtBottles}\n\n",

@@ -13,7 +13,7 @@ export default {
   "bloodType": "✅ Groupe sanguin mis à jour à {getBloodTypeDisplay(bloodType as any)}",
   "bloodType2": "✅ Groupe sanguin effacé",
   "bottle": "✅ Récompense émise ! +1 bouteille à message",
-  "bottle2": "✅ Nouvelle bouteille à message commencée",
+  "bottle2": "✅ Commencer une nouvelle bénédiction de Bouteille de Vœux",
   "bottle3": "✅ Bouteille à message créée\n",
   "broadcast": "✅ {ids.length} diffusions bloquées effacées\n\n",
   "broadcast2": "✅ Aucune diffusion à effacer\n\n",
@@ -95,7 +95,7 @@ export default {
     "bloodType": "✅ Groupe sanguin mis à jour en \\{getBloodTypeDisplay(bloodType as any)}",
     "bloodType2": "✅ Groupe sanguin effacé",
     "bottle": "✅ Récompense distribuée ! +1 bouteille à message",
-    "bottle2": "✅ Commencer une nouvelle bouteille à message",
+    "bottle2": "✅ Commencer une nouvelle bénédiction Bouteille de Vœux",
     "bottle3": "✅ Bouteille à message créée\n",
     "broadcast": "✅ Effacé \\{ids.length} diffusions bloquées\n\n",
     "broadcast2": "✅ Aucune diffusion à nettoyer\n\n",
@@ -238,6 +238,6 @@ export default {
   "verify2": "✅ Vérification réussie ! Reçu +\\{ad.reward_quota} quota permanent !",
   "vip": "✅ Tous les messages sont à jour (statut VIP correct)\n",
   "zodiac": "✅ Sélection du zodiaque effacée",
-  "bottleThrown": "🍾 Bouteille à message lancée !",
+  "bottleThrown": "✅ La Bouteille de Vœux a été jetée !",
   "saved": "✅ Paramètres enregistrés"
 };

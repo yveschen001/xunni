@@ -8,15 +8,15 @@ export default {
     "love_match": "Kompatibilita páru",
     "love_ideal": "Analýza ideálneho typu"
   },
-  "back_to_menu": "🔙 Vrátiť sa do menu AI veštenia",
-  "get_more_bottles": "💎 Získajte viac šťastných správnych fliaš",
+  "back_to_menu": "🔙 Vrátiť sa do ponuky Psychic Readingkých čítaní",
+  "get_more_bottles": "💎 Získaj viac Fortune Bottles",
   "relationship": {
     "love": "Pár",
     "friend": "Priatelia",
     "family": "Rodina",
     "work": "Kolegovia"
   },
-  "menuTitle": "AI veštenie",
+  "menuTitle": "Psychic Reading",
   "currentProfile": "Aktuálny profil",
   "warehouse": "Úložisko astrologických diagramov",
   "manageProfiles": "Spravovať astrologické diagramy",
@@ -148,21 +148,21 @@ export default {
   },
   "dailyPush": "📅 Dnešný horoskop bol doručený!",
   "dailyPushBtn": "👇 Kliknite na zobrazenie",
-  "backToMenu": "🔙 Návrat do ponuky AI Veštenia",
+  "backToMenu": "🔙 Späť do ponuky Psychic Readingkých čítaní",
   "addProfile": "Pridať grafový súbor",
-  "quotaDisplay": "🔮 Veštenie z fľaše s odkazmi: {total} (Tento týždeň zadarmo: {weekly}/{limit} | Dodatočne: {additional})",
-  "quotaDisplayVip": "🔮 spravodajská fľaša: {total} (Dnes: {daily}/1 | Dodatočné: {additional})",
-  "quotaDisplayFree": "🔮 spravodajská fľaša: {total} (Tento týždeň zadarmo: {weekly}/1 | Dodatočné: {additional})",
+  "quotaDisplay": "🔮 Fortune Bottles: {total} (Tento týždeň zadarmo: {weekly}/{limit} | Ďalšie: {additional})",
+  "quotaDisplayVip": "🔮 Fortune Bottles: {total} (Dnes: {daily}/1 | Ďalšie: {additional})",
+  "quotaDisplayFree": "🔮 Fortune Bottles: {total} (Tento týždeň zadarmo: {weekly}/1 | Ďalšie: {additional})",
   "profileDetails": "👤 {gender} {blood} | 🎂 {birthday} | {zodiac} | 🧠 {mbti}",
-  "getMore": "Získajte viac fortune telling fliaš",
-  "getMoreInfo": "🔮 *Ako získať fľašu šťastia?*\n\n1. **Týždenne zadarmo**: Bežní používatelia dostanú 1 za týždeň, VIP používatelia dostanú 1 za deň.\n2. **Odměny za pozvanie**: Pozvite priateľa, aby sa pridal, a keď sa mu úspešne podarí pozvať ďalšieho priateľa, dostanete odmenu (maximálne 1 fľaša šťastia v priebehu 24 hodín).\n3. **Odměny za správy v fľaši**: Za každých 10 odoslaných správnych fliaš dostanete 1 fľašu šťastia. (Maximálne 1 fľaša šťastia v priebehu 24 hodín)\n4. **Priamy nákup (🔥 Obmedzený čas 20% zľava)**:\n • Malý balíček {smallAmount} - ~{originalSmallPrice} Hvězd~ {smallPrice} Hvězd\n • Veľký balíček {largeAmount} - ~{originalLargePrice} Hvězd~ {largePrice} Hvězd",
+  "getMore": "Získaj viac Fortune Bottles",
+  "getMoreInfo": "🔮 *Ako získať Fortune Bottles?*\n\n1. **Týždenne zadarmo**: Bežní používatelia 1 kus týždenne, VIP 1 kus denne.\n2. **Odměna za pozvanie**: Ak pozvete priateľa a ten pozve ďalšieho priateľa, získate odmenu (max 1 Fortune Bottle za 24 hodín).\n3. **Odměna za zaslanie Blessing Bottles**: Za každých 10 zaslaných Blessing Bottles získate 1 Fortune Bottle. (max 1 Fortune Bottle za 24 hodín)\n4. **Priama kúpa (🔥 limitovaná akcia 20% zľava)**:\n   • Malý balík {smallAmount} kusov - ~{originalSmallPrice} Stars~ {smallPrice} Stars\n   • Veľký balík {largeAmount} kusov - ~{originalLargePrice} Stars~ {largePrice} Stars",
   "buySmall": "🔥 Špeciálna cena {price} Hviezd (Kúpte {amount} položiek)",
   "buyLarge": "🔥 Špeciálna cena {price} Hviezd (Kúpte {amount} položiek)",
-  "invoiceTitle": "Kúpte {amount} fľašiek šťastia",
-  "invoiceDesc": "Po zakúpení môžete ihneď začať používať službu AI veštenia a každé veštenie spotrebuje 1 fľašku šťastia.\n\nKliknite na tlačidlo nižšie a zakúpte teraz:",
-  "purchaseSuccess": "🎉 Nákup bol úspešný! {amount} fľašiek šťastia bolo pridaných.",
-  "bottleReward": "🎉 Gratulujeme! Poslali ste {count} fľašiek šťastia a dostali ste 1 odmenu fľašku šťastia!",
-  "inviteChainReward": "🎉 Gratulujeme! Váš pozvaný priateľ úspešne pozval nového priateľa, a dostali ste 1 odmenu fľašku šťastia!",
+  "invoiceTitle": "Kúpa {amount} Fortune Bottles",
+  "invoiceDesc": "Po zakúpení môžete okamžite používať duchovné veštenie, každé duchovné veštenie spotrebuje 1 Fortune Bottle.\n\nOkamžite stlačte tlačidlo nižšie na kúpu:",
+  "purchaseSuccess": "🎉 Nákup úspešný! Pridaných {amount} Fortune Bottles.",
+  "bottleReward": "🎉 Gratulujeme! Poslali ste {count} Blessing Bottles a získali 1 Fortune Bottle odmenu!",
+  "inviteChainReward": "🎉 Gratulujeme! Váš pozvaný priateľ úspešne pozval nového priateľa, získavate 1 Fortune Bottle odmenu!",
   "menu": {
     "love": "Diagnóza atribútov (Zladovanie vzťahov)",
     "attribute_desc": "Analyzujte svoje romantické atribúty a potenciálne vlastnosti.",
@@ -190,7 +190,9 @@ export default {
     "match_report_title": "💞 Správa o synastrii páru",
     "wait_for_consent": "⏳ Čakáme na súhlas druhej strany...",
     "consent_accepted": "✅ Druhá strana súhlasila! Generujeme správu...",
-    "consent_rejected": "❌ Druhá strana zamietla žiadosť o synastriu."
+    "consent_rejected": "❌ Druhá strana zamietla žiadosť o synastriu.",
+    "invite_friend": "📨 Invite Friend to Experience",
+    "invite_friend_text": "Hey! I want to try the Compatibility Test with you. Create your fortune profile now!"
   },
   "role": {
     "husband": "Manžel",
@@ -228,12 +230,26 @@ export default {
       "drawn": "🎴 Karty boli vytiahnuté:"
     }
   },
-  "profile_incomplete_hint": "💡 Pre sprístupnením presnejších služieb AI veštenia prosím najprv vyplňte svoje záujmy, profesiu alebo informácie o MBTI.",
+  "profile_incomplete_hint": "💡 Aby sme poskytli presnejšiu službu duchovného veštenia, najprv prosím vyplňte svoje záujmy, profesiu alebo MBTI ... a ďalšie informácie.",
   "tarot_menu_title": "Tarotové karty",
   "tarot_ui": {
     "intro": "🔮 *Výklad Tarotu*\n\nProsím, potichu si premyslite svoju otázku (napr. \"Aká je moja pracovná šťastena v poslednom čase?\" alebo \"Ako by som mal naložiť s týmto vzťahom?\") a sústreďte sa pred kliknutím na tlačidlo nižšie na ťahanie kariet.",
     "draw": "🔮 ťahať karty",
     "shuffling": "Miešanie...",
     "drawn": "🎴 Karty boli ťahané:"
+  },
+  "profileUpdated": "✅ Astrologický profil bol aktualizovaný!",
+  "btn_complete_info": "✏️ Doplnte svoje údaje o narodení",
+  "complete_info_hint": "💡 Dokončite svoj čas a miesto narodenia, aby ste odomkli analýzu vzostupného znamenia a domov!",
+  "btn_edit_info": "📝 Upravte údaje o narodení",
+  "edit": {
+    "currentInfo": "📋 Aktuálne informácie:",
+    "currentTime": "Čas narodenia: {time}",
+    "currentTimeUnknown": "Čas narodenia: Neistý",
+    "currentCity": "Mesto narodenia: {city}",
+    "currentCityUnknown": "Mesto narodenia: Nep nastavené",
+    "confirmEdit": "Chcete upraviť vyššie uvedené informácie?",
+    "btnConfirmEdit": "✅ Áno, chcem upraviť",
+    "btnCancelEdit": "❌ Zrušiť"
   }
 };

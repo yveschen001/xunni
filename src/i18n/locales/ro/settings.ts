@@ -27,6 +27,8 @@ export default {
   "selectEndHour": "☀️ Ora de început setată la {start}:00.\nVă rugăm să alegeți ora de final pentru orele de liniște:\n(Notificările vor relua după această oră)",
   "disabled": "🚫 Orele de liniște au fost dezactivate",
   "quietHoursHint": "Nu vei primi notificări neurgente în această perioadă",
+  "quietHoursVipOnly": "🔒 Ore liniștite (exclusiv VIP)",
+  "upgradeForQuietHours": "Upgradează-te la VIP pentru a seta ore liniștite și a evita deranjarea în timpul pauzelor!",
   "blocklist": {
     "title": "🚫 Lista de blocare",
     "empty": "În prezent nu există nicio listă de blocare",

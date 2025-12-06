@@ -34,6 +34,11 @@ export async function handleSeedUser(request: Request, env: Env): Promise<Respon
 
     // Insert fake user
     const now = new Date().toISOString();
+    
+    // Clean up existing state for clean testing
+    await db.d1.prepare('DELETE FROM daily_usage WHERE telegram_id = ?').bind(user.telegram_id).run();
+    await db.d1.prepare('DELETE FROM user_sessions WHERE telegram_id = ?').bind(user.telegram_id).run();
+    
     await db.d1
       .prepare(
         `INSERT INTO users (
@@ -129,6 +134,21 @@ export async function handleSeedConversation(request: Request, env: Env): Promis
       .first<{ id: number }>();
 
     if (!result) throw new Error('Failed to create conversation');
+
+    // Create Identifiers (A <-> B)
+    // For User A: Partner is User B -> Identifier 'A'
+    await db.d1.prepare(`
+      INSERT INTO conversation_identifiers (user_telegram_id, partner_telegram_id, identifier, first_conversation_id)
+      VALUES (?, ?, ?, ?)
+      ON CONFLICT(user_telegram_id, partner_telegram_id) DO NOTHING
+    `).bind(data.user_a_id, data.user_b_id, 'A', result.id).run();
+
+    // For User B: Partner is User A -> Identifier 'A'
+    await db.d1.prepare(`
+      INSERT INTO conversation_identifiers (user_telegram_id, partner_telegram_id, identifier, first_conversation_id)
+      VALUES (?, ?, ?, ?)
+      ON CONFLICT(user_telegram_id, partner_telegram_id) DO NOTHING
+    `).bind(data.user_b_id, data.user_a_id, 'A', result.id).run();
 
     return new Response(JSON.stringify({ success: true, conversation_id: result.id }), {
       status: 200,

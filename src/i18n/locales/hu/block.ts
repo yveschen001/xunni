@@ -1,6 +1,6 @@
 export default {
   "cannotIdentify": "⚠️ Nem sikerült felismerni a beszélgetőpartnert.",
-  "catchNewBottle": "💡 Használja a /catch parancsot, hogy új message bottle-t válasszon és új beszélgetést kezdjen.",
+  "catchNewBottle": "💡 Kívánság Palack",
   "conversationInfoError": "⚠️ A beszélgetési információk helytelenek.",
   "conversationMayEnded": "A beszélgetés véget ért, vagy nem létezik.",
   "conversationNotFound": "⚠️ Ez a beszélgetés nem található.",
@@ -12,5 +12,5 @@ export default {
   "step3": "3️⃣ Írja be: /block.",
   "steps": "**Műveletek lépései:**",
   "success": "✅ Ezt a felhasználót letiltottuk (#{identifier})",
-  "willNotMatch": "Többé nem lesznek egymás message bottle-jai."
+  "willNotMatch": "Ti többé nem fogtok illeszkedni egymás Kívánság Palackjához."
 };

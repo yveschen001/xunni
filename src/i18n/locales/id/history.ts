@@ -19,7 +19,7 @@ export default {
   "noMessages": "(Tidak ada pesan)",
   "partnerMessages": "• Mereka mengirim: {count}\n",
   "recentMessages": "📨 **Percakapan Terbaru:**\n\n",
-  "returnToMenu": "🏠 Kembali ke Menu Utama: /menu",
+  "returnToMenu": "🏠 Menu Utama",
   "returnToMenuButton": "🏠 Kembali ke Menu Utama",
   "stats": "📊 **Statistik:**\n",
   "time": "Waktu: {time}\n\n",

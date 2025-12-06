@@ -3,7 +3,7 @@ export default {
   "label_industry": "你主要从事的产业是？",
   "btn_edit_role": "💼 编辑职业身份",
   "btn_edit_industry": "🏢 编辑所属产业",
-  "profile_incomplete_hint": "💡 为了提供更精准的 AI 算命服务，请先完善您的个人资料。",
+  "profile_incomplete_hint": "💡 为了提供更精准的灵能算命服务，请先完善您的个人资料。",
   "role": {
     "employee": "上班族",
     "freelancer": "自由工作者 / SOHO",
@@ -167,4 +167,6 @@ export default {
     }
   },
   "next_step_industry": "接下来请选择您的行业类别："
+,
+  "back_to_categories": "Back to Industries"
 };

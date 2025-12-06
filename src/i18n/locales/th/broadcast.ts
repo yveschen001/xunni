@@ -68,7 +68,7 @@ export default {
     "zodiacVirgo": "ราศีกันย์"
   },
   "filterAge": "• อายุ=18-25\n",
-  "filterCommand": "/broadcast_filter <filter> <msg_content> ",
+  "filterCommand": "/broadcast_filter <filter> <msg_content>",
   "filterConfirmConditions": "**เงื่อนไขการกรอง:**\n{conditions}\n\n",
   "filterConfirmMessage": "**เนื้อหาข้อความ:**\n{message}\n\n",
   "filterConfirmTitle": "🔍 **การยืนยันการกรองการเผยแพร่**\n\n",

@@ -122,7 +122,7 @@ export default {
       "body": "{userAttribute},\nEnligt analysen har du den starkaste förbindelsen med {recommendedAttributes}!\n\n💡 {reason}\n\n👇 Känns du dig lycklig?"
     },
     "btn": {
-      "throw": "🌊 Kasta en flaska och ta en chans",
+      "throw": "🌊 Kasta en välsignelse med meddelandeflaskan, önska andra väl, och lyckan kommer att återvända till dig själv.",
       "vip_throw": "🎯 Kasta till {target}",
       "vip_upsell": "💡 Uppgradera till VIP för att ange leverans till {target}, för exakt matchning!"
     }

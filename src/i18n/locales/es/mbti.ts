@@ -266,5 +266,24 @@ export default {
     "startButton": "📊 Empezar el test",
     "resultTitle": "¡Mi resultado del test MBTI es {type}!",
     "resultDesc": "¡Tú también deberías probar el test～"
-  }
+  },
+  "titles": {
+
+  "INTJ": "Arquitecto",
+  "INTP": "Lógico",
+  "ENTJ": "Comandante",
+  "ENTP": "Debatidor",
+  "INFJ": "Defensor",
+  "INFP": "Mediador",
+  "ENFJ": "Protagonista",
+  "ENFP": "Campañista",
+  "ISTJ": "Logístico",
+  "ISFJ": "Defensor",
+  "ESTJ": "Ejecutivo",
+  "ESFJ": "Cónsul",
+  "ISTP": "Virtuoso",
+  "ISFP": "Aventurero",
+  "ESTP": "Empresario",
+  "ESFP": "Entretenedor"
+  },
 };

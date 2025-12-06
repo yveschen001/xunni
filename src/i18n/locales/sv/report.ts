@@ -4,7 +4,7 @@ export default {
   "cancel": "❌ Avbryt",
   "cancelled": "Avbruten",
   "cannotIdentify": "⚠️ Kan inte identifiera chattpartner\n\n",
-  "catchHint": "• Använd /catch för att plocka en ny flaskpost",
+  "catchHint": "• Använd Önskeflaska för att fånga en ny Önskeflaska",
   "completeOnboarding": "⚠️ Vänligen slutför registreringsprocessen först.\n\nAnvänd /start för att fortsätta registreringen.",
   "conversationInfoError": "⚠️ Samtalsinformation är felaktig.",
   "conversationInfoError2": "⚠️ Samtalsinformation är felaktig",

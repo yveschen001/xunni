@@ -13,7 +13,7 @@ export default {
   "bloodType": "✅ Gruppo sanguigno aggiornato a {getBloodTypeDisplay(bloodType as any)}",
   "bloodType2": "✅ Gruppo sanguigno cancellato",
   "bottle": "✅ Ricompensa emessa! +1 bottiglia di messaggi",
-  "bottle2": "✅ Iniziata una nuova bottiglia di messaggi",
+  "bottle2": "✅ Inizia una nuova benedizione con la Bottiglia dei Desideri",
   "bottle3": "✅ Bottiglia di messaggi creata\n",
   "broadcast": "✅ {ids.length} trasmissioni bloccate liberate\n\n",
   "broadcast2": "✅ Nessuna trasmissione necessita di essere liberata\n\n",
@@ -95,7 +95,7 @@ export default {
     "bloodType": "✅ Tipo di sangue aggiornato a \\{getBloodTypeDisplay(bloodType as any)}",
     "bloodType2": "✅ Tipo di sangue cancellato",
     "bottle": "✅ Ricompensa distribuita! +1 bottiglia di messaggi",
-    "bottle2": "✅ Inizia una nuova bottiglia di messaggi",
+    "bottle2": "✅ Inizia una nuova benedizione Bottiglia dei Desideri",
     "bottle3": "✅ Bottiglia di messaggi creata\n",
     "broadcast": "✅ Eliminato \\{ids.length} broadcast bloccati\n\n",
     "broadcast2": "✅ Nessun broadcast da pulire\n\n",
@@ -238,6 +238,6 @@ export default {
   "verify2": "✅ Verifica riuscita! Ricevuto +\\{ad.reward_quota} quota permanente!",
   "vip": "✅ Tutti i post sono aggiornati (stato VIP corretto)\n",
   "zodiac": "✅ Selezione zodiacale cancellata",
-  "bottleThrown": "🍾 La bottiglia di messaggi è stata lanciata!",
+  "bottleThrown": "✅ La Bottiglia dei Desideri è stata lanciata!",
   "saved": "✅ Impostazioni salvate"
 };

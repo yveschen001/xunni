@@ -26,6 +26,16 @@ export async function translateWithOpenAI(
     throw new Error('OPENAI_API_KEY not configured');
   }
 
+  // Get models from env or use defaults
+  // Recommended order: cheapest/fastest -> better quality if needed, OR quality -> backup
+  // User asked for "try cheapest first", but for VIP usually we want quality.
+  // However, GPT-4o-mini IS the cheapest and fastest modern model.
+  // Fallbacks could be gpt-3.5-turbo.
+  const DEFAULT_OPENAI_MODELS = ['gpt-4o-mini', 'gpt-3.5-turbo'];
+  const modelList = env.OPENAI_MODELS
+    ? env.OPENAI_MODELS.split(',').map((m) => m.trim()).filter(Boolean)
+    : DEFAULT_OPENAI_MODELS;
+
   // Build language map for better localization (34 languages)
   const languageMap: Record<string, string> = {
     'zh-TW': 'Traditional Chinese (Taiwan)',
@@ -84,66 +94,75 @@ CRITICAL RULES:
 Text to translate:
 ${text}`;
 
-  try {
-    const response = await fetch('https://api.openai.com/v1/chat/completions', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        Authorization: `Bearer ${apiKey}`,
-      },
-      body: JSON.stringify({
-        model: 'gpt-4o-mini',
-        messages: [
-          {
-            role: 'system',
-            content:
-              'You are a professional translator. Your task is to translate text accurately and naturally. Return ONLY the translated text without any explanations, notes, or meta-commentary.',
-          },
-          {
-            role: 'user',
-            content: prompt,
-          },
-        ],
-        temperature: 0.3,
-        max_tokens: 500,
-      }),
-      signal: AbortSignal.timeout(5000), // 5s timeout
-    });
+  let lastError: unknown = null;
 
-    if (!response.ok) {
-      const error = await response.text();
-      throw new Error(`OpenAI API error: ${response.status} - ${error}`);
-    }
+  for (const model of modelList) {
+    try {
+      console.log(`[translateWithOpenAI] Trying model: ${model}`);
+      const response = await fetch('https://api.openai.com/v1/chat/completions', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${apiKey}`,
+        },
+        body: JSON.stringify({
+          model: model,
+          messages: [
+            {
+              role: 'system',
+              content:
+                'You are a professional translator. Your task is to translate text accurately and naturally. Return ONLY the translated text without any explanations, notes, or meta-commentary.',
+            },
+            {
+              role: 'user',
+              content: prompt,
+            },
+          ],
+          temperature: 0.3,
+          max_tokens: 500,
+        }),
+        signal: AbortSignal.timeout(10000), // 10s timeout (increased for reliability)
+      });
 
-    interface OpenAITranslationResponse {
-      choices?: Array<{
-        message?: {
-          content?: string;
+      if (!response.ok) {
+        const error = await response.text();
+        throw new Error(`OpenAI API error (${model}): ${response.status} - ${error}`);
+      }
+
+      interface OpenAITranslationResponse {
+        choices?: Array<{
+          message?: {
+            content?: string;
+          };
+        }>;
+        usage?: {
+          total_tokens?: number;
         };
-      }>;
-      usage?: {
-        total_tokens?: number;
+      }
+      const data = (await response.json()) as OpenAITranslationResponse;
+      const translatedText = data.choices?.[0]?.message?.content?.trim();
+
+      if (!translatedText) {
+        throw new Error(`Empty translation result from OpenAI model ${model}`);
+      }
+
+      // Estimate cost (tokens used)
+      const tokensUsed = data.usage?.total_tokens || 0;
+
+      return {
+        text: translatedText,
+        cost: tokensUsed,
+        sourceLanguage: sourceLanguage || 'auto',
       };
+    } catch (error) {
+      console.error(`[translateWithOpenAI] Error with model ${model}:`, error);
+      lastError = error;
+      // Continue to next model
     }
-    const data = (await response.json()) as OpenAITranslationResponse;
-    const translatedText = data.choices?.[0]?.message?.content?.trim();
-
-    if (!translatedText) {
-      throw new Error('Empty translation result from OpenAI');
-    }
-
-    // Estimate cost (tokens used)
-    const tokensUsed = data.usage?.total_tokens || 0;
-
-    return {
-      text: translatedText,
-      cost: tokensUsed,
-      sourceLanguage: sourceLanguage || 'auto',
-    };
-  } catch (error) {
-    console.error('[translateWithOpenAI] Error:', error);
-    throw error;
   }
+
+  // If all models fail
+  throw lastError || new Error('All OpenAI models failed');
 }
 
 /**

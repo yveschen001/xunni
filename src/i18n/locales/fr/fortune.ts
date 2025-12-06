@@ -8,15 +8,15 @@ export default {
     "love_match": "Compatibilité de couple",
     "love_ideal": "Analyse du type idéal"
   },
-  "back_to_menu": "🔙 Retour au menu de divination par IA",
-  "get_more_bottles": "💎 Acquérir plus de bouteilles à message de voyance",
+  "back_to_menu": "🔙 Retour au menu de lecture psychique",
+  "get_more_bottles": "💎 Obtenir plus de bouteilles de bonne aventure",
   "relationship": {
     "love": "Couple",
     "friend": "Amis",
     "family": "Famille",
     "work": "Collègues"
   },
-  "menuTitle": "Divination par IA",
+  "menuTitle": "Voyance",
   "currentProfile": "Profil actuel",
   "warehouse": "Stockage de carte de naissance",
   "manageProfiles": "Gérer les cartes de naissance",
@@ -148,20 +148,20 @@ export default {
   },
   "dailyPush": "📅 L'horoscope du jour a été délivré !",
   "dailyPushBtn": "👇 Cliquez pour voir",
-  "backToMenu": "🔙 Retour au menu de divination AI",
+  "backToMenu": "🔙 Retour au Menu de Lecture Psychique",
   "addProfile": "Ajouter un fichier de tableau",
   "quotaDisplay": "🔮 Prédiction de la bouteille de bonne aventure: {total} (Cette semaine gratuite: {weekly}/{limit} | Supplémentaire: {additional})",
   "quotaDisplayVip": "🔮 bouteille de bonne aventure: {total} (Aujourd'hui: {daily}/1 | Supplémentaire: {additional})",
   "quotaDisplayFree": "🔮 bouteille de bonne aventure: {total} (Cette semaine gratuite: {weekly}/1 | Supplémentaire: {additional})",
   "profileDetails": "👤 {gender} {blood} | 🎂 {birthday} | {zodiac} | 🧠 {mbti}",
-  "getMore": "Obtenez plus de bouteilles à message",
-  "getMoreInfo": "🔮 *Comment obtenir une bouteille de bonne aventure ?*\n\n1. **Gratuit Hebdomadaire** : Les utilisateurs réguliers reçoivent 1 par semaine, les VIP en reçoivent 1 par jour.\n2. **Récompenses d'Invitation** : Invitez un ami à rejoindre, et lorsqu'il réussit à inviter un autre ami, vous recevrez une récompense (jusqu'à 1 bouteille de bonne aventure dans les 24 heures).\n3. **Récompenses bouteille de bonne aventure** : Pour chaque 10 bouteilles à messages envoyées, recevez 1 bouteille de bonne aventure. (Jusqu'à 1 bouteille de bonne aventure dans les 24 heures)\n4. **Achat Direct (🔥 Promotion Limitée 20 % de Réduction)** :\n • Petit Forfait {smallAmount} - ~{originalSmallPrice} Étoiles~ {smallPrice} Étoiles\n • Grand Forfait {largeAmount} - ~{originalLargePrice} Étoiles~ {largePrice} Étoiles",
+  "getMore": "Obtenir plus de bouteilles de bonne aventure",
+  "getMoreInfo": "🔮 *Comment obtenir des bouteilles de bonne aventure ?*\n\n1. **Gratuit chaque semaine** : Utilisateurs normaux 1 par semaine, VIP 1 par jour.\n2. **Récompense d'invitation** : Invitez un ami à rejoindre, et si cet ami invite aussi un autre ami, vous recevrez une récompense (1 bouteille de bonne aventure dans les 24 heures maximum).\n3. **Récompense de bouteilles de vœux** : Pour chaque 10 Bouteilles de Vœux envoyées, vous recevrez 1 bouteille de bonne aventure.(1 bouteille de bonne aventure dans les 24 heures maximum)\n4. **Achat direct (🔥 Promotion temporaire 20% de réduction)** :\n   • Petit paquet {smallAmount} - ~{originalSmallPrice} Stars~ {smallPrice} Stars\n   • Grand paquet {largeAmount} - ~{originalLargePrice} Stars~ {largePrice} Stars",
   "buySmall": "🔥 Prix spécial {price} étoiles (Achetez {amount} articles)",
   "buyLarge": "🔥 Prix spécial {price} étoiles (Achetez {amount} articles)",
-  "invoiceTitle": "Achetez {amount} bouteilles à message",
-  "invoiceDesc": "Après l'achat, vous pouvez immédiatement utiliser le service de divination par IA, et chaque service de divination consomme 1 bouteille de bonne aventure.\n\nCliquez sur le bouton ci-dessous pour acheter maintenant :",
-  "purchaseSuccess": "🎉 Achat réussi ! {amount} bouteilles à message ont été ajoutées.",
-  "bottleReward": "🎉 Félicitations ! Vous avez envoyé {count} bouteilles à message et reçu 1 bouteille de bonne aventure en récompense !",
+  "invoiceTitle": "Acheter {amount} bouteilles de bonne aventure",
+  "invoiceDesc": "Après l'achat, vous pouvez utiliser immédiatement le service de bonne aventure, chaque service consommant 1 bouteille de bonne aventure.\n\nCliquez sur le bouton ci-dessous pour acheter :",
+  "purchaseSuccess": "🎉 Achat réussi ! {amount} bouteilles de bonne aventure ajoutées.",
+  "bottleReward": "🎉 Félicitations ! Vous avez envoyé {count} Bouteilles de Vœux et reçu 1 bouteille de bonne aventure en récompense !",
   "inviteChainReward": "🎉 Félicitations ! Votre ami invité a réussi à inviter un nouvel ami à rejoindre, et vous avez reçu 1 bouteille de bonne aventure en récompense !",
   "menu": {
     "love": "Diagnostic d'attribut (Appariement relationnel)",
@@ -190,7 +190,9 @@ export default {
     "match_report_title": "💞 Rapport de synastrie du couple",
     "wait_for_consent": "⏳ Attente de l'accord de l'autre partie...",
     "consent_accepted": "✅ L'autre partie a accepté ! Génération du rapport...",
-    "consent_rejected": "❌ L'autre partie a rejeté la demande de synastrie."
+    "consent_rejected": "❌ L'autre partie a rejeté la demande de synastrie.",
+    "invite_friend": "📨 Invite Friend to Experience",
+    "invite_friend_text": "Hey! I want to try the Compatibility Test with you. Create your fortune profile now!"
   },
   "role": {
     "husband": "Mari",
@@ -228,12 +230,26 @@ export default {
       "drawn": "🎴 Les cartes ont été tirées :"
     }
   },
-  "profile_incomplete_hint": "💡 Pour fournir des services de voyance AI plus précis, veuillez d'abord compléter vos intérêts, profession ou informations MBTI.",
+  "profile_incomplete_hint": "💡 Pour fournir un service de Voyance spirituelle plus précis, veuillez d'abord remplir vos intérêts, profession ou MBTI ... et d'autres informations.",
   "tarot_menu_title": "Cartes de Tarot",
   "tarot_ui": {
     "intro": "🔮 *Lecture de Tarot*\n\nVeuillez penser silencieusement à votre question (par exemple, \"Comment se porte ma chance au travail récemment ?\" ou \"Comment devrais-je gérer cette relation ?\") et concentrez-vous avant de cliquer sur le bouton ci-dessous pour tirer des cartes.",
     "draw": "🔮 Tirer des cartes",
     "shuffling": "Mélange...",
     "drawn": "🎴 Les cartes ont été tirées :"
+  },
+  "profileUpdated": "✅ Le profil astrologique a été mis à jour !",
+  "btn_complete_info": "✏️ Complétez vos informations de naissance",
+  "complete_info_hint": "💡 Parfaitifiez votre heure et votre lieu de naissance pour débloquer l'analyse du signe ascendant et des maisons !",
+  "btn_edit_info": "📝 Modifiez les informations de naissance",
+  "edit": {
+    "currentInfo": "📋 Informations Actuelles :",
+    "currentTime": "Heure de Naissance : {time}",
+    "currentTimeUnknown": "Heure de Naissance : Incertaine",
+    "currentCity": "Ville de Naissance : {city}",
+    "currentCityUnknown": "Ville de Naissance : Non Définie",
+    "confirmEdit": "Souhaitez-vous modifier les informations ci-dessus ?",
+    "btnConfirmEdit": "✅ Oui, je souhaite modifier",
+    "btnCancelEdit": "❌ Annuler"
   }
 };

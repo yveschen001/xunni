@@ -27,6 +27,8 @@ export default {
   "selectEndHour": "☀️ Starttid inställd på {start}:00.\nVänligen välj sluttiden för tysta timmar:\n(Notiser återupptas efter denna tid)",
   "disabled": "🚫 Tysta timmar har inaktiverats",
   "quietHoursHint": "Du kommer inte att få icke-brådskande meddelanden under denna period",
+  "quietHoursVipOnly": "🔒 Tysta timmar (endast VIP)",
+  "upgradeForQuietHours": "Uppgradera till VIP för att ställa in tysta timmar och undvik störningar under vila!",
   "blocklist": {
     "title": "🚫 Blocklista",
     "empty": "För närvarande ingen blocklista",

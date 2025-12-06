@@ -141,7 +141,10 @@ async function showFortuneMenu(chatId: number, telegramId: string, env: Env, i18
   const ownerName = user?.nickname || user?.first_name || 'User';
   
   // Profile Details Line
-  const profileDetails = `👤 ${profile.gender === 'male' ? '♂️' : '♀️'} | 🎂 ${profile.birth_date} | ${zodiac} | 🩸 ${user?.blood_type || '?'} | 🧠 ${user?.mbti_result || '?'}`;
+  const timeDisplay = (!profile.is_birth_time_unknown && profile.birth_time) ? profile.birth_time : i18n.t('fortune.unknownTimeShort');
+  const cityDisplay = profile.birth_city || i18n.t('fortune.unknownCityShort');
+  
+  const profileDetails = `👤 ${profile.gender === 'male' ? '♂️' : '♀️'} | 🎂 ${profile.birth_date} ${timeDisplay} | 📍 ${cityDisplay}\n${zodiac} | 🩸 ${user?.blood_type || '?'} | 🧠 ${user?.mbti_result || '?'}`;
 
   // Quota Line
   const quotaKey = isVip ? 'fortune.quotaDisplayVip' : 'fortune.quotaDisplayFree';
@@ -165,6 +168,12 @@ async function showFortuneMenu(chatId: number, telegramId: string, env: Env, i18
   header += `${profileDetails}\n`;
   header += `${quotaText}\n`;
   
+  // 5. Check Data Completeness for Hint (If missing Time/City)
+  const isDataIncomplete = profile.is_birth_time_unknown || !profile.birth_city;
+  if (isDataIncomplete) {
+    header += `\n${i18n.t('fortune.complete_info_hint')}`;
+  }
+
   if (!profile.is_default) {
     header += `\n💡 ${i18n.t('fortune.revertHint')}`;
   }
@@ -199,15 +208,23 @@ async function showFortuneMenu(chatId: number, telegramId: string, env: Env, i18
     // Manage (Row 6)
     [
       { text: `⚙️ ${i18n.t('fortune.warehouse')}`, callback_data: 'fortune_profiles' }
-    ],
-    // Subscribe/Get More (Row 6)
+    ]
+  ];
+
+  // Always show Edit Button (users may want to correct or confirm)
+  buttons.push([
+      { text: i18n.t('fortune.btn_edit_info'), callback_data: `fortune_edit_time_geo:${profile.id}` }
+  ]);
+
+  buttons.push(
+    // Subscribe/Get More (Row 7)
     [
       { text: `🛒 ${i18n.t('fortune.getMore')}`, callback_data: 'fortune_get_more' }
     ],
     [
       { text: i18n.t('buttons.returnToMenu'), callback_data: 'return_to_menu' }
     ]
-  ];
+  );
 
   await telegram.sendMessageWithButtons(chatId, text, buttons);
 }
@@ -300,6 +317,86 @@ async function startSelfProfileWizard(chatId: number, telegramId: string, env: E
   await telegram.sendMessage(chatId, i18n.t('fortune.onboarding.input_time_hint')); // Corrected key to input_time_hint
 }
 
+async function startEditProfileTimeGeo(chatId: number, telegramId: string, env: Env, i18n: any, profileId: number) {
+  const db = createDatabaseClient(env.DB);
+  const telegram = createTelegramService(env);
+  const service = new FortuneService(env, db.d1);
+
+  const profiles = await service.getProfiles(telegramId);
+  const profile = profiles.find(p => p.id === profileId);
+  if (!profile) return;
+
+  // Check if profile already has time/city data
+  const hasTime = !profile.is_birth_time_unknown && profile.birth_time;
+  const hasCity = !!profile.birth_city;
+
+  // If has existing data, show current info and ask for confirmation
+  if (hasTime || hasCity) {
+    let currentInfo = i18n.t('fortune.edit.currentInfo') + '\n\n';
+    
+    // Show current time
+    if (hasTime) {
+      currentInfo += `⏰ ${i18n.t('fortune.edit.currentTime', { time: profile.birth_time })}\n`;
+    } else {
+      currentInfo += `⏰ ${i18n.t('fortune.edit.currentTimeUnknown')}\n`;
+    }
+    
+    // Show current city
+    if (hasCity) {
+      currentInfo += `📍 ${i18n.t('fortune.edit.currentCity', { city: profile.birth_city })}\n`;
+    } else {
+      currentInfo += `📍 ${i18n.t('fortune.edit.currentCityUnknown')}\n`;
+    }
+    
+    currentInfo += `\n${i18n.t('fortune.edit.confirmEdit')}`;
+    
+    // Initialize Edit Session (for later use)
+    await clearSession(db, telegramId, 'fortune_wizard');
+    const sessionData = {
+      mode: 'edit_time_geo',
+      profile_id: profileId,
+      step: 'confirm_edit', // New step: waiting for confirmation
+      name: profile.name,
+      gender: profile.gender,
+      birth_date: profile.birth_date,
+    };
+    await upsertSession(db, telegramId, 'fortune_wizard', sessionData);
+    
+    // Send confirmation message
+    await telegram.sendMessageWithButtons(chatId, currentInfo, [
+      [
+        { text: i18n.t('fortune.edit.btnConfirmEdit'), callback_data: `fortune_edit_confirm:${profileId}` },
+        { text: i18n.t('fortune.edit.btnCancelEdit'), callback_data: `fortune_edit_cancel:${profileId}` }
+      ]
+    ]);
+    return;
+  }
+
+  // If no existing data, proceed with normal flow
+  await clearSession(db, telegramId, 'fortune_wizard');
+  
+  // Initialize Edit Session
+  const sessionData = {
+    mode: 'edit_time_geo', // Flag to distinguish from new profile wizard
+    profile_id: profileId,
+    step: 'birth_time',
+    name: profile.name,
+    gender: profile.gender,
+    birth_date: profile.birth_date,
+    // We want to overwrite time/city
+  };
+  
+  await upsertSession(db, telegramId, 'fortune_wizard', sessionData);
+  
+  const msg = i18n.t('fortune.onboarding.askTime');
+
+  await telegram.sendMessageWithButtons(chatId, msg, [
+    [{ text: i18n.t('fortune.unknownTime'), callback_data: 'fortune_time_unknown' }]
+  ]);
+  // Hint message below buttons
+  await telegram.sendMessage(chatId, i18n.t('fortune.onboarding.input_time_hint'));
+}
+
 // ============================================================================
 // Input Handler (Text)
 // ============================================================================
@@ -339,6 +436,16 @@ export async function handleFortuneInput(message: TelegramMessage, env: Env): Pr
         const { LoveFortuneHandler } = await import('./fortune_love');
         const loveHandler = new LoveFortuneHandler(service, i18n, env);
         await loveHandler.handleMatchInputGeneric(message, env, text);
+        return true;
+      }
+
+      // Handle manual block input
+      if (sessionData && sessionData.step === 'block_manual_input') {
+        const { handleManualBlockInput } = await import('./settings_blocklist');
+        await handleManualBlockInput(message, env, text);
+        // Clear session after processing
+        const { clearSession } = await import('~/db/queries/sessions');
+        await clearSession(db, telegramId, 'fortune_input');
         return true;
       }
     } catch (e) {
@@ -854,8 +961,37 @@ export async function handleFortuneCallback(callbackQuery: TelegramCallbackQuery
         sessionData.birth_location_lat = city.lat;
         sessionData.birth_location_lng = city.lng;
         
-        // Finish
         const service = new FortuneService(env, db.d1);
+
+        // CHECK IF EDIT MODE
+        if (sessionData.mode === 'edit_time_geo' && sessionData.profile_id) {
+            await service.updateProfile(telegramId, sessionData.profile_id, {
+                birth_time: sessionData.birth_time,
+                is_birth_time_unknown: sessionData.is_birth_time_unknown,
+                birth_city: sessionData.birth_city,
+                birth_location_lat: sessionData.birth_location_lat,
+                birth_location_lng: sessionData.birth_location_lng
+            });
+            
+            await clearSession(db, telegramId, 'fortune_wizard');
+            
+            // Send Updated Success
+            await telegram.sendMessageWithButtons(
+                chatId, 
+                i18n.t('fortune.profileUpdated') || '✅ 命理檔案已更新！',
+                [[{ text: i18n.t('fortune.back_to_menu'), callback_data: 'return_to_menu' }]]
+            );
+            
+            // Show updated menu for this profile
+            const profiles = await service.getProfiles(telegramId);
+            const updatedProfile = profiles.find(p => p.id === sessionData.profile_id);
+            if (updatedProfile) {
+                await showFortuneMenu(chatId, telegramId, env, i18n, updatedProfile, user);
+            }
+            return;
+        }
+
+        // Finish (New Profile)
         await service.createProfile(telegramId, {
           name: sessionData.name,
           gender: sessionData.gender,
@@ -878,7 +1014,7 @@ export async function handleFortuneCallback(callbackQuery: TelegramCallbackQuery
         );
         
         // Auto-show menu (Fixing argument order bug)
-        await showFortuneMenu(chatId, telegramId, env, i18n, profiles[0]); // User will be refetched, acceptable for wizard end
+        await showFortuneMenu(chatId, telegramId, env, i18n, profiles[0], user); // User will be refetched, acceptable for wizard end
       }
     }
     return;
@@ -901,6 +1037,63 @@ export async function handleFortuneCallback(callbackQuery: TelegramCallbackQuery
     await telegram.answerCallbackQuery(callbackQuery.id, 
       newStatus ? i18n.t('fortune.subscribed') : i18n.t('fortune.unsubscribed')
     );
+    return;
+  }
+
+  // Edit Time/Geo Start (Upsell)
+  if (data.startsWith('fortune_edit_time_geo:')) {
+    const profileId = parseInt(data.replace('fortune_edit_time_geo:', ''));
+    await startEditProfileTimeGeo(chatId, telegramId, env, i18n, profileId);
+    await telegram.answerCallbackQuery(callbackQuery.id);
+    return;
+  }
+
+  // Edit Confirmation (User wants to edit existing data)
+  if (data.startsWith('fortune_edit_confirm:')) {
+    const profileId = parseInt(data.replace('fortune_edit_confirm:', ''));
+    const profiles = await service.getProfiles(telegramId);
+    const profile = profiles.find(p => p.id === profileId);
+    if (!profile) {
+      await telegram.answerCallbackQuery(callbackQuery.id);
+      return;
+    }
+
+    // Clear and restart edit session, proceed to time input
+    await clearSession(db, telegramId, 'fortune_wizard');
+    const sessionData = {
+      mode: 'edit_time_geo',
+      profile_id: profileId,
+      step: 'birth_time',
+      name: profile.name,
+      gender: profile.gender,
+      birth_date: profile.birth_date,
+    };
+    await upsertSession(db, telegramId, 'fortune_wizard', sessionData);
+
+    // Delete confirmation message and start edit flow
+    await telegram.deleteMessage(chatId, callbackQuery.message!.message_id);
+    const msg = i18n.t('fortune.onboarding.askTime');
+    await telegram.sendMessageWithButtons(chatId, msg, [
+      [{ text: i18n.t('fortune.unknownTime'), callback_data: 'fortune_time_unknown' }]
+    ]);
+    await telegram.sendMessage(chatId, i18n.t('fortune.onboarding.input_time_hint'));
+    await telegram.answerCallbackQuery(callbackQuery.id);
+    return;
+  }
+
+  // Edit Cancel (User doesn't want to edit)
+  if (data.startsWith('fortune_edit_cancel:')) {
+    const profileId = parseInt(data.replace('fortune_edit_cancel:', ''));
+    await clearSession(db, telegramId, 'fortune_wizard');
+    
+    // Delete confirmation message and show menu
+    await telegram.deleteMessage(chatId, callbackQuery.message!.message_id);
+    const profiles = await service.getProfiles(telegramId);
+    const profile = profiles.find(p => p.id === profileId);
+    if (profile) {
+      await showFortuneMenu(chatId, telegramId, env, i18n, profile, user);
+    }
+    await telegram.answerCallbackQuery(callbackQuery.id);
     return;
   }
 
@@ -1042,6 +1235,19 @@ export async function handleFortuneCallback(callbackQuery: TelegramCallbackQuery
           ]
         );
       } else {
+        // Log to Admin Group
+        try {
+          const { AdminLogService } = await import('~/services/admin_log');
+          const logService = new AdminLogService(env);
+          await logService.logError(e, { 
+              context: 'Fortune Generation Failed',
+              userId: telegramId,
+              type: type
+          });
+        } catch (logError) {
+          console.error('Failed to log to admin group:', logError);
+        }
+
         await telegram.sendMessage(chatId, i18n.t('errors.systemError'));
       }
     }
@@ -1069,10 +1275,22 @@ export async function handleFortuneCallback(callbackQuery: TelegramCallbackQuery
       // const flag = ...
       const genderIcon = p.gender === 'male' ? '♂️' : '♀️';
       
-      buttons.push([{
+      // Check if data is incomplete (for display hint, but button always shows)
+      const isDataIncomplete = p.is_birth_time_unknown || !p.birth_city;
+      
+      // Create row with profile name and "Edit Info" button (always visible)
+      const row: any[] = [{
         text: `${isDefault}${p.name} ${genderIcon}`,
         callback_data: `fortune_select_profile:${p.id}`
-      }]);
+      }];
+      
+      // Always show "Edit Info" button (users may want to correct or confirm)
+      row.push({
+        text: i18n.t('fortune.btn_edit_info'),
+        callback_data: `fortune_edit_time_geo:${p.id}`
+      });
+      
+      buttons.push(row);
     }
 
     // Add "New Profile" button

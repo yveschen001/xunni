@@ -4,7 +4,7 @@ export default {
   "cancel": "❌ Annuleren",
   "cancelled": "Geannuleerd",
   "cannotIdentify": "⚠️ Kan chatpartner niet identificeren\n\n",
-  "catchHint": "• Gebruik /catch om een nieuw berichtfles te pakken",
+  "catchHint": "• Gebruik /catch om nieuwe zegening Wensfless op te halen",
   "completeOnboarding": "⚠️ Voltooi eerst het registratieproces.\n\nGebruik /start om de registratie voort te zetten.",
   "conversationInfoError": "⚠️ Gespreksinformatie is onjuist.",
   "conversationInfoError2": "⚠️ Gespreksinformatie is onjuist",

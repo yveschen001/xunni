@@ -12,5 +12,6 @@ export default {
   "nicknameInputHint": "👇 Prosím, zadajte novú prezývku:",
   "bioInstruction": "Prosím, zadajte nový popis (maximálne 100 znakov).\n\nVáš aktuálny popis je: {bio}",
   "bioInputHint": "👇 Prosím, zadajte nový popis:",
-  "bloodTypeInstruction": "Prosím, vyberte svoj krvný typ:"
+  "bloodTypeInstruction": "Prosím, vyberte svoj krvný typ:",
+  "matchPrefInstruction": "Prosím, vyberte si svoje preferencie zhody:"
 };

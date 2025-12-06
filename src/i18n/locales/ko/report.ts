@@ -4,7 +4,7 @@ export default {
   "cancel": "❌ 취소",
   "cancelled": "취소됨",
   "cannotIdentify": "⚠️ 채팅 파트너를 식별할 수 없습니다\n\n",
-  "catchHint": "• /catch를 사용하여 새로운 메시지 병을 선택하세요.",
+  "catchHint": "• /catch 명령어를 사용하여 새로운 축복 축복의 병을 주워주세요.",
   "completeOnboarding": "⚠️ 먼저 등록 절차를 완료해 주세요.\n\n/시작을 사용하여 등록을 계속하세요.",
   "conversationInfoError": "⚠️ 대화 정보가 올바르지 않습니다.",
   "conversationInfoError2": "⚠️ 대화 정보가 올바르지 않습니다.",

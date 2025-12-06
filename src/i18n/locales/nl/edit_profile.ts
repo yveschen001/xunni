@@ -12,5 +12,6 @@ export default {
   "nicknameInputHint": "👇 Voer een nieuwe bijnaam in:",
   "bioInstruction": "Voer een nieuwe zelfintroductie in (maximaal 100 tekens).\n\nJe huidige zelfintroductie is: {bio}",
   "bioInputHint": "👇 Voer een nieuwe zelfintroductie in:",
-  "bloodTypeInstruction": "Selecteer je bloedgroep:"
+  "bloodTypeInstruction": "Selecteer je bloedgroep:",
+  "matchPrefInstruction": "Selecteer uw voorkeur voor matching:"
 };

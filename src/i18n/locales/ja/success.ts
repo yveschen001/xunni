@@ -13,7 +13,7 @@ export default {
   "bloodType": "✅ 血液型が{getBloodTypeDisplay(bloodType as any)}に更新されました",
   "bloodType2": "✅ 血液型がクリアされました",
   "bottle": "✅ 報酬が配布されました！+1 ボトルメール",
-  "bottle2": "✅ 新しいボトルメールを開始する",
+  "bottle2": "✅ 新しい祈りのボトルの祝福を開始",
   "bottle3": "✅ ボトルメールが作成されました\n",
   "broadcast": "✅ {ids.length}件のスタックした放送がクリアされました\n\n",
   "broadcast2": "✅ クリアする必要のある放送はありません\n\n",
@@ -95,7 +95,7 @@ export default {
     "bloodType": "✅ 血液型が \\{getBloodTypeDisplay(bloodType as any)} に更新されました",
     "bloodType2": "✅ 血液型がクリアされました",
     "bottle": "✅ 報酬が発行されました！ +1 ボトルメール",
-    "bottle2": "✅ 新しいボトルメールを作成します",
+    "bottle2": "✅ 新しい祈りのボトルを始める",
     "bottle3": "✅ ボトルメールが作成されました\n",
     "broadcast": "✅ \\{ids.length}件のスタックした放送がクリアされました\n\n",
     "broadcast2": "✅ クリアする放送はありません\n\n",
@@ -238,6 +238,6 @@ export default {
   "verify2": "✅ 検証に成功しました！ +\\{ad.reward_quota} の永久クォータを受け取りました！",
   "vip": "✅ すべての投稿が最新です（VIPステータスは正しいです）\n",
   "zodiac": "✅ 星座の選択がクリアされました",
-  "bottleThrown": "🍾 ボトルメールが投げられました！",
+  "bottleThrown": "✅ 祈りのボトルが投げられました！",
   "saved": "✅ 設定が保存されました"
 };

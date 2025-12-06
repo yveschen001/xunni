@@ -399,7 +399,7 @@ export async function getNextIncompleteTask(
     );
 
     // Pre-fetch stats for dynamic checks
-    let userStats: {
+    const userStats: {
       bottleCount?: number;
       catchCount?: number;
       conversationCount?: number;

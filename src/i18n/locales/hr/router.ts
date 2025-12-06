@@ -1,7 +1,7 @@
 export default {
   "replyPrompt": "💬 Odgovori",
-  "suggestCatch": "❓ Želite li preuzeti message bottle?\n\nKoristite /catch za preuzimanje message bottle\n\n💡 **Uobičajene naredbe**:\n• /throw - Bacite message bottle\n• /catch - Preuzmite message bottle\n• /menu - Glavni izbornik\n• /tasks - Centar za zadatke",
-  "suggestMenu": "❓ Naredba nije pronađena\n\n💡 **Uobičajene naredbe**:\n• /throw - Bacite message bottle\n• /catch - Preuzmite message bottle\n• /menu - Glavni izbornik\n• /tasks - Centar za zadatke",
-  "suggestThrow": "❓ Želite li baciti message bottle?\n\nMolimo duljim pritiskom odaberite prethodnu poruku, ili ovu poruku,\nodaberite 'Odgovori' iz izbornika,\nzatim unesite sadržaj message bottle koji želite poslati\n\n💡 **Uobičajene naredbe**:\n• /throw - Bacite message bottle\n• /catch - Preuzmite message bottle\n• /menu - Glavni izbornik\n• /tasks - Centar za zadatke\n\n#THROW",
-  "throwPrompt": "📝 Molimo unesite sadržaj vaše poruke boce:"
+  "suggestCatch": "❓ Želite uhvatiti Blessing Bottle?\n\nKoristite Catch za hvatanje Blessing Bottle\n\n💡 **Česte komande**：\n• Throw - Izbacite Blessing Bottle\n• Catch - Uhvatite Blessing Bottle\n• Main Menu - Glavni Meni\n• Tasks - Centar zadataka",
+  "suggestMenu": "❓ Ova komanda nije pronađena\n\n💡 **Česte komande**：\n• Throw - Izbacite Blessing Bottle\n• Catch - Uhvatite Blessing Bottle\n• Main Menu - Glavni Meni\n• Tasks - Centar zadataka",
+  "suggestThrow": "❓ Želite izbaciti Blessing Bottle?\n\nDugotrajno pritisnite prethodnu poruku ili ovu poruku,\niz menija odaberite 'Odgovori', a zatim\nunesite sadržaj Blessing Bottle koji želite poslati\n\n💡 **Česte komande**：\n• Throw - Izbacite Blessing Bottle\n• Catch - Uhvatite Blessing Bottle\n• Main Menu - Glavni Meni\n• Tasks - Centar zadataka\n\n#THROW",
+  "throwPrompt": "📝 Molimo unesite sadržaj vaše Blessing Bottle:"
 };

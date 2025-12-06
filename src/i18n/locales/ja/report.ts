@@ -4,7 +4,7 @@ export default {
   "cancel": "❌ キャンセル",
   "cancelled": "キャンセルしました",
   "cannotIdentify": "⚠️ チャット相手を特定できません\n\n",
-  "catchHint": "• /catch を使って新しいボトルメールを探します",
+  "catchHint": "• 使用 /catch 新しい祈りのボトルを拾う",
   "completeOnboarding": "⚠️ まず登録プロセスを完了してください。\n\n/register を使用して登録を続けます。",
   "conversationInfoError": "⚠️ 会話情報が不正確です。",
   "conversationInfoError2": "⚠️ 会話情報エラー",

@@ -4,7 +4,7 @@ export default {
   "cancel": "❌ لغو",
   "cancelled": "لغو شد",
   "cannotIdentify": "⚠️ نمی‌توان شریک چت را شناسایی کرد\n\n",
-  "catchHint": "• از /catch برای برداشتن بطری پیام جدید استفاده کنید",
+  "catchHint": "• استفاده از Catch Blessing Bottle برای جمع آوری بطری‌های برکت جدید",
   "completeOnboarding": "⚠️ لطفاً ابتدا فرآیند ثبت‌نام را کامل کنید.\n\nاز /start برای ادامه ثبت‌نام استفاده کنید.",
   "conversationInfoError": "⚠️ خطای اطلاعات مکالمه.",
   "conversationInfoError2": "⚠️ خطای اطلاعات مکالمه",

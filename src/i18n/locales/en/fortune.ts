@@ -8,7 +8,7 @@ export default {
     "love_match": "Couple compatibility",
     "love_ideal": "Ideal type analysis"
   },
-  "back_to_menu": "🔙 Return to AI fortune-telling menu",
+  "back_to_menu": "🔙 Return to Psychic Reading Menu",
   "get_more_bottles": "💎 Acquire more fortune-telling fortune bottles",
   "relationship": {
     "love": "Couple",
@@ -16,7 +16,7 @@ export default {
     "family": "Family",
     "work": "Colleagues"
   },
-  "menuTitle": "AI fortune-telling",
+  "menuTitle": "Psychic Reading",
   "currentProfile": "Current profile",
   "warehouse": "Birth chart storage",
   "manageProfiles": "Manage birth charts",
@@ -148,20 +148,20 @@ export default {
   },
   "dailyPush": "📅 Today's horoscope has been delivered!",
   "dailyPushBtn": "👇 Click to view",
-  "backToMenu": "🔙 Return to AI Fortune Telling Menu",
+  "backToMenu": "🔙 Back to the Psychic Reading Menu",
   "addProfile": "Add Chart File",
   "quotaDisplay": "🔮 Fortune Telling fortune bottle: {total} (This week free: {weekly}/{limit} | Additional: {additional})",
   "quotaDisplayVip": "🔮 fortune bottle: {total} (Today: {daily}/1 | Additional: {additional})",
   "quotaDisplayFree": "🔮 fortune bottle: {total} (This week free: {weekly}/1 | Additional: {additional})",
   "profileDetails": "👤 {gender} {blood} | 🎂 {birthday} | {zodiac} | 🧠 {mbti}",
-  "getMore": "Get more fortune-telling fortune bottles",
-  "getMoreInfo": "🔮 *How to Obtain a Fortune Telling Bottle?*\n\n1. **Weekly Free**: Regular users receive 1 per week, VIP users get 1 per day.\n2. **Invitation Reward**: You will receive a reward when you invite a friend who successfully invites another friend (up to 1 fortune telling bottle can be obtained within 24 hours).\n3. **fortune bottle Reward**: For every 10 fortune bottles sent, you will receive 1 fortune telling bottle. (Up to 1 fortune telling bottle can be obtained within 24 hours)\n4. **Direct Purchase (🔥 Limited Time 20% Discount)**:\n • Small Pack {smallAmount} - ~{originalSmallPrice} Stars~ {smallPrice} Stars\n • Large Pack {largeAmount} - ~{originalLargePrice} Stars~ {largePrice} Stars",
+  "getMore": "Get more fortune bottles",
+  "getMoreInfo": "🔮 *How to Obtain a Fortune Bottle?*\n\n1. **Weekly Free**: Regular users receive 1 per week, VIP users receive 1 per day.\n2. **Invitation Reward**: Invite a friend to join, and if that friend successfully invites another friend, you will receive a reward (1 Fortune Bottle maximum within 24 hours).\n3. **Blessing Bottle Reward**: For every 10 Blessing Bottles sent, you can receive 1 Fortune Bottle. (1 Fortune Bottle maximum within 24 hours)\n4. **Direct Purchase (🔥 Limited Offer 20% Off)**:\n   • Small Package {smallAmount} - ~{originalSmallPrice} Stars~ {smallPrice} Stars\n   • Large Package {largeAmount} - ~{originalLargePrice} Stars~ {largePrice} Stars",
   "buySmall": "🔥 Special Price {price} Stars (Buy {amount} items)",
   "buyLarge": "🔥 Special Price {price} Stars (Buy {amount} items)",
   "invoiceTitle": "Purchase {amount} fortune bottles",
-  "invoiceDesc": "After purchase, you can immediately use the AI fortune-telling service, and each fortune-telling service consumes 1 fortune bottle.\n\nClick the button below to purchase now:",
+  "invoiceDesc": "You can immediately use the psychic fortune-telling service after purchase, each service consumes 1 Fortune Bottle.\n\nPress the button below to purchase now:",
   "purchaseSuccess": "🎉 Purchase successful! {amount} fortune bottles have been added.",
-  "bottleReward": "🎉 Congratulations! You have sent {count} fortune bottles and received 1 fortune bottle reward!",
+  "bottleReward": "🎉 Congratulations! You have sent {count} message bottles and received 1 fortune bottle reward!",
   "inviteChainReward": "🎉 Congratulations! Your invited friend successfully invited a new friend to join, and you have received 1 fortune bottle reward!",
   "menu": {
     "love": "Attribute Diagnosis (Relationship Matching)",
@@ -190,7 +190,9 @@ export default {
     "match_report_title": "💞 Couple's synastry report",
     "wait_for_consent": "⏳ Waiting for the other party's agreement...",
     "consent_accepted": "✅ The other party has agreed! Generating report...",
-    "consent_rejected": "❌ The other party has rejected the synastry request."
+    "consent_rejected": "❌ The other party has rejected the synastry request.",
+    "invite_friend": "📨 Invite Friend to Experience",
+    "invite_friend_text": "Hey! I want to try the Compatibility Test with you. Create your fortune profile now!"
   },
   "role": {
     "husband": "Husband",
@@ -228,12 +230,27 @@ export default {
       "drawn": "🎴 The cards have been drawn:"
     }
   },
-  "profile_incomplete_hint": "💡 To provide more accurate AI fortune-telling services, please complete your interests, profession, or MBTI information first.",
+  "profile_incomplete_hint": "💡 In order to provide more accurate Psychic Reading Psychic Reading-telling services, please complete your interests, occupation, or MBTI... and other information first.",
   "tarot_menu_title": "Tarot Cards",
   "tarot_ui": {
     "intro": "🔮 *Tarot Reading*\n\nPlease silently think about your question (e.g., \"How is my work fortune recently?\" or \"How should I handle this relationship?\") and focus before clicking the button below to draw cards.",
     "draw": "🔮 Draw Cards",
     "shuffling": "Shuffling...",
     "drawn": "🎴 Cards have been drawn:"
-  }
+  },
+  "profileUpdated": "✅ The astrology profile has been updated!",
+  "btn_complete_info": "✏️ Complete your birth information",
+  "complete_info_hint": "💡 Perfect your birth time and location to unlock rising sign and house analysis!",
+  "btn_edit_info": "📝 Edit birth information",
+  "edit": {
+    "currentInfo": "📋 Current Information:",
+    "currentTime": "Birth Time: {time}",
+    "currentTimeUnknown": "Birth Time: Uncertain",
+    "currentCity": "Birth City: {city}",
+    "currentCityUnknown": "Birth City: Not Set",
+    "confirmEdit": "Do you want to modify the above information?",
+    "btnConfirmEdit": "✅ Yes, I want to modify",
+    "btnCancelEdit": "❌ Cancel"
+  },
+  "upsell_vip_analysis": "💎 Upgrade to VIP to unlock deeper astrological analysis"
 };

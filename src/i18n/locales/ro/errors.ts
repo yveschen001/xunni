@@ -97,9 +97,9 @@ export default {
     "nickname": "❌ Imposibil de obținut nickname-ul Telegram",
     "nickname2": "❌ Numele de utilizator nu poate conține un link de website\n\n",
     "nickname3": "❌ \\{validation.error}\n\nTe rog să reintroduci nickname-ul:",
-    "quota": "❌ Cota de sticle cu mesaje de azi este epuizată (\\{quotaDisplay})\n\n💡 Modalități de a obține mai multă cotă:\n",
+    "quota": "❌ Cota de binecuvântări a sticlei de binecuvântare de astăzi a fost utilizată (\\{quotaDisplay})\n\n💡 Modalități de a obține mai multe cote:",
     "quota2": "❌ Cota de mesaje pentru conversații de astăzi a fost utilizată (\\{usedToday}/\\{dailyLimit})\n\n",
-    "quota3": "❌ Cota de mesaje pentru sticle de astăzi a fost utilizată (\\{quotaDisplay})\n\n",
+    "quota3": "❌ Cota de binecuvântări a sticlei de binecuvântare de astăzi a fost consumată (\\{quotaDisplay})",
     "register": "❌ Te rog să finalizezi procesul de înregistrare mai întâi.\n\nFolosește /start pentru a continua înregistrarea.",
     "register2": "❌ Datele utilizatorului nu au fost găsite, te rog folosește /start pentru a te înregistra mai întâi.",
     "register3": "❌ Te rog să finalizezi procesul de înregistrare pentru a ridica sticle cu mesaje.\n\nFolosește /start pentru a continua înregistrarea.",
@@ -179,5 +179,6 @@ export default {
   "userNotFoundRegister": "⚠️ Utilizatorul nu există, vă rugăm să vă înregistrați folosind /start mai întâi.",
   "verificationFailed": "❌ Verificarea a eșuat, vă rugăm să încercați din nou mai târziu",
   "invalidTimeFormat": "Format de oră invalid\nDe exemplu: 19:30 (format de 24 de ore, 00-23 ore, 00-59 minute)",
-  "invalidDateFormat": "Format de dată invalid\nDe exemplu: 2000-01-01"
+  "invalidDateFormat": "Format de dată invalid\nDe exemplu: 2000-01-01",
+  "taskAlreadyCompleted": "❌ Această sarcină a fost deja finalizată și recompensa a fost revendicată."
 };

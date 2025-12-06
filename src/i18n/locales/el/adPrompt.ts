@@ -1,7 +1,7 @@
 export default {
   "completeTask": "• ✨ Ολοκληρώστε εργασίες (κερδίστε μόνιμες ποσότητες)",
   "inviteFriends": "• 🎁 Προσκαλέστε φίλους (κερδίστε +1 ποσότητα ανά άτομο)",
-  "quotaExhausted": "❌ Η ποσότητα μπουκαλιών μηνυμάτων της σημερινής ημέρας έχει εξαντληθεί ({quotaDisplay})",
+  "quotaExhausted": "❌ Σήμερα η ποσόστωση για το Blessing Bottle έχει εξαντληθεί ({quotaDisplay})",
   "taskButton": "✨ {taskName} 🎁",
   "upgradeVip": "• 💎 Αναβάθμιση σε VIP (30 ποσότητες ημερησίως)",
   "watchAd": "• 📺 Παρακολουθήστε διαφημίσεις (απομείνανε {remaining}/20 φορές)",

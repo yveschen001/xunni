@@ -27,6 +27,8 @@ export default {
   "selectEndHour": "☀️ Thời gian bắt đầu được thiết lập là {start}:00.\nVui lòng chọn thời gian kết thúc cho giờ yên tĩnh:\n(Các thông báo sẽ trở lại sau thời gian này)",
   "disabled": "🚫 Giờ yên tĩnh đã bị vô hiệu hóa",
   "quietHoursHint": "Bạn sẽ không nhận được thông báo không khẩn trong thời gian này",
+  "quietHoursVipOnly": "🔒 Giờ Yên Tĩnh (Dành Cho VIP)",
+  "upgradeForQuietHours": "Nâng cấp lên VIP để thiết lập giờ yên tĩnh, tránh bị quấy rầy trong thời gian nghỉ ngơi!",
   "blocklist": {
     "title": "🚫 Danh sách chặn",
     "empty": "Hiện tại không có danh sách chặn",

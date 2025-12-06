@@ -27,6 +27,8 @@ export default {
   "selectEndHour": "☀️ Starttijd ingesteld op {start}:00.\nKies alstublieft de eindtijd voor de stille uren:\n(Notificaties worden na deze tijd hervat)",
   "disabled": "🚫 Stille uren zijn uitgeschakeld",
   "quietHoursHint": "Je ontvangt tijdens deze periode geen niet-dringende notificaties",
+  "quietHoursVipOnly": "🔒 Stille Uren (VIP Alleen)",
+  "upgradeForQuietHours": "Upgrade naar VIP om stille uren in te stellen en verstoringen tijdens rusttijd te voorkomen!",
   "blocklist": {
     "title": "🚫 Bloklijst",
     "empty": "Huidig geen bloklijst",

@@ -1,13 +1,13 @@
 export default {
   "availableCommands": "Voit käyttää seuraavia komentoja milloin tahansa:",
-  "catchBottle": "🎣 **Nosta viestipullo**",
-  "catchBottleDesc": "Tutustu muiden viestipulloihin, vastaa kiinnostuksesi mukaan ja aloita keskustelu",
+  "catchBottle": "🎣 **Nouti Toivepullo**",
+  "catchBottleDesc": "Katso muiden toivepulloja, vastaa toivetta ja aloita keskustelu~",
   "clickButtonHint": "💡 Ole hyvä ja napsauta painiketta jatkaaksesi",
-  "commandCatch": "• /catch - Nosta viestipullo",
+  "commandCatch": "• Nauti - Nouti Toivepullo",
   "commandHelp": "• /help - Näytä apu",
   "commandMenu": "📋 Komentovalikko",
   "commandTasks": "• /tasks - Näytä tehtävät",
-  "commandThrow": "• /throw - Heitä pois viestipullo",
+  "commandThrow": "• Heitä - Heitä Toivepullo",
   "completeTasksForBottles": "💡 Suorita tehtävät ansaitaksesi ylimääräisiä pulloja",
   "completed": "✅ Opastus suoritettu!",
   "howToBecomeFriends": "💬 **Kuinka tehdä ystäviä?**",
@@ -16,11 +16,11 @@ export default {
   "skip": "Ohita",
   "skipped": "✅ Opastus ohitettu",
   "startUsing": "Aloita käyttö →",
-  "throwBottle": "📦 **Heitä pois viestipullo**",
+  "throwBottle": "📦 **Heitä Toivepullo**",
   "throwBottleDesc": "Kirjoita tunteesi tai ajatuksesi, ja järjestelmä auttaa sinua löytämään sopivan henkilön",
   "unknownStep": "❌ Tuntematon opastuksen vaihe",
   "viewTasks": "📋 Näytä tehtävät",
   "welcome": "🎉 Onnittelut rekisteröinnin suorittamisesta!",
   "whatIsXunNi": "🌊 **Mikä on XunNi?**",
-  "whatIsXunNiDesc": "Anonyymi viestipullo sosiaalinen alusta, joka auttaa sinua löytämään samanhenkisiä ystäviä MBTI:n ja horoskooppimerkkien kautta"
+  "whatIsXunNiDesc": "Anonyymi toivepullojen ystäväpalvelu, joka auttaa sinua löytämään samanhenkisiä ystäviä toiveiden, MBTI:n ja horoskooppien kautta."
 };

@@ -122,7 +122,7 @@ export default {
       "body": "{userAttribute},\nTheo phân tích, bạn có sự gắn kết mạnh mẽ nhất với {recommendedAttributes}!\n\n💡 {reason}\n\n👇 Cảm thấy may mắn?"
     },
     "btn": {
-      "throw": "🌊 Ném một chai thư và thử vận may",
+      "throw": "🌊 Ném một Chai Cầu Nguyện chúc phúc, mong người khác được tốt lành, và hạnh phúc sẽ trở lại với bạn.",
       "vip_throw": "🎯 Ném đến {target}",
       "vip_upsell": "💡 Nâng cấp lên VIP để chỉ định giao hàng đến {target}, cho sự ghép đôi chính xác!"
     }

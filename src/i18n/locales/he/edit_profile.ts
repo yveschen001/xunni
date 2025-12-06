@@ -12,5 +12,6 @@ export default {
   "nicknameInputHint": "👇 אנא הכנס כינוי חדש:",
   "bioInstruction": "אנא הכנס הקדמה חדשה (עד 100 תווים).\n\nההקדמה הנוכחית שלך היא: {bio}",
   "bioInputHint": "👇 אנא הכנס הקדמה חדשה:",
-  "bloodTypeInstruction": "אנא בחר את סוג הדם שלך:"
+  "bloodTypeInstruction": "אנא בחר את סוג הדם שלך:",
+  "matchPrefInstruction": "אנא בחר את העדפת ההתאמה שלך:"
 };

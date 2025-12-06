@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="zh-TW">
+<html lang="{{LANG}}">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-  <title>觀看廣告 - XunNi</title>
+  <title>{{TITLE}} - XunNi</title>
   <style>
     * {
       margin: 0;
@@ -191,23 +191,26 @@
       border-top: 1px solid #f0f0f0;
     }
   </style>
+  <script>
+    window.I18N = {{TRANSLATIONS_JSON}};
+  </script>
 </head>
 <body>
   <div class="container">
     <div class="header">
-      <h1>📺 觀看廣告</h1>
-      <p>完成觀看可獲得 +1 個額度</p>
+      <h1>📺 {{TITLE}}</h1>
+      <p>{{SUBTITLE}}</p>
     </div>
 
     <div class="ad-container" id="adContainer">
       <div class="loading">
         <div class="loading-spinner"></div>
-        <p>正在加載廣告...</p>
+        <p>{{LOADING}}</p>
       </div>
     </div>
 
     <div class="footer">
-      <p>XunNi - 讓世界聽見你的聲音</p>
+      <p>{{FOOTER}}</p>
     </div>
   </div>
 
@@ -253,6 +256,11 @@
     let countdownInterval = null;
     let isSubmittingCompletion = false;
 
+    // Helper for I18N
+    function t(key, defaultVal) {
+      return (window.I18N && window.I18N[key]) || defaultVal || key;
+    }
+
     // ========================================================================
     // Main Flow
     // ========================================================================
@@ -261,7 +269,7 @@
       try {
         // Validate parameters
         if (!provider || !token || !userId) {
-          showError('無效的參數', '請從 Telegram Bot 重新開始');
+          showError(t('invalidParams', '無效的參數'), t('restartBot', '請從 Telegram Bot 重新開始'));
           return;
         }
 
@@ -278,7 +286,7 @@
 
       } catch (error) {
         console.error('Init error:', error);
-        showError('廣告加載失敗', error.message || '請稍後再試');
+        showError(t('loadFailed', '廣告加載失敗'), error.message || t('tryAgainLater', '請稍後再試'));
         reportError(error.message || 'Unknown error');
       }
     }
@@ -295,14 +303,14 @@
         );
         const data = await response.json();
         if (!data.success) {
-          showError('無法開始廣告', data.message || '請返回 Telegram 重新開始');
+          showError(t('startFailed', '無法開始廣告'), data.message || t('restartBot', '請返回 Telegram 重新開始'));
           await reportError(data.message || 'start_failed');
           return false;
         }
         return true;
       } catch (error) {
         console.error('Start error:', error);
-        showError('無法開始廣告', '連線失敗，請稍後再試');
+        showError(t('startFailed', '無法開始廣告'), t('networkError', '連線失敗，請稍後再試'));
         await reportError(error.message || 'start_network_error');
         return false;
       }
@@ -345,8 +353,8 @@
         container.innerHTML = `
           <div class="loading">
             <div class="loading-spinner"></div>
-            <p>正在加載 GigaPub 廣告...</p>
-            <p style="font-size: 12px; color: #999; margin-top: 10px;">請耐心等待廣告加載完成</p>
+            <p>${t('loadingAd', '正在加載 GigaPub 廣告...')}</p>
+            <p style="font-size: 12px; color: #999; margin-top: 10px;">${t('waitAd', '請耐心等待廣告加載完成')}</p>
           </div>
         `;
 
@@ -391,7 +399,7 @@
         console.error('[GigaPub] Ad error:', error);
         
         // If GigaPub fails, show error
-        showError('廣告加載失敗', error.message || '請稍後再試');
+        showError(t('loadFailed', '廣告加載失敗'), error.message || t('tryAgainLater', '請稍後再試'));
         reportError(`GigaPub error: ${error.message || 'Unknown'}`);
       }
     }
@@ -401,12 +409,12 @@
       container.innerHTML = `
         <div class="loading">
           <div style="font-size: 48px; margin-bottom: 16px;">⚠️</div>
-          <p style="color: #f39c12; font-size: 16px; margin-bottom: 12px;">廣告播放時間較短</p>
-          <p style="color: #666; font-size: 14px;">播放時長：${duration} 秒</p>
-          <p style="color: #666; font-size: 14px; margin-top: 8px;">可能是廣告庫存不足</p>
-          <p style="color: #666; font-size: 14px; margin-top: 16px;">請確認是否完整觀看</p>
-          <button class="btn" id="confirmShortAd">✅ 我確實看完</button>
-          <button class="btn btn-secondary" id="replayShortAd" style="margin-left: 8px;">重新播放</button>
+          <p style="color: #f39c12; font-size: 16px; margin-bottom: 12px;">${t('shortAdTitle', '廣告播放時間較短')}</p>
+          <p style="color: #666; font-size: 14px;">${t('duration', '播放時長')}: ${duration}s</p>
+          <p style="color: #666; font-size: 14px; margin-top: 8px;">${t('shortAdReason', '可能是廣告庫存不足')}</p>
+          <p style="color: #666; font-size: 14px; margin-top: 16px;">${t('shortAdConfirm', '請確認是否完整觀看')}</p>
+          <button class="btn" id="confirmShortAd">✅ ${t('confirmWatched', '我確實看完')}</button>
+          <button class="btn btn-secondary" id="replayShortAd" style="margin-left: 8px;">${t('replay', '重新播放')}</button>
         </div>
       `;
 
@@ -424,8 +432,8 @@
         <div class="ad-placeholder">
           <div style="text-align: center;">
             <div style="font-size: 48px; margin-bottom: 16px;">📺</div>
-            <p style="font-size: 18px; color: #666; margin-bottom: 8px;">廣告播放中...</p>
-            <p class="countdown" id="countdown">剩餘時間: ${AD_DURATION} 秒</p>
+            <p style="font-size: 18px; color: #666; margin-bottom: 8px;">${t('adPlaying', '廣告播放中...')}</p>
+            <p class="countdown" id="countdown">${t('remaining', '剩餘時間')}: ${AD_DURATION}s</p>
           </div>
         </div>
         <div class="progress-bar">
@@ -450,7 +458,7 @@
         remaining--;
         
         if (countdownEl) {
-          countdownEl.textContent = `剩餘時間: ${remaining} 秒`;
+          countdownEl.textContent = `${t('remaining', '剩餘時間')}: ${remaining}s`;
         }
 
         if (progressFill) {
@@ -477,11 +485,11 @@
       container.innerHTML = `
         <div class="success">
           <div class="success-icon">✅</div>
-          <h2>請確認廣告已完整觀看</h2>
-          <p>播放時長：約 ${durationSeconds} 秒</p>
-          <p style="color: #666; font-size: 14px; margin-top: 8px;">點擊下方按鈕領取獎勵</p>
-          <button class="btn" id="completeAdButton">✅ 我已完整觀看</button>
-          <button class="btn btn-secondary" id="replayAdButton" style="margin-left: 8px;">🔁 重新播放</button>
+          <h2>${t('confirmFullWatch', '請確認廣告已完整觀看')}</h2>
+          <p>${t('duration', '播放時長')}: ~${durationSeconds}s</p>
+          <p style="color: #666; font-size: 14px; margin-top: 8px;">${t('clickToClaim', '點擊下方按鈕領取獎勵')}</p>
+          <button class="btn" id="completeAdButton">✅ ${t('confirmWatched', '我已完整觀看')}</button>
+          <button class="btn btn-secondary" id="replayAdButton" style="margin-left: 8px;">🔁 ${t('replay', '重新播放')}</button>
         </div>
       `;
 
@@ -497,7 +505,7 @@
       }
       const button = document.getElementById('completeAdButton');
       if (button) {
-        button.textContent = '⌛ 傳送中...';
+        button.textContent = `⌛ ${t('sending', '傳送中...')}`;
         button.setAttribute('disabled', 'true');
       }
       onAdComplete();
@@ -527,13 +535,13 @@
           showSuccess();
         } else {
           isSubmittingCompletion = false;
-          showError('完成失敗', data.message || '請稍後再試');
+          showError(t('completeFailed', '完成失敗'), data.message || t('tryAgainLater', '請稍後再試'));
           await reportError(data.message || 'completion_failed');
         }
 
       } catch (error) {
         console.error('Completion error:', error);
-        showError('完成失敗', '網絡錯誤，請稍後再試');
+        showError(t('completeFailed', '完成失敗'), t('networkError', '網絡錯誤，請稍後再試'));
         isSubmittingCompletion = false;
         await reportError(error.message || 'completion_network_error');
       }
@@ -548,10 +556,10 @@
       container.innerHTML = `
         <div class="success">
           <div class="success-icon">🎉</div>
-          <h2>觀看完成！</h2>
-          <p>恭喜你獲得 <strong>+1 個額度</strong></p>
-          <p style="margin-top: 16px; color: #999;">請返回 Telegram 繼續使用</p>
-          <button class="btn" onclick="window.close()">關閉頁面</button>
+          <h2>${t('completedTitle', '觀看完成！')}</h2>
+          <p>${t('completedReward', '恭喜你獲得 <strong>+1 個額度</strong>')}</p>
+          <p style="margin-top: 16px; color: #999;">${t('returnToBot', '請返回 Telegram 繼續使用')}</p>
+          <button class="btn" onclick="window.close()">${t('closePage', '關閉頁面')}</button>
         </div>
       `;
     }
@@ -563,7 +571,7 @@
           <div class="error-icon">❌</div>
           <h2>${title}</h2>
           <p>${message}</p>
-          <button class="btn" onclick="window.close()">關閉頁面</button>
+          <button class="btn" onclick="window.close()">${t('closePage', '關閉頁面')}</button>
         </div>
       `;
     }
@@ -614,4 +622,3 @@
   </script>
 </body>
 </html>
-

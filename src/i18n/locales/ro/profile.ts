@@ -26,7 +26,7 @@ export default {
   "manual": "Setări Manuale",
   "mbti": "• Folosiți /mbti pentru a relua testul sau a modifica MBTI\n",
   "mbtiWithSource": "🧠 MBTI: {mbti}{source}",
-  "message": "https://t.me/share/url?url=https://t.me/{botUsername}?start=invite_{inviteCode}&text=Veniți la XunNi și aruncați împreună sticle cu mesaj!🍾 Folosiți codul meu de invitație: {inviteCode}",
+  "message": "XunNi, să aruncăm împreună Sticla cu Dorințe! 🍾 Folosește codul meu de invitație: {inviteCode}",
   "message2": "{inviteLimitWarning}\n\n",
   "message3": "🌍 Limbaj: {user.language_pref}\n\n",
   "message4": "🌍 Limba: {user.language_pref }\n",
@@ -42,7 +42,7 @@ export default {
   "quota2": "📦 Cota zilnică actuală: {taskBonus > 0 ?",
   "quotaBottles": "{taskBonus} sticle cu mesaj",
   "quotaTotal": "📦 Cota zilnică curentă: {quota}\n\n",
-  "returnToMenu": "🏠 Întoarce-te la meniul principal: /menu",
+  "returnToMenu": "🏠 Meniul Principal",
   "separator": "━━━━━━━━━━━━━━━━\n\n",
   "settings": "Neregelat",
   "settings2": "Neregelat",
@@ -71,5 +71,14 @@ export default {
   "zodiac": "⭐ Zodie: {zodiac}\n",
   "fortuneQuota": "🔮 {fortuneBottle}: {total} (Săptămâna aceasta gratuit: {weekly}/{limit} | Suplimentar: {additional})",
   "vipWithDays": "💎 Membru VIP (Rămase {days} zile, Expirare: {expireDate})",
-  "driftBottleInfo": "🍾 mesaj sticlă: {remaining} / {total}"
+  "driftBottleInfo": "🍾 Sticla cu Dorințe: {remaining} / {total}",
+  "ageRange": "Vârstă: {min}-{max}",
+  "fortuneMatchButton": "💘 Împerechere de Ghicit",
+  "giftVipButton": "🎁 Trimite VIP",
+  "giftFortuneBottleButton": "🔮 Trimite Sticla de Ghicit",
+  "moreOptions": "⚙️ Mai Multe Opțiuni...",
+  "blockUser": "🚫 Blochează Utilizator",
+  "reportUser": "⚠️ Raportează",
+  "moreOptionsTitle": "⚙️ Mai Multe Opțiuni",
+  "giftedVipNote": "🎁 Ți-a fost trimis VIP"
 };

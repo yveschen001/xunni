@@ -1,7 +1,7 @@
 export default {
   "replyPrompt": "💬 הגיבו",
-  "suggestCatch": "❓ רוצים לאסוף בקבוק מסר?\n\nהשתמשו ב-/catch כדי לאסוף בקבוק מסר\n\n💡 **פקודות נפוצות**:\n• /throw - זרוק בקבוק מסר\n• /catch - אסוף בקבוק מסר\n• /menu - תפריט ראשי\n• /tasks - מרכז משימות",
-  "suggestMenu": "❓ הפקודה לא נמצאה\n\n💡 **פקודות נפוצות**:\n• /throw - זרוק בקבוק מסר\n• /catch - אסוף בקבוק מסר\n• /menu - תפריט ראשי\n• /tasks - מרכז משימות",
-  "suggestThrow": "❓ רוצים לזרוק בקבוק מסר?\n\nאנא לחצו לחיצה ארוכה על ההודעה הקודמת או על הודעה זו,\nבחרו 'מענה' מהתפריט,\nואז הכניסו את התוכן לשליחה כבקבוק מסר\n\n💡 **פקודות נפוצות**:\n• /throw - זרוק בקבוק מסר\n• /catch - אסוף בקבוק מסר\n• /menu - תפריט ראשי\n• /tasks - מרכז משימות\n\n#THROW",
-  "throwPrompt": "📝 אנא הקלד את תוכן הבקבוק מסר שלך:"
+  "suggestCatch": "❓ 要撿Blessing Bottle？\n\n使用 Catch 撿起Blessing Bottle\n\n💡 **常用命令**：\n• Throw - 丟出Blessing Bottle\n• Catch - 撿起Blessing Bottle\n• Main Menu - 主選單\n• Tasks - 任務中心",
+  "suggestMenu": "❓ 找不到此命令\n\n💡 **常用命令**：\n• Throw - 丟出Blessing Bottle\n• Catch - 撿起Blessing Bottle\n• Main Menu - 主選單\n• Tasks - 任務中心",
+  "suggestThrow": "❓ 要丟Blessing Bottle？\n\n請長按上一則訊息，或本訊息，\n選單上選擇「回覆」後，\n輸入要發送的Blessing Bottle內容\n\n💡 **常用命令**：\n• Throw - 丟出Blessing Bottle\n• Catch - 撿起Blessing Bottle\n• Main Menu - 主選單\n• Tasks - 任務中心\n\n#THROW",
+  "throwPrompt": "📝 請輸入你的Blessing Bottle內容："
 };

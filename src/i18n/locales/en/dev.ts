@@ -1,7 +1,7 @@
 export default {
   "autoCompleted": "Registration process has been completed automatically. \n\n",
-  "bottles": "• Message Bottles: {count}\n",
-  "catchCommand": "• /catch - Catch message bottle\n",
+  "bottles": "• Blessing Blessing Bottle: {count}",
+  "catchCommand": "• /catch - Pick up a Blessing Bottle",
   "conversations": "• Conversations: {count}\n",
   "dataReset": "✅ Development mode: Data has been reset\n\nAll your data has been deleted.\n\n💡 You can now restart the registration process for testing.\n\n🔄 Re-register: /start\nor use: /dev_restart (automatic registration start)\n\n⚠️ Note: This feature is only available in the Staging environment.",
   "getUserInfoFailed": "❌ Failed to retrieve information",
@@ -30,7 +30,7 @@ export default {
   "telegramId": "Telegram ID: {id}",
   "testCoreFeatures": "💡 You can directly test core features now: \n",
   "testUser": "Test user",
-  "throwCommand": "• /throw - Throw message bottle\n",
+  "throwCommand": "• /throw - Throw a Blessing Bottle",
   "userInfo": "🔧 Development mode: User information\n\n",
   "userNotFound": "❌ User does not exist",
   "vip": "VIP: {status}",

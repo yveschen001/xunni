@@ -19,7 +19,7 @@ export default {
   "noMessages": "(brak wiadomości)",
   "partnerMessages": "• Druga strona wysłała: {count} wiadomości\n",
   "recentMessages": "📨 **Ostatnie Rozmowy:**\n\n",
-  "returnToMenu": "🏠 Wróć do menu głównego: /menu",
+  "returnToMenu": "🏠 Główne Menu",
   "returnToMenuButton": "🏠 Powrót do Menu Głównego",
   "stats": "📊 **Statystyki:**\n",
   "time": "{time}\n\n",

@@ -1,7 +1,7 @@
 export default {
   "replyPrompt": "💬 Odpovědět",
-  "suggestCatch": "❓ Chcete vyzvednout lahev se zprávou?\n\nPoužijte /catch pro vyzvednutí lahve se zprávou\n\n💡 **Běžné příkazy**:\n• /throw - Hoďte lahev se zprávou\n• /catch - Vyzvedněte lahev se zprávou\n• /menu - Hlavní menu\n• /tasks - Centrum úkolů",
-  "suggestMenu": "❓ Příkaz nebyl nalezen\n\n💡 **Běžné příkazy**:\n• /throw - Hoďte lahev se zprávou\n• /catch - Vyzvedněte lahev se zprávou\n• /menu - Hlavní menu\n• /tasks - Centrum úkolů",
-  "suggestThrow": "❓ Chcete hodit lahev se zprávou?\n\nProsím, dlouhým stisknutím předchozí zprávy nebo této zprávy,\nv menu vyberte 'Odpovědět',\na poté zadejte obsah lahve se zprávou, kterou chcete poslat\n\n💡 **Běžné příkazy**:\n• /throw - Hoďte lahev se zprávou\n• /catch - Vyzvedněte lahev se zprávou\n• /menu - Hlavní menu\n• /tasks - Centrum úkolů\n\n#THROW",
-  "throwPrompt": "📝 Zadejte obsah vaší láhve se zprávou:"
+  "suggestCatch": "❓ Chcete sebrat Láhev Přání?\n\nPoužijte \"Sebrat\" pro zvednutí Láhve Přání\n\n💡 **Časté příkazy**:\n• \"Odeslat\" - Odeslat Láhev Přání\n• \"Sebrat\" - Zvednout Láhev Přání\n• \"Hlavní Menu\" - Hlavní menu\n• \"Úkoly\" - Centrum úkolů",
+  "suggestMenu": "❓ Tento příkaz nelze najít\n\n💡 **Časté příkazy**:\n• \"Odeslat\" - Odeslat Láhev Přání\n• \"Sebrat\" - Zvednout Láhev Přání\n• \"Hlavní Menu\" - Hlavní menu\n• \"Úkoly\" - Centrum úkolů",
+  "suggestThrow": "❓ Chcete odeslat Láhev Přání?\n\nProsím, dlouze stiskněte předchozí zprávu nebo tuto zprávu,\nvyberte „Odpovědět“ v nabídce a zadejte obsah\nLáhve, kterou chcete odeslat\n\n💡 **Časté příkazy**:\n• \"Odeslat\" - Odeslat Láhev Přání\n• \"Sebrat\" - Zvednout Láhev Přání\n• \"Hlavní Menu\" - Hlavní menu\n• \"Úkoly\" - Centrum úkolů\n\n#ODESLAT",
+  "throwPrompt": "📝 Zadejte obsah své Láhve Přání:"
 };

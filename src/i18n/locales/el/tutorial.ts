@@ -1,13 +1,13 @@
 export default {
   "availableCommands": "Μπορείτε να χρησιμοποιήσετε τις παρακάτω εντολές ανά πάσα στιγμή:",
-  "catchBottle": "🎣 **Σηκώστε ένα μπουκάλι μηνύματος**",
-  "catchBottleDesc": "Δείτε τα μπουκάλια μηνύματος άλλων, απαντήστε αν σας ενδιαφέρει και ξεκινήστε τη συνομιλία",
+  "catchBottle": "🎣 **Catch Blessing Bottle**",
+  "catchBottleDesc": "Δες τις ευχές άλλων από τα Blessing Bottles, απάντησε με ευχές και ξεκίνα μια συνομιλία~",
   "clickButtonHint": "💡 Παρακαλώ πατήστε το κουμπί για να συνεχίσετε",
-  "commandCatch": "• /catch - Πιάσε μπουκάλι μηνύματος",
+  "commandCatch": "• Catch Blessing Bottle",
   "commandHelp": "• /help - Δείτε βοήθεια",
   "commandMenu": "📋 Μενού εντολών",
   "commandTasks": "• /tasks - Δείτε καθήκοντα",
-  "commandThrow": "• /throw - Πετάξτε μπουκάλι μηνύματος",
+  "commandThrow": "• /throw - Ρίξε μια ευλογία Blessing Bottle",
   "completeTasksForBottles": "💡 Ολοκληρώστε καθήκοντα για να κερδίσετε επιπλέον μπουκάλια",
   "completed": "✅ Οδηγίες ολοκληρώθηκαν!",
   "howToBecomeFriends": "💬 **Πώς να κάνετε φίλους;**",
@@ -16,11 +16,11 @@ export default {
   "skip": "Παράβλεψη",
   "skipped": "✅ Οι οδηγίες παραλείφθηκαν",
   "startUsing": "Ξεκινήστε τη χρήση →",
-  "throwBottle": "📦 **Πετάξτε μπουκάλι μηνύματος**",
+  "throwBottle": "📦 **Throw Blessing Bottle**",
   "throwBottleDesc": "Καταγράψτε τα συναισθήματα ή τις σκέψεις σας και το σύστημα θα σας βοηθήσει να βρείτε κατάλληλο άτομο",
   "unknownStep": "❌ Άγνωστο βήμα οδηγίας",
   "viewTasks": "📋 Δείτε καθήκοντα",
   "welcome": "🎉 Συγχαρητήρια για την ολοκλήρωση της εγγραφής!",
   "whatIsXunNi": "🌊 **Τι είναι το XunNi;**",
-  "whatIsXunNiDesc": "Μια ανώνυμη κοινωνική πλατφόρμα μπουκαλιών μηνύματος που σας βοηθά να βρείτε φίλους με κοινά ενδιαφέροντα μέσω MBTI και ζωδίων"
+  "whatIsXunNiDesc": "Μια ανώνυμη πλατφόρμα γνωριμιών με Blessing Bottles, που σε βοηθά να βρεις φίλους με παρόμοια ενδιαφέροντα μέσω ευχών, MBTI και ζωδίων."
 };

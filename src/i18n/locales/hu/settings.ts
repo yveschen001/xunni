@@ -27,6 +27,8 @@ export default {
   "selectEndHour": "☀️ A kezdési idő {start}:00-ra van beállítva.\nKérjük, válassza ki a csendes órák befejezési idejét:\n(Az értesítések ezen időpont után folytatódnak)",
   "disabled": "🚫 A csendes órák le lettek tiltva",
   "quietHoursHint": "Ebben az időszakban nem kapsz nem sürgős értesítéseket",
+  "quietHoursVipOnly": "🔒 Csendes Időszak (VIP Csak)",
+  "upgradeForQuietHours": "Frissíts VIP-re a csendes időszak beállításához, hogy elkerüld a zavarásokat pihenőidő alatt!",
   "blocklist": {
     "title": "🚫 Blokkolt lista",
     "empty": "Jelenleg nincs blokkolt lista",

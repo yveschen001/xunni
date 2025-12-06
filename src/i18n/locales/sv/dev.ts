@@ -1,7 +1,7 @@
 export default {
   "autoCompleted": "Registreringsprocessen har slutförts automatiskt.\n\n",
-  "bottles": "• Flaskpost: {count}\n",
-  "catchCommand": "• /catch - Fånga flaskposter\n",
+  "bottles": "• Önskeflaska: {count}\n",
+  "catchCommand": "• Fånga Önskeflaska\n",
   "conversations": "• Konversationer: {count}\n",
   "dataReset": "✅ Utvecklingsläge: Data har återställts\n\nAll din data har raderats.\n\n💡 Du kan nu starta om registreringsprocessen för testning.\n\n🔄 Registrera om: /start\neller använd: /dev_restart (automatiskt starta registreringen)\n\n⚠️ Obs: Denna funktion är endast tillgänglig i Staging-miljön.",
   "getUserInfoFailed": "❌ Misslyckades med att hämta information",
@@ -30,7 +30,7 @@ export default {
   "telegramId": "Telegram-ID: {id}\n",
   "testCoreFeatures": "💡 Du kan nu direkt testa kärnfunktioner:\n",
   "testUser": "Testanvändare",
-  "throwCommand": "• /throw - Kasta meddelandeflaskposten\n",
+  "throwCommand": "• Kasta Önskeflaska\n",
   "userInfo": "🔧 Utvecklingsläge: Användarinformation\n\n",
   "userNotFound": "❌ Användare existerar inte",
   "vip": "VIP: {status}",

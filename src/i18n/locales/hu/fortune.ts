@@ -8,15 +8,15 @@ export default {
     "love_match": "Párok kompatibilitása",
     "love_ideal": "Ideális típus elemzés"
   },
-  "back_to_menu": "🔙 Vissza az AI jóslás menübe",
-  "get_more_bottles": "💎 Szerezz be több jósló üzenetpalackot",
+  "back_to_menu": "🔙 Térj vissza a Médiumi Olvasás Menüjébe",
+  "get_more_bottles": "💎 További Jós Palack",
   "relationship": {
     "love": "Pár",
     "friend": "Barátok",
     "family": "Család",
     "work": "Munkatársak"
   },
-  "menuTitle": "AI jóslás",
+  "menuTitle": "Psychic Reading",
   "currentProfile": "Jelenlegi profil",
   "warehouse": "Születési térkép tárolás",
   "manageProfiles": "Születési térképek kezelése",
@@ -148,21 +148,21 @@ export default {
   },
   "dailyPush": "📅 A mai horoszkóp megérkezett!",
   "dailyPushBtn": "👇 Kattintson a megtekintéshez",
-  "backToMenu": "🔙 Visszatérés az AI Sorsolás Menübe",
+  "backToMenu": "🔙 Vissza a Lélek Olvasás Menübe",
   "addProfile": "Diagramfájl hozzáadása",
-  "quotaDisplay": "🔮 Jóslás üzenetpalack: {total} (Ez a hét ingyenes: {weekly}/{limit} | További: {additional})",
-  "quotaDisplayVip": "🔮 üzenetpalack: {total} (Ma: {daily}/1 | Kiegészítő: {additional})",
-  "quotaDisplayFree": "🔮 üzenetpalack: {total} (Ez a hét ingyen: {weekly}/1 | Kiegészítő: {additional})",
+  "quotaDisplay": "🔮 Jós Palack: {total} (Ezen a héten ingyenes: {weekly}/{limit} | További: {additional})",
+  "quotaDisplayVip": "🔮 Jós Palack: {total} (Ma: {daily}/1 | További: {additional})",
+  "quotaDisplayFree": "🔮 Jós Palack: {total} (Ezen a héten ingyenes: {weekly}/1 | További: {additional})",
   "profileDetails": "👤 {gender} {blood} | 🎂 {birthday} | {zodiac} | 🧠 {mbti}",
-  "getMore": "Több üzenetpalackot szerezni",
-  "getMoreInfo": "🔮 *Hogyan szerezhetsz egy Szerencse Palackot?*\n\n1. **Heti Ingyenes**: A rendszeres felhasználók hetente 1 palackot kapnak, a VIP-k naponta 1 palackot.\n2. **Meghívási Jutalmak**: Hívj meg egy barátot, és amikor ő sikeresen meghív egy másik barátot, jutalmat kapsz (legfeljebb 1 szerencse palack 24 órán belül).\n3. **Üzenet Palack Jutalmak**: Minden 10 elküldött üzenet palack után 1 szerencse palackot kapsz. (Legfeljebb 1 szerencse palack 24 órán belül)\n4. **Közvetlen Vásárlás (🔥 Korlátozott Ideig 20% Kedvezmény)**:\n • Kicsi Csomag {smallAmount} - ~{originalSmallPrice} Csillag~ {smallPrice} Csillag\n • Nagy Csomag {largeAmount} - ~{originalLargePrice} Csillag~ {largePrice} Csillag",
+  "getMore": "További Jós Palack",
+  "getMoreInfo": "🔮 *Hogyan szerezhetsz Jós Palackot?*\n\n1. **Hetente ingyenes**: Normál felhasználóknak hetente 1, VIP-nek naponta 1.\n2. **Meghívási jutalom**: Ha meghívsz egy barátot, és ő is meghív egy barátot, jutalmat kapsz (24 órán belül max 1 Jós Palack).\n3. **Áldás Kívánság Palack jutalom**: Minden 10 elküldött Áldás Kívánság Palackért 1 Jós Palackot kapsz. (24 órán belül max 1 Jós Palack)\n4. **Közvetlen vásárlás (🔥 Korlátozott időre 20% kedvezmény)**:\n   • Kis csomag {smallAmount} db - ~{originalSmallPrice} Csillag~ {smallPrice} Csillag\n   • Nagy csomag {largeAmount} db - ~{originalLargePrice} Csillag~ {largePrice} Csillag",
   "buySmall": "🔥 Akciós ár {price} Csillag (Vásároljon {amount} tételt)",
   "buyLarge": "🔥 Akciós ár {price} Csillag (Vásároljon {amount} tételt)",
-  "invoiceTitle": "Vásárolj {amount} jósló palackot",
-  "invoiceDesc": "A vásárlás után azonnal használhatod a mesterséges intelligencia által nyújtott jóslási szolgáltatást, és minden jóslási szolgáltatás 1 jósló palackot fogyaszt.\n\nKattints az alábbi gombra a vásárláshoz:",
-  "purchaseSuccess": "🎉 Vásárlás sikeres! {amount} jósló palack hozzáadva.",
-  "bottleReward": "🎉 Gratulálunk! {count} jósló palackot küldtél és 1 jósló palack jutalmat kaptál!",
-  "inviteChainReward": "🎉 Gratulálunk! Az általad meghívott barát sikeresen meghívott egy új barátot, és 1 jósló palack jutalmat kaptál!",
+  "invoiceTitle": "{amount} db Jós Palack vásárlása",
+  "invoiceDesc": "Vásárlás után azonnal használhatod a spirituális jóslási szolgáltatást, minden egyes szolgáltatás 1 Jós Palackot igényel.\n\nAzonnal nyomd meg az alábbi gombot a vásárláshoz:",
+  "purchaseSuccess": "🎉 Vásárlás sikeres! {amount} db Jós Palack lett hozzáadva.",
+  "bottleReward": "🎉 Gratulálunk! {count} db Áldás Kívánság Palackot küldtél el, és kaptál 1 Jós Palack jutalmat!",
+  "inviteChainReward": "🎉 Gratulálunk! A meghívott barátod sikeresen meghívott új barátot, ezért 1 Jós Palack jutalmat kaptál!",
   "menu": {
     "love": "Attribútum Diagnózis (Kapcsolati Egyeztetés)",
     "attribute_desc": "Elemezze romantikus attribútumait és lehetséges jellemzőit.",
@@ -190,7 +190,9 @@ export default {
     "match_report_title": "💞 Pár szinasztria jelentés",
     "wait_for_consent": "⏳ Várakozás a másik fél hozzájárulására...",
     "consent_accepted": "✅ A másik fél egyetértett! Jelentés generálása...",
-    "consent_rejected": "❌ A másik fél elutasította a szinasztria kérelmet."
+    "consent_rejected": "❌ A másik fél elutasította a szinasztria kérelmet.",
+    "invite_friend": "📨 Invite Friend to Experience",
+    "invite_friend_text": "Hey! I want to try the Compatibility Test with you. Create your fortune profile now!"
   },
   "role": {
     "husband": "Férj",
@@ -228,12 +230,26 @@ export default {
       "drawn": "🎴 A kártyák húzva lettek:"
     }
   },
-  "profile_incomplete_hint": "💡 A pontosabb AI jósdai szolgáltatások nyújtása érdekében kérjük, először töltse ki érdeklődéseit, szakmáját vagy MBTI információját.",
+  "profile_incomplete_hint": "💡 A pontosabb spirituális jövendölés szolgáltatás érdekében kérjük, először töltse ki érdeklődéseit, szakmáját vagy MBTI-t ... és egyéb információkat.",
   "tarot_menu_title": "Tarot kártyák",
   "tarot_ui": {
     "intro": "🔮 *Tarot Olvasás*\n\nKérem, csendben gondolkodjon a kérdésén (pl. \"Hogyan alakul mostanában a munkahelyi szerencsém?\" vagy \"Hogyan kezeljem ezt a kapcsolatot?\") és fókuszáljon, mielőtt megnyomja az alábbi gombot a kártyák húzásához.",
     "draw": "🔮 Kártyák húzása",
     "shuffling": "Keverés...",
     "drawn": "🎴 Kártyák lettek húzva:"
+  },
+  "profileUpdated": "✅ Az asztrológiai profil frissítve lett!",
+  "btn_complete_info": "✏️ Töltse ki születési adatait",
+  "complete_info_hint": "💡 Pontosítsa születési időpontját és helyét a felkelő jel és a ház elemzésének megnyitásához!",
+  "btn_edit_info": "📝 Születési adatok szerkesztése",
+  "edit": {
+    "currentInfo": "📋 Jelenlegi információk:",
+    "currentTime": "Születési idő: {time}",
+    "currentTimeUnknown": "Születési idő: Bizonytalan",
+    "currentCity": "Születési város: {city}",
+    "currentCityUnknown": "Születési város: Nincs beállítva",
+    "confirmEdit": "Szeretné módosítani a fenti információkat?",
+    "btnConfirmEdit": "✅ Igen, szeretném módosítani",
+    "btnCancelEdit": "❌ Mégse"
   }
 };

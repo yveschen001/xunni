@@ -4,7 +4,7 @@ export default {
   "cancel": "❌ Zrušit",
   "cancelled": "Zrušeno",
   "cannotIdentify": "⚠️ Nelze identifikovat chatovacího partnera\n\n",
-  "catchHint": "• Použijte /catch pro vyzvednutí nové lahve se zprávou",
+  "catchHint": "• Použijte zachytit novou Láhev Přání",
   "completeOnboarding": "⚠️ Nejprve prosím dokončete registrační proces.\n\nPoužijte /start pro pokračování registrace.",
   "conversationInfoError": "⚠️ Informace o konverzaci jsou nesprávné.",
   "conversationInfoError2": "⚠️ Informace o konverzaci jsou nesprávné",

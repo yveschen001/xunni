@@ -3,7 +3,7 @@ import type { Env } from '~/types';
 import type { UserPushPreferences } from '~/domain/user_preferences';
 import { UserPreferencesService } from '~/services/user_preferences';
 import { NotificationService } from '~/services/notification';
-import { createI18n } from '~/i18n';
+import { createI18n, loadTranslations } from '~/i18n';
 
 export enum PushType {
   THROW_REMINDER = 'throw_reminder',
@@ -112,6 +112,8 @@ export class PushStrategyService {
     language: string = 'zh-TW',
     extra?: any
   ): Promise<boolean> {
+    // Load translations from KV before creating I18n instance
+    await loadTranslations(this.env, language);
     const i18n = createI18n(language);
     const content = i18n.t(messageKey, params);
 

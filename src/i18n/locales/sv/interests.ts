@@ -9,7 +9,7 @@ export default {
   "subtitle": "Vänligen välj en kategori för att bläddra bland alternativ.",
   "current": "För närvarande valda ({count}/{max}):\n{list}",
   "saved": "✅ Intressetiketter uppdaterade!",
-  "required_hint": "💡 För att ge mer precisa AI-spådomen, vänligen slutför först dina intressetiketter.",
+  "required_hint": "💡 För att kunna erbjuda mer precisa psykologiska läsnings tjänster, vänligen slutför först dina intresseetiketter.",
   "categories": {
     "life": "Livsstil och stil",
     "travel": "Resa och utforskning",

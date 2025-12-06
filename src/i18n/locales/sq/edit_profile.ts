@@ -12,5 +12,6 @@ export default {
   "nicknameInputHint": "👇 Ju lutem shkruani një pseudonim të ri:",
   "bioInstruction": "Ju lutem shkruani një prezantim të ri (deri në 100 karaktere).\n\nPrezentimi juaj aktual është: {bio}",
   "bioInputHint": "👇 Ju lutem shkruani një prezantim të ri:",
-  "bloodTypeInstruction": "Ju lutem zgjidhni graden tuaj të gjakut:"
+  "bloodTypeInstruction": "Ju lutem zgjidhni graden tuaj të gjakut:",
+  "matchPrefInstruction": "Ju lutem zgjidhni preferencën tuaj për përputhje:"
 };

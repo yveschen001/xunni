@@ -26,7 +26,7 @@ export default {
   "manual": "Handmatige instelling",
   "mbti": "• Gebruik /mbti om opnieuw MBTI te maken of aan te passen\n",
   "mbtiWithSource": "🧠 MBTI: {mbti}{source}",
-  "message": "https://t.me/share/url?url=https://t.me/{botUsername}?start=invite_{inviteCode}&text=Kom naar XunNi en stuur samen berichtflessen!🍾 Gebruik mijn uitnodigingscode: {inviteCode}",
+  "message": "Laten we samen een Wensfles gooien! 🍾 Gebruik mijn uitnodigingscode: {inviteCode}",
   "message2": "{inviteLimitWarning}\n\n",
   "message3": "🌍 Taal: {user.language_pref}\n\n",
   "message4": "🌍 Taal: {user.language_pref }\n",
@@ -42,7 +42,7 @@ export default {
   "quota2": "📦 Huidige dagelijkse quota: {taskBonus > 0 ?",
   "quotaBottles": "{taskBonus} berichtfles(s)",
   "quotaTotal": "📦 Huidige dagelijkse quotum: {quota}\n\n",
-  "returnToMenu": "🏠 Terug naar hoofdmenu: /menu",
+  "returnToMenu": "🏠 Hoofdmenu",
   "separator": "━━━━━━━━━━━━━━━━\n\n",
   "settings": "Niet ingesteld",
   "settings2": "Niet ingesteld",
@@ -71,5 +71,14 @@ export default {
   "zodiac": "⭐ Sterrenbeeld: {zodiac}\n",
   "fortuneQuota": "🔮 {fortuneBottle}: {total} (Deze week gratis: {weekly}/{limit} | Extra: {additional})",
   "vipWithDays": "💎 VIP Lid (Overige {days} dagen, Vervaldatum: {expireDate})",
-  "driftBottleInfo": "🍾 bericht fles: {remaining} / {total}"
+  "driftBottleInfo": "🍾 Wensfles: {remaining} / {total}",
+  "ageRange": "Leeftijd: {min}-{max}",
+  "fortuneMatchButton": "💘 Gelukssnelkoppeling",
+  "giftVipButton": "🎁 Geef VIP",
+  "giftFortuneBottleButton": "🔮 Geef geluksfles",
+  "moreOptions": "⚙️ Meer opties...",
+  "blockUser": "🚫 Blokkeer gebruiker",
+  "reportUser": "⚠️ Rapporteren",
+  "moreOptionsTitle": "⚙️ Meer opties",
+  "giftedVipNote": "🎁 Heeft je VIP gegeven"
 };

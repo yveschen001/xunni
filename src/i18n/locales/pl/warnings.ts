@@ -122,7 +122,7 @@ export default {
       "body": "{userAttribute},\nZgodnie z analizą, masz najsilniejszą więź z {recommendedAttributes}!\n\n💡 {reason}\n\n👇 Czujesz szczęście?"
     },
     "btn": {
-      "throw": "🌊 Rzuć butelkę z wiadomością i spróbuj szczęścia",
+      "throw": "🌊 Rzuć butelką z błogosławieństwem, życz innym dobrze, a szczęście wróci do ciebie.",
       "vip_throw": "🎯 Rzuć do {target}",
       "vip_upsell": "💡 Przejdź na VIP, aby wyznaczyć dostawę do {target}, dla precyzyjnego dopasowania!"
     }

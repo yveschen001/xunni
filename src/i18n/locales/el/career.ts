@@ -3,7 +3,7 @@ export default {
   "label_industry": "Σε ποιον κλάδο ασχολείστε κυρίως;",
   "btn_edit_role": "💼 Επεξεργασία Επαγγελματικής Ταυτότητας",
   "btn_edit_industry": "🏢 Επεξεργασία Κλάδου",
-  "profile_incomplete_hint": "💡 Για να παρέχετε πιο ακριβείς υπηρεσίες μαντείου AI, παρακαλώ ολοκληρώστε πρώτα τις προσωπικές σας πληροφορίες.",
+  "profile_incomplete_hint": "💡 Για να παρέχουμε πιο ακριβείς υπηρεσίες ψυχικής ανάγνωσης, παρακαλούμε ολοκληρώστε πρώτα τα προσωπικά σας στοιχεία.",
   "role": {
     "employee": "Υπάλληλος Γραφείου",
     "freelancer": "Ελεύθερος Επαγγελματίας / SOHO",
@@ -167,4 +167,6 @@ export default {
     }
   },
   "next_step_industry": "Tjetër, ju lutemi zgjidhni industrinë tuaj."
+,
+  "back_to_categories": "Back to Industries"
 };

@@ -3,7 +3,7 @@ export default {
   "label_industry": "V jakém odvětví se primárně angažujete?",
   "btn_edit_role": "💼 Úprava profesionální identity",
   "btn_edit_industry": "🏢 Úprava odvětví",
-  "profile_incomplete_hint": "💡 Abychom poskytli přesnější služby AI v oblasti věštění, prosím nejprve vyplňte své osobní informace.",
+  "profile_incomplete_hint": "💡 Abychom mohli poskytovat přesnější služby Psychic Readingkého čtení, prosím nejprve vyplňte své osobní údaje.",
   "role": {
     "employee": "Úředník",
     "freelancer": "Freelancer / SOHO",
@@ -167,4 +167,6 @@ export default {
     }
   },
   "next_step_industry": "Następnie proszę wybrać branżę."
+,
+  "back_to_categories": "Back to Industries"
 };

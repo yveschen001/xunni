@@ -27,8 +27,8 @@ export default {
   "message8": "Cena: {priceStars} ⭐ Telegram Stars / měsíc\n",
   "message9": "Čas platby: {paymentDate.toLocaleDateString(",
   "purchaseCancelled": "✅ Nákup zrušen",
-  "quota": "• Denní kvóta 30 láhví se zprávou (pozvání přátel ji může zvýšit až na 100 za den)\n",
-  "quota2": "• Denní kvóta 30 láhví se zprávou (až 100 za den)\n",
+  "quota": "• Každý den 30 Láhví Přání (zváníte-li přátele, můžete zvýšit až na 100 láhví/den)\n",
+  "quota2": "• Každý den 30 Láhví Přání (maximálně 100 láhví/den)\n",
   "refundAdminCommands": "💡 Použijte následující příkazy pro pokračování:\n• Schválit: `/admin_approve_refund <ID>`\n• Odmítnout: `/admin_reject_refund <ID> <důvod>` <reason> `",
   "refundApproved": "✅ **Vrácení peněz schváleno**\n\nČástka vrácení: {amount} ⭐\nVrácení peněz bude připsáno během 1-3 pracovních dnů.\n\nVaše VIP členství bylo zrušeno.\n\nDěkujeme za vaše pochopení!",
   "refundApprovedAdmin": "✅ Vrácení peněz schváleno\n\nID žádosti: #{requestId}\nID uživatele: {userId}\nČástka: {amount} ⭐",
@@ -75,7 +75,7 @@ export default {
   "text11": "Doba vypršení: {expireDate}\n\n",
   "text12": "Vrácení peněz bude připsáno v průběhu 1-3 pracovních dnů.\n\n",
   "text13": "ID žádosti: #{requestId}\n",
-  "text14": "└ 1 chytrá shoda + 2 veřejné výstavy message bottle: Další 2 výstupní místa čekají na osudovou osobu, která si je vyzvedne.\nZvyšte šanci, že bude vaše message bottle vidět o 300%!",
+  "text14": "└ 1 inteligentní párování + 2 místa pro veřejné Láhve Přání: dodatečně 2 místa k zobrazení, čekající na někoho, kdo je zachytí.\nZvyšte šanci, že vaše láhve budou vidět, o 300%!",
   "text15": "O výsledcích zpracování vás budeme informovat prostřednictvím Bota.\n\n",
   "text16": "Prosím zadejte důvod vrácení (alespoň 10 znaků):",
   "text17": "Důvod: {req.reason}\n",
@@ -130,5 +130,5 @@ export default {
   "upgrade": "Přihlásit se k VIP",
   "maxDurationExceeded": "⚠️ Vaše VIP období dosáhlo limitu ({maxMonths} měsíců) a momentálně nemůžete pokračovat v nákupu.",
   "refundedAndRevoked": "ℹ️ Vaše platba byla vrácena a VIP výhody byly zrušeny.",
-  "benefit_daily_fortune": "• 1 bezplatné AI věštění denně (exkluzivně pro VIP)"
+  "benefit_daily_fortune": "• 1 zdarma Psychic Readingký výklad denně (exkluzivně pro VIP)"
 };

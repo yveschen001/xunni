@@ -19,7 +19,7 @@ export default {
   "noMessages": "(Hiç mesaj yok)",
   "partnerMessages": "• Diğer taraf {count} mesaj gönderdi\n",
   "recentMessages": "🔜📨 **Son Görüşmeler:**\n\n",
-  "returnToMenu": "🏠 Ana Menüye Dön: /menu",
+  "returnToMenu": "🏠 Ana Menü",
   "returnToMenuButton": "🏠 Ana Menüye Dön",
   "stats": "📊 **İstatistikler:**\n",
   "time": "Zaman: {time}\n\n",

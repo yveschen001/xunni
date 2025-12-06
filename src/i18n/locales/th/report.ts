@@ -4,7 +4,7 @@ export default {
   "cancel": "❌ ยกเลิก",
   "cancelled": "ยกเลิกแล้ว",
   "cannotIdentify": "⚠️ ไม่สามารถระบุคู่สนทนา\n\n",
-  "catchHint": "• ใช้ /catch เพื่อหยิบขวดข้อความใหม่",
+  "catchHint": "• ใช้การจับขวดอวยพรใหม่",
   "completeOnboarding": "⚠️ กรุณาเสร็จสิ้นกระบวนการลงทะเบียนก่อน\n\nใช้ /start เพื่อดำเนินการลงทะเบียนต่อ",
   "conversationInfoError": "⚠️ ข้อมูลการสนทนาผิดพลาด",
   "conversationInfoError2": "⚠️ ข้อมูลการสนทนาผิดพลาด",

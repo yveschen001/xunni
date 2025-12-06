@@ -27,6 +27,8 @@ export default {
   "selectEndHour": "☀️ Ora e fillimit është vendosur në {start}:00.\nJu lutem zgjidhni ora e mbarimit për orët e qetësisë:\n(Njoftimet do të rinisin pas kësaj kohe)",
   "disabled": "🚫 Orët e qetësisë janë çaktivizuar",
   "quietHoursHint": "Nuk do të merrni njoftime jo urgjente gjatë kësaj periudhe",
+  "quietHoursVipOnly": "🔒 Orari i Qetë (Vetëm VIP)",
+  "upgradeForQuietHours": "Bëhu VIP për të vendosur Orarin e Qetë, shmang të qenit i shqetësuar gjatë kohës së pushimit!",
   "blocklist": {
     "title": "🚫 Lista e Bllokuar",
     "empty": "Aktualisht nuk ka lista të bllokuara",

@@ -266,5 +266,24 @@ export default {
     "startButton": "📊 Începe testul",
     "resultTitle": "Rezultatul meu la testul MBTI este {type}!",
     "resultDesc": "Ar trebui să încerci și tu testul～"
-  }
+  },
+  "titles": {
+
+  "INTJ": "Arhitect",
+  "INTP": "Logician",
+  "ENTJ": "Comandant",
+  "ENTP": "Debatant",
+  "INFJ": "Apărător",
+  "INFP": "Mediator",
+  "ENFJ": "Protagonist",
+  "ENFP": "Campion",
+  "ISTJ": "Logistician",
+  "ISFJ": "Apărător",
+  "ESTJ": "Executiv",
+  "ESFJ": "Consol",
+  "ISTP": "Virtuos",
+  "ISFP": "Aventurier",
+  "ESTP": "Antreprenor",
+  "ESFP": "Distractor"
+  },
 };

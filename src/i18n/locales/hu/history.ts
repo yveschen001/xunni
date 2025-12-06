@@ -19,7 +19,7 @@ export default {
   "noMessages": "(nincs üzenet)",
   "partnerMessages": "• A másik fél küldött: {count} üzenet\n",
   "recentMessages": "📨 **Legutóbbi Beszélgetések:**\n\n",
-  "returnToMenu": "🏠 Vissza a Főmenübe: /menu",
+  "returnToMenu": "🏠 Főmenü",
   "returnToMenuButton": "🏠 Vissza a Főmenübe",
   "stats": "📊 **Statisztika:**\n",
   "time": "{time}\n\n",

@@ -1,7 +1,7 @@
 export default {
   "autoCompleted": "Rekisteröintiprosessi on suoritettu automaattisesti.\n\n",
-  "bottles": "• Viestipullot: {count}\n",
-  "catchCommand": "• /catch - Kaappaa viestipullot\n",
+  "bottles": "• Toivepullo: {count}\n",
+  "catchCommand": "• Catch Toivepullo\n",
   "conversations": "• Keskustelut: {count}\n",
   "dataReset": "✅ Kehitysmoodi: Tiedot on palautettu\n\nKaikki tietosi on poistettu.\n\n💡 Voit nyt aloittaa rekisteröintiprosessin uudelleen testauksen vuoksi.\n\n🔄 Rekisteröidy uudelleen: /start\ntai käytä: /dev_restart (aloita rekisteröinti automaattisesti)\n\n⚠️ Huom: Tämä ominaisuus on vain käytettävissä Staging-ympäristössä.",
   "getUserInfoFailed": "❌ Tietojen noutaminen epäonnistui",
@@ -30,7 +30,7 @@ export default {
   "telegramId": "Telegram ID: {id}",
   "testCoreFeatures": "💡 Voit nyt suoraan testata ydinominaisuuksia:\n",
   "testUser": "Testikäyttäjä",
-  "throwCommand": "• /throw - Heitä viestipullo\n",
+  "throwCommand": "• Throw Toivepullo\n",
   "userInfo": "🔧 Kehitysmoodi: Käyttäjätiedot\n\n",
   "userNotFound": "❌ Käyttäjää ei ole olemassa",
   "vip": "VIP: {status}",

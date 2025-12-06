@@ -26,7 +26,7 @@ export default {
   "manual": "Χειροκίνητη ρύθμιση",
   "mbti": "• Χρησιμοποιήστε /mbti για να επαναλάβετε ή να τροποποιήσετε το MBTI\n",
   "mbtiWithSource": "🧠 MBTI: {mbti}{source}",
-  "message": "https://t.me/share/url?url=https://t.me/{botUsername}?start=invite_{inviteCode}&text=Έλα στο XunNi και στείλε μπουκάλια μηνυμάτων μαζί!🍾 Χρησιμοποίησε τον κωδικό πρόσκλησής μου: {inviteCode}",
+  "message": "XunNi 一起丟 Blessing Bottle 吧！🍾 使用我的邀請碼：{inviteCode}",
   "message2": "{inviteLimitWarning}\n\n",
   "message3": "🌍 Γλώσσα: {user.language_pref}\n\n",
   "message4": "🌍 Γλώσσα: {user.language_pref }\n",
@@ -42,7 +42,7 @@ export default {
   "quota2": "📦 Τρέχουσα καθημερινή ποσοστά: {taskBonus > 0 ?",
   "quotaBottles": "{taskBonus} μπουκάλια μηνύματος",
   "quotaTotal": "📦 Τρέχουσα ημερήσια ποσόστωση: {quota}\n\n",
-  "returnToMenu": "🏠 Επιστροφή στο κύριο μενού: /menu",
+  "returnToMenu": "🏠 主選單",
   "separator": "━━━━━━━━━━━━━━━━\n\n",
   "settings": "Δεν έχει οριστεί",
   "settings2": "Δεν έχει οριστεί",
@@ -71,5 +71,14 @@ export default {
   "zodiac": "⭐ Ζώδιο: {zodiac}\n",
   "fortuneQuota": "🔮 {fortuneBottle}: {total} (Αυτή τη βδομάδα δωρεάν: {weekly}/{limit} | Πρόσθετα: {additional})",
   "vipWithDays": "💎 VIP Μέλος (Υπόλοιπα {days} ημέρες, Λήξη: {expireDate})",
-  "driftBottleInfo": "🍾 μπουκάλι μηνυμάτων: {remaining} / {total}"
+  "driftBottleInfo": "🍾 Blessing Bottle：{remaining} / {total}",
+  "ageRange": "Ηλικία: {min}-{max}",
+  "fortuneMatchButton": "💘 Fortune Match",
+  "giftVipButton": "🎁 Gift VIP",
+  "giftFortuneBottleButton": "🔮 Gift Fortune Bottle",
+  "moreOptions": "⚙️ More Options",
+  "blockUser": "🚫 Block User",
+  "reportUser": "⚠️ Report",
+  "moreOptionsTitle": "⚙️ More Options",
+  "giftedVipNote": "🎁 Gifted you VIP"
 };

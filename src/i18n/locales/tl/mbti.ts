@@ -266,5 +266,24 @@ export default {
     "startButton": "📊 Simulan ang pagsusulit",
     "resultTitle": "Ang resulta ng aking MBTI test ay {type}!",
     "resultDesc": "Dapat mo rin subukan ang pagsusulit～"
-  }
+  },
+  "titles": {
+
+  "INTJ": "Arkitekto",
+  "INTP": "Logisyon",
+  "ENTJ": "Komander",
+  "ENTP": "Tagapagtanggol",
+  "INFJ": "Tagapagtanggol",
+  "INFP": "Tagapamagitan",
+  "ENFJ": "Pangunahing Tauhan",
+  "ENFP": "Tagapagkampanya",
+  "ISTJ": "Logistik",
+  "ISFJ": "Tagapagtanggol",
+  "ESTJ": "Ehekutibo",
+  "ESFJ": "Konsul",
+  "ISTP": "Virtuoso",
+  "ISFP": "Manlalakbay",
+  "ESTP": "Negosyante",
+  "ESFP": "Pampalakas"
+  },
 };

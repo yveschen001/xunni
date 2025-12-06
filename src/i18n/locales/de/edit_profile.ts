@@ -12,5 +12,6 @@ export default {
   "nicknameInputHint": "👇 Bitte geben Sie einen neuen Spitznamen ein:",
   "bioInstruction": "Bitte geben Sie eine neue Selbstvorstellung ein (maximal 100 Zeichen).\n\nIhre aktuelle Selbstvorstellung ist: {bio}",
   "bioInputHint": "👇 Bitte geben Sie eine neue Selbstvorstellung ein:",
-  "bloodTypeInstruction": "Bitte wählen Sie Ihre Blutgruppe aus:"
+  "bloodTypeInstruction": "Bitte wählen Sie Ihre Blutgruppe aus:",
+  "matchPrefInstruction": "Bitte wähle deine Matching-Präferenz aus:"
 };

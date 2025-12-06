@@ -4,13 +4,13 @@
  * Handles quick actions during conversations (profile view, block, report, end).
  */
 
-import type { Env } from '~/types';
+import type { Env, TelegramMessage } from '~/types';
 import { createDatabaseClient } from '~/db/client';
 import { createTelegramService } from '~/services/telegram';
 import { findUserByTelegramId } from '~/db/queries/users';
 import { getConversationById, endConversation } from '~/db/queries/conversations';
 import { getOtherUserId } from '~/domain/conversation';
-import { maskNickname } from '~/domain/invite';
+import { handleProfileCard } from '~/telegram/handlers/profile';
 
 /**
  * Show anonymous profile card
@@ -22,7 +22,6 @@ export async function handleConversationProfile(
 ): Promise<void> {
   const db = createDatabaseClient(env.DB);
   const telegram = createTelegramService(env);
-  const chatId = callbackQuery.message!.chat.id;
   const telegramId = callbackQuery.from.id.toString();
 
   try {
@@ -45,152 +44,21 @@ export async function handleConversationProfile(
       return;
     }
 
-    // Get other user info
-    const otherUser = await findUserByTelegramId(db, otherUserId);
-    if (!otherUser) {
-      await telegram.answerCallbackQuery(callbackQuery.id, i18n.t('errors.userNotFound'));
-      return;
-    }
-
+    // Acknowledge callback
     await telegram.answerCallbackQuery(callbackQuery.id);
 
-    // Get viewer's VIP status (already fetched above)
-    const isVip = !!(
-      viewer?.is_vip &&
-      viewer.vip_expire_at &&
-      new Date(viewer.vip_expire_at) > new Date()
-    );
+    // Delegate to handleProfileCard
+    // We construct a pseudo-message object as handleProfileCard expects TelegramMessage
+    const fakeMessage: TelegramMessage = {
+      message_id: callbackQuery.message?.message_id || 0,
+      from: callbackQuery.from,
+      chat: callbackQuery.message?.chat || { id: 0, type: 'private' },
+      date: Math.floor(Date.now() / 1000),
+      text: '/profile_card'
+    };
 
-    // Get partner's avatar URL (clear for VIP, blurred for free users)
-    const { getAvatarUrlWithCache } = await import('~/services/avatar');
-    const partnerAvatarUrl = await getAvatarUrlWithCache(
-      db,
-      env,
-      otherUserId,
-      isVip, // VIP gets original, free users get blurred
-      otherUser.gender || undefined,
-      false // Don't force refresh
-    );
+    await handleProfileCard(fakeMessage, env, otherUserId, conversationId);
 
-    // Calculate age
-    const birthDate = otherUser.birthday ? new Date(otherUser.birthday) : null;
-    let ageRange = i18n.t('common.notSet');
-    if (birthDate && !Number.isNaN(birthDate.getTime())) {
-      const age = Math.floor((Date.now() - birthDate.getTime()) / (365.25 * 24 * 60 * 60 * 1000));
-      ageRange = `${Math.floor(age / 5) * 5}-${Math.floor(age / 5) * 5 + 4}`;
-    }
-
-    const nickname = maskNickname(
-      otherUser.nickname || otherUser.username || i18n.t('common.anonymous')
-    );
-    const languageLabel = otherUser.language_pref || i18n.t('common.notSet');
-    const zodiacLabel = otherUser.zodiac_sign || 'Virgo';
-
-    // Get blood type display
-    const { getBloodTypeDisplay } = await import('~/domain/blood_type');
-    const bloodTypeTextRaw = getBloodTypeDisplay(otherUser.blood_type as any);
-    const bloodTypeText = otherUser.blood_type ? bloodTypeTextRaw : i18n.t('common.notSet');
-
-    // Format nickname with country flag
-    const { formatNicknameWithFlag } = await import('~/utils/country_flag');
-    const displayNickname = formatNicknameWithFlag(nickname, otherUser.country_code);
-
-    // Build anonymous profile card
-    let profileMessage = i18n.t('conversation.profileCardTitle') + '\n\n';
-    profileMessage += i18n.t('conversation.separator') + '\n';
-    profileMessage += i18n.t('conversation.nickname2', { displayNickname }) + '\n';
-    profileMessage += i18n.t('conversation.text3', { languageLabel }) + '\n';
-    profileMessage +=
-      i18n.t('conversation.settings', { otherUser: { mbti_result: otherUser.mbti_result } }) + '\n';
-    profileMessage += i18n.t('conversation.zodiac2', { zodiacLabel }) + '\n';
-    profileMessage += i18n.t('conversation.bloodType2', { bloodTypeText }) + '\n';
-    const genderText =
-      otherUser.gender === 'male'
-        ? i18n.t('common.male')
-        : otherUser.gender === 'female'
-          ? i18n.t('common.female')
-          : i18n.t('common.notSet');
-    profileMessage += i18n.t('conversation.gender', { gender: genderText }) + '\n';
-    profileMessage += i18n.t('conversation.age', { ageRange }) + '\n';
-
-    if (otherUser.city) {
-      profileMessage += i18n.t('conversation.text4', { otherUser }) + '\n';
-    }
-
-    if (otherUser.interests) {
-      profileMessage += i18n.t('conversation.message8', { otherUser }) + '\n';
-    }
-
-    if (otherUser.bio) {
-      profileMessage += i18n.t('conversation.text5', { otherUser }) + '\n';
-    }
-
-    profileMessage += i18n.t('conversation.separator') + '\n\n';
-    profileMessage += i18n.t('conversation.anonymousCardHint') + '\n\n';
-
-    // Add VIP hint for free users
-    if (!isVip) {
-      profileMessage += i18n.t('conversation.vipUnlockAvatar') + '\n';
-      profileMessage += i18n.t('conversation.vipLearnMore') + '\n\n';
-    }
-
-    profileMessage += i18n.t('conversation.replyMethodsTitle') + '\n';
-    profileMessage += i18n.t('conversation.replyMethod1') + '\n';
-    profileMessage += i18n.t('conversation.replyMethod2') + '\n\n';
-    profileMessage += i18n.t('conversation.editProfileCommand') + '\n';
-    profileMessage += i18n.t('conversation.backToMenuCommand');
-
-    // Build buttons
-    const buttons = [
-      [{ text: i18n.t('conversation.replyButton'), callback_data: `conv_reply_${identifier}` }],
-    ];
-
-    // Add ad/task button for non-VIP users
-    if (!isVip) {
-      const { getNextIncompleteTask } = await import('./tasks');
-      const { getAdPrompt } = await import('~/domain/ad_prompt');
-      const { getTodayAdReward } = await import('~/db/queries/ad_rewards');
-
-      const nextTask = await getNextIncompleteTask(db, viewer);
-      const adReward = await getTodayAdReward(db.d1, viewer.telegram_id);
-
-      const prompt = getAdPrompt(
-        {
-          user: viewer,
-          ads_watched_today: adReward?.ads_watched || 0,
-          has_incomplete_tasks: !!nextTask,
-          next_task_name: nextTask?.name,
-          next_task_id: nextTask?.id,
-        },
-        i18n
-      );
-
-      if (prompt.show_button) {
-        buttons.push([{ text: prompt.button_text, callback_data: prompt.button_callback }]);
-      }
-    }
-
-    // Send with avatar and buttons if available
-    if (partnerAvatarUrl && !partnerAvatarUrl.includes('default-avatar')) {
-      try {
-        await telegram.sendPhoto(chatId, partnerAvatarUrl, {
-          caption: profileMessage,
-          reply_markup: {
-            inline_keyboard: buttons,
-          },
-        });
-      } catch (photoError) {
-        console.error(
-          '[handleConversationProfile] Failed to send photo, falling back to text:',
-          photoError
-        );
-        // Fallback to text message with buttons
-        await telegram.sendMessageWithButtons(chatId, profileMessage, buttons);
-      }
-    } else {
-      // No avatar, send as text with buttons
-      await telegram.sendMessageWithButtons(chatId, profileMessage, buttons);
-    }
   } catch (error) {
     console.error('[handleConversationProfile] Error:', error);
     const viewer = await findUserByTelegramId(db, callbackQuery.from.id.toString());
@@ -290,9 +158,6 @@ export async function handleConversationReport(
   }
 }
 
-/**
- * Handle conversation end
- */
 /**
  * Confirm block
  */

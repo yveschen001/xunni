@@ -6,7 +6,7 @@
 import type { Env } from '~/types';
 import { createTelegramService } from '~/services/telegram';
 import { createDatabaseClient } from '~/db/client';
-import { getUsersWithIncompleteTask, completeTask } from '~/db/queries/user_tasks';
+import { getUsersWithIncompleteTask, completeTask, getUserTask } from '~/db/queries/user_tasks';
 import { markTaskAsPendingClaim } from '~/db/queries/user_tasks';
 import { getTaskById } from '~/db/queries/tasks';
 
@@ -43,8 +43,10 @@ export async function checkChannelMembership(env: Env): Promise<void> {
           await markTaskAsPendingClaim(db, user.telegram_id, 'task_join_channel');
 
           // Get user's language preference for i18n
-          const { createI18n } = await import('~/i18n');
-          const i18n = createI18n(user.language_pref || 'zh-TW');
+          const { createI18n, loadTranslations } = await import('~/i18n');
+          const userLang = user.language_pref || 'zh-TW';
+          await loadTranslations(env, userLang);
+          const i18n = createI18n(userLang);
 
           // Send notification with claim button
           await telegram.sendMessageWithButtons(
@@ -58,7 +60,7 @@ export async function checkChannelMembership(env: Env): Promise<void> {
               [
                 {
                   text: i18n.t('channelMembership.claimButton'),
-                  callback_data: 'claim_task_join_channel',
+                  callback_data: 'claim_task_task_join_channel',
                 },
               ],
             ]
@@ -100,8 +102,12 @@ async function isUserInChannel(
 
     // Check user status
     return ['creator', 'administrator', 'member'].includes(member.status);
-  } catch (error) {
+  } catch (error: any) {
     console.error('[isUserInChannel] Error:', error);
+    // If bot is not admin or not in channel, Telegram API returns "member list is inaccessible"
+    if (error.message && error.message.includes('member list is inaccessible')) {
+      throw new Error('BOT_NOT_IN_CHANNEL');
+    }
     return false;
   }
 }
@@ -144,6 +150,17 @@ export async function handleVerifyChannelJoin(
     }
   }
 
+  // Check if task is already completed
+  const userTask = await getUserTask(db, userId, taskId);
+  if (userTask?.status === 'completed' && userTask.reward_claimed) {
+    const { findUserByTelegramId } = await import('~/db/queries/users');
+    const { createI18n } = await import('~/i18n');
+    const user = await findUserByTelegramId(db, userId);
+    const i18n = createI18n(user?.language_pref || 'zh-TW');
+    await telegram.answerCallbackQuery(callbackQuery.id, i18n.t('errors.taskAlreadyCompleted'));
+    return;
+  }
+
   if (!targetId) {
     // Get user's language preference for i18n
     const { findUserByTelegramId } = await import('~/db/queries/users');
@@ -161,9 +178,11 @@ export async function handleVerifyChannelJoin(
     if (!isInChannel) {
       // Get user's language preference for i18n
       const { findUserByTelegramId } = await import('~/db/queries/users');
-      const { createI18n } = await import('~/i18n');
+      const { createI18n, loadTranslations } = await import('~/i18n');
       const user = await findUserByTelegramId(db, userId);
-      const i18n = createI18n(user?.language_pref || 'zh-TW');
+      const userLang = user?.language_pref || 'zh-TW';
+      await loadTranslations(env, userLang);
+      const i18n = createI18n(userLang);
       await telegram.answerCallbackQuery(callbackQuery.id, i18n.t('channelMembership.notJoined'));
       return;
     }
@@ -199,13 +218,19 @@ export async function handleVerifyChannelJoin(
           i18n.t('channelMembership.viewMoreTasks')
       );
     }
-  } catch (error) {
+  } catch (error: any) {
     console.error('[handleVerifyChannelJoin] Error:', error);
     // Get user's language preference for i18n
     const { findUserByTelegramId } = await import('~/db/queries/users');
     const { createI18n } = await import('~/i18n');
     const user = await findUserByTelegramId(db, userId);
     const i18n = createI18n(user?.language_pref || 'zh-TW');
+
+    if (error.message === 'BOT_NOT_IN_CHANNEL') {
+      await telegram.answerCallbackQuery(callbackQuery.id, i18n.t('errors.channelConfigError'));
+      return;
+    }
+
     await telegram.answerCallbackQuery(callbackQuery.id, i18n.t('errors.verificationFailed'));
   }
 }
@@ -221,6 +246,17 @@ export async function handleClaimTaskReward(
   const telegram = createTelegramService(env);
   const db = createDatabaseClient(env.DB);
   const userId = callbackQuery.from.id.toString();
+
+  // Check if task is already completed
+  const userTask = await getUserTask(db, userId, taskId);
+  if (userTask?.status === 'completed' && userTask.reward_claimed) {
+    const { findUserByTelegramId } = await import('~/db/queries/users');
+    const { createI18n } = await import('~/i18n');
+    const user = await findUserByTelegramId(db, userId);
+    const i18n = createI18n(user?.language_pref || 'zh-TW');
+    await telegram.answerCallbackQuery(callbackQuery.id, i18n.t('errors.taskAlreadyCompleted'));
+    return;
+  }
 
   try {
     // For join channel task, verify user is still in channel

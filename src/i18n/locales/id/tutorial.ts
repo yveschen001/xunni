@@ -1,13 +1,13 @@
 export default {
   "availableCommands": "Anda dapat menggunakan perintah berikut kapan saja:",
-  "catchBottle": "🎣 **Ambil botol pesan**",
-  "catchBottleDesc": "Periksa botol pesan orang lain, dan jika Anda tertarik, balas untuk mulai chatting",
+  "catchBottle": "🎣 **Ambil Botol Berkah berkah**",
+  "catchBottleDesc": "Lihat Botol Berkah berkah lainnya, balas dengan berkah, dan mulai mengobrol~",
   "clickButtonHint": "💡 Harap klik tombol untuk melanjutkan",
-  "commandCatch": "• /catch - Ambil botol pesan",
+  "commandCatch": "• /catch - Ambil sebuah berkat Botol Berkah",
   "commandHelp": "• /help - Lihat bantuan",
   "commandMenu": "📋 Menu Perintah",
   "commandTasks": "• /tasks - Lihat tugas",
-  "commandThrow": "• /throw - Buang botol pesan",
+  "commandThrow": "• Botol Berkah",
   "completeTasksForBottles": "💡 Selesaikan tugas untuk mendapatkan botol ekstra",
   "completed": "✅ Tutorial selesai!",
   "howToBecomeFriends": "💬 **Bagaimana cara membuat teman?**",
@@ -16,11 +16,11 @@ export default {
   "skip": "Lewati",
   "skipped": "✅ Tutorial dilewati",
   "startUsing": "Mulai gunakan →",
-  "throwBottle": "📦 **Buang botol pesan**",
+  "throwBottle": "📦 **Kirim sebuah Botol Berkah Berkat**",
   "throwBottleDesc": "Tuliskan perasaan atau pikiran Anda, dan sistem akan membantu Anda menemukan orang yang tepat",
   "unknownStep": "❌ Langkah tutorial tidak dikenal",
   "viewTasks": "📋 Lihat tugas",
   "welcome": "🎉 Selamat telah menyelesaikan pendaftaran!",
   "whatIsXunNi": "🌊 **Apa itu XunNi?**",
-  "whatIsXunNiDesc": "Platform kencan botol pesan anonim yang membantu Anda menemukan teman yang sejalan melalui MBTI dan tanda zodiak."
+  "whatIsXunNiDesc": "Platform persahabatan Botol Berkah Anonim, temukan teman sejiwa melalui berkah timbal balik, MBTI, dan tanda zodiak."
 };

@@ -27,8 +27,8 @@ export default {
   "message8": "Cena: {priceStars} ⭐ Telegram Stars / mesec\n",
   "message9": "Čas plačila: {paymentDate.toLocaleDateString(",
   "purchaseCancelled": "✅ Nakup preklican",
-  "quota": "• Dnevna kvota 30 sporočil v steklenicah (vabljeni prijatelji lahko povečajo, do 100 na dan)\n",
-  "quota2": "• Dnevna kvota 30 sporočil v steklenicah (do 100 na dan)\n",
+  "quota": "• 每天 30 個 Blessing Bottle 配額（邀請好友可增加，最高 100 個/天）\n",
+  "quota2": "• 每天 30 個 Blessing Bottle 配額（最高 100 個/天）\n",
   "refundAdminCommands": "💡 Uporabite naslednje ukaze za nadaljevanje:\n• Odobri: `/admin_approve_refund <ID>`\n• Zavrni: `/admin_reject_refund <ID> <reason>`",
   "refundApproved": "✅ **Refundacija odobrena**\n\nZnesek refundacije: {amount} ⭐\nRefundacija bo pripisana v 1-3 delovnih dneh.\n\nVaše VIP članstvo je bilo preklicano.\n\nHvala za razumevanje!",
   "refundApprovedAdmin": "✅ Refundacija odobrena\n\nID zahteve: #{requestId}\nID uporabnika: {userId}\nZnesek: {amount} ⭐",
@@ -75,7 +75,7 @@ export default {
   "text11": "Čas poteka: {expireDate}\n\n",
   "text12": "Vračila bodo nakazana v 1-3 delovnih dneh.\n\n",
   "text13": "ID zahteve: #{requestId}\n",
-  "text14": "└ 1 pametno ujemanje + 2 javna prikaza skladišča sporočilnih steklenic: Dodatna 2 mesta za prikaz, ki čakajo, da jih izbere usojena oseba.\nPovečajte možnosti, da bo vaša sporočilna steklenica vidna za 300%!",
+  "text14": "└ 1 個智能配對 + 2 個公共 Blessing Bottle 池展示：額外增加 2 個展示位，等待有緣人撿起。\n讓您的瓶子被看到的機會提升 300%！",
   "text15": "O rezultate obdelave boste obveščeni prek Bota.\n\n",
   "text16": "Prosimo, vnesite razlog za refundacijo (vsaj 10 znakov):",
   "text17": "Razlog: {req.reason}\n",
@@ -130,5 +130,5 @@ export default {
   "upgrade": "Nadgradi na VIP",
   "maxDurationExceeded": "⚠️ Vaša VIP doba je dosegla limit ({maxMonths} meseci) in trenutno ne morete nadaljevati s nakupom.",
   "refundedAndRevoked": "ℹ️ Vaša plačila je bila vrnjena in VIP ugodnosti so bile preklicane.",
-  "benefit_daily_fortune": "• 1 brezplačno AI napovedovanje prihodnosti na dan (izključno za VIP)"
+  "benefit_daily_fortune": "• 1 brezplačno psihično branje na dan (izključno za VIP)"
 };

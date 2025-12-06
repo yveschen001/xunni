@@ -1,7 +1,7 @@
 export default {
   "autoCompleted": "תהליך הרישום הושלם אוטומטית.\n\n",
-  "bottles": "{count}\n",
-  "catchCommand": "• /catch - לתפוס בקבוק מסר\n",
+  "bottles": "• Blessing Bottle: {count}\n",
+  "catchCommand": "• Catch Blessing Bottle\n",
   "conversations": "{count}\n",
   "dataReset": "✅ מצב פיתוח: הנתונים נמחקו\n\nכל הנתונים שלך נמחקו.\n\n💡 אתה יכול עכשיו להתחיל מחדש את תהליך הרישום לצורך בדיקה.\n\n🔄 רישום מחדש: /start\nאו השתמש ב: /dev_restart (התחלת רישום אוטומטית)\n\n⚠️ שימו לב: תכונה זו זמינה רק בסביבת הבמה.",
   "getUserInfoFailed": "❌ לא הצלחנו להשיג מידע",
@@ -30,7 +30,7 @@ export default {
   "telegramId": "ID של טלגרם: {id}\n",
   "testCoreFeatures": "💡 אתה יכול עכשיו לבדוק ישירות את התכונות העיקריות:\n",
   "testUser": "משתמש בדיקה",
-  "throwCommand": "• /throw - זרוק בקבוק מסר\n",
+  "throwCommand": "• Throw Blessing Bottle\n",
   "userInfo": "🔧 מצב פיתוח: מידע על משתמש\n\n",
   "userNotFound": "❌ המשתמש לא קיים",
   "vip": "VIP: {status}",

@@ -26,7 +26,7 @@ export default {
   "manual": "به‌صورت دستی تنظیم کنید",
   "mbti": "• از /mbti استفاده کنید تا تست را دوباره بگیرید یا MBTI را تغییر دهید\n",
   "mbtiWithSource": "🧠 MBTI: {mbti}{source}",
-  "message": "https://t.me/share/url?url=https://t.me/{botUsername}?start=invite_{inviteCode}&text=به XunNi بیایید و با هم بطری‌های پیام بیندازیم!🍾 از کد دعوت من استفاده کنید: {inviteCode}",
+  "message": "XunNi一起丟Blessing Bottle吧！🍾 使用我的邀請碼：{inviteCode}",
   "message2": "{inviteLimitWarning}\n\n",
   "message3": "🌍 زبان: {user.language_pref}\n\n",
   "message4": "🌍 زبان: {user.language_pref }\n",
@@ -42,7 +42,7 @@ export default {
   "quota2": "📦 سهمیه روزانه فعلی: {taskBonus > 0 ?",
   "quotaBottles": "{taskBonus} بطری پیام",
   "quotaTotal": "📦 سهمیه روزانه فعلی: {quota}\n\n",
-  "returnToMenu": "🏠 بازگشت به منوی اصلی: /menu",
+  "returnToMenu": "🏠 منوی اصلی",
   "separator": "━━━━━━━━━━━━━━━━\n\n",
   "settings": "تنظیم نشده",
   "settings2": "تنظیم نشده",
@@ -71,5 +71,14 @@ export default {
   "zodiac": "⭐ زودیاک: {zodiac}\n",
   "fortuneQuota": "🔮 {fortuneBottle}: {total} (این هفته رایگان: {weekly}/{limit} | اضافی: {additional})",
   "vipWithDays": "💎 عضو VIP (باقی‌مانده {days} روز، انقضا: {expireDate})",
-  "driftBottleInfo": "🍾 بطری پیام: {remaining} / {total}"
+  "driftBottleInfo": "🍾 Blessing Bottle：{remaining} / {total}",
+  "ageRange": "سن: {min}-{max}",
+  "fortuneMatchButton": "💘 مطابقت شغف",
+  "giftVipButton": "🎁 ارسال VIP به دیگران",
+  "giftFortuneBottleButton": "🔮 ارسال Fortune Bottle به دیگران",
+  "moreOptions": "⚙️ گزینه‌های بیشتر...",
+  "blockUser": "🚫 مسدود کردن کاربر",
+  "reportUser": "⚠️ گزارش",
+  "moreOptionsTitle": "⚙️ گزینه‌های بیشتر",
+  "giftedVipNote": "🎁 قبلاً برای شما VIP ارسال شده است"
 };

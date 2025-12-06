@@ -35,14 +35,14 @@ export default {
     "moonpacket_group": "MoonPacket Group",
     "moonpacket_channel": "MoonPacket Channel"
   },
-  "profile": "👤 **مهام الملف الشخصي** ({completed}/{total})\n",
-  "quota": "الحصة اليومية الحالية: {quota} عناصر\n",
+  "profile": "👤 **مهام الملف الشخصي** ({completedCount}/{profileTasks.length})\n",
+  "quota": "الحصة اليومية الحالية: {calculateDailyQuota(user)} عناصر\n",
   "short": "(في انتظار الجمع)",
   "short2": "صالح لليوم",
   "short3": "صالح بشكل دائم",
   "task": "• مهام الدعوة: {inviteProgress.current}/{inviteProgress.max} قيد التقدم\n\n",
-  "task2": "📱 **مهام وسائل التواصل الاجتماعي** ({completed}/{total})\n",
-  "task3": "🎯 **مهام العمل** ({completed}/{total})\n",
+  "task2": "📱 **مهام وسائل التواصل الاجتماعي** ({completedCount}/{socialTasks.length})\n",
+  "task3": "🎯 **مهام العمل** ({completedCount}/{actionTasks.length})\n",
   "task4": "• مهام لمرة واحدة: {oneTimeCompleted}/{oneTimeTotal} مكتملة\n",
   "task5": "🎉 تهانينا على إكمال المهمة \"{task.name}\"!\n\n",
   "task6": "👥 **مهام الدعوة** (جارية)\n",

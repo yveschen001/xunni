@@ -4,7 +4,7 @@ export default {
   "cancel": "❌ Откажи",
   "cancelled": "Откажано",
   "cannotIdentify": "⚠️ Не може да се идентификува партнерот за разговор\n\n",
-  "catchHint": "• Користете /catch за да подигнете нова message bottle",
+  "catchHint": "• Пфати нов Blessing Bottle",
   "completeOnboarding": "⚠️ Ве молиме завршете го процесот на регистрација прво.\n\nКористете /start за да продолжите со регистрацијата.",
   "conversationInfoError": "⚠️ Информациите за разговорот се неточни.",
   "conversationInfoError2": "⚠️ Информациите за разговорот се неточни",

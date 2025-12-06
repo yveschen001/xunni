@@ -8,15 +8,15 @@ export default {
     "love_match": "Compatibilidade de casais",
     "love_ideal": "Análise do tipo ideal"
   },
-  "back_to_menu": "🔙 Voltar ao menu de leituras de sorte",
-  "get_more_bottles": "💎 Adquira mais garrafas de mensagens de adivinhação",
+  "back_to_menu": "🔙 Retornar ao Menu de Leitura Psíquica",
+  "get_more_bottles": "💎 Obter mais garrafas da sorte",
   "relationship": {
     "love": "Casal",
     "friend": "Amigos",
     "family": "Família",
     "work": "Colegas"
   },
-  "menuTitle": "Leitura de sorte de IA",
+  "menuTitle": "Leitura Psíquica",
   "currentProfile": "Perfil atual",
   "warehouse": "Armazenamento do mapa astral",
   "manageProfiles": "Gerenciar mapas astrais",
@@ -148,19 +148,19 @@ export default {
   },
   "dailyPush": "📅 O horóscopo de hoje foi entregue!",
   "dailyPushBtn": "👇 Clique para ver",
-  "backToMenu": "🔙 Retornar ao Menu de Adivinhação de IA",
+  "backToMenu": "🔙 Voltar ao Menu de Leituras Psíquicas",
   "addProfile": "Adicionar Arquivo de Gráfico",
   "quotaDisplay": "🔮 garrafa da sorte de previsão: {total} (Esta semana grátis: {weekly}/{limit} | Adicional: {additional})",
   "quotaDisplayVip": "🔮 garrafa da sorte: {total} (Hoje: {daily}/1 | Adicional: {additional})",
   "quotaDisplayFree": "🔮 garrafa da sorte: {total} (Esta semana grátis: {weekly}/1 | Adicional: {additional})",
   "profileDetails": "👤 {gender} {blood} | 🎂 {birthday} | {zodiac} | 🧠 {mbti}",
-  "getMore": "Obtenha mais garrafas de mensagem",
-  "getMoreInfo": "🔮 *Como Obter uma garrafa da sorte?*\n\n1. **Gratuito Semanal**: Usuários regulares recebem 1 por semana, VIPs recebem 1 por dia.\n2. **Recompensas por Convite**: Convide um amigo a se juntar, e quando ele convidar outro amigo com sucesso, você receberá uma recompensa (até 1 garrafa da sorte dentro de 24 horas).\n3. **Recompensas de garrafa da sorte**: Para cada 10 garrafas de mensagem enviadas, receba 1 garrafa da sorte. (Até 1 garrafa da sorte dentro de 24 horas)\n4. **Compra Direta (🔥 Tempo Limitado 20% de Desconto)**:\n • Pacote Pequeno {smallAmount} - ~{originalSmallPrice} Estrelas~ {smallPrice} Estrelas\n • Pacote Grande {largeAmount} - ~{originalLargePrice} Estrelas~ {largePrice} Estrelas",
+  "getMore": "Obter mais garrafas da sorte",
+  "getMoreInfo": "🔮 *Como obter garrafas da sorte?*\n\n1. **Gratuito semanal**: Usuários comuns recebem 1 por semana, VIPs recebem 1 por dia.\n2. **Recompensa de convite**: Convide um amigo para se juntar, e quando esse amigo também convidar outro amigo, você receberá uma recompensa (limite de 1 garrafa da sorte dentro de 24 horas).\n3. **Recompensa de garrafa de bênção**: A cada 10 garrafas de bênção enviadas, você ganha 1 garrafa da sorte. (limite de 1 garrafa da sorte dentro de 24 horas)\n4. **Compra direta (🔥 Promoção de 80% de desconto)**:\n   • Pacote pequeno {smallAmount} - ~{originalSmallPrice} Estrelas~ {smallPrice} Estrelas\n   • Pacote grande {largeAmount} - ~{originalLargePrice} Estrelas~ {largePrice} Estrelas",
   "buySmall": "🔥 Preço Especial {price} Estrelas (Compre {amount} itens)",
   "buyLarge": "🔥 Preço Especial {price} Estrelas (Compre {amount} itens)",
-  "invoiceTitle": "Comprar {amount} garrafas de mensagem",
-  "invoiceDesc": "Após a compra, você pode imediatamente usar o serviço de adivinhação com IA, e cada serviço de adivinhação consome 1 garrafa da sorte.\n\nClique no botão abaixo para comprar agora:",
-  "purchaseSuccess": "🎉 Compra bem-sucedida! {amount} garrafas de mensagem foram adicionadas.",
+  "invoiceTitle": "Comprar {amount} garrafas da sorte",
+  "invoiceDesc": "Após a compra, você poderá usar imediatamente o serviço de leitura psíquica, sendo que cada serviço consome 1 garrafa da sorte.\n\nClique no botão abaixo para comprar:",
+  "purchaseSuccess": "🎉 Compra bem-sucedida! {amount} garrafas da sorte foram adicionadas.",
   "bottleReward": "🎉 Parabéns! Você enviou {count} garrafas de mensagem e recebeu 1 recompensa de garrafa da sorte!",
   "inviteChainReward": "🎉 Parabéns! Seu amigo convidado conseguiu convidar um novo amigo para se juntar, e você recebeu 1 recompensa de garrafa da sorte!",
   "menu": {
@@ -190,7 +190,9 @@ export default {
     "match_report_title": "💞 Relatório de sinastria do casal",
     "wait_for_consent": "⏳ Aguardando a concordância da outra parte...",
     "consent_accepted": "✅ A outra parte concordou! Gerando relatório...",
-    "consent_rejected": "❌ A outra parte rejeitou o pedido de sinastria."
+    "consent_rejected": "❌ A outra parte rejeitou o pedido de sinastria.",
+    "invite_friend": "📨 Invite Friend to Experience",
+    "invite_friend_text": "Hey! I want to try the Compatibility Test with you. Create your fortune profile now!"
   },
   "role": {
     "husband": "Marido",
@@ -228,12 +230,26 @@ export default {
       "drawn": "🎴 As cartas foram sorteadas:"
     }
   },
-  "profile_incomplete_hint": "💡 Para fornecer serviços de previsão de inteligência artificial mais precisos, por favor, complete primeiro suas informações de interesses, profissão ou MBTI.",
+  "profile_incomplete_hint": "💡 Para fornecer um serviço de leitura eLeitura Psíquica mais preciso, por favor, complete primeiro suas preferências, profissão ou MBTI ... e outras informações.",
   "tarot_menu_title": "Cartas de Tarot",
   "tarot_ui": {
     "intro": "🔮 *Leitura de Tarot*\n\nPor favor, pense silenciosamente na sua pergunta (por exemplo, \"Como está minha sorte no trabalho recentemente?\" ou \"Como devo lidar com esse relacionamento?\") e concentre-se antes de clicar no botão abaixo para sortear as cartas.",
     "draw": "🔮 Sortear Cartas",
     "shuffling": "Embaralhando...",
     "drawn": "🎴 Cartas foram sorteadas:"
+  },
+  "profileUpdated": "✅ O perfil de astrologia foi atualizado!",
+  "btn_complete_info": "✏️ Complete suas informações de nascimento",
+  "complete_info_hint": "💡 Aperfeiçoe sua hora e local de nascimento para desbloquear a análise do signo ascendente e das casas!",
+  "btn_edit_info": "📝 Edite as informações de nascimento",
+  "edit": {
+    "currentInfo": "📋 Informações atuais:",
+    "currentTime": "Hora de nascimento: {time}",
+    "currentTimeUnknown": "Hora de nascimento: Incerta",
+    "currentCity": "Cidade de nascimento: {city}",
+    "currentCityUnknown": "Cidade de nascimento: Não definida",
+    "confirmEdit": "Você deseja modificar as informações acima?",
+    "btnConfirmEdit": "✅ Sim, quero modificar",
+    "btnCancelEdit": "❌ Cancelar"
   }
 };

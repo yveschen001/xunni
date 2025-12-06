@@ -27,8 +27,8 @@ export default {
   "message8": "Harga: ~{originalPrice} Stars~ {priceStars} ⭐ Telegram Stars / bulan 🔥 (-80%)",
   "message9": "Waktu pembayaran: {paymentDate.toLocaleDateString(",
   "purchaseCancelled": "✅ Pembelian dibatalkan",
-  "quota": "• Kuota harian 30 botol pesan (mengundang teman dapat meningkatkan ini, hingga 100 per hari)",
-  "quota2": "• Kuota harian 30 botol pesan (hingga 100 per hari)",
+  "quota": "• Kuota harian sebanyak 30 Botol Berkah (mengundang teman dapat meningkatkan ini, hingga 100 per hari)",
+  "quota2": "• Kuota harian sebanyak 30 Botol Berkah (hingga 100 per hari)",
   "refundAdminCommands": "💡 Gunakan perintah berikut untuk memproses:\n• Setujui: `/admin_approve_refund <ID>`\n• Tolak: `/admin_reject_refund <ID> <alasan>` <reason>",
   "refundApproved": "✅ **Pengembalian dana disetujui**\n\nJumlah pengembalian dana: {amount} ⭐\nPengembalian dana akan dikreditkan dalam 1-3 hari kerja.\n\nKeanggotaan VIP Anda telah dibatalkan.\n\nTerima kasih atas pengertian Anda!",
   "refundApprovedAdmin": "✅ Pengembalian dana disetujui\n\nID permintaan: #{requestId}\nID pengguna: {userId}\nJumlah: {amount} ⭐",
@@ -75,7 +75,7 @@ export default {
   "text11": "Waktu kedaluwarsa: {expireDate}\n\n",
   "text12": "Pengembalian dana akan dikreditkan dalam waktu 1-3 hari kerja.\n\n",
   "text13": "ID Permintaan: #{requestId}\n",
-  "text14": "└ 1 pencocokan cerdas + 2 kolam botol pesan publik ditampilkan: 2 tempat tampilan tambahan, menunggu orang yang ditakdirkan untuk mengambilnya.\nTingkatkan peluang botol pesan Anda dilihat sebanyak 300%!",
+  "text14": "└ 1 kecocokan cerdas + 2 kolam Botol Berkah publik: Menambahkan 2 tempat tampilan ekstra, menunggu orang-orang yang berjodoh untuk mengambilnya.\nTingkatkan peluang botol Anda dilihat sebesar 300%!",
   "text15": "Anda akan diberi tahu tentang hasil pemrosesan melalui Bot.\n\n",
   "text16": "Silakan masukkan alasan pengembalian dana (minimal 10 karakter):",
   "text17": "Alasan: {req.reason}\n",
@@ -130,5 +130,5 @@ export default {
   "upgrade": "Tingkatkan ke VIP",
   "maxDurationExceeded": "⚠️ Periode VIP Anda telah mencapai batas ({maxMonths} bulan), dan Anda tidak dapat melanjutkan pembelian untuk saat ini.",
   "refundedAndRevoked": "ℹ️ Pembayaran Anda telah dikembalikan, dan manfaat VIP telah dicabut.",
-  "benefit_daily_fortune": "• 1 ramalan AI gratis per hari (eksklusif untuk VIP)"
+  "benefit_daily_fortune": "• 1 bacaan psikik gratis per hari (eksklusif untuk VIP)"
 };

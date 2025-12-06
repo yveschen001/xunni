@@ -9,7 +9,7 @@ export default {
   "subtitle": "Selecteer een categorie om opties te bladeren.",
   "current": "Momenteel geselecteerd ({count}/{max}):\n{list}",
   "saved": "✅ Interesse-tags bijgewerkt!",
-  "required_hint": "💡 Om nauwkeurigere AI waarzegdiensten te bieden, voltooi eerst je interesse-tags.",
+  "required_hint": "💡 Om meer nauwkeurige psychische leesdiensten te bieden, voltooi alstublieft eerst uw interesse-tags.",
   "categories": {
     "life": "Levensstijl en stijl",
     "travel": "Reizen en verkenning",

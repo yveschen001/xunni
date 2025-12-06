@@ -4,7 +4,7 @@ export default {
   "cancel": "❌ Zrušiť",
   "cancelled": "Zrušené",
   "cannotIdentify": "⚠️ Nie je možné identifikovať chatového partnera\n\n",
-  "catchHint": "• Použite /catch na vyzdvihnutie novej message bottle",
+  "catchHint": "• Použite /catch na zdvihnutie nových požehnaní v Blessing Bottles",
   "completeOnboarding": "⚠️ Najprv prosím dokončite registračný proces.\n\nPoužite /start na pokračovanie v registrácii.",
   "conversationInfoError": "⚠️ Informácie o konverzácii sú nesprávne.",
   "conversationInfoError2": "⚠️ Informácie o konverzácii sú nesprávne",

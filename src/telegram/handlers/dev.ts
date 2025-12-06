@@ -54,7 +54,7 @@ export async function handleDevReset(message: TelegramMessage, env: Env): Promis
   const db = createDatabaseClient(env.DB);
   // Determine target ID: argument or sender
   const args = message.text?.split(' ').slice(1) || [];
-  const targetId = args[0] || senderId;
+  const targetId = args[0] ? args[0].trim() : senderId;
 
   // Get sender's language for response
   const senderUser = await findUserByTelegramId(db, senderId);
@@ -64,9 +64,14 @@ export async function handleDevReset(message: TelegramMessage, env: Env): Promis
   try {
     // Check if target user exists
     const targetUser = await findUserByTelegramId(db, targetId);
-    if (!targetUser && targetId !== senderId) {
-        await telegram.sendMessage(chatId, i18n.t('dev.userNotFound'));
-        return;
+    if (!targetUser) {
+        if (targetId !== senderId) {
+            // Warn but continue for target deletion (might be residual data)
+            await telegram.sendMessage(chatId, `⚠️ User ${targetId} not found in users table. Attempting to clean up residual data...`);
+        } else {
+            // Self-reset with no user record? Weird but allow cleanup.
+            console.warn(`[handleDevReset] Self-reset for ${senderId} but user record missing. Cleaning up residuals.`);
+        }
     }
 
     // Delete user data - ignore errors for non-existent tables
@@ -145,7 +150,7 @@ export async function handleDevReset(message: TelegramMessage, env: Env): Promis
         sql: 'DELETE FROM invites WHERE inviter_telegram_id = ? OR invitee_telegram_id = ?',
         params: [targetId, targetId],
       },
-      // { sql: 'DELETE FROM daily_usage WHERE telegram_id = ?', params: [targetId] }, // Removed: table does not exist
+      { sql: 'DELETE FROM daily_usage WHERE telegram_id = ?', params: [targetId] },
       { sql: 'DELETE FROM bans WHERE user_id = ?', params: [targetId] },
       {
         sql: 'DELETE FROM user_blocks WHERE blocker_telegram_id = ? OR blocked_telegram_id = ?',
@@ -272,7 +277,72 @@ export async function handleDevReset(message: TelegramMessage, env: Env): Promis
 }
 
 /**
- * /dev_skip - Skip to completed onboarding (for testing)
+ * /dev_clear_blocks - Clear user blocks and reports
+ * Usage: /dev_clear_blocks [target_id]
+ */
+export async function handleDevClearBlocks(message: TelegramMessage, env: Env): Promise<void> {
+  const telegram = createTelegramService(env);
+  const chatId = message.chat.id;
+  const senderId = message.from!.id.toString();
+
+  // SECURITY CHECK
+  if (!isDevCommandAllowed(env, senderId)) {
+    const { createI18n } = await import('~/i18n');
+    const i18n = createI18n('en');
+    await telegram.sendMessage(chatId, i18n.t('dev.notAvailableInProduction'));
+    return;
+  }
+
+  const db = createDatabaseClient(env.DB);
+  const args = message.text?.split(' ').slice(1) || [];
+  const targetId = args[0] ? args[0].trim() : senderId;
+
+  try {
+    // 1. Delete user_blocks where user is blocker OR blocked
+    const blocks = await db.d1.prepare(
+      'DELETE FROM user_blocks WHERE blocker_telegram_id = ? OR blocked_telegram_id = ?'
+    ).bind(targetId, targetId).run();
+
+    // 2. Delete reports where user is reporter OR reported
+    const reports = await db.d1.prepare(
+      'DELETE FROM reports WHERE reporter_telegram_id = ? OR reported_telegram_id = ?'
+    ).bind(targetId, targetId).run();
+
+    await telegram.sendMessage(
+        chatId, 
+        `✅ Blocks and Reports cleared for ${targetId}:\n` +
+        `- Blocks removed: ${blocks.meta.changes}\n` +
+        `- Reports removed: ${reports.meta.changes}`
+    );
+  } catch (error) {
+     const errorMessage = error instanceof Error ? error.message : String(error);
+     await telegram.sendMessage(chatId, `❌ Error clearing blocks: ${errorMessage}`);
+  }
+}
+
+/**
+ * /dev_test_alert - Test admin group notification
+ */
+export async function handleDevTestAlert(message: TelegramMessage, env: Env): Promise<void> {
+  const telegram = createTelegramService(env);
+  const chatId = message.chat.id;
+  const senderId = message.from!.id.toString();
+
+  if (!isDevCommandAllowed(env, senderId)) {
+    return;
+  }
+
+  const { AdminLogService } = await import('~/services/admin_log');
+  const logService = new AdminLogService(env);
+
+  try {
+    await logService.logEvent('🔔 Test Alert', `This is a test alert triggered by ${senderId}`);
+    await telegram.sendMessage(chatId, '✅ Test alert sent. Check the admin group.');
+  } catch (error) {
+    const errorMessage = error instanceof Error ? error.message : String(error);
+    await telegram.sendMessage(chatId, `❌ Failed to send alert: ${errorMessage}`);
+  }
+}
 
 /**
  * /dev_info - Show development info
@@ -469,7 +539,7 @@ export async function handleDevRestart(message: TelegramMessage, env: Env): Prom
         sql: 'DELETE FROM invites WHERE inviter_telegram_id = ? OR invitee_telegram_id = ?',
         params: [targetId, targetId],
       },
-      // { sql: 'DELETE FROM daily_usage WHERE telegram_id = ?', params: [targetId] }, // Removed: table does not exist
+      { sql: 'DELETE FROM daily_usage WHERE telegram_id = ?', params: [targetId] },
       { sql: 'DELETE FROM bans WHERE user_id = ?', params: [targetId] },
       {
         sql: 'DELETE FROM user_blocks WHERE blocker_telegram_id = ? OR blocked_telegram_id = ?',
@@ -515,7 +585,7 @@ export async function handleDevRestart(message: TelegramMessage, env: Env): Prom
       // Try both column names for appeals as there seems to be a schema mismatch in staging
       { sql: 'DELETE FROM appeals WHERE telegram_id = ?', params: [targetId] },
       { sql: 'DELETE FROM appeals WHERE user_id = ?', params: [targetId] },
-
+      
       { sql: 'DELETE FROM users WHERE telegram_id = ?', params: [targetId] },
     ];
 
@@ -747,7 +817,7 @@ export async function handleClearFortune(message: TelegramMessage, env: Env): Pr
   const db = createDatabaseClient(env.DB);
   // Determine target ID: argument or sender
   const args = message.text?.split(' ').slice(1) || [];
-  const targetId = args[0] || senderId;
+  const targetId = args[0] ? args[0].trim() : senderId;
 
   // Get sender's language for response
   const senderUser = await findUserByTelegramId(db, senderId);

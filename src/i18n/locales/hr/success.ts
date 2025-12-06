@@ -13,7 +13,7 @@ export default {
   "bloodType": "✅ Krvna grupa ažurirana na {getBloodTypeDisplay(bloodType as any)}",
   "bloodType2": "✅ Krvna grupa isključena",
   "bottle": "✅ Nagrada odobrena! +1 message bottle",
-  "bottle2": "✅ Pokrenuta nova message bottle",
+  "bottle2": "✅  počni novu Blessing Bottle",
   "bottle3": "✅ Message bottle kreirana\n",
   "broadcast": "{ids.length} {ids.length}\n\n",
   "broadcast2": "✅ Nema potrebe za čišćenjem emitiranja\n\n",
@@ -95,7 +95,7 @@ export default {
     "bloodType": "✅ Krvna grupa ažurirana na \\{getBloodTypeDisplay(bloodType as any)}",
     "bloodType2": "✅ Krvna grupa uklonjena",
     "bottle": "✅ Nagrada dodijeljena! +1 message bottle",
-    "bottle2": "✅ Započni novu message bottle",
+    "bottle2": "✅ Započni novu blagoslovnu poruku u boci",
     "bottle3": "✅ Boca kreirana\n",
     "broadcast": "✅ Uklonjena \\{ids.length} blokirana emitiranja\n\n",
     "broadcast2": "✅ Nema emitiranja za čišćenje\n\n",
@@ -238,6 +238,6 @@ export default {
   "verify2": "✅ Verifikacija uspješna! Zarađeno +\\{ad.reward_quota} trajnih kvota!",
   "vip": "✅ Svi postovi su ažurirani (VIP status je tačan)\n",
   "zodiac": "✅ Očišćen odabir horoskopskog znaka",
-  "bottleThrown": "🍾 Message bottle je bačena!",
+  "bottleThrown": "✅ Blessing Bottle je bačena!",
   "saved": "✅ Postavke su spremljene"
 };

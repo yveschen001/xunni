@@ -1,6 +1,6 @@
 export default {
   "cannotIdentify": "⚠️ Kan ikke identificere samtalepartneren.",
-  "catchNewBottle": "💡 Brug /catch til at hente nye flaskeposter og starte en ny samtale.",
+  "catchNewBottle": "💡 Fang Ønskeflaske for at starte en ny samtale.",
   "conversationInfoError": "⚠️ Samtaleoplysningerne er forkerte.",
   "conversationMayEnded": "Samtalen kan være afsluttet eller eksisterer ikke.",
   "conversationNotFound": "⚠️ Denne samtale kan ikke findes.",
@@ -12,5 +12,5 @@ export default {
   "step3": "3️⃣ Indtast /block.",
   "steps": "**Operationstrin:**",
   "success": "✅ Denne bruger er blevet blokeret (#{identifier}).",
-  "willNotMatch": "Du vil ikke længere blive matchet med hinandens flaskeposter."
+  "willNotMatch": "I vil ikke længere blive matchet med hinandens Ønskeflasker."
 };

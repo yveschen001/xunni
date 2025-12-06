@@ -266,5 +266,24 @@ export default {
     "startButton": "📊 Aloita testi",
     "resultTitle": "MBTI-testini tulos on {type}!",
     "resultDesc": "Sinun kannattaa myös kokeilla testiä～\nvip.retentionNotice"
-  }
+  },
+  "titles": {
+
+  "INTJ": "Arkkitehti",
+  "INTP": "Logiikka",
+  "ENTJ": "Komentaja",
+  "ENTP": "Väittelijä",
+  "INFJ": "Puolustaja",
+  "INFP": "Sovittelija",
+  "ENFJ": "Päähenkilö",
+  "ENFP": "Kampanjoija",
+  "ISTJ": "Logistikko",
+  "ISFJ": "Puolustaja",
+  "ESTJ": "Johtaja",
+  "ESFJ": "Konsuli",
+  "ISTP": "Virtuoosi",
+  "ISFP": "Seikkailija",
+  "ESTP": "Yrittäjä",
+  "ESFP": "Viihdyttäjä"
+  },
 };

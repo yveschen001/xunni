@@ -13,7 +13,7 @@ export default {
   "bloodType": "✅ Kan grubu {getBloodTypeDisplay(bloodType as any)} olarak güncellendi",
   "bloodType2": "✅ Kan grubu temizlendi",
   "bottle": "✅ Ödül verilmiştir! +1 mesaj şişesi",
-  "bottle2": "✅ Yeni bir mesaj şişesi başlatıldı",
+  "bottle2": "✅ Yeni bir Dilek Şişesi bereketi başlat",
   "bottle3": "✅ Mesaj şişesi oluşturuldu\n",
   "broadcast": "✅ {ids.length} takılı yayın temizlendi.\n\n",
   "broadcast2": "✅ Temizlenecek yayın yok.\n\n",
@@ -95,7 +95,7 @@ export default {
     "bloodType": "✅ Kan grubu \\{getBloodTypeDisplay(bloodType as any)} olarak güncellendi",
     "bloodType2": "✅ Kan grubu temizlendi",
     "bottle": "✅ Ödül verildi! +1 mesaj şişesi",
-    "bottle2": "✅ Yeni bir mesaj şişesi başlat",
+    "bottle2": "✅ Yeni bir bereket Dilek Şişesi başlat",
     "bottle3": "✅ Mesaj şişesi oluşturuldu\n",
     "broadcast": "{ids.length} {ids.length}\n\n",
     "broadcast2": "✅ Temizlenecek yayın yok\n\n",
@@ -238,6 +238,6 @@ export default {
   "verify2": "✅ Doğrulama başarılı! +\\{ad.reward_quota} kalıcı kota kazandınız!",
   "vip": "✅ Tüm gönderiler güncel (VIP durumu doğru)\n",
   "zodiac": "✅ Burç seçimleri temizlendi",
-  "bottleThrown": "🍾 Mesaj şişesi atıldı!",
+  "bottleThrown": "✅ Dilek Şişesi atıldı!",
   "saved": "✅ Ayarlar kaydedildi"
 };

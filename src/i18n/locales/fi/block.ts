@@ -1,6 +1,6 @@
 export default {
   "cannotIdentify": "⚠️ Keskustelukumppania ei pystytä tunnistamaan.",
-  "catchNewBottle": "💡 Käytä /catch noudetaksesi uusia viestipulloja ja aloittaaksesi uuden keskustelun.",
+  "catchNewBottle": "💡 Käytä /catch napataksesi uusi toivepullo aloittaaksesi uuden keskustelun.",
   "conversationInfoError": "⚠️ Keskustelutiedot ovat virheellisiä.",
   "conversationMayEnded": "Keskustelu on voinut päättyä tai sitä ei ole olemassa.",
   "conversationNotFound": "⚠️ Tätä keskustelua ei löydy.",
@@ -12,5 +12,5 @@ export default {
   "step3": "3️⃣ Syötä /block.",
   "steps": "**Toimintavaiheet:**",
   "success": "✅ Tämä käyttäjä on estetty (#{identifier}).",
-  "willNotMatch": "Et enää saa toisten viestipulloja."
+  "willNotMatch": "Teitä ei enää yhdistetä toistenne toivepulloihin."
 };

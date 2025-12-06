@@ -13,7 +13,7 @@ export default {
   "bloodType": "✅ Blood type has been updated to {getBloodTypeDisplay(bloodType as any)}",
   "bloodType2": "✅ Blood type has been cleared",
   "bottle": "✅ Rewards distributed! +1 message bottle",
-  "bottle2": "✅ Start a new message bottle",
+  "bottle2": "✅ Start a new Blessing Bottle blessing",
   "bottle3": "✅ Message bottle has been created\n",
   "broadcast": "✅ Cleared {ids.length} stuck broadcasts\n\n",
   "broadcast2": "✅ No broadcasts need clearing\n\n",
@@ -95,7 +95,7 @@ export default {
     "bloodType": "✅ Blood type updated to \\{getBloodTypeDisplay(bloodType as any)}",
     "bloodType2": "✅ Blood type cleared",
     "bottle": "✅ Reward issued! +1 message bottle",
-    "bottle2": "✅ Started a new message bottle",
+    "bottle2": "✅ Start a new blessing Blessing Bottle",
     "bottle3": "✅ Message bottle created\n",
     "broadcast": "✅ Cleared \\{ids.length} stuck broadcasts\n\n",
     "broadcast2": "✅ No broadcasts to clean up\n\n",
@@ -238,6 +238,6 @@ export default {
   "verify2": "✅ Verification Successful! You have received +\\{ad.reward_quota} permanent credits!",
   "vip": "✅ All posts are up to date (VIP status is correct)\n",
   "zodiac": "✅ Zodiac selection cleared",
-  "bottleThrown": "🍾 Message bottle has been tossed!",
+  "bottleThrown": "✅ The Blessing Bottle has been thrown out!",
   "saved": "✅ Settings saved"
 };

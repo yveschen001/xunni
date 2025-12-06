@@ -68,11 +68,9 @@ export async function handleStart(message: TelegramMessage, env: Env): Promise<v
             inviterTelegramId = inviter.telegram_id;
             console.error('[handleStart] Valid invitation, inviter:', inviterTelegramId);
           } else {
-            console.error('[handleStart] Self-invitation detected');
-            const { createI18n } = await import('~/i18n');
-            const i18n = createI18n('en');
-            await telegram.sendMessage(chatId, i18n.t('invite.selfInviteError'));
-            return;
+            console.error('[handleStart] Self-invitation detected - ignoring invite code and proceeding normally');
+            // Silent fallback: Do not set inviterTelegramId, do not send error message.
+            // Just treat it as a normal start command.
           }
         } else {
           console.error('[handleStart] Inviter not found for code:', inviteCode);
@@ -268,11 +266,12 @@ async function resumeOnboarding(
     case 'language_selection': {
       // Show language selection with buttons
       const { createI18n } = await import('~/i18n');
-      const i18n = createI18n(user.language_pref || 'en');
+      const languageCode = user.language_pref || 'en';
+      const i18n = createI18n(languageCode);
       await telegram.sendMessageWithButtons(
         chatId,
         i18n.t('onboarding.welcome'),
-        getPopularLanguageButtons(i18n)
+        getPopularLanguageButtons(i18n, languageCode)
       );
       break;
     }

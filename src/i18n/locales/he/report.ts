@@ -4,7 +4,7 @@ export default {
   "cancel": "❌ ביטול",
   "cancelled": "בוטל",
   "cannotIdentify": "⚠️ לא ניתן לזהות את בן שיחך\n\n",
-  "catchHint": "• השתמשו ב-/catch כדי לאסוף בקבוק מסר חדש",
+  "catchHint": "• 使用 Catch Blessing Bottle 撿新的 Blessing Bottle",
   "completeOnboarding": "⚠️ קודם כל, השלם את תהליך ההרשמה.\n\nהשתמשו ב-/start כדי להמשיך בהרשמה.",
   "conversationInfoError": "⚠️ שגיאת מידע בשיחה.",
   "conversationInfoError2": "⚠️ שגיאת מידע בשיחה",

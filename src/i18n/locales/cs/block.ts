@@ -1,6 +1,6 @@
 export default {
   "cannotIdentify": "⚠️ Nelze rozpoznat partnera v konverzaci.",
-  "catchNewBottle": "💡 Použijte /catch pro vyzvednutí nové láhve se zprávou a zahájení nové konverzace.",
+  "catchNewBottle": "💡 Chyťte novou Láhev Přání pro zahájení nového rozhovoru.",
   "conversationInfoError": "⚠️ Informace o konverzaci jsou nesprávné.",
   "conversationMayEnded": "Konverzace mohla skončit nebo neexistuje.",
   "conversationNotFound": "⚠️ Tato konverzace nebyla nalezena.",
@@ -12,5 +12,5 @@ export default {
   "step3": "3️⃣ Zadejte /block.",
   "steps": "**Kroky k provedení:**",
   "success": "✅ Tento uživatel byl zablokován (#{identifier})",
-  "willNotMatch": "Už nebudete spojováni se zprávami navzájem."
+  "willNotMatch": "Nebudete již přiřazeni k požehnání Láhev Přání."
 };

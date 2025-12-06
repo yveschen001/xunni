@@ -1,6 +1,6 @@
 export default {
   "cannotIdentify": "⚠️ Nie można rozpoznać partnera rozmowy.",
-  "catchNewBottle": "💡 Użyj /catch, aby wybrać nową butelkę z wiadomością i rozpocząć nową rozmowę.",
+  "catchNewBottle": "💡 Wybierz Butelka Życzeń, aby rozpocząć nową rozmowę.",
   "conversationInfoError": "⚠️ Informacje o rozmowie są niepoprawne.",
   "conversationMayEnded": "Rozmowa mogła się zakończyć lub nie istnieje.",
   "conversationNotFound": "⚠️ Nie znaleziono tej rozmowy.",
@@ -12,5 +12,5 @@ export default {
   "step3": "3️⃣ Wprowadź /block.",
   "steps": "**Kroki operacyjne:**",
   "success": "✅ Zablokowano tego użytkownika (#{identifier})",
-  "willNotMatch": "Nie będziesz już dopasowany do butelek z wiadomościami tej drugiej osoby."
+  "willNotMatch": "Nie będziecie już dopasowani do butelki Życzeń drugiej osoby."
 };

@@ -27,6 +27,8 @@ export default {
   "selectEndHour": "☀️ Waktu mulai diatur ke {start}:00.\nSilakan pilih waktu akhir untuk jam tenang:\n(Pemberitahuan akan dilanjutkan setelah waktu ini)",
   "disabled": "🚫 Jam tenang telah dinonaktifkan",
   "quietHoursHint": "Kamu tidak akan menerima pemberitahuan non-urgensi selama periode ini",
+  "quietHoursVipOnly": "🔒 Waktu Tenang (Khusus VIP)",
+  "upgradeForQuietHours": "Tingkatkan ke VIP untuk mengatur waktu tenang, agar terhindar dari gangguan saat istirahat!",
   "blocklist": {
     "title": "🚫 Daftar Blokir",
     "empty": "Saat ini tidak ada daftar blokir",

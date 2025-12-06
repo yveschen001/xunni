@@ -4,7 +4,7 @@ export default {
   "cancel": "❌ বাতিল করুন",
   "cancelled": "বাতিল করা হয়েছে",
   "cannotIdentify": "⚠️ চ্যাট পার্টনার চিহ্নিত করতে অক্ষম\n\n",
-  "catchHint": "• নতুন বার্তার বোতল ধরতে /catch ব্যবহার করুন",
+  "catchHint": "• 使用 Catch Blessing Bottle 撿新的 Blessing Bottle",
   "completeOnboarding": "⚠️ প্রথমে নিবন্ধন প্রক্রিয়া সম্পূর্ণ করুন।\n\nনিবন্ধন চালিয়ে যেতে /start ব্যবহার করুন।",
   "conversationInfoError": "⚠️ কথোপকথনের তথ্য সঠিক নয়।",
   "conversationInfoError2": "⚠️ কথোপকথনের তথ্য সঠিক নয়",

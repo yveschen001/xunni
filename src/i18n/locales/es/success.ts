@@ -13,7 +13,7 @@ export default {
   "bloodType": "✅ Tipo de sangre actualizado a {getBloodTypeDisplay(bloodType as any)}",
   "bloodType2": "✅ Tipo de sangre eliminado",
   "bottle": "✅ ¡Recompensa otorgada! +1 botella de mensajes",
-  "bottle2": "✅ Se ha iniciado una nueva botella de mensajes",
+  "bottle2": "✅ Comenzar una nueva Botella de Bendición de bendiciones",
   "bottle3": "✅ Botella de mensajes creada\n",
   "broadcast": "✅ Se limpiaron {ids.length} transmisiones atascadas\n\n",
   "broadcast2": "✅ No se necesitan limpiar transmisiones\n\n",
@@ -95,7 +95,7 @@ export default {
     "bloodType": "✅ Tipo de sangre actualizado a \\{getBloodTypeDisplay(bloodType as any)}",
     "bloodType2": "✅ Tipo de sangre limpiado",
     "bottle": "✅ ¡Recompensa distribuida! +1 botella de mensajes",
-    "bottle2": "✅ Iniciar una nueva botella de mensajes",
+    "bottle2": "✅ Iniciar una nueva bendición Botella de Bendición",
     "bottle3": "✅ Botella de mensajes creada\n",
     "broadcast": "✅ Se han borrado \\{ids.length} transmisiones atascadas\n\n",
     "broadcast2": "✅ No hay transmisiones para limpiar\n\n",
@@ -238,6 +238,6 @@ export default {
   "verify2": "✅ ¡Verificación exitosa! Recibido +\\{ad.reward_quota} cuota permanente!",
   "vip": "✅ Todas las publicaciones están actualizadas (estado VIP correcto)\n",
   "zodiac": "✅ Selección de zodiacal despejada",
-  "bottleThrown": "🍾 ¡Botella de mensajes lanzada!",
+  "bottleThrown": "✅ ¡La Botella de Bendición ha sido lanzada!",
   "saved": "✅ Configuraciones guardadas"
 };

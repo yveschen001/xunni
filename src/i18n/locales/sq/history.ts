@@ -19,7 +19,7 @@ export default {
   "noMessages": "(nuk ka mesazhe)",
   "partnerMessages": "• Pala tjetër dërgoi: {count} mesazhe\n",
   "recentMessages": "📨 **Bisedat e fundit:**\n\n",
-  "returnToMenu": "🏠 Kthehu në Menynë Kryesore: /menu",
+  "returnToMenu": "🏠 主選單",
   "returnToMenuButton": "🏠 Kthehu në Menun Kryesore",
   "stats": "📊 **Statistikat:**\n",
   "time": "Koha: {time}\n\n",

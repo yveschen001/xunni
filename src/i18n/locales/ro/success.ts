@@ -13,7 +13,7 @@ export default {
   "bloodType": "✅ Tipul de sânge actualizat la {getBloodTypeDisplay(bloodType as any)}",
   "bloodType2": "✅ Tipul de sânge șters",
   "bottle": "✅ Recompensă acordată! +1 sticlă cu mesaj",
-  "bottle2": "✅ Am început o nouă sticlă cu mesaj",
+  "bottle2": "✅ Începem o nouă Sticla cu Dorințe",
   "bottle3": "✅ Sticlă cu mesaj creată\n",
   "broadcast": "✅ Am curățat {ids.length} difuzări blocate\n\n",
   "broadcast2": "✅ Nicio difuzare nu necesită curățare\n\n",
@@ -95,7 +95,7 @@ export default {
     "bloodType": "✅ Tipul de sânge actualizat la \\{getBloodTypeDisplay(bloodType as any)}",
     "bloodType2": "✅ Tipul de sânge șters",
     "bottle": "✅ Recompensă acordată! +1 sticlă cu mesaj",
-    "bottle2": "✅ Începe o nouă sticlă cu mesaj",
+    "bottle2": "✅ Începe o nouă binecuvântare Mesaj Bottle",
     "bottle3": "✅ Sticlă creată\n",
     "broadcast": "✅ S-au șters \\{ids.length} difuzări blocate\n\n",
     "broadcast2": "✅ Nu există difuzări de curățat\n\n",
@@ -238,6 +238,6 @@ export default {
   "verify2": "✅ Verificare reușită! Ai câștigat +\\{ad.reward_quota} cote permanente!",
   "vip": "✅ Toate postările sunt actualizate (starea VIP este corectă)\n",
   "zodiac": "✅ Selectarea zodiacului ștearsă",
-  "bottleThrown": "🍾 Sticla cu mesaj a fost aruncată!",
+  "bottleThrown": "✅ Sticla cu Dorințe a fost aruncată!",
   "saved": "✅ Setările au fost salvate"
 };

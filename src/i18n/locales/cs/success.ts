@@ -13,7 +13,7 @@ export default {
   "bloodType": "✅ Krevní skupina aktualizována na {getBloodTypeDisplay(bloodType as any)}",
   "bloodType2": "✅ Krevní skupina vymazána",
   "bottle": "✅ Odměna udělena! +1 láhev se zprávou",
-  "bottle2": "✅ Zahájena nová láhev se zprávou",
+  "bottle2": "✅ Začít novou Láhev Přání",
   "bottle3": "✅ Láhev se zprávou vytvořena\n",
   "broadcast": "✅ Vyčištěno {ids.length} uvízlých vysílání\n\n",
   "broadcast2": "✅ Není potřeba žádné vysílání čistit\n\n",
@@ -95,7 +95,7 @@ export default {
     "bloodType": "✅ Krevní skupina aktualizována na \\{getBloodTypeDisplay(bloodType as any)}",
     "bloodType2": "✅ Krevní skupina vymazána",
     "bottle": "✅ Ocenění uděleno! +1 láhev se zprávou",
-    "bottle2": "✅ Zahájit novou láhev se zprávou",
+    "bottle2": "✅ Začněte novou požehnání zprávu v lahvi",
     "bottle3": "✅ Láhev vytvořena\n",
     "broadcast": "✅ Odstraněno \\{ids.length} zablokovaných vysílání\n\n",
     "broadcast2": "✅ Není co uklízet\n\n",
@@ -238,6 +238,6 @@ export default {
   "verify2": "✅ Ověření úspěšné! Získali jste +\\{ad.reward_quota} trvalé kvóty!",
   "vip": "✅ Všechny příspěvky jsou aktuální (status VIP je správný)\n",
   "zodiac": "✅ Vymazána volba znamení zvěrokruhu",
-  "bottleThrown": "🍾 Láhev se zprávou byla hozena!",
+  "bottleThrown": "✅ Láhev Přání byla vyhozena!",
   "saved": "✅ Nastavení uložena"
 };

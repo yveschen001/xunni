@@ -1,7 +1,7 @@
 export default {
   "completeTask": "• ✨ Përfundoni detyra (fitoni kuotë të përhershme)",
   "inviteFriends": "• 🎁 Ftoni miq (fitoni +1 kuotë për person)",
-  "quotaExhausted": "❌ Sot, kuota e mesazheve të shisheve është shfrytëzuar ({quotaDisplay})",
+  "quotaExhausted": "❌ Sotit e Blessing Bottle sot është shteruar ({quotaDisplay})",
   "taskButton": "✨ {taskName} 🎁",
   "upgradeVip": "• 💎 Përmirësoni në VIP (30 kuota çdo ditë)",
   "watchAd": "• 📺 Shikoni reklama (mbetur {remaining}/20 herë)",

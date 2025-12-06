@@ -8,7 +8,7 @@ export default {
     "love_match": "Kecocokan pasangan",
     "love_ideal": "Analisis tipe ideal"
   },
-  "back_to_menu": "🔙 Kembali ke menu ramalan AI",
+  "back_to_menu": "🔙 Kembali ke Menu Pembacaan Psikis",
   "get_more_bottles": "💎 Dapatkan lebih banyak botol ramalan ramalan",
   "relationship": {
     "love": "Pasangan",
@@ -16,7 +16,7 @@ export default {
     "family": "Keluarga",
     "work": "Rekan kerja"
   },
-  "menuTitle": "Ramalan AI",
+  "menuTitle": "Ramalan Psikis",
   "currentProfile": "Profil saat ini",
   "warehouse": "Penyimpanan peta kelahiran",
   "manageProfiles": "Kelola peta kelahiran",
@@ -148,20 +148,20 @@ export default {
   },
   "dailyPush": "📅 Horoskop hari ini telah dikirim!",
   "dailyPushBtn": "👇 Klik untuk melihat",
-  "backToMenu": "🔙 Kembali ke Menu Ramalan AI",
+  "backToMenu": "🔙 Kembali ke Menu Bacaan Psikis",
   "addProfile": "Tambahkan File Grafik",
   "quotaDisplay": "🔮 Peramal botol ramalan: {total} (Minggu ini gratis: {weekly}/{limit} | Tambahan: {additional})",
   "quotaDisplayVip": "🔮 botol ramalan: {total} (Hari ini: {daily}/1 | Tambahan: {additional})",
   "quotaDisplayFree": "🔮 botol ramalan: {total} (Minggu ini gratis: {weekly}/1 | Tambahan: {additional})",
   "profileDetails": "👤 {gender} {blood} | 🎂 {birthday} | {zodiac} | 🧠 {mbti}",
-  "getMore": "Dapatkan lebih banyak botol ramalan ramalan",
-  "getMoreInfo": "🔮 *Bagaimana Cara Mendapatkan botol ramalan Keberuntungan?*\n\n1. **Gratis Mingguan**: Pengguna reguler mendapatkan 1 per minggu, VIP mendapatkan 1 per hari.\n2. **Hadiah Undangan**: Ajak teman untuk bergabung, dan ketika mereka berhasil mengundang teman lain, Anda akan mendapatkan hadiah (hingga 1 botol ramalan keberuntungan dalam 24 jam).\n3. **Hadiah botol ramalan**: Untuk setiap 10 botol ramalan yang dikirim, terima 1 botol ramalan keberuntungan. (Hingga 1 botol ramalan keberuntungan dalam 24 jam)\n4. **Pembelian Langsung (🔥 Diskon Terbatas 20%)**:\n • Paket Kecil {smallAmount} - ~{originalSmallPrice} Bintang~ {smallPrice} Bintang\n • Paket Besar {largeAmount} - ~{originalLargePrice} Bintang~ {largePrice} Bintang",
+  "getMore": "Dapatkan lebih banyak botol ramalan",
+  "getMoreInfo": "🔮 *Bagaimana cara mendapatkan botol ramalan?*\n\n1. **Gratis setiap minggu**: Pengguna biasa mendapatkan 1 botol ramalan setiap minggu, VIP mendapatkan 1 botol setiap hari.\n2. **Hadiah undangan**: Undang seorang teman untuk bergabung, dan ketika teman tersebut berhasil mengundang teman lain untuk bergabung, Anda akan mendapatkan hadiah (dalam 24 jam, maksimum 1 botol ramalan).\n3. **Hadiah botol berkah**: Setiap kali Anda mengirim 10 Botol Berkah, Anda akan mendapatkan 1 botol ramalan. (dalam 24 jam, maksimum 1 botol ramalan)\n4. **Beli langsung (🔥 Diskon waktu terbatas 20%)**:\n   • Paket kecil {smallAmount} botol - ~{originalSmallPrice} Stars~ {smallPrice} Stars\n   • Paket besar {largeAmount} botol - ~{originalLargePrice} Stars~ {largePrice} Stars",
   "buySmall": "🔥 Harga Spesial {price} Bintang (Beli {amount} item)",
   "buyLarge": "🔥 Harga Spesial {price} Bintang (Beli {amount} item)",
   "invoiceTitle": "Beli {amount} botol ramalan",
-  "invoiceDesc": "Setelah pembelian, Anda dapat segera menggunakan layanan ramalan AI, dan setiap layanan ramalan mengkonsumsi 1 botol ramalan.\n\nKlik tombol di bawah untuk membeli sekarang:",
+  "invoiceDesc": "Setelah pembelian, Anda dapat langsung menggunakan layanan ramalan spiritual, setiap layanan ramalan spiritual mengkonsumsi 1 botol ramalan.\n\nSegera tekan tombol di bawah ini untuk membeli:",
   "purchaseSuccess": "🎉 Pembelian berhasil! {amount} botol ramalan telah ditambahkan.",
-  "bottleReward": "🎉 Selamat! Anda telah mengirim {count} botol ramalan dan menerima 1 hadiah botol ramalan!",
+  "bottleReward": "🎉 Selamat! Anda telah mengirim {count} botol ramalan dan menerima 1 hadiah botol keberuntungan!",
   "inviteChainReward": "🎉 Selamat! Teman yang Anda undang berhasil mengajak teman baru untuk bergabung, dan Anda telah menerima 1 hadiah botol ramalan!",
   "menu": {
     "love": "Diagnosa Atribut (Pencocokan Hubungan)",
@@ -190,7 +190,9 @@ export default {
     "match_report_title": "💞 Laporan sinastria pasangan",
     "wait_for_consent": "⏳ Menunggu persetujuan pihak lain...",
     "consent_accepted": "✅ Pihak lain telah setuju! Menghasilkan laporan...",
-    "consent_rejected": "❌ Pihak lain telah menolak permintaan sinastria."
+    "consent_rejected": "❌ Pihak lain telah menolak permintaan sinastria.",
+    "invite_friend": "📨 Invite Friend to Experience",
+    "invite_friend_text": "Hey! I want to try the Compatibility Test with you. Create your fortune profile now!"
   },
   "role": {
     "husband": "Suami",
@@ -228,12 +230,26 @@ export default {
       "drawn": "🎴 Kartu telah ditarik:"
     }
   },
-  "profile_incomplete_hint": "💡 Untuk memberikan layanan ramalan AI yang lebih akurat, silakan lengkapi informasi minat, profesi, atau MBTI Anda terlebih dahulu.",
+  "profile_incomplete_hint": "💡 Untuk memberikan layanan ramalan Ramalan Psikis yang lebih akurat, silakan lengkapi terlebih dahulu ketertarikan, profesi, atau MBTI Anda... dan informasi lainnya.",
   "tarot_menu_title": "Kartu Tarot",
   "tarot_ui": {
     "intro": "🔮 *Pembacaan Tarot*\n\nSilakan pikirkan pertanyaan Anda dengan tenang (misalnya, \"Bagaimana keberuntungan kerja saya belakangan ini?\" atau \"Bagaimana saya harus mengatasi hubungan ini?\") dan fokus sebelum mengklik tombol di bawah untuk menarik kartu.",
     "draw": "🔮 Tarik Kartu",
     "shuffling": "Mengocok...",
     "drawn": "🎴 Kartu telah ditarik:"
+  },
+  "profileUpdated": "✅ Profil astrologi telah diperbarui!",
+  "btn_complete_info": "✏️ Lengkapi informasi kelahiran Anda",
+  "complete_info_hint": "💡 Sempurnakan waktu dan lokasi kelahiran Anda untuk membuka analisis tanda naik dan rumah!",
+  "btn_edit_info": "📝 Edit informasi kelahiran",
+  "edit": {
+    "currentInfo": "📋 Informasi Saat Ini:",
+    "currentTime": "Waktu Lahir: {time}",
+    "currentTimeUnknown": "Waktu Lahir: Tidak Pasti",
+    "currentCity": "Kota Lahir: {city}",
+    "currentCityUnknown": "Kota Lahir: Belum Ditentukan",
+    "confirmEdit": "Apakah Anda ingin mengubah informasi di atas?",
+    "btnConfirmEdit": "✅ Ya, saya ingin mengubah",
+    "btnCancelEdit": "❌ Batal"
   }
 };

@@ -10,6 +10,7 @@
  */
 
 import { translations as en } from './locales/en/index';
+import { translations as zhTW } from './locales/zh-TW/index';
 
 // Declare global cache for Worker instance
 declare global {
@@ -19,7 +20,8 @@ declare global {
 // Initialize cache if it doesn't exist
 if (typeof globalThis.LOCALE_CACHE === 'undefined') {
   globalThis.LOCALE_CACHE = {
-    'en': en // Pre-load en as it's bundled
+    'en': en, // Pre-load en
+    'zh-TW': zhTW // Pre-load zh-TW as it's the source truth
   };
 }
 
@@ -27,21 +29,30 @@ export class I18n {
   private locale: string;
   private translations: Record<string, any>;
 
-  constructor(locale: string = 'en') {
+  constructor(locale: string = 'zh-TW') {
     this.locale = locale;
-    // Try to get from cache, otherwise fallback to en
-    this.translations = globalThis.LOCALE_CACHE[locale] || globalThis.LOCALE_CACHE['en'];
+    // Try to get from cache, otherwise fallback to zh-TW then en
+    this.translations = globalThis.LOCALE_CACHE[locale] || globalThis.LOCALE_CACHE['zh-TW'] || globalThis.LOCALE_CACHE['en'];
   }
 
   t(key: string, params: Record<string, any> = {}): string {
     const value = this.getNestedValue(this.translations, key);
     
     if (!value) {
-      // Fallback to en if key is missing in target locale
-      if (this.locale !== 'en') {
-        const fallbackValue = this.getNestedValue(globalThis.LOCALE_CACHE['en'], key);
+      // Fallback logic: Try zh-TW first, then en
+      if (this.locale !== 'zh-TW') {
+        let fallbackValue = this.getNestedValue(globalThis.LOCALE_CACHE['zh-TW'], key);
+        if (fallbackValue) return this.replaceParams(fallbackValue, params);
+        
+        fallbackValue = this.getNestedValue(globalThis.LOCALE_CACHE['en'], key);
         if (fallbackValue) return this.replaceParams(fallbackValue, params);
       }
+      
+      // Support defaultValue if provided in params
+      if (params.defaultValue) {
+        return String(params.defaultValue);
+      }
+
       return key; // Return key if absolutely nothing found
     }
     return this.replaceParams(value, params);
@@ -49,8 +60,12 @@ export class I18n {
 
   getObject(key: string): any {
     const value = this.getNestedValue(this.translations, key);
-    if (!value && this.locale !== 'en') {
-      return this.getNestedValue(globalThis.LOCALE_CACHE['en'], key);
+    if (!value && this.locale !== 'zh-TW') {
+      let fallback = this.getNestedValue(globalThis.LOCALE_CACHE['zh-TW'], key);
+      if (!fallback) {
+        fallback = this.getNestedValue(globalThis.LOCALE_CACHE['en'], key);
+      }
+      return fallback;
     }
     return value;
   }

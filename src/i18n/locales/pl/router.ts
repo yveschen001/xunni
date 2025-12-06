@@ -1,7 +1,7 @@
 export default {
   "replyPrompt": "💬 Odpowiedz",
-  "suggestCatch": "❓ Chcesz odebrać butelkę z wiadomością?\n\nUżyj /catch, aby odebrać butelkę z wiadomością\n\n💡 **Popularne polecenia**:\n• /throw - Rzuć butelkę z wiadomością\n• /catch - Odebrać butelkę z wiadomością\n• /menu - Główne menu\n• /tasks - Centrum zadań",
-  "suggestMenu": "❓ Nie znaleziono polecenia\n\n💡 **Popularne polecenia**:\n• /throw - Rzuć butelkę z wiadomością\n• /catch - Odebrać butelkę z wiadomością\n• /menu - Główne menu\n• /tasks - Centrum zadań",
-  "suggestThrow": "❓ Chcesz rzucić butelkę z wiadomością?\n\nProszę długo przytrzymać poprzednią wiadomość, lub tę wiadomość,\nwybierz 'Odpowiedz' w menu,\na następnie wprowadź treść wiadomości, która ma zostać wysłana\n\n💡 **Popularne polecenia**:\n• /throw - Rzuć butelkę z wiadomością\n• /catch - Odebrać butelkę z wiadomością\n• /menu - Główne menu\n• /tasks - Centrum zadań\n\n#THROW",
-  "throwPrompt": "📝 Proszę wprowadzić treść swojej butelki z wiadomością:"
+  "suggestCatch": "❓ Chcesz złapać Butelkę Życzeń?\n\nUżyj, aby złapać Butelkę Życzeń\n\n💡 **Często używane polecenia**:\n• Wyrzuć - Wyrzuć Butelkę Życzeń\n• Złap - Złap Butelkę Życzeń\n• Menu - Główne Menu\n• Zadania - Centrum Zadań",
+  "suggestMenu": "❓ Nie znaleziono tego polecenia\n\n💡 **Często używane polecenia**:\n• Wyrzuć - Wyrzuć Butelkę Życzeń\n• Złap - Złap Butelkę Życzeń\n• Menu - Główne Menu\n• Zadania - Centrum Zadań",
+  "suggestThrow": "❓ Chcesz wyrzucić Butelkę Życzeń?\n\nProszę dłużej przytrzymać poprzednią wiadomość lub tę wiadomość,\nwybrać „Odpowiedz” w menu,\na następnie wpisać treść Butelki Życzeń\n\n💡 **Często używane polecenia**:\n• Wyrzuć - Wyrzuć Butelkę Życzeń\n• Złap - Złap Butelkę Życzeń\n• Menu - Główne Menu\n• Zadania - Centrum Zadań\n\n#WYRZUC",
+  "throwPrompt": "📝 Proszę wpisać treść swojej Butelki Życzeń:"
 };

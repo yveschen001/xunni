@@ -26,7 +26,7 @@ export default {
   "manual": "الإعدادات اليدوية",
   "mbti": "• استخدم /mbti لإعادة أخذ أو تعديل MBTI\n",
   "mbtiWithSource": "🧠 MBTI: {mbti}{source}",
-  "message": "https://t.me/share/url?url=https://t.me/{botUsername}?start=invite_{inviteCode}&text=تعال إلى XunNi وارمِ زجاجة رسائل معًا!🍾 استخدم رمز الدعوة الخاص بي: {inviteCode}",
+  "message": "لنلقِ زجاجة البركة من البركات معًا على XunNi! 🍾 استخدم رمز دعوتي: {inviteCode}",
   "message2": "{inviteLimitWarning}\n\n",
   "message3": "🌍 اللغة: {user.language_pref}\n\n",
   "message4": "🌍 اللغة: {user.language_pref}\n",
@@ -42,7 +42,7 @@ export default {
   "quota2": "📦 حصة يومية حالية: {taskBonus > 0 ?",
   "quotaBottles": "{taskBonus} زجاجات",
   "quotaTotal": "📦 الحصة اليومية الحالية: {quota}\n\n",
-  "returnToMenu": "🏠 ارجع إلى القائمة الرئيسية: /menu",
+  "returnToMenu": "🏠 القائمة الرئيسية",
   "separator": "━━━━━━━━━━━━━━━━\n\n",
   "settings": "لم يتم تعيينه",
   "settings2": "لم يتم تعيينه",
@@ -71,5 +71,14 @@ export default {
   "zodiac": "⭐ البرج: {zodiac}\n",
   "fortuneQuota": "🔮 {fortuneBottle}: {total} (هذا الأسبوع مجاني: {weekly}/{limit} | إضافي: {additional})",
   "vipWithDays": "💎 عضو VIP (تبقى {days} أيام، تاريخ انتهاء الاشتراك: {expireDate})",
-  "driftBottleInfo": "🍾 زجاجة رسائل: {remaining} / {total}"
+  "driftBottleInfo": "🍾 زجاجة البركة: {remaining} / {total}",
+  "ageRange": "العمر: {min}-{max}",
+  "fortuneMatchButton": "💘 زجاجة الحظ السريعة",
+  "giftVipButton": "🎁 هدية VIP",
+  "giftFortuneBottleButton": "🔮 هدية زجاجة الحظ",
+  "moreOptions": "⚙️ خيارات إضافية...",
+  "blockUser": "🚫 حظر المستخدم",
+  "reportUser": "⚠️ الإبلاغ",
+  "moreOptionsTitle": "⚙️ **خيارات إضافية**",
+  "giftedVipNote": "🎁 قد أهدى إليك VIP من قبل"
 };

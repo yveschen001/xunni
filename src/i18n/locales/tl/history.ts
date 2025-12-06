@@ -19,7 +19,7 @@ export default {
   "noMessages": "(Walang mensahe)",
   "partnerMessages": "• Nagpadala sila: {count}\n",
   "recentMessages": "📨 **Kamakailang Usapan:**\n\n",
-  "returnToMenu": "🏠 Bumalik sa Pangunahing Menu: /menu",
+  "returnToMenu": "🏠 Pabalik sa Pangunahing Menu",
   "returnToMenuButton": "🏠 Balik sa Pangkalahatang Menu",
   "stats": "📊 **Estadistika:**\n",
   "time": "Oras: {time}\n\n",

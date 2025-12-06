@@ -102,6 +102,16 @@ export async function handleWebhook(request: Request, env: Env): Promise<Respons
     return new Response('OK', { status: 200 });
   } catch (error) {
     console.error('[Router] Webhook error:', error);
+    
+    // 🚨 Global Error Handler: Report to Admin Group
+    try {
+      const { AdminLogService } = await import('~/services/admin_log');
+      const adminLog = new AdminLogService(env);
+      await adminLog.logError(error, 'Router Webhook Panic');
+    } catch (logError) {
+      console.error('[Router] Failed to log panic to admin group:', logError);
+    }
+
     // ⚠️ Prevent Telegram retry loop by returning 200 OK even on error
     // We log the error above for debugging
     return new Response('OK', { status: 200 });
@@ -324,13 +334,6 @@ export async function routeUpdate(update: TelegramUpdate, env: Env): Promise<voi
       const { createI18n } = await import('./i18n');
       const routerI18n = createI18n(user.language_pref || 'zh-TW');
 
-      // Try appeal reason input first
-      if (user.session_state === 'awaiting_appeal_reason') {
-        const { handleAppealReasonInput } = await import('./telegram/handlers/appeal');
-        await handleAppealReasonInput(message, env);
-        return;
-      }
-
       // Try VIP refund reason input
       const { getActiveSession: getSession } = await import('./db/queries/sessions');
       const refundSession = await getSession(db, user.telegram_id, 'vip_refund_reason');
@@ -341,105 +344,147 @@ export async function routeUpdate(update: TelegramUpdate, env: Env): Promise<voi
         return;
       }
 
-      // Check if user is replying to a message (HIGHEST PRIORITY: explicit user action!)
-      if (message.reply_to_message && text) {
-        const replyToText = message.reply_to_message.text || '';
-
-        // Check if replying to throw bottle prompt (#THROW tag or ForceReply prompt)
-
-        if (
-          replyToText.includes('#THROW') ||
-          replyToText.includes(routerI18n.t('router.throwPrompt'))
-        ) {
-          console.error('[router] Detected reply to throw bottle prompt:', {
-            userId: user.telegram_id,
-            contentLength: text.length,
-            method: replyToText.includes('#THROW') ? 'long-press' : 'button',
-          });
-
-          const { processBottleContent } = await import('./telegram/handlers/throw');
-          await processBottleContent(user, text, env);
-          return;
-        }
-
-        // Check if replying to conversation-related messages
-        // Try to extract conversation identifier from various message formats:
-        // 1. "💬 回覆 #IDENTIFIER：" (ForceReply button)
-        // 2. "💬 與 #IDENTIFIER 的對話記錄" (History post)
-        // 3. "💬 來自 #IDENTIFIER 的新訊息" (New message notification)
-        let conversationIdentifier: string | undefined;
-
-        if (replyToText.includes(routerI18n.t('router.replyPrompt'))) {
-          // Support both old format (💬 回覆 #ID：) and new format (💬 回覆對話 ID)
-          const match = replyToText.match(/💬 回覆(?:對話)?\s*#?([A-Z0-9]+)[：]?/);
-          if (match) {
-            conversationIdentifier = match[1];
-            console.error('[router] Detected reply to ForceReply prompt:', {
-              userId: user.telegram_id,
-              conversationIdentifier,
-              method: 'button',
-            });
-          }
-        } else if (replyToText.includes(routerI18n.t('conversation.historyPost'))) {
-          const historyPostPattern = new RegExp(
-            routerI18n.t('conversation.historyPost').replace(/[.*+?^${}()|[\]\\]/g, '\\$&') +
-              '([A-Z0-9]+)' +
-              routerI18n.t('conversation.historyPostSuffix').replace(/[.*+?^${}()|[\]\\]/g, '\\$&')
-          );
-          const match = replyToText.match(historyPostPattern);
-          if (match) {
-            conversationIdentifier = match[1];
-            console.error('[router] Detected reply to history post:', {
-              userId: user.telegram_id,
-              conversationIdentifier,
-              method: 'long-press',
-            });
-          }
-        } else if (replyToText.includes(routerI18n.t('conversation.newMessageNotification'))) {
-          const newMessagePattern = new RegExp(
-            routerI18n
-              .t('conversation.newMessageNotification')
-              .replace(/[.*+?^${}()|[\]\\]/g, '\\$&') +
-              '([A-Z0-9]+)' +
-              routerI18n
-                .t('conversation.newMessageNotificationSuffix')
-                .replace(/[.*+?^${}()|[\]\\]/g, '\\$&')
-          );
-          const match = replyToText.match(newMessagePattern);
-          if (match) {
-            conversationIdentifier = match[1];
-            console.error('[router] Detected reply to new message notification:', {
-              userId: user.telegram_id,
-              conversationIdentifier,
-              method: 'long-press',
-            });
-          }
-        }
-
-        // Process as conversation message
-        const { handleMessageForward } = await import('./telegram/handlers/message_forward');
-        const isConversationMessage = await handleMessageForward(
-          message,
-          env,
-          conversationIdentifier
-        );
-        if (isConversationMessage) {
-          return;
-        }
-      }
-
       // Try fortune wizard input
       const isFortuneInput = await handleFortuneInput(message, env);
       if (isFortuneInput) {
         return;
       }
 
-      // Try profile edit input (lowest priority)
+      // Try profile edit input
       const { handleProfileEditInput } = await import('./telegram/handlers/edit_profile');
       const isEditingProfile = await handleProfileEditInput(message, env);
       if (isEditingProfile) {
         return;
       }
+
+      // 1. Check if user has an active throw_bottle session (waiting for bottle content)
+      // We check this BEFORE intent matching to ensure content is not mistaken for a command
+      // BUT we must allow:
+      // a) Explicit commands (starting with /) to override sessions
+      // b) Replies (which are handled by the specific reply logic below)
+      if (!_isCommand && !message.reply_to_message) {
+        const { getActiveSession } = await import('./db/queries/sessions');
+        const throwSession = await getActiveSession(db, user.telegram_id, 'throw_bottle');
+
+        if (throwSession) {
+          // If user is in a session, we prioritize the session flow.
+          // Treating direct messages as content simplifies UX (no need to force Reply).
+          
+          console.error('[router] User has throw_bottle session, treating direct message as content:', {
+            userId: user.telegram_id,
+            messageLength: text.length,
+          });
+
+          const { processBottleContent } = await import('./telegram/handlers/throw');
+          await processBottleContent(user, text, env);
+          return;
+        }
+      }
+
+      // Check if user is replying to a message (HIGHEST PRIORITY: explicit user action!)
+      if (message.reply_to_message && text) {
+        const replyToText = message.reply_to_message.text || '';
+        let conversationIdentifier: string | undefined;
+
+        // 1. Check active reply session (Highest Priority for Context)
+        const { getActiveSession } = await import('./db/queries/sessions');
+        const replySession = await getActiveSession(db, user.telegram_id, 'reply_context');
+        
+        if (replySession) {
+          const data = JSON.parse(replySession.session_data || '{}');
+          if (data.conversationIdentifier) {
+            conversationIdentifier = data.conversationIdentifier;
+            console.error('[router] Found reply_context session:', conversationIdentifier);
+          }
+        }
+
+        // 2. Fallback to text matching (if no session or for other prompts)
+        if (!conversationIdentifier) {
+          // Check if replying to throw bottle prompt (#THROW tag or ForceReply prompt)
+          // ✨ Fixed: Added support for invisible #THROW marker in prompt
+          if (
+            replyToText.includes('#THROW') ||
+            replyToText.includes(routerI18n.t('router.throwPrompt'))
+          ) {
+            console.error('[router] Detected reply to throw bottle prompt:', {
+              userId: user.telegram_id,
+              contentLength: text.length,
+              method: replyToText.includes('#THROW') ? 'long-press' : 'button',
+            });
+
+            const { processBottleContent } = await import('./telegram/handlers/throw');
+            await processBottleContent(user, text, env);
+            return;
+          }
+
+          // Check if replying to conversation-related messages
+          // Try to extract conversation identifier from various message formats:
+          // 1. "💬 回覆 #IDENTIFIER：" (ForceReply button)
+          // 2. "💬 與 #IDENTIFIER 的對話記錄" (History post)
+          // 3. "💬 來自 #IDENTIFIER 的新訊息" (New message notification)
+
+          if (replyToText.includes(routerI18n.t('router.replyPrompt'))) {
+            // Support both old format (💬 回覆 #ID：) and new format (💬 回覆對話 ID)
+            const match = replyToText.match(/💬 回覆(?:對話)?\s*#?([A-Z0-9]+)[：]?/);
+            if (match) {
+              conversationIdentifier = match[1];
+              console.error('[router] Detected reply to ForceReply prompt (regex):', {
+                userId: user.telegram_id,
+                conversationIdentifier,
+                method: 'button',
+              });
+            }
+          } else if (replyToText.includes(routerI18n.t('conversation.historyPost'))) {
+            const historyPostPattern = new RegExp(
+              routerI18n.t('conversation.historyPost').replace(/[.*+?^${}()|[\]\\]/g, '\\$&') +
+                '([A-Z0-9]+)' +
+                routerI18n.t('conversation.historyPostSuffix').replace(/[.*+?^${}()|[\]\\]/g, '\\$&')
+            );
+            const match = replyToText.match(historyPostPattern);
+            if (match) {
+              conversationIdentifier = match[1];
+              console.error('[router] Detected reply to history post:', {
+                userId: user.telegram_id,
+                conversationIdentifier,
+                method: 'long-press',
+              });
+            }
+          } else if (replyToText.includes(routerI18n.t('conversation.newMessageNotification'))) {
+            const newMessagePattern = new RegExp(
+              routerI18n
+                .t('conversation.newMessageNotification')
+                .replace(/[.*+?^${}()|[\]\\]/g, '\\$&') +
+                '([A-Z0-9]+)' +
+                routerI18n
+                  .t('conversation.newMessageNotificationSuffix')
+                  .replace(/[.*+?^${}()|[\]\\]/g, '\\$&')
+            );
+            const match = replyToText.match(newMessagePattern);
+            if (match) {
+              conversationIdentifier = match[1];
+              console.error('[router] Detected reply to new message notification:', {
+                userId: user.telegram_id,
+                conversationIdentifier,
+                method: 'long-press',
+              });
+            }
+          }
+        }
+
+        // Process as conversation message
+        if (conversationIdentifier) {
+           const { handleMessageForward } = await import('./telegram/handlers/message_forward');
+           const isConversationMessage = await handleMessageForward(
+             message,
+             env,
+             conversationIdentifier
+           );
+           if (isConversationMessage) {
+             return;
+           }
+        }
+      }
+
     }
 
     // Check if user is at tutorial final page but hasn't clicked any button
@@ -1088,6 +1133,18 @@ export async function routeUpdate(update: TelegramUpdate, env: Env): Promise<voi
       return;
     }
 
+    if (text === '/dev_clear_blocks' || text.startsWith('/dev_clear_blocks ')) {
+      const { handleDevClearBlocks } = await import('./telegram/handlers/dev');
+      await handleDevClearBlocks(message, env);
+      return;
+    }
+
+    if (text === '/dev_test_alert') {
+      const { handleDevTestAlert } = await import('./telegram/handlers/dev');
+      await handleDevTestAlert(message, env);
+      return;
+    }
+
     if (text.startsWith('/add_vip')) {
       const { handleAddVip } = await import('./telegram/handlers/admin_grant');
       await handleAddVip(message, env);
@@ -1123,17 +1180,32 @@ export async function routeUpdate(update: TelegramUpdate, env: Env): Promise<voi
     // Unknown command for completed users - provide smart suggestions
     // lowerText is already defined at the top
 
+    // 1. Check if user has an active throw_bottle session (waiting for bottle content)
+    // We check this BEFORE intent matching to ensure content is not mistaken for a command
+    const { getActiveSession } = await import('./db/queries/sessions');
+    const throwSession = await getActiveSession(db, user.telegram_id, 'throw_bottle');
+
+    if (throwSession) {
+      // If user is in a session, we prioritize the session flow.
+      // Treating direct messages as content simplifies UX (no need to force Reply).
+      
+      console.error('[router] User has throw_bottle session (fallback check), treating direct message as content:', {
+        userId: user.telegram_id,
+        messageLength: text.length,
+      });
+
+      const { processBottleContent } = await import('./telegram/handlers/throw');
+      await processBottleContent(user, text, env);
+      return;
+    }
+
+    // 2. Smart Intent Matching (Fallback)
+    const { matchIntent } = await import('./utils/intents');
+    
     // Check if user is trying to throw a bottle
     // Note: These are keyword matches for smart suggestions, not display strings
     // They match user input in any language to provide helpful suggestions
-    if (
-      lowerText.includes('丟') ||
-      lowerText.includes('瓶子') ||
-      lowerText.includes('漂流瓶') ||
-      lowerText.includes('throw') ||
-      lowerText.includes('bottle') ||
-      lowerText.includes('drift')
-    ) {
+    if (matchIntent(text, 'THROW_BOTTLE')) {
       const { createI18n } = await import('./i18n');
       const i18n = createI18n(user.language_pref || 'zh-TW');
       await telegram.sendMessage(chatId, i18n.t('common.bottle13'), {
@@ -1149,7 +1221,7 @@ export async function routeUpdate(update: TelegramUpdate, env: Env): Promise<voi
     }
 
     // Check if user is trying to catch a bottle
-    if (lowerText.includes('撿') || lowerText.includes('看') || lowerText.includes('catch')) {
+    if (matchIntent(text, 'CATCH_BOTTLE')) {
       const { createI18n } = await import('./i18n');
       const i18n = createI18n(user.language_pref || 'zh-TW');
       await telegram.sendMessage(chatId, i18n.t('common.bottle9'), {
@@ -1163,30 +1235,6 @@ export async function routeUpdate(update: TelegramUpdate, env: Env): Promise<voi
       });
       return;
     }
-
-    // Check if user has an active throw_bottle session (waiting for bottle content)
-    // If so, remind them to use "Reply" feature and send a message they can reply to
-    const { getActiveSession } = await import('./db/queries/sessions');
-    const throwSession = await getActiveSession(db, user.telegram_id, 'throw_bottle');
-
-    if (throwSession) {
-      console.error('[router] User has throw_bottle session but sent direct message:', {
-        userId: user.telegram_id,
-        messageLength: text.length,
-      });
-
-      // Send a prompt message that user can reply to
-      const { createI18n } = await import('./i18n');
-      const i18n = createI18n(user.language_pref || 'zh-TW');
-      await telegram.sendMessage(chatId, i18n.t('router.suggestThrow'));
-      return;
-    }
-
-    // Default unknown command
-    const { createI18n } = await import('./i18n');
-    const i18n = createI18n(user.language_pref || 'zh-TW');
-    await telegram.sendMessage(chatId, i18n.t('router.suggestMenu'));
-    return;
   }
 
   // Handle callback query
@@ -1312,9 +1360,14 @@ export async function routeUpdate(update: TelegramUpdate, env: Env): Promise<voi
         const page = parseInt(data.replace('lang_page_', ''), 10);
         const { getLanguageButtons } = await import('~/i18n/languages');
         const { createI18n } = await import('./i18n');
+        // Smart Sort: Get user language for sorting context
+        // If user is logged in, use their preference. If not (onboarding), use Telegram language code.
         const { findUserByTelegramId } = await import('./db/queries/users');
         const user = await findUserByTelegramId(db, callbackQuery.from.id.toString());
-        const i18n = createI18n(user?.language_pref || 'zh-TW');
+        const userLang = user?.language_pref || callbackQuery.from.language_code || 'en';
+        
+        const i18n = createI18n(userLang);
+        
         await telegram.editMessageText(
           chatId,
           callbackQuery.message!.message_id,
@@ -1322,7 +1375,7 @@ export async function routeUpdate(update: TelegramUpdate, env: Env): Promise<voi
           {
             reply_markup: {
               inline_keyboard: [
-                ...getLanguageButtons(i18n, page),
+                ...getLanguageButtons(i18n, page, userLang),
                 [{ text: i18n.t('common.back'), callback_data: 'lang_back' }],
               ],
             },
@@ -1451,7 +1504,7 @@ export async function routeUpdate(update: TelegramUpdate, env: Env): Promise<voi
     // Task claim callbacks
     if (data.startsWith('claim_task_')) {
       const { handleClaimTaskReward } = await import('~/services/channel_membership_check');
-      const taskId = data.replace('claim_', '');
+      const taskId = data.replace('claim_task_', '');
       await handleClaimTaskReward(callbackQuery, taskId, env);
       return;
     }
@@ -1971,6 +2024,25 @@ export async function routeUpdate(update: TelegramUpdate, env: Env): Promise<voi
       return;
     }
 
+    // Handle history pagination (New History View)
+    if (data.startsWith('history_read:')) {
+      const parts = data.split(':');
+      const identifier = parts[1];
+      const page = parseInt(parts[2]);
+      const { handleHistoryRead } = await import('./telegram/handlers/history');
+      await handleHistoryRead(
+        callbackQuery.message!.chat.id,
+        callbackQuery.from.id.toString(),
+        identifier,
+        page,
+        env,
+        callbackQuery.message!.message_id,
+        callbackQuery.id
+      );
+      // answerCallbackQuery is handled inside handleHistoryRead if ID is passed
+      return;
+    }
+
     if (data === 'catch') {
       await telegram.answerCallbackQuery(callbackQuery.id);
       const { handleCatch } = await import('./telegram/handlers/catch');
@@ -2048,7 +2120,12 @@ export async function routeUpdate(update: TelegramUpdate, env: Env): Promise<voi
       return;
     }
 
-    // Menu callbacks
+    if (data === 'menu') {
+      const { handleMenuCallback } = await import('./telegram/handlers/menu');
+      await handleMenuCallback(callbackQuery, env);
+      return;
+    }
+
     if (data.startsWith('menu_')) {
       const { handleMenuCallback } = await import('./telegram/handlers/menu');
       await handleMenuCallback(callbackQuery, env);
@@ -2270,6 +2347,66 @@ export async function routeUpdate(update: TelegramUpdate, env: Env): Promise<voi
     if (data === 'match_throw') {
       const { handleMatchThrow } = await import('./telegram/handlers/match_callback');
       await handleMatchThrow(callbackQuery, env);
+      return;
+    }
+
+    // ✨ NEW: Profile Card Callbacks
+    if (data.startsWith('conv_profile_card_')) {
+      const targetId = data.replace('conv_profile_card_', '');
+      const { handleProfileCard } = await import('./telegram/handlers/profile');
+      // Pass fake message structure
+      const fakeMessage = {
+        ...callbackQuery.message!,
+        from: callbackQuery.from,
+        text: '/profile_card',
+        chat: callbackQuery.message!.chat,
+      };
+      await handleProfileCard(fakeMessage as any, env, targetId); // Handle "Back" to card
+      await telegram.answerCallbackQuery(callbackQuery.id);
+      return;
+    }
+
+    if (data.startsWith('profile_more:')) {
+      // Format: profile_more:targetId:conversationId
+      const parts = data.split(':');
+      const targetId = parts[1];
+      const conversationId = parseInt(parts[2]);
+      const { handleProfileMoreOptions } = await import('./telegram/handlers/profile');
+      await handleProfileMoreOptions(callbackQuery, targetId, conversationId, env);
+      await telegram.answerCallbackQuery(callbackQuery.id);
+      return;
+    }
+
+    // ✨ NEW: Fortune Match
+    if (data.startsWith('fortune_match:')) {
+      const targetId = data.replace('fortune_match:', '');
+      const { handleFortuneMatch } = await import('./telegram/handlers/fortune_match');
+      await handleFortuneMatch(callbackQuery, targetId, env);
+      return;
+    }
+
+    // ✨ NEW: Gifting
+    if (data.startsWith('gift_vip:')) {
+      const targetId = data.replace('gift_vip:', '');
+      const { handleGiftVip } = await import('./telegram/handlers/gift');
+      await handleGiftVip(callbackQuery, targetId, env);
+      return;
+    }
+
+    if (data.startsWith('gift_bottle:')) {
+      const targetId = data.replace('gift_bottle:', '');
+      const { handleGiftBottle } = await import('./telegram/handlers/gift');
+      await handleGiftBottle(callbackQuery, targetId, env);
+      return;
+    }
+
+    if (data.startsWith('invoice_gift_bottle_')) {
+      // invoice_gift_bottle_small_TARGETID
+      const parts = data.replace('invoice_gift_bottle_', '').split('_');
+      const packType = parts[0] as 'small' | 'large';
+      const targetId = parts[1];
+      const { handleInvoiceGiftBottle } = await import('./telegram/handlers/gift');
+      await handleInvoiceGiftBottle(callbackQuery, packType, targetId, env);
       return;
     }
 

@@ -3,7 +3,7 @@ export default {
   "label_industry": "W jakiej branży głównie pracujesz?",
   "btn_edit_role": "💼 Edytowanie tożsamości zawodowej",
   "btn_edit_industry": "🏢 Edytowanie branży",
-  "profile_incomplete_hint": "💡 Aby zapewnić dokładniejsze usługi wróżenia AI, proszę najpierw uzupełnić swoje dane osobowe.",
+  "profile_incomplete_hint": "💡 Aby zapewnić dokładniejsze usługi wróżenia, prosimy najpierw uzupełnić swoje dane osobowe.",
   "role": {
     "employee": "Pracownik biurowy",
     "freelancer": "Freelancer / SOHO",
@@ -167,4 +167,6 @@ export default {
     }
   },
   "next_step_industry": "Далі, будь ласка, виберіть вашу галузь."
+,
+  "back_to_categories": "Back to Industries"
 };

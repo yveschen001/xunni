@@ -1,13 +1,13 @@
 export default {
   "availableCommands": "Bạn có thể sử dụng các lệnh sau bất kỳ lúc nào:",
-  "catchBottle": "🎣 **Nhặt chai thư**",
-  "catchBottleDesc": "Xem chai thư của người khác, trả lời nếu bạn quan tâm để bắt đầu trò chuyện",
+  "catchBottle": "🎣 **Nhặt Chai Cầu Nguyện phước lành**",
+  "catchBottleDesc": "Xem Chai Cầu Nguyện phước lành của người khác, hồi đáp bằng phước lành và bắt đầu trò chuyện~",
   "clickButtonHint": "💡 Vui lòng nhấp vào nút để tiếp tục",
-  "commandCatch": "• /catch - Nhặt chai thư",
+  "commandCatch": "• /catch - Nhặt một Chai Cầu Nguyện Blessing",
   "commandHelp": "• /help - Xem trợ giúp",
   "commandMenu": "📋 Menu lệnh",
   "commandTasks": "• /tasks - Xem nhiệm vụ",
-  "commandThrow": "• /throw - Ném chai thư",
+  "commandThrow": "• /throw - Ném một Chai Cầu Nguyện phước lành",
   "completeTasksForBottles": "💡 Hoàn thành nhiệm vụ để nhận thêm chai thư",
   "completed": "✅ Hướng dẫn đã hoàn thành!",
   "howToBecomeFriends": "💬 **Cách kết bạn?**",
@@ -16,11 +16,11 @@ export default {
   "skip": "Bỏ qua",
   "skipped": "✅ Hướng dẫn đã bị bỏ qua",
   "startUsing": "Bắt đầu sử dụng →",
-  "throwBottle": "📦 **Ném chai thư**",
+  "throwBottle": "📦 **Gửi một Chai Cầu Nguyện phúc lợi**",
   "throwBottleDesc": "Viết cảm xúc hoặc suy nghĩ của bạn, hệ thống sẽ tìm người phù hợp cho bạn",
   "unknownStep": "❌ Bước hướng dẫn không xác định",
   "viewTasks": "📋 Xem nhiệm vụ",
   "welcome": "🎉 Chúc mừng bạn đã hoàn thành đăng ký!",
   "whatIsXunNi": "🌊 **XunNi là gì?**",
-  "whatIsXunNiDesc": "Một nền tảng xã hội chai thư ẩn danh giúp bạn tìm bạn bè đồng điệu qua MBTI và cung hoàng đạo"
+  "whatIsXunNiDesc": "Nền tảng tình bạn Chai Cầu Nguyện ẩn danh, tìm kiếm những người bạn cùng chí hướng thông qua những lời chúc và sự tương đồng về MBTI, và cung hoàng đạo."
 };

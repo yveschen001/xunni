@@ -27,6 +27,8 @@ export default {
   "selectEndHour": "☀️ Starttidspunkt sat til {start}:00.\nVælg venligst sluttidspunktet for stille timer:\n(Beskeder vil genoptages efter dette tidspunkt)",
   "disabled": "🚫 Stille timer er blevet deaktiveret",
   "quietHoursHint": "Du vil ikke modtage ikke-hastende notifikationer i denne periode",
+  "quietHoursVipOnly": "🔒 Stille Timer (VIP Kun)",
+  "upgradeForQuietHours": "Opgradér til VIP for at indstille stille timer og undgå forstyrrelser i din hviletid!",
   "blocklist": {
     "title": "🚫 Blokliste",
     "empty": "Ingen blokliste i øjeblikket",

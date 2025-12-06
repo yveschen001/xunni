@@ -13,6 +13,7 @@ import { getOrCreateIdentifier } from '~/db/queries/conversation_identifiers';
 import { formatIdentifier } from '~/domain/conversation_identifier';
 import { maskNickname } from '~/domain/invite';
 import { createI18n } from '~/i18n';
+import { formatNicknameWithFlag } from '~/utils/country_flag';
 
 const PAGE_SIZE = 10;
 
@@ -101,16 +102,18 @@ export async function handleChats(
     // Batch query partners (protection: handle failures gracefully)
     const partnerMap = await getPartnersBatch(db, partnerIds);
 
-    // Format conversations list
+    // Format conversations list (Numbered List)
     let messageText =
-      i18n.t('conversation.conversation2', { conversations: { length: total } }) + '\n\n';
+      i18n.t('conversation.conversation2', { conversations: { length: total } }) +
+      ` (${i18n.t('common.pageInfo', { current: page + 1, total: totalPages })})\n\n`;
 
-    // Show page info if multiple pages
-    if (totalPages > 1) {
-      messageText += i18n.t('common.pageInfo', { page: page + 1, totalPages }) + '\n\n';
-    }
+    const numberButtons: Array<{ text: string; callback_data: string }> = [];
 
-    for (const conv of conversations) {
+    // Mapping for number emojis
+    const numberEmojis = ['1️⃣', '2️⃣', '3️⃣', '4️⃣', '5️⃣', '6️⃣', '7️⃣', '8️⃣', '9️⃣', '🔟'];
+
+    for (let i = 0; i < conversations.length; i++) {
+      const conv = conversations[i];
       const partnerTelegramId =
         conv.user_a_telegram_id === telegramId ? conv.user_b_telegram_id : conv.user_a_telegram_id;
 
@@ -124,7 +127,7 @@ export async function handleChats(
       // Protection: Get partner from batch query, fallback to "Unknown"
       const partner = partnerMap.get(partnerTelegramId);
       const partnerNickname = partner
-        ? maskNickname(partner.nickname || partner.username || '')
+        ? formatNicknameWithFlag(maskNickname(partner.nickname || partner.username || ''), partner.country_code, partner.gender)
         : i18n.t('conversation.short2');
 
       const statusEmoji = conv.status === 'active' ? '✅' : '⏸️';
@@ -132,38 +135,53 @@ export async function handleChats(
         ? formatRelativeTime(new Date(conv.last_message_at), i18n)
         : i18n.t('conversation.message77');
 
+      // Date Format: YYYY-MM-DD
+      const dateObj = new Date(conv.last_message_at || conv.created_at);
+      const dateStr = dateObj.toLocaleDateString('en-CA'); // YYYY-MM-DD
+
+      // Message Preview
+      const previewText = conv.last_message_content 
+        ? (conv.last_message_content.length > 20 ? conv.last_message_content.substring(0, 20) + '...' : conv.last_message_content)
+        : i18n.t('history.noMessages');
+
       messageText +=
-        `${statusEmoji} **${partnerNickname}** ${formattedId}\n` +
-        i18n.t('conversation.message7', { conv: { message_count: conv.message_count } }) +
-        '\n' +
-        i18n.t('conversation.message11', { lastMessageTime }) +
-        '\n\n';
+        `${numberEmojis[i]} **${partnerNickname}** (${statusEmoji})\n` +
+        `   └ 📝 ${dateStr} | 🕒 ${lastMessageTime}\n` +
+        `   └ 💬 ${previewText}\n\n`;
+      
+      // Add number button
+      numberButtons.push({
+        text: `${i + 1}`,
+        callback_data: `history_read:${identifier}:1`
+      });
     }
 
     messageText +=
       `━━━━━━━━━━━━━━━━\n` +
-      i18n.t('conversation.conversation3') +
-      '\n' +
-      i18n.t('conversation.stats');
+      `👇 **${i18n.t('conversation.selectNumber')}**\n`; // Need to add this key or use generic text
 
-    // Build pagination buttons
+    // Build pagination buttons (Grid Layout)
     const buttons: Array<Array<{ text: string; callback_data: string }>> = [];
-    if (totalPages > 1) {
-      const pageButtons: Array<{ text: string; callback_data: string }> = [];
-      if (page > 0) {
-        pageButtons.push({ text: i18n.t('common.prev'), callback_data: `chats_page_${page - 1}` });
-      }
-      if (page < totalPages - 1) {
-        pageButtons.push({
-          text: i18n.t('common.next'),
-          callback_data: `chats_page_${page + 1}`,
-        });
-      }
-      if (pageButtons.length > 0) {
-        buttons.push(pageButtons);
-      }
+    
+    // Split number buttons into rows of 5
+    for (let i = 0; i < numberButtons.length; i += 5) {
+      buttons.push(numberButtons.slice(i, i + 5));
     }
-    buttons.push([{ text: i18n.t('common.back3'), callback_data: 'return_to_menu' }]);
+
+    // Navigation row
+    const navRow: Array<{ text: string; callback_data: string }> = [];
+    if (page > 0) {
+      navRow.push({ text: i18n.t('common.prev'), callback_data: `chats_page_${page - 1}` });
+    }
+    if (page < totalPages - 1) {
+      navRow.push({ text: i18n.t('common.next'), callback_data: `chats_page_${page + 1}` });
+    }
+    if (navRow.length > 0) {
+      buttons.push(navRow);
+    }
+
+    // Back button
+    buttons.push([{ text: i18n.t('common.backToMenu'), callback_data: 'return_to_menu' }]);
 
     // Send message with pagination buttons
     await telegram.sendMessageWithButtons(chatId, messageText, buttons);
@@ -211,7 +229,14 @@ async function getUserConversationsWithPartners(
           SELECT COUNT(*) 
           FROM conversation_messages 
           WHERE conversation_id = c.id
-        ) as message_count
+        ) as message_count,
+        (
+          SELECT original_text
+          FROM conversation_messages
+          WHERE conversation_id = c.id
+          ORDER BY created_at DESC
+          LIMIT 1
+        ) as last_message_content
       FROM conversations c
       WHERE c.user_a_telegram_id = ? OR c.user_b_telegram_id = ?
       ORDER BY COALESCE(c.last_message_at, c.created_at) DESC, c.created_at DESC
@@ -249,6 +274,7 @@ async function getUserConversationsWithPartnersOriginal(
     message_count: number;
     last_message_at: string | null;
     created_at: string;
+    last_message_content: string | null;
   }>
 > {
   const result = await db.d1
@@ -261,7 +287,14 @@ async function getUserConversationsWithPartnersOriginal(
       c.status,
       COUNT(cm.id) as message_count,
       MAX(cm.created_at) as last_message_at,
-      c.created_at
+      c.created_at,
+      (
+        SELECT original_text
+        FROM conversation_messages
+        WHERE conversation_id = c.id
+        ORDER BY created_at DESC
+        LIMIT 1
+      ) as last_message_content
     FROM conversations c
     LEFT JOIN conversation_messages cm ON cm.conversation_id = c.id
     WHERE c.user_a_telegram_id = ? OR c.user_b_telegram_id = ?

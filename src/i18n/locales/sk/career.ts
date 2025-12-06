@@ -3,7 +3,7 @@ export default {
   "label_industry": "V akej oblasti sa primárne pôsobíte?",
   "btn_edit_role": "💼 Úprava profesionálnej identity",
   "btn_edit_industry": "🏢 Úprava odvetvia",
-  "profile_incomplete_hint": "💡 Aby sme poskytli presnejšie AI predpovede, prosím, najskôr vyplňte svoje osobné informácie.",
+  "profile_incomplete_hint": "💡 Aby sme mohli poskytovať presnejšie služby veštenia, prosím, najprv vyplňte svoje osobné údaje.",
   "role": {
     "employee": "Úradník",
     "freelancer": "Freelancer / SOHO",
@@ -167,4 +167,6 @@ export default {
     }
   },
   "next_step_industry": "Zatim odaberite svoju industriju."
+,
+  "back_to_categories": "Back to Industries"
 };

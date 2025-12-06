@@ -1,6 +1,6 @@
 export default {
   "cannotIdentify": "⚠️ 無法識別對話對象",
-  "catchNewBottle": "💡 使用 /catch 撿新的漂流瓶開始新對話。",
+  "catchNewBottle": "💡 使用 /catch 撿新的祝福漂流瓶開始新對話。",
   "conversationInfoError": "⚠️ 對話資訊錯誤。",
   "conversationMayEnded": "對話可能已結束或不存在。",
   "conversationNotFound": "⚠️ 找不到此對話",
@@ -12,5 +12,5 @@ export default {
   "step3": "3️⃣ 輸入 /block",
   "steps": "**操作步驟：**",
   "success": "✅ 已封鎖此使用者 (#{identifier})",
-  "willNotMatch": "你們將不會再被匹配到對方的漂流瓶。"
+  "willNotMatch": "你們將不會再被匹配到對方的祝福漂流瓶。"
 };

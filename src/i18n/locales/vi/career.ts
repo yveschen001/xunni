@@ -3,7 +3,7 @@ export default {
   "label_industry": "Ngành nghề chính bạn đang hoạt động là gì?",
   "btn_edit_role": "💼 Chỉnh sửa Danh tính Chuyên nghiệp",
   "btn_edit_industry": "🏢 Chỉnh sửa Ngành nghề",
-  "profile_incomplete_hint": "💡 Để cung cấp dịch vụ xem bói AI chính xác hơn, vui lòng hoàn thành thông tin cá nhân của bạn trước.",
+  "profile_incomplete_hint": "💡 Để cung cấp dịch vụ chiêm tinh chính xác hơn, xin vui lòng hoàn thành thông tin cá nhân của bạn trước.",
   "role": {
     "employee": "Nhân viên văn phòng",
     "freelancer": "Freelancer / SOHO",
@@ -167,4 +167,6 @@ export default {
     }
   },
   "next_step_industry": "Tiếp theo, vui lòng chọn ngành nghề của bạn."
+,
+  "back_to_categories": "Back to Industries"
 };

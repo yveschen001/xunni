@@ -4,20 +4,20 @@ export default {
     "hoursAgo": "\\{hours} ore în urmă",
     "justNow": "Chiar acum"
   },
-  "contentHint": "💡 Poți:\n• Introduce direct un nou conținut pentru a înlocui ciorna\n• Folosește /throw pentru a reporni\n• Trimite conținutul ciornei pentru a arunca o sticlă cu mesaj",
+  "contentHint": "💡 Poți: \n• Introducere directă a unui nou conținut pentru a înlocui schița\n• Utilizați „Sticla cu Dorințe” pentru a începe din nou\n• Trimiteți conținutul schiței pentru a arunca Sticla cu Dorințe",
   "contentTitle": "📝 **Conținut Draft**\n\n",
   "continueEditing": "✅ Continuă editarea ciornei",
   "deleteButton": "🗑️ Șterge ciorna",
   "deleted": "✅ Ciorna a fost ștearsă",
   "editButton": "✏️ Editează conținutul",
-  "editInput": "✏️ Te rugăm să introduci noul conținut pentru sticla cu mesaj:\n\n💡 Sugestii:\n• Minimum 5 caractere\n• Maximum 250 caractere\n• Linkuri, imagini și multimedia nu sunt permise\n• Nu include informații de contact personale\n• Conținutul prietenos și respectuos are mai multe șanse să fie selectat～",
+  "editInput": "✏️ Te rugăm să introduci noul conținut pentru Sticla cu Dorințe:\n\n💡 Sugestii:\n• Minim 5 caractere\n• Maxim 250 caractere\n• Nu sunt permise linkuri, imagini, multimedia\n• Nu include informații personale de contact\n• Conținut prietenos, respectuos și plin de dorințe nu doar că oferă binecuvântare celorlalți, ci va aduce și răspunsuri fericite~",
   "editPrompt": "✏️ Te rugăm să introduci noul conținut",
-  "newBottle": "✅ Începe o nouă sticlă cu mesaj",
+  "newBottle": "✅ Începe o nouă Sticla cu Dorințe",
   "notFound": "⚠️ Ciorna nu există sau a expirat",
   "sendButton": "✅ Trimite ciorna",
   "sendQuestion": "Vrei să trimiti această ciornă direct?",
   "sending": "✅ Se trimite...",
   "targetGender": "Ce fel de partener de chat căutați?\n\n",
   "targetGenderHint": "💡 Upgradează la VIP pentru filtre avansate (MBTI/Zodiac): /vip",
-  "throwBottle": "🍾 Aruncă sticlă cu mesaj\n\nCe fel de partener de chat cauți?"
+  "throwBottle": "🍾 Aruncă Sticla cu Dorințe\n\nOferă cuiva o binecuvântare, iar fericirea se va întoarce la tine~"
 };

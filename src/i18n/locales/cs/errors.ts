@@ -97,9 +97,9 @@ export default {
     "nickname": "❌ Nelze získat přezdívku Telegramu",
     "nickname2": "❌ Uživatelské jméno nemůže obsahovat odkaz na webovou stránku\n\n",
     "nickname3": "❌ \\{validation.error}\n\nZnovu zadejte přezdívku:",
-    "quota": "❌ Dnešní kvóta na láhve se zprávou je vyčerpána (\\{quotaDisplay})\n\n💡 Způsoby, jak získat více kvoty:\n",
+    "quota": "❌ Dnešní kvóta pro požehnání lahve požehnání byla vyčerpána (\\{quotaDisplay})\n\n💡 Způsoby, jak získat více kvót:",
     "quota2": "❌ Dnešní kvóta zpráv v rozhovoru byla vyčerpána (\\{usedToday}/\\{dailyLimit})\n\n",
-    "quota3": "❌ Dnešní kvóta zpráv v láhvi byla vyčerpána (\\{quotaDisplay})\n\n",
+    "quota3": "❌ Kvóta požehnání dnešního Blessing Bottle byla vyčerpána (\\{quotaDisplay})",
     "register": "❌ Nejprve prosím dokončete registrační proces.\n\nPoužijte /start pro pokračování registrace.",
     "register2": "❌ Uživatelova data nebyla nalezena, nejprve prosím použijte /start pro registraci.",
     "register3": "❌ Prosím, dokončete registrační proces pro vyzvednutí lahví se zprávou.\n\nPoužijte /start pro pokračování registrace.",
@@ -179,5 +179,6 @@ export default {
   "userNotFoundRegister": "⚠️ Uživatel neexistuje, prosím zaregistrujte se nejprve pomocí /start.",
   "verificationFailed": "❌ Ověření selhalo, zkuste to prosím znovu později",
   "invalidTimeFormat": "Neplatný formát času\nNapříklad: 19:30 (24-hodinový formát, 00-23 hodin, 00-59 minut)",
-  "invalidDateFormat": "Neplatný formát data\nNapříklad: 2000-01-01"
+  "invalidDateFormat": "Neplatný formát data\nNapříklad: 2000-01-01",
+  "taskAlreadyCompleted": "❌ Tato úloha byla již dokončena a odměna byla vyplacena."
 };

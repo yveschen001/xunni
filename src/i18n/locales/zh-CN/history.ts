@@ -19,7 +19,7 @@ export default {
   "noMessages": "(无讯息)",
   "partnerMessages": "• 对方发送：{count} 则\n",
   "recentMessages": "📨 **最近对话：**\n\n",
-  "returnToMenu": "🏠 返回主选单：/menu",
+  "returnToMenu": "🏠 返回主菜单",
   "returnToMenuButton": "🏠 返回主选单",
   "stats": "📊 **统计：**\n",
   "time": "时间：{time}\n\n",

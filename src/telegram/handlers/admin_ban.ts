@@ -9,36 +9,34 @@ import { createTelegramService } from '~/services/telegram';
 import { createDatabaseClient } from '~/db/client';
 import { createI18n } from '~/i18n';
 import { findUserByTelegramId } from '~/db/queries/users';
+import { 
+  getAdminIds as getDomainAdminIds, 
+  isSuperAdmin as isDomainSuperAdmin, 
+  isAdmin as isDomainAdmin 
+} from '~/domain/admin/auth';
 
 // Super Admin (God) - Has all permissions including config management
 const SUPER_ADMIN_ID = '396943893';
 
 /**
  * Get regular admin user IDs from environment
- * Format: comma-separated list of Telegram IDs
- * Example: "123456789,987654321"
- * Note: Super admin (396943893) is always included automatically
+ * @deprecated Use src/domain/admin/auth.ts instead
  */
 export function getAdminIds(env: Env): string[] {
-  const adminIdsStr = env.ADMIN_USER_IDS || '';
-  const regularAdmins = adminIdsStr
-    .split(',')
-    .map((id) => id.trim())
-    .filter((id) => id.length > 0 && id !== SUPER_ADMIN_ID);
-
-  // Always include super admin
-  return [SUPER_ADMIN_ID, ...regularAdmins];
+  return getDomainAdminIds(env);
 }
 
 /**
  * Check if user is super admin (God)
  * Super admin has all permissions including config management
+ * @deprecated Use src/domain/admin/auth.ts instead
  */
 export function isSuperAdmin(telegramId: string, env?: Env): boolean {
-  if (env && env.SUPER_ADMIN_USER_ID) {
-    return telegramId === env.SUPER_ADMIN_USER_ID;
+  // Backward compatibility: If env is missing, fallback to hardcoded check
+  if (!env) {
+    return telegramId === SUPER_ADMIN_ID;
   }
-  return telegramId === SUPER_ADMIN_ID;
+  return isDomainSuperAdmin(env, telegramId);
 }
 
 /**
@@ -46,16 +44,17 @@ export function isSuperAdmin(telegramId: string, env?: Env): boolean {
  * Returns array with the super admin ID
  */
 export function getSuperAdminIds(_env: Env): string[] {
+  // Use domain logic if possible, or fallback to local constant
   return [SUPER_ADMIN_ID];
 }
 
 /**
  * Check if user is admin (regular admin or super admin)
  * Admins can handle appeals and bans
+ * @deprecated Use src/domain/admin/auth.ts instead
  */
 export function isAdmin(telegramId: string, env: Env): boolean {
-  const adminIds = getAdminIds(env);
-  return adminIds.includes(telegramId);
+  return isDomainAdmin(env, telegramId);
 }
 
 /**
@@ -150,7 +149,10 @@ export async function handleAdminBan(message: TelegramMessage, env: Env): Promis
       .run();
 
     // Send notification to banned user (use target user's language)
-    const targetUserI18n = createI18n(targetUser.language_pref || 'zh-TW');
+    const { loadTranslations } = await import('~/i18n');
+    const targetUserLang = targetUser.language_pref || 'zh-TW';
+    await loadTranslations(env, targetUserLang);
+    const targetUserI18n = createI18n(targetUserLang);
     let banMessage: string;
 
     if (bannedUntil) {

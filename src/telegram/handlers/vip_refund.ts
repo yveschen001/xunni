@@ -278,8 +278,14 @@ export async function handleAdminApproveRefund(
   const chatId = message.chat.id;
   const adminId = message.from!.id.toString();
 
+  // Check permission
   const user = await findUserByTelegramId(db, adminId);
   const i18n = createI18n(user?.language_pref || 'zh-TW');
+  if (adminId !== env.SUPER_ADMIN_USER_ID) {
+    await telegram.sendMessage(chatId, i18n.t('error.admin'));
+    return;
+  }
+
   try {
     // Get refund request
     const request = await db.d1
@@ -421,8 +427,14 @@ export async function handleAdminRejectRefund(
   const chatId = message.chat.id;
   const adminId = message.from!.id.toString();
 
+  // Check permission
   const user = await findUserByTelegramId(db, adminId);
   const i18n = createI18n(user?.language_pref || 'zh-TW');
+  if (adminId !== env.SUPER_ADMIN_USER_ID) {
+    await telegram.sendMessage(chatId, i18n.t('error.admin'));
+    return;
+  }
+
   try {
     // Get refund request
     const request = await db.d1

@@ -2,7 +2,7 @@ import type { Env } from '~/types';
 import type { D1Database } from '@cloudflare/workers-types';
 import { createDatabaseClient } from '~/db/client';
 import { createTelegramService } from '~/services/telegram';
-import { createI18n } from '~/i18n';
+import { createI18n, loadTranslations } from '~/i18n';
 import {
   CompatibilityEngine,
   type MatchTopic,
@@ -162,7 +162,10 @@ async function sendMatchNotification(
   recommendation: MatchRecommendation,
   notificationService: any
 ): Promise<void> {
-  const i18n = createI18n(user.language_pref || 'zh-TW');
+  const userLang = user.language_pref || 'zh-TW';
+  // Load translations from KV before creating I18n instance
+  await loadTranslations(env, userLang);
+  const i18n = createI18n(userLang);
 
   // Format message
   const headerKey = `match.header.${recommendation.topic}`;

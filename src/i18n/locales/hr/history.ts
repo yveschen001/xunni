@@ -19,7 +19,7 @@ export default {
   "noMessages": "(nema poruka)",
   "partnerMessages": "• Druga strana je poslala: {count} poruka\n",
   "recentMessages": "📨 **Nedavni Razgovori:**\n\n",
-  "returnToMenu": "🏠 Vratite se u glavni izbornik: /menu",
+  "returnToMenu": "🏠 主選單",
   "returnToMenuButton": "🏠 Vratite se na Glavni Izbornik",
   "stats": "📊 **Statistika:**\n",
   "time": "Vrijeme: {time}\n\n",

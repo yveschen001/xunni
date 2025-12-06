@@ -9,7 +9,7 @@ export default {
   "subtitle": "Vă rugăm să selectați o categorie pentru a explora opțiunile.",
   "current": "În prezent selecționate ({count}/{max}):\n{list}",
   "saved": "✅ Etichetele de interes au fost actualizate!",
-  "required_hint": "💡 Pentru a oferi servicii de ghicire AI mai precise, vă rugăm să completați mai întâi etichetele de interes.",
+  "required_hint": "💡 Pentru a oferi servicii de citire psihică mai precise, vă rugăm să completați mai întâi etichetele de interes.",
   "categories": {
     "life": "Stil de viață și modă",
     "travel": "Călătorie și explorare",

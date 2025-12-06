@@ -1,7 +1,7 @@
 export default {
   "autoCompleted": "Kayıt süreci otomatik olarak tamamlandı.\n\n",
-  "bottles": "• Mesaj şişeleri: {count}\n",
-  "catchCommand": "• /catch - Bir mesaj şişesi yakala\n",
+  "bottles": "• Dilek Şişesi: {count}\n",
+  "catchCommand": "• /catch - Bir Dilek Şişesi al",
   "conversations": "• Görüşmeler: {count}\n",
   "dataReset": "✅ Geliştirme modu: Veri sıfırlandı\n\nTüm verileriniz silindi.\n\n💡 Şimdi test kayıt sürecini yeniden başlatabilirsiniz.\n\n🔄 Yeniden kayıt: /start\nYa da kullanın: /dev_restart (kayıt otomatik başlatma)\n\n⚠️ Not: Bu özellik yalnızca Staging ortamında mevcuttur.",
   "getUserInfoFailed": "❌ Bilgi alınamadı",
@@ -30,7 +30,7 @@ export default {
   "telegramId": "Telegram Kimliği: {id}",
   "testCoreFeatures": "💡 Artık temel özellikleri doğrudan test edebilirsiniz:\n",
   "testUser": "Test kullanıcısı",
-  "throwCommand": "• /throw - Mesaj şişesi at\n",
+  "throwCommand": "• /at - Bir Dilek Şişesi At",
   "userInfo": "🔧 Geliştirme modu: Kullanıcı bilgileri\n\n",
   "userNotFound": "❌ Kullanıcı mevcut değil",
   "vip": "VIP: {status}",

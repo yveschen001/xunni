@@ -68,7 +68,7 @@ export default {
     "zodiacVirgo": "سنبلہ"
   },
   "filterAge": "• عمر=18-25\n",
-  "filterCommand": "/broadcast_filter <filter> <msg_content> ",
+  "filterCommand": "/broadcast_filter <filter> <msg_content>",
   "filterConfirmConditions": "**فلٹر کی شرائط:**\n{conditions}\n\n",
   "filterConfirmMessage": "**پیغام کا مواد:**\n{message}\n\n",
   "filterConfirmTitle": "🔍 **نشر فلٹر کی تصدیق**\n\n",

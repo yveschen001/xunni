@@ -68,7 +68,7 @@ export default {
     "zodiacVirgo": "العذراء"
   },
   "filterAge": "• العمر=18-25\n",
-  "filterCommand": "/broadcast_filter <filter> <msg_content> ",
+  "filterCommand": "/broadcast_filter <filter> <msg_content>",
   "filterConfirmConditions": "**شروط الفلتر:**\n{conditions}\n\n",
   "filterConfirmMessage": "**محتوى الرسالة:**\n{message}\n\n",
   "filterConfirmTitle": "🔍 **أكد مرشح الإرسال**\n\n",

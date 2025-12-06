@@ -36,8 +36,13 @@ export async function handleMessageForward(
   try {
     // Get user for i18n
     const user = await findUserByTelegramId(db, telegramId);
-    const { createI18n } = await import('~/i18n');
-    const i18n = createI18n(user?.language_pref || 'zh-TW');
+    const { createI18n, loadTranslations } = await import('~/i18n');
+    
+    // Load translations
+    const locale = user?.language_pref || 'zh-TW';
+    await loadTranslations(env, locale);
+    
+    const i18n = createI18n(locale);
 
     // Check if message contains media (photo, document, video, etc.)
     // These are not allowed in conversations
@@ -351,7 +356,11 @@ export async function handleMessageForward(
     const { formatNicknameWithFlag } = await import('~/utils/country_flag');
     const receiverPartnerInfo = {
       partnerTelegramId: receiverId,
-      maskedNickname: formatNicknameWithFlag(maskNickname(receiverNickname), receiver.country_code),
+      maskedNickname: formatNicknameWithFlag(
+        maskNickname(receiverNickname),
+        receiver.country_code,
+        receiver.gender
+      ),
       mbti: receiver.mbti_result || i18n.t('common.notSet'),
       bloodType: receiver.blood_type || i18n.t('common.notSet'),
       zodiac: receiver.zodiac_sign || 'Virgo',
@@ -361,7 +370,11 @@ export async function handleMessageForward(
     const senderNickname = sender.nickname || sender.username || i18n.t('common.anonymousUser');
     const senderPartnerInfo = {
       partnerTelegramId: telegramId,
-      maskedNickname: formatNicknameWithFlag(maskNickname(senderNickname), sender.country_code),
+      maskedNickname: formatNicknameWithFlag(
+        maskNickname(senderNickname),
+        sender.country_code,
+        sender.gender
+      ),
       mbti: sender.mbti_result || i18n.t('common.notSet'),
       bloodType: sender.blood_type || i18n.t('common.notSet'),
       zodiac: sender.zodiac_sign || 'Virgo',
@@ -408,7 +421,8 @@ export async function handleMessageForward(
       receiverIdentifier,
       finalMessage,
       messageTime,
-      senderPartnerInfo
+      senderPartnerInfo,
+      messageText // Original message content
     );
 
     // Note: Message forwarding is now handled by conversation history system
@@ -422,6 +436,23 @@ export async function handleMessageForward(
       i18n.t('messageForward.messageSent', { identifier: formatIdentifier(receiverIdentifier) }) +
         i18n.t('messageForward.dailyQuota', { used: usedToday + 1, limit: dailyLimit })
     );
+
+    // ✨ NEW: Immediately show updated history to sender (User Experience Optimization)
+    try {
+      const { handleHistoryRead } = await import('./history');
+      // Show page 1 of history for this conversation
+      // This allows the user to see their sent message in context immediately
+      await handleHistoryRead(
+        message.chat.id,
+        telegramId,
+        receiverIdentifier,
+        1,
+        env
+      );
+    } catch (historyError) {
+      console.error('[handleMessageForward] Failed to show updated history:', historyError);
+      // Don't fail the whole operation if just the history view fails
+    }
 
     return true;
   } catch (error) {
@@ -522,10 +553,35 @@ export async function handleConversationReplyButton(
       return;
     }
 
-    // Answer callback query
-    await telegram.answerCallbackQuery(callbackQuery.id, i18n.t('conversation.replyHint'));
+    // Send ForceReply message with nickname
+    const { getPartnerByIdentifier } = await import('~/db/queries/conversation_identifiers');
+    const partnerId = await getPartnerByIdentifier(db, telegramId, conversationIdentifier);
+    let replyText = i18n.t('conversation.replyConversation', { identifier: conversationIdentifier });
+    
+    if (partnerId) {
+      const partner = await findUserByTelegramId(db, partnerId);
+      if (partner) {
+        const { formatNicknameWithFlag } = await import('~/utils/country_flag');
+        const { maskNickname } = await import('~/utils/nickname');
+        const nickname = formatNicknameWithFlag(
+          maskNickname(partner.nickname || partner.username || ''),
+          partner.country_code,
+          partner.gender
+        );
+        // Use generic "Reply to {nickname}" format
+        // We override the i18n key logic here to prioritize nickname
+        // But we must store the context because we are removing the ID from text
+        replyText = i18n.t('conversation.replyToUser', { nickname }); // Need to ensure key exists or use fallback
+        if (replyText === 'conversation.replyToUser') {
+           replyText = `💬 回覆 ${nickname}：`; // Fallback
+        }
+      }
+    }
 
-    // Send ForceReply message with conversation identifier
+    // Set reply context session
+    const { upsertSession } = await import('~/db/queries/sessions');
+    await upsertSession(db, telegramId, 'reply_context', { conversationIdentifier });
+
     const response = await fetch(
       `https://api.telegram.org/bot${env.TELEGRAM_BOT_TOKEN}/sendMessage`,
       {
@@ -535,7 +591,7 @@ export async function handleConversationReplyButton(
         },
         body: JSON.stringify({
           chat_id: chatId,
-          text: i18n.t('conversation.replyConversation', { identifier: conversationIdentifier }),
+          text: replyText,
           reply_markup: {
             force_reply: true,
             selective: true,

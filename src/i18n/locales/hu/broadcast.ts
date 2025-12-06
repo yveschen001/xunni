@@ -68,7 +68,7 @@ export default {
     "zodiacVirgo": "Szűz"
   },
   "filterAge": "• életkor=18-25\n",
-  "filterCommand": "/broadcast_filter <filter> <msg_content> ",
+  "filterCommand": "/broadcast_filter <filter> <msg_content>",
   "filterConfirmConditions": "**Szűrési feltételek:**\n{conditions}\n\n",
   "filterConfirmMessage": "**Üzenet tartalma:**\n{message}\n\n",
   "filterConfirmTitle": "🔍 **Közvetítési Szűrő Megerősítése**\n\n",

@@ -68,7 +68,7 @@ export default {
     "zodiacVirgo": "कन्या"
   },
   "filterAge": "• आयु=18-25\n",
-  "filterCommand": "/broadcast_filter <filter> <msg_content> ",
+  "filterCommand": "/broadcast_filter <filter> <msg_content>",
   "filterConfirmConditions": "**फिल्टर शर्तें:**\n{conditions}\n\n",
   "filterConfirmMessage": "**संदेश की सामग्री:**\n{message}\n\n",
   "filterConfirmTitle": "🔍 **ब्रॉडकास्ट फ़िल्टर पुष्टि**\n\n",

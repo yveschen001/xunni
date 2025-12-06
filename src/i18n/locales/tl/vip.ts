@@ -27,8 +27,8 @@ export default {
   "message8": "Presyo: {priceStars} ⭐ Telegram Stars / buwan\n",
   "message9": "Oras ng bayad: {paymentDate.toLocaleDateString(",
   "purchaseCancelled": "✅ Kanseladong pagbili",
-  "quota": "• 30 quota ng bote ng mensahe sa bawat araw (anyayahan ang mga kaibigan upang madagdagan, hanggang 100 sa bawat araw)\n",
-  "quota2": "• 30 quota ng bote ng mensahe sa bawat araw (hanggang 100 sa bawat araw)\n",
+  "quota": "• Arawang quota ng 30 Bote ng Pagpapala (maaaring tumaas ito kapag nag-imbita ng mga kaibigan, hanggang 100 sa isang araw)",
+  "quota2": "• Arawang quota ng 30 Bote ng Pagpapala (hanggang 100 sa isang araw)",
   "refundAdminCommands": "💡 Gamitin ang mga sumusunod na utos upang magpatuloy:\n• Aprubahan: `/admin_approve_refund <ID>`\n• Tumanggi: `/admin_reject_refund <ID> <reason>`",
   "refundApproved": "✅ **Naaprubahan ang refund**\n\nHalaga ng refund: {amount} ⭐\nAng refund ay kredito sa loob ng 1-3 araw ng negosyo.\n\nAng iyong VIP membership ay kinansela na.\n\nSalamat sa iyong pang-unawa!",
   "refundApprovedAdmin": "✅ Naaprubahan ang refund\n\nRequest ID: #{requestId}\nUser ID: {userId}\nHalaga: {amount} ⭐",
@@ -75,7 +75,7 @@ export default {
   "text11": "Petsa ng pag-expire: {expireDate}",
   "text12": "Ang mga refund ay magkakredit sa loob ng 1-3 araw ng negosyo.\n\n",
   "text13": "Request ID: #{requestId}",
-  "text14": "└ 1 matalinong tugma + 2 pampublikong bote ng mensahe na pool displays: Karagdagang 2 display spot, naghihintay para sa isang nakatakdang tao na kuhanin ang mga ito.\nDagdagan ang posibilidad na makita ang iyong bote ng mensahe ng 300%!",
+  "text14": "└ 1 matalinong tugma + 2 pampublikong pagpapala ng Bote ng Pagpapala: Nagdadagdag ng 2 dagdag na puwang sa pagpapakita, naghihintay sa mga nakatakdang tao na pumili ng mga ito.\nPataas ang pagkakataon na makita ang iyong Bote ng Pagpapala ng 300%!",
   "text15": "Isa kang bibigyan ng abiso ukol sa mga resulta ng pagpaproseso sa pamamagitan ng Bot.\n\n",
   "text16": "Mangyaring ipasok ang dahilan para sa refund (hindi bababa sa 10 karakter):",
   "text17": "Dahilan: {req.reason}\n",
@@ -130,5 +130,5 @@ export default {
   "upgrade": "Mag-upgrade sa VIP",
   "maxDurationExceeded": "⚠️ Naabot na ang limit ng iyong VIP na panahon ({maxMonths} na buwan), at hindi ka makakapagpatuloy sa pagbili sa kasalukuyan.",
   "refundedAndRevoked": "ℹ️ Ang iyong bayad ay na-refund, at ang mga benepisyo ng VIP ay tinanggal.",
-  "benefit_daily_fortune": "• 1 libreng AI sa kapalaran bawat araw (exklusibo para sa VIP)"
+  "benefit_daily_fortune": "• 1 libreng pagbasa ng Psychic Reading bawat araw (exklusibo para sa VIP)"
 };

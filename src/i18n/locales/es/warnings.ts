@@ -122,7 +122,7 @@ export default {
       "body": "{userAttribute},\nSegún el análisis, ¡tienes la afinidad más fuerte con {recommendedAttributes}!\n\n💡 {reason}\n\n👇 ¿Te sientes afortunado?"
     },
     "btn": {
-      "throw": "🌊 Lanzar una botella y arriesgarse",
+      "throw": "🌊 Lanza una Botella de Bendición de bendiciones, desea lo mejor a los demás y la felicidad volverá a ti.",
       "vip_throw": "🎯 Lanzar a {target}",
       "vip_upsell": "💡 ¡Actualiza a VIP para designar la entrega a {target}, para emparejamiento preciso!"
     }

@@ -266,5 +266,24 @@ export default {
     "startButton": "📊 Start testen",
     "resultTitle": "Min MBTI-testresultat er {type}!",
     "resultDesc": "Du bør også prøve testen～"
-  }
+  },
+  "titles": {
+
+  "INTJ": "Arkitekt",
+  "INTP": "Logiker",
+  "ENTJ": "Kommandant",
+  "ENTP": "Debattant",
+  "INFJ": "Advokat",
+  "INFP": "Mekler",
+  "ENFJ": "Hovedperson",
+  "ENFP": "Kampanjefører",
+  "ISTJ": "Logistiker",
+  "ISFJ": "Forsvarer",
+  "ESTJ": "Leder",
+  "ESFJ": "Konsul",
+  "ISTP": "Virtuos",
+  "ISFP": "Eventyrer",
+  "ESTP": "Entreprenør",
+  "ESFP": "Underholder"
+  },
 };

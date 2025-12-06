@@ -13,7 +13,7 @@ export default {
   "bloodType": "✅ Krvná skupina aktualizovaná na {getBloodTypeDisplay(bloodType as any)}",
   "bloodType2": "✅ Krvná skupina vymazaná",
   "bottle": "✅ Odmena udelená! +1 message bottle",
-  "bottle2": "✅ Začal novú message bottle",
+  "bottle2": "✅ Začni nov Blessing Bottle",
   "bottle3": "✅ Message bottle vytvorená\n",
   "broadcast": "✅ Vymazané {ids.length} uviaznuté vysielania\n\n",
   "broadcast2": "✅ Nie sú žiadne vysielania na vymazanie\n\n",
@@ -95,7 +95,7 @@ export default {
     "bloodType": "✅ Krvná skupina aktualizovaná na \\{getBloodTypeDisplay(bloodType as any)}",
     "bloodType2": "✅ Krvná skupina vymazaná",
     "bottle": "✅ Odmena udelená! +1 message bottle",
-    "bottle2": "✅ Začnite novú message bottle",
+    "bottle2": "✅ Začať novú požehnanie Správa fľaša",
     "bottle3": "✅ Fľaša vytvorená\n",
     "broadcast": "✅ Vymazané \\{ids.length} uviaznuté vysielania\n\n",
     "broadcast2": "✅ Nie sú žiadne vysielania na vyčistenie\n\n",
@@ -238,6 +238,6 @@ export default {
   "verify2": "✅ Overenie úspešné! Získané +\\{ad.reward_quota} trvalých kvót!",
   "vip": "✅ Všetky príspevky sú aktuálne (VIP status je správny)\n",
   "zodiac": "✅ Vymazaná voľba zverokruhu",
-  "bottleThrown": "🍾 Správa do fľaše bola hodená!",
+  "bottleThrown": "✅ Blessing Bottle bol hodený!",
   "saved": "✅ Nastavenia boli uložené"
 };

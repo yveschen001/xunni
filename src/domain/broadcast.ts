@@ -186,7 +186,10 @@ export function formatBroadcastStatus(broadcast: Broadcast, i18n?: any): string 
 /**
  * Get broadcast target name
  */
-export function getBroadcastTargetName(targetType: 'all' | 'vip' | 'non_vip', i18n?: any): string {
+export function getBroadcastTargetName(
+  targetType: 'all' | 'vip' | 'non_vip' | 'filtered',
+  i18n?: any
+): string {
   if (i18n) {
     switch (targetType) {
       case 'all':
@@ -195,6 +198,8 @@ export function getBroadcastTargetName(targetType: 'all' | 'vip' | 'non_vip', i1
         return i18n.t('broadcast.target.vip');
       case 'non_vip':
         return i18n.t('broadcast.target.nonVip');
+      case 'filtered':
+        return i18n.t('broadcast.target.filtered');
       default:
         return i18n.t('broadcast.target.unknown');
     }
@@ -209,6 +214,8 @@ export function getBroadcastTargetName(targetType: 'all' | 'vip' | 'non_vip', i1
       return 'VIP 用戶'; // Fallback only, should use i18n.t('broadcast.target.vip')
     case 'non_vip':
       return '非 VIP 用戶'; // Fallback only, should use i18n.t('broadcast.target.nonVip')
+    case 'filtered':
+      return '篩選用戶'; // Fallback only
     default:
       return '未知'; // Fallback only, should use i18n.t('broadcast.target.unknown')
   }

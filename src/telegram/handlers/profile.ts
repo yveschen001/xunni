@@ -12,6 +12,8 @@ import { calculateAge } from '~/domain/user';
 import { getInviteStats } from '~/db/queries/invites';
 import { calculateDailyQuota, getInviteLimit } from '~/domain/invite';
 import { createI18n } from '~/i18n';
+import { formatNicknameWithFlag } from '~/utils/country_flag';
+import { maskNickname } from '~/utils/nickname';
 
 export async function handleProfile(message: TelegramMessage, env: Env): Promise<void> {
   const db = createDatabaseClient(env.DB);
@@ -87,7 +89,6 @@ export async function handleProfile(message: TelegramMessage, env: Env): Promise
     const inviteCode = user.invite_code || i18n.t('profile.settings');
 
     // Format nickname with country flag
-    const { formatNicknameWithFlag } = await import('~/utils/country_flag');
     const displayNickname = formatNicknameWithFlag(
       user.nickname || i18n.t('profile.notSet'),
       user.country_code
@@ -190,73 +191,224 @@ export async function handleProfile(message: TelegramMessage, env: Env): Promise
 }
 
 /**
- * Handle /profile_card command - show profile card
+ * Handle /profile_card command - show profile card (SELF or OTHER)
+ * 
+ * If context is OTHER (viewing someone else's profile):
+ * - Show Main Action buttons (Reply, Fortune Match, Gift)
+ * - Show "More Options" button
  */
-export async function handleProfileCard(message: TelegramMessage, env: Env): Promise<void> {
+export async function handleProfileCard(
+  message: TelegramMessage, 
+  env: Env,
+  targetUserId?: string, // If provided, viewing other's profile
+  conversationId?: number // Context for reply button
+): Promise<void> {
   const db = createDatabaseClient(env.DB);
   const telegram = createTelegramService(env);
   const chatId = message.chat.id;
   const telegramId = message.from!.id.toString();
 
   try {
-    // Get user
-    const user = await findUserByTelegramId(db, telegramId);
-    if (!user) {
+    // Viewer (Current User)
+    const viewer = await findUserByTelegramId(db, telegramId);
+    if (!viewer) {
       const i18n = createI18n('zh-TW');
       await telegram.sendMessage(chatId, i18n.t('profile.userNotFound'));
       return;
     }
+    const i18n = createI18n(viewer.language_pref || 'zh-TW');
 
-    const i18n = createI18n(user.language_pref || 'zh-TW');
+    // Target User (Self if not provided)
+    const targetId = targetUserId || telegramId;
+    const targetUser = await findUserByTelegramId(db, targetId);
+    
+    if (!targetUser) {
+      await telegram.sendMessage(chatId, i18n.t('profile.userNotFound'));
+      return;
+    }
+
+    const isSelf = targetId === telegramId;
 
     // Check if user completed onboarding
-    if (user.onboarding_step !== 'completed') {
+    if (viewer.onboarding_step !== 'completed') {
       await telegram.sendMessage(chatId, i18n.t('profile.completeOnboarding'));
       return;
     }
 
     // Build profile card
-    const age = user.birthday ? calculateAge(user.birthday) : '?';
+    const age = targetUser.birthday ? calculateAge(targetUser.birthday) : null;
+    const ageDisplay = age
+      ? i18n.t('profile.ageRange', {
+          min: Math.floor(age / 5) * 5,
+          max: Math.floor(age / 5) * 5 + 5,
+        })
+      : '?';
     const gender =
-      user.gender === 'male'
+      targetUser.gender === 'male'
         ? i18n.t('profile.cardGenderMale')
-        : user.gender === 'female'
+        : targetUser.gender === 'female'
           ? i18n.t('profile.cardGenderFemale')
           : '?';
-    const mbti = user.mbti_result || i18n.t('profile.notSet');
+
+    let mbti = i18n.t('profile.notSet');
+    if (targetUser.mbti_result) {
+      const code = targetUser.mbti_result;
+      const title = i18n.t(`mbti.titles.${code}`, { defaultValue: '' });
+      mbti = title ? `${code} (${title})` : code;
+    }
+
     const { getZodiacDisplay } = await import('~/domain/zodiac');
-    const zodiac = getZodiacDisplay(user.zodiac_sign, i18n);
-    const interests = user.interests
-      ? JSON.parse(user.interests as string).join(', ')
+    const zodiac = getZodiacDisplay(targetUser.zodiac_sign, i18n);
+    const interests = targetUser.interests
+      ? JSON.parse(targetUser.interests as string).join(', ')
       : i18n.t('profile.notSet');
-    const bio = user.bio || i18n.t('profile.mysterious');
-    const city = user.city || i18n.t('profile.notSet');
+    const bio = targetUser.bio || i18n.t('profile.mysterious');
+    const city = targetUser.city || i18n.t('profile.notSet');
 
     // Format nickname with country flag
-    const { formatNicknameWithFlag } = await import('~/utils/country_flag');
     const displayNickname = formatNicknameWithFlag(
-      user.nickname || i18n.t('profile.anonymousUser'),
-      user.country_code
+      targetUser.nickname || i18n.t('profile.anonymousUser'),
+      targetUser.country_code
     );
+
+    // Check if viewer gifted VIP to target (NEW)
+    let giftedNote = '';
+    if (!isSelf) {
+      const giftRecord = await db.d1.prepare(`
+        SELECT 1 FROM payments 
+        WHERE telegram_id = ? AND recipient_telegram_id = ? AND is_gift = 1 AND status = 'completed'
+      `).bind(telegramId, targetId).first();
+      
+      if (giftRecord) {
+        giftedNote = `\n[ ${i18n.t('profile.giftedVipNote')} ]`; // Need to add key
+      }
+    }
 
     const cardMessage =
       i18n.t('profile.cardTitle') +
-      `👤 ${displayNickname}\n` +
-      `${gender} • ${i18n.t('profile.cardAge', { age })} • ${city}\n\n` +
+      `👤 ${displayNickname}` + giftedNote + `\n` +
+      `${gender} • ${ageDisplay} • ${city}\n\n` +
       i18n.t('profile.cardMbti', { mbti }) +
       i18n.t('profile.cardZodiac', { zodiac }) +
-      i18n.t('profile.cardLanguage', { language: user.language_pref || 'zh-TW' }) +
+      i18n.t('profile.cardLanguage', { language: targetUser.language_pref || 'zh-TW' }) +
       i18n.t('profile.text2', { interests }) +
       i18n.t('profile.text4', { bio }) +
       i18n.t('profile.cardSeparator') +
       i18n.t('profile.cardFooter') +
       i18n.t('profile.returnToMenu');
 
-    await telegram.sendMessage(chatId, cardMessage);
+    const buttons: any[][] = [];
+
+    if (isSelf) {
+      // --- Self View Buttons ---
+      // Ad Reward Button (only for non-VIP)
+      if (!targetUser.is_vip) {
+        const { getTodayAdReward } = await import('~/db/queries/ad_rewards');
+        const adReward = await getTodayAdReward(db.d1, telegramId);
+        const adsWatched = adReward?.ads_watched || 0;
+        const remaining = Math.max(0, 20 - adsWatched);
+        buttons.push([
+          {
+            text: i18n.t('buttons.bottle', { remaining }),
+            callback_data: 'watch_ad:profile',
+          },
+        ]);
+      }
+    } else {
+      // --- Other View Buttons ---
+      
+      // 1. Reply (if conversation context exists)
+      if (conversationId) {
+        // Need to get identifier to make reply button work
+        const { getIdentifierByPartner } = await import('~/db/queries/conversation_identifiers');
+        const identifier = await getIdentifierByPartner(db, telegramId, targetId);
+        if (identifier) {
+           buttons.push([{ text: i18n.t('conversationHistory.replyButton'), callback_data: `conv_reply_${identifier}` }]);
+        }
+      }
+
+      // 2. Fortune Match
+      // Logic: Both MUST be VIP + Data Complete (Stranger Mode assumed for now, or check if friend)
+      // Actually, for "Personal Mode" (Known ID), only Initiator needs VIP.
+      // But we are viewing a Profile Card, usually implies "Known ID" context if clicked from history/chat.
+      // Let's implement the upsell logic.
+      
+      const viewerIsVip = !!(viewer.is_vip && viewer.vip_expire_at && new Date(viewer.vip_expire_at) > new Date());
+      const targetIsVip = !!(targetUser.is_vip && targetUser.vip_expire_at && new Date(targetUser.vip_expire_at) > new Date());
+      
+      // We'll let the handler decide the final check, but button text might change
+      // "Fortune Match"
+      buttons.push([{ 
+        text: i18n.t('profile.fortuneMatchButton'), 
+        callback_data: `fortune_match:${targetId}` 
+      }]);
+
+      // 3. Gift Buttons
+      buttons.push([
+        { text: i18n.t('profile.giftVipButton'), callback_data: `gift_vip:${targetId}` },
+        { text: i18n.t('profile.giftFortuneBottleButton'), callback_data: `gift_bottle:${targetId}` }
+      ]);
+
+      // 4. Upgrade VIP (Upsell if viewer not VIP)
+      if (!viewerIsVip) {
+        buttons.push([{ text: i18n.t('buttons.vip'), callback_data: 'menu_vip' }]);
+      }
+      
+      // 5. Ad Button (if viewer not VIP)
+      if (!viewerIsVip) {
+        const { getTodayAdReward } = await import('~/db/queries/ad_rewards');
+        const adReward = await getTodayAdReward(db.d1, telegramId);
+        const adsWatched = adReward?.ads_watched || 0;
+        const remaining = Math.max(0, 20 - adsWatched);
+        buttons.push([
+          {
+            text: i18n.t('buttons.bottle', { remaining }),
+            callback_data: 'watch_ad:profile',
+          },
+        ]);
+      }
+
+      // 6. Return to Menu (Replace More Options for now)
+      buttons.push([{ text: i18n.t('buttons.returnToMenu'), callback_data: 'return_to_menu' }]);
+    }
+
+    await telegram.sendMessageWithButtons(chatId, cardMessage, buttons);
   } catch (error) {
     console.error('[handleProfileCard] Error:', error);
     const user = await findUserByTelegramId(db, telegramId);
     const i18n = createI18n(user?.language_pref || 'zh-TW');
     await telegram.sendMessage(chatId, i18n.t('profile.systemError'));
   }
+}
+
+/**
+ * Handle "More Options" menu for profile
+ */
+export async function handleProfileMoreOptions(
+  callbackQuery: any,
+  targetId: string,
+  conversationId: number,
+  env: Env
+): Promise<void> {
+  const telegram = createTelegramService(env);
+  const db = createDatabaseClient(env.DB);
+  const telegramId = callbackQuery.from.id.toString();
+  
+  const user = await findUserByTelegramId(db, telegramId);
+  const i18n = createI18n(user?.language_pref || 'zh-TW');
+
+  const buttons = [
+    [
+      { text: i18n.t('profile.blockUser'), callback_data: `conv_block_confirm_${conversationId}` },
+      { text: i18n.t('profile.reportUser'), callback_data: `conv_report_confirm_${conversationId}` }
+    ],
+    [{ text: i18n.t('common.back'), callback_data: `conv_profile_${conversationId}` }] // Back to profile
+  ];
+
+  await telegram.editMessageText(
+    callbackQuery.message.chat.id, 
+    callbackQuery.message.message_id, 
+    i18n.t('profile.moreOptionsTitle'), 
+    { reply_markup: { inline_keyboard: buttons } }
+  );
 }

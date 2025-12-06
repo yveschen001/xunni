@@ -12,5 +12,6 @@ export default {
   "nicknameInputHint": "👇 新しいニックネームを入力してください:",
   "bioInstruction": "新しい自己紹介を入力してください（100文字以内）。\n\n現在の自己紹介: {bio}",
   "bioInputHint": "👇 新しい自己紹介を入力してください:",
-  "bloodTypeInstruction": "血液型を選択してください:"
+  "bloodTypeInstruction": "血液型を選択してください:",
+  "matchPrefInstruction": "マッチングの優先設定を選択してください："
 };

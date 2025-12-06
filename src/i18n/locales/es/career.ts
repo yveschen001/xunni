@@ -3,7 +3,7 @@ export default {
   "label_industry": "¿En qué industria está principalmente involucrado?",
   "btn_edit_role": "💼 Editar Identidad Profesional",
   "btn_edit_industry": "🏢 Editar Industria",
-  "profile_incomplete_hint": "💡 Para proporcionar servicios de adivinación con IA más precisos, complete primero su información personal.",
+  "profile_incomplete_hint": "💡 Para proporcionar servicios de lectura psíquica más precisos, complete primero su información personal.",
   "role": {
     "employee": "Trabajador de Oficina",
     "freelancer": "Freelance / SOHO",
@@ -167,4 +167,6 @@ export default {
     }
   },
   "next_step_industry": "Ensuite, veuillez sélectionner votre secteur d'activité."
+,
+  "back_to_categories": "Back to Industries"
 };

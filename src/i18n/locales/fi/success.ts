@@ -13,7 +13,7 @@ export default {
   "bloodType": "✅ Verityyppi päivitetty muotoon {getBloodTypeDisplay(bloodType as any)}",
   "bloodType2": "✅ Verityyppi poistettu",
   "bottle": "✅ Palkinto myönnetty! +1 viestipullo",
-  "bottle2": "✅ Uusi viestipullo käynnistetty",
+  "bottle2": "✅ Aloita uusi Toivepullo",
   "bottle3": "✅ Viestipullo luotu\n",
   "broadcast": "✅ Poistettiin {ids.length} jumittunutta lähetyksissä\n\n",
   "broadcast2": "✅ Ei tarvitse poistaa lähetyksiä\n\n",
@@ -95,7 +95,7 @@ export default {
     "bloodType": "✅ Veriryhmä päivitetty: \\{getBloodTypeDisplay(bloodType as any)}",
     "bloodType2": "✅ Veriryhmä tyhjennetty",
     "bottle": "✅ Palkkio jaettu! +1 viestipulloposti",
-    "bottle2": "✅ Aloita uusi viestipulloposti",
+    "bottle2": "✅ Aloita uusi siunaus viestin pullossa",
     "bottle3": "✅ Viestipulloposti luotu\n",
     "broadcast": "✅ Poistettu \\{ids.length} jumittunutta lähetystä\n\n",
     "broadcast2": "✅ Ei lähetettäviä viestejä\n\n",
@@ -238,6 +238,6 @@ export default {
   "verify2": "✅ Vahvistus onnistui! Saavut +\\{ad.reward_quota} pysyvää kiintiötä!",
   "vip": "✅ Kaikki postit ovat ajan tasalla (VIP-status oikea)\n",
   "zodiac": "✅ Aurinko- ja horoskooppivalinta tyhjennetty",
-  "bottleThrown": "🍾 Pulloposti on heitetty!",
+  "bottleThrown": "✅ Toivepullo on heitetty!",
   "saved": "✅ Asetukset tallennettu"
 };

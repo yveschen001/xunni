@@ -54,7 +54,7 @@ export function validateIdentifier(identifier: string): boolean {
  * @returns Formatted identifier (e.g., '#0910ABCD')
  */
 export function formatIdentifier(identifier: string): string {
-  return `#${identifier}`;
+  return identifier;
 }
 
 /**

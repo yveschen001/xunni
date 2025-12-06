@@ -26,7 +26,7 @@ export default {
   "manual": "Manuálne nastavenia",
   "mbti": "• Použite /mbti, aby ste si test zopakovali alebo upravili MBTI\n",
   "mbtiWithSource": "🧠 MBTI: {mbti}{source}",
-  "message": "https://t.me/share/url?url=https://t.me/{botUsername}?start=invite_{inviteCode}&text=Príďte do XunNi a hádžte správy v fľaštičke spolu!🍾 Použite môj pozývací kód: {inviteCode}",
+  "message": "XunNi, poďme hodiť Blessing Bottle! 🍾 Použi môj pozývací kód: {inviteCode}",
   "message2": "{inviteLimitWarning}\n\n",
   "message3": "🌍 Jazyk: {user.language_pref}\n\n",
   "message4": "🌍 Jazyk: {user.language_pref }\n",
@@ -42,7 +42,7 @@ export default {
   "quota2": "📦 Aktuálny denný limit: {taskBonus > 0 ?",
   "quotaBottles": "{taskBonus} message bottles",
   "quotaTotal": "📦 Aktuálna denná kvóta: {quota}\n\n",
-  "returnToMenu": "🏠 Návrat do hlavného menu: /menu",
+  "returnToMenu": "🏠 Hlavné menu",
   "separator": "━━━━━━━━━━━━━━━━\n\n",
   "settings": "Nie je nastavené",
   "settings2": "Nie je nastavené",
@@ -71,5 +71,14 @@ export default {
   "zodiac": "⭐ Zverokruh: {zodiac}\n",
   "fortuneQuota": "🔮 {fortuneBottle}: {total} (Tento týždeň zdarma: {weekly}/{limit} | Dodatočne: {additional})",
   "vipWithDays": "💎 VIP člen (Zostáva {days} dní, Platnosť: {expireDate})",
-  "driftBottleInfo": "🍾 správa fľaša: {remaining} / {total}"
+  "driftBottleInfo": "🍾 Blessing Bottle: {remaining} / {total}",
+  "ageRange": "Vek: {min}-{max}",
+  "fortuneMatchButton": "💘 Rýchle šťastie",
+  "giftVipButton": "🎁 Darovať VIP",
+  "giftFortuneBottleButton": "🔮 Darovať Fortune Bottle",
+  "moreOptions": "⚙️ Ďalšie možnosti...",
+  "blockUser": "🚫 Blokovať používateľa",
+  "reportUser": "⚠️ Nahlásiť",
+  "moreOptionsTitle": "⚙️ Ďalšie možnosti",
+  "giftedVipNote": "🎁 Už ste dostali VIP"
 };

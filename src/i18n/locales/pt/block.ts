@@ -1,6 +1,6 @@
 export default {
   "cannotIdentify": "⚠️ Não foi possível identificar o parceiro da conversa.",
-  "catchNewBottle": "💡 Use /catch para pegar novas garrafas de mensagem e iniciar uma nova conversa.",
+  "catchNewBottle": "💡 Use /catch para coletar uma nova Garrafa de Bênção e iniciar uma nova conversa.",
   "conversationInfoError": "⚠️ Informações da conversa estão incorretas.",
   "conversationMayEnded": "A conversa pode ter terminado ou não existir.",
   "conversationNotFound": "⚠️ Esta conversa não pode ser encontrada.",
@@ -12,5 +12,5 @@ export default {
   "step3": "3️⃣ Insira /block.",
   "steps": "**Passos da Operação:**",
   "success": "✅ Este usuário foi bloqueado (#{identifier}).",
-  "willNotMatch": "Você não será mais emparelhado com as garrafas de mensagem um do outro."
+  "willNotMatch": "Vocês não serão mais compatíveis com a Garrafa de Bênção um do outro."
 };

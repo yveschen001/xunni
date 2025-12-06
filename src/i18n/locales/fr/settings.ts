@@ -27,6 +27,8 @@ export default {
   "selectEndHour": "☀️ L'heure de début est fixée à {start}:00.\nVeuillez choisir l'heure de fin des heures de calme :\n(Les notifications reprendront après cette heure)",
   "disabled": "🚫 Les heures de calme ont été désactivées",
   "quietHoursHint": "Tu ne recevras pas de notifications non urgentes pendant cette période",
+  "quietHoursVipOnly": "🔒 Heures Calmes (VIP uniquement)",
+  "upgradeForQuietHours": "Devenez VIP pour définir les heures calmes et éviter d'être dérangé pendant votre temps de repos !",
   "blocklist": {
     "title": "🚫 Liste de Blocage",
     "empty": "Aucunes entrées dans la liste de blocage actuellement",

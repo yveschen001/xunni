@@ -1,7 +1,7 @@
 export default {
   "replyPrompt": "💬 Tumugon",
-  "suggestCatch": "❓ Gusto mo bang kumuha ng bote ng mensahe?\n\nGumamit ng /catch upang kunin ang isang bote ng mensahe\n\n💡 **Karaniwang Utos**: \n• /throw - Magtapon ng bote ng mensahe\n• /catch - Kumuha ng bote ng mensahe\n• /menu - Pangunahing menu\n• /tasks - Sentro ng gawain",
-  "suggestMenu": "❓ Hindi natagpuan ang utos\n\n💡 **Karaniwang Utos**：\n• /throw - Magtapon ng bote ng mensahe\n• /catch - Kumuha ng bote ng mensahe\n• /menu - Pangunahing Menu\n• /tasks - Sentro ng Gawain",
-  "suggestThrow": "❓ Gusto mo bang magtapon ng bote ng mensahe?\n\nMangyaring pindutin nang matagal ang nakaraang mensahe o ang mensaheng ito,\npumili ng 'Tumugon' mula sa menu,\nkung saan ipasok ang nilalaman ng bote ng mensahe upang ipadala\n\n💡 **Karaniwang Utos**：\n• /throw - Magtapon ng bote ng mensahe\n• /catch - Kumuha ng bote ng mensahe\n• /menu - Pangunahing Menu\n• /tasks - Sentro ng Gawain\n\n#THROW",
-  "throwPrompt": "📝 Pakisulat ang nilalaman ng iyong bote ng mensahe:"
+  "suggestCatch": "❓ Gusto mo bang kunin ang Bote ng Pagpapala ng Pagpapala?\n\nGumamit ng /catch upang kunin ang Bote ng Pagpapala ng Pagpapala\n\n💡 **Karaniwang Utos**:\n• /throw - Itapon ang Bote ng Pagpapala ng Pagpapala\n• /catch - Kunin ang Bote ng Pagpapala ng Pagpapala\n• /menu - Pangunahing menu\n• /tasks - Sentro ng mga gawain",
+  "suggestMenu": "❓ Utos hindi natagpuan\n\n💡 **Mga Karaniwang Utos**:\n• /throw - Magtapon ng isang Bote ng Pagpapala ng pagpapala\n• /catch - Kunin ang isang Bote ng Pagpapala ng pagpapala\n• /menu - Pangunahing menu\n• /tasks - Sentro ng mga gawain",
+  "suggestThrow": "❓ Gusto mo bang magtapon ng Bote ng Pagpapala?\n\nMangyaring pindutin nang matagal ang naunang mensahe o ang mensaheng ito,\npumili ng 'Tugon' mula sa menu,\nat ilagay ang nilalaman na ipapadala sa Bote ng Pagpapala.\n\n💡 **Karaniwang Utos**:\n• /throw - Magtapon ng Bote ng Pagpapala\n• /catch - Kunin ang Bote ng Pagpapala\n• /menu - Pangunahing menu\n• /tasks - Sentro ng mga Gawain\n\n#THROW",
+  "throwPrompt": "📝 Pakisulat ang nilalaman ng iyong Bote ng Pagpapala:"
 };

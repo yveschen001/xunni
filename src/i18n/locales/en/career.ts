@@ -3,7 +3,7 @@ export default {
   "label_industry": "What industry are you primarily engaged in?",
   "btn_edit_role": "💼 Editing Professional Identity",
   "btn_edit_industry": "🏢 Editing Industry",
-  "profile_incomplete_hint": "💡 To provide more accurate AI fortune-telling services, please complete your personal information first.",
+  "profile_incomplete_hint": "💡 To provide more accurate Psychic Reading Psychic Reading-telling services, please complete your personal information first.",
   "role": {
     "employee": "Office Worker",
     "freelancer": "Freelancer / SOHO",
@@ -166,5 +166,6 @@ export default {
       "other_industry": "Other Industries (Input Manually)"
     }
   },
-  "next_step_industry": "Next, please select your industry:"
+  "next_step_industry": "Next, please select your industry:",
+  "back_to_categories": "Back to Industries"
 };

@@ -19,7 +19,7 @@ export default {
   "noMessages": "(brez sporočil)",
   "partnerMessages": "• Druga stranka je poslala: {count} sporočil\n",
   "recentMessages": "📨 **Nedavni klepeti:**\n\n",
-  "returnToMenu": "🏠 Vrni se na glavni meni: /menu",
+  "returnToMenu": "🏠 主選單",
   "returnToMenuButton": "🏠 Vrnitev na glavni meni",
   "stats": "📊 **Statistika:**\n",
   "time": "Čas: {time}\n\n",

@@ -4,7 +4,7 @@ export default {
   "cancel": "❌ Anulează",
   "cancelled": "Anulat",
   "cannotIdentify": "⚠️ Nu se poate identifica partenerul de chat\n\n",
-  "catchHint": "• Folosește /capturează pentru a prelua o nouă sticlă cu mesaj",
+  "catchHint": "• Folosește 'Prinde Sticla cu Dorințe' pentru a obține o nouă Sticlă cu Dorințe",
   "completeOnboarding": "⚠️ Te rugăm să finalizezi mai întâi procesul de înregistrare.\n\nFolosește /start pentru a continua înregistrarea.",
   "conversationInfoError": "⚠️ Informațiile despre conversație sunt incorecte.",
   "conversationInfoError2": "⚠️ Informațiile despre conversație sunt incorecte",

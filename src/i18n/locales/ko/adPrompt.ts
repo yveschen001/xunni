@@ -1,7 +1,7 @@
 export default {
   "completeTask": "• ✨ 작업 완료 (영구 쿼트 획득)",
   "inviteFriends": "• 🎁 친구 초대 (각 +1 쿼트)",
-  "quotaExhausted": "❌ 오늘의 메시지 병 쿼트가 소진되었습니다 ({quotaDisplay})",
+  "quotaExhausted": "❌ 오늘의 축복의 병 축복 할당이 소진되었습니다 ({quotaDisplay})",
   "taskButton": "✨ {taskName} 🎁",
   "upgradeVip": "• 💎 VIP로 업그레이드 (일일 30 쿼트)",
   "watchAd": "• 📺 광고 시청 (남은 {remaining}/20 회)",

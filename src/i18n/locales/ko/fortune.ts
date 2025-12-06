@@ -8,7 +8,7 @@ export default {
     "love_match": "커플 궁합",
     "love_ideal": "이상형 분석"
   },
-  "back_to_menu": "🔙 AI 운세 메뉴로 돌아가기",
+  "back_to_menu": "🔙 정신 상담 메뉴로 돌아가기",
   "get_more_bottles": "💎 점괘 운세 병을 더 많이 획득하세요",
   "relationship": {
     "love": "커플",
@@ -16,7 +16,7 @@ export default {
     "family": "가족",
     "work": "동료"
   },
-  "menuTitle": "AI 운세",
+  "menuTitle": "영능 점술",
   "currentProfile": "현재 프로필",
   "warehouse": "생년월일 차트 저장",
   "manageProfiles": "생년월일 차트 관리",
@@ -148,20 +148,20 @@ export default {
   },
   "dailyPush": "📅 오늘의 운세가 전달되었습니다!",
   "dailyPushBtn": "👇 보기 클릭",
-  "backToMenu": "🔙 AI 운세 메뉴로 돌아가기",
+  "backToMenu": "🔙 심리 읽기 메뉴로 돌아가기",
   "addProfile": "차트 파일 추가",
   "quotaDisplay": "🔮 타로 카드 운세 병: {total} (이번 주 무료: {weekly}/{limit} | 추가: {additional})",
   "quotaDisplayVip": "🔮 운세 병: {total} (오늘: {daily}/1 | 추가: {additional})",
   "quotaDisplayFree": "🔮 운세 병: {total} (이번 주 무료: {weekly}/1 | 추가: {additional})",
   "profileDetails": "👤 {gender} {blood} | 🎂 {birthday} | {zodiac} | 🧠 {mbti}",
-  "getMore": "더 많은 운세 병을 받으세요",
-  "getMoreInfo": "🔮 *행운의 병을 얻는 방법은?*\n\n1. **주간 무료**: 일반 사용자는 주 1개, VIP는 하루 1개를 받습니다.\n2. **초대 보상**: 친구를 초대하면, 그 친구가 다른 친구를 성공적으로 초대할 때 보상을 받습니다 (24시간 이내에 최대 1개의 행운의 병).\n3. **운세 병 보상**: 운세 병 10개를 보내면 행운의 병 1개를 받습니다. (24시간 이내에 최대 1개의 행운의 병)\n4. **직접 구매 (🔥 한정 시간 20% 할인)**:\n • 소형 패키지 {smallAmount} - ~{originalSmallPrice} 별~ {smallPrice} 별\n • 대형 패키지 {largeAmount} - ~{originalLargePrice} 별~ {largePrice} 별",
+  "getMore": "운세 운세 병을 더 얻으세요",
+  "getMoreInfo": "🔮 *운세 병 획득 방법？*\n\n1. **매주 무료**: 일반 사용자 매주 1개, VIP 사용자 매일 1개.\n2. **초대 보상**: 친구를 한 명 초대하고, 그 친구가 또 다른 친구를 성공적으로 초대하면 보상을 받습니다 (24시간 이내 최대 1개의 운세 병).\n3. **축복의 병 보상**: 축복의 병 10개 발송 시 1개의 운세 병을 얻을 수 있습니다. (24시간 이내 최대 1개의 운세 병)\n4. **즉시 구매 (🔥 한정 20% 할인)**:\n   • 소패키지 {smallAmount} 개 - ~{originalSmallPrice} 별~ {smallPrice} 별\n   • 대패키지 {largeAmount} 개 - ~{originalLargePrice} 별~ {largePrice} 별",
   "buySmall": "🔥 특별가 {price} 별 (구매 {amount}개)",
   "buyLarge": "🔥 특별가 {price} 별 (구매 {amount}개)",
   "invoiceTitle": "구매 {amount} 개의 운세 병",
-  "invoiceDesc": "구매 후, AI 점술 서비스를 즉시 사용하실 수 있으며, 각 점술 서비스는 1개의 운세 병을 소모합니다.\n\n아래 버튼을 클릭하여 지금 구매하세요:",
+  "invoiceDesc": "구매 후 즉시 영능력 운세 서비스 이용 가능, 각 영능력 운세 서비스는 1개의 운세 병을 소모합니다.\n\n아래 버튼을 눌러 즉시 구매하세요:",
   "purchaseSuccess": "🎉 구매 성공! {amount} 개의 운세 병이 추가되었습니다.",
-  "bottleReward": "🎉 축하합니다! {count} 개의 운세 병을 보내고 1개의 운세 병 보상을 받았습니다!",
+  "bottleReward": "🎉 축하합니다! {count}개의 운세 병을 보내고 1개의 행운 병 보상을 받았습니다!",
   "inviteChainReward": "🎉 축하합니다! 초대한 친구가 새로운 친구를 성공적으로 초대하여 1개의 운세 병 보상을 받았습니다!",
   "menu": {
     "love": "특성 진단 (관계 매칭)",
@@ -190,7 +190,9 @@ export default {
     "match_report_title": "💞 커플의 생년월일 보고서",
     "wait_for_consent": "⏳ 상대방의 동의를 기다리고 있습니다...",
     "consent_accepted": "✅ 상대방이 동의했습니다! 보고서를 생성 중입니다...",
-    "consent_rejected": "❌ 상대방이 생년월일 요청을 거부했습니다."
+    "consent_rejected": "❌ 상대방이 생년월일 요청을 거부했습니다.",
+    "invite_friend": "📨 Invite Friend to Experience",
+    "invite_friend_text": "Hey! I want to try the Compatibility Test with you. Create your fortune profile now!"
   },
   "role": {
     "husband": "남편",
@@ -228,12 +230,26 @@ export default {
       "drawn": "🎴 카드가 뽑혔습니다:"
     }
   },
-  "profile_incomplete_hint": "💡 보다 정확한 AI 점술 서비스를 제공하기 위해, 먼저 관심사, 직업 또는 MBTI 정보를 입력해 주십시오.",
+  "profile_incomplete_hint": "💡 보다 정확한 정신적 독서 서비스를 제공하기 위해, 귀하의 관심사, 직업 또는 MBTI 등 다른 정보를 먼저 작성해 주시기 바랍니다.",
   "tarot_menu_title": "타로 카드",
   "tarot_ui": {
     "intro": "🔮 *타로 리딩*\n\n당신의 질문에 대해 조용히 생각해 주세요 (예: \"최근 내 직장 운은 어떨까?\" 또는 \"이 관계를 어떻게 처리해야 할까?\") 그리고 아래 버튼을 클릭하여 카드를 뽑기 전에 집중하세요.",
     "draw": "🔮 카드 뽑기",
     "shuffling": "셔플 중...",
     "drawn": "🎴 카드가 뽑혔습니다:"
+  },
+  "profileUpdated": "✅ 점성술 프로필이 업데이트되었습니다!",
+  "btn_complete_info": "✏️ 출생 정보를 입력하세요.",
+  "complete_info_hint": "💡 상승 별자리 및 하우스 분석을 잠금 해제하려면 출생 시간과 위치를 완벽하게 설정하세요!",
+  "btn_edit_info": "📝 출생 정보를 수정하세요.",
+  "edit": {
+    "currentInfo": "📋 현재 정보:",
+    "currentTime": "출생 시간: {time}",
+    "currentTimeUnknown": "출생 시간: 불확실",
+    "currentCity": "출생 도시: {city}",
+    "currentCityUnknown": "출생 도시: 설정되지 않음",
+    "confirmEdit": "위 정보를 수정하시겠습니까?",
+    "btnConfirmEdit": "✅ 네, 수정하겠습니다",
+    "btnCancelEdit": "❌ 취소"
   }
 };

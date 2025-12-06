@@ -27,8 +27,8 @@ export default {
   "message8": "Cena: {priceStars} ⭐ Telegram Stars / mesiac\n",
   "message9": "Čas platby: {paymentDate.toLocaleDateString(",
   "purchaseCancelled": "✅ Nákup zrušený",
-  "quota": "• Denný limit 30 message bottles (pozvaním priateľov ho môžete zvýšiť, až do 100 denne)\n",
-  "quota2": "• Denný limit 30 message bottles (až do 100 denne)\n",
+  "quota": "• Každý deň 30 kusov Blessing Bottle (pozvaním priateľov môžete zvýšiť na maximálne 100 kusov/deň)\n",
+  "quota2": "• Každý deň 30 kusov Blessing Bottle (maximálne 100 kusov/deň)\n",
   "refundAdminCommands": "💡 Použite nasledujúce príkazy na pokračovanie:\n• Schváliť: `/admin_approve_refund <ID>`\n• Zamietnuť: `/admin_reject_refund <ID> <reason>`",
   "refundApproved": "✅ **Refundácia schválená**\n\nSuma refundácie: {amount} ⭐\nRefundácia bude pripísaná do 1-3 pracovných dní.\n\nVaše VIP členstvo bolo zrušené.\n\nĎakujeme za pochopenie!",
   "refundApprovedAdmin": "✅ Refundácia schválená\n\nID žiadosti: #{requestId}\nID používateľa: {userId}\nSuma: {amount} ⭐",
@@ -75,7 +75,7 @@ export default {
   "text11": "Dátum vypršania: {expireDate}\n\n",
   "text12": "Refundácie budú pripísané do 1-3 pracovných dní.\n\n",
   "text13": "ID žiadosti: #{requestId}\n",
-  "text14": "└ 1 inteligentná zhoda + 2 verejné zobrazenia správy fľaše: Ďalšie 2 miesta na zobrazenie, ktoré čakajú na osudového človeka, aby si ich vyzdvihol.\nZvýšte pravdepodobnosť, že vaša správa fľaša bude viditeľná o 300%!",
+  "text14": "└ 1 kus inteligentného párovania + 2 kusy verejných Blessing Bottle: dodatočne zvýšte počet zobrazení o 2 miesta, čakajú na šťastného nálezcu.\nZvýšte šancu, že Vaša fľaša bude viditeľná o 300%!",
   "text15": "O výsledkoch spracovania budete informovaní prostredníctvom Bota.\n\n",
   "text16": "Prosím zadajte dôvod refundácie (aspoň 10 znakov):",
   "text17": "Dôvod: {req.reason}\n",
@@ -130,5 +130,5 @@ export default {
   "upgrade": "Upgradovať na VIP",
   "maxDurationExceeded": "⚠️ Vaše VIP obdobie dosiahlo limit ({maxMonths} mesiacov) a momentálne nemôžete pokračovať v nákupe.",
   "refundedAndRevoked": "ℹ️ Vaša platba bola vrátená a VIP výhody boli odobraté.",
-  "benefit_daily_fortune": "• 1 bezplatné AI veštenie denne (exkluzívne pre VIP)"
+  "benefit_daily_fortune": "• 1 bezplatné veštenie denne (exkluzívne pre VIP)"
 };

@@ -26,7 +26,7 @@ export default {
   "manual": "Manwal na Mga Setting",
   "mbti": "• Gamitin ang /mbti para muling kumuha o baguhin ang MBTI\n",
   "mbtiWithSource": "🧠 MBTI: {mbti}{source}",
-  "message": "https://t.me/share/url?url=https://t.me/{botUsername}?start=invite_{inviteCode}&text=Sumama sa XunNi at magtapon ng bote ng mensahe!🍾 Gamitin ang aking invitation code: {inviteCode}",
+  "message": "Magkasama tayong magtapon ng Bote ng Pagpapala ng mga biyaya sa XunNi! 🍾 Gamitin ang aking invitation code: {inviteCode}",
   "message2": "{inviteLimitWarning}\n\n",
   "message3": "🌍 Wika: {user.language_pref}\n\n",
   "message4": "🌍 Wika: {user.language_pref}\n",
@@ -42,7 +42,7 @@ export default {
   "quota2": "📦 Kasalukuyang Pang-araw-araw na Quota: {taskBonus > 0 ?",
   "quotaBottles": "{taskBonus} bote",
   "quotaTotal": "📦 Kasalukuyang pang-araw-araw na quota: {quota}\n\n",
-  "returnToMenu": "🏠 Bumalik sa pangunahing menu: /menu",
+  "returnToMenu": "🏠 Pangunahing Menu",
   "separator": "━━━━━━━━━━━━━━━━\n\n",
   "settings": "Hindi naka-set",
   "settings2": "Hindi naka-set",
@@ -71,5 +71,14 @@ export default {
   "zodiac": "⭐ Kanser: {zodiac}\n",
   "fortuneQuota": "🔮 {fortuneBottle}: {total} (Libre ngayong linggo: {weekly}/{limit} | Karagdagan: {additional})",
   "vipWithDays": "💎 VIP Miyembro (Natitirang {days} araw, Pagtatapos: {expireDate})",
-  "driftBottleInfo": "🍾 bote ng mensahe: {remaining} / {total}"
+  "driftBottleInfo": "🍾 Bote ng Pagpapala: {remaining} / {total}",
+  "ageRange": "Edad: {min}-{max}",
+  "fortuneMatchButton": "💘 Botelyang Panghuhula",
+  "giftVipButton": "🎁 Ibigay ang VIP",
+  "giftFortuneBottleButton": "🔮 Ibigay ang Botelyang Panghuhula",
+  "moreOptions": "⚙️ Karagdagang mga Opsyon...",
+  "blockUser": "🚫 I-block ang Gumagamit",
+  "reportUser": "⚠️ Iulat",
+  "moreOptionsTitle": "⚙️ Karagdagang mga Opsyon",
+  "giftedVipNote": "🎁 Nagbigay sa iyo ng VIP dati"
 };

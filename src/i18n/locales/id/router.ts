@@ -1,7 +1,7 @@
 export default {
   "replyPrompt": "💬 Balas",
-  "suggestCatch": "❓ Ingin menangkap botol pesan?\n\nGunakan /catch untuk mengambil botol pesan\n\n💡 **Perintah Umum**: \n• /throw - Lempar botol pesan\n• /catch - Ambil botol pesan\n• /menu - Menu utama\n• /tasks - Pusat tugas",
-  "suggestMenu": "❓ Perintah tidak ditemukan\n\n💡 **Perintah Umum**：\n• /throw - Lempar botol pesan\n• /catch - Tangkap botol pesan\n• /menu - Menu Utama\n• /tasks - Pusat Tugas",
-  "suggestThrow": "❓ Ingin melempar botol pesan?\n\nSilakan tekan lama pesan sebelumnya atau pesan ini,\npilih 'Balas' dari menu,\nkemudian masukkan isi botol pesan untuk dikirim\n\n💡 **Perintah Umum**：\n• /throw - Lempar botol pesan\n• /catch - Tangkap botol pesan\n• /menu - Menu Utama\n• /tasks - Pusat Tugas\n\n#THROW",
-  "throwPrompt": "📝 Silakan masukkan konten botol pesan Anda:"
+  "suggestCatch": "❓ Ingin menangkap Botol Berkah?\n\nGunakan /catch untuk mengambil Botol Berkah\n\n💡 **Perintah Umum**:\n• /throw - Buang Botol Berkah\n• /catch - Ambil Botol Berkah\n• /menu - Menu utama\n• /tasks - Pusat tugas",
+  "suggestMenu": "❓ Perintah tidak ditemukan\n\n💡 **Perintah Umum**:\n• /throw - Lempar Botol Berkah berkah\n• /catch - Ambil Botol Berkah berkah\n• /menu - Menu utama\n• /tasks - Pusat tugas",
+  "suggestThrow": "❓ Ingin mengirimkan Botol Berkah?\n\nSilakan tekan lama pada pesan sebelumnya atau pesan ini,\npilih 'Balas' dari menu,\ndan masukkan konten yang akan dikirim dalam Botol Berkah.\n\n💡 **Perintah Umum**:\n• /throw - Kirim Botol Berkah\n• /catch - Ambil Botol Berkah\n• /menu - Menu utama\n• /tasks - Pusat Tugas\n\n#THROW",
+  "throwPrompt": "📝 Silakan masukkan isi Botol Berkah Anda:"
 };

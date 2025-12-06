@@ -1,7 +1,7 @@
 export default {
   "autoCompleted": "Registrační proces byl automaticky dokončen.\n\n",
-  "bottles": "• Láhve se zprávami: {count}\n",
-  "catchCommand": "• /catch - Chytnout láhve se zprávami\n",
+  "bottles": "• Láhev Přání: {count}\n",
+  "catchCommand": "• Chyť Láhev Přání\n",
   "conversations": "• Konverzace: {count}\n",
   "dataReset": "✅ Vývojový režim: Data byla resetována\n\nVšechna vaše data byla smazána.\n\n💡 Nyní můžete znovu spustit registrační proces pro testování.\n\n🔄 Znovu se registrovat: /start\nnebo použijte: /dev_restart (automatické spuštění registrace)\n\n⚠️ Poznámka: Tato funkce je dostupná pouze v prostředí Staging.",
   "getUserInfoFailed": "❌ Nepodařilo se získat informace",
@@ -30,7 +30,7 @@ export default {
   "telegramId": "Telegram ID: {id}",
   "testCoreFeatures": "💡 Nyní můžete přímo testovat základní funkce:\n",
   "testUser": "Testovací uživatel",
-  "throwCommand": "• /throw - Hodit láhev se zprávou\n",
+  "throwCommand": "• Hoď Láhev Přání\n",
   "userInfo": "🔧 Vývojový režim: Informace o uživateli\n\n",
   "userNotFound": "❌ Uživatel neexistuje",
   "vip": "VIP: {status}",

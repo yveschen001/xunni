@@ -68,7 +68,7 @@ export default {
     "zodiacVirgo": "Virgjëreshë"
   },
   "filterAge": "• mosha=18-25\n",
-  "filterCommand": "/broadcast_filter <filter> <msg_content> ",
+  "filterCommand": "/broadcast_filter <filter> <msg_content>",
   "filterConfirmConditions": "**Kushtet e filtrit:**\n{conditions}\n\n",
   "filterConfirmMessage": "**Përmbajtja e mesazhit:**\n{message}\n\n",
   "filterConfirmTitle": "🔍 **Konfirmimi i Filtrit të Transmetimit**\n\n",

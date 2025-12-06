@@ -3,7 +3,7 @@ export default {
   "label_industry": "Industri apa yang Anda geluti?",
   "btn_edit_role": "💼 Mengedit Identitas Profesional",
   "btn_edit_industry": "🏢 Mengedit Industri",
-  "profile_incomplete_hint": "💡 Untuk memberikan layanan ramalan AI yang lebih akurat, silakan lengkapi informasi pribadi Anda terlebih dahulu.",
+  "profile_incomplete_hint": "💡 Untuk menyediakan layanan Pembacaan Psikis yang lebih akurat, harap lengkapi informasi pribadi Anda terlebih dahulu.",
   "role": {
     "employee": "Pekerja Kantoran",
     "freelancer": "Pekerja Lepas / SOHO",
@@ -167,4 +167,6 @@ export default {
     }
   },
   "next_step_industry": "Selanjutnya, silakan pilih industri Anda."
+,
+  "back_to_categories": "Back to Industries"
 };

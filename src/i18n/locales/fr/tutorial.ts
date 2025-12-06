@@ -1,13 +1,13 @@
 export default {
   "availableCommands": "Vous pouvez utiliser les commandes suivantes à tout moment :",
-  "catchBottle": "🎣 **Ramasser une bouteille à message**",
-  "catchBottleDesc": "Découvrez les bouteilles à message des autres, répondez si intéressé et commencez à discuter",
+  "catchBottle": "🎣 **Ramassez la Bouteille de Vœux des bénédictions**",
+  "catchBottleDesc": "Découvrez les Bouteilles de Vœux des autres, répondez aux vœux, et commencez à discuter~",
   "clickButtonHint": "💡 Veuillez cliquer sur le bouton pour continuer",
-  "commandCatch": "• /catch - Ramasser une bouteille à message",
+  "commandCatch": "• /catch - Ramasser une bénédiction Bouteille de Vœux",
   "commandHelp": "• /help - Voir l'aide",
   "commandMenu": "📋 Menu des commandes",
   "commandTasks": "• /tasks - Voir les tâches",
-  "commandThrow": "• /throw - Jeter une bouteille à message",
+  "commandThrow": "• /throw - Jeter une Bouteille de Vœux de bénédiction",
   "completeTasksForBottles": "💡 Complétez les tâches pour gagner des bouteilles supplémentaires",
   "completed": "✅ Tutoriel terminé !",
   "howToBecomeFriends": "💬 **Comment se faire des amis ?**",
@@ -16,11 +16,11 @@ export default {
   "skip": "Passer",
   "skipped": "✅ Tutoriel sauté",
   "startUsing": "Commencez à utiliser →",
-  "throwBottle": "📦 **Jeter une bouteille à message**",
+  "throwBottle": "📦 **Envoyer une Bouteille de Vœux de bénédiction**",
   "throwBottleDesc": "Écrivez vos sentiments ou pensées, et le système vous aidera à trouver une personne adéquate",
   "unknownStep": "❌ Étape de tutoriel inconnue",
   "viewTasks": "📋 Voir les tâches",
   "welcome": "🎉 Félicitations pour avoir terminé l'inscription !",
   "whatIsXunNi": "🌊 **Qu'est-ce que XunNi ?**",
-  "whatIsXunNiDesc": "Une plateforme sociale anonyme de bouteille à message qui vous aide à trouver des amis partageant les mêmes idées grâce à MBTI et aux signes du zodiaque"
+  "whatIsXunNiDesc": "Plateforme de bénédiction anonyme Bouteille de Vœux, trouvez des amis partageant les mêmes idées grâce à des bénédictions mutuelles, MBTI et signes du zodiaque."
 };

@@ -26,7 +26,7 @@ export default {
   "manual": "Tetapan Manual",
   "mbti": "• Gunakan /mbti untuk mengambil semula atau mengubahsuai MBTI\n",
   "mbtiWithSource": "🧠 MBTI: {mbti}{source}",
-  "message": "https://t.me/share/url?url=https://t.me/{botUsername}?start=invite_{inviteCode}&text=Datang ke XunNi dan lempar botol mesej!🍾 Gunakan kod undangan saya: {inviteCode}",
+  "message": "Mari kita lemparkan sebuah Botol Restu berkat bersama di XunNi! 🍾 Gunakan kod jemputan saya: {inviteCode}",
   "message2": "{inviteLimitWarning}\n\n",
   "message3": "🌍 Bahasa: {user.language_pref}\n\n",
   "message4": "🌍 Bahasa: {user.language_pref}\n",
@@ -42,7 +42,7 @@ export default {
   "quota2": "📦 Kuota Harian Semasa: {taskBonus > 0 ?",
   "quotaBottles": "{taskBonus} botol",
   "quotaTotal": "📦 Kuota harian semasa: {quota}\n\n",
-  "returnToMenu": "🏠 Kembali ke menu utama: /menu",
+  "returnToMenu": "🏠 Kembali ke Menu Utama",
   "separator": "━━━━━━━━━━━━━━━━\n\n",
   "settings": "Tidak ditetapkan",
   "settings2": "Tidak ditetapkan",
@@ -71,5 +71,14 @@ export default {
   "zodiac": "⭐ Zodiak: {zodiac}\n",
   "fortuneQuota": "🔮 {fortuneBottle}: {total} (Minggu ini percuma: {weekly}/{limit} | Tambahan: {additional})",
   "vipWithDays": "💎 Ahli VIP (Tersisa {days} hari, Tamat: {expireDate})",
-  "driftBottleInfo": "🍾 botol mesej: {remaining} / {total}"
+  "driftBottleInfo": "🍾 Botol Restu: {remaining} / {total}",
+  "ageRange": "Umur: {min}-{max}",
+  "fortuneMatchButton": "💘 Botol Nasib",
+  "giftVipButton": "🎁 Hadiah VIP",
+  "giftFortuneBottleButton": "🔮 Hadiah Botol Nasib",
+  "moreOptions": "⚙️ Lebih Banyak Pilihan...",
+  "blockUser": "🚫 Sekat Pengguna",
+  "reportUser": "⚠️ Laporkan",
+  "moreOptionsTitle": "⚙️ Lebih Banyak Pilihan",
+  "giftedVipNote": "🎁 Pernah memberi anda VIP"
 };

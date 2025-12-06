@@ -68,7 +68,7 @@ export default {
     "zodiacVirgo": "Παρθένος"
   },
   "filterAge": "• ηλικία=18-25\n",
-  "filterCommand": "/broadcast_filter <filter> <msg_content> ",
+  "filterCommand": "/broadcast_filter <filter> <msg_content>",
   "filterConfirmConditions": "**Συνθήκες φίλτρου:**\n{conditions}\n\n",
   "filterConfirmMessage": "**Περιεχόμενο μηνύματος:**\n{message}\n\n",
   "filterConfirmTitle": "🔍 **Επιβεβαίωση Φίλτρου Μετάδοσης**\n\n",

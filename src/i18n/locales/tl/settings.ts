@@ -27,6 +27,8 @@ export default {
   "selectEndHour": "☀️ Itinakdang oras ng simula sa {start}:00.\nPaki piliin ang oras ng pagtatapos para sa tahimik na oras:\n(Magbabalik ang mga abiso pagkatapos ng oras na ito)",
   "disabled": "🚫 Na-disable na ang tahimik na oras",
   "quietHoursHint": "Hindi ka makakatanggap ng mga di-mahalagang abiso sa panahong ito",
+  "quietHoursVipOnly": "🔒 Tahimik na Oras (Tanging VIP)",
+  "upgradeForQuietHours": "Mag-upgrade sa VIP para makapag-set ng tahimik na oras at maiwasan ang istorbo sa oras ng pahinga!",
   "blocklist": {
     "title": "🚫 Listahan ng Naharang",
     "empty": "Walang kasalukuyang listahan ng naharang",

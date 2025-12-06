@@ -8,15 +8,15 @@ export default {
     "love_match": "התאמת זוגית",
     "love_ideal": "ניתוח סוג אידיאלי"
   },
-  "back_to_menu": "🔙 חזור לתפריט ניבוי מזל של AI",
-  "get_more_bottles": "💎 רכש עוד בקבוקי מזל לחיזוי גורל",
+  "back_to_menu": "🔙 חזרה לתפריט קריאת נפש",
+  "get_more_bottles": "💎 קבל עוד Fortune Bottle",
   "relationship": {
     "love": "זוג",
     "friend": "חברים",
     "family": "משפחה",
     "work": "קולגות"
   },
-  "menuTitle": "ניבוי מזל AI",
+  "menuTitle": "Psychic Reading",
   "currentProfile": "פרופיל נוכחי",
   "warehouse": "אחסון לוחות שנה",
   "manageProfiles": "נהל לוחות שנה",
@@ -148,21 +148,21 @@ export default {
   },
   "dailyPush": "📅 ההורוסקופ להיום נשלח!",
   "dailyPushBtn": "👇 לחץ כדי לראות",
-  "backToMenu": "🔙 חזור לתפריט חיזוי גורלות בעזרת AI",
+  "backToMenu": "🔙 חזרה לתפריט קריאת הנפש",
   "addProfile": "הוסף קובץ תרשים",
-  "quotaDisplay": "🔮 תחזיות עתידות בבקבוק הודעות: {total} (החינם השבוע: {weekly}/{limit} | נוסף: {additional})",
-  "quotaDisplayVip": "🔮 בקבוק תחזיות: {total} (היום: {daily}/1 | נוסף: {additional})",
-  "quotaDisplayFree": "🔮 בקבוק תחזיות: {total} (השבוע בחינם: {weekly}/1 | נוסף: {additional})",
+  "quotaDisplay": "🔮 Fortune Bottle: {total} (החודש חינם: {weekly}/{limit} | נוסף: {additional})",
+  "quotaDisplayVip": "🔮 Fortune Bottle: {total} (היום: {daily}/1 | נוסף: {additional})",
+  "quotaDisplayFree": "🔮 Fortune Bottle: {total} (החודש חינם: {weekly}/1 | נוסף: {additional})",
   "profileDetails": "👤 {gender} {blood} | 🎂 {birthday} | {zodiac} | 🧠 {mbti}",
-  "getMore": "קבלו יותר בקבוקי נבואה",
-  "getMoreInfo": "🔮 *איך להשיג בקבוק מזל?*\n\n1. **חינמי שבועי**: משתמשים רגילים מקבלים 1 בשבוע, VIPs מקבלים 1 ביום.\n2. **תגמולים על הזמנה**: הזמינו חבר להצטרף, וכשהוא מזמין חבר נוסף בהצלחה, תקבלו תגמול (עד 1 בקבוק מזל בתוך 24 שעות).\n3. **תגמולים על בקבוקי הודעה**: על כל 10 בקבוקי הודעה שנשלחו, תקבלו 1 בקבוק מזל. (עד 1 בקבוק מזל בתוך 24 שעות)\n4. **רכישה ישירה (🔥 הנחה מוגבלת 20% Off)**:\n • חבילה קטנה {smallAmount} - ~{originalSmallPrice} כוכבים~ {smallPrice} כוכבים\n • חבילה גדולה {largeAmount} - ~{originalLargePrice} כוכבים~ {largePrice} כוכבים",
+  "getMore": "קבל עוד Fortune Bottle",
+  "getMoreInfo": "🔮 *איך להשיג Fortune Bottle?*\n\n1. **חינם בכל שבוע**: משתמשים רגילים מקבלים 1 בשבוע, VIP 1 ביום.\n2. **פרס הזמנה**: כאשר אתה מזמין חבר להצטרף והוא מצליח להזמין חבר נוסף, תקבל פרס (1 Fortune Bottle בתוך 24 שעות).\n3. **פרס Blessing Bottle**: על כל 10 Blessing Bottles שנשלחו, תקבל 1 Fortune Bottle. (1 Fortune Bottle בתוך 24 שעות).\n4. **רכישה ישירה (🔥 הנחה זמנית של 20%)**:\n   • חבילה קטנה {smallAmount} - ~{originalSmallPrice} Stars~ {smallPrice} Stars\n   • חבילה גדולה {largeAmount} - ~{originalLargePrice} Stars~ {largePrice} Stars",
   "buySmall": "🔥 מחיר מיוחד {price} כוכבים (קנה {amount} פריטים)",
   "buyLarge": "🔥 מחיר מיוחד {price} כוכבים (קנה {amount} פריטים)",
-  "invoiceTitle": "רכוש {amount} בקבוקי מזל",
-  "invoiceDesc": "לאחר רכישה, תוכל להשתמש מייד בשירות החיזוי של ה-AI, וכל שירות חיזוי צורך 1 בקבוק מזל.\n\nלחץ על הכפתור למטה כדי לרכוש עכשיו:",
-  "purchaseSuccess": "🎉 רכישה הצליחה! {amount} בקבוקי מזל נוספים נוספו.",
-  "bottleReward": "🎉 מזל טוב! שלחת {count} בקבוקי מזל וקיבלת 1 פרס בקבוק מזל!",
-  "inviteChainReward": "🎉 מזל טוב! החבר שהזמנת הצליח להזמין חבר חדש להצטרף, וקיבלת 1 פרס בקבוק מזל!",
+  "invoiceTitle": "רכישת {amount} Fortune Bottles",
+  "invoiceDesc": "לאחר הרכישה תוכל להשתמש מיד בשירותי חיזוי, כל שירות חיזוי צורך 1 Fortune Bottle.\n\nלחץ על הכפתור למטה לרכישה:",
+  "purchaseSuccess": "🎉 רכישה הצליחה! נוספו {amount} Fortune Bottles.",
+  "bottleReward": "🎉 מזל טוב! שלחת {count} Blessing Bottles, קיבלת 1 Fortune Bottle!",
+  "inviteChainReward": "🎉 מזל טוב! החבר שלך הצליח להזמין חבר חדש, קיבלת 1 Fortune Bottle!",
   "menu": {
     "love": "אבחון תכונות (התאמת קשרים)",
     "attribute_desc": "נתח את תכונותיך הרומנטיות ותכונות פוטנציאליות.",
@@ -190,7 +190,9 @@ export default {
     "match_report_title": "💞 דוח אסטרולוגי לזוגות",
     "wait_for_consent": "⏳ מחכים להסכמת הצד השני...",
     "consent_accepted": "✅ הצד השני הסכים! מח生成 דוח...",
-    "consent_rejected": "❌ הצד השני דחה את הבקשה האסטרולוגית."
+    "consent_rejected": "❌ הצד השני דחה את הבקשה האסטרולוגית.",
+    "invite_friend": "📨 Invite Friend to Experience",
+    "invite_friend_text": "Hey! I want to try the Compatibility Test with you. Create your fortune profile now!"
   },
   "role": {
     "husband": "בעל",
@@ -228,12 +230,26 @@ export default {
       "drawn": "🎴 הקלף נמשך:"
     }
   },
-  "profile_incomplete_hint": "💡 כדי להעניק שירותי ניבוי עתידות מדויקים יותר על ידי AI, אנא מלא את המידע על תחומי העניין שלך, מקצוע או MBTI קודם.",
+  "profile_incomplete_hint": "💡 כדי לספק שירות ניבוי רוחני מדויק יותר, אנא השלם קודם את תחומי העניין, המקצוע או ה-MBTI שלך ... ומידע אחר.",
   "tarot_menu_title": "קלפי טארוט",
   "tarot_ui": {
     "intro": "🔮 *קריאת טארוט*\n\nבבקשה לחשוב בשקט על השאלה שלך (למשל, \"איך המזל שלי בעבודה לאחרונה?\" או \"איך אני צריך להתמודד עם מערכת יחסים זו?\") ולהתמקד לפני שלוחצים על הכפתור למטה כדי למשוך קלפים.",
     "draw": "🔮 משוך קלפים",
     "shuffling": "מנערים...",
     "drawn": "🎴 הקלפים נמשכו:"
+  },
+  "profileUpdated": "✅ פרופיל האסטרולוגיה עודכן!",
+  "btn_complete_info": "✏️ השלם את פרטי הלידה שלך",
+  "complete_info_hint": "💡 מושלם את זמן הלידה והמיקום שלך כדי לפתוח את הניתוח של המזל העולה והבתים!",
+  "btn_edit_info": "📝 ערוך את פרטי הלידה",
+  "edit": {
+    "currentInfo": "📋 מידע נוכחי:",
+    "currentTime": "שעת לידה: {time}",
+    "currentTimeUnknown": "שעת לידה: לא בטוח",
+    "currentCity": "עיר לידה: {city}",
+    "currentCityUnknown": "עיר לידה: לא מוגדרת",
+    "confirmEdit": "האם אתה רוצה לשנות את המידע לעיל?",
+    "btnConfirmEdit": "✅ כן, אני רוצה לשנות",
+    "btnCancelEdit": "❌ לבטל"
   }
 };

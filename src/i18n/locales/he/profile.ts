@@ -26,7 +26,7 @@ export default {
   "manual": "הגדר ידנית",
   "mbti": "• השתמש ב-/mbti כדי לקחת שוב את המבחן או לשנות את ה-MBTI\n",
   "mbtiWithSource": "🧠 MBTI: {mbti}{source}",
-  "message": "https://t.me/share/url?url=https://t.me/{botUsername}?start=invite_{inviteCode}&text=בוא ל-XunNi ותשליך בקבוקי מסר יחד!🍾 השתמש בקוד ההזמנה שלי: {inviteCode}",
+  "message": "XunNi 一起丟 Blessing Bottle吧！🍾 使用我的邀請碼：{inviteCode}",
   "message2": "{inviteLimitWarning}\n\n",
   "message3": "🌍 שפה: {user.language_pref}\n\n",
   "message4": "🌍 שפה: {user.language_pref }\n",
@@ -42,7 +42,7 @@ export default {
   "quota2": "📦 מכסה יומית נוכחית: {taskBonus > 0 ?",
   "quotaBottles": "{taskBonus} בקבוקי מסר",
   "quotaTotal": "📦 מכסה יומית נוכחית: {quota}\n\n",
-  "returnToMenu": "🏠 חזור לתפריט הראשי: /menu",
+  "returnToMenu": "🏠 主選單",
   "separator": "━━━━━━━━━━━━━━━━\n\n",
   "settings": "לא קבוע",
   "settings2": "לא קבוע",
@@ -71,5 +71,14 @@ export default {
   "zodiac": "⭐ גלגל המזלות: {zodiac}\n",
   "fortuneQuota": "🔮 {fortuneBottle}: {total} (החודש חינם: {weekly}/{limit} | נוסף: {additional})",
   "vipWithDays": "💎 חבר VIP (נשארו {days} ימים, תאריך תפוגה: {expireDate})",
-  "driftBottleInfo": "🍾 בקבוק הודעות: {remaining} / {total}"
+  "driftBottleInfo": "🍾 Blessing Bottle：{remaining} / {total}",
+  "ageRange": "גיל: {min}-{max}",
+  "fortuneMatchButton": "💘 Fortune Match",
+  "giftVipButton": "🎁 Gift VIP",
+  "giftFortuneBottleButton": "🔮 Gift Fortune Bottle",
+  "moreOptions": "⚙️ More Options",
+  "blockUser": "🚫 Block User",
+  "reportUser": "⚠️ Report",
+  "moreOptionsTitle": "⚙️ More Options",
+  "giftedVipNote": "🎁 Previously Gifted VIP"
 };

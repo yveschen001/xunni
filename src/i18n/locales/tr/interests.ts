@@ -9,7 +9,7 @@ export default {
   "subtitle": "Lütfen seçenekleri gözden geçirmek için bir kategori seçin.",
   "current": "Şu anda seçilen ({count}/{max}):\n{list}",
   "saved": "✅ İlgi etiketleri güncellendi!",
-  "required_hint": "💡 Daha doğru AI fal bakma hizmetleri sunmak için lütfen önce ilgi etiketlerinizi tamamlayın.",
+  "required_hint": "💡 Daha doğru medyum hizmetleri sunmak için lütfen ilgi etiketlerinizi önce tamamlayın.",
   "categories": {
     "life": "Yaşam Tarzı ve Stil",
     "travel": "Seyahat ve Keşif",

@@ -122,7 +122,7 @@ export default {
       "body": "{userAttribute},\nAnalizlere göre, en güçlü çekim gücüne sahip olduğunuz {recommendedAttributes} ile uyumlusunuz!\n\n💡 {reason}\n\n👇 Şanslı hissetmek mi?"
     },
     "btn": {
-      "throw": "🌊 Bir şişe at ve şansını dene",
+      "throw": "🌊 Bir Dilek Şişesi atın, başkalarına iyi dileklerde bulunun ve mutluluk size geri dönecektir.",
       "vip_throw": "🎯 {target}'a at",
       "vip_upsell": "💡 Hedefe teslimat belirlemek için VIP'ye yükselin, tam eşleştirme için! {target}"
     }

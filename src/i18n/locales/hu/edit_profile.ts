@@ -12,5 +12,6 @@ export default {
   "nicknameInputHint": "👇 Kérjük, adjon meg egy új becenevet:",
   "bioInstruction": "Kérjük, adjon meg egy új bemutatkozást (max. 100 karakter).\n\nJelenlegi bemutatkozása: {bio}",
   "bioInputHint": "👇 Kérjük, adjon meg egy új bemutatkozást:",
-  "bloodTypeInstruction": "Kérjük, válassza ki a vércsoportját:"
+  "bloodTypeInstruction": "Kérjük, válassza ki a vércsoportját:",
+  "matchPrefInstruction": "Kérjük, válassza ki a preferenciáját:"
 };

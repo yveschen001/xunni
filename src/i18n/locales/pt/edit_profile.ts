@@ -12,5 +12,6 @@ export default {
   "nicknameInputHint": "👇 Por favor, insira um novo apelido:",
   "bioInstruction": "Por favor, insira uma nova auto-apresentação (até 100 caracteres).\n\nSua auto-apresentação atual é: {bio}",
   "bioInputHint": "👇 Por favor, insira uma nova auto-apresentação:",
-  "bloodTypeInstruction": "Por favor, selecione seu tipo sanguíneo:"
+  "bloodTypeInstruction": "Por favor, selecione seu tipo sanguíneo:",
+  "matchPrefInstruction": "Por favor, selecione sua preferência de correspondência:"
 };

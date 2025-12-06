@@ -266,5 +266,24 @@ export default {
     "startButton": "📊 Mulai tes",
     "resultTitle": "Hasil tes MBTI saya adalah {type}!",
     "resultDesc": "Anda juga harus mencoba tes ini～"
-  }
+  },
+  "titles": {
+
+  "INTJ": "Arsitek",
+  "INTP": "Logician",
+  "ENTJ": "Komandan",
+  "ENTP": "Debater",
+  "INFJ": "Pembela",
+  "INFP": "Mediator",
+  "ENFJ": "Protagonis",
+  "ENFP": "Kampanye",
+  "ISTJ": "Logistisi",
+  "ISFJ": "Pembela",
+  "ESTJ": "Eksekutif",
+  "ESFJ": "Konsul",
+  "ISTP": "Virtuoso",
+  "ISFP": "Petualang",
+  "ESTP": "Pengusaha",
+  "ESFP": "Penghibur"
+  },
 };

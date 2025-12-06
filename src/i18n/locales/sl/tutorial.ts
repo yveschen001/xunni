@@ -1,13 +1,13 @@
 export default {
   "availableCommands": "Lahko uporabite naslednje ukaze kadarkoli:",
-  "catchBottle": "🎣 **Poberite sporočilno steklenico**",
-  "catchBottleDesc": "Oglejte si sporočilne steklenice drugih ljudi in, če vas zanima, odgovorite, da začnete pogovor",
+  "catchBottle": "🎣 **Catch Blessing Bottle**",
+  "catchBottleDesc": "Poglej druge Blessing Bottle, odgovori na blagoslove in začni pogovor~",
   "clickButtonHint": "💡 Prosimo, kliknite gumb za nadaljevanje",
-  "commandCatch": "• /catch - Pobiraj sporočilo v stekleniči",
+  "commandCatch": "• Catch Blessing Bottle",
   "commandHelp": "• /help - Poglejte pomoč",
   "commandMenu": "📋 Meni ukazov",
   "commandTasks": "• /tasks - Poglejte naloge",
-  "commandThrow": "• /throw - Vrzi sporočilo v stekleniči",
+  "commandThrow": "• Throw Blessing Bottle",
   "completeTasksForBottles": "💡 Izpolnite naloge za pridobitev dodatnih steklenic",
   "completed": "✅ Vadnica je bila zaključena!",
   "howToBecomeFriends": "💬 **Kako spoznati prijatelje?**",
@@ -16,11 +16,11 @@ export default {
   "skip": "Preskoči",
   "skipped": "✅ Vadnica je bila preskočena",
   "startUsing": "Začnite uporabljati →",
-  "throwBottle": "📦 **Vrzi sporočilo v stekleniči**",
+  "throwBottle": "📦 **Throw Blessing Bottle**",
   "throwBottleDesc": "Zapišite svoje občutke ali misli, sistem vam bo pomagal najti pravo osebo",
   "unknownStep": "❌ Neznan korak v vadnici",
   "viewTasks": "📋 Poglejte naloge",
   "welcome": "🎉 Čestitamo ob zaključku registracije!",
   "whatIsXunNi": "🌊 **Kaj je XunNi?**",
-  "whatIsXunNiDesc": "Platforma za anonimno prijateljstvo s sporočili v steklenicah, ki vam pomaga najti podobno misleče prijatelje preko MBTI in zodiakalnih znamenj"
+  "whatIsXunNiDesc": "Anonimna platforma za druženje preko Blessing Bottle, ki ti pomaga najti podobno misleče prijatelje preko blagoslovov, MBTI in horoskopov."
 };

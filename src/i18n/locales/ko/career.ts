@@ -3,7 +3,7 @@ export default {
   "label_industry": "주로 종사하는 산업은 무엇인가요?",
   "btn_edit_role": "💼 편집 전문 직업 정체성",
   "btn_edit_industry": "🏢 편집 산업",
-  "profile_incomplete_hint": "💡 보다 정확한 AI 운세 서비스를 제공하기 위해 개인 정보를 먼저 작성해 주시기 바랍니다.",
+  "profile_incomplete_hint": "💡 보다 정확한 심령 상담 서비스를 제공하기 위해 먼저 개인 정보를 작성해 주시기 바랍니다.",
   "role": {
     "employee": "사무직",
     "freelancer": "프리랜서 / SOHO",
@@ -167,4 +167,6 @@ export default {
     }
   },
   "next_step_industry": "다음으로 업종을 선택해 주세요."
+,
+  "back_to_categories": "Back to Industries"
 };

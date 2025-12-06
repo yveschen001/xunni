@@ -97,9 +97,9 @@ export default {
     "nickname": "❌ Kunde inte hämta Telegram-användarnamn",
     "nickname2": "❌ Användarnamnet får inte innehålla en webbplatslänk\n\n",
     "nickname3": "❌ \\{validation.error}\n\nVänligen ange ditt användarnamn igen:",
-    "quota": "❌ Dagens meddelandeflaskkvot har använts upp (\\{quotaDisplay})\n\n💡 Sätt att få mer kvot:\n",
+    "quota": "❌ Dagens välsignelseflaskas välsigningskvot har använts upp (\\{quotaDisplay})\n\n💡 Sätt att få fler kvoter:",
     "quota2": "❌ Dagens konversationsmeddelandekvot har använts upp (\\{usedToday}/\\{dailyLimit})\n\n",
-    "quota3": "❌ Dagens flaskpostkvot har använts upp (\\{quotaDisplay})\n\n",
+    "quota3": "❌ Dagens välsignelseflaska välsigningskvot har använts upp (\\{quotaDisplay})",
     "register": "❌ Vänligen slutför registreringsprocessen först.\n\nAnvänd /start för att fortsätta registreringen.",
     "register2": "❌ Användarprofil hittades inte, vänligen använd /start för att registrera dig först.",
     "register3": "❌ Vänligen slutför registreringsprocessen innan du samlar flaskposter.\n\nAnvänd /start för att fortsätta registreringen.",
@@ -179,5 +179,6 @@ export default {
   "userNotFoundRegister": "⚠️ Användaren finns inte, vänligen registrera dig med /start först.",
   "verificationFailed": "❌ Verifiering misslyckades, vänligen försök igen senare",
   "invalidTimeFormat": "Ogiltigt tidsformat\nTill exempel: 19:30 (24-timmarsformat, 00-23 timmar, 00-59 minuter)",
-  "invalidDateFormat": "Ogiltigt datumformat\nTill exempel: 2000-01-01"
+  "invalidDateFormat": "Ogiltigt datumformat\nTill exempel: 2000-01-01",
+  "taskAlreadyCompleted": "❌ Denna uppgift har redan slutförts och belöningen har hämtats."
 };

@@ -9,7 +9,7 @@ export default {
   "subtitle": "Izberite kategorijo za iskanje možnosti.",
   "current": "Trenutno izbrano ({count}/{max}):\n{list}",
   "saved": "✅ Oznake interesov posodobljene!",
-  "required_hint": "💡 Da bi zagotovili natančnejše storitve napovedovanja AI, najprej izpolnite svoje oznake interesov.",
+  "required_hint": "💡 Da bi zagotovili natančnejše storitve psihičnega branja, prosimo, da najprej izpolnite svoje oznake zanimanja.",
   "categories": {
     "life": "Lifestyle in stil",
     "travel": "Potovanje in raziskovanje",

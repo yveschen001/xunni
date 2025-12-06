@@ -27,8 +27,8 @@ export default {
   "message8": "Preț: {priceStars} ⭐ Telegram Stars / lună\n",
   "message9": "Timp de plată: {paymentDate.toLocaleDateString(",
   "purchaseCancelled": "✅ Achiziția anulată",
-  "quota": "• Cota zilnică de 30 de sticle cu mesaj (invitațiile prietenilor pot crește această cotă, până la 100 pe zi)\n",
-  "quota2": "• Cota zilnică de 30 de sticle cu mesaj (până la 100 pe zi)\n",
+  "quota": "• Limita zilnică de 30 de Sticle cu Dorințe (poți crește prin invitarea prietenilor, maxim 100 de Sticle/zi)\n",
+  "quota2": "• Limita zilnică de 30 de Sticle cu Dorințe (maxim 100 de Sticle/zi)\n",
   "refundAdminCommands": "💡 Folosiți următoarele comenzi pentru a continua:\n• Aprobați: `/admin_approve_refund <ID>`\n• Respingeți: `/admin_reject_refund <ID> <reason>`",
   "refundApproved": "✅ **Refundare Aprobată**\n\nSumă Refundare: {amount} ⭐\nRefundarea va fi creditată în termen de 1-3 zile lucrătoare.\n\nAbonamentul dvs. VIP a fost anulat.\n\nVă mulțumim pentru înțelegere!",
   "refundApprovedAdmin": "✅ Refundare Aprobată\n\nID Cerere: #{requestId}\nID Utilizator: {userId}\nSumă: {amount} ⭐",
@@ -75,7 +75,7 @@ export default {
   "text11": "Timp de expirare: {expireDate}\n\n",
   "text12": "Rambursările vor fi creditate în termen de 1-3 zile lucrătoare.\n\n",
   "text13": "ID Cerere: #{requestId}\n",
-  "text14": "└ 1 potrivire inteligentă + 2 afișări de piscine de mesaje publice: 2 locuri de afișare suplimentare, așteptând să fie ridicate de o persoană destinată.\nCrește șansele ca mesajul tău în mesajul sticlei să fie văzut cu 300%!",
+  "text14": "└ 1 pereche inteligentă + 2 locuri pentru sticla cu dorințe publice: adaugă 2 locuri de expunere, așteptând să fie ridicate de cineva norocos.\nCreșteți șansele ca sticla dumneavoastră să fie văzută cu 300%! ",
   "text15": "Veți fi notificat cu privire la rezultatele procesării prin Bot.\n\n",
   "text16": "Vă rugăm să introduceți motivul refundării (cel puțin 10 caractere):",
   "text17": "Motiv: {req.reason}\n",
@@ -130,5 +130,5 @@ export default {
   "upgrade": "Upgrade la VIP",
   "maxDurationExceeded": "⚠️ Perioada ta VIP a atins limita ({maxMonths} luni) și nu poți continua achizițiile pentru moment.",
   "refundedAndRevoked": "ℹ️ Plata ta a fost rambursată, iar beneficiile VIP au fost revocate.",
-  "benefit_daily_fortune": "• 1 prezicere gratuită AI pe zi (exclusiv pentru VIP)"
+  "benefit_daily_fortune": "• 1 citire psihică gratuită pe zi (exclusiv pentru VIP)"
 };

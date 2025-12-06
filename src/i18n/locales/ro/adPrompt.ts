@@ -1,7 +1,7 @@
 export default {
   "completeTask": "• ✨ Finalizează sarcini (câștigă cotă permanentă)",
   "inviteFriends": "• 🎁 Invitați prieteni (câștigă +1 cotă per persoană)",
-  "quotaExhausted": "❌ Cota mesajului de astăzi a fost consumată ({quotaDisplay})",
+  "quotaExhausted": "❌ Cocoșul de astăzi pentru Sticla cu Dorințe a fost epuizat ({quotaDisplay})",
   "taskButton": "✨ {taskName} 🎁",
   "upgradeVip": "• 💎 Upgrade la VIP (30 cote zilnice)",
   "watchAd": "• 📺 Vizionare reclame (rămase {remaining}/20 ori)",

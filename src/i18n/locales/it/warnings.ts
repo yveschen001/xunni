@@ -122,7 +122,7 @@ export default {
       "body": "{userAttribute},\nSecondo l'analisi, hai la maggiore affinità con {recommendedAttributes}!\n\n💡 {reason}\n\n👇 Ti senti fortunato?"
     },
     "btn": {
-      "throw": "🌊 Lancia una bottiglia e prova la fortuna",
+      "throw": "🌊 Lancia una Bottiglia dei Desideri con una benedizione, augura il meglio agli altri e la felicità tornerà a te stesso.",
       "vip_throw": "🎯 Lancia a {target}",
       "vip_upsell": "💡 Aggiorna a VIP per designare la consegna a {target}, per un abbinamento preciso!"
     }

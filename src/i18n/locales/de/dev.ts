@@ -1,7 +1,7 @@
 export default {
   "autoCompleted": "Der Registrierungsprozess wurde automatisch abgeschlossen.\n\n",
-  "bottles": "• Nachrichtenflaschen: {count}\n",
-  "catchCommand": "• /catch - Fangen Sie Nachrichtenflaschen\n",
+  "bottles": "• SegensSegensflasche: {count}",
+  "catchCommand": "• /catch - Hebe eine Segensflasche auf",
   "conversations": "• Gespräche: {count}\n",
   "dataReset": "✅ Entwicklungsmodus: Daten wurden zurückgesetzt\n\nAlle Ihre Daten wurden gelöscht.\n\n💡 Sie können jetzt den Registrierungsprozess zum Testen neu starten.\n\n🔄 Neu registrieren: /start\noder verwenden Sie: /dev_restart (Registrierung automatisch starten)\n\n⚠️ Hinweis: Diese Funktion ist nur in der Staging-Umgebung verfügbar.",
   "getUserInfoFailed": "❌ Informationen konnten nicht abgerufen werden",
@@ -30,7 +30,7 @@ export default {
   "telegramId": "Telegram-ID: {id}\n",
   "testCoreFeatures": "💡 Sie können jetzt direkt die Kernfunktionen testen:\n",
   "testUser": "Testbenutzer",
-  "throwCommand": "• /throw - Nachrichtenflasche werfen\n",
+  "throwCommand": "• /throw - Wirf eine Segensflasche",
   "userInfo": "🔧 Entwicklungsmodus: Benutzerinformationen\n\n",
   "userNotFound": "❌ Benutzer existiert nicht",
   "vip": "VIP: {status}",

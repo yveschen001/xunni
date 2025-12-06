@@ -68,7 +68,7 @@ export default {
     "zodiacVirgo": "কন্যা"
   },
   "filterAge": "• বয়স=১৮-২৫",
-  "filterCommand": "/broadcast_filter <filter> <msg_content> ",
+  "filterCommand": "/broadcast_filter <filter> <msg_content>",
   "filterConfirmConditions": "**ফিল্টার শর্ত:**\n{conditions}\n\n",
   "filterConfirmMessage": "**বার্তার বিষয়বস্তু:**\n{message}\n\n",
   "filterConfirmTitle": "🔍 **সম্প্রচার ফিল্টার নিশ্চিতকরণ**\n\n",

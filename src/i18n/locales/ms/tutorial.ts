@@ -1,13 +1,13 @@
 export default {
   "availableCommands": "Anda boleh menggunakan arahan berikut pada bila-bila masa:",
-  "catchBottle": "🎣 **Ambil botol mesej**",
-  "catchBottleDesc": "Semak botol mesej orang lain, dan jika anda berminat, balas untuk mula berbual",
+  "catchBottle": "🎣 **Ambil Botol Restu Berkat**",
+  "catchBottleDesc": "Semak Botol Restu Berkat orang lain, balas dengan berkat, dan mula berbual~",
   "clickButtonHint": "💡 Sila klik butang untuk meneruskan",
-  "commandCatch": "• /catch - Ambil botol mesej",
+  "commandCatch": "• /catch - Ambil sebuah Botol Restu berkat",
   "commandHelp": "• /help - Lihat bantuan",
   "commandMenu": "📋 Menu Arahan",
   "commandTasks": "• /tasks - Lihat tugas",
-  "commandThrow": "• /throw - Buang botol mesej",
+  "commandThrow": "• /throw - Buang sebuah Botol Restu Berkat",
   "completeTasksForBottles": "💡 Lengkapkan tugas untuk mendapatkan botol tambahan",
   "completed": "✅ Tutorial selesai!",
   "howToBecomeFriends": "💬 **Bagaimana untuk membuat kawan?**",
@@ -16,11 +16,11 @@ export default {
   "skip": "Langkau",
   "skipped": "✅ Tutorial dilangkau",
   "startUsing": "Mulakan menggunakan →",
-  "throwBottle": "📦 **Buang botol mesej**",
+  "throwBottle": "📦 **Hantar Botol Restu Berkat**",
   "throwBottleDesc": "Tuliskan perasaan atau fikiran anda, dan sistem akan membantu anda mencari orang yang tepat",
   "unknownStep": "❌ Langkah tutorial tidak dikenali",
   "viewTasks": "📋 Lihat tugas",
   "welcome": "🎉 Tahniah kerana menyelesaikan pendaftaran!",
   "whatIsXunNi": "🌊 **Apa itu XunNi?**",
-  "whatIsXunNiDesc": "Platform temu janji botol mesej tanpa nama yang membantu anda mencari rakan yang sehaluan melalui MBTI dan tanda zodiak."
+  "whatIsXunNiDesc": "Platform pertemanan anonim melalui Botol Restu, MBTI dan zodiak membantu anda mencari rakan sejiwa."
 };

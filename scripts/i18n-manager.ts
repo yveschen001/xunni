@@ -218,24 +218,71 @@ async function importCsv() {
       }
     }
 
+    // ⚠️ PLACEHOLDER VALIDATION: Prevent code expressions from being imported
+    function isValidPlaceholder(text: string): boolean {
+      if (!text || text.trim() === '' || text === '[需要翻译]') return true; // Empty/placeholder is OK
+      
+      // Check for code expressions (forbidden patterns)
+      const invalidPatterns = [
+        /\.length\b/g,           // Forbid .length
+        /\.join\(/g,              // Forbid .join()
+        /===|!==|==|!=/g,         // Forbid comparison operators
+        /\?|:/g,                  // Forbid ternary operators (but allow in text)
+        /&&|\|\|/g,               // Forbid logical operators
+        /\([^)]*\)/g,             // Forbid function calls (but allow in text context)
+        /\[.*\]/g,                // Forbid array access (but allow in text context)
+        /[\+\-\*\/%]\s/g,         // Math operators
+        /\s[\+\-\*\/%]/g,
+      ];
+      
+      // Check if text contains code expressions within placeholders
+      const placeholderMatches = text.match(/\{[^}]+\}/g) || [];
+      
+      for (const match of placeholderMatches) {
+        // Check for comparison operators specifically inside placeholders
+        if (/[<>]/.test(match)) return false;
+
+        // Check if placeholder contains code expressions
+        for (const pattern of invalidPatterns) {
+          if (pattern.test(match)) {
+            return false;
+          }
+        }
+        
+        // Validate placeholder format: only allow {variableName} or {variable.name}
+        // Disallow: {variable.method()}, {variable.length}, {expression ? a : b}
+        const validPlaceholderPattern = /^\{[a-zA-Z_][a-zA-Z0-9_.]*\}$/;
+        if (!validPlaceholderPattern.test(match)) {
+          return false;
+        }
+      }
+      
+      return true;
+    }
+
     for (const record of records) {
       const key = record.key;
       const value = record[lang];
       
       if (!key || !value) continue;
       
-      // Don't import placeholders
-      // if (value === '[需要翻译]' || value.trim() === '') continue;
-      // UPDATE: For full synchronization, we WANT to import even if it's a placeholder,
-      // so that the key exists in the file structure (and falls back to Key name in UI).
-      // However, we shouldn't overwrite existing valid translations with empty.
-      // But here we are rebuilding the object from scratch based on CSV (sort of).
-      // Actually we are merging into 'translationObj'.
-      
       let finalValue = value;
       if (value === '[需要翻译]' || value.trim() === '') {
           // If missing, use empty string so the key is created
           finalValue = ''; 
+      } else if (!isValidPlaceholder(value)) {
+          // ⚠️ CRITICAL: Invalid placeholder detected (contains code expression)
+          console.warn(`⚠️ Invalid placeholder in ${lang} for key "${key}":`);
+          console.warn(`   Found: "${value.substring(0, 80)}${value.length > 80 ? '...' : ''}"`);
+          
+          if (lang === 'zh-TW') {
+              console.error(`❌ CRITICAL: Invalid placeholder in SOURCE LANGUAGE (zh-TW). This is a safety violation.`);
+              console.error(`   Please fix the key "${key}" in i18n_for_translation.csv or src/i18n/locales/zh-TW/*.ts first.`);
+              process.exit(1);
+          }
+
+          console.warn(`   Using zh-TW fallback: "${(zhTwTranslations[key] || '').substring(0, 80)}${(zhTwTranslations[key] || '').length > 80 ? '...' : ''}"`);
+          finalValue = zhTwTranslations[key] || value; // Use reference language as fallback
       }
 
       // Use the smart setter

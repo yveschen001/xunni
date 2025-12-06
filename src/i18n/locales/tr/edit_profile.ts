@@ -12,5 +12,6 @@ export default {
   "nicknameInputHint": "👇 Lütfen yeni bir takma ad girin:",
   "bioInstruction": "Lütfen yeni bir kişisel tanıtım girin (en fazla 100 karakter).\n\nMevcut kişisel tanıtımınız: {bio}",
   "bioInputHint": "👇 Lütfen yeni bir kişisel tanıtım girin:",
-  "bloodTypeInstruction": "Lütfen kan grubunuzu seçin:"
+  "bloodTypeInstruction": "Lütfen kan grubunuzu seçin:",
+  "matchPrefInstruction": "Lütfen eşleştirme tercihlerinizi seçin:"
 };

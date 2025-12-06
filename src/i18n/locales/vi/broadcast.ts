@@ -68,7 +68,7 @@ export default {
     "zodiacVirgo": "Xử Nữ"
   },
   "filterAge": "• tuổi=18-25\n",
-  "filterCommand": "/broadcast_filter <filter> <msg_content> ",
+  "filterCommand": "/broadcast_filter <filter> <msg_content>",
   "filterConfirmConditions": "**Điều kiện lọc:**\n{conditions}\n\n",
   "filterConfirmMessage": "**Nội dung tin nhắn:**\n{message}\n\n",
   "filterConfirmTitle": "🔍 **Xác Nhận Lọc Phát Sóng**\n\n",

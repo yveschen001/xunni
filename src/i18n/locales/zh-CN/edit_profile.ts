@@ -12,5 +12,6 @@ export default {
   "nicknameInputHint": "👇 请输入新的昵称：",
   "bioInstruction": "请输入新的自我介绍 (最多100字符)。\n\n您目前的自我介绍是：{bio}",
   "bioInputHint": "👇 请输入新的自我介绍：",
-  "bloodTypeInstruction": "请选择您的血型："
+  "bloodTypeInstruction": "请选择您的血型：",
+  "matchPrefInstruction": "请选择您的配对偏好："
 };

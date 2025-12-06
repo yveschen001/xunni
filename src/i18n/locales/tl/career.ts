@@ -3,7 +3,7 @@ export default {
   "label_industry": "Anong industriya ang pangunahing kinabibilangan mo?",
   "btn_edit_role": "💼 Pag-edit ng Propesyonal na Pagkakakilanlan",
   "btn_edit_industry": "🏢 Pag-edit ng Industriya",
-  "profile_incomplete_hint": "💡 Upang magbigay ng mas tumpak na serbisyo sa AI fortune-telling, mangyaring kumpletuhin muna ang iyong personal na impormasyon.",
+  "profile_incomplete_hint": "💡 Upang makapagbigay ng mas tumpak na serbisyong Psychic Reading, mangyaring kumpletuhin muna ang iyong personal na impormasyon.",
   "role": {
     "employee": "Opisina",
     "freelancer": "Freelancer / SOHO",
@@ -167,4 +167,6 @@ export default {
     }
   },
   "next_step_industry": "Susunod, mangyaring piliin ang iyong industriya."
+,
+  "back_to_categories": "Back to Industries"
 };

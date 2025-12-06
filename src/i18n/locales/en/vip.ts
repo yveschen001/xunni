@@ -27,8 +27,8 @@ export default {
   "message8": "Price: {priceStars} ⭐ Telegram Stars / month\n",
   "message9": "Payment time: {paymentDate.toLocaleDateString(",
   "purchaseCancelled": "✅ Purchase canceled",
-  "quota": "• 30 message bottle quota per day (invite friends to increase, up to 100 per day)\n",
-  "quota2": "• 30 message bottle quota per day (up to 100 per day)\n",
+  "quota": "• Daily quota of 30 Blessing Bottles (inviting friends can increase this, up to 100 per day)",
+  "quota2": "• Daily quota of 30 Blessing Bottles (up to 100 per day)",
   "refundAdminCommands": "💡 Use the following commands to proceed:\n• Approve: `/admin_approve_refund <ID>`\n• Reject: `/admin_reject_refund <ID> <reason>` ",
   "refundApproved": "✅ **Refund approved**\n\nRefund amount: {amount} ⭐\nThe refund will be credited within 1-3 business days.\n\nYour VIP membership has been canceled.\n\nThank you for your understanding!",
   "refundApprovedAdmin": "✅ Refund approved\n\nRequest ID: #{requestId}\nUser ID: {userId}\nAmount: {amount} ⭐",
@@ -75,7 +75,7 @@ export default {
   "text11": "Expiration time: {expireDate}\n\n",
   "text12": "Refunds will be credited within 1-3 business days.\n\n",
   "text13": "Request ID: #{requestId}\n",
-  "text14": "└ 1 smart match + 2 public message bottle pool displays: An additional 2 display spots, waiting for a destined person to pick them up.\nIncrease the chances of your message bottle being seen by 300%!",
+  "text14": "└ 1 smart match + 2 public blessing Blessing Bottle pool displays: Adds 2 extra display spots, waiting for fated people to pick them up.\nIncrease the chance of your bottle being seen by 300%!",
   "text15": "You will be notified of the processing results via Bot.\n\n",
   "text16": "Please enter the reason for the refund (at least 10 characters):",
   "text17": "Reason: {req.reason}\n",
@@ -130,5 +130,5 @@ export default {
   "upgrade": "Upgrade to VIP",
   "maxDurationExceeded": "⚠️ Your VIP period has reached the limit ({maxMonths} months), and you cannot continue to purchase for the time being.",
   "refundedAndRevoked": "ℹ️ Your payment has been refunded, and VIP benefits have been revoked.",
-  "benefit_daily_fortune": "• 1 free AI fortune-telling per day (exclusive for VIP)"
+  "benefit_daily_fortune": "• 1 free psychic reading per day (exclusive to VIP)"
 };

@@ -1,7 +1,7 @@
 export default {
   "replyPrompt": "💬 Antwoorden",
-  "suggestCatch": "❓ Wil je een berichtfles kiezen?\n\nGebruik /catch om een berichtfles op te pakken\n\n💡 **Veelvoorkomende commando's**:\n• /throw - Gooi een berichtfles\n• /catch - Pak een berichtfles op\n• /menu - Hoofdmenu\n• /tasks - Taakcentrum",
-  "suggestMenu": "❓ Kan dit commando niet vinden\n\n💡 **Veelvoorkomende commando's**:\n• /throw - Gooi een berichtfles\n• /catch - Pak een berichtfles op\n• /menu - Hoofdmenu\n• /tasks - Taakcentrum",
-  "suggestThrow": "❓ Wil je een berichtfles gooien?\n\nHoud alsjeblieft lang een druk op het vorige bericht, of dit bericht,\nselecteer 'Antwoorden' uit het menu, en voer dan de inhoud in om te verzenden\n\n💡 **Veelvoorkomende commando's**:\n• /throw - Gooi een berichtfles\n• /catch - Pak een berichtfles op\n• /menu - Hoofdmenu\n• /tasks - Taakcentrum\n\n#THROW",
-  "throwPrompt": "📝 Voer de inhoud van je berichtfles in:"
+  "suggestCatch": "❓ Wil je een Wensfles vangen?\n\nGebruik /catch om de Wensfles op te rapen\n\n💡 **Veelgebruikte Opdrachten**:\n• /throw - Gooi een Wensfles weg\n• /catch - Raap een Wensfles op\n• /menu - Hoofdmenu\n• /tasks - Taakcentrum",
+  "suggestMenu": "❓ Kan dit commando niet vinden\n\n💡 **Veelgebruikte commando's**：\n• Wensfles - Gooi een wensfles weg\n• Wensfles - Pak een wensfles op\n• Hoofdmenu\n• Taken - Taakcentrum",
+  "suggestThrow": "❓ Wil je een wensfles weggooien?\n\nHoud het vorige bericht of dit bericht ingedrukt,\nselecteer 'Antwoorden' in het menu,\nvoer de inhoud van de te versturen wensfles in\n\n💡 **Veelgebruikte commando's**：\n• Wensfles - Gooi een wensfles weg\n• Wensfles - Pak een wensfles op\n• Hoofdmenu\n• Taken - Taakcentrum\n\n#THROW",
+  "throwPrompt": "📝 Voer de inhoud van je wensfles in:"
 };

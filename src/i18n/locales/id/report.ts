@@ -4,7 +4,7 @@ export default {
   "cancel": "❌ Batalkan",
   "cancelled": "Dibatalkan",
   "cannotIdentify": "⚠️ Tidak dapat mengidentifikasi mitra chat\n\n",
-  "catchHint": "• Gunakan /catch untuk menangkap botol pesan baru",
+  "catchHint": "• Gunakan untuk menangkap Botol Berkah baru",
   "completeOnboarding": "⚠️ Silakan selesaikan proses pendaftaran terlebih dahulu.\n\nGunakan /start untuk melanjutkan pendaftaran.",
   "conversationInfoError": "⚠️ Informasi percakapan tidak benar.",
   "conversationInfoError2": "⚠️ Informasi percakapan tidak benar",

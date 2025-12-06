@@ -1,13 +1,13 @@
 export default {
   "availableCommands": "Poți folosi comenzile următoare în orice moment:",
-  "catchBottle": "🎣 **Ridică sticla cu mesaj**",
-  "catchBottleDesc": "Verifică sticlele cu mesaj ale altor persoane și, dacă ești interesat, răspunde pentru a începe să conversezi",
+  "catchBottle": "🎣 **Prinde Sticla cu Dorințe**",
+  "catchBottleDesc": "Privește Sticla cu Dorințe a altora, răspunde la dorințe, începe o conversație~",
   "clickButtonHint": "💡 Te rugăm să dai clic pe buton pentru a continua",
-  "commandCatch": "• /catch - Ridică sticla cu mesaj",
+  "commandCatch": "• /catch - Ridică o binecuvântare Sticla cu Dorințe",
   "commandHelp": "• /help - Vezi ajutorul",
   "commandMenu": "📋 Meniu de comenzi",
   "commandTasks": "• /tasks - Vezi sarcinile",
-  "commandThrow": "• /throw - Aruncă sticla cu mesaj",
+  "commandThrow": "• Aruncă Sticla cu Dorințe",
   "completeTasksForBottles": "💡 Completează sarcinile pentru a câștiga sticle suplimentare",
   "completed": "✅ Tutorial completat!",
   "howToBecomeFriends": "💬 **Cum să îți faci prieteni?**",
@@ -16,11 +16,11 @@ export default {
   "skip": "Sari peste",
   "skipped": "✅ Tutorial omis",
   "startUsing": "Începe să folosești →",
-  "throwBottle": "📦 **Aruncă sticla cu mesaj**",
+  "throwBottle": "📦 **Trimite o binecuvântare cu Sticla cu Dorințe**",
   "throwBottleDesc": "Scrie-ți gândurile sau sentimentele, sistemul te va ajuta să găsești persoana potrivită",
   "unknownStep": "❌ Pas de tutorial necunoscut",
   "viewTasks": "📋 Vezi sarcinile",
   "welcome": "🎉 Felicitări pentru completarea înregistrării!",
   "whatIsXunNi": "🌊 **Ce este XunNi?**",
-  "whatIsXunNiDesc": "O platformă anonimă de sticlă cu mesaj pentru prietenie care te ajută să găsești prieteni cu aceleași gânduri prin MBTI și semne zodiacale"
+  "whatIsXunNiDesc": "Platformă de prietenie anonimă Sticla cu Dorințe, te ajută să găsești prieteni cu aceleași pasiuni prin dorințe reciproce, MBTI și zodii."
 };

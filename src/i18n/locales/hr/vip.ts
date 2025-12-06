@@ -27,8 +27,8 @@ export default {
   "message8": "Cijena: {priceStars} ⭐ Telegram Stars / mjesec\n",
   "message9": "Vreme plaćanja: {paymentDate.toLocaleDateString(",
   "purchaseCancelled": "✅ Kupnja otkazana",
-  "quota": "• Dnevna kvota od 30 message bottles (pozivajući prijatelje možete povećati, do 100 dnevno)\n",
-  "quota2": "• Dnevna kvota od 30 message bottles (do 100 dnevno)\n",
+  "quota": "• Svakodnevna kvota od 30 Blessing Bottle (pozovite prijatelje za povećanje, maksimalno 100 dnevno)\n",
+  "quota2": "• Svakodnevna kvota od 30 Blessing Bottle (maksimalno 100 dnevno)\n",
   "refundAdminCommands": "💡 Koristite sljedeće naredbe za nastavak:\n• Odobri: `/admin_approve_refund <ID>`\n• Odbij: `/admin_reject_refund <ID> <reason>`",
   "refundApproved": "✅ **Odobren povrat**\n\nIznos povrata: {amount} ⭐\nPovrat će biti obrađen unutar 1-3 radna dana.\n\nVaša VIP članstva je otkazana.\n\nHvala na razumijevanju!",
   "refundApprovedAdmin": "✅ Povrat odobren\n\nID Zahtjeva: #{requestId}\nID Korisnika: {userId}\nIznos: {amount} ⭐",
@@ -75,7 +75,7 @@ export default {
   "text11": "Vrijeme isteka: {expireDate}\n\n",
   "text12": "Povrat novca će biti obrađen u roku od 1-3 radna dana.\n\n",
   "text13": "ID Zahtjeva: #{requestId}\n",
-  "text14": "└ 1 pametan susret + 2 javne izložbe poruka u boci: Dodatna 2 mjesta za izlaganje, čekajući da ih odredi osoba pokupi.\nPovećajte šanse da vaša poruka u boci bude viđena za 300%!",
+  "text14": "└ 1 pametno usklađivanje + 2 javne izložbe Blessing Bottle: dodatno povećava 2 mesta za prikaz, čekajući da ih neko prikupi.\nPovećajte šanse da budu vaši bočice viđene za 300%!",
   "text15": "O rezultatu obrade bit ćete obaviješteni putem Bota.\n\n",
   "text16": "Molimo unesite razlog povrata (najmanje 10 znakova):",
   "text17": "Razlog: {req.reason}\n",
@@ -130,5 +130,5 @@ export default {
   "upgrade": "Nadogradite na VIP",
   "maxDurationExceeded": "⚠️ Vaš VIP period dostigao je limit ({maxMonths} mjeseci), i trenutno ne možete nastaviti s kupovinom.",
   "refundedAndRevoked": "ℹ️ Vaša uplata je vraćena, a VIP pogodnosti su ukinute.",
-  "benefit_daily_fortune": "• 1 besplatno AI proricanje dnevno (isključivo za VIP)"
+  "benefit_daily_fortune": "• 1 besplatno jasno viđenje dnevno (isključivo za VIP)"
 };

@@ -4,7 +4,7 @@ export default {
   "cancel": "❌ Mégse",
   "cancelled": "Megszakítva",
   "cannotIdentify": "⚠️ Nem lehet azonosítani a csevegőpartnert\n\n",
-  "catchHint": "• Használja a /catch parancsot egy új message bottle felvételéhez",
+  "catchHint": "• Használj Kívánság Palack-ot új fogásához",
   "completeOnboarding": "⚠️ Kérjük, először fejezze be a regisztrációs folyamatot.\n\nHasználja a /start parancsot a regisztráció folytatásához.",
   "conversationInfoError": "⚠️ A beszélgetési információk helytelenek.",
   "conversationInfoError2": "⚠️ A beszélgetési információk helytelenek",

@@ -1,13 +1,13 @@
 export default {
   "availableCommands": "Puedes usar los siguientes comandos en cualquier momento:",
-  "catchBottle": "🎣 **Recoger una botella de mensajes**",
-  "catchBottleDesc": "Revisa las botellas de mensajes de otros, responde si estás interesado y comienza a chatear",
+  "catchBottle": "🎣 Recoger Botella de Bendición",
+  "catchBottleDesc": "Mira las Botellas de Bendición de otros, responde con tus propios deseos y comienza a chatear~",
   "clickButtonHint": "💡 Por favor, haz clic en el botón para continuar",
-  "commandCatch": "• /catch - Recoger botella de mensajes",
+  "commandCatch": "• /catch - Recoger una Botella de Bendición de bendición",
   "commandHelp": "• /help - Ver ayuda",
   "commandMenu": "📋 Menú de comandos",
   "commandTasks": "• /tasks - Ver tareas",
-  "commandThrow": "• /throw - Botar botella de mensajes",
+  "commandThrow": "• /throw - Lanzar una botella de bendición",
   "completeTasksForBottles": "💡 Completa tareas para ganar botellas adicionales",
   "completed": "✅ ¡Tutorial completado!",
   "howToBecomeFriends": "💬 **¿Cómo hacer amigos?**",
@@ -16,11 +16,11 @@ export default {
   "skip": "Omitir",
   "skipped": "✅ Tutorial omitido",
   "startUsing": "Comienza a usar →",
-  "throwBottle": "📦 **Botar botella de mensajes**",
+  "throwBottle": "📦 **Enviar una Botella de Bendición de bendición**",
   "throwBottleDesc": "Escribe tus sentimientos o pensamientos, y el sistema te ayudará a encontrar a la persona adecuada",
   "unknownStep": "❌ Paso de tutorial desconocido",
   "viewTasks": "📋 Ver tareas",
   "welcome": "🎉 ¡Felicidades por completar el registro!",
   "whatIsXunNi": "🌊 **¿Qué es XunNi?**",
-  "whatIsXunNiDesc": "Una plataforma social de botellas de mensajes anónimas que te ayuda a encontrar amigos afines a través de MBTI y signos zodiacales"
+  "whatIsXunNiDesc": "Plataforma de amistad anónima con Botellas de Bendición, encuentra amigos afines a través de deseos compartidos, MBTI y signos zodiacales."
 };

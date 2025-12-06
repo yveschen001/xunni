@@ -19,7 +19,7 @@ export default {
   "noMessages": "(هیچ پیامی نیست)",
   "partnerMessages": "• طرف دیگر: {count} پیام ارسال کرد.\n",
   "recentMessages": "📨 **گفتگوهای اخیر:**\n\n",
-  "returnToMenu": "🏠 بازگشت به منوی اصلی: /menu",
+  "returnToMenu": "🏠 主選單",
   "returnToMenuButton": "🏠 بازگشت به منوی اصلی",
   "stats": "📊 **آمار:**\n",
   "time": "زمان: {time}\n\n",

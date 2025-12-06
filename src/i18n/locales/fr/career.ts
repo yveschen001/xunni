@@ -3,7 +3,7 @@ export default {
   "label_industry": "Dans quelle industrie êtes-vous principalement engagé ?",
   "btn_edit_role": "💼 Édition de l'identité professionnelle",
   "btn_edit_industry": "🏢 Édition de l'industrie",
-  "profile_incomplete_hint": "💡 Pour fournir des services de prédiction de fortune AI plus précis, veuillez d'abord compléter vos informations personnelles.",
+  "profile_incomplete_hint": "💡 Pour fournir des services de lecture de tarot plus précis, veuillez d'abord compléter vos informations personnelles.",
   "role": {
     "employee": "Employé de bureau",
     "freelancer": "Freelance / SOHO",
@@ -167,4 +167,6 @@ export default {
     }
   },
   "next_step_industry": "Wählen Sie als Nächstes Ihre Branche aus."
+,
+  "back_to_categories": "Back to Industries"
 };

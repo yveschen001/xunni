@@ -1,6 +1,6 @@
 export default {
   "cannotIdentify": "⚠️ گفتگو کے شریک کو شناخت کرنے میں ناکامی۔",
-  "catchNewBottle": "💡 نئے پیغام کی بوتل اٹھانے اور نئی گفتگو شروع کرنے کے لئے /catch استعمال کریں۔",
+  "catchNewBottle": "💡 /catch استعمال کریں تاکہ ایک نئی Blessing Bottle حاصل کی جا سکے اور ایک نئی گفتگو کا آغاز کیا جا سکے۔",
   "conversationInfoError": "⚠️ گفتگو کی معلومات غلط ہیں۔",
   "conversationMayEnded": "گفتگو ختم ہو چکی ہے یا موجود نہیں ہے۔",
   "conversationNotFound": "⚠️ اس گفتگو کو تلاش کرنے میں ناکامی۔",
@@ -12,5 +12,5 @@ export default {
   "step3": "3️⃣ /block درج کریں۔",
   "steps": "**عمل کے مراحل:**",
   "success": "✅ اس صارف کو بلاک کر دیا گیا ہے (#{identifier})",
-  "willNotMatch": "آپ ایک دوسرے کے پیغام کی بوتلوں کے ساتھ دوبارہ ملنے کے قابل نہیں رہیں گے۔"
+  "willNotMatch": "آپ اب ایک دوسرے کے Blessing Bottles کے ساتھ میچ نہیں ہوں گے۔"
 };

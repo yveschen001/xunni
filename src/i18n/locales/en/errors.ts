@@ -97,9 +97,9 @@ export default {
     "nickname": "❌ Unable to retrieve Telegram username",
     "nickname2": "❌ The username cannot contain a website link\n\n",
     "nickname3": "❌ \\{validation.error}\n\nPlease re-enter your username:",
-    "quota": "❌ Today's message bottle quota has been used up (\\{quotaDisplay})\n\n💡 Ways to get more quota: \n",
+    "quota": "❌ Today's Blessing Bottle blessing quota has been used up (\\{quotaDisplay})\n\n💡 Ways to obtain more quotas:",
     "quota2": "❌ Today's conversation message quota has been used up (\\{usedToday}/\\{dailyLimit})\n\n",
-    "quota3": "❌ Today's message bottle quota has been used up (\\{quotaDisplay})\n\n",
+    "quota3": "❌ Today's Blessing Bottle blessing quota has been used up (\\{quotaDisplay})",
     "register": "❌ Please complete the registration process first.\n\nUse /start to continue the registration.",
     "register2": "❌ User data not found, please use /start to register first.",
     "register3": "❌ You must complete the registration process to pick up a message bottle.\n\nUse /start to continue the registration.",
@@ -179,5 +179,6 @@ export default {
   "userNotFoundRegister": "⚠️ User does not exist, please register using /start first.",
   "verificationFailed": "❌ Verification failed, please try again later.",
   "invalidTimeFormat": "Invalid time format\nFor example: 19:30 (24-hour format, 00-23 hours, 00-59 minutes)",
-  "invalidDateFormat": "Invalid date format\nFor example: 2000-01-01"
+  "invalidDateFormat": "Invalid date format\nFor example: 2000-01-01",
+  "taskAlreadyCompleted": "❌ This task has already been completed and the reward has been claimed."
 };

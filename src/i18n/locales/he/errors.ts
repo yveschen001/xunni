@@ -97,9 +97,9 @@ export default {
     "nickname": "❌ בלתי אפשרי לשלוף את שם המשתמש של טלגרם",
     "nickname2": "❌ שם המשתמש לא יכול לכלול קישור לאתר",
     "nickname3": "❌ \\{validation.error}\n\nאנא הכנס שוב את שם המשתמש שלך:",
-    "quota": "❌ מכסת בקבוקי ההודעות להיום נצרכה (\\{quotaDisplay})\n\n💡 דרכים לקבל מכסה נוספת:",
+    "quota": "❌ המכסה להברכות בבקבוק הברכות להיום fully consumed (\\{quotaDisplay})\n\n💡 דרכים להשיג עוד מכסות:",
     "quota2": "{usedToday} {dailyLimit} {usedToday} {dailyLimit}\n\n",
-    "quota3": "{quotaDisplay} {quotaDisplay}\n\n",
+    "quota3": "❌ מכסת הברכות של בקבוק הברכות להיום נוצלה (\\{quotaDisplay})",
     "register": "❌ אנא השלם קודם את תהליך ההרשמה.\n\nהשתמש ב-/start כדי להמשיך את ההרשמה.",
     "register2": "❌ נתוני המשתמש לא נמצאו, אנא השתמש ב-/start כדי להרשם קודם.",
     "register3": "❌ עליך להשלים את תהליך ההרשמה כדי לאסוף בקבוק מסר.\n\nהשתמש ב-/start כדי להמשיך את ההרשמה.",
@@ -179,5 +179,6 @@ export default {
   "userNotFoundRegister": "⚠️ המשתמש אינו קיים, בבקשה הרשמים קודם עם /start.",
   "verificationFailed": "❌ האימות נכשל, בבקשה נסה שוב מאוחר יותר",
   "invalidTimeFormat": "פורמט זמן לא תקף\nלמשל: 19:30 (פורמט 24 שעות, 00-23 שעות, 00-59 דקות)",
-  "invalidDateFormat": "פורמט תאריך לא תקף\nלמשל: 2000-01-01"
+  "invalidDateFormat": "פורמט תאריך לא תקף\nלמשל: 2000-01-01",
+  "taskAlreadyCompleted": "❌ המשימה הזו הושלמה כבר והפרס נתבע."
 };

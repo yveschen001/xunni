@@ -97,9 +97,9 @@ export default {
     "nickname": "❌ Telegram takma adı alınamadı",
     "nickname2": "❌ Kullanıcı adı bir web sitesi bağlantısı içeremez\n\n",
     "nickname3": "❌ \\{validation.error}\n\nLütfen takma adı yeniden girin:",
-    "quota": "❌ Bugünün mesaj şişesi kotası doldu (\\{quotaDisplay})\n\n💡 Daha fazla kota edinmenin yolları:\n",
+    "quota": "❌ Bugünün Dilek Şişesi kutsama kotası doldurulmuş (\\{quotaDisplay})\n\n💡 Daha fazla kota elde etmenin yolları:",
     "quota2": "❌ Bugünkü konuşma mesajı kotası dolmuş (\\{usedToday}/\\{dailyLimit})\n\n",
-    "quota3": "❌ Bugünkü mesaj şişesi kotası dolmuş (\\{quotaDisplay})\n\n",
+    "quota3": "❌ Bugünün Dilek Şişesi bereket kotası doldurulmuş (\\{quotaDisplay})",
     "register": "❌ Lütfen önce kayıt sürecini tamamlayın.\n\nDevam etmek için /start komutunu kullanın.",
     "register2": "❌ Kullanıcı profili bulunamadı, lütfen önce kayıt olmak için /start kullanın.",
     "register3": "❌ Mesaj şişesi almak için kayıt sürecini tamamlamalısınız.\n\nDevam etmek için /start kullanın.",
@@ -179,5 +179,6 @@ export default {
   "userNotFoundRegister": "⚠️ Kullanıcı mevcut değil, lütfen önce /start ile kaydolun.",
   "verificationFailed": "❌ Doğrulama başarısız oldu, lütfen daha sonra tekrar deneyin",
   "invalidTimeFormat": "Geçersiz zaman formatı\nÖrneğin: 19:30 (24 saat formatı, 00-23 saat, 00-59 dakika)",
-  "invalidDateFormat": "Geçersiz tarih formatı\nÖrneğin: 2000-01-01"
+  "invalidDateFormat": "Geçersiz tarih formatı\nÖrneğin: 2000-01-01",
+  "taskAlreadyCompleted": "❌ Bu görev zaten tamamlandı ve ödül talep edildi."
 };

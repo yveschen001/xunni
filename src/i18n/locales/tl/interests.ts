@@ -9,7 +9,7 @@ export default {
   "subtitle": "Pakisuyong pumili ng kategorya upang mag-browse ng mga opsyon.",
   "current": "Kasalukuyang napili ({count}/{max}):\n{list}",
   "saved": "✅ Na-update ang mga tag ng interes!",
-  "required_hint": "💡 Upang magbigay ng mas tumpak na serbisyo ng AI fortune-telling, pakisuyong kumpletuhin ang iyong mga tag ng interes muna.",
+  "required_hint": "💡 Upang makapagbigay ng mas tumpak na serbisyo sa pagbasa ng Psychic Reading, pakisagutan muna ang iyong mga interes na tag.",
   "categories": {
     "life": "Pamumuhay at Estilo",
     "travel": "Paglalakbay at Pagsisiyasat",

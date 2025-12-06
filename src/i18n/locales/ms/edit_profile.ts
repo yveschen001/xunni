@@ -12,5 +12,6 @@ export default {
   "nicknameInputHint": "👇 Sila masukkan nama samaran baru:",
   "bioInstruction": "Sila masukkan pengenalan diri baru (hingga 100 aksara).\n\nPengenalan diri anda sekarang adalah: {bio}",
   "bioInputHint": "👇 Sila masukkan pengenalan diri baru:",
-  "bloodTypeInstruction": "Sila pilih jenis darah anda:"
+  "bloodTypeInstruction": "Sila pilih jenis darah anda:",
+  "matchPrefInstruction": "Sila pilih pilihan pemadanan anda:"
 };

@@ -1,5 +1,5 @@
 export default {
-  "backToMenu": "🏠 بازگشت به منو اصلی: /menu",
+  "backToMenu": "🏠 主選單",
   "bloodType": "🩸 گروه خونی: {bloodType}",
   "continueView": "📜 ادامه مشاهده: #{identifier}-H{postNumber}",
   "historyNote": "💡 این تاریخچه گفتگو است",
@@ -8,7 +8,10 @@ export default {
   "mbti": "🧠 MBTI: {mbti}",
   "messageEntry": "[{time}] شریک:\n{content}",
   "newMessage": "💬 پیام جدید از #{identifier}:",
+  "newMessageFrom": "📩 پیام جدید از {nickname}:",
   "nickname": "📝 نام مستعار: {nickname}",
+  "originalContent": "[متن اصلی]",
+  "translatedContent": "[ترجمه]",
   "other": "شریک",
   "partnerInfo": "👤 پروفایل شریک:",
   "replyButton": "💬 پاسخ به پیام",
@@ -17,7 +20,9 @@ export default {
   "totalMessages": "📊 مجموع پیام‌ها: {count}",
   "viewAllConversations": "📊 مشاهده همه گفتگوها",
   "viewHistory": "📜 مشاهده تاریخچه: #{identifier}",
+  "viewHistoryButton": "📜 تاریخچه چت",
   "viewProfileCard": "👤 مشاهده کارت پروفایل شریک",
+  "viewProfileWithNickname": "مشخصات {nickname}",
   "vipLearnMore": "💎 برای یادگیری بیشتر از /vip استفاده کنید",
   "vipUnlockAvatar": "🔒 برای دسترسی به تصاویر پروفایل شفاف به VIP ارتقا دهید",
   "you": "شما",

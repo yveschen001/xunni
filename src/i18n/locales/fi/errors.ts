@@ -97,9 +97,9 @@ export default {
     "nickname": "❌ Telegram-nimimerkkiä ei pystytä hakemaan",
     "nickname2": "❌ Käyttäjätunnus ei voi sisältää verkkosivulinkkiä\n\n",
     "nickname3": "❌ \\{validation.error}\n\nOle hyvä ja syötä nimimerkkisi uudelleen:",
-    "quota": "❌ Tänään käytetty pullo viestiquota on loppunut (\\{quotaDisplay})\n\n💡 Tapoja saada lisää quota:\n",
+    "quota": "❌ Tänään siunatun pullon siunauskiintiö on käytetty loppuun (\\{quotaDisplay})\n\n💡 Tapoja hankkia lisää kiintiöitä:",
     "quota2": "❌ Tämä päivän keskustelusanomien kiintiö on käytetty (\\{usedToday}/\\{dailyLimit})\n\n",
-    "quota3": "❌ Tämä päivän pullopostiviestien kiintiö on käytetty (\\{quotaDisplay})\n\n",
+    "quota3": "❌ Tämän päivän Blessing Bottle -siunauskiintiö on käytetty loppuun (\\{quotaDisplay})",
     "register": "❌ Ole hyvä ja suorita rekisteröintiprosessi ensin.\n\nKäytä /start jatkaaksesi rekisteröintiä.",
     "register2": "❌ Käyttäjäprofiilia ei löytynyt, käytä /start rekisteröidäksesi ensin.",
     "register3": "❌ Ole hyvä ja suorita rekisteröintiprosessi ennen pullojen keräämistä.\n\nKäytä /start jatkaaksesi rekisteröintiä.",
@@ -179,5 +179,6 @@ export default {
   "userNotFoundRegister": "⚠️ Käyttäjää ei ole olemassa, rekisteröidy ensin /start-komennolla.",
   "verificationFailed": "❌ Vahvistus epäonnistui, yritä myöhemmin uudelleen",
   "invalidTimeFormat": "Virheellinen aikamuoto\nEsimerkiksi: 19:30 (24-tunnin formaatti, 00-23 tuntia, 00-59 minuuttia)",
-  "invalidDateFormat": "Virheellinen päivämäärämuoto\nEsimerkiksi: 2000-01-01"
+  "invalidDateFormat": "Virheellinen päivämäärämuoto\nEsimerkiksi: 2000-01-01",
+  "taskAlreadyCompleted": "❌ Tämä tehtävä on jo suoritettu ja palkkio on lunastettu."
 };

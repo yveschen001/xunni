@@ -12,5 +12,6 @@ export default {
   "nicknameInputHint": "👇 Vänligen ange ett nytt smeknamn:",
   "bioInstruction": "Vänligen ange en ny självintroduktion (upp till 100 tecken).\n\nDin nuvarande självintroduktion är: {bio}",
   "bioInputHint": "👇 Vänligen ange en ny självintroduktion:",
-  "bloodTypeInstruction": "Vänligen välj din blodtyp:"
+  "bloodTypeInstruction": "Vänligen välj din blodtyp:",
+  "matchPrefInstruction": "Vänligen välj din matchningspreferens:"
 };

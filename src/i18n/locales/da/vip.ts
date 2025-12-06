@@ -27,8 +27,8 @@ export default {
   "message8": "Pris: {priceStars} ⭐ Telegram Stars / måned\n",
   "message9": "Betalingstid: {paymentDate.toLocaleDateString(",
   "purchaseCancelled": "✅ Køb annulleret",
-  "quota": "• Daglig kvote på 30 flaskeposter (Inviter venner til at øge, maks 100 pr. dag)\n",
-  "quota2": "• Daglig kvote på 30 flaskeposter (maks 100 pr. dag)\n",
+  "quota": "• Dagligt 30 Ønskeflasker kvote (inviter venner for at øge, maks 100 / dag)\n",
+  "quota2": "• Dagligt 30 Ønskeflasker kvote (maks 100 / dag)\n",
   "refundAdminCommands": "💡 Brug følgende kommandoer for at fortsætte:\n• Godkend: `/admin_approve_refund <ID>`\n• Afvis: `/admin_reject_refund <ID> <reason>`",
   "refundApproved": "✅ **Refusion Godkendt**\n\nRefusionsbeløb: {amount} ⭐\nRefusionen vil blive krediteret inden for 1-3 arbejdsdage.\n\nDit VIP-medlemskab er blevet annulleret.\n\nTak for din forståelse!",
   "refundApprovedAdmin": "✅ Refusion Godkendt\n\nAnmodnings-ID: #{requestId}\nBruger-ID: {userId}\nBeløb: {amount} ⭐",
@@ -75,7 +75,7 @@ export default {
   "text11": "Udløbstid: {expireDate}\n\n",
   "text12": "Tilbagebetalinger vil blive krediteret inden for 1-3 arbejdsdage.\n\n",
   "text13": "Anmodnings-ID: #{requestId}\n",
-  "text14": "└ 1 smart match + 2 offentlige message bottle pool viser: To ekstra displaypladser, der venter på en bestemt person til at tage dem.\\nØg chancerne for, at din message bottle bliver set med 300%!",
+  "text14": "└ 1 smart match + 2 offentlige Ønskeflasker visninger: ekstra 2 visningspladser, ventende på skæbnen. \nØg chancerne for at dine flasker bliver set med 300%!",
   "text15": "Du vil blive underrettet om behandlingsresultaterne via Bot.\n\n",
   "text16": "Indtast venligst refusionsårsagen (mindst 10 tegn):",
   "text17": "Årsag: {req.reason}\n",
@@ -130,5 +130,5 @@ export default {
   "upgrade": "Opgrader til VIP",
   "maxDurationExceeded": "⚠️ Din VIP-periode har nået grænsen ({maxMonths} måneder), og du kan ikke fortsætte med at købe i øjeblikket.",
   "refundedAndRevoked": "ℹ️ Din betaling er blevet refunderet, og VIP-fordele er blevet tilbagekaldt.",
-  "benefit_daily_fortune": "• 1 gratis AI spådom pr. dag (eksklusiv for VIP)"
+  "benefit_daily_fortune": "• 1 gratis clairvoyant læsning pr. dag (eksklusiv for VIP)"
 };

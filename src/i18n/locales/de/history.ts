@@ -19,7 +19,7 @@ export default {
   "noMessages": "(Keine Nachrichten)",
   "partnerMessages": "• Nachrichten, die von der anderen Partei gesendet wurden: {count}\n",
   "recentMessages": "📨 **Kürzliche Unterhaltungen:**\n\n",
-  "returnToMenu": "🏠 Zurück zum Hauptmenü: /menu",
+  "returnToMenu": "🏠 Hauptmenü",
   "returnToMenuButton": "🏠 Zurück zum Hauptmenü",
   "stats": "📊 **Statistiken:**\n",
   "time": "Zeit: {time}\n\n",

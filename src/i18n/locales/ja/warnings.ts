@@ -122,7 +122,7 @@ export default {
       "body": "{userAttribute},\n分析によると、あなたは{recommendedAttributes}との親和性が最も強いです！\n\n💡 {reason}\n\n👇 ラッキーだと感じますか？"
     },
     "btn": {
-      "throw": "🌊 ボトルを投げてチャンスをつかもう",
+      "throw": "🌊 他人に幸運を祈る祈りのボトルを投げ、幸せが自分に返ってきます。",
       "vip_throw": "🎯 {target} に投げる",
       "vip_upsell": "💡 VIPにアップグレードして{target}への配信を指定し、精密なマッチメイキングを！"
     }

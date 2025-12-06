@@ -266,5 +266,24 @@ export default {
     "startButton": "📊 Testi Başlat",
     "resultTitle": "Benim MBTI test sonucum {type}!",
     "resultDesc": "Sen de testi denemelisin～"
-  }
+  },
+  "titles": {
+
+  "INTJ": "Mimar",
+  "INTP": "Mantıkçı",
+  "ENTJ": "Komutan",
+  "ENTP": "Tartışmacı",
+  "INFJ": "Savunucu",
+  "INFP": "Arabulucu",
+  "ENFJ": "Protagonist",
+  "ENFP": "Kampanyacı",
+  "ISTJ": "Lojistikçi",
+  "ISFJ": "Koruyucu",
+  "ESTJ": "İdareci",
+  "ESFJ": "Konsolos",
+  "ISTP": "Virtüöz",
+  "ISFP": "Mac adventuristi",
+  "ESTP": "Girişimci",
+  "ESFP": "Eğlendirici"
+  },
 };

@@ -8,15 +8,15 @@ export default {
     "love_match": "Kompatibilnost parova",
     "love_ideal": "Analiza idealnog tipa"
   },
-  "back_to_menu": "🔙 Vratite se na izbornik AI proricanja",
-  "get_more_bottles": "💎 Nabavite više srećkova s porukama",
+  "back_to_menu": "🔙 Povratak na izbornik psihičkih čitanja",
+  "get_more_bottles": "💎 Dobij više Fortune Bottles",
   "relationship": {
     "love": "Par",
     "friend": "Prijatelji",
     "family": "Obitelj",
     "work": "Kolege"
   },
-  "menuTitle": "AI proricanje",
+  "menuTitle": "Psychic Reading",
   "currentProfile": "Aktualni profil",
   "warehouse": "Skladištenje natalne karte",
   "manageProfiles": "Upravljanje natalnim kartama",
@@ -148,20 +148,20 @@ export default {
   },
   "dailyPush": "📅 Danas je horoskop dostavljen!",
   "dailyPushBtn": "👇 Kliknite za pregled",
-  "backToMenu": "🔙 Vratite se u Izbornik AI proricanja",
+  "backToMenu": "🔙 Natrag na izbornik psihičkog čitanja",
   "addProfile": "Dodajte datoteku karte",
-  "quotaDisplay": "🔮 Proročanstvo u boci poruka: {total} (Ovaj tjedan besplatno: {weekly}/{limit} | Dodatno: {additional})",
-  "quotaDisplayVip": "🔮 poruka boca: {total} (Danas: {daily}/1 | Dodatno: {additional})",
-  "quotaDisplayFree": "🔮 poruka boca: {total} (Ovaj tjedan besplatno: {weekly}/1 | Dodatno: {additional})",
+  "quotaDisplay": "🔮 Fortune Bottles: {total} (Ove sedmice besplatno: {weekly}/{limit} | Dodatno: {additional})",
+  "quotaDisplayVip": "🔮 Fortune Bottles: {total} (Danas: {daily}/1 | Dodatno: {additional})",
+  "quotaDisplayFree": "🔮 Fortune Bottles: {total} (Ove sedmice besplatno: {weekly}/1 | Dodatno: {additional})",
   "profileDetails": "👤 {gender} {blood} | 🎂 {birthday} | {zodiac} | 🧠 {mbti}",
-  "getMore": "Dobijte više poruka s predviđanjem",
-  "getMoreInfo": "🔮 *Kako nabaviti bocu sreće?*\n\n1. **Tjedni besplatni**: Redovni korisnici dobivaju 1 tjedno, VIP korisnici dobivaju 1 dnevno.\n2. **Nagrade za poziv**: Pozovite prijatelja da se pridruži, a kada on uspješno pozove drugog prijatelja, dobit ćete nagradu (do 1 boca sreće unutar 24 sata).\n3. **Nagrade za poruke**: Za svake 10 poslanih poruka dobijate 1 bocu sreće. (Do 1 boca sreće unutar 24 sata)\n4. **Direktna kupnja (🔥 Ograničeno vrijeme 20% popusta)**:\n • Mala pakiranja {smallAmount} - ~{originalSmallPrice} Zvijezda~ {smallPrice} Zvijezda\n • Velika pakiranja {largeAmount} - ~{originalLargePrice} Zvijezda~ {largePrice} Zvijezda",
+  "getMore": "Nabavi više Fortune Bottles",
+  "getMoreInfo": "🔮 *Kako dobiti Fortune Bottles?*\n\n1. **Svake sedmice besplatno**: Obični korisnici jednom sedmično 1, VIP jednom dnevno 1.\n2. **Nagrada za poziv**: Kada pozovete jednog prijatelja koji takođe uspešno pozove drugog prijatelja, dobićete nagradu (maksimalno 1 Fortune Bottle u roku od 24 sati).\n3. **Nagrada za slanje Blessing Bottles**: Za svakih 10 poslanih Blessing Bottles dobijate 1 Fortune Bottle. (maksimalno 1 Fortune Bottle u roku od 24 sati)\n4. **Direktna kupovina (🔥 Ograničena ponuda 20% popusta)**:\n   • Mali paket {smallAmount} kom - ~{originalSmallPrice} Stars~ {smallPrice} Stars\n   • Veliki paket {largeAmount} kom - ~{originalLargePrice} Stars~ {largePrice} Stars",
   "buySmall": "🔥 Posebna cijena {price} Zvijezda (Kupite {amount} artikala)",
   "buyLarge": "🔥 Posebna cijena {price} Zvijezda (Kupite {amount} artikala)",
   "invoiceTitle": "Kupite {amount} fortune bottles",
-  "invoiceDesc": "Nakon kupnje, možete odmah koristiti AI uslugu proricanja, a svaka usluga proricanja troši 1 fortune bottle.\n\nKliknite gumb ispod za kupnju odmah:",
+  "invoiceDesc": "Nakon kupovine, odmah možete koristiti duhovne usluge Fortune, svaka usluga troši 1 Fortune Bottle.\n\nOdmah pritisnite dugme ispod da kupite:",
   "purchaseSuccess": "🎉 Kupnja uspješna! {amount} fortune bottles su dodane.",
-  "bottleReward": "🎉 Čestitamo! Poslali ste {count} fortune bottles i primili 1 nagradu u fortune bottle!",
+  "bottleReward": "🎉 Čestitamo! Poslali ste {count} Blessing Bottles i osvojili 1 nagradu Fortune Bottle!",
   "inviteChainReward": "🎉 Čestitamo! Vaš pozvani prijatelj uspješno je pozvao novog prijatelja da se pridruži, a vi ste primili 1 nagradu u fortune bottle!",
   "menu": {
     "love": "Dijagnoza atributa (Usklađivanje odnosa)",
@@ -190,7 +190,9 @@ export default {
     "match_report_title": "💞 Izvješće o sinastriji parova",
     "wait_for_consent": "⏳ Čekanje na pristajanje druge strane...",
     "consent_accepted": "✅ Druga strana se složila! Generiranje izvješća...",
-    "consent_rejected": "❌ Druga strana je odbila zahtjev za sinastriju."
+    "consent_rejected": "❌ Druga strana je odbila zahtjev za sinastriju.",
+    "invite_friend": "📨 Invite Friend to Experience",
+    "invite_friend_text": "Hey! I want to try the Compatibility Test with you. Create your fortune profile now!"
   },
   "role": {
     "husband": "Suprug",
@@ -228,12 +230,26 @@ export default {
       "drawn": "🎴 Karte su izvučene:"
     }
   },
-  "profile_incomplete_hint": "💡 Da bismo pružili točnije AI usluge proricanja, molimo vas da prvo dovršite svoje interese, profesiju ili MBTI informacije.",
+  "profile_incomplete_hint": "💡 Da biste pružili točniju uslugu duhovnog proricanja, prvo molimo da završite svoje interese, profesiju ili MBTI ... i druge informacije.",
   "tarot_menu_title": "Tarot karte",
   "tarot_ui": {
     "intro": "🔮 *Tarot Čitanje*\n\nMolimo vas da tiho razmislite o svom pitanju (npr. \"Kako je moja sreća na poslu u posljednje vrijeme?\" ili \"Kako bih trebao/la postupiti u ovoj vezi?\") i fokusirajte se prije nego što pritisnete dugme ispod za izvlačenje karata.",
     "draw": "🔮 Izvuci Karte",
     "shuffling": "Miješanje...",
     "drawn": "🎴 Karte su izvučene:"
+  },
+  "profileUpdated": "✅ Astrologijski profil je ažuriran!",
+  "btn_complete_info": "✏️ Ispunite svoje podatke o rođenju",
+  "complete_info_hint": "💡 Usavršite vrijeme i mjesto rođenja kako biste otključali analizu uzlaznog znaka i kuća!",
+  "btn_edit_info": "📝 Uredite podatke o rođenju",
+  "edit": {
+    "currentInfo": "📋 Trenutne informacije:",
+    "currentTime": "Vrijeme rođenja: {time}",
+    "currentTimeUnknown": "Vrijeme rođenja: Nepoznato",
+    "currentCity": "Grad rođenja: {city}",
+    "currentCityUnknown": "Grad rođenja: Nije postavljen",
+    "confirmEdit": "Želite li izmijeniti gornje informacije?",
+    "btnConfirmEdit": "✅ Da, želim izmijeniti",
+    "btnCancelEdit": "❌ Odustani"
   }
 };

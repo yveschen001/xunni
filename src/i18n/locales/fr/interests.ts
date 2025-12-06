@@ -9,7 +9,7 @@ export default {
   "subtitle": "Veuillez sélectionner une catégorie pour naviguer parmi les options.",
   "current": "Actuellement sélectionné ({count}/{max}) :\n{list}",
   "saved": "✅ Étiquettes d'intérêt mises à jour !",
-  "required_hint": "💡 Pour offrir des services de voyance IA plus précis, veuillez d'abord compléter vos étiquettes d'intérêt.",
+  "required_hint": "💡 Pour fournir des services de lecture psychique plus précis, veuillez d'abord compléter vos tags d'intérêt.",
   "categories": {
     "life": "Mode de vie et style",
     "travel": "Voyage et exploration",

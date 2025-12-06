@@ -4,7 +4,7 @@ export default {
   "cancel": "❌ रद्द करें",
   "cancelled": "रद्द किया गया",
   "cannotIdentify": "⚠️ चैट साथी की पहचान नहीं कर सकते\n\n",
-  "catchHint": "• नए संदेश की बोतलें पकड़ने के लिए /catch का उपयोग करें",
+  "catchHint": "• 使用 Catch Blessing Bottle 新的祝福瓶",
   "completeOnboarding": "⚠️ कृपया पहले पंजीकरण प्रक्रिया पूरी करें।\n\nपंजीकरण जारी रखने के लिए /start का उपयोग करें।",
   "conversationInfoError": "⚠️ बातचीत की जानकारी गलत है।",
   "conversationInfoError2": "⚠️ बातचीत की जानकारी गलत है",

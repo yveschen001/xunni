@@ -4,7 +4,7 @@ export default {
   "cancel": "❌ Abbrechen",
   "cancelled": "Abgebrochen",
   "cannotIdentify": "⚠️ Chat-Partner kann nicht identifiziert werden\n\n",
-  "catchHint": "• Nutzen Sie /catch, um eine neue Nachrichtenflasche zu wählen",
+  "catchHint": "• Verwenden Sie /catch, um neue Segensflasche Blessing Bottles aufzuheben",
   "completeOnboarding": "⚠️ Bitte schließen Sie zuerst den Registrierungsprozess ab.\n\nVerwenden Sie /start, um mit der Registrierung fortzufahren.",
   "conversationInfoError": "⚠️ Gesprächsinformationen sind falsch.",
   "conversationInfoError2": "⚠️ Gesprächsinformationen sind falsch",

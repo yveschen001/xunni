@@ -1,7 +1,7 @@
 export default {
   "autoCompleted": "已自动完成注册流程。\n\n",
-  "bottles": "• 漂流瓶：{count}",
-  "catchCommand": "• /catch - 捡漂流瓶\n",
+  "bottles": "• 祝福漂流瓶: {count}",
+  "catchCommand": "• /catch - 撿祝福漂流瓶",
   "conversations": "• 对话: {count}\n",
   "dataReset": "✅ 开发模式：数据已重置\n\n你的所有数据已被删除。\n\n💡 现在可以重新开始测试注册流程。\n\n🔄 重新注册：/start\n或使用：/dev_restart（自动开始注册）\n\n⚠️ 注意：此功能仅在 Staging 环境可用。",
   "getUserInfoFailed": "❌ 获取信息失败",
@@ -30,7 +30,7 @@ export default {
   "telegramId": "Telegram ID：{id}",
   "testCoreFeatures": "💡 现在可以直接测试核心功能：\n",
   "testUser": "测试用户",
-  "throwCommand": "• /throw - 丢漂流瓶\n",
+  "throwCommand": "• /throw - 丢祝福漂流瓶",
   "userInfo": "🔧 开发模式：用户信息\n\n",
   "userNotFound": "❌ 用户不存在",
   "vip": "VIP：{status}",

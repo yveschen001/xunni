@@ -19,7 +19,7 @@ export default {
   "noMessages": "(nu sunt mesaje)",
   "partnerMessages": "• Cealaltă parte a trimis: {count} mesaje\n",
   "recentMessages": "📨 **Conversații recente:**\n\n",
-  "returnToMenu": "🏠 Întoarceți-vă la Meniul Principal: /menu",
+  "returnToMenu": "🏠 Meniul Principal",
   "returnToMenuButton": "🏠 Înapoi la Meniul Principal",
   "stats": "📊 **Statistici:**\n",
   "time": "Ora: {time}\n\n",

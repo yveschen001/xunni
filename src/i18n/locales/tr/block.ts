@@ -1,6 +1,6 @@
 export default {
   "cannotIdentify": "⚠️ Görüşme partnerini tanımlamakta zorlanıldı.",
-  "catchNewBottle": "💡 Yeni bir mesaj şişesi almak ve yeni bir sohbet başlatmak için /catch kullanın.",
+  "catchNewBottle": "💡 /catch komutunu kullanarak yeni bir Dilek Şişesi toplayabilir ve yeni bir sohbet başlatabilirsiniz.",
   "conversationInfoError": "⚠️ Sohbet bilgileri yanlış.",
   "conversationMayEnded": "Sohbet sona ermiş olabilir veya mevcut değildir.",
   "conversationNotFound": "⚠️ Bu konuşma bulunamadı.",
@@ -12,5 +12,5 @@ export default {
   "step3": "3️⃣ /block yazın.",
   "steps": "**Takip edilecek adımlar:**",
   "success": "✅ Bu kullanıcı engellendi (#{identifier})",
-  "willNotMatch": "Artık birbirinizin mesaj şişeleri ile eşleşmeyeceksiniz."
+  "willNotMatch": "Artık birbirinizin Dilek Şişesi ile eşleşmeyeceksiniz."
 };

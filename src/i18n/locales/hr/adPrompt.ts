@@ -1,7 +1,7 @@
 export default {
   "completeTask": "• ✨ Ispunite zadatke (osvojite trajnu kvotu)",
   "inviteFriends": "• 🎁 Pozovite prijatelje (osvojite +1 kvotu po osobi)",
-  "quotaExhausted": "❌ Današnja kvota za message bottle je iskorištena ({quotaDisplay})",
+  "quotaExhausted": "❌ Danas je ispunjena kvota za Blessing Bottle ({quotaDisplay})",
   "taskButton": "✨ {taskName} 🎁",
   "upgradeVip": "• 💎 Nadogradite na VIP (30 kvota dnevno)",
   "watchAd": "• 📺 Gledajte oglase (preostalo {remaining}/20 puta)",

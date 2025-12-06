@@ -19,7 +19,7 @@ export default {
   "noMessages": "(메시지가 없습니다)",
   "partnerMessages": "• 파트너가 보낸 메시지: {count} 개\n",
   "recentMessages": "📨 **최근 대화:**\n\n",
-  "returnToMenu": "🏠 메인 메뉴로 돌아가기: /menu",
+  "returnToMenu": "🏠 메인 메뉴",
   "returnToMenuButton": "🏠 메인 메뉴로 돌아가기",
   "stats": "📊 **통계:**\n",
   "time": "시간: {time}\n\n",

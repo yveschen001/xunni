@@ -9,7 +9,7 @@ export default {
   "subtitle": "Silakan pilih kategori untuk menjelajahi opsi.",
   "current": "Saat ini dipilih ({count}/{max}):\n{list}",
   "saved": "✅ Tag minat diperbarui!",
-  "required_hint": "💡 Untuk menyediakan layanan ramalan AI yang lebih akurat, harap lengkapi tag minat Anda terlebih dahulu.",
+  "required_hint": "💡 Untuk memberikan layanan bacaan psikik yang lebih akurat, harap lengkapi tag minat Anda terlebih dahulu.",
   "categories": {
     "life": "Gaya Hidup dan Gaya",
     "travel": "Perjalanan dan Eksplorasi",

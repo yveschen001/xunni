@@ -9,7 +9,7 @@ export default {
   "subtitle": "Vær venlig at vælge en kategori for at gennemse muligheder.",
   "current": "Aktuelt valgt ({count}/{max}):\n{list}",
   "saved": "✅ Interesse-tagge opdateret!",
-  "required_hint": "💡 For at kunne tilbyde mere præcise AI-spådomstjenester, bedes du først færdiggøre dine interesse-tagge.",
+  "required_hint": "💡 For at tilbyde mere præcise psykiske læsninger, bedes du først udfylde dine interesse-tags.",
   "categories": {
     "life": "Livsstil og Stil",
     "travel": "Rejse og Udforskning",

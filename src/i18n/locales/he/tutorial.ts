@@ -1,13 +1,13 @@
 export default {
   "availableCommands": "אתה יכול להשתמש בפקודות הבאות בכל עת:",
-  "catchBottle": "🎣 **איסוף בקבוק המסר**",
-  "catchBottleDesc": "בדוק את בקבוקי המסר של אחרים, השב אם אתה מעוניין להתחיל לשוחח",
+  "catchBottle": "🎣 **Catch Blessing Bottle**",
+  "catchBottleDesc": "看看別人的Blessing Bottle，回覆祝福，開始聊天~",
   "clickButtonHint": "💡 בבקשה לחצו על הכפתור כדי להמשיך",
-  "commandCatch": "• /catch - אסוף בקבוק מסר",
+  "commandCatch": "• Catch Blessing Bottle",
   "commandHelp": "• /help - הצג עזרה",
   "commandMenu": "📋 תפריט פקודה",
   "commandTasks": "• /tasks - הצג משימות",
-  "commandThrow": "• /throw - זרוק בקבוק מסר",
+  "commandThrow": "• Throw Blessing Bottle",
   "completeTasksForBottles": "💡 השלם משימות כדי לזכות בבקבוקים נוספים",
   "completed": "✅ המדריך הושלם!",
   "howToBecomeFriends": "💬 **איך להתחבר עם חברים?**",
@@ -16,11 +16,11 @@ export default {
   "skip": "דלג",
   "skipped": "✅ המדריך דלג",
   "startUsing": "התחל להשתמש →",
-  "throwBottle": "📦 **זרוק בקבוק מסר**",
+  "throwBottle": "📦 **Throw Blessing Bottle**",
   "throwBottleDesc": "כתוב את הרגשות או המחשבות שלך, והמערכת תעזור לך למצוא אנשים מתאימים",
   "unknownStep": "❌ שלב מדריך לא ידוע",
   "viewTasks": "📋 הצג משימות",
   "welcome": "🎉 ברכות על סיום ההרשמה!",
   "whatIsXunNi": "🌊 **מה זה XunNi?**",
-  "whatIsXunNiDesc": "פלטפורמת בקבוקי מסר אנונימיים חברתית שעוזרת לך למצוא חברים בעלי דעות דומות באמצעות MBTI וסימני מזל"
+  "whatIsXunNiDesc": "匿名Blessing Bottle交友平台，透過彼此祝福，MBTI和星座幫你找到志同道合的朋友"
 };

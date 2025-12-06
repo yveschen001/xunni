@@ -9,7 +9,7 @@ export default {
   "subtitle": "옵션을 탐색할 카테고리를 선택하세요.",
   "current": "현재 선택됨 ({count}/{max}):\n{list}",
   "saved": "✅ 관심 태그가 업데이트되었습니다!",
-  "required_hint": "💡 보다 정확한 AI 운세 서비스를 제공하기 위해 먼저 관심 태그를 완료하세요.",
+  "required_hint": "💡 보다 정확한 심령 독서 서비스를 제공하기 위해 먼저 관심 태그를 완성해 주십시오.",
   "categories": {
     "life": "라이프스타일 및 스타일",
     "travel": "여행 및 탐험",

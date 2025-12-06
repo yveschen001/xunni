@@ -27,6 +27,8 @@ export default {
   "selectEndHour": "☀️ Startzeit auf {start}:00 gesetzt.\nBitte wählen Sie die Endzeit für ruhige Zeiten:\n(Benachrichtigungen werden nach dieser Zeit wieder aufgenommen)",
   "disabled": "🚫 Ruhige Zeiten wurden deaktiviert",
   "quietHoursHint": "Du wirst in dieser Zeit keine nicht dringenden Benachrichtigungen erhalten",
+  "quietHoursVipOnly": "🔒 Ruhige Stunden (Nur für VIPs)",
+  "upgradeForQuietHours": "Upgrade auf VIP, um ruhige Stunden festzulegen und Störungen während der Ruhezeiten zu vermeiden!",
   "blocklist": {
     "title": "🚫 Blockliste",
     "empty": "Derzeit keine Blockliste",

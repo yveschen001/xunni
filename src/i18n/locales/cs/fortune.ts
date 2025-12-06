@@ -8,15 +8,15 @@ export default {
     "love_match": "Kompatibilita párů",
     "love_ideal": "Analýza ideálního typu"
   },
-  "back_to_menu": "🔙 Návrat do menu AI věštění",
-  "get_more_bottles": "💎 Získejte více lahví na věštění",
+  "back_to_menu": "🔙 Zpět do nabídky Psychic Readingkých čtení",
+  "get_more_bottles": "💎 Získat více Věštecká Láhev",
   "relationship": {
     "love": "Páry",
     "friend": "Přátelé",
     "family": "Rodina",
     "work": "Kolegové"
   },
-  "menuTitle": "AI věštění",
+  "menuTitle": "Psychic Reading",
   "currentProfile": "Aktuální profil",
   "warehouse": "Úložiště narozeninových horoskopů",
   "manageProfiles": "Spravovat narozeninové horoskopy",
@@ -148,21 +148,21 @@ export default {
   },
   "dailyPush": "📅 Dnešní horoskop byl doručen!",
   "dailyPushBtn": "👇 Klikněte pro zobrazení",
-  "backToMenu": "🔙 Návrat do menu AI věštění",
+  "backToMenu": "🔙 Zpět do nabídky Psychic Readingkých čtení",
   "addProfile": "Přidat soubor diagramu",
-  "quotaDisplay": "🔮 Věštění z koule láhev zpráv: {total} (Tento týden zdarma: {weekly}/{limit} | Další: {additional})",
-  "quotaDisplayVip": "🔮 láhev s věštbou: {total} (Dnes: {daily}/1 | Další: {additional})",
-  "quotaDisplayFree": "🔮 láhev s věštbou: {total} (Tento týden zdarma: {weekly}/1 | Další: {additional})",
+  "quotaDisplay": "🔮 Věštecká Láhev: {total} (Tento týden zdarma: {weekly}/{limit} | Další: {additional})",
+  "quotaDisplayVip": "🔮 Věštecká Láhev: {total} (Dnes: {daily}/1 | Další: {additional})",
+  "quotaDisplayFree": "🔮 Věštecká Láhev: {total} (Tento týden zdarma: {weekly}/1 | Další: {additional})",
   "profileDetails": "👤 {gender} {blood} | 🎂 {birthday} | {zodiac} | 🧠 {mbti}",
-  "getMore": "Získejte více láhví s věštěním",
-  "getMoreInfo": "🔮 *Jak získat Fortune Bottle?*\n\n1. **Týdenně zdarma**: Běžní uživatelé získají 1 za týden, VIP uživatelé 1 za den.\n2. **Odměny za pozvání**: Pozvěte přítele, aby se připojil, a když úspěšně pozve dalšího přítele, obdržíte odměnu (až 1 fortune bottle během 24 hodin).\n3. **Odměny za zprávové lahve**: Za každých 10 zaslaných zprávových lahví obdržíte 1 fortune bottle. (Maximálně 1 fortune bottle během 24 hodin)\n4. **Přímý nákup (🔥 Omezená doba 20% sleva)**:\n • Malý balíček {smallAmount} - ~{originalSmallPrice} Hvězd~ {smallPrice} Hvězd\n • Velký balíček {largeAmount} - ~{originalLargePrice} Hvězd~ {largePrice} Hvězd",
+  "getMore": "Získat více Věštecká Láhev",
+  "getMoreInfo": "🔮 *Jak získat Věštecká Láhev?*\n\n1. **Týdenní zdarma**: běžní uživatelé 1 týdně, VIP 1 denně.\n2. **Odměny za pozvání**: Pozvěte přítele, a když on pozve dalšího přítele, získáte odměnu (v rámci 24 hodin maximálně 1 Věštecká Láhev).\n3. **Odměny za poslané Lahve Přání**: Za každých 10 poslaných Lahví Přání získáte 1 Věštecká Láhev. (v rámci 24 hodin maximálně 1 Věštecká Láhev)\n4. **Přímý nákup (🔥 Omezená nabídka 20 % sleva)**:\n   • Malý balíček {smallAmount} kusů - ~{originalSmallPrice} Stars~ {smallPrice} Stars\n   • Velký balíček {largeAmount} kusů - ~{originalLargePrice} Stars~ {largePrice} Stars",
   "buySmall": "🔥 Zvláštní cena {price} hvězd (Koupit {amount} položek)",
   "buyLarge": "🔥 Zvláštní cena {price} hvězd (Koupit {amount} položek)",
-  "invoiceTitle": "Kup {amount} lahví štěstí",
-  "invoiceDesc": "Po zakoupení můžete okamžitě využít službu AI věštění, a každá služba věštění spotřebovává 1 lahvičku štěstí.\n\nKlikněte na tlačítko níže pro nákup nyní:",
-  "purchaseSuccess": "🎉 Nákup úspěšný! {amount} lahví štěstí bylo přidáno.",
-  "bottleReward": "🎉 Gratulujeme! Odeslali jste {count} lahví štěstí a obdrželi jste 1 odměnu za lahvičku štěstí!",
-  "inviteChainReward": "🎉 Gratulujeme! Váš pozvaný přítel úspěšně pozval nového přítele, a obdrželi jste 1 odměnu za lahvičku štěstí!",
+  "invoiceTitle": "Zakoupit {amount} Věštecká Láhev",
+  "invoiceDesc": "Po zakoupení můžete okamžitě použít službu duchovního věštění, každá služba spotřebovává 1 Věštecká Láhev.\n\nOkamžitě klikněte na tlačítko pro nákup:",
+  "purchaseSuccess": "🎉 Nákup úspěšný! Přidáno {amount} Věštecká Láhev.",
+  "bottleReward": "🎉 Gratulujeme! Poslali jste {count} Lahve Přání a získali jste 1 Věštecká Láhev jako odměnu!",
+  "inviteChainReward": "🎉 Gratulujeme! Váš pozvaný přítel úspěšně pozval nového přítele, získali jste 1 Věštecká Láhev jako odměnu!",
   "menu": {
     "love": "Diagnóza atributů (shoda ve vztahu)",
     "attribute_desc": "Analyzujte své romantické atributy a potenciální vlastnosti.",
@@ -190,7 +190,9 @@ export default {
     "match_report_title": "💞 Zpráva o synastrii páru",
     "wait_for_consent": "⏳ Čekáme na souhlas druhé strany...",
     "consent_accepted": "✅ Druhá strana souhlasila! Generujeme zprávu...",
-    "consent_rejected": "❌ Druhá strana odmítla požadavek na synastrii."
+    "consent_rejected": "❌ Druhá strana odmítla požadavek na synastrii.",
+    "invite_friend": "📨 Invite Friend to Experience",
+    "invite_friend_text": "Hey! I want to try the Compatibility Test with you. Create your fortune profile now!"
   },
   "role": {
     "husband": "Manžel",
@@ -228,12 +230,26 @@ export default {
       "drawn": "🎴 Karty byly vylosovány:"
     }
   },
-  "profile_incomplete_hint": "💡 Abychom mohli poskytovat přesnější služby AI věštění, nejprve prosím vyplňte své zájmy, profesi nebo informace o MBTI.",
+  "profile_incomplete_hint": "💡 Pro zajištění přesnější služby duchovního věštění prosím nejprve dokončete své zájmy, profesi nebo MBTI ... a další informace.",
   "tarot_menu_title": "Tarotové Karty",
   "tarot_ui": {
     "intro": "🔮 *Výklad tarotu*\n\nProsím, tiše přemýšlejte o své otázce (např. \"Jaká je má pracovní štěstí v poslední době?\" nebo \"Jak bych měl zvládat tento vztah?\") a zaměřte se před kliknutím na tlačítko níže pro vykreslení karet.",
     "draw": "🔮 Vykreslit karty",
     "shuffling": "Míchání...",
     "drawn": "🎴 Karty byly vykresleny:"
+  },
+  "profileUpdated": "✅ Astrologický profil byl aktualizován!",
+  "btn_complete_info": "✏️ Dokončete své narození informace",
+  "complete_info_hint": "💡 Vylepšete svůj čas a místo narození, abyste odemkli analýzu vzestupného znamení a domů!",
+  "btn_edit_info": "📝 Upravit informace o narození",
+  "edit": {
+    "currentInfo": "📋 Aktuální informace:",
+    "currentTime": "Čas narození: {time}",
+    "currentTimeUnknown": "Čas narození: Nejasný",
+    "currentCity": "Město narození: {city}",
+    "currentCityUnknown": "Město narození: Není nastaveno",
+    "confirmEdit": "Chcete upravit výše uvedené informace?",
+    "btnConfirmEdit": "✅ Ano, chci upravit",
+    "btnCancelEdit": "❌ Zrušit"
   }
 };

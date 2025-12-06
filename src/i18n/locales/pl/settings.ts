@@ -27,6 +27,8 @@ export default {
   "selectEndHour": "☀️ Czas rozpoczęcia ustawiony na {start}:00.\nWybierz czas zakończenia godzin ciszy:\n(Powiadomienia wznowią się po tym czasie)",
   "disabled": "🚫 Godziny ciszy zostały wyłączone",
   "quietHoursHint": "Nie otrzymasz powiadomień niepilnych w tym czasie",
+  "quietHoursVipOnly": "🔒 Czas ciszy (tylko VIP)",
+  "upgradeForQuietHours": "Zaktualizuj do VIP, aby ustawić czas ciszy i uniknąć zakłóceń podczas przerwy!",
   "blocklist": {
     "title": "🚫 Lista zablokowanych",
     "empty": "Obecnie brak listy zablokowanych",

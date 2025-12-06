@@ -1,0 +1,3 @@
+settings.blocklist.desc,settings,您可以在此管理已封鎖的用戶。封鎖後，對方將無法發送訊息給您，且系統不會再為您配對該用戶。,您可以在此管理已封鎖的用戶。封鎖後，對方將無法發送訊息給您，且系統不會再為您配對該用戶。,Manage your blocked users here. Blocked users cannot message you and won't be matched with you.,ブロックされたユーザーを管理します。ブロックすると、相手はメッセージを送信できなくなり、マッチングもされません。,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+settings.blocklist.add_manual,settings,➕ 手動新增封鎖,➕ 手動新增封鎖,➕ Manually Add Block,➕ 手動でブロックを追加,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+

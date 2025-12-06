@@ -26,7 +26,7 @@ export default {
   "manual": "Рачни подесувања",
   "mbti": "• Користете /mbti за да го повторите тестот или да го измените MBTI\n",
   "mbtiWithSource": "🧠 MBTI: {mbti}{source}",
-  "message": "https://t.me/share/url?url=https://t.me/{botUsername}?start=invite_{inviteCode}&text=Доајте во XunNi и фрлајте заедно message bottles!🍾 Користете го мојот код за покана: {inviteCode}",
+  "message": "XunNi за фрлање на Blessing Bottle! 🍾 Користете го мојот покан код: {inviteCode}",
   "message2": "{inviteLimitWarning}\n\n",
   "message3": "🌍 Јазик: {user.language_pref}\n\n",
   "message4": "🌍 Јазик: {user.language_pref }\n",
@@ -42,7 +42,7 @@ export default {
   "quota2": "📦 Тековна дневна квота: {taskBonus > 0 ?",
   "quotaBottles": "{taskBonus} message bottles",
   "quotaTotal": "📦 Тековна дневна квота: {quota}\n\n",
-  "returnToMenu": "🏠 Врати се на главното мени: /menu",
+  "returnToMenu": "🏠 Главно мени",
   "separator": "━━━━━━━━━━━━━━━━\n\n",
   "settings": "Не е поставено",
   "settings2": "Не е поставено",
@@ -71,5 +71,14 @@ export default {
   "zodiac": "⭐ Загатка: {zodiac}\n",
   "fortuneQuota": "🔮 {fortuneBottle}: {total} (Оваа недела бесплатно: {weekly}/{limit} | Додатно: {additional})",
   "vipWithDays": "💎 VIP Член (Останати {days} дена, Истек: {expireDate})",
-  "driftBottleInfo": "🍾 порака шише: {remaining} / {total}"
+  "driftBottleInfo": "🍾 Blessing Bottle: {remaining} / {total}",
+  "ageRange": "Возраст: {min}-{max}",
+  "fortuneMatchButton": "💘 Fortune Match",
+  "giftVipButton": "🎁 Gift VIP",
+  "giftFortuneBottleButton": "🔮 Gift Fortune Bottle",
+  "moreOptions": "⚙️ More Options",
+  "blockUser": "🚫 Block User",
+  "reportUser": "⚠️ Report",
+  "moreOptionsTitle": "⚙️ More Options",
+  "giftedVipNote": "🎁 Gave You VIP"
 };

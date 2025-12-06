@@ -266,5 +266,24 @@ export default {
     "startButton": "📊 테스트 시작",
     "resultTitle": "내 MBTI 테스트 결과는 {type}입니다!",
     "resultDesc": "당신도 테스트를 해보세요～"
-  }
+  },
+  "titles": {
+
+  "INTJ": "건축가",
+  "INTP": "논리학자",
+  "ENTJ": "지휘관",
+  "ENTP": "토론가",
+  "INFJ": "옹호자",
+  "INFP": "중재자",
+  "ENFJ": "주인공",
+  "ENFP": "캠페이너",
+  "ISTJ": "물류 전문가",
+  "ISFJ": "수호자",
+  "ESTJ": "경영자",
+  "ESFJ": "영사",
+  "ISTP": "연주자",
+  "ISFP": "모험가",
+  "ESTP": "기업가",
+  "ESFP": "연예인"
+  },
 };

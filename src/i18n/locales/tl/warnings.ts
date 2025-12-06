@@ -122,7 +122,7 @@ export default {
       "body": "{userAttribute},\nAyon sa pagsusuri, mayroon kang pinakamalakas na pagkakaangkop sa {recommendedAttributes}!\n\n💡 {reason}\n\n👇 Nakakaramdam ng suwerte?"
     },
     "btn": {
-      "throw": "🌊 Magtapon ng bote at subukan ang iyong swerte",
+      "throw": "🌊 Magtapon ng isang Bote ng Pagpapala ng pagbabalik, na magwish ng mabuti para sa iba, at ang kaligayahan ay babalik sa iyo.",
       "vip_throw": "🎯 Magtapon sa {target}",
       "vip_upsell": "💡 I-upgrade sa VIP upang italaga ang paghahatid sa {target}, para sa tumpak na pagsasama!"
     }

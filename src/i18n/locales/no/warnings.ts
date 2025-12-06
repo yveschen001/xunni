@@ -122,7 +122,7 @@ export default {
       "body": "{userAttribute},\nI henhold til analysen har du den sterkeste affiniteten med {recommendedAttributes}!\n\n💡 {reason}\n\n👇 Føler du deg heldig?"
     },
     "btn": {
-      "throw": "🌊 Kast en flaske og ta en sjanse",
+      "throw": "🌊 Kast en velsignelse i en meldingflaske, ønsk andre vel, og lykken vil returnere til deg selv.",
       "vip_throw": "🎯 Kast til {target}",
       "vip_upsell": "💡 Oppgrader til VIP for å spesifisere levering til {target}, for presis matching!"
     }

@@ -1,13 +1,13 @@
 export default {
   "availableCommands": "いつでも以下のコマンドを使用できます:",
-  "catchBottle": "🎣 **メッセージボトルを拾う**",
-  "catchBottleDesc": "他の人のメッセージボトルをチェックし、興味があれば返信してチャットを開始してください。",
+  "catchBottle": "🎣 **祈りのボトルを拾う**",
+  "catchBottleDesc": "他の人の祈りのボトルを見て、祈りを返し、チャットを始めましょう〜",
   "clickButtonHint": "💡 続行するにはボタンをクリックしてください",
-  "commandCatch": "• /catch - メッセージボトルを拾う",
+  "commandCatch": "• /catch - 恵み祈りのボトルを拾う",
   "commandHelp": "• /help - ヘルプを見る",
   "commandMenu": "📋 コマンドメニュー",
   "commandTasks": "• /tasks - タスクを見る",
-  "commandThrow": "• /throw - メッセージボトルを投げる",
+  "commandThrow": "• /throw - 祈りのボトルを投げる",
   "completeTasksForBottles": "💡 タスクを完了すると追加のボトルを獲得できます",
   "completed": "✅ チュートリアルが完了しました！",
   "howToBecomeFriends": "💬 **友達を作るには？**",
@@ -16,11 +16,11 @@ export default {
   "skip": "スキップ",
   "skipped": "✅ チュートリアルをスキップしました",
   "startUsing": "使用開始 →",
-  "throwBottle": "📦 **メッセージボトルを投げる**",
+  "throwBottle": "📦 **祈りのボトルを投げる**",
   "throwBottleDesc": "気持ちや考えをメモし、システムが適切な人を見つける手助けをします",
   "unknownStep": "❌ 不明なチュートリアルステップ",
   "viewTasks": "📋 タスクを見る",
   "welcome": "🎉 登録完了おめでとうございます！",
   "whatIsXunNi": "🌊 **XunNiとは？**",
-  "whatIsXunNiDesc": "匿名のメッセージボトル友達のためのプラットフォーム。MBTIや星座を通じて志を同じくする友人を見つける手助けをします。"
+  "whatIsXunNiDesc": "匿名祈りのボトル友情プラットフォームとして、相互の祝福、MBTI、星座を通じて志を同じくする友達を見つけましょう。"
 };

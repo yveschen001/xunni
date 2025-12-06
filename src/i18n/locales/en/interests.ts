@@ -9,7 +9,7 @@ export default {
   "subtitle": "Please select a category to browse options.",
   "current": "Currently selected ({count}/{max}):\n{list}",
   "saved": "✅ Interest tags updated!",
-  "required_hint": "💡 To provide more accurate AI fortune-telling services, please complete your interest tags first.",
+  "required_hint": "💡 To provide more accurate psychic reading services, please complete your interest tags first.",
   "categories": {
     "life": "Lifestyle and Style",
     "travel": "Travel and Exploration",

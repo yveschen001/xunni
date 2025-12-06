@@ -46,9 +46,9 @@
     "i18n:import": "tsx scripts/i18n-manager.ts import",
     "i18n:upload": "tsx scripts/upload-i18n-to-kv.ts",
     "i18n:progress": "tsx scripts/check-translation-progress.ts",
-    "i18n:clean": "tsx scripts/clean-invalid-csv-rows.ts",
-    "i18n:check": "tsx scripts/check-i18n-issues.ts",
-    "i18n:sync": "tsx scripts/sync-i18n-from-reference.ts",
+    "i18n:clean": "tsx scripts/clean-csv.ts",
+    "i18n:check": "tsx scripts/check-i18n-integrity.ts",
+    "i18n:sync": "tsx scripts/ai-translate.ts",
     "i18n:fix-templates": "tsx scripts/fix-i18n-template-literals.ts",
     "i18n:consistency": "tsx scripts/check-i18n-consistency.ts",
     "i18n:workflow": "./scripts/dev-workflow-i18n.sh",
@@ -78,6 +78,7 @@
     "csv-parse": "^6.1.0",
     "csv-stringify": "^6.6.0",
     "eslint": "^8.56.0",
+    "openai": "^6.10.0",
     "prettier": "^3.2.4",
     "tsx": "^4.7.0",
     "typescript": "^5.3.3",
@@ -88,6 +89,7 @@
     "@google/generative-ai": "^0.24.1",
     "astronomy-engine": "^2.1.19",
     "cron": "^4.3.5",
+    "dotenv": "^17.2.3",
     "geo-tz": "^8.1.4",
     "lunar-javascript": "^1.7.7"
   }

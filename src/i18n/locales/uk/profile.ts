@@ -26,7 +26,7 @@ export default {
   "manual": "Ручні налаштування",
   "mbti": "• Використовуйте /mbti, щоб пройти тест повторно або змінити MBTI\n",
   "mbtiWithSource": "🧠 MBTI: {mbti}{source}",
-  "message": "https://t.me/share/url?url=https://t.me/{botUsername}?start=invite_{inviteCode}&text=Приходьте в XunNi та кидайте пляшки з повідомленнями разом!🍾 Використовуйте мій код запрошення: {inviteCode}",
+  "message": "XunNi давайте разом кинути Пляшка Бажань! 🍾 Використовуйте мій запрошувальний код: {inviteCode}",
   "message2": "{inviteLimitWarning}\n\n",
   "message3": "🌍 Мова: {user.language_pref}\n\n",
   "message4": "🌍 Мова: {user.language_pref }\n",
@@ -42,7 +42,7 @@ export default {
   "quota2": "📦 Поточна щоденна квота: {taskBonus > 0 ?",
   "quotaBottles": "{taskBonus} пляшок з повідомленням",
   "quotaTotal": "📦 Поточна добова квота: {quota}\n\n",
-  "returnToMenu": "🏠 Повернутися до головного меню: /menu",
+  "returnToMenu": "🏠 Головне меню",
   "separator": "━━━━━━━━━━━━━━━━\n\n",
   "settings": "Не встановлено",
   "settings2": "Не встановлено",
@@ -71,5 +71,14 @@ export default {
   "zodiac": "⭐ Зодіак: {zodiac}\n",
   "fortuneQuota": "🔮 {fortuneBottle}: {total} (Цього тижня безкоштовно: {weekly}/{limit} | Додатково: {additional})",
   "vipWithDays": "💎 VIP-учасник (Залишилось {days} днів, Термін: {expireDate})",
-  "driftBottleInfo": "🍾 повідомлення в пляшці: {remaining} / {total}"
+  "driftBottleInfo": "🍾 Пляшка Бажань: {remaining} / {total}",
+  "ageRange": "Вік: {min}-{max}",
+  "fortuneMatchButton": "💘 Пляшка долі",
+  "giftVipButton": "🎁 Подарувати VIP",
+  "giftFortuneBottleButton": "🔮 Подарувати пляшку долі",
+  "moreOptions": "⚙️ Більше опцій...",
+  "blockUser": "🚫 Заблокувати користувача",
+  "reportUser": "⚠️ Поскаржитися",
+  "moreOptionsTitle": "⚙️ **Більше опцій**",
+  "giftedVipNote": "🎁 Раніше подарував тобі VIP"
 };

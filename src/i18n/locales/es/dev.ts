@@ -1,7 +1,7 @@
 export default {
   "autoCompleted": "El proceso de registro se ha completado automáticamente.\n\n",
-  "bottles": "• Botellas de mensajes: {count}\n",
-  "catchCommand": "• /catch - Atrapar botellas de mensajes\n",
+  "bottles": "• Botella de bendición: {count}",
+  "catchCommand": "• /catch - Recoge una Botella de Bendición",
   "conversations": "• Conversaciones: {count}\n",
   "dataReset": "✅ Modo de desarrollo: los datos han sido restablecidos\n\nTodos tus datos han sido eliminados.\n\n💡 Ahora puedes reiniciar el proceso de registro para pruebas.\n\n🔄 Re-regístrate: /start\no usa: /dev_restart (iniciar registro automáticamente)\n\n⚠️ Nota: Esta función solo está disponible en el entorno de Staging.",
   "getUserInfoFailed": "❌ No se pudo recuperar la información",
@@ -30,7 +30,7 @@ export default {
   "telegramId": "ID de Telegram: {id}\n",
   "testCoreFeatures": "💡 Ahora puedes probar directamente las funciones principales:\n",
   "testUser": "Usuario de prueba",
-  "throwCommand": "• /throw - Lanzar botella de mensajes\n",
+  "throwCommand": "• /throw - Lanza una Botella de Bendición",
   "userInfo": "🔧 Modo de desarrollo: Información del usuario\n\n",
   "userNotFound": "❌ El usuario no existe",
   "vip": "VIP: {status}",

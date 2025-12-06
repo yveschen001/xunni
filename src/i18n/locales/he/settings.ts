@@ -27,6 +27,8 @@ export default {
   "selectEndHour": "☀️ שעת ההתחלה הוגדרה ל-{start}:00.\nאנא בחר את שעת הסיום לשעות השקטות:\n(ההודעות יתחדשו לאחר שעה זו)",
   "disabled": "🚫 שעות השקטות הושבתו",
   "quietHoursHint": "לא תקבל התראות שאינן דחופות במהלך תקופה זו",
+  "quietHoursVipOnly": "🔒 שעות שקטות (רק לחברי VIP)",
+  "upgradeForQuietHours": "שדרג ל-VIP כדי לקבוע שעות שקטות, ולהימנע מהפרעות בזמן מנוחה!",
   "blocklist": {
     "title": "🚫 רשימת חסומים",
     "empty": "אין currently חסומים",

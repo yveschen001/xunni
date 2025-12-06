@@ -26,7 +26,7 @@ export default {
   "manual": "Manuell innstilling",
   "mbti": "• Bruk /mbti for å ta MBTI på nytt eller endre den\n",
   "mbtiWithSource": "🧠 MBTI: {mbti}{source}",
-  "message": "https://t.me/share/url?url=https://t.me/{botUsername}?start=invite_{inviteCode}&text=Kom til XunNi og send flaskeposter sammen!🍾 Bruk min invitasjonskode: {inviteCode}",
+  "message": "XunNi, la oss kaste Ønskeflaske sammen! 🍾 Bruk invitasjonskoden min: {inviteCode}",
   "message2": "{inviteLimitWarning}\n\n",
   "message3": "🌍 Språk: {user.language_pref}\n\n",
   "message4": "🌍 Språk: {user.language_pref }\n",
@@ -42,7 +42,7 @@ export default {
   "quota2": "📦 Nåværende daglige kvote: {taskBonus > 0 ?",
   "quotaBottles": "{taskBonus} flaskeposter",
   "quotaTotal": "📦 Nåværende daglig kvote: {quota}\n\n",
-  "returnToMenu": "🏠 Gå tilbake til hovedmeny: /menu",
+  "returnToMenu": "🏠 Hovedmeny",
   "separator": "━━━━━━━━━━━━━━━━\n\n",
   "settings": "Ikke satt",
   "settings2": "Ikke satt",
@@ -71,5 +71,14 @@ export default {
   "zodiac": "⭐ Stjernetegn: {zodiac}\n",
   "fortuneQuota": "🔮 {fortuneBottle}: {total} (Denne uken gratis: {weekly}/{limit} | Ekstra: {additional})",
   "vipWithDays": "💎 VIP-medlem (Gjenstående {days} dager, Utløp: {expireDate})",
-  "driftBottleInfo": "🍾 meldingflaske: {remaining} / {total}"
+  "driftBottleInfo": "🍾 Ønskeflaske: {remaining} / {total}",
+  "ageRange": "Alder: {min}-{max}",
+  "fortuneMatchButton": "💘 Spådomsflaske",
+  "giftVipButton": "🎁 Gave VIP",
+  "giftFortuneBottleButton": "🔮 Gave Spådomsflaske",
+  "moreOptions": "⚙️ Flere alternativer...",
+  "blockUser": "🚫 Blokker bruker",
+  "reportUser": "⚠️ Rapportér",
+  "moreOptionsTitle": "⚙️ Flere alternativer",
+  "giftedVipNote": "🎁 Har tidligere gitt deg VIP"
 };

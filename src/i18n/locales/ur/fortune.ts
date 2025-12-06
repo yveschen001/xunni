@@ -8,15 +8,15 @@ export default {
     "love_match": "جوڑے کی ہم آہنگی",
     "love_ideal": "مثالی قسم کا تجزیہ"
   },
-  "back_to_menu": "🔙 AI قسمت بتانے کے مینو میں واپس جائیں",
-  "get_more_bottles": "💎 مزید قسمت معلوم کرنے والے پیغام بوتلیں حاصل کریں",
+  "back_to_menu": "🔙 سحری پڑھائی کے مینو میں واپس جائیں",
+  "get_more_bottles": "💎 مزید Fortune Bottle حاصل کریں",
   "relationship": {
     "love": "جوڑا",
     "friend": "دوست",
     "family": "خاندان",
     "work": "ساتھی"
   },
-  "menuTitle": "AI قسمت بتانا",
+  "menuTitle": "Psychic Reading",
   "currentProfile": "موجودہ پروفائل",
   "warehouse": "زائچہ سٹوریج",
   "manageProfiles": "زائچوں کا انتظام کریں",
@@ -148,21 +148,21 @@ export default {
   },
   "dailyPush": "📅 آج کا زائچہ فراہم کر دیا گیا!",
   "dailyPushBtn": "👇 دیکھنے کے لیے کلک کریں",
-  "backToMenu": "🔙 AI قسمت بتانے کے مینو میں واپس جائیں",
+  "backToMenu": "🔙 واپس روحانی پڑھائی کے مینیو میں",
   "addProfile": "چارٹ فایل شامل کریں",
-  "quotaDisplay": "🔮 قسمت کا بتانے والا پیغام بوتل: {total} (اس ہفتے مفت: {weekly}/{limit} | اضافی: {additional})",
-  "quotaDisplayVip": "🔮 میسج بوتل: {total} (آج: {daily}/1 | اضافی: {additional})",
-  "quotaDisplayFree": "🔮 میسج بوتل: {total} (اس ہفتے مفت: {weekly}/1 | اضافی: {additional})",
+  "quotaDisplay": "🔮 Fortune Bottle: {total} (اس ہفتے مفت: {weekly}/{limit} | اضافی: {additional})",
+  "quotaDisplayVip": "🔮 Fortune Bottle: {total} (آج: {daily}/1 | اضافی: {additional})",
+  "quotaDisplayFree": "🔮 Fortune Bottle: {total} (اس ہفتے مفت: {weekly}/1 | اضافی: {additional})",
   "profileDetails": "👤 {gender} {blood} | 🎂 {birthday} | {zodiac} | 🧠 {mbti}",
-  "getMore": "مزید قسمت کی پیشگوئی کے پیغامات حاصل کریں",
-  "getMoreInfo": "🔮 *قسمت کی بوتل کیسے حاصل کریں؟*\n\n1. **ہفتہ وار مفت**: باقاعدہ صارفین کو ہر ہفتے 1 ملتا ہے، وی آئی پیز کو ہر دن 1 ملتا ہے۔\n2. **دعوتی انعامات**: ایک دوست کو شامل ہونے کے لیے مدعو کریں، اور جب وہ کامیابی سے ایک اور دوست کو مدعو کریں گے، تو آپ کو انعام ملے گا (24 گھنٹوں میں 1 قسمت کی بوتل تک)۔\n3. **پیغام کی بوتل کے انعامات**: ہر 10 پیغام کی بوتلیں بھیجنے پر 1 قسمت کی بوتل حاصل کریں۔ (24 گھنٹوں میں 1 قسمت کی بوتل تک)\n4. **براہ راست خریداری (🔥 محدود وقت 20% چھوٹ)**:\n • چھوٹا پیکج {smallAmount} - ~{originalSmallPrice} ستارے~ {smallPrice} ستارے\n • بڑا پیکج {largeAmount} - ~{originalLargePrice} ستارے~ {largePrice} ستارے",
+  "getMore": "زیادہ Fortune Bottle حاصل کریں",
+  "getMoreInfo": "🔮 *Fortune Bottle کیسے حاصل کریں؟*\n\n1. **ہر ہفتے مفت**: عام صارفین کو ہر ہفتے 1 ملتا ہے، VIP کو روزانہ 1 ملتا ہے۔\n2. **دعوت کا انعام**: اگر آپ ایک دوست کو شامل کرتے ہیں اور وہ بھی ایک دوست کو شامل کرنے میں کامیاب ہوتا ہے تو آپ انعام حاصل کرتے ہیں (24 گھنٹوں میں، زیادہ سے زیادہ 1 Fortune Bottle حاصل کرسکتے ہیں)।\n3. **Blessing Bottle انعام**: ہر 10 Blessing Bottles بھیجنے پر 1 Fortune Bottle حاصل کریں۔ (24 گھنٹوں میں، زیادہ سے زیادہ 1 Fortune Bottle حاصل کرسکتے ہیں)\n4. **براہ راست خریداری (🔥 محدود وقت کی 20% رن)**：\n   • چھوٹا پیک {smallAmount} عدد - ~{originalSmallPrice} Stars~ {smallPrice} Stars\n   • بڑا پیک {largeAmount} عدد - ~{originalLargePrice} Stars~ {largePrice} Stars",
   "buySmall": "🔥 خصوصی قیمت {price} ستارے (خریدیں {amount} اشیاء)",
   "buyLarge": "🔥 خصوصی قیمت {price} ستارے (خریدیں {amount} اشیاء)",
-  "invoiceTitle": "خرید {amount} قسمت قسمت کی بوتلیں",
-  "invoiceDesc": "خریداری کے بعد، آپ فوری طور پر AI قسمت بتانے کی خدمت استعمال کر سکتے ہیں، اور ہر قسمت بتانے کی خدمت 1 قسمت کی بوتل استعمال کرتی ہے۔\n\nاب خریدنے کے لیے نیچے دیے گئے بٹن پر کلک کریں:",
-  "purchaseSuccess": "🎉 خریداری کامیاب! {amount} قسمت کی بوتلیں شامل کی جا چکی ہیں۔",
-  "bottleReward": "🎉 مبارک ہو! آپ نے {count} قسمت کی بوتلیں بھیجی ہیں اور 1 قسمت کی بوتل کا انعام حاصل کیا ہے!",
-  "inviteChainReward": "🎉 مبارک ہو! آپ کے مدعو کردہ دوست نے کامیابی سے ایک نئے دوست کو شامل کیا ہے، اور آپ کو 1 قسمت کی بوتل کا انعام مل گیا ہے!",
+  "invoiceTitle": "خریداری {amount} عدد Fortune Bottle",
+  "invoiceDesc": "خریداری کے بعد روحانی Fortune خدمت فوری استعمال کے لیے دستیاب ہوگی، ہر روحانی Fortune خدمت 1 Fortune Bottle خرچ کرتی ہے۔\n\nخریدنے کے لیے نیچے موجود بٹن پر کلک کریں:",
+  "purchaseSuccess": "🎉 خریداری کامیاب! {amount} عدد Fortune Bottle میں اضافہ کیا گیا ہے۔",
+  "bottleReward": "🎉 مبارک ہو! آپ نے {count} عدد Blessing Bottles بھیجے ہیں، 1 Fortune Bottle انعام حاصل کیا ہے!",
+  "inviteChainReward": "🎉 مبارک ہو! آپ کے مدعو کردہ دوست نے کامیابی سے نئے دوست کو شامل کیا ہے، آپ کو 1 Fortune Bottle انعام حاصل ہوا!",
   "menu": {
     "love": "خاصیت کا تجزیہ (رشتہ ملاپ)",
     "attribute_desc": "اپنی رومانوی خصوصیات اور ممکنہ خصائل کا تجزیہ کریں.",
@@ -190,7 +190,9 @@ export default {
     "match_report_title": "💞 جوڑے کی سائنٹری رپورٹ",
     "wait_for_consent": "⏳ دوسرے فریق کی اتفاق رائے کا انتظار ہے...",
     "consent_accepted": "✅ دوسرے فریق نے اتفاق کر لیا ہے! رپورٹ تیار کی جا رہی ہے...",
-    "consent_rejected": "❌ دوسرے فریق نے سائنٹری درخواست کو مسترد کر دیا ہے۔"
+    "consent_rejected": "❌ دوسرے فریق نے سائنٹری درخواست کو مسترد کر دیا ہے۔",
+    "invite_friend": "📨 Invite Friend to Experience",
+    "invite_friend_text": "Hey! I want to try the Compatibility Test with you. Create your fortune profile now!"
   },
   "role": {
     "husband": "شوہر",
@@ -228,12 +230,26 @@ export default {
       "drawn": "🎴 کارڈز کھینچ لیے گئے ہیں:"
     }
   },
-  "profile_incomplete_hint": "💡 زیادہ درست AI قسمت کا علم فراہم کرنے کے لیے، براہ کرم پہلے اپنے مفادات، پیشے، یا MBTI معلومات مکمل کریں۔",
+  "profile_incomplete_hint": "💡 زیادہ درست روحانی قسمت دیکھنے کی خدمت فراہم کرنے کے لیے، براہ کرم پہلے اپنے شوق، پیشے، یا MBTI ... اور دیگر معلومات مکمل کریں۔",
   "tarot_menu_title": "ٹیرو کارڈز",
   "tarot_ui": {
     "intro": "🔮 *طاروت پڑھائی*\n\nبراہ کرم خاموشی سے اپنے سوال کے بارے میں سوچیں (جیسے، \"میری ورک قسمت حال ہی میں کیسی ہے؟\" یا \"مجھے اس رشتہ کا کس طرح سامنا کرنا چاہیے؟\") اور نیچے دیے گئے بٹن کو کلک کرنے سے پہلے توجہ مرکوز کریں تاکہ کارڈز نکال سکیں۔",
     "draw": "🔮 کارڈز نکالیں",
     "shuffling": "شفلنگ...",
     "drawn": "🎴 کارڈز نکالے گئے ہیں:"
+  },
+  "profileUpdated": "✅ علم نجوم پروفائل کو اپ ڈیٹ کر دیا گیا ہے!",
+  "btn_complete_info": "✏️ اپنی پیدائش کی معلومات مکمل کریں",
+  "complete_info_hint": "💡 اپنے پیدائشی وقت اور مقام کو بہتر بنائیں تاکہ عروجی نشان اور گھر کے تجزیے کو انلاک کر سکیں!",
+  "btn_edit_info": "📝 پیدائشی معلومات ایڈٹ کریں",
+  "edit": {
+    "currentInfo": "📋 موجودہ معلومات:",
+    "currentTime": "پیدائش کا وقت: {time}",
+    "currentTimeUnknown": "پیدائش کا وقت: غیر یقینی",
+    "currentCity": "پیدائش کا شہر: {city}",
+    "currentCityUnknown": "پیدائش کا شہر: سیٹ نہیں ہے",
+    "confirmEdit": "کیا آپ اوپر دی گئی معلومات میں ترمیم کرنا چاہتے ہیں؟",
+    "btnConfirmEdit": "✅ جی ہاں، میں ترمیم کرنا چاہتا ہوں",
+    "btnCancelEdit": "❌ منسوخ کریں"
   }
 };

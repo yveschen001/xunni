@@ -7,6 +7,7 @@
  */
 
 import type { D1Database } from '@cloudflare/workers-types';
+import { createDatabaseClient } from '~/db/client';
 import type { AdProvider } from '~/domain/ad_provider';
 
 // ============================================================================
@@ -490,7 +491,14 @@ export async function getProviderPerformanceComparison(db: D1Database): Promise<
        WHERE is_enabled = 1
        ORDER BY completion_rate DESC`
     )
-    .all();
+    .all<{
+      provider_name: string;
+      provider_display_name: string;
+      total_requests: number;
+      total_completions: number;
+      completion_rate: number;
+      error_rate: number;
+    }>();
 
   return result.results || [];
 }

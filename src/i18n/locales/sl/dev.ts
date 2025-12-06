@@ -1,7 +1,7 @@
 export default {
   "autoCompleted": "Postopek registracije je bil samodejno zaključen.\n\n",
-  "bottles": "• Message bottles: {count}\n",
-  "catchCommand": "• /catch - Ujemite message bottles\n",
+  "bottles": "• Blessing Bottle: {count}\n",
+  "catchCommand": "• Catch Blessing Bottle\n",
   "conversations": "• Pogovori: {count}\n",
   "dataReset": "✅ Razvojni način: Podatki so bili ponastavljeni\n\nVsi vaši podatki so bili izbrisani.\n\n💡 Zdaj lahko ponovno zaženete postopek testne registracije.\n\n🔄 Ponovno registrirajte: /start\nali uporabite: /dev_restart (samodejni začetek registracije)\n\n⚠️ Opozorilo: Ta funkcija je na voljo le v okolju Staging.",
   "getUserInfoFailed": "❌ Pridobivanje informacij ni uspelo",
@@ -30,7 +30,7 @@ export default {
   "telegramId": "Telegram ID: {id}",
   "testCoreFeatures": "💡 Zdaj lahko neposredno preizkusite osnovne funkcije:\n",
   "testUser": "Testni uporabnik",
-  "throwCommand": "• /throw - Odvrži sporočilno steklenico\n",
+  "throwCommand": "• Throw Blessing Bottle\n",
   "userInfo": "🔧 Razvojni način: Informacije o uporabniku\n\n",
   "userNotFound": "❌ Uporabnik ne obstaja",
   "vip": "VIP: {status}",

@@ -9,7 +9,7 @@ export default {
   "subtitle": "Prosím, vyberte kategóriu na prehliadanie možností.",
   "current": "Momentálne vybrané ({count}/{max}):\n{list}",
   "saved": "✅ Značky záujmov boli aktualizované!",
-  "required_hint": "💡 Aby sme poskytli presnejšie služby predpovedania pomocou AI, prosím, najprv dokončte svoje záujmové značky.",
+  "required_hint": "💡 Aby sme poskytli presnejšie služby Psychic Readingkých čítaní, prosím najprv vyplňte svoje záujmové štítky.",
   "categories": {
     "life": "Životný štýl a móda",
     "travel": "Cestovanie a objavovanie",

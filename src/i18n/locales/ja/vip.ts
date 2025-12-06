@@ -27,8 +27,8 @@ export default {
   "message8": "価格: {priceStars} ⭐ テレグラムスター / 月\n",
   "message9": "💡 サブスクリプションをキャンセルするには、Telegramの設定 > サブスクリプション管理に移動してください",
   "purchaseCancelled": "✅ 購入キャンセル済み",
-  "quota": "• ボトルメールのデイリークオータは30件です（友達を招待して増やしましょう、最大100件/日）\n",
-  "quota2": "• ボトルメールのデイリークオータは30件です（最大100件/日）\n",
+  "quota": "• 1日の制限は30本祈りのボトル（友達を招待すると、1日最大100本まで増やせます）",
+  "quota2": "• 1日の制限は30本祈りのボトル（1日最大100本まで）",
   "refundAdminCommands": "💡 次のコマンドを使用して進んでください：\n• 承認: `/admin_approve_refund <ID>`\n• 拒否: `/admin_reject_refund <ID> <reason>`",
   "refundApproved": "✅ **返金承認済み**\n\n返金額: {amount} ⭐\n返金は1-3営業日以内に反映されます。\n\nあなたのVIPメンバーシップはキャンセルされました。\n\nご理解いただきありがとうございます！",
   "refundApprovedAdmin": "✅ 返金承認済み\n\nリクエストID: #{requestId}\nユーザーID: {userId}\n金額: {amount} ⭐",
@@ -75,7 +75,7 @@ export default {
   "text11": "有効期限: {expireDate}",
   "text12": "返金は1〜3営業日以内に行われます。",
   "text13": "リクエストID: #{requestId}\n",
-  "text14": "└ 1件のスマートマッチ + 2件の公開メッセージボトルプールのディスプレイ: 追加の2つのディスプレイスポットがあり、運命の人が拾うのを待っています。\nあなたのメッセージボトルが見られる確率を300%向上させます!",
+  "text14": "└ 1 個スマートマッチング + 2 個公共祈りのボトル池展示：さらに 2 個の展示スペースが追加され、運命の人に拾われるのを待っています。\nあなたのボトルが見られる機会が 300% 増加します！",
   "text15": "返金期限: 支払い後7日以内\n\n",
   "text16": "返金理由を入力してください（10文字以上）:",
   "text17": "理由: {req.reason}\n",
@@ -130,5 +130,5 @@ export default {
   "upgrade": "VIPにアップグレード",
   "maxDurationExceeded": "⚠️ あなたのVIP期間は制限に達しました ({maxMonths} ヶ月)ので、しばらくの間購入を続けることはできません。",
   "refundedAndRevoked": "ℹ️ あなたの支払いが返金され、VIP特典は取り消されました。",
-  "benefit_daily_fortune": "• VIP専用の1日1回無料AI占い"
+  "benefit_daily_fortune": "• VIP限定で1日1回の無料霊能占い"
 };

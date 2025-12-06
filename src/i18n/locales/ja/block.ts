@@ -1,6 +1,6 @@
 export default {
   "cannotIdentify": "⚠️ 会話相手を特定できません。",
-  "catchNewBottle": "💡 /catchを使用して新しいメッセージボトルを選び、新しい会話を開始してください。",
+  "catchNewBottle": "💡 /catchを使って新しい祈りのボトルを収集し、新しい会話を始めましょう。",
   "conversationInfoError": "⚠️ 会話情報エラー。",
   "conversationMayEnded": "会話は終了したか、存在しません。",
   "conversationNotFound": "⚠️ この会話が見つかりません",
@@ -12,5 +12,5 @@ export default {
   "step3": "3️⃣ /blockを入力します。",
   "steps": "**操作手順:**",
   "success": "✅ ユーザー (#{identifier})がブロックされました。",
-  "willNotMatch": "互いのボトルメールが表示されなくなります。"
+  "willNotMatch": "あなたたちはお互いの祈りのボトルに再びマッチすることはありません。"
 };

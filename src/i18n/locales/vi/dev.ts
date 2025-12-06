@@ -1,7 +1,7 @@
 export default {
   "autoCompleted": "Quá trình đăng ký đã được hoàn thành tự động.\n\n",
-  "bottles": "• Chai thư: {count}\n",
-  "catchCommand": "• /catch - Bắt chai thư\n",
+  "bottles": "• Chai Cầu Nguyện Blessing Blessing: {count}",
+  "catchCommand": "• /catch - Nhặt một Chai Cầu Nguyện",
   "conversations": "• Cuộc trò chuyện: {count}\n",
   "dataReset": "✅ Chế độ nhà phát triển: Dữ liệu đã được đặt lại\n\nTất cả dữ liệu của bạn đã bị xóa.\n\n💡 Bạn có thể bắt đầu lại quá trình đăng ký thử nghiệm.\n\n🔄 Đăng ký lại: /start\nhoặc sử dụng: /dev_restart (tự động bắt đầu đăng ký)\n\n⚠️ Lưu ý: Tính năng này chỉ khả dụng trong môi trường Staging.",
   "getUserInfoFailed": "❌ Không thể lấy thông tin",
@@ -30,7 +30,7 @@ export default {
   "telegramId": "ID Telegram: {id}\n",
   "testCoreFeatures": "💡 Bạn hiện có thể thử nghiệm trực tiếp các tính năng cốt lõi:\n",
   "testUser": "Người dùng thử",
-  "throwCommand": "• /throw - Ném chai thư\n",
+  "throwCommand": "• /throw - Ném một Chai Cầu Nguyện",
   "userInfo": "🔧 Chế độ phát triển: Thông tin người dùng\n\n",
   "userNotFound": "❌ Người dùng không tồn tại",
   "vip": "{status}\n",

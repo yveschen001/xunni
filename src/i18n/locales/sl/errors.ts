@@ -97,9 +97,9 @@ export default {
     "nickname": "❌ Pridobitev Telegram vzdevka ni uspela",
     "nickname2": "❌ Ime uporabnika ne more vsebovati povezave do spletnega mesta\n\n",
     "nickname3": "❌ \\{validation.error}\n\nProsim, ponovno vnesite vzdevek:",
-    "quota": "❌ Dnevna kvota za sporočilne steklenice je bila izčrpana (\\{quotaDisplay})\n\n💡 Načini za pridobitev več kvote:\n",
+    "quota": "❌ Kvota za blagoslov za današnjo steklenico blagoslova je bila porabljena (\\{quotaDisplay})\n\n💡 Načini za pridobitev več kvot:",
     "quota2": "❌ Dnevna kvota za pogovor je bila izčrpana (\\{usedToday}/\\{dailyLimit})\n\n",
-    "quota3": "❌ Dnevna kvota za sporočilne steklenice je bila izčrpana (\\{quotaDisplay})\n\n",
+    "quota3": "❌ Kvota blagoslova za današnji Stek blagoslova je bila porabljena (\\{quotaDisplay})",
     "register": "❌ Najprej zaključite postopek registracije.\n\nUporabite /start za nadaljevanje registracije.",
     "register2": "❌ Podatki uporabnika niso bili najdeni, prosimo uporabite /start za registracijo najprej.",
     "register3": "❌ Za prevzemanje sporočilnih steklenic zaključite postopek registracije.\n\nUporabite /start za nadaljevanje registracije.",
@@ -179,5 +179,6 @@ export default {
   "userNotFoundRegister": "⚠️ Uporabnik ne obstaja, prosim, najprej se registrirajte z /start.",
   "verificationFailed": "❌ Potrditev ni uspela, prosim, poskusite znova kasneje",
   "invalidTimeFormat": "Neveljaven časovni format\nNa primer: 19:30 (24-urni format, 00-23 ure, 00-59 minut)",
-  "invalidDateFormat": "Neveljaven datumni format\nNa primer: 2000-01-01"
+  "invalidDateFormat": "Neveljaven datumni format\nNa primer: 2000-01-01",
+  "taskAlreadyCompleted": "❌ Ta naloga je že bila zaključena in nagrada je bila zahtevana."
 };

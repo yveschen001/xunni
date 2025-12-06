@@ -12,5 +12,6 @@ export default {
   "nicknameInputHint": "👇 لطفاً یک نام مستعار جدید وارد کنید:",
   "bioInstruction": "لطفاً یک معرفی‌نامه جدید وارد کنید (حداکثر ۱۰۰ کاراکتر).\n\nمعرفی‌نامه فعلی شما: {bio}",
   "bioInputHint": "👇 لطفاً یک معرفی‌نامه جدید وارد کنید:",
-  "bloodTypeInstruction": "لطفاً گروه خونی خود را انتخاب کنید:"
+  "bloodTypeInstruction": "لطفاً گروه خونی خود را انتخاب کنید:",
+  "matchPrefInstruction": "لطفاً ترجیح مطابقت خود را انتخاب کنید:"
 };

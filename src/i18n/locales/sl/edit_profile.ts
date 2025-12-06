@@ -12,5 +12,6 @@ export default {
   "nicknameInputHint": "👇 Prosimo, vnesite nov vzdevek:",
   "bioInstruction": "Prosimo, vnesite novo samopredstavitev (do 100 znakov).\n\nVaša trenutna samopredstavitev je: {bio}",
   "bioInputHint": "👇 Prosimo, vnesite novo samopredstavitev:",
-  "bloodTypeInstruction": "Izberite svojo krvno skupino:"
+  "bloodTypeInstruction": "Izberite svojo krvno skupino:",
+  "matchPrefInstruction": "Prosimo, izberite svojo prednost ujemanja:"
 };

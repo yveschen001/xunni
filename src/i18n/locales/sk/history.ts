@@ -19,7 +19,7 @@ export default {
   "noMessages": "(žiadne správy)",
   "partnerMessages": "• Druhá strana poslala: {count} správ\n",
   "recentMessages": "📨 **Nedávne konverzácie:**\n\n",
-  "returnToMenu": "🏠 Vrátiť sa do hlavného menu: /menu",
+  "returnToMenu": "🏠 Hlavná ponuka",
   "returnToMenuButton": "🏠 Späť na hlavnú ponuku",
   "stats": "📊 **Štatistiky:**\n",
   "time": "Čas: {time}\n\n",

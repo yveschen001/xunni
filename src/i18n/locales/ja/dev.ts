@@ -1,7 +1,7 @@
 export default {
   "autoCompleted": "登録プロセスは自動的に完了しました。\n\n",
-  "bottles": "• メッセージボトル: {count}\n",
-  "catchCommand": "• /catch - メッセージボトルをキャッチする\n",
+  "bottles": "• 祈りのボトル: {count}",
+  "catchCommand": "• /catch - 祈りのボトルを拾う",
   "conversations": "• 会話: {count}\n",
   "dataReset": "✅ 開発モード: データがリセットされました\n\nあなたのデータはすべて削除されました。\n\n💡 テスト登録プロセスを再開できます。\n\n🔄 再登録: /start\nまたは使用: /dev_restart (自動的に登録を開始する)\n\n⚠️ 注意: この機能はステージング環境でのみ利用可能です。",
   "getUserInfoFailed": "❌ 情報の取得に失敗しました",
@@ -30,7 +30,7 @@ export default {
   "telegramId": "Telegram ID: {id}",
   "testCoreFeatures": "💡 コア機能を直接テストできるようになりました:\n",
   "testUser": "テストユーザー",
-  "throwCommand": "• /throw - メッセージボトルを投げる\n",
+  "throwCommand": "• /throw - 祈りのボトルを投げる",
   "userInfo": "🔧 開発モード: ユーザー情報\n\n",
   "userNotFound": "❌ ユーザーが見つかりません",
   "vip": "VIP: {status}",

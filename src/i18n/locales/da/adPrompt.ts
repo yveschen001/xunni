@@ -1,7 +1,7 @@
 export default {
   "completeTask": "• ✨ Fuldfør opgaver (optjen permanente kvoter)",
   "inviteFriends": "• 🎁 Inviter venner (optjen +1 kvote pr. person)",
-  "quotaExhausted": "❌ Dagens flaskepostkvote er blevet brugt op ({quotaDisplay})",
+  "quotaExhausted": "❌ Dagens Ønskeflaske kvote er opbrugt ({quotaDisplay})",
   "taskButton": "✨ {taskName} 🎁",
   "upgradeVip": "• 💎 Opgrader til VIP (30 kvoter dagligt)",
   "watchAd": "• 📺 Se annoncer (resterende {remaining}/20 gange)",

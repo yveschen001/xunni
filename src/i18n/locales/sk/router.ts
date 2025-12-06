@@ -1,7 +1,7 @@
 export default {
   "replyPrompt": "💬 Odpovedať",
-  "suggestCatch": "❓ Chcete vyzdvihnúť message bottle?\n\nPoužite /catch na vyzdvihnutie message bottle\n\n💡 **Bežné príkazy**:\n• /throw - Hodiť message bottle\n• /catch - Vyzdvihnúť message bottle\n• /menu - Hlavné menu\n• /tasks - Stredisko úloh",
-  "suggestMenu": "❓ Príkaz nenájdený\n\n💡 **Bežné príkazy**:\n• /throw - Hodiť message bottle\n• /catch - Vyzdvihnúť message bottle\n• /menu - Hlavné menu\n• /tasks - Stredisko úloh",
-  "suggestThrow": "❓ Chcete hodiť message bottle?\n\nProsím, dlhým stlačením predchádzajúcej správy alebo tejto správy,\nvyberte 'Odpovedať' z ponuky,\npotom zadajte obsah message bottle, ktorý sa má odoslať\n\n💡 **Bežné príkazy**:\n• /throw - Hodiť message bottle\n• /catch - Vyzdvihnúť message bottle\n• /menu - Hlavné menu\n• /tasks - Stredisko úloh\n\n#THROW",
-  "throwPrompt": "📝 Zadajte prosím obsah vašej message bottle:"
+  "suggestCatch": "❓ Chcete zachytiť Blessing Bottle?\n\nPoužite Catch na zachytenie Blessing Bottle\n\n💡 **Bežné príkazy**:\n• Throw - Hodiť Blessing Bottle\n• Catch - Zachytiť Blessing Bottle\n• Main Menu - Hlavné menu\n• Tasks - Úlohy",
+  "suggestMenu": "❓ Tento príkaz neexistuje\n\n💡 **Bežné príkazy**:\n• Throw - Hodiť Blessing Bottle\n• Catch - Zachytiť Blessing Bottle\n• Main Menu - Hlavné menu\n• Tasks - Úlohy",
+  "suggestThrow": "❓ Chcete hodiť Blessing Bottle?\n\nDlhým stlačením predchádzajúcej správy alebo tejto správy,\nvyberte možnosť „Odpovedať“ a\nzadajte obsah Blessing Bottle\n\n💡 **Bežné príkazy**:\n• Throw - Hodiť Blessing Bottle\n• Catch - Zachytiť Blessing Bottle\n• Main Menu - Hlavné menu\n• Tasks - Úlohy\n\n#THROW",
+  "throwPrompt": "📝 Zadajte obsah vašej Blessing Bottle:"
 };

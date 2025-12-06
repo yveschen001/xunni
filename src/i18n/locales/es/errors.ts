@@ -97,9 +97,9 @@ export default {
     "nickname": "❌ No se pudo obtener el apodo de Telegram",
     "nickname2": "❌ El nombre de usuario no puede contener un enlace de sitio web\n\n",
     "nickname3": "❌ \\{validation.error}\n\nPor favor, vuelve a ingresar tu apodo:",
-    "quota": "❌ La cuota de botellas de mensajes de hoy se ha agotado (\\{quotaDisplay})\n\n💡 Formas de obtener más cuota:\n",
+    "quota": "❌ La cuota de bendiciones de la botella de bendiciones de hoy se ha agotado (\\{quotaDisplay})\n\n💡 Maneras de obtener más cuotas:",
     "quota2": "❌ La cuota de mensajes de conversación de hoy se ha agotado (\\{usedToday}/\\{dailyLimit})\n\n",
-    "quota3": "❌ La cuota de botellas de mensajes de hoy se ha agotado (\\{quotaDisplay})\n\n",
+    "quota3": "❌ La cuota de bendiciones de la Botella de Bendición de hoy se ha agotado (\\{quotaDisplay})",
     "register": "❌ Por favor, completa primero el proceso de registro.\n\nUsa /start para continuar con el registro.",
     "register2": "❌ Perfil de usuario no encontrado, por favor usa /start para registrarte primero.",
     "register3": "❌ Por favor, completa el proceso de registro antes de recoger botellas de mensajes.\n\nUsa /start para continuar con el registro.",
@@ -179,5 +179,6 @@ export default {
   "userNotFoundRegister": "⚠️ El usuario no existe, por favor regístrate usando /start primero.",
   "verificationFailed": "❌ La verificación falló, por favor intenta de nuevo más tarde",
   "invalidTimeFormat": "Formato de hora no válido\nPor ejemplo: 19:30 (formato de 24 horas, 00-23 horas, 00-59 minutos)",
-  "invalidDateFormat": "Formato de fecha no válido\nPor ejemplo: 2000-01-01"
+  "invalidDateFormat": "Formato de fecha no válido\nPor ejemplo: 2000-01-01",
+  "taskAlreadyCompleted": "❌ Esta tarea ya se ha completado y la recompensa ha sido reclamada."
 };

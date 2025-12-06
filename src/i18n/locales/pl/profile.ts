@@ -26,7 +26,7 @@ export default {
   "manual": "Ustawienia ręczne",
   "mbti": "• Użyj /mbti, aby powtórzyć test lub zmodyfikować MBTI\n",
   "mbtiWithSource": "🧠 MBTI: {mbti}{source}",
-  "message": "https://t.me/share/url?url=https://t.me/{botUsername}?start=invite_{inviteCode}&text=Dołącz do XunNi i rzucaj butelki z wiadomościami razem!🍾 Użyj mojego kodu zaproszenia: {inviteCode}",
+  "message": "XunNi, razem rzućmy Butelka Życzeń! 🍾 Użyj mojego kodu zaproszenia: {inviteCode}",
   "message2": "{inviteLimitWarning}\n\n",
   "message3": "🌍 Język: {user.language_pref}\n\n",
   "message4": "🌍 Język: {user.language_pref }\n",
@@ -42,7 +42,7 @@ export default {
   "quota2": "📦 Aktualny dzienny limit: {taskBonus > 0 ?",
   "quotaBottles": "{taskBonus} butelek z wiadomościami",
   "quotaTotal": "📦 Obecny dzienny limit: {quota}\n\n",
-  "returnToMenu": "🏠 Powrót do menu głównego: /menu",
+  "returnToMenu": "🏠 Powrót",
   "separator": "━━━━━━━━━━━━━━━━\n\n",
   "settings": "Nie ustawiono",
   "settings2": "Nie ustawiono",
@@ -71,5 +71,14 @@ export default {
   "zodiac": "⭐ Znak zodiaku: {zodiac}\n",
   "fortuneQuota": "🔮 {fortuneBottle}: {total} (Ten tydzień gratis: {weekly}/{limit} | Dodatkowo: {additional})",
   "vipWithDays": "💎 VIP członek (Pozostało {days} dni, Wygasa: {expireDate})",
-  "driftBottleInfo": "🍾 butelka wiadomości: {remaining} / {total}"
+  "driftBottleInfo": "🍾 Butelka Życzeń: {remaining} / {total}",
+  "ageRange": "Wiek: {min}-{max}",
+  "fortuneMatchButton": "💘 Wróżba",
+  "giftVipButton": "🎁 Podaruj VIP",
+  "giftFortuneBottleButton": "🔮 Podaruj butelkę wróżby",
+  "moreOptions": "⚙️ Więcej opcji...",
+  "blockUser": "🚫 Zablokuj użytkownika",
+  "reportUser": "⚠️ Zgłoś",
+  "moreOptionsTitle": "⚙️ Więcej opcji",
+  "giftedVipNote": "🎁 Ktoś podarował ci VIP"
 };

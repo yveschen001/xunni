@@ -27,8 +27,8 @@ export default {
   "message8": "Çmimi: {priceStars} ⭐ Yjet e Telegramit / muaj\n",
   "message9": "Koha e pagesës: {paymentDate.toLocaleDateString(",
   "purchaseCancelled": "✅ Blerja u anulua",
-  "quota": "• Kuota ditore prej 30 butelesh mesazhesh (ftesat për miq mund ta rritin këtë, deri në 100 në ditë)\n",
-  "quota2": "• Kuota ditore prej 30 butelesh mesazhesh (deri në 100 në ditë)\n",
+  "quota": "• Çdo ditë 30 Blessing Bottle kuota (fto miqtë për të rritur, maksimumi 100 Blessing Bottle/shtatë)\n",
+  "quota2": "• Çdo ditë 30 Blessing Bottle kuota (maksimumi 100 Blessing Bottle/shtatë)\n",
   "refundAdminCommands": "💡 Përdorni komandat e mëposhtme për të vazhduar:\n• Miratoni: `/admin_approve_refund <ID>`\n• Refuzoni: `/admin_reject_refund <ID> <reason>`",
   "refundApproved": "✅ **Rimbursimi Miratuar**\n\nShuma e Rimbursimit: {amount} ⭐\nRimbursimi do të kreditohet brenda 1-3 ditëve të punës.\n\nAnëtarësia juaj VIP është anuluar.\n\nFaleminderit për kuptimin tuaj!",
   "refundApprovedAdmin": "✅ Rimbursimi Miratuar\n\nID e Kërkesës: #{requestId}\nID e Përdoruesit: {userId}\nShuma: {amount} ⭐",
@@ -75,7 +75,7 @@ export default {
   "text11": "{expireDate} {expireDate}\n\n",
   "text12": "Rimbursimet do të kreditohen brenda 1-3 ditëve të punës.\n\n",
   "text13": "ID e Kërkesës: #{requestId}\n",
-  "text14": "└ 1 ndeshje inteligjente + 2 shfaqje të publikë të mesajes së shishës: Një shtesë prej 2 vendesh shfaqjeje, duke pritur për një person të destinuar për t'i marrë ato.\nRritni mundësitë e parësh të shishës tuaj të mesazhimit të shqyrtohen me 300%!",
+  "text14": "└ 1 përputhje inteligjente + 2 vende përpara në bazën publike të Blessing Bottle: shtoni 2 vende ekstra për të pritur dikë me fat. \nRritni mundësinë që shishja juaj të shihet me 300%!",
   "text15": "Do të njoftoheni për rezultatet e përpunimit përmes Botit.\n\n",
   "text16": "Ju lutem shkruani arsye për rimbursim (të paktën 10 karaktere):",
   "text17": "Arsye: {req.reason}\n",
@@ -130,5 +130,5 @@ export default {
   "upgrade": "Përmirësohu në VIP",
   "maxDurationExceeded": "⚠️ Periudha juaj VIP ka arritur kufirin ({maxMonths} muaj), dhe nuk mund të vazhdoni të blini për momentin.",
   "refundedAndRevoked": "ℹ️ Pagesa juaj është rimbursuar, dhe përfitimet VIP janë revokuar.",
-  "benefit_daily_fortune": "• 1 parashikim falas me IA në ditë (ekskluziv për VIP)"
+  "benefit_daily_fortune": "• 1 lexhim i lirë psikik në ditë (ekskluziv për VIP)"
 };

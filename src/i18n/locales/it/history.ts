@@ -19,7 +19,7 @@ export default {
   "noMessages": "(Nessun messaggio)",
   "partnerMessages": "• Messaggi inviati dall'altra parte: {count}\n",
   "recentMessages": "📨 **Conversazioni Recenti:**\n\n",
-  "returnToMenu": "🏠 Torna al Menu Principale: /menu",
+  "returnToMenu": "🏠 Menu Principale",
   "returnToMenuButton": "🏠 Torna al menu principale",
   "stats": "📊 **Statistiche:**\n",
   "time": "Ora: {time}\n\n",

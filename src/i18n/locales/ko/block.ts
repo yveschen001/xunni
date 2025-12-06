@@ -1,6 +1,6 @@
 export default {
   "cannotIdentify": "⚠️ 대화 상대를 확인할 수 없습니다.",
-  "catchNewBottle": "💡 /catch를 사용하여 새 메시지 병을 수집하고 새 대화를 시작하십시오.",
+  "catchNewBottle": "💡 /catch를 사용하여 새로운 축복의 병을 수집하고 새로운 대화를 시작하세요.",
   "conversationInfoError": "⚠️ 대화 정보가 올바르지 않습니다.",
   "conversationMayEnded": "대화가 종료되었거나 존재하지 않을 수 있습니다.",
   "conversationNotFound": "⚠️ 이 대화를 찾을 수 없습니다.",
@@ -12,5 +12,5 @@ export default {
   "step3": "3️⃣ /block을 입력하세요.",
   "steps": "**작업 단계:**",
   "success": "✅ 이 사용자가 차단되었습니다 (#{identifier}).",
-  "willNotMatch": "더 이상 서로의 메시지 병과 매칭되지 않습니다."
+  "willNotMatch": "더 이상 서로의 축복 축복의 병과 매칭되지 않습니다."
 };

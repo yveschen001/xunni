@@ -13,7 +13,7 @@ export default {
   "bloodType": "✅ Grupi i gjakut u azhornua në {getBloodTypeDisplay(bloodType as any)}",
   "bloodType2": "✅ Grupi i gjakut u pastrua",
   "bottle": "✅ Shpërblimi i dhënë! +1 message bottle",
-  "bottle2": "✅ Filloi një message bottle të re",
+  "bottle2": "✅ Fill a Blessing Bottle të re",
   "bottle3": "✅ Message bottle e krijuar\n",
   "broadcast": "✅ Pastruar {ids.length} transmetime të ngecura\n\n",
   "broadcast2": "✅ Nuk ka transmetime për tu pastruar\n\n",
@@ -95,7 +95,7 @@ export default {
     "bloodType": "✅ Grupe gjaku e përditësuar në \\{getBloodTypeDisplay(bloodType as any)}",
     "bloodType2": "✅ Grupe gjaku e pastruar",
     "bottle": "✅ Shpërblim i dhënë! +1 message bottle",
-    "bottle2": "✅ Filloni një message bottle të re",
+    "bottle2": "✅ Filloni një Bekim të ri në Mesazhin e Bekimit",
     "bottle3": "✅ Message bottle e krijuar\n",
     "broadcast": "✅ Pastruar \\{ids.length} transmetime të ngecura\n\n",
     "broadcast2": "✅ Nuk ka transmetime për tu pastruar\n\n",
@@ -238,6 +238,6 @@ export default {
   "verify2": "✅ Verifikimi ishte i suksesshëm! Fitove +\\{ad.reward_quota} kuota permanente!",
   "vip": "✅ Të gjitha postimet janë deri në datë (statusi VIP është korrekt)\n",
   "zodiac": "✅ Përcaktimi i zodiakut u pastrua",
-  "bottleThrown": "🍾 Message bottle është hedhur!",
+  "bottleThrown": "✅ Blessing Bottle është hedhur!",
   "saved": "✅ Cilësimet u ruajtën"
 };

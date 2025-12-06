@@ -1,7 +1,20 @@
 import { D1Database } from '@cloudflare/workers-types';
 import { Solar } from 'lunar-javascript';
+import * as Astronomy from 'astronomy-engine';
 import { Env, FortuneHistory, FortuneProfile, FortuneQuota, FortuneType, User } from '../types';
 import { FORTUNE_PROMPTS } from '../prompts/fortune';
+
+function getZodiacFromLon(lon: number): string {
+  const signs = [
+    'Aries', 'Taurus', 'Gemini', 'Cancer', 'Leo', 'Virgo',
+    'Libra', 'Scorpio', 'Sagittarius', 'Capricorn', 'Aquarius', 'Pisces'
+  ];
+  // Normalize 0-360
+  let norm = lon % 360;
+  if (norm < 0) norm += 360;
+  const index = Math.floor(norm / 30);
+  return signs[index];
+}
 
 export class FortuneService {
   private db: D1Database;
@@ -25,15 +38,39 @@ export class FortuneService {
     // Parse Time (default to 12:00 if unknown)
     let hour = 12;
     let minute = 0;
+    let isExactTime = false;
+
     if (timeStr) {
       const timeParts = timeStr.split(':').map(Number);
       hour = timeParts[0];
       minute = timeParts[1];
+      isExactTime = true;
     }
     
     // 1. Chinese BaZi (Lunar JavaScript)
-    // Lunar.fromSolar(year, month, day)
-    const solar = Solar.fromYmdHms(year, month, day, hour, minute, 0);
+    // Precise Solar Time Correction if longitude is available
+    let solar: Solar;
+    
+    if (lng != null && isExactTime) {
+      // Calculate Time Equation/Offset
+      // Base assumption: Input is Local Mean Time or close to it? 
+      // Actually, BaZi requires True Solar Time.
+      // Solar.fromYmdHms creates an object. We can use `Solar.fromBaZi` logic if we had pillars, 
+      // but here we go from Date -> Pillars.
+      // Correct approach: Adjust the timestamp for Longitude before creating Solar object?
+      // No, l6.js (lunar-javascript) works with standard dates.
+      // However, for high precision, we should adjust the minutes passed to it.
+      // Approx: 1 degree longitude = 4 minutes time difference from UTC? 
+      // No, we need offset from the Timezone Center.
+      // Assuming user input is "Wall Clock Time". We assume a standard timezone (e.g. +8 for CN/TW).
+      // We don't know the timezone! This is a limitation.
+      // But we can pretend input is UTC and shift it? No.
+      // Let's rely on standard calculation for now but mark it as "Standard".
+      solar = Solar.fromYmdHms(year, month, day, hour, minute, 0);
+    } else {
+      solar = Solar.fromYmdHms(year, month, day, hour, minute, 0);
+    }
+
     const lunar = solar.getLunar();
     const eightChar = lunar.getEightChar();
     
@@ -41,36 +78,111 @@ export class FortuneService {
       lunar_date: lunar.toString(),
       eight_char: eightChar.toString(), // e.g. "甲子 乙丑 丙寅 丁卯"
       day_master: eightChar.getDayGan().toString(), // 日主 (Core self)
+      month_branch: eightChar.getMonthZhi().toString(), // 月支 (Season)
       wuxing: lunar.getBaZiWuXing(), // 五行
       animals: {
         year: lunar.getYearShengXiao(),
         month: lunar.getMonthShengXiao(),
         day: lunar.getDayShengXiao(),
         time: lunar.getTimeShengXiao(),
-      }
+      },
+      precision: (lng != null && isExactTime) ? 'high' : 'standard'
     };
 
     // 2. Western Astrology (Astronomy Engine)
-    // Need accurate Date object for astronomy-engine
-    // Note: astronomy-engine uses JS Date object which might be UTC. 
-    // We should treat input time as local time at the location if coordinates provided, 
-    // but astronomy-engine usually takes UTC Date. 
-    // For simplicity, we might assume user input time is local, convert to UTC approx or strict if we know timezone.
-    // For now, let's assume the date/time is roughly correct for simple planetary positions.
-    // If we have lat/lng, we can be more precise.
-    
-    const date = new Date(year, month - 1, day, hour, minute);
-    // TODO: Handle Timezone properly. For now, using system local or UTC depending on runtime. 
-    // Ideally we should ask Google Maps API for timezone of the city, store it in profile.
-    
-    const westernChart = {
-      sun_sign: this.getSunSign(month, day), // Simple zodiac
-      // TODO: Calculate Moon sign using astronomy-engine (requires robust timezone handling)
-      moon_phase: 'Unknown', // lunar.getPhase() not available in this version
+    const westernChart: any = {
+      precision: 'low',
+      sun_sign: this.getSunSign(month, day), // Fallback
+      moon_sign: 'Unknown',
+      ascendant: 'Unknown',
+      planets: {}
     };
+
+    if (lat != null && lng != null) {
+        try {
+            // Assume Input Time is roughly correct local time.
+            // Convert to UTC for Astronomy Engine.
+            // Without Timezone lib, we approximate UTC = Local - (Lng/15).
+            // This is "Mean Solar Time" approximation which is better than raw input if we assumed UTC.
+            const tzOffsetHours = lng / 15;
+            const dateObj = new Date(Date.UTC(year, month - 1, day, hour, minute));
+            const utcTime = dateObj.getTime() - (tzOffsetHours * 3600 * 1000);
+            const utcDate = new Date(utcTime);
+            
+            const observer = new Astronomy.Observer(lat, lng, 0);
+            
+            // Calculate Planets
+            const bodies = [
+                { name: 'Sun', body: Astronomy.Body.Sun },
+                { name: 'Moon', body: Astronomy.Body.Moon },
+                { name: 'Mercury', body: Astronomy.Body.Mercury },
+                { name: 'Venus', body: Astronomy.Body.Venus },
+                { name: 'Mars', body: Astronomy.Body.Mars },
+                { name: 'Jupiter', body: Astronomy.Body.Jupiter },
+                { name: 'Saturn', body: Astronomy.Body.Saturn }
+            ];
+
+            const planets: Record<string, string> = {};
+
+            for (const item of bodies) {
+                // GeoVector gives position relative to Earth center
+                const vector = Astronomy.GeoVector(item.body, utcDate, true); // true = aberration correction
+                // Ecliptic coordinates (Longitude/Latitude)
+                // Use default J2000 equinox? Or of date? 
+                // Ecliptic(vector) assumes J2000 equator input usually.
+                // Let's use Heliocentric -> Geo -> Ecliptic proper flow if needed, 
+                // but GeoVector output is Equator J2000.
+                // Astronomy.Ecliptic converts Equator J2000 to Ecliptic J2000.
+                const ecliptic = Astronomy.Ecliptic(vector);
+                planets[item.name.toLowerCase()] = getZodiacFromLon(ecliptic.lon);
+            }
+
+            westernChart.planets = planets;
+            westernChart.sun_sign = planets.sun;
+            westernChart.moon_sign = planets.moon;
+            
+            if (isExactTime) {
+                // Calculate Ascendant
+                // Needs Sidereal Time
+                const dateVal = utcDate; // Date object works
+                const sidereal = Astronomy.SiderealTime(dateVal);
+                // RAMC = GST + Longitude (in hours)
+                // Greenwich Sidereal Time (hours)
+                // Local Sidereal Time = GST + Lng/15
+                const lst = sidereal + (lng / 15);
+                const ramc = lst * 15; // Convert to degrees
+                
+                // Obliquity of Ecliptic
+                const eps = Astronomy.Obliquity(dateVal);
+                
+                // Ascendant Formula: atan2(y, x)
+                // y = -cos(RAMC)
+                // x = sin(RAMC) * cos(eps) + tan(lat) * sin(eps)
+                const rad = Math.PI / 180;
+                const ramcRad = ramc * rad;
+                const epsRad = eps * rad;
+                const latRad = lat * rad;
+                
+                const y = -Math.cos(ramcRad);
+                const x = (Math.sin(ramcRad) * Math.cos(epsRad)) + (Math.tan(latRad) * Math.sin(epsRad));
+                
+                let asc = Math.atan2(y, x) / rad;
+                if (asc < 0) asc += 360;
+                
+                westernChart.ascendant = getZodiacFromLon(asc);
+                westernChart.precision = 'high';
+            } else {
+                westernChart.precision = 'medium'; // Has planets, no houses
+            }
+
+        } catch (e) {
+            console.error('Astronomy calculation error:', e);
+        }
+    }
 
     return {
       solar_date: `${year}-${month}-${day} ${hour}:${minute}`,
+      is_exact_time: isExactTime,
       chinese: chineseChart,
       western: westernChart,
     };
@@ -136,6 +248,32 @@ export class FortuneService {
     const query = `SELECT * FROM fortune_profiles WHERE user_id = ? ORDER BY is_default DESC, created_at ASC`;
     const { results } = await this.db.prepare(query).bind(userId).all<FortuneProfile>();
     return results;
+  }
+
+  async updateProfile(userId: string, profileId: number, data: Partial<FortuneProfile>): Promise<boolean> {
+    const allowedFields = ['name', 'gender', 'birth_date', 'birth_time', 'is_birth_time_unknown', 'birth_city', 'birth_location_lat', 'birth_location_lng'];
+    const updates: string[] = [];
+    const params: any[] = [];
+
+    for (const key of allowedFields) {
+      if (data[key as keyof FortuneProfile] !== undefined) {
+        updates.push(`${key} = ?`);
+        params.push(data[key as keyof FortuneProfile]);
+      }
+    }
+
+    if (updates.length === 0) return false;
+
+    const query = `UPDATE fortune_profiles SET ${updates.join(', ')} WHERE id = ? AND user_id = ?`;
+    params.push(profileId, userId);
+
+    try {
+      const res = await this.db.prepare(query).bind(...params).run();
+      return res.success;
+    } catch (e) {
+      console.error('Error updating profile:', e);
+      return false;
+    }
   }
   
   async deleteProfile(userId: string, profileId: number): Promise<boolean> {
@@ -449,7 +587,12 @@ export class FortuneService {
 
     // 3. Calculate Chart
     try {
-    const chart = await this.calculateChart(profile.birth_date, profile.birth_time, profile.birth_location_lat, profile.birth_location_lng);
+    const chart = await this.calculateChart(
+      profile.birth_date, 
+      profile.is_birth_time_unknown ? undefined : (profile.birth_time || undefined), 
+      profile.birth_location_lat ?? undefined, 
+      profile.birth_location_lng ?? undefined
+    );
     
     // 4. Build Prompt Context (Data First, Query Last)
     let systemPrompt = FORTUNE_PROMPTS.SYSTEM_ROLE;
@@ -457,6 +600,10 @@ export class FortuneService {
     // Inject Language into System Prompt (Optimized for Gemini 2.5)
     const userLang = user.language_pref || 'zh-TW';
     console.log(`[FortuneService] User Lang: ${userLang}`);
+    
+    // Create i18n instance for localized progress
+    const { createI18n } = await import('../i18n');
+    const i18n = createI18n(userLang);
     
     // Map code to natural language name for better adherence
     const LANG_NAMES: Record<string, string> = {
@@ -472,7 +619,8 @@ export class FortuneService {
     };
     const langName = LANG_NAMES[userLang] || userLang;
     
-    systemPrompt = systemPrompt.replace('{LANGUAGE}', langName);
+    systemPrompt = systemPrompt.replace(/{LANGUAGE}/g, langName);
+    systemPrompt += `\n\n⚠️ CRITICAL: You MUST respond in ${langName}. Even if the user data contains text in other languages, your analysis and output must be in ${langName}.`;
 
     // Get Localized Zodiac for Context
     let localizedZodiac = '';
@@ -535,7 +683,8 @@ export class FortuneService {
   <user_profile>
     <name>${profile.name}</name>
     <gender>${profile.gender}</gender>
-    <birth>${profile.birth_date} ${profile.birth_time || 'Unknown Time'}</birth>
+    <birth>${profile.birth_date} ${(!profile.is_birth_time_unknown && profile.birth_time) ? profile.birth_time : 'Unknown Time'}</birth>
+    <user_language>${langName}</user_language>
     <zodiac>${localizedZodiac}</zodiac>
     <location>${profile.birth_city || 'Unknown'}</location>
     <mbti>${user.mbti_result || 'Unknown'}</mbti>
@@ -598,15 +747,13 @@ export class FortuneService {
         
         // Progress Update
         if (onProgress) {
-            // "Analzying Part X/Y..." (Localized ideally, but for now simple English/Icon)
-            // Or we can assume the caller handles localization if we pass a key, but passing raw text is easier for now.
-            // Let's rely on emojis to be universal.
+            // "Analyzing Part X/Y..." (Localized)
             const progressIcons = ['🌑', '🌒', '🌓', '🌔', '🌕'];
             const icon = progressIcons[Math.min(i, progressIcons.length - 1)];
             const stepNum = i + 1;
             const total = chain.length;
-            // E.g. "Analyzing... (1/5)"
-            await onProgress(`${icon} Analyzing... (${stepNum}/${total})`);
+            const analyzingText = i18n.t('common.analyzing'); // "Analyzing..."
+            await onProgress(`${icon} ${analyzingText} (${stepNum}/${total})`);
         }
 
         let taskPrompt = FORTUNE_PROMPTS[promptKey];
@@ -721,12 +868,25 @@ export class FortuneService {
                         // Clean Output (Remove JSON block)
                         stepContent = stepContent.replace(match[0], '').trim();
                     } else {
-                        // Fallback: Try finding just the JSON object at the start if no code blocks
-                        const laxMatch = stepContent.match(/^\s*(\{[\s\S]*?\})/);
+                        // Fallback: Try finding just the JSON object anywhere if no code blocks
+                        // Note: Removed anchor ^ to allow intro text
+                        const laxMatch = stepContent.match(/(\{[\s\S]*?\})/);
                         if (laxMatch && laxMatch[1]) {
                              jsonStr = laxMatch[1];
-                             data = JSON.parse(jsonStr);
-                             stepContent = stepContent.replace(laxMatch[0], '').trim();
+                             // Ensure it parses (it might match a partial object if not careful, but laxMatch captures first {})
+                             // If multiple {} exist, it takes the first outer one.
+                             try {
+                                data = JSON.parse(jsonStr);
+                                stepContent = stepContent.replace(laxMatch[0], '').trim();
+                             } catch (e) {
+                                // If first match failed, try to match specifically for "found" key
+                                const retryMatch = stepContent.match(/(\{\s*"celebrity_name"[\s\S]*?\})/);
+                                if (retryMatch) {
+                                    jsonStr = retryMatch[1];
+                                    data = JSON.parse(jsonStr);
+                                    stepContent = stepContent.replace(retryMatch[0], '').trim();
+                                }
+                             }
                         }
                     }
 

@@ -1,0 +1,226 @@
+🚀 Starting Local Simulation Environment (Role: user)...
+   👤 Simulating Ordinary User
+📦 Starting Cloudflare Worker (Local Mode)...
+⏳ Waiting for Worker to initialize (10s)...
+🧪 Running Simulation Tests...
+📡 Mock Telegram Server running on port 9000
+🚀 Starting Local Simulation Tests (Role: user)...
+🌱 Seeding user...
+✅ User seeded successfully
+
+🧪 Test 1: /start command
+[MockServer] POST /botmock-token/sendMessage {"chat_id":123456789,"text":"歡迎使用 XunNi！\n\n請選擇您的語言：","reply_markup":{"inline_keyboard":[[{"text":"🇹🇼 繁體中文（臺灣）","callback_data":"lang_zh-TW"},{"text":"🇨🇳 简体中文","callback_data":"lang_zh-CN"}],[{"te
+✅ Received Welcome Message: 歡迎使用 XunNi！
+
+請選擇您的語言：...
+
+🧪 Test 1.5: Onboarding V2 (Geo Selector)
+[MockServer] POST /botmock-token/answerCallbackQuery {"callback_query_id":"29604","show_alert":false}
+[MockServer] POST /botmock-token/answerCallbackQuery {"callback_query_id":"29604","text":"購買成功 🇹🇼 繁體中文（臺灣）","show_alert":false}
+[MockServer] POST /botmock-token/deleteMessage {"chat_id":123456789,"message_id":123}
+[MockServer] POST /botmock-token/sendMessage {"chat_id":123456789,"text":"✏️ 請選擇你的暱稱：\n\n⚠️ 暱稱長度限制 36 個字• 暱稱長度限制 36 個字\n• 對方最多顯示 18 個字\n• 請勿使用暱稱發送廣告","reply_markup":{"inline_keyboard":[[{"text":"使用 Telegram 暱稱","callback_data":"nickname_use_tele
+   ⚠️ Onboarding V2 flow verification failed (Feature might not be enabled yet): Timeout waiting for message matching: /地區|Region|Continent/
+
+🧪 Test 1.6: Fortune Telling Flow
+🌱 Seeding user...
+✅ User seeded successfully
+[MockServer] POST /botmock-token/sendMessage {"chat_id":123456789,"text":"👋 歡迎 Test！\n系統已自動帶入您的註冊資料（生日：1990-01-01）。\n為了提高準確度，請補充以下資訊：\n\n請輸入該對象的出生時間 (HH:mm)，若不確定請點擊下方按鈕：","reply_markup":{"inline_keyboard":[[{"text":"我不確定出生時間","callback_data":"f
+[MockServer] POST /botmock-token/sendMessage {"chat_id":123456789,"text":"👇 請輸入出生時間 (HH:mm) 或點擊按鈕："}
+   ⚠️ Fortune Flow verification failed: Timeout waiting for message matching: /名字|Name/
+
+🧪 Test 2: /profile command (Unregistered)
+🌱 Seeding user...
+✅ User seeded successfully
+[MockServer] POST /botmock-token/sendMessage {"chat_id":123456789,"text":"⚠️ 請先完成註冊流程。\n\n使用 /start 繼續註冊。"}
+✅ Received Registration Prompt: ⚠️ 請先完成註冊流程。
+
+使用 /start 繼續註冊。...
+🌱 Seeding user...
+✅ User seeded successfully
+
+🧪 Test 3: /stats command (Registered)
+[MockServer] POST /botmock-token/sendMessage {"chat_id":123456789,"text":"📊 **我的統計數據**\n\n🍾 **祝福漂流瓶**\n• 丟出：36 個\n\n• 撿到：26 個\n\n• 今日配額：0/3\n\n\n🔮 **算命瓶**\n• 算命次數 : 0\n• 剩餘額度 : 2 (本週免費: 1/1 | 額外: 1)\n\n💬 **對話**\n• 總對話數：26\n\n• 活躍對話：26\n\n• 總
+✅ Received Stats Response: 📊 **我的統計數據**
+
+🍾 **祝福漂流瓶**
+• 丟出：36 個
+
+• 撿到：26 個
+
+...
+
+🧪 Test 4: /help command (Ordinary User)
+[MockServer] POST /botmock-token/sendMessage {"chat_id":123456789,"text":"📖 **XunNi 指令列表**\n\n\n\n🎮 **核心功能**\n/start - 開始使用 / 繼續註冊\n/menu - 主選單\n/throw - 丟出祝福漂流瓶\n/catch - 撿起祝福漂流瓶\n/chats - 我的對話列表\n\n👤 **個人資料**\n/profile - 查看個人資料\n/profile_ca
+✅ Received Help Content
+   ✅ All essential user commands are present.
+   ✅ Admin commands are correctly hidden.
+
+🧪 Test 4.5: Settings Menu (Privacy Notice)
+[MockServer] POST /botmock-token/sendMessage {"chat_id":123456789,"text":"⚙️ **當前設定**\n\n語言：🇹🇼 繁體中文（臺灣）\n🌙 安靜時段: 0:00 - 0:00\n   在此時段內不會收到非緊急通知\n\n請選擇選項：⚠️ **重要提示**：VIP 會員對話記錄將保存 3 年。若停止續費，您的對話記錄將在會員過期後 **30 天** 被刪除。請注意備份重要資訊。","reply_markup"
+   ✅ Retention Notice found in Settings
+   ✅ Quiet Hours Button Text is valid: 🔒 安靜時段 (VIP 專屬)
+
+🧪 Test 5: RTL /start (Arabic) - SKIPPED
+
+🧪 Test 6: Localization Quality Check
+✅ Localization Check Passed.
+
+🧪 Test 6.5: Zodiac Localization Check
+   Checking en...
+🌱 Seeding user...
+✅ User seeded successfully
+[MockServer] POST /botmock-token/sendMessage {"chat_id":123456789,"text":"👤 **Profile**\n\n📛 Nickname: 🇦🇩 TestUser\nID: `123456789`\n🎂 Age: 25\n👤 Gender: Male\n🩸 Blood type: Not set\n🧠 MBTI: INTJ\n⭐ Zodiac: ♍️ Virgo\n🌍 Language: en\n\n�
+   ✅ en: Found "Virgo"
+   Checking zh-TW...
+🌱 Seeding user...
+✅ User seeded successfully
+[MockServer] POST /botmock-token/sendMessage {"chat_id":123456789,"text":"👤 **個人資料**\n\n📛 暱稱：🇦🇩 TestUser\nID: `123456789`\n🎂 年齡：25\n👤 性別：男性\n🩸 血型：未設定\n🧠 MBTI：INTJ\n⭐ 星座：♍️ 處女座\n🌍 語言：zh-TW\n\n💎 會員：免費會員\n\n━━━━━━━━━━━━━━━━\n\n🎁 **邀請資訊**
+   ✅ zh-TW: Found "處女座"
+   Checking ja...
+🌱 Seeding user...
+✅ User seeded successfully
+[MockServer] POST /botmock-token/sendMessage {"chat_id":123456789,"text":"👤 **個人資料**\n\n📛 暱稱：🇦🇩 TestUser\nID: `123456789`\n🎂 年齡：25\n👤 性別：男性\n🩸 血型：未設定\n🧠 MBTI：INTJ\n⭐ 星座：♍️ 處女座\n🌍 語言：ja\n\n💎 會員：免費會員\n\n━━━━━━━━━━━━━━━━\n\n🎁 **邀請資訊**\n\
+   ⚠️ ja: Expected "おとめ座" not found. Got:
+👤 **個人資料**
+
+📛 暱稱：🇦🇩 TestUser
+ID: `123456789`
+🎂 年齡：25
+👤 性別：男性
+🩸 血型：未設定
+🧠 MBTI：INTJ
+⭐ 星座：♍️ 處女座
+🌍 語言：ja
+
+💎 會員：免費會員
+
+━━━━━━━━━━━━━━━━
+
+🎁 **邀請資訊**
+
+📋 你的邀請碼：`未設定`
+✅ 已激活邀請：0 / 10 人
+⏳ 待激活邀請：0 人
+📈 轉化率：0%
+🍾 祝福漂流瓶：3 / 3
+🔮 算命瓶: 2 (本週免費: 1/1 | 額外: 1)
+💡 每成功邀請 1 人，每日配額永久 +1
+💡 完成任務可獲得當日額外配額（使用 /tasks 查看）
+━━━━━━━━━━━━━━━━
+
+💡 提示：
+• 使用 /profile_card 查看完整資料卡片
+• 使用 /mbti 重新測驗或修改 MBTI
+• 使用 /vip 升級 VIP 會員
+• 使用 /stats 查看統計數據
+
+🏠 返回主選單：/menu
+
+🧪 Test 7: VIP URL Whitelist
+🌱 Seeding conversation...
+   ⚠️ Skipping VIP URL Test (Requires complex conversation seeding with identifiers)
+
+🧪 Test 8: Rate Limiting
+   Sending 70 requests quickly (Limit: 60/min)...
+[MockServer] POST /botmock-token/sendMessage {"chat_id":123456789,"text":"🏠 **主選單** \n\n👋 嗨，TestUser！\n\n\n\n你的狀態\n• 🆓 免費會員\n• 🎂 生日: 2000-08-25\n• 🧠 MBTI: INTJ\n• ⭐ 星座: ♍️ 處女座\n• 🩸 血型: 未設定\n• 🏷️ 興趣: 未設定\n• 📝 簡介: 未設定\n• 🍾 祝福漂流瓶: 3 / 3\n•
+[MockServer] POST /botmock-token/sendMessage {"chat_id":123456789,"text":"🏠 **主選單** \n\n👋 嗨，TestUser！\n\n\n\n你的狀態\n• 🆓 免費會員\n• 🎂 生日: 2000-08-25\n• 🧠 MBTI: INTJ\n• ⭐ 星座: ♍️ 處女座\n• 🩸 血型: 未設定\n• 🏷️ 興趣: 未設定\n• 📝 簡介: 未設定\n• 🍾 祝福漂流瓶: 3 / 3\n•
+[MockServer] POST /botmock-token/sendMessage {"chat_id":123456789,"text":"🏠 **主選單** \n\n👋 嗨，TestUser！\n\n\n\n你的狀態\n• 🆓 免費會員\n• 🎂 生日: 2000-08-25\n• 🧠 MBTI: INTJ\n• ⭐ 星座: ♍️ 處女座\n• 🩸 血型: 未設定\n• 🏷️ 興趣: 未設定\n• 📝 簡介: 未設定\n• 🍾 祝福漂流瓶: 3 / 3\n•
+[MockServer] POST /botmock-token/sendMessage {"chat_id":123456789,"text":"🏠 **主選單** \n\n👋 嗨，TestUser！\n\n\n\n你的狀態\n• 🆓 免費會員\n• 🎂 生日: 2000-08-25\n• 🧠 MBTI: INTJ\n• ⭐ 星座: ♍️ 處女座\n• 🩸 血型: 未設定\n• 🏷️ 興趣: 未設定\n• 📝 簡介: 未設定\n• 🍾 祝福漂流瓶: 3 / 3\n•
+[MockServer] POST /botmock-token/sendMessage {"chat_id":123456789,"text":"🏠 **主選單** \n\n👋 嗨，TestUser！\n\n\n\n你的狀態\n• 🆓 免費會員\n• 🎂 生日: 2000-08-25\n• 🧠 MBTI: INTJ\n• ⭐ 星座: ♍️ 處女座\n• 🩸 血型: 未設定\n• 🏷️ 興趣: 未設定\n• 📝 簡介: 未設定\n• 🍾 祝福漂流瓶: 3 / 3\n•
+[MockServer] POST /botmock-token/sendMessage {"chat_id":123456789,"text":"🏠 **主選單** \n\n👋 嗨，TestUser！\n\n\n\n你的狀態\n• 🆓 免費會員\n• 🎂 生日: 2000-08-25\n• 🧠 MBTI: INTJ\n• ⭐ 星座: ♍️ 處女座\n• 🩸 血型: 未設定\n• 🏷️ 興趣: 未設定\n• 📝 簡介: 未設定\n• 🍾 祝福漂流瓶: 3 / 3\n•
+[MockServer] POST /botmock-token/sendMessage {"chat_id":123456789,"text":"🏠 **主選單** \n\n👋 嗨，TestUser！\n\n\n\n你的狀態\n• 🆓 免費會員\n• 🎂 生日: 2000-08-25\n• 🧠 MBTI: INTJ\n• ⭐ 星座: ♍️ 處女座\n• 🩸 血型: 未設定\n• 🏷️ 興趣: 未設定\n• 📝 簡介: 未設定\n• 🍾 祝福漂流瓶: 3 / 3\n•
+[MockServer] POST /botmock-token/sendMessage {"chat_id":123456789,"text":"🏠 **主選單** \n\n👋 嗨，TestUser！\n\n\n\n你的狀態\n• 🆓 免費會員\n• 🎂 生日: 2000-08-25\n• 🧠 MBTI: INTJ\n• ⭐ 星座: ♍️ 處女座\n• 🩸 血型: 未設定\n• 🏷️ 興趣: 未設定\n• 📝 簡介: 未設定\n• 🍾 祝福漂流瓶: 3 / 3\n•
+[MockServer] POST /botmock-token/sendMessage {"chat_id":123456789,"text":"🏠 **主選單** \n\n👋 嗨，TestUser！\n\n\n\n你的狀態\n• 🆓 免費會員\n• 🎂 生日: 2000-08-25\n• 🧠 MBTI: INTJ\n• ⭐ 星座: ♍️ 處女座\n• 🩸 血型: 未設定\n• 🏷️ 興趣: 未設定\n• 📝 簡介: 未設定\n• 🍾 祝福漂流瓶: 3 / 3\n•
+[MockServer] POST /botmock-token/sendMessage {"chat_id":123456789,"text":"🏠 **主選單** \n\n👋 嗨，TestUser！\n\n\n\n你的狀態\n• 🆓 免費會員\n• 🎂 生日: 2000-08-25\n• 🧠 MBTI: INTJ\n• ⭐ 星座: ♍️ 處女座\n• 🩸 血型: 未設定\n• 🏷️ 興趣: 未設定\n• 📝 簡介: 未設定\n• 🍾 祝福漂流瓶: 3 / 3\n•
+[MockServer] POST /botmock-token/sendMessage {"chat_id":123456789,"text":"🏠 **主選單** \n\n👋 嗨，TestUser！\n\n\n\n你的狀態\n• 🆓 免費會員\n• 🎂 生日: 2000-08-25\n• 🧠 MBTI: INTJ\n• ⭐ 星座: ♍️ 處女座\n• 🩸 血型: 未設定\n• 🏷️ 興趣: 未設定\n• 📝 簡介: 未設定\n• 🍾 祝福漂流瓶: 3 / 3\n•
+[MockServer] POST /botmock-token/sendMessage {"chat_id":123456789,"text":"🏠 **主選單** \n\n👋 嗨，TestUser！\n\n\n\n你的狀態\n• 🆓 免費會員\n• 🎂 生日: 2000-08-25\n• 🧠 MBTI: INTJ\n• ⭐ 星座: ♍️ 處女座\n• 🩸 血型: 未設定\n• 🏷️ 興趣: 未設定\n• 📝 簡介: 未設定\n• 🍾 祝福漂流瓶: 3 / 3\n•
+[MockServer] POST /botmock-token/sendMessage {"chat_id":123456789,"text":"🏠 **主選單** \n\n👋 嗨，TestUser！\n\n\n\n你的狀態\n• 🆓 免費會員\n• 🎂 生日: 2000-08-25\n• 🧠 MBTI: INTJ\n• ⭐ 星座: ♍️ 處女座\n• 🩸 血型: 未設定\n• 🏷️ 興趣: 未設定\n• 📝 簡介: 未設定\n• 🍾 祝福漂流瓶: 3 / 3\n•
+[MockServer] POST /botmock-token/sendMessage {"chat_id":123456789,"text":"🏠 **主選單** \n\n👋 嗨，TestUser！\n\n\n\n你的狀態\n• 🆓 免費會員\n• 🎂 生日: 2000-08-25\n• 🧠 MBTI: INTJ\n• ⭐ 星座: ♍️ 處女座\n• 🩸 血型: 未設定\n• 🏷️ 興趣: 未設定\n• 📝 簡介: 未設定\n• 🍾 祝福漂流瓶: 3 / 3\n•
+[MockServer] POST /botmock-token/sendMessage {"chat_id":123456789,"text":"🏠 **主選單** \n\n👋 嗨，TestUser！\n\n\n\n你的狀態\n• 🆓 免費會員\n• 🎂 生日: 2000-08-25\n• 🧠 MBTI: INTJ\n• ⭐ 星座: ♍️ 處女座\n• 🩸 血型: 未設定\n• 🏷️ 興趣: 未設定\n• 📝 簡介: 未設定\n• 🍾 祝福漂流瓶: 3 / 3\n•
+[MockServer] POST /botmock-token/sendMessage {"chat_id":123456789,"text":"🏠 **主選單** \n\n👋 嗨，TestUser！\n\n\n\n你的狀態\n• 🆓 免費會員\n• 🎂 生日: 2000-08-25\n• 🧠 MBTI: INTJ\n• ⭐ 星座: ♍️ 處女座\n• 🩸 血型: 未設定\n• 🏷️ 興趣: 未設定\n• 📝 簡介: 未設定\n• 🍾 祝福漂流瓶: 3 / 3\n•
+[MockServer] POST /botmock-token/sendMessage {"chat_id":123456789,"text":"🏠 **主選單** \n\n👋 嗨，TestUser！\n\n\n\n你的狀態\n• 🆓 免費會員\n• 🎂 生日: 2000-08-25\n• 🧠 MBTI: INTJ\n• ⭐ 星座: ♍️ 處女座\n• 🩸 血型: 未設定\n• 🏷️ 興趣: 未設定\n• 📝 簡介: 未設定\n• 🍾 祝福漂流瓶: 3 / 3\n•
+[MockServer] POST /botmock-token/sendMessage {"chat_id":123456789,"text":"🏠 **主選單** \n\n👋 嗨，TestUser！\n\n\n\n你的狀態\n• 🆓 免費會員\n• 🎂 生日: 2000-08-25\n• 🧠 MBTI: INTJ\n• ⭐ 星座: ♍️ 處女座\n• 🩸 血型: 未設定\n• 🏷️ 興趣: 未設定\n• 📝 簡介: 未設定\n• 🍾 祝福漂流瓶: 3 / 3\n•
+[MockServer] POST /botmock-token/sendMessage {"chat_id":123456789,"text":"🏠 **主選單** \n\n👋 嗨，TestUser！\n\n\n\n你的狀態\n• 🆓 免費會員\n• 🎂 生日: 2000-08-25\n• 🧠 MBTI: INTJ\n• ⭐ 星座: ♍️ 處女座\n• 🩸 血型: 未設定\n• 🏷️ 興趣: 未設定\n• 📝 簡介: 未設定\n• 🍾 祝福漂流瓶: 3 / 3\n•
+[MockServer] POST /botmock-token/sendMessage {"chat_id":123456789,"text":"🏠 **主選單** \n\n👋 嗨，TestUser！\n\n\n\n你的狀態\n• 🆓 免費會員\n• 🎂 生日: 2000-08-25\n• 🧠 MBTI: INTJ\n• ⭐ 星座: ♍️ 處女座\n• 🩸 血型: 未設定\n• 🏷️ 興趣: 未設定\n• 📝 簡介: 未設定\n• 🍾 祝福漂流瓶: 3 / 3\n•
+[MockServer] POST /botmock-token/sendMessage {"chat_id":123456789,"text":"🏠 **主選單** \n\n👋 嗨，TestUser！\n\n\n\n你的狀態\n• 🆓 免費會員\n• 🎂 生日: 2000-08-25\n• 🧠 MBTI: INTJ\n• ⭐ 星座: ♍️ 處女座\n• 🩸 血型: 未設定\n• 🏷️ 興趣: 未設定\n• 📝 簡介: 未設定\n• 🍾 祝福漂流瓶: 3 / 3\n•
+[MockServer] POST /botmock-token/sendMessage {"chat_id":123456789,"text":"🏠 **主選單** \n\n👋 嗨，TestUser！\n\n\n\n你的狀態\n• 🆓 免費會員\n• 🎂 生日: 2000-08-25\n• 🧠 MBTI: INTJ\n• ⭐ 星座: ♍️ 處女座\n• 🩸 血型: 未設定\n• 🏷️ 興趣: 未設定\n• 📝 簡介: 未設定\n• 🍾 祝福漂流瓶: 3 / 3\n•
+[MockServer] POST /botmock-token/sendMessage {"chat_id":123456789,"text":"🏠 **主選單** \n\n👋 嗨，TestUser！\n\n\n\n你的狀態\n• 🆓 免費會員\n• 🎂 生日: 2000-08-25\n• 🧠 MBTI: INTJ\n• ⭐ 星座: ♍️ 處女座\n• 🩸 血型: 未設定\n• 🏷️ 興趣: 未設定\n• 📝 簡介: 未設定\n• 🍾 祝福漂流瓶: 3 / 3\n•
+[MockServer] POST /botmock-token/sendMessage {"chat_id":123456789,"text":"🏠 **主選單** \n\n👋 嗨，TestUser！\n\n\n\n你的狀態\n• 🆓 免費會員\n• 🎂 生日: 2000-08-25\n• 🧠 MBTI: INTJ\n• ⭐ 星座: ♍️ 處女座\n• 🩸 血型: 未設定\n• 🏷️ 興趣: 未設定\n• 📝 簡介: 未設定\n• 🍾 祝福漂流瓶: 3 / 3\n•
+[MockServer] POST /botmock-token/sendMessage {"chat_id":123456789,"text":"🏠 **主選單** \n\n👋 嗨，TestUser！\n\n\n\n你的狀態\n• 🆓 免費會員\n• 🎂 生日: 2000-08-25\n• 🧠 MBTI: INTJ\n• ⭐ 星座: ♍️ 處女座\n• 🩸 血型: 未設定\n• 🏷️ 興趣: 未設定\n• 📝 簡介: 未設定\n• 🍾 祝福漂流瓶: 3 / 3\n•
+[MockServer] POST /botmock-token/sendMessage {"chat_id":123456789,"text":"🏠 **主選單** \n\n👋 嗨，TestUser！\n\n\n\n你的狀態\n• 🆓 免費會員\n• 🎂 生日: 2000-08-25\n• 🧠 MBTI: INTJ\n• ⭐ 星座: ♍️ 處女座\n• 🩸 血型: 未設定\n• 🏷️ 興趣: 未設定\n• 📝 簡介: 未設定\n• 🍾 祝福漂流瓶: 3 / 3\n•
+[MockServer] POST /botmock-token/sendMessage {"chat_id":123456789,"text":"🏠 **主選單** \n\n👋 嗨，TestUser！\n\n\n\n你的狀態\n• 🆓 免費會員\n• 🎂 生日: 2000-08-25\n• 🧠 MBTI: INTJ\n• ⭐ 星座: ♍️ 處女座\n• 🩸 血型: 未設定\n• 🏷️ 興趣: 未設定\n• 📝 簡介: 未設定\n• 🍾 祝福漂流瓶: 3 / 3\n•
+[MockServer] POST /botmock-token/sendMessage {"chat_id":123456789,"text":"🏠 **主選單** \n\n👋 嗨，TestUser！\n\n\n\n你的狀態\n• 🆓 免費會員\n• 🎂 生日: 2000-08-25\n• 🧠 MBTI: INTJ\n• ⭐ 星座: ♍️ 處女座\n• 🩸 血型: 未設定\n• 🏷️ 興趣: 未設定\n• 📝 簡介: 未設定\n• 🍾 祝福漂流瓶: 3 / 3\n•
+[MockServer] POST /botmock-token/sendMessage {"chat_id":123456789,"text":"🏠 **主選單** \n\n👋 嗨，TestUser！\n\n\n\n你的狀態\n• 🆓 免費會員\n• 🎂 生日: 2000-08-25\n• 🧠 MBTI: INTJ\n• ⭐ 星座: ♍️ 處女座\n• 🩸 血型: 未設定\n• 🏷️ 興趣: 未設定\n• 📝 簡介: 未設定\n• 🍾 祝福漂流瓶: 3 / 3\n•
+[MockServer] POST /botmock-token/sendMessage {"chat_id":123456789,"text":"🏠 **主選單** \n\n👋 嗨，TestUser！\n\n\n\n你的狀態\n• 🆓 免費會員\n• 🎂 生日: 2000-08-25\n• 🧠 MBTI: INTJ\n• ⭐ 星座: ♍️ 處女座\n• 🩸 血型: 未設定\n• 🏷️ 興趣: 未設定\n• 📝 簡介: 未設定\n• 🍾 祝福漂流瓶: 3 / 3\n•
+[MockServer] POST /botmock-token/sendMessage {"chat_id":123456789,"text":"🏠 **主選單** \n\n👋 嗨，TestUser！\n\n\n\n你的狀態\n• 🆓 免費會員\n• 🎂 生日: 2000-08-25\n• 🧠 MBTI: INTJ\n• ⭐ 星座: ♍️ 處女座\n• 🩸 血型: 未設定\n• 🏷️ 興趣: 未設定\n• 📝 簡介: 未設定\n• 🍾 祝福漂流瓶: 3 / 3\n•
+[MockServer] POST /botmock-token/sendMessage {"chat_id":123456789,"text":"🏠 **主選單** \n\n👋 嗨，TestUser！\n\n\n\n你的狀態\n• 🆓 免費會員\n• 🎂 生日: 2000-08-25\n• 🧠 MBTI: INTJ\n• ⭐ 星座: ♍️ 處女座\n• 🩸 血型: 未設定\n• 🏷️ 興趣: 未設定\n• 📝 簡介: 未設定\n• 🍾 祝福漂流瓶: 3 / 3\n•
+[MockServer] POST /botmock-token/sendMessage {"chat_id":123456789,"text":"🏠 **主選單** \n\n👋 嗨，TestUser！\n\n\n\n你的狀態\n• 🆓 免費會員\n• 🎂 生日: 2000-08-25\n• 🧠 MBTI: INTJ\n• ⭐ 星座: ♍️ 處女座\n• 🩸 血型: 未設定\n• 🏷️ 興趣: 未設定\n• 📝 簡介: 未設定\n• 🍾 祝福漂流瓶: 3 / 3\n•
+[MockServer] POST /botmock-token/sendMessage {"chat_id":123456789,"text":"🏠 **主選單** \n\n👋 嗨，TestUser！\n\n\n\n你的狀態\n• 🆓 免費會員\n• 🎂 生日: 2000-08-25\n• 🧠 MBTI: INTJ\n• ⭐ 星座: ♍️ 處女座\n• 🩸 血型: 未設定\n• 🏷️ 興趣: 未設定\n• 📝 簡介: 未設定\n• 🍾 祝福漂流瓶: 3 / 3\n•
+[MockServer] POST /botmock-token/sendMessage {"chat_id":123456789,"text":"🏠 **主選單** \n\n👋 嗨，TestUser！\n\n\n\n你的狀態\n• 🆓 免費會員\n• 🎂 生日: 2000-08-25\n• 🧠 MBTI: INTJ\n• ⭐ 星座: ♍️ 處女座\n• 🩸 血型: 未設定\n• 🏷️ 興趣: 未設定\n• 📝 簡介: 未設定\n• 🍾 祝福漂流瓶: 3 / 3\n•
+[MockServer] POST /botmock-token/sendMessage {"chat_id":123456789,"text":"🏠 **主選單** \n\n👋 嗨，TestUser！\n\n\n\n你的狀態\n• 🆓 免費會員\n• 🎂 生日: 2000-08-25\n• 🧠 MBTI: INTJ\n• ⭐ 星座: ♍️ 處女座\n• 🩸 血型: 未設定\n• 🏷️ 興趣: 未設定\n• 📝 簡介: 未設定\n• 🍾 祝福漂流瓶: 3 / 3\n•
+[MockServer] POST /botmock-token/sendMessage {"chat_id":123456789,"text":"🏠 **主選單** \n\n👋 嗨，TestUser！\n\n\n\n你的狀態\n• 🆓 免費會員\n• 🎂 生日: 2000-08-25\n• 🧠 MBTI: INTJ\n• ⭐ 星座: ♍️ 處女座\n• 🩸 血型: 未設定\n• 🏷️ 興趣: 未設定\n• 📝 簡介: 未設定\n• 🍾 祝福漂流瓶: 3 / 3\n•
+[MockServer] POST /botmock-token/sendMessage {"chat_id":123456789,"text":"🏠 **主選單** \n\n👋 嗨，TestUser！\n\n\n\n你的狀態\n• 🆓 免費會員\n• 🎂 生日: 2000-08-25\n• 🧠 MBTI: INTJ\n• ⭐ 星座: ♍️ 處女座\n• 🩸 血型: 未設定\n• 🏷️ 興趣: 未設定\n• 📝 簡介: 未設定\n• 🍾 祝福漂流瓶: 3 / 3\n•
+[MockServer] POST /botmock-token/sendMessage {"chat_id":123456789,"text":"🏠 **主選單** \n\n👋 嗨，TestUser！\n\n\n\n你的狀態\n• 🆓 免費會員\n• 🎂 生日: 2000-08-25\n• 🧠 MBTI: INTJ\n• ⭐ 星座: ♍️ 處女座\n• 🩸 血型: 未設定\n• 🏷️ 興趣: 未設定\n• 📝 簡介: 未設定\n• 🍾 祝福漂流瓶: 3 / 3\n•
+[MockServer] POST /botmock-token/sendMessage {"chat_id":123456789,"text":"🏠 **主選單** \n\n👋 嗨，TestUser！\n\n\n\n你的狀態\n• 🆓 免費會員\n• 🎂 生日: 2000-08-25\n• 🧠 MBTI: INTJ\n• ⭐ 星座: ♍️ 處女座\n• 🩸 血型: 未設定\n• 🏷️ 興趣: 未設定\n• 📝 簡介: 未設定\n• 🍾 祝福漂流瓶: 3 / 3\n•
+[MockServer] POST /botmock-token/sendMessage {"chat_id":123456789,"text":"🏠 **主選單** \n\n👋 嗨，TestUser！\n\n\n\n你的狀態\n• 🆓 免費會員\n• 🎂 生日: 2000-08-25\n• 🧠 MBTI: INTJ\n• ⭐ 星座: ♍️ 處女座\n• 🩸 血型: 未設定\n• 🏷️ 興趣: 未設定\n• 📝 簡介: 未設定\n• 🍾 祝福漂流瓶: 3 / 3\n•
+[MockServer] POST /botmock-token/sendMessage {"chat_id":123456789,"text":"🏠 **主選單** \n\n👋 嗨，TestUser！\n\n\n\n你的狀態\n• 🆓 免費會員\n• 🎂 生日: 2000-08-25\n• 🧠 MBTI: INTJ\n• ⭐ 星座: ♍️ 處女座\n• 🩸 血型: 未設定\n• 🏷️ 興趣: 未設定\n• 📝 簡介: 未設定\n• 🍾 祝福漂流瓶: 3 / 3\n•
+[MockServer] POST /botmock-token/sendMessage {"chat_id":123456789,"text":"🏠 **主選單** \n\n👋 嗨，TestUser！\n\n\n\n你的狀態\n• 🆓 免費會員\n• 🎂 生日: 2000-08-25\n• 🧠 MBTI: INTJ\n• ⭐ 星座: ♍️ 處女座\n• 🩸 血型: 未設定\n• 🏷️ 興趣: 未設定\n• 📝 簡介: 未設定\n• 🍾 祝福漂流瓶: 3 / 3\n•
+[MockServer] POST /botmock-token/sendMessage {"chat_id":123456789,"text":"🏠 **主選單** \n\n👋 嗨，TestUser！\n\n\n\n你的狀態\n• 🆓 免費會員\n• 🎂 生日: 2000-08-25\n• 🧠 MBTI: INTJ\n• ⭐ 星座: ♍️ 處女座\n• 🩸 血型: 未設定\n• 🏷️ 興趣: 未設定\n• 📝 簡介: 未設定\n• 🍾 祝福漂流瓶: 3 / 3\n•
+[MockServer] POST /botmock-token/sendMessage {"chat_id":123456789,"text":"🏠 **主選單** \n\n👋 嗨，TestUser！\n\n\n\n你的狀態\n• 🆓 免費會員\n• 🎂 生日: 2000-08-25\n• 🧠 MBTI: INTJ\n• ⭐ 星座: ♍️ 處女座\n• 🩸 血型: 未設定\n• 🏷️ 興趣: 未設定\n• 📝 簡介: 未設定\n• 🍾 祝福漂流瓶: 3 / 3\n•
+[MockServer] POST /botmock-token/sendMessage {"chat_id":123456789,"text":"🏠 **主選單** \n\n👋 嗨，TestUser！\n\n\n\n你的狀態\n• 🆓 免費會員\n• 🎂 生日: 2000-08-25\n• 🧠 MBTI: INTJ\n• ⭐ 星座: ♍️ 處女座\n• 🩸 血型: 未設定\n• 🏷️ 興趣: 未設定\n• 📝 簡介: 未設定\n• 🍾 祝福漂流瓶: 3 / 3\n•
+[MockServer] POST /botmock-token/sendMessage {"chat_id":123456789,"text":"🏠 **主選單** \n\n👋 嗨，TestUser！\n\n\n\n你的狀態\n• 🆓 免費會員\n• 🎂 生日: 2000-08-25\n• 🧠 MBTI: INTJ\n• ⭐ 星座: ♍️ 處女座\n• 🩸 血型: 未設定\n• 🏷️ 興趣: 未設定\n• 📝 簡介: 未設定\n• 🍾 祝福漂流瓶: 3 / 3\n•
+[MockServer] POST /botmock-token/sendMessage {"chat_id":123456789,"text":"🏠 **主選單** \n\n👋 嗨，TestUser！\n\n\n\n你的狀態\n• 🆓 免費會員\n• 🎂 生日: 2000-08-25\n• 🧠 MBTI: INTJ\n• ⭐ 星座: ♍️ 處女座\n• 🩸 血型: 未設定\n• 🏷️ 興趣: 未設定\n• 📝 簡介: 未設定\n• 🍾 祝福漂流瓶: 3 / 3\n•
+[MockServer] POST /botmock-token/sendMessage {"chat_id":123456789,"text":"🏠 **主選單** \n\n👋 嗨，TestUser！\n\n\n\n你的狀態\n• 🆓 免費會員\n• 🎂 生日: 2000-08-25\n• 🧠 MBTI: INTJ\n• ⭐ 星座: ♍️ 處女座\n• 🩸 血型: 未設定\n• 🏷️ 興趣: 未設定\n• 📝 簡介: 未設定\n• 🍾 祝福漂流瓶: 3 / 3\n•
+[MockServer] POST /botmock-token/sendMessage {"chat_id":123456789,"text":"🏠 **主選單** \n\n👋 嗨，TestUser！\n\n\n\n你的狀態\n• 🆓 免費會員\n• 🎂 生日: 2000-08-25\n• 🧠 MBTI: INTJ\n• ⭐ 星座: ♍️ 處女座\n• 🩸 血型: 未設定\n• 🏷️ 興趣: 未設定\n• 📝 簡介: 未設定\n• 🍾 祝福漂流瓶: 3 / 3\n•
+[MockServer] POST /botmock-token/sendMessage {"chat_id":123456789,"text":"🏠 **主選單** \n\n👋 嗨，TestUser！\n\n\n\n你的狀態\n• 🆓 免費會員\n• 🎂 生日: 2000-08-25\n• 🧠 MBTI: INTJ\n• ⭐ 星座: ♍️ 處女座\n• 🩸 血型: 未設定\n• 🏷️ 興趣: 未設定\n• 📝 簡介: 未設定\n• 🍾 祝福漂流瓶: 3 / 3\n•
+[MockServer] POST /botmock-token/sendMessage {"chat_id":123456789,"text":"🏠 **主選單** \n\n👋 嗨，TestUser！\n\n\n\n你的狀態\n• 🆓 免費會員\n• 🎂 生日: 2000-08-25\n• 🧠 MBTI: INTJ\n• ⭐ 星座: ♍️ 處女座\n• 🩸 血型: 未設定\n• 🏷️ 興趣: 未設定\n• 📝 簡介: 未設定\n• 🍾 祝福漂流瓶: 3 / 3\n•
+[MockServer] POST /botmock-token/sendMessage {"chat_id":123456789,"text":"🏠 **主選單** \n\n👋 嗨，TestUser！\n\n\n\n你的狀態\n• 🆓 免費會員\n• 🎂 生日: 2000-08-25\n• 🧠 MBTI: INTJ\n• ⭐ 星座: ♍️ 處女座\n• 🩸 血型: 未設定\n• 🏷️ 興趣: 未設定\n• 📝 簡介: 未設定\n• 🍾 祝福漂流瓶: 3 / 3\n•
+[MockServer] POST /botmock-token/sendMessage {"chat_id":123456789,"text":"🏠 **主選單** \n\n👋 嗨，TestUser！\n\n\n\n你的狀態\n• 🆓 免費會員\n• 🎂 生日: 2000-08-25\n• 🧠 MBTI: INTJ\n• ⭐ 星座: ♍️ 處女座\n• 🩸 血型: 未設定\n• 🏷️ 興趣: 未設定\n• 📝 簡介: 未設定\n• 🍾 祝福漂流瓶: 3 / 3\n•
+[MockServer] POST /botmock-token/sendMessage {"chat_id":123456789,"text":"🏠 **主選單** \n\n👋 嗨，TestUser！\n\n\n\n你的狀態\n• 🆓 免費會員\n• 🎂 生日: 2000-08-25\n• 🧠 MBTI: INTJ\n• ⭐ 星座: ♍️ 處女座\n• 🩸 血型: 未設定\n• 🏷️ 興趣: 未設定\n• 📝 簡介: 未設定\n• 🍾 祝福漂流瓶: 3 / 3\n•
+[MockServer] POST /botmock-token/sendMessage {"chat_id":123456789,"text":"🏠 **主選單** \n\n👋 嗨，TestUser！\n\n\n\n你的狀態\n• 🆓 免費會員\n• 🎂 生日: 2000-08-25\n• 🧠 MBTI: INTJ\n• ⭐ 星座: ♍️ 處女座\n• 🩸 血型: 未設定\n• 🏷️ 興趣: 未設定\n• 📝 簡介: 未設定\n• 🍾 祝福漂流瓶: 3 / 3\n•
+[MockServer] POST /botmock-token/sendMessage {"chat_id":123456789,"text":"🏠 **主選單** \n\n👋 嗨，TestUser！\n\n\n\n你的狀態\n• 🆓 免費會員\n• 🎂 生日: 2000-08-25\n• 🧠 MBTI: INTJ\n• ⭐ 星座: ♍️ 處女座\n• 🩸 血型: 未設定\n• 🏷️ 興趣: 未設定\n• 📝 簡介: 未設定\n• 🍾 祝福漂流瓶: 3 / 3\n•
+[MockServer] POST /botmock-token/sendMessage {"chat_id":123456789,"text":"🏠 **主選單** \n\n👋 嗨，TestUser！\n\n\n\n你的狀態\n• 🆓 免費會員\n• 🎂 生日: 2000-08-25\n• 🧠 MBTI: INTJ\n• ⭐ 星座: ♍️ 處女座\n• 🩸 血型: 未設定\n• 🏷️ 興趣: 未設定\n• 📝 簡介: 未設定\n• 🍾 祝福漂流瓶: 3 / 3\n•
+[MockServer] POST /botmock-token/sendMessage {"chat_id":123456789,"text":"🏠 **主選單** \n\n👋 嗨，TestUser！\n\n\n\n你的狀態\n• 🆓 免費會員\n• 🎂 生日: 2000-08-25\n• 🧠 MBTI: INTJ\n• ⭐ 星座: ♍️ 處女座\n• 🩸 血型: 未設定\n• 🏷️ 興趣: 未設定\n• 📝 簡介: 未設定\n• 🍾 祝福漂流瓶: 3 / 3\n•
+[MockServer] POST /botmock-token/sendMessage {"chat_id":123456789,"text":"🏠 **主選單** \n\n👋 嗨，TestUser！\n\n\n\n你的狀態\n• 🆓 免費會員\n• 🎂 生日: 2000-08-25\n• 🧠 MBTI: INTJ\n• ⭐ 星座: ♍️ 處女座\n• 🩸 血型: 未設定\n• 🏷️ 興趣: 未設定\n• 📝 簡介: 未設定\n• 🍾 祝福漂流瓶: 3 / 3\n•
+[MockServer] POST /botmock-token/sendMessage {"chat_id":123456789,"text":"🏠 **主選單** \n\n👋 嗨，TestUser！\n\n\n\n你的狀態\n• 🆓 免費會員\n• 🎂 生日: 2000-08-25\n• 🧠 MBTI: INTJ\n• ⭐ 星座: ♍️ 處女座\n• 🩸 血型: 未設定\n• 🏷️ 興趣: 未設定\n• 📝 簡介: 未設定\n• 🍾 祝福漂流瓶: 3 / 3\n•
+[MockServer] POST /botmock-token/sendMessage {"chat_id":123456789,"text":"🏠 **主選單** \n\n👋 嗨，TestUser！\n\n\n\n你的狀態\n• 🆓 免費會員\n• 🎂 生日: 2000-08-25\n• 🧠 MBTI: INTJ\n• ⭐ 星座: ♍️ 處女座\n• 🩸 血型: 未設定\n• 🏷️ 興趣: 未設定\n• 📝 簡介: 未設定\n• 🍾 祝福漂流瓶: 3 / 3\n•
+[MockServer] POST /botmock-token/sendMessage {"chat_id":123456789,"text":"🏠 **主選單** \n\n👋 嗨，TestUser！\n\n\n\n你的狀態\n• 🆓 免費會員\n• 🎂 生日: 2000-08-25\n• 🧠 MBTI: INTJ\n• ⭐ 星座: ♍️ 處女座\n• 🩸 血型: 未設定\n• 🏷️ 興趣: 未設定\n• 📝 簡介: 未設定\n• 🍾 祝福漂流瓶: 3 / 3\n•
+[MockServer] POST /botmock-token/sendMessage {"chat_id":123456789,"text":"🏠 **主選單** \n\n👋 嗨，TestUser！\n\n\n\n你的狀態\n• 🆓 免費會員\n• 🎂 生日: 2000-08-25\n• 🧠 MBTI: INTJ\n• ⭐ 星座: ♍️ 處女座\n• 🩸 血型: 未設定\n• 🏷️ 興趣: 未設定\n• 📝 簡介: 未設定\n• 🍾 祝福漂流瓶: 3 / 3\n•
+[MockServer] POST /botmock-token/sendMessage {"chat_id":123456789,"text":"🏠 **主選單** \n\n👋 嗨，TestUser！\n\n\n\n你的狀態\n• 🆓 免費會員\n• 🎂 生日: 2000-08-25\n• 🧠 MBTI: INTJ\n• ⭐ 星座: ♍️ 處女座\n• 🩸 血型: 未設定\n• 🏷️ 興趣: 未設定\n• 📝 簡介: 未設定\n• 🍾 祝福漂流瓶: 3 / 3\n•
+[MockServer] POST /botmock-token/sendMessage {"chat_id":123456789,"text":"🏠 **主選單** \n\n👋 嗨，TestUser！\n\n\n\n你的狀態\n• 🆓 免費會員\n• 🎂 生日: 2000-08-25\n• 🧠 MBTI: INTJ\n• ⭐ 星座: ♍️ 處女座\n• 🩸 血型: 未設定\n• 🏷️ 興趣: 未設定\n• 📝 簡介: 未設定\n• 🍾 祝福漂流瓶: 3 / 3\n•
+[MockServer] POST /botmock-token/sendMessage {"chat_id":123456789,"text":"🏠 **主選單** \n\n👋 嗨，TestUser！\n\n\n\n你的狀態\n• 🆓 免費會員\n• 🎂 生日: 2000-08-25\n• 🧠 MBTI: INTJ\n• ⭐ 星座: ♍️ 處女座\n• 🩸 血型: 未設定\n• 🏷️ 興趣: 未設定\n• 📝 簡介: 未設定\n• 🍾 祝福漂流瓶: 3 / 3\n•
+[MockServer] POST /botmock-token/sendMessage {"chat_id":123456789,"text":"🏠 **主選單** \n\n👋 嗨，TestUser！\n\n\n\n你的狀態\n• 🆓 免費會員\n• 🎂 生日: 2000-08-25\n• 🧠 MBTI: INTJ\n• ⭐ 星座: ♍️ 處女座\n• 🩸 血型: 未設定\n• 🏷️ 興趣: 未設定\n• 📝 簡介: 未設定\n• 🍾 祝福漂流瓶: 3 / 3\n•
+[MockServer] POST /botmock-token/sendMessage {"chat_id":123456789,"text":"🏠 **主選單** \n\n👋 嗨，TestUser！\n\n\n\n你的狀態\n• 🆓 免費會員\n• 🎂 生日: 2000-08-25\n• 🧠 MBTI: INTJ\n• ⭐ 星座: ♍️ 處女座\n• 🩸 血型: 未設定\n• 🏷️ 興趣: 未設定\n• 📝 簡介: 未設定\n• 🍾 祝福漂流瓶: 3 / 3\n•
+[MockServer] POST /botmock-token/sendMessage {"chat_id":123456789,"text":"🏠 **主選單** \n\n👋 嗨，TestUser！\n\n\n\n你的狀態\n• 🆓 免費會員\n• 🎂 生日: 2000-08-25\n• 🧠 MBTI: INTJ\n• ⭐ 星座: ♍️ 處女座\n• 🩸 血型: 未設定\n• 🏷️ 興趣: 未設定\n• 📝 簡介: 未設定\n• 🍾 祝福漂流瓶: 3 / 3\n•
+   Processed requests (Received by Telegram Mock): 70/70
+   ⚠️ Rate Limiter might be INACTIVE (All passed). Check KV binding in wrangler.toml.
+
+🧪 Test 9: Throw Bottle Flow (Session Priority & Ambiguity Check)
+🌱 Seeding user...
+✅ User seeded successfully
+[MockServer] POST /botmock-token/sendMessage {"chat_id":123456789,"text":"#THROW\n🍾 **丟祝福漂流瓶** #THROW\n\n\n\n🎯 尋找對象：女性\n\n💡 可在 /edit_profile 中修改匹配偏好\n\n\n\n📝 **請輸入你的祝福漂流瓶內容**\n\n\n\n• 最短 5 個字符\n\n• 最多 250 個字符\n\n• 不允許連結、圖片、多媒體\n\n• 不要包含個人聯絡方
+[MockServer] POST /botmock-token/sendMessage {"chat_id":123456789,"text":"📝 請輸入你的祝福漂流瓶內容：\n\n","reply_markup":{"force_reply":true,"selective":true}}
+   ✅ Received Throw Prompt
+[MockServer] POST /botmock-token/sendMessage {"chat_id":123456789,"text":"✅ 祝福漂流瓶已丟出！","reply_markup":{"inline_keyboard":[[{"text":"返回主選單","callback_data":"return_to_menu"}]]}}
+   ✅ Scenario A Passed: Ambiguous content accepted as bottle content.
+   👉 Testing Scenario B: Explicit Command Override
+[MockServer] POST /botmock-token/sendMessage {"chat_id":123456789,"text":"#THROW\n🍾 **丟祝福漂流瓶** #THROW\n\n\n\n🎯 尋找對象：女性\n\n💡 可在 /edit_profile 中修改匹配偏好\n\n\n\n📝 **請輸入你的祝福漂流瓶內容**\n\n\n\n• 最短 5 個字符\n\n• 最多 250 個字符\n\n• 不允許連結、圖片、多媒體\n\n• 不要包含個人聯絡方
+[MockServer] POST /botmock-token/sendMessage {"chat_id":123456789,"text":"📝 請輸入你的祝福漂流瓶內容：\n\n","reply_markup":{"force_reply":true,"selective":true}}
+[MockServer] POST /botmock-token/sendMessage {"chat_id":123456789,"text":"🏠 **主選單** \n\n👋 嗨，TestUser！\n\n\n\n你的狀態\n• 🆓 免費會員\n• 🎂 生日: 1990-01-01\n• 🧠 MBTI: INTJ\n• ⭐ 星座: 未設定\n• 🩸 血型: 未設定\n• 🏷️ 興趣: 未設定\n• 📝 簡介: 未設定\n• 🍾 祝福漂流瓶: 2 / 3\n• 🔮
+   ✅ Scenario B Passed: Explicit command /menu overrode the throw session.
+
+🧪 Test 9.5: Conversation Flow (Profile View & Translation Check)
+🌱 Seeding user...
+✅ User seeded successfully
+🌱 Seeding conversation...
+   Created Conversation ID: 28
+   👉 Testing View Profile in Conversation...
+[MockServer] POST /botmock-token/answerCallbackQuery {"callback_query_id":"10499","show_alert":false}
+[MockServer] POST /botmock-token/answerCallbackQuery {"callback_query_id":"10499","text":"用戶不存在","show_alert":false}
+
+❌ Test Failed: Error: Timeout waiting for message matching: /暱稱|Nickname|個人檔案/
+    at waitForMessage (/Users/yichen/Downloads/cursor/XunNi/scripts/local-simulation.ts:79:9)
+    at runUserTests (/Users/yichen/Downloads/cursor/XunNi/scripts/local-simulation.ts:606:25)
+    at Timeout.runTests (/Users/yichen/Downloads/cursor/XunNi/scripts/local-simulation.ts:912:9)
+🧹 Cleaning up...
+❌ Local Simulation Failed for user!

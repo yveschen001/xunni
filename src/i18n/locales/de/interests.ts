@@ -9,7 +9,7 @@ export default {
   "subtitle": "Bitte wählen Sie eine Kategorie aus, um Optionen zu durchsuchen.",
   "current": "Derzeit ausgewählt ({count}/{max}):\n{list}",
   "saved": "✅ Interesse-Tags aktualisiert!",
-  "required_hint": "💡 Um genauere KI-Wahrsage-Dienste anzubieten, vervollständigen Sie bitte zuerst Ihre Interesse-Tags.",
+  "required_hint": "💡 Um genauere Hellsehungsdienste anzubieten, bitte zuerst Ihre Interessen-Tags ausfüllen.",
   "categories": {
     "life": "Lebensstil und Stil",
     "travel": "Reisen und Erkundung",

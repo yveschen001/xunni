@@ -1,7 +1,7 @@
 export default {
   "completeTask": "• ✨ Suorita tehtäviä (ansaitse pysyviä kiintiöitä)",
   "inviteFriends": "• 🎁 Kutsu ystäviä (ansaitse +1 kiintiö per henkilö)",
-  "quotaExhausted": "❌ Tämän päivän pulloposti kiintiö on käytetty ({quotaDisplay})",
+  "quotaExhausted": "❌ Tänään toivepullojen kiintiö on käytetty loppuun ({quotaDisplay})",
   "taskButton": "✨ {taskName} 🎁",
   "upgradeVip": "• 💎 Päivitä VIP:ksi (30 kiintiötä päivittäin)",
   "watchAd": "• 📺 Katso mainoksia (jäljellä {remaining}/20 kertaa)",

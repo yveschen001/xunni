@@ -15,7 +15,7 @@ import { createI18n } from '~/i18n';
 import { PaymentService } from '~/services/payment';
 
 // VIP pricing (Telegram Stars)
-const DEFAULT_VIP_PRICE_STARS = 150; // ~5 USD
+export const DEFAULT_VIP_PRICE_STARS = 385; // ~7.7 USD
 const VIP_DURATION_DAYS = 30;
 
 function resolveVipPrice(env: Env): number {

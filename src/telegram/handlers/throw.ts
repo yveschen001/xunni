@@ -270,6 +270,7 @@ export async function handleThrow(
     }
 
     const throwPrompt =
+      '#THROW\n' + // Invisible marker for Reply matching
       i18n.t('throw.bottle4') +
       '\n\n' +
       i18n.t('throw.text5', { targetText }) +

@@ -26,7 +26,7 @@ export default {
   "manual": "การตั้งค่าแบบแมนนวล",
   "mbti": "• ใช้ /mbti เพื่อทำแบบทดสอบ MBTI ใหม่หรือแก้ไข\n",
   "mbtiWithSource": "🧠 MBTI: {mbti}{source}",
-  "message": "https://t.me/share/url?url=https://t.me/{botUsername}?start=invite_{inviteCode}&text=มามาขวางขวดข้อความด้วยกันใน XunNi! 🍾 ใช้รหัสเชิญของฉัน: {inviteCode}",
+  "message": "มาร่วมกันส่งขวดอวยพรแห่งพรบน XunNi! 🍾 ใช้รหัสเชิญของฉัน: {inviteCode}",
   "message2": "{inviteLimitWarning}\n\n",
   "message3": "🌍 ภาษา: {user.language_pref}\n\n",
   "message4": "🌍 ภาษา: {user.language_pref }\n",
@@ -42,7 +42,7 @@ export default {
   "quota2": "📦 โควตาปัจจุบัน: {taskBonus > 0 ?",
   "quotaBottles": "{taskBonus} ขวดข้อความ",
   "quotaTotal": "📦 จำนวนที่สามารถทำได้ต่อวันในปัจจุบัน: {quota}\n\n",
-  "returnToMenu": "🏠 กลับไปที่เมนูหลัก: /menu",
+  "returnToMenu": "🏠 เมนูหลัก",
   "separator": "━━━━━━━━━━━━━━━━\n\n",
   "settings": "ยังไม่ได้ตั้งค่า",
   "settings2": "ยังไม่ได้ตั้งค่า",
@@ -71,5 +71,14 @@ export default {
   "zodiac": "⭐ ราศี: {zodiac}\n",
   "fortuneQuota": "🔮 {fortuneBottle}: {total} (สัปดาห์นี้ฟรี: {weekly}/{limit} | เพิ่มเติม: {additional})",
   "vipWithDays": "💎 สมาชิก VIP (เหลือ {days} วัน, วันหมดอายุ: {expireDate})",
-  "driftBottleInfo": "🍾 ขวดข้อความ: {remaining} / {total}"
+  "driftBottleInfo": "🍾 ขวดอวยพร: {remaining} / {total}",
+  "ageRange": "อายุ: {min}-{max}",
+  "fortuneMatchButton": "💘 ขวดทำนายเร็ว",
+  "giftVipButton": "🎁 มอบ VIP",
+  "giftFortuneBottleButton": "🔮 มอบขวดทำนาย",
+  "moreOptions": "⚙️ ตัวเลือกเพิ่มเติม...",
+  "blockUser": "🚫 บล็อกผู้ใช้",
+  "reportUser": "⚠️ รายงาน",
+  "moreOptionsTitle": "⚙️ ตัวเลือกเพิ่มเติม",
+  "giftedVipNote": "🎁 曾經贈送คุณ VIP"
 };

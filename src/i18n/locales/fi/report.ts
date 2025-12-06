@@ -4,7 +4,7 @@ export default {
   "cancel": "❌ Peruuta",
   "cancelled": "Peruutettu",
   "cannotIdentify": "⚠️ Chat-kumppanin tunnistaminen epäonnistui\n\n",
-  "catchHint": "• Käytä /catch noutaaksesi uuden pullopostin",
+  "catchHint": "• Käytä 'Catch' ottaaksesi uusi Toivepullo",
   "completeOnboarding": "⚠️ Täytä ensin rekisteröintiprosessi.\n\nKäytä /start jatkaaksesi rekisteröintiä.",
   "conversationInfoError": "⚠️ Keskustelutiedot ovat virheelliset.",
   "conversationInfoError2": "⚠️ Keskustelutiedot ovat virheelliset",

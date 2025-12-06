@@ -1,7 +1,7 @@
 export default {
   "autoCompleted": "Procesi i regjistrimit është përfunduar automatikisht.\n\n",
-  "bottles": "• Message bottles: {count}\n",
-  "catchCommand": "• /catch - Kapni message bottles\n",
+  "bottles": "• Blessing Bottle: {count}\n",
+  "catchCommand": "• Catch Blessing Bottle\n",
   "conversations": "• Bisedat: {count}\n",
   "dataReset": "✅ Mënyra e zhvillimit: Të dhënat janë rikthyer\n\nTë gjitha të dhënat tuaja janë fshirë.\n\n💡 Tani mund të rinisni procesin e regjistrimit për test.\n\n🔄 Rregjistrohu përsëri: /start\nose përdorni: /dev_restart (nisje automatike e regjistrimit)\n\n⚠️ Shënim: Kjo funksion është vetëm në mjedisin e Staging.",
   "getUserInfoFailed": "❌ Dështoi për të marrë informacionin",
@@ -30,7 +30,7 @@ export default {
   "telegramId": "ID i Telegramit: {id}\n",
   "testCoreFeatures": "💡 Tani mund të testoni drejtpërdrejt funksionalitetet kryesore:\n",
   "testUser": "Përdorues testi",
-  "throwCommand": "• /throw - Hedh message bottle\n",
+  "throwCommand": "• Throw Blessing Bottle\n",
   "userInfo": "🔧 Mënyra zhvillimi: Informacioni i përdoruesit\n\n",
   "userNotFound": "❌ Përdoruesi nuk ekziston",
   "vip": "VIP: {status}",

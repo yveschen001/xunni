@@ -13,7 +13,8 @@ export type NotificationType =
   | 'payment_failed'
   | 'refund_request'
   | 'vip_reminder_sent'
-  | 'vip_downgraded';
+  | 'vip_downgraded'
+  | 'translation_failure';
 
 export interface NotificationData {
   user_id: string;
@@ -28,22 +29,35 @@ export async function notifySuperAdmin(
   type: NotificationType,
   data: NotificationData
 ): Promise<void> {
-  const adminId = env.SUPER_ADMIN_USER_ID;
-  if (!adminId) {
-    console.warn('[notifySuperAdmin] SUPER_ADMIN_USER_ID not configured');
-    return;
+  // Always notify the designated admin log group if configured
+  if (env.ADMIN_LOG_GROUP_ID) {
+    try {
+      const telegram = createTelegramService(env);
+      // Admin notifications typically use Chinese
+      const { createI18n } = await import('~/i18n');
+      const adminLocale = 'zh-TW';
+      const i18n = createI18n(adminLocale);
+      const message = await formatNotificationMessage(type, data, i18n, adminLocale);
+      await telegram.sendMessage(env.ADMIN_LOG_GROUP_ID, message);
+    } catch (error) {
+      console.error('[notifySuperAdmin] Failed to send notification to group:', error);
+    }
   }
 
-  try {
-    const telegram = createTelegramService(env);
-    // Admin notifications typically use Chinese (admin's language)
-    const { createI18n } = await import('~/i18n');
-    const adminLocale = 'zh-TW'; // Default to Chinese for admin
-    const i18n = createI18n(adminLocale);
-    const message = await formatNotificationMessage(type, data, i18n, adminLocale);
-    await telegram.sendMessage(parseInt(adminId), message);
-  } catch (error) {
-    console.error('[notifySuperAdmin] Failed to send notification:', error);
+  // Also notify Super Admin via DM (optional, can be disabled if group is enough)
+  const adminId = env.SUPER_ADMIN_USER_ID;
+  if (adminId) {
+    try {
+      const telegram = createTelegramService(env);
+      const { createI18n } = await import('~/i18n');
+      const adminLocale = 'zh-TW';
+      const i18n = createI18n(adminLocale);
+      const message = await formatNotificationMessage(type, data, i18n, adminLocale);
+      await telegram.sendMessage(parseInt(adminId), message);
+    } catch (error) {
+      // Ignore if admin blocked the bot, but log it
+      console.warn('[notifySuperAdmin] Failed to DM super admin:', error);
+    }
   }
 }
 
@@ -157,6 +171,16 @@ async function formatNotificationMessage(
           i18n.t('adminNotification.expireDate', { date: formatDate(data.expire_date) }) +
           '\n' +
           i18n.t('adminNotification.time', { time: timestamp })
+        );
+
+      case 'translation_failure':
+        return (
+          '⚠️ **翻譯服務異常通知**\n\n' +
+          `提供商: ${data.provider}\n` +
+          `錯誤訊息: ${data.error}\n` +
+          `受影響用戶: ${data.user_id}\n` +
+          `發生時間: ${timestamp}\n\n` +
+          '請檢查 API Key 配額或服務狀態。'
         );
 
       default:

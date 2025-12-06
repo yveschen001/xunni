@@ -1,6 +1,6 @@
 export default {
   "cannotIdentify": "⚠️ Tidak dapat mengenal pasti rakan perbualan",
-  "catchNewBottle": "💡 Gunakan /catch untuk memilih botol mesej baru untuk memulakan perbualan baru.",
+  "catchNewBottle": "💡 Tangkap Botol Restu baru untuk memulakan perbualan baharu.",
   "conversationInfoError": "⚠️ Maklumat perbualan tidak betul.",
   "conversationMayEnded": "Perbualan mungkin telah tamat atau tidak wujud.",
   "conversationNotFound": "⚠️ Perbualan ini tidak dapat dijumpai.",
@@ -12,5 +12,5 @@ export default {
   "step3": "3️⃣ Masukkan /block",
   "steps": "**Langkah operasi:**",
   "success": "✅ Telah menyekat pengguna ini (#{identifier})",
-  "willNotMatch": "Anda tidak lagi akan dipadankan dengan botol mesej masing-masing."
+  "willNotMatch": "Anda tidak akan dip配合 dengan Botol Restu pihak yang lain lagi."
 };

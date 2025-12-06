@@ -3,7 +3,7 @@ export default {
   "label_industry": "באיזה תעשייה אתה עוסק בעיקר?",
   "btn_edit_role": "💼 עריכת זהות מקצועית",
   "btn_edit_industry": "🏢 עריכת תעשייה",
-  "profile_incomplete_hint": "💡 כדי לספק שירותי ניבוי AI מדויקים יותר, אנא מלא את המידע האישי שלך קודם.",
+  "profile_incomplete_hint": "💡 כדי לספק שירותי ניבוי רוחני מדויקים יותר, אנא מלא את המידע האישי שלך קודם כל.",
   "role": {
     "employee": "עובד משרד",
     "freelancer": "עצמאי / SOHO",
@@ -167,4 +167,6 @@ export default {
     }
   },
   "next_step_industry": "לאחר מכן, אנא בחר את הענף שלך."
+,
+  "back_to_categories": "Back to Industries"
 };

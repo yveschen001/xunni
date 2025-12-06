@@ -1,13 +1,13 @@
 export default {
   "availableCommands": "언제든지 다음 명령어를 사용할 수 있습니다:",
-  "catchBottle": "🎣 **메시지 병을 가져오기**",
-  "catchBottleDesc": "다른 사람의 메시지 병을 확인하고 관심이 있다면 답장하여 채팅을 시작하세요",
+  "catchBottle": "🎣 **축복의 축복의 병을 픽업하세요**",
+  "catchBottleDesc": "다른 사람의 축복 축복의 병을 확인하고, 축복으로 응답하며 채팅을 시작하세요~",
   "clickButtonHint": "💡 계속 진행하려면 버튼을 클릭하세요",
-  "commandCatch": "• /catch - 메시지 병 주워오기",
+  "commandCatch": "• /catch - 축복의 축복의 병을 픽업합니다.",
   "commandHelp": "• /help - 도움말 보기",
   "commandMenu": "📋 명령 메뉴",
   "commandTasks": "• /tasks - 작업 보기",
-  "commandThrow": "• /throw - 메시지 병 던지기",
+  "commandThrow": "• /throw - 축복 축복의 병 던지기",
   "completeTasksForBottles": "💡 작업을 완료하여 추가 메시지 병을 얻으세요",
   "completed": "✅ 튜토리얼 완료!",
   "howToBecomeFriends": "💬 **친구 만드는 방법은?**",
@@ -16,11 +16,11 @@ export default {
   "skip": "건너뛰기",
   "skipped": "✅ 튜토리얼 건너뜀",
   "startUsing": "사용 시작 →",
-  "throwBottle": "📦 **메시지 병 던지기**",
+  "throwBottle": "📦 **축복의 축복의 병 보내기**",
   "throwBottleDesc": "당신의 감정이나 생각을 적어주세요, 시스템이 적합한 사람을 찾아줄 것입니다",
   "unknownStep": "❌ 알 수 없는 튜토리얼 단계",
   "viewTasks": "📋 작업 보기",
   "welcome": "🎉 등록 완료를 축하합니다!",
   "whatIsXunNi": "🌊 **XunNi란 무엇인가요?**",
-  "whatIsXunNiDesc": "MBTI 및 별자리를 통해 마음이 맞는 친구를 찾는 익명 메시지 병 친구 플랫폼입니다."
+  "whatIsXunNiDesc": "익명 축복의 병 친구 플랫폼, 상호 축복, MBTI 및 별자리를 통해 비슷한 생각을 가진 친구를 찾으세요."
 };

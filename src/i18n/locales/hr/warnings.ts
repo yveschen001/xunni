@@ -122,7 +122,7 @@ export default {
       "body": "{userAttribute},\nPrema analizi, imaš najjaču afinitet s {recommendedAttributes}!\n\n💡 {reason}\n\n👇 Osjećaš li se sretnim?"
     },
     "btn": {
-      "throw": "🌊 Baci bocu i uzmi šansu",
+      "throw": "🌊 Bacite boca s blagoslovom, poželite drugima sve najbolje, a sreća će se vratiti vama.",
       "vip_throw": "🎯 Baci na {target}",
       "vip_upsell": "💡 Nadogradi na VIP kako bi odredio isporuku {target}, za precizno uparivanje!"
     }

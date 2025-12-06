@@ -20,7 +20,7 @@ export interface MaintenanceMode {
  */
 export function isInMaintenanceMode(maintenance: MaintenanceMode | null): boolean {
   if (!maintenance) return false;
-  return maintenance.isActive === 1 || maintenance.isActive === true;
+  return !!maintenance.isActive;
 }
 
 /**

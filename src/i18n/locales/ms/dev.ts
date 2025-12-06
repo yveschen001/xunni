@@ -1,7 +1,7 @@
 export default {
   "autoCompleted": "Proses pendaftaran telah diselesaikan secara automatik.\n\n",
-  "bottles": "• Botol Mesej: {count}\n",
-  "catchCommand": "• /catch - Tangkap botol mesej\n",
+  "bottles": "• Botol Restu Blessing: {count}",
+  "catchCommand": "• Tangkap Botol Restu\n",
   "conversations": "• Perbualan: {count}\n",
   "dataReset": "✅ Mod pembangunan: Data telah diset semula\n\nSemua data anda telah dipadam.\n\n💡 Anda sekarang boleh memulakan semula proses pendaftaran untuk ujian.\n\n🔄 Daftar semula: /start\natau gunakan: /dev_restart (permulaan pendaftaran automatik)\n\n⚠️ Nota: Ciri ini hanya tersedia dalam persekitaran Staging.",
   "getUserInfoFailed": "❌ Gagal untuk mendapatkan maklumat",
@@ -30,7 +30,7 @@ export default {
   "telegramId": "ID Telegram: {id}\n",
   "testCoreFeatures": "💡 Anda boleh menguji ciri teras sekarang:\n",
   "testUser": "Pengguna uji",
-  "throwCommand": "• /throw - Buang botol mesej\n",
+  "throwCommand": "• Hantar Botol Restu\n",
   "userInfo": "🔧 Mod pembangunan: Maklumat pengguna\n\n",
   "userNotFound": "❌ Pengguna tidak wujud",
   "vip": "VIP: {status}",

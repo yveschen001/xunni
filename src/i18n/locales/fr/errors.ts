@@ -97,9 +97,9 @@ export default {
     "nickname": "❌ Impossible de récupérer le surnom Telegram",
     "nickname2": "❌ Le nom d'utilisateur ne peut pas contenir de lien vers un site web\n\n",
     "nickname3": "❌ \\{validation.error}\n\nVeuillez saisir à nouveau votre surnom :",
-    "quota": "❌ Le quota de bouteilles à message d'aujourd'hui a été atteint (\\{quotaDisplay})\n\n💡 Façons d'obtenir plus de quota :\n",
+    "quota": "❌ Le quota de bénédiction de la Bouteille de Vœux d'aujourd'hui a été épuisé (\\{quotaDisplay})\n\n💡 Moyens d'obtenir plus de quotas :",
     "quota2": "❌ Le quota de messages de conversation d'aujourd'hui a été épuisé (\\{usedToday}/\\{dailyLimit})\n\n",
-    "quota3": "❌ Le quota de bouteilles à message d'aujourd'hui a été épuisé (\\{quotaDisplay})\n\n",
+    "quota3": "❌ Le quota de bénédictions de la Bouteille de Vœux d'aujourd'hui a été épuisé (\\{quotaDisplay})",
     "register": "❌ Veuillez d'abord compléter le processus d'inscription.\n\nUtilisez /start pour continuer l'inscription.",
     "register2": "❌ Profil utilisateur non trouvé, veuillez utiliser /start pour vous inscrire d'abord.",
     "register3": "❌ Veuillez compléter le processus d'inscription avant de pouvoir collecter des bouteilles à message.\n\nUtilisez /start pour continuer l'inscription.",
@@ -179,5 +179,6 @@ export default {
   "userNotFoundRegister": "⚠️ L'utilisateur n'existe pas, veuillez vous inscrire en utilisant /start d'abord.",
   "verificationFailed": "❌ La vérification a échoué, veuillez réessayer plus tard",
   "invalidTimeFormat": "Format horaire invalide\nPar exemple : 19:30 (format 24 heures, 00-23 heures, 00-59 minutes)",
-  "invalidDateFormat": "Format de date invalide\nPar exemple : 2000-01-01"
+  "invalidDateFormat": "Format de date invalide\nPar exemple : 2000-01-01",
+  "taskAlreadyCompleted": "❌ Cette tâche a déjà été terminée et la récompense a été réclamée."
 };

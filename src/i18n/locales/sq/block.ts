@@ -1,6 +1,6 @@
 export default {
   "cannotIdentify": "⚠️ Nuk mund të njoh partnerin e bisedës.",
-  "catchNewBottle": "💡 Përdorni /catch për të zgjedhur një mesazh të ri dhe për të filluar një bisedë të re.",
+  "catchNewBottle": "Catch Blessing Bottle",
   "conversationInfoError": "⚠️ Informacionet e bisedës janë të gabuara.",
   "conversationMayEnded": "Biseda mund të ketë përfunduar ose nuk ekziston.",
   "conversationNotFound": "⚠️ Kjo bisedë nuk mund të gjendet.",
@@ -12,5 +12,5 @@ export default {
   "step3": "3️⃣ Shkruani /block.",
   "steps": "**Hapat për të Vepruar:**",
   "success": "✅ Bllokuar këtë përdorues (#{identifier})",
-  "willNotMatch": "Nuk do të përputheni më me mesazhet e njëri-tjetrit."
+  "willNotMatch": "你們將不會再被匹配到對方的 Blessing Bottle。"
 };

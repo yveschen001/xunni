@@ -1,7 +1,7 @@
 export default {
   "autoCompleted": "Matagumpay nang nakumpleto ang proseso ng pagpaparehistro.\n\n",
-  "bottles": "• Mga Bote ng Mensahe: {count}\n",
-  "catchCommand": "• /catch - Mahuli ang bote ng mensahe\n",
+  "bottles": "• Bote ng Pagpapala ng Pagpapala: {count}",
+  "catchCommand": "• /catch - Kunin ang isang Bote ng Pagpapala",
   "conversations": "• Mga Usapan: {count}\n",
   "dataReset": "✅ Mode ng pag-unlad: Na-reset ang datos\n\nNawala na ang lahat ng iyong datos.\n\n💡 Maaari mong simulan muli ang proseso ng pagrerehistro para sa pagsusuri.\n\n🔄 Muling magrehistro: /start\no gamitin: /dev_restart (awtomatikong simula ng pagrerehistro)\n\n⚠️ Tandaan: Ang tampok na ito ay available lamang sa Staging na kapaligiran.",
   "getUserInfoFailed": "❌ Nabigo ang pagkuha ng impormasyon",
@@ -30,7 +30,7 @@ export default {
   "telegramId": "Telegram ID: {id}",
   "testCoreFeatures": "💡 Maaari mong subukan ang mga pangunahing tampok ngayon:\n",
   "testUser": "Subok na user",
-  "throwCommand": "• /throw - Magtapon ng bote ng mensahe\n",
+  "throwCommand": "• /throw - Maghagis ng Bote ng Pagpapala",
   "userInfo": "🔧 Mode ng pag-unlad: Impormasyon ng gumagamit\n\n",
   "userNotFound": "❌ Ang gumagamit ay hindi umiiral",
   "vip": "VIP: {status}",

@@ -122,7 +122,7 @@ export default {
       "body": "{userAttribute},\nעל פי הניתוח, יש לך את הקשר החזק ביותר עם {recommendedAttributes}!\n\n💡 {reason}\n\n👇 מרגיש מזל?"
     },
     "btn": {
-      "throw": "🌊 זרוק בקבוק ובחר סיכון",
+      "throw": "🌊 השלח בקבוק ברכה, תאחל לאחרים טוב, ואושר יחזור אליך.",
       "vip_throw": "🎯 זרוק ל-{target}",
       "vip_upsell": "💡 שדרג ל-VIP כדי לקבוע משלוח ל-{target}, עבור התאמה מדויקת!"
     }

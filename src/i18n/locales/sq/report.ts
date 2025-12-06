@@ -4,7 +4,7 @@ export default {
   "cancel": "❌ Anulo",
   "cancelled": "Anuluar",
   "cannotIdentify": "⚠️ Nuk mund të identifikohet partneri i bisedës\n\n",
-  "catchHint": "• Përdorni /catch për të marrë një mesajë me shishe të re",
+  "catchHint": "• 使用 Catch Blessing Bottle për të kapur një të re",
   "completeOnboarding": "⚠️ Ju lutemi përfundoni procesin e regjistrimit së pari.\n\nPërdorni /start për të vazhduar regjistrimin.",
   "conversationInfoError": "⚠️ Informacioni i bisedës është i gabuar.",
   "conversationInfoError2": "⚠️ Informacioni i bisedës është i gabuar",

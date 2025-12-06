@@ -27,6 +27,8 @@ export default {
   "selectEndHour": "☀️ Başlangıç zamanı {start}:00 olarak ayarlandı.\nLütfen sessiz saatler için bitiş zamanını seçin:\n(Bu zamandan sonra bildirimler yeniden başlayacaktır)",
   "disabled": "🚫 Sessiz saatler devre dışı bırakıldı",
   "quietHoursHint": "Bu süre zarfında acil olmayan bildirimler almayacaksınız",
+  "quietHoursVipOnly": "🔒 Sessiz Saatler (Sadece VIP)",
+  "upgradeForQuietHours": "Sessiz Saatler'i ayarlamak için VIP'ye yükseltin, dinlenme zamanında rahatsız edilmemek için!",
   "blocklist": {
     "title": "🚫 Engelli Listesi",
     "empty": "Şu anda engelli listesi yok",

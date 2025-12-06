@@ -26,7 +26,7 @@ export default {
   "manual": "Configuración manual",
   "mbti": "• Usa /mbti para volver a hacer o modificar MBTI\n",
   "mbtiWithSource": "🧠 MBTI: {mbti}{source}",
-  "message": "https://t.me/share/url?url=https://t.me/{botUsername}?start=invite_{inviteCode}&text=¡Ven a XunNi y envía botellas de mensajes juntos!🍾 Usa mi código de invitación: {inviteCode}",
+  "message": "¡Tiremos juntos una Botella de Bendición de bendiciones en XunNi! 🍾 Usa mi código de invitación: {inviteCode}",
   "message2": "{inviteLimitWarning}\n\n",
   "message3": "🌍 Idioma: {user.language_pref}\n\n",
   "message4": "🌍 Idioma: {user.language_pref}\n",
@@ -42,7 +42,7 @@ export default {
   "quota2": "📦 Cuota diaria actual: {taskBonus > 0 ?",
   "quotaBottles": "{taskBonus} botellas de mensajes",
   "quotaTotal": "📦 Cuota diaria actual: {quota}\n\n",
-  "returnToMenu": "🏠 Regresar al menú principal: /menu",
+  "returnToMenu": "🏠 Menú Principal",
   "separator": "━━━━━━━━━━━━━━━━\n\n",
   "settings": "No establecido",
   "settings2": "No establecido",
@@ -71,5 +71,14 @@ export default {
   "zodiac": "⭐ Signo del zodiaco: {zodiac}\n",
   "fortuneQuota": "🔮 {fortuneBottle}: {total} (Esta semana gratis: {weekly}/{limit} | Adicional: {additional})",
   "vipWithDays": "💎 Miembro VIP (Restantes {days} días, Expiración: {expireDate})",
-  "driftBottleInfo": "🍾 botella de mensajes: {remaining} / {total}"
+  "driftBottleInfo": "🍾 Botella de Bendición: {remaining} / {total}",
+  "ageRange": "Edad: {min}-{max}",
+  "fortuneMatchButton": "💘 Botella de la fortuna",
+  "giftVipButton": "🎁 Regalar VIP",
+  "giftFortuneBottleButton": "🔮 Regalar botella de la fortuna",
+  "moreOptions": "⚙️ Más opciones...",
+  "blockUser": "🚫 Bloquear usuario",
+  "reportUser": "⚠️ Reportar",
+  "moreOptionsTitle": "⚙️ Más opciones",
+  "giftedVipNote": "🎁 Te han regalado VIP"
 };

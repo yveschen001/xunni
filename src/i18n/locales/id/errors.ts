@@ -97,9 +97,9 @@ export default {
     "nickname": "❌ Tidak dapat mengambil nama pengguna Telegram",
     "nickname2": "❌ Nama pengguna tidak boleh mengandung tautan situs web\n\n",
     "nickname3": "❌ \\{validation.error}\n\nSilakan masukkan ulang nama pengguna Anda:",
-    "quota": "❌ Kuota botol pesan hari ini telah terpakai (\\{quotaDisplay})\n\n💡 Cara untuk mendapatkan lebih banyak kuota:\n",
+    "quota": "❌ Kuota berkat Botol Berkah hari ini telah habis (\\{quotaDisplay})\n\n💡 Cara untuk mendapatkan lebih banyak kuota:",
     "quota2": "❌ Kuota pesan percakapan hari ini telah habis (\\{usedToday}/\\{dailyLimit})\n\n",
-    "quota3": "❌ Kuota botol pesan hari ini telah habis (\\{quotaDisplay})\n\n",
+    "quota3": "❌ Kuota berkah Botol Berkah hari ini telah habis (\\{quotaDisplay})",
     "register": "❌ Harap selesaikan proses pendaftaran terlebih dahulu.\n\nGunakan /start untuk melanjutkan pendaftaran.",
     "register2": "❌ Data pengguna tidak ditemukan, silakan gunakan /start untuk mendaftar terlebih dahulu.",
     "register3": "❌ Anda harus menyelesaikan proses pendaftaran untuk mengambil botol pesan.\n\nGunakan /start untuk melanjutkan pendaftaran.",
@@ -179,5 +179,6 @@ export default {
   "userNotFoundRegister": "⚠️ Pengguna tidak ada, silakan daftar menggunakan /start terlebih dahulu.",
   "verificationFailed": "❌ Verifikasi gagal, silakan coba lagi nanti.",
   "invalidTimeFormat": "Format waktu tidak valid\nContoh: 19:30 (format 24 jam, 00-23 jam, 00-59 menit)",
-  "invalidDateFormat": "Format tanggal tidak valid\nContoh: 2000-01-01"
+  "invalidDateFormat": "Format tanggal tidak valid\nContoh: 2000-01-01",
+  "taskAlreadyCompleted": "❌ Tugas ini telah selesai dan hadiahnya telah diklaim."
 };

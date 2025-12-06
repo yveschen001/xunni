@@ -27,8 +27,8 @@ export default {
   "message8": "Harga: ~{originalPrice} Stars~ {priceStars} ⭐ Telegram Stars / bulan 🔥 (-80%)",
   "message9": "Masa pembayaran: {paymentDate.toLocaleDateString(",
   "purchaseCancelled": "✅ Pembelian dibatalkan",
-  "quota": "• Kuota harian sebanyak 30 botol mesej (menjemput rakan boleh meningkatkan ini, sehingga 100 sehari)",
-  "quota2": "• Kuota harian sebanyak 30 botol mesej (hingga 100 sehari)",
+  "quota": "• Had 30 Botol Restu sehari (jemput rakan boleh menambah, maksimum 100 botol/hari)\n",
+  "quota2": "• Had 30 Botol Restu sehari (maksimum 100 botol/hari)\n",
   "refundAdminCommands": "💡 Gunakan arahan berikut untuk memproses:\n• Terima: `/admin_approve_refund <ID>`\n• Tolak: `/admin_reject_refund <ID> <sebab>` <reason>",
   "refundApproved": "✅ **Pengembalian diluluskan**\n\nJumlah pengembalian: {amount} ⭐\nPengembalian akan dikreditkan dalam 1-3 hari bekerja.\n\nKeahlian VIP anda telah dibatalkan.\n\nTerima kasih atas pemahaman anda!",
   "refundApprovedAdmin": "✅ Pengembalian diluluskan\n\nID Permintaan: #{requestId}\nID Pengguna: {userId}\nJumlah: {amount} ⭐",
@@ -75,7 +75,7 @@ export default {
   "text11": "Masa tamat: {expireDate}\n\n",
   "text12": "Pengembalian akan dikreditkan dalam 1-3 hari bekerja.\n\n",
   "text13": "ID permintaan: #{requestId}\n",
-  "text14": "└ 1 padanan pintar + 2 paparan kolam botol mesej awam: 2 tempat paparan tambahan, menunggu untuk individu yang ditakdirkan untuk mengambilnya.\nTingkatkan peluang botol mesej anda dilihat sebanyak 300%!",
+  "text14": "└ 1 padanan pintar + 2 paparan kolam Botol Restu awam: tambah 2 ruang paparan, menunggu orang yang beruntung untuk mengambilnya.\nMeningkatkan peluang bagi botol anda untuk dilihat sebanyak 300%!",
   "text15": "Anda akan diberitahu tentang keputusan pemprosesan melalui Bot.\n\n",
   "text16": "Sila masukkan sebab pengembalian (sekurang-kurangnya 10 aksara):",
   "text17": "Sebab: {req.reason}\n",
@@ -130,5 +130,5 @@ export default {
   "upgrade": "Tingkatkan ke VIP",
   "maxDurationExceeded": "⚠️ Tempoh VIP anda telah mencapai had ({maxMonths} bulan), dan anda tidak boleh meneruskan pembelian buat sementara waktu.",
   "refundedAndRevoked": "ℹ️ Pembayaran anda telah dikembalikan, dan faedah VIP telah dibatalkan.",
-  "benefit_daily_fortune": "• 1 ramalan AI percuma setiap hari (khusus untuk VIP)"
+  "benefit_daily_fortune": "• 1 bacaan psikis percuma setiap hari (eksklusif untuk VIP)"
 };

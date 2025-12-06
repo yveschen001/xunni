@@ -1,13 +1,13 @@
 export default {
   "availableCommands": "Mund të përdorni komandat e mëposhtme në çdo kohë:",
-  "catchBottle": "🎣 **Merrni mesazhin e butelës**",
-  "catchBottleDesc": "Shikoni mesazhet e butelave të njerëzve të tjerë, dhe nëse jeni të interesuar, përgjigjuni për të filluar bisedën",
+  "catchBottle": "🎣 **Catch Blessing Bottle**",
+  "catchBottleDesc": "Shiko bekimet e tjerëve të Blessing Bottle, përgjigju blessings, fillo një bisedë~",
   "clickButtonHint": "💡 Ju lutemi klikoni butonin për të vazhduar",
-  "commandCatch": "• /catch - Merrni mesajin e butelit",
+  "commandCatch": "• Catch Blessing Bottle",
   "commandHelp": "• /help - Shiko ndihmën",
   "commandMenu": "📋 Menyja e komandave",
   "commandTasks": "• /tasks - Shiko detyrat",
-  "commandThrow": "• /throw - Hedhi butelin e mesazhit",
+  "commandThrow": "• Throw Blessing Bottle",
   "completeTasksForBottles": "💡 Përdorni detyrat për të fituar butela ekstra",
   "completed": "✅ Tutoriali u përfundua!",
   "howToBecomeFriends": "💬 **Si të bëni miq?**",
@@ -16,11 +16,11 @@ export default {
   "skip": "Anashkalo",
   "skipped": "✅ Tutoriali u anashkalua",
   "startUsing": "Filloni të përdorni →",
-  "throwBottle": "📦 **Hedhi butelin e mesazhit**",
+  "throwBottle": "📦 **Throw Blessing Bottle**",
   "throwBottleDesc": "Shkruani ndjenjat ose mendimet tuaja, sistemi do t'ju ndihmojë të gjeni personin e duhur",
   "unknownStep": "❌ Hapi i panjohur i tutorialit",
   "viewTasks": "📋 Shiko detyrat",
   "welcome": "🎉 Urime për përfundimin e regjistrimit!",
   "whatIsXunNi": "🌊 **Çfarë është XunNi?**",
-  "whatIsXunNiDesc": "Një platformë anonime për miqësi me butela mesazhesh që ndihmon në gjetjen e miqve të ngjashëm përmes MBTI dhe shenjave të zodiakut."
+  "whatIsXunNiDesc": "Platformë anonime për lidhjet përmes Blessing Bottle, ndihmojë të gjesh miq të ngjashëm përmes blessings, MBTI dhe shenjave të zodiakut"
 };

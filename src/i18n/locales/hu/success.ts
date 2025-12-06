@@ -13,7 +13,7 @@ export default {
   "bloodType": "✅ Vércsoport frissítve: {getBloodTypeDisplay(bloodType as any)}",
   "bloodType2": "✅ Vércsoport törölve",
   "bottle": "✅ Jutalom kiadva! +1 üveg üzenet",
-  "bottle2": "✅ Új üveg üzenet indult",
+  "bottle2": "✅ Új Kívánság Palack Indítása",
   "bottle3": "✅ Üveg üzenet létrehozva\n",
   "broadcast": "✅ {ids.length} elakadt közvetítést törölve\n\n",
   "broadcast2": "✅ Nincs közvetítés, ami törlést igényelne\n\n",
@@ -95,7 +95,7 @@ export default {
     "bloodType": "✅ Vércsoport frissítve: \\{getBloodTypeDisplay(bloodType as any)}",
     "bloodType2": "✅ Vércsoport törölve",
     "bottle": "✅ Jutalom kiadva! +1 üzenetpalack",
-    "bottle2": "✅ Új üzenetpalack indítása",
+    "bottle2": "✅ Kezdj el egy új áldást az Áldás Üvegben",
     "bottle3": "✅ Üveg létrehozva\n",
     "broadcast": "✅ \\{ids.length} elakadt közvetítés törölve\n\n",
     "broadcast2": "✅ Nincs közvetítés a takarításhoz\n\n",
@@ -238,6 +238,6 @@ export default {
   "verify2": "✅ Ellenőrzés sikeres! +\\{ad.reward_quota} állandó kvóta megszerzése!",
   "vip": "✅ Minden bejegyzés naprakész (VIP státusz helyes)\n",
   "zodiac": "✅ Tisztázva a csillagjegy választás",
-  "bottleThrown": "🍾 A message bottle el lett dobva!",
+  "bottleThrown": "✅ Kívánság Palack Ki lett Dobva!",
   "saved": "✅ A beállítások mentve"
 };

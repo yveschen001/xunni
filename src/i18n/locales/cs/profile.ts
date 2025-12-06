@@ -26,7 +26,7 @@ export default {
   "manual": "Manuální nastavení",
   "mbti": "• Použijte /mbti pro opakování testu nebo úpravu MBTI\n",
   "mbtiWithSource": "🧠 MBTI: {mbti}{source}",
-  "message": "https://t.me/share/url?url=https://t.me/{botUsername}?start=invite_{inviteCode}&text=Pozvěte do XunNi a společně házíme láhve se zprávami!🍾 Použijte můj pozvánkový kód: {inviteCode}",
+  "message": "Pojďme společně poslat Láhev Přání! 🍾 Použij můj pozvánkový kód: {inviteCode}",
   "message2": "{inviteLimitWarning}\n\n",
   "message3": "🌍 Jazyk: {user.language_pref}\n\n",
   "message4": "🌍 Jazyk: {user.language_pref }\n",
@@ -42,7 +42,7 @@ export default {
   "quota2": "📦 Aktuální denní kvóta: {taskBonus > 0 ?",
   "quotaBottles": "{taskBonus} láhve se zprávou",
   "quotaTotal": "📦 Aktuální denní kvóta: {quota}\n\n",
-  "returnToMenu": "🏠 Návrat do hlavního menu: /menu",
+  "returnToMenu": "🏠 Hlavní Menu",
   "separator": "━━━━━━━━━━━━━━━━\n\n",
   "settings": "Nastaveno nebylo",
   "settings2": "Nastaveno nebylo",
@@ -71,5 +71,14 @@ export default {
   "zodiac": "⭐ Zvěrokruh: {zodiac}\n",
   "fortuneQuota": "🔮 {fortuneBottle}: {total} (Tento týden zdarma: {weekly}/{limit} | Další: {additional})",
   "vipWithDays": "💎 VIP člen (zbývá {days} dní, Vypršení: {expireDate})",
-  "driftBottleInfo": "🍾 zprávová láhev: {remaining} / {total}"
+  "driftBottleInfo": "🍾 Láhev Přání: {remaining} / {total}",
+  "ageRange": "Věk: {min}-{max}",
+  "fortuneMatchButton": "💘 Věštecká Rychlá Shoda",
+  "giftVipButton": "🎁 Darovat VIP",
+  "giftFortuneBottleButton": "🔮 Darovat Věšteckou Láhev",
+  "moreOptions": "⚙️ Další možnosti...",
+  "blockUser": "🚫 Zablokovat uživatele",
+  "reportUser": "⚠️ Nahlásit",
+  "moreOptionsTitle": "⚙️ **Další možnosti**",
+  "giftedVipNote": "🎁 Dříve ti bylo darováno VIP"
 };

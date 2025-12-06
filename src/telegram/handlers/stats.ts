@@ -8,6 +8,7 @@ import type { Env, TelegramMessage } from '~/types';
 import { createDatabaseClient } from '~/db/client';
 import { createTelegramService } from '~/services/telegram';
 import { findUserByTelegramId } from '~/db/queries/users';
+import { getZodiacDisplay } from '~/domain/zodiac';
 
 export async function handleStats(message: TelegramMessage, env: Env): Promise<void> {
   const db = createDatabaseClient(env.DB);
@@ -133,7 +134,7 @@ export async function handleStats(message: TelegramMessage, env: Env): Promise<v
       '\n' +
       i18n.t('stats.age', { age: calculateAge(user.birthday!) }) +
       '\n' +
-      i18n.t('stats.zodiac', { zodiac: user.zodiac_sign }) +
+      i18n.t('stats.zodiac', { zodiac: getZodiacDisplay(user.zodiac_sign, i18n) }) +
       '\n' +
       i18n.t('stats.mbti', { mbti: user.mbti_result || i18n.t('stats.notSet') });
 

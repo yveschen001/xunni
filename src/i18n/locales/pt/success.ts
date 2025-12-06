@@ -13,7 +13,7 @@ export default {
   "bloodType": "✅ Tipo sanguíneo atualizado para {getBloodTypeDisplay(bloodType as any)}",
   "bloodType2": "✅ Tipo sanguíneo limpo",
   "bottle": "✅ Recompensa emitida! +1 garrafa de mensagem",
-  "bottle2": "✅ Iniciada uma nova garrafa de mensagem",
+  "bottle2": "✅ Começar uma nova bênção da Garrafa de Bênção",
   "bottle3": "✅ Garrafa de mensagem criada\n",
   "broadcast": "✅ Limpou {ids.length} transmissões presas\n\n",
   "broadcast2": "✅ Nenhuma transmissão precisa ser limpa\n\n",
@@ -95,7 +95,7 @@ export default {
     "bloodType": "✅ Tipo sanguíneo atualizado para \\{getBloodTypeDisplay(bloodType as any)}",
     "bloodType2": "✅ Tipo sanguíneo limpo",
     "bottle": "✅ Recompensa distribuída! +1 garrafa de mensagem",
-    "bottle2": "✅ Iniciar uma nova garrafa de mensagem",
+    "bottle2": "✅ Começar uma nova Garrafa de Bênção de bênção",
     "bottle3": "✅ Garrafa de mensagem criada\n",
     "broadcast": "✅ Limpos \\{ids.length} transmissões travadas\n\n",
     "broadcast2": "✅ Sem transmissões para limpar\n\n",
@@ -238,6 +238,6 @@ export default {
   "verify2": "✅ Verificação bem-sucedida! Recebido +\\{ad.reward_quota} cota permanente!",
   "vip": "✅ Todas as postagens estão atualizadas (status VIP correto)\n",
   "zodiac": "✅ Seleção de signos limpa",
-  "bottleThrown": "🍾 A garrafa de mensagem foi lançada!",
+  "bottleThrown": "✅ A Garrafa de Bênção foi lançada!",
   "saved": "✅ Configurações salvas"
 };

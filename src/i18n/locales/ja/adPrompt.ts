@@ -1,7 +1,7 @@
 export default {
   "completeTask": "• ✨ タスクを完了する（永続クオータを獲得）",
   "inviteFriends": "• 🎁 友達を招待する（1人につき+1クォータ）",
-  "quotaExhausted": "❌ 今日のボトルメールクオータは使い切りました ( {quotaDisplay} )",
+  "quotaExhausted": "❌ 今日祈りのボトルの祝福枠は使い切りました ({quotaDisplay})",
   "taskButton": "✨ {taskName} 🎁",
   "upgradeVip": "• 💎 VIPにアップグレードする（1日に30クオータ）",
   "watchAd": "• 📺 広告を視聴する（残り {remaining}/20 回）",

@@ -26,7 +26,7 @@ export default {
   "manual": "Manuaalinen asetus",
   "mbti": "• Käytä /mbti uudelleenottamiseen tai muokkaamiseen\n",
   "mbtiWithSource": "🧠 MBTI: {mbti}{source}",
-  "message": "https://t.me/share/url?url=https://t.me/{botUsername}?start=invite_{inviteCode}&text=Tule XunNi:in ja lähetä pulloposteja yhdessä!🍾 Käytä kutsukoodiani: {inviteCode}",
+  "message": "Heitetään yhdessä Toivepullo! 🍾 Käytä kutsukoodiani: {inviteCode}",
   "message2": "{inviteLimitWarning}\n\n",
   "message3": "{user.language_pref} {user.language_pref}\n\n",
   "message4": "🌍 Kieli: {user.language_pref }\n",
@@ -42,7 +42,7 @@ export default {
   "quota2": "📦 Nykyinen päivittäinen kiintiö: {taskBonus > 0 ?",
   "quotaBottles": "{taskBonus} viestipulloa",
   "quotaTotal": "{quota}\n\n",
-  "returnToMenu": "🏠 Palaa päävalikkoon: /menu",
+  "returnToMenu": "🏠 Päävalikko",
   "separator": "━━━━━━━━━━━━━━━━\n\n",
   "settings": "Ei asetettu",
   "settings2": "Ei asetettu",
@@ -71,5 +71,14 @@ export default {
   "zodiac": "⭐ Horoskooppi: {zodiac}\n",
   "fortuneQuota": "🔮 {fortuneBottle}: {total} (Tällä viikolla ilmainen: {weekly}/{limit} | Lisä: {additional})",
   "vipWithDays": "💎 VIP-jäsen (Jäljellä {days} päivää, vanhenemispäivä: {expireDate})",
-  "driftBottleInfo": "🍾 viestipullo: {remaining} / {total}"
+  "driftBottleInfo": "🍾 Toivepullo: {remaining} / {total}",
+  "ageRange": "Ikä: {min}-{max}",
+  "fortuneMatchButton": "💘 Ennustuspullo",
+  "giftVipButton": "🎁 Lahjoita VIP",
+  "giftFortuneBottleButton": "🔮 Lahjoita Ennustuspullo",
+  "moreOptions": "⚙️ Lisää vaihtoehtoja...",
+  "blockUser": "🚫 Estä käyttäjä",
+  "reportUser": "⚠️ Ilmoita",
+  "moreOptionsTitle": "⚙️ Lisää vaihtoehtoja",
+  "giftedVipNote": "🎁 Olet saanut VIP-lahjan"
 };

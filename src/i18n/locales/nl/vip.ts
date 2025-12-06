@@ -27,8 +27,8 @@ export default {
   "message8": "Prijs: {priceStars} ⭐ Telegram Stars / maand\n",
   "message9": "Betalingstijd: {paymentDate.toLocaleDateString(",
   "purchaseCancelled": "✅ Aankoop geannuleerd",
-  "quota": "• Dagelijkse quotum van 30 berichtflessen (Nodig vrienden uit om te verhogen, maximaal 100 per dag)\n",
-  "quota2": "• Dagelijkse quotum van 30 berichtflessen (maximaal 100 per dag)\n",
+  "quota": "• Elke dag 30 Wensfles quota (nodig vrienden uit om te verhogen, maximaal 100 per dag)\n",
+  "quota2": "• Elke dag 30 Wensfles quota (maximaal 100 per dag)\n",
   "refundAdminCommands": "💡 Gebruik de volgende opdrachten om verder te gaan:\n• Goedkeuren: `/admin_approve_refund <ID>`\n• Afwijzen: `/admin_reject_refund <ID> <reden>` <reason> `",
   "refundApproved": "✅ **Terugbetaling Goedgekeurd**\n\nTerugbetalingsbedrag: {amount} ⭐\nTerugbetaling wordt binnen 1-3 werkdagen bijgeschreven.\n\nJe VIP-lidmaatschap is geannuleerd.\n\nBedankt voor je begrip!",
   "refundApprovedAdmin": "✅ Terugbetaling Goedgekeurd\n\nVerzoek-ID: #{requestId}\nGebruikers-ID: {userId}\nBedrag: {amount} ⭐",
@@ -75,7 +75,7 @@ export default {
   "text11": "Verlooptijd: {expireDate}\n\n",
   "text12": "Terugvorderingen worden binnen 1-3 werkdagen bijgeschreven.\n\n",
   "text13": "Verzoek-ID: #{requestId}\n",
-  "text14": "└ 1 slimme match + 2 openbare message bottle pool displays: Een extra 2 displaylocaties, wachtend op een bestemd persoon om ze op te pikken.\nVerhoog de kans dat jouw message bottle gezien wordt met 300%!",
+  "text14": "└ 1 slimme koppeling + 2 publieke Wensfles pool showcases: extra 2 showcase plaatsen, wachtend op iemand die ze oppakt.\nVerhoog de kans dat uw flessen gezien worden met 300%!",
   "text15": "U wordt op de hoogte gehouden van de verwerkingsresultaten via Bot.\n\n",
   "text16": "Voer alstublieft de reden voor de terugbetaling in (minimaal 10 tekens):",
   "text17": "Reden: {req.reason}\n",
@@ -130,5 +130,5 @@ export default {
   "upgrade": "Upgrade naar VIP",
   "maxDurationExceeded": "⚠️ Uw VIP-periode heeft de limiet bereikt ({maxMonths} maanden), en u kunt momenteel niet verder kopen.",
   "refundedAndRevoked": "ℹ️ Uw betaling is terugbetaald, en VIP-voordelen zijn ingetrokken.",
-  "benefit_daily_fortune": "• 1 gratis AI waarzegging per dag (exclusief voor VIP)"
+  "benefit_daily_fortune": "• 1 gratis psychische lezing per dag (exclusief voor VIP)"
 };

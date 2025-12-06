@@ -8,7 +8,7 @@ export default {
     "love_match": "カップルの相性",
     "love_ideal": "理想のタイプ分析"
   },
-  "back_to_menu": "🔙 AI占いメニューに戻る",
+  "back_to_menu": "🔙 霊能占いメニューに戻る",
   "get_more_bottles": "💎 より多くの占いボトルメールを取得する",
   "relationship": {
     "love": "カップル",
@@ -16,7 +16,7 @@ export default {
     "family": "家族",
     "work": "同僚"
   },
-  "menuTitle": "AI占い",
+  "menuTitle": "霊能占い",
   "currentProfile": "現在のプロフィール",
   "warehouse": "出生図の保管",
   "manageProfiles": "出生図を管理する",
@@ -148,20 +148,20 @@ export default {
   },
   "dailyPush": "📅 今日の星占いが配信されました！",
   "dailyPushBtn": "👇 クリックして表示",
-  "backToMenu": "🔙 AI占いメニューに戻る",
+  "backToMenu": "🔙 霊能占いメニューに戻る",
   "addProfile": "チャートファイルを追加",
   "quotaDisplay": "🔮 占いボトル: {total} (今週の無料: {weekly}/{limit} | 追加: {additional})",
   "quotaDisplayVip": "🔮 占いボトル: {total} (今日: {daily}/1 | 追加: {additional})",
   "quotaDisplayFree": "🔮 占いボトル: {total} (今週無料: {weekly}/1 | 追加: {additional})",
   "profileDetails": "👤 {gender} {blood} | 🎂 {birthday} | {zodiac} | 🧠 {mbti}",
-  "getMore": "運勢を占う占いボトルをもっと入手",
-  "getMoreInfo": "🔮 *フォーチュンボトルの取得方法*\n\n1. **週間無料**: 通常のユーザーは週に1つ、VIPは1日1つ受け取ります。\n2. **招待報酬**: 友達を招待し、その友達がさらに別の友達を成功裏に招待すると、報酬を受け取ります（24時間以内に最大1つのフォーチュンボトル）。\n3. **メッセージボトル報酬**: 送信したメッセージボトルが10本ごとに1つのフォーチュンボトルを受け取ります。（24時間以内に最大1つのフォーチュンボトル）\n4. **直接購入（🔥 限定20%オフ）**:\n • 小パッケージ {smallAmount} - ~{originalSmallPrice} スター~ {smallPrice} スター\n • 大パッケージ {largeAmount} - ~{originalLargePrice} スター~ {largePrice} スター",
+  "getMore": "占いボトルをもっと入手",
+  "getMoreInfo": "🔮 *占いボトルの入手方法*\n\n1. **毎週無料**：通常ユーザーは週に1個、VIPは毎日1個。\n2. **招待報酬**：友達を1人招待し、その友達がさらに1人招待すると報酬を得られます（24時間以内、上限1個の占いボトル）。\n3. **祈りのボトル報酬**：10個の祈りのボトルを送信するごとに、1個の占いボトルを獲得できます。（24時間以内、上限1個の占いボトル）\n4. **直接購入 (🔥 限定2割引)**：\n   • 小パック {smallAmount}個 - ~{originalSmallPrice}スター~ {smallPrice}スター\n   • 大パック {largeAmount}個 - ~{originalLargePrice}スター~ {largePrice}スター",
   "buySmall": "🔥 特別価格 {price} 星 (アイテム {amount} 点購入)",
   "buyLarge": "🔥 特別価格 {price} 星 (アイテム {amount} 点購入)",
   "invoiceTitle": "{amount}本の占いボトルを購入",
-  "invoiceDesc": "購入後、AI占いサービスをすぐに利用でき、各占いサービスは1本の占いボトルを消費します。\n\n下のボタンをクリックして今すぐ購入してください：",
+  "invoiceDesc": "購入後、すぐに霊能占いサービスを利用できます。各霊能占いサービスには1個の占いボトルが必要です。\n\n下のボタンを押して、すぐに購入してください：",
   "purchaseSuccess": "🎉 購入成功！{amount}本の占いボトルが追加されました。",
-  "bottleReward": "🎉 おめでとうございます！{count}本の占いボトルを送信し、1本の占いボトル報酬を獲得しました！",
+  "bottleReward": "🎉 おめでとうございます！あなたは{count}通の占いボトルを送り、1つの運のボトル報酬を受け取りました！",
   "inviteChainReward": "🎉 おめでとうございます！招待された友達が新しい友達を招待に成功し、1本の占いボトル報酬を獲得しました！",
   "menu": {
     "love": "属性診断（関係の一致）",
@@ -190,7 +190,9 @@ export default {
     "match_report_title": "💞 カップルの相性レポート",
     "wait_for_consent": "⏳ 相手の同意を待っています...",
     "consent_accepted": "✅ 相手が同意しました！レポートを生成中...",
-    "consent_rejected": "❌ 相手が相性リクエストを拒否しました。"
+    "consent_rejected": "❌ 相手が相性リクエストを拒否しました。",
+    "invite_friend": "📨 Invite Friend to Experience",
+    "invite_friend_text": "Hey! I want to try the Compatibility Test with you. Create your fortune profile now!"
   },
   "role": {
     "husband": "夫",
@@ -228,12 +230,27 @@ export default {
       "drawn": "🎴 カードが引かれました："
     }
   },
-  "profile_incomplete_hint": "💡 より正確なAI占いサービスを提供するために、まずご関心、職業、またはMBTI情報を完了してください。",
+  "profile_incomplete_hint": "💡 より正確な霊能占いサービスを提供するために、最初にあなたの興味、職業、またはMBTIなどの情報を入力してください。",
   "tarot_menu_title": "タロットカード",
   "tarot_ui": {
     "intro": "🔮 *タロットリーディング*\n\n質問について静かに考えてください（例：\"最近の仕事運はどうですか？\"または\"この関係をどう扱うべきですか？\"）と考えた後、カードを引くボタンをクリックしてください。",
     "draw": "🔮 カードを引く",
     "shuffling": "シャッフル中...",
     "drawn": "🎴 カードが引かれました："
-  }
+  },
+  "profileUpdated": "✅ 星占いプロファイルが更新されました！",
+  "btn_complete_info": "✏️ 生年月日の情報を入力してください",
+  "complete_info_hint": "💡 上昇星座とハウス分析を解除するために、生まれた時間と場所を正確に設定してください！",
+  "btn_edit_info": "📝 生年月日情報を編集する",
+  "edit": {
+    "currentInfo": "📋 現在の情報：",
+    "currentTime": "出生時刻：{time}",
+    "currentTimeUnknown": "出生時刻：不明",
+    "currentCity": "出生地：{city}",
+    "currentCityUnknown": "出生地：未設定",
+    "confirmEdit": "上記の情報を修正しますか？",
+    "btnConfirmEdit": "✅ はい、修正したいです",
+    "btnCancelEdit": "❌ キャンセル"
+  },
+  "upsell_vip_analysis": "💎 VIPにアップグレードして、より深い分析をアンロック"
 };

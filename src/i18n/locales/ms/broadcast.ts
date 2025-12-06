@@ -68,7 +68,7 @@ export default {
     "zodiacVirgo": "Virgo"
   },
   "filterAge": "• umur=18-25\n",
-  "filterCommand": "/broadcast_filter <filter> <msg_content> ",
+  "filterCommand": "/broadcast_filter <filter> <msg_content>",
   "filterConfirmConditions": "**Keadaan penapis:**\n{conditions}\n\n",
   "filterConfirmMessage": "**Kandungan mesej:**\n{message}\n\n",
   "filterConfirmTitle": "🔍 **Pengesahan Penapis Siaran**\n\n",

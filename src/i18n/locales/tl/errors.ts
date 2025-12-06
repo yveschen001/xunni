@@ -97,9 +97,9 @@ export default {
     "nickname": "❌ Hindi ma-retrieve ang Telegram username",
     "nickname2": "❌ Ang username ay hindi maaaring maglaman ng link sa website\n\n",
     "nickname3": "❌ \\{validation.error}\n\nPakisulit ang iyong username:",
-    "quota": "❌ Naubos na ang quota ng bote ng mensahe ngayon (\\{quotaDisplay})\n\n💡 Mga paraan upang makakuha ng mas maraming quota:\n",
+    "quota": "❌ Ang ipinamigay na quota ng Bote ng Pagpapala para sa pagbibigay ng biyaya sa araw na ito ay nagamit na (\\{quotaDisplay})\n\n💡 Mga paraan upang makakuha ng karagdagang quota:",
     "quota2": "❌ Ang quota ng mensahe sa pag-uusap ngayon ay naubos na (\\{usedToday}/\\{dailyLimit})\n\n",
-    "quota3": "❌ Ang quota ng bote ng mensahe ngayon ay naubos na (\\{quotaDisplay})\n\n",
+    "quota3": "❌ Ang quota ng pagbabasbas ng Bote ng Pagpapala para sa araw na ito ay naubos na (\\{quotaDisplay})",
     "register": "❌ Pakisuyong kumpletuhin muna ang proseso ng pagpaparehistro.\n\nGamitin ang /start upang ipagpatuloy ang pagpaparehistro.",
     "register2": "❌ Hindi nakita ang datos ng user, pakigamit ang /start upang magparehistro muna.",
     "register3": "❌ Kailangan mong kumpletuhin ang proseso ng pagpaparehistro upang makuha ang bote ng mensahe.\n\nGamitin ang /start upang ipagpatuloy ang pagpaparehistro.",
@@ -179,5 +179,6 @@ export default {
   "userNotFoundRegister": "⚠️ Ang gumagamit ay hindi umiiral, mangyaring magparehistro gamit ang /start muna.",
   "verificationFailed": "❌ Nabigong beripikasyon, mangyaring subukan muli mamaya.",
   "invalidTimeFormat": "Di-wastong format ng oras\nHalimbawa: 19:30 (24-oras na format, 00-23 oras, 00-59 minuto)",
-  "invalidDateFormat": "Di-wastong format ng petsa\nHalimbawa: 2000-01-01"
+  "invalidDateFormat": "Di-wastong format ng petsa\nHalimbawa: 2000-01-01",
+  "taskAlreadyCompleted": "❌ Nakumpleto na ang gawaing ito at ang gantimpala ay nakuha na."
 };

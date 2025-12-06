@@ -1,6 +1,6 @@
 export default {
   "cannotIdentify": "⚠️ No se puede identificar al compañero de conversación.",
-  "catchNewBottle": "💡 Usa /catch para recoger nuevas botellas de mensajes y comenzar una nueva conversación.",
+  "catchNewBottle": "💡 Usa /catch para recoger una nueva Botella de Bendición y comenzar una nueva conversación.",
   "conversationInfoError": "⚠️ La información de la conversación es incorrecta.",
   "conversationMayEnded": "La conversación puede haber terminado o no existir.",
   "conversationNotFound": "⚠️ Esta conversación no se puede encontrar.",
@@ -12,5 +12,5 @@ export default {
   "step3": "3️⃣ Ingresa /block.",
   "steps": "**Pasos de Operación:**",
   "success": "✅ Este usuario ha sido bloqueado (#{identifier}).",
-  "willNotMatch": "No volverás a ser emparejado con las botellas de mensajes del otro."
+  "willNotMatch": "Ya no se emparejarán con la Botella de Bendición del otro."
 };
