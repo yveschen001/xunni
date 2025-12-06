@@ -678,12 +678,17 @@ export class FortuneService {
     }
 
     // Construct XML Context (Optimized for Gemini)
+    const getYear = (dateStr: string) => dateStr.split('-')[0];
+    const userBirthYear = getYear(profile.birth_date);
+    const targetBirthYear = targetProfile ? getYear(targetProfile.birth_date) : '';
+
     const contextXml = `
 <context_data>
   <user_profile>
     <name>${profile.name}</name>
     <gender>${profile.gender}</gender>
     <birth>${profile.birth_date} ${(!profile.is_birth_time_unknown && profile.birth_time) ? profile.birth_time : 'Unknown Time'}</birth>
+    <birth_year>${userBirthYear}</birth_year>
     <user_language>${langName}</user_language>
     <zodiac>${localizedZodiac}</zodiac>
     <location>${profile.birth_city || 'Unknown'}</location>
@@ -705,8 +710,10 @@ export class FortuneService {
 
   ${targetProfile ? `<target_profile>
     <name>${targetProfile.name}</name>
-    <birth>${targetProfile.birth_date}</birth>
+    <birth>${targetProfile.birth_date} ${(!targetProfile.is_birth_time_unknown && targetProfile.birth_time) ? targetProfile.birth_time : 'Unknown Time'}</birth>
+    <birth_year>${targetBirthYear}</birth_year>
     <gender>${targetProfile.gender}</gender>
+    <location>${targetProfile.birth_city || 'Unknown'}</location>
   </target_profile>` : ''}
   
   ${targetChartStr ? `<target_chart>${targetChartStr}</target_chart>` : ''}
@@ -795,6 +802,11 @@ export class FortuneService {
 
         const fullPrompt = `${contextXml}\n\n<task_instruction>\n${taskPrompt}\n</task_instruction>`;
         
+        // LOGGING FOR VERIFICATION (Temporary)
+        if (i === 0) {
+            console.log('[FortuneService] GENERATED PROMPT (Step 1):', fullPrompt);
+        }
+
         // Call AI for this step
         let stepContent = '';
         let stepSuccess = false;
