@@ -119,6 +119,9 @@ export default {
     "attribute_desc": "Αναλύστε τα ρομαντικά σας χαρακτηριστικά και τις δυνητικές ιδιότητες.",
     "my_reports": "Η Έκθεσή μου"
   },
+  "report_ready": "Η έκθεση τύχης σας είναι έτοιμη!",
+  "click_to_view": "Πατήστε το κουμπί παρακάτω για να δείτε την έκθεση 👇",
+  "view_report": "📄 Δείτε έκθεση",
   "warehouse": "Αποθήκευση χάρτη γέννας",
   "onboarding": {
     "askName": "Παρακαλώ εισάγετε το όνομα (ή ψευδώνυμο) του στόχου για μαντεία:",
@@ -244,5 +247,8 @@ export default {
     "grandchildren": "Εγγόνια",
     "grandparents": "Παππούδες"
   },
-  "upsell_vip_analysis": "Αναβαθμίστε σε VIP για πιο εις βάθος ανάλυση"
+  "upsell_vip_analysis": "Αναβαθμίστε σε VIP για πιο εις βάθος ανάλυση",
+  "upsell_self_vip_match": "💎 Upgrade to VIP for more accurate Fortune Bottle results.",
+  "upsell_gift_vip_match": "💡 If the other person upgrades to VIP, you can get more accurate Fortune Bottle results.",
+  "btn_gift_vip": "🎁 Gift VIP"
 };

@@ -119,6 +119,9 @@ export default {
     "attribute_desc": "נתח את תכונותיך הרומנטיות ותכונות פוטנציאליות.",
     "my_reports": "הדוח שלי"
   },
+  "report_ready": "הדוח שלך מוכן!",
+  "click_to_view": "לחץ על הכפתור למטה כדי לראות את הדוח 👇",
+  "view_report": "📄 דוח",
   "warehouse": "אחסון לוחות שנה",
   "onboarding": {
     "askName": "אנא הזן את השם (או הכינוי) של היעד לניבוי מזל:",
@@ -244,5 +247,8 @@ export default {
     "grandchildren": "נכדים",
     "grandparents": "סבים"
   },
-  "upsell_vip_analysis": "שדרוג VIP לפתיחת ניתוח מזלות מעמיק יותר"
+  "upsell_vip_analysis": "שדרוג VIP לפתיחת ניתוח מזלות מעמיק יותר",
+  "upsell_self_vip_match": "💎 Upgrade to VIP for more accurate Fortune results.",
+  "upsell_gift_vip_match": "💡 If the other person also upgrades to VIP, you can get more accurate Fortune results.",
+  "btn_gift_vip": "🎁 Gift VIP"
 };

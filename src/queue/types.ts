@@ -12,6 +12,7 @@ export interface FortuneJobPayload {
   context?: any; // Extra context like relationship_type, cards, etc.
   messageId?: number; // ID of the generating message to edit/delete
   lang: string; // User language for notifications
+  skipQuota?: boolean; // Whether to skip quota deduction (if handled upstream)
 }
 
 export interface FortuneJobResponse {

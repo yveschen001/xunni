@@ -119,6 +119,9 @@ export default {
     "attribute_desc": "Suriin ang iyong mga romantikong katangian at potensyal na ugali.",
     "my_reports": "Aking Ulat"
   },
+  "report_ready": "Ang iyong ulat sa kapalaran ay handa na!",
+  "click_to_view": "Pindutin ang pindutan sa ibaba upang makita ang ulat 👇",
+  "view_report": "Tingnan ang Ulat",
   "warehouse": "Imbakan ng birth chart",
   "onboarding": {
     "askName": "Mangyaring ilagay ang pangalan (o palayaw) ng target para sa kapalaran:",
@@ -244,5 +247,8 @@ export default {
     "grandchildren": "Mga Apo",
     "grandparents": "Mga Lolo't Lola"
   },
-  "upsell_vip_analysis": "Mag-upgrade sa VIP para sa Mas Malalim na Pagsusuri"
+  "upsell_vip_analysis": "Mag-upgrade sa VIP para sa Mas Malalim na Pagsusuri",
+  "upsell_self_vip_match": "💎 Mag-upgrade sa VIP para makakuha ng mas tumpak na botelyang panghuhula.",
+  "upsell_gift_vip_match": "💡 Kung ang iba ay mag-uupgrade sa VIP, maaari kang makakuha ng mas tumpak na botelyang panghuhula.",
+  "btn_gift_vip": "🎁 Iregalo ang VIP"
 };

@@ -119,6 +119,9 @@ export default {
     "attribute_desc": "Analyzujte svoje romantické atribúty a potenciálne vlastnosti.",
     "my_reports": "Moja správa"
   },
+  "report_ready": "Vaša fortuna správa je pripravená!",
+  "click_to_view": "Kliknite na tlačidlo nižšie na zobrazenie správy 👇",
+  "view_report": "📄 Zobraziť správu",
   "warehouse": "Úložisko astrologických diagramov",
   "onboarding": {
     "askName": "Prosím, zadajte meno (alebo prezývku) cieľa pre veštenie:",
@@ -244,5 +247,8 @@ export default {
     "grandchildren": "Vnúčatá",
     "grandparents": "Starí rodičia"
   },
-  "upsell_vip_analysis": "Vylepšiť na VIP a odomknúť podrobnejšiu analýzu"
+  "upsell_vip_analysis": "Vylepšiť na VIP a odomknúť podrobnejšiu analýzu",
+  "upsell_self_vip_match": "💎 Upgradujte na VIP pre presnejšie výsledky Fortune Bottle.",
+  "upsell_gift_vip_match": "💡 Ak aj druhá osoba upgradujem na VIP, získate presnejšie výsledky Fortune Bottle.",
+  "btn_gift_vip": "🎁 Darovať VIP"
 };

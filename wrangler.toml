@@ -4,6 +4,16 @@ compatibility_date = "2025-01-15"
 node_compat = true
 account_id = "7404fbe7880034e92c7d4a20969e42f5"
 
+# === QUEUE CONFIGURATION ===
+[[queues.producers]]
+  queue = "fortune-job-queue"
+  binding = "FORTUNE_QUEUE"
+
+[[queues.consumers]]
+  queue = "fortune-job-queue"
+  max_batch_size = 1
+  max_concurrency = 5
+
 # D1 Migrations
 [[d1_databases]]
 binding = "DB"
@@ -33,6 +43,7 @@ BROADCAST_MAX_JOBS = "3"
 ENABLE_AI_MODERATION = "true"
 ENABLE_TRANSLATION = "true"
 ADMIN_LOG_GROUP_ID = "-4917557179"
+ENABLE_ASYNC_QUEUE = "false"
 
 # Staging environment
 [env.staging]
@@ -45,6 +56,8 @@ BROADCAST_BATCH_SIZE = "25"
 BROADCAST_MAX_JOBS = "3"
 ENABLE_AI_MODERATION = "true"
 ENABLE_TRANSLATION = "true"
+# ENABLE QUEUE IN STAGING
+ENABLE_ASYNC_QUEUE = "true"
 ADMIN_LOG_GROUP_ID = "-5073384780"
 GEMINI_PROJECT_ID = "gen-lang-client-0526946218"
 GEMINI_LOCATION = "us-central1"
@@ -99,6 +112,17 @@ crons = [
   "0 1 * * *"     # Birthday & Admin Report (01:00 UTC)
 ]
 
+# Staging Queue Config
+[[env.staging.queues.producers]]
+  queue = "fortune-job-queue"
+  binding = "FORTUNE_QUEUE"
+
+[[env.staging.queues.consumers]]
+  queue = "fortune-job-queue"
+  max_batch_size = 1
+  max_concurrency = 5
+
+
 # Production environment
 [env.production]
 name = "xunni-bot"
@@ -106,6 +130,8 @@ name = "xunni-bot"
 [env.production.vars]
 ENVIRONMENT = "production"
 LOG_LEVEL = "warn"
+# FORCE ENABLE QUEUE IN PRODUCTION
+ENABLE_ASYNC_QUEUE = "true"
 ADMIN_LOG_GROUP_ID = "-4917557179"
 GEMINI_PROJECT_ID = "gen-lang-client-0526946218"
 GEMINI_LOCATION = "us-central1"
@@ -146,6 +172,16 @@ id = "1bbc7e09e9044c18b04aa1b7e7b3ef95"
 [[env.production.routes]]
 pattern = "api.xunni.xyz"
 custom_domain = true
+
+# Production Queue Config
+[[env.production.queues.producers]]
+  queue = "fortune-job-queue"
+  binding = "FORTUNE_QUEUE"
+
+[[env.production.queues.consumers]]
+  queue = "fortune-job-queue"
+  max_batch_size = 1
+  max_concurrency = 5
 
 # Production Cron triggers
 [env.production.triggers]

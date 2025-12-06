@@ -119,6 +119,9 @@ export default {
     "attribute_desc": "Analisis atribut romantis dan potensi karakter Anda.",
     "my_reports": "Laporan Saya"
   },
+  "report_ready": "Laporan keberuntungan Anda sudah siap!",
+  "click_to_view": "Tekan tombol di bawah untuk melihat laporan 👇",
+  "view_report": "📄 Lihat Laporan",
   "warehouse": "Penyimpanan peta kelahiran",
   "onboarding": {
     "askName": "Silakan masukkan nama (atau nama panggilan) target untuk ramalan:",
@@ -244,5 +247,8 @@ export default {
     "grandchildren": "Cucu",
     "grandparents": "Kakek nenek"
   },
-  "upsell_vip_analysis": "💎 Tingkatkan VIP untuk analisis ramalan yang lebih mendalam"
+  "upsell_vip_analysis": "💎 Tingkatkan VIP untuk analisis ramalan yang lebih mendalam",
+  "upsell_self_vip_match": "💎 Tingkatkan ke VIP untuk hasil botol ramalan yang lebih akurat.",
+  "upsell_gift_vip_match": "💡 Jika yang lain juga tingkatkan ke VIP, dapatkan hasil botol ramalan yang lebih akurat.",
+  "btn_gift_vip": "🎁 Beri VIP"
 };

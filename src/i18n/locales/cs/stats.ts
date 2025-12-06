@@ -4,7 +4,7 @@ export default {
   "avgMatches": "• Průměrné shody za sezení: {avg} objektů\n",
   "bottle": "💎 **VIP Statistiky tří lahví** (posledních 30 dní)\n",
   "bottle2": "🍾 **Láhev Přání**\n",
-  "bottle3": "🎈 Statistika Láhve Přání\n",
+  "bottle3": "🎈 Statistika Láhev Přání\n",
   "bottles": "🍾 **Láhev Přání**\n",
   "bottlesCaught": "• Nalezeno: {count} lahví\n",
   "bottlesThrown": "• Zlikvidováno: {count} lahví\n",

@@ -1,7 +1,7 @@
 export default {
   "vipTitle": "🎁 Ge VIP till {name}",
   "vipDescription": "Lås upp VIP-fördelar för {name}: oändlig översättning, tydlig profilbild, och spådomar!",
-  "bottleSelectTitle": "🔮 Välj antal Spådomsflaskor att ge {name}:",
+  "bottleSelectTitle": "🔮 Välj antal Spådomsflaskor att ge till {name}:",
   "bottleTitle": "🎁 Ge {count} Spådomsflaskor till {name}",
   "bottleDescription": "Så att {name} kan göra fler spådomar och snabba matchningar!",
   "giftNotification": "🎁 **Överraskning! Du har fått en gåva!**\n\n**{sender}** har just gett dig **{item}**!\n\n{action}",

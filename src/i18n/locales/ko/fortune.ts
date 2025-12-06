@@ -119,6 +119,9 @@ export default {
     "attribute_desc": "당신의 연애 특징 및 잠재적 특성을 분석합니다.",
     "my_reports": "내 보고서"
   },
+  "report_ready": "귀하의 운세 보고서가 준비되었습니다!",
+  "click_to_view": "아래 버튼을 눌러 보고서를 확인해주세요 👇",
+  "view_report": "📄 보고서 보기",
   "warehouse": "생년월일 차트 저장",
   "onboarding": {
     "askName": "운세를 볼 대상의 이름(또는 별명)을 입력하세요:",
@@ -244,5 +247,8 @@ export default {
     "grandchildren": "손자",
     "grandparents": "조부모"
   },
-  "upsell_vip_analysis": "VIP로 업그레이드하여 더 깊이 있는 운세 분석 잠금 해제"
+  "upsell_vip_analysis": "VIP로 업그레이드하여 더 깊이 있는 운세 분석 잠금 해제",
+  "upsell_self_vip_match": "💎 VIP로 업그레이드하여 더 정확한 운세 병 결과를 얻으세요.",
+  "upsell_gift_vip_match": "💡 상대방도 VIP로 업그레이드하면 더 정확한 운세 병 결과를 얻을 수 있습니다.",
+  "btn_gift_vip": "🎁 VIP 선물"
 };

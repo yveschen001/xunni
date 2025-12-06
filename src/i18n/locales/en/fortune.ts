@@ -119,6 +119,9 @@ export default {
     "attribute_desc": "Analyze your romantic attributes and potential traits.",
     "my_reports": "My Report"
   },
+  "report_ready": "Your fortune report is ready!",
+  "click_to_view": "Tap the button below to view the report 👇",
+  "view_report": "View Report",
   "warehouse": "Birth chart storage",
   "onboarding": {
     "askName": "Please enter the name (or nickname) of the target for fortune-telling:",
@@ -244,5 +247,8 @@ export default {
     "grandchildren": "Grandchildren",
     "grandparents": "Grandparents"
   },
-  "upsell_vip_analysis": "💎 Upgrade to VIP to unlock deeper astrological analysis"
+  "upsell_vip_analysis": "💎 Upgrade to VIP to unlock deeper astrological analysis",
+  "upsell_self_vip_match": "Upgrade to VIP for more accurate Fortune results.",
+  "upsell_gift_vip_match": "If the other person upgrades to VIP, you will receive more accurate Fortune results.",
+  "btn_gift_vip": "Gift VIP"
 };

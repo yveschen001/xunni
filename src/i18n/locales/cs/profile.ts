@@ -75,7 +75,7 @@ export default {
   "ageRange": "Věk: {min}-{max}",
   "fortuneMatchButton": "💘 Věštecká Rychlá Shoda",
   "giftVipButton": "🎁 Darovat VIP",
-  "giftFortuneBottleButton": "🔮 Darovat Věšteckou Láhev",
+  "giftFortuneBottleButton": "🎁 Věštecká Láhev",
   "moreOptions": "⚙️ Další možnosti...",
   "blockUser": "🚫 Zablokovat uživatele",
   "reportUser": "⚠️ Nahlásit",

@@ -119,6 +119,9 @@ export default {
     "attribute_desc": "Analysez vos attributs romantiques et traits potentiels.",
     "my_reports": "Mon rapport"
   },
+  "report_ready": "Votre rapport de fortune est prêt !",
+  "click_to_view": "Appuyez sur le bouton ci-dessous pour voir le rapport 👇",
+  "view_report": "📄 Voir le rapport",
   "warehouse": "Stockage de carte de naissance",
   "onboarding": {
     "askName": "Veuillez entrer le nom (ou le surnom) de la cible pour la divination :",
@@ -244,5 +247,8 @@ export default {
     "grandchildren": "Petits-enfants",
     "grandparents": "Grands-parents"
   },
-  "upsell_vip_analysis": "Améliorez votre VIP pour débloquer une analyse astrologique plus approfondie"
+  "upsell_vip_analysis": "Améliorez votre VIP pour débloquer une analyse astrologique plus approfondie",
+  "upsell_self_vip_match": "💎 Améliorez votre statut VIP pour obtenir des résultats de bonne aventure plus précis.",
+  "upsell_gift_vip_match": "💡 Si l'autre personne améliore son statut VIP, vous recevrez des résultats de bonne aventure plus précis.",
+  "btn_gift_vip": "🎁 Offrir VIP"
 };

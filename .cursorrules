@@ -46,7 +46,7 @@
 *   **語言支援**: **40 種語言** (必須確保所有語言文件同步)。
 
 ### 3. Core Asset Lockdown (核心資產鎖定)
-*   **High Risk Files**: `package.json`, `wrangler.toml`, `src/worker.ts`, `src/i18n/index.ts`.
+*   **High Risk Files**: `package.json`, `wrangler.toml`, `src/worker.ts`, `src/i18n/index.ts`, `scripts/pre-deploy-check.sh`, `scripts/verify-i18n-references.ts`.
 *   **Action**: 修改前必須自我審查，修改後必須運行 `pnpm typecheck`。
 
 ---

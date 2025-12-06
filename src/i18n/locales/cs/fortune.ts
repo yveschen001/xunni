@@ -119,6 +119,9 @@ export default {
     "attribute_desc": "Analyzujte své romantické atributy a potenciální vlastnosti.",
     "my_reports": "Moje zpráva"
   },
+  "report_ready": "Váš výklad je připraven!",
+  "click_to_view": "Zobrazit výklad",
+  "view_report": "Zobrazit zprávu",
   "warehouse": "Úložiště narozeninových horoskopů",
   "onboarding": {
     "askName": "Zadejte prosím jméno (nebo přezdívku) cíle pro věštění:",
@@ -244,5 +247,8 @@ export default {
     "grandchildren": "Vnoučata",
     "grandparents": "Dědové a babičky"
   },
-  "upsell_vip_analysis": "Upgradujte na VIP pro hlubší věšteckou analýzu"
+  "upsell_vip_analysis": "Upgradujte na VIP pro hlubší věšteckou analýzu",
+  "upsell_self_vip_match": "💎 Upgradujte na VIP pro přesnější věštecké výsledky.",
+  "upsell_gift_vip_match": "💡 Pokud druhá osoba také upgradovala na VIP, získáte přesnější věštecké výsledky.",
+  "btn_gift_vip": "🎁 Darovat VIP"
 };

@@ -4,8 +4,8 @@ export default {
   "backToVip": "💎 חזור לתפריט VIP",
   "bottle": "📺 צפה בפרסומת כדי לקבל בקבוק ברכה 🎁 ({remaining}/20)",
   "bottle2": "💎 שדרג ל-VIP עבור יותר בקבוקי מסר",
-  "bottle3": "🌊 送出祝福瓶",
-  "bottle4": "🎣 撿起祝福瓶",
+  "bottle3": "🌊 送出 Blessing Bottle",
+  "bottle4": "🎣 撿起 Blessing Bottle",
   "cancel": "בטל",
   "claim": "תבע",
   "help": "❓ עזרה",
@@ -48,5 +48,5 @@ export default {
   "verify": "אמת",
   "viewPayments": "💰 היסטוריית מנויים",
   "vip": "💎 שדרג ל-VIP",
-  "buyFortuneBottle": "🛍️ 購買算命瓶"
+  "buyFortuneBottle": "🛍️ 購買 Fortune Bottle"
 };

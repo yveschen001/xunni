@@ -119,6 +119,9 @@ export default {
     "attribute_desc": "Analyser dine romantiske attributter og potentielle kvaliteter.",
     "my_reports": "Min rapport"
   },
+  "report_ready": "Din skæbnerapport er klar!",
+  "click_to_view": "Tryk på knappen nedenfor for at se rapporten 👇",
+  "view_report": "📄 Se rapport",
   "warehouse": "Fødselshoroskop opbevaring",
   "onboarding": {
     "askName": "Indtast venligst navnet (eller kaldenavnet) på målet for fortune-telling:",
@@ -244,5 +247,8 @@ export default {
     "grandchildren": "Børnebørn",
     "grandparents": "Bedsteforældre"
   },
-  "upsell_vip_analysis": "Opgrader til VIP for dybere spådomsanalyse"
+  "upsell_vip_analysis": "Opgrader til VIP for dybere spådomsanalyse",
+  "upsell_self_vip_match": "💎 Opgrader til VIP for at få mere præcise spådomme.",
+  "upsell_gift_vip_match": "💡 Hvis den anden person også opgraderer til VIP, kan du få mere præcise spådomme.",
+  "btn_gift_vip": "🎁 Giv VIP"
 };

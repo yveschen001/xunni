@@ -119,6 +119,9 @@ export default {
     "attribute_desc": "Analise seus atributos românticos e potenciais características.",
     "my_reports": "Meu Relatório"
   },
+  "report_ready": "Seu relatório de sorte está pronto!",
+  "click_to_view": "Toque no botão abaixo para ver o relatório 👇",
+  "view_report": "📄 Ver Relatório",
   "warehouse": "Armazenamento do mapa astral",
   "onboarding": {
     "askName": "Por favor, insira o nome (ou apelido) do alvo para a leitura de sorte:",
@@ -244,5 +247,8 @@ export default {
     "grandchildren": "Netos",
     "grandparents": "Avós"
   },
-  "upsell_vip_analysis": "Upgrade VIP para desbloquear análises mais profundas"
+  "upsell_vip_analysis": "Upgrade VIP para desbloquear análises mais profundas",
+  "upsell_self_vip_match": "💎 Faça upgrade para VIP e obtenha resultados mais precisos na garrafa da sorte.",
+  "upsell_gift_vip_match": "💡 Se a outra pessoa também fizer upgrade para VIP, os resultados na garrafa da sorte serão mais precisos.",
+  "btn_gift_vip": "🎁 Presentear VIP"
 };

@@ -1,7 +1,7 @@
 export default {
   "anonymousUser": "Usuario Anónimo",
   "back": "Volver",
-  "banned": "❌ Tu cuenta ha sido prohibida, no puedes recoger Botellas de Bendición.\n\nSi tienes preguntas, por favor utiliza la opción de apelación.",
+  "banned": "❌ Tu cuenta ha sido prohibida, no puedes recoger Botellas de Bendición.\n\nSi tienes dudas, por favor usa la opción de apelación.",
   "block": "• Para dejar de chatear, puedes usar /block para bloquear\n",
   "bottle": "😔 Actualmente no hay Botellas de Bendición adecuadas para ti.\n\n",
   "bottle2": "• O lanza una botella tú mismo: /throw",
@@ -24,7 +24,7 @@ export default {
   "message6": "2️⃣ Mantén presionado este mensaje, selecciona 'Responder' e ingresa tu contenido",
   "nickname": "📝 Apodo: {ownerMaskedNickname}\n",
   "nickname2": "📝 Apodo: {catcherNickname}\n",
-  "notRegistered": "❌ Debes completar el proceso de registro antes de poder recoger Botellas de Bendición.\n\nUtiliza la opción de registro para continuar.",
+  "notRegistered": "❌ Primero completa el proceso de registro para poder recoger Botellas de Bendición.\n\nUsa la opción de registro para continuar.",
   "originalContent": "Texto original: {content}",
   "originalLanguage": "Idioma original: {language}",
   "quotaExhausted": "❌ La cuota de bendiciones de la Botella de Bendición de hoy se ha agotado ({quotaDisplay})",

@@ -119,6 +119,9 @@ export default {
     "attribute_desc": "Analyseer je romantische attributen en potentiële eigenschappen.",
     "my_reports": "Mijn Rapport"
   },
+  "report_ready": "Uw gelukrapport is klaar!",
+  "click_to_view": "Klik op de onderstaande knop om het rapport te bekijken 👇",
+  "view_report": "📄 Rapport bekijken",
   "warehouse": "Bewaring geboortehoroscoop",
   "onboarding": {
     "askName": "Voer de naam (of bijnaam) van het doel voor waarzegging in:",
@@ -244,5 +247,8 @@ export default {
     "grandchildren": "Kleinkinderen",
     "grandparents": "Grootouders"
   },
-  "upsell_vip_analysis": "💎 Upgrade naar VIP voor diepere analyse"
+  "upsell_vip_analysis": "💎 Upgrade naar VIP voor diepere analyse",
+  "upsell_self_vip_match": "💎 Upgrade naar VIP voor meer nauwkeurige geluksresultaten.",
+  "upsell_gift_vip_match": "💡 Als de ander ook VIP upgraden, ontvang je meer nauwkeurige geluksresultaten.",
+  "btn_gift_vip": "🎁 Geef VIP cadeau"
 };

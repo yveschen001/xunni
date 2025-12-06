@@ -17,7 +17,7 @@ export class TarotHandler {
     const text = this.i18n.t('fortune.tarot_ui.intro'); // "Think of a question..."
     const buttons = [
       [{ text: `🃏 ${this.i18n.t('fortune.tarot_ui.draw')}`, callback_data: 'fortune_tarot_draw' }],
-      [{ text: this.i18n.t('fortune.backToMenu'), callback_data: 'menu_fortune' }],
+      [{ text: this.i18n.t('fortune.back_to_menu'), callback_data: 'menu_fortune' }],
       [{ text: this.i18n.t('common.back3'), callback_data: 'return_to_menu' }]
     ];
     await telegram.sendMessageWithButtons(chatId, text, buttons);

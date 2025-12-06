@@ -1,7 +1,7 @@
 export default {
   "vipTitle": "🎁 Offrir VIP à {name}",
   "vipDescription": "Débloquez les privilèges VIP pour {name} : Traduction illimitée, avatar clair, compatibilité astrologique !",
-  "bottleSelectTitle": "🔮 Choisissez le nombre de bouteilles de bonne aventure à offrir à {name} :",
+  "bottleSelectTitle": "🔮 Sélectionnez le nombre de bouteilles de bonne aventure à offrir à {name} :",
   "bottleTitle": "🎁 Offrir {count} bouteilles de bonne aventure à {name}",
   "bottleDescription": "Permettre à {name} de réaliser davantage de calculs astrologiques et de compatibilités !",
   "giftNotification": "🎁 **Surprise ! Vous avez reçu un cadeau !**\n\n**{sender}** vient de vous offrir **{item}** !\n\n{action}",

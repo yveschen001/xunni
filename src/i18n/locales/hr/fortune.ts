@@ -119,6 +119,9 @@ export default {
     "attribute_desc": "Analizirajte svoje romantične atribute i potencijalne osobine.",
     "my_reports": "Moj izvještaj"
   },
+  "report_ready": "Vaš izvještaj o sreći je spreman!",
+  "click_to_view": "Pritisnite gumb u nastavku za pregled izvještaja 👇",
+  "view_report": "📄 Pregledaj izvještaj",
   "warehouse": "Skladištenje natalne karte",
   "onboarding": {
     "askName": "Molimo unesite ime (ili nadimak) cilja za proricanje:",
@@ -244,5 +247,8 @@ export default {
     "grandchildren": "Unuci",
     "grandparents": "Baka i djed"
   },
-  "upsell_vip_analysis": "💎 Nadogradi na VIP za dublju analizu"
+  "upsell_vip_analysis": "💎 Nadogradi na VIP za dublju analizu",
+  "upsell_self_vip_match": "💎 Nadogradite na VIP za preciznije rezultate.",
+  "upsell_gift_vip_match": "💡 Ako i druga osoba nadogradi na VIP, možete dobiti preciznije rezultate.",
+  "btn_gift_vip": "🎁 Pokloni VIP"
 };

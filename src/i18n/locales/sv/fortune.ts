@@ -119,6 +119,9 @@ export default {
     "attribute_desc": "Analysera dina romantiska attribut och potentiella drag.",
     "my_reports": "Min rapport"
   },
+  "report_ready": "Din spådomsrapport är klar!",
+  "click_to_view": "Klicka på knappen nedan för att se rapporten 👇",
+  "view_report": "Visa rapport",
   "warehouse": "Födelsekartsförvaring",
   "onboarding": {
     "askName": "Vänligen ange namnet (eller smeknamnet) på den person som skall ha ödesberäkning:",
@@ -244,5 +247,8 @@ export default {
     "grandchildren": "Barnbarn",
     "grandparents": "Mor- och farföräldrar"
   },
-  "upsell_vip_analysis": "Uppgradera till VIP för djupare spådom"
+  "upsell_vip_analysis": "Uppgradera till VIP för djupare spådom",
+  "upsell_self_vip_match": "💎 Uppgradera till VIP för mer exakt spådomsresultat.",
+  "upsell_gift_vip_match": "💡 Om den andra personen också uppgraderar till VIP, kan mer exakt spådomsresultat fås.",
+  "btn_gift_vip": "🎁 Ge VIP"
 };

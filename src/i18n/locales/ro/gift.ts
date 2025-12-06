@@ -1,8 +1,8 @@
 export default {
   "vipTitle": "🎁 Trimite VIP lui {name}",
   "vipDescription": "Dezvoltă privilegii VIP pentru {name}: traduceri nelimitate, avatar clar, compatibilitate în astrologie!",
-  "bottleSelectTitle": "🔮 Alege numărul de Sticle de Ghicit pe care să le oferi lui {name}:",
-  "bottleTitle": "🎁 Oferă {count} Sticle de Ghicit lui {name}",
+  "bottleSelectTitle": "🔮 Alegeți numărul de Sticle de Ghicit pe care doriți să le trimiteți lui {name}:",
+  "bottleTitle": "🎁 Trimiteți {count} Sticle de Ghicit lui {name}",
   "bottleDescription": "Permite-i lui {name} să facă mai multe calcule astrologice și compatibilități!",
   "giftNotification": "🎁 **Surpriză! Ai primit un cadou!**\n\n**{sender}** ți-a trimis **{item}**! \n\n{action}",
   "giftVipItem": "{duration} membru VIP",

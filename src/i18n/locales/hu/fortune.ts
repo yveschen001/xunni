@@ -119,6 +119,9 @@ export default {
     "attribute_desc": "Elemezze romantikus attribútumait és lehetséges jellemzőit.",
     "my_reports": "Az én jelentésem"
   },
+  "report_ready": "A sorsjegy jelentése kész van!",
+  "click_to_view": "Nem kattintson az alábbi gombra, hogy megtekinthesse a jelentést 👇",
+  "view_report": "📄 Jelentés megtekintése",
   "warehouse": "Születési térkép tárolás",
   "onboarding": {
     "askName": "Kérlek, írd be a célpont nevét (vagy becenevét) a jósláshoz:",
@@ -244,5 +247,8 @@ export default {
     "grandchildren": "Unokák",
     "grandparents": "Nagyszülők"
   },
-  "upsell_vip_analysis": "VIP Frissítés a mélyebb jóslásokhoz"
+  "upsell_vip_analysis": "VIP Frissítés a mélyebb jóslásokhoz",
+  "upsell_self_vip_match": "💎 Frissítse VIP tagságát a pontosabb jóslatokért.",
+  "upsell_gift_vip_match": "💡 Ha a másik fél is frissíti a VIP tagságát, pontosabb jóslatokat kaphat.",
+  "btn_gift_vip": "🎁 VIP Ajándék"
 };

@@ -119,6 +119,9 @@ export default {
     "attribute_desc": "Phân Tích thuộc tính lãng mạn và các đặc tính tiềm năng của bạn.",
     "my_reports": "Báo Cáo Của Tôi"
   },
+  "report_ready": "Báo cáo vận mệnh của bạn đã sẵn sàng!",
+  "click_to_view": "Nhấn vào nút bên dưới để xem báo cáo 👇",
+  "view_report": "Xem Báo Cáo",
   "warehouse": "Lưu trữ bản đồ sinh",
   "onboarding": {
     "askName": "Vui lòng nhập tên (hoặc biệt danh) của mục tiêu để bói toán:",
@@ -244,5 +247,8 @@ export default {
     "grandchildren": "Cháu nội",
     "grandparents": "Ông bà"
   },
-  "upsell_vip_analysis": "Nâng cấp VIP để mở khóa phân tích phong thủy sâu hơn"
+  "upsell_vip_analysis": "Nâng cấp VIP để mở khóa phân tích phong thủy sâu hơn",
+  "upsell_self_vip_match": "💎 Nâng cấp VIP để nhận kết quả bói toán chính xác hơn.",
+  "upsell_gift_vip_match": "💡 Nếu người kia cũng nâng cấp VIP, bạn sẽ nhận được kết quả bói toán chính xác hơn.",
+  "btn_gift_vip": "🎁 Tặng VIP"
 };

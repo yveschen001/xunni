@@ -119,6 +119,9 @@ export default {
     "attribute_desc": "تحليل صفاتك الرومانسية والسمات المحتملة.",
     "my_reports": "تقريري"
   },
+  "report_ready": "تقرير الحظ الخاص بك جاهز!",
+  "click_to_view": "اضغط على الزر أدناه لرؤية التقرير 👇",
+  "view_report": "📄 عرض التقرير",
   "warehouse": "تخزين خريطة الميلاد",
   "onboarding": {
     "askName": "يرجى إدخال اسم (أو لقب) الهدف للتنجيم:",
@@ -244,5 +247,8 @@ export default {
     "grandchildren": "أحفاد",
     "grandparents": "أجداد"
   },
-  "upsell_vip_analysis": "ترقية VIP لفتح تحليل حظ أعمق"
+  "upsell_vip_analysis": "ترقية VIP لفتح تحليل حظ أعمق",
+  "upsell_self_vip_match": "💎 قم بترقية VIP للحصول على نتائج حظ أكثر دقة.",
+  "upsell_gift_vip_match": "💡 إذا قام الآخر أيضًا بترقية VIP، يمكنك الحصول على نتائج حظ أكثر دقة.",
+  "btn_gift_vip": "🎁 أهدي VIP"
 };

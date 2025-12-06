@@ -119,6 +119,9 @@ export default {
     "attribute_desc": "Analizează-ți atributele romantice și trăsăturile potențiale.",
     "my_reports": "Raportul Meu"
   },
+  "report_ready": "Raportul tău de noroc este gata!",
+  "click_to_view": "Apasă butonul de mai jos pentru a vedea raportul 👇",
+  "view_report": "📄 Vizualizează raportul",
   "warehouse": "Stocare hartă natală",
   "onboarding": {
     "askName": "Te rog să introduci numele (sau porecla) țintei pentru divinație:",
@@ -244,5 +247,8 @@ export default {
     "grandchildren": "Nepoți",
     "grandparents": "Bunici"
   },
-  "upsell_vip_analysis": "Upgrade VIP pentru analize astrologice mai profunde"
+  "upsell_vip_analysis": "Upgrade VIP pentru analize astrologice mai profunde",
+  "upsell_self_vip_match": "💎 Upgradează-te la VIP pentru rezultate mai precise de ghicit.",
+  "upsell_gift_vip_match": "💡 Dacă cealaltă persoană se upgradează la VIP, poți obține rezultate mai precise de ghicit.",
+  "btn_gift_vip": "🎁 Dăruiește VIP"
 };

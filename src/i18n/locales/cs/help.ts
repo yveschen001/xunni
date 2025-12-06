@@ -28,13 +28,13 @@ export default {
   "birthday": "• Dnes je narozeniny: is_birthday=true\n\n",
   "bottle": "• Dokončete úkoly: Získejte další láhve se zprávou (použijte /tasks pro zobrazení)\n",
   "bottle2": "/tasks - Centrum úkolů (dokončete úkoly pro získání dalších lahví se zprávou)\n",
-  "bottle3": "• Každý den můžete vyhodit a chytit omezené množství Láhví Přání\n",
+  "bottle3": "• Každý den můžete vyhodit a posbírat omezené množství Láhev Přání\n",
   "bottle4": "• VIP uživatelé: 30 lahví se zprávou denně\n",
   "bottle5": "• Zprávy láhví se zprávou jsou platné po dobu 24 hodin\n\n",
   "bottle6": "• Bezplatní uživatelé: 3 láhve za den\n",
   "bottle7": "Vyhodit Láhev Přání\n",
   "bottle8": "Seberte Láhev Přání\n",
-  "bottle9": "🍾 **Systém Láhve Přání**\n",
+  "bottle9": "🍾 **Systém Láhev Přání**\n",
   "broadcast": "/broadcast_status <id> - Zobrazit detaily vysílání\n",
   "broadcast2": "/broadcast_process - Ručně zpracovat frontu vysílání\n",
   "broadcast3": "/broadcast_cleanup - Vyčistit uvíznutá vysílání\n",
@@ -60,8 +60,8 @@ export default {
   "profile": "/edit_profile - Upravit profil\n",
   "profile2": "/profile - Zobrazit profil\n",
   "profile3": "👤 **Profil**\n",
-  "quota": "🔢 Denní vysoký limit\n• Každý den začíná s 30 Láhvemi Přání (běžní uživatelé pouze 10).\n• Pozváním přátel můžete trvale zvýšit limit, maximálně až na 100!\n• Denně 100 zpráv pro konverzaci bez překážek.\n",
-  "quota2": "• Denně 30 Láhvím Přání\n",
+  "quota": "🔢 Denní maximální limit\n• Každý den 30 Láhev Přání na začátku (běžní uživatelé pouze 10).\n• Pozváním přátel můžete trvale zvýšit limit, maximálně až na 100!\n• Denně 100 zpráv pro konverzaci bez překážek.\n",
+  "quota2": "• Denní limit 30 Láhev Přání\n",
   "register": "/start - Začít používat / Pokračovat v registraci\n",
   "report": "/report - Nahlásit nevhodný obsah\n",
   "settings": "/settings - Nastavení notifikací",
@@ -123,5 +123,5 @@ export default {
   "clearFortune": "/clear_fortune - Vymazat záznamy o fortuně",
   "adminGrantSection": "🔧 **Zásobování prostředky**",
   "addVip": "/add_vip - Aktivovat VIP (30 dní)",
-  "addBottles": "\nPřidat 50 Věšteckých Láhví"
+  "addBottles": "\nPřidat 50 Věštecká Láhev"
 };

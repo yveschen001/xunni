@@ -119,6 +119,9 @@ export default {
     "attribute_desc": "Romantik özelliklerinizi ve potansiyel niteliklerinizi analiz edin.",
     "my_reports": "Raporum"
   },
+  "report_ready": "Kahinlik raporunuz hazır!",
+  "click_to_view": "Raporu görüntülemek için aşağıdaki butona tıklayın 👇",
+  "view_report": "Raporu Gör",
   "warehouse": "Doğum haritası depolama",
   "onboarding": {
     "askName": "Lütfen fal bakılacak kişinin adını (veya takma adını) girin:",
@@ -244,5 +247,8 @@ export default {
     "grandchildren": "Torunlar",
     "grandparents": "Büyükanne/büyükbaba"
   },
-  "upsell_vip_analysis": "VIP Analizi Yükselt"
+  "upsell_vip_analysis": "VIP Analizi Yükselt",
+  "upsell_self_vip_match": "💎 VIP'e yükselterek daha doğru fal sonuçları alın.",
+  "upsell_gift_vip_match": "💡 Eğer diğer kişi de VIP'e yükselirse, daha doğru fal sonuçları alabilirsiniz.",
+  "btn_gift_vip": "🎁 VIP Hediye Et"
 };

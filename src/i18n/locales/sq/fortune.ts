@@ -119,6 +119,9 @@ export default {
     "attribute_desc": "Analizoni atributet tuaja romantike dhe tiparet potenciale.",
     "my_reports": "Raporti im"
   },
+  "report_ready": "Raporti juaj është gati!",
+  "click_to_view": "Klikoni butonin më poshtë për të parë raportin 👇",
+  "view_report": "📄 Shiko Raportin",
   "warehouse": "Ruajtja e hartave të lindjes",
   "onboarding": {
     "askName": "Ju lutemi shkruani emrin (ose nofkën) e objektit për fatin:",
@@ -244,5 +247,8 @@ export default {
     "grandchildren": "Babcai",
     "grandparents": "Gjyshet"
   },
-  "upsell_vip_analysis": "Përmirëso VIP për analizë më të thelluar"
+  "upsell_vip_analysis": "Përmirëso VIP për analizë më të thelluar",
+  "upsell_self_vip_match": "💎 Përmirëso VIP për të marrë rezultate më të sakta të Fatit.",
+  "upsell_gift_vip_match": "💡 Nëse tjetri gjithashtu përmirëson VIP, mund të merrni rezultate më të sakta të Fatit.",
+  "btn_gift_vip": "🎁 Dhuro VIP"
 };

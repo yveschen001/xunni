@@ -11,7 +11,17 @@ export default {
   },
   "type": {
     "love_match": "戀愛合盤",
-    "tarot": "塔羅占卜"
+    "love_ideal": "理想型分析",
+    "tarot": "塔羅占卜",
+    "daily": "每日運勢",
+    "weekly": "每週運勢",
+    "ziwei": "紫微斗數",
+    "astrology": "占星命盤",
+    "bazi": "八字算命",
+    "celebrity": "名人同盤",
+    "career": "事業運勢",
+    "wealth": "財富運勢",
+    "match": "速配分析"
   },
   "dailyPushTitle": "📅 每日運勢提醒",
   "dailyPushBody": "您的今日運勢已生成！點擊查看 👇",
@@ -35,6 +45,9 @@ export default {
     "warehouse": "🔮 命盤倉庫",
     "my_reports": "📜 我的報告"
   },
+  "report_ready": "您的運勢報告已準備就緒！",
+  "click_to_view": "點擊下方按鈕查看報告 👇",
+  "view_report": "📄 查看報告",
   "warehouse": "🔮 命盤倉庫",
   "onboarding": {
     "askName": "首先，請問您的名字是？",
@@ -72,14 +85,14 @@ export default {
   "celebrity": "名人同盤",
   "tarot_menu_title": "塔羅占卜",
   "profile_incomplete_hint": "💡 為了提供更精準的命理服務，請先完善您的個人資料 (職業、興趣等)。",
-  "backToMenu": "返回選單",
+  "backToMenu": "🔮 返回靈能算命",
   "unknownTime": "我不知道具體時間",
   "unknownTimeShort": "時間未知",
   "unknownCityShort": "城市未知",
   "revertHint": "點擊「管理檔案」可切換回您的主檔案。",
   "selectOption": "請選擇您需要的服務：",
-  "quotaDisplayVip": "💎 VIP 配額：{daily} / {limit} (每日)",
-  "quotaDisplayFree": "🪙 免費配額：{weekly} / {limit} (每週)",
+  "quotaDisplayVip": "💎 VIP 配額：{daily} / {limit} (每日) + {additional} 額外",
+  "quotaDisplayFree": "🪙 免費配額：{weekly} / {limit} (每週) + {additional} 額外",
   "targetProfile": "當前查看對象",
   "complete_info_hint": "⚠️ 您的出生時間或地點資訊不完整，這可能會影響星盤分析的準確度 (如月亮星座)。建議您點擊「編輯資料」進行補充。",
   "btn_edit_info": "✏️ 編輯時間/地點",
@@ -97,7 +110,7 @@ export default {
   "invoiceTitle": "命理服務點數 ({amount} 次)",
   "invoiceDesc": "購買 {amount} 次命理服務的高級分析配額。",
   "btn_edit_mbti": "🧠 設定 MBTI",
-  "back_to_menu": "返回選單",
+  "back_to_menu": "🔮 返回靈能算命",
   "noProfile": "找不到檔案",
   "generating": "🔮 正在為您連結宇宙能量...",
   "reports": {
@@ -192,5 +205,8 @@ export default {
     "grandparents": "祖父母",
     "partner": "伴侶"
   },
-  "upsell_vip_analysis": "💎 升級 VIP 解鎖更深入的命理分析"
+  "upsell_vip_analysis": "💎 升級 VIP 解鎖更深入的命理分析",
+  "upsell_self_vip_match": "💎 升級 VIP 獲取更精確算命結果。",
+  "upsell_gift_vip_match": "💡 如果對方也升級 VIP，可獲取更精確算命結果。",
+  "btn_gift_vip": "🎁 贈送對方 VIP"
 };

@@ -67,7 +67,7 @@ export default {
   "bottle6": "💡 Usa /catch para recoger una nueva Botella de Bendición y empezar una nueva conversación.",
   "bottle7": "🍾 Lanza una Botella de Bendición\n\n¿Qué tipo de compañero de chat estás buscando? Primero envíale una bendición a esa persona lejana~ La felicidad regresará a ti~",
   "bottle8": "¡Ve y lanza una Botella de Bendición de bendiciones y deséense lo mejor con nuevos amigos! /throw",
-  "bottle9": "Mira las Botellas de Bendición de otros, ¡bendiciones mutuas y comienza a chatear!\n\n",
+  "bottle9": "Mira las Botellas de Bendición de otros y envía tus deseos~ Regresa y comienza a chatear\n\n",
   "broadcast": "La transmisión se enviará en segundo plano, usa /broadcast_status {broadcastId} para verificar el progreso.",
   "broadcast10": "📊 Últimos 5 registros de transmisión\n\n",
   "broadcast11": "Se ha enviado un aviso de mantenimiento a todos los usuarios.\n",

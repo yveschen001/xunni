@@ -119,6 +119,9 @@ export default {
     "attribute_desc": "اپنی رومانوی خصوصیات اور ممکنہ خصائل کا تجزیہ کریں.",
     "my_reports": "میرا رپورٹ"
   },
+  "report_ready": "آپ کی قسمت کی رپورٹ تیار ہے!",
+  "click_to_view": "رپورٹ دیکھنے کے لیے نیچے کے بٹن پر کلک کریں 👇",
+  "view_report": "📄 رپورٹ دیکھیں",
   "warehouse": "زائچہ سٹوریج",
   "onboarding": {
     "askName": "براہ کرم قسمت بتانے کے ہدف کا نام (یا نک نیم) درج کریں:",
@@ -244,5 +247,8 @@ export default {
     "grandchildren": "پوتے",
     "grandparents": "دادا دادی"
   },
-  "upsell_vip_analysis": "VIP میں اپ گریڈ کریں"
+  "upsell_vip_analysis": "VIP میں اپ گریڈ کریں",
+  "upsell_self_vip_match": "💎 VIP میں Upgrade کریں تاکہ زیادہ درست Fortune Bottle کے نتائج حاصل کریں۔",
+  "upsell_gift_vip_match": "💡 اگر دوسرا شخص بھی VIP میں Upgrade کرتا ہے، تو زیادہ درست Fortune Bottle کے نتائج حاصل کیے جا سکتے ہیں۔",
+  "btn_gift_vip": "🎁 دوسروں کو VIP دیں"
 };

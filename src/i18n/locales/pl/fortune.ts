@@ -119,6 +119,9 @@ export default {
     "attribute_desc": "Analizuj swoje romantyczne atrybuty i potencjalne cechy.",
     "my_reports": "Mój raport"
   },
+  "report_ready": "Twój raport o wróżbie jest gotowy!",
+  "click_to_view": "Naciśnij przycisk poniżej, aby zobaczyć raport 👇",
+  "view_report": "📄 Zobacz raport",
   "warehouse": "Przechowywanie wykresów urodzeniowych",
   "onboarding": {
     "askName": "Proszę wpisać imię (lub przezwisko) celu wróżenia:",
@@ -244,5 +247,8 @@ export default {
     "grandchildren": "Wnuki",
     "grandparents": "Dziadkowie"
   },
-  "upsell_vip_analysis": "💎 Ulepsz VIP, aby odblokować bardziej szczegółową analizę wróżb"
+  "upsell_vip_analysis": "💎 Ulepsz VIP, aby odblokować bardziej szczegółową analizę wróżb",
+  "upsell_self_vip_match": "💎 Ulepsz swoją subskrypcję VIP, aby uzyskać dokładniejsze wyniki wróżby.",
+  "upsell_gift_vip_match": "💡 Jeśli druga osoba również uaktualni do VIP, będziesz mieć dokładniejsze wyniki wróżby.",
+  "btn_gift_vip": "🎁 Podaruj VIP"
 };

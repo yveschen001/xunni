@@ -119,6 +119,9 @@ export default {
     "attribute_desc": "Analysieren Sie Ihre romantischen Attribute und potenziellen Eigenschaften.",
     "my_reports": "Mein Bericht"
   },
+  "report_ready": "Ihr Glücksbericht ist bereit!",
+  "click_to_view": "Drücken Sie die Taste unten, um den Bericht anzusehen 👇",
+  "view_report": "Bericht anzeigen",
   "warehouse": "Speicherung der Geburtshoroskope",
   "onboarding": {
     "askName": "Bitte geben Sie den Namen (oder Spitznamen) des Ziels für die Wahrsagerei ein:",
@@ -244,5 +247,8 @@ export default {
     "grandchildren": "Enkelkinder",
     "grandparents": "Großeltern"
   },
-  "upsell_vip_analysis": "VIP Upgrade für tiefere Wahrsageanalyse"
+  "upsell_vip_analysis": "VIP Upgrade für tiefere Wahrsageanalyse",
+  "upsell_self_vip_match": "💎 Upgrade auf VIP für genauere Ergebnisse der Glücksflasche.",
+  "upsell_gift_vip_match": "💡 Wenn die andere Person ebenfalls VIP wird, erhält man genauere Ergebnisse der Glücksflasche.",
+  "btn_gift_vip": "🎁 VIP schenken"
 };

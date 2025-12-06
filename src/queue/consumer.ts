@@ -62,32 +62,27 @@ export async function fortuneQueueHandler(batch: MessageBatch<FortuneJobPayload>
         job.targetProfile,
         job.targetUserId,
         job.context,
-        onProgress
+        onProgress,
+        job.skipQuota // Skip Quota Deduction (Handled in Dispatcher/Handler)
       );
 
       console.log(`[QueueConsumer] Job done. Result ID: ${result.id}`);
 
-      // Notify Completion
-      // We can either send the text directly OR (better) use the report viewer handler code.
-      // But we can't import handlers easily if they depend on context?
-      // Actually `handleReportDetail` is exported.
-      
+      // Notify Completion - DIRECTLY SEND REPORT
+      console.log(`[QueueConsumer] Sending report directly for Result ID: ${result.id}`);
+
       // Delete "Generating" message if it exists
       if (messageId) {
-          await telegram.deleteMessage(chatId, messageId);
+          try {
+              await telegram.deleteMessage(chatId, messageId);
+          } catch (e) {
+              console.warn('[QueueConsumer] Failed to delete generation msg:', e);
+          }
       }
 
-      // Send Result
-      // Reuse handleReportDetail logic?
-      // We need to dynamically import to avoid circular deps if any.
-      // Or just send a simple "Ready" message with button.
-      
-      const text = `✅ ${i18n.t('fortune.report_ready')}\n\n${i18n.t('fortune.click_to_view')}`;
-      const buttons = [
-          [{ text: i18n.t('fortune.view_report'), callback_data: `fortune_report:${result.id}` }]
-      ];
-      
-      await telegram.sendMessageWithButtons(chatId, text, buttons);
+      // Use Report Viewer to render the full report
+      const { handleReportDetail } = await import('../telegram/handlers/fortune_reports');
+      await handleReportDetail(chatId, result.id, env);
 
       // Ack the message
       message.ack();
@@ -95,6 +90,18 @@ export async function fortuneQueueHandler(batch: MessageBatch<FortuneJobPayload>
     } catch (error) {
       console.error(`[QueueConsumer] Job failed:`, error);
       
+      // Notify Admin of Crash
+      try {
+        if (env.ADMIN_LOG_GROUP_ID) {
+            await telegram.sendMessage(
+                parseInt(env.ADMIN_LOG_GROUP_ID), 
+                `🚨 **Queue Consumer Crash**\n\nUser: ${userId}\nType: ${job.fortuneType}\nError: ${error instanceof Error ? error.message : String(error)}`
+            );
+        }
+      } catch (logErr) {
+        console.error('Failed to send admin log:', logErr);
+      }
+
       // If it's a retry-able error, we can let it throw (Cloudflare will retry).
       // If it's fatal (e.g. invalid data), we should ack.
       // For now, let's retry up to max retries (configured in toml).

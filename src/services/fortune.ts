@@ -540,7 +540,8 @@ export class FortuneService {
     targetProfile?: FortuneProfile,
     targetUserId?: string, // Optional real user ID for matches
     context?: any, // Extra data for specific types (e.g. Tarot cards)
-    onProgress?: (message: string) => Promise<void> // UI Update Callback
+    onProgress?: (message: string) => Promise<void>, // UI Update Callback
+    skipQuota: boolean = false // Optional: Skip quota deduction (if handled upstream)
   ): Promise<FortuneHistory> {
     // 1. Check Cache
     let query = `SELECT * FROM fortune_history WHERE telegram_id = ? AND type = ? AND target_date = ?`;
@@ -586,10 +587,12 @@ export class FortuneService {
     if (cached) return cached;
 
     // 2. Check Quota (if not cached)
-    const isVip = !!(user.is_vip && user.vip_expire_at && new Date(user.vip_expire_at) > new Date());
-    const hasQuota = await this.deductQuota(user.telegram_id, isVip);
-    if (!hasQuota) {
-      throw new Error('QUOTA_EXCEEDED');
+    if (!skipQuota) {
+        const isVip = !!(user.is_vip && user.vip_expire_at && new Date(user.vip_expire_at) > new Date());
+        const hasQuota = await this.deductQuota(user.telegram_id, isVip);
+        if (!hasQuota) {
+          throw new Error('QUOTA_EXCEEDED');
+        }
     }
 
     // 3. Calculate Chart
@@ -614,8 +617,8 @@ export class FortuneService {
     
     // Map code to natural language name for better adherence
     const LANG_NAMES: Record<string, string> = {
-      'zh-TW': 'Traditional Chinese (Taiwan)',
-      'zh-CN': 'Simplified Chinese',
+      'zh-TW': 'Traditional Chinese (Taiwan) / 繁體中文 (台灣)',
+      'zh-CN': 'Simplified Chinese (Mainland China) / 简体中文',
       'en': 'English',
       'ja': 'Japanese',
       'ko': 'Korean',
@@ -733,6 +736,39 @@ export class FortuneService {
   </kinship_logic>`;
     }
 
+    // Infer Orientation from Match Preference
+    let orientation = 'Heterosexual';
+    if (user.match_preference) {
+        if (user.match_preference === 'any') {
+            orientation = 'Bisexual';
+        } else if (profile.gender && user.match_preference === profile.gender) {
+            orientation = 'Homosexual';
+        } else {
+            orientation = 'Heterosexual';
+        }
+    }
+
+    // Infer Target Orientation
+    let targetOrientation = 'Unknown';
+    if (targetUserId) {
+        try {
+           const targetUser = await this.db.prepare('SELECT * FROM users WHERE telegram_id = ?').bind(targetUserId).first<User>();
+           if (targetUser && targetUser.match_preference) {
+                // We need target's gender from targetProfile
+                const tGender = targetProfile?.gender;
+                if (targetUser.match_preference === 'any') {
+                    targetOrientation = 'Bisexual';
+                } else if (tGender && targetUser.match_preference === tGender) {
+                    targetOrientation = 'Homosexual';
+                } else if (tGender && targetUser.match_preference !== tGender) {
+                    targetOrientation = 'Heterosexual';
+                }
+           }
+        } catch (e) {
+            console.warn('Failed to fetch target user for orientation', e);
+        }
+    }
+
     const contextXml = `
 <context_data>
   <user_profile>
@@ -748,6 +784,7 @@ export class FortuneService {
     <job_role>${jobRole}</job_role>
     <industry>${industry}</industry>
     <interests>${interests}</interests>
+    <orientation>${orientation}</orientation>
   </user_profile>
   
   <request_info>
@@ -765,6 +802,7 @@ export class FortuneService {
     <birth_year>${targetBirthYear}</birth_year>
     <gender>${targetProfile.gender}</gender>
     <location>${targetProfile.birth_city || 'Unknown'}</location>
+    <orientation>${targetOrientation}</orientation>
   </target_profile>` : ''}
   
   ${targetChartStr ? `<target_chart>${targetChartStr}</target_chart>` : ''}

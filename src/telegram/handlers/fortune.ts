@@ -50,7 +50,7 @@ export async function handleFortune(message: TelegramMessage, env: Env): Promise
       if (!user.interests || user.interests === '[]' || user.interests === '') {
         await telegram.sendMessageWithButtons(chatId, i18n.t('fortune.profile_incomplete_hint'), [
           [{ text: i18n.t('interests.btn_edit'), callback_data: 'edit_interests_callback' }],
-          [{ text: i18n.t('fortune.backToMenu'), callback_data: 'return_to_menu' }]
+          [{ text: i18n.t('buttons.returnToMenu'), callback_data: 'return_to_menu' }]
         ]);
         return;
       }
@@ -60,7 +60,7 @@ export async function handleFortune(message: TelegramMessage, env: Env): Promise
         await telegram.sendMessageWithButtons(chatId, i18n.t('fortune.profile_incomplete_hint'), [
           [{ text: i18n.t('career.btn_edit_role'), callback_data: 'edit_job_role' }],
           [{ text: i18n.t('career.btn_edit_industry'), callback_data: 'edit_industry' }],
-          [{ text: i18n.t('fortune.backToMenu'), callback_data: 'return_to_menu' }]
+          [{ text: i18n.t('buttons.returnToMenu'), callback_data: 'return_to_menu' }]
         ]);
         return;
       }
@@ -695,7 +695,7 @@ export async function handleFortuneCallback(callbackQuery: TelegramCallbackQuery
         buttons.push([{ text: i18n.t('career.btn_edit_role'), callback_data: 'edit_job_role' }]);
         buttons.push([{ text: i18n.t('career.btn_edit_industry'), callback_data: 'edit_industry' }]);
       }
-      buttons.push([{ text: i18n.t('fortune.back_to_menu'), callback_data: 'return_to_menu' }]);
+      buttons.push([{ text: i18n.t('buttons.returnToMenu'), callback_data: 'return_to_menu' }]);
 
       await telegram.sendMessageWithButtons(
         chatId,
@@ -1010,7 +1010,7 @@ export async function handleFortuneCallback(callbackQuery: TelegramCallbackQuery
         await telegram.sendMessageWithButtons(
           chatId, 
           i18n.t('fortune.profileCreated'),
-          [[{ text: i18n.t('fortune.back_to_menu'), callback_data: 'return_to_menu' }]]
+          [[{ text: i18n.t('fortune.back_to_menu'), callback_data: 'menu_fortune' }]]
         );
         
         // Auto-show menu (Fixing argument order bug)
@@ -1142,10 +1142,10 @@ export async function handleFortuneCallback(callbackQuery: TelegramCallbackQuery
       // Celebrity might need re-roll? No, usually stable per day/week.
       const isCached = await service.isFortuneCached(user.telegram_id, type, targetDate);
       
-      // 2. Check Quota (if not cached)
+      // 2. Check & Deduct Quota (if not cached)
       if (!isCached) {
         const isVip = !!(user.is_vip && user.vip_expire_at && new Date(user.vip_expire_at) > new Date());
-        const hasQuota = await service.checkQuota(user.telegram_id, isVip);
+        const hasQuota = await service.deductQuota(user.telegram_id, isVip);
         
         if (!hasQuota) {
           await telegram.sendMessageWithButtons(
@@ -1160,68 +1160,67 @@ export async function handleFortuneCallback(callbackQuery: TelegramCallbackQuery
         }
       } else {
         // If cached, just load it. 
-        // We need to fetch it to pass ID to handleReportDetail.
-        // service.generateFortune checks cache internally and returns it without deducting quota.
-        // But let's clarify that flow. 
-        // generateFortune calls deductQuota ONLY if !cached.
       }
 
       // Fake Loading Animation
-      // Only show deduction animation if NOT cached
-      const loadingMsgs = [];
-      if (!isCached) {
-        loadingMsgs.push('📉 ' + i18n.t('fortune.loading.deduct')); // Assuming key exists or fallback
-        // The user mentioned "deduction" isn't strictly translated in code above, but let's use what we have.
-        // Actually the code I read has:
-        // loadingMsgs.push('📉 ' + i18n.t('fortune.loading.deduct')); 
-        // But I don't see 'deduct' in the keys I grepped earlier. Let's check fortune.ts keys again.
-      }
-      loadingMsgs.push(
+      const loadingMsgs = [
         '🛰️ ' + i18n.t('fortune.loading.astronomy'),
         '📜 ' + i18n.t('fortune.loading.bazi'),
         '🧬 ' + i18n.t('fortune.loading.analysis'),
         '🧠 ' + i18n.t('fortune.loading.generating')
-      );
+      ];
 
       const msg = await telegram.sendMessageAndGetId(chatId, i18n.t('fortune.generating'));
       const msgId = msg.message_id;
 
-      // Animation Loop
+      // Animation Loop (Short)
       for (const loadingText of loadingMsgs) {
-        // Skip if text is undefined/missing key (fallback)
         if (!loadingText.includes('fortune.loading')) {
              try {
                 await telegram.editMessageText(chatId, msgId, loadingText);
-                await new Promise(resolve => setTimeout(resolve, 800)); // 0.8s per frame
+                await new Promise(resolve => setTimeout(resolve, 500)); // Faster for queue
              } catch (e) {
-                // Ignore edit errors (e.g. rate limit)
+                // Ignore
              }
         }
       }
 
-      const fortune = await service.generateFortune(
-        user, 
-        profile, 
-        type, 
-        targetDate, 
-        undefined, 
-        undefined, 
-        undefined, 
+      // Dispatch to Queue
+      const { dispatchFortuneJob } = await import('~/queue/dispatcher');
+      
+      const dispatchResult = await dispatchFortuneJob(
+        env, 
+        {
+          userId: user.telegram_id,
+          chatId,
+          userProfile: profile,
+          fortuneType: type as any,
+          targetDate,
+          lang: user.language_pref || 'zh-TW',
+          messageId: msgId,
+          skipQuota: true // Handled above
+        }, 
+        db.d1,
         async (progressText) => {
           try {
             await telegram.editMessageText(chatId, msgId, progressText);
           } catch (e) {
-            // Ignore edit errors
+            // Ignore
           }
         }
       );
       
-      // Delete loading message and send new one (or edit final)
-      await telegram.deleteMessage(chatId, msgId);
-      
-      // Instead of sending raw text, delegate to handleReportDetail for pagination support
-      const { handleReportDetail } = await import('./fortune_reports');
-      await handleReportDetail(chatId, fortune.id, env);
+      if (dispatchResult.status === 'completed' && dispatchResult.result) {
+          // Sync Success
+          await telegram.deleteMessage(chatId, msgId);
+          const { handleReportDetail } = await import('./fortune_reports');
+          await handleReportDetail(chatId, dispatchResult.result.id, env);
+      } else if (dispatchResult.status === 'queued') {
+          // Queued Success
+          if (dispatchResult.message) {
+             try { await telegram.editMessageText(chatId, msgId, dispatchResult.message); } catch(e){}
+          }
+      }
 
     } catch (e: any) {
       console.error('Fortune generation error:', e);

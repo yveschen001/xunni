@@ -119,6 +119,9 @@ export default {
     "attribute_desc": "Analizirajte svoje romantične atribute in potencialne lastnosti.",
     "my_reports": "Moje poročilo"
   },
+  "report_ready": "Vaša napoved je pripravljena!",
+  "click_to_view": "Pritisnite gumb spodaj za ogled napovedi 👇",
+  "view_report": "📄 Ogled napovedi",
   "warehouse": "Shranjevanje rojskih kart",
   "onboarding": {
     "askName": "Prosimo, vnesite ime (ali vzdevek) cilja za napovedovanje:",
@@ -244,5 +247,8 @@ export default {
     "grandchildren": "Vnuki",
     "grandparents": "Stari starši"
   },
-  "upsell_vip_analysis": "Nadgradi na VIP za poglobljeno analizo"
+  "upsell_vip_analysis": "Nadgradi na VIP za poglobljeno analizo",
+  "upsell_self_vip_match": "💎 Nadgradite na VIP za natančnejše rezultate iz Fortune Bottle.",
+  "upsell_gift_vip_match": "💡 Če tudi drugi nadgradijo na VIP, lahko pridobite natančnejše rezultate iz Fortune Bottle.",
+  "btn_gift_vip": "🎁 Darujte VIP"
 };

@@ -119,6 +119,9 @@ export default {
     "attribute_desc": "あなたのロマンティックな属性と潜在的な特性を分析します。",
     "my_reports": "私のレポート"
   },
+  "report_ready": "あなたの運勢レポートが準備できました！",
+  "click_to_view": "下のボタンを押してレポートを確認してください 👇",
+  "view_report": "📄 レポートを見る",
   "warehouse": "出生図の保管",
   "onboarding": {
     "askName": "占いの対象の名前（またはニックネーム）を入力してください：",
@@ -244,5 +247,8 @@ export default {
     "grandchildren": "孫",
     "grandparents": "祖父母"
   },
-  "upsell_vip_analysis": "💎 VIPにアップグレードして、より深い分析をアンロック"
+  "upsell_vip_analysis": "💎 VIPにアップグレードして、より深い分析をアンロック",
+  "upsell_self_vip_match": "💎 VIPにアップグレードして、より正確な占い結果を得ましょう。",
+  "upsell_gift_vip_match": "💡 相手もVIPにアップグレードすれば、より正確な占い結果が得られます。",
+  "btn_gift_vip": "🎁 VIPを贈る"
 };

@@ -48,5 +48,5 @@ export default {
   "verify": "تأیید",
   "viewPayments": "💰 تاریخچه اشتراک",
   "vip": "💎 ارتقاء به VIP",
-  "buyFortuneBottle": "🛍️ خریدن بطری سرنوشت"
+  "buyFortuneBottle": "🛍️ خریدن Fortune Bottle"
 };

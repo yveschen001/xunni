@@ -48,5 +48,5 @@ export default {
   "verify": "Verificiraj",
   "viewPayments": "💰 Povijest Pretplata",
   "vip": "💎 Nadogradi na VIP",
-  "buyFortuneBottle": "🛍️ 購買算命瓶"
+  "buyFortuneBottle": "🛍️ 購買Fortune Bottle"
 };

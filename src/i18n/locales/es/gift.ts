@@ -1,8 +1,8 @@
 export default {
   "vipTitle": "🎁 Regalar VIP a {name}",
   "vipDescription": "Desbloquea privilegios VIP para {name}: Traducción ilimitada, avatar claro, ¡coincidencias de fortuna!",
-  "bottleSelectTitle": "🔮 Selecciona la cantidad de botellas de la fortuna para enviar a {name}:",
-  "bottleTitle": "🎁 Enviar {count} botellas de la fortuna a {name}",
+  "bottleSelectTitle": "🔮 Selecciona la cantidad de botellas de la fortuna para regalar a {name}:",
+  "bottleTitle": "🎁 Regalar {count} botellas de la fortuna a {name}",
   "bottleDescription": "¡Permite que {name} realice más lecturas y coincidencias de fortuna!",
   "giftNotification": "🎁 **¡Sorpresa! Has recibido un regalo!**\n\n**{sender}** te acaba de regalar **{item}**!\n\n{action}",
   "giftVipItem": "{duration} Membresía VIP",

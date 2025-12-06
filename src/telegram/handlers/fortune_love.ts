@@ -567,7 +567,8 @@ export class LoveFortuneHandler {
                 targetDate: today,
                 context: { relationship_type: relType, family_role: familyRole },
                 messageId: generatingMsg?.message_id,
-                lang: user.language_pref || 'zh-TW'
+                lang: user.language_pref || 'zh-TW',
+                skipQuota: true
             },
             db.d1, // Pass D1Database instance
             async (progressText) => {

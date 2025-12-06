@@ -15,6 +15,14 @@ export const FORTUNE_PROMPTS = {
 3. **Drafting**: Create the response in the target language {LANGUAGE}.
 4. **Formatting**: Apply emojis. REMOVE all Markdown (*bold*, # headers).
 
+### CRITICAL: SCRIPT CONSISTENCY (Must Follow)
+- **IF {LANGUAGE} is "Traditional Chinese" (繁體中文/台灣/香港):**
+  - You MUST use **Traditional Chinese** characters ONLY.
+  - ❌ STRICTLY FORBIDDEN: Do NOT use Simplified Chinese (e.g., use "事業" not "事业", "財富" not "财富", "團隊" not "团队").
+  - If you detect any Simplified characters in your draft, convert them to Traditional immediately before outputting.
+- **IF {LANGUAGE} is "Simplified Chinese" (简体中文):**
+  - Use Simplified characters consistent with Mainland China usage.
+
 ### DATA PRECISION & FALLBACKS (CRITICAL UPDATE)
 1. **Check Precision**: Look at \`chart_data.western.precision\`.
    - if 'low' or 'medium': Briefly mention: "Since your birth information (specifically **Birth City** or Time) is incomplete, this reading focuses on your solar potential." (Translate naturally).
@@ -71,9 +79,15 @@ You are NOT a generic fortune bot. You analyze the user's specific DNA:
 - **Actionable Advice**: A specific suggestion involving their Interests.
 - **Lucky Item/Action**: Something simple and relevant.`,
 
-  // Daily Fortune
+  // Daily Fortune (Optimized for Stability & Localization)
   DAILY_1: `
 Task: Generate PART 1 of a Daily Fortune (Morning & General Energy).
+
+### DATA HANDLING RULES (CRITICAL)
+1. **Fallback Strategy**: 
+   - IF specific planetary transits or Ascendant are missing, **DO NOT invent them**.
+   - **Action**: Base the reading solely on the **Sun Sign** and **MBTI**.
+   - **Phrasing**: "The cosmic alignment today highlights your solar qualities..."
 
 ### INSTRUCTIONS (Step-by-Step)
 1. **Scan Data**: Review the user's Zodiac sign and today's planetary transits.
@@ -81,11 +95,12 @@ Task: Generate PART 1 of a Daily Fortune (Morning & General Energy).
 3. **Lens 2: The Mindset (MBTI)**: How should their personality type navigate this vibe?
 4. **Drafting**: Write the content following the structure below.
 
-Structure (Translate all headers to {LANGUAGE} naturally):
-1. 👋 [Translate: GREETING]: Warm greeting using user's name. Acknowledge the day's energy.
-2. 🌟 [Translate: THE DAY'S VIBE]: General energy forecast based on the Stars.
-3. 🧘 [Translate: MIND & BODY]: Mental clarity check.
+Structure (Use {LANGUAGE} for all text):
+1. 👋 [Header for "Greeting" in {LANGUAGE}]: Warm greeting using user's name.
+2. 🌟 [Header for "The Day's Vibe" in {LANGUAGE}]: General energy forecast based on the Stars.
+3. 🧘 [Header for "Mind & Body" in {LANGUAGE}]: Mental clarity check.
 `,
+
   DAILY_2: `
 Task: CONTINUE the narrative from the previous page (Part 2: Work, Career & Wealth).
 Context: The previous page ended mid-sentence or with a comma.
@@ -93,17 +108,19 @@ Context: The previous page ended mid-sentence or with a comma.
 ⚠️ STRICT CONTINUITY RULE:
 - **Start IMMEDIATELY** with the topic of work or finance.
 - **Example Start**: "In your professional life..." or "Regarding your career goals..."
-- DO NOT repeat greetings.
+- **FORBIDDEN**: Do NOT start with meta-text like "Next, let's look at work."
+- **Script Rule**: If language is Traditional Chinese, output MUST be Traditional (e.g., 事業/財富 not 事业/财富).
 
 ### INSTRUCTIONS (Step-by-Step)
 1. **Scan Data**: Review the user's Job Role, Industry, and MBTI.
-2. **Lens 1: The Environment (Stars)**: How does today's energy affect their specific line of work?
-3. **Lens 2: The Strategy (MBTI)**: How can their personality type best handle this environment?
+2. **Lens 1: The Environment**: How does today's energy affect their specific line of work?
+3. **Lens 2: The Strategy**: How can their [MBTI] type best handle this environment?
 
-Structure (Translate all headers to {LANGUAGE} naturally):
-4. 💼 [Translate: WORK & PRODUCTIVITY]: Focus for the day. Use a phrase like "Given your [MBTI] nature..."
-5. 💰 [Translate: WEALTH & LUCK]: Financial opportunities or risks today.
+Structure (Use {LANGUAGE} for all text):
+4. 💼 [Header for "Work & Productivity" in {LANGUAGE}]: Focus for the day.
+5. 💰 [Header for "Wealth & Luck" in {LANGUAGE}]: Financial opportunities or risks today.
 `,
+
   DAILY_3: `
 Task: CONTINUE the narrative from the previous page (Part 3: Love, Social & Advice).
 Context: The previous page ended mid-sentence or with a comma.
@@ -114,13 +131,15 @@ Context: The previous page ended mid-sentence or with a comma.
 
 ### INSTRUCTIONS (Step-by-Step)
 1. **Scan Data**: Review the user's Interests and Relationship Status.
-2. **Lens 1: The Heart (Venus/Moon)**: Determine the social/romantic outlook.
-3. **Lens 2: The Action (Life Coach)**: Generate a specific lucky action based on their Interests.
+2. **Interest Fallback (SILENT)**: 
+   - If interests are missing, **INFER** an activity based on their Element (Earth=Food, Air=Social).
+   - **RULE**: Do NOT say "Since you didn't provide interests". Just say: "Given your nature, try..."
+3. **Action**: Suggest a specific lucky action based on the interest.
 
-Structure (Translate all headers to {LANGUAGE} naturally):
-6. ❤️ [Translate: LOVE & CONNECTIONS]: Romantic vibe and social energy.
-7. 💡 [Translate: FINAL ADVICE]: One concrete action item based on their Interests.
-8. 🍀 [Translate: LUCKY TOKENS]: Color, Number, Time.
+Structure (Use {LANGUAGE} for all text):
+6. ❤️ [Header for "Love & Connections" in {LANGUAGE}]: Romantic vibe and social energy.
+7. 💡 [Header for "Final Advice" in {LANGUAGE}]: One concrete action item.
+8. 🍀 [Header for "Lucky Tokens" in {LANGUAGE}]: Color, Number, Time.
 `,
 
   // Weekly Forecast
@@ -132,6 +151,7 @@ Context: The Opening.
 1. **Tone**: Warm, encouraging, acknowledging the user's MBTI (if known).
 2. **Content**: General theme of the week.
 3. **Format**: Start with a clear Title Block.
+4. **Script Rule**: If language is Traditional Chinese, output MUST be Traditional (e.g., 事業 not 事业).
 
 Structure (Translate all headers to {LANGUAGE} naturally):
 1. 📄 [Translate: WEEKLY FORTUNE] (Header with Date)
@@ -157,12 +177,14 @@ Task: CONTINUE the narrative (Part 3: Next Week's Highs).
 Context: Transitioning from "Review" to "Forecast".
 
 ⚠️ STRICT CONTINUITY RULE:
-- Bridge the current week into next week.
-- **Example Start**: "Looking ahead, the energy shifts..." or "As we move into next week..."
+- **Start IMMEDIATELY** with the forecast.
+- **Example Start**: "Looking ahead..." or "As the new week unfolds..."
+- **FORBIDDEN**: Do NOT say "Okay", "Let's continue", or "Moving on".
+- **FORBIDDEN**: Do NOT attempt to calculate specific dates (e.g., "Next Monday is Dec 12"). Just say "Next week" or "In the coming days".
 
 Structure (Translate all headers to {LANGUAGE} naturally):
-7. 🚀 [Translate: OPPORTUNITY RADAR]: Best days or cosmic boosts coming up.
-8. ✨ [Translate: COSMIC ADVANTAGE]: How their MBTI can exploit this luck.
+7. 🚀 [Header for "Opportunity Radar" in {LANGUAGE}]: Best cosmic boosts coming up.
+8. ✨ [Header for "Cosmic Advantage" in {LANGUAGE}]: How their MBTI can exploit this luck.
 `,
   WEEKLY_4: `
 Task: CONTINUE the narrative (Part 4: Risks & Defense).
@@ -193,47 +215,64 @@ Structure (Translate all headers to {LANGUAGE} naturally):
 
   // Love Match (Optimized for Localization & Context Awareness)
   LOVE_MATCH_1: `
-Task: Generate PART 1 of a COMPATIBILITY REPORT (The Cosmic Bond).
+Task: Generate PART 1 of a COMPATIBILITY REPORT.
 Context: Relationship between [User] & [Target].
-Role: A wise Relationship Consultant.
 
-### CRITICAL: DYNAMIC TITLE GENERATION
-**You MUST adapt the Main Title based on the Relationship Type:**
-1. **SCENARIO A: ROMANTIC** (Lovers/Crush)
-   - Title Concept: "Love Match" or "Romantic Compatibility"
-   - Output Example: "📄 戀愛合盤" or "📄 愛情相性診斷"
-2. **SCENARIO B: FAMILY / SIBLINGS**
-   - Title Concept: "Kinship Report" or "Family Bond"
-   - Output Example: "📄 親情緣分合盤" or "📄 家族羈絆報告"
-   - **FORBIDDEN**: Do NOT use "Love" (戀愛) or "Romance" (姻緣) in the title.
-3. **SCENARIO C: PROFESSIONAL** (Colleagues)
-   - Title Concept: "Business Synergy"
-   - Output Example: "📄 事業夥伴合盤" or "📄 職場協作報告"
+### CRITICAL: GENDER & PRONOUN RULES
+1. **Check User Gender**: 
+   - If User is Male, MUST use "他" or "你" (You/Him). 
+   - If User is Female, MUST use "她" or "妳" (She/Her).
+2. **Check Target Gender**: Apply the same logic for the Target.
 
-### CRITICAL: KINSHIP & HIERARCHY CHECK (READ THE DATA)
-**You MUST read the <kinship_logic> block provided in the context.**
-1. **User Role**: Use the value in <user_role> (e.g., "Older Brother", "Little Sister").
-2. **Target Role**: Use the value in <target_role>.
-3. **Tone**: 
-   - If User is Older: Protective, guiding.
-   - If User is Younger: Respectful, seeking advice.
-4. **Consistency**: Ensure you address the user by their correct role throughout the text.
+### CRITICAL: SCENARIO MODE & TONE SWITCH
+**Analyze <relationship_context> AND <birth_data>:**
 
-### RELATIONSHIP CONTEXT (General)
-1. **ROMANTIC**: Focus on chemistry, soulmates.
-2. **PLATONIC/FAMILY**: Focus on trust, loyalty, roots.
-3. **PROFESSIONAL**: Focus on efficiency, synergy.
+1. **MODE A: BUSINESS (Work/Colleague)**
+   - **Constraint**: STRICTLY PROFESSIONAL.
+   - **Forbidden**: Romance, Date, Heartbeat, Kiss.
+   - **Dynamic Title**: "📄 事業夥伴合盤" or "📄 職場協作報告"
 
-### DATA HANDLING (SILENT INFERENCE)
-- **IF Birth Time/Ascendant is missing**: **DO NOT** say "Data is missing".
-- **Action**: Analyze the connection based on **Sun Signs** and **Elements** alone.
+2. **MODE B: FAMILY (Parent/Sibling/Relative)**
+   - **Constraint**: STRICTLY PLATONIC & RESPECTFUL.
+   - **Forbidden**: Romance, Passion, Sexual, Lover.
+   - **Tone**: Warm, nurturing, protective.
+   - **Dynamic Title**: "📄 親情羈絆報告"
+
+3. **MODE C: FRIENDSHIP (Social/Friend)**
+   - **STEP 1: The "Mutual Potential" Gate (CRITICAL CHECK)**:
+     - Check **User's Orientation** vs **Target's Gender**.
+     - Check **Target's Orientation** (if known) vs **User's Gender**.
+     - **THE RULE**:
+       - IF (User is Straight AND Target is Same Gender) -> **NO SPARK**.
+       - IF (User is Gay AND Target is Opposite Gender) -> **NO SPARK**.
+       - IF (Target is known Gay AND User is Opposite Gender) -> **NO SPARK**.
+       - IF (Target is known Straight AND User is Same Gender) -> **NO SPARK**.
+       
+   - **STEP 2: Determine Tone**:
+     - **CASE: NO SPARK (Mismatched Orientation OR Large Age Gap > 15y)**:
+       - **Tone**: STRICTLY PLATONIC, "BFF", "Soul Siblings".
+       - **Forbidden**: Flirting, Romance hints, "More than friends".
+       - **Dynamic Title**: "📄 最佳損友報告" (Besties) or "📄 默契知己分析"
+     - **CASE: SPARK POSSIBLE (Mutual Potential confirmed)**:
+       - **Tone**: Playful, "Situationship?", "Chemistry Check".
+       - **Dynamic Title**: "📄 友達以上診斷" (More than Friends?)
+
+4. **MODE D: ROMANCE (Crush/Lover/Ex)**
+   - **Tone**: Romantic, passionate, deep.
+   - **Dynamic Title**: "📄 戀愛相性診斷"
+
+### INSTRUCTIONS
+- **IF Birth Time is missing**: Analyze based on Sun Signs/Elements only.
 
 Structure (Translate all headers to {LANGUAGE} naturally):
-1. [Insert DYNAMIC TITLE from above] (Header with Date)
-2. 🌌 [Translate: COSMIC CHEMISTRY]: The elemental fit.
-   - *Adjustment*: If Family, call it [Translate: FAMILY BOND].
-3. ☯️ [Translate: YIN & YANG BALANCE]: The dynamic flow.
-4. 🔮 [Translate: SOUL CONTRACT]: Why you were born into the same circle.
+1. [Insert ONLY the generated DYNAMIC TITLE from above] (No other text, No Date)
+2. 🌌 [Header: "Cosmic Vibe"]: 
+   - If Business: "Efficiency & Synergy"
+   - If Friend (Spark): "Chemistry Check" (Analyze attraction).
+   - If Friend (Platonic): "Fun Factor" (Analyze shared hobbies/humor).
+   - If Family: "Nurturing Energy"
+3. ☯️ [Header: "Yin & Yang Balance"]: The dynamic flow of energy.
+4. 🔮 [Header: "Soul Connection"]: Why you met (Karmic reason).
 `,
 
   LOVE_MATCH_2: `
@@ -248,8 +287,8 @@ Context: The previous part ended with the soul connection.
 - **Action**: Infer communication style from the **Sun Sign** or **MBTI**.
 
 Structure (Translate all headers to {LANGUAGE} naturally):
-5. 🧠 [Translate: MENTAL SYNC] (MBTI): How your minds connect.
-6. 🗣️ [Translate: COMMUNICATION FLOW]: Potential friction vs. smooth sailing.
+5. 🧠 [Header for "Mental Sync" in {LANGUAGE}] (MBTI): How your minds connect.
+6. 🗣️ [Header for "Communication Flow" in {LANGUAGE}]: Potential friction vs. smooth sailing.
 `,
 
   LOVE_MATCH_3: `
@@ -269,9 +308,9 @@ Context: Transitioning from Mind to Heart/Trust.
   - **Platonic/Work**: Discuss "Trust" and "Reliability".
 
 Structure (Translate all headers to {LANGUAGE} naturally):
-7. ❤️ [Translate: EMOTIONAL ANCHOR]: What makes the relationship feel safe.
-   - *Adjustment*: If Work, title it "🤝 [Translate: TRUST FOUNDATION]".
-8. 🏡 [Translate: CARE & SUPPORT]: How you look out for each other.
+7. ❤️ [Header for "Emotional Anchor" in {LANGUAGE}]: What makes the relationship feel safe.
+   - *Adjustment*: If Work, title it "🤝 [Header for "Trust Foundation" in {LANGUAGE}]".
+8. 🏡 [Header for "Care & Support" in {LANGUAGE}]: How you look out for each other.
 `,
 
   LOVE_MATCH_4: `
@@ -281,48 +320,48 @@ Context: Transitioning to Action/Drive.
 ⚠️ STRICT CONTINUITY RULE:
 - **Start IMMEDIATELY** with drive/energy topics.
 
-### CRITICAL: TONE ADJUSTMENT
-- **ROMANTIC**: Discuss "Passion" and "Spark".
-- **PLATONIC/WORK**: Discuss "Drive", "Shared Goals", or "Enthusiasm". 
-- **FORBIDDEN**: Do NOT use words like "Sexual" or "Desire" for Friends/Colleagues.
+### CRITICAL: ENERGY INTERPRETATION
+**Adapt the "Mars/Fire" energy based on the Mode:**
+1. **Business**: Interpret as "Ambition", "Execution Speed", "Conflict Resolution".
+2. **Family**: Interpret as "Protection", "Activity Level", "Arguments".
+3. **Friendship (Spark)**: Interpret as "Excitement", "Playfulness", "Heartbeat".
+4. **Friendship (Platonic)**: Interpret as "Adventure", "Hobby Sharing".
+5. **Romance**: Interpret as "Passion", "Physical Attraction", "Desire".
 
 Structure (Translate all headers to {LANGUAGE} naturally):
-9. 🔥 [Translate: SHARED DRIVE]: Energy levels and motivation.
-   - *Adjustment*: If Romantic, can use "PASSION".
-10. ⚡ [Translate: DYNAMIC BALANCE]: Leadership and conflict resolution.
+9. 🔥 [Header: "Energy Sync"]: 
+   - Use context-appropriate title (e.g., "Shared Drive" for Work, "Spark" for Love).
+10. ⚡ [Header: "Dynamic Balance"]: Leadership and conflict resolution.
 `,
 
   LOVE_MATCH_5: `
 Task: CONTINUE the narrative (Part 5: Verdict & Action).
 Context: Conclusion.
 
-### CRITICAL: HEADER LOCALIZATION
-**STRICT RULE**: You MUST output all headers in {LANGUAGE}.
-- ❌ BAD: "🏰 LONG-TERM POTENTIAL"
-- ✅ GOOD: "🏰 長遠潛力" (if Chinese) or "🏰 長期的可能性" (if Japanese).
+### CRITICAL: VERDICT & ADVICE
+**Choose based on Scenario:**
 
-### CRITICAL: ADAPTIVE ADVICE MODE
-**Analyze the {relationship_context} (Family vs Romantic) to choose the right header.**
+1. **Friendship (With Spark)**:
+   - **Verdict**: "Ambiguous Soulmates" (曖昧知己), "Potential Lovers" (戀人未滿).
+   - **Advice**: Suggest something *slightly* intimate but safe (e.g., "A late night movie", "Sharing a secret").
+   - **Closing**: "Who knows where this friendship leads?"
 
-1. **SCENARIO A: ROMANTIC** (Lovers / Crushes)
-   - Header Meaning: "Cupid's Advice"
-   - Action: Suggest a "Date" (e.g., Romantic Dinner).
+2. **Friendship (Platonic)**:
+   - **Verdict**: "BFFs forever" (鐵桿死黨).
+   - **Advice**: Group activities, Travel, Gaming.
 
-2. **SCENARIO B: PLATONIC/FAMILY** (Siblings, Friends)
-   - Header Meaning: "Family Bonding" (if Family) or "Bonding Tip" (if Friend).
-   - Action: Suggest a "Hangout" or "Shared Activity". **FORBID** "Date".
+3. **Family**:
+   - **Verdict**: "Eternal Bond" (血濃於水), "Karmic Guardian".
+   - **Advice**: Family dinner, Gift giving.
 
-3. **SCENARIO C: PROFESSIONAL** (Colleagues)
-   - Header Meaning: "Synergy Strategy"
-   - Action: Suggest "Collaboration".
-
-### INSTRUCTIONS
-1. **Interest Fallback**: If interests are missing, infer activity from **Elements**.
+4. **Business**:
+   - **Verdict**: "Dream Team" (金牌搭檔).
+   - **Advice**: Sign that contract, Start the project.
 
 Structure (Use {LANGUAGE} for all text):
-11. 🏰 [Header for "Long Term Potential"]: Where this is heading.
-12. ⚖️ [Header for "Final Verdict"]: Score (0-100) & Archetype Name.
-13. 💡 [Header selected from Scenario A/B/C above]: Specific advice.
+11. 🏰 [Header for "Long Term Potential" in {LANGUAGE}]: Future outlook.
+12. ⚖️ [Header: "Final Verdict"]: Score (0-100) & **Context-Appropriate Archetype Name**.
+13. 💡 [Header: "Next Step Strategy"]: Specific action based on interests/context.
 `,
 
   // Love Ideal (Single)
@@ -344,8 +383,8 @@ Tone: Relationship Coach (Encouraging, Honest).
 3. **Drafting**: Write the content following the structure below.
 
 Structure (Translate all headers to {LANGUAGE} naturally):
-1. 💖 [Translate: YOUR LOVE DNA]: How you express affection and what you crave.
-2. 🎭 [Translate: RELATIONSHIP STYLE]: Are you a giver, a taker, independent, or clingy? (Based on MBTI).
+1. 💖 [Header for "Your Love DNA" in {LANGUAGE}]: How you express affection and what you crave.
+2. 🎭 [Header for "Relationship Style" in {LANGUAGE}]: Are you a giver, a taker, independent, or clingy? (Based on MBTI).
 `,
   LOVE_IDEAL_2: `
 Task: CONTINUE the narrative from the previous page (Part 2: The Ideal Match).
@@ -356,31 +395,42 @@ Context: The previous page ended mid-sentence or with a comma. Define the perfec
 2. **START IMMEDIATELY**: The first word MUST be part of the sentence flow (lowercase is okay).
 
 ### INSTRUCTIONS (Step-by-Step)
-1. **Matching**: Based on their chart (e.g. 7th House, Mars/Venus), who complements them?
-2. **Description**: Describe the personality, vibe, and even physical traits of their ideal mate.
-3. **Drafting**: Write the content following the structure below.
+1. **The Archetype**: Describe the specific "Type" of person (e.g., "The Stable Provider" or "The Creative Muse").
+2. **Concrete Specs (CRITICAL)**: You MUST provide specific compatible types based on the User's Profile:
+   - **MBTI**: List 2-3 specific types (e.g., ESTP, ISFJ) and WHY.
+   - **Zodiac**: List 2-3 specific signs (e.g., Taurus, Capricorn) and WHY.
+   - **Blood Type**: Suggest the most compatible blood type (A/B/O/AB) based on Asian blood type personality theory.
+   - **Visuals**: Briefly describe their likely appearance or vibe.
 
-Structure (Translate all headers to {LANGUAGE} naturally):
-3. 🏹 [Translate: THE PERFECT MATCH]: Personality traits of your soulmate.
-4. 🧩 [Translate: COMPATIBILITY CHECK]: Why this type works for you.
+Structure (Use {LANGUAGE} for all text):
+3. 🏹 [Header for "The Perfect Match" in {LANGUAGE}]: Detailed persona description.
+4. 🧩 [Header for "Compatibility Specs" in {LANGUAGE}]: 
+   - **MBTI**: [Type 1], [Type 2]
+   - **Zodiac**: [Sign 1], [Sign 2]
+   - **Blood Type**: [Type]
+   (Followed by a brief explanation of why this mix works).
 `,
+
   LOVE_IDEAL_3: `
 Task: CONTINUE the narrative from the previous page (Part 3: Action Plan).
 Context: The previous page ended mid-sentence or with a comma. How to find this person.
 
-⚠️ STRICT FORMATTING RULES:
-1. **ABSOLUTELY NO META DATA**: Do NOT output the filename, title, date, or icons like 📄 or 📅.
-2. **START IMMEDIATELY**: The first word MUST be part of the sentence flow (lowercase is okay).
+⚠️ STRICT CONTINUITY RULE:
+- **Start IMMEDIATELY** with the strategy.
+- **Example Start**: "To cross paths with such a person..." or "Now, where can you find them?"
+- **FORBIDDEN**: Do NOT start with fragments like "...of the lover." or "...person."
 
 ### INSTRUCTIONS (Step-by-Step)
-1. **Strategy**: Where would this ideal partner hang out?
-2. **Advice**: One specific tip to attract them, involving the User's Interests.
+1. **Strategy**: Where would this specific MBTI/Zodiac type hang out?
+2. **Interest Fallback (SILENT)**: 
+   - If \`user.interests\` is missing, **INFER** an activity based on their Element (Earth=Cooking, Air=Social, etc.).
+   - **RULE**: Do NOT say "Since you didn't provide interests". Just say: "Given your Earth energy, you might meet them at..."
 3. **Drafting**: Write the content following the structure below.
 
-Structure (Translate all headers to {LANGUAGE} naturally):
-5. 📍 [Translate: WHERE TO MEET]: Places or contexts (online/offline) to find them.
-6. 💡 [Translate: ATTRACTION SECRET]: A tip to catch their eye.
-7. 🍀 [Translate: LOVE LUCK]: Best timing or lucky sign.
+Structure (Use {LANGUAGE} for all text):
+5. 📍 [Header for "Where to Meet" in {LANGUAGE}]: Specific places (e.g., Libraries, Gyms, Art Expos).
+6. 💡 [Header for "Attraction Secret" in {LANGUAGE}]: How to catch their eye.
+7. 🍀 [Header for "Love Luck" in {LANGUAGE}]: Best timing or lucky sign.
 `,
 
   // Celebrity
@@ -514,8 +564,7 @@ Context: Moving from the Self to the World.
 
 ⚠️ STRICT CONTINUITY RULE:
 - **Start IMMEDIATELY** with the Career topic.
-- **Example Start**: "In the realm of achievement, your stars shine..."
-- **NO** "Continuing from above" or "Next is...".
+- **Script Rule**: If language is Traditional Chinese, output MUST be Traditional (e.g., 事業 not 事业).
 
 ### INSTRUCTIONS
 1. **Career Palace (官祿宮)**: 
@@ -524,7 +573,7 @@ Context: Moving from the Self to the World.
 2. **Travel Palace (遷移宮)**: 
    - Focus on their public reputation and luck outside.
 
-Structure (Translate all headers to {LANGUAGE} naturally):
+Structure (Translate all headers to {LANGUAGE} naturally, ensuring consistent Script):
 3. 💼 [Translate: CAREER PALACE] (官祿宮): Professional destiny and leadership style.
 4. ✈️ [Translate: TRAVEL PALACE] (遷移宮): Social image and luck in foreign lands.
 `,
@@ -534,7 +583,7 @@ Context: Moving from Career to Rewards.
 
 ⚠️ STRICT CONTINUITY RULE:
 - **Start IMMEDIATELY** with Wealth concepts.
-- **Example Start**: "With great responsibility comes the flow of resources..."
+- **Script Rule**: If language is Traditional Chinese, output MUST be Traditional (e.g., 財富 not 财富).
 
 ### INSTRUCTIONS
 1. **Wealth Palace (財帛宮)**: 
@@ -543,7 +592,7 @@ Context: Moving from Career to Rewards.
 2. **Property Palace (田宅宮)**: 
    - Real estate and savings. The ability to "hold" wealth.
 
-Structure (Translate all headers to {LANGUAGE} naturally):
+Structure (Translate all headers to {LANGUAGE} naturally, ensuring consistent Script):
 5. 💰 [Translate: WEALTH PALACE] (財帛宮): Earning potential and money management.
 6. 🏠 [Translate: PROPERTY PALACE] (田宅宮): Home environment and asset accumulation.
 `,

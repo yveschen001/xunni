@@ -119,6 +119,9 @@ export default {
     "attribute_desc": "Analizza i tuoi attributi romantici e le potenziali caratteristiche.",
     "my_reports": "Il Mio Rapporto"
   },
+  "report_ready": "Il tuo rapporto sulla fortuna è pronto!",
+  "click_to_view": "Clicca il pulsante qui sotto per visualizzare il rapporto 👇",
+  "view_report": "📄 Visualizza Rapporto",
   "warehouse": "Archiviazione della carta natale",
   "onboarding": {
     "askName": "Inserisci il nome (o soprannome) dell'obiettivo per la divinazione:",
@@ -244,5 +247,8 @@ export default {
     "grandchildren": "Nipoti",
     "grandparents": "Nonni"
   },
-  "upsell_vip_analysis": "Aggiorna a VIP per sbloccare analisi più approfondite"
+  "upsell_vip_analysis": "Aggiorna a VIP per sbloccare analisi più approfondite",
+  "upsell_self_vip_match": "💎 Aggiorna a VIP per ottenere risultati di lettura più precisi.",
+  "upsell_gift_vip_match": "💡 Se anche l'altra persona aggiorna a VIP, puoi ricevere risultati di lettura più precisi.",
+  "btn_gift_vip": "🎁 Regala VIP"
 };

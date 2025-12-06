@@ -175,20 +175,43 @@ export async function handleReportDetail(
 
   let fullText = `${header}\n${pageContent}`.replace('<b>', '').replace('</b>', '');
 
+  const buttons: any[][] = [];
+
   // Check VIP for upsell (Dynamic Append)
   const isVip = !!(user?.is_vip && user?.vip_expire_at && new Date(user.vip_expire_at) > new Date());
+  
+  // Logic for Fortune Upsell (Generic)
   if (!isVip && currentPage === totalPages - 1) {
      if (report.type !== 'match' && report.type !== 'love_match' && report.type !== 'love_ideal' && report.type !== 'tarot') {
          fullText += `\n\n${i18n.t('fortune.upsell_vip_analysis')}`;
      }
+  }
+
+  // Logic for Love Match Upsell (Specific)
+  if (currentPage === totalPages - 1 && (report.type === 'love_match' || report.type === 'match')) {
+      if (report.target_user_id) {
+          const targetUser = await findUserByTelegramId(db, report.target_user_id);
+          const isTargetVip = !!(targetUser?.is_vip && targetUser?.vip_expire_at && new Date(targetUser.vip_expire_at) > new Date());
+
+          // Condition 1: Self NOT VIP
+          if (!isVip) {
+              fullText += `\n\n${i18n.t('fortune.upsell_self_vip_match')}`;
+              // Upsell Self
+              buttons.push([{ text: `💎 ${i18n.t('vip.upgrade')}`, callback_data: 'menu_vip' }]);
+          } 
+          // Condition 2: Self VIP, but Target NOT VIP
+          else if (!isTargetVip) {
+              fullText += `\n\n${i18n.t('fortune.upsell_gift_vip_match')}`;
+              // Gift VIP
+              buttons.push([{ text: `🎁 ${i18n.t('fortune.btn_gift_vip')}`, callback_data: `gift_vip:${report.target_user_id}` }]);
+          }
+      }
   }
   
   if (totalPages > 1) {
     fullText += `\n\n${i18n.t('fortune.reports.page_indicator', { current: currentPage + 1, total: totalPages })}`;
   }
 
-  const buttons: any[][] = [];
-  
   // Pagination Buttons
   if (totalPages > 1) {
     const navRow = [];
@@ -277,3 +300,4 @@ export async function handleDeleteReport(
   const buttons = [[{ text: i18n.t('fortune.back_to_menu'), callback_data: 'menu_fortune' }]];
   await telegram.sendMessageWithButtons(chatId, i18n.t('fortune.reports.deleted_hint'), buttons);
 }
+

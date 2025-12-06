@@ -67,7 +67,7 @@ export default {
   "bottle6": "💡 Usa /catch per raccogliere una nuova Bottiglia dei Desideri e iniziare una nuova conversazione.",
   "bottle7": "🍾 Invia una Bottiglia dei Desideri con benedizioni\n\nChe tipo di partner di chat stai cercando? Prima, invia le tue benedizioni a lui/lei da lontano~ La felicità tornerà da te~",
   "bottle8": "Vai a lanciare una Bottiglia dei Desideri di benedizioni e augura a vicenda il meglio con nuovi amici! /throw",
-  "bottle9": "Guarda le Bottiglie dei Desideri degli altri e benediciamoci a vicenda~ Rispondi per iniziare a chattare\n\n",
+  "bottle9": "Guarda le Bottiglie dei Desideri degli altri e scambiatevi auguri~ Rispondi per iniziare la chat\n\n",
   "broadcast": "La trasmissione sarà inviata in background, usa /broadcast_status {broadcastId} per controllare i progressi.",
   "broadcast10": "📊 Ultimi 5 registri di trasmissione\n\n",
   "broadcast11": "Il messaggio di manutenzione è stato trasmesso a tutti gli utenti.\n",

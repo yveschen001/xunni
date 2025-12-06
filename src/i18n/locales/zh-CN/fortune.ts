@@ -119,6 +119,9 @@ export default {
     "attribute_desc": "分析您的恋爱属性与潜在特质。",
     "my_reports": "我的报告"
   },
+  "report_ready": "您的运势报告已准备就绪！",
+  "click_to_view": "点击下方按钮查看报告 👇",
+  "view_report": "📄 查看报告",
   "warehouse": "命盘仓库",
   "onboarding": {
     "askName": "请输入欲算命对象的名字（或昵称）：",
@@ -244,5 +247,8 @@ export default {
     "grandchildren": "孙辈",
     "grandparents": "祖父母"
   },
-  "upsell_vip_analysis": "💎 升级 VIP 解锁更深入的命理分析"
+  "upsell_vip_analysis": "💎 升级 VIP 解锁更深入的命理分析",
+  "upsell_self_vip_match": "💎 升级 VIP 获取更精准算命结果。",
+  "upsell_gift_vip_match": "💡 如果对方也升级 VIP，可获取更精准算命结果。",
+  "btn_gift_vip": "🎁 赠送 VIP"
 };

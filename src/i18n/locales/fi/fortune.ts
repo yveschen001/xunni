@@ -119,6 +119,9 @@ export default {
     "attribute_desc": "Analysoi romanttisia attribuuttejasi ja potentiaalisia piirteitä.",
     "my_reports": "Raporttini"
   },
+  "report_ready": "Onnennäkymäsi on valmis!",
+  "click_to_view": "Katso raporttia alla olevasta painikkeesta 👇",
+  "view_report": "Katso raportti",
   "warehouse": "Synnyntodistuksen tallennus",
   "onboarding": {
     "askName": "Anna onnenennustuksen kohteen nimi (tai lempinimi):",
@@ -244,5 +247,8 @@ export default {
     "grandchildren": "Lapsenlapset",
     "grandparents": "Isoäidit"
   },
-  "upsell_vip_analysis": "Päivitä VIP saadaksesi syvällisempää ennustusta"
+  "upsell_vip_analysis": "Päivitä VIP saadaksesi syvällisempää ennustusta",
+  "upsell_self_vip_match": "💎 Päivitä VIP saadaksesi tarkempia ennustustuloksia.",
+  "upsell_gift_vip_match": "💡 Jos toinenkin päivittää VIP:n, saat tarkempia ennustustuloksia.",
+  "btn_gift_vip": "🎁 Lahjoita VIP"
 };

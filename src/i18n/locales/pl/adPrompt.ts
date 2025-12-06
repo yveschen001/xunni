@@ -1,7 +1,7 @@
 export default {
   "completeTask": "• ✨ Wypełnij zadania (zdobądź stały limit)",
   "inviteFriends": "• 🎁 Zaproś znajomych (zdobądź +1 limit na osobę)",
-  "quotaExhausted": "❌ Dzienny limit Butelek Życzeń został wyczerpany ({quotaDisplay})",
+  "quotaExhausted": "❌ Dzisiaj limit Butelek Życzeń został wykorzystany ({quotaDisplay})",
   "taskButton": "✨ {taskName} 🎁",
   "upgradeVip": "• 💎 Przejdź na VIP (30 limitów dziennie)",
   "watchAd": "• 📺 Oglądaj reklamy (pozostało {remaining}/20 razy)",

@@ -321,7 +321,7 @@ function runSmartTranslateCore_(sh, sel, headers) {
           var sliceLen = Math.min(BATCH_SIZE, rowsThisChunk - offset);
           var sliceData = srcDataFull.slice(offset, offset + sliceLen);
           var origZhTwSlice = zhTwVals.slice(offset, offset + sliceLen);
-          
+
           // 檢查是否為命理模式
           var isFortuneMode = PropertiesService.getUserProperties().getProperty('CURRENT_MODE') === 'FORTUNE';
           var sysMsg = isFortuneMode 
@@ -773,10 +773,10 @@ function enforceBottleTerminologyOnPair_(src, out, targetCode) {
            out = out.replace(/の祈りのボトル/g, '祈りのボトル'); 
            out = out.replace(/祈りのボトルメニュー/g, '祈りのボトルメニュー');
         }
-     }
-     return out;
   }
-  
+  return out;
+}
+
   // 1. 檢測是否為「算命瓶」 (Priority High)
   // 如果原文明確包含 "算命瓶" 或 "fortune bottle"，則目標必須是 "fortune bottle" 對應詞
   if (/(算命瓶|fortune bottle)/i.test(src)) {
@@ -874,19 +874,19 @@ function validateTranslation_(src, tgt, headerCode) {
     if (!isSafeToKeepSame_(src)) {
        reasons.push('未翻譯（與原文完全相同）');
     }
-  }
-
+    }
+    
   // 3. 語言別檢測 (Language Mismatch)
-  // 非中文語系 (en, ja...) 卻包含連續中文
-  if (headerCode.indexOf('zh') === -1) {
+    // 非中文語系 (en, ja...) 卻包含連續中文
+    if (headerCode.indexOf('zh') === -1) {
     // 排除 ja (日文漢字), ko (韓文偶爾有漢字), vi (越南文無漢字)
     // 這裡主要抓 歐美語系 殘留中文
     var shouldNotHaveHanzi = /^(en|fr|de|it|es|pt|ru|ar|hi|ur|pl|nl|tr|th|id|ms)$/i.test(headerCode);
-    if (shouldNotHaveHanzi) {
+      if (shouldNotHaveHanzi) {
       var cleanTgt = tgt.replace(/\$\{[^}]+\}|\{\{[^}]+\}/g, ''); // 移除變數
       // 檢查是否有連續2個以上漢字
       if (/[\u4E00-\u9FFF\u3400-\u4DBF]{2,}/u.test(cleanTgt)) {
-         reasons.push('非中文語系包含中文');
+           reasons.push('非中文語系包含中文');
       }
     }
   }
@@ -907,24 +907,24 @@ function validateTranslation_(src, tgt, headerCode) {
     /`[^`]+`/g,                          // `code`
     /&[A-Za-z0-9#]+;/g                   // HTML Entities
   ];
-
+  
   var tempSrc = src;
   var tempTgt = tgt;
-
+  
   for (var i = 0; i < tokensRegex.length; i++) {
     var re = tokensRegex[i];
     var srcTokens = tempSrc.match(re) || [];
     var tgtTokens = tempTgt.match(re) || [];
-
+    
     // 挖空已匹配變數
     if (srcTokens.length > 0) tempSrc = tempSrc.replace(re, '___TOKEN___');
     if (tgtTokens.length > 0) tempTgt = tempTgt.replace(re, '___TOKEN___');
-
+    
     if (srcTokens.length > 0 || tgtTokens.length > 0) {
       // [優化] 規範化：移除變數內的空白、轉小寫後比較 (忽略大小寫差異)
       var normSrc = srcTokens.map(normalizeToken_);
       var normTgt = tgtTokens.map(normalizeToken_);
-
+      
       // 檢查數量與內容
       if (normSrc.length !== normTgt.length) {
          // [優化] 如果差異很小（1-2個），可能是格式問題而非遺失
@@ -932,7 +932,7 @@ function validateTranslation_(src, tgt, headerCode) {
          if (diff <= 2 && (normSrc.length > 3 || normTgt.length > 3)) {
            // 變數較多時，允許小差異（可能是格式問題）
            // 不報錯，繼續檢查內容
-         } else {
+      } else {
            reasons.push('變數數量不符');
          }
       }
@@ -1001,7 +1001,7 @@ function validateTranslation_(src, tgt, headerCode) {
   if (Math.abs(srcLines - tgtLines) > 2 && srcLines > 1) { 
     reasons.push('換行數差異過大');
   }
-
+  
   return reasons;
 }
 

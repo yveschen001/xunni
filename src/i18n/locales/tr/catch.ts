@@ -5,7 +5,7 @@ export default {
   "block": "• Artık sohbet etmek istemiyorsanız, engellemek için /block kullanabilirsiniz\n",
   "bottle": "😔 Şu anda senin için uygun bir Dilek Şişesi yok.\n\n",
   "bottle2": "• Ya da kendiniz bir şişe atın: /throw",
-  "bottle3": "🎣 Birisi senin Dilek Şişeni buldu!\n\n",
+  "bottle3": "🎣 Birisi dilek şişeni buldu! \n\n",
   "bottle4": "🧴 Bir Dilek Şişesi buldun!\n\n",
   "bottle5": "💡 Daha fazla şişe toplamak için yarın geri gelin!",
   "bottleTaken": "❌ Bu şişe başka biri tarafından alındı, lütfen diğer şişeleri deneyin!",

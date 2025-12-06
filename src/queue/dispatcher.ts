@@ -70,7 +70,8 @@ export async function dispatchFortuneJob(
     payload.targetProfile,
     payload.targetUserId,
     payload.context,
-    onProgress
+    onProgress,
+    payload.skipQuota
   );
 
   return {

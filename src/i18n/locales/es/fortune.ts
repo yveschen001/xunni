@@ -119,6 +119,9 @@ export default {
     "attribute_desc": "Analiza tus atributos románticos y rasgos potenciales.",
     "my_reports": "Mi Informe"
   },
+  "report_ready": "¡Tu informe de fortuna ya está listo!",
+  "click_to_view": "Presiona el botón a continuación para ver el informe 👇",
+  "view_report": "📄 Ver Informe",
   "warehouse": "Almacenamiento de carta natal",
   "onboarding": {
     "askName": "Por favor, ingresa el nombre (o apodo) del objetivo para la adivinación:",
@@ -244,5 +247,8 @@ export default {
     "grandchildren": "Nietos",
     "grandparents": "Abuelos"
   },
-  "upsell_vip_analysis": "Mejora a VIP para desbloquear un análisis más profundo"
+  "upsell_vip_analysis": "Mejora a VIP para desbloquear un análisis más profundo",
+  "upsell_self_vip_match": "💎 Mejora a VIP para obtener resultados de fortuna más precisos.",
+  "upsell_gift_vip_match": "💡 Si la otra persona también mejora a VIP, podrá obtener resultados de fortuna más precisos.",
+  "btn_gift_vip": "🎁 Regalar VIP"
 };
