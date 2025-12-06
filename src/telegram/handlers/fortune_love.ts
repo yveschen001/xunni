@@ -48,7 +48,7 @@ export class LoveFortuneHandler {
   async handleIdealMode(chatId: number, userId: string, telegram: ReturnType<typeof createTelegramService>) {
     console.log(`[LoveFortune] handleIdealMode called for ${chatId}, user ${userId}`);
     
-    await telegram.sendMessage(chatId, this.i18n.t('fortune.generating'));
+    const generatingMsg = await telegram.sendMessageAndGetId(chatId, this.i18n.t('fortune.generating'));
 
     try {
       // 1. Get Profile
@@ -56,6 +56,7 @@ export class LoveFortuneHandler {
       const profile = profiles.find(p => p.is_default) || profiles[0];
       
       if (!profile) {
+        if (generatingMsg) await telegram.deleteMessage(chatId, generatingMsg.message_id);
         await telegram.sendMessage(chatId, this.i18n.t('fortune.noProfile'));
         return;
       }
@@ -66,13 +67,12 @@ export class LoveFortuneHandler {
       const user = await findUserByTelegramId(db, userId);
       if (!user) return;
 
-      // 3. Check Quota (Free or VIP)
-      // Note: checkQuota logic handles free/vip logic internally based on isVip param
-      // But we need to check if user is VIP to pass correct flag
+      // 3. Check & Deduct Quota
       const isVip = !!(user.is_vip && user.vip_expire_at && new Date(user.vip_expire_at) > new Date());
-      const hasQuota = await this.service.checkQuota(userId, isVip);
+      const hasQuota = await this.service.deductQuota(userId, isVip);
       
       if (!hasQuota) {
+        if (generatingMsg) await telegram.deleteMessage(chatId, generatingMsg.message_id);
         const buttons = [
           [{ text: `🛒 ${this.i18n.t('fortune.getMore')}`, callback_data: 'fortune_get_more' }]
         ];
@@ -80,21 +80,41 @@ export class LoveFortuneHandler {
         return;
       }
 
-      // 4. Generate
+      // 4. Dispatch Job
       const today = new Date().toISOString().split('T')[0];
-      const fortune = await this.service.generateFortune(
-        user,
-        profile,
-        'love_ideal',
-        today
+      const { dispatchFortuneJob } = await import('~/queue/dispatcher');
+      
+      const jobResult = await dispatchFortuneJob(
+          this.env,
+          {
+              userId,
+              chatId,
+              userProfile: profile,
+              fortuneType: 'love_ideal',
+              targetDate: today,
+              messageId: generatingMsg.message_id,
+              lang: user.language_pref || 'zh-TW',
+              skipQuota: true
+          },
+          db.d1
       );
 
-      // 5. Show Result (Delegate to Report Viewer for consistent UI)
-      const { handleReportDetail } = await import('./fortune_reports');
-      await handleReportDetail(chatId, fortune.id, this.env);
+      if (jobResult.status === 'completed' && jobResult.result) {
+          if (generatingMsg) await telegram.deleteMessage(chatId, generatingMsg.message_id);
+          const { handleReportDetail } = await import('./fortune_reports');
+          await handleReportDetail(chatId, jobResult.result.id, this.env);
+      } else if (jobResult.status === 'queued') {
+          if (generatingMsg && jobResult.message) {
+              try { await telegram.editMessageText(chatId, generatingMsg.message_id, jobResult.message); } catch(e){}
+          }
+      }
 
     } catch (e: any) {
       console.error('[LoveFortune] Error:', e);
+      if (generatingMsg) {
+          try { await telegram.deleteMessage(chatId, generatingMsg.message_id); } catch(e){}
+      }
+      
       if (e.message === 'QUOTA_EXCEEDED') {
         const buttons = [
           [{ text: `🛒 ${this.i18n.t('fortune.getMore')}`, callback_data: 'fortune_get_more' }]

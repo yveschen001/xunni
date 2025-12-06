@@ -28,10 +28,9 @@ export class TarotHandler {
     const user = await findUserByTelegramId(db, telegramId);
     if (!user) return;
 
-    // 1. Check Quota
-    // Tarot uses 1 bottle
+    // 1. Deduct Quota (Tarot uses 1 bottle)
     const isVip = !!(user.is_vip && user.vip_expire_at && new Date(user.vip_expire_at) > new Date());
-    const hasQuota = await this.service.checkQuota(telegramId, isVip);
+    const hasQuota = await this.service.deductQuota(telegramId, isVip);
     
     if (!hasQuota) {
       await telegram.sendMessageWithButtons(
@@ -45,7 +44,6 @@ export class TarotHandler {
     }
 
     // 2. Draw Cards
-    // Show "Shuffling..." animation?
     const msg = await telegram.sendMessageAndGetId(chatId, `🃏 ${this.i18n.t('fortune.tarot_ui.shuffling')}`);
     await new Promise(r => setTimeout(r, 1500));
     
@@ -57,53 +55,43 @@ export class TarotHandler {
     );
 
     try {
-      // 3. Generate Fortune
+      // 3. Dispatch Job
       const today = new Date().toISOString().split('T')[0];
       const profiles = await this.service.getProfiles(telegramId);
-      const profile = profiles.find(p => p.is_default) || profiles[0]; // Should have profile
+      const profile = profiles.find(p => p.is_default) || profiles[0];
 
       if (!profile) {
          await telegram.sendMessage(chatId, this.i18n.t('fortune.noProfile'));
          return;
       }
 
-      const fortune = await this.service.generateFortune(
-        user,
-        profile,
-        'tarot' as FortuneType,
-        today,
-        undefined,
-        undefined,
-        { cards } // Pass cards as context
-      );
+      const { dispatchFortuneJob } = await import('~/queue/dispatcher');
+      const jobResult = await dispatchFortuneJob(this.env, {
+          userId: telegramId,
+          chatId,
+          userProfile: profile,
+          fortuneType: 'tarot',
+          targetDate: today,
+          context: { cards }, // Pass cards
+          messageId: msg.message_id,
+          lang: user.language_pref || 'zh-TW',
+          skipQuota: true // Already deducted
+      }, db.d1);
 
-      // 4. Show Result
-      const resultText = `🃏 ${this.i18n.t('fortune.type.tarot')}\n\n` +
-                         `${cardDisplay}\n\n` +
-                         `-------------------\n\n` +
-                         fortune.content;
-      
-      await telegram.sendMessage(chatId, resultText);
-
-      const buttons = [
-        [{ text: this.i18n.t('fortune.menu.my_reports'), callback_data: 'fortune_my_reports' }],
-        [{ text: this.i18n.t('fortune.backToMenu'), callback_data: 'menu_fortune' }]
-      ];
-      await telegram.sendMessageWithButtons(chatId, this.i18n.t('common.saved_to_history'), buttons);
+      if (jobResult.status === 'completed' && jobResult.result) {
+          // Sync Fallback
+          const { handleReportDetail } = await import('./fortune_reports');
+          await handleReportDetail(chatId, jobResult.result.id, this.env);
+      } else if (jobResult.status === 'queued') {
+          // Queued
+          if (jobResult.message) {
+             try { await telegram.editMessageText(chatId, msg.message_id, jobResult.message); } catch(e){}
+          }
+      }
 
     } catch (e: any) {
       console.error('[Tarot] Error:', e);
-      if (e.message === 'QUOTA_EXCEEDED') {
-         await telegram.sendMessageWithButtons(
-          chatId,
-          this.i18n.t('fortune.quotaExceeded'),
-          [
-            [{ text: `🛒 ${this.i18n.t('fortune.getMore')}`, callback_data: 'fortune_get_more' }]
-          ]
-        );
-      } else {
-        await telegram.sendMessage(chatId, this.i18n.t('errors.systemError'));
-      }
+      await telegram.sendMessage(chatId, this.i18n.t('errors.systemError'));
     }
   }
 }
