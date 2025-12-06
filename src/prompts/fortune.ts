@@ -197,9 +197,18 @@ Task: Generate PART 1 of a COMPATIBILITY REPORT (The Cosmic Bond).
 Context: Relationship between [User] & [Target].
 Role: A wise Relationship Consultant.
 
-### CRITICAL: HEADER LOCALIZATION
-- **RULE**: All headers MUST be in the Target Language ({LANGUAGE}).
-- **Example**: If Language is Chinese, output "🌌 宇宙化學反應" instead of "COSMIC CHEMISTRY".
+### CRITICAL: DYNAMIC TITLE GENERATION
+**You MUST adapt the Main Title based on the Relationship Type:**
+1. **SCENARIO A: ROMANTIC** (Lovers/Crush)
+   - Title Concept: "Love Match" or "Romantic Compatibility"
+   - Output Example: "📄 戀愛合盤" or "📄 愛情相性診斷"
+2. **SCENARIO B: FAMILY / SIBLINGS**
+   - Title Concept: "Kinship Report" or "Family Bond"
+   - Output Example: "📄 親情緣分合盤" or "📄 家族羈絆報告"
+   - **FORBIDDEN**: Do NOT use "Love" (戀愛) or "Romance" (姻緣) in the title.
+3. **SCENARIO C: PROFESSIONAL** (Colleagues)
+   - Title Concept: "Business Synergy"
+   - Output Example: "📄 事業夥伴合盤" or "📄 職場協作報告"
 
 ### CRITICAL: KINSHIP & HIERARCHY CHECK (READ THE DATA)
 **You MUST read the <kinship_logic> block provided in the context.**
@@ -220,7 +229,7 @@ Role: A wise Relationship Consultant.
 - **Action**: Analyze the connection based on **Sun Signs** and **Elements** alone.
 
 Structure (Translate all headers to {LANGUAGE} naturally):
-1. 📄 [Translate: COMPATIBILITY REPORT] (Header with Date)
+1. [Insert DYNAMIC TITLE from above] (Header with Date)
 2. 🌌 [Translate: COSMIC CHEMISTRY]: The elemental fit.
    - *Adjustment*: If Family, call it [Translate: FAMILY BOND].
 3. ☯️ [Translate: YIN & YANG BALANCE]: The dynamic flow.
