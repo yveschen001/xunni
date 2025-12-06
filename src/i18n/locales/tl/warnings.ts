@@ -74,6 +74,7 @@ export default {
     "vip2": "⚠️ Ang tampok na ito ay para lamang sa mga VIP na miyembro",
     "vip3": "⚠️ **Nag-e-expire ang VIP ngayon**\n\n"
   },
+  "failed": "⚠️ Nabigong operasyon",
   "BROADCAST": {
     "FILTER_ERROR": "❌ error sa format.\nHalimbawa: `/broadcast_filter gender=female,country=TW test message`",
     "NO_CONTENT": "❌ Pakisuyong ilagay ang nilalaman ng broadcast.",

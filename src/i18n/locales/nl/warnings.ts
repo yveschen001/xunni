@@ -74,6 +74,7 @@ export default {
     "vip2": "⚠️ Deze functie is alleen voor VIP-leden",
     "vip3": "⚠️ **VIP verloopt vandaag**\n\n"
   },
+  "failed": "⚠️ Actie mislukt",
   "BROADCAST": {
     "FILTER_ERROR": "❌ Fout in het formaat.\nVoorbeeld: `/broadcast_filter gender=female,country=TW test message`",
     "NO_CONTENT": "❌ Voer broadcast inhoud in.",

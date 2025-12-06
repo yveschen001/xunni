@@ -1,7 +1,7 @@
 export default {
   "availableCommands": "Du kan använda följande kommandon när som helst:",
   "catchBottle": "🎣 **Plocka upp Önskeflaska**",
-  "catchBottleDesc": "Se andras önskeflaskor, svara med en önskan och starta en chatt~",
+  "catchBottleDesc": "Se andras Önskeflaskor, svara med ditt önskande och börja chatta~",
   "clickButtonHint": "💡 Vänligen klicka på knappen för att fortsätta",
   "commandCatch": "• Plocka upp Önskeflaska",
   "commandHelp": "• /help - Visa hjälp",
@@ -22,5 +22,5 @@ export default {
   "viewTasks": "📋 Visa uppgifter",
   "welcome": "🎉 Grattis, registreringen är slutförd!",
   "whatIsXunNi": "🌊 **Vad är XunNi?**",
-  "whatIsXunNiDesc": "En anonym plattform för att skicka önskeflaskor, där du genom ömsesidiga önskningar, MBTI och stjärntecken hittar likasinnade vänner."
+  "whatIsXunNiDesc": "En anonym plattform för att utbyta Önskeflaskor och träffa vänner med liknande intressen via gemensamma önskningar, MBTI och stjärntecken."
 };

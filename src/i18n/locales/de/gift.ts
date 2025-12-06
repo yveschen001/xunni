@@ -11,5 +11,9 @@ export default {
   "completeProfileButton": "📝 Profil vervollständigen",
   "vipBenefit": "Jetzt können Sie unbegrenzte Übersetzungen, ein klares Profilbild und präzise Astrologie-Matches genießen.",
   "bottleBenefit": "Jetzt können Sie mehr spannende astrologische Entdeckungen machen.",
-  "senderNotification": "🎉 **Zahlung erfolgreich!**\n\nSie haben {item} erfolgreich an **{name}** gesendet.\nDie andere Person könnte Ihnen danken, nachdem sie es erhalten hat!"
+  "senderNotification": "🎉 **Zahlung erfolgreich!**\n\nSie haben {item} erfolgreich an **{name}** gesendet.\nDie andere Person könnte Ihnen danken, nachdem sie es erhalten hat!",
+  "vip": {
+    "month": "Monat",
+    "months": "Monate"
+  }
 };

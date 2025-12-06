@@ -47,5 +47,6 @@ export default {
   "text": "👤 Lihat Profil",
   "verify": "Sahkan",
   "viewPayments": "💰 Sejarah Langganan",
-  "vip": "💎 Naik taraf ke VIP"
+  "vip": "💎 Naik taraf ke VIP",
+  "buyFortuneBottle": "🛍️ Beli botol nasib"
 };

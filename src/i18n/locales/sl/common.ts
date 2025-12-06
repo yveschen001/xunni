@@ -21,6 +21,7 @@ export default {
   "back2": "↩️ Vrnite se k urejanju profila",
   "back3": "🏠 Vrnite se na glavni meni",
   "back4": "↩️ Vrnite se",
+  "backToMenu": "Main Menu",
   "backToMainMenu": "Vrnite se na glavni meni",
   "birthday": "🎂 Rojstni dan: {updatedUser.birthday}\n",
   "birthday2": "🎂 Rojstni dan: {user.birthday}\n",
@@ -700,5 +701,12 @@ export default {
   "skip": "Preskoči",
   "submit": "Predloži",
   "timeLeftDaysHours": "{days} dni {hours} ur",
-  "timeLeftHours": "{hours} ur"
+  "timeLeftHours": "{hours} ur",
+  "confirm_delete": "確認刪除",
+  "deleted": "已刪除",
+  "unblock": "解除封鎖",
+  "generating": "正在生成...",
+  "mbtiMatch": "MBTI 契合度",
+  "zodiacMatch": "星座契合度",
+  "fateMatch": "緣分指數"
 };

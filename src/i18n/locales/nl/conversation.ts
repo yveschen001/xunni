@@ -79,6 +79,7 @@ export default {
   "settings4": "Niet Ingesteld",
   "settings5": "Niet Ingesteld",
   "short": "Na Blokkeren:\n",
+  "selectNumber": "Selecteer het bijbehorende nummer hieronder voor details:",
   "short2": "Onbekende Gebruiker",
   "short3": "Zojuist",
   "stats": "📊 Gebruik /stats om gedetailleerde statistieken te bekijken\n",
@@ -106,5 +107,10 @@ export default {
   "vipLearnMore": "💎 Gebruik /vip voor meer informatie",
   "vipUnlockAvatar": "🔒 Upgrade naar VIP om duidelijkere profielfoto's vrij te schakelen",
   "zodiac": "⭐ Dierengroep: {partnerInfo.zodiac}\n",
-  "zodiac2": "⭐ Dierengroep: {zodiacLabel}\n"
+  "zodiac2": "⭐ Dierengroep: {zodiacLabel}\n",
+  "historyPost": "📜 Gespreksgeschiedenis #{id}",
+  "historyPostSuffix": " (klik voor details)",
+  "newMessageNotification": "📩 Je hebt een nieuw bericht!",
+  "newMessageNotificationSuffix": " (van {sender})",
+  "replyToUser": "Beantwoord gebruiker"
 };

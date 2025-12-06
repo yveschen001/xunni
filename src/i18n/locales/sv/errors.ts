@@ -180,5 +180,8 @@ export default {
   "verificationFailed": "❌ Verifiering misslyckades, vänligen försök igen senare",
   "invalidTimeFormat": "Ogiltigt tidsformat\nTill exempel: 19:30 (24-timmarsformat, 00-23 timmar, 00-59 minuter)",
   "invalidDateFormat": "Ogiltigt datumformat\nTill exempel: 2000-01-01",
-  "taskAlreadyCompleted": "❌ Denna uppgift har redan slutförts och belöningen har hämtats."
+  "taskAlreadyCompleted": "❌ Denna uppgift har redan slutförts och belöningen har hämtats.",
+  "session_expired": "❌ Session har gått ut, vänligen börja om",
+  "systemErrorRestart": "❌ Systemfel, vänligen börja om",
+  "invalidLanguageCode": "❌ Ogiltig språk kod"
 };

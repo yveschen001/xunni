@@ -9,5 +9,12 @@ export default {
   "upsellMessage": "Za precizniju usklađenost potrebno je da budete VIP član.\n\nNakon nadogradnje, možete pregledati detaljna izveštaja o usklađenosti sa bilo kim!",
   "noQuota": "🔮 Nedovoljno Fortune Bottle",
   "quotaExhausted": "Vaše Fortune Bottle je iskoristjeno, ne možete izvršiti usklađenost.\n\nKupite dodatni paket ili čekajte da se besplatna nedeljna kvota obnovi.",
-  "targetNonVipWarning": "Osoba nije VIP korisnik, neki podaci mogu biti nepotpuni, što može uticati na preciznost usklađenosti.\n💡 Preporučujemo da poklonite VIP članstvo osobi kako biste dobili preciznije rezultate!"
+  "targetNonVipWarning": "Osoba nije VIP korisnik, neki podaci mogu biti nepotpuni, što može uticati na preciznost usklađenosti.\n💡 Preporučujemo da poklonite VIP članstvo osobi kako biste dobili preciznije rezultate!",
+  "template": {
+    "body": "✨ **{target}** са вашом анализом компатибилности је генерисан! \n\nКликните на дугме испод да бисте видели детаље 👇"
+  },
+  "btn": {
+    "throw": "🍾 Баци Blessing Bottle",
+    "vip_throw": "💎 Баци VIP Bottle"
+  }
 };

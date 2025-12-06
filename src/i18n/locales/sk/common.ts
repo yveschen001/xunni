@@ -21,6 +21,7 @@ export default {
   "back2": "↩️ Návrat na úpravu profilu",
   "back3": "🏠 Návrat do hlavného menu",
   "back4": "↩️ Návrat",
+  "backToMenu": "Hlavná ponuka",
   "backToMainMenu": "Návrat do hlavného menu",
   "birthday": "🎂 Narodeniny: {updatedUser.birthday}\n",
   "birthday2": "🎂 Narodeniny: {user.birthday}\n",
@@ -700,5 +701,12 @@ export default {
   "skip": "Preskočiť",
   "submit": "Odoslať",
   "timeLeftDaysHours": "{days} dní {hours} hodín",
-  "timeLeftHours": "{hours} hodín"
+  "timeLeftHours": "{hours} hodín",
+  "confirm_delete": "Potvrdiť odstránenie",
+  "deleted": "Odstránené",
+  "unblock": "Zrušiť blokovanie",
+  "generating": "Generujem...",
+  "mbtiMatch": "MBTI zhoda",
+  "zodiacMatch": "Zhoda znamení",
+  "fateMatch": "Index osudu"
 };

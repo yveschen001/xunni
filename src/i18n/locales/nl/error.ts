@@ -148,5 +148,6 @@ export default {
   "userNotFound6": "❌ Gebruiker bestaat niet of is niet geregistreerd.",
   "userNotFound7": "❌ Gebruiker bestaat niet.",
   "vip": "❌ Je hebt geen toestemming om VIP-gegevens te bekijken.",
-  "vip2": "❌ Je bent geen VIP-gebruiker en kunt geen terugbetaling aanvragen."
+  "vip2": "❌ Je bent geen VIP-gebruiker en kunt geen terugbetaling aanvragen.",
+  "invalidRequest": "❌ Ongeldig verzoek"
 };

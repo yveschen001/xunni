@@ -28,7 +28,7 @@ export default {
   "birthday": "• Idag är det en födelsedag: is_birthday=true\n\n",
   "bottle": "• Slutför uppgifter: Få extra flaskposter (använd /tasks för att visa)\n",
   "bottle2": "/tasks - Uppgiftscenter (slutför uppgifter för att få extra flaskposter)\n",
-  "bottle3": "• Du kan varje dag kasta och plocka upp ett begränsat antal önskeflaskor\n",
+  "bottle3": "• Du kan varje dag kasta och fånga ett begränsat antal Önskeflaskor\n",
   "bottle4": "• VIP-användare: 30 flaskor dagligen\n",
   "bottle5": "• Flaskpost är giltig i 24 timmar\n\n",
   "bottle6": "• Gratisanvändare: 3 meddelandeflaskor per dag\n",
@@ -60,8 +60,8 @@ export default {
   "profile": "/edit_profile - Redigera profil\n",
   "profile2": "/profile - Visa profil\n",
   "profile3": "👤 **Profil**\n",
-  "quota": "🔢 Hög daglig kvot\n• Börjar på 30 önskeflaskor per dag (vanliga användare har endast 10).\n• Genom att bjuda in vänner kan kvoten öka permanent, upp till totalt 100!\n• 100 meddelanden per dag, prata ostört.\n",
-  "quota2": "• 30 önskeflaskor kvot per dag\n",
+  "quota": "🔢 Hög daglig kvot\n• Startar med 30 Önskeflaskor per dag (vanliga användare har endast 10).\n• Bjud in vänner för att permanent öka kvoten, upp till totalt 100!\n• 100 meddelanden per dag, kommunicera utan hinder.\n",
+  "quota2": "• 30 Önskeflaskor per dag\n",
   "register": "/start - Börja använda / Fortsätt registrering\n",
   "report": "/report - Rapportera olämpligt innehåll\n",
   "settings": "/settings - Notifikationsinställningar",
@@ -123,5 +123,5 @@ export default {
   "clearFortune": "/clear_fortune - Rensa lyckorecensioner",
   "adminGrantSection": "🔧 **Resursförsörjning**",
   "addVip": "/add_vip - Aktivera VIP (30 dagar)",
-  "addBottles": "\nLägg till 50 spådomsflaskor"
+  "addBottles": "\nLägg till 50 Spådomsflaskor"
 };

@@ -1,7 +1,7 @@
 export default {
   "availableCommands": "Vous pouvez utiliser les commandes suivantes à tout moment :",
   "catchBottle": "🎣 **Ramassez la Bouteille de Vœux des bénédictions**",
-  "catchBottleDesc": "Découvrez les Bouteilles de Vœux des autres, répondez aux vœux, et commencez à discuter~",
+  "catchBottleDesc": "Découvrez les Bouteilles de Vœux des autres, répondez à leurs vœux et commencez à discuter~",
   "clickButtonHint": "💡 Veuillez cliquer sur le bouton pour continuer",
   "commandCatch": "• /catch - Ramasser une bénédiction Bouteille de Vœux",
   "commandHelp": "• /help - Voir l'aide",

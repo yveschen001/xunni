@@ -74,6 +74,7 @@ export default {
     "vip2": "⚠️ Ez a funkció csak VIP tagok számára elérhető",
     "vip3": "⚠️ **A VIP ma lejár**\n\n"
   },
+  "failed": "⚠️ Művelet sikertelen",
   "BROADCAST": {
     "FILTER_ERROR": "❌ Formátum hiba.\nPélda: `/broadcast_filter gender=female,country=TW teszt üzenet` ",
     "NO_CONTENT": "❌ Kérjük, adja meg a közvetítési tartalmat.",

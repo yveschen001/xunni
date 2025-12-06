@@ -34,6 +34,7 @@ export default {
     "broadcast2": "❌ 廣播 ID 必須是數字",
     "broadcast3": "❌ 找不到該廣播記錄",
     "cancel": "❌ 暱稱太長，請輸入不超過 36 個字符的暱稱。\n\n請重新輸入或取消編輯：",
+    "cancel1": "❌ 取消",
     "cancel2": "❌ 個人簡介太長，請輸入不超過 200 個字符。\n\n請重新輸入或取消編輯：",
     "cancel3": "❌ 地區名稱太長，請輸入不超過 50 個字符。\n\n請重新輸入或取消編輯：",
     "cancel4": "❌ 暱稱太短，至少需要 4 個字符。\n\n請重新輸入或取消編輯：",
@@ -180,5 +181,8 @@ export default {
   "verificationFailed": "❌ 驗證失敗，請稍後再試",
   "invalidTimeFormat": "無效的時間格式\n例如：19:30 (24小時制，00-23時，00-59分)",
   "invalidDateFormat": "無效的日期格式\n例如：2000-01-01",
-  "taskAlreadyCompleted": "❌ 該任務已經完成並領取過獎勵了。"
+  "taskAlreadyCompleted": "❌ 該任務已經完成並領取過獎勵了。",
+  "session_expired": "❌ 會話已過期，請重新開始",
+  "systemErrorRestart": "❌ 系統發生錯誤，請重新開始：/start",
+  "invalidLanguageCode": "❌ 無效的語言代碼"
 };

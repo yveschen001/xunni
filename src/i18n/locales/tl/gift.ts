@@ -11,5 +11,9 @@ export default {
   "completeProfileButton": "📝 Kumpletuhin ang impormasyon sa kapalaran",
   "vipBenefit": "Ngayon ay maaari mo nang tamasahin ang walang limitasyong pagsasalin, malinaw na larawan, at tumpak na mga mabilis na kapareha sa kapalaran.",
   "bottleBenefit": "Ngayon ay maaari ka nang gumawa ng higit pang mga kawili-wiling pagsusuri sa kapalaran.",
-  "senderNotification": "🎉 **Matagumpay ang pagbabayad!**\n\nMatagumpay mong naipadala ang {item} kay **{name}**.\nBaka magpasalamat sa iyo ang iba pagkatapos nilang matanggap ito!"
+  "senderNotification": "🎉 **Matagumpay ang pagbabayad!**\n\nMatagumpay mong naipadala ang {item} kay **{name}**.\nBaka magpasalamat sa iyo ang iba pagkatapos nilang matanggap ito!",
+  "vip": {
+    "month": "buwan",
+    "months": "mga buwan"
+  }
 };

@@ -74,6 +74,7 @@ export default {
     "vip2": "⚠️ Bu özellik yalnızca VIP üyeleri içindir",
     "vip3": "⚠️ **VIP bugün sona eriyor**\n\n"
   },
+  "failed": "⚠️ İşlem Başarısız",
   "BROADCAST": {
     "FILTER_ERROR": "❌ Biçim hatası.\nÖrnek: `/broadcast_filter gender=female,country=TW test message`",
     "NO_CONTENT": "❌ Lütfen yayın içeriğini girin.",

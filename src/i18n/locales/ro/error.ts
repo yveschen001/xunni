@@ -148,5 +148,6 @@ export default {
   "userNotFound6": "❌ Utilizatorul nu există sau nu este înregistrat.",
   "userNotFound7": "❌ Utilizatorul nu există.",
   "vip": "❌ Nu aveți permisiunea de a vizualiza datele VIP.",
-  "vip2": "❌ Nu sunteți un utilizator VIP și nu puteți solicita o restituire."
+  "vip2": "❌ Nu sunteți un utilizator VIP și nu puteți solicita o restituire.",
+  "invalidRequest": "❌ Cerere invalidă"
 };

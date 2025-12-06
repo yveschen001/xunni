@@ -180,5 +180,8 @@ export default {
   "verificationFailed": "❌ Verificatie mislukt, probeer het later opnieuw",
   "invalidTimeFormat": "Ongeldig tijdformaat\nBijvoorbeeld: 19:30 (24-uursformaat, 00-23 uur, 00-59 minuten)",
   "invalidDateFormat": "Ongeldig datumformaat\nBijvoorbeeld: 2000-01-01",
-  "taskAlreadyCompleted": "❌ Deze taak is al voltooid en de beloning is opgeëist."
+  "taskAlreadyCompleted": "❌ Deze taak is al voltooid en de beloning is opgeëist.",
+  "session_expired": "❌ Sessie is verlopen, begin opnieuw",
+  "systemErrorRestart": "❌ Systeemfout opgetreden, begin opnieuw",
+  "invalidLanguageCode": "❌ Ongeldige taalcode"
 };

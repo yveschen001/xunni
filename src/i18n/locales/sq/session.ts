@@ -3,6 +3,7 @@ export default {
   "timeoutConversation": "⏰ Biseda ka përfunduar\n\nPartneri tjetër mund të ketë ikur. Përdorni /catch për të marrë një shishe të re!",
   "timeoutEditProfile": "⏰ Procesi i redaktimit të të dhënave ka përfunduar\n\nJu lutemi rifilloni redaktimin.",
   "timeoutOnboarding": "⏰ Procesi i regjistrimit ka përfunduar\n\nJu lutemi përdorni /start për të rikaluar regjistrimin.",
+  "timeoutFortune": "⏰ Fortune Bottle procesi ka kaluar\n\nJu lutemi zgjidhni një funksion të ri.",
   "timeoutThrowBottle": "⏰ Procesi i hedhjes së shishes ka përfunduar\n\nJu lutemi përdorni /throw për të rikaluar.",
   "typeCatchBottle": "Procesi i marrjes së shishes",
   "typeConversation": "Biseda",

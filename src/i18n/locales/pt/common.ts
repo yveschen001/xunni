@@ -21,6 +21,7 @@ export default {
   "back2": "↩️ Retornar para Editar Perfil",
   "back3": "🏠 Voltar ao Menu Principal",
   "back4": "↩️ Voltar",
+  "backToMenu": "🏠 Menu Principal",
   "backToMainMenu": "Retornar ao Menu Principal",
   "birthday": "🎂 Aniversário: {updatedUser.birthday}\n",
   "birthday2": "🎂 Aniversário: {user.birthday}\n",
@@ -700,5 +701,12 @@ export default {
   "skip": "Pular",
   "submit": "Enviar",
   "timeLeftDaysHours": "{days} dias {hours} horas",
-  "timeLeftHours": "{hours} horas"
+  "timeLeftHours": "{hours} horas",
+  "confirm_delete": "Confirmar Exclusão",
+  "deleted": "Excluído",
+  "unblock": "Desbloquear",
+  "generating": "Gerando...",
+  "mbtiMatch": "Compatibilidade MBTI",
+  "zodiacMatch": "Compatibilidade do Zodíaco",
+  "fateMatch": "Índice de Destino"
 };

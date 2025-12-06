@@ -148,5 +148,6 @@ export default {
   "userNotFound6": "❌ Bruger eksisterer ikke eller er ikke registreret.",
   "userNotFound7": "❌ Bruger eksisterer ikke.",
   "vip": "❌ Du har ikke tilladelse til at se VIP-data.",
-  "vip2": "❌ Du er ikke en VIP-bruger og kan ikke ansøge om refundering."
+  "vip2": "❌ Du er ikke en VIP-bruger og kan ikke ansøge om refundering.",
+  "invalidRequest": "❌ Ugyldig anmodning"
 };

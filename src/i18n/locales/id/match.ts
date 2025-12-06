@@ -9,5 +9,12 @@ export default {
   "upsellMessage": "Untuk melakukan kecocokan yang akurat, Anda harus menjadi anggota VIP.\n\nSetelah upgrade, Anda dapat melihat laporan ramalan detail dengan siapapun!",
   "noQuota": "🔮 Botol ramalan tidak cukup",
   "quotaExhausted": "Botol ramalan Anda telah habis, tidak dapat melakukan kecocokan.\n\nSilakan beli paket tambahan atau tunggu kuota gratis mingguan Anda diperbarui.",
-  "targetNonVipWarning": "Orang tersebut bukan pengguna VIP, beberapa data mungkin tidak lengkap, mempengaruhi akurasi kecocokan.\n💡 Disarankan untuk memberikan VIP kepada mereka untuk hasil yang lebih akurat!"
+  "targetNonVipWarning": "Orang tersebut bukan pengguna VIP, beberapa data mungkin tidak lengkap, mempengaruhi akurasi kecocokan.\n💡 Disarankan untuk memberikan VIP kepada mereka untuk hasil yang lebih akurat!",
+  "template": {
+    "body": "✨ **{target}** dan laporan analisis kecocokan Anda telah dibuat!\n\nKlik tombol di bawah untuk melihat detailnya 👇"
+  },
+  "btn": {
+    "throw": "🍾 Kirim Botol Berkah",
+    "vip_throw": "💎 Kirim Botol Ramalan"
+  }
 };

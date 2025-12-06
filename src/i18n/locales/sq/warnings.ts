@@ -74,6 +74,7 @@ export default {
     "vip2": "⚠️ Kjo veçori është vetëm për anëtarët VIP",
     "vip3": "⚠️ **VIP skadon sot**\n\n"
   },
+  "failed": "⚠️ Operacion e dështuar",
   "BROADCAST": {
     "FILTER_ERROR": "❌ Gabim formati.\nShembulli: `/broadcast_filter gender=female,country=TW test message`",
     "NO_CONTENT": "❌ Ju lutem hyni në përmbajtjen e transmetimit.",

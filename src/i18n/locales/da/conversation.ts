@@ -79,6 +79,7 @@ export default {
   "settings4": "Ikke angivet",
   "settings5": "Ikke angivet",
   "short": "Efter blokering:\n",
+  "selectNumber": "Vælg nummer for detaljer:",
   "short2": "Ukendt bruger",
   "short3": "Lige nu",
   "stats": "📊 Brug /stats for at se detaljerede statistikker\n",
@@ -106,5 +107,10 @@ export default {
   "vipLearnMore": "💎 Brug /vip for at lære mere",
   "vipUnlockAvatar": "🔒 Opgradér til VIP for at låse op for klarere profilbilleder",
   "zodiac": "⭐ Stjernetegn: {partnerInfo.zodiac}\n",
-  "zodiac2": "⭐ Stjernetegn: {zodiacLabel}\n"
+  "zodiac2": "⭐ Stjernetegn: {zodiacLabel}\n",
+  "historyPost": "📜 Samtale historik #{id}",
+  "historyPostSuffix": " (klik for detaljer)",
+  "newMessageNotification": "📩 Du har en ny besked!",
+  "newMessageNotificationSuffix": " (fra {sender})",
+  "replyToUser": "Svar bruger"
 };

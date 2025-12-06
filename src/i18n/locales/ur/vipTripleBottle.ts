@@ -1,12 +1,17 @@
 export default {
-  "bottleContent": "📝 بوتل کا مواد: {content}\n\n",
+  "bottle": "🍾 **تینگناں کا Blessing Bottle**\n\nیہ ایک طاقتور خصوصیت ہے جو ایک ساتھ MBTI، ستاروں، اور نصیب کے اشارے کی بنیاد پر میچ کرتی ہے۔\n\nخرچ: 1 تینگنائی بوتل",
+  "settings": "⚙️ **میچنگ سیٹنگز**",
+  "settings2": "برائے مہربانی اپنی میچنگ کی ترجیحات کو ترتیب دیں:",
+  "start": "🚀 میچنگ شروع کریں",
+  "result": "🎉 میچ کے نتائج",
+  "noMatch": "😔 عارضی طور پر کوئی موزوں فرد نہیں مل سکا، براہ کرم بعد میں دوبارہ کوشش کریں۔",
+  "matchSuccess": "🎯 **VIP ذہین جوڑنے میں کامیابی!**\n\n",
   "bottlePicked": "آپ کا پیغام بوتل {maskedMatcherNickname} نے اٹھا لیا ہے!",
   "conversationIdentifier": "💬 گفتگو کا شناخت کنندہ: {conversationIdentifier}\n",
+  "bottleContent": "📝 بوتل کا مواد: {content}\n\n",
   "firstMatch": "💡 یہ آپ کا پہلا میچ ہے، ابھی 2 اسلاٹس دستیاب ہیں",
-  "foundBottle": "سسٹم نے {maskedOwnerNickname} کی طرف سے ایک بوتل ملی ہے!\n\n",
-  "matchSuccess": "🎯 **VIP ذہین جوڑنے میں کامیابی!**\n\n",
+  "viewChats": "تمام گفتگوئیں دیکھنے کے لیے /chats استعمال کریں\n\n",
   "replyHint": "💬 **براہ کرم اس پیغام پر لمبا دبائیں، 'جواب دیں' کا انتخاب کریں، پھر دوسرے فریق سے گفتگو شروع کرنے کے لیے اپنا مواد ٹائپ کریں**",
-  "slotsWaiting": "باقی {remaining} خالی جگہیں ہیں\n\n",
   "smartMatch": "🎉 **ذہین جوڑنے میں کامیابی!**\n\n",
-  "viewChats": "تمام گفتگوئیں دیکھنے کے لیے /chats استعمال کریں\n\n"
+  "foundBottle": "سسٹم نے {maskedOwnerNickname} کی طرف سے ایک بوتل ملی ہے!\n\n"
 };

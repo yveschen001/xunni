@@ -148,5 +148,6 @@ export default {
   "userNotFound6": "❌ Përdoruesi nuk ekziston ose nuk është regjistruar.",
   "userNotFound7": "❌ Përdoruesi nuk ekziston.",
   "vip": "❌ Nukeni leje për të parë të dhënat VIP.",
-  "vip2": "❌ Nuk jeni një përdorues VIP dhe nuk mund të aplikoni për një rikthim."
+  "vip2": "❌ Nuk jeni një përdorues VIP dhe nuk mund të aplikoni për një rikthim.",
+  "invalidRequest": "❌ Kërkesë e pavlefshme"
 };

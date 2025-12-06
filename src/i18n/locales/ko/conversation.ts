@@ -79,6 +79,7 @@ export default {
   "settings4": "설정되지 않음",
   "settings5": "설정되지 않음",
   "short": "차단됨 이후:\n",
+  "selectNumber": "아래 해당 숫자를 클릭하여 자세한 내용을 확인하세요:",
   "short2": "알 수 없는 사용자",
   "short3": "방금",
   "stats": "📊 자세한 통계를 보려면 /stats를 사용하세요.\n",
@@ -106,5 +107,10 @@ export default {
   "vipLearnMore": "💎 /vip를 사용하여 자세히 알아보세요",
   "vipUnlockAvatar": "🔒 더 선명한 프로필 사진을 보려면 VIP로 업그레이드하세요",
   "zodiac": "⭐ 별자리: {partnerInfo.zodiac}\n",
-  "zodiac2": "⭐ 별자리: {zodiacLabel}\n"
+  "zodiac2": "⭐ 별자리: {zodiacLabel}\n",
+  "historyPost": "📜 대화 역사 #{id}",
+  "historyPostSuffix": " (자세한 내용 보기)",
+  "newMessageNotification": "📩 새로운 메시지가 있습니다!",
+  "newMessageNotificationSuffix": " (발신자: {sender})",
+  "replyToUser": "사용자에게 응답"
 };

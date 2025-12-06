@@ -107,5 +107,10 @@ export default {
   "vipLearnMore": "💎 /vipを使用して詳しく学ぶ",
   "vipUnlockAvatar": "🔒 VIPにアップグレードして、ユーザーのクリアプロフィール画像をアンロックしてください",
   "zodiac": "⭐ 星座: {partnerInfo.zodiac}\n",
-  "zodiac2": "⭐ 星座: {zodiacLabel}\n"
+  "zodiac2": "⭐ 星座: {zodiacLabel}\n",
+  "historyPost": "📜 会話履歴 #{id}",
+  "historyPostSuffix": "（詳細を見るにはクリック）",
+  "newMessageNotification": "📩 新しいメッセージがあります！",
+  "newMessageNotificationSuffix": "（{sender} から）",
+  "replyToUser": "ユーザーに返信"
 };

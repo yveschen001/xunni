@@ -21,6 +21,7 @@ export default {
   "back2": "↩️ Terug naar Profiel Bewerken",
   "back3": "🏠 Terug naar Hoofdmenu",
   "back4": "↩️ Ga Terug",
+  "backToMenu": "Hoofdmenu",
   "backToMainMenu": "Terug naar Hoofdmenu",
   "birthday": "🎂 Verjaardag: {updatedUser.birthday}\n",
   "birthday2": "🎂 Verjaardag: {user.birthday}\n",
@@ -700,5 +701,12 @@ export default {
   "skip": "Overslaan",
   "submit": "Indienen",
   "timeLeftDaysHours": "{days} dagen {hours} uren",
-  "timeLeftHours": "{hours} uren"
+  "timeLeftHours": "{hours} uren",
+  "confirm_delete": "Bevestig verwijderen",
+  "deleted": "Verwijderd",
+  "unblock": "Deblokkeren",
+  "generating": "Bezig met genereren...",
+  "mbtiMatch": "MBTI Overeenstemming",
+  "zodiacMatch": "Sterrenbeeld Overeenstemming",
+  "fateMatch": "Schikselscore"
 };

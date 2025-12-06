@@ -21,6 +21,7 @@ export default {
   "back2": "↩️ Kthehu për të Redaktuar Profilin",
   "back3": "🏠 Kthehu në Menunë Kryesore",
   "back4": "↩️ Kthehu",
+  "backToMenu": "Main Menu",
   "backToMainMenu": "Kthehu në Menunë Kryesore",
   "birthday": "🎂 Ditëlindja: {updatedUser.birthday}\n",
   "birthday2": "🎂 Ditëlindja: {user.birthday}\n",
@@ -700,5 +701,12 @@ export default {
   "skip": "Anashkalo",
   "submit": "Paraqit",
   "timeLeftDaysHours": "{days} ditë {hours} orë",
-  "timeLeftHours": "{hours} orë"
+  "timeLeftHours": "{hours} orë",
+  "confirm_delete": "确认删除",
+  "deleted": "已删除",
+  "unblock": "解除封锁",
+  "generating": "正在生成...",
+  "mbtiMatch": "MBTI 契合度",
+  "zodiacMatch": "星座契合度",
+  "fateMatch": "缘分指数"
 };

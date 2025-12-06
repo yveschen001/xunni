@@ -74,6 +74,7 @@ export default {
     "vip2": "⚠️ Fitur ini hanya untuk anggota VIP",
     "vip3": "⚠️ **VIP berakhir hari ini**\n\n"
   },
+  "failed": "⚠️ Operasi Gagal",
   "BROADCAST": {
     "FILTER_ERROR": "❌ Kesalahan format.\nContoh: `/broadcast_filter gender=female,country=TW test message`",
     "NO_CONTENT": "❌ Silakan masukkan konten siaran.",

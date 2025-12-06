@@ -180,5 +180,8 @@ export default {
   "verificationFailed": "❌ Verificarea a eșuat, vă rugăm să încercați din nou mai târziu",
   "invalidTimeFormat": "Format de oră invalid\nDe exemplu: 19:30 (format de 24 de ore, 00-23 ore, 00-59 minute)",
   "invalidDateFormat": "Format de dată invalid\nDe exemplu: 2000-01-01",
-  "taskAlreadyCompleted": "❌ Această sarcină a fost deja finalizată și recompensa a fost revendicată."
+  "taskAlreadyCompleted": "❌ Această sarcină a fost deja finalizată și recompensa a fost revendicată.",
+  "session_expired": "❌ Sesiunea a expirat, vă rugăm să începeți din nou",
+  "systemErrorRestart": "❌ A apărut o eroare de sistem, vă rugăm să începeți din nou",
+  "invalidLanguageCode": "❌ Cod de limbă invalid"
 };

@@ -74,6 +74,7 @@ export default {
     "vip2": "⚠️ Оваа функција е само за VIP членови",
     "vip3": "⚠️ **VIP истекува денес**\n\n"
   },
+  "failed": "⚠️ Операцијата не успеа",
   "BROADCAST": {
     "FILTER_ERROR": "❌ Грешка во форматирање.\nПример: `/broadcast_filter gender=female,country=TW test message`",
     "NO_CONTENT": "❌ Ве молиме внесете содржина за емитување.",

@@ -47,5 +47,6 @@ export default {
   "text": "👤 Прегледај профилна картичка на другите",
   "verify": "Потврди",
   "viewPayments": "💰 Историја на претплати",
-  "vip": "💎 Надгради на VIP"
+  "vip": "💎 Надгради на VIP",
+  "buyFortuneBottle": "🛍️ Купи Fortune Bottle"
 };

@@ -11,5 +11,9 @@ export default {
   "completeProfileButton": "📝 Täydennä ennustustietosi",
   "vipBenefit": "Nyt voit nauttia rajattomasta käännöksestä, selkeästä profiilikuvasta ja tarkasta ennustussovituksesta.",
   "bottleBenefit": "Nyt voit tehdä enemmän mielenkiintoisia ennustustutkimuksia.",
-  "senderNotification": "🎉 **Maksu onnistui!**\n\nOlet onnistuneesti lahjoittanut {item} **{name}:lle**.\nVastaanottaja voi kiittää sinua, kun he saavat sen!"
+  "senderNotification": "🎉 **Maksu onnistui!**\n\nOlet onnistuneesti lahjoittanut {item} **{name}:lle**.\nVastaanottaja voi kiittää sinua, kun he saavat sen!",
+  "vip": {
+    "month": "kuukausi",
+    "months": "kuukautta"
+  }
 };

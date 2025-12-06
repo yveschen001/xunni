@@ -47,5 +47,6 @@ export default {
   "text": "👤 Shiko Kartelën e Profilit të Tjetrit",
   "verify": "Verifiko",
   "viewPayments": "💰 Historia e Subscriptions",
-  "vip": "💎 Përmirëso në VIP"
+  "vip": "💎 Përmirëso në VIP",
+  "buyFortuneBottle": "🛍️ Bli Fortune Bottle"
 };

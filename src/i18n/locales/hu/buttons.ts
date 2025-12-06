@@ -47,5 +47,6 @@ export default {
   "text": "👤 Mások Profilkártyájának Megtekintése",
   "verify": "Ellenőrzés",
   "viewPayments": "💰 Előfizetés Történet",
-  "vip": "💎 Frissítés VIP-re"
+  "vip": "💎 Frissítés VIP-re",
+  "buyFortuneBottle": "🛍️ Jós Palack Vásárlás"
 };

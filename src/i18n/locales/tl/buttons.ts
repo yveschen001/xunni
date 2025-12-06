@@ -47,5 +47,6 @@ export default {
   "text": "👤 Tingnan ang Profile",
   "verify": "Beripikahin",
   "viewPayments": "💰 Kasaysayan ng Subscription",
-  "vip": "💎 Mag-upgrade sa VIP"
+  "vip": "💎 Mag-upgrade sa VIP",
+  "buyFortuneBottle": "🛍️ Bumili ng botelyang panghuhula"
 };

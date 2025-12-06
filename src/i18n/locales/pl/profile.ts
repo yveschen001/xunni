@@ -75,7 +75,7 @@ export default {
   "ageRange": "Wiek: {min}-{max}",
   "fortuneMatchButton": "💘 Wróżba",
   "giftVipButton": "🎁 Podaruj VIP",
-  "giftFortuneBottleButton": "🔮 Podaruj butelkę wróżby",
+  "giftFortuneBottleButton": "🔮 Wyślij butelkę wróżby",
   "moreOptions": "⚙️ Więcej opcji...",
   "blockUser": "🚫 Zablokuj użytkownika",
   "reportUser": "⚠️ Zgłoś",

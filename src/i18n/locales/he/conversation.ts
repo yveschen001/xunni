@@ -79,6 +79,7 @@ export default {
   "settings4": "לא נקבע",
   "settings5": "לא נקבע",
   "short": "אחרי חסימה:\n",
+  "selectNumber": "請點擊下方對應數字查看詳情：",
   "short2": "משתמש לא ידוע",
   "short3": "רגע לפני",
   "stats": "📊 השתמש ב-/stats כדי לראות סטטיסטיקות מפורטות\n",
@@ -106,5 +107,10 @@ export default {
   "vipLearnMore": "💎 השתמש ב-/vip כדי ללמוד יותר",
   "vipUnlockAvatar": "🔒 שדרגו ל-VIP כדי לפתוח תמונות פרופיל ברורות",
   "zodiac": "⭐ מזל: {partnerInfo.zodiac}\n",
-  "zodiac2": "⭐ מזל: {zodiacLabel}\n"
+  "zodiac2": "⭐ מזל: {zodiacLabel}\n",
+  "historyPost": "📜 對話歷史 #{id}",
+  "historyPostSuffix": " (點擊查看詳情)",
+  "newMessageNotification": "📩 你有一條新訊息！",
+  "newMessageNotificationSuffix": " (來自 {sender})",
+  "replyToUser": "回覆用戶"
 };

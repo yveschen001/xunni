@@ -79,6 +79,7 @@ export default {
   "settings4": "Nesetată",
   "settings5": "Nesetată",
   "short": "După blocare:\n",
+  "selectNumber": "Te rog să apeși numărul corespunzător de mai jos pentru detalii:",
   "short2": "Utilizator necunoscut",
   "short3": "Chiar acum",
   "stats": "📊 Folosește /stats pentru a vizualiza statistici detaliate\n",
@@ -106,5 +107,10 @@ export default {
   "vipLearnMore": "💎 Folosește /vip pentru a afla mai multe",
   "vipUnlockAvatar": "🔒 Upgradează la VIP pentru a debloca poza de profil clară a celeilalte părți",
   "zodiac": "⭐ Zodiac: {partnerInfo.zodiac}",
-  "zodiac2": "⭐ Zodiac: {zodiacLabel}"
+  "zodiac2": "⭐ Zodiac: {zodiacLabel}",
+  "historyPost": "📜 Istoricul conversației #{id}",
+  "historyPostSuffix": " (apeși pentru detalii)",
+  "newMessageNotification": "📩 Ai un mesaj nou!",
+  "newMessageNotificationSuffix": " (de la {sender})",
+  "replyToUser": "Răspunde utilizatorului"
 };

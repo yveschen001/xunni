@@ -1,26 +1,30 @@
-# 歸檔文檔
+# 📚 XunNi 專案知識庫 (Knowledge Base)
 
-此目錄包含已過時或已被新文檔取代的設計文檔，保留作為歷史參考。
+這是專案的核心文檔索引。為了保持高效開發，請優先參考以下 "Source of Truth" 文檔。
 
-## 📁 文檔列表
+## 🌟 核心文檔 (Core Documentation)
 
-### 廣播系統相關
+| 文檔 | 說明 | 狀態 |
+| :--- | :--- | :--- |
+| [`@doc/SPEC.md`](SPEC.md) | **專案規格書**。包含業務邏輯、資料庫設計、功能定義。**這是唯一的真理來源。** | 🟢 Active |
+| [`@doc/MAINTENANCE_MODE.md`](MAINTENANCE_MODE.md) | **維護模式規範**。定義了 Safe/Frozen Zones 和修改規則。 | 🟢 Active |
+| [`@doc/ENV_CONFIG.md`](ENV_CONFIG.md) | **環境設置指南**。包含本地開發環境變數配置。 | 🟢 Active |
+| [`@doc/DEVELOPMENT_STANDARDS.md`](DEVELOPMENT_STANDARDS.md) | **開發標準**。代碼風格、命名規範、Git 流程。 | 🟢 Active |
+| [`@doc/I18N_STYLE_GUIDE.md`](I18N_STYLE_GUIDE.md) | **翻譯風格指南**。i18n 的最高術語與風格準則。 | 🟢 Active |
 
-- `BROADCAST_AND_MAINTENANCE_DESIGN.md` - 初版廣播系統設計（已被 `doc/BROADCAST_SYSTEM_DESIGN.md` 取代）
-- `BROADCAST_SYSTEM_REDESIGN.md` - 大規模廣播重構方案（未來升級參考，當用戶數 >100 時再實施）
-- `SMART_BROADCAST_*.md` - 智能廣播相關設計（已整合到新文檔）
-- `DEBUG_BROADCAST_STATUS.md` - 廣播狀態調試文檔（已修復，不再需要）
+## 🛠️ 操作指南 (Operational Guides)
 
-## 📝 說明
+| 文檔 | 說明 |
+| :--- | :--- |
+| [`@doc/DEPLOYMENT.md`](DEPLOYMENT.md) | 部署流程與檢查清單。 |
+| [`@doc/BACKUP_STRATEGY.md`](BACKUP_STRATEGY.md) | 備份策略與恢復流程。 |
+| [`@doc/TESTING.md`](TESTING.md) | 測試規範與覆蓋率目標。 |
 
-這些文檔不再作為開發參考，但保留以供：
-1. 了解歷史設計決策
-2. 追溯功能演進過程
-3. 未來升級時參考
+## 📂 歸檔與歷史 (Archive)
 
-**請優先參考 `doc/` 目錄下的最新文檔。**
+*   [`archive/`](archive/) - 包含舊的設計文檔、過時的功能說明和歷史記錄。
 
 ---
 
-**最後更新**：2025-11-21
+> **💡 Cursor 提示**: 在對話中，你可以使用 `@doc/SPEC.md` 直接引用這些文件。請隨時保持本文檔最新。
 

@@ -12,5 +12,5 @@ export default {
   "step3": "3️⃣ Wprowadź /block.",
   "steps": "**Kroki operacyjne:**",
   "success": "✅ Zablokowano tego użytkownika (#{identifier})",
-  "willNotMatch": "Nie będziecie już dopasowani do butelki Życzeń drugiej osoby."
+  "willNotMatch": "Nie będziecie już dopasowani do swoich Butelek Życzeń."
 };

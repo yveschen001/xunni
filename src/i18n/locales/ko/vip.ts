@@ -130,5 +130,7 @@ export default {
   "upgrade": "VIP로 업그레이드",
   "maxDurationExceeded": "⚠️ VIP 기간이 한도에 도달했습니다 ({maxMonths}개월), 당분간 구매를 계속할 수 없습니다.",
   "refundedAndRevoked": "ℹ️ 결제가 환불되었으며, VIP 혜택이 취소되었습니다.",
-  "benefit_daily_fortune": "• 하루에 1회의 무료 심리 상담 (VIP 전용)"
+  "benefit_daily_fortune": "• 하루에 1회의 무료 심리 상담 (VIP 전용)",
+  "month": "개월",
+  "months": "개월"
 };

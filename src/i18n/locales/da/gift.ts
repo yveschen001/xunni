@@ -11,5 +11,9 @@ export default {
   "completeProfileButton": "📝 Fuldfør spådomsprofil",
   "vipBenefit": "Nu kan du nyde ubegrænsede oversættelser, klart profilbillede og præcise spådoms-match.",
   "bottleBenefit": "Nu kan du lave flere interessante spådomsopdagelser.",
-  "senderNotification": "🎉 **Betaling gennemført!**\n\nDu har succesfuldt sendt {item} til **{name}**.\nDe kan komme til at takke dig, når de modtager det!"
+  "senderNotification": "🎉 **Betaling gennemført!**\n\nDu har succesfuldt sendt {item} til **{name}**.\nDe kan komme til at takke dig, når de modtager det!",
+  "vip": {
+    "month": "måned",
+    "months": "måneder"
+  }
 };

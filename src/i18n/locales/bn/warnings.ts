@@ -74,6 +74,7 @@ export default {
     "vip2": "⚠️ এই বৈশিষ্ট্যটি শুধুমাত্র VIP সদস্যদের জন্য",
     "vip3": "⚠️ **VIP আজ শেষ হচ্ছে**\n\n"
   },
+  "failed": "⚠️ অপারেশন ব্যর্থ",
   "BROADCAST": {
     "FILTER_ERROR": "❌ ফরম্যাটের ত্রুটি।\nউদাহরণ: `/broadcast_filter gender=female,country=TW test message`",
     "NO_CONTENT": "❌ দয়া করে সম্প্রচার বিষয়বস্তু লিখুন।",

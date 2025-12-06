@@ -79,6 +79,7 @@ export default {
   "settings4": "Není nastaveno",
   "settings5": "Není nastaveno",
   "short": "Po zablokování:\n",
+  "selectNumber": "Vyberte číslo pro podrobnosti:",
   "short2": "Neznámý uživatel",
   "short3": "Právě teď",
   "stats": "📊 Použijte /stats pro zobrazení podrobných statistik\n",
@@ -106,5 +107,10 @@ export default {
   "vipLearnMore": "💎 Použijte /vip pro více informací",
   "vipUnlockAvatar": "🔒 Vylepšete se na VIP a odemkněte jasný profilový obrázek druhé strany",
   "zodiac": "⭐ Znamení zvěrokruhu: {partnerInfo.zodiac}\n",
-  "zodiac2": "⭐ Znamení zvěrokruhu: {zodiacLabel}\n"
+  "zodiac2": "⭐ Znamení zvěrokruhu: {zodiacLabel}\n",
+  "historyPost": "📜 Historie zpráv #{id}",
+  "historyPostSuffix": " (klikněte pro podrobnosti)",
+  "newMessageNotification": "📩 Máte novou zprávu!",
+  "newMessageNotificationSuffix": " (od {sender})",
+  "replyToUser": "Odpovědět uživateli"
 };

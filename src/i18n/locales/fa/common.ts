@@ -21,6 +21,7 @@ export default {
   "back2": "↩️ بازگشت به ویرایش پروفایل",
   "back3": "🏠 بازگشت به منوی اصلی",
   "back4": "↩️ بازگشت",
+  "backToMenu": "🏠 主選單",
   "backToMainMenu": "بازگشت به منوی اصلی",
   "birthday": "🎂 تاریخ تولد: {updatedUser.birthday}\n",
   "birthday2": "🎂 تاریخ تولد: {user.birthday}\n",
@@ -700,5 +701,12 @@ export default {
   "skip": "صرف نظر کردن",
   "submit": "ارسال",
   "timeLeftDaysHours": "{days} روز {hours} ساعت",
-  "timeLeftHours": "{hours} ساعت"
+  "timeLeftHours": "{hours} ساعت",
+  "confirm_delete": "確認刪除",
+  "deleted": "已刪除",
+  "unblock": "解除封鎖",
+  "generating": "در حال تولید...",
+  "mbtiMatch": "درجه انطباق MBTI",
+  "zodiacMatch": "درجه انطباق zodiac",
+  "fateMatch": "شاخص سرنوشت"
 };

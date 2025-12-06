@@ -3,6 +3,7 @@ export default {
   "timeoutConversation": "⏰ Cuộc trò chuyện đã hết thời gian\n\nBên kia có thể đã rời đi. Sử dụng /catch để nhặt chai mới!",
   "timeoutEditProfile": "⏰ Quá trình chỉnh sửa dữ liệu đã hết thời gian\n\nVui lòng khởi động lại quá trình chỉnh sửa.",
   "timeoutOnboarding": "⏰ Quá trình đăng ký đã hết thời gian\n\nVui lòng sử dụng /start để khởi động lại đăng ký.",
+  "timeoutFortune": "⏰ Quy trình bói toán đã quá thời gian\n\nVui lòng chọn chức năng khác.",
   "timeoutThrowBottle": "⏰ Quá trình thả chai đã hết thời gian\n\nVui lòng sử dụng /throw để khởi động lại.",
   "typeCatchBottle": "Quá trình nhặt chai",
   "typeConversation": "Cuộc trò chuyện",

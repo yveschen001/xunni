@@ -180,5 +180,8 @@ export default {
   "verificationFailed": "❌ Xác minh không thành công, vui lòng thử lại sau",
   "invalidTimeFormat": "Định dạng thời gian không hợp lệ\nVí dụ: 19:30 (định dạng 24 giờ, 00-23 giờ, 00-59 phút)",
   "invalidDateFormat": "Định dạng ngày không hợp lệ\nVí dụ: 2000-01-01",
-  "taskAlreadyCompleted": "❌ Nhiệm vụ này đã được hoàn thành và phần thưởng đã được nhận."
+  "taskAlreadyCompleted": "❌ Nhiệm vụ này đã được hoàn thành và phần thưởng đã được nhận.",
+  "session_expired": "❌ Phiên làm việc đã hết hạn, vui lòng bắt đầu lại",
+  "systemErrorRestart": "❌ Xảy ra lỗi hệ thống, vui lòng bắt đầu lại",
+  "invalidLanguageCode": "❌ Mã ngôn ngữ không hợp lệ"
 };

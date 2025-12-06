@@ -27,8 +27,8 @@ export default {
   "message8": "Preț: {priceStars} ⭐ Telegram Stars / lună\n",
   "message9": "Timp de plată: {paymentDate.toLocaleDateString(",
   "purchaseCancelled": "✅ Achiziția anulată",
-  "quota": "• Limita zilnică de 30 de Sticle cu Dorințe (poți crește prin invitarea prietenilor, maxim 100 de Sticle/zi)\n",
-  "quota2": "• Limita zilnică de 30 de Sticle cu Dorințe (maxim 100 de Sticle/zi)\n",
+  "quota": "• Zilnic 30 de sticle cu dorințe (poți crește numărul invitând prieteni, maxim 100 pe zi)\n",
+  "quota2": "• Zilnic 30 de sticle cu dorințe (maxim 100 pe zi)\n",
   "refundAdminCommands": "💡 Folosiți următoarele comenzi pentru a continua:\n• Aprobați: `/admin_approve_refund <ID>`\n• Respingeți: `/admin_reject_refund <ID> <reason>`",
   "refundApproved": "✅ **Refundare Aprobată**\n\nSumă Refundare: {amount} ⭐\nRefundarea va fi creditată în termen de 1-3 zile lucrătoare.\n\nAbonamentul dvs. VIP a fost anulat.\n\nVă mulțumim pentru înțelegere!",
   "refundApprovedAdmin": "✅ Refundare Aprobată\n\nID Cerere: #{requestId}\nID Utilizator: {userId}\nSumă: {amount} ⭐",
@@ -130,5 +130,7 @@ export default {
   "upgrade": "Upgrade la VIP",
   "maxDurationExceeded": "⚠️ Perioada ta VIP a atins limita ({maxMonths} luni) și nu poți continua achizițiile pentru moment.",
   "refundedAndRevoked": "ℹ️ Plata ta a fost rambursată, iar beneficiile VIP au fost revocate.",
-  "benefit_daily_fortune": "• 1 citire psihică gratuită pe zi (exclusiv pentru VIP)"
+  "benefit_daily_fortune": "• 1 citire psihică gratuită pe zi (exclusiv pentru VIP)",
+  "month": "luna",
+  "months": "luni"
 };

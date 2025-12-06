@@ -148,5 +148,6 @@ export default {
   "userNotFound6": "❌ Käyttäjää ei ole olemassa tai hän ei ole rekisteröitynyt.",
   "userNotFound7": "❌ Käyttäjää ei ole olemassa.",
   "vip": "❌ Sinulla ei ole oikeuksia tarkastella VIP-tietoja.",
-  "vip2": "❌ Et ole VIP-käyttäjä etkä voi hakea hyvitystä."
+  "vip2": "❌ Et ole VIP-käyttäjä etkä voi hakea hyvitystä.",
+  "invalidRequest": "❌ Virheellinen pyyntö"
 };

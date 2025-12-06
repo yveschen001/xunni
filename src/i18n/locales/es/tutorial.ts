@@ -1,7 +1,7 @@
 export default {
   "availableCommands": "Puedes usar los siguientes comandos en cualquier momento:",
   "catchBottle": "🎣 Recoger Botella de Bendición",
-  "catchBottleDesc": "Mira las Botellas de Bendición de otros, responde con tus propios deseos y comienza a chatear~",
+  "catchBottleDesc": "Ve las Botellas de Bendición de otros, responde con bendiciones y comienza a chatear~",
   "clickButtonHint": "💡 Por favor, haz clic en el botón para continuar",
   "commandCatch": "• /catch - Recoger una Botella de Bendición de bendición",
   "commandHelp": "• /help - Ver ayuda",
@@ -22,5 +22,5 @@ export default {
   "viewTasks": "📋 Ver tareas",
   "welcome": "🎉 ¡Felicidades por completar el registro!",
   "whatIsXunNi": "🌊 **¿Qué es XunNi?**",
-  "whatIsXunNiDesc": "Plataforma de amistad anónima con Botellas de Bendición, encuentra amigos afines a través de deseos compartidos, MBTI y signos zodiacales."
+  "whatIsXunNiDesc": "Plataforma de amistad anónima de Botellas de Bendición, encuentra amigos afines a través de bendiciones, MBTI y signos del zodiaco."
 };

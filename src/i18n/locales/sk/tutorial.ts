@@ -1,7 +1,7 @@
 export default {
   "availableCommands": "Môžete kedykoľvek použiť nasledujúce príkazy:",
   "catchBottle": "🎣 **Catch Blessing Bottle**",
-  "catchBottleDesc": "Pozrite si požehnania od ostatných a odpovedzte na požehnania, začnite chatovať~",
+  "catchBottleDesc": "Pozrite sa na požehnania ostatných z Blessing Bottle, odpovedzte na požehnania, začnite chatovať~",
   "clickButtonHint": "💡 Prosím kliknite na tlačidlo pre pokračovanie",
   "commandCatch": "• Catch Blessing Bottle",
   "commandHelp": "• /help - Zobraziť pomoc",

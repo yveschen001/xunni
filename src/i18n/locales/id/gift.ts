@@ -11,5 +11,9 @@ export default {
   "completeProfileButton": "📝 Selesaikan Data Ramalan",
   "vipBenefit": "Sekarang Anda dapat menikmati terjemahan tak terbatas, foto profil yang jelas, dan kecocokan ramalan yang tepat.",
   "bottleBenefit": "Sekarang Anda dapat melakukan lebih banyak eksplorasi ramalan yang menarik.",
-  "senderNotification": "🎉 **Pembayaran Berhasil!**\n\nAnda telah sukses mengirim {item} kepada **{name}**.\nSetelah penerima menerima, mereka mungkin akan mengucapkan terima kasih kepada Anda!"
+  "senderNotification": "🎉 **Pembayaran Berhasil!**\n\nAnda telah sukses mengirim {item} kepada **{name}**.\nSetelah penerima menerima, mereka mungkin akan mengucapkan terima kasih kepada Anda!",
+  "vip": {
+    "month": "bulan",
+    "months": "bulan"
+  }
 };

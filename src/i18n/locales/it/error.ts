@@ -21,7 +21,7 @@ export default {
   "birthday2": "❌ Formato della data di nascita non corretto\n\nSi prega di reinserire (formato: AAAA-MM-GG):",
   "birthday3": "❌ Formato della data di nascita non corretto",
   "bottle": "❌ Questa conversazione è terminata.\n\nUsa 'Prendi Bottiglia dei Desideri' per iniziare una nuova conversazione.",
-  "bottle2": "❌ Il tuo account è stato bloccato, non puoi raccogliere Bottiglie dei Desideri.\n\nPer ulteriori informazioni, ti preghiamo di contattare l'assistenza.",
+  "bottle2": "❌ Il tuo account è stato bloccato, non puoi raccogliere Bottiglie dei Desideri.\n\nSe hai domande, utilizza il modulo di appello.",
   "bottle3": "❌ Questa bottiglia è già stata presa da qualcun altro, per favore prova altre bottiglie!",
   "broadcast": "❌ L'attuale sistema di broadcasting supporta solo trasmissioni per un massimo di {MAX_SAFE_USERS} utenti.\n\n",
   "broadcast2": "❌ L'ID della trasmissione deve essere un numero",
@@ -95,7 +95,7 @@ export default {
   "quota3": "❌ La quota di oggi per le benedizioni della Bottiglia dei Desideri è stata utilizzata ({quotaDisplay})",
   "register": "❌ Completa prima il processo di registrazione.\n\nUsa /start per continuare la registrazione.",
   "register2": "❌ Dati utente non trovati, per favore usa /start per registrarti prima.",
-  "register3": "❌ Completa prima il processo di registrazione per poter raccogliere Bottiglie dei Desideri.\n\nUsa 'Inizia' per continuare la registrazione.",
+  "register3": "❌ Completa prima il processo di registrazione per poter raccogliere Bottiglie dei Desideri.\n\nUsa il menu principale per continuare la registrazione.",
   "settings": "❌ Puoi impostare un massimo di 5 tag di interesse.\n\nPer favore reinserisci o annulla la modifica:",
   "short": "❌ Codice lingua non valido",
   "short10": "❌ Permessi insufficienti",
@@ -148,5 +148,6 @@ export default {
   "userNotFound6": "❌ L'utente non esiste o non è registrato.",
   "userNotFound7": "❌ L'utente non esiste.",
   "vip": "❌ Non hai il permesso di visualizzare i dati VIP.",
-  "vip2": "❌ Non sei un utente VIP e non puoi richiedere un rimborso."
+  "vip2": "❌ Non sei un utente VIP e non puoi richiedere un rimborso.",
+  "invalidRequest": "❌ Richiesta non valida"
 };

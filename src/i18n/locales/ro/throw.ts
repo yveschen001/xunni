@@ -57,7 +57,7 @@ export default {
   "message3": "Selectat: {selectedZodiac.length > 0 ? selectedZodiac.map((z) => ZODIAC_NAMES[z]).join(",
   "message4": "Selecția curentă: {bloodTypeDisplay[currentBloodType]}",
   "message5": "👤 Oponent: {vipMatchInfo.matcherNickname}",
-  "message6": "„Bună! Sunt o persoană care iubește muzica și filmele,\nși sper să te cunosc pe tine, care ai o poveste similară.\nÎți doresc, de asemenea, ție, celui care ai găsit această Sticlă cu Dorințe, să ai parte de succes și să-ți îndeplinești dorințele 🌟”\n\n",
+  "message6": "„Salut! Sunt o persoană care iubește muzica și filmele,\nși sper să cunosc oameni cu povești asemănătoare.\nÎți doresc, de asemenea, ție, cel/cea care a găsit această Sticla cu Dorințe, mult succes și să îți îndeplinești dorințele 🌟”\n\n",
   "message7": "💡 Poți modifica preferințele tale de potrivire în /edit_profile",
   "message8": "💬 Pur și simplu apasă /reply pentru a răspunde la mesaj și a începe conversația",
   "nickname": "📝 Pseudonimul adversarului: {matchedUserMaskedNickname}",

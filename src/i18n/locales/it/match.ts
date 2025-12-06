@@ -9,5 +9,12 @@ export default {
   "upsellMessage": "Per una compatibilità precisa, è necessario essere membri VIP.\n\nDopo l'aggiornamento, potrai visualizzare il rapporto dettagliato di compatibilità con chiunque!",
   "noQuota": "🔮 Bottiglia della Fortuna insufficiente",
   "quotaExhausted": "La tua bottiglia della fortuna è esaurita e non puoi procedere con la compatibilità.\n\nAcquista un pacchetto supplementare o attendi il ripristino della quota settimanale gratuita.",
-  "targetNonVipWarning": "L'altro non è un utente VIP, alcune informazioni potrebbero essere incomplete, influenzando l'accuratezza della compatibilità.\n💡 Si consiglia di regalare un VIP all'altro per ottenere risultati più precisi!"
+  "targetNonVipWarning": "L'altro non è un utente VIP, alcune informazioni potrebbero essere incomplete, influenzando l'accuratezza della compatibilità.\n💡 Si consiglia di regalare un VIP all'altro per ottenere risultati più precisi!",
+  "template": {
+    "body": "✨ **{target}** e il tuo report di compatibilità è stato generato!\n\nFai clic sul pulsante qui sotto per vedere i dettagli 👇"
+  },
+  "btn": {
+    "throw": "🍾 Lancia una Bottiglia dei Desideri",
+    "vip_throw": "💎 Lancia una bottiglia della fortuna VIP"
+  }
 };

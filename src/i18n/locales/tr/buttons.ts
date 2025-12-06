@@ -47,5 +47,6 @@ export default {
   "text": "👤 Başkasının Profil Kartını Görüntüle",
   "verify": "Doğrula",
   "viewPayments": "💰 Abonelik Geçmişi",
-  "vip": "💎 VIP'ye Yükselt"
+  "vip": "💎 VIP'ye Yükselt",
+  "buyFortuneBottle": "🛍️ Fal Şişesi Al"
 };

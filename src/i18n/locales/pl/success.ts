@@ -13,7 +13,7 @@ export default {
   "bloodType": "✅ Typ krwi zaktualizowany na {getBloodTypeDisplay(bloodType as any)}",
   "bloodType2": "✅ Typ krwi usunięty",
   "bottle": "✅ Nagroda przyznana! +1 butelka z wiadomością",
-  "bottle2": "✅ Rozpocznij Nową Butelkę Życzeń",
+  "bottle2": "✅ Rozpocznij nową Butelkę Życzeń",
   "bottle3": "✅ Butelka z wiadomością utworzona\n",
   "broadcast": "✅ Usunięto {ids.length} zablokowanych transmisji\n\n",
   "broadcast2": "✅ Nie ma transmisji do usunięcia\n\n",

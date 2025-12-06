@@ -9,5 +9,12 @@ export default {
   "upsellMessage": "Upang makakuha ng tumpak na tugma, kailangan mong maging VIP member.\n\nPagkatapos ng pag-upgrade, makikita mo ang detalyadong ulat ng tugma sa kapalaran kasama ang sinuman!",
   "noQuota": "🔮 Kulang ang botelyang panghuhula",
   "quotaExhausted": "Naubos na ang iyong botelyang panghuhula, hindi na makakapagpatuloy sa tugma.\n\nMangyaring bumili ng karagdagang pakete o maghintay na mag-refresh ang libreng quota tuwing linggo.",
-  "targetNonVipWarning": "Ang kabilang panig ay hindi isang VIP user, maaaring hindi kumpleto ang ilang impormasyon, na maaaring makaapekto sa katumpakan ng tugma.\n💡 Rekomendadong bigyan siya ng VIP para makuha ang mas tumpak na resulta!"
+  "targetNonVipWarning": "Ang kabilang panig ay hindi isang VIP user, maaaring hindi kumpleto ang ilang impormasyon, na maaaring makaapekto sa katumpakan ng tugma.\n💡 Rekomendadong bigyan siya ng VIP para makuha ang mas tumpak na resulta!",
+  "template": {
+    "body": "✨ **{target}** at ang iyong pagsusuri sa perpektong koneksyon ay nabuong! \n\nPindutin ang pindutan sa ibaba upang tingnan ang mga detalye 👇"
+  },
+  "btn": {
+    "throw": "🍾 Magpadala ng Bote ng Pagpapala",
+    "vip_throw": "💎 Magpadala ng botelyang panghuhula"
+  }
 };

@@ -47,5 +47,6 @@ export default {
   "text": "👤 Näytä toisen profiilikortti",
   "verify": "Vahvista",
   "viewPayments": "💰 Tilauksen historia",
-  "vip": "💎 Päivitä VIP:ksi"
+  "vip": "💎 Päivitä VIP:ksi",
+  "buyFortuneBottle": "🛍️ Osta Ennustuspullo"
 };

@@ -9,5 +9,12 @@ export default {
   "upsellMessage": "Để thực hiện tương hợp chính xác, bạn cần là thành viên VIP.\n\nSau khi nâng cấp, bạn có thể xem báo cáo tương hợp chi tiết với bất kỳ ai!",
   "noQuota": "🔮 Chai bói toán không đủ",
   "quotaExhausted": "Chai bói toán của bạn đã hết, không thể thực hiện tương hợp.\n\nVui lòng mua gói bổ sung hoặc chờ làm mới hạn mức miễn phí hàng tuần.",
-  "targetNonVipWarning": "Đối phương không phải là người dùng VIP, một số thông tin có thể không đầy đủ, ảnh hưởng đến độ chính xác của tương hợp.\n💡 Khuyên bạn nên tặng VIP cho đối phương để có kết quả chính xác hơn!"
+  "targetNonVipWarning": "Đối phương không phải là người dùng VIP, một số thông tin có thể không đầy đủ, ảnh hưởng đến độ chính xác của tương hợp.\n💡 Khuyên bạn nên tặng VIP cho đối phương để có kết quả chính xác hơn!",
+  "template": {
+    "body": "✨ **{target}** và báo cáo phân tích tương hợp của bạn đã được tạo ra!\n\nNhấn nút bên dưới để xem chi tiết 👇"
+  },
+  "btn": {
+    "throw": "🍾 Chai Cầu Nguyện",
+    "vip_throw": "💎 Chai Cầu Nguyện VIP"
+  }
 };

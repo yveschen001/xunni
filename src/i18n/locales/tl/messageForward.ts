@@ -8,5 +8,8 @@ export default {
   "upgradeVip": "💡 Mag-upgrade sa VIP upang makakuha ng higit pang quota (100 mensahe/araw): /vip\n",
   "urlNotAllowed": "❌ Ang mensahe ay naglalaman ng mga di-pinapayagang URL\n\n",
   "urlNotAllowedDesc": "⚠️ Para sa seguridad, tanging mga tiyak na URL lamang ang pinapayagan sa pag-uusap.\n\n",
-  "vipDailyLimit": "💡 Maaaring magpadala ang mga VIP na gumagamit ng 100 bote ng mensahe araw-araw.\n"
+  "vipDailyLimit": "💡 Maaaring magpadala ang mga VIP na gumagamit ng 100 bote ng mensahe araw-araw.\n",
+  "upgradeToUnlock": "💎 Mag-upgrade para i-unlock",
+  "upgradeVipLink": "Mag-upgrade sa VIP",
+  "urlVipOnly": "Ang link na ito ay para lamang sa mga VIP na gumagamit"
 };

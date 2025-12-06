@@ -3,6 +3,7 @@ export default {
   "timeoutConversation": "⏰ Conversation has timed out\n\nThe other party may have left. Use /catch to catch new bottles!",
   "timeoutEditProfile": "⏰ Data editing process has timed out\n\nPlease restart editing.",
   "timeoutOnboarding": "⏰ Registration process has timed out\n\nPlease use /start to restart registration.",
+  "timeoutFortune": "⏰ Fortune process has timed out.\n\nPlease choose a function again.",
   "timeoutThrowBottle": "⏰ Message bottle throwing process has timed out\n\nPlease use /throw to restart.",
   "typeCatchBottle": "Message bottle process",
   "typeConversation": "Conversation",

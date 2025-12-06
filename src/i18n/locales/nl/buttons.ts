@@ -47,5 +47,6 @@ export default {
   "text": "👤 Bekijk het profiel van anderen",
   "verify": "Verifiëren",
   "viewPayments": "💰 Abonnementsgeschiedenis",
-  "vip": "💎 Upgrade naar VIP"
+  "vip": "💎 Upgrade naar VIP",
+  "buyFortuneBottle": "🛍️ Koop geluksfles"
 };

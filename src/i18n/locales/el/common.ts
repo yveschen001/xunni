@@ -21,6 +21,7 @@ export default {
   "back2": "↩️ Επιστροφή στην Επεξεργασία Προφίλ",
   "back3": "🏠 Επιστροφή στο Κύριο Μενού",
   "back4": "↩️ Πίσω",
+  "backToMenu": "Main Menu",
   "backToMainMenu": "Επιστροφή στο Κύριο Μενού",
   "birthday": "🎂 Γενέθλια: {updatedUser.birthday}\n",
   "birthday2": "🎂 Γενέθλια: {user.birthday}\n",
@@ -700,5 +701,12 @@ export default {
   "skip": "Παράλειψη",
   "submit": "Υποβολή",
   "timeLeftDaysHours": "{days} ημέρες {hours} ώρες",
-  "timeLeftHours": "{hours} ώρες"
+  "timeLeftHours": "{hours} ώρες",
+  "confirm_delete": "確認刪除",
+  "deleted": "已刪除",
+  "unblock": "解除封鎖",
+  "generating": "正在生成...",
+  "mbtiMatch": "MBTI 契合度",
+  "zodiacMatch": "星座契合度",
+  "fateMatch": "緣分指數"
 };

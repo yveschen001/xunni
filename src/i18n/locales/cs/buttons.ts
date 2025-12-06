@@ -47,5 +47,6 @@ export default {
   "text": "👤 Zobrazit profil jiného uživatele",
   "verify": "Ověřit",
   "viewPayments": "💰 Historie předplatného",
-  "vip": "💎 Upgradovat na VIP"
+  "vip": "💎 Upgradovat na VIP",
+  "buyFortuneBottle": "🛍️ Koupit Věšteckou Láhev"
 };

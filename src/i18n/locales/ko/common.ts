@@ -21,6 +21,7 @@ export default {
   "back2": "↩️ 프로필 수정으로 돌아가기",
   "back3": "🏠 메인 메뉴로 돌아가기",
   "back4": "↩️ 뒤로",
+  "backToMenu": "🏠 메인 메뉴",
   "backToMainMenu": "메인 메뉴로 돌아가기",
   "birthday": "🎂 생일: {updatedUser.birthday}\n",
   "birthday2": "🎂 생일: {user.birthday}\n",
@@ -700,5 +701,12 @@ export default {
   "skip": "건너뛰기",
   "submit": "제출",
   "timeLeftDaysHours": "{days}일 {hours}시간",
-  "timeLeftHours": "{hours}시간"
+  "timeLeftHours": "{hours}시간",
+  "confirm_delete": "삭제 확인",
+  "deleted": "삭제됨",
+  "unblock": "차단 해제",
+  "generating": "생성 중...",
+  "mbtiMatch": "MBTI 일치도",
+  "zodiacMatch": "별자리 일치도",
+  "fateMatch": "인연 지수"
 };

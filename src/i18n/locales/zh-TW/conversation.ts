@@ -107,5 +107,10 @@ export default {
   "vipLearnMore": "💎 使用 /vip 了解更多",
   "vipUnlockAvatar": "🔒 升級 VIP 解鎖對方清晰頭像",
   "zodiac": "⭐ 星座：{partnerInfo.zodiac}\n",
-  "zodiac2": "⭐ 星座：{zodiacLabel}\n"
+  "zodiac2": "⭐ 星座：{zodiacLabel}\n",
+  "historyPost": "📜 對話歷史 #{id}",
+  "historyPostSuffix": " (點擊查看詳情)",
+  "newMessageNotification": "📩 你有一條新訊息！",
+  "newMessageNotificationSuffix": " (來自 {sender})",
+  "replyToUser": "回覆用戶"
 };

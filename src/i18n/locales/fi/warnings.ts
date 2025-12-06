@@ -74,6 +74,7 @@ export default {
     "vip2": "⚠️ Tämä ominaisuus on vain VIP-jäsenille",
     "vip3": "⚠️ **VIP vanhentuu tänään**\n\n"
   },
+  "failed": "⚠️ Toiminto epäonnistui",
   "BROADCAST": {
     "FILTER_ERROR": "❌ Muotoilivirhe.\nEsimerkki: `/broadcast_filter gender=female,country=TW test message`",
     "NO_CONTENT": "❌ Ole hyvä ja syötä lähetys sisältö.",

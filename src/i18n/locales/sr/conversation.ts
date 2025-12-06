@@ -79,6 +79,7 @@ export default {
   "settings4": "Nije podešeno",
   "settings5": "Nije podešeno",
   "short": "Nakon blokiranja:\n",
+  "selectNumber": "Погледајте детаље оним бројем испод:",
   "short2": "Nepoznat korisnik",
   "short3": "Pre minute",
   "stats": "📊 Koristite /stats da vidite detaljnu statistiku\n",
@@ -106,5 +107,10 @@ export default {
   "vipLearnMore": "💎 Koristite /vip da saznate više",
   "vipUnlockAvatar": "🔒 Nadogradite na VIP da otključate jasnu profilnu sliku druge strane",
   "zodiac": "⭐ Horoskop: {partnerInfo.zodiac}\n",
-  "zodiac2": "⭐ Horoskop: {zodiacLabel}\n"
+  "zodiac2": "⭐ Horoskop: {zodiacLabel}\n",
+  "historyPost": "📜 Историја разговора #{id}",
+  "historyPostSuffix": " (кликните за детаље)",
+  "newMessageNotification": "📩 Имаш нову поруку!",
+  "newMessageNotificationSuffix": " (од {sender})",
+  "replyToUser": "Пошаљи поруку кориснику"
 };

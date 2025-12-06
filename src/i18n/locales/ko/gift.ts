@@ -11,5 +11,9 @@ export default {
   "completeProfileButton": "📝 운세 프로필 완성",
   "vipBenefit": "이제 무제한 번역, 선명한 프로필 사진 및 정확한 운세 매칭을 즐길 수 있습니다.",
   "bottleBenefit": "이제 더 많은 흥미로운 운세 탐험을 진행할 수 있습니다.",
-  "senderNotification": "🎉 **결제 성공!**\n\n당신은 성공적으로 {item}을(를) **{name}**에게 보냈습니다.\n상대방이 받으면 감사할 수도 있습니다!"
+  "senderNotification": "🎉 **결제 성공!**\n\n당신은 성공적으로 {item}을(를) **{name}**에게 보냈습니다.\n상대방이 받으면 감사할 수도 있습니다!",
+  "vip": {
+    "month": "개월",
+    "months": "개월"
+  }
 };

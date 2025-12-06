@@ -180,5 +180,8 @@ export default {
   "verificationFailed": "❌ האימות נכשל, בבקשה נסה שוב מאוחר יותר",
   "invalidTimeFormat": "פורמט זמן לא תקף\nלמשל: 19:30 (פורמט 24 שעות, 00-23 שעות, 00-59 דקות)",
   "invalidDateFormat": "פורמט תאריך לא תקף\nלמשל: 2000-01-01",
-  "taskAlreadyCompleted": "❌ המשימה הזו הושלמה כבר והפרס נתבע."
+  "taskAlreadyCompleted": "❌ המשימה הזו הושלמה כבר והפרס נתבע.",
+  "session_expired": "❌ המושב פג תוקף, אנא התחל מחדש",
+  "systemErrorRestart": "❌ אירעה שגיאה במערכת, אנא התחל מחדש",
+  "invalidLanguageCode": "❌ קוד שפה לא תקף"
 };

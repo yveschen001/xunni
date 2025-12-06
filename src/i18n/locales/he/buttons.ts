@@ -47,5 +47,6 @@ export default {
   "text": "👤 הצג כרטיס פרופיל של אחרים",
   "verify": "אמת",
   "viewPayments": "💰 היסטוריית מנויים",
-  "vip": "💎 שדרג ל-VIP"
+  "vip": "💎 שדרג ל-VIP",
+  "buyFortuneBottle": "🛍️ 購買算命瓶"
 };

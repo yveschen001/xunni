@@ -148,5 +148,6 @@ export default {
   "userNotFound6": "❌ Người dùng không tồn tại hoặc chưa đăng ký.",
   "userNotFound7": "❌ Người dùng không tồn tại.",
   "vip": "❌ Bạn không có quyền xem dữ liệu VIP",
-  "vip2": "❌ Bạn không phải là người dùng VIP và không thể yêu cầu hoàn tiền."
+  "vip2": "❌ Bạn không phải là người dùng VIP và không thể yêu cầu hoàn tiền.",
+  "invalidRequest": "❌ Yêu cầu không hợp lệ"
 };

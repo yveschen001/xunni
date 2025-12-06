@@ -8,5 +8,8 @@ export default {
   "upgradeVip": "💡 Nâng cấp lên VIP để nhận thêm hạn mức (100 tin nhắn/ngày): /vip\n",
   "urlNotAllowed": "❌ Tin nhắn chứa URL không được phép\n\n",
   "urlNotAllowedDesc": "⚠️ Để đảm bảo an toàn, chỉ cho phép một số URL nhất định trong các cuộc trò chuyện.\n\n",
-  "vipDailyLimit": "💡 Người dùng VIP có thể gửi 100 tin nhắn mỗi ngày.\n"
+  "vipDailyLimit": "💡 Người dùng VIP có thể gửi 100 tin nhắn mỗi ngày.\n",
+  "upgradeToUnlock": "💎 Nâng Cấp Mở Khóa",
+  "upgradeVipLink": "Nâng Cấp VIP",
+  "urlVipOnly": "Liên kết này chỉ dành cho người dùng VIP"
 };

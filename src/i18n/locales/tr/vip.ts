@@ -130,5 +130,7 @@ export default {
   "upgrade": "VIP'e Yüksel",
   "maxDurationExceeded": "⚠️ VIP süreniz limitine ulaştı ({maxMonths} ay), şu anda satın alma işlemine devam edemiyorsunuz.",
   "refundedAndRevoked": "ℹ️ Ödemeniz iade edildi ve VIP avantajlarınız iptal edildi.",
-  "benefit_daily_fortune": "• Günde 1 ücretsiz meditasyon okuması (VIP'ye özel)"
+  "benefit_daily_fortune": "• Günde 1 ücretsiz meditasyon okuması (VIP'ye özel)",
+  "month": "ay",
+  "months": "aylar"
 };

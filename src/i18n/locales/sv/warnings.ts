@@ -74,6 +74,7 @@ export default {
     "vip2": "⚠️ Denna funktion är endast för VIP-medlemmar",
     "vip3": "⚠️ **VIP går ut idag**\n\n"
   },
+  "failed": "⚠️ Åtgärden misslyckades",
   "BROADCAST": {
     "FILTER_ERROR": "❌ Formatfel.\nExempel: `/broadcast_filter gender=female,country=TW test message`",
     "NO_CONTENT": "❌ Vänligen ange sändningsinnehåll.",

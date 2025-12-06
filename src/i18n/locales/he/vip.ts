@@ -130,5 +130,7 @@ export default {
   "upgrade": "שדרג לחבר VIP",
   "maxDurationExceeded": "⚠️ תקופת ה-VIP שלך הגיעה למגבלה ({maxMonths} חודשים), ואינך יכול להמשיך לרכוש בינתיים.",
   "refundedAndRevoked": "ℹ️ התשלום שלך הוחזר, והזכויות ל-VIP בוטלו.",
-  "benefit_daily_fortune": "• קריאה פסיכית אחת חינם ליום (בלעדי ל-VIP)"
+  "benefit_daily_fortune": "• קריאה פסיכית אחת חינם ליום (בלעדי ל-VIP)",
+  "month": "חודש",
+  "months": "חודשים"
 };

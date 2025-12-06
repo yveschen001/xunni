@@ -47,5 +47,6 @@ export default {
   "text": "👤 Ver Tarjeta de Perfil de Otros",
   "verify": "Verificar",
   "viewPayments": "💰 Historial de Suscripción",
-  "vip": "💎 Actualizar a VIP"
+  "vip": "💎 Actualizar a VIP",
+  "buyFortuneBottle": "🛍️ Comprar botella de la fortuna"
 };

@@ -27,8 +27,8 @@ export default {
   "message8": "Cena: {priceStars} ⭐ Telegram Stars / miesiąc\n",
   "message9": "Czas płatności: {paymentDate.toLocaleDateString(",
   "purchaseCancelled": "✅ Zakup anulowany",
-  "quota": "• Codziennie 30 butelek Życzeń (zapraszając przyjaciół, możesz zwiększyć limit do 100 butelek/dzień)\n",
-  "quota2": "• Codziennie 30 butelek Życzeń (maksymalnie 100 butelek/dzień)\n",
+  "quota": "• 30 butelek życzeń dziennie (można zwiększyć, zapraszając znajomych, maksymalnie 100 dziennie)\n",
+  "quota2": "• 30 butelek życzeń dziennie (maksymalnie 100 dziennie)\n",
   "refundAdminCommands": "💡 Użyj następujących poleceń, aby kontynuować:\n• Zatwierdź: `/admin_approve_refund <ID>`\n• Odrzuć: `/admin_reject_refund <ID> <reason>`",
   "refundApproved": "✅ **Zatwierdzono zwrot**\n\nKwota zwrotu: {amount} ⭐\nZwrot zostanie zaksięgowany w ciągu 1-3 dni roboczych.\n\nTwoje członkostwo VIP zostało anulowane.\n\nDziękujemy za zrozumienie!",
   "refundApprovedAdmin": "✅ Zatwierdzono zwrot\n\nIdentyfikator prośby: #{requestId}\nIdentyfikator użytkownika: {userId}\nKwota: {amount} ⭐",
@@ -75,7 +75,7 @@ export default {
   "text11": "Czas wygaśnięcia: {expireDate}\n\n",
   "text12": "Zwroty będą przekazywane w ciągu 1-3 dni roboczych.\n\n",
   "text13": "Identyfikator prośby: #{requestId}\n",
-  "text14": "└ 1 inteligentne dopasowanie + 2 publiczne butelki Życzeń: dodatkowe 2 miejsca na wyświetlenie czekają na szczęśliwców, którzy je złapią.\nZwiększ swoje szanse na zauważenie butelki o 300%!",
+  "text14": "└ 1 dopasowanie inteligentne + 2 miejsca w publicznej puli butelek życzeń: dodatkowe 2 miejsca wystawowe, czekające na osoby z przeznaczenia.\nZwiększ szansę, aby twoje butelki były widoczne o 300%!",
   "text15": "O wynikach przetwarzania zostaniesz powiadomiony przez Bota.\n\n",
   "text16": "Proszę wprowadzić powód zwrotu (co najmniej 10 znaków):",
   "text17": "Powód: {req.reason}\n",
@@ -130,5 +130,7 @@ export default {
   "upgrade": "Ulepsz do VIP",
   "maxDurationExceeded": "⚠️ Twój okres VIP osiągnął limit ({maxMonths} miesięcy) i obecnie nie możesz kontynuować zakupu.",
   "refundedAndRevoked": "ℹ️ Twoja płatność została zwrócona, a korzyści VIP zostały odebrane.",
-  "benefit_daily_fortune": "• 1 darmowa sesja wróżbiarska dziennie (wyłącznie dla VIP)"
+  "benefit_daily_fortune": "• 1 darmowa sesja wróżbiarska dziennie (wyłącznie dla VIP)",
+  "month": "miesiąc",
+  "months": "miesiące"
 };

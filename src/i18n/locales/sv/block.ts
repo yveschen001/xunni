@@ -12,5 +12,5 @@ export default {
   "step3": "3️⃣ Skriv /block.",
   "steps": "**Operationssteg:**",
   "success": "✅ Denna användare har blockerats (#{identifier}).",
-  "willNotMatch": "Ni kommer inte längre att matchas med varandras önskeflaskor."
+  "willNotMatch": "Ni kommer inte längre att matchas med varandras Önskeflaskor."
 };

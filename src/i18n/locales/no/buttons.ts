@@ -47,5 +47,6 @@ export default {
   "text": "👤 Se andres profilkort",
   "verify": "Bekreft",
   "viewPayments": "💰 Abonnementsoversikt",
-  "vip": "💎 Oppgrader til VIP"
+  "vip": "💎 Oppgrader til VIP",
+  "buyFortuneBottle": "🛍️ Kjøp Spådomsflaske"
 };

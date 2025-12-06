@@ -47,5 +47,6 @@ export default {
   "text": "👤 View Profile",
   "verify": "Verify",
   "viewPayments": "💰 Subscription History",
-  "vip": "💎 Upgrade to VIP"
+  "vip": "💎 Upgrade to VIP",
+  "buyFortuneBottle": "🛍️ Buy Fortune Bottle"
 };

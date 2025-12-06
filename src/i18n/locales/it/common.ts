@@ -21,6 +21,7 @@ export default {
   "back2": "↩️ Torna a Modifica Profilo",
   "back3": "🏠 Torna al Menu Principale",
   "back4": "↩️ Torna Indietro",
+  "backToMenu": "🏠 Menu Principale",
   "backToMainMenu": "Torna al Menu Principale",
   "birthday": "🎂 Compleanno: {updatedUser.birthday}\n",
   "birthday2": "🎂 Compleanno: {user.birthday}\n",
@@ -66,7 +67,7 @@ export default {
   "bottle6": "💡 Usa /catch per raccogliere una nuova Bottiglia dei Desideri e iniziare una nuova conversazione.",
   "bottle7": "🍾 Invia una Bottiglia dei Desideri con benedizioni\n\nChe tipo di partner di chat stai cercando? Prima, invia le tue benedizioni a lui/lei da lontano~ La felicità tornerà da te~",
   "bottle8": "Vai a lanciare una Bottiglia dei Desideri di benedizioni e augura a vicenda il meglio con nuovi amici! /throw",
-  "bottle9": "Guarda le Bottiglie dei Desideri degli altri e benedicili a vicenda~ Rispondi per iniziare a chattare\n\n",
+  "bottle9": "Guarda le Bottiglie dei Desideri degli altri e benediciamoci a vicenda~ Rispondi per iniziare a chattare\n\n",
   "broadcast": "La trasmissione sarà inviata in background, usa /broadcast_status {broadcastId} per controllare i progressi.",
   "broadcast10": "📊 Ultimi 5 registri di trasmissione\n\n",
   "broadcast11": "Il messaggio di manutenzione è stato trasmesso a tutti gli utenti.\n",
@@ -700,5 +701,12 @@ export default {
   "skip": "Salta",
   "submit": "Invia",
   "timeLeftDaysHours": "{days} giorni {hours} ore",
-  "timeLeftHours": "{hours} ore"
+  "timeLeftHours": "{hours} ore",
+  "confirm_delete": "Conferma Cancellazione",
+  "deleted": "Cancellato",
+  "unblock": "Sblocca",
+  "generating": "Sto generando...",
+  "mbtiMatch": "Affinità MBTI",
+  "zodiacMatch": "Affinità Zodiacale",
+  "fateMatch": "Indice di Destino"
 };

@@ -1,13 +1,13 @@
 export default {
   "availableCommands": "Możesz użyć następujących poleceń w dowolnym momencie:",
   "catchBottle": "🎣 **Złap Butelkę Życzeń**",
-  "catchBottleDesc": "Zobacz cudze Butelki Życzeń, odpowiedz na życzenia, rozpocznij rozmowę~",
+  "catchBottleDesc": "Zobacz życzenia innych, odpowiedz i zacznij rozmowę~",
   "clickButtonHint": "💡 Proszę kliknij przycisk, aby kontynuować",
   "commandCatch": "• /catch - Podnieś błogosławieństwo od Butelka Życzeń",
   "commandHelp": "• /help - Zobacz pomoc",
   "commandMenu": "📋 Menu poleceń",
   "commandTasks": "• /tasks - Zobacz zadania",
-  "commandThrow": "• Wyrzuć Butelkę Życzeń",
+  "commandThrow": "• Rzuć Butelkę Życzeń",
   "completeTasksForBottles": "💡 Wykonuj zadania, aby zdobyć dodatkowe butelki",
   "completed": "✅ Tutorial zakończony!",
   "howToBecomeFriends": "💬 **Jak nawiązać przyjaźnie?**",
@@ -16,11 +16,11 @@ export default {
   "skip": "Pomiń",
   "skipped": "✅ Tutorial pominięty",
   "startUsing": "Zacznij używać →",
-  "throwBottle": "📦 **Wyrzuć Butelkę Życzeń**",
+  "throwBottle": "📦 **Rzuć Butelkę Życzeń**",
   "throwBottleDesc": "Zapisz swoje uczucia lub myśli, system pomoże Ci znaleźć odpowiednią osobę",
   "unknownStep": "❌ Nieznany krok tutorialu",
   "viewTasks": "📋 Zobacz zadania",
   "welcome": "🎉 Gratulacje z okazji ukończenia rejestracji!",
   "whatIsXunNi": "🌊 **Czym jest XunNi?**",
-  "whatIsXunNiDesc": "Anonymowa platforma do dzielenia się życzeniami w butelkach, która pomaga znaleźć pokrewne dusze dzięki życzeniom, MBTI i znakom zodiaku."
+  "whatIsXunNiDesc": "Anonimowa platforma do nawiązywania przyjaźni poprzez Butelki Życzeń, pomagająca znaleźć pokrewnych dusz dzięki życzeniom, MBTI i znakom zodiaku."
 };

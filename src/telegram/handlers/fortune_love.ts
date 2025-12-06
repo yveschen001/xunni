@@ -9,6 +9,7 @@ import { upsertSession, getActiveSession, clearSession } from '~/db/queries/sess
 import { SessionType } from '~/domain/session';
 import { FortuneService } from '~/services/fortune';
 import { getMatchRequest } from '~/db/queries/match_requests';
+import { dispatchFortuneJob } from '~/queue/dispatcher';
 
 export class LoveFortuneHandler {
   constructor(
@@ -161,7 +162,7 @@ export class LoveFortuneHandler {
         // Male: Wife, Children, Parents, Grandchildren, Grandparents
         // Female: Husband, Children, Parents, Grandchildren, Grandparents
         const spouseRole = gender === 'male' ? 'wife' : 'husband';
-        const roles = [spouseRole, 'children', 'parents', 'grandchildren', 'grandparents'];
+        const roles = [spouseRole, 'children', 'parents', 'siblings', 'grandchildren', 'grandparents'];
         
         const buttons = [];
         let row = [];
@@ -455,6 +456,8 @@ export class LoveFortuneHandler {
         // 2.5 Age Logic Validation (Family Roles)
         if (relType === 'family' && familyRole) {
             const getYear = (dateStr: string) => parseInt(dateStr.split('-')[0]);
+            const getFullDate = (dateStr: string) => new Date(dateStr).getTime();
+            
             const userYear = getYear(userProfile.birth_date);
             const targetYear = getYear(targetProfile.birth_date);
             const ageDiff = targetYear - userYear; // + means Target is younger, - means Target is older
@@ -473,6 +476,24 @@ export class LoveFortuneHandler {
                 if (ageDiff < 10) {
                     errorKey = 'fortune.love.error_age_child_too_old'; // "Target is too old to be your child"
                 }
+            }
+
+            // Logic: Auto-detect Sibling Role (Brother/Sister + Older/Younger)
+            if (familyRole === 'siblings') {
+                const targetGender = targetProfile.gender || 'male'; // Default to male
+                const userTime = getFullDate(userProfile.birth_date);
+                const targetTime = getFullDate(targetProfile.birth_date);
+                
+                // Determine relative age
+                const isTargetOlder = targetTime < userTime; // Smaller timestamp = Older
+                
+                // Refine role
+                if (isTargetOlder) {
+                    familyRole = targetGender === 'female' ? 'older_sister' : 'older_brother';
+                } else {
+                    familyRole = targetGender === 'female' ? 'younger_sister' : 'younger_brother';
+                }
+                console.log(`[LoveFortune] Auto-refined sibling role: ${familyRole}`);
             }
 
             if (errorKey) {
@@ -509,16 +530,46 @@ export class LoveFortuneHandler {
             return;
         }
 
-        // 4. Generate Report
+        // 4. Generate Report (via Dispatcher)
         const today = new Date().toISOString().split('T')[0];
-        const report = await this.service.generateFortune(
-            user,
-            userProfile,
-            'love_match',
-            today,
-            targetProfile,
-            targetId, // Pass target ID for history
-            { relationship_type: relType, family_role: familyRole }, // Pass relationship context
+        
+        // 4.1 Show Animation Sequence
+        const loadingMsgs = [
+            '🛰️ ' + this.i18n.t('fortune.loading.astronomy'),
+            '📜 ' + this.i18n.t('fortune.loading.bazi'),
+            '🧬 ' + this.i18n.t('fortune.loading.analysis'),
+            '🧠 ' + this.i18n.t('fortune.loading.generating')
+        ];
+
+        // Animate initial loading messages (Fake progress for UX)
+        if (generatingMsg) {
+            for (const msg of loadingMsgs) {
+                // Skip if key is missing/fallback
+                if (msg.includes('fortune.loading')) continue; 
+                try {
+                    await telegram.editMessageText(chatId, generatingMsg.message_id, msg);
+                    await new Promise(r => setTimeout(r, 800)); // 0.8s delay
+                } catch (e) {
+                    // Ignore edit errors
+                }
+            }
+        }
+
+        const jobResult = await dispatchFortuneJob(
+            this.env,
+            {
+                userId,
+                chatId,
+                userProfile,
+                targetProfile,
+                targetUserId: targetId,
+                fortuneType: 'love_match',
+                targetDate: today,
+                context: { relationship_type: relType, family_role: familyRole },
+                messageId: generatingMsg?.message_id,
+                lang: user.language_pref || 'zh-TW'
+            },
+            db.d1, // Pass D1Database instance
             async (progressText) => {
                 if (generatingMsg) {
                     try {
@@ -530,13 +581,22 @@ export class LoveFortuneHandler {
             }
         );
 
-        // 5. Delete Generating Msg
-        if (generatingMsg) await telegram.deleteMessage(chatId, generatingMsg.message_id);
+        if (jobResult.status === 'completed' && jobResult.result) {
+             const report = jobResult.result;
+             // 5. Delete Generating Msg
+             if (generatingMsg) await telegram.deleteMessage(chatId, generatingMsg.message_id);
 
-        // 6. Show Result (Use Report Viewer or direct text)
-        // Using Report Viewer is better for consistency
-        const { handleReportDetail } = await import('./fortune_reports');
-        await handleReportDetail(chatId, report.id, this.env);
+             // 6. Show Result (Use Report Viewer or direct text)
+             const { handleReportDetail } = await import('./fortune_reports');
+             await handleReportDetail(chatId, report.id, this.env);
+        } else if (jobResult.status === 'queued') {
+             // Queued, UI handled by dispatcher or keep generating msg?
+             // Dispatcher returned "Queued..." message.
+             // We can update the generating message to "Queued..."
+             if (generatingMsg && jobResult.message) {
+                 await telegram.editMessageText(chatId, generatingMsg.message_id, jobResult.message);
+             }
+        }
 
     } catch (e: any) {
         console.error('[LoveFortune] Exec Error:', e);

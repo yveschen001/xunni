@@ -7,7 +7,14 @@ export default {
   "low": "🔥 **Konflikter och attraktion**\nEra personligheter skiljer sig egentligen mycket, vilket kan leda till utmaningar. Men just dessa skillnader kan skapa oväntad spänning!",
   "vipRequired": "🔒 VIP krävs för att se detaljerade matchningsresultat",
   "upsellMessage": "För att få exakta matchningsresultat behöver du vara VIP-medlem.\n\nEfter uppgraderingen kan du se detaljerade matchningsrapporter med vem som helst!",
-  "noQuota": "🔮 Spådomsflaskor otillräckliga",
-  "quotaExhausted": "Din spådomsflaska är slut, och du kan inte genomföra matchningen.\n\nVar vänlig köp ett påfyllningspaket eller vänta på att veckokvoten återställs.",
-  "targetNonVipWarning": "Den andra personen är inte VIP-användare, vilket kan göra att vissa data är ofullständiga och påverkar matchningens noggrannhet.\n💡 Det rekommenderas att ge dem VIP för att få mer exakta resultat!"
+  "noQuota": "🔮 Spådomsflaske mangel",
+  "quotaExhausted": "Din spådomsflaske er opbrugt, og du kan ikke fortsætte med hurtige match.\n\nVær venlig at købe en genopfyldningspakke eller vente på den ugentlige gratis kvote for at blive opdateret.",
+  "targetNonVipWarning": "Den andra personen är inte VIP-användare, vilket kan göra att vissa data är ofullständiga och påverkar matchningens noggrannhet.\n💡 Det rekommenderas att ge dem VIP för att få mer exakta resultat!",
+  "template": {
+    "body": "✨ **{target}** din matchanalyse rapport er genereret!\n\nKlik på knappen nedenfor for at se detaljerne 👇"
+  },
+  "btn": {
+    "throw": "🍾 Ønskeflaske",
+    "vip_throw": "💎 VIP Ønskeflaske"
+  }
 };

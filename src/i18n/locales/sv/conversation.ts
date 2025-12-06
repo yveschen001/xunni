@@ -79,6 +79,7 @@ export default {
   "settings4": "Inte inställd",
   "settings5": "Inte inställd",
   "short": "Efter blockering:\n",
+  "selectNumber": "Vänligen klicka på motsvarande nummer nedan för att se detaljer:",
   "short2": "Okänd användare",
   "short3": "Nyss",
   "stats": "📊 Använd /stats för att se detaljerad statistik\n",
@@ -106,5 +107,10 @@ export default {
   "vipLearnMore": "💎 Använd /vip för att lära dig mer",
   "vipUnlockAvatar": "🔒 Uppgradera till VIP för att låsa upp tydligare profilbilder",
   "zodiac": "⭐ Stjärntecken: {partnerInfo.zodiac}\n",
-  "zodiac2": "⭐ Stjärntecken: {zodiacLabel}\n"
+  "zodiac2": "⭐ Stjärntecken: {zodiacLabel}\n",
+  "historyPost": "📜 Chats historia #{id}",
+  "historyPostSuffix": " (klicka för att se detaljer)",
+  "newMessageNotification": "📩 Du har ett nytt meddelande!",
+  "newMessageNotificationSuffix": " (från {sender})",
+  "replyToUser": "Svara användare"
 };

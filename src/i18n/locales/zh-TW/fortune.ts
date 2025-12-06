@@ -1,4 +1,27 @@
 export default {
+  "tarot": {
+    "reversed": "逆位",
+    "upright": "正位"
+  },
+  "tarot_ui": {
+    "intro": "🔮 歡迎來到塔羅占卜室",
+    "draw": "🎴 抽取牌卡",
+    "shuffling": "🔀 洗牌中...",
+    "drawn": "✨ 你抽到了：{card}"
+  },
+  "type": {
+    "love_match": "戀愛合盤",
+    "tarot": "塔羅占卜"
+  },
+  "dailyPushTitle": "📅 每日運勢提醒",
+  "dailyPushBody": "您的今日運勢已生成！點擊查看 👇",
+  "clickToView": "👀 點擊查看",
+  "viewDaily": "查看運勢",
+  "bottleReward": "🍾 獲得瓶子獎勵：{amount} 個",
+  "inviteChainReward": "🔗 邀請鏈獎勵：{amount} 個瓶子",
+  "purchaseSuccess": "🎉 購買成功！獲得 {amount} 次額外配額。",
+  "get_more_bottles": "🍾 獲取更多瓶子",
+  "menuTitle": "🔮 命理服務選單",
   "relationship": {
     "love": "情侶",
     "friend": "朋友",
@@ -8,8 +31,11 @@ export default {
   "menu": {
     "love": "🧬 屬性診斷 (關係配對)",
     "wealth": "💰 財富運勢",
-    "career": "💼 事業運勢"
+    "career": "💼 事業運勢",
+    "warehouse": "🔮 命盤倉庫",
+    "my_reports": "📜 我的報告"
   },
+  "warehouse": "🔮 命盤倉庫",
   "onboarding": {
     "askName": "首先，請問您的名字是？",
     "askGender": "您的性別是？",
@@ -75,7 +101,6 @@ export default {
   "noProfile": "找不到檔案",
   "generating": "🔮 正在為您連結宇宙能量...",
   "reports": {
-    "tab_all": "📜 我的報告",
     "title": "📜 歷史報告 ({current}/{total})",
     "empty": "您還沒有任何運勢報告。",
     "view": "查看",
@@ -96,7 +121,14 @@ export default {
     "type_celebrity": "名人同盤",
     "filter_all": "全部",
     "filter_love": "愛情",
-    "filter_fortune": "運勢"
+    "filter_fortune": "運勢",
+    "tab_all": "全部",
+    "tab_match": "配對",
+    "tab_fortune": "運勢",
+    "integrity_warning": "您的資料已變更，此報告可能不再準確。",
+    "page_indicator": "第 {current} / {total} 頁",
+    "expired": "此報告已過期",
+    "deleted_hint": "報告已刪除"
   },
   "love": {
     "menu_title": "💘 愛情運勢實驗室",
@@ -106,6 +138,12 @@ export default {
     "ideal_type": "🧚‍♀️ 理想型分析",
     "match_analysis": "💞 戀愛合盤 (指定對象)",
     "match_hint": "請輸入對方的 Telegram ID、用戶名 (@username) 或轉發他/她的訊息給我。",
+    "confirm_match_msg": "即將與 {target} 進行合盤分析，這將消耗 1 個算命瓶。",
+    "confirm_deduct": "✅ 確認配對 (扣 1 瓶)",
+    "disclaimer_short": "⚠️ **隱私與免責聲明**：\n此配對僅供娛樂，您的個資（生日、地點）將被系統隱藏，不會發送給對方。點擊確認即代表您同意本服務條款。",
+    "error_age_parent_too_young": "⚠️ 年齡邏輯錯誤：對方太年輕了，不可能是您的長輩。",
+    "error_age_child_too_old": "⚠️ 年齡邏輯錯誤：對方太年長了，不可能是您的晚輩。",
+    "request_sent_success": "✅ 請求已發送！等待對方確認。",
     "error_not_found": "找不到該用戶，請確認輸入正確。",
     "error_self_match": "您不能與自己進行配對分析喔！",
     "select_rel_type": "請選擇你們目前的關係：",
@@ -123,7 +161,19 @@ export default {
     "analyzing_match": "正在分析你們的星盤契合度...",
     "invite_friend": "📨 邀請對方體驗",
     "invite_friend_text": "嘿！我想要和你玩雙人合盤，快點建立你的命理檔案吧！",
-    "select_family_role": "請選擇親情關係角色："
+    "input_target_id_msg": "請輸入對方的 Telegram ID (可請對方轉發訊息給您，查看發送者資訊)：",
+    "input_target_id_hint": "👇 請輸入對方的 Telegram ID：",
+    "select_family_role": "請選擇親情關係角色：",
+    "error_blocked": "❌ 無法與此用戶進行配對（被封鎖）",
+    "error_blocked_by_self": "❌ 您已封鎖此用戶",
+    "error_pending_exists": "⚠️ 您已向此用戶發送過邀請，請耐心等待。",
+    "error_cooldown": "⏳ 請稍後再試",
+    "consent_accepted_notify": "✅ {target} 接受了您的配對請求！",
+    "generate_report_btn": "📄 生成報告",
+    "consent_rejected_notify": "❌ {target} 拒絕了您的配對請求。",
+    "error_request_invalid": "❌ 請求無效",
+    "consent_accepted_msg": "✅ 您接受了配對請求！",
+    "consent_rejected_msg": "❌ 您拒絕了配對請求。"
   },
   "role": {
     "husband": "丈夫",
@@ -133,6 +183,11 @@ export default {
     "child": "孩子",
     "children": "孩子",
     "parents": "父母",
+    "siblings": "兄弟姐妹",
+    "older_brother": "哥哥",
+    "younger_brother": "弟弟",
+    "older_sister": "姊姊",
+    "younger_sister": "妹妹",
     "grandchildren": "孫輩",
     "grandparents": "祖父母",
     "partner": "伴侶"

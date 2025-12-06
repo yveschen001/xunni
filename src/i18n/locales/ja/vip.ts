@@ -130,5 +130,7 @@ export default {
   "upgrade": "VIPにアップグレード",
   "maxDurationExceeded": "⚠️ あなたのVIP期間は制限に達しました ({maxMonths} ヶ月)ので、しばらくの間購入を続けることはできません。",
   "refundedAndRevoked": "ℹ️ あなたの支払いが返金され、VIP特典は取り消されました。",
-  "benefit_daily_fortune": "• VIP限定で1日1回の無料霊能占い"
+  "benefit_daily_fortune": "• VIP限定で1日1回の無料霊能占い",
+  "month": "ヶ月",
+  "months": "ヶ月"
 };

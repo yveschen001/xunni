@@ -6,6 +6,7 @@
 import type { Env } from '~/types';
 import { handleWebhook } from './router';
 import { serveLegalDocument } from './legal/documents';
+import { fortuneQueueHandler } from './queue/consumer';
 
 export default {
   /**
@@ -214,6 +215,15 @@ export default {
           headers: { 'Content-Type': 'application/json' },
         }
       );
+    }
+  },
+
+  /**
+   * Handle Queue consumers
+   */
+  async queue(batch: MessageBatch<any>, env: Env): Promise<void> {
+    if (batch.queue === 'fortune-job-queue') {
+      await fortuneQueueHandler(batch, env);
     }
   },
 

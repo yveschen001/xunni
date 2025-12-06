@@ -74,6 +74,7 @@ export default {
     "vip2": "⚠️ ฟีเจอร์นี้สำหรับสมาชิก VIP เท่านั้น",
     "vip3": "⚠️ **VIP หมดอายุวันนี้**\n\n"
   },
+  "failed": "⚠️ การดำเนินการล้มเหลว",
   "BROADCAST": {
     "FILTER_ERROR": "❌ ข้อผิดพลาดในรูปแบบ\nตัวอย่าง: `/broadcast_filter gender=female,country=TW test message`",
     "NO_CONTENT": "❌ กรุณาใส่เนื้อหาการกระจายเสียง",

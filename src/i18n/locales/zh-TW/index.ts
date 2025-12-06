@@ -67,6 +67,8 @@ import adPage from './adPage';
 import zodiac from './zodiac';
 import match from './match';
 import gift from './gift';
+import ban from './ban';
+import account from './account';
 
 export const translations = {
 
@@ -78,7 +80,9 @@ export const translations = {
   adminNotification,
   age,
   analytics,
+  account,
   appeal,
+  ban,
   block,
   bottle,
   broadcast,

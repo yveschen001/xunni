@@ -148,5 +148,6 @@ export default {
   "userNotFound6": "❌ Benutzer existiert nicht oder ist nicht registriert.",
   "userNotFound7": "❌ Benutzer existiert nicht.",
   "vip": "❌ Sie haben keine Berechtigung, die VIP-Daten anzuzeigen.",
-  "vip2": "❌ Sie sind kein VIP-Benutzer und können keine Rückerstattung beantragen."
+  "vip2": "❌ Sie sind kein VIP-Benutzer und können keine Rückerstattung beantragen.",
+  "invalidRequest": "❌ Ungültige Anfrage"
 };

@@ -47,6 +47,6 @@ export default {
   "text": "👤 プロフィールを見る",
   "verify": "認証する",
   "viewPayments": "💰 サブスクリプション履歴",
-  "viewReports": "🚩 レポートを表示",
-  "vip": "💎 VIPにアップグレード"
+  "vip": "💎 VIPにアップグレード",
+  "buyFortuneBottle": "🛍️ 占いボトルを購入"
 };

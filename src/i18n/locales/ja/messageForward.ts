@@ -8,5 +8,8 @@ export default {
   "upgradeVip": "💡 VIPにアップグレードすると、より多くの定員が与えられます（1日当たり100メッセージ）：/vip\n",
   "urlNotAllowed": "❌ メッセージには許可されていないURLが含まれています。\n\n",
   "urlNotAllowedDesc": "⚠️ 安全のため、会話には特定のURLのみ許可されています。\n\n",
-  "vipDailyLimit": "💡 VIPユーザーは1日あたり100本のボトルメールを送信できます。\n"
+  "vipDailyLimit": "💡 VIPユーザーは1日あたり100本のボトルメールを送信できます。\n",
+  "upgradeToUnlock": "💎 アップグレードで解除",
+  "upgradeVipLink": "VIPにアップグレード",
+  "urlVipOnly": "このリンクはVIPユーザーのみ送信可能"
 };

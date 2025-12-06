@@ -130,5 +130,7 @@ export default {
   "upgrade": "升级 VIP",
   "maxDurationExceeded": "⚠️ 您的 VIP 期限已达到上限 ({maxMonths} 个月)，暂时无法继续购买。",
   "refundedAndRevoked": "ℹ️ 您的款项已退还，VIP 权益已收回。",
-  "benefit_daily_fortune": "• 每日免费 1 次 灵能算命（VIP 专属）"
+  "benefit_daily_fortune": "• 每日免费 1 次 灵能算命（VIP 专属）",
+  "month": "个月",
+  "months": "个月"
 };

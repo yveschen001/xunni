@@ -79,6 +79,7 @@ export default {
   "settings4": "Tidak ditetapkan",
   "settings5": "Tidak ditetapkan",
   "short": "Diblokir setelah:\n",
+  "selectNumber": "Silakan klik nomor di bawah untuk melihat detail:",
   "short2": "Pengguna tidak dikenal",
   "short3": "Baru saja sekarang",
   "stats": "📊 Gunakan /stats untuk melihat statistik terperinci\n",
@@ -106,5 +107,10 @@ export default {
   "vipLearnMore": "💎 Gunakan /vip untuk mempelajari lebih lanjut",
   "vipUnlockAvatar": "🔒 Tingkatkan ke VIP untuk membuka gambar profil yang lebih jelas dari pengguna lain",
   "zodiac": "⭐ Zodiak: {partnerInfo.zodiac}\n",
-  "zodiac2": "⭐ Zodiak: {zodiacLabel}\n"
+  "zodiac2": "⭐ Zodiak: {zodiacLabel}\n",
+  "historyPost": "📜 Riwayat Percakapan #{id}",
+  "historyPostSuffix": " (klik untuk melihat detail)",
+  "newMessageNotification": "📩 Anda memiliki pesan baru!",
+  "newMessageNotificationSuffix": " (dari {sender})",
+  "replyToUser": "Balas Pengguna"
 };

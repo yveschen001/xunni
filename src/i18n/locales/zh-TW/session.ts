@@ -3,6 +3,7 @@ export default {
   "timeoutConversation": "⏰ 對話已超時\n\n對方可能已離開。使用 /catch 撿新的瓶子吧！",
   "timeoutEditProfile": "⏰ 編輯資料流程已超時\n\n請重新開始編輯。",
   "timeoutOnboarding": "⏰ 註冊流程已超時\n\n請使用 /start 重新開始註冊。",
+  "timeoutFortune": "⏰ 算命流程已超時\n\n請重新選擇功能。",
   "timeoutThrowBottle": "⏰ 丟瓶流程已超時\n\n請使用 /throw 重新開始。",
   "typeCatchBottle": "撿瓶流程",
   "typeConversation": "對話",

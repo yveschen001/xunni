@@ -74,6 +74,7 @@ export default {
     "vip2": "⚠️ 此功能僅限 VIP 會員使用",
     "vip3": "⚠️ **VIP 今天到期**\n\n"
   },
+  "failed": "⚠️ 操作失敗",
   "BROADCAST": {
     "FILTER_ERROR": "❌ 格式錯誤。\n範例：`/broadcast_filter gender=female,country=TW 測試訊息`",
     "NO_CONTENT": "❌ 請輸入廣播內容。",

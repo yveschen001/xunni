@@ -1,0 +1,1 @@
+import * as AstronomyLib from 'astronomy-engine'; const A = AstronomyLib.default || AstronomyLib; const date = new Date(); const time = A.MakeTime(date); const tilt = A.e_tilt(time); console.log('e_tilt result:', tilt);

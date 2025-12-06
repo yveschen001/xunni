@@ -79,6 +79,7 @@ export default {
   "settings4": "Chưa được thiết lập",
   "settings5": "Chưa được thiết lập",
   "short": "Sau khi chặn:\n",
+  "selectNumber": "Vui lòng nhấn vào số bên dưới để xem chi tiết:",
   "short2": "Người dùng không xác định",
   "short3": "Vừa mới đây",
   "stats": "📊 Sử dụng /stats để xem thống kê chi tiết\n",
@@ -106,5 +107,10 @@ export default {
   "vipLearnMore": "💎 Sử dụng /vip để biết thêm thông tin",
   "vipUnlockAvatar": "🔒 Nâng cấp lên VIP để mở khóa hình ảnh hồ sơ rõ ràng của bên kia",
   "zodiac": "⭐ Cung hoàng đạo: {partnerInfo.zodiac}\n",
-  "zodiac2": "⭐ Cung hoàng đạo: {zodiacLabel}\n"
+  "zodiac2": "⭐ Cung hoàng đạo: {zodiacLabel}\n",
+  "historyPost": "📜 Lịch sử trò chuyện #{id}",
+  "historyPostSuffix": " (nhấn để xem chi tiết)",
+  "newMessageNotification": "📩 Bạn có một tin nhắn mới!",
+  "newMessageNotificationSuffix": " (từ {sender})",
+  "replyToUser": "Trả lời người dùng"
 };

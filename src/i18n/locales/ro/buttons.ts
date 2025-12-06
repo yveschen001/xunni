@@ -47,5 +47,6 @@ export default {
   "text": "👤 Vizualizează cardul de profil al altui utilizator",
   "verify": "Verifică",
   "viewPayments": "💰 Istoricul abonamentelor",
-  "vip": "💎 Upgrade la VIP"
+  "vip": "💎 Upgrade la VIP",
+  "buyFortuneBottle": "🛍️ Cumpără Sticla de Ghicit"
 };

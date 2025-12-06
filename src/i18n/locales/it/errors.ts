@@ -180,5 +180,8 @@ export default {
   "verificationFailed": "❌ La verifica non è riuscita, riprova più tardi",
   "invalidTimeFormat": "Formato orario non valido\nAd esempio: 19:30 (formato 24 ore, 00-23 ore, 00-59 minuti)",
   "invalidDateFormat": "Formato data non valido\nAd esempio: 2000-01-01",
-  "taskAlreadyCompleted": "❌ Questo compito è già stato completato e la ricompensa è stata reclamata."
+  "taskAlreadyCompleted": "❌ Questo compito è già stato completato e la ricompensa è stata reclamata.",
+  "session_expired": "❌ La sessione è scaduta, per favore riprendi",
+  "systemErrorRestart": "❌ Si è verificato un errore di sistema, per favore riprendi: /start",
+  "invalidLanguageCode": "❌ Codice lingua non valido"
 };

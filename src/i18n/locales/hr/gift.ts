@@ -11,5 +11,9 @@ export default {
   "completeProfileButton": "📝 Dovršite informacije",
   "vipBenefit": "Sada možete uživati u neograničenom prevođenju, jasnoj slici i preciznom tumačenju sudbine.",
   "bottleBenefit": "Sada možete istražiti više zanimljivih aspekata sudbine.",
-  "senderNotification": "🎉 **Plaćanje uspešno!**\n\nUspešno ste poslali {item} **{name}**.\nOsoba će vas možda zahvaliti nakon što primi!"
+  "senderNotification": "🎉 **Plaćanje uspešno!**\n\nUspešno ste poslali {item} **{name}**.\nOsoba će vas možda zahvaliti nakon što primi!",
+  "vip": {
+    "month": "mjesečni",
+    "months": "mjesečni"
+  }
 };

@@ -47,5 +47,6 @@ export default {
   "text": "👤 Visa annans profilkort",
   "verify": "Verifiera",
   "viewPayments": "💰 Prenumerationshistorik",
-  "vip": "💎 Uppgradera till VIP"
+  "vip": "💎 Uppgradera till VIP",
+  "buyFortuneBottle": "🛍️ Köp Spådomsflaska"
 };

@@ -180,5 +180,8 @@ export default {
   "verificationFailed": "❌ Doğrulama başarısız oldu, lütfen daha sonra tekrar deneyin",
   "invalidTimeFormat": "Geçersiz zaman formatı\nÖrneğin: 19:30 (24 saat formatı, 00-23 saat, 00-59 dakika)",
   "invalidDateFormat": "Geçersiz tarih formatı\nÖrneğin: 2000-01-01",
-  "taskAlreadyCompleted": "❌ Bu görev zaten tamamlandı ve ödül talep edildi."
+  "taskAlreadyCompleted": "❌ Bu görev zaten tamamlandı ve ödül talep edildi.",
+  "session_expired": "❌ Oturum süresi doldu, lütfen tekrar başlatın.",
+  "systemErrorRestart": "❌ Sistem hatası oluştu, lütfen tekrar başlatın.",
+  "invalidLanguageCode": "❌ Geçersiz dil kodu."
 };

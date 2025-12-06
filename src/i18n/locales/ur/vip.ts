@@ -130,5 +130,7 @@ export default {
   "upgrade": "VIP میں اپ گریڈ کریں",
   "maxDurationExceeded": "⚠️ آپ کا VIP دورانیہ حد تک پہنچ چکا ہے ({maxMonths} ماہ)، اور آپ فی الحال خریداری جاری نہیں رکھ سکتے۔",
   "refundedAndRevoked": "ℹ️ آپ کی ادائیگی کی واپسی ہو گئی ہے، اور VIP فوائد منسوخ کر دیے گئے ہیں۔",
-  "benefit_daily_fortune": "• روزانہ 1 مفت روحانی قراءت (صرف VIP کے لئے)"
+  "benefit_daily_fortune": "• روزانہ 1 مفت روحانی قراءت (صرف VIP کے لئے)",
+  "month": "مہینہ",
+  "months": "مہینے"
 };

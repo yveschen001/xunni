@@ -47,5 +47,6 @@ export default {
   "text": "👤 프로필 보기",
   "verify": "확인",
   "viewPayments": "💰 구독 내역",
-  "vip": "💎 VIP 업그레이드"
+  "vip": "💎 VIP 업그레이드",
+  "buyFortuneBottle": "🛍️ 운세 병 구매"
 };

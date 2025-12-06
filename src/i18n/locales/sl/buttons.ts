@@ -47,5 +47,6 @@ export default {
   "text": "👤 Poglej profilno kartico drugega",
   "verify": "Verificiraj",
   "viewPayments": "💰 Zgodovina naročnin",
-  "vip": "💎 Nadgradi na VIP"
+  "vip": "💎 Nadgradi na VIP",
+  "buyFortuneBottle": "🛍️ 購買算命瓶"
 };

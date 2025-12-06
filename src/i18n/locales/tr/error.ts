@@ -148,5 +148,6 @@ export default {
   "userNotFound6": "❌ Kullanıcı mevcut değil veya kayıtlı değil.",
   "userNotFound7": "❌ Kullanıcı mevcut değil.",
   "vip": "❌ VIP verilerini görüntüleme izniniz yok",
-  "vip2": "❌ VIP kullanıcısı değilsiniz ve iade talep edemezsiniz."
+  "vip2": "❌ VIP kullanıcısı değilsiniz ve iade talep edemezsiniz.",
+  "invalidRequest": "❌ Geçersiz talep"
 };

@@ -74,6 +74,7 @@ export default {
     "vip2": "⚠️ Ця функція доступна лише для VIP-учасників",
     "vip3": "⚠️ **VIP закінчується сьогодні**\n\n"
   },
+  "failed": "⚠️ Операцію не виконано",
   "BROADCAST": {
     "FILTER_ERROR": "❌ Помилка формату.\nПриклад: `/broadcast_filter gender=female,country=TW test message`",
     "NO_CONTENT": "❌ Будь ласка, введіть вміст трансляції.",

@@ -3,6 +3,7 @@ export default {
   "timeoutConversation": "⏰ Razgovor je istekao\n\nDruga strana je možda otišla. Koristite /catch da preuzmete novu bottle!",
   "timeoutEditProfile": "⏰ Proces uređivanja podataka je istekao\n\nMolimo ponovo započnite uređivanje.",
   "timeoutOnboarding": "⏰ Proces registracije je istekao\n\nMolimo koristite /start da ponovo započnete registraciju.",
+  "timeoutFortune": "⏰ Fortune Bottle proces je istekao\n\nMolimo vas da ponovo odaberete funkciju.",
   "timeoutThrowBottle": "⏰ Proces bacanja bottle je istekao\n\nMolimo koristite /throw da ponovo započnete.",
   "typeCatchBottle": "Proces preuzimanja bottle",
   "typeConversation": "Razgovor",

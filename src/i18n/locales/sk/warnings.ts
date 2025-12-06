@@ -74,6 +74,7 @@ export default {
     "vip2": "⚠️ Táto funkcia je iba pre VIP členov",
     "vip3": "⚠️ **VIP končí dnes**\n\n"
   },
+  "failed": "⚠️ Operácia zlyhala",
   "BROADCAST": {
     "FILTER_ERROR": "❌ Chyba formátu.\nPríklad: `/broadcast_filter gender=female,country=TW test message`",
     "NO_CONTENT": "❌ Prosím zadajte obsah vysielania.",

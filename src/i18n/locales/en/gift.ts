@@ -11,5 +11,9 @@ export default {
   "completeProfileButton": "📝 Complete Profile",
   "vipBenefit": "You can now enjoy unlimited translations, clear avatars, and accurate fortune matching.",
   "bottleBenefit": "You can now explore more interesting fortune insights.",
-  "senderNotification": "🎉 **Payment Successful!**\n\nYou have successfully sent {item} to **{name}**.\nThey may thank you once received!"
+  "senderNotification": "🎉 **Payment Successful!**\n\nYou have successfully sent {item} to **{name}**.\nThey may thank you once received!",
+  "vip": {
+    "month": "month",
+    "months": "months"
+  }
 };

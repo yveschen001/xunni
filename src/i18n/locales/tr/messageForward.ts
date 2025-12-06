@@ -8,5 +8,8 @@ export default {
   "upgradeVip": "💡 Daha fazla kota için VIP'e yükselt (günde 100 mesaj): /vip\n",
   "urlNotAllowed": "❌ Mesaj yasaklı URL'yi içeriyor\n\n",
   "urlNotAllowedDesc": "⚠️ Güvenlik nedeniyle, konuşmalarda sadece belirli URL'lere izin verilmektedir.\n\n",
-  "vipDailyLimit": "💡 VIP kullanıcılar günde 100 mesaj gönderebilir.\n"
+  "vipDailyLimit": "💡 VIP kullanıcılar günde 100 mesaj gönderebilir.\n",
+  "upgradeToUnlock": "💎 Yükselt ve Kilidini Aç",
+  "upgradeVipLink": "VIP Yükselt",
+  "urlVipOnly": "Bu bağlantı yalnızca VIP kullanıcılar içindir"
 };

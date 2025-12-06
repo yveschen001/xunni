@@ -130,5 +130,7 @@ export default {
   "upgrade": "Päivitä VIP-jäsenyyteen",
   "maxDurationExceeded": "⚠️ VIP-jaksosi on saavuttanut rajan ({maxMonths} kuukautta), etkä voi jatkaa ostamista toistaiseksi.",
   "refundedAndRevoked": "ℹ️ Maksusi on hyvitetty, ja VIP-edut on peruutettu.",
-  "benefit_daily_fortune": "• 1 ilmainen psykologinen lukema päivässä (vain VIP:lle)"
+  "benefit_daily_fortune": "• 1 ilmainen psykologinen lukema päivässä (vain VIP:lle)",
+  "month": "kuukausi",
+  "months": "kuukautta"
 };

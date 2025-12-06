@@ -701,5 +701,12 @@ export default {
   "skip": "スキップ",
   "submit": "送信",
   "timeLeftDaysHours": "{days} 日 {hours} 時間",
-  "timeLeftHours": "{hours} 時間"
+  "timeLeftHours": "{hours} 時間",
+  "confirm_delete": "削除を確認",
+  "deleted": "削除されました",
+  "unblock": "ブロック解除",
+  "generating": "生成中...",
+  "mbtiMatch": "MBTI 一致度",
+  "zodiacMatch": "星座一致度",
+  "fateMatch": "運命指数"
 };

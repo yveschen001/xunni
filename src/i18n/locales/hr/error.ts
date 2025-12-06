@@ -148,5 +148,6 @@ export default {
   "userNotFound6": "❌ Korisnik ne postoji ili nije registriran.",
   "userNotFound7": "❌ Korisnik ne postoji.",
   "vip": "❌ Nemate dopuštenje za pregled VIP podataka.",
-  "vip2": "❌ Niste VIP korisnik i ne možete zatražiti povrat."
+  "vip2": "❌ Niste VIP korisnik i ne možete zatražiti povrat.",
+  "invalidRequest": "❌ Nevažeća klijanja"
 };

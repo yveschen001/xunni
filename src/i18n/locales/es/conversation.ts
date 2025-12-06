@@ -79,6 +79,7 @@ export default {
   "settings4": "No Configurado",
   "settings5": "No Configurado",
   "short": "Después de Bloquear:\n",
+  "selectNumber": "Haz clic en el número correspondiente abajo para ver detalles:",
   "short2": "Usuario Desconocido",
   "short3": "Justo Ahora",
   "stats": "📊 Usa /stats para ver estadísticas detalladas\n",
@@ -106,5 +107,10 @@ export default {
   "vipLearnMore": "💎 Usa /vip para aprender más",
   "vipUnlockAvatar": "🔒 Mejora a VIP para desbloquear fotos de perfil más claras",
   "zodiac": "⭐ Zodiaco: {partnerInfo.zodiac}\n",
-  "zodiac2": "⭐ Zodiaco: {zodiacLabel}\n"
+  "zodiac2": "⭐ Zodiaco: {zodiacLabel}\n",
+  "historyPost": "📜 Historial de conversación #{id}",
+  "historyPostSuffix": " (haz clic para ver detalles)",
+  "newMessageNotification": "📩 ¡Tienes un nuevo mensaje!",
+  "newMessageNotificationSuffix": " (de {sender})",
+  "replyToUser": "Responder al usuario"
 };

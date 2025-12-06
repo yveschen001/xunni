@@ -180,5 +180,8 @@ export default {
   "verificationFailed": "❌ A hitelesítés meghiúsult, kérjük, próbálkozzon később",
   "invalidTimeFormat": "Érvénytelen időformátum\nPélda: 19:30 (24 órás formátum, 00-23 óra, 00-59 perc)",
   "invalidDateFormat": "Érvénytelen dátumformátum\nPélda: 2000-01-01",
-  "taskAlreadyCompleted": "❌ Ez a feladat már teljesítve lett, és a jutalom már igénybevételre került."
+  "taskAlreadyCompleted": "❌ Ez a feladat már teljesítve lett, és a jutalom már igénybevételre került.",
+  "session_expired": "❌ A session lejárt, kérlek indítsd újra",
+  "systemErrorRestart": "❌ Rendszerhiba történt, kérlek indítsd újra",
+  "invalidLanguageCode": "❌ Érvénytelen nyelvkód"
 };

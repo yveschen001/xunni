@@ -79,6 +79,7 @@ export default {
   "settings4": "Ni nastavljeno",
   "settings5": "Ni nastavljeno",
   "short": "Po blokiranju:\n",
+  "selectNumber": "請選擇下方對應數字查看詳情：",
   "short2": "Neznan uporabnik",
   "short3": "Pred nekaj trenutki",
   "stats": "📊 Uporabite /stats za prikaz podrobnih statistik\n",
@@ -106,5 +107,10 @@ export default {
   "vipLearnMore": "💎 Uporabite /vip za več informacij",
   "vipUnlockAvatar": "🔒 Nadgradite na VIP, da odklenete jasno profilno sliko druge strani",
   "zodiac": "⭐ Zvezdni znak: {partnerInfo.zodiac}\n",
-  "zodiac2": "⭐ Zvezdni znak: {zodiacLabel}\n"
+  "zodiac2": "⭐ Zvezdni znak: {zodiacLabel}\n",
+  "historyPost": "📜 對話歷史 #{id}",
+  "historyPostSuffix": " (查看詳情)",
+  "newMessageNotification": "📩 你有一條新訊息！",
+  "newMessageNotificationSuffix": " (來自 {sender})",
+  "replyToUser": "回覆"
 };

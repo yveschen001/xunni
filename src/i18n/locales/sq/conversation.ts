@@ -79,6 +79,7 @@ export default {
   "settings4": "Nuk është caktuar",
   "settings5": "Nuk është caktuar",
   "short": "Pas Bllokimit:\n",
+  "selectNumber": "你可以選擇下方數字查看詳細資訊：",
   "short2": "Përdorues i Panjohur",
   "short3": "Folëm tani",
   "stats": "📊 Përdorni /stats për të parë statistikat e detajuara\n",
@@ -106,5 +107,10 @@ export default {
   "vipLearnMore": "💎 Përdorni /vip për të mësuar më shumë",
   "vipUnlockAvatar": "🔒 Përmirësohu në VIP për të ç desbloqueuar imazhin e qartë të profilit të palës tjetër",
   "zodiac": "⭐ Shenja e zodiakut: {partnerInfo.zodiac}\n",
-  "zodiac2": "⭐ Shenja e zodiakut: {zodiacLabel}\n"
+  "zodiac2": "⭐ Shenja e zodiakut: {zodiacLabel}\n",
+  "historyPost": "📜 對話歷史 #{id}",
+  "historyPostSuffix": " (點擊查看詳情)",
+  "newMessageNotification": "📩 你有一條新訊je！",
+  "newMessageNotificationSuffix": " (來自 {sender})",
+  "replyToUser": "回覆"
 };

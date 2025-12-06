@@ -180,5 +180,8 @@ export default {
   "verificationFailed": "❌ 確認に失敗しました。後で再試行してください",
   "invalidTimeFormat": "無効な時間形式\n例: 19:30（24時間形式、00-23時間、00-59分）",
   "invalidDateFormat": "無効な日付形式\n例: 2000-01-01",
-  "taskAlreadyCompleted": "❌ このタスクはすでに完了しており、報酬は受け取られました。"
+  "taskAlreadyCompleted": "❌ このタスクはすでに完了しており、報酬は受け取られました。",
+  "session_expired": "❌ セッションが期限切れです。再スタートしてください。",
+  "systemErrorRestart": "❌ システムエラーが発生しました。再スタートしてください。",
+  "invalidLanguageCode": "❌ 無効な言語コードです。"
 };

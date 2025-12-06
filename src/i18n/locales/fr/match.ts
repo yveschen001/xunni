@@ -8,6 +8,13 @@ export default {
   "vipRequired": "🔒 Nécessite un abonnement VIP pour voir le résultat de compatibilité en détail",
   "upsellMessage": "Pour une compatibilité précise, vous devez être membre VIP.\n\nAprès la mise à niveau, vous pourrez consulter le rapport de compatibilité détaillé avec n'importe qui !",
   "noQuota": "🔮 Bouteille de bonne aventure insuffisante",
-  "quotaExhausted": "Vous n'avez plus de bouteilles de bonne aventure, impossible de procéder à la compatibilité.\n\nVeuillez acheter un pack de recharge ou attendre le rafraîchissement hebdomadaire de votre quota gratuit.",
-  "targetNonVipWarning": "L'autre personne n'est pas un utilisateur VIP, certaines données peuvent être incomplètes, ce qui affecte la précision de la compatibilité.\n💡 Il est conseillé d'offrir un abonnement VIP à l'autre pour obtenir des résultats plus précis !"
+  "quotaExhausted": "Votre bouteille de bonne aventure est épuisée, vous ne pouvez pas effectuer de correspondance.\n\nVeuillez acheter un pack de recharge ou attendre le rafraîchissement hebdomadaire de votre quota gratuit.",
+  "targetNonVipWarning": "L'autre personne n'est pas un utilisateur VIP, certaines données peuvent être incomplètes, ce qui affecte la précision de la compatibilité.\n💡 Il est conseillé d'offrir un abonnement VIP à l'autre pour obtenir des résultats plus précis !",
+  "template": {
+    "body": "✨ **{target}** votre rapport d'analyse de correspondance a été généré !\n\nCliquez sur le bouton ci-dessous pour voir les détails 👇"
+  },
+  "btn": {
+    "throw": "🍾 Lancer une Bouteille de Vœux",
+    "vip_throw": "💎 Lancer une Bouteille de Vœux VIP"
+  }
 };

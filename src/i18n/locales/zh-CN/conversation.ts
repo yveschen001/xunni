@@ -79,6 +79,7 @@ export default {
   "settings4": "未设定",
   "settings5": "未设定",
   "short": "封锁后：\n",
+  "selectNumber": "请点击下方对应数字查看详情：",
   "short2": "未知用户",
   "short3": "刚刚",
   "stats": "📊 使用 /stats 查看详细统计\n",
@@ -106,5 +107,10 @@ export default {
   "vipLearnMore": "💎 使用 /vip 了解更多",
   "vipUnlockAvatar": "🔒 升级 VIP 解锁对方清晰头像",
   "zodiac": "⭐ 星座: {partnerInfo.zodiac}",
-  "zodiac2": "⭐ 星座: {zodiacLabel}"
+  "zodiac2": "⭐ 星座: {zodiacLabel}",
+  "historyPost": "📜 对话历史 #{id}",
+  "historyPostSuffix": " (点击查看详情)",
+  "newMessageNotification": "📩 你有一条新消息！",
+  "newMessageNotificationSuffix": " (来自 {sender})",
+  "replyToUser": "回复用户"
 };

@@ -21,6 +21,7 @@ export default {
   "back2": "↩️ Bumalik sa pag-edit ng profile",
   "back3": "🏠 Bumalik sa pangunahing menu",
   "back4": "↩️ Bumalik",
+  "backToMenu": "Pangunahing Menu",
   "backToMainMenu": "Bumalik sa pangunahing menu",
   "birthday": "🎂 Kaarawan: {updatedUser.birthday}\n",
   "birthday2": "🎂 Kaarawan: {user.birthday}\n",
@@ -700,5 +701,12 @@ export default {
   "skip": "Laktawan",
   "submit": "I-submit",
   "timeLeftDaysHours": "{days} araw {hours} oras",
-  "timeLeftHours": "{hours} oras"
+  "timeLeftHours": "{hours} oras",
+  "confirm_delete": "Kumpirmahin ang Tanggalin",
+  "deleted": "Nakatanggal na",
+  "unblock": "I-unblock",
+  "generating": "Nabubuo...",
+  "mbtiMatch": "MBTI Pagsasama",
+  "zodiacMatch": "Zodiac Pagsasama",
+  "fateMatch": "Antas ng Tadhana"
 };

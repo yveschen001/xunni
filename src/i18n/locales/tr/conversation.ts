@@ -79,6 +79,7 @@ export default {
   "settings4": "Ayarlanmadı",
   "settings5": "Ayarlanmadı",
   "short": "Engelledikten Sonra:\n",
+  "selectNumber": "Aşağıdaki numaraya tıklayarak ayrıntıları görün:",
   "short2": "Bilinmeyen Kullanıcı",
   "short3": "Şu Anda",
   "stats": "📊 Ayrıntılı istatistikleri görüntülemek için /stats kullanın\n",
@@ -106,5 +107,10 @@ export default {
   "vipLearnMore": "💎 Daha fazla bilgi için /vip kullanın",
   "vipUnlockAvatar": "🔒 VIP'ye geçerek net profil resimlerini açın",
   "zodiac": "⭐ Burç: {partnerInfo.zodiac}\n",
-  "zodiac2": "⭐ Burç: {zodiacLabel}\n"
+  "zodiac2": "⭐ Burç: {zodiacLabel}\n",
+  "historyPost": "📜 Sohbet Geçmişi #{id}",
+  "historyPostSuffix": " (Ayrıntıları görüntülemek için tıklayın)",
+  "newMessageNotification": "📩 Yeni bir mesajınız var!",
+  "newMessageNotificationSuffix": " (Gönderen: {sender})",
+  "replyToUser": "Kullanıcıya Yanıt Ver"
 };

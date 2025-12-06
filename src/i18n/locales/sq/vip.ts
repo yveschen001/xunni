@@ -130,5 +130,7 @@ export default {
   "upgrade": "Përmirësohu në VIP",
   "maxDurationExceeded": "⚠️ Periudha juaj VIP ka arritur kufirin ({maxMonths} muaj), dhe nuk mund të vazhdoni të blini për momentin.",
   "refundedAndRevoked": "ℹ️ Pagesa juaj është rimbursuar, dhe përfitimet VIP janë revokuar.",
-  "benefit_daily_fortune": "• 1 lexhim i lirë psikik në ditë (ekskluziv për VIP)"
+  "benefit_daily_fortune": "• 1 lexhim i lirë psikik në ditë (ekskluziv për VIP)",
+  "month": "muaj",
+  "months": "muaj"
 };

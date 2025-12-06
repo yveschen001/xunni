@@ -130,5 +130,7 @@ export default {
   "upgrade": "ترفیع به VIP",
   "maxDurationExceeded": "⚠️ دوره VIP شما به حد خود رسیده است ({maxMonths} ماه) و در حال حاضر نمی‌توانید خرید را ادامه دهید.",
   "refundedAndRevoked": "ℹ️ پرداخت شما بازگشت داده شده است و مزایای VIP فسخ شده‌اند.",
-  "benefit_daily_fortune": "• 1 مشاوره روانشناسی رایگان در روز (ویژه VIP)"
+  "benefit_daily_fortune": "• 1 مشاوره روانشناسی رایگان در روز (ویژه VIP)",
+  "month": "ماه",
+  "months": "ماه"
 };

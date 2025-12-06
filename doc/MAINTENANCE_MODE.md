@@ -73,7 +73,7 @@ Modifications to these areas require **EXPLICIT USER AUTHORIZATION** or must fal
    - **DO NOT "improve" or "optimize" existing translations** unless explicitly requested.
    - **DO NOT change working code** just because you think it could be better.
 5. **⚠️ CRITICAL: i18n Cross-Language Check**:
-   - **When fixing a language issue, check ALL 34 languages** for the same problem.
+   - **When fixing a language issue, check ALL 40 languages** for the same problem.
    - If the same issue exists in other languages, fix them all in the same change.
    - Use `pnpm i18n:sync` to ensure consistency across all languages.
    - Example: If Japanese has a typo, check if the same typo exists in Korean, Chinese, etc.
@@ -94,7 +94,7 @@ The following issues have occurred repeatedly and must be prevented:
 - **Zodiacs in English**: Ensure `zodiac` is exported in `src/i18n/locales/*/index.ts`.
 - **Raw Keys in UI**: Ensure keys like `fortune.profile_incomplete_hint`, `interests.back_to_categories` exist in CSV.
 - **Hardcoded Strings/Text**: Never hardcode strings or UI text. Always use `i18n.t()`.
-- **Language Count**: The project supports **34 languages**. Do not confuse with directory counts (there may be more directories due to test languages or variants).
+- **Language Count**: The project supports **40 languages**. Do not confuse with directory counts (there may be more directories due to test languages or variants).
 
 ### 5.2 Quota & Logic Regressions
 - **Quota Display**: Verify `2 / 3 + 1` format exists in `menu.ts` and `profile.ts`.

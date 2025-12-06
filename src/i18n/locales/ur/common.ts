@@ -21,6 +21,7 @@ export default {
   "back2": "↩️ پروفائل ایڈٹ کرنے کے لئے واپس جائیں",
   "back3": "🏠 مرکزی مینو پر واپس جائیں",
   "back4": "↩️ واپس",
+  "backToMenu": "Main Menu",
   "backToMainMenu": "مرکزی مینو پر واپس جائیں",
   "birthday": "🎂 سالگرہ: {updatedUser.birthday}\n",
   "birthday2": "🎂 سالگرہ: {user.birthday}\n",
@@ -700,5 +701,12 @@ export default {
   "skip": "نظر انداز کریں",
   "submit": "جمع کرائیں",
   "timeLeftDaysHours": "{days} دن {hours} گھنٹے",
-  "timeLeftHours": "{hours} گھنٹے"
+  "timeLeftHours": "{hours} گھنٹے",
+  "confirm_delete": "تصدیق حذف کریں",
+  "deleted": "حذف کر دیا گیا",
+  "unblock": "ممنوعہ کو ہٹانا",
+  "generating": "جنریٹ کیا جا رہا ہے...",
+  "mbtiMatch": "MBTI ملاپ",
+  "zodiacMatch": "زائچہ ملاپ",
+  "fateMatch": "قسمت کا انڈیکس"
 };

@@ -79,6 +79,7 @@ export default {
   "settings4": "Non Défini",
   "settings5": "Non Défini",
   "short": "Après le Blocage :\n",
+  "selectNumber": "Veuillez cliquer sur le chiffre correspondant ci-dessous pour voir les détails :",
   "short2": "Utilisateur Inconnu",
   "short3": "À l'instant",
   "stats": "📊 Utilisez /stats pour voir des statistiques détaillées\n",
@@ -106,5 +107,10 @@ export default {
   "vipLearnMore": "💎 Utilisez /vip pour en savoir plus",
   "vipUnlockAvatar": "🔒 Passez au VIP pour débloquer des photos de profil plus claires",
   "zodiac": "⭐ Signe astrologique : {partnerInfo.zodiac}\n",
-  "zodiac2": "⭐ Signe astrologique : {zodiacLabel}\n"
+  "zodiac2": "⭐ Signe astrologique : {zodiacLabel}\n",
+  "historyPost": "📜 Historique de la discussion #{id}",
+  "historyPostSuffix": " (cliquez pour voir les détails)",
+  "newMessageNotification": "📩 Vous avez un nouveau message !",
+  "newMessageNotificationSuffix": " (de {sender})",
+  "replyToUser": "Répondre à l'utilisateur"
 };

@@ -4,8 +4,8 @@ export default {
   "backToVip": "💎 Επιστροφή στο Μενού VIP",
   "bottle": "📺 Παρακολούθηση διαφημίσεων για να αποκτήσετε το Μπουκάλι Ευλογίας 🎁 ({remaining}/20)",
   "bottle2": "💎 Αναβάθμιση σε VIP για περισσότερα μπουκάλια μηνυμάτων",
-  "bottle3": "🌊 送出祝福瓶",
-  "bottle4": "🎣 撿起祝福瓶",
+  "bottle3": "🌊 送出 Blessing Bottle",
+  "bottle4": "🎣 撿起 Blessing Bottle",
   "cancel": "Ακύρωση",
   "claim": "Διεκδίκηση",
   "help": "❓ Βοήθεια",
@@ -47,5 +47,6 @@ export default {
   "text": "👤 Προβολή Κάρτας Προφίλ Άλλου",
   "verify": "Επιβεβαίωση",
   "viewPayments": "💰 Ιστορικό Συνδρομών",
-  "vip": "💎 Αναβάθμιση σε VIP"
+  "vip": "💎 Αναβάθμιση σε VIP",
+  "buyFortuneBottle": "🛍️ 購買 Fortune Bottle"
 };

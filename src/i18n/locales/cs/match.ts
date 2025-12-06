@@ -7,7 +7,14 @@ export default {
   "low": "🔥 **Šokující rozdíly!**\nVaše osobnostní odlišnosti jsou značné, což může přinést některé výzvy. Ale právě tyto rozdíly mohou přinést nečekané jiskření!",
   "vipRequired": "🔒 Pro zobrazení podrobných výsledků horoskopu je potřeba být VIP.",
   "upsellMessage": "Pro přesné výsledky horoskopu musíte být VIP členem.\n\nPo upgradu budete moci zobrazit podrobnou zprávu o horoskopení s kýmkoli!",
-  "noQuota": "🔮 Nedostatek Věštecké Láhve",
+  "noQuota": "🔮 Věštecká Láhev není dostatečná",
   "quotaExhausted": "Vaše Věštecká Láhev je vyčerpána, nelze provést horoskop.\n\nProsím zakupte doplňovací balíček nebo čekejte na obnovení bezplatné kvóty každý týden.",
-  "targetNonVipWarning": "Druhá strana není VIP uživatel, některé údaje nemusí být kompletní, což ovlivňuje přesnost horoskopu.\n💡 Doporučujeme darovat jí VIP pro přesnější výsledky!"
+  "targetNonVipWarning": "Druhá strana není VIP uživatel, některé údaje nemusí být kompletní, což ovlivňuje přesnost horoskopu.\n💡 Doporučujeme darovat jí VIP pro přesnější výsledky!",
+  "template": {
+    "body": "✨ **{target}** vaše shoda byla vygenerována!\n\nKlikněte na tlačítko níže pro zobrazení podrobností 👇"
+  },
+  "btn": {
+    "throw": "🍾 Hoď Láhev Přání",
+    "vip_throw": "💎 Hoď VIP Láhev"
+  }
 };

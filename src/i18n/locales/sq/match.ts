@@ -9,5 +9,12 @@ export default {
   "upsellMessage": "Për të kryer një përshtatje të saktë, duhet të jeni anëtar VIP.\n\nPas përmirësimit, do të mund të shihni raportin e plotë të përshtatshmërisë me çdo person!",
   "noQuota": "🔮 Nuk ka mjaft Fortune Bottle",
   "quotaExhausted": "Fortune Bottle tuaj janë mbaruar, nuk mund të bëni përshtatje.\n\nJu lutemi blini një paketë shtesë ose prisni që kuota javore të përditësohet.",
-  "targetNonVipWarning": "Pala tjetër nuk është përdorues VIP, disa të dhëna mund të jenë të paplota, duke ndikuar në saktësinë e përshtatshmërisë.\n💡 Sugjerohet të dërgoni VIP për të marrë rezultate më të sakta!"
+  "targetNonVipWarning": "Pala tjetër nuk është përdorues VIP, disa të dhëna mund të jenë të paplota, duke ndikuar në saktësinë e përshtatshmërisë.\n💡 Sugjerohet të dërgoni VIP për të marrë rezultate më të sakta!",
+  "template": {
+    "body": "✨ **{target}** 与你的速配分析报告已生成！\n\n点击下方按钮查看详细内容 👇"
+  },
+  "btn": {
+    "throw": "🍾 丢一个祝福瓶",
+    "vip_throw": "💎 丢一个 VIP 瓶"
+  }
 };

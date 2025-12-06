@@ -21,6 +21,7 @@ export default {
   "back2": "↩️ Vissza a Profil Szerkesztéshez",
   "back3": "🏠 Vissza a Főmenübe",
   "back4": "↩️ Vissza",
+  "backToMenu": "Főmenü",
   "backToMainMenu": "Vissza a Főmenübe",
   "birthday": "🎂 Születésnap: {updatedUser.birthday}\n",
   "birthday2": "🎂 Születésnap: {user.birthday}\n",
@@ -700,5 +701,12 @@ export default {
   "skip": "Kihagyás",
   "submit": "Beküldés",
   "timeLeftDaysHours": "{days} nap {hours} óra",
-  "timeLeftHours": "{hours} óra"
+  "timeLeftHours": "{hours} óra",
+  "confirm_delete": "Törlés megerősítése",
+  "deleted": "Törölve",
+  "unblock": "Blokkolás feloldása",
+  "generating": "Generálás alatt...",
+  "mbtiMatch": "MBTI Összhang",
+  "zodiacMatch": "Csillagjegy Összhang",
+  "fateMatch": "Sors mutató"
 };

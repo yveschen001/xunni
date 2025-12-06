@@ -3,6 +3,7 @@ export default {
   "timeoutConversation": "⏰ A beszélgetés túllépett\n\nElőfordulhat, hogy a másik fél elment. Használja a /catch-t egy új bottle felvételéhez!",
   "timeoutEditProfile": "⏰ Az adatok szerkesztési folyamata túllépett\n\nKérjük, indítsa újra a szerkesztést.",
   "timeoutOnboarding": "⏰ A regisztrációs folyamat túllépett\n\nKérjük, használja a /start parancsot a regisztráció újraindításához.",
+  "timeoutFortune": "⏰ A jós folyamat lejárt\n\nKérjük, válasszon új funkciót.",
   "timeoutThrowBottle": "⏰ A bottle-throwing folyamat túllépett\n\nKérjük, használja a /throw parancsot az újraindításhoz.",
   "typeCatchBottle": "Bottle-picking folyamat",
   "typeConversation": "Beszélgetés",

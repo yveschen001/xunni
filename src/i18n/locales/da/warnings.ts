@@ -74,6 +74,7 @@ export default {
     "vip2": "⚠️ Denne funktion er kun for VIP-medlemmer",
     "vip3": "⚠️ **VIP udløber i dag**\n\n"
   },
+  "failed": "⚠️ Handling mislykkedes",
   "BROADCAST": {
     "FILTER_ERROR": "❌ Formatfejl.\nEksempel: `/broadcast_filter gender=female,country=TW test message`",
     "NO_CONTENT": "❌ Indtast venligst broadcast-indhold.",

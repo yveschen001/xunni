@@ -1,0 +1,1 @@
+import * as AstronomyLib from 'astronomy-engine'; const A = AstronomyLib.default || AstronomyLib; console.log('Has Obliquity:', typeof A.Obliquity); console.log('Has obliquity:', typeof A.obliquity); console.log('Keys:', Object.keys(A));

@@ -701,5 +701,12 @@ export default {
   "skip": "⏭️ 跳過",
   "submit": "📤 提交",
   "timeLeftDaysHours": "{days} 天 {hours} 小時",
-  "timeLeftHours": "{hours} 小時"
+  "timeLeftHours": "{hours} 小時",
+  "confirm_delete": "確認刪除",
+  "deleted": "已刪除",
+  "unblock": "解除封鎖",
+  "generating": "正在生成...",
+  "mbtiMatch": "MBTI 契合度",
+  "zodiacMatch": "星座契合度",
+  "fateMatch": "緣分指數"
 };

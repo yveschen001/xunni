@@ -79,6 +79,7 @@ export default {
   "settings4": "Δεν Έχει Ρυθμιστεί",
   "settings5": "Δεν Έχει Ρυθμιστεί",
   "short": "Μετά τον Αποκλεισμό:\n",
+  "selectNumber": "Παρακαλώ πατήστε τον αντίστοιχο αριθμό παρακάτω για λεπτομέρειες:",
   "short2": "Άγνωστος Χρήστης",
   "short3": "Μόλις Τώρα",
   "stats": "📊 Χρησιμοποιήστε το /stats για να δείτε λεπτομερείς στατιστικές\n",
@@ -106,5 +107,10 @@ export default {
   "vipLearnMore": "💎 Χρησιμοποιήστε το /vip για να μάθετε περισσότερα",
   "vipUnlockAvatar": "🔒 Αναβάθμιση σε VIP για να ξεκλειδώσετε πιο καθαρές φωτογραφίες προφίλ",
   "zodiac": "⭐ Ζώδιο: {partnerInfo.zodiac}\n",
-  "zodiac2": "⭐ Ζώδιο: {zodiacLabel}\n"
+  "zodiac2": "⭐ Ζώδιο: {zodiacLabel}\n",
+  "historyPost": "📜 Ιστορικό συνομιλίας #{id}",
+  "historyPostSuffix": " (πατήστε για λεπτομέρειες)",
+  "newMessageNotification": "📩 Έχετε ένα νέο μήνυμα!",
+  "newMessageNotificationSuffix": " (από {sender})",
+  "replyToUser": "Απάντηση στον χρήστη"
 };

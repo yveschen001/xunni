@@ -79,6 +79,7 @@ export default {
   "settings4": "Hindi itinatakda",
   "settings5": "Hindi itinatakda",
   "short": "Nahadlangan pagkatapos:\n",
+  "selectNumber": "Pumili ng numero sa ibaba upang makita ang mga detalye:",
   "short2": "Hindi kilalang gumagamit",
   "short3": "Kaka-publish lang",
   "stats": "📊 Gamitin ang /stats upang makita ang detalyadong istatistika\n",
@@ -106,5 +107,10 @@ export default {
   "vipLearnMore": "💎 Gamitin ang /vip upang matutunan pa",
   "vipUnlockAvatar": "🔒 Mag-Upgrade sa VIP upang ma-unlock ang mas malinaw na larawan ng profile ng ibang user",
   "zodiac": "⭐ Zodiac: {partnerInfo.zodiac}",
-  "zodiac2": "⭐ Zodiac: {zodiacLabel}"
+  "zodiac2": "⭐ Zodiac: {zodiacLabel}",
+  "historyPost": "📜 Kasaysayan ng Pag-uusap #{id}",
+  "historyPostSuffix": " (pindutin upang makita ang mga detalye)",
+  "newMessageNotification": "📩 May bago kang mensahe!",
+  "newMessageNotificationSuffix": " (mula kay {sender})",
+  "replyToUser": "Sagot sa User"
 };

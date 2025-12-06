@@ -148,5 +148,6 @@ export default {
   "userNotFound6": "❌ 用户不存在或未注册。",
   "userNotFound7": "❌ 用户不存在。",
   "vip": "❌ 你没有权限查看 VIP 数据",
-  "vip2": "❌ 你不是 VIP 用户，无法申请退款。"
+  "vip2": "❌ 你不是 VIP 用户，无法申请退款。",
+  "invalidRequest": "❌ 无效的请求"
 };

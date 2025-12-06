@@ -130,5 +130,7 @@ export default {
   "upgrade": "Tingkatkan ke VIP",
   "maxDurationExceeded": "⚠️ Tempoh VIP anda telah mencapai had ({maxMonths} bulan), dan anda tidak boleh meneruskan pembelian buat sementara waktu.",
   "refundedAndRevoked": "ℹ️ Pembayaran anda telah dikembalikan, dan faedah VIP telah dibatalkan.",
-  "benefit_daily_fortune": "• 1 bacaan psikis percuma setiap hari (eksklusif untuk VIP)"
+  "benefit_daily_fortune": "• 1 bacaan psikis percuma setiap hari (eksklusif untuk VIP)",
+  "month": "bulan",
+  "months": "bulan"
 };

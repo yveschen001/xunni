@@ -11,6 +11,10 @@ export default {
   "completeProfileButton": "📝 完善命理資料",
   "vipBenefit": "現在你可以享受無限翻譯、清晰頭像與精確命理速配了。",
   "bottleBenefit": "現在你可以進行更多有趣的命理探索了。",
-  "senderNotification": "🎉 **支付成功！**\n\n您已成功送出 {item} 給 **{name}**。\n對方收到後可能會感謝你喔！"
+  "senderNotification": "🎉 **支付成功！**\n\n您已成功送出 {item} 給 **{name}**。\n對方收到後可能會感謝你喔！",
+  "vip": {
+    "month": "個月",
+    "months": "個月"
+  }
 };
 

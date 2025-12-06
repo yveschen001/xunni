@@ -47,5 +47,6 @@ export default {
   "text": "👤 Pogledaj profil druge osobe",
   "verify": "Verifikuj",
   "viewPayments": "💰 Istorija pretplata",
-  "vip": "💎 Nadogradi na VIP"
+  "vip": "💎 Nadogradi na VIP",
+  "buyFortuneBottle": "🛍️ Kupovina Fortune Bottle"
 };

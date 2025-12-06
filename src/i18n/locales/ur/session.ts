@@ -3,6 +3,7 @@ export default {
   "timeoutConversation": "⏰ بات چیت ختم ہو گئی\n\nدوسرا فریق واپس جا چکا ہوگا۔ نئے بوتل اٹھانے کے لئے /catch استعمال کریں!",
   "timeoutEditProfile": "⏰ مواد کی ترمیم کا عمل ختم ہو گیا\n\nبراہ کرم ترمیم دوبارہ شروع کریں۔",
   "timeoutOnboarding": "⏰ رجسٹریشن کا عمل ختم ہو گیا\n\nبراہ کرم دوبارہ رجسٹریشن کے لئے /start استعمال کریں۔",
+  "timeoutFortune": "⏰ Fortune Bottle کا عمل وقت ختم ہو گیا\n\nبراہ کرم کوئی اور اختیار منتخب کریں۔",
   "timeoutThrowBottle": "⏰ بوتل پھینکنے کا عمل ختم ہو گیا\n\nبراہ کرم دوبارہ شروع کرنے کے لئے /throw استعمال کریں۔",
   "typeCatchBottle": "بوتل اٹھانے کا عمل",
   "typeConversation": "بات چیت",

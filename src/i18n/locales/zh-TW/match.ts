@@ -9,6 +9,13 @@ export default {
   "upsellMessage": "進行精確速配需要您是 VIP 會員。\n\n升級後即可查看與任何人的詳細命理速配報告！",
   "noQuota": "🔮 算命瓶不足",
   "quotaExhausted": "您的算命瓶已用完，無法進行速配。\n\n請購買補充包或等待每週免費配額刷新。",
-  "targetNonVipWarning": "對方不是 VIP 用戶，部分資料可能不完整，影響速配準確度。\n💡 建議贈送對方 VIP 以獲得更精確的結果！"
+  "targetNonVipWarning": "對方不是 VIP 用戶，部分資料可能不完整，影響速配準確度。\n💡 建議贈送對方 VIP 以獲得更精確的結果！",
+  "template": {
+    "body": "✨ **{target}** 與你的速配分析報告已生成！\n\n點擊下方按鈕查看詳細內容 👇"
+  },
+  "btn": {
+    "throw": "🍾 丟一個祝福瓶",
+    "vip_throw": "💎 丟一個 VIP 瓶"
+  }
 };
 

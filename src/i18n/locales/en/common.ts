@@ -21,6 +21,7 @@ export default {
   "back2": "↩️ Return to edit profile",
   "back3": "🏠 Return to main menu",
   "back4": "↩️ Back",
+  "backToMenu": "Main Menu",
   "backToMainMenu": "Return to main menu",
   "birthday": "🎂 Birthday: {updatedUser.birthday}\n",
   "birthday2": "🎂 Birthday: {user.birthday}\n",
@@ -700,5 +701,12 @@ export default {
   "skip": "Skip",
   "submit": "Submit",
   "timeLeftDaysHours": "{days} days {hours} hours",
-  "timeLeftHours": "{hours} hours"
+  "timeLeftHours": "{hours} hours",
+  "confirm_delete": "Confirm Delete",
+  "deleted": "Deleted",
+  "unblock": "Unblock",
+  "generating": "Generating...",
+  "mbtiMatch": "MBTI Match",
+  "zodiacMatch": "Zodiac Match",
+  "fateMatch": "Fate Index"
 };

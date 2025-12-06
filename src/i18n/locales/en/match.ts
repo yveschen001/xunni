@@ -9,5 +9,12 @@ export default {
   "upsellMessage": "Accurate compatibility matching requires you to be a VIP member.\n\nAfter upgrading, you can view detailed fortune compatibility reports with anyone!",
   "noQuota": "🔮 Insufficient Fortune Bottles",
   "quotaExhausted": "You have exhausted your Fortune Bottles and cannot proceed with compatibility matching.\n\nPlease purchase a refill pack or wait for your weekly free quota to reset.",
-  "targetNonVipWarning": "The other party is not a VIP user, so some information may be incomplete, affecting compatibility accuracy.\n💡 It's recommended to gift them VIP for more accurate results!"
+  "targetNonVipWarning": "The other party is not a VIP user, so some information may be incomplete, affecting compatibility accuracy.\n💡 It's recommended to gift them VIP for more accurate results!",
+  "template": {
+    "body": "✨ **{target}** and your compatibility analysis report has been generated!\n\nClick the button below to view the details 👇"
+  },
+  "btn": {
+    "throw": "🍾 Throw Blessing Bottle",
+    "vip_throw": "💎 Throw VIP Bottle"
+  }
 };

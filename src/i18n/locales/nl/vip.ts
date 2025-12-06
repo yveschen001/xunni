@@ -130,5 +130,7 @@ export default {
   "upgrade": "Upgrade naar VIP",
   "maxDurationExceeded": "⚠️ Uw VIP-periode heeft de limiet bereikt ({maxMonths} maanden), en u kunt momenteel niet verder kopen.",
   "refundedAndRevoked": "ℹ️ Uw betaling is terugbetaald, en VIP-voordelen zijn ingetrokken.",
-  "benefit_daily_fortune": "• 1 gratis psychische lezing per dag (exclusief voor VIP)"
+  "benefit_daily_fortune": "• 1 gratis psychische lezing per dag (exclusief voor VIP)",
+  "month": "maand",
+  "months": "maanden"
 };

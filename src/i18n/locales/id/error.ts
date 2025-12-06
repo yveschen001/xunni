@@ -148,5 +148,6 @@ export default {
   "userNotFound6": "❌ Pengguna tidak ada atau tidak terdaftar.",
   "userNotFound7": "❌ Pengguna tidak ada.",
   "vip": "❌ Anda tidak memiliki izin untuk melihat data VIP.",
-  "vip2": "❌ Anda bukan pengguna VIP dan tidak dapat mengajukan pengembalian."
+  "vip2": "❌ Anda bukan pengguna VIP dan tidak dapat mengajukan pengembalian.",
+  "invalidRequest": "❌ Permintaan tidak valid"
 };

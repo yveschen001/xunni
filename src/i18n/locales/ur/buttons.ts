@@ -47,5 +47,6 @@ export default {
   "text": "👤 دوسرے کی پروفائل کارڈ دیکھیں",
   "verify": "تصدیق کریں",
   "viewPayments": "💰 سبسکرپشن کی تاریخ",
-  "vip": "💎 VIP میں ترقی کریں"
+  "vip": "💎 VIP میں ترقی کریں",
+  "buyFortuneBottle": "🛍️ خریدیں Fortune Bottle"
 };

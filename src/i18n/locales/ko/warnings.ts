@@ -74,6 +74,7 @@ export default {
     "vip2": "⚠️ 이 기능은 VIP 회원 전용입니다.",
     "vip3": "⚠️ **VIP가 오늘 만료됩니다**\n\n"
   },
+  "failed": "⚠️ 작업 실패",
   "BROADCAST": {
     "FILTER_ERROR": "❌ 형식 오류.\n예시: `/broadcast_filter gender=female,country=TW test message`",
     "NO_CONTENT": "❌ 방송 내용을 입력해 주세요.",

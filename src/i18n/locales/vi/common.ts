@@ -21,6 +21,7 @@ export default {
   "back2": "↩️ Quay lại Chỉnh sửa Hồ sơ",
   "back3": "🏠 Quay lại Menu Chính",
   "back4": "↩️ Quay lại",
+  "backToMenu": "Menu Chính",
   "backToMainMenu": "Quay lại Menu Chính",
   "birthday": "🎂 Sinh nhật: {updatedUser.birthday}\n",
   "birthday2": "🎂 Sinh nhật: {user.birthday}\n",
@@ -700,5 +701,12 @@ export default {
   "skip": "Bỏ qua",
   "submit": "Gửi",
   "timeLeftDaysHours": "{days} ngày {hours} giờ",
-  "timeLeftHours": "{hours} giờ"
+  "timeLeftHours": "{hours} giờ",
+  "confirm_delete": "Xác Nhận Xóa",
+  "deleted": "Đã Xóa",
+  "unblock": "Bỏ Chặn",
+  "generating": "Đang Tạo...",
+  "mbtiMatch": "Độ Hợp MBTI",
+  "zodiacMatch": "Độ Hợp Cung Hoàng Đạo",
+  "fateMatch": "Chỉ Số Duyên Phận"
 };

@@ -180,5 +180,8 @@ export default {
   "verificationFailed": "❌ Verifikimi dështoi, ju lutemi provoni përsëri më vonë",
   "invalidTimeFormat": "Format i papërshtatshëm i kohës\nPër shembull: 19:30 (forma 24-orëshe, 00-23 orë, 00-59 minuta)",
   "invalidDateFormat": "Format i papërshtatshëm i datës\nPër shembull: 2000-01-01",
-  "taskAlreadyCompleted": "❌ Ky detyrë është përfunduar tashmë dhe shpërblimi është kërkuar."
+  "taskAlreadyCompleted": "❌ Ky detyrë është përfunduar tashmë dhe shpërblimi është kërkuar.",
+  "session_expired": "❌ Sesioni ka skaduar, ju lutem rifilloni",
+  "systemErrorRestart": "❌ Ka ndodhur një gabim në sistem, ju lutem rifilloni",
+  "invalidLanguageCode": "❌ Kodi i gjuhës është i pavlefshëm"
 };

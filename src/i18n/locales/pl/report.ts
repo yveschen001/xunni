@@ -4,7 +4,7 @@ export default {
   "cancel": "❌ Anuluj",
   "cancelled": "Anulowano",
   "cannotIdentify": "⚠️ Nie można zidentyfikować partnera do czatu\n\n",
-  "catchHint": "• Użyj przycisku Złap Butelkę Życzeń",
+  "catchHint": "• Użyj przycisku 'Chwytaj' aby złapać nową Butelkę Życzeń",
   "completeOnboarding": "⚠️ Proszę najpierw dokończyć proces rejestracji.\n\nUżyj /start, aby kontynuować rejestrację.",
   "conversationInfoError": "⚠️ Informacje o rozmowie są niepoprawne.",
   "conversationInfoError2": "⚠️ Informacje o rozmowie są niepoprawne",

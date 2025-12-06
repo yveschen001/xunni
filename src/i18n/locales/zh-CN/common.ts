@@ -21,6 +21,7 @@ export default {
   "back2": "↩️ 返回编辑资料",
   "back3": "🏠 返回主选单",
   "back4": "↩️ 返回",
+  "backToMenu": "🏠 返回主菜单",
   "backToMainMenu": "返回主菜单",
   "birthday": "🎂 生日: {updatedUser.birthday}",
   "birthday2": "🎂 生日: {user.birthday}",
@@ -700,5 +701,12 @@ export default {
   "skip": "跳过",
   "submit": "提交",
   "timeLeftDaysHours": "{days} 天 {hours} 小时",
-  "timeLeftHours": "{hours} 小时"
+  "timeLeftHours": "{hours} 小时",
+  "confirm_delete": "确认删除",
+  "deleted": "已删除",
+  "unblock": "解除封锁",
+  "generating": "正在生成...",
+  "mbtiMatch": "MBTI 契合度",
+  "zodiacMatch": "星座契合度",
+  "fateMatch": "缘分指数"
 };

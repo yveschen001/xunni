@@ -105,8 +105,8 @@ export function formatBroadcastStatus(broadcast: Broadcast, i18n?: any): string 
   if (i18n) {
     let message = i18n.t('broadcast.statusTitle') + '\n\n';
     message += i18n.t('broadcast.id', { id: broadcast.id }) + '\n';
-    message += i18n.t('broadcast.status', { status: progress.status }) + '\n';
-    message += i18n.t('broadcast.target', { target: targetName }) + '\n';
+    message += i18n.t('broadcast.statusLabel', { status: progress.status }) + '\n';
+    message += i18n.t('broadcast.targetLabel', { target: targetName }) + '\n';
     message +=
       i18n.t('broadcast.progress', {
         sent: broadcast.sentCount,
@@ -144,8 +144,8 @@ export function formatBroadcastStatus(broadcast: Broadcast, i18n?: any): string 
   let message = (i18n?.t('broadcast.statusTitle') || '📊 廣播狀態') + '\n\n';
   message += i18n?.t('broadcast.id', { id: broadcast.id }) || `ID: ${broadcast.id}\n`;
   message +=
-    i18n?.t('broadcast.status', { status: progress.status }) || `狀態: ${progress.status}\n`;
-  message += i18n?.t('broadcast.target', { target: targetName }) || `目標: ${targetName}\n`;
+    i18n?.t('broadcast.statusLabel', { status: progress.status }) || `狀態: ${progress.status}\n`;
+  message += i18n?.t('broadcast.targetLabel', { target: targetName }) || `目標: ${targetName}\n`;
   message +=
     i18n?.t('broadcast.progress', {
       sent: broadcast.sentCount,

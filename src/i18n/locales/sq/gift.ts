@@ -11,5 +11,9 @@ export default {
   "completeProfileButton": "📝 Plotëso të dhënat e fatit",
   "vipBenefit": "Tani mund të shijosh përkthime të pakufizuara, foto të qarta dhe përshtatje të sakta të fatit.",
   "bottleBenefit": "Tani mund të bësh më shumë eksplorime interesante të fatit.",
-  "senderNotification": "🎉 **Pagesa e suksesshme!**\n\nKe dërguar me sukses {item} për **{name}**.\nPas pranimit, mund të të falenderojë!"
+  "senderNotification": "🎉 **Pagesa e suksesshme!**\n\nKe dërguar me sukses {item} për **{name}**.\nPas pranimit, mund të të falenderojë!",
+  "vip": {
+    "month": "muaj",
+    "months": "muaj"
+  }
 };

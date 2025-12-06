@@ -8,5 +8,8 @@ export default {
   "upgradeVip": "💡 Opgrader til VIP for flere kvoter (100 beskeder/dag): /vip\n",
   "urlNotAllowed": "❌ Beskeden indeholder en ikke-tilladt URL\n\n",
   "urlNotAllowedDesc": "⚠️ Af sikkerhedsmæssige årsager er kun specifikke URL'er tilladt i samtalen.\n\n",
-  "vipDailyLimit": "💡 VIP-brugere kan sende 100 beskeder dagligt.\n"
+  "vipDailyLimit": "💡 VIP-brugere kan sende 100 beskeder dagligt.\n",
+  "upgradeToUnlock": "💎 Opgrader for at låse op",
+  "upgradeVipLink": "Opgrader til VIP",
+  "urlVipOnly": "Denne link er kun for VIP-brugere"
 };

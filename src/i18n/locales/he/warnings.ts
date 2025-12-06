@@ -74,6 +74,7 @@ export default {
     "vip2": "⚠️ הפיצ'ר הזה מיועד רק לחברי VIP",
     "vip3": "⚠️ **המנוי VIP פג היום**\n\n"
   },
+  "failed": "⚠️ Operation Failed",
   "BROADCAST": {
     "FILTER_ERROR": "❌ שגיאת פורמט.\n דוגמה: `/broadcast_filter gender=female,country=TW test message`",
     "NO_CONTENT": "❌ אנא הכנס תוכן לשידור.",

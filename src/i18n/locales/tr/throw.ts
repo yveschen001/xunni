@@ -98,7 +98,7 @@ export default {
   "start": "✍️ Yeniden başlat",
   "success": "Bir mesaj şişesi atmak = 3 nesne, eşleşme başarı oranını büyük ölçüde artırır\n\n",
   "success2": "✨ **VIP ayrıcalıkları etkinleştirildi! Zeki eşleşme başarılı!**\n\n",
-  "success3": "🎯 Dilek Şişen başarıyla eşleşti!\n\n",
+  "success3": "🎯 Dilek Şişeniz başarıyla eşleştirildi!\n\n",
   "text": "💝 Eşleşme Yüzdesi: {matchPercentage}%\n",
   "text10": "🎯 Sizin için en iyi eşleşmeyi arıyoruz\n\n",
   "text11": "💬 Diğer tarafın cevabını bekliyoruz...\n",

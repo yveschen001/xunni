@@ -130,5 +130,7 @@ export default {
   "upgrade": "Upgrade auf VIP",
   "maxDurationExceeded": "⚠️ Ihre VIP-Periode hat das Limit erreicht ({maxMonths} Monate), und Sie können vorerst nicht weiter einkaufen.",
   "refundedAndRevoked": "ℹ️ Ihre Zahlung wurde zurückerstattet, und die VIP-Vorteile wurden widerrufen.",
-  "benefit_daily_fortune": "• 1 kostenlose psychische Lesung pro Tag (exklusiv für VIP)"
+  "benefit_daily_fortune": "• 1 kostenlose psychische Lesung pro Tag (exklusiv für VIP)",
+  "month": "Monat",
+  "months": "Monate"
 };

@@ -79,6 +79,7 @@ export default {
   "settings4": "Nicht festgelegt",
   "settings5": "Nicht festgelegt",
   "short": "Nach dem Blockieren:\n",
+  "selectNumber": "Bitte wählen Sie die entsprechende Zahl, um die Details anzuzeigen:",
   "short2": "Unbekannter Benutzer",
   "short3": "Gerade jetzt",
   "stats": "📊 Verwenden Sie /stats, um detaillierte Statistiken anzuzeigen\n",
@@ -106,5 +107,10 @@ export default {
   "vipLearnMore": "💎 Verwenden Sie /vip, um mehr zu erfahren",
   "vipUnlockAvatar": "🔒 Upgrade zu VIP, um klarere Profilbilder freizuschalten",
   "zodiac": "⭐ Sternzeichen: {partnerInfo.zodiac}\n",
-  "zodiac2": "⭐ Sternzeichen: {zodiacLabel}\n"
+  "zodiac2": "⭐ Sternzeichen: {zodiacLabel}\n",
+  "historyPost": "📜 Gesprächshistorie #{id}",
+  "historyPostSuffix": " (Klicken für Details)",
+  "newMessageNotification": "📩 Sie haben eine neue Nachricht!",
+  "newMessageNotificationSuffix": " (von {sender})",
+  "replyToUser": "Benutzer antworten"
 };

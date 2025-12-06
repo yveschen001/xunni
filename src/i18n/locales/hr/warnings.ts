@@ -74,6 +74,7 @@ export default {
     "vip2": "⚠️ Ova funkcija je samo za VIP članove",
     "vip3": "⚠️ **VIP ističe danas**\n\n"
   },
+  "failed": "⚠️ Operacija neuspjela",
   "BROADCAST": {
     "FILTER_ERROR": "❌ Greška u formatu.\nPrimjer: `/broadcast_filter gender=female,country=TW test message`",
     "NO_CONTENT": "❌ Molimo unesite sadržaj emitiranja.",

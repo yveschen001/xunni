@@ -53,8 +53,8 @@ export async function handleMyReports(
   // Filter Tabs (as Top Buttons)
   const filterRow = [
     { text: (filter === 'all' ? '✅ ' : '') + i18n.t('fortune.reports.tab_all'), callback_data: 'reports_filter:all' },
-    { text: (filter === 'match' ? '✅ ' : '') + i18n.t('fortune.reports.reports.tab_match'), callback_data: 'reports_filter:match' },
-    { text: (filter === 'fortune' ? '✅ ' : '') + i18n.t('fortune.reports.reports.tab_fortune'), callback_data: 'reports_filter:fortune' },
+    { text: (filter === 'match' ? '✅ ' : '') + i18n.t('fortune.reports.tab_match'), callback_data: 'reports_filter:match' },
+    { text: (filter === 'fortune' ? '✅ ' : '') + i18n.t('fortune.reports.tab_fortune'), callback_data: 'reports_filter:fortune' },
   ];
   // Split filter row if too long? 3 items is okay.
 
@@ -62,7 +62,7 @@ export async function handleMyReports(
 
   // List Items
   if (displayReports.length === 0) {
-    text += i18n.t('fortune.reports.reports.empty');
+    text += i18n.t('fortune.reports.empty');
   } else {
     for (const report of displayReports) {
       let icon = '📄';
@@ -146,7 +146,7 @@ export async function handleReportDetail(
         (snapshot.user.mbti && user.mbti_result !== snapshot.user.mbti) ||
                 (snapshot.user.blood_type && user.blood_type !== snapshot.user.blood_type)
       )) {
-        integrityWarning = `⚠️ ${i18n.t('fortune.reports.reports.integrity_warning')}`;
+        integrityWarning = `⚠️ ${i18n.t('fortune.reports.integrity_warning')}`;
       }
     } catch (e) {
       console.error('Snapshot parse error', e);
@@ -157,7 +157,7 @@ export async function handleReportDetail(
   header += `📅 ${i18n.t('common.date', { date: report.target_date })}\n`;
     
   if (isExpired) {
-    header += `⚠️ ${i18n.t('fortune.reports.reports.expired')}\n`;
+    header += `⚠️ ${i18n.t('fortune.reports.expired')}\n`;
   }
   if (integrityWarning) {
     header += `${integrityWarning}\n`;
@@ -184,7 +184,7 @@ export async function handleReportDetail(
   }
   
   if (totalPages > 1) {
-    fullText += `\n\n${i18n.t('fortune.reports.reports.page_indicator', { current: currentPage + 1, total: totalPages })}`;
+    fullText += `\n\n${i18n.t('fortune.reports.page_indicator', { current: currentPage + 1, total: totalPages })}`;
   }
 
   const buttons: any[][] = [];
@@ -275,5 +275,5 @@ export async function handleDeleteReport(
   // We can't easily call handleFortune without a message object.
   // Let's just show a button to go back.
   const buttons = [[{ text: i18n.t('fortune.back_to_menu'), callback_data: 'menu_fortune' }]];
-  await telegram.sendMessageWithButtons(chatId, i18n.t('fortune.reports.reports.deleted_hint'), buttons);
+  await telegram.sendMessageWithButtons(chatId, i18n.t('fortune.reports.deleted_hint'), buttons);
 }

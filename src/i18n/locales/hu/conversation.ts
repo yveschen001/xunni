@@ -79,6 +79,7 @@ export default {
   "settings4": "Nincs beállítva",
   "settings5": "Nincs beállítva",
   "short": "A blokkolás után:\n",
+  "selectNumber": "Kérjük, kattintson az alábbi megfelelő számra a részletek megtekintéséhez:",
   "short2": "Ismeretlen felhasználó",
   "short3": "Éppen most",
   "stats": "📊 Használja a /stats parancsot a részletes statisztikák megtekintéséhez\n",
@@ -106,5 +107,10 @@ export default {
   "vipLearnMore": "💎 Használja a /vip parancsot a további információkért",
   "vipUnlockAvatar": "🔒 Frissíts VIP-re, hogy megnyisd a másik fél tiszta profilképét",
   "zodiac": "⭐ Csillagjegy: {partnerInfo.zodiac}\n",
-  "zodiac2": "⭐ Csillagjegy: {zodiacLabel}\n"
+  "zodiac2": "⭐ Csillagjegy: {zodiacLabel}\n",
+  "historyPost": "📜 Beszélgetés Története #{id}",
+  "historyPostSuffix": " (kattintson a részletek megtekintéséhez)",
+  "newMessageNotification": "📩 Új üzenete érkezett!",
+  "newMessageNotificationSuffix": " (töltötte: {sender})",
+  "replyToUser": "Válasz a felhasználónak"
 };

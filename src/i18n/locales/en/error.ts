@@ -148,5 +148,6 @@ export default {
   "userNotFound6": "❌ User does not exist or is not registered.",
   "userNotFound7": "❌ User does not exist.",
   "vip": "❌ You do not have permission to view VIP data.",
-  "vip2": "❌ You are not a VIP user and cannot apply for a refund."
+  "vip2": "❌ You are not a VIP user and cannot apply for a refund.",
+  "invalidRequest": "❌ Invalid request"
 };

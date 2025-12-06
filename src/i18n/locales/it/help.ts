@@ -60,7 +60,7 @@ export default {
   "profile": "/edit_profile - Modifica profilo\n",
   "profile2": "/profile - Visualizza profilo\n",
   "profile3": "👤 **Profilo**\n",
-  "quota": "🔢 Quota Massima Giornaliera\n• A partire da 30 Bottiglie dei Desideri al giorno (solo 10 per utenti normali).\n• Invita amici per aumentare permanentemente la quota, fino a un massimo totale di 100!\n• 100 messaggi di conversazione al giorno, senza interruzioni.\n",
+  "quota": "🔢 Limite quotidiano molto alto\n• A partire da 30 Bottiglie dei Desideri al giorno (solo 10 per gli utenti normali).\n• Invita amici per aumentare permanentemente il limite, fino a un massimo di 100!\n• 100 messaggi di chat al giorno, per una conversazione senza ostacoli.\n",
   "quota2": "• 30 Bottiglie dei Desideri al giorno\n",
   "register": "/start - Inizia a usare / Continua la registrazione\n",
   "report": "/report - Riporta contenuti inappropriati\n",

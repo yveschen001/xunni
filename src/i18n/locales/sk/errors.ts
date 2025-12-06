@@ -180,5 +180,8 @@ export default {
   "verificationFailed": "❌ Overenie zlyhalo, prosím, skúste to znova neskôr",
   "invalidTimeFormat": "Neplatný formát času\nNapríklad: 19:30 (24-hodinový formát, 00-23 hodín, 00-59 minút)",
   "invalidDateFormat": "Neplatný formát dátumu\nNapríklad: 2000-01-01",
-  "taskAlreadyCompleted": "❌ Táto úloha už bola dokončená a odmena bola uplatnená."
+  "taskAlreadyCompleted": "❌ Táto úloha už bola dokončená a odmena bola uplatnená.",
+  "session_expired": "❌ Relácia vypršala, prosím, začnite znova",
+  "systemErrorRestart": "❌ Došlo k systémovej chybe, prosím, začnite znova",
+  "invalidLanguageCode": "❌ Neplatný jazykový kód"
 };

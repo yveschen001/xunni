@@ -130,5 +130,7 @@ export default {
   "upgrade": "Frissítés VIP-re",
   "maxDurationExceeded": "⚠️ A VIP időszakod elérte a határt ({maxMonths} hónap), és egyelőre nem tudsz vásárolni.",
   "refundedAndRevoked": "ℹ️ A kifizetésed visszatérítésre került, és a VIP előnyöket visszavonták.",
-  "benefit_daily_fortune": "• Naponta 1 ingyenes pszichikai olvasás (kizárólag VIP számára)"
+  "benefit_daily_fortune": "• Naponta 1 ingyenes pszichikai olvasás (kizárólag VIP számára)",
+  "month": "hónap",
+  "months": "hónap"
 };

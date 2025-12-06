@@ -74,6 +74,7 @@ export default {
     "vip2": "⚠️ این ویژگی فقط برای اعضای VIP است",
     "vip3": "⚠️ **اشتراک VIP امروز منقضی می‌شود**\n\n"
   },
+  "failed": "⚠️ عملیات ناموفق بود",
   "BROADCAST": {
     "FILTER_ERROR": "❌ خطای قالب.\nمثال: `/broadcast_filter gender=female,country=TW test message`",
     "NO_CONTENT": "❌ لطفاً محتوای پخش را وارد کنید.",

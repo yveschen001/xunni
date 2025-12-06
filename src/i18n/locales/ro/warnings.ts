@@ -74,6 +74,7 @@ export default {
     "vip2": "⚠️ Această funcție este disponibilă doar pentru membrii VIP",
     "vip3": "⚠️ **VIP expiră astăzi**\n\n"
   },
+  "failed": "⚠️ Operație eșuată",
   "BROADCAST": {
     "FILTER_ERROR": "❌ Eroare de format.\nExemplu: `/broadcast_filter gender=female,country=TW test message`",
     "NO_CONTENT": "❌ Vă rugăm să introduceți conținutul difuzării.",

@@ -8,5 +8,8 @@ export default {
   "upgradeVip": "💡 Nadgradite na VIP za več kvote (100 sporočil/dan): /vip\n",
   "urlNotAllowed": "❌ Sporočilo vsebuje nedovoljeni URL\n\n",
   "urlNotAllowedDesc": "⚠️ Za varnost so v pogovorih dovoljeni le določeni URL-ji.\n\n",
-  "vipDailyLimit": "💡 VIP uporabniki lahko pošljejo 100 sporočil na dan.\n"
+  "vipDailyLimit": "💡 VIP uporabniki lahko pošljejo 100 sporočil na dan.\n",
+  "upgradeToUnlock": "💎 Upgrade to Unlock",
+  "upgradeVipLink": "Upgrade VIP",
+  "urlVipOnly": "This link is for VIP users only"
 };

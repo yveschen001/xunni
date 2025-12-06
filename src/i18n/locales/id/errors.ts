@@ -180,5 +180,8 @@ export default {
   "verificationFailed": "❌ Verifikasi gagal, silakan coba lagi nanti.",
   "invalidTimeFormat": "Format waktu tidak valid\nContoh: 19:30 (format 24 jam, 00-23 jam, 00-59 menit)",
   "invalidDateFormat": "Format tanggal tidak valid\nContoh: 2000-01-01",
-  "taskAlreadyCompleted": "❌ Tugas ini telah selesai dan hadiahnya telah diklaim."
+  "taskAlreadyCompleted": "❌ Tugas ini telah selesai dan hadiahnya telah diklaim.",
+  "session_expired": "❌ Sesi telah kedaluwarsa, silakan mulai ulang",
+  "systemErrorRestart": "❌ Terjadi kesalahan sistem, silakan mulai ulang",
+  "invalidLanguageCode": "❌ Kode bahasa tidak valid"
 };

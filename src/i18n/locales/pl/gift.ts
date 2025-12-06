@@ -11,5 +11,9 @@ export default {
   "completeProfileButton": "📝 Uzupełnij dane",
   "vipBenefit": "Teraz możesz korzystać z nieograniczonych tłumaczeń, wyraźnego awataru i dokładnych wróżb.",
   "bottleBenefit": "Teraz możesz odkrywać więcej interesujących wróżb.",
-  "senderNotification": "🎉 **Płatność zakończona!**\n\nPomyślnie wysłałeś {item} do **{name}**.\nOdbiorca może ci podziękować!"
+  "senderNotification": "🎉 **Płatność zakończona!**\n\nPomyślnie wysłałeś {item} do **{name}**.\nOdbiorca może ci podziękować!",
+  "vip": {
+    "month": "miesiąc",
+    "months": "miesiące"
+  }
 };

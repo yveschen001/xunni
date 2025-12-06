@@ -8,5 +8,8 @@ export default {
   "upgradeVip": "💡 Päivitä VIP:ksi saadaksesi lisää kvotoja (100 viestiä/päivä): /vip\n",
   "urlNotAllowed": "❌ Viesti sisältää kielletyn URL-osoitteen\n\n",
   "urlNotAllowedDesc": "⚠️ Turvallisuuden vuoksi keskustelussa on sallittuja vain tietyt URL-osoitteet.\n\n",
-  "vipDailyLimit": "💡 VIP-käyttäjät voivat lähettää 100 viestiä päivittäin.\n"
+  "vipDailyLimit": "💡 VIP-käyttäjät voivat lähettää 100 viestiä päivittäin.\n",
+  "upgradeToUnlock": "💎 Päivitä avatakseen",
+  "upgradeVipLink": "Päivitä VIP",
+  "urlVipOnly": "Tämä linkki on vain VIP-käyttäjille"
 };

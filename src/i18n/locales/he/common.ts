@@ -21,6 +21,7 @@ export default {
   "back2": "↩️ חזור לעריכת פרופיל",
   "back3": "🏠 חזור לתפריט הראשי",
   "back4": "↩️ חזור",
+  "backToMenu": "Main Menu",
   "backToMainMenu": "חזור לתפריט הראשי",
   "birthday": "🎂 יום הולדת: {updatedUser.birthday}\n",
   "birthday2": "🎂 יום הולדת: {user.birthday}\n",
@@ -700,5 +701,12 @@ export default {
   "skip": "דלג",
   "submit": "שלח",
   "timeLeftDaysHours": "{days} ימים {hours} שעות",
-  "timeLeftHours": "{hours} שעות"
+  "timeLeftHours": "{hours} שעות",
+  "confirm_delete": "確認刪除",
+  "deleted": "已刪除",
+  "unblock": "解除封鎖",
+  "generating": "正在生成...",
+  "mbtiMatch": "MBTI 契合度",
+  "zodiacMatch": "星座契合度",
+  "fateMatch": "緣分指數"
 };

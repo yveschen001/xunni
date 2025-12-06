@@ -11,5 +11,9 @@ export default {
   "completeProfileButton": "📝 Doplniť profil",
   "vipBenefit": "Teraz môžete využívať neobmedzené preklady, jasný profil a presné horoskopické kombinácie.",
   "bottleBenefit": "Teraz môžete uskutočniť viac zaujímavých horoskopických skúmaní.",
-  "senderNotification": "🎉 **Platba je úspešná!**\n\nÚspešne ste poslali {item} **{name}**.\nDruhá strana vás môže poďakovať!"
+  "senderNotification": "🎉 **Platba je úspešná!**\n\nÚspešne ste poslali {item} **{name}**.\nDruhá strana vás môže poďakovať!",
+  "vip": {
+    "month": "mesiac",
+    "months": "mesiace"
+  }
 };

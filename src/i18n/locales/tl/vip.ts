@@ -130,5 +130,7 @@ export default {
   "upgrade": "Mag-upgrade sa VIP",
   "maxDurationExceeded": "⚠️ Naabot na ang limit ng iyong VIP na panahon ({maxMonths} na buwan), at hindi ka makakapagpatuloy sa pagbili sa kasalukuyan.",
   "refundedAndRevoked": "ℹ️ Ang iyong bayad ay na-refund, at ang mga benepisyo ng VIP ay tinanggal.",
-  "benefit_daily_fortune": "• 1 libreng pagbasa ng Psychic Reading bawat araw (exklusibo para sa VIP)"
+  "benefit_daily_fortune": "• 1 libreng pagbasa ng Psychic Reading bawat araw (exklusibo para sa VIP)",
+  "month": "buwan",
+  "months": "mga buwan"
 };

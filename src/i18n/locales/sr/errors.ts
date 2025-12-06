@@ -180,5 +180,8 @@ export default {
   "verificationFailed": "❌ Provera nije uspela, molimo pokušajte ponovo kasnije",
   "invalidTimeFormat": "Nevažeći format vremena\nNa primer: 19:30 (24-satni format, 00-23 časova, 00-59 minuta)",
   "invalidDateFormat": "Nevažeći format datuma\nNa primer: 2000-01-01",
-  "taskAlreadyCompleted": "❌ Овај задатак је већ завршен и награда је преузета."
+  "taskAlreadyCompleted": "❌ Овај задатак је већ завршен и награда је преузета.",
+  "session_expired": "❌ Sesija je istekla, molimo ponovo započnite",
+  "systemErrorRestart": "❌ Došlo je do sistemske greške, molimo ponovo započnite",
+  "invalidLanguageCode": "❌ Nevažeći kod jezika"
 };

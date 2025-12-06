@@ -9,5 +9,12 @@ export default {
   "upsellMessage": "Za precizno podudaranje potrebno je da ste VIP član.\n\nNakon nadogradnje, možete pregledati detaljna izvještaja o podudaranju s bilo kim!",
   "noQuota": "🔮 Nedovoljno Fortune Bottle",
   "quotaExhausted": "Vaša Fortune Bottle je istekla, ne možete nastaviti s podudaranjem.\n\nKupite dopunsku paketu ili pričekajte da se vaša besplatna kvota obnovi svake nedelje.",
-  "targetNonVipWarning": "Druga osoba nije VIP korisnik, pa neki podaci mogu biti nepotpuni, što utiče na tačnost podudaranja.\n💡 Preporučujemo da poklonite VIP status drugoj osobi kako bi dobili preciznije rezultate!"
+  "targetNonVipWarning": "Druga osoba nije VIP korisnik, pa neki podaci mogu biti nepotpuni, što utiče na tačnost podudaranja.\n💡 Preporučujemo da poklonite VIP status drugoj osobi kako bi dobili preciznije rezultate!",
+  "template": {
+    "body": "✨ **{target}** 与您的速配分析报告已生成！\n\n点击下方按钮查看详细内容 👇"
+  },
+  "btn": {
+    "throw": "🍾 丢一个祝福瓶",
+    "vip_throw": "💎 丢一个 VIP 瓶"
+  }
 };

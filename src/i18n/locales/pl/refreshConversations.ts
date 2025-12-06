@@ -4,7 +4,7 @@ export default {
   "commandMenu": "• Główne Menu",
   "commandTasks": "• /tasks - Zobacz centrum zadań",
   "failed": "❌ Nie udało się odświeżyć historii rozmów\n\nSpróbuj ponownie później lub skontaktuj się z administratorem.",
-  "noHistory": "💡 **Nie znaleziono historii rozmów**\n\nNie masz jeszcze żadnych zapisów rozmów.\n\nUżyj 'Rzuć Butelkę Życzeń', aby rozpocząć czat!",
+  "noHistory": "💡 **Nie znaleziono historii rozmów**\n\nNie masz jeszcze żadnych zapisów rozmów.\n\nUżyj „Rzuć Butelkę Życzeń”, aby zacząć czatować!",
   "partialSuccess": "⚠️ **Historia rozmów częściowo zaktualizowana**\n\nPomyślnie odświeżono: {updated} pozycje\nNie udało się: {failed} pozycji\n\nNiektóre historie rozmów mogą nie zostać zaktualizowane, spróbuj ponownie później.",
   "processing": "🔄 Odświeżanie całej historii rozmów...\n\nTo może zająć trochę czasu, proszę czekać.",
   "success": "✅ **Historia rozmów została zaktualizowana!**\n\nPomyślnie odświeżono historię {updated} rozmów.\n\n💡 **Wskazówka:**\n• Użytkownicy VIP mogą widzieć wyraźne awatary innych\n• Użytkownicy podstawowi widzą zamazane awatary\n• Posty historii automatycznie odświeżają się po przejściu do VIP",

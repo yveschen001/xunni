@@ -8,5 +8,8 @@ export default {
   "upgradeVip": "💡 升級 VIP 可獲得更多配額（100 則/天）：/vip\n",
   "urlNotAllowed": "❌ 訊息包含不被允許的網址\n\n",
   "urlNotAllowedDesc": "⚠️ 為了安全，對話中只允許特定網址。\n\n",
-  "vipDailyLimit": "💡 VIP 用戶每日可發送 100 則訊息。\n"
+  "vipDailyLimit": "💡 VIP 用戶每日可發送 100 則訊息。\n",
+  "upgradeToUnlock": "💎 升級解鎖",
+  "upgradeVipLink": "升級 VIP",
+  "urlVipOnly": "此連結僅限 VIP 用戶發送"
 };

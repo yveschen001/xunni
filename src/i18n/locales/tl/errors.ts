@@ -180,5 +180,8 @@ export default {
   "verificationFailed": "❌ Nabigong beripikasyon, mangyaring subukan muli mamaya.",
   "invalidTimeFormat": "Di-wastong format ng oras\nHalimbawa: 19:30 (24-oras na format, 00-23 oras, 00-59 minuto)",
   "invalidDateFormat": "Di-wastong format ng petsa\nHalimbawa: 2000-01-01",
-  "taskAlreadyCompleted": "❌ Nakumpleto na ang gawaing ito at ang gantimpala ay nakuha na."
+  "taskAlreadyCompleted": "❌ Nakumpleto na ang gawaing ito at ang gantimpala ay nakuha na.",
+  "session_expired": "❌ Naging walang bisa ang sesyon, mangyaring muling simulan",
+  "systemErrorRestart": "❌ Nagkaroon ng error sa sistema, mangyaring muling simulan",
+  "invalidLanguageCode": "❌ Hindi wastong code ng wika"
 };

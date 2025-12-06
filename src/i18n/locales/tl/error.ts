@@ -148,5 +148,6 @@ export default {
   "userNotFound6": "❌ Ang user ay hindi umiiral o hindi magparehistro.",
   "userNotFound7": "❌ Ang user ay hindi umiiral.",
   "vip": "❌ Wala kang pahintulot na tingnan ang data ng VIP.",
-  "vip2": "❌ Hindi ka isang user na VIP at hindi makakapag-apply para sa refund."
+  "vip2": "❌ Hindi ka isang user na VIP at hindi makakapag-apply para sa refund.",
+  "invalidRequest": "❌ Di wastong kahilingan"
 };

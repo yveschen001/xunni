@@ -180,5 +180,8 @@ export default {
   "verificationFailed": "❌ Potrditev ni uspela, prosim, poskusite znova kasneje",
   "invalidTimeFormat": "Neveljaven časovni format\nNa primer: 19:30 (24-urni format, 00-23 ure, 00-59 minut)",
   "invalidDateFormat": "Neveljaven datumni format\nNa primer: 2000-01-01",
-  "taskAlreadyCompleted": "❌ Ta naloga je že bila zaključena in nagrada je bila zahtevana."
+  "taskAlreadyCompleted": "❌ Ta naloga je že bila zaključena in nagrada je bila zahtevana.",
+  "session_expired": "❌ Seja je poteklo, prosimo, začnite znova",
+  "systemErrorRestart": "❌ Prišlo je do sistemske napake, prosimo, začnite znova",
+  "invalidLanguageCode": "❌ Neveljavna koda jezika"
 };

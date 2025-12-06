@@ -11,5 +11,9 @@ export default {
   "completeProfileButton": "📝 Lengkapkan Maklumat Nasib",
   "vipBenefit": "Sekarang anda boleh menikmati terjemahan tanpa had, avatar jelas dan padanan nasib yang tepat.",
   "bottleBenefit": "Sekarang anda boleh melakukan lebih banyak penjelajahan nasib yang menarik.",
-  "senderNotification": "🎉 **Pembayaran Berjaya!**\n\nAnda telah berjaya menghantar {item} kepada **{name}**.\nMungkin pihak penerima akan mengucapkan terima kasih kepada anda!"
+  "senderNotification": "🎉 **Pembayaran Berjaya!**\n\nAnda telah berjaya menghantar {item} kepada **{name}**.\nMungkin pihak penerima akan mengucapkan terima kasih kepada anda!",
+  "vip": {
+    "month": "Bulan",
+    "months": "Bulan"
+  }
 };

@@ -74,6 +74,7 @@ export default {
     "vip2": "⚠️ Tính năng này chỉ dành cho thành viên VIP",
     "vip3": "⚠️ **VIP hết hạn hôm nay**\n\n"
   },
+  "failed": "⚠️ Thao tác thất bại",
   "BROADCAST": {
     "FILTER_ERROR": "❌ Lỗi định dạng.\nVí dụ: `/broadcast_filter gender=female,country=TW test message`",
     "NO_CONTENT": "❌ Vui lòng nhập nội dung phát sóng.",

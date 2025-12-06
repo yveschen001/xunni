@@ -8,5 +8,8 @@ export default {
   "upgradeVip": "💡 Passez au VIP pour plus de quotas (100 messages/jour) : /vip\n",
   "urlNotAllowed": "❌ Le message contient une URL non autorisée\n\n",
   "urlNotAllowedDesc": "⚠️ Pour des raisons de sécurité, seules certaines URL sont autorisées dans la conversation.\n\n",
-  "vipDailyLimit": "💡 Les utilisateurs VIP peuvent envoyer 100 messages par jour.\n"
+  "vipDailyLimit": "💡 Les utilisateurs VIP peuvent envoyer 100 messages par jour.\n",
+  "upgradeToUnlock": "💎 Améliorer pour déverrouiller",
+  "upgradeVipLink": "Améliorer VIP",
+  "urlVipOnly": "Ce lien est réservé aux utilisateurs VIP"
 };

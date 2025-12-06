@@ -8,5 +8,8 @@ export default {
   "upgradeVip": "💡 Përmirësoni në VIP për më shumë kuotë (100 mesazhe/ditë): /vip\n",
   "urlNotAllowed": "❌ Mesazhi përmban një URL të papranueshme\n\n",
   "urlNotAllowedDesc": "⚠️ Për siguri, vetëm URL të caktuara lejohen në biseda.\n\n",
-  "vipDailyLimit": "💡 Përdoruesit VIP mund të dërgojnë 100 mesazhe në ditë.\n"
+  "vipDailyLimit": "💡 Përdoruesit VIP mund të dërgojnë 100 mesazhe në ditë.\n",
+  "upgradeToUnlock": "💎 Upgrade to Unlock",
+  "upgradeVipLink": "Upgrade VIP",
+  "urlVipOnly": "This link is for VIP users only"
 };

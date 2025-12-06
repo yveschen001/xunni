@@ -54,13 +54,13 @@ fi
 # 檢查 2: i18n Keys 驗證
 echo ""
 echo "📋 檢查 2/8: 驗證 i18n Keys 是否存在..."
-if pnpm tsx scripts/verify_i18n_keys.ts > /dev/null 2>&1; then
+if pnpm tsx scripts/verify-i18n-references.ts > /dev/null 2>&1; then
   echo "✅ 所有 i18n keys 都存在"
 else
   echo "❌ i18n keys 驗證失敗，請修復後再部署"
   echo ""
   echo "執行詳細檢查："
-  pnpm tsx scripts/verify_i18n_keys.ts
+  pnpm tsx scripts/verify-i18n-references.ts
   exit 1
 fi
 

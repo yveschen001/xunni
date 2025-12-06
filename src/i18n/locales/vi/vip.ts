@@ -130,5 +130,7 @@ export default {
   "upgrade": "Nâng cấp lên VIP",
   "maxDurationExceeded": "⚠️ Thời gian VIP của bạn đã đạt giới hạn ({maxMonths} tháng), và bạn không thể tiếp tục mua sắm trong thời gian này.",
   "refundedAndRevoked": "ℹ️ Thanh toán của bạn đã được hoàn lại, và các quyền lợi VIP đã bị thu hồi.",
-  "benefit_daily_fortune": "• 1 lần đọc thần giao cách cảm miễn phí mỗi ngày (dành riêng cho VIP)"
+  "benefit_daily_fortune": "• 1 lần đọc thần giao cách cảm miễn phí mỗi ngày (dành riêng cho VIP)",
+  "month": "tháng",
+  "months": "tháng"
 };

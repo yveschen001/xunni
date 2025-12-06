@@ -79,6 +79,7 @@ export default {
   "settings4": "Ei asetettu",
   "settings5": "Ei asetettu",
   "short": "Estämisen jälkeen:\n",
+  "selectNumber": "Valitse alla oleva numero nähdäksesi tiedot:",
   "short2": "Tuntematon käyttäjä",
   "short3": "Juuri nyt",
   "stats": "📊 Käytä /stats nähdäksesi yksityiskohtaiset tilastot\n",
@@ -106,5 +107,10 @@ export default {
   "vipLearnMore": "💎 Käytä /vip saadaksesi lisätietoja",
   "vipUnlockAvatar": "🔒 Päivitä VIP:ksi, jotta voit avata selkeämmät profiilikuvat",
   "zodiac": "⭐ Horoskooppi: {partnerInfo.zodiac}\n",
-  "zodiac2": "⭐ Horoskooppi: {zodiacLabel}\n"
+  "zodiac2": "⭐ Horoskooppi: {zodiacLabel}\n",
+  "historyPost": "📜 Keskusteluhistoria #{id}",
+  "historyPostSuffix": " (napsauta nähdäksesi tiedot)",
+  "newMessageNotification": "📩 Sinulla on uusi viesti!",
+  "newMessageNotificationSuffix": " (lähettäjältä {sender})",
+  "replyToUser": "Vastaa käyttäjälle"
 };

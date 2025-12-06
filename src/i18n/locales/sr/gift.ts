@@ -11,5 +11,9 @@ export default {
   "completeProfileButton": "📝 Dovršite profil",
   "vipBenefit": "Sada možete uživati u neograničenom prevođenju, jasnoj slici profila i tačnim astrološkim podudaranjima.",
   "bottleBenefit": "Sada možete istraživati više zanimljivih astroloških tema.",
-  "senderNotification": "🎉 **Plaćanje uspešno!**\n\nUspešno ste poslali {item} **{name}**.\nOsoba može da vas zahvaljuje nakon što primi!"
+  "senderNotification": "🎉 **Plaćanje uspešno!**\n\nUspešno ste poslali {item} **{name}**.\nOsoba može da vas zahvaljuje nakon što primi!",
+  "vip": {
+    "month": "месец",
+    "months": "месеци"
+  }
 };

@@ -11,5 +11,9 @@ export default {
   "completeProfileButton": "📝 Profil Bilgilerini Tamamla",
   "vipBenefit": "Artık sınırsız çeviri, net profil resmi ve doğru fal eşleştirmesinin keyfini çıkarabilirsiniz.",
   "bottleBenefit": "Artık daha fazla eğlenceli fal keşifleri yapabilirsiniz.",
-  "senderNotification": "🎉 **Ödeme Başarılı!**\n\n{item}'i **{name}**'e başarıyla gönderdiniz.\nKarşı taraf aldıktan sonra size teşekkür edebilir!"
+  "senderNotification": "🎉 **Ödeme Başarılı!**\n\n{item}'i **{name}**'e başarıyla gönderdiniz.\nKarşı taraf aldıktan sonra size teşekkür edebilir!",
+  "vip": {
+    "month": "Ay",
+    "months": "Aylar"
+  }
 };

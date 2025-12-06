@@ -21,6 +21,7 @@ export default {
   "back2": "↩️ Profil bearbeiten",
   "back3": "🏠 Hauptmenü zurückkehren",
   "back4": "↩️ Zurück",
+  "backToMenu": "Hauptmenü",
   "backToMainMenu": "Hauptmenü zurückkehren",
   "birthday": "🎂 Geburtstag: {updatedUser.birthday}\n",
   "birthday2": "🎂 Geburtstag: {user.birthday}\n",
@@ -700,5 +701,12 @@ export default {
   "skip": "Überspringen",
   "submit": "Einreichen",
   "timeLeftDaysHours": "{days} Tage {hours} Stunden",
-  "timeLeftHours": "{hours} Stunden"
+  "timeLeftHours": "{hours} Stunden",
+  "confirm_delete": "Löschung bestätigen",
+  "deleted": "Gelöscht",
+  "unblock": "Entsperren",
+  "generating": "Wird generiert...",
+  "mbtiMatch": "MBTI Übereinstimmung",
+  "zodiacMatch": "Tierkreis Übereinstimmung",
+  "fateMatch": "Schicksalsindex"
 };

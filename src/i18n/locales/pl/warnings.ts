@@ -74,6 +74,7 @@ export default {
     "vip2": "⚠️ Ta funkcja jest dostępna tylko dla członków VIP",
     "vip3": "⚠️ **VIP wygasa dzisiaj**\n\n"
   },
+  "failed": "⚠️ Operacja nieudana",
   "BROADCAST": {
     "FILTER_ERROR": "❌ Błąd formatu.\nPrzykład: `/broadcast_filter gender=female,country=TW test message`",
     "NO_CONTENT": "❌ Proszę wprowadzić treść transmisji.",

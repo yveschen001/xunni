@@ -130,5 +130,7 @@ export default {
   "upgrade": "Nadgradi na VIP",
   "maxDurationExceeded": "⚠️ Vaša VIP doba je dosegla limit ({maxMonths} meseci) in trenutno ne morete nadaljevati s nakupom.",
   "refundedAndRevoked": "ℹ️ Vaša plačila je bila vrnjena in VIP ugodnosti so bile preklicane.",
-  "benefit_daily_fortune": "• 1 brezplačno psihično branje na dan (izključno za VIP)"
+  "benefit_daily_fortune": "• 1 brezplačno psihično branje na dan (izključno za VIP)",
+  "month": "mesec",
+  "months": "meseci"
 };

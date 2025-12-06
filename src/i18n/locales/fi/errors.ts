@@ -180,5 +180,8 @@ export default {
   "verificationFailed": "❌ Vahvistus epäonnistui, yritä myöhemmin uudelleen",
   "invalidTimeFormat": "Virheellinen aikamuoto\nEsimerkiksi: 19:30 (24-tunnin formaatti, 00-23 tuntia, 00-59 minuuttia)",
   "invalidDateFormat": "Virheellinen päivämäärämuoto\nEsimerkiksi: 2000-01-01",
-  "taskAlreadyCompleted": "❌ Tämä tehtävä on jo suoritettu ja palkkio on lunastettu."
+  "taskAlreadyCompleted": "❌ Tämä tehtävä on jo suoritettu ja palkkio on lunastettu.",
+  "session_expired": "❌ Istunto on vanhentunut, aloita uudelleen",
+  "systemErrorRestart": "❌ Järjestelmässä tapahtui virhe, aloita uudelleen",
+  "invalidLanguageCode": "❌ Käytössä oleva kielikoodi on virheellinen"
 };

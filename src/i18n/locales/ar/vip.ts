@@ -130,5 +130,7 @@ export default {
   "upgrade": "ترقية إلى VIP",
   "maxDurationExceeded": "⚠️ لقد وصلت مدة VIP الخاصة بك إلى الحد الأقصى ({maxMonths} شهرًا)، ولا يمكنك الاستمرار في الشراء في الوقت الحالي.",
   "refundedAndRevoked": "ℹ️ تم استرداد دفعتك، وتم إلغاء فوائد VIP.",
-  "benefit_daily_fortune": "• قراءة نفسية مجانية واحدة يوميًا (حصريًا لـ VIP)"
+  "benefit_daily_fortune": "• قراءة نفسية مجانية واحدة يوميًا (حصريًا لـ VIP)",
+  "month": "شهر",
+  "months": "أشهر"
 };

@@ -47,5 +47,6 @@ export default {
   "text": "👤 Xem Thẻ Hồ Sơ",
   "verify": "Xác minh",
   "viewPayments": "💰 Lịch Sử Đăng Ký",
-  "vip": "💎 Nâng cấp lên VIP"
+  "vip": "💎 Nâng cấp lên VIP",
+  "buyFortuneBottle": "🛍️ Mua chai bói toán"
 };

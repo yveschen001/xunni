@@ -180,5 +180,8 @@ export default {
   "verificationFailed": "❌ Pengesahan gagal, sila cuba lagi kemudian.",
   "invalidTimeFormat": "Format masa tidak sah\nSebagai contoh: 19:30 (format 24 jam, 00-23 jam, 00-59 minit)",
   "invalidDateFormat": "Format tarikh tidak sah\nSebagai contoh: 2000-01-01",
-  "taskAlreadyCompleted": "❌ Tugas ini telah pun diselesaikan dan ganjaran telah dituntut."
+  "taskAlreadyCompleted": "❌ Tugas ini telah pun diselesaikan dan ganjaran telah dituntut.",
+  "session_expired": "❌ Sesi telah tamat, sila mula semula",
+  "systemErrorRestart": "❌ Ralat sistem telah berlaku, sila mula semula",
+  "invalidLanguageCode": "❌ Kod bahasa tidak sah"
 };

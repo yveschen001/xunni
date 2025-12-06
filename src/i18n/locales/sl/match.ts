@@ -9,5 +9,12 @@ export default {
   "upsellMessage": "Za natančno ujemanje morate biti VIP član.\n\nPo nadgradnji lahko dostopate do podrobnega poročila o ujemanju z vsakim posameznikom!",
   "noQuota": "🔮 Pomanjkanje Fortune Bottle",
   "quotaExhausted": "Vaša Fortune Bottle je pošla, ujemanje ni mogoče.\n\nKupite dodatek ali počakajte, da se vsakoteden brezplačna kvota obnovi.",
-  "targetNonVipWarning": "Nasprotnik ni VIP uporabnik, del podatkov morda ni popoln, kar vpliva na natančnost ujemanja.\n💡 Priporočamo, da nasprotniku podarite VIP za natančnejše rezultate!"
+  "targetNonVipWarning": "Nasprotnik ni VIP uporabnik, del podatkov morda ni popoln, kar vpliva na natančnost ujemanja.\n💡 Priporočamo, da nasprotniku podarite VIP za natančnejše rezultate!",
+  "template": {
+    "body": "✨ **{target}** 與你的速配分析報告已生成！\n\n點擊下方按鈕查看詳細內容 👇"
+  },
+  "btn": {
+    "throw": "🍾 丟祝福瓶",
+    "vip_throw": "💎 丟 VIP 瓶"
+  }
 };

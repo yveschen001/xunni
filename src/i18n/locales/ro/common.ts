@@ -21,6 +21,7 @@ export default {
   "back2": "↩️ Înapoi la Editare Profil",
   "back3": "🏠 Înapoi la Meniul Principal",
   "back4": "↩️ Înapoi",
+  "backToMenu": "🏠 Meniu Principal",
   "backToMainMenu": "Înapoi la Meniul Principal",
   "birthday": "🎂 Zi de naștere: {updatedUser.birthday}\n",
   "birthday2": "🎂 Zi de naștere: {user.birthday}\n",
@@ -66,7 +67,7 @@ export default {
   "bottle6": "💡 Folosiți Sticla cu Dorințe pentru a prinde o Sticla cu Dorințe și începeți o nouă conversație.",
   "bottle7": "🍾 Aruncați o Sticla cu Dorințe\n\nCe tip de partener de conversație căutați? Începeți prin a-i trimite o binecuvântare de la distanță~ fericirea se va întoarce la voi~",
   "bottle8": "Mergeți și aruncați o Sticla cu Dorințe, oferiți-vă reciproc binecuvântări cu noii prieteni! Sticla cu Dorințe\n\n",
-  "bottle9": "Uitați-vă la Sticlele cu Dorințe ale altora, oferiți-vă reciproc dorințe~ Revenire la chat\n\n",
+  "bottle9": "Vezi Sticlele cu Dorințe ale altora și oferă-le binecuvântări~ Răspunde pentru a începe o conversație\n\n",
   "broadcast": "Transmisia va fi trimisă în fundal, utilizați /broadcast_status {broadcastId} pentru a verifica progresul.",
   "broadcast10": "📊 5 Înregistrări recente de transmisie\n\n",
   "broadcast11": "Notificarea de întreținere a fost transmisă tuturor utilizatorilor.\n",
@@ -700,5 +701,12 @@ export default {
   "skip": "Sari peste",
   "submit": "Trimiteți",
   "timeLeftDaysHours": "{days} zile {hours} ore",
-  "timeLeftHours": "{hours} ore"
+  "timeLeftHours": "{hours} ore",
+  "confirm_delete": "Confirmă Ștergerea",
+  "deleted": "Șters",
+  "unblock": "Dezactivează Blocarea",
+  "generating": "Se generează...",
+  "mbtiMatch": "Compatibilitate MBTI",
+  "zodiacMatch": "Compatibilitate Zodiacală",
+  "fateMatch": "Indexul Destinului"
 };

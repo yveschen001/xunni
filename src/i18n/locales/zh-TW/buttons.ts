@@ -47,5 +47,6 @@ export default {
   "text": "👤 查看對方資料卡",
   "verify": "驗證",
   "viewPayments": "💰 訂閱記錄",
-  "vip": "💎 升級 VIP"
+  "vip": "💎 升級 VIP",
+  "buyFortuneBottle": "🛍️ 購買算命瓶"
 };

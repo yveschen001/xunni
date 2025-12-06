@@ -21,6 +21,7 @@ export default {
   "back2": "↩️ Profili düzenlemeye geri dön",
   "back3": "🏠 Ana menüye dön",
   "back4": "↩️ Geri",
+  "backToMenu": "Ana Menü",
   "backToMainMenu": "Ana menüye dön",
   "birthday": "🎂 Doğum günü: {updatedUser.birthday}\n",
   "birthday2": "🎂 Doğum günü: {user.birthday}\n",
@@ -700,5 +701,12 @@ export default {
   "skip": "Atla",
   "submit": "Gönder",
   "timeLeftDaysHours": "{days} gün {hours} saat",
-  "timeLeftHours": "{hours} saat"
+  "timeLeftHours": "{hours} saat",
+  "confirm_delete": "Silmeyi Onayla",
+  "deleted": "Silindi",
+  "unblock": "Engeli Kaldır",
+  "generating": "Üretiliyor...",
+  "mbtiMatch": "MBTI Uyum Oranı",
+  "zodiacMatch": "Burç Uyum Oranı",
+  "fateMatch": "Kısmet Derecesi"
 };

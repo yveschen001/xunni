@@ -180,5 +180,8 @@ export default {
   "verificationFailed": "❌ 인증 실패, 나중에 다시 시도해 주세요",
   "invalidTimeFormat": "유효하지 않은 시간 형식\n예: 19:30 (24시간 형식, 00-23 시, 00-59 분)",
   "invalidDateFormat": "유효하지 않은 날짜 형식\n예: 2000-01-01",
-  "taskAlreadyCompleted": "❌ 이 작업은 이미 완료되었으며 보상이 청구되었습니다."
+  "taskAlreadyCompleted": "❌ 이 작업은 이미 완료되었으며 보상이 청구되었습니다.",
+  "session_expired": "❌ 세션이 만료되었습니다. 다시 시작해 주세요.",
+  "systemErrorRestart": "❌ 시스템 오류가 발생했습니다. 다시 시작해 주세요.",
+  "invalidLanguageCode": "❌ 유효하지 않은 언어 코드입니다."
 };

@@ -9,5 +9,12 @@ export default {
   "upsellMessage": "Na presnú kompatibilitu je potrebné, aby ste boli VIP členom.\n\nPo upgrade budete môcť zobraziť podrobnú kompatibilitnú správu s kýmkoľvek!",
   "noQuota": "🔮 Nedostatok futónu Fortune Bottle",
   "quotaExhausted": "Vaše Fortune Bottle sa minuli, nemôžete vykonať kompatibilitu.\n\nProsím, zakúpte doplnkové balíky alebo čakajte, kým sa týždenné bezplatné kvóty aktualizujú.",
-  "targetNonVipWarning": "Druhá strana nie je VIP používateľ, niektoré údaje nemusia byť úplné, čo ovplyvní presnosť kompatibility.\n💡 Odporúča sa darovať VIP druhému pre presnejšie výsledky!"
+  "targetNonVipWarning": "Druhá strana nie je VIP používateľ, niektoré údaje nemusia byť úplné, čo ovplyvní presnosť kompatibility.\n💡 Odporúča sa darovať VIP druhému pre presnejšie výsledky!",
+  "template": {
+    "body": "✨ **{target}** a vaša analýza zhody bola vytvorená!\n\nKliknite na tlačidlo nižšie a pozrite si podrobnosti 👇"
+  },
+  "btn": {
+    "throw": "🍾 Hodiť Blessing Bottle",
+    "vip_throw": "💎 Hodiť VIP Bottle"
+  }
 };

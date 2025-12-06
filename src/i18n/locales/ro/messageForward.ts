@@ -8,5 +8,8 @@ export default {
   "upgradeVip": "💡 Upgradează la VIP pentru mai multă cotă (100 mesaje/zi): /vip\n",
   "urlNotAllowed": "❌ Mesajul conține un URL nepermis\n\n",
   "urlNotAllowedDesc": "⚠️ Pentru siguranță, doar URL-uri specifice sunt permise în conversații.\n\n",
-  "vipDailyLimit": "💡 Utilizatorii VIP pot trimite 100 de mesaje pe zi.\n"
+  "vipDailyLimit": "💡 Utilizatorii VIP pot trimite 100 de mesaje pe zi.\n",
+  "upgradeToUnlock": "💎 Îmbunătățește pentru a debloca",
+  "upgradeVipLink": "Îmbunătățește VIP",
+  "urlVipOnly": "Acest link este disponibil doar pentru utilizatorii VIP"
 };

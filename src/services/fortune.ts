@@ -1,6 +1,10 @@
+import * as AstronomyLib from 'astronomy-engine';
+// Handle CJS/ESM interop
+// @ts-ignore
+const Astronomy = AstronomyLib.default || AstronomyLib;
+
 import { D1Database } from '@cloudflare/workers-types';
 import { Solar } from 'lunar-javascript';
-import * as Astronomy from 'astronomy-engine';
 import { Env, FortuneHistory, FortuneProfile, FortuneQuota, FortuneType, User } from '../types';
 import { FORTUNE_PROMPTS } from '../prompts/fortune';
 
@@ -145,26 +149,29 @@ export class FortuneService {
                 // Calculate Ascendant
                 // Needs Sidereal Time
                 const dateVal = utcDate; // Date object works
-                const sidereal = Astronomy.SiderealTime(dateVal);
+                const astroTime = Astronomy.MakeTime(dateVal);
+                const sidereal = Astronomy.SiderealTime(astroTime);
                 // RAMC = GST + Longitude (in hours)
                 // Greenwich Sidereal Time (hours)
                 // Local Sidereal Time = GST + Lng/15
                 const lst = sidereal + (lng / 15);
                 const ramc = lst * 15; // Convert to degrees
                 
-                // Obliquity of Ecliptic
-                const eps = Astronomy.Obliquity(dateVal);
+                // Obliquity of Ecliptic (Use e_tilt)
+                const eps = Astronomy.e_tilt(astroTime);
                 
                 // Ascendant Formula: atan2(y, x)
                 // y = -cos(RAMC)
                 // x = sin(RAMC) * cos(eps) + tan(lat) * sin(eps)
                 const rad = Math.PI / 180;
                 const ramcRad = ramc * rad;
-                const epsRad = eps * rad;
+                // e_tilt returns { tobl, mobl, ... }. Use tobl (True Obliquity)
+                const obliquityVal = typeof eps === 'number' ? eps : (eps as any).tobl || (eps as any).mobl || 23.44;
+                const finalEpsRad = obliquityVal * rad;
                 const latRad = lat * rad;
-                
+
                 const y = -Math.cos(ramcRad);
-                const x = (Math.sin(ramcRad) * Math.cos(epsRad)) + (Math.tan(latRad) * Math.sin(epsRad));
+                const x = (Math.sin(ramcRad) * Math.cos(finalEpsRad)) + (Math.tan(latRad) * Math.sin(finalEpsRad));
                 
                 let asc = Math.atan2(y, x) / rad;
                 if (asc < 0) asc += 360;
@@ -678,9 +685,53 @@ export class FortuneService {
     }
 
     // Construct XML Context (Optimized for Gemini)
-    const getYear = (dateStr: string) => dateStr.split('-')[0];
+    const getYear = (dateStr: string) => parseInt(dateStr.split('-')[0]);
+    const getDateObj = (dateStr: string) => new Date(dateStr);
+    
     const userBirthYear = getYear(profile.birth_date);
-    const targetBirthYear = targetProfile ? getYear(targetProfile.birth_date) : '';
+    const targetBirthYear = targetProfile ? getYear(targetProfile.birth_date) : 0;
+    
+    // KINSHIP LOGIC
+    let kinshipXml = '';
+    if ((type === 'match' || type === 'love_match') && targetProfile) {
+        const userDate = getDateObj(profile.birth_date);
+        const targetDate = getDateObj(targetProfile.birth_date);
+        const isUserOlder = userDate < targetDate;
+        const ageGapYears = Math.abs(userDate.getFullYear() - targetDate.getFullYear());
+        
+        let userRole = 'Partner';
+        let targetRole = 'Partner';
+        const relType = context?.relationship_type || 'love';
+        const userGender = profile.gender;
+        const targetGender = targetProfile.gender;
+
+        if (relType === 'family' || relType === 'siblings') {
+            if (isUserOlder) {
+                userRole = userGender === 'male' ? 'Older Brother (哥哥)' : 'Older Sister (姊姊)';
+                targetRole = targetGender === 'male' ? 'Younger Brother (弟弟)' : 'Younger Sister (妹妹)';
+            } else {
+                userRole = userGender === 'male' ? 'Younger Brother (弟弟)' : 'Younger Sister (妹妹)';
+                targetRole = targetGender === 'male' ? 'Older Brother (哥哥)' : 'Older Sister (姊姊)';
+            }
+        } else if (relType === 'love') {
+             if (isUserOlder) {
+                userRole = userGender === 'male' ? 'Older Boyfriend' : 'Older Girlfriend';
+                targetRole = targetGender === 'male' ? 'Younger Boyfriend' : 'Younger Girlfriend';
+             } else {
+                userRole = userGender === 'male' ? 'Younger Boyfriend' : 'Younger Girlfriend';
+                targetRole = targetGender === 'male' ? 'Older Boyfriend' : 'Older Girlfriend';
+             }
+        }
+
+        kinshipXml = `
+  <kinship_logic>
+    <is_user_older>${isUserOlder}</is_user_older>
+    <user_role>${userRole}</user_role>
+    <target_role>${targetRole}</target_role>
+    <age_gap>${ageGapYears} years</age_gap>
+    <relationship_context>${relType}</relationship_context>
+  </kinship_logic>`;
+    }
 
     const contextXml = `
 <context_data>
@@ -717,6 +768,8 @@ export class FortuneService {
   </target_profile>` : ''}
   
   ${targetChartStr ? `<target_chart>${targetChartStr}</target_chart>` : ''}
+  
+  ${kinshipXml}
   
   ${context ? `<extra_context>${JSON.stringify(context)}</extra_context>` : ''}
 </context_data>

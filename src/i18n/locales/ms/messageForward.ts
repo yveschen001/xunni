@@ -8,5 +8,8 @@ export default {
   "upgradeVip": "💡 Tingkatkan kepada VIP untuk mendapatkan lebih banyak kuota (100 mesej/hari): /vip\n",
   "urlNotAllowed": "❌ Mesej mengandungi URL yang tidak dibenarkan\n\n",
   "urlNotAllowedDesc": "⚠️ Untuk keselamatan, hanya URL tertentu dibenarkan dalam perbualan.\n\n",
-  "vipDailyLimit": "💡 Pengguna VIP boleh menghantar 100 botol mesej setiap hari.\n"
+  "vipDailyLimit": "💡 Pengguna VIP boleh menghantar 100 botol mesej setiap hari.\n",
+  "upgradeToUnlock": "💎 Naik Taraf untuk Buka Kunci",
+  "upgradeVipLink": "Naik Taraf VIP",
+  "urlVipOnly": "Pautan ini hanya untuk pengguna VIP"
 };

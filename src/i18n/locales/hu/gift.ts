@@ -11,5 +11,9 @@ export default {
   "completeProfileButton": "📝 Profil adatainak kiegészítése",
   "vipBenefit": "Most már élvezheted a korlátlan fordítást, tiszta profilképet és pontos horoszkóp összepárosítást.",
   "bottleBenefit": "Most már több izgalmas horoszkópos felfedezést tehetsz.",
-  "senderNotification": "🎉 **Fizetés sikeres!**\n\nSikeresen elküldted {item}-t **{name}** részére.\nA címzett valószínűleg meg fog köszönni!"
+  "senderNotification": "🎉 **Fizetés sikeres!**\n\nSikeresen elküldted {item}-t **{name}** részére.\nA címzett valószínűleg meg fog köszönni!",
+  "vip": {
+    "month": "hónap",
+    "months": "hónap"
+  }
 };

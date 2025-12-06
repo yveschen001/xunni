@@ -9,5 +9,12 @@ export default {
   "upsellMessage": "A pontos eredményekhez VIP taggá kell válnod.\n\nFrissítés után megtekintheted bármely személlyel kapcsolatos részletes jós jelentést!",
   "noQuota": "🔮 Nincs elegendő jós palack",
   "quotaExhausted": "Kimerítetted a jós palackjaidat, nem tudsz új párosítást végezni.\n\nKérlek vásárolj töltőcsomagot, vagy várj a heti ingyenes kvóta megújulására.",
-  "targetNonVipWarning": "A másik fél nem VIP felhasználó, így bizonyos adatok hiányosak lehetnek, ami befolyásolhatja a párosítás pontosságát.\n💡 Ajánljuk, hogy ajándékozz a másiknak VIP tagságot a pontosabb eredményekért!"
+  "targetNonVipWarning": "A másik fél nem VIP felhasználó, így bizonyos adatok hiányosak lehetnek, ami befolyásolhatja a párosítás pontosságát.\n💡 Ajánljuk, hogy ajándékozz a másiknak VIP tagságot a pontosabb eredményekért!",
+  "template": {
+    "body": "✨ **{target}** és a te sebességi elemzésed jelentése elkészült!\n\nKattints az alábbi gombra a részletek megtekintéséhez 👇"
+  },
+  "btn": {
+    "throw": "🍾 Kívánság Palack",
+    "vip_throw": "💎 Kívánság Palack VIP"
+  }
 };

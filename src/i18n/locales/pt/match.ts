@@ -9,5 +9,12 @@ export default {
   "upsellMessage": "Para uma compatibilidade precisa, você precisa ser membro VIP.\n\nApós a atualização, você poderá ver relatórios detalhados de compatibilidade com qualquer pessoa!",
   "noQuota": "🔮 Garrafa da Sorte insuficiente",
   "quotaExhausted": "Sua garrafa da sorte está esgotada, não é possível realizar a compatibilidade.\n\nPor favor, compre um pacote de reposição ou aguarde a renovação do quota semanal gratuita.",
-  "targetNonVipWarning": "A outra pessoa não é um usuário VIP, algumas informações podem estar incompletas, afetando a precisão da compatibilidade.\n💡 Recomenda-se dar um VIP a ela para obter resultados mais precisos!"
+  "targetNonVipWarning": "A outra pessoa não é um usuário VIP, algumas informações podem estar incompletas, afetando a precisão da compatibilidade.\n💡 Recomenda-se dar um VIP a ela para obter resultados mais precisos!",
+  "template": {
+    "body": "✨ **{target}** e seu relatório de compatibilidade foi gerado!\n\nClique no botão abaixo para ver os detalhes 👇"
+  },
+  "btn": {
+    "throw": "🍾 Enviar Garrafa de Bênção",
+    "vip_throw": "💎 Enviar Garrafa da Sorte VIP"
+  }
 };

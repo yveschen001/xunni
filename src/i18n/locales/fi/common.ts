@@ -21,6 +21,7 @@ export default {
   "back2": "↩️ Palaa muokkaamaan profiilia",
   "back3": "🏠 Palaa päävalikkoon",
   "back4": "↩️ Palaa takaisin",
+  "backToMenu": "Päävalikko",
   "backToMainMenu": "Palaa päävalikkoon",
   "birthday": "🎂 Syntymäpäivä: {updatedUser.birthday}\n",
   "birthday2": "🎂 Syntymäpäivä: {user.birthday}\n",
@@ -700,5 +701,12 @@ export default {
   "skip": "Ohita",
   "submit": "Lähetä",
   "timeLeftDaysHours": "{days} päivää {hours} tuntia",
-  "timeLeftHours": "{hours} tuntia"
+  "timeLeftHours": "{hours} tuntia",
+  "confirm_delete": "Vahvista poisto",
+  "deleted": "Poistettu",
+  "unblock": "Poista esto",
+  "generating": "Luodaan...",
+  "mbtiMatch": "MBTI-yhteensopivuus",
+  "zodiacMatch": "Horoskooppiyhteensopivuus",
+  "fateMatch": "Onnen indeksi"
 };

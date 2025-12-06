@@ -148,5 +148,6 @@ export default {
   "userNotFound6": "❌ Bruker eksisterer ikke eller er ikke registrert.",
   "userNotFound7": "❌ Bruker eksisterer ikke.",
   "vip": "❌ Du har ikke tillatelse til å se VIP-data.",
-  "vip2": "❌ Du er ikke en VIP-bruker og kan ikke søke om refusjon."
+  "vip2": "❌ Du er ikke en VIP-bruker og kan ikke søke om refusjon.",
+  "invalidRequest": "❌ Ugyldig forespørsel"
 };

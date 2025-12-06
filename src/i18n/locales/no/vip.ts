@@ -130,5 +130,7 @@ export default {
   "upgrade": "Oppgrader til VIP",
   "maxDurationExceeded": "⚠️ Din VIP-periode har nådd grensen ({maxMonths} måneder), og du kan ikke fortsette å kjøpe for tiden.",
   "refundedAndRevoked": "ℹ️ Betalingen din har blitt refundert, og VIP-fordeler har blitt inndratt.",
-  "benefit_daily_fortune": "• 1 gratis psykisk lesning per dag (eksklusiv for VIP)"
+  "benefit_daily_fortune": "• 1 gratis psykisk lesning per dag (eksklusiv for VIP)",
+  "month": "måned",
+  "months": "måneder"
 };

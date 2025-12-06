@@ -180,5 +180,8 @@ export default {
   "verificationFailed": "❌ 验证失败，请稍后再试",
   "invalidTimeFormat": "无效的时间格式\n例如：19:30 (24小时制，00-23时，00-59分)",
   "invalidDateFormat": "无效的日期格式\n例如：2000-01-01",
-  "taskAlreadyCompleted": "❌ 该任务已经完成并领取过奖励了。"
+  "taskAlreadyCompleted": "❌ 该任务已经完成并领取过奖励了。",
+  "session_expired": "❌ 会话已过期，请重新开始",
+  "systemErrorRestart": "❌ 系统发生错误，请重新开始",
+  "invalidLanguageCode": "❌ 无效的语言代码"
 };

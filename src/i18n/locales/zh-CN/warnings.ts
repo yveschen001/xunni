@@ -74,6 +74,7 @@ export default {
     "vip2": "⚠️ 此功能仅限 VIP 会员使用",
     "vip3": "⚠️ **VIP今天到期**"
   },
+  "failed": "⚠️ 操作失败",
   "BROADCAST": {
     "FILTER_ERROR": "❌ 格式错误。\n示例：`/broadcast_filter gender=female,country=TW test message`",
     "NO_CONTENT": "❌ 请输入广播内容。",

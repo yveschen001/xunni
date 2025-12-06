@@ -74,6 +74,7 @@ export default {
     "vip2": "⚠️ この機能はVIPメンバー専用です",
     "vip3": "⚠️ **VIPは本日まで有効です**\n\n"
   },
+  "failed": "⚠️ 操作に失敗しました",
   "BROADCAST": {
     "FILTER_ERROR": "❌ フォーマットエラー。\n例: `/broadcast_filter gender=female,country=TW test message`",
     "NO_CONTENT": "❌ 配信内容を入力してください。",

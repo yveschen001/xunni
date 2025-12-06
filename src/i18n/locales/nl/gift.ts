@@ -11,5 +11,9 @@ export default {
   "completeProfileButton": "📝 Voltooi je profiel",
   "vipBenefit": "Je kunt nu genieten van onbeperkt vertalen, heldere profielfoto's en nauwkeurige geluksvoorspellingen.",
   "bottleBenefit": "Je kunt nu meer interessante geluksontdekkingen doen.",
-  "senderNotification": "🎉 **Betaling geslaagd!**\n\nJe hebt {item} succesvol gestuurd naar **{name}**.\nDiegene kan je misschien bedanken als ze het ontvangen!"
+  "senderNotification": "🎉 **Betaling geslaagd!**\n\nJe hebt {item} succesvol gestuurd naar **{name}**.\nDiegene kan je misschien bedanken als ze het ontvangen!",
+  "vip": {
+    "month": "maand",
+    "months": "maanden"
+  }
 };

@@ -11,5 +11,9 @@ export default {
   "completeProfileButton": "📝 プロフィールを完成させる",
   "vipBenefit": "これで無制限翻訳、クリアなプロフィール画像、正確な占いマッチングを楽しめます。",
   "bottleBenefit": "これでさらに楽しい占いの探求を始められます。",
-  "senderNotification": "🎉 **支払いが成功しました！**\n\nあなたは成功裏に**{name}**に{item}を贈りました。\n相手が受け取った後、感謝されるかもしれません！"
+  "senderNotification": "🎉 **支払いが成功しました！**\n\nあなたは成功裏に**{name}**に{item}を贈りました。\n相手が受け取った後、感謝されるかもしれません！",
+  "vip": {
+    "month": "ヶ月",
+    "months": "ヶ月"
+  }
 };

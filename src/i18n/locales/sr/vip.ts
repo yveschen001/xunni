@@ -130,5 +130,7 @@ export default {
   "upgrade": "Nadogradite na VIP",
   "maxDurationExceeded": "⚠️ Vaš VIP period je dostigao limit ({maxMonths} meseci) i trenutno ne možete nastaviti sa kupovinom.",
   "refundedAndRevoked": "ℹ️ Vaša uplata je refundirana, a VIP pogodnosti su ukinute.",
-  "benefit_daily_fortune": "• 1 besplatno čitanje sudbine dnevno (isključivo za VIP)"
+  "benefit_daily_fortune": "• 1 besplatno čitanje sudbine dnevno (isključivo za VIP)",
+  "month": "месец",
+  "months": "месеци"
 };

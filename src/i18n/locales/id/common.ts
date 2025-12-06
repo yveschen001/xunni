@@ -21,6 +21,7 @@ export default {
   "back2": "↩️ Kembali untuk mengedit profil",
   "back3": "🏠 Kembali ke menu utama",
   "back4": "↩️ Kembali",
+  "backToMenu": "Menu Utama",
   "backToMainMenu": "Kembali ke menu utama",
   "birthday": "🎂 Ulang tahun: {updatedUser.birthday}\n",
   "birthday2": "🎂 Ulang tahun: {user.birthday}\n",
@@ -700,5 +701,12 @@ export default {
   "skip": "Lewati",
   "submit": "Kirim",
   "timeLeftDaysHours": "{days} hari {hours} jam",
-  "timeLeftHours": "{hours} jam"
+  "timeLeftHours": "{hours} jam",
+  "confirm_delete": "Konfirmasi Hapus",
+  "deleted": "Terhapus",
+  "unblock": "Buka Blokir",
+  "generating": "Sedang Menghasilkan...",
+  "mbtiMatch": "Kecocokan MBTI",
+  "zodiacMatch": "Kecocokan Zodiak",
+  "fateMatch": "Indeks Takdir"
 };

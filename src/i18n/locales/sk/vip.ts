@@ -130,5 +130,7 @@ export default {
   "upgrade": "Upgradovať na VIP",
   "maxDurationExceeded": "⚠️ Vaše VIP obdobie dosiahlo limit ({maxMonths} mesiacov) a momentálne nemôžete pokračovať v nákupe.",
   "refundedAndRevoked": "ℹ️ Vaša platba bola vrátená a VIP výhody boli odobraté.",
-  "benefit_daily_fortune": "• 1 bezplatné veštenie denne (exkluzívne pre VIP)"
+  "benefit_daily_fortune": "• 1 bezplatné veštenie denne (exkluzívne pre VIP)",
+  "month": "mesiac",
+  "months": "mesiace"
 };

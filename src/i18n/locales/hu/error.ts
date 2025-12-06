@@ -148,5 +148,6 @@ export default {
   "userNotFound6": "❌ A felhasználó nem létezik, vagy nincs regisztrálva.",
   "userNotFound7": "❌ A felhasználó nem létezik.",
   "vip": "❌ Nincs jogosultsága a VIP adatok megtekintéséhez.",
-  "vip2": "❌ Nem VIP felhasználó, így nem tud visszatérítési kérelmet benyújtani."
+  "vip2": "❌ Nem VIP felhasználó, így nem tud visszatérítési kérelmet benyújtani.",
+  "invalidRequest": "❌ Érvénytelen kérés"
 };

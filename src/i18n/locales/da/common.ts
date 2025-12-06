@@ -21,6 +21,7 @@ export default {
   "back2": "↩️ Gå tilbage til Rediger Profil",
   "back3": "🏠 Gå tilbage til Hovedmenuen",
   "back4": "↩️ Gå Tilbage",
+  "backToMenu": "Main Menu",
   "backToMainMenu": "Gå tilbage til Hovedmenuen",
   "birthday": "🎂 Fødselsdag: {updatedUser.birthday}\n",
   "birthday2": "🎂 Fødselsdag: {user.birthday}\n",
@@ -700,5 +701,12 @@ export default {
   "skip": "Spring over",
   "submit": "Indsend",
   "timeLeftDaysHours": "{days} dage {hours} timer",
-  "timeLeftHours": "{hours} timer"
+  "timeLeftHours": "{hours} timer",
+  "confirm_delete": "Bekræft sletning",
+  "deleted": "Slettet",
+  "unblock": "Fjern blokering",
+  "generating": "Genererer...",
+  "mbtiMatch": "MBTI Kompatibilitet",
+  "zodiacMatch": "Stjernetegn Kompatibilitet",
+  "fateMatch": "Skæbne Indeks"
 };

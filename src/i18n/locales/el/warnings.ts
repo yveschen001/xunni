@@ -74,6 +74,7 @@ export default {
     "vip2": "⚠️ Αυτή η δυνατότητα είναι μόνο για μέλη VIP",
     "vip3": "⚠️ **Το VIP λήγει σήμερα**\n\n"
   },
+  "failed": "⚠️ Ενέργεια απέτυχε",
   "BROADCAST": {
     "FILTER_ERROR": "❌ Σφάλμα μορφοποίησης.\nΠαράδειγμα: `/broadcast_filter gender=female,country=TW test message`",
     "NO_CONTENT": "❌ Παρακαλώ εισάγετε περιεχόμενο μετάδοσης.",

@@ -47,5 +47,6 @@ export default {
   "text": "👤 Zobraziť profilovú kartu iného",
   "verify": "Overiť",
   "viewPayments": "💰 História predplatného",
-  "vip": "💎 Upgrade na VIP"
+  "vip": "💎 Upgrade na VIP",
+  "buyFortuneBottle": "🛍️ Kúpiť Fortune Bottle"
 };
