@@ -69,7 +69,7 @@ export async function handleWebhook(request: Request, env: Env): Promise<Respons
 
     // Parse update
     const update: TelegramUpdate = await request.json();
-    console.error('[Router] Received update:', update.update_id);
+    console.log('[Router] Received update:', update.update_id);
 
     // 🛡️ Rate Limiting
     const telegramId =
@@ -1243,7 +1243,7 @@ export async function routeUpdate(update: TelegramUpdate, env: Env): Promise<voi
     const data = callbackQuery.data || '';
     const chatId = callbackQuery.message?.chat.id;
 
-    console.error('[Router] Callback query received:', {
+    console.log('[Router] Callback query received:', {
       data,
       userId: callbackQuery.from.id,
       chatId,

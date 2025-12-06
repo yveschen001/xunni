@@ -92,12 +92,8 @@ export function createI18n(locale: string = 'en'): I18n {
  * Must be called before creating I18n instance in the request lifecycle.
  */
 export async function loadTranslations(env: any, locale: string): Promise<void> {
-  // 1. Check Memory Cache
-  if (globalThis.LOCALE_CACHE[locale]) {
-    return;
-  }
-
-  // 2. Check KV
+  // 1. Check KV (Always check KV to allow dynamic updates over bundled)
+  // Note: We merge KV data on top of bundled data.
   try {
     if (env.I18N_DATA) {
       // Key format: "locale:en", "locale:ja"
@@ -105,7 +101,11 @@ export async function loadTranslations(env: any, locale: string): Promise<void> 
       const data = await env.I18N_DATA.get(kvKey, 'json');
       
       if (data) {
-        globalThis.LOCALE_CACHE[locale] = data;
+        const existing = globalThis.LOCALE_CACHE[locale] || {};
+        // Shallow merge: Bundle overrides KV (Code is source of truth for deployments)
+        // If we want dynamic updates, we should update the bundle or use a different strategy.
+        // Currently, stale KV data is breaking new code features.
+        globalThis.LOCALE_CACHE[locale] = { ...(data as object), ...existing };
         return;
       }
     } else {
@@ -113,6 +113,11 @@ export async function loadTranslations(env: any, locale: string): Promise<void> 
     }
   } catch (error) {
     console.error(`[i18n] Failed to load locale ${locale} from KV:`, error);
+  }
+
+  // 2. If not in KV, check if it's already bundled/cached
+  if (globalThis.LOCALE_CACHE[locale]) {
+    return;
   }
 
   // 3. Fallback (Logic handled in I18n class, effectively using en)

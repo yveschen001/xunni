@@ -19,7 +19,7 @@ import {
   // createBottleChatHistory, // TODO: Re-enable when bottle_chat_history table is created
 } from '~/db/queries/conversations';
 import { canCatchBottle, getBottleQuota } from '~/domain/bottle';
-import { calculateAge } from '~/domain/user';
+import { calculateAge, isVIP } from '~/domain/user';
 import { maskNickname } from '~/domain/invite';
 import { formatNicknameWithFlag } from '~/utils/country_flag';
 import { getLanguageDisplay } from '~/i18n/languages';
@@ -270,7 +270,8 @@ export async function handleCatch(message: TelegramMessage, env: Env): Promise<v
       maskedNickname: formatNicknameWithFlag(
         ownerMaskedNickname,
         bottleOwner?.country_code,
-        bottleOwner?.gender
+        bottleOwner?.gender,
+        bottleOwner ? isVIP(bottleOwner) : false
       ),
       mbti: bottleOwner?.mbti_result || i18n.t('catch.settings10'),
       bloodType: bottleOwner?.blood_type || i18n.t('catch.settings10'),
@@ -284,7 +285,8 @@ export async function handleCatch(message: TelegramMessage, env: Env): Promise<v
       maskedNickname: formatNicknameWithFlag(
         maskNickname(catcherNickname),
         user.country_code,
-        user.gender
+        user.gender,
+        isVIP(user)
       ),
       mbti: user.mbti_result || i18n.t('catch.settings10'),
       bloodType: user.blood_type || i18n.t('catch.settings10'),

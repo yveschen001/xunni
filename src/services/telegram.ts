@@ -515,7 +515,12 @@ export class TelegramService {
 
       if (!response.ok) {
         const error = await response.text();
-        console.error('[Telegram] getChatMember failed:', error);
+        // Reduce log level for known "not found" errors which are common when checking membership
+        if (error.includes('PARTICIPANT_ID_INVALID') || error.includes('member not found') || error.includes('user not found')) {
+             console.warn(`[Telegram] getChatMember: User not found or invalid (${userId} in ${chatId})`);
+        } else {
+             console.error('[Telegram] getChatMember failed:', error);
+        }
         throw new Error(`Failed to get chat member: ${error}`);
       }
 

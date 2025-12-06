@@ -59,10 +59,11 @@ export async function handleMenu(message: TelegramMessage, env: Env): Promise<vo
     // Get next incomplete task
     const { getNextIncompleteTask } = await import('./tasks');
     const nextTask = await getNextIncompleteTask(db, user);
-    console.error('[handleMenu] Next task:', nextTask ? nextTask.id : 'null');
+    console.log('[handleMenu] Next task:', nextTask ? nextTask.id : 'null');
 
     // Build menu message
     const { getZodiacDisplay } = await import('~/domain/zodiac');
+    const { getDisplayName } = await import('~/domain/user');
     const zodiacDisplay = getZodiacDisplay(user.zodiac_sign, i18n);
     
     // Get Fortune Quota
@@ -114,10 +115,16 @@ export async function handleMenu(message: TelegramMessage, env: Env): Promise<vo
         const interestsArray = JSON.parse(user.interests);
         if (Array.isArray(interestsArray)) {
           // Translate each interest code (or keep as is if it's legacy text)
-          const translatedInterests = interestsArray.map(item => {
+          const translatedInterests = interestsArray.map((item, i) => {
             // Try to translate as key "interests.items.{item}"
             const key = `interests.items.${item}`;
             const translated = i18n.t(key as any);
+            
+            // Debug first item
+            if (i === 0) {
+               // console.log(`[Menu] Interest Debug: Key=${key}, Result=${translated}`);
+            }
+
             // If translation exists and is not just the key itself (simple check)
             // Note: i18n.t usually returns the key if missing, or a special placeholder depending on implementation.
             // Our current i18n implementation might return the key or a placeholder.
@@ -142,7 +149,7 @@ export async function handleMenu(message: TelegramMessage, env: Env): Promise<vo
 
     let menuMessage =
       `${i18n.t('menu.title')} ${vipBadge}\n\n` +
-      `${i18n.t('menu.text2', { user: { nickname: user.nickname } })}\n\n` +
+      `${i18n.t('menu.text2', { user: { nickname: getDisplayName(user) } })}\n\n` +
       `${i18n.t('menu.yourStatus')}\n` +
       `• ${isVip ? i18n.t('menu.levelVip') : i18n.t('menu.levelFree')}\n` +
       `• 🎂 ${i18n.t('menu.birthDate')}: ${birthDate}\n` +
@@ -242,7 +249,7 @@ export async function handleMenu(message: TelegramMessage, env: Env): Promise<vo
         taskName = nextTask.name;
       }
       const callbackData = `next_task_${nextTask.id}`;
-      console.error('[handleMenu] Adding next task button:', {
+      console.log('[handleMenu] Adding next task button:', {
         taskId: nextTask.id,
         taskName,
         callbackData,
@@ -304,7 +311,7 @@ export async function handleMenuCallback(callbackQuery: CallbackQuery, env: Env)
 
   try {
     // Debug: Log callback data
-    console.error('[handleMenuCallback] Received callback:', data);
+    console.log('[handleMenuCallback] Received callback:', data);
 
     // Answer callback
     await telegram.answerCallbackQuery(callbackQuery.id);

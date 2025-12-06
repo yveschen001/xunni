@@ -411,14 +411,21 @@ export function getCountryName(countryCode: string): string {
  * @param nickname - User's nickname
  * @param countryCode - ISO 3166-1 alpha-2 country code
  * @param gender - User's gender ('male', 'female', or other)
+ * @param isVip - Whether user is VIP (adds crown emoji)
  * @returns Formatted nickname with flag and gender prefix
  */
 export function formatNicknameWithFlag(
   nickname: string,
   countryCode: string | null | undefined,
-  gender?: string | null
+  gender?: string | null,
+  isVip: boolean = false
 ): string {
   let prefix = '';
+
+  // 0. VIP Crown (Highest Priority)
+  if (isVip) {
+    prefix += '👑 ';
+  }
 
   // 1. Country Flag
   if (countryCode) {

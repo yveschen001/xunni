@@ -46,9 +46,13 @@ ${details}
       if (!success) {
         throw new Error(`Failed to send message to admin group ${this.adminGroupId}. Check logs.`);
       }
-    } catch (error) {
+    } catch (error: any) {
+      if (error.message && error.message.includes('chat not found')) {
+          console.warn(`[AdminLogService] Admin Group ${this.adminGroupId} not found (Bad Request). Please check ADMIN_LOG_GROUP_ID.`);
+          return; 
+      }
       console.error('[AdminLogService] Failed to send log:', error);
-      throw error; // Rethrow to let caller handle it
+      // Do NOT throw, logging should be best-effort
     }
   }
 

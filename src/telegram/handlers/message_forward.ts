@@ -17,6 +17,7 @@ import {
 import { checkUrlWhitelist } from '~/utils/url-whitelist';
 import { getOrCreateIdentifier } from '~/db/queries/conversation_identifiers';
 import { formatIdentifier } from '~/domain/conversation_identifier';
+import { isVIP } from '~/domain/user';
 
 /**
  * Handle message forwarding in active conversation
@@ -359,7 +360,8 @@ export async function handleMessageForward(
       maskedNickname: formatNicknameWithFlag(
         maskNickname(receiverNickname),
         receiver.country_code,
-        receiver.gender
+        receiver.gender,
+        isVIP(receiver)
       ),
       mbti: receiver.mbti_result || i18n.t('common.notSet'),
       bloodType: receiver.blood_type || i18n.t('common.notSet'),
@@ -373,7 +375,8 @@ export async function handleMessageForward(
       maskedNickname: formatNicknameWithFlag(
         maskNickname(senderNickname),
         sender.country_code,
-        sender.gender
+        sender.gender,
+        isVIP(sender)
       ),
       mbti: sender.mbti_result || i18n.t('common.notSet'),
       bloodType: sender.blood_type || i18n.t('common.notSet'),

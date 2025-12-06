@@ -132,13 +132,14 @@ async function showFortuneMenu(chatId: number, telegramId: string, env: Env, i18
   
   // 3. Prepare Display Data
   const { getZodiacDisplay, getZodiacSign } = await import('~/domain/zodiac');
+  const { getDisplayName } = await import('~/domain/user');
   const birthDate = new Date(profile.birth_date);
   const zodiacSign = getZodiacSign(birthDate);
   const zodiac = getZodiacDisplay(zodiacSign, i18n);
   
   const flag = user?.country_code ? getFlagEmoji(user.country_code) : '';
   // Owner Display Name (User's Telegram Name)
-  const ownerName = user?.nickname || user?.first_name || 'User';
+  const ownerName = user ? getDisplayName(user) : 'User';
   
   // Profile Details Line
   const timeDisplay = (!profile.is_birth_time_unknown && profile.birth_time) ? profile.birth_time : i18n.t('fortune.unknownTimeShort');

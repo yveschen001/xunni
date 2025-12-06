@@ -8,7 +8,7 @@ import type { Env, TelegramMessage } from '~/types';
 import { createDatabaseClient } from '~/db/client';
 import { createTelegramService } from '~/services/telegram';
 import { findUserByTelegramId } from '~/db/queries/users';
-import { calculateAge } from '~/domain/user';
+import { calculateAge, isVIP } from '~/domain/user';
 import { getInviteStats } from '~/db/queries/invites';
 import { calculateDailyQuota, getInviteLimit } from '~/domain/invite';
 import { createI18n } from '~/i18n';
@@ -91,7 +91,9 @@ export async function handleProfile(message: TelegramMessage, env: Env): Promise
     // Format nickname with country flag
     const displayNickname = formatNicknameWithFlag(
       user.nickname || i18n.t('profile.notSet'),
-      user.country_code
+      user.country_code,
+      user.gender,
+      isVIP(user)
     );
 
     // Get invite statistics
@@ -268,7 +270,9 @@ export async function handleProfileCard(
     // Format nickname with country flag
     const displayNickname = formatNicknameWithFlag(
       targetUser.nickname || i18n.t('profile.anonymousUser'),
-      targetUser.country_code
+      targetUser.country_code,
+      targetUser.gender,
+      isVIP(targetUser)
     );
 
     // Check if viewer gifted VIP to target (NEW)

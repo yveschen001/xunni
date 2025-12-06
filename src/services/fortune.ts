@@ -587,8 +587,9 @@ export class FortuneService {
     if (cached) return cached;
 
     // 2. Check Quota (if not cached)
+    const isVip = !!(user.is_vip && user.vip_expire_at && new Date(user.vip_expire_at) > new Date());
+
     if (!skipQuota) {
-        const isVip = !!(user.is_vip && user.vip_expire_at && new Date(user.vip_expire_at) > new Date());
         const hasQuota = await this.deductQuota(user.telegram_id, isVip);
         if (!hasQuota) {
           throw new Error('QUOTA_EXCEEDED');
@@ -769,6 +770,11 @@ export class FortuneService {
         }
     }
 
+    // Environmental Context (VIP Feature Logic)
+    const currentCity = user.city || profile.birth_city || 'Unknown';
+    const countryCode = user.country_code || 'TW'; 
+    const envContextXml = this.getEnvironmentalContext(targetDate, currentCity, countryCode);
+
     const contextXml = `
 <context_data>
   <user_profile>
@@ -792,10 +798,12 @@ export class FortuneService {
     <fortune_type>${type}</fortune_type>
   </request_info>
 
+  ${envContextXml}
+
   <chart_data>
     ${JSON.stringify(chart)}
   </chart_data>
-
+  
   ${targetProfile ? `<target_profile>
     <name>${targetProfile.name}</name>
     <birth>${targetProfile.birth_date} ${(!targetProfile.is_birth_time_unknown && targetProfile.birth_time) ? targetProfile.birth_time : 'Unknown Time'}</birth>
@@ -855,6 +863,16 @@ export class FortuneService {
         }
 
         let taskPrompt = FORTUNE_PROMPTS[promptKey];
+        
+        // --- VIP STRATEGY INJECTION ---
+        if (taskPrompt.includes('{{VIP_MODE_INSTRUCTION}}')) {
+            // @ts-ignore
+            const vipStrategy = FORTUNE_PROMPTS.VIP_STRATEGIES[isVip ? 'VIP' : 'FREE'];
+            taskPrompt = taskPrompt
+                .replace('{{VIP_MODE_INSTRUCTION}}', vipStrategy)
+                .replace(/{CITY}/g, currentCity)
+                .replace(/{CURRENT_DATE}/g, targetDate);
+        }
         
         // Inject Strong Language Directive (Crucial for multi-stage)
         taskPrompt += `\n\nIMPORTANT: You MUST answer in ${langName}.`;
@@ -1192,6 +1210,73 @@ export class FortuneService {
       await this.refundQuota(user.telegram_id, isVip);
       throw e;
     }
+  }
+
+  private getEnvironmentalContext(targetDateStr: string, userCity: string, countryCode: string = 'TW'): string {
+    const today = new Date(targetDateStr);
+    
+    // 1. Season Logic (Simple Hemispheric Check)
+    const isSouthernHemisphere = ['AU', 'NZ', 'BR', 'AR', 'ZA', 'CL', 'PE'].includes(countryCode);
+    const month = today.getMonth() + 1;
+    
+    let season = 'Winter';
+    if (month >= 3 && month <= 5) season = isSouthernHemisphere ? 'Autumn' : 'Spring';
+    else if (month >= 6 && month <= 8) season = isSouthernHemisphere ? 'Winter' : 'Summer';
+    else if (month >= 9 && month <= 11) season = isSouthernHemisphere ? 'Spring' : 'Autumn';
+    else season = isSouthernHemisphere ? 'Summer' : 'Winter';
+
+    // 2. Upcoming Holidays (Next 7 days)
+    const upcomingHolidays: string[] = [];
+    const checkDate = new Date(today);
+    
+    // 2025 Calendar & Global Fixed Holidays
+    const holidays = [
+        // Global
+        { m: 1, d: 1, name: 'New Year (Jan 1)', regions: null },
+        { m: 2, d: 14, name: "Valentine's Day", regions: null },
+        { m: 12, d: 24, name: 'Christmas Eve', regions: null },
+        { m: 12, d: 25, name: 'Christmas', regions: null },
+        { m: 12, d: 31, name: "New Year's Eve", regions: null },
+        
+        // Asian / Lunar (2025 Specific)
+        { m: 1, d: 28, name: 'Lunar New Year Eve (除夕)', regions: ['TW', 'CN', 'HK', 'SG', 'MY', 'VN'] },
+        { m: 1, d: 29, name: 'Lunar New Year (春節)', regions: ['TW', 'CN', 'HK', 'SG', 'MY', 'VN', 'KR'] },
+        { m: 10, d: 6, name: 'Mid-Autumn Festival (中秋)', regions: ['TW', 'CN', 'HK', 'SG'] },
+        
+        // Japan
+        { m: 3, d: 14, name: 'White Day', regions: ['JP', 'TW', 'KR'] },
+        { m: 4, d: 29, name: 'Showa Day (Golden Week)', regions: ['JP'] },
+        
+        // Western
+        { m: 10, d: 31, name: 'Halloween', regions: ['US', 'CA', 'UK', 'EU', 'AU'] },
+        { m: 11, d: 27, name: 'Thanksgiving', regions: ['US'] },
+    ];
+
+    for (let i = 0; i < 7; i++) {
+        const m = checkDate.getMonth() + 1;
+        const d = checkDate.getDate();
+        
+        for (const h of holidays) {
+            if (h.m === m && h.d === d) {
+                if (!h.regions || h.regions.includes(countryCode)) {
+                    upcomingHolidays.push(`${h.name} (${m}/${d})`);
+                }
+            }
+        }
+        checkDate.setDate(checkDate.getDate() + 1);
+    }
+
+    const holidayStr = upcomingHolidays.length > 0 ? upcomingHolidays.join(', ') : 'None nearby';
+
+    return `
+<environmental_context>
+  Current_Date: ${targetDateStr}
+  Day_of_Week: ${today.toLocaleDateString('en-US', { weekday: 'long' })}
+  Season: ${season}
+  Current_Location: ${userCity || 'Unknown'} (${countryCode})
+  Upcoming_Holidays: ${holidayStr}
+</environmental_context>
+    `.trim();
   }
 
   private async logAiCost(userId: string, type: string, subType: string, provider: string, model: string, inputTokens: number, outputTokens: number): Promise<void> {

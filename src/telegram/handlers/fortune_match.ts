@@ -13,6 +13,7 @@ import { formatNicknameWithFlag } from '~/utils/country_flag';
 import { maskNickname } from '~/utils/nickname';
 import { calculateMatchScore } from '~/domain/fortune_match';
 import { FortuneService } from '~/services/fortune';
+import { isVIP } from '~/domain/user';
 
 export async function handleFortuneMatch(
   callbackQuery: any,
@@ -91,7 +92,9 @@ export async function handleFortuneMatch(
     // 6. Display Result
     const targetName = formatNicknameWithFlag(
       maskNickname(targetUser.nickname || targetUser.username || i18n.t('profile.anonymousUser')),
-      targetUser.country_code
+      targetUser.country_code,
+      targetUser.gender,
+      targetIsVip
     );
 
     let message = i18n.t('match.resultTitle', { target: targetName }) + '\n\n';

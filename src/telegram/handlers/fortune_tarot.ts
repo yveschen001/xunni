@@ -45,7 +45,7 @@ export class TarotHandler {
 
     // 2. Draw Cards
     const msg = await telegram.sendMessageAndGetId(chatId, `🃏 ${this.i18n.t('fortune.tarot_ui.shuffling')}`);
-    await new Promise(r => setTimeout(r, 1500));
+    await new Promise(r => setTimeout(r, 2000)); // Increased shuffle time to 2s
     
     const cards = drawCards(3);
     const cardDisplay = cards.map((c, i) => `${i + 1}. ${getCardDisplay(c.card, c.reversed, this.i18n)}`).join('\n');
@@ -53,6 +53,8 @@ export class TarotHandler {
     await telegram.editMessageText(chatId, msg.message_id, 
       `${this.i18n.t('fortune.tarot_ui.drawn')}\n\n${cardDisplay}\n\n${this.i18n.t('common.analyzing')}`
     );
+    // Keep the "drawn" state visible for a moment before dispatching or just let it stay until queue picks up
+    await new Promise(r => setTimeout(r, 1500)); // Show drawn cards for 1.5s
 
     try {
       // 3. Dispatch Job

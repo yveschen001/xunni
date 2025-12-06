@@ -183,6 +183,20 @@ export function extendVIPExpiration(currentExpiration: string, durationDays: num
 }
 
 // ============================================================================
+// Display Logic
+// ============================================================================
+
+/**
+ * Get display name with VIP status
+ */
+export function getDisplayName(user: User): string {
+  const name = user.nickname || user.first_name || 'User';
+  // Check VIP status
+  const isVipUser = isVIP(user);
+  return isVipUser ? `👑 ${name}` : name;
+}
+
+// ============================================================================
 // Role & Permission Checks
 // ============================================================================
 

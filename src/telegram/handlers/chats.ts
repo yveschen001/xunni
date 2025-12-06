@@ -14,6 +14,7 @@ import { formatIdentifier } from '~/domain/conversation_identifier';
 import { maskNickname } from '~/domain/invite';
 import { createI18n } from '~/i18n';
 import { formatNicknameWithFlag } from '~/utils/country_flag';
+import { isVIP } from '~/domain/user';
 
 const PAGE_SIZE = 10;
 
@@ -127,7 +128,12 @@ export async function handleChats(
       // Protection: Get partner from batch query, fallback to "Unknown"
       const partner = partnerMap.get(partnerTelegramId);
       const partnerNickname = partner
-        ? formatNicknameWithFlag(maskNickname(partner.nickname || partner.username || ''), partner.country_code, partner.gender)
+        ? formatNicknameWithFlag(
+            maskNickname(partner.nickname || partner.username || ''),
+            partner.country_code,
+            partner.gender,
+            isVIP(partner)
+          )
         : i18n.t('conversation.short2');
 
       const statusEmoji = conv.status === 'active' ? '✅' : '⏸️';
@@ -352,7 +358,7 @@ async function getPartnersBatch(
     const result = await db.d1
       .prepare(
         `
-        SELECT telegram_id, nickname, username
+        SELECT telegram_id, nickname, username, country_code, gender, is_vip, vip_expire_at
         FROM users
         WHERE telegram_id IN (${partnerIds.map(() => '?').join(',')})
       `

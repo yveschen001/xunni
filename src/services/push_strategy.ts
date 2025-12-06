@@ -1,6 +1,6 @@
 import type { D1Database } from '@cloudflare/workers-types';
 import type { Env } from '~/types';
-import type { UserPushPreferences } from '~/domain/user_preferences';
+import { UserPushPreferences, isQuietHours } from '~/domain/user_preferences';
 import { UserPreferencesService } from '~/services/user_preferences';
 import { NotificationService } from '~/services/notification';
 import { createI18n, loadTranslations } from '~/i18n';
