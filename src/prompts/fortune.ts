@@ -81,10 +81,10 @@ Task: Generate PART 1 of a Daily Fortune (Morning & General Energy).
 3. **Lens 2: The Mindset (MBTI)**: How should their personality type navigate this vibe?
 4. **Drafting**: Write the content following the structure below.
 
-Structure (Translate headers to target language, use UPPERCASE):
-1. 👋 GREETING: Warm greeting using user's name. Acknowledge the day's energy.
-2. 🌟 THE DAY'S VIBE: General energy forecast based on the Stars.
-3. 🧘 MIND & BODY: Mental clarity check.
+Structure (Translate all headers to {LANGUAGE} naturally):
+1. 👋 [Translate: GREETING]: Warm greeting using user's name. Acknowledge the day's energy.
+2. 🌟 [Translate: THE DAY'S VIBE]: General energy forecast based on the Stars.
+3. 🧘 [Translate: MIND & BODY]: Mental clarity check.
 `,
   DAILY_2: `
 Task: CONTINUE the narrative from the previous page (Part 2: Work, Career & Wealth).
@@ -100,9 +100,9 @@ Context: The previous page ended mid-sentence or with a comma.
 2. **Lens 1: The Environment (Stars)**: How does today's energy affect their specific line of work?
 3. **Lens 2: The Strategy (MBTI)**: How can their personality type best handle this environment?
 
-Structure (Translate headers to target language, use UPPERCASE):
-4. 💼 WORK & PRODUCTIVITY: Focus for the day. Use a phrase like "Given your [MBTI] nature..."
-5. 💰 WEALTH & LUCK: Financial opportunities or risks today.
+Structure (Translate all headers to {LANGUAGE} naturally):
+4. 💼 [Translate: WORK & PRODUCTIVITY]: Focus for the day. Use a phrase like "Given your [MBTI] nature..."
+5. 💰 [Translate: WEALTH & LUCK]: Financial opportunities or risks today.
 `,
   DAILY_3: `
 Task: CONTINUE the narrative from the previous page (Part 3: Love, Social & Advice).
@@ -117,10 +117,10 @@ Context: The previous page ended mid-sentence or with a comma.
 2. **Lens 1: The Heart (Venus/Moon)**: Determine the social/romantic outlook.
 3. **Lens 2: The Action (Life Coach)**: Generate a specific lucky action based on their Interests.
 
-Structure (Translate headers to target language, use UPPERCASE):
-6. ❤️ LOVE & CONNECTIONS: Romantic vibe and social energy.
-7. 💡 FINAL ADVICE: One concrete action item based on their Interests.
-8. 🍀 LUCKY TOKENS: Color, Number, Time.
+Structure (Translate all headers to {LANGUAGE} naturally):
+6. ❤️ [Translate: LOVE & CONNECTIONS]: Romantic vibe and social energy.
+7. 💡 [Translate: FINAL ADVICE]: One concrete action item based on their Interests.
+8. 🍀 [Translate: LUCKY TOKENS]: Color, Number, Time.
 `,
 
   // Weekly Forecast
@@ -133,11 +133,11 @@ Context: The Opening.
 2. **Content**: General theme of the week.
 3. **Format**: Start with a clear Title Block.
 
-Structure (Translate headers to target language, use UPPERCASE):
-1. 📄 WEEKLY FORTUNE (Header with Date)
-2. 👋 GREETING: Warmly greet [Name].
-3. 🌟 WEEKLY VIBE: The main theme/atmosphere.
-4. 💼 WORK & CAREER: Professional outlook (End this section with a transition sentence that leads into relationships).
+Structure (Translate all headers to {LANGUAGE} naturally):
+1. 📄 [Translate: WEEKLY FORTUNE] (Header with Date)
+2. 👋 [Translate: GREETING]: Warmly greet [Name].
+3. 🌟 [Translate: WEEKLY VIBE]: The main theme/atmosphere.
+4. 💼 [Translate: WORK & CAREER]: Professional outlook (End this section with a transition sentence that leads into relationships).
 `,
   WEEKLY_2: `
 Task: CONTINUE the narrative (Part 2: Social & Energy).
@@ -148,9 +148,9 @@ Context: The previous part ended discussing Work/General vibe.
 - **Example Start**: "Amidst this busy work schedule, your social life..." or "In contrast to the career stress, your heart..."
 - DO NOT repeat greetings.
 
-Structure (Translate headers to target language, use UPPERCASE):
-5. ❤️ HEART & CONNECTION: Love, friendship, family dynamics.
-6. 🔋 ENERGY METER: Social battery level (Introvert vs Extrovert advice).
+Structure (Translate all headers to {LANGUAGE} naturally):
+5. ❤️ [Translate: HEART & CONNECTION]: Love, friendship, family dynamics.
+6. 🔋 [Translate: ENERGY METER]: Social battery level (Introvert vs Extrovert advice).
 `,
   WEEKLY_3: `
 Task: CONTINUE the narrative (Part 3: Next Week's Highs).
@@ -160,9 +160,9 @@ Context: Transitioning from "Review" to "Forecast".
 - Bridge the current week into next week.
 - **Example Start**: "Looking ahead, the energy shifts..." or "As we move into next week..."
 
-Structure (Translate headers to target language, use UPPERCASE):
-7. 🚀 OPPORTUNITY RADAR: Best days or cosmic boosts coming up.
-8. ✨ COSMIC ADVANTAGE: How their MBTI can exploit this luck.
+Structure (Translate all headers to {LANGUAGE} naturally):
+7. 🚀 [Translate: OPPORTUNITY RADAR]: Best days or cosmic boosts coming up.
+8. ✨ [Translate: COSMIC ADVANTAGE]: How their MBTI can exploit this luck.
 `,
   WEEKLY_4: `
 Task: CONTINUE the narrative (Part 4: Risks & Defense).
@@ -172,9 +172,9 @@ Context: Balancing the highs with caution.
 - **Start IMMEDIATELY** with the cautionary advice.
 - **Example Start**: "However, be mindful of..." or "On the flip side..."
 
-Structure (Translate headers to target language, use UPPERCASE):
-9. ⚠️ GENTLE WARNING: Potential pitfalls (Mercury Retrograde, conflicts).
-10. 🛡️ SHIELD STRATEGY: Practical defense based on personality.
+Structure (Translate all headers to {LANGUAGE} naturally):
+9. ⚠️ [Translate: GENTLE WARNING]: Potential pitfalls (Mercury Retrograde, conflicts).
+10. 🛡️ [Translate: SHIELD STRATEGY]: Practical defense based on personality.
 `,
   WEEKLY_5: `
 Task: CONTINUE the narrative (Part 5: Conclusion & Specific Advice).
@@ -184,113 +184,136 @@ Context: The Closing.
 - IF user interests are missing, use the **FALLBACK RULE** (assume Food/Music/Nature based on Element).
 - Describe the activity vividly (smell, taste, sound).
 
-Structure (Translate headers to target language, use UPPERCASE):
-11. 🌉 TRANSITION STRATEGY: How to bridge this week to the next.
-12. 💡 SOUL PRESCRIPTION: A specific activity (Cooking, Walking, Art).
-13. 📜 WEEKLY MANTRA: A short, powerful quote for them.
+Structure (Translate all headers to {LANGUAGE} naturally):
+11. 🌉 [Translate: TRANSITION STRATEGY]: How to bridge this week to the next.
+12. 💡 [Translate: SOUL PRESCRIPTION]: A specific activity (Cooking, Walking, Art).
+13. 📜 [Translate: WEEKLY MANTRA]: A short, powerful quote for them.
    - (End with a subtle upsell hint if VIP exists, strictly plain text).
 `,
 
-  // Love Match (Optimized for Telegram & Seamless Flow)
+  // Love Match (Optimized for Localization & Context Awareness)
   LOVE_MATCH_1: `
-Task: Generate PART 1 of a COMPATIBILITY REPORT (Soul & Karma).
-Context: {Relationship Type} between [User] & [Target].
-Tone: Relationship Expert (Warm, Insightful, avoiding "Error Speak").
+Task: Generate PART 1 of a COMPATIBILITY REPORT (The Cosmic Bond).
+Context: Relationship between [User] & [Target].
+Role: A wise Relationship Consultant.
 
-### DATA HANDLING RULES (CRITICAL)
-1. **NO ERROR MESSAGES**: If Birth Time/Ascendant is missing, **DO NOT** say "Since data is missing...".
-   - **Strategy**: Pivot immediately to what IS known (Sun Sign, Elements, MBTI).
-   - **Phrasing**: Instead of "We don't know your Ascendant," say "Your core solar energy suggests..."
-2. **FORMATTING**: 
-   - PLAIN TEXT ONLY. No Markdown (*, _). 
-   - Use Emojis for structure.
+### CRITICAL: HEADER LOCALIZATION
+- **RULE**: All headers MUST be in the Target Language ({LANGUAGE}).
+- **Example**: If Language is Chinese, output "🌌 宇宙化學反應" instead of "COSMIC CHEMISTRY".
 
-### INSTRUCTIONS
-1. **Lens 1: The Cosmic Vibe (Western)**: Analyze the Sun Signs. Are they compatible elements (e.g., Earth & Water)?
-2. **Lens 2: The Energy Flow (Eastern)**: If BaZi data exists, compare Day Masters. If not, compare Zodiac Animals.
-3. **Drafting**: Create a strong opening.
+### CRITICAL: KINSHIP & HIERARCHY CHECK (READ THE DATA)
+**You MUST read the <kinship_logic> block provided in the context.**
+1. **User Role**: Use the value in <user_role> (e.g., "Older Brother", "Little Sister").
+2. **Target Role**: Use the value in <target_role>.
+3. **Tone**: 
+   - If User is Older: Protective, guiding.
+   - If User is Younger: Respectful, seeking advice.
+4. **Consistency**: Ensure you address the user by their correct role throughout the text.
 
-Structure (Translate headers to target language, use UPPERCASE):
-1. 📄 LOVE MATCH REPORT (Header with Date)
-2. 🌌 COSMIC CHEMISTRY: The astrological fit.
-3. ☯️ YIN & YANG BALANCE: The elemental dynamic.
-4. 🔮 SOUL CONTRACT: Why these two souls met. (End with a transition about communication).
+### RELATIONSHIP CONTEXT (General)
+1. **ROMANTIC**: Focus on chemistry, soulmates.
+2. **PLATONIC/FAMILY**: Focus on trust, loyalty, roots.
+3. **PROFESSIONAL**: Focus on efficiency, synergy.
+
+### DATA HANDLING (SILENT INFERENCE)
+- **IF Birth Time/Ascendant is missing**: **DO NOT** say "Data is missing".
+- **Action**: Analyze the connection based on **Sun Signs** and **Elements** alone.
+
+Structure (Translate all headers to {LANGUAGE} naturally):
+1. 📄 [Translate: COMPATIBILITY REPORT] (Header with Date)
+2. 🌌 [Translate: COSMIC CHEMISTRY]: The elemental fit.
+   - *Adjustment*: If Family, call it [Translate: FAMILY BOND].
+3. ☯️ [Translate: YIN & YANG BALANCE]: The dynamic flow.
+4. 🔮 [Translate: SOUL CONTRACT]: Why you were born into the same circle.
 `,
+
   LOVE_MATCH_2: `
 Task: CONTINUE the narrative (Part 2: Mind & Communication).
-Context: The previous part ended with a soul overview.
+Context: The previous part ended with the soul connection.
 
 ⚠️ STRICT CONTINUITY RULE:
-- **Start IMMEDIATELY** with the topic of communication.
-- **Example Start**: "When it comes to exchanging ideas..." or "Intellectually, this bond is..."
-- **NO** greetings or meta-talk.
+- **Start IMMEDIATELY** with communication topics.
 
-### INSTRUCTIONS
-1. **Lens 1: Thinking Styles (MBTI)**: How do their cognitive functions mesh? (e.g., Fe vs Fi).
-2. **Lens 2: Communication (Mercury)**: 
-   - **CRITICAL**: If Mercury sign is unknown, infer communication style from the **SUN SIGN**.
-   - Example: If Sun is Virgo -> "Your communication is likely precise and practical..."
-3. **Drafting**: Focus on how they solve problems together.
+### DATA HANDLING (SILENT INFERENCE)
+- **IF Mercury Sign is unknown**: **DO NOT ADMIT IT.**
+- **Action**: Infer communication style from the **Sun Sign** or **MBTI**.
 
-Structure (Translate headers to target language, use UPPERCASE):
-5. 🧠 MENTAL SYNC (MBTI): How your minds connect.
-6. 🗣️ LANGUAGE OF LOGIC: Communication flow and potential misunderstandings.
+Structure (Translate all headers to {LANGUAGE} naturally):
+5. 🧠 [Translate: MENTAL SYNC] (MBTI): How your minds connect.
+6. 🗣️ [Translate: COMMUNICATION FLOW]: Potential friction vs. smooth sailing.
 `,
+
   LOVE_MATCH_3: `
-Task: CONTINUE the narrative (Part 3: Heart & Emotion).
-Context: Transitioning from Mind to Heart.
+Task: CONTINUE the narrative (Part 3: Emotional & Trust).
+Context: Transitioning from Mind to Heart/Trust.
 
 ⚠️ STRICT CONTINUITY RULE:
-- **Start IMMEDIATELY** with emotional topics.
-- **Example Start**: "Moving from the head to the heart..." or "Beneath the surface conversations..."
+- **Start IMMEDIATELY** with trust/emotion topics.
+
+### DATA HANDLING (SILENT INFERENCE)
+- **IF Moon Sign is unknown**: **DO NOT ADMIT IT.**
+- **Action**: Describe "Inner Needs" based on **Element** (Water=Empathy, Earth=Stability).
 
 ### INSTRUCTIONS
-1. **Lens 1: Emotional Needs (Moon)**:
-   - If Moon is unknown, use **MBTI Feeling Function** (Fe/Fi) to describe needs.
-   - **Rule**: NEVER say "Moon is unknown." Say "Your emotional core craves..."
-2. **Lens 2: Affection Style (Venus)**: How do they show love?
-3. **Drafting**: Focus on emotional safety and comfort.
+- **Mode Check**:
+  - **Romantic**: Discuss "Emotional Safety".
+  - **Platonic/Work**: Discuss "Trust" and "Reliability".
 
-Structure (Target Language):
-7. ❤️ EMOTIONAL ANCHOR: What makes both feel safe.
-8. 🏡 AFFECTION STYLE: How love is demonstrated daily.
+Structure (Translate all headers to {LANGUAGE} naturally):
+7. ❤️ [Translate: EMOTIONAL ANCHOR]: What makes the relationship feel safe.
+   - *Adjustment*: If Work, title it "🤝 [Translate: TRUST FOUNDATION]".
+8. 🏡 [Translate: CARE & SUPPORT]: How you look out for each other.
 `,
+
   LOVE_MATCH_4: `
-Task: CONTINUE the narrative (Part 4: Passion & Dynamic).
-Context: Transitioning from Safety to Spark.
+Task: CONTINUE the narrative (Part 4: Energy & Dynamics).
+Context: Transitioning to Action/Drive.
 
 ⚠️ STRICT CONTINUITY RULE:
-- **Start IMMEDIATELY** with drive/passion.
-- **Example Start**: "While comfort is key, a relationship also needs fire..."
+- **Start IMMEDIATELY** with drive/energy topics.
 
-### INSTRUCTIONS
-1. **Lens 1: The Spark (Mars)**:
-   - If Mars is unknown, infer drive from **Element** (Fire/Air = High, Earth/Water = Steady).
-2. **Lens 2: Power Dynamics**: Who leads? Use MBTI (J vs P) to determine the planner vs the follower.
-3. **Drafting**: Analyze conflict resolution and chemistry.
+### CRITICAL: TONE ADJUSTMENT
+- **ROMANTIC**: Discuss "Passion" and "Spark".
+- **PLATONIC/WORK**: Discuss "Drive", "Shared Goals", or "Enthusiasm". 
+- **FORBIDDEN**: Do NOT use words like "Sexual" or "Desire" for Friends/Colleagues.
 
-Structure (Target Language):
-9. 🔥 PASSION & DRIVE: Sexual/Creative chemistry.
-10. ⚡ POWER BALANCE: Who leads? How to avoid control issues.
+Structure (Translate all headers to {LANGUAGE} naturally):
+9. 🔥 [Translate: SHARED DRIVE]: Energy levels and motivation.
+   - *Adjustment*: If Romantic, can use "PASSION".
+10. ⚡ [Translate: DYNAMIC BALANCE]: Leadership and conflict resolution.
 `,
+
   LOVE_MATCH_5: `
 Task: CONTINUE the narrative (Part 5: Verdict & Action).
 Context: Conclusion.
 
-### CRITICAL: INTEREST INTEGRATION (FALLBACK)
-- IF \`user.interests\` is empty: **INVENT** a scenario based on their Element.
-  - Earth (Virgo/Taurus/Cap) -> Cooking, Hiking, Pottery.
-  - Air (Gemini/Libra/Aq) -> Museums, Social Events, Games.
-  - Water (Cancer/Scorpio/Pisces) -> Beach, Movies, Spa.
-  - Fire (Aries/Leo/Sag) -> Sports, Travel, Karaoke.
-- **Output**: Give a specific date idea.
+### CRITICAL: HEADER LOCALIZATION
+**STRICT RULE**: You MUST output all headers in {LANGUAGE}.
+- ❌ BAD: "🏰 LONG-TERM POTENTIAL"
+- ✅ GOOD: "🏰 長遠潛力" (if Chinese) or "🏰 長期的可能性" (if Japanese).
 
-Structure (Target Language):
-11. 🏰 FUTURE BUILDING: Long-term potential.
-12. ⚖️ FINAL VERDICT: 
-   - Compatibility Score (e.g., 85/100).
-   - Relationship Archetype (e.g., "The Power Couple").
-13. 💡 CUPID'S ADVICE: A specific date idea based on interests (real or inferred).
+### CRITICAL: ADAPTIVE ADVICE MODE
+**Analyze the {relationship_context} (Family vs Romantic) to choose the right header.**
+
+1. **SCENARIO A: ROMANTIC** (Lovers / Crushes)
+   - Header Meaning: "Cupid's Advice"
+   - Action: Suggest a "Date" (e.g., Romantic Dinner).
+
+2. **SCENARIO B: PLATONIC/FAMILY** (Siblings, Friends)
+   - Header Meaning: "Family Bonding" (if Family) or "Bonding Tip" (if Friend).
+   - Action: Suggest a "Hangout" or "Shared Activity". **FORBID** "Date".
+
+3. **SCENARIO C: PROFESSIONAL** (Colleagues)
+   - Header Meaning: "Synergy Strategy"
+   - Action: Suggest "Collaboration".
+
+### INSTRUCTIONS
+1. **Interest Fallback**: If interests are missing, infer activity from **Elements**.
+
+Structure (Use {LANGUAGE} for all text):
+11. 🏰 [Header for "Long Term Potential"]: Where this is heading.
+12. ⚖️ [Header for "Final Verdict"]: Score (0-100) & Archetype Name.
+13. 💡 [Header selected from Scenario A/B/C above]: Specific advice.
 `,
 
   // Love Ideal (Single)
@@ -311,9 +334,9 @@ Tone: Relationship Coach (Encouraging, Honest).
 2. **Lens 2: Psychology (MBTI)**: What is their relationship style?
 3. **Drafting**: Write the content following the structure below.
 
-Structure (Translate headers to target language, use UPPERCASE):
-1. 💖 YOUR LOVE DNA: How you express affection and what you crave.
-2. 🎭 RELATIONSHIP STYLE: Are you a giver, a taker, independent, or clingy? (Based on MBTI).
+Structure (Translate all headers to {LANGUAGE} naturally):
+1. 💖 [Translate: YOUR LOVE DNA]: How you express affection and what you crave.
+2. 🎭 [Translate: RELATIONSHIP STYLE]: Are you a giver, a taker, independent, or clingy? (Based on MBTI).
 `,
   LOVE_IDEAL_2: `
 Task: CONTINUE the narrative from the previous page (Part 2: The Ideal Match).
@@ -328,9 +351,9 @@ Context: The previous page ended mid-sentence or with a comma. Define the perfec
 2. **Description**: Describe the personality, vibe, and even physical traits of their ideal mate.
 3. **Drafting**: Write the content following the structure below.
 
-Structure (Translate headers to target language, use UPPERCASE):
-3. 🏹 THE PERFECT MATCH: Personality traits of your soulmate.
-4. 🧩 COMPATIBILITY CHECK: Why this type works for you.
+Structure (Translate all headers to {LANGUAGE} naturally):
+3. 🏹 [Translate: THE PERFECT MATCH]: Personality traits of your soulmate.
+4. 🧩 [Translate: COMPATIBILITY CHECK]: Why this type works for you.
 `,
   LOVE_IDEAL_3: `
 Task: CONTINUE the narrative from the previous page (Part 3: Action Plan).
@@ -345,10 +368,10 @@ Context: The previous page ended mid-sentence or with a comma. How to find this 
 2. **Advice**: One specific tip to attract them, involving the User's Interests.
 3. **Drafting**: Write the content following the structure below.
 
-Structure (Translate headers to target language, use UPPERCASE):
-5. 📍 WHERE TO MEET: Places or contexts (online/offline) to find them.
-6. 💡 ATTRACTION SECRET: A tip to catch their eye.
-7. 🍀 LOVE LUCK: Best timing or lucky sign.
+Structure (Translate all headers to {LANGUAGE} naturally):
+5. 📍 [Translate: WHERE TO MEET]: Places or contexts (online/offline) to find them.
+6. 💡 [Translate: ATTRACTION SECRET]: A tip to catch their eye.
+7. 🍀 [Translate: LOVE LUCK]: Best timing or lucky sign.
 `,
 
   // Celebrity
@@ -378,10 +401,10 @@ Tone: Pop-Culture Expert (Enthusiastic, Fun).
 2. **Justification**: State the shared birthday.
 3. **Drafting**: Write the content following the structure below.
 
-Structure (Translate headers to target language, use UPPERCASE):
-1. 🌟 YOUR CELEBRITY BIRTHDAY TWIN: Reveal the name and birth date!
-2. 🎂 BIRTHDAY BOND: "You both blow out candles on {Month Day}!"
-3. 🎭 PERSONALITY MIRROR: How your shared start in life shapes your destiny.
+Structure (Translate all headers to {LANGUAGE} naturally):
+1. 🌟 [Translate: YOUR CELEBRITY BIRTHDAY TWIN]: Reveal the name and birth date!
+2. 🎂 [Translate: BIRTHDAY BOND]: "You both blow out candles on {Month Day}!"
+3. 🎭 [Translate: PERSONALITY MIRROR]: How your shared start in life shapes your destiny.
 `,
   CELEBRITY_2: `
 Task: CONTINUE the narrative from the previous page (Part 2: Private Life).
@@ -396,9 +419,9 @@ Context: The previous page ended mid-sentence or with a comma.
 2. **Comparison**: Map these traits to the user's profile (Moon sign, etc.).
 3. **Drafting**: Write the content following the structure below.
 
-Structure (Translate headers to target language, use UPPERCASE):
-3. 🌙 INNER WORLD MATCH: Emotional similarities. Handling stress/love.
-4. 🏠 LIFESTYLE VIBES: Shared tastes or habits.
+Structure (Translate all headers to {LANGUAGE} naturally):
+3. 🌙 [Translate: INNER WORLD MATCH]: Emotional similarities. Handling stress/love.
+4. 🏠 [Translate: LIFESTYLE VIBES]: Shared tastes or habits.
 `,
   CELEBRITY_3: `
 Task: CONTINUE the narrative from the previous page (Part 3: Public Success).
@@ -413,9 +436,9 @@ Context: The previous page ended mid-sentence or with a comma.
 2. **Application**: How can the user apply this "blueprint" to their own career/life?
 3. **Drafting**: Write the content following the structure below.
 
-Structure (Translate headers to target language, use UPPERCASE):
-5. 🚀 CAREER & IMAGE: How you both shine in public. Shared "Superpower".
-6. 💼 SUCCESS PATTERN: How they achieved success and how you can apply it.
+Structure (Translate all headers to {LANGUAGE} naturally):
+5. 🚀 [Translate: CAREER & IMAGE]: How you both shine in public. Shared "Superpower".
+6. 💼 [Translate: SUCCESS PATTERN]: How they achieved success and how you can apply it.
 `,
   CELEBRITY_4: `
 Task: CONTINUE the narrative from the previous page (Part 4: Lessons).
@@ -430,9 +453,9 @@ Context: The previous page ended mid-sentence or with a comma.
 2. **Lesson**: Extract a universal lesson applicable to the user.
 3. **Drafting**: Write the content following the structure below.
 
-Structure (Translate headers to target language, use UPPERCASE):
-7. 🎓 LIFE LESSONS: Shared challenges and how to overcome them.
-8. ✨ INSPIRATION: What you can learn from their journey.
+Structure (Translate all headers to {LANGUAGE} naturally):
+7. 🎓 [Translate: LIFE LESSONS]: Shared challenges and how to overcome them.
+8. ✨ [Translate: INSPIRATION]: What you can learn from their journey.
 `,
   CELEBRITY_5: `
 Task: CONTINUE the narrative from the previous page (Part 5: Fun & Verdict).
@@ -447,10 +470,10 @@ Context: The previous page ended mid-sentence or with a comma.
 2. **Connection**: Connect it to the user's declared Interests.
 3. **Drafting**: Write the content following the structure below.
 
-Structure (Translate headers to target language, use UPPERCASE):
-9. 🎲 FUN FACT: A weird or cool fact about them.
-10. 🎯 INTEREST LINK: Do they share your interest in [Interests]?
-11. 🔗 WIKI LINK: Provide a Wikipedia link.
+Structure (Translate all headers to {LANGUAGE} naturally):
+9. 🎲 [Translate: FUN FACT]: A weird or cool fact about them.
+10. 🎯 [Translate: INTEREST LINK]: Do they share your interest in [Interests]?
+11. 🔗 [Translate: WIKI LINK]: Provide a Wikipedia link.
 `,
 
   // Zi Wei Dou Shu (Grandmaster Tone & Invisible Fallback)
@@ -472,9 +495,9 @@ Style: Use terms like "The Emperor," "The General," "Palace of Life."
   - **IxP (Thinkers)** -> Assume **"Tai Yin (The Moon)"** or **"Tian Tong (The Child)"**.
 - **RULE**: Speak as if this IS their chart. Do NOT say "Since data is missing, I assume...". Say "Your Life Palace sits under the command of [Star Name]..."
 
-Structure (Target Language):
-1. 🔮 LIFE PALACE (命宮): The Core Self. (Describe their assigned "Major Star" and how it shapes their destiny).
-2. 🧬 BODY PALACE (身宮): Post-natal growth. (How they act in the physical world).
+Structure (Translate all headers to {LANGUAGE} naturally):
+1. 🔮 [Translate: LIFE PALACE] (命宮): The Core Self. (Describe their assigned "Major Star" and how it shapes their destiny).
+2. 🧬 [Translate: BODY PALACE] (身宮): Post-natal growth. (How they act in the physical world).
 `,
   ZIWEI_2: `
 Task: CONTINUE the narrative (Part 2: Career & Travel).
@@ -492,9 +515,9 @@ Context: Moving from the Self to the World.
 2. **Travel Palace (遷移宮)**: 
    - Focus on their public reputation and luck outside.
 
-Structure (Target Language):
-3. 💼 CAREER PALACE (官祿宮): Professional destiny and leadership style.
-4. ✈️ TRAVEL PALACE (遷移宮): Social image and luck in foreign lands.
+Structure (Translate all headers to {LANGUAGE} naturally):
+3. 💼 [Translate: CAREER PALACE] (官祿宮): Professional destiny and leadership style.
+4. ✈️ [Translate: TRAVEL PALACE] (遷移宮): Social image and luck in foreign lands.
 `,
   ZIWEI_3: `
 Task: CONTINUE the narrative (Part 3: Wealth & Assets).
@@ -511,9 +534,9 @@ Context: Moving from Career to Rewards.
 2. **Property Palace (田宅宮)**: 
    - Real estate and savings. The ability to "hold" wealth.
 
-Structure (Target Language):
-5. 💰 WEALTH PALACE (財帛宮): Earning potential and money management.
-6. 🏠 PROPERTY PALACE (田宅宮): Home environment and asset accumulation.
+Structure (Translate all headers to {LANGUAGE} naturally):
+5. 💰 [Translate: WEALTH PALACE] (財帛宮): Earning potential and money management.
+6. 🏠 [Translate: PROPERTY PALACE] (田宅宮): Home environment and asset accumulation.
 `,
   ZIWEI_4: `
 Task: CONTINUE the narrative (Part 4: Relationships).
@@ -529,9 +552,9 @@ Context: Moving from Money to People.
 2. **Family (Parents/Children)**: 
    - Brief overview of domestic harmony.
 
-Structure (Target Language):
-7. ❤️ SPOUSE PALACE (夫妻宮): Karmic bonds and partner characteristics.
-8. 👨‍👩‍👧 FAMILY DOMAIN (六親): Interaction with loved ones.
+Structure (Translate all headers to {LANGUAGE} naturally):
+7. ❤️ [Translate: SPOUSE PALACE] (夫妻宮): Karmic bonds and partner characteristics.
+8. 👨‍👩‍👧 [Translate: FAMILY DOMAIN] (六親): Interaction with loved ones.
 `,
   ZIWEI_5: `
 Task: CONTINUE the narrative (Part 5: Fortune & Advice).
@@ -542,10 +565,10 @@ Context: Conclusion and Action.
   - **Tea Ceremony, Calligraphy, Meditation, Go (Chess), or Feng Shui arrangement.**
 - **Tone**: Ancient Wisdom applied to modern life.
 
-Structure (Target Language):
-9. 🔄 DECADE LUCK (大限): The current 10-year climatic trend (Rise or Rest).
-10. 📅 YEARLY LUCK (流年): Focus for 2025 (Snake Year).
-11. 💡 GRANDMASTER'S STRATEGY: A specific life cultivation tip based on interests.
+Structure (Translate all headers to {LANGUAGE} naturally):
+9. 🔄 [Translate: DECADE LUCK] (大限): The current 10-year climatic trend (Rise or Rest).
+10. 📅 [Translate: YEARLY LUCK] (流年): Focus for 2025 (Snake Year).
+11. 💡 [Translate: GRANDMASTER'S STRATEGY]: A specific life cultivation tip based on interests.
 `,
 
   // Astrology
@@ -567,9 +590,9 @@ Style: Focus on energies, archetypes, and soul growth.
 2. **Analysis**: Contrast the Ego (Sun) with the Persona (Ascendant). Do they clash or harmonize?
 3. **Drafting**: Write the content following the structure below.
 
-Structure (Translate headers to target language, use UPPERCASE):
-1. ☀️ THE SUN (EGO): Core drive and purpose.
-2. 🏹 THE ASCENDANT (MASK): First impressions and appearance.
+Structure (Translate all headers to {LANGUAGE} naturally):
+1. ☀️ [Translate: THE SUN] (EGO): Core drive and purpose.
+2. 🏹 [Translate: THE ASCENDANT] (MASK): First impressions and appearance.
 `,
   ASTROLOGY_2: `
 Task: CONTINUE the narrative from the previous page (Part 2: Emotion).
@@ -586,9 +609,9 @@ Context: The previous page ended mid-sentence or with a comma.
 2. **Analysis**: Dive into emotional needs and childhood roots.
 3. **Drafting**: Write the content following the structure below.
 
-Structure (Translate headers to target language, use UPPERCASE):
-3. 🌙 THE MOON (SOUL): Emotional needs, instincts, inner child.
-4. 🏠 THE IC (ROOTS): Family foundation and private self.
+Structure (Translate all headers to {LANGUAGE} naturally):
+3. 🌙 [Translate: THE MOON] (SOUL): Emotional needs, instincts, inner child.
+4. 🏠 [Translate: THE IC] (ROOTS): Family foundation and private self.
 `,
   ASTROLOGY_3: `
 Task: CONTINUE the narrative from the previous page (Part 3: Intellect).
@@ -605,9 +628,9 @@ Context: The previous page ended mid-sentence or with a comma.
 2. **Analysis**: Evaluate learning style, communication, and philosophy.
 3. **Drafting**: Write the content following the structure below.
 
-Structure (Translate headers to target language, use UPPERCASE):
-5. ☿️ MERCURY (MIND): Communication style, learning, logic.
-6. 🧠 3RD & 9TH HOUSE: Short trips vs Long journeys/Philosophy.
+Structure (Translate all headers to {LANGUAGE} naturally):
+5. ☿️ [Translate: MERCURY] (MIND): Communication style, learning, logic.
+6. 🧠 [Translate: 3RD & 9TH HOUSE]: Short trips vs Long journeys/Philosophy.
 `,
   ASTROLOGY_4: `
 Task: CONTINUE the narrative from the previous page (Part 4: Desire).
@@ -624,9 +647,9 @@ Context: The previous page ended mid-sentence or with a comma.
 2. **Analysis**: Analyze the interplay between attraction/values (Venus) and action/drive (Mars).
 3. **Drafting**: Write the content following the structure below.
 
-Structure (Translate headers to target language, use UPPERCASE):
-7. ♀️ VENUS (LOVE): Values, aesthetics, romance style.
-8. ♂️ MARS (DRIVE): Ambition, conflict, sexuality.
+Structure (Translate all headers to {LANGUAGE} naturally):
+7. ♀️ [Translate: VENUS] (LOVE): Values, aesthetics, romance style.
+8. ♂️ [Translate: MARS] (DRIVE): Ambition, conflict, sexuality.
 `,
   ASTROLOGY_5: `
 Task: CONTINUE the narrative from the previous page (Part 5: Growth).
@@ -643,10 +666,10 @@ Context: The previous page ended mid-sentence or with a comma.
 2. **Synthesis**: Combine the expansion of Jupiter with the restriction of Saturn to find the life path.
 3. **Drafting**: Write the content following the structure below.
 
-Structure (Translate headers to target language, use UPPERCASE):
-9. 🪐 SATURN (TEACHER): Discipline, challenges, mastery.
-10. ♃ JUPITER (GURU): Luck, expansion, blessings.
-11. 🌌 CHART SYNTHESIS: Overall life theme.
+Structure (Translate all headers to {LANGUAGE} naturally):
+9. 🪐 [Translate: SATURN] (TEACHER): Discipline, challenges, mastery.
+10. ♃ [Translate: JUPITER] (GURU): Luck, expansion, blessings.
+11. 🌌 [Translate: CHART SYNTHESIS]: Overall life theme.
 `,
 
   // BaZi
@@ -667,9 +690,9 @@ Tone: BaZi Master (Balanced, Elemental, Practical).
 2. **Analysis**: Determine if the Day Master is Strong or Weak based on the Season.
 3. **Drafting**: Write the content following the structure below.
 
-Structure (Translate headers to target language, use UPPERCASE):
-1. 📜 DAY MASTER (日主): Core element and strength analysis.
-2. 🌳 THE SEASON: Support level from birth season.
+Structure (Translate all headers to {LANGUAGE} naturally):
+1. 📜 [Translate: DAY MASTER] (日主): Core element and strength analysis.
+2. 🌳 [Translate: THE SEASON]: Support level from birth season.
 `,
   BAZI_2: `
 Task: CONTINUE the narrative from the previous page (Part 2: Character).
@@ -686,9 +709,9 @@ Context: The previous page ended mid-sentence or with a comma.
 2. **Analysis**: Profile the personality based on the dominant Gods (e.g., 7 Killings vs Direct Officer).
 3. **Drafting**: Write the content following the structure below.
 
-Structure (Translate headers to target language, use UPPERCASE):
-3. 🎭 TEN GODS (十神) PROFILE: Dominant Gods and personality analysis.
-4. 🎨 HIDDEN TALENTS: Potential skills hidden in the chart.
+Structure (Translate all headers to {LANGUAGE} naturally):
+3. 🎭 [Translate: TEN GODS] (十神) PROFILE: Dominant Gods and personality analysis.
+4. 🎨 [Translate: HIDDEN TALENTS]: Potential skills hidden in the chart.
 `,
   BAZI_3: `
 Task: CONTINUE the narrative from the previous page (Part 3: Career).
@@ -705,9 +728,9 @@ Context: The previous page ended mid-sentence or with a comma.
 2. **Analysis**: Is the user suited for Corporate, Creative, or Business roles?
 3. **Drafting**: Write the content following the structure below.
 
-Structure (Translate headers to target language, use UPPERCASE):
-5. 💼 CAREER STRUCTURE (格局): Best career path. Leadership vs Specialist.
-6. 🤝 SOCIAL STATUS: Authority stars analysis.
+Structure (Translate all headers to {LANGUAGE} naturally):
+5. 💼 [Translate: CAREER STRUCTURE] (格局): Best career path. Leadership vs Specialist.
+6. 🤝 [Translate: SOCIAL STATUS]: Authority stars analysis.
 `,
   BAZI_4: `
 Task: CONTINUE the narrative from the previous page (Part 4: Wealth).
@@ -724,8 +747,8 @@ Context: The previous page ended mid-sentence or with a comma.
 2. **Analysis**: Can they keep money? How do they make it?
 3. **Drafting**: Write the content following the structure below.
 
-Structure (Translate headers to target language, use UPPERCASE):
-7. 💰 WEALTH STARS (財星): Direct vs Indirect Wealth. Ability to hold money.
+Structure (Translate all headers to {LANGUAGE} naturally):
+7. 💰 [Translate: WEALTH STARS] (財星): Direct vs Indirect Wealth. Ability to hold money.
 `,
   BAZI_5: `
 Task: CONTINUE the narrative from the previous page (Part 5: Destiny).
@@ -744,9 +767,9 @@ Context: The previous page ended mid-sentence or with a comma.
    - Logic: If Day Master is WEAK, recommend Resource or Friend.
 3. **Drafting**: Write the content following the structure below.
 
-Structure (Translate headers to target language, use UPPERCASE):
-8. 🛣️ LUCK PILLARS (大運): Current 10-year phase.
-9. 💡 REMEDIES (喜用神): Lucky elements/colors to balance the chart.
+Structure (Translate all headers to {LANGUAGE} naturally):
+8. 🛣️ [Translate: LUCK PILLARS] (大運): Current 10-year phase.
+9. 💡 [Translate: REMEDIES] (喜用神): Lucky elements/colors to balance the chart.
 `,
 
   // Tarot
@@ -763,8 +786,8 @@ Tone: Spirit Guide (Mystical, Intuitive, Symbolic).
 3. **Contextualization**: Apply it to the user's current life situation.
 4. **Drafting**: Write the content following the structure below.
 
-Structure (Translate headers to target language, use UPPERCASE):
-1. 🃏 THE PRESENT CARD: Meaning and current situation analysis.
+Structure (Translate all headers to {LANGUAGE} naturally):
+1. 🃏 [Translate: THE PRESENT CARD]: Meaning and current situation analysis.
 `,
   TAROT_2: `
 Task: CONTINUE the narrative from the previous page (Part 2: The Challenge).
@@ -779,8 +802,8 @@ Context: The previous page ended mid-sentence or with a comma. Card 2 (The Obsta
 2. **Contextualization**: Interpret this as a block or challenge.
 3. **Drafting**: Write the content following the structure below.
 
-Structure (Translate headers to target language, use UPPERCASE):
-2. 🚧 THE CHALLENGE: What is blocking you? Hidden conflict.
+Structure (Translate all headers to {LANGUAGE} naturally):
+2. 🚧 [Translate: THE CHALLENGE]: What is blocking you? Hidden conflict.
 `,
   TAROT_3: `
 Task: CONTINUE the narrative from the previous page (Part 3: The Root).
@@ -795,8 +818,8 @@ Context: The previous page ended mid-sentence or with a comma. Card 3 (The Past/
 2. **Contextualization**: Dig into the past or subconscious origin of the issue.
 3. **Drafting**: Write the content following the structure below.
 
-Structure (Translate headers to target language, use UPPERCASE):
-3. 🌱 THE ROOT CAUSE: Past events or subconscious drivers.
+Structure (Translate all headers to {LANGUAGE} naturally):
+3. 🌱 [Translate: THE ROOT CAUSE]: Past events or subconscious drivers.
 `,
   TAROT_4: `
 Task: CONTINUE the narrative from the previous page (Part 4: The Future).
@@ -811,8 +834,8 @@ Context: The previous page ended mid-sentence or with a comma. Card 4 (The Outco
 2. **Contextualization**: Project the likely trajectory if nothing changes.
 3. **Drafting**: Write the content following the structure below.
 
-Structure (Translate headers to target language, use UPPERCASE):
-4. 🔮 THE PROBABLE FUTURE: Near-term outcome if nothing changes.
+Structure (Translate all headers to {LANGUAGE} naturally):
+4. 🔮 [Translate: THE PROBABLE FUTURE]: Near-term outcome if nothing changes.
 `,
   TAROT_5: `
 Task: CONTINUE the narrative from the previous page (Part 5: Advice).
@@ -827,8 +850,8 @@ Context: The previous page ended mid-sentence or with a comma. Card 5 (The Advic
 2. **Synthesis**: Combine all previous cards to formulate concrete advice.
 3. **Drafting**: Write the content following the structure below.
 
-Structure (Translate headers to target language, use UPPERCASE):
-5. 💡 THE SPIRIT GUIDE'S ADVICE: Actionable guidance.
+Structure (Translate all headers to {LANGUAGE} naturally):
+5. 💡 [Translate: THE SPIRIT GUIDE'S ADVICE]: Actionable guidance.
 `,
 
   // Legacy/Unused
